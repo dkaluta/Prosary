@@ -1,0 +1,64 @@
+---
+import "../styles/global.css";
+
+const title = "Prosary — A Rosary companion for iPhone and Mac";
+const description =
+  "Prosary is a companion for praying the Rosary and other Catholic devotions, in Latin, English, Arabic, and Hebrew.";
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<div class="hero">
+			<h1>Prosary</h1>
+			<p class="tagline">
+				A companion for praying the Rosary and other Catholic devotions.
+			</p>
+
+			<div class="badges">
+				<!-- TODO: replace with a real App Store badge once published -->
+				<a class="badge" href="#">Coming soon on the App Store</a>
+			</div>
+		</div>
+
+		<section>
+			<h2>Pray in your language</h2>
+			<p>
+				Latin is the default prayer language, with English, Arabic, and
+				Hebrew — including full right-to-left support — available as
+				alternatives, serving Holy Land Christian communities.
+			</p>
+		</section>
+
+		<section>
+			<h2>Built for iPhone and Mac</h2>
+			<p>
+				A native SwiftUI app with an adaptive layout: a focused
+				single-column flow on iPhone, and a roomier multi-column layout
+				on Mac and iPad.
+			</p>
+		</section>
+
+		<!-- TODO: add real screenshots once available -->
+		<!-- <section>
+			<h2>Screenshots</h2>
+			<img src="/screenshot-iphone.png" alt="Prosary on iPhone" />
+		</section> -->
+
+		<footer>
+			<p>
+				&copy; 2026 David Kaluta &middot; <a
+					href="https://github.com/dkaluta/Prosary-iOS">Source on GitHub</a
+				>
+			</p>
+		</footer>
+	</body>
+</html>

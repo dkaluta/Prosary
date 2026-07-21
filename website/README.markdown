@@ -1,0 +1,49 @@
+# Prosary landing page
+
+Astro + TypeScript static site for `https://prosary.app`.
+
+## Commands
+
+Run from this `website/` directory:
+
+| Command | Action |
+|---|---|
+| `npm install` | Install dependencies |
+| `npm run dev` | Start local dev server at `localhost:4321` |
+| `npm run build` | Build the production site to `./dist/` |
+| `npm run preview` | Preview the build locally before deploying |
+
+## Deployment
+
+Pushes to `main` that touch `website/**` are built and deployed to GitHub Pages automatically by
+[`.github/workflows/deploy-pages.yml`](../.github/workflows/deploy-pages.yml). Enable it once via
+repo **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+## Custom domain (Namecheap DNS)
+
+`public/CNAME` already declares `prosary.app` as the custom domain — GitHub handles that half
+automatically once Pages is enabled. On the Namecheap side (Domain List → Manage → Advanced DNS
+for `prosary.app`), point the apex domain at GitHub's Pages IPs with four `A` records:
+
+| Type | Host | Value |
+|------|------|-------|
+| A | @ | 185.199.108.153 |
+| A | @ | 185.199.109.153 |
+| A | @ | 185.199.110.153 |
+| A | @ | 185.199.111.153 |
+
+Optional, for `www.prosary.app` to also work — add a `CNAME` record:
+
+| Type | Host | Value |
+|------|------|-------|
+| CNAME | www | dkaluta.github.io |
+
+Then in GitHub Settings → Pages, enter `prosary.app` as the custom domain and enable "Enforce
+HTTPS" once DNS has propagated (can take up to 24-48 hours).
+
+## Editing
+
+- `src/pages/index.astro` — the landing page markup/content.
+- `src/styles/global.css` — styling (light/dark via `prefers-color-scheme`).
+- TODOs are marked inline in `index.astro` for the App Store badge link and real screenshots once
+  available.
