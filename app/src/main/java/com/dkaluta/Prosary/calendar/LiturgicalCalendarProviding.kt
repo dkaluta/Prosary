@@ -16,7 +16,12 @@ interface LiturgicalCalendarProviding {
     /** The Marian antiphon traditionally used during the current liturgical season. */
     fun seasonalMarianAntiphon(date: Date): MarianAntiphonOption
 
+    /** True from Easter Sunday through the day before Pentecost, inclusive — the window in which
+     * the Angelus is traditionally replaced by the Regina Caeli. */
+    fun isEasterSeason(date: Date): Boolean
+
     fun mysteryGroupToday(): MysteryGroup = mysteryGroup(Date())
     fun seasonColorToday(): Color = seasonColor(Date())
     fun seasonalMarianAntiphonToday(): MarianAntiphonOption = seasonalMarianAntiphon(Date())
+    fun isEasterSeasonToday(): Boolean = isEasterSeason(Date())
 }

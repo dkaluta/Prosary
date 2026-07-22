@@ -85,4 +85,17 @@ val prayerTranslationsLatin: Map<PrayerKey, String> = mapOf(
     PrayerKey.AveMariaProCaritate to "Ave Maria — ad augendam caritatem.",
 
     PrayerKey.FructusMysteriiLabel to "Fructus Mysterii",
+
+    PrayerKey.VersiculumAngelusPrimus to "Angelus Domini nuntiavit Mariae.",
+    PrayerKey.ResponsiumAngelusPrimus to "Et concepit de Spiritu Sancto.",
+    PrayerKey.VersiculumAngelusSecundus to "Ecce ancilla Domini.",
+    PrayerKey.ResponsiumAngelusSecundus to "Fiat mihi secundum verbum tuum.",
+    PrayerKey.VersiculumAngelusTertius to "Et Verbum caro factum est.",
+    PrayerKey.ResponsiumAngelusTertius to "Et habitavit in nobis.",
+    PrayerKey.CollectaAngelus to
+        "Oremus. Gratiam tuam, quaesumus, Domine, mentibus nostris infunde; ut qui, Angelo " +
+            "nuntiante, Christi Filii tui incarnationem cognovimus, per passionem eius et crucem, ad " +
+            "resurrectionis gloriam perducamur. Per eundem Christum Dominum nostrum. Amen.",
+
+    PrayerKey.OratioIesu to "Domine Iesu Christe, Fili Dei, miserere mei peccatoris.",
 )

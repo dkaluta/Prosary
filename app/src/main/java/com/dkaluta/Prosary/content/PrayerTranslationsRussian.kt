@@ -86,4 +86,18 @@ val prayerTranslationsRussian: Map<PrayerKey, String> = mapOf(
     PrayerKey.AveMariaProCaritate to "Радуйся, Мария — за умножение Любви.",
 
     PrayerKey.FructusMysteriiLabel to "Плод тайны",
+
+    PrayerKey.VersiculumAngelusPrimus to "Ангел Господень возвестил Марии.",
+    PrayerKey.ResponsiumAngelusPrimus to "И Она зачала от Духа Святого.",
+    PrayerKey.VersiculumAngelusSecundus to "Се, Раба Господня.",
+    PrayerKey.ResponsiumAngelusSecundus to "Да будет Мне по слову твоему.",
+    PrayerKey.VersiculumAngelusTertius to "И Слово стало плотью,",
+    PrayerKey.ResponsiumAngelusTertius to "и обитало с нами.",
+    PrayerKey.CollectaAngelus to
+        "Помолимся. Излей, молим Тебя, Господи, благодать Твою в сердца наши, дабы мы, " +
+            "познавшие воплощение Христа, Сына Твоего, через благовестие Ангела, страданием Его и " +
+            "крестом были приведены к славе Его воскресения. Через Того же Христа Господа нашего. Аминь.",
+
+    // The historic Church Slavonic/Russian formula of the Jesus Prayer.
+    PrayerKey.OratioIesu to "Господи Иисусе Христе, Сыне Божий, помилуй мя, грешного.",
 )

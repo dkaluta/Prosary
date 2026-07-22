@@ -89,4 +89,18 @@ val prayerTranslationsEnglish: Map<PrayerKey, String> = mapOf(
     PrayerKey.AveMariaProCaritate to "Hail Mary — for an increase of Charity.",
 
     PrayerKey.FructusMysteriiLabel to "Fruit of the Mystery",
+
+    PrayerKey.VersiculumAngelusPrimus to "The Angel of the Lord declared unto Mary.",
+    PrayerKey.ResponsiumAngelusPrimus to "And she conceived of the Holy Spirit.",
+    PrayerKey.VersiculumAngelusSecundus to "Behold the handmaid of the Lord.",
+    PrayerKey.ResponsiumAngelusSecundus to "Be it done unto me according to Thy word.",
+    PrayerKey.VersiculumAngelusTertius to "And the Word was made Flesh.",
+    PrayerKey.ResponsiumAngelusTertius to "And dwelt among us.",
+    PrayerKey.CollectaAngelus to
+        "Let us pray. Pour forth, we beseech Thee, O Lord, Thy grace into our hearts; that we, to " +
+            "whom the Incarnation of Christ Thy Son was made known by the message of an angel, may by " +
+            "His Passion and Cross be brought to the glory of His Resurrection. Through the same Christ " +
+            "our Lord. Amen.",
+
+    PrayerKey.OratioIesu to "Lord Jesus Christ, Son of God, have mercy on me, a sinner.",
 )

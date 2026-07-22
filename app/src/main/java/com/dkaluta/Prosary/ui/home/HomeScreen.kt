@@ -39,7 +39,13 @@ import com.dkaluta.Prosary.services.LocalAppServices
 import com.dkaluta.Prosary.ui.theme.extraColors
 
 @Composable
-fun HomeScreen(onPray: (String) -> Unit, onOpenPresets: () -> Unit, onOpenAbout: () -> Unit) {
+fun HomeScreen(
+    onPray: (String) -> Unit,
+    onOpenPresets: () -> Unit,
+    onOpenAbout: () -> Unit,
+    onOpenAngelus: () -> Unit,
+    onOpenJesusPrayer: () -> Unit,
+) {
     val services = LocalAppServices.current
 
     var todayMysteryGroupName by remember { mutableStateOf("") }
@@ -111,6 +117,14 @@ fun HomeScreen(onPray: (String) -> Unit, onOpenPresets: () -> Unit, onOpenAbout:
 
             OutlinedButton(onClick = onOpenPresets, modifier = Modifier.fillMaxWidth().height(52.dp)) {
                 Text("My Presets")
+            }
+
+            OutlinedButton(onClick = onOpenAngelus, modifier = Modifier.fillMaxWidth().height(52.dp)) {
+                Text("The Angelus")
+            }
+
+            OutlinedButton(onClick = onOpenJesusPrayer, modifier = Modifier.fillMaxWidth().height(52.dp)) {
+                Text("The Jesus Prayer")
             }
 
             TextButton(onClick = onOpenAbout, modifier = Modifier.padding(top = 8.dp)) {

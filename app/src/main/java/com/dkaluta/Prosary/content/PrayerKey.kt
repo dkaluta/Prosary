@@ -40,4 +40,18 @@ enum class PrayerKey {
     AveMariaProCaritate,
 
     FructusMysteriiLabel,
+
+    // The Angelus's three versicle/response pairs (Annunciation / Fiat / Incarnation) and its own
+    // closing collect — distinct from CollectaStandard (the Rosary's collect) and CollectaPaschale
+    // (reused verbatim for the Angelus's Eastertide/Regina Caeli substitution).
+    VersiculumAngelusPrimus,
+    ResponsiumAngelusPrimus,
+    VersiculumAngelusSecundus,
+    ResponsiumAngelusSecundus,
+    VersiculumAngelusTertius,
+    ResponsiumAngelusTertius,
+    CollectaAngelus,
+
+    /** The Jesus Prayer ("Lord Jesus Christ, Son of God, have mercy on me, a sinner."). */
+    OratioIesu,
 }

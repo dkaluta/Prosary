@@ -85,4 +85,16 @@ val prayerTranslationsArabic: Map<PrayerKey, String> = mapOf(
     PrayerKey.AveMariaProCaritate to "السلامُ عليكِ يا مريمُ — لأجلِ نموِّ المحبة.",
 
     PrayerKey.FructusMysteriiLabel to "ثمرة السر",
+
+    PrayerKey.VersiculumAngelusPrimus to "بَشَّرَ ملاكُ الربِّ مريمَ.",
+    PrayerKey.ResponsiumAngelusPrimus to "فحَبِلَت بالروحِ القدسِ.",
+    PrayerKey.VersiculumAngelusSecundus to "هوذا أَمَةُ الربِّ.",
+    PrayerKey.ResponsiumAngelusSecundus to "ليكن لي كقولِكَ.",
+    PrayerKey.VersiculumAngelusTertius to "والكلمةُ صار جسداً.",
+    PrayerKey.ResponsiumAngelusTertius to "وحلَّ بيننا.",
+    PrayerKey.CollectaAngelus to
+        "لنصلِّ. أفِضْ يا ربُّ نعمتَكَ في قلوبِنا، نحنُ الذين عَرَفنا تجسُّدَ ابنِكَ يسوعَ المسيحِ " +
+            "ببشارةِ الملاكِ، فبآلامِه وصليبِه نصِلْ إلى مجدِ قيامتِه. بالمسيحِ ربِّنا. آمين.",
+
+    PrayerKey.OratioIesu to "أيُّها الربُّ يسوعُ المسيحُ، يا ابنَ اللهِ، ارحَمْني أنا الخاطئَ.",
 )

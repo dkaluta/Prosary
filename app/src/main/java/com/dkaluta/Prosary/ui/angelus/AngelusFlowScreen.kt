@@ -1,4 +1,4 @@
-package com.dkaluta.Prosary.ui.rosaryflow
+package com.dkaluta.Prosary.ui.angelus
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
@@ -10,54 +10,48 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import com.dkaluta.Prosary.models.LanguageCatalog
-import com.dkaluta.Prosary.models.RosaryConfig
 import com.dkaluta.Prosary.models.RosaryStep
 import com.dkaluta.Prosary.services.LocalAppServices
 import com.dkaluta.Prosary.ui.shared.PrayerStepFlowScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RosaryFlowScreen(configId: String, onBack: () -> Unit) {
+fun AngelusFlowScreen(onBack: () -> Unit) {
     val services = LocalAppServices.current
 
-    var config by remember { mutableStateOf<RosaryConfig?>(null) }
     var steps by remember { mutableStateOf<List<RosaryStep>>(emptyList()) }
     var currentIndex by remember { mutableIntStateOf(0) }
+    var isRightToLeft by remember { mutableStateOf(false) }
     var seasonColor by remember { mutableStateOf(Color.Transparent) }
+    var languageCode by remember { mutableStateOf<String?>(null) }
 
-    LaunchedEffect(configId) {
-        val resolvedConfig = runCatching { services.presetStore.get(configId) }.getOrNull()
-            ?: runCatching { services.presetStore.defaultPreset() }.getOrNull()
-        if (resolvedConfig != null) {
-            config = resolvedConfig
-            steps = services.rosaryEngine.buildSteps(resolvedConfig)
-            currentIndex = 0
-            seasonColor = services.calendar.seasonColorToday()
-        }
+    LaunchedEffect(Unit) {
+        // Same language source HomeScreen already reads for the default Rosary preset — the
+        // Angelus has no config of its own, so it borrows the user's usual prayer language
+        // instead of introducing a separate picker.
+        val preset = runCatching { services.presetStore.defaultPreset() }.getOrNull()
+        languageCode = preset?.languageCode
+        isRightToLeft = LanguageCatalog.resolve(languageCode).isRightToLeft
+        steps = services.angelusEngine.buildSteps(languageCode)
+        currentIndex = 0
+        seasonColor = services.calendar.seasonColorToday()
     }
 
     val currentStep = steps.getOrNull(currentIndex)
-    val isRightToLeft = LanguageCatalog.resolve(config?.languageCode).isRightToLeft
-    val beadLayout = remember(steps, currentIndex, config?.includeFinalSignOfCross) {
-        BeadLayout.build(steps, currentIndex, config?.includeFinalSignOfCross ?: false)
-    }
 
     PrayerStepFlowScreen(
-        title = "Praying the Rosary",
+        title = "The Angelus",
         step = currentStep,
         currentIndex = currentIndex,
         totalSteps = steps.size,
         seasonColor = seasonColor,
         isRightToLeft = isRightToLeft,
-        languageCode = config?.languageCode,
+        languageCode = languageCode,
         canGoBack = currentIndex > 0,
         onBack = { if (currentIndex > 0) currentIndex-- },
         onNext = {
             if (steps.isEmpty() || currentIndex == steps.size - 1) onBack() else currentIndex++
         },
         onNavigateUp = onBack,
-        accessory = { isWide, hasRoomForSingleMinorColumn ->
-            BeadProgressView(layout = beadLayout, isWide = isWide, hasRoomForSingleMinorColumn = hasRoomForSingleMinorColumn)
-        },
     )
 }
