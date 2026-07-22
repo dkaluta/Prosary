@@ -42,6 +42,10 @@ struct MockLiturgicalCalendar: LiturgicalCalendarProviding {
         }
     }
 
+    func isEasterSeason(for date: Date) -> Bool {
+        season(for: date) == .easterSeason
+    }
+
     /// The traditional liturgical color for the day, for use as an accent/banner color.
     func seasonColor(for date: Date) -> Color {
         let easter = Self.computeEasterSunday(year: Self.calendar.component(.year, from: date))

@@ -91,5 +91,18 @@ extension PrayerTranslations {
         .aveMariaProCaritate: "Ave Maria — ad augendam caritatem.",
 
         .fructusMysteriiLabel: "Fructus Mysterii",
+
+        .versiculumAngelusPrimus: "Angelus Domini nuntiavit Mariae.",
+        .responsiumAngelusPrimus: "Et concepit de Spiritu Sancto.",
+        .versiculumAngelusSecundus: "Ecce ancilla Domini.",
+        .responsiumAngelusSecundus: "Fiat mihi secundum verbum tuum.",
+        .versiculumAngelusTertius: "Et Verbum caro factum est.",
+        .responsiumAngelusTertius: "Et habitavit in nobis.",
+        .collectaAngelus:
+            "Oremus. Gratiam tuam, quaesumus, Domine, mentibus nostris infunde; ut qui, Angelo " +
+            "nuntiante, Christi Filii tui incarnationem cognovimus, per passionem eius et crucem, ad " +
+            "resurrectionis gloriam perducamur. Per eundem Christum Dominum nostrum. Amen.",
+
+        .oratioIesu: "Domine Iesu Christe, Fili Dei, miserere mei peccatoris.",
     ]
 }

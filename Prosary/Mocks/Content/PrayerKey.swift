@@ -45,4 +45,18 @@ enum PrayerKey: String, CaseIterable {
     case aveMariaProCaritate
 
     case fructusMysteriiLabel
+
+    // The Angelus's three versicle/response pairs (Annunciation / Fiat / Incarnation) and its own
+    // closing collect — distinct from `collectaStandard` (the Rosary's collect) and
+    // `collectaPaschale` (reused verbatim for the Angelus's Eastertide/Regina Caeli substitution).
+    case versiculumAngelusPrimus
+    case responsiumAngelusPrimus
+    case versiculumAngelusSecundus
+    case responsiumAngelusSecundus
+    case versiculumAngelusTertius
+    case responsiumAngelusTertius
+    case collectaAngelus
+
+    /// The Jesus Prayer ("Lord Jesus Christ, Son of God, have mercy on me, a sinner.").
+    case oratioIesu
 }

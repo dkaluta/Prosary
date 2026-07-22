@@ -22,6 +22,12 @@ struct ContentView: View {
                         PresetsListView(path: $path)
                     case .about:
                         AboutView()
+                    case .angelus:
+                        AngelusFlowView()
+                    case .jesusPrayerSetup:
+                        JesusPrayerSetupView(path: $path)
+                    case .jesusPrayer(let target):
+                        JesusPrayerFlowView(path: $path, target: target)
                     }
                 }
         }

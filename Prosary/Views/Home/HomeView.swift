@@ -65,6 +65,22 @@ struct HomeView: View {
                 .tint(Color.brandPrimary)
                 .controlSize(.large)
 
+                NavigationLink(value: AppRoute.angelus) {
+                    Text("The Angelus")
+                        .frame(maxWidth: .infinity)
+                }
+                .prosarySecondaryButtonStyle()
+                .tint(Color.brandPrimary)
+                .controlSize(.large)
+
+                NavigationLink(value: AppRoute.jesusPrayerSetup) {
+                    Text("The Jesus Prayer")
+                        .frame(maxWidth: .infinity)
+                }
+                .prosarySecondaryButtonStyle()
+                .tint(Color.brandPrimary)
+                .controlSize(.large)
+
                 #if !os(macOS)
                 // On Mac, "About Prosary" is reachable only from the app menu bar — the native
                 // convention every Mac app follows. Everywhere else there's no menu bar, so an

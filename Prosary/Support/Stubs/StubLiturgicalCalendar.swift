@@ -21,4 +21,8 @@ struct StubLiturgicalCalendar: LiturgicalCalendarProviding {
     func seasonalMarianAntiphon(for date: Date) -> MarianAntiphonOption {
         fatalError("StubLiturgicalCalendar.seasonalMarianAntiphon(for:) not implemented")
     }
+
+    func isEasterSeason(for date: Date) -> Bool {
+        fatalError("StubLiturgicalCalendar.isEasterSeason(for:) not implemented")
+    }
 }

@@ -103,5 +103,23 @@ extension PrayerTranslations {
         .aveMariaProCaritate: "שִׂמְחִי מִרְיָם — לְגִדּוּל הָאַהֲבָה.",
 
         .fructusMysteriiLabel: "פְּרִי הָרָז",
+
+        // Versicles 1-3/responses 1-3 and the collect use a canonical Hebrew-Catholic Angelus
+        // text; the closing versicle/response below intentionally reuse .versiculumStandard/
+        // .responsiumStandard (already shared with the Rosary's antiphon) rather than a
+        // near-identical variant, to avoid two slightly different Hebrew renderings of the same
+        // line living side by side in the app.
+        .versiculumAngelusPrimus: "מַלְאַךְ ה׳ בִּשֵּׂר לְמִרְיָם.",
+        .responsiumAngelusPrimus: "וְהָרְתָה לְרוּחַ הַקֹּדֶשׁ.",
+        .versiculumAngelusSecundus: "הִנְנִי שִׁפְחַת ה׳.",
+        .responsiumAngelusSecundus: "יֵעָשֶׂה לִּי כִּדְבָרֶךָ.",
+        .versiculumAngelusTertius: "וְהַדָּבָר נִהְיָה בָשָׂר",
+        .responsiumAngelusTertius: "וְשָׁכַן בְּתוֹכֵנוּ.",
+        .collectaAngelus:
+            "נִתְפַּלְּלָה. הַשְׁפַּע בְּרוּחֵנוּ אֶת חַסְדְּךָ, ה׳, בִּבְשׂוֹרַת הַמַּלְאָךְ אַתָּה " +
+            "גִּלִּיתָנוּ אֶת הִתְאַנְּשׁוּת הַמָּשִׁיחַ בִּנְךָ, דֶּרֶךְ יִסּוּרָיו וּצְלִיבוֹ עֲשֵׂה " +
+            "שֶׁנַּגִּיעַ לְתִפְאֶרֶת תְּחִיָּתוֹ. בְּשֵׁם יֵשׁוּעַ הַמָּשִׁיחַ אֲדוֹנֵנוּ.",
+
+        .oratioIesu: "הָאָדוֹן יֵשׁוּעַ הַמָּשִׁיחַ, בֶּן הָאֱלֹהִים, רַחֵם עָלַי הַחוֹטֵא.",
     ]
 }

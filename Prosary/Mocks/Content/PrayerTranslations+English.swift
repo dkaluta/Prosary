@@ -95,5 +95,19 @@ extension PrayerTranslations {
         .aveMariaProCaritate: "Hail Mary — for an increase of Charity.",
 
         .fructusMysteriiLabel: "Fruit of the Mystery",
+
+        .versiculumAngelusPrimus: "The Angel of the Lord declared unto Mary.",
+        .responsiumAngelusPrimus: "And she conceived of the Holy Spirit.",
+        .versiculumAngelusSecundus: "Behold the handmaid of the Lord.",
+        .responsiumAngelusSecundus: "Be it done unto me according to Thy word.",
+        .versiculumAngelusTertius: "And the Word was made Flesh.",
+        .responsiumAngelusTertius: "And dwelt among us.",
+        .collectaAngelus:
+            "Let us pray. Pour forth, we beseech Thee, O Lord, Thy grace into our hearts; that we, to " +
+            "whom the Incarnation of Christ Thy Son was made known by the message of an angel, may by " +
+            "His Passion and Cross be brought to the glory of His Resurrection. Through the same Christ " +
+            "our Lord. Amen.",
+
+        .oratioIesu: "Lord Jesus Christ, Son of God, have mercy on me, a sinner.",
     ]
 }

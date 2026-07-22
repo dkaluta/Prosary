@@ -18,11 +18,13 @@ import SwiftUI
 struct AppServices {
     var presetStore: PresetStore
     var rosaryEngine: RosaryEngine
+    var angelusEngine: AngelusEngine
     var calendar: LiturgicalCalendarProviding
 
     static let shared = AppServices(
         presetStore: MockPresetStore(),
         rosaryEngine: MockRosaryEngine(),
+        angelusEngine: MockAngelusEngine(),
         calendar: MockLiturgicalCalendar()
     )
 }
