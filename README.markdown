@@ -18,6 +18,20 @@ Both apps are currently in testing — see [prosary.app](https://prosary.app) to
 Open `Prosary.xcodeproj` and run the `Prosary` scheme on an iOS Simulator, "My Mac", or Vision Pro
 destination.
 
+## iCloud Sync
+
+Saved favorites (`PresetEntry`, via SwiftData) sync across a user's devices through CloudKit's
+private database — `Prosary/Prosary.entitlements` declares the `iCloud.com.dkaluta.prosary`
+container, and `AppServices.modelContainer` builds its `ModelConfiguration` with
+`cloudKitDatabase: .automatic`, falling back to a local-only store if iCloud is unavailable
+(signed out, disabled for this app, or offline) rather than crashing at launch.
+
+**First build after pulling this change**: opening the project in Xcode will prompt to fix a
+signing issue, since the CloudKit capability needs a provisioning profile that doesn't exist yet —
+accept the prompt once (Xcode registers the container against your Apple Developer account and
+regenerates the profile automatically). This is a one-time step per developer machine, not
+something a normal build needs afterward.
+
 ## Architecture
 
 A `Prayer` (`Models/Prayer.swift`) is a saved, user-configurable prayer session — a Rosary, the

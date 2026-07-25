@@ -23,8 +23,20 @@ struct AppServices {
   var calendar: LiturgicalCalendarProviding
 
   static let modelContainer: ModelContainer = {
+    // .automatic picks the CloudKit container declared in Prosary.entitlements
+    // (iCloud.com.dkaluta.prosary) and syncs through the user's private database — saved
+    // favorites (including reminders) follow them across every device signed into the same
+    // iCloud account, the same way Reminders/Notes sync. Falls back to a local-only store (still
+    // fully functional, just not synced) if iCloud is unavailable — signed out, disabled for this
+    // app in Settings, or offline — rather than crashing the app on launch.
+    let cloudKitConfiguration = ModelConfiguration(cloudKitDatabase: .automatic)
+    if let container = try? ModelContainer(for: PresetEntry.self, configurations: cloudKitConfiguration) {
+      return container
+    }
+
+    let localOnlyConfiguration = ModelConfiguration(cloudKitDatabase: .none)
     do {
-      return try ModelContainer(for: PresetEntry.self)
+      return try ModelContainer(for: PresetEntry.self, configurations: localOnlyConfiguration)
     } catch {
       fatalError("Failed to create ModelContainer: \(error)")
     }
