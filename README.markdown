@@ -1,36 +1,61 @@
 # Prosary
 
 A SwiftUI multiplatform (iPhone + Mac, iPad and Vision Pro along for the ride) companion for
-praying the Rosary and other Catholic devotions, serving Holy Land Christian communities. Latin
-is the default prayer language, with English, Arabic, and Hebrew (right-to-left) as alternatives.
+praying the Rosary, the Angelus, and the Jesus Prayer — serving Holy Land Christian communities.
+Latin is the default prayer language, with English, Arabic, Hebrew, Russian, and Tagalog
+(Arabic and Hebrew right-to-left) as alternatives.
+
+An Android port lives at [dkaluta/Prosary-Android](https://github.com/dkaluta/Prosary-Android).
+Both apps are currently in testing — see [prosary.app](https://prosary.app) to join.
 
 ## Requirements
 
 - Xcode 26+
-- iOS 17 / macOS 14 minimum deployment target
+- iOS 17 / macOS 14 / visionOS 1 minimum deployment target
 
 ## Building
 
-Open `Prosary.xcodeproj` and run the `Prosary` scheme on an iOS Simulator or "My Mac" destination.
+Open `Prosary.xcodeproj` and run the `Prosary` scheme on an iOS Simulator, "My Mac", or Vision Pro
+destination.
 
 ## Architecture
 
-The backend — data models, prayer-flow business logic, persistence, and all prayer/Scripture
-text — is intentionally **not implemented** here. The UI is built entirely against three
-protocols in `Prosary/Protocols/`:
+A `Prayer` (`Models/Prayer.swift`) is a saved, user-configurable prayer session — a Rosary, the
+Angelus, or the Jesus Prayer — discriminated by `PrayerKind`, each with its own nested options
+(`RosaryOptions`, `JesusPrayerOptions`; the Angelus needs none beyond a language). Add a new
+`PrayerKind` case and a matching option struct to expand into another devotion (Divine Mercy
+Chaplet, Seven Sorrows, etc.).
 
-- `RosaryEngine` — turns a saved preset into an ordered sequence of prayer steps.
-- `PresetStore` — CRUD for saved presets.
-- `LiturgicalCalendarProviding` — today's mystery group, season accent color, seasonal antiphon.
+The UI is built entirely against four protocols in `Prosary/Protocols/`:
 
-`Prosary/Support/Stubs/` holds skeleton implementations of each protocol (`Stub*`) meant to be
-replaced with real logic and real persistence.
+- `RosaryEngine` — turns a `Prayer` into an ordered sequence of Rosary steps.
+- `AngelusEngine` — turns a language code into an ordered sequence of Angelus steps.
+- `PresetStore` — CRUD over saved `Prayer`s (the UI calls these "favorites"; the protocol name
+  and the underlying SwiftData model class, `PresetEntry`, predate that renaming).
+- `LiturgicalCalendarProviding` — today's mystery group, season accent color, seasonal antiphon,
+  Easter-season check.
 
-`Prosary/Mocks/` holds fully-working implementations (`Mock*`) built on ported prayer/Scripture
-content in `Mocks/Content/`, wired in by default via `AppServices.shared` so the app is fully
-interactive today. Swap the `AppServices.shared` initializer to point at the `Stub*`
-implementations once your real backend is ready — every view reads only through the protocols
-above, so nothing downstream needs to change.
+(The Jesus Prayer needs no engine — it's just a tap counter toward a target, modeled directly by
+`JesusPrayerOptions`/`JesusPrayerProgress`.)
+
+`Prosary/Support/Stubs/` holds the real, production implementations of each protocol —
+`StubRosaryEngine`, `StubAngelusEngine`, and `StubLiturgicalCalendar` contain the actual prayer-
+building and liturgical-calendar algorithms, and `StubPresetStore` delegates to
+`Support/SwiftData/SwiftDataPresetStore`, which persists every `Prayer` via SwiftData. (The
+"Stub" name is a holdover from before this was real — see `Prosary/Mocks/` below.)
+
+`Prosary/Mocks/` holds thin wrappers around the `Stub*` types, used only in SwiftUI Previews and
+unit tests — except `MockPresetStore`, which is a real in-memory `PresetStore` seeded with sample
+favorites, since Previews shouldn't touch SwiftData. `Mocks/Content/` holds the ported
+prayer/mystery text for all six languages, read by both the Stub and Mock engines.
+
+`AppServices.shared` wires the `Stub*` implementations together (plus the shared `ModelContainer`
+for persistence) and is read by every view through the protocols above — nothing downstream needs
+to change if the backing implementation does.
+
+Reminders are local notifications, not part of the protocol/Stub split: `Support/ReminderScheduler.swift`
+wraps `UNUserNotificationCenter`, scheduling one repeating daily notification per enabled
+`PrayerReminder` on a `Prayer`, with a per-`PrayerKind` message.
 
 Other notable pieces:
 
@@ -50,15 +75,10 @@ for full attribution.
 
 ## Website
 
-An Astro + TypeScript landing page skeleton for `https://prosary.app` lives in
-[`website/`](website/), auto-deployed to GitHub Pages on push — see
-[`website/README.markdown`](website/README.markdown) for local dev, deployment, and DNS setup.
-
-## Future Android port
-
-[`ANDROID_PORT.markdown`](ANDROID_PORT.markdown) briefs a future coding agent on porting this app
-to Kotlin/Jetpack Compose, mapping the existing architecture and flagging iOS-specific details
-worth preserving (or deliberately not copying) on Android.
+An Astro + TypeScript landing page for `https://prosary.app` lives in [`website/`](website/),
+auto-deployed to GitHub Pages on push — see [`website/README.markdown`](website/README.markdown)
+for local dev, deployment, and DNS setup. The site links to the TestFlight beta and the Android
+internal test, and hosts the shared privacy policy and license pages for both apps.
 
 ## License
 
