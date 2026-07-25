@@ -78,7 +78,7 @@ for full attribution.
 An Astro + TypeScript landing page for `https://prosary.app` lives in [`website/`](website/),
 auto-deployed to GitHub Pages on push — see [`website/README.markdown`](website/README.markdown)
 for local dev, deployment, and DNS setup. The site links to the TestFlight beta and the Android
-internal test, and hosts the shared privacy policy and license pages for both apps.
+closed test, and hosts the shared privacy policy and license pages for both apps.
 
 ## License
 
