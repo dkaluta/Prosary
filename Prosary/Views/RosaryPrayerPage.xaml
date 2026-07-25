@@ -66,20 +66,35 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Rectangle Grid.Row="0" Height="6" Fill="{x:Bind ViewModel.SeasonColor, Mode=OneWay, Converter={StaticResource ColorToBrush}}" />
+        <!-- Page-level "return to Home/Favorites" back button — distinct from the footer's Back
+             button below (RelayCommand BackCommand), which steps backward through the Rosary
+             itself rather than leaving the page. Every other flow/list page in this app has this
+             same header row; it was missing here specifically until now. -->
+        <Grid Grid.Row="0" Padding="0,0,0,4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Click="OnNavigateUp" Background="Transparent" Padding="8">
+                <FontIcon Glyph="&#xE72B;" />
+            </Button>
+        </Grid>
 
-        <StackPanel Grid.Row="1" Spacing="8">
+        <Rectangle Grid.Row="1" Height="6" Fill="{x:Bind ViewModel.SeasonColor, Mode=OneWay, Converter={StaticResource ColorToBrush}}" />
+
+        <StackPanel Grid.Row="2" Spacing="8">
             <ProgressBar Minimum="0" Maximum="1" Value="{x:Bind ViewModel.Progress, Mode=OneWay, Converter={StaticResource NullableDoubleToValue}}" />
             <TextBlock Text="{x:Bind ViewModel.ProgressText, Mode=OneWay}" HorizontalAlignment="Center" Style="{StaticResource MutedCaptionTextStyle}" />
         </StackPanel>
 
         <!-- Narrow layout: major beads wrap into rows of 5 above a single minor-beads row, above a
              vertically-scrolling image/text column — matches BeadProgressView's `!isWide` branch. -->
-        <Grid x:Name="NarrowLayout" Grid.Row="2" RowSpacing="16">
+        <Grid x:Name="NarrowLayout" Grid.Row="3" RowSpacing="16">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -125,7 +140,7 @@
              — matches BeadProgressView's `isWide` branch (HStack[VStack[cross,groupGrid,antiphon,
              closing], Divider, minorColumn]) exactly, including its single-vs-split-column minor
              beads fallback based on measured height (see WideBeadsColumn_SizeChanged). -->
-        <Grid x:Name="WideLayout" Grid.Row="2" ColumnSpacing="24" Visibility="Collapsed" SizeChanged="WideLayout_SizeChanged">
+        <Grid x:Name="WideLayout" Grid.Row="3" ColumnSpacing="24" Visibility="Collapsed" SizeChanged="WideLayout_SizeChanged">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -160,7 +175,7 @@
 
                 <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center"
                             Visibility="{x:Bind ViewModel.ShowBottomBeads, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                    <Rectangle Width="1" Fill="{StaticResource MutedTextBrush}" Margin="4,0" VerticalAlignment="Stretch" />
+                    <Rectangle Width="1" Fill="{ThemeResource TextFillColorSecondaryBrush}" Margin="4,0" VerticalAlignment="Stretch" />
 
                     <!-- Single 10-tall column when there's room... -->
                     <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeads, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
@@ -197,7 +212,7 @@
             </ScrollViewer>
         </Grid>
 
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />

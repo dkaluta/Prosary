@@ -36,13 +36,25 @@ public static class PrayerTypography
         _ => "Cambria",
     };
 
-    // Frank Ruhl Libre (Hebrew prayers) and Cardo (Latin/English Scripture) read a touch smaller
-    // than the system serifs at the same point size — bumped up slightly to match. Shofar
-    // (Hebrew Scripture) is fine as-is at the base size.
+    // Matches iOS/Android's own per-language/content-type point sizes exactly (16/21 Hebrew
+    // Scripture/prayer, 16/18 Arabic Scripture/prayer, 19/17 Latin+English Scripture/prayer) —
+    // this project's original version collapsed all six cases down to just two values (21/18),
+    // which wasn't just a rough approximation but a real mismatch on four of the six.
+    //
+    // Scaled by 0.76 throughout, matching iOS's own PrayerTypography.swift `scale` constant
+    // (applied there only on its macOS/Catalyst build, never on iPhone/iPad) — the same
+    // correction for the same reason: a desktop's viewing distance and default body-text size
+    // read literal mobile point sizes as oversized, which is exactly what this method looked
+    // like on a real Windows build before this fix.
+    private const double Scale = 0.76;
+
     public static double ResolveBodyFontSize(string languageCode, bool isScripture) => languageCode switch
     {
-        "he" when !isScripture => 21,
-        "la" or "en" when isScripture => 21,
-        _ => 18,
+        "he" => isScripture ? Round(16) : Round(21),
+        "ar" => isScripture ? Round(16) : Round(18),
+        "la" or "en" => isScripture ? Round(19) : Round(17),
+        _ => Round(17)
     };
+
+    private static double Round(double unscaledSize) => Math.Round(unscaledSize * Scale);
 }

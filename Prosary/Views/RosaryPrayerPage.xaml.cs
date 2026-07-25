@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using Prosary.Navigation;
 using Prosary.ViewModels;
 
 namespace Prosary.Views;
@@ -27,14 +28,21 @@ public sealed partial class RosaryPrayerPage : Page
         ViewModel = App.Services.GetRequiredService<RosaryViewModel>();
         InitializeComponent();
         SizeChanged += OnSizeChanged;
+        ActualThemeChanged += OnActualThemeChanged;
     }
 
     protected override async void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
+        ViewModel.HasDarkTheme = ActualTheme == ElementTheme.Dark;
         var prayerId = e.Parameter as Guid?;
         await ViewModel.LoadAsync(prayerId);
     }
+
+    private void OnActualThemeChanged(FrameworkElement sender, object args)
+        => ViewModel.HasDarkTheme = ActualTheme == ElementTheme.Dark;
+
+    private void OnNavigateUp(object sender, RoutedEventArgs e) => Router.GoBack();
 
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
     {
@@ -44,9 +52,10 @@ public sealed partial class RosaryPrayerPage : Page
     }
 
     // WideLayout's own height reflects the actual available vertical space for the wide layout
-    // (it fills Grid.Row="2", the page's remaining height after the season bar/progress header/
-    // footer) — measuring the beads column's own rendered height instead would be circular, since
-    // that size is itself a consequence of which minor-beads layout gets chosen.
+    // (it fills Grid.Row="3", the page's remaining height after the back-button header/season
+    // bar/progress header/footer) — measuring the beads column's own rendered height instead
+    // would be circular, since that size is itself a consequence of which minor-beads layout
+    // gets chosen.
     private void WideLayout_SizeChanged(object sender, SizeChangedEventArgs e)
     {
         ViewModel.HasRoomForSingleMinorColumn = e.NewSize.Height >= WideMinorColumnHeightThreshold;

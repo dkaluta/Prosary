@@ -19,12 +19,24 @@
                 <ResourceDictionary Source="ms-appx:///Microsoft.UI.Xaml/DensityStyles/Compact.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <!-- Brand colors — ported from iOS's Assets.xcassets / Android's ui/theme/Color.kt. -->
-            <Color x:Key="BrandPrimaryColor">#7A1F3D</Color>
-            <Color x:Key="BrandHeadlineColor">#4A0E23</Color>
-            <SolidColorBrush x:Key="BrandPrimaryBrush" Color="{StaticResource BrandPrimaryColor}" />
-            <SolidColorBrush x:Key="BrandHeadlineBrush" Color="{StaticResource BrandHeadlineColor}" />
-            <SolidColorBrush x:Key="MutedTextBrush" Color="#6E6E6E" />
+            <!-- Brand colors — ported from iOS's Assets.xcassets / Android's ui/theme/Color.kt,
+                 including their light/dark variants: BrandHeadline in particular is a dark maroon
+                 that reads fine on a light background but is nearly illegible against a dark one,
+                 so both platforms swap it for near-white (and BrandPrimary for a pale, desaturated
+                 pink) in dark mode rather than keeping one flat color across both themes. -->
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <Color x:Key="BrandPrimaryColor">#7A1F3D</Color>
+                    <Color x:Key="BrandHeadlineColor">#4A0E23</Color>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <Color x:Key="BrandPrimaryColor">#D8A8B5</Color>
+                    <Color x:Key="BrandHeadlineColor">#FFFFFF</Color>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+
+            <SolidColorBrush x:Key="BrandPrimaryBrush" Color="{ThemeResource BrandPrimaryColor}" />
+            <SolidColorBrush x:Key="BrandHeadlineBrush" Color="{ThemeResource BrandHeadlineColor}" />
 
             <conv:ColorToBrushConverter x:Key="ColorToBrush" />
             <conv:BoolToFlowDirectionConverter x:Key="BoolToFlowDirection" />
@@ -53,11 +65,11 @@
             </Style>
             <Style x:Key="MutedCaptionTextStyle" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="12" />
-                <Setter Property="Foreground" Value="{StaticResource MutedTextBrush}" />
+                <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
             </Style>
             <Style x:Key="MutedSubtitleTextStyle" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="14" />
-                <Setter Property="Foreground" Value="{StaticResource MutedTextBrush}" />
+                <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
                 <Setter Property="TextWrapping" Value="Wrap" />
                 <Setter Property="TextAlignment" Value="Center" />
             </Style>

@@ -35,7 +35,7 @@ public sealed class BeadLayout
 
     public static readonly BeadLayout Empty = new();
 
-    public static BeadLayout Build(IReadOnlyList<RosaryStep> steps, int currentIndex, bool hasClosingCross)
+    public static BeadLayout Build(IReadOnlyList<RosaryStep> steps, int currentIndex, bool hasClosingCross, bool isDarkTheme)
     {
         if (currentIndex < 0 || currentIndex >= steps.Count)
         {
@@ -52,7 +52,12 @@ public sealed class BeadLayout
         var antiphonStepIndex = steps.Select((s, i) => (s, i)).Where(t => t.s.IsAntiphon)
             .Select(t => (int?)t.i).FirstOrDefault() ?? -1;
 
-        var crossBead = new BeadInfo { Kind = BeadKind.Cross, State = currentIndex == 0 ? BeadState.Current : BeadState.Completed };
+        var crossBead = new BeadInfo
+        {
+            Kind = BeadKind.Cross,
+            State = currentIndex == 0 ? BeadState.Current : BeadState.Completed,
+            IsDarkTheme = isDarkTheme
+        };
 
         var decadeBeads = new List<BeadInfo>();
         for (var d = 0; d < totalDecades; d++)
@@ -65,7 +70,7 @@ public sealed class BeadLayout
                 var current when d == current => BeadState.Current,
                 _ => BeadState.Upcoming
             };
-            decadeBeads.Add(new BeadInfo { Kind = BeadKind.Decade, State = state });
+            decadeBeads.Add(new BeadInfo { Kind = BeadKind.Decade, State = state, IsDarkTheme = isDarkTheme });
         }
 
         BeadInfo? antiphonBead = null;
@@ -74,7 +79,7 @@ public sealed class BeadLayout
             var state = currentIndex < antiphonStepIndex ? BeadState.Upcoming
                 : currentIndex == antiphonStepIndex ? BeadState.Current
                 : BeadState.Completed;
-            antiphonBead = new BeadInfo { Kind = BeadKind.Antiphon, State = state };
+            antiphonBead = new BeadInfo { Kind = BeadKind.Antiphon, State = state, IsDarkTheme = isDarkTheme };
         }
 
         BeadInfo? closingCrossBead = null;
@@ -84,7 +89,8 @@ public sealed class BeadLayout
             closingCrossBead = new BeadInfo
             {
                 Kind = BeadKind.Cross,
-                State = currentIndex < closingCrossIndex ? BeadState.Upcoming : BeadState.Current
+                State = currentIndex < closingCrossIndex ? BeadState.Upcoming : BeadState.Current,
+                IsDarkTheme = isDarkTheme
             };
         }
 
@@ -200,7 +206,13 @@ public sealed class BeadLayout
                 state = h < current ? BeadState.Completed : h == current ? BeadState.Current : BeadState.Upcoming;
             }
 
-            bottom.Add(new BeadInfo { Kind = BeadKind.Decade, State = state, IsGroupStart = h > 1 && (h - 1) % 5 == 0 });
+            bottom.Add(new BeadInfo
+            {
+                Kind = BeadKind.Decade,
+                State = state,
+                IsGroupStart = h > 1 && (h - 1) % 5 == 0,
+                IsDarkTheme = isDarkTheme
+            });
         }
 
         return new BeadLayout

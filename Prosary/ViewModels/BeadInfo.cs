@@ -13,7 +13,12 @@ public enum BeadState { Completed, Current, Upcoming }
 /// version this file originally mirrored).</summary>
 public sealed class BeadInfo
 {
-    private static readonly Color CurrentColor = ColorFromHex("#7A1F3D");
+    // Completed/upcoming stay the same flat gray in both themes on every platform (iOS's
+    // BeadModels.swift and Android's Color.kt both hardcode these two with no dark-mode variant)
+    // — only the current bead's maroon is dark enough to need a lighter dark-mode replacement,
+    // matching iOS's BeadCurrent/Android's BeadCurrentLight+BeadCurrentDark asset colors exactly.
+    private static readonly Color CurrentColorLight = ColorFromHex("#7A1F3D");
+    private static readonly Color CurrentColorDark = ColorFromHex("#E04F7D");
     private static readonly Color CompletedColor = ColorFromHex("#6E6E6E");
     private static readonly Color UpcomingColor = ColorFromHex("#ACACAC");
 
@@ -26,6 +31,13 @@ public sealed class BeadInfo
     /// converter usage) — the wide layout's minor-bead column(s) don't add this extra gap.</summary>
     public bool IsGroupStart { get; init; }
 
+    /// <summary>Set by <see cref="BeadLayout.Build"/> from the page's own
+    /// <c>FrameworkElement.ActualTheme</c> at render time — beads are plain, short-lived data
+    /// (rebuilt on every step change), not live XAML elements, so there's no
+    /// <c>{ThemeResource}</c> to bind against the way <c>BrandPrimaryBrush</c> does; this is the
+    /// bool-driven equivalent for the one bead color that actually differs by theme.</summary>
+    public bool IsDarkTheme { get; init; }
+
     public bool IsCross => Kind == BeadKind.Cross;
     public bool IsAntiphon => Kind == BeadKind.Antiphon;
     public bool IsCircle => Kind != BeadKind.Cross;
@@ -34,7 +46,7 @@ public sealed class BeadInfo
 
     public Color Color => State switch
     {
-        BeadState.Current => CurrentColor,
+        BeadState.Current => IsDarkTheme ? CurrentColorDark : CurrentColorLight,
         BeadState.Completed => CompletedColor,
         _ => UpcomingColor
     };

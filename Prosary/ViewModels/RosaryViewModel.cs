@@ -107,6 +107,16 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     [ObservableProperty]
     private bool _hasRoomForSingleMinorColumn = true;
 
+    /// <summary>Set by the page from its own <c>FrameworkElement.ActualTheme</c> (initially, and
+    /// again on <c>ActualThemeChanged</c>) — beads are plain data rebuilt on every step change,
+    /// not live XAML elements bindable to a <c>{ThemeResource}</c>, so the current bead's color
+    /// (the one bead color that differs by theme — see BeadInfo.cs) needs this threaded through
+    /// explicitly instead.</summary>
+    [ObservableProperty]
+    private bool _hasDarkTheme;
+
+    partial void OnHasDarkThemeChanged(bool value) => RebuildBeads();
+
     /// <summary>First half of <see cref="BottomBeads"/>, for the wide layout's split-column
     /// fallback when <see cref="HasRoomForSingleMinorColumn"/> is false — matches iOS's
     /// <c>MinorBeadsTwoColumnView</c> split exactly (first <c>(count+1)/2</c> beads).</summary>
@@ -203,7 +213,7 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
 
     private void RebuildBeads()
     {
-        var layout = BeadLayout.Build(_steps, _index, _hasClosingCross);
+        var layout = BeadLayout.Build(_steps, _index, _hasClosingCross, HasDarkTheme);
 
         TopBeadRows = new ObservableCollection<IReadOnlyList<BeadInfo>>(layout.TopRows);
         OpeningCross = layout.OpeningCross;

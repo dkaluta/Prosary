@@ -29,7 +29,7 @@
                 <TextBlock Text="{x:Bind Subtitle, Mode=OneWay}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
             </StackPanel>
 
-            <FontIcon Grid.Column="2" Glyph="&#xE76C;" FontSize="12" Foreground="{StaticResource MutedTextBrush}" VerticalAlignment="Center" />
+            <FontIcon Grid.Column="2" Glyph="&#xE76C;" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" VerticalAlignment="Center" />
         </Grid>
     </Button>
 </UserControl>
