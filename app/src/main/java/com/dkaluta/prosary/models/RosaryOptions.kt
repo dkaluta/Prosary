@@ -1,0 +1,25 @@
+package com.dkaluta.prosary.models
+
+/** Configuration options specific to the Rosary. Lives inside a [Prayer] when kind == Rosary. */
+data class RosaryOptions(
+    var mysterySelectionMode: MysterySelectionMode = MysterySelectionMode.TodaysMysteries,
+    /** Used only when [mysterySelectionMode] is [MysterySelectionMode.Specific]. */
+    var specificMysteryGroup: MysteryGroup = MysteryGroup.Joyful,
+    var includeApostlesCreed: Boolean = true,
+    /** The opening Our Father + 3 Hail Marys (for faith, hope, and charity) + Glory Be. */
+    var includeOpeningPrayers: Boolean = true,
+    /** The Fatima Prayer ("O my Jesus...") recited after the Glory Be of each decade. */
+    var includeFatimaPrayer: Boolean = true,
+    var eternalRestForDeceased: EternalRestPlacement = EternalRestPlacement.None,
+    var marianAntiphon: MarianAntiphonOption = MarianAntiphonOption.Seasonal,
+    var includeStMichaelPrayer: Boolean = false,
+    var includeFinalSignOfCross: Boolean = true,
+) {
+    val mysterySelectionSummary: String
+        get() = when (mysterySelectionMode) {
+            MysterySelectionMode.Specific -> "Always ${specificMysteryGroup.displayName}"
+            MysterySelectionMode.FifteenMystery -> "The 15 Mysteries"
+            MysterySelectionMode.TwentyMystery -> "The 20 Mysteries"
+            MysterySelectionMode.TodaysMysteries -> "Today's Mysteries"
+        }
+}

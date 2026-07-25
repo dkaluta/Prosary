@@ -20,7 +20,7 @@ val keystoreProperties = Properties().apply {
 }
 
 android {
-    namespace = "com.dkaluta.Prosary"
+    namespace = "com.dkaluta.prosary"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -28,7 +28,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.dkaluta.Prosary"
+        applicationId = "com.dkaluta.prosary"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
