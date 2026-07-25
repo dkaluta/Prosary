@@ -7,11 +7,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <!-- Attribution content ported verbatim from iOS's AboutView.swift (the current canonical
-         source — irosary's older AboutPage.xaml has the same content but predates the app being
-         retitled "Prosary"). Note iOS's own "Scripture Sources" section doesn't yet mention the
-         Arabic/Russian/Tagalog sources added since irosary was written; ported as-is to match
-         iOS rather than silently fixing what may be a real gap there too. -->
+    <!-- Attribution content ported from iOS's AboutView.swift (the current canonical source —
+         irosary's older AboutPage.xaml has the same content but predates the app being retitled
+         "Prosary"). Scripture Sources now lists all 6 supported languages' sources (this session
+         also fixed the same gap on iOS/Android, which previously only listed 3). -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -94,7 +93,7 @@
 
                 <StackPanel Spacing="8">
                     <TextBlock Text="Scripture Sources" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
-                    <TextBlock Text="Mystery meditations quote the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), and Franz Delitzsch's Hebrew New Testament translation, sourced from kirjasilta.net/ha-berit — all public domain."
+                    <TextBlock Text="Mystery meditations quote the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit), the Jesuit Arabic Bible (Beirut, 1880, revised 1988), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905) — all public domain."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
                 </StackPanel>
 
