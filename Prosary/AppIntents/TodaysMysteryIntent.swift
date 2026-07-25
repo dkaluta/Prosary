@@ -6,8 +6,10 @@
 import AppIntents
 
 struct TodaysMysteryIntent: AppIntent {
-  static var title: LocalizedStringResource = "Today's Mysteries"
-  static var description = IntentDescription("Tells you which set of Rosary mysteries is traditionally prayed today.")
+  static var title: LocalizedStringResource = LocalizedStringResource("appIntents.todaysMystery.title", defaultValue: "Today's Mysteries")
+  static var description = IntentDescription(LocalizedStringResource(
+    "appIntents.todaysMystery.description",
+    defaultValue: "Tells you which set of Rosary mysteries is traditionally prayed today."))
 
   @MainActor
   func perform() async throws -> some IntentResult & ReturnsValue<String> & ProvidesDialog {

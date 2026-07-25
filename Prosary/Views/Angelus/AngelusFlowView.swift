@@ -26,7 +26,7 @@ struct AngelusFlowView: View {
 
   var body: some View {
     PrayerStepFlowView(
-      navigationTitle: "The Angelus",
+      navigationTitle: String(localized: "angelusFlow.title", defaultValue: "The Angelus"),
       step: currentStep,
       currentIndex: currentIndex,
       totalSteps: steps.count,
@@ -42,7 +42,7 @@ struct AngelusFlowView: View {
         Button { toggleFavorite() } label: {
           Image(systemName: matchingFavoriteId != nil ? "star.fill" : "star")
         }
-        .accessibilityLabel(matchingFavoriteId != nil ? "Remove from Favorites" : "Add to Favorites")
+        .accessibilityLabel(matchingFavoriteId != nil ? "prayerFlow.removeFromFavorites" : "prayerFlow.addToFavorites")
       }
     }
     .task { await load() }

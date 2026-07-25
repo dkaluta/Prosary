@@ -32,10 +32,14 @@ struct RosaryOptions: Hashable, Codable {
 
   var mysterySelectionSummary: String {
     switch mysterySelectionMode {
-    case .specific:        return String(localized: "Always \(specificMysteryGroup.displayName)")
-    case .fifteenMystery:  return String(localized: "The 15 Mysteries")
-    case .twentyMystery:   return String(localized: "The 20 Mysteries")
-    case .todaysMysteries: return String(localized: "Today's Mysteries")
+    case .specific:
+      return String(localized: "rosaryOptions.summary.always", defaultValue: "Always \(specificMysteryGroup.displayName)")
+    case .fifteenMystery:
+      return String(localized: "rosaryOptions.summary.fifteenMystery", defaultValue: "The 15 Mysteries")
+    case .twentyMystery:
+      return String(localized: "rosaryOptions.summary.twentyMystery", defaultValue: "The 20 Mysteries")
+    case .todaysMysteries:
+      return String(localized: "mysterySelectionMode.todaysMysteries", defaultValue: "Today's Mysteries")
     }
   }
 }

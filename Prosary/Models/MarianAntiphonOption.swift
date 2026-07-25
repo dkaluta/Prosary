@@ -20,13 +20,13 @@ enum MarianAntiphonOption: String, Codable, CaseIterable, Identifiable {
 
   var displayName: String {
     switch self {
-    case .none:                 return String(localized: "None")
-    case .seasonal:             return String(localized: "Automatic (Seasonal)")
-    case .salveRegina:          return String(localized: "Salve Regina")
-    case .almaRedemptorisMater: return String(localized: "Alma Redemptoris Mater")
-    case .aveReginaCaelorum:    return String(localized: "Ave Regina Caelorum")
-    case .reginaCaeli:          return String(localized: "Regina Caeli")
-    case .subTuumPraesidium:    return String(localized: "Sub Tuum Praesidium")
+    case .none:                 return String(localized: "marianAntiphon.none", defaultValue: "None")
+    case .seasonal:             return String(localized: "marianAntiphon.seasonal", defaultValue: "Automatic (Seasonal)")
+    case .salveRegina:          return String(localized: "marianAntiphon.salveRegina", defaultValue: "Salve Regina")
+    case .almaRedemptorisMater: return String(localized: "marianAntiphon.almaRedemptorisMater", defaultValue: "Alma Redemptoris Mater")
+    case .aveReginaCaelorum:    return String(localized: "marianAntiphon.aveReginaCaelorum", defaultValue: "Ave Regina Caelorum")
+    case .reginaCaeli:          return String(localized: "marianAntiphon.reginaCaeli", defaultValue: "Regina Caeli")
+    case .subTuumPraesidium:    return String(localized: "marianAntiphon.subTuumPraesidium", defaultValue: "Sub Tuum Praesidium")
     }
   }
 }

@@ -40,7 +40,7 @@ struct ProsaryApp: App {
     // A separate, singleton window — reachable only from the app menu above, matching how
     // "About This Mac" and every other Mac app's About panel behaves. There's deliberately
     // no in-app button on Mac for this (see HomeView).
-    Window("About Prosary", id: "about") {
+    Window("about.navigationTitle", id: "about") {
       NavigationStack {
         AboutView()
       }

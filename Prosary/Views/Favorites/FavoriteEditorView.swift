@@ -24,36 +24,36 @@ struct FavoriteEditorView: View {
     Form {
       // MARK: Common fields
       Section {
-        TextField("Name", text: $prayer.name, prompt: Text("e.g. Morning Rosary"))
-        Toggle("Set as default for \(prayer.kind.displayName)", isOn: $prayer.isDefault)
+        TextField("favoriteEditor.name", text: $prayer.name, prompt: Text("favoriteEditor.namePlaceholder"))
+        Toggle(String(localized: "favoriteEditor.setAsDefault", defaultValue: "Set as default for \(prayer.kind.displayName)"), isOn: $prayer.isDefault)
       }
 
       Section {
-        Picker("Language", selection: $prayer.languageCode) {
+        Picker("favoriteEditor.language", selection: $prayer.languageCode) {
           let defaultName = LanguageCatalog.resolve(appDefaultCode).nativeName
-          Text("Default — \(defaultName)").tag(LanguageCatalog.defaultSentinel)
+          Text(String(localized: "favoriteEditor.defaultLanguageOption", defaultValue: "Default — \(defaultName)")).tag(LanguageCatalog.defaultSentinel)
           ForEach(LanguageCatalog.all) { language in
             Text(language.nativeName).tag(language.code)
           }
         }
       } header: {
-        Text("Prayer Language")
+        Text("favoriteEditor.prayerLanguageHeader")
       } footer: {
         #if os(iOS)
-        Text("The default language is set in [Settings → Prosary](app-settings:).")
+        Text("favoriteEditor.languageFooter")
         #endif
       }
 
       // MARK: Rosary options
       if prayer.kind == .rosary {
-        Section("Which mysteries?") {
-          Picker("Mysteries", selection: $prayer.rosary.mysterySelectionMode) {
+        Section("favoriteEditor.whichMysteries") {
+          Picker("favoriteEditor.mysteriesPicker", selection: $prayer.rosary.mysterySelectionMode) {
             ForEach(MysterySelectionMode.allCases) { mode in
               Text(mode.displayName).tag(mode)
             }
           }
           if prayer.rosary.mysterySelectionMode == .specific {
-            Picker("Specific set", selection: $prayer.rosary.specificMysteryGroup) {
+            Picker("favoriteEditor.specificSet", selection: $prayer.rosary.specificMysteryGroup) {
               ForEach(MysteryGroup.allCases) { group in
                 Text(group.displayName).tag(group)
               }
@@ -61,36 +61,36 @@ struct FavoriteEditorView: View {
           }
         }
 
-        Section("Opening & Decade Prayers") {
-          Toggle("Apostles' Creed", isOn: $prayer.rosary.includeApostlesCreed)
-          Toggle("Opening Our Father & 3 Hail Marys", isOn: $prayer.rosary.includeOpeningPrayers)
-          Toggle("Fatima Prayer after each decade", isOn: $prayer.rosary.includeFatimaPrayer)
-          Picker("For the faithful departed", selection: $prayer.rosary.eternalRestForDeceased) {
+        Section("favoriteEditor.openingDecadePrayers") {
+          Toggle("favoriteEditor.apostlesCreed", isOn: $prayer.rosary.includeApostlesCreed)
+          Toggle("favoriteEditor.openingPrayers", isOn: $prayer.rosary.includeOpeningPrayers)
+          Toggle("favoriteEditor.fatimaPrayer", isOn: $prayer.rosary.includeFatimaPrayer)
+          Picker("favoriteEditor.eternalRest", selection: $prayer.rosary.eternalRestForDeceased) {
             ForEach(EternalRestPlacement.allCases) { option in
               Text(option.displayName).tag(option)
             }
           }
         }
 
-        Section("Closing Prayers") {
-          Picker("Marian antiphon", selection: $prayer.rosary.marianAntiphon) {
+        Section("favoriteEditor.closingPrayers") {
+          Picker("favoriteEditor.marianAntiphon", selection: $prayer.rosary.marianAntiphon) {
             ForEach(MarianAntiphonOption.allCases) { option in
               Text(option.displayName).tag(option)
             }
           }
-          Toggle("St. Michael Prayer", isOn: $prayer.rosary.includeStMichaelPrayer)
-          Toggle("Final Sign of the Cross", isOn: $prayer.rosary.includeFinalSignOfCross)
+          Toggle("favoriteEditor.stMichaelPrayer", isOn: $prayer.rosary.includeStMichaelPrayer)
+          Toggle("favoriteEditor.finalSignOfCross", isOn: $prayer.rosary.includeFinalSignOfCross)
         }
       }
 
       // MARK: Jesus Prayer options
       if prayer.kind == .jesusPrayer {
-        Section("Target") {
-          Picker("Repetitions", selection: $prayer.jesusPrayer.target) {
-            Text("33").tag(JesusPrayerTarget.count(33))
-            Text("66").tag(JesusPrayerTarget.count(66))
-            Text("99").tag(JesusPrayerTarget.count(99))
-            Text("Unbounded").tag(JesusPrayerTarget.unbounded)
+        Section("favoriteEditor.target") {
+          Picker("favoriteEditor.repetitions", selection: $prayer.jesusPrayer.target) {
+            Text("jesusPrayerTarget.33").tag(JesusPrayerTarget.count(33))
+            Text("jesusPrayerTarget.66").tag(JesusPrayerTarget.count(66))
+            Text("jesusPrayerTarget.99").tag(JesusPrayerTarget.count(99))
+            Text("jesusPrayerOptions.unbounded").tag(JesusPrayerTarget.unbounded)
           }
           .pickerStyle(.segmented)
         }
@@ -100,9 +100,9 @@ struct FavoriteEditorView: View {
       Section {
         if prayer.kind == .angelus {
           // Traditional Angelus bell times — quick toggles for 6am, noon, 6pm.
-          Toggle("6:00 AM", isOn: angelusTimeBinding(hour: 6))
-          Toggle("12:00 PM", isOn: angelusTimeBinding(hour: 12))
-          Toggle("6:00 PM", isOn: angelusTimeBinding(hour: 18))
+          Toggle("favoriteEditor.angelusTime6Am", isOn: angelusTimeBinding(hour: 6))
+          Toggle("favoriteEditor.angelusTimeNoon", isOn: angelusTimeBinding(hour: 12))
+          Toggle("favoriteEditor.angelusTime6Pm", isOn: angelusTimeBinding(hour: 18))
 
           ForEach(customReminders) { reminder in
             reminderRow(for: reminder.id)
@@ -116,29 +116,29 @@ struct FavoriteEditorView: View {
         Button {
           prayer.reminders.append(PrayerReminder(hour: 9, minute: 0))
         } label: {
-          Label("Add Reminder", systemImage: "plus")
+          Label("favoriteEditor.addReminder", systemImage: "plus")
         }
       } header: {
-        Text("Reminders")
+        Text("favoriteEditor.remindersHeader")
       } footer: {
         if prayer.kind == .angelus, !prayer.reminders.isEmpty {
-          Text("Traditional times correspond to the Angelus bell. All reminders repeat daily.")
+          Text("favoriteEditor.angelusRemindersFooter")
         } else if !prayer.reminders.isEmpty {
-          Text("Reminders repeat daily.")
+          Text("favoriteEditor.remindersFooter")
         }
       }
     }
     .formStyle(.grouped)
-    .navigationTitle(isNew ? "New Favorite" : "Edit Favorite")
+    .navigationTitle(isNew ? "favoriteEditor.newFavoriteTitle" : "favoriteEditor.editFavoriteTitle")
     #if os(iOS)
     .navigationBarTitleDisplayMode(.inline)
     #endif
     .toolbar {
       ToolbarItem(placement: .cancellationAction) {
-        Button("Cancel") { dismiss() }
+        Button("favoriteEditor.cancel") { dismiss() }
       }
       ToolbarItem(placement: .confirmationAction) {
-        Button("Save") { save() }
+        Button("favoriteEditor.save") { save() }
       }
     }
   }

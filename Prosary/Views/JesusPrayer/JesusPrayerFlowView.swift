@@ -43,14 +43,14 @@ struct JesusPrayerFlowView: View {
   private var currentStep: RosaryStep? {
     guard hasLoaded else { return nil }
     return RosaryStep(
-      title: "Jesus Prayer", subtitle: nil,
+      title: PrayerKind.jesusPrayer.displayName, subtitle: nil,
       body: PrayerTranslations.get(languageCode: languageCode, key: .oratioIesu),
       imageOverrideKey: "jesus_portrait")
   }
 
   var body: some View {
     PrayerStepFlowView(
-      navigationTitle: "The Jesus Prayer",
+      navigationTitle: String(localized: "jesusPrayerFlow.title", defaultValue: "The Jesus Prayer"),
       step: currentStep,
       currentIndex: progress.currentIndex,
       totalSteps: progress.targetCount,
@@ -64,14 +64,14 @@ struct JesusPrayerFlowView: View {
     .toolbar {
       if case .unbounded = effectiveTarget {
         ToolbarItem(placement: .confirmationAction) {
-          Button("Finish") { returnHome() }
+          Button("prayerFlow.finish") { returnHome() }
         }
       }
       ToolbarItem(placement: .secondaryAction) {
         Button { toggleFavorite() } label: {
           Image(systemName: matchingFavoriteId != nil ? "star.fill" : "star")
         }
-        .accessibilityLabel(matchingFavoriteId != nil ? "Remove from Favorites" : "Add to Favorites")
+        .accessibilityLabel(matchingFavoriteId != nil ? "prayerFlow.removeFromFavorites" : "prayerFlow.addToFavorites")
       }
     }
     .task { await load() }

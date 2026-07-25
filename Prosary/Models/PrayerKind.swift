@@ -15,18 +15,18 @@ enum PrayerKind: String, CaseIterable, Codable, Hashable {
 
   var displayName: String {
     switch self {
-    case .rosary:      return String(localized: "Rosary")
-    case .angelus:     return String(localized: "Angelus")
-    case .jesusPrayer: return String(localized: "Jesus Prayer")
+    case .rosary:      return String(localized: "prayerKind.rosary", defaultValue: "Rosary")
+    case .angelus:     return String(localized: "prayerKind.angelus", defaultValue: "Angelus")
+    case .jesusPrayer: return String(localized: "prayerKind.jesusPrayer", defaultValue: "Jesus Prayer")
     }
   }
 
   /// Default name suggested when the user creates a new favorite of this kind.
   var defaultName: String {
     switch self {
-    case .rosary:      return String(localized: "My Rosary")
-    case .angelus:     return String(localized: "Angelus")
-    case .jesusPrayer: return String(localized: "Jesus Prayer")
+    case .rosary:      return String(localized: "prayerKind.defaultName.rosary", defaultValue: "My Rosary")
+    case .angelus:     return String(localized: "prayerKind.angelus", defaultValue: "Angelus")
+    case .jesusPrayer: return String(localized: "prayerKind.jesusPrayer", defaultValue: "Jesus Prayer")
     }
   }
 

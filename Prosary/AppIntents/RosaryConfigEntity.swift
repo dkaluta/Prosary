@@ -11,7 +11,8 @@ struct RosaryConfigEntity: AppEntity {
   let id: Prayer.ID
   let name: String
 
-  static var typeDisplayRepresentation: TypeDisplayRepresentation = "Rosary Preset"
+  static var typeDisplayRepresentation: TypeDisplayRepresentation = TypeDisplayRepresentation(
+    name: LocalizedStringResource("appIntents.rosaryConfigEntity.typeName", defaultValue: "Rosary Preset"))
   static var defaultQuery = RosaryConfigEntityQuery()
 
   var displayRepresentation: DisplayRepresentation {

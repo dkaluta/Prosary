@@ -15,42 +15,42 @@ struct AboutView: View {
     ScrollView {
       VStack(alignment: .leading, spacing: 24) {
         VStack(alignment: .leading, spacing: 4) {
-          Text("Prosary")
+          Text("about.title")
             .font(.largeTitle.bold())
             .foregroundStyle(Color.brandHeadline)
-          Text("A companion for praying the Rosary and other Catholic devotions.")
+          Text("about.tagline")
             .foregroundStyle(.secondary)
         }
 
         section("Typefaces") {
-          Text("**Frank Ruhl Libre** — SIL Open Font License 1.1 — Hebrew prayers.")
-          Text("**Shofar** — GPL v2 with font-embedding exception — Hebrew Scripture (Culmus Project, Yoram Gnat).")
-          Text("**Amiri** — SIL Open Font License 1.1 — Arabic prayers.")
-          Text("**Scheherazade New** — SIL Open Font License 1.1 — Arabic Scripture (SIL).")
-          Text("**Cardo** — SIL Open Font License 1.1 — Latin/English Scripture (David J. Perry).")
-          Text("Latin-script prayers use Apple's system \"New York\" serif design — not bundled with the app.")
+          Text("about.typefaces.frankRuhlLibre")
+          Text("about.typefaces.shofar")
+          Text("about.typefaces.amiri")
+          Text("about.typefaces.scheherazadeNew")
+          Text("about.typefaces.cardo")
+          Text("about.typefaces.systemSerifNote")
             .font(.footnote)
             .foregroundStyle(.secondary)
             .padding(.top, 4)
         }
 
         section("Mystery Illustrations") {
-          Text("All 20 mystery images are classical paintings in the public domain (artist deceased over 100 years), sourced from Wikimedia Commons.")
+          Text("about.mysteryImages.intro")
             .font(.footnote)
             .foregroundStyle(.secondary)
-          ForEach(mysteryAttributions, id: \.self) { line in
-            Text(LocalizedStringKey(line))
+          ForEach(mysteryAttributions, id: \.self) { key in
+            Text(LocalizedStringKey(key))
           }
         }
 
         section("Other Images") {
-          ForEach(otherImageAttributions, id: \.self) { line in
-            Text(LocalizedStringKey(line))
+          ForEach(otherImageAttributions, id: \.self) { key in
+            Text(LocalizedStringKey(key))
           }
         }
 
         section("Scripture Sources") {
-          Text("Mystery meditations quote the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit), the Jesuit Arabic Bible (Beirut, 1880, revised 1988), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905) — all public domain.")
+          Text("about.scriptureSources")
             .font(.footnote)
             .foregroundStyle(.secondary)
         }
@@ -59,7 +59,7 @@ struct AboutView: View {
       .frame(maxWidth: 560, alignment: .leading)
       .frame(maxWidth: .infinity)
     }
-    .navigationTitle("About Prosary")
+    .navigationTitle("about.navigationTitle")
   }
 
   @ViewBuilder
@@ -73,37 +73,37 @@ struct AboutView: View {
   }
 
   private let mysteryAttributions = [
-    "*The Annunciation* — Fra Angelico (d. 1455)",
-    "*The Visitation* — Mariotto Albertinelli (d. 1515)",
-    "*The Holy Night* — Antonio da Correggio (d. 1534)",
-    "*The Presentation at the Temple* — Andrea Mantegna (d. 1506)",
-    "*Christ Discovered in the Temple* — Simone Martini (d. 1344)",
-    "*The Baptism of Christ* — Piero della Francesca (d. 1492)",
-    "*The Wedding at Cana* — Paolo Veronese (d. 1588)",
-    "*The Sermon on the Mount* — Cosimo Rosselli (d. 1507)",
-    "*The Transfiguration* — Raphael (d. 1520)",
-    "*The Last Supper* — Leonardo da Vinci (d. 1519)",
-    "*The Agony in the Garden* — Andrea Mantegna (d. 1506)",
-    "*The Flagellation of Christ* — Caravaggio (d. 1610)",
-    "*The Crowning with Thorns* — Caravaggio (d. 1610)",
-    "*Christ Carrying the Cross* — Titian (d. 1576)",
-    "*Christ Crucified* — Diego Velázquez (d. 1660)",
-    "*The Resurrection* — Piero della Francesca (d. 1492)",
-    "*The Ascension of Christ* — Rembrandt (d. 1669)",
-    "*The Pentecost* — El Greco (d. 1614)",
-    "*Assumption of the Virgin* — Titian (d. 1576)",
-    "*Coronation of the Virgin* — Diego Velázquez (d. 1660)",
+    "about.mysteryImage.annunciation",
+    "about.mysteryImage.visitation",
+    "about.mysteryImage.holyNight",
+    "about.mysteryImage.presentation",
+    "about.mysteryImage.findingInTheTemple",
+    "about.mysteryImage.baptism",
+    "about.mysteryImage.weddingAtCana",
+    "about.mysteryImage.sermonOnTheMount",
+    "about.mysteryImage.transfiguration",
+    "about.mysteryImage.lastSupper",
+    "about.mysteryImage.agonyInTheGarden",
+    "about.mysteryImage.flagellation",
+    "about.mysteryImage.crowningWithThorns",
+    "about.mysteryImage.carryingTheCross",
+    "about.mysteryImage.crucifixion",
+    "about.mysteryImage.resurrection",
+    "about.mysteryImage.ascension",
+    "about.mysteryImage.pentecost",
+    "about.mysteryImage.assumption",
+    "about.mysteryImage.coronation",
   ]
 
   private let otherImageAttributions = [
-    "*Crucifix* — Cimabue (d. 1302).",
-    "*The Small Cowper Madonna* — Raphael (d. 1520).",
-    "*Faith, Hope, and Charity* — Raphael, Baglioni altarpiece predella (d. 1520).",
-    "*Praying Hands* — Albrecht Dürer (d. 1528).",
-    "*Holy Trinity* — Masaccio (d. 1428).",
-    "*Christ in Limbo* — Fra Angelico (d. 1455).",
-    "*Michael* — Guido Reni (d. 1642).",
-    "*Head of Christ* — Rembrandt (d. 1669).",
+    "about.otherImage.crucifix",
+    "about.otherImage.smallCowperMadonna",
+    "about.otherImage.faithHopeCharity",
+    "about.otherImage.prayingHands",
+    "about.otherImage.holyTrinity",
+    "about.otherImage.christInLimbo",
+    "about.otherImage.michael",
+    "about.otherImage.headOfChrist",
   ]
 }
 

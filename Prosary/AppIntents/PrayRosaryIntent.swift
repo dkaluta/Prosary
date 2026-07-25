@@ -6,11 +6,17 @@
 import AppIntents
 
 struct PrayRosaryIntent: AppIntent {
-  static var title: LocalizedStringResource = "Pray the Rosary"
-  static var description = IntentDescription("Opens Prosary and starts praying, using the chosen preset or your default.")
+  static var title: LocalizedStringResource = LocalizedStringResource("appIntents.prayRosary.title", defaultValue: "Pray the Rosary")
+  static var description = IntentDescription(LocalizedStringResource(
+    "appIntents.prayRosary.description",
+    defaultValue: "Opens Prosary and starts praying, using the chosen preset or your default."))
   static var openAppWhenRun = true
 
-  @Parameter(title: "Preset", description: "Which saved preset to pray. Defaults to your default preset if not specified.")
+  @Parameter(
+    title: LocalizedStringResource("appIntents.prayRosary.presetParam.title", defaultValue: "Preset"),
+    description: LocalizedStringResource(
+      "appIntents.prayRosary.presetParam.description",
+      defaultValue: "Which saved preset to pray. Defaults to your default preset if not specified."))
   var preset: RosaryConfigEntity?
 
   @MainActor

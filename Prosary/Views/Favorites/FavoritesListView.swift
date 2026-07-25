@@ -48,7 +48,7 @@ struct FavoritesListView: View {
             Button {
               addNew(kind: kind)
             } label: {
-              Label("Add \(kind.displayName)", systemImage: "plus")
+              Label(String(localized: "favorites.addKind", defaultValue: "Add \(kind.displayName)"), systemImage: "plus")
                 .font(.subheadline)
                 .foregroundStyle(accentColor(for: kind))
             }
@@ -71,7 +71,7 @@ struct FavoritesListView: View {
       }
       .padding(.bottom, 24)
     }
-    .navigationTitle("Favorites")
+    .navigationTitle("favorites.title")
     #if os(iOS)
     .navigationBarTitleDisplayMode(.large)
     #endif
@@ -155,22 +155,22 @@ private struct FavoriteCard: View {
           Spacer()
 
           Button(action: onEdit) {
-            Label("Edit", systemImage: "pencil")
+            Label("favorites.edit", systemImage: "pencil")
               .labelStyle(.iconOnly)
           }
           .buttonStyle(.borderless)
           .foregroundStyle(.secondary)
           .frame(minWidth: 44, minHeight: 44)
-          .accessibilityLabel("Edit \(prayer.name)")
+          .accessibilityLabel(String(localized: "favorites.editPrayer", defaultValue: "Edit \(prayer.name)"))
 
           Button(role: .destructive, action: onDelete) {
-            Label("Delete", systemImage: "trash")
+            Label("favorites.delete", systemImage: "trash")
               .labelStyle(.iconOnly)
           }
           .buttonStyle(.borderless)
           .foregroundStyle(.red)
           .frame(minWidth: 44, minHeight: 44)
-          .accessibilityLabel("Delete \(prayer.name)")
+          .accessibilityLabel(String(localized: "favorites.deletePrayer", defaultValue: "Delete \(prayer.name)"))
         }
 
         Text(subtitle)
@@ -179,20 +179,20 @@ private struct FavoriteCard: View {
 
         HStack(spacing: 8) {
           Button(action: onPray) {
-            Text("Pray")
+            Text("favorites.pray")
               .frame(maxWidth: .infinity)
           }
           .prosaryProminentButtonStyle()
           .tint(accentColor)
-          .accessibilityLabel("Pray \(prayer.name)")
+          .accessibilityLabel(String(localized: "favorites.prayPrayer", defaultValue: "Pray \(prayer.name)"))
 
           if !prayer.isDefault {
             Button(action: onMakeDefault) {
-              Label("Set Default", systemImage: "star")
+              Label("favorites.setDefault", systemImage: "star")
                 .frame(maxWidth: .infinity)
             }
             .prosarySecondaryButtonStyle()
-            .accessibilityLabel("Set \(prayer.name) as default")
+            .accessibilityLabel(String(localized: "favorites.setPrayerAsDefault", defaultValue: "Set \(prayer.name) as default"))
           }
         }
         .controlSize(.regular)

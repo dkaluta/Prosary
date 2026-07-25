@@ -21,17 +21,21 @@ struct HomeView: View {
 
   private var rosarySubtitle: String {
     var parts: [String] = []
-    if let group = todayMysteryGroup { parts.append(String(localized: "Today: \(group.displayName)")) }
+    if let group = todayMysteryGroup {
+      parts.append(String(localized: "home.rosaryCard.today", defaultValue: "Today: \(group.displayName)"))
+    }
     if let preset = defaultRosary { parts.append(preset.name) }
     return parts.joined(separator: " • ")
   }
 
   private var angelusSubtitle: String {
-    defaultAngelus.map { $0.name } ?? String(localized: "Tap to pray")
+    defaultAngelus.map { $0.name } ?? String(localized: "home.angelusCard.tapToPray", defaultValue: "Tap to pray")
   }
 
   private var jesusPrayerSubtitle: String {
-    guard let fav = defaultJesusPrayer else { return String(localized: "Tap to set up") }
+    guard let fav = defaultJesusPrayer else {
+      return String(localized: "home.jesusPrayerCard.tapToSetUp", defaultValue: "Tap to set up")
+    }
     return "\(fav.name) • \(fav.jesusPrayer.targetDisplayName)"
   }
 
@@ -39,10 +43,10 @@ struct HomeView: View {
     ScrollView {
       VStack(spacing: 20) {
         VStack(spacing: 6) {
-          Text("Prosary")
+          Text("home.title")
             .font(.largeTitle.bold())
             .foregroundStyle(Color.brandHeadline)
-          Text("A companion for Catholic prayer")
+          Text("home.tagline")
             .font(.subheadline)
             .foregroundStyle(.secondary)
             .multilineTextAlignment(.center)
@@ -52,7 +56,7 @@ struct HomeView: View {
         VStack(spacing: 12) {
           PrayerCard(
             systemImage: PrayerKind.rosary.systemImage,
-            title: "Rosary",
+            title: PrayerKind.rosary.displayName,
             subtitle: rosarySubtitle,
             accentColor: rosaryAccent
           ) {
@@ -62,7 +66,7 @@ struct HomeView: View {
 
           PrayerCard(
             systemImage: PrayerKind.angelus.systemImage,
-            title: "Angelus",
+            title: PrayerKind.angelus.displayName,
             subtitle: angelusSubtitle,
             accentColor: angelusAccent
           ) {
@@ -72,7 +76,7 @@ struct HomeView: View {
 
           PrayerCard(
             systemImage: PrayerKind.jesusPrayer.systemImage,
-            title: "Jesus Prayer",
+            title: PrayerKind.jesusPrayer.displayName,
             subtitle: jesusPrayerSubtitle,
             accentColor: jesusPrayerAccent
           ) {
@@ -85,7 +89,7 @@ struct HomeView: View {
 
         VStack(spacing: 12) {
           NavigationLink(value: AppRoute.favorites) {
-            Label("My Favorites", systemImage: "star")
+            Label("home.myFavorites", systemImage: "star")
               .frame(maxWidth: .infinity)
           }
           .prosarySecondaryButtonStyle()
@@ -94,7 +98,7 @@ struct HomeView: View {
 
           #if !os(macOS)
           NavigationLink(value: AppRoute.about) {
-            Text("About")
+            Text("home.about")
               .font(.footnote)
           }
           .buttonStyle(.plain)

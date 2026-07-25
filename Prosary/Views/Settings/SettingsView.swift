@@ -13,8 +13,8 @@ struct SettingsView: View {
 
   var body: some View {
     Form {
-      Section("Prayer Language") {
-        Picker("Default Language", selection: $languageCode) {
+      Section("settings.prayerLanguageHeader") {
+        Picker("settings.defaultLanguage", selection: $languageCode) {
           ForEach(LanguageCatalog.all) { lang in
             Text(lang.nativeName).tag(lang.code)
           }

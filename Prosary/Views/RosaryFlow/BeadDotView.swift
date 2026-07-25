@@ -23,7 +23,7 @@ struct BeadDotView: View {
         Circle()
           .fill(bead.color)
           .frame(width: bead.circleSize, height: bead.circleSize)
-        Text("M")
+        Text("beadTrack.antiphonLabel")
           .font(.system(.caption2, weight: .bold))
           .foregroundStyle(.white)
       }

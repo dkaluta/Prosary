@@ -19,11 +19,11 @@ struct JesusPrayerSetupView: View {
 
     var displayName: String {
       switch self {
-      case .thirtyThree: return "33"
-      case .sixtySix: return "66"
-      case .ninetyNine: return "99"
-      case .custom: return "Custom"
-      case .unbounded: return "Unbounded"
+      case .thirtyThree: return String(localized: "jesusPrayerTarget.33", defaultValue: "33")
+      case .sixtySix: return String(localized: "jesusPrayerTarget.66", defaultValue: "66")
+      case .ninetyNine: return String(localized: "jesusPrayerTarget.99", defaultValue: "99")
+      case .custom: return String(localized: "jesusPrayerSetup.custom", defaultValue: "Custom")
+      case .unbounded: return String(localized: "jesusPrayerOptions.unbounded", defaultValue: "Unbounded")
       }
     }
 
@@ -62,8 +62,8 @@ struct JesusPrayerSetupView: View {
 
   var body: some View {
     Form {
-      Section("How many times?") {
-        Picker("Target", selection: $selection) {
+      Section("jesusPrayerSetup.howManyTimes") {
+        Picker("jesusPrayerSetup.target", selection: $selection) {
           ForEach(SetupOption.allCases) { option in
             Text(option.displayName).tag(option)
           }
@@ -71,7 +71,7 @@ struct JesusPrayerSetupView: View {
         .pickerStyle(.segmented)
 
         if selection == .custom {
-          TextField("Number of repetitions", text: $customCountText)
+          TextField("jesusPrayerSetup.numberOfRepetitions", text: $customCountText)
             #if os(iOS)
             .keyboardType(.numberPad)
             #endif
@@ -79,13 +79,13 @@ struct JesusPrayerSetupView: View {
       }
     }
     .formStyle(.grouped)
-    .navigationTitle("The Jesus Prayer")
+    .navigationTitle("jesusPrayerFlow.title")
     #if os(iOS)
     .navigationBarTitleDisplayMode(.inline)
     #endif
     .toolbar {
       ToolbarItem(placement: .confirmationAction) {
-        Button("Begin") {
+        Button("jesusPrayerSetup.begin") {
           path.append(AppRoute.jesusPrayer(target: resolvedTarget))
         }
         .disabled(!canBegin)

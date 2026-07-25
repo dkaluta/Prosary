@@ -85,7 +85,7 @@ struct PrayerStepFlowView: View {
       Divider()
 
       HStack {
-        Button("Back") { onBack() }
+        Button("prayerFlow.back") { onBack() }
           .disabled(!canGoBack)
           .prosarySecondaryButtonStyle()
           // Distinguishes this step-to-step Back button from the system navigation-bar
@@ -95,7 +95,7 @@ struct PrayerStepFlowView: View {
 
         Spacer()
 
-        Button(isLastStep ? "Finish" : "Next") { onNext() }
+        Button(isLastStep ? "prayerFlow.finish" : "prayerFlow.next") { onNext() }
           .prosaryProminentButtonStyle()
           .tint(seasonColor)
           .accessibilityIdentifier("prayerFlowNextButton")
@@ -119,12 +119,12 @@ struct PrayerStepFlowView: View {
     } else if let totalSteps, totalSteps > 0 {
       VStack(spacing: 4) {
         ProgressView(value: Double(currentIndex + 1) / Double(totalSteps))
-        Text("\(currentIndex + 1) of \(totalSteps)")
+        Text(String(localized: "prayerFlow.progressCount", defaultValue: "\(currentIndex + 1) of \(totalSteps)"))
           .font(.caption)
           .foregroundStyle(.secondary)
       }
     } else {
-      Text("\(currentIndex + 1)")
+      Text(String(localized: "prayerFlow.progressCountUnbounded", defaultValue: "\(currentIndex + 1)"))
         .font(.caption)
         .foregroundStyle(.secondary)
     }

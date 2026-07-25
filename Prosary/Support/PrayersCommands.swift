@@ -24,7 +24,7 @@ struct PrayersCommands: Commands {
 
   var body: some Commands {
     CommandGroup(replacing: .appInfo) {
-      Button("About Prosary") { openWindow(id: "about") }
+      Button("about.navigationTitle") { openWindow(id: "about") }
     }
 
     CommandGroup(replacing: .newItem) {}
@@ -35,14 +35,14 @@ struct PrayersCommands: Commands {
     CommandGroup(replacing: .sidebar) {}
     CommandGroup(replacing: .help) {}
 
-    CommandMenu("Prayers") {
+    CommandMenu("commands.menuTitle") {
       RosarySubmenu(prayers: presetsState.prayers)
 
       Divider()
 
       AngelusSubmenu(prayers: presetsState.prayers)
 
-      Menu("Jesus Prayer") {
+      Menu("prayerKind.jesusPrayer") {
         let jpPrayers = presetsState.prayers
           .filter { $0.kind == .jesusPrayer }
           .sorted { $0.isDefault && !$1.isDefault }
@@ -52,14 +52,14 @@ struct PrayersCommands: Commands {
           }
         }
         if !jpPrayers.isEmpty { Divider() }
-        Button("Set Up Jesus Prayer…") {
+        Button("commands.setUpJesusPrayer") {
           NavigationCoordinator.shared.pendingRoute = .jesusPrayerSetup
         }
       }
 
       Divider()
 
-      Button("Edit Favorites…") {
+      Button("commands.editFavorites") {
         NavigationCoordinator.shared.pendingRoute = .favorites
       }
     }
@@ -70,7 +70,7 @@ private struct RosarySubmenu: View {
   let prayers: [Prayer]
 
   var body: some View {
-    Menu("Rosary") {
+    Menu("prayerKind.rosary") {
       let rosary = prayers
         .filter { $0.kind == .rosary }
         .sorted { $0.isDefault && !$1.isDefault }
@@ -92,18 +92,18 @@ private struct AngelusSubmenu: View {
       .sorted { $0.isDefault && !$1.isDefault }
 
     if angelus.isEmpty {
-      Button("The Angelus") {
+      Button("angelusFlow.title") {
         NavigationCoordinator.shared.pendingRoute = .angelus
       }
     } else {
-      Menu("Angelus") {
+      Menu("prayerKind.angelus") {
         ForEach(angelus) { prayer in
           Button(prayer.isDefault ? "\(prayer.name) ★" : prayer.name) {
             NavigationCoordinator.shared.pendingRoute = .prayer(id: prayer.id)
           }
         }
         Divider()
-        Button("The Angelus (New)") {
+        Button("commands.angelusNew") {
           NavigationCoordinator.shared.pendingRoute = .angelus
         }
       }

@@ -154,7 +154,7 @@ struct BeadProgressView: View {
     // The individual dots carry no meaning of their own to VoiceOver — expose the whole
     // track as a single element with a spoken summary instead of dozens of unlabeled circles.
     .accessibilityElement(children: .ignore)
-    .accessibilityLabel("Rosary progress")
+    .accessibilityLabel("beadTrack.accessibilityLabel")
     .accessibilityValue(layout.accessibilityDescription)
   }
 }
