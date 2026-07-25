@@ -74,6 +74,17 @@ section h2 {
   color: var(--brand-headline);
 }
 
+section pre {
+  white-space: pre-wrap;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  background: color-mix(in srgb, var(--text) 5%, transparent);
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+}
+
 footer {
   text-align: center;
   padding: 32px 24px 64px;
