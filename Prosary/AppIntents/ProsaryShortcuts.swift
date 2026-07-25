@@ -8,25 +8,25 @@
 import AppIntents
 
 struct ProsaryShortcuts: AppShortcutsProvider {
-    static var appShortcuts: [AppShortcut] {
-        AppShortcut(
-            intent: PrayRosaryIntent(),
-            phrases: [
-                "Pray the Rosary in \(.applicationName)",
-                "Start my Rosary in \(.applicationName)",
-            ],
-            shortTitle: "Pray the Rosary",
-            systemImageName: "arrow.triangle.turn.up.right.circle"
-        )
+  static var appShortcuts: [AppShortcut] {
+    AppShortcut(
+      intent: PrayRosaryIntent(),
+      phrases: [
+        "Pray the Rosary in \(.applicationName)",
+        "Start my Rosary in \(.applicationName)",
+      ],
+      shortTitle: "Pray the Rosary",
+      systemImageName: "arrow.triangle.turn.up.right.circle"
+    )
 
-        AppShortcut(
-            intent: TodaysMysteryIntent(),
-            phrases: [
-                "What are today's mysteries in \(.applicationName)",
-                "Today's mysteries in \(.applicationName)",
-            ],
-            shortTitle: "Today's Mysteries",
-            systemImageName: "calendar"
-        )
-    }
+    AppShortcut(
+      intent: TodaysMysteryIntent(),
+      phrases: [
+        "What are today's mysteries in \(.applicationName)",
+        "Today's mysteries in \(.applicationName)",
+      ],
+      shortTitle: "Today's Mysteries",
+      systemImageName: "calendar"
+    )
+  }
 }

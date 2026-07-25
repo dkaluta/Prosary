@@ -10,93 +10,149 @@
 import SwiftUI
 
 struct JesusPrayerFlowView: View {
-    /// Bound (rather than using `@Environment(\.dismiss)`, as RosaryFlowView/AngelusFlowView do)
-    /// because this screen sits two levels deep in the stack (Home → Setup → Flow) — a plain
-    /// `dismiss()` would only pop back to Setup, not all the way to Home like finishing every
-    /// other devotion does.
-    @Binding var path: NavigationPath
-    let target: JesusPrayerTarget
+  /// Used to pop all the way to Home when the session ends.
+  @Binding var path: NavigationPath
 
-    @Environment(\.appServices) private var services
+  /// When launched from a saved favorite (via PrayerDispatchView). Provides both the
+  /// target and the language. Overrides `target` when set.
+  var prayer: Prayer? = nil
 
-    @State private var progress: JesusPrayerProgress
-    @State private var isRightToLeft = false
-    @State private var seasonColor = Color.clear
-    @State private var languageCode: String?
-    @State private var hasLoaded = false
+  /// When launched from JesusPrayerSetupView (no saved favorite). Ignored when `prayer` is set.
+  var target: JesusPrayerTarget = .count(33)
 
-    init(path: Binding<NavigationPath>, target: JesusPrayerTarget) {
-        _path = path
-        self.target = target
-        _progress = State(initialValue: JesusPrayerProgress(target: target))
+  @Environment(\.appServices) private var services
+
+  @State private var progress: JesusPrayerProgress
+  @State private var isRightToLeft = false
+  @State private var seasonColor = Color.clear
+  @State private var languageCode: String?
+  @State private var hasLoaded = false
+  @State private var matchingFavoriteId: Prayer.ID? = nil
+
+  private var effectiveTarget: JesusPrayerTarget {
+    prayer?.jesusPrayer.target ?? target
+  }
+
+  init(path: Binding<NavigationPath>, prayer: Prayer? = nil, target: JesusPrayerTarget = .count(33)) {
+    _path = path
+    self.prayer = prayer
+    self.target = target
+    _progress = State(initialValue: JesusPrayerProgress(target: prayer?.jesusPrayer.target ?? target))
+  }
+
+  private var currentStep: RosaryStep? {
+    guard hasLoaded else { return nil }
+    return RosaryStep(
+      title: "Jesus Prayer", subtitle: nil,
+      body: PrayerTranslations.get(languageCode: languageCode, key: .oratioIesu),
+      imageOverrideKey: "jesus_portrait")
+  }
+
+  var body: some View {
+    PrayerStepFlowView(
+      navigationTitle: "The Jesus Prayer",
+      step: currentStep,
+      currentIndex: progress.currentIndex,
+      totalSteps: progress.targetCount,
+      seasonColor: seasonColor,
+      isRightToLeft: isRightToLeft,
+      languageCode: languageCode,
+      canGoBack: progress.canGoBack,
+      onBack: { progress.goBack() },
+      onNext: next
+    )
+    .toolbar {
+      if case .unbounded = effectiveTarget {
+        ToolbarItem(placement: .confirmationAction) {
+          Button("Finish") { returnHome() }
+        }
+      }
+      ToolbarItem(placement: .secondaryAction) {
+        Button { toggleFavorite() } label: {
+          Image(systemName: matchingFavoriteId != nil ? "star.fill" : "star")
+        }
+        .accessibilityLabel(matchingFavoriteId != nil ? "Remove from Favorites" : "Add to Favorites")
+      }
+    }
+    .task { await load() }
+  }
+
+  private func load() async {
+    if let prayer {
+      languageCode = prayer.resolvedLanguageCode
+    } else {
+      let all = (try? await services.presetStore.all()) ?? []
+      let defaultJP = all.first { $0.kind == .jesusPrayer && $0.isDefault }
+        ?? all.first { $0.kind == .jesusPrayer }
+      languageCode = defaultJP?.resolvedLanguageCode
     }
 
-    private var currentStep: RosaryStep? {
-        guard hasLoaded else { return nil }
-        return RosaryStep(
-            title: "Jesus Prayer", subtitle: nil,
-            body: PrayerTranslations.get(languageCode: languageCode, key: .oratioIesu),
-            imageOverrideKey: "jesus_portrait")
-    }
+    isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
+    seasonColor = services.calendar.seasonColorToday()
+    hasLoaded = true
+    await checkIfFavorited()
+  }
 
-    var body: some View {
-        PrayerStepFlowView(
-            navigationTitle: "The Jesus Prayer",
-            step: currentStep,
-            currentIndex: progress.currentIndex,
-            totalSteps: progress.targetCount,
-            seasonColor: seasonColor,
-            isRightToLeft: isRightToLeft,
-            languageCode: languageCode,
-            canGoBack: progress.canGoBack,
-            onBack: { progress.goBack() },
-            onNext: next
+  private func checkIfFavorited() async {
+    let all = (try? await services.presetStore.all()) ?? []
+    let resolved = languageCode ?? LanguageCatalog.defaultCode
+    matchingFavoriteId = all.first {
+      $0.kind == .jesusPrayer
+        && $0.resolvedLanguageCode == resolved
+        && $0.jesusPrayer.target == effectiveTarget
+    }?.id
+  }
+
+  private func toggleFavorite() {
+    Task {
+      if let id = matchingFavoriteId {
+        if let existing = try? await services.presetStore.get(id: id) {
+          try? await services.presetStore.delete(existing)
+        }
+        matchingFavoriteId = nil
+      } else {
+        let resolved = languageCode ?? LanguageCatalog.defaultCode
+        let langName = LanguageCatalog.all.first { $0.code == resolved }?.nativeName ?? resolved
+        let targetLabel: String
+        switch effectiveTarget {
+        case .count(let n): targetLabel = "× \(n)"
+        case .unbounded:    targetLabel = "Unbounded"
+        }
+        let all = (try? await services.presetStore.all()) ?? []
+        let isFirst = !all.contains { $0.kind == .jesusPrayer }
+        let newFavorite = Prayer(
+          name: "Jesus Prayer \(targetLabel) (\(langName))",
+          kind: .jesusPrayer,
+          isDefault: isFirst,
+          languageCode: resolved,
+          jesusPrayer: JesusPrayerOptions(target: effectiveTarget)
         )
-        .toolbar {
-            // Unbounded has no target, so it never reaches "Finish" via the footer's Next button
-            // (see JesusPrayerProgress.isLastRep) — this is the only way to end that session.
-            if case .unbounded = target {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Finish") { returnHome() }
-                }
-            }
-        }
-        .task { await load() }
+        try? await services.presetStore.save(newFavorite)
+        matchingFavoriteId = newFavorite.id
+      }
     }
+  }
 
-    private func load() async {
-        // Same language source Angelus uses — no config of its own, so it borrows the user's
-        // usual prayer language.
-        let preset = try? await services.presetStore.defaultPreset()
-        languageCode = preset?.languageCode
-        isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
-        seasonColor = services.calendar.seasonColorToday()
-        hasLoaded = true
-    }
+  private func next() {
+    if progress.isLastRep { returnHome(); return }
+    progress.goNext()
+  }
 
-    private func next() {
-        if progress.isLastRep {
-            returnHome()
-            return
-        }
-        progress.goNext()
-    }
-
-    private func returnHome() {
-        path.removeLast(path.count)
-    }
+  private func returnHome() {
+    path.removeLast(path.count)
+  }
 }
 
 #Preview("Bounded — 33") {
-    NavigationStack {
-        JesusPrayerFlowView(path: .constant(NavigationPath()), target: .count(33))
-            .environment(\.appServices, AppServices(presetStore: MockPresetStore(), rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), calendar: MockLiturgicalCalendar()))
-    }
+  NavigationStack {
+    JesusPrayerFlowView(path: .constant(NavigationPath()), target: .count(33))
+      .environment(\.appServices, AppServices(presetStore: MockPresetStore(), rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), calendar: MockLiturgicalCalendar()))
+  }
 }
 
 #Preview("Unbounded") {
-    NavigationStack {
-        JesusPrayerFlowView(path: .constant(NavigationPath()), target: .unbounded)
-            .environment(\.appServices, AppServices(presetStore: MockPresetStore(), rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), calendar: MockLiturgicalCalendar()))
-    }
+  NavigationStack {
+    JesusPrayerFlowView(path: .constant(NavigationPath()), target: .unbounded)
+      .environment(\.appServices, AppServices(presetStore: MockPresetStore(), rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), calendar: MockLiturgicalCalendar()))
+  }
 }

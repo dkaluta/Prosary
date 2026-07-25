@@ -9,204 +9,204 @@
 import SwiftUI
 
 enum BeadKind {
-    case cross
-    case decade
-    case antiphon
+  case cross
+  case decade
+  case antiphon
 }
 
 enum BeadState {
-    case completed
-    case current
-    case upcoming
+  case completed
+  case current
+  case upcoming
 }
 
 /// One dot/glyph in the Rosary progress indicator.
 struct BeadInfo: Identifiable {
-    let id = UUID()
-    var kind: BeadKind
-    var state: BeadState
-    /// True for the first bead of each group-of-5, so the UI can add extra spacing there.
-    var isGroupStart: Bool = false
+  let id = UUID()
+  var kind: BeadKind
+  var state: BeadState
+  /// True for the first bead of each group-of-5, so the UI can add extra spacing there.
+  var isGroupStart: Bool = false
 
-    var circleSize: CGFloat { kind == .antiphon ? 20 : 14 }
+  var circleSize: CGFloat { kind == .antiphon ? 20 : 14 }
 
-    var color: Color {
-        switch state {
-        // Not `.brandPrimary` — that dark-mode variant is deliberately a pale, low-saturation
-        // pink for text legibility, which reads as barely different from the neutral gray
-        // "upcoming"/"completed" beads against a near-black background. `BeadCurrent` keeps the
-        // same light-mode maroon but uses a more saturated dark-mode value so the current bead
-        // still visibly pops against its gray neighbors.
-        case .current: return Color("BeadCurrent")
-        case .completed: return Color(hex: "#6E6E6E")
-        case .upcoming: return Color(hex: "#ACACAC")
-        }
+  var color: Color {
+    switch state {
+    // Not `.brandPrimary` — that dark-mode variant is deliberately a pale, low-saturation
+    // pink for text legibility, which reads as barely different from the neutral gray
+    // "upcoming"/"completed" beads against a near-black background. `BeadCurrent` keeps the
+    // same light-mode maroon but uses a more saturated dark-mode value so the current bead
+    // still visibly pops against its gray neighbors.
+    case .current: return Color("BeadCurrent")
+    case .completed: return Color(hex: "#6E6E6E")
+    case .upcoming: return Color(hex: "#ACACAC")
     }
+  }
 }
 
 /// One mystery group's column of decade beads, for the wide layout's grid (one column per
 /// group in the session, e.g. 3 columns for a 15-mystery session, so a long session grows wider
 /// rather than awkwardly taller).
 struct BeadColumn: Identifiable {
-    let id = UUID()
-    var group: MysteryGroup
-    var beads: [BeadInfo]
+  let id = UUID()
+  var group: MysteryGroup
+  var beads: [BeadInfo]
 }
 
 /// The full computed bead layout for the current step of a Rosary session.
 struct BeadLayout {
-    /// Decade beads grouped into rows of 5 — like the physical layout of a rosary's Our-Father
-    /// beads — for the narrow layout's wrapped horizontal grid.
-    var topRows: [[BeadInfo]] = []
+  /// Decade beads grouped into rows of 5 — like the physical layout of a rosary's Our-Father
+  /// beads — for the narrow layout's wrapped horizontal grid.
+  var topRows: [[BeadInfo]] = []
 
-    /// Opening cross, for the wide layout.
-    var openingCross: BeadInfo?
-    /// One column per mystery group in the session, each holding that group's decade beads in
-    /// order, for the wide layout's grid.
-    var groupColumns: [BeadColumn] = []
-    /// Marian antiphon "M" bead, for the wide layout.
-    var antiphon: BeadInfo?
-    /// Closing cross, for the wide layout.
-    var closingCross: BeadInfo?
+  /// Opening cross, for the wide layout.
+  var openingCross: BeadInfo?
+  /// One column per mystery group in the session, each holding that group's decade beads in
+  /// order, for the wide layout's grid.
+  var groupColumns: [BeadColumn] = []
+  /// Marian antiphon "M" bead, for the wide layout.
+  var antiphon: BeadInfo?
+  /// Closing cross, for the wide layout.
+  var closingCross: BeadInfo?
 
-    /// Progress through the current decade's 10 Hail Marys.
-    var bottomBeads: [BeadInfo] = []
-    var showBottomBeads: Bool = false
+  /// Progress through the current decade's 10 Hail Marys.
+  var bottomBeads: [BeadInfo] = []
+  var showBottomBeads: Bool = false
 
-    static func build(steps: [RosaryStep], currentIndex: Int, hasClosingCross: Bool) -> BeadLayout {
-        guard steps.indices.contains(currentIndex) else { return BeadLayout() }
-        let step = steps[currentIndex]
+  static func build(steps: [RosaryStep], currentIndex: Int, hasClosingCross: Bool) -> BeadLayout {
+    guard steps.indices.contains(currentIndex) else { return BeadLayout() }
+    let step = steps[currentIndex]
 
-        let totalDecades = (steps.compactMap(\.decadeIndex).max()).map { $0 + 1 } ?? 0
-        let firstDecadeStepIndex = steps.firstIndex { $0.decadeIndex != nil } ?? -1
-        let antiphonStepIndex = steps.firstIndex { $0.isAntiphon } ?? -1
+    let totalDecades = (steps.compactMap(\.decadeIndex).max()).map { $0 + 1 } ?? 0
+    let firstDecadeStepIndex = steps.firstIndex { $0.decadeIndex != nil } ?? -1
+    let antiphonStepIndex = steps.firstIndex { $0.isAntiphon } ?? -1
 
-        let crossBead = BeadInfo(kind: .cross, state: currentIndex == 0 ? .current : .completed)
+    let crossBead = BeadInfo(kind: .cross, state: currentIndex == 0 ? .current : .completed)
 
-        var decadeBeads: [BeadInfo] = []
-        for d in 0..<totalDecades {
-            let state: BeadState
-            if let currentDecade = step.decadeIndex {
-                state = d < currentDecade ? .completed : (d == currentDecade ? .current : .upcoming)
-            } else {
-                // Not tied to a decade: upcoming before the first decade step, completed once
-                // past all decades (antiphon/closing phase).
-                state = (firstDecadeStepIndex < 0 || currentIndex < firstDecadeStepIndex) ? .upcoming : .completed
-            }
-            decadeBeads.append(BeadInfo(kind: .decade, state: state))
-        }
-
-        var antiphonBead: BeadInfo?
-        if antiphonStepIndex >= 0 {
-            let state: BeadState = currentIndex < antiphonStepIndex ? .upcoming : (currentIndex == antiphonStepIndex ? .current : .completed)
-            antiphonBead = BeadInfo(kind: .antiphon, state: state)
-        }
-
-        var closingCrossBead: BeadInfo?
-        if hasClosingCross {
-            let closingCrossIndex = steps.count - 1
-            closingCrossBead = BeadInfo(kind: .cross, state: currentIndex < closingCrossIndex ? .upcoming : .current)
-        }
-
-        // Grouped into rows of 5 decade beads, mirroring the physical layout of a rosary's
-        // Our-Father beads — the opening cross rides along with the first row, and the
-        // antiphon/closing-cross beads (if any) tag onto whatever's left of the last row.
-        var rows: [[BeadInfo]] = [[crossBead]]
-        for (index, decadeBead) in decadeBeads.enumerated() {
-            rows[rows.count - 1].append(decadeBead)
-            let decadeCountInRow = rows[rows.count - 1].filter { $0.kind == .decade }.count
-            if decadeCountInRow % 5 == 0 && index != decadeBeads.count - 1 {
-                rows.append([])
-            }
-        }
-        if let antiphon = antiphonBead { rows[rows.count - 1].append(antiphon) }
-        if let closing = closingCrossBead { rows[rows.count - 1].append(closing) }
-
-        // One column per mystery group (in session order), each holding that group's decade
-        // beads — a 15/20-mystery session grows into more columns instead of one long,
-        // awkwardly-tall strip. Single-group sessions naturally collapse to one column.
-        var decadeGroupOf: [Int: MysteryGroup] = [:]
-        for s in steps {
-            if let d = s.decadeIndex, let group = s.mystery?.group, decadeGroupOf[d] == nil {
-                decadeGroupOf[d] = group
-            }
-        }
-
-        var orderedGroups: [MysteryGroup] = []
-        for d in 0..<totalDecades {
-            if let group = decadeGroupOf[d], !orderedGroups.contains(group) {
-                orderedGroups.append(group)
-            }
-        }
-
-        var groupColumns = orderedGroups.map { BeadColumn(group: $0, beads: []) }
-        for d in 0..<totalDecades {
-            guard let group = decadeGroupOf[d], let columnIndex = orderedGroups.firstIndex(of: group) else { continue }
-            groupColumns[columnIndex].beads.append(decadeBeads[d])
-        }
-
-        guard let decadeIndex = step.decadeIndex else {
-            return BeadLayout(
-                topRows: rows, openingCross: crossBead, groupColumns: groupColumns,
-                antiphon: antiphonBead, closingCross: closingCrossBead,
-                bottomBeads: [], showBottomBeads: false)
-        }
-
-        let decadeStepIndices = steps.indices.filter {
-            steps[$0].decadeIndex == decadeIndex && steps[$0].hailMaryIndexInDecade != nil
-        }
-        guard let firstHailMaryIndex = decadeStepIndices.min(), let lastHailMaryIndex = decadeStepIndices.max() else {
-            return BeadLayout(
-                topRows: rows, openingCross: crossBead, groupColumns: groupColumns,
-                antiphon: antiphonBead, closingCross: closingCrossBead,
-                bottomBeads: [], showBottomBeads: false)
-        }
-
-        var bottom: [BeadInfo] = []
-        for h in 1...10 {
-            let state: BeadState
-            if currentIndex < firstHailMaryIndex {
-                state = .upcoming
-            } else if currentIndex > lastHailMaryIndex {
-                state = .completed
-            } else if let current = step.hailMaryIndexInDecade {
-                state = h < current ? .completed : (h == current ? .current : .upcoming)
-            } else {
-                state = .upcoming
-            }
-            bottom.append(BeadInfo(kind: .decade, state: state, isGroupStart: h > 1 && (h - 1) % 5 == 0))
-        }
-
-        return BeadLayout(
-            topRows: rows, openingCross: crossBead, groupColumns: groupColumns,
-            antiphon: antiphonBead, closingCross: closingCrossBead,
-            bottomBeads: bottom, showBottomBeads: true)
+    var decadeBeads: [BeadInfo] = []
+    for d in 0..<totalDecades {
+      let state: BeadState
+      if let currentDecade = step.decadeIndex {
+        state = d < currentDecade ? .completed : (d == currentDecade ? .current : .upcoming)
+      } else {
+        // Not tied to a decade: upcoming before the first decade step, completed once
+        // past all decades (antiphon/closing phase).
+        state = (firstDecadeStepIndex < 0 || currentIndex < firstDecadeStepIndex) ? .upcoming : .completed
+      }
+      decadeBeads.append(BeadInfo(kind: .decade, state: state))
     }
 
-    /// A single spoken summary of where the beads currently show progress — the dots themselves
-    /// carry no individual meaning to VoiceOver, so the whole track is exposed as one element
-    /// with this label instead of dozens of unlabeled circles.
-    var accessibilityDescription: String {
-        if let closingCross, closingCross.state == .current {
-            return "Closing sign of the cross"
-        }
-        if let antiphon, antiphon.state == .current {
-            return "Marian antiphon"
-        }
-
-        let decadeBeads = groupColumns.flatMap(\.beads)
-        if let currentDecade = decadeBeads.firstIndex(where: { $0.state == .current }) {
-            var description = "Decade \(currentDecade + 1) of \(decadeBeads.count)"
-            if showBottomBeads, let currentHailMary = bottomBeads.firstIndex(where: { $0.state == .current }) {
-                description += ", Hail Mary \(currentHailMary + 1) of 10"
-            }
-            return description
-        }
-
-        if let openingCross, openingCross.state == .current {
-            return "Opening sign of the cross"
-        }
-
-        return "Opening prayers"
+    var antiphonBead: BeadInfo?
+    if antiphonStepIndex >= 0 {
+      let state: BeadState = currentIndex < antiphonStepIndex ? .upcoming : (currentIndex == antiphonStepIndex ? .current : .completed)
+      antiphonBead = BeadInfo(kind: .antiphon, state: state)
     }
+
+    var closingCrossBead: BeadInfo?
+    if hasClosingCross {
+      let closingCrossIndex = steps.count - 1
+      closingCrossBead = BeadInfo(kind: .cross, state: currentIndex < closingCrossIndex ? .upcoming : .current)
+    }
+
+    // Grouped into rows of 5 decade beads, mirroring the physical layout of a rosary's
+    // Our-Father beads — the opening cross rides along with the first row, and the
+    // antiphon/closing-cross beads (if any) tag onto whatever's left of the last row.
+    var rows: [[BeadInfo]] = [[crossBead]]
+    for (index, decadeBead) in decadeBeads.enumerated() {
+      rows[rows.count - 1].append(decadeBead)
+      let decadeCountInRow = rows[rows.count - 1].filter { $0.kind == .decade }.count
+      if decadeCountInRow % 5 == 0 && index != decadeBeads.count - 1 {
+        rows.append([])
+      }
+    }
+    if let antiphon = antiphonBead { rows[rows.count - 1].append(antiphon) }
+    if let closing = closingCrossBead { rows[rows.count - 1].append(closing) }
+
+    // One column per mystery group (in session order), each holding that group's decade
+    // beads — a 15/20-mystery session grows into more columns instead of one long,
+    // awkwardly-tall strip. Single-group sessions naturally collapse to one column.
+    var decadeGroupOf: [Int: MysteryGroup] = [:]
+    for s in steps {
+      if let d = s.decadeIndex, let group = s.mystery?.group, decadeGroupOf[d] == nil {
+        decadeGroupOf[d] = group
+      }
+    }
+
+    var orderedGroups: [MysteryGroup] = []
+    for d in 0..<totalDecades {
+      if let group = decadeGroupOf[d], !orderedGroups.contains(group) {
+        orderedGroups.append(group)
+      }
+    }
+
+    var groupColumns = orderedGroups.map { BeadColumn(group: $0, beads: []) }
+    for d in 0..<totalDecades {
+      guard let group = decadeGroupOf[d], let columnIndex = orderedGroups.firstIndex(of: group) else { continue }
+      groupColumns[columnIndex].beads.append(decadeBeads[d])
+    }
+
+    guard let decadeIndex = step.decadeIndex else {
+      return BeadLayout(
+        topRows: rows, openingCross: crossBead, groupColumns: groupColumns,
+        antiphon: antiphonBead, closingCross: closingCrossBead,
+        bottomBeads: [], showBottomBeads: false)
+    }
+
+    let decadeStepIndices = steps.indices.filter {
+      steps[$0].decadeIndex == decadeIndex && steps[$0].hailMaryIndexInDecade != nil
+    }
+    guard let firstHailMaryIndex = decadeStepIndices.min(), let lastHailMaryIndex = decadeStepIndices.max() else {
+      return BeadLayout(
+        topRows: rows, openingCross: crossBead, groupColumns: groupColumns,
+        antiphon: antiphonBead, closingCross: closingCrossBead,
+        bottomBeads: [], showBottomBeads: false)
+    }
+
+    var bottom: [BeadInfo] = []
+    for h in 1...10 {
+      let state: BeadState
+      if currentIndex < firstHailMaryIndex {
+        state = .upcoming
+      } else if currentIndex > lastHailMaryIndex {
+        state = .completed
+      } else if let current = step.hailMaryIndexInDecade {
+        state = h < current ? .completed : (h == current ? .current : .upcoming)
+      } else {
+        state = .upcoming
+      }
+      bottom.append(BeadInfo(kind: .decade, state: state, isGroupStart: h > 1 && (h - 1) % 5 == 0))
+    }
+
+    return BeadLayout(
+      topRows: rows, openingCross: crossBead, groupColumns: groupColumns,
+      antiphon: antiphonBead, closingCross: closingCrossBead,
+      bottomBeads: bottom, showBottomBeads: true)
+  }
+
+  /// A single spoken summary of where the beads currently show progress — the dots themselves
+  /// carry no individual meaning to VoiceOver, so the whole track is exposed as one element
+  /// with this label instead of dozens of unlabeled circles.
+  var accessibilityDescription: String {
+    if let closingCross, closingCross.state == .current {
+      return "Closing sign of the cross"
+    }
+    if let antiphon, antiphon.state == .current {
+      return "Marian antiphon"
+    }
+
+    let decadeBeads = groupColumns.flatMap(\.beads)
+    if let currentDecade = decadeBeads.firstIndex(where: { $0.state == .current }) {
+      var description = "Decade \(currentDecade + 1) of \(decadeBeads.count)"
+      if showBottomBeads, let currentHailMary = bottomBeads.firstIndex(where: { $0.state == .current }) {
+        description += ", Hail Mary \(currentHailMary + 1) of 10"
+      }
+      return description
+    }
+
+    if let openingCross, openingCross.state == .current {
+      return "Opening sign of the cross"
+    }
+
+    return "Opening prayers"
+  }
 }

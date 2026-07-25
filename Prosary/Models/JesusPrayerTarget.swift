@@ -10,7 +10,7 @@
 
 import Foundation
 
-enum JesusPrayerTarget: Hashable {
-    case count(Int)
-    case unbounded
+enum JesusPrayerTarget: Hashable, Codable {
+  case count(Int)
+  case unbounded
 }

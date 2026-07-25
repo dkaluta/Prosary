@@ -6,128 +6,155 @@
 import SwiftUI
 
 struct HomeView: View {
-    @Binding var path: NavigationPath
+  @Binding var path: NavigationPath
 
-    @Environment(\.appServices) private var services
+  @Environment(\.appServices) private var services
 
-    @State private var todayMysteryGroupName = ""
-    @State private var seasonColor = Color.clear
-    @State private var defaultPresetName = ""
+  @State private var todayMysteryGroup: MysteryGroup? = nil
+  @State private var defaultRosary: Prayer? = nil
+  @State private var defaultAngelus: Prayer? = nil
+  @State private var defaultJesusPrayer: Prayer? = nil
 
-    var body: some View {
-        ScrollView {
-            VStack(spacing: 16) {
-                Text("Prosary")
-                    .font(.largeTitle.bold())
-                    .foregroundStyle(Color.brandHeadline)
+  private var rosaryAccent: Color { todayMysteryGroup?.color ?? Color.brandPrimary }
+  private var angelusAccent: Color { .adaptive(light: "#8B6914", dark: "#C49B0D") }
+  private var jesusPrayerAccent: Color { .adaptive(light: "#8B1A1A", dark: "#C62828") }
 
-                Text("A companion for praying the Rosary and other Catholic devotions")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
+  private var rosarySubtitle: String {
+    var parts: [String] = []
+    if let group = todayMysteryGroup { parts.append(String(localized: "Today: \(group.displayName)")) }
+    if let preset = defaultRosary { parts.append(preset.name) }
+    return parts.joined(separator: " • ")
+  }
 
-                Divider().padding(.vertical, 8)
+  private var angelusSubtitle: String {
+    defaultAngelus.map { $0.name } ?? String(localized: "Tap to pray")
+  }
 
-                if !todayMysteryGroupName.isEmpty {
-                    HStack(spacing: 4) {
-                        Text("Today's Mysteries:")
-                        Text(todayMysteryGroupName).fontWeight(.bold)
-                    }
-                    .foregroundStyle(.white)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
-                    .background(seasonColor, in: Capsule())
-                    .accessibilityElement(children: .combine)
-                }
+  private var jesusPrayerSubtitle: String {
+    guard let fav = defaultJesusPrayer else { return String(localized: "Tap to set up") }
+    return "\(fav.name) • \(fav.jesusPrayer.targetDisplayName)"
+  }
 
-                if !defaultPresetName.isEmpty {
-                    Text("Preset: \(defaultPresetName)")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
-
-                Button {
-                    prayWithDefaultPreset()
-                } label: {
-                    Text("Pray the Rosary")
-                        .frame(maxWidth: .infinity)
-                }
-                .prosaryProminentButtonStyle()
-                .tint(Color.brandPrimary)
-                .controlSize(.large)
-                .padding(.top, 16)
-
-                NavigationLink(value: AppRoute.presets) {
-                    Text("My Presets")
-                        .frame(maxWidth: .infinity)
-                }
-                .prosarySecondaryButtonStyle()
-                .tint(Color.brandPrimary)
-                .controlSize(.large)
-
-                NavigationLink(value: AppRoute.angelus) {
-                    Text("The Angelus")
-                        .frame(maxWidth: .infinity)
-                }
-                .prosarySecondaryButtonStyle()
-                .tint(Color.brandPrimary)
-                .controlSize(.large)
-
-                NavigationLink(value: AppRoute.jesusPrayerSetup) {
-                    Text("The Jesus Prayer")
-                        .frame(maxWidth: .infinity)
-                }
-                .prosarySecondaryButtonStyle()
-                .tint(Color.brandPrimary)
-                .controlSize(.large)
-
-                #if !os(macOS)
-                // On Mac, "About Prosary" is reachable only from the app menu bar — the native
-                // convention every Mac app follows. Everywhere else there's no menu bar, so an
-                // in-app entry point is needed instead.
-                NavigationLink(value: AppRoute.about) {
-                    Text("About")
-                        .font(.footnote)
-                }
-                .buttonStyle(.plain)
-                .foregroundStyle(.secondary)
-                .padding(.top, 8)
-                #endif
-            }
-            .padding(24)
-            .frame(maxWidth: 480)
-            .frame(maxWidth: .infinity)
+  var body: some View {
+    ScrollView {
+      VStack(spacing: 20) {
+        VStack(spacing: 6) {
+          Text("Prosary")
+            .font(.largeTitle.bold())
+            .foregroundStyle(Color.brandHeadline)
+          Text("A companion for Catholic prayer")
+            .font(.subheadline)
+            .foregroundStyle(.secondary)
+            .multilineTextAlignment(.center)
         }
-        .task {
-            await loadTodayInfo()
+        .padding(.bottom, 4)
+
+        VStack(spacing: 12) {
+          PrayerCard(
+            systemImage: PrayerKind.rosary.systemImage,
+            title: "Rosary",
+            subtitle: rosarySubtitle,
+            accentColor: rosaryAccent
+          ) {
+            launchRosary()
+          }
+          .accessibilityIdentifier("rosaryCard")
+
+          PrayerCard(
+            systemImage: PrayerKind.angelus.systemImage,
+            title: "Angelus",
+            subtitle: angelusSubtitle,
+            accentColor: angelusAccent
+          ) {
+            launchAngelus()
+          }
+          .accessibilityIdentifier("angelusCard")
+
+          PrayerCard(
+            systemImage: PrayerKind.jesusPrayer.systemImage,
+            title: "Jesus Prayer",
+            subtitle: jesusPrayerSubtitle,
+            accentColor: jesusPrayerAccent
+          ) {
+            launchJesusPrayer()
+          }
+          .accessibilityIdentifier("jesusPrayerCard")
         }
+
+        Divider().padding(.vertical, 4)
+
+        VStack(spacing: 12) {
+          NavigationLink(value: AppRoute.favorites) {
+            Label("My Favorites", systemImage: "star")
+              .frame(maxWidth: .infinity)
+          }
+          .prosarySecondaryButtonStyle()
+          .tint(Color.brandPrimary)
+          .controlSize(.large)
+
+          #if !os(macOS)
+          NavigationLink(value: AppRoute.about) {
+            Text("About")
+              .font(.footnote)
+          }
+          .buttonStyle(.plain)
+          .foregroundStyle(.secondary)
+          .padding(.top, 4)
+          #endif
+        }
+      }
+      .padding(24)
+      .frame(maxWidth: 480)
+      .frame(maxWidth: .infinity)
     }
+    .task { await load() }
+  }
 
-    private func loadTodayInfo() async {
-        todayMysteryGroupName = services.calendar.mysteryGroupToday().displayName
-        seasonColor = services.calendar.seasonColorToday()
-        if let preset = try? await services.presetStore.defaultPreset() {
-            defaultPresetName = preset.name
-        }
-    }
+  private func load() async {
+    todayMysteryGroup = services.calendar.mysteryGroupToday()
+    let all = (try? await services.presetStore.all()) ?? []
+    defaultRosary = all.first { $0.kind == .rosary && $0.isDefault }
+      ?? all.first { $0.kind == .rosary }
+    defaultAngelus = all.first { $0.kind == .angelus && $0.isDefault }
+      ?? all.first { $0.kind == .angelus }
+    defaultJesusPrayer = all.first { $0.kind == .jesusPrayer && $0.isDefault }
+      ?? all.first { $0.kind == .jesusPrayer }
+  }
 
-    private func prayWithDefaultPreset() {
-        Task {
-            guard let preset = try? await services.presetStore.defaultPreset() else { return }
-            path.append(AppRoute.rosary(configId: preset.id))
-        }
+  private func launchRosary() {
+    guard let prayer = defaultRosary else {
+      path.append(AppRoute.favorites)
+      return
     }
+    path.append(AppRoute.prayer(id: prayer.id))
+  }
+
+  private func launchAngelus() {
+    if let prayer = defaultAngelus {
+      path.append(AppRoute.prayer(id: prayer.id))
+    } else {
+      path.append(AppRoute.angelus)
+    }
+  }
+
+  private func launchJesusPrayer() {
+    if let prayer = defaultJesusPrayer {
+      path.append(AppRoute.prayer(id: prayer.id))
+    } else {
+      path.append(AppRoute.jesusPrayerSetup)
+    }
+  }
 }
 
 #Preview {
-    NavigationStack {
-        HomeView(path: .constant(NavigationPath()))
-    }
+  NavigationStack {
+    HomeView(path: .constant(NavigationPath()))
+  }
 }
 
 #Preview("Dark Mode") {
-    NavigationStack {
-        HomeView(path: .constant(NavigationPath()))
-    }
-    .preferredColorScheme(.dark)
+  NavigationStack {
+    HomeView(path: .constant(NavigationPath()))
+  }
+  .preferredColorScheme(.dark)
 }

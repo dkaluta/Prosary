@@ -6,73 +6,121 @@
 import SwiftUI
 
 struct AngelusFlowView: View {
-    @Environment(\.appServices) private var services
-    @Environment(\.dismiss) private var dismiss
+  /// If provided (launched from Favorites), use this prayer's language and track it for the
+  /// star button. If nil (launched from Home with no Angelus favorite), use the app default.
+  var prayer: Prayer? = nil
 
-    @State private var steps: [RosaryStep] = []
-    @State private var currentIndex = 0
-    @State private var isRightToLeft = false
-    @State private var seasonColor = Color.clear
-    @State private var languageCode: String?
+  @Environment(\.appServices) private var services
+  @Environment(\.dismiss) private var dismiss
 
-    private var currentStep: RosaryStep? {
-        steps.indices.contains(currentIndex) ? steps[currentIndex] : nil
-    }
+  @State private var steps: [RosaryStep] = []
+  @State private var currentIndex = 0
+  @State private var isRightToLeft = false
+  @State private var seasonColor = Color.clear
+  @State private var languageCode: String?
+  @State private var matchingFavoriteId: Prayer.ID? = nil
 
-    var body: some View {
-        PrayerStepFlowView(
-            navigationTitle: "The Angelus",
-            step: currentStep,
-            currentIndex: currentIndex,
-            totalSteps: steps.count,
-            seasonColor: seasonColor,
-            isRightToLeft: isRightToLeft,
-            languageCode: languageCode,
-            canGoBack: currentIndex > 0,
-            onBack: back,
-            onNext: next
-        )
-        .task { await load() }
-    }
+  private var currentStep: RosaryStep? {
+    steps.indices.contains(currentIndex) ? steps[currentIndex] : nil
+  }
 
-    private func load() async {
-        // Same language source HomeView already reads for the default Rosary preset — the
-        // Angelus has no config of its own, so it borrows the user's usual prayer language
-        // instead of introducing a separate picker.
-        let preset = try? await services.presetStore.defaultPreset()
-        languageCode = preset?.languageCode
-        isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
-        steps = services.angelusEngine.buildSteps(languageCode: languageCode)
-        currentIndex = 0
-        seasonColor = services.calendar.seasonColorToday()
-    }
-
-    private func next() {
-        if currentIndex >= steps.count - 1 {
-            dismiss()
-            return
+  var body: some View {
+    PrayerStepFlowView(
+      navigationTitle: "The Angelus",
+      step: currentStep,
+      currentIndex: currentIndex,
+      totalSteps: steps.count,
+      seasonColor: seasonColor,
+      isRightToLeft: isRightToLeft,
+      languageCode: languageCode,
+      canGoBack: currentIndex > 0,
+      onBack: back,
+      onNext: next
+    )
+    .toolbar {
+      ToolbarItem(placement: .primaryAction) {
+        Button { toggleFavorite() } label: {
+          Image(systemName: matchingFavoriteId != nil ? "star.fill" : "star")
         }
-        currentIndex += 1
+        .accessibilityLabel(matchingFavoriteId != nil ? "Remove from Favorites" : "Add to Favorites")
+      }
+    }
+    .task { await load() }
+  }
+
+  private func load() async {
+    if let prayer {
+      languageCode = prayer.resolvedLanguageCode
+    } else {
+      let all = (try? await services.presetStore.all()) ?? []
+      let defaultAngelus = all.first { $0.kind == .angelus && $0.isDefault }
+        ?? all.first { $0.kind == .angelus }
+      languageCode = defaultAngelus?.resolvedLanguageCode
     }
 
-    private func back() {
-        guard currentIndex > 0 else { return }
-        currentIndex -= 1
+    isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
+    steps = services.angelusEngine.buildSteps(languageCode: languageCode)
+    currentIndex = 0
+    seasonColor = services.calendar.seasonColorToday()
+    await checkIfFavorited()
+  }
+
+  private func checkIfFavorited() async {
+    let all = (try? await services.presetStore.all()) ?? []
+    let resolved = languageCode ?? LanguageCatalog.defaultCode
+    matchingFavoriteId = all.first {
+      $0.kind == .angelus && $0.resolvedLanguageCode == resolved
+    }?.id
+  }
+
+  private func toggleFavorite() {
+    Task {
+      if let id = matchingFavoriteId {
+        if let existing = try? await services.presetStore.get(id: id) {
+          try? await services.presetStore.delete(existing)
+        }
+        matchingFavoriteId = nil
+      } else {
+        let resolved = languageCode ?? LanguageCatalog.defaultCode
+        let langName = LanguageCatalog.all.first { $0.code == resolved }?.nativeName ?? resolved
+        let all = (try? await services.presetStore.all()) ?? []
+        let isFirst = !all.contains { $0.kind == .angelus }
+        let newFavorite = Prayer(
+          name: "Angelus (\(langName))",
+          kind: .angelus,
+          isDefault: isFirst,
+          languageCode: resolved
+        )
+        try? await services.presetStore.save(newFavorite)
+        matchingFavoriteId = newFavorite.id
+      }
     }
+  }
+
+  private func next() {
+    if currentIndex >= steps.count - 1 { dismiss(); return }
+    currentIndex += 1
+  }
+
+  private func back() {
+    guard currentIndex > 0 else { return }
+    currentIndex -= 1
+  }
 }
 
 #Preview {
-    let store = MockPresetStore()
-    return NavigationStack {
-        AngelusFlowView()
-            .environment(\.appServices, AppServices(presetStore: store, rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), calendar: MockLiturgicalCalendar()))
-    }
+  let store = MockPresetStore()
+  return NavigationStack {
+    AngelusFlowView()
+      .environment(\.appServices, AppServices(presetStore: store, rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), calendar: MockLiturgicalCalendar()))
+  }
 }
 
 #Preview("Hebrew — RTL") {
-    let store = MockPresetStore(configs: [RosaryConfig(name: "Hebrew", isDefault: true, languageCode: "he")])
-    return NavigationStack {
-        AngelusFlowView()
-            .environment(\.appServices, AppServices(presetStore: store, rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), calendar: MockLiturgicalCalendar()))
-    }
+  let prayer = Prayer(name: "Hebrew", kind: .angelus, isDefault: true, languageCode: "he")
+  let store = MockPresetStore(configs: [prayer])
+  return NavigationStack {
+    AngelusFlowView(prayer: prayer)
+      .environment(\.appServices, AppServices(presetStore: store, rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), calendar: MockLiturgicalCalendar()))
+  }
 }

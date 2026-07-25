@@ -10,18 +10,20 @@
 import Foundation
 
 enum PrayerTranslations {
-    static func get(languageCode: String?, key: PrayerKey) -> String {
-        if let languageCode, let table = byLanguage[languageCode], let text = table[key] {
-            return text
-        }
-
-        return latin[key] ?? key.rawValue
+  static func get(languageCode: String?, key: PrayerKey) -> String {
+    if let languageCode, let table = byLanguage[languageCode], let text = table[key] {
+      return text
     }
 
-    static let byLanguage: [String: [PrayerKey: String]] = [
-        "la": latin,
-        "en": english,
-        "ar": arabic,
-        "he": hebrew,
-    ]
+    return latin[key] ?? key.rawValue
+  }
+
+  static let byLanguage: [String: [PrayerKey: String]] = [
+    "la": latin,
+    "en": english,
+    "ar": arabic,
+    "he": hebrew,
+    "ru": russian,
+    "tl": tagalog,
+  ]
 }

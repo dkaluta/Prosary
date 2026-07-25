@@ -10,18 +10,20 @@
 import Foundation
 
 enum MysteryTranslations {
-    static func get(languageCode: String?, imageKey: String) -> MysteryText {
-        if let languageCode, let table = byLanguage[languageCode], let text = table[imageKey] {
-            return text
-        }
-
-        return latin[imageKey] ?? MysteryText(title: imageKey, fruit: "", description: "")
+  static func get(languageCode: String?, imageKey: String) -> MysteryText {
+    if let languageCode, let table = byLanguage[languageCode], let text = table[imageKey] {
+      return text
     }
 
-    static let byLanguage: [String: [String: MysteryText]] = [
-        "la": latin,
-        "en": english,
-        "ar": arabic,
-        "he": hebrew,
-    ]
+    return latin[imageKey] ?? MysteryText(title: imageKey, fruit: "", description: "")
+  }
+
+  static let byLanguage: [String: [String: MysteryText]] = [
+    "la": latin,
+    "en": english,
+    "ar": arabic,
+    "he": hebrew,
+    "ru": russian,
+    "tl": tagalog,
+  ]
 }

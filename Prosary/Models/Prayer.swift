@@ -1,0 +1,44 @@
+
+//
+//  Prayer.swift
+//  Prosary
+//
+//  A saved, user-configurable prayer session (a "Favorite"). `kind` selects the prayer type;
+//  kind-specific settings live in nested option structs. Add new PrayerKind cases and matching
+//  option structs here to expand into new devotions (Divine Mercy Chaplet, Seven Sorrows, etc.).
+//
+
+import Foundation
+
+struct Prayer: Identifiable, Hashable, Codable {
+  var id = UUID()
+  var name: String = "My Prayer"
+  var kind: PrayerKind = .rosary
+
+  /// The starred/primary favorite for its kind — used when the home screen launches this
+  /// kind of prayer without the user picking one explicitly. At most one per kind at a time.
+  var isDefault: Bool = false
+
+  /// Prayer language for this favorite. `LanguageCatalog.defaultSentinel` means follow the
+  /// app-level default language setting.
+  var languageCode: String = LanguageCatalog.defaultSentinel
+
+  // Kind-specific options — populate the relevant struct when creating a Prayer.
+  var rosary: RosaryOptions = .init()
+  var jesusPrayer: JesusPrayerOptions = .init()
+  // .angelus has no options beyond languageCode.
+
+  /// Daily reminders to pray this favorite. Scheduled via `ReminderScheduler`.
+  var reminders: [PrayerReminder] = []
+
+  var isNotDefault: Bool { !isDefault }
+  var resolvedLanguageCode: String { LanguageCatalog.resolve(languageCode).code }
+  var languageNativeName: String { LanguageCatalog.resolve(languageCode).nativeName }
+
+  /// Display string for list rows — shows "Default (Latina)" for sentinel, plain name otherwise.
+  var languageDisplayName: String {
+    languageCode == LanguageCatalog.defaultSentinel
+      ? "Default (\(LanguageCatalog.resolve(languageCode).nativeName))"
+      : LanguageCatalog.resolve(languageCode).nativeName
+  }
+}

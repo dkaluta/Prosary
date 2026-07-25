@@ -11,8 +11,8 @@
 import Foundation
 
 protocol AngelusEngine {
-    /// Builds the full, ordered sequence of prayer steps for an Angelus session in the given
-    /// language — the standard three-versicle form, or the Regina Caeli substitute during
-    /// Eastertide.
-    func buildSteps(languageCode: String?) -> [RosaryStep]
+  /// Builds the full, ordered sequence of prayer steps for an Angelus session in the given
+  /// language — the standard three-versicle form, or the Regina Caeli substitute during
+  /// Eastertide.
+  func buildSteps(languageCode: String?) -> [RosaryStep]
 }

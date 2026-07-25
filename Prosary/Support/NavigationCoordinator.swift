@@ -11,9 +11,9 @@ import Observation
 
 @Observable
 final class NavigationCoordinator {
-    static let shared = NavigationCoordinator()
+  static let shared = NavigationCoordinator()
 
-    var pendingRoute: AppRoute?
+  var pendingRoute: AppRoute?
 
-    private init() {}
+  private init() {}
 }

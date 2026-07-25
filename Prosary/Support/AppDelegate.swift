@@ -15,23 +15,23 @@
 import AppKit
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
-    func applicationDidFinishLaunching(_ notification: Foundation.Notification) {
-        NotificationCenter.default.addObserver(
-            forName: NSWindow.willCloseNotification, object: nil, queue: .main
-        ) { _ in
-            // The closing window hasn't been removed from NSApp.windows yet at the moment this
-            // notification fires, so defer the check to the next run-loop turn.
-            DispatchQueue.main.async {
-                let hasVisibleWindow = NSApp.windows.contains { $0.isVisible && !$0.isMiniaturized }
-                if !hasVisibleWindow {
-                    NSApp.terminate(nil)
-                }
-            }
+  func applicationDidFinishLaunching(_ notification: Foundation.Notification) {
+    NotificationCenter.default.addObserver(
+      forName: NSWindow.willCloseNotification, object: nil, queue: .main
+    ) { _ in
+      // The closing window hasn't been removed from NSApp.windows yet at the moment this
+      // notification fires, so defer the check to the next run-loop turn.
+      DispatchQueue.main.async {
+        let hasVisibleWindow = NSApp.windows.contains { $0.isVisible && !$0.isMiniaturized }
+        if !hasVisibleWindow {
+          NSApp.terminate(nil)
         }
+      }
     }
+  }
 
-    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
-        true
-    }
+  func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+    true
+  }
 }
 #endif

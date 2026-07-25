@@ -8,7 +8,7 @@
 import Foundation
 
 struct MysteryText: Hashable {
-    var title: String
-    var fruit: String
-    var description: String
+  var title: String
+  var fruit: String
+  var description: String
 }

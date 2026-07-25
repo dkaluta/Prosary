@@ -1,32 +1,25 @@
+
 //
 //  StubPresetStore.swift
 //  Prosary
 //
-//  Skeleton for the real PresetStore implementation — fill in with your actual persistence
-//  (file, SwiftData, CloudKit, etc). Not wired into the app by default; see MockPresetStore for
-//  the fully-working in-memory version used to drive Previews and interactive testing today.
+//  Production PresetStore backed by SwiftData. This thin wrapper exists so AppServices.shared
+//  refers to a Stub* type consistently; the real persistence work is done by SwiftDataPresetStore.
 //
 
 import Foundation
+import SwiftData
 
 struct StubPresetStore: PresetStore {
-    func all() async throws -> [RosaryConfig] {
-        fatalError("StubPresetStore.all() not implemented")
-    }
+  private let inner: SwiftDataPresetStore
 
-    func defaultPreset() async throws -> RosaryConfig {
-        fatalError("StubPresetStore.defaultPreset() not implemented")
-    }
+  init(context: ModelContext) {
+    inner = SwiftDataPresetStore(context: context)
+  }
 
-    func get(id: RosaryConfig.ID) async throws -> RosaryConfig? {
-        fatalError("StubPresetStore.get(id:) not implemented")
-    }
-
-    func save(_ config: RosaryConfig) async throws {
-        fatalError("StubPresetStore.save(_:) not implemented")
-    }
-
-    func delete(_ config: RosaryConfig) async throws {
-        fatalError("StubPresetStore.delete(_:) not implemented")
-    }
+  func all() async throws -> [Prayer] { try await inner.all() }
+  func defaultPreset() async throws -> Prayer? { try await inner.defaultPreset() }
+  func get(id: Prayer.ID) async throws -> Prayer? { try await inner.get(id: id) }
+  func save(_ prayer: Prayer) async throws { try await inner.save(prayer) }
+  func delete(_ prayer: Prayer) async throws { try await inner.delete(prayer) }
 }

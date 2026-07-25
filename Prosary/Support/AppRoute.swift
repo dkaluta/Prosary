@@ -6,10 +6,11 @@
 import Foundation
 
 enum AppRoute: Hashable {
-    case rosary(configId: RosaryConfig.ID)
-    case presets
-    case about
-    case angelus
-    case jesusPrayerSetup
-    case jesusPrayer(target: JesusPrayerTarget)
+  /// Launch any saved favorite by ID — ContentView dispatches to the right flow based on kind.
+  case prayer(id: Prayer.ID)
+  case favorites
+  case about
+  case angelus
+  case jesusPrayerSetup
+  case jesusPrayer(target: JesusPrayerTarget)
 }

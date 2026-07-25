@@ -11,18 +11,18 @@
 import SwiftUI
 
 protocol LiturgicalCalendarProviding {
-    func mysteryGroup(for date: Date) -> MysteryGroup
-    func seasonColor(for date: Date) -> Color
-    /// The Marian antiphon traditionally used during the current liturgical season.
-    func seasonalMarianAntiphon(for date: Date) -> MarianAntiphonOption
-    /// True from Easter Sunday through the day before Pentecost, inclusive — the window in which
-    /// the Angelus is traditionally replaced by the Regina Caeli.
-    func isEasterSeason(for date: Date) -> Bool
+  func mysteryGroup(for date: Date) -> MysteryGroup
+  func seasonColor(for date: Date) -> Color
+  /// The Marian antiphon traditionally used during the current liturgical season.
+  func seasonalMarianAntiphon(for date: Date) -> MarianAntiphonOption
+  /// True from Easter Sunday through the day before Pentecost, inclusive — the window in which
+  /// the Angelus is traditionally replaced by the Regina Caeli.
+  func isEasterSeason(for date: Date) -> Bool
 }
 
 extension LiturgicalCalendarProviding {
-    func mysteryGroupToday() -> MysteryGroup { mysteryGroup(for: Date()) }
-    func seasonColorToday() -> Color { seasonColor(for: Date()) }
-    func seasonalMarianAntiphonToday() -> MarianAntiphonOption { seasonalMarianAntiphon(for: Date()) }
-    func isEasterSeasonToday() -> Bool { isEasterSeason(for: Date()) }
+  func mysteryGroupToday() -> MysteryGroup { mysteryGroup(for: Date()) }
+  func seasonColorToday() -> Color { seasonColor(for: Date()) }
+  func seasonalMarianAntiphonToday() -> MarianAntiphonOption { seasonalMarianAntiphon(for: Date()) }
+  func isEasterSeasonToday() -> Bool { isEasterSeason(for: Date()) }
 }

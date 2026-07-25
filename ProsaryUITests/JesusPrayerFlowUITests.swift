@@ -2,75 +2,89 @@
 //  JesusPrayerFlowUITests.swift
 //  ProsaryUITests
 //
+//  These tests use -resetStore so the SwiftData store starts clean (no Jesus Prayer default),
+//  ensuring tapping the home card always goes to JesusPrayerSetupView instead of jumping
+//  straight to a flow. On macOS the target picker is an NSSegmentedControl, so segments are
+//  accessed via app.segmentedControls.firstMatch.buttons rather than app.buttons.
+//
 
 import XCTest
 
 final class JesusPrayerFlowUITests: XCTestCase {
-    override func setUpWithError() throws {
-        continueAfterFailure = false
-    }
+  override func setUpWithError() throws {
+    continueAfterFailure = false
+  }
 
-    @MainActor
-    func testBoundedTargetDefaultsTo33AndTracksCount() throws {
-        let app = XCUIApplication()
-        app.launch()
+  private func launchClean() -> XCUIApplication {
+    let app = XCUIApplication()
+    app.launchArguments = ["-resetStore"]
+    app.launch()
+    return app
+  }
 
-        app.buttons["The Jesus Prayer"].tap()
-        XCTAssertTrue(app.buttons["33"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.buttons["33"].isSelected)
+  @MainActor
+  func testBoundedTargetDefaultsTo33AndTracksCount() throws {
+    let app = launchClean()
 
-        app.buttons["Begin"].tap()
-        XCTAssertTrue(app.staticTexts["1 of 33"].waitForExistence(timeout: 5))
+    app.buttons["jesusPrayerCard"].tap()
 
-        app.buttons["prayerFlowNextButton"].tap()
-        app.buttons["prayerFlowNextButton"].tap()
-        XCTAssertTrue(app.staticTexts["3 of 33"].waitForExistence(timeout: 5))
+    // On macOS, the segmented target picker segments live inside an NSSegmentedControl.
+    let targetPicker = app.segmentedControls.firstMatch
+    XCTAssertTrue(targetPicker.waitForExistence(timeout: 5))
+    XCTAssertTrue(targetPicker.buttons["33"].isSelected)
 
-        app.buttons["prayerFlowBackButton"].tap()
-        XCTAssertTrue(app.staticTexts["2 of 33"].waitForExistence(timeout: 5))
-    }
+    app.buttons["Begin"].tap()
+    XCTAssertTrue(app.staticTexts["1 of 33"].waitForExistence(timeout: 5))
 
-    @MainActor
-    func testUnboundedTargetHasNoFixedTotalAndAlwaysOffersFinish() throws {
-        let app = XCUIApplication()
-        app.launch()
+    app.buttons["prayerFlowNextButton"].tap()
+    app.buttons["prayerFlowNextButton"].tap()
+    XCTAssertTrue(app.staticTexts["3 of 33"].waitForExistence(timeout: 5))
 
-        app.buttons["The Jesus Prayer"].tap()
-        app.buttons["Unbounded"].tap()
-        app.buttons["Begin"].tap()
+    app.buttons["prayerFlowBackButton"].tap()
+    XCTAssertTrue(app.staticTexts["2 of 33"].waitForExistence(timeout: 5))
+  }
 
-        XCTAssertTrue(app.staticTexts["1"].waitForExistence(timeout: 5))
-        XCTAssertFalse(app.staticTexts["1 of 33"].exists)
+  @MainActor
+  func testUnboundedTargetHasNoFixedTotalAndAlwaysOffersFinish() throws {
+    let app = launchClean()
 
-        app.buttons["prayerFlowNextButton"].tap()
-        app.buttons["prayerFlowNextButton"].tap()
-        XCTAssertTrue(app.staticTexts["3"].waitForExistence(timeout: 5))
-        // The footer button never turns into "Finish" for an unbounded session — only the
-        // separate toolbar action (checked below) can end it.
-        XCTAssertEqual(app.buttons["prayerFlowNextButton"].label, "Next")
+    app.buttons["jesusPrayerCard"].tap()
+    let targetPicker = app.segmentedControls.firstMatch
+    XCTAssertTrue(targetPicker.waitForExistence(timeout: 5))
+    targetPicker.buttons["Unbounded"].tap()
+    app.buttons["Begin"].tap()
 
-        let finishButton = app.buttons["Finish"]
-        XCTAssertTrue(finishButton.exists)
-        finishButton.tap()
+    XCTAssertTrue(app.staticTexts["1"].waitForExistence(timeout: 5))
+    XCTAssertFalse(app.staticTexts["1 of 33"].exists)
 
-        XCTAssertTrue(app.buttons["Pray the Rosary"].waitForExistence(timeout: 5))
-    }
+    app.buttons["prayerFlowNextButton"].tap()
+    app.buttons["prayerFlowNextButton"].tap()
+    XCTAssertTrue(app.staticTexts["3"].waitForExistence(timeout: 5))
+    XCTAssertEqual(app.buttons["prayerFlowNextButton"].label, "Next")
 
-    @MainActor
-    func testCustomTargetRequiresAValidNumberBeforeBeginIsEnabled() throws {
-        let app = XCUIApplication()
-        app.launch()
+    let finishButton = app.buttons["Finish"]
+    XCTAssertTrue(finishButton.exists)
+    finishButton.tap()
 
-        app.buttons["The Jesus Prayer"].tap()
-        app.buttons["Custom"].tap()
+    XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 5))
+  }
 
-        XCTAssertFalse(app.buttons["Begin"].isEnabled)
+  @MainActor
+  func testCustomTargetRequiresAValidNumberBeforeBeginIsEnabled() throws {
+    let app = launchClean()
 
-        app.textFields["Number of repetitions"].tap()
-        app.textFields["Number of repetitions"].typeText("12")
+    app.buttons["jesusPrayerCard"].tap()
+    let targetPicker = app.segmentedControls.firstMatch
+    XCTAssertTrue(targetPicker.waitForExistence(timeout: 5))
+    targetPicker.buttons["Custom"].tap()
 
-        XCTAssertTrue(app.buttons["Begin"].isEnabled)
-        app.buttons["Begin"].tap()
-        XCTAssertTrue(app.staticTexts["1 of 12"].waitForExistence(timeout: 5))
-    }
+    XCTAssertFalse(app.buttons["Begin"].isEnabled)
+
+    app.textFields["Number of repetitions"].tap()
+    app.textFields["Number of repetitions"].typeText("12")
+
+    XCTAssertTrue(app.buttons["Begin"].isEnabled)
+    app.buttons["Begin"].tap()
+    XCTAssertTrue(app.staticTexts["1 of 12"].waitForExistence(timeout: 5))
+  }
 }
