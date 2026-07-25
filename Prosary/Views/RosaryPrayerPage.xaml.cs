@@ -10,10 +10,15 @@ namespace Prosary.Views;
 /// back to the default Rosary favorite (see <see cref="RosaryViewModel.LoadAsync"/>).</summary>
 public sealed partial class RosaryPrayerPage : Page
 {
-    // Desktop windows at/above this width get the wide three-column layout (image, vertical bead
-    // track, prayer text side by side); narrower windows keep the single-column layout with
-    // horizontal bead rows. Matches irosary's RosaryPrayerPage.xaml.cs breakpoint exactly.
+    // Desktop windows at/above this width get the wide three-column layout (image, major/minor
+    // bead columns, prayer text side by side); narrower windows keep the single-column layout
+    // with horizontal bead rows. Matches irosary's RosaryPrayerPage.xaml.cs breakpoint.
     private const double WideLayoutBreakpoint = 700;
+
+    // A single 10-tall minor-beads column needs roughly 254pt of height (matching iOS's own
+    // comment in PrayerStepFlowView.swift) — below that, the wide layout's minor beads split into
+    // two 5-tall columns instead. Matches iOS's hasRoomForSingleMinorColumn threshold exactly.
+    private const double WideMinorColumnHeightThreshold = 300;
 
     public RosaryViewModel ViewModel { get; }
 
@@ -36,5 +41,14 @@ public sealed partial class RosaryPrayerPage : Page
         var isWide = ActualWidth >= WideLayoutBreakpoint;
         WideLayout.Visibility = isWide ? Visibility.Visible : Visibility.Collapsed;
         NarrowLayout.Visibility = isWide ? Visibility.Collapsed : Visibility.Visible;
+    }
+
+    // WideLayout's own height reflects the actual available vertical space for the wide layout
+    // (it fills Grid.Row="2", the page's remaining height after the season bar/progress header/
+    // footer) — measuring the beads column's own rendered height instead would be circular, since
+    // that size is itself a consequence of which minor-beads layout gets chosen.
+    private void WideLayout_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        ViewModel.HasRoomForSingleMinorColumn = e.NewSize.Height >= WideMinorColumnHeightThreshold;
     }
 }

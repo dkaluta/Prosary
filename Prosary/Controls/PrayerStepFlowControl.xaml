@@ -9,13 +9,14 @@
 
     <!--
     Shared chrome for a linear prayer flow with no bead-style progress accessory — used by
-    AngelusFlowPage and JesusPrayerFlowPage. RosaryPrayerPage does NOT use this control: its bead
-    rows need two genuinely different visual representations for the narrow vs. wide layout (see
-    RosaryViewModel.TopBeadRows/VerticalBeadRows), which would need a DataTemplate-based accessory
-    slot to share safely — not worth the added fragility here with no compiler in this environment
-    to verify it against, so RosaryPrayerPage keeps its own full bespoke layout (matching irosary's
-    own precedent, which never factored this chrome out either). Ported from iOS's shared
-    PrayerStepFlowView.swift, minus the accessory slot.
+    AngelusFlowPage and JesusPrayerFlowPage. RosaryPrayerPage does NOT use this control: iOS's own
+    equivalent (PrayerStepFlowView.swift) supports the bead track via an `accessory` closure
+    parameter, but doing the same here would need a DataTemplate-based accessory slot (see
+    RosaryViewModel.TopBeadRows/GroupColumns/BottomBeads, which need genuinely different visual
+    representations for narrow vs. wide) — not worth the added fragility with no compiler in this
+    environment to verify it against, so RosaryPrayerPage keeps its own full bespoke layout instead
+    (matching irosary's own precedent, which never factored this chrome out either). Ported from
+    iOS's shared PrayerStepFlowView.swift, minus the accessory slot.
     -->
     <Grid>
         <Grid.RowDefinitions>

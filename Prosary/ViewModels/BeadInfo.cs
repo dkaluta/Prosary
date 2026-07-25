@@ -1,5 +1,5 @@
-using Microsoft.UI.Xaml;
 using Microsoft.UI;
+using Prosary.Models;
 using Windows.UI;
 
 namespace Prosary.ViewModels;
@@ -8,8 +8,9 @@ public enum BeadKind { Cross, Decade, Antiphon }
 
 public enum BeadState { Completed, Current, Upcoming }
 
-/// <summary>One dot/glyph in the Rosary progress indicator. Ported from irosary's
-/// <c>BeadInfo.cs</c>, retargeted from MAUI's <c>Color</c>/<c>Thickness</c> to WinUI3's.</summary>
+/// <summary>One dot/glyph in the Rosary progress indicator — ported to match iOS's
+/// <c>BeadModels.swift</c>/Android's <c>BeadModels.kt</c> exactly (not irosary's older, simpler
+/// version this file originally mirrored).</summary>
 public sealed class BeadInfo
 {
     private static readonly Color CurrentColor = ColorFromHex("#7A1F3D");
@@ -19,7 +20,10 @@ public sealed class BeadInfo
     public required BeadKind Kind { get; init; }
     public required BeadState State { get; init; }
 
-    /// <summary>True for the first bead of each group-of-5, so the UI can add extra spacing there.</summary>
+    /// <summary>True for the first bead of each group-of-5, so the UI can add extra spacing there
+    /// — only ever set on the bottom/minor (current-decade) beads, and only actually used by the
+    /// narrow layout's single-row rendering (see RosaryPrayerPage.xaml's GroupStartLeadingMargin
+    /// converter usage) — the wide layout's minor-bead column(s) don't add this extra gap.</summary>
     public bool IsGroupStart { get; init; }
 
     public bool IsCross => Kind == BeadKind.Cross;
@@ -35,12 +39,6 @@ public sealed class BeadInfo
         _ => UpcomingColor
     };
 
-    // Uniform on all sides (not just the stacking axis) so the same value works whether the
-    // bead sits in a horizontal StackPanel (narrow layout) or a vertical one (wide two-column
-    // layout's vertical bead track) — only the axis the parent stacks along matters for spacing,
-    // so the cross-axis inset is just a harmless bit of breathing room.
-    public Thickness Margin => new(IsGroupStart ? 8 : 2);
-
     private static Color ColorFromHex(string hex)
     {
         var value = Convert.ToUInt32(hex.TrimStart('#'), 16);
@@ -48,11 +46,11 @@ public sealed class BeadInfo
     }
 }
 
-/// <summary>One row of beads in the wide layout's vertical bead track (4 decade beads per row),
-/// with an alignment so the opening cross sits at the left edge and the antiphon/closing-cross
-/// beads sit at the right edge, matching where they'd hang on a physical rosary.</summary>
-public sealed class BeadRow
+/// <summary>One mystery group's column of decade beads, for the wide layout's grid (one column
+/// per group in the session, e.g. 3 columns for a 15-mystery session, so a long session grows
+/// wider rather than awkwardly taller).</summary>
+public sealed class BeadColumn
 {
+    public required MysteryGroup Group { get; init; }
     public required IReadOnlyList<BeadInfo> Beads { get; init; }
-    public required HorizontalAlignment Alignment { get; init; }
 }

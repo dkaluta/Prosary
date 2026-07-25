@@ -1,7 +1,6 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.UI.Xaml;
 using Prosary.Models;
 using Prosary.Navigation;
 using Prosary.Persistence;
@@ -73,21 +72,47 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     private double _bodyFontSize = 18;
 
     // Decade beads grouped into rows of 5 — like the physical layout of a rosary's Our-Father
-    // beads — for the narrow layout's wrapped horizontal grid.
+    // beads — for the narrow layout's wrapped horizontal grid. See BeadLayout.Build.
     [ObservableProperty]
-    private ObservableCollection<List<BeadInfo>> _topBeadRows = [];
+    private ObservableCollection<IReadOnlyList<BeadInfo>> _topBeadRows = [];
 
-    // Decade beads grouped into rows of 4 for the wide layout's vertical bead track, with the
-    // opening cross left-aligned on its own row and the antiphon/closing-cross beads
-    // right-aligned on their own rows — see RebuildBeads.
+    // Wide layout's major-beads column: opening cross, then one column per mystery group in the
+    // session (side by side), then the antiphon/closing-cross beads — matches iOS's
+    // BeadProgressView wide layout exactly (see that file's doc comment for why: a plain
+    // rows-of-4 vertical track, which this project used before, has no precedent on either other
+    // platform and doesn't reflect how a 15/20-mystery session's decades actually group).
     [ObservableProperty]
-    private ObservableCollection<BeadRow> _verticalBeadRows = [];
+    private BeadInfo? _openingCross;
+
+    [ObservableProperty]
+    private ObservableCollection<BeadColumn> _groupColumns = [];
+
+    [ObservableProperty]
+    private BeadInfo? _antiphonBead;
+
+    [ObservableProperty]
+    private BeadInfo? _closingCross;
 
     [ObservableProperty]
     private ObservableCollection<BeadInfo> _bottomBeads = [];
 
     [ObservableProperty]
     private bool _showBottomBeads;
+
+    /// <summary>Whether the wide layout's minor-bead track has enough vertical room for a single
+    /// 10-tall column — set by the page from its own measured height (see
+    /// <c>RosaryPrayerPage.xaml.cs</c>'s <c>WideMinorColumnHeightThreshold</c>), matching iOS's
+    /// <c>GeometryReader</c>-measured <c>hasRoomForSingleMinorColumn</c>. Ignored in the narrow
+    /// layout, which always uses a single row regardless of height.</summary>
+    [ObservableProperty]
+    private bool _hasRoomForSingleMinorColumn = true;
+
+    /// <summary>First half of <see cref="BottomBeads"/>, for the wide layout's split-column
+    /// fallback when <see cref="HasRoomForSingleMinorColumn"/> is false — matches iOS's
+    /// <c>MinorBeadsTwoColumnView</c> split exactly (first <c>(count+1)/2</c> beads).</summary>
+    public IReadOnlyList<BeadInfo> BottomBeadsColumn1 => BottomBeads.Take((BottomBeads.Count + 1) / 2).ToList();
+
+    public IReadOnlyList<BeadInfo> BottomBeadsColumn2 => BottomBeads.Skip((BottomBeads.Count + 1) / 2).ToList();
 
     public string MysteryImageFile => MysteryImageKey == "cross_placeholder"
         ? "ms-appx:///Assets/Images/cross_placeholder.png"
@@ -147,6 +172,12 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
 
     partial void OnSubtitleChanged(string? value) => OnPropertyChanged(nameof(HasSubtitle));
 
+    partial void OnBottomBeadsChanged(ObservableCollection<BeadInfo> value)
+    {
+        OnPropertyChanged(nameof(BottomBeadsColumn1));
+        OnPropertyChanged(nameof(BottomBeadsColumn2));
+    }
+
     private void RenderCurrentStep()
     {
         if (_steps.Count == 0)
@@ -167,142 +198,20 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         BodyFontFamily = PrayerTypography.ResolveBodyFontFamily(_languageCode, step.IsScripture);
         BodyFontSize = PrayerTypography.ResolveBodyFontSize(_languageCode, step.IsScripture);
 
-        RebuildBeads(step);
+        RebuildBeads();
     }
 
-    private void RebuildBeads(RosaryStep step)
+    private void RebuildBeads()
     {
-        var crossBead = new BeadInfo { Kind = BeadKind.Cross, State = _index == 0 ? BeadState.Current : BeadState.Completed };
+        var layout = BeadLayout.Build(_steps, _index, _hasClosingCross);
 
-        var decadeBeads = new List<BeadInfo>();
-        for (var d = 0; d < _totalDecades; d++)
-        {
-            var state = step.DecadeIndex switch
-            {
-                null when _firstDecadeStepIndex < 0 || _index < _firstDecadeStepIndex => BeadState.Upcoming,
-                null => BeadState.Completed, // past all decades (antiphon/closing phase)
-                var current when d < current => BeadState.Completed,
-                var current when d == current => BeadState.Current,
-                _ => BeadState.Upcoming
-            };
-            decadeBeads.Add(new BeadInfo { Kind = BeadKind.Decade, State = state });
-        }
-
-        BeadInfo? antiphonBead = null;
-        if (_antiphonStepIndex >= 0)
-        {
-            var state = _index < _antiphonStepIndex ? BeadState.Upcoming
-                : _index == _antiphonStepIndex ? BeadState.Current
-                : BeadState.Completed;
-            antiphonBead = new BeadInfo { Kind = BeadKind.Antiphon, State = state };
-        }
-
-        BeadInfo? closingCrossBead = null;
-        if (_hasClosingCross)
-        {
-            var closingCrossIndex = _steps.Count - 1;
-            closingCrossBead = new BeadInfo
-            {
-                Kind = BeadKind.Cross,
-                State = _index < closingCrossIndex ? BeadState.Upcoming : BeadState.Current
-            };
-        }
-
-        // Grouped into rows of 5 decade beads, mirroring the physical layout of a rosary's
-        // Our-Father beads — the opening cross rides along with the first row, and the antiphon/
-        // closing-cross beads (if any) tag onto whatever's left of the last row.
-        var rows = new List<List<BeadInfo>> { new() { crossBead } };
-        foreach (var decadeBead in decadeBeads)
-        {
-            rows[^1].Add(decadeBead);
-            if (rows[^1].Count(b => b.Kind == BeadKind.Decade) % 5 == 0 && decadeBead != decadeBeads[^1])
-            {
-                rows.Add([]);
-            }
-        }
-
-        var lastRow = rows[^1];
-        if (antiphonBead is { } antiphon)
-        {
-            lastRow.Add(antiphon);
-        }
-
-        if (closingCrossBead is { } closing)
-        {
-            lastRow.Add(closing);
-        }
-
-        TopBeadRows = new ObservableCollection<List<BeadInfo>>(rows);
-
-        // Same beads, grouped into rows of 4 for the wide layout's narrower vertical track —
-        // opening cross alone at the left, decade beads centered, antiphon/closing cross each
-        // alone at the right, matching where they'd hang on a physical rosary.
-        var verticalRows = new List<BeadRow> { new() { Beads = [crossBead], Alignment = HorizontalAlignment.Left } };
-        var currentVerticalRow = new List<BeadInfo>();
-        foreach (var decadeBead in decadeBeads)
-        {
-            currentVerticalRow.Add(decadeBead);
-            if (currentVerticalRow.Count == 4)
-            {
-                verticalRows.Add(new BeadRow { Beads = currentVerticalRow, Alignment = HorizontalAlignment.Center });
-                currentVerticalRow = [];
-            }
-        }
-
-        if (currentVerticalRow.Count > 0)
-        {
-            verticalRows.Add(new BeadRow { Beads = currentVerticalRow, Alignment = HorizontalAlignment.Center });
-        }
-
-        if (antiphonBead is { } antiphonV)
-        {
-            verticalRows.Add(new BeadRow { Beads = [antiphonV], Alignment = HorizontalAlignment.Right });
-        }
-
-        if (closingCrossBead is { } closingV)
-        {
-            verticalRows.Add(new BeadRow { Beads = [closingV], Alignment = HorizontalAlignment.Right });
-        }
-
-        VerticalBeadRows = new ObservableCollection<BeadRow>(verticalRows);
-
-        if (!step.DecadeIndex.HasValue)
-        {
-            ShowBottomBeads = false;
-            return;
-        }
-
-        var decadeStepIndices = _steps
-            .Select((s, i) => (s, i))
-            .Where(t => t.s.DecadeIndex == step.DecadeIndex && t.s.HailMaryIndexInDecade.HasValue)
-            .Select(t => t.i)
-            .ToList();
-        var firstHailMaryIndex = decadeStepIndices.Min();
-        var lastHailMaryIndex = decadeStepIndices.Max();
-
-        var bottom = new List<BeadInfo>();
-        for (var h = 1; h <= 10; h++)
-        {
-            BeadState state;
-            if (_index < firstHailMaryIndex)
-            {
-                state = BeadState.Upcoming;
-            }
-            else if (_index > lastHailMaryIndex)
-            {
-                state = BeadState.Completed;
-            }
-            else
-            {
-                var current = step.HailMaryIndexInDecade!.Value;
-                state = h < current ? BeadState.Completed : h == current ? BeadState.Current : BeadState.Upcoming;
-            }
-
-            bottom.Add(new BeadInfo { Kind = BeadKind.Decade, State = state, IsGroupStart = h > 1 && (h - 1) % 5 == 0 });
-        }
-
-        BottomBeads = new ObservableCollection<BeadInfo>(bottom);
-        ShowBottomBeads = true;
+        TopBeadRows = new ObservableCollection<IReadOnlyList<BeadInfo>>(layout.TopRows);
+        OpeningCross = layout.OpeningCross;
+        GroupColumns = new ObservableCollection<BeadColumn>(layout.GroupColumns);
+        AntiphonBead = layout.Antiphon;
+        ClosingCross = layout.ClosingCross;
+        BottomBeads = new ObservableCollection<BeadInfo>(layout.BottomBeads);
+        ShowBottomBeads = layout.ShowBottomBeads;
     }
 
     [RelayCommand]

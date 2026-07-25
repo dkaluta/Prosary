@@ -9,12 +9,18 @@
 
     <!-- Bespoke layout (not using Controls/PrayerStepFlowControl — see that control's own doc
          comment for why): season bar, progress header, then two mutually-exclusive layouts
-         toggled by RosaryPrayerPage.xaml.cs based on window width (see WideLayoutBreakpoint),
-         same breakpoint idea as irosary's RosaryPrayerPage.xaml.cs. Ported from that file, plus
-         iOS's PrayerStepFlowView.swift for the wide-layout structure. -->
+         toggled by RosaryPrayerPage.xaml.cs based on window width (see WideLayoutBreakpoint).
+         Bead track structure (BeadTemplate, group-column wide layout, narrow/wide minor-bead
+         column split) is ported to match iOS's BeadDotView.swift/BeadProgressView.swift and
+         Android's BeadDotView.kt/BeadProgressView.kt exactly — see ViewModels/BeadLayout.cs. -->
     <Page.Resources>
+        <!-- One bead cell, 20x20 — matches BeadDotView.swift's outer .frame(width: 20, height: 20)
+             exactly. The cross is a hand-drawn shape (two rectangles), not a Unicode glyph,
+             matching iOS's CrossShape.swift (armThickness = width*0.34, horizontalBarY =
+             height*0.22 within its own 13x17 box) rather than relying on a font glyph that may
+             not render identically (or at all) across fonts. -->
         <DataTemplate x:Key="BeadTemplate">
-            <Grid Width="24" Height="24" Margin="{Binding Margin}">
+            <Grid Width="20" Height="20">
                 <Ellipse Fill="{Binding Color, Converter={StaticResource ColorToBrush}}"
                          Width="{Binding CircleSize}" Height="{Binding CircleSize}"
                          Visibility="{Binding IsCircle, Converter={StaticResource BoolToVisibility}}"
@@ -22,14 +28,37 @@
                 <TextBlock Text="M" Foreground="White" FontSize="10" FontWeight="Bold"
                            Visibility="{Binding IsAntiphon, Converter={StaticResource BoolToVisibility}}"
                            HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <TextBlock Text="&#x271D;" Foreground="{Binding Color, Converter={StaticResource ColorToBrush}}" FontSize="18"
-                           Visibility="{Binding IsCross, Converter={StaticResource BoolToVisibility}}"
+                <Grid Width="13" Height="17" HorizontalAlignment="Center" VerticalAlignment="Center"
+                      Visibility="{Binding IsCross, Converter={StaticResource BoolToVisibility}}">
+                    <Rectangle Width="4.42" Fill="{Binding Color, Converter={StaticResource ColorToBrush}}"
+                               HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+                    <Rectangle Height="4.42" Fill="{Binding Color, Converter={StaticResource ColorToBrush}}"
+                               HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,3.74,0,0" />
+                </Grid>
+            </Grid>
+        </DataTemplate>
+
+        <!-- Same bead cell, plus the group-of-5 boundary's extra leading gap — used only by the
+             narrow layout's single-row minor (current-decade) beads, matching iOS's
+             MinorBeadsRowView exactly. Not used for major-bead rows/columns or the wide layout's
+             minor-bead column(s), which don't add this extra gap. -->
+        <DataTemplate x:Key="GroupStartAwareBeadTemplate">
+            <Grid Width="20" Height="20" Margin="{Binding IsGroupStart, Converter={StaticResource GroupStartLeadingMargin}}">
+                <Ellipse Fill="{Binding Color, Converter={StaticResource ColorToBrush}}"
+                         Width="{Binding CircleSize}" Height="{Binding CircleSize}"
+                         Visibility="{Binding IsCircle, Converter={StaticResource BoolToVisibility}}"
+                         HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock Text="M" Foreground="White" FontSize="10" FontWeight="Bold"
+                           Visibility="{Binding IsAntiphon, Converter={StaticResource BoolToVisibility}}"
                            HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Grid>
         </DataTemplate>
 
-        <ItemsPanelTemplate x:Key="HorizontalStackPanelTemplate">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" />
+        <ItemsPanelTemplate x:Key="HorizontalBeadPanelTemplate">
+            <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center" />
+        </ItemsPanelTemplate>
+        <ItemsPanelTemplate x:Key="VerticalBeadPanelTemplate">
+            <StackPanel Orientation="Vertical" Spacing="6" HorizontalAlignment="Center" />
         </ItemsPanelTemplate>
     </Page.Resources>
 
@@ -48,7 +77,8 @@
             <TextBlock Text="{x:Bind ViewModel.ProgressText, Mode=OneWay}" HorizontalAlignment="Center" Style="{StaticResource MutedCaptionTextStyle}" />
         </StackPanel>
 
-        <!-- Narrow layout: beads as horizontal rows above a vertically-scrolling image/text column. -->
+        <!-- Narrow layout: major beads wrap into rows of 5 above a single minor-beads row, above a
+             vertically-scrolling image/text column — matches BeadProgressView's `!isWide` branch. -->
         <Grid x:Name="NarrowLayout" Grid.Row="2" RowSpacing="16">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -56,16 +86,16 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" Spacing="6">
-                <ItemsControl ItemsSource="{x:Bind ViewModel.TopBeadRows, Mode=OneWay}">
+                <ItemsControl ItemsSource="{x:Bind ViewModel.TopBeadRows, Mode=OneWay}" ItemsPanel="{StaticResource VerticalBeadPanelTemplate}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <ItemsControl ItemsSource="{Binding}" ItemTemplate="{StaticResource BeadTemplate}"
-                                          ItemsPanel="{StaticResource HorizontalStackPanelTemplate}" HorizontalAlignment="Center" />
+                                          ItemsPanel="{StaticResource HorizontalBeadPanelTemplate}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeads, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
-                              ItemsPanel="{StaticResource HorizontalStackPanelTemplate}"
+                <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeads, Mode=OneWay}" ItemTemplate="{StaticResource GroupStartAwareBeadTemplate}"
+                              ItemsPanel="{StaticResource HorizontalBeadPanelTemplate}"
                               Visibility="{x:Bind ViewModel.ShowBottomBeads, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
             </StackPanel>
 
@@ -90,8 +120,12 @@
             </ScrollViewer>
         </Grid>
 
-        <!-- Wide layout: image left, vertical bead track as a divider column, prayer text right. -->
-        <Grid x:Name="WideLayout" Grid.Row="2" ColumnSpacing="24" Visibility="Collapsed">
+        <!-- Wide layout: image, major-beads column (opening cross / one column per mystery group
+             side by side / antiphon / closing cross) beside the minor-beads column(s), prayer text
+             — matches BeadProgressView's `isWide` branch (HStack[VStack[cross,groupGrid,antiphon,
+             closing], Divider, minorColumn]) exactly, including its single-vs-split-column minor
+             beads fallback based on measured height (see WideBeadsColumn_SizeChanged). -->
+        <Grid x:Name="WideLayout" Grid.Row="2" ColumnSpacing="24" Visibility="Collapsed" SizeChanged="WideLayout_SizeChanged">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -102,29 +136,49 @@
                 <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill" />
             </Border>
 
-            <ScrollViewer Grid.Column="1" VerticalAlignment="Stretch">
-                <StackPanel Spacing="16" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <ItemsControl ItemsSource="{x:Bind ViewModel.VerticalBeadRows, Mode=OneWay}" HorizontalAlignment="Center">
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6"
+                        VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical" Spacing="6" HorizontalAlignment="Center">
+                    <ContentControl Content="{x:Bind ViewModel.OpeningCross, Mode=OneWay}" ContentTemplate="{StaticResource BeadTemplate}"
+                                     Visibility="{x:Bind ViewModel.OpeningCross, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
+
+                    <!-- One column per mystery group in the session, side by side. -->
+                    <ItemsControl ItemsSource="{x:Bind ViewModel.GroupColumns, Mode=OneWay}" ItemsPanel="{StaticResource HorizontalBeadPanelTemplate}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <ItemsControl ItemsSource="{Binding Beads}" ItemTemplate="{StaticResource BeadTemplate}"
-                                              HorizontalAlignment="{Binding Alignment}">
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel Orientation="Horizontal" />
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                </ItemsControl>
+                                              ItemsPanel="{StaticResource VerticalBeadPanelTemplate}" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    <Rectangle Height="1" Width="24" HorizontalAlignment="Center" Fill="{StaticResource MutedTextBrush}"
-                               Visibility="{x:Bind ViewModel.ShowBottomBeads, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                    <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeads, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
-                                  HorizontalAlignment="Center"
-                                  Visibility="{x:Bind ViewModel.ShowBottomBeads, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+
+                    <ContentControl Content="{x:Bind ViewModel.AntiphonBead, Mode=OneWay}" ContentTemplate="{StaticResource BeadTemplate}"
+                                     Visibility="{x:Bind ViewModel.AntiphonBead, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
+                    <ContentControl Content="{x:Bind ViewModel.ClosingCross, Mode=OneWay}" ContentTemplate="{StaticResource BeadTemplate}"
+                                     Visibility="{x:Bind ViewModel.ClosingCross, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
                 </StackPanel>
-            </ScrollViewer>
+
+                <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center"
+                            Visibility="{x:Bind ViewModel.ShowBottomBeads, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                    <Rectangle Width="1" Fill="{StaticResource MutedTextBrush}" Margin="4,0" VerticalAlignment="Stretch" />
+
+                    <!-- Single 10-tall column when there's room... -->
+                    <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeads, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
+                                  ItemsPanel="{StaticResource VerticalBeadPanelTemplate}"
+                                  Visibility="{x:Bind ViewModel.HasRoomForSingleMinorColumn, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+
+                    <!-- ...otherwise two 5-tall columns (half the height) — an iPhone-landscape-style
+                         short window has no Windows equivalent device, but a Mac/iPad window resized
+                         short does, and a desktop window resized short is exactly that same case. -->
+                    <StackPanel Orientation="Horizontal" Spacing="6"
+                                Visibility="{x:Bind ViewModel.HasRoomForSingleMinorColumn, Mode=OneWay, Converter={StaticResource InverseBoolToVisibility}}">
+                        <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeadsColumn1, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
+                                      ItemsPanel="{StaticResource VerticalBeadPanelTemplate}" />
+                        <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeadsColumn2, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
+                                      ItemsPanel="{StaticResource VerticalBeadPanelTemplate}" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
 
             <ScrollViewer Grid.Column="2" FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
                 <StackPanel Spacing="16" VerticalAlignment="Center">
