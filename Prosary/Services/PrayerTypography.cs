@@ -41,20 +41,18 @@ public static class PrayerTypography
     // this project's original version collapsed all six cases down to just two values (21/18),
     // which wasn't just a rough approximation but a real mismatch on four of the six.
     //
-    // Scaled by 0.76 throughout, matching iOS's own PrayerTypography.swift `scale` constant
-    // (applied there only on its macOS/Catalyst build, never on iPhone/iPad) — the same
-    // correction for the same reason: a desktop's viewing distance and default body-text size
-    // read literal mobile point sizes as oversized, which is exactly what this method looked
-    // like on a real Windows build before this fix.
-    private const double Scale = 0.76;
-
+    // Deliberately NOT scaled down for desktop the way iOS's own PrayerTypography.swift scales
+    // these same numbers by 0.76 on its macOS/Catalyst build: WinUI3's effective-pixel unit isn't
+    // the same as an Apple point (that 0.76 correction is tuned specifically for macOS's own,
+    // much smaller, native body-text convention), and applying it here made every prayer read as
+    // noticeably smaller than this app's own button/caption text — the opposite problem. Android's
+    // own PrayerTypography.kt uses these exact numbers with no correction at all and never needed
+    // one, which is the closer precedent for a platform with no special desktop-only type ramp.
     public static double ResolveBodyFontSize(string languageCode, bool isScripture) => languageCode switch
     {
-        "he" => isScripture ? Round(16) : Round(21),
-        "ar" => isScripture ? Round(16) : Round(18),
-        "la" or "en" => isScripture ? Round(19) : Round(17),
-        _ => Round(17)
+        "he" => isScripture ? 16 : 21,
+        "ar" => isScripture ? 16 : 18,
+        "la" or "en" => isScripture ? 19 : 17,
+        _ => 17
     };
-
-    private static double Round(double unscaledSize) => Math.Round(unscaledSize * Scale);
 }

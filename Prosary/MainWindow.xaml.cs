@@ -22,11 +22,15 @@ public sealed partial class MainWindow : Window
         var appWindow = AppWindow.GetFromWindowId(windowId);
         if (appWindow?.Presenter is OverlappedPresenter presenter)
         {
-            // Matches irosary's MinimumWidth=420/MinimumHeight=600 choice (App.xaml.cs
-            // CreateWindow override there) — no maximum, to support the Rosary flow's
-            // responsive narrow/wide layout at any window size above this floor.
+            // Matches irosary's MinimumWidth=420/MinimumHeight=600 floor (App.xaml.cs
+            // CreateWindow override there), plus a width ceiling matching iOS's own Mac
+            // WindowGroup (.frame(minWidth: 760, idealWidth: 1000, maxWidth: 1400, ...)) — without
+            // one, the wide Rosary/Angelus/Jesus Prayer layout's body text stretches across the
+            // full width of an ultra-wide/maximized window instead of staying a comfortable
+            // reading line length. No height ceiling, matching iOS not capping height either.
             presenter.PreferredMinimumWidth = 420;
             presenter.PreferredMinimumHeight = 600;
+            presenter.PreferredMaximumWidth = 1400;
         }
 
         // Fluent-style extended title bar: AppTitleBar (see MainWindow.xaml) draws behind the
