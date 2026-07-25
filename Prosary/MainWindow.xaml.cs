@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using Microsoft.UI;
 using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Windowing;
@@ -12,6 +13,9 @@ namespace Prosary;
 
 public sealed partial class MainWindow : Window
 {
+    [DllImport("user32.dll")]
+    private static extern int GetDpiForWindow(IntPtr hwnd);
+
     public MainWindow()
     {
         InitializeComponent();
@@ -22,15 +26,17 @@ public sealed partial class MainWindow : Window
         var appWindow = AppWindow.GetFromWindowId(windowId);
         if (appWindow?.Presenter is OverlappedPresenter presenter)
         {
-            // Matches irosary's MinimumWidth=420/MinimumHeight=600 floor (App.xaml.cs
-            // CreateWindow override there), plus a width ceiling matching iOS's own Mac
-            // WindowGroup (.frame(minWidth: 760, idealWidth: 1000, maxWidth: 1400, ...)) — without
-            // one, the wide Rosary/Angelus/Jesus Prayer layout's body text stretches across the
-            // full width of an ultra-wide/maximized window instead of staying a comfortable
-            // reading line length. No height ceiling, matching iOS not capping height either.
-            presenter.PreferredMinimumWidth = 420;
-            presenter.PreferredMinimumHeight = 600;
-            presenter.PreferredMaximumWidth = 1400;
+            // PreferredMinimumWidth/Height take raw physical pixels, not the DPI-independent
+            // effective pixels the rest of XAML sizing (and irosary's own MinimumWidth=420/
+            // MinimumHeight=600, this floor's source) uses — left as literal 420/600, the window
+            // would enforce a floor that's the intended physical size only at 100% scaling, and
+            // shrinks on any HiDPI display (125%/150%/200%, common on modern laptops) to a
+            // fraction of the real screen space this app's narrow-layout breakpoint actually
+            // needs. Scaling by the window's own current DPI keeps the enforced minimum the same
+            // physical size everywhere — unchanged at 100%, larger in raw pixels at higher scales.
+            var scale = GetDpiForWindow(hwnd) / 96.0;
+            presenter.PreferredMinimumWidth = (int)(420 * scale);
+            presenter.PreferredMinimumHeight = (int)(600 * scale);
         }
 
         // Fluent-style extended title bar: AppTitleBar (see MainWindow.xaml) draws behind the
