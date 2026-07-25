@@ -25,6 +25,9 @@
             <conv:NullToVisibilityConverter x:Key="NullToVisibility" />
             <conv:NullableDoubleToValueConverter x:Key="NullableDoubleToValue" />
             <conv:JesusPrayerSetupOptionLabelConverter x:Key="SetupOptionLabel" />
+            <conv:EnumDisplayNameConverter x:Key="EnumDisplayName" />
+            <conv:LanguageCodeLabelConverter x:Key="LanguageCodeLabel" />
+            <conv:JesusPrayerTargetLabelConverter x:Key="JesusPrayerTargetLabel" />
 
             <!-- Shared text styles, matching irosary's Styles.xaml naming/intent. -->
             <Style x:Key="HeadlineTextStyle" TargetType="TextBlock">

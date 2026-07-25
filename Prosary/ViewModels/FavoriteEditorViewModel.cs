@@ -83,6 +83,24 @@ public partial class FavoriteEditorViewModel : ObservableObject
     public bool IsJesusPrayer => Kind == PrayerKind.JesusPrayer;
     public bool IsSpecificMysteryGroup => MysterySelectionMode == MysterySelectionMode.Specific;
 
+    // ComboBox ItemsSource lists — each entry displayed via a Converters/*LabelConverter or
+    // *DisplayName() extension rather than the raw enum/code value.
+    public IReadOnlyList<string> LanguageCodeOptions { get; } =
+        [LanguageCatalog.DefaultSentinel, .. LanguageCatalog.All.Select(l => l.Code)];
+
+    public IReadOnlyList<MysterySelectionMode> MysterySelectionModeOptions { get; } = Enum.GetValues<MysterySelectionMode>();
+    public IReadOnlyList<MysteryGroup> MysteryGroupOptions { get; } = Enum.GetValues<MysteryGroup>();
+    public IReadOnlyList<EternalRestPlacement> EternalRestPlacementOptions { get; } = Enum.GetValues<EternalRestPlacement>();
+    public IReadOnlyList<MarianAntiphonOption> MarianAntiphonOptions { get; } = Enum.GetValues<MarianAntiphonOption>();
+
+    public IReadOnlyList<JesusPrayerTarget> JesusPrayerTargetOptions { get; } =
+    [
+        new JesusPrayerTarget.Count(33),
+        new JesusPrayerTarget.Count(66),
+        new JesusPrayerTarget.Count(99),
+        new JesusPrayerTarget.Unbounded(),
+    ];
+
     // Traditional Angelus bell times — quick toggles for 6am/noon/6pm, matching Android's
     // AngelusTimeToggleRow. Any reminder outside these three exact times still shows as a normal
     // reminder row (see FavoriteEditorPage.xaml's filtered list).
@@ -179,7 +197,19 @@ public partial class FavoriteEditorViewModel : ObservableObject
         OnPropertyChanged(nameof(Is6PmEnabled));
     }
 
+    // Three concrete commands rather than one CommandParameter-driven ToggleAngelusTime(int) — a
+    // plain XAML CommandParameter ("6") would arrive as a string, not an int, so each quick-toggle
+    // row gets its own no-argument command instead (same reasoning as FavoritesViewModel's
+    // AddNewRosary/AddNewAngelus/AddNewJesusPrayer).
     [RelayCommand]
+    private void ToggleAngelus6Am() => ToggleAngelusTime(6);
+
+    [RelayCommand]
+    private void ToggleAngelusNoon() => ToggleAngelusTime(12);
+
+    [RelayCommand]
+    private void ToggleAngelus6Pm() => ToggleAngelusTime(18);
+
     private void ToggleAngelusTime(int hour)
     {
         if (Reminders.Any(r => r.Hour == hour && r.Minute == 0 && r.IsEnabled))

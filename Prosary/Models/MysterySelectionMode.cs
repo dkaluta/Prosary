@@ -14,3 +14,15 @@ public enum MysterySelectionMode
     /// <summary>All 20 mysteries in one session, in the chronological order of Christ's life: Joyful, Luminous, Sorrowful, Glorious.</summary>
     TwentyMystery
 }
+
+public static class MysterySelectionModeExtensions
+{
+    public static string DisplayName(this MysterySelectionMode mode) => mode switch
+    {
+        MysterySelectionMode.TodaysMysteries => "Today's Mysteries",
+        MysterySelectionMode.Specific => "Always a Specific Set",
+        MysterySelectionMode.FifteenMystery => "The 15 Mysteries (Joyful, Sorrowful, Glorious)",
+        MysterySelectionMode.TwentyMystery => "The 20 Mysteries (All Four Sets)",
+        _ => throw new ArgumentOutOfRangeException(nameof(mode))
+    };
+}

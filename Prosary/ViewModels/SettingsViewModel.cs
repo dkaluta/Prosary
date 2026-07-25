@@ -15,11 +15,11 @@ namespace Prosary.ViewModels;
 public partial class SettingsViewModel : ObservableObject
 {
     [ObservableProperty]
-    private string _defaultLanguageCode = AppSettings.DefaultLanguageCode;
+    private LanguageOption _selectedLanguage = LanguageCatalog.Resolve(AppSettings.DefaultLanguageCode);
 
     public IReadOnlyList<LanguageOption> LanguageOptions => LanguageCatalog.All;
 
-    partial void OnDefaultLanguageCodeChanged(string value) => AppSettings.SetDefaultLanguageCode(value);
+    partial void OnSelectedLanguageChanged(LanguageOption value) => AppSettings.SetDefaultLanguageCode(value.Code);
 
     [RelayCommand]
     private void Back() => Router.GoBack();

@@ -67,7 +67,19 @@ public partial class FavoritesViewModel : ObservableObject
     [RelayCommand]
     private void Edit(Prayer prayer) => Router.Navigate<FavoriteEditorPage>(new FavoriteEditorParams(prayer.Id));
 
+    // Three concrete commands rather than one CommandParameter-driven AddNew(PrayerKind) — a
+    // plain XAML CommandParameter string ("Rosary") would arrive as a string, not a PrayerKind,
+    // and IRelayCommand<PrayerKind> would reject it, so each "Add {kind}" button gets its own
+    // no-argument command instead.
     [RelayCommand]
+    private void AddNewRosary() => AddNew(PrayerKind.Rosary);
+
+    [RelayCommand]
+    private void AddNewAngelus() => AddNew(PrayerKind.Angelus);
+
+    [RelayCommand]
+    private void AddNewJesusPrayer() => AddNew(PrayerKind.JesusPrayer);
+
     private void AddNew(PrayerKind kind) => Router.Navigate<FavoriteEditorPage>(new FavoriteEditorParams(null, kind));
 
     [RelayCommand]

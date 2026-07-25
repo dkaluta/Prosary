@@ -25,7 +25,10 @@ public sealed record PrayerReminder
 
     public string DisplayTime => AsDate.ToString("t");
 
-    /// <summary>A <see cref="DateTime"/> whose time-of-day matches this reminder, for use with a
-    /// <c>TimePicker</c>.</summary>
+    /// <summary>A <see cref="DateTime"/> whose time-of-day matches this reminder.</summary>
     public DateTime AsDate => DateTime.Today.AddHours(Hour).AddMinutes(Minute);
+
+    /// <summary>Matches <see cref="Microsoft.UI.Xaml.Controls.TimePicker.Time"/>'s type, for
+    /// direct binding from <c>FavoriteEditorPage</c>'s reminder rows.</summary>
+    public TimeSpan AsTimeSpan => new(Hour, Minute, 0);
 }
