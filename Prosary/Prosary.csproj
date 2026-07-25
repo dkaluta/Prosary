@@ -41,10 +41,20 @@
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 
-  <!-- Bundled prayer typefaces — ported from irosary/irosary/Resources/Fonts/, registered as
-       application resources and referenced by family name from Localization/PrayerTypography. -->
+  <!-- Bundled prayer typefaces and mystery/prayer illustrations — sourced from the sibling
+       ..\..\Shared\ directory so iOS/Android/Windows draw from one canonical copy instead of each
+       keeping their own duplicate. Linked into Assets\Fonts and Assets\Images in the build output
+       so the rest of the project (PrayerTypography's "ms-appx:///Assets/Fonts/..." URIs, and each
+       page's "ms-appx:///Assets/Images/{key}.jpg" image bindings) can address them exactly as if
+       they lived under Assets\ directly. -->
   <ItemGroup>
-    <Content Include="Assets\Fonts\*.ttf">
+    <Content Include="..\..\Shared\Fonts\*.ttf" Link="Assets\Fonts\%(Filename)%(Extension)">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Shared\Images\*.jpg" Link="Assets\Images\%(Filename)%(Extension)">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Shared\Images\*.png" Link="Assets\Images\%(Filename)%(Extension)">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
