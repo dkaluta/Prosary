@@ -5,7 +5,8 @@ Android port of [dkaluta/Prosary-iOS](https://github.com/dkaluta/Prosary-iOS), s
 Christian communities. Latin is the default prayer language, with English, Arabic, Hebrew,
 Russian, and Tagalog (Arabic and Hebrew right-to-left) as alternatives.
 
-The app is currently in Play Store internal testing — see [prosary.app](https://prosary.app) to
+The app is currently in Play Store closed testing — see [prosary.app](https://prosary.app) or
+[the Play Store listing](https://play.google.com/store/apps/details?id=com.dkaluta.prosary) to
 join, or email mail@dkaluta.com to be added to the tester list.
 
 ## Requirements
