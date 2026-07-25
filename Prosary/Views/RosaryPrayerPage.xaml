@@ -142,9 +142,16 @@
              beads fallback based on measured height (see WideBeadsColumn_SizeChanged). -->
         <Grid x:Name="WideLayout" Grid.Row="3" ColumnSpacing="24" Visibility="Collapsed" SizeChanged="WideLayout_SizeChanged">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <!-- Auto, not *, so this column stays exactly as wide as the fixed-320 image
+                     below regardless of window width — matches iOS's wide layout, where the image
+                     is a fixed-size HStack member (imageSide, PrayerStepFlowView.swift) rather
+                     than one that grows/shrinks with the window; only the text column (the last
+                     one, still *) is meant to absorb any extra width. A * column here left a
+                     growing/shrinking band of empty space around the still-320-wide image instead
+                     of a consistently-sized pane. -->
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <Border Grid.Column="0" Width="320" Height="320" CornerRadius="16" VerticalAlignment="Center">
