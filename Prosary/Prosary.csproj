@@ -67,6 +67,18 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.11.285" />
     <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.11" />
+
+    <!-- Direct override, pinned above whatever SQLitePCLRaw.bundle_green 2.1.11 would otherwise
+         resolve (its own SQLitePCLRaw.lib.e_sqlite3 dependency is also stuck at 2.1.11 — no newer
+         bundle_green has been published yet to move it). lib.e_sqlite3 2.1.11 bundles a version of
+         the native SQLite library affected by GHSA-2m69-gcr7-jv3q / CVE-2025-6965 (CVSS 9.8): a
+         memory-corruption bug in SQLite's own query engine when aggregate terms exceed the
+         available column count, fixed upstream in SQLite 3.50.2. lib.e_sqlite3 switched its own
+         versioning to track the bundled SQLite version directly, so 3.53.3 is that same package,
+         just carrying a current, patched SQLite binary — core/provider.e_sqlite3 (still pulled at
+         2.1.11 through the bundle) don't need to move too, since this fix is inside SQLite's own
+         C code, not the P/Invoke surface between them and the native library. -->
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="3.53.3" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
