@@ -56,6 +56,7 @@ public partial class App : Application
         services.AddTransient<AngelusViewModel>();
         services.AddTransient<JesusPrayerSetupViewModel>();
         services.AddTransient<JesusPrayerViewModel>();
+        services.AddTransient<SettingsViewModel>();
 
         return services.BuildServiceProvider();
     }

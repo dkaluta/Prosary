@@ -37,4 +37,14 @@ public sealed record Prayer
     public string LanguageDisplayName => LanguageCode == LanguageCatalog.DefaultSentinel
         ? $"Default ({LanguageCatalog.Resolve(LanguageCode).NativeName})"
         : LanguageCatalog.Resolve(LanguageCode).NativeName;
+
+    /// <summary>Second line shown on a Favorites list card — matches Android's inline
+    /// <c>FavoriteCard</c> subtitle logic in <c>FavoritesListScreen.kt</c>.</summary>
+    public string FavoriteSubtitle => Kind switch
+    {
+        PrayerKind.Rosary => $"{Rosary.MysterySelectionSummary} • {LanguageDisplayName}",
+        PrayerKind.Angelus => LanguageDisplayName,
+        PrayerKind.JesusPrayer => $"{JesusPrayer.TargetDisplayName} • {LanguageDisplayName}",
+        _ => throw new ArgumentOutOfRangeException(nameof(Kind))
+    };
 }

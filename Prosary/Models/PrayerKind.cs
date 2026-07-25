@@ -1,3 +1,5 @@
+using Windows.UI;
+
 namespace Prosary.Models;
 
 /// <summary>Discriminant for the type of a saved prayer session. Add new cases here (and a
@@ -38,6 +40,17 @@ public static class PrayerKindExtensions
         PrayerKind.Rosary => "",      // CircleRing
         PrayerKind.Angelus => "",     // Ringer (bell)
         PrayerKind.JesusPrayer => "", // HeartFill
+        _ => throw new ArgumentOutOfRangeException(nameof(kind))
+    };
+
+    /// <summary>Accent color for this kind's cards/buttons across Home and Favorites — matches
+    /// Android's <c>accentFor(kind)</c> in <c>FavoritesListScreen.kt</c> (and, for Rosary, the
+    /// bead-progress color in <c>BeadInfo</c>).</summary>
+    public static Color AccentColor(this PrayerKind kind) => kind switch
+    {
+        PrayerKind.Rosary => Color.FromArgb(0xFF, 0x7A, 0x1F, 0x3D),
+        PrayerKind.Angelus => Color.FromArgb(0xFF, 0x8B, 0x69, 0x14),
+        PrayerKind.JesusPrayer => Color.FromArgb(0xFF, 0x8B, 0x1A, 0x1A),
         _ => throw new ArgumentOutOfRangeException(nameof(kind))
     };
 }
