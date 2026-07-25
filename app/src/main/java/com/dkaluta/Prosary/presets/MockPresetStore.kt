@@ -1,73 +1,105 @@
 package com.dkaluta.Prosary.presets
 
 import com.dkaluta.Prosary.models.EternalRestPlacement
+import com.dkaluta.Prosary.models.JesusPrayerOptions
+import com.dkaluta.Prosary.models.JesusPrayerTarget
 import com.dkaluta.Prosary.models.MarianAntiphonOption
 import com.dkaluta.Prosary.models.MysteryGroup
 import com.dkaluta.Prosary.models.MysterySelectionMode
-import com.dkaluta.Prosary.models.RosaryConfig
+import com.dkaluta.Prosary.models.Prayer
+import com.dkaluta.Prosary.models.PrayerKind
+import com.dkaluta.Prosary.models.RosaryOptions
 
-/** A fully-working, in-memory [PresetStore] used to drive the app today. Not the production
- * implementation — nothing here survives a process restart. */
-class MockPresetStore(initialConfigs: List<RosaryConfig>? = null) : PresetStore {
-    private val configs: MutableList<RosaryConfig> = (initialConfigs ?: sampleConfigs).toMutableList()
+/** A fully-working, in-memory [PresetStore] for previews/tests. Nothing here survives a process
+ * restart — see [com.dkaluta.Prosary.persistence.RoomPresetStore] for persistence. */
+class MockPresetStore(initialFavorites: List<Prayer>? = null) : PresetStore {
+    private val favorites: MutableList<Prayer> = (initialFavorites ?: sampleFavorites).toMutableList()
 
-    override suspend fun all(): List<RosaryConfig> = configs.sortedBy { it.name }
+    override suspend fun all(): List<Prayer> = favorites.sortedBy { it.name }
 
-    override suspend fun defaultPreset(): RosaryConfig = configs.firstOrNull { it.isDefault } ?: configs[0]
+    override suspend fun defaultPreset(): Prayer? {
+        val rosary = favorites.filter { it.kind == PrayerKind.Rosary }
+        return rosary.firstOrNull { it.isDefault } ?: rosary.firstOrNull()
+    }
 
-    override suspend fun get(id: String): RosaryConfig? = configs.firstOrNull { it.id == id }
+    override suspend fun get(id: String): Prayer? = favorites.firstOrNull { it.id == id }
 
-    override suspend fun save(config: RosaryConfig) {
-        if (config.isDefault) {
-            for (i in configs.indices) {
-                configs[i] = configs[i].copy(isDefault = false)
+    override suspend fun save(prayer: Prayer) {
+        if (prayer.isDefault) {
+            for (i in favorites.indices) {
+                if (favorites[i].kind == prayer.kind) {
+                    favorites[i] = favorites[i].copy(isDefault = false)
+                }
             }
         }
 
-        val index = configs.indexOfFirst { it.id == config.id }
+        val index = favorites.indexOfFirst { it.id == prayer.id }
         if (index >= 0) {
-            configs[index] = config
+            favorites[index] = prayer
         } else {
-            configs.add(config)
+            favorites.add(prayer)
         }
     }
 
-    override suspend fun delete(config: RosaryConfig) {
-        configs.removeAll { it.id == config.id }
+    override suspend fun delete(prayer: Prayer) {
+        val wasDefault = prayer.isDefault
+        favorites.removeAll { it.id == prayer.id }
 
-        if (configs.isNotEmpty() && configs.none { it.isDefault }) {
-            configs[0] = configs[0].copy(isDefault = true)
+        if (wasDefault) {
+            val nextIndex = favorites.indexOfFirst { it.kind == prayer.kind }
+            if (nextIndex >= 0) {
+                favorites[nextIndex] = favorites[nextIndex].copy(isDefault = true)
+            }
         }
     }
 
     companion object {
-        private val sampleConfigs: List<RosaryConfig> = listOf(
-            RosaryConfig(
+        private val sampleFavorites: List<Prayer> = listOf(
+            Prayer(
                 name = "Classic Rosary",
+                kind = PrayerKind.Rosary,
                 isDefault = true,
-                mysterySelectionMode = MysterySelectionMode.TodaysMysteries,
-                includeApostlesCreed = true,
-                includeOpeningPrayers = true,
-                includeFatimaPrayer = true,
-                eternalRestForDeceased = EternalRestPlacement.None,
-                marianAntiphon = MarianAntiphonOption.Seasonal,
-                includeStMichaelPrayer = false,
-                includeFinalSignOfCross = true,
+                languageCode = "la",
+                rosary = RosaryOptions(
+                    mysterySelectionMode = MysterySelectionMode.TodaysMysteries,
+                    includeApostlesCreed = true,
+                    includeOpeningPrayers = true,
+                    includeFatimaPrayer = true,
+                    eternalRestForDeceased = EternalRestPlacement.None,
+                    marianAntiphon = MarianAntiphonOption.Seasonal,
+                    includeStMichaelPrayer = false,
+                    includeFinalSignOfCross = true,
+                ),
+            ),
+            Prayer(
+                name = "Evening Rosary for the Departed",
+                kind = PrayerKind.Rosary,
+                isDefault = false,
+                languageCode = "en",
+                rosary = RosaryOptions(
+                    mysterySelectionMode = MysterySelectionMode.Specific,
+                    specificMysteryGroup = MysteryGroup.Sorrowful,
+                    includeApostlesCreed = true,
+                    includeOpeningPrayers = false,
+                    includeFatimaPrayer = true,
+                    eternalRestForDeceased = EternalRestPlacement.AfterEachDecade,
+                    marianAntiphon = MarianAntiphonOption.SalveRegina,
+                    includeStMichaelPrayer = true,
+                    includeFinalSignOfCross = true,
+                ),
+            ),
+            Prayer(
+                name = "Angelus",
+                kind = PrayerKind.Angelus,
+                isDefault = true,
                 languageCode = "la",
             ),
-            RosaryConfig(
-                name = "Evening Rosary for the Departed",
-                isDefault = false,
-                mysterySelectionMode = MysterySelectionMode.Specific,
-                specificMysteryGroup = MysteryGroup.Sorrowful,
-                includeApostlesCreed = true,
-                includeOpeningPrayers = false,
-                includeFatimaPrayer = true,
-                eternalRestForDeceased = EternalRestPlacement.AfterEachDecade,
-                marianAntiphon = MarianAntiphonOption.SalveRegina,
-                includeStMichaelPrayer = true,
-                includeFinalSignOfCross = true,
-                languageCode = "en",
+            Prayer(
+                name = "Jesus Prayer × 33",
+                kind = PrayerKind.JesusPrayer,
+                isDefault = true,
+                languageCode = "la",
+                jesusPrayer = JesusPrayerOptions(target = JesusPrayerTarget.Count(33)),
             ),
         )
     }

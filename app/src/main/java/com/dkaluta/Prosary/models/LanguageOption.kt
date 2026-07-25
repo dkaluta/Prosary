@@ -15,6 +15,9 @@ data class LanguageOption(
 object LanguageCatalog {
     const val defaultCode = "la"
 
+    /** Sentinel stored in a favorite's `languageCode` meaning "follow the app-level default setting". */
+    const val defaultSentinel = ""
+
     val all: List<LanguageOption> = listOf(
         LanguageOption(code = "la", nativeName = "Latina", isRightToLeft = false),
         LanguageOption(code = "en", nativeName = "English", isRightToLeft = false),
@@ -24,6 +27,11 @@ object LanguageCatalog {
         LanguageOption(code = "tl", nativeName = "Tagalog", isRightToLeft = false),
     )
 
-    fun resolve(code: String?): LanguageOption =
-        all.firstOrNull { it.code == code } ?: all.first { it.code == defaultCode }
+    fun resolve(code: String?): LanguageOption {
+        if (code == null || code == defaultSentinel) {
+            return all.firstOrNull { it.code == AppSettings.defaultLanguageCode }
+                ?: all.first { it.code == defaultCode }
+        }
+        return all.firstOrNull { it.code == code } ?: all.first { it.code == defaultCode }
+    }
 }

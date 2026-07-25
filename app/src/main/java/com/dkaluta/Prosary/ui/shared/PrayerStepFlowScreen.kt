@@ -233,7 +233,7 @@ private fun NarrowContent(
         // accessory renders) rather than on each call site, so a devotion with no accessory at
         // all (Angelus, Jesus Prayer) doesn't need to think about this either — an empty
         // composable inside just takes no space.
-        Box(modifier = Modifier.padding(top = 8.dp).fillMaxWidth()) {
+        Box(modifier = Modifier.padding(top = 8.dp).fillMaxWidth(), contentAlignment = Alignment.TopCenter) {
             accessory(false, true)
         }
 

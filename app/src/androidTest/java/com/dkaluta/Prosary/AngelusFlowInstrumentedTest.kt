@@ -2,6 +2,7 @@ package com.dkaluta.Prosary
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -16,7 +17,7 @@ class AngelusFlowInstrumentedTest {
 
     @Test
     fun angelusFlowFromHomeToFinish() {
-        composeTestRule.onNodeWithText("The Angelus").performClick()
+        composeTestRule.onNodeWithTag("angelusCard").performClick()
         composeTestRule.onNodeWithText("The Annunciation").assertIsDisplayed()
 
         // 7 steps total: tapping Next 6 times reaches the last one, where the button becomes Finish.
@@ -27,12 +28,12 @@ class AngelusFlowInstrumentedTest {
         composeTestRule.onNodeWithText("Finish").performClick()
 
         // Back at Home.
-        composeTestRule.onNodeWithText("Pray the Rosary").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("rosaryCard").assertIsDisplayed()
     }
 
     @Test
     fun angelusBackButtonReturnsToPreviousStep() {
-        composeTestRule.onNodeWithText("The Angelus").performClick()
+        composeTestRule.onNodeWithTag("angelusCard").performClick()
         composeTestRule.onNodeWithText("The Annunciation").assertIsDisplayed()
 
         composeTestRule.onNodeWithText("Next").performClick()

@@ -1,5 +1,7 @@
 package com.dkaluta.Prosary.models
 
+import androidx.compose.ui.graphics.Color
+
 /** One of the four traditional sets of Rosary mysteries. */
 enum class MysteryGroup {
     Joyful,
@@ -15,5 +17,15 @@ enum class MysteryGroup {
             Sorrowful -> "Sorrowful"
             Glorious -> "Glorious"
             Luminous -> "Luminous"
+        }
+
+    /** Accent color for the Home screen's Rosary card — distinct per mystery group, not the
+     * liturgical season color used inside the flow screen's top banner. */
+    val color: Color
+        get() = when (this) {
+            Joyful -> Color(0xFF1565C0) // blue
+            Sorrowful -> Color(0xFF6A1B9A) // purple
+            Glorious -> Color(0xFFC62828) // red
+            Luminous -> Color(0xFF2E7D32) // green
         }
 }

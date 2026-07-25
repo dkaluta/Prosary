@@ -4,4 +4,5 @@ plugins {
     // applying it alongside built-in Kotlin fails with a duplicate 'kotlin' extension error.
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.compose) apply false
+    alias(libs.plugins.ksp) apply false
 }

@@ -5,6 +5,7 @@ import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
@@ -20,7 +21,7 @@ class JesusPrayerFlowInstrumentedTest {
 
     @Test
     fun boundedTargetDefaultsTo33AndTracksCount() {
-        composeTestRule.onNodeWithText("The Jesus Prayer").performClick()
+        composeTestRule.onNodeWithTag("jesusPrayerCard").performClick()
         composeTestRule.onNodeWithText("33").assertIsSelected()
 
         composeTestRule.onNodeWithText("Begin").performClick()
@@ -36,7 +37,7 @@ class JesusPrayerFlowInstrumentedTest {
 
     @Test
     fun unboundedTargetHasNoFixedTotalAndAlwaysOffersFinish() {
-        composeTestRule.onNodeWithText("The Jesus Prayer").performClick()
+        composeTestRule.onNodeWithTag("jesusPrayerCard").performClick()
         composeTestRule.onNodeWithText("Unbounded").performClick()
         composeTestRule.onNodeWithText("Begin").performClick()
 
@@ -51,12 +52,12 @@ class JesusPrayerFlowInstrumentedTest {
         composeTestRule.onNodeWithText("Next").assertIsDisplayed()
 
         composeTestRule.onNodeWithText("Finish").performClick()
-        composeTestRule.onNodeWithText("Pray the Rosary").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("rosaryCard").assertIsDisplayed()
     }
 
     @Test
     fun customTargetRequiresAValidNumberBeforeBeginIsEnabled() {
-        composeTestRule.onNodeWithText("The Jesus Prayer").performClick()
+        composeTestRule.onNodeWithTag("jesusPrayerCard").performClick()
         composeTestRule.onNodeWithText("Custom").performClick()
 
         composeTestRule.onNodeWithText("Begin").assertIsNotEnabled()

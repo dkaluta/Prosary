@@ -10,36 +10,32 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import com.dkaluta.Prosary.models.LanguageCatalog
-import com.dkaluta.Prosary.models.RosaryConfig
+import com.dkaluta.Prosary.models.Prayer
 import com.dkaluta.Prosary.models.RosaryStep
 import com.dkaluta.Prosary.services.LocalAppServices
 import com.dkaluta.Prosary.ui.shared.PrayerStepFlowScreen
 
+/** Takes a resolved [Prayer] directly — the caller (PrayerDispatchScreen) already loaded it, so
+ * this screen no longer needs its own "resolve id, fall back to default" logic. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RosaryFlowScreen(configId: String, onBack: () -> Unit) {
+fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit) {
     val services = LocalAppServices.current
 
-    var config by remember { mutableStateOf<RosaryConfig?>(null) }
     var steps by remember { mutableStateOf<List<RosaryStep>>(emptyList()) }
     var currentIndex by remember { mutableIntStateOf(0) }
     var seasonColor by remember { mutableStateOf(Color.Transparent) }
 
-    LaunchedEffect(configId) {
-        val resolvedConfig = runCatching { services.presetStore.get(configId) }.getOrNull()
-            ?: runCatching { services.presetStore.defaultPreset() }.getOrNull()
-        if (resolvedConfig != null) {
-            config = resolvedConfig
-            steps = services.rosaryEngine.buildSteps(resolvedConfig)
-            currentIndex = 0
-            seasonColor = services.calendar.seasonColorToday()
-        }
+    LaunchedEffect(prayer.id) {
+        steps = services.rosaryEngine.buildSteps(prayer)
+        currentIndex = 0
+        seasonColor = services.calendar.seasonColorToday()
     }
 
     val currentStep = steps.getOrNull(currentIndex)
-    val isRightToLeft = LanguageCatalog.resolve(config?.languageCode).isRightToLeft
-    val beadLayout = remember(steps, currentIndex, config?.includeFinalSignOfCross) {
-        BeadLayout.build(steps, currentIndex, config?.includeFinalSignOfCross ?: false)
+    val isRightToLeft = LanguageCatalog.resolve(prayer.languageCode).isRightToLeft
+    val beadLayout = remember(steps, currentIndex, prayer.rosary.includeFinalSignOfCross) {
+        BeadLayout.build(steps, currentIndex, prayer.rosary.includeFinalSignOfCross)
     }
 
     PrayerStepFlowScreen(
@@ -49,7 +45,7 @@ fun RosaryFlowScreen(configId: String, onBack: () -> Unit) {
         totalSteps = steps.size,
         seasonColor = seasonColor,
         isRightToLeft = isRightToLeft,
-        languageCode = config?.languageCode,
+        languageCode = prayer.resolvedLanguageCode,
         canGoBack = currentIndex > 0,
         onBack = { if (currentIndex > 0) currentIndex-- },
         onNext = {

@@ -1,6 +1,6 @@
 package com.dkaluta.Prosary.models
 
-/** How a [RosaryConfig] decides which mystery group(s) to pray in a given session. */
+/** How a [RosaryOptions] decides which mystery group(s) to pray in a given session. */
 enum class MysterySelectionMode {
     /** Follow the traditional weekday assignment (with liturgical-season overrides on Sundays). */
     TodaysMysteries,

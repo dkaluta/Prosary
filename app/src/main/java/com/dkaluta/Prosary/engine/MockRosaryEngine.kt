@@ -10,7 +10,8 @@ import com.dkaluta.Prosary.models.MarianAntiphonOption
 import com.dkaluta.Prosary.models.MysteryCatalog
 import com.dkaluta.Prosary.models.MysteryGroup
 import com.dkaluta.Prosary.models.MysterySelectionMode
-import com.dkaluta.Prosary.models.RosaryConfig
+import com.dkaluta.Prosary.models.Prayer
+import com.dkaluta.Prosary.models.RosaryOptions
 import com.dkaluta.Prosary.models.RosaryStep
 
 /** A fully-working [RosaryEngine] used to drive the app today, built on the ported prayer/mystery
@@ -19,9 +20,10 @@ class MockRosaryEngine(
     private val calendar: LiturgicalCalendarProviding = MockLiturgicalCalendar(),
 ) : RosaryEngine {
 
-    /** Resolves which mystery group(s) a config points to, in the order they should be prayed. */
-    fun resolveMysteryGroups(config: RosaryConfig): List<MysteryGroup> = when (config.mysterySelectionMode) {
-        MysterySelectionMode.Specific -> listOf(config.specificMysteryGroup)
+    /** Resolves which mystery group(s) a prayer's Rosary options point to, in the order they
+     * should be prayed. */
+    fun resolveMysteryGroups(prayer: Prayer): List<MysteryGroup> = when (prayer.rosary.mysterySelectionMode) {
+        MysterySelectionMode.Specific -> listOf(prayer.rosary.specificMysteryGroup)
         MysterySelectionMode.FifteenMystery -> listOf(MysteryGroup.Joyful, MysteryGroup.Sorrowful, MysteryGroup.Glorious)
         // Chronological order of Christ's life: infancy/hidden life, public ministry, passion, glory.
         MysterySelectionMode.TwentyMystery ->
@@ -29,20 +31,21 @@ class MockRosaryEngine(
         MysterySelectionMode.TodaysMysteries -> listOf(calendar.mysteryGroupToday())
     }
 
-    override fun buildSteps(config: RosaryConfig): List<RosaryStep> {
-        val lang = config.languageCode
-        val groups = resolveMysteryGroups(config)
+    override fun buildSteps(prayer: Prayer): List<RosaryStep> {
+        val options = prayer.rosary
+        val lang = prayer.resolvedLanguageCode
+        val groups = resolveMysteryGroups(prayer)
         val steps = mutableListOf<RosaryStep>()
 
         fun text(key: PrayerKey): String = PrayerTranslations.get(lang, key)
 
         steps.add(RosaryStep(title = "Sign of the Cross", body = text(PrayerKey.SignumCrucis), imageOverrideKey = "crucifix"))
 
-        if (config.includeApostlesCreed) {
+        if (options.includeApostlesCreed) {
             steps.add(RosaryStep(title = "Apostles' Creed", body = text(PrayerKey.SymbolumApostolorum), imageOverrideKey = "crucifix"))
         }
 
-        if (config.includeOpeningPrayers) {
+        if (options.includeOpeningPrayers) {
             steps.add(RosaryStep(title = "Our Father", body = text(PrayerKey.PaterNoster), imageOverrideKey = "our_father"))
             for ((key, imageKey) in virtues) {
                 steps.add(RosaryStep(title = "Hail Mary", subtitle = text(key), body = text(PrayerKey.AveMaria), imageOverrideKey = imageKey))
@@ -111,7 +114,7 @@ class MockRosaryEngine(
                     ),
                 )
 
-                if (config.includeFatimaPrayer) {
+                if (options.includeFatimaPrayer) {
                     // "O my Jesus..." — a portrait of Christ fits better than staying anchored to
                     // the current decade's mystery image, hence no mystery argument here.
                     steps.add(
@@ -122,7 +125,7 @@ class MockRosaryEngine(
                     )
                 }
 
-                if (config.eternalRestForDeceased == EternalRestPlacement.AfterEachDecade) {
+                if (options.eternalRestForDeceased == EternalRestPlacement.AfterEachDecade) {
                     steps.add(
                         RosaryStep(
                             title = "For the Faithful Departed", subtitle = decadeSubtitle, body = text(PrayerKey.RequiemAeternam),
@@ -135,7 +138,7 @@ class MockRosaryEngine(
             }
         }
 
-        val antiphon = resolveMarianAntiphon(config)
+        val antiphon = resolveMarianAntiphon(options)
         if (antiphon != null) {
             val antiphonStep = buildAntiphonStep(antiphon, ::text)
             antiphonStep.isAntiphon = true
@@ -143,27 +146,27 @@ class MockRosaryEngine(
             steps.add(antiphonStep)
         }
 
-        if (config.includeStMichaelPrayer) {
+        if (options.includeStMichaelPrayer) {
             steps.add(RosaryStep(title = "St. Michael the Archangel", body = text(PrayerKey.SanctusMichael), imageOverrideKey = "st_michael"))
         }
 
         // Prayed last, immediately before the closing Sign of the Cross — after the antiphon
         // (and St. Michael prayer, if included), matching common communal-recitation practice.
-        if (config.eternalRestForDeceased == EternalRestPlacement.AtEndOnly) {
+        if (options.eternalRestForDeceased == EternalRestPlacement.AtEndOnly) {
             steps.add(RosaryStep(title = "For the Faithful Departed", body = text(PrayerKey.RequiemAeternam), imageOverrideKey = "eternal_rest"))
         }
 
-        if (config.includeFinalSignOfCross) {
+        if (options.includeFinalSignOfCross) {
             steps.add(RosaryStep(title = "Sign of the Cross", body = text(PrayerKey.SignumCrucis), imageOverrideKey = "crucifix"))
         }
 
         return steps
     }
 
-    private fun resolveMarianAntiphon(config: RosaryConfig): MarianAntiphonOption? = when (config.marianAntiphon) {
+    private fun resolveMarianAntiphon(options: RosaryOptions): MarianAntiphonOption? = when (options.marianAntiphon) {
         MarianAntiphonOption.None -> null
         MarianAntiphonOption.Seasonal -> calendar.seasonalMarianAntiphonToday()
-        else -> config.marianAntiphon
+        else -> options.marianAntiphon
     }
 
     private enum class AntiphonStyle { Standard, Paschal, Standalone }

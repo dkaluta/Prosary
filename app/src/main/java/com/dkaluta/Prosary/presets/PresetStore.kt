@@ -1,24 +1,26 @@
 package com.dkaluta.Prosary.presets
 
-import com.dkaluta.Prosary.models.RosaryConfig
+import com.dkaluta.Prosary.models.Prayer
 
-/** What the UI needs from the backend to save/load Rosary presets. This is the persistence
- * boundary — implement your own production version (file, Room, DataStore, etc.); see
- * [MockPresetStore] for a fully-working in-memory version used to drive the app today. */
+/** Persistence boundary for saved prayer favorites. Implement your own production version (this
+ * app uses Room — see [com.dkaluta.Prosary.persistence.RoomPresetStore]); see [MockPresetStore]
+ * for a fully-working in-memory version used in previews/tests. */
 interface PresetStore {
-    suspend fun all(): List<RosaryConfig>
+    /** All saved favorites, in any order. */
+    suspend fun all(): List<Prayer>
 
-    /** The preset used when the user just taps "Pray" without picking one explicitly. Every
-     * store is expected to always have at least one preset, so this never returns null. */
-    suspend fun defaultPreset(): RosaryConfig
+    /** The starred (isDefault) Rosary favorite, or the first Rosary favorite if none is starred,
+     * or null if no Rosary favorites exist at all. */
+    suspend fun defaultPreset(): Prayer?
 
-    suspend fun get(id: String): RosaryConfig?
+    suspend fun get(id: String): Prayer?
 
-    /** Inserts a new preset, or updates one that already exists (matched by `config.id`). If
-     * `config.isDefault` is true, every other saved preset should have its own flag cleared. */
-    suspend fun save(config: RosaryConfig)
+    /** Inserts a new favorite or updates an existing one (matched by id). When
+     * `prayer.isDefault` is true, every other saved favorite of the **same kind** has its flag
+     * cleared — each kind keeps its own independent default. */
+    suspend fun save(prayer: Prayer)
 
-    /** Deletes a preset. If it was the default and other presets remain, the store should
-     * promote one of them to be the new default. */
-    suspend fun delete(config: RosaryConfig)
+    /** Deletes a favorite. If it was the default and other favorites of the same kind remain,
+     * the next one is promoted to default. */
+    suspend fun delete(prayer: Prayer)
 }

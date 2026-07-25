@@ -59,9 +59,11 @@ class MockLiturgicalCalendar : LiturgicalCalendarProviding {
         LiturgicalSeason.EasterSeason, LiturgicalSeason.Other -> MysteryGroup.Glorious
     }
 
-    private enum class LiturgicalSeason { Advent, Christmas, Lent, EasterSeason, Other }
+    // Internal (not private) visibility for unit tests in the same module, mirroring iOS's
+    // equivalent `internal` season logic in StubLiturgicalCalendar.swift.
+    internal enum class LiturgicalSeason { Advent, Christmas, Lent, EasterSeason, Other }
 
-    private fun season(dateCal: Calendar): LiturgicalSeason {
+    internal fun season(dateCal: Calendar): LiturgicalSeason {
         val date = startOfDay(dateCal)
         val year = date.get(Calendar.YEAR)
         val easter = computeEasterSunday(year)
@@ -133,8 +135,9 @@ class MockLiturgicalCalendar : LiturgicalCalendarProviding {
             return addDays(cal, offset)
         }
 
-        /** Anonymous Gregorian algorithm (Meeus/Jones/Butcher). */
-        private fun computeEasterSunday(year: Int): Calendar {
+        /** Anonymous Gregorian algorithm (Meeus/Jones/Butcher). Internal (not private) visibility
+         * for unit tests in the same module. */
+        internal fun computeEasterSunday(year: Int): Calendar {
             val a = year % 19
             val b = year / 100
             val c = year % 100
