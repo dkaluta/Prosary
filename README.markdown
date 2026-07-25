@@ -61,6 +61,11 @@ a language).
   app launch.
 - `Navigation/Router.cs` — thin wrapper over the root `Frame`'s typed navigation; WinUI3's
   equivalent of Shell routing, since plain WinUI3 has no Shell.
+- `MainWindow.xaml(.cs)` — a Fluent-style extended title bar (`ExtendsContentIntoTitleBar` +
+  `SetTitleBar`, Mica `BaseAlt` backdrop) instead of the default opaque OS title bar, matching
+  contemporary Windows 11 app chrome. The `MicaKind.BaseAlt` choice (vs. plain `Base`) is
+  Microsoft's documented recommendation for extended-title-bar windows specifically, but hasn't
+  been eyeballed on a real build from this (non-Windows) environment — worth a look on first run.
 
 ## Signing
 
