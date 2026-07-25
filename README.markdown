@@ -82,20 +82,37 @@ The certificate's `CN` must exactly match `Package.appxmanifest`'s `Identity/@Pu
 this certificate up somewhere safe — losing it means every future build gets a new, differently-
 signed identity, which Windows treats as a different app for update purposes.
 
-## Store assets
+## Shared assets
 
-Placeholder tile/splash images live in `Prosary/Assets/` (generated to match the app's actual
-brand gradient/cross, but lower-fidelity than the real launcher art on iOS/Android) — swap these
-for the real icon assets before any real distribution.
+Bundled prayer typefaces and the mystery/prayer illustration images live in `../Shared/` (a
+sibling directory to `iOS`/`Android`/`Windows`), not under `Prosary/Assets/` — `Prosary.csproj`
+links them in at build time (see its `Content Include="..\..\Shared\..."` items) so this repo
+doesn't keep its own duplicate copy. Placeholder tile/splash icons (generated to match the app's
+brand gradient/cross, lower-fidelity than the real launcher art on iOS/Android) still live in
+`Prosary/Assets/` directly — swap those for real icon assets before any real distribution.
 
 ## Tests
 
-(Planned, not yet written — see the project plan for scope: `RosaryEngine`/`AngelusEngine`/
-`LiturgicalCalendarService` unit tests, plus `SqlitePresetStore`'s per-kind default/delete
-scoping specifically.)
+`Prosary.Tests` (xUnit) covers the algorithmic core end to end from a plain test host — no
+Windows App SDK/UI dependency needed for any of it:
+
+- `RosaryEngineTests` — decade counts per `MysterySelectionMode`, opening/closing prayer toggles,
+  eternal-rest placement, Marian antiphon selection.
+- `AngelusEngineTests` — the fixed seven-step sequence vs. the Easter-season Regina Caeli
+  substitute (via an `internal` `BuildSteps` overload that takes the Easter-season flag directly,
+  so both branches are deterministic regardless of the real system date).
+- `LiturgicalCalendarServiceTests` — the Meeus/Jones/Butcher Easter calculation against known
+  public Easter dates, weekday/Sunday mystery-group assignment, season colors, seasonal Marian
+  antiphon.
+- `SqlitePresetStoreTests` — the one real behavioral correction over irosary's `PresetRepository`:
+  saving/deleting a default favorite of one `PrayerKind` must never touch another kind's default.
+  Each test runs against its own temp SQLite file (`SqlitePresetStore(string dbPath)` takes an
+  explicit path so tests don't need a packaged app's `ApplicationData`).
+
+Run with `dotnet test Prosary.sln` (Windows only, same constraint as building the app itself).
 
 ## License
 
 The app's original source code is licensed under the BSD 2-Clause License — see [LICENSE](LICENSE),
 matching the iOS and Android apps. Bundled third-party typefaces retain their own separate
-licenses — see `Prosary/Assets/Fonts/ATTRIBUTIONS.md`.
+licenses — see `../Shared/Fonts/ATTRIBUTIONS.md`.

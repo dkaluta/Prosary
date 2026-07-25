@@ -17,9 +17,16 @@ public sealed class SqlitePresetStore : IPresetStore
     private readonly SQLiteAsyncConnection _connection;
     private readonly Task _initialization;
 
-    public SqlitePresetStore()
+    public SqlitePresetStore() : this(Path.Combine(ApplicationData.Current.LocalFolder.Path, "prosary_presets.db3"))
     {
-        var dbPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "prosary_presets.db3");
+    }
+
+    /// <summary>Takes an explicit db path (rather than always resolving one via
+    /// <see cref="ApplicationData"/>) so tests can point at a temp file directly — the WinRT
+    /// <see cref="ApplicationData"/> APIs only work inside a running packaged app, not a plain
+    /// unit test host.</summary>
+    public SqlitePresetStore(string dbPath)
+    {
         _connection = new SQLiteAsyncConnection(dbPath);
         _initialization = InitializeAsync();
     }

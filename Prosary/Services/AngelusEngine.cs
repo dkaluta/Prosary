@@ -16,10 +16,16 @@ public sealed class AngelusEngine
     }
 
     public IReadOnlyList<RosaryStep> BuildSteps(string? languageCode)
+        => BuildSteps(languageCode, _calendar.IsEasterSeasonForToday());
+
+    /// <summary>Takes the Easter-season flag explicitly rather than always resolving it from
+    /// <see cref="LiturgicalCalendarService.IsEasterSeasonForToday"/>, so tests can exercise both
+    /// branches deterministically without depending on the real system date.</summary>
+    internal IReadOnlyList<RosaryStep> BuildSteps(string? languageCode, bool isEasterSeason)
     {
         string Text(string key) => PrayerTranslations.Get(languageCode, key);
 
-        if (_calendar.IsEasterSeasonForToday())
+        if (isEasterSeason)
         {
             // During Eastertide the Angelus is traditionally replaced entirely by the Regina Caeli.
             var body = $"{Text(PrayerKey.ReginaCaeli)}\n\nV. {Text(PrayerKey.VersiculumPaschale)}" +

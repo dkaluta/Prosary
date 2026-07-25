@@ -1,6 +1,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prosary", "Prosary\Prosary.csproj", "{CC9E5C65-1C13-4069-8919-06E03909B0A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prosary.Tests", "Prosary.Tests\Prosary.Tests.csproj", "{2ADA0967-1645-42CF-9EC9-EAE44C8B5A6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,5 +23,13 @@ Global
 		{CC9E5C65-1C13-4069-8919-06E03909B0A3}.Release|arm64.ActiveCfg = Release|arm64
 		{CC9E5C65-1C13-4069-8919-06E03909B0A3}.Release|arm64.Build.0 = Release|arm64
 		{CC9E5C65-1C13-4069-8919-06E03909B0A3}.Release|arm64.Deploy.0 = Release|arm64
+		{2ADA0967-1645-42CF-9EC9-EAE44C8B5A6B}.Debug|x64.ActiveCfg = Debug|x64
+		{2ADA0967-1645-42CF-9EC9-EAE44C8B5A6B}.Debug|x64.Build.0 = Debug|x64
+		{2ADA0967-1645-42CF-9EC9-EAE44C8B5A6B}.Debug|arm64.ActiveCfg = Debug|arm64
+		{2ADA0967-1645-42CF-9EC9-EAE44C8B5A6B}.Debug|arm64.Build.0 = Debug|arm64
+		{2ADA0967-1645-42CF-9EC9-EAE44C8B5A6B}.Release|x64.ActiveCfg = Release|x64
+		{2ADA0967-1645-42CF-9EC9-EAE44C8B5A6B}.Release|x64.Build.0 = Release|x64
+		{2ADA0967-1645-42CF-9EC9-EAE44C8B5A6B}.Release|arm64.ActiveCfg = Release|arm64
+		{2ADA0967-1645-42CF-9EC9-EAE44C8B5A6B}.Release|arm64.Build.0 = Release|arm64
 	EndGlobalSection
 EndGlobal
