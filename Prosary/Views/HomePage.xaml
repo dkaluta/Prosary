@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Prosary.Views.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Prosary.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Spacing="16" MaxWidth="480" HorizontalAlignment="Center" Padding="24">
+            <StackPanel Spacing="4" HorizontalAlignment="Center" Padding="0,0,0,4">
+                <TextBlock Text="Prosary" Style="{StaticResource HeadlineTextStyle}" HorizontalAlignment="Center" />
+                <TextBlock Text="A companion for Catholic prayer" Style="{StaticResource MutedSubtitleTextStyle}" HorizontalAlignment="Center" />
+            </StackPanel>
+
+            <StackPanel Spacing="12">
+                <controls:PrayerCard Title="Rosary" Subtitle="{x:Bind ViewModel.RosarySubtitle, Mode=OneWay}"
+                                      AccentColor="{x:Bind ViewModel.RosaryAccent, Mode=OneWay}" IconGlyph="&#xEA3A;"
+                                      Command="{x:Bind ViewModel.OpenRosaryCommand}" />
+                <controls:PrayerCard Title="Angelus" Subtitle="{x:Bind ViewModel.AngelusSubtitle, Mode=OneWay}"
+                                      AccentColor="{x:Bind ViewModel.AngelusAccent}" IconGlyph="&#xEA8F;"
+                                      Command="{x:Bind ViewModel.OpenAngelusCommand}" />
+                <controls:PrayerCard Title="Jesus Prayer" Subtitle="{x:Bind ViewModel.JesusPrayerSubtitle, Mode=OneWay}"
+                                      AccentColor="{x:Bind ViewModel.JesusPrayerAccent}" IconGlyph="&#xEB51;"
+                                      Command="{x:Bind ViewModel.OpenJesusPrayerCommand}" />
+            </StackPanel>
+
+            <Rectangle Height="1" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" Margin="0,4" />
+
+            <Button Content="My Favorites" HorizontalAlignment="Stretch" Height="52"
+                    Command="{x:Bind ViewModel.OpenFavoritesCommand}" />
+
+            <StackPanel Orientation="Horizontal" Spacing="16" HorizontalAlignment="Center">
+                <Button Content="Settings" Background="Transparent" Command="{x:Bind ViewModel.OpenSettingsCommand}" />
+                <Button Content="About" Background="Transparent" Command="{x:Bind ViewModel.OpenAboutCommand}" />
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

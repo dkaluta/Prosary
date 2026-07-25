@@ -18,7 +18,7 @@ namespace Prosary.ViewModels;
 /// mechanism), and the Apple-only native-serif branch is gone (Windows always uses
 /// <see cref="PrayerTypography"/>'s Cambria/bundled-font resolution).
 /// </summary>
-public partial class RosaryViewModel : ObservableObject
+public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewModel
 {
     private readonly IPresetStore _presets;
     private readonly RosaryEngine _engine;
@@ -51,7 +51,7 @@ public partial class RosaryViewModel : ObservableObject
     private string _progressText = string.Empty;
 
     [ObservableProperty]
-    private double _progress;
+    private double? _progress;
 
     [ObservableProperty]
     private bool _canGoBack;
@@ -88,7 +88,9 @@ public partial class RosaryViewModel : ObservableObject
     [ObservableProperty]
     private bool _showBottomBeads;
 
-    public string MysteryImageFile => MysteryImageKey == "cross_placeholder" ? "cross_placeholder.png" : $"{MysteryImageKey}.jpg";
+    public string MysteryImageFile => MysteryImageKey == "cross_placeholder"
+        ? "ms-appx:///Assets/Images/cross_placeholder.png"
+        : $"ms-appx:///Assets/Images/{MysteryImageKey}.jpg";
 
     public string NextButtonText => IsLastStep ? "Finish" : "Next";
 

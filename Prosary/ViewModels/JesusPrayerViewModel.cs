@@ -13,7 +13,9 @@ namespace Prosary.ViewModels;
 /// Drives the Jesus Prayer flow — ported from Android's <c>JesusPrayerFlowScreen.kt</c>. Unlike
 /// the Rosary/Angelus, there's no engine building a list of steps: every repetition prays the
 /// same fixed line, so a single synthesized line of text plus a <see cref="JesusPrayerProgress"/>
-/// counter is the whole model.
+/// counter (<see cref="RepetitionState"/>) is the whole model. Implements
+/// <see cref="IPrayerStepFlowViewModel"/> like <see cref="RosaryViewModel"/>/
+/// <see cref="AngelusViewModel"/> so the shared flow chrome control can bind to it the same way.
 ///
 /// <see cref="Finish"/> and <see cref="Back"/> are deliberately distinct: this page sits two
 /// levels deep in the nav stack when reached fresh (Home → Setup → Flow), so a plain back-arrow
@@ -21,7 +23,7 @@ namespace Prosary.ViewModels;
 /// <see cref="Finish"/> uses <see cref="Router.PopToRoot"/>. When launched from a saved favorite
 /// instead (one nav level), both land in the same place.
 /// </summary>
-public partial class JesusPrayerViewModel : ObservableObject
+public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowViewModel
 {
     private readonly IPresetStore _presets;
     private readonly LiturgicalCalendarService _calendar;
@@ -31,16 +33,22 @@ public partial class JesusPrayerViewModel : ObservableObject
     private bool _hasLoaded;
 
     [ObservableProperty]
-    private JesusPrayerProgress _progress = new(new JesusPrayerTarget.Count(33));
+    private JesusPrayerProgress _repetitionState = new(new JesusPrayerTarget.Count(33));
+
+    [ObservableProperty]
+    private string _header = "Jesus Prayer";
 
     [ObservableProperty]
     private string _body = string.Empty;
 
     [ObservableProperty]
+    private string _mysteryImageFile = "ms-appx:///Assets/Images/jesus_portrait.jpg";
+
+    [ObservableProperty]
     private string _progressText = string.Empty;
 
     [ObservableProperty]
-    private double? _progressFraction;
+    private double? _progress;
 
     [ObservableProperty]
     private bool _isRightToLeft;
@@ -62,9 +70,13 @@ public partial class JesusPrayerViewModel : ObservableObject
     [ObservableProperty]
     private Guid? _matchingFavoriteId;
 
-    public bool CanGoBack => Progress.CanGoBack;
+    public string? Subtitle => null;
 
-    public string NextButtonText => Progress.IsLastRep ? "Finish" : "Next";
+    public bool HasSubtitle => false;
+
+    public bool CanGoBack => RepetitionState.CanGoBack;
+
+    public string NextButtonText => RepetitionState.IsLastRep ? "Finish" : "Next";
 
     public bool IsFavorited => MatchingFavoriteId is not null;
 
@@ -89,7 +101,7 @@ public partial class JesusPrayerViewModel : ObservableObject
             IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
             SeasonColor = _calendar.GetSeasonColorForToday();
             _hasLoaded = true;
-            Progress = new JesusPrayerProgress(_effectiveTarget);
+            RepetitionState = new JesusPrayerProgress(_effectiveTarget);
 
             var all = await _presets.GetAllAsync();
             var resolved = _languageCode ?? LanguageCatalog.DefaultCode;
@@ -111,7 +123,7 @@ public partial class JesusPrayerViewModel : ObservableObject
         return defaultJesusPrayer?.ResolvedLanguageCode;
     }
 
-    partial void OnProgressChanged(JesusPrayerProgress value)
+    partial void OnRepetitionStateChanged(JesusPrayerProgress value)
     {
         OnPropertyChanged(nameof(CanGoBack));
         OnPropertyChanged(nameof(NextButtonText));
@@ -128,8 +140,10 @@ public partial class JesusPrayerViewModel : ObservableObject
         }
 
         Body = PrayerTranslations.Get(_languageCode, PrayerKey.OratioIesu);
-        ProgressText = Progress.TargetCount is { } count ? $"{Progress.CurrentIndex + 1} of {count}" : $"{Progress.CurrentIndex + 1}";
-        ProgressFraction = Progress.ProgressFraction;
+        ProgressText = RepetitionState.TargetCount is { } count
+            ? $"{RepetitionState.CurrentIndex + 1} of {count}"
+            : $"{RepetitionState.CurrentIndex + 1}";
+        Progress = RepetitionState.ProgressFraction;
         BodyFontFamily = PrayerTypography.ResolveBodyFontFamily(_languageCode, isScripture: false);
         BodyFontSize = PrayerTypography.ResolveBodyFontSize(_languageCode, isScripture: false);
     }
@@ -137,17 +151,17 @@ public partial class JesusPrayerViewModel : ObservableObject
     [RelayCommand]
     private void Next()
     {
-        if (Progress.IsLastRep)
+        if (RepetitionState.IsLastRep)
         {
             Router.PopToRoot();
             return;
         }
 
-        Progress = Progress.GoNext();
+        RepetitionState = RepetitionState.GoNext();
     }
 
     [RelayCommand]
-    private void Back() => Progress = Progress.GoBack();
+    private void Back() => RepetitionState = RepetitionState.GoBack();
 
     [RelayCommand]
     private void Finish() => Router.PopToRoot();

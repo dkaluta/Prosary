@@ -30,6 +30,10 @@ public partial class JesusPrayerSetupViewModel : ObservableObject
     [ObservableProperty]
     private string _customCountText = string.Empty;
 
+    /// <summary>Bound as a WinUI3 <c>ComboBox</c>'s <c>ItemsSource</c> — WinUI3 has no built-in
+    /// segmented-control equivalent to Compose's <c>SingleChoiceSegmentedButtonRow</c>.</summary>
+    public IReadOnlyList<JesusPrayerSetupOption> Options { get; } = Enum.GetValues<JesusPrayerSetupOption>();
+
     public bool IsCustomSelected => Selection == JesusPrayerSetupOption.Custom;
 
     private int? CustomCount => int.TryParse(CustomCountText, out var n) && n > 0 ? n : null;

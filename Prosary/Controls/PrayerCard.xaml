@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="Prosary.Controls.PrayerCard"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <!-- Reusable devotion card — accent stripe + icon + title/subtitle + chevron — ported from
+         iOS's Shared/PrayerCard.swift. Used by HomePage (3 fixed cards). -->
+    <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+            Padding="0" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+            CornerRadius="14" Command="{x:Bind Command, Mode=OneWay}">
+        <Grid Padding="16,14" ColumnSpacing="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Width="40" Height="40" CornerRadius="20" VerticalAlignment="Center"
+                    Background="{x:Bind AccentColor, Mode=OneWay, Converter={StaticResource ColorToBrush}}">
+                <FontIcon Glyph="{x:Bind IconGlyph, Mode=OneWay}" Foreground="White" FontSize="18" />
+            </Border>
+
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
+                <TextBlock Text="{x:Bind Title, Mode=OneWay}" FontSize="16" FontWeight="SemiBold" TextWrapping="Wrap" />
+                <TextBlock Text="{x:Bind Subtitle, Mode=OneWay}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+            </StackPanel>
+
+            <FontIcon Grid.Column="2" Glyph="&#xE76C;" FontSize="12" Foreground="{StaticResource MutedTextBrush}" VerticalAlignment="Center" />
+        </Grid>
+    </Button>
+</UserControl>

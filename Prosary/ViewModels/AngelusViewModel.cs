@@ -16,7 +16,7 @@ namespace Prosary.ViewModels;
 /// the language is borrowed from the default Rosary favorite, and a star toggle lets the user
 /// save/unsave an Angelus favorite in the current language on the fly.
 /// </summary>
-public partial class AngelusViewModel : ObservableObject
+public partial class AngelusViewModel : ObservableObject, IPrayerStepFlowViewModel
 {
     private readonly IPresetStore _presets;
     private readonly AngelusEngine _engine;
@@ -42,7 +42,7 @@ public partial class AngelusViewModel : ObservableObject
     private string _progressText = string.Empty;
 
     [ObservableProperty]
-    private double _progress;
+    private double? _progress;
 
     [ObservableProperty]
     private bool _canGoBack;
@@ -67,7 +67,9 @@ public partial class AngelusViewModel : ObservableObject
     [ObservableProperty]
     private Guid? _matchingFavoriteId;
 
-    public string MysteryImageFile => MysteryImageKey == "cross_placeholder" ? "cross_placeholder.png" : $"{MysteryImageKey}.jpg";
+    public string MysteryImageFile => MysteryImageKey == "cross_placeholder"
+        ? "ms-appx:///Assets/Images/cross_placeholder.png"
+        : $"ms-appx:///Assets/Images/{MysteryImageKey}.jpg";
 
     public string NextButtonText => IsLastStep ? "Finish" : "Next";
 
