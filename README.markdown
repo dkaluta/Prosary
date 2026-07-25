@@ -84,12 +84,15 @@ signed identity, which Windows treats as a different app for update purposes.
 
 ## Shared assets
 
-Bundled prayer typefaces and the mystery/prayer illustration images live in `../Shared/` (a
-sibling directory to `iOS`/`Android`/`Windows`), not under `Prosary/Assets/` — `Prosary.csproj`
-links them in at build time (see its `Content Include="..\..\Shared\..."` items) so this repo
-doesn't keep its own duplicate copy. Placeholder tile/splash icons (generated to match the app's
-brand gradient/cross, lower-fidelity than the real launcher art on iOS/Android) still live in
-`Prosary/Assets/` directly — swap those for real icon assets before any real distribution.
+Bundled prayer typefaces and the mystery/prayer illustration images under `Prosary/Assets/Fonts`
+and `Prosary/Assets/Images` are physical copies of the canonical originals in `../Shared/` (a
+sibling directory to `iOS`/`Android`/`Windows` — see `../Shared/README.md` for what lives there
+and why). Each platform keeps its own physical copy rather than referencing `Shared/` live, so
+this repo builds standalone even if cloned without `Shared/` alongside it; if you update an image
+or font, update `Shared/` and re-copy into each platform that uses it. Placeholder tile/splash
+icons (generated to match the app's brand gradient/cross, lower-fidelity than the real launcher
+art on iOS/Android) live in `Prosary/Assets/` directly too — swap those for real icon assets
+before any real distribution.
 
 ## Tests
 
@@ -115,4 +118,4 @@ Run with `dotnet test Prosary.sln` (Windows only, same constraint as building th
 
 The app's original source code is licensed under the BSD 2-Clause License — see [LICENSE](LICENSE),
 matching the iOS and Android apps. Bundled third-party typefaces retain their own separate
-licenses — see `../Shared/Fonts/ATTRIBUTIONS.md`.
+licenses — see `Prosary/Assets/Fonts/ATTRIBUTIONS.md`.
