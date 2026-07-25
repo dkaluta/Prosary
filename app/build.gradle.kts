@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     // AGP 9's built-in Kotlin support means org.jetbrains.kotlin.android is neither needed nor
     // allowed here (it registers a duplicate 'kotlin' extension) — only the Compose compiler
@@ -5,6 +7,16 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
+}
+
+// Upload-key credentials for the Play Store release build. Kept out of git entirely (see
+// keystore/keystore.properties in .gitignore) — absent on a fresh clone or in CI without the
+// secret provisioned, which is fine for debug work; only signing a release build needs it.
+val keystorePropertiesFile = rootProject.file("keystore/keystore.properties")
+val keystoreProperties = Properties().apply {
+    if (keystorePropertiesFile.exists()) {
+        keystorePropertiesFile.inputStream().use { load(it) }
+    }
 }
 
 android {
@@ -25,10 +37,24 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        if (keystorePropertiesFile.exists()) {
+            create("release") {
+                storeFile = rootProject.file("keystore/${keystoreProperties["storeFile"]}")
+                storePassword = keystoreProperties["storePassword"] as String
+                keyAlias = keystoreProperties["keyAlias"] as String
+                keyPassword = keystoreProperties["keyPassword"] as String
+            }
+        }
+    }
+
     buildTypes {
         release {
             optimization {
                 enable = false
+            }
+            if (keystorePropertiesFile.exists()) {
+                signingConfig = signingConfigs.getByName("release")
             }
         }
     }
