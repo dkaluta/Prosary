@@ -26,16 +26,23 @@ public sealed partial class MainWindow : Window
         var appWindow = AppWindow.GetFromWindowId(windowId);
         if (appWindow?.Presenter is OverlappedPresenter presenter)
         {
+            // Minimum width matches iOS's own Mac WindowGroup exactly (.frame(minWidth: 760, ...)
+            // in ProsaryApp.swift) rather than irosary's narrower MinimumWidth=420 — 760 is tuned
+            // for the wide 3-column Rosary flow layout specifically, per that file's own comment
+            // ("the window itself needs a floor to keep the wide 3-column Rosary flow layout from
+            // being resized into something cramped and broken"), the same layout this Windows
+            // port has too. Height keeps irosary's original 600 floor; only width was asked to
+            // match Mac's.
+            //
             // PreferredMinimumWidth/Height take raw physical pixels, not the DPI-independent
-            // effective pixels the rest of XAML sizing (and irosary's own MinimumWidth=420/
-            // MinimumHeight=600, this floor's source) uses — left as literal 420/600, the window
-            // would enforce a floor that's the intended physical size only at 100% scaling, and
-            // shrinks on any HiDPI display (125%/150%/200%, common on modern laptops) to a
-            // fraction of the real screen space this app's narrow-layout breakpoint actually
-            // needs. Scaling by the window's own current DPI keeps the enforced minimum the same
-            // physical size everywhere — unchanged at 100%, larger in raw pixels at higher scales.
+            // effective pixels these numbers are expressed in — left un-scaled, the window would
+            // enforce a floor that's the intended physical size only at 100% display scaling, and
+            // shrinks on any HiDPI screen (125%/150%/200%, common on modern laptops) to a fraction
+            // of the real screen space this app's narrow-layout breakpoint actually needs. Scaling
+            // by the window's own current DPI keeps the enforced minimum the same physical size
+            // everywhere — unchanged at 100%, proportionally larger in raw pixels above it.
             var scale = GetDpiForWindow(hwnd) / 96.0;
-            presenter.PreferredMinimumWidth = (int)(420 * scale);
+            presenter.PreferredMinimumWidth = (int)(760 * scale);
             presenter.PreferredMinimumHeight = (int)(600 * scale);
         }
 
