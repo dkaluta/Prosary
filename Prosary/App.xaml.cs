@@ -44,12 +44,7 @@ public partial class App : Application
         var services = new ServiceCollection();
 
         services.AddSingleton<LiturgicalCalendarService>();
-        services.AddSingleton<RosaryEngine>();
-        services.AddSingleton<AngelusEngine>();
-        services.AddSingleton<StationsEngine>();
-        services.AddSingleton<FranciscanCrownEngine>();
-        services.AddSingleton<SevenSorrowsEngine>();
-        services.AddSingleton<DivineMercyEngine>();
+        services.AddSingleton<PrayerEngine>();
         services.AddSingleton<IPresetStore, SqlitePresetStore>();
         services.AddSingleton<IReminderScheduler, WindowsReminderScheduler>();
 

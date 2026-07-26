@@ -21,7 +21,7 @@ namespace Prosary.ViewModels;
 public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewModel
 {
     private readonly IPresetStore _presets;
-    private readonly RosaryEngine _engine;
+    private readonly PrayerEngine _engine;
 
     private IReadOnlyList<RosaryStep> _steps = [];
     private int _index;
@@ -132,7 +132,7 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
 
     public bool HasSubtitle => !string.IsNullOrEmpty(Subtitle);
 
-    public RosaryViewModel(IPresetStore presets, RosaryEngine engine, LiturgicalCalendarService calendar)
+    public RosaryViewModel(IPresetStore presets, PrayerEngine engine, LiturgicalCalendarService calendar)
     {
         _presets = presets;
         _engine = engine;

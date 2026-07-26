@@ -70,7 +70,7 @@ public class BeadLayoutTests
     [Fact]
     public void Build_MysteryGroupedSteps_StillGroupsByMysteryGroup()
     {
-        var engine = new RosaryEngine(new LiturgicalCalendarService());
+        var engine = new PrayerEngine(new LiturgicalCalendarService());
         var prayer = new Prayer { Rosary = new RosaryOptions { MysterySelectionMode = MysterySelectionMode.TwentyMystery } };
         var steps = engine.BuildSteps(prayer);
         var layout = BeadLayout.Build(steps, currentIndex: steps.Count / 2, hasClosingCross: true, isDarkTheme: false);

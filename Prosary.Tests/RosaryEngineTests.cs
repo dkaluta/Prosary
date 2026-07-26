@@ -6,7 +6,7 @@ namespace Prosary.Tests;
 
 public class RosaryEngineTests
 {
-    private readonly RosaryEngine _engine = new(new LiturgicalCalendarService());
+    private readonly PrayerEngine _engine = new(new LiturgicalCalendarService());
 
     private static Prayer SpecificRosary(RosaryOptions? options = null) => new()
     {

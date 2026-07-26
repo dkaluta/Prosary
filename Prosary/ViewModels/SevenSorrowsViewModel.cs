@@ -25,7 +25,7 @@ namespace Prosary.ViewModels;
 public partial class SevenSorrowsViewModel : ObservableObject, IPrayerStepFlowViewModel
 {
     private readonly IPresetStore _presets;
-    private readonly SevenSorrowsEngine _engine;
+    private readonly PrayerEngine _engine;
     private readonly LiturgicalCalendarService _calendar;
 
     private IReadOnlyList<RosaryStep> _steps = [];
@@ -120,7 +120,7 @@ public partial class SevenSorrowsViewModel : ObservableObject, IPrayerStepFlowVi
 
     public bool IsFavorited => MatchingFavoriteId is not null;
 
-    public SevenSorrowsViewModel(IPresetStore presets, SevenSorrowsEngine engine, LiturgicalCalendarService calendar)
+    public SevenSorrowsViewModel(IPresetStore presets, PrayerEngine engine, LiturgicalCalendarService calendar)
     {
         _presets = presets;
         _engine = engine;
@@ -146,7 +146,7 @@ public partial class SevenSorrowsViewModel : ObservableObject, IPrayerStepFlowVi
             }
 
             IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
-            _steps = _engine.BuildSteps(_languageCode);
+            _steps = _engine.BuildSteps(new Prayer { Kind = PrayerKind.SevenSorrows, LanguageCode = _languageCode ?? LanguageCatalog.DefaultSentinel });
             _index = 0;
             SeasonColor = _calendar.GetSeasonColorForToday();
 

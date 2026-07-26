@@ -5,12 +5,10 @@ namespace Prosary.Tests;
 
 public class AngelusEngineTests
 {
-    private readonly AngelusEngine _engine = new(new LiturgicalCalendarService());
-
     [Fact]
     public void BuildSteps_OrdinaryTime_ProducesFixedSevenStepSequence()
     {
-        var steps = _engine.BuildSteps("en", isEasterSeason: false);
+        var steps = PrayerEngine.BuildAngelusSteps("en", isEasterSeason: false);
 
         Assert.Equal(7, steps.Count);
         Assert.Equal(
@@ -22,7 +20,7 @@ public class AngelusEngineTests
     [Fact]
     public void BuildSteps_EasterSeason_ProducesSingleReginaCaeliStep()
     {
-        var steps = _engine.BuildSteps("en", isEasterSeason: true);
+        var steps = PrayerEngine.BuildAngelusSteps("en", isEasterSeason: true);
 
         Assert.Single(steps);
         Assert.Equal("Regina Caeli", steps[0].Title);
@@ -31,7 +29,7 @@ public class AngelusEngineTests
     [Fact]
     public void BuildSteps_NoLanguageCode_DoesNotThrow()
     {
-        var steps = _engine.BuildSteps(null, isEasterSeason: false);
+        var steps = PrayerEngine.BuildAngelusSteps(null, isEasterSeason: false);
         Assert.Equal(7, steps.Count);
     }
 }

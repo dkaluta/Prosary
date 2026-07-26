@@ -26,7 +26,7 @@ namespace Prosary.ViewModels;
 public partial class DivineMercyViewModel : ObservableObject, IPrayerStepFlowViewModel
 {
     private readonly IPresetStore _presets;
-    private readonly DivineMercyEngine _engine;
+    private readonly PrayerEngine _engine;
     private readonly LiturgicalCalendarService _calendar;
 
     private IReadOnlyList<RosaryStep> _steps = [];
@@ -121,7 +121,7 @@ public partial class DivineMercyViewModel : ObservableObject, IPrayerStepFlowVie
 
     public bool IsFavorited => MatchingFavoriteId is not null;
 
-    public DivineMercyViewModel(IPresetStore presets, DivineMercyEngine engine, LiturgicalCalendarService calendar)
+    public DivineMercyViewModel(IPresetStore presets, PrayerEngine engine, LiturgicalCalendarService calendar)
     {
         _presets = presets;
         _engine = engine;
@@ -147,7 +147,7 @@ public partial class DivineMercyViewModel : ObservableObject, IPrayerStepFlowVie
             }
 
             IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
-            _steps = _engine.BuildSteps(_languageCode);
+            _steps = _engine.BuildSteps(new Prayer { Kind = PrayerKind.DivineMercyChaplet, LanguageCode = _languageCode ?? LanguageCatalog.DefaultSentinel });
             _index = 0;
             SeasonColor = _calendar.GetSeasonColorForToday();
 

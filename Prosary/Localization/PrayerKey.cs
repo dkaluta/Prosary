@@ -70,7 +70,7 @@ public static class PrayerKey
 
     // Seven Sorrows (Servite Rosary) — the versicle/response and closing collect prayed after the
     // 3 closing Hail Marys for Our Lady's tears. Unlike the Rosary's Marian antiphon, this closing
-    // is fixed, not a user choice (see SevenSorrowsEngine). Per-sorrow meditation text lives in
+    // is fixed, not a user choice (see PrayerEngine.BuildSevenSorrowsSteps). Per-sorrow meditation text lives in
     // MysteryTranslations (reusing the same imageKey-keyed lookup Franciscan Crown's Adoration of
     // the Magi uses), not here.
     public const string SevenSorrowsVersicle = nameof(SevenSorrowsVersicle);
@@ -81,7 +81,7 @@ public static class PrayerKey
     // repeated identically across all 5 decades, unlike the Rosary/Franciscan Crown/Seven
     // Sorrows, which vary per decade), and the closing acclamation (repeated 3 times). The
     // opening (Sign of the Cross, Our Father, Hail Mary, Apostles' Creed) reuses existing keys —
-    // see DivineMercyEngine.
+    // see PrayerEngine.BuildDivineMercySteps.
     public const string DivineMercyOffering = nameof(DivineMercyOffering);
     public const string DivineMercyPetition = nameof(DivineMercyPetition);
     public const string DivineMercyClosingAcclamation = nameof(DivineMercyClosingAcclamation);

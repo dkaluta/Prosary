@@ -20,7 +20,7 @@ namespace Prosary.ViewModels;
 public partial class StationsViewModel : ObservableObject, IPrayerStepFlowViewModel
 {
     private readonly IPresetStore _presets;
-    private readonly StationsEngine _engine;
+    private readonly PrayerEngine _engine;
     private readonly LiturgicalCalendarService _calendar;
 
     private IReadOnlyList<RosaryStep> _steps = [];
@@ -78,7 +78,7 @@ public partial class StationsViewModel : ObservableObject, IPrayerStepFlowViewMo
 
     public bool IsFavorited => MatchingFavoriteId is not null;
 
-    public StationsViewModel(IPresetStore presets, StationsEngine engine, LiturgicalCalendarService calendar)
+    public StationsViewModel(IPresetStore presets, PrayerEngine engine, LiturgicalCalendarService calendar)
     {
         _presets = presets;
         _engine = engine;
@@ -104,7 +104,7 @@ public partial class StationsViewModel : ObservableObject, IPrayerStepFlowViewMo
             }
 
             IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
-            _steps = _engine.BuildSteps(_languageCode);
+            _steps = _engine.BuildSteps(new Prayer { Kind = PrayerKind.StationsOfTheCross, LanguageCode = _languageCode ?? LanguageCatalog.DefaultSentinel });
             _index = 0;
             SeasonColor = _calendar.GetSeasonColorForToday();
 

@@ -43,7 +43,7 @@ public sealed class LiturgicalCalendarService
         GetSeasonalMarianAntiphon(DateOnly.FromDateTime(DateTime.Today));
 
     /// <summary>True from Easter Sunday through the day before Pentecost, inclusive — used by
-    /// <see cref="AngelusEngine"/> to substitute the Regina Caeli for the ordinary Angelus.</summary>
+    /// <see cref="PrayerEngine"/> to substitute the Regina Caeli for the ordinary Angelus.</summary>
     public bool IsEasterSeason(DateOnly date) => GetSeason(date) == LiturgicalSeason.EasterSeason;
 
     public bool IsEasterSeasonForToday() => IsEasterSeason(DateOnly.FromDateTime(DateTime.Today));
