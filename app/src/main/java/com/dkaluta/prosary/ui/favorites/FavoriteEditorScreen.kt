@@ -13,14 +13,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -30,9 +24,7 @@ import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TimePicker
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -53,7 +45,6 @@ import com.dkaluta.prosary.models.MysteryGroup
 import com.dkaluta.prosary.models.MysterySelectionMode
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
-import com.dkaluta.prosary.models.PrayerReminder
 import com.dkaluta.prosary.reminders.ReminderScheduler
 import com.dkaluta.prosary.services.LocalAppServices
 import com.dkaluta.prosary.ui.presets.OptionPickerField
@@ -247,91 +238,8 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
                 }
             }
 
-            FormSection(title = "Reminders") {
-                if (prayer.kind == PrayerKind.Angelus) {
-                    // Traditional Angelus bell times — quick toggles for 6am, noon, 6pm.
-                    AngelusTimeToggleRow(hour = 6, label = "6:00 AM", prayer = prayer, onChange = { prayer = it })
-                    AngelusTimeToggleRow(hour = 12, label = "12:00 PM", prayer = prayer, onChange = { prayer = it })
-                    AngelusTimeToggleRow(hour = 18, label = "6:00 PM", prayer = prayer, onChange = { prayer = it })
-
-                    val angelusPresetHours = setOf(6, 12, 18)
-                    val customReminders = prayer.reminders.filter { r -> !(angelusPresetHours.contains(r.hour) && r.minute == 0) }
-                    for (reminder in customReminders) {
-                        ReminderRow(
-                            reminder = reminder,
-                            onTimeChange = { hour, minute -> prayer = prayer.withUpdatedReminder(reminder.id, hour, minute) },
-                            onDelete = { prayer = prayer.withoutReminder(reminder.id) },
-                        )
-                    }
-                } else {
-                    for (reminder in prayer.reminders) {
-                        ReminderRow(
-                            reminder = reminder,
-                            onTimeChange = { hour, minute -> prayer = prayer.withUpdatedReminder(reminder.id, hour, minute) },
-                            onDelete = { prayer = prayer.withoutReminder(reminder.id) },
-                        )
-                    }
-                }
-
-                TextButton(onClick = { prayer = prayer.copy(reminders = prayer.reminders + PrayerReminder(hour = 9, minute = 0)) }) {
-                    Icon(Icons.Filled.Add, contentDescription = null)
-                    Text("Add Reminder")
-                }
-            }
+            RemindersSection(reminders = prayer.reminders, kind = prayer.kind) { prayer = prayer.copy(reminders = it) }
         }
-    }
-}
-
-private fun Prayer.withUpdatedReminder(id: String, hour: Int, minute: Int): Prayer =
-    copy(reminders = reminders.map { if (it.id == id) it.copy(hour = hour, minute = minute) else it })
-
-private fun Prayer.withoutReminder(id: String): Prayer =
-    copy(reminders = reminders.filter { it.id != id })
-
-@Composable
-private fun AngelusTimeToggleRow(hour: Int, label: String, prayer: Prayer, onChange: (Prayer) -> Unit) {
-    val isOn = prayer.reminders.any { it.hour == hour && it.minute == 0 && it.isEnabled }
-    SwitchRow(label, isOn) { on ->
-        val updated = if (on) {
-            if (prayer.reminders.none { it.hour == hour && it.minute == 0 }) {
-                prayer.reminders + PrayerReminder(hour = hour, minute = 0)
-            } else {
-                prayer.reminders.map { if (it.hour == hour && it.minute == 0) it.copy(isEnabled = true) else it }
-            }
-        } else {
-            prayer.reminders.filter { !(it.hour == hour && it.minute == 0) }
-        }
-        onChange(prayer.copy(reminders = updated))
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun ReminderRow(reminder: PrayerReminder, onTimeChange: (Int, Int) -> Unit, onDelete: () -> Unit) {
-    var showPicker by remember { mutableStateOf(false) }
-
-    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
-        TextButton(onClick = { showPicker = true }, modifier = Modifier.weight(1f)) {
-            Text(reminder.displayTime)
-        }
-        IconButton(onClick = onDelete) {
-            Icon(Icons.Filled.Delete, contentDescription = "Delete reminder", tint = MaterialTheme.colorScheme.error)
-        }
-    }
-
-    if (showPicker) {
-        val state = rememberTimePickerState(initialHour = reminder.hour, initialMinute = reminder.minute, is24Hour = false)
-        AlertDialog(
-            onDismissRequest = { showPicker = false },
-            confirmButton = {
-                TextButton(onClick = {
-                    onTimeChange(state.hour, state.minute)
-                    showPicker = false
-                }) { Text("OK") }
-            },
-            dismissButton = { TextButton(onClick = { showPicker = false }) { Text("Cancel") } },
-            text = { TimePicker(state = state) },
-        )
     }
 }
 

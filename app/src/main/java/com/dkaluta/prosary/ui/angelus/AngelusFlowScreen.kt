@@ -24,9 +24,9 @@ import com.dkaluta.prosary.services.LocalAppServices
 import com.dkaluta.prosary.ui.shared.PrayerStepFlowScreen
 import kotlinx.coroutines.launch
 
-/** [prayer] is set when launched from a saved favorite (via PrayerDispatchScreen) — provides the
- * language and is tracked for the star button. Null when launched from Home with no Angelus
- * favorite saved yet, in which case it borrows the default Rosary preset's language. */
+/** [prayer] is set when launched from an existing favorite (via PrayerDispatchScreen) — seeds the
+ * star as already-favorited immediately, without waiting on the initial favorites fetch. The
+ * Angelus has no per-favorite language — it always follows the app default. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AngelusFlowScreen(prayer: Prayer? = null, onBack: () -> Unit) {
@@ -38,23 +38,17 @@ fun AngelusFlowScreen(prayer: Prayer? = null, onBack: () -> Unit) {
     var isRightToLeft by remember { mutableStateOf(false) }
     var seasonColor by remember { mutableStateOf(Color.Transparent) }
     var languageCode by remember { mutableStateOf<String?>(null) }
-    var matchingFavoriteId by remember { mutableStateOf<String?>(null) }
+    var matchingFavoriteId by remember { mutableStateOf(prayer?.id) }
 
     LaunchedEffect(prayer) {
-        languageCode = if (prayer != null) {
-            prayer.resolvedLanguageCode
-        } else {
-            val default = runCatching { services.presetStore.defaultPreset() }.getOrNull()
-            default?.languageCode
-        }
+        languageCode = LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).code
         isRightToLeft = LanguageCatalog.resolve(languageCode).isRightToLeft
-        steps = services.engine.buildSteps(Prayer(kind = PrayerKind.Angelus, languageCode = languageCode ?: LanguageCatalog.defaultSentinel))
+        steps = services.engine.buildSteps(Prayer(kind = PrayerKind.Angelus, languageCode = LanguageCatalog.defaultSentinel))
         currentIndex = 0
         seasonColor = services.calendar.seasonColorToday()
 
         val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
-        val resolved = languageCode ?: LanguageCatalog.defaultCode
-        matchingFavoriteId = all.firstOrNull { it.kind == PrayerKind.Angelus && it.resolvedLanguageCode == resolved }?.id
+        matchingFavoriteId = all.firstOrNull { it.kind == PrayerKind.Angelus }?.id
     }
 
     val currentStep = steps.getOrNull(currentIndex)
@@ -76,7 +70,7 @@ fun AngelusFlowScreen(prayer: Prayer? = null, onBack: () -> Unit) {
         topBarActions = {
             IconButton(onClick = {
                 scope.launch {
-                    matchingFavoriteId = toggleAngelusFavorite(services, matchingFavoriteId, languageCode)
+                    matchingFavoriteId = toggleAngelusFavorite(services, matchingFavoriteId)
                 }
             }) {
                 Icon(
@@ -88,21 +82,17 @@ fun AngelusFlowScreen(prayer: Prayer? = null, onBack: () -> Unit) {
     )
 }
 
-private suspend fun toggleAngelusFavorite(services: AppServices, currentFavoriteId: String?, languageCode: String?): String? {
+private suspend fun toggleAngelusFavorite(services: AppServices, currentFavoriteId: String?): String? {
     if (currentFavoriteId != null) {
         services.presetStore.get(currentFavoriteId)?.let { services.presetStore.delete(it) }
         return null
     }
 
-    val resolved = languageCode ?: LanguageCatalog.defaultCode
-    val langName = LanguageCatalog.all.firstOrNull { it.code == resolved }?.nativeName ?: resolved
-    val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
-    val isFirst = all.none { it.kind == PrayerKind.Angelus }
     val newFavorite = Prayer(
-        name = "Angelus ($langName)",
+        name = PrayerKind.Angelus.defaultName,
         kind = PrayerKind.Angelus,
-        isDefault = isFirst,
-        languageCode = resolved,
+        isDefault = true,
+        languageCode = LanguageCatalog.defaultSentinel,
     )
     services.presetStore.save(newFavorite)
     return newFavorite.id

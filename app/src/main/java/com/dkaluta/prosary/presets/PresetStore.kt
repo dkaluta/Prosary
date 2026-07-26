@@ -1,6 +1,7 @@
 package com.dkaluta.prosary.presets
 
 import com.dkaluta.prosary.models.Prayer
+import com.dkaluta.prosary.models.PrayerKind
 
 /** Persistence boundary for saved prayer favorites. Implement your own production version (this
  * app uses Room — see [com.dkaluta.prosary.persistence.RoomPresetStore]); see [MockPresetStore]
@@ -9,9 +10,9 @@ interface PresetStore {
     /** All saved favorites, in any order. */
     suspend fun all(): List<Prayer>
 
-    /** The starred (isDefault) Rosary favorite, or the first Rosary favorite if none is starred,
-     * or null if no Rosary favorites exist at all. */
-    suspend fun defaultPreset(): Prayer?
+    /** The starred (isDefault) favorite of [kind], or the first favorite of that kind if none is
+     * starred, or null if no favorites of that kind exist at all. */
+    suspend fun defaultPreset(kind: PrayerKind): Prayer?
 
     suspend fun get(id: String): Prayer?
 

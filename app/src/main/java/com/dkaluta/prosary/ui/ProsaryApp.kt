@@ -14,6 +14,7 @@ import com.dkaluta.prosary.ui.angelus.AngelusFlowScreen
 import com.dkaluta.prosary.ui.divinemercy.DivineMercyFlowScreen
 import com.dkaluta.prosary.ui.favorites.FavoriteEditorScreen
 import com.dkaluta.prosary.ui.favorites.FavoritesListScreen
+import com.dkaluta.prosary.ui.favorites.RemindersOnlyEditorScreen
 import com.dkaluta.prosary.ui.franciscancrown.FranciscanCrownFlowScreen
 import com.dkaluta.prosary.ui.home.HomeScreen
 import com.dkaluta.prosary.ui.jesusprayer.JesusPrayerFlowScreen
@@ -30,6 +31,7 @@ private object Routes {
     // equivalent to iOS's sheet(item:) passing a whole ad-hoc Prayer object across screens, so
     // the "Add" action threads just enough to construct one — see FavoriteEditorScreen).
     const val FavoriteEditor = "favorites/editor?prayerId={prayerId}&kind={kind}"
+    const val RemindersOnlyEditor = "favorites/reminders/{prayerId}"
     const val About = "about"
     const val Settings = "settings"
     const val Prayer = "prayer/{id}"
@@ -49,6 +51,7 @@ private object Routes {
         }
         return if (params.isEmpty()) "favorites/editor" else "favorites/editor?${params.joinToString("&")}"
     }
+    fun remindersOnlyEditor(prayerId: String) = "favorites/reminders/$prayerId"
     fun jesusPrayerFlow(target: String) = "jesusPrayer/$target"
 }
 
@@ -116,6 +119,7 @@ fun ProsaryApp() {
                 onPray = { id -> navController.navigate(Routes.prayer(id)) },
                 onEdit = { prayerId -> navController.navigate(Routes.favoriteEditor(prayerId)) },
                 onAddNew = { kind -> navController.navigate(Routes.favoriteEditor(null, kind)) },
+                onEditReminders = { prayerId -> navController.navigate(Routes.remindersOnlyEditor(prayerId)) },
                 onBack = { navController.popBackStack() },
             )
         }
@@ -132,6 +136,16 @@ fun ProsaryApp() {
                 ?.let { runCatching { PrayerKind.valueOf(it) }.getOrNull() }
                 ?: PrayerKind.Rosary
             FavoriteEditorScreen(prayerId = prayerId, newFavoriteKind = kind, onDone = { navController.popBackStack() })
+        }
+
+        composable(
+            route = Routes.RemindersOnlyEditor,
+            arguments = listOf(navArgument("prayerId") { type = NavType.StringType }),
+        ) { backStackEntry ->
+            val prayerId = backStackEntry.arguments?.getString("prayerId")
+            if (prayerId != null) {
+                RemindersOnlyEditorScreen(prayerId = prayerId, onDone = { navController.popBackStack() })
+            }
         }
 
         composable(Routes.About) {

@@ -20,6 +20,7 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material.icons.filled.WaterDrop
 import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.material.icons.filled.WorkspacePremium
@@ -52,6 +53,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.reminders.ReminderScheduler
@@ -78,6 +80,19 @@ private fun accentFor(kind: PrayerKind): Color = when (kind) {
     PrayerKind.DivineMercyChaplet -> Color(0xFFC41E3A)
 }
 
+/** Rosary and Jesus Prayer have real per-favorite options worth naming and saving multiple
+ * variants of, so they keep the full card list + editor. The other 5 kinds have nothing to
+ * configure beyond reminders, so they get a single on/off star row instead — see
+ * [SimpleFavoriteRow]. */
+private val configurableKinds = listOf(PrayerKind.Rosary, PrayerKind.JesusPrayer)
+private val simplifiedKinds = listOf(
+    PrayerKind.Angelus,
+    PrayerKind.StationsOfTheCross,
+    PrayerKind.FranciscanCrown,
+    PrayerKind.SevenSorrows,
+    PrayerKind.DivineMercyChaplet,
+)
+
 /** Card-layout list of saved prayer favorites grouped by kind. Replaces the old presets-only
  * list, mirrors iOS's FavoritesListView. */
 @OptIn(ExperimentalMaterial3Api::class)
@@ -86,6 +101,7 @@ fun FavoritesListScreen(
     onPray: (String) -> Unit,
     onEdit: (String) -> Unit,
     onAddNew: (PrayerKind) -> Unit,
+    onEditReminders: (String) -> Unit,
     onBack: () -> Unit,
 ) {
     val services = LocalAppServices.current
@@ -124,22 +140,10 @@ fun FavoritesListScreen(
         },
     ) { padding ->
         LazyColumn(modifier = Modifier.fillMaxSize().padding(padding)) {
-            for (kind in PrayerKind.entries) {
+            for (kind in configurableKinds) {
                 val kindPrayers = prayers.filter { it.kind == kind }
 
-                stickyHeader {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(MaterialTheme.colorScheme.background)
-                            .padding(horizontal = 20.dp, vertical = 12.dp),
-                    ) {
-                        Icon(iconFor(kind), contentDescription = null, tint = accentFor(kind))
-                        Text(kind.displayName, style = MaterialTheme.typography.titleMedium)
-                    }
-                }
+                stickyHeader { KindHeader(kind) }
 
                 items(kindPrayers, key = { it.id }) { prayer ->
                     FavoriteCard(
@@ -170,7 +174,64 @@ fun FavoritesListScreen(
                     }
                 }
             }
+
+            stickyHeader {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(MaterialTheme.colorScheme.background)
+                        .padding(horizontal = 20.dp, vertical = 12.dp),
+                ) {
+                    Icon(Icons.Filled.Star, contentDescription = null)
+                    Text("More Devotions", style = MaterialTheme.typography.titleMedium)
+                }
+            }
+
+            items(simplifiedKinds, key = { it.name }) { kind ->
+                val favorite = prayers.firstOrNull { it.kind == kind }
+                SimpleFavoriteRow(
+                    kind = kind,
+                    accentColor = accentFor(kind),
+                    isFavorited = favorite != null,
+                    onToggleFavorite = {
+                        scope.launch {
+                            if (favorite != null) {
+                                ReminderScheduler.cancelAll(context, favorite)
+                                services.presetStore.delete(favorite)
+                            } else {
+                                services.presetStore.save(
+                                    Prayer(
+                                        name = kind.defaultName,
+                                        kind = kind,
+                                        isDefault = true,
+                                        languageCode = LanguageCatalog.defaultSentinel,
+                                    ),
+                                )
+                            }
+                            reload()
+                        }
+                    },
+                    onEditReminders = { favorite?.let { onEditReminders(it.id) } },
+                )
+            }
         }
+    }
+}
+
+@Composable
+private fun KindHeader(kind: PrayerKind) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(MaterialTheme.colorScheme.background)
+            .padding(horizontal = 20.dp, vertical = 12.dp),
+    ) {
+        Icon(iconFor(kind), contentDescription = null, tint = accentFor(kind))
+        Text(kind.displayName, style = MaterialTheme.typography.titleMedium)
     }
 }
 
@@ -230,6 +291,45 @@ private fun FavoriteCard(
                 OutlinedButton(onClick = onMakeDefault, modifier = Modifier.weight(1f)) {
                     Text("Set Default")
                 }
+            }
+        }
+    }
+}
+
+/** One row per non-configurable devotion kind — a star toggle and, once favorited, a reminders
+ * button. No name/language editing and no "+ Add another" — see [FavoritesListScreen]. */
+@Composable
+private fun SimpleFavoriteRow(
+    kind: PrayerKind,
+    accentColor: Color,
+    isFavorited: Boolean,
+    onToggleFavorite: () -> Unit,
+    onEditReminders: () -> Unit,
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 6.dp)
+            .clip(RoundedCornerShape(14.dp))
+            .background(MaterialTheme.colorScheme.surfaceContainerHigh)
+            .padding(horizontal = 14.dp, vertical = 8.dp),
+    ) {
+        IconButton(onClick = onToggleFavorite) {
+            Icon(
+                if (isFavorited) Icons.Filled.Star else Icons.Filled.StarBorder,
+                contentDescription = if (isFavorited) "Remove ${kind.displayName} from Favorites" else "Add ${kind.displayName} to Favorites",
+                tint = if (isFavorited) accentColor else MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+
+        Icon(iconFor(kind), contentDescription = null, tint = accentColor)
+        Text(kind.displayName, style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
+
+        if (isFavorited) {
+            IconButton(onClick = onEditReminders) {
+                Icon(Icons.Filled.Notifications, contentDescription = "Edit ${kind.displayName} reminders", tint = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
     }

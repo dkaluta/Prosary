@@ -21,9 +21,9 @@ class RoomPresetStore(private val dao: PresetDao) : PresetStore {
 
     override suspend fun all(): List<Prayer> = dao.getAll().map { it.toPrayer() }
 
-    override suspend fun defaultPreset(): Prayer? {
-        val rosaryEntries = dao.getAll().filter { it.kind == PrayerKind.Rosary.name }
-        val entry = rosaryEntries.firstOrNull { it.isDefault } ?: rosaryEntries.firstOrNull()
+    override suspend fun defaultPreset(kind: PrayerKind): Prayer? {
+        val matchingEntries = dao.getAll().filter { it.kind == kind.name }
+        val entry = matchingEntries.firstOrNull { it.isDefault } ?: matchingEntries.firstOrNull()
         return entry?.toPrayer()
     }
 

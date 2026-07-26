@@ -40,25 +40,17 @@ fun FranciscanCrownFlowScreen(prayer: Prayer? = null, onBack: () -> Unit) {
     var isRightToLeft by remember { mutableStateOf(false) }
     var seasonColor by remember { mutableStateOf(Color.Transparent) }
     var languageCode by remember { mutableStateOf<String?>(null) }
-    var matchingFavoriteId by remember { mutableStateOf<String?>(null) }
+    var matchingFavoriteId by remember { mutableStateOf(prayer?.id) }
 
     LaunchedEffect(prayer) {
-        languageCode = if (prayer != null) {
-            prayer.resolvedLanguageCode
-        } else {
-            val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
-            val default = all.firstOrNull { it.kind == PrayerKind.FranciscanCrown && it.isDefault }
-                ?: all.firstOrNull { it.kind == PrayerKind.FranciscanCrown }
-            default?.resolvedLanguageCode
-        }
+        languageCode = LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).code
         isRightToLeft = LanguageCatalog.resolve(languageCode).isRightToLeft
-        steps = services.engine.buildSteps(Prayer(kind = PrayerKind.FranciscanCrown, languageCode = languageCode ?: LanguageCatalog.defaultSentinel))
+        steps = services.engine.buildSteps(Prayer(kind = PrayerKind.FranciscanCrown, languageCode = LanguageCatalog.defaultSentinel))
         currentIndex = 0
         seasonColor = services.calendar.seasonColorToday()
 
         val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
-        val resolved = languageCode ?: LanguageCatalog.defaultCode
-        matchingFavoriteId = all.firstOrNull { it.kind == PrayerKind.FranciscanCrown && it.resolvedLanguageCode == resolved }?.id
+        matchingFavoriteId = all.firstOrNull { it.kind == PrayerKind.FranciscanCrown }?.id
     }
 
     val currentStep = steps.getOrNull(currentIndex)
@@ -86,7 +78,7 @@ fun FranciscanCrownFlowScreen(prayer: Prayer? = null, onBack: () -> Unit) {
         topBarActions = {
             IconButton(onClick = {
                 scope.launch {
-                    matchingFavoriteId = toggleFranciscanCrownFavorite(services, matchingFavoriteId, languageCode)
+                    matchingFavoriteId = toggleFranciscanCrownFavorite(services, matchingFavoriteId)
                 }
             }) {
                 Icon(
@@ -98,21 +90,17 @@ fun FranciscanCrownFlowScreen(prayer: Prayer? = null, onBack: () -> Unit) {
     )
 }
 
-private suspend fun toggleFranciscanCrownFavorite(services: AppServices, currentFavoriteId: String?, languageCode: String?): String? {
+private suspend fun toggleFranciscanCrownFavorite(services: AppServices, currentFavoriteId: String?): String? {
     if (currentFavoriteId != null) {
         services.presetStore.get(currentFavoriteId)?.let { services.presetStore.delete(it) }
         return null
     }
 
-    val resolved = languageCode ?: LanguageCatalog.defaultCode
-    val langName = LanguageCatalog.all.firstOrNull { it.code == resolved }?.nativeName ?: resolved
-    val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
-    val isFirst = all.none { it.kind == PrayerKind.FranciscanCrown }
     val newFavorite = Prayer(
-        name = "Franciscan Crown ($langName)",
+        name = PrayerKind.FranciscanCrown.defaultName,
         kind = PrayerKind.FranciscanCrown,
-        isDefault = isFirst,
-        languageCode = resolved,
+        isDefault = true,
+        languageCode = LanguageCatalog.defaultSentinel,
     )
     services.presetStore.save(newFavorite)
     return newFavorite.id

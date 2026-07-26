@@ -17,9 +17,9 @@ class MockPresetStore(initialFavorites: List<Prayer>? = null) : PresetStore {
 
     override suspend fun all(): List<Prayer> = favorites.sortedBy { it.name }
 
-    override suspend fun defaultPreset(): Prayer? {
-        val rosary = favorites.filter { it.kind == PrayerKind.Rosary }
-        return rosary.firstOrNull { it.isDefault } ?: rosary.firstOrNull()
+    override suspend fun defaultPreset(kind: PrayerKind): Prayer? {
+        val matching = favorites.filter { it.kind == kind }
+        return matching.firstOrNull { it.isDefault } ?: matching.firstOrNull()
     }
 
     override suspend fun get(id: String): Prayer? = favorites.firstOrNull { it.id == id }

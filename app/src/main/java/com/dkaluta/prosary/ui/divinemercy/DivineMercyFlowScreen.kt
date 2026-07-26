@@ -41,25 +41,17 @@ fun DivineMercyFlowScreen(prayer: Prayer? = null, onBack: () -> Unit) {
     var isRightToLeft by remember { mutableStateOf(false) }
     var seasonColor by remember { mutableStateOf(Color.Transparent) }
     var languageCode by remember { mutableStateOf<String?>(null) }
-    var matchingFavoriteId by remember { mutableStateOf<String?>(null) }
+    var matchingFavoriteId by remember { mutableStateOf(prayer?.id) }
 
     LaunchedEffect(prayer) {
-        languageCode = if (prayer != null) {
-            prayer.resolvedLanguageCode
-        } else {
-            val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
-            val default = all.firstOrNull { it.kind == PrayerKind.DivineMercyChaplet && it.isDefault }
-                ?: all.firstOrNull { it.kind == PrayerKind.DivineMercyChaplet }
-            default?.resolvedLanguageCode
-        }
+        languageCode = LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).code
         isRightToLeft = LanguageCatalog.resolve(languageCode).isRightToLeft
-        steps = services.engine.buildSteps(Prayer(kind = PrayerKind.DivineMercyChaplet, languageCode = languageCode ?: LanguageCatalog.defaultSentinel))
+        steps = services.engine.buildSteps(Prayer(kind = PrayerKind.DivineMercyChaplet, languageCode = LanguageCatalog.defaultSentinel))
         currentIndex = 0
         seasonColor = services.calendar.seasonColorToday()
 
         val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
-        val resolved = languageCode ?: LanguageCatalog.defaultCode
-        matchingFavoriteId = all.firstOrNull { it.kind == PrayerKind.DivineMercyChaplet && it.resolvedLanguageCode == resolved }?.id
+        matchingFavoriteId = all.firstOrNull { it.kind == PrayerKind.DivineMercyChaplet }?.id
     }
 
     val currentStep = steps.getOrNull(currentIndex)
@@ -87,7 +79,7 @@ fun DivineMercyFlowScreen(prayer: Prayer? = null, onBack: () -> Unit) {
         topBarActions = {
             IconButton(onClick = {
                 scope.launch {
-                    matchingFavoriteId = toggleDivineMercyFavorite(services, matchingFavoriteId, languageCode)
+                    matchingFavoriteId = toggleDivineMercyFavorite(services, matchingFavoriteId)
                 }
             }) {
                 Icon(
@@ -99,21 +91,17 @@ fun DivineMercyFlowScreen(prayer: Prayer? = null, onBack: () -> Unit) {
     )
 }
 
-private suspend fun toggleDivineMercyFavorite(services: AppServices, currentFavoriteId: String?, languageCode: String?): String? {
+private suspend fun toggleDivineMercyFavorite(services: AppServices, currentFavoriteId: String?): String? {
     if (currentFavoriteId != null) {
         services.presetStore.get(currentFavoriteId)?.let { services.presetStore.delete(it) }
         return null
     }
 
-    val resolved = languageCode ?: LanguageCatalog.defaultCode
-    val langName = LanguageCatalog.all.firstOrNull { it.code == resolved }?.nativeName ?: resolved
-    val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
-    val isFirst = all.none { it.kind == PrayerKind.DivineMercyChaplet }
     val newFavorite = Prayer(
-        name = "Divine Mercy Chaplet ($langName)",
+        name = PrayerKind.DivineMercyChaplet.defaultName,
         kind = PrayerKind.DivineMercyChaplet,
-        isDefault = isFirst,
-        languageCode = resolved,
+        isDefault = true,
+        languageCode = LanguageCatalog.defaultSentinel,
     )
     services.presetStore.save(newFavorite)
     return newFavorite.id
