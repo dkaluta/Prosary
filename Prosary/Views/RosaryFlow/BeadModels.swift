@@ -46,10 +46,13 @@ struct BeadInfo: Identifiable {
 
 /// One mystery group's column of decade beads, for the wide layout's grid (one column per
 /// group in the session, e.g. 3 columns for a 15-mystery session, so a long session grows wider
-/// rather than awkwardly taller).
+/// rather than awkwardly taller). `group` is nil for devotions whose decades aren't tied to a
+/// Rosary `Mystery` at all (Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet) — those
+/// sessions always collapse to a single ungrouped column, since there's no group-switching to
+/// grow multiple columns for in the first place.
 struct BeadColumn: Identifiable {
   let id = UUID()
-  var group: MysteryGroup
+  var group: MysteryGroup?
   var beads: [BeadInfo]
 }
 
@@ -124,15 +127,25 @@ struct BeadLayout {
 
     // One column per mystery group (in session order), each holding that group's decade
     // beads — a 15/20-mystery session grows into more columns instead of one long,
-    // awkwardly-tall strip. Single-group sessions naturally collapse to one column.
-    var decadeGroupOf: [Int: MysteryGroup] = [:]
+    // awkwardly-tall strip. Single-group sessions naturally collapse to one column. Decades
+    // with no mystery at all (Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet — none of
+    // which are "mysteries" in the Rosary sense) collapse into one shared ungrouped (nil-group)
+    // column instead of being dropped entirely, which is what an earlier version of this
+    // function did before it accounted for `s.mystery` being nil.
+    var decadeGroupOf: [Int: MysteryGroup?] = [:]
+    var decadesSeen = Set<Int>()
     for s in steps {
-      if let d = s.decadeIndex, let group = s.mystery?.group, decadeGroupOf[d] == nil {
-        decadeGroupOf[d] = group
-      }
+      guard let d = s.decadeIndex, !decadesSeen.contains(d) else { continue }
+      decadesSeen.insert(d)
+      // `decadeGroupOf[d] = s.mystery?.group` would be wrong here: when the right-hand side
+      // evaluates to nil, plain subscript assignment on a `[Key: Value?]` dictionary REMOVES
+      // the entry instead of storing an explicit `.some(nil)` — the exact case this needs to
+      // preserve (mystery-less decades). `updateValue(_:forKey:)` takes a non-optional `Value`
+      // parameter (here `Value` is itself `MysteryGroup?`), so it stores nil values unconditionally.
+      decadeGroupOf.updateValue(s.mystery?.group, forKey: d)
     }
 
-    var orderedGroups: [MysteryGroup] = []
+    var orderedGroups: [MysteryGroup?] = []
     for d in 0..<totalDecades {
       if let group = decadeGroupOf[d], !orderedGroups.contains(group) {
         orderedGroups.append(group)
@@ -162,8 +175,12 @@ struct BeadLayout {
         bottomBeads: [], showBottomBeads: false)
     }
 
+    // Hail-Marys-per-decade isn't always 10 (Seven Sorrows uses 7) — derive it from the
+    // session's own step data instead of hardcoding, so this stays correct for every devotion.
+    let hailMarysPerDecade = steps.compactMap(\.hailMaryIndexInDecade).max() ?? 10
+
     var bottom: [BeadInfo] = []
-    for h in 1...10 {
+    for h in 1...hailMarysPerDecade {
       let state: BeadState
       if currentIndex < firstHailMaryIndex {
         state = .upcoming
@@ -198,13 +215,21 @@ struct BeadLayout {
     if let currentDecade = decadeBeads.firstIndex(where: { $0.state == .current }) {
       var description = "Decade \(currentDecade + 1) of \(decadeBeads.count)"
       if showBottomBeads, let currentHailMary = bottomBeads.firstIndex(where: { $0.state == .current }) {
-        description += ", Hail Mary \(currentHailMary + 1) of 10"
+        description += ", Hail Mary \(currentHailMary + 1) of \(bottomBeads.count)"
       }
       return description
     }
 
     if let openingCross, openingCross.state == .current {
       return "Opening sign of the cross"
+    }
+
+    // Not on a decade, the opening cross, the antiphon, or the closing cross — one of the
+    // closing steps between the last decade and the closing cross (e.g. Franciscan Crown's/Seven
+    // Sorrows' extra closing Hail Marys and closing prayer) if every decade bead already reads
+    // completed, otherwise the pre-decade opening prayers.
+    if !decadeBeads.isEmpty && decadeBeads.allSatisfy({ $0.state == .completed }) {
+      return "Closing prayers"
     }
 
     return "Opening prayers"

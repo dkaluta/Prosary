@@ -11,6 +11,10 @@ enum AppRoute: Hashable {
   case favorites
   case about
   case angelus
+  case stationsOfTheCross
+  case franciscanCrown
+  case sevenSorrows
+  case divineMercyChaplet
   case jesusPrayerSetup
   case jesusPrayer(target: JesusPrayerTarget)
 }

@@ -160,5 +160,63 @@ extension MysteryTranslations {
         "et ait : Accipite, et comedite : hoc est corpus meum. Et accipiens calicem, gratias egit : et " +
         "dedit illis, dicens : Bibite ex hoc omnes. Hic est enim sanguis meus novi testamenti, qui pro " +
         "multis effundetur in remissionem peccatorum.\n\n— Matt. 26:26-28 (Vulgata)"),
+
+    // Franciscan Crown — the one Joy of the Seven Joys of Mary without an existing Rosary
+    // mystery to reuse (see FranciscanCrownCatalog.swift for the other six).
+    "franciscan_04_adoration_of_the_magi": MysteryText(
+      title: "Adoratio Magorum", fruit: "Generositas",
+      description:
+        "Qui cum audissent regem, abierunt, et ecce stella, quam viderant in oriente, antecedebat eos, " +
+        "usque dum veniens staret supra ubi erat puer. Videntes autem stellam gavisi sunt gaudio magno " +
+        "valde. Et intrantes domum, invenerunt puerum cum Maria matre ejus, et procidentes adoraverunt " +
+        "eum: et apertis thesauris suis obtulerunt ei munera, aurum, thus, et myrrham.\n\n— Matt. 2:9-11 (Vulgata)"),
+
+    // The Seven Sorrows of Mary — see the matching comment in MysteryTranslations+English.swift.
+    "seven_sorrows_01_prophecy_of_simeon": MysteryText(
+      title: "Simeonis Prophetia", fruit: "Fiducia in Voluntate Dei",
+      description:
+        "Et benedixit illis Simeon, et dixit ad Mariam matrem ejus: Ecce positus est hic in ruinam " +
+        "et in resurrectionem multorum in Israël, et in signum cui contradicetur: et tuam ipsius " +
+        "animam pertransibit gladius, ut revelentur ex multis cordibus " +
+        "cogitationes.\n\n— Luc. 2:34-35 (Vulgata)"),
+    "seven_sorrows_02_flight_into_egypt": MysteryText(
+      title: "Fuga in Aegyptum", fruit: "Fortitudo in Exsilio",
+      description:
+        "Qui cum recessissent, ecce angelus Domini apparuit in somnis Joseph, dicens: Surge, et " +
+        "accipe puerum, et matrem ejus, et fuge in Aegyptum, et esto ibi usque dum dicam tibi. " +
+        "Futurum est enim ut Herodes quaerat puerum ad perdendum eum. Qui consurgens accepit " +
+        "puerum et matrem ejus nocte, et secessit in Aegyptum.\n\n— Matt. 2:13-14 (Vulgata)"),
+    "seven_sorrows_03_loss_of_jesus_in_the_temple": MysteryText(
+      title: "Amissio Pueri Iesu in Templo", fruit: "Perseverantia in Christo Quaerendo",
+      description:
+        "Consummatisque diebus, cum redirent, remansit puer Jesus in Jerusalem, et non cognoverunt " +
+        "parentes ejus. Et non invenientes, regressi sunt in Jerusalem, " +
+        "requirentes eum.\n\n— Luc. 2:43-45 (Vulgata)"),
+    "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross": MysteryText(
+      title: "Maria Iesum in Via Crucis Obviam Habet", fruit: "Compassio",
+      description:
+        "In via quae ad Calvariam ducit, Maria inter turbam stat, et oculos Filii sub crucis onere " +
+        "curvati obviam habet — gladius quem Simeon praedixerat jam cor ejus ad tantum dolorem " +
+        "videndum pertransiens."),
+    "seven_sorrows_05_crucifixion": MysteryText(
+      title: "Maria ad Pedem Crucis", fruit: "Fortitudo in Dolore",
+      description:
+        "Stabant autem juxta crucem Jesu mater ejus, et soror matris ejus Maria Cleophae, et Maria " +
+        "Magdalene. Cum vidisset ergo Jesus matrem, et discipulum stantem, quem diligebat, dicit " +
+        "matri suae: Mulier, ecce filius tuus. Deinde dicit discipulo: Ecce mater tua. Et ex illa " +
+        "hora accepit eam discipulus in sua.\n\n— Ioan. 19:25-27 (Vulgata)"),
+    "seven_sorrows_06_descent_from_the_cross": MysteryText(
+      title: "Maria Corpus Iesu Recipit", fruit: "Resignatio Voluntati Dei",
+      description:
+        "Post haec autem rogavit Pilatum Joseph ab Arimathaea, ut tolleret corpus Jesu. Et permisit " +
+        "Pilatus. Venit ergo, et tulit corpus Jesu. Venit autem et Nicodemus, ferens mixturam " +
+        "myrrhae et aloës, quasi libras centum. Acceperunt ergo corpus Jesu, et ligaverunt illud " +
+        "linteis cum aromatibus, sicut mos est Judaeis sepelire.\n\n— Ioan. 19:38-40 (Vulgata)"),
+    "seven_sorrows_07_burial_of_jesus": MysteryText(
+      title: "Sepultura Iesu", fruit: "Spes in Resurrectione",
+      description:
+        "Erat autem in loco ubi crucifixus est, hortus: et in horto monumentum novum, in quo " +
+        "nondum quisquam positus erat. Ibi ergo propter Parasceven Judaeorum, quia juxta erat " +
+        "monumentum, posuerunt Jesum.\n\n— Ioan. 19:41-42 (Vulgata)"),
   ]
 }

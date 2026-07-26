@@ -146,13 +146,13 @@ struct JesusPrayerFlowView: View {
 #Preview("Bounded — 33") {
   NavigationStack {
     JesusPrayerFlowView(path: .constant(NavigationPath()), target: .count(33))
-      .environment(\.appServices, AppServices(presetStore: MockPresetStore(), rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), calendar: MockLiturgicalCalendar()))
+      .environment(\.appServices, AppServices(presetStore: MockPresetStore(), rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), stationsEngine: MockStationsEngine(), franciscanCrownEngine: MockFranciscanCrownEngine(), sevenSorrowsEngine: MockSevenSorrowsEngine(), divineMercyEngine: MockDivineMercyEngine(), calendar: MockLiturgicalCalendar()))
   }
 }
 
 #Preview("Unbounded") {
   NavigationStack {
     JesusPrayerFlowView(path: .constant(NavigationPath()), target: .unbounded)
-      .environment(\.appServices, AppServices(presetStore: MockPresetStore(), rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), calendar: MockLiturgicalCalendar()))
+      .environment(\.appServices, AppServices(presetStore: MockPresetStore(), rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), stationsEngine: MockStationsEngine(), franciscanCrownEngine: MockFranciscanCrownEngine(), sevenSorrowsEngine: MockSevenSorrowsEngine(), divineMercyEngine: MockDivineMercyEngine(), calendar: MockLiturgicalCalendar()))
   }
 }

@@ -49,6 +49,38 @@ struct AboutView: View {
           }
         }
 
+        section("Stations of the Cross Illustrations") {
+          Text("about.stationImages.intro")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+          ForEach(stationAttributions, id: \.self) { key in
+            Text(LocalizedStringKey(key))
+          }
+        }
+
+        section("Franciscan Crown Illustration") {
+          Text("about.franciscanCrownImages.intro")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+          Text(LocalizedStringKey("about.franciscanCrownImage.adorationOfTheMagi"))
+        }
+
+        section("Seven Sorrows Illustrations") {
+          Text("about.sevenSorrowsImages.intro")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+          ForEach(sevenSorrowsAttributions, id: \.self) { key in
+            Text(LocalizedStringKey(key))
+          }
+        }
+
+        section("Divine Mercy Illustration") {
+          Text("about.divineMercyImages.intro")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+          Text(LocalizedStringKey("about.divineMercyImage.divineMercy"))
+        }
+
         section("Scripture Sources") {
           Text("about.scriptureSources")
             .font(.footnote)
@@ -104,6 +136,25 @@ struct AboutView: View {
     "about.otherImage.christInLimbo",
     "about.otherImage.michael",
     "about.otherImage.headOfChrist",
+  ]
+
+  /// Placeholder illustrations for now (see about.stationImages.intro) — real public-domain
+  /// artwork with proper attribution hasn't been sourced yet for the 14 stations.
+  private let stationAttributions = [
+    "about.stationImage.station01", "about.stationImage.station02", "about.stationImage.station03",
+    "about.stationImage.station04", "about.stationImage.station05", "about.stationImage.station06",
+    "about.stationImage.station07", "about.stationImage.station08", "about.stationImage.station09",
+    "about.stationImage.station10", "about.stationImage.station11", "about.stationImage.station12",
+    "about.stationImage.station13", "about.stationImage.station14",
+  ]
+
+  /// Placeholder illustrations for now (see about.sevenSorrowsImages.intro) — real public-domain
+  /// artwork with proper attribution hasn't been sourced yet for any of the 7 sorrows.
+  private let sevenSorrowsAttributions = [
+    "about.sevenSorrowsImage.sorrow01", "about.sevenSorrowsImage.sorrow02",
+    "about.sevenSorrowsImage.sorrow03", "about.sevenSorrowsImage.sorrow04",
+    "about.sevenSorrowsImage.sorrow05", "about.sevenSorrowsImage.sorrow06",
+    "about.sevenSorrowsImage.sorrow07",
   ]
 }
 

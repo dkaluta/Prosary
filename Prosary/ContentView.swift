@@ -22,6 +22,14 @@ struct ContentView: View {
             AboutView()
           case .angelus:
             AngelusFlowView()
+          case .stationsOfTheCross:
+            StationsFlowView()
+          case .franciscanCrown:
+            FranciscanCrownFlowView()
+          case .sevenSorrows:
+            SevenSorrowsFlowView()
+          case .divineMercyChaplet:
+            DivineMercyFlowView()
           case .jesusPrayerSetup:
             JesusPrayerSetupView(path: $path)
           case .jesusPrayer(let target):

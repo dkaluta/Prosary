@@ -20,6 +20,10 @@ struct AppServices {
   var presetStore: PresetStore
   var rosaryEngine: RosaryEngine
   var angelusEngine: AngelusEngine
+  var stationsEngine: StationsEngine
+  var franciscanCrownEngine: FranciscanCrownEngine
+  var sevenSorrowsEngine: SevenSorrowsEngine
+  var divineMercyEngine: DivineMercyEngine
   var calendar: LiturgicalCalendarProviding
 
   static let modelContainer: ModelContainer = {
@@ -54,6 +58,10 @@ struct AppServices {
       presetStore: SwiftDataPresetStore(context: context),
       rosaryEngine: StubRosaryEngine(calendar: calendar),
       angelusEngine: StubAngelusEngine(calendar: calendar),
+      stationsEngine: StubStationsEngine(),
+      franciscanCrownEngine: StubFranciscanCrownEngine(calendar: calendar),
+      sevenSorrowsEngine: StubSevenSorrowsEngine(),
+      divineMercyEngine: StubDivineMercyEngine(),
       calendar: calendar
     )
   }()

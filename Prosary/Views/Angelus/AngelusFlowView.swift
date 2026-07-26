@@ -112,7 +112,7 @@ struct AngelusFlowView: View {
   let store = MockPresetStore()
   return NavigationStack {
     AngelusFlowView()
-      .environment(\.appServices, AppServices(presetStore: store, rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), calendar: MockLiturgicalCalendar()))
+      .environment(\.appServices, AppServices(presetStore: store, rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), stationsEngine: MockStationsEngine(), franciscanCrownEngine: MockFranciscanCrownEngine(), sevenSorrowsEngine: MockSevenSorrowsEngine(), divineMercyEngine: MockDivineMercyEngine(), calendar: MockLiturgicalCalendar()))
   }
 }
 
@@ -121,6 +121,6 @@ struct AngelusFlowView: View {
   let store = MockPresetStore(configs: [prayer])
   return NavigationStack {
     AngelusFlowView(prayer: prayer)
-      .environment(\.appServices, AppServices(presetStore: store, rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), calendar: MockLiturgicalCalendar()))
+      .environment(\.appServices, AppServices(presetStore: store, rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), stationsEngine: MockStationsEngine(), franciscanCrownEngine: MockFranciscanCrownEngine(), sevenSorrowsEngine: MockSevenSorrowsEngine(), divineMercyEngine: MockDivineMercyEngine(), calendar: MockLiturgicalCalendar()))
   }
 }

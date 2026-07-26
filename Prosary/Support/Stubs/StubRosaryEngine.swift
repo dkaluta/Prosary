@@ -111,10 +111,7 @@ struct StubRosaryEngine: RosaryEngine {
     }
 
     if let antiphon = resolveMarianAntiphon(for: rosary) {
-      var antiphonStep = buildAntiphonStep(antiphon, text: text)
-      antiphonStep.isAntiphon = true
-      antiphonStep.imageOverrideKey = "madonna_and_child"
-      steps.append(antiphonStep)
+      steps.append(MarianAntiphonBuilder.buildStep(antiphon, languageCode: lang))
     }
 
     if rosary.includeStMichaelPrayer {
@@ -137,44 +134,6 @@ struct StubRosaryEngine: RosaryEngine {
     case .none: return nil
     case .seasonal: return calendar.seasonalMarianAntiphonToday()
     case let chosen: return chosen
-    }
-  }
-
-  private enum AntiphonStyle { case standard, paschal, standalone }
-
-  private func buildAntiphonStep(_ antiphon: MarianAntiphonOption, text: (PrayerKey) -> String) -> RosaryStep {
-    let (titleKey, style): (PrayerKey, AntiphonStyle) = {
-      switch antiphon {
-      case .salveRegina:          return (.salveRegina, .standard)
-      case .almaRedemptorisMater: return (.almaRedemptorisMater, .standard)
-      case .aveReginaCaelorum:    return (.aveReginaCaelorum, .standard)
-      case .reginaCaeli:          return (.reginaCaeli, .paschal)
-      case .subTuumPraesidium:    return (.subTuumPraesidium, .standalone)
-      case .none, .seasonal:      return (.salveRegina, .standard)
-      }
-    }()
-
-    let body: String
-    switch style {
-    case .standalone:
-      body = text(titleKey)
-    case .standard:
-      body = "\(text(titleKey))\n\nV. \(text(.versiculumStandard))\nR. \(text(.responsiumStandard))\n\n\(text(.collectaStandard))"
-    case .paschal:
-      body = "\(text(titleKey))\n\nV. \(text(.versiculumPaschale))\nR. \(text(.responsiumPaschale))\n\n\(text(.collectaPaschale))"
-    }
-
-    return RosaryStep(title: antiphonHeader(for: antiphon), subtitle: nil, body: body)
-  }
-
-  private func antiphonHeader(for antiphon: MarianAntiphonOption) -> String {
-    switch antiphon {
-    case .salveRegina:          return "Salve Regina"
-    case .almaRedemptorisMater: return "Alma Redemptoris Mater"
-    case .aveReginaCaelorum:    return "Ave Regina Caelorum"
-    case .reginaCaeli:          return "Regina Caeli"
-    case .subTuumPraesidium:    return "Sub Tuum Praesidium"
-    case .none, .seasonal:      return "Marian Antiphon"
     }
   }
 }

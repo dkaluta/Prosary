@@ -19,12 +19,20 @@ struct FavoritesListView: View {
 
   private var angelusAccent: Color { .adaptive(light: "#8B6914", dark: "#C49B0D") }
   private var jesusPrayerAccent: Color { .adaptive(light: "#8B1A1A", dark: "#C62828") }
+  private var stationsAccent: Color { .adaptive(light: "#5C2D91", dark: "#8756B5") }
+  private var franciscanCrownAccent: Color { .adaptive(light: "#6B4226", dark: "#A67C52") }
+  private var sevenSorrowsAccent: Color { .adaptive(light: "#6B0F1A", dark: "#B33951") }
+  private var divineMercyAccent: Color { .adaptive(light: "#C41E3A", dark: "#E8637A") }
 
   func accentColor(for kind: PrayerKind) -> Color {
     switch kind {
-    case .rosary:      return .brandPrimary
-    case .angelus:     return angelusAccent
-    case .jesusPrayer: return jesusPrayerAccent
+    case .rosary:             return .brandPrimary
+    case .angelus:            return angelusAccent
+    case .jesusPrayer:        return jesusPrayerAccent
+    case .stationsOfTheCross: return stationsAccent
+    case .franciscanCrown:    return franciscanCrownAccent
+    case .sevenSorrows:       return sevenSorrowsAccent
+    case .divineMercyChaplet: return divineMercyAccent
     }
   }
 
@@ -134,6 +142,14 @@ private struct FavoriteCard: View {
       return prayer.languageDisplayName
     case .jesusPrayer:
       return "\(prayer.jesusPrayer.targetDisplayName) • \(prayer.languageDisplayName)"
+    case .stationsOfTheCross:
+      return prayer.languageDisplayName
+    case .franciscanCrown:
+      return prayer.languageDisplayName
+    case .sevenSorrows:
+      return prayer.languageDisplayName
+    case .divineMercyChaplet:
+      return prayer.languageDisplayName
     }
   }
 

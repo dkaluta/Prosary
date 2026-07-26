@@ -76,9 +76,13 @@ struct ReminderScheduler {
 
   private static func notificationBody(for prayer: Prayer) -> String {
     switch prayer.kind {
-    case .rosary:      return "Time to pray the Rosary."
-    case .angelus:     return "The Angelus bell is ringing."
-    case .jesusPrayer: return "Time for the Jesus Prayer."
+    case .rosary:             return "Time to pray the Rosary."
+    case .angelus:            return "The Angelus bell is ringing."
+    case .jesusPrayer:        return "Time for the Jesus Prayer."
+    case .stationsOfTheCross: return "Time to pray the Stations of the Cross."
+    case .franciscanCrown:    return "Time to pray the Franciscan Crown."
+    case .sevenSorrows:       return "Time to pray the Seven Sorrows."
+    case .divineMercyChaplet: return "Time to pray the Divine Mercy Chaplet."
     }
   }
 }

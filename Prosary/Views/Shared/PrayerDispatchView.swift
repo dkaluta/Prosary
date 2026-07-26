@@ -26,6 +26,14 @@ struct PrayerDispatchView: View {
           AngelusFlowView(prayer: prayer)
         case .jesusPrayer:
           JesusPrayerFlowView(path: $path, prayer: prayer)
+        case .stationsOfTheCross:
+          StationsFlowView(prayer: prayer)
+        case .franciscanCrown:
+          FranciscanCrownFlowView(prayer: prayer)
+        case .sevenSorrows:
+          SevenSorrowsFlowView(prayer: prayer)
+        case .divineMercyChaplet:
+          DivineMercyFlowView(prayer: prayer)
         }
       } else {
         ProgressView()

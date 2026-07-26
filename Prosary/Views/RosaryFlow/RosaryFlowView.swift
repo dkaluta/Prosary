@@ -77,7 +77,7 @@ struct RosaryFlowView: View {
   let store = MockPresetStore(configs: [prayer])
   return NavigationStack {
     RosaryFlowView(prayer: prayer)
-      .environment(\.appServices, AppServices(presetStore: store, rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), calendar: MockLiturgicalCalendar()))
+      .environment(\.appServices, AppServices(presetStore: store, rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), stationsEngine: MockStationsEngine(), franciscanCrownEngine: MockFranciscanCrownEngine(), sevenSorrowsEngine: MockSevenSorrowsEngine(), divineMercyEngine: MockDivineMercyEngine(), calendar: MockLiturgicalCalendar()))
   }
 }
 
@@ -86,7 +86,7 @@ struct RosaryFlowView: View {
   let store = MockPresetStore(configs: [prayer])
   return NavigationStack {
     RosaryFlowView(prayer: prayer)
-      .environment(\.appServices, AppServices(presetStore: store, rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), calendar: MockLiturgicalCalendar()))
+      .environment(\.appServices, AppServices(presetStore: store, rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), stationsEngine: MockStationsEngine(), franciscanCrownEngine: MockFranciscanCrownEngine(), sevenSorrowsEngine: MockSevenSorrowsEngine(), divineMercyEngine: MockDivineMercyEngine(), calendar: MockLiturgicalCalendar()))
   }
   .environment(\.horizontalSizeClass, .regular)
   .frame(width: 900, height: 600)
@@ -97,6 +97,6 @@ struct RosaryFlowView: View {
   let store = MockPresetStore(configs: [prayer])
   return NavigationStack {
     RosaryFlowView(prayer: prayer)
-      .environment(\.appServices, AppServices(presetStore: store, rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), calendar: MockLiturgicalCalendar()))
+      .environment(\.appServices, AppServices(presetStore: store, rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), stationsEngine: MockStationsEngine(), franciscanCrownEngine: MockFranciscanCrownEngine(), sevenSorrowsEngine: MockSevenSorrowsEngine(), divineMercyEngine: MockDivineMercyEngine(), calendar: MockLiturgicalCalendar()))
   }
 }
