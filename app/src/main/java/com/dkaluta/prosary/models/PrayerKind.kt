@@ -5,13 +5,21 @@ package com.dkaluta.prosary.models
 enum class PrayerKind {
     Rosary,
     Angelus,
-    JesusPrayer;
+    JesusPrayer,
+    StationsOfTheCross,
+    FranciscanCrown,
+    SevenSorrows,
+    DivineMercyChaplet;
 
     val displayName: String
         get() = when (this) {
             Rosary -> "Rosary"
             Angelus -> "Angelus"
             JesusPrayer -> "Jesus Prayer"
+            StationsOfTheCross -> "Stations of the Cross"
+            FranciscanCrown -> "Franciscan Crown"
+            SevenSorrows -> "Seven Sorrows"
+            DivineMercyChaplet -> "Divine Mercy Chaplet"
         }
 
     /** Default name suggested when the user creates a new favorite of this kind. */
@@ -20,5 +28,9 @@ enum class PrayerKind {
             Rosary -> "My Rosary"
             Angelus -> "Angelus"
             JesusPrayer -> "Jesus Prayer"
+            StationsOfTheCross -> "Stations of the Cross"
+            FranciscanCrown -> "Franciscan Crown"
+            SevenSorrows -> "Seven Sorrows"
+            DivineMercyChaplet -> "Divine Mercy Chaplet"
         }
 }

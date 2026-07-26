@@ -11,13 +11,17 @@ import com.dkaluta.prosary.models.jesusPrayerTargetFromRouteValue
 import com.dkaluta.prosary.models.toRouteValue
 import com.dkaluta.prosary.ui.about.AboutScreen
 import com.dkaluta.prosary.ui.angelus.AngelusFlowScreen
+import com.dkaluta.prosary.ui.divinemercy.DivineMercyFlowScreen
 import com.dkaluta.prosary.ui.favorites.FavoriteEditorScreen
 import com.dkaluta.prosary.ui.favorites.FavoritesListScreen
+import com.dkaluta.prosary.ui.franciscancrown.FranciscanCrownFlowScreen
 import com.dkaluta.prosary.ui.home.HomeScreen
 import com.dkaluta.prosary.ui.jesusprayer.JesusPrayerFlowScreen
 import com.dkaluta.prosary.ui.jesusprayer.JesusPrayerSetupScreen
+import com.dkaluta.prosary.ui.sevensorrows.SevenSorrowsFlowScreen
 import com.dkaluta.prosary.ui.settings.SettingsScreen
 import com.dkaluta.prosary.ui.shared.PrayerDispatchScreen
+import com.dkaluta.prosary.ui.stations.StationsFlowScreen
 
 private object Routes {
     const val Home = "home"
@@ -30,6 +34,10 @@ private object Routes {
     const val Settings = "settings"
     const val Prayer = "prayer/{id}"
     const val Angelus = "angelus"
+    const val StationsOfTheCross = "stationsOfTheCross"
+    const val FranciscanCrown = "franciscanCrown"
+    const val SevenSorrows = "sevenSorrows"
+    const val DivineMercyChaplet = "divineMercyChaplet"
     const val JesusPrayerSetup = "jesusPrayer/setup"
     const val JesusPrayerFlow = "jesusPrayer/{target}"
 
@@ -56,12 +64,32 @@ fun ProsaryApp() {
                 onOpenAbout = { navController.navigate(Routes.About) },
                 onOpenSettings = { navController.navigate(Routes.Settings) },
                 onOpenAngelus = { navController.navigate(Routes.Angelus) },
+                onOpenStationsOfTheCross = { navController.navigate(Routes.StationsOfTheCross) },
+                onOpenFranciscanCrown = { navController.navigate(Routes.FranciscanCrown) },
+                onOpenSevenSorrows = { navController.navigate(Routes.SevenSorrows) },
+                onOpenDivineMercyChaplet = { navController.navigate(Routes.DivineMercyChaplet) },
                 onOpenJesusPrayerSetup = { navController.navigate(Routes.JesusPrayerSetup) },
             )
         }
 
         composable(Routes.Angelus) {
             AngelusFlowScreen(onBack = { navController.popBackStack() })
+        }
+
+        composable(Routes.StationsOfTheCross) {
+            StationsFlowScreen(onBack = { navController.popBackStack() })
+        }
+
+        composable(Routes.FranciscanCrown) {
+            FranciscanCrownFlowScreen(onBack = { navController.popBackStack() })
+        }
+
+        composable(Routes.SevenSorrows) {
+            SevenSorrowsFlowScreen(onBack = { navController.popBackStack() })
+        }
+
+        composable(Routes.DivineMercyChaplet) {
+            DivineMercyFlowScreen(onBack = { navController.popBackStack() })
         }
 
         composable(Routes.JesusPrayerSetup) {

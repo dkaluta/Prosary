@@ -140,10 +140,7 @@ class MockRosaryEngine(
 
         val antiphon = resolveMarianAntiphon(options)
         if (antiphon != null) {
-            val antiphonStep = buildAntiphonStep(antiphon, ::text)
-            antiphonStep.isAntiphon = true
-            antiphonStep.imageOverrideKey = "madonna_and_child"
-            steps.add(antiphonStep)
+            steps.add(MarianAntiphonBuilder.buildStep(antiphon, lang))
         }
 
         if (options.includeStMichaelPrayer) {
@@ -167,42 +164,6 @@ class MockRosaryEngine(
         MarianAntiphonOption.None -> null
         MarianAntiphonOption.Seasonal -> calendar.seasonalMarianAntiphonToday()
         else -> options.marianAntiphon
-    }
-
-    private enum class AntiphonStyle { Standard, Paschal, Standalone }
-
-    private fun buildAntiphonStep(antiphon: MarianAntiphonOption, text: (PrayerKey) -> String): RosaryStep {
-        val (titleKey, style) = when (antiphon) {
-            MarianAntiphonOption.SalveRegina -> PrayerKey.SalveRegina to AntiphonStyle.Standard
-            MarianAntiphonOption.AlmaRedemptorisMater -> PrayerKey.AlmaRedemptorisMater to AntiphonStyle.Standard
-            MarianAntiphonOption.AveReginaCaelorum -> PrayerKey.AveReginaCaelorum to AntiphonStyle.Standard
-            MarianAntiphonOption.ReginaCaeli -> PrayerKey.ReginaCaeli to AntiphonStyle.Paschal
-            // Sub Tuum Praesidium is the Church's oldest known Marian prayer and is traditionally
-            // prayed on its own, without the versicle/response/collect used after the four Office antiphons.
-            MarianAntiphonOption.SubTuumPraesidium -> PrayerKey.SubTuumPraesidium to AntiphonStyle.Standalone
-            MarianAntiphonOption.None, MarianAntiphonOption.Seasonal -> PrayerKey.SalveRegina to AntiphonStyle.Standard
-        }
-
-        val body = when (style) {
-            AntiphonStyle.Standalone -> text(titleKey)
-            AntiphonStyle.Standard ->
-                "${text(titleKey)}\n\nV. ${text(PrayerKey.VersiculumStandard)}\nR. ${text(PrayerKey.ResponsiumStandard)}\n\n" +
-                    text(PrayerKey.CollectaStandard)
-            AntiphonStyle.Paschal ->
-                "${text(titleKey)}\n\nV. ${text(PrayerKey.VersiculumPaschale)}\nR. ${text(PrayerKey.ResponsiumPaschale)}\n\n" +
-                    text(PrayerKey.CollectaPaschale)
-        }
-
-        return RosaryStep(title = antiphonHeader(antiphon), body = body)
-    }
-
-    private fun antiphonHeader(antiphon: MarianAntiphonOption): String = when (antiphon) {
-        MarianAntiphonOption.SalveRegina -> "Salve Regina"
-        MarianAntiphonOption.AlmaRedemptorisMater -> "Alma Redemptoris Mater"
-        MarianAntiphonOption.AveReginaCaelorum -> "Ave Regina Caelorum"
-        MarianAntiphonOption.ReginaCaeli -> "Regina Caeli"
-        MarianAntiphonOption.SubTuumPraesidium -> "Sub Tuum Praesidium"
-        MarianAntiphonOption.None, MarianAntiphonOption.Seasonal -> "Marian Antiphon"
     }
 
     companion object {

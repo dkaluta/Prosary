@@ -21,10 +21,13 @@ data class BeadInfo(
 
 /** One mystery group's column of decade beads, for the wide layout's grid (one column per
  * group in the session, e.g. 3 columns for a 15-mystery session, so a long session grows wider
- * rather than awkwardly taller). */
+ * rather than awkwardly taller). [group] is null for devotions whose decades aren't tied to a
+ * Rosary [MysteryGroup] at all (Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet) — those
+ * sessions always collapse to a single ungrouped column, since there's no group-switching to
+ * grow multiple columns for in the first place. */
 data class BeadColumn(
     val id: String = UUID.randomUUID().toString(),
-    val group: MysteryGroup,
+    val group: MysteryGroup?,
     val beads: List<BeadInfo>,
 )
 
@@ -65,7 +68,7 @@ data class BeadLayout(
                 if (showBottomBeads) {
                     val currentHailMary = bottomBeads.indexOfFirst { it.state == BeadState.Current }
                     if (currentHailMary >= 0) {
-                        description += ", Hail Mary ${currentHailMary + 1} of 10"
+                        description += ", Hail Mary ${currentHailMary + 1} of ${bottomBeads.size}"
                     }
                 }
                 return description
@@ -73,6 +76,14 @@ data class BeadLayout(
 
             if (openingCross?.state == BeadState.Current) {
                 return "Opening sign of the cross"
+            }
+
+            // Not on a decade, the opening cross, the antiphon, or the closing cross — one of the
+            // closing steps between the last decade and the closing cross (e.g. Franciscan
+            // Crown's/Seven Sorrows' extra closing Hail Marys and closing prayer) if every decade
+            // bead already reads completed, otherwise the pre-decade opening prayers.
+            if (decadeBeads.isNotEmpty() && decadeBeads.all { it.state == BeadState.Completed }) {
+                return "Closing prayers"
             }
 
             return "Opening prayers"
@@ -136,26 +147,34 @@ data class BeadLayout(
             // One column per mystery group (in session order), each holding that group's decade
             // beads — a 15/20-mystery session grows into more columns instead of one long,
             // awkwardly-tall strip. Single-group sessions naturally collapse to one column.
-            val decadeGroupOf = mutableMapOf<Int, MysteryGroup>()
+            // Decades with no mystery at all (Franciscan Crown, Seven Sorrows, Divine Mercy
+            // Chaplet — none of which are "mysteries" in the Rosary sense) collapse into one
+            // shared ungrouped (null-group) column instead of being dropped entirely. Unlike
+            // Swift, Kotlin's MutableMap.put/subscript-assignment stores an explicit null value
+            // correctly (it doesn't remove the entry), so containsKey is enough to distinguish
+            // "decade not yet recorded" from "decade recorded with no mystery".
+            val decadeGroupOf = mutableMapOf<Int, MysteryGroup?>()
             for (s in steps) {
                 val d = s.decadeIndex
-                val group = s.mystery?.group
-                if (d != null && group != null && !decadeGroupOf.containsKey(d)) {
-                    decadeGroupOf[d] = group
+                if (d != null && !decadeGroupOf.containsKey(d)) {
+                    decadeGroupOf[d] = s.mystery?.group
                 }
             }
 
-            val orderedGroups = mutableListOf<MysteryGroup>()
+            val orderedGroups = mutableListOf<MysteryGroup?>()
             for (d in 0 until totalDecades) {
-                val group = decadeGroupOf[d]
-                if (group != null && !orderedGroups.contains(group)) {
-                    orderedGroups.add(group)
+                if (decadeGroupOf.containsKey(d)) {
+                    val group = decadeGroupOf[d]
+                    if (!orderedGroups.contains(group)) {
+                        orderedGroups.add(group)
+                    }
                 }
             }
 
             val groupColumnBeads = orderedGroups.associateWith { mutableListOf<BeadInfo>() }
             for (d in 0 until totalDecades) {
-                val group = decadeGroupOf[d] ?: continue
+                if (!decadeGroupOf.containsKey(d)) continue
+                val group = decadeGroupOf[d]
                 groupColumnBeads[group]?.add(decadeBeads[d])
             }
             val groupColumns = orderedGroups.map { BeadColumn(group = it, beads = groupColumnBeads[it].orEmpty()) }
@@ -180,7 +199,11 @@ data class BeadLayout(
                 )
             }
 
-            val bottom = (1..10).map { h ->
+            // Hail-Marys-per-decade isn't always 10 (Seven Sorrows uses 7) — derive it from the
+            // session's own step data instead of hardcoding, so this stays correct for every devotion.
+            val hailMarysPerDecade = steps.mapNotNull { it.hailMaryIndexInDecade }.maxOrNull() ?: 10
+
+            val bottom = (1..hailMarysPerDecade).map { h ->
                 val current = step.hailMaryIndexInDecade
                 val state = if (currentIndex < firstHailMaryIndex) {
                     BeadState.Upcoming

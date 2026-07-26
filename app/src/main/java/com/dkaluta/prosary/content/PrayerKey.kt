@@ -54,4 +54,30 @@ enum class PrayerKey {
 
     /** The Jesus Prayer ("Lord Jesus Christ, Son of God, have mercy on me, a sinner."). */
     OratioIesu,
+
+    // Stations of the Cross — the versicle/response repeated before each of the 14 stations, plus
+    // its own opening and closing prayers. Per-station meditation text lives in
+    // StationsTranslations (mirroring how MysteryTranslations holds per-mystery text), not here.
+    StationsOpeningPrayer,
+    StationsVersicle,
+    StationsResponse,
+    StationsClosingPrayer,
+
+    // Seven Sorrows (Servite Rosary) — the versicle/response and closing collect prayed after the
+    // 3 closing Hail Marys for Our Lady's tears. Unlike the Rosary's Marian antiphon, this closing
+    // is fixed, not a user choice (see StubSevenSorrowsEngine). Per-sorrow meditation text lives
+    // in MysteryTranslations (reusing the same imageKey-keyed lookup Franciscan Crown's Adoration
+    // of the Magi uses), not here.
+    SevenSorrowsVersicle,
+    SevenSorrowsResponse,
+    SevenSorrowsCollect,
+
+    // The Divine Mercy Chaplet — the Our-Father-bead offering, the Hail-Mary-bead petition (each
+    // repeated identically across all 5 decades, unlike the Rosary/Franciscan Crown/Seven
+    // Sorrows, which vary per decade), and the closing acclamation (repeated 3 times). The
+    // opening (Sign of the Cross, Our Father, Hail Mary, Apostles' Creed) reuses existing keys —
+    // see MockDivineMercyEngine.
+    DivineMercyOffering,
+    DivineMercyPetition,
+    DivineMercyClosingAcclamation,
 }

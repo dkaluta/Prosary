@@ -12,6 +12,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.DirectionsWalk
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Circle
 import androidx.compose.material.icons.filled.Delete
@@ -19,6 +20,9 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.WaterDrop
+import androidx.compose.material.icons.filled.WbSunny
+import androidx.compose.material.icons.filled.WorkspacePremium
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -58,12 +62,20 @@ private fun iconFor(kind: PrayerKind): ImageVector = when (kind) {
     PrayerKind.Rosary -> Icons.Filled.Circle
     PrayerKind.Angelus -> Icons.Filled.Notifications
     PrayerKind.JesusPrayer -> Icons.Filled.Favorite
+    PrayerKind.StationsOfTheCross -> Icons.AutoMirrored.Filled.DirectionsWalk
+    PrayerKind.FranciscanCrown -> Icons.Filled.WorkspacePremium
+    PrayerKind.SevenSorrows -> Icons.Filled.WaterDrop
+    PrayerKind.DivineMercyChaplet -> Icons.Filled.WbSunny
 }
 
 private fun accentFor(kind: PrayerKind): Color = when (kind) {
     PrayerKind.Rosary -> Color(0xFF7A1F3D)
     PrayerKind.Angelus -> Color(0xFF8B6914)
     PrayerKind.JesusPrayer -> Color(0xFF8B1A1A)
+    PrayerKind.StationsOfTheCross -> Color(0xFF5C2D91)
+    PrayerKind.FranciscanCrown -> Color(0xFF6B4226)
+    PrayerKind.SevenSorrows -> Color(0xFF6B0F1A)
+    PrayerKind.DivineMercyChaplet -> Color(0xFFC41E3A)
 }
 
 /** Card-layout list of saved prayer favorites grouped by kind. Replaces the old presets-only
@@ -175,6 +187,10 @@ private fun FavoriteCard(
         PrayerKind.Rosary -> "${prayer.rosary.mysterySelectionSummary} • ${prayer.languageDisplayName}"
         PrayerKind.Angelus -> prayer.languageDisplayName
         PrayerKind.JesusPrayer -> "${prayer.jesusPrayer.targetDisplayName} • ${prayer.languageDisplayName}"
+        PrayerKind.StationsOfTheCross -> prayer.languageDisplayName
+        PrayerKind.FranciscanCrown -> prayer.languageDisplayName
+        PrayerKind.SevenSorrows -> prayer.languageDisplayName
+        PrayerKind.DivineMercyChaplet -> prayer.languageDisplayName
     }
 
     Column(

@@ -15,8 +15,12 @@ import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.services.LocalAppServices
 import com.dkaluta.prosary.ui.angelus.AngelusFlowScreen
+import com.dkaluta.prosary.ui.divinemercy.DivineMercyFlowScreen
+import com.dkaluta.prosary.ui.franciscancrown.FranciscanCrownFlowScreen
 import com.dkaluta.prosary.ui.jesusprayer.JesusPrayerFlowScreen
 import com.dkaluta.prosary.ui.rosaryflow.RosaryFlowScreen
+import com.dkaluta.prosary.ui.sevensorrows.SevenSorrowsFlowScreen
+import com.dkaluta.prosary.ui.stations.StationsFlowScreen
 
 /** Resolves a [Prayer] by id from the store, forwards to the appropriate flow screen based on
  * [Prayer.kind]. Used when navigating to a saved favorite via the `prayer/{id}` route. */
@@ -43,5 +47,9 @@ fun PrayerDispatchScreen(prayerId: String, onBack: () -> Unit) {
         // Launched directly from Home (one nav level), unlike the Setup-picker path — Finish
         // just pops back once, same as Rosary/Angelus.
         PrayerKind.JesusPrayer -> JesusPrayerFlowScreen(prayer = resolved, onNavigateUp = onBack, onFinish = onBack)
+        PrayerKind.StationsOfTheCross -> StationsFlowScreen(prayer = resolved, onBack = onBack)
+        PrayerKind.FranciscanCrown -> FranciscanCrownFlowScreen(prayer = resolved, onBack = onBack)
+        PrayerKind.SevenSorrows -> SevenSorrowsFlowScreen(prayer = resolved, onBack = onBack)
+        PrayerKind.DivineMercyChaplet -> DivineMercyFlowScreen(prayer = resolved, onBack = onBack)
     }
 }
