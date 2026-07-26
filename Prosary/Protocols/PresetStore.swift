@@ -13,9 +13,9 @@ protocol PresetStore {
   /// All saved favorites, in any order.
   func all() async throws -> [Prayer]
 
-  /// The starred (isDefault) Rosary favorite, or the first Rosary favorite if none is
-  /// starred, or nil if no Rosary favorites exist at all.
-  func defaultPreset() async throws -> Prayer?
+  /// The starred (isDefault) favorite of `kind`, or the first favorite of that kind if none is
+  /// starred, or nil if no favorites of that kind exist at all.
+  func defaultPreset(kind: PrayerKind) async throws -> Prayer?
 
   func get(id: Prayer.ID) async throws -> Prayer?
 

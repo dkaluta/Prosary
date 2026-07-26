@@ -18,7 +18,7 @@ struct StubPresetStore: PresetStore {
   }
 
   func all() async throws -> [Prayer] { try await inner.all() }
-  func defaultPreset() async throws -> Prayer? { try await inner.defaultPreset() }
+  func defaultPreset(kind: PrayerKind) async throws -> Prayer? { try await inner.defaultPreset(kind: kind) }
   func get(id: Prayer.ID) async throws -> Prayer? { try await inner.get(id: id) }
   func save(_ prayer: Prayer) async throws { try await inner.save(prayer) }
   func delete(_ prayer: Prayer) async throws { try await inner.delete(prayer) }

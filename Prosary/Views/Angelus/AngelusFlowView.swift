@@ -6,8 +6,9 @@
 import SwiftUI
 
 struct AngelusFlowView: View {
-  /// If provided (launched from Favorites), use this prayer's language and track it for the
-  /// star button. If nil (launched from Home with no Angelus favorite), use the app default.
+  /// If provided (launched from Home/Favorites with an existing favorite), seeds the star as
+  /// already-favorited immediately, without waiting on the initial favorites fetch. The Angelus
+  /// has no per-favorite language anymore — it always follows the app default.
   var prayer: Prayer? = nil
 
   @Environment(\.appServices) private var services
@@ -49,17 +50,11 @@ struct AngelusFlowView: View {
   }
 
   private func load() async {
-    if let prayer {
-      languageCode = prayer.resolvedLanguageCode
-    } else {
-      let all = (try? await services.presetStore.all()) ?? []
-      let defaultAngelus = all.first { $0.kind == .angelus && $0.isDefault }
-        ?? all.first { $0.kind == .angelus }
-      languageCode = defaultAngelus?.resolvedLanguageCode
-    }
+    matchingFavoriteId = prayer?.id
+    languageCode = LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).code
 
     isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
-    steps = services.engine.buildSteps(for: Prayer(kind: .angelus, languageCode: languageCode ?? LanguageCatalog.defaultSentinel))
+    steps = services.engine.buildSteps(for: Prayer(kind: .angelus, languageCode: LanguageCatalog.defaultSentinel))
     currentIndex = 0
     seasonColor = services.calendar.seasonColorToday()
     await checkIfFavorited()
@@ -67,10 +62,7 @@ struct AngelusFlowView: View {
 
   private func checkIfFavorited() async {
     let all = (try? await services.presetStore.all()) ?? []
-    let resolved = languageCode ?? LanguageCatalog.defaultCode
-    matchingFavoriteId = all.first {
-      $0.kind == .angelus && $0.resolvedLanguageCode == resolved
-    }?.id
+    matchingFavoriteId = all.first { $0.kind == .angelus }?.id
   }
 
   private func toggleFavorite() {
@@ -81,15 +73,11 @@ struct AngelusFlowView: View {
         }
         matchingFavoriteId = nil
       } else {
-        let resolved = languageCode ?? LanguageCatalog.defaultCode
-        let langName = LanguageCatalog.all.first { $0.code == resolved }?.nativeName ?? resolved
-        let all = (try? await services.presetStore.all()) ?? []
-        let isFirst = !all.contains { $0.kind == .angelus }
         let newFavorite = Prayer(
-          name: "Angelus (\(langName))",
+          name: PrayerKind.angelus.defaultName,
           kind: .angelus,
-          isDefault: isFirst,
-          languageCode: resolved
+          isDefault: true,
+          languageCode: LanguageCatalog.defaultSentinel
         )
         try? await services.presetStore.save(newFavorite)
         matchingFavoriteId = newFavorite.id

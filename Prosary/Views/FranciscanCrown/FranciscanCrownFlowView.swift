@@ -10,9 +10,9 @@
 import SwiftUI
 
 struct FranciscanCrownFlowView: View {
-  /// If provided (launched from Favorites), use this prayer's language and track it for the
-  /// star button. If nil (launched from Home with no Franciscan Crown favorite), use the app
-  /// default language.
+  /// If provided (launched from Home/Favorites with an existing favorite), seeds the star as
+  /// already-favorited immediately, without waiting on the initial favorites fetch. The
+  /// Franciscan Crown has no per-favorite language anymore — it always follows the app default.
   var prayer: Prayer? = nil
 
   @Environment(\.appServices) private var services
@@ -71,17 +71,11 @@ struct FranciscanCrownFlowView: View {
   }
 
   private func load() async {
-    if let prayer {
-      languageCode = prayer.resolvedLanguageCode
-    } else {
-      let all = (try? await services.presetStore.all()) ?? []
-      let defaultFranciscanCrown = all.first { $0.kind == .franciscanCrown && $0.isDefault }
-        ?? all.first { $0.kind == .franciscanCrown }
-      languageCode = defaultFranciscanCrown?.resolvedLanguageCode
-    }
+    matchingFavoriteId = prayer?.id
+    languageCode = LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).code
 
     isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
-    steps = services.engine.buildSteps(for: Prayer(kind: .franciscanCrown, languageCode: languageCode ?? LanguageCatalog.defaultSentinel))
+    steps = services.engine.buildSteps(for: Prayer(kind: .franciscanCrown, languageCode: LanguageCatalog.defaultSentinel))
     currentIndex = 0
     seasonColor = services.calendar.seasonColorToday()
     await checkIfFavorited()
@@ -89,10 +83,7 @@ struct FranciscanCrownFlowView: View {
 
   private func checkIfFavorited() async {
     let all = (try? await services.presetStore.all()) ?? []
-    let resolved = languageCode ?? LanguageCatalog.defaultCode
-    matchingFavoriteId = all.first {
-      $0.kind == .franciscanCrown && $0.resolvedLanguageCode == resolved
-    }?.id
+    matchingFavoriteId = all.first { $0.kind == .franciscanCrown }?.id
   }
 
   private func toggleFavorite() {
@@ -103,15 +94,11 @@ struct FranciscanCrownFlowView: View {
         }
         matchingFavoriteId = nil
       } else {
-        let resolved = languageCode ?? LanguageCatalog.defaultCode
-        let langName = LanguageCatalog.all.first { $0.code == resolved }?.nativeName ?? resolved
-        let all = (try? await services.presetStore.all()) ?? []
-        let isFirst = !all.contains { $0.kind == .franciscanCrown }
         let newFavorite = Prayer(
-          name: "Franciscan Crown (\(langName))",
+          name: PrayerKind.franciscanCrown.defaultName,
           kind: .franciscanCrown,
-          isDefault: isFirst,
-          languageCode: resolved
+          isDefault: true,
+          languageCode: LanguageCatalog.defaultSentinel
         )
         try? await services.presetStore.save(newFavorite)
         matchingFavoriteId = newFavorite.id

@@ -19,9 +19,9 @@ final class MockPresetStore: PresetStore {
     favorites.sorted { $0.name < $1.name }
   }
 
-  func defaultPreset() async throws -> Prayer? {
-    let rosary = favorites.filter { $0.kind == .rosary }
-    return rosary.first { $0.isDefault } ?? rosary.first
+  func defaultPreset(kind: PrayerKind) async throws -> Prayer? {
+    let matching = favorites.filter { $0.kind == kind }
+    return matching.first { $0.isDefault } ?? matching.first
   }
 
   func get(id: Prayer.ID) async throws -> Prayer? {

@@ -27,7 +27,7 @@ struct PrayRosaryIntent: AppIntent {
     if let preset {
       prayer = try await services.presetStore.get(id: preset.id)
     } else {
-      prayer = try await services.presetStore.defaultPreset()
+      prayer = try await services.presetStore.defaultPreset(kind: .rosary)
     }
 
     if let prayer {

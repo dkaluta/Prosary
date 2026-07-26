@@ -16,6 +16,14 @@ struct FavoritesListView: View {
   @State private var prayers: [Prayer] = []
   @State private var editorPrayer: Prayer?
   @State private var isNew = false
+  @State private var remindersPrayer: Prayer?
+
+  /// Rosary and Jesus Prayer have real per-favorite options worth naming and saving multiple
+  /// variants of, so they keep the full card list + editor. The other 5 kinds have nothing to
+  /// configure beyond reminders, so they get a single on/off star row instead — see
+  /// `SimpleFavoriteRow`.
+  private let configurableKinds: [PrayerKind] = [.rosary, .jesusPrayer]
+  private let simplifiedKinds: [PrayerKind] = [.angelus, .stationsOfTheCross, .franciscanCrown, .sevenSorrows, .divineMercyChaplet]
 
   private var angelusAccent: Color { .adaptive(light: "#8B6914", dark: "#C49B0D") }
   private var jesusPrayerAccent: Color { .adaptive(light: "#8B1A1A", dark: "#C62828") }
@@ -39,7 +47,7 @@ struct FavoritesListView: View {
   var body: some View {
     ScrollView {
       LazyVStack(alignment: .leading, spacing: 8, pinnedViews: .sectionHeaders) {
-        ForEach(PrayerKind.allCases, id: \.self) { kind in
+        ForEach(configurableKinds, id: \.self) { kind in
           let kindPrayers = prayers.filter { $0.kind == kind }
           Section {
             ForEach(kindPrayers) { prayer in
@@ -64,17 +72,32 @@ struct FavoritesListView: View {
             .padding(.horizontal, 20)
             .padding(.vertical, 4)
           } header: {
-            HStack(spacing: 8) {
-              Image(systemName: kind.systemImage)
-              Text(kind.displayName)
-                .font(.title3.bold())
-            }
-            .padding(.horizontal, 20)
-            .padding(.top, 16)
-            .padding(.bottom, 4)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(.background)
+            kindHeader(kind)
           }
+        }
+
+        Section {
+          ForEach(simplifiedKinds, id: \.self) { kind in
+            let favorite = prayers.first { $0.kind == kind }
+            SimpleFavoriteRow(
+              kind: kind,
+              accentColor: accentColor(for: kind),
+              isFavorited: favorite != nil,
+              onToggleFavorite: { toggleSimpleFavorite(kind: kind, existing: favorite) },
+              onEditReminders: { favorite.map { remindersPrayer = $0 } }
+            )
+          }
+        } header: {
+          HStack(spacing: 8) {
+            Image(systemName: "star")
+            Text("favorites.moreDevotions")
+              .font(.title3.bold())
+          }
+          .padding(.horizontal, 20)
+          .padding(.top, 16)
+          .padding(.bottom, 4)
+          .frame(maxWidth: .infinity, alignment: .leading)
+          .background(.background)
         }
       }
       .padding(.bottom, 24)
@@ -89,7 +112,27 @@ struct FavoritesListView: View {
       }
       .onDisappear { Task { await reload() } }
     }
+    .sheet(item: $remindersPrayer) { prayer in
+      NavigationStack {
+        RemindersOnlyEditorView(prayer: prayer)
+      }
+      .onDisappear { Task { await reload() } }
+    }
     .task { await reload() }
+  }
+
+  @ViewBuilder
+  private func kindHeader(_ kind: PrayerKind) -> some View {
+    HStack(spacing: 8) {
+      Image(systemName: kind.systemImage)
+      Text(kind.displayName)
+        .font(.title3.bold())
+    }
+    .padding(.horizontal, 20)
+    .padding(.top, 16)
+    .padding(.bottom, 4)
+    .frame(maxWidth: .infinity, alignment: .leading)
+    .background(.background)
   }
 
   private func reload() async {
@@ -119,6 +162,26 @@ struct FavoritesListView: View {
     ReminderScheduler.removeAll(for: prayer)
     Task {
       try? await services.presetStore.delete(prayer)
+      await reload()
+    }
+  }
+
+  /// Star toggle for the 5 simplified kinds — at most one `Prayer` row per kind, matched by kind
+  /// alone (not language), always saved with the sentinel language (follows the app default).
+  private func toggleSimpleFavorite(kind: PrayerKind, existing: Prayer?) {
+    Task {
+      if let existing {
+        ReminderScheduler.removeAll(for: existing)
+        try? await services.presetStore.delete(existing)
+      } else {
+        let newFavorite = Prayer(
+          name: kind.defaultName,
+          kind: kind,
+          isDefault: true,
+          languageCode: LanguageCatalog.defaultSentinel
+        )
+        try? await services.presetStore.save(newFavorite)
+      }
       await reload()
     }
   }
@@ -215,6 +278,61 @@ private struct FavoriteCard: View {
         .padding(.top, 2)
       }
       .padding(14)
+    }
+    .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
+    .clipShape(RoundedRectangle(cornerRadius: 14))
+    .padding(.horizontal, 16)
+  }
+}
+
+// MARK: - Simple Favorite Row
+
+/// One row per non-configurable devotion kind — a star toggle and, once favorited, a reminders
+/// button. No name/language editing and no "+ Add another" — see FavoritesListView.
+private struct SimpleFavoriteRow: View {
+  let kind: PrayerKind
+  let accentColor: Color
+  let isFavorited: Bool
+  let onToggleFavorite: () -> Void
+  let onEditReminders: () -> Void
+
+  var body: some View {
+    HStack(spacing: 0) {
+      Rectangle()
+        .fill(accentColor)
+        .frame(width: 4)
+
+      HStack(spacing: 12) {
+        Button(action: onToggleFavorite) {
+          Image(systemName: isFavorited ? "star.fill" : "star")
+            .foregroundStyle(isFavorited ? .yellow : .secondary)
+        }
+        .buttonStyle(.borderless)
+        .frame(minWidth: 44, minHeight: 44)
+        .accessibilityLabel(isFavorited
+          ? String(localized: "favorites.removeKindFromFavorites", defaultValue: "Remove \(kind.displayName) from Favorites")
+          : String(localized: "favorites.addKindToFavorites", defaultValue: "Add \(kind.displayName) to Favorites"))
+
+        Image(systemName: kind.systemImage)
+          .foregroundStyle(accentColor)
+        Text(kind.displayName)
+          .font(.headline)
+
+        Spacer()
+
+        if isFavorited {
+          Button(action: onEditReminders) {
+            Label("favorites.reminders", systemImage: "bell")
+              .labelStyle(.iconOnly)
+          }
+          .buttonStyle(.borderless)
+          .foregroundStyle(.secondary)
+          .frame(minWidth: 44, minHeight: 44)
+          .accessibilityLabel(String(localized: "favorites.editKindReminders", defaultValue: "Edit \(kind.displayName) reminders"))
+        }
+      }
+      .padding(.horizontal, 14)
+      .padding(.vertical, 8)
     }
     .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
     .clipShape(RoundedRectangle(cornerRadius: 14))

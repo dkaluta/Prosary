@@ -47,10 +47,10 @@ struct SwiftDataPresetStore: PresetStore {
     return entries.map { $0.toPrayer() }
   }
 
-  func defaultPreset() async throws -> Prayer? {
+  func defaultPreset(kind: PrayerKind) async throws -> Prayer? {
     let all = try context.fetch(FetchDescriptor<PresetEntry>())
-    let rosary = all.filter { $0.kind == PrayerKind.rosary.rawValue }
-    guard let entry = rosary.first(where: { $0.isDefault }) ?? rosary.first else { return nil }
+    let matching = all.filter { $0.kind == kind.rawValue }
+    guard let entry = matching.first(where: { $0.isDefault }) ?? matching.first else { return nil }
     return entry.toPrayer()
   }
 

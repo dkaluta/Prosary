@@ -11,9 +11,9 @@
 import SwiftUI
 
 struct DivineMercyFlowView: View {
-  /// If provided (launched from Favorites), use this prayer's language and track it for the
-  /// star button. If nil (launched from Home with no Divine Mercy favorite), use the app
-  /// default language.
+  /// If provided (launched from Home/Favorites with an existing favorite), seeds the star as
+  /// already-favorited immediately, without waiting on the initial favorites fetch. The Divine
+  /// Mercy Chaplet has no per-favorite language anymore — it always follows the app default.
   var prayer: Prayer? = nil
 
   @Environment(\.appServices) private var services
@@ -72,17 +72,11 @@ struct DivineMercyFlowView: View {
   }
 
   private func load() async {
-    if let prayer {
-      languageCode = prayer.resolvedLanguageCode
-    } else {
-      let all = (try? await services.presetStore.all()) ?? []
-      let defaultDivineMercy = all.first { $0.kind == .divineMercyChaplet && $0.isDefault }
-        ?? all.first { $0.kind == .divineMercyChaplet }
-      languageCode = defaultDivineMercy?.resolvedLanguageCode
-    }
+    matchingFavoriteId = prayer?.id
+    languageCode = LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).code
 
     isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
-    steps = services.engine.buildSteps(for: Prayer(kind: .divineMercyChaplet, languageCode: languageCode ?? LanguageCatalog.defaultSentinel))
+    steps = services.engine.buildSteps(for: Prayer(kind: .divineMercyChaplet, languageCode: LanguageCatalog.defaultSentinel))
     currentIndex = 0
     seasonColor = services.calendar.seasonColorToday()
     await checkIfFavorited()
@@ -90,10 +84,7 @@ struct DivineMercyFlowView: View {
 
   private func checkIfFavorited() async {
     let all = (try? await services.presetStore.all()) ?? []
-    let resolved = languageCode ?? LanguageCatalog.defaultCode
-    matchingFavoriteId = all.first {
-      $0.kind == .divineMercyChaplet && $0.resolvedLanguageCode == resolved
-    }?.id
+    matchingFavoriteId = all.first { $0.kind == .divineMercyChaplet }?.id
   }
 
   private func toggleFavorite() {
@@ -104,15 +95,11 @@ struct DivineMercyFlowView: View {
         }
         matchingFavoriteId = nil
       } else {
-        let resolved = languageCode ?? LanguageCatalog.defaultCode
-        let langName = LanguageCatalog.all.first { $0.code == resolved }?.nativeName ?? resolved
-        let all = (try? await services.presetStore.all()) ?? []
-        let isFirst = !all.contains { $0.kind == .divineMercyChaplet }
         let newFavorite = Prayer(
-          name: "Divine Mercy Chaplet (\(langName))",
+          name: PrayerKind.divineMercyChaplet.defaultName,
           kind: .divineMercyChaplet,
-          isDefault: isFirst,
-          languageCode: resolved
+          isDefault: true,
+          languageCode: LanguageCatalog.defaultSentinel
         )
         try? await services.presetStore.save(newFavorite)
         matchingFavoriteId = newFavorite.id

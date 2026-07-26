@@ -17,9 +17,6 @@ struct FavoriteEditorView: View {
   @Environment(\.dismiss) private var dismiss
   @AppStorage("defaultLanguageCode") private var appDefaultCode = LanguageCatalog.defaultCode
 
-  /// Hours that have dedicated Angelus toggle rows (traditional bell times).
-  private let angelusPresetHours: Set<Int> = [6, 12, 18]
-
   var body: some View {
     Form {
       // MARK: Common fields
@@ -97,36 +94,7 @@ struct FavoriteEditorView: View {
       }
 
       // MARK: Reminders
-      Section {
-        if prayer.kind == .angelus {
-          // Traditional Angelus bell times — quick toggles for 6am, noon, 6pm.
-          Toggle("favoriteEditor.angelusTime6Am", isOn: angelusTimeBinding(hour: 6))
-          Toggle("favoriteEditor.angelusTimeNoon", isOn: angelusTimeBinding(hour: 12))
-          Toggle("favoriteEditor.angelusTime6Pm", isOn: angelusTimeBinding(hour: 18))
-
-          ForEach(customReminders) { reminder in
-            reminderRow(for: reminder.id)
-          }
-        } else {
-          ForEach(prayer.reminders) { reminder in
-            reminderRow(for: reminder.id)
-          }
-        }
-
-        Button {
-          prayer.reminders.append(PrayerReminder(hour: 9, minute: 0))
-        } label: {
-          Label("favoriteEditor.addReminder", systemImage: "plus")
-        }
-      } header: {
-        Text("favoriteEditor.remindersHeader")
-      } footer: {
-        if prayer.kind == .angelus, !prayer.reminders.isEmpty {
-          Text("favoriteEditor.angelusRemindersFooter")
-        } else if !prayer.reminders.isEmpty {
-          Text("favoriteEditor.remindersFooter")
-        }
-      }
+      RemindersSection(reminders: $prayer.reminders, kind: prayer.kind)
     }
     .formStyle(.grouped)
     .navigationTitle(isNew ? "favoriteEditor.newFavoriteTitle" : "favoriteEditor.editFavoriteTitle")
@@ -141,66 +109,6 @@ struct FavoriteEditorView: View {
         Button("favoriteEditor.save") { save() }
       }
     }
-  }
-
-  // MARK: - Reminder helpers
-
-  /// Toggles presence of a `PrayerReminder` at exactly `hour:00` for the Angelus presets.
-  private func angelusTimeBinding(hour: Int) -> Binding<Bool> {
-    Binding(
-      get: {
-        prayer.reminders.contains { $0.hour == hour && $0.minute == 0 && $0.isEnabled }
-      },
-      set: { isOn in
-        if isOn {
-          if !prayer.reminders.contains(where: { $0.hour == hour && $0.minute == 0 }) {
-            prayer.reminders.append(PrayerReminder(hour: hour, minute: 0))
-          } else if let i = prayer.reminders.firstIndex(where: { $0.hour == hour && $0.minute == 0 }) {
-            prayer.reminders[i].isEnabled = true
-          }
-        } else {
-          prayer.reminders.removeAll { $0.hour == hour && $0.minute == 0 }
-        }
-      }
-    )
-  }
-
-  /// Reminders that don't map to one of the three traditional Angelus preset times.
-  private var customReminders: [PrayerReminder] {
-    prayer.reminders.filter { r in
-      !(angelusPresetHours.contains(r.hour) && r.minute == 0)
-    }
-  }
-
-  /// A DatePicker + delete row bound to an existing reminder by ID.
-  @ViewBuilder
-  private func reminderRow(for reminderId: UUID) -> some View {
-    HStack {
-      DatePicker("", selection: dateBinding(for: reminderId), displayedComponents: .hourAndMinute)
-        .labelsHidden()
-      Spacer()
-      Button(role: .destructive) {
-        prayer.reminders.removeAll { $0.id == reminderId }
-      } label: {
-        Image(systemName: "minus.circle.fill")
-          .foregroundStyle(.red)
-      }
-      .buttonStyle(.borderless)
-    }
-  }
-
-  private func dateBinding(for reminderId: UUID) -> Binding<Date> {
-    Binding(
-      get: {
-        prayer.reminders.first(where: { $0.id == reminderId })?.asDate ?? Date()
-      },
-      set: { date in
-        guard let i = prayer.reminders.firstIndex(where: { $0.id == reminderId }) else { return }
-        let comps = Calendar.current.dateComponents([.hour, .minute], from: date)
-        prayer.reminders[i].hour = comps.hour ?? 0
-        prayer.reminders[i].minute = comps.minute ?? 0
-      }
-    )
   }
 
   // MARK: - Save
