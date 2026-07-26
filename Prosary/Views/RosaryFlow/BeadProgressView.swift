@@ -160,14 +160,14 @@ struct BeadProgressView: View {
 }
 
 #Preview("Narrow — 5 decades") {
-  let steps = MockRosaryEngine().buildSteps(for: Prayer(rosary: RosaryOptions(mysterySelectionMode: .specific, specificMysteryGroup: .joyful)))
+  let steps = PrayerEngine().buildSteps(for: Prayer(rosary: RosaryOptions(mysterySelectionMode: .specific, specificMysteryGroup: .joyful)))
   let layout = BeadLayout.build(steps: steps, currentIndex: steps.count / 2, hasClosingCross: true)
   BeadProgressView(layout: layout, isWide: false)
     .padding()
 }
 
 #Preview("Narrow — 20 decades (wraps)") {
-  let steps = MockRosaryEngine().buildSteps(for: Prayer(rosary: RosaryOptions(mysterySelectionMode: .twentyMystery)))
+  let steps = PrayerEngine().buildSteps(for: Prayer(rosary: RosaryOptions(mysterySelectionMode: .twentyMystery)))
   let layout = BeadLayout.build(steps: steps, currentIndex: steps.count - 5, hasClosingCross: true)
   BeadProgressView(layout: layout, isWide: false)
     .padding()
@@ -175,21 +175,21 @@ struct BeadProgressView: View {
 }
 
 #Preview("Wide — 5 decades, single minor column") {
-  let steps = MockRosaryEngine().buildSteps(for: Prayer(rosary: RosaryOptions(mysterySelectionMode: .specific, specificMysteryGroup: .sorrowful)))
+  let steps = PrayerEngine().buildSteps(for: Prayer(rosary: RosaryOptions(mysterySelectionMode: .specific, specificMysteryGroup: .sorrowful)))
   let layout = BeadLayout.build(steps: steps, currentIndex: steps.count / 3, hasClosingCross: true)
   BeadProgressView(layout: layout, isWide: true)
     .padding()
 }
 
 #Preview("Wide — 5 decades, split minor columns (short window)") {
-  let steps = MockRosaryEngine().buildSteps(for: Prayer(rosary: RosaryOptions(mysterySelectionMode: .specific, specificMysteryGroup: .sorrowful)))
+  let steps = PrayerEngine().buildSteps(for: Prayer(rosary: RosaryOptions(mysterySelectionMode: .specific, specificMysteryGroup: .sorrowful)))
   let layout = BeadLayout.build(steps: steps, currentIndex: steps.count / 3, hasClosingCross: true)
   BeadProgressView(layout: layout, isWide: true, hasRoomForSingleMinorColumn: false)
     .padding()
 }
 
 #Preview("Wide — 20 decades") {
-  let steps = MockRosaryEngine().buildSteps(for: Prayer(rosary: RosaryOptions(mysterySelectionMode: .twentyMystery)))
+  let steps = PrayerEngine().buildSteps(for: Prayer(rosary: RosaryOptions(mysterySelectionMode: .twentyMystery)))
   let layout = BeadLayout.build(steps: steps, currentIndex: steps.count / 2, hasClosingCross: true)
   ScrollView {
     BeadProgressView(layout: layout, isWide: true)

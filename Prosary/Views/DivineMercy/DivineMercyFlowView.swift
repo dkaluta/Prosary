@@ -82,7 +82,7 @@ struct DivineMercyFlowView: View {
     }
 
     isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
-    steps = services.divineMercyEngine.buildSteps(languageCode: languageCode)
+    steps = services.engine.buildSteps(for: Prayer(kind: .divineMercyChaplet, languageCode: languageCode ?? LanguageCatalog.defaultSentinel))
     currentIndex = 0
     seasonColor = services.calendar.seasonColorToday()
     await checkIfFavorited()
@@ -135,7 +135,7 @@ struct DivineMercyFlowView: View {
   let store = MockPresetStore()
   return NavigationStack {
     DivineMercyFlowView()
-      .environment(\.appServices, AppServices(presetStore: store, rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), stationsEngine: MockStationsEngine(), franciscanCrownEngine: MockFranciscanCrownEngine(), sevenSorrowsEngine: MockSevenSorrowsEngine(), divineMercyEngine: MockDivineMercyEngine(), calendar: MockLiturgicalCalendar()))
+      .environment(\.appServices, AppServices(presetStore: store, engine: PrayerEngine(calendar: MockLiturgicalCalendar()), calendar: MockLiturgicalCalendar()))
   }
 }
 
@@ -143,7 +143,7 @@ struct DivineMercyFlowView: View {
   let store = MockPresetStore()
   return NavigationStack {
     DivineMercyFlowView()
-      .environment(\.appServices, AppServices(presetStore: store, rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), stationsEngine: MockStationsEngine(), franciscanCrownEngine: MockFranciscanCrownEngine(), sevenSorrowsEngine: MockSevenSorrowsEngine(), divineMercyEngine: MockDivineMercyEngine(), calendar: MockLiturgicalCalendar()))
+      .environment(\.appServices, AppServices(presetStore: store, engine: PrayerEngine(calendar: MockLiturgicalCalendar()), calendar: MockLiturgicalCalendar()))
   }
   .environment(\.horizontalSizeClass, .regular)
   .frame(width: 900, height: 600)
@@ -154,6 +154,6 @@ struct DivineMercyFlowView: View {
   let store = MockPresetStore(configs: [prayer])
   return NavigationStack {
     DivineMercyFlowView(prayer: prayer)
-      .environment(\.appServices, AppServices(presetStore: store, rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), stationsEngine: MockStationsEngine(), franciscanCrownEngine: MockFranciscanCrownEngine(), sevenSorrowsEngine: MockSevenSorrowsEngine(), divineMercyEngine: MockDivineMercyEngine(), calendar: MockLiturgicalCalendar()))
+      .environment(\.appServices, AppServices(presetStore: store, engine: PrayerEngine(calendar: MockLiturgicalCalendar()), calendar: MockLiturgicalCalendar()))
   }
 }

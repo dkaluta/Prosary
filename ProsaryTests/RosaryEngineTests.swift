@@ -3,8 +3,8 @@
 //  RosaryEngineTests.swift
 //  ProsaryTests
 //
-//  Tests that StubRosaryEngine (and therefore MockRosaryEngine) builds the expected step
-//  sequences for a range of RosaryOptions configurations.
+//  Tests that PrayerEngine builds the expected step sequences for a range of RosaryOptions
+//  configurations.
 //
 
 import XCTest
@@ -20,8 +20,8 @@ private struct FixedCalendar: LiturgicalCalendarProviding {
 }
 
 final class RosaryEngineTests: XCTestCase {
-  private func makeEngine(group: MysteryGroup = .joyful) -> StubRosaryEngine {
-    StubRosaryEngine(calendar: FixedCalendar(group: group))
+  private func makeEngine(group: MysteryGroup = .joyful) -> PrayerEngine {
+    PrayerEngine(calendar: FixedCalendar(group: group))
   }
 
   private func prayer(
@@ -197,7 +197,7 @@ final class RosaryEngineTests: XCTestCase {
   }
 
   func testResolveTodaysMysteriesUsesCalendar() {
-    let engine = StubRosaryEngine(calendar: FixedCalendar(group: .luminous))
+    let engine = PrayerEngine(calendar: FixedCalendar(group: .luminous))
     let p = prayer(mode: .todaysMysteries)
     XCTAssertEqual(engine.resolveMysteryGroups(for: p), [.luminous])
   }

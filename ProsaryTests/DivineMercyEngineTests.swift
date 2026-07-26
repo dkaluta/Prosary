@@ -7,10 +7,10 @@ import XCTest
 @testable import Prosary
 
 final class DivineMercyEngineTests: XCTestCase {
-  private let engine = StubDivineMercyEngine()
+  private let engine = PrayerEngine()
 
   func testFiveDecadesOfTenPetitions() {
-    let steps = engine.buildSteps(languageCode: "en")
+    let steps = engine.buildSteps(for: Prayer(kind: .divineMercyChaplet, languageCode: "en"))
     let decadeIndices = Set(steps.compactMap(\.decadeIndex))
     XCTAssertEqual(decadeIndices, Set(0..<5))
 
@@ -21,7 +21,7 @@ final class DivineMercyEngineTests: XCTestCase {
   }
 
   func testNoStepHasAMystery() {
-    let steps = engine.buildSteps(languageCode: "en")
+    let steps = engine.buildSteps(for: Prayer(kind: .divineMercyChaplet, languageCode: "en"))
     XCTAssertTrue(steps.allSatisfy { $0.mystery == nil })
   }
 
@@ -30,19 +30,19 @@ final class DivineMercyEngineTests: XCTestCase {
     // closing alike — reuses the one divine_mercy_image illustration (the same reuse pattern
     // the Angelus uses for joyful_01_annunciation), since there's no per-decade content to
     // illustrate separately.
-    let steps = engine.buildSteps(languageCode: "en")
+    let steps = engine.buildSteps(for: Prayer(kind: .divineMercyChaplet, languageCode: "en"))
     XCTAssertTrue(steps.allSatisfy { $0.imageKey == "divine_mercy_image" })
   }
 
   func testOfferingIsRepeatedIdenticallyAcrossEveryDecade() {
-    let steps = engine.buildSteps(languageCode: "en")
+    let steps = engine.buildSteps(for: Prayer(kind: .divineMercyChaplet, languageCode: "en"))
     let offerings = steps.filter { $0.decadeIndex != nil && $0.hailMaryIndexInDecade == nil }
     XCTAssertEqual(offerings.count, 5)
     XCTAssertTrue(offerings.allSatisfy { $0.body.contains("Eternal Father, I offer You") })
   }
 
   func testOpeningReusesExistingPrayersNotNewContent() {
-    let steps = engine.buildSteps(languageCode: "en")
+    let steps = engine.buildSteps(for: Prayer(kind: .divineMercyChaplet, languageCode: "en"))
     XCTAssertEqual(steps[0].title, "Sign of the Cross")
     XCTAssertEqual(steps[1].title, "Our Father")
     XCTAssertEqual(steps[2].title, "Hail Mary")
@@ -50,19 +50,19 @@ final class DivineMercyEngineTests: XCTestCase {
   }
 
   func testClosingAcclamationRepeatedThreeTimesThenClosingCross() {
-    let steps = engine.buildSteps(languageCode: "en")
+    let steps = engine.buildSteps(for: Prayer(kind: .divineMercyChaplet, languageCode: "en"))
     let closingAcclamations = steps.filter { $0.decadeIndex == nil && $0.body.contains("Holy God") }
     XCTAssertEqual(closingAcclamations.count, 3)
     XCTAssertEqual(steps.last?.title, "Sign of the Cross")
   }
 
   func testEnglishBodyContainsEnglishText() {
-    let steps = engine.buildSteps(languageCode: "en")
+    let steps = engine.buildSteps(for: Prayer(kind: .divineMercyChaplet, languageCode: "en"))
     XCTAssertTrue(steps.contains { $0.body.contains("For the sake of His sorrowful Passion") })
   }
 
   func testLatinBodyContainsLatinText() {
-    let steps = engine.buildSteps(languageCode: "la")
+    let steps = engine.buildSteps(for: Prayer(kind: .divineMercyChaplet, languageCode: "la"))
     XCTAssertTrue(steps.contains { $0.body.contains("Pro dolorosa Eius passione") })
   }
 }

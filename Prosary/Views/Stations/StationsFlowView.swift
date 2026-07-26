@@ -59,7 +59,7 @@ struct StationsFlowView: View {
     }
 
     isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
-    steps = services.stationsEngine.buildSteps(languageCode: languageCode)
+    steps = services.engine.buildSteps(for: Prayer(kind: .stationsOfTheCross, languageCode: languageCode ?? LanguageCatalog.defaultSentinel))
     currentIndex = 0
     seasonColor = services.calendar.seasonColorToday()
     await checkIfFavorited()
@@ -112,7 +112,7 @@ struct StationsFlowView: View {
   let store = MockPresetStore()
   return NavigationStack {
     StationsFlowView()
-      .environment(\.appServices, AppServices(presetStore: store, rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), stationsEngine: MockStationsEngine(), franciscanCrownEngine: MockFranciscanCrownEngine(), sevenSorrowsEngine: MockSevenSorrowsEngine(), divineMercyEngine: MockDivineMercyEngine(), calendar: MockLiturgicalCalendar()))
+      .environment(\.appServices, AppServices(presetStore: store, engine: PrayerEngine(calendar: MockLiturgicalCalendar()), calendar: MockLiturgicalCalendar()))
   }
 }
 
@@ -121,6 +121,6 @@ struct StationsFlowView: View {
   let store = MockPresetStore(configs: [prayer])
   return NavigationStack {
     StationsFlowView(prayer: prayer)
-      .environment(\.appServices, AppServices(presetStore: store, rosaryEngine: MockRosaryEngine(), angelusEngine: MockAngelusEngine(), stationsEngine: MockStationsEngine(), franciscanCrownEngine: MockFranciscanCrownEngine(), sevenSorrowsEngine: MockSevenSorrowsEngine(), divineMercyEngine: MockDivineMercyEngine(), calendar: MockLiturgicalCalendar()))
+      .environment(\.appServices, AppServices(presetStore: store, engine: PrayerEngine(calendar: MockLiturgicalCalendar()), calendar: MockLiturgicalCalendar()))
   }
 }

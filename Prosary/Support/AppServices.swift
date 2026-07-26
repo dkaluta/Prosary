@@ -2,10 +2,10 @@
 //  AppServices.swift
 //  Prosary
 //
-//  The backend, as the UI sees it — protocols injected once at the app root and read via
-//  @Environment everywhere else. Wired to the Stub* implementations (Support/Stubs/) which
-//  contain the full production logic; Mock* (Mocks/) are thin wrappers used only in Previews
-//  and unit tests. Everything downstream only ever talks to the protocols.
+//  The backend, as the UI sees it — injected once at the app root and read via @Environment
+//  everywhere else. `engine` is the single PrayerEngine used for every devotion (see
+//  Support/PrayerEngine.swift); `presetStore`/`calendar` are still protocol-typed since they
+//  have real alternate implementations (SwiftData vs. in-memory, real calendar vs. fixed).
 //
 //  `shared` is the single instance used both as the environment default (SwiftUI) and directly
 //  by App Intents (AppIntents/), which run outside the view hierarchy and can't read @Environment
@@ -18,12 +18,7 @@ import SwiftData
 
 struct AppServices {
   var presetStore: PresetStore
-  var rosaryEngine: RosaryEngine
-  var angelusEngine: AngelusEngine
-  var stationsEngine: StationsEngine
-  var franciscanCrownEngine: FranciscanCrownEngine
-  var sevenSorrowsEngine: SevenSorrowsEngine
-  var divineMercyEngine: DivineMercyEngine
+  var engine: PrayerEngine
   var calendar: LiturgicalCalendarProviding
 
   static let modelContainer: ModelContainer = {
@@ -56,12 +51,7 @@ struct AppServices {
     }
     return AppServices(
       presetStore: SwiftDataPresetStore(context: context),
-      rosaryEngine: StubRosaryEngine(calendar: calendar),
-      angelusEngine: StubAngelusEngine(calendar: calendar),
-      stationsEngine: StubStationsEngine(),
-      franciscanCrownEngine: StubFranciscanCrownEngine(calendar: calendar),
-      sevenSorrowsEngine: StubSevenSorrowsEngine(),
-      divineMercyEngine: StubDivineMercyEngine(),
+      engine: PrayerEngine(calendar: calendar),
       calendar: calendar
     )
   }()

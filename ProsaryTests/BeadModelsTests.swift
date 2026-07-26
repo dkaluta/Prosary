@@ -57,7 +57,7 @@ final class BeadModelsTests: XCTestCase {
   /// Sanity check that the existing Rosary-shaped (mystery-grouped) behavior is unaffected by
   /// the generalization — still one column per distinct `MysteryGroup` in session order.
   func testMysteryGroupedStepsStillGroupByMysteryGroup() {
-    let steps = MockRosaryEngine().buildSteps(for: Prayer(rosary: RosaryOptions(mysterySelectionMode: .twentyMystery)))
+    let steps = PrayerEngine().buildSteps(for: Prayer(rosary: RosaryOptions(mysterySelectionMode: .twentyMystery)))
     let layout = BeadLayout.build(steps: steps, currentIndex: steps.count / 2, hasClosingCross: true)
 
     XCTAssertEqual(layout.groupColumns.count, 4)

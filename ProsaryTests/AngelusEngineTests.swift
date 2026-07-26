@@ -18,8 +18,8 @@ private struct FixedLiturgicalCalendar: LiturgicalCalendarProviding {
 
 final class AngelusEngineTests: XCTestCase {
   func testStandardFormOutsideEastertide() {
-    let engine = MockAngelusEngine(calendar: FixedLiturgicalCalendar(isEasterSeasonValue: false))
-    let steps = engine.buildSteps(languageCode: "en")
+    let engine = PrayerEngine(calendar: FixedLiturgicalCalendar(isEasterSeasonValue: false))
+    let steps = engine.buildSteps(for: Prayer(kind: .angelus, languageCode: "en"))
 
     XCTAssertEqual(steps.count, 7)
     XCTAssertEqual(steps.map(\.title), [
@@ -35,8 +35,8 @@ final class AngelusEngineTests: XCTestCase {
   }
 
   func testReginaCaeliSubstitutionDuringEastertide() {
-    let engine = MockAngelusEngine(calendar: FixedLiturgicalCalendar(isEasterSeasonValue: true))
-    let steps = engine.buildSteps(languageCode: "en")
+    let engine = PrayerEngine(calendar: FixedLiturgicalCalendar(isEasterSeasonValue: true))
+    let steps = engine.buildSteps(for: Prayer(kind: .angelus, languageCode: "en"))
 
     XCTAssertEqual(steps.count, 1)
     XCTAssertEqual(steps[0].title, "Regina Caeli")
@@ -46,8 +46,8 @@ final class AngelusEngineTests: XCTestCase {
   }
 
   func testFallsBackToLatinWhenLanguageIsNil() {
-    let engine = MockAngelusEngine(calendar: FixedLiturgicalCalendar(isEasterSeasonValue: false))
-    let steps = engine.buildSteps(languageCode: nil)
+    let engine = PrayerEngine(calendar: FixedLiturgicalCalendar(isEasterSeasonValue: false))
+    let steps = engine.buildSteps(for: Prayer(kind: .angelus, languageCode: LanguageCatalog.defaultSentinel))
 
     XCTAssertTrue(steps[0].body.contains("Angelus Domini nuntiavit Mariae"))
   }

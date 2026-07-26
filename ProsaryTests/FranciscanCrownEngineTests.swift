@@ -17,12 +17,12 @@ private struct FixedLiturgicalCalendar: LiturgicalCalendarProviding {
 }
 
 final class FranciscanCrownEngineTests: XCTestCase {
-  private func engine(antiphon: MarianAntiphonOption = .salveRegina) -> StubFranciscanCrownEngine {
-    StubFranciscanCrownEngine(calendar: FixedLiturgicalCalendar(antiphon: antiphon))
+  private func engine(antiphon: MarianAntiphonOption = .salveRegina) -> PrayerEngine {
+    PrayerEngine(calendar: FixedLiturgicalCalendar(antiphon: antiphon))
   }
 
   func testSevenDecadesOfTenHailMarys() {
-    let steps = engine().buildSteps(languageCode: "en")
+    let steps = engine().buildSteps(for: Prayer(kind: .franciscanCrown, languageCode: "en"))
     let decadeIndices = Set(steps.compactMap(\.decadeIndex))
     XCTAssertEqual(decadeIndices, Set(0..<7))
 
@@ -35,12 +35,12 @@ final class FranciscanCrownEngineTests: XCTestCase {
   func testNoStepHasAMystery() {
     // Franciscan Crown steps deliberately leave `mystery` nil (see BeadModels' generalization) —
     // the Seven Joys aren't Rosary "mysteries" even though 6 of the 7 reuse mystery imageKeys.
-    let steps = engine().buildSteps(languageCode: "en")
+    let steps = engine().buildSteps(for: Prayer(kind: .franciscanCrown, languageCode: "en"))
     XCTAssertTrue(steps.allSatisfy { $0.mystery == nil })
   }
 
   func testTwoClosingHailMarysAndOneClosingOurFather() {
-    let steps = engine().buildSteps(languageCode: "en")
+    let steps = engine().buildSteps(for: Prayer(kind: .franciscanCrown, languageCode: "en"))
     let nonDecadeHailMarys = steps.filter { $0.decadeIndex == nil && $0.title.hasPrefix("Hail Mary") }
     XCTAssertEqual(nonDecadeHailMarys.count, 2)
 
@@ -49,33 +49,33 @@ final class FranciscanCrownEngineTests: XCTestCase {
   }
 
   func testEndsWithSeasonalAntiphonThenClosingCross() {
-    let steps = engine(antiphon: .reginaCaeli).buildSteps(languageCode: "en")
+    let steps = engine(antiphon: .reginaCaeli).buildSteps(for: Prayer(kind: .franciscanCrown, languageCode: "en"))
     XCTAssertEqual(steps[steps.count - 2].title, "Regina Caeli")
     XCTAssertTrue(steps[steps.count - 2].isAntiphon)
     XCTAssertEqual(steps.last?.title, "Sign of the Cross")
   }
 
   func testFirstJoyIsAnnunciationReusingExistingMysteryContent() {
-    let steps = engine().buildSteps(languageCode: "en")
+    let steps = engine().buildSteps(for: Prayer(kind: .franciscanCrown, languageCode: "en"))
     let firstJoy = steps.first { $0.decadeIndex == 0 && $0.isScripture }
     XCTAssertEqual(firstJoy?.title, "The Annunciation")
     XCTAssertEqual(firstJoy?.imageKey, "joyful_01_annunciation")
   }
 
   func testFourthJoyIsTheNewAdorationOfTheMagiContent() {
-    let steps = engine().buildSteps(languageCode: "en")
+    let steps = engine().buildSteps(for: Prayer(kind: .franciscanCrown, languageCode: "en"))
     let fourthJoy = steps.first { $0.decadeIndex == 3 && $0.isScripture }
     XCTAssertEqual(fourthJoy?.title, "The Adoration of the Magi")
     XCTAssertEqual(fourthJoy?.imageKey, "franciscan_04_adoration_of_the_magi")
   }
 
   func testEnglishBodyContainsEnglishText() {
-    let steps = engine().buildSteps(languageCode: "en")
+    let steps = engine().buildSteps(for: Prayer(kind: .franciscanCrown, languageCode: "en"))
     XCTAssertTrue(steps.contains { $0.body.contains("Hail Mary, full of grace") })
   }
 
   func testLatinBodyContainsLatinText() {
-    let steps = engine().buildSteps(languageCode: "la")
+    let steps = engine().buildSteps(for: Prayer(kind: .franciscanCrown, languageCode: "la"))
     XCTAssertTrue(steps.contains { $0.body.contains("Ave Maria, gratia plena") })
   }
 }
