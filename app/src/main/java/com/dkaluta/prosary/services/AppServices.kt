@@ -5,37 +5,21 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.room.Room
 import com.dkaluta.prosary.calendar.LiturgicalCalendarProviding
 import com.dkaluta.prosary.calendar.MockLiturgicalCalendar
-import com.dkaluta.prosary.engine.AngelusEngine
-import com.dkaluta.prosary.engine.DivineMercyEngine
-import com.dkaluta.prosary.engine.FranciscanCrownEngine
-import com.dkaluta.prosary.engine.MockAngelusEngine
-import com.dkaluta.prosary.engine.MockDivineMercyEngine
-import com.dkaluta.prosary.engine.MockFranciscanCrownEngine
-import com.dkaluta.prosary.engine.MockRosaryEngine
-import com.dkaluta.prosary.engine.MockSevenSorrowsEngine
-import com.dkaluta.prosary.engine.MockStationsEngine
-import com.dkaluta.prosary.engine.RosaryEngine
-import com.dkaluta.prosary.engine.SevenSorrowsEngine
-import com.dkaluta.prosary.engine.StationsEngine
+import com.dkaluta.prosary.engine.PrayerEngine
 import com.dkaluta.prosary.persistence.AppDatabase
 import com.dkaluta.prosary.persistence.RoomPresetStore
 import com.dkaluta.prosary.presets.MockPresetStore
 import com.dkaluta.prosary.presets.PresetStore
 import kotlinx.coroutines.runBlocking
 
-/** The backend, as the UI sees it — four interfaces, provided once at the app root and read via
- * [LocalAppServices] everywhere else. [create] wires the production implementations: Room-backed
- * persistence, while `Mock*` engines/calendar are already production-direct per this codebase's
- * existing convention (see their own docs) — everything downstream only ever talks to the
- * interfaces. */
+/** The backend, as the UI sees it — provided once at the app root and read via
+ * [LocalAppServices] everywhere else. [engine] is the single PrayerEngine used for every
+ * devotion (see [com.dkaluta.prosary.engine.PrayerEngine]); [presetStore]/[calendar] are still
+ * interface-typed since they have real alternate implementations (Room vs. in-memory, real
+ * calendar vs. fixed). [create] wires the production implementations. */
 data class AppServices(
     val presetStore: PresetStore,
-    val rosaryEngine: RosaryEngine,
-    val angelusEngine: AngelusEngine,
-    val stationsEngine: StationsEngine,
-    val franciscanCrownEngine: FranciscanCrownEngine,
-    val sevenSorrowsEngine: SevenSorrowsEngine,
-    val divineMercyEngine: DivineMercyEngine,
+    val engine: PrayerEngine,
     val calendar: LiturgicalCalendarProviding,
 ) {
     companion object {
@@ -43,12 +27,7 @@ data class AppServices(
          * build a Room database from. */
         val preview = AppServices(
             presetStore = MockPresetStore(),
-            rosaryEngine = MockRosaryEngine(),
-            angelusEngine = MockAngelusEngine(),
-            stationsEngine = MockStationsEngine(),
-            franciscanCrownEngine = MockFranciscanCrownEngine(),
-            sevenSorrowsEngine = MockSevenSorrowsEngine(),
-            divineMercyEngine = MockDivineMercyEngine(),
+            engine = PrayerEngine(),
             calendar = MockLiturgicalCalendar(),
         )
 
@@ -61,12 +40,7 @@ data class AppServices(
             runBlocking { presetStore.seedIfEmpty() }
             return AppServices(
                 presetStore = presetStore,
-                rosaryEngine = MockRosaryEngine(),
-                angelusEngine = MockAngelusEngine(),
-                stationsEngine = MockStationsEngine(),
-                franciscanCrownEngine = MockFranciscanCrownEngine(),
-                sevenSorrowsEngine = MockSevenSorrowsEngine(),
-                divineMercyEngine = MockDivineMercyEngine(),
+                engine = PrayerEngine(),
                 calendar = MockLiturgicalCalendar(),
             )
         }

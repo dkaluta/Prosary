@@ -4,6 +4,8 @@ import androidx.compose.ui.graphics.Color
 import com.dkaluta.prosary.calendar.LiturgicalCalendarProviding
 import com.dkaluta.prosary.models.MarianAntiphonOption
 import com.dkaluta.prosary.models.MysteryGroup
+import com.dkaluta.prosary.models.Prayer
+import com.dkaluta.prosary.models.PrayerKind
 import java.util.Date
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -19,11 +21,11 @@ private class FixedFranciscanCrownCalendar(private val antiphon: MarianAntiphonO
 /** Mirrors iOS's FranciscanCrownEngineTests.swift. */
 class FranciscanCrownEngineTest {
     private fun engine(antiphon: MarianAntiphonOption = MarianAntiphonOption.SalveRegina) =
-        MockFranciscanCrownEngine(calendar = FixedFranciscanCrownCalendar(antiphon))
+        PrayerEngine(calendar = FixedFranciscanCrownCalendar(antiphon))
 
     @Test
     fun sevenDecadesOfTenHailMarys() {
-        val steps = engine().buildSteps("en")
+        val steps = engine().buildSteps(Prayer(kind = PrayerKind.FranciscanCrown, languageCode = "en"))
         val decadeIndices = steps.mapNotNull { it.decadeIndex }.toSet()
         assertEquals((0 until 7).toSet(), decadeIndices)
 
@@ -38,13 +40,13 @@ class FranciscanCrownEngineTest {
         // Franciscan Crown steps deliberately leave `mystery` null (see BeadModels'
         // generalization) — the Seven Joys aren't Rosary "mysteries" even though 6 of the 7
         // reuse mystery imageKeys.
-        val steps = engine().buildSteps("en")
+        val steps = engine().buildSteps(Prayer(kind = PrayerKind.FranciscanCrown, languageCode = "en"))
         assertTrue(steps.all { it.mystery == null })
     }
 
     @Test
     fun twoClosingHailMarysAndOneClosingOurFather() {
-        val steps = engine().buildSteps("en")
+        val steps = engine().buildSteps(Prayer(kind = PrayerKind.FranciscanCrown, languageCode = "en"))
         val nonDecadeHailMarys = steps.filter { it.decadeIndex == null && it.title.startsWith("Hail Mary") }
         assertEquals(2, nonDecadeHailMarys.size)
 
@@ -54,7 +56,7 @@ class FranciscanCrownEngineTest {
 
     @Test
     fun endsWithSeasonalAntiphonThenClosingCross() {
-        val steps = engine(MarianAntiphonOption.ReginaCaeli).buildSteps("en")
+        val steps = engine(MarianAntiphonOption.ReginaCaeli).buildSteps(Prayer(kind = PrayerKind.FranciscanCrown, languageCode = "en"))
         assertEquals("Regina Caeli", steps[steps.size - 2].title)
         assertTrue(steps[steps.size - 2].isAntiphon)
         assertEquals("Sign of the Cross", steps.last().title)
@@ -62,7 +64,7 @@ class FranciscanCrownEngineTest {
 
     @Test
     fun firstJoyIsAnnunciationReusingExistingMysteryContent() {
-        val steps = engine().buildSteps("en")
+        val steps = engine().buildSteps(Prayer(kind = PrayerKind.FranciscanCrown, languageCode = "en"))
         val firstJoy = steps.first { it.decadeIndex == 0 && it.isScripture }
         assertEquals("The Annunciation", firstJoy.title)
         assertEquals("joyful_01_annunciation", firstJoy.imageKey)
@@ -70,7 +72,7 @@ class FranciscanCrownEngineTest {
 
     @Test
     fun fourthJoyIsTheNewAdorationOfTheMagiContent() {
-        val steps = engine().buildSteps("en")
+        val steps = engine().buildSteps(Prayer(kind = PrayerKind.FranciscanCrown, languageCode = "en"))
         val fourthJoy = steps.first { it.decadeIndex == 3 && it.isScripture }
         assertEquals("The Adoration of the Magi", fourthJoy.title)
         assertEquals("franciscan_04_adoration_of_the_magi", fourthJoy.imageKey)
@@ -78,13 +80,13 @@ class FranciscanCrownEngineTest {
 
     @Test
     fun englishBodyContainsEnglishText() {
-        val steps = engine().buildSteps("en")
+        val steps = engine().buildSteps(Prayer(kind = PrayerKind.FranciscanCrown, languageCode = "en"))
         assertTrue(steps.any { it.body.contains("Hail Mary, full of grace") })
     }
 
     @Test
     fun latinBodyContainsLatinText() {
-        val steps = engine().buildSteps("la")
+        val steps = engine().buildSteps(Prayer(kind = PrayerKind.FranciscanCrown, languageCode = "la"))
         assertTrue(steps.any { it.body.contains("Ave Maria, gratia plena") })
     }
 }

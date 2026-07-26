@@ -48,7 +48,7 @@ fun AngelusFlowScreen(prayer: Prayer? = null, onBack: () -> Unit) {
             default?.languageCode
         }
         isRightToLeft = LanguageCatalog.resolve(languageCode).isRightToLeft
-        steps = services.angelusEngine.buildSteps(languageCode)
+        steps = services.engine.buildSteps(Prayer(kind = PrayerKind.Angelus, languageCode = languageCode ?: LanguageCatalog.defaultSentinel))
         currentIndex = 0
         seasonColor = services.calendar.seasonColorToday()
 

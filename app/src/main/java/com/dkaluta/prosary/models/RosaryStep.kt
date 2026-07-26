@@ -3,7 +3,7 @@ package com.dkaluta.prosary.models
 import java.util.UUID
 
 /** What the UI needs from the backend to render one prayer "bead" in a fully built Rosary
- * session. The backend (RosaryEngine) is responsible for producing an ordered list of these
+ * session. The backend (PrayerEngine) is responsible for producing an ordered list of these
  * from a Prayer; the UI only ever reads them. */
 data class RosaryStep(
     val id: String = UUID.randomUUID().toString(),

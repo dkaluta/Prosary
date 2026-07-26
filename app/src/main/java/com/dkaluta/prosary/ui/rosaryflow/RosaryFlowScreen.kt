@@ -27,7 +27,7 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit) {
     var seasonColor by remember { mutableStateOf(Color.Transparent) }
 
     LaunchedEffect(prayer.id) {
-        steps = services.rosaryEngine.buildSteps(prayer)
+        steps = services.engine.buildSteps(prayer)
         currentIndex = 0
         seasonColor = services.calendar.seasonColorToday()
     }

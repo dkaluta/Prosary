@@ -50,7 +50,7 @@ fun StationsFlowScreen(prayer: Prayer? = null, onBack: () -> Unit) {
             default?.resolvedLanguageCode
         }
         isRightToLeft = LanguageCatalog.resolve(languageCode).isRightToLeft
-        steps = services.stationsEngine.buildSteps(languageCode)
+        steps = services.engine.buildSteps(Prayer(kind = PrayerKind.StationsOfTheCross, languageCode = languageCode ?: LanguageCatalog.defaultSentinel))
         currentIndex = 0
         seasonColor = services.calendar.seasonColorToday()
 

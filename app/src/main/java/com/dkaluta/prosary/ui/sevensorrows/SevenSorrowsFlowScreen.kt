@@ -53,7 +53,7 @@ fun SevenSorrowsFlowScreen(prayer: Prayer? = null, onBack: () -> Unit) {
             default?.resolvedLanguageCode
         }
         isRightToLeft = LanguageCatalog.resolve(languageCode).isRightToLeft
-        steps = services.sevenSorrowsEngine.buildSteps(languageCode)
+        steps = services.engine.buildSteps(Prayer(kind = PrayerKind.SevenSorrows, languageCode = languageCode ?: LanguageCatalog.defaultSentinel))
         currentIndex = 0
         seasonColor = services.calendar.seasonColorToday()
 

@@ -15,8 +15,8 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-/** Tests that [MockRosaryEngine] builds the expected step sequences for a range of
- * [RosaryOptions] configurations — mirrors iOS's RosaryEngineTests against StubRosaryEngine. */
+/** Tests that [PrayerEngine] builds the expected step sequences for a range of
+ * [RosaryOptions] configurations — mirrors iOS's RosaryEngineTests. */
 class RosaryEngineTest {
     private class FixedCalendar(private val group: MysteryGroup) : LiturgicalCalendarProviding {
         override fun mysteryGroup(date: Date) = group
@@ -25,7 +25,7 @@ class RosaryEngineTest {
         override fun isEasterSeason(date: Date) = false
     }
 
-    private fun engine(group: MysteryGroup = MysteryGroup.Joyful) = MockRosaryEngine(calendar = FixedCalendar(group))
+    private fun engine(group: MysteryGroup = MysteryGroup.Joyful) = PrayerEngine(calendar = FixedCalendar(group))
 
     private fun prayer(
         group: MysteryGroup = MysteryGroup.Joyful,
@@ -200,7 +200,7 @@ class RosaryEngineTest {
 
     @Test
     fun resolveTodaysMysteriesUsesCalendar() {
-        val e = MockRosaryEngine(calendar = FixedCalendar(MysteryGroup.Luminous))
+        val e = PrayerEngine(calendar = FixedCalendar(MysteryGroup.Luminous))
         val p = prayer(mode = MysterySelectionMode.TodaysMysteries)
         assertEquals(listOf(MysteryGroup.Luminous), e.resolveMysteryGroups(p))
     }

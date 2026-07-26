@@ -1,6 +1,6 @@
 package com.dkaluta.prosary.ui.rosaryflow
 
-import com.dkaluta.prosary.engine.MockRosaryEngine
+import com.dkaluta.prosary.engine.PrayerEngine
 import com.dkaluta.prosary.models.MysteryGroup
 import com.dkaluta.prosary.models.MysterySelectionMode
 import com.dkaluta.prosary.models.Prayer
@@ -66,7 +66,7 @@ class BeadModelsTest {
      * the generalization — still one column per distinct MysteryGroup in session order. */
     @Test
     fun mysteryGroupedStepsStillGroupByMysteryGroup() {
-        val steps = MockRosaryEngine().buildSteps(Prayer(rosary = RosaryOptions(mysterySelectionMode = MysterySelectionMode.TwentyMystery)))
+        val steps = PrayerEngine().buildSteps(Prayer(rosary = RosaryOptions(mysterySelectionMode = MysterySelectionMode.TwentyMystery)))
         val layout = BeadLayout.build(steps, currentIndex = steps.size / 2, hasClosingCross = true)
 
         assertEquals(4, layout.groupColumns.size)

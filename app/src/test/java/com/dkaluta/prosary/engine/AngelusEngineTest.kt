@@ -4,6 +4,8 @@ import androidx.compose.ui.graphics.Color
 import com.dkaluta.prosary.calendar.LiturgicalCalendarProviding
 import com.dkaluta.prosary.models.MarianAntiphonOption
 import com.dkaluta.prosary.models.MysteryGroup
+import com.dkaluta.prosary.models.Prayer
+import com.dkaluta.prosary.models.PrayerKind
 import java.util.Date
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -20,8 +22,8 @@ private class FixedLiturgicalCalendar(private val easterSeasonValue: Boolean) : 
 class AngelusEngineTest {
     @Test
     fun standardFormOutsideEastertide() {
-        val engine = MockAngelusEngine(calendar = FixedLiturgicalCalendar(easterSeasonValue = false))
-        val steps = engine.buildSteps("en")
+        val engine = PrayerEngine(calendar = FixedLiturgicalCalendar(easterSeasonValue = false))
+        val steps = engine.buildSteps(Prayer(kind = PrayerKind.Angelus, languageCode = "en"))
 
         assertEquals(7, steps.size)
         assertEquals(
@@ -41,8 +43,8 @@ class AngelusEngineTest {
 
     @Test
     fun reginaCaeliSubstitutionDuringEastertide() {
-        val engine = MockAngelusEngine(calendar = FixedLiturgicalCalendar(easterSeasonValue = true))
-        val steps = engine.buildSteps("en")
+        val engine = PrayerEngine(calendar = FixedLiturgicalCalendar(easterSeasonValue = true))
+        val steps = engine.buildSteps(Prayer(kind = PrayerKind.Angelus, languageCode = "en"))
 
         assertEquals(1, steps.size)
         assertEquals("Regina Caeli", steps[0].title)
@@ -53,8 +55,8 @@ class AngelusEngineTest {
 
     @Test
     fun fallsBackToLatinWhenLanguageIsNull() {
-        val engine = MockAngelusEngine(calendar = FixedLiturgicalCalendar(easterSeasonValue = false))
-        val steps = engine.buildSteps(null)
+        val engine = PrayerEngine(calendar = FixedLiturgicalCalendar(easterSeasonValue = false))
+        val steps = engine.buildSteps(Prayer(kind = PrayerKind.Angelus))
 
         assertTrue(steps[0].body.contains("Angelus Domini nuntiavit Mariae"))
     }

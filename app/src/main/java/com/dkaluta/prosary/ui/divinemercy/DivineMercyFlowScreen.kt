@@ -53,7 +53,7 @@ fun DivineMercyFlowScreen(prayer: Prayer? = null, onBack: () -> Unit) {
             default?.resolvedLanguageCode
         }
         isRightToLeft = LanguageCatalog.resolve(languageCode).isRightToLeft
-        steps = services.divineMercyEngine.buildSteps(languageCode)
+        steps = services.engine.buildSteps(Prayer(kind = PrayerKind.DivineMercyChaplet, languageCode = languageCode ?: LanguageCatalog.defaultSentinel))
         currentIndex = 0
         seasonColor = services.calendar.seasonColorToday()
 
