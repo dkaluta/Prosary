@@ -49,6 +49,8 @@
             <conv:LanguageCodeLabelConverter x:Key="LanguageCodeLabel" />
             <conv:JesusPrayerTargetLabelConverter x:Key="JesusPrayerTargetLabel" />
             <conv:GroupStartLeadingMarginConverter x:Key="GroupStartLeadingMargin" />
+            <conv:PrayerKindIconGlyphConverter x:Key="PrayerKindIconGlyph" />
+            <conv:BoolToStarGlyphConverter x:Key="BoolToStarGlyph" />
 
             <!-- Shared text styles, matching irosary's Styles.xaml naming/intent. -->
             <Style x:Key="HeadlineTextStyle" TargetType="TextBlock">

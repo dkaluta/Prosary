@@ -14,8 +14,9 @@ namespace Prosary.ViewModels;
 /// <see cref="RosaryViewModel"/>), just the shared header/progress/footer chrome, matching
 /// Android's <c>AngelusFlowScreen.kt</c>/iOS's <c>AngelusFlowView.swift</c>. Unlike the Rosary,
 /// the Angelus can be launched with no saved favorite at all (straight from Home) — in that case
-/// the language is borrowed from the default Rosary favorite, and a star toggle lets the user
-/// save/unsave an Angelus favorite in the current language on the fly.
+/// it always uses the app-level default language (the Angelus has no per-favorite language of its
+/// own; see FavoritesViewModel), and a star toggle lets the user save/unsave the one Angelus
+/// favorite on the fly.
 /// </summary>
 public partial class AngelusViewModel : ObservableObject, IPrayerStepFlowViewModel
 {
@@ -89,24 +90,21 @@ public partial class AngelusViewModel : ObservableObject, IPrayerStepFlowViewMod
     {
         try
         {
-            var prayer = prayerId is { } id ? await _presets.GetAsync(id) : null;
+            // Seeds the star as already-favorited immediately, without waiting on the initial
+            // favorites fetch below.
+            MatchingFavoriteId = prayerId;
 
-            // No favorite in hand (launched straight from Home) — borrow the default Rosary
-            // favorite's language as a reasonable guess, same as Android's AngelusFlowScreen.
-            _languageCode = prayer is not null
-                ? prayer.ResolvedLanguageCode
-                : (await _presets.GetDefaultAsync(PrayerKind.Rosary))?.LanguageCode;
+            _languageCode = LanguageCatalog.Resolve(LanguageCatalog.DefaultSentinel).Code;
 
             IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
-            _steps = _engine.BuildSteps(new Prayer { Kind = PrayerKind.Angelus, LanguageCode = _languageCode ?? LanguageCatalog.DefaultSentinel });
+            _steps = _engine.BuildSteps(new Prayer { Kind = PrayerKind.Angelus, LanguageCode = LanguageCatalog.DefaultSentinel });
             _index = 0;
             SeasonColor = _calendar.GetSeasonColorForToday();
 
             RenderCurrentStep();
 
             var all = await _presets.GetAllAsync();
-            var resolved = _languageCode ?? LanguageCatalog.DefaultCode;
-            MatchingFavoriteId = all.FirstOrDefault(p => p.Kind == PrayerKind.Angelus && p.ResolvedLanguageCode == resolved)?.Id;
+            MatchingFavoriteId = all.FirstOrDefault(p => p.Kind == PrayerKind.Angelus)?.Id;
         }
         catch (Exception ex)
         {
@@ -185,17 +183,12 @@ public partial class AngelusViewModel : ObservableObject, IPrayerStepFlowViewMod
             return;
         }
 
-        var resolved = _languageCode ?? LanguageCatalog.DefaultCode;
-        var langName = LanguageCatalog.All.FirstOrDefault(l => l.Code == resolved)?.NativeName ?? resolved;
-        var all = await _presets.GetAllAsync();
-        var isFirst = all.All(p => p.Kind != PrayerKind.Angelus);
-
         var newFavorite = new Prayer
         {
-            Name = $"Angelus ({langName})",
+            Name = PrayerKind.Angelus.DefaultName(),
             Kind = PrayerKind.Angelus,
-            IsDefault = isFirst,
-            LanguageCode = resolved,
+            IsDefault = true,
+            LanguageCode = LanguageCatalog.DefaultSentinel,
         };
         await _presets.SaveAsync(newFavorite);
         MatchingFavoriteId = newFavorite.Id;

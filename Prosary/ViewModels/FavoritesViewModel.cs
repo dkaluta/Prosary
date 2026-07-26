@@ -10,14 +10,28 @@ using Prosary.Views;
 namespace Prosary.ViewModels;
 
 /// <summary>
-/// Drives the Favorites list — ported from Android's <c>FavoritesListScreen.kt</c>, grouped by
-/// <see cref="PrayerKind"/> into three separate collections (one per section) rather than a
-/// single flat list a XAML <c>CollectionViewSource</c> would need to re-group, since WinUI3 has
-/// no built-in sticky-header-by-key list control as convenient as Compose's <c>LazyColumn</c>
-/// <c>stickyHeader</c>.
+/// Drives the Favorites list — ported from Android's <c>FavoritesListScreen.kt</c>. Rosary and
+/// Jesus Prayer are the only kinds with real per-favorite options worth naming and saving
+/// multiple variants of, so they keep their own <c>ObservableCollection&lt;Prayer&gt;</c> + card
+/// list + editor. The other 5 kinds render as a single star row each instead (see
+/// <see cref="SimpleFavoriteRow"/>) — this is where Windows benefits most from the simplification:
+/// what would otherwise be 5 more parallel <c>ObservableCollection&lt;Prayer&gt;</c> properties
+/// and 5 more <c>AddNewX()</c> commands (kept duplicated pre-refactor only because WinUI's
+/// command-binding model doesn't cleanly support one parameterized command bound 5 ways from
+/// XAML) collapse into one list and two shared, parameterized commands, since a star toggle takes
+/// exactly one argument (the row) rather than needing to distinguish "add" from "which kind".
 /// </summary>
 public partial class FavoritesViewModel : ObservableObject
 {
+    private static readonly PrayerKind[] SimplifiedKinds =
+    [
+        PrayerKind.Angelus,
+        PrayerKind.StationsOfTheCross,
+        PrayerKind.FranciscanCrown,
+        PrayerKind.SevenSorrows,
+        PrayerKind.DivineMercyChaplet,
+    ];
+
     private readonly IPresetStore _presets;
     private readonly IReminderScheduler _scheduler;
 
@@ -25,22 +39,10 @@ public partial class FavoritesViewModel : ObservableObject
     private ObservableCollection<Prayer> _rosaryFavorites = [];
 
     [ObservableProperty]
-    private ObservableCollection<Prayer> _angelusFavorites = [];
-
-    [ObservableProperty]
     private ObservableCollection<Prayer> _jesusPrayerFavorites = [];
 
     [ObservableProperty]
-    private ObservableCollection<Prayer> _stationsOfTheCrossFavorites = [];
-
-    [ObservableProperty]
-    private ObservableCollection<Prayer> _franciscanCrownFavorites = [];
-
-    [ObservableProperty]
-    private ObservableCollection<Prayer> _sevenSorrowsFavorites = [];
-
-    [ObservableProperty]
-    private ObservableCollection<Prayer> _divineMercyFavorites = [];
+    private ObservableCollection<SimpleFavoriteRow> _simpleFavorites = [];
 
     public FavoritesViewModel(IPresetStore presets, IReminderScheduler scheduler)
     {
@@ -55,12 +57,12 @@ public partial class FavoritesViewModel : ObservableObject
     {
         var all = await _presets.GetAllAsync();
         RosaryFavorites = new ObservableCollection<Prayer>(all.Where(p => p.Kind == PrayerKind.Rosary));
-        AngelusFavorites = new ObservableCollection<Prayer>(all.Where(p => p.Kind == PrayerKind.Angelus));
         JesusPrayerFavorites = new ObservableCollection<Prayer>(all.Where(p => p.Kind == PrayerKind.JesusPrayer));
-        StationsOfTheCrossFavorites = new ObservableCollection<Prayer>(all.Where(p => p.Kind == PrayerKind.StationsOfTheCross));
-        FranciscanCrownFavorites = new ObservableCollection<Prayer>(all.Where(p => p.Kind == PrayerKind.FranciscanCrown));
-        SevenSorrowsFavorites = new ObservableCollection<Prayer>(all.Where(p => p.Kind == PrayerKind.SevenSorrows));
-        DivineMercyFavorites = new ObservableCollection<Prayer>(all.Where(p => p.Kind == PrayerKind.DivineMercyChaplet));
+        SimpleFavorites = new ObservableCollection<SimpleFavoriteRow>(SimplifiedKinds.Select(kind =>
+        {
+            var match = all.FirstOrDefault(p => p.Kind == kind);
+            return new SimpleFavoriteRow(kind, match is not null, match?.Id);
+        }));
     }
 
     [RelayCommand]
@@ -97,30 +99,15 @@ public partial class FavoritesViewModel : ObservableObject
     [RelayCommand]
     private void Edit(Prayer prayer) => Router.Navigate<FavoriteEditorPage>(new FavoriteEditorParams(prayer.Id));
 
-    // Three concrete commands rather than one CommandParameter-driven AddNew(PrayerKind) — a
-    // plain XAML CommandParameter string ("Rosary") would arrive as a string, not a PrayerKind,
-    // and IRelayCommand<PrayerKind> would reject it, so each "Add {kind}" button gets its own
+    // Two concrete commands rather than one CommandParameter-driven AddNew(PrayerKind) — a plain
+    // XAML CommandParameter string ("Rosary") would arrive as a string, not a PrayerKind, and
+    // IRelayCommand<PrayerKind> would reject it, so each "Add {kind}" button gets its own
     // no-argument command instead.
     [RelayCommand]
     private void AddNewRosary() => AddNew(PrayerKind.Rosary);
 
     [RelayCommand]
-    private void AddNewAngelus() => AddNew(PrayerKind.Angelus);
-
-    [RelayCommand]
     private void AddNewJesusPrayer() => AddNew(PrayerKind.JesusPrayer);
-
-    [RelayCommand]
-    private void AddNewStationsOfTheCross() => AddNew(PrayerKind.StationsOfTheCross);
-
-    [RelayCommand]
-    private void AddNewFranciscanCrown() => AddNew(PrayerKind.FranciscanCrown);
-
-    [RelayCommand]
-    private void AddNewSevenSorrows() => AddNew(PrayerKind.SevenSorrows);
-
-    [RelayCommand]
-    private void AddNewDivineMercyChaplet() => AddNew(PrayerKind.DivineMercyChaplet);
 
     private void AddNew(PrayerKind kind) => Router.Navigate<FavoriteEditorPage>(new FavoriteEditorParams(null, kind));
 
@@ -137,6 +124,47 @@ public partial class FavoritesViewModel : ObservableObject
         _scheduler.RemoveAll(prayer);
         await _presets.DeleteAsync(prayer);
         await LoadAsync();
+    }
+
+    /// <summary>Star toggle for the 5 simplified kinds — at most one <see cref="Prayer"/> row per
+    /// kind, matched by kind alone (not language), always saved with the sentinel language
+    /// (follows the app-level default).</summary>
+    [RelayCommand]
+    private async Task ToggleSimpleFavoriteAsync(SimpleFavoriteRow row)
+    {
+        if (row.PrayerId is { } id)
+        {
+            var existing = await _presets.GetAsync(id);
+            if (existing is not null)
+            {
+                _scheduler.RemoveAll(existing);
+                await _presets.DeleteAsync(existing);
+            }
+        }
+        else
+        {
+            await _presets.SaveAsync(new Prayer
+            {
+                Name = row.Kind.DefaultName(),
+                Kind = row.Kind,
+                IsDefault = true,
+                LanguageCode = LanguageCatalog.DefaultSentinel,
+            });
+        }
+
+        await LoadAsync();
+    }
+
+    /// <summary>Opens <see cref="RemindersOnlyEditorPage"/> for an already-favorited simplified
+    /// kind. Only reachable once favorited (see FavoritesListPage.xaml's Visibility binding) —
+    /// there's no <see cref="SimpleFavoriteRow.PrayerId"/> to attach reminders to otherwise.</summary>
+    [RelayCommand]
+    private void EditReminders(SimpleFavoriteRow row)
+    {
+        if (row.PrayerId is { } id)
+        {
+            Router.Navigate<RemindersOnlyEditorPage>(id);
+        }
     }
 
     [RelayCommand]

@@ -131,30 +131,21 @@ public partial class FranciscanCrownViewModel : ObservableObject, IPrayerStepFlo
     {
         try
         {
-            var prayer = prayerId is { } id ? await _presets.GetAsync(id) : null;
+            // Seeds the star as already-favorited immediately, without waiting on the initial
+            // favorites fetch below.
+            MatchingFavoriteId = prayerId;
 
-            if (prayer is not null)
-            {
-                _languageCode = prayer.ResolvedLanguageCode;
-            }
-            else
-            {
-                var all = await _presets.GetAllAsync();
-                var defaultFranciscanCrown = all.FirstOrDefault(p => p.Kind == PrayerKind.FranciscanCrown && p.IsDefault)
-                    ?? all.FirstOrDefault(p => p.Kind == PrayerKind.FranciscanCrown);
-                _languageCode = defaultFranciscanCrown?.ResolvedLanguageCode;
-            }
+            _languageCode = LanguageCatalog.Resolve(LanguageCatalog.DefaultSentinel).Code;
 
             IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
-            _steps = _engine.BuildSteps(new Prayer { Kind = PrayerKind.FranciscanCrown, LanguageCode = _languageCode ?? LanguageCatalog.DefaultSentinel });
+            _steps = _engine.BuildSteps(new Prayer { Kind = PrayerKind.FranciscanCrown, LanguageCode = LanguageCatalog.DefaultSentinel });
             _index = 0;
             SeasonColor = _calendar.GetSeasonColorForToday();
 
             RenderCurrentStep();
 
             var allFavorites = await _presets.GetAllAsync();
-            var resolved = _languageCode ?? LanguageCatalog.DefaultCode;
-            MatchingFavoriteId = allFavorites.FirstOrDefault(p => p.Kind == PrayerKind.FranciscanCrown && p.ResolvedLanguageCode == resolved)?.Id;
+            MatchingFavoriteId = allFavorites.FirstOrDefault(p => p.Kind == PrayerKind.FranciscanCrown)?.Id;
         }
         catch (Exception ex)
         {
@@ -254,17 +245,12 @@ public partial class FranciscanCrownViewModel : ObservableObject, IPrayerStepFlo
             return;
         }
 
-        var resolved = _languageCode ?? LanguageCatalog.DefaultCode;
-        var langName = LanguageCatalog.All.FirstOrDefault(l => l.Code == resolved)?.NativeName ?? resolved;
-        var all = await _presets.GetAllAsync();
-        var isFirst = all.All(p => p.Kind != PrayerKind.FranciscanCrown);
-
         var newFavorite = new Prayer
         {
-            Name = $"Franciscan Crown ({langName})",
+            Name = PrayerKind.FranciscanCrown.DefaultName(),
             Kind = PrayerKind.FranciscanCrown,
-            IsDefault = isFirst,
-            LanguageCode = resolved,
+            IsDefault = true,
+            LanguageCode = LanguageCatalog.DefaultSentinel,
         };
         await _presets.SaveAsync(newFavorite);
         MatchingFavoriteId = newFavorite.Id;

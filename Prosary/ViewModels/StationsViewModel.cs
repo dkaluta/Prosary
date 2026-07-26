@@ -14,8 +14,9 @@ namespace Prosary.ViewModels;
 /// <see cref="RosaryViewModel"/>), just the shared header/progress/footer chrome, matching
 /// Android's <c>StationsFlowScreen.kt</c>/iOS's <c>StationsFlowView.swift</c>. Unlike the Rosary,
 /// the Stations can be launched with no saved favorite at all (straight from Home) — in that case
-/// the app default language is used, and a star toggle lets the user save/unsave a Stations
-/// favorite in the current language on the fly.
+/// it always uses the app-level default language (Stations has no per-favorite language of its
+/// own; see FavoritesViewModel), and a star toggle lets the user save/unsave the one Stations
+/// favorite on the fly.
 /// </summary>
 public partial class StationsViewModel : ObservableObject, IPrayerStepFlowViewModel
 {
@@ -89,30 +90,21 @@ public partial class StationsViewModel : ObservableObject, IPrayerStepFlowViewMo
     {
         try
         {
-            var prayer = prayerId is { } id ? await _presets.GetAsync(id) : null;
+            // Seeds the star as already-favorited immediately, without waiting on the initial
+            // favorites fetch below.
+            MatchingFavoriteId = prayerId;
 
-            if (prayer is not null)
-            {
-                _languageCode = prayer.ResolvedLanguageCode;
-            }
-            else
-            {
-                var all = await _presets.GetAllAsync();
-                var defaultStations = all.FirstOrDefault(p => p.Kind == PrayerKind.StationsOfTheCross && p.IsDefault)
-                    ?? all.FirstOrDefault(p => p.Kind == PrayerKind.StationsOfTheCross);
-                _languageCode = defaultStations?.ResolvedLanguageCode;
-            }
+            _languageCode = LanguageCatalog.Resolve(LanguageCatalog.DefaultSentinel).Code;
 
             IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
-            _steps = _engine.BuildSteps(new Prayer { Kind = PrayerKind.StationsOfTheCross, LanguageCode = _languageCode ?? LanguageCatalog.DefaultSentinel });
+            _steps = _engine.BuildSteps(new Prayer { Kind = PrayerKind.StationsOfTheCross, LanguageCode = LanguageCatalog.DefaultSentinel });
             _index = 0;
             SeasonColor = _calendar.GetSeasonColorForToday();
 
             RenderCurrentStep();
 
             var allFavorites = await _presets.GetAllAsync();
-            var resolved = _languageCode ?? LanguageCatalog.DefaultCode;
-            MatchingFavoriteId = allFavorites.FirstOrDefault(p => p.Kind == PrayerKind.StationsOfTheCross && p.ResolvedLanguageCode == resolved)?.Id;
+            MatchingFavoriteId = allFavorites.FirstOrDefault(p => p.Kind == PrayerKind.StationsOfTheCross)?.Id;
         }
         catch (Exception ex)
         {
@@ -191,17 +183,12 @@ public partial class StationsViewModel : ObservableObject, IPrayerStepFlowViewMo
             return;
         }
 
-        var resolved = _languageCode ?? LanguageCatalog.DefaultCode;
-        var langName = LanguageCatalog.All.FirstOrDefault(l => l.Code == resolved)?.NativeName ?? resolved;
-        var all = await _presets.GetAllAsync();
-        var isFirst = all.All(p => p.Kind != PrayerKind.StationsOfTheCross);
-
         var newFavorite = new Prayer
         {
-            Name = $"Stations of the Cross ({langName})",
+            Name = PrayerKind.StationsOfTheCross.DefaultName(),
             Kind = PrayerKind.StationsOfTheCross,
-            IsDefault = isFirst,
-            LanguageCode = resolved,
+            IsDefault = true,
+            LanguageCode = LanguageCatalog.DefaultSentinel,
         };
         await _presets.SaveAsync(newFavorite);
         MatchingFavoriteId = newFavorite.Id;

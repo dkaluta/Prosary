@@ -3,32 +3,35 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using Prosary.Models;
-using Prosary.Navigation;
 using Prosary.ViewModels;
 
 namespace Prosary.Views;
 
-/// <summary>Navigation parameter: <see cref="FavoriteEditorParams"/>.</summary>
-public sealed partial class FavoriteEditorPage : Page
+/// <summary>Navigation parameter: the favorited <see cref="Prosary.Models.Prayer"/>'s
+/// <see cref="Guid"/> id.</summary>
+public sealed partial class RemindersOnlyEditorPage : Page
 {
-    public FavoriteEditorViewModel ViewModel { get; }
+    public RemindersOnlyEditorViewModel ViewModel { get; }
 
-    public FavoriteEditorPage()
+    public RemindersOnlyEditorPage()
     {
-        ViewModel = App.Services.GetRequiredService<FavoriteEditorViewModel>();
+        ViewModel = App.Services.GetRequiredService<RemindersOnlyEditorViewModel>();
         InitializeComponent();
     }
 
     protected override async void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
-        var parameters = e.Parameter as FavoriteEditorParams ?? new FavoriteEditorParams(null);
-        await ViewModel.LoadAsync(parameters.PrayerId, parameters.NewFavoriteKind);
+        if (e.Parameter is Guid prayerId)
+        {
+            await ViewModel.LoadAsync(prayerId);
+        }
     }
 
     // TimePicker has no per-item command hook, so its value-changed event is handled directly
     // here — the sender's DataContext is the PrayerReminder this row is bound to (set by the
     // ItemsControl's DataTemplate), matching the sibling Delete button's {Binding} parameter.
+    // See FavoriteEditorPage.xaml.cs, which handles the same event identically.
     private void OnReminderTimeChanged(object sender, TimePickerValueChangedEventArgs e)
     {
         if (sender is FrameworkElement { DataContext: PrayerReminder reminder })

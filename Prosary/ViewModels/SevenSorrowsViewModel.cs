@@ -131,30 +131,21 @@ public partial class SevenSorrowsViewModel : ObservableObject, IPrayerStepFlowVi
     {
         try
         {
-            var prayer = prayerId is { } id ? await _presets.GetAsync(id) : null;
+            // Seeds the star as already-favorited immediately, without waiting on the initial
+            // favorites fetch below.
+            MatchingFavoriteId = prayerId;
 
-            if (prayer is not null)
-            {
-                _languageCode = prayer.ResolvedLanguageCode;
-            }
-            else
-            {
-                var all = await _presets.GetAllAsync();
-                var defaultSevenSorrows = all.FirstOrDefault(p => p.Kind == PrayerKind.SevenSorrows && p.IsDefault)
-                    ?? all.FirstOrDefault(p => p.Kind == PrayerKind.SevenSorrows);
-                _languageCode = defaultSevenSorrows?.ResolvedLanguageCode;
-            }
+            _languageCode = LanguageCatalog.Resolve(LanguageCatalog.DefaultSentinel).Code;
 
             IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
-            _steps = _engine.BuildSteps(new Prayer { Kind = PrayerKind.SevenSorrows, LanguageCode = _languageCode ?? LanguageCatalog.DefaultSentinel });
+            _steps = _engine.BuildSteps(new Prayer { Kind = PrayerKind.SevenSorrows, LanguageCode = LanguageCatalog.DefaultSentinel });
             _index = 0;
             SeasonColor = _calendar.GetSeasonColorForToday();
 
             RenderCurrentStep();
 
             var allFavorites = await _presets.GetAllAsync();
-            var resolved = _languageCode ?? LanguageCatalog.DefaultCode;
-            MatchingFavoriteId = allFavorites.FirstOrDefault(p => p.Kind == PrayerKind.SevenSorrows && p.ResolvedLanguageCode == resolved)?.Id;
+            MatchingFavoriteId = allFavorites.FirstOrDefault(p => p.Kind == PrayerKind.SevenSorrows)?.Id;
         }
         catch (Exception ex)
         {
@@ -254,17 +245,12 @@ public partial class SevenSorrowsViewModel : ObservableObject, IPrayerStepFlowVi
             return;
         }
 
-        var resolved = _languageCode ?? LanguageCatalog.DefaultCode;
-        var langName = LanguageCatalog.All.FirstOrDefault(l => l.Code == resolved)?.NativeName ?? resolved;
-        var all = await _presets.GetAllAsync();
-        var isFirst = all.All(p => p.Kind != PrayerKind.SevenSorrows);
-
         var newFavorite = new Prayer
         {
-            Name = $"Seven Sorrows ({langName})",
+            Name = PrayerKind.SevenSorrows.DefaultName(),
             Kind = PrayerKind.SevenSorrows,
-            IsDefault = isFirst,
-            LanguageCode = resolved,
+            IsDefault = true,
+            LanguageCode = LanguageCatalog.DefaultSentinel,
         };
         await _presets.SaveAsync(newFavorite);
         MatchingFavoriteId = newFavorite.Id;
