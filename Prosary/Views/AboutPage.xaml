@@ -92,6 +92,61 @@
                 </StackPanel>
 
                 <StackPanel Spacing="8">
+                    <TextBlock Text="Stations of the Cross Illustrations" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                    <TextBlock Text="Placeholder illustrations for now — real public-domain artwork with proper attribution hasn't been sourced yet for the 14 stations."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    <TextBlock TextWrapping="Wrap" LineHeight="20" HorizontalAlignment="Left">
+                        <Run Text="Station 1: Jesus is Condemned to Death" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 2: Jesus Carries His Cross" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 3: Jesus Falls the First Time" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 4: Jesus Meets His Mother" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 5: Simon of Cyrene Helps Jesus Carry the Cross" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 6: Veronica Wipes the Face of Jesus" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 7: Jesus Falls the Second Time" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 8: Jesus Meets the Women of Jerusalem" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 9: Jesus Falls the Third Time" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 10: Jesus is Stripped of His Garments" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 11: Jesus is Nailed to the Cross" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 12: Jesus Dies on the Cross" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 13: Jesus is Taken Down from the Cross" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 14: Jesus is Laid in the Tomb" FontStyle="Italic" /><Run Text=" — artwork pending." />
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Franciscan Crown Illustration" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                    <TextBlock Text="Six of the Seven Joys reuse the Rosary mystery images above (Annunciation, Visitation, Nativity, Finding in the Temple, Resurrection, Coronation). Only the Adoration of the Magi is new, and its illustration is a placeholder for now — real public-domain artwork with proper attribution hasn't been sourced yet."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    <TextBlock TextWrapping="Wrap" LineHeight="20" HorizontalAlignment="Left">
+                        <Run Text="The Adoration of the Magi" FontStyle="Italic" /><Run Text=" — artwork pending." />
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Seven Sorrows Illustrations" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                    <TextBlock Text="Placeholder illustrations for now — real public-domain artwork with proper attribution hasn't been sourced yet for any of the 7 sorrows."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    <TextBlock TextWrapping="Wrap" LineHeight="20" HorizontalAlignment="Left">
+                        <Run Text="Sorrow 1: The Prophecy of Simeon" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Sorrow 2: The Flight into Egypt" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Sorrow 3: The Loss of the Child Jesus in the Temple" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Sorrow 4: Mary Meets Jesus on the Way of the Cross" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Sorrow 5: Mary at the Foot of the Cross" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Sorrow 6: Mary Receives the Body of Jesus" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Sorrow 7: The Burial of Jesus" FontStyle="Italic" /><Run Text=" — artwork pending." />
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Divine Mercy Illustration" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                    <TextBlock Text="The single Divine Mercy illustration, reused for every step (the chaplet has no per-decade content to illustrate separately), is a placeholder for now — real public-domain artwork with proper attribution hasn't been sourced yet."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    <TextBlock TextWrapping="Wrap" LineHeight="20" HorizontalAlignment="Left">
+                        <Run Text="Divine Mercy" FontStyle="Italic" /><Run Text=" — artwork pending." />
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Spacing="8">
                     <TextBlock Text="Scripture Sources" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
                     <TextBlock Text="Mystery meditations quote the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit), the Jesuit Arabic Bible (Beirut, 1880, revised 1988), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905) — all public domain."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />

@@ -60,9 +60,12 @@ public sealed class BeadInfo
 
 /// <summary>One mystery group's column of decade beads, for the wide layout's grid (one column
 /// per group in the session, e.g. 3 columns for a 15-mystery session, so a long session grows
-/// wider rather than awkwardly taller).</summary>
+/// wider rather than awkwardly taller). <see cref="Group"/> is null for devotions whose decades
+/// aren't tied to a Rosary <see cref="MysteryGroup"/> at all (Franciscan Crown, Seven Sorrows,
+/// Divine Mercy Chaplet) — those sessions always collapse to a single ungrouped column, since
+/// there's no group-switching to grow multiple columns for in the first place.</summary>
 public sealed class BeadColumn
 {
-    public required MysteryGroup Group { get; init; }
+    public required MysteryGroup? Group { get; init; }
     public required IReadOnlyList<BeadInfo> Beads { get; init; }
 }

@@ -100,6 +100,46 @@
                             Command="{x:Bind ViewModel.AddNewJesusPrayerCommand}" />
                 </StackPanel>
 
+                <StackPanel Spacing="8">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon Glyph="&#xE805;" />
+                        <TextBlock Text="Stations of the Cross" FontWeight="SemiBold" FontSize="16" />
+                    </StackPanel>
+                    <ItemsControl ItemsSource="{x:Bind ViewModel.StationsOfTheCrossFavorites, Mode=OneWay}" ItemTemplate="{StaticResource FavoriteCardTemplate}" />
+                    <Button Content="+ Add Stations of the Cross" Background="Transparent"
+                            Command="{x:Bind ViewModel.AddNewStationsOfTheCrossCommand}" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon Glyph="&#xED10;" />
+                        <TextBlock Text="Franciscan Crown" FontWeight="SemiBold" FontSize="16" />
+                    </StackPanel>
+                    <ItemsControl ItemsSource="{x:Bind ViewModel.FranciscanCrownFavorites, Mode=OneWay}" ItemTemplate="{StaticResource FavoriteCardTemplate}" />
+                    <Button Content="+ Add Franciscan Crown" Background="Transparent"
+                            Command="{x:Bind ViewModel.AddNewFranciscanCrownCommand}" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon Glyph="&#xEA92;" />
+                        <TextBlock Text="Seven Sorrows" FontWeight="SemiBold" FontSize="16" />
+                    </StackPanel>
+                    <ItemsControl ItemsSource="{x:Bind ViewModel.SevenSorrowsFavorites, Mode=OneWay}" ItemTemplate="{StaticResource FavoriteCardTemplate}" />
+                    <Button Content="+ Add Seven Sorrows" Background="Transparent"
+                            Command="{x:Bind ViewModel.AddNewSevenSorrowsCommand}" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon Glyph="&#xE9A0;" />
+                        <TextBlock Text="Divine Mercy Chaplet" FontWeight="SemiBold" FontSize="16" />
+                    </StackPanel>
+                    <ItemsControl ItemsSource="{x:Bind ViewModel.DivineMercyFavorites, Mode=OneWay}" ItemTemplate="{StaticResource FavoriteCardTemplate}" />
+                    <Button Content="+ Add Divine Mercy Chaplet" Background="Transparent"
+                            Command="{x:Bind ViewModel.AddNewDivineMercyChapletCommand}" />
+                </StackPanel>
+
             </StackPanel>
         </ScrollViewer>
     </Grid>

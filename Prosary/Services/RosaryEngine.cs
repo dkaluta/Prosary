@@ -125,7 +125,7 @@ public sealed class RosaryEngine
         var antiphon = ResolveMarianAntiphon(options);
         if (antiphon is { } chosen)
         {
-            steps.Add(BuildAntiphonStep(chosen, Text) with { IsAntiphon = true, ImageOverrideKey = "madonna_and_child" });
+            steps.Add(MarianAntiphonBuilder.BuildStep(chosen, lang));
         }
 
         if (options.IncludeStMichaelPrayer)
@@ -153,40 +153,5 @@ public sealed class RosaryEngine
         MarianAntiphonOption.None => null,
         MarianAntiphonOption.Seasonal => _calendar.GetSeasonalMarianAntiphonForToday(),
         var chosen => chosen
-    };
-
-    private enum AntiphonStyle { Standard, Paschal, Standalone }
-
-    private static RosaryStep BuildAntiphonStep(MarianAntiphonOption antiphon, Func<string, string> text)
-    {
-        var (titleKey, style) = antiphon switch
-        {
-            MarianAntiphonOption.SalveRegina => (PrayerKey.SalveRegina, AntiphonStyle.Standard),
-            MarianAntiphonOption.AlmaRedemptorisMater => (PrayerKey.AlmaRedemptorisMater, AntiphonStyle.Standard),
-            MarianAntiphonOption.AveReginaCaelorum => (PrayerKey.AveReginaCaelorum, AntiphonStyle.Standard),
-            MarianAntiphonOption.ReginaCaeli => (PrayerKey.ReginaCaeli, AntiphonStyle.Paschal),
-            MarianAntiphonOption.SubTuumPraesidium => (PrayerKey.SubTuumPraesidium, AntiphonStyle.Standalone),
-            _ => (PrayerKey.SalveRegina, AntiphonStyle.Standard)
-        };
-
-        // Sub Tuum Praesidium is the Church's oldest known Marian prayer and is traditionally
-        // prayed on its own, without the versicle/response/collect used after the four Office antiphons.
-        var body = style == AntiphonStyle.Standalone
-            ? text(titleKey)
-            : $"{text(titleKey)}\n\nV. {text(style == AntiphonStyle.Paschal ? PrayerKey.VersiculumPaschale : PrayerKey.VersiculumStandard)}" +
-              $"\nR. {text(style == AntiphonStyle.Paschal ? PrayerKey.ResponsiumPaschale : PrayerKey.ResponsiumStandard)}" +
-              $"\n\n{text(style == AntiphonStyle.Paschal ? PrayerKey.CollectaPaschale : PrayerKey.CollectaStandard)}";
-
-        return new RosaryStep(GetAntiphonHeader(antiphon), null, body);
-    }
-
-    private static string GetAntiphonHeader(MarianAntiphonOption antiphon) => antiphon switch
-    {
-        MarianAntiphonOption.SalveRegina => "Hail, Holy Queen (Salve Regina)",
-        MarianAntiphonOption.AlmaRedemptorisMater => "Alma Redemptoris Mater",
-        MarianAntiphonOption.AveReginaCaelorum => "Ave Regina Caelorum",
-        MarianAntiphonOption.ReginaCaeli => "Regina Caeli",
-        MarianAntiphonOption.SubTuumPraesidium => "Sub Tuum Praesidium",
-        _ => "Marian Antiphon"
     };
 }

@@ -120,17 +120,22 @@ public sealed class BeadLayout
 
         // One column per mystery group (in session order), each holding that group's decade
         // beads — a 15/20-mystery session grows into more columns instead of one long, awkwardly-
-        // tall strip. Single-group sessions naturally collapse to one column.
-        var decadeGroupOf = new Dictionary<int, MysteryGroup>();
+        // tall strip. Single-group sessions naturally collapse to one column. Decades with no
+        // mystery at all (Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet — none of which
+        // are "mysteries" in the Rosary sense) collapse into one shared ungrouped (null-group)
+        // column instead of being dropped entirely. Unlike Swift's dictionary subscript setter,
+        // C#'s Dictionary indexer always stores the assigned value (including null) rather than
+        // removing the entry, so this doesn't need Swift's updateValue(_:forKey:)-style workaround.
+        var decadeGroupOf = new Dictionary<int, MysteryGroup?>();
         foreach (var s in steps)
         {
-            if (s.DecadeIndex is { } d && s.Mystery is { } mystery && !decadeGroupOf.ContainsKey(d))
+            if (s.DecadeIndex is { } d && !decadeGroupOf.ContainsKey(d))
             {
-                decadeGroupOf[d] = mystery.Group;
+                decadeGroupOf[d] = s.Mystery?.Group;
             }
         }
 
-        var orderedGroups = new List<MysteryGroup>();
+        var orderedGroups = new List<MysteryGroup?>();
         for (var d = 0; d < totalDecades; d++)
         {
             if (decadeGroupOf.TryGetValue(d, out var group) && !orderedGroups.Contains(group))
@@ -139,17 +144,24 @@ public sealed class BeadLayout
             }
         }
 
-        var groupColumnBeads = orderedGroups.ToDictionary(g => g, _ => new List<BeadInfo>());
+        // Indexed by position in orderedGroups rather than a Dictionary<MysteryGroup?, ...> —
+        // MysteryGroup? as a dictionary key trips Dictionary<TKey,TValue>'s `TKey : notnull`
+        // constraint (Nullable<T> doesn't satisfy notnull, even though it works at runtime).
+        var groupColumnBeads = orderedGroups.Select(_ => new List<BeadInfo>()).ToList();
         for (var d = 0; d < totalDecades; d++)
         {
             if (decadeGroupOf.TryGetValue(d, out var group))
             {
-                groupColumnBeads[group].Add(decadeBeads[d]);
+                var columnIndex = orderedGroups.IndexOf(group);
+                if (columnIndex >= 0)
+                {
+                    groupColumnBeads[columnIndex].Add(decadeBeads[d]);
+                }
             }
         }
 
         var groupColumns = orderedGroups
-            .Select(g => new BeadColumn { Group = g, Beads = groupColumnBeads[g] })
+            .Select((g, i) => new BeadColumn { Group = g, Beads = groupColumnBeads[i] })
             .ToList();
 
         if (step.DecadeIndex is not { } decadeIndex)
@@ -188,8 +200,15 @@ public sealed class BeadLayout
         var firstHailMaryIndex = decadeStepIndices.Min();
         var lastHailMaryIndex = decadeStepIndices.Max();
 
+        // Hail-Marys-per-decade isn't always 10 (Seven Sorrows uses 7) — derive it from the
+        // session's own step data instead of hardcoding, so this stays correct for every devotion.
+        var hailMarysPerDecade = steps.Where(s => s.HailMaryIndexInDecade.HasValue)
+            .Select(s => s.HailMaryIndexInDecade!.Value)
+            .DefaultIfEmpty(10)
+            .Max();
+
         var bottom = new List<BeadInfo>();
-        for (var h = 1; h <= 10; h++)
+        for (var h = 1; h <= hailMarysPerDecade; h++)
         {
             BeadState state;
             if (currentIndex < firstHailMaryIndex)

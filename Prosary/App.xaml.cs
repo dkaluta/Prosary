@@ -46,6 +46,10 @@ public partial class App : Application
         services.AddSingleton<LiturgicalCalendarService>();
         services.AddSingleton<RosaryEngine>();
         services.AddSingleton<AngelusEngine>();
+        services.AddSingleton<StationsEngine>();
+        services.AddSingleton<FranciscanCrownEngine>();
+        services.AddSingleton<SevenSorrowsEngine>();
+        services.AddSingleton<DivineMercyEngine>();
         services.AddSingleton<IPresetStore, SqlitePresetStore>();
         services.AddSingleton<IReminderScheduler, WindowsReminderScheduler>();
 
@@ -54,6 +58,10 @@ public partial class App : Application
         services.AddTransient<FavoriteEditorViewModel>();
         services.AddTransient<RosaryViewModel>();
         services.AddTransient<AngelusViewModel>();
+        services.AddTransient<StationsViewModel>();
+        services.AddTransient<FranciscanCrownViewModel>();
+        services.AddTransient<SevenSorrowsViewModel>();
+        services.AddTransient<DivineMercyViewModel>();
         services.AddTransient<JesusPrayerSetupViewModel>();
         services.AddTransient<JesusPrayerViewModel>();
         services.AddTransient<SettingsViewModel>();

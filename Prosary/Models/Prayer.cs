@@ -45,6 +45,10 @@ public sealed record Prayer
         PrayerKind.Rosary => $"{Rosary.MysterySelectionSummary} • {LanguageDisplayName}",
         PrayerKind.Angelus => LanguageDisplayName,
         PrayerKind.JesusPrayer => $"{JesusPrayer.TargetDisplayName} • {LanguageDisplayName}",
+        PrayerKind.StationsOfTheCross => LanguageDisplayName,
+        PrayerKind.FranciscanCrown => LanguageDisplayName,
+        PrayerKind.SevenSorrows => LanguageDisplayName,
+        PrayerKind.DivineMercyChaplet => LanguageDisplayName,
         _ => throw new ArgumentOutOfRangeException(nameof(Kind))
     };
 }

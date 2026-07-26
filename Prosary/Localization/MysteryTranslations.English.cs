@@ -143,5 +143,64 @@ public static partial class MysteryTranslations
             "disciples, and said: Take ye, and eat. This is my body. And taking the chalice, he gave thanks: " +
             "and gave to them, saying: Drink ye all of this. For this is my blood of the new testament, " +
             "which shall be shed for many unto remission of sins.\n\n— Matthew 26:26-28 (Douay-Rheims)"),
+
+        // Franciscan Crown — the one Joy of the Seven Joys of Mary without an existing Rosary
+        // mystery to reuse (see FranciscanCrownCatalog.cs for the other six).
+        ["franciscan_04_adoration_of_the_magi"] = new(
+            "The Adoration of the Magi", "Generosity",
+            "And when they had heard the king, they went their way; and behold the star, which they had " +
+            "seen in the east, went before them, until it came and stood over where the child was. And " +
+            "seeing the star, they rejoiced with exceeding great joy. And entering into the house, they " +
+            "found the child with Mary his mother, and falling down they adored him; and opening their " +
+            "treasures, they offered him gifts; gold, frankincense, and myrrh.\n\n— Matthew 2:9-11 (Douay-Rheims)"),
+
+        // The Seven Sorrows of Mary (Servite Rosary/Chaplet of Our Lady of Sorrows) — see
+        // SevenSorrowsCatalog.cs. All seven are new content; only the Crucifixion overlaps a
+        // Rosary Sorrowful Mystery thematically, not in citation (this one is Mary's own vantage
+        // at the foot of the Cross, John 19, not the moment of Jesus's death, Luke 23, used for
+        // sorrowful_05_crucifixion above).
+        ["seven_sorrows_01_prophecy_of_simeon"] = new(
+            "The Prophecy of Simeon", "Trust in God's Will",
+            "And Simeon blessed them, and said to Mary his mother: Behold this child is set for the " +
+            "fall, and for the resurrection of many in Israel, and for a sign which shall be " +
+            "contradicted; And thy own soul a sword shall pierce, that, out of many hearts, thoughts " +
+            "may be revealed.\n\n— Luke 2:34-35 (Douay-Rheims)"),
+        ["seven_sorrows_02_flight_into_egypt"] = new(
+            "The Flight into Egypt", "Fortitude in Exile",
+            "And after they were departed, behold an angel of the Lord appeared in sleep to Joseph, " +
+            "saying: Arise, and take the child and his mother, and fly into Egypt, and be there until " +
+            "I shall tell thee. For it will come to pass that Herod will seek the child to destroy " +
+            "him. Who arose, and took the child and his mother by night, and retired into " +
+            "Egypt.\n\n— Matthew 2:13-14 (Douay-Rheims)"),
+        ["seven_sorrows_03_loss_of_jesus_in_the_temple"] = new(
+            "The Loss of the Child Jesus in the Temple", "Perseverance in Seeking Christ",
+            "And having fulfilled the days, when they returned, the child Jesus remained in Jerusalem; " +
+            "and his parents knew it not. And thinking that he was in the company, they came a day's " +
+            "journey, and sought him among their kinsfolks and acquaintance. And not finding him, they " +
+            "returned into Jerusalem, seeking him.\n\n— Luke 2:43-45 (Douay-Rheims)"),
+        ["seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross"] = new(
+            "Mary Meets Jesus on the Way of the Cross", "Compassion",
+            "Along the road to Calvary, Mary stands among the crowd and meets the eyes of her Son " +
+            "beneath the weight of the Cross — the sword Simeon foretold now piercing her heart at " +
+            "the sight of His suffering."),
+        ["seven_sorrows_05_crucifixion"] = new(
+            "Mary at the Foot of the Cross", "Courage in Suffering",
+            "Now there stood by the cross of Jesus, his mother, and his mother's sister, Mary of " +
+            "Cleophas, and Mary Magdalen. When Jesus therefore had seen his mother and the disciple " +
+            "standing whom he loved, he saith to his mother: Woman, behold thy son. After that, he " +
+            "saith to the disciple: Behold thy mother. And from that hour, the disciple took her to " +
+            "his own.\n\n— John 19:25-27 (Douay-Rheims)"),
+        ["seven_sorrows_06_descent_from_the_cross"] = new(
+            "Mary Receives the Body of Jesus", "Resignation to God's Will",
+            "Joseph of Arimathea... besought Pilate, that he might take away the body of Jesus. And " +
+            "Pilate gave leave. He came, therefore, and took away the body of Jesus. And Nicodemus " +
+            "also came... bringing a mixture of myrrh and aloes, about an hundred pound weight. They " +
+            "took therefore the body of Jesus, and bound it in linen cloths, with the spices, as the " +
+            "manner of the Jews is to bury.\n\n— John 19:38-40 (Douay-Rheims)"),
+        ["seven_sorrows_07_burial_of_jesus"] = new(
+            "The Burial of Jesus", "Hope in the Resurrection",
+            "Now there was in the place where he was crucified, a garden; and in the garden a new " +
+            "sepulchre, wherein no man yet had been laid. There, therefore, because of the Parasceve " +
+            "of the Jews, they laid Jesus, because the sepulchre was nigh at hand.\n\n— John 19:41-42 (Douay-Rheims)"),
     };
 }

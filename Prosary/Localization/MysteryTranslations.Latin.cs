@@ -136,5 +136,55 @@ public static partial class MysteryTranslations
             "et ait : Accipite, et comedite : hoc est corpus meum. Et accipiens calicem, gratias egit : et " +
             "dedit illis, dicens : Bibite ex hoc omnes. Hic est enim sanguis meus novi testamenti, qui pro " +
             "multis effundetur in remissionem peccatorum.\n\n— Matt. 26:26-28 (Vulgata)"),
+
+        // Franciscan Crown — the one Joy of the Seven Joys of Mary without an existing Rosary
+        // mystery to reuse (see FranciscanCrownCatalog.cs for the other six).
+        ["franciscan_04_adoration_of_the_magi"] = new(
+            "Adoratio Magorum", "Generositas",
+            "Qui cum audissent regem, abierunt, et ecce stella, quam viderant in oriente, antecedebat eos, " +
+            "usque dum veniens staret supra ubi erat puer. Videntes autem stellam gavisi sunt gaudio magno " +
+            "valde. Et intrantes domum, invenerunt puerum cum Maria matre ejus, et procidentes adoraverunt " +
+            "eum: et apertis thesauris suis obtulerunt ei munera, aurum, thus, et myrrham.\n\n— Matt. 2:9-11 (Vulgata)"),
+
+        // The Seven Sorrows of Mary — see the matching comment in MysteryTranslations.English.cs.
+        ["seven_sorrows_01_prophecy_of_simeon"] = new(
+            "Simeonis Prophetia", "Fiducia in Voluntate Dei",
+            "Et benedixit illis Simeon, et dixit ad Mariam matrem ejus: Ecce positus est hic in ruinam " +
+            "et in resurrectionem multorum in Israël, et in signum cui contradicetur: et tuam ipsius " +
+            "animam pertransibit gladius, ut revelentur ex multis cordibus " +
+            "cogitationes.\n\n— Luc. 2:34-35 (Vulgata)"),
+        ["seven_sorrows_02_flight_into_egypt"] = new(
+            "Fuga in Aegyptum", "Fortitudo in Exsilio",
+            "Qui cum recessissent, ecce angelus Domini apparuit in somnis Joseph, dicens: Surge, et " +
+            "accipe puerum, et matrem ejus, et fuge in Aegyptum, et esto ibi usque dum dicam tibi. " +
+            "Futurum est enim ut Herodes quaerat puerum ad perdendum eum. Qui consurgens accepit " +
+            "puerum et matrem ejus nocte, et secessit in Aegyptum.\n\n— Matt. 2:13-14 (Vulgata)"),
+        ["seven_sorrows_03_loss_of_jesus_in_the_temple"] = new(
+            "Amissio Pueri Iesu in Templo", "Perseverantia in Christo Quaerendo",
+            "Consummatisque diebus, cum redirent, remansit puer Jesus in Jerusalem, et non cognoverunt " +
+            "parentes ejus. Et non invenientes, regressi sunt in Jerusalem, " +
+            "requirentes eum.\n\n— Luc. 2:43-45 (Vulgata)"),
+        ["seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross"] = new(
+            "Maria Iesum in Via Crucis Obviam Habet", "Compassio",
+            "In via quae ad Calvariam ducit, Maria inter turbam stat, et oculos Filii sub crucis onere " +
+            "curvati obviam habet — gladius quem Simeon praedixerat jam cor ejus ad tantum dolorem " +
+            "videndum pertransiens."),
+        ["seven_sorrows_05_crucifixion"] = new(
+            "Maria ad Pedem Crucis", "Fortitudo in Dolore",
+            "Stabant autem juxta crucem Jesu mater ejus, et soror matris ejus Maria Cleophae, et Maria " +
+            "Magdalene. Cum vidisset ergo Jesus matrem, et discipulum stantem, quem diligebat, dicit " +
+            "matri suae: Mulier, ecce filius tuus. Deinde dicit discipulo: Ecce mater tua. Et ex illa " +
+            "hora accepit eam discipulus in sua.\n\n— Ioan. 19:25-27 (Vulgata)"),
+        ["seven_sorrows_06_descent_from_the_cross"] = new(
+            "Maria Corpus Iesu Recipit", "Resignatio Voluntati Dei",
+            "Post haec autem rogavit Pilatum Joseph ab Arimathaea, ut tolleret corpus Jesu. Et permisit " +
+            "Pilatus. Venit ergo, et tulit corpus Jesu. Venit autem et Nicodemus, ferens mixturam " +
+            "myrrhae et aloës, quasi libras centum. Acceperunt ergo corpus Jesu, et ligaverunt illud " +
+            "linteis cum aromatibus, sicut mos est Judaeis sepelire.\n\n— Ioan. 19:38-40 (Vulgata)"),
+        ["seven_sorrows_07_burial_of_jesus"] = new(
+            "Sepultura Iesu", "Spes in Resurrectione",
+            "Erat autem in loco ubi crucifixus est, hortus: et in horto monumentum novum, in quo " +
+            "nondum quisquam positus erat. Ibi ergo propter Parasceven Judaeorum, quia juxta erat " +
+            "monumentum, posuerunt Jesum.\n\n— Ioan. 19:41-42 (Vulgata)"),
     };
 }

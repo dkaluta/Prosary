@@ -30,6 +30,18 @@ public partial class FavoritesViewModel : ObservableObject
     [ObservableProperty]
     private ObservableCollection<Prayer> _jesusPrayerFavorites = [];
 
+    [ObservableProperty]
+    private ObservableCollection<Prayer> _stationsOfTheCrossFavorites = [];
+
+    [ObservableProperty]
+    private ObservableCollection<Prayer> _franciscanCrownFavorites = [];
+
+    [ObservableProperty]
+    private ObservableCollection<Prayer> _sevenSorrowsFavorites = [];
+
+    [ObservableProperty]
+    private ObservableCollection<Prayer> _divineMercyFavorites = [];
+
     public FavoritesViewModel(IPresetStore presets, IReminderScheduler scheduler)
     {
         _presets = presets;
@@ -45,6 +57,10 @@ public partial class FavoritesViewModel : ObservableObject
         RosaryFavorites = new ObservableCollection<Prayer>(all.Where(p => p.Kind == PrayerKind.Rosary));
         AngelusFavorites = new ObservableCollection<Prayer>(all.Where(p => p.Kind == PrayerKind.Angelus));
         JesusPrayerFavorites = new ObservableCollection<Prayer>(all.Where(p => p.Kind == PrayerKind.JesusPrayer));
+        StationsOfTheCrossFavorites = new ObservableCollection<Prayer>(all.Where(p => p.Kind == PrayerKind.StationsOfTheCross));
+        FranciscanCrownFavorites = new ObservableCollection<Prayer>(all.Where(p => p.Kind == PrayerKind.FranciscanCrown));
+        SevenSorrowsFavorites = new ObservableCollection<Prayer>(all.Where(p => p.Kind == PrayerKind.SevenSorrows));
+        DivineMercyFavorites = new ObservableCollection<Prayer>(all.Where(p => p.Kind == PrayerKind.DivineMercyChaplet));
     }
 
     [RelayCommand]
@@ -61,6 +77,20 @@ public partial class FavoritesViewModel : ObservableObject
             case PrayerKind.JesusPrayer:
                 Router.Navigate<JesusPrayerFlowPage>(new JesusPrayerFlowParams(prayer.Id, null));
                 break;
+            case PrayerKind.StationsOfTheCross:
+                Router.Navigate<StationsFlowPage>(prayer.Id);
+                break;
+            case PrayerKind.FranciscanCrown:
+                Router.Navigate<FranciscanCrownFlowPage>(prayer.Id);
+                break;
+            case PrayerKind.SevenSorrows:
+                Router.Navigate<SevenSorrowsFlowPage>(prayer.Id);
+                break;
+            case PrayerKind.DivineMercyChaplet:
+                Router.Navigate<DivineMercyFlowPage>(prayer.Id);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(prayer), prayer.Kind, "Unhandled PrayerKind in FavoritesViewModel.Pray");
         }
     }
 
@@ -79,6 +109,18 @@ public partial class FavoritesViewModel : ObservableObject
 
     [RelayCommand]
     private void AddNewJesusPrayer() => AddNew(PrayerKind.JesusPrayer);
+
+    [RelayCommand]
+    private void AddNewStationsOfTheCross() => AddNew(PrayerKind.StationsOfTheCross);
+
+    [RelayCommand]
+    private void AddNewFranciscanCrown() => AddNew(PrayerKind.FranciscanCrown);
+
+    [RelayCommand]
+    private void AddNewSevenSorrows() => AddNew(PrayerKind.SevenSorrows);
+
+    [RelayCommand]
+    private void AddNewDivineMercyChaplet() => AddNew(PrayerKind.DivineMercyChaplet);
 
     private void AddNew(PrayerKind kind) => Router.Navigate<FavoriteEditorPage>(new FavoriteEditorParams(null, kind));
 
