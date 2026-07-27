@@ -43,55 +43,12 @@ struct FavoriteEditorView: View {
 
       // MARK: Rosary options
       if prayer.kind == .rosary {
-        Section("favoriteEditor.whichMysteries") {
-          Picker("favoriteEditor.mysteriesPicker", selection: $prayer.rosary.mysterySelectionMode) {
-            ForEach(MysterySelectionMode.allCases) { mode in
-              Text(mode.displayName).tag(mode)
-            }
-          }
-          if prayer.rosary.mysterySelectionMode == .specific || prayer.rosary.mysterySelectionMode == .singleMystery {
-            Picker("favoriteEditor.specificSet", selection: $prayer.rosary.specificMysteryGroup) {
-              ForEach(MysteryGroup.allCases) { group in
-                Text(group.displayName).tag(group)
-              }
-            }
-          }
-          if prayer.rosary.mysterySelectionMode == .singleMystery {
-            Picker("favoriteEditor.specificMystery", selection: $prayer.rosary.specificMysteryOrder) {
-              ForEach(MysteryCatalog.forGroup(prayer.rosary.specificMysteryGroup)) { mystery in
-                Text(MysteryTranslations.get(languageCode: "en", imageKey: mystery.imageKey).title).tag(mystery.order)
-              }
-            }
-          }
-        }
-
-        Section("favoriteEditor.openingDecadePrayers") {
-          Toggle("favoriteEditor.apostlesCreed", isOn: $prayer.rosary.includeApostlesCreed)
-          Toggle("favoriteEditor.openingPrayers", isOn: $prayer.rosary.includeOpeningPrayers)
-          Toggle("favoriteEditor.fatimaPrayer", isOn: $prayer.rosary.includeFatimaPrayer)
-          Picker("favoriteEditor.eternalRest", selection: $prayer.rosary.eternalRestForDeceased) {
-            ForEach(EternalRestPlacement.allCases) { option in
-              Text(option.displayName).tag(option)
-            }
-          }
-        }
-
         Section {
-          Toggle("favoriteEditor.presenterMode", isOn: $prayer.rosary.presenterMode)
-        } header: {
-          Text("favoriteEditor.presenterModeHeader")
-        } footer: {
-          Text("favoriteEditor.presenterModeFooter")
-        }
-
-        Section("favoriteEditor.closingPrayers") {
-          Picker("favoriteEditor.marianAntiphon", selection: $prayer.rosary.marianAntiphon) {
-            ForEach(MarianAntiphonOption.allCases) { option in
-              Text(option.displayName).tag(option)
-            }
+          NavigationLink {
+            RosaryOptionsEditorView(rosary: $prayer.rosary)
+          } label: {
+            LabeledContent("favoriteEditor.rosaryOptions", value: prayer.rosary.mysterySelectionSummary)
           }
-          Toggle("favoriteEditor.stMichaelPrayer", isOn: $prayer.rosary.includeStMichaelPrayer)
-          Toggle("favoriteEditor.finalSignOfCross", isOn: $prayer.rosary.includeFinalSignOfCross)
         }
       }
 
