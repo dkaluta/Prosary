@@ -1,0 +1,141 @@
+{
+  "$comment": "Canonical shape of Prosary's domain model, independent of any one platform's language. Field names here are the camelCase form; each platform's own idiom (Swift camelCase, Kotlin camelCase, C# PascalCase) maps 1:1. See ../ARCHITECTURE.md for the prose version and per-file source locations. Keep this file in sync whenever a field is added, removed, renamed, or its default changes on any platform — see README.md in this directory.",
+  "types": {
+    "Prayer": {
+      "description": "A saved, user-configurable prayer session (a \"favorite\").",
+      "fields": {
+        "id": { "type": "uuid", "description": "Client-generated, stable identity." },
+        "name": { "type": "string", "default": "My Prayer" },
+        "kind": { "type": "PrayerKind", "default": "rosary" },
+        "isDefault": {
+          "type": "boolean",
+          "default": false,
+          "description": "The starred/primary favorite for its kind. At most one per kind at a time — see persistence.perKindDefaultScoping below."
+        },
+        "languageCode": {
+          "type": "string",
+          "default": "",
+          "description": "ISO 639-1 code, or the empty-string sentinel meaning \"follow the app-level default language setting\" (see AppSettings.defaultLanguageCode)."
+        },
+        "rosary": { "type": "RosaryOptions", "description": "Populated when kind == rosary." },
+        "jesusPrayer": { "type": "JesusPrayerOptions", "description": "Populated when kind == jesusPrayer." },
+        "reminders": { "type": "PrayerReminder[]", "default": [] }
+      }
+    },
+    "PrayerKind": {
+      "description": "Discriminant for the type of a saved prayer session. Add a new case here (and a matching *Options type on Prayer) to expand into another devotion.",
+      "kind": "enum",
+      "cases": ["rosary", "angelus", "jesusPrayer", "stationsOfTheCross", "franciscanCrown", "sevenSorrows", "divineMercyChaplet"],
+      "note": "The four-devotion rollout (Stations of the Cross, Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet) is complete on all three platforms as of this case list."
+    },
+    "RosaryOptions": {
+      "description": "Configuration specific to the Rosary. Lives inside a Prayer when kind == rosary.",
+      "fields": {
+        "mysterySelectionMode": { "type": "MysterySelectionMode", "default": "todaysMysteries" },
+        "specificMysteryGroup": { "type": "MysteryGroup", "default": "joyful", "description": "Used when mysterySelectionMode == specific or singleMystery." },
+        "specificMysteryOrder": { "type": "int", "default": 1, "description": "1-based index into MysteryCatalog.forGroup(specificMysteryGroup) (always 5 mysteries per group). Used only when mysterySelectionMode == singleMystery." },
+        "includeApostlesCreed": { "type": "boolean", "default": true },
+        "includeOpeningPrayers": { "type": "boolean", "default": true, "description": "The opening Our Father + 3 Hail Marys (for faith, hope, charity) + Glory Be." },
+        "includeFatimaPrayer": { "type": "boolean", "default": true, "description": "\"O my Jesus...\", recited after the Glory Be of each decade." },
+        "eternalRestForDeceased": { "type": "EternalRestPlacement", "default": "none" },
+        "marianAntiphon": { "type": "MarianAntiphonOption", "default": "seasonal" },
+        "includeStMichaelPrayer": { "type": "boolean", "default": false },
+        "includeFinalSignOfCross": { "type": "boolean", "default": true },
+        "presenterMode": { "type": "boolean", "default": false, "description": "Collapses each decade's 10 Hail Marys and its Glory Be onto one combined step (title \"Hail Mary & Glory Be\", body = both prayers' text) instead of 10 individual Hail Mary steps + a separate Glory Be step. Announcement and Our Father steps are unaffected. The combined step still sets hailMaryIndexInDecade = 10 so the bead-track UI renders the traditional 10-bead decade (see ARCHITECTURE.md)." }
+      }
+    },
+    "MysterySelectionMode": {
+      "kind": "enum",
+      "cases": [
+        { "value": "todaysMysteries", "description": "Follow the traditional weekday assignment (with liturgical-season overrides on Sundays)." },
+        { "value": "specific", "description": "Always pray a specific, user-chosen set regardless of the day." },
+        { "value": "fifteenMystery", "description": "Joyful, Sorrowful, and Glorious (no Luminous), prayed in one session." },
+        { "value": "twentyMystery", "description": "All 20 mysteries in one session, chronological order: Joyful, Luminous, Sorrowful, Glorious." },
+        { "value": "singleMystery", "description": "Always pray exactly one specific mystery (one decade), chosen via specificMysteryGroup + specificMysteryOrder. Appended last on every platform: Windows persists this enum as a raw integer ordinal, so new cases must never be inserted mid-list." }
+      ]
+    },
+    "MysteryGroup": {
+      "kind": "enum",
+      "cases": ["joyful", "sorrowful", "glorious", "luminous"]
+    },
+    "EternalRestPlacement": {
+      "description": "Where (if at all) \"Eternal rest grant unto them, O Lord\" is prayed for the faithful departed.",
+      "kind": "enum",
+      "cases": [
+        { "value": "none" },
+        { "value": "afterEachDecade", "description": "After the Glory Be of every decade." },
+        { "value": "atEndOnly", "description": "Once, near the end, before the closing prayers." }
+      ]
+    },
+    "MarianAntiphonOption": {
+      "description": "Which closing Marian antiphon (if any) follows the Rosary.",
+      "kind": "enum",
+      "cases": [
+        { "value": "none" },
+        { "value": "seasonal", "description": "Pick the antiphon proper to the current liturgical season automatically." },
+        { "value": "salveRegina" },
+        { "value": "almaRedemptorisMater" },
+        { "value": "aveReginaCaelorum" },
+        { "value": "reginaCaeli" },
+        { "value": "subTuumPraesidium", "description": "The Church's oldest known Marian prayer; traditionally recited on its own, without a versicle/collect." }
+      ]
+    },
+    "JesusPrayerOptions": {
+      "description": "Configuration specific to the Jesus Prayer. Lives inside a Prayer when kind == jesusPrayer.",
+      "fields": {
+        "target": { "type": "JesusPrayerTarget", "default": "count(33)" }
+      }
+    },
+    "JesusPrayerTarget": {
+      "description": "How many times the Jesus Prayer is prayed in a session.",
+      "kind": "discriminated-union",
+      "cases": [
+        { "case": "count", "fields": { "value": "int" } },
+        { "case": "unbounded", "description": "No target; the user ends the session explicitly." }
+      ]
+    },
+    "JesusPrayerProgress": {
+      "description": "Live repetition counter during a Jesus Prayer session. Not persisted. Immutable on Android/Windows (copy/with-based updates); a mutable struct on iOS — a deliberate, known divergence, not a bug.",
+      "fields": {
+        "target": { "type": "JesusPrayerTarget" },
+        "currentIndex": { "type": "int", "default": 0, "description": "0-based." }
+      }
+    },
+    "PrayerReminder": {
+      "description": "One saved daily reminder time. Not a recurrence rule by itself — see reminders.schedulingStrategy in screens.json's sibling ARCHITECTURE.md section for how each platform turns this into an actual repeating notification.",
+      "fields": {
+        "id": { "type": "uuid" },
+        "hour": { "type": "int", "range": [0, 23] },
+        "minute": { "type": "int", "range": [0, 59] },
+        "isEnabled": { "type": "boolean", "default": true }
+      }
+    },
+    "LanguageOption": {
+      "fields": {
+        "code": { "type": "string", "description": "ISO 639-1, used as the key into the content layer's translation dictionaries." },
+        "nativeName": { "type": "string" },
+        "isRightToLeft": { "type": "boolean" }
+      }
+    },
+    "RosaryStep": {
+      "description": "One prayer \"bead\" in a fully built session for any devotion — the output of PrayerEngine.buildSteps(for:). See ARCHITECTURE.md#engines.",
+      "fields": {
+        "title": { "type": "string" },
+        "subtitle": { "type": "string?", "description": "Decade context, e.g. \"1st Mystery — The Annunciation\"." },
+        "body": { "type": "string" },
+        "mystery": { "type": "Mystery?" },
+        "isScripture": { "type": "boolean", "default": false, "description": "True only for the mystery-announcement step, whose body is a real quoted Bible verse." },
+        "isAntiphon": { "type": "boolean", "default": false },
+        "decadeIndex": { "type": "int?", "description": "0-based, counted globally across every mystery group in the session — never resets per group. What the bead track uses to tell decades apart." },
+        "hailMaryIndexInDecade": { "type": "int?", "range": [1, 10] },
+        "imageOverrideKey": { "type": "string?", "description": "For steps not tied to a Mystery that still want a specific illustration — see mysteries.json's overrideImages." }
+      }
+    }
+  },
+  "languages": {
+    "$ref": "See LanguageCatalog.all in ARCHITECTURE.md — la (default), en, ar (RTL), he (RTL), ru, tl"
+  },
+  "persistence": {
+    "perKindDefaultScoping": "save()/delete() clear or promote isDefault scoped to Prayer.kind only, never across kinds — the one behavioral detail worth calling out explicitly, since it's easy to accidentally implement unscoped if a platform's store started out Rosary-only. See ARCHITECTURE.md#persistence."
+  }
+}

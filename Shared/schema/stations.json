@@ -1,0 +1,31 @@
+{
+  "$comment": "Canonical catalog of the 14 Stations of the Cross, in order. imageKey doubles as the lookup key into StationsTranslations (title/meditation per language) and the filename stem under Shared/Images/{imageKey}. Source of truth: iOS's Models/StationsCatalog.swift (this file was built from it); Android's models/StationsCatalog.kt and Windows's Models/StationsCatalog.cs must carry the exact same set/order. Keep in sync — see README.md in this directory.",
+  "images": {
+    "status": "placeholder",
+    "note": "All 14 station images currently point at a generic placeholder graphic (violet cross), not real artwork — real public-domain art with proper attribution has not been sourced yet. See each platform's About screen, which labels these explicitly as 'artwork pending' rather than citing fake attributions."
+  },
+  "languages": {
+    "populated": ["la", "en"],
+    "note": "ar/he/ru/tl fall back to Latin via the standard translation-dispatcher fallback (same mechanism as any missing content-layer entry) until dedicated translations are added in a later pass."
+  },
+  "stations": [
+    { "order": 1, "imageKey": "station_01_condemned_to_death", "title": "Jesus is Condemned to Death" },
+    { "order": 2, "imageKey": "station_02_carries_his_cross", "title": "Jesus Carries His Cross" },
+    { "order": 3, "imageKey": "station_03_falls_first_time", "title": "Jesus Falls the First Time" },
+    { "order": 4, "imageKey": "station_04_meets_his_mother", "title": "Jesus Meets His Mother" },
+    { "order": 5, "imageKey": "station_05_simon_of_cyrene", "title": "Simon of Cyrene Helps Jesus Carry the Cross" },
+    { "order": 6, "imageKey": "station_06_veronica", "title": "Veronica Wipes the Face of Jesus" },
+    { "order": 7, "imageKey": "station_07_falls_second_time", "title": "Jesus Falls the Second Time" },
+    { "order": 8, "imageKey": "station_08_women_of_jerusalem", "title": "Jesus Meets the Women of Jerusalem" },
+    { "order": 9, "imageKey": "station_09_falls_third_time", "title": "Jesus Falls the Third Time" },
+    { "order": 10, "imageKey": "station_10_stripped_of_garments", "title": "Jesus is Stripped of His Garments" },
+    { "order": 11, "imageKey": "station_11_nailed_to_the_cross", "title": "Jesus is Nailed to the Cross" },
+    { "order": 12, "imageKey": "station_12_dies_on_the_cross", "title": "Jesus Dies on the Cross" },
+    { "order": 13, "imageKey": "station_13_taken_down_from_the_cross", "title": "Jesus is Taken Down from the Cross" },
+    { "order": 14, "imageKey": "station_14_laid_in_the_tomb", "title": "Jesus is Laid in the Tomb" }
+  ],
+  "sharedPrayerKeys": {
+    "$comment": "Reused across all 14 stations rather than one key per station — see content-keys.json.",
+    "keys": ["stationsOpeningPrayer", "stationsVersicle", "stationsResponse", "stationsClosingPrayer"]
+  }
+}
