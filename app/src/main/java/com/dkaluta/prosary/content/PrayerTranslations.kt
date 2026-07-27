@@ -1,10 +1,17 @@
 package com.dkaluta.prosary.content
 
+import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
+
 /** Looks up fixed prayer text by [PrayerKey] and language code, falling back to Latin (and then
  * the raw key) when a translation is missing. See PrayerTranslations{Language}.kt for the actual
  * per-language tables. */
 object PrayerTranslations {
     fun get(languageCode: String?, key: PrayerKey): String {
+        if (languageCode != null) {
+            val override = PrayerPackStore.prayerOverride(languageCode, key)
+            if (override != null) return override
+        }
+
         val table = languageCode?.let { byLanguage[it] }
         val text = table?.get(key)
         if (text != null) return text

@@ -6,6 +6,7 @@ plugins {
     // plugin still needs to be applied explicitly.
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
 }
 
@@ -83,6 +84,11 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+    // Used only by content/prayerpack/PrayerPackLoader.kt to parse .prosaryprayer manifest/content
+    // JSON. org.json (already used for PresetEntity's reminder column) can't substitute here: its
+    // android.jar unit-test stubs throw "Stub!" without Robolectric, which this module doesn't
+    // use, and PrayerPackLoaderTest needs real parsing in a plain JVM test.
+    implementation(libs.kotlinx.serialization.json)
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)

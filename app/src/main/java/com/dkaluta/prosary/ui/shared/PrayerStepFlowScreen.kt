@@ -1,6 +1,7 @@
 package com.dkaluta.prosary.ui.shared
 
 import android.app.Activity
+import android.graphics.BitmapFactory
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -42,6 +43,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
@@ -56,6 +58,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.dkaluta.prosary.R
+import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.RosaryStep
 import com.dkaluta.prosary.typography.PrayerTypography
 import com.dkaluta.prosary.ui.theme.extraColors
@@ -294,10 +297,27 @@ private fun WideContent(
     }
 }
 
-/** Decorative — the title/body text alongside it already conveys the same content. */
+/** Decorative — the title/body text alongside it already conveys the same content. Prefers a
+ * loaded .prosaryprayer pack's own image data over the drawable resources, so a devotion with a
+ * shipped pack (currently Rosary/Angelus) renders that pack's artwork; devotions without one fall
+ * through to drawable resources exactly as before this existed. */
 @Composable
 private fun MysteryImage(imageKey: String, modifier: Modifier = Modifier) {
     val context = LocalContext.current
+    val packBitmap = remember(imageKey) {
+        PrayerPackStore.imageData(imageKey)?.let { data ->
+            BitmapFactory.decodeByteArray(data, 0, data.size)?.asImageBitmap()
+        }
+    }
+    if (packBitmap != null) {
+        androidx.compose.foundation.Image(
+            bitmap = packBitmap,
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = modifier,
+        )
+        return
+    }
     val resId = remember(imageKey) {
         context.resources.getIdentifier(imageKey, "drawable", context.packageName)
             .takeIf { it != 0 } ?: R.drawable.cross_placeholder
