@@ -9,6 +9,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <Style x:Key="SectionCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="Padding" Value="14" />
+        </Style>
+    </Page.Resources>
+
     <ScrollViewer>
         <StackPanel Spacing="16" MaxWidth="480" HorizontalAlignment="Center" Padding="24">
             <StackPanel Spacing="4" HorizontalAlignment="Center" Padding="0,0,0,4">
@@ -32,6 +40,37 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+
+            <!-- "Today" — the day's feast per the Holy Land (Latin Patriarchate of Jerusalem)
+                 calendar and the Pope's monthly prayer intention. Rows hide when the bundled
+                 datasets have no entry (ferial days; dates past the generated years). -->
+            <Border Style="{StaticResource SectionCardStyle}"
+                    Visibility="{x:Bind ViewModel.ShowsTodaySection, Converter={StaticResource BoolToVisibility}}">
+                <StackPanel Spacing="10">
+                    <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayFeast, Converter={StaticResource BoolToVisibility}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <FontIcon Grid.Column="0" Glyph="&#xE787;" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Top" />
+                        <StackPanel Grid.Column="1" Spacing="2">
+                            <TextBlock Text="{x:Bind ViewModel.TodayFeastTitle}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                            <TextBlock Text="{x:Bind ViewModel.TodayFeastRank}" Style="{StaticResource MutedCaptionTextStyle}" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsMonthIntention, Converter={StaticResource BoolToVisibility}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <FontIcon Grid.Column="0" Glyph="&#xEB51;" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Top" />
+                        <StackPanel Grid.Column="1" Spacing="2">
+                            <TextBlock Text="{x:Bind ViewModel.MonthIntentionTitle}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                            <TextBlock Text="{x:Bind ViewModel.MonthIntentionText}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
 
             <Rectangle Height="1" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" Margin="0,4" />
 

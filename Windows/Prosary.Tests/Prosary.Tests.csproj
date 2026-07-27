@@ -29,6 +29,9 @@
     <Content Include="..\Prosary\PrayerPacks\*.prosaryprayer" LinkBase="PrayerPacks">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\Prosary\Data\*.json" LinkBase="Data">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

@@ -6,6 +6,7 @@ import androidx.room.Room
 import com.dkaluta.prosary.calendar.LiturgicalCalendarProviding
 import com.dkaluta.prosary.calendar.MockLiturgicalCalendar
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
+import com.dkaluta.prosary.content.today.TodayInfoStore
 import com.dkaluta.prosary.engine.PrayerEngine
 import com.dkaluta.prosary.persistence.AppDatabase
 import com.dkaluta.prosary.persistence.MIGRATION_1_2
@@ -46,6 +47,10 @@ data class AppServices(
             runBlocking { presetStore.seedIfEmpty() }
             PrayerPackStore.initialize { packName ->
                 runCatching { context.assets.open("$packName.prosaryprayer") }
+                    .getOrElse { if (it is IOException) null else throw it }
+            }
+            TodayInfoStore.initialize { name ->
+                runCatching { context.assets.open("data/$name.json") }
                     .getOrElse { if (it is IOException) null else throw it }
             }
             return AppServices(

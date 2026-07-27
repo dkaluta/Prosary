@@ -15,6 +15,8 @@ struct HomeView: View {
   @State private var defaultJesusPrayer: Prayer? = nil
   /// One entry per discovered generic devotion (bundle id -> its favorite, if any).
   @State private var defaultCustomDevotions: [String: Prayer] = [:]
+  @State private var todayFeast: FeastDay? = nil
+  @State private var monthIntention: PopeIntention? = nil
 
   private var rosaryAccent: Color { todayMysteryGroup?.color ?? Color.brandPrimary }
   private var jesusPrayerAccent: Color { .adaptive(light: "#8B1A1A", dark: "#C62828") }
@@ -107,6 +109,46 @@ struct HomeView: View {
           }
         }
 
+        // "Today" — the day's feast per the Holy Land (Latin Patriarchate of Jerusalem)
+        // calendar and the Pope's monthly prayer intention. Rows hide when the bundled
+        // datasets have no entry (ferial days; dates past the generated years).
+        if todayFeast != nil || monthIntention != nil {
+          VStack(alignment: .leading, spacing: 10) {
+            if let feast = todayFeast {
+              HStack(alignment: .firstTextBaseline, spacing: 8) {
+                Image(systemName: "calendar")
+                  .foregroundStyle(Color.brandPrimary)
+                VStack(alignment: .leading, spacing: 2) {
+                  Text(feast.title)
+                    .font(.subheadline.weight(feast.rank == "Solemnity" ? .bold : .semibold))
+                  Text(feast.rank)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                }
+              }
+            }
+            if let intention = monthIntention {
+              HStack(alignment: .firstTextBaseline, spacing: 8) {
+                Image(systemName: "hands.sparkles")
+                  .foregroundStyle(Color.brandPrimary)
+                VStack(alignment: .leading, spacing: 2) {
+                  Text(String(
+                    localized: "home.today.popesIntention",
+                    defaultValue: "The Pope’s intention: \(intention.title)"))
+                    .font(.subheadline.weight(.semibold))
+                  Text(intention.text)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                }
+              }
+            }
+          }
+          .frame(maxWidth: .infinity, alignment: .leading)
+          .padding(14)
+          .background(.quaternary.opacity(0.5), in: RoundedRectangle(cornerRadius: 14))
+          .accessibilityIdentifier("todaySection")
+        }
+
         Divider().padding(.vertical, 4)
 
         VStack(spacing: 12) {
@@ -138,6 +180,8 @@ struct HomeView: View {
 
   private func load() async {
     todayMysteryGroup = services.calendar.mysteryGroupToday()
+    todayFeast = TodayInfoStore.feast()
+    monthIntention = TodayInfoStore.intention()
     let all = (try? await services.presetStore.all()) ?? []
     defaultRosary = all.first { $0.kind == .rosary && $0.isDefault }
       ?? all.first { $0.kind == .rosary }

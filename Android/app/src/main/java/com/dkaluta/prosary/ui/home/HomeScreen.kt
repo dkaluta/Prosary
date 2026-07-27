@@ -3,6 +3,7 @@ package com.dkaluta.prosary.ui.home
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,9 +15,14 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.background
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Circle
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.VolunteerActivism
+import androidx.compose.material3.Icon
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -30,6 +36,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
@@ -38,6 +45,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.dkaluta.prosary.content.prayerpack.CustomDevotionInfo
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
+import com.dkaluta.prosary.content.today.TodayInfoStore
 import com.dkaluta.prosary.models.MysteryGroup
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
@@ -70,6 +78,8 @@ fun HomeScreen(
     val services = LocalAppServices.current
     val isDarkTheme = isSystemInDarkTheme()
 
+    val todayFeast = remember { TodayInfoStore.feast() }
+    val monthIntention = remember { TodayInfoStore.intention() }
     var todayMysteryGroup by remember { mutableStateOf<MysteryGroup?>(null) }
     var defaultRosary by remember { mutableStateOf<Prayer?>(null) }
     var defaultJesusPrayer by remember { mutableStateOf<Prayer?>(null) }
@@ -204,6 +214,61 @@ fun HomeScreen(
                         onClick = card.onClick,
                         modifier = Modifier.testTag(card.testTag),
                     )
+                }
+            }
+
+            // "Today" — the day's feast per the Holy Land (Latin Patriarchate of Jerusalem)
+            // calendar and the Pope's monthly prayer intention. Rows hide when the bundled
+            // datasets have no entry (ferial days; dates past the generated years).
+            if (todayFeast != null || monthIntention != null) {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(10.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(14.dp))
+                        .background(MaterialTheme.colorScheme.surfaceContainerHigh)
+                        .padding(14.dp),
+                ) {
+                    if (todayFeast != null) {
+                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Icon(
+                                Icons.Filled.CalendarMonth, contentDescription = null,
+                                tint = MaterialTheme.colorScheme.primary,
+                            )
+                            Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                                Text(
+                                    todayFeast.title,
+                                    style = MaterialTheme.typography.titleSmall,
+                                    fontWeight = if (todayFeast.rank == "Solemnity") FontWeight.Bold else FontWeight.SemiBold,
+                                )
+                                Text(
+                                    todayFeast.rank,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            }
+                        }
+                    }
+                    if (monthIntention != null) {
+                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Icon(
+                                Icons.Filled.VolunteerActivism, contentDescription = null,
+                                tint = MaterialTheme.colorScheme.primary,
+                            )
+                            Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                                Text(
+                                    "The Pope\u2019s intention: ${monthIntention.title}",
+                                    style = MaterialTheme.typography.titleSmall,
+                                    fontWeight = FontWeight.SemiBold,
+                                )
+                                Text(
+                                    monthIntention.text,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            }
+                        }
+                    }
                 }
             }
 

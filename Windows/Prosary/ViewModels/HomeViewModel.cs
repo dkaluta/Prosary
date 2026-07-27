@@ -54,6 +54,28 @@ public partial class HomeViewModel : ObservableObject
 
     public ObservableCollection<DevotionCardModel> DevotionCards { get; }
 
+    // The Home "Today" section — the day's feast per the Holy Land (Latin Patriarchate of
+    // Jerusalem) calendar and the Pope's monthly prayer intention; null hides each row.
+    public FeastDay? TodayFeast { get; } = TodayInfoStore.Feast(DateOnly.FromDateTime(DateTime.Today));
+
+    public PopeIntention? MonthIntention { get; } = TodayInfoStore.Intention(DateOnly.FromDateTime(DateTime.Today));
+
+    public bool ShowsTodaySection => TodayFeast is not null || MonthIntention is not null;
+
+    public bool ShowsTodayFeast => TodayFeast is not null;
+
+    public bool ShowsMonthIntention => MonthIntention is not null;
+
+    public string TodayFeastTitle => TodayFeast?.Title ?? string.Empty;
+
+    public string TodayFeastRank => TodayFeast?.Rank ?? string.Empty;
+
+    public string MonthIntentionTitle => MonthIntention is { } intention
+        ? $"The Pope’s intention: {intention.Title}"
+        : string.Empty;
+
+    public string MonthIntentionText => MonthIntention?.Text ?? string.Empty;
+
     public HomeViewModel(IPresetStore presets, LiturgicalCalendarService calendar)
     {
         _presets = presets;

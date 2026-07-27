@@ -67,6 +67,9 @@
        ms-appx:// virtual filesystem scheme, since PrayerPackStore needs a real Stream to read
        the zip archive from). -->
   <ItemGroup>
+    <Content Include="Data\*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="PrayerPacks\*.prosaryprayer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
