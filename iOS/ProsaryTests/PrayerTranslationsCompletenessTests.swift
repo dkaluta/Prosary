@@ -2,57 +2,44 @@
 //  PrayerTranslationsCompletenessTests.swift
 //  ProsaryTests
 //
-//  Guards against a missed cell in the per-language content tables — PrayerTranslations.get/
-//  MysteryTranslations.get silently fall back to Latin (then the raw key) when a translation is
-//  missing, so a gap here wouldn't otherwise surface until someone actually reads that language
-//  in the app.
+//  Guards against silent content gaps. Two layers:
+//  1. The hardcoded tables (main prayers, Rosary keys, antiphons, Jesus Prayer) — every
+//     surviving PrayerKey must have Latin + English, and all six languages except a small
+//     explicit allowlist; `PrayerTranslations.get` silently falls back to Latin, so a gap
+//     wouldn't otherwise surface until someone prays in that language.
+//  2. Every shipped devotion bundle — each key its devotion.json references must resolve to real
+//     text (never the raw key) in every language the bundle's manifest declares, with each
+//     bundle's known gaps listed explicitly so they go stale loudly instead of silently wrong.
+//     Mirrors Shared/tools/validate-devotion.py, but against the actually-shipped packs and the
+//     runtime merge (e.g. the Franciscan Crown's shared Joys resolving cross-bundle from the
+//     rosary pack).
 //
 
 import XCTest
 @testable import Prosary
 
+@MainActor
 final class PrayerTranslationsCompletenessTests: XCTestCase {
   private let fullyTranslatedLanguages = ["ar", "he", "ru", "tl"]
 
-  /// `PrayerKey`s added during the 4-devotion rollout (Stations of the Cross, Seven Sorrows,
-  /// Divine Mercy Chaplet) that are still missing one or more of the 4 non-Latin/English
-  /// languages, mapped to exactly which of those 4 they're still missing — silently falls back
-  /// to Latin for those via the normal fallback chain, not a bug. Kept explicit here so a *new*,
-  /// unintentional gap still fails `testEveryPrayerKeyExceptTheKnownAllowlistHasAllSixLanguages`,
-  /// and so this list itself goes stale (rather than silently wrong) once a language is filled
-  /// in — see `testAllowlistedPrayerKeysAreStillMissingFromTheExpectedLanguages`.
-  private let prayerKeysMissingLanguages: [PrayerKey: Set<String>] = [
-    .stationsOpeningPrayer: ["ar", "he", "ru", "tl"],
-    .stationsVersicle: ["ar", "he", "ru", "tl"],
-    .stationsResponse: ["ar", "he", "ru", "tl"],
-    .stationsClosingPrayer: ["ar", "he", "ru", "tl"],
-    .sevenSorrowsVersicle: ["ar", "he", "ru", "tl"],
-    .sevenSorrowsResponse: ["ar", "he", "ru", "tl"],
-    .sevenSorrowsCollect: ["ar", "he", "ru", "tl"],
-    .divineMercyOffering: ["ar", "he", "ru", "tl"],
-    .divineMercyPetition: ["ar", "he", "ru", "tl"],
-    // Hebrew added by the user directly — see PrayerTranslations+Hebrew.swift.
-    .divineMercyClosingAcclamation: ["ar", "ru", "tl"],
-  ]
-
-  /// Same idea as `prayerKeysMissingLanguages`, for `MysteryTranslations` — the Seven Sorrows'
-  /// 7 imageKeys and the Franciscan Crown's one new mystery (Adoration of the Magi; the other 6
-  /// Joys reuse existing, fully-translated Rosary mystery content).
-  private let latinAndEnglishOnlyMysteryImageKeys: Set<String> =
-    Set(SevenSorrowsCatalog.sevenSorrows).union(["franciscan_04_adoration_of_the_magi"])
-
   /// `.doxologiaMinor` is explicitly documented ("kept for future use") as reserved but not
   /// wired into any devotion's engine code yet — it has no Latin/English content at all (only a
-  /// Hebrew entry, added manually), so it can't satisfy even the baseline
-  /// `testEveryPrayerKeyHasLatinAndEnglishTranslations` check. Excluded here rather than
-  /// fabricating placeholder Latin/English text for a key nothing reads yet.
+  /// Hebrew entry, added manually), so it can't satisfy even the baseline check. Excluded here
+  /// rather than fabricating placeholder Latin/English text for a key nothing reads yet.
   private let notYetUsedByAnyDevotion: Set<PrayerKey> = [.doxologiaMinor]
+
+  /// Known per-bundle translation gaps: bundleId -> language -> keys awaiting a verified
+  /// translation. The self-guard test below fails once a listed key gains its translation, so
+  /// this map can never go silently stale.
+  private let bundleKeysMissingLanguages: [String: [String: Set<String>]] = [
+    "divineMercyChaplet": ["he": ["divineMercyOffering", "divineMercyPetition"]],
+  ]
 
   private var allMysteryImageKeys: Set<String> {
     Set(MysteryGroup.allCases.flatMap { MysteryCatalog.forGroup($0) }.map(\.imageKey))
-      .union(SevenSorrowsCatalog.sevenSorrows)
-      .union(FranciscanCrownCatalog.sevenJoys)
   }
+
+  // MARK: - Hardcoded tables
 
   func testEveryPrayerKeyHasLatinAndEnglishTranslations() {
     for key in PrayerKey.allCases where !notYetUsedByAnyDevotion.contains(key) {
@@ -64,58 +51,90 @@ final class PrayerTranslationsCompletenessTests: XCTestCase {
     }
   }
 
-  func testEveryPrayerKeyExceptTheKnownAllowlistHasAllSixLanguages() {
+  func testEveryPrayerKeyHasAllSixLanguages() {
     for key in PrayerKey.allCases where !notYetUsedByAnyDevotion.contains(key) {
-      let missing = prayerKeysMissingLanguages[key] ?? []
-      for language in fullyTranslatedLanguages where !missing.contains(language) {
-        let text = PrayerTranslations.byLanguage[language]?[key]
+      for language in fullyTranslatedLanguages {
         XCTAssertNotNil(
-          text,
-          "\(key) missing a \(language) translation — if intentional, add it to prayerKeysMissingLanguages")
-      }
-    }
-  }
-
-  /// Guards the allowlist itself from going stale: if a key gets translated into a language
-  /// still listed as missing for it, this should start failing as a reminder to narrow that
-  /// key's entry in `prayerKeysMissingLanguages` (or remove it entirely) rather than leaving a
-  /// passing-but-inaccurate entry.
-  func testAllowlistedPrayerKeysAreStillMissingFromTheExpectedLanguages() {
-    for (key, missing) in prayerKeysMissingLanguages {
-      for language in missing {
-        XCTAssertNil(
           PrayerTranslations.byLanguage[language]?[key],
-          "\(key) now has a \(language) translation — narrow or remove its entry in prayerKeysMissingLanguages")
+          "\(key) missing a \(language) translation")
       }
     }
   }
 
-  func testEveryMysteryImageKeyHasLatinAndEnglishTranslations() {
+  func testEveryRosaryMysteryImageKeyHasAllSixLanguages() {
     for imageKey in allMysteryImageKeys {
-      for language in ["la", "en"] {
-        let text = MysteryTranslations.byLanguage[language]?[imageKey]
-        XCTAssertNotNil(text, "\(imageKey) missing a \(language) translation")
-      }
-    }
-  }
-
-  func testEveryMysteryImageKeyExceptTheKnownAllowlistHasAllSixLanguages() {
-    for imageKey in allMysteryImageKeys where !latinAndEnglishOnlyMysteryImageKeys.contains(imageKey) {
-      for language in fullyTranslatedLanguages {
-        let text = MysteryTranslations.byLanguage[language]?[imageKey]
+      for language in ["la", "en"] + fullyTranslatedLanguages {
         XCTAssertNotNil(
-          text,
-          "\(imageKey) missing a \(language) translation — if intentional, add it to latinAndEnglishOnlyMysteryImageKeys")
+          MysteryTranslations.byLanguage[language]?[imageKey],
+          "\(imageKey) missing a \(language) translation")
       }
     }
   }
 
-  func testAllowlistedMysteryImageKeysAreStillMissingFromTheExpectedLanguages() {
-    for imageKey in latinAndEnglishOnlyMysteryImageKeys {
-      for language in fullyTranslatedLanguages {
-        XCTAssertNil(
-          MysteryTranslations.byLanguage[language]?[imageKey],
-          "\(imageKey) now has a \(language) translation — remove it from latinAndEnglishOnlyMysteryImageKeys")
+  // MARK: - Shipped bundles
+
+  /// Collects every bodyKey/titleKey a definition references, and the mystery imageKeys whose
+  /// text an announced decade needs.
+  private func referencedKeys(of definition: CustomDevotionDefinition) -> (text: Set<String>, mysteries: Set<String>) {
+    var text = Set<String>()
+    var mysteries = Set<String>()
+    let allEntries = (definition.steps ?? []) + (definition.eastertideSteps ?? [])
+      + (definition.opening ?? []) + (definition.closing ?? [])
+    for entry in allEntries where entry.kind == nil {
+      entry.bodyKey.map { text.insert($0) }
+      entry.titleKey.map { text.insert($0) }
+    }
+    if let decades = definition.decades {
+      text.insert(decades.majorStep.bodyKey)
+      text.insert(decades.minorStep.bodyKey)
+      if decades.announceMystery {
+        for entry in decades.entries ?? [] { mysteries.insert(entry.imageKey) }
+      }
+    }
+    return (text, mysteries)
+  }
+
+  func testEveryBundleKeyResolvesInEveryDeclaredLanguage() {
+    for bundleId in PrayerPackStore.customDevotionIds() {
+      guard let definition = PrayerPackStore.definition(for: bundleId),
+            let info = PrayerPackStore.info(for: bundleId) else {
+        XCTFail("\(bundleId): missing definition or info")
+        continue
+      }
+      let refs = referencedKeys(of: definition)
+      for language in info.languages {
+        let allowedMissing = bundleKeysMissingLanguages[bundleId]?[language] ?? []
+        for key in refs.text where !allowedMissing.contains(key) {
+          let resolved = PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: language, key: key)
+          XCTAssertNotEqual(
+            resolved, key,
+            "\(bundleId)/\(language): \(key) resolves to its raw key — missing translation")
+        }
+        for imageKey in refs.mysteries {
+          let mystery = MysteryTranslations.get(languageCode: language, imageKey: imageKey)
+          XCTAssertNotEqual(
+            mystery.title, imageKey,
+            "\(bundleId)/\(language): no mystery text for \(imageKey)")
+        }
+      }
+    }
+  }
+
+  /// Guards the gap allowlist itself from going stale: once a listed key gains a translation,
+  /// this fails as a reminder to narrow the allowlist rather than leaving it inaccurate.
+  func testAllowlistedBundleKeysAreStillMissingFromTheExpectedLanguages() {
+    for (bundleId, languages) in bundleKeysMissingLanguages {
+      for (language, keys) in languages {
+        for key in keys {
+          let resolved = PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: language, key: key)
+          // A missing bundle-local translation falls back to the bundle's Latin text (or the
+          // hardcoded chain) — "still missing" means it doesn't resolve to language-specific
+          // bundle content, i.e. it equals the Latin resolution.
+          let latin = PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: "la", key: key)
+          XCTAssertEqual(
+            resolved, latin,
+            "\(bundleId)/\(language): \(key) now has its own translation — narrow bundleKeysMissingLanguages")
+        }
       }
     }
   }

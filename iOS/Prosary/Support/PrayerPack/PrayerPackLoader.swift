@@ -120,6 +120,8 @@ struct CustomDevotionDefinition: Decodable {
 /// bundle's `manifest.json` rather than any hardcoded per-kind table.
 struct CustomDevotionInfo {
   let displayName: String
+  /// The languages this bundle ships content for (manifest `languages`).
+  let languages: [String]
   let accentColorHex: String?
   let accentColorDarkHex: String?
   let iconSystemName: String?
@@ -157,8 +159,12 @@ struct CustomDevotionInfo {
 @MainActor
 enum PrayerPackStore {
   /// Load order — also the display order of generic-devotion cards/rows (Home, Favorites), so
-  /// this list is deliberately an ordered array, never a dictionary's unordered keys.
-  private static let packNames = ["rosary", "angelus", "trisagion"]
+  /// this list is deliberately an ordered array, never a dictionary's unordered keys. The rosary
+  /// pack loads first so its shared mystery texts/images are the base other bundles build on.
+  private static let packNames = [
+    "rosary", "angelus", "stationsOfTheCross", "franciscanCrown", "sevenSorrows",
+    "divineMercyChaplet", "trisagion",
+  ]
 
   private static var prayerOverrides: [String: [PrayerKey: String]] = [:]
   private static var mysteryOverrides: [String: [String: MysteryText]] = [:]
@@ -209,15 +215,18 @@ enum PrayerPackStore {
   }
 
   /// Resolves a `devotion.json` entry's `bodyKey`/`titleKey` to display text: (1) the bundle's
-  /// own raw content for this key, if present — this is how bundle-local-only keys (e.g.
-  /// "trisagionAcclamation") resolve; (2) else, if the key happens to match an existing
-  /// `PrayerKey` case, the ordinary hardcoded/override lookup — this is how shared "main" keys
-  /// (e.g. "gloriaPatri") resolve; (3) else the raw key string, matching
-  /// `PrayerTranslations.get`'s own last-resort fallback.
+  /// own raw content for this key — the requested language, else the bundle's Latin (mirroring
+  /// `PrayerTranslations.get`'s Latin fallback, so e.g. the sentinel/unknown language prays in
+  /// Latin, not raw keys); (2) else, if the key happens to match an existing `PrayerKey` case,
+  /// the ordinary hardcoded/override lookup — this is how shared "main" keys (e.g. "gloriaPatri")
+  /// resolve; (3) else the raw key string, matching `PrayerTranslations.get`'s own last resort.
   static func resolveBodyText(bundleId: String, languageCode: String?, key: String) -> String {
     ensureLoaded()
     if let languageCode, let text = rawContentByBundle[bundleId]?[languageCode]?[key] {
       return text
+    }
+    if let latinText = rawContentByBundle[bundleId]?["la"]?[key] {
+      return latinText
     }
     if let prayerKey = PrayerKey(rawValue: key) {
       return PrayerTranslations.get(languageCode: languageCode, key: prayerKey)
@@ -248,6 +257,7 @@ enum PrayerPackStore {
 
     infoByBundle[manifest.id] = CustomDevotionInfo(
       displayName: manifest.displayName,
+      languages: manifest.languages,
       accentColorHex: manifest.accentColorHex,
       accentColorDarkHex: manifest.accentColorDarkHex,
       iconSystemName: manifest.iconSystemName,

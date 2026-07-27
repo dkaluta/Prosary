@@ -3,19 +3,13 @@
 //  Prosary
 //
 //  The single production step-builder for every devotion. `buildSteps(for:)` dispatches on
-//  `Prayer.kind` to one of 6 private builders. Angelus/Stations have no decades and a different
-//  per-item template each, so they keep their own builders rather than being forced through the
-//  decade-shaped helper below; Divine Mercy Chaplet has no catalog (it repeats the same 2 lines
-//  every decade, not per-decade content), so it doesn't fit the catalog-driven shape either.
-//  Rosary's per-group decade loop and Franciscan Crown/Seven Sorrows' single decade loop DO share
-//  the same underlying shape (announce → Our Father → N Hail Marys) — that shared shape is
-//  `buildDecadeSteps`, the one genuine algorithmic unification here, not just an interface merge.
-//
-//  Replaces 6 protocols (RosaryEngine/AngelusEngine/StationsEngine/FranciscanCrownEngine/
-//  SevenSorrowsEngine/DivineMercyEngine) and their Stub (production) + Mock (thin
-//  calendar-injecting wrapper for Previews/tests) implementations. Calendar injection — the
-//  reason the Stub/Mock split existed — is preserved via this type's own initializer instead, the
-//  same way `StubRosaryEngine`/`StubFranciscanCrownEngine` already did it.
+//  `Prayer.kind`: the Rosary keeps its own hardcoded, options/calendar-driven builder (it is the
+//  one deeply configurable devotion); the Jesus Prayer has no steps at all (a repetition counter
+//  — see JesusPrayerFlowView); and every other devotion is `.custom` — fully data-driven from its
+//  .prosaryprayer bundle's devotion.json via `buildCustomDevotionSteps` (flat "steps" type) and
+//  `buildCustomRosarySteps` (decade/bead-structured "rosary" type). `buildDecadeSteps` and
+//  `buildMarianAntiphonStep` remain as the Rosary's own helpers; the generic rosary-type builder
+//  mirrors their emission so bead tracks behave identically everywhere.
 //
 
 import Foundation
@@ -42,21 +36,11 @@ struct PrayerEngine {
     switch prayer.kind {
     case .rosary:
       return buildRosarySteps(prayer)
-    case .angelus:
-      return buildAngelusSteps(languageCode: prayer.languageCode)
     case .jesusPrayer:
       // The Jesus Prayer has no engine — every repetition prays the same fixed line, so a
       // single synthesized step plus a JesusPrayerProgress counter is the whole model; see
       // JesusPrayerFlowView, which never calls this engine at all.
       return []
-    case .stationsOfTheCross:
-      return buildStationsSteps(languageCode: prayer.languageCode)
-    case .franciscanCrown:
-      return buildFranciscanCrownSteps(languageCode: prayer.languageCode)
-    case .sevenSorrows:
-      return buildSevenSorrowsSteps(languageCode: prayer.languageCode)
-    case .divineMercyChaplet:
-      return buildDivineMercySteps(languageCode: prayer.languageCode)
     case .custom:
       guard let bundleId = prayer.customDevotionId else { return [] }
       return buildCustomDevotionSteps(bundleId: bundleId, languageCode: prayer.languageCode)
@@ -186,7 +170,7 @@ struct PrayerEngine {
     }
   }
 
-  // MARK: - Shared decade-building helper (Rosary's inner loop, Franciscan Crown, Seven Sorrows)
+  // MARK: - Shared decade-building helper (the Rosary's inner loop)
 
   /// Builds one decade: an announcement step, an Our Father step, and `hailMarysPerDecade` Hail
   /// Mary steps. `mystery`/`decadeImageKey` together control each step's illustration — pass a
@@ -223,201 +207,6 @@ struct PrayerEngine {
         title: "Hail Mary (\(h) of \(hailMarysPerDecade))", subtitle: decadeSubtitle, body: text(.aveMaria),
         mystery: mystery, decadeIndex: decadeIndex, hailMaryIndexInDecade: h, imageOverrideKey: decadeImageKey))
     }
-
-    return steps
-  }
-
-  // MARK: - Franciscan Crown
-
-  private func buildFranciscanCrownSteps(languageCode: String?) -> [RosaryStep] {
-    func text(_ key: PrayerKey) -> String {
-      PrayerTranslations.get(languageCode: languageCode, key: key)
-    }
-
-    var steps: [RosaryStep] = []
-
-    steps.append(RosaryStep(title: "Sign of the Cross", subtitle: nil, body: text(.signumCrucis), imageOverrideKey: "crucifix"))
-
-    let fruitLabel = text(.fructusMysteriiLabel)
-
-    for (d, imageKey) in FranciscanCrownCatalog.sevenJoys.enumerated() {
-      let joyText = MysteryTranslations.get(languageCode: languageCode, imageKey: imageKey)
-      let ordinalLabel = "\(Self.ordinals[d]) Joy"
-
-      steps.append(contentsOf: buildDecadeSteps(
-        decadeIndex: d, announcementTitle: joyText.title, ordinalLabel: ordinalLabel,
-        announcementBody: "\(joyText.description)\n\n\(fruitLabel): \(joyText.fruit)",
-        mystery: nil, decadeImageKey: imageKey, isScripture: true,
-        ourFatherImageKey: imageKey, hailMarysPerDecade: 10, languageCode: languageCode))
-    }
-
-    for h in 1...2 {
-      steps.append(RosaryStep(
-        title: "Hail Mary (\(h) of 2)", subtitle: "For the years of Our Lady's life",
-        body: text(.aveMaria), imageOverrideKey: "madonna_and_child"))
-    }
-
-    steps.append(RosaryStep(
-      title: "Our Father", subtitle: "For the intentions of the Holy Father",
-      body: text(.paterNoster), imageOverrideKey: "our_father"))
-
-    steps.append(buildMarianAntiphonStep(calendar.seasonalMarianAntiphonToday(), languageCode: languageCode))
-
-    steps.append(RosaryStep(title: "Sign of the Cross", subtitle: nil, body: text(.signumCrucis), imageOverrideKey: "crucifix"))
-
-    return steps
-  }
-
-  // MARK: - Seven Sorrows
-
-  private func buildSevenSorrowsSteps(languageCode: String?) -> [RosaryStep] {
-    func text(_ key: PrayerKey) -> String {
-      PrayerTranslations.get(languageCode: languageCode, key: key)
-    }
-
-    var steps: [RosaryStep] = []
-
-    steps.append(RosaryStep(title: "Sign of the Cross", subtitle: nil, body: text(.signumCrucis), imageOverrideKey: "crucifix"))
-
-    let fruitLabel = text(.fructusMysteriiLabel)
-
-    for (d, imageKey) in SevenSorrowsCatalog.sevenSorrows.enumerated() {
-      let sorrowText = MysteryTranslations.get(languageCode: languageCode, imageKey: imageKey)
-      let ordinalLabel = "\(Self.ordinals[d]) Sorrow"
-
-      steps.append(contentsOf: buildDecadeSteps(
-        decadeIndex: d, announcementTitle: sorrowText.title, ordinalLabel: ordinalLabel,
-        announcementBody: "\(sorrowText.description)\n\n\(fruitLabel): \(sorrowText.fruit)",
-        mystery: nil, decadeImageKey: imageKey, isScripture: d != SevenSorrowsCatalog.meetingOnTheWayIndex,
-        ourFatherImageKey: imageKey, hailMarysPerDecade: 7, languageCode: languageCode))
-    }
-
-    for h in 1...3 {
-      steps.append(RosaryStep(
-        title: "Hail Mary (\(h) of 3)", subtitle: "For the tears of Our Lady",
-        body: text(.aveMaria), imageOverrideKey: "madonna_and_child"))
-    }
-
-    steps.append(RosaryStep(
-      title: "Our Lady of Sorrows", subtitle: nil,
-      body: "\(text(.sevenSorrowsVersicle))\n**\(text(.sevenSorrowsResponse))**\n\n\(text(.sevenSorrowsCollect))",
-      imageOverrideKey: "madonna_and_child"))
-
-    steps.append(RosaryStep(title: "Sign of the Cross", subtitle: nil, body: text(.signumCrucis), imageOverrideKey: "crucifix"))
-
-    return steps
-  }
-
-  // MARK: - Divine Mercy Chaplet
-
-  private func buildDivineMercySteps(languageCode: String?) -> [RosaryStep] {
-    let imageKey = "divine_mercy_image"
-
-    func text(_ key: PrayerKey) -> String {
-      PrayerTranslations.get(languageCode: languageCode, key: key)
-    }
-
-    var steps: [RosaryStep] = []
-
-    steps.append(RosaryStep(title: "Sign of the Cross", subtitle: nil, body: text(.signumCrucis), imageOverrideKey: imageKey))
-    steps.append(RosaryStep(title: "Our Father", subtitle: nil, body: text(.paterNoster), imageOverrideKey: imageKey))
-    steps.append(RosaryStep(title: "Hail Mary", subtitle: nil, body: text(.aveMaria), imageOverrideKey: imageKey))
-    steps.append(RosaryStep(title: "The Apostles' Creed", subtitle: nil, body: text(.symbolumApostolorum), imageOverrideKey: imageKey))
-
-    for d in 0..<5 {
-      let decadeSubtitle = "\(Self.ordinals[d]) Decade"
-
-      steps.append(RosaryStep(
-        title: "Eternal Father, I Offer You...", subtitle: decadeSubtitle, body: text(.divineMercyOffering),
-        decadeIndex: d, imageOverrideKey: imageKey))
-
-      for h in 1...10 {
-        steps.append(RosaryStep(
-          title: "For the Sake of His Sorrowful Passion (\(h) of 10)", subtitle: decadeSubtitle,
-          body: text(.divineMercyPetition), decadeIndex: d, hailMaryIndexInDecade: h, imageOverrideKey: imageKey))
-      }
-    }
-
-    for h in 1...3 {
-      steps.append(RosaryStep(
-        title: "Holy God, Holy Mighty One, Holy Immortal One (\(h) of 3)", subtitle: nil,
-        body: text(.divineMercyClosingAcclamation), imageOverrideKey: imageKey))
-    }
-
-    steps.append(RosaryStep(title: "Sign of the Cross", subtitle: nil, body: text(.signumCrucis), imageOverrideKey: imageKey))
-
-    return steps
-  }
-
-  // MARK: - Angelus
-
-  private func buildAngelusSteps(languageCode: String?) -> [RosaryStep] {
-    func text(_ key: PrayerKey) -> String {
-      PrayerTranslations.get(languageCode: languageCode, key: key)
-    }
-
-    if calendar.isEasterSeasonToday() {
-      // During Eastertide the Angelus is traditionally replaced entirely by the Regina Caeli.
-      let body = "\(text(.reginaCaeli))\n\n\(text(.versiculumPaschale))\n**\(text(.responsiumPaschale))**\n\n\(text(.collectaPaschale))"
-      return [RosaryStep(title: "Regina Caeli", subtitle: nil, body: body, imageOverrideKey: "madonna_and_child")]
-    }
-
-    return [
-      RosaryStep(
-        title: "The Annunciation", subtitle: nil,
-        body: "\(text(.versiculumAngelusPrimus))\n**\(text(.responsiumAngelusPrimus))**",
-        imageOverrideKey: "joyful_01_annunciation"),
-      RosaryStep(title: "Hail Mary", subtitle: nil, body: text(.aveMaria), imageOverrideKey: "joyful_01_annunciation"),
-
-      RosaryStep(
-        title: "The Fiat", subtitle: nil,
-        body: "\(text(.versiculumAngelusSecundus))\n**\(text(.responsiumAngelusSecundus))**",
-        imageOverrideKey: "joyful_01_annunciation"),
-      RosaryStep(title: "Hail Mary", subtitle: nil, body: text(.aveMaria), imageOverrideKey: "joyful_01_annunciation"),
-
-      RosaryStep(
-        title: "The Incarnation", subtitle: nil,
-        body: "\(text(.versiculumAngelusTertius))\n**\(text(.responsiumAngelusTertius))**",
-        imageOverrideKey: "joyful_01_annunciation"),
-      RosaryStep(title: "Hail Mary", subtitle: nil, body: text(.aveMaria), imageOverrideKey: "joyful_01_annunciation"),
-
-      RosaryStep(
-        title: "Let Us Pray", subtitle: nil,
-        body: "\(text(.versiculumStandard))\n**\(text(.responsiumStandard))**\n\n\(text(.collectaAngelus))",
-        imageOverrideKey: "joyful_01_annunciation"),
-    ]
-  }
-
-  // MARK: - Stations of the Cross
-
-  private func buildStationsSteps(languageCode: String?) -> [RosaryStep] {
-    func text(_ key: PrayerKey) -> String {
-      PrayerTranslations.get(languageCode: languageCode, key: key)
-    }
-
-    var steps: [RosaryStep] = []
-
-    steps.append(RosaryStep(
-      title: "Sign of the Cross", subtitle: nil, body: text(.signumCrucis),
-      imageOverrideKey: "crucifix"))
-
-    steps.append(RosaryStep(
-      title: "Opening Prayer", subtitle: nil, body: text(.stationsOpeningPrayer),
-      imageOverrideKey: "crucifix"))
-
-    for station in StationsCatalog.all {
-      let stationText = StationsTranslations.get(languageCode: languageCode, imageKey: station.imageKey)
-      let ordinalLabel = "\(Self.ordinals[station.order - 1]) Station"
-      let body = "\(text(.stationsVersicle))\n**\(text(.stationsResponse))**\n\n\(stationText.meditation)"
-
-      steps.append(RosaryStep(
-        title: stationText.title, subtitle: ordinalLabel, body: body,
-        imageOverrideKey: station.imageKey))
-    }
-
-    steps.append(RosaryStep(
-      title: "Closing Prayer", subtitle: nil, body: text(.stationsClosingPrayer),
-      imageOverrideKey: "crucifix"))
 
     return steps
   }
@@ -493,7 +282,7 @@ struct PrayerEngine {
   /// deliberately without bead fields, matching the hardcoded devotions' closing Hail Marys.
   private func expand(_ entry: CustomDevotionStep, bundleId: String, languageCode: String?) -> [RosaryStep] {
     if entry.kind == .seasonalMarianAntiphon {
-      return [buildMarianAntiphonStep(.seasonal, languageCode: languageCode)]
+      return [buildMarianAntiphonStep(calendar.seasonalMarianAntiphonToday(), languageCode: languageCode)]
     }
     let title = entry.titleKey.map {
       PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: languageCode, key: $0)

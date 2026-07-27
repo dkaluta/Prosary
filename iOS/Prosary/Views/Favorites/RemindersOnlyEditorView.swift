@@ -2,11 +2,11 @@
 //  RemindersOnlyEditorView.swift
 //  Prosary
 //
-//  Lightweight reminders editor for the 5 non-configurable devotion kinds (Angelus, Stations of
-//  the Cross, Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet) — these have no name,
+//  Lightweight reminders editor for the generic (bundle-driven) devotions — these have no name,
 //  language, or per-favorite options to edit (see FavoritesListView), just reminders. Reachable
-//  from the star row's bell button, and only once the kind is favorited (a Prayer row must
-//  already exist to attach reminders to — this view never creates one).
+//  from the star row's bell button, and only once the devotion is favorited (a Prayer row must
+//  already exist to attach reminders to — this view never creates one). The devotion's display
+//  name and any traditional preset reminder times come from its bundle manifest.
 //
 
 import SwiftUI
@@ -17,21 +17,21 @@ struct RemindersOnlyEditorView: View {
   @Environment(\.appServices) private var services
   @Environment(\.dismiss) private var dismiss
 
-  /// For `.custom`, `prayer.kind.displayName` is only a generic fallback (a single `PrayerKind`
-  /// case can't carry per-bundle text) — read the real name from the bundle's own manifest.
-  private var navigationTitleText: String {
-    guard prayer.kind == .custom, let devotionId = prayer.customDevotionId else {
-      return prayer.kind.displayName
-    }
-    return PrayerPackStore.info(for: devotionId)?.localizedDisplayName ?? prayer.kind.displayName
+  /// `prayer.kind.displayName` is only a generic fallback (a single `PrayerKind` case can't
+  /// carry per-bundle text) — read the real name from the bundle's own manifest.
+  private var info: CustomDevotionInfo? {
+    prayer.customDevotionId.flatMap { PrayerPackStore.info(for: $0) }
   }
 
   var body: some View {
     Form {
-      RemindersSection(reminders: $prayer.reminders, kind: prayer.kind)
+      RemindersSection(
+        reminders: $prayer.reminders,
+        presetHours: info?.reminderPresetHours ?? [],
+        presetFooter: info?.localizedReminderPresetFooter)
     }
     .formStyle(.grouped)
-    .navigationTitle(navigationTitleText)
+    .navigationTitle(info?.localizedDisplayName ?? prayer.kind.displayName)
     #if os(iOS)
     .navigationBarTitleDisplayMode(.inline)
     #endif
@@ -61,9 +61,10 @@ struct RemindersOnlyEditorView: View {
 #Preview("Angelus") {
   NavigationStack {
     RemindersOnlyEditorView(prayer: Prayer(
-      name: PrayerKind.angelus.defaultName,
-      kind: .angelus,
+      name: "Angelus",
+      kind: .custom,
       isDefault: true,
+      customDevotionId: "angelus",
       reminders: [PrayerReminder(hour: 6), PrayerReminder(hour: 18)]
     ))
   }
@@ -72,9 +73,10 @@ struct RemindersOnlyEditorView: View {
 #Preview("Stations — no reminders yet") {
   NavigationStack {
     RemindersOnlyEditorView(prayer: Prayer(
-      name: PrayerKind.stationsOfTheCross.defaultName,
-      kind: .stationsOfTheCross,
-      isDefault: true
+      name: "Stations of the Cross",
+      kind: .custom,
+      isDefault: true,
+      customDevotionId: "stationsOfTheCross"
     ))
   }
 }

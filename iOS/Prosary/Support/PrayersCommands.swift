@@ -3,7 +3,8 @@
 //  Prosary
 //
 //  macOS menu bar — stripped to essentials with a "Prayers" menu.
-//  Rosary favorites appear as a submenu; Angelus and Jesus Prayer are direct items.
+//  Rosary favorites appear as a submenu; each bundle devotion gets an item (or a favorites
+//  submenu once favorited), followed by the Jesus Prayer.
 //
 
 #if os(macOS)
@@ -40,7 +41,9 @@ struct PrayersCommands: Commands {
 
       Divider()
 
-      AngelusSubmenu(prayers: presetsState.prayers)
+      ForEach(PrayerPackStore.customDevotionIds(), id: \.self) { bundleId in
+        CustomDevotionSubmenu(bundleId: bundleId, prayers: presetsState.prayers)
+      }
 
       Menu("prayerKind.jesusPrayer") {
         let jpPrayers = presetsState.prayers
@@ -83,28 +86,32 @@ private struct RosarySubmenu: View {
   }
 }
 
-private struct AngelusSubmenu: View {
+/// One menu entry per generic (bundle-driven) devotion — a direct launcher until it has saved
+/// favorites, then a submenu of them plus a fresh-session item.
+private struct CustomDevotionSubmenu: View {
+  let bundleId: String
   let prayers: [Prayer]
 
   var body: some View {
-    let angelus = prayers
-      .filter { $0.kind == .angelus }
+    let displayName = PrayerPackStore.info(for: bundleId)?.localizedDisplayName ?? bundleId
+    let favorites = prayers
+      .filter { $0.kind == .custom && $0.customDevotionId == bundleId }
       .sorted { $0.isDefault && !$1.isDefault }
 
-    if angelus.isEmpty {
-      Button("angelusFlow.title") {
-        NavigationCoordinator.shared.pendingRoute = .angelus
+    if favorites.isEmpty {
+      Button(displayName) {
+        NavigationCoordinator.shared.pendingRoute = .custom(devotionId: bundleId)
       }
     } else {
-      Menu("prayerKind.angelus") {
-        ForEach(angelus) { prayer in
+      Menu(displayName) {
+        ForEach(favorites) { prayer in
           Button(prayer.isDefault ? "\(prayer.name) ★" : prayer.name) {
             NavigationCoordinator.shared.pendingRoute = .prayer(id: prayer.id)
           }
         }
         Divider()
-        Button("commands.angelusNew") {
-          NavigationCoordinator.shared.pendingRoute = .angelus
+        Button(String(localized: "commands.customNew", defaultValue: "New Session")) {
+          NavigationCoordinator.shared.pendingRoute = .custom(devotionId: bundleId)
         }
       }
     }

@@ -92,45 +92,6 @@ extension PrayerTranslations {
 
     .fructusMysteriiLabel: "Fructus Mysterii",
 
-    .versiculumAngelusPrimus: "Angelus Domini nuntiavit Mariae.",
-    .responsiumAngelusPrimus: "Et concepit de Spiritu Sancto.",
-    .versiculumAngelusSecundus: "Ecce ancilla Domini.",
-    .responsiumAngelusSecundus: "Fiat mihi secundum verbum tuum.",
-    .versiculumAngelusTertius: "Et Verbum caro factum est.",
-    .responsiumAngelusTertius: "Et habitavit in nobis.",
-    .collectaAngelus:
-      "Oremus. Gratiam tuam, quaesumus, Domine, mentibus nostris infunde; ut qui, Angelo " +
-      "nuntiante, Christi Filii tui incarnationem cognovimus, per passionem eius et crucem, ad " +
-      "resurrectionis gloriam perducamur. Per eundem Christum Dominum nostrum. Amen.",
-
     .oratioIesu: "Domine Iesu Christe, Fili Dei, miserere mei peccatoris.",
-
-    .stationsOpeningPrayer:
-      "Domine mi Iesu Christe, hoc iter ineffabili caritate pro me suscepisti ut moreris; ego autem " +
-      "te totiens indigne dereliqui. Nunc vero te ex toto corde diligo, et, quia te diligo, " +
-      "vehementer doleo quod te umquam offenderim. Ignosce mihi, Deus meus, propter merita " +
-      "acerbissimae passionis tuae, et da mihi gratiam ut hoc iter tecum, vera peccatorum meorum " +
-      "contritione, peragam, quo ad beatam aeternitatem pervenire merear. Amen.",
-    .stationsVersicle: "Adoramus te, Christe, et benedicimus tibi.",
-    .stationsResponse: "Quia per sanctam crucem tuam redemisti mundum.",
-    .stationsClosingPrayer:
-      "Domine Iesu Christe, tibi gratias agimus pro passione tua qua nos redemisti. Praesta ut, " +
-      "qui passionem tuam in terris meditati sumus, fructum eius in caelis percipere mereamur: " +
-      "qui vivis et regnas in saecula saeculorum. Amen.",
-
-    .sevenSorrowsVersicle: "Ora pro nobis, Virgo perdolens.",
-    .sevenSorrowsResponse: "Ut digni efficiamur promissionibus Christi.",
-    .sevenSorrowsCollect:
-      "Oremus. Deus, in cuius passione, secundum Simeonis prophetiam, dulcissimam animam " +
-      "gloriosae Virginis et Matris Mariae doloris gladius pertransivit: concede propitius; ut, " +
-      "qui transfixionem eius et passionem venerando recolimus, gloriosis meritis et precibus " +
-      "omnium Sanctorum, Cruci fideliter astantium, intercedentibus, passionis tuae effectum " +
-      "felicem consequamur: qui vivis et regnas in saecula saeculorum. Amen.",
-
-    .divineMercyOffering:
-      "Pater aeterne, offero Tibi Corpus et Sanguinem, Animam et Divinitatem dilectissimi Filii " +
-      "Tui, Domini nostri Iesu Christi, in propitiationem pro peccatis nostris et totius mundi.",
-    .divineMercyPetition: "Pro dolorosa Eius passione, miserere nobis et totius mundi.",
-    .divineMercyClosingAcclamation: "Sancte Deus, Sanctus Fortis, Sanctus Immortalis, miserere nobis et totius mundi.",
   ]
 }

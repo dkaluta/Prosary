@@ -50,35 +50,27 @@ struct AboutView: View {
         }
 
         section("Stations of the Cross Illustrations") {
-          Text("about.stationImages.intro")
-            .font(.footnote)
-            .foregroundStyle(.secondary)
-          ForEach(stationAttributions, id: \.self) { key in
-            Text(LocalizedStringKey(key))
-          }
+          Text(String(
+            localized: "about.stationImages.fugelCycle",
+            defaultValue: "All 14 stations: Gebhard Fugel (1863\u{2013}1939), Kreuzweg (1921), St. Antonius, Bad Saulgau \u{2014} public domain; photographs by Andreas Praefcke, released into the public domain."))
         }
 
         section("Franciscan Crown Illustration") {
-          Text("about.franciscanCrownImages.intro")
-            .font(.footnote)
-            .foregroundStyle(.secondary)
-          Text(LocalizedStringKey("about.franciscanCrownImage.adorationOfTheMagi"))
+          Text(String(
+            localized: "about.franciscanCrownImage.magiMurillo",
+            defaultValue: "The Adoration of the Magi: Bartolom\u{00E9} Esteban Murillo (c. 1655\u{2013}60), Toledo Museum of Art \u{2014} public domain. The other six Joys reuse the Rosary mystery illustrations above."))
         }
 
         section("Seven Sorrows Illustrations") {
-          Text("about.sevenSorrowsImages.intro")
-            .font(.footnote)
-            .foregroundStyle(.secondary)
           ForEach(sevenSorrowsAttributions, id: \.self) { key in
             Text(LocalizedStringKey(key))
           }
         }
 
         section("Divine Mercy Illustration") {
-          Text("about.divineMercyImages.intro")
-            .font(.footnote)
-            .foregroundStyle(.secondary)
-          Text(LocalizedStringKey("about.divineMercyImage.divineMercy"))
+          Text(String(
+            localized: "about.divineMercyImage.kazimirowski",
+            defaultValue: "Eugeniusz Kazimirowski, Divine Mercy (\u{201C}Jezu, ufam Tobie\u{201D}, 1934), Divine Mercy Sanctuary, Vilnius \u{2014} the original image painted under St. Faustina\u{2019}s direction; public domain."))
         }
 
         section("Scripture Sources") {
@@ -138,23 +130,15 @@ struct AboutView: View {
     "about.otherImage.headOfChrist",
   ]
 
-  /// Placeholder illustrations for now (see about.stationImages.intro) — real public-domain
-  /// artwork with proper attribution hasn't been sourced yet for the 14 stations.
-  private let stationAttributions = [
-    "about.stationImage.station01", "about.stationImage.station02", "about.stationImage.station03",
-    "about.stationImage.station04", "about.stationImage.station05", "about.stationImage.station06",
-    "about.stationImage.station07", "about.stationImage.station08", "about.stationImage.station09",
-    "about.stationImage.station10", "about.stationImage.station11", "about.stationImage.station12",
-    "about.stationImage.station13", "about.stationImage.station14",
-  ]
-
-  /// Placeholder illustrations for now (see about.sevenSorrowsImages.intro) — real public-domain
-  /// artwork with proper attribution hasn't been sourced yet for any of the 7 sorrows.
+  /// One classical work per sorrow — full source files and licenses in Shared/Images/CREDITS.md.
   private let sevenSorrowsAttributions = [
-    "about.sevenSorrowsImage.sorrow01", "about.sevenSorrowsImage.sorrow02",
-    "about.sevenSorrowsImage.sorrow03", "about.sevenSorrowsImage.sorrow04",
-    "about.sevenSorrowsImage.sorrow05", "about.sevenSorrowsImage.sorrow06",
-    "about.sevenSorrowsImage.sorrow07",
+    "about.sevenSorrowsImage.rembrandtSimeon",
+    "about.sevenSorrowsImage.murilloFlight",
+    "about.sevenSorrowsImage.veroneseDoctors",
+    "about.sevenSorrowsImage.raphaelSpasimo",
+    "about.sevenSorrowsImage.terBrugghenCrucifixion",
+    "about.sevenSorrowsImage.rubensDescent",
+    "about.sevenSorrowsImage.titianEntombment",
   ]
 }
 

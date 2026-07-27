@@ -66,7 +66,7 @@ struct FavoriteEditorView: View {
       }
 
       // MARK: Reminders
-      RemindersSection(reminders: $prayer.reminders, kind: prayer.kind)
+      RemindersSection(reminders: $prayer.reminders)
     }
     .formStyle(.grouped)
     .navigationTitle(isNew ? "favoriteEditor.newFavoriteTitle" : "favoriteEditor.editFavoriteTitle")
@@ -107,12 +107,12 @@ struct FavoriteEditorView: View {
   }
 }
 
-#Preview("New Angelus") {
+#Preview("New Jesus Prayer") {
   NavigationStack {
     FavoriteEditorView(
       prayer: Prayer(
-        name: "Angelus",
-        kind: .angelus,
+        name: "Jesus Prayer",
+        kind: .jesusPrayer,
         reminders: [PrayerReminder(hour: 6), PrayerReminder(hour: 12), PrayerReminder(hour: 18)]
       ),
       isNew: true

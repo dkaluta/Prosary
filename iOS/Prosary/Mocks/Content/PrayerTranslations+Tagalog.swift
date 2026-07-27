@@ -107,18 +107,6 @@ extension PrayerTranslations {
 
     .fructusMysteriiLabel: "Bunga ng Misteryo",
 
-    .versiculumAngelusPrimus: "Ipinahayag ng Anghel ng Panginoon kay Maria.",
-    .responsiumAngelusPrimus: "At siya'y naglihi sa pamamagitan ng Espiritu Santo.",
-    .versiculumAngelusSecundus: "Narito ang alipin ng Panginoon.",
-    .responsiumAngelusSecundus: "Mangyari sa akin ang ayon sa iyong salita.",
-    .versiculumAngelusTertius: "At ang Verbo ay nagkatawang-tao,",
-    .responsiumAngelusTertius: "at nanahan sa gitna namin.",
-    .collectaAngelus:
-      "Manalangin tayo. Ibuhos Mo, Panginoon, ang Iyong biyaya sa aming mga puso; na kami, na " +
-      "nalaman ang pagkakatawang-tao ni Kristong Iyong Anak sa pamamagitan ng pabalita ng anghel, " +
-      "ay madala sa pamamagitan ng Kanyang Pasyon at Krus tungo sa kaluwalhatian ng Kanyang " +
-      "Muling Pagkabuhay. Sa pamamagitan ng parehong Kristong aming Panginoon. Amen.",
-
     .oratioIesu: "Panginoong Jesucristo, Anak ng Diyos, kaawaan Mo ako, na makasalanan.",
   ]
 }

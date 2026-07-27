@@ -49,7 +49,7 @@ struct SwiftDataPresetStore: PresetStore {
 
   func defaultPreset(kind: PrayerKind) async throws -> Prayer? {
     let all = try context.fetch(FetchDescriptor<PresetEntry>())
-    let matching = all.filter { $0.kind == kind.rawValue }
+    let matching = all.filter { $0.resolvedKind.kind == kind }
     guard let entry = matching.first(where: { $0.isDefault }) ?? matching.first else { return nil }
     return entry.toPrayer()
   }
@@ -61,9 +61,15 @@ struct SwiftDataPresetStore: PresetStore {
 
   func save(_ prayer: Prayer) async throws {
     if prayer.isDefault {
+      // "One default per kind" is scoped per devotion: (kind, customDevotionId), compared via
+      // the resolved identity so legacy-kind rows ("angelus") and their migrated .custom
+      // equivalents share one default slot.
       let all = try context.fetch(FetchDescriptor<PresetEntry>())
-      for entry in all where entry.kind == prayer.kind.rawValue {
-        entry.isDefault = false
+      for entry in all {
+        let resolved = entry.resolvedKind
+        if resolved.kind == prayer.kind && resolved.customDevotionId == prayer.customDevotionId {
+          entry.isDefault = false
+        }
       }
     }
     let existing = try context.fetch(FetchDescriptor<PresetEntry>()).first { $0.id == prayer.id }
@@ -79,10 +85,12 @@ struct SwiftDataPresetStore: PresetStore {
     let all = try context.fetch(FetchDescriptor<PresetEntry>())
     guard let entry = all.first(where: { $0.id == prayer.id }) else { return }
     let wasDefault = entry.isDefault
-    let kindRaw = entry.kind
+    let identity = entry.resolvedKind
     context.delete(entry)
     if wasDefault {
-      all.first { $0.id != prayer.id && $0.kind == kindRaw }?.isDefault = true
+      all.first {
+        $0.id != prayer.id && $0.resolvedKind == identity
+      }?.isDefault = true
     }
     try context.save()
   }

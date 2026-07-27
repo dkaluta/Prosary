@@ -32,13 +32,13 @@ final class PresetStoreTests: XCTestCase {
   func testAllIncludesAllKinds() async throws {
     let store = makeStore([
       Prayer(name: "R", kind: .rosary),
-      Prayer(name: "A", kind: .angelus),
+      Prayer(name: "A", kind: .custom, customDevotionId: "angelus"),
       Prayer(name: "J", kind: .jesusPrayer),
     ])
     let prayers = try await store.all()
     XCTAssertEqual(prayers.count, 3)
     XCTAssertTrue(prayers.contains { $0.kind == .rosary })
-    XCTAssertTrue(prayers.contains { $0.kind == .angelus })
+    XCTAssertTrue(prayers.contains { $0.kind == .custom })
     XCTAssertTrue(prayers.contains { $0.kind == .jesusPrayer })
   }
 
@@ -95,7 +95,7 @@ final class PresetStoreTests: XCTestCase {
 
   func testSavingDefaultInOneKindDoesNotAffectOtherKinds() async throws {
     let rosary = Prayer(name: "R", kind: .rosary, isDefault: true)
-    var angelus = Prayer(name: "A", kind: .angelus, isDefault: false)
+    var angelus = Prayer(name: "A", kind: .custom, isDefault: false, customDevotionId: "angelus")
     let store = makeStore([rosary, angelus])
 
     angelus.isDefault = true
@@ -146,7 +146,7 @@ final class PresetStoreTests: XCTestCase {
   // MARK: - Reminders stored with Prayer
 
   func testSavePrayerWithReminders() async throws {
-    var prayer = Prayer(name: "Angelus", kind: .angelus)
+    var prayer = Prayer(name: "Angelus", kind: .custom, customDevotionId: "angelus")
     prayer.reminders = [PrayerReminder(hour: 6), PrayerReminder(hour: 12)]
     let store = makeStore()
     try await store.save(prayer)

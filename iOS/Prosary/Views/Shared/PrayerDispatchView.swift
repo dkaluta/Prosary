@@ -22,18 +22,8 @@ struct PrayerDispatchView: View {
         switch prayer.kind {
         case .rosary:
           RosaryFlowView(prayer: prayer)
-        case .angelus:
-          AngelusFlowView(prayer: prayer)
         case .jesusPrayer:
           JesusPrayerFlowView(path: $path, prayer: prayer)
-        case .stationsOfTheCross:
-          StationsFlowView(prayer: prayer)
-        case .franciscanCrown:
-          FranciscanCrownFlowView(prayer: prayer)
-        case .sevenSorrows:
-          SevenSorrowsFlowView(prayer: prayer)
-        case .divineMercyChaplet:
-          DivineMercyFlowView(prayer: prayer)
         case .custom:
           if let devotionId = prayer.customDevotionId {
             CustomDevotionFlowView(devotionId: devotionId, prayer: prayer)

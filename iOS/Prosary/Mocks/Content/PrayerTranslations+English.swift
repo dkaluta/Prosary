@@ -96,47 +96,6 @@ extension PrayerTranslations {
 
     .fructusMysteriiLabel: "Fruit of the Mystery",
 
-    .versiculumAngelusPrimus: "The Angel of the Lord declared unto Mary.",
-    .responsiumAngelusPrimus: "And she conceived of the Holy Spirit.",
-    .versiculumAngelusSecundus: "Behold the handmaid of the Lord.",
-    .responsiumAngelusSecundus: "Be it done unto me according to Thy word.",
-    .versiculumAngelusTertius: "And the Word was made Flesh.",
-    .responsiumAngelusTertius: "And dwelt among us.",
-    .collectaAngelus:
-      "Let us pray. Pour forth, we beseech Thee, O Lord, Thy grace into our hearts; that we, to " +
-      "whom the Incarnation of Christ Thy Son was made known by the message of an angel, may by " +
-      "His Passion and Cross be brought to the glory of His Resurrection. Through the same Christ " +
-      "our Lord. Amen.",
-
     .oratioIesu: "Lord Jesus Christ, Son of God, have mercy on me, a sinner.",
-
-    .stationsOpeningPrayer:
-      "My Lord Jesus Christ, You made this journey to die for me with unspeakable love, and I have " +
-      "so many times unworthily abandoned You. But now I love You with all my heart, and, because " +
-      "I love You, I am sincerely sorry for ever having offended You. Pardon me, my God, for the " +
-      "sake of the merits of Your bitter Passion, and grant me the grace to accompany You in this " +
-      "journey with true contrition for my sins, that I may attain to a happy eternity. Amen.",
-    .stationsVersicle: "We adore You, O Christ, and we bless You.",
-    .stationsResponse: "Because by Your holy Cross You have redeemed the world.",
-    .stationsClosingPrayer:
-      "Lord Jesus Christ, we thank You for the Passion by which You have redeemed us. Grant that, " +
-      "having meditated on Your sufferings on earth, we may deserve to enjoy their fruit in " +
-      "heaven, where You live and reign forever and ever. Amen.",
-
-    .sevenSorrowsVersicle: "Pray for us, O most sorrowful Virgin.",
-    .sevenSorrowsResponse: "That we may be made worthy of the promises of Christ.",
-    .sevenSorrowsCollect:
-      "Let us pray. O God, in whose Passion, according to the prophecy of Simeon, a sword of " +
-      "sorrow pierced through the most sweet soul of the glorious Virgin Mary, His Mother: " +
-      "mercifully grant that we, who devoutly call to mind her transfixion and sorrows, may, " +
-      "through the glorious merits and prayers of all the Saints who stood faithfully beneath " +
-      "the Cross, obtain the happy fruit of Thy Passion. Who livest and reignest, world without " +
-      "end. Amen.",
-
-    .divineMercyOffering:
-      "Eternal Father, I offer You the Body and Blood, Soul and Divinity of Your dearly beloved " +
-      "Son, Our Lord Jesus Christ, in atonement for our sins and those of the whole world.",
-    .divineMercyPetition: "For the sake of His sorrowful Passion, have mercy on us and on the whole world.",
-    .divineMercyClosingAcclamation: "Holy God, Holy Mighty One, Holy Immortal One, have mercy on us and on the whole world.",
   ]
 }

@@ -20,16 +20,6 @@ struct ContentView: View {
             FavoritesListView(path: $path)
           case .about:
             AboutView()
-          case .angelus:
-            AngelusFlowView()
-          case .stationsOfTheCross:
-            StationsFlowView()
-          case .franciscanCrown:
-            FranciscanCrownFlowView()
-          case .sevenSorrows:
-            SevenSorrowsFlowView()
-          case .divineMercyChaplet:
-            DivineMercyFlowView()
           case .jesusPrayerSetup:
             JesusPrayerSetupView(path: $path)
           case .jesusPrayer(let target):

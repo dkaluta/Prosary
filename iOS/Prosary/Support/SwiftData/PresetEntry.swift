@@ -19,8 +19,10 @@ final class PresetEntry {
   var isDefault: Bool = false
   var languageCode: String = ""
 
-  // Discriminant — "rosary" / "angelus" / "jesusPrayer". Default "rosary" handles
-  // existing rows when the schema is extended with this field.
+  // Discriminant — "rosary" / "jesusPrayer" / "custom", plus legacy per-devotion strings
+  // ("angelus", "stationsOfTheCross", ...) on rows written before the generic-devotion
+  // migration — see `resolvedKind`. Default "rosary" handles existing rows when the schema is
+  // extended with this field.
   var kind: String = "rosary"
 
   // Bundle id for a generic (kind == "custom") devotion, e.g. "trisagion". Nil for every other
@@ -111,15 +113,27 @@ final class PresetEntry {
     remindersJSON = (try? JSONEncoder().encode(prayer.reminders)) ?? Data()
   }
 
+  /// Maps this row's stored kind to the post-generic-devotions model: an unknown raw kind
+  /// string is a legacy per-devotion kind ("angelus", "stationsOfTheCross", ...) whose rawValue
+  /// deliberately doubles as its bundle id. Permanent read-time behavior, NOT a one-shot
+  /// migration — CloudKit can sync rows written by old app versions in at any time.
+  var resolvedKind: (kind: PrayerKind, customDevotionId: String?) {
+    if let known = PrayerKind(rawValue: kind) {
+      return (known, customDevotionId)
+    }
+    return (.custom, customDevotionId ?? kind)
+  }
+
   func toPrayer() -> Prayer {
     let jpTarget: JesusPrayerTarget = jesusPrayerIsUnbounded
       ? .unbounded
       : .count(jesusPrayerCount)
 
+    let resolved = resolvedKind
     return Prayer(
       id: id,
       name: name,
-      kind: PrayerKind(rawValue: kind) ?? .rosary,
+      kind: resolved.kind,
       isDefault: isDefault,
       languageCode: languageCode,
       rosary: RosaryOptions(
@@ -136,7 +150,7 @@ final class PresetEntry {
         presenterMode: presenterMode
       ),
       jesusPrayer: JesusPrayerOptions(target: jpTarget),
-      customDevotionId: customDevotionId,
+      customDevotionId: resolved.customDevotionId,
       reminders: (try? JSONDecoder().decode([PrayerReminder].self, from: remindersJSON)) ?? []
     )
   }

@@ -10,14 +10,9 @@ enum AppRoute: Hashable {
   case prayer(id: Prayer.ID)
   case favorites
   case about
-  case angelus
-  case stationsOfTheCross
-  case franciscanCrown
-  case sevenSorrows
-  case divineMercyChaplet
   case jesusPrayerSetup
   case jesusPrayer(target: JesusPrayerTarget)
   /// Launches a generic (bundle-driven) devotion with no existing favorite — `devotionId` is the
-  /// bundle id, e.g. `"trisagion"`. See `PrayerKind.custom`.
+  /// bundle id, e.g. `"angelus"`. See `PrayerKind.custom`.
   case custom(devotionId: String)
 }

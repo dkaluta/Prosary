@@ -14,9 +14,12 @@ import XCTest
 @MainActor
 final class PrayerPackLoaderTests: XCTestCase {
   func testBundledPacksExist() {
-    XCTAssertNotNil(Bundle.main.url(forResource: "rosary", withExtension: "prosaryprayer"))
-    XCTAssertNotNil(Bundle.main.url(forResource: "angelus", withExtension: "prosaryprayer"))
-    XCTAssertNotNil(Bundle.main.url(forResource: "trisagion", withExtension: "prosaryprayer"))
+    for pack in ["rosary", "angelus", "stationsOfTheCross", "franciscanCrown", "sevenSorrows",
+                 "divineMercyChaplet", "trisagion"] {
+      XCTAssertNotNil(
+        Bundle.main.url(forResource: pack, withExtension: "prosaryprayer"),
+        "missing \(pack).prosaryprayer")
+    }
   }
 
   func testRosaryPackProvidedKeyOverridesEnglishText() {
@@ -30,10 +33,11 @@ final class PrayerPackLoaderTests: XCTestCase {
     XCTAssertEqual(text.fruit, "Humilitas")
   }
 
-  func testAngelusPackProvidedKeyOverridesHebrewText() {
-    let text = PrayerTranslations.get(languageCode: "he", key: .collectaAngelus)
+  func testAngelusPackProvidesHebrewComposedBody() {
+    let text = PrayerPackStore.resolveBodyText(
+      bundleId: "angelus", languageCode: "he", key: "angelusCollectBody")
     XCTAssertFalse(text.isEmpty)
-    XCTAssertTrue(text.hasPrefix("נִתְפַּלְּלָה"))
+    XCTAssertTrue(text.contains("נִתְפַּלְּלָה"))
   }
 
   /// The "main" prayers (Sign of the Cross, Creed, Our Father, Hail Mary, Glory Be) are
@@ -44,10 +48,12 @@ final class PrayerPackLoaderTests: XCTestCase {
     XCTAssertEqual(text, PrayerTranslations.english[.aveMaria])
   }
 
-  /// A devotion with no shipped pack at all (Stations) must be completely unaffected.
-  func testUnmigratedDevotionKeyStillResolvesFromHardcodedTable() {
-    let text = PrayerTranslations.get(languageCode: "en", key: .stationsOpeningPrayer)
-    XCTAssertEqual(text, PrayerTranslations.english[.stationsOpeningPrayer])
+  /// A devotion converted to a bundle resolves entirely bundle-locally — its keys no longer
+  /// exist in the hardcoded tables at all.
+  func testConvertedDevotionKeyResolvesFromItsBundle() {
+    let text = PrayerPackStore.resolveBodyText(
+      bundleId: "stationsOfTheCross", languageCode: "en", key: "stationsOpeningPrayer")
+    XCTAssertTrue(text.hasPrefix("My Lord Jesus Christ, You made this journey"))
   }
 
   func testRosaryPackProvidesImageDataForAMysteryKey() {
@@ -56,8 +62,13 @@ final class PrayerPackLoaderTests: XCTestCase {
     XCTAssertGreaterThan(data?.count ?? 0, 0)
   }
 
-  func testPackProvidesNoImageDataForAnUnrelatedKey() {
-    XCTAssertNil(PrayerPackStore.imageData(for: "station_01_condemned_to_death"))
+  func testStationsPackProvidesItsImageData() {
+    let data = PrayerPackStore.imageData(for: "station_01_condemned_to_death")
+    XCTAssertGreaterThan(data?.count ?? 0, 0)
+  }
+
+  func testPackProvidesNoImageDataForAnUnknownKey() {
+    XCTAssertNil(PrayerPackStore.imageData(for: "no_such_image_key"))
   }
 
   // MARK: - Generic (bundle-driven) devotions
@@ -66,11 +77,13 @@ final class PrayerPackLoaderTests: XCTestCase {
     XCTAssertTrue(PrayerPackStore.customDevotionIds().contains("trisagion"))
   }
 
-  /// A devotion with no devotion.json at all (Rosary/Angelus while they remain override-only
-  /// bundles) is never mistaken for a generic one.
-  func testPacksWithNoDevotionDefinitionAreNotCustomDevotions() {
-    XCTAssertFalse(PrayerPackStore.customDevotionIds().contains("rosary"))
-    XCTAssertFalse(PrayerPackStore.customDevotionIds().contains("angelus"))
+  /// The Rosary's pack has no devotion.json (override-only) and must never be mistaken for a
+  /// generic devotion; the six generic devotions appear in pack-load order.
+  func testCustomDevotionIdsAreTheSixGenericDevotionsInLoadOrder() {
+    XCTAssertEqual(PrayerPackStore.customDevotionIds(), [
+      "angelus", "stationsOfTheCross", "franciscanCrown", "sevenSorrows",
+      "divineMercyChaplet", "trisagion",
+    ])
   }
 
   func testTrisagionInfoReadsFromItsManifest() {

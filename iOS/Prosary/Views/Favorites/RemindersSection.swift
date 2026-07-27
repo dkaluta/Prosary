@@ -3,27 +3,30 @@
 //  Prosary
 //
 //  The reminders Form section, shared by FavoriteEditorView (Rosary/Jesus Prayer's full editor)
-//  and RemindersOnlyEditorView (the lightweight sheet for Angelus/Stations/Franciscan
-//  Crown/Seven Sorrows/Divine Mercy Chaplet). Extracted so both editors manage reminders
-//  identically instead of drifting.
+//  and RemindersOnlyEditorView (the lightweight sheet for the generic bundle devotions).
+//  Extracted so both editors manage reminders identically instead of drifting.
+//
+//  A devotion with traditional fixed prayer times ships them in its bundle manifest
+//  (`reminderPresetHours` — the Angelus's 6am/noon/6pm bells) and gets one quick toggle per
+//  preset hour plus an explanatory footer, instead of any kind-specific special case here.
 //
 
 import SwiftUI
 
 struct RemindersSection: View {
   @Binding var reminders: [PrayerReminder]
-  let kind: PrayerKind
-
-  /// Hours that have dedicated Angelus toggle rows (traditional bell times).
-  private let angelusPresetHours: Set<Int> = [6, 12, 18]
+  /// Whole hours that get dedicated quick-toggle rows (from the devotion's manifest); empty for
+  /// devotions without traditional fixed times.
+  var presetHours: [Int] = []
+  /// Footer shown (instead of the generic one) while any reminder exists, explaining the presets.
+  var presetFooter: String? = nil
 
   var body: some View {
     Section {
-      if kind == .angelus {
-        // Traditional Angelus bell times — quick toggles for 6am, noon, 6pm.
-        Toggle("favoriteEditor.angelusTime6Am", isOn: angelusTimeBinding(hour: 6))
-        Toggle("favoriteEditor.angelusTimeNoon", isOn: angelusTimeBinding(hour: 12))
-        Toggle("favoriteEditor.angelusTime6Pm", isOn: angelusTimeBinding(hour: 18))
+      if !presetHours.isEmpty {
+        ForEach(presetHours, id: \.self) { hour in
+          Toggle(presetLabel(hour: hour), isOn: presetTimeBinding(hour: hour))
+        }
 
         ForEach(customReminders) { reminder in
           reminderRow(for: reminder.id)
@@ -42,16 +45,23 @@ struct RemindersSection: View {
     } header: {
       Text("favoriteEditor.remindersHeader")
     } footer: {
-      if kind == .angelus, !reminders.isEmpty {
-        Text("favoriteEditor.angelusRemindersFooter")
+      if let presetFooter, !reminders.isEmpty {
+        Text(presetFooter)
       } else if !reminders.isEmpty {
         Text("favoriteEditor.remindersFooter")
       }
     }
   }
 
-  /// Toggles presence of a `PrayerReminder` at exactly `hour:00` for the Angelus presets.
-  private func angelusTimeBinding(hour: Int) -> Binding<Bool> {
+  /// "6:00 AM" / "12:00 PM"-style label for a preset hour, in the user's locale.
+  private func presetLabel(hour: Int) -> String {
+    let components = DateComponents(hour: hour, minute: 0)
+    guard let date = Calendar.current.date(from: components) else { return "\(hour):00" }
+    return date.formatted(date: .omitted, time: .shortened)
+  }
+
+  /// Toggles presence of a `PrayerReminder` at exactly `hour:00` for the preset rows.
+  private func presetTimeBinding(hour: Int) -> Binding<Bool> {
     Binding(
       get: {
         reminders.contains { $0.hour == hour && $0.minute == 0 && $0.isEnabled }
@@ -70,10 +80,10 @@ struct RemindersSection: View {
     )
   }
 
-  /// Reminders that don't map to one of the three traditional Angelus preset times.
+  /// Reminders that don't map to one of the preset times.
   private var customReminders: [PrayerReminder] {
     reminders.filter { r in
-      !(angelusPresetHours.contains(r.hour) && r.minute == 0)
+      !(presetHours.contains(r.hour) && r.minute == 0)
     }
   }
 
@@ -109,18 +119,20 @@ struct RemindersSection: View {
   }
 }
 
-#Preview("Angelus") {
+#Preview("With preset hours (Angelus-style)") {
   @Previewable @State var reminders = [PrayerReminder(hour: 6), PrayerReminder(hour: 12)]
   Form {
-    RemindersSection(reminders: $reminders, kind: .angelus)
+    RemindersSection(
+      reminders: $reminders, presetHours: [6, 12, 18],
+      presetFooter: "Traditional times correspond to the Angelus bell. All reminders repeat daily.")
   }
   .formStyle(.grouped)
 }
 
-#Preview("Stations") {
+#Preview("Plain") {
   @Previewable @State var reminders = [PrayerReminder(hour: 15, minute: 0)]
   Form {
-    RemindersSection(reminders: $reminders, kind: .stationsOfTheCross)
+    RemindersSection(reminders: $reminders)
   }
   .formStyle(.grouped)
 }

@@ -62,14 +62,14 @@ final class PrayerReminderTests: XCTestCase {
   }
 
   func testPrayerCanHoldReminders() {
-    var prayer = Prayer(kind: .angelus)
+    var prayer = Prayer(kind: .custom, customDevotionId: "angelus")
     prayer.reminders = [PrayerReminder(hour: 6), PrayerReminder(hour: 12), PrayerReminder(hour: 18)]
     XCTAssertEqual(prayer.reminders.count, 3)
     XCTAssertEqual(prayer.reminders.map(\.hour), [6, 12, 18])
   }
 
   func testPrayerReminderCodableRoundTrip() throws {
-    var original = Prayer(name: "Morning Angelus", kind: .angelus)
+    var original = Prayer(name: "Morning Angelus", kind: .custom, customDevotionId: "angelus")
     original.reminders = [PrayerReminder(hour: 6), PrayerReminder(hour: 12)]
 
     let data = try JSONEncoder().encode(original)

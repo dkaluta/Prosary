@@ -93,17 +93,6 @@ extension PrayerTranslations {
 
     .fructusMysteriiLabel: "Плод тайны",
 
-    .versiculumAngelusPrimus: "Ангел Господень возвестил Марии.",
-    .responsiumAngelusPrimus: "И Она зачала от Духа Святого.",
-    .versiculumAngelusSecundus: "Се, Раба Господня.",
-    .responsiumAngelusSecundus: "Да будет Мне по слову твоему.",
-    .versiculumAngelusTertius: "И Слово стало плотью,",
-    .responsiumAngelusTertius: "и обитало с нами.",
-    .collectaAngelus:
-      "Помолимся. Излей, молим Тебя, Господи, благодать Твою в сердца наши, дабы мы, " +
-      "познавшие воплощение Христа, Сына Твоего, через благовестие Ангела, страданием Его и " +
-      "крестом были приведены к славе Его воскресения. Через Того же Христа Господа нашего. Аминь.",
-
     // The historic Church Slavonic/Russian formula of the Jesus Prayer.
     .oratioIesu: "Господи Иисусе Христе, Сыне Божий, помилуй мя, грешного.",
   ]

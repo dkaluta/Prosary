@@ -91,16 +91,6 @@ extension PrayerTranslations {
 
     .fructusMysteriiLabel: "ثمرة السر",
 
-    .versiculumAngelusPrimus: "بَشَّرَ ملاكُ الربِّ مريمَ.",
-    .responsiumAngelusPrimus: "فحَبِلَت بالروحِ القدسِ.",
-    .versiculumAngelusSecundus: "هوذا أَمَةُ الربِّ.",
-    .responsiumAngelusSecundus: "ليكن لي كقولِكَ.",
-    .versiculumAngelusTertius: "والكلمةُ صار جسداً.",
-    .responsiumAngelusTertius: "وحلَّ بيننا.",
-    .collectaAngelus:
-      "لنصلِّ. أفِضْ يا ربُّ نعمتَكَ في قلوبِنا، نحنُ الذين عَرَفنا تجسُّدَ ابنِكَ يسوعَ المسيحِ " +
-      "ببشارةِ الملاكِ، فبآلامِه وصليبِه نصِلْ إلى مجدِ قيامتِه. بالمسيحِ ربِّنا. آمين.",
-
     .oratioIesu: "أيُّها الربُّ يسوعُ المسيحُ، يا ابنَ اللهِ، ارحَمْني أنا الخاطئَ.",
   ]
 }

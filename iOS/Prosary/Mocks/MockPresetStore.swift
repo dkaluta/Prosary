@@ -30,7 +30,10 @@ final class MockPresetStore: PresetStore {
 
   func save(_ prayer: Prayer) async throws {
     if prayer.isDefault {
-      for index in favorites.indices where favorites[index].kind == prayer.kind {
+      // Default scoping matches SwiftDataPresetStore: one default per (kind, customDevotionId).
+      for index in favorites.indices
+      where favorites[index].kind == prayer.kind
+        && favorites[index].customDevotionId == prayer.customDevotionId {
         favorites[index].isDefault = false
       }
     }
@@ -43,9 +46,11 @@ final class MockPresetStore: PresetStore {
 
   func delete(_ prayer: Prayer) async throws {
     let kindBefore = prayer.kind
+    let devotionBefore = prayer.customDevotionId
     let wasDefault = prayer.isDefault
     favorites.removeAll { $0.id == prayer.id }
-    if wasDefault, let first = favorites.first(where: { $0.kind == kindBefore }) {
+    if wasDefault,
+       let first = favorites.first(where: { $0.kind == kindBefore && $0.customDevotionId == devotionBefore }) {
       let index = favorites.firstIndex(where: { $0.id == first.id })!
       favorites[index].isDefault = true
     }
@@ -87,9 +92,10 @@ final class MockPresetStore: PresetStore {
     ),
     Prayer(
       name: "Angelus",
-      kind: .angelus,
+      kind: .custom,
       isDefault: true,
-      languageCode: "la"
+      languageCode: "la",
+      customDevotionId: "angelus"
     ),
     Prayer(
       name: "Jesus Prayer × 33",
