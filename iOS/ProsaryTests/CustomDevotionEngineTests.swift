@@ -160,6 +160,14 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertEqual(steps.last?.title, "Sign of the Cross")
   }
 
+  /// The sorrow texts live only in the bundle (they were deleted from the hardcoded tables) —
+  /// a language the bundle doesn't declare must fall back to the bundle's Latin mysteries, not
+  /// leak raw imageKeys as titles.
+  func testSevenSorrowsFallsBackToBundleLatinForAnUndeclaredLanguage() {
+    let steps = steps("sevenSorrows", language: "ar")
+    XCTAssertEqual(steps[1].title, "Simeonis Prophetia")
+  }
+
   // MARK: - Divine Mercy Chaplet (rosary type, no announcements, fixed image)
 
   func testDivineMercySixtyThreeStepSequence() {
