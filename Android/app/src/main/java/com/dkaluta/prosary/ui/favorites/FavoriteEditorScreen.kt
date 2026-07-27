@@ -207,7 +207,7 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
                 }
             }
 
-            RemindersSection(reminders = prayer.reminders, kind = prayer.kind) { prayer = prayer.copy(reminders = it) }
+            RemindersSection(reminders = prayer.reminders) { prayer = prayer.copy(reminders = it) }
         }
     }
 }

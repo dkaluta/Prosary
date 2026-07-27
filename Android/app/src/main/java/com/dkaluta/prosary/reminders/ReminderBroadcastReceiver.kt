@@ -8,7 +8,6 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.dkaluta.prosary.MainActivity
 import com.dkaluta.prosary.R
-import com.dkaluta.prosary.models.PrayerKind
 
 /** Fired by the alarm [ReminderScheduler.schedule] sets up; builds and posts the notification
  * directly from Intent extras — no live app process or database read needed, mirroring iOS's
@@ -21,9 +20,7 @@ class ReminderBroadcastReceiver : BroadcastReceiver() {
 
         val prayerId = intent.getStringExtra(ReminderScheduler.ExtraPrayerId) ?: return
         val prayerName = intent.getStringExtra(ReminderScheduler.ExtraPrayerName) ?: return
-        val kind = runCatching {
-            PrayerKind.valueOf(intent.getStringExtra(ReminderScheduler.ExtraPrayerKind) ?: "")
-        }.getOrDefault(PrayerKind.Rosary)
+        val body = intent.getStringExtra(ReminderScheduler.ExtraBody) ?: "Time to pray."
 
         if (!ReminderScheduler.hasNotificationPermission(context)) return
 
@@ -38,7 +35,7 @@ class ReminderBroadcastReceiver : BroadcastReceiver() {
         val notification = NotificationCompat.Builder(context, ReminderScheduler.NotificationChannelId)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle(prayerName)
-            .setContentText(ReminderScheduler.notificationBody(kind))
+            .setContentText(body)
             .setAutoCancel(true)
             .setContentIntent(contentIntent)
             .build()

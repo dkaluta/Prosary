@@ -12,7 +12,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.automirrored.filled.DirectionsWalk
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Circle
 import androidx.compose.material.icons.filled.Delete
@@ -21,9 +20,6 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
-import androidx.compose.material.icons.filled.WaterDrop
-import androidx.compose.material.icons.filled.WbSunny
-import androidx.compose.material.icons.filled.WorkspacePremium
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -65,12 +61,7 @@ import kotlinx.coroutines.launch
 
 private fun iconFor(kind: PrayerKind): ImageVector = when (kind) {
     PrayerKind.Rosary -> Icons.Filled.Circle
-    PrayerKind.Angelus -> Icons.Filled.Notifications
     PrayerKind.JesusPrayer -> Icons.Filled.Favorite
-    PrayerKind.StationsOfTheCross -> Icons.AutoMirrored.Filled.DirectionsWalk
-    PrayerKind.FranciscanCrown -> Icons.Filled.WorkspacePremium
-    PrayerKind.SevenSorrows -> Icons.Filled.WaterDrop
-    PrayerKind.DivineMercyChaplet -> Icons.Filled.WbSunny
     // Unreachable in practice — .Custom rows read the bundle's own iconSystemName instead (see
     // the customDevotionIds loop below). Still needed for exhaustiveness.
     PrayerKind.Custom -> Icons.Filled.Star
@@ -78,29 +69,17 @@ private fun iconFor(kind: PrayerKind): ImageVector = when (kind) {
 
 private fun accentFor(kind: PrayerKind): Color = when (kind) {
     PrayerKind.Rosary -> Color(0xFF7A1F3D)
-    PrayerKind.Angelus -> Color(0xFF8B6914)
     PrayerKind.JesusPrayer -> Color(0xFF8B1A1A)
-    PrayerKind.StationsOfTheCross -> Color(0xFF5C2D91)
-    PrayerKind.FranciscanCrown -> Color(0xFF6B4226)
-    PrayerKind.SevenSorrows -> Color(0xFF6B0F1A)
-    PrayerKind.DivineMercyChaplet -> Color(0xFFC41E3A)
     // Unreachable in practice — .Custom rows read the bundle's own accentColorHex instead. Still
     // needed for exhaustiveness.
     PrayerKind.Custom -> Color(0xFF7A1F3D)
 }
 
 /** Rosary and Jesus Prayer have real per-favorite options worth naming and saving multiple
- * variants of, so they keep the full card list + editor. The other 5 kinds have nothing to
- * configure beyond reminders, so they get a single on/off star row instead — see
+ * variants of, so they keep the full card list + editor. Every generic (bundle-driven) devotion
+ * has nothing to configure beyond reminders, so it gets a single on/off star row instead — see
  * [SimpleFavoriteRow]. */
 private val configurableKinds = listOf(PrayerKind.Rosary, PrayerKind.JesusPrayer)
-private val simplifiedKinds = listOf(
-    PrayerKind.Angelus,
-    PrayerKind.StationsOfTheCross,
-    PrayerKind.FranciscanCrown,
-    PrayerKind.SevenSorrows,
-    PrayerKind.DivineMercyChaplet,
-)
 
 /** Card-layout list of saved prayer favorites grouped by kind. Replaces the old presets-only
  * list, mirrors iOS's FavoritesListView. */
@@ -198,44 +177,14 @@ fun FavoritesListScreen(
                 }
             }
 
-            items(simplifiedKinds, key = { it.name }) { kind ->
-                val favorite = prayers.firstOrNull { it.kind == kind }
-                SimpleFavoriteRow(
-                    title = kind.displayName,
-                    icon = iconFor(kind),
-                    accentColor = accentFor(kind),
-                    isFavorited = favorite != null,
-                    onToggleFavorite = {
-                        scope.launch {
-                            if (favorite != null) {
-                                ReminderScheduler.cancelAll(context, favorite)
-                                services.presetStore.delete(favorite)
-                            } else {
-                                services.presetStore.save(
-                                    Prayer(
-                                        name = kind.defaultName,
-                                        kind = kind,
-                                        isDefault = true,
-                                        languageCode = LanguageCatalog.defaultSentinel,
-                                    ),
-                                )
-                            }
-                            reload()
-                        }
-                    },
-                    onEditReminders = { favorite?.let { onEditReminders(it.id) } },
-                )
-            }
-
-            // Generic (bundle-driven) devotions — one row per discovered bundle, with no
-            // hardcoded PrayerKind case. Only one exists today (Trisagion); a picker across
-            // multiple is real future work once a second one exists, not built speculatively.
+            // Generic (bundle-driven) devotions — one row per discovered bundle, in pack-load
+            // order, with no hardcoded PrayerKind case.
             items(PrayerPackStore.customDevotionIds(), key = { "custom.$it" }) { bundleId ->
                 val info = PrayerPackStore.info(bundleId)
                 if (info != null) {
                     val favorite = prayers.firstOrNull { it.kind == PrayerKind.Custom && it.customDevotionId == bundleId }
                     SimpleFavoriteRow(
-                        title = info.displayName,
+                        title = info.localizedDisplayName,
                         icon = iconForSystemName(info.iconSystemName),
                         accentColor = colorForHex(info.accentColorHex) ?: MaterialTheme.colorScheme.primary,
                         isFavorited = favorite != null,
@@ -247,7 +196,7 @@ fun FavoritesListScreen(
                                 } else {
                                     services.presetStore.save(
                                         Prayer(
-                                            name = info.displayName,
+                                            name = info.localizedDisplayName,
                                             kind = PrayerKind.Custom,
                                             isDefault = true,
                                             languageCode = LanguageCatalog.defaultSentinel,
@@ -292,14 +241,9 @@ private fun FavoriteCard(
 ) {
     val subtitle = when (prayer.kind) {
         PrayerKind.Rosary -> "${prayer.rosary.mysterySelectionSummary} • ${prayer.languageDisplayName}"
-        PrayerKind.Angelus -> prayer.languageDisplayName
         PrayerKind.JesusPrayer -> "${prayer.jesusPrayer.targetDisplayName} • ${prayer.languageDisplayName}"
-        PrayerKind.StationsOfTheCross -> prayer.languageDisplayName
-        PrayerKind.FranciscanCrown -> prayer.languageDisplayName
-        PrayerKind.SevenSorrows -> prayer.languageDisplayName
-        PrayerKind.DivineMercyChaplet -> prayer.languageDisplayName
         // Unreachable in practice — .Custom favorites render via SimpleFavoriteRow, never
-        // FavoriteCard (see configurableKinds below). Still needed for exhaustiveness.
+        // FavoriteCard (see configurableKinds above). Still needed for exhaustiveness.
         PrayerKind.Custom -> prayer.languageDisplayName
     }
 

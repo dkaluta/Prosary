@@ -97,45 +97,36 @@ fun AboutScreen(onBack: () -> Unit) {
 
             AboutSection(title = "Stations of the Cross Illustrations") {
                 Text(
-                    "Placeholder illustrations for now — real public-domain artwork with proper " +
-                        "attribution hasn't been sourced yet for the 14 stations.",
+                    "All 14 stations: Gebhard Fugel (1863\u20131939), Kreuzweg (1921), St. Antonius, " +
+                        "Bad Saulgau \u2014 public domain; photographs by Andreas Praefcke, released into " +
+                        "the public domain.",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
-                stationAttributions.forEach { line -> ItalicLeadLine(line) }
             }
 
             AboutSection(title = "Franciscan Crown Illustration") {
                 Text(
-                    "Six of the Seven Joys reuse the Rosary mystery images above (Annunciation, Visitation, " +
-                        "Nativity, Finding in the Temple, Resurrection, Coronation). Only the Adoration of the " +
-                        "Magi is new, and its illustration is a placeholder for now — real public-domain " +
-                        "artwork with proper attribution hasn't been sourced yet.",
+                    "The Adoration of the Magi: Bartolom\u00E9 Esteban Murillo (c. 1655\u201360), " +
+                        "Toledo Museum of Art \u2014 public domain. The other six Joys reuse the Rosary " +
+                        "mystery illustrations above.",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
-                ItalicLeadLine("*The Adoration of the Magi* — artwork pending.")
             }
 
             AboutSection(title = "Seven Sorrows Illustrations") {
-                Text(
-                    "Placeholder illustrations for now — real public-domain artwork with proper " +
-                        "attribution hasn't been sourced yet for any of the 7 sorrows.",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
                 sevenSorrowsAttributions.forEach { line -> ItalicLeadLine(line) }
             }
 
             AboutSection(title = "Divine Mercy Illustration") {
                 Text(
-                    "The single Divine Mercy illustration, reused for every step (the chaplet has no " +
-                        "per-decade content to illustrate separately), is a placeholder for now — real " +
-                        "public-domain artwork with proper attribution hasn't been sourced yet.",
+                    "Eugeniusz Kazimirowski, Divine Mercy (\u201CJezu, ufam Tobie\u201D, 1934), Divine " +
+                        "Mercy Sanctuary, Vilnius \u2014 the original image painted under St. Faustina\u2019s " +
+                        "direction; public domain.",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
-                ItalicLeadLine("*Divine Mercy* — artwork pending.")
             }
 
             AboutSection(title = "Scripture Sources") {
@@ -227,33 +218,12 @@ private val otherImageAttributions = listOf(
     "*Head of Christ* — Rembrandt (d. 1669).",
 )
 
-/** Placeholder illustrations for now (see the intro line above) — real public-domain artwork
- * with proper attribution hasn't been sourced yet for the 14 stations. */
-private val stationAttributions = listOf(
-    "*Station 1: Jesus is Condemned to Death* — artwork pending.",
-    "*Station 2: Jesus Carries His Cross* — artwork pending.",
-    "*Station 3: Jesus Falls the First Time* — artwork pending.",
-    "*Station 4: Jesus Meets His Mother* — artwork pending.",
-    "*Station 5: Simon of Cyrene Helps Jesus Carry the Cross* — artwork pending.",
-    "*Station 6: Veronica Wipes the Face of Jesus* — artwork pending.",
-    "*Station 7: Jesus Falls the Second Time* — artwork pending.",
-    "*Station 8: Jesus Meets the Women of Jerusalem* — artwork pending.",
-    "*Station 9: Jesus Falls the Third Time* — artwork pending.",
-    "*Station 10: Jesus is Stripped of His Garments* — artwork pending.",
-    "*Station 11: Jesus is Nailed to the Cross* — artwork pending.",
-    "*Station 12: Jesus Dies on the Cross* — artwork pending.",
-    "*Station 13: Jesus is Taken Down from the Cross* — artwork pending.",
-    "*Station 14: Jesus is Laid in the Tomb* — artwork pending.",
-)
-
-/** Placeholder illustrations for now (see the intro line above) — real public-domain artwork
- * with proper attribution hasn't been sourced yet for any of the 7 sorrows. */
 private val sevenSorrowsAttributions = listOf(
-    "*Sorrow 1: The Prophecy of Simeon* — artwork pending.",
-    "*Sorrow 2: The Flight into Egypt* — artwork pending.",
-    "*Sorrow 3: The Loss of the Child Jesus in the Temple* — artwork pending.",
-    "*Sorrow 4: Mary Meets Jesus on the Way of the Cross* — artwork pending.",
-    "*Sorrow 5: Mary at the Foot of the Cross* — artwork pending.",
-    "*Sorrow 6: Mary Receives the Body of Jesus* — artwork pending.",
-    "*Sorrow 7: The Burial of Jesus* — artwork pending.",
+    "*The Prophecy of Simeon* — Rembrandt van Rijn, Simeon\u2019s Song of Praise (1631), Mauritshuis — public domain.",
+    "*The Flight into Egypt* — Bartolom\u00E9 Esteban Murillo (c. 1647\u201350), Detroit Institute of Arts — public domain.",
+    "*The Loss of Jesus in the Temple* — Paolo Veronese, Christ Among the Doctors (c. 1560), Museo del Prado — public domain.",
+    "*The Meeting on the Way of the Cross* — Raphael, Lo Spasimo (c. 1514\u201316), Museo del Prado — public domain.",
+    "*The Crucifixion* — Hendrick ter Brugghen, The Crucifixion with the Virgin and Saint John (c. 1625), Metropolitan Museum of Art — CC0.",
+    "*The Descent from the Cross* — Peter Paul Rubens (c. 1612\u201314), Cathedral of Our Lady, Antwerp — public domain.",
+    "*The Burial of Jesus* — Titian, The Entombment of Christ (c. 1520), Mus\u00E9e du Louvre — public domain.",
 )

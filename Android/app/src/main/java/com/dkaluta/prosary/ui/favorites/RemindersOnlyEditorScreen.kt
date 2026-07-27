@@ -32,12 +32,12 @@ import com.dkaluta.prosary.reminders.ReminderScheduler
 import com.dkaluta.prosary.services.LocalAppServices
 import kotlinx.coroutines.launch
 
-/** Lightweight reminders editor for the 5 non-configurable devotion kinds (Angelus, Stations of
- * the Cross, Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet) — these have no name,
+/** Lightweight reminders editor for the generic (bundle-driven) devotions — these have no name,
  * language, or per-favorite options to edit (see FavoritesListScreen), just reminders. Reachable
- * from the star row's bell button, and only once the kind is favorited (a Prayer row must
- * already exist to attach reminders to — this screen never creates one). Mirrors iOS's
- * RemindersOnlyEditorView. */
+ * from the star row's bell button, and only once the devotion is favorited (a Prayer row must
+ * already exist to attach reminders to — this screen never creates one). Preset quick-toggle
+ * hours and their footer come from the devotion's bundle manifest (the Angelus's bell times).
+ * Mirrors iOS's RemindersOnlyEditorView. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
@@ -59,12 +59,14 @@ fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
     val current = prayer ?: return
 
     // For .Custom, current.kind.displayName is only a generic fallback (a single PrayerKind
-    // case can't carry per-bundle text) — read the real name from the bundle's own manifest.
-    val titleText = if (current.kind == PrayerKind.Custom) {
-        current.customDevotionId?.let { PrayerPackStore.info(it)?.displayName } ?: current.kind.displayName
+    // case can't carry per-bundle text) — read the real name and reminder presets from the
+    // bundle's own manifest.
+    val info = if (current.kind == PrayerKind.Custom) {
+        current.customDevotionId?.let { PrayerPackStore.info(it) }
     } else {
-        current.kind.displayName
+        null
     }
+    val titleText = info?.localizedDisplayName ?: current.kind.displayName
 
     fun save() {
         val toSave = current
@@ -99,7 +101,11 @@ fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(16.dp),
         ) {
-            RemindersSection(reminders = current.reminders, kind = current.kind) { prayer = current.copy(reminders = it) }
+            RemindersSection(
+                reminders = current.reminders,
+                presetHours = info?.reminderPresetHours.orEmpty(),
+                presetFooter = info?.localizedReminderPresetFooter,
+            ) { prayer = current.copy(reminders = it) }
         }
     }
 }

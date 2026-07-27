@@ -10,6 +10,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.core.content.ContextCompat
+import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import java.util.Calendar
@@ -24,7 +25,11 @@ object ReminderScheduler {
     const val NotificationChannelId = "prayer_reminders"
     const val ExtraPrayerId = "prayerId"
     const val ExtraPrayerName = "prayerName"
-    const val ExtraPrayerKind = "prayerKind"
+    // The body is resolved at scheduling time (when the pack manifests are loaded) and carried in
+    // the intent, mirroring iOS baking the body into the notification content when arming — the
+    // receiver can then run without loading any packs. An alarm armed before this extra existed
+    // falls back to the generic body until its next re-arm (boot or edit).
+    const val ExtraBody = "body"
 
     fun createNotificationChannel(context: Context) {
         val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -69,23 +74,22 @@ object ReminderScheduler {
         }
     }
 
-    /** Notification body text per devotion — mirrors iOS's `ReminderScheduler.notificationBody(for:)`. */
-    fun notificationBody(kind: PrayerKind): String = when (kind) {
+    /** Notification body text per devotion — mirrors iOS's `ReminderScheduler.notificationBody(for:)`:
+     * a generic devotion's body comes from its bundle manifest's `reminderBody` (e.g. the
+     * Angelus's bell text), not any hardcoded per-kind table. */
+    fun notificationBody(prayer: Prayer): String = when (prayer.kind) {
         PrayerKind.Rosary -> "Time to pray the Rosary."
-        PrayerKind.Angelus -> "The Angelus bell is ringing."
         PrayerKind.JesusPrayer -> "Time for the Jesus Prayer."
-        PrayerKind.StationsOfTheCross -> "Time to pray the Stations of the Cross."
-        PrayerKind.FranciscanCrown -> "Time to pray the Franciscan Crown."
-        PrayerKind.SevenSorrows -> "Time to pray the Seven Sorrows."
-        PrayerKind.DivineMercyChaplet -> "Time to pray the Divine Mercy Chaplet."
-        PrayerKind.Custom -> "Time to pray."
+        PrayerKind.Custom -> prayer.customDevotionId
+            ?.let { PrayerPackStore.info(it)?.localizedReminderBody }
+            ?: "Time to pray."
     }
 
     private fun pendingIntentFor(context: Context, prayer: Prayer, reminderId: String): PendingIntent {
         val intent = Intent(context, ReminderBroadcastReceiver::class.java).apply {
             putExtra(ExtraPrayerId, prayer.id)
             putExtra(ExtraPrayerName, prayer.name)
-            putExtra(ExtraPrayerKind, prayer.kind.name)
+            putExtra(ExtraBody, notificationBody(prayer))
         }
         val requestCode = (prayer.id + reminderId).hashCode()
         return PendingIntent.getBroadcast(

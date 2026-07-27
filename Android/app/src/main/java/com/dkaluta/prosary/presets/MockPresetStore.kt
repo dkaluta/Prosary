@@ -27,7 +27,7 @@ class MockPresetStore(initialFavorites: List<Prayer>? = null) : PresetStore {
     override suspend fun save(prayer: Prayer) {
         if (prayer.isDefault) {
             for (i in favorites.indices) {
-                if (favorites[i].kind == prayer.kind) {
+                if (favorites[i].kind == prayer.kind && favorites[i].customDevotionId == prayer.customDevotionId) {
                     favorites[i] = favorites[i].copy(isDefault = false)
                 }
             }
@@ -46,7 +46,7 @@ class MockPresetStore(initialFavorites: List<Prayer>? = null) : PresetStore {
         favorites.removeAll { it.id == prayer.id }
 
         if (wasDefault) {
-            val nextIndex = favorites.indexOfFirst { it.kind == prayer.kind }
+            val nextIndex = favorites.indexOfFirst { it.kind == prayer.kind && it.customDevotionId == prayer.customDevotionId }
             if (nextIndex >= 0) {
                 favorites[nextIndex] = favorites[nextIndex].copy(isDefault = true)
             }
@@ -90,9 +90,10 @@ class MockPresetStore(initialFavorites: List<Prayer>? = null) : PresetStore {
             ),
             Prayer(
                 name = "Angelus",
-                kind = PrayerKind.Angelus,
+                kind = PrayerKind.Custom,
                 isDefault = true,
                 languageCode = "la",
+                customDevotionId = "angelus",
             ),
             Prayer(
                 name = "Jesus Prayer × 33",

@@ -14,7 +14,7 @@ import org.junit.BeforeClass
 import org.junit.Test
 
 /** Proves the whole .prosaryprayer pipeline end-to-end against the actual bundled
- * rosary.prosaryprayer/angelus.prosaryprayer files under app/src/main/assets/ (produced by
+ * .prosaryprayer files under app/src/main/assets/ (produced by
  * Shared/tools/make-prosaryprayer.sh from Shared/content/) — mirrors iOS's
  * PrayerPackLoaderTests.swift. Plain JVM test, no Android Context/AssetManager needed:
  * [PrayerPackStore.initialize] takes a generic byte-source function, fed here from a plain File. */
@@ -47,10 +47,10 @@ class PrayerPackLoaderTest {
     }
 
     @Test
-    fun angelusPackProvidedKeyOverridesHebrewText() {
-        val text = PrayerTranslations.get("he", PrayerKey.CollectaAngelus)
+    fun angelusPackProvidesHebrewComposedBody() {
+        val text = PrayerPackStore.resolveBodyText("angelus", "he", "angelusCollectBody")
         assertFalse(text.isEmpty())
-        assertTrue(text.startsWith("נִתְפַּלְּלָה"))
+        assertTrue(text.contains("נִתְפַּלְּלָה"))
     }
 
     /** The "main" prayers (Sign of the Cross, Creed, Our Father, Hail Mary, Glory Be) are
@@ -62,11 +62,12 @@ class PrayerPackLoaderTest {
         assertEquals(prayerTranslationsEnglish[PrayerKey.AveMaria], text)
     }
 
-    /** A devotion with no shipped pack at all (Stations) must be completely unaffected. */
+    /** A devotion converted to a bundle resolves entirely bundle-locally — its keys no longer
+     * exist in the hardcoded tables at all. */
     @Test
-    fun unmigratedDevotionKeyStillResolvesFromHardcodedTable() {
-        val text = PrayerTranslations.get("en", PrayerKey.StationsOpeningPrayer)
-        assertEquals(prayerTranslationsEnglish[PrayerKey.StationsOpeningPrayer], text)
+    fun convertedDevotionKeyResolvesFromItsBundle() {
+        val text = PrayerPackStore.resolveBodyText("stationsOfTheCross", "en", "stationsOpeningPrayer")
+        assertTrue(text.startsWith("My Lord Jesus Christ, You made this journey"))
     }
 
     @Test
@@ -77,22 +78,39 @@ class PrayerPackLoaderTest {
     }
 
     @Test
-    fun packProvidesNoImageDataForAnUnrelatedKey() {
-        assertNull(PrayerPackStore.imageData("station_01_condemned_to_death"))
+    fun stationsPackProvidesItsImageData() {
+        val data = PrayerPackStore.imageData("station_01_condemned_to_death")
+        assertTrue((data?.size ?: 0) > 0)
+    }
+
+    @Test
+    fun packProvidesNoImageDataForAnUnknownKey() {
+        assertNull(PrayerPackStore.imageData("no_such_image_key"))
     }
 
     // MARK: Generic (bundle-driven) devotions
 
     @Test
-    fun trisagionIsDiscoveredAsACustomDevotion() {
-        assertTrue(PrayerPackStore.customDevotionIds().contains("trisagion"))
+    fun bundledPacksExist() {
+        for (pack in listOf(
+            "rosary", "angelus", "stationsOfTheCross", "franciscanCrown", "sevenSorrows",
+            "divineMercyChaplet", "trisagion",
+        )) {
+            assertTrue("missing $pack.prosaryprayer", File("src/main/assets/$pack.prosaryprayer").exists())
+        }
     }
 
     /** The Rosary's pack has no devotion.json (override-only) and must never be mistaken for a
-     * generic devotion. */
+     * generic devotion; the six generic devotions appear in pack-load order. */
     @Test
-    fun packsWithNoDevotionJsonAreNotCustomDevotions() {
-        assertFalse(PrayerPackStore.customDevotionIds().contains("rosary"))
+    fun customDevotionIdsAreTheSixGenericDevotionsInLoadOrder() {
+        assertEquals(
+            listOf(
+                "angelus", "stationsOfTheCross", "franciscanCrown", "sevenSorrows",
+                "divineMercyChaplet", "trisagion",
+            ),
+            PrayerPackStore.customDevotionIds(),
+        )
     }
 
     @Test

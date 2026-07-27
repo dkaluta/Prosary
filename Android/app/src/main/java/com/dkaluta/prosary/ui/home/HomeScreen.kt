@@ -11,16 +11,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.DirectionsWalk
 import androidx.compose.material.icons.filled.Circle
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.WaterDrop
-import androidx.compose.material.icons.filled.WbSunny
-import androidx.compose.material.icons.filled.WorkspacePremium
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -40,6 +36,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.dkaluta.prosary.content.prayerpack.CustomDevotionInfo
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.MysteryGroup
 import com.dkaluta.prosary.models.Prayer
@@ -50,13 +47,7 @@ import com.dkaluta.prosary.ui.shared.colorForHex
 import com.dkaluta.prosary.ui.shared.iconForSystemName
 import com.dkaluta.prosary.ui.theme.extraColors
 
-/** One devotion's rendering state for a Home card. Adding a new hardcoded devotion means adding
- * one entry to [HomeScreen]'s card list — the accent/subtitle/launch logic for each kind can
- * still be as bespoke as it needs to be (e.g. Rosary's mystery-of-the-day accent color), but the
- * composable body itself no longer hand-rolls a [PrayerCard] block per kind. Generic
- * (bundle-driven) devotions need no entry here at all — they're appended separately, one per
- * [PrayerPackStore.customDevotionIds], with their icon/title/accent read from the bundle's own
- * manifest instead of a hardcoded case. */
+/** One devotion's rendering state for a Home card. See [HomeScreen]'s card list. */
 private data class DevotionCard(
     val id: String,
     val icon: ImageVector,
@@ -73,24 +64,16 @@ fun HomeScreen(
     onOpenFavorites: () -> Unit,
     onOpenAbout: () -> Unit,
     onOpenSettings: () -> Unit,
-    onOpenAngelus: () -> Unit,
-    onOpenStationsOfTheCross: () -> Unit,
-    onOpenFranciscanCrown: () -> Unit,
-    onOpenSevenSorrows: () -> Unit,
-    onOpenDivineMercyChaplet: () -> Unit,
     onOpenJesusPrayerSetup: () -> Unit,
     onOpenCustomDevotion: (String) -> Unit,
 ) {
     val services = LocalAppServices.current
+    val isDarkTheme = isSystemInDarkTheme()
 
     var todayMysteryGroup by remember { mutableStateOf<MysteryGroup?>(null) }
     var defaultRosary by remember { mutableStateOf<Prayer?>(null) }
-    var defaultAngelus by remember { mutableStateOf<Prayer?>(null) }
     var defaultJesusPrayer by remember { mutableStateOf<Prayer?>(null) }
-    var defaultStations by remember { mutableStateOf<Prayer?>(null) }
-    var defaultFranciscanCrown by remember { mutableStateOf<Prayer?>(null) }
-    var defaultSevenSorrows by remember { mutableStateOf<Prayer?>(null) }
-    var defaultDivineMercy by remember { mutableStateOf<Prayer?>(null) }
+    // One entry per discovered generic devotion (bundle id -> its favorite, if any).
     var defaultCustomDevotions by remember { mutableStateOf<Map<String, Prayer>>(emptyMap()) }
 
     LaunchedEffect(Unit) {
@@ -98,18 +81,8 @@ fun HomeScreen(
         val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
         defaultRosary = all.firstOrNull { it.kind == PrayerKind.Rosary && it.isDefault }
             ?: all.firstOrNull { it.kind == PrayerKind.Rosary }
-        defaultAngelus = all.firstOrNull { it.kind == PrayerKind.Angelus && it.isDefault }
-            ?: all.firstOrNull { it.kind == PrayerKind.Angelus }
         defaultJesusPrayer = all.firstOrNull { it.kind == PrayerKind.JesusPrayer && it.isDefault }
             ?: all.firstOrNull { it.kind == PrayerKind.JesusPrayer }
-        defaultStations = all.firstOrNull { it.kind == PrayerKind.StationsOfTheCross && it.isDefault }
-            ?: all.firstOrNull { it.kind == PrayerKind.StationsOfTheCross }
-        defaultFranciscanCrown = all.firstOrNull { it.kind == PrayerKind.FranciscanCrown && it.isDefault }
-            ?: all.firstOrNull { it.kind == PrayerKind.FranciscanCrown }
-        defaultSevenSorrows = all.firstOrNull { it.kind == PrayerKind.SevenSorrows && it.isDefault }
-            ?: all.firstOrNull { it.kind == PrayerKind.SevenSorrows }
-        defaultDivineMercy = all.firstOrNull { it.kind == PrayerKind.DivineMercyChaplet && it.isDefault }
-            ?: all.firstOrNull { it.kind == PrayerKind.DivineMercyChaplet }
 
         defaultCustomDevotions = PrayerPackStore.customDevotionIds().mapNotNull { bundleId ->
             val favorite = all.firstOrNull { it.kind == PrayerKind.Custom && it.customDevotionId == bundleId && it.isDefault }
@@ -119,13 +92,7 @@ fun HomeScreen(
     }
 
     val rosaryAccent = todayMysteryGroup?.color ?: MaterialTheme.colorScheme.primary
-    // Fixed accent colors for the other cards, matching iOS's HomeView.
-    val angelusAccent = Color(0xFF8B6914)
-    val jesusPrayerAccent = Color(0xFF8B1A1A)
-    val stationsAccent = Color(0xFF5C2D91)
-    val franciscanCrownAccent = Color(0xFF6B4226)
-    val sevenSorrowsAccent = Color(0xFF6B0F1A)
-    val divineMercyAccent = Color(0xFFC41E3A)
+    val jesusPrayerAccent = if (isDarkTheme) Color(0xFFC62828) else Color(0xFF8B1A1A)
 
     val rosarySubtitle = buildString {
         todayMysteryGroup?.let { append("Today: ${it.displayName}") }
@@ -134,13 +101,19 @@ fun HomeScreen(
             append(it.name)
         }
     }
-    val angelusSubtitle = defaultAngelus?.name ?: "Tap to pray"
     val jesusPrayerSubtitle = defaultJesusPrayer?.let { "${it.name} • ${it.jesusPrayer.targetDisplayName}" } ?: "Tap to set up"
-    val stationsSubtitle = defaultStations?.name ?: "Tap to pray"
-    val franciscanCrownSubtitle = defaultFranciscanCrown?.name ?: "Tap to pray"
-    val sevenSorrowsSubtitle = defaultSevenSorrows?.name ?: "Tap to pray"
-    val divineMercySubtitle = defaultDivineMercy?.name ?: "Tap to pray"
 
+    // Accent color for a generic devotion's card, honoring the manifest's light/dark pair.
+    val fallbackAccent = MaterialTheme.colorScheme.primary
+    fun customAccent(info: CustomDevotionInfo): Color {
+        val hex = if (isDarkTheme) info.accentColorDarkHex ?: info.accentColorHex else info.accentColorHex
+        return colorForHex(hex) ?: fallbackAccent
+    }
+
+    // One card per devotion: the Rosary first (the app's namesake), then every generic
+    // (bundle-driven) devotion in pack-load order — icon/title/accent read from each bundle's
+    // own manifest, nothing hardcoded here — and the Jesus Prayer (the counter-based odd one
+    // out) last. Adding a devotion means shipping a bundle; this screen doesn't change.
     val devotionCards = buildList {
         add(
             DevotionCard(
@@ -156,20 +129,25 @@ fun HomeScreen(
                 },
             ),
         )
-        add(
-            DevotionCard(
-                id = PrayerKind.Angelus.name,
-                icon = Icons.Filled.Notifications,
-                title = PrayerKind.Angelus.displayName,
-                accentColor = angelusAccent,
-                subtitle = angelusSubtitle,
-                testTag = "angelusCard",
-                onClick = {
-                    val prayer = defaultAngelus
-                    if (prayer != null) onOpenPrayer(prayer.id) else onOpenAngelus()
-                },
-            ),
-        )
+
+        for (bundleId in PrayerPackStore.customDevotionIds()) {
+            val info = PrayerPackStore.info(bundleId) ?: continue
+            add(
+                DevotionCard(
+                    id = "custom.$bundleId",
+                    icon = iconForSystemName(info.iconSystemName),
+                    title = info.localizedDisplayName,
+                    accentColor = customAccent(info),
+                    subtitle = defaultCustomDevotions[bundleId]?.name ?: "Tap to pray",
+                    testTag = "${bundleId}Card",
+                    onClick = {
+                        val prayer = defaultCustomDevotions[bundleId]
+                        if (prayer != null) onOpenPrayer(prayer.id) else onOpenCustomDevotion(bundleId)
+                    },
+                ),
+            )
+        }
+
         add(
             DevotionCard(
                 id = PrayerKind.JesusPrayer.name,
@@ -184,80 +162,6 @@ fun HomeScreen(
                 },
             ),
         )
-        add(
-            DevotionCard(
-                id = PrayerKind.StationsOfTheCross.name,
-                icon = Icons.AutoMirrored.Filled.DirectionsWalk,
-                title = PrayerKind.StationsOfTheCross.displayName,
-                accentColor = stationsAccent,
-                subtitle = stationsSubtitle,
-                testTag = "stationsOfTheCrossCard",
-                onClick = {
-                    val prayer = defaultStations
-                    if (prayer != null) onOpenPrayer(prayer.id) else onOpenStationsOfTheCross()
-                },
-            ),
-        )
-        add(
-            DevotionCard(
-                id = PrayerKind.FranciscanCrown.name,
-                icon = Icons.Filled.WorkspacePremium,
-                title = PrayerKind.FranciscanCrown.displayName,
-                accentColor = franciscanCrownAccent,
-                subtitle = franciscanCrownSubtitle,
-                testTag = "franciscanCrownCard",
-                onClick = {
-                    val prayer = defaultFranciscanCrown
-                    if (prayer != null) onOpenPrayer(prayer.id) else onOpenFranciscanCrown()
-                },
-            ),
-        )
-        add(
-            DevotionCard(
-                id = PrayerKind.SevenSorrows.name,
-                icon = Icons.Filled.WaterDrop,
-                title = PrayerKind.SevenSorrows.displayName,
-                accentColor = sevenSorrowsAccent,
-                subtitle = sevenSorrowsSubtitle,
-                testTag = "sevenSorrowsCard",
-                onClick = {
-                    val prayer = defaultSevenSorrows
-                    if (prayer != null) onOpenPrayer(prayer.id) else onOpenSevenSorrows()
-                },
-            ),
-        )
-        add(
-            DevotionCard(
-                id = PrayerKind.DivineMercyChaplet.name,
-                icon = Icons.Filled.WbSunny,
-                title = PrayerKind.DivineMercyChaplet.displayName,
-                accentColor = divineMercyAccent,
-                subtitle = divineMercySubtitle,
-                testTag = "divineMercyCard",
-                onClick = {
-                    val prayer = defaultDivineMercy
-                    if (prayer != null) onOpenPrayer(prayer.id) else onOpenDivineMercyChaplet()
-                },
-            ),
-        )
-
-        for (bundleId in PrayerPackStore.customDevotionIds()) {
-            val info = PrayerPackStore.info(bundleId) ?: continue
-            add(
-                DevotionCard(
-                    id = "custom.$bundleId",
-                    icon = iconForSystemName(info.iconSystemName),
-                    title = info.displayName,
-                    accentColor = colorForHex(info.accentColorHex) ?: MaterialTheme.colorScheme.primary,
-                    subtitle = defaultCustomDevotions[bundleId]?.name ?: "Tap to pray",
-                    testTag = "${bundleId}Card",
-                    onClick = {
-                        val prayer = defaultCustomDevotions[bundleId]
-                        if (prayer != null) onOpenPrayer(prayer.id) else onOpenCustomDevotion(bundleId)
-                    },
-                ),
-            )
-        }
     }
 
     Box(modifier = Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)) {

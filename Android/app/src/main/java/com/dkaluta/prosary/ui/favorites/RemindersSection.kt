@@ -26,15 +26,26 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.models.PrayerReminder
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 /** The reminders Form section, shared by FavoriteEditorScreen (Rosary/Jesus Prayer's full
- * editor) and RemindersOnlyEditorScreen (the lightweight screen for Angelus/Stations of the
- * Cross/Franciscan Crown/Seven Sorrows/Divine Mercy Chaplet). Extracted so both editors manage
- * reminders identically instead of drifting. Mirrors iOS's RemindersSection. */
+ * editor) and RemindersOnlyEditorScreen (the lightweight screen for the generic bundle
+ * devotions). Extracted so both editors manage reminders identically instead of drifting.
+ * Mirrors iOS's RemindersSection.
+ *
+ * A devotion with traditional fixed prayer times ships them in its bundle manifest
+ * ([presetHours] — the Angelus's 6am/noon/6pm bells) and gets one quick toggle per preset hour
+ * plus an explanatory [presetFooter], instead of any kind-specific special case here. */
 @Composable
-fun RemindersSection(reminders: List<PrayerReminder>, kind: PrayerKind, onRemindersChange: (List<PrayerReminder>) -> Unit) {
+fun RemindersSection(
+    reminders: List<PrayerReminder>,
+    presetHours: List<Int> = emptyList(),
+    presetFooter: String? = null,
+    onRemindersChange: (List<PrayerReminder>) -> Unit,
+) {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text("Reminders", style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
         Card {
@@ -42,14 +53,12 @@ fun RemindersSection(reminders: List<PrayerReminder>, kind: PrayerKind, onRemind
                 verticalArrangement = Arrangement.spacedBy(12.dp),
                 modifier = Modifier.padding(12.dp),
             ) {
-                if (kind == PrayerKind.Angelus) {
-                    // Traditional Angelus bell times — quick toggles for 6am, noon, 6pm.
-                    AngelusTimeToggleRow(hour = 6, label = "6:00 AM", reminders = reminders, onChange = onRemindersChange)
-                    AngelusTimeToggleRow(hour = 12, label = "12:00 PM", reminders = reminders, onChange = onRemindersChange)
-                    AngelusTimeToggleRow(hour = 18, label = "6:00 PM", reminders = reminders, onChange = onRemindersChange)
+                if (presetHours.isNotEmpty()) {
+                    for (hour in presetHours) {
+                        PresetTimeToggleRow(hour = hour, label = presetLabel(hour), reminders = reminders, onChange = onRemindersChange)
+                    }
 
-                    val angelusPresetHours = setOf(6, 12, 18)
-                    val customReminders = reminders.filter { r -> !(angelusPresetHours.contains(r.hour) && r.minute == 0) }
+                    val customReminders = reminders.filter { r -> !(presetHours.contains(r.hour) && r.minute == 0) }
                     for (reminder in customReminders) {
                         ReminderRow(
                             reminder = reminder,
@@ -73,7 +82,25 @@ fun RemindersSection(reminders: List<PrayerReminder>, kind: PrayerKind, onRemind
                 }
             }
         }
+
+        if (presetFooter != null && reminders.isNotEmpty()) {
+            Text(
+                presetFooter,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(horizontal = 4.dp),
+            )
+        }
     }
+}
+
+/** "6:00 AM" / "12:00 PM"-style label for a preset hour, in the user's locale. */
+private fun presetLabel(hour: Int): String {
+    val cal = Calendar.getInstance().apply {
+        set(Calendar.HOUR_OF_DAY, hour)
+        set(Calendar.MINUTE, 0)
+    }
+    return SimpleDateFormat("h:mm a", Locale.getDefault()).format(cal.time)
 }
 
 private fun List<PrayerReminder>.withUpdatedReminder(id: String, hour: Int, minute: Int): List<PrayerReminder> =
@@ -83,7 +110,7 @@ private fun List<PrayerReminder>.withoutReminder(id: String): List<PrayerReminde
     filter { it.id != id }
 
 @Composable
-private fun AngelusTimeToggleRow(hour: Int, label: String, reminders: List<PrayerReminder>, onChange: (List<PrayerReminder>) -> Unit) {
+private fun PresetTimeToggleRow(hour: Int, label: String, reminders: List<PrayerReminder>, onChange: (List<PrayerReminder>) -> Unit) {
     val isOn = reminders.any { it.hour == hour && it.minute == 0 && it.isEnabled }
     SwitchRow(label, isOn) { on ->
         val updated = if (on) {

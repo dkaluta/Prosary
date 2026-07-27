@@ -59,15 +59,29 @@ data class PresetEntity(
     // Reminders — JSON-encoded List<PrayerReminder>. Defaults to an empty array for existing rows.
     val remindersJson: String = "[]",
 ) {
+    /** The row's (kind, customDevotionId) identity, with legacy per-devotion kinds resolved.
+     * Rows written before the generic-devotion migration store deleted enum names ("Angelus",
+     * "StationsOfTheCross", ...) whose camelCased form is exactly the matching bundle id — map
+     * them to Custom + that id. This is permanent read-time behavior, not a one-shot migration:
+     * a cloud backup restore can bring rows from old app versions in at any time. Normalized on
+     * next save (Prayer.kind is already Custom by then). */
+    val resolvedKind: Pair<PrayerKind, String?>
+        get() {
+            val known = runCatching { PrayerKind.valueOf(kind) }.getOrNull()
+            if (known != null) return known to customDevotionId
+            return PrayerKind.Custom to (customDevotionId ?: kind.replaceFirstChar { it.lowercaseChar() })
+        }
+
     fun toPrayer(): Prayer {
         val target = if (jesusPrayerIsUnbounded) JesusPrayerTarget.Unbounded else JesusPrayerTarget.Count(jesusPrayerCount)
+        val (resolvedKind, resolvedDevotionId) = resolvedKind
         return Prayer(
             id = id,
             name = name,
-            kind = runCatching { PrayerKind.valueOf(kind) }.getOrDefault(PrayerKind.Rosary),
+            kind = resolvedKind,
             isDefault = isDefault,
             languageCode = languageCode,
-            customDevotionId = customDevotionId,
+            customDevotionId = resolvedDevotionId,
             rosary = RosaryOptions(
                 mysterySelectionMode = runCatching { MysterySelectionMode.valueOf(mysterySelectionMode) }
                     .getOrDefault(MysterySelectionMode.TodaysMysteries),

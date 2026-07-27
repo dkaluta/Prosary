@@ -1,67 +1,67 @@
 package com.dkaluta.prosary.content
 
-import com.dkaluta.prosary.models.FranciscanCrownCatalog
+import com.dkaluta.prosary.content.prayerpack.CustomDevotionDefinition
+import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.MysteryCatalog
 import com.dkaluta.prosary.models.MysteryGroup
-import com.dkaluta.prosary.models.SevenSorrowsCatalog
+import java.io.File
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNotNull
-import org.junit.Assert.assertNull
+import org.junit.BeforeClass
 import org.junit.Test
 
 /**
- * Guards against a missed cell in the per-language content tables — [PrayerTranslations.get]/
- * [MysteryTranslations.get] silently fall back to Latin (then the raw key) when a translation is
- * missing, so a gap here wouldn't otherwise surface until someone actually reads that language in
- * the app. Mirrors iOS's PrayerTranslationsCompletenessTests.swift.
+ * Guards against silent content gaps. Two layers:
+ * 1. The hardcoded tables (main prayers, Rosary keys, antiphons, Jesus Prayer) — every surviving
+ *    [PrayerKey] must have all six languages; [PrayerTranslations.get] silently falls back to
+ *    Latin, so a gap wouldn't otherwise surface until someone prays in that language.
+ * 2. Every shipped devotion bundle — each key its devotion.json references must resolve to real
+ *    text (never the raw key) in every language the bundle's manifest declares, with each
+ *    bundle's known gaps listed explicitly so they go stale loudly instead of silently wrong.
+ *    Mirrors Shared/tools/validate-devotion.py, but against the actually-shipped packs and the
+ *    runtime merge (e.g. the Franciscan Crown's shared Joys resolving cross-bundle from the
+ *    rosary pack). Mirrors iOS's PrayerTranslationsCompletenessTests.swift.
  */
 class PrayerTranslationsCompletenessTest {
-    private val fullyTranslatedLanguages = listOf("ar", "he", "ru", "tl")
+    companion object {
+        @BeforeClass
+        @JvmStatic
+        fun loadPacks() {
+            PrayerPackStore.initialize { packName ->
+                val file = File("src/main/assets/$packName.prosaryprayer")
+                if (file.exists()) file.inputStream() else null
+            }
+        }
+    }
 
-    /** [PrayerKey]s added during the 4-devotion rollout (Stations of the Cross, Seven Sorrows,
-     * Divine Mercy Chaplet) that are still missing one or more of the 4 non-Latin/English
-     * languages, mapped to exactly which of those 4 they're still missing — silently falls back
-     * to Latin for those via the normal fallback chain, not a bug. Kept explicit here so a *new*,
-     * unintentional gap still fails [everyKeyExceptTheKnownAllowlistHasAllSixLanguages], and so
-     * this map itself goes stale (rather than silently wrong) once a language is filled in — see
-     * [allowlistedPrayerKeysAreStillMissingFromTheExpectedLanguages]. */
-    private val prayerKeysMissingLanguages: Map<PrayerKey, Set<String>> = mapOf(
-        PrayerKey.StationsOpeningPrayer to setOf("ar", "he", "ru", "tl"),
-        PrayerKey.StationsVersicle to setOf("ar", "he", "ru", "tl"),
-        PrayerKey.StationsResponse to setOf("ar", "he", "ru", "tl"),
-        PrayerKey.StationsClosingPrayer to setOf("ar", "he", "ru", "tl"),
-        PrayerKey.SevenSorrowsVersicle to setOf("ar", "he", "ru", "tl"),
-        PrayerKey.SevenSorrowsResponse to setOf("ar", "he", "ru", "tl"),
-        PrayerKey.SevenSorrowsCollect to setOf("ar", "he", "ru", "tl"),
-        PrayerKey.DivineMercyOffering to setOf("ar", "he", "ru", "tl"),
-        PrayerKey.DivineMercyPetition to setOf("ar", "he", "ru", "tl"),
-        // Hebrew added by the user directly — see PrayerTranslationsHebrew.kt.
-        PrayerKey.DivineMercyClosingAcclamation to setOf("ar", "ru", "tl"),
-    )
-
-    /** Same idea as [prayerKeysMissingLanguages], for [MysteryTranslations] — the Seven Sorrows'
-     * 7 imageKeys and the Franciscan Crown's one new mystery (Adoration of the Magi; the other 6
-     * Joys reuse existing, fully-translated Rosary mystery content). */
-    private val latinAndEnglishOnlyMysteryImageKeys =
-        SevenSorrowsCatalog.sevenSorrows.toSet() + "franciscan_04_adoration_of_the_magi"
+    private val allLanguages = listOf("la", "en", "ar", "he", "ru", "tl")
 
     /** [PrayerKey.DoxologiaMinor] is explicitly documented ("kept for future use") as reserved
      * but not wired into any devotion's engine code yet — it has no Latin/English content at all
-     * (only a Hebrew entry, added manually), so it can't satisfy even the baseline
-     * [everyPrayerKeyHasLatinAndEnglishTranslations] check. Excluded here rather than fabricating
-     * placeholder Latin/English text for a key nothing reads yet. */
+     * (only a Hebrew entry, added manually), so it can't satisfy even the baseline check.
+     * Excluded here rather than fabricating placeholder Latin/English text for a key nothing
+     * reads yet. */
     private val notYetUsedByAnyDevotion = setOf(PrayerKey.DoxologiaMinor)
 
+    /** Known per-bundle translation gaps: bundleId -> language -> keys awaiting a verified
+     * translation. The self-guard test below fails once a listed key gains its translation, so
+     * this map can never go silently stale. */
+    private val bundleKeysMissingLanguages: Map<String, Map<String, Set<String>>> = mapOf(
+        "divineMercyChaplet" to mapOf("he" to setOf("divineMercyOffering", "divineMercyPetition")),
+    )
+
     private val allMysteryImageKeys: Set<String> =
-        MysteryGroup.entries.flatMap { MysteryCatalog.forGroup(it) }.map { it.imageKey }.toSet() +
-            SevenSorrowsCatalog.sevenSorrows.toSet() +
-            FranciscanCrownCatalog.sevenJoys.toSet()
+        MysteryGroup.entries.flatMap { MysteryCatalog.forGroup(it) }.map { it.imageKey }.toSet()
+
+    // MARK: Hardcoded tables
 
     @Test
-    fun everyPrayerKeyHasLatinAndEnglishTranslations() {
+    fun everyPrayerKeyHasAllSixLanguages() {
         for (key in PrayerKey.entries) {
             if (key in notYetUsedByAnyDevotion) continue
-            for (language in listOf("la", "en")) {
+            for (language in allLanguages) {
                 val text = PrayerTranslations.byLanguage[language]?.get(key)
                 assertNotNull("$key missing a $language translation", text)
                 assertFalse("$key has an empty $language translation", text.isNullOrEmpty())
@@ -70,69 +70,87 @@ class PrayerTranslationsCompletenessTest {
     }
 
     @Test
-    fun everyKeyExceptTheKnownAllowlistHasAllSixLanguages() {
-        for (key in PrayerKey.entries) {
-            if (key in notYetUsedByAnyDevotion) continue
-            val missing = prayerKeysMissingLanguages[key] ?: emptySet()
-            for (language in fullyTranslatedLanguages) {
-                if (language in missing) continue
-                val text = PrayerTranslations.byLanguage[language]?.get(key)
-                assertNotNull(
-                    "$key missing a $language translation — if intentional, add it to prayerKeysMissingLanguages",
-                    text,
-                )
-            }
-        }
-    }
-
-    /** Guards the allowlist itself from going stale: if a key gets translated into a language
-     * still listed as missing for it, this should start failing as a reminder to narrow that
-     * key's entry in [prayerKeysMissingLanguages] (or remove it entirely) rather than leaving a
-     * passing-but-inaccurate entry. */
-    @Test
-    fun allowlistedPrayerKeysAreStillMissingFromTheExpectedLanguages() {
-        for ((key, missing) in prayerKeysMissingLanguages) {
-            for (language in missing) {
-                assertNull(
-                    "$key now has a $language translation — narrow or remove its entry in prayerKeysMissingLanguages",
-                    PrayerTranslations.byLanguage[language]?.get(key),
-                )
-            }
-        }
-    }
-
-    @Test
-    fun everyMysteryImageKeyHasLatinAndEnglishTranslations() {
+    fun everyRosaryMysteryImageKeyHasAllSixLanguages() {
         for (imageKey in allMysteryImageKeys) {
-            for (language in listOf("la", "en")) {
-                val text = MysteryTranslations.byLanguage[language]?.get(imageKey)
-                assertNotNull("$imageKey missing a $language translation", text)
-            }
-        }
-    }
-
-    @Test
-    fun everyMysteryImageKeyExceptTheKnownAllowlistHasAllSixLanguages() {
-        for (imageKey in allMysteryImageKeys) {
-            if (imageKey in latinAndEnglishOnlyMysteryImageKeys) continue
-            for (language in fullyTranslatedLanguages) {
-                val text = MysteryTranslations.byLanguage[language]?.get(imageKey)
+            for (language in allLanguages) {
                 assertNotNull(
-                    "$imageKey missing a $language translation — if intentional, add it to latinAndEnglishOnlyMysteryImageKeys",
-                    text,
-                )
-            }
-        }
-    }
-
-    @Test
-    fun allowlistedMysteryImageKeysAreStillMissingFromTheExpectedLanguages() {
-        for (imageKey in latinAndEnglishOnlyMysteryImageKeys) {
-            for (language in fullyTranslatedLanguages) {
-                assertNull(
-                    "$imageKey now has a $language translation — remove it from latinAndEnglishOnlyMysteryImageKeys",
+                    "$imageKey missing a $language translation",
                     MysteryTranslations.byLanguage[language]?.get(imageKey),
                 )
+            }
+        }
+    }
+
+    // MARK: Shipped bundles
+
+    /** Collects every bodyKey/titleKey a definition references, and the mystery imageKeys whose
+     * text an announced decade needs. */
+    private fun referencedKeys(definition: CustomDevotionDefinition): Pair<Set<String>, Set<String>> {
+        val text = mutableSetOf<String>()
+        val mysteries = mutableSetOf<String>()
+        val allEntries = definition.steps.orEmpty() + definition.eastertideSteps.orEmpty() +
+            definition.opening.orEmpty() + definition.closing.orEmpty()
+        for (entry in allEntries) {
+            if (entry.kind != null) continue
+            entry.bodyKey?.let { text.add(it) }
+            entry.titleKey?.let { text.add(it) }
+        }
+        definition.decades?.let { decades ->
+            text.add(decades.majorStep.bodyKey)
+            text.add(decades.minorStep.bodyKey)
+            if (decades.announceMystery) {
+                for (entry in decades.entries.orEmpty()) mysteries.add(entry.imageKey)
+            }
+        }
+        return text to mysteries
+    }
+
+    @Test
+    fun everyBundleKeyResolvesInEveryDeclaredLanguage() {
+        for (bundleId in PrayerPackStore.customDevotionIds()) {
+            val definition = PrayerPackStore.definition(bundleId)
+            val info = PrayerPackStore.info(bundleId)
+            assertNotNull("$bundleId: missing definition", definition)
+            assertNotNull("$bundleId: missing info", info)
+            val (textKeys, mysteryKeys) = referencedKeys(definition!!)
+            for (language in info!!.languages) {
+                val allowedMissing = bundleKeysMissingLanguages[bundleId]?.get(language) ?: emptySet()
+                for (key in textKeys) {
+                    if (key in allowedMissing) continue
+                    val resolved = PrayerPackStore.resolveBodyText(bundleId, language, key)
+                    assertNotEquals(
+                        "$bundleId/$language: $key resolves to its raw key — missing translation",
+                        key, resolved,
+                    )
+                }
+                for (imageKey in mysteryKeys) {
+                    val mystery = MysteryTranslations.get(language, imageKey)
+                    assertNotEquals(
+                        "$bundleId/$language: no mystery text for $imageKey",
+                        imageKey, mystery.title,
+                    )
+                }
+            }
+        }
+    }
+
+    /** Guards the gap allowlist itself from going stale: once a listed key gains a translation,
+     * this fails as a reminder to narrow the allowlist rather than leaving it inaccurate. */
+    @Test
+    fun allowlistedBundleKeysAreStillMissingFromTheExpectedLanguages() {
+        for ((bundleId, languages) in bundleKeysMissingLanguages) {
+            for ((language, keys) in languages) {
+                for (key in keys) {
+                    val resolved = PrayerPackStore.resolveBodyText(bundleId, language, key)
+                    // A missing bundle-local translation falls back to the bundle's Latin text
+                    // (or the hardcoded chain) — "still missing" means it doesn't resolve to
+                    // language-specific bundle content, i.e. it equals the Latin resolution.
+                    val latin = PrayerPackStore.resolveBodyText(bundleId, "la", key)
+                    assertEquals(
+                        "$bundleId/$language: $key now has its own translation — narrow bundleKeysMissingLanguages",
+                        latin, resolved,
+                    )
+                }
             }
         }
     }

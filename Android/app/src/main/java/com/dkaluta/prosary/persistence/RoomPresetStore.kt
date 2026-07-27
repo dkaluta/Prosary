@@ -22,7 +22,7 @@ class RoomPresetStore(private val dao: PresetDao) : PresetStore {
     override suspend fun all(): List<Prayer> = dao.getAll().map { it.toPrayer() }
 
     override suspend fun defaultPreset(kind: PrayerKind): Prayer? {
-        val matchingEntries = dao.getAll().filter { it.kind == kind.name }
+        val matchingEntries = dao.getAll().filter { it.resolvedKind.first == kind }
         val entry = matchingEntries.firstOrNull { it.isDefault } ?: matchingEntries.firstOrNull()
         return entry?.toPrayer()
     }
@@ -31,7 +31,11 @@ class RoomPresetStore(private val dao: PresetDao) : PresetStore {
 
     override suspend fun save(prayer: Prayer) {
         if (prayer.isDefault) {
-            val sameKindDefaults = dao.getAll().filter { it.kind == prayer.kind.name && it.id != prayer.id && it.isDefault }
+            // "One default per kind" is scoped per devotion: (kind, customDevotionId), compared
+            // via the resolved identity so legacy-kind rows ("Angelus") and their migrated
+            // Custom equivalents share one default slot.
+            val identity = prayer.kind to prayer.customDevotionId
+            val sameKindDefaults = dao.getAll().filter { it.resolvedKind == identity && it.id != prayer.id && it.isDefault }
             for (entry in sameKindDefaults) {
                 dao.upsert(entry.copy(isDefault = false))
             }
@@ -42,10 +46,10 @@ class RoomPresetStore(private val dao: PresetDao) : PresetStore {
     override suspend fun delete(prayer: Prayer) {
         val entity = dao.getById(prayer.id) ?: return
         val wasDefault = entity.isDefault
-        val kind = entity.kind
+        val identity = entity.resolvedKind
         dao.delete(entity)
         if (wasDefault) {
-            val next = dao.getAll().firstOrNull { it.kind == kind }
+            val next = dao.getAll().firstOrNull { it.resolvedKind == identity }
             if (next != null) dao.upsert(next.copy(isDefault = true))
         }
     }

@@ -1,8 +1,13 @@
 package com.dkaluta.prosary.ui.shared
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.DirectionsWalk
 import androidx.compose.material.icons.filled.ChangeHistory
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.WaterDrop
+import androidx.compose.material.icons.filled.WbSunny
+import androidx.compose.material.icons.filled.WorkspacePremium
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 
@@ -12,6 +17,11 @@ import androidx.compose.ui.graphics.vector.ImageVector
  * this only needs an entry per icon name actually in use, not a general SF-Symbol-to-Material
  * translator. */
 fun iconForSystemName(systemName: String?): ImageVector = when (systemName) {
+    "bell" -> Icons.Filled.Notifications
+    "figure.walk" -> Icons.AutoMirrored.Filled.DirectionsWalk
+    "crown" -> Icons.Filled.WorkspacePremium
+    "drop" -> Icons.Filled.WaterDrop
+    "sun.max" -> Icons.Filled.WbSunny
     "triangle" -> Icons.Filled.ChangeHistory
     else -> Icons.Filled.Star
 }

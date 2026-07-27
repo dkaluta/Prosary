@@ -35,14 +35,14 @@ class PresetStoreTest {
         val s = store(
             listOf(
                 Prayer(name = "R", kind = PrayerKind.Rosary),
-                Prayer(name = "A", kind = PrayerKind.Angelus),
+                Prayer(name = "A", kind = PrayerKind.Custom, customDevotionId = "angelus"),
                 Prayer(name = "J", kind = PrayerKind.JesusPrayer),
             ),
         )
         val prayers = s.all()
         assertEquals(3, prayers.size)
         assertTrue(prayers.any { it.kind == PrayerKind.Rosary })
-        assertTrue(prayers.any { it.kind == PrayerKind.Angelus })
+        assertTrue(prayers.any { it.kind == PrayerKind.Custom })
         assertTrue(prayers.any { it.kind == PrayerKind.JesusPrayer })
     }
 
@@ -96,12 +96,25 @@ class PresetStoreTest {
     @Test
     fun savingDefaultInOneKindDoesNotAffectOtherKinds() = runBlocking {
         val rosary = Prayer(name = "R", kind = PrayerKind.Rosary, isDefault = true)
-        val angelus = Prayer(name = "A", kind = PrayerKind.Angelus, isDefault = false)
+        val angelus = Prayer(name = "A", kind = PrayerKind.Custom, customDevotionId = "angelus", isDefault = false)
         val s = store(listOf(rosary, angelus))
 
         s.save(angelus.copy(isDefault = true))
 
         assertTrue("Rosary default must not be affected by angelus default change", s.get(rosary.id)?.isDefault ?: false)
+    }
+
+    /** "One default per kind" is scoped per (kind, customDevotionId) — two different generic
+     * devotions must not steal each other's default slot. */
+    @Test
+    fun savingDefaultInOneCustomDevotionDoesNotAffectAnother() = runBlocking {
+        val angelus = Prayer(name = "A", kind = PrayerKind.Custom, customDevotionId = "angelus", isDefault = true)
+        val trisagion = Prayer(name = "T", kind = PrayerKind.Custom, customDevotionId = "trisagion", isDefault = false)
+        val s = store(listOf(angelus, trisagion))
+
+        s.save(trisagion.copy(isDefault = true))
+
+        assertTrue("Angelus default must not be affected by trisagion default change", s.get(angelus.id)?.isDefault ?: false)
     }
 
     // MARK: - delete()
@@ -146,7 +159,7 @@ class PresetStoreTest {
 
     @Test
     fun savePrayerWithReminders() = runBlocking {
-        val prayer = Prayer(name = "Angelus", kind = PrayerKind.Angelus).copy(
+        val prayer = Prayer(name = "Angelus", kind = PrayerKind.Custom, customDevotionId = "angelus").copy(
             reminders = listOf(PrayerReminder(hour = 6), PrayerReminder(hour = 12)),
         )
         val s = store()

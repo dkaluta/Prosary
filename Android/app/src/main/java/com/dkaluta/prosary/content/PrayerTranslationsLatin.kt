@@ -86,44 +86,9 @@ val prayerTranslationsLatin: Map<PrayerKey, String> = mapOf(
 
     PrayerKey.FructusMysteriiLabel to "Fructus Mysterii",
 
-    PrayerKey.VersiculumAngelusPrimus to "Angelus Domini nuntiavit Mariae.",
-    PrayerKey.ResponsiumAngelusPrimus to "Et concepit de Spiritu Sancto.",
-    PrayerKey.VersiculumAngelusSecundus to "Ecce ancilla Domini.",
-    PrayerKey.ResponsiumAngelusSecundus to "Fiat mihi secundum verbum tuum.",
-    PrayerKey.VersiculumAngelusTertius to "Et Verbum caro factum est.",
-    PrayerKey.ResponsiumAngelusTertius to "Et habitavit in nobis.",
-    PrayerKey.CollectaAngelus to
-        "Oremus. Gratiam tuam, quaesumus, Domine, mentibus nostris infunde; ut qui, Angelo " +
-            "nuntiante, Christi Filii tui incarnationem cognovimus, per passionem eius et crucem, ad " +
-            "resurrectionis gloriam perducamur. Per eundem Christum Dominum nostrum. Amen.",
 
     PrayerKey.OratioIesu to "Domine Iesu Christe, Fili Dei, miserere mei peccatoris.",
 
-    PrayerKey.StationsOpeningPrayer to
-        "Domine mi Iesu Christe, hoc iter ineffabili caritate pro me suscepisti ut moreris; ego autem " +
-            "te totiens indigne dereliqui. Nunc vero te ex toto corde diligo, et, quia te diligo, " +
-            "vehementer doleo quod te umquam offenderim. Ignosce mihi, Deus meus, propter merita " +
-            "acerbissimae passionis tuae, et da mihi gratiam ut hoc iter tecum, vera peccatorum meorum " +
-            "contritione, peragam, quo ad beatam aeternitatem pervenire merear. Amen.",
-    PrayerKey.StationsVersicle to "Adoramus te, Christe, et benedicimus tibi.",
-    PrayerKey.StationsResponse to "Quia per sanctam crucem tuam redemisti mundum.",
-    PrayerKey.StationsClosingPrayer to
-        "Domine Iesu Christe, tibi gratias agimus pro passione tua qua nos redemisti. Praesta ut, " +
-            "qui passionem tuam in terris meditati sumus, fructum eius in caelis percipere mereamur: " +
-            "qui vivis et regnas in saecula saeculorum. Amen.",
 
-    PrayerKey.SevenSorrowsVersicle to "Ora pro nobis, Virgo perdolens.",
-    PrayerKey.SevenSorrowsResponse to "Ut digni efficiamur promissionibus Christi.",
-    PrayerKey.SevenSorrowsCollect to
-        "Oremus. Deus, in cuius passione, secundum Simeonis prophetiam, dulcissimam animam " +
-            "gloriosae Virginis et Matris Mariae doloris gladius pertransivit: concede propitius; ut, " +
-            "qui transfixionem eius et passionem venerando recolimus, gloriosis meritis et precibus " +
-            "omnium Sanctorum, Cruci fideliter astantium, intercedentibus, passionis tuae effectum " +
-            "felicem consequamur: qui vivis et regnas in saecula saeculorum. Amen.",
 
-    PrayerKey.DivineMercyOffering to
-        "Pater aeterne, offero Tibi Corpus et Sanguinem, Animam et Divinitatem dilectissimi Filii " +
-            "Tui, Domini nostri Iesu Christi, in propitiationem pro peccatis nostris et totius mundi.",
-    PrayerKey.DivineMercyPetition to "Pro dolorosa Eius passione, miserere nobis et totius mundi.",
-    PrayerKey.DivineMercyClosingAcclamation to "Sancte Deus, Sanctus Fortis, Sanctus Immortalis, miserere nobis et totius mundi.",
 )

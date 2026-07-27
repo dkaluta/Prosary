@@ -45,7 +45,7 @@ class PrayerReminderTest {
 
     @Test
     fun prayerCanHoldReminders() {
-        val prayer = Prayer(kind = PrayerKind.Angelus).copy(
+        val prayer = Prayer(kind = PrayerKind.JesusPrayer).copy(
             reminders = listOf(PrayerReminder(hour = 6), PrayerReminder(hour = 12), PrayerReminder(hour = 18)),
         )
         assertEquals(3, prayer.reminders.size)
