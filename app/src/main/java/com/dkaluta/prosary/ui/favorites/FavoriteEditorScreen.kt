@@ -4,6 +4,7 @@ import android.Manifest
 import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -13,8 +14,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -36,15 +40,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.dkaluta.prosary.content.MysteryTranslations
-import com.dkaluta.prosary.models.EternalRestPlacement
 import com.dkaluta.prosary.models.JesusPrayerOptions
 import com.dkaluta.prosary.models.JesusPrayerTarget
 import com.dkaluta.prosary.models.LanguageCatalog
-import com.dkaluta.prosary.models.MarianAntiphonOption
-import com.dkaluta.prosary.models.MysteryCatalog
-import com.dkaluta.prosary.models.MysteryGroup
-import com.dkaluta.prosary.models.MysterySelectionMode
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.reminders.ReminderScheduler
@@ -67,6 +65,7 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
 
     var prayer by remember { mutableStateOf(Prayer(kind = newFavoriteKind)) }
     var loaded by remember { mutableStateOf(false) }
+    var showingRosaryOptions by remember { mutableStateOf(false) }
     // The prayer as originally loaded, reminders untouched by in-editor edits — needed so save()
     // can cancel alarms for reminders the user removed (schedule() only knows how to reconstruct
     // PendingIntents for reminder ids still present in the *new* list, so a deleted reminder's
@@ -91,6 +90,15 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
     }
 
     if (!loaded) return
+
+    if (showingRosaryOptions) {
+        RosaryOptionsEditorScreen(
+            rosary = prayer.rosary,
+            onRosaryChange = { prayer = prayer.copy(rosary = it) },
+            onBack = { showingRosaryOptions = false },
+        )
+        return
+    }
 
     fun save() {
         var toSave = prayer
@@ -159,86 +167,20 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
             }
 
             if (prayer.kind == PrayerKind.Rosary) {
-                FormSection(title = "Which mysteries?") {
-                    OptionPickerField(
-                        label = "Mysteries",
-                        options = MysterySelectionMode.entries,
-                        selected = prayer.rosary.mysterySelectionMode,
-                        optionLabel = { it.displayName },
-                        onSelect = { prayer = prayer.copy(rosary = prayer.rosary.copy(mysterySelectionMode = it)) },
-                        modifier = Modifier.fillMaxWidth(),
-                    )
-                    if (prayer.rosary.mysterySelectionMode == MysterySelectionMode.Specific ||
-                        prayer.rosary.mysterySelectionMode == MysterySelectionMode.SingleMystery
+                FormSection(title = null) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { showingRosaryOptions = true },
                     ) {
-                        OptionPickerField(
-                            label = "Specific set",
-                            options = MysteryGroup.entries,
-                            selected = prayer.rosary.specificMysteryGroup,
-                            optionLabel = { it.displayName },
-                            onSelect = { prayer = prayer.copy(rosary = prayer.rosary.copy(specificMysteryGroup = it)) },
-                            modifier = Modifier.fillMaxWidth(),
+                        Text("Rosary Options", modifier = Modifier.weight(1f))
+                        Text(
+                            prayer.rosary.mysterySelectionSummary,
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
-                    }
-                    if (prayer.rosary.mysterySelectionMode == MysterySelectionMode.SingleMystery) {
-                        val mysteries = MysteryCatalog.forGroup(prayer.rosary.specificMysteryGroup)
-                        val selectedMystery = mysteries.firstOrNull { it.order == prayer.rosary.specificMysteryOrder } ?: mysteries.first()
-                        OptionPickerField(
-                            label = "Which mystery",
-                            options = mysteries,
-                            selected = selectedMystery,
-                            optionLabel = { MysteryTranslations.get(languageCode = "en", imageKey = it.imageKey).title },
-                            onSelect = { prayer = prayer.copy(rosary = prayer.rosary.copy(specificMysteryOrder = it.order)) },
-                            modifier = Modifier.fillMaxWidth(),
-                        )
-                    }
-                }
-
-                FormSection(title = "Opening & Decade Prayers") {
-                    SwitchRow("Apostles' Creed", prayer.rosary.includeApostlesCreed) {
-                        prayer = prayer.copy(rosary = prayer.rosary.copy(includeApostlesCreed = it))
-                    }
-                    SwitchRow("Opening Our Father & 3 Hail Marys", prayer.rosary.includeOpeningPrayers) {
-                        prayer = prayer.copy(rosary = prayer.rosary.copy(includeOpeningPrayers = it))
-                    }
-                    SwitchRow("Fatima Prayer after each decade", prayer.rosary.includeFatimaPrayer) {
-                        prayer = prayer.copy(rosary = prayer.rosary.copy(includeFatimaPrayer = it))
-                    }
-                    OptionPickerField(
-                        label = "For the faithful departed",
-                        options = EternalRestPlacement.entries,
-                        selected = prayer.rosary.eternalRestForDeceased,
-                        optionLabel = { it.displayName },
-                        onSelect = { prayer = prayer.copy(rosary = prayer.rosary.copy(eternalRestForDeceased = it)) },
-                        modifier = Modifier.fillMaxWidth(),
-                    )
-                }
-
-                FormSection(title = "Display") {
-                    SwitchRow("Presenter Mode", prayer.rosary.presenterMode) {
-                        prayer = prayer.copy(rosary = prayer.rosary.copy(presenterMode = it))
-                    }
-                    Text(
-                        "Combine each decade's Hail Marys and Glory Be onto one screen — useful when leading a group aloud from memory.",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
-
-                FormSection(title = "Closing Prayers") {
-                    OptionPickerField(
-                        label = "Marian antiphon",
-                        options = MarianAntiphonOption.entries,
-                        selected = prayer.rosary.marianAntiphon,
-                        optionLabel = { it.displayName },
-                        onSelect = { prayer = prayer.copy(rosary = prayer.rosary.copy(marianAntiphon = it)) },
-                        modifier = Modifier.fillMaxWidth(),
-                    )
-                    SwitchRow("St. Michael Prayer", prayer.rosary.includeStMichaelPrayer) {
-                        prayer = prayer.copy(rosary = prayer.rosary.copy(includeStMichaelPrayer = it))
-                    }
-                    SwitchRow("Final Sign of the Cross", prayer.rosary.includeFinalSignOfCross) {
-                        prayer = prayer.copy(rosary = prayer.rosary.copy(includeFinalSignOfCross = it))
+                        Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null)
                     }
                 }
             }
@@ -271,7 +213,7 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
 }
 
 @Composable
-private fun FormSection(title: String?, content: @Composable ColumnScope.() -> Unit) {
+internal fun FormSection(title: String?, content: @Composable ColumnScope.() -> Unit) {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         title?.let {
             Text(it, style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
@@ -287,7 +229,7 @@ private fun FormSection(title: String?, content: @Composable ColumnScope.() -> U
 }
 
 @Composable
-private fun SwitchRow(label: String, checked: Boolean, onCheckedChange: (Boolean) -> Unit) {
+internal fun SwitchRow(label: String, checked: Boolean, onCheckedChange: (Boolean) -> Unit) {
     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
         Text(label, modifier = Modifier.weight(1f))
         Switch(checked = checked, onCheckedChange = onCheckedChange)
