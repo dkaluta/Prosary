@@ -51,6 +51,7 @@
             <conv:GroupStartLeadingMarginConverter x:Key="GroupStartLeadingMargin" />
             <conv:PrayerKindIconGlyphConverter x:Key="PrayerKindIconGlyph" />
             <conv:BoolToStarGlyphConverter x:Key="BoolToStarGlyph" />
+            <conv:MysteryTitleConverter x:Key="MysteryTitle" />
 
             <!-- Shared text styles, matching irosary's Styles.xaml naming/intent. -->
             <Style x:Key="HeadlineTextStyle" TargetType="TextBlock">

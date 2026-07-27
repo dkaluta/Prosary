@@ -31,6 +31,11 @@ public sealed class PresetEntry
     // Flattened RosaryOptions (only meaningful when Kind == Rosary).
     public MysterySelectionMode MysterySelectionMode { get; set; } = MysterySelectionMode.TodaysMysteries;
     public MysteryGroup SpecificMysteryGroup { get; set; } = MysteryGroup.Joyful;
+
+    /// <summary>1-based index into MysteryCatalog.ForGroup(SpecificMysteryGroup); used only when
+    /// MysterySelectionMode is SingleMystery. Defaults to 1 for existing rows.</summary>
+    public int SpecificMysteryOrder { get; set; } = 1;
+
     public bool IncludeApostlesCreed { get; set; } = true;
     public bool IncludeOpeningPrayers { get; set; } = true;
     public bool IncludeFatimaPrayer { get; set; } = true;
@@ -38,6 +43,9 @@ public sealed class PresetEntry
     public MarianAntiphonOption MarianAntiphon { get; set; } = MarianAntiphonOption.Seasonal;
     public bool IncludeStMichaelPrayer { get; set; }
     public bool IncludeFinalSignOfCross { get; set; } = true;
+
+    /// <summary>Defaults to false for existing rows.</summary>
+    public bool PresenterMode { get; set; }
 
     // Flattened JesusPrayerOptions (only meaningful when Kind == JesusPrayer).
     public bool JesusPrayerIsUnbounded { get; set; }
@@ -60,6 +68,7 @@ public sealed class PresetEntry
         {
             MysterySelectionMode = MysterySelectionMode,
             SpecificMysteryGroup = SpecificMysteryGroup,
+            SpecificMysteryOrder = SpecificMysteryOrder,
             IncludeApostlesCreed = IncludeApostlesCreed,
             IncludeOpeningPrayers = IncludeOpeningPrayers,
             IncludeFatimaPrayer = IncludeFatimaPrayer,
@@ -67,6 +76,7 @@ public sealed class PresetEntry
             MarianAntiphon = MarianAntiphon,
             IncludeStMichaelPrayer = IncludeStMichaelPrayer,
             IncludeFinalSignOfCross = IncludeFinalSignOfCross,
+            PresenterMode = PresenterMode,
         },
         JesusPrayer = new JesusPrayerOptions
         {
@@ -86,6 +96,7 @@ public sealed class PresetEntry
         LanguageCode = prayer.LanguageCode,
         MysterySelectionMode = prayer.Rosary.MysterySelectionMode,
         SpecificMysteryGroup = prayer.Rosary.SpecificMysteryGroup,
+        SpecificMysteryOrder = prayer.Rosary.SpecificMysteryOrder,
         IncludeApostlesCreed = prayer.Rosary.IncludeApostlesCreed,
         IncludeOpeningPrayers = prayer.Rosary.IncludeOpeningPrayers,
         IncludeFatimaPrayer = prayer.Rosary.IncludeFatimaPrayer,
@@ -93,6 +104,7 @@ public sealed class PresetEntry
         MarianAntiphon = prayer.Rosary.MarianAntiphon,
         IncludeStMichaelPrayer = prayer.Rosary.IncludeStMichaelPrayer,
         IncludeFinalSignOfCross = prayer.Rosary.IncludeFinalSignOfCross,
+        PresenterMode = prayer.Rosary.PresenterMode,
         JesusPrayerIsUnbounded = prayer.JesusPrayer.Target is JesusPrayerTarget.Unbounded,
         JesusPrayerCount = prayer.JesusPrayer.Target is JesusPrayerTarget.Count(var n) ? n : 33,
         RemindersJson = JsonSerializer.Serialize(prayer.Reminders),

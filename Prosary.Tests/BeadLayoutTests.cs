@@ -80,4 +80,28 @@ public class BeadLayoutTests
             [MysteryGroup.Joyful, MysteryGroup.Luminous, MysteryGroup.Sorrowful, MysteryGroup.Glorious],
             layout.GroupColumns.Select(c => c.Group));
     }
+
+    /// <summary>Presenter mode collapses each decade's 10 Hail Marys + Glory Be into one step
+    /// carrying HailMaryIndexInDecade: 10 specifically so the bead track still shows the
+    /// traditional 10-bead-per-decade look (beads 1-9 completed, bead 10 current) instead of
+    /// collapsing to a single bead — see PrayerEngine.BuildRosarySteps' presenter-mode branch.
+    /// This is the crux of that design decision, even though BeadLayout itself needed no code
+    /// changes to support it.</summary>
+    [Fact]
+    public void Build_PresenterModeStep_StillShowsTenTraditionalBottomBeads()
+    {
+        var engine = new PrayerEngine(new LiturgicalCalendarService());
+        var prayer = new Prayer { Rosary = new RosaryOptions { PresenterMode = true } };
+        var steps = engine.BuildSteps(prayer);
+        var currentIndex = steps.FindIndex(s => s.Title == "Hail Mary & Glory Be" && s.DecadeIndex == 0);
+        var layout = BeadLayout.Build(steps, currentIndex, hasClosingCross: true, isDarkTheme: false);
+
+        Assert.True(layout.ShowBottomBeads);
+        Assert.Equal(10, layout.BottomBeads.Count);
+        for (var i = 0; i < 9; i++)
+        {
+            Assert.Equal(BeadState.Completed, layout.BottomBeads[i].State);
+        }
+        Assert.Equal(BeadState.Current, layout.BottomBeads[9].State);
+    }
 }

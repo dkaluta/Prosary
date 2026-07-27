@@ -53,6 +53,13 @@ public partial class FavoriteEditorViewModel : ObservableObject
     [ObservableProperty]
     private MysteryGroup _specificMysteryGroup = MysteryGroup.Joyful;
 
+    /// <summary>UI-only — the ComboBox needs a bindable object with a title to display, unlike
+    /// <see cref="RosaryOptions.SpecificMysteryOrder"/>'s plain persisted int. Kept in sync with
+    /// that int via <see cref="BuildPrayer"/>/<see cref="ApplyFromPrayer"/> and reset to the new
+    /// group's first mystery whenever <see cref="SpecificMysteryGroup"/> changes.</summary>
+    [ObservableProperty]
+    private Mystery? _selectedMystery;
+
     [ObservableProperty]
     private bool _includeApostlesCreed = true;
 
@@ -74,6 +81,12 @@ public partial class FavoriteEditorViewModel : ObservableObject
     [ObservableProperty]
     private bool _includeFinalSignOfCross = true;
 
+    /// <summary>Collapses each decade's 10 Hail Marys and Glory Be onto one combined screen —
+    /// for someone leading a group aloud from memory who doesn't need to tap through 10
+    /// visually-identical screens. See <c>PrayerEngine.BuildRosarySteps</c>.</summary>
+    [ObservableProperty]
+    private bool _presenterMode;
+
     [ObservableProperty]
     private JesusPrayerTarget _jesusPrayerTarget = new JesusPrayerTarget.Count(33);
 
@@ -83,7 +96,12 @@ public partial class FavoriteEditorViewModel : ObservableObject
 
     public bool IsRosary => Kind == PrayerKind.Rosary;
     public bool IsJesusPrayer => Kind == PrayerKind.JesusPrayer;
-    public bool IsSpecificMysteryGroup => MysterySelectionMode == MysterySelectionMode.Specific;
+    public bool IsSpecificMysteryGroup => MysterySelectionMode is MysterySelectionMode.Specific or MysterySelectionMode.SingleMystery;
+    public bool IsSingleMystery => MysterySelectionMode == MysterySelectionMode.SingleMystery;
+
+    /// <summary>The 5 mysteries of <see cref="SpecificMysteryGroup"/>, for the "Which mystery"
+    /// ComboBox shown only when <see cref="IsSingleMystery"/>.</summary>
+    public IReadOnlyList<Mystery> MysteryOptions => MysteryCatalog.ForGroup(SpecificMysteryGroup);
 
     // ComboBox ItemsSource lists — each entry displayed via a Converters/*LabelConverter or
     // *DisplayName() extension rather than the raw enum/code value.
@@ -142,6 +160,8 @@ public partial class FavoriteEditorViewModel : ObservableObject
         LanguageCode = prayer.LanguageCode;
         MysterySelectionMode = prayer.Rosary.MysterySelectionMode;
         SpecificMysteryGroup = prayer.Rosary.SpecificMysteryGroup;
+        SelectedMystery = MysteryCatalog.ForGroup(prayer.Rosary.SpecificMysteryGroup)
+            .FirstOrDefault(m => m.Order == prayer.Rosary.SpecificMysteryOrder);
         IncludeApostlesCreed = prayer.Rosary.IncludeApostlesCreed;
         IncludeOpeningPrayers = prayer.Rosary.IncludeOpeningPrayers;
         IncludeFatimaPrayer = prayer.Rosary.IncludeFatimaPrayer;
@@ -149,6 +169,7 @@ public partial class FavoriteEditorViewModel : ObservableObject
         MarianAntiphon = prayer.Rosary.MarianAntiphon;
         IncludeStMichaelPrayer = prayer.Rosary.IncludeStMichaelPrayer;
         IncludeFinalSignOfCross = prayer.Rosary.IncludeFinalSignOfCross;
+        PresenterMode = prayer.Rosary.PresenterMode;
         JesusPrayerTarget = prayer.JesusPrayer.Target;
         RemindersEditor.Kind = prayer.Kind;
         RemindersEditor.Reminders = new ObservableCollection<PrayerReminder>(prayer.Reminders);
@@ -165,6 +186,7 @@ public partial class FavoriteEditorViewModel : ObservableObject
         {
             MysterySelectionMode = MysterySelectionMode,
             SpecificMysteryGroup = SpecificMysteryGroup,
+            SpecificMysteryOrder = SelectedMystery?.Order ?? 1,
             IncludeApostlesCreed = IncludeApostlesCreed,
             IncludeOpeningPrayers = IncludeOpeningPrayers,
             IncludeFatimaPrayer = IncludeFatimaPrayer,
@@ -172,6 +194,7 @@ public partial class FavoriteEditorViewModel : ObservableObject
             MarianAntiphon = MarianAntiphon,
             IncludeStMichaelPrayer = IncludeStMichaelPrayer,
             IncludeFinalSignOfCross = IncludeFinalSignOfCross,
+            PresenterMode = PresenterMode,
         },
         JesusPrayer = new JesusPrayerOptions { Target = JesusPrayerTarget },
         Reminders = [.. RemindersEditor.Reminders],
@@ -183,7 +206,20 @@ public partial class FavoriteEditorViewModel : ObservableObject
         OnPropertyChanged(nameof(IsJesusPrayer));
     }
 
-    partial void OnMysterySelectionModeChanged(MysterySelectionMode value) => OnPropertyChanged(nameof(IsSpecificMysteryGroup));
+    partial void OnMysterySelectionModeChanged(MysterySelectionMode value)
+    {
+        OnPropertyChanged(nameof(IsSpecificMysteryGroup));
+        OnPropertyChanged(nameof(IsSingleMystery));
+    }
+
+    /// <summary>Resets the "Which mystery" selection to the new group's first mystery — otherwise
+    /// <see cref="SelectedMystery"/> would keep pointing at a Mystery from the group the user just
+    /// switched away from.</summary>
+    partial void OnSpecificMysteryGroupChanged(MysteryGroup value)
+    {
+        OnPropertyChanged(nameof(MysteryOptions));
+        SelectedMystery = MysteryOptions.FirstOrDefault();
+    }
 
     [RelayCommand]
     private async Task SaveAsync()

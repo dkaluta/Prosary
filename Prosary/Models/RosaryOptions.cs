@@ -1,3 +1,6 @@
+using System.Linq;
+using Prosary.Localization;
+
 namespace Prosary.Models;
 
 /// <summary>Configuration options specific to the Rosary. Lives inside a <see cref="Prayer"/>
@@ -6,8 +9,13 @@ public sealed record RosaryOptions
 {
     public MysterySelectionMode MysterySelectionMode { get; init; } = MysterySelectionMode.TodaysMysteries;
 
-    /// <summary>Used only when <see cref="MysterySelectionMode"/> is <see cref="Models.MysterySelectionMode.Specific"/>.</summary>
+    /// <summary>Used when <see cref="MysterySelectionMode"/> is <see cref="Models.MysterySelectionMode.Specific"/>
+    /// or <see cref="Models.MysterySelectionMode.SingleMystery"/>.</summary>
     public MysteryGroup SpecificMysteryGroup { get; init; } = MysteryGroup.Joyful;
+
+    /// <summary>1-based index into <c>MysteryCatalog.ForGroup(SpecificMysteryGroup)</c>. Used
+    /// only when <see cref="MysterySelectionMode"/> is <see cref="Models.MysterySelectionMode.SingleMystery"/>.</summary>
+    public int SpecificMysteryOrder { get; init; } = 1;
 
     public bool IncludeApostlesCreed { get; init; } = true;
 
@@ -25,12 +33,24 @@ public sealed record RosaryOptions
 
     public bool IncludeFinalSignOfCross { get; init; } = true;
 
+    /// <summary>Collapses each decade's 10 Hail Marys and Glory Be onto one combined screen —
+    /// for someone leading a group aloud from memory who doesn't need to tap through 10
+    /// visually-identical screens. See <c>PrayerEngine.BuildRosarySteps</c>.</summary>
+    public bool PresenterMode { get; init; } = false;
+
     public string MysterySelectionSummary => MysterySelectionMode switch
     {
         MysterySelectionMode.Specific => $"Always {SpecificMysteryGroup}",
+        MysterySelectionMode.SingleMystery => $"Only {SingleMysteryTitle()}",
         MysterySelectionMode.FifteenMystery => "The 15 Mysteries",
         MysterySelectionMode.TwentyMystery => "The 20 Mysteries",
         MysterySelectionMode.TodaysMysteries => "Today's Mysteries",
         _ => throw new ArgumentOutOfRangeException(nameof(MysterySelectionMode))
     };
+
+    private string SingleMysteryTitle()
+    {
+        var chosen = MysteryCatalog.ForGroup(SpecificMysteryGroup).FirstOrDefault(m => m.Order == SpecificMysteryOrder);
+        return chosen is null ? SpecificMysteryGroup.ToString() : MysteryTranslations.Get("en", chosen.ImageKey).Title;
+    }
 }

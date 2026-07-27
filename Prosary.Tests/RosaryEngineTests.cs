@@ -186,4 +186,125 @@ public class RosaryEngineTests
             [MysteryGroup.Joyful, MysteryGroup.Luminous, MysteryGroup.Sorrowful, MysteryGroup.Glorious],
             _engine.ResolveMysteryGroups(prayer));
     }
+
+    [Fact]
+    public void ResolveMysteryGroups_SingleMystery_ReturnsOneGroup()
+    {
+        var prayer = SpecificRosary(new RosaryOptions
+        {
+            MysterySelectionMode = MysterySelectionMode.SingleMystery,
+            SpecificMysteryGroup = MysteryGroup.Sorrowful,
+            SpecificMysteryOrder = 3,
+        });
+        Assert.Equal([MysteryGroup.Sorrowful], _engine.ResolveMysteryGroups(prayer));
+    }
+
+    [Fact]
+    public void BuildSteps_SingleMystery_ProducesExactlyOneDecade()
+    {
+        var prayer = SpecificRosary(new RosaryOptions
+        {
+            MysterySelectionMode = MysterySelectionMode.SingleMystery,
+            SpecificMysteryGroup = MysteryGroup.Sorrowful,
+            SpecificMysteryOrder = 3,
+        });
+        var steps = _engine.BuildSteps(prayer);
+        var decadeIndices = steps.Where(s => s.DecadeIndex.HasValue).Select(s => s.DecadeIndex!.Value).Distinct();
+        Assert.Equal([0], decadeIndices);
+    }
+
+    [Fact]
+    public void BuildSteps_SingleMystery_AnnouncesTheChosenMysteryNotTheFirst()
+    {
+        var prayer = SpecificRosary(new RosaryOptions
+        {
+            MysterySelectionMode = MysterySelectionMode.SingleMystery,
+            SpecificMysteryGroup = MysteryGroup.Sorrowful,
+            SpecificMysteryOrder = 3,
+        });
+        var steps = _engine.BuildSteps(prayer);
+        var announcement = steps.First(s => s.IsScripture);
+        // 3rd Sorrowful Mystery is the Crowning with Thorns, not the 1st (Agony in the Garden).
+        Assert.Equal("The Crowning with Thorns", announcement.Title);
+        Assert.Equal("3rd Mystery", announcement.Subtitle);
+    }
+
+    [Fact]
+    public void BuildSteps_PresenterModeOff_ReproducesExistingStepCount()
+    {
+        var prayer = SpecificRosary(new RosaryOptions
+        {
+            MysterySelectionMode = MysterySelectionMode.Specific,
+            SpecificMysteryGroup = MysteryGroup.Joyful,
+            PresenterMode = false,
+        });
+        Assert.Equal(79, _engine.BuildSteps(prayer).Count);
+    }
+
+    [Fact]
+    public void BuildSteps_PresenterMode_CollapsesHailMaryAndGloryBeIntoOneStepPerDecade()
+    {
+        var prayer = SpecificRosary(new RosaryOptions
+        {
+            MysterySelectionMode = MysterySelectionMode.Specific,
+            SpecificMysteryGroup = MysteryGroup.Joyful,
+            PresenterMode = true,
+        });
+        var steps = _engine.BuildSteps(prayer);
+
+        for (var d = 0; d < 5; d++)
+        {
+            var hailMarySteps = steps.Where(s => s.DecadeIndex == d && s.HailMaryIndexInDecade.HasValue).ToList();
+            Assert.Single(hailMarySteps);
+            Assert.Equal(10, hailMarySteps[0].HailMaryIndexInDecade);
+            Assert.Equal("Hail Mary & Glory Be", hailMarySteps[0].Title);
+        }
+    }
+
+    [Fact]
+    public void BuildSteps_PresenterMode_CombinedStepBodyContainsBothPrayers()
+    {
+        var prayer = SpecificRosary(new RosaryOptions
+        {
+            MysterySelectionMode = MysterySelectionMode.Specific,
+            SpecificMysteryGroup = MysteryGroup.Joyful,
+            PresenterMode = true,
+        });
+        var steps = _engine.BuildSteps(prayer);
+        var combined = steps.First(s => s.Title == "Hail Mary & Glory Be");
+        Assert.Contains("Hail Mary, full of grace", combined.Body);
+        Assert.Contains("Glory be to the Father", combined.Body);
+    }
+
+    [Fact]
+    public void BuildSteps_PresenterMode_StillIncludesFatimaPrayerPerDecade()
+    {
+        var prayer = SpecificRosary(new RosaryOptions
+        {
+            MysterySelectionMode = MysterySelectionMode.Specific,
+            SpecificMysteryGroup = MysteryGroup.Joyful,
+            IncludeFatimaPrayer = true,
+            PresenterMode = true,
+        });
+        var steps = _engine.BuildSteps(prayer);
+        Assert.Equal(5, steps.Count(s => s.Title == "Fatima Prayer"));
+    }
+
+    [Fact]
+    public void BuildSteps_PresenterMode_KeepsAnnouncementAndOurFatherAsSeparateSteps()
+    {
+        var prayer = SpecificRosary(new RosaryOptions
+        {
+            MysterySelectionMode = MysterySelectionMode.Specific,
+            SpecificMysteryGroup = MysteryGroup.Joyful,
+            PresenterMode = true,
+        });
+        var steps = _engine.BuildSteps(prayer);
+        var decadeZeroSteps = steps.Where(s => s.DecadeIndex == 0).ToList();
+        // Announcement, Our Father, Hail Mary & Glory Be, Fatima Prayer = 4 (default config includes Fatima).
+        Assert.Equal(4, decadeZeroSteps.Count);
+        Assert.True(decadeZeroSteps[0].IsScripture);
+        Assert.Equal("Our Father", decadeZeroSteps[1].Title);
+        Assert.Equal("Hail Mary & Glory Be", decadeZeroSteps[2].Title);
+    }
 }

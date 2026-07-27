@@ -1,3 +1,4 @@
+using System.Linq;
 using Prosary.Localization;
 using Prosary.Models;
 
@@ -58,7 +59,7 @@ public sealed class PrayerEngine
     /// <summary>Resolves which mystery group(s) a prayer points to, in the order they should be prayed.</summary>
     public IReadOnlyList<MysteryGroup> ResolveMysteryGroups(Prayer prayer) => prayer.Rosary.MysterySelectionMode switch
     {
-        MysterySelectionMode.Specific => [prayer.Rosary.SpecificMysteryGroup],
+        MysterySelectionMode.Specific or MysterySelectionMode.SingleMystery => [prayer.Rosary.SpecificMysteryGroup],
         MysterySelectionMode.FifteenMystery => [MysteryGroup.Joyful, MysteryGroup.Sorrowful, MysteryGroup.Glorious],
         MysterySelectionMode.TwentyMystery =>
             [MysteryGroup.Joyful, MysteryGroup.Luminous, MysteryGroup.Sorrowful, MysteryGroup.Glorious],
@@ -99,24 +100,40 @@ public sealed class PrayerEngine
         foreach (var group in groups)
         {
             var mysteries = MysteryCatalog.ForGroup(group);
+            IEnumerable<int> indices = options.MysterySelectionMode == MysterySelectionMode.SingleMystery
+                ? [options.SpecificMysteryOrder - 1]
+                : Enumerable.Range(0, mysteries.Count);
 
-            for (var d = 0; d < mysteries.Count; d++)
+            foreach (var d in indices)
             {
                 var mystery = mysteries[d];
                 var mysteryText = MysteryTranslations.Get(lang, mystery.ImageKey);
                 var ordinalLabel = showGroupName ? $"{group} — {Ordinals[d]} Mystery" : $"{Ordinals[d]} Mystery";
                 var thisDecade = decadeIndex;
-
-                steps.AddRange(BuildDecadeSteps(
-                    decadeIndex: thisDecade, announcementTitle: mysteryText.Title, ordinalLabel: ordinalLabel,
-                    announcementBody: $"{mysteryText.Description}\n\n{fruitLabel}: {mysteryText.Fruit}",
-                    mystery: mystery, decadeImageKey: null, isScripture: true,
-                    ourFatherImageKey: "our_father", hailMarysPerDecade: 10, languageCode: lang));
-
                 var decadeSubtitle = $"{ordinalLabel} — {mysteryText.Title}";
 
-                steps.Add(new RosaryStep("Glory Be", decadeSubtitle, Text(PrayerKey.GloriaPatri),
-                    DecadeIndex: thisDecade, ImageOverrideKey: "glory_be"));
+                if (options.PresenterMode)
+                {
+                    steps.Add(new RosaryStep(mysteryText.Title, ordinalLabel,
+                        $"{mysteryText.Description}\n\n{fruitLabel}: {mysteryText.Fruit}",
+                        mystery, IsScripture: true, DecadeIndex: thisDecade));
+                    steps.Add(new RosaryStep("Our Father", decadeSubtitle, Text(PrayerKey.PaterNoster),
+                        DecadeIndex: thisDecade, ImageOverrideKey: "our_father"));
+                    steps.Add(new RosaryStep("Hail Mary & Glory Be", decadeSubtitle,
+                        $"{Text(PrayerKey.AveMaria)}\n\n{Text(PrayerKey.GloriaPatri)}",
+                        mystery, DecadeIndex: thisDecade, HailMaryIndexInDecade: 10));
+                }
+                else
+                {
+                    steps.AddRange(BuildDecadeSteps(
+                        decadeIndex: thisDecade, announcementTitle: mysteryText.Title, ordinalLabel: ordinalLabel,
+                        announcementBody: $"{mysteryText.Description}\n\n{fruitLabel}: {mysteryText.Fruit}",
+                        mystery: mystery, decadeImageKey: null, isScripture: true,
+                        ourFatherImageKey: "our_father", hailMarysPerDecade: 10, languageCode: lang));
+
+                    steps.Add(new RosaryStep("Glory Be", decadeSubtitle, Text(PrayerKey.GloriaPatri),
+                        DecadeIndex: thisDecade, ImageOverrideKey: "glory_be"));
+                }
 
                 if (options.IncludeFatimaPrayer)
                 {

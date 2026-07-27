@@ -110,6 +110,15 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
+                            <ComboBox HorizontalAlignment="Stretch" Header="Which mystery" ItemsSource="{x:Bind ViewModel.MysteryOptions, Mode=OneWay}"
+                                      SelectedItem="{x:Bind ViewModel.SelectedMystery, Mode=TwoWay}"
+                                      Visibility="{x:Bind ViewModel.IsSingleMystery, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource MysteryTitle}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
                         </StackPanel>
                     </Border>
 
@@ -148,6 +157,22 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
+                        </StackPanel>
+                    </Border>
+
+                    <TextBlock Text="DISPLAY" Style="{StaticResource SectionHeaderStyle}" />
+                    <Border Style="{StaticResource SectionCardStyle}">
+                        <StackPanel Spacing="8">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Presenter Mode" VerticalAlignment="Center" />
+                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.PresenterMode, Mode=TwoWay}" />
+                            </Grid>
+                            <TextBlock Text="Combine each decade's Hail Marys and Glory Be onto one screen — useful when leading a group aloud from memory."
+                                       Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
                         </StackPanel>
                     </Border>
 
