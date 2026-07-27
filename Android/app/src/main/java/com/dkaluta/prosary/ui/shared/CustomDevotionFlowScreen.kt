@@ -22,17 +22,20 @@ import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.models.RosaryStep
 import com.dkaluta.prosary.services.AppServices
 import com.dkaluta.prosary.services.LocalAppServices
+import com.dkaluta.prosary.ui.rosaryflow.BeadLayout
+import com.dkaluta.prosary.ui.rosaryflow.BeadProgressView
 import kotlinx.coroutines.launch
 
-/** The single flow screen for every [PrayerKind.Custom] devotion (currently just Trisagion) —
- * mirrors AngelusFlowScreen/StationsFlowScreen's shape exactly, but reads its title/steps from
- * [PrayerPackStore]/[com.dkaluta.prosary.engine.PrayerEngine] instead of a per-devotion hardcoded
- * builder, so a new generic devotion needs no new screen at all.
+/** The single flow screen for every [PrayerKind.Custom] devotion — mirrors the hardcoded flow
+ * screens' shape exactly, but reads its title/steps from [PrayerPackStore]/
+ * [com.dkaluta.prosary.engine.PrayerEngine] instead of a per-devotion hardcoded builder, so a
+ * new generic devotion needs no new screen at all. A decade/bead-structured ("rosary" type)
+ * devotion gets the same bead track as the Rosary; flat devotions (no step carries a
+ * decadeIndex) get none.
  *
  * [prayer] is set when launched from an existing favorite (via PrayerDispatchScreen) — seeds the
  * star as already-favorited immediately, without waiting on the initial favorites fetch. A
- * generic devotion has no per-favorite language — like Angelus/Stations, it always follows the
- * app default. */
+ * generic devotion has no per-favorite language — it always follows the app default. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack: () -> Unit) {
@@ -42,12 +45,13 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
     var steps by remember { mutableStateOf<List<RosaryStep>>(emptyList()) }
     var currentIndex by remember { mutableIntStateOf(0) }
     var isRightToLeft by remember { mutableStateOf(false) }
+    var seasonColor by remember { mutableStateOf(Color.Transparent) }
     var languageCode by remember { mutableStateOf<String?>(null) }
     var matchingFavoriteId by remember { mutableStateOf(prayer?.id) }
     var displayName by remember { mutableStateOf(devotionId) }
 
     LaunchedEffect(prayer, devotionId) {
-        displayName = PrayerPackStore.info(devotionId)?.displayName ?: devotionId
+        displayName = PrayerPackStore.info(devotionId)?.localizedDisplayName ?: devotionId
         val resolvedLanguageCode = LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).code
         languageCode = resolvedLanguageCode
         isRightToLeft = LanguageCatalog.resolve(resolvedLanguageCode).isRightToLeft
@@ -55,19 +59,25 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
             Prayer(kind = PrayerKind.Custom, languageCode = resolvedLanguageCode, customDevotionId = devotionId),
         )
         currentIndex = 0
+        seasonColor = services.calendar.seasonColorToday()
 
         val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
         matchingFavoriteId = all.firstOrNull { it.kind == PrayerKind.Custom && it.customDevotionId == devotionId }?.id
     }
 
     val currentStep = steps.getOrNull(currentIndex)
+    val showsBeadTrack = steps.any { it.decadeIndex != null }
+    val hasClosingCross = PrayerPackStore.definition(devotionId)?.hasClosingCross ?: false
+    val beadLayout = remember(steps, currentIndex) {
+        BeadLayout.build(steps, currentIndex, hasClosingCross = hasClosingCross)
+    }
 
     PrayerStepFlowScreen(
         title = displayName,
         step = currentStep,
         currentIndex = currentIndex,
         totalSteps = steps.size,
-        seasonColor = Color.Transparent,
+        seasonColor = seasonColor,
         isRightToLeft = isRightToLeft,
         languageCode = languageCode,
         canGoBack = currentIndex > 0,
@@ -76,6 +86,13 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
             if (steps.isEmpty() || currentIndex == steps.size - 1) onBack() else currentIndex++
         },
         onNavigateUp = onBack,
+        accessory = if (showsBeadTrack) {
+            { isWide, hasRoomForSingleMinorColumn ->
+                BeadProgressView(layout = beadLayout, isWide = isWide, hasRoomForSingleMinorColumn = hasRoomForSingleMinorColumn)
+            }
+        } else {
+            { _, _ -> }
+        },
         topBarActions = {
             IconButton(onClick = {
                 scope.launch {

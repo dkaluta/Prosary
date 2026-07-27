@@ -44,7 +44,7 @@ class CustomDevotionEngineTest {
     }
 
     @Test
-    fun trisagionImagesMatchTheStepsJsonImageKeys() {
+    fun trisagionImagesMatchTheDevotionJsonImageKeys() {
         val engine = PrayerEngine()
         val steps = engine.buildSteps(Prayer(kind = PrayerKind.Custom, languageCode = "en", customDevotionId = "trisagion"))
 

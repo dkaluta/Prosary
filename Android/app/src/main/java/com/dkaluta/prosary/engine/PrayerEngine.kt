@@ -6,6 +6,8 @@ import com.dkaluta.prosary.content.PrayerKey
 import com.dkaluta.prosary.content.PrayerTranslations
 import com.dkaluta.prosary.content.MysteryTranslations
 import com.dkaluta.prosary.content.StationsTranslations
+import com.dkaluta.prosary.content.prayerpack.CustomDevotionDefinition
+import com.dkaluta.prosary.content.prayerpack.CustomDevotionStep
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.EternalRestPlacement
 import com.dkaluta.prosary.models.FranciscanCrownCatalog
@@ -508,15 +510,111 @@ class PrayerEngine(
 
     // MARK: Custom (bundle-driven) devotions
 
-    /** The only builder for every [PrayerKind.Custom] devotion — reads [bundleId]'s `steps.json`
-     * and maps each entry straight to a [RosaryStep], with no devotion-specific code. Works for
-     * Trisagion and any future bundle that ships a `steps.json`. */
-    private fun buildCustomDevotionSteps(bundleId: String, languageCode: String?): List<RosaryStep> =
-        PrayerPackStore.steps(bundleId).map { step ->
+    /** The only builder for every [PrayerKind.Custom] devotion — reads [bundleId]'s parsed
+     * `devotion.json` and produces the full step sequence with no devotion-specific code. The
+     * flat "steps" type covers Angelus/Stations/Trisagion-shaped devotions (including the
+     * Angelus's Eastertide whole-sequence swap); the decade/bead-structured "rosary" type covers
+     * Franciscan Crown/Seven Sorrows/Divine Mercy-shaped ones. */
+    private fun buildCustomDevotionSteps(bundleId: String, languageCode: String?): List<RosaryStep> {
+        val definition = PrayerPackStore.definition(bundleId) ?: return emptyList()
+        return when (definition.type) {
+            CustomDevotionDefinition.DevotionType.Steps -> {
+                val entries = (if (calendar.isEasterSeasonToday()) definition.eastertideSteps else null)
+                    ?: definition.steps.orEmpty()
+                entries.flatMap { expand(it, bundleId, languageCode) }
+            }
+            CustomDevotionDefinition.DevotionType.Rosary ->
+                buildCustomRosarySteps(definition, bundleId, languageCode)
+        }
+    }
+
+    /** Expands one `devotion.json` entry into its step(s): resolves the title (literal or
+     * translated `titleKey`) and body, and unrolls `repeat` into "(h of n)"-suffixed copies —
+     * deliberately without bead fields, matching the hardcoded devotions' closing Hail Marys. */
+    private fun expand(entry: CustomDevotionStep, bundleId: String, languageCode: String?): List<RosaryStep> {
+        if (entry.kind == CustomDevotionStep.SpecialKind.SeasonalMarianAntiphon) {
+            return listOf(buildMarianAntiphonStep(calendar.seasonalMarianAntiphonToday(), languageCode))
+        }
+        val title = entry.titleKey?.let { PrayerPackStore.resolveBodyText(bundleId, languageCode, it) }
+            ?: entry.title.orEmpty()
+        val body = entry.bodyKey?.let { PrayerPackStore.resolveBodyText(bundleId, languageCode, it) }.orEmpty()
+
+        val count = entry.repeatCount
+        if (count == null || count <= 1) {
+            return listOf(RosaryStep(title = title, subtitle = entry.subtitle, body = body, imageOverrideKey = entry.imageKey))
+        }
+        return (1..count).map { h ->
             RosaryStep(
-                title = step.title,
-                body = PrayerPackStore.resolveBodyText(bundleId, languageCode, step.bodyKey),
-                imageOverrideKey = step.imageKey,
+                title = "$title ($h of $count)", subtitle = entry.subtitle, body = body,
+                imageOverrideKey = entry.imageKey,
             )
         }
+    }
+
+    /** The decade/bead-structured generic builder ("rosary" type) — mirrors [buildDecadeSteps]'s
+     * emission exactly (announcement → major → N minors, dense global `decadeIndex`,
+     * `hailMaryIndexInDecade` on minors only, "ordinal — title" subtitles) so the bead track and
+     * step chrome behave identically to the previously hardcoded decade devotions. */
+    private fun buildCustomRosarySteps(
+        definition: CustomDevotionDefinition,
+        bundleId: String,
+        languageCode: String?,
+    ): List<RosaryStep> {
+        val decades = definition.decades ?: return emptyList()
+        fun resolve(key: String): String = PrayerPackStore.resolveBodyText(bundleId, languageCode, key)
+
+        val steps = mutableListOf<RosaryStep>()
+        for (entry in definition.opening.orEmpty()) {
+            steps.addAll(expand(entry, bundleId, languageCode))
+        }
+
+        val fruitLabel = PrayerTranslations.get(languageCode, PrayerKey.FructusMysteriiLabel)
+        val majorBody = resolve(decades.majorStep.bodyKey)
+        val minorBody = resolve(decades.minorStep.bodyKey)
+        val decadeCount = decades.entries?.size ?: decades.count ?: 0
+
+        for (d in 0 until decadeCount) {
+            val entry = decades.entries?.get(d)
+            val imageKey = entry?.imageKey ?: decades.fixedImageKey
+            val ordinalLabel = "${ordinals[d]} ${decades.ordinalNoun}"
+            var decadeSubtitle = ordinalLabel
+
+            if (decades.announceMystery && entry != null) {
+                val mysteryText = MysteryTranslations.get(languageCode, entry.imageKey)
+                var body = mysteryText.description
+                if (mysteryText.fruit.isNotEmpty()) {
+                    body += "\n\n$fruitLabel: ${mysteryText.fruit}"
+                }
+                steps.add(
+                    RosaryStep(
+                        title = mysteryText.title, subtitle = ordinalLabel, body = body,
+                        isScripture = entry.isScripture ?: true, decadeIndex = d, imageOverrideKey = entry.imageKey,
+                    ),
+                )
+                decadeSubtitle = "$ordinalLabel — ${mysteryText.title}"
+            }
+
+            steps.add(
+                RosaryStep(
+                    title = decades.majorStep.title, subtitle = decadeSubtitle, body = majorBody,
+                    decadeIndex = d, imageOverrideKey = imageKey,
+                ),
+            )
+
+            for (h in 1..decades.minorCount) {
+                steps.add(
+                    RosaryStep(
+                        title = "${decades.minorStep.title} ($h of ${decades.minorCount})",
+                        subtitle = decadeSubtitle, body = minorBody,
+                        decadeIndex = d, hailMaryIndexInDecade = h, imageOverrideKey = imageKey,
+                    ),
+                )
+            }
+        }
+
+        for (entry in definition.closing.orEmpty()) {
+            steps.addAll(expand(entry, bundleId, languageCode))
+        }
+        return steps
+    }
 }

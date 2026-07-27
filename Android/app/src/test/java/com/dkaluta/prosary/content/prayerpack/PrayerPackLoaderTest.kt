@@ -88,12 +88,11 @@ class PrayerPackLoaderTest {
         assertTrue(PrayerPackStore.customDevotionIds().contains("trisagion"))
     }
 
-    /** A devotion with no steps.json at all (Rosary/Angelus) is never mistaken for a generic
-     * one. */
+    /** The Rosary's pack has no devotion.json (override-only) and must never be mistaken for a
+     * generic devotion. */
     @Test
-    fun packsWithNoStepsJsonAreNotCustomDevotions() {
+    fun packsWithNoDevotionJsonAreNotCustomDevotions() {
         assertFalse(PrayerPackStore.customDevotionIds().contains("rosary"))
-        assertFalse(PrayerPackStore.customDevotionIds().contains("angelus"))
     }
 
     @Test
@@ -105,8 +104,10 @@ class PrayerPackLoaderTest {
     }
 
     @Test
-    fun trisagionStepsMatchTheAuthoredSixStepSequence() {
-        val steps = PrayerPackStore.steps("trisagion")
+    fun trisagionDefinitionMatchesTheAuthoredSixStepSequence() {
+        val definition = PrayerPackStore.definition("trisagion")
+        assertEquals(CustomDevotionDefinition.DevotionType.Steps, definition?.type)
+        val steps = definition?.steps.orEmpty()
         assertEquals(
             listOf("Holy God", "Holy God", "Holy God", "Glory Be", "Holy God", "Holy God"),
             steps.map { it.title },
