@@ -48,10 +48,11 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
 
     LaunchedEffect(prayer, devotionId) {
         displayName = PrayerPackStore.info(devotionId)?.displayName ?: devotionId
-        languageCode = LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).code
-        isRightToLeft = LanguageCatalog.resolve(languageCode).isRightToLeft
+        val resolvedLanguageCode = LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).code
+        languageCode = resolvedLanguageCode
+        isRightToLeft = LanguageCatalog.resolve(resolvedLanguageCode).isRightToLeft
         steps = services.engine.buildSteps(
-            Prayer(kind = PrayerKind.Custom, languageCode = LanguageCatalog.defaultSentinel, customDevotionId = devotionId),
+            Prayer(kind = PrayerKind.Custom, languageCode = resolvedLanguageCode, customDevotionId = devotionId),
         )
         currentIndex = 0
 

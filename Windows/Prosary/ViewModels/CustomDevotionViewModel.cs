@@ -106,7 +106,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             _steps = _engine.BuildSteps(new Prayer
             {
                 Kind = PrayerKind.Custom,
-                LanguageCode = LanguageCatalog.DefaultSentinel,
+                LanguageCode = _languageCode,
                 CustomDevotionId = bundleId,
             });
             _index = 0;
