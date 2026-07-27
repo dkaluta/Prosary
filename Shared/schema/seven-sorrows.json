@@ -1,25 +1,68 @@
 {
-  "$comment": "Canonical catalog of the 7 Sorrows of Mary (Servite Rosary/Chaplet of Our Lady of Sorrows), in order. imageKey doubles as the lookup key into MysteryTranslations (title/fruit/description per language, reusing the same imageKey-keyed lookup Franciscan Crown's Adoration of the Magi uses — see mysteries.json) and the filename stem under Shared/Images/{imageKey}. Unlike Franciscan Crown, none of the 7 reuse an existing Rosary mystery imageKey — only the Crucifixion sorrow thematically overlaps sorrowful_05_crucifixion, but is traditionally illustrated/meditated distinctly here (Mary's own vantage at the foot of the Cross, John 19:25-27, not the moment of Jesus's death, Luke 23:44-46, used for sorrowful_05_crucifixion). Source of truth: iOS's Models/SevenSorrowsCatalog.swift (this file was built from it); Android's models/SevenSorrowsCatalog.kt and Windows's Models/SevenSorrowsCatalog.cs must carry the exact same set/order. Keep in sync — see README.md in this directory.",
+  "$comment": "Canonical catalog of the 7 Sorrows of Mary (Servite Rosary/Chaplet of Our Lady of Sorrows), in order. imageKey doubles as the lookup key into the merged MysteryTranslations tables (title/fruit/description per language, shipped in the bundle's mysteries maps) and the filename stem under Shared/Images/{imageKey}. Unlike the Franciscan Crown, none of the 7 reuse an existing Rosary mystery imageKey — only the Crucifixion sorrow thematically overlaps sorrowful_05_crucifixion, but is meditated distinctly here (Mary's own vantage, John 19:25-27, not Luke 23:44-46). Source of truth: Shared/content/sevenSorrows/ (devotion.json + content/<lang>.json) — no platform carries a hardcoded SevenSorrowsCatalog anymore; the whole devotion is a generic bundle. Keep in sync — see README.md in this directory.",
   "images": {
-    "status": "placeholder",
-    "note": "All 7 sorrow images currently point at a generic placeholder graphic (deep wine-red cross on a rose-tan background), not real artwork — real public-domain art with proper attribution has not been sourced yet. See each platform's About screen, which labels these explicitly as 'artwork pending' rather than citing fake attributions."
+    "status": "real",
+    "note": "Per-scene old masters (Rembrandt, Murillo, Veronese, Raphael, ter Brugghen, Rubens, Titian) — public domain/CC0, shipped inside the bundle; see Shared/Images/CREDITS.md."
   },
   "languages": {
-    "populated": ["la", "en"],
-    "note": "ar/he/ru/tl fall back to Latin via the standard translation-dispatcher fallback (same mechanism as any missing content-layer entry) until dedicated translations are added in a later pass."
+    "populated": [
+      "la",
+      "en",
+      "ar",
+      "he",
+      "ru",
+      "tl"
+    ],
+    "note": "The 7 mystery texts ship in all six languages; the composed closing (sevenSorrowsClosingBody) is la/en only for now and falls back to the bundle's Latin elsewhere (see the bundle's validation-allowlist.json)."
   },
   "hailMarysPerDecade": 7,
   "sorrows": [
-    { "order": 1, "imageKey": "seven_sorrows_01_prophecy_of_simeon", "title": "The Prophecy of Simeon", "isScripture": true },
-    { "order": 2, "imageKey": "seven_sorrows_02_flight_into_egypt", "title": "The Flight into Egypt", "isScripture": true },
-    { "order": 3, "imageKey": "seven_sorrows_03_loss_of_jesus_in_the_temple", "title": "The Loss of the Child Jesus in the Temple", "isScripture": true },
-    { "order": 4, "imageKey": "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross", "title": "Mary Meets Jesus on the Way of the Cross", "isScripture": false, "note": "The one sorrow with no direct Gospel citation — a traditional devotional scene (the same status as the Stations of the Cross's 4th station), not a quoted verse." },
-    { "order": 5, "imageKey": "seven_sorrows_05_crucifixion", "title": "Mary at the Foot of the Cross", "isScripture": true },
-    { "order": 6, "imageKey": "seven_sorrows_06_descent_from_the_cross", "title": "Mary Receives the Body of Jesus", "isScripture": true },
-    { "order": 7, "imageKey": "seven_sorrows_07_burial_of_jesus", "title": "The Burial of Jesus", "isScripture": true }
+    {
+      "order": 1,
+      "imageKey": "seven_sorrows_01_prophecy_of_simeon",
+      "title": "The Prophecy of Simeon",
+      "isScripture": true
+    },
+    {
+      "order": 2,
+      "imageKey": "seven_sorrows_02_flight_into_egypt",
+      "title": "The Flight into Egypt",
+      "isScripture": true
+    },
+    {
+      "order": 3,
+      "imageKey": "seven_sorrows_03_loss_of_jesus_in_the_temple",
+      "title": "The Loss of the Child Jesus in the Temple",
+      "isScripture": true
+    },
+    {
+      "order": 4,
+      "imageKey": "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross",
+      "title": "Mary Meets Jesus on the Way of the Cross",
+      "isScripture": false,
+      "note": "The one sorrow with no direct Gospel citation — a traditional devotional scene (the same status as the Stations of the Cross's 4th station), not a quoted verse."
+    },
+    {
+      "order": 5,
+      "imageKey": "seven_sorrows_05_crucifixion",
+      "title": "Mary at the Foot of the Cross",
+      "isScripture": true
+    },
+    {
+      "order": 6,
+      "imageKey": "seven_sorrows_06_descent_from_the_cross",
+      "title": "Mary Receives the Body of Jesus",
+      "isScripture": true
+    },
+    {
+      "order": 7,
+      "imageKey": "seven_sorrows_07_burial_of_jesus",
+      "title": "The Burial of Jesus",
+      "isScripture": true
+    }
   ],
   "closing": {
-    "$comment": "3 Hail Marys for Our Lady's tears, then a fixed versicle/response/collect — unlike the Rosary/Franciscan Crown, this closing is not a user choice (no Marian-antiphon picker); it's the Servite Chaplet's own traditional close. See content-keys.json's sevenSorrowsVersicle/sevenSorrowsResponse/sevenSorrowsCollect.",
+    "$comment": "3 Hail Marys for Our Lady's tears, then a fixed versicle/response/collect (composed into the bundle-local sevenSorrowsClosingBody key at authoring time) — unlike the Rosary/Franciscan Crown, this closing is not a user choice (no Marian-antiphon picker); it's the Servite Chaplet's own traditional close.",
     "closingHailMarys": 3
   }
 }

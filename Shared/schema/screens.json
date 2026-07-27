@@ -3,7 +3,7 @@
   "rootScreen": "home",
   "screens": {
     "home": {
-      "purpose": "One card per hardcoded PrayerKind (Rosary/Angelus/Jesus Prayer/Stations/Franciscan Crown/Seven Sorrows/Divine Mercy Chaplet) showing that kind's default favorite, plus one additional card per discovered generic (bundle-driven) devotion (see customDevotionFlow) read from that bundle's own manifest, plus My Favorites/Settings/About.",
+      "purpose": "One card per devotion — the Rosary first, then every discovered generic (bundle-driven) devotion in pack-load order (title/accent/icon read from each bundle's own manifest — see customDevotionFlow), then the Jesus Prayer last — each showing that devotion's default favorite; plus a \"Today\" section (the day's feast per the Holy Land Latin calendar and the Pope's monthly prayer intention, from the bundled Shared/data datasets — rows hide when the datasets have no entry); plus My Favorites/Settings/About.",
       "parameters": {},
       "sources": {
         "iOS": "Views/Home/HomeView.swift",
@@ -12,7 +12,7 @@
       }
     },
     "favorites": {
-      "purpose": "List of saved favorites grouped by kind, with Pray/Edit/Delete/Set-Default actions and an Add-new button per kind.",
+      "purpose": "Saved favorites: full card lists with Pray/Edit/Delete/Set-Default and an Add-new button for the two configurable kinds (Rosary, Jesus Prayer), plus one star-row per generic devotion in pack-load order (favorite toggle + reminders-only editor).",
       "parameters": {},
       "sources": {
         "iOS": "Views/Favorites/FavoritesListView.swift",
@@ -23,8 +23,15 @@
     "favoriteEditor": {
       "purpose": "Create or edit a favorite of any kind; kind-specific sections shown conditionally.",
       "parameters": {
-        "prayerId": { "type": "uuid?", "description": "Editing an existing favorite. Null when creating new." },
-        "newFavoriteKind": { "type": "PrayerKind", "default": "rosary", "description": "Seeds a brand-new favorite's kind when prayerId is null. iOS passes the whole ad-hoc Prayer object directly instead (sheet(item:)); Android/Windows thread this + prayerId as separate params since neither has an iOS-sheet-style whole-object-across-navigation mechanism." }
+        "prayerId": {
+          "type": "uuid?",
+          "description": "Editing an existing favorite. Null when creating new."
+        },
+        "newFavoriteKind": {
+          "type": "PrayerKind",
+          "default": "rosary",
+          "description": "Seeds a brand-new favorite's kind when prayerId is null. iOS passes the whole ad-hoc Prayer object directly instead (sheet(item:)); Android/Windows thread this + prayerId as separate params since neither has an iOS-sheet-style whole-object-across-navigation mechanism."
+        }
       },
       "sources": {
         "iOS": "Views/Favorites/FavoriteEditorView.swift",
@@ -35,7 +42,10 @@
     "rosaryFlow": {
       "purpose": "The Rosary prayer flow — season bar, progress, bead track, mystery image/text, Back/Next footer.",
       "parameters": {
-        "prayerId": { "type": "uuid?", "description": "Favorite to pray; null falls back to the default Rosary favorite." }
+        "prayerId": {
+          "type": "uuid?",
+          "description": "Favorite to pray; null falls back to the default Rosary favorite."
+        }
       },
       "reachedVia": {
         "iOS": "The generic prayer(id) route -> PrayerDispatchView resolves the Prayer and picks the flow by kind.",
@@ -48,33 +58,17 @@
         "windows": "Views/RosaryPrayerPage.xaml(.cs) + ViewModels/RosaryViewModel.cs + BeadLayout.cs"
       }
     },
-    "angelusFlow": {
-      "purpose": "The Angelus prayer flow — fixed 7-step sequence, or a single Regina Caeli step during Eastertide. No bead track. Has its own favorite-star toggle since it can be launched with no saved favorite at all.",
-      "parameters": {
-        "prayerId": { "type": "uuid?", "description": "Launched from a saved favorite. Null when launched from Home with no Angelus favorite saved yet — language borrowed from the default Rosary favorite in that case." }
-      },
-      "sources": {
-        "iOS": "Views/Angelus/AngelusFlowView.swift",
-        "android": "ui/angelus/AngelusFlowScreen.kt",
-        "windows": "Views/AngelusFlowPage.xaml(.cs) + ViewModels/AngelusViewModel.cs"
-      }
-    },
-    "stationsFlow": {
-      "purpose": "The Stations of the Cross flow — opening prayer, each of the 14 stations in order (versicle/response + meditation), closing prayer. No bead track (unlike Rosary/Franciscan Crown/Seven Sorrows/Divine Mercy) — a plain 'N of 16' progress bar, same chrome as angelusFlow/jesusPrayerFlow.",
-      "parameters": {
-        "prayerId": { "type": "uuid?", "description": "Launched from a saved favorite. Null when launched from Home with no Stations favorite saved yet — same pattern as angelusFlow, but Stations has no fallback-language favorite to borrow from since it has no kind-specific options at all; falls back to the app's default language directly." }
-      },
-      "sources": {
-        "iOS": "Views/Stations/StationsFlowView.swift + Views/Shared/PrayerStepFlowView.swift",
-        "android": "ui/stations/StationsFlowScreen.kt",
-        "windows": "Views/StationsFlowPage.xaml(.cs) + ViewModels/StationsViewModel.cs"
-      }
-    },
     "customDevotionFlow": {
-      "purpose": "The single flow for every generic (bundle-driven) devotion (PrayerKind.custom) — currently just Trisagion. Same shape as stationsFlow (no bead track, no kind-specific options), but its steps/title are entirely data-driven from the bundle's steps.json/manifest.json instead of a hardcoded per-devotion builder — see ARCHITECTURE.md's \"Content bundles\" section. Adding a new generic devotion needs no new screen at all, just a new bundle.",
+      "purpose": "The single flow for every generic (bundle-driven) devotion (PrayerKind.custom): Angelus, Stations of the Cross, Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet, Trisagion. Steps/title/season color are entirely data-driven from the bundle's devotion.json/manifest.json — see ARCHITECTURE.md's \"Content bundles\" section. A decade/bead-structured (\"rosary\" type) devotion renders the same bead track as rosaryFlow (shown whenever any built step carries a decadeIndex; hasClosingCross from the definition); flat (\"steps\" type) devotions get a plain progress bar. Has its own favorite-star toggle since it can be launched with no saved favorite at all. Adding a new generic devotion needs no new screen, just a new bundle.",
       "parameters": {
-        "devotionId": { "type": "string", "description": "The bundle id (e.g. \"trisagion\") to load — unlike the hardcoded simplified flows, this is always required, even when a favorite exists, since PrayerKind.custom alone doesn't say which devotion to load." },
-        "prayerId": { "type": "uuid?", "description": "Launched from a saved favorite. Null when launched from Home with no favorite saved yet for this devotionId — falls back to the app's default language, same no-options pattern as angelusFlow/stationsFlow." }
+        "devotionId": {
+          "type": "string",
+          "description": "The bundle id (e.g. \"angelus\") to load — always required, even when a favorite exists, since PrayerKind.custom alone doesn't say which devotion to load."
+        },
+        "prayerId": {
+          "type": "uuid?",
+          "description": "Launched from a saved favorite. Null when launched from Home with no favorite saved yet for this devotionId — falls back to the app's default language (generic devotions have no per-favorite options)."
+        }
       },
       "reachedVia": {
         "iOS": "The generic prayer(id) route -> PrayerDispatchView resolves the Prayer and picks CustomDevotionFlowView by kind (reading devotionId from Prayer.customDevotionId); a fresh (no-favorite) launch uses AppRoute.custom(devotionId:) instead.",
@@ -82,45 +76,10 @@
         "windows": "Routed to directly by name (CustomDevotionFlowPage) via CustomDevotionFlowParams(prayerId, bundleId) — Home/Favorites already know the bundle id at the call site, so Windows skips the generic-dispatcher indirection entirely, same as rosaryFlow."
       },
       "sources": {
-        "iOS": "Views/Shared/CustomDevotionFlowView.swift + Views/Shared/PrayerStepFlowView.swift",
-        "android": "ui/shared/CustomDevotionFlowScreen.kt",
-        "windows": "Views/CustomDevotionFlowPage.xaml(.cs) + ViewModels/CustomDevotionViewModel.cs"
-      }
-    },
-    "franciscanCrownFlow": {
-      "purpose": "The Franciscan Crown flow — Sign of the Cross, 7 decades of the Seven Joys of Mary (Our Father + 10 Hail Marys each, bead-tracked like the Rosary), 2 closing Hail Marys + 1 closing Our Father, the seasonal Marian antiphon, closing Sign of the Cross. Has a bead track (unlike stationsFlow) despite having no user-configurable options (unlike rosaryFlow) — see mysteries.json's franciscanCrownSevenJoys for the Seven Joys catalog.",
-      "parameters": {
-        "prayerId": { "type": "uuid?", "description": "Launched from a saved favorite. Null when launched from Home with no Franciscan Crown favorite saved yet — same no-options pattern as angelusFlow/stationsFlow, falls back to the app's default language." }
-      },
-      "sources": {
-        "iOS": "Views/FranciscanCrown/FranciscanCrownFlowView.swift + Views/Shared/PrayerStepFlowView.swift + Views/RosaryFlow/BeadProgressView.swift",
-        "android": "ui/franciscancrown/FranciscanCrownFlowScreen.kt + ui/rosaryflow/BeadProgressView.kt",
-        "windows": "Views/FranciscanCrownFlowPage.xaml(.cs) + ViewModels/FranciscanCrownViewModel.cs",
-        "note": "Windows duplicates RosaryPrayerPage's full bead-track XAML/ViewModel logic here rather than sharing it (that platform has no PrayerStepFlowControl-style abstraction for the bead track) — see FranciscanCrownViewModel.cs's own doc comment."
-      }
-    },
-    "sevenSorrowsFlow": {
-      "purpose": "The Seven Sorrows (Servite Rosary/Chaplet of Our Lady of Sorrows) flow — Sign of the Cross, 7 decades of the Seven Sorrows of Mary (Our Father + 7 Hail Marys each, bead-tracked like the Rosary/Franciscan Crown), 3 closing Hail Marys for Our Lady's tears, a fixed closing versicle/response/collect, closing Sign of the Cross. Has a bead track (unlike stationsFlow) despite having no user-configurable options (unlike rosaryFlow), same as franciscanCrownFlow — see seven-sorrows.json for the catalog. Unlike franciscanCrownFlow, the closing prayer is fixed (not the Rosary's Marian-antiphon picker) and every decade uses 7 Hail Marys, not 10 (see ARCHITECTURE.md's Bead progress track section for the beads-per-decade generalization this required).",
-      "parameters": {
-        "prayerId": { "type": "uuid?", "description": "Launched from a saved favorite. Null when launched from Home with no Seven Sorrows favorite saved yet — same no-options pattern as angelusFlow/stationsFlow/franciscanCrownFlow, falls back to the app's default language." }
-      },
-      "sources": {
-        "iOS": "Views/SevenSorrows/SevenSorrowsFlowView.swift + Views/Shared/PrayerStepFlowView.swift + Views/RosaryFlow/BeadProgressView.swift",
-        "android": "ui/sevensorrows/SevenSorrowsFlowScreen.kt + ui/rosaryflow/BeadProgressView.kt",
-        "windows": "Views/SevenSorrowsFlowPage.xaml(.cs) + ViewModels/SevenSorrowsViewModel.cs",
-        "note": "Windows duplicates RosaryPrayerPage's full bead-track XAML/ViewModel logic here too, same reasoning as franciscanCrownFlow's note — this is now the 3rd near-identical copy (Rosary/Franciscan Crown/Seven Sorrows), flagged in SevenSorrowsViewModel.cs's doc comment as a strong candidate for extraction into a shared control."
-      }
-    },
-    "divineMercyFlow": {
-      "purpose": "The Divine Mercy Chaplet flow — Sign of the Cross, Our Father, Hail Mary, the Apostles' Creed (opening, reusing existing prayer content), 5 decades each of one offering + 10 petitions (the same two lines repeated every decade, unlike rosaryFlow/franciscanCrownFlow/sevenSorrowsFlow), the closing acclamation prayed 3 times, closing Sign of the Cross. Has a bead track (unlike stationsFlow) despite having no user-configurable options (unlike rosaryFlow), same as franciscanCrownFlow/sevenSorrowsFlow. The lightest of the four rollout devotions: no per-decade catalog at all — every step reuses one image (divine_mercy_image), the same reuse pattern angelusFlow uses for joyful_01_annunciation.",
-      "parameters": {
-        "prayerId": { "type": "uuid?", "description": "Launched from a saved favorite. Null when launched from Home with no Divine Mercy Chaplet favorite saved yet — same no-options pattern as angelusFlow/stationsFlow/franciscanCrownFlow/sevenSorrowsFlow, falls back to the app's default language." }
-      },
-      "sources": {
-        "iOS": "Views/DivineMercy/DivineMercyFlowView.swift + Views/Shared/PrayerStepFlowView.swift + Views/RosaryFlow/BeadProgressView.swift",
-        "android": "ui/divinemercy/DivineMercyFlowScreen.kt + ui/rosaryflow/BeadProgressView.kt",
-        "windows": "Views/DivineMercyFlowPage.xaml(.cs) + ViewModels/DivineMercyViewModel.cs",
-        "note": "Windows duplicates RosaryPrayerPage's full bead-track XAML/ViewModel logic here too — this is now the 4th near-identical copy (Rosary/Franciscan Crown/Seven Sorrows/Divine Mercy Chaplet), flagged in DivineMercyViewModel.cs's doc comment as a strong candidate for extraction into a shared control."
+        "iOS": "Views/Shared/CustomDevotionFlowView.swift + Views/Shared/PrayerStepFlowView.swift + Views/RosaryFlow/BeadProgressView.swift (rosary-type accessory)",
+        "android": "ui/shared/CustomDevotionFlowScreen.kt + ui/rosaryflow/BeadProgressView.kt",
+        "windows": "Views/CustomDevotionFlowPage.xaml(.cs) + ViewModels/CustomDevotionViewModel.cs",
+        "note": "Windows' page carries its own copy of RosaryPrayerPage's bead-track XAML (Visibility-bound to ShowsBeadTrack), absorbed from the deleted FranciscanCrownFlowPage — that platform has no shared bead-track control."
       }
     },
     "jesusPrayerSetup": {
@@ -135,8 +94,14 @@
     "jesusPrayerFlow": {
       "purpose": "The Jesus Prayer flow — single fixed line + repetition counter, no engine. Own favorite-star toggle, same reason as angelusFlow.",
       "parameters": {
-        "prayerId": { "type": "uuid?", "description": "Launched from a saved favorite — its own target overrides target, and its language is used." },
-        "target": { "type": "JesusPrayerTarget?", "description": "Set when launched fresh from jesusPrayerSetup (no favorite yet)." }
+        "prayerId": {
+          "type": "uuid?",
+          "description": "Launched from a saved favorite — its own target overrides target, and its language is used."
+        },
+        "target": {
+          "type": "JesusPrayerTarget?",
+          "description": "Set when launched fresh from jesusPrayerSetup (no favorite yet)."
+        }
       },
       "navigationNote": "Finish (pop-to-Home) and the back arrow (pop-one-level, back to Setup) are deliberately distinct commands — see ARCHITECTURE.md and JesusPrayerViewModel's class doc.",
       "sources": {

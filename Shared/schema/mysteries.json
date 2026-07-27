@@ -1,46 +1,168 @@
 {
   "$comment": "Canonical catalog of the 20 Rosary mysteries plus the fixed illustration keys used by steps not tied to a specific mystery. imageKey doubles as the lookup key into MysteryTranslations (title/fruit/description per language) and the filename stem under Shared/Images/{imageKey}.jpg. Source of truth: Windows's Models/MysteryCatalog.cs (this file was built from it); iOS's Mocks/Content/MysteryCatalog.swift and Android's content/MysteryCatalog.kt must carry the exact same set/order. Keep in sync — see README.md in this directory.",
-  "mysteryGroups": ["joyful", "sorrowful", "glorious", "luminous"],
+  "mysteryGroups": [
+    "joyful",
+    "sorrowful",
+    "glorious",
+    "luminous"
+  ],
   "mysteries": [
-    { "group": "joyful", "order": 1, "imageKey": "joyful_01_annunciation" },
-    { "group": "joyful", "order": 2, "imageKey": "joyful_02_visitation" },
-    { "group": "joyful", "order": 3, "imageKey": "joyful_03_nativity" },
-    { "group": "joyful", "order": 4, "imageKey": "joyful_04_presentation" },
-    { "group": "joyful", "order": 5, "imageKey": "joyful_05_finding_in_the_temple" },
-    { "group": "sorrowful", "order": 1, "imageKey": "sorrowful_01_agony_in_the_garden" },
-    { "group": "sorrowful", "order": 2, "imageKey": "sorrowful_02_scourging_at_the_pillar" },
-    { "group": "sorrowful", "order": 3, "imageKey": "sorrowful_03_crowning_with_thorns" },
-    { "group": "sorrowful", "order": 4, "imageKey": "sorrowful_04_carrying_of_the_cross" },
-    { "group": "sorrowful", "order": 5, "imageKey": "sorrowful_05_crucifixion" },
-    { "group": "glorious", "order": 1, "imageKey": "glorious_01_resurrection" },
-    { "group": "glorious", "order": 2, "imageKey": "glorious_02_ascension" },
-    { "group": "glorious", "order": 3, "imageKey": "glorious_03_descent_of_the_holy_spirit" },
-    { "group": "glorious", "order": 4, "imageKey": "glorious_04_assumption" },
-    { "group": "glorious", "order": 5, "imageKey": "glorious_05_coronation" },
-    { "group": "luminous", "order": 1, "imageKey": "luminous_01_baptism" },
-    { "group": "luminous", "order": 2, "imageKey": "luminous_02_wedding_at_cana" },
-    { "group": "luminous", "order": 3, "imageKey": "luminous_03_proclamation_of_the_kingdom" },
-    { "group": "luminous", "order": 4, "imageKey": "luminous_04_transfiguration" },
-    { "group": "luminous", "order": 5, "imageKey": "luminous_05_institution_of_the_eucharist" }
+    {
+      "group": "joyful",
+      "order": 1,
+      "imageKey": "joyful_01_annunciation"
+    },
+    {
+      "group": "joyful",
+      "order": 2,
+      "imageKey": "joyful_02_visitation"
+    },
+    {
+      "group": "joyful",
+      "order": 3,
+      "imageKey": "joyful_03_nativity"
+    },
+    {
+      "group": "joyful",
+      "order": 4,
+      "imageKey": "joyful_04_presentation"
+    },
+    {
+      "group": "joyful",
+      "order": 5,
+      "imageKey": "joyful_05_finding_in_the_temple"
+    },
+    {
+      "group": "sorrowful",
+      "order": 1,
+      "imageKey": "sorrowful_01_agony_in_the_garden"
+    },
+    {
+      "group": "sorrowful",
+      "order": 2,
+      "imageKey": "sorrowful_02_scourging_at_the_pillar"
+    },
+    {
+      "group": "sorrowful",
+      "order": 3,
+      "imageKey": "sorrowful_03_crowning_with_thorns"
+    },
+    {
+      "group": "sorrowful",
+      "order": 4,
+      "imageKey": "sorrowful_04_carrying_of_the_cross"
+    },
+    {
+      "group": "sorrowful",
+      "order": 5,
+      "imageKey": "sorrowful_05_crucifixion"
+    },
+    {
+      "group": "glorious",
+      "order": 1,
+      "imageKey": "glorious_01_resurrection"
+    },
+    {
+      "group": "glorious",
+      "order": 2,
+      "imageKey": "glorious_02_ascension"
+    },
+    {
+      "group": "glorious",
+      "order": 3,
+      "imageKey": "glorious_03_descent_of_the_holy_spirit"
+    },
+    {
+      "group": "glorious",
+      "order": 4,
+      "imageKey": "glorious_04_assumption"
+    },
+    {
+      "group": "glorious",
+      "order": 5,
+      "imageKey": "glorious_05_coronation"
+    },
+    {
+      "group": "luminous",
+      "order": 1,
+      "imageKey": "luminous_01_baptism"
+    },
+    {
+      "group": "luminous",
+      "order": 2,
+      "imageKey": "luminous_02_wedding_at_cana"
+    },
+    {
+      "group": "luminous",
+      "order": 3,
+      "imageKey": "luminous_03_proclamation_of_the_kingdom"
+    },
+    {
+      "group": "luminous",
+      "order": 4,
+      "imageKey": "luminous_04_transfiguration"
+    },
+    {
+      "group": "luminous",
+      "order": 5,
+      "imageKey": "luminous_05_institution_of_the_eucharist"
+    }
   ],
   "overrideImages": [
-    { "imageKey": "crucifix", "usedFor": "Sign of the Cross, Apostles' Creed" },
-    { "imageKey": "our_father", "usedFor": "Our Father steps" },
-    { "imageKey": "glory_be", "usedFor": "Glory Be steps" },
-    { "imageKey": "jesus_portrait", "usedFor": "Fatima Prayer, the Jesus Prayer" },
-    { "imageKey": "eternal_rest", "usedFor": "\"For the Faithful Departed\" steps" },
-    { "imageKey": "madonna_and_child", "usedFor": "Marian antiphon step, Regina Caeli" },
-    { "imageKey": "st_michael", "usedFor": "St. Michael prayer step" },
-    { "imageKey": "virtue_faith", "usedFor": "Opening Hail Mary — for an increase of Faith" },
-    { "imageKey": "virtue_hope", "usedFor": "Opening Hail Mary — for an increase of Hope" },
-    { "imageKey": "virtue_charity", "usedFor": "Opening Hail Mary — for an increase of Charity" },
-    { "imageKey": "cross_placeholder", "usedFor": "Fallback when no other image key applies", "note": "Not a classical painting like the rest — a small generated placeholder graphic, one per platform (see ARCHITECTURE.md#assets)." }
+    {
+      "imageKey": "crucifix",
+      "usedFor": "Sign of the Cross, Apostles' Creed"
+    },
+    {
+      "imageKey": "our_father",
+      "usedFor": "Our Father steps"
+    },
+    {
+      "imageKey": "glory_be",
+      "usedFor": "Glory Be steps"
+    },
+    {
+      "imageKey": "jesus_portrait",
+      "usedFor": "Fatima Prayer, the Jesus Prayer"
+    },
+    {
+      "imageKey": "eternal_rest",
+      "usedFor": "\"For the Faithful Departed\" steps"
+    },
+    {
+      "imageKey": "madonna_and_child",
+      "usedFor": "Marian antiphon step, Regina Caeli"
+    },
+    {
+      "imageKey": "st_michael",
+      "usedFor": "St. Michael prayer step"
+    },
+    {
+      "imageKey": "virtue_faith",
+      "usedFor": "Opening Hail Mary — for an increase of Faith"
+    },
+    {
+      "imageKey": "virtue_hope",
+      "usedFor": "Opening Hail Mary — for an increase of Hope"
+    },
+    {
+      "imageKey": "virtue_charity",
+      "usedFor": "Opening Hail Mary — for an increase of Charity"
+    },
+    {
+      "imageKey": "cross_placeholder",
+      "usedFor": "Fallback when no other image key applies",
+      "note": "Not a classical painting like the rest — a small generated placeholder graphic, one per platform (see ARCHITECTURE.md#assets)."
+    }
   ],
   "chronologicalOrderForTwentyMystery": [
-    "joyful", "luminous", "sorrowful", "glorious"
+    "joyful",
+    "luminous",
+    "sorrowful",
+    "glorious"
   ],
   "franciscanCrownSevenJoys": {
-    "$comment": "The Franciscan Crown's Seven Joys of Mary — a devotion-specific ordered list of imageKeys, not a MysteryGroup (see FranciscanCrownCatalog on each platform for why: adding a 5th case to MysteryGroup would pollute a type that's otherwise exclusively about the 4 traditional Rosary sets). Six of the seven reuse mysteries.mysteries entries above outright; only order 4 (Adoration of the Magi) is new content, added to MysteryTranslations directly under its own imageKey rather than getting a dedicated schema file.",
+    "$comment": "The Franciscan Crown's Seven Joys of Mary — a devotion-specific ordered list of imageKeys, not a MysteryGroup (adding a 5th case to MysteryGroup would pollute a type that's otherwise exclusively about the 4 traditional Rosary sets). The authoritative copy of this list is the inline decades.entries in Shared/content/franciscanCrown/devotion.json. Six of the seven reuse mysteries.mysteries entries above outright, resolving cross-bundle from the rosary pack's merged tables; only order 4 (Adoration of the Magi) is new content, shipped in the franciscanCrown bundle's own mysteries maps (all six languages) — deliberately the ONLY mystery that bundle ships, so it never overrides the Rosary's own content.",
     "imageKeys": [
       "joyful_01_annunciation",
       "joyful_02_visitation",
@@ -51,7 +173,10 @@
       "glorious_05_coronation"
     ],
     "newImageKeys": [
-      { "imageKey": "franciscan_04_adoration_of_the_magi", "note": "Placeholder artwork for now — see screens.json's franciscanCrownFlow entry." }
+      {
+        "imageKey": "franciscan_04_adoration_of_the_magi",
+        "note": "Bartolomé Esteban Murillo, The Adoration of the Magi (c. 1655-60), Toledo Museum of Art — public domain, shipped inside the bundle; see Shared/Images/CREDITS.md."
+      }
     ]
   }
 }

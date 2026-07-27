@@ -1,47 +1,109 @@
 {
-  "$comment": "Canonical list of PrayerKey identifiers — stable, language-independent keys for every fixed prayer text, each translated into all 6 languages (see ARCHITECTURE.md#content-layer). Source of truth: iOS's Mocks/Content/PrayerKey.swift (camelCase cases here); Android's content/PrayerKey.kt and Windows's Localization/PrayerKey.cs (PascalCase consts) must carry the exact same set. Keep in sync whenever a key is added, removed, or its purpose changes on any platform — see README.md in this directory.",
+  "$comment": "Canonical list of PrayerKey identifiers — stable, language-independent keys for every fixed prayer text still hardcoded in the platform translation tables (the \"main\" prayers, the Rosary's keys, the Marian antiphons and their versicle/response/collect sets, the Jesus Prayer), each translated into all 6 languages (see ARCHITECTURE.md#content-layer). The converted devotions' texts (Angelus, Stations, Seven Sorrows, Divine Mercy, Trisagion) are NOT PrayerKeys — they live as bundle-local keys inside each .prosaryprayer's content/<lang>.json, resolved via resolveBodyText. Source of truth: iOS's Mocks/Content/PrayerKey.swift (camelCase cases here); Android's content/PrayerKey.kt and Windows's Localization/PrayerKey.cs (PascalCase consts) must carry the exact same set. Keep in sync whenever a key is added, removed, or its purpose changes on any platform — see README.md in this directory.",
   "keys": [
-    { "key": "signumCrucis", "text": "Sign of the Cross" },
-    { "key": "symbolumApostolorum", "text": "Apostles' Creed" },
-    { "key": "paterNoster", "text": "Our Father" },
-    { "key": "aveMaria", "text": "Hail Mary" },
-    { "key": "gloriaPatri", "text": "Glory Be" },
-    { "key": "doxologiaMinor", "text": "\"For thine is the kingdom...\"", "note": "Not currently used in the Rosary flow itself; kept for future use (Mass responses, other prayers)." },
-    { "key": "oratioFatimae", "text": "Fatima Prayer (\"O my Jesus...\")" },
-    { "key": "requiemAeternam", "text": "Eternal rest grant unto them, O Lord" },
-    { "key": "sanctusMichael", "text": "St. Michael the Archangel prayer" },
-    { "key": "salveRegina", "text": "Hail, Holy Queen (Salve Regina)" },
-    { "key": "almaRedemptorisMater", "text": "Alma Redemptoris Mater" },
-    { "key": "aveReginaCaelorum", "text": "Ave Regina Caelorum" },
-    { "key": "reginaCaeli", "text": "Regina Caeli" },
-    { "key": "subTuumPraesidium", "text": "Sub Tuum Praesidium", "note": "The oldest known Marian prayer; traditionally recited on its own, without a versicle/collect." },
-    { "key": "versiculumStandard", "text": "V. (Rosary closing versicle, non-Paschal)" },
-    { "key": "responsiumStandard", "text": "R. (Rosary closing response, non-Paschal)" },
-    { "key": "collectaStandard", "text": "Rosary closing collect, non-Paschal" },
-    { "key": "versiculumPaschale", "text": "V. (Eastertide versicle)", "note": "Reused verbatim for the Angelus's Eastertide/Regina Caeli substitution." },
-    { "key": "responsiumPaschale", "text": "R. (Eastertide response)" },
-    { "key": "collectaPaschale", "text": "Eastertide collect" },
-    { "key": "aveMariaProFide", "text": "Hail Mary — for an increase of Faith", "note": "The opening Hail Mary, first of three." },
-    { "key": "aveMariaProSpe", "text": "Hail Mary — for an increase of Hope" },
-    { "key": "aveMariaProCaritate", "text": "Hail Mary — for an increase of Charity" },
-    { "key": "fructusMysteriiLabel", "text": "\"Fruit of the Mystery\" label" },
-    { "key": "versiculumAngelusPrimus", "text": "Angelus V. — The Annunciation", "note": "Distinct from versiculumStandard (the Rosary's) and versiculumPaschale (reused for the Angelus's Eastertide substitution)." },
-    { "key": "responsiumAngelusPrimus", "text": "Angelus R. — The Annunciation" },
-    { "key": "versiculumAngelusSecundus", "text": "Angelus V. — The Fiat" },
-    { "key": "responsiumAngelusSecundus", "text": "Angelus R. — The Fiat" },
-    { "key": "versiculumAngelusTertius", "text": "Angelus V. — The Incarnation" },
-    { "key": "responsiumAngelusTertius", "text": "Angelus R. — The Incarnation" },
-    { "key": "collectaAngelus", "text": "Angelus closing collect" },
-    { "key": "oratioIesu", "text": "Jesus Prayer (\"Lord Jesus Christ, Son of God, have mercy on me, a sinner.\")" },
-    { "key": "stationsOpeningPrayer", "text": "Stations of the Cross — opening act of contrition (adapted from St. Alphonsus Liguori)" },
-    { "key": "stationsVersicle", "text": "Stations of the Cross — V. (\"We adore You, O Christ...\"), repeated before each of the 14 stations" },
-    { "key": "stationsResponse", "text": "Stations of the Cross — R. (\"...redeemed the world\"), repeated before each of the 14 stations" },
-    { "key": "stationsClosingPrayer", "text": "Stations of the Cross — closing prayer" },
-    { "key": "sevenSorrowsVersicle", "text": "Seven Sorrows — V. (\"Pray for us, O most sorrowful Virgin\"), prayed once after the 3 closing Hail Marys" },
-    { "key": "sevenSorrowsResponse", "text": "Seven Sorrows — R. (\"...worthy of the promises of Christ\"), prayed once after the 3 closing Hail Marys" },
-    { "key": "sevenSorrowsCollect", "text": "Seven Sorrows — closing collect (the traditional Septem Dolorum B.M.V. prayer, \"O God, in whose Passion...\")" },
-    { "key": "divineMercyOffering", "text": "Divine Mercy Chaplet — the Our-Father-bead offering (\"Eternal Father, I offer You...\"), repeated identically at the start of all 5 decades" },
-    { "key": "divineMercyPetition", "text": "Divine Mercy Chaplet — the Hail-Mary-bead petition (\"For the sake of His sorrowful Passion...\"), repeated identically ×10 in all 5 decades" },
-    { "key": "divineMercyClosingAcclamation", "text": "Divine Mercy Chaplet — closing acclamation (\"Holy God, Holy Mighty One, Holy Immortal One...\"), prayed 3 times after the 5th decade" }
+    {
+      "key": "signumCrucis",
+      "text": "Sign of the Cross"
+    },
+    {
+      "key": "symbolumApostolorum",
+      "text": "Apostles' Creed"
+    },
+    {
+      "key": "paterNoster",
+      "text": "Our Father"
+    },
+    {
+      "key": "aveMaria",
+      "text": "Hail Mary"
+    },
+    {
+      "key": "gloriaPatri",
+      "text": "Glory Be"
+    },
+    {
+      "key": "doxologiaMinor",
+      "text": "\"For thine is the kingdom...\"",
+      "note": "Not currently used in the Rosary flow itself; kept for future use (Mass responses, other prayers)."
+    },
+    {
+      "key": "oratioFatimae",
+      "text": "Fatima Prayer (\"O my Jesus...\")"
+    },
+    {
+      "key": "requiemAeternam",
+      "text": "Eternal rest grant unto them, O Lord"
+    },
+    {
+      "key": "sanctusMichael",
+      "text": "St. Michael the Archangel prayer"
+    },
+    {
+      "key": "salveRegina",
+      "text": "Hail, Holy Queen (Salve Regina)"
+    },
+    {
+      "key": "almaRedemptorisMater",
+      "text": "Alma Redemptoris Mater"
+    },
+    {
+      "key": "aveReginaCaelorum",
+      "text": "Ave Regina Caelorum"
+    },
+    {
+      "key": "reginaCaeli",
+      "text": "Regina Caeli"
+    },
+    {
+      "key": "subTuumPraesidium",
+      "text": "Sub Tuum Praesidium",
+      "note": "The oldest known Marian prayer; traditionally recited on its own, without a versicle/collect."
+    },
+    {
+      "key": "versiculumStandard",
+      "text": "V. (Rosary closing versicle, non-Paschal)"
+    },
+    {
+      "key": "responsiumStandard",
+      "text": "R. (Rosary closing response, non-Paschal)"
+    },
+    {
+      "key": "collectaStandard",
+      "text": "Rosary closing collect, non-Paschal"
+    },
+    {
+      "key": "versiculumPaschale",
+      "text": "V. (Eastertide versicle)",
+      "note": "Reused verbatim for the Angelus's Eastertide/Regina Caeli substitution."
+    },
+    {
+      "key": "responsiumPaschale",
+      "text": "R. (Eastertide response)"
+    },
+    {
+      "key": "collectaPaschale",
+      "text": "Eastertide collect"
+    },
+    {
+      "key": "aveMariaProFide",
+      "text": "Hail Mary — for an increase of Faith",
+      "note": "The opening Hail Mary, first of three."
+    },
+    {
+      "key": "aveMariaProSpe",
+      "text": "Hail Mary — for an increase of Hope"
+    },
+    {
+      "key": "aveMariaProCaritate",
+      "text": "Hail Mary — for an increase of Charity"
+    },
+    {
+      "key": "fructusMysteriiLabel",
+      "text": "\"Fruit of the Mystery\" label"
+    },
+    {
+      "key": "oratioIesu",
+      "text": "Jesus Prayer (\"Lord Jesus Christ, Son of God, have mercy on me, a sinner.\")"
+    }
   ]
 }

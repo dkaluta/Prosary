@@ -15,21 +15,22 @@ Every platform models a saved, user-configurable prayer session the same way, ju
 idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
 
 - **`Prayer`** — a saved favorite: `id`, `name`, `kind` (`PrayerKind`), `isDefault` (starred/
-  primary for its kind — at most one per kind at a time), `languageCode` (an empty-string/
-  "default" sentinel means "follow the app-level default language setting"), nested
-  `RosaryOptions`/`JesusPrayerOptions` (the Angelus, Stations of the Cross, Franciscan Crown,
-  Seven Sorrows, and Divine Mercy Chaplet need no options beyond a language), `customDevotionId`
-  (populated only when `kind == custom` — see "Content bundles" below), and a list of
-  `PrayerReminder`s.
-- **`PrayerKind`** — `Rosary` / `Angelus` / `JesusPrayer` / `StationsOfTheCross` /
-  `FranciscanCrown` / `SevenSorrows` / `DivineMercyChaplet` / `Custom`. This completes the
-  four-devotion rollout (Stations of the Cross, Franciscan Crown, Seven Sorrows, Divine Mercy
-  Chaplet), all implemented on all three platforms. Adding a new *hardcoded* devotion beyond these
-  means adding a case here (all three platforms) plus a matching options type on `Prayer` if the
-  devotion needs one — several of the existing ones don't (Angelus, Stations, Franciscan Crown,
-  Seven Sorrows, Divine Mercy Chaplet). `Custom` is different: it's the one case that covers *any
-  number* of generic, bundle-driven devotions (see "Content bundles" below) — adding one of those
-  needs no new `PrayerKind` case at all, just a new bundle.
+  primary for its devotion — at most one per (kind, customDevotionId) at a time), `languageCode`
+  (an empty-string/"default" sentinel means "follow the app-level default language setting"),
+  nested `RosaryOptions`/`JesusPrayerOptions` (generic devotions need no options beyond a
+  language), `customDevotionId` (populated only when `kind == custom` — see "Content bundles"
+  below), and a list of `PrayerReminder`s.
+- **`PrayerKind`** — `Rosary` / `JesusPrayer` / `Custom`, and nothing else. Only the Rosary
+  (deeply configurable, options/calendar-driven) and the Jesus Prayer (a repetition counter with
+  no steps) warrant their own cases; **every other devotion is `Custom`** — one case covering
+  *any number* of generic, bundle-driven devotions (see "Content bundles" below). Adding a
+  devotion means shipping a bundle, not adding a case. The five retired per-devotion cases
+  (`Angelus`, `StationsOfTheCross`, `FranciscanCrown`, `SevenSorrows`, `DivineMercyChaplet`)
+  live on only in persisted favorites from old app versions: their raw values double as the
+  matching bundle ids, so iOS/Android remap them to `Custom` + that id **permanently at read
+  time** (cloud sync can deliver old rows years later — never a one-shot migration there), while
+  Windows (no cloud store; the enum is persisted as its int) runs a one-time
+  `PRAGMA user_version`-guarded SQL pass and keeps the retired ordinals reserved forever.
 - **`RosaryOptions`** — `mysterySelectionMode` (today's mysteries / a specific fixed set / all 15
   / all 20 / a single mystery), `specificMysteryGroup`, `specificMysteryOrder` (1-based, used only
   for the single-mystery mode), `presenterMode` (collapses each decade's Hail Marys + Glory Be
@@ -56,10 +57,12 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   `MysteryGroup` (Joyful/Sorrowful/Glorious/Luminous) and ordered within each group. Carries no
   display text itself — title/fruit/description are looked up by `imageKey` via
   `MysteryTranslations`, the same fallback-chain pattern as `PrayerTranslations`.
-- **`Station`/`StationsCatalog`** — the fixed catalog of all 14 Stations of the Cross, ordered, no
-  grouping (unlike mysteries, there's only one fixed sequence). Carries no display text itself —
-  title/meditation looked up by `imageKey` via `StationsTranslations` (`la`/`en` populated now,
-  `ar`/`he`/`ru`/`tl` fall back to Latin). See `Shared/schema/stations.json`.
+- The Stations of the Cross, Seven Sorrows, and Franciscan Crown carry **no hardcoded catalogs or
+  translation tables anymore** — their step structure lives in each bundle's `devotion.json` and
+  their texts in the bundle's `content/<lang>.json` (per-station titles/meditations are composed
+  bundle-local keys; the Sorrows'/Magi mystery texts ship in the bundles' `mysteries` maps and
+  merge into `MysteryTranslations` at load). `Shared/schema/stations.json`/`seven-sorrows.json`
+  document the sequences and point at the bundles.
 - **`RosaryStep`** — one prayer "bead" in a fully built session: title, optional subtitle (decade
   context), body text, optional `Mystery`, `isScripture` (true only for the mystery-announcement
   step, whose body is a real quoted Bible verse), `isAntiphon`, `decadeIndex` (0-based, counted
@@ -73,12 +76,17 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
 ## Engines
 
 One `PrayerEngine` type builds every devotion's steps — `buildSteps(for: Prayer) -> [RosaryStep]`
-is the single entry point, dispatching internally on `Prayer.kind`. This replaced 6 separate
-protocols (`RosaryEngine`/`AngelusEngine`/`StationsEngine`/`FranciscanCrownEngine`/
-`SevenSorrowsEngine`/`DivineMercyEngine`) and their per-devotion production types, which had
-accumulated real duplication once all 7 devotions existed side by side — see git history around
-the "unify prayer engines" commit on each platform for the before/after. The per-devotion
-*behavior* described below didn't change, only how it's organized:
+is the single entry point, dispatching on `Prayer.kind`: the Rosary keeps its own hardcoded,
+options/calendar-driven builder; the Jesus Prayer returns no steps at all (every repetition prays
+the same fixed line, so a single synthesized step plus a `JesusPrayerProgress` counter is the
+whole model); and everything else is `.custom`, built by one fully generic builder from the
+bundle's `devotion.json` (see "Content bundles" below). The five per-devotion builders the
+engine once carried (Angelus/Stations/Franciscan Crown/Seven Sorrows/Divine Mercy) are gone —
+their step sequences are reproduced byte-for-byte by the generic builder from bundle data, and
+each platform's `CustomDevotionEngineTests` pins those sequences (step counts 7/17/90/69/63, the
+Angelus's Eastertide Regina Caeli swap, the Seven Sorrows' 7-minor decades and non-scripture 4th
+sorrow, the Divine Mercy's identical per-decade lines and single reused image, closing repeats
+without bead fields).
 
 - **Rosary** — the richest: opening (Sign of the Cross, optional Creed, optional opening Our
   Father/3 Hail Marys for Faith/Hope/Charity), one loop per decade across every resolved
@@ -96,47 +104,11 @@ the "unify prayer engines" commit on each platform for the before/after. The per
   (never `nil`) purely so the bead track still renders the traditional 10-bead decade (beads 1–9
   completed, bead 10 current) — do not "simplify" this back to `nil`/omitted, since Windows'
   `BeadLayout` force-unwraps `HailMaryIndexInDecade` in that code path and would crash on null.
-- **Angelus** — no user-configurable options (unlike the Rosary): the fixed 7-step Annunciation/
-  Fiat/Incarnation/Let-Us-Pray sequence, or a single Regina Caeli step during Eastertide (see
-  `LiturgicalCalendarService.isEasterSeason`). The Jesus Prayer has no engine involvement at all
-  — `PrayerEngine.buildSteps` returns an empty array for it; every repetition prays the same fixed
-  line, so a single synthesized step plus a `JesusPrayerProgress` counter is the whole model.
-- **Stations of the Cross** — same "no user-configurable options" shape as Angelus: opening
-  prayer, each of the 14 stations (versicle/response + meditation) in order, closing prayer. Every
-  step leaves `mystery`/`decadeIndex`/`hailMaryIndexInDecade` at their defaults — no decade/bead
-  math at all, so the flow UI shows a plain progress bar, not the bead track (see "Bead progress
-  track" below).
-- **Franciscan Crown** — same "no user-configurable options" shape, but decade-based like the
-  Rosary: Sign of the Cross, 7 decades of the Seven Joys of Mary (Our Father + 10 Hail Marys each
-  — same bead math as the Rosary), 2 closing Hail Marys + 1 closing Our Father (72 years
-  traditionally attributed to Our Lady's life, and the Pope's intentions), the seasonal Marian
-  antiphon, closing Sign of the Cross. Every step leaves `mystery` nil/null — the Seven Joys
-  aren't Rosary `Mystery`s even though 6 of the 7 reuse existing mystery imageKeys/content (see
-  `mysteries.json`'s `franciscanCrownSevenJoys`) — which is exactly the case the bead track's
-  column-grouping generalization (below) exists for.
-- **Seven Sorrows** — same "no user-configurable options" shape as Franciscan Crown, decade-based
-  like the Rosary, but with 7 Hail Marys per decade instead of 10 (see `seven-sorrows.json`'s
-  `hailMarysPerDecade` — this is what the bead track's beads-per-decade generalization, below,
-  exists for): Sign of the Cross, 7 decades of the Seven Sorrows of Mary (Our Father + 7 Hail
-  Marys each), 3 closing Hail Marys for Our Lady's tears, a fixed closing versicle/response/
-  collect (unlike the Rosary/Franciscan Crown, not a user choice), closing Sign of the Cross.
-  Every step leaves `mystery` nil/null, same reasoning as Franciscan Crown — but unlike Franciscan
-  Crown, none of the 7 Sorrows reuse an existing Rosary mystery imageKey (see `seven-sorrows.
-  json`), so all 7 are new content. One sorrow
-  (`seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross`) has no direct Gospel citation and is
-  marked `isScripture: false`, unlike the other six.
-- **Divine Mercy Chaplet** — the lightest of the four rollout devotions: same "no user-
-  configurable options" shape, decade-based like the Rosary (5 decades, 10 Hail-Mary-position
-  steps each — the standard bead math, no generalization needed), but with **no per-decade
-  catalog at all**: opening (Sign of the Cross, Our Father, Hail Mary, Apostles' Creed — all
-  reusing existing `PrayerKey`s, nothing new), then 5 decades each of one offering ("Eternal
-  Father, I offer You...") at the Our-Father-bead position and 10 petitions ("For the sake of His
-  sorrowful Passion...") at the Hail-Mary-bead positions — **the exact same two lines repeated
-  every decade**, unlike the Rosary/Franciscan Crown/Seven Sorrows, none of which repeat identical
-  content across decades — closing with the acclamation ("Holy God, Holy Mighty One, Holy
-  Immortal One...") prayed three times, then a closing Sign of the Cross. Every step leaves
-  `mystery` nil/null and reuses the single `divine_mercy_image` illustration, the same reuse
-  pattern Angelus uses for `joyful_01_annunciation`.
+- **Generic devotions** (`.custom`) — flat ("steps" type: Angelus, Stations, Trisagion) or
+  decade/bead-structured ("rosary" type: Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet),
+  entirely data-driven; the rosary-type builder mirrors the shared decade helper's emission
+  (dense global `decadeIndex`, `hailMaryIndexInDecade` on minors only, "ordinal — title"
+  subtitles) so bead tracks behave identically to the Rosary's.
 
 Two pieces of logic are shared internally by `PrayerEngine` rather than duplicated per devotion:
 
@@ -145,8 +117,9 @@ Two pieces of logic are shared internally by `PrayerEngine` rather than duplicat
   the same shape underneath (they differ only in catalog, Hail-Marys-per-decade, and which image
   key the Our Father step shows — the Rosary always shows a fixed "our_father" icon there, while
   Franciscan Crown/Seven Sorrows keep showing that decade's own illustration).
-- **The Marian antiphon step builder** — used by both the Rosary's closing antiphon and Franciscan
-  Crown's fixed seasonal antiphon.
+- **The Marian antiphon step builder** — used by the Rosary's closing antiphon and by the generic
+  builder's `seasonalMarianAntiphon` special step (the Franciscan Crown's fixed seasonal
+  antiphon), which stays runtime-composed because it is calendar-dependent.
 - **`LiturgicalCalendarService`** — the traditional weekday mystery assignment (Mon/Sat Joyful,
   Tue/Fri Sorrowful, Wed Glorious, Thu Luminous, Sunday follows the liturgical season instead),
   the Meeus/Jones/Butcher Gregorian Easter algorithm, liturgical season (Advent/Christmas/Lent/
@@ -197,32 +170,38 @@ Windows: `Persistence/IPresetStore.cs` + `SqlitePresetStore.cs`) with the same c
   first favorite of that kind, or none.
 - `get(id)` / `GetAsync(id)`.
 - `save(prayer)` / `SaveAsync(prayer)` — insert or update by id. If the saved favorite is
-  default, every *other favorite of the same kind* has its default flag cleared — **each kind
-  keeps its own independent default**, never a global one.
+  default, every *other favorite of the same devotion* has its default flag cleared — the default
+  slot is scoped per **(kind, customDevotionId)**, so two generic devotions never steal each
+  other's default, and never a global one.
 - `delete(prayer)` / `DeleteAsync(prayer)` — if the deleted favorite was default and others of the
-  same kind remain, one is promoted to default.
+  same (kind, customDevotionId) remain, one is promoted to default.
 
-The per-kind (not global) default/delete scoping is the one behavioral detail worth calling out
-explicitly: it's easy to accidentally implement an unscoped version (clearing/promoting defaults
-across *every* favorite regardless of kind) if a platform's store started out Rosary-only before
-Angelus/Jesus Prayer existed, since "every row" and "every Rosary row" are indistinguishable until
-a second kind is introduced. Windows's `SqlitePresetStoreTests` specifically regression-tests this.
+The per-devotion (not global) default/delete scoping is the one behavioral detail worth calling
+out explicitly: it's easy to accidentally implement an unscoped version if a platform's store
+started out Rosary-only, since "every row" and "every Rosary row" are indistinguishable until a
+second devotion is introduced. Each platform's store tests regression-test this, including the
+two-generic-devotions case. Legacy rows written before the generic-devotion migration are handled
+per platform as described under `PrayerKind` above (iOS: `PresetEntry.resolvedKind`; Android:
+`PresetEntity.resolvedKind`; Windows: the `user_version`-guarded SQL pass in
+`SqlitePresetStore.InitializeAsync`), and each platform ships `LegacyKindMigration` tests.
 
 ### Favorites UI: configurable vs. simplified kinds
 
 Rosary and Jesus Prayer are the only kinds with real per-favorite options worth naming and saving
 multiple variants of, so they keep the full favorites experience: a card list, "+ Add", and a full
-editor (name, language, kind-specific options, reminders). The other 5 kinds (Angelus, Stations of
-the Cross, Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet) render as a single star row per
-kind instead — no name/language editing, no "+ Add another". Tapping the star still just calls
-`save`/`delete` on a `Prayer` row through the same `PresetStore` (no separate persistence entity),
-but constrained at the UI layer to at most one row per kind: matched by **kind alone** (not kind +
-language), and always saved with the sentinel `languageCode` (follows the app-level default
-language setting — there's no per-favorite language choice left to make for these kinds). Once
+editor (name, language, kind-specific options, reminders). Every generic (bundle-driven) devotion
+renders as a single star row instead, one per discovered bundle in pack-load order — no
+name/language editing, no "+ Add another". Tapping the star still just calls `save`/`delete` on a
+`Prayer` row through the same `PresetStore` (no separate persistence entity), but constrained at
+the UI layer to at most one row per devotion: matched by **bundle id** (not language), and always
+saved with the sentinel `languageCode` (follows the app-level default language setting). Once
 favorited, a small reminders-only editor (iOS: `RemindersOnlyEditorView`; Android:
 `RemindersOnlyEditorScreen`; Windows: `RemindersOnlyEditorPage`) is reachable from the row — it
 shares its reminders-list UI with the full editor via one extracted component (iOS:
-`RemindersSection`) rather than duplicating it.
+`RemindersSection`) rather than duplicating it. A devotion with traditional fixed prayer times
+declares them in its manifest (`reminderPresetHours` + `reminderPresetFooter` — the Angelus's
+6am/noon/6pm bells) and gets quick-toggle preset rows there; reminder notification bodies
+likewise come from each manifest's `reminderBody`, not any hardcoded per-kind table.
 
 ## Reminders
 
@@ -252,12 +231,17 @@ its current enabled ones), `removeAll(prayer)`, `rescheduleAll(prayers)` (called
   text, and Latin/English Scripture quotations. Latin-script *ordinary* prayer text uses each
   platform's own system serif instead (Apple's "New York" on iOS/Mac, the system serif on
   Android, Cambria on Windows) — none of those are bundled, only the 5 above are.
-- **`Images/`** — the 20 mystery paintings (public-domain classical art) plus ~10 override
-  illustrations used by steps not tied to a specific mystery (`crucifix`, `our_father`,
-  `glory_be`, `jesus_portrait`, `eternal_rest`, `madonna_and_child`, `st_michael`,
-  `virtue_faith`/`virtue_hope`/`virtue_charity`) and `cross_placeholder` (a simple generated
-  placeholder, not classical art). See each platform's own About/Settings screen for full
-  per-painting artist attributions.
+- **`Images/`** — the 20 mystery paintings, the 14 Stations (Gebhard Fugel's 1921 Bad Saulgau
+  Kreuzweg cycle), the 7 Sorrows (per-scene old masters), the Franciscan Crown's Adoration of the
+  Magi (Murillo), the Divine Mercy image (Kazimirowski, 1934) — all public-domain classical art,
+  every file an exact 1:1 square — plus ~10 override illustrations used by steps not tied to a
+  specific mystery (`crucifix`, `our_father`, `glory_be`, `jesus_portrait`, `eternal_rest`,
+  `madonna_and_child`, `st_michael`, `virtue_faith`/`virtue_hope`/`virtue_charity`) and
+  `cross_placeholder` (a simple generated placeholder, not classical art). `Images/CREDITS.md`
+  records artwork/museum/Commons-file/license per file; each platform's About screen carries the
+  user-facing attributions. Devotion artwork ships *inside* the bundles (every platform prefers
+  pack-provided image data over its asset catalog), so the per-platform asset copies now cover
+  only the Rosary-and-shared set.
 
 **Each platform keeps its own physical copy** of these files (iOS: `Assets.xcassets` imagesets +
 `Fonts/`; Android: `res/drawable-nodpi/` + `res/font/` — filenames snake_cased per Android's
@@ -285,75 +269,104 @@ same `PrayerKey` as always. Each manifest's `mainPrayerKeysOmitted` array docume
 of these 5 a given devotion's flow uses, so their absence from the bundle reads as intentional, not
 a content gap.
 
-Rosary and Angelus are packaged this way as **override bundles** — both are hardcoded `PrayerKind`
-devotions with their own engine builder; the bundle only supplies translated *text/artwork* that
-overrides the hardcoded fallback. At runtime, each platform's `PrayerPackLoader` merges a loaded
-bundle's content into the existing `PrayerTranslations`/`MysteryTranslations` tables (bundle wins
-on collision) rather than replacing them — necessary because `PrayerKey`/mystery `imageKey`
-entries are a shared pool across devotions (e.g. `our_father` is used by Rosary, Angelus,
-Franciscan Crown, Seven Sorrows, and Divine Mercy alike), so a bundle can only ever *add to* the
-hardcoded tables, never fully replace them. Devotions without a shipped bundle (Stations,
-Franciscan Crown, Seven Sorrows, Divine Mercy, Jesus Prayer) are completely unaffected and keep
-resolving 100% from hardcoded source, exactly as before this format existed.
+The **Rosary** is packaged this way as the one remaining **override bundle** — it is a hardcoded
+`PrayerKind` devotion with its own engine builder, and its bundle only supplies translated
+*text/artwork* that overrides the hardcoded fallback. At runtime, each platform's
+`PrayerPackLoader` merges every loaded bundle's content into the existing
+`PrayerTranslations`/`MysteryTranslations` tables (bundle wins on collision) rather than
+replacing them — necessary because `PrayerKey`/mystery `imageKey` entries are a shared pool
+across devotions (e.g. `our_father` is used by the Rosary and several bundle devotions alike), so
+a bundle can only ever *add to* the hardcoded tables, never fully replace them. The rosary pack
+loads **first** so its shared mystery texts/images are the base other bundles build on; the
+Franciscan Crown deliberately ships *only* its own 4th Joy (`franciscan_04_adoration_of_the_magi`)
+and lets the six shared Joys resolve cross-bundle from the rosary pack — duplicating them would
+override the Rosary's own content. `hasCatalog` in a manifest strictly means "has a
+`catalog.json` authoring file" (the Rosary); mysteries maps merge unconditionally, which is how
+rosary-type bundles ship per-decade texts without any catalog.json. Only the Jesus Prayer has no
+bundle at all (it has no per-step content to carry).
 
 ### Generic (bundle-driven) devotions
 
-Trisagion is a **generic devotion** — a different, more general use of the same bundle format,
-for devotions shaped like Angelus/Stations: a flat, fixed list of steps, no user-configurable
-options, no mystery/decade/bead-track structure. Unlike Rosary/Angelus, a generic devotion needs
-*no* hardcoded `PrayerKind` case or per-platform engine builder at all — its entire step sequence
-is data-driven from the bundle itself:
+Every devotion except the Rosary and the Jesus Prayer is a **generic devotion**: Angelus,
+Stations of the Cross, Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet, and Trisagion. A
+generic devotion needs *no* hardcoded `PrayerKind` case, engine builder, flow view, or view-model
+of its own — its entire step sequence and per-step text are data-driven from its bundle:
 
-- **`PrayerKind.custom`** is the one case covering *every* generic devotion (not one case per
-  devotion). `Prayer.customDevotionId` holds the bundle id (e.g. `"trisagion"`) when
-  `kind == custom`, nil/null otherwise.
-- **`steps.json`** (optional; present only for generic devotions) sits alongside `manifest.json`/
-  `content/` in the bundle: `{ "steps": [{ "title": "...", "bodyKey": "...", "imageKey": "..." }] }`.
-  `title` is a literal display string, not a translation key — matching the existing convention
-  that every devotion's step titles ("Sign of the Cross", "The Annunciation", ...) are
-  English-only UI labels, never run through `PrayerTranslations.get` anywhere in this codebase.
-  `Shared/tools/make-prosaryprayer.sh`/`Make-ProsaryPrayer.ps1` stage `steps.json` into the zip
-  when present, validating it as JSON like every other bundle file.
-- **`manifest.json`** gains two optional fields for a generic devotion: `accentColorHex` (a single
-  hex color, not iOS's usual light/dark adaptive pair — kept simple since it's authored once in
-  JSON and read identically on all three platforms) and `iconSystemName` (an SF Symbol name;
-  mapped to the nearest Material icon on Android and Segoe Fluent Icons glyph on Windows via a
-  small fixed per-platform table, e.g. Android's `iconForSystemName`/Windows'
-  `GlyphForSystemName`).
-- **`bodyKey` resolution** is how a step's body text is looked up, and is the one place iOS/
-  Android and Windows genuinely diverge, because `PrayerKey` itself is shaped differently on each
-  platform:
-  - **iOS/Android** (`PrayerKey` is a real validating enum): (1) check the *bundle's own raw,
-    unfiltered* per-language content map first — this is how bundle-local-only keys like
-    `trisagionAcclamation` resolve, entirely bypassing `PrayerKey`; (2) else, if the key happens to
-    match an existing `PrayerKey` case, fall through to the ordinary `PrayerTranslations.get` —
-    this is how shared "main" keys like `gloriaPatri` resolve; (3) else the raw key string,
-    matching `PrayerTranslations.get`'s own last-resort fallback. `PrayerPackStore` retains this
-    raw per-bundle map (`bundleId -> language -> key -> text`) *in addition to* the existing
-    validated-by-`PrayerKey` override table Rosary/Angelus already use.
-  - **Windows** (`PrayerKey` is just a set of `string` constants, never validated against): the
-    existing override loader already merges *every* content key — bundle-local or not — into one
-    global, ungated `PrayerOverrides[language]` table (PascalCased). So `ResolveBodyText` is a
-    single step: PascalCase the incoming `bodyKey` and delegate straight to
-    `PrayerTranslations.Get`, which already implements the full override → per-language table →
-    Latin → raw-key fallback chain for *any* key, "real" `PrayerKey` constant or not.
-  - Either way, `trisagionAcclamation`/`trisagionShortAcclamation`-style keys **deliberately never
-    become `PrayerKey` cases** — they exist only inside Trisagion's own `content/<lang>.json`,
-    resolved purely through the bundle-local path above.
-- **`PrayerEngine`** gets exactly one new dispatch branch (`case .custom`) and one new builder
-  (`buildCustomDevotionSteps`/`buildCustomDevotionSteps`/`BuildCustomDevotionSteps`) — fully
-  generic, reads the bundle's `steps.json` and maps each entry straight to a `RosaryStep` (title
-  literal, body via the resolution above, `imageOverrideKey` direct). This one function is the
-  entire engine surface for Trisagion and any future `steps.json`-bearing bundle.
-- **Discovery**: `PrayerPackStore.customDevotionIds()` returns every loaded bundle id that has a
-  `steps.json`, computed automatically rather than hardcoded — Home/Favorites render one card/row
-  per discovered id, reading `displayName`/`accentColorHex`/`iconSystemName` from
-  `PrayerPackStore.info(bundleId)`, without ever hardcoding "Trisagion" in view code. Favorites
-  treats `.custom` like the other 5 simplified kinds (single star-row + reminders-only editor); a
-  picker across *multiple* generic devotions is real future work, not built speculatively, since
-  only one (Trisagion) exists today.
+- **`PrayerKind.custom`** is the one case covering *every* generic devotion.
+  `Prayer.customDevotionId` holds the bundle id (e.g. `"angelus"`) when `kind == custom`. Bundle
+  ids are exactly the old per-devotion `PrayerKind` raw values, which is what makes the legacy
+  favorites migration a pure string remap.
+- **`devotion.json`** (replaces the earlier `steps.json`; no legacy support — we own every
+  bundle) is the complete structural description, one of two types:
+  - `{"type": "steps"}` — a flat, fixed list: `steps: [Entry…]` plus an optional
+    `eastertideSteps: [Entry…]` whole-sequence swap (the Angelus → Regina Caeli substitution,
+    resolved via the platform liturgical calendar's `isEasterSeasonToday`).
+  - `{"type": "rosary"}` — decade/bead-structured: `opening: [Entry…]` (entry 0 MUST be the Sign
+    of the Cross — a bead-track invariant), `decades` (`ordinalNoun` "Joy"/"Sorrow"/"Decade";
+    `announceMystery`; either inline `entries: [{imageKey, isScripture? = true}]` (Franciscan
+    Crown/Seven Sorrows) *or* `count` + `fixedImageKey` (Divine Mercy); `majorStep`/`minorStep`
+    `{title, bodyKey}`; `minorCount`), `closing: [Entry…]`, and `hasClosingCross` (when true the
+    closing cross must be the literal last step — another bead-track invariant). Announcement
+    steps pull title/body from the merged mystery tables by the entry's `imageKey`.
+  - An `Entry` is `{title | titleKey, subtitle?, bodyKey?, imageKey?, repeat?}` — `title` is a
+    literal English UI label (the app-wide convention), `titleKey` the alternative for devotions
+    whose step titles are themselves translated content (the Stations); `repeat: n` unrolls into
+    n copies titled "Title (h of n)", deliberately without bead fields. A closing entry may
+    instead be `{"kind": "seasonalMarianAntiphon"}` (the Franciscan Crown), which stays
+    runtime-composed by the engine's shared antiphon builder because it is calendar-dependent.
+  - **Composed bodies, no composition grammar**: every step has exactly one `bodyKey`.
+    Versicle/response/collect compositions are pre-composed per language into bundle-local keys
+    at authoring time, byte-for-byte as the old engines emitted them (`"V\n**R**"`
+    bold-response markdown) — e.g. `angelusAnnunciationBody`, `station01Body`/`station01Title`,
+    `sevenSorrowsClosingBody`.
+- **`manifest.json`** fields for a generic devotion: `accentColorHex` + optional
+  `accentColorDarkHex` (light/dark pair), `iconSystemName` (an SF Symbol name; mapped to the
+  nearest Material icon on Android and Segoe Fluent Icons glyph on Windows via a small fixed
+  per-platform table), `displayNameByLanguage` (preserves e.g. the Hebrew devotion names),
+  `reminderBody` (per-language notification body), and optional `reminderPresetHours` +
+  `reminderPresetFooter` (the Angelus's traditional bell times).
+- **`bodyKey`/`titleKey` resolution** (`resolveBodyText`, per bundle): (1) the bundle's own raw
+  content for the requested language; (2) the bundle's own **Latin** content (so a sentinel/
+  unknown/undeclared language prays in Latin, never raw keys — the same convention as
+  `PrayerTranslations.get`'s Latin fallback); (3) the ordinary `PrayerTranslations` chain for
+  shared keys like `gloriaPatri`; (4) the raw key string as last resort.
+  `MysteryTranslations.get` has the matching bundle-Latin step in its own chain, since the
+  Sorrows/Magi texts live only in bundles. On Windows, `PrayerKey` is a set of string constants
+  rather than a validating enum and every content key also merges into one global PascalCased
+  override table, but `ResolveBodyText` follows the same per-bundle-raw-first chain.
+- **Validation**: `Shared/tools/validate-devotion.py` (run by both packers) checks the schema per
+  type, that every referenced key resolves in every manifest language (bundle content ∪ the
+  surviving hardcoded `PrayerKey` set ∪ merged mystery keys, minus each bundle's explicit
+  `validation-allowlist.json`), that imageKeys exist, and the rosary-type bead invariants. Each
+  platform's `PrayerTranslationsCompletenessTests` mirrors the same checks against the
+  actually-shipped packs and runtime merge, with the same explicit allowlists (currently: the
+  Divine Mercy offering/petition in Hebrew; the Seven Sorrows closing in ar/he/ru/tl).
+- **Discovery**: `customDevotionIds()` returns every loaded bundle id that has a
+  `devotion.json`, **in pack-load order** — the display order everywhere. Home renders the Rosary
+  card first, then one card per discovered bundle (title/accent/icon from the manifest), then the
+  Jesus Prayer last; Favorites renders one star-row per bundle. Nothing in view code hardcodes a
+  devotion name.
+- **Flow UI**: one shared flow surface per platform (iOS `CustomDevotionFlowView`, Android
+  `CustomDevotionFlowScreen`, Windows `CustomDevotionFlowPage`) renders every generic devotion,
+  showing the same bead track as the Rosary whenever any built step carries a `decadeIndex` (the
+  "rosary" type) and a plain progress bar otherwise. The bead track consumes only
+  `decadeIndex`/`hailMaryIndexInDecade`/`isAntiphon`/`hasClosingCross`, which is why the
+  devotion.json invariants above exist.
 
-Scope boundary: this only covers devotions shaped like Angelus/Stations — a flat, fixed list of
-steps. Rosary-shaped devotions (configurable, decade-based, with a bead track) are out of scope
-for genericization; a fully custom Rosary would need a richer bundle schema (e.g. a `beads.json`
-expressive enough to describe decade/bead structure) that doesn't exist yet.
+## Offline "Today" data (`Shared/data/`)
+
+Two dev-time-generated datasets back the Home screen's "Today" section (per-platform physical
+copies, same convention as the bundles; per-platform `TodayInfoStore` providers):
+
+- **`feasts.json`** — a per-day sanctoral table (`days: {"YYYY-MM-DD": {title, rank}}`) for the
+  generated years: the General Roman Calendar (fetched from the litcal API at generation time,
+  movable feasts baked in per year — no computus or precedence logic ships in the app) overlaid
+  with the Latin Patriarchate of Jerusalem's documented propers (Our Lady, Queen of Palestine and
+  of the Holy Land — Oct 25, patronal solemnity; the Dedication of the Basilica of the Holy
+  Sepulchre — Jul 15; Saint Mary of Jesus Crucified Baouardy — Aug 26). Ferial days have no
+  entry.
+- **`pope-intentions.json`** — the Pope's Worldwide Prayer Network monthly intentions
+  (`months: {"YYYY-MM": {title, text}}`), from popesprayer.va.
+
+A date/month outside the datasets returns nothing and the row simply hides — regenerating the
+JSON (roughly yearly) is the only maintenance.
