@@ -12,7 +12,14 @@ enum class MysterySelectionMode {
     FifteenMystery,
 
     /** All 20 mysteries in one session, in the chronological order of Christ's life: Joyful, Luminous, Sorrowful, Glorious. */
-    TwentyMystery;
+    TwentyMystery,
+
+    /** Pray exactly one specific mystery (one decade) — see [RosaryOptions.specificMysteryOrder].
+     * Added last, not grouped with [Specific] above: Windows persists this enum by raw integer
+     * ordinal (not name), so inserting a case earlier would silently reassign the stored values
+     * of every case after it for existing saved favorites. Keep new cases appended here even
+     * though iOS/Android's own storage (name-keyed) wouldn't require it. */
+    SingleMystery;
 
     val displayName: String
         get() = when (this) {
@@ -20,5 +27,6 @@ enum class MysterySelectionMode {
             Specific -> "Always a Specific Set"
             FifteenMystery -> "The 15 Mysteries (Joyful, Sorrowful, Glorious)"
             TwentyMystery -> "The 20 Mysteries (All Four Sets)"
+            SingleMystery -> "One Mystery Only"
         }
 }

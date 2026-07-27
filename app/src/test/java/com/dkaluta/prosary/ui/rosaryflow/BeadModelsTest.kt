@@ -75,4 +75,23 @@ class BeadModelsTest {
             layout.groupColumns.map { it.group },
         )
     }
+
+    /** Presenter mode collapses each decade's 10 Hail Marys + Glory Be into one step carrying
+     * hailMaryIndexInDecade = 10 specifically so the bead track still shows the traditional
+     * 10-bead-per-decade look (beads 1-9 completed, bead 10 current) instead of collapsing to a
+     * single bead — see PrayerEngine.buildRosarySteps' presenter-mode branch. This is the crux of
+     * that design decision, even though BeadLayout itself needed no code changes to support it. */
+    @Test
+    fun presenterModeStepStillShowsTenTraditionalBottomBeads() {
+        val steps = PrayerEngine().buildSteps(Prayer(rosary = RosaryOptions(presenterMode = true)))
+        val currentIndex = steps.indexOfFirst { it.title == "Hail Mary & Glory Be" && it.decadeIndex == 0 }
+        val layout = BeadLayout.build(steps, currentIndex = currentIndex, hasClosingCross = true)
+
+        assertTrue(layout.showBottomBeads)
+        assertEquals(10, layout.bottomBeads.size)
+        for (i in 0 until 9) {
+            assertEquals(BeadState.Completed, layout.bottomBeads[i].state)
+        }
+        assertEquals(BeadState.Current, layout.bottomBeads[9].state)
+    }
 }

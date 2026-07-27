@@ -64,7 +64,7 @@ class PrayerEngine(
     /** Resolves which mystery group(s) a prayer's Rosary options point to, in the order they
      * should be prayed. */
     fun resolveMysteryGroups(prayer: Prayer): List<MysteryGroup> = when (prayer.rosary.mysterySelectionMode) {
-        MysterySelectionMode.Specific -> listOf(prayer.rosary.specificMysteryGroup)
+        MysterySelectionMode.Specific, MysterySelectionMode.SingleMystery -> listOf(prayer.rosary.specificMysteryGroup)
         MysterySelectionMode.FifteenMystery -> listOf(MysteryGroup.Joyful, MysteryGroup.Sorrowful, MysteryGroup.Glorious)
         MysterySelectionMode.TwentyMystery ->
             listOf(MysteryGroup.Joyful, MysteryGroup.Luminous, MysteryGroup.Sorrowful, MysteryGroup.Glorious)
@@ -99,30 +99,58 @@ class PrayerEngine(
 
         for (group in groups) {
             val mysteries = MysteryCatalog.forGroup(group)
+            val indices = if (options.mysterySelectionMode == MysterySelectionMode.SingleMystery) {
+                listOf(options.specificMysteryOrder - 1)
+            } else {
+                mysteries.indices.toList()
+            }
 
-            for ((d, mystery) in mysteries.withIndex()) {
+            for (d in indices) {
+                val mystery = mysteries[d]
                 val mysteryText = MysteryTranslations.get(lang, mystery.imageKey)
                 val ordinalLabel = if (showGroupName) "${group.displayName} — ${ordinals[d]} Mystery" else "${ordinals[d]} Mystery"
                 val thisDecade = decadeIndex
-
-                steps.addAll(
-                    buildDecadeSteps(
-                        decadeIndex = thisDecade,
-                        announcementTitle = mysteryText.title, ordinalLabel = ordinalLabel,
-                        announcementBody = "${mysteryText.description}\n\n$fruitLabel: ${mysteryText.fruit}",
-                        mystery = mystery, decadeImageKey = null, isScripture = true,
-                        ourFatherImageKey = "our_father", hailMarysPerDecade = 10, languageCode = lang,
-                    ),
-                )
-
                 val decadeSubtitle = "$ordinalLabel — ${mysteryText.title}"
 
-                steps.add(
-                    RosaryStep(
-                        title = "Glory Be", subtitle = decadeSubtitle, body = text(PrayerKey.GloriaPatri),
-                        decadeIndex = thisDecade, imageOverrideKey = "glory_be",
-                    ),
-                )
+                if (options.presenterMode) {
+                    steps.add(
+                        RosaryStep(
+                            title = mysteryText.title, subtitle = ordinalLabel,
+                            body = "${mysteryText.description}\n\n$fruitLabel: ${mysteryText.fruit}",
+                            mystery = mystery, isScripture = true, decadeIndex = thisDecade,
+                        ),
+                    )
+                    steps.add(
+                        RosaryStep(
+                            title = "Our Father", subtitle = decadeSubtitle, body = text(PrayerKey.PaterNoster),
+                            decadeIndex = thisDecade, imageOverrideKey = "our_father",
+                        ),
+                    )
+                    steps.add(
+                        RosaryStep(
+                            title = "Hail Mary & Glory Be", subtitle = decadeSubtitle,
+                            body = "${text(PrayerKey.AveMaria)}\n\n${text(PrayerKey.GloriaPatri)}",
+                            mystery = mystery, decadeIndex = thisDecade, hailMaryIndexInDecade = 10,
+                        ),
+                    )
+                } else {
+                    steps.addAll(
+                        buildDecadeSteps(
+                            decadeIndex = thisDecade,
+                            announcementTitle = mysteryText.title, ordinalLabel = ordinalLabel,
+                            announcementBody = "${mysteryText.description}\n\n$fruitLabel: ${mysteryText.fruit}",
+                            mystery = mystery, decadeImageKey = null, isScripture = true,
+                            ourFatherImageKey = "our_father", hailMarysPerDecade = 10, languageCode = lang,
+                        ),
+                    )
+
+                    steps.add(
+                        RosaryStep(
+                            title = "Glory Be", subtitle = decadeSubtitle, body = text(PrayerKey.GloriaPatri),
+                            decadeIndex = thisDecade, imageOverrideKey = "glory_be",
+                        ),
+                    )
+                }
 
                 if (options.includeFatimaPrayer) {
                     steps.add(

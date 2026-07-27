@@ -35,6 +35,9 @@ data class PresetEntity(
     // Rosary-specific fields (populated when kind == Rosary)
     val mysterySelectionMode: String = MysterySelectionMode.TodaysMysteries.name,
     val specificMysteryGroup: String = MysteryGroup.Joyful.name,
+    // 1-based index into MysteryCatalog.forGroup(specificMysteryGroup); used only when
+    // mysterySelectionMode is SingleMystery. Defaults to 1 for existing rows.
+    val specificMysteryOrder: Int = 1,
     val includeApostlesCreed: Boolean = true,
     val includeOpeningPrayers: Boolean = true,
     val includeFatimaPrayers: Boolean = true,
@@ -42,6 +45,8 @@ data class PresetEntity(
     val marianAntiphon: String = MarianAntiphonOption.Seasonal.name,
     val includeStMichaelPrayer: Boolean = false,
     val includeFinalSignOfCross: Boolean = true,
+    // Defaults to false for existing rows.
+    val presenterMode: Boolean = false,
 
     // Jesus Prayer-specific fields (populated when kind == JesusPrayer)
     val jesusPrayerIsUnbounded: Boolean = false,
@@ -63,6 +68,7 @@ data class PresetEntity(
                     .getOrDefault(MysterySelectionMode.TodaysMysteries),
                 specificMysteryGroup = runCatching { MysteryGroup.valueOf(specificMysteryGroup) }
                     .getOrDefault(MysteryGroup.Joyful),
+                specificMysteryOrder = specificMysteryOrder,
                 includeApostlesCreed = includeApostlesCreed,
                 includeOpeningPrayers = includeOpeningPrayers,
                 includeFatimaPrayer = includeFatimaPrayers,
@@ -72,6 +78,7 @@ data class PresetEntity(
                     .getOrDefault(MarianAntiphonOption.Seasonal),
                 includeStMichaelPrayer = includeStMichaelPrayer,
                 includeFinalSignOfCross = includeFinalSignOfCross,
+                presenterMode = presenterMode,
             ),
             jesusPrayer = JesusPrayerOptions(target = target),
             reminders = remindersFromJson(remindersJson),
@@ -92,6 +99,7 @@ data class PresetEntity(
                 kind = prayer.kind.name,
                 mysterySelectionMode = prayer.rosary.mysterySelectionMode.name,
                 specificMysteryGroup = prayer.rosary.specificMysteryGroup.name,
+                specificMysteryOrder = prayer.rosary.specificMysteryOrder,
                 includeApostlesCreed = prayer.rosary.includeApostlesCreed,
                 includeOpeningPrayers = prayer.rosary.includeOpeningPrayers,
                 includeFatimaPrayers = prayer.rosary.includeFatimaPrayer,
@@ -99,6 +107,7 @@ data class PresetEntity(
                 marianAntiphon = prayer.rosary.marianAntiphon.name,
                 includeStMichaelPrayer = prayer.rosary.includeStMichaelPrayer,
                 includeFinalSignOfCross = prayer.rosary.includeFinalSignOfCross,
+                presenterMode = prayer.rosary.presenterMode,
                 jesusPrayerIsUnbounded = isUnbounded,
                 jesusPrayerCount = count,
                 remindersJson = remindersToJson(prayer.reminders),

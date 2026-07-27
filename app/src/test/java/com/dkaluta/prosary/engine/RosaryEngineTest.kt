@@ -30,6 +30,7 @@ class RosaryEngineTest {
     private fun prayer(
         group: MysteryGroup = MysteryGroup.Joyful,
         mode: MysterySelectionMode = MysterySelectionMode.Specific,
+        order: Int = 1,
         includeCreed: Boolean = true,
         includeOpening: Boolean = true,
         includeFatima: Boolean = true,
@@ -37,10 +38,12 @@ class RosaryEngineTest {
         antiphon: MarianAntiphonOption = MarianAntiphonOption.SalveRegina,
         includeMichael: Boolean = false,
         includeFinalCross: Boolean = true,
+        presenterMode: Boolean = false,
     ) = Prayer(
         rosary = RosaryOptions(
             mysterySelectionMode = mode,
             specificMysteryGroup = group,
+            specificMysteryOrder = order,
             includeApostlesCreed = includeCreed,
             includeOpeningPrayers = includeOpening,
             includeFatimaPrayer = includeFatima,
@@ -48,6 +51,7 @@ class RosaryEngineTest {
             marianAntiphon = antiphon,
             includeStMichaelPrayer = includeMichael,
             includeFinalSignOfCross = includeFinalCross,
+            presenterMode = presenterMode,
         ),
     )
 
@@ -203,5 +207,80 @@ class RosaryEngineTest {
         val e = PrayerEngine(calendar = FixedCalendar(MysteryGroup.Luminous))
         val p = prayer(mode = MysterySelectionMode.TodaysMysteries)
         assertEquals(listOf(MysteryGroup.Luminous), e.resolveMysteryGroups(p))
+    }
+
+    @Test
+    fun resolveSingleMysteryReturnsOneGroup() {
+        val p = prayer(group = MysteryGroup.Sorrowful, mode = MysterySelectionMode.SingleMystery, order = 3)
+        assertEquals(listOf(MysteryGroup.Sorrowful), engine().resolveMysteryGroups(p))
+    }
+
+    // MARK: - Single Mystery
+
+    @Test
+    fun singleMysteryProducesExactlyOneDecade() {
+        val p = prayer(group = MysteryGroup.Sorrowful, mode = MysterySelectionMode.SingleMystery, order = 3)
+        val steps = engine().buildSteps(p)
+        val decadeIndices = steps.mapNotNull { it.decadeIndex }.toSet()
+        assertEquals(setOf(0), decadeIndices)
+    }
+
+    @Test
+    fun singleMysteryAnnouncesTheChosenMysteryNotTheFirst() {
+        // Mystery announcement titles are translated per-language (unlike fixed prayer titles
+        // like "Our Father"), so this must be pinned explicitly rather than relying on the
+        // app-level default language.
+        val p = prayer(group = MysteryGroup.Sorrowful, mode = MysterySelectionMode.SingleMystery, order = 3).copy(languageCode = "en")
+        val steps = engine().buildSteps(p)
+        val announcement = steps.first { it.isScripture }
+        // 3rd Sorrowful Mystery is the Crowning with Thorns, not the 1st (Agony in the Garden).
+        assertEquals("The Crowning with Thorns", announcement.title)
+        assertEquals("3rd Mystery", announcement.subtitle)
+    }
+
+    // MARK: - Presenter Mode
+
+    @Test
+    fun presenterModeOffReproducesExistingStepCount() {
+        val steps = engine().buildSteps(prayer(presenterMode = false))
+        assertEquals(79, steps.size)
+    }
+
+    @Test
+    fun presenterModeCollapsesHailMaryAndGloryBeIntoOneStepPerDecade() {
+        val steps = engine().buildSteps(prayer(presenterMode = true))
+
+        for (d in 0 until 5) {
+            val hailMarySteps = steps.filter { it.decadeIndex == d && it.hailMaryIndexInDecade != null }
+            assertEquals(1, hailMarySteps.size)
+            assertEquals(10, hailMarySteps.first().hailMaryIndexInDecade)
+            assertEquals("Hail Mary & Glory Be", hailMarySteps.first().title)
+        }
+    }
+
+    @Test
+    fun presenterModeCombinedStepBodyContainsBothPrayers() {
+        val p = prayer(presenterMode = true).copy(languageCode = "en")
+        val steps = engine().buildSteps(p)
+        val combined = steps.first { it.title == "Hail Mary & Glory Be" }
+        assertTrue(combined.body.contains("Hail Mary, full of grace"))
+        assertTrue(combined.body.contains("Glory be to the Father"))
+    }
+
+    @Test
+    fun presenterModeStillIncludesFatimaPrayerPerDecade() {
+        val steps = engine().buildSteps(prayer(includeFatima = true, presenterMode = true))
+        assertEquals(5, steps.count { it.title == "Fatima Prayer" })
+    }
+
+    @Test
+    fun presenterModeKeepsAnnouncementAndOurFatherAsSeparateSteps() {
+        val steps = engine().buildSteps(prayer(presenterMode = true))
+        val decadeZeroSteps = steps.filter { it.decadeIndex == 0 }
+        // Announcement, Our Father, Hail Mary & Glory Be, Fatima Prayer = 4 (default config includes Fatima).
+        assertEquals(4, decadeZeroSteps.size)
+        assertTrue(decadeZeroSteps[0].isScripture)
+        assertEquals("Our Father", decadeZeroSteps[1].title)
+        assertEquals("Hail Mary & Glory Be", decadeZeroSteps[2].title)
     }
 }

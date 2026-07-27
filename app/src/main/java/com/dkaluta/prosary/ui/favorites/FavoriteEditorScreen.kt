@@ -36,11 +36,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.dkaluta.prosary.content.MysteryTranslations
 import com.dkaluta.prosary.models.EternalRestPlacement
 import com.dkaluta.prosary.models.JesusPrayerOptions
 import com.dkaluta.prosary.models.JesusPrayerTarget
 import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.MarianAntiphonOption
+import com.dkaluta.prosary.models.MysteryCatalog
 import com.dkaluta.prosary.models.MysteryGroup
 import com.dkaluta.prosary.models.MysterySelectionMode
 import com.dkaluta.prosary.models.Prayer
@@ -166,13 +168,27 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
                         onSelect = { prayer = prayer.copy(rosary = prayer.rosary.copy(mysterySelectionMode = it)) },
                         modifier = Modifier.fillMaxWidth(),
                     )
-                    if (prayer.rosary.mysterySelectionMode == MysterySelectionMode.Specific) {
+                    if (prayer.rosary.mysterySelectionMode == MysterySelectionMode.Specific ||
+                        prayer.rosary.mysterySelectionMode == MysterySelectionMode.SingleMystery
+                    ) {
                         OptionPickerField(
                             label = "Specific set",
                             options = MysteryGroup.entries,
                             selected = prayer.rosary.specificMysteryGroup,
                             optionLabel = { it.displayName },
                             onSelect = { prayer = prayer.copy(rosary = prayer.rosary.copy(specificMysteryGroup = it)) },
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                    }
+                    if (prayer.rosary.mysterySelectionMode == MysterySelectionMode.SingleMystery) {
+                        val mysteries = MysteryCatalog.forGroup(prayer.rosary.specificMysteryGroup)
+                        val selectedMystery = mysteries.firstOrNull { it.order == prayer.rosary.specificMysteryOrder } ?: mysteries.first()
+                        OptionPickerField(
+                            label = "Which mystery",
+                            options = mysteries,
+                            selected = selectedMystery,
+                            optionLabel = { MysteryTranslations.get(languageCode = "en", imageKey = it.imageKey).title },
+                            onSelect = { prayer = prayer.copy(rosary = prayer.rosary.copy(specificMysteryOrder = it.order)) },
                             modifier = Modifier.fillMaxWidth(),
                         )
                     }
@@ -195,6 +211,17 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
                         optionLabel = { it.displayName },
                         onSelect = { prayer = prayer.copy(rosary = prayer.rosary.copy(eternalRestForDeceased = it)) },
                         modifier = Modifier.fillMaxWidth(),
+                    )
+                }
+
+                FormSection(title = "Display") {
+                    SwitchRow("Presenter Mode", prayer.rosary.presenterMode) {
+                        prayer = prayer.copy(rosary = prayer.rosary.copy(presenterMode = it))
+                    }
+                    Text(
+                        "Combine each decade's Hail Marys and Glory Be onto one screen — useful when leading a group aloud from memory.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
 
