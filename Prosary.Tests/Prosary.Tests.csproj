@@ -22,4 +22,13 @@
     <ProjectReference Include="..\Prosary\Prosary.csproj" />
   </ItemGroup>
 
+  <!-- Copied into this project's own output too (not just Prosary.csproj's) so
+       PrayerPackLoaderTests can open the real bundled .prosaryprayer files via
+       AppContext.BaseDirectory exactly like App.xaml.cs does at runtime. -->
+  <ItemGroup>
+    <Content Include="..\Prosary\PrayerPacks\*.prosaryprayer" LinkBase="PrayerPacks">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

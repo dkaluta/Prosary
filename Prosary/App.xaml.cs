@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
+using Prosary.Localization;
 using Prosary.Persistence;
 using Prosary.Services;
 using Prosary.ViewModels;
@@ -28,6 +29,12 @@ public partial class App : Application
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
         Services = ConfigureServices();
+
+        PrayerPackStore.Initialize(packName =>
+        {
+            var path = Path.Combine(AppContext.BaseDirectory, "PrayerPacks", $"{packName}.prosaryprayer");
+            return File.Exists(path) ? File.OpenRead(path) : null;
+        });
 
         MainWindow = new MainWindow();
         MainWindow.Activate();

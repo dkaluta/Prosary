@@ -60,6 +60,18 @@
     </Content>
   </ItemGroup>
 
+  <!-- .prosaryprayer content bundles (see Shared/ARCHITECTURE.md's "Content bundles" section) —
+       built by Shared/tools/make-prosaryprayer.sh from Shared/content/, physical copies committed
+       here for the same reason as Assets\Fonts\Images above. Copied to the output/install
+       directory as plain files (read via AppContext.BaseDirectory in App.xaml.cs, not the
+       ms-appx:// virtual filesystem scheme, since PrayerPackStore needs a real Stream to read
+       the zip archive from). -->
+  <ItemGroup>
+    <Content Include="PrayerPacks\*.prosaryprayer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.250916002" />

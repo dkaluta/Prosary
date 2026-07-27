@@ -27,6 +27,12 @@ public static partial class PrayerTranslations
 
     public static string Get(string? languageCode, string key)
     {
+        if (languageCode is not null)
+        {
+            var packOverride = PrayerPackStore.PrayerOverride(languageCode, key);
+            if (packOverride is not null) return packOverride;
+        }
+
         if (languageCode is not null && ByLanguage.TryGetValue(languageCode, out var table) &&
             table.TryGetValue(key, out var text))
         {

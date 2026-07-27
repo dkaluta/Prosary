@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Prosary.Localization;
 using Prosary.Models;
 using Prosary.Navigation;
 using Prosary.Persistence;
@@ -110,9 +111,9 @@ public partial class SevenSorrowsViewModel : ObservableObject, IPrayerStepFlowVi
     [ObservableProperty]
     private Guid? _matchingFavoriteId;
 
-    public string MysteryImageFile => MysteryImageKey == "cross_placeholder"
+    public string MysteryImageFile => PrayerPackStore.ImageFileUri(MysteryImageKey) ?? (MysteryImageKey == "cross_placeholder"
         ? "ms-appx:///Assets/Images/cross_placeholder.png"
-        : $"ms-appx:///Assets/Images/{MysteryImageKey}.jpg";
+        : $"ms-appx:///Assets/Images/{MysteryImageKey}.jpg");
 
     public string NextButtonText => IsLastStep ? "Finish" : "Next";
 
