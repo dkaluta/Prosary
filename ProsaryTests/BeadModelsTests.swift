@@ -63,4 +63,22 @@ final class BeadModelsTests: XCTestCase {
     XCTAssertEqual(layout.groupColumns.count, 4)
     XCTAssertEqual(layout.groupColumns.map(\.group), [.joyful, .luminous, .sorrowful, .glorious])
   }
+
+  /// Presenter mode collapses each decade's 10 Hail Marys + Glory Be into one step carrying
+  /// `hailMaryIndexInDecade: 10` specifically so the bead track still shows the traditional
+  /// 10-bead-per-decade look (beads 1-9 completed, bead 10 current) instead of collapsing to a
+  /// single bead — see PrayerEngine.buildRosarySteps' presenter-mode branch. This is the crux of
+  /// that design decision, even though BeadLayout itself needed no code changes to support it.
+  func testPresenterModeStepStillShowsTenTraditionalBottomBeads() {
+    let steps = PrayerEngine().buildSteps(for: Prayer(rosary: RosaryOptions(presenterMode: true)))
+    let currentIndex = steps.firstIndex { $0.title == "Hail Mary & Glory Be" && $0.decadeIndex == 0 }!
+    let layout = BeadLayout.build(steps: steps, currentIndex: currentIndex, hasClosingCross: true)
+
+    XCTAssertTrue(layout.showBottomBeads)
+    XCTAssertEqual(layout.bottomBeads.count, 10)
+    for i in 0..<9 {
+      XCTAssertEqual(layout.bottomBeads[i].state, .completed)
+    }
+    XCTAssertEqual(layout.bottomBeads[9].state, .current)
+  }
 }

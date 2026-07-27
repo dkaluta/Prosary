@@ -64,7 +64,7 @@ struct PrayerEngine {
 
   func resolveMysteryGroups(for prayer: Prayer) -> [MysteryGroup] {
     switch prayer.rosary.mysterySelectionMode {
-    case .specific:
+    case .specific, .singleMystery:
       return [prayer.rosary.specificMysteryGroup]
     case .fifteenMystery:
       return [.joyful, .sorrowful, .glorious]
@@ -105,23 +105,40 @@ struct PrayerEngine {
 
     for group in groups {
       let mysteries = MysteryCatalog.forGroup(group)
+      let indices = rosary.mysterySelectionMode == .singleMystery
+        ? [rosary.specificMysteryOrder - 1]
+        : Array(mysteries.indices)
 
-      for (d, mystery) in mysteries.enumerated() {
+      for d in indices {
+        let mystery = mysteries[d]
         let mysteryText = MysteryTranslations.get(languageCode: lang, imageKey: mystery.imageKey)
         let ordinalLabel = showGroupName ? "\(group.displayName) — \(Self.ordinals[d]) Mystery" : "\(Self.ordinals[d]) Mystery"
-
-        steps.append(contentsOf: buildDecadeSteps(
-          decadeIndex: decadeIndex,
-          announcementTitle: mysteryText.title, ordinalLabel: ordinalLabel,
-          announcementBody: "\(mysteryText.description)\n\n\(fruitLabel): \(mysteryText.fruit)",
-          mystery: mystery, decadeImageKey: nil, isScripture: true,
-          ourFatherImageKey: "our_father", hailMarysPerDecade: 10, languageCode: lang))
-
         let decadeSubtitle = "\(ordinalLabel) — \(mysteryText.title)"
 
-        steps.append(RosaryStep(
-          title: "Glory Be", subtitle: decadeSubtitle, body: text(.gloriaPatri),
-          decadeIndex: decadeIndex, imageOverrideKey: "glory_be"))
+        if rosary.presenterMode {
+          steps.append(RosaryStep(
+            title: mysteryText.title, subtitle: ordinalLabel,
+            body: "\(mysteryText.description)\n\n\(fruitLabel): \(mysteryText.fruit)",
+            mystery: mystery, isScripture: true, decadeIndex: decadeIndex))
+          steps.append(RosaryStep(
+            title: "Our Father", subtitle: decadeSubtitle, body: text(.paterNoster),
+            decadeIndex: decadeIndex, imageOverrideKey: "our_father"))
+          steps.append(RosaryStep(
+            title: "Hail Mary & Glory Be", subtitle: decadeSubtitle,
+            body: "\(text(.aveMaria))\n\n\(text(.gloriaPatri))",
+            mystery: mystery, decadeIndex: decadeIndex, hailMaryIndexInDecade: 10))
+        } else {
+          steps.append(contentsOf: buildDecadeSteps(
+            decadeIndex: decadeIndex,
+            announcementTitle: mysteryText.title, ordinalLabel: ordinalLabel,
+            announcementBody: "\(mysteryText.description)\n\n\(fruitLabel): \(mysteryText.fruit)",
+            mystery: mystery, decadeImageKey: nil, isScripture: true,
+            ourFatherImageKey: "our_father", hailMarysPerDecade: 10, languageCode: lang))
+
+          steps.append(RosaryStep(
+            title: "Glory Be", subtitle: decadeSubtitle, body: text(.gloriaPatri),
+            decadeIndex: decadeIndex, imageOverrideKey: "glory_be"))
+        }
 
         if rosary.includeFatimaPrayer {
           steps.append(RosaryStep(

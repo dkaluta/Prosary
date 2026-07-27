@@ -26,6 +26,9 @@ final class PresetEntry {
   // Rosary-specific fields (populated when kind == "rosary")
   var mysterySelectionMode: MysterySelectionMode = MysterySelectionMode.todaysMysteries
   var specificMysteryGroup: MysteryGroup = MysteryGroup.joyful
+  // 1-based index into MysteryCatalog.forGroup(specificMysteryGroup); used only when
+  // mysterySelectionMode is .singleMystery. Default 1 handles existing rows.
+  var specificMysteryOrder: Int = 1
   var includeApostlesCreed: Bool = true
   var includeOpeningPrayers: Bool = true
   var includeFatimaPrayers: Bool = true
@@ -33,6 +36,8 @@ final class PresetEntry {
   var marianAntiphon: MarianAntiphonOption = MarianAntiphonOption.seasonal
   var includeStMichaelPrayer: Bool = false
   var includeFinalSignOfCross: Bool = true
+  // Default false handles existing rows.
+  var presenterMode: Bool = false
 
   // Jesus Prayer-specific fields (populated when kind == "jesusPrayer")
   var jesusPrayerIsUnbounded: Bool = false
@@ -50,6 +55,7 @@ final class PresetEntry {
 
     mysterySelectionMode = prayer.rosary.mysterySelectionMode
     specificMysteryGroup = prayer.rosary.specificMysteryGroup
+    specificMysteryOrder = prayer.rosary.specificMysteryOrder
     includeApostlesCreed = prayer.rosary.includeApostlesCreed
     includeOpeningPrayers = prayer.rosary.includeOpeningPrayers
     includeFatimaPrayers = prayer.rosary.includeFatimaPrayer
@@ -57,6 +63,7 @@ final class PresetEntry {
     marianAntiphon = prayer.rosary.marianAntiphon
     includeStMichaelPrayer = prayer.rosary.includeStMichaelPrayer
     includeFinalSignOfCross = prayer.rosary.includeFinalSignOfCross
+    presenterMode = prayer.rosary.presenterMode
 
     if case .count(let n) = prayer.jesusPrayer.target {
       jesusPrayerIsUnbounded = false
@@ -77,6 +84,7 @@ final class PresetEntry {
 
     mysterySelectionMode = prayer.rosary.mysterySelectionMode
     specificMysteryGroup = prayer.rosary.specificMysteryGroup
+    specificMysteryOrder = prayer.rosary.specificMysteryOrder
     includeApostlesCreed = prayer.rosary.includeApostlesCreed
     includeOpeningPrayers = prayer.rosary.includeOpeningPrayers
     includeFatimaPrayers = prayer.rosary.includeFatimaPrayer
@@ -84,6 +92,7 @@ final class PresetEntry {
     marianAntiphon = prayer.rosary.marianAntiphon
     includeStMichaelPrayer = prayer.rosary.includeStMichaelPrayer
     includeFinalSignOfCross = prayer.rosary.includeFinalSignOfCross
+    presenterMode = prayer.rosary.presenterMode
 
     if case .count(let n) = prayer.jesusPrayer.target {
       jesusPrayerIsUnbounded = false
@@ -110,13 +119,15 @@ final class PresetEntry {
       rosary: RosaryOptions(
         mysterySelectionMode: mysterySelectionMode,
         specificMysteryGroup: specificMysteryGroup,
+        specificMysteryOrder: specificMysteryOrder,
         includeApostlesCreed: includeApostlesCreed,
         includeOpeningPrayers: includeOpeningPrayers,
         includeFatimaPrayer: includeFatimaPrayers,
         eternalRestForDeceased: eternalRestForDeceased,
         marianAntiphon: marianAntiphon,
         includeStMichaelPrayer: includeStMichaelPrayer,
-        includeFinalSignOfCross: includeFinalSignOfCross
+        includeFinalSignOfCross: includeFinalSignOfCross,
+        presenterMode: presenterMode
       ),
       jesusPrayer: JesusPrayerOptions(target: jpTarget),
       reminders: (try? JSONDecoder().decode([PrayerReminder].self, from: remindersJSON)) ?? []

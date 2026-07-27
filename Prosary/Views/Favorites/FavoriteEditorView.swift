@@ -49,10 +49,17 @@ struct FavoriteEditorView: View {
               Text(mode.displayName).tag(mode)
             }
           }
-          if prayer.rosary.mysterySelectionMode == .specific {
+          if prayer.rosary.mysterySelectionMode == .specific || prayer.rosary.mysterySelectionMode == .singleMystery {
             Picker("favoriteEditor.specificSet", selection: $prayer.rosary.specificMysteryGroup) {
               ForEach(MysteryGroup.allCases) { group in
                 Text(group.displayName).tag(group)
+              }
+            }
+          }
+          if prayer.rosary.mysterySelectionMode == .singleMystery {
+            Picker("favoriteEditor.specificMystery", selection: $prayer.rosary.specificMysteryOrder) {
+              ForEach(MysteryCatalog.forGroup(prayer.rosary.specificMysteryGroup)) { mystery in
+                Text(MysteryTranslations.get(languageCode: "en", imageKey: mystery.imageKey).title).tag(mystery.order)
               }
             }
           }
@@ -67,6 +74,14 @@ struct FavoriteEditorView: View {
               Text(option.displayName).tag(option)
             }
           }
+        }
+
+        Section {
+          Toggle("favoriteEditor.presenterMode", isOn: $prayer.rosary.presenterMode)
+        } header: {
+          Text("favoriteEditor.presenterModeHeader")
+        } footer: {
+          Text("favoriteEditor.presenterModeFooter")
         }
 
         Section("favoriteEditor.closingPrayers") {
