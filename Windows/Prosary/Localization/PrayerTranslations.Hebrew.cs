@@ -118,5 +118,9 @@ public static partial class PrayerTranslations
             "שֶׁנַּגִּיעַ לְתִפְאֶרֶת תְּחִיָּתוֹ. בְּשֵׁם יֵשׁוּעַ הַמָּשִׁיחַ אֲדוֹנֵנוּ.",
 
         [PrayerKey.OratioIesu] = "הָאָדוֹן יֵשׁוּעַ הַמָּשִׁיחַ, בֶּן הָאֱלֹהִים, רַחֵם עָלַי הַחוֹטֵא.",
+
+        // The Divine Mercy Chaplet's closing acclamation (a form of the Trisagion) — repeated 3
+        // times at the close of the chaplet. See PrayerEngine.BuildDivineMercySteps.
+        [PrayerKey.DivineMercyClosingAcclamation] = "קָדוֹשׁ הָאֱלֹהִים, קָדוֹשׁ הַגִּבּוֹר, קָדוֹשׁ הַנֶּצְחִי, רַחֵם עָלֵינוּ וְעַל הָעוֹלָם כֻּלוֹ.",
     };
 }

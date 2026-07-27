@@ -17,19 +17,29 @@ public class PrayerTranslationsCompletenessTests
     private static readonly string[] FullyTranslatedLanguages = ["ar", "he", "ru", "tl"];
 
     /// <summary>Keys added during the 4-devotion rollout (Stations of the Cross, Seven Sorrows,
-    /// Divine Mercy Chaplet) that are currently translated only into Latin and English —
-    /// silently falls back to Latin in the other 4 languages via the normal fallback chain, not
-    /// a bug. Kept explicit here so a *new*, unintentional gap still fails
-    /// <see cref="EveryKeyExceptTheKnownAllowlistHasAllSixLanguages"/>.</summary>
-    private static readonly HashSet<string> LatinAndEnglishOnlyPrayerKeys =
-    [
-        PrayerKey.StationsOpeningPrayer, PrayerKey.StationsVersicle, PrayerKey.StationsResponse, PrayerKey.StationsClosingPrayer,
-        PrayerKey.SevenSorrowsVersicle, PrayerKey.SevenSorrowsResponse, PrayerKey.SevenSorrowsCollect,
-        PrayerKey.DivineMercyOffering, PrayerKey.DivineMercyPetition, PrayerKey.DivineMercyClosingAcclamation,
-    ];
+    /// Divine Mercy Chaplet) that are still missing one or more of the 4 non-Latin/English
+    /// languages, mapped to exactly which of those 4 they're still missing — silently falls back
+    /// to Latin for those via the normal fallback chain, not a bug. Kept explicit here so a
+    /// *new*, unintentional gap still fails <see cref="EveryKeyExceptTheKnownAllowlistHasAllSixLanguages"/>,
+    /// and so this map itself goes stale (rather than silently wrong) once a language is filled
+    /// in — see <see cref="AllowlistedPrayerKeysAreStillMissingFromTheExpectedLanguages"/>.</summary>
+    private static readonly Dictionary<string, string[]> PrayerKeysMissingLanguages = new()
+    {
+        [PrayerKey.StationsOpeningPrayer] = ["ar", "he", "ru", "tl"],
+        [PrayerKey.StationsVersicle] = ["ar", "he", "ru", "tl"],
+        [PrayerKey.StationsResponse] = ["ar", "he", "ru", "tl"],
+        [PrayerKey.StationsClosingPrayer] = ["ar", "he", "ru", "tl"],
+        [PrayerKey.SevenSorrowsVersicle] = ["ar", "he", "ru", "tl"],
+        [PrayerKey.SevenSorrowsResponse] = ["ar", "he", "ru", "tl"],
+        [PrayerKey.SevenSorrowsCollect] = ["ar", "he", "ru", "tl"],
+        [PrayerKey.DivineMercyOffering] = ["ar", "he", "ru", "tl"],
+        [PrayerKey.DivineMercyPetition] = ["ar", "he", "ru", "tl"],
+        // Hebrew added by the user directly — see PrayerTranslations.Hebrew.cs.
+        [PrayerKey.DivineMercyClosingAcclamation] = ["ar", "ru", "tl"],
+    };
 
-    /// <summary>Same idea as <see cref="LatinAndEnglishOnlyPrayerKeys"/>, for MysteryTranslations
-    /// — the Seven Sorrows' 7 imageKeys and the Franciscan Crown's one new mystery (Adoration of
+    /// <summary>Same idea as <see cref="PrayerKeysMissingLanguages"/>, for MysteryTranslations —
+    /// the Seven Sorrows' 7 imageKeys and the Franciscan Crown's one new mystery (Adoration of
     /// the Magi; the other 6 Joys reuse existing, fully-translated Rosary mystery content).</summary>
     private static readonly HashSet<string> LatinAndEnglishOnlyMysteryImageKeys =
         [.. SevenSorrowsCatalog.SevenSorrows, "franciscan_04_adoration_of_the_magi"];
@@ -68,31 +78,33 @@ public class PrayerTranslationsCompletenessTests
     [Fact]
     public void EveryKeyExceptTheKnownAllowlistHasAllSixLanguages()
     {
-        foreach (var key in AllPrayerKeys().Where(k => !LatinAndEnglishOnlyPrayerKeys.Contains(k) && !NotYetUsedByAnyDevotion.Contains(k)))
+        foreach (var key in AllPrayerKeys().Where(k => !NotYetUsedByAnyDevotion.Contains(k)))
         {
-            foreach (var language in FullyTranslatedLanguages)
+            var missing = PrayerKeysMissingLanguages.GetValueOrDefault(key, []);
+            foreach (var language in FullyTranslatedLanguages.Where(l => !missing.Contains(l)))
             {
                 var text = PrayerTranslations.ByLanguage[language].GetValueOrDefault(key);
                 Assert.False(
                     string.IsNullOrEmpty(text),
-                    $"{key} missing a {language} translation — if intentional, add it to LatinAndEnglishOnlyPrayerKeys");
+                    $"{key} missing a {language} translation — if intentional, add it to PrayerKeysMissingLanguages");
             }
         }
     }
 
-    /// <summary>Guards the allowlist itself from going stale: if a key gets translated into one
-    /// of the 4 languages, this should start failing as a reminder to remove it from the
-    /// allowlist above rather than leaving a passing-but-inaccurate entry.</summary>
+    /// <summary>Guards the allowlist itself from going stale: if a key gets translated into a
+    /// language still listed as missing for it, this should start failing as a reminder to
+    /// narrow that key's entry in <see cref="PrayerKeysMissingLanguages"/> (or remove it
+    /// entirely) rather than leaving a passing-but-inaccurate entry.</summary>
     [Fact]
     public void AllowlistedPrayerKeysAreStillMissingFromTheExpectedLanguages()
     {
-        foreach (var key in LatinAndEnglishOnlyPrayerKeys)
+        foreach (var (key, missing) in PrayerKeysMissingLanguages)
         {
-            foreach (var language in FullyTranslatedLanguages)
+            foreach (var language in missing)
             {
                 Assert.False(
                     PrayerTranslations.ByLanguage[language].ContainsKey(key),
-                    $"{key} now has a {language} translation — remove it from LatinAndEnglishOnlyPrayerKeys");
+                    $"{key} now has a {language} translation — narrow or remove its entry in PrayerKeysMissingLanguages");
             }
         }
     }
