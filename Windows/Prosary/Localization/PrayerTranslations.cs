@@ -6,7 +6,10 @@ namespace Prosary.Localization;
 /// </summary>
 public static partial class PrayerTranslations
 {
-    private static readonly Dictionary<string, IReadOnlyDictionary<string, string>> ByLanguage;
+    // internal (not private) so Prosary.Tests can verify per-language completeness directly —
+    // see PrayerTranslationsCompletenessTests.cs. Relies on the [InternalsVisibleTo] declared in
+    // Properties/AssemblyInfo.cs.
+    internal static readonly Dictionary<string, IReadOnlyDictionary<string, string>> ByLanguage;
 
     // Static field initializers across the partial-class files (one per language) run in an
     // unspecified order relative to each other. An explicit static constructor is guaranteed to
