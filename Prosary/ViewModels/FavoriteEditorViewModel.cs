@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Prosary.Localization;
 using Prosary.Models;
 using Prosary.Navigation;
 using Prosary.Persistence;
@@ -90,6 +91,15 @@ public partial class FavoriteEditorViewModel : ObservableObject
     [ObservableProperty]
     private JesusPrayerTarget _jesusPrayerTarget = new JesusPrayerTarget.Count(33);
 
+    /// <summary>Drives the same-page "submenu" swap for the 4 Rosary-specific sections (see
+    /// FavoriteEditorPage.xaml) — not a separate Frame-navigated Page, since every other page in
+    /// this app resolves its own ViewModel fresh from DI rather than sharing a live instance
+    /// across pages, and these sections' state already lives directly on this ViewModel's flat
+    /// properties (unlike iOS/Android, which bind a nested RosaryOptions object a sub-screen can
+    /// take by reference/binding).</summary>
+    [ObservableProperty]
+    private bool _showingRosaryOptions;
+
     public RemindersEditorViewModel RemindersEditor { get; } = new();
 
     public string Title => IsNew ? "New Favorite" : "Edit Favorite";
@@ -98,6 +108,20 @@ public partial class FavoriteEditorViewModel : ObservableObject
     public bool IsJesusPrayer => Kind == PrayerKind.JesusPrayer;
     public bool IsSpecificMysteryGroup => MysterySelectionMode is MysterySelectionMode.Specific or MysterySelectionMode.SingleMystery;
     public bool IsSingleMystery => MysterySelectionMode == MysterySelectionMode.SingleMystery;
+
+    /// <summary>Preview text for the "Rosary Options" row that opens the submenu — mirrors
+    /// <see cref="RosaryOptions.MysterySelectionSummary"/>, computed from this ViewModel's own
+    /// flat properties rather than a <see cref="RosaryOptions"/> instance (this ViewModel doesn't
+    /// hold one directly; see <see cref="BuildPrayer"/>).</summary>
+    public string MysterySelectionSummary => MysterySelectionMode switch
+    {
+        MysterySelectionMode.Specific => $"Always {SpecificMysteryGroup}",
+        MysterySelectionMode.SingleMystery => $"Only {(SelectedMystery is { } m ? MysteryTranslations.Get("en", m.ImageKey).Title : SpecificMysteryGroup.ToString())}",
+        MysterySelectionMode.FifteenMystery => "The 15 Mysteries",
+        MysterySelectionMode.TwentyMystery => "The 20 Mysteries",
+        MysterySelectionMode.TodaysMysteries => "Today's Mysteries",
+        _ => throw new ArgumentOutOfRangeException(nameof(MysterySelectionMode)),
+    };
 
     /// <summary>The 5 mysteries of <see cref="SpecificMysteryGroup"/>, for the "Which mystery"
     /// ComboBox shown only when <see cref="IsSingleMystery"/>.</summary>
@@ -210,6 +234,7 @@ public partial class FavoriteEditorViewModel : ObservableObject
     {
         OnPropertyChanged(nameof(IsSpecificMysteryGroup));
         OnPropertyChanged(nameof(IsSingleMystery));
+        OnPropertyChanged(nameof(MysterySelectionSummary));
     }
 
     /// <summary>Resets the "Which mystery" selection to the new group's first mystery — otherwise
@@ -218,8 +243,17 @@ public partial class FavoriteEditorViewModel : ObservableObject
     partial void OnSpecificMysteryGroupChanged(MysteryGroup value)
     {
         OnPropertyChanged(nameof(MysteryOptions));
+        OnPropertyChanged(nameof(MysterySelectionSummary));
         SelectedMystery = MysteryOptions.FirstOrDefault();
     }
+
+    partial void OnSelectedMysteryChanged(Mystery? value) => OnPropertyChanged(nameof(MysterySelectionSummary));
+
+    [RelayCommand]
+    private void ShowRosaryOptions() => ShowingRosaryOptions = true;
+
+    [RelayCommand]
+    private void HideRosaryOptions() => ShowingRosaryOptions = false;
 
     [RelayCommand]
     private async Task SaveAsync()
