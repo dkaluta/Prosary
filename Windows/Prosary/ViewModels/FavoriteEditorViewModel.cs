@@ -195,7 +195,6 @@ public partial class FavoriteEditorViewModel : ObservableObject
         IncludeFinalSignOfCross = prayer.Rosary.IncludeFinalSignOfCross;
         PresenterMode = prayer.Rosary.PresenterMode;
         JesusPrayerTarget = prayer.JesusPrayer.Target;
-        RemindersEditor.Kind = prayer.Kind;
         RemindersEditor.Reminders = new ObservableCollection<PrayerReminder>(prayer.Reminders);
     }
 

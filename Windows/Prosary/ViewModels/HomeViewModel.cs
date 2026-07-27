@@ -8,20 +8,17 @@ using Prosary.Navigation;
 using Prosary.Persistence;
 using Prosary.Services;
 using Prosary.Views;
-using Microsoft.UI;
+using Microsoft.UI.Xaml;
 using Windows.UI;
 
 namespace Prosary.ViewModels;
 
 /// <summary>
-/// One devotion's rendering state for a Home card. Adding a new devotion means adding one entry
-/// to <see cref="HomeViewModel.DevotionCards"/> — the accent/subtitle/launch logic for each kind
-/// can still be as bespoke as it needs to be (e.g. Rosary's mystery-of-the-day accent color), but
-/// <c>HomePage.xaml</c> itself no longer hand-rolls a <c>PrayerCard</c> element per kind.
+/// One devotion's rendering state for a Home card. See <see cref="HomeViewModel.DevotionCards"/>.
 /// </summary>
 public partial class DevotionCardModel : ObservableObject
 {
-    public required PrayerKind Kind { get; init; }
+    public required string Id { get; init; }
     public required string Title { get; init; }
     public required string IconGlyph { get; init; }
     public required ICommand Command { get; init; }
@@ -30,17 +27,17 @@ public partial class DevotionCardModel : ObservableObject
     private string _subtitle = string.Empty;
 
     [ObservableProperty]
-    private Color _accentColor = Colors.Gray;
+    private Color _accentColor = Color.FromArgb(0xFF, 0x80, 0x80, 0x80);
 }
 
 /// <summary>
-/// Drives the Home screen's devotion cards — ported from Android's <c>HomeScreen.kt</c>. Each card
-/// routes straight to its kind-specific flow page when a default favorite of that kind exists
-/// (skipping iOS's generic <c>PrayerDispatchView</c> indirection, per the port plan — this
-/// ViewModel already holds the full <see cref="Prayer"/>, not just an id, so there's nothing for
-/// a dispatch step to resolve), or to that kind's "getting started" surface otherwise (Favorites
-/// for the Rosary, the flow page itself with no favorite for Angelus/Stations, Setup for Jesus
-/// Prayer).
+/// Drives the Home screen's devotion cards — one card per devotion: the Rosary first (the app's
+/// namesake), then every generic (bundle-driven) devotion in pack-load order — icon/title/accent
+/// read from each bundle's own manifest, nothing hardcoded here — and the Jesus Prayer (the
+/// counter-based odd one out) last. Adding a devotion means shipping a bundle; this ViewModel
+/// doesn't change. Each card routes straight to its flow page when a default favorite exists, or
+/// to that devotion's "getting started" surface otherwise (Favorites for the Rosary, the flow
+/// page itself with no favorite for generic devotions, Setup for Jesus Prayer).
 /// </summary>
 public partial class HomeViewModel : ObservableObject
 {
@@ -48,22 +45,11 @@ public partial class HomeViewModel : ObservableObject
     private readonly LiturgicalCalendarService _calendar;
 
     private Prayer? _defaultRosary;
-    private Prayer? _defaultAngelus;
     private Prayer? _defaultJesusPrayer;
-    private Prayer? _defaultStations;
-    private Prayer? _defaultFranciscanCrown;
-    private Prayer? _defaultSevenSorrows;
-    private Prayer? _defaultDivineMercy;
 
-    /// <summary>Default favorite per discovered generic devotion, keyed by bundle id — unlike the
-    /// 7 hardcoded kinds above, a single field per kind doesn't work here since there can be any
-    /// number of generic devotions.</summary>
+    /// <summary>Default favorite per discovered generic devotion, keyed by bundle id.</summary>
     private readonly Dictionary<string, Prayer?> _defaultCustomDevotions = [];
 
-    /// <summary>Custom-devotion cards keyed by bundle id, so <see cref="LoadAsync"/> can update
-    /// each one's subtitle without the <c>Card(PrayerKind)</c> lookup below (which assumes at
-    /// most one card per <see cref="PrayerKind"/> — true for the 7 hardcoded kinds, not for
-    /// <see cref="PrayerKind.Custom"/>, which every generic devotion shares).</summary>
     private readonly Dictionary<string, DevotionCardModel> _customCardsByBundleId = [];
 
     public ObservableCollection<DevotionCardModel> DevotionCards { get; }
@@ -75,18 +61,9 @@ public partial class HomeViewModel : ObservableObject
 
         DevotionCards =
         [
-            new DevotionCardModel { Kind = PrayerKind.Rosary, Title = PrayerKind.Rosary.DisplayName(), IconGlyph = "", Command = OpenRosaryCommand },
-            new DevotionCardModel { Kind = PrayerKind.Angelus, Title = PrayerKind.Angelus.DisplayName(), IconGlyph = "", Command = OpenAngelusCommand },
-            new DevotionCardModel { Kind = PrayerKind.JesusPrayer, Title = PrayerKind.JesusPrayer.DisplayName(), IconGlyph = "", Command = OpenJesusPrayerCommand },
-            new DevotionCardModel { Kind = PrayerKind.StationsOfTheCross, Title = PrayerKind.StationsOfTheCross.DisplayName(), IconGlyph = "", Command = OpenStationsOfTheCrossCommand },
-            new DevotionCardModel { Kind = PrayerKind.FranciscanCrown, Title = PrayerKind.FranciscanCrown.DisplayName(), IconGlyph = "", Command = OpenFranciscanCrownCommand },
-            new DevotionCardModel { Kind = PrayerKind.SevenSorrows, Title = PrayerKind.SevenSorrows.DisplayName(), IconGlyph = "", Command = OpenSevenSorrowsCommand },
-            new DevotionCardModel { Kind = PrayerKind.DivineMercyChaplet, Title = PrayerKind.DivineMercyChaplet.DisplayName(), IconGlyph = "", Command = OpenDivineMercyChapletCommand },
+            new DevotionCardModel { Id = "rosary", Title = PrayerKind.Rosary.DisplayName(), IconGlyph = "", Command = OpenRosaryCommand },
         ];
 
-        // Generic (bundle-driven) devotions — one card per discovered bundle, with no hardcoded
-        // PrayerKind case. Only one exists today (Trisagion); each reads its icon/title/accent
-        // from the bundle's own manifest instead of PrayerKindExtensions.
         foreach (var bundleId in PrayerPackStore.CustomDevotionIds())
         {
             var info = PrayerPackStore.Info(bundleId);
@@ -97,29 +74,51 @@ public partial class HomeViewModel : ObservableObject
 
             var card = new DevotionCardModel
             {
-                Kind = PrayerKind.Custom,
-                Title = info.DisplayName,
+                Id = $"custom.{bundleId}",
+                Title = info.LocalizedDisplayName,
                 IconGlyph = GlyphForSystemName(info.IconSystemName),
-                AccentColor = ColorForHex(info.AccentColorHex) ?? PrayerKind.Custom.AccentColor(),
+                AccentColor = CustomAccent(info),
                 Command = new RelayCommand(() => OpenCustomDevotion(bundleId)),
             };
             _customCardsByBundleId[bundleId] = card;
             DevotionCards.Add(card);
         }
+
+        DevotionCards.Add(new DevotionCardModel
+        {
+            Id = "jesusPrayer", Title = PrayerKind.JesusPrayer.DisplayName(), IconGlyph = "",
+            Command = OpenJesusPrayerCommand,
+        });
     }
 
     /// <summary>Maps a bundle manifest's <c>IconSystemName</c> (an SF Symbol name, the iOS
     /// convention) to the nearest Segoe Fluent Icons glyph — mirrors
-    /// <c>FavoritesViewModel.GlyphForSystemName</c>.</summary>
-    private static string GlyphForSystemName(string? systemName) => systemName switch
+    /// <c>FavoritesViewModel.GlyphForSystemName</c>; see the unverified-codepoint caveat on
+    /// <see cref="PrayerKindExtensions.IconGlyph"/>.</summary>
+    internal static string GlyphForSystemName(string? systemName) => systemName switch
     {
-        "triangle" => "", // FavoriteStar — see the unverified-codepoint caveat on PrayerKindExtensions.IconGlyph
-        _ => "",
+        "bell" => "",        // Ringer
+        "figure.walk" => "", // Walk
+        "crown" => "",       // Crown
+        "drop" => "",        // Drop
+        "sun.max" => "",     // Sunny
+        "triangle" => "",    // Triangle-ish
+        _ => "",             // FavoriteStar
     };
+
+    /// <summary>Accent color for a generic devotion's card, honoring the manifest's light/dark
+    /// pair — read once against the app-level requested theme (Home cards don't live-retheme;
+    /// the page is rebuilt on navigation anyway).</summary>
+    internal static Color CustomAccent(CustomDevotionInfo info)
+    {
+        var isDark = Application.Current.RequestedTheme == ApplicationTheme.Dark;
+        var hex = isDark ? info.AccentColorDarkHex ?? info.AccentColorHex : info.AccentColorHex;
+        return ColorForHex(hex) ?? PrayerKind.Custom.AccentColor();
+    }
 
     /// <summary>Parses a bundle manifest's <c>AccentColorHex</c> (e.g. "#00796B"), or null if
     /// absent/unparseable — callers fall back to a default accent in that case.</summary>
-    private static Color? ColorForHex(string? hex)
+    internal static Color? ColorForHex(string? hex)
     {
         if (string.IsNullOrEmpty(hex) || hex[0] != '#' || (hex.Length != 7 && hex.Length != 9))
         {
@@ -147,18 +146,8 @@ public partial class HomeViewModel : ObservableObject
 
         _defaultRosary = all.FirstOrDefault(p => p.Kind == PrayerKind.Rosary && p.IsDefault)
             ?? all.FirstOrDefault(p => p.Kind == PrayerKind.Rosary);
-        _defaultAngelus = all.FirstOrDefault(p => p.Kind == PrayerKind.Angelus && p.IsDefault)
-            ?? all.FirstOrDefault(p => p.Kind == PrayerKind.Angelus);
         _defaultJesusPrayer = all.FirstOrDefault(p => p.Kind == PrayerKind.JesusPrayer && p.IsDefault)
             ?? all.FirstOrDefault(p => p.Kind == PrayerKind.JesusPrayer);
-        _defaultStations = all.FirstOrDefault(p => p.Kind == PrayerKind.StationsOfTheCross && p.IsDefault)
-            ?? all.FirstOrDefault(p => p.Kind == PrayerKind.StationsOfTheCross);
-        _defaultFranciscanCrown = all.FirstOrDefault(p => p.Kind == PrayerKind.FranciscanCrown && p.IsDefault)
-            ?? all.FirstOrDefault(p => p.Kind == PrayerKind.FranciscanCrown);
-        _defaultSevenSorrows = all.FirstOrDefault(p => p.Kind == PrayerKind.SevenSorrows && p.IsDefault)
-            ?? all.FirstOrDefault(p => p.Kind == PrayerKind.SevenSorrows);
-        _defaultDivineMercy = all.FirstOrDefault(p => p.Kind == PrayerKind.DivineMercyChaplet && p.IsDefault)
-            ?? all.FirstOrDefault(p => p.Kind == PrayerKind.DivineMercyChaplet);
 
         var rosaryParts = new List<string> { $"Today: {todayGroup.DisplayName()}" };
         if (_defaultRosary is { } rosary)
@@ -166,28 +155,13 @@ public partial class HomeViewModel : ObservableObject
             rosaryParts.Add(rosary.Name);
         }
 
-        Card(PrayerKind.Rosary).AccentColor = todayGroup.AccentColor();
-        Card(PrayerKind.Rosary).Subtitle = string.Join(" • ", rosaryParts);
+        Card("rosary").AccentColor = todayGroup.AccentColor();
+        Card("rosary").Subtitle = string.Join(" • ", rosaryParts);
 
-        Card(PrayerKind.Angelus).AccentColor = PrayerKind.Angelus.AccentColor();
-        Card(PrayerKind.Angelus).Subtitle = _defaultAngelus?.Name ?? "Click to pray";
-
-        Card(PrayerKind.JesusPrayer).AccentColor = PrayerKind.JesusPrayer.AccentColor();
-        Card(PrayerKind.JesusPrayer).Subtitle = _defaultJesusPrayer is { } jp
+        Card("jesusPrayer").AccentColor = PrayerKind.JesusPrayer.AccentColor();
+        Card("jesusPrayer").Subtitle = _defaultJesusPrayer is { } jp
             ? $"{jp.Name} • {jp.JesusPrayer.TargetDisplayName}"
             : "Click to set up";
-
-        Card(PrayerKind.StationsOfTheCross).AccentColor = PrayerKind.StationsOfTheCross.AccentColor();
-        Card(PrayerKind.StationsOfTheCross).Subtitle = _defaultStations?.Name ?? "Click to pray";
-
-        Card(PrayerKind.FranciscanCrown).AccentColor = PrayerKind.FranciscanCrown.AccentColor();
-        Card(PrayerKind.FranciscanCrown).Subtitle = _defaultFranciscanCrown?.Name ?? "Click to pray";
-
-        Card(PrayerKind.SevenSorrows).AccentColor = PrayerKind.SevenSorrows.AccentColor();
-        Card(PrayerKind.SevenSorrows).Subtitle = _defaultSevenSorrows?.Name ?? "Click to pray";
-
-        Card(PrayerKind.DivineMercyChaplet).AccentColor = PrayerKind.DivineMercyChaplet.AccentColor();
-        Card(PrayerKind.DivineMercyChaplet).Subtitle = _defaultDivineMercy?.Name ?? "Click to pray";
 
         foreach (var bundleId in _customCardsByBundleId.Keys)
         {
@@ -198,7 +172,7 @@ public partial class HomeViewModel : ObservableObject
         }
     }
 
-    private DevotionCardModel Card(PrayerKind kind) => DevotionCards.First(c => c.Kind == kind);
+    private DevotionCardModel Card(string id) => DevotionCards.First(c => c.Id == id);
 
     private void OpenCustomDevotion(string bundleId)
     {
@@ -220,12 +194,6 @@ public partial class HomeViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void OpenAngelus()
-    {
-        Router.Navigate<AngelusFlowPage>(_defaultAngelus?.Id);
-    }
-
-    [RelayCommand]
     private void OpenJesusPrayer()
     {
         if (_defaultJesusPrayer is { } prayer)
@@ -236,30 +204,6 @@ public partial class HomeViewModel : ObservableObject
         {
             Router.Navigate<JesusPrayerSetupPage>();
         }
-    }
-
-    [RelayCommand]
-    private void OpenStationsOfTheCross()
-    {
-        Router.Navigate<StationsFlowPage>(_defaultStations?.Id);
-    }
-
-    [RelayCommand]
-    private void OpenFranciscanCrown()
-    {
-        Router.Navigate<FranciscanCrownFlowPage>(_defaultFranciscanCrown?.Id);
-    }
-
-    [RelayCommand]
-    private void OpenSevenSorrows()
-    {
-        Router.Navigate<SevenSorrowsFlowPage>(_defaultSevenSorrows?.Id);
-    }
-
-    [RelayCommand]
-    private void OpenDivineMercyChaplet()
-    {
-        Router.Navigate<DivineMercyFlowPage>(_defaultDivineMercy?.Id);
     }
 
     [RelayCommand]

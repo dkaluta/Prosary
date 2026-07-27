@@ -30,6 +30,22 @@ public sealed class SqlitePresetStoreTests : IDisposable
         }
     }
 
+    /// <summary>"One default per kind" is scoped per (Kind, CustomDevotionId) — two different
+    /// generic devotions must not steal each other's default slot.</summary>
+    [Fact]
+    public async Task SaveAsync_NewDefaultOfOneCustomDevotion_DoesNotClearAnotherCustomDevotionsDefault()
+    {
+        var angelus = new Prayer { Name = "A", Kind = PrayerKind.Custom, CustomDevotionId = "angelus", IsDefault = true };
+        await _store.SaveAsync(angelus);
+
+        var trisagion = new Prayer { Name = "T", Kind = PrayerKind.Custom, CustomDevotionId = "trisagion", IsDefault = true };
+        await _store.SaveAsync(trisagion);
+
+        var all = await _store.GetAllAsync();
+        Assert.True(all.Single(p => p.Id == angelus.Id).IsDefault);
+        Assert.True(all.Single(p => p.Id == trisagion.Id).IsDefault);
+    }
+
     [Fact]
     public async Task InitializeAsync_EmptyStore_SeedsOneDefaultRosaryFavorite()
     {
@@ -42,7 +58,7 @@ public sealed class SqlitePresetStoreTests : IDisposable
     [Fact]
     public async Task SaveAsync_NewDefaultOfOneKind_DoesNotClearAnotherKindsDefault()
     {
-        var angelus = new Prayer { Name = "My Angelus", Kind = PrayerKind.Angelus, IsDefault = true };
+        var angelus = new Prayer { Name = "My Angelus", Kind = PrayerKind.Custom, CustomDevotionId = "angelus", IsDefault = true };
         await _store.SaveAsync(angelus);
 
         // Saving a new default Rosary favorite clears the seeded "Classic Rosary"'s default —
@@ -50,7 +66,7 @@ public sealed class SqlitePresetStoreTests : IDisposable
         var rosary = new Prayer { Name = "My Rosary", Kind = PrayerKind.Rosary, IsDefault = true };
         await _store.SaveAsync(rosary);
 
-        var defaultAngelus = await _store.GetDefaultAsync(PrayerKind.Angelus);
+        var defaultAngelus = await _store.GetDefaultAsync(PrayerKind.Custom);
         var defaultRosary = await _store.GetDefaultAsync(PrayerKind.Rosary);
 
         Assert.NotNull(defaultAngelus);
@@ -79,7 +95,7 @@ public sealed class SqlitePresetStoreTests : IDisposable
     [Fact]
     public async Task DeleteAsync_DefaultFavorite_PromotesAnotherOfSameKind_LeavesOtherKindsAlone()
     {
-        var angelus = new Prayer { Name = "My Angelus", Kind = PrayerKind.Angelus, IsDefault = true };
+        var angelus = new Prayer { Name = "My Angelus", Kind = PrayerKind.Custom, CustomDevotionId = "angelus", IsDefault = true };
         await _store.SaveAsync(angelus);
 
         var rosary1 = new Prayer { Name = "Rosary One", Kind = PrayerKind.Rosary, IsDefault = true };
@@ -95,7 +111,7 @@ public sealed class SqlitePresetStoreTests : IDisposable
         Assert.Equal(PrayerKind.Rosary, defaultRosary.Kind);
 
         // The Angelus favorite's default must be completely unaffected by a Rosary-kind deletion.
-        var defaultAngelus = await _store.GetDefaultAsync(PrayerKind.Angelus);
+        var defaultAngelus = await _store.GetDefaultAsync(PrayerKind.Custom);
         Assert.NotNull(defaultAngelus);
         Assert.Equal(angelus.Id, defaultAngelus!.Id);
     }
@@ -110,10 +126,10 @@ public sealed class SqlitePresetStoreTests : IDisposable
     [Fact]
     public async Task GetDefaultAsync_NoneMarkedDefault_ReturnsAFavoriteOfThatKindAnyway()
     {
-        var angelus = new Prayer { Name = "My Angelus", Kind = PrayerKind.Angelus, IsDefault = false };
+        var angelus = new Prayer { Name = "My Angelus", Kind = PrayerKind.Custom, CustomDevotionId = "angelus", IsDefault = false };
         await _store.SaveAsync(angelus);
 
-        var result = await _store.GetDefaultAsync(PrayerKind.Angelus);
+        var result = await _store.GetDefaultAsync(PrayerKind.Custom);
         Assert.NotNull(result);
         Assert.Equal(angelus.Id, result!.Id);
     }

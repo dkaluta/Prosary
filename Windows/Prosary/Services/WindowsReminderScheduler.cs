@@ -34,7 +34,7 @@ public sealed class WindowsReminderScheduler : IReminderScheduler
         RemoveAll(prayer);
 
         var notifier = ToastNotificationManager.CreateToastNotifier();
-        var body = NotificationBody(prayer.Kind);
+        var body = NotificationBody(prayer);
 
         foreach (var reminder in prayer.Reminders.Where(r => r.IsEnabled))
         {
@@ -113,18 +113,17 @@ public sealed class WindowsReminderScheduler : IReminderScheduler
         };
     }
 
-    // Notification body text per devotion — mirrors iOS's ReminderScheduler.notificationBody(for:)
-    // and Android's ReminderScheduler.kt notificationBody(kind) verbatim.
-    private static string NotificationBody(PrayerKind kind) => kind switch
+    // Notification body text per devotion — mirrors iOS/Android: a generic devotion's body
+    // comes from its bundle manifest's reminderBody (e.g. the Angelus's bell text), not any
+    // hardcoded per-kind table. The body is baked into each scheduled toast, so a toast armed
+    // before an app update keeps its old body until re-armed (next launch's RescheduleAll).
+    private static string NotificationBody(Prayer prayer) => prayer.Kind switch
     {
         PrayerKind.Rosary => "Time to pray the Rosary.",
-        PrayerKind.Angelus => "The Angelus bell is ringing.",
         PrayerKind.JesusPrayer => "Time for the Jesus Prayer.",
-        PrayerKind.StationsOfTheCross => "Time to pray the Stations of the Cross.",
-        PrayerKind.FranciscanCrown => "Time to pray the Franciscan Crown.",
-        PrayerKind.SevenSorrows => "Time to pray the Seven Sorrows.",
-        PrayerKind.DivineMercyChaplet => "Time to pray the Divine Mercy Chaplet.",
-        PrayerKind.Custom => "Time to pray.",
-        _ => throw new ArgumentOutOfRangeException(nameof(kind))
+        PrayerKind.Custom => prayer.CustomDevotionId is { } bundleId
+            ? Localization.PrayerPackStore.Info(bundleId)?.LocalizedReminderBody ?? "Time to pray."
+            : "Time to pray.",
+        _ => throw new ArgumentOutOfRangeException(nameof(prayer))
     };
 }

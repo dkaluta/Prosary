@@ -10,7 +10,7 @@
 
     <!--
     Shared chrome for a linear prayer flow with no bead-style progress accessory — used by
-    AngelusFlowPage and JesusPrayerFlowPage. RosaryPrayerPage does NOT use this control: iOS's own
+    JesusPrayerFlowPage. RosaryPrayerPage does NOT use this control: iOS's own
     equivalent (PrayerStepFlowView.swift) supports the bead track via an `accessory` closure
     parameter, but doing the same here would need a DataTemplate-based accessory slot (see
     RosaryViewModel.TopBeadRows/GroupColumns/BottomBeads, which need genuinely different visual

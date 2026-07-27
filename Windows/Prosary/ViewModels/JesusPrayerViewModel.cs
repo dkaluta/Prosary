@@ -16,7 +16,7 @@ namespace Prosary.ViewModels;
 /// same fixed line, so a single synthesized line of text plus a <see cref="JesusPrayerProgress"/>
 /// counter (<see cref="RepetitionState"/>) is the whole model. Implements
 /// <see cref="IPrayerStepFlowViewModel"/> like <see cref="RosaryViewModel"/>/
-/// <see cref="AngelusViewModel"/> so the shared flow chrome control can bind to it the same way.
+/// <see cref="CustomDevotionViewModel"/> so the shared flow chrome control can bind to it the same way.
 ///
 /// <see cref="Finish"/> and <see cref="Back"/> are deliberately distinct: this page sits two
 /// levels deep in the nav stack when reached fresh (Home → Setup → Flow), so a plain back-arrow

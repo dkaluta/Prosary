@@ -104,17 +104,6 @@ public static partial class PrayerTranslations
 
         [PrayerKey.FructusMysteriiLabel] = "Bunga ng Misteryo",
 
-        [PrayerKey.VersiculumAngelusPrimus] = "Ipinahayag ng Anghel ng Panginoon kay Maria.",
-        [PrayerKey.ResponsiumAngelusPrimus] = "At siya'y naglihi sa pamamagitan ng Espiritu Santo.",
-        [PrayerKey.VersiculumAngelusSecundus] = "Narito ang alipin ng Panginoon.",
-        [PrayerKey.ResponsiumAngelusSecundus] = "Mangyari sa akin ang ayon sa iyong salita.",
-        [PrayerKey.VersiculumAngelusTertius] = "At ang Verbo ay nagkatawang-tao,",
-        [PrayerKey.ResponsiumAngelusTertius] = "at nanahan sa gitna namin.",
-        [PrayerKey.CollectaAngelus] =
-            "Manalangin tayo. Ibuhos Mo, Panginoon, ang Iyong biyaya sa aming mga puso; na kami, na " +
-            "nalaman ang pagkakatawang-tao ni Kristong Iyong Anak sa pamamagitan ng pabalita ng anghel, " +
-            "ay madala sa pamamagitan ng Kanyang Pasyon at Krus tungo sa kaluwalhatian ng Kanyang " +
-            "Muling Pagkabuhay. Sa pamamagitan ng parehong Kristong aming Panginoon. Amen.",
 
         [PrayerKey.OratioIesu] = "Panginoong Jesucristo, Anak ng Diyos, kaawaan Mo ako, na makasalanan.",
     };

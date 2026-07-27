@@ -5,7 +5,7 @@ namespace Prosary.Tests;
 
 /// <summary>
 /// Proves the whole .prosaryprayer pipeline end-to-end against the actual bundled
-/// rosary.prosaryprayer/angelus.prosaryprayer files (produced by Shared/tools/make-prosaryprayer.sh
+/// .prosaryprayer files (produced by Shared/tools/make-prosaryprayer.sh
 /// from Shared/content/) — mirrors iOS's PrayerPackLoaderTests.swift / Android's
 /// PrayerPackLoaderTest.kt. <see cref="PrayerPackStore"/> is a process-wide singleton, so loading
 /// happens once via a class fixture rather than per-test.
@@ -46,11 +46,11 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Fact]
-    public void AngelusPackProvidedKeyOverridesHebrewText()
+    public void AngelusPackProvidesHebrewComposedBody()
     {
-        var text = PrayerTranslations.Get("he", PrayerKey.CollectaAngelus);
+        var text = PrayerPackStore.ResolveBodyText("angelus", "he", "angelusCollectBody");
         Assert.False(string.IsNullOrEmpty(text));
-        Assert.StartsWith("נִתְפַּלְּלָה", text);
+        Assert.Contains("נִתְפַּלְּלָה", text);
     }
 
     /// <summary>The "main" prayers (Sign of the Cross, Creed, Our Father, Hail Mary, Glory Be) are
@@ -67,14 +67,13 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
             text);
     }
 
-    /// <summary>A devotion with no shipped pack at all (Stations) must be completely unaffected.</summary>
+    /// <summary>A devotion converted to a bundle resolves entirely bundle-locally — its keys no
+    /// longer exist in the hardcoded tables at all.</summary>
     [Fact]
-    public void UnmigratedDevotionKeyStillResolvesFromHardcodedTable()
+    public void ConvertedDevotionKeyResolvesFromItsBundle()
     {
-        var text = PrayerTranslations.Get("en", PrayerKey.StationsOpeningPrayer);
-        Assert.Equal(
-            "My Lord Jesus Christ, You made this journey to die for me with unspeakable love, and I have so many times unworthily abandoned You. But now I love You with all my heart, and, because I love You, I am sincerely sorry for ever having offended You. Pardon me, my God, for the sake of the merits of Your bitter Passion, and grant me the grace to accompany You in this journey with true contrition for my sins, that I may attain to a happy eternity. Amen.",
-            text);
+        var text = PrayerPackStore.ResolveBodyText("stationsOfTheCross", "en", "stationsOpeningPrayer");
+        Assert.StartsWith("My Lord Jesus Christ, You made this journey", text);
     }
 
     [Fact]
@@ -86,9 +85,16 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Fact]
-    public void PackProvidesNoImageDataForAnUnrelatedKey()
+    public void StationsPackProvidesItsImageData()
     {
-        Assert.Null(PrayerPackStore.ImageData("station_01_condemned_to_death"));
+        var data = PrayerPackStore.ImageData("station_01_condemned_to_death");
+        Assert.True((data?.Length ?? 0) > 0);
+    }
+
+    [Fact]
+    public void PackProvidesNoImageDataForAnUnknownKey()
+    {
+        Assert.Null(PrayerPackStore.ImageData("no_such_image_key"));
     }
 
     // Generic (bundle-driven) devotions
@@ -100,11 +106,13 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     /// <summary>The Rosary's pack has no devotion.json (override-only) and must never be
-    /// mistaken for a generic devotion.</summary>
+    /// mistaken for a generic devotion; the six generic devotions appear in pack-load order.</summary>
     [Fact]
-    public void PacksWithNoDevotionJsonAreNotCustomDevotions()
+    public void CustomDevotionIdsAreTheSixGenericDevotionsInLoadOrder()
     {
-        Assert.DoesNotContain("rosary", PrayerPackStore.CustomDevotionIds());
+        Assert.Equal(
+            ["angelus", "stationsOfTheCross", "franciscanCrown", "sevenSorrows", "divineMercyChaplet", "trisagion"],
+            PrayerPackStore.CustomDevotionIds());
     }
 
     [Fact]

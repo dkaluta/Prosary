@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Prosary.Localization;
@@ -11,23 +12,29 @@ using Windows.UI;
 namespace Prosary.ViewModels;
 
 /// <summary>
-/// Drives every <see cref="PrayerKind.Custom"/> devotion's prayer flow (currently just
-/// Trisagion) — mirrors <see cref="AngelusViewModel"/>'s shape exactly, but reads its
-/// title/steps from <see cref="PrayerPackStore"/>/<see cref="PrayerEngine"/> instead of a
-/// per-devotion hardcoded builder, so a new generic devotion needs no new ViewModel at all. Like
-/// the Angelus, a generic devotion can be launched with no saved favorite at all (straight from
+/// Drives every <see cref="PrayerKind.Custom"/> devotion's prayer flow — reads its title/steps
+/// from <see cref="PrayerPackStore"/>/<see cref="PrayerEngine"/> instead of a per-devotion
+/// hardcoded builder, so a new generic devotion needs no new ViewModel at all. Like the old
+/// Angelus, a generic devotion can be launched with no saved favorite at all (straight from
 /// Home) — in that case it always uses the app-level default language, and a star toggle lets the
 /// user save/unsave the one favorite on the fly.
+///
+/// A decade/bead-structured ("rosary" type) devotion gets the same bead track as the Rosary
+/// (<see cref="RebuildBeads"/>, absorbed from the deleted FranciscanCrownViewModel — itself
+/// unchanged from <see cref="RosaryViewModel"/>); flat devotions (no step carries a DecadeIndex)
+/// get none — <see cref="ShowsBeadTrack"/> drives the page's Visibility bindings.
 /// </summary>
 public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlowViewModel
 {
     private readonly IPresetStore _presets;
     private readonly PrayerEngine _engine;
+    private readonly LiturgicalCalendarService _calendar;
 
     private IReadOnlyList<RosaryStep> _steps = [];
     private int _index;
     private string? _languageCode;
     private string _bundleId = string.Empty;
+    private bool _hasClosingCross;
 
     [ObservableProperty]
     private string _devotionTitle = string.Empty;
@@ -68,6 +75,48 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     [ObservableProperty]
     private double _bodyFontSize = 18;
 
+    /// <summary>True for a decade/bead-structured ("rosary" type) devotion — any built step
+    /// carries a DecadeIndex. Drives the bead track's Visibility on the page.</summary>
+    [ObservableProperty]
+    private bool _showsBeadTrack;
+
+    [ObservableProperty]
+    private ObservableCollection<IReadOnlyList<BeadInfo>> _topBeadRows = [];
+
+    [ObservableProperty]
+    private BeadInfo? _openingCross;
+
+    [ObservableProperty]
+    private ObservableCollection<BeadColumn> _groupColumns = [];
+
+    [ObservableProperty]
+    private BeadInfo? _antiphonBead;
+
+    [ObservableProperty]
+    private BeadInfo? _closingCross;
+
+    [ObservableProperty]
+    private ObservableCollection<BeadInfo> _bottomBeads = [];
+
+    [ObservableProperty]
+    private bool _showBottomBeads;
+
+    /// <summary>See <see cref="RosaryViewModel.HasRoomForSingleMinorColumn"/> — set by the page
+    /// from its own measured height.</summary>
+    [ObservableProperty]
+    private bool _hasRoomForSingleMinorColumn = true;
+
+    /// <summary>See <see cref="RosaryViewModel.HasDarkTheme"/> — set by the page from its own
+    /// <c>FrameworkElement.ActualTheme</c>.</summary>
+    [ObservableProperty]
+    private bool _hasDarkTheme;
+
+    partial void OnHasDarkThemeChanged(bool value) => RebuildBeads();
+
+    public IReadOnlyList<BeadInfo> BottomBeadsColumn1 => BottomBeads.Take((BottomBeads.Count + 1) / 2).ToList();
+
+    public IReadOnlyList<BeadInfo> BottomBeadsColumn2 => BottomBeads.Skip((BottomBeads.Count + 1) / 2).ToList();
+
     /// <summary>Id of the saved favorite for this bundle matching the current language, if any —
     /// drives the star toggle. Null means "not favorited yet".</summary>
     [ObservableProperty]
@@ -83,10 +132,11 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
 
     public bool IsFavorited => MatchingFavoriteId is not null;
 
-    public CustomDevotionViewModel(IPresetStore presets, PrayerEngine engine)
+    public CustomDevotionViewModel(IPresetStore presets, PrayerEngine engine, LiturgicalCalendarService calendar)
     {
         _presets = presets;
         _engine = engine;
+        _calendar = calendar;
     }
 
     public async Task LoadAsync(Guid? prayerId, string bundleId)
@@ -94,7 +144,8 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         try
         {
             _bundleId = bundleId;
-            DevotionTitle = PrayerPackStore.Info(bundleId)?.DisplayName ?? bundleId;
+            DevotionTitle = PrayerPackStore.Info(bundleId)?.LocalizedDisplayName ?? bundleId;
+            _hasClosingCross = PrayerPackStore.Definition(bundleId)?.HasClosingCross ?? false;
 
             // Seeds the star as already-favorited immediately, without waiting on the initial
             // favorites fetch below.
@@ -110,6 +161,8 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
                 CustomDevotionId = bundleId,
             });
             _index = 0;
+            ShowsBeadTrack = _steps.Any(s => s.DecadeIndex.HasValue);
+            SeasonColor = _calendar.GetSeasonColorForToday();
 
             RenderCurrentStep();
 
@@ -132,6 +185,12 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
 
     partial void OnMatchingFavoriteIdChanged(Guid? value) => OnPropertyChanged(nameof(IsFavorited));
 
+    partial void OnBottomBeadsChanged(ObservableCollection<BeadInfo> value)
+    {
+        OnPropertyChanged(nameof(BottomBeadsColumn1));
+        OnPropertyChanged(nameof(BottomBeadsColumn2));
+    }
+
     private void RenderCurrentStep()
     {
         if (_steps.Count == 0)
@@ -143,7 +202,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         Header = step.Title;
         Subtitle = step.Subtitle;
         Body = step.Body;
-        MysteryImageKey = step.ImageOverrideKey ?? "cross_placeholder";
+        MysteryImageKey = step.Mystery?.ImageKey ?? step.ImageOverrideKey ?? "cross_placeholder";
         ProgressText = $"{_index + 1} of {_steps.Count}";
         Progress = (_index + 1) / (double)_steps.Count;
         CanGoBack = _index > 0;
@@ -151,6 +210,26 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
 
         BodyFontFamily = PrayerTypography.ResolveBodyFontFamily(_languageCode, step.IsScripture);
         BodyFontSize = PrayerTypography.ResolveBodyFontSize(_languageCode, step.IsScripture);
+
+        RebuildBeads();
+    }
+
+    private void RebuildBeads()
+    {
+        if (!ShowsBeadTrack)
+        {
+            return;
+        }
+
+        var layout = BeadLayout.Build(_steps, _index, _hasClosingCross, HasDarkTheme);
+
+        TopBeadRows = new ObservableCollection<IReadOnlyList<BeadInfo>>(layout.TopRows);
+        OpeningCross = layout.OpeningCross;
+        GroupColumns = new ObservableCollection<BeadColumn>(layout.GroupColumns);
+        AntiphonBead = layout.Antiphon;
+        ClosingCross = layout.ClosingCross;
+        BottomBeads = new ObservableCollection<BeadInfo>(layout.BottomBeads);
+        ShowBottomBeads = layout.ShowBottomBeads;
     }
 
     [RelayCommand]

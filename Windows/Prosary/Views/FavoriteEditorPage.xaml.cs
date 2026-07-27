@@ -39,10 +39,4 @@ public sealed partial class FavoriteEditorPage : Page
 
     // Is6AmEnabled/IsNoonEnabled/Is6PmEnabled are read-only (derived from Reminders), so these
     // ToggleSwitches bind Mode=OneWay and route the actual state change through the matching
-    // command instead of a direct TwoWay bind.
-    private void OnAngelus6AmToggled(object sender, RoutedEventArgs e) => ViewModel.RemindersEditor.ToggleAngelus6AmCommand.Execute(null);
-
-    private void OnAngelusNoonToggled(object sender, RoutedEventArgs e) => ViewModel.RemindersEditor.ToggleAngelusNoonCommand.Execute(null);
-
-    private void OnAngelus6PmToggled(object sender, RoutedEventArgs e) => ViewModel.RemindersEditor.ToggleAngelus6PmCommand.Execute(null);
-}
+    // command instead of a direct TwoWay bind.}

@@ -101,26 +101,7 @@ public static partial class PrayerTranslations
 
         [PrayerKey.FructusMysteriiLabel] = "פְּרִי הָרָז",
 
-        // Versicles 1-3/responses 1-3 and the collect use a canonical Hebrew-Catholic Angelus
-        // text; the closing versicle/response below intentionally reuse VersiculumStandard/
-        // ResponsiumStandard (already shared with the Rosary's antiphon) rather than a
-        // near-identical variant, to avoid two slightly different Hebrew renderings of the same
-        // line living side by side in the app.
-        [PrayerKey.VersiculumAngelusPrimus] = "מַלְאַךְ ה׳ בִּשֵּׂר לְמִרְיָם.",
-        [PrayerKey.ResponsiumAngelusPrimus] = "וְהָרְתָה לְרוּחַ הַקֹּדֶשׁ.",
-        [PrayerKey.VersiculumAngelusSecundus] = "הִנְנִי שִׁפְחַת ה׳.",
-        [PrayerKey.ResponsiumAngelusSecundus] = "יֵעָשֶׂה לִּי כִּדְבָרֶךָ.",
-        [PrayerKey.VersiculumAngelusTertius] = "וְהַדָּבָר נִהְיָה בָשָׂר",
-        [PrayerKey.ResponsiumAngelusTertius] = "וְשָׁכַן בְּתוֹכֵנוּ.",
-        [PrayerKey.CollectaAngelus] =
-            "נִתְפַּלְּלָה. הַשְׁפַּע בְּרוּחֵנוּ אֶת חַסְדְּךָ, ה׳, בִּבְשׂוֹרַת הַמַּלְאָךְ אַתָּה " +
-            "גִּלִּיתָנוּ אֶת הִתְאַנְּשׁוּת הַמָּשִׁיחַ בִּנְךָ, דֶּרֶךְ יִסּוּרָיו וּצְלִיבוֹ עֲשֵׂה " +
-            "שֶׁנַּגִּיעַ לְתִפְאֶרֶת תְּחִיָּתוֹ. בְּשֵׁם יֵשׁוּעַ הַמָּשִׁיחַ אֲדוֹנֵנוּ.",
-
         [PrayerKey.OratioIesu] = "הָאָדוֹן יֵשׁוּעַ הַמָּשִׁיחַ, בֶּן הָאֱלֹהִים, רַחֵם עָלַי הַחוֹטֵא.",
 
-        // The Divine Mercy Chaplet's closing acclamation (a form of the Trisagion) — repeated 3
-        // times at the close of the chaplet. See PrayerEngine.BuildDivineMercySteps.
-        [PrayerKey.DivineMercyClosingAcclamation] = "קָדוֹשׁ הָאֱלֹהִים, קָדוֹשׁ הַגִּבּוֹר, קָדוֹשׁ הַנֶּצְחִי, רַחֵם עָלֵינוּ וְעַל הָעוֹלָם כֻּלוֹ.",
     };
 }

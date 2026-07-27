@@ -145,38 +145,7 @@
                     <TextBlock Text="REMINDERS" Style="{StaticResource SectionHeaderStyle}" />
                     <Border Style="{StaticResource SectionCardStyle}">
                         <StackPanel Spacing="8">
-                            <!-- Traditional Angelus bell times — quick toggles for 6am/noon/6pm.
-                                 Never actually visible from this editor (Angelus uses
-                                 RemindersOnlyEditorPage instead), kept so RemindersEditorViewModel
-                                 renders identically wherever it's bound. -->
-                            <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.RemindersEditor.IsAngelus, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Text="6:00 AM" VerticalAlignment="Center" />
-                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.Is6AmEnabled, Mode=OneWay}" Toggled="OnAngelus6AmToggled" />
-                                </Grid>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Text="12:00 PM" VerticalAlignment="Center" />
-                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.IsNoonEnabled, Mode=OneWay}" Toggled="OnAngelusNoonToggled" />
-                                </Grid>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Text="6:00 PM" VerticalAlignment="Center" />
-                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.Is6PmEnabled, Mode=OneWay}" Toggled="OnAngelus6PmToggled" />
-                                </Grid>
-                            </StackPanel>
-
-                            <ItemsControl ItemsSource="{x:Bind ViewModel.RemindersEditor.CustomReminders, Mode=OneWay}" ItemTemplate="{StaticResource ReminderRowTemplate}" />
+                            <ItemsControl ItemsSource="{x:Bind ViewModel.RemindersEditor.Reminders, Mode=OneWay}" ItemTemplate="{StaticResource ReminderRowTemplate}" />
 
                             <Button Command="{x:Bind ViewModel.RemindersEditor.AddReminderCommand}" Background="Transparent">
                                 <StackPanel Orientation="Horizontal" Spacing="6">

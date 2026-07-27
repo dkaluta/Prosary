@@ -10,13 +10,13 @@ using Prosary.Services;
 namespace Prosary.ViewModels;
 
 /// <summary>
-/// Drives the lightweight reminders-only editor for the 5 non-configurable devotion kinds
-/// (Angelus, Stations of the Cross, Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet) —
+/// Drives the lightweight reminders-only editor for the generic (bundle-driven) devotions —
 /// these have no name/language/per-favorite options to edit (see <see cref="FavoritesViewModel"/>),
-/// just reminders. Reachable from the star row's bell button, and only once the kind is
+/// just reminders. Reachable from the star row's bell button, and only once the devotion is
 /// favorited (a <see cref="Prayer"/> row must already exist to attach reminders to — this
-/// ViewModel never creates one, unlike <see cref="FavoriteEditorViewModel"/>). Mirrors iOS's
-/// RemindersOnlyEditorView/Android's RemindersOnlyEditorScreen.
+/// ViewModel never creates one, unlike <see cref="FavoriteEditorViewModel"/>). Preset
+/// quick-toggle hours and their footer come from the devotion's bundle manifest (the Angelus's
+/// bell times). Mirrors iOS's RemindersOnlyEditorView/Android's RemindersOnlyEditorScreen.
 /// </summary>
 public partial class RemindersOnlyEditorViewModel : ObservableObject
 {
@@ -49,11 +49,14 @@ public partial class RemindersOnlyEditorViewModel : ObservableObject
 
         _originalPrayer = prayer;
         // For .Custom, DisplayName() is only a generic fallback (a single PrayerKind case can't
-        // carry per-bundle text) — read the real name from the bundle's own manifest.
-        Title = prayer.Kind == PrayerKind.Custom && prayer.CustomDevotionId is { } bundleId
-            ? PrayerPackStore.Info(bundleId)?.DisplayName ?? prayer.Kind.DisplayName()
-            : prayer.Kind.DisplayName();
-        RemindersEditor.Kind = prayer.Kind;
+        // carry per-bundle text) — read the real name and reminder presets from the bundle's own
+        // manifest.
+        var info = prayer.Kind == PrayerKind.Custom && prayer.CustomDevotionId is { } bundleId
+            ? PrayerPackStore.Info(bundleId)
+            : null;
+        Title = info?.LocalizedDisplayName ?? prayer.Kind.DisplayName();
+        RemindersEditor.PresetHours = info?.ReminderPresetHours ?? [];
+        RemindersEditor.PresetFooter = info?.LocalizedReminderPresetFooter;
         RemindersEditor.Reminders = new ObservableCollection<PrayerReminder>(prayer.Reminders);
     }
 

@@ -14,25 +14,12 @@ namespace Prosary.ViewModels;
 /// Drives the Favorites list — ported from Android's <c>FavoritesListScreen.kt</c>. Rosary and
 /// Jesus Prayer are the only kinds with real per-favorite options worth naming and saving
 /// multiple variants of, so they keep their own <c>ObservableCollection&lt;Prayer&gt;</c> + card
-/// list + editor. The other 5 kinds render as a single star row each instead (see
-/// <see cref="SimpleFavoriteRow"/>) — this is where Windows benefits most from the simplification:
-/// what would otherwise be 5 more parallel <c>ObservableCollection&lt;Prayer&gt;</c> properties
-/// and 5 more <c>AddNewX()</c> commands (kept duplicated pre-refactor only because WinUI's
-/// command-binding model doesn't cleanly support one parameterized command bound 5 ways from
-/// XAML) collapse into one list and two shared, parameterized commands, since a star toggle takes
-/// exactly one argument (the row) rather than needing to distinguish "add" from "which kind".
+/// list + editor. Every generic (bundle-driven) devotion has nothing to configure beyond
+/// reminders, so it renders as a single star row instead (see <see cref="SimpleFavoriteRow"/>),
+/// in pack-load order, with no hardcoded PrayerKind case.
 /// </summary>
 public partial class FavoritesViewModel : ObservableObject
 {
-    private static readonly PrayerKind[] SimplifiedKinds =
-    [
-        PrayerKind.Angelus,
-        PrayerKind.StationsOfTheCross,
-        PrayerKind.FranciscanCrown,
-        PrayerKind.SevenSorrows,
-        PrayerKind.DivineMercyChaplet,
-    ];
-
     private readonly IPresetStore _presets;
     private readonly IReminderScheduler _scheduler;
 
@@ -60,15 +47,8 @@ public partial class FavoritesViewModel : ObservableObject
         RosaryFavorites = new ObservableCollection<Prayer>(all.Where(p => p.Kind == PrayerKind.Rosary));
         JesusPrayerFavorites = new ObservableCollection<Prayer>(all.Where(p => p.Kind == PrayerKind.JesusPrayer));
 
-        var simplifiedRows = SimplifiedKinds.Select(kind =>
-        {
-            var match = all.FirstOrDefault(p => p.Kind == kind);
-            return new SimpleFavoriteRow(kind, kind.DisplayName(), kind.IconGlyph(), match is not null, match?.Id);
-        });
-
-        // Generic (bundle-driven) devotions — one row per discovered bundle, with no hardcoded
-        // PrayerKind case. Only one exists today (Trisagion); a picker across multiple is real
-        // future work once a second one exists, not built speculatively.
+        // Generic (bundle-driven) devotions — one row per discovered bundle, in pack-load
+        // order, with no hardcoded PrayerKind case.
         var customRows = PrayerPackStore.CustomDevotionIds()
             .Select(bundleId => (bundleId, info: PrayerPackStore.Info(bundleId)))
             .Where(x => x.info is not null)
@@ -76,23 +56,12 @@ public partial class FavoritesViewModel : ObservableObject
             {
                 var match = all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == x.bundleId);
                 return new SimpleFavoriteRow(
-                    PrayerKind.Custom, x.info!.DisplayName, GlyphForSystemName(x.info.IconSystemName),
+                    PrayerKind.Custom, x.info!.LocalizedDisplayName, HomeViewModel.GlyphForSystemName(x.info.IconSystemName),
                     match is not null, match?.Id, x.bundleId);
             });
 
-        SimpleFavorites = new ObservableCollection<SimpleFavoriteRow>(simplifiedRows.Concat(customRows));
+        SimpleFavorites = new ObservableCollection<SimpleFavoriteRow>(customRows);
     }
-
-    /// <summary>Maps a bundle manifest's <c>IconSystemName</c> (an SF Symbol name, the iOS
-    /// convention — see Shared/ARCHITECTURE.md's "Content bundles" section) to the nearest Segoe
-    /// Fluent Icons glyph. Small and fixed by design, matching Android's <c>iconForSystemName</c>
-    /// — a generic devotion's icon choice is authored once in its manifest.json, so this only
-    /// needs an entry per icon name actually in use.</summary>
-    private static string GlyphForSystemName(string? systemName) => systemName switch
-    {
-        "triangle" => "", // FavoriteStar — see the same unverified-codepoint caveat on PrayerKindExtensions.IconGlyph
-        _ => "",
-    };
 
     [RelayCommand]
     private void Pray(Prayer prayer)
@@ -102,28 +71,13 @@ public partial class FavoritesViewModel : ObservableObject
             case PrayerKind.Rosary:
                 Router.Navigate<RosaryPrayerPage>(prayer.Id);
                 break;
-            case PrayerKind.Angelus:
-                Router.Navigate<AngelusFlowPage>(prayer.Id);
-                break;
             case PrayerKind.JesusPrayer:
                 Router.Navigate<JesusPrayerFlowPage>(new JesusPrayerFlowParams(prayer.Id, null));
                 break;
-            case PrayerKind.StationsOfTheCross:
-                Router.Navigate<StationsFlowPage>(prayer.Id);
-                break;
-            case PrayerKind.FranciscanCrown:
-                Router.Navigate<FranciscanCrownFlowPage>(prayer.Id);
-                break;
-            case PrayerKind.SevenSorrows:
-                Router.Navigate<SevenSorrowsFlowPage>(prayer.Id);
-                break;
-            case PrayerKind.DivineMercyChaplet:
-                Router.Navigate<DivineMercyFlowPage>(prayer.Id);
-                break;
             case PrayerKind.Custom:
                 // Unreachable in practice — .Custom favorites have no "Pray" button in
-                // FavoritesListPage (they render via SimpleFavoriteRowTemplate, like the other 5
-                // simplified kinds), only a star toggle. Still handled defensively.
+                // FavoritesListPage (they render via SimpleFavoriteRowTemplate), only a star
+                // toggle. Still handled defensively.
                 if (prayer.CustomDevotionId is { } bundleId)
                 {
                     Router.Navigate<CustomDevotionFlowPage>(new CustomDevotionFlowParams(prayer.Id, bundleId));
@@ -164,8 +118,8 @@ public partial class FavoritesViewModel : ObservableObject
         await LoadAsync();
     }
 
-    /// <summary>Star toggle for the 5 simplified kinds — at most one <see cref="Prayer"/> row per
-    /// kind, matched by kind alone (not language), always saved with the sentinel language
+    /// <summary>Star toggle for the generic devotions — at most one <see cref="Prayer"/> row per
+    /// devotion, matched by bundle id (not language), always saved with the sentinel language
     /// (follows the app-level default).</summary>
     [RelayCommand]
     private async Task ToggleSimpleFavoriteAsync(SimpleFavoriteRow row)
@@ -183,10 +137,9 @@ public partial class FavoritesViewModel : ObservableObject
         {
             await _presets.SaveAsync(new Prayer
             {
-                // row.Title already resolves correctly for both the 5 hardcoded kinds
-                // (kind.DisplayName()) and a generic devotion (its bundle's manifest displayName)
-                // — see LoadAsync above — so it's used directly rather than row.Kind.DefaultName(),
-                // which for .Custom is only a generic "Devotion" fallback.
+                // row.Title is the bundle's manifest display name — see LoadAsync above — so
+                // it's used directly rather than row.Kind.DefaultName(), which for .Custom is
+                // only a generic "Devotion" fallback.
                 Name = row.Title,
                 Kind = row.Kind,
                 IsDefault = true,
@@ -198,9 +151,9 @@ public partial class FavoritesViewModel : ObservableObject
         await LoadAsync();
     }
 
-    /// <summary>Opens <see cref="RemindersOnlyEditorPage"/> for an already-favorited simplified
-    /// kind. Only reachable once favorited (see FavoritesListPage.xaml's Visibility binding) —
-    /// there's no <see cref="SimpleFavoriteRow.PrayerId"/> to attach reminders to otherwise.</summary>
+    /// <summary>Opens <see cref="RemindersOnlyEditorPage"/> for an already-favorited generic
+    /// devotion. Only reachable once favorited (see FavoritesListPage.xaml's Visibility binding)
+    /// — there's no <see cref="SimpleFavoriteRow.PrayerId"/> to attach reminders to otherwise.</summary>
     [RelayCommand]
     private void EditReminders(SimpleFavoriteRow row)
     {

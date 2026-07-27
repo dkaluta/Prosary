@@ -87,15 +87,6 @@ public static partial class PrayerTranslations
 
         [PrayerKey.FructusMysteriiLabel] = "ثمرة السر",
 
-        [PrayerKey.VersiculumAngelusPrimus] = "بَشَّرَ ملاكُ الربِّ مريمَ.",
-        [PrayerKey.ResponsiumAngelusPrimus] = "فحَبِلَت بالروحِ القدسِ.",
-        [PrayerKey.VersiculumAngelusSecundus] = "هوذا أَمَةُ الربِّ.",
-        [PrayerKey.ResponsiumAngelusSecundus] = "ليكن لي كقولِكَ.",
-        [PrayerKey.VersiculumAngelusTertius] = "والكلمةُ صار جسداً.",
-        [PrayerKey.ResponsiumAngelusTertius] = "وحلَّ بيننا.",
-        [PrayerKey.CollectaAngelus] =
-            "لنصلِّ. أفِضْ يا ربُّ نعمتَكَ في قلوبِنا، نحنُ الذين عَرَفنا تجسُّدَ ابنِكَ يسوعَ المسيحِ " +
-            "ببشارةِ الملاكِ، فبآلامِه وصليبِه نصِلْ إلى مجدِ قيامتِه. بالمسيحِ ربِّنا. آمين.",
 
         [PrayerKey.OratioIesu] = "أيُّها الربُّ يسوعُ المسيحُ، يا ابنَ اللهِ، ارحَمْني أنا الخاطئَ.",
     };

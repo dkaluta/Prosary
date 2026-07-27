@@ -7,7 +7,7 @@ namespace Prosary.ViewModels;
 /// <summary>
 /// Common binding contract for any linear prayer flow's shared chrome (season-color bar,
 /// progress readout, image + text block, Back/Next-or-Finish footer) — implemented by
-/// <see cref="RosaryViewModel"/>, <see cref="AngelusViewModel"/>, and
+/// <see cref="RosaryViewModel"/>, <see cref="CustomDevotionViewModel"/>, and
 /// <see cref="JesusPrayerViewModel"/> so <c>Controls/PrayerStepFlowControl.xaml</c> can bind to
 /// one shared <see cref="Microsoft.UI.Xaml.Controls.UserControl.DataContext"/> contract instead
 /// of three near-duplicate XAML layouts. Mirrors iOS's shared <c>PrayerStepFlowView.swift</c>.

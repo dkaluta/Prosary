@@ -48,14 +48,9 @@ public sealed record Prayer
     public string FavoriteSubtitle => Kind switch
     {
         PrayerKind.Rosary => $"{Rosary.MysterySelectionSummary} • {LanguageDisplayName}",
-        PrayerKind.Angelus => LanguageDisplayName,
         PrayerKind.JesusPrayer => $"{JesusPrayer.TargetDisplayName} • {LanguageDisplayName}",
-        PrayerKind.StationsOfTheCross => LanguageDisplayName,
-        PrayerKind.FranciscanCrown => LanguageDisplayName,
-        PrayerKind.SevenSorrows => LanguageDisplayName,
-        PrayerKind.DivineMercyChaplet => LanguageDisplayName,
-        // Unreachable in practice — .Custom favorites render via the simplified-kind row, never
-        // a full FavoriteCard. Still needed for exhaustiveness.
+        // Unreachable in practice — .Custom favorites render via the star row, never a full
+        // FavoriteCard. Still needed for exhaustiveness.
         PrayerKind.Custom => LanguageDisplayName,
         _ => throw new ArgumentOutOfRangeException(nameof(Kind))
     };

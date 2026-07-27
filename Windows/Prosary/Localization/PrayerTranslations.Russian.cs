@@ -90,16 +90,6 @@ public static partial class PrayerTranslations
 
         [PrayerKey.FructusMysteriiLabel] = "Плод тайны",
 
-        [PrayerKey.VersiculumAngelusPrimus] = "Ангел Господень возвестил Марии.",
-        [PrayerKey.ResponsiumAngelusPrimus] = "И Она зачала от Духа Святого.",
-        [PrayerKey.VersiculumAngelusSecundus] = "Се, Раба Господня.",
-        [PrayerKey.ResponsiumAngelusSecundus] = "Да будет Мне по слову твоему.",
-        [PrayerKey.VersiculumAngelusTertius] = "И Слово стало плотью,",
-        [PrayerKey.ResponsiumAngelusTertius] = "и обитало с нами.",
-        [PrayerKey.CollectaAngelus] =
-            "Помолимся. Излей, молим Тебя, Господи, благодать Твою в сердца наши, дабы мы, " +
-            "познавшие воплощение Христа, Сына Твоего, через благовестие Ангела, страданием Его и " +
-            "крестом были приведены к славе Его воскресения. Через Того же Христа Господа нашего. Аминь.",
 
         // The historic Church Slavonic/Russian formula of the Jesus Prayer.
         [PrayerKey.OratioIesu] = "Господи Иисусе Христе, Сыне Божий, помилуй мя, грешного.",

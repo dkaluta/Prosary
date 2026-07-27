@@ -65,31 +65,33 @@
                     <TextBlock Text="REMINDERS" Style="{StaticResource SectionHeaderStyle}" />
                     <Border Style="{StaticResource SectionCardStyle}">
                         <StackPanel Spacing="8">
-                            <!-- Traditional Angelus bell times — quick toggles for 6am/noon/6pm. -->
-                            <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.RemindersEditor.IsAngelus, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                                <Grid>
+                            <!-- Traditional fixed prayer times from the bundle manifest's
+                                 reminderPresetHours (the Angelus's 6am/noon/6pm bells) — quick
+                                 toggles, one per preset hour. -->
+                            <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.RemindersEditor.HasPresetHours, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                                <Grid Visibility="{x:Bind ViewModel.RemindersEditor.Shows6AmPreset, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Grid.Column="0" Text="6:00 AM" VerticalAlignment="Center" />
-                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.Is6AmEnabled, Mode=OneWay}" Toggled="OnAngelus6AmToggled" />
+                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.Is6AmEnabled, Mode=OneWay}" Toggled="OnPreset6AmToggled" />
                                 </Grid>
-                                <Grid>
+                                <Grid Visibility="{x:Bind ViewModel.RemindersEditor.ShowsNoonPreset, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Grid.Column="0" Text="12:00 PM" VerticalAlignment="Center" />
-                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.IsNoonEnabled, Mode=OneWay}" Toggled="OnAngelusNoonToggled" />
+                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.IsNoonEnabled, Mode=OneWay}" Toggled="OnPresetNoonToggled" />
                                 </Grid>
-                                <Grid>
+                                <Grid Visibility="{x:Bind ViewModel.RemindersEditor.Shows6PmPreset, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Grid.Column="0" Text="6:00 PM" VerticalAlignment="Center" />
-                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.Is6PmEnabled, Mode=OneWay}" Toggled="OnAngelus6PmToggled" />
+                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.Is6PmEnabled, Mode=OneWay}" Toggled="OnPreset6PmToggled" />
                                 </Grid>
                             </StackPanel>
 
@@ -103,6 +105,10 @@
                             </Button>
                         </StackPanel>
                     </Border>
+
+                    <TextBlock Text="{x:Bind ViewModel.RemindersEditor.PresetFooter, Mode=OneWay}"
+                               Visibility="{x:Bind ViewModel.RemindersEditor.ShowsPresetFooter, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" Margin="4,0" />
                 </StackPanel>
 
             </StackPanel>

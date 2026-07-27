@@ -12,12 +12,7 @@ namespace Prosary.Models;
 public enum PrayerKind
 {
     Rosary = 0,
-    Angelus = 1,
     JesusPrayer = 2,
-    StationsOfTheCross = 3,
-    FranciscanCrown = 4,
-    SevenSorrows = 5,
-    DivineMercyChaplet = 6,
 
     /// <summary>Any devotion whose entire step sequence comes from a bundle's <c>devotion.json</c>
     /// instead of a hardcoded engine builder — see <c>PrayerEngine.BuildCustomDevotionSteps</c>
@@ -34,12 +29,7 @@ public static class PrayerKindExtensions
     public static string DisplayName(this PrayerKind kind) => kind switch
     {
         PrayerKind.Rosary => "Rosary",
-        PrayerKind.Angelus => "Angelus",
         PrayerKind.JesusPrayer => "Jesus Prayer",
-        PrayerKind.StationsOfTheCross => "Stations of the Cross",
-        PrayerKind.FranciscanCrown => "Franciscan Crown",
-        PrayerKind.SevenSorrows => "Seven Sorrows",
-        PrayerKind.DivineMercyChaplet => "Divine Mercy Chaplet",
         PrayerKind.Custom => "Devotion",
         _ => throw new ArgumentOutOfRangeException(nameof(kind))
     };
@@ -48,12 +38,7 @@ public static class PrayerKindExtensions
     public static string DefaultName(this PrayerKind kind) => kind switch
     {
         PrayerKind.Rosary => "My Rosary",
-        PrayerKind.Angelus => "Angelus",
         PrayerKind.JesusPrayer => "Jesus Prayer",
-        PrayerKind.StationsOfTheCross => "Stations of the Cross",
-        PrayerKind.FranciscanCrown => "Franciscan Crown",
-        PrayerKind.SevenSorrows => "Seven Sorrows",
-        PrayerKind.DivineMercyChaplet => "Divine Mercy Chaplet",
         PrayerKind.Custom => "Devotion",
         _ => throw new ArgumentOutOfRangeException(nameof(kind))
     };
@@ -66,12 +51,7 @@ public static class PrayerKindExtensions
     public static string IconGlyph(this PrayerKind kind) => kind switch
     {
         PrayerKind.Rosary => "",      // CircleRing
-        PrayerKind.Angelus => "",     // Ringer (bell)
         PrayerKind.JesusPrayer => "", // HeartFill
-        PrayerKind.StationsOfTheCross => "", // Walk
-        PrayerKind.FranciscanCrown => "", // Crown
-        PrayerKind.SevenSorrows => "", // HeartBroken
-        PrayerKind.DivineMercyChaplet => "", // Sunny
         // Unreachable in practice -- .Custom rows read the bundle's own IconSystemName instead
         // (mapped via a small fixed table, e.g. GlyphForSystemName), not this per-kind glyph.
         // Still needed for exhaustiveness.
@@ -85,12 +65,7 @@ public static class PrayerKindExtensions
     public static Color AccentColor(this PrayerKind kind) => kind switch
     {
         PrayerKind.Rosary => Color.FromArgb(0xFF, 0x7A, 0x1F, 0x3D),
-        PrayerKind.Angelus => Color.FromArgb(0xFF, 0x8B, 0x69, 0x14),
         PrayerKind.JesusPrayer => Color.FromArgb(0xFF, 0x8B, 0x1A, 0x1A),
-        PrayerKind.StationsOfTheCross => Color.FromArgb(0xFF, 0x5C, 0x2D, 0x91),
-        PrayerKind.FranciscanCrown => Color.FromArgb(0xFF, 0x6B, 0x42, 0x26),
-        PrayerKind.SevenSorrows => Color.FromArgb(0xFF, 0x6B, 0x0F, 0x1A),
-        PrayerKind.DivineMercyChaplet => Color.FromArgb(0xFF, 0xC4, 0x1E, 0x3A),
         // Unreachable in practice — .Custom rows read the bundle's own AccentColorHex instead.
         // Still needed for exhaustiveness.
         PrayerKind.Custom => Color.FromArgb(0xFF, 0x7A, 0x1F, 0x3D),

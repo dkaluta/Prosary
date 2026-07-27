@@ -5,18 +5,14 @@ using Prosary.Models;
 namespace Prosary.Services;
 
 /// <summary>The single production step-builder for every devotion. <see cref="BuildSteps"/>
-/// dispatches on <see cref="Prayer.Kind"/> to one of 6 private builders. Angelus/Stations have no
-/// decades and a different per-item template each, so they keep their own builders rather than
-/// being forced through the decade-shaped helper below; Divine Mercy Chaplet has no catalog (it
-/// repeats the same 2 lines every decade, not per-decade content), so it doesn't fit the
-/// catalog-driven shape either. The Rosary's per-group decade loop and Franciscan Crown/Seven
-/// Sorrows' single decade loop DO share the same underlying shape (announce → Our Father → N Hail
-/// Marys) — that shared shape is <see cref="BuildDecadeSteps"/>, the one genuine algorithmic
-/// unification here, not just a class merge.
-///
-/// Replaces 6 classes (RosaryEngine/AngelusEngine/StationsEngine/FranciscanCrownEngine/
-/// SevenSorrowsEngine/DivineMercyEngine) and their separate DI registrations. Mirrors iOS's
-/// PrayerEngine.swift/Android's PrayerEngine.kt.</summary>
+/// dispatches on <see cref="Prayer.Kind"/>: the Rosary keeps its own hardcoded,
+/// options/calendar-driven builder (it is the one deeply configurable devotion); the Jesus Prayer
+/// has no steps at all (a repetition counter — see JesusPrayerViewModel); and every other
+/// devotion is Custom — fully data-driven from its .prosaryprayer bundle's devotion.json via
+/// <see cref="BuildCustomDevotionSteps(string, string?, bool, MarianAntiphonOption)"/>.
+/// <see cref="BuildDecadeSteps"/> and <see cref="BuildMarianAntiphonStep"/> remain as the
+/// Rosary's own helpers; the generic rosary-type builder mirrors their emission so bead tracks
+/// behave identically everywhere. Mirrors iOS's PrayerEngine.swift/Android's PrayerEngine.kt.</summary>
 public sealed class PrayerEngine
 {
     private static readonly string[] Ordinals =
@@ -42,15 +38,10 @@ public sealed class PrayerEngine
     public IReadOnlyList<RosaryStep> BuildSteps(Prayer prayer) => prayer.Kind switch
     {
         PrayerKind.Rosary => BuildRosarySteps(prayer),
-        PrayerKind.Angelus => BuildAngelusSteps(prayer.LanguageCode),
         // The Jesus Prayer has no engine — every repetition prays the same fixed line, so a
         // single synthesized step plus a JesusPrayerProgress counter is the whole model; see
         // JesusPrayerViewModel, which never calls this engine at all.
         PrayerKind.JesusPrayer => [],
-        PrayerKind.StationsOfTheCross => BuildStationsSteps(prayer.LanguageCode),
-        PrayerKind.FranciscanCrown => BuildFranciscanCrownSteps(prayer.LanguageCode),
-        PrayerKind.SevenSorrows => BuildSevenSorrowsSteps(prayer.LanguageCode),
-        PrayerKind.DivineMercyChaplet => BuildDivineMercySteps(prayer.LanguageCode),
         PrayerKind.Custom => prayer.CustomDevotionId is { } bundleId ? BuildCustomDevotionSteps(bundleId, prayer.LanguageCode) : [],
         _ => throw new ArgumentOutOfRangeException(nameof(prayer), prayer.Kind, "Unhandled PrayerKind in PrayerEngine.BuildSteps")
     };
@@ -222,210 +213,7 @@ public sealed class PrayerEngine
         return steps;
     }
 
-    // Franciscan Crown
-
-    private IReadOnlyList<RosaryStep> BuildFranciscanCrownSteps(string? languageCode)
-    {
-        string Text(string key) => PrayerTranslations.Get(languageCode, key);
-
-        var steps = new List<RosaryStep>
-        {
-            new("Sign of the Cross", null, Text(PrayerKey.SignumCrucis), ImageOverrideKey: "crucifix"),
-        };
-
-        var fruitLabel = Text(PrayerKey.FructusMysteriiLabel);
-
-        for (var d = 0; d < FranciscanCrownCatalog.SevenJoys.Count; d++)
-        {
-            var imageKey = FranciscanCrownCatalog.SevenJoys[d];
-            var joyText = MysteryTranslations.Get(languageCode, imageKey);
-            var ordinalLabel = $"{Ordinals[d]} Joy";
-
-            steps.AddRange(BuildDecadeSteps(
-                decadeIndex: d, announcementTitle: joyText.Title, ordinalLabel: ordinalLabel,
-                announcementBody: $"{joyText.Description}\n\n{fruitLabel}: {joyText.Fruit}",
-                mystery: null, decadeImageKey: imageKey, isScripture: true,
-                ourFatherImageKey: imageKey, hailMarysPerDecade: 10, languageCode: languageCode));
-        }
-
-        for (var h = 1; h <= 2; h++)
-        {
-            steps.Add(new RosaryStep(
-                $"Hail Mary ({h} of 2)", "For the years of Our Lady's life", Text(PrayerKey.AveMaria),
-                ImageOverrideKey: "madonna_and_child"));
-        }
-
-        steps.Add(new RosaryStep(
-            "Our Father", "For the intentions of the Holy Father", Text(PrayerKey.PaterNoster),
-            ImageOverrideKey: "our_father"));
-
-        steps.Add(BuildMarianAntiphonStep(_calendar.GetSeasonalMarianAntiphonForToday(), languageCode));
-
-        steps.Add(new RosaryStep("Sign of the Cross", null, Text(PrayerKey.SignumCrucis), ImageOverrideKey: "crucifix"));
-
-        return steps;
-    }
-
-    // Seven Sorrows
-
-    private static IReadOnlyList<RosaryStep> BuildSevenSorrowsSteps(string? languageCode)
-    {
-        string Text(string key) => PrayerTranslations.Get(languageCode, key);
-
-        var steps = new List<RosaryStep>
-        {
-            new("Sign of the Cross", null, Text(PrayerKey.SignumCrucis), ImageOverrideKey: "crucifix"),
-        };
-
-        var fruitLabel = Text(PrayerKey.FructusMysteriiLabel);
-
-        for (var d = 0; d < SevenSorrowsCatalog.SevenSorrows.Count; d++)
-        {
-            var imageKey = SevenSorrowsCatalog.SevenSorrows[d];
-            var sorrowText = MysteryTranslations.Get(languageCode, imageKey);
-            var ordinalLabel = $"{Ordinals[d]} Sorrow";
-
-            steps.AddRange(BuildDecadeSteps(
-                decadeIndex: d, announcementTitle: sorrowText.Title, ordinalLabel: ordinalLabel,
-                announcementBody: $"{sorrowText.Description}\n\n{fruitLabel}: {sorrowText.Fruit}",
-                mystery: null, decadeImageKey: imageKey, isScripture: d != SevenSorrowsCatalog.MeetingOnTheWayIndex,
-                ourFatherImageKey: imageKey, hailMarysPerDecade: 7, languageCode: languageCode));
-        }
-
-        for (var h = 1; h <= 3; h++)
-        {
-            steps.Add(new RosaryStep(
-                $"Hail Mary ({h} of 3)", "For the tears of Our Lady", Text(PrayerKey.AveMaria),
-                ImageOverrideKey: "madonna_and_child"));
-        }
-
-        steps.Add(new RosaryStep(
-            "Our Lady of Sorrows", null,
-            $"{Text(PrayerKey.SevenSorrowsVersicle)}\n**{Text(PrayerKey.SevenSorrowsResponse)}**\n\n{Text(PrayerKey.SevenSorrowsCollect)}",
-            ImageOverrideKey: "madonna_and_child"));
-
-        steps.Add(new RosaryStep("Sign of the Cross", null, Text(PrayerKey.SignumCrucis), ImageOverrideKey: "crucifix"));
-
-        return steps;
-    }
-
-    // Divine Mercy Chaplet
-
-    private static IReadOnlyList<RosaryStep> BuildDivineMercySteps(string? languageCode)
-    {
-        const string imageKey = "divine_mercy_image";
-
-        string Text(string key) => PrayerTranslations.Get(languageCode, key);
-
-        var steps = new List<RosaryStep>
-        {
-            new("Sign of the Cross", null, Text(PrayerKey.SignumCrucis), ImageOverrideKey: imageKey),
-            new("Our Father", null, Text(PrayerKey.PaterNoster), ImageOverrideKey: imageKey),
-            new("Hail Mary", null, Text(PrayerKey.AveMaria), ImageOverrideKey: imageKey),
-            new("The Apostles' Creed", null, Text(PrayerKey.SymbolumApostolorum), ImageOverrideKey: imageKey),
-        };
-
-        for (var d = 0; d < 5; d++)
-        {
-            var decadeSubtitle = $"{Ordinals[d]} Decade";
-
-            steps.Add(new RosaryStep(
-                "Eternal Father, I Offer You...", decadeSubtitle, Text(PrayerKey.DivineMercyOffering),
-                DecadeIndex: d, ImageOverrideKey: imageKey));
-
-            for (var h = 1; h <= 10; h++)
-            {
-                steps.Add(new RosaryStep(
-                    $"For the Sake of His Sorrowful Passion ({h} of 10)", decadeSubtitle, Text(PrayerKey.DivineMercyPetition),
-                    DecadeIndex: d, HailMaryIndexInDecade: h, ImageOverrideKey: imageKey));
-            }
-        }
-
-        for (var h = 1; h <= 3; h++)
-        {
-            steps.Add(new RosaryStep(
-                $"Holy God, Holy Mighty One, Holy Immortal One ({h} of 3)", null, Text(PrayerKey.DivineMercyClosingAcclamation),
-                ImageOverrideKey: imageKey));
-        }
-
-        steps.Add(new RosaryStep("Sign of the Cross", null, Text(PrayerKey.SignumCrucis), ImageOverrideKey: imageKey));
-
-        return steps;
-    }
-
-    // Angelus
-
-    private IReadOnlyList<RosaryStep> BuildAngelusSteps(string? languageCode)
-        => BuildAngelusSteps(languageCode, _calendar.IsEasterSeasonForToday());
-
-    /// <summary>Takes the Easter-season flag explicitly rather than always resolving it from
-    /// <see cref="LiturgicalCalendarService.IsEasterSeasonForToday"/>, so tests can exercise both
-    /// branches deterministically without depending on the real system date.</summary>
-    internal static IReadOnlyList<RosaryStep> BuildAngelusSteps(string? languageCode, bool isEasterSeason)
-    {
-        string Text(string key) => PrayerTranslations.Get(languageCode, key);
-
-        if (isEasterSeason)
-        {
-            var body = $"{Text(PrayerKey.ReginaCaeli)}\n\n{Text(PrayerKey.VersiculumPaschale)}" +
-                       $"\n**{Text(PrayerKey.ResponsiumPaschale)}**\n\n{Text(PrayerKey.CollectaPaschale)}";
-            return [new RosaryStep("Regina Caeli", null, body, ImageOverrideKey: "madonna_and_child")];
-        }
-
-        return
-        [
-            new RosaryStep(
-                "The Annunciation", null,
-                $"{Text(PrayerKey.VersiculumAngelusPrimus)}\n**{Text(PrayerKey.ResponsiumAngelusPrimus)}**",
-                ImageOverrideKey: "joyful_01_annunciation"),
-            new RosaryStep("Hail Mary", null, Text(PrayerKey.AveMaria), ImageOverrideKey: "joyful_01_annunciation"),
-
-            new RosaryStep(
-                "The Fiat", null,
-                $"{Text(PrayerKey.VersiculumAngelusSecundus)}\n**{Text(PrayerKey.ResponsiumAngelusSecundus)}**",
-                ImageOverrideKey: "joyful_01_annunciation"),
-            new RosaryStep("Hail Mary", null, Text(PrayerKey.AveMaria), ImageOverrideKey: "joyful_01_annunciation"),
-
-            new RosaryStep(
-                "The Incarnation", null,
-                $"{Text(PrayerKey.VersiculumAngelusTertius)}\n**{Text(PrayerKey.ResponsiumAngelusTertius)}**",
-                ImageOverrideKey: "joyful_01_annunciation"),
-            new RosaryStep("Hail Mary", null, Text(PrayerKey.AveMaria), ImageOverrideKey: "joyful_01_annunciation"),
-
-            new RosaryStep(
-                "Let Us Pray", null,
-                $"{Text(PrayerKey.VersiculumStandard)}\n**{Text(PrayerKey.ResponsiumStandard)}**\n\n{Text(PrayerKey.CollectaAngelus)}",
-                ImageOverrideKey: "joyful_01_annunciation"),
-        ];
-    }
-
-    // Stations of the Cross
-
-    private static IReadOnlyList<RosaryStep> BuildStationsSteps(string? languageCode)
-    {
-        string Text(string key) => PrayerTranslations.Get(languageCode, key);
-
-        var steps = new List<RosaryStep>
-        {
-            new("Sign of the Cross", null, Text(PrayerKey.SignumCrucis), ImageOverrideKey: "crucifix"),
-            new("Opening Prayer", null, Text(PrayerKey.StationsOpeningPrayer), ImageOverrideKey: "crucifix"),
-        };
-
-        foreach (var station in StationsCatalog.All)
-        {
-            var stationText = StationsTranslations.Get(languageCode, station.ImageKey);
-            var ordinalLabel = $"{Ordinals[station.Order - 1]} Station";
-            var body = $"{Text(PrayerKey.StationsVersicle)}\n**{Text(PrayerKey.StationsResponse)}**\n\n{stationText.Meditation}";
-
-            steps.Add(new RosaryStep(stationText.Title, ordinalLabel, body, ImageOverrideKey: station.ImageKey));
-        }
-
-        steps.Add(new RosaryStep("Closing Prayer", null, Text(PrayerKey.StationsClosingPrayer), ImageOverrideKey: "crucifix"));
-
-        return steps;
-    }
-
-    // Marian antiphon (shared by Rosary and Franciscan Crown)
+    // Marian antiphon (shared by the Rosary and generic rosary-type devotions)
 
     private enum AntiphonStyle { Standard, Paschal, Standalone }
 
@@ -479,7 +267,7 @@ public sealed class PrayerEngine
     /// Angelus/Stations/Trisagion-shaped devotions (including the Angelus's Eastertide
     /// whole-sequence swap); the decade/bead-structured "rosary" type covers Franciscan
     /// Crown/Seven Sorrows/Divine Mercy-shaped ones. Takes the calendar-derived values
-    /// explicitly (same seam as <see cref="BuildAngelusSteps(string?, bool)"/>) so tests can
+    /// explicitly so tests can
     /// exercise both Eastertide branches and any season's antiphon deterministically.</summary>
     internal static IReadOnlyList<RosaryStep> BuildCustomDevotionSteps(
         string bundleId, string? languageCode, bool isEasterSeason, MarianAntiphonOption seasonalAntiphon)
