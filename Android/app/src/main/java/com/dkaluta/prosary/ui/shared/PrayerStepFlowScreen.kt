@@ -355,7 +355,7 @@ private fun TextBlock(step: RosaryStep, languageCode: String?, modifier: Modifie
         )
 
         Text(
-            step.body,
+            step.body.parseBoldMarkdown(),
             style = PrayerTypography.style(languageCode = languageCode, isScripture = step.isScripture),
         )
     }

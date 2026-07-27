@@ -3,6 +3,7 @@
     x:Class="Prosary.Views.DivineMercyFlowPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Prosary.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -120,7 +121,7 @@
                         <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
                     </StackPanel>
 
-                    <TextBlock Text="{x:Bind ViewModel.Body, Mode=OneWay}"
+                    <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
                                FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
                                FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
                                TextWrapping="Wrap" TextAlignment="Center" />
@@ -187,7 +188,7 @@
                         <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
                     </StackPanel>
 
-                    <TextBlock Text="{x:Bind ViewModel.Body, Mode=OneWay}"
+                    <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
                                FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
                                FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
                                TextWrapping="Wrap" TextAlignment="Center" />

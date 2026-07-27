@@ -297,7 +297,7 @@ struct PrayerEngine {
 
     steps.append(RosaryStep(
       title: "Our Lady of Sorrows", subtitle: nil,
-      body: "V. \(text(.sevenSorrowsVersicle))\nR. \(text(.sevenSorrowsResponse))\n\n\(text(.sevenSorrowsCollect))",
+      body: "\(text(.sevenSorrowsVersicle))\n**\(text(.sevenSorrowsResponse))**\n\n\(text(.sevenSorrowsCollect))",
       imageOverrideKey: "madonna_and_child"))
 
     steps.append(RosaryStep(title: "Sign of the Cross", subtitle: nil, body: text(.signumCrucis), imageOverrideKey: "crucifix"))
@@ -355,32 +355,32 @@ struct PrayerEngine {
 
     if calendar.isEasterSeasonToday() {
       // During Eastertide the Angelus is traditionally replaced entirely by the Regina Caeli.
-      let body = "\(text(.reginaCaeli))\n\nV. \(text(.versiculumPaschale))\nR. \(text(.responsiumPaschale))\n\n\(text(.collectaPaschale))"
+      let body = "\(text(.reginaCaeli))\n\n\(text(.versiculumPaschale))\n**\(text(.responsiumPaschale))**\n\n\(text(.collectaPaschale))"
       return [RosaryStep(title: "Regina Caeli", subtitle: nil, body: body, imageOverrideKey: "madonna_and_child")]
     }
 
     return [
       RosaryStep(
         title: "The Annunciation", subtitle: nil,
-        body: "V. \(text(.versiculumAngelusPrimus))\nR. \(text(.responsiumAngelusPrimus))",
+        body: "\(text(.versiculumAngelusPrimus))\n**\(text(.responsiumAngelusPrimus))**",
         imageOverrideKey: "joyful_01_annunciation"),
       RosaryStep(title: "Hail Mary", subtitle: nil, body: text(.aveMaria), imageOverrideKey: "joyful_01_annunciation"),
 
       RosaryStep(
         title: "The Fiat", subtitle: nil,
-        body: "V. \(text(.versiculumAngelusSecundus))\nR. \(text(.responsiumAngelusSecundus))",
+        body: "\(text(.versiculumAngelusSecundus))\n**\(text(.responsiumAngelusSecundus))**",
         imageOverrideKey: "joyful_01_annunciation"),
       RosaryStep(title: "Hail Mary", subtitle: nil, body: text(.aveMaria), imageOverrideKey: "joyful_01_annunciation"),
 
       RosaryStep(
         title: "The Incarnation", subtitle: nil,
-        body: "V. \(text(.versiculumAngelusTertius))\nR. \(text(.responsiumAngelusTertius))",
+        body: "\(text(.versiculumAngelusTertius))\n**\(text(.responsiumAngelusTertius))**",
         imageOverrideKey: "joyful_01_annunciation"),
       RosaryStep(title: "Hail Mary", subtitle: nil, body: text(.aveMaria), imageOverrideKey: "joyful_01_annunciation"),
 
       RosaryStep(
         title: "Let Us Pray", subtitle: nil,
-        body: "V. \(text(.versiculumStandard))\nR. \(text(.responsiumStandard))\n\n\(text(.collectaAngelus))",
+        body: "\(text(.versiculumStandard))\n**\(text(.responsiumStandard))**\n\n\(text(.collectaAngelus))",
         imageOverrideKey: "joyful_01_annunciation"),
     ]
   }
@@ -405,7 +405,7 @@ struct PrayerEngine {
     for station in StationsCatalog.all {
       let stationText = StationsTranslations.get(languageCode: languageCode, imageKey: station.imageKey)
       let ordinalLabel = "\(Self.ordinals[station.order - 1]) Station"
-      let body = "V. \(text(.stationsVersicle))\nR. \(text(.stationsResponse))\n\n\(stationText.meditation)"
+      let body = "\(text(.stationsVersicle))\n**\(text(.stationsResponse))**\n\n\(stationText.meditation)"
 
       steps.append(RosaryStep(
         title: stationText.title, subtitle: ordinalLabel, body: body,
@@ -444,9 +444,9 @@ struct PrayerEngine {
     case .standalone:
       body = text(titleKey)
     case .standard:
-      body = "\(text(titleKey))\n\nV. \(text(.versiculumStandard))\nR. \(text(.responsiumStandard))\n\n\(text(.collectaStandard))"
+      body = "\(text(titleKey))\n\n\(text(.versiculumStandard))\n**\(text(.responsiumStandard))**\n\n\(text(.collectaStandard))"
     case .paschal:
-      body = "\(text(titleKey))\n\nV. \(text(.versiculumPaschale))\nR. \(text(.responsiumPaschale))\n\n\(text(.collectaPaschale))"
+      body = "\(text(titleKey))\n\n\(text(.versiculumPaschale))\n**\(text(.responsiumPaschale))**\n\n\(text(.collectaPaschale))"
     }
 
     var step = RosaryStep(title: marianAntiphonHeader(for: antiphon), subtitle: nil, body: body)

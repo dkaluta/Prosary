@@ -328,7 +328,7 @@ class PrayerEngine(
         steps.add(
             RosaryStep(
                 title = "Our Lady of Sorrows",
-                body = "V. ${text(PrayerKey.SevenSorrowsVersicle)}\nR. ${text(PrayerKey.SevenSorrowsResponse)}\n\n" +
+                body = "${text(PrayerKey.SevenSorrowsVersicle)}\n**${text(PrayerKey.SevenSorrowsResponse)}**\n\n" +
                     text(PrayerKey.SevenSorrowsCollect),
                 imageOverrideKey = "madonna_and_child",
             ),
@@ -393,36 +393,36 @@ class PrayerEngine(
         fun text(key: PrayerKey): String = PrayerTranslations.get(languageCode, key)
 
         if (calendar.isEasterSeasonToday()) {
-            val body = "${text(PrayerKey.ReginaCaeli)}\n\nV. ${text(PrayerKey.VersiculumPaschale)}\n" +
-                "R. ${text(PrayerKey.ResponsiumPaschale)}\n\n${text(PrayerKey.CollectaPaschale)}"
+            val body = "${text(PrayerKey.ReginaCaeli)}\n\n${text(PrayerKey.VersiculumPaschale)}\n" +
+                "**${text(PrayerKey.ResponsiumPaschale)}**\n\n${text(PrayerKey.CollectaPaschale)}"
             return listOf(RosaryStep(title = "Regina Caeli", body = body, imageOverrideKey = "madonna_and_child"))
         }
 
         return listOf(
             RosaryStep(
                 title = "The Annunciation",
-                body = "V. ${text(PrayerKey.VersiculumAngelusPrimus)}\nR. ${text(PrayerKey.ResponsiumAngelusPrimus)}",
+                body = "${text(PrayerKey.VersiculumAngelusPrimus)}\n**${text(PrayerKey.ResponsiumAngelusPrimus)}**",
                 imageOverrideKey = "joyful_01_annunciation",
             ),
             RosaryStep(title = "Hail Mary", body = text(PrayerKey.AveMaria), imageOverrideKey = "joyful_01_annunciation"),
 
             RosaryStep(
                 title = "The Fiat",
-                body = "V. ${text(PrayerKey.VersiculumAngelusSecundus)}\nR. ${text(PrayerKey.ResponsiumAngelusSecundus)}",
+                body = "${text(PrayerKey.VersiculumAngelusSecundus)}\n**${text(PrayerKey.ResponsiumAngelusSecundus)}**",
                 imageOverrideKey = "joyful_01_annunciation",
             ),
             RosaryStep(title = "Hail Mary", body = text(PrayerKey.AveMaria), imageOverrideKey = "joyful_01_annunciation"),
 
             RosaryStep(
                 title = "The Incarnation",
-                body = "V. ${text(PrayerKey.VersiculumAngelusTertius)}\nR. ${text(PrayerKey.ResponsiumAngelusTertius)}",
+                body = "${text(PrayerKey.VersiculumAngelusTertius)}\n**${text(PrayerKey.ResponsiumAngelusTertius)}**",
                 imageOverrideKey = "joyful_01_annunciation",
             ),
             RosaryStep(title = "Hail Mary", body = text(PrayerKey.AveMaria), imageOverrideKey = "joyful_01_annunciation"),
 
             RosaryStep(
                 title = "Let Us Pray",
-                body = "V. ${text(PrayerKey.VersiculumStandard)}\nR. ${text(PrayerKey.ResponsiumStandard)}\n\n" +
+                body = "${text(PrayerKey.VersiculumStandard)}\n**${text(PrayerKey.ResponsiumStandard)}**\n\n" +
                     text(PrayerKey.CollectaAngelus),
                 imageOverrideKey = "joyful_01_annunciation",
             ),
@@ -442,7 +442,7 @@ class PrayerEngine(
         for (station in StationsCatalog.all) {
             val stationText = StationsTranslations.get(languageCode, station.imageKey)
             val ordinalLabel = "${ordinals[station.order - 1]} Station"
-            val body = "V. ${text(PrayerKey.StationsVersicle)}\nR. ${text(PrayerKey.StationsResponse)}\n\n" +
+            val body = "${text(PrayerKey.StationsVersicle)}\n**${text(PrayerKey.StationsResponse)}**\n\n" +
                 stationText.meditation
 
             steps.add(
@@ -479,10 +479,10 @@ class PrayerEngine(
         val body = when (style) {
             AntiphonStyle.Standalone -> text(titleKey)
             AntiphonStyle.Standard ->
-                "${text(titleKey)}\n\nV. ${text(PrayerKey.VersiculumStandard)}\nR. ${text(PrayerKey.ResponsiumStandard)}\n\n" +
+                "${text(titleKey)}\n\n${text(PrayerKey.VersiculumStandard)}\n**${text(PrayerKey.ResponsiumStandard)}**\n\n" +
                     text(PrayerKey.CollectaStandard)
             AntiphonStyle.Paschal ->
-                "${text(titleKey)}\n\nV. ${text(PrayerKey.VersiculumPaschale)}\nR. ${text(PrayerKey.ResponsiumPaschale)}\n\n" +
+                "${text(titleKey)}\n\n${text(PrayerKey.VersiculumPaschale)}\n**${text(PrayerKey.ResponsiumPaschale)}**\n\n" +
                     text(PrayerKey.CollectaPaschale)
         }
 

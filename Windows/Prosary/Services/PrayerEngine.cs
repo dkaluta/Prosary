@@ -300,7 +300,7 @@ public sealed class PrayerEngine
 
         steps.Add(new RosaryStep(
             "Our Lady of Sorrows", null,
-            $"V. {Text(PrayerKey.SevenSorrowsVersicle)}\nR. {Text(PrayerKey.SevenSorrowsResponse)}\n\n{Text(PrayerKey.SevenSorrowsCollect)}",
+            $"{Text(PrayerKey.SevenSorrowsVersicle)}\n**{Text(PrayerKey.SevenSorrowsResponse)}**\n\n{Text(PrayerKey.SevenSorrowsCollect)}",
             ImageOverrideKey: "madonna_and_child"));
 
         steps.Add(new RosaryStep("Sign of the Cross", null, Text(PrayerKey.SignumCrucis), ImageOverrideKey: "crucifix"));
@@ -366,8 +366,8 @@ public sealed class PrayerEngine
 
         if (isEasterSeason)
         {
-            var body = $"{Text(PrayerKey.ReginaCaeli)}\n\nV. {Text(PrayerKey.VersiculumPaschale)}" +
-                       $"\nR. {Text(PrayerKey.ResponsiumPaschale)}\n\n{Text(PrayerKey.CollectaPaschale)}";
+            var body = $"{Text(PrayerKey.ReginaCaeli)}\n\n{Text(PrayerKey.VersiculumPaschale)}" +
+                       $"\n**{Text(PrayerKey.ResponsiumPaschale)}**\n\n{Text(PrayerKey.CollectaPaschale)}";
             return [new RosaryStep("Regina Caeli", null, body, ImageOverrideKey: "madonna_and_child")];
         }
 
@@ -375,25 +375,25 @@ public sealed class PrayerEngine
         [
             new RosaryStep(
                 "The Annunciation", null,
-                $"V. {Text(PrayerKey.VersiculumAngelusPrimus)}\nR. {Text(PrayerKey.ResponsiumAngelusPrimus)}",
+                $"{Text(PrayerKey.VersiculumAngelusPrimus)}\n**{Text(PrayerKey.ResponsiumAngelusPrimus)}**",
                 ImageOverrideKey: "joyful_01_annunciation"),
             new RosaryStep("Hail Mary", null, Text(PrayerKey.AveMaria), ImageOverrideKey: "joyful_01_annunciation"),
 
             new RosaryStep(
                 "The Fiat", null,
-                $"V. {Text(PrayerKey.VersiculumAngelusSecundus)}\nR. {Text(PrayerKey.ResponsiumAngelusSecundus)}",
+                $"{Text(PrayerKey.VersiculumAngelusSecundus)}\n**{Text(PrayerKey.ResponsiumAngelusSecundus)}**",
                 ImageOverrideKey: "joyful_01_annunciation"),
             new RosaryStep("Hail Mary", null, Text(PrayerKey.AveMaria), ImageOverrideKey: "joyful_01_annunciation"),
 
             new RosaryStep(
                 "The Incarnation", null,
-                $"V. {Text(PrayerKey.VersiculumAngelusTertius)}\nR. {Text(PrayerKey.ResponsiumAngelusTertius)}",
+                $"{Text(PrayerKey.VersiculumAngelusTertius)}\n**{Text(PrayerKey.ResponsiumAngelusTertius)}**",
                 ImageOverrideKey: "joyful_01_annunciation"),
             new RosaryStep("Hail Mary", null, Text(PrayerKey.AveMaria), ImageOverrideKey: "joyful_01_annunciation"),
 
             new RosaryStep(
                 "Let Us Pray", null,
-                $"V. {Text(PrayerKey.VersiculumStandard)}\nR. {Text(PrayerKey.ResponsiumStandard)}\n\n{Text(PrayerKey.CollectaAngelus)}",
+                $"{Text(PrayerKey.VersiculumStandard)}\n**{Text(PrayerKey.ResponsiumStandard)}**\n\n{Text(PrayerKey.CollectaAngelus)}",
                 ImageOverrideKey: "joyful_01_annunciation"),
         ];
     }
@@ -414,7 +414,7 @@ public sealed class PrayerEngine
         {
             var stationText = StationsTranslations.Get(languageCode, station.ImageKey);
             var ordinalLabel = $"{Ordinals[station.Order - 1]} Station";
-            var body = $"V. {Text(PrayerKey.StationsVersicle)}\nR. {Text(PrayerKey.StationsResponse)}\n\n{stationText.Meditation}";
+            var body = $"{Text(PrayerKey.StationsVersicle)}\n**{Text(PrayerKey.StationsResponse)}**\n\n{stationText.Meditation}";
 
             steps.Add(new RosaryStep(stationText.Title, ordinalLabel, body, ImageOverrideKey: station.ImageKey));
         }
@@ -446,8 +446,8 @@ public sealed class PrayerEngine
         // prayed on its own, without the versicle/response/collect used after the four Office antiphons.
         var body = style == AntiphonStyle.Standalone
             ? Text(titleKey)
-            : $"{Text(titleKey)}\n\nV. {Text(style == AntiphonStyle.Paschal ? PrayerKey.VersiculumPaschale : PrayerKey.VersiculumStandard)}" +
-              $"\nR. {Text(style == AntiphonStyle.Paschal ? PrayerKey.ResponsiumPaschale : PrayerKey.ResponsiumStandard)}" +
+            : $"{Text(titleKey)}\n\n{Text(style == AntiphonStyle.Paschal ? PrayerKey.VersiculumPaschale : PrayerKey.VersiculumStandard)}" +
+              $"\n**{Text(style == AntiphonStyle.Paschal ? PrayerKey.ResponsiumPaschale : PrayerKey.ResponsiumStandard)}**" +
               $"\n\n{Text(style == AntiphonStyle.Paschal ? PrayerKey.CollectaPaschale : PrayerKey.CollectaStandard)}";
 
         return new RosaryStep(GetMarianAntiphonHeader(antiphon), null, body) with { IsAntiphon = true, ImageOverrideKey = "madonna_and_child" };

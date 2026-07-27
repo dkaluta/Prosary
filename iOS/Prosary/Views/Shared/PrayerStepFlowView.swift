@@ -242,10 +242,23 @@ struct PrayerStepFlowView: View {
         .foregroundStyle(Color.brandHeadline)
         .multilineTextAlignment(.center)
 
-      Text(step.body)
+      Text(bodyAttributedString(step.body))
         .font(PrayerTypography.font(languageCode: languageCode, isScripture: step.isScripture))
         .lineSpacing(4)
     }
     .frame(maxWidth: .infinity)
+  }
+
+  /// Prayer bodies use `**bold**` for the traditional versicle/response typographic distinction
+  /// — the versicle (leader's line) stays in the body's normal weight ("roman"), the response
+  /// (people's reply) is `**bold**`, with no literal "V."/"R." labels at all; the alternating
+  /// style alone marks who's speaking. `.inlineOnlyPreservingWhitespace` parses that inline
+  /// styling while keeping the body's own `\n` line breaks intact, unlike the default markdown
+  /// parsing option, which would collapse single newlines the way prose markdown normally treats
+  /// soft line breaks. Falls back to the raw string (no styling, but never a blank body) if
+  /// parsing ever fails.
+  private func bodyAttributedString(_ body: String) -> AttributedString {
+    (try? AttributedString(markdown: body, options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace)))
+      ?? AttributedString(body)
   }
 }
