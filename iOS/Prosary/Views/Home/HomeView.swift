@@ -112,7 +112,7 @@ struct HomeView: View {
       cards.append(DevotionCard(
         id: "custom.\(bundleId)",
         systemImage: info.iconSystemName ?? PrayerKind.custom.systemImage,
-        title: info.displayName,
+        title: info.localizedDisplayName,
         accentColor: info.accentColorHex.map { Color(hex: $0) } ?? .brandPrimary,
         subtitle: customDevotionSubtitle(bundleId: bundleId),
         accessibilityIdentifier: "\(bundleId)Card",

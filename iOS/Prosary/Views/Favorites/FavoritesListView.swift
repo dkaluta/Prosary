@@ -100,11 +100,11 @@ struct FavoritesListView: View {
             if let info = PrayerPackStore.info(for: bundleId) {
               let favorite = prayers.first { $0.kind == .custom && $0.customDevotionId == bundleId }
               SimpleFavoriteRow(
-                title: info.displayName,
+                title: info.localizedDisplayName,
                 systemImage: info.iconSystemName ?? PrayerKind.custom.systemImage,
                 accentColor: info.accentColorHex.map { Color(hex: $0) } ?? .brandPrimary,
                 isFavorited: favorite != nil,
-                onToggleFavorite: { toggleCustomFavorite(bundleId: bundleId, displayName: info.displayName, existing: favorite) },
+                onToggleFavorite: { toggleCustomFavorite(bundleId: bundleId, displayName: info.localizedDisplayName, existing: favorite) },
                 onEditReminders: { favorite.map { remindersPrayer = $0 } }
               )
             }

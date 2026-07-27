@@ -66,8 +66,9 @@ final class PrayerPackLoaderTests: XCTestCase {
     XCTAssertTrue(PrayerPackStore.customDevotionIds().contains("trisagion"))
   }
 
-  /// A devotion with no steps.json at all (Rosary/Angelus) is never mistaken for a generic one.
-  func testPacksWithNoStepsJSONAreNotCustomDevotions() {
+  /// A devotion with no devotion.json at all (Rosary/Angelus while they remain override-only
+  /// bundles) is never mistaken for a generic one.
+  func testPacksWithNoDevotionDefinitionAreNotCustomDevotions() {
     XCTAssertFalse(PrayerPackStore.customDevotionIds().contains("rosary"))
     XCTAssertFalse(PrayerPackStore.customDevotionIds().contains("angelus"))
   }
@@ -79,8 +80,10 @@ final class PrayerPackLoaderTests: XCTestCase {
     XCTAssertEqual(info?.iconSystemName, "triangle")
   }
 
-  func testTrisagionStepsMatchTheAuthoredSixStepSequence() {
-    let steps = PrayerPackStore.steps(for: "trisagion")
+  func testTrisagionDefinitionMatchesTheAuthoredSixStepSequence() {
+    let definition = PrayerPackStore.definition(for: "trisagion")
+    XCTAssertEqual(definition?.type, .steps)
+    let steps = definition?.steps ?? []
     XCTAssertEqual(steps.map(\.title), [
       "Holy God", "Holy God", "Holy God", "Glory Be", "Holy God", "Holy God",
     ])

@@ -471,15 +471,52 @@ struct PrayerEngine {
 
   // MARK: - Custom (bundle-driven) devotions
 
-  /// The only builder for every `PrayerKind.custom` devotion — reads `bundleId`'s `steps.json`
-  /// and maps each entry straight to a `RosaryStep`, with no devotion-specific code. Works for
-  /// Trisagion and any future bundle that ships a `steps.json`.
+  /// The only builder for every `PrayerKind.custom` devotion — reads `bundleId`'s parsed
+  /// `devotion.json` and produces the full step sequence with no devotion-specific code. The
+  /// flat "steps" type covers Angelus/Stations/Trisagion-shaped devotions (including the
+  /// Angelus's Eastertide whole-sequence swap); the decade/bead-structured "rosary" type covers
+  /// Franciscan Crown/Seven Sorrows/Divine Mercy-shaped ones.
   private func buildCustomDevotionSteps(bundleId: String, languageCode: String?) -> [RosaryStep] {
-    PrayerPackStore.steps(for: bundleId).map { step in
-      RosaryStep(
-        title: step.title, subtitle: nil,
-        body: PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: languageCode, key: step.bodyKey),
-        imageOverrideKey: step.imageKey)
+    guard let definition = PrayerPackStore.definition(for: bundleId) else { return [] }
+    switch definition.type {
+    case .steps:
+      let entries = (calendar.isEasterSeasonToday() ? definition.eastertideSteps : nil)
+        ?? definition.steps ?? []
+      return entries.flatMap { expand($0, bundleId: bundleId, languageCode: languageCode) }
+    case .rosary:
+      return buildCustomRosarySteps(definition, bundleId: bundleId, languageCode: languageCode)
     }
+  }
+
+  /// Expands one `devotion.json` entry into its step(s): resolves the title (literal or
+  /// translated `titleKey`) and body, and unrolls `repeat` into "(h of n)"-suffixed copies —
+  /// deliberately without bead fields, matching the hardcoded devotions' closing Hail Marys.
+  private func expand(_ entry: CustomDevotionStep, bundleId: String, languageCode: String?) -> [RosaryStep] {
+    if entry.kind == .seasonalMarianAntiphon {
+      return [buildMarianAntiphonStep(.seasonal, languageCode: languageCode)]
+    }
+    let title = entry.titleKey.map {
+      PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: languageCode, key: $0)
+    } ?? entry.title ?? ""
+    let body = entry.bodyKey.map {
+      PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: languageCode, key: $0)
+    } ?? ""
+
+    guard let count = entry.repeatCount, count > 1 else {
+      return [RosaryStep(title: title, subtitle: entry.subtitle, body: body, imageOverrideKey: entry.imageKey)]
+    }
+    return (1...count).map { h in
+      RosaryStep(
+        title: "\(title) (\(h) of \(count))", subtitle: entry.subtitle, body: body,
+        imageOverrideKey: entry.imageKey)
+    }
+  }
+
+  /// The decade/bead-structured generic builder ("rosary" type). Implemented alongside the
+  /// bead-accessory work — no shipped bundle uses this type yet.
+  private func buildCustomRosarySteps(
+    _ definition: CustomDevotionDefinition, bundleId: String, languageCode: String?
+  ) -> [RosaryStep] {
+    return []
   }
 }

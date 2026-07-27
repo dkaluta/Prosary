@@ -23,7 +23,7 @@ struct RemindersOnlyEditorView: View {
     guard prayer.kind == .custom, let devotionId = prayer.customDevotionId else {
       return prayer.kind.displayName
     }
-    return PrayerPackStore.info(for: devotionId)?.displayName ?? prayer.kind.displayName
+    return PrayerPackStore.info(for: devotionId)?.localizedDisplayName ?? prayer.kind.displayName
   }
 
   var body: some View {

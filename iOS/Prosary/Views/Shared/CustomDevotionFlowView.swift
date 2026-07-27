@@ -22,6 +22,7 @@ struct CustomDevotionFlowView: View {
   @State private var steps: [RosaryStep] = []
   @State private var currentIndex = 0
   @State private var isRightToLeft = false
+  @State private var seasonColor = Color.clear
   @State private var languageCode: String?
   @State private var matchingFavoriteId: Prayer.ID? = nil
   @State private var displayName: String = ""
@@ -36,7 +37,7 @@ struct CustomDevotionFlowView: View {
       step: currentStep,
       currentIndex: currentIndex,
       totalSteps: steps.count,
-      seasonColor: .clear,
+      seasonColor: seasonColor,
       isRightToLeft: isRightToLeft,
       languageCode: languageCode,
       canGoBack: currentIndex > 0,
@@ -55,7 +56,7 @@ struct CustomDevotionFlowView: View {
   }
 
   private func load() async {
-    displayName = PrayerPackStore.info(for: devotionId)?.displayName ?? devotionId
+    displayName = PrayerPackStore.info(for: devotionId)?.localizedDisplayName ?? devotionId
 
     let all = (try? await services.presetStore.all()) ?? []
     let favorite = prayer ?? all.first { $0.kind == .custom && $0.customDevotionId == devotionId }
@@ -66,6 +67,7 @@ struct CustomDevotionFlowView: View {
     steps = services.engine.buildSteps(for: Prayer(
       kind: .custom, languageCode: languageCode ?? LanguageCatalog.defaultSentinel, customDevotionId: devotionId))
     currentIndex = 0
+    seasonColor = services.calendar.seasonColorToday()
   }
 
   private func toggleFavorite() {

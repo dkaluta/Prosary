@@ -67,6 +67,9 @@ while IFS= read -r IMAGE_KEY; do
   [ -f "$IMAGES_DIR/$IMAGE_KEY.jpg" ] || fail "manifest declares image '$IMAGE_KEY' but $IMAGES_DIR/$IMAGE_KEY.jpg is missing"
 done
 
+# Deep-validate the devotion definition + per-language key resolution (see validate-devotion.py).
+python3 "$SCRIPT_DIR/validate-devotion.py" "$SRC_DIR" || fail "devotion validation failed"
+
 # Stage the bundle contents, then zip.
 STAGE_DIR=$(mktemp -d)
 trap 'rm -rf "$STAGE_DIR"' EXIT
@@ -77,9 +80,9 @@ cp "$SRC_DIR"/content/*.json "$STAGE_DIR/content/"
 if [ "$HAS_CATALOG" = "True" ]; then
   cp "$SRC_DIR/catalog.json" "$STAGE_DIR/catalog.json"
 fi
-if [ -f "$SRC_DIR/steps.json" ]; then
-  validate_json "$SRC_DIR/steps.json"
-  cp "$SRC_DIR/steps.json" "$STAGE_DIR/steps.json"
+if [ -f "$SRC_DIR/devotion.json" ]; then
+  validate_json "$SRC_DIR/devotion.json"
+  cp "$SRC_DIR/devotion.json" "$STAGE_DIR/devotion.json"
 fi
 
 mkdir -p "$STAGE_DIR/images"

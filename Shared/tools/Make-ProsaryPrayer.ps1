@@ -83,10 +83,23 @@ try {
         Copy-Item (Join-Path $SourceDir "catalog.json") (Join-Path $StageDir "catalog.json")
     }
 
-    $StepsPath = Join-Path $SourceDir "steps.json"
-    if (Test-Path $StepsPath) {
-        Test-JsonFile $StepsPath
-        Copy-Item $StepsPath (Join-Path $StageDir "steps.json")
+    $DevotionPath = Join-Path $SourceDir "devotion.json"
+    if (Test-Path $DevotionPath) {
+        Test-JsonFile $DevotionPath
+        Copy-Item $DevotionPath (Join-Path $StageDir "devotion.json")
+    }
+
+    # Deep-validate the devotion definition when python3 is available (see validate-devotion.py);
+    # the same Shared sources are always validated by make-prosaryprayer.sh on macOS/Linux, so a
+    # missing python3 here only skips a redundant check.
+    $Python = Get-Command python3 -ErrorAction SilentlyContinue
+    if ($Python) {
+        & $Python.Source (Join-Path $PSScriptRoot "validate-devotion.py") $SourceDir
+        if ($LASTEXITCODE -ne 0) {
+            Fail "devotion validation failed"
+        }
+    } else {
+        Write-Warning "python3 not found - skipping deep devotion validation"
     }
 
     $StageImagesDir = Join-Path $StageDir "images"
