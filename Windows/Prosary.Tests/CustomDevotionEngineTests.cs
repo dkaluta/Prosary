@@ -1,4 +1,5 @@
 using Prosary.Localization;
+using Prosary.Models;
 using Prosary.Services;
 using Xunit;
 
@@ -17,10 +18,16 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
     {
     }
 
+    private static IReadOnlyList<RosaryStep> BuildSteps(
+        string bundleId, string? languageCode,
+        bool isEasterSeason = false,
+        MarianAntiphonOption seasonalAntiphon = MarianAntiphonOption.SalveRegina) =>
+        PrayerEngine.BuildCustomDevotionSteps(bundleId, languageCode, isEasterSeason, seasonalAntiphon);
+
     [Fact]
     public void TrisagionProducesTheSixStepSequence()
     {
-        var steps = PrayerEngine.BuildCustomDevotionSteps("trisagion", "en");
+        var steps = BuildSteps("trisagion", "en");
 
         Assert.Equal(6, steps.Count);
         Assert.Equal(
@@ -33,9 +40,9 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Fact]
-    public void TrisagionImagesMatchTheStepsJsonImageKeys()
+    public void TrisagionImagesMatchTheDevotionJsonImageKeys()
     {
-        var steps = PrayerEngine.BuildCustomDevotionSteps("trisagion", "en");
+        var steps = BuildSteps("trisagion", "en");
 
         Assert.Equal(
             ["jesus_portrait", "jesus_portrait", "jesus_portrait", "glory_be", "jesus_portrait", "jesus_portrait"],
@@ -45,7 +52,7 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
     [Fact]
     public void UnknownBundleIdProducesNoSteps()
     {
-        var steps = PrayerEngine.BuildCustomDevotionSteps("not-a-real-bundle", "en");
+        var steps = BuildSteps("not-a-real-bundle", "en");
         Assert.Empty(steps);
     }
 }

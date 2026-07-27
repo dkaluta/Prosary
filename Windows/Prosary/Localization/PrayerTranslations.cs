@@ -42,6 +42,9 @@ public static partial class PrayerTranslations
             return text;
         }
 
-        return Latin.TryGetValue(key, out var latinText) ? latinText : key;
+        // Pack-provided Latin before the hardcoded Latin table — some texts (the converted
+        // devotions' bundle-local keys) live only in their bundles.
+        return PrayerPackStore.PrayerOverride("la", key)
+            ?? (Latin.TryGetValue(key, out var latinText) ? latinText : key);
     }
 }

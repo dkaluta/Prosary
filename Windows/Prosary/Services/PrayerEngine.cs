@@ -468,15 +468,126 @@ public sealed class PrayerEngine
 
     // Custom (bundle-driven) devotions
 
+    private IReadOnlyList<RosaryStep> BuildCustomDevotionSteps(string bundleId, string? languageCode) =>
+        BuildCustomDevotionSteps(
+            bundleId, languageCode,
+            _calendar.IsEasterSeasonForToday(), _calendar.GetSeasonalMarianAntiphonForToday());
+
     /// <summary>The only builder for every <see cref="PrayerKind.Custom"/> devotion — reads
-    /// <paramref name="bundleId"/>'s <c>steps.json</c> and maps each entry straight to a
-    /// <see cref="RosaryStep"/>, with no devotion-specific code. Works for Trisagion and any
-    /// future bundle that ships a <c>steps.json</c>.</summary>
-    internal static IReadOnlyList<RosaryStep> BuildCustomDevotionSteps(string bundleId, string? languageCode) =>
-        PrayerPackStore.Steps(bundleId)
-            .Select(step => new RosaryStep(
-                step.Title, null,
-                PrayerPackStore.ResolveBodyText(languageCode, step.BodyKey),
-                ImageOverrideKey: step.ImageKey))
+    /// <paramref name="bundleId"/>'s parsed <c>devotion.json</c> and produces the full step
+    /// sequence with no devotion-specific code. The flat "steps" type covers
+    /// Angelus/Stations/Trisagion-shaped devotions (including the Angelus's Eastertide
+    /// whole-sequence swap); the decade/bead-structured "rosary" type covers Franciscan
+    /// Crown/Seven Sorrows/Divine Mercy-shaped ones. Takes the calendar-derived values
+    /// explicitly (same seam as <see cref="BuildAngelusSteps(string?, bool)"/>) so tests can
+    /// exercise both Eastertide branches and any season's antiphon deterministically.</summary>
+    internal static IReadOnlyList<RosaryStep> BuildCustomDevotionSteps(
+        string bundleId, string? languageCode, bool isEasterSeason, MarianAntiphonOption seasonalAntiphon)
+    {
+        var definition = PrayerPackStore.Definition(bundleId);
+        if (definition is null) return [];
+
+        switch (definition.Type)
+        {
+            case CustomDevotionDefinition.DevotionType.Steps:
+                var entries = (isEasterSeason ? definition.EastertideSteps : null) ?? definition.Steps ?? [];
+                return entries.SelectMany(e => Expand(e, bundleId, languageCode, seasonalAntiphon)).ToList();
+            case CustomDevotionDefinition.DevotionType.Rosary:
+                return BuildCustomRosarySteps(definition, bundleId, languageCode, seasonalAntiphon);
+            default:
+                return [];
+        }
+    }
+
+    /// <summary>Expands one <c>devotion.json</c> entry into its step(s): resolves the title
+    /// (literal or translated <c>titleKey</c>) and body, and unrolls <c>repeat</c> into
+    /// "(h of n)"-suffixed copies — deliberately without bead fields, matching the hardcoded
+    /// devotions' closing Hail Marys.</summary>
+    private static IReadOnlyList<RosaryStep> Expand(
+        CustomDevotionStep entry, string bundleId, string? languageCode, MarianAntiphonOption seasonalAntiphon)
+    {
+        if (entry.Kind == CustomDevotionStep.SpecialKind.SeasonalMarianAntiphon)
+        {
+            return [BuildMarianAntiphonStep(seasonalAntiphon, languageCode)];
+        }
+
+        var title = entry.TitleKey is { } titleKey
+            ? PrayerPackStore.ResolveBodyText(bundleId, languageCode, titleKey)
+            : entry.Title ?? string.Empty;
+        var body = entry.BodyKey is { } bodyKey
+            ? PrayerPackStore.ResolveBodyText(bundleId, languageCode, bodyKey)
+            : string.Empty;
+
+        if (entry.Repeat is not { } count || count <= 1)
+        {
+            return [new RosaryStep(title, entry.Subtitle, body, ImageOverrideKey: entry.ImageKey)];
+        }
+
+        return Enumerable.Range(1, count)
+            .Select(h => new RosaryStep($"{title} ({h} of {count})", entry.Subtitle, body, ImageOverrideKey: entry.ImageKey))
             .ToList();
+    }
+
+    /// <summary>The decade/bead-structured generic builder ("rosary" type) — mirrors
+    /// <see cref="BuildDecadeSteps"/>'s emission exactly (announcement → major → N minors, dense
+    /// global DecadeIndex, HailMaryIndexInDecade on minors only, "ordinal — title" subtitles) so
+    /// the bead track and step chrome behave identically to the previously hardcoded decade
+    /// devotions.</summary>
+    private static IReadOnlyList<RosaryStep> BuildCustomRosarySteps(
+        CustomDevotionDefinition definition, string bundleId, string? languageCode, MarianAntiphonOption seasonalAntiphon)
+    {
+        if (definition.Decades is not { } decades) return [];
+
+        string Resolve(string key) => PrayerPackStore.ResolveBodyText(bundleId, languageCode, key);
+
+        var steps = new List<RosaryStep>();
+        foreach (var entry in definition.Opening ?? [])
+        {
+            steps.AddRange(Expand(entry, bundleId, languageCode, seasonalAntiphon));
+        }
+
+        var fruitLabel = PrayerTranslations.Get(languageCode, PrayerKey.FructusMysteriiLabel);
+        var majorBody = Resolve(decades.MajorStep.BodyKey);
+        var minorBody = Resolve(decades.MinorStep.BodyKey);
+        var decadeCount = decades.Entries?.Count ?? decades.Count ?? 0;
+
+        for (var d = 0; d < decadeCount; d++)
+        {
+            var entry = decades.Entries?[d];
+            var imageKey = entry?.ImageKey ?? decades.FixedImageKey;
+            var ordinalLabel = $"{Ordinals[d]} {decades.OrdinalNoun}";
+            var decadeSubtitle = ordinalLabel;
+
+            if (decades.AnnounceMystery && entry is not null)
+            {
+                var mysteryText = MysteryTranslations.Get(languageCode, entry.ImageKey);
+                var body = mysteryText.Description;
+                if (!string.IsNullOrEmpty(mysteryText.Fruit))
+                {
+                    body += $"\n\n{fruitLabel}: {mysteryText.Fruit}";
+                }
+
+                steps.Add(new RosaryStep(mysteryText.Title, ordinalLabel, body,
+                    IsScripture: entry.IsScripture ?? true, DecadeIndex: d, ImageOverrideKey: entry.ImageKey));
+                decadeSubtitle = $"{ordinalLabel} — {mysteryText.Title}";
+            }
+
+            steps.Add(new RosaryStep(decades.MajorStep.Title, decadeSubtitle, majorBody,
+                DecadeIndex: d, ImageOverrideKey: imageKey));
+
+            for (var h = 1; h <= decades.MinorCount; h++)
+            {
+                steps.Add(new RosaryStep(
+                    $"{decades.MinorStep.Title} ({h} of {decades.MinorCount})", decadeSubtitle, minorBody,
+                    DecadeIndex: d, HailMaryIndexInDecade: h, ImageOverrideKey: imageKey));
+            }
+        }
+
+        foreach (var entry in definition.Closing ?? [])
+        {
+            steps.AddRange(Expand(entry, bundleId, languageCode, seasonalAntiphon));
+        }
+
+        return steps;
+    }
 }

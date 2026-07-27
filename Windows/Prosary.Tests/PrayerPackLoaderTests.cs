@@ -99,13 +99,12 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Contains("trisagion", PrayerPackStore.CustomDevotionIds());
     }
 
-    /// <summary>A devotion with no steps.json at all (Rosary/Angelus) is never mistaken for a
-    /// generic one.</summary>
+    /// <summary>The Rosary's pack has no devotion.json (override-only) and must never be
+    /// mistaken for a generic devotion.</summary>
     [Fact]
-    public void PacksWithNoStepsJsonAreNotCustomDevotions()
+    public void PacksWithNoDevotionJsonAreNotCustomDevotions()
     {
         Assert.DoesNotContain("rosary", PrayerPackStore.CustomDevotionIds());
-        Assert.DoesNotContain("angelus", PrayerPackStore.CustomDevotionIds());
     }
 
     [Fact]
@@ -118,9 +117,11 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Fact]
-    public void TrisagionStepsMatchTheAuthoredSixStepSequence()
+    public void TrisagionDefinitionMatchesTheAuthoredSixStepSequence()
     {
-        var steps = PrayerPackStore.Steps("trisagion");
+        var definition = PrayerPackStore.Definition("trisagion");
+        Assert.Equal(CustomDevotionDefinition.DevotionType.Steps, definition?.Type);
+        var steps = definition?.Steps ?? [];
         Assert.Equal(
             ["Holy God", "Holy God", "Holy God", "Glory Be", "Holy God", "Holy God"],
             steps.Select(s => s.Title));
@@ -132,32 +133,33 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
             steps.Select(s => s.BodyKey));
     }
 
-    /// <summary><see cref="PrayerPackStore.ResolveBodyText"/> resolving a bundle-local-only key
-    /// (never a real <see cref="PrayerKey"/> constant) via the global override table it merges
-    /// into at load time.</summary>
+    /// <summary><see cref="PrayerPackStore.ResolveBodyText"/> step 1 — a bundle-local-only key
+    /// (never a real <see cref="PrayerKey"/> constant) resolves from the bundle's own raw
+    /// content.</summary>
     [Fact]
     public void ResolveBodyTextResolvesABundleLocalKey()
     {
-        var text = PrayerPackStore.ResolveBodyText("en", "trisagionAcclamation");
+        var text = PrayerPackStore.ResolveBodyText("trisagion", "en", "trisagionAcclamation");
         Assert.Equal("Holy God, Holy Mighty One, Holy Immortal One, have mercy on us.", text);
     }
 
-    /// <summary><see cref="PrayerPackStore.ResolveBodyText"/> falling through to a shared "main"
-    /// key ("gloriaPatri", deliberately absent from every bundle) via the ordinary hardcoded
-    /// table.</summary>
+    /// <summary><see cref="PrayerPackStore.ResolveBodyText"/> step 2 — a key matching a shared
+    /// "main" key ("gloriaPatri", deliberately absent from every bundle) falls through to the
+    /// ordinary hardcoded table.</summary>
     [Fact]
     public void ResolveBodyTextFallsThroughToASharedPrayerKey()
     {
-        var text = PrayerPackStore.ResolveBodyText("en", "gloriaPatri");
+        var text = PrayerPackStore.ResolveBodyText("trisagion", "en", "gloriaPatri");
         Assert.Equal(PrayerTranslations.Get("en", PrayerKey.GloriaPatri), text);
     }
 
-    /// <summary><see cref="PrayerPackStore.ResolveBodyText"/> falling back to the raw key,
-    /// matching <see cref="PrayerTranslations.Get"/>'s own last-resort fallback.</summary>
+    /// <summary><see cref="PrayerPackStore.ResolveBodyText"/> step 3 — an unresolvable key
+    /// returns itself (the original camelCase form, not its PascalCased lookup), matching
+    /// iOS/Android.</summary>
     [Fact]
     public void ResolveBodyTextFallsBackToTheRawKey()
     {
-        var text = PrayerPackStore.ResolveBodyText("en", "NotARealKey");
-        Assert.Equal("NotARealKey", text);
+        var text = PrayerPackStore.ResolveBodyText("trisagion", "en", "notARealKey");
+        Assert.Equal("notARealKey", text);
     }
 }

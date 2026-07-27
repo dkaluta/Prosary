@@ -35,6 +35,21 @@ public sealed class SqlitePresetStore : IPresetStore
     {
         await _connection.CreateTableAsync<PresetEntry>();
 
+        // Rows written before the generic-devotion migration store the retired per-devotion
+        // ordinals (see PrayerKind's explicit values). One guarded pass maps them to Custom +
+        // the matching bundle id; must run after CreateTableAsync (which auto-adds the
+        // CustomDevotionId column to old databases) and before seeding.
+        var schemaVersion = await _connection.ExecuteScalarAsync<int>("PRAGMA user_version");
+        if (schemaVersion < 1)
+        {
+            await _connection.ExecuteAsync(
+                @"UPDATE PresetEntry SET CustomDevotionId = CASE Kind
+                    WHEN 1 THEN 'angelus' WHEN 3 THEN 'stationsOfTheCross' WHEN 4 THEN 'franciscanCrown'
+                    WHEN 5 THEN 'sevenSorrows' WHEN 6 THEN 'divineMercyChaplet' ELSE CustomDevotionId END,
+                  Kind = 7 WHERE Kind IN (1, 3, 4, 5, 6)");
+            await _connection.ExecuteAsync("PRAGMA user_version = 1");
+        }
+
         if (await _connection.Table<PresetEntry>().CountAsync() == 0)
         {
             await _connection.InsertAsync(new PresetEntry { Name = "Classic Rosary", IsDefault = true, Kind = PrayerKind.Rosary });
@@ -69,8 +84,11 @@ public sealed class SqlitePresetStore : IPresetStore
 
         if (prayer.IsDefault)
         {
+            // "One default per kind" is scoped per devotion: (Kind, CustomDevotionId) — two
+            // different generic devotions must not steal each other's default slot.
             await _connection.ExecuteAsync(
-                "UPDATE PresetEntry SET IsDefault = 0 WHERE Kind = ? AND Id <> ?", (int)prayer.Kind, prayer.Id);
+                "UPDATE PresetEntry SET IsDefault = 0 WHERE Kind = ? AND IFNULL(CustomDevotionId, '') = IFNULL(?, '') AND Id <> ?",
+                (int)prayer.Kind, prayer.CustomDevotionId, prayer.Id);
         }
 
         await _connection.InsertOrReplaceAsync(PresetEntry.FromPrayer(prayer));
@@ -81,7 +99,9 @@ public sealed class SqlitePresetStore : IPresetStore
         await _initialization;
         await _connection.DeleteAsync<PresetEntry>(prayer.Id);
 
-        var remaining = await _connection.Table<PresetEntry>().Where(r => r.Kind == prayer.Kind).ToListAsync();
+        var remaining = (await _connection.Table<PresetEntry>().Where(r => r.Kind == prayer.Kind).ToListAsync())
+            .Where(r => (r.CustomDevotionId ?? string.Empty) == (prayer.CustomDevotionId ?? string.Empty))
+            .ToList();
         if (remaining.Count > 0 && !remaining.Any(r => r.IsDefault))
         {
             var newDefault = remaining[0];

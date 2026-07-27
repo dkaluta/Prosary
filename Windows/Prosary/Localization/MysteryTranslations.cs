@@ -42,6 +42,9 @@ public static partial class MysteryTranslations
             return text;
         }
 
-        return Latin.TryGetValue(imageKey, out var latinText) ? latinText : new MysteryText(imageKey, string.Empty, string.Empty);
+        // Pack-provided Latin before the hardcoded Latin table — some mystery texts (the Seven
+        // Sorrows, the Franciscan Crown's Adoration of the Magi) live only in their bundles.
+        return PrayerPackStore.MysteryOverride("la", imageKey)
+            ?? (Latin.TryGetValue(imageKey, out var latinText) ? latinText : new MysteryText(imageKey, string.Empty, string.Empty));
     }
 }
