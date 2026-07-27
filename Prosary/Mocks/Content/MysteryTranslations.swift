@@ -10,7 +10,12 @@
 import Foundation
 
 enum MysteryTranslations {
+  @MainActor
   static func get(languageCode: String?, imageKey: String) -> MysteryText {
+    if let languageCode, let override = PrayerPackStore.mysteryOverride(languageCode: languageCode, imageKey: imageKey) {
+      return override
+    }
+
     if let languageCode, let table = byLanguage[languageCode], let text = table[imageKey] {
       return text
     }

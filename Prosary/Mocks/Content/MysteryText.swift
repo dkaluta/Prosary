@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MysteryText: Hashable {
+struct MysteryText: Hashable, Decodable {
   var title: String
   var fruit: String
   var description: String

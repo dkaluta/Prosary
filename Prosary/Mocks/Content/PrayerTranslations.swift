@@ -10,7 +10,12 @@
 import Foundation
 
 enum PrayerTranslations {
+  @MainActor
   static func get(languageCode: String?, key: PrayerKey) -> String {
+    if let languageCode, let override = PrayerPackStore.prayerOverride(languageCode: languageCode, key: key) {
+      return override
+    }
+
     if let languageCode, let table = byLanguage[languageCode], let text = table[key] {
       return text
     }
