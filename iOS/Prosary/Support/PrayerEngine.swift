@@ -512,11 +512,61 @@ struct PrayerEngine {
     }
   }
 
-  /// The decade/bead-structured generic builder ("rosary" type). Implemented alongside the
-  /// bead-accessory work — no shipped bundle uses this type yet.
+  /// The decade/bead-structured generic builder ("rosary" type) — mirrors `buildDecadeSteps`'s
+  /// emission exactly (announcement → major → N minors, dense global `decadeIndex`,
+  /// `hailMaryIndexInDecade` on minors only, "ordinal — title" subtitles) so the bead track and
+  /// step chrome behave identically to the previously hardcoded decade devotions.
   private func buildCustomRosarySteps(
     _ definition: CustomDevotionDefinition, bundleId: String, languageCode: String?
   ) -> [RosaryStep] {
-    return []
+    guard let decades = definition.decades else { return [] }
+    func resolve(_ key: String) -> String {
+      PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: languageCode, key: key)
+    }
+
+    var steps: [RosaryStep] = []
+    for entry in definition.opening ?? [] {
+      steps.append(contentsOf: expand(entry, bundleId: bundleId, languageCode: languageCode))
+    }
+
+    let fruitLabel = PrayerTranslations.get(languageCode: languageCode, key: .fructusMysteriiLabel)
+    let majorBody = resolve(decades.majorStep.bodyKey)
+    let minorBody = resolve(decades.minorStep.bodyKey)
+    let decadeCount = decades.entries?.count ?? decades.count ?? 0
+
+    for d in 0..<decadeCount {
+      let entry = decades.entries?[d]
+      let imageKey = entry?.imageKey ?? decades.fixedImageKey
+      let ordinalLabel = "\(Self.ordinals[d]) \(decades.ordinalNoun)"
+      var decadeSubtitle = ordinalLabel
+
+      if decades.announceMystery, let entry {
+        let mysteryText = MysteryTranslations.get(languageCode: languageCode, imageKey: entry.imageKey)
+        var body = mysteryText.description
+        if !mysteryText.fruit.isEmpty {
+          body += "\n\n\(fruitLabel): \(mysteryText.fruit)"
+        }
+        steps.append(RosaryStep(
+          title: mysteryText.title, subtitle: ordinalLabel, body: body,
+          isScripture: entry.isScripture ?? true, decadeIndex: d, imageOverrideKey: entry.imageKey))
+        decadeSubtitle = "\(ordinalLabel) — \(mysteryText.title)"
+      }
+
+      steps.append(RosaryStep(
+        title: decades.majorStep.title, subtitle: decadeSubtitle, body: majorBody,
+        decadeIndex: d, imageOverrideKey: imageKey))
+
+      for h in 1...decades.minorCount {
+        steps.append(RosaryStep(
+          title: "\(decades.minorStep.title) (\(h) of \(decades.minorCount))",
+          subtitle: decadeSubtitle, body: minorBody,
+          decadeIndex: d, hailMaryIndexInDecade: h, imageOverrideKey: imageKey))
+      }
+    }
+
+    for entry in definition.closing ?? [] {
+      steps.append(contentsOf: expand(entry, bundleId: bundleId, languageCode: languageCode))
+    }
+    return steps
   }
 }

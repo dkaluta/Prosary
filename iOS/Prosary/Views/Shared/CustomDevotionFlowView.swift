@@ -31,6 +31,27 @@ struct CustomDevotionFlowView: View {
     steps.indices.contains(currentIndex) ? steps[currentIndex] : nil
   }
 
+  /// A decade/bead-structured ("rosary" type) devotion gets the same bead track as the Rosary;
+  /// flat devotions (no step carries a decadeIndex) get none — same conditional shape the
+  /// hardcoded flow views used to hardcode per devotion.
+  private var showsBeadTrack: Bool {
+    steps.contains { $0.decadeIndex != nil }
+  }
+
+  private var hasClosingCross: Bool {
+    PrayerPackStore.definition(for: devotionId)?.hasClosingCross ?? false
+  }
+
+  private var beadLayout: BeadLayout {
+    BeadLayout.build(steps: steps, currentIndex: currentIndex, hasClosingCross: hasClosingCross)
+  }
+
+  private func beadColumnAreaWidth(hasRoomForSingleMinorColumn: Bool) -> CGFloat {
+    let majorColumns = CGFloat(max(beadLayout.groupColumns.count, 1)) * 34 + 40
+    guard beadLayout.showBottomBeads else { return majorColumns }
+    return majorColumns + (hasRoomForSingleMinorColumn ? 44 : 74)
+  }
+
   var body: some View {
     PrayerStepFlowView(
       navigationTitle: displayName,
@@ -42,7 +63,14 @@ struct CustomDevotionFlowView: View {
       languageCode: languageCode,
       canGoBack: currentIndex > 0,
       onBack: back,
-      onNext: next
+      onNext: next,
+      accessory: showsBeadTrack ? { isWide, hasRoomForSingleMinorColumn in
+        AnyView(
+          BeadProgressView(layout: beadLayout, isWide: isWide,
+                           hasRoomForSingleMinorColumn: hasRoomForSingleMinorColumn)
+            .frame(width: beadColumnAreaWidth(hasRoomForSingleMinorColumn: hasRoomForSingleMinorColumn))
+        )
+      } : nil
     )
     .toolbar {
       ToolbarItem(placement: .primaryAction) {
