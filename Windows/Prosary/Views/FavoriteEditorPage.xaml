@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Prosary.Views.FavoriteEditorPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="Root"
+    mc:Ignorable="d">
+
+    <!-- Editor for any kind of saved favorite — kind-specific sections appear conditionally via
+         Visibility bindings to ViewModel.IsRosary/IsAngelus/IsJesusPrayer. Ported from Android's
+         FavoriteEditorScreen.kt. Reminder row item-level commands use classic
+         {Binding ElementName=Root} for the same reason FavoritesListPage's cards do. -->
+    <Page.Resources>
+        <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{StaticResource BrandPrimaryBrush}" />
+        </Style>
+        <Style x:Key="SectionCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="Padding" Value="14" />
+        </Style>
+
+        <DataTemplate x:Key="ReminderRowTemplate">
+            <Grid ColumnSpacing="8" Padding="0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TimePicker Grid.Column="0" HorizontalAlignment="Left" Time="{Binding AsTimeSpan}"
+                            TimeChanged="OnReminderTimeChanged" />
+                <Button Grid.Column="1" Background="Transparent" Padding="6"
+                        Command="{Binding ElementName=Root, Path=ViewModel.RemindersEditor.RemoveReminderCommand}" CommandParameter="{Binding}">
+                    <FontIcon Glyph="&#xE74D;" Foreground="Red" />
+                </Button>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Padding="12,8" Visibility="{x:Bind ViewModel.ShowingRosaryOptions, Mode=OneWay, Converter={StaticResource InverseBoolToVisibility}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Cancel" Background="Transparent" Command="{x:Bind ViewModel.CancelCommand}" />
+            <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.Title, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
+            <Button Grid.Column="2" Content="Save" Style="{StaticResource AccentButtonStyle}" Command="{x:Bind ViewModel.SaveCommand}" />
+        </Grid>
+
+        <!-- The "Rosary Options" submenu's own header — a same-page content swap (not a separate
+             Frame-navigated Page), see ViewModel.ShowingRosaryOptions' doc comment. -->
+        <Grid Grid.Row="0" Padding="12,8" Visibility="{x:Bind ViewModel.ShowingRosaryOptions, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Background="Transparent" Command="{x:Bind ViewModel.HideRosaryOptionsCommand}">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                    <FontIcon Glyph="&#xE76B;" FontSize="14" />
+                    <TextBlock Text="Back" />
+                </StackPanel>
+            </Button>
+            <TextBlock Grid.Column="1" Text="Rosary Options" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" Visibility="{x:Bind ViewModel.ShowingRosaryOptions, Mode=OneWay, Converter={StaticResource InverseBoolToVisibility}}">
+            <StackPanel Spacing="20" MaxWidth="480" HorizontalAlignment="Center" Padding="16">
+
+                <Border Style="{StaticResource SectionCardStyle}">
+                    <StackPanel Spacing="12">
+                        <TextBox Header="Name" PlaceholderText="e.g. Morning Rosary" Text="{x:Bind ViewModel.Name, Mode=TwoWay}" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Set as default" VerticalAlignment="Center" />
+                            <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IsDefault, Mode=TwoWay}" />
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="PRAYER LANGUAGE" Style="{StaticResource SectionHeaderStyle}" />
+                    <Border Style="{StaticResource SectionCardStyle}">
+                        <ComboBox HorizontalAlignment="Stretch" ItemsSource="{x:Bind ViewModel.LanguageCodeOptions}"
+                                  SelectedItem="{x:Bind ViewModel.LanguageCode, Mode=TwoWay}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource LanguageCodeLabel}}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Border>
+                </StackPanel>
+
+                <!-- Rosary-only: a single row pushing into the "submenu" swap above, instead of
+                     the 4 sections inline here — see ViewModel.ShowingRosaryOptions' doc comment. -->
+                <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.IsRosary, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                    <Button Background="Transparent" Padding="0" HorizontalContentAlignment="Stretch" Command="{x:Bind ViewModel.ShowRosaryOptionsCommand}">
+                        <Border Style="{StaticResource SectionCardStyle}">
+                            <Grid ColumnSpacing="8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Rosary Options" VerticalAlignment="Center" />
+                                <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.MysterySelectionSummary, Mode=OneWay}"
+                                           HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource MutedSubtitleTextStyle}" />
+                                <FontIcon Grid.Column="2" Glyph="&#xE76C;" FontSize="14" VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+                    </Button>
+                </StackPanel>
+
+                <!-- Jesus Prayer-only section -->
+                <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.IsJesusPrayer, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                    <TextBlock Text="TARGET" Style="{StaticResource SectionHeaderStyle}" />
+                    <Border Style="{StaticResource SectionCardStyle}">
+                        <ComboBox HorizontalAlignment="Stretch" ItemsSource="{x:Bind ViewModel.JesusPrayerTargetOptions}"
+                                  SelectedItem="{x:Bind ViewModel.JesusPrayerTarget, Mode=TwoWay}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource JesusPrayerTargetLabel}}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Border>
+                </StackPanel>
+
+                <!-- Reminders -->
+                <StackPanel Spacing="8">
+                    <TextBlock Text="REMINDERS" Style="{StaticResource SectionHeaderStyle}" />
+                    <Border Style="{StaticResource SectionCardStyle}">
+                        <StackPanel Spacing="8">
+                            <!-- Traditional Angelus bell times — quick toggles for 6am/noon/6pm.
+                                 Never actually visible from this editor (Angelus uses
+                                 RemindersOnlyEditorPage instead), kept so RemindersEditorViewModel
+                                 renders identically wherever it's bound. -->
+                            <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.RemindersEditor.IsAngelus, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="6:00 AM" VerticalAlignment="Center" />
+                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.Is6AmEnabled, Mode=OneWay}" Toggled="OnAngelus6AmToggled" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="12:00 PM" VerticalAlignment="Center" />
+                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.IsNoonEnabled, Mode=OneWay}" Toggled="OnAngelusNoonToggled" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="6:00 PM" VerticalAlignment="Center" />
+                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.Is6PmEnabled, Mode=OneWay}" Toggled="OnAngelus6PmToggled" />
+                                </Grid>
+                            </StackPanel>
+
+                            <ItemsControl ItemsSource="{x:Bind ViewModel.RemindersEditor.CustomReminders, Mode=OneWay}" ItemTemplate="{StaticResource ReminderRowTemplate}" />
+
+                            <Button Command="{x:Bind ViewModel.RemindersEditor.AddReminderCommand}" Background="Transparent">
+                                <StackPanel Orientation="Horizontal" Spacing="6">
+                                    <FontIcon Glyph="&#xE710;" FontSize="14" />
+                                    <TextBlock Text="Add Reminder" />
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- "Rosary Options" submenu content — see ViewModel.ShowingRosaryOptions' doc comment. -->
+        <ScrollViewer Grid.Row="1" Visibility="{x:Bind ViewModel.ShowingRosaryOptions, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+            <StackPanel Spacing="20" MaxWidth="480" HorizontalAlignment="Center" Padding="16">
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="WHICH MYSTERIES?" Style="{StaticResource SectionHeaderStyle}" />
+                    <Border Style="{StaticResource SectionCardStyle}">
+                        <StackPanel Spacing="12">
+                            <ComboBox HorizontalAlignment="Stretch" Header="Mysteries" ItemsSource="{x:Bind ViewModel.MysterySelectionModeOptions}"
+                                      SelectedItem="{x:Bind ViewModel.MysterySelectionMode, Mode=TwoWay}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource EnumDisplayName}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox HorizontalAlignment="Stretch" Header="Specific set" ItemsSource="{x:Bind ViewModel.MysteryGroupOptions}"
+                                      SelectedItem="{x:Bind ViewModel.SpecificMysteryGroup, Mode=TwoWay}"
+                                      Visibility="{x:Bind ViewModel.IsSpecificMysteryGroup, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource EnumDisplayName}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox HorizontalAlignment="Stretch" Header="Which mystery" ItemsSource="{x:Bind ViewModel.MysteryOptions, Mode=OneWay}"
+                                      SelectedItem="{x:Bind ViewModel.SelectedMystery, Mode=TwoWay}"
+                                      Visibility="{x:Bind ViewModel.IsSingleMystery, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource MysteryTitle}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                    </Border>
+
+                    <TextBlock Text="OPENING &amp; DECADE PRAYERS" Style="{StaticResource SectionHeaderStyle}" />
+                    <Border Style="{StaticResource SectionCardStyle}">
+                        <StackPanel Spacing="12">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Apostles' Creed" VerticalAlignment="Center" />
+                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeApostlesCreed, Mode=TwoWay}" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Opening Our Father &amp; 3 Hail Marys" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeOpeningPrayers, Mode=TwoWay}" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Fatima Prayer after each decade" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeFatimaPrayer, Mode=TwoWay}" />
+                            </Grid>
+                            <ComboBox HorizontalAlignment="Stretch" Header="For the faithful departed" ItemsSource="{x:Bind ViewModel.EternalRestPlacementOptions}"
+                                      SelectedItem="{x:Bind ViewModel.EternalRestForDeceased, Mode=TwoWay}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource EnumDisplayName}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                    </Border>
+
+                    <TextBlock Text="DISPLAY" Style="{StaticResource SectionHeaderStyle}" />
+                    <Border Style="{StaticResource SectionCardStyle}">
+                        <StackPanel Spacing="8">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Presenter Mode" VerticalAlignment="Center" />
+                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.PresenterMode, Mode=TwoWay}" />
+                            </Grid>
+                            <TextBlock Text="Combine each decade's Hail Marys and Glory Be onto one screen — useful when leading a group aloud from memory."
+                                       Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+
+                    <TextBlock Text="CLOSING PRAYERS" Style="{StaticResource SectionHeaderStyle}" />
+                    <Border Style="{StaticResource SectionCardStyle}">
+                        <StackPanel Spacing="12">
+                            <ComboBox HorizontalAlignment="Stretch" Header="Marian antiphon" ItemsSource="{x:Bind ViewModel.MarianAntiphonOptions}"
+                                      SelectedItem="{x:Bind ViewModel.MarianAntiphon, Mode=TwoWay}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource EnumDisplayName}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="St. Michael Prayer" VerticalAlignment="Center" />
+                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeStMichaelPrayer, Mode=TwoWay}" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Final Sign of the Cross" VerticalAlignment="Center" />
+                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeFinalSignOfCross, Mode=TwoWay}" />
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

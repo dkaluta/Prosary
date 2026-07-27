@@ -1,0 +1,43 @@
+## .NET
+bin/
+obj/
+*.user
+*.userosscache
+*.suo
+
+## Rider / VS
+.idea/
+.vs/
+*.DotSettings.user
+
+## macOS
+.DS_Store
+
+## Build output
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+publish/
+
+## MSIX packaging output
+AppPackages/
+BundleArtifacts/
+*.appx
+*.appxbundle
+*.appxsym
+*.appxupload
+*.msix
+*.msixbundle
+*.msixsym
+*.msixupload
+
+## SQLite local data (device-side, not source)
+*.db
+*.db3
+
+## Signing — never commit the packaging certificate or its password.
+keystore/*.pfx
+keystore/keystore.properties

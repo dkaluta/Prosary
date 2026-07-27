@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Prosary.Views.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <!-- Attribution content ported from iOS's AboutView.swift (the current canonical source —
+         irosary's older AboutPage.xaml has the same content but predates the app being retitled
+         "Prosary"). Scripture Sources now lists all 6 supported languages' sources (this session
+         also fixed the same gap on iOS/Android, which previously only listed 3). -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Padding="12,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Click="OnNavigateUp" Background="Transparent" Padding="8">
+                <FontIcon Glyph="&#xE72B;" />
+            </Button>
+            <TextBlock Grid.Column="1" Text="About Prosary" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
+        </Grid>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Spacing="24" MaxWidth="560" HorizontalAlignment="Center" Padding="24">
+
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Prosary" Style="{StaticResource HeadlineTextStyle}" />
+                    <TextBlock Text="A companion for praying the Rosary and other Catholic devotions." Style="{StaticResource MutedSubtitleTextStyle}" TextAlignment="Left" HorizontalAlignment="Left" TextWrapping="Wrap" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Typefaces" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                    <TextBlock TextWrapping="Wrap" Style="{StaticResource MutedSubtitleTextStyle}" TextAlignment="Left" HorizontalAlignment="Left">
+                        <Run Text="Frank Ruhl Libre" FontWeight="Bold" /><Run Text=" — SIL Open Font License 1.1 — Hebrew prayers." /><LineBreak />
+                        <Run Text="Shofar" FontWeight="Bold" /><Run Text=" — GPL v2 with font-embedding exception — Hebrew Scripture (Culmus Project, Yoram Gnat)." /><LineBreak />
+                        <Run Text="Amiri" FontWeight="Bold" /><Run Text=" — SIL Open Font License 1.1 — Arabic prayers." /><LineBreak />
+                        <Run Text="Scheherazade New" FontWeight="Bold" /><Run Text=" — SIL Open Font License 1.1 — Arabic Scripture (SIL)." /><LineBreak />
+                        <Run Text="Cardo" FontWeight="Bold" /><Run Text=" — SIL Open Font License 1.1 — Latin/English Scripture (David J. Perry)." />
+                    </TextBlock>
+                    <TextBlock Text="Latin-script prayers use Cambria, which ships with Windows — not bundled with the app."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Mystery Illustrations" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                    <TextBlock Text="All 20 mystery images are classical paintings in the public domain (artist deceased over 100 years), sourced from Wikimedia Commons."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    <TextBlock TextWrapping="Wrap" LineHeight="20" HorizontalAlignment="Left">
+                        <Run Text="The Annunciation" FontStyle="Italic" /><Run Text=" — Fra Angelico (d. 1455)" /><LineBreak />
+                        <Run Text="The Visitation" FontStyle="Italic" /><Run Text=" — Mariotto Albertinelli (d. 1515)" /><LineBreak />
+                        <Run Text="The Holy Night" FontStyle="Italic" /><Run Text=" — Antonio da Correggio (d. 1534)" /><LineBreak />
+                        <Run Text="The Presentation at the Temple" FontStyle="Italic" /><Run Text=" — Andrea Mantegna (d. 1506)" /><LineBreak />
+                        <Run Text="Christ Discovered in the Temple" FontStyle="Italic" /><Run Text=" — Simone Martini (d. 1344)" /><LineBreak />
+                        <Run Text="The Baptism of Christ" FontStyle="Italic" /><Run Text=" — Piero della Francesca (d. 1492)" /><LineBreak />
+                        <Run Text="The Wedding at Cana" FontStyle="Italic" /><Run Text=" — Paolo Veronese (d. 1588)" /><LineBreak />
+                        <Run Text="The Sermon on the Mount" FontStyle="Italic" /><Run Text=" — Cosimo Rosselli (d. 1507)" /><LineBreak />
+                        <Run Text="The Transfiguration" FontStyle="Italic" /><Run Text=" — Raphael (d. 1520)" /><LineBreak />
+                        <Run Text="The Last Supper" FontStyle="Italic" /><Run Text=" — Leonardo da Vinci (d. 1519)" /><LineBreak />
+                        <Run Text="The Agony in the Garden" FontStyle="Italic" /><Run Text=" — Andrea Mantegna (d. 1506)" /><LineBreak />
+                        <Run Text="The Flagellation of Christ" FontStyle="Italic" /><Run Text=" — Caravaggio (d. 1610)" /><LineBreak />
+                        <Run Text="The Crowning with Thorns" FontStyle="Italic" /><Run Text=" — Caravaggio (d. 1610)" /><LineBreak />
+                        <Run Text="Christ Carrying the Cross" FontStyle="Italic" /><Run Text=" — Titian (d. 1576)" /><LineBreak />
+                        <Run Text="Christ Crucified" FontStyle="Italic" /><Run Text=" — Diego Velázquez (d. 1660)" /><LineBreak />
+                        <Run Text="The Resurrection" FontStyle="Italic" /><Run Text=" — Piero della Francesca (d. 1492)" /><LineBreak />
+                        <Run Text="The Ascension of Christ" FontStyle="Italic" /><Run Text=" — Rembrandt (d. 1669)" /><LineBreak />
+                        <Run Text="The Pentecost" FontStyle="Italic" /><Run Text=" — El Greco (d. 1614)" /><LineBreak />
+                        <Run Text="Assumption of the Virgin" FontStyle="Italic" /><Run Text=" — Titian (d. 1576)" /><LineBreak />
+                        <Run Text="Coronation of the Virgin" FontStyle="Italic" /><Run Text=" — Diego Velázquez (d. 1660)" />
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Other Images" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                    <TextBlock TextWrapping="Wrap" LineHeight="20" HorizontalAlignment="Left">
+                        <Run Text="Crucifix" FontStyle="Italic" /><Run Text=" — Cimabue (d. 1302)." /><LineBreak />
+                        <Run Text="The Small Cowper Madonna" FontStyle="Italic" /><Run Text=" — Raphael (d. 1520)." /><LineBreak />
+                        <Run Text="Faith, Hope, and Charity" FontStyle="Italic" /><Run Text=" — Raphael, Baglioni altarpiece predella (d. 1520)." /><LineBreak />
+                        <Run Text="Praying Hands" FontStyle="Italic" /><Run Text=" — Albrecht Dürer (d. 1528)." /><LineBreak />
+                        <Run Text="Holy Trinity" FontStyle="Italic" /><Run Text=" — Masaccio (d. 1428)." /><LineBreak />
+                        <Run Text="Christ in Limbo" FontStyle="Italic" /><Run Text=" — Fra Angelico (d. 1455)." /><LineBreak />
+                        <Run Text="Michael" FontStyle="Italic" /><Run Text=" — Guido Reni (d. 1642)." /><LineBreak />
+                        <Run Text="Head of Christ" FontStyle="Italic" /><Run Text=" — Rembrandt (d. 1669)." />
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Stations of the Cross Illustrations" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                    <TextBlock Text="Placeholder illustrations for now — real public-domain artwork with proper attribution hasn't been sourced yet for the 14 stations."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    <TextBlock TextWrapping="Wrap" LineHeight="20" HorizontalAlignment="Left">
+                        <Run Text="Station 1: Jesus is Condemned to Death" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 2: Jesus Carries His Cross" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 3: Jesus Falls the First Time" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 4: Jesus Meets His Mother" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 5: Simon of Cyrene Helps Jesus Carry the Cross" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 6: Veronica Wipes the Face of Jesus" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 7: Jesus Falls the Second Time" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 8: Jesus Meets the Women of Jerusalem" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 9: Jesus Falls the Third Time" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 10: Jesus is Stripped of His Garments" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 11: Jesus is Nailed to the Cross" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 12: Jesus Dies on the Cross" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 13: Jesus is Taken Down from the Cross" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Station 14: Jesus is Laid in the Tomb" FontStyle="Italic" /><Run Text=" — artwork pending." />
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Franciscan Crown Illustration" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                    <TextBlock Text="Six of the Seven Joys reuse the Rosary mystery images above (Annunciation, Visitation, Nativity, Finding in the Temple, Resurrection, Coronation). Only the Adoration of the Magi is new, and its illustration is a placeholder for now — real public-domain artwork with proper attribution hasn't been sourced yet."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    <TextBlock TextWrapping="Wrap" LineHeight="20" HorizontalAlignment="Left">
+                        <Run Text="The Adoration of the Magi" FontStyle="Italic" /><Run Text=" — artwork pending." />
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Seven Sorrows Illustrations" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                    <TextBlock Text="Placeholder illustrations for now — real public-domain artwork with proper attribution hasn't been sourced yet for any of the 7 sorrows."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    <TextBlock TextWrapping="Wrap" LineHeight="20" HorizontalAlignment="Left">
+                        <Run Text="Sorrow 1: The Prophecy of Simeon" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Sorrow 2: The Flight into Egypt" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Sorrow 3: The Loss of the Child Jesus in the Temple" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Sorrow 4: Mary Meets Jesus on the Way of the Cross" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Sorrow 5: Mary at the Foot of the Cross" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Sorrow 6: Mary Receives the Body of Jesus" FontStyle="Italic" /><Run Text=" — artwork pending." /><LineBreak />
+                        <Run Text="Sorrow 7: The Burial of Jesus" FontStyle="Italic" /><Run Text=" — artwork pending." />
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Divine Mercy Illustration" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                    <TextBlock Text="The single Divine Mercy illustration, reused for every step (the chaplet has no per-decade content to illustrate separately), is a placeholder for now — real public-domain artwork with proper attribution hasn't been sourced yet."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    <TextBlock TextWrapping="Wrap" LineHeight="20" HorizontalAlignment="Left">
+                        <Run Text="Divine Mercy" FontStyle="Italic" /><Run Text=" — artwork pending." />
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Scripture Sources" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                    <TextBlock Text="Mystery meditations quote the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit), the Jesuit Arabic Bible (Beirut, 1880, revised 1988), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905) — all public domain."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

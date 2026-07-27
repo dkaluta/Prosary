@@ -1,0 +1,100 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>Prosary</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Platforms>x64;arm64</Platforms>
+    <RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
+    <PublishProfile>win-$(Platform).pubxml</PublishProfile>
+    <UseWinUI>true</UseWinUI>
+    <EnableMsixTooling>true</EnableMsixTooling>
+    <WindowsPackageType>MSIX</WindowsPackageType>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+
+    <!-- App identity — matches iOS/Android's existing com.dkaluta.prosary application id. -->
+    <ApplicationId>com.dkaluta.prosary</ApplicationId>
+    <AssemblyName>Prosary</AssemblyName>
+    <ApplicationTitle>Prosary</ApplicationTitle>
+    <ApplicationVersion>1</ApplicationVersion>
+    <ApplicationDisplayVersion>0.1.0</ApplicationDisplayVersion>
+
+    <!-- Signing: see keystore/README.md for how to generate the self-signed cert this points at.
+         Gitignored like the Android upload keystore — never commit the .pfx itself. -->
+    <PackageCertificateKeyFile>..\keystore\Prosary_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x64|arm64</AppxBundlePlatforms>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
+    <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+
+  <!-- Bundled prayer typefaces and mystery/prayer illustrations — physical copies committed in
+       this repo under Assets\Fonts and Assets\Images, kept in sync with the canonical originals
+       in the sibling ..\..\Shared\ directory (see ../Shared/README.md) rather than referenced
+       from there directly: this repo needs to build on its own without ..\..\Shared\ existing
+       alongside it (a bare clone of just Windows/ would otherwise fail to restore/build), the
+       same reason iOS/Android each keep their own physical copies too instead of a live
+       cross-repo reference. -->
+  <ItemGroup>
+    <Content Include="Assets\Fonts\*.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\*.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\*.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <!-- .prosaryprayer content bundles (see Shared/ARCHITECTURE.md's "Content bundles" section) —
+       built by Shared/tools/make-prosaryprayer.sh from Shared/content/, physical copies committed
+       here for the same reason as Assets\Fonts\Images above. Copied to the output/install
+       directory as plain files (read via AppContext.BaseDirectory in App.xaml.cs, not the
+       ms-appx:// virtual filesystem scheme, since PrayerPackStore needs a real Stream to read
+       the zip archive from). -->
+  <ItemGroup>
+    <Content Include="PrayerPacks\*.prosaryprayer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.250916002" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4188" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.11.285" />
+    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.11" />
+
+    <!-- Direct override, pinned above whatever SQLitePCLRaw.bundle_green 2.1.11 would otherwise
+         resolve (its own SQLitePCLRaw.lib.e_sqlite3 dependency is also stuck at 2.1.11 — no newer
+         bundle_green has been published yet to move it). lib.e_sqlite3 2.1.11 bundles a version of
+         the native SQLite library affected by GHSA-2m69-gcr7-jv3q / CVE-2025-6965 (CVSS 9.8): a
+         memory-corruption bug in SQLite's own query engine when aggregate terms exceed the
+         available column count, fixed upstream in SQLite 3.50.2. lib.e_sqlite3 switched its own
+         versioning to track the bundled SQLite version directly, so 3.53.3 is that same package,
+         just carrying a current, patched SQLite binary — core/provider.e_sqlite3 (still pulled at
+         2.1.11 through the bundle) don't need to move too, since this fix is inside SQLite's own
+         C code, not the P/Invoke surface between them and the native library. -->
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="3.53.3" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <ProjectCapability Include="Msix" />
+  </ItemGroup>
+
+</Project>

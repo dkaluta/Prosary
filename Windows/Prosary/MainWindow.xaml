@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="Prosary.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Fluent-style extended title bar: content (Mica backdrop, set in MainWindow.xaml.cs)
+             shows through behind the system caption buttons instead of the default opaque OS
+             title bar strip. Designated as the window's draggable region via SetTitleBar in the
+             code-behind; RightPaddingColumn is a zero-width placeholder column whose width gets
+             set to AppWindow.TitleBar.RightInset there too, so this row's content never sits
+             underneath the caption buttons themselves. -->
+        <Grid x:Name="AppTitleBar" Grid.Row="0" Height="48" Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition x:Name="RightPaddingColumn" Width="0" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Source="ms-appx:///Assets/Square44x44Logo.png"
+                   Width="20" Height="20" Margin="16,0,8,0" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="1" Text="Prosary" VerticalAlignment="Center" FontSize="12" />
+        </Grid>
+
+        <Frame x:Name="RootFrame" Grid.Row="1" />
+    </Grid>
+</Window>

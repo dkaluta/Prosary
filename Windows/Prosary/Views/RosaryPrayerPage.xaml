@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Prosary.Views.RosaryPrayerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <!-- Bespoke layout (not using Controls/PrayerStepFlowControl — see that control's own doc
+         comment for why): season bar, progress header, then two mutually-exclusive layouts
+         toggled by RosaryPrayerPage.xaml.cs based on window width (see WideLayoutBreakpoint).
+         Bead track structure (BeadTemplate, group-column wide layout, narrow/wide minor-bead
+         column split) is ported to match iOS's BeadDotView.swift/BeadProgressView.swift and
+         Android's BeadDotView.kt/BeadProgressView.kt exactly — see ViewModels/BeadLayout.cs. -->
+    <Page.Resources>
+        <!-- One bead cell, 20x20 — matches BeadDotView.swift's outer .frame(width: 20, height: 20)
+             exactly. The cross is a hand-drawn shape (two rectangles), not a Unicode glyph,
+             matching iOS's CrossShape.swift (armThickness = width*0.34, horizontalBarY =
+             height*0.22 within its own 13x17 box) rather than relying on a font glyph that may
+             not render identically (or at all) across fonts. -->
+        <DataTemplate x:Key="BeadTemplate">
+            <Grid Width="20" Height="20">
+                <Ellipse Fill="{Binding Color, Converter={StaticResource ColorToBrush}}"
+                         Width="{Binding CircleSize}" Height="{Binding CircleSize}"
+                         Visibility="{Binding IsCircle, Converter={StaticResource BoolToVisibility}}"
+                         HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock Text="M" Foreground="White" FontSize="10" FontWeight="Bold"
+                           Visibility="{Binding IsAntiphon, Converter={StaticResource BoolToVisibility}}"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Grid Width="13" Height="17" HorizontalAlignment="Center" VerticalAlignment="Center"
+                      Visibility="{Binding IsCross, Converter={StaticResource BoolToVisibility}}">
+                    <Rectangle Width="4.42" Fill="{Binding Color, Converter={StaticResource ColorToBrush}}"
+                               HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+                    <Rectangle Height="4.42" Fill="{Binding Color, Converter={StaticResource ColorToBrush}}"
+                               HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,3.74,0,0" />
+                </Grid>
+            </Grid>
+        </DataTemplate>
+
+        <!-- Same bead cell, plus the group-of-5 boundary's extra leading gap — used only by the
+             narrow layout's single-row minor (current-decade) beads, matching iOS's
+             MinorBeadsRowView exactly. Not used for major-bead rows/columns or the wide layout's
+             minor-bead column(s), which don't add this extra gap. -->
+        <DataTemplate x:Key="GroupStartAwareBeadTemplate">
+            <Grid Width="20" Height="20" Margin="{Binding IsGroupStart, Converter={StaticResource GroupStartLeadingMargin}}">
+                <Ellipse Fill="{Binding Color, Converter={StaticResource ColorToBrush}}"
+                         Width="{Binding CircleSize}" Height="{Binding CircleSize}"
+                         Visibility="{Binding IsCircle, Converter={StaticResource BoolToVisibility}}"
+                         HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock Text="M" Foreground="White" FontSize="10" FontWeight="Bold"
+                           Visibility="{Binding IsAntiphon, Converter={StaticResource BoolToVisibility}}"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+
+        <ItemsPanelTemplate x:Key="HorizontalBeadPanelTemplate">
+            <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center" />
+        </ItemsPanelTemplate>
+        <ItemsPanelTemplate x:Key="VerticalBeadPanelTemplate">
+            <StackPanel Orientation="Vertical" Spacing="6" HorizontalAlignment="Center" />
+        </ItemsPanelTemplate>
+    </Page.Resources>
+
+    <Grid Padding="20" RowSpacing="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Page-level "return to Home/Favorites" back button — distinct from the footer's Back
+             button below (RelayCommand BackCommand), which steps backward through the Rosary
+             itself rather than leaving the page. Every other flow/list page in this app has this
+             same header row; it was missing here specifically until now. -->
+        <Grid Grid.Row="0" Padding="0,0,0,4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Click="OnNavigateUp" Background="Transparent" Padding="8">
+                <FontIcon Glyph="&#xE72B;" />
+            </Button>
+        </Grid>
+
+        <Rectangle Grid.Row="1" Height="6" Fill="{x:Bind ViewModel.SeasonColor, Mode=OneWay, Converter={StaticResource ColorToBrush}}" />
+
+        <StackPanel Grid.Row="2" Spacing="8">
+            <ProgressBar Minimum="0" Maximum="1" Value="{x:Bind ViewModel.Progress, Mode=OneWay, Converter={StaticResource NullableDoubleToValue}}" />
+            <TextBlock Text="{x:Bind ViewModel.ProgressText, Mode=OneWay}" HorizontalAlignment="Center" Style="{StaticResource MutedCaptionTextStyle}" />
+        </StackPanel>
+
+        <!-- Narrow layout: major beads wrap into rows of 5 above a single minor-beads row, above a
+             vertically-scrolling image/text column — matches BeadProgressView's `!isWide` branch. -->
+        <Grid x:Name="NarrowLayout" Grid.Row="3" RowSpacing="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Spacing="6">
+                <ItemsControl ItemsSource="{x:Bind ViewModel.TopBeadRows, Mode=OneWay}" ItemsPanel="{StaticResource VerticalBeadPanelTemplate}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ItemsControl ItemsSource="{Binding}" ItemTemplate="{StaticResource BeadTemplate}"
+                                          ItemsPanel="{StaticResource HorizontalBeadPanelTemplate}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeads, Mode=OneWay}" ItemTemplate="{StaticResource GroupStartAwareBeadTemplate}"
+                              ItemsPanel="{StaticResource HorizontalBeadPanelTemplate}"
+                              Visibility="{x:Bind ViewModel.ShowBottomBeads, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+            </StackPanel>
+
+            <ScrollViewer Grid.Row="1" FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
+                <StackPanel Spacing="16">
+                    <Border Height="260" MaxWidth="260" CornerRadius="16" HorizontalAlignment="Center">
+                        <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill" />
+                    </Border>
+
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
+                                   Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                   Style="{StaticResource MutedSubtitleTextStyle}" />
+                        <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
+                    </StackPanel>
+
+                    <TextBlock Text="{x:Bind ViewModel.Body, Mode=OneWay}"
+                               FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
+                               FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
+                               TextWrapping="Wrap" TextAlignment="Center" />
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <!-- Wide layout: image, major-beads column (opening cross / one column per mystery group
+             side by side / antiphon / closing cross) beside the minor-beads column(s), prayer text
+             — matches BeadProgressView's `isWide` branch (HStack[VStack[cross,groupGrid,antiphon,
+             closing], Divider, minorColumn]) exactly, including its single-vs-split-column minor
+             beads fallback based on measured height (see WideBeadsColumn_SizeChanged). -->
+        <Grid x:Name="WideLayout" Grid.Row="3" ColumnSpacing="24" Visibility="Collapsed" SizeChanged="WideLayout_SizeChanged">
+            <Grid.ColumnDefinitions>
+                <!-- Auto, not *, so this column stays exactly as wide as the fixed-320 image
+                     below regardless of window width — matches iOS's wide layout, where the image
+                     is a fixed-size HStack member (imageSide, PrayerStepFlowView.swift) rather
+                     than one that grows/shrinks with the window; only the text column (the last
+                     one, still *) is meant to absorb any extra width. A * column here left a
+                     growing/shrinking band of empty space around the still-320-wide image instead
+                     of a consistently-sized pane. -->
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Width="320" Height="320" CornerRadius="16" VerticalAlignment="Center">
+                <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill" />
+            </Border>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6"
+                        VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical" Spacing="6" HorizontalAlignment="Center">
+                    <ContentControl Content="{x:Bind ViewModel.OpeningCross, Mode=OneWay}" ContentTemplate="{StaticResource BeadTemplate}"
+                                     Visibility="{x:Bind ViewModel.OpeningCross, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
+
+                    <!-- One column per mystery group in the session, side by side. -->
+                    <ItemsControl ItemsSource="{x:Bind ViewModel.GroupColumns, Mode=OneWay}" ItemsPanel="{StaticResource HorizontalBeadPanelTemplate}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <ItemsControl ItemsSource="{Binding Beads}" ItemTemplate="{StaticResource BeadTemplate}"
+                                              ItemsPanel="{StaticResource VerticalBeadPanelTemplate}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <ContentControl Content="{x:Bind ViewModel.AntiphonBead, Mode=OneWay}" ContentTemplate="{StaticResource BeadTemplate}"
+                                     Visibility="{x:Bind ViewModel.AntiphonBead, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
+                    <ContentControl Content="{x:Bind ViewModel.ClosingCross, Mode=OneWay}" ContentTemplate="{StaticResource BeadTemplate}"
+                                     Visibility="{x:Bind ViewModel.ClosingCross, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center"
+                            Visibility="{x:Bind ViewModel.ShowBottomBeads, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                    <Rectangle Width="1" Fill="{ThemeResource TextFillColorSecondaryBrush}" Margin="4,0" VerticalAlignment="Stretch" />
+
+                    <!-- Single 10-tall column when there's room... -->
+                    <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeads, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
+                                  ItemsPanel="{StaticResource VerticalBeadPanelTemplate}"
+                                  Visibility="{x:Bind ViewModel.HasRoomForSingleMinorColumn, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+
+                    <!-- ...otherwise two 5-tall columns (half the height) — an iPhone-landscape-style
+                         short window has no Windows equivalent device, but a Mac/iPad window resized
+                         short does, and a desktop window resized short is exactly that same case. -->
+                    <StackPanel Orientation="Horizontal" Spacing="6"
+                                Visibility="{x:Bind ViewModel.HasRoomForSingleMinorColumn, Mode=OneWay, Converter={StaticResource InverseBoolToVisibility}}">
+                        <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeadsColumn1, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
+                                      ItemsPanel="{StaticResource VerticalBeadPanelTemplate}" />
+                        <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeadsColumn2, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
+                                      ItemsPanel="{StaticResource VerticalBeadPanelTemplate}" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+            <ScrollViewer Grid.Column="2" FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
+                <StackPanel Spacing="16" VerticalAlignment="Center">
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
+                                   Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                   Style="{StaticResource MutedSubtitleTextStyle}" />
+                        <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
+                    </StackPanel>
+
+                    <TextBlock Text="{x:Bind ViewModel.Body, Mode=OneWay}"
+                               FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
+                               FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
+                               TextWrapping="Wrap" TextAlignment="Center" />
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Back" Command="{x:Bind ViewModel.BackCommand}"
+                    IsEnabled="{x:Bind ViewModel.CanGoBack, Mode=OneWay}" Background="Transparent" />
+            <Button Grid.Column="2" Content="{x:Bind ViewModel.NextButtonText, Mode=OneWay}"
+                    Command="{x:Bind ViewModel.NextCommand}" Style="{StaticResource AccentButtonStyle}" MinWidth="120" />
+        </Grid>
+    </Grid>
+</Page>
