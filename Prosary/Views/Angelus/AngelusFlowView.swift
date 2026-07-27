@@ -6,9 +6,10 @@
 import SwiftUI
 
 struct AngelusFlowView: View {
-  /// If provided (launched from Home/Favorites with an existing favorite), seeds the star as
-  /// already-favorited immediately, without waiting on the initial favorites fetch. The Angelus
-  /// has no per-favorite language anymore — it always follows the app default.
+  /// If provided (launched from Home/Favorites with an existing favorite), used directly instead
+  /// of re-querying the store. The Angelus has no UI to configure a per-favorite language anymore
+  /// (see FavoritesListView), but an existing favorite's saved language is still honored — only a
+  /// freshly-created favorite (or no favorite at all) follows the app default.
   var prayer: Prayer? = nil
 
   @Environment(\.appServices) private var services
@@ -50,19 +51,15 @@ struct AngelusFlowView: View {
   }
 
   private func load() async {
-    matchingFavoriteId = prayer?.id
-    languageCode = LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).code
+    let all = (try? await services.presetStore.all()) ?? []
+    let favorite = prayer ?? all.first { $0.kind == .angelus }
+    matchingFavoriteId = favorite?.id
+    languageCode = favorite?.resolvedLanguageCode ?? LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).code
 
     isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
-    steps = services.engine.buildSteps(for: Prayer(kind: .angelus, languageCode: LanguageCatalog.defaultSentinel))
+    steps = services.engine.buildSteps(for: Prayer(kind: .angelus, languageCode: languageCode ?? LanguageCatalog.defaultSentinel))
     currentIndex = 0
     seasonColor = services.calendar.seasonColorToday()
-    await checkIfFavorited()
-  }
-
-  private func checkIfFavorited() async {
-    let all = (try? await services.presetStore.all()) ?? []
-    matchingFavoriteId = all.first { $0.kind == .angelus }?.id
   }
 
   private func toggleFavorite() {
