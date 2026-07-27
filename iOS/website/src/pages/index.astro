@@ -1,0 +1,81 @@
+---
+import "../styles/global.css";
+
+const title = "Prosary — A Rosary companion for iPhone, Mac, and Android";
+const description =
+  "Prosary is a companion for praying the Rosary and other Catholic devotions, in Latin, English, Arabic, Hebrew, Russian, and Tagalog. In testing for iPhone, Mac, and Android.";
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<div class="hero">
+			<h1>Prosary</h1>
+			<p class="tagline">
+				A companion for praying the Rosary and other Catholic devotions.
+			</p>
+
+			<div class="badges">
+				<a class="badge" href="https://testflight.apple.com/join/RJPs8DWS"
+					>Join the TestFlight Beta</a
+				>
+				<a
+					class="badge"
+					href="https://play.google.com/store/apps/details?id=com.dkaluta.prosary"
+					>Join the Android Closed Test</a
+				>
+			</div>
+
+			<p class="hint">
+				Not on the Android tester list yet? <a
+					href="mailto:mail@dkaluta.com?subject=Add%20me%20to%20the%20Prosary%20Android%20closed%20test"
+					>Email me to be added</a
+				>.
+			</p>
+		</div>
+
+		<section>
+			<h2>Pray in your language</h2>
+			<p>
+				Latin is the default prayer language, with English, Arabic,
+				Hebrew, Russian, and Tagalog — including full right-to-left
+				support for Arabic and Hebrew — available as alternatives,
+				serving Holy Land Christian communities and beyond.
+			</p>
+		</section>
+
+		<section>
+			<h2>Built for iPhone, Mac, and Android</h2>
+			<p>
+				A native SwiftUI app with an adaptive layout: a focused
+				single-column flow on iPhone, and a roomier multi-column layout
+				on Mac and iPad. A native Android app is in closed testing —
+				join above to try it early.
+			</p>
+		</section>
+
+		<!-- TODO: add real screenshots once available -->
+		<!-- <section>
+			<h2>Screenshots</h2>
+			<img src="/screenshot-iphone.png" alt="Prosary on iPhone" />
+		</section> -->
+
+		<footer>
+			<p>
+				&copy; 2026 David Kaluta &middot; <a
+					href="https://github.com/dkaluta/Prosary-iOS">Source on GitHub</a
+				>
+				&middot; <a href="/privacy">Privacy</a> &middot;
+				<a href="/license">License</a>
+			</p>
+		</footer>
+	</body>
+</html>

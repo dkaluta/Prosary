@@ -1,0 +1,107 @@
+---
+import "../styles/global.css";
+
+const title = "Prosary — Privacy Policy";
+const description =
+  "Prosary's privacy policy: the app collects no personal data, on iPhone, Mac, or Android.";
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<div class="hero">
+			<h1>Privacy Policy</h1>
+			<p class="tagline">Last updated: 2026-07-25</p>
+		</div>
+
+		<section>
+			<p>
+				Prosary is a Catholic prayer companion, available for iPhone, Mac,
+				and Android. This policy covers all platforms.
+			</p>
+		</section>
+
+		<section>
+			<h2>Data collection</h2>
+			<p>
+				Prosary does not collect, transmit, or share any personal data, on
+				any platform. Specifically:
+			</p>
+			<ul>
+				<li>
+					The app makes no network requests at all. The Android app doesn't
+					even request the <code>INTERNET</code> permission, and the iPhone/Mac
+					app has no networking code — neither is capable of sending or
+					receiving data over the internet.
+				</li>
+				<li>
+					There are no accounts, sign-in, analytics, crash reporting,
+					advertising, or third-party SDKs of any kind.
+				</li>
+				<li>
+					Your saved prayer favorites and reminder times are stored only in a
+					local database on your device (SwiftData on iPhone/Mac, Room on
+					Android) and are never uploaded anywhere.
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Notifications</h2>
+			<p>
+				Prayer reminders you configure are scheduled entirely on your device
+				(via <code>UNUserNotificationCenter</code> on iPhone/Mac, or
+				<code>AlarmManager</code> on Android) and shown as local
+				notifications. No reminder data ever leaves your device.
+			</p>
+		</section>
+
+		<section>
+			<h2>Permissions</h2>
+			<p>Both apps request only what's needed to show the reminders you set up:</p>
+			<ul>
+				<li>
+					<strong>Notifications</strong> — used only to show the prayer
+					reminders you configure.
+				</li>
+				<li>
+					<strong>Receive boot completed</strong> (Android only) — used only
+					to re-schedule your existing reminders after your device restarts,
+					since Android clears scheduled alarms on reboot.
+				</li>
+			</ul>
+			<p>Neither permission is used to collect or transmit data.</p>
+		</section>
+
+		<section>
+			<h2>Changes to this policy</h2>
+			<p>
+				If this policy changes, the "Last updated" date above will change
+				accordingly.
+			</p>
+		</section>
+
+		<section>
+			<h2>Contact</h2>
+			<p>
+				Questions about this policy can be sent to
+				<a href="mailto:mail@dkaluta.com">mail@dkaluta.com</a>.
+			</p>
+		</section>
+
+		<footer>
+			<p>
+				&copy; 2026 David Kaluta &middot; <a href="/">Home</a> &middot;
+				<a href="/license">License</a>
+			</p>
+		</footer>
+	</body>
+</html>
