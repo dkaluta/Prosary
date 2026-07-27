@@ -16,7 +16,7 @@ Run from this `website/` directory:
 ## Deployment
 
 Pushes to `main` that touch `website/**` are built and deployed to GitHub Pages automatically by
-[`.github/workflows/deploy-pages.yml`](../.github/workflows/deploy-pages.yml). Enable it once via
+[`.github/workflows/deploy-pages.yml`](../../.github/workflows/deploy-pages.yml). Enable it once via
 repo **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 
 ## Custom domain (Namecheap DNS)
