@@ -33,6 +33,14 @@ final class PrayerTranslationsCompletenessTests: XCTestCase {
   /// this map can never go silently stale.
   private let bundleKeysMissingLanguages: [String: [String: Set<String>]] = [
     "divineMercyChaplet": ["he": ["divineMercyOffering", "divineMercyPetition"]],
+    // The composed closing (versicle + Stabat Mater collect) has no verified translation in
+    // these languages yet — it falls back to the bundle's Latin text.
+    "sevenSorrows": [
+      "ar": ["sevenSorrowsClosingBody"],
+      "he": ["sevenSorrowsClosingBody"],
+      "ru": ["sevenSorrowsClosingBody"],
+      "tl": ["sevenSorrowsClosingBody"],
+    ],
   ]
 
   private var allMysteryImageKeys: Set<String> {

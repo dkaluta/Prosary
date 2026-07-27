@@ -164,7 +164,7 @@ final class CustomDevotionEngineTests: XCTestCase {
   /// a language the bundle doesn't declare must fall back to the bundle's Latin mysteries, not
   /// leak raw imageKeys as titles.
   func testSevenSorrowsFallsBackToBundleLatinForAnUndeclaredLanguage() {
-    let steps = steps("sevenSorrows", language: "ar")
+    let steps = steps("sevenSorrows", language: "xx")
     XCTAssertEqual(steps[1].title, "Simeonis Prophetia")
   }
 

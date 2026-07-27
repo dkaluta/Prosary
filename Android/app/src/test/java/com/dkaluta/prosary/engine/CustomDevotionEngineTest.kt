@@ -211,7 +211,7 @@ class CustomDevotionEngineTest {
      * leak raw imageKeys as titles. */
     @Test
     fun sevenSorrowsFallsBackToBundleLatinForAnUndeclaredLanguage() {
-        val steps = steps("sevenSorrows", language = "ar")
+        val steps = steps("sevenSorrows", language = "xx")
         assertEquals("Simeonis Prophetia", steps[1].title)
     }
 

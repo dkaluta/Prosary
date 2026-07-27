@@ -39,6 +39,15 @@ public class PrayerTranslationsCompletenessTests : IClassFixture<PrayerPackLoade
     private static readonly Dictionary<string, Dictionary<string, string[]>> BundleKeysMissingLanguages = new()
     {
         ["divineMercyChaplet"] = new() { ["he"] = ["divineMercyOffering", "divineMercyPetition"] },
+        // The composed closing (versicle + Stabat Mater collect) has no verified translation in
+        // these languages yet — it falls back to the bundle's Latin text.
+        ["sevenSorrows"] = new()
+        {
+            ["ar"] = ["sevenSorrowsClosingBody"],
+            ["he"] = ["sevenSorrowsClosingBody"],
+            ["ru"] = ["sevenSorrowsClosingBody"],
+            ["tl"] = ["sevenSorrowsClosingBody"],
+        },
     };
 
     private static IEnumerable<string> AllPrayerKeys() =>

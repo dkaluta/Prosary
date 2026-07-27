@@ -197,7 +197,7 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
     [Fact]
     public void SevenSorrowsFallsBackToBundleLatinForAnUndeclaredLanguage()
     {
-        var steps = BuildSteps("sevenSorrows", "ar");
+        var steps = BuildSteps("sevenSorrows", "xx");
         Assert.Equal("Simeonis Prophetia", steps[1].Title);
     }
 
