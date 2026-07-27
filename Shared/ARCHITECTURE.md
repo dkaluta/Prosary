@@ -18,15 +18,18 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   primary for its kind — at most one per kind at a time), `languageCode` (an empty-string/
   "default" sentinel means "follow the app-level default language setting"), nested
   `RosaryOptions`/`JesusPrayerOptions` (the Angelus, Stations of the Cross, Franciscan Crown,
-  Seven Sorrows, and Divine Mercy Chaplet need no options beyond a language), and a list of
+  Seven Sorrows, and Divine Mercy Chaplet need no options beyond a language), `customDevotionId`
+  (populated only when `kind == custom` — see "Content bundles" below), and a list of
   `PrayerReminder`s.
 - **`PrayerKind`** — `Rosary` / `Angelus` / `JesusPrayer` / `StationsOfTheCross` /
-  `FranciscanCrown` / `SevenSorrows` / `DivineMercyChaplet`. This completes the four-devotion
-  rollout (Stations of the Cross, Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet), all
-  implemented on all three platforms. Adding a new devotion beyond these means adding a case here
-  (all three platforms) plus a matching options type on `Prayer` if the devotion needs one —
-  several of the existing ones don't (Angelus, Stations, Franciscan Crown, Seven Sorrows, Divine
-  Mercy Chaplet).
+  `FranciscanCrown` / `SevenSorrows` / `DivineMercyChaplet` / `Custom`. This completes the
+  four-devotion rollout (Stations of the Cross, Franciscan Crown, Seven Sorrows, Divine Mercy
+  Chaplet), all implemented on all three platforms. Adding a new *hardcoded* devotion beyond these
+  means adding a case here (all three platforms) plus a matching options type on `Prayer` if the
+  devotion needs one — several of the existing ones don't (Angelus, Stations, Franciscan Crown,
+  Seven Sorrows, Divine Mercy Chaplet). `Custom` is different: it's the one case that covers *any
+  number* of generic, bundle-driven devotions (see "Content bundles" below) — adding one of those
+  needs no new `PrayerKind` case at all, just a new bundle.
 - **`RosaryOptions`** — `mysterySelectionMode` (today's mysteries / a specific fixed set / all 15
   / all 20 / a single mystery), `specificMysteryGroup`, `specificMysteryOrder` (1-based, used only
   for the single-mystery mode), `presenterMode` (collapses each decade's Hail Marys + Glory Be
@@ -282,12 +285,75 @@ same `PrayerKey` as always. Each manifest's `mainPrayerKeysOmitted` array docume
 of these 5 a given devotion's flow uses, so their absence from the bundle reads as intentional, not
 a content gap.
 
-Only Rosary and Angelus are currently packaged this way (the two most complete devotions — full
-6-language coverage, full real artwork). At runtime, each platform's `PrayerPackLoader` merges a
-loaded bundle's content into the existing `PrayerTranslations`/`MysteryTranslations` tables
-(bundle wins on collision) rather than replacing them — necessary because `PrayerKey`/mystery
-`imageKey` entries are a shared pool across devotions (e.g. `our_father` is used by Rosary,
-Angelus, Franciscan Crown, Seven Sorrows, and Divine Mercy alike), so a bundle can only ever
-*add to* the hardcoded tables, never fully replace them. Devotions without a shipped bundle
-(Stations, Franciscan Crown, Seven Sorrows, Divine Mercy, Jesus Prayer) are completely unaffected
-and keep resolving 100% from hardcoded source, exactly as before this format existed.
+Rosary and Angelus are packaged this way as **override bundles** — both are hardcoded `PrayerKind`
+devotions with their own engine builder; the bundle only supplies translated *text/artwork* that
+overrides the hardcoded fallback. At runtime, each platform's `PrayerPackLoader` merges a loaded
+bundle's content into the existing `PrayerTranslations`/`MysteryTranslations` tables (bundle wins
+on collision) rather than replacing them — necessary because `PrayerKey`/mystery `imageKey`
+entries are a shared pool across devotions (e.g. `our_father` is used by Rosary, Angelus,
+Franciscan Crown, Seven Sorrows, and Divine Mercy alike), so a bundle can only ever *add to* the
+hardcoded tables, never fully replace them. Devotions without a shipped bundle (Stations,
+Franciscan Crown, Seven Sorrows, Divine Mercy, Jesus Prayer) are completely unaffected and keep
+resolving 100% from hardcoded source, exactly as before this format existed.
+
+### Generic (bundle-driven) devotions
+
+Trisagion is a **generic devotion** — a different, more general use of the same bundle format,
+for devotions shaped like Angelus/Stations: a flat, fixed list of steps, no user-configurable
+options, no mystery/decade/bead-track structure. Unlike Rosary/Angelus, a generic devotion needs
+*no* hardcoded `PrayerKind` case or per-platform engine builder at all — its entire step sequence
+is data-driven from the bundle itself:
+
+- **`PrayerKind.custom`** is the one case covering *every* generic devotion (not one case per
+  devotion). `Prayer.customDevotionId` holds the bundle id (e.g. `"trisagion"`) when
+  `kind == custom`, nil/null otherwise.
+- **`steps.json`** (optional; present only for generic devotions) sits alongside `manifest.json`/
+  `content/` in the bundle: `{ "steps": [{ "title": "...", "bodyKey": "...", "imageKey": "..." }] }`.
+  `title` is a literal display string, not a translation key — matching the existing convention
+  that every devotion's step titles ("Sign of the Cross", "The Annunciation", ...) are
+  English-only UI labels, never run through `PrayerTranslations.get` anywhere in this codebase.
+  `Shared/tools/make-prosaryprayer.sh`/`Make-ProsaryPrayer.ps1` stage `steps.json` into the zip
+  when present, validating it as JSON like every other bundle file.
+- **`manifest.json`** gains two optional fields for a generic devotion: `accentColorHex` (a single
+  hex color, not iOS's usual light/dark adaptive pair — kept simple since it's authored once in
+  JSON and read identically on all three platforms) and `iconSystemName` (an SF Symbol name;
+  mapped to the nearest Material icon on Android and Segoe Fluent Icons glyph on Windows via a
+  small fixed per-platform table, e.g. Android's `iconForSystemName`/Windows'
+  `GlyphForSystemName`).
+- **`bodyKey` resolution** is how a step's body text is looked up, and is the one place iOS/
+  Android and Windows genuinely diverge, because `PrayerKey` itself is shaped differently on each
+  platform:
+  - **iOS/Android** (`PrayerKey` is a real validating enum): (1) check the *bundle's own raw,
+    unfiltered* per-language content map first — this is how bundle-local-only keys like
+    `trisagionAcclamation` resolve, entirely bypassing `PrayerKey`; (2) else, if the key happens to
+    match an existing `PrayerKey` case, fall through to the ordinary `PrayerTranslations.get` —
+    this is how shared "main" keys like `gloriaPatri` resolve; (3) else the raw key string,
+    matching `PrayerTranslations.get`'s own last-resort fallback. `PrayerPackStore` retains this
+    raw per-bundle map (`bundleId -> language -> key -> text`) *in addition to* the existing
+    validated-by-`PrayerKey` override table Rosary/Angelus already use.
+  - **Windows** (`PrayerKey` is just a set of `string` constants, never validated against): the
+    existing override loader already merges *every* content key — bundle-local or not — into one
+    global, ungated `PrayerOverrides[language]` table (PascalCased). So `ResolveBodyText` is a
+    single step: PascalCase the incoming `bodyKey` and delegate straight to
+    `PrayerTranslations.Get`, which already implements the full override → per-language table →
+    Latin → raw-key fallback chain for *any* key, "real" `PrayerKey` constant or not.
+  - Either way, `trisagionAcclamation`/`trisagionShortAcclamation`-style keys **deliberately never
+    become `PrayerKey` cases** — they exist only inside Trisagion's own `content/<lang>.json`,
+    resolved purely through the bundle-local path above.
+- **`PrayerEngine`** gets exactly one new dispatch branch (`case .custom`) and one new builder
+  (`buildCustomDevotionSteps`/`buildCustomDevotionSteps`/`BuildCustomDevotionSteps`) — fully
+  generic, reads the bundle's `steps.json` and maps each entry straight to a `RosaryStep` (title
+  literal, body via the resolution above, `imageOverrideKey` direct). This one function is the
+  entire engine surface for Trisagion and any future `steps.json`-bearing bundle.
+- **Discovery**: `PrayerPackStore.customDevotionIds()` returns every loaded bundle id that has a
+  `steps.json`, computed automatically rather than hardcoded — Home/Favorites render one card/row
+  per discovered id, reading `displayName`/`accentColorHex`/`iconSystemName` from
+  `PrayerPackStore.info(bundleId)`, without ever hardcoding "Trisagion" in view code. Favorites
+  treats `.custom` like the other 5 simplified kinds (single star-row + reminders-only editor); a
+  picker across *multiple* generic devotions is real future work, not built speculatively, since
+  only one (Trisagion) exists today.
+
+Scope boundary: this only covers devotions shaped like Angelus/Stations — a flat, fixed list of
+steps. Rosary-shaped devotions (configurable, decade-based, with a bead track) are out of scope
+for genericization; a fully custom Rosary would need a richer bundle schema (e.g. a `beads.json`
+expressive enough to describe decade/bead structure) that doesn't exist yet.

@@ -16,6 +16,7 @@ final class PrayerPackLoaderTests: XCTestCase {
   func testBundledPacksExist() {
     XCTAssertNotNil(Bundle.main.url(forResource: "rosary", withExtension: "prosaryprayer"))
     XCTAssertNotNil(Bundle.main.url(forResource: "angelus", withExtension: "prosaryprayer"))
+    XCTAssertNotNil(Bundle.main.url(forResource: "trisagion", withExtension: "prosaryprayer"))
   }
 
   func testRosaryPackProvidedKeyOverridesEnglishText() {
@@ -57,5 +58,57 @@ final class PrayerPackLoaderTests: XCTestCase {
 
   func testPackProvidesNoImageDataForAnUnrelatedKey() {
     XCTAssertNil(PrayerPackStore.imageData(for: "station_01_condemned_to_death"))
+  }
+
+  // MARK: - Generic (bundle-driven) devotions
+
+  func testTrisagionIsDiscoveredAsACustomDevotion() {
+    XCTAssertTrue(PrayerPackStore.customDevotionIds().contains("trisagion"))
+  }
+
+  /// A devotion with no steps.json at all (Rosary/Angelus) is never mistaken for a generic one.
+  func testPacksWithNoStepsJSONAreNotCustomDevotions() {
+    XCTAssertFalse(PrayerPackStore.customDevotionIds().contains("rosary"))
+    XCTAssertFalse(PrayerPackStore.customDevotionIds().contains("angelus"))
+  }
+
+  func testTrisagionInfoReadsFromItsManifest() {
+    let info = PrayerPackStore.info(for: "trisagion")
+    XCTAssertEqual(info?.displayName, "Trisagion")
+    XCTAssertEqual(info?.accentColorHex, "#00796B")
+    XCTAssertEqual(info?.iconSystemName, "triangle")
+  }
+
+  func testTrisagionStepsMatchTheAuthoredSixStepSequence() {
+    let steps = PrayerPackStore.steps(for: "trisagion")
+    XCTAssertEqual(steps.map(\.title), [
+      "Holy God", "Holy God", "Holy God", "Glory Be", "Holy God", "Holy God",
+    ])
+    XCTAssertEqual(steps.map(\.bodyKey), [
+      "trisagionAcclamation", "trisagionAcclamation", "trisagionAcclamation",
+      "gloriaPatri", "trisagionShortAcclamation", "trisagionAcclamation",
+    ])
+  }
+
+  /// `resolveBodyText` step 1 — a bundle-local-only key (never a `PrayerKey` case) resolves from
+  /// the bundle's own raw content.
+  func testResolveBodyTextResolvesABundleLocalKey() {
+    let text = PrayerPackStore.resolveBodyText(bundleId: "trisagion", languageCode: "en", key: "trisagionAcclamation")
+    XCTAssertEqual(text, "Holy God, Holy Mighty One, Holy Immortal One, have mercy on us.")
+  }
+
+  /// `resolveBodyText` step 2 — a key matching an existing `PrayerKey` case (here, "gloriaPatri",
+  /// a "main" prayer deliberately absent from every bundle) falls through to the ordinary
+  /// hardcoded table.
+  func testResolveBodyTextFallsThroughToASharedPrayerKey() {
+    let text = PrayerPackStore.resolveBodyText(bundleId: "trisagion", languageCode: "en", key: "gloriaPatri")
+    XCTAssertEqual(text, PrayerTranslations.get(languageCode: "en", key: .gloriaPatri))
+  }
+
+  /// `resolveBodyText` step 3 — an unresolvable key returns itself, matching
+  /// `PrayerTranslations.get`'s own last-resort fallback.
+  func testResolveBodyTextFallsBackToTheRawKey() {
+    let text = PrayerPackStore.resolveBodyText(bundleId: "trisagion", languageCode: "en", key: "notARealKey")
+    XCTAssertEqual(text, "notARealKey")
   }
 }

@@ -51,5 +51,11 @@ fun PrayerDispatchScreen(prayerId: String, onBack: () -> Unit) {
         PrayerKind.FranciscanCrown -> FranciscanCrownFlowScreen(prayer = resolved, onBack = onBack)
         PrayerKind.SevenSorrows -> SevenSorrowsFlowScreen(prayer = resolved, onBack = onBack)
         PrayerKind.DivineMercyChaplet -> DivineMercyFlowScreen(prayer = resolved, onBack = onBack)
+        PrayerKind.Custom -> {
+            val devotionId = resolved.customDevotionId
+            if (devotionId != null) {
+                CustomDevotionFlowScreen(devotionId = devotionId, prayer = resolved, onBack = onBack)
+            }
+        }
     }
 }

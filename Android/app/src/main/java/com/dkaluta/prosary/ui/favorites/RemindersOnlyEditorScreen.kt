@@ -25,7 +25,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.Prayer
+import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.reminders.ReminderScheduler
 import com.dkaluta.prosary.services.LocalAppServices
 import kotlinx.coroutines.launch
@@ -56,6 +58,14 @@ fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
 
     val current = prayer ?: return
 
+    // For .Custom, current.kind.displayName is only a generic fallback (a single PrayerKind
+    // case can't carry per-bundle text) — read the real name from the bundle's own manifest.
+    val titleText = if (current.kind == PrayerKind.Custom) {
+        current.customDevotionId?.let { PrayerPackStore.info(it)?.displayName } ?: current.kind.displayName
+    } else {
+        current.kind.displayName
+    }
+
     fun save() {
         val toSave = current
         scope.launch {
@@ -75,7 +85,7 @@ fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(current.kind.displayName) },
+                title = { Text(titleText) },
                 navigationIcon = { TextButton(onClick = onDone) { Text("Cancel") } },
                 actions = { TextButton(onClick = { save() }) { Text("Save") } },
             )

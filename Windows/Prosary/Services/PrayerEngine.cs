@@ -51,6 +51,7 @@ public sealed class PrayerEngine
         PrayerKind.FranciscanCrown => BuildFranciscanCrownSteps(prayer.LanguageCode),
         PrayerKind.SevenSorrows => BuildSevenSorrowsSteps(prayer.LanguageCode),
         PrayerKind.DivineMercyChaplet => BuildDivineMercySteps(prayer.LanguageCode),
+        PrayerKind.Custom => prayer.CustomDevotionId is { } bundleId ? BuildCustomDevotionSteps(bundleId, prayer.LanguageCode) : [],
         _ => throw new ArgumentOutOfRangeException(nameof(prayer), prayer.Kind, "Unhandled PrayerKind in PrayerEngine.BuildSteps")
     };
 
@@ -464,4 +465,18 @@ public sealed class PrayerEngine
         MarianAntiphonOption.SubTuumPraesidium => "Sub Tuum Praesidium",
         _ => "Marian Antiphon"
     };
+
+    // Custom (bundle-driven) devotions
+
+    /// <summary>The only builder for every <see cref="PrayerKind.Custom"/> devotion — reads
+    /// <paramref name="bundleId"/>'s <c>steps.json</c> and maps each entry straight to a
+    /// <see cref="RosaryStep"/>, with no devotion-specific code. Works for Trisagion and any
+    /// future bundle that ships a <c>steps.json</c>.</summary>
+    internal static IReadOnlyList<RosaryStep> BuildCustomDevotionSteps(string bundleId, string? languageCode) =>
+        PrayerPackStore.Steps(bundleId)
+            .Select(step => new RosaryStep(
+                step.Title, null,
+                PrayerPackStore.ResolveBodyText(languageCode, step.BodyKey),
+                ImageOverrideKey: step.ImageKey))
+            .ToList();
 }

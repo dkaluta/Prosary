@@ -21,6 +21,7 @@ import com.dkaluta.prosary.ui.jesusprayer.JesusPrayerFlowScreen
 import com.dkaluta.prosary.ui.jesusprayer.JesusPrayerSetupScreen
 import com.dkaluta.prosary.ui.sevensorrows.SevenSorrowsFlowScreen
 import com.dkaluta.prosary.ui.settings.SettingsScreen
+import com.dkaluta.prosary.ui.shared.CustomDevotionFlowScreen
 import com.dkaluta.prosary.ui.shared.PrayerDispatchScreen
 import com.dkaluta.prosary.ui.stations.StationsFlowScreen
 
@@ -42,6 +43,9 @@ private object Routes {
     const val DivineMercyChaplet = "divineMercyChaplet"
     const val JesusPrayerSetup = "jesusPrayer/setup"
     const val JesusPrayerFlow = "jesusPrayer/{target}"
+    // Launches a generic (bundle-driven) devotion with no existing favorite — devotionId is the
+    // bundle id, e.g. "trisagion". See PrayerKind.Custom.
+    const val Custom = "custom/{devotionId}"
 
     fun prayer(id: String) = "prayer/$id"
     fun favoriteEditor(prayerId: String?, kind: PrayerKind? = null): String {
@@ -53,6 +57,7 @@ private object Routes {
     }
     fun remindersOnlyEditor(prayerId: String) = "favorites/reminders/$prayerId"
     fun jesusPrayerFlow(target: String) = "jesusPrayer/$target"
+    fun custom(devotionId: String) = "custom/$devotionId"
 }
 
 @Composable
@@ -72,7 +77,18 @@ fun ProsaryApp() {
                 onOpenSevenSorrows = { navController.navigate(Routes.SevenSorrows) },
                 onOpenDivineMercyChaplet = { navController.navigate(Routes.DivineMercyChaplet) },
                 onOpenJesusPrayerSetup = { navController.navigate(Routes.JesusPrayerSetup) },
+                onOpenCustomDevotion = { devotionId -> navController.navigate(Routes.custom(devotionId)) },
             )
+        }
+
+        composable(
+            route = Routes.Custom,
+            arguments = listOf(navArgument("devotionId") { type = NavType.StringType }),
+        ) { backStackEntry ->
+            val devotionId = backStackEntry.arguments?.getString("devotionId")
+            if (devotionId != null) {
+                CustomDevotionFlowScreen(devotionId = devotionId, onBack = { navController.popBackStack() })
+            }
         }
 
         composable(Routes.Angelus) {

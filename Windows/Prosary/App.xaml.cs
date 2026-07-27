@@ -68,6 +68,7 @@ public partial class App : Application
         services.AddTransient<JesusPrayerSetupViewModel>();
         services.AddTransient<JesusPrayerViewModel>();
         services.AddTransient<SettingsViewModel>();
+        services.AddTransient<CustomDevotionViewModel>();
 
         return services.BuildServiceProvider();
     }

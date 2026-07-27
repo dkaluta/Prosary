@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Prosary.Localization;
 using Prosary.Models;
 using Prosary.Navigation;
 using Prosary.Persistence;
@@ -54,6 +55,17 @@ public partial class HomeViewModel : ObservableObject
     private Prayer? _defaultSevenSorrows;
     private Prayer? _defaultDivineMercy;
 
+    /// <summary>Default favorite per discovered generic devotion, keyed by bundle id — unlike the
+    /// 7 hardcoded kinds above, a single field per kind doesn't work here since there can be any
+    /// number of generic devotions.</summary>
+    private readonly Dictionary<string, Prayer?> _defaultCustomDevotions = [];
+
+    /// <summary>Custom-devotion cards keyed by bundle id, so <see cref="LoadAsync"/> can update
+    /// each one's subtitle without the <c>Card(PrayerKind)</c> lookup below (which assumes at
+    /// most one card per <see cref="PrayerKind"/> — true for the 7 hardcoded kinds, not for
+    /// <see cref="PrayerKind.Custom"/>, which every generic devotion shares).</summary>
+    private readonly Dictionary<string, DevotionCardModel> _customCardsByBundleId = [];
+
     public ObservableCollection<DevotionCardModel> DevotionCards { get; }
 
     public HomeViewModel(IPresetStore presets, LiturgicalCalendarService calendar)
@@ -71,6 +83,61 @@ public partial class HomeViewModel : ObservableObject
             new DevotionCardModel { Kind = PrayerKind.SevenSorrows, Title = PrayerKind.SevenSorrows.DisplayName(), IconGlyph = "", Command = OpenSevenSorrowsCommand },
             new DevotionCardModel { Kind = PrayerKind.DivineMercyChaplet, Title = PrayerKind.DivineMercyChaplet.DisplayName(), IconGlyph = "", Command = OpenDivineMercyChapletCommand },
         ];
+
+        // Generic (bundle-driven) devotions — one card per discovered bundle, with no hardcoded
+        // PrayerKind case. Only one exists today (Trisagion); each reads its icon/title/accent
+        // from the bundle's own manifest instead of PrayerKindExtensions.
+        foreach (var bundleId in PrayerPackStore.CustomDevotionIds())
+        {
+            var info = PrayerPackStore.Info(bundleId);
+            if (info is null)
+            {
+                continue;
+            }
+
+            var card = new DevotionCardModel
+            {
+                Kind = PrayerKind.Custom,
+                Title = info.DisplayName,
+                IconGlyph = GlyphForSystemName(info.IconSystemName),
+                AccentColor = ColorForHex(info.AccentColorHex) ?? PrayerKind.Custom.AccentColor(),
+                Command = new RelayCommand(() => OpenCustomDevotion(bundleId)),
+            };
+            _customCardsByBundleId[bundleId] = card;
+            DevotionCards.Add(card);
+        }
+    }
+
+    /// <summary>Maps a bundle manifest's <c>IconSystemName</c> (an SF Symbol name, the iOS
+    /// convention) to the nearest Segoe Fluent Icons glyph — mirrors
+    /// <c>FavoritesViewModel.GlyphForSystemName</c>.</summary>
+    private static string GlyphForSystemName(string? systemName) => systemName switch
+    {
+        "triangle" => "", // FavoriteStar — see the unverified-codepoint caveat on PrayerKindExtensions.IconGlyph
+        _ => "",
+    };
+
+    /// <summary>Parses a bundle manifest's <c>AccentColorHex</c> (e.g. "#00796B"), or null if
+    /// absent/unparseable — callers fall back to a default accent in that case.</summary>
+    private static Color? ColorForHex(string? hex)
+    {
+        if (string.IsNullOrEmpty(hex) || hex[0] != '#' || (hex.Length != 7 && hex.Length != 9))
+        {
+            return null;
+        }
+
+        try
+        {
+            var r = Convert.ToByte(hex.Substring(1, 2), 16);
+            var g = Convert.ToByte(hex.Substring(3, 2), 16);
+            var b = Convert.ToByte(hex.Substring(5, 2), 16);
+            var a = hex.Length == 9 ? Convert.ToByte(hex.Substring(7, 2), 16) : (byte)0xFF;
+            return Color.FromArgb(a, r, g, b);
+        }
+        catch (FormatException)
+        {
+            return null;
+        }
     }
 
     public async Task LoadAsync()
@@ -121,9 +188,23 @@ public partial class HomeViewModel : ObservableObject
 
         Card(PrayerKind.DivineMercyChaplet).AccentColor = PrayerKind.DivineMercyChaplet.AccentColor();
         Card(PrayerKind.DivineMercyChaplet).Subtitle = _defaultDivineMercy?.Name ?? "Click to pray";
+
+        foreach (var bundleId in _customCardsByBundleId.Keys)
+        {
+            var match = all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId && p.IsDefault)
+                ?? all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId);
+            _defaultCustomDevotions[bundleId] = match;
+            _customCardsByBundleId[bundleId].Subtitle = match?.Name ?? "Click to pray";
+        }
     }
 
     private DevotionCardModel Card(PrayerKind kind) => DevotionCards.First(c => c.Kind == kind);
+
+    private void OpenCustomDevotion(string bundleId)
+    {
+        var prayer = _defaultCustomDevotions.GetValueOrDefault(bundleId);
+        Router.Navigate<CustomDevotionFlowPage>(new CustomDevotionFlowParams(prayer?.Id, bundleId));
+    }
 
     [RelayCommand]
     private void OpenRosary()

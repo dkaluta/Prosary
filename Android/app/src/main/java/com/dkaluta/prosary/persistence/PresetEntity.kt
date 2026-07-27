@@ -32,6 +32,10 @@ data class PresetEntity(
     // this column to existing rows doesn't need a destructive migration.
     val kind: String = PrayerKind.Rosary.name,
 
+    // Bundle id for a generic (kind == Custom) devotion, e.g. "trisagion". Null for every other
+    // kind. Nullable handles existing rows predating this column.
+    val customDevotionId: String? = null,
+
     // Rosary-specific fields (populated when kind == Rosary)
     val mysterySelectionMode: String = MysterySelectionMode.TodaysMysteries.name,
     val specificMysteryGroup: String = MysteryGroup.Joyful.name,
@@ -63,6 +67,7 @@ data class PresetEntity(
             kind = runCatching { PrayerKind.valueOf(kind) }.getOrDefault(PrayerKind.Rosary),
             isDefault = isDefault,
             languageCode = languageCode,
+            customDevotionId = customDevotionId,
             rosary = RosaryOptions(
                 mysterySelectionMode = runCatching { MysterySelectionMode.valueOf(mysterySelectionMode) }
                     .getOrDefault(MysterySelectionMode.TodaysMysteries),
@@ -97,6 +102,7 @@ data class PresetEntity(
                 isDefault = prayer.isDefault,
                 languageCode = prayer.languageCode,
                 kind = prayer.kind.name,
+                customDevotionId = prayer.customDevotionId,
                 mysterySelectionMode = prayer.rosary.mysterySelectionMode.name,
                 specificMysteryGroup = prayer.rosary.specificMysteryGroup.name,
                 specificMysteryOrder = prayer.rosary.specificMysteryOrder,

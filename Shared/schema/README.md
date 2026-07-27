@@ -8,7 +8,7 @@ platforms (iOS is canonical; Android and Windows are ports verified against it).
 
 | File | Covers |
 |---|---|
-| `domain-model.json` | `Prayer` and every type it's built from — `PrayerKind`, `RosaryOptions`, `MysterySelectionMode`, `MysteryGroup`, `EternalRestPlacement`, `MarianAntiphonOption`, `JesusPrayerOptions`/`Target`/`Progress`, `PrayerReminder`, `LanguageOption`, `RosaryStep` — field names, types, defaults. |
+| `domain-model.json` | `Prayer` and every type it's built from — `PrayerKind`, `RosaryOptions`, `MysterySelectionMode`, `MysteryGroup`, `EternalRestPlacement`, `MarianAntiphonOption`, `JesusPrayerOptions`/`Target`/`Progress`, `PrayerReminder`, `LanguageOption`, `RosaryStep`, `CustomDevotionStep` — field names, types, defaults. |
 | `content-keys.json` | The full `PrayerKey` catalog — every stable, language-independent identifier for a fixed prayer text, translated into all 6 languages. |
 | `mysteries.json` | The 20 Rosary mysteries (group/order/imageKey) plus the fixed override-image keys used by steps not tied to a specific mystery. |
 | `stations.json` | The 14 Stations of the Cross (order/imageKey/title) and image-sourcing/language-coverage status. |

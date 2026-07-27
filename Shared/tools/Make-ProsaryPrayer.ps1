@@ -83,6 +83,12 @@ try {
         Copy-Item (Join-Path $SourceDir "catalog.json") (Join-Path $StageDir "catalog.json")
     }
 
+    $StepsPath = Join-Path $SourceDir "steps.json"
+    if (Test-Path $StepsPath) {
+        Test-JsonFile $StepsPath
+        Copy-Item $StepsPath (Join-Path $StageDir "steps.json")
+    }
+
     $StageImagesDir = Join-Path $StageDir "images"
     New-Item -ItemType Directory -Path $StageImagesDir | Out-Null
     foreach ($ImageKey in $Manifest.images) {

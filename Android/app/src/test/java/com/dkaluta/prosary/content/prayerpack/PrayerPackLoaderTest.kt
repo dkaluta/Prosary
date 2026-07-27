@@ -80,4 +80,68 @@ class PrayerPackLoaderTest {
     fun packProvidesNoImageDataForAnUnrelatedKey() {
         assertNull(PrayerPackStore.imageData("station_01_condemned_to_death"))
     }
+
+    // MARK: Generic (bundle-driven) devotions
+
+    @Test
+    fun trisagionIsDiscoveredAsACustomDevotion() {
+        assertTrue(PrayerPackStore.customDevotionIds().contains("trisagion"))
+    }
+
+    /** A devotion with no steps.json at all (Rosary/Angelus) is never mistaken for a generic
+     * one. */
+    @Test
+    fun packsWithNoStepsJsonAreNotCustomDevotions() {
+        assertFalse(PrayerPackStore.customDevotionIds().contains("rosary"))
+        assertFalse(PrayerPackStore.customDevotionIds().contains("angelus"))
+    }
+
+    @Test
+    fun trisagionInfoReadsFromItsManifest() {
+        val info = PrayerPackStore.info("trisagion")
+        assertEquals("Trisagion", info?.displayName)
+        assertEquals("#00796B", info?.accentColorHex)
+        assertEquals("triangle", info?.iconSystemName)
+    }
+
+    @Test
+    fun trisagionStepsMatchTheAuthoredSixStepSequence() {
+        val steps = PrayerPackStore.steps("trisagion")
+        assertEquals(
+            listOf("Holy God", "Holy God", "Holy God", "Glory Be", "Holy God", "Holy God"),
+            steps.map { it.title },
+        )
+        assertEquals(
+            listOf(
+                "trisagionAcclamation", "trisagionAcclamation", "trisagionAcclamation",
+                "gloriaPatri", "trisagionShortAcclamation", "trisagionAcclamation",
+            ),
+            steps.map { it.bodyKey },
+        )
+    }
+
+    /** [PrayerPackStore.resolveBodyText] step 1 — a bundle-local-only key (never a [PrayerKey]
+     * case) resolves from the bundle's own raw content. */
+    @Test
+    fun resolveBodyTextResolvesABundleLocalKey() {
+        val text = PrayerPackStore.resolveBodyText("trisagion", "en", "trisagionAcclamation")
+        assertEquals("Holy God, Holy Mighty One, Holy Immortal One, have mercy on us.", text)
+    }
+
+    /** [PrayerPackStore.resolveBodyText] step 2 — a key matching an existing [PrayerKey] case
+     * (here, "gloriaPatri", a "main" prayer deliberately absent from every bundle) falls through
+     * to the ordinary hardcoded table. */
+    @Test
+    fun resolveBodyTextFallsThroughToASharedPrayerKey() {
+        val text = PrayerPackStore.resolveBodyText("trisagion", "en", "gloriaPatri")
+        assertEquals(PrayerTranslations.get("en", PrayerKey.GloriaPatri), text)
+    }
+
+    /** [PrayerPackStore.resolveBodyText] step 3 — an unresolvable key returns itself, matching
+     * [PrayerTranslations.get]'s own last-resort fallback. */
+    @Test
+    fun resolveBodyTextFallsBackToTheRawKey() {
+        val text = PrayerPackStore.resolveBodyText("trisagion", "en", "notARealKey")
+        assertEquals("notARealKey", text)
+    }
 }

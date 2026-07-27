@@ -6,6 +6,7 @@ import com.dkaluta.prosary.content.PrayerKey
 import com.dkaluta.prosary.content.PrayerTranslations
 import com.dkaluta.prosary.content.MysteryTranslations
 import com.dkaluta.prosary.content.StationsTranslations
+import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.EternalRestPlacement
 import com.dkaluta.prosary.models.FranciscanCrownCatalog
 import com.dkaluta.prosary.models.MarianAntiphonOption
@@ -57,6 +58,10 @@ class PrayerEngine(
         PrayerKind.FranciscanCrown -> buildFranciscanCrownSteps(prayer.languageCode)
         PrayerKind.SevenSorrows -> buildSevenSorrowsSteps(prayer.languageCode)
         PrayerKind.DivineMercyChaplet -> buildDivineMercySteps(prayer.languageCode)
+        PrayerKind.Custom -> {
+            val bundleId = prayer.customDevotionId
+            if (bundleId != null) buildCustomDevotionSteps(bundleId, prayer.languageCode) else emptyList()
+        }
     }
 
     // MARK: Rosary
@@ -500,4 +505,18 @@ class PrayerEngine(
         MarianAntiphonOption.SubTuumPraesidium -> "Sub Tuum Praesidium"
         MarianAntiphonOption.None, MarianAntiphonOption.Seasonal -> "Marian Antiphon"
     }
+
+    // MARK: Custom (bundle-driven) devotions
+
+    /** The only builder for every [PrayerKind.Custom] devotion — reads [bundleId]'s `steps.json`
+     * and maps each entry straight to a [RosaryStep], with no devotion-specific code. Works for
+     * Trisagion and any future bundle that ships a `steps.json`. */
+    private fun buildCustomDevotionSteps(bundleId: String, languageCode: String?): List<RosaryStep> =
+        PrayerPackStore.steps(bundleId).map { step ->
+            RosaryStep(
+                title = step.title,
+                body = PrayerPackStore.resolveBodyText(bundleId, languageCode, step.bodyKey),
+                imageOverrideKey = step.imageKey,
+            )
+        }
 }

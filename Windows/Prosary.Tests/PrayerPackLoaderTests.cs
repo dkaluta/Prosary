@@ -90,4 +90,74 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
     {
         Assert.Null(PrayerPackStore.ImageData("station_01_condemned_to_death"));
     }
+
+    // Generic (bundle-driven) devotions
+
+    [Fact]
+    public void TrisagionIsDiscoveredAsACustomDevotion()
+    {
+        Assert.Contains("trisagion", PrayerPackStore.CustomDevotionIds());
+    }
+
+    /// <summary>A devotion with no steps.json at all (Rosary/Angelus) is never mistaken for a
+    /// generic one.</summary>
+    [Fact]
+    public void PacksWithNoStepsJsonAreNotCustomDevotions()
+    {
+        Assert.DoesNotContain("rosary", PrayerPackStore.CustomDevotionIds());
+        Assert.DoesNotContain("angelus", PrayerPackStore.CustomDevotionIds());
+    }
+
+    [Fact]
+    public void TrisagionInfoReadsFromItsManifest()
+    {
+        var info = PrayerPackStore.Info("trisagion");
+        Assert.Equal("Trisagion", info?.DisplayName);
+        Assert.Equal("#00796B", info?.AccentColorHex);
+        Assert.Equal("triangle", info?.IconSystemName);
+    }
+
+    [Fact]
+    public void TrisagionStepsMatchTheAuthoredSixStepSequence()
+    {
+        var steps = PrayerPackStore.Steps("trisagion");
+        Assert.Equal(
+            ["Holy God", "Holy God", "Holy God", "Glory Be", "Holy God", "Holy God"],
+            steps.Select(s => s.Title));
+        Assert.Equal(
+            [
+                "trisagionAcclamation", "trisagionAcclamation", "trisagionAcclamation",
+                "gloriaPatri", "trisagionShortAcclamation", "trisagionAcclamation",
+            ],
+            steps.Select(s => s.BodyKey));
+    }
+
+    /// <summary><see cref="PrayerPackStore.ResolveBodyText"/> resolving a bundle-local-only key
+    /// (never a real <see cref="PrayerKey"/> constant) via the global override table it merges
+    /// into at load time.</summary>
+    [Fact]
+    public void ResolveBodyTextResolvesABundleLocalKey()
+    {
+        var text = PrayerPackStore.ResolveBodyText("en", "trisagionAcclamation");
+        Assert.Equal("Holy God, Holy Mighty One, Holy Immortal One, have mercy on us.", text);
+    }
+
+    /// <summary><see cref="PrayerPackStore.ResolveBodyText"/> falling through to a shared "main"
+    /// key ("gloriaPatri", deliberately absent from every bundle) via the ordinary hardcoded
+    /// table.</summary>
+    [Fact]
+    public void ResolveBodyTextFallsThroughToASharedPrayerKey()
+    {
+        var text = PrayerPackStore.ResolveBodyText("en", "gloriaPatri");
+        Assert.Equal(PrayerTranslations.Get("en", PrayerKey.GloriaPatri), text);
+    }
+
+    /// <summary><see cref="PrayerPackStore.ResolveBodyText"/> falling back to the raw key,
+    /// matching <see cref="PrayerTranslations.Get"/>'s own last-resort fallback.</summary>
+    [Fact]
+    public void ResolveBodyTextFallsBackToTheRawKey()
+    {
+        var text = PrayerPackStore.ResolveBodyText("en", "NotARealKey");
+        Assert.Equal("NotARealKey", text);
+    }
 }

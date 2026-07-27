@@ -34,6 +34,10 @@ struct PrayerDispatchView: View {
           SevenSorrowsFlowView(prayer: prayer)
         case .divineMercyChaplet:
           DivineMercyFlowView(prayer: prayer)
+        case .custom:
+          if let devotionId = prayer.customDevotionId {
+            CustomDevotionFlowView(devotionId: devotionId, prayer: prayer)
+          }
         }
       } else {
         ProgressView()

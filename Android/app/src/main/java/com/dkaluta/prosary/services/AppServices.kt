@@ -9,6 +9,7 @@ import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.engine.PrayerEngine
 import com.dkaluta.prosary.persistence.AppDatabase
 import com.dkaluta.prosary.persistence.MIGRATION_1_2
+import com.dkaluta.prosary.persistence.MIGRATION_2_3
 import com.dkaluta.prosary.persistence.RoomPresetStore
 import com.dkaluta.prosary.presets.MockPresetStore
 import com.dkaluta.prosary.presets.PresetStore
@@ -39,7 +40,7 @@ data class AppServices(
          * Favorites list against the seed insert. */
         fun create(context: Context): AppServices {
             val db = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "prosary.db")
-                .addMigrations(MIGRATION_1_2)
+                .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                 .build()
             val presetStore = RoomPresetStore(db.presetDao())
             runBlocking { presetStore.seedIfEmpty() }

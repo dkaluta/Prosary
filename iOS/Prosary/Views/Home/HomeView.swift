@@ -18,6 +18,8 @@ struct HomeView: View {
   @State private var defaultFranciscanCrown: Prayer? = nil
   @State private var defaultSevenSorrows: Prayer? = nil
   @State private var defaultDivineMercy: Prayer? = nil
+  /// One entry per discovered generic devotion (bundle id -> its favorite, if any).
+  @State private var defaultCustomDevotions: [String: Prayer] = [:]
 
   private var rosaryAccent: Color { todayMysteryGroup?.color ?? Color.brandPrimary }
   private var angelusAccent: Color { .adaptive(light: "#8B6914", dark: "#C49B0D") }
@@ -63,34 +65,61 @@ struct HomeView: View {
     defaultDivineMercy.map { $0.name } ?? String(localized: "home.divineMercyCard.tapToPray", defaultValue: "Tap to pray")
   }
 
-  /// One entry per devotion card shown on Home. Adding a new devotion means adding one entry
-  /// here — the accent/subtitle/launch logic for each kind can still be as bespoke as it needs
-  /// to be (e.g. Rosary's mystery-of-the-day accent color), but the view body itself no longer
-  /// hand-rolls a `PrayerCard` block per kind.
+  private func customDevotionSubtitle(bundleId: String) -> String {
+    defaultCustomDevotions[bundleId].map { $0.name } ?? String(localized: "home.customCard.tapToPray", defaultValue: "Tap to pray")
+  }
+
+  /// One entry per devotion card shown on Home. Adding a new hardcoded devotion means adding one
+  /// entry here — the accent/subtitle/launch logic for each kind can still be as bespoke as it
+  /// needs to be (e.g. Rosary's mystery-of-the-day accent color), but the view body itself no
+  /// longer hand-rolls a `PrayerCard` block per kind. Generic (bundle-driven) devotions need no
+  /// entry here at all — they're appended below, one per `PrayerPackStore.customDevotionIds()`,
+  /// with their icon/title/accent read from the bundle's own manifest instead of a hardcoded case.
   private var devotionCards: [DevotionCard] {
-    [
+    var cards = [
       DevotionCard(
-        kind: .rosary, accentColor: rosaryAccent, subtitle: rosarySubtitle,
+        id: PrayerKind.rosary.rawValue, systemImage: PrayerKind.rosary.systemImage, title: PrayerKind.rosary.displayName,
+        accentColor: rosaryAccent, subtitle: rosarySubtitle,
         accessibilityIdentifier: "rosaryCard", action: launchRosary),
       DevotionCard(
-        kind: .angelus, accentColor: angelusAccent, subtitle: angelusSubtitle,
+        id: PrayerKind.angelus.rawValue, systemImage: PrayerKind.angelus.systemImage, title: PrayerKind.angelus.displayName,
+        accentColor: angelusAccent, subtitle: angelusSubtitle,
         accessibilityIdentifier: "angelusCard", action: launchAngelus),
       DevotionCard(
-        kind: .jesusPrayer, accentColor: jesusPrayerAccent, subtitle: jesusPrayerSubtitle,
+        id: PrayerKind.jesusPrayer.rawValue, systemImage: PrayerKind.jesusPrayer.systemImage, title: PrayerKind.jesusPrayer.displayName,
+        accentColor: jesusPrayerAccent, subtitle: jesusPrayerSubtitle,
         accessibilityIdentifier: "jesusPrayerCard", action: launchJesusPrayer),
       DevotionCard(
-        kind: .stationsOfTheCross, accentColor: stationsAccent, subtitle: stationsSubtitle,
+        id: PrayerKind.stationsOfTheCross.rawValue, systemImage: PrayerKind.stationsOfTheCross.systemImage, title: PrayerKind.stationsOfTheCross.displayName,
+        accentColor: stationsAccent, subtitle: stationsSubtitle,
         accessibilityIdentifier: "stationsOfTheCrossCard", action: launchStationsOfTheCross),
       DevotionCard(
-        kind: .franciscanCrown, accentColor: franciscanCrownAccent, subtitle: franciscanCrownSubtitle,
+        id: PrayerKind.franciscanCrown.rawValue, systemImage: PrayerKind.franciscanCrown.systemImage, title: PrayerKind.franciscanCrown.displayName,
+        accentColor: franciscanCrownAccent, subtitle: franciscanCrownSubtitle,
         accessibilityIdentifier: "franciscanCrownCard", action: launchFranciscanCrown),
       DevotionCard(
-        kind: .sevenSorrows, accentColor: sevenSorrowsAccent, subtitle: sevenSorrowsSubtitle,
+        id: PrayerKind.sevenSorrows.rawValue, systemImage: PrayerKind.sevenSorrows.systemImage, title: PrayerKind.sevenSorrows.displayName,
+        accentColor: sevenSorrowsAccent, subtitle: sevenSorrowsSubtitle,
         accessibilityIdentifier: "sevenSorrowsCard", action: launchSevenSorrows),
       DevotionCard(
-        kind: .divineMercyChaplet, accentColor: divineMercyAccent, subtitle: divineMercySubtitle,
+        id: PrayerKind.divineMercyChaplet.rawValue, systemImage: PrayerKind.divineMercyChaplet.systemImage, title: PrayerKind.divineMercyChaplet.displayName,
+        accentColor: divineMercyAccent, subtitle: divineMercySubtitle,
         accessibilityIdentifier: "divineMercyCard", action: launchDivineMercy),
     ]
+
+    for bundleId in PrayerPackStore.customDevotionIds() {
+      guard let info = PrayerPackStore.info(for: bundleId) else { continue }
+      cards.append(DevotionCard(
+        id: "custom.\(bundleId)",
+        systemImage: info.iconSystemName ?? PrayerKind.custom.systemImage,
+        title: info.displayName,
+        accentColor: info.accentColorHex.map { Color(hex: $0) } ?? .brandPrimary,
+        subtitle: customDevotionSubtitle(bundleId: bundleId),
+        accessibilityIdentifier: "\(bundleId)Card",
+        action: { launchCustomDevotion(bundleId: bundleId) }))
+    }
+
+    return cards
   }
 
   var body: some View {
@@ -110,8 +139,8 @@ struct HomeView: View {
         VStack(spacing: 12) {
           ForEach(devotionCards) { card in
             PrayerCard(
-              systemImage: card.kind.systemImage,
-              title: card.kind.displayName,
+              systemImage: card.systemImage,
+              title: card.title,
               subtitle: card.subtitle,
               accentColor: card.accentColor
             ) {
@@ -167,6 +196,13 @@ struct HomeView: View {
       ?? all.first { $0.kind == .sevenSorrows }
     defaultDivineMercy = all.first { $0.kind == .divineMercyChaplet && $0.isDefault }
       ?? all.first { $0.kind == .divineMercyChaplet }
+
+    defaultCustomDevotions = Dictionary(
+      uniqueKeysWithValues: PrayerPackStore.customDevotionIds().compactMap { bundleId -> (String, Prayer)? in
+        let favorite = all.first { $0.kind == .custom && $0.customDevotionId == bundleId && $0.isDefault }
+          ?? all.first { $0.kind == .custom && $0.customDevotionId == bundleId }
+        return favorite.map { (bundleId, $0) }
+      })
   }
 
   private func launchRosary() {
@@ -224,12 +260,21 @@ struct HomeView: View {
       path.append(AppRoute.divineMercyChaplet)
     }
   }
+
+  private func launchCustomDevotion(bundleId: String) {
+    if let prayer = defaultCustomDevotions[bundleId] {
+      path.append(AppRoute.prayer(id: prayer.id))
+    } else {
+      path.append(AppRoute.custom(devotionId: bundleId))
+    }
+  }
 }
 
 /// One devotion's rendering state for a Home card. See `HomeView.devotionCards`.
 private struct DevotionCard: Identifiable {
-  var id: PrayerKind { kind }
-  let kind: PrayerKind
+  let id: String
+  let systemImage: String
+  let title: String
   let accentColor: Color
   let subtitle: String
   let accessibilityIdentifier: String

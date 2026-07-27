@@ -41,6 +41,10 @@ struct FavoritesListView: View {
     case .franciscanCrown:    return franciscanCrownAccent
     case .sevenSorrows:       return sevenSorrowsAccent
     case .divineMercyChaplet: return divineMercyAccent
+    // Unreachable in practice — .custom is never in configurableKinds/simplifiedKinds, its rows
+    // read the bundle's own accentColorHex instead (see the customDevotionIds ForEach below).
+    // Still needed for exhaustiveness.
+    case .custom:             return .brandPrimary
     }
   }
 
@@ -80,12 +84,30 @@ struct FavoritesListView: View {
           ForEach(simplifiedKinds, id: \.self) { kind in
             let favorite = prayers.first { $0.kind == kind }
             SimpleFavoriteRow(
-              kind: kind,
+              title: kind.displayName,
+              systemImage: kind.systemImage,
               accentColor: accentColor(for: kind),
               isFavorited: favorite != nil,
               onToggleFavorite: { toggleSimpleFavorite(kind: kind, existing: favorite) },
               onEditReminders: { favorite.map { remindersPrayer = $0 } }
             )
+          }
+
+          // Generic (bundle-driven) devotions — one row per discovered bundle, with no
+          // hardcoded PrayerKind case. Only one exists today (Trisagion); a picker across
+          // multiple is real future work once a second one exists, not built speculatively.
+          ForEach(PrayerPackStore.customDevotionIds(), id: \.self) { bundleId in
+            if let info = PrayerPackStore.info(for: bundleId) {
+              let favorite = prayers.first { $0.kind == .custom && $0.customDevotionId == bundleId }
+              SimpleFavoriteRow(
+                title: info.displayName,
+                systemImage: info.iconSystemName ?? PrayerKind.custom.systemImage,
+                accentColor: info.accentColorHex.map { Color(hex: $0) } ?? .brandPrimary,
+                isFavorited: favorite != nil,
+                onToggleFavorite: { toggleCustomFavorite(bundleId: bundleId, displayName: info.displayName, existing: favorite) },
+                onEditReminders: { favorite.map { remindersPrayer = $0 } }
+              )
+            }
           }
         } header: {
           HStack(spacing: 8) {
@@ -185,6 +207,27 @@ struct FavoritesListView: View {
       await reload()
     }
   }
+
+  /// Star toggle for a generic (bundle-driven) devotion row — same shape as
+  /// `toggleSimpleFavorite`, but always `.custom` + the given bundle id.
+  private func toggleCustomFavorite(bundleId: String, displayName: String, existing: Prayer?) {
+    Task {
+      if let existing {
+        ReminderScheduler.removeAll(for: existing)
+        try? await services.presetStore.delete(existing)
+      } else {
+        let newFavorite = Prayer(
+          name: displayName,
+          kind: .custom,
+          isDefault: true,
+          languageCode: LanguageCatalog.defaultSentinel,
+          customDevotionId: bundleId
+        )
+        try? await services.presetStore.save(newFavorite)
+      }
+      await reload()
+    }
+  }
 }
 
 // MARK: - Favorite Card
@@ -212,6 +255,10 @@ private struct FavoriteCard: View {
     case .sevenSorrows:
       return prayer.languageDisplayName
     case .divineMercyChaplet:
+      return prayer.languageDisplayName
+    case .custom:
+      // Unreachable in practice — .custom favorites render via SimpleFavoriteRow, never
+      // FavoriteCard (see FavoritesListView.configurableKinds). Still needed for exhaustiveness.
       return prayer.languageDisplayName
     }
   }
@@ -287,10 +334,13 @@ private struct FavoriteCard: View {
 
 // MARK: - Simple Favorite Row
 
-/// One row per non-configurable devotion kind — a star toggle and, once favorited, a reminders
-/// button. No name/language editing and no "+ Add another" — see FavoritesListView.
+/// One row per non-configurable devotion — a star toggle and, once favorited, a reminders
+/// button. No name/language editing and no "+ Add another" — see FavoritesListView. `title`/
+/// `systemImage` are passed in rather than derived from a `PrayerKind` so this same row can
+/// render either one of the 5 hardcoded simplified kinds or a generic bundle-driven devotion.
 private struct SimpleFavoriteRow: View {
-  let kind: PrayerKind
+  let title: String
+  let systemImage: String
   let accentColor: Color
   let isFavorited: Bool
   let onToggleFavorite: () -> Void
@@ -310,12 +360,12 @@ private struct SimpleFavoriteRow: View {
         .buttonStyle(.borderless)
         .frame(minWidth: 44, minHeight: 44)
         .accessibilityLabel(isFavorited
-          ? String(localized: "favorites.removeKindFromFavorites", defaultValue: "Remove \(kind.displayName) from Favorites")
-          : String(localized: "favorites.addKindToFavorites", defaultValue: "Add \(kind.displayName) to Favorites"))
+          ? String(localized: "favorites.removeKindFromFavorites", defaultValue: "Remove \(title) from Favorites")
+          : String(localized: "favorites.addKindToFavorites", defaultValue: "Add \(title) to Favorites"))
 
-        Image(systemName: kind.systemImage)
+        Image(systemName: systemImage)
           .foregroundStyle(accentColor)
-        Text(kind.displayName)
+        Text(title)
           .font(.headline)
 
         Spacer()
@@ -328,7 +378,7 @@ private struct SimpleFavoriteRow: View {
           .buttonStyle(.borderless)
           .foregroundStyle(.secondary)
           .frame(minWidth: 44, minHeight: 44)
-          .accessibilityLabel(String(localized: "favorites.editKindReminders", defaultValue: "Edit \(kind.displayName) reminders"))
+          .accessibilityLabel(String(localized: "favorites.editKindReminders", defaultValue: "Edit \(title) reminders"))
         }
       }
       .padding(.horizontal, 14)

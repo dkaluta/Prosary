@@ -17,12 +17,21 @@ struct RemindersOnlyEditorView: View {
   @Environment(\.appServices) private var services
   @Environment(\.dismiss) private var dismiss
 
+  /// For `.custom`, `prayer.kind.displayName` is only a generic fallback (a single `PrayerKind`
+  /// case can't carry per-bundle text) — read the real name from the bundle's own manifest.
+  private var navigationTitleText: String {
+    guard prayer.kind == .custom, let devotionId = prayer.customDevotionId else {
+      return prayer.kind.displayName
+    }
+    return PrayerPackStore.info(for: devotionId)?.displayName ?? prayer.kind.displayName
+  }
+
   var body: some View {
     Form {
       RemindersSection(reminders: $prayer.reminders, kind: prayer.kind)
     }
     .formStyle(.grouped)
-    .navigationTitle(prayer.kind.displayName)
+    .navigationTitle(navigationTitleText)
     #if os(iOS)
     .navigationBarTitleDisplayMode(.inline)
     #endif

@@ -34,6 +34,8 @@ struct ContentView: View {
             JesusPrayerSetupView(path: $path)
           case .jesusPrayer(let target):
             JesusPrayerFlowView(path: $path, target: target)
+          case .custom(let devotionId):
+            CustomDevotionFlowView(devotionId: devotionId)
           }
         }
     }

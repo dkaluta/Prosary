@@ -78,6 +78,7 @@ object ReminderScheduler {
         PrayerKind.FranciscanCrown -> "Time to pray the Franciscan Crown."
         PrayerKind.SevenSorrows -> "Time to pray the Seven Sorrows."
         PrayerKind.DivineMercyChaplet -> "Time to pray the Divine Mercy Chaplet."
+        PrayerKind.Custom -> "Time to pray."
     }
 
     private fun pendingIntentFor(context: Context, prayer: Prayer, reminderId: String): PendingIntent {

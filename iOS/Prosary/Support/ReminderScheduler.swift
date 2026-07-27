@@ -83,6 +83,7 @@ struct ReminderScheduler {
     case .franciscanCrown:    return "Time to pray the Franciscan Crown."
     case .sevenSorrows:       return "Time to pray the Seven Sorrows."
     case .divineMercyChaplet: return "Time to pray the Divine Mercy Chaplet."
+    case .custom:             return "Time to pray."
     }
   }
 }

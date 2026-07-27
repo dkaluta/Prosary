@@ -28,6 +28,11 @@ struct Prayer: Identifiable, Hashable, Codable {
   var jesusPrayer: JesusPrayerOptions = .init()
   // .angelus has no options beyond languageCode.
 
+  /// The bundle id (e.g. `"trisagion"`) whose `steps.json` defines this favorite's step
+  /// sequence — populated only when `kind == .custom`, nil otherwise. See `PrayerEngine.
+  /// buildCustomDevotionSteps`.
+  var customDevotionId: String? = nil
+
   /// Daily reminders to pray this favorite. Scheduled via `ReminderScheduler`.
   var reminders: [PrayerReminder] = []
 

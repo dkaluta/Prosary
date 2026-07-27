@@ -23,6 +23,10 @@ final class PresetEntry {
   // existing rows when the schema is extended with this field.
   var kind: String = "rosary"
 
+  // Bundle id for a generic (kind == "custom") devotion, e.g. "trisagion". Nil for every other
+  // kind. Optional handles existing rows predating this field.
+  var customDevotionId: String? = nil
+
   // Rosary-specific fields (populated when kind == "rosary")
   var mysterySelectionMode: MysterySelectionMode = MysterySelectionMode.todaysMysteries
   var specificMysteryGroup: MysteryGroup = MysteryGroup.joyful
@@ -52,6 +56,7 @@ final class PresetEntry {
     isDefault = prayer.isDefault
     languageCode = prayer.languageCode
     kind = prayer.kind.rawValue
+    customDevotionId = prayer.customDevotionId
 
     mysterySelectionMode = prayer.rosary.mysterySelectionMode
     specificMysteryGroup = prayer.rosary.specificMysteryGroup
@@ -81,6 +86,7 @@ final class PresetEntry {
     isDefault = prayer.isDefault
     languageCode = prayer.languageCode
     kind = prayer.kind.rawValue
+    customDevotionId = prayer.customDevotionId
 
     mysterySelectionMode = prayer.rosary.mysterySelectionMode
     specificMysteryGroup = prayer.rosary.specificMysteryGroup
@@ -130,6 +136,7 @@ final class PresetEntry {
         presenterMode: presenterMode
       ),
       jesusPrayer: JesusPrayerOptions(target: jpTarget),
+      customDevotionId: customDevotionId,
       reminders: (try? JSONDecoder().decode([PrayerReminder].self, from: remindersJSON)) ?? []
     )
   }

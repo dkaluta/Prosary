@@ -77,6 +77,10 @@ cp "$SRC_DIR"/content/*.json "$STAGE_DIR/content/"
 if [ "$HAS_CATALOG" = "True" ]; then
   cp "$SRC_DIR/catalog.json" "$STAGE_DIR/catalog.json"
 fi
+if [ -f "$SRC_DIR/steps.json" ]; then
+  validate_json "$SRC_DIR/steps.json"
+  cp "$SRC_DIR/steps.json" "$STAGE_DIR/steps.json"
+fi
 
 mkdir -p "$STAGE_DIR/images"
 python3 -c "import json; [print(i) for i in json.load(open('$MANIFEST', encoding='utf-8'))['images']]" |

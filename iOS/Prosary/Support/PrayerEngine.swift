@@ -57,6 +57,9 @@ struct PrayerEngine {
       return buildSevenSorrowsSteps(languageCode: prayer.languageCode)
     case .divineMercyChaplet:
       return buildDivineMercySteps(languageCode: prayer.languageCode)
+    case .custom:
+      guard let bundleId = prayer.customDevotionId else { return [] }
+      return buildCustomDevotionSteps(bundleId: bundleId, languageCode: prayer.languageCode)
     }
   }
 
@@ -463,6 +466,20 @@ struct PrayerEngine {
     case .reginaCaeli:          return "Regina Caeli"
     case .subTuumPraesidium:    return "Sub Tuum Praesidium"
     case .none, .seasonal:      return "Marian Antiphon"
+    }
+  }
+
+  // MARK: - Custom (bundle-driven) devotions
+
+  /// The only builder for every `PrayerKind.custom` devotion — reads `bundleId`'s `steps.json`
+  /// and maps each entry straight to a `RosaryStep`, with no devotion-specific code. Works for
+  /// Trisagion and any future bundle that ships a `steps.json`.
+  private func buildCustomDevotionSteps(bundleId: String, languageCode: String?) -> [RosaryStep] {
+    PrayerPackStore.steps(for: bundleId).map { step in
+      RosaryStep(
+        title: step.title, subtitle: nil,
+        body: PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: languageCode, key: step.bodyKey),
+        imageOverrideKey: step.imageKey)
     }
   }
 }

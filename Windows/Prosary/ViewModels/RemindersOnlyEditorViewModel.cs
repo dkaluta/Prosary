@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Prosary.Localization;
 using Prosary.Models;
 using Prosary.Navigation;
 using Prosary.Persistence;
@@ -47,7 +48,11 @@ public partial class RemindersOnlyEditorViewModel : ObservableObject
         }
 
         _originalPrayer = prayer;
-        Title = prayer.Kind.DisplayName();
+        // For .Custom, DisplayName() is only a generic fallback (a single PrayerKind case can't
+        // carry per-bundle text) — read the real name from the bundle's own manifest.
+        Title = prayer.Kind == PrayerKind.Custom && prayer.CustomDevotionId is { } bundleId
+            ? PrayerPackStore.Info(bundleId)?.DisplayName ?? prayer.Kind.DisplayName()
+            : prayer.Kind.DisplayName();
         RemindersEditor.Kind = prayer.Kind;
         RemindersEditor.Reminders = new ObservableCollection<PrayerReminder>(prayer.Reminders);
     }

@@ -3,7 +3,7 @@
   "rootScreen": "home",
   "screens": {
     "home": {
-      "purpose": "Three devotion cards (Rosary/Angelus/Jesus Prayer) showing each kind's default favorite, plus My Favorites/Settings/About.",
+      "purpose": "One card per hardcoded PrayerKind (Rosary/Angelus/Jesus Prayer/Stations/Franciscan Crown/Seven Sorrows/Divine Mercy Chaplet) showing that kind's default favorite, plus one additional card per discovered generic (bundle-driven) devotion (see customDevotionFlow) read from that bundle's own manifest, plus My Favorites/Settings/About.",
       "parameters": {},
       "sources": {
         "iOS": "Views/Home/HomeView.swift",
@@ -68,6 +68,23 @@
         "iOS": "Views/Stations/StationsFlowView.swift + Views/Shared/PrayerStepFlowView.swift",
         "android": "ui/stations/StationsFlowScreen.kt",
         "windows": "Views/StationsFlowPage.xaml(.cs) + ViewModels/StationsViewModel.cs"
+      }
+    },
+    "customDevotionFlow": {
+      "purpose": "The single flow for every generic (bundle-driven) devotion (PrayerKind.custom) — currently just Trisagion. Same shape as stationsFlow (no bead track, no kind-specific options), but its steps/title are entirely data-driven from the bundle's steps.json/manifest.json instead of a hardcoded per-devotion builder — see ARCHITECTURE.md's \"Content bundles\" section. Adding a new generic devotion needs no new screen at all, just a new bundle.",
+      "parameters": {
+        "devotionId": { "type": "string", "description": "The bundle id (e.g. \"trisagion\") to load — unlike the hardcoded simplified flows, this is always required, even when a favorite exists, since PrayerKind.custom alone doesn't say which devotion to load." },
+        "prayerId": { "type": "uuid?", "description": "Launched from a saved favorite. Null when launched from Home with no favorite saved yet for this devotionId — falls back to the app's default language, same no-options pattern as angelusFlow/stationsFlow." }
+      },
+      "reachedVia": {
+        "iOS": "The generic prayer(id) route -> PrayerDispatchView resolves the Prayer and picks CustomDevotionFlowView by kind (reading devotionId from Prayer.customDevotionId); a fresh (no-favorite) launch uses AppRoute.custom(devotionId:) instead.",
+        "android": "The generic prayer/{id} route -> PrayerDispatchScreen, same dispatch-by-kind pattern; a fresh launch uses the custom/{devotionId} route.",
+        "windows": "Routed to directly by name (CustomDevotionFlowPage) via CustomDevotionFlowParams(prayerId, bundleId) — Home/Favorites already know the bundle id at the call site, so Windows skips the generic-dispatcher indirection entirely, same as rosaryFlow."
+      },
+      "sources": {
+        "iOS": "Views/Shared/CustomDevotionFlowView.swift + Views/Shared/PrayerStepFlowView.swift",
+        "android": "ui/shared/CustomDevotionFlowScreen.kt",
+        "windows": "Views/CustomDevotionFlowPage.xaml(.cs) + ViewModels/CustomDevotionViewModel.cs"
       }
     },
     "franciscanCrownFlow": {

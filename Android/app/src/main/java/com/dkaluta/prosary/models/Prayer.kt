@@ -23,6 +23,11 @@ data class Prayer(
     var jesusPrayer: JesusPrayerOptions = JesusPrayerOptions(),
     // Angelus has no options beyond languageCode.
 
+    /** The bundle id (e.g. "trisagion") whose `steps.json` defines this favorite's step sequence
+     * — populated only when [kind] is [PrayerKind.Custom], null otherwise. See
+     * [com.dkaluta.prosary.engine.PrayerEngine.buildCustomDevotionSteps]. */
+    var customDevotionId: String? = null,
+
     /** Daily reminders to pray this favorite. Scheduled via
      * [com.dkaluta.prosary.reminders.ReminderScheduler]. */
     var reminders: List<PrayerReminder> = emptyList(),

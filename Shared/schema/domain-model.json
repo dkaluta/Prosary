@@ -19,14 +19,19 @@
         },
         "rosary": { "type": "RosaryOptions", "description": "Populated when kind == rosary." },
         "jesusPrayer": { "type": "JesusPrayerOptions", "description": "Populated when kind == jesusPrayer." },
+        "customDevotionId": {
+          "type": "string?",
+          "default": null,
+          "description": "The bundle id (e.g. \"trisagion\") whose steps.json defines this favorite's step sequence. Populated only when kind == custom, null/nil otherwise. See PrayerEngine.buildCustomDevotionSteps and ARCHITECTURE.md's \"Content bundles\" section."
+        },
         "reminders": { "type": "PrayerReminder[]", "default": [] }
       }
     },
     "PrayerKind": {
-      "description": "Discriminant for the type of a saved prayer session. Add a new case here (and a matching *Options type on Prayer) to expand into another devotion.",
+      "description": "Discriminant for the type of a saved prayer session. Add a new case here (and a matching *Options type on Prayer) to expand into another *hardcoded* devotion.",
       "kind": "enum",
-      "cases": ["rosary", "angelus", "jesusPrayer", "stationsOfTheCross", "franciscanCrown", "sevenSorrows", "divineMercyChaplet"],
-      "note": "The four-devotion rollout (Stations of the Cross, Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet) is complete on all three platforms as of this case list."
+      "cases": ["rosary", "angelus", "jesusPrayer", "stationsOfTheCross", "franciscanCrown", "sevenSorrows", "divineMercyChaplet", "custom"],
+      "note": "The four-devotion rollout (Stations of the Cross, Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet) is complete on all three platforms as of this case list. \"custom\" is different from the others: it's the single case covering every generic, bundle-driven devotion (see CustomDevotionStep and ARCHITECTURE.md's \"Content bundles\" section) — adding a new generic devotion needs no new PrayerKind case, only a new .prosaryprayer bundle with a steps.json."
     },
     "RosaryOptions": {
       "description": "Configuration specific to the Rosary. Lives inside a Prayer when kind == rosary.",
@@ -129,6 +134,14 @@
         "decadeIndex": { "type": "int?", "description": "0-based, counted globally across every mystery group in the session — never resets per group. What the bead track uses to tell decades apart." },
         "hailMaryIndexInDecade": { "type": "int?", "range": [1, 10] },
         "imageOverrideKey": { "type": "string?", "description": "For steps not tied to a Mystery that still want a specific illustration — see mysteries.json's overrideImages." }
+      }
+    },
+    "CustomDevotionStep": {
+      "description": "One entry in a generic (bundle-driven) devotion's steps.json — see ARCHITECTURE.md's \"Content bundles\" section. PrayerEngine.buildCustomDevotionSteps maps each entry straight to a RosaryStep (title literal, body via bodyKey resolution, imageOverrideKey direct) with no devotion-specific code, for any PrayerKind.custom devotion.",
+      "fields": {
+        "title": { "type": "string", "description": "Literal display string, not a translation key — matches the existing convention that every devotion's step titles are English-only UI labels." },
+        "bodyKey": { "type": "string", "description": "Resolved via the bodyKey resolution rule in ARCHITECTURE.md — either a bundle-local-only key (e.g. \"trisagionAcclamation\", never a PrayerKey case) or an existing shared PrayerKey (e.g. \"gloriaPatri\")." },
+        "imageKey": { "type": "string", "description": "Resolved via the same image-override lookup every hardcoded devotion's RosaryStep.imageOverrideKey uses." }
       }
     }
   },

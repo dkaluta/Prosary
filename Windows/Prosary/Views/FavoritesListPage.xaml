@@ -65,8 +65,8 @@
                             Command="{Binding ElementName=Root, Path=ViewModel.ToggleSimpleFavoriteCommand}" CommandParameter="{Binding}">
                         <FontIcon Glyph="{Binding IsFavorited, Converter={StaticResource BoolToStarGlyph}}" Foreground="{StaticResource BrandPrimaryBrush}" />
                     </Button>
-                    <FontIcon Grid.Column="1" Glyph="{Binding Kind, Converter={StaticResource PrayerKindIconGlyph}}" VerticalAlignment="Center" />
-                    <TextBlock Grid.Column="2" Text="{Binding Kind, Converter={StaticResource EnumDisplayName}}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center" />
+                    <FontIcon Grid.Column="1" Glyph="{Binding IconGlyph}" VerticalAlignment="Center" />
+                    <TextBlock Grid.Column="2" Text="{Binding Title}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center" />
                     <Button Grid.Column="3" Background="Transparent" Padding="6"
                             Visibility="{Binding IsFavorited, Converter={StaticResource BoolToVisibility}}"
                             Command="{Binding ElementName=Root, Path=ViewModel.EditRemindersCommand}" CommandParameter="{Binding}">

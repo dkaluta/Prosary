@@ -17,4 +17,7 @@ enum AppRoute: Hashable {
   case divineMercyChaplet
   case jesusPrayerSetup
   case jesusPrayer(target: JesusPrayerTarget)
+  /// Launches a generic (bundle-driven) devotion with no existing favorite — `devotionId` is the
+  /// bundle id, e.g. `"trisagion"`. See `PrayerKind.custom`.
+  case custom(devotionId: String)
 }

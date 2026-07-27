@@ -25,6 +25,11 @@ public sealed record Prayer
     public JesusPrayerOptions JesusPrayer { get; init; } = new();
     // Angelus has no options beyond LanguageCode.
 
+    /// <summary>The bundle id (e.g. "trisagion") whose <c>steps.json</c> defines this favorite's
+    /// step sequence — populated only when <see cref="Kind"/> is <see cref="PrayerKind.Custom"/>,
+    /// null otherwise. See <c>PrayerEngine.BuildCustomDevotionSteps</c>.</summary>
+    public string? CustomDevotionId { get; init; } = null;
+
     /// <summary>Daily reminders to pray this favorite. Scheduled via <c>WindowsReminderScheduler</c>.</summary>
     public List<PrayerReminder> Reminders { get; init; } = [];
 
@@ -49,6 +54,9 @@ public sealed record Prayer
         PrayerKind.FranciscanCrown => LanguageDisplayName,
         PrayerKind.SevenSorrows => LanguageDisplayName,
         PrayerKind.DivineMercyChaplet => LanguageDisplayName,
+        // Unreachable in practice — .Custom favorites render via the simplified-kind row, never
+        // a full FavoriteCard. Still needed for exhaustiveness.
+        PrayerKind.Custom => LanguageDisplayName,
         _ => throw new ArgumentOutOfRangeException(nameof(Kind))
     };
 }

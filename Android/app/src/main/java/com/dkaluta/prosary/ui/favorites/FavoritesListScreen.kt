@@ -53,11 +53,14 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.reminders.ReminderScheduler
 import com.dkaluta.prosary.services.LocalAppServices
+import com.dkaluta.prosary.ui.shared.colorForHex
+import com.dkaluta.prosary.ui.shared.iconForSystemName
 import kotlinx.coroutines.launch
 
 private fun iconFor(kind: PrayerKind): ImageVector = when (kind) {
@@ -68,6 +71,9 @@ private fun iconFor(kind: PrayerKind): ImageVector = when (kind) {
     PrayerKind.FranciscanCrown -> Icons.Filled.WorkspacePremium
     PrayerKind.SevenSorrows -> Icons.Filled.WaterDrop
     PrayerKind.DivineMercyChaplet -> Icons.Filled.WbSunny
+    // Unreachable in practice — .Custom rows read the bundle's own iconSystemName instead (see
+    // the customDevotionIds loop below). Still needed for exhaustiveness.
+    PrayerKind.Custom -> Icons.Filled.Star
 }
 
 private fun accentFor(kind: PrayerKind): Color = when (kind) {
@@ -78,6 +84,9 @@ private fun accentFor(kind: PrayerKind): Color = when (kind) {
     PrayerKind.FranciscanCrown -> Color(0xFF6B4226)
     PrayerKind.SevenSorrows -> Color(0xFF6B0F1A)
     PrayerKind.DivineMercyChaplet -> Color(0xFFC41E3A)
+    // Unreachable in practice — .Custom rows read the bundle's own accentColorHex instead. Still
+    // needed for exhaustiveness.
+    PrayerKind.Custom -> Color(0xFF7A1F3D)
 }
 
 /** Rosary and Jesus Prayer have real per-favorite options worth naming and saving multiple
@@ -192,7 +201,8 @@ fun FavoritesListScreen(
             items(simplifiedKinds, key = { it.name }) { kind ->
                 val favorite = prayers.firstOrNull { it.kind == kind }
                 SimpleFavoriteRow(
-                    kind = kind,
+                    title = kind.displayName,
+                    icon = iconFor(kind),
                     accentColor = accentFor(kind),
                     isFavorited = favorite != null,
                     onToggleFavorite = {
@@ -215,6 +225,42 @@ fun FavoritesListScreen(
                     },
                     onEditReminders = { favorite?.let { onEditReminders(it.id) } },
                 )
+            }
+
+            // Generic (bundle-driven) devotions — one row per discovered bundle, with no
+            // hardcoded PrayerKind case. Only one exists today (Trisagion); a picker across
+            // multiple is real future work once a second one exists, not built speculatively.
+            items(PrayerPackStore.customDevotionIds(), key = { "custom.$it" }) { bundleId ->
+                val info = PrayerPackStore.info(bundleId)
+                if (info != null) {
+                    val favorite = prayers.firstOrNull { it.kind == PrayerKind.Custom && it.customDevotionId == bundleId }
+                    SimpleFavoriteRow(
+                        title = info.displayName,
+                        icon = iconForSystemName(info.iconSystemName),
+                        accentColor = colorForHex(info.accentColorHex) ?: MaterialTheme.colorScheme.primary,
+                        isFavorited = favorite != null,
+                        onToggleFavorite = {
+                            scope.launch {
+                                if (favorite != null) {
+                                    ReminderScheduler.cancelAll(context, favorite)
+                                    services.presetStore.delete(favorite)
+                                } else {
+                                    services.presetStore.save(
+                                        Prayer(
+                                            name = info.displayName,
+                                            kind = PrayerKind.Custom,
+                                            isDefault = true,
+                                            languageCode = LanguageCatalog.defaultSentinel,
+                                            customDevotionId = bundleId,
+                                        ),
+                                    )
+                                }
+                                reload()
+                            }
+                        },
+                        onEditReminders = { favorite?.let { onEditReminders(it.id) } },
+                    )
+                }
             }
         }
     }
@@ -252,6 +298,9 @@ private fun FavoriteCard(
         PrayerKind.FranciscanCrown -> prayer.languageDisplayName
         PrayerKind.SevenSorrows -> prayer.languageDisplayName
         PrayerKind.DivineMercyChaplet -> prayer.languageDisplayName
+        // Unreachable in practice — .Custom favorites render via SimpleFavoriteRow, never
+        // FavoriteCard (see configurableKinds below). Still needed for exhaustiveness.
+        PrayerKind.Custom -> prayer.languageDisplayName
     }
 
     Column(
@@ -296,11 +345,14 @@ private fun FavoriteCard(
     }
 }
 
-/** One row per non-configurable devotion kind — a star toggle and, once favorited, a reminders
- * button. No name/language editing and no "+ Add another" — see [FavoritesListScreen]. */
+/** One row per non-configurable devotion — a star toggle and, once favorited, a reminders
+ * button. No name/language editing and no "+ Add another" — see [FavoritesListScreen]. [title]/
+ * [icon] are passed in rather than derived from a [PrayerKind] so this same row can render either
+ * one of the 5 hardcoded simplified kinds or a generic bundle-driven devotion. */
 @Composable
 private fun SimpleFavoriteRow(
-    kind: PrayerKind,
+    title: String,
+    icon: ImageVector,
     accentColor: Color,
     isFavorited: Boolean,
     onToggleFavorite: () -> Unit,
@@ -319,17 +371,17 @@ private fun SimpleFavoriteRow(
         IconButton(onClick = onToggleFavorite) {
             Icon(
                 if (isFavorited) Icons.Filled.Star else Icons.Filled.StarBorder,
-                contentDescription = if (isFavorited) "Remove ${kind.displayName} from Favorites" else "Add ${kind.displayName} to Favorites",
+                contentDescription = if (isFavorited) "Remove $title from Favorites" else "Add $title to Favorites",
                 tint = if (isFavorited) accentColor else MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
 
-        Icon(iconFor(kind), contentDescription = null, tint = accentColor)
-        Text(kind.displayName, style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
+        Icon(icon, contentDescription = null, tint = accentColor)
+        Text(title, style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
 
         if (isFavorited) {
             IconButton(onClick = onEditReminders) {
-                Icon(Icons.Filled.Notifications, contentDescription = "Edit ${kind.displayName} reminders", tint = MaterialTheme.colorScheme.onSurfaceVariant)
+                Icon(Icons.Filled.Notifications, contentDescription = "Edit $title reminders", tint = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
     }

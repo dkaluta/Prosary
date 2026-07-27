@@ -28,6 +28,10 @@ public sealed class PresetEntry
 
     public PrayerKind Kind { get; set; } = PrayerKind.Rosary;
 
+    /// <summary>Bundle id for a generic (Kind == Custom) devotion, e.g. "trisagion". Null for
+    /// every other kind.</summary>
+    public string? CustomDevotionId { get; set; } = null;
+
     // Flattened RosaryOptions (only meaningful when Kind == Rosary).
     public MysterySelectionMode MysterySelectionMode { get; set; } = MysterySelectionMode.TodaysMysteries;
     public MysteryGroup SpecificMysteryGroup { get; set; } = MysteryGroup.Joyful;
@@ -64,6 +68,7 @@ public sealed class PresetEntry
         Kind = Kind,
         IsDefault = IsDefault,
         LanguageCode = LanguageCode,
+        CustomDevotionId = CustomDevotionId,
         Rosary = new RosaryOptions
         {
             MysterySelectionMode = MysterySelectionMode,
@@ -94,6 +99,7 @@ public sealed class PresetEntry
         Kind = prayer.Kind,
         IsDefault = prayer.IsDefault,
         LanguageCode = prayer.LanguageCode,
+        CustomDevotionId = prayer.CustomDevotionId,
         MysterySelectionMode = prayer.Rosary.MysterySelectionMode,
         SpecificMysteryGroup = prayer.Rosary.SpecificMysteryGroup,
         SpecificMysteryOrder = prayer.Rosary.SpecificMysteryOrder,

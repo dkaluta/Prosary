@@ -13,7 +13,17 @@ public enum PrayerKind
     StationsOfTheCross,
     FranciscanCrown,
     SevenSorrows,
-    DivineMercyChaplet
+    DivineMercyChaplet,
+
+    /// <summary>Any devotion whose entire step sequence comes from a bundle's <c>steps.json</c>
+    /// instead of a hardcoded engine builder — see <c>PrayerEngine.BuildCustomDevotionSteps</c>
+    /// and <see cref="Prayer.CustomDevotionId"/>. One case covers every such devotion (currently
+    /// just Trisagion); adding another doesn't need a new <see cref="PrayerKind"/> case, only a
+    /// new bundle. The extension methods below return a generic fallback for this case — real
+    /// call sites (Home, Favorites) read the actual devotion's name/icon from
+    /// <c>PrayerPackStore.Info</c> instead, since a single <see cref="PrayerKind"/> value can't
+    /// carry per-bundle data.</summary>
+    Custom
 }
 
 public static class PrayerKindExtensions
@@ -27,6 +37,7 @@ public static class PrayerKindExtensions
         PrayerKind.FranciscanCrown => "Franciscan Crown",
         PrayerKind.SevenSorrows => "Seven Sorrows",
         PrayerKind.DivineMercyChaplet => "Divine Mercy Chaplet",
+        PrayerKind.Custom => "Devotion",
         _ => throw new ArgumentOutOfRangeException(nameof(kind))
     };
 
@@ -40,6 +51,7 @@ public static class PrayerKindExtensions
         PrayerKind.FranciscanCrown => "Franciscan Crown",
         PrayerKind.SevenSorrows => "Seven Sorrows",
         PrayerKind.DivineMercyChaplet => "Divine Mercy Chaplet",
+        PrayerKind.Custom => "Devotion",
         _ => throw new ArgumentOutOfRangeException(nameof(kind))
     };
 
@@ -57,6 +69,10 @@ public static class PrayerKindExtensions
         PrayerKind.FranciscanCrown => "", // Crown
         PrayerKind.SevenSorrows => "", // HeartBroken
         PrayerKind.DivineMercyChaplet => "", // Sunny
+        // Unreachable in practice -- .Custom rows read the bundle's own IconSystemName instead
+        // (mapped via a small fixed table, e.g. GlyphForSystemName), not this per-kind glyph.
+        // Still needed for exhaustiveness.
+        PrayerKind.Custom => "", // FavoriteStar
         _ => throw new ArgumentOutOfRangeException(nameof(kind))
     };
 
@@ -72,6 +88,9 @@ public static class PrayerKindExtensions
         PrayerKind.FranciscanCrown => Color.FromArgb(0xFF, 0x6B, 0x42, 0x26),
         PrayerKind.SevenSorrows => Color.FromArgb(0xFF, 0x6B, 0x0F, 0x1A),
         PrayerKind.DivineMercyChaplet => Color.FromArgb(0xFF, 0xC4, 0x1E, 0x3A),
+        // Unreachable in practice — .Custom rows read the bundle's own AccentColorHex instead.
+        // Still needed for exhaustiveness.
+        PrayerKind.Custom => Color.FromArgb(0xFF, 0x7A, 0x1F, 0x3D),
         _ => throw new ArgumentOutOfRangeException(nameof(kind))
     };
 }

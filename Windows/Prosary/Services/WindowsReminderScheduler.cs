@@ -124,6 +124,7 @@ public sealed class WindowsReminderScheduler : IReminderScheduler
         PrayerKind.FranciscanCrown => "Time to pray the Franciscan Crown.",
         PrayerKind.SevenSorrows => "Time to pray the Seven Sorrows.",
         PrayerKind.DivineMercyChaplet => "Time to pray the Divine Mercy Chaplet.",
+        PrayerKind.Custom => "Time to pray.",
         _ => throw new ArgumentOutOfRangeException(nameof(kind))
     };
 }
