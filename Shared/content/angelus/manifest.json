@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "angelus",
   "kind": "angelus",
-  "displayName": "The Angelus",
+  "displayName": "Angelus",
   "languages": [
     "la",
     "en",
@@ -18,5 +18,23 @@
   ],
   "mainPrayerKeysOmitted": [
     "aveMaria"
-  ]
+  ],
+  "displayNameByLanguage": {
+    "he": "המלאך"
+  },
+  "accentColorHex": "#8B6914",
+  "accentColorDarkHex": "#C49B0D",
+  "iconSystemName": "bell",
+  "reminderBody": {
+    "en": "The Angelus bell is ringing."
+  },
+  "reminderPresetHours": [
+    6,
+    12,
+    18
+  ],
+  "reminderPresetFooter": {
+    "en": "Traditional times correspond to the Angelus bell. All reminders repeat daily.",
+    "he": "זמני תפילת המלאך המסורתיים. התזכורות חוזרות כל יום."
+  }
 }

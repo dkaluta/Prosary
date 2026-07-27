@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "stationsOfTheCross",
+  "kind": "stationsOfTheCross",
+  "displayName": "Stations of the Cross",
+  "displayNameByLanguage": {
+    "he": "תחנות הצלב"
+  },
+  "languages": [
+    "la",
+    "en"
+  ],
+  "hasCatalog": false,
+  "accentColorHex": "#5C2D91",
+  "accentColorDarkHex": "#8756B5",
+  "iconSystemName": "figure.walk",
+  "reminderBody": {
+    "en": "Time to pray the Stations of the Cross."
+  },
+  "images": [
+    "station_01_condemned_to_death",
+    "station_02_carries_his_cross",
+    "station_03_falls_first_time",
+    "station_04_meets_his_mother",
+    "station_05_simon_of_cyrene",
+    "station_06_veronica",
+    "station_07_falls_second_time",
+    "station_08_women_of_jerusalem",
+    "station_09_falls_third_time",
+    "station_10_stripped_of_garments",
+    "station_11_nailed_to_the_cross",
+    "station_12_dies_on_the_cross",
+    "station_13_taken_down_from_the_cross",
+    "station_14_laid_in_the_tomb",
+    "crucifix"
+  ],
+  "mainPrayerKeysOmitted": [
+    "signumCrucis"
+  ]
+}

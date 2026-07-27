@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "sevenSorrows",
+  "kind": "sevenSorrows",
+  "displayName": "Seven Sorrows",
+  "displayNameByLanguage": {
+    "he": "שבעת המוכאבויות"
+  },
+  "languages": [
+    "la",
+    "en"
+  ],
+  "hasCatalog": false,
+  "accentColorHex": "#6B0F1A",
+  "accentColorDarkHex": "#B33951",
+  "iconSystemName": "drop",
+  "reminderBody": {
+    "en": "Time to pray the Seven Sorrows."
+  },
+  "images": [
+    "seven_sorrows_01_prophecy_of_simeon",
+    "seven_sorrows_02_flight_into_egypt",
+    "seven_sorrows_03_loss_of_jesus_in_the_temple",
+    "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross",
+    "seven_sorrows_05_crucifixion",
+    "seven_sorrows_06_descent_from_the_cross",
+    "seven_sorrows_07_burial_of_jesus"
+  ],
+  "mainPrayerKeysOmitted": [
+    "signumCrucis",
+    "paterNoster",
+    "aveMaria"
+  ]
+}

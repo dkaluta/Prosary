@@ -1,0 +1,67 @@
+{
+  "type": "rosary",
+  "opening": [
+    {
+      "title": "Sign of the Cross",
+      "bodyKey": "signumCrucis",
+      "imageKey": "crucifix"
+    }
+  ],
+  "decades": {
+    "ordinalNoun": "Sorrow",
+    "announceMystery": true,
+    "entries": [
+      {
+        "imageKey": "seven_sorrows_01_prophecy_of_simeon"
+      },
+      {
+        "imageKey": "seven_sorrows_02_flight_into_egypt"
+      },
+      {
+        "imageKey": "seven_sorrows_03_loss_of_jesus_in_the_temple"
+      },
+      {
+        "imageKey": "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross",
+        "isScripture": false
+      },
+      {
+        "imageKey": "seven_sorrows_05_crucifixion"
+      },
+      {
+        "imageKey": "seven_sorrows_06_descent_from_the_cross"
+      },
+      {
+        "imageKey": "seven_sorrows_07_burial_of_jesus"
+      }
+    ],
+    "majorStep": {
+      "title": "Our Father",
+      "bodyKey": "paterNoster"
+    },
+    "minorStep": {
+      "title": "Hail Mary",
+      "bodyKey": "aveMaria"
+    },
+    "minorCount": 7
+  },
+  "closing": [
+    {
+      "title": "Hail Mary",
+      "subtitle": "For the tears of Our Lady",
+      "bodyKey": "aveMaria",
+      "imageKey": "madonna_and_child",
+      "repeat": 3
+    },
+    {
+      "title": "Our Lady of Sorrows",
+      "bodyKey": "sevenSorrowsClosingBody",
+      "imageKey": "madonna_and_child"
+    },
+    {
+      "title": "Sign of the Cross",
+      "bodyKey": "signumCrucis",
+      "imageKey": "crucifix"
+    }
+  ],
+  "hasClosingCross": true
+}

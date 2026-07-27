@@ -269,7 +269,11 @@ enum PrayerPackStore {
       rawContentByBundle[manifest.id, default: [:]][language] = rawContent
       prayerOverrides[language] = prayers
 
-      guard manifest.hasCatalog, !content.mysteries.isEmpty else { continue }
+      // Mysteries merge whenever a bundle ships any — `hasCatalog` strictly means "has a
+      // catalog.json authoring file" (the Rosary), not "may contribute mystery text": generic
+      // rosary-type devotions (Seven Sorrows, Franciscan Crown) ship their per-decade texts in
+      // the mysteries map without any catalog.json.
+      guard !content.mysteries.isEmpty else { continue }
       var mysteries = mysteryOverrides[language] ?? [:]
       for (key, text) in content.mysteries {
         mysteries[key] = text

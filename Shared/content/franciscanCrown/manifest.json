@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "franciscanCrown",
+  "kind": "franciscanCrown",
+  "displayName": "Franciscan Crown",
+  "displayNameByLanguage": {
+    "he": "הכתר הפרנציסקני"
+  },
+  "languages": [
+    "la",
+    "en"
+  ],
+  "hasCatalog": false,
+  "accentColorHex": "#6B4226",
+  "accentColorDarkHex": "#A67C52",
+  "iconSystemName": "crown",
+  "reminderBody": {
+    "en": "Time to pray the Franciscan Crown."
+  },
+  "images": [
+    "franciscan_04_adoration_of_the_magi"
+  ],
+  "mainPrayerKeysOmitted": [
+    "signumCrucis",
+    "paterNoster",
+    "aveMaria"
+  ]
+}

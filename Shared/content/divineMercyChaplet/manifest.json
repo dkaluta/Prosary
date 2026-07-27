@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "divineMercyChaplet",
+  "kind": "divineMercyChaplet",
+  "displayName": "Divine Mercy Chaplet",
+  "languages": [
+    "la",
+    "en",
+    "he"
+  ],
+  "hasCatalog": false,
+  "accentColorHex": "#C41E3A",
+  "accentColorDarkHex": "#E8637A",
+  "iconSystemName": "sun.max",
+  "reminderBody": {
+    "en": "Time to pray the Divine Mercy Chaplet."
+  },
+  "images": [
+    "divine_mercy_image"
+  ],
+  "mainPrayerKeysOmitted": [
+    "signumCrucis",
+    "symbolumApostolorum",
+    "paterNoster",
+    "aveMaria"
+  ]
+}

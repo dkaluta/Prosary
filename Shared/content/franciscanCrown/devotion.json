@@ -1,0 +1,70 @@
+{
+  "type": "rosary",
+  "opening": [
+    {
+      "title": "Sign of the Cross",
+      "bodyKey": "signumCrucis",
+      "imageKey": "crucifix"
+    }
+  ],
+  "decades": {
+    "ordinalNoun": "Joy",
+    "announceMystery": true,
+    "entries": [
+      {
+        "imageKey": "joyful_01_annunciation"
+      },
+      {
+        "imageKey": "joyful_02_visitation"
+      },
+      {
+        "imageKey": "joyful_03_nativity"
+      },
+      {
+        "imageKey": "franciscan_04_adoration_of_the_magi"
+      },
+      {
+        "imageKey": "joyful_05_finding_in_the_temple"
+      },
+      {
+        "imageKey": "glorious_01_resurrection"
+      },
+      {
+        "imageKey": "glorious_05_coronation"
+      }
+    ],
+    "majorStep": {
+      "title": "Our Father",
+      "bodyKey": "paterNoster"
+    },
+    "minorStep": {
+      "title": "Hail Mary",
+      "bodyKey": "aveMaria"
+    },
+    "minorCount": 10
+  },
+  "closing": [
+    {
+      "title": "Hail Mary",
+      "subtitle": "For the years of Our Lady's life",
+      "bodyKey": "aveMaria",
+      "imageKey": "madonna_and_child",
+      "repeat": 2
+    },
+    {
+      "title": "Our Father",
+      "subtitle": "For the intentions of the Holy Father",
+      "bodyKey": "paterNoster",
+      "imageKey": "our_father"
+    },
+    {
+      "kind": "seasonalMarianAntiphon"
+    },
+    {
+      "title": "Sign of the Cross",
+      "bodyKey": "signumCrucis",
+      "imageKey": "crucifix"
+    }
+  ],
+  "hasClosingCross": true
+}
