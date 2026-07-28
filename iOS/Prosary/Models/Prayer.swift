@@ -26,12 +26,16 @@ struct Prayer: Identifiable, Hashable, Codable {
   // Kind-specific options — populate the relevant struct when creating a Prayer.
   var rosary: RosaryOptions = .init()
   var jesusPrayer: JesusPrayerOptions = .init()
-  // .angelus has no options beyond languageCode.
 
-  /// The bundle id (e.g. `"trisagion"`) whose `steps.json` defines this favorite's step
+  /// The bundle id (e.g. `"angelus"`) whose `devotion.json` defines this favorite's step
   /// sequence — populated only when `kind == .custom`, nil otherwise. See `PrayerEngine.
   /// buildCustomDevotionSteps`.
   var customDevotionId: String? = nil
+
+  /// Which of the bundle's variants (alternate step-sets, e.g. the Stations' traditional vs.
+  /// scriptural forms) this favorite prays. Nil = the bundle's default (first) variant; only
+  /// meaningful when `kind == .custom` and the bundle declares variants.
+  var variantId: String? = nil
 
   /// Daily reminders to pray this favorite. Scheduled via `ReminderScheduler`.
   var reminders: [PrayerReminder] = []

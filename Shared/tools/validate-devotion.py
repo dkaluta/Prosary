@@ -126,15 +126,42 @@ def main() -> int:
     mystery_keys: set = set()
 
     if dtype == "steps":
-        steps = devotion.get("steps") or []
-        if not steps:
-            err("steps-type devotion has no steps")
-        for i, entry in enumerate(steps):
-            validate_entry(entry, f"steps[{i}]", allow_kind=False)
-            collect_entry_refs(entry, body_keys, title_keys, image_keys)
-        for i, entry in enumerate(devotion.get("eastertideSteps") or []):
-            validate_entry(entry, f"eastertideSteps[{i}]", allow_kind=False)
-            collect_entry_refs(entry, body_keys, title_keys, image_keys)
+        def check_step_list(steps, where):
+            if not steps:
+                err(f"{where}: empty step list")
+            for i, entry in enumerate(steps):
+                validate_entry(entry, f"{where}[{i}]", allow_kind=False)
+                collect_entry_refs(entry, body_keys, title_keys, image_keys)
+
+        variants = devotion.get("variants")
+        if variants is not None:
+            # Alternate step-sets: mutually exclusive with top-level steps; first is default.
+            if "steps" in devotion or "eastertideSteps" in devotion:
+                err("a devotion with variants must not also have top-level steps/eastertideSteps")
+            if not variants:
+                err("variants must not be empty")
+            seen_ids = set()
+            for v, variant in enumerate(variants):
+                where = f"variants[{v}]"
+                vid = variant.get("id")
+                if not vid or not isinstance(vid, str):
+                    err(f"{where}: missing id")
+                elif vid in seen_ids:
+                    err(f"{where}: duplicate id {vid!r}")
+                else:
+                    seen_ids.add(vid)
+                if not variant.get("name"):
+                    err(f"{where}: missing name")
+                check_step_list(variant.get("steps") or [], f"{where}.steps")
+                if "eastertideSteps" in variant:
+                    check_step_list(variant["eastertideSteps"], f"{where}.eastertideSteps")
+                extra = set(variant) - {"id", "name", "nameByLanguage", "steps", "eastertideSteps"}
+                if extra:
+                    err(f"{where}: unknown fields {sorted(extra)}")
+        else:
+            check_step_list(devotion.get("steps") or [], "steps")
+            if "eastertideSteps" in devotion:
+                check_step_list(devotion["eastertideSteps"], "eastertideSteps")
         for field in ("opening", "decades", "closing", "hasClosingCross"):
             if field in devotion:
                 err(f"steps-type devotion must not have {field!r}")

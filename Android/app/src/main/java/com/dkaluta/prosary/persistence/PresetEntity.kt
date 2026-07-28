@@ -36,6 +36,10 @@ data class PresetEntity(
     // kind. Nullable handles existing rows predating this column.
     val customDevotionId: String? = null,
 
+    // Which bundle variant (alternate step-set) this favorite prays; null = the bundle's
+    // default. Added in DB version 4 (see MIGRATION_3_4).
+    val variantId: String? = null,
+
     // Rosary-specific fields (populated when kind == Rosary)
     val mysterySelectionMode: String = MysterySelectionMode.TodaysMysteries.name,
     val specificMysteryGroup: String = MysteryGroup.Joyful.name,
@@ -82,6 +86,7 @@ data class PresetEntity(
             isDefault = isDefault,
             languageCode = languageCode,
             customDevotionId = resolvedDevotionId,
+            variantId = variantId,
             rosary = RosaryOptions(
                 mysterySelectionMode = runCatching { MysterySelectionMode.valueOf(mysterySelectionMode) }
                     .getOrDefault(MysterySelectionMode.TodaysMysteries),
@@ -117,6 +122,7 @@ data class PresetEntity(
                 languageCode = prayer.languageCode,
                 kind = prayer.kind.name,
                 customDevotionId = prayer.customDevotionId,
+                variantId = prayer.variantId,
                 mysterySelectionMode = prayer.rosary.mysterySelectionMode.name,
                 specificMysteryGroup = prayer.rosary.specificMysteryGroup.name,
                 specificMysteryOrder = prayer.rosary.specificMysteryOrder,

@@ -42,7 +42,9 @@ public sealed class PrayerEngine
         // single synthesized step plus a JesusPrayerProgress counter is the whole model; see
         // JesusPrayerViewModel, which never calls this engine at all.
         PrayerKind.JesusPrayer => [],
-        PrayerKind.Custom => prayer.CustomDevotionId is { } bundleId ? BuildCustomDevotionSteps(bundleId, prayer.LanguageCode) : [],
+        PrayerKind.Custom => prayer.CustomDevotionId is { } bundleId
+            ? BuildCustomDevotionSteps(bundleId, prayer.LanguageCode, prayer.VariantId)
+            : [],
         _ => throw new ArgumentOutOfRangeException(nameof(prayer), prayer.Kind, "Unhandled PrayerKind in PrayerEngine.BuildSteps")
     };
 
@@ -256,10 +258,10 @@ public sealed class PrayerEngine
 
     // Custom (bundle-driven) devotions
 
-    private IReadOnlyList<RosaryStep> BuildCustomDevotionSteps(string bundleId, string? languageCode) =>
+    private IReadOnlyList<RosaryStep> BuildCustomDevotionSteps(string bundleId, string? languageCode, string? variantId = null) =>
         BuildCustomDevotionSteps(
             bundleId, languageCode,
-            _calendar.IsEasterSeasonForToday(), _calendar.GetSeasonalMarianAntiphonForToday());
+            _calendar.IsEasterSeasonForToday(), _calendar.GetSeasonalMarianAntiphonForToday(), variantId);
 
     /// <summary>The only builder for every <see cref="PrayerKind.Custom"/> devotion — reads
     /// <paramref name="bundleId"/>'s parsed <c>devotion.json</c> and produces the full step
@@ -270,7 +272,8 @@ public sealed class PrayerEngine
     /// explicitly so tests can
     /// exercise both Eastertide branches and any season's antiphon deterministically.</summary>
     internal static IReadOnlyList<RosaryStep> BuildCustomDevotionSteps(
-        string bundleId, string? languageCode, bool isEasterSeason, MarianAntiphonOption seasonalAntiphon)
+        string bundleId, string? languageCode, bool isEasterSeason, MarianAntiphonOption seasonalAntiphon,
+        string? variantId = null)
     {
         var definition = PrayerPackStore.Definition(bundleId);
         if (definition is null) return [];
@@ -278,7 +281,8 @@ public sealed class PrayerEngine
         switch (definition.Type)
         {
             case CustomDevotionDefinition.DevotionType.Steps:
-                var entries = (isEasterSeason ? definition.EastertideSteps : null) ?? definition.Steps ?? [];
+                var (baseSteps, eastertideSteps) = definition.ResolvedSteps(variantId);
+                var entries = (isEasterSeason ? eastertideSteps : null) ?? baseSteps;
                 return entries.SelectMany(e => Expand(e, bundleId, languageCode, seasonalAntiphon)).ToList();
             case CustomDevotionDefinition.DevotionType.Rosary:
                 return BuildCustomRosarySteps(definition, bundleId, languageCode, seasonalAntiphon);

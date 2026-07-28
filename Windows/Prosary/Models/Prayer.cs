@@ -30,6 +30,12 @@ public sealed record Prayer
     /// null otherwise. See <c>PrayerEngine.BuildCustomDevotionSteps</c>.</summary>
     public string? CustomDevotionId { get; init; } = null;
 
+    /// <summary>Which of the bundle's variants (alternate step-sets, e.g. the Stations'
+    /// traditional vs. scriptural forms) this favorite prays. Null = the bundle's default
+    /// (first) variant; only meaningful when Kind == Custom and the bundle declares
+    /// variants.</summary>
+    public string? VariantId { get; init; } = null;
+
     /// <summary>Daily reminders to pray this favorite. Scheduled via <c>WindowsReminderScheduler</c>.</summary>
     public List<PrayerReminder> Reminders { get; init; } = [];
 

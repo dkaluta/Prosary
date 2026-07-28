@@ -306,12 +306,40 @@ public sealed record CustomDevotionDefinition(
     List<CustomDevotionStep>? Steps = null,
     // Whole-sequence swap during Eastertide (the Angelus → Regina Caeli substitution).
     List<CustomDevotionStep>? EastertideSteps = null,
+    // Alternate step-sets (steps type only), mutually exclusive with Steps. Null for
+    // single-form devotions; the first variant is the default.
+    List<CustomDevotionDefinition.Variant>? Variants = null,
     // rosary type
     List<CustomDevotionStep>? Opening = null,
     CustomDevotionDefinition.DecadesDefinition? Decades = null,
     List<CustomDevotionStep>? Closing = null,
     bool? HasClosingCross = null)
 {
+    /// <summary>One named alternate step-set of a steps-type devotion (e.g. the Stations'
+    /// traditional vs. scriptural forms). Name is the English UI label (the app-wide
+    /// step-title convention); NameByLanguage overrides it per UI localization, mirroring the
+    /// manifest's displayNameByLanguage.</summary>
+    public sealed record Variant(
+        string Id,
+        string Name,
+        Dictionary<string, string>? NameByLanguage = null,
+        List<CustomDevotionStep>? Steps = null,
+        List<CustomDevotionStep>? EastertideSteps = null);
+
+    /// <summary>The step lists to build for <paramref name="variantId"/> — the matching
+    /// variant, else the default (first) variant, else the top-level lists (single-form
+    /// devotions).</summary>
+    public (List<CustomDevotionStep> Steps, List<CustomDevotionStep>? EastertideSteps) ResolvedSteps(string? variantId)
+    {
+        if (Variants is { Count: > 0 } variants)
+        {
+            var variant = variants.FirstOrDefault(v => v.Id == variantId) ?? variants[0];
+            return (variant.Steps ?? [], variant.EastertideSteps);
+        }
+
+        return (Steps ?? [], EastertideSteps);
+    }
+
     public enum DevotionType
     {
         /// <summary>A flat, fixed step list (Angelus, Stations, Trisagion).</summary>

@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(entities = [PresetEntity::class], version = 3, exportSchema = false)
+@Database(entities = [PresetEntity::class], version = 4, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun presetDao(): PresetDao
 }
@@ -26,5 +26,13 @@ val MIGRATION_1_2 = object : Migration(1, 2) {
 val MIGRATION_2_3 = object : Migration(2, 3) {
     override fun migrate(db: SupportSQLiteDatabase) {
         db.execSQL("ALTER TABLE presets ADD COLUMN customDevotionId TEXT")
+    }
+}
+
+/** Adds the bundle-variant column (alternate step-sets, e.g. the Stations' traditional vs.
+ * scriptural forms) — see [PresetEntity.variantId]. */
+val MIGRATION_3_4 = object : Migration(3, 4) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("ALTER TABLE presets ADD COLUMN variantId TEXT")
     }
 }

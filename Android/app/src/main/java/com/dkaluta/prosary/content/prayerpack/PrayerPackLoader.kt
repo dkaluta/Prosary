@@ -67,12 +67,38 @@ data class CustomDevotionDefinition(
     val steps: List<CustomDevotionStep>? = null,
     /** Whole-sequence swap during Eastertide (the Angelus → Regina Caeli substitution). */
     val eastertideSteps: List<CustomDevotionStep>? = null,
+    /** Alternate step-sets (steps type only), mutually exclusive with [steps]. Null for
+     * single-form devotions; the first variant is the default. */
+    val variants: List<Variant>? = null,
     // rosary type
     val opening: List<CustomDevotionStep>? = null,
     val decades: Decades? = null,
     val closing: List<CustomDevotionStep>? = null,
     val hasClosingCross: Boolean? = null,
 ) {
+    /** One named alternate step-set of a steps-type devotion (e.g. the Stations' traditional
+     * vs. scriptural forms). */
+    @Serializable
+    data class Variant(
+        val id: String,
+        /** English UI label (the app-wide step-title convention); [nameByLanguage] overrides it
+         * per UI localization, mirroring the manifest's displayNameByLanguage. */
+        val name: String,
+        val nameByLanguage: Map<String, String>? = null,
+        val steps: List<CustomDevotionStep>,
+        val eastertideSteps: List<CustomDevotionStep>? = null,
+    )
+
+    /** The step lists to build for [variantId] — the matching variant, else the default (first)
+     * variant, else the top-level lists (single-form devotions). */
+    fun resolvedSteps(variantId: String?): Pair<List<CustomDevotionStep>, List<CustomDevotionStep>?> {
+        if (!variants.isNullOrEmpty()) {
+            val variant = variants.firstOrNull { it.id == variantId } ?: variants.first()
+            return variant.steps to variant.eastertideSteps
+        }
+        return steps.orEmpty() to eastertideSteps
+    }
+
     @Serializable
     enum class DevotionType {
         /** A flat, fixed step list (Angelus, Stations, Trisagion). */

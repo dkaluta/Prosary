@@ -50,7 +50,11 @@ class PrayerEngine(
         PrayerKind.JesusPrayer -> emptyList()
         PrayerKind.Custom -> {
             val bundleId = prayer.customDevotionId
-            if (bundleId != null) buildCustomDevotionSteps(bundleId, prayer.languageCode) else emptyList()
+            if (bundleId != null) {
+                buildCustomDevotionSteps(bundleId, prayer.languageCode, prayer.variantId)
+            } else {
+                emptyList()
+            }
         }
     }
 
@@ -286,12 +290,17 @@ class PrayerEngine(
      * flat "steps" type covers Angelus/Stations/Trisagion-shaped devotions (including the
      * Angelus's Eastertide whole-sequence swap); the decade/bead-structured "rosary" type covers
      * Franciscan Crown/Seven Sorrows/Divine Mercy-shaped ones. */
-    private fun buildCustomDevotionSteps(bundleId: String, languageCode: String?): List<RosaryStep> {
+    private fun buildCustomDevotionSteps(
+        bundleId: String,
+        languageCode: String?,
+        variantId: String? = null,
+    ): List<RosaryStep> {
         val definition = PrayerPackStore.definition(bundleId) ?: return emptyList()
         return when (definition.type) {
             CustomDevotionDefinition.DevotionType.Steps -> {
-                val entries = (if (calendar.isEasterSeasonToday()) definition.eastertideSteps else null)
-                    ?: definition.steps.orEmpty()
+                val (baseSteps, eastertideSteps) = definition.resolvedSteps(variantId)
+                val entries = (if (calendar.isEasterSeasonToday()) eastertideSteps else null)
+                    ?: baseSteps
                 entries.flatMap { expand(it, bundleId, languageCode) }
             }
             CustomDevotionDefinition.DevotionType.Rosary ->

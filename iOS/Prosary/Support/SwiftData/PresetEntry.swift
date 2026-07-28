@@ -29,6 +29,10 @@ final class PresetEntry {
   // kind. Optional handles existing rows predating this field.
   var customDevotionId: String? = nil
 
+  // Which bundle variant (alternate step-set) this favorite prays; nil = the bundle's default.
+  // Optional handles existing rows predating this field (SwiftData lightweight migration).
+  var variantId: String? = nil
+
   // Rosary-specific fields (populated when kind == "rosary")
   var mysterySelectionMode: MysterySelectionMode = MysterySelectionMode.todaysMysteries
   var specificMysteryGroup: MysteryGroup = MysteryGroup.joyful
@@ -59,6 +63,7 @@ final class PresetEntry {
     languageCode = prayer.languageCode
     kind = prayer.kind.rawValue
     customDevotionId = prayer.customDevotionId
+    variantId = prayer.variantId
 
     mysterySelectionMode = prayer.rosary.mysterySelectionMode
     specificMysteryGroup = prayer.rosary.specificMysteryGroup
@@ -89,6 +94,7 @@ final class PresetEntry {
     languageCode = prayer.languageCode
     kind = prayer.kind.rawValue
     customDevotionId = prayer.customDevotionId
+    variantId = prayer.variantId
 
     mysterySelectionMode = prayer.rosary.mysterySelectionMode
     specificMysteryGroup = prayer.rosary.specificMysteryGroup
@@ -151,6 +157,7 @@ final class PresetEntry {
       ),
       jesusPrayer: JesusPrayerOptions(target: jpTarget),
       customDevotionId: resolved.customDevotionId,
+      variantId: variantId,
       reminders: (try? JSONDecoder().decode([PrayerReminder].self, from: remindersJSON)) ?? []
     )
   }

@@ -32,6 +32,10 @@ public sealed class PresetEntry
     /// every other kind.</summary>
     public string? CustomDevotionId { get; set; } = null;
 
+    /// <summary>Which bundle variant (alternate step-set) this favorite prays; null = the
+    /// bundle's default. CreateTableAsync auto-adds this column to existing databases.</summary>
+    public string? VariantId { get; set; } = null;
+
     // Flattened RosaryOptions (only meaningful when Kind == Rosary).
     public MysterySelectionMode MysterySelectionMode { get; set; } = MysterySelectionMode.TodaysMysteries;
     public MysteryGroup SpecificMysteryGroup { get; set; } = MysteryGroup.Joyful;
@@ -69,6 +73,7 @@ public sealed class PresetEntry
         IsDefault = IsDefault,
         LanguageCode = LanguageCode,
         CustomDevotionId = CustomDevotionId,
+        VariantId = VariantId,
         Rosary = new RosaryOptions
         {
             MysterySelectionMode = MysterySelectionMode,
@@ -100,6 +105,7 @@ public sealed class PresetEntry
         IsDefault = prayer.IsDefault,
         LanguageCode = prayer.LanguageCode,
         CustomDevotionId = prayer.CustomDevotionId,
+        VariantId = prayer.VariantId,
         MysterySelectionMode = prayer.Rosary.MysterySelectionMode,
         SpecificMysteryGroup = prayer.Rosary.SpecificMysteryGroup,
         SpecificMysteryOrder = prayer.Rosary.SpecificMysteryOrder,

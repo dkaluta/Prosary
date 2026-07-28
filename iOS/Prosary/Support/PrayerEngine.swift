@@ -43,7 +43,8 @@ struct PrayerEngine {
       return []
     case .custom:
       guard let bundleId = prayer.customDevotionId else { return [] }
-      return buildCustomDevotionSteps(bundleId: bundleId, languageCode: prayer.languageCode)
+      return buildCustomDevotionSteps(
+        bundleId: bundleId, languageCode: prayer.languageCode, variantId: prayer.variantId)
     }
   }
 
@@ -265,12 +266,14 @@ struct PrayerEngine {
   /// flat "steps" type covers Angelus/Stations/Trisagion-shaped devotions (including the
   /// Angelus's Eastertide whole-sequence swap); the decade/bead-structured "rosary" type covers
   /// Franciscan Crown/Seven Sorrows/Divine Mercy-shaped ones.
-  private func buildCustomDevotionSteps(bundleId: String, languageCode: String?) -> [RosaryStep] {
+  private func buildCustomDevotionSteps(
+    bundleId: String, languageCode: String?, variantId: String? = nil
+  ) -> [RosaryStep] {
     guard let definition = PrayerPackStore.definition(for: bundleId) else { return [] }
     switch definition.type {
     case .steps:
-      let entries = (calendar.isEasterSeasonToday() ? definition.eastertideSteps : nil)
-        ?? definition.steps ?? []
+      let (baseSteps, eastertideSteps) = definition.resolvedSteps(variantId: variantId)
+      let entries = (calendar.isEasterSeasonToday() ? eastertideSteps : nil) ?? baseSteps
       return entries.flatMap { expand($0, bundleId: bundleId, languageCode: languageCode) }
     case .rosary:
       return buildCustomRosarySteps(definition, bundleId: bundleId, languageCode: languageCode)

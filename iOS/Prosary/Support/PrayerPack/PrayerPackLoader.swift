@@ -104,16 +104,41 @@ struct CustomDevotionDefinition: Decodable {
     }
   }
 
+  /// One named alternate step-set of a steps-type devotion (e.g. the Stations' traditional vs.
+  /// scriptural forms). The first variant is the default.
+  struct Variant: Decodable {
+    let id: String
+    /// English UI label (the app-wide step-title convention); `nameByLanguage` overrides it per
+    /// UI localization, mirroring the manifest's `displayNameByLanguage`.
+    let name: String
+    let nameByLanguage: [String: String]?
+    let steps: [CustomDevotionStep]
+    let eastertideSteps: [CustomDevotionStep]?
+  }
+
   let type: DevotionType
   // steps type
   let steps: [CustomDevotionStep]?
   /// Whole-sequence swap during Eastertide (the Angelus → Regina Caeli substitution).
   let eastertideSteps: [CustomDevotionStep]?
+  /// Alternate step-sets (steps type only), mutually exclusive with `steps`. Nil for
+  /// single-form devotions.
+  let variants: [Variant]?
   // rosary type
   let opening: [CustomDevotionStep]?
   let decades: Decades?
   let closing: [CustomDevotionStep]?
   let hasClosingCross: Bool?
+
+  /// The step lists to build for `variantId` — the matching variant, else the default (first)
+  /// variant, else the top-level lists (single-form devotions).
+  func resolvedSteps(variantId: String?) -> (steps: [CustomDevotionStep], eastertideSteps: [CustomDevotionStep]?) {
+    if let variants, !variants.isEmpty {
+      let variant = variants.first { $0.id == variantId } ?? variants[0]
+      return (variant.steps, variant.eastertideSteps)
+    }
+    return (steps ?? [], eastertideSteps)
+  }
 }
 
 /// Metadata a generic devotion's Home card / Favorites row / reminders need, sourced from its

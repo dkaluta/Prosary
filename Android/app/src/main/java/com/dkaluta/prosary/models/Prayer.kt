@@ -27,6 +27,10 @@ data class Prayer(
      * — populated only when [kind] is [PrayerKind.Custom], null otherwise. See
      * [com.dkaluta.prosary.engine.PrayerEngine.buildCustomDevotionSteps]. */
     var customDevotionId: String? = null,
+    /** Which of the bundle's variants (alternate step-sets, e.g. the Stations' traditional vs.
+     * scriptural forms) this favorite prays. Null = the bundle's default (first) variant; only
+     * meaningful when kind == Custom and the bundle declares variants. */
+    var variantId: String? = null,
 
     /** Daily reminders to pray this favorite. Scheduled via
      * [com.dkaluta.prosary.reminders.ReminderScheduler]. */
