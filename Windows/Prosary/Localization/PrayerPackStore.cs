@@ -273,6 +273,10 @@ public static class PrayerPackStore
 
     private sealed record PackManifest(
         string Id,
+        // Set ("rosary") when this bundle's devotion.json backs a dedicated PrayerKind rather
+        // than a generic Custom devotion — the definition loads, but the bundle stays out of
+        // CustomDevotionIds() so Home/Favorites don't list it twice.
+        string? BuiltinKind,
         string DisplayName,
         List<string> Languages,
         bool HasCatalog,
@@ -305,7 +309,14 @@ public sealed record CustomDevotionStep(
     int? Repeat = null,
     bool? IsScripture = null,
     string? If = null,
-    CustomDevotionStep.SpecialKind? Kind = null)
+    // Like TitleKey for the subtitle — for subtitles that are themselves translated content
+    // (the Rosary's opening Hail Marys "for Faith/Hope/Charity"). Mutually exclusive with the
+    // literal Subtitle.
+    string? SubtitleKey = null,
+    CustomDevotionStep.SpecialKind? Kind = null,
+    // For SpecialKind.MarianAntiphon: the choice option whose value names the antiphon to
+    // build ("seasonal" resolves via the liturgical calendar, "none" drops the step).
+    string? OptionKey = null)
 {
     public enum SpecialKind
     {
@@ -313,6 +324,10 @@ public sealed record CustomDevotionStep(
         /// stays runtime-composed by the engine's shared antiphon builder rather than
         /// data-driven.</summary>
         SeasonalMarianAntiphon,
+
+        /// <summary>An option-selected Marian antiphon (the Rosary) — <see cref="OptionKey"/>
+        /// names a choice option whose cases are antiphon ids plus "seasonal" and "none".</summary>
+        MarianAntiphon,
     }
 }
 
