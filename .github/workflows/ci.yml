@@ -38,4 +38,10 @@ jobs:
         with:
           dotnet-version: 10.0.x
       - name: Run tests
-        run: dotnet test Windows/Prosary.Tests/Prosary.Tests.csproj -c Debug -p:Platform=x64
+        # The WASDK DeploymentManager auto-initializer is compiled into Prosary.dll's module
+        # initializer and throws REGDB_E_CLASSNOTREG in an unpackaged test host; the global
+        # property rebuilds the whole graph without it for the test run only.
+        run: >
+          dotnet test Windows/Prosary.Tests/Prosary.Tests.csproj -c Debug -p:Platform=x64
+          -p:WindowsAppSdkDeploymentManagerInitialize=false
+          -p:WindowsAppSdkBootstrapInitialize=false
