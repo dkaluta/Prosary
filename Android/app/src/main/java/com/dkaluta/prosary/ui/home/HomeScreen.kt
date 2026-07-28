@@ -204,19 +204,6 @@ fun HomeScreen(
                 )
             }
 
-            Column(verticalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
-                for (card in devotionCards) {
-                    PrayerCard(
-                        icon = card.icon,
-                        title = card.title,
-                        subtitle = card.subtitle,
-                        accentColor = card.accentColor,
-                        onClick = card.onClick,
-                        modifier = Modifier.testTag(card.testTag),
-                    )
-                }
-            }
-
             // "Today" — the day's feast per the Holy Land (Latin Patriarchate of Jerusalem)
             // calendar and the Pope's monthly prayer intention. Rows hide when the bundled
             // datasets have no entry (ferial days; dates past the generated years).
@@ -269,6 +256,19 @@ fun HomeScreen(
                             }
                         }
                     }
+                }
+            }
+
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
+                for (card in devotionCards) {
+                    PrayerCard(
+                        icon = card.icon,
+                        title = card.title,
+                        subtitle = card.subtitle,
+                        accentColor = card.accentColor,
+                        onClick = card.onClick,
+                        modifier = Modifier.testTag(card.testTag),
+                    )
                 }
             }
 

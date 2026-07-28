@@ -95,20 +95,6 @@ struct HomeView: View {
         }
         .padding(.bottom, 4)
 
-        VStack(spacing: 12) {
-          ForEach(devotionCards) { card in
-            PrayerCard(
-              systemImage: card.systemImage,
-              title: card.title,
-              subtitle: card.subtitle,
-              accentColor: card.accentColor
-            ) {
-              card.action()
-            }
-            .accessibilityIdentifier(card.accessibilityIdentifier)
-          }
-        }
-
         // "Today" — the day's feast per the Holy Land (Latin Patriarchate of Jerusalem)
         // calendar and the Pope's monthly prayer intention. Rows hide when the bundled
         // datasets have no entry (ferial days; dates past the generated years).
@@ -147,6 +133,20 @@ struct HomeView: View {
           .padding(14)
           .background(.quaternary.opacity(0.5), in: RoundedRectangle(cornerRadius: 14))
           .accessibilityIdentifier("todaySection")
+        }
+
+        VStack(spacing: 12) {
+          ForEach(devotionCards) { card in
+            PrayerCard(
+              systemImage: card.systemImage,
+              title: card.title,
+              subtitle: card.subtitle,
+              accentColor: card.accentColor
+            ) {
+              card.action()
+            }
+            .accessibilityIdentifier(card.accessibilityIdentifier)
+          }
         }
 
         Divider().padding(.vertical, 4)

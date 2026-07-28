@@ -24,23 +24,6 @@
                 <TextBlock Text="A companion for Catholic prayer" Style="{StaticResource MutedSubtitleTextStyle}" HorizontalAlignment="Center" />
             </StackPanel>
 
-            <ItemsControl ItemsSource="{x:Bind ViewModel.DevotionCards}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Spacing="12" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate x:DataType="vm:DevotionCardModel">
-                        <controls:PrayerCard Title="{x:Bind Title}"
-                                              Subtitle="{x:Bind Subtitle, Mode=OneWay}"
-                                              AccentColor="{x:Bind AccentColor, Mode=OneWay}"
-                                              IconGlyph="{x:Bind IconGlyph}"
-                                              Command="{x:Bind Command}" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-
             <!-- "Today" — the day's feast per the Holy Land (Latin Patriarchate of Jerusalem)
                  calendar and the Pope's monthly prayer intention. Rows hide when the bundled
                  datasets have no entry (ferial days; dates past the generated years). -->
@@ -71,6 +54,23 @@
                     </Grid>
                 </StackPanel>
             </Border>
+
+            <ItemsControl ItemsSource="{x:Bind ViewModel.DevotionCards}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Spacing="12" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:DevotionCardModel">
+                        <controls:PrayerCard Title="{x:Bind Title}"
+                                              Subtitle="{x:Bind Subtitle, Mode=OneWay}"
+                                              AccentColor="{x:Bind AccentColor, Mode=OneWay}"
+                                              IconGlyph="{x:Bind IconGlyph}"
+                                              Command="{x:Bind Command}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
             <Rectangle Height="1" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" Margin="0,4" />
 
