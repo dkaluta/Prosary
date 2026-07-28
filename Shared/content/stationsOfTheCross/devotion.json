@@ -1,109 +1,245 @@
 {
   "type": "steps",
-  "steps": [
+  "variants": [
     {
-      "title": "Sign of the Cross",
-      "bodyKey": "signumCrucis",
-      "imageKey": "crucifix"
+      "id": "traditional",
+      "name": "Traditional",
+      "nameByLanguage": {
+        "he": "מָסָרְתִּי"
+      },
+      "steps": [
+        {
+          "title": "Sign of the Cross",
+          "bodyKey": "signumCrucis",
+          "imageKey": "crucifix"
+        },
+        {
+          "title": "Opening Prayer",
+          "bodyKey": "stationsOpeningPrayer",
+          "imageKey": "crucifix"
+        },
+        {
+          "titleKey": "station01Title",
+          "subtitle": "1st Station",
+          "bodyKey": "station01Body",
+          "imageKey": "station_01_condemned_to_death"
+        },
+        {
+          "titleKey": "station02Title",
+          "subtitle": "2nd Station",
+          "bodyKey": "station02Body",
+          "imageKey": "station_02_carries_his_cross"
+        },
+        {
+          "titleKey": "station03Title",
+          "subtitle": "3rd Station",
+          "bodyKey": "station03Body",
+          "imageKey": "station_03_falls_first_time"
+        },
+        {
+          "titleKey": "station04Title",
+          "subtitle": "4th Station",
+          "bodyKey": "station04Body",
+          "imageKey": "station_04_meets_his_mother"
+        },
+        {
+          "titleKey": "station05Title",
+          "subtitle": "5th Station",
+          "bodyKey": "station05Body",
+          "imageKey": "station_05_simon_of_cyrene"
+        },
+        {
+          "titleKey": "station06Title",
+          "subtitle": "6th Station",
+          "bodyKey": "station06Body",
+          "imageKey": "station_06_veronica"
+        },
+        {
+          "titleKey": "station07Title",
+          "subtitle": "7th Station",
+          "bodyKey": "station07Body",
+          "imageKey": "station_07_falls_second_time"
+        },
+        {
+          "titleKey": "station08Title",
+          "subtitle": "8th Station",
+          "bodyKey": "station08Body",
+          "imageKey": "station_08_women_of_jerusalem"
+        },
+        {
+          "titleKey": "station09Title",
+          "subtitle": "9th Station",
+          "bodyKey": "station09Body",
+          "imageKey": "station_09_falls_third_time"
+        },
+        {
+          "titleKey": "station10Title",
+          "subtitle": "10th Station",
+          "bodyKey": "station10Body",
+          "imageKey": "station_10_stripped_of_garments"
+        },
+        {
+          "titleKey": "station11Title",
+          "subtitle": "11th Station",
+          "bodyKey": "station11Body",
+          "imageKey": "station_11_nailed_to_the_cross"
+        },
+        {
+          "titleKey": "station12Title",
+          "subtitle": "12th Station",
+          "bodyKey": "station12Body",
+          "imageKey": "station_12_dies_on_the_cross"
+        },
+        {
+          "titleKey": "station13Title",
+          "subtitle": "13th Station",
+          "bodyKey": "station13Body",
+          "imageKey": "station_13_taken_down_from_the_cross"
+        },
+        {
+          "titleKey": "station14Title",
+          "subtitle": "14th Station",
+          "bodyKey": "station14Body",
+          "imageKey": "station_14_laid_in_the_tomb"
+        },
+        {
+          "title": "Closing Prayer",
+          "bodyKey": "stationsClosingPrayer",
+          "imageKey": "crucifix"
+        },
+        {
+          "title": "Anima Christi",
+          "bodyKey": "animaChristi",
+          "imageKey": "jesus_portrait"
+        }
+      ]
     },
     {
-      "title": "Opening Prayer",
-      "bodyKey": "stationsOpeningPrayer",
-      "imageKey": "crucifix"
-    },
-    {
-      "titleKey": "station01Title",
-      "subtitle": "1st Station",
-      "bodyKey": "station01Body",
-      "imageKey": "station_01_condemned_to_death"
-    },
-    {
-      "titleKey": "station02Title",
-      "subtitle": "2nd Station",
-      "bodyKey": "station02Body",
-      "imageKey": "station_02_carries_his_cross"
-    },
-    {
-      "titleKey": "station03Title",
-      "subtitle": "3rd Station",
-      "bodyKey": "station03Body",
-      "imageKey": "station_03_falls_first_time"
-    },
-    {
-      "titleKey": "station04Title",
-      "subtitle": "4th Station",
-      "bodyKey": "station04Body",
-      "imageKey": "station_04_meets_his_mother"
-    },
-    {
-      "titleKey": "station05Title",
-      "subtitle": "5th Station",
-      "bodyKey": "station05Body",
-      "imageKey": "station_05_simon_of_cyrene"
-    },
-    {
-      "titleKey": "station06Title",
-      "subtitle": "6th Station",
-      "bodyKey": "station06Body",
-      "imageKey": "station_06_veronica"
-    },
-    {
-      "titleKey": "station07Title",
-      "subtitle": "7th Station",
-      "bodyKey": "station07Body",
-      "imageKey": "station_07_falls_second_time"
-    },
-    {
-      "titleKey": "station08Title",
-      "subtitle": "8th Station",
-      "bodyKey": "station08Body",
-      "imageKey": "station_08_women_of_jerusalem"
-    },
-    {
-      "titleKey": "station09Title",
-      "subtitle": "9th Station",
-      "bodyKey": "station09Body",
-      "imageKey": "station_09_falls_third_time"
-    },
-    {
-      "titleKey": "station10Title",
-      "subtitle": "10th Station",
-      "bodyKey": "station10Body",
-      "imageKey": "station_10_stripped_of_garments"
-    },
-    {
-      "titleKey": "station11Title",
-      "subtitle": "11th Station",
-      "bodyKey": "station11Body",
-      "imageKey": "station_11_nailed_to_the_cross"
-    },
-    {
-      "titleKey": "station12Title",
-      "subtitle": "12th Station",
-      "bodyKey": "station12Body",
-      "imageKey": "station_12_dies_on_the_cross"
-    },
-    {
-      "titleKey": "station13Title",
-      "subtitle": "13th Station",
-      "bodyKey": "station13Body",
-      "imageKey": "station_13_taken_down_from_the_cross"
-    },
-    {
-      "titleKey": "station14Title",
-      "subtitle": "14th Station",
-      "bodyKey": "station14Body",
-      "imageKey": "station_14_laid_in_the_tomb"
-    },
-    {
-      "title": "Closing Prayer",
-      "bodyKey": "stationsClosingPrayer",
-      "imageKey": "crucifix"
-    },
-    {
-      "title": "Anima Christi",
-      "bodyKey": "animaChristi",
-      "imageKey": "jesus_portrait"
+      "id": "scriptural",
+      "name": "Scriptural (St. John Paul II)",
+      "nameByLanguage": {
+        "he": "מִקְרָאִי (יוֹחָנָן פַּאוּלוּס הַשֵּׁנִי)"
+      },
+      "steps": [
+        {
+          "title": "Sign of the Cross",
+          "bodyKey": "signumCrucis",
+          "imageKey": "crucifix"
+        },
+        {
+          "title": "Opening Prayer",
+          "bodyKey": "stationsOpeningPrayer",
+          "imageKey": "crucifix"
+        },
+        {
+          "titleKey": "scriptural01Title",
+          "subtitle": "1st Station",
+          "bodyKey": "scriptural01Body",
+          "imageKey": "sorrowful_01_agony_in_the_garden",
+          "isScripture": true
+        },
+        {
+          "titleKey": "scriptural02Title",
+          "subtitle": "2nd Station",
+          "bodyKey": "scriptural02Body",
+          "imageKey": "scriptural_02_kiss_of_judas",
+          "isScripture": true
+        },
+        {
+          "titleKey": "scriptural03Title",
+          "subtitle": "3rd Station",
+          "bodyKey": "scriptural03Body",
+          "imageKey": "scriptural_03_before_the_sanhedrin",
+          "isScripture": true
+        },
+        {
+          "titleKey": "scriptural04Title",
+          "subtitle": "4th Station",
+          "bodyKey": "scriptural04Body",
+          "imageKey": "scriptural_04_denial_of_peter",
+          "isScripture": true
+        },
+        {
+          "titleKey": "scriptural05Title",
+          "subtitle": "5th Station",
+          "bodyKey": "scriptural05Body",
+          "imageKey": "station_01_condemned_to_death",
+          "isScripture": true
+        },
+        {
+          "titleKey": "scriptural06Title",
+          "subtitle": "6th Station",
+          "bodyKey": "scriptural06Body",
+          "imageKey": "sorrowful_03_crowning_with_thorns",
+          "isScripture": true
+        },
+        {
+          "titleKey": "scriptural07Title",
+          "subtitle": "7th Station",
+          "bodyKey": "scriptural07Body",
+          "imageKey": "station_02_carries_his_cross",
+          "isScripture": true
+        },
+        {
+          "titleKey": "scriptural08Title",
+          "subtitle": "8th Station",
+          "bodyKey": "scriptural08Body",
+          "imageKey": "station_05_simon_of_cyrene",
+          "isScripture": true
+        },
+        {
+          "titleKey": "scriptural09Title",
+          "subtitle": "9th Station",
+          "bodyKey": "scriptural09Body",
+          "imageKey": "station_08_women_of_jerusalem",
+          "isScripture": true
+        },
+        {
+          "titleKey": "scriptural10Title",
+          "subtitle": "10th Station",
+          "bodyKey": "scriptural10Body",
+          "imageKey": "station_11_nailed_to_the_cross",
+          "isScripture": true
+        },
+        {
+          "titleKey": "scriptural11Title",
+          "subtitle": "11th Station",
+          "bodyKey": "scriptural11Body",
+          "imageKey": "scriptural_11_the_good_thief",
+          "isScripture": true
+        },
+        {
+          "titleKey": "scriptural12Title",
+          "subtitle": "12th Station",
+          "bodyKey": "scriptural12Body",
+          "imageKey": "seven_sorrows_05_crucifixion",
+          "isScripture": true
+        },
+        {
+          "titleKey": "scriptural13Title",
+          "subtitle": "13th Station",
+          "bodyKey": "scriptural13Body",
+          "imageKey": "station_12_dies_on_the_cross",
+          "isScripture": true
+        },
+        {
+          "titleKey": "scriptural14Title",
+          "subtitle": "14th Station",
+          "bodyKey": "scriptural14Body",
+          "imageKey": "station_14_laid_in_the_tomb",
+          "isScripture": true
+        },
+        {
+          "title": "Closing Prayer",
+          "bodyKey": "stationsClosingPrayer",
+          "imageKey": "crucifix"
+        },
+        {
+          "title": "Anima Christi",
+          "bodyKey": "animaChristi",
+          "imageKey": "jesus_portrait"
+        }
+      ]
     }
   ]
 }

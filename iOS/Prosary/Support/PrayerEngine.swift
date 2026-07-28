@@ -295,12 +295,16 @@ struct PrayerEngine {
     } ?? ""
 
     guard let count = entry.repeatCount, count > 1 else {
-      return [RosaryStep(title: title, subtitle: entry.subtitle, body: body, imageOverrideKey: entry.imageKey)]
+      return [
+        RosaryStep(
+          title: title, subtitle: entry.subtitle, body: body,
+          isScripture: entry.isScripture ?? false, imageOverrideKey: entry.imageKey)
+      ]
     }
     return (1...count).map { h in
       RosaryStep(
         title: "\(title) (\(h) of \(count))", subtitle: entry.subtitle, body: body,
-        imageOverrideKey: entry.imageKey)
+        isScripture: entry.isScripture ?? false, imageOverrideKey: entry.imageKey)
     }
   }
 

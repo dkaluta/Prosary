@@ -25,10 +25,10 @@ private struct FixedLiturgicalCalendar: LiturgicalCalendarProviding {
 
 @MainActor
 final class CustomDevotionEngineTests: XCTestCase {
-  private func steps(_ bundleId: String, language: String = "en",
+  private func steps(_ bundleId: String, language: String = "en", variantId: String? = nil,
                      calendar: FixedLiturgicalCalendar = FixedLiturgicalCalendar()) -> [RosaryStep] {
     PrayerEngine(calendar: calendar).buildSteps(
-      for: Prayer(kind: .custom, languageCode: language, customDevotionId: bundleId))
+      for: Prayer(kind: .custom, languageCode: language, customDevotionId: bundleId, variantId: variantId))
   }
 
   // MARK: - Trisagion (flat)
@@ -107,6 +107,49 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertTrue(steps[2].body.contains("מֵעֹצֶר וּמִמִּשְׁפָּט לֻקָּח"))
     XCTAssertTrue(steps[2].body.contains("**כִּי בִּצְלָבְךָ גָּאַלְתָּ אֶת הָעוֹלָם.**"))
     XCTAssertTrue(steps.last!.body.contains("נֶפֶשׁ הַמָּשִׁיחַ קַדְּשִׁינִי"))
+  }
+
+  // MARK: - Stations variants (traditional vs. scriptural)
+
+  /// An unknown/nil variantId resolves to the default (first) variant — the traditional set.
+  func testStationsDefaultVariantIsTheTraditionalSet() {
+    XCTAssertEqual(steps("stationsOfTheCross", variantId: nil).map(\.title),
+                   steps("stationsOfTheCross", variantId: "traditional").map(\.title))
+    XCTAssertEqual(steps("stationsOfTheCross", variantId: "no-such-variant").count, 18)
+  }
+
+  /// The scriptural (St. John Paul II) variant — same 18-step frame (shared opening/closing/
+  /// Anima Christi), fourteen different scenes with scriptural meditations.
+  func testStationsScripturalVariantSequence() {
+    let steps = steps("stationsOfTheCross", variantId: "scriptural")
+    XCTAssertEqual(steps.count, 18)
+    XCTAssertEqual(steps[0].title, "Sign of the Cross")
+    XCTAssertEqual(steps[1].title, "Opening Prayer")
+    XCTAssertEqual(steps[2].title, "Jesus Prays in the Garden of Gethsemane")
+    XCTAssertEqual(steps[2].subtitle, "1st Station")
+    XCTAssertEqual(steps[2].imageKey, "sorrowful_01_agony_in_the_garden")
+    XCTAssertTrue(steps[2].body.contains("We adore You, O Christ"))
+    XCTAssertTrue(steps[2].body.contains("Gethsemani"))
+    XCTAssertTrue(steps[2].body.contains("— Mark 14:32-36 (Douay-Rheims)"))
+    // The Sanhedrin scene skips verses 56-59 — the gap is marked, not papered over.
+    XCTAssertTrue(steps[4].body.contains("[…]"))
+    XCTAssertEqual(steps[3].imageKey, "scriptural_02_kiss_of_judas")
+    XCTAssertEqual(steps[12].title, "Jesus Promises His Kingdom to the Good Thief")
+    XCTAssertEqual(steps[12].imageKey, "scriptural_11_the_good_thief")
+    XCTAssertEqual(steps[13].imageKey, "seven_sorrows_05_crucifixion")
+    XCTAssertEqual(steps[16].title, "Closing Prayer")
+    XCTAssertEqual(steps.last?.title, "Anima Christi")
+    // The fourteen station bodies are quoted Gospel passages, so they render in the
+    // scripture typeface; the shared opening/closing prayers do not.
+    XCTAssertTrue(steps[2...15].allSatisfy(\.isScripture))
+    XCTAssertFalse(steps[1].isScripture)
+    XCTAssertFalse(steps[16].isScripture)
+  }
+
+  func testStationsScripturalVariantHebrewTitles() {
+    let steps = steps("stationsOfTheCross", language: "he", variantId: "scriptural")
+    XCTAssertEqual(steps[2].title, "יֵשׁוּעַ מִתְפַּלֵּל בְּגַת שְׁמָנִים")
+    XCTAssertTrue(steps[2].body.contains("(דליטש)"))
   }
 
   // MARK: - Franciscan Crown (rosary type, 7×10 + antiphon)

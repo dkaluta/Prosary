@@ -88,6 +88,8 @@ def validate_entry(entry: dict, where: str, allow_kind: bool) -> None:
         err(f"{where}: title and titleKey are mutually exclusive")
     if "repeat" in entry and (not isinstance(entry["repeat"], int) or entry["repeat"] < 2):
         err(f"{where}: repeat must be an integer >= 2")
+    if "isScripture" in entry and not isinstance(entry["isScripture"], bool):
+        err(f"{where}: isScripture must be a boolean")
 
 
 def collect_entry_refs(entry: dict, body_keys: set, title_keys: set, image_keys: set) -> None:

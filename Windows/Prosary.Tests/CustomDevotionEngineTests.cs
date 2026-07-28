@@ -22,8 +22,9 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
     private static IReadOnlyList<RosaryStep> BuildSteps(
         string bundleId, string? languageCode,
         bool isEasterSeason = false,
-        MarianAntiphonOption seasonalAntiphon = MarianAntiphonOption.SalveRegina) =>
-        PrayerEngine.BuildCustomDevotionSteps(bundleId, languageCode, isEasterSeason, seasonalAntiphon);
+        MarianAntiphonOption seasonalAntiphon = MarianAntiphonOption.SalveRegina,
+        string? variantId = null) =>
+        PrayerEngine.BuildCustomDevotionSteps(bundleId, languageCode, isEasterSeason, seasonalAntiphon, variantId);
 
     // Trisagion (flat)
 
@@ -122,6 +123,42 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
             Assert.Null(s.DecadeIndex);
             Assert.Null(s.HailMaryIndexInDecade);
         });
+    }
+
+    // Stations variants (traditional vs. scriptural)
+
+    /// <summary>An unknown/null variantId resolves to the default (first) variant — the
+    /// traditional set.</summary>
+    [Fact]
+    public void StationsDefaultVariantIsTheTraditionalSet()
+    {
+        Assert.Equal(
+            BuildSteps("stationsOfTheCross", "en", variantId: null).Select(s => s.Title),
+            BuildSteps("stationsOfTheCross", "en", variantId: "traditional").Select(s => s.Title));
+        Assert.Equal(18, BuildSteps("stationsOfTheCross", "en", variantId: "no-such-variant").Count);
+    }
+
+    /// <summary>The scriptural (St. John Paul II) variant — same 18-step frame (shared
+    /// opening/closing/Anima Christi), fourteen different scenes with scriptural meditations.</summary>
+    [Fact]
+    public void StationsScripturalVariantSequence()
+    {
+        var steps = BuildSteps("stationsOfTheCross", "en", variantId: "scriptural");
+        Assert.Equal(18, steps.Count);
+        Assert.Equal("Jesus Prays in the Garden of Gethsemane", steps[2].Title);
+        Assert.Equal("1st Station", steps[2].Subtitle);
+        Assert.Equal("sorrowful_01_agony_in_the_garden", steps[2].ImageOverrideKey);
+        Assert.Contains("We adore You, O Christ", steps[2].Body);
+        Assert.Contains("— Mark 14:32-36 (Douay-Rheims)", steps[2].Body);
+        Assert.Equal("scriptural_02_kiss_of_judas", steps[3].ImageOverrideKey);
+        Assert.Equal("Jesus Promises His Kingdom to the Good Thief", steps[12].Title);
+        Assert.Equal("seven_sorrows_05_crucifixion", steps[13].ImageOverrideKey);
+        Assert.Equal("Anima Christi", steps[^1].Title);
+        // The fourteen station bodies are quoted Gospel passages, so they render in the
+        // scripture typeface; the shared opening/closing prayers do not.
+        Assert.All(steps.Skip(2).Take(14), s => Assert.True(s.IsScripture));
+        Assert.False(steps[1].IsScripture);
+        Assert.False(steps[16].IsScripture);
     }
 
     // Franciscan Crown (rosary type, 7×10 + antiphon)

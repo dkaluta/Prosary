@@ -46,6 +46,7 @@ data class CustomDevotionStep(
     val bodyKey: String? = null,
     val imageKey: String? = null,
     @SerialName("repeat") val repeatCount: Int? = null,
+    val isScripture: Boolean? = null,
     val kind: SpecialKind? = null,
 ) {
     @Serializable
@@ -87,7 +88,10 @@ data class CustomDevotionDefinition(
         val nameByLanguage: Map<String, String>? = null,
         val steps: List<CustomDevotionStep>,
         val eastertideSteps: List<CustomDevotionStep>? = null,
-    )
+    ) {
+        val localizedName: String
+            get() = nameByLanguage?.get(Locale.getDefault().language) ?: name
+    }
 
     /** The step lists to build for [variantId] — the matching variant, else the default (first)
      * variant, else the top-level lists (single-form devotions). */

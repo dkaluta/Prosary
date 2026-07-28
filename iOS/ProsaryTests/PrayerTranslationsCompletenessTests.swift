@@ -86,8 +86,11 @@ final class PrayerTranslationsCompletenessTests: XCTestCase {
   private func referencedKeys(of definition: CustomDevotionDefinition) -> (text: Set<String>, mysteries: Set<String>) {
     var text = Set<String>()
     var mysteries = Set<String>()
-    let allEntries = (definition.steps ?? []) + (definition.eastertideSteps ?? [])
+    var allEntries = (definition.steps ?? []) + (definition.eastertideSteps ?? [])
       + (definition.opening ?? []) + (definition.closing ?? [])
+    for variant in definition.variants ?? [] {
+      allEntries += variant.steps + (variant.eastertideSteps ?? [])
+    }
     for entry in allEntries where entry.kind == nil {
       entry.bodyKey.map { text.insert($0) }
       entry.titleKey.map { text.insert($0) }

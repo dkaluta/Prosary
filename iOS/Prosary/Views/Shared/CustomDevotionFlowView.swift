@@ -26,6 +26,7 @@ struct CustomDevotionFlowView: View {
   @State private var languageCode: String?
   @State private var matchingFavoriteId: Prayer.ID? = nil
   @State private var displayName: String = ""
+  @State private var variantId: String? = nil
 
   private var currentStep: RosaryStep? {
     steps.indices.contains(currentIndex) ? steps[currentIndex] : nil
@@ -73,6 +74,29 @@ struct CustomDevotionFlowView: View {
       } : nil
     )
     .toolbar {
+      // Variant switcher — only for bundles declaring alternate step-sets (e.g. the Stations'
+      // traditional vs. scriptural forms). Switching rebuilds the session from step 0 and
+      // persists the choice to the matching favorite when one exists.
+      if let variants = PrayerPackStore.definition(for: devotionId)?.variants, variants.count > 1 {
+        ToolbarItem(placement: .primaryAction) {
+          Menu {
+            ForEach(variants, id: \.id) { variant in
+              Button {
+                switchVariant(to: variant.id, defaultVariantId: variants[0].id)
+              } label: {
+                if variant.id == (variantId ?? variants[0].id) {
+                  Label(variant.localizedName, systemImage: "checkmark")
+                } else {
+                  Text(variant.localizedName)
+                }
+              }
+            }
+          } label: {
+            Image(systemName: "text.book.closed")
+          }
+          .accessibilityIdentifier("variantMenu")
+        }
+      }
       ToolbarItem(placement: .primaryAction) {
         Button { toggleFavorite() } label: {
           Image(systemName: matchingFavoriteId != nil ? "star.fill" : "star")
@@ -91,11 +115,33 @@ struct CustomDevotionFlowView: View {
     matchingFavoriteId = favorite?.id
     languageCode = favorite?.resolvedLanguageCode ?? LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).code
 
+    variantId = favorite?.variantId
+
     isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
-    steps = services.engine.buildSteps(for: Prayer(
-      kind: .custom, languageCode: languageCode ?? LanguageCatalog.defaultSentinel, customDevotionId: devotionId))
+    steps = builtSteps()
     currentIndex = 0
     seasonColor = services.calendar.seasonColorToday()
+  }
+
+  private func builtSteps() -> [RosaryStep] {
+    services.engine.buildSteps(for: Prayer(
+      kind: .custom, languageCode: languageCode ?? LanguageCatalog.defaultSentinel,
+      customDevotionId: devotionId, variantId: variantId))
+  }
+
+  private func switchVariant(to newVariantId: String, defaultVariantId: String) {
+    variantId = newVariantId == defaultVariantId ? nil : newVariantId
+    steps = builtSteps()
+    currentIndex = 0
+
+    // Remember the choice on the matching favorite, if one exists.
+    guard let id = matchingFavoriteId else { return }
+    Task {
+      if var favorite = try? await services.presetStore.get(id: id) {
+        favorite.variantId = variantId
+        try? await services.presetStore.save(favorite)
+      }
+    }
   }
 
   private func toggleFavorite() {

@@ -35,6 +35,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     private string? _languageCode;
     private string _bundleId = string.Empty;
     private bool _hasClosingCross;
+    private string? _variantId;
 
     [ObservableProperty]
     private string _devotionTitle = string.Empty;
@@ -132,6 +133,38 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
 
     public bool IsFavorited => MatchingFavoriteId is not null;
 
+    /// <summary>The bundle's alternate step-sets (e.g. the Stations' traditional vs. scriptural
+    /// forms); empty for single-form devotions. The page builds its variant flyout from this.</summary>
+    public IReadOnlyList<CustomDevotionDefinition.Variant> Variants { get; private set; } = [];
+
+    public bool ShowsVariantMenu => Variants.Count > 1;
+
+    public string? CurrentVariantId => _variantId ?? (Variants.Count > 0 ? Variants[0].Id : null);
+
+    /// <summary>Switches the session to another variant: rebuilds from step 0 and persists the
+    /// choice to the matching favorite when one exists.</summary>
+    public async Task SelectVariantAsync(string variantId)
+    {
+        var defaultId = Variants.Count > 0 ? Variants[0].Id : null;
+        _variantId = variantId == defaultId ? null : variantId;
+        OnPropertyChanged(nameof(CurrentVariantId));
+
+        _steps = _engine.BuildSteps(new Prayer
+        {
+            Kind = PrayerKind.Custom,
+            LanguageCode = _languageCode,
+            CustomDevotionId = _bundleId,
+            VariantId = _variantId,
+        });
+        _index = 0;
+        RenderCurrentStep();
+
+        if (MatchingFavoriteId is { } id && await _presets.GetAsync(id) is { } favorite)
+        {
+            await _presets.SaveAsync(favorite with { VariantId = _variantId });
+        }
+    }
+
     public CustomDevotionViewModel(IPresetStore presets, PrayerEngine engine, LiturgicalCalendarService calendar)
     {
         _presets = presets;
@@ -145,7 +178,10 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         {
             _bundleId = bundleId;
             DevotionTitle = PrayerPackStore.Info(bundleId)?.LocalizedDisplayName ?? bundleId;
-            _hasClosingCross = PrayerPackStore.Definition(bundleId)?.HasClosingCross ?? false;
+            var definition = PrayerPackStore.Definition(bundleId);
+            _hasClosingCross = definition?.HasClosingCross ?? false;
+            Variants = definition?.Variants ?? [];
+            OnPropertyChanged(nameof(ShowsVariantMenu));
 
             // Seeds the star as already-favorited immediately, without waiting on the initial
             // favorites fetch below.
@@ -154,20 +190,24 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             _languageCode = LanguageCatalog.Resolve(LanguageCatalog.DefaultSentinel).Code;
 
             IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
+            var all = await _presets.GetAllAsync();
+            var favorite = all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId);
+            MatchingFavoriteId ??= favorite?.Id;
+            _variantId = favorite?.VariantId;
+            OnPropertyChanged(nameof(CurrentVariantId));
+
             _steps = _engine.BuildSteps(new Prayer
             {
                 Kind = PrayerKind.Custom,
                 LanguageCode = _languageCode,
                 CustomDevotionId = bundleId,
+                VariantId = _variantId,
             });
             _index = 0;
             ShowsBeadTrack = _steps.Any(s => s.DecadeIndex.HasValue);
             SeasonColor = _calendar.GetSeasonColorForToday();
 
             RenderCurrentStep();
-
-            var all = await _presets.GetAllAsync();
-            MatchingFavoriteId = all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId)?.Id;
         }
         catch (Exception ex)
         {

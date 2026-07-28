@@ -321,12 +321,17 @@ class PrayerEngine(
 
         val count = entry.repeatCount
         if (count == null || count <= 1) {
-            return listOf(RosaryStep(title = title, subtitle = entry.subtitle, body = body, imageOverrideKey = entry.imageKey))
+            return listOf(
+                RosaryStep(
+                    title = title, subtitle = entry.subtitle, body = body,
+                    isScripture = entry.isScripture ?: false, imageOverrideKey = entry.imageKey,
+                ),
+            )
         }
         return (1..count).map { h ->
             RosaryStep(
                 title = "$title ($h of $count)", subtitle = entry.subtitle, body = body,
-                imageOverrideKey = entry.imageKey,
+                isScripture = entry.isScripture ?: false, imageOverrideKey = entry.imageKey,
             )
         }
     }

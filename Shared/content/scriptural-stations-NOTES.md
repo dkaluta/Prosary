@@ -2,7 +2,7 @@
 
 User-supplied Hebrew titles + citations (2026-07-28) for a possible future generic devotion
 bundle: the scriptural Way of the Cross Pope St. John Paul II introduced on Good Friday 1991.
-Not yet built — kept here verbatim so the next session can author the bundle without re-asking.
+IMPLEMENTED (2026-07-28) as the `scriptural` VARIANT of the stationsOfTheCross bundle (devotion.json variants[]), in la/en/he — kept for the record.
 
 The traditional-stations Hebrew from the same notes (opening meditation + blessing, the
 versicle/response, 14 titles with scriptural citations, closing prayer, Anima Christi, and the

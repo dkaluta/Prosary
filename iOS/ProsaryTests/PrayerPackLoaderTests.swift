@@ -65,6 +65,8 @@ final class PrayerPackLoaderTests: XCTestCase {
   func testStationsPackProvidesItsImageData() {
     let data = PrayerPackStore.imageData(for: "station_01_condemned_to_death")
     XCTAssertGreaterThan(data?.count ?? 0, 0)
+    // The scriptural variant's own scenes ship in the same pack.
+    XCTAssertGreaterThan(PrayerPackStore.imageData(for: "scriptural_02_kiss_of_judas")?.count ?? 0, 0)
   }
 
   func testPackProvidesNoImageDataForAnUnknownKey() {

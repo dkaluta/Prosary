@@ -1,5 +1,5 @@
 {
-  "$comment": "Canonical catalog of the 14 Stations of the Cross, in order. imageKey doubles as the filename stem under Shared/Images/{imageKey} and as the stem of the bundle-local content keys (station01Title/station01Body ... station14Title/station14Body). Source of truth: Shared/content/stationsOfTheCross/ (devotion.json + content/<lang>.json) — no platform carries a hardcoded StationsCatalog or StationsTranslations anymore; the whole devotion is a generic bundle. Keep in sync — see README.md in this directory.",
+  "$comment": "Canonical catalog of the Stations of the Cross. The bundle now ships two VARIANTS (devotion.json variants[]): 'traditional' (this file's 14 stations, Liguori meditations in la/en, scriptural meditations in he) and 'scriptural' (the 1991 St. John Paul II scriptural Way of the Cross, keys scriptural01*–scriptural14*, la/en/he). Both close with the Closing Prayer + Anima Christi (a hardcoded main-prayer key). imageKey doubles as the filename stem under Shared/Images/{imageKey}. Source of truth: Shared/content/stationsOfTheCross/. Keep in sync — see README.md in this directory.",
   "images": {
     "status": "real",
     "note": "All 14 stations: Gebhard Fugel (1863-1939), Kreuzweg (1921), St. Antonius, Bad Saulgau — public domain; photographs by Andreas Praefcke, released into the public domain. Shipped inside the bundle; see Shared/Images/CREDITS.md."
@@ -91,6 +91,95 @@
       "stationsVersicle",
       "stationsResponse",
       "stationsClosingPrayer"
+    ]
+  },
+  "scripturalVariant": {
+    "$comment": "The 14 scriptural stations (order, en title, citation, imageKey) — ten scenes reuse shipped images; the four scriptural_* images are new (see Shared/Images/CREDITS.md).",
+    "stations": [
+      {
+        "order": 1,
+        "title": "Jesus Prays in the Garden of Gethsemane",
+        "citation": "Mk 14:32-36",
+        "imageKey": "sorrowful_01_agony_in_the_garden"
+      },
+      {
+        "order": 2,
+        "title": "Jesus is Betrayed by Judas and Arrested",
+        "citation": "Mk 14:45-46",
+        "imageKey": "scriptural_02_kiss_of_judas"
+      },
+      {
+        "order": 3,
+        "title": "Jesus is Condemned by the Sanhedrin",
+        "citation": "Mk 14:55, 60-64",
+        "imageKey": "scriptural_03_before_the_sanhedrin"
+      },
+      {
+        "order": 4,
+        "title": "Peter Denies Jesus",
+        "citation": "Mk 14:66-72",
+        "imageKey": "scriptural_04_denial_of_peter"
+      },
+      {
+        "order": 5,
+        "title": "Jesus is Judged by Pilate",
+        "citation": "Mk 15:14-15",
+        "imageKey": "station_01_condemned_to_death"
+      },
+      {
+        "order": 6,
+        "title": "Jesus is Crowned with Thorns",
+        "citation": "Mk 15:17-19",
+        "imageKey": "sorrowful_03_crowning_with_thorns"
+      },
+      {
+        "order": 7,
+        "title": "Jesus Carries His Cross",
+        "citation": "Mk 15:20",
+        "imageKey": "station_02_carries_his_cross"
+      },
+      {
+        "order": 8,
+        "title": "Simon of Cyrene Carries the Cross with Jesus",
+        "citation": "Mk 15:21",
+        "imageKey": "station_05_simon_of_cyrene"
+      },
+      {
+        "order": 9,
+        "title": "Jesus Meets the Women of Jerusalem",
+        "citation": "Lk 23:27-28",
+        "imageKey": "station_08_women_of_jerusalem"
+      },
+      {
+        "order": 10,
+        "title": "Jesus is Crucified",
+        "citation": "Mk 15:24",
+        "imageKey": "station_11_nailed_to_the_cross"
+      },
+      {
+        "order": 11,
+        "title": "Jesus Promises His Kingdom to the Good Thief",
+        "citation": "Lk 23:39-42",
+        "imageKey": "scriptural_11_the_good_thief"
+      },
+      {
+        "order": 12,
+        "title": "Jesus Entrusts His Mother Mary to the Beloved Disciple",
+        "citation": "Jn 19:26-27",
+        "imageKey": "seven_sorrows_05_crucifixion"
+      },
+      {
+        "order": 13,
+        "title": "Jesus Dies on the Cross",
+        "citation": "Mk 15:33-39",
+        "imageKey": "station_12_dies_on_the_cross"
+      },
+      {
+        "order": 14,
+        "title": "Jesus is Laid in the Tomb",
+        "citation": "Lk 23:50-56",
+        "imageKey": "station_14_laid_in_the_tomb"
+      }
     ]
   }
 }

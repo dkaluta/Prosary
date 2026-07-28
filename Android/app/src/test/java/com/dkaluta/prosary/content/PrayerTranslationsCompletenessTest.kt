@@ -97,7 +97,8 @@ class PrayerTranslationsCompletenessTest {
         val text = mutableSetOf<String>()
         val mysteries = mutableSetOf<String>()
         val allEntries = definition.steps.orEmpty() + definition.eastertideSteps.orEmpty() +
-            definition.opening.orEmpty() + definition.closing.orEmpty()
+            definition.opening.orEmpty() + definition.closing.orEmpty() +
+            definition.variants.orEmpty().flatMap { it.steps + it.eastertideSteps.orEmpty() }
         for (entry in allEntries) {
             if (entry.kind != null) continue
             entry.bodyKey?.let { text.add(it) }

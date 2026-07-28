@@ -51,6 +51,7 @@ struct CustomDevotionStep: Decodable {
   let bodyKey: String?
   let imageKey: String?
   let repeatCount: Int?
+  let isScripture: Bool?
   let kind: SpecialKind?
 
   enum SpecialKind: String, Decodable {
@@ -60,7 +61,7 @@ struct CustomDevotionStep: Decodable {
   }
 
   private enum CodingKeys: String, CodingKey {
-    case title, titleKey, subtitle, bodyKey, imageKey, kind
+    case title, titleKey, subtitle, bodyKey, imageKey, isScripture, kind
     case repeatCount = "repeat"
   }
 }
@@ -114,6 +115,11 @@ struct CustomDevotionDefinition: Decodable {
     let nameByLanguage: [String: String]?
     let steps: [CustomDevotionStep]
     let eastertideSteps: [CustomDevotionStep]?
+
+    var localizedName: String {
+      guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else { return name }
+      return nameByLanguage?[String(uiLanguage)] ?? name
+    }
   }
 
   let type: DevotionType

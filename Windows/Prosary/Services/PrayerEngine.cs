@@ -310,13 +310,16 @@ public sealed class PrayerEngine
             ? PrayerPackStore.ResolveBodyText(bundleId, languageCode, bodyKey)
             : string.Empty;
 
+        var isScripture = entry.IsScripture ?? false;
         if (entry.Repeat is not { } count || count <= 1)
         {
-            return [new RosaryStep(title, entry.Subtitle, body, ImageOverrideKey: entry.ImageKey)];
+            return [new RosaryStep(title, entry.Subtitle, body, IsScripture: isScripture, ImageOverrideKey: entry.ImageKey)];
         }
 
         return Enumerable.Range(1, count)
-            .Select(h => new RosaryStep($"{title} ({h} of {count})", entry.Subtitle, body, ImageOverrideKey: entry.ImageKey))
+            .Select(h => new RosaryStep(
+                $"{title} ({h} of {count})", entry.Subtitle, body,
+                IsScripture: isScripture, ImageOverrideKey: entry.ImageKey))
             .ToList();
     }
 

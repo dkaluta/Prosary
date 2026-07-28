@@ -96,7 +96,8 @@ public class PrayerTranslationsCompletenessTests : IClassFixture<PrayerPackLoade
         var text = new HashSet<string>();
         var mysteries = new HashSet<string>();
         var allEntries = (definition.Steps ?? []).Concat(definition.EastertideSteps ?? [])
-            .Concat(definition.Opening ?? []).Concat(definition.Closing ?? []);
+            .Concat(definition.Opening ?? []).Concat(definition.Closing ?? [])
+            .Concat((definition.Variants ?? []).SelectMany(v => (v.Steps ?? []).Concat(v.EastertideSteps ?? [])));
         foreach (var entry in allEntries.Where(e => e.Kind is null))
         {
             if (entry.BodyKey is { } bodyKey) text.Add(bodyKey);

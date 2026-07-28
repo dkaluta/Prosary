@@ -50,9 +50,13 @@ class CustomDevotionEngineTest {
     private fun steps(
         bundleId: String,
         language: String = "en",
+        variantId: String? = null,
         calendar: FixedLiturgicalCalendar = FixedLiturgicalCalendar(),
     ): List<RosaryStep> = PrayerEngine(calendar).buildSteps(
-        Prayer(kind = PrayerKind.Custom, languageCode = language, customDevotionId = bundleId),
+        Prayer(
+            kind = PrayerKind.Custom, languageCode = language,
+            customDevotionId = bundleId, variantId = variantId,
+        ),
     )
 
     // MARK: Trisagion (flat)
@@ -149,6 +153,47 @@ class CustomDevotionEngineTest {
         assertEquals("יֵשׁוּעַ נִדּוֹן לַמָּוֶת", steps[2].title)
         assertTrue(steps[2].body.contains("מֵעֹצֶר וּמִמִּשְׁפָּט לֻקָּח"))
         assertTrue(steps.last().body.contains("נֶפֶשׁ הַמָּשִׁיחַ קַדְּשִׁינִי"))
+    }
+
+    // MARK: Stations variants (traditional vs. scriptural)
+
+    /** An unknown/null variantId resolves to the default (first) variant — the traditional set. */
+    @Test
+    fun stationsDefaultVariantIsTheTraditionalSet() {
+        assertEquals(
+            steps("stationsOfTheCross", variantId = null).map { it.title },
+            steps("stationsOfTheCross", variantId = "traditional").map { it.title },
+        )
+        assertEquals(18, steps("stationsOfTheCross", variantId = "no-such-variant").size)
+    }
+
+    /** The scriptural (St. John Paul II) variant — same 18-step frame (shared opening/closing/
+     * Anima Christi), fourteen different scenes with scriptural meditations. */
+    @Test
+    fun stationsScripturalVariantSequence() {
+        val steps = steps("stationsOfTheCross", variantId = "scriptural")
+        assertEquals(18, steps.size)
+        assertEquals("Jesus Prays in the Garden of Gethsemane", steps[2].title)
+        assertEquals("1st Station", steps[2].subtitle)
+        assertEquals("sorrowful_01_agony_in_the_garden", steps[2].imageKey)
+        assertTrue(steps[2].body.contains("We adore You, O Christ"))
+        assertTrue(steps[2].body.contains("— Mark 14:32-36 (Douay-Rheims)"))
+        assertEquals("scriptural_02_kiss_of_judas", steps[3].imageKey)
+        assertEquals("Jesus Promises His Kingdom to the Good Thief", steps[12].title)
+        assertEquals("seven_sorrows_05_crucifixion", steps[13].imageKey)
+        assertEquals("Anima Christi", steps.last().title)
+        // The fourteen station bodies are quoted Gospel passages, so they render in the
+        // scripture typeface; the shared opening/closing prayers do not.
+        assertTrue(steps.subList(2, 16).all { it.isScripture })
+        assertFalse(steps[1].isScripture)
+        assertFalse(steps[16].isScripture)
+    }
+
+    @Test
+    fun stationsScripturalVariantHebrewTitles() {
+        val steps = steps("stationsOfTheCross", language = "he", variantId = "scriptural")
+        assertEquals("יֵשׁוּעַ מִתְפַּלֵּל בְּגַת שְׁמָנִים", steps[2].title)
+        assertTrue(steps[2].body.contains("(דליטש)"))
     }
 
     // MARK: Franciscan Crown (rosary type, 7×10 + antiphon)

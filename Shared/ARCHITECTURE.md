@@ -300,7 +300,14 @@ of its own — its entire step sequence and per-step text are data-driven from i
   bundle) is the complete structural description, one of two types:
   - `{"type": "steps"}` — a flat, fixed list: `steps: [Entry…]` plus an optional
     `eastertideSteps: [Entry…]` whole-sequence swap (the Angelus → Regina Caeli substitution,
-    resolved via the platform liturgical calendar's `isEasterSeasonToday`).
+    resolved via the platform liturgical calendar's `isEasterSeasonToday`). A steps-type
+    devotion may instead declare **`variants`** — named alternate step-sets
+    (`[{id, name, nameByLanguage?, steps, eastertideSteps?}]`, mutually exclusive with
+    top-level `steps`; the first variant is the default) — e.g. the Stations of the Cross's
+    traditional (Liguori) vs. scriptural (St. John Paul II) forms. `Prayer.variantId` (nil =
+    default) selects one; the flow screens show a toolbar variant menu when a bundle declares
+    more than one, rebuilding the session on switch and persisting the choice to the matching
+    favorite.
   - `{"type": "rosary"}` — decade/bead-structured: `opening: [Entry…]` (entry 0 MUST be the Sign
     of the Cross — a bead-track invariant), `decades` (`ordinalNoun` "Joy"/"Sorrow"/"Decade";
     `announceMystery`; either inline `entries: [{imageKey, isScripture? = true}]` (Franciscan
@@ -308,10 +315,13 @@ of its own — its entire step sequence and per-step text are data-driven from i
     `{title, bodyKey}`; `minorCount`), `closing: [Entry…]`, and `hasClosingCross` (when true the
     closing cross must be the literal last step — another bead-track invariant). Announcement
     steps pull title/body from the merged mystery tables by the entry's `imageKey`.
-  - An `Entry` is `{title | titleKey, subtitle?, bodyKey?, imageKey?, repeat?}` — `title` is a
-    literal English UI label (the app-wide convention), `titleKey` the alternative for devotions
-    whose step titles are themselves translated content (the Stations); `repeat: n` unrolls into
-    n copies titled "Title (h of n)", deliberately without bead fields. A closing entry may
+  - An `Entry` is `{title | titleKey, subtitle?, bodyKey?, imageKey?, repeat?, isScripture?}` —
+    `title` is a literal English UI label (the app-wide convention), `titleKey` the alternative
+    for devotions whose step titles are themselves translated content (the Stations);
+    `repeat: n` unrolls into n copies titled "Title (h of n)", deliberately without bead fields;
+    `isScripture: true` marks a body that is a quoted Bible passage so it renders in the
+    scripture typeface, same as the Rosary's mystery announcements (the scriptural Stations'
+    fourteen station steps). A closing entry may
     instead be `{"kind": "seasonalMarianAntiphon"}` (the Franciscan Crown), which stays
     runtime-composed by the engine's shared antiphon builder because it is calendar-dependent.
   - **Composed bodies, no composition grammar**: every step has exactly one `bodyKey`.

@@ -1,8 +1,13 @@
 package com.dkaluta.prosary.ui.shared
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.MenuBook
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Text
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -49,20 +54,31 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
     var languageCode by remember { mutableStateOf<String?>(null) }
     var matchingFavoriteId by remember { mutableStateOf(prayer?.id) }
     var displayName by remember { mutableStateOf(devotionId) }
+    var variantId by remember { mutableStateOf(prayer?.variantId) }
+    var variantMenuExpanded by remember { mutableStateOf(false) }
 
-    LaunchedEffect(prayer, devotionId) {
+    LaunchedEffect(prayer, devotionId, variantId) {
         displayName = PrayerPackStore.info(devotionId)?.localizedDisplayName ?: devotionId
         val resolvedLanguageCode = LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).code
         languageCode = resolvedLanguageCode
         isRightToLeft = LanguageCatalog.resolve(resolvedLanguageCode).isRightToLeft
         steps = services.engine.buildSteps(
-            Prayer(kind = PrayerKind.Custom, languageCode = resolvedLanguageCode, customDevotionId = devotionId),
+            Prayer(
+                kind = PrayerKind.Custom, languageCode = resolvedLanguageCode,
+                customDevotionId = devotionId, variantId = variantId,
+            ),
         )
         currentIndex = 0
         seasonColor = services.calendar.seasonColorToday()
 
-        val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
-        matchingFavoriteId = all.firstOrNull { it.kind == PrayerKind.Custom && it.customDevotionId == devotionId }?.id
+        if (matchingFavoriteId == null) {
+            val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
+            val favorite = all.firstOrNull { it.kind == PrayerKind.Custom && it.customDevotionId == devotionId }
+            matchingFavoriteId = favorite?.id
+            if (favorite?.variantId != variantId && variantId == null) {
+                variantId = favorite?.variantId
+            }
+        }
     }
 
     val currentStep = steps.getOrNull(currentIndex)
@@ -94,6 +110,41 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
             { _, _ -> }
         },
         topBarActions = {
+            // Variant switcher — only for bundles declaring alternate step-sets (e.g. the
+            // Stations' traditional vs. scriptural forms). Switching rebuilds the session from
+            // step 0 (via the LaunchedEffect keyed on variantId) and persists the choice to the
+            // matching favorite when one exists.
+            val variants = PrayerPackStore.definition(devotionId)?.variants
+            if (variants != null && variants.size > 1) {
+                IconButton(onClick = { variantMenuExpanded = true }) {
+                    Icon(Icons.AutoMirrored.Filled.MenuBook, contentDescription = "Choose form")
+                }
+                DropdownMenu(expanded = variantMenuExpanded, onDismissRequest = { variantMenuExpanded = false }) {
+                    for (variant in variants) {
+                        val isCurrent = variant.id == (variantId ?: variants.first().id)
+                        DropdownMenuItem(
+                            text = { Text(variant.localizedName) },
+                            leadingIcon = if (isCurrent) {
+                                { Icon(Icons.Filled.Check, contentDescription = null) }
+                            } else {
+                                null
+                            },
+                            onClick = {
+                                variantMenuExpanded = false
+                                val newVariantId = if (variant.id == variants.first().id) null else variant.id
+                                variantId = newVariantId
+                                matchingFavoriteId?.let { id ->
+                                    scope.launch {
+                                        services.presetStore.get(id)?.let { favorite ->
+                                            services.presetStore.save(favorite.copy(variantId = newVariantId))
+                                        }
+                                    }
+                                }
+                            },
+                        )
+                    }
+                }
+            }
             IconButton(onClick = {
                 scope.launch {
                     matchingFavoriteId = toggleCustomDevotionFavorite(services, devotionId, displayName, matchingFavoriteId)

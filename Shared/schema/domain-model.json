@@ -39,6 +39,11 @@
           "default": null,
           "description": "The bundle id (e.g. \"angelus\") whose devotion.json defines this favorite's step sequence. Populated only when kind == custom, null/nil otherwise. See PrayerEngine.buildCustomDevotionSteps and ARCHITECTURE.md's \"Content bundles\" section."
         },
+        "variantId": {
+          "type": "string?",
+          "default": null,
+          "description": "Which of the bundle's variants (alternate step-sets, e.g. the Stations' traditional vs. scriptural forms) this favorite prays. Null/nil = the bundle's default (first) variant; only meaningful when kind == custom and the bundle declares variants."
+        },
         "reminders": {
           "type": "PrayerReminder[]",
           "default": []
@@ -335,6 +340,10 @@
           "type": "int?",
           "description": "Unrolls into n steps titled \"Title (h of n)\" — deliberately without bead fields, matching the hardcoded devotions' closing Hail Marys."
         },
+        "isScripture": {
+          "type": "bool? = false",
+          "description": "The body is a quoted Bible passage, so it renders in the scripture typeface (same flag the Rosary's mystery announcements carry). Set on the scriptural Stations' fourteen station steps."
+        },
         "kind": {
           "type": "string?",
           "description": "\"seasonalMarianAntiphon\" (closing only): emitted by the engine's shared, calendar-dependent antiphon builder instead of bundle data."
@@ -355,6 +364,10 @@
         "eastertideSteps": {
           "type": "CustomDevotionStep[]?",
           "description": "steps type only: whole-sequence swap during Eastertide (the Angelus's Regina Caeli substitution)."
+        },
+        "variants": {
+          "type": "object[]?",
+          "description": "steps type only: named alternate step-sets [{id, name, nameByLanguage?, steps, eastertideSteps?}], mutually exclusive with steps; the first variant is the default. Resolved via Prayer.variantId."
         },
         "opening": {
           "type": "CustomDevotionStep[]?",

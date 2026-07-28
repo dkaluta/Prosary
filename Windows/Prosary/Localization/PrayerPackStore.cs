@@ -285,6 +285,7 @@ public sealed record CustomDevotionStep(
     string? BodyKey = null,
     string? ImageKey = null,
     int? Repeat = null,
+    bool? IsScripture = null,
     CustomDevotionStep.SpecialKind? Kind = null)
 {
     public enum SpecialKind
@@ -324,7 +325,12 @@ public sealed record CustomDevotionDefinition(
         string Name,
         Dictionary<string, string>? NameByLanguage = null,
         List<CustomDevotionStep>? Steps = null,
-        List<CustomDevotionStep>? EastertideSteps = null);
+        List<CustomDevotionStep>? EastertideSteps = null)
+    {
+        public string LocalizedName =>
+            NameByLanguage?.GetValueOrDefault(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
+            ?? Name;
+    }
 
     /// <summary>The step lists to build for <paramref name="variantId"/> — the matching
     /// variant, else the default (first) variant, else the top-level lists (single-form

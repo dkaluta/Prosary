@@ -81,6 +81,8 @@ class PrayerPackLoaderTest {
     fun stationsPackProvidesItsImageData() {
         val data = PrayerPackStore.imageData("station_01_condemned_to_death")
         assertTrue((data?.size ?: 0) > 0)
+        // The scriptural variant's own scenes ship in the same pack.
+        assertTrue((PrayerPackStore.imageData("scriptural_02_kiss_of_judas")?.size ?: 0) > 0)
     }
 
     @Test

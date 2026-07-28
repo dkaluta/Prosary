@@ -34,6 +34,29 @@ public sealed partial class CustomDevotionFlowPage : Page
         if (e.Parameter is CustomDevotionFlowParams p)
         {
             await ViewModel.LoadAsync(p.PrayerId, p.BundleId);
+            BuildVariantFlyout();
+        }
+    }
+
+    // MenuFlyout has no ItemsSource, so the variant items are built here after load — one
+    // toggle item per variant, checked state refreshed on every switch.
+    private void BuildVariantFlyout()
+    {
+        VariantFlyout.Items.Clear();
+        foreach (var variant in ViewModel.Variants)
+        {
+            var item = new ToggleMenuFlyoutItem
+            {
+                Text = variant.LocalizedName,
+                IsChecked = variant.Id == ViewModel.CurrentVariantId,
+            };
+            var variantId = variant.Id;
+            item.Click += async (_, _) =>
+            {
+                await ViewModel.SelectVariantAsync(variantId);
+                BuildVariantFlyout();
+            };
+            VariantFlyout.Items.Add(item);
         }
     }
 
