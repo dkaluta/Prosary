@@ -94,4 +94,34 @@ class BeadModelsTest {
         }
         assertEquals(BeadState.Current, layout.bottomBeads[9].state)
     }
+
+    /** The narrow layout wraps major beads per mystery group — an ungrouped 7-decade session
+     * (Franciscan Crown, Seven Sorrows) must keep every major bead on ONE row (cross + 7
+     * decades), never an arbitrary 5+2 split. */
+    @Test
+    fun mysteryLessSevenDecadeSessionKeepsMajorBeadsOnOneRow() {
+        val steps = mysteryLessDecadeSteps(7)
+        val layout = BeadLayout.build(steps, currentIndex = 0, hasClosingCross = false)
+
+        assertEquals(1, layout.topRows.size)
+        assertEquals(8, layout.topRows[0].size) // opening cross + 7 decade beads
+        assertEquals(7, layout.topRows[0].count { it.kind == BeadKind.Decade })
+    }
+
+    /** A multi-group Rosary still wraps one row per mystery group (the rows-of-5 the physical
+     * rosary loops suggest), with the antiphon/closing cross on the last row. */
+    @Test
+    fun twentyMysterySessionWrapsOneRowPerGroup() {
+        val engine = PrayerEngine()
+        val steps = engine.buildSteps(
+            Prayer(rosary = RosaryOptions(mysterySelectionMode = MysterySelectionMode.TwentyMystery)),
+        )
+        val layout = BeadLayout.build(steps, currentIndex = 0, hasClosingCross = true)
+
+        assertEquals(4, layout.topRows.size)
+        assertEquals(5, layout.topRows[0].count { it.kind == BeadKind.Decade })
+        assertEquals(5, layout.topRows[3].count { it.kind == BeadKind.Decade })
+        assertEquals(BeadKind.Cross, layout.topRows[0].first().kind)
+        assertEquals(BeadKind.Cross, layout.topRows[3].last().kind)
+    }
 }

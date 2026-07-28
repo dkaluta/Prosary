@@ -104,4 +104,35 @@ public class BeadLayoutTests
         }
         Assert.Equal(BeadState.Current, layout.BottomBeads[9].State);
     }
+
+    /// <summary>The narrow layout wraps major beads per mystery group — an ungrouped 7-decade
+    /// session (Franciscan Crown, Seven Sorrows) must keep every major bead on ONE row (cross +
+    /// 7 decades), never an arbitrary 5+2 split.</summary>
+    [Fact]
+    public void Build_MysteryLessSevenDecadeSession_KeepsMajorBeadsOnOneRow()
+    {
+        var steps = MysteryLessDecadeSteps(7);
+        var layout = BeadLayout.Build(steps, currentIndex: 0, hasClosingCross: false, isDarkTheme: false);
+
+        var row = Assert.Single(layout.TopRows);
+        Assert.Equal(8, row.Count); // opening cross + 7 decade beads
+        Assert.Equal(7, row.Count(b => b.Kind == BeadKind.Decade));
+    }
+
+    /// <summary>A multi-group Rosary still wraps one row per mystery group (the rows-of-5 the
+    /// physical rosary loops suggest), with the antiphon/closing cross on the last row.</summary>
+    [Fact]
+    public void Build_TwentyMysterySession_WrapsOneRowPerGroup()
+    {
+        var engine = new PrayerEngine(new LiturgicalCalendarService());
+        var prayer = new Prayer { Rosary = new RosaryOptions { MysterySelectionMode = MysterySelectionMode.TwentyMystery } };
+        var steps = engine.BuildSteps(prayer);
+        var layout = BeadLayout.Build(steps, currentIndex: 0, hasClosingCross: true, isDarkTheme: false);
+
+        Assert.Equal(4, layout.TopRows.Count);
+        Assert.Equal(5, layout.TopRows[0].Count(b => b.Kind == BeadKind.Decade));
+        Assert.Equal(5, layout.TopRows[3].Count(b => b.Kind == BeadKind.Decade));
+        Assert.Equal(BeadKind.Cross, layout.TopRows[0][0].Kind);
+        Assert.Equal(BeadKind.Cross, layout.TopRows[3][^1].Kind);
+    }
 }

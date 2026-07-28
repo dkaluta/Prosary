@@ -54,6 +54,43 @@ final class BeadModelsTests: XCTestCase {
     XCTAssertEqual(layout.bottomBeads[3].state, .current)
   }
 
+  /// The narrow layout wraps major beads per mystery group — an ungrouped 7-decade session
+  /// (Franciscan Crown, Seven Sorrows) must keep every major bead on ONE row (cross + 7
+  /// decades), never an arbitrary 5+2 split.
+  func testMysteryLessSevenDecadeSessionKeepsMajorBeadsOnOneRow() {
+    let steps = makeMysteryLessDecadeSteps(decadeCount: 7)
+    let layout = BeadLayout.build(steps: steps, currentIndex: 0, hasClosingCross: false)
+
+    XCTAssertEqual(layout.topRows.count, 1)
+    XCTAssertEqual(layout.topRows[0].count, 8)  // opening cross + 7 decade beads
+    XCTAssertEqual(layout.topRows[0].filter { $0.kind == .decade }.count, 7)
+  }
+
+  /// The real shipped Franciscan Crown (7 decades + antiphon + closing cross) — the full major
+  /// strip is one row of 10.
+  @MainActor
+  func testFranciscanCrownMajorBeadsAreOneRow() {
+    let steps = PrayerEngine().buildSteps(for: Prayer(
+      kind: .custom, languageCode: "en", customDevotionId: "franciscanCrown"))
+    let layout = BeadLayout.build(steps: steps, currentIndex: 0, hasClosingCross: true)
+
+    XCTAssertEqual(layout.topRows.count, 1)
+    XCTAssertEqual(layout.topRows[0].count, 10)  // cross + 7 joys + antiphon + closing cross
+  }
+
+  /// A multi-group Rosary still wraps one row per mystery group (the rows-of-5 the physical
+  /// rosary loops suggest), with the antiphon/closing cross on the last row.
+  func testTwentyMysterySessionWrapsOneRowPerGroup() {
+    let steps = PrayerEngine().buildSteps(for: Prayer(rosary: RosaryOptions(mysterySelectionMode: .twentyMystery)))
+    let layout = BeadLayout.build(steps: steps, currentIndex: 0, hasClosingCross: true)
+
+    XCTAssertEqual(layout.topRows.count, 4)
+    XCTAssertEqual(layout.topRows[0].filter { $0.kind == .decade }.count, 5)
+    XCTAssertEqual(layout.topRows[3].filter { $0.kind == .decade }.count, 5)
+    XCTAssertEqual(layout.topRows[0].first?.kind, .cross)
+    XCTAssertEqual(layout.topRows[3].last?.kind, .cross)
+  }
+
   /// Sanity check that the existing Rosary-shaped (mystery-grouped) behavior is unaffected by
   /// the generalization — still one column per distinct `MysteryGroup` in session order.
   func testMysteryGroupedStepsStillGroupByMysteryGroup() {

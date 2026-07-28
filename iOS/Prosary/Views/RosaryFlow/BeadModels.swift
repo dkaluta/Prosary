@@ -58,8 +58,9 @@ struct BeadColumn: Identifiable {
 
 /// The full computed bead layout for the current step of a Rosary session.
 struct BeadLayout {
-  /// Decade beads grouped into rows of 5 — like the physical layout of a rosary's Our-Father
-  /// beads — for the narrow layout's wrapped horizontal grid.
+  /// Decade beads wrapped into one row per mystery group — like the physical five-decade loops
+  /// of a rosary — for the narrow layout's horizontal grid. Ungrouped custom-rosary sessions
+  /// (Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet) collapse to a single row.
   var topRows: [[BeadInfo]] = []
 
   /// Opening cross, for the wide layout.
@@ -111,27 +112,10 @@ struct BeadLayout {
       closingCrossBead = BeadInfo(kind: .cross, state: currentIndex < closingCrossIndex ? .upcoming : .current)
     }
 
-    // Grouped into rows of 5 decade beads, mirroring the physical layout of a rosary's
-    // Our-Father beads — the opening cross rides along with the first row, and the
-    // antiphon/closing-cross beads (if any) tag onto whatever's left of the last row.
-    var rows: [[BeadInfo]] = [[crossBead]]
-    for (index, decadeBead) in decadeBeads.enumerated() {
-      rows[rows.count - 1].append(decadeBead)
-      let decadeCountInRow = rows[rows.count - 1].filter { $0.kind == .decade }.count
-      if decadeCountInRow % 5 == 0 && index != decadeBeads.count - 1 {
-        rows.append([])
-      }
-    }
-    if let antiphon = antiphonBead { rows[rows.count - 1].append(antiphon) }
-    if let closing = closingCrossBead { rows[rows.count - 1].append(closing) }
-
-    // One column per mystery group (in session order), each holding that group's decade
-    // beads — a 15/20-mystery session grows into more columns instead of one long,
-    // awkwardly-tall strip. Single-group sessions naturally collapse to one column. Decades
-    // with no mystery at all (Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet — none of
-    // which are "mysteries" in the Rosary sense) collapse into one shared ungrouped (nil-group)
-    // column instead of being dropped entirely, which is what an earlier version of this
-    // function did before it accounted for `s.mystery` being nil.
+    // Which mystery group each decade belongs to — nil for decades with no mystery at all
+    // (Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet — none of which are "mysteries"
+    // in the Rosary sense). Feeds both the narrow layout's row wrapping and the wide layout's
+    // group columns below.
     var decadeGroupOf: [Int: MysteryGroup?] = [:]
     var decadesSeen = Set<Int>()
     for s in steps {
@@ -144,6 +128,28 @@ struct BeadLayout {
       // parameter (here `Value` is itself `MysteryGroup?`), so it stores nil values unconditionally.
       decadeGroupOf.updateValue(s.mystery?.group, forKey: d)
     }
+
+    // Wrapped per mystery group — like the physical five-decade loops of a rosary — so a
+    // 15/20-mystery session breaks into one row per group, while an ungrouped custom-rosary
+    // session (the Franciscan Crown's 7 Joys, the Seven Sorrows) keeps all its decade beads on
+    // a single row instead of an arbitrary 5+2 split. The opening cross rides along with the
+    // first row, and the antiphon/closing-cross beads (if any) tag onto the last row.
+    var rows: [[BeadInfo]] = [[crossBead]]
+    for d in 0..<totalDecades {
+      if d > 0 && decadeGroupOf[d] != decadeGroupOf[d - 1] {
+        rows.append([])
+      }
+      rows[rows.count - 1].append(decadeBeads[d])
+    }
+    if let antiphon = antiphonBead { rows[rows.count - 1].append(antiphon) }
+    if let closing = closingCrossBead { rows[rows.count - 1].append(closing) }
+
+    // One column per mystery group (in session order), each holding that group's decade
+    // beads — a 15/20-mystery session grows into more columns instead of one long,
+    // awkwardly-tall strip. Single-group sessions naturally collapse to one column, and
+    // mystery-less decades collapse into one shared ungrouped (nil-group) column instead of
+    // being dropped entirely, which is what an earlier version of this function did before it
+    // accounted for `s.mystery` being nil.
 
     var orderedGroups: [MysteryGroup?] = []
     for d in 0..<totalDecades {

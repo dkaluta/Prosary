@@ -11,8 +11,10 @@ namespace Prosary.ViewModels;
 /// </summary>
 public sealed class BeadLayout
 {
-    /// <summary>Decade beads grouped into rows of 5 — like the physical layout of a rosary's
-    /// Our-Father beads — for the narrow layout's wrapped horizontal grid.</summary>
+    /// <summary>Decade beads wrapped into one row per mystery group — like the physical
+    /// five-decade loops of a rosary — for the narrow layout's horizontal grid. Ungrouped
+    /// custom-rosary sessions (Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet) collapse
+    /// to a single row.</summary>
     public IReadOnlyList<IReadOnlyList<BeadInfo>> TopRows { get; init; } = [];
 
     /// <summary>Opening cross, for the wide layout.</summary>
@@ -94,18 +96,36 @@ public sealed class BeadLayout
             };
         }
 
-        // Grouped into rows of 5 decade beads, mirroring the physical layout of a rosary's
-        // Our-Father beads — the opening cross rides along with the first row, and the antiphon/
-        // closing-cross beads (if any) tag onto whatever's left of the last row.
-        var rows = new List<List<BeadInfo>> { new() { crossBead } };
-        foreach (var (decadeBead, index) in decadeBeads.Select((b, i) => (b, i)))
+        // Which mystery group each decade belongs to — null for decades with no mystery at all
+        // (Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet — none of which are "mysteries"
+        // in the Rosary sense). Feeds both the narrow layout's row wrapping and the wide
+        // layout's group columns below. Unlike Swift's dictionary subscript setter, C#'s
+        // Dictionary indexer always stores the assigned value (including null) rather than
+        // removing the entry, so this doesn't need Swift's updateValue(_:forKey:)-style
+        // workaround.
+        var decadeGroupOf = new Dictionary<int, MysteryGroup?>();
+        foreach (var s in steps)
         {
-            rows[^1].Add(decadeBead);
-            var decadeCountInRow = rows[^1].Count(b => b.Kind == BeadKind.Decade);
-            if (decadeCountInRow % 5 == 0 && index != decadeBeads.Count - 1)
+            if (s.DecadeIndex is { } d && !decadeGroupOf.ContainsKey(d))
+            {
+                decadeGroupOf[d] = s.Mystery?.Group;
+            }
+        }
+
+        // Wrapped per mystery group — like the physical five-decade loops of a rosary — so a
+        // 15/20-mystery session breaks into one row per group, while an ungrouped custom-rosary
+        // session (the Franciscan Crown's 7 Joys, the Seven Sorrows) keeps all its decade beads
+        // on a single row instead of an arbitrary 5+2 split. The opening cross rides along with
+        // the first row, and the antiphon/closing-cross beads (if any) tag onto the last row.
+        var rows = new List<List<BeadInfo>> { new() { crossBead } };
+        for (var d = 0; d < totalDecades; d++)
+        {
+            if (d > 0 && decadeGroupOf.GetValueOrDefault(d) != decadeGroupOf.GetValueOrDefault(d - 1))
             {
                 rows.Add([]);
             }
+
+            rows[^1].Add(decadeBeads[d]);
         }
 
         if (antiphonBead is { } antiphon)
@@ -120,21 +140,9 @@ public sealed class BeadLayout
 
         // One column per mystery group (in session order), each holding that group's decade
         // beads — a 15/20-mystery session grows into more columns instead of one long, awkwardly-
-        // tall strip. Single-group sessions naturally collapse to one column. Decades with no
-        // mystery at all (Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet — none of which
-        // are "mysteries" in the Rosary sense) collapse into one shared ungrouped (null-group)
-        // column instead of being dropped entirely. Unlike Swift's dictionary subscript setter,
-        // C#'s Dictionary indexer always stores the assigned value (including null) rather than
-        // removing the entry, so this doesn't need Swift's updateValue(_:forKey:)-style workaround.
-        var decadeGroupOf = new Dictionary<int, MysteryGroup?>();
-        foreach (var s in steps)
-        {
-            if (s.DecadeIndex is { } d && !decadeGroupOf.ContainsKey(d))
-            {
-                decadeGroupOf[d] = s.Mystery?.Group;
-            }
-        }
-
+        // tall strip. Single-group sessions naturally collapse to one column, and mystery-less
+        // decades collapse into one shared ungrouped (null-group) column instead of being
+        // dropped entirely.
         var orderedGroups = new List<MysteryGroup?>();
         for (var d = 0; d < totalDecades; d++)
         {

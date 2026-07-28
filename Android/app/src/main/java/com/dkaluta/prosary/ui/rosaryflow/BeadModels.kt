@@ -33,8 +33,10 @@ data class BeadColumn(
 
 /** The full computed bead layout for the current step of a Rosary session. */
 data class BeadLayout(
-    /** Decade beads grouped into rows of 5 — like the physical layout of a rosary's Our-Father
-     * beads — for the narrow layout's wrapped horizontal grid. */
+    /** Decade beads wrapped into one row per mystery group — like the physical five-decade
+     * loops of a rosary — for the narrow layout's horizontal grid. Ungrouped custom-rosary
+     * sessions (Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet) collapse to a single
+     * row. */
     val topRows: List<List<BeadInfo>> = emptyList(),
     /** Opening cross, for the wide layout. */
     val openingCross: BeadInfo? = null,
@@ -130,29 +132,13 @@ data class BeadLayout(
                 null
             }
 
-            // Grouped into rows of 5 decade beads, mirroring the physical layout of a rosary's
-            // Our-Father beads — the opening cross rides along with the first row, and the
-            // antiphon/closing-cross beads (if any) tag onto whatever's left of the last row.
-            val rows = mutableListOf(mutableListOf(crossBead))
-            decadeBeads.forEachIndexed { index, decadeBead ->
-                rows.last().add(decadeBead)
-                val decadeCountInRow = rows.last().count { it.kind == BeadKind.Decade }
-                if (decadeCountInRow % 5 == 0 && index != decadeBeads.size - 1) {
-                    rows.add(mutableListOf())
-                }
-            }
-            antiphonBead?.let { rows.last().add(it) }
-            closingCrossBead?.let { rows.last().add(it) }
-
-            // One column per mystery group (in session order), each holding that group's decade
-            // beads — a 15/20-mystery session grows into more columns instead of one long,
-            // awkwardly-tall strip. Single-group sessions naturally collapse to one column.
-            // Decades with no mystery at all (Franciscan Crown, Seven Sorrows, Divine Mercy
-            // Chaplet — none of which are "mysteries" in the Rosary sense) collapse into one
-            // shared ungrouped (null-group) column instead of being dropped entirely. Unlike
-            // Swift, Kotlin's MutableMap.put/subscript-assignment stores an explicit null value
-            // correctly (it doesn't remove the entry), so containsKey is enough to distinguish
-            // "decade not yet recorded" from "decade recorded with no mystery".
+            // Which mystery group each decade belongs to — null for decades with no mystery at
+            // all (Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet — none of which are
+            // "mysteries" in the Rosary sense). Feeds both the narrow layout's row wrapping and
+            // the wide layout's group columns below. Unlike Swift, Kotlin's
+            // MutableMap.put/subscript-assignment stores an explicit null value correctly (it
+            // doesn't remove the entry), so containsKey is enough to distinguish "decade not
+            // yet recorded" from "decade recorded with no mystery".
             val decadeGroupOf = mutableMapOf<Int, MysteryGroup?>()
             for (s in steps) {
                 val d = s.decadeIndex
@@ -160,6 +146,28 @@ data class BeadLayout(
                     decadeGroupOf[d] = s.mystery?.group
                 }
             }
+
+            // Wrapped per mystery group — like the physical five-decade loops of a rosary — so
+            // a 15/20-mystery session breaks into one row per group, while an ungrouped
+            // custom-rosary session (the Franciscan Crown's 7 Joys, the Seven Sorrows) keeps
+            // all its decade beads on a single row instead of an arbitrary 5+2 split. The
+            // opening cross rides along with the first row, and the antiphon/closing-cross
+            // beads (if any) tag onto the last row.
+            val rows = mutableListOf(mutableListOf(crossBead))
+            for (d in 0 until totalDecades) {
+                if (d > 0 && decadeGroupOf[d] != decadeGroupOf[d - 1]) {
+                    rows.add(mutableListOf())
+                }
+                rows.last().add(decadeBeads[d])
+            }
+            antiphonBead?.let { rows.last().add(it) }
+            closingCrossBead?.let { rows.last().add(it) }
+
+            // One column per mystery group (in session order), each holding that group's decade
+            // beads — a 15/20-mystery session grows into more columns instead of one long,
+            // awkwardly-tall strip. Single-group sessions naturally collapse to one column, and
+            // mystery-less decades collapse into one shared ungrouped (null-group) column
+            // instead of being dropped entirely.
 
             val orderedGroups = mutableListOf<MysteryGroup?>()
             for (d in 0 until totalDecades) {
