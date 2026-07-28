@@ -138,23 +138,33 @@ public static class PrayerPackStore
     /// <summary><paramref name="openPack"/> returns a fresh, readable stream for a named pack's
     /// bytes (e.g. a file under the app's install directory), or null if that pack isn't
     /// available. Safe to call more than once; only the first call does any work.</summary>
+    private static readonly object InitLock = new();
+
     public static void Initialize(Func<string, Stream?> openPack)
     {
-        if (_didLoad) return;
-        _didLoad = true;
-
-        foreach (var packName in PackNames)
+        // The lock (and setting _didLoad only after the loop) makes concurrent callers block
+        // until loading has fully finished rather than returning against a half-loaded store —
+        // the app initializes once at startup, but xunit runs test classes in parallel and
+        // every fixture calls this.
+        lock (InitLock)
         {
-            using var stream = openPack(packName);
-            if (stream is null) continue;
-            try
+            if (_didLoad) return;
+
+            foreach (var packName in PackNames)
             {
-                Load(stream);
+                using var stream = openPack(packName);
+                if (stream is null) continue;
+                try
+                {
+                    Load(stream);
+                }
+                catch
+                {
+                    // Corrupt/unreadable pack — leave overrides empty for it, fall back to hardcoded content.
+                }
             }
-            catch
-            {
-                // Corrupt/unreadable pack — leave overrides empty for it, fall back to hardcoded content.
-            }
+
+            _didLoad = true;
         }
     }
 
