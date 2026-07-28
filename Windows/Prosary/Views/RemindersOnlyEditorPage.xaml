@@ -8,11 +8,13 @@
     x:Name="Root"
     mc:Ignorable="d">
 
-    <!-- Lightweight reminders-only editor for the 5 non-configurable devotion kinds — reachable
-         from FavoritesListPage's star row bell button. Ported from iOS's
-         RemindersOnlyEditorView/Android's RemindersOnlyEditorScreen.kt. Mirrors
-         FavoriteEditorPage's Reminders section exactly (same ReminderRowTemplate shape), since
-         both bind through the shared RemindersEditorViewModel. -->
+    <!-- The editor for the generic (bundle-driven) devotions — reachable from
+         FavoritesListPage's star row bell button. An Options section (schema-driven rows from
+         the bundle's options.json — e.g. the Franciscan Crown's optional closing devotions)
+         above the Reminders section, which mirrors FavoriteEditorPage's exactly (same
+         ReminderRowTemplate shape), since both bind through the shared
+         RemindersEditorViewModel. Ported from iOS's RemindersOnlyEditorView/Android's
+         RemindersOnlyEditorScreen.kt. -->
     <Page.Resources>
         <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="13" />
@@ -24,6 +26,27 @@
             <Setter Property="CornerRadius" Value="12" />
             <Setter Property="Padding" Value="14" />
         </Style>
+
+        <DataTemplate x:Key="OptionRowTemplate">
+            <StackPanel Padding="0,4">
+                <Grid ColumnSpacing="8" Visibility="{Binding IsToggle, Converter={StaticResource BoolToVisibility}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding Label}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{Binding IsOn, Mode=TwoWay}" />
+                </Grid>
+                <Grid ColumnSpacing="8" Visibility="{Binding IsChoice, Converter={StaticResource BoolToVisibility}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding Label}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                    <ComboBox Grid.Column="1" ItemsSource="{Binding Cases}" SelectedItem="{Binding SelectedCase, Mode=TwoWay}" DisplayMemberPath="LocalizedName" MinWidth="160" />
+                </Grid>
+            </StackPanel>
+        </DataTemplate>
 
         <DataTemplate x:Key="ReminderRowTemplate">
             <Grid ColumnSpacing="8" Padding="0,4">
@@ -60,6 +83,13 @@
 
         <ScrollViewer Grid.Row="1">
             <StackPanel Spacing="20" MaxWidth="480" HorizontalAlignment="Center" Padding="16">
+
+                <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.HasOptions, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                    <TextBlock Text="OPTIONS" Style="{StaticResource SectionHeaderStyle}" />
+                    <Border Style="{StaticResource SectionCardStyle}">
+                        <ItemsControl ItemsSource="{x:Bind ViewModel.OptionRows}" ItemTemplate="{StaticResource OptionRowTemplate}" />
+                    </Border>
+                </StackPanel>
 
                 <StackPanel Spacing="8">
                     <TextBlock Text="REMINDERS" Style="{StaticResource SectionHeaderStyle}" />

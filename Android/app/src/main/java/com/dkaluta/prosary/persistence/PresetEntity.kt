@@ -40,6 +40,10 @@ data class PresetEntity(
     // default. Added in DB version 4 (see MIGRATION_3_4).
     val variantId: String? = null,
 
+    // JSON-encoded Map<String, String> of the favorite's options.json choices (see
+    // Prayer.customOptions). Added in DB version 5 (see MIGRATION_4_5).
+    val customOptionsJson: String = "{}",
+
     // Rosary-specific fields (populated when kind == Rosary)
     val mysterySelectionMode: String = MysterySelectionMode.TodaysMysteries.name,
     val specificMysteryGroup: String = MysteryGroup.Joyful.name,
@@ -87,6 +91,7 @@ data class PresetEntity(
             languageCode = languageCode,
             customDevotionId = resolvedDevotionId,
             variantId = variantId,
+            customOptions = customOptionsFromJson(customOptionsJson),
             rosary = RosaryOptions(
                 mysterySelectionMode = runCatching { MysterySelectionMode.valueOf(mysterySelectionMode) }
                     .getOrDefault(MysterySelectionMode.TodaysMysteries),
@@ -123,6 +128,7 @@ data class PresetEntity(
                 kind = prayer.kind.name,
                 customDevotionId = prayer.customDevotionId,
                 variantId = prayer.variantId,
+                customOptionsJson = customOptionsToJson(prayer.customOptions),
                 mysterySelectionMode = prayer.rosary.mysterySelectionMode.name,
                 specificMysteryGroup = prayer.rosary.specificMysteryGroup.name,
                 specificMysteryOrder = prayer.rosary.specificMysteryOrder,
@@ -139,6 +145,17 @@ data class PresetEntity(
                 remindersJson = remindersToJson(prayer.reminders),
             )
         }
+
+        private fun customOptionsToJson(options: Map<String, String>): String {
+            val obj = JSONObject()
+            for ((key, value) in options) obj.put(key, value)
+            return obj.toString()
+        }
+
+        private fun customOptionsFromJson(json: String): Map<String, String> = runCatching {
+            val obj = JSONObject(json)
+            obj.keys().asSequence().associateWith { obj.getString(it) }
+        }.getOrDefault(emptyMap())
 
         private fun remindersToJson(reminders: List<PrayerReminder>): String {
             val array = JSONArray()

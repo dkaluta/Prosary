@@ -69,9 +69,19 @@ def load_json(path: Path):
         return json.load(f)
 
 
+# (where, expr) for every entry-level "if" — checked against options.json declarations after
+# all entry lists are walked.
+if_refs: list = []
+
+
 def validate_entry(entry: dict, where: str, allow_kind: bool) -> None:
+    if "if" in entry:
+        if not isinstance(entry["if"], str) or not entry["if"]:
+            err(f"{where}: 'if' must be a non-empty string")
+        else:
+            if_refs.append((where, entry["if"]))
     if allow_kind and entry.get("kind") == ANTIPHON_KIND:
-        extra = set(entry) - {"kind"}
+        extra = set(entry) - {"kind", "if"}
         if extra:
             err(f"{where}: a {ANTIPHON_KIND} entry must have no other fields (has {sorted(extra)})")
         return
@@ -122,6 +132,59 @@ def main() -> int:
 
     devotion = load_json(devotion_path)
     dtype = devotion.get("type")
+
+    # --- options.json: user-configurable toggles/choices whose keys entry-level "if"s gate on ---
+    declared_options: dict = {}
+    options_path = src / "options.json"
+    if options_path.exists():
+        option_list = load_json(options_path).get("options")
+        if not isinstance(option_list, list) or not option_list:
+            err("options.json: 'options' must be a non-empty array")
+            option_list = []
+        for i, option in enumerate(option_list):
+            where = f"options[{i}]"
+            key = option.get("key")
+            if not key or not isinstance(key, str):
+                err(f"{where}: missing key")
+                key = None
+            elif key in declared_options:
+                err(f"{where}: duplicate key {key!r}")
+            kind = option.get("kind")
+            if kind not in ("toggle", "choice"):
+                err(f"{where}: kind must be 'toggle' or 'choice'")
+            if not option.get("name"):
+                err(f"{where}: missing name")
+            case_ids: list = []
+            if kind == "toggle":
+                if "cases" in option:
+                    err(f"{where}: a toggle must not have cases")
+                if not isinstance(option.get("default"), bool):
+                    err(f"{where}: a toggle's default must be a boolean")
+            elif kind == "choice":
+                cases = option.get("cases")
+                if not isinstance(cases, list) or len(cases) < 2:
+                    err(f"{where}: a choice needs at least 2 cases")
+                    cases = []
+                for j, case in enumerate(cases):
+                    cid = case.get("id")
+                    if not cid or not isinstance(cid, str):
+                        err(f"{where}.cases[{j}]: missing id")
+                    elif cid in case_ids:
+                        err(f"{where}.cases[{j}]: duplicate id {cid!r}")
+                    else:
+                        case_ids.append(cid)
+                    if not case.get("name"):
+                        err(f"{where}.cases[{j}]: missing name")
+                    extra = set(case) - {"id", "name", "nameByLanguage"}
+                    if extra:
+                        err(f"{where}.cases[{j}]: unknown fields {sorted(extra)}")
+                if option.get("default") not in case_ids:
+                    err(f"{where}: default must be one of the declared case ids")
+            extra = set(option) - {"key", "kind", "name", "nameByLanguage", "default", "cases"}
+            if extra:
+                err(f"{where}: unknown fields {sorted(extra)}")
+            if key:
+                declared_options[key] = (kind, set(case_ids))
     body_keys: set = set()
     title_keys: set = set()
     image_keys: set = set()
@@ -228,6 +291,26 @@ def main() -> int:
     else:
         err(f"devotion.json: unknown type {dtype!r}")
         return report()
+
+    # --- Entry "if" expressions must reference declared options ---
+    for where, expr in if_refs:
+        key, wanted_case = expr, None
+        if "=" in expr:
+            key, _, wanted_case = expr.partition("=")
+        elif expr.startswith("!"):
+            key = expr[1:]
+        declared = declared_options.get(key)
+        if declared is None:
+            err(f"{where}: 'if' references undeclared option {key!r}")
+            continue
+        kind, case_ids = declared
+        if wanted_case is not None:
+            if kind != "choice":
+                err(f"{where}: '{expr}' — {key!r} is a {kind}, not a choice")
+            elif wanted_case not in case_ids:
+                err(f"{where}: '{expr}' — {wanted_case!r} is not a case of {key!r}")
+        elif kind != "toggle":
+            err(f"{where}: '{expr}' — bare/negated 'if' needs a toggle, {key!r} is a {kind}")
 
     # --- Reference resolution per language ---
     allowlist_path = src / "validation-allowlist.json"

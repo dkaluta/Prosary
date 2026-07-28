@@ -32,6 +32,11 @@ data class Prayer(
      * meaningful when kind == Custom and the bundle declares variants. */
     var variantId: String? = null,
 
+    /** This favorite's choices for the bundle's `options.json` options, keyed by option key —
+     * "true"/"false" for toggles, a case id for choices. Only overrides: an absent key means the
+     * option's declared default. Only meaningful when [kind] == [PrayerKind.Custom]. */
+    var customOptions: Map<String, String> = emptyMap(),
+
     /** Daily reminders to pray this favorite. Scheduled via
      * [com.dkaluta.prosary.reminders.ReminderScheduler]. */
     var reminders: List<PrayerReminder> = emptyList(),

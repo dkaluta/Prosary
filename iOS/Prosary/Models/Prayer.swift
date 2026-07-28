@@ -37,6 +37,11 @@ struct Prayer: Identifiable, Hashable, Codable {
   /// meaningful when `kind == .custom` and the bundle declares variants.
   var variantId: String? = nil
 
+  /// This favorite's choices for the bundle's `options.json` options, keyed by option key —
+  /// "true"/"false" for toggles, a case id for choices. Only overrides: an absent key means the
+  /// option's declared default. Only meaningful when `kind == .custom`.
+  var customOptions: [String: String] = [:]
+
   /// Daily reminders to pray this favorite. Scheduled via `ReminderScheduler`.
   var reminders: [PrayerReminder] = []
 

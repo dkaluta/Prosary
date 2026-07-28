@@ -84,6 +84,10 @@ if [ -f "$SRC_DIR/devotion.json" ]; then
   validate_json "$SRC_DIR/devotion.json"
   cp "$SRC_DIR/devotion.json" "$STAGE_DIR/devotion.json"
 fi
+if [ -f "$SRC_DIR/options.json" ]; then
+  validate_json "$SRC_DIR/options.json"
+  cp "$SRC_DIR/options.json" "$STAGE_DIR/options.json"
+fi
 
 mkdir -p "$STAGE_DIR/images"
 python3 -c "import json; [print(i) for i in json.load(open('$MANIFEST', encoding='utf-8'))['images']]" |

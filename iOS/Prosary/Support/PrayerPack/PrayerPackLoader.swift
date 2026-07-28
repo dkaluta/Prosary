@@ -52,6 +52,10 @@ struct CustomDevotionStep: Decodable {
   let imageKey: String?
   let repeatCount: Int?
   let isScripture: Bool?
+  /// Gates this entry on one of the bundle's `options.json` options: `"key"` (toggle on),
+  /// `"!key"` (toggle off), or `"key=caseId"` (choice equals) — see
+  /// `PrayerEngine.evaluateCondition`. Nil = always included.
+  let condition: String?
   let kind: SpecialKind?
 
   enum SpecialKind: String, Decodable {
@@ -63,7 +67,68 @@ struct CustomDevotionStep: Decodable {
   private enum CodingKeys: String, CodingKey {
     case title, titleKey, subtitle, bodyKey, imageKey, isScripture, kind
     case repeatCount = "repeat"
+    case condition = "if"
   }
+}
+
+/// One user-configurable setting a bundle declares in its `options.json` — a toggle or a
+/// multi-case choice. Entry-level `"if"` expressions gate steps on the resulting values; the
+/// favorite's choices persist in `Prayer.customOptions` (only overrides — an absent key means
+/// this option's `defaultValue`). Structure is enforced at authoring time by
+/// `Shared/tools/validate-devotion.py`.
+struct CustomDevotionOption: Decodable {
+  enum Kind: String, Decodable {
+    case toggle, choice
+  }
+
+  struct Case: Decodable {
+    let id: String
+    let name: String
+    let nameByLanguage: [String: String]?
+
+    var localizedName: String {
+      guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else { return name }
+      return nameByLanguage?[String(uiLanguage)] ?? name
+    }
+  }
+
+  let key: String
+  let kind: Kind
+  /// English UI label; `nameByLanguage` overrides it per UI localization.
+  let name: String
+  let nameByLanguage: [String: String]?
+  /// Canonical string form of the authored `default`: "true"/"false" for a toggle, a case id
+  /// for a choice — the same encoding `Prayer.customOptions` stores.
+  let defaultValue: String
+  let cases: [Case]?
+
+  var localizedName: String {
+    guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else { return name }
+    return nameByLanguage?[String(uiLanguage)] ?? name
+  }
+
+  private enum CodingKeys: String, CodingKey {
+    case key, kind, name, nameByLanguage, cases
+    case defaultValue = "default"
+  }
+
+  init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    key = try container.decode(String.self, forKey: .key)
+    kind = try container.decode(Kind.self, forKey: .kind)
+    name = try container.decode(String.self, forKey: .name)
+    nameByLanguage = try container.decodeIfPresent([String: String].self, forKey: .nameByLanguage)
+    cases = try container.decodeIfPresent([Case].self, forKey: .cases)
+    if let flag = try? container.decode(Bool.self, forKey: .defaultValue) {
+      defaultValue = flag ? "true" : "false"
+    } else {
+      defaultValue = try container.decode(String.self, forKey: .defaultValue)
+    }
+  }
+}
+
+private struct PackOptions: Decodable {
+  let options: [CustomDevotionOption]
 }
 
 /// Parsed `devotion.json` — the complete structural description of a generic devotion.
@@ -206,6 +271,7 @@ enum PrayerPackStore {
   /// bundle-local body text. See `resolveBodyText`.
   private static var rawContentByBundle: [String: [String: [String: String]]] = [:]
   private static var definitionByBundle: [String: CustomDevotionDefinition] = [:]
+  private static var optionsByBundle: [String: [CustomDevotionOption]] = [:]
   /// Bundle ids with a devotion.json, in pack-load order.
   private static var orderedCustomIds: [String] = []
   private static var infoByBundle: [String: CustomDevotionInfo] = [:]
@@ -235,6 +301,13 @@ enum PrayerPackStore {
 
   /// Every loaded bundle id that has a `devotion.json` — i.e. every generic devotion discovered
   /// at load time, in pack-load order, without hardcoding devotion names anywhere in view code.
+  /// The options a bundle's `options.json` declares, in authored order (the editor's display
+  /// order). Empty for bundles without one.
+  static func options(for bundleId: String) -> [CustomDevotionOption] {
+    ensureLoaded()
+    return optionsByBundle[bundleId] ?? []
+  }
+
   static func customDevotionIds() -> [String] {
     ensureLoaded()
     return orderedCustomIds
@@ -326,6 +399,11 @@ enum PrayerPackStore {
       let definition = try decoder.decode(CustomDevotionDefinition.self, from: zip.contents(of: "devotion.json"))
       definitionByBundle[manifest.id] = definition
       orderedCustomIds.append(manifest.id)
+    }
+
+    if zip.fileNames().contains("options.json") {
+      optionsByBundle[manifest.id] =
+        try decoder.decode(PackOptions.self, from: zip.contents(of: "options.json")).options
     }
 
     for name in zip.fileNames() where name.hasPrefix("images/") {

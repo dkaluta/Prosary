@@ -26,9 +26,11 @@ private struct FixedLiturgicalCalendar: LiturgicalCalendarProviding {
 @MainActor
 final class CustomDevotionEngineTests: XCTestCase {
   private func steps(_ bundleId: String, language: String = "en", variantId: String? = nil,
+                     customOptions: [String: String] = [:],
                      calendar: FixedLiturgicalCalendar = FixedLiturgicalCalendar()) -> [RosaryStep] {
     PrayerEngine(calendar: calendar).buildSteps(
-      for: Prayer(kind: .custom, languageCode: language, customDevotionId: bundleId, variantId: variantId))
+      for: Prayer(kind: .custom, languageCode: language, customDevotionId: bundleId,
+                  variantId: variantId, customOptions: customOptions))
   }
 
   // MARK: - Trisagion (flat)
@@ -184,6 +186,35 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertTrue(steps[88].isAntiphon)
     XCTAssertEqual(steps[88].imageKey, "madonna_and_child")
     XCTAssertEqual(steps.last?.title, "Sign of the Cross")
+  }
+
+  /// The Crown's two optional closing devotions (the 72-completion Hail Marys, the Our Father
+  /// for the Pope's intentions) default ON — the untouched 90-step sequence above is the proof
+  /// that adding options.json changed nothing. Turning them off drops exactly those steps.
+  func testFranciscanCrownOptionsDropTheirClosingSteps() {
+    let noSeventyTwo = steps("franciscanCrown", customOptions: ["seventyTwoHailMarys": "false"])
+    XCTAssertEqual(noSeventyTwo.count, 88)
+    XCTAssertFalse(noSeventyTwo.contains { $0.subtitle == "For the years of Our Lady's life" })
+
+    let neither = steps("franciscanCrown", customOptions: [
+      "seventyTwoHailMarys": "false", "popeIntentions": "false",
+    ])
+    XCTAssertEqual(neither.count, 87)
+    XCTAssertFalse(neither.contains { $0.subtitle == "For the intentions of the Holy Father" })
+
+    // An override for a key the bundle doesn't declare is ignored, not an error.
+    XCTAssertEqual(steps("franciscanCrown", customOptions: ["noSuchOption": "false"]).count, 90)
+  }
+
+  func testConditionExpressionEvaluation() {
+    let values = ["fatima": "true", "creed": "false", "antiphon": "reginaCaeli"]
+    XCTAssertTrue(PrayerEngine.evaluateCondition("fatima", values: values))
+    XCTAssertFalse(PrayerEngine.evaluateCondition("creed", values: values))
+    XCTAssertFalse(PrayerEngine.evaluateCondition("!fatima", values: values))
+    XCTAssertTrue(PrayerEngine.evaluateCondition("!creed", values: values))
+    XCTAssertTrue(PrayerEngine.evaluateCondition("antiphon=reginaCaeli", values: values))
+    XCTAssertFalse(PrayerEngine.evaluateCondition("antiphon=salveRegina", values: values))
+    XCTAssertFalse(PrayerEngine.evaluateCondition("missing", values: values))
   }
 
   func testFranciscanCrownAntiphonFollowsTheSeason() {

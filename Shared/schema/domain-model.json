@@ -44,6 +44,10 @@
           "default": null,
           "description": "Which of the bundle's variants (alternate step-sets, e.g. the Stations' traditional vs. scriptural forms) this favorite prays. Null/nil = the bundle's default (first) variant; only meaningful when kind == custom and the bundle declares variants."
         },
+        "customOptions": {
+          "type": "map<string, string>",
+          "description": "This favorite's choices for the bundle's options.json options, keyed by option key — \"true\"/\"false\" for toggles, a case id for choices. Only overrides: an absent key means the option's declared default. Persisted as one JSON column on every platform (customOptionsJSON Data / customOptionsJson TEXT / CustomOptionsJson TEXT). Only meaningful when kind == custom."
+        },
         "reminders": {
           "type": "PrayerReminder[]",
           "default": []
@@ -344,6 +348,10 @@
           "type": "bool? = false",
           "description": "The body is a quoted Bible passage, so it renders in the scripture typeface (same flag the Rosary's mystery announcements carry). Set on the scriptural Stations' fourteen station steps."
         },
+        "if": {
+          "type": "string?",
+          "description": "Gates this entry on one of the bundle's options.json options: \"key\" (toggle on), \"!key\" (toggle off), or \"key=caseId\" (choice equals) — evaluated against the bundle defaults overlaid with Prayer.customOptions; the entry is dropped when it fails. The validator checks every expression references a declared option/case."
+        },
         "kind": {
           "type": "string?",
           "description": "\"seasonalMarianAntiphon\" (closing only): emitted by the engine's shared, calendar-dependent antiphon builder instead of bundle data."
@@ -384,6 +392,33 @@
         "hasClosingCross": {
           "type": "boolean?",
           "description": "rosary type only; when true the closing cross must be the literal last step (bead-track invariant), and BeadLayout.build receives it."
+        }
+      }
+    },
+    "CustomDevotionOption": {
+      "description": "One user-configurable setting a bundle declares in its options.json (a separate bundle file, staged by both packers like catalog.json) — a toggle or a multi-case choice. Entry-level \"if\" expressions gate steps on the resulting values; the generic-devotion editor renders one schema-driven row per option. First real use: the Franciscan Crown's optional closing devotions (seventyTwoHailMarys, popeIntentions — both default true so the traditional sequence is unchanged).",
+      "fields": {
+        "key": {
+          "type": "string",
+          "description": "Unique within the bundle; what entry \"if\" expressions and Prayer.customOptions key on."
+        },
+        "kind": {
+          "type": "enum(toggle | choice)"
+        },
+        "name": {
+          "type": "string",
+          "description": "English UI label (the app-wide convention); nameByLanguage overrides it per UI localization."
+        },
+        "nameByLanguage": {
+          "type": "map<string, string>?"
+        },
+        "default": {
+          "type": "bool | string",
+          "description": "A JSON boolean for a toggle, a case id for a choice. Exposed to the engines/editor in canonical string form (\"true\"/\"false\" or the case id) — the same encoding Prayer.customOptions stores."
+        },
+        "cases": {
+          "type": "object[]?",
+          "description": "choice only, >= 2: [{id, name, nameByLanguage?}]."
         }
       }
     }

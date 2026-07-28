@@ -10,11 +10,12 @@ using Prosary.Services;
 namespace Prosary.ViewModels;
 
 /// <summary>
-/// Drives the lightweight reminders-only editor for the generic (bundle-driven) devotions —
-/// these have no name/language/per-favorite options to edit (see <see cref="FavoritesViewModel"/>),
-/// just reminders. Reachable from the star row's bell button, and only once the devotion is
-/// favorited (a <see cref="Prayer"/> row must already exist to attach reminders to — this
-/// ViewModel never creates one, unlike <see cref="FavoriteEditorViewModel"/>). Preset
+/// Drives the editor for the generic (bundle-driven) devotions — these have no name/language to
+/// edit (see <see cref="FavoritesViewModel"/>), just the bundle's own <c>options.json</c>
+/// options (schema-driven toggle/choice rows, e.g. the Franciscan Crown's optional closing
+/// devotions) and reminders. Reachable from the star row's bell button, and only once the
+/// devotion is favorited (a <see cref="Prayer"/> row must already exist to attach settings to —
+/// this ViewModel never creates one, unlike <see cref="FavoriteEditorViewModel"/>). Preset
 /// quick-toggle hours and their footer come from the devotion's bundle manifest (the Angelus's
 /// bell times). Mirrors iOS's RemindersOnlyEditorView/Android's RemindersOnlyEditorScreen.
 /// </summary>
@@ -27,8 +28,13 @@ public partial class RemindersOnlyEditorViewModel : ObservableObject
 
     public RemindersEditorViewModel RemindersEditor { get; } = new();
 
+    public ObservableCollection<DevotionOptionRowViewModel> OptionRows { get; } = new();
+
     [ObservableProperty]
     private string _title = string.Empty;
+
+    [ObservableProperty]
+    private bool _hasOptions;
 
     public RemindersOnlyEditorViewModel(IPresetStore presets, IReminderScheduler scheduler)
     {
@@ -55,6 +61,21 @@ public partial class RemindersOnlyEditorViewModel : ObservableObject
             ? PrayerPackStore.Info(bundleId)
             : null;
         Title = info?.LocalizedDisplayName ?? prayer.Kind.DisplayName();
+
+        OptionRows.Clear();
+        if (prayer.CustomDevotionId is { } devotionId)
+        {
+            foreach (var option in PrayerPackStore.Options(devotionId))
+            {
+                // Rows read through to the option's declared default so they show the effective
+                // value even before the user has ever touched them; Save stores explicit
+                // overrides for every row.
+                var value = prayer.CustomOptions.GetValueOrDefault(option.Key) ?? option.DefaultValue;
+                OptionRows.Add(new DevotionOptionRowViewModel(option, value));
+            }
+        }
+
+        HasOptions = OptionRows.Count > 0;
         RemindersEditor.PresetHours = info?.ReminderPresetHours ?? [];
         RemindersEditor.PresetFooter = info?.LocalizedReminderPresetFooter;
         RemindersEditor.Reminders = new ObservableCollection<PrayerReminder>(prayer.Reminders);
@@ -68,7 +89,17 @@ public partial class RemindersOnlyEditorViewModel : ObservableObject
             return;
         }
 
-        var toSave = original with { Reminders = [.. RemindersEditor.Reminders] };
+        var customOptions = new Dictionary<string, string>(original.CustomOptions);
+        foreach (var row in OptionRows)
+        {
+            customOptions[row.Key] = row.Value;
+        }
+
+        var toSave = original with
+        {
+            Reminders = [.. RemindersEditor.Reminders],
+            CustomOptions = customOptions,
+        };
         await _presets.SaveAsync(toSave);
 
         // Cancel the original's reminders (by their old ids) before scheduling the new set —
@@ -82,4 +113,37 @@ public partial class RemindersOnlyEditorViewModel : ObservableObject
 
     [RelayCommand]
     private void Cancel() => Router.GoBack();
+}
+
+/// <summary>One schema-driven row of the editor's Options section — a ToggleSwitch (toggle
+/// kind) or a ComboBox of the declared cases (choice kind), initialized from the favorite's
+/// stored value (or the option's default) and read back via <see cref="Value"/> on save.</summary>
+public partial class DevotionOptionRowViewModel : ObservableObject
+{
+    private readonly CustomDevotionOption _option;
+
+    [ObservableProperty]
+    private bool _isOn;
+
+    [ObservableProperty]
+    private CustomDevotionOption.Case? _selectedCase;
+
+    public DevotionOptionRowViewModel(CustomDevotionOption option, string value)
+    {
+        _option = option;
+        _isOn = value == "true";
+        _selectedCase = option.Cases?.FirstOrDefault(c => c.Id == value) ?? option.Cases?.FirstOrDefault();
+    }
+
+    public string Key => _option.Key;
+    public string Label => _option.LocalizedName;
+    public bool IsToggle => _option.Kind == CustomDevotionOption.OptionKind.Toggle;
+    public bool IsChoice => _option.Kind == CustomDevotionOption.OptionKind.Choice;
+    public IReadOnlyList<CustomDevotionOption.Case> Cases => _option.Cases ?? [];
+
+    /// <summary>The row's current value in the CustomOptions string encoding — "true"/"false"
+    /// for a toggle, the selected case id for a choice.</summary>
+    public string Value => IsToggle
+        ? (IsOn ? "true" : "false")
+        : SelectedCase?.Id ?? _option.DefaultValue;
 }

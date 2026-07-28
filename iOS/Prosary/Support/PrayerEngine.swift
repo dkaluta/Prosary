@@ -44,7 +44,8 @@ struct PrayerEngine {
     case .custom:
       guard let bundleId = prayer.customDevotionId else { return [] }
       return buildCustomDevotionSteps(
-        bundleId: bundleId, languageCode: prayer.languageCode, variantId: prayer.variantId)
+        bundleId: bundleId, languageCode: prayer.languageCode, variantId: prayer.variantId,
+        optionOverrides: prayer.customOptions)
     }
   }
 
@@ -267,23 +268,54 @@ struct PrayerEngine {
   /// Angelus's Eastertide whole-sequence swap); the decade/bead-structured "rosary" type covers
   /// Franciscan Crown/Seven Sorrows/Divine Mercy-shaped ones.
   private func buildCustomDevotionSteps(
-    bundleId: String, languageCode: String?, variantId: String? = nil
+    bundleId: String, languageCode: String?, variantId: String? = nil,
+    optionOverrides: [String: String] = [:]
   ) -> [RosaryStep] {
     guard let definition = PrayerPackStore.definition(for: bundleId) else { return [] }
+    // Effective option values: the bundle's declared defaults overlaid with the favorite's
+    // stored choices. Overrides for keys the bundle no longer declares are ignored, so a stale
+    // favorite can't gate on options that stopped existing.
+    var optionValues: [String: String] = [:]
+    for option in PrayerPackStore.options(for: bundleId) {
+      optionValues[option.key] = optionOverrides[option.key] ?? option.defaultValue
+    }
     switch definition.type {
     case .steps:
       let (baseSteps, eastertideSteps) = definition.resolvedSteps(variantId: variantId)
       let entries = (calendar.isEasterSeasonToday() ? eastertideSteps : nil) ?? baseSteps
-      return entries.flatMap { expand($0, bundleId: bundleId, languageCode: languageCode) }
+      return entries.flatMap {
+        expand($0, bundleId: bundleId, languageCode: languageCode, optionValues: optionValues)
+      }
     case .rosary:
-      return buildCustomRosarySteps(definition, bundleId: bundleId, languageCode: languageCode)
+      return buildCustomRosarySteps(
+        definition, bundleId: bundleId, languageCode: languageCode, optionValues: optionValues)
     }
+  }
+
+  /// Evaluates an entry's `"if"` gate against the effective option values: `"key"` — toggle
+  /// on; `"!key"` — toggle off; `"key=caseId"` — choice equals. The validator guarantees every
+  /// authored expression references a declared option, so a missing key (impossible for shipped
+  /// bundles) simply reads as "not on".
+  static func evaluateCondition(_ expression: String, values: [String: String]) -> Bool {
+    if let equals = expression.firstIndex(of: "=") {
+      return values[String(expression[..<equals])] == String(expression[expression.index(after: equals)...])
+    }
+    if expression.hasPrefix("!") {
+      return values[String(expression.dropFirst())] != "true"
+    }
+    return values[expression] == "true"
   }
 
   /// Expands one `devotion.json` entry into its step(s): resolves the title (literal or
   /// translated `titleKey`) and body, and unrolls `repeat` into "(h of n)"-suffixed copies —
   /// deliberately without bead fields, matching the hardcoded devotions' closing Hail Marys.
-  private func expand(_ entry: CustomDevotionStep, bundleId: String, languageCode: String?) -> [RosaryStep] {
+  private func expand(
+    _ entry: CustomDevotionStep, bundleId: String, languageCode: String?,
+    optionValues: [String: String] = [:]
+  ) -> [RosaryStep] {
+    if let condition = entry.condition, !Self.evaluateCondition(condition, values: optionValues) {
+      return []
+    }
     if entry.kind == .seasonalMarianAntiphon {
       return [buildMarianAntiphonStep(calendar.seasonalMarianAntiphonToday(), languageCode: languageCode)]
     }
@@ -313,7 +345,8 @@ struct PrayerEngine {
   /// `hailMaryIndexInDecade` on minors only, "ordinal — title" subtitles) so the bead track and
   /// step chrome behave identically to the previously hardcoded decade devotions.
   private func buildCustomRosarySteps(
-    _ definition: CustomDevotionDefinition, bundleId: String, languageCode: String?
+    _ definition: CustomDevotionDefinition, bundleId: String, languageCode: String?,
+    optionValues: [String: String] = [:]
   ) -> [RosaryStep] {
     guard let decades = definition.decades else { return [] }
     func resolve(_ key: String) -> String {
@@ -322,7 +355,8 @@ struct PrayerEngine {
 
     var steps: [RosaryStep] = []
     for entry in definition.opening ?? [] {
-      steps.append(contentsOf: expand(entry, bundleId: bundleId, languageCode: languageCode))
+      steps.append(contentsOf: expand(
+        entry, bundleId: bundleId, languageCode: languageCode, optionValues: optionValues))
     }
 
     let fruitLabel = PrayerTranslations.get(languageCode: languageCode, key: .fructusMysteriiLabel)
@@ -361,7 +395,8 @@ struct PrayerEngine {
     }
 
     for entry in definition.closing ?? [] {
-      steps.append(contentsOf: expand(entry, bundleId: bundleId, languageCode: languageCode))
+      steps.append(contentsOf: expand(
+        entry, bundleId: bundleId, languageCode: languageCode, optionValues: optionValues))
     }
     return steps
   }

@@ -78,6 +78,15 @@ class PrayerPackLoaderTest {
     }
 
     @Test
+    fun franciscanCrownDeclaresItsOptions() {
+        val options = PrayerPackStore.options("franciscanCrown")
+        assertEquals(listOf("seventyTwoHailMarys", "popeIntentions"), options.map { it.key })
+        assertTrue(options.all { it.kind == CustomDevotionOption.Kind.Toggle && it.defaultValue == "true" })
+        assertEquals("Complete the 72 Hail Marys", options[0].name)
+        assertTrue(PrayerPackStore.options("angelus").isEmpty())
+    }
+
+    @Test
     fun stationsPackProvidesItsImageData() {
         val data = PrayerPackStore.imageData("station_01_condemned_to_death")
         assertTrue((data?.size ?: 0) > 0)

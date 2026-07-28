@@ -36,6 +36,11 @@ public sealed record Prayer
     /// variants.</summary>
     public string? VariantId { get; init; } = null;
 
+    /// <summary>This favorite's choices for the bundle's <c>options.json</c> options, keyed by
+    /// option key — "true"/"false" for toggles, a case id for choices. Only overrides: an absent
+    /// key means the option's declared default. Only meaningful when Kind == Custom.</summary>
+    public Dictionary<string, string> CustomOptions { get; init; } = new();
+
     /// <summary>Daily reminders to pray this favorite. Scheduled via <c>WindowsReminderScheduler</c>.</summary>
     public List<PrayerReminder> Reminders { get; init; } = [];
 

@@ -23,8 +23,9 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         string bundleId, string? languageCode,
         bool isEasterSeason = false,
         MarianAntiphonOption seasonalAntiphon = MarianAntiphonOption.SalveRegina,
-        string? variantId = null) =>
-        PrayerEngine.BuildCustomDevotionSteps(bundleId, languageCode, isEasterSeason, seasonalAntiphon, variantId);
+        string? variantId = null,
+        Dictionary<string, string>? customOptions = null) =>
+        PrayerEngine.BuildCustomDevotionSteps(bundleId, languageCode, isEasterSeason, seasonalAntiphon, variantId, customOptions);
 
     // Trisagion (flat)
 
@@ -162,6 +163,53 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     // Franciscan Crown (rosary type, 7×10 + antiphon)
+
+    /// <summary>The Crown's two optional closing devotions (the 72-completion Hail Marys, the
+    /// Our Father for the Pope's intentions) default ON — the untouched 90-step sequence below
+    /// is the proof that adding options.json changed nothing. Turning them off drops exactly
+    /// those steps.</summary>
+    [Fact]
+    public void FranciscanCrownOptionsDropTheirClosingSteps()
+    {
+        var noSeventyTwo = BuildSteps(
+            "franciscanCrown", "en",
+            customOptions: new Dictionary<string, string> { ["seventyTwoHailMarys"] = "false" });
+        Assert.Equal(88, noSeventyTwo.Count);
+        Assert.DoesNotContain(noSeventyTwo, s => s.Subtitle == "For the years of Our Lady's life");
+
+        var neither = BuildSteps(
+            "franciscanCrown", "en",
+            customOptions: new Dictionary<string, string>
+            {
+                ["seventyTwoHailMarys"] = "false",
+                ["popeIntentions"] = "false",
+            });
+        Assert.Equal(87, neither.Count);
+        Assert.DoesNotContain(neither, s => s.Subtitle == "For the intentions of the Holy Father");
+
+        // An override for a key the bundle doesn't declare is ignored, not an error.
+        Assert.Equal(90, BuildSteps(
+            "franciscanCrown", "en",
+            customOptions: new Dictionary<string, string> { ["noSuchOption"] = "false" }).Count);
+    }
+
+    [Fact]
+    public void ConditionExpressionEvaluation()
+    {
+        var values = new Dictionary<string, string>
+        {
+            ["fatima"] = "true",
+            ["creed"] = "false",
+            ["antiphon"] = "reginaCaeli",
+        };
+        Assert.True(PrayerEngine.EvaluateCondition("fatima", values));
+        Assert.False(PrayerEngine.EvaluateCondition("creed", values));
+        Assert.False(PrayerEngine.EvaluateCondition("!fatima", values));
+        Assert.True(PrayerEngine.EvaluateCondition("!creed", values));
+        Assert.True(PrayerEngine.EvaluateCondition("antiphon=reginaCaeli", values));
+        Assert.False(PrayerEngine.EvaluateCondition("antiphon=salveRegina", values));
+        Assert.False(PrayerEngine.EvaluateCondition("missing", values));
+    }
 
     [Fact]
     public void FranciscanCrownNinetyStepSequence()

@@ -36,6 +36,12 @@ public sealed class PresetEntry
     /// bundle's default. CreateTableAsync auto-adds this column to existing databases.</summary>
     public string? VariantId { get; set; } = null;
 
+    /// <summary>JSON-encoded <c>Dictionary&lt;string, string&gt;</c> of the favorite's
+    /// options.json choices (see <c>Prayer.CustomOptions</c>). CreateTableAsync auto-adds this
+    /// column to existing databases.</summary>
+    [NotNull]
+    public string CustomOptionsJson { get; set; } = "{}";
+
     // Flattened RosaryOptions (only meaningful when Kind == Rosary).
     public MysterySelectionMode MysterySelectionMode { get; set; } = MysterySelectionMode.TodaysMysteries;
     public MysteryGroup SpecificMysteryGroup { get; set; } = MysteryGroup.Joyful;
@@ -74,6 +80,7 @@ public sealed class PresetEntry
         LanguageCode = LanguageCode,
         CustomDevotionId = CustomDevotionId,
         VariantId = VariantId,
+        CustomOptions = DeserializeCustomOptions(CustomOptionsJson),
         Rosary = new RosaryOptions
         {
             MysterySelectionMode = MysterySelectionMode,
@@ -106,6 +113,7 @@ public sealed class PresetEntry
         LanguageCode = prayer.LanguageCode,
         CustomDevotionId = prayer.CustomDevotionId,
         VariantId = prayer.VariantId,
+        CustomOptionsJson = JsonSerializer.Serialize(prayer.CustomOptions),
         MysterySelectionMode = prayer.Rosary.MysterySelectionMode,
         SpecificMysteryGroup = prayer.Rosary.SpecificMysteryGroup,
         SpecificMysteryOrder = prayer.Rosary.SpecificMysteryOrder,
@@ -121,6 +129,18 @@ public sealed class PresetEntry
         JesusPrayerCount = prayer.JesusPrayer.Target is JesusPrayerTarget.Count(var n) ? n : 33,
         RemindersJson = JsonSerializer.Serialize(prayer.Reminders),
     };
+
+    private static Dictionary<string, string> DeserializeCustomOptions(string json)
+    {
+        try
+        {
+            return JsonSerializer.Deserialize<Dictionary<string, string>>(json) ?? new();
+        }
+        catch (JsonException)
+        {
+            return new();
+        }
+    }
 
     private static List<PrayerReminder> DeserializeReminders(string json)
     {

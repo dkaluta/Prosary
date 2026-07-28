@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -25,19 +26,22 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.dkaluta.prosary.content.prayerpack.CustomDevotionOption
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.reminders.ReminderScheduler
+import com.dkaluta.prosary.ui.presets.OptionPickerField
 import com.dkaluta.prosary.services.LocalAppServices
 import kotlinx.coroutines.launch
 
-/** Lightweight reminders editor for the generic (bundle-driven) devotions — these have no name,
- * language, or per-favorite options to edit (see FavoritesListScreen), just reminders. Reachable
- * from the star row's bell button, and only once the devotion is favorited (a Prayer row must
- * already exist to attach reminders to — this screen never creates one). Preset quick-toggle
- * hours and their footer come from the devotion's bundle manifest (the Angelus's bell times).
- * Mirrors iOS's RemindersOnlyEditorView. */
+/** The editor for the generic (bundle-driven) devotions — these have no name or language to
+ * edit (see FavoritesListScreen), just the bundle's own `options.json` options (schema-driven
+ * toggle/choice rows, e.g. the Franciscan Crown's optional closing devotions) and reminders.
+ * Reachable from the star row's bell button, and only once the devotion is favorited (a Prayer
+ * row must already exist to attach settings to — this screen never creates one). Preset
+ * quick-toggle hours and their footer come from the devotion's bundle manifest (the Angelus's
+ * bell times). Mirrors iOS's RemindersOnlyEditorView. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
@@ -101,6 +105,37 @@ fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(16.dp),
         ) {
+            val options = current.customDevotionId?.let { PrayerPackStore.options(it) }.orEmpty()
+            if (options.isNotEmpty()) {
+                FormSection(title = "Options") {
+                    for (option in options) {
+                        // Rows read through to the option's declared default so they show the
+                        // effective value even before the user has ever touched them; changes
+                        // store an explicit override.
+                        val value = current.customOptions[option.key] ?: option.defaultValue
+                        fun set(newValue: String) {
+                            prayer = current.copy(customOptions = current.customOptions + (option.key to newValue))
+                        }
+                        when (option.kind) {
+                            CustomDevotionOption.Kind.Toggle ->
+                                SwitchRow(option.localizedName, value == "true") {
+                                    set(if (it) "true" else "false")
+                                }
+                            CustomDevotionOption.Kind.Choice ->
+                                OptionPickerField(
+                                    label = option.localizedName,
+                                    options = option.cases.orEmpty().map { it.id },
+                                    selected = value,
+                                    optionLabel = { id ->
+                                        option.cases.orEmpty().firstOrNull { it.id == id }?.localizedName ?: id
+                                    },
+                                    onSelect = { set(it) },
+                                    modifier = Modifier.fillMaxWidth(),
+                                )
+                        }
+                    }
+                }
+            }
             RemindersSection(
                 reminders = current.reminders,
                 presetHours = info?.reminderPresetHours.orEmpty(),

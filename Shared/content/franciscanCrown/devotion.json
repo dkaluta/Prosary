@@ -49,13 +49,15 @@
       "subtitle": "For the years of Our Lady's life",
       "bodyKey": "aveMaria",
       "imageKey": "madonna_and_child",
-      "repeat": 2
+      "repeat": 2,
+      "if": "seventyTwoHailMarys"
     },
     {
       "title": "Our Father",
       "subtitle": "For the intentions of the Holy Father",
       "bodyKey": "paterNoster",
-      "imageKey": "our_father"
+      "imageKey": "our_father",
+      "if": "popeIntentions"
     },
     {
       "kind": "seasonalMarianAntiphon"

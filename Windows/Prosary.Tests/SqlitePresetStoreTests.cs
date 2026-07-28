@@ -30,6 +30,28 @@ public sealed class SqlitePresetStoreTests : IDisposable
         }
     }
 
+    /// <summary>The generic-devotion fields must survive a real save/load through the SQLite
+    /// row's JSON columns (the domain dictionary has no column of its own).</summary>
+    [Fact]
+    public async Task SaveAsync_RoundTripsVariantAndCustomOptions()
+    {
+        var prayer = new Prayer
+        {
+            Name = "Crown, short form",
+            Kind = PrayerKind.Custom,
+            CustomDevotionId = "franciscanCrown",
+            VariantId = "scriptural",
+            CustomOptions = new Dictionary<string, string> { ["seventyTwoHailMarys"] = "false" },
+        };
+        await _store.SaveAsync(prayer);
+
+        var loaded = await _store.GetAsync(prayer.Id);
+        Assert.NotNull(loaded);
+        Assert.Equal("franciscanCrown", loaded!.CustomDevotionId);
+        Assert.Equal("scriptural", loaded.VariantId);
+        Assert.Equal("false", loaded.CustomOptions["seventyTwoHailMarys"]);
+    }
+
     /// <summary>"One default per kind" is scoped per (Kind, CustomDevotionId) — two different
     /// generic devotions must not steal each other's default slot.</summary>
     [Fact]

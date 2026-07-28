@@ -2,11 +2,12 @@
 //  RemindersOnlyEditorView.swift
 //  Prosary
 //
-//  Lightweight reminders editor for the generic (bundle-driven) devotions — these have no name,
-//  language, or per-favorite options to edit (see FavoritesListView), just reminders. Reachable
-//  from the star row's bell button, and only once the devotion is favorited (a Prayer row must
-//  already exist to attach reminders to — this view never creates one). The devotion's display
-//  name and any traditional preset reminder times come from its bundle manifest.
+//  The editor for the generic (bundle-driven) devotions — these have no name or language to
+//  edit (see FavoritesListView), just the bundle's own `options.json` options (schema-driven
+//  toggle/choice rows, e.g. the Franciscan Crown's optional closing devotions) and reminders.
+//  Reachable from the star row's bell button, and only once the devotion is favorited (a Prayer
+//  row must already exist to attach settings to — this view never creates one). The devotion's
+//  display name and any traditional preset reminder times come from its bundle manifest.
 //
 
 import SwiftUI
@@ -23,8 +24,28 @@ struct RemindersOnlyEditorView: View {
     prayer.customDevotionId.flatMap { PrayerPackStore.info(for: $0) }
   }
 
+  private var options: [CustomDevotionOption] {
+    prayer.customDevotionId.map { PrayerPackStore.options(for: $0) } ?? []
+  }
+
   var body: some View {
     Form {
+      if !options.isEmpty {
+        Section("favoriteEditor.options") {
+          ForEach(options, id: \.key) { option in
+            switch option.kind {
+            case .toggle:
+              Toggle(option.localizedName, isOn: toggleBinding(for: option))
+            case .choice:
+              Picker(option.localizedName, selection: choiceBinding(for: option)) {
+                ForEach(option.cases ?? [], id: \.id) { optionCase in
+                  Text(optionCase.localizedName).tag(optionCase.id)
+                }
+              }
+            }
+          }
+        }
+      }
       RemindersSection(
         reminders: $prayer.reminders,
         presetHours: info?.reminderPresetHours ?? [],
@@ -43,6 +64,20 @@ struct RemindersOnlyEditorView: View {
         Button("favoriteEditor.save") { save() }
       }
     }
+  }
+
+  // Bindings read through to the option's declared default so the rows show the effective
+  // value even before the user has ever touched them; writes store an explicit override.
+  private func toggleBinding(for option: CustomDevotionOption) -> Binding<Bool> {
+    Binding(
+      get: { (prayer.customOptions[option.key] ?? option.defaultValue) == "true" },
+      set: { prayer.customOptions[option.key] = $0 ? "true" : "false" })
+  }
+
+  private func choiceBinding(for option: CustomDevotionOption) -> Binding<String> {
+    Binding(
+      get: { prayer.customOptions[option.key] ?? option.defaultValue },
+      set: { prayer.customOptions[option.key] = $0 })
   }
 
   private func save() {

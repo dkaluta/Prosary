@@ -51,7 +51,9 @@ class PrayerEngine(
         PrayerKind.Custom -> {
             val bundleId = prayer.customDevotionId
             if (bundleId != null) {
-                buildCustomDevotionSteps(bundleId, prayer.languageCode, prayer.variantId)
+                buildCustomDevotionSteps(
+                    bundleId, prayer.languageCode, prayer.variantId, prayer.customOptions,
+                )
             } else {
                 emptyList()
             }
@@ -294,24 +296,57 @@ class PrayerEngine(
         bundleId: String,
         languageCode: String?,
         variantId: String? = null,
+        optionOverrides: Map<String, String> = emptyMap(),
     ): List<RosaryStep> {
         val definition = PrayerPackStore.definition(bundleId) ?: return emptyList()
+        // Effective option values: the bundle's declared defaults overlaid with the favorite's
+        // stored choices. Overrides for keys the bundle no longer declares are ignored, so a
+        // stale favorite can't gate on options that stopped existing.
+        val optionValues = PrayerPackStore.options(bundleId).associate { option ->
+            option.key to (optionOverrides[option.key] ?: option.defaultValue)
+        }
         return when (definition.type) {
             CustomDevotionDefinition.DevotionType.Steps -> {
                 val (baseSteps, eastertideSteps) = definition.resolvedSteps(variantId)
                 val entries = (if (calendar.isEasterSeasonToday()) eastertideSteps else null)
                     ?: baseSteps
-                entries.flatMap { expand(it, bundleId, languageCode) }
+                entries.flatMap { expand(it, bundleId, languageCode, optionValues) }
             }
             CustomDevotionDefinition.DevotionType.Rosary ->
-                buildCustomRosarySteps(definition, bundleId, languageCode)
+                buildCustomRosarySteps(definition, bundleId, languageCode, optionValues)
+        }
+    }
+
+    companion object {
+        /** Evaluates an entry's `"if"` gate against the effective option values: `"key"` —
+         * toggle on; `"!key"` — toggle off; `"key=caseId"` — choice equals. The validator
+         * guarantees every authored expression references a declared option, so a missing key
+         * (impossible for shipped bundles) simply reads as "not on". */
+        fun evaluateCondition(expression: String, values: Map<String, String>): Boolean {
+            val equals = expression.indexOf('=')
+            if (equals >= 0) {
+                return values[expression.substring(0, equals)] == expression.substring(equals + 1)
+            }
+            if (expression.startsWith("!")) {
+                return values[expression.substring(1)] != "true"
+            }
+            return values[expression] == "true"
         }
     }
 
     /** Expands one `devotion.json` entry into its step(s): resolves the title (literal or
      * translated `titleKey`) and body, and unrolls `repeat` into "(h of n)"-suffixed copies —
      * deliberately without bead fields, matching the hardcoded devotions' closing Hail Marys. */
-    private fun expand(entry: CustomDevotionStep, bundleId: String, languageCode: String?): List<RosaryStep> {
+    private fun expand(
+        entry: CustomDevotionStep,
+        bundleId: String,
+        languageCode: String?,
+        optionValues: Map<String, String> = emptyMap(),
+    ): List<RosaryStep> {
+        val condition = entry.condition
+        if (condition != null && !evaluateCondition(condition, optionValues)) {
+            return emptyList()
+        }
         if (entry.kind == CustomDevotionStep.SpecialKind.SeasonalMarianAntiphon) {
             return listOf(buildMarianAntiphonStep(calendar.seasonalMarianAntiphonToday(), languageCode))
         }
@@ -344,13 +379,14 @@ class PrayerEngine(
         definition: CustomDevotionDefinition,
         bundleId: String,
         languageCode: String?,
+        optionValues: Map<String, String> = emptyMap(),
     ): List<RosaryStep> {
         val decades = definition.decades ?: return emptyList()
         fun resolve(key: String): String = PrayerPackStore.resolveBodyText(bundleId, languageCode, key)
 
         val steps = mutableListOf<RosaryStep>()
         for (entry in definition.opening.orEmpty()) {
-            steps.addAll(expand(entry, bundleId, languageCode))
+            steps.addAll(expand(entry, bundleId, languageCode, optionValues))
         }
 
         val fruitLabel = PrayerTranslations.get(languageCode, PrayerKey.FructusMysteriiLabel)
@@ -398,7 +434,7 @@ class PrayerEngine(
         }
 
         for (entry in definition.closing.orEmpty()) {
-            steps.addAll(expand(entry, bundleId, languageCode))
+            steps.addAll(expand(entry, bundleId, languageCode, optionValues))
         }
         return steps
     }

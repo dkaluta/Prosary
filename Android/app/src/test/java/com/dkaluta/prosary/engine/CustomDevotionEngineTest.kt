@@ -51,11 +51,12 @@ class CustomDevotionEngineTest {
         bundleId: String,
         language: String = "en",
         variantId: String? = null,
+        customOptions: Map<String, String> = emptyMap(),
         calendar: FixedLiturgicalCalendar = FixedLiturgicalCalendar(),
     ): List<RosaryStep> = PrayerEngine(calendar).buildSteps(
         Prayer(
             kind = PrayerKind.Custom, languageCode = language,
-            customDevotionId = bundleId, variantId = variantId,
+            customDevotionId = bundleId, variantId = variantId, customOptions = customOptions,
         ),
     )
 
@@ -229,6 +230,38 @@ class CustomDevotionEngineTest {
         assertTrue(steps[88].isAntiphon)
         assertEquals("madonna_and_child", steps[88].imageKey)
         assertEquals("Sign of the Cross", steps.last().title)
+    }
+
+    /** The Crown's two optional closing devotions (the 72-completion Hail Marys, the Our Father
+     * for the Pope's intentions) default ON — the untouched 90-step sequence above is the proof
+     * that adding options.json changed nothing. Turning them off drops exactly those steps. */
+    @Test
+    fun franciscanCrownOptionsDropTheirClosingSteps() {
+        val noSeventyTwo = steps("franciscanCrown", customOptions = mapOf("seventyTwoHailMarys" to "false"))
+        assertEquals(88, noSeventyTwo.size)
+        assertFalse(noSeventyTwo.any { it.subtitle == "For the years of Our Lady's life" })
+
+        val neither = steps(
+            "franciscanCrown",
+            customOptions = mapOf("seventyTwoHailMarys" to "false", "popeIntentions" to "false"),
+        )
+        assertEquals(87, neither.size)
+        assertFalse(neither.any { it.subtitle == "For the intentions of the Holy Father" })
+
+        // An override for a key the bundle doesn't declare is ignored, not an error.
+        assertEquals(90, steps("franciscanCrown", customOptions = mapOf("noSuchOption" to "false")).size)
+    }
+
+    @Test
+    fun conditionExpressionEvaluation() {
+        val values = mapOf("fatima" to "true", "creed" to "false", "antiphon" to "reginaCaeli")
+        assertTrue(PrayerEngine.evaluateCondition("fatima", values))
+        assertFalse(PrayerEngine.evaluateCondition("creed", values))
+        assertFalse(PrayerEngine.evaluateCondition("!fatima", values))
+        assertTrue(PrayerEngine.evaluateCondition("!creed", values))
+        assertTrue(PrayerEngine.evaluateCondition("antiphon=reginaCaeli", values))
+        assertFalse(PrayerEngine.evaluateCondition("antiphon=salveRegina", values))
+        assertFalse(PrayerEngine.evaluateCondition("missing", values))
     }
 
     @Test

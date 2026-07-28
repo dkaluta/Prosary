@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(entities = [PresetEntity::class], version = 4, exportSchema = false)
+@Database(entities = [PresetEntity::class], version = 5, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun presetDao(): PresetDao
 }
@@ -34,5 +34,13 @@ val MIGRATION_2_3 = object : Migration(2, 3) {
 val MIGRATION_3_4 = object : Migration(3, 4) {
     override fun migrate(db: SupportSQLiteDatabase) {
         db.execSQL("ALTER TABLE presets ADD COLUMN variantId TEXT")
+    }
+}
+
+/** Adds the options.json choices column (e.g. the Franciscan Crown's optional closing
+ * devotions) — see [PresetEntity.customOptionsJson]. */
+val MIGRATION_4_5 = object : Migration(4, 5) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("ALTER TABLE presets ADD COLUMN customOptionsJson TEXT NOT NULL DEFAULT '{}'")
     }
 }

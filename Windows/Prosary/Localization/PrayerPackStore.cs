@@ -44,6 +44,7 @@ public static class PrayerPackStore
     /// <c>devotion.json</c> resolves bundle-local body text. See <see cref="ResolveBodyText"/>.</summary>
     private static readonly Dictionary<string, Dictionary<string, Dictionary<string, string>>> RawContentByBundle = new();
     private static readonly Dictionary<string, CustomDevotionDefinition> DefinitionByBundle = new();
+    private static readonly Dictionary<string, List<CustomDevotionOption>> OptionsByBundle = new();
 
     /// <summary>Bundle ids with a devotion.json, in pack-load order.</summary>
     private static readonly List<string> OrderedCustomIds = new();
@@ -67,6 +68,11 @@ public static class PrayerPackStore
     /// "trisagion". Null for any bundle without one (Rosary, which stays override-only).</summary>
     public static CustomDevotionDefinition? Definition(string bundleId) =>
         DefinitionByBundle.TryGetValue(bundleId, out var definition) ? definition : null;
+
+    /// <summary>The options a bundle's <c>options.json</c> declares, in authored order (the
+    /// editor's display order). Empty for bundles without one.</summary>
+    public static IReadOnlyList<CustomDevotionOption> Options(string bundleId) =>
+        OptionsByBundle.TryGetValue(bundleId, out var options) ? options : [];
 
     /// <summary>Every loaded bundle id that has a <c>devotion.json</c> — i.e. every generic
     /// devotion discovered at load time, in pack-load order, without hardcoding devotion names
@@ -223,6 +229,13 @@ public static class PrayerPackStore
             OrderedCustomIds.Add(manifest.Id);
         }
 
+        if (entries.TryGetValue("options.json", out var optionsEntry))
+        {
+            var packOptions = JsonSerializer.Deserialize<PackOptions>(ReadAllBytes(optionsEntry), JsonOptions)
+                ?? throw new InvalidDataException("options.json did not deserialize");
+            OptionsByBundle[manifest.Id] = packOptions.Options;
+        }
+
         foreach (var entry in entries.Values)
         {
             if (entry.FullName.StartsWith("images/", StringComparison.Ordinal))
@@ -269,6 +282,8 @@ public static class PrayerPackStore
         Dictionary<string, string>? ReminderPresetFooter = null);
 
     private sealed record PackContent(Dictionary<string, string>? Prayers, Dictionary<string, MysteryText>? Mysteries);
+
+    private sealed record PackOptions(List<CustomDevotionOption> Options);
 }
 
 /// <summary>One entry in a generic devotion's <c>devotion.json</c> — a step of the flat "steps"
@@ -286,6 +301,7 @@ public sealed record CustomDevotionStep(
     string? ImageKey = null,
     int? Repeat = null,
     bool? IsScripture = null,
+    string? If = null,
     CustomDevotionStep.SpecialKind? Kind = null)
 {
     public enum SpecialKind
@@ -295,6 +311,52 @@ public sealed record CustomDevotionStep(
         /// data-driven.</summary>
         SeasonalMarianAntiphon,
     }
+}
+
+/// <summary>One user-configurable setting a bundle declares in its <c>options.json</c> — a
+/// toggle or a multi-case choice. Entry-level <c>"if"</c> expressions gate steps on the
+/// resulting values (<see cref="CustomDevotionStep.If"/>); the favorite's choices persist in
+/// <c>Prayer.CustomOptions</c> (only overrides — an absent key means this option's
+/// <see cref="DefaultValue"/>). Structure is enforced at authoring time by
+/// <c>Shared/tools/validate-devotion.py</c>.</summary>
+public sealed record CustomDevotionOption(
+    string Key,
+    CustomDevotionOption.OptionKind Kind,
+    string Name,
+    Dictionary<string, string>? NameByLanguage = null,
+    JsonElement Default = default,
+    List<CustomDevotionOption.Case>? Cases = null)
+{
+    public enum OptionKind
+    {
+        Toggle,
+        Choice,
+    }
+
+    public sealed record Case(
+        string Id,
+        string Name,
+        Dictionary<string, string>? NameByLanguage = null)
+    {
+        public string LocalizedName =>
+            NameByLanguage?.GetValueOrDefault(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
+            ?? Name;
+    }
+
+    /// <summary>Canonical string form of the authored <c>default</c> (a JSON boolean for a
+    /// toggle, a case-id string for a choice): "true"/"false" or the case id — the same
+    /// encoding <c>Prayer.CustomOptions</c> stores.</summary>
+    public string DefaultValue => Default.ValueKind switch
+    {
+        JsonValueKind.True => "true",
+        JsonValueKind.False => "false",
+        JsonValueKind.String => Default.GetString() ?? string.Empty,
+        _ => string.Empty,
+    };
+
+    public string LocalizedName =>
+        NameByLanguage?.GetValueOrDefault(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
+        ?? Name;
 }
 
 /// <summary>Parsed <c>devotion.json</c> — the complete structural description of a generic

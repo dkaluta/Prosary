@@ -85,6 +85,20 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Fact]
+    public void FranciscanCrownDeclaresItsOptions()
+    {
+        var options = PrayerPackStore.Options("franciscanCrown");
+        Assert.Equal(["seventyTwoHailMarys", "popeIntentions"], options.Select(o => o.Key));
+        Assert.All(options, o =>
+        {
+            Assert.Equal(CustomDevotionOption.OptionKind.Toggle, o.Kind);
+            Assert.Equal("true", o.DefaultValue);
+        });
+        Assert.Equal("Complete the 72 Hail Marys", options[0].Name);
+        Assert.Empty(PrayerPackStore.Options("angelus"));
+    }
+
+    [Fact]
     public void StationsPackProvidesItsImageData()
     {
         var data = PrayerPackStore.ImageData("station_01_condemned_to_death");

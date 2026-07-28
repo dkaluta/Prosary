@@ -62,6 +62,14 @@ final class PrayerPackLoaderTests: XCTestCase {
     XCTAssertGreaterThan(data?.count ?? 0, 0)
   }
 
+  func testFranciscanCrownDeclaresItsOptions() {
+    let options = PrayerPackStore.options(for: "franciscanCrown")
+    XCTAssertEqual(options.map(\.key), ["seventyTwoHailMarys", "popeIntentions"])
+    XCTAssertTrue(options.allSatisfy { $0.kind == .toggle && $0.defaultValue == "true" })
+    XCTAssertEqual(options[0].name, "Complete the 72 Hail Marys")
+    XCTAssertTrue(PrayerPackStore.options(for: "angelus").isEmpty)
+  }
+
   func testStationsPackProvidesItsImageData() {
     let data = PrayerPackStore.imageData(for: "station_01_condemned_to_death")
     XCTAssertGreaterThan(data?.count ?? 0, 0)

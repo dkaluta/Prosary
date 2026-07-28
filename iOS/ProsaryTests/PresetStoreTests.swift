@@ -17,6 +17,20 @@ final class PresetStoreTests: XCTestCase {
     MockPresetStore(configs: prayers)
   }
 
+  // MARK: - PresetEntry column mapping
+
+  /// The SwiftData row is the real persistence seam (MockPresetStore stores Prayer structs
+  /// as-is) — the generic-devotion fields must survive the entry's encode/decode.
+  func testPresetEntryRoundTripsGenericDevotionFields() {
+    let prayer = Prayer(
+      name: "Scriptural Stations", kind: .custom, customDevotionId: "stationsOfTheCross",
+      variantId: "scriptural", customOptions: ["seventyTwoHailMarys": "false"])
+    let restored = PresetEntry(prayer: prayer).toPrayer()
+    XCTAssertEqual(restored.customDevotionId, "stationsOfTheCross")
+    XCTAssertEqual(restored.variantId, "scriptural")
+    XCTAssertEqual(restored.customOptions, ["seventyTwoHailMarys": "false"])
+  }
+
   // MARK: - all()
 
   func testAllReturnsSortedByName() async throws {

@@ -89,6 +89,12 @@ try {
         Copy-Item $DevotionPath (Join-Path $StageDir "devotion.json")
     }
 
+    $OptionsPath = Join-Path $SourceDir "options.json"
+    if (Test-Path $OptionsPath) {
+        Test-JsonFile $OptionsPath
+        Copy-Item $OptionsPath (Join-Path $StageDir "options.json")
+    }
+
     # Deep-validate the devotion definition when python3 is available (see validate-devotion.py);
     # the same Shared sources are always validated by make-prosaryprayer.sh on macOS/Linux, so a
     # missing python3 here only skips a redundant check.

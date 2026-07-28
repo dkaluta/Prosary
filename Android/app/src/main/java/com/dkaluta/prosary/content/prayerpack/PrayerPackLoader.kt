@@ -9,6 +9,7 @@ import java.util.zip.ZipInputStream
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonPrimitive
 
 @Serializable
 private data class PackManifest(
@@ -47,6 +48,10 @@ data class CustomDevotionStep(
     val imageKey: String? = null,
     @SerialName("repeat") val repeatCount: Int? = null,
     val isScripture: Boolean? = null,
+    /** Gates this entry on one of the bundle's `options.json` options: `"key"` (toggle on),
+     * `"!key"` (toggle off), or `"key=caseId"` (choice equals) — see
+     * `PrayerEngine.evaluateCondition`. Null = always included. */
+    @SerialName("if") val condition: String? = null,
     val kind: SpecialKind? = null,
 ) {
     @Serializable
@@ -57,6 +62,55 @@ data class CustomDevotionStep(
         SeasonalMarianAntiphon,
     }
 }
+
+/** One user-configurable setting a bundle declares in its `options.json` — a toggle or a
+ * multi-case choice. Entry-level `"if"` expressions gate steps on the resulting values; the
+ * favorite's choices persist in `Prayer.customOptions` (only overrides — an absent key means
+ * this option's [defaultValue]). Structure is enforced at authoring time by
+ * `Shared/tools/validate-devotion.py`. */
+@Serializable
+data class CustomDevotionOption(
+    val key: String,
+    val kind: Kind,
+    /** English UI label; [nameByLanguage] overrides it per UI localization. */
+    val name: String,
+    val nameByLanguage: Map<String, String>? = null,
+    /** Authored as a JSON boolean (toggle) or case-id string (choice) — see [defaultValue]. */
+    @SerialName("default") val default: JsonPrimitive,
+    val cases: List<Case>? = null,
+) {
+    @Serializable
+    enum class Kind {
+        @SerialName("toggle")
+        Toggle,
+
+        @SerialName("choice")
+        Choice,
+    }
+
+    @Serializable
+    data class Case(
+        val id: String,
+        val name: String,
+        val nameByLanguage: Map<String, String>? = null,
+    ) {
+        val localizedName: String
+            get() = nameByLanguage?.get(Locale.getDefault().language) ?: name
+    }
+
+    /** Canonical string form of the authored default: "true"/"false" for a toggle, a case id
+     * for a choice — the same encoding `Prayer.customOptions` stores. */
+    val defaultValue: String
+        get() = default.content
+
+    val localizedName: String
+        get() = nameByLanguage?.get(Locale.getDefault().language) ?: name
+}
+
+@Serializable
+private data class PackOptions(
+    val options: List<CustomDevotionOption>,
+)
 
 /** Parsed `devotion.json` — the complete structural description of a generic devotion.
  * Field validity per type is enforced at authoring time by `Shared/tools/validate-devotion.py`;
@@ -210,6 +264,7 @@ object PrayerPackStore {
      * bundle-local body text. See [resolveBodyText]. */
     private val rawContentByBundle = mutableMapOf<String, MutableMap<String, Map<String, String>>>()
     private val definitionByBundle = mutableMapOf<String, CustomDevotionDefinition>()
+    private val optionsByBundle = mutableMapOf<String, List<CustomDevotionOption>>()
     /** Bundle ids with a devotion.json, in pack-load order. */
     private val orderedCustomIds = mutableListOf<String>()
     private val infoByBundle = mutableMapOf<String, CustomDevotionInfo>()
@@ -226,6 +281,11 @@ object PrayerPackStore {
     /** The parsed `devotion.json` for a generic (bundle-driven) devotion, e.g. "trisagion".
      * Null for any bundle without one (Rosary, which stays override-only). */
     fun definition(bundleId: String): CustomDevotionDefinition? = definitionByBundle[bundleId]
+
+    /** The options a bundle's `options.json` declares, in authored order (the editor's display
+     * order). Empty for bundles without one. */
+    fun options(bundleId: String): List<CustomDevotionOption> =
+        optionsByBundle[bundleId].orEmpty()
 
     /** Every loaded bundle id that has a `devotion.json` — i.e. every generic devotion discovered
      * at load time, in pack-load order, without hardcoding devotion names anywhere in view code. */
@@ -308,6 +368,11 @@ object PrayerPackStore {
             definitionByBundle[manifest.id] =
                 json.decodeFromString<CustomDevotionDefinition>(String(definitionBytes, Charsets.UTF_8))
             orderedCustomIds.add(manifest.id)
+        }
+
+        entries["options.json"]?.let { optionBytes ->
+            optionsByBundle[manifest.id] =
+                json.decodeFromString<PackOptions>(String(optionBytes, Charsets.UTF_8)).options
         }
 
         for ((name, bytes) in entries) {

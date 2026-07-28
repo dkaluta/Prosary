@@ -33,6 +33,10 @@ final class PresetEntry {
   // Optional handles existing rows predating this field (SwiftData lightweight migration).
   var variantId: String? = nil
 
+  // JSON-encoded [String: String] of the favorite's options.json choices (see
+  // Prayer.customOptions). Default empty Data handles existing rows.
+  var customOptionsJSON: Data = Data()
+
   // Rosary-specific fields (populated when kind == "rosary")
   var mysterySelectionMode: MysterySelectionMode = MysterySelectionMode.todaysMysteries
   var specificMysteryGroup: MysteryGroup = MysteryGroup.joyful
@@ -64,6 +68,7 @@ final class PresetEntry {
     kind = prayer.kind.rawValue
     customDevotionId = prayer.customDevotionId
     variantId = prayer.variantId
+    customOptionsJSON = (try? JSONEncoder().encode(prayer.customOptions)) ?? Data()
 
     mysterySelectionMode = prayer.rosary.mysterySelectionMode
     specificMysteryGroup = prayer.rosary.specificMysteryGroup
@@ -95,6 +100,7 @@ final class PresetEntry {
     kind = prayer.kind.rawValue
     customDevotionId = prayer.customDevotionId
     variantId = prayer.variantId
+    customOptionsJSON = (try? JSONEncoder().encode(prayer.customOptions)) ?? Data()
 
     mysterySelectionMode = prayer.rosary.mysterySelectionMode
     specificMysteryGroup = prayer.rosary.specificMysteryGroup
@@ -158,6 +164,7 @@ final class PresetEntry {
       jesusPrayer: JesusPrayerOptions(target: jpTarget),
       customDevotionId: resolved.customDevotionId,
       variantId: variantId,
+      customOptions: (try? JSONDecoder().decode([String: String].self, from: customOptionsJSON)) ?? [:],
       reminders: (try? JSONDecoder().decode([PrayerReminder].self, from: remindersJSON)) ?? []
     )
   }

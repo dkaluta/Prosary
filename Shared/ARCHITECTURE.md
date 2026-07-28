@@ -335,6 +335,19 @@ of its own — its entire step sequence and per-step text are data-driven from i
   per-platform table), `displayNameByLanguage` (preserves e.g. the Hebrew devotion names),
   `reminderBody` (per-language notification body), and optional `reminderPresetHours` +
   `reminderPresetFooter` (the Angelus's traditional bell times).
+- **`options.json`** (optional bundle file): user-configurable settings, declared separately
+  from the structure the same way catalog.json is —
+  `{"options": [{key, kind: "toggle" | "choice", name, nameByLanguage?, default,
+  cases?: [{id, name, nameByLanguage?}]}]}` (a toggle's `default` is a JSON boolean; a
+  choice's is a case id). Any devotion.json entry may carry `"if": "key"` / `"!key"` /
+  `"key=caseId"` — the engines evaluate it against the bundle's defaults overlaid with the
+  favorite's stored `Prayer.customOptions` (string-encoded: "true"/"false" or a case id;
+  overrides only) and drop the entry when it fails. The generic-devotion editor (the former
+  reminders-only editor) renders one schema-driven toggle/choice row per option above the
+  reminders section. First real use: the Franciscan Crown's optional closing devotions (the
+  72-completion Hail Marys, the Our Father for the Pope's intentions), both defaulting on so
+  the traditional sequence is unchanged out of the box. The validator checks the declarations
+  and that every `if` references a declared option/case.
 - **`bodyKey`/`titleKey` resolution** (`resolveBodyText`, per bundle): (1) the bundle's own raw
   content for the requested language; (2) the bundle's own **Latin** content (so a sentinel/
   unknown/undeclared language prays in Latin, never raw keys — the same convention as
