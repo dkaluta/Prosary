@@ -3,13 +3,14 @@ name: CI
 # The Android and Windows test suites (see Shared/ARCHITECTURE.md) — iOS runs on Xcode Cloud.
 # The Windows job matters most: WinUI can't build on the macOS dev machine, so this is the
 # only place Prosary.Tests actually executes.
+# Work happens on feature branches; main only receives finished "major" projects — so CI runs
+# on every branch push (no separate pull_request trigger: same-repo PRs would double-run).
 on:
   push:
-    branches: [main]
+    branches: ["**"]
     paths-ignore:
       - "Shared/website/**"
       - "**.md"
-  pull_request:
   workflow_dispatch:
 
 jobs:
