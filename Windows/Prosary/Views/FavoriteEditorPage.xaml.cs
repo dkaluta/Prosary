@@ -37,6 +37,4 @@ public sealed partial class FavoriteEditorPage : Page
         }
     }
 
-    // Is6AmEnabled/IsNoonEnabled/Is6PmEnabled are read-only (derived from Reminders), so these
-    // ToggleSwitches bind Mode=OneWay and route the actual state change through the matching
-    // command instead of a direct TwoWay bind.}
+}
