@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct FavoritesListView: View {
   @Binding var path: NavigationPath
@@ -17,6 +18,10 @@ struct FavoritesListView: View {
   @State private var editorPrayer: Prayer?
   @State private var isNew = false
   @State private var remindersPrayer: Prayer?
+  @State private var showsImporter = false
+  @State private var importError: String?
+  // Bumped after install/remove so the customDevotionIds ForEach re-evaluates.
+  @State private var installedGeneration = 0
 
   /// Rosary and Jesus Prayer have real per-favorite options worth naming and saving multiple
   /// variants of, so they keep the full card list + editor. Every generic (bundle-driven)
@@ -90,8 +95,30 @@ struct FavoritesListView: View {
                 onToggleFavorite: { toggleCustomFavorite(bundleId: bundleId, displayName: info.localizedDisplayName, existing: favorite) },
                 onEditReminders: { favorite.map { remindersPrayer = $0 } }
               )
+              .contextMenu {
+                if PrayerPackStore.installedBundleIds().contains(bundleId) {
+                  Button(role: .destructive) {
+                    removeInstalledBundle(bundleId, favorite: favorite)
+                  } label: {
+                    Label(String(localized: "favorites.removeBundle", defaultValue: "Remove Imported Devotion"), systemImage: "trash")
+                  }
+                }
+              }
             }
           }
+
+          // Anyone can author a .prosaryprayer bundle (see Shared/ARCHITECTURE.md) — imported
+          // devotions get the same star row as the shipped ones.
+          Button {
+            showsImporter = true
+          } label: {
+            Label("favorites.importBundle", systemImage: "square.and.arrow.down")
+              .font(.subheadline)
+          }
+          .buttonStyle(.plain)
+          .foregroundStyle(.secondary)
+          .padding(.horizontal, 20)
+          .padding(.vertical, 4)
         } header: {
           HStack(spacing: 8) {
             Image(systemName: "star")
@@ -124,6 +151,46 @@ struct FavoritesListView: View {
       .onDisappear { Task { await reload() } }
     }
     .task { await reload() }
+    .fileImporter(
+      isPresented: $showsImporter,
+      allowedContentTypes: [UTType(filenameExtension: "prosaryprayer") ?? .zip, .zip]
+    ) { result in
+      importBundle(result)
+    }
+    .alert(
+      String(localized: "favorites.importFailed", defaultValue: "Could Not Import Devotion"),
+      isPresented: .init(get: { importError != nil }, set: { if !$0 { importError = nil } })
+    ) {
+      Button("favoriteEditor.cancel", role: .cancel) {}
+    } message: {
+      Text(importError ?? "")
+    }
+    .id(installedGeneration)
+  }
+
+  private func importBundle(_ result: Result<URL, Error>) {
+    guard case .success(let url) = result else { return }
+    let accessing = url.startAccessingSecurityScopedResource()
+    defer { if accessing { url.stopAccessingSecurityScopedResource() } }
+    do {
+      let data = try Data(contentsOf: url)
+      try PrayerPackStore.installPack(from: data)
+      installedGeneration += 1
+    } catch {
+      importError = error.localizedDescription
+    }
+  }
+
+  private func removeInstalledBundle(_ bundleId: String, favorite: Prayer?) {
+    Task {
+      if let favorite {
+        ReminderScheduler.removeAll(for: favorite)
+        try? await services.presetStore.delete(favorite)
+      }
+      PrayerPackStore.removeInstalledPack(id: bundleId)
+      installedGeneration += 1
+      await reload()
+    }
   }
 
   @ViewBuilder

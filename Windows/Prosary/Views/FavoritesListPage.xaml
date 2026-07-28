@@ -60,6 +60,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0" Background="Transparent" Padding="6"
                             Command="{Binding ElementName=Root, Path=ViewModel.ToggleSimpleFavoriteCommand}" CommandParameter="{Binding}">
@@ -71,6 +72,12 @@
                             Visibility="{Binding IsFavorited, Converter={StaticResource BoolToVisibility}}"
                             Command="{Binding ElementName=Root, Path=ViewModel.EditRemindersCommand}" CommandParameter="{Binding}">
                         <FontIcon Glyph="&#xEA8F;" />
+                    </Button>
+                    <Button Grid.Column="4" Background="Transparent" Padding="6"
+                            Visibility="{Binding IsInstalled, Converter={StaticResource BoolToVisibility}}"
+                            Command="{Binding ElementName=Root, Path=ViewModel.RemoveInstalledCommand}" CommandParameter="{Binding}"
+                            ToolTipService.ToolTip="Remove imported devotion">
+                        <FontIcon Glyph="&#xE74D;" />
                     </Button>
                 </Grid>
             </Border>
@@ -123,6 +130,15 @@
                         <TextBlock Text="More Devotions" FontWeight="SemiBold" FontSize="16" />
                     </StackPanel>
                     <ItemsControl ItemsSource="{x:Bind ViewModel.SimpleFavorites, Mode=OneWay}" ItemTemplate="{StaticResource SimpleFavoriteRowTemplate}" />
+
+                    <!-- Anyone can author a .prosaryprayer bundle (see Shared/ARCHITECTURE.md) —
+                         imported devotions get the same star row as the shipped ones. -->
+                    <Button Background="Transparent" Click="OnImportBundle" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <FontIcon Glyph="&#xE896;" FontSize="14" />
+                            <TextBlock Text="Import Devotion Bundle…" />
+                        </StackPanel>
+                    </Button>
                 </StackPanel>
 
             </StackPanel>

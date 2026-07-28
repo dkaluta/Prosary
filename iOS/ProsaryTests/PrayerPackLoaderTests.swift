@@ -70,6 +70,100 @@ final class PrayerPackLoaderTests: XCTestCase {
     XCTAssertTrue(PrayerPackStore.options(for: "angelus").isEmpty)
   }
 
+  // MARK: - User-installed bundles
+
+  /// Builds a minimal, valid .prosaryprayer in memory (stored zip, no compression) — the same
+  /// shape a third-party author would produce.
+  private func makeExamplePack(id: String) -> Data {
+    let manifest = """
+      {"schemaVersion": 1, "id": "\(id)", "kind": "\(id)", "displayName": "Example Devotion",
+       "languages": ["la", "en"], "hasCatalog": false, "images": []}
+      """
+    let content = #"{"prayers": {"exampleBody": "Kyrie eleison."}, "mysteries": {}}"#
+    let devotion = """
+      {"type": "steps", "steps": [
+        {"title": "Sign of the Cross", "bodyKey": "signumCrucis", "imageKey": "crucifix"},
+        {"title": "Example Prayer", "bodyKey": "exampleBody"}
+      ]}
+      """
+    return Self.storedZip([
+      ("manifest.json", Data(manifest.utf8)),
+      ("content/la.json", Data(content.utf8)),
+      ("content/en.json", Data(content.utf8)),
+      ("devotion.json", Data(devotion.utf8)),
+    ])
+  }
+
+  func testInstallRemoveRoundTripForAnImportedBundle() throws {
+    PrayerPackStore.installedPacksDirectory = FileManager.default.temporaryDirectory
+      .appendingPathComponent("prosary-test-packs-\(UUID().uuidString)", isDirectory: true)
+    defer { try? FileManager.default.removeItem(at: PrayerPackStore.installedPacksDirectory) }
+
+    let id = "example\(Int.random(in: 1000...9999))"
+    let installed = try PrayerPackStore.installPack(from: makeExamplePack(id: id))
+    XCTAssertEqual(installed, id)
+    XCTAssertTrue(PrayerPackStore.customDevotionIds().contains(id))
+    XCTAssertTrue(PrayerPackStore.installedBundleIds().contains(id))
+    XCTAssertEqual(PrayerPackStore.info(for: id)?.displayName, "Example Devotion")
+    XCTAssertEqual(
+      PrayerPackStore.resolveBodyText(bundleId: id, languageCode: "en", key: "exampleBody"),
+      "Kyrie eleison.")
+
+    // A second install of the same id must be rejected, not silently replaced.
+    XCTAssertThrowsError(try PrayerPackStore.installPack(from: makeExamplePack(id: id)))
+
+    // Garbage is rejected with the unreadable error.
+    XCTAssertThrowsError(try PrayerPackStore.installPack(from: Data("not a zip".utf8)))
+
+    PrayerPackStore.removeInstalledPack(id: id)
+    XCTAssertFalse(PrayerPackStore.customDevotionIds().contains(id))
+    XCTAssertNil(PrayerPackStore.definition(for: id))
+  }
+
+  /// Minimal stored (uncompressed) zip writer — enough for MinimalZipReader to consume.
+  private static func storedZip(_ files: [(name: String, data: Data)]) -> Data {
+    func le16(_ v: Int) -> Data { Data([UInt8(v & 0xFF), UInt8((v >> 8) & 0xFF)]) }
+    func le32(_ v: Int) -> Data {
+      Data([UInt8(v & 0xFF), UInt8((v >> 8) & 0xFF), UInt8((v >> 16) & 0xFF), UInt8((v >> 24) & 0xFF)])
+    }
+    func crc32(_ data: Data) -> Int {
+      var table = [UInt32](repeating: 0, count: 256)
+      for i in 0..<256 {
+        var c = UInt32(i)
+        for _ in 0..<8 { c = (c & 1) != 0 ? 0xEDB8_8320 ^ (c >> 1) : c >> 1 }
+        table[i] = c
+      }
+      var crc: UInt32 = 0xFFFF_FFFF
+      for byte in data { crc = table[Int((crc ^ UInt32(byte)) & 0xFF)] ^ (crc >> 8) }
+      return Int(crc ^ 0xFFFF_FFFF)
+    }
+
+    var out = Data()
+    var central = Data()
+    var offsets: [Int] = []
+    for (name, data) in files {
+      offsets.append(out.count)
+      let nameData = Data(name.utf8)
+      let crc = crc32(data)
+      out += le32(0x0403_4B50) + le16(20) + le16(0) + le16(0) + le16(0) + le16(0)
+      out += le32(crc) + le32(data.count) + le32(data.count)
+      out += le16(nameData.count) + le16(0) + nameData + data
+    }
+    for (i, (name, data)) in files.enumerated() {
+      let nameData = Data(name.utf8)
+      let crc = crc32(data)
+      central += le32(0x0201_4B50) + le16(20) + le16(20) + le16(0) + le16(0) + le16(0) + le16(0)
+      central += le32(crc) + le32(data.count) + le32(data.count)
+      central += le16(nameData.count) + le16(0) + le16(0) + le16(0) + le16(0)
+      central += le32(0) + le32(offsets[i]) + nameData
+    }
+    let centralOffset = out.count
+    out += central
+    out += le32(0x0605_4B50) + le16(0) + le16(0) + le16(files.count) + le16(files.count)
+    out += le32(central.count) + le32(centralOffset) + le16(0)
+    return out
+  }
+
   func testStationsPackProvidesItsImageData() {
     let data = PrayerPackStore.imageData(for: "station_01_condemned_to_death")
     XCTAssertGreaterThan(data?.count ?? 0, 0)

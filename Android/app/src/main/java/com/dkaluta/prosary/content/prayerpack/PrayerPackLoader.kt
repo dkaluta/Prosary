@@ -3,6 +3,7 @@ package com.dkaluta.prosary.content.prayerpack
 import com.dkaluta.prosary.content.MysteryText
 import com.dkaluta.prosary.content.PrayerKey
 import com.dkaluta.prosary.content.PrayerTranslations
+import java.io.File
 import java.io.InputStream
 import java.util.Locale
 import java.util.zip.ZipInputStream
@@ -307,6 +308,12 @@ object PrayerPackStore {
     /** Bundle ids with a devotion.json, in pack-load order. */
     private val orderedCustomIds = mutableListOf<String>()
     private val infoByBundle = mutableMapOf<String, CustomDevotionInfo>()
+    /** Bundle ids installed by the user (files in [installedPacksDir]), in load order. */
+    private val installedIdsList = mutableListOf<String>()
+    /** Where user-imported .prosaryprayer files live — scanned (sorted by filename) after the
+     * built-in packs on every load, so installs survive restarts. Set before [initialize]
+     * (AppServices; tests may point it at a temp dir). */
+    var installedPacksDirectory: File? = null
     private var didLoad = false
 
     fun prayerOverride(languageCode: String, key: PrayerKey): String? =
@@ -362,6 +369,70 @@ object PrayerPackStore {
             val stream = openPack(packName) ?: continue
             runCatching { load(stream) }
         }
+
+        // User-installed bundles load after the built-ins (so shipped content always wins the
+        // shared merges) and are skipped on id collision with anything already loaded.
+        val installedFiles = installedPacksDirectory?.listFiles { f -> f.extension == "prosaryprayer" }
+            ?.sortedBy { it.name }.orEmpty()
+        for (file in installedFiles) {
+            val id = file.nameWithoutExtension
+            if (infoByBundle.containsKey(id)) continue
+            if (runCatching { load(file.inputStream()) }.isSuccess) {
+                installedIdsList.add(id)
+            }
+        }
+    }
+
+    /** Bundle ids the user has imported (subset of [customDevotionIds]), in load order. */
+    fun installedBundleIds(): List<String> = installedIdsList.toList()
+
+    class InstallException(message: String) : Exception(message)
+
+    /** Imports a user-provided bundle: validates it (readable zip, parseable manifest +
+     * devotion.json, content for every declared language, not a builtin-kind pack, no id
+     * collision), copies it into the installed-packs directory, and loads it live. Returns the
+     * installed bundle id. */
+    fun installPack(bytes: ByteArray): String {
+        val entries = runCatching { readZipEntries(bytes.inputStream()) }.getOrNull()
+            ?: throw InstallException("This file is not a readable .prosaryprayer bundle.")
+        val manifest = runCatching {
+            json.decodeFromString<PackManifest>(String(entries["manifest.json"]!!, Charsets.UTF_8))
+        }.getOrNull() ?: throw InstallException("This file is not a readable .prosaryprayer bundle.")
+        val hasDevotion = runCatching {
+            json.decodeFromString<CustomDevotionDefinition>(String(entries["devotion.json"]!!, Charsets.UTF_8))
+        }.isSuccess
+        if (!hasDevotion || manifest.builtinKind != null) {
+            throw InstallException("This bundle does not contain a devotion.")
+        }
+        for (language in manifest.languages) {
+            runCatching {
+                json.decodeFromString<PackContent>(String(entries["content/$language.json"]!!, Charsets.UTF_8))
+            }.getOrNull() ?: throw InstallException("This file is not a readable .prosaryprayer bundle.")
+        }
+        if (infoByBundle.containsKey(manifest.id)) {
+            throw InstallException("A devotion named \"${manifest.id}\" is already installed.")
+        }
+        val dir = installedPacksDirectory
+            ?: throw InstallException("This file is not a readable .prosaryprayer bundle.")
+        dir.mkdirs()
+        val destination = File(dir, "${manifest.id}.prosaryprayer")
+        destination.writeBytes(bytes)
+        load(destination.inputStream())
+        installedIdsList.add(manifest.id)
+        return manifest.id
+    }
+
+    /** Deletes an installed bundle's file and unregisters its devotion. Its merged
+     * prayer/image content stays in memory until the next launch — harmless, since nothing
+     * references it once the devotion is gone from [customDevotionIds]. */
+    fun removeInstalledPack(id: String) {
+        if (id !in installedIdsList) return
+        installedPacksDirectory?.let { File(it, "$id.prosaryprayer").delete() }
+        installedIdsList.remove(id)
+        orderedCustomIds.remove(id)
+        definitionByBundle.remove(id)
+        infoByBundle.remove(id)
+        optionsByBundle.remove(id)
     }
 
     private fun load(stream: InputStream) {

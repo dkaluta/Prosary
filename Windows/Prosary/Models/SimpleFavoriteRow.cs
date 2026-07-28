@@ -19,4 +19,6 @@ public sealed record SimpleFavoriteRow(
     string IconGlyph,
     bool IsFavorited,
     Guid? PrayerId,
-    string? CustomDevotionId = null);
+    string? CustomDevotionId = null,
+    // True only for user-imported bundles — shows the trailing remove button.
+    bool IsInstalled = false);

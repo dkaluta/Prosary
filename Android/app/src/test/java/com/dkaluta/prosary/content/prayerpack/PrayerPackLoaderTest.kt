@@ -86,6 +86,59 @@ class PrayerPackLoaderTest {
         assertTrue(PrayerPackStore.options("angelus").isEmpty())
     }
 
+    // MARK: User-installed bundles
+
+    /** Builds a minimal, valid .prosaryprayer in memory — the same shape a third-party author
+     * would produce. */
+    private fun makeExamplePack(id: String): ByteArray {
+        val out = java.io.ByteArrayOutputStream()
+        java.util.zip.ZipOutputStream(out).use { zip ->
+            fun put(name: String, text: String) {
+                zip.putNextEntry(java.util.zip.ZipEntry(name))
+                zip.write(text.toByteArray(Charsets.UTF_8))
+                zip.closeEntry()
+            }
+            put(
+                "manifest.json",
+                """{"schemaVersion": 1, "id": "$id", "kind": "$id", "displayName": "Example Devotion",
+                    "languages": ["la", "en"], "hasCatalog": false, "images": []}""",
+            )
+            val content = """{"prayers": {"exampleBody": "Kyrie eleison."}, "mysteries": {}}"""
+            put("content/la.json", content)
+            put("content/en.json", content)
+            put(
+                "devotion.json",
+                """{"type": "steps", "steps": [
+                    {"title": "Sign of the Cross", "bodyKey": "signumCrucis", "imageKey": "crucifix"},
+                    {"title": "Example Prayer", "bodyKey": "exampleBody"}
+                ]}""",
+            )
+        }
+        return out.toByteArray()
+    }
+
+    @Test
+    fun installRemoveRoundTripForAnImportedBundle() {
+        PrayerPackStore.installedPacksDirectory =
+            java.nio.file.Files.createTempDirectory("prosary-test-packs").toFile()
+        val id = "example${(1000..9999).random()}"
+        val installed = PrayerPackStore.installPack(makeExamplePack(id))
+        assertEquals(id, installed)
+        assertTrue(PrayerPackStore.customDevotionIds().contains(id))
+        assertTrue(PrayerPackStore.installedBundleIds().contains(id))
+        assertEquals("Example Devotion", PrayerPackStore.info(id)?.displayName)
+        assertEquals("Kyrie eleison.", PrayerPackStore.resolveBodyText(id, "en", "exampleBody"))
+
+        // A second install of the same id must be rejected, not silently replaced.
+        assertTrue(runCatching { PrayerPackStore.installPack(makeExamplePack(id)) }.isFailure)
+        // Garbage is rejected.
+        assertTrue(runCatching { PrayerPackStore.installPack("not a zip".toByteArray()) }.isFailure)
+
+        PrayerPackStore.removeInstalledPack(id)
+        assertFalse(PrayerPackStore.customDevotionIds().contains(id))
+        assertEquals(null, PrayerPackStore.definition(id))
+    }
+
     @Test
     fun stationsPackProvidesItsImageData() {
         val data = PrayerPackStore.imageData("station_01_condemned_to_death")

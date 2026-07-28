@@ -163,6 +163,42 @@ public partial class FavoritesViewModel : ObservableObject
         }
     }
 
+    /// <summary>Non-null while an import just failed — FavoritesListPage shows it in a
+    /// ContentDialog and clears it.</summary>
+    [ObservableProperty]
+    private string? _importError;
+
+    /// <summary>Imports a user-picked .prosaryprayer file and reloads so the new devotion's
+    /// star row appears — see <see cref="PrayerPackStore.InstallPack"/> for the validation.</summary>
+    public async Task ImportPackAsync(byte[] bytes)
+    {
+        try
+        {
+            PrayerPackStore.InstallPack(bytes);
+            await LoadAsync();
+        }
+        catch (PrayerPackStore.InstallException e)
+        {
+            ImportError = e.Message;
+        }
+    }
+
+    /// <summary>Removes a user-imported bundle (file + registration + its favorite row, whose
+    /// reminders are cancelled first).</summary>
+    [RelayCommand]
+    private async Task RemoveInstalledAsync(SimpleFavoriteRow row)
+    {
+        if (row.CustomDevotionId is not { } bundleId || !row.IsInstalled) return;
+        if (row.PrayerId is { } prayerId && await _presets.GetAsync(prayerId) is { } favorite)
+        {
+            _scheduler.RemoveAll(favorite);
+            await _presets.DeleteAsync(favorite);
+        }
+
+        PrayerPackStore.RemoveInstalledPack(bundleId);
+        await LoadAsync();
+    }
+
     [RelayCommand]
     private void Back() => Router.GoBack();
 }

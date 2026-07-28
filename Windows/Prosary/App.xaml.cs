@@ -30,6 +30,8 @@ public partial class App : Application
     {
         Services = ConfigureServices();
 
+        PrayerPackStore.InstalledPacksDirectory =
+            Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "PrayerPacks");
         PrayerPackStore.Initialize(packName =>
         {
             var path = Path.Combine(AppContext.BaseDirectory, "PrayerPacks", $"{packName}.prosaryprayer");

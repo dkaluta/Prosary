@@ -12,7 +12,7 @@
       }
     },
     "favorites": {
-      "purpose": "Saved favorites: full card lists with Pray/Edit/Delete/Set-Default and an Add-new button for the two configurable kinds (Rosary, Jesus Prayer), plus one star-row per generic devotion in pack-load order (favorite toggle + the generic-devotion editor: schema-driven rows for the bundle's options.json options above the reminders section).",
+      "purpose": "Saved favorites: full card lists with Pray/Edit/Delete/Set-Default and an Add-new button for the two configurable kinds (Rosary, Jesus Prayer), plus one star-row per generic devotion in pack-load order (favorite toggle + the generic-devotion editor: schema-driven rows for the bundle's options.json options above the reminders section), an Import Devotion Bundle button (file picker -> PrayerPackStore.installPack), and a remove affordance on user-imported rows.",
       "parameters": {},
       "sources": {
         "iOS": "Views/Favorites/FavoritesListView.swift",

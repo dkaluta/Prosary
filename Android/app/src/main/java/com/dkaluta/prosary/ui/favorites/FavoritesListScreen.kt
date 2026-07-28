@@ -1,5 +1,9 @@
 package com.dkaluta.prosary.ui.favorites
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.material.icons.filled.Download
+import androidx.compose.material3.AlertDialog
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -96,6 +100,22 @@ fun FavoritesListScreen(
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     var prayers by remember { mutableStateOf<List<Prayer>>(emptyList()) }
+    var importError by remember { mutableStateOf<String?>(null) }
+    // Bumped after install/remove so the customDevotionIds list re-evaluates.
+    var installedGeneration by remember { mutableStateOf(0) }
+
+    val importLauncher = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        if (uri == null) return@rememberLauncherForActivityResult
+        runCatching {
+            val bytes = context.contentResolver.openInputStream(uri)?.use { it.readBytes() }
+                ?: throw PrayerPackStore.InstallException("This file is not a readable .prosaryprayer bundle.")
+            PrayerPackStore.installPack(bytes)
+        }.onSuccess {
+            installedGeneration++
+        }.onFailure { error ->
+            importError = error.message ?: "Could not import the bundle."
+        }
+    }
 
     suspend fun reload() {
         prayers = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
@@ -179,7 +199,7 @@ fun FavoritesListScreen(
 
             // Generic (bundle-driven) devotions — one row per discovered bundle, in pack-load
             // order, with no hardcoded PrayerKind case.
-            items(PrayerPackStore.customDevotionIds(), key = { "custom.$it" }) { bundleId ->
+            items(PrayerPackStore.customDevotionIds(), key = { "custom.$installedGeneration.$it" }) { bundleId ->
                 val info = PrayerPackStore.info(bundleId)
                 if (info != null) {
                     val favorite = prayers.firstOrNull { it.kind == PrayerKind.Custom && it.customDevotionId == bundleId }
@@ -208,10 +228,46 @@ fun FavoritesListScreen(
                             }
                         },
                         onEditReminders = { favorite?.let { onEditReminders(it.id) } },
+                        onRemoveInstalled = if (bundleId in PrayerPackStore.installedBundleIds()) {
+                            {
+                                scope.launch {
+                                    favorite?.let {
+                                        ReminderScheduler.cancelAll(context, it)
+                                        services.presetStore.delete(it)
+                                    }
+                                    PrayerPackStore.removeInstalledPack(bundleId)
+                                    installedGeneration++
+                                    reload()
+                                }
+                            }
+                        } else {
+                            null
+                        },
                     )
                 }
             }
+
+            // Anyone can author a .prosaryprayer bundle (see Shared/ARCHITECTURE.md) — imported
+            // devotions get the same star row as the shipped ones.
+            item(key = "importBundle") {
+                TextButton(
+                    onClick = { importLauncher.launch(arrayOf("*/*")) },
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                ) {
+                    Icon(Icons.Filled.Download, contentDescription = null)
+                    Text("Import Devotion Bundle…", modifier = Modifier.padding(start = 8.dp))
+                }
+            }
         }
+    }
+
+    importError?.let { message ->
+        AlertDialog(
+            onDismissRequest = { importError = null },
+            title = { Text("Could Not Import Devotion") },
+            text = { Text(message) },
+            confirmButton = { TextButton(onClick = { importError = null }) { Text("OK") } },
+        )
     }
 }
 
@@ -301,6 +357,8 @@ private fun SimpleFavoriteRow(
     isFavorited: Boolean,
     onToggleFavorite: () -> Unit,
     onEditReminders: () -> Unit,
+    /** Non-null only for user-imported bundles — shows the trailing remove button. */
+    onRemoveInstalled: (() -> Unit)? = null,
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -326,6 +384,12 @@ private fun SimpleFavoriteRow(
         if (isFavorited) {
             IconButton(onClick = onEditReminders) {
                 Icon(Icons.Filled.Notifications, contentDescription = "Edit $title reminders", tint = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+        }
+
+        if (onRemoveInstalled != null) {
+            IconButton(onClick = onRemoveInstalled) {
+                Icon(Icons.Filled.Delete, contentDescription = "Remove imported devotion $title", tint = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
     }

@@ -373,6 +373,17 @@ of its own — its entire step sequence and per-step text are data-driven from i
   72-completion Hail Marys, the Our Father for the Pope's intentions), both defaulting on so
   the traditional sequence is unchanged out of the box. The validator checks the declarations
   and that every `if` references a declared option/case.
+- **User-installed bundles**: anyone can author a `.prosaryprayer` and import it from the
+  Favorites screen (file picker on all three platforms). `installPack` validates the file
+  (readable zip; parseable manifest + devotion.json; content for every declared language; not a
+  `builtinKind` pack; no id collision with anything loaded), copies it into a per-platform
+  installed-packs directory (iOS Application Support/PrayerPacks, Android
+  filesDir/prayerpacks, Windows LocalFolder/PrayerPacks), and loads it live. The directory is
+  rescanned (sorted by filename) after the built-ins on every launch, so installs persist;
+  id collisions are skipped so shipped devotions always win. Imported devotions get the same
+  Favorites star row plus a remove affordance; `removeInstalledPack` deletes the file and
+  unregisters the devotion (its merged text/images stay in memory until the next launch,
+  harmlessly). This is the runtime half of the planned bundle-authoring webapp.
 - **`bodyKey`/`titleKey` resolution** (`resolveBodyText`, per bundle): (1) the bundle's own raw
   content for the requested language; (2) the bundle's own **Latin** content (so a sentinel/
   unknown/undeclared language prays in Latin, never raw keys — the same convention as

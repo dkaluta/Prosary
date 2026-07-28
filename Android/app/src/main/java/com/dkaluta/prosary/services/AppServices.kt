@@ -47,6 +47,7 @@ data class AppServices(
                 .build()
             val presetStore = RoomPresetStore(db.presetDao())
             runBlocking { presetStore.seedIfEmpty() }
+            PrayerPackStore.installedPacksDirectory = java.io.File(context.filesDir, "prayerpacks")
             PrayerPackStore.initialize { packName ->
                 runCatching { context.assets.open("$packName.prosaryprayer") }
                     .getOrElse { if (it is IOException) null else throw it }

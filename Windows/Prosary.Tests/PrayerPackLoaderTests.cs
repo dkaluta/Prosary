@@ -98,6 +98,65 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Empty(PrayerPackStore.Options("angelus"));
     }
 
+    // User-installed bundles
+
+    /// <summary>Builds a minimal, valid .prosaryprayer in memory — the same shape a
+    /// third-party author would produce.</summary>
+    private static byte[] MakeExamplePack(string id)
+    {
+        using var buffer = new MemoryStream();
+        using (var zip = new System.IO.Compression.ZipArchive(buffer, System.IO.Compression.ZipArchiveMode.Create, leaveOpen: true))
+        {
+            void Put(string name, string text)
+            {
+                var entry = zip.CreateEntry(name);
+                using var writer = new StreamWriter(entry.Open());
+                writer.Write(text);
+            }
+
+            Put("manifest.json", $$"""
+                {"schemaVersion": 1, "id": "{{id}}", "kind": "{{id}}", "displayName": "Example Devotion",
+                 "languages": ["la", "en"], "hasCatalog": false, "images": []}
+                """);
+            const string content = """{"prayers": {"exampleBody": "Kyrie eleison."}, "mysteries": {}}""";
+            Put("content/la.json", content);
+            Put("content/en.json", content);
+            Put("devotion.json", """
+                {"type": "steps", "steps": [
+                  {"title": "Sign of the Cross", "bodyKey": "signumCrucis", "imageKey": "crucifix"},
+                  {"title": "Example Prayer", "bodyKey": "exampleBody"}
+                ]}
+                """);
+        }
+
+        return buffer.ToArray();
+    }
+
+    [Fact]
+    public void InstallRemoveRoundTripForAnImportedBundle()
+    {
+        PrayerPackStore.InstalledPacksDirectory =
+            Path.Combine(Path.GetTempPath(), $"prosary_test_packs_{Guid.NewGuid():N}");
+        var id = $"example{Random.Shared.Next(1000, 9999)}";
+
+        var installed = PrayerPackStore.InstallPack(MakeExamplePack(id));
+        Assert.Equal(id, installed);
+        Assert.Contains(id, PrayerPackStore.CustomDevotionIds());
+        Assert.Contains(id, PrayerPackStore.InstalledBundleIds());
+        Assert.Equal("Example Devotion", PrayerPackStore.Info(id)?.DisplayName);
+        Assert.Equal("Kyrie eleison.", PrayerPackStore.ResolveBodyText(id, "en", "exampleBody"));
+
+        // A second install of the same id must be rejected, not silently replaced.
+        Assert.Throws<PrayerPackStore.InstallException>(() => PrayerPackStore.InstallPack(MakeExamplePack(id)));
+        // Garbage is rejected.
+        Assert.Throws<PrayerPackStore.InstallException>(() => PrayerPackStore.InstallPack("not a zip"u8.ToArray()));
+
+        PrayerPackStore.RemoveInstalledPack(id);
+        Assert.DoesNotContain(id, PrayerPackStore.CustomDevotionIds());
+        Assert.Null(PrayerPackStore.Definition(id));
+        Directory.Delete(PrayerPackStore.InstalledPacksDirectory, recursive: true);
+    }
+
     [Fact]
     public void StationsPackProvidesItsImageData()
     {

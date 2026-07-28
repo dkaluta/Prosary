@@ -49,6 +49,15 @@ public static class PrayerPackStore
     /// <summary>Bundle ids with a devotion.json, in pack-load order.</summary>
     private static readonly List<string> OrderedCustomIds = new();
     private static readonly Dictionary<string, CustomDevotionInfo> InfoByBundle = new();
+
+    /// <summary>Bundle ids installed by the user (files in <see cref="InstalledPacksDirectory"/>),
+    /// in load order.</summary>
+    private static readonly List<string> InstalledIds = new();
+
+    /// <summary>Where user-imported .prosaryprayer files live — scanned (sorted by filename)
+    /// after the built-in packs on every load, so installs survive restarts. Set before
+    /// <see cref="Initialize"/> (App.xaml.cs; tests may point it at a temp dir).</summary>
+    public static string? InstalledPacksDirectory { get; set; }
     private static readonly JsonSerializerOptions JsonOptions = new()
     {
         PropertyNameCaseInsensitive = true,
@@ -68,6 +77,90 @@ public static class PrayerPackStore
     /// "trisagion". Null for any bundle without one (Rosary, which stays override-only).</summary>
     public static CustomDevotionDefinition? Definition(string bundleId) =>
         DefinitionByBundle.TryGetValue(bundleId, out var definition) ? definition : null;
+
+    /// <summary>Bundle ids the user has imported (subset of <see cref="CustomDevotionIds"/>),
+    /// in load order.</summary>
+    public static IReadOnlyList<string> InstalledBundleIds() => InstalledIds;
+
+    public sealed class InstallException : Exception
+    {
+        public InstallException(string message) : base(message)
+        {
+        }
+    }
+
+    /// <summary>Imports a user-provided bundle: validates it (readable zip, parseable manifest +
+    /// devotion.json, content for every declared language, not a builtin-kind pack, no id
+    /// collision), copies it into <see cref="InstalledPacksDirectory"/>, and loads it live.
+    /// Returns the installed bundle id.</summary>
+    public static string InstallPack(byte[] bytes)
+    {
+        PackManifest manifest;
+        try
+        {
+            using var probe = new ZipArchive(new MemoryStream(bytes), ZipArchiveMode.Read);
+            var manifestEntry = probe.GetEntry("manifest.json")
+                ?? throw new InstallException("This file is not a readable .prosaryprayer bundle.");
+            manifest = JsonSerializer.Deserialize<PackManifest>(ReadAllBytes(manifestEntry), JsonOptions)
+                ?? throw new InstallException("This file is not a readable .prosaryprayer bundle.");
+
+            var devotionEntry = probe.GetEntry("devotion.json");
+            if (devotionEntry is null || manifest.BuiltinKind is not null
+                || JsonSerializer.Deserialize<CustomDevotionDefinition>(ReadAllBytes(devotionEntry), JsonOptions) is null)
+            {
+                throw new InstallException("This bundle does not contain a devotion.");
+            }
+
+            foreach (var language in manifest.Languages)
+            {
+                var contentEntry = probe.GetEntry($"content/{language}.json")
+                    ?? throw new InstallException("This file is not a readable .prosaryprayer bundle.");
+                _ = JsonSerializer.Deserialize<PackContent>(ReadAllBytes(contentEntry), JsonOptions)
+                    ?? throw new InstallException("This file is not a readable .prosaryprayer bundle.");
+            }
+        }
+        catch (Exception e) when (e is not InstallException)
+        {
+            throw new InstallException("This file is not a readable .prosaryprayer bundle.");
+        }
+
+        if (InfoByBundle.ContainsKey(manifest.Id))
+        {
+            throw new InstallException($"A devotion named \"{manifest.Id}\" is already installed.");
+        }
+
+        var directory = InstalledPacksDirectory
+            ?? throw new InstallException("This file is not a readable .prosaryprayer bundle.");
+        Directory.CreateDirectory(directory);
+        var destination = Path.Combine(directory, $"{manifest.Id}.prosaryprayer");
+        File.WriteAllBytes(destination, bytes);
+        using (var stream = File.OpenRead(destination))
+        {
+            Load(stream);
+        }
+
+        InstalledIds.Add(manifest.Id);
+        return manifest.Id;
+    }
+
+    /// <summary>Deletes an installed bundle's file and unregisters its devotion. Its merged
+    /// prayer/image content stays in memory until the next launch — harmless, since nothing
+    /// references it once the devotion is gone from <see cref="CustomDevotionIds"/>.</summary>
+    public static void RemoveInstalledPack(string id)
+    {
+        if (!InstalledIds.Contains(id)) return;
+        if (InstalledPacksDirectory is { } directory)
+        {
+            var path = Path.Combine(directory, $"{id}.prosaryprayer");
+            if (File.Exists(path)) File.Delete(path);
+        }
+
+        InstalledIds.Remove(id);
+        OrderedCustomIds.Remove(id);
+        DefinitionByBundle.Remove(id);
+        InfoByBundle.Remove(id);
+        OptionsByBundle.Remove(id);
+    }
 
     /// <summary>The options a bundle's <c>options.json</c> declares, in authored order (the
     /// editor's display order). Empty for bundles without one.</summary>
@@ -161,6 +254,27 @@ public static class PrayerPackStore
                 catch
                 {
                     // Corrupt/unreadable pack — leave overrides empty for it, fall back to hardcoded content.
+                }
+            }
+
+            // User-installed bundles load after the built-ins (so shipped content always wins
+            // the shared merges) and are skipped on id collision with anything already loaded.
+            if (InstalledPacksDirectory is { } directory && Directory.Exists(directory))
+            {
+                foreach (var path in Directory.GetFiles(directory, "*.prosaryprayer").OrderBy(p => p))
+                {
+                    var id = Path.GetFileNameWithoutExtension(path);
+                    if (InfoByBundle.ContainsKey(id)) continue;
+                    try
+                    {
+                        using var stream = File.OpenRead(path);
+                        Load(stream);
+                        InstalledIds.Add(id);
+                    }
+                    catch
+                    {
+                        // Corrupt installed pack — ignored, same as a corrupt built-in.
+                    }
                 }
             }
 

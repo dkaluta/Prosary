@@ -312,7 +312,15 @@ enum PrayerPackStore {
   /// Bundle ids with a devotion.json, in pack-load order.
   private static var orderedCustomIds: [String] = []
   private static var infoByBundle: [String: CustomDevotionInfo] = [:]
+  /// Bundle ids installed by the user (files in `installedPacksDirectory`), in load order.
+  private static var installedIds: [String] = []
   private static var didLoad = false
+
+  /// Where user-imported .prosaryprayer files live — scanned (sorted by filename) after the
+  /// built-in packs on every load, so installs survive restarts. Overridable for tests.
+  static var installedPacksDirectory: URL = FileManager.default
+    .urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+    .appendingPathComponent("PrayerPacks", isDirectory: true)
 
   static func prayerOverride(languageCode: String, key: PrayerKey) -> String? {
     ensureLoaded()
@@ -355,6 +363,80 @@ enum PrayerPackStore {
     return infoByBundle[bundleId]
   }
 
+  /// Bundle ids the user has imported (subset of `customDevotionIds()`), in load order.
+  static func installedBundleIds() -> [String] {
+    ensureLoaded()
+    return installedIds
+  }
+
+  enum InstallError: LocalizedError {
+    case unreadable
+    case notADevotion
+    case duplicateId(String)
+
+    var errorDescription: String? {
+      switch self {
+      case .unreadable:
+        return String(localized: "packInstall.error.unreadable", defaultValue: "This file is not a readable .prosaryprayer bundle.")
+      case .notADevotion:
+        return String(localized: "packInstall.error.notADevotion", defaultValue: "This bundle does not contain a devotion.")
+      case .duplicateId(let id):
+        return String(localized: "packInstall.error.duplicate", defaultValue: "A devotion named \"\(id)\" is already installed.")
+      }
+    }
+  }
+
+  /// Imports a user-provided bundle: validates it (readable zip, parseable manifest +
+  /// devotion.json, content for every declared language, not a builtin-kind pack, no id
+  /// collision), copies it into `installedPacksDirectory`, and loads it live. Returns the
+  /// installed bundle id.
+  @discardableResult
+  static func installPack(from data: Data) throws -> String {
+    ensureLoaded()
+    let decoder = JSONDecoder()
+    guard let zip = try? MinimalZipReader(data: data),
+          let manifestData = try? zip.contents(of: "manifest.json"),
+          let manifest = try? decoder.decode(PackManifest.self, from: manifestData) else {
+      throw InstallError.unreadable
+    }
+    guard zip.fileNames().contains("devotion.json"),
+          (try? decoder.decode(CustomDevotionDefinition.self, from: zip.contents(of: "devotion.json"))) != nil,
+          manifest.builtinKind == nil else {
+      throw InstallError.notADevotion
+    }
+    for language in manifest.languages {
+      guard let contentData = try? zip.contents(of: "content/\(language).json"),
+            (try? decoder.decode(PackContent.self, from: contentData)) != nil else {
+        throw InstallError.unreadable
+      }
+    }
+    guard infoByBundle[manifest.id] == nil else {
+      throw InstallError.duplicateId(manifest.id)
+    }
+
+    try FileManager.default.createDirectory(at: installedPacksDirectory, withIntermediateDirectories: true)
+    let destination = installedPacksDirectory.appendingPathComponent("\(manifest.id).prosaryprayer")
+    try data.write(to: destination, options: .atomic)
+    try load(packAt: destination)
+    installedIds.append(manifest.id)
+    return manifest.id
+  }
+
+  /// Deletes an installed bundle's file and unregisters its devotion. Its merged prayer/image
+  /// content stays in memory until the next launch — harmless, since nothing references it once
+  /// the devotion is gone from `customDevotionIds()`.
+  static func removeInstalledPack(id: String) {
+    ensureLoaded()
+    guard installedIds.contains(id) else { return }
+    try? FileManager.default.removeItem(
+      at: installedPacksDirectory.appendingPathComponent("\(id).prosaryprayer"))
+    installedIds.removeAll { $0 == id }
+    orderedCustomIds.removeAll { $0 == id }
+    definitionByBundle[id] = nil
+    infoByBundle[id] = nil
+    optionsByBundle[id] = nil
+  }
+
   /// Resolves a `devotion.json` entry's `bodyKey`/`titleKey` to display text: (1) the bundle's
   /// own raw content for this key — the requested language, else the bundle's Latin (mirroring
   /// `PrayerTranslations.get`'s Latin fallback, so e.g. the sentinel/unknown language prays in
@@ -385,6 +467,20 @@ enum PrayerPackStore {
         try load(packAt: url)
       } catch {
         assertionFailure("Failed to load \(packName).prosaryprayer: \(error)")
+      }
+    }
+
+    // User-installed bundles load after the built-ins (so shipped content always wins the
+    // shared merges) and are skipped on id collision with anything already loaded.
+    let installedFiles = ((try? FileManager.default.contentsOfDirectory(
+      at: installedPacksDirectory, includingPropertiesForKeys: nil)) ?? [])
+      .filter { $0.pathExtension == "prosaryprayer" }
+      .sorted { $0.lastPathComponent < $1.lastPathComponent }
+    for url in installedFiles {
+      let id = url.deletingPathExtension().lastPathComponent
+      guard infoByBundle[id] == nil else { continue }
+      if (try? load(packAt: url)) != nil {
+        installedIds.append(id)
       }
     }
   }
