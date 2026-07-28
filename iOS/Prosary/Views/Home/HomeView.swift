@@ -197,11 +197,9 @@ struct HomeView: View {
   }
 
   private func launchRosary() {
-    guard let prayer = defaultRosary else {
-      path.append(AppRoute.favorites)
-      return
-    }
-    path.append(AppRoute.prayer(id: prayer.id))
+    // The picker handles every case itself (default preset up top, ad-hoc quick pray, the
+    // remaining presets) — including having no presets at all.
+    path.append(AppRoute.rosaryPicker)
   }
 
   private func launchJesusPrayer() {

@@ -69,6 +69,7 @@ private data class DevotionCard(
 @Composable
 fun HomeScreen(
     onOpenPrayer: (String) -> Unit,
+    onOpenRosaryPicker: () -> Unit,
     onOpenFavorites: () -> Unit,
     onOpenAbout: () -> Unit,
     onOpenSettings: () -> Unit,
@@ -134,8 +135,9 @@ fun HomeScreen(
                 subtitle = rosarySubtitle,
                 testTag = "rosaryCard",
                 onClick = {
-                    val prayer = defaultRosary
-                    if (prayer != null) onOpenPrayer(prayer.id) else onOpenFavorites()
+                    // The picker handles every case itself (default preset up top, ad-hoc
+                    // quick pray, the remaining presets) — including having no presets at all.
+                    onOpenRosaryPicker()
                 },
             ),
         )

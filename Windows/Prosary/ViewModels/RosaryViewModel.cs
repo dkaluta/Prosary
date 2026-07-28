@@ -142,17 +142,26 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
 
     public async Task LoadAsync(Guid? prayerId)
     {
+        var prayer = prayerId is { } id ? await _presets.GetAsync(id) : null;
+        prayer ??= await _presets.GetDefaultAsync(PrayerKind.Rosary);
+        if (prayer is null)
+        {
+            Header = "No Rosary favorites yet";
+            Body = "Add a Rosary favorite first.";
+            return;
+        }
+
+        LoadFrom(prayer);
+    }
+
+    /// <summary>An ad-hoc, unsaved session from the preset picker's "Pray any Rosary" — the
+    /// same build as a saved favorite, just without the store roundtrip.</summary>
+    public void LoadAdHoc(Prayer prayer) => LoadFrom(prayer);
+
+    private void LoadFrom(Prayer prayer)
+    {
         try
         {
-            var prayer = prayerId is { } id ? await _presets.GetAsync(id) : null;
-            prayer ??= await _presets.GetDefaultAsync(PrayerKind.Rosary);
-            if (prayer is null)
-            {
-                Header = "No Rosary favorites yet";
-                Body = "Add a Rosary favorite first.";
-                return;
-            }
-
             _languageCode = prayer.ResolvedLanguageCode;
             IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
             _steps = _engine.BuildSteps(prayer);

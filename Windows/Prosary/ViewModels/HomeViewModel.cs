@@ -205,14 +205,9 @@ public partial class HomeViewModel : ObservableObject
     [RelayCommand]
     private void OpenRosary()
     {
-        if (_defaultRosary is { } prayer)
-        {
-            Router.Navigate<RosaryPrayerPage>(prayer.Id);
-        }
-        else
-        {
-            Router.Navigate<FavoritesListPage>();
-        }
+        // The picker handles every case itself (default preset up top, ad-hoc quick pray, the
+        // remaining presets) — including having no presets at all.
+        Router.Navigate<RosaryPresetPickerPage>();
     }
 
     [RelayCommand]

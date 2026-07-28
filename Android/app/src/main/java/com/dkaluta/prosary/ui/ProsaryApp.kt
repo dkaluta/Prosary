@@ -14,11 +14,20 @@ import com.dkaluta.prosary.ui.favorites.FavoriteEditorScreen
 import com.dkaluta.prosary.ui.favorites.FavoritesListScreen
 import com.dkaluta.prosary.ui.favorites.RemindersOnlyEditorScreen
 import com.dkaluta.prosary.ui.home.HomeScreen
+import com.dkaluta.prosary.ui.home.RosaryPresetPickerScreen
+import com.dkaluta.prosary.ui.rosaryflow.RosaryFlowScreen
 import com.dkaluta.prosary.ui.jesusprayer.JesusPrayerFlowScreen
 import com.dkaluta.prosary.ui.jesusprayer.JesusPrayerSetupScreen
 import com.dkaluta.prosary.ui.settings.SettingsScreen
 import com.dkaluta.prosary.ui.shared.CustomDevotionFlowScreen
 import com.dkaluta.prosary.ui.shared.PrayerDispatchScreen
+import com.dkaluta.prosary.models.Prayer
+
+/** Carries the picker's ad-hoc, unsaved Rosary across one navigation hop — Compose routes are
+ * strings, so a whole Prayer can't ride the route (see Routes.RosaryQuickPray). */
+private object AdHocRosaryHolder {
+    var prayer: Prayer? = null
+}
 
 private object Routes {
     const val Home = "home"
@@ -31,6 +40,10 @@ private object Routes {
     const val About = "about"
     const val Settings = "settings"
     const val Prayer = "prayer/{id}"
+    // Home -> Rosary preset picker; the ad-hoc session rides a holder object because Compose
+    // routes are strings (same reasoning as FavoriteEditor's kind param above).
+    const val RosaryPicker = "rosary/picker"
+    const val RosaryQuickPray = "rosary/quickPray"
     const val JesusPrayerSetup = "jesusPrayer/setup"
     const val JesusPrayerFlow = "jesusPrayer/{target}"
     // Launches a generic (bundle-driven) devotion with no existing favorite — devotionId is the
@@ -58,6 +71,7 @@ fun ProsaryApp() {
         composable(Routes.Home) {
             HomeScreen(
                 onOpenPrayer = { id -> navController.navigate(Routes.prayer(id)) },
+                onOpenRosaryPicker = { navController.navigate(Routes.RosaryPicker) },
                 onOpenFavorites = { navController.navigate(Routes.Favorites) },
                 onOpenAbout = { navController.navigate(Routes.About) },
                 onOpenSettings = { navController.navigate(Routes.Settings) },
@@ -73,6 +87,25 @@ fun ProsaryApp() {
             val devotionId = backStackEntry.arguments?.getString("devotionId")
             if (devotionId != null) {
                 CustomDevotionFlowScreen(devotionId = devotionId, onBack = { navController.popBackStack() })
+            }
+        }
+
+        composable(Routes.RosaryPicker) {
+            RosaryPresetPickerScreen(
+                onPrayPreset = { id -> navController.navigate(Routes.prayer(id)) },
+                onPrayAdHoc = { prayer ->
+                    AdHocRosaryHolder.prayer = prayer
+                    navController.navigate(Routes.RosaryQuickPray)
+                },
+                onOpenFavorites = { navController.navigate(Routes.Favorites) },
+                onBack = { navController.popBackStack() },
+            )
+        }
+
+        composable(Routes.RosaryQuickPray) {
+            val prayer = AdHocRosaryHolder.prayer
+            if (prayer != null) {
+                RosaryFlowScreen(prayer = prayer, onBack = { navController.popBackStack() })
             }
         }
 

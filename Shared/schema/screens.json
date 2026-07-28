@@ -3,7 +3,7 @@
   "rootScreen": "home",
   "screens": {
     "home": {
-      "purpose": "One card per devotion — the Rosary first, then every discovered generic (bundle-driven) devotion in pack-load order (title/accent/icon read from each bundle's own manifest — see customDevotionFlow), then the Jesus Prayer last — each showing that devotion's default favorite; plus a \"Today\" section (the day's feast per the Holy Land Latin calendar and the Pope's monthly prayer intention, from the bundled Shared/data datasets — rows hide when the datasets have no entry); plus My Favorites/Settings/About.",
+      "purpose": "One card per devotion — the Rosary first, then every discovered generic (bundle-driven) devotion in pack-load order (title/accent/icon read from each bundle's own manifest — see customDevotionFlow), then the Jesus Prayer last — each showing that devotion's default favorite; plus a \"Today\" section (the day's feast per the Holy Land Latin calendar and the Pope's monthly prayer intention, from the bundled Shared/data datasets — rows hide when the datasets have no entry); plus My Favorites/Settings/About. The Rosary card opens the preset picker (default preset up top, then Pray-any-Rosary ad-hoc quick setup with save-as-preset, then the remaining presets) rather than launching a session directly.",
       "parameters": {},
       "sources": {
         "iOS": "Views/Home/HomeView.swift",
@@ -126,6 +126,14 @@
         "iOS": "Views/Settings/SettingsView.swift (macOS Settings scene, Cmd+,; iOS has no in-app equivalent — the system Settings app via Settings.bundle/Root.plist instead)",
         "android": "ui/settings/SettingsScreen.kt (Android has no external settings surface to extend, unlike iOS)",
         "windows": "Views/SettingsPage.xaml(.cs) + ViewModels/SettingsViewModel.cs (same reasoning as Android)"
+      }
+    },
+    "rosaryPresetPicker": {
+      "purpose": "Home -> Rosary: the default preset (one tap to pray), a Pray-any-Rosary quick setup (iOS/Android embed the full Rosary options editor seeded from the default preset; Windows exposes the mystery selection inline and inherits the rest from the default preset — a deliberate, documented divergence), with save-as-preset (never stealing the default slot unless it's the first preset), then the remaining presets. Preset management stays in Favorites (a Manage action links there). Ad-hoc sessions are unsaved: iOS routes a Prayer value (AppRoute.rosaryQuickPray), Android rides a holder object (Compose routes are strings), Windows passes the Prayer as the navigation parameter.",
+      "files": {
+        "ios": "Views/Home/RosaryPresetPickerView.swift",
+        "android": "ui/home/RosaryPresetPickerScreen.kt",
+        "windows": "Views/RosaryPresetPickerPage.xaml(.cs) + ViewModels/RosaryPresetPickerViewModel.cs"
       }
     }
   }

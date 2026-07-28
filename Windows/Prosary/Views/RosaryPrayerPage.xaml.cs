@@ -35,8 +35,15 @@ public sealed partial class RosaryPrayerPage : Page
     {
         base.OnNavigatedTo(e);
         ViewModel.HasDarkTheme = ActualTheme == ElementTheme.Dark;
-        var prayerId = e.Parameter as Guid?;
-        await ViewModel.LoadAsync(prayerId);
+        if (e.Parameter is Prosary.Models.Prayer adHoc)
+        {
+            // The preset picker's "Pray any Rosary" — an unsaved session.
+            ViewModel.LoadAdHoc(adHoc);
+        }
+        else
+        {
+            await ViewModel.LoadAsync(e.Parameter as Guid?);
+        }
     }
 
     private void OnActualThemeChanged(FrameworkElement sender, object args)

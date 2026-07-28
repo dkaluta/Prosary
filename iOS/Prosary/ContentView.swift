@@ -26,6 +26,10 @@ struct ContentView: View {
             JesusPrayerFlowView(path: $path, target: target)
           case .custom(let devotionId):
             CustomDevotionFlowView(devotionId: devotionId)
+          case .rosaryPicker:
+            RosaryPresetPickerView(path: $path)
+          case .rosaryQuickPray(let prayer):
+            RosaryFlowView(prayer: prayer)
           }
         }
     }

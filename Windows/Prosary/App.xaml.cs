@@ -62,6 +62,7 @@ public partial class App : Application
         services.AddTransient<FavoriteEditorViewModel>();
         services.AddTransient<RemindersOnlyEditorViewModel>();
         services.AddTransient<RosaryViewModel>();
+        services.AddTransient<RosaryPresetPickerViewModel>();
         services.AddTransient<JesusPrayerSetupViewModel>();
         services.AddTransient<JesusPrayerViewModel>();
         services.AddTransient<SettingsViewModel>();
