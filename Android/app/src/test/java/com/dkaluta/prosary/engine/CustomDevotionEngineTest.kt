@@ -137,6 +137,16 @@ class CustomDevotionEngineTest {
         assertTrue(steps.all { it.decadeIndex == null && it.hailMaryIndexInDecade == null })
     }
 
+    /** The Hebrew Stations (user-provided, Hebrew-Catholic usage) carry scriptural meditations
+     * instead of the Liguori texts — spot-check the translated title and the Isaiah 53:8 body. */
+    @Test
+    fun stationsHebrewUsesTheScripturalMeditations() {
+        val steps = steps("stationsOfTheCross", language = "he")
+        assertEquals("יֵשׁוּעַ נִדּוֹן לַמָּוֶת", steps[2].title)
+        assertTrue(steps[2].body.contains("מֵעֹצֶר וּמִמִּשְׁפָּט לֻקָּח"))
+        assertTrue(steps.last().body.contains("נֶפֶשׁ הַמָּשִׁיחַ קַדְּשִׁינִי"))
+    }
+
     // MARK: Franciscan Crown (rosary type, 7×10 + antiphon)
 
     @Test

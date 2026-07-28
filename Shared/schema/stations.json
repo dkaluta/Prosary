@@ -7,9 +7,10 @@
   "languages": {
     "populated": [
       "la",
-      "en"
+      "en",
+      "he"
     ],
-    "note": "The bundle manifest declares what it ships; an undeclared language falls back to the bundle's Latin content via resolveBodyText. The 14 Liguori meditations need a verifiable published translation per language before more are declared."
+    "note": "la/en carry the Liguori meditations; he (user-provided, Hebrew-Catholic usage) carries scriptural meditations instead — Isaiah/Judith citations plus Delitzsch NT passages, its own opening meditation + blessing, and a closing sequence of closing prayer + Anima Christi + concluding blessing. Other languages fall back to the bundle's Latin via resolveBodyText."
   },
   "stations": [
     {

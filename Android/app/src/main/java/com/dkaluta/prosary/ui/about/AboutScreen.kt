@@ -131,8 +131,9 @@ fun AboutScreen(onBack: () -> Unit) {
 
             AboutSection(title = "Scripture Sources") {
                 Text(
-                    "Mystery meditations quote the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), " +
-                        "Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit), " +
+                    "Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), " +
+                        "Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) " +
+                        "with Hebrew Old Testament passages following the Masoretic text, " +
                         "the Jesuit Arabic Bible (Beirut, 1880, revised 1988), the Russian Synodal Bible (1876), and " +
                         "Ang Dating Biblia (Tagalog, 1905) — all public domain.",
                     style = MaterialTheme.typography.bodySmall,

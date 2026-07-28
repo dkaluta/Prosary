@@ -95,6 +95,16 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertTrue(steps.allSatisfy { $0.decadeIndex == nil && $0.hailMaryIndexInDecade == nil })
   }
 
+  /// The Hebrew Stations (user-provided, Hebrew-Catholic usage) carry scriptural meditations
+  /// instead of the Liguori texts — spot-check the translated title and the Isaiah 53:8 body.
+  func testStationsHebrewUsesTheScripturalMeditations() {
+    let steps = steps("stationsOfTheCross", language: "he")
+    XCTAssertEqual(steps[2].title, "יֵשׁוּעַ נִדּוֹן לַמָּוֶת")
+    XCTAssertTrue(steps[2].body.contains("מֵעֹצֶר וּמִמִּשְׁפָּט לֻקָּח"))
+    XCTAssertTrue(steps[2].body.contains("**כִּי בִּצְלָבְךָ גָּאַלְתָּ אֶת הָעוֹלָם.**"))
+    XCTAssertTrue(steps.last!.body.contains("נֶפֶשׁ הַמָּשִׁיחַ קַדְּשִׁינִי"))
+  }
+
   // MARK: - Franciscan Crown (rosary type, 7×10 + antiphon)
 
   func testFranciscanCrownNinetyStepSequence() {
