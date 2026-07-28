@@ -16,6 +16,17 @@ import AppKit
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
   func applicationDidFinishLaunching(_ notification: Foundation.Notification) {
+    // The Format menu: SwiftUI's empty .textFormatting replacement empties it but leaves the
+    // menu in the bar, and AppKit re-adds its contents whenever a text view gains focus — so
+    // prune the menu itself, again on every activation/key-window change (the moments AppKit
+    // rebuilds it). Matched by both UI localizations' titles.
+    DispatchQueue.main.async { Self.removeFormatMenu() }
+    for name in [NSApplication.didBecomeActiveNotification, NSWindow.didBecomeKeyNotification] {
+      NotificationCenter.default.addObserver(forName: name, object: nil, queue: .main) { _ in
+        DispatchQueue.main.async { Self.removeFormatMenu() }
+      }
+    }
+
     NotificationCenter.default.addObserver(
       forName: NSWindow.willCloseNotification, object: nil, queue: .main
     ) { _ in
@@ -32,6 +43,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
   func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
     true
+  }
+
+  private static func removeFormatMenu() {
+    let titles: Set<String> = ["Format", "עיצוב"]
+    NSApp.mainMenu?.items
+      .filter { titles.contains($0.title) }
+      .forEach { NSApp.mainMenu?.removeItem($0) }
   }
 }
 #endif

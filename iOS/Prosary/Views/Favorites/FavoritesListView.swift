@@ -170,11 +170,8 @@ struct FavoritesListView: View {
 
   private func importBundle(_ result: Result<URL, Error>) {
     guard case .success(let url) = result else { return }
-    let accessing = url.startAccessingSecurityScopedResource()
-    defer { if accessing { url.stopAccessingSecurityScopedResource() } }
     do {
-      let data = try Data(contentsOf: url)
-      try PrayerPackStore.installPack(from: data)
+      try PrayerPackStore.installPack(fromUserSelected: url)
       installedGeneration += 1
     } catch {
       importError = error.localizedDescription

@@ -12,8 +12,8 @@ import SwiftData
 struct ProsaryApp: App {
   #if os(macOS)
   @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
-  private let presetsMenuState = PresetsMenuState()
   #endif
+  private let presetsMenuState = PresetsMenuState()
 
   init() {
     FontRegistration.registerBundledFontsIfNeeded()
@@ -54,8 +54,14 @@ struct ProsaryApp: App {
     #else
     WindowGroup {
       ContentView()
+        .task { await presetsMenuState.reload() }
     }
     .modelContainer(AppServices.modelContainer)
+    // iPadOS surfaces these in its menu bar (and the hardware-keyboard shortcuts HUD) — the
+    // same File → Import and Prayers menus the Mac gets.
+    .commands {
+      PrayersCommands(presetsState: presetsMenuState)
+    }
     #endif
   }
 }

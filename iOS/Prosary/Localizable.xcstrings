@@ -7,6 +7,16 @@
     "%@" : {
 
     },
+    "%@ • %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ • %2$@"
+          }
+        }
+      }
+    },
     "about.divineMercyImage.kazimirowski" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -559,6 +569,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Latin-script prayers use Apple's system \"New York\" serif design — not bundled with the app."
+          }
+        }
+      }
+    },
+    "about.viaLucisImages.scenes" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The Via Lucis scenes: The Disciples at the Tomb — Eugène Burnand (1898), Musée d'Orsay; Noli me tangere — Fra Angelico (San Marco, c. 1440); The Road to Emmaus, the appearances to the apostles, at Lake Tiberias, and in Galilee — Duccio di Buoninsegna (Maestà, 1308–1311), Siena; Supper at Emmaus (1601) and The Incredulity of Saint Thomas (1601–1602) — Caravaggio; Christ's Charge to Peter — Raphael (c. 1515), Royal Collection; The Virgin in Prayer — Sassoferrato (1640–1650), National Gallery, London — all public domain. Its other scenes reuse the Rosary's glorious-mystery illustrations."
           }
         }
       }
@@ -1482,6 +1503,17 @@
         }
       }
     },
+    "favorites.importFailed" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Could Not Import Devotion"
+          }
+        }
+      }
+    },
     "favorites.moreDevotions" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1534,6 +1566,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "תזכורות"
+          }
+        }
+      }
+    },
+    "favorites.removeBundle" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Remove Imported Devotion"
           }
         }
       }
@@ -2154,6 +2197,39 @@
         }
       }
     },
+    "packInstall.error.duplicate" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "A devotion named \"%@\" is already installed."
+          }
+        }
+      }
+    },
+    "packInstall.error.notADevotion" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "This bundle does not contain a devotion."
+          }
+        }
+      }
+    },
+    "packInstall.error.unreadable" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "This file is not a readable .prosaryprayer bundle."
+          }
+        }
+      }
+    },
     "prayerFlow.addToFavorites" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2472,6 +2548,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ניהול"
+          }
+        }
+      }
+    },
+    "rosaryPicker.presetNamePlaceholder" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Preset name"
           }
         }
       }

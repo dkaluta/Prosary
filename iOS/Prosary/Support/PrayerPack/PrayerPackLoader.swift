@@ -441,6 +441,16 @@ enum PrayerPackStore {
     return manifest.id
   }
 
+  /// Convenience for user-picked files (fileImporter, the File menu): resolves the security
+  /// scope, reads the bytes, and installs. Shared by the Favorites import button and the menu
+  /// bar command.
+  @discardableResult
+  static func installPack(fromUserSelected url: URL) throws -> String {
+    let accessing = url.startAccessingSecurityScopedResource()
+    defer { if accessing { url.stopAccessingSecurityScopedResource() } }
+    return try installPack(from: try Data(contentsOf: url))
+  }
+
   /// Deletes an installed bundle's file and unregisters its devotion. Its merged prayer/image
   /// content stays in memory until the next launch — harmless, since nothing references it once
   /// the devotion is gone from `customDevotionIds()`.

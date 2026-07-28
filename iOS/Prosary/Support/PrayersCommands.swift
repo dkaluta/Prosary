@@ -2,12 +2,14 @@
 //  PrayersCommands.swift
 //  Prosary
 //
-//  macOS menu bar — stripped to essentials with a "Prayers" menu.
-//  Rosary favorites appear as a submenu; each bundle devotion gets an item (or a favorites
-//  submenu once favorited), followed by the Jesus Prayer.
+//  The menu bar, shared by macOS and iPad (iPadOS surfaces .commands in its menu bar / the
+//  hardware-keyboard shortcuts HUD): a real File menu whose one item imports .prosaryprayer
+//  bundles, and a "Prayers" menu — Rosary favorites as a submenu, each bundle devotion as an
+//  item (or a favorites submenu once favorited), then the Jesus Prayer. The macOS-only strips
+//  (About replacement, removing Edit/Format/View noise) stay gated: iPad's menu bar manages
+//  its own system menus.
 //
 
-#if os(macOS)
 import SwiftUI
 
 @Observable
@@ -20,21 +22,33 @@ final class PresetsMenuState {
 }
 
 struct PrayersCommands: Commands {
+  #if os(macOS)
   @Environment(\.openWindow) private var openWindow
+  #endif
   var presetsState: PresetsMenuState
 
   var body: some Commands {
+    #if os(macOS)
     CommandGroup(replacing: .appInfo) {
       Button("about.navigationTitle") { openWindow(id: "about") }
     }
 
-    CommandGroup(replacing: .newItem) {}
     CommandGroup(replacing: .undoRedo) {}
     CommandGroup(replacing: .textEditing) {}
     CommandGroup(replacing: .textFormatting) {}
     CommandGroup(replacing: .toolbar) {}
     CommandGroup(replacing: .sidebar) {}
     CommandGroup(replacing: .help) {}
+    #endif
+
+    // File — the one document-like thing this app does. Replacing .newItem both drops the
+    // default New Window item and brings the File menu back (it had been stripped empty).
+    CommandGroup(replacing: .newItem) {
+      Button("favorites.importBundle") {
+        NavigationCoordinator.shared.pendingBundleImport = true
+      }
+      .keyboardShortcut("o", modifiers: .command)
+    }
 
     CommandMenu("commands.menuTitle") {
       RosarySubmenu(prayers: presetsState.prayers)
@@ -117,4 +131,3 @@ private struct CustomDevotionSubmenu: View {
     }
   }
 }
-#endif
