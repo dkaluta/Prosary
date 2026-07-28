@@ -145,7 +145,8 @@ public sealed class PrayerEngine
     internal static IReadOnlyList<RosaryStep> BuildCustomDevotionSteps(
         string bundleId, string? languageCode, bool isEasterSeason, MarianAntiphonOption seasonalAntiphon,
         string? variantId = null, Dictionary<string, string>? optionOverrides = null,
-        RosaryOptions? rosaryOptions = null, MysteryGroup todaysGroup = MysteryGroup.Joyful)
+        RosaryOptions? rosaryOptions = null, MysteryGroup todaysGroup = MysteryGroup.Joyful,
+        int dayIndex = 0)
     {
         var definition = PrayerPackStore.Definition(bundleId);
         if (definition is null) return [];
@@ -168,6 +169,16 @@ public sealed class PrayerEngine
             case CustomDevotionDefinition.DevotionType.Rosary:
                 return BuildCustomRosarySteps(
                     definition, bundleId, languageCode, seasonalAntiphon, optionValues, rosaryOptions, todaysGroup);
+            case CustomDevotionDefinition.DevotionType.Days:
+                // Multi-day devotions: shared opening + the day's own steps + shared closing.
+                // dayIndex is clamped, so a finished novena keeps praying its last day; the
+                // per-favorite progress that will drive it is a planned follow-up (see
+                // ARCHITECTURE.md) — until it lands, sessions pray day 1.
+                if (definition.Days is not { Count: > 0 } days) return [];
+                var day = days[Math.Clamp(dayIndex, 0, days.Count - 1)];
+                return (definition.Opening ?? []).Concat(day.Steps ?? []).Concat(definition.Closing ?? [])
+                    .SelectMany(e => Expand(e, bundleId, languageCode, seasonalAntiphon, optionValues))
+                    .ToList();
             default:
                 return [];
         }

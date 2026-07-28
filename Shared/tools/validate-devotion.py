@@ -250,6 +250,31 @@ def main() -> int:
             if field in devotion:
                 err(f"steps-type devotion must not have {field!r}")
 
+    elif dtype == "days":
+        def check_entry_list(entries, where):
+            for i, entry in enumerate(entries):
+                validate_entry(entry, f"{where}[{i}]", allow_kind=False)
+                collect_entry_refs(entry, body_keys, title_keys, image_keys)
+
+        days = devotion.get("days")
+        if not isinstance(days, list) or not days:
+            err("days-type devotion needs a non-empty 'days' array")
+        for i, day in enumerate(days or []):
+            where = f"days[{i}]"
+            if not day.get("name"):
+                err(f"{where}: missing name")
+            if not day.get("steps"):
+                err(f"{where}: empty step list")
+            check_entry_list(day.get("steps") or [], f"{where}.steps")
+            extra = set(day) - {"name", "nameByLanguage", "period", "steps"}
+            if extra:
+                err(f"{where}: unknown fields {sorted(extra)}")
+        check_entry_list(devotion.get("opening") or [], "opening")
+        check_entry_list(devotion.get("closing") or [], "closing")
+        for field in ("steps", "eastertideSteps", "variants", "decades", "hasClosingCross"):
+            if field in devotion:
+                err(f"days-type devotion must not have {field!r}")
+
     elif dtype == "rosary":
         opening = devotion.get("opening") or []
         closing = devotion.get("closing") or []

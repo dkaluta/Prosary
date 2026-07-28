@@ -4,6 +4,9 @@ import com.dkaluta.prosary.content.MysteryTranslations
 import com.dkaluta.prosary.content.PrayerKey
 import com.dkaluta.prosary.content.PrayerTranslations
 import com.dkaluta.prosary.content.prayerTranslationsEnglish
+import com.dkaluta.prosary.engine.PrayerEngine
+import com.dkaluta.prosary.models.Prayer
+import com.dkaluta.prosary.models.PrayerKind
 import java.io.File
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -137,6 +140,49 @@ class PrayerPackLoaderTest {
         PrayerPackStore.removeInstalledPack(id)
         assertFalse(PrayerPackStore.customDevotionIds().contains(id))
         assertEquals(null, PrayerPackStore.definition(id))
+    }
+
+    /** A days-type (multi-day) bundle decodes, installs, and prays its first day — the
+     * groundwork contract until per-favorite day progress ships (see ARCHITECTURE.md). */
+    @Test
+    fun daysTypeBundlePraysItsFirstDay() {
+        PrayerPackStore.installedPacksDirectory =
+            java.nio.file.Files.createTempDirectory("prosary-test-packs").toFile()
+        val id = "novena${(1000..9999).random()}"
+        val out = java.io.ByteArrayOutputStream()
+        java.util.zip.ZipOutputStream(out).use { zip ->
+            fun put(name: String, text: String) {
+                zip.putNextEntry(java.util.zip.ZipEntry(name))
+                zip.write(text.toByteArray(Charsets.UTF_8))
+                zip.closeEntry()
+            }
+            put(
+                "manifest.json",
+                """{"schemaVersion": 1, "id": "$id", "kind": "$id", "displayName": "Example Novena",
+                    "languages": ["la", "en"], "hasCatalog": false, "images": []}""",
+            )
+            val content = """{"prayers": {"day1Body": "Day one prayer.", "day2Body": "Day two prayer."}, "mysteries": {}}"""
+            put("content/la.json", content)
+            put("content/en.json", content)
+            put(
+                "devotion.json",
+                """{"type": "days",
+                    "opening": [{"title": "Sign of the Cross", "bodyKey": "signumCrucis", "imageKey": "crucifix"}],
+                    "days": [
+                      {"name": "Day 1", "steps": [{"title": "Day 1", "bodyKey": "day1Body"}]},
+                      {"name": "Day 2", "steps": [{"title": "Day 2", "bodyKey": "day2Body"}]}
+                    ],
+                    "closing": [{"title": "Glory Be", "bodyKey": "gloriaPatri", "imageKey": "glory_be"}]}""",
+            )
+        }
+        PrayerPackStore.installPack(out.toByteArray())
+
+        val steps = PrayerEngine().buildSteps(
+            Prayer(kind = PrayerKind.Custom, languageCode = "en", customDevotionId = id),
+        )
+        assertEquals(listOf("Sign of the Cross", "Day 1", "Glory Be"), steps.map { it.title })
+        assertEquals("Day one prayer.", steps[1].body)
+        PrayerPackStore.removeInstalledPack(id)
     }
 
     @Test

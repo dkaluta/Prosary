@@ -507,6 +507,8 @@ public sealed record CustomDevotionOption(
 /// so the engine can switch on <see cref="Type"/> alone.</summary>
 public sealed record CustomDevotionDefinition(
     CustomDevotionDefinition.DevotionType Type,
+    // days type
+    List<CustomDevotionDefinition.Day>? Days = null,
     // steps type
     List<CustomDevotionStep>? Steps = null,
     // Whole-sequence swap during Eastertide (the Angelus → Regina Caeli substitution).
@@ -558,7 +560,23 @@ public sealed record CustomDevotionDefinition(
         /// <summary>A decade/bead-structured devotion (Franciscan Crown, Seven Sorrows, Divine
         /// Mercy).</summary>
         Rosary,
+
+        /// <summary>A multi-day devotion (novenas, the 33-day Montfort consecration): one step
+        /// list per day, with optional shared opening/closing prayed every day. Per-favorite
+        /// day progress is a planned follow-up (see ARCHITECTURE.md's "Multi-day devotions") —
+        /// until it lands, sessions pray day 1.</summary>
+        Days,
     }
+
+    /// <summary>One day of a days-type devotion.</summary>
+    public sealed record Day(
+        // English UI label ("Day 1"); NameByLanguage overrides it per UI localization.
+        string Name,
+        Dictionary<string, string>? NameByLanguage = null,
+        // Optional grouping label for the Montfort-style structure ("First Week: Knowledge of
+        // Self"), shown as period context by the future day-picker UI.
+        string? Period = null,
+        List<CustomDevotionStep>? Steps = null);
 
     public sealed record DecadesDefinition(
         // "Joy" / "Sorrow" / "Decade" — combined with the engine's ordinal array into "1st Joy" etc.

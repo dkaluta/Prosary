@@ -144,6 +144,7 @@ class PrayerEngine(
         variantId: String? = null,
         optionOverrides: Map<String, String> = emptyMap(),
         rosaryOptions: RosaryOptions? = null,
+        dayIndex: Int = 0,
     ): List<RosaryStep> {
         val definition = PrayerPackStore.definition(bundleId) ?: return emptyList()
         // Effective option values: the bundle's declared defaults overlaid with the favorite's
@@ -161,6 +162,17 @@ class PrayerEngine(
             }
             CustomDevotionDefinition.DevotionType.Rosary ->
                 buildCustomRosarySteps(definition, bundleId, languageCode, optionValues, rosaryOptions)
+            CustomDevotionDefinition.DevotionType.Days -> {
+                // Multi-day devotions: shared opening + the day's own steps + shared closing.
+                // dayIndex is clamped, so a finished novena keeps praying its last day; the
+                // per-favorite progress that will drive it is a planned follow-up (see
+                // ARCHITECTURE.md) — until it lands, sessions pray day 1.
+                val days = definition.days.orEmpty()
+                if (days.isEmpty()) return emptyList()
+                val day = days[dayIndex.coerceIn(0, days.size - 1)]
+                (definition.opening.orEmpty() + day.steps + definition.closing.orEmpty())
+                    .flatMap { expand(it, bundleId, languageCode, optionValues) }
+            }
         }
     }
 

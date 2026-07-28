@@ -373,6 +373,20 @@ of its own — its entire step sequence and per-step text are data-driven from i
   72-completion Hail Marys, the Our Father for the Pope's intentions), both defaulting on so
   the traditional sequence is unchanged out of the box. The validator checks the declarations
   and that every `if` references a declared option/case.
+- **Multi-day devotions (groundwork)** — `{"type": "days"}`: one step list per day
+  (`days: [{name, nameByLanguage?, period?, steps: [Entry…]}]` — `period` carries the
+  Montfort-style grouping labels), plus optional shared `opening`/`closing` prayed every day.
+  Novenas are 9 entries; the de Montfort Total Consecration is 33 (12 preliminary days + three
+  weeks + the consecration day). The schema, decoders, engines (shared opening + the day's
+  steps + shared closing, with a clamped `dayIndex` seam), and validator all ship now;
+  **deliberately not yet shipped**: per-favorite day progress (a
+  `{startedOn, lastCompletedDay, lastCompletedOn}` JSON column on the stores + a
+  session-completion hook to advance it + a day-picker UI) and any actual days-type bundle —
+  those land together so the persistence isn't designed speculatively. Until then a days-type
+  bundle prays day 1. Hours/missals are a different beast: their content is selected by the
+  liturgical calendar (proper of the day, psalter weeks), not by a day counter — that needs a
+  date→content-key resolution layer, for which the Home feast-day data (`Shared/content/data`)
+  is the seed, and it should not be forced into the `days` shape.
 - **User-installed bundles**: anyone can author a `.prosaryprayer` and import it from the
   Favorites screen (file picker on all three platforms). `installPack` validates the file
   (readable zip; parseable manifest + devotion.json; content for every declared language; not a

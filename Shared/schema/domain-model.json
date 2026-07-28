@@ -370,8 +370,12 @@
       "description": "Parsed devotion.json — the complete structural description of a generic devotion. Field validity per type is enforced at authoring time by Shared/tools/validate-devotion.py; decoders are deliberately lenient (all optionals) so engines can switch on type alone.",
       "fields": {
         "type": {
-          "type": "enum(steps | rosary)",
-          "description": "\"steps\": a flat, fixed list (Angelus, Stations, Trisagion). \"rosary\": decade/bead-structured (Franciscan Crown, Seven Sorrows, Divine Mercy)."
+          "type": "enum(steps | rosary | days)",
+          "description": "\"steps\": a flat, fixed list (Angelus, Stations, Via Lucis, Trisagion). \"rosary\": decade/bead-structured (the Rosary itself, Franciscan Crown, Seven Sorrows, Divine Mercy). \"days\": multi-day (novenas, the 33-day Montfort consecration) — groundwork only; sessions pray day 1 until per-favorite day progress ships."
+        },
+        "days": {
+          "type": "object[]?",
+          "description": "days type only: [{name, nameByLanguage?, period?, steps: [Entry]}] — one entry per day, with optional shared opening/closing prayed every day. Planned (not yet persisted): per-favorite progress {startedOn, lastCompletedDay, lastCompletedOn} as one JSON column, a session-completion hook to advance it, and a day-picker UI."
         },
         "steps": {
           "type": "CustomDevotionStep[]?",

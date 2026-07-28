@@ -141,7 +141,8 @@ struct PrayerEngine {
   /// Franciscan Crown/Seven Sorrows/Divine Mercy-shaped ones.
   private func buildCustomDevotionSteps(
     bundleId: String, languageCode: String?, variantId: String? = nil,
-    optionOverrides: [String: String] = [:], rosaryOptions: RosaryOptions? = nil
+    optionOverrides: [String: String] = [:], rosaryOptions: RosaryOptions? = nil,
+    dayIndex: Int = 0
   ) -> [RosaryStep] {
     guard let definition = PrayerPackStore.definition(for: bundleId) else { return [] }
     // Effective option values: the bundle's declared defaults overlaid with the favorite's
@@ -162,6 +163,17 @@ struct PrayerEngine {
       return buildCustomRosarySteps(
         definition, bundleId: bundleId, languageCode: languageCode, optionValues: optionValues,
         rosaryOptions: rosaryOptions)
+    case .days:
+      // Multi-day devotions: shared opening + the day's own steps + shared closing. `dayIndex`
+      // is clamped, so a finished novena keeps praying its last day rather than crashing; the
+      // per-favorite progress that will drive it is a planned follow-up (see ARCHITECTURE.md)
+      // — until it lands, sessions pray day 1.
+      guard let days = definition.days, !days.isEmpty else { return [] }
+      let day = days[min(max(dayIndex, 0), days.count - 1)]
+      let entries = (definition.opening ?? []) + day.steps + (definition.closing ?? [])
+      return entries.flatMap {
+        expand($0, bundleId: bundleId, languageCode: languageCode, optionValues: optionValues)
+      }
     }
   }
 

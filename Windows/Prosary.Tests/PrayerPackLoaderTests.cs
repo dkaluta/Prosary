@@ -1,4 +1,6 @@
 using Prosary.Localization;
+using Prosary.Models;
+using Prosary.Services;
 using Xunit;
 
 namespace Prosary.Tests;
@@ -154,6 +156,54 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
         PrayerPackStore.RemoveInstalledPack(id);
         Assert.DoesNotContain(id, PrayerPackStore.CustomDevotionIds());
         Assert.Null(PrayerPackStore.Definition(id));
+        Directory.Delete(PrayerPackStore.InstalledPacksDirectory, recursive: true);
+    }
+
+    /// <summary>A days-type (multi-day) bundle decodes, installs, and prays its first day —
+    /// the groundwork contract until per-favorite day progress ships (see
+    /// ARCHITECTURE.md).</summary>
+    [Fact]
+    public void DaysTypeBundlePraysItsFirstDay()
+    {
+        PrayerPackStore.InstalledPacksDirectory =
+            Path.Combine(Path.GetTempPath(), $"prosary_test_packs_{Guid.NewGuid():N}");
+        var id = $"novena{Random.Shared.Next(1000, 9999)}";
+
+        using var buffer = new MemoryStream();
+        using (var zip = new System.IO.Compression.ZipArchive(buffer, System.IO.Compression.ZipArchiveMode.Create, leaveOpen: true))
+        {
+            void Put(string name, string text)
+            {
+                using var writer = new StreamWriter(zip.CreateEntry(name).Open());
+                writer.Write(text);
+            }
+
+            Put("manifest.json", $$"""
+                {"schemaVersion": 1, "id": "{{id}}", "kind": "{{id}}", "displayName": "Example Novena",
+                 "languages": ["la", "en"], "hasCatalog": false, "images": []}
+                """);
+            const string content = """{"prayers": {"day1Body": "Day one prayer.", "day2Body": "Day two prayer."}, "mysteries": {}}""";
+            Put("content/la.json", content);
+            Put("content/en.json", content);
+            Put("devotion.json", """
+                {"type": "days",
+                 "opening": [{"title": "Sign of the Cross", "bodyKey": "signumCrucis", "imageKey": "crucifix"}],
+                 "days": [
+                   {"name": "Day 1", "steps": [{"title": "Day 1", "bodyKey": "day1Body"}]},
+                   {"name": "Day 2", "steps": [{"title": "Day 2", "bodyKey": "day2Body"}]}
+                 ],
+                 "closing": [{"title": "Glory Be", "bodyKey": "gloriaPatri", "imageKey": "glory_be"}]}
+                """);
+        }
+
+        PrayerPackStore.InstallPack(buffer.ToArray());
+
+        var steps = PrayerEngine.BuildCustomDevotionSteps(
+            id, "en", isEasterSeason: false, MarianAntiphonOption.SalveRegina);
+        Assert.Equal(["Sign of the Cross", "Day 1", "Glory Be"], steps.Select(s => s.Title));
+        Assert.Equal("Day one prayer.", steps[1].Body);
+
+        PrayerPackStore.RemoveInstalledPack(id);
         Directory.Delete(PrayerPackStore.InstalledPacksDirectory, recursive: true);
     }
 

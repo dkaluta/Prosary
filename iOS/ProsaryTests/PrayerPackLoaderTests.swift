@@ -120,6 +120,42 @@ final class PrayerPackLoaderTests: XCTestCase {
     XCTAssertNil(PrayerPackStore.definition(for: id))
   }
 
+  /// A days-type (multi-day) bundle decodes, installs, and prays its first day — the
+  /// groundwork contract until per-favorite day progress ships (see ARCHITECTURE.md).
+  func testDaysTypeBundlePraysItsFirstDay() throws {
+    PrayerPackStore.installedPacksDirectory = FileManager.default.temporaryDirectory
+      .appendingPathComponent("prosary-test-packs-\(UUID().uuidString)", isDirectory: true)
+    defer { try? FileManager.default.removeItem(at: PrayerPackStore.installedPacksDirectory) }
+
+    let id = "novena\(Int.random(in: 1000...9999))"
+    let manifest = """
+      {"schemaVersion": 1, "id": "\(id)", "kind": "\(id)", "displayName": "Example Novena",
+       "languages": ["la", "en"], "hasCatalog": false, "images": []}
+      """
+    let content = #"{"prayers": {"day1Body": "Day one prayer.", "day2Body": "Day two prayer."}, "mysteries": {}}"#
+    let devotion = """
+      {"type": "days",
+       "opening": [{"title": "Sign of the Cross", "bodyKey": "signumCrucis", "imageKey": "crucifix"}],
+       "days": [
+         {"name": "Day 1", "steps": [{"title": "Day 1", "bodyKey": "day1Body"}]},
+         {"name": "Day 2", "steps": [{"title": "Day 2", "bodyKey": "day2Body"}]}
+       ],
+       "closing": [{"title": "Glory Be", "bodyKey": "gloriaPatri", "imageKey": "glory_be"}]}
+      """
+    try PrayerPackStore.installPack(from: Self.storedZip([
+      ("manifest.json", Data(manifest.utf8)),
+      ("content/la.json", Data(content.utf8)),
+      ("content/en.json", Data(content.utf8)),
+      ("devotion.json", Data(devotion.utf8)),
+    ]))
+    defer { PrayerPackStore.removeInstalledPack(id: id) }
+
+    let steps = PrayerEngine().buildSteps(
+      for: Prayer(kind: .custom, languageCode: "en", customDevotionId: id))
+    XCTAssertEqual(steps.map(\.title), ["Sign of the Cross", "Day 1", "Glory Be"])
+    XCTAssertEqual(steps[1].body, "Day one prayer.")
+  }
+
   /// Minimal stored (uncompressed) zip writer — enough for MinimalZipReader to consume.
   private static func storedZip(_ files: [(name: String, data: Data)]) -> Data {
     func le16(_ v: Int) -> Data { Data([UInt8(v & 0xFF), UInt8((v >> 8) & 0xFF)]) }

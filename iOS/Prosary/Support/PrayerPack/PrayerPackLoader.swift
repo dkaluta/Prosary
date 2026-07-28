@@ -154,6 +154,23 @@ struct CustomDevotionDefinition: Decodable {
     case steps
     /// A decade/bead-structured devotion (Franciscan Crown, Seven Sorrows, Divine Mercy).
     case rosary
+    /// A multi-day devotion (novenas, the 33-day Montfort consecration): one step list per
+    /// day, with optional shared opening/closing prayed every day. The engine builds one day's
+    /// sequence per session; per-favorite day progress is a planned follow-up (see
+    /// ARCHITECTURE.md's "Multi-day devotions" section) — until it lands, sessions pray day 1.
+    case days
+  }
+
+  /// One day of a days-type devotion.
+  struct Day: Decodable {
+    /// English UI label ("Day 1", "Feast of the Consecration"); `nameByLanguage` overrides it
+    /// per UI localization.
+    let name: String
+    let nameByLanguage: [String: String]?
+    /// Optional grouping label for the Montfort-style structure ("First Week: Knowledge of
+    /// Self"), shown as period context by the future day-picker UI.
+    let period: String?
+    let steps: [CustomDevotionStep]
   }
 
   struct Decades: Decodable {
@@ -225,6 +242,8 @@ struct CustomDevotionDefinition: Decodable {
   }
 
   let type: DevotionType
+  // days type
+  let days: [Day]?
   // steps type
   let steps: [CustomDevotionStep]?
   /// Whole-sequence swap during Eastertide (the Angelus → Regina Caeli substitution).
