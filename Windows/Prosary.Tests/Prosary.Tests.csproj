@@ -16,6 +16,11 @@
          REGDB_E_CLASSNOTREG on machines (like CI runners) that lack the runtime. -->
     <WindowsPackageType>None</WindowsPackageType>
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <!-- Self-contained means registration-free activation from the output folder — the
+         bootstrap and MSIX DeploymentManager auto-initializers must not run (the latter is
+         what threw REGDB_E_CLASSNOTREG from the module initializer on CI). -->
+    <WindowsAppSdkBootstrapInitialize>false</WindowsAppSdkBootstrapInitialize>
+    <WindowsAppSdkDeploymentManagerInitialize>false</WindowsAppSdkDeploymentManagerInitialize>
   </PropertyGroup>
 
   <ItemGroup>
