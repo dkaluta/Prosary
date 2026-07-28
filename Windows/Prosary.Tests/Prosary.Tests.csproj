@@ -10,10 +10,17 @@
     <LangVersion>latest</LangVersion>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
+    <!-- The test host is an unpackaged process: deploy the Windows App SDK runtime next to it
+         (registration-free WinRT) instead of expecting an installed framework package —
+         without this, loading any type from Prosary.dll dies in the module initializer with
+         REGDB_E_CLASSNOTREG on machines (like CI runners) that lack the runtime. -->
+    <WindowsPackageType>None</WindowsPackageType>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.250916002" />
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
   </ItemGroup>
