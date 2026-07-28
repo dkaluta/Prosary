@@ -20,6 +20,10 @@ import Foundation
 
 private struct PackManifest: Decodable {
   let id: String
+  /// Set ("rosary") when this bundle's devotion.json backs a dedicated PrayerKind rather than
+  /// a generic .custom devotion — the definition loads, but the bundle stays out of
+  /// `customDevotionIds()` so Home/Favorites don't list it twice.
+  let builtinKind: String?
   let displayName: String
   let languages: [String]
   let hasCatalog: Bool
@@ -48,6 +52,10 @@ struct CustomDevotionStep: Decodable {
   let title: String?
   let titleKey: String?
   let subtitle: String?
+  /// Like `titleKey` for the subtitle — for subtitles that are themselves translated content
+  /// (the Rosary's opening Hail Marys "for Faith/Hope/Charity"). Mutually exclusive with the
+  /// literal `subtitle`.
+  let subtitleKey: String?
   let bodyKey: String?
   let imageKey: String?
   let repeatCount: Int?
@@ -57,15 +65,21 @@ struct CustomDevotionStep: Decodable {
   /// `PrayerEngine.evaluateCondition`. Nil = always included.
   let condition: String?
   let kind: SpecialKind?
+  /// For `kind == .marianAntiphon`: the choice option whose value names the antiphon to build
+  /// ("seasonal" resolves via the liturgical calendar, "none" drops the step).
+  let optionKey: String?
 
   enum SpecialKind: String, Decodable {
     /// The seasonal Marian antiphon (Franciscan Crown) — calendar-dependent, so it stays
     /// runtime-composed by the engine's shared antiphon builder rather than data-driven.
     case seasonalMarianAntiphon
+    /// An option-selected Marian antiphon (the Rosary) — `optionKey` names a choice option
+    /// whose cases are antiphon ids plus "seasonal" and "none".
+    case marianAntiphon
   }
 
   private enum CodingKeys: String, CodingKey {
-    case title, titleKey, subtitle, bodyKey, imageKey, isScripture, kind
+    case title, titleKey, subtitle, subtitleKey, bodyKey, imageKey, isScripture, kind, optionKey
     case repeatCount = "repeat"
     case condition = "if"
   }
@@ -148,14 +162,28 @@ struct CustomDevotionDefinition: Decodable {
     /// True: each decade opens with an announcement step whose title/body come from the mystery
     /// text of that decade's catalog entry (via the merged MysteryTranslations path).
     let announceMystery: Bool
+    /// "mysteryGroups" (the Rosary): the decade catalog is resolved at build time from the
+    /// engine's mystery-group machinery (RosaryOptions selection mode + liturgical calendar,
+    /// group-labelled ordinals, single-mystery true ordinal) instead of `entries`/`count` —
+    /// steps carry real `Mystery` values so the flow renders exactly as the hardcoded builder
+    /// did. Nil for bundle-cataloged devotions.
+    let source: String?
     /// Per-decade catalog (Franciscan Crown/Seven Sorrows). Mutually exclusive with
-    /// `count`+`fixedImageKey` (Divine Mercy).
+    /// `count`+`fixedImageKey` (Divine Mercy) and with `source`.
     let entries: [CatalogEntry]?
     let count: Int?
     let fixedImageKey: String?
     let majorStep: FixedStep
     let minorStep: FixedStep
     let minorCount: Int
+    /// Entries emitted after each decade's minors, carrying the decade's subtitle/index (the
+    /// Rosary's Glory Be / Fatima Prayer / per-decade eternal rest), each usually gated with
+    /// an `"if"`.
+    let postMinor: [CustomDevotionStep]?
+    /// Presenter-mode alternate decade tail: when the gating option is on, the minors (and any
+    /// postMinor entry gated `"!presenterMode"`) collapse into one combined step with
+    /// `hailMaryIndexInDecade = minorCount` so the bead track still renders a full decade.
+    let presenter: Presenter?
 
     struct CatalogEntry: Decodable {
       let imageKey: String
@@ -167,6 +195,15 @@ struct CustomDevotionDefinition: Decodable {
     struct FixedStep: Decodable {
       let title: String
       let bodyKey: String
+      /// Fixed illustration for this step (the Rosary's Our Father icon between
+      /// mystery-specific images). Nil = the decade's own image.
+      let imageKey: String?
+    }
+
+    struct Presenter: Decodable {
+      let combinedTitle: String
+      /// Bodies joined with a blank line (Hail Mary + Glory Be).
+      let bodyKeys: [String]
     }
   }
 
@@ -398,7 +435,9 @@ enum PrayerPackStore {
     if zip.fileNames().contains("devotion.json") {
       let definition = try decoder.decode(CustomDevotionDefinition.self, from: zip.contents(of: "devotion.json"))
       definitionByBundle[manifest.id] = definition
-      orderedCustomIds.append(manifest.id)
+      if manifest.builtinKind == nil {
+        orderedCustomIds.append(manifest.id)
+      }
     }
 
     if zip.fileNames().contains("options.json") {

@@ -226,7 +226,10 @@ public static class PrayerPackStore
             var definition = JsonSerializer.Deserialize<CustomDevotionDefinition>(ReadAllBytes(devotionEntry), JsonOptions)
                 ?? throw new InvalidDataException("devotion.json did not deserialize");
             DefinitionByBundle[manifest.Id] = definition;
-            OrderedCustomIds.Add(manifest.Id);
+            if (manifest.BuiltinKind is null)
+            {
+                OrderedCustomIds.Add(manifest.Id);
+            }
         }
 
         if (entries.TryGetValue("options.json", out var optionsEntry))
@@ -428,10 +431,21 @@ public sealed record CustomDevotionDefinition(
         DecadesDefinition.FixedStep MinorStep,
         int MinorCount,
         // Per-decade catalog (Franciscan Crown/Seven Sorrows). Mutually exclusive with
-        // Count+FixedImageKey (Divine Mercy).
+        // Count+FixedImageKey (Divine Mercy) and with Source.
         List<DecadesDefinition.CatalogEntry>? Entries = null,
         int? Count = null,
-        string? FixedImageKey = null)
+        string? FixedImageKey = null,
+        // "mysteryGroups" (the Rosary): the decade catalog is resolved at build time from the
+        // engine's mystery-group machinery (RosaryOptions selection mode + liturgical calendar)
+        // instead of Entries/Count — steps carry real Mystery values so the flow renders exactly
+        // as the hardcoded builder did. Null for bundle-cataloged devotions.
+        string? Source = null,
+        // Entries emitted after each decade's minors, carrying the decade's subtitle/index (the
+        // Rosary's Glory Be / Fatima Prayer / per-decade eternal rest), usually gated.
+        List<CustomDevotionStep>? PostMinor = null,
+        // Presenter-mode alternate decade tail: the minors collapse into one combined step with
+        // HailMaryIndexInDecade = MinorCount so the bead track still renders a full decade.
+        DecadesDefinition.PresenterDefinition? Presenter = null)
     {
         public sealed record CatalogEntry(
             string ImageKey,
@@ -439,7 +453,17 @@ public sealed record CustomDevotionDefinition(
             // (the Seven Sorrows' meeting on the way) opts out.
             bool? IsScripture = null);
 
-        public sealed record FixedStep(string Title, string BodyKey);
+        public sealed record FixedStep(
+            string Title,
+            string BodyKey,
+            // Fixed illustration for this step (the Rosary's Our Father icon between
+            // mystery-specific images). Null = the decade's own image.
+            string? ImageKey = null);
+
+        public sealed record PresenterDefinition(
+            string CombinedTitle,
+            // Bodies joined with a blank line (Hail Mary + Glory Be).
+            List<string> BodyKeys);
     }
 }
 

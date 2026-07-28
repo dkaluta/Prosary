@@ -14,6 +14,10 @@ import kotlinx.serialization.json.JsonPrimitive
 @Serializable
 private data class PackManifest(
     val id: String,
+    /** Set ("rosary") when this bundle's devotion.json backs a dedicated PrayerKind rather
+     * than a generic Custom devotion — the definition loads, but the bundle stays out of
+     * [PrayerPackStore.customDevotionIds] so Home/Favorites don't list it twice. */
+    val builtinKind: String? = null,
     val displayName: String,
     val languages: List<String>,
     val hasCatalog: Boolean,
@@ -52,7 +56,14 @@ data class CustomDevotionStep(
      * `"!key"` (toggle off), or `"key=caseId"` (choice equals) — see
      * `PrayerEngine.evaluateCondition`. Null = always included. */
     @SerialName("if") val condition: String? = null,
+    /** Like [titleKey] for the subtitle — for subtitles that are themselves translated content
+     * (the Rosary's opening Hail Marys "for Faith/Hope/Charity"). Mutually exclusive with the
+     * literal [subtitle]. */
+    val subtitleKey: String? = null,
     val kind: SpecialKind? = null,
+    /** For [SpecialKind.MarianAntiphon]: the choice option whose value names the antiphon to
+     * build ("seasonal" resolves via the liturgical calendar, "none" drops the step). */
+    val optionKey: String? = null,
 ) {
     @Serializable
     enum class SpecialKind {
@@ -60,6 +71,11 @@ data class CustomDevotionStep(
          * runtime-composed by the engine's shared antiphon builder rather than data-driven. */
         @SerialName("seasonalMarianAntiphon")
         SeasonalMarianAntiphon,
+
+        /** An option-selected Marian antiphon (the Rosary) — [CustomDevotionStep.optionKey]
+         * names a choice option whose cases are antiphon ids plus "seasonal" and "none". */
+        @SerialName("marianAntiphon")
+        MarianAntiphon,
     }
 }
 
@@ -176,14 +192,27 @@ data class CustomDevotionDefinition(
         /** True: each decade opens with an announcement step whose title/body come from the
          * mystery text of that decade's catalog entry (via the merged MysteryTranslations path). */
         val announceMystery: Boolean,
+        /** "mysteryGroups" (the Rosary): the decade catalog is resolved at build time from the
+         * engine's mystery-group machinery (RosaryOptions selection mode + liturgical calendar)
+         * instead of [entries]/[count] — steps carry real [com.dkaluta.prosary.models.Mystery]
+         * values so the flow renders exactly as the hardcoded builder did. Null for
+         * bundle-cataloged devotions. */
+        val source: String? = null,
         /** Per-decade catalog (Franciscan Crown/Seven Sorrows). Mutually exclusive with
-         * [count]+[fixedImageKey] (Divine Mercy). */
+         * [count]+[fixedImageKey] (Divine Mercy) and with [source]. */
         val entries: List<CatalogEntry>? = null,
         val count: Int? = null,
         val fixedImageKey: String? = null,
         val majorStep: FixedStep,
         val minorStep: FixedStep,
         val minorCount: Int,
+        /** Entries emitted after each decade's minors, carrying the decade's subtitle/index
+         * (the Rosary's Glory Be / Fatima Prayer / per-decade eternal rest), usually gated. */
+        val postMinor: List<CustomDevotionStep>? = null,
+        /** Presenter-mode alternate decade tail: the minors collapse into one combined step
+         * with `hailMaryIndexInDecade = minorCount` so the bead track still renders a full
+         * decade. */
+        val presenter: Presenter? = null,
     ) {
         @Serializable
         data class CatalogEntry(
@@ -197,6 +226,16 @@ data class CustomDevotionDefinition(
         data class FixedStep(
             val title: String,
             val bodyKey: String,
+            /** Fixed illustration for this step (the Rosary's Our Father icon between
+             * mystery-specific images). Null = the decade's own image. */
+            val imageKey: String? = null,
+        )
+
+        @Serializable
+        data class Presenter(
+            val combinedTitle: String,
+            /** Bodies joined with a blank line (Hail Mary + Glory Be). */
+            val bodyKeys: List<String>,
         )
     }
 }
@@ -367,7 +406,9 @@ object PrayerPackStore {
         entries["devotion.json"]?.let { definitionBytes ->
             definitionByBundle[manifest.id] =
                 json.decodeFromString<CustomDevotionDefinition>(String(definitionBytes, Charsets.UTF_8))
-            orderedCustomIds.add(manifest.id)
+            if (manifest.builtinKind == null) {
+                orderedCustomIds.add(manifest.id)
+            }
         }
 
         entries["options.json"]?.let { optionBytes ->

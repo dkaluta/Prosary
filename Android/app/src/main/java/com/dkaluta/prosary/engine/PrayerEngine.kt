@@ -24,26 +24,28 @@ private val ordinals = listOf(
     "8th", "9th", "10th", "11th", "12th", "13th", "14th",
 )
 
-private val virtues: List<Pair<PrayerKey, String>> = listOf(
-    PrayerKey.AveMariaProFide to "virtue_faith",
-    PrayerKey.AveMariaProSpe to "virtue_hope",
-    PrayerKey.AveMariaProCaritate to "virtue_charity",
-)
-
 /** The single production step-builder for every devotion. `buildSteps(prayer)` dispatches on
- * `Prayer.kind`: the Rosary keeps its own hardcoded, options/calendar-driven builder (it is the
- * one deeply configurable devotion); the Jesus Prayer has no steps at all (a repetition counter
- * — see JesusPrayerFlowScreen); and every other devotion is Custom — fully data-driven from its
+ * `Prayer.kind`: the Jesus Prayer has no steps at all (a repetition counter — see
+ * JesusPrayerFlowScreen); everything else — the Rosary included — is data-driven from a
  * .prosaryprayer bundle's devotion.json via [buildCustomDevotionSteps] (flat "steps" type) and
- * [buildCustomRosarySteps] (decade/bead-structured "rosary" type). [buildDecadeSteps] and
- * [buildMarianAntiphonStep] remain as the Rosary's own helpers; the generic rosary-type builder
- * mirrors their emission so bead tracks behave identically everywhere. Calendar injection is
+ * [buildCustomRosarySteps] (decade/bead-structured "rosary" type). The Rosary's
+ * option/calendar-driven pieces stay engine-side behind the bundle's
+ * `decades.source: "mysteryGroups"` (see [buildMysteryGroupDecades]), with [RosaryOptions]
+ * mapped onto the bundle's options.json values by [rosaryOptionValues] — no data migration.
+ * The retired hardcoded builder's output was pinned byte-for-byte before deletion
+ * (RosaryEngineTest's one-time parity sweep, kept in git history). Calendar injection is
  * preserved via this type's own constructor. */
 class PrayerEngine(
     private val calendar: LiturgicalCalendarProviding = MockLiturgicalCalendar(),
 ) {
     fun buildSteps(prayer: Prayer): List<RosaryStep> = when (prayer.kind) {
-        PrayerKind.Rosary -> buildRosarySteps(prayer)
+        // The Rosary builds from the rosary bundle's devotion.json like every other devotion —
+        // RosaryOptions stays the persisted shape (no data migration; the bespoke editor keeps
+        // writing it) and is mapped onto the bundle's option values here.
+        PrayerKind.Rosary -> buildCustomDevotionSteps(
+            "rosary", prayer.resolvedLanguageCode,
+            optionOverrides = rosaryOptionValues(prayer.rosary), rosaryOptions = prayer.rosary,
+        )
         // The Jesus Prayer has no engine — every repetition prays the same fixed line, so a
         // single synthesized step plus a JesusPrayerProgress counter is the whole model; see
         // JesusPrayerFlowScreen, which never calls this engine at all.
@@ -64,185 +66,29 @@ class PrayerEngine(
 
     /** Resolves which mystery group(s) a prayer's Rosary options point to, in the order they
      * should be prayed. */
-    fun resolveMysteryGroups(prayer: Prayer): List<MysteryGroup> = when (prayer.rosary.mysterySelectionMode) {
-        MysterySelectionMode.Specific, MysterySelectionMode.SingleMystery -> listOf(prayer.rosary.specificMysteryGroup)
+    fun resolveMysteryGroups(prayer: Prayer): List<MysteryGroup> = resolveMysteryGroups(prayer.rosary)
+
+    fun resolveMysteryGroups(rosary: RosaryOptions): List<MysteryGroup> = when (rosary.mysterySelectionMode) {
+        MysterySelectionMode.Specific, MysterySelectionMode.SingleMystery -> listOf(rosary.specificMysteryGroup)
         MysterySelectionMode.FifteenMystery -> listOf(MysteryGroup.Joyful, MysteryGroup.Sorrowful, MysteryGroup.Glorious)
         MysterySelectionMode.TwentyMystery ->
             listOf(MysteryGroup.Joyful, MysteryGroup.Luminous, MysteryGroup.Sorrowful, MysteryGroup.Glorious)
         MysterySelectionMode.TodaysMysteries -> listOf(calendar.mysteryGroupToday())
     }
 
-    private fun buildRosarySteps(prayer: Prayer): List<RosaryStep> {
-        val options = prayer.rosary
-        val lang = prayer.resolvedLanguageCode
-        val groups = resolveMysteryGroups(prayer)
-        val steps = mutableListOf<RosaryStep>()
-
-        fun text(key: PrayerKey): String = PrayerTranslations.get(lang, key)
-
-        steps.add(RosaryStep(title = "Sign of the Cross", body = text(PrayerKey.SignumCrucis), imageOverrideKey = "crucifix"))
-
-        if (options.includeApostlesCreed) {
-            steps.add(RosaryStep(title = "Apostles' Creed", body = text(PrayerKey.SymbolumApostolorum), imageOverrideKey = "crucifix"))
-        }
-
-        if (options.includeOpeningPrayers) {
-            steps.add(RosaryStep(title = "Our Father", body = text(PrayerKey.PaterNoster), imageOverrideKey = "our_father"))
-            for ((key, imageKey) in virtues) {
-                steps.add(RosaryStep(title = "Hail Mary", subtitle = text(key), body = text(PrayerKey.AveMaria), imageOverrideKey = imageKey))
-            }
-            steps.add(RosaryStep(title = "Glory Be", body = text(PrayerKey.GloriaPatri), imageOverrideKey = "glory_be"))
-        }
-
-        val fruitLabel = text(PrayerKey.FructusMysteriiLabel)
-        val showGroupName = groups.size > 1
-        var decadeIndex = 0
-
-        for (group in groups) {
-            val mysteries = MysteryCatalog.forGroup(group)
-            val indices = if (options.mysterySelectionMode == MysterySelectionMode.SingleMystery) {
-                listOf(options.specificMysteryOrder - 1)
-            } else {
-                mysteries.indices.toList()
-            }
-
-            for (d in indices) {
-                val mystery = mysteries[d]
-                val mysteryText = MysteryTranslations.get(lang, mystery.imageKey)
-                val ordinalLabel = if (showGroupName) "${group.displayName} — ${ordinals[d]} Mystery" else "${ordinals[d]} Mystery"
-                val thisDecade = decadeIndex
-                val decadeSubtitle = "$ordinalLabel — ${mysteryText.title}"
-
-                if (options.presenterMode) {
-                    steps.add(
-                        RosaryStep(
-                            title = mysteryText.title, subtitle = ordinalLabel,
-                            body = "${mysteryText.description}\n\n$fruitLabel: ${mysteryText.fruit}",
-                            mystery = mystery, isScripture = true, decadeIndex = thisDecade,
-                        ),
-                    )
-                    steps.add(
-                        RosaryStep(
-                            title = "Our Father", subtitle = decadeSubtitle, body = text(PrayerKey.PaterNoster),
-                            decadeIndex = thisDecade, imageOverrideKey = "our_father",
-                        ),
-                    )
-                    steps.add(
-                        RosaryStep(
-                            title = "Hail Mary & Glory Be", subtitle = decadeSubtitle,
-                            body = "${text(PrayerKey.AveMaria)}\n\n${text(PrayerKey.GloriaPatri)}",
-                            mystery = mystery, decadeIndex = thisDecade, hailMaryIndexInDecade = 10,
-                        ),
-                    )
-                } else {
-                    steps.addAll(
-                        buildDecadeSteps(
-                            decadeIndex = thisDecade,
-                            announcementTitle = mysteryText.title, ordinalLabel = ordinalLabel,
-                            announcementBody = "${mysteryText.description}\n\n$fruitLabel: ${mysteryText.fruit}",
-                            mystery = mystery, decadeImageKey = null, isScripture = true,
-                            ourFatherImageKey = "our_father", hailMarysPerDecade = 10, languageCode = lang,
-                        ),
-                    )
-
-                    steps.add(
-                        RosaryStep(
-                            title = "Glory Be", subtitle = decadeSubtitle, body = text(PrayerKey.GloriaPatri),
-                            decadeIndex = thisDecade, imageOverrideKey = "glory_be",
-                        ),
-                    )
-                }
-
-                if (options.includeFatimaPrayer) {
-                    steps.add(
-                        RosaryStep(
-                            title = "Fatima Prayer", subtitle = decadeSubtitle, body = text(PrayerKey.OratioFatimae),
-                            decadeIndex = thisDecade, imageOverrideKey = "jesus_portrait",
-                        ),
-                    )
-                }
-
-                if (options.eternalRestForDeceased == EternalRestPlacement.AfterEachDecade) {
-                    steps.add(
-                        RosaryStep(
-                            title = "For the Faithful Departed", subtitle = decadeSubtitle, body = text(PrayerKey.RequiemAeternam),
-                            decadeIndex = thisDecade, imageOverrideKey = "eternal_rest",
-                        ),
-                    )
-                }
-
-                decadeIndex += 1
-            }
-        }
-
-        val antiphon = resolveMarianAntiphon(options)
-        if (antiphon != null) {
-            steps.add(buildMarianAntiphonStep(antiphon, lang))
-        }
-
-        if (options.includeStMichaelPrayer) {
-            steps.add(RosaryStep(title = "St. Michael the Archangel", body = text(PrayerKey.SanctusMichael), imageOverrideKey = "st_michael"))
-        }
-
-        if (options.eternalRestForDeceased == EternalRestPlacement.AtEndOnly) {
-            steps.add(RosaryStep(title = "For the Faithful Departed", body = text(PrayerKey.RequiemAeternam), imageOverrideKey = "eternal_rest"))
-        }
-
-        if (options.includeFinalSignOfCross) {
-            steps.add(RosaryStep(title = "Sign of the Cross", body = text(PrayerKey.SignumCrucis), imageOverrideKey = "crucifix"))
-        }
-
-        return steps
-    }
-
-    private fun resolveMarianAntiphon(options: RosaryOptions): MarianAntiphonOption? = when (options.marianAntiphon) {
-        MarianAntiphonOption.None -> null
-        MarianAntiphonOption.Seasonal -> calendar.seasonalMarianAntiphonToday()
-        else -> options.marianAntiphon
-    }
-
-    // MARK: Shared decade-building helper (Rosary's inner loop, Franciscan Crown, Seven Sorrows)
-
-    /** Builds one decade: an announcement step, an Our Father step, and [hailMarysPerDecade] Hail
-     * Mary steps. [mystery]/[decadeImageKey] together control each step's illustration — pass a
-     * real [Mystery] (Rosary) to let steps fall through to its own imageKey, or a null mystery
-     * plus an explicit [decadeImageKey] (Franciscan Crown/Seven Sorrows, whose catalogs are plain
-     * imageKey strings, not Mystery-typed). [ourFatherImageKey] is separate from
-     * [decadeImageKey] because the Rosary's Our Father step always shows a fixed generic icon
-     * ("our_father") between mystery-specific images, while Franciscan Crown/Seven Sorrows keep
-     * showing that decade's own illustration straight through — a real, deliberate difference
-     * between how these devotions render, not an inconsistency to paper over. */
-    private fun buildDecadeSteps(
-        decadeIndex: Int,
-        announcementTitle: String, ordinalLabel: String, announcementBody: String,
-        mystery: Mystery?, decadeImageKey: String?, isScripture: Boolean,
-        ourFatherImageKey: String?, hailMarysPerDecade: Int, languageCode: String?,
-    ): List<RosaryStep> {
-        fun text(key: PrayerKey): String = PrayerTranslations.get(languageCode, key)
-
-        val decadeSubtitle = "$ordinalLabel — $announcementTitle"
-        val steps = mutableListOf(
-            RosaryStep(
-                title = announcementTitle, subtitle = ordinalLabel, body = announcementBody,
-                mystery = mystery, isScripture = isScripture, decadeIndex = decadeIndex, imageOverrideKey = decadeImageKey,
-            ),
-            RosaryStep(
-                title = "Our Father", subtitle = decadeSubtitle, body = text(PrayerKey.PaterNoster),
-                decadeIndex = decadeIndex, imageOverrideKey = ourFatherImageKey,
-            ),
-        )
-
-        for (h in 1..hailMarysPerDecade) {
-            steps.add(
-                RosaryStep(
-                    title = "Hail Mary ($h of $hailMarysPerDecade)", subtitle = decadeSubtitle, body = text(PrayerKey.AveMaria),
-                    mystery = mystery, decadeIndex = decadeIndex, hailMaryIndexInDecade = h, imageOverrideKey = decadeImageKey,
-                ),
-            )
-        }
-
-        return steps
-    }
+    /** Maps the persisted [RosaryOptions] onto the rosary bundle's options.json values — the
+     * no-data-migration seam: favorites keep their typed columns and bespoke editor, while the
+     * engine speaks the bundle's generic option encoding. */
+    fun rosaryOptionValues(rosary: RosaryOptions): Map<String, String> = mapOf(
+        "apostlesCreed" to rosary.includeApostlesCreed.toString(),
+        "openingPrayers" to rosary.includeOpeningPrayers.toString(),
+        "presenterMode" to rosary.presenterMode.toString(),
+        "fatimaPrayer" to rosary.includeFatimaPrayer.toString(),
+        "eternalRest" to rosary.eternalRestForDeceased.name.replaceFirstChar { it.lowercaseChar() },
+        "antiphon" to rosary.marianAntiphon.name.replaceFirstChar { it.lowercaseChar() },
+        "stMichael" to rosary.includeStMichaelPrayer.toString(),
+        "finalSignOfCross" to rosary.includeFinalSignOfCross.toString(),
+    )
 
     // MARK: Marian antiphon (shared by the Rosary and generic rosary-type devotions)
 
@@ -297,6 +143,7 @@ class PrayerEngine(
         languageCode: String?,
         variantId: String? = null,
         optionOverrides: Map<String, String> = emptyMap(),
+        rosaryOptions: RosaryOptions? = null,
     ): List<RosaryStep> {
         val definition = PrayerPackStore.definition(bundleId) ?: return emptyList()
         // Effective option values: the bundle's declared defaults overlaid with the favorite's
@@ -313,7 +160,7 @@ class PrayerEngine(
                 entries.flatMap { expand(it, bundleId, languageCode, optionValues) }
             }
             CustomDevotionDefinition.DevotionType.Rosary ->
-                buildCustomRosarySteps(definition, bundleId, languageCode, optionValues)
+                buildCustomRosarySteps(definition, bundleId, languageCode, optionValues, rosaryOptions)
         }
     }
 
@@ -350,36 +197,54 @@ class PrayerEngine(
         if (entry.kind == CustomDevotionStep.SpecialKind.SeasonalMarianAntiphon) {
             return listOf(buildMarianAntiphonStep(calendar.seasonalMarianAntiphonToday(), languageCode))
         }
+        if (entry.kind == CustomDevotionStep.SpecialKind.MarianAntiphon) {
+            // Option-selected antiphon (the Rosary): the named choice's value is an antiphon id,
+            // "seasonal" (calendar-resolved) or "none" (no step).
+            val value = optionValues[entry.optionKey] ?: "seasonal"
+            val chosen = runCatching {
+                MarianAntiphonOption.valueOf(value.replaceFirstChar { it.uppercaseChar() })
+            }.getOrNull() ?: return emptyList()
+            if (chosen == MarianAntiphonOption.None) return emptyList()
+            val antiphon = if (chosen == MarianAntiphonOption.Seasonal) {
+                calendar.seasonalMarianAntiphonToday()
+            } else {
+                chosen
+            }
+            return listOf(buildMarianAntiphonStep(antiphon, languageCode))
+        }
         val title = entry.titleKey?.let { PrayerPackStore.resolveBodyText(bundleId, languageCode, it) }
             ?: entry.title.orEmpty()
+        val subtitle = entry.subtitleKey?.let { PrayerPackStore.resolveBodyText(bundleId, languageCode, it) }
+            ?: entry.subtitle
         val body = entry.bodyKey?.let { PrayerPackStore.resolveBodyText(bundleId, languageCode, it) }.orEmpty()
 
         val count = entry.repeatCount
         if (count == null || count <= 1) {
             return listOf(
                 RosaryStep(
-                    title = title, subtitle = entry.subtitle, body = body,
+                    title = title, subtitle = subtitle, body = body,
                     isScripture = entry.isScripture ?: false, imageOverrideKey = entry.imageKey,
                 ),
             )
         }
         return (1..count).map { h ->
             RosaryStep(
-                title = "$title ($h of $count)", subtitle = entry.subtitle, body = body,
+                title = "$title ($h of $count)", subtitle = subtitle, body = body,
                 isScripture = entry.isScripture ?: false, imageOverrideKey = entry.imageKey,
             )
         }
     }
 
-    /** The decade/bead-structured generic builder ("rosary" type) — mirrors [buildDecadeSteps]'s
-     * emission exactly (announcement → major → N minors, dense global `decadeIndex`,
-     * `hailMaryIndexInDecade` on minors only, "ordinal — title" subtitles) so the bead track and
-     * step chrome behave identically to the previously hardcoded decade devotions. */
+    /** The decade/bead-structured generic builder ("rosary" type) — announcement → major → N
+     * minors (dense global `decadeIndex`, `hailMaryIndexInDecade` on minors only,
+     * "ordinal — title" subtitles), matching the retired hardcoded decade devotions' emission
+     * exactly so the bead track and step chrome behave identically everywhere. */
     private fun buildCustomRosarySteps(
         definition: CustomDevotionDefinition,
         bundleId: String,
         languageCode: String?,
         optionValues: Map<String, String> = emptyMap(),
+        rosaryOptions: RosaryOptions? = null,
     ): List<RosaryStep> {
         val decades = definition.decades ?: return emptyList()
         fun resolve(key: String): String = PrayerPackStore.resolveBodyText(bundleId, languageCode, key)
@@ -389,47 +254,57 @@ class PrayerEngine(
             steps.addAll(expand(entry, bundleId, languageCode, optionValues))
         }
 
-        val fruitLabel = PrayerTranslations.get(languageCode, PrayerKey.FructusMysteriiLabel)
-        val majorBody = resolve(decades.majorStep.bodyKey)
-        val minorBody = resolve(decades.minorStep.bodyKey)
-        val decadeCount = decades.entries?.size ?: decades.count ?: 0
-
-        for (d in 0 until decadeCount) {
-            val entry = decades.entries?.get(d)
-            val imageKey = entry?.imageKey ?: decades.fixedImageKey
-            val ordinalLabel = "${ordinals[d]} ${decades.ordinalNoun}"
-            var decadeSubtitle = ordinalLabel
-
-            if (decades.announceMystery && entry != null) {
-                val mysteryText = MysteryTranslations.get(languageCode, entry.imageKey)
-                var body = mysteryText.description
-                if (mysteryText.fruit.isNotEmpty()) {
-                    body += "\n\n$fruitLabel: ${mysteryText.fruit}"
-                }
-                steps.add(
-                    RosaryStep(
-                        title = mysteryText.title, subtitle = ordinalLabel, body = body,
-                        isScripture = entry.isScripture ?: true, decadeIndex = d, imageOverrideKey = entry.imageKey,
-                    ),
-                )
-                decadeSubtitle = "$ordinalLabel — ${mysteryText.title}"
-            }
-
-            steps.add(
-                RosaryStep(
-                    title = decades.majorStep.title, subtitle = decadeSubtitle, body = majorBody,
-                    decadeIndex = d, imageOverrideKey = imageKey,
+        if (decades.source == "mysteryGroups") {
+            steps.addAll(
+                buildMysteryGroupDecades(
+                    decades, bundleId, languageCode, optionValues, rosaryOptions ?: RosaryOptions(),
                 ),
             )
+        } else {
+            val fruitLabel = PrayerTranslations.get(languageCode, PrayerKey.FructusMysteriiLabel)
+            val majorBody = resolve(decades.majorStep.bodyKey)
+            val minorBody = resolve(decades.minorStep.bodyKey)
+            val decadeCount = decades.entries?.size ?: decades.count ?: 0
 
-            for (h in 1..decades.minorCount) {
+            for (d in 0 until decadeCount) {
+                val entry = decades.entries?.get(d)
+                val imageKey = entry?.imageKey ?: decades.fixedImageKey
+                val ordinalLabel = "${ordinals[d]} ${decades.ordinalNoun}"
+                var decadeSubtitle = ordinalLabel
+
+                if (decades.announceMystery && entry != null) {
+                    val mysteryText = MysteryTranslations.get(languageCode, entry.imageKey)
+                    var body = mysteryText.description
+                    if (mysteryText.fruit.isNotEmpty()) {
+                        body += "\n\n$fruitLabel: ${mysteryText.fruit}"
+                    }
+                    steps.add(
+                        RosaryStep(
+                            title = mysteryText.title, subtitle = ordinalLabel, body = body,
+                            isScripture = entry.isScripture ?: true, decadeIndex = d, imageOverrideKey = entry.imageKey,
+                        ),
+                    )
+                    decadeSubtitle = "$ordinalLabel — ${mysteryText.title}"
+                }
+
                 steps.add(
                     RosaryStep(
-                        title = "${decades.minorStep.title} ($h of ${decades.minorCount})",
-                        subtitle = decadeSubtitle, body = minorBody,
-                        decadeIndex = d, hailMaryIndexInDecade = h, imageOverrideKey = imageKey,
+                        title = decades.majorStep.title, subtitle = decadeSubtitle, body = majorBody,
+                        decadeIndex = d, imageOverrideKey = decades.majorStep.imageKey ?: imageKey,
                     ),
                 )
+
+                for (h in 1..decades.minorCount) {
+                    steps.add(
+                        RosaryStep(
+                            title = "${decades.minorStep.title} ($h of ${decades.minorCount})",
+                            subtitle = decadeSubtitle, body = minorBody,
+                            decadeIndex = d, hailMaryIndexInDecade = h, imageOverrideKey = imageKey,
+                        ),
+                    )
+                }
+
+                steps.addAll(postMinorSteps(decades, bundleId, languageCode, optionValues, decadeSubtitle, d))
             }
         }
 
@@ -437,5 +312,114 @@ class PrayerEngine(
             steps.addAll(expand(entry, bundleId, languageCode, optionValues))
         }
         return steps
+    }
+
+    /** The Rosary's decade section — driven by the bundle's decades block but cataloged by the
+     * mystery-group machinery (`source: "mysteryGroups"`: selection mode + liturgical calendar)
+     * instead of bundle entries. Reproduces the retired hardcoded builder byte-for-byte: real
+     * [Mystery] values on announcement/minor steps (no image overrides), group-labelled ordinals
+     * when multiple groups are prayed, the single-mystery mode's true ordinal, and presenter
+     * mode's combined minors step with `hailMaryIndexInDecade = minorCount` for the bead
+     * track. */
+    private fun buildMysteryGroupDecades(
+        decades: CustomDevotionDefinition.Decades,
+        bundleId: String,
+        languageCode: String?,
+        optionValues: Map<String, String>,
+        rosary: RosaryOptions,
+    ): List<RosaryStep> {
+        fun resolve(key: String): String = PrayerPackStore.resolveBodyText(bundleId, languageCode, key)
+
+        val groups = resolveMysteryGroups(rosary)
+        val fruitLabel = PrayerTranslations.get(languageCode, PrayerKey.FructusMysteriiLabel)
+        val majorBody = resolve(decades.majorStep.bodyKey)
+        val minorBody = resolve(decades.minorStep.bodyKey)
+        val presenterOn = optionValues["presenterMode"] == "true"
+        val showGroupName = groups.size > 1
+
+        val steps = mutableListOf<RosaryStep>()
+        var decadeIndex = 0
+        for (group in groups) {
+            val mysteries = MysteryCatalog.forGroup(group)
+            val indices = if (rosary.mysterySelectionMode == MysterySelectionMode.SingleMystery) {
+                listOf(rosary.specificMysteryOrder - 1)
+            } else {
+                mysteries.indices.toList()
+            }
+
+            for (d in indices) {
+                val mystery = mysteries[d]
+                val mysteryText = MysteryTranslations.get(languageCode, mystery.imageKey)
+                val ordinalLabel = if (showGroupName) {
+                    "${group.displayName} — ${ordinals[d]} ${decades.ordinalNoun}"
+                } else {
+                    "${ordinals[d]} ${decades.ordinalNoun}"
+                }
+                val decadeSubtitle = "$ordinalLabel — ${mysteryText.title}"
+                val presenter = decades.presenter
+
+                steps.add(
+                    RosaryStep(
+                        title = mysteryText.title, subtitle = ordinalLabel,
+                        body = "${mysteryText.description}\n\n$fruitLabel: ${mysteryText.fruit}",
+                        mystery = mystery, isScripture = true, decadeIndex = decadeIndex,
+                    ),
+                )
+                steps.add(
+                    RosaryStep(
+                        title = decades.majorStep.title, subtitle = decadeSubtitle, body = majorBody,
+                        decadeIndex = decadeIndex, imageOverrideKey = decades.majorStep.imageKey,
+                    ),
+                )
+
+                if (presenterOn && presenter != null) {
+                    steps.add(
+                        RosaryStep(
+                            title = presenter.combinedTitle, subtitle = decadeSubtitle,
+                            body = presenter.bodyKeys.joinToString("\n\n") { resolve(it) },
+                            mystery = mystery, decadeIndex = decadeIndex, hailMaryIndexInDecade = decades.minorCount,
+                        ),
+                    )
+                } else {
+                    for (h in 1..decades.minorCount) {
+                        steps.add(
+                            RosaryStep(
+                                title = "${decades.minorStep.title} ($h of ${decades.minorCount})",
+                                subtitle = decadeSubtitle, body = minorBody,
+                                mystery = mystery, decadeIndex = decadeIndex, hailMaryIndexInDecade = h,
+                            ),
+                        )
+                    }
+                }
+
+                steps.addAll(postMinorSteps(decades, bundleId, languageCode, optionValues, decadeSubtitle, decadeIndex))
+                decadeIndex += 1
+            }
+        }
+        return steps
+    }
+
+    /** Expands the decades' `postMinor` entries for one decade — the same option gating as
+     * [expand], but every emitted step carries the decade's subtitle and index (the Rosary's
+     * per-decade Glory Be / Fatima Prayer / eternal rest). */
+    private fun postMinorSteps(
+        decades: CustomDevotionDefinition.Decades,
+        bundleId: String,
+        languageCode: String?,
+        optionValues: Map<String, String>,
+        decadeSubtitle: String,
+        decadeIndex: Int,
+    ): List<RosaryStep> = decades.postMinor.orEmpty().mapNotNull { entry ->
+        val condition = entry.condition
+        if (condition != null && !evaluateCondition(condition, optionValues)) {
+            return@mapNotNull null
+        }
+        val title = entry.titleKey?.let { PrayerPackStore.resolveBodyText(bundleId, languageCode, it) }
+            ?: entry.title.orEmpty()
+        val body = entry.bodyKey?.let { PrayerPackStore.resolveBodyText(bundleId, languageCode, it) }.orEmpty()
+        RosaryStep(
+            title = title, subtitle = decadeSubtitle, body = body,
+            decadeIndex = decadeIndex, imageOverrideKey = entry.imageKey,
+        )
     }
 }

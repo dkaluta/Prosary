@@ -8,16 +8,32 @@ import com.dkaluta.prosary.models.MysteryGroup
 import com.dkaluta.prosary.models.MysterySelectionMode
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.RosaryOptions
+import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
+import java.io.File
 import java.util.Date
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
+import org.junit.BeforeClass
 import org.junit.Test
 
 /** Tests that [PrayerEngine] builds the expected step sequences for a range of
  * [RosaryOptions] configurations — mirrors iOS's RosaryEngineTests. */
 class RosaryEngineTest {
+    companion object {
+        @BeforeClass
+        @JvmStatic
+        fun loadPacks() {
+            // The Rosary now builds from the rosary bundle's devotion.json, so the packs must
+            // be loaded exactly as CustomDevotionEngineTest does.
+            PrayerPackStore.initialize { packName ->
+                val file = File("src/main/assets/$packName.prosaryprayer")
+                if (file.exists()) file.inputStream() else null
+            }
+        }
+    }
+
     private class FixedCalendar(private val group: MysteryGroup) : LiturgicalCalendarProviding {
         override fun mysteryGroup(date: Date) = group
         override fun seasonColor(date: Date) = Color.Transparent

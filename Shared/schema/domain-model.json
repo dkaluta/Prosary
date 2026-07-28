@@ -65,7 +65,7 @@
       "note": "\"custom\" is the single case covering every generic, bundle-driven devotion (Angelus, Stations of the Cross, Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet, Trisagion, ...) — adding a new generic devotion needs no new PrayerKind case, only a new .prosaryprayer bundle with a devotion.json. The five retired per-devotion cases' raw values double as the matching bundle ids; iOS/Android remap legacy persisted rows to custom + that id permanently at read time (resolvedKind), while Windows persists the enum as its int (Rosary=0, JesusPrayer=2, Custom=7 — explicit, permanent values) and runs a one-time PRAGMA user_version-guarded SQL migration. Never renumber or reuse a retired Windows ordinal (1, 3-6)."
     },
     "RosaryOptions": {
-      "description": "Configuration specific to the Rosary. Lives inside a Prayer when kind == rosary.",
+      "description": "Configuration specific to the Rosary. Lives inside a Prayer when kind == rosary. Remains the persisted shape (typed columns, bespoke editor) even though the Rosary builds from the rosary bundle's devotion.json — PrayerEngine.rosaryOptionValues maps it onto the bundle's options.json values (no data migration).",
       "fields": {
         "mysterySelectionMode": {
           "type": "MysterySelectionMode",
@@ -333,6 +333,10 @@
           "type": "string?",
           "description": "Literal display string, e.g. \"1st Station\", \"For the tears of Our Lady\"."
         },
+        "subtitleKey": {
+          "type": "string?",
+          "description": "Like titleKey for the subtitle — for subtitles that are themselves translated content (the Rosary's opening Hail Marys \"for Faith/Hope/Charity\"). Mutually exclusive with the literal subtitle."
+        },
         "bodyKey": {
           "type": "string?",
           "description": "Resolved bundle-raw-first (requested language, then the bundle's Latin), then the shared PrayerTranslations chain, then the raw key — see ARCHITECTURE.md."
@@ -354,7 +358,11 @@
         },
         "kind": {
           "type": "string?",
-          "description": "\"seasonalMarianAntiphon\" (closing only): emitted by the engine's shared, calendar-dependent antiphon builder instead of bundle data."
+          "description": "\"seasonalMarianAntiphon\" (closing only): emitted by the engine's shared, calendar-dependent antiphon builder instead of bundle data (the Franciscan Crown). \"marianAntiphon\" (closing only): option-selected antiphon (the Rosary) — optionKey names a choice option whose value picks the antiphon, with \"seasonal\" calendar-resolved and \"none\" dropping the step."
+        },
+        "optionKey": {
+          "type": "string?",
+          "description": "For kind == \"marianAntiphon\": the choice option whose value names the antiphon to build."
         }
       }
     },
@@ -383,7 +391,7 @@
         },
         "decades": {
           "type": "object?",
-          "description": "rosary type only: { ordinalNoun (\"Joy\"/\"Sorrow\"/\"Decade\"), announceMystery, entries: [{imageKey, isScripture? = true}] XOR count + fixedImageKey, majorStep {title, bodyKey}, minorStep {title, bodyKey}, minorCount }. Announcement steps pull title/body from the merged mystery tables by imageKey."
+          "description": "rosary type only: { ordinalNoun (\"Joy\"/\"Sorrow\"/\"Mystery\"/\"Decade\"), announceMystery, entries: [{imageKey, isScripture? = true}] XOR count + fixedImageKey XOR source: \"mysteryGroups\" (the Rosary — decade catalog from the engine's mystery-group machinery: selection mode + liturgical calendar, group-labelled ordinals, single-mystery true ordinal, real Mystery values on steps), majorStep {title, bodyKey, imageKey?}, minorStep {title, bodyKey}, minorCount, postMinor?: [Entry] (emitted after each decade's minors with the decade's subtitle/index — the Rosary's Glory Be/Fatima/eternal rest, gated with \"if\"), presenter?: {combinedTitle, bodyKeys} (when the gating presenterMode option is on, the minors collapse into one combined step with hailMaryIndexInDecade = minorCount) }. Announcement steps pull title/body from the merged mystery tables by imageKey."
         },
         "closing": {
           "type": "CustomDevotionStep[]?",

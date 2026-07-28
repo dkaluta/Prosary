@@ -1,0 +1,96 @@
+{
+  "options": [
+    {
+      "key": "apostlesCreed",
+      "kind": "toggle",
+      "name": "Apostles' Creed",
+      "default": true
+    },
+    {
+      "key": "openingPrayers",
+      "kind": "toggle",
+      "name": "Opening prayers (Our Father, three Hail Marys, Glory Be)",
+      "default": true
+    },
+    {
+      "key": "presenterMode",
+      "kind": "toggle",
+      "name": "Presenter mode",
+      "default": false
+    },
+    {
+      "key": "fatimaPrayer",
+      "kind": "toggle",
+      "name": "Fatima Prayer",
+      "default": true
+    },
+    {
+      "key": "eternalRest",
+      "kind": "choice",
+      "name": "Eternal rest for the faithful departed",
+      "default": "none",
+      "cases": [
+        {
+          "id": "none",
+          "name": "None"
+        },
+        {
+          "id": "afterEachDecade",
+          "name": "After each decade"
+        },
+        {
+          "id": "atEndOnly",
+          "name": "At the end"
+        }
+      ]
+    },
+    {
+      "key": "antiphon",
+      "kind": "choice",
+      "name": "Marian antiphon",
+      "default": "seasonal",
+      "cases": [
+        {
+          "id": "seasonal",
+          "name": "Seasonal"
+        },
+        {
+          "id": "salveRegina",
+          "name": "Salve Regina"
+        },
+        {
+          "id": "almaRedemptorisMater",
+          "name": "Alma Redemptoris Mater"
+        },
+        {
+          "id": "aveReginaCaelorum",
+          "name": "Ave Regina Caelorum"
+        },
+        {
+          "id": "reginaCaeli",
+          "name": "Regina Caeli"
+        },
+        {
+          "id": "subTuumPraesidium",
+          "name": "Sub Tuum Praesidium"
+        },
+        {
+          "id": "none",
+          "name": "None"
+        }
+      ]
+    },
+    {
+      "key": "stMichael",
+      "kind": "toggle",
+      "name": "St. Michael prayer",
+      "default": false
+    },
+    {
+      "key": "finalSignOfCross",
+      "kind": "toggle",
+      "name": "Final Sign of the Cross",
+      "default": true
+    }
+  ]
+}

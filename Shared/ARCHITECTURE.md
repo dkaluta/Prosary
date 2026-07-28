@@ -76,17 +76,25 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
 ## Engines
 
 One `PrayerEngine` type builds every devotion's steps — `buildSteps(for: Prayer) -> [RosaryStep]`
-is the single entry point, dispatching on `Prayer.kind`: the Rosary keeps its own hardcoded,
-options/calendar-driven builder; the Jesus Prayer returns no steps at all (every repetition prays
-the same fixed line, so a single synthesized step plus a `JesusPrayerProgress` counter is the
-whole model); and everything else is `.custom`, built by one fully generic builder from the
-bundle's `devotion.json` (see "Content bundles" below). The five per-devotion builders the
-engine once carried (Angelus/Stations/Franciscan Crown/Seven Sorrows/Divine Mercy) are gone —
-their step sequences are reproduced byte-for-byte by the generic builder from bundle data, and
-each platform's `CustomDevotionEngineTests` pins those sequences (step counts 7/17/90/69/63, the
-Angelus's Eastertide Regina Caeli swap, the Seven Sorrows' 7-minor decades and non-scripture 4th
-sorrow, the Divine Mercy's identical per-decade lines and single reused image, closing repeats
-without bead fields).
+is the single entry point, dispatching on `Prayer.kind`: the Jesus Prayer returns no steps at all
+(every repetition prays the same fixed line, so a single synthesized step plus a
+`JesusPrayerProgress` counter is the whole model); everything else — **the Rosary included** — is
+built by one fully generic builder from a bundle's `devotion.json` (see "Content bundles" below).
+The six per-devotion builders the engine once carried (the Rosary's plus
+Angelus/Stations/Franciscan Crown/Seven Sorrows/Divine Mercy) are gone — their step sequences
+are reproduced byte-for-byte by the generic builder from bundle data. Each platform's
+`CustomDevotionEngineTests` pins the generic sequences (step counts 7/18/90/69/63, the Angelus's
+Eastertide Regina Caeli swap, the Seven Sorrows' 7-minor decades and non-scripture 4th sorrow,
+the Divine Mercy's identical per-decade lines and single reused image, closing repeats without
+bead fields), and `RosaryEngineTests` pins the Rosary's — its hardcoded builder was deleted only
+after a one-time parity sweep proved the bundle-driven output byte-for-byte identical across the
+full option grid, every antiphon, every selection mode/ordinal, and every language (the sweep
+lives in git history). The Rosary's genuinely option/calendar-driven pieces stay engine-side
+behind the rosary bundle's `decades.source: "mysteryGroups"`: mystery-group resolution
+(selection mode + calendar), group-labelled ordinals, the single-mystery mode's true ordinal,
+real `Mystery` values on steps, and presenter mode's combined step. `RosaryOptions` remains the
+persisted shape and the bespoke editor keeps writing it — the engine maps it onto the bundle's
+options.json values (`rosaryOptionValues`), so there is **no data migration**.
 
 - **Rosary** — the richest: opening (Sign of the Cross, optional Creed, optional opening Our
   Father/3 Hail Marys for Faith/Hope/Charity), one loop per decade across every resolved
@@ -311,13 +319,26 @@ of its own — its entire step sequence and per-step text are data-driven from i
   - `{"type": "rosary"}` — decade/bead-structured: `opening: [Entry…]` (entry 0 MUST be the Sign
     of the Cross — a bead-track invariant), `decades` (`ordinalNoun` "Joy"/"Sorrow"/"Decade";
     `announceMystery`; either inline `entries: [{imageKey, isScripture? = true}]` (Franciscan
-    Crown/Seven Sorrows) *or* `count` + `fixedImageKey` (Divine Mercy); `majorStep`/`minorStep`
-    `{title, bodyKey}`; `minorCount`), `closing: [Entry…]`, and `hasClosingCross` (when true the
-    closing cross must be the literal last step — another bead-track invariant). Announcement
-    steps pull title/body from the merged mystery tables by the entry's `imageKey`.
-  - An `Entry` is `{title | titleKey, subtitle?, bodyKey?, imageKey?, repeat?, isScripture?}` —
-    `title` is a literal English UI label (the app-wide convention), `titleKey` the alternative
-    for devotions whose step titles are themselves translated content (the Stations);
+    Crown/Seven Sorrows), *or* `count` + `fixedImageKey` (Divine Mercy), *or*
+    `source: "mysteryGroups"` (the Rosary — the decade catalog comes from the engine's
+    mystery-group machinery instead of bundle data); `majorStep`/`minorStep`
+    `{title, bodyKey, imageKey?}` (the optional `imageKey` is the Rosary's fixed Our Father
+    icon between mystery-specific images); `minorCount`; optional `postMinor: [Entry…]` emitted
+    after each decade's minors carrying the decade's subtitle/index (the Rosary's Glory Be /
+    Fatima Prayer / per-decade eternal rest, each gated with an `"if"`); optional
+    `presenter: {combinedTitle, bodyKeys}` — when the gating `presenterMode` option is on, the
+    minors collapse into one combined step with `hailMaryIndexInDecade = minorCount` so the
+    bead track still renders a full decade), `closing: [Entry…]`, and `hasClosingCross` (when
+    true the closing cross must be the literal last step — another bead-track invariant).
+    Announcement steps pull title/body from the merged mystery tables by the entry's
+    `imageKey`. A closing entry may be `{"kind": "marianAntiphon", "optionKey": …}` (the
+    Rosary): the named choice option's value selects the antiphon, with "seasonal" resolved by
+    the liturgical calendar and "none" dropping the step.
+  - An `Entry` is `{title | titleKey, subtitle? | subtitleKey?, bodyKey?, imageKey?, repeat?,
+    isScripture?}` — `title` is a literal English UI label (the app-wide convention), `titleKey`
+    the alternative for devotions whose step titles are themselves translated content (the
+    Stations), and `subtitleKey` likewise for translated subtitles (the Rosary's opening Hail
+    Marys "for Faith/Hope/Charity");
     `repeat: n` unrolls into n copies titled "Title (h of n)", deliberately without bead fields;
     `isScripture: true` marks a body that is a quoted Bible passage so it renders in the
     scripture typeface, same as the Rosary's mystery announcements (the scriptural Stations'
@@ -329,7 +350,10 @@ of its own — its entire step sequence and per-step text are data-driven from i
     at authoring time, byte-for-byte as the old engines emitted them (`"V\n**R**"`
     bold-response markdown) — e.g. `angelusAnnunciationBody`, `station01Body`/`station01Title`,
     `sevenSorrowsClosingBody`.
-- **`manifest.json`** fields for a generic devotion: `accentColorHex` + optional
+- **`manifest.json`** fields for a generic devotion: optional `builtinKind` ("rosary") marks a
+  bundle whose devotion.json backs a dedicated `PrayerKind` rather than a generic `.custom`
+  devotion — its definition loads, but the bundle stays out of `customDevotionIds()` so
+  Home/Favorites don't list it twice; `accentColorHex` + optional
   `accentColorDarkHex` (light/dark pair), `iconSystemName` (an SF Symbol name; mapped to the
   nearest Material icon on Android and Segoe Fluent Icons glyph on Windows via a small fixed
   per-platform table), `displayNameByLanguage` (preserves e.g. the Hebrew devotion names),

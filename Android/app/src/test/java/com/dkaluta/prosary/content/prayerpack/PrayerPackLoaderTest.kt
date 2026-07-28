@@ -111,8 +111,10 @@ class PrayerPackLoaderTest {
         }
     }
 
-    /** The Rosary's pack has no devotion.json (override-only) and must never be mistaken for a
-     * generic devotion; the six generic devotions appear in pack-load order. */
+    /** The Rosary's pack now ships a devotion.json (the engine builds the Rosary from it), but
+     * its manifest's builtinKind keeps it off the generic-devotion list — it backs the
+     * dedicated PrayerKind and must never appear as a Home/Favorites card twice. The six
+     * generic devotions appear in pack-load order. */
     @Test
     fun customDevotionIdsAreTheSixGenericDevotionsInLoadOrder() {
         assertEquals(
@@ -122,6 +124,7 @@ class PrayerPackLoaderTest {
             ),
             PrayerPackStore.customDevotionIds(),
         )
+        assertNotNull(PrayerPackStore.definition("rosary"))
     }
 
     @Test

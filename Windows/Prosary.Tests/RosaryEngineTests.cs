@@ -4,9 +4,16 @@ using Xunit;
 
 namespace Prosary.Tests;
 
-public class RosaryEngineTests
+/// <summary>The Rosary now builds from the rosary bundle's devotion.json (with RosaryOptions
+/// mapped onto the bundle's option values), so these tests need the packs loaded exactly like
+/// CustomDevotionEngineTests — hence the fixture.</summary>
+public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
 {
     private readonly PrayerEngine _engine = new(new LiturgicalCalendarService());
+
+    public RosaryEngineTests(PrayerPackLoaderFixture _)
+    {
+    }
 
     private static Prayer SpecificRosary(RosaryOptions? options = null) => new()
     {

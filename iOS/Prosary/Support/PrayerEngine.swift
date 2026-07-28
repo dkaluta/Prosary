@@ -3,13 +3,15 @@
 //  Prosary
 //
 //  The single production step-builder for every devotion. `buildSteps(for:)` dispatches on
-//  `Prayer.kind`: the Rosary keeps its own hardcoded, options/calendar-driven builder (it is the
-//  one deeply configurable devotion); the Jesus Prayer has no steps at all (a repetition counter
-//  — see JesusPrayerFlowView); and every other devotion is `.custom` — fully data-driven from its
+//  `Prayer.kind`: the Jesus Prayer has no steps at all (a repetition counter — see
+//  JesusPrayerFlowView); everything else — the Rosary included — is data-driven from a
 //  .prosaryprayer bundle's devotion.json via `buildCustomDevotionSteps` (flat "steps" type) and
-//  `buildCustomRosarySteps` (decade/bead-structured "rosary" type). `buildDecadeSteps` and
-//  `buildMarianAntiphonStep` remain as the Rosary's own helpers; the generic rosary-type builder
-//  mirrors their emission so bead tracks behave identically everywhere.
+//  `buildCustomRosarySteps` (decade/bead-structured "rosary" type). The Rosary's
+//  option/calendar-driven pieces stay engine-side behind the bundle's
+//  `decades.source: "mysteryGroups"` (see `buildMysteryGroupDecades`), with `RosaryOptions`
+//  mapped onto the bundle's options.json values by `rosaryOptionValues` — no data migration.
+//  The retired hardcoded builder's output was pinned byte-for-byte before deletion
+//  (RosaryEngineTests' one-time parity sweep, kept in git history).
 //
 
 import Foundation
@@ -18,12 +20,6 @@ struct PrayerEngine {
   private static let ordinals = [
     "1st", "2nd", "3rd", "4th", "5th", "6th", "7th",
     "8th", "9th", "10th", "11th", "12th", "13th", "14th",
-  ]
-
-  private static let virtues: [(key: PrayerKey, imageKey: String)] = [
-    (.aveMariaProFide, "virtue_faith"),
-    (.aveMariaProSpe, "virtue_hope"),
-    (.aveMariaProCaritate, "virtue_charity"),
   ]
 
   private let calendar: LiturgicalCalendarProviding
@@ -35,7 +31,12 @@ struct PrayerEngine {
   func buildSteps(for prayer: Prayer) -> [RosaryStep] {
     switch prayer.kind {
     case .rosary:
-      return buildRosarySteps(prayer)
+      // The Rosary builds from the rosary bundle's devotion.json like every other devotion —
+      // RosaryOptions stays the persisted shape (no data migration; the bespoke editor keeps
+      // writing it) and is mapped onto the bundle's option values here.
+      return buildCustomDevotionSteps(
+        bundleId: "rosary", languageCode: prayer.resolvedLanguageCode,
+        optionOverrides: Self.rosaryOptionValues(prayer.rosary), rosaryOptions: prayer.rosary)
     case .jesusPrayer:
       // The Jesus Prayer has no engine — every repetition prays the same fixed line, so a
       // single synthesized step plus a JesusPrayerProgress counter is the whole model; see
@@ -52,9 +53,13 @@ struct PrayerEngine {
   // MARK: - Rosary
 
   func resolveMysteryGroups(for prayer: Prayer) -> [MysteryGroup] {
-    switch prayer.rosary.mysterySelectionMode {
+    resolveMysteryGroups(rosary: prayer.rosary)
+  }
+
+  func resolveMysteryGroups(rosary: RosaryOptions) -> [MysteryGroup] {
+    switch rosary.mysterySelectionMode {
     case .specific, .singleMystery:
-      return [prayer.rosary.specificMysteryGroup]
+      return [rosary.specificMysteryGroup]
     case .fifteenMystery:
       return [.joyful, .sorrowful, .glorious]
     case .twentyMystery:
@@ -64,153 +69,20 @@ struct PrayerEngine {
     }
   }
 
-  private func buildRosarySteps(_ prayer: Prayer) -> [RosaryStep] {
-    let lang = prayer.resolvedLanguageCode
-    let rosary = prayer.rosary
-    let groups = resolveMysteryGroups(for: prayer)
-    var steps: [RosaryStep] = []
-
-    func text(_ key: PrayerKey) -> String {
-      PrayerTranslations.get(languageCode: lang, key: key)
-    }
-
-    steps.append(RosaryStep(title: "Sign of the Cross", subtitle: nil, body: text(.signumCrucis), imageOverrideKey: "crucifix"))
-
-    if rosary.includeApostlesCreed {
-      steps.append(RosaryStep(title: "Apostles' Creed", subtitle: nil, body: text(.symbolumApostolorum), imageOverrideKey: "crucifix"))
-    }
-
-    if rosary.includeOpeningPrayers {
-      steps.append(RosaryStep(title: "Our Father", subtitle: nil, body: text(.paterNoster), imageOverrideKey: "our_father"))
-      for virtue in Self.virtues {
-        steps.append(RosaryStep(title: "Hail Mary", subtitle: text(virtue.key), body: text(.aveMaria), imageOverrideKey: virtue.imageKey))
-      }
-      steps.append(RosaryStep(title: "Glory Be", subtitle: nil, body: text(.gloriaPatri), imageOverrideKey: "glory_be"))
-    }
-
-    let fruitLabel = text(.fructusMysteriiLabel)
-    let showGroupName = groups.count > 1
-    var decadeIndex = 0
-
-    for group in groups {
-      let mysteries = MysteryCatalog.forGroup(group)
-      let indices = rosary.mysterySelectionMode == .singleMystery
-        ? [rosary.specificMysteryOrder - 1]
-        : Array(mysteries.indices)
-
-      for d in indices {
-        let mystery = mysteries[d]
-        let mysteryText = MysteryTranslations.get(languageCode: lang, imageKey: mystery.imageKey)
-        let ordinalLabel = showGroupName ? "\(group.displayName) — \(Self.ordinals[d]) Mystery" : "\(Self.ordinals[d]) Mystery"
-        let decadeSubtitle = "\(ordinalLabel) — \(mysteryText.title)"
-
-        if rosary.presenterMode {
-          steps.append(RosaryStep(
-            title: mysteryText.title, subtitle: ordinalLabel,
-            body: "\(mysteryText.description)\n\n\(fruitLabel): \(mysteryText.fruit)",
-            mystery: mystery, isScripture: true, decadeIndex: decadeIndex))
-          steps.append(RosaryStep(
-            title: "Our Father", subtitle: decadeSubtitle, body: text(.paterNoster),
-            decadeIndex: decadeIndex, imageOverrideKey: "our_father"))
-          steps.append(RosaryStep(
-            title: "Hail Mary & Glory Be", subtitle: decadeSubtitle,
-            body: "\(text(.aveMaria))\n\n\(text(.gloriaPatri))",
-            mystery: mystery, decadeIndex: decadeIndex, hailMaryIndexInDecade: 10))
-        } else {
-          steps.append(contentsOf: buildDecadeSteps(
-            decadeIndex: decadeIndex,
-            announcementTitle: mysteryText.title, ordinalLabel: ordinalLabel,
-            announcementBody: "\(mysteryText.description)\n\n\(fruitLabel): \(mysteryText.fruit)",
-            mystery: mystery, decadeImageKey: nil, isScripture: true,
-            ourFatherImageKey: "our_father", hailMarysPerDecade: 10, languageCode: lang))
-
-          steps.append(RosaryStep(
-            title: "Glory Be", subtitle: decadeSubtitle, body: text(.gloriaPatri),
-            decadeIndex: decadeIndex, imageOverrideKey: "glory_be"))
-        }
-
-        if rosary.includeFatimaPrayer {
-          steps.append(RosaryStep(
-            title: "Fatima Prayer", subtitle: decadeSubtitle, body: text(.oratioFatimae),
-            decadeIndex: decadeIndex, imageOverrideKey: "jesus_portrait"))
-        }
-
-        if rosary.eternalRestForDeceased == .afterEachDecade {
-          steps.append(RosaryStep(
-            title: "For the Faithful Departed", subtitle: decadeSubtitle, body: text(.requiemAeternam),
-            decadeIndex: decadeIndex, imageOverrideKey: "eternal_rest"))
-        }
-
-        decadeIndex += 1
-      }
-    }
-
-    if let antiphon = resolveMarianAntiphon(for: rosary) {
-      steps.append(buildMarianAntiphonStep(antiphon, languageCode: lang))
-    }
-
-    if rosary.includeStMichaelPrayer {
-      steps.append(RosaryStep(title: "St. Michael the Archangel", subtitle: nil, body: text(.sanctusMichael), imageOverrideKey: "st_michael"))
-    }
-
-    if rosary.eternalRestForDeceased == .atEndOnly {
-      steps.append(RosaryStep(title: "For the Faithful Departed", subtitle: nil, body: text(.requiemAeternam), imageOverrideKey: "eternal_rest"))
-    }
-
-    if rosary.includeFinalSignOfCross {
-      steps.append(RosaryStep(title: "Sign of the Cross", subtitle: nil, body: text(.signumCrucis), imageOverrideKey: "crucifix"))
-    }
-
-    return steps
-  }
-
-  private func resolveMarianAntiphon(for rosary: RosaryOptions) -> MarianAntiphonOption? {
-    switch rosary.marianAntiphon {
-    case .none: return nil
-    case .seasonal: return calendar.seasonalMarianAntiphonToday()
-    case let chosen: return chosen
-    }
-  }
-
-  // MARK: - Shared decade-building helper (the Rosary's inner loop)
-
-  /// Builds one decade: an announcement step, an Our Father step, and `hailMarysPerDecade` Hail
-  /// Mary steps. `mystery`/`decadeImageKey` together control each step's illustration — pass a
-  /// real `Mystery` (Rosary) to let steps fall through to its own `imageKey`, or `nil` mystery
-  /// plus an explicit `decadeImageKey` (Franciscan Crown/Seven Sorrows, whose catalogs are plain
-  /// imageKey strings, not `Mystery`-typed). `ourFatherImageKey` is separate from
-  /// `decadeImageKey` because the Rosary's Our Father step always shows a fixed generic icon
-  /// ("our_father") between mystery-specific images, while Franciscan Crown/Seven Sorrows keep
-  /// showing that decade's own illustration straight through — a real, deliberate difference
-  /// between how these devotions render, not an inconsistency to paper over.
-  private func buildDecadeSteps(
-    decadeIndex: Int,
-    announcementTitle: String, ordinalLabel: String, announcementBody: String,
-    mystery: Mystery?, decadeImageKey: String?, isScripture: Bool,
-    ourFatherImageKey: String?, hailMarysPerDecade: Int, languageCode: String?
-  ) -> [RosaryStep] {
-    func text(_ key: PrayerKey) -> String {
-      PrayerTranslations.get(languageCode: languageCode, key: key)
-    }
-
-    let decadeSubtitle = "\(ordinalLabel) — \(announcementTitle)"
-
-    var steps: [RosaryStep] = [
-      RosaryStep(
-        title: announcementTitle, subtitle: ordinalLabel, body: announcementBody,
-        mystery: mystery, isScripture: isScripture, decadeIndex: decadeIndex, imageOverrideKey: decadeImageKey),
-      RosaryStep(
-        title: "Our Father", subtitle: decadeSubtitle, body: text(.paterNoster),
-        decadeIndex: decadeIndex, imageOverrideKey: ourFatherImageKey),
+  /// Maps the persisted `RosaryOptions` onto the rosary bundle's options.json values — the
+  /// no-data-migration seam: favorites keep their typed columns and bespoke editor, while the
+  /// engine speaks the bundle's generic option encoding.
+  static func rosaryOptionValues(_ rosary: RosaryOptions) -> [String: String] {
+    [
+      "apostlesCreed": rosary.includeApostlesCreed ? "true" : "false",
+      "openingPrayers": rosary.includeOpeningPrayers ? "true" : "false",
+      "presenterMode": rosary.presenterMode ? "true" : "false",
+      "fatimaPrayer": rosary.includeFatimaPrayer ? "true" : "false",
+      "eternalRest": rosary.eternalRestForDeceased.rawValue,
+      "antiphon": rosary.marianAntiphon.rawValue,
+      "stMichael": rosary.includeStMichaelPrayer ? "true" : "false",
+      "finalSignOfCross": rosary.includeFinalSignOfCross ? "true" : "false",
     ]
-
-    for h in 1...hailMarysPerDecade {
-      steps.append(RosaryStep(
-        title: "Hail Mary (\(h) of \(hailMarysPerDecade))", subtitle: decadeSubtitle, body: text(.aveMaria),
-        mystery: mystery, decadeIndex: decadeIndex, hailMaryIndexInDecade: h, imageOverrideKey: decadeImageKey))
-    }
-
-    return steps
   }
 
   // MARK: - Marian antiphon (shared by Rosary and Franciscan Crown)
@@ -269,7 +141,7 @@ struct PrayerEngine {
   /// Franciscan Crown/Seven Sorrows/Divine Mercy-shaped ones.
   private func buildCustomDevotionSteps(
     bundleId: String, languageCode: String?, variantId: String? = nil,
-    optionOverrides: [String: String] = [:]
+    optionOverrides: [String: String] = [:], rosaryOptions: RosaryOptions? = nil
   ) -> [RosaryStep] {
     guard let definition = PrayerPackStore.definition(for: bundleId) else { return [] }
     // Effective option values: the bundle's declared defaults overlaid with the favorite's
@@ -288,7 +160,8 @@ struct PrayerEngine {
       }
     case .rosary:
       return buildCustomRosarySteps(
-        definition, bundleId: bundleId, languageCode: languageCode, optionValues: optionValues)
+        definition, bundleId: bundleId, languageCode: languageCode, optionValues: optionValues,
+        rosaryOptions: rosaryOptions)
     }
   }
 
@@ -319,9 +192,21 @@ struct PrayerEngine {
     if entry.kind == .seasonalMarianAntiphon {
       return [buildMarianAntiphonStep(calendar.seasonalMarianAntiphonToday(), languageCode: languageCode)]
     }
+    if entry.kind == .marianAntiphon {
+      // Option-selected antiphon (the Rosary): the named choice's value is an antiphon id,
+      // "seasonal" (calendar-resolved) or "none" (no step).
+      guard let optionKey = entry.optionKey,
+            let chosen = MarianAntiphonOption(rawValue: optionValues[optionKey] ?? "seasonal"),
+            chosen != .none else { return [] }
+      let antiphon = chosen == .seasonal ? calendar.seasonalMarianAntiphonToday() : chosen
+      return [buildMarianAntiphonStep(antiphon, languageCode: languageCode)]
+    }
     let title = entry.titleKey.map {
       PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: languageCode, key: $0)
     } ?? entry.title ?? ""
+    let subtitle = entry.subtitleKey.map {
+      PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: languageCode, key: $0)
+    } ?? entry.subtitle
     let body = entry.bodyKey.map {
       PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: languageCode, key: $0)
     } ?? ""
@@ -329,24 +214,24 @@ struct PrayerEngine {
     guard let count = entry.repeatCount, count > 1 else {
       return [
         RosaryStep(
-          title: title, subtitle: entry.subtitle, body: body,
+          title: title, subtitle: subtitle, body: body,
           isScripture: entry.isScripture ?? false, imageOverrideKey: entry.imageKey)
       ]
     }
     return (1...count).map { h in
       RosaryStep(
-        title: "\(title) (\(h) of \(count))", subtitle: entry.subtitle, body: body,
+        title: "\(title) (\(h) of \(count))", subtitle: subtitle, body: body,
         isScripture: entry.isScripture ?? false, imageOverrideKey: entry.imageKey)
     }
   }
 
-  /// The decade/bead-structured generic builder ("rosary" type) — mirrors `buildDecadeSteps`'s
-  /// emission exactly (announcement → major → N minors, dense global `decadeIndex`,
-  /// `hailMaryIndexInDecade` on minors only, "ordinal — title" subtitles) so the bead track and
-  /// step chrome behave identically to the previously hardcoded decade devotions.
+  /// The decade/bead-structured generic builder ("rosary" type) — announcement → major → N
+  /// minors (dense global `decadeIndex`, `hailMaryIndexInDecade` on minors only,
+  /// "ordinal — title" subtitles), matching the retired hardcoded decade devotions' emission
+  /// exactly so the bead track and step chrome behave identically everywhere.
   private func buildCustomRosarySteps(
     _ definition: CustomDevotionDefinition, bundleId: String, languageCode: String?,
-    optionValues: [String: String] = [:]
+    optionValues: [String: String] = [:], rosaryOptions: RosaryOptions? = nil
   ) -> [RosaryStep] {
     guard let decades = definition.decades else { return [] }
     func resolve(_ key: String) -> String {
@@ -359,38 +244,48 @@ struct PrayerEngine {
         entry, bundleId: bundleId, languageCode: languageCode, optionValues: optionValues))
     }
 
-    let fruitLabel = PrayerTranslations.get(languageCode: languageCode, key: .fructusMysteriiLabel)
-    let majorBody = resolve(decades.majorStep.bodyKey)
-    let minorBody = resolve(decades.minorStep.bodyKey)
-    let decadeCount = decades.entries?.count ?? decades.count ?? 0
+    if decades.source == "mysteryGroups" {
+      steps.append(contentsOf: buildMysteryGroupDecades(
+        decades, bundleId: bundleId, languageCode: languageCode, optionValues: optionValues,
+        rosary: rosaryOptions ?? RosaryOptions()))
+    } else {
+      let fruitLabel = PrayerTranslations.get(languageCode: languageCode, key: .fructusMysteriiLabel)
+      let majorBody = resolve(decades.majorStep.bodyKey)
+      let minorBody = resolve(decades.minorStep.bodyKey)
+      let decadeCount = decades.entries?.count ?? decades.count ?? 0
 
-    for d in 0..<decadeCount {
-      let entry = decades.entries?[d]
-      let imageKey = entry?.imageKey ?? decades.fixedImageKey
-      let ordinalLabel = "\(Self.ordinals[d]) \(decades.ordinalNoun)"
-      var decadeSubtitle = ordinalLabel
+      for d in 0..<decadeCount {
+        let entry = decades.entries?[d]
+        let imageKey = entry?.imageKey ?? decades.fixedImageKey
+        let ordinalLabel = "\(Self.ordinals[d]) \(decades.ordinalNoun)"
+        var decadeSubtitle = ordinalLabel
 
-      if decades.announceMystery, let entry {
-        let mysteryText = MysteryTranslations.get(languageCode: languageCode, imageKey: entry.imageKey)
-        var body = mysteryText.description
-        if !mysteryText.fruit.isEmpty {
-          body += "\n\n\(fruitLabel): \(mysteryText.fruit)"
+        if decades.announceMystery, let entry {
+          let mysteryText = MysteryTranslations.get(languageCode: languageCode, imageKey: entry.imageKey)
+          var body = mysteryText.description
+          if !mysteryText.fruit.isEmpty {
+            body += "\n\n\(fruitLabel): \(mysteryText.fruit)"
+          }
+          steps.append(RosaryStep(
+            title: mysteryText.title, subtitle: ordinalLabel, body: body,
+            isScripture: entry.isScripture ?? true, decadeIndex: d, imageOverrideKey: entry.imageKey))
+          decadeSubtitle = "\(ordinalLabel) — \(mysteryText.title)"
         }
-        steps.append(RosaryStep(
-          title: mysteryText.title, subtitle: ordinalLabel, body: body,
-          isScripture: entry.isScripture ?? true, decadeIndex: d, imageOverrideKey: entry.imageKey))
-        decadeSubtitle = "\(ordinalLabel) — \(mysteryText.title)"
-      }
 
-      steps.append(RosaryStep(
-        title: decades.majorStep.title, subtitle: decadeSubtitle, body: majorBody,
-        decadeIndex: d, imageOverrideKey: imageKey))
-
-      for h in 1...decades.minorCount {
         steps.append(RosaryStep(
-          title: "\(decades.minorStep.title) (\(h) of \(decades.minorCount))",
-          subtitle: decadeSubtitle, body: minorBody,
-          decadeIndex: d, hailMaryIndexInDecade: h, imageOverrideKey: imageKey))
+          title: decades.majorStep.title, subtitle: decadeSubtitle, body: majorBody,
+          decadeIndex: d, imageOverrideKey: decades.majorStep.imageKey ?? imageKey))
+
+        for h in 1...decades.minorCount {
+          steps.append(RosaryStep(
+            title: "\(decades.minorStep.title) (\(h) of \(decades.minorCount))",
+            subtitle: decadeSubtitle, body: minorBody,
+            decadeIndex: d, hailMaryIndexInDecade: h, imageOverrideKey: imageKey))
+        }
+
+        steps.append(contentsOf: postMinorSteps(
+          decades, bundleId: bundleId, languageCode: languageCode, optionValues: optionValues,
+          decadeSubtitle: decadeSubtitle, decadeIndex: d))
       }
     }
 
@@ -399,5 +294,96 @@ struct PrayerEngine {
         entry, bundleId: bundleId, languageCode: languageCode, optionValues: optionValues))
     }
     return steps
+  }
+
+  /// The Rosary's decade section — driven by the bundle's decades block but cataloged by the
+  /// mystery-group machinery (`source: "mysteryGroups"`: selection mode + liturgical calendar)
+  /// instead of bundle entries. Reproduces the retired hardcoded builder byte-for-byte: real
+  /// `Mystery` values on announcement/minor steps (no image overrides), group-labelled ordinals
+  /// when multiple groups are prayed, the single-mystery mode's true ordinal, and presenter
+  /// mode's combined minors step with `hailMaryIndexInDecade = minorCount` for the bead track.
+  private func buildMysteryGroupDecades(
+    _ decades: CustomDevotionDefinition.Decades, bundleId: String, languageCode: String?,
+    optionValues: [String: String], rosary: RosaryOptions
+  ) -> [RosaryStep] {
+    func resolve(_ key: String) -> String {
+      PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: languageCode, key: key)
+    }
+
+    let groups = resolveMysteryGroups(rosary: rosary)
+    let fruitLabel = PrayerTranslations.get(languageCode: languageCode, key: .fructusMysteriiLabel)
+    let majorBody = resolve(decades.majorStep.bodyKey)
+    let minorBody = resolve(decades.minorStep.bodyKey)
+    let presenterOn = optionValues["presenterMode"] == "true"
+    let showGroupName = groups.count > 1
+
+    var steps: [RosaryStep] = []
+    var decadeIndex = 0
+    for group in groups {
+      let mysteries = MysteryCatalog.forGroup(group)
+      let indices = rosary.mysterySelectionMode == .singleMystery
+        ? [rosary.specificMysteryOrder - 1]
+        : Array(mysteries.indices)
+
+      for d in indices {
+        let mystery = mysteries[d]
+        let mysteryText = MysteryTranslations.get(languageCode: languageCode, imageKey: mystery.imageKey)
+        let ordinalLabel = showGroupName
+          ? "\(group.displayName) — \(Self.ordinals[d]) \(decades.ordinalNoun)"
+          : "\(Self.ordinals[d]) \(decades.ordinalNoun)"
+        let decadeSubtitle = "\(ordinalLabel) — \(mysteryText.title)"
+
+        steps.append(RosaryStep(
+          title: mysteryText.title, subtitle: ordinalLabel,
+          body: "\(mysteryText.description)\n\n\(fruitLabel): \(mysteryText.fruit)",
+          mystery: mystery, isScripture: true, decadeIndex: decadeIndex))
+        steps.append(RosaryStep(
+          title: decades.majorStep.title, subtitle: decadeSubtitle, body: majorBody,
+          decadeIndex: decadeIndex, imageOverrideKey: decades.majorStep.imageKey))
+
+        if presenterOn, let presenter = decades.presenter {
+          steps.append(RosaryStep(
+            title: presenter.combinedTitle, subtitle: decadeSubtitle,
+            body: presenter.bodyKeys.map(resolve).joined(separator: "\n\n"),
+            mystery: mystery, decadeIndex: decadeIndex, hailMaryIndexInDecade: decades.minorCount))
+        } else {
+          for h in 1...decades.minorCount {
+            steps.append(RosaryStep(
+              title: "\(decades.minorStep.title) (\(h) of \(decades.minorCount))",
+              subtitle: decadeSubtitle, body: minorBody,
+              mystery: mystery, decadeIndex: decadeIndex, hailMaryIndexInDecade: h))
+          }
+        }
+
+        steps.append(contentsOf: postMinorSteps(
+          decades, bundleId: bundleId, languageCode: languageCode, optionValues: optionValues,
+          decadeSubtitle: decadeSubtitle, decadeIndex: decadeIndex))
+        decadeIndex += 1
+      }
+    }
+    return steps
+  }
+
+  /// Expands the decades' `postMinor` entries for one decade — the same option gating as
+  /// `expand`, but every emitted step carries the decade's subtitle and index (the Rosary's
+  /// per-decade Glory Be / Fatima Prayer / eternal rest).
+  private func postMinorSteps(
+    _ decades: CustomDevotionDefinition.Decades, bundleId: String, languageCode: String?,
+    optionValues: [String: String], decadeSubtitle: String, decadeIndex: Int
+  ) -> [RosaryStep] {
+    (decades.postMinor ?? []).compactMap { entry in
+      if let condition = entry.condition, !Self.evaluateCondition(condition, values: optionValues) {
+        return nil
+      }
+      let title = entry.titleKey.map {
+        PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: languageCode, key: $0)
+      } ?? entry.title ?? ""
+      let body = entry.bodyKey.map {
+        PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: languageCode, key: $0)
+      } ?? ""
+      return RosaryStep(
+        title: title, subtitle: decadeSubtitle, body: body,
+        decadeIndex: decadeIndex, imageOverrideKey: entry.imageKey)
+    }
   }
 }

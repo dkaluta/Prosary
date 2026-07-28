@@ -56,6 +56,7 @@ SHARED_MYSTERY_IMAGE_KEYS = {
 
 SIGN_OF_CROSS_KEY = "signumCrucis"
 ANTIPHON_KIND = "seasonalMarianAntiphon"
+OPTION_ANTIPHON_KIND = "marianAntiphon"
 
 errors: list[str] = []
 
@@ -74,6 +75,11 @@ def load_json(path: Path):
 if_refs: list = []
 
 
+# (where, optionKey) for every marianAntiphon entry — checked against options.json after all
+# entry lists are walked (the named option must be a choice).
+antiphon_option_refs: list = []
+
+
 def validate_entry(entry: dict, where: str, allow_kind: bool) -> None:
     if "if" in entry:
         if not isinstance(entry["if"], str) or not entry["if"]:
@@ -84,6 +90,15 @@ def validate_entry(entry: dict, where: str, allow_kind: bool) -> None:
         extra = set(entry) - {"kind", "if"}
         if extra:
             err(f"{where}: a {ANTIPHON_KIND} entry must have no other fields (has {sorted(extra)})")
+        return
+    if allow_kind and entry.get("kind") == OPTION_ANTIPHON_KIND:
+        extra = set(entry) - {"kind", "optionKey", "if"}
+        if extra:
+            err(f"{where}: a {OPTION_ANTIPHON_KIND} entry must have no other fields (has {sorted(extra)})")
+        if not entry.get("optionKey") or not isinstance(entry.get("optionKey"), str):
+            err(f"{where}: a {OPTION_ANTIPHON_KIND} entry needs an optionKey")
+        else:
+            antiphon_option_refs.append((where, entry["optionKey"]))
         return
     if "kind" in entry:
         err(f"{where}: unknown entry kind {entry['kind']!r}")
@@ -96,6 +111,8 @@ def validate_entry(entry: dict, where: str, allow_kind: bool) -> None:
         err(f"{where}: needs a literal title or a titleKey")
     if entry.get("title") and entry.get("titleKey"):
         err(f"{where}: title and titleKey are mutually exclusive")
+    if entry.get("subtitle") and entry.get("subtitleKey"):
+        err(f"{where}: subtitle and subtitleKey are mutually exclusive")
     if "repeat" in entry and (not isinstance(entry["repeat"], int) or entry["repeat"] < 2):
         err(f"{where}: repeat must be an integer >= 2")
     if "isScripture" in entry and not isinstance(entry["isScripture"], bool):
@@ -103,12 +120,14 @@ def validate_entry(entry: dict, where: str, allow_kind: bool) -> None:
 
 
 def collect_entry_refs(entry: dict, body_keys: set, title_keys: set, image_keys: set) -> None:
-    if entry.get("kind") == ANTIPHON_KIND:
+    if entry.get("kind"):
         return
     if entry.get("bodyKey"):
         body_keys.add(entry["bodyKey"])
     if entry.get("titleKey"):
         title_keys.add(entry["titleKey"])
+    if entry.get("subtitleKey"):
+        title_keys.add(entry["subtitleKey"])
     if entry.get("imageKey"):
         image_keys.add(entry["imageKey"])
 
@@ -247,11 +266,11 @@ def main() -> int:
         antiphons = 0
         for i, entry in enumerate(closing):
             validate_entry(entry, f"closing[{i}]", allow_kind=True)
-            if entry.get("kind") == ANTIPHON_KIND:
+            if entry.get("kind") in (ANTIPHON_KIND, OPTION_ANTIPHON_KIND):
                 antiphons += 1
             collect_entry_refs(entry, body_keys, title_keys, image_keys)
         if antiphons > 1:
-            err("at most one seasonalMarianAntiphon closing entry is allowed (single 'M' bead)")
+            err("at most one antiphon-kind closing entry is allowed (single 'M' bead)")
         if devotion.get("hasClosingCross"):
             last = closing[-1] if closing else {}
             if last.get("bodyKey") != SIGN_OF_CROSS_KEY or "repeat" in last:
@@ -261,16 +280,24 @@ def main() -> int:
         entries = decades.get("entries")
         count = decades.get("count")
         fixed_image = decades.get("fixedImageKey")
-        if (entries is None) == (count is None):
-            err("decades: exactly one of 'entries' or 'count' is required")
+        source = decades.get("source")
+        if source is not None and source != "mysteryGroups":
+            err(f"decades: unknown source {source!r}")
+        if source is not None:
+            # Engine-cataloged decades (the Rosary): the decade list comes from the
+            # mystery-group machinery, so a bundle catalog would be dead data.
+            if entries is not None or count is not None or fixed_image:
+                err("decades: 'source' is mutually exclusive with 'entries'/'count'/'fixedImageKey'")
+        elif (entries is None) == (count is None):
+            err("decades: exactly one of 'entries' or 'count' is required (or a 'source')")
         if count is not None and not fixed_image:
             err("decades: 'count' requires 'fixedImageKey'")
         if entries is not None and fixed_image:
             err("decades: 'entries' and 'fixedImageKey' are mutually exclusive")
         if not decades.get("ordinalNoun"):
             err("decades: ordinalNoun is required")
-        if decades.get("announceMystery") and entries is None:
-            err("decades: announceMystery requires 'entries'")
+        if decades.get("announceMystery") and entries is None and source is None:
+            err("decades: announceMystery requires 'entries' (or an engine 'source')")
         if not isinstance(decades.get("minorCount"), int) or decades.get("minorCount", 0) < 1:
             err("decades: minorCount must be an integer >= 1")
         for role in ("majorStep", "minorStep"):
@@ -279,6 +306,8 @@ def main() -> int:
                 err(f"decades.{role}: needs title and bodyKey")
             else:
                 body_keys.add(step["bodyKey"])
+            if step.get("imageKey"):
+                image_keys.add(step["imageKey"])
         for i, entry in enumerate(entries or []):
             if not entry.get("imageKey"):
                 err(f"decades.entries[{i}]: missing imageKey")
@@ -288,6 +317,17 @@ def main() -> int:
                     mystery_keys.add(entry["imageKey"])
         if fixed_image:
             image_keys.add(fixed_image)
+        for i, entry in enumerate(decades.get("postMinor") or []):
+            validate_entry(entry, f"decades.postMinor[{i}]", allow_kind=False)
+            collect_entry_refs(entry, body_keys, title_keys, image_keys)
+        presenter = decades.get("presenter")
+        if presenter is not None:
+            if not presenter.get("combinedTitle"):
+                err("decades.presenter: needs combinedTitle")
+            if not presenter.get("bodyKeys"):
+                err("decades.presenter: needs a non-empty bodyKeys list")
+            for key in presenter.get("bodyKeys") or []:
+                body_keys.add(key)
     else:
         err(f"devotion.json: unknown type {dtype!r}")
         return report()
@@ -311,6 +351,13 @@ def main() -> int:
                 err(f"{where}: '{expr}' — {wanted_case!r} is not a case of {key!r}")
         elif kind != "toggle":
             err(f"{where}: '{expr}' — bare/negated 'if' needs a toggle, {key!r} is a {kind}")
+
+    for where, option_key in antiphon_option_refs:
+        declared = declared_options.get(option_key)
+        if declared is None:
+            err(f"{where}: optionKey references undeclared option {option_key!r}")
+        elif declared[0] != "choice":
+            err(f"{where}: optionKey must name a choice option, {option_key!r} is a {declared[0]}")
 
     # --- Reference resolution per language ---
     allowlist_path = src / "validation-allowlist.json"

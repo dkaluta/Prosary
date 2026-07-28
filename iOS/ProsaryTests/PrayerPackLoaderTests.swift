@@ -87,13 +87,16 @@ final class PrayerPackLoaderTests: XCTestCase {
     XCTAssertTrue(PrayerPackStore.customDevotionIds().contains("trisagion"))
   }
 
-  /// The Rosary's pack has no devotion.json (override-only) and must never be mistaken for a
-  /// generic devotion; the six generic devotions appear in pack-load order.
+  /// The Rosary's pack now ships a devotion.json (the engine builds the Rosary from it), but
+  /// its manifest's builtinKind keeps it off the generic-devotion list — it backs the dedicated
+  /// PrayerKind and must never appear as a Home/Favorites card twice. The six generic devotions
+  /// appear in pack-load order.
   func testCustomDevotionIdsAreTheSixGenericDevotionsInLoadOrder() {
     XCTAssertEqual(PrayerPackStore.customDevotionIds(), [
       "angelus", "stationsOfTheCross", "franciscanCrown", "sevenSorrows",
       "divineMercyChaplet", "trisagion",
     ])
+    XCTAssertNotNil(PrayerPackStore.definition(for: "rosary"))
   }
 
   func testTrisagionInfoReadsFromItsManifest() {

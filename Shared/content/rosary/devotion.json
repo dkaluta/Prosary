@@ -1,0 +1,116 @@
+{
+  "type": "rosary",
+  "opening": [
+    {
+      "title": "Sign of the Cross",
+      "bodyKey": "signumCrucis",
+      "imageKey": "crucifix"
+    },
+    {
+      "title": "Apostles' Creed",
+      "bodyKey": "symbolumApostolorum",
+      "imageKey": "crucifix",
+      "if": "apostlesCreed"
+    },
+    {
+      "title": "Our Father",
+      "bodyKey": "paterNoster",
+      "imageKey": "our_father",
+      "if": "openingPrayers"
+    },
+    {
+      "title": "Hail Mary",
+      "subtitleKey": "aveMariaProFide",
+      "bodyKey": "aveMaria",
+      "imageKey": "virtue_faith",
+      "if": "openingPrayers"
+    },
+    {
+      "title": "Hail Mary",
+      "subtitleKey": "aveMariaProSpe",
+      "bodyKey": "aveMaria",
+      "imageKey": "virtue_hope",
+      "if": "openingPrayers"
+    },
+    {
+      "title": "Hail Mary",
+      "subtitleKey": "aveMariaProCaritate",
+      "bodyKey": "aveMaria",
+      "imageKey": "virtue_charity",
+      "if": "openingPrayers"
+    },
+    {
+      "title": "Glory Be",
+      "bodyKey": "gloriaPatri",
+      "imageKey": "glory_be",
+      "if": "openingPrayers"
+    }
+  ],
+  "decades": {
+    "ordinalNoun": "Mystery",
+    "announceMystery": true,
+    "source": "mysteryGroups",
+    "majorStep": {
+      "title": "Our Father",
+      "bodyKey": "paterNoster",
+      "imageKey": "our_father"
+    },
+    "minorStep": {
+      "title": "Hail Mary",
+      "bodyKey": "aveMaria"
+    },
+    "minorCount": 10,
+    "postMinor": [
+      {
+        "title": "Glory Be",
+        "bodyKey": "gloriaPatri",
+        "imageKey": "glory_be",
+        "if": "!presenterMode"
+      },
+      {
+        "title": "Fatima Prayer",
+        "bodyKey": "oratioFatimae",
+        "imageKey": "jesus_portrait",
+        "if": "fatimaPrayer"
+      },
+      {
+        "title": "For the Faithful Departed",
+        "bodyKey": "requiemAeternam",
+        "imageKey": "eternal_rest",
+        "if": "eternalRest=afterEachDecade"
+      }
+    ],
+    "presenter": {
+      "combinedTitle": "Hail Mary & Glory Be",
+      "bodyKeys": [
+        "aveMaria",
+        "gloriaPatri"
+      ]
+    }
+  },
+  "closing": [
+    {
+      "kind": "marianAntiphon",
+      "optionKey": "antiphon"
+    },
+    {
+      "title": "St. Michael the Archangel",
+      "bodyKey": "sanctusMichael",
+      "imageKey": "st_michael",
+      "if": "stMichael"
+    },
+    {
+      "title": "For the Faithful Departed",
+      "bodyKey": "requiemAeternam",
+      "imageKey": "eternal_rest",
+      "if": "eternalRest=atEndOnly"
+    },
+    {
+      "title": "Sign of the Cross",
+      "bodyKey": "signumCrucis",
+      "imageKey": "crucifix",
+      "if": "finalSignOfCross"
+    }
+  ],
+  "hasClosingCross": true
+}
