@@ -83,7 +83,7 @@ public partial class HomeViewModel : ObservableObject
 
         DevotionCards =
         [
-            new DevotionCardModel { Id = "rosary", Title = PrayerKind.Rosary.DisplayName(), IconGlyph = "", Command = OpenRosaryCommand },
+            new DevotionCardModel { Id = "rosary", Title = PrayerKind.Rosary.DisplayName(), IconGlyph = "\uEA3A", Command = OpenRosaryCommand }, // CircleRing
         ];
 
         foreach (var bundleId in PrayerPackStore.CustomDevotionIds())
@@ -108,24 +108,24 @@ public partial class HomeViewModel : ObservableObject
 
         DevotionCards.Add(new DevotionCardModel
         {
-            Id = "jesusPrayer", Title = PrayerKind.JesusPrayer.DisplayName(), IconGlyph = "",
+            Id = "jesusPrayer", Title = PrayerKind.JesusPrayer.DisplayName(), IconGlyph = "\uEB52", // HeartFill
             Command = OpenJesusPrayerCommand,
         });
     }
 
     /// <summary>Maps a bundle manifest's <c>IconSystemName</c> (an SF Symbol name, the iOS
-    /// convention) to the nearest Segoe Fluent Icons glyph — mirrors
-    /// <c>FavoritesViewModel.GlyphForSystemName</c>; see the unverified-codepoint caveat on
-    /// <see cref="PrayerKindExtensions.IconGlyph"/>.</summary>
+    /// convention) to the nearest Segoe Fluent Icons glyph. Codepoints verified against
+    /// Microsoft's Segoe Fluent Icons documentation (the font has no crown or plain-triangle
+    /// name of its own — PartyLeader renders a crown, IncidentTriangle a plain triangle).</summary>
     internal static string GlyphForSystemName(string? systemName) => systemName switch
     {
-        "bell" => "",        // Ringer
-        "figure.walk" => "", // Walk
-        "crown" => "",       // Crown
-        "drop" => "",        // Drop
-        "sun.max" => "",     // Sunny
-        "triangle" => "",    // Triangle-ish
-        _ => "",             // FavoriteStar
+        "bell" => "\uEA8F",        // Ringer
+        "figure.walk" => "\uE805", // Walk
+        "crown" => "\uECA7",       // PartyLeader (a crown)
+        "drop" => "\uEB42",        // Drop
+        "sun.max" => "\uE706",     // Brightness (a sun)
+        "triangle" => "\uE814",    // IncidentTriangle
+        _ => "\uE734",             // FavoriteStar
     };
 
     /// <summary>Accent color for a generic devotion's card, honoring the manifest's light/dark

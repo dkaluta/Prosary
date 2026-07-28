@@ -43,19 +43,17 @@ public static class PrayerKindExtensions
         _ => throw new ArgumentOutOfRangeException(nameof(kind))
     };
 
-    /// <summary>Segoe Fluent Icons glyph approximating iOS's SF Symbol per kind (circle.grid.cross
-    /// / bell / heart). Codepoints chosen from memory of the Segoe MDL2/Fluent icon set, NOT
-    /// verified on-screen from this (non-Windows) environment — check these render as intended on
-    /// a real Windows build and swap for the correct codepoint from the Segoe Fluent Icons
-    /// character map if not.</summary>
+    /// <summary>Segoe Fluent Icons glyph approximating iOS's SF Symbol per kind
+    /// (circle.grid.cross / heart). Codepoints verified against Microsoft's Segoe Fluent Icons
+    /// documentation.</summary>
     public static string IconGlyph(this PrayerKind kind) => kind switch
     {
-        PrayerKind.Rosary => "",      // CircleRing
-        PrayerKind.JesusPrayer => "", // HeartFill
+        PrayerKind.Rosary => "\uEA3A",      // CircleRing
+        PrayerKind.JesusPrayer => "\uEB51", // Heart
         // Unreachable in practice -- .Custom rows read the bundle's own IconSystemName instead
         // (mapped via a small fixed table, e.g. GlyphForSystemName), not this per-kind glyph.
         // Still needed for exhaustiveness.
-        PrayerKind.Custom => "", // FavoriteStar
+        PrayerKind.Custom => "\uE734", // FavoriteStar
         _ => throw new ArgumentOutOfRangeException(nameof(kind))
     };
 
