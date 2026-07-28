@@ -1,0 +1,57 @@
+name: CI
+
+# The three native test suites (see Shared/ARCHITECTURE.md). The Windows job matters most:
+# WinUI can't build on the macOS dev machine, so this is the only place
+# Prosary.Tests actually executes.
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "Shared/website/**"
+      - "**.md"
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  ios:
+    name: iOS (ProsaryTests, macOS destination)
+    runs-on: macos-15
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v7
+      - name: Run tests
+        working-directory: iOS
+        # Ad-hoc signing: CI has no certificates, and macOS unit tests don't need any.
+        run: |
+          set -o pipefail
+          xcodebuild test -scheme Prosary -destination 'platform=macOS' \
+            -only-testing:ProsaryTests \
+            CODE_SIGN_IDENTITY=- CODE_SIGNING_REQUIRED=NO CODE_SIGN_STYLE=Manual \
+            DEVELOPMENT_TEAM=
+
+  android:
+    name: Android (testDebugUnitTest)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v5
+      - name: Run tests
+        working-directory: Android
+        run: ./gradlew --console=plain testDebugUnitTest
+
+  windows:
+    name: Windows (Prosary.Tests)
+    runs-on: windows-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+      - name: Run tests
+        run: dotnet test Windows/Prosary.Tests/Prosary.Tests.csproj -c Debug -p:Platform=x64
