@@ -6,8 +6,14 @@ using Xunit;
 namespace Prosary.Tests;
 
 /// <summary>Mirrors iOS's BeadModelsTests.swift / Android's BeadModelsTest.kt.</summary>
-public class BeadLayoutTests
+/// <summary>Needs the pack fixture: the Rosary-shaped cases build real steps through
+/// PrayerEngine, which reads the rosary bundle's devotion.json.</summary>
+public class BeadLayoutTests : IClassFixture<PrayerPackLoaderFixture>
 {
+    public BeadLayoutTests(PrayerPackLoaderFixture _)
+    {
+    }
+
     /// <summary>Synthesizes a decade-based session with no Mystery at all — the shape every one
     /// of Franciscan Crown/Seven Sorrows/Divine Mercy Chaplet's steps has (unlike the Rosary,
     /// which always sets Mystery). Before the bead-track generalization, BeadLayout.Build
@@ -56,7 +62,7 @@ public class BeadLayoutTests
     public void Build_MysteryLessDecadeSteps_StillPopulatesBottomBeads()
     {
         var steps = MysteryLessDecadeSteps(1);
-        var currentIndex = steps.FindIndex(s => s.HailMaryIndexInDecade == 4);
+        var currentIndex = steps.ToList().FindIndex(s => s.HailMaryIndexInDecade == 4);
         var layout = BeadLayout.Build(steps, currentIndex, hasClosingCross: false, isDarkTheme: false);
 
         Assert.True(layout.ShowBottomBeads);
@@ -93,7 +99,7 @@ public class BeadLayoutTests
         var engine = new PrayerEngine(new LiturgicalCalendarService());
         var prayer = new Prayer { Rosary = new RosaryOptions { PresenterMode = true } };
         var steps = engine.BuildSteps(prayer);
-        var currentIndex = steps.FindIndex(s => s.Title == "Hail Mary & Glory Be" && s.DecadeIndex == 0);
+        var currentIndex = steps.ToList().FindIndex(s => s.Title == "Hail Mary & Glory Be" && s.DecadeIndex == 0);
         var layout = BeadLayout.Build(steps, currentIndex, hasClosingCross: true, isDarkTheme: false);
 
         Assert.True(layout.ShowBottomBeads);
