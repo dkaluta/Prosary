@@ -53,6 +53,9 @@ struct AboutView: View {
           Text(String(
             localized: "about.stationImages.fugelCycle",
             defaultValue: "All 14 stations: Gebhard Fugel (1863\u{2013}1939), Kreuzweg (1921), St. Antonius, Bad Saulgau \u{2014} public domain; photographs by Andreas Praefcke, released into the public domain."))
+          Text(String(
+            localized: "about.stationImages.scripturalScenes",
+            defaultValue: "The scriptural (St. John Paul II) form adds: The Kiss of Judas \u{2014} Giotto (Scrovegni Chapel, c. 1305); Christ before the High Priest \u{2014} Gerrit van Honthorst (c. 1617), National Gallery, London; The Denial of St Peter \u{2014} Rembrandt (1660), Rijksmuseum; Le Coup de Lance \u{2014} Peter Paul Rubens (1620), Royal Museum of Fine Arts Antwerp \u{2014} all public domain. Its other scenes reuse illustrations listed elsewhere on this page."))
         }
 
         section("Franciscan Crown Illustration") {

@@ -57,6 +57,17 @@ Source files: Wikimedia Commons, `File:Saulgau_Antoniuskirche_Kreuzweg_Fugel_Sta
 |---|---|---|---|
 | divine_mercy_image | Eugeniusz Kazimirowski, *Divine Mercy* ("Jezu, ufam Tobie", 1934), Divine Mercy Sanctuary, Vilnius — the original image painted under St. Faustina's direction | `File:Merciful-jesus-300dpi.jpg` | Public domain (PD-old-auto-1996; PD in the US — not restored by URAA) |
 
+## Scriptural Stations of the Cross (St. John Paul II, 1991) — new scenes
+
+Ten of the fourteen scriptural stations reuse images listed above; these four scenes are new.
+
+| File | Artwork | Source | License |
+|---|---|---|---|
+| scriptural_02_kiss_of_judas | Giotto di Bondone, *Kiss of Judas* (Scrovegni Chapel, Padua, c. 1305) | `File:Giotto - Scrovegni - -31- - Kiss of Judas.jpg` | Public domain (PD-Art, artist d. 1337) |
+| scriptural_03_before_the_sanhedrin | Gerrit van Honthorst, *Christ before the High Priest* (c. 1617), National Gallery, London | `File:Gerard van Honthorst - Christ before the High Priest - WGA11650.jpg` | Public domain (PD-Art, artist d. 1656) |
+| scriptural_04_denial_of_peter | Rembrandt van Rijn, *The Denial of St Peter* (1660), Rijksmuseum, Amsterdam (SK-A-3137) | `File:De verloochening van Petrus Rijksmuseum SK-A-3137.jpeg` | Public domain (Rijksmuseum open access; artist d. 1669) |
+| scriptural_11_the_good_thief | Peter Paul Rubens, *Christ on the Cross between the Two Thieves (Le Coup de Lance)* (1620), Royal Museum of Fine Arts Antwerp | `File:Peter Paul Rubens 069.jpg` | Public domain (PD-Art, artist d. 1640) |
+
 ## Rosary mysteries and fixed-prayer illustrations
 
 The 20 mystery paintings (`joyful_*`, `sorrowful_*`, `glorious_*`, `luminous_*`) and the 10

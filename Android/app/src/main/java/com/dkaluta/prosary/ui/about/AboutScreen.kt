@@ -103,6 +103,16 @@ fun AboutScreen(onBack: () -> Unit) {
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
+                Text(
+                    "The scriptural (St. John Paul II) form adds: The Kiss of Judas \u2014 Giotto " +
+                        "(Scrovegni Chapel, c. 1305); Christ before the High Priest \u2014 Gerrit van " +
+                        "Honthorst (c. 1617), National Gallery, London; The Denial of St Peter \u2014 " +
+                        "Rembrandt (1660), Rijksmuseum; Le Coup de Lance \u2014 Peter Paul Rubens (1620), " +
+                        "Royal Museum of Fine Arts Antwerp \u2014 all public domain. Its other scenes " +
+                        "reuse illustrations listed elsewhere on this page.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
             }
 
             AboutSection(title = "Franciscan Crown Illustration") {
