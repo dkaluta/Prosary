@@ -197,6 +197,37 @@ class CustomDevotionEngineTest {
         assertTrue(steps[2].body.contains("(דליטש)"))
     }
 
+    // MARK: Via Lucis (flat, 14 scriptural stations)
+
+    /** Cross + 14 stations + Regina Caeli + closing cross — mirrors iOS's
+     * testViaLucisSeventeenStepSequence. */
+    @Test
+    fun viaLucisSeventeenStepSequence() {
+        val steps = steps("viaLucis")
+        assertEquals(17, steps.size)
+        assertEquals("Sign of the Cross", steps.first().title)
+        assertEquals("Jesus Rises from the Dead", steps[1].title)
+        assertEquals("1st Station", steps[1].subtitle)
+        assertEquals("glorious_01_resurrection", steps[1].imageKey)
+        assertTrue(steps[1].body.contains("Because by Your holy Cross and Resurrection"))
+        assertTrue(steps[1].body.contains("— Matthew 28:1-7 (Douay-Rheims)"))
+        assertTrue(steps.subList(1, 15).all { it.isScripture })
+        assertTrue(steps[4].body.contains("[…]"))
+        assertEquals("Jesus Strengthens the Faith of Thomas", steps[8].title)
+        assertEquals("The Holy Spirit Descends at Pentecost", steps[14].title)
+        assertEquals("Regina Caeli", steps[15].title)
+        assertTrue(steps[15].body.contains("Queen of Heaven, rejoice"))
+        assertEquals("Sign of the Cross", steps.last().title)
+    }
+
+    @Test
+    fun viaLucisLatinBodiesComeFromTheVulgate() {
+        val steps = steps("viaLucis", language = "la")
+        assertEquals("Iesus a mortuis resurgit", steps[1].title)
+        assertTrue(steps[1].body.contains("— Matth. 28:1-7 (Vulgata)"))
+        assertTrue(steps[15].body.contains("Regina caeli, laetare, alleluia."))
+    }
+
     // MARK: Franciscan Crown (rosary type, 7×10 + antiphon)
 
     @Test

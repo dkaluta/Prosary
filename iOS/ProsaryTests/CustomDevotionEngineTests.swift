@@ -154,6 +154,41 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertTrue(steps[2].body.contains("(דליטש)"))
   }
 
+  // MARK: - Via Lucis (flat, 14 scriptural stations)
+
+  /// Cross + 14 stations + Regina Caeli + closing cross. Station bodies are the paschal
+  /// acclamation ("...and Resurrection...") + the cited passage; the closing is the full
+  /// composed Regina Caeli (antiphon, paschal versicle/response, collect).
+  func testViaLucisSeventeenStepSequence() {
+    let steps = steps("viaLucis")
+    XCTAssertEqual(steps.count, 17)
+    XCTAssertEqual(steps.first?.title, "Sign of the Cross")
+    XCTAssertEqual(steps[1].title, "Jesus Rises from the Dead")
+    XCTAssertEqual(steps[1].subtitle, "1st Station")
+    XCTAssertEqual(steps[1].imageKey, "glorious_01_resurrection")
+    XCTAssertTrue(steps[1].body.contains("Because by Your holy Cross and Resurrection"))
+    XCTAssertTrue(steps[1].body.contains("— Matthew 28:1-7 (Douay-Rheims)"))
+    XCTAssertTrue(steps[1...14].allSatisfy(\.isScripture))
+    // The Emmaus-road station skips verses 17-24 — the gap is marked, not papered over.
+    XCTAssertTrue(steps[4].body.contains("[…]"))
+    XCTAssertEqual(steps[8].title, "Jesus Strengthens the Faith of Thomas")
+    XCTAssertEqual(steps[8].imageKey, "via_lucis_08_incredulity_of_thomas")
+    XCTAssertEqual(steps[14].title, "The Holy Spirit Descends at Pentecost")
+    XCTAssertEqual(steps[14].imageKey, "glorious_03_descent_of_the_holy_spirit")
+    XCTAssertEqual(steps[15].title, "Regina Caeli")
+    XCTAssertTrue(steps[15].body.contains("Queen of Heaven, rejoice"))
+    XCTAssertTrue(steps[15].body.contains("**For the Lord has truly risen, alleluia.**"))
+    XCTAssertEqual(steps.last?.title, "Sign of the Cross")
+  }
+
+  func testViaLucisLatinBodiesComeFromTheVulgate() {
+    let steps = steps("viaLucis", language: "la")
+    XCTAssertEqual(steps[1].title, "Iesus a mortuis resurgit")
+    XCTAssertTrue(steps[1].body.contains("Quia per sanctam crucem et resurrectionem tuam"))
+    XCTAssertTrue(steps[1].body.contains("— Matth. 28:1-7 (Vulgata)"))
+    XCTAssertTrue(steps[15].body.contains("Regina caeli, laetare, alleluia."))
+  }
+
   // MARK: - Franciscan Crown (rosary type, 7×10 + antiphon)
 
   func testFranciscanCrownNinetyStepSequence() {

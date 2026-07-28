@@ -68,6 +68,26 @@ Ten of the fourteen scriptural stations reuse images listed above; these four sc
 | scriptural_04_denial_of_peter | Rembrandt van Rijn, *The Denial of St Peter* (1660), Rijksmuseum, Amsterdam (SK-A-3137) | `File:De verloochening van Petrus Rijksmuseum SK-A-3137.jpeg` | Public domain (Rijksmuseum open access; artist d. 1669) |
 | scriptural_11_the_good_thief | Peter Paul Rubens, *Christ on the Cross between the Two Thieves (Le Coup de Lance)* (1620), Royal Museum of Fine Arts Antwerp | `File:Peter Paul Rubens 069.jpg` | Public domain (PD-Art, artist d. 1640) |
 
+## Via Lucis (Way of Light) — new scenes
+
+Three of the fourteen stations reuse the Rosary's glorious-mystery images
+(`glorious_01_resurrection`, `glorious_02_ascension`, `glorious_03_descent_of_the_holy_spirit`);
+these eleven scenes are new.
+
+| File | Artwork | Source | License |
+|---|---|---|---|
+| via_lucis_02_disciples_at_the_tomb | Eugène Burnand, *The Disciples Peter and John Running to the Sepulchre on the Morning of the Resurrection* (1898), Musée d'Orsay, Paris | `File:Disciples running by EB.jpg` | Public domain (PD-Art, artist d. 1921) |
+| via_lucis_03_noli_me_tangere | Fra Angelico, *Noli me tangere* (Convent of San Marco, Florence, c. 1440) | `File:Angelico, noli me tangere.jpg` | Public domain (PD-Art, artist d. 1455) |
+| via_lucis_04_road_to_emmaus | Duccio di Buoninsegna, *The Road to Emmaus* (Maestà, 1308–1311), Museo dell'Opera del Duomo, Siena | `File:Duccio di Buoninsegna Emaus.jpg` | Public domain (PD-Art, artist d. 1319) |
+| via_lucis_05_supper_at_emmaus | Caravaggio, *Supper at Emmaus* (1601), National Gallery, London | `File:Supper at Emmaus-Caravaggio (1601).jpg` | Public domain (PD-Art, artist d. 1610) |
+| via_lucis_06_appearance_in_jerusalem | Duccio di Buoninsegna, *Appearance While the Apostles are at Table* (Maestà, 1308–1311) | `File:Duccio di Buoninsegna - Appearance While the Apostles are at Table - WGA06738.jpg` | Public domain (PD-Art, artist d. 1319) |
+| via_lucis_07_peace_be_with_you | Duccio di Buoninsegna, *Appearance Behind Locked Doors* (Maestà, 1308–1311) | `File:Duccio di Buoninsegna - Appearance Behind Locked Doors - WGA06734.jpg` | Public domain (PD-Art, artist d. 1319) |
+| via_lucis_08_incredulity_of_thomas | Caravaggio, *The Incredulity of Saint Thomas* (1601–1602), Sanssouci, Potsdam | `File:The Incredulity of Saint Thomas-Caravaggio (1601-2).jpg` | Public domain (PD-Art, artist d. 1610) |
+| via_lucis_09_sea_of_tiberias | Duccio di Buoninsegna, *Appearance on Lake Tiberias* (Maestà, 1308–1311) | `File:Duccio di Buoninsegna - Appearance on Lake Tiberias - WGA06736.jpg` | Public domain (PD-Art, artist d. 1319) |
+| via_lucis_10_feed_my_sheep | Raphael, *Christ's Charge to Peter* (Raphael Cartoon, c. 1515), Royal Collection, on loan to the V&A, London | `File:Raphael - Christ's Charge to Peter c.1515-6.jpg` | Public domain (PD-Art, artist d. 1520) |
+| via_lucis_11_great_commission | Duccio di Buoninsegna, *Appearance on the Mountain in Galilee* (Maestà, 1308–1311) | `File:Duccio di Buoninsegna - Appearance on the Mountain in Galilee - WGA06737.jpg` | Public domain (PD-Art, artist d. 1319) |
+| via_lucis_13_cenacle | Giovanni Battista Salvi da Sassoferrato, *The Virgin in Prayer* (1640–1650), National Gallery, London | `File:SASSOFERRATO - Virgen rezando (National Gallery, Londres, 1640-50).jpg` | Public domain (PD-Art, artist d. 1685) |
+
 ## Rosary mysteries and fixed-prayer illustrations
 
 The 20 mystery paintings (`joyful_*`, `sorrowful_*`, `glorious_*`, `luminous_*`) and the 10

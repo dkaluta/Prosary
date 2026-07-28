@@ -83,7 +83,7 @@ built by one fully generic builder from a bundle's `devotion.json` (see "Content
 The six per-devotion builders the engine once carried (the Rosary's plus
 Angelus/Stations/Franciscan Crown/Seven Sorrows/Divine Mercy) are gone — their step sequences
 are reproduced byte-for-byte by the generic builder from bundle data. Each platform's
-`CustomDevotionEngineTests` pins the generic sequences (step counts 7/18/90/69/63, the Angelus's
+`CustomDevotionEngineTests` pins the generic sequences (step counts 7/18/17/90/69/63, the Angelus's
 Eastertide Regina Caeli swap, the Seven Sorrows' 7-minor decades and non-scripture 4th sorrow,
 the Divine Mercy's identical per-decade lines and single reused image, closing repeats without
 bead fields), and `RosaryEngineTests` pins the Rosary's — its hardcoded builder was deleted only
@@ -112,7 +112,8 @@ options.json values (`rosaryOptionValues`), so there is **no data migration**.
   (never `nil`) purely so the bead track still renders the traditional 10-bead decade (beads 1–9
   completed, bead 10 current) — do not "simplify" this back to `nil`/omitted, since Windows'
   `BeadLayout` force-unwraps `HailMaryIndexInDecade` in that code path and would crash on null.
-- **Generic devotions** (`.custom`) — flat ("steps" type: Angelus, Stations, Trisagion) or
+- **Generic devotions** (`.custom`) — flat ("steps" type: Angelus, Stations, Via Lucis,
+  Trisagion) or
   decade/bead-structured ("rosary" type: Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet),
   entirely data-driven; the rosary-type builder mirrors the shared decade helper's emission
   (dense global `decadeIndex`, `hailMaryIndexInDecade` on minors only, "ordinal — title"

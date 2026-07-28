@@ -91,9 +91,9 @@ final class PrayerPackLoaderTests: XCTestCase {
   /// its manifest's builtinKind keeps it off the generic-devotion list — it backs the dedicated
   /// PrayerKind and must never appear as a Home/Favorites card twice. The six generic devotions
   /// appear in pack-load order.
-  func testCustomDevotionIdsAreTheSixGenericDevotionsInLoadOrder() {
+  func testCustomDevotionIdsAreTheSevenGenericDevotionsInLoadOrder() {
     XCTAssertEqual(PrayerPackStore.customDevotionIds(), [
-      "angelus", "stationsOfTheCross", "franciscanCrown", "sevenSorrows",
+      "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
       "divineMercyChaplet", "trisagion",
     ])
     XCTAssertNotNil(PrayerPackStore.definition(for: "rosary"))

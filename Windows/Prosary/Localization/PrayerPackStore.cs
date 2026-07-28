@@ -29,7 +29,7 @@ public static class PrayerPackStore
     /// bundles build on.</summary>
     private static readonly string[] PackNames =
     [
-        "rosary", "angelus", "stationsOfTheCross", "franciscanCrown", "sevenSorrows",
+        "rosary", "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
         "divineMercyChaplet", "trisagion",
     ];
 

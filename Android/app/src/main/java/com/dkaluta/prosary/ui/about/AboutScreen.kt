@@ -113,6 +113,19 @@ fun AboutScreen(onBack: () -> Unit) {
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
+                Text(
+                    "The Via Lucis scenes: The Disciples at the Tomb \u2014 Eug\u00e8ne Burnand (1898), " +
+                        "Mus\u00e9e d'Orsay; Noli me tangere \u2014 Fra Angelico (San Marco, c. 1440); " +
+                        "The Road to Emmaus, the appearances to the apostles, at Lake Tiberias, and in " +
+                        "Galilee \u2014 Duccio di Buoninsegna (Maest\u00e0, 1308\u20131311), Siena; " +
+                        "Supper at Emmaus (1601) and The Incredulity of Saint Thomas (1601\u20131602) \u2014 " +
+                        "Caravaggio; Christ's Charge to Peter \u2014 Raphael (c. 1515), Royal Collection; " +
+                        "The Virgin in Prayer \u2014 Sassoferrato (1640\u20131650), National Gallery, " +
+                        "London \u2014 all public domain. Its other scenes reuse the Rosary's " +
+                        "glorious-mystery illustrations.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
             }
 
             AboutSection(title = "Franciscan Crown Illustration") {

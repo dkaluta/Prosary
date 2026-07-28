@@ -104,7 +104,7 @@ class PrayerPackLoaderTest {
     @Test
     fun bundledPacksExist() {
         for (pack in listOf(
-            "rosary", "angelus", "stationsOfTheCross", "franciscanCrown", "sevenSorrows",
+            "rosary", "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
             "divineMercyChaplet", "trisagion",
         )) {
             assertTrue("missing $pack.prosaryprayer", File("src/main/assets/$pack.prosaryprayer").exists())
@@ -116,10 +116,10 @@ class PrayerPackLoaderTest {
      * dedicated PrayerKind and must never appear as a Home/Favorites card twice. The six
      * generic devotions appear in pack-load order. */
     @Test
-    fun customDevotionIdsAreTheSixGenericDevotionsInLoadOrder() {
+    fun customDevotionIdsAreTheSevenGenericDevotionsInLoadOrder() {
         assertEquals(
             listOf(
-                "angelus", "stationsOfTheCross", "franciscanCrown", "sevenSorrows",
+                "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
                 "divineMercyChaplet", "trisagion",
             ),
             PrayerPackStore.customDevotionIds(),

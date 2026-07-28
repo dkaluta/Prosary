@@ -295,7 +295,7 @@ enum PrayerPackStore {
   /// this list is deliberately an ordered array, never a dictionary's unordered keys. The rosary
   /// pack loads first so its shared mystery texts/images are the base other bundles build on.
   private static let packNames = [
-    "rosary", "angelus", "stationsOfTheCross", "franciscanCrown", "sevenSorrows",
+    "rosary", "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
     "divineMercyChaplet", "trisagion",
   ]
 

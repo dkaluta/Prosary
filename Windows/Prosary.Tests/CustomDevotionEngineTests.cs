@@ -126,6 +126,39 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         });
     }
 
+    // Via Lucis (flat, 14 scriptural stations)
+
+    /// <summary>Cross + 14 stations + Regina Caeli + closing cross — mirrors iOS's
+    /// testViaLucisSeventeenStepSequence.</summary>
+    [Fact]
+    public void ViaLucisSeventeenStepSequence()
+    {
+        var steps = BuildSteps("viaLucis", "en");
+        Assert.Equal(17, steps.Count);
+        Assert.Equal("Sign of the Cross", steps[0].Title);
+        Assert.Equal("Jesus Rises from the Dead", steps[1].Title);
+        Assert.Equal("1st Station", steps[1].Subtitle);
+        Assert.Equal("glorious_01_resurrection", steps[1].ImageOverrideKey);
+        Assert.Contains("Because by Your holy Cross and Resurrection", steps[1].Body);
+        Assert.Contains("— Matthew 28:1-7 (Douay-Rheims)", steps[1].Body);
+        Assert.All(steps.Skip(1).Take(14), s => Assert.True(s.IsScripture));
+        Assert.Contains("[…]", steps[4].Body);
+        Assert.Equal("Jesus Strengthens the Faith of Thomas", steps[8].Title);
+        Assert.Equal("The Holy Spirit Descends at Pentecost", steps[14].Title);
+        Assert.Equal("Regina Caeli", steps[15].Title);
+        Assert.Contains("Queen of Heaven, rejoice", steps[15].Body);
+        Assert.Equal("Sign of the Cross", steps[^1].Title);
+    }
+
+    [Fact]
+    public void ViaLucisLatinBodiesComeFromTheVulgate()
+    {
+        var steps = BuildSteps("viaLucis", "la");
+        Assert.Equal("Iesus a mortuis resurgit", steps[1].Title);
+        Assert.Contains("— Matth. 28:1-7 (Vulgata)", steps[1].Body);
+        Assert.Contains("Regina caeli, laetare, alleluia.", steps[15].Body);
+    }
+
     // Stations variants (traditional vs. scriptural)
 
     /// <summary>An unknown/null variantId resolves to the default (first) variant — the

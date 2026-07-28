@@ -56,6 +56,9 @@ struct AboutView: View {
           Text(String(
             localized: "about.stationImages.scripturalScenes",
             defaultValue: "The scriptural (St. John Paul II) form adds: The Kiss of Judas \u{2014} Giotto (Scrovegni Chapel, c. 1305); Christ before the High Priest \u{2014} Gerrit van Honthorst (c. 1617), National Gallery, London; The Denial of St Peter \u{2014} Rembrandt (1660), Rijksmuseum; Le Coup de Lance \u{2014} Peter Paul Rubens (1620), Royal Museum of Fine Arts Antwerp \u{2014} all public domain. Its other scenes reuse illustrations listed elsewhere on this page."))
+          Text(String(
+            localized: "about.viaLucisImages.scenes",
+            defaultValue: "The Via Lucis scenes: The Disciples at the Tomb \u{2014} Eug\u{00E8}ne Burnand (1898), Mus\u{00E9}e d'Orsay; Noli me tangere \u{2014} Fra Angelico (San Marco, c. 1440); The Road to Emmaus, the appearances to the apostles, at Lake Tiberias, and in Galilee \u{2014} Duccio di Buoninsegna (Maest\u{00E0}, 1308\u{2013}1311), Siena; Supper at Emmaus (1601) and The Incredulity of Saint Thomas (1601\u{2013}1602) \u{2014} Caravaggio; Christ's Charge to Peter \u{2014} Raphael (c. 1515), Royal Collection; The Virgin in Prayer \u{2014} Sassoferrato (1640\u{2013}1650), National Gallery, London \u{2014} all public domain. Its other scenes reuse the Rosary's glorious-mystery illustrations."))
         }
 
         section("Franciscan Crown Illustration") {

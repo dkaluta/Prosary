@@ -124,10 +124,10 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
     /// the dedicated PrayerKind and must never appear as a Home/Favorites card twice. The six
     /// generic devotions appear in pack-load order.</summary>
     [Fact]
-    public void CustomDevotionIdsAreTheSixGenericDevotionsInLoadOrder()
+    public void CustomDevotionIdsAreTheSevenGenericDevotionsInLoadOrder()
     {
         Assert.Equal(
-            ["angelus", "stationsOfTheCross", "franciscanCrown", "sevenSorrows", "divineMercyChaplet", "trisagion"],
+            ["angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows", "divineMercyChaplet", "trisagion"],
             PrayerPackStore.CustomDevotionIds());
         Assert.NotNull(PrayerPackStore.Definition("rosary"));
     }
