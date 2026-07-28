@@ -102,4 +102,5 @@ val prayerTranslationsTagalog: Map<PrayerKey, String> = mapOf(
 
 
     PrayerKey.OratioIesu to "Panginoong Jesucristo, Anak ng Diyos, kaawaan Mo ako, na makasalanan.",
+    PrayerKey.AnimaChristi to "Kaluluwa ni Kristo, pakabanalin mo ako.\nKatawan ni Kristo, iligtas mo ako.\nDugo ni Kristo, pasiglahin mo ako.\nTubig mula sa tagiliran ni Kristo, hugasan mo ako.\nPagpapakasakit ni Kristo, patatagin mo ako.\nButihing Hesus, dinggin mo ako.\nSa loob ng mga sugat mo, ako'y itago mo.\nHuwag mong ipahintulot na mawalay ako sa iyo.\nSa nagpapahamak na kaaway, ako'y ipagsanggalang mo.\nSa sandali ng aking pagpanaw, ako'y tawagin mo,\nat iyong ipag-utos na lumapit ako sa iyo,\nupang kasama ng iyong mga banal\nay makapagpuri ako sa iyo magpasawalang hanggan. Amen.",
 )

@@ -36,7 +36,7 @@ HARDCODED_PRAYER_KEYS = {
     "versiculumStandard", "responsiumStandard", "collectaStandard",
     "versiculumPaschale", "responsiumPaschale", "collectaPaschale",
     "aveMariaProFide", "aveMariaProSpe", "aveMariaProCaritate",
-    "fructusMysteriiLabel", "oratioIesu",
+    "fructusMysteriiLabel", "oratioIesu", "animaChristi",
 }
 
 # The 20 Rosary mystery imageKeys whose MysteryText ships hardcoded (and via the rosary

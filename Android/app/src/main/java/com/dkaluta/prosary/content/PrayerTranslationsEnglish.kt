@@ -92,6 +92,7 @@ val prayerTranslationsEnglish: Map<PrayerKey, String> = mapOf(
 
 
     PrayerKey.OratioIesu to "Lord Jesus Christ, Son of God, have mercy on me, a sinner.",
+    PrayerKey.AnimaChristi to "Soul of Christ, sanctify me.\nBody of Christ, save me.\nBlood of Christ, inebriate me.\nWater from the side of Christ, wash me.\nPassion of Christ, strengthen me.\nO good Jesus, hear me.\nWithin Thy wounds hide me.\nSuffer me not to be separated from Thee.\nFrom the malicious enemy defend me.\nIn the hour of my death call me,\nand bid me come unto Thee,\nthat with Thy Saints I may praise Thee\nfor ever and ever. Amen.",
 
 
 

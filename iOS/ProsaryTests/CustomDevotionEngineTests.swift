@@ -79,15 +79,19 @@ final class CustomDevotionEngineTests: XCTestCase {
 
   // MARK: - Stations of the Cross (flat, translated titles)
 
-  func testStationsProducesSeventeenStepsWithTranslatedTitlesAndOrdinals() {
+  func testStationsProducesEighteenStepsWithTranslatedTitlesAndOrdinals() {
     let steps = steps("stationsOfTheCross")
-    XCTAssertEqual(steps.count, 17)
+    XCTAssertEqual(steps.count, 18)
     XCTAssertEqual(steps.first?.title, "Sign of the Cross")
     XCTAssertEqual(steps[1].title, "Opening Prayer")
     XCTAssertEqual(steps[2].title, "Jesus is Condemned to Death")
     XCTAssertEqual(steps[2].subtitle, "1st Station")
     XCTAssertEqual(steps[15].subtitle, "14th Station")
-    XCTAssertEqual(steps.last?.title, "Closing Prayer")
+    XCTAssertEqual(steps[16].title, "Closing Prayer")
+    // Anima Christi closes the Way of the Cross — a shared "main" prayer (hardcoded in all six
+    // languages), so the bundle references it without shipping its own text.
+    XCTAssertEqual(steps.last?.title, "Anima Christi")
+    XCTAssertTrue(steps.last!.body.contains("Soul of Christ, sanctify me"))
     XCTAssertTrue(steps[2].body.contains("We adore You, O Christ"))
     XCTAssertTrue(steps[2].body.contains("**Because by Your holy Cross You have redeemed the world.**"))
     XCTAssertEqual(steps[2].imageKey, "station_01_condemned_to_death")

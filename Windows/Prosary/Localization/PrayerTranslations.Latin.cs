@@ -91,6 +91,7 @@ public static partial class PrayerTranslations
 
 
         [PrayerKey.OratioIesu] = "Domine Iesu Christe, Fili Dei, miserere mei peccatoris.",
+        [PrayerKey.AnimaChristi] = "Anima Christi, sanctifica me.\nCorpus Christi, salva me.\nSanguis Christi, inebria me.\nAqua lateris Christi, lava me.\nPassio Christi, conforta me.\nO bone Iesu, exaudi me.\nIntra tua vulnera absconde me.\nNe permittas me separari a te.\nAb hoste maligno defende me.\nIn hora mortis meae voca me.\nEt iube me venire ad te,\nut cum Sanctis tuis laudem te\nin saecula saeculorum. Amen.",
 
 
 

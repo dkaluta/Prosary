@@ -121,15 +121,19 @@ class CustomDevotionEngineTest {
     // MARK: Stations of the Cross (flat, translated titles)
 
     @Test
-    fun stationsProducesSeventeenStepsWithTranslatedTitlesAndOrdinals() {
+    fun stationsProducesEighteenStepsWithTranslatedTitlesAndOrdinals() {
         val steps = steps("stationsOfTheCross")
-        assertEquals(17, steps.size)
+        assertEquals(18, steps.size)
         assertEquals("Sign of the Cross", steps.first().title)
         assertEquals("Opening Prayer", steps[1].title)
         assertEquals("Jesus is Condemned to Death", steps[2].title)
         assertEquals("1st Station", steps[2].subtitle)
         assertEquals("14th Station", steps[15].subtitle)
-        assertEquals("Closing Prayer", steps.last().title)
+        assertEquals("Closing Prayer", steps[16].title)
+        // Anima Christi closes the Way of the Cross — a shared "main" prayer (hardcoded in all
+        // six languages), so the bundle references it without shipping its own text.
+        assertEquals("Anima Christi", steps.last().title)
+        assertTrue(steps.last().body.contains("Soul of Christ, sanctify me"))
         assertTrue(steps[2].body.contains("We adore You, O Christ"))
         assertTrue(steps[2].body.contains("**Because by Your holy Cross You have redeemed the world.**"))
         assertEquals("station_01_condemned_to_death", steps[2].imageKey)

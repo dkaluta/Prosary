@@ -98,17 +98,21 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
     // Stations of the Cross (flat, translated titles)
 
     [Fact]
-    public void StationsProducesSeventeenStepsWithTranslatedTitlesAndOrdinals()
+    public void StationsProducesEighteenStepsWithTranslatedTitlesAndOrdinals()
     {
         var steps = BuildSteps("stationsOfTheCross", "en");
 
-        Assert.Equal(17, steps.Count);
+        Assert.Equal(18, steps.Count);
         Assert.Equal("Sign of the Cross", steps[0].Title);
         Assert.Equal("Opening Prayer", steps[1].Title);
         Assert.Equal("Jesus is Condemned to Death", steps[2].Title);
         Assert.Equal("1st Station", steps[2].Subtitle);
         Assert.Equal("14th Station", steps[15].Subtitle);
-        Assert.Equal("Closing Prayer", steps[^1].Title);
+        Assert.Equal("Closing Prayer", steps[16].Title);
+        // Anima Christi closes the Way of the Cross — a shared "main" prayer (hardcoded in all
+        // six languages), so the bundle references it without shipping its own text.
+        Assert.Equal("Anima Christi", steps[^1].Title);
+        Assert.Contains("Soul of Christ, sanctify me", steps[^1].Body);
         Assert.Contains("We adore You, O Christ", steps[2].Body);
         Assert.Contains("**Because by Your holy Cross You have redeemed the world.**", steps[2].Body);
         Assert.Equal("station_01_condemned_to_death", steps[2].ImageOverrideKey);
