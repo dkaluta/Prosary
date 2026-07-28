@@ -109,4 +109,8 @@ public sealed class SqlitePresetStore : IPresetStore
             await _connection.UpdateAsync(newDefault);
         }
     }
+    /// <summary>Closes the underlying connection — needed by tests that delete their temp
+    /// database file afterwards (Windows can't delete a file that is still open).</summary>
+    public Task CloseAsync() => _connection.CloseAsync();
+
 }

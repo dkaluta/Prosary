@@ -77,7 +77,9 @@ public class BeadLayoutTests : IClassFixture<PrayerPackLoaderFixture>
     public void Build_MysteryGroupedSteps_StillGroupsByMysteryGroup()
     {
         var engine = new PrayerEngine(new LiturgicalCalendarService());
-        var prayer = new Prayer { Rosary = new RosaryOptions { MysterySelectionMode = MysterySelectionMode.TwentyMystery } };
+        // Explicit language: resolving the default-language sentinel reads ApplicationData,
+        // which only exists in a packaged app — same convention as RosaryEngineTests.
+        var prayer = new Prayer { LanguageCode = "en", Rosary = new RosaryOptions { MysterySelectionMode = MysterySelectionMode.TwentyMystery } };
         var steps = engine.BuildSteps(prayer);
         var layout = BeadLayout.Build(steps, currentIndex: steps.Count / 2, hasClosingCross: true, isDarkTheme: false);
 
@@ -97,7 +99,7 @@ public class BeadLayoutTests : IClassFixture<PrayerPackLoaderFixture>
     public void Build_PresenterModeStep_StillShowsTenTraditionalBottomBeads()
     {
         var engine = new PrayerEngine(new LiturgicalCalendarService());
-        var prayer = new Prayer { Rosary = new RosaryOptions { PresenterMode = true } };
+        var prayer = new Prayer { LanguageCode = "en", Rosary = new RosaryOptions { PresenterMode = true } };
         var steps = engine.BuildSteps(prayer);
         var currentIndex = steps.ToList().FindIndex(s => s.Title == "Hail Mary & Glory Be" && s.DecadeIndex == 0);
         var layout = BeadLayout.Build(steps, currentIndex, hasClosingCross: true, isDarkTheme: false);
@@ -131,7 +133,9 @@ public class BeadLayoutTests : IClassFixture<PrayerPackLoaderFixture>
     public void Build_TwentyMysterySession_WrapsOneRowPerGroup()
     {
         var engine = new PrayerEngine(new LiturgicalCalendarService());
-        var prayer = new Prayer { Rosary = new RosaryOptions { MysterySelectionMode = MysterySelectionMode.TwentyMystery } };
+        // Explicit language: resolving the default-language sentinel reads ApplicationData,
+        // which only exists in a packaged app — same convention as RosaryEngineTests.
+        var prayer = new Prayer { LanguageCode = "en", Rosary = new RosaryOptions { MysterySelectionMode = MysterySelectionMode.TwentyMystery } };
         var steps = engine.BuildSteps(prayer);
         var layout = BeadLayout.Build(steps, currentIndex: 0, hasClosingCross: true, isDarkTheme: false);
 

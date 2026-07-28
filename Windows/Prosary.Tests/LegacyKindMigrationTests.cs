@@ -72,6 +72,7 @@ public sealed class LegacyKindMigrationTests : IDisposable
             Assert.Equal(bundleId, prayer.CustomDevotionId);
         }
         Assert.Equal(1, await ReadUserVersionAsync());
+        await store.CloseAsync();
     }
 
     [Fact]
@@ -87,6 +88,7 @@ public sealed class LegacyKindMigrationTests : IDisposable
         Assert.Equal(PrayerKind.Rosary, Assert.Single(all, p => p.Name == "R").Kind);
         Assert.Equal(PrayerKind.JesusPrayer, Assert.Single(all, p => p.Name == "J").Kind);
         Assert.All(all, p => Assert.Null(p.CustomDevotionId));
+        await store.CloseAsync();
     }
 
     [Fact]
@@ -100,6 +102,7 @@ public sealed class LegacyKindMigrationTests : IDisposable
 
         Assert.Equal(PrayerKind.Custom, prayer.Kind);
         Assert.Equal("trisagion", prayer.CustomDevotionId);
+        await store.CloseAsync();
     }
 
     [Fact]
@@ -119,6 +122,8 @@ public sealed class LegacyKindMigrationTests : IDisposable
         Assert.Equal("angelus", afterSecond.CustomDevotionId);
         Assert.Equal(afterFirst.Id, afterSecond.Id);
         Assert.Equal(1, await ReadUserVersionAsync());
+        await first.CloseAsync();
+        await second.CloseAsync();
     }
 
     [Fact]
@@ -130,5 +135,6 @@ public sealed class LegacyKindMigrationTests : IDisposable
         var all = await store.GetAllAsync();
 
         Assert.DoesNotContain(all, p => p.Name == "Classic Rosary");
+        await store.CloseAsync();
     }
 }

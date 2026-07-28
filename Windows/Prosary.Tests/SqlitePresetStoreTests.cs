@@ -24,6 +24,8 @@ public sealed class SqlitePresetStoreTests : IDisposable
 
     public void Dispose()
     {
+        // Windows can't delete an open file — release the connection first.
+        _store.CloseAsync().GetAwaiter().GetResult();
         if (File.Exists(_dbPath))
         {
             File.Delete(_dbPath);
