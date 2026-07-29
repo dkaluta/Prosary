@@ -38,15 +38,12 @@ public class PrayerTranslationsCompletenessTests : IClassFixture<PrayerPackLoade
     /// translation, so this map can never go silently stale.</summary>
     private static readonly Dictionary<string, Dictionary<string, string[]>> BundleKeysMissingLanguages = new()
     {
-        ["divineMercyChaplet"] = new() { ["he"] = ["divineMercyOffering", "divineMercyPetition"] },
-        // The composed closing (versicle + Stabat Mater collect) has no verified translation in
-        // these languages yet — it falls back to the bundle's Latin text.
-        ["sevenSorrows"] = new()
+        // Veronica's station quotes Judith, and the Arabic/Tagalog scripture sources carry no
+        // deuterocanon — those two fall back to the bundle's Latin text.
+        ["stationsOfTheCross"] = new()
         {
-            ["ar"] = ["sevenSorrowsClosingBody"],
-            ["he"] = ["sevenSorrowsClosingBody"],
-            ["ru"] = ["sevenSorrowsClosingBody"],
-            ["tl"] = ["sevenSorrowsClosingBody"],
+            ["ar"] = ["station06Body"],
+            ["tl"] = ["station06Body"],
         },
     };
 
