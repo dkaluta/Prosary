@@ -147,6 +147,9 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Equal("The Holy Spirit Descends at Pentecost", steps[14].Title);
         Assert.Equal("Regina Caeli", steps[15].Title);
         Assert.Contains("Queen of Heaven, rejoice", steps[15].Body);
+        // Once clipped mid-sentence by a bad authoring-time extraction — endings pinned.
+        Assert.Contains("Pray for us to God, alleluia.", steps[15].Body);
+        Assert.EndsWith("through the same Christ our Lord. Amen.", steps[15].Body);
         Assert.Equal("Sign of the Cross", steps[^1].Title);
     }
 

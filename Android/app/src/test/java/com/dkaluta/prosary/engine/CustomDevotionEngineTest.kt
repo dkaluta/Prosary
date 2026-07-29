@@ -217,6 +217,9 @@ class CustomDevotionEngineTest {
         assertEquals("The Holy Spirit Descends at Pentecost", steps[14].title)
         assertEquals("Regina Caeli", steps[15].title)
         assertTrue(steps[15].body.contains("Queen of Heaven, rejoice"))
+        // Once clipped mid-sentence by a bad authoring-time extraction — endings pinned.
+        assertTrue(steps[15].body.contains("Pray for us to God, alleluia."))
+        assertTrue(steps[15].body.endsWith("through the same Christ our Lord. Amen."))
         assertEquals("Sign of the Cross", steps.last().title)
     }
 

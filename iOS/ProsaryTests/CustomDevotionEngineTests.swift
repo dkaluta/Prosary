@@ -177,7 +177,11 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertEqual(steps[14].imageKey, "glorious_03_descent_of_the_holy_spirit")
     XCTAssertEqual(steps[15].title, "Regina Caeli")
     XCTAssertTrue(steps[15].body.contains("Queen of Heaven, rejoice"))
+    // The full antiphon and collect — this body was once clipped mid-sentence by a bad
+    // authoring-time extraction, so the endings are pinned explicitly.
+    XCTAssertTrue(steps[15].body.contains("Pray for us to God, alleluia."))
     XCTAssertTrue(steps[15].body.contains("**For the Lord has truly risen, alleluia.**"))
+    XCTAssertTrue(steps[15].body.hasSuffix("through the same Christ our Lord. Amen."))
     XCTAssertEqual(steps.last?.title, "Sign of the Cross")
   }
 
