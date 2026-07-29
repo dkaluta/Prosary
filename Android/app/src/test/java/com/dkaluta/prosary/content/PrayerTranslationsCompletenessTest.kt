@@ -49,14 +49,11 @@ class PrayerTranslationsCompletenessTest {
      * translation. The self-guard test below fails once a listed key gains its translation, so
      * this map can never go silently stale. */
     private val bundleKeysMissingLanguages: Map<String, Map<String, Set<String>>> = mapOf(
-        "divineMercyChaplet" to mapOf("he" to setOf("divineMercyOffering", "divineMercyPetition")),
-        // The composed closing (versicle + Stabat Mater collect) has no verified translation in
-        // these languages yet — it falls back to the bundle's Latin text.
-        "sevenSorrows" to mapOf(
-            "ar" to setOf("sevenSorrowsClosingBody"),
-            "he" to setOf("sevenSorrowsClosingBody"),
-            "ru" to setOf("sevenSorrowsClosingBody"),
-            "tl" to setOf("sevenSorrowsClosingBody"),
+        // Veronica's station quotes Judith, and the Arabic/Tagalog scripture sources carry no
+        // deuterocanon — those two fall back to the bundle's Latin text.
+        "stationsOfTheCross" to mapOf(
+            "ar" to setOf("station06Body"),
+            "tl" to setOf("station06Body"),
         ),
     )
 
