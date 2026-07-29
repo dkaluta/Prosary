@@ -230,19 +230,21 @@ class PrayerEngine(
             ?: entry.subtitle
         val body = entry.bodyKey?.let { PrayerPackStore.resolveBodyText(bundleId, languageCode, it) }.orEmpty()
 
+        val isScripture = languageCode?.let { entry.isScriptureByLanguage?.get(it) }
+            ?: entry.isScripture ?: false
         val count = entry.repeatCount
         if (count == null || count <= 1) {
             return listOf(
                 RosaryStep(
                     title = title, subtitle = subtitle, body = body,
-                    isScripture = entry.isScripture ?: false, imageOverrideKey = entry.imageKey,
+                    isScripture = isScripture, imageOverrideKey = entry.imageKey,
                 ),
             )
         }
         return (1..count).map { h ->
             RosaryStep(
                 title = "$title ($h of $count)", subtitle = subtitle, body = body,
-                isScripture = entry.isScripture ?: false, imageOverrideKey = entry.imageKey,
+                isScripture = isScripture, imageOverrideKey = entry.imageKey,
             )
         }
     }

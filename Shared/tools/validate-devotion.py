@@ -117,6 +117,10 @@ def validate_entry(entry: dict, where: str, allow_kind: bool) -> None:
         err(f"{where}: repeat must be an integer >= 2")
     if "isScripture" in entry and not isinstance(entry["isScripture"], bool):
         err(f"{where}: isScripture must be a boolean")
+    if "isScriptureByLanguage" in entry:
+        value = entry["isScriptureByLanguage"]
+        if not isinstance(value, dict) or not value or not all(isinstance(v, bool) for v in value.values()):
+            err(f"{where}: isScriptureByLanguage must be a non-empty map of language -> boolean")
 
 
 def collect_entry_refs(entry: dict, body_keys: set, title_keys: set, image_keys: set) -> None:

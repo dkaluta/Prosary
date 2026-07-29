@@ -190,6 +190,14 @@ class CustomDevotionEngineTest {
         assertFalse(steps[16].isScripture)
     }
 
+    /** The traditional stations' meditations are quoted scripture in ar/he/ru/tl but Liguori
+     * prose in la/en — isScriptureByLanguage picks the typeface per session language. */
+    @Test
+    fun traditionalStationsScriptureFlagFollowsTheLanguage() {
+        assertTrue(steps("stationsOfTheCross", language = "he")[2].isScripture)
+        assertFalse(steps("stationsOfTheCross", language = "en")[2].isScripture)
+    }
+
     @Test
     fun stationsScripturalVariantHebrewTitles() {
         val steps = steps("stationsOfTheCross", language = "he", variantId = "scriptural")

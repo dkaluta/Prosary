@@ -343,7 +343,9 @@ of its own — its entire step sequence and per-step text are data-driven from i
     `repeat: n` unrolls into n copies titled "Title (h of n)", deliberately without bead fields;
     `isScripture: true` marks a body that is a quoted Bible passage so it renders in the
     scripture typeface, same as the Rosary's mystery announcements (the scriptural Stations'
-    fourteen station steps). A closing entry may
+    fourteen station steps); `isScriptureByLanguage: {lang: bool}` overrides it per session
+    language, for bodies that are scripture in some languages but composed prose in others
+    (the traditional Stations: Liguori meditations in la/en, scripture in ar/he/ru/tl). A closing entry may
     instead be `{"kind": "seasonalMarianAntiphon"}` (the Franciscan Crown), which stays
     runtime-composed by the engine's shared antiphon builder because it is calendar-dependent.
   - **Composed bodies, no composition grammar**: every step has exactly one `bodyKey`.

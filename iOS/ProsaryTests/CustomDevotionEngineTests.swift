@@ -148,6 +148,15 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertFalse(steps[16].isScripture)
   }
 
+  /// The traditional stations' meditations are quoted scripture in ar/he/ru/tl but Liguori
+  /// prose in la/en — isScriptureByLanguage picks the typeface per session language.
+  func testTraditionalStationsScriptureFlagFollowsTheLanguage() {
+    XCTAssertTrue(steps("stationsOfTheCross", language: "he")[2].isScripture)
+    XCTAssertTrue(steps("stationsOfTheCross", language: "ru")[2].isScripture)
+    XCTAssertFalse(steps("stationsOfTheCross", language: "en")[2].isScripture)
+    XCTAssertFalse(steps("stationsOfTheCross", language: "la")[2].isScripture)
+  }
+
   func testStationsScripturalVariantHebrewTitles() {
     let steps = steps("stationsOfTheCross", language: "he", variantId: "scriptural")
     XCTAssertEqual(steps[2].title, "יֵשׁוּעַ מִתְפַּלֵּל בְּגַת שְׁמָנִים")

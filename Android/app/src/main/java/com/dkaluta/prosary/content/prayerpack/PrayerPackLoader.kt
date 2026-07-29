@@ -53,6 +53,10 @@ data class CustomDevotionStep(
     val imageKey: String? = null,
     @SerialName("repeat") val repeatCount: Int? = null,
     val isScripture: Boolean? = null,
+    /** Per-language override of [isScripture] — for bodies that are quoted scripture in some
+     * languages but composed prose in others (the traditional Stations: Liguori meditations in
+     * la/en, scripture meditations in ar/he/ru/tl). */
+    val isScriptureByLanguage: Map<String, Boolean>? = null,
     /** Gates this entry on one of the bundle's `options.json` options: `"key"` (toggle on),
      * `"!key"` (toggle off), or `"key=caseId"` (choice equals) — see
      * `PrayerEngine.evaluateCondition`. Null = always included. */

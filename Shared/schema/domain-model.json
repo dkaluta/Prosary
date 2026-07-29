@@ -352,6 +352,10 @@
           "type": "bool? = false",
           "description": "The body is a quoted Bible passage, so it renders in the scripture typeface (same flag the Rosary's mystery announcements carry). Set on the scriptural Stations' fourteen station steps."
         },
+        "isScriptureByLanguage": {
+          "type": "map<string, bool>?",
+          "description": "Per-session-language override of isScripture — for bodies that are quoted scripture in some languages but composed prose in others (the traditional Stations: Liguori meditations in la/en, scripture meditations in ar/he/ru/tl)."
+        },
         "if": {
           "type": "string?",
           "description": "Gates this entry on one of the bundle's options.json options: \"key\" (toggle on), \"!key\" (toggle off), or \"key=caseId\" (choice equals) — evaluated against the bundle defaults overlaid with Prayer.customOptions; the entry is dropped when it fails. The validator checks every expression references a declared option/case."

@@ -249,7 +249,9 @@ public sealed class PrayerEngine
             ? PrayerPackStore.ResolveBodyText(bundleId, languageCode, bodyKey)
             : string.Empty;
 
-        var isScripture = entry.IsScripture ?? false;
+        var isScripture = (languageCode is { } lang && entry.IsScriptureByLanguage?.TryGetValue(lang, out var perLanguage) == true
+            ? perLanguage
+            : entry.IsScripture) ?? false;
         if (entry.Repeat is not { } count || count <= 1)
         {
             return [new RosaryStep(title, subtitle, body, IsScripture: isScripture, ImageOverrideKey: entry.ImageKey)];

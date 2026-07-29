@@ -432,6 +432,10 @@ public sealed record CustomDevotionStep(
     string? ImageKey = null,
     int? Repeat = null,
     bool? IsScripture = null,
+    // Per-language override of IsScripture — for bodies that are quoted scripture in some
+    // languages but composed prose in others (the traditional Stations: Liguori meditations in
+    // la/en, scripture meditations in ar/he/ru/tl).
+    Dictionary<string, bool>? IsScriptureByLanguage = null,
     string? If = null,
     // Like TitleKey for the subtitle — for subtitles that are themselves translated content
     // (the Rosary's opening Hail Marys "for Faith/Hope/Charity"). Mutually exclusive with the

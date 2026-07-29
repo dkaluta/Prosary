@@ -60,6 +60,10 @@ struct CustomDevotionStep: Decodable {
   let imageKey: String?
   let repeatCount: Int?
   let isScripture: Bool?
+  /// Per-language override of `isScripture` — for bodies that are quoted scripture in some
+  /// languages but composed prose in others (the traditional Stations: Liguori meditations in
+  /// la/en, scripture meditations in ar/he/ru/tl).
+  let isScriptureByLanguage: [String: Bool]?
   /// Gates this entry on one of the bundle's `options.json` options: `"key"` (toggle on),
   /// `"!key"` (toggle off), or `"key=caseId"` (choice equals) — see
   /// `PrayerEngine.evaluateCondition`. Nil = always included.
@@ -79,7 +83,7 @@ struct CustomDevotionStep: Decodable {
   }
 
   private enum CodingKeys: String, CodingKey {
-    case title, titleKey, subtitle, subtitleKey, bodyKey, imageKey, isScripture, kind, optionKey
+    case title, titleKey, subtitle, subtitleKey, bodyKey, imageKey, isScripture, isScriptureByLanguage, kind, optionKey
     case repeatCount = "repeat"
     case condition = "if"
   }

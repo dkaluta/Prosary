@@ -162,6 +162,16 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Contains("Regina caeli, laetare, alleluia.", steps[15].Body);
     }
 
+    /// <summary>The traditional stations' meditations are quoted scripture in ar/he/ru/tl but
+    /// Liguori prose in la/en — isScriptureByLanguage picks the typeface per session
+    /// language.</summary>
+    [Fact]
+    public void TraditionalStationsScriptureFlagFollowsTheLanguage()
+    {
+        Assert.True(BuildSteps("stationsOfTheCross", "he")[2].IsScripture);
+        Assert.False(BuildSteps("stationsOfTheCross", "en")[2].IsScripture);
+    }
+
     // Stations variants (traditional vs. scriptural)
 
     /// <summary>An unknown/null variantId resolves to the default (first) variant — the
