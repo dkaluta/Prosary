@@ -57,6 +57,9 @@ struct CustomDevotionStep: Decodable {
   /// literal `subtitle`.
   let subtitleKey: String?
   let bodyKey: String?
+  /// Resolved like `bodyKey`; emitted as the step's regular-typeface acclamation above the
+  /// body (the Stations' versicle/response).
+  let acclamationKey: String?
   let imageKey: String?
   let repeatCount: Int?
   let isScripture: Bool?
@@ -83,7 +86,7 @@ struct CustomDevotionStep: Decodable {
   }
 
   private enum CodingKeys: String, CodingKey {
-    case title, titleKey, subtitle, subtitleKey, bodyKey, imageKey, isScripture, isScriptureByLanguage, kind, optionKey
+    case title, titleKey, subtitle, subtitleKey, bodyKey, acclamationKey, imageKey, isScripture, isScriptureByLanguage, kind, optionKey
     case repeatCount = "repeat"
     case condition = "if"
   }

@@ -335,8 +335,8 @@ of its own — its entire step sequence and per-step text are data-driven from i
     `imageKey`. A closing entry may be `{"kind": "marianAntiphon", "optionKey": …}` (the
     Rosary): the named choice option's value selects the antiphon, with "seasonal" resolved by
     the liturgical calendar and "none" dropping the step.
-  - An `Entry` is `{title | titleKey, subtitle? | subtitleKey?, bodyKey?, imageKey?, repeat?,
-    isScripture?}` — `title` is a literal English UI label (the app-wide convention), `titleKey`
+  - An `Entry` is `{title | titleKey, subtitle? | subtitleKey?, bodyKey?, acclamationKey?,
+    imageKey?, repeat?, isScripture?}` — `title` is a literal English UI label (the app-wide convention), `titleKey`
     the alternative for devotions whose step titles are themselves translated content (the
     Stations), and `subtitleKey` likewise for translated subtitles (the Rosary's opening Hail
     Marys "for Faith/Hope/Charity");
@@ -345,7 +345,10 @@ of its own — its entire step sequence and per-step text are data-driven from i
     scripture typeface, same as the Rosary's mystery announcements (the scriptural Stations'
     fourteen station steps); `isScriptureByLanguage: {lang: bool}` overrides it per session
     language, for bodies that are scripture in some languages but composed prose in others
-    (the traditional Stations: Liguori meditations in la/en, scripture in ar/he/ru/tl). A closing entry may
+    (the traditional Stations: Liguori meditations in la/en, scripture in ar/he/ru/tl);
+    `acclamationKey` resolves like `bodyKey` and renders above the body in the regular prayer
+    typeface — the Stations'/Via Lucis' versicle-response is a prayer, not part of the reading,
+    so a scripture body's typeface never swallows it. A closing entry may
     instead be `{"kind": "seasonalMarianAntiphon"}` (the Franciscan Crown), which stays
     runtime-composed by the engine's shared antiphon builder because it is calendar-dependent.
   - **Composed bodies, no composition grammar**: every step has exactly one `bodyKey`.

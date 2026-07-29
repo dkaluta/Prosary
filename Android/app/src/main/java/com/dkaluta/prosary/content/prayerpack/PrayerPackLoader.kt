@@ -50,6 +50,9 @@ data class CustomDevotionStep(
     val titleKey: String? = null,
     val subtitle: String? = null,
     val bodyKey: String? = null,
+    /** Resolved like [bodyKey]; emitted as the step's regular-typeface acclamation above the
+     * body (the Stations' versicle/response). */
+    val acclamationKey: String? = null,
     val imageKey: String? = null,
     @SerialName("repeat") val repeatCount: Int? = null,
     val isScripture: Boolean? = null,

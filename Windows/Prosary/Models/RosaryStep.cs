@@ -15,6 +15,10 @@ public sealed record RosaryStep(
     string? Subtitle,
     string Body,
     Mystery? Mystery = null,
+    // Optional acclamation (the Stations' versicle/response) rendered above the body in the
+    // regular prayer typeface — a prayer, not part of the reading. Placed after Mystery so
+    // existing four-positional-argument call sites keep their meaning.
+    string? Acclamation = null,
     bool IsScripture = false,
     bool IsAntiphon = false,
     int? DecadeIndex = null,

@@ -289,6 +289,10 @@
         "body": {
           "type": "string"
         },
+        "acclamation": {
+          "type": "string?",
+          "description": "Optional versicle/response prayer shown above the body in the regular prayer typeface, even when the body itself is scripture (the Stations, Via Lucis)."
+        },
         "mystery": {
           "type": "Mystery?"
         },
@@ -340,6 +344,10 @@
         "bodyKey": {
           "type": "string?",
           "description": "Resolved bundle-raw-first (requested language, then the bundle's Latin), then the shared PrayerTranslations chain, then the raw key — see ARCHITECTURE.md."
+        },
+        "acclamationKey": {
+          "type": "string?",
+          "description": "Resolved like bodyKey; emitted as RosaryStep.acclamation — the versicle/response rendered above the body in the regular prayer typeface (a scripture body's typeface never swallows it)."
         },
         "imageKey": {
           "type": "string?"

@@ -49,6 +49,16 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     [ObservableProperty]
     private string _body = string.Empty;
 
+    // The versicle/response prayer shown above a scripture body in the regular typeface.
+    [ObservableProperty]
+    private string _acclamation = string.Empty;
+
+    [ObservableProperty]
+    private bool _hasAcclamation;
+
+    [ObservableProperty]
+    private string _acclamationFontFamily = "Georgia";
+
     [ObservableProperty]
     private string _mysteryImageKey = "cross_placeholder";
 
@@ -242,6 +252,8 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         Header = step.Title;
         Subtitle = step.Subtitle;
         Body = step.Body;
+        Acclamation = step.Acclamation ?? string.Empty;
+        HasAcclamation = step.Acclamation is not null;
         MysteryImageKey = step.Mystery?.ImageKey ?? step.ImageOverrideKey ?? "cross_placeholder";
         ProgressText = $"{_index + 1} of {_steps.Count}";
         Progress = (_index + 1) / (double)_steps.Count;
@@ -249,6 +261,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         IsLastStep = _index == _steps.Count - 1;
 
         BodyFontFamily = PrayerTypography.ResolveBodyFontFamily(_languageCode, step.IsScripture);
+        AcclamationFontFamily = PrayerTypography.ResolveBodyFontFamily(_languageCode, isScripture: false);
         BodyFontSize = PrayerTypography.ResolveBodyFontSize(_languageCode, step.IsScripture);
 
         RebuildBeads();

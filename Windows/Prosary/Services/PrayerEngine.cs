@@ -252,15 +252,18 @@ public sealed class PrayerEngine
         var isScripture = (languageCode is { } lang && entry.IsScriptureByLanguage?.TryGetValue(lang, out var perLanguage) == true
             ? perLanguage
             : entry.IsScripture) ?? false;
+        var acclamation = entry.AcclamationKey is { } acclamationKey
+            ? PrayerPackStore.ResolveBodyText(bundleId, languageCode, acclamationKey)
+            : null;
         if (entry.Repeat is not { } count || count <= 1)
         {
-            return [new RosaryStep(title, subtitle, body, IsScripture: isScripture, ImageOverrideKey: entry.ImageKey)];
+            return [new RosaryStep(title, subtitle, body, Acclamation: acclamation, IsScripture: isScripture, ImageOverrideKey: entry.ImageKey)];
         }
 
         return Enumerable.Range(1, count)
             .Select(h => new RosaryStep(
                 $"{title} ({h} of {count})", subtitle, body,
-                IsScripture: isScripture, ImageOverrideKey: entry.ImageKey))
+                Acclamation: acclamation, IsScripture: isScripture, ImageOverrideKey: entry.ImageKey))
             .ToList();
     }
 

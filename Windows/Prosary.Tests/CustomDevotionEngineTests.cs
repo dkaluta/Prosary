@@ -115,8 +115,9 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         // six languages), so the bundle references it without shipping its own text.
         Assert.Equal("Anima Christi", steps[^1].Title);
         Assert.Contains("Soul of Christ, sanctify me", steps[^1].Body);
-        Assert.Contains("We adore You, O Christ", steps[2].Body);
-        Assert.Contains("**Because by Your holy Cross You have redeemed the world.**", steps[2].Body);
+        Assert.Contains("We adore You, O Christ", steps[2].Acclamation);
+        Assert.DoesNotContain("We adore You", steps[2].Body);
+        Assert.Contains("**Because by Your holy Cross You have redeemed the world.**", steps[2].Acclamation);
         Assert.Equal("station_01_condemned_to_death", steps[2].ImageOverrideKey);
         // No bead fields anywhere — Stations is a flat devotion.
         Assert.All(steps, s =>
@@ -139,7 +140,7 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Equal("Jesus Rises from the Dead", steps[1].Title);
         Assert.Equal("1st Station", steps[1].Subtitle);
         Assert.Equal("glorious_01_resurrection", steps[1].ImageOverrideKey);
-        Assert.Contains("Because by Your holy Cross and Resurrection", steps[1].Body);
+        Assert.Contains("Because by Your holy Cross and Resurrection", steps[1].Acclamation);
         Assert.Contains("— Matthew 28:1-7 (Douay-Rheims)", steps[1].Body);
         Assert.All(steps.Skip(1).Take(14), s => Assert.True(s.IsScripture));
         Assert.Contains("[…]", steps[4].Body);
@@ -195,7 +196,8 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Equal("Jesus Prays in the Garden of Gethsemane", steps[2].Title);
         Assert.Equal("1st Station", steps[2].Subtitle);
         Assert.Equal("sorrowful_01_agony_in_the_garden", steps[2].ImageOverrideKey);
-        Assert.Contains("We adore You, O Christ", steps[2].Body);
+        Assert.Contains("We adore You, O Christ", steps[2].Acclamation);
+        Assert.DoesNotContain("We adore You", steps[2].Body);
         Assert.Contains("— Mark 14:32-36 (Douay-Rheims)", steps[2].Body);
         Assert.Equal("scriptural_02_kiss_of_judas", steps[3].ImageOverrideKey);
         Assert.Equal("Jesus Promises His Kingdom to the Good Thief", steps[12].Title);

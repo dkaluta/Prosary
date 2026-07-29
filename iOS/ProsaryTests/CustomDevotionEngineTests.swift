@@ -94,8 +94,9 @@ final class CustomDevotionEngineTests: XCTestCase {
     // languages), so the bundle references it without shipping its own text.
     XCTAssertEqual(steps.last?.title, "Anima Christi")
     XCTAssertTrue(steps.last!.body.contains("Soul of Christ, sanctify me"))
-    XCTAssertTrue(steps[2].body.contains("We adore You, O Christ"))
-    XCTAssertTrue(steps[2].body.contains("**Because by Your holy Cross You have redeemed the world.**"))
+    XCTAssertEqual(steps[2].acclamation?.contains("We adore You, O Christ"), true)
+    XCTAssertFalse(steps[2].body.contains("We adore You"))
+    XCTAssertEqual(steps[2].acclamation?.contains("**Because by Your holy Cross You have redeemed the world.**"), true)
     XCTAssertEqual(steps[2].imageKey, "station_01_condemned_to_death")
     // No bead fields anywhere — Stations is a flat devotion.
     XCTAssertTrue(steps.allSatisfy { $0.decadeIndex == nil && $0.hailMaryIndexInDecade == nil })
@@ -107,7 +108,7 @@ final class CustomDevotionEngineTests: XCTestCase {
     let steps = steps("stationsOfTheCross", language: "he")
     XCTAssertEqual(steps[2].title, "יֵשׁוּעַ נִדּוֹן לַמָּוֶת")
     XCTAssertTrue(steps[2].body.contains("מֵעֹצֶר וּמִמִּשְׁפָּט לֻקָּח"))
-    XCTAssertTrue(steps[2].body.contains("**כִּי בִּצְלָבְךָ גָּאַלְתָּ אֶת הָעוֹלָם.**"))
+    XCTAssertEqual(steps[2].acclamation?.contains("**כִּי בִּצְלָבְךָ גָּאַלְתָּ אֶת הָעוֹלָם.**"), true)
     XCTAssertTrue(steps.last!.body.contains("נֶפֶשׁ הַמָּשִׁיחַ קַדְּשִׁינִי"))
   }
 
@@ -130,7 +131,8 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertEqual(steps[2].title, "Jesus Prays in the Garden of Gethsemane")
     XCTAssertEqual(steps[2].subtitle, "1st Station")
     XCTAssertEqual(steps[2].imageKey, "sorrowful_01_agony_in_the_garden")
-    XCTAssertTrue(steps[2].body.contains("We adore You, O Christ"))
+    XCTAssertEqual(steps[2].acclamation?.contains("We adore You, O Christ"), true)
+    XCTAssertFalse(steps[2].body.contains("We adore You"))
     XCTAssertTrue(steps[2].body.contains("Gethsemani"))
     XCTAssertTrue(steps[2].body.contains("— Mark 14:32-36 (Douay-Rheims)"))
     // The Sanhedrin scene skips verses 56-59 — the gap is marked, not papered over.
@@ -175,7 +177,7 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertEqual(steps[1].title, "Jesus Rises from the Dead")
     XCTAssertEqual(steps[1].subtitle, "1st Station")
     XCTAssertEqual(steps[1].imageKey, "glorious_01_resurrection")
-    XCTAssertTrue(steps[1].body.contains("Because by Your holy Cross and Resurrection"))
+    XCTAssertEqual(steps[1].acclamation?.contains("Because by Your holy Cross and Resurrection"), true)
     XCTAssertTrue(steps[1].body.contains("— Matthew 28:1-7 (Douay-Rheims)"))
     XCTAssertTrue(steps[1...14].allSatisfy(\.isScripture))
     // The Emmaus-road station skips verses 17-24 — the gap is marked, not papered over.
@@ -197,7 +199,7 @@ final class CustomDevotionEngineTests: XCTestCase {
   func testViaLucisLatinBodiesComeFromTheVulgate() {
     let steps = steps("viaLucis", language: "la")
     XCTAssertEqual(steps[1].title, "Iesus a mortuis resurgit")
-    XCTAssertTrue(steps[1].body.contains("Quia per sanctam crucem et resurrectionem tuam"))
+    XCTAssertEqual(steps[1].acclamation?.contains("Quia per sanctam crucem et resurrectionem tuam"), true)
     XCTAssertTrue(steps[1].body.contains("— Matth. 28:1-7 (Vulgata)"))
     XCTAssertTrue(steps[15].body.contains("Regina caeli, laetare, alleluia."))
   }

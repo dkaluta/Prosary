@@ -128,6 +128,8 @@ def collect_entry_refs(entry: dict, body_keys: set, title_keys: set, image_keys:
         return
     if entry.get("bodyKey"):
         body_keys.add(entry["bodyKey"])
+    if entry.get("acclamationKey"):
+        body_keys.add(entry["acclamationKey"])
     if entry.get("titleKey"):
         title_keys.add(entry["titleKey"])
     if entry.get("subtitleKey"):

@@ -354,6 +354,15 @@ private fun TextBlock(step: RosaryStep, languageCode: String?, modifier: Modifie
             textAlign = TextAlign.Center,
         )
 
+        step.acclamation?.let { acclamation ->
+            // The versicle/response is a prayer, not part of the reading — it keeps the
+            // regular prayer typeface even when the body below is scripture.
+            Text(
+                acclamation.parseBoldMarkdown(),
+                style = PrayerTypography.style(languageCode = languageCode, isScripture = false),
+            )
+        }
+
         Text(
             step.body.parseBoldMarkdown(),
             style = PrayerTypography.style(languageCode = languageCode, isScripture = step.isScripture),

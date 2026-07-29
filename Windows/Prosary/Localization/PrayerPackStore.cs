@@ -429,6 +429,9 @@ public sealed record CustomDevotionStep(
     string? TitleKey = null,
     string? Subtitle = null,
     string? BodyKey = null,
+    // Resolved like BodyKey; emitted as the step's regular-typeface acclamation above the
+    // body (the Stations' versicle/response).
+    string? AcclamationKey = null,
     string? ImageKey = null,
     int? Repeat = null,
     bool? IsScripture = null,

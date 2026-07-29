@@ -13,6 +13,10 @@ data class RosaryStep(
     val subtitle: String? = null,
     /** The full prayer text to display/read. */
     val body: String,
+    /** Optional acclamation (the Stations' versicle/response) rendered above the body in the
+     * regular prayer typeface — kept out of [body] so a scripture body's typeface doesn't
+     * swallow the acclamation, which is a prayer, not part of the reading. */
+    val acclamation: String? = null,
     /** The mystery illustrated on screen for this step, if any. */
     val mystery: Mystery? = null,
     /** True only for the mystery-announcement step, whose body is an actual quoted Bible verse rather than a traditional prayer. */

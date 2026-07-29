@@ -242,6 +242,14 @@ struct PrayerStepFlowView: View {
         .foregroundStyle(Color.brandHeadline)
         .multilineTextAlignment(.center)
 
+      if let acclamation = step.acclamation {
+        // The versicle/response is a prayer, not part of the reading — it keeps the regular
+        // prayer typeface even when the body below is scripture.
+        Text(bodyAttributedString(acclamation))
+          .font(PrayerTypography.font(languageCode: languageCode, isScripture: false))
+          .lineSpacing(4)
+      }
+
       Text(bodyAttributedString(step.body))
         .font(PrayerTypography.font(languageCode: languageCode, isScripture: step.isScripture))
         .lineSpacing(4)
