@@ -156,6 +156,68 @@ final class PrayerPackLoaderTests: XCTestCase {
     XCTAssertEqual(steps[1].body, "Day one prayer.")
   }
 
+  /// An audio-bearing bundle (audio.json + Ogg Opus files — see ARCHITECTURE.md's "Audio
+  /// (groundwork)") parses its track metadata and serves a declared file's bytes on demand;
+  /// undeclared files stay unreachable, and audio-less bundles report no tracks.
+  func testAudioBearingBundleParsesTracksAndServesDeclaredBytes() throws {
+    PrayerPackStore.installedPacksDirectory = FileManager.default.temporaryDirectory
+      .appendingPathComponent("prosary-test-packs-\(UUID().uuidString)", isDirectory: true)
+    defer { try? FileManager.default.removeItem(at: PrayerPackStore.installedPacksDirectory) }
+
+    let id = "audio\(Int.random(in: 1000...9999))"
+    let manifest = """
+      {"schemaVersion": 1, "id": "\(id)", "kind": "\(id)", "displayName": "Example Devotion",
+       "languages": ["la", "en"], "hasCatalog": false, "images": []}
+      """
+    let content = #"{"prayers": {"exampleBody": "Kyrie eleison."}, "mysteries": {}}"#
+    let devotion = """
+      {"type": "steps", "steps": [
+        {"title": "Sign of the Cross", "bodyKey": "signumCrucis", "imageKey": "crucifix"},
+        {"title": "Example Prayer", "bodyKey": "exampleBody"}
+      ]}
+      """
+    let audio = """
+      {"tracks": [
+        {"id": "en", "language": "en", "file": "audio/en.opus", "name": "Full recitation",
+         "chapters": [
+           {"start": 0, "title": "Sign of the Cross", "stepIndex": 0},
+           {"start": 12.5, "title": "Example Prayer", "stepIndex": 1}
+         ]}
+      ]}
+      """
+    // A minimal Ogg Opus signature (RFC 7845): an "OggS" page whose one-segment payload is the
+    // "OpusHead" identification header at offset 28 — enough for the format's checks, no real
+    // audio needed to prove the metadata/bytes plumbing.
+    let opusBytes = Data("OggS".utf8) + Data(repeating: 0, count: 24)
+      + Data("OpusHead".utf8) + Data(repeating: 0, count: 11)
+    try PrayerPackStore.installPack(from: Self.storedZip([
+      ("manifest.json", Data(manifest.utf8)),
+      ("content/la.json", Data(content.utf8)),
+      ("content/en.json", Data(content.utf8)),
+      ("devotion.json", Data(devotion.utf8)),
+      ("audio.json", Data(audio.utf8)),
+      ("audio/en.opus", opusBytes),
+    ]))
+    defer { PrayerPackStore.removeInstalledPack(id: id) }
+
+    let tracks = PrayerPackStore.audioTracks(for: id)
+    let track = try XCTUnwrap(tracks.first)
+    XCTAssertEqual(tracks.count, 1)
+    XCTAssertEqual(track.id, "en")
+    XCTAssertEqual(track.language, "en")
+    XCTAssertEqual(track.file, "audio/en.opus")
+    XCTAssertNil(track.variantId)
+    XCTAssertEqual(track.name, "Full recitation")
+    XCTAssertEqual(track.chapters.map(\.start), [0, 12.5])
+    XCTAssertEqual(track.chapters.map(\.stepIndex), [0, 1])
+    XCTAssertEqual(track.chapters[0].title, "Sign of the Cross")
+
+    XCTAssertEqual(PrayerPackStore.audioData(bundleId: id, file: "audio/en.opus"), opusBytes)
+    XCTAssertNil(PrayerPackStore.audioData(bundleId: id, file: "manifest.json"))
+    XCTAssertTrue(PrayerPackStore.audioTracks(for: "angelus").isEmpty)
+    XCTAssertNil(PrayerPackStore.audioData(bundleId: "angelus", file: "audio/en.opus"))
+  }
+
   /// Minimal stored (uncompressed) zip writer — enough for MinimalZipReader to consume.
   private static func storedZip(_ files: [(name: String, data: Data)]) -> Data {
     func le16(_ v: Int) -> Data { Data([UInt8(v & 0xFF), UInt8((v >> 8) & 0xFF)]) }

@@ -207,6 +207,78 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
         Directory.Delete(PrayerPackStore.InstalledPacksDirectory, recursive: true);
     }
 
+    /// <summary>An audio-bearing bundle (audio.json + Ogg Opus files — see ARCHITECTURE.md's
+    /// "Audio (groundwork)") parses its track metadata and serves a declared file's bytes on
+    /// demand; undeclared files stay unreachable, and audio-less bundles report no tracks.</summary>
+    [Fact]
+    public void AudioBearingBundleParsesTracksAndServesDeclaredBytes()
+    {
+        PrayerPackStore.InstalledPacksDirectory =
+            Path.Combine(Path.GetTempPath(), $"prosary_test_packs_{Guid.NewGuid():N}");
+        var id = $"audio{Random.Shared.Next(1000, 9999)}";
+
+        // A minimal Ogg Opus signature (RFC 7845): an "OggS" page whose one-segment payload is
+        // the "OpusHead" identification header at offset 28 — enough for the format's checks,
+        // no real audio needed to prove the metadata/bytes plumbing.
+        var opusBytes = "OggS"u8.ToArray()
+            .Concat(new byte[24]).Concat("OpusHead"u8.ToArray()).Concat(new byte[11]).ToArray();
+
+        using var buffer = new MemoryStream();
+        using (var zip = new System.IO.Compression.ZipArchive(buffer, System.IO.Compression.ZipArchiveMode.Create, leaveOpen: true))
+        {
+            void Put(string name, string text)
+            {
+                using var writer = new StreamWriter(zip.CreateEntry(name).Open());
+                writer.Write(text);
+            }
+
+            Put("manifest.json", $$"""
+                {"schemaVersion": 1, "id": "{{id}}", "kind": "{{id}}", "displayName": "Example Devotion",
+                 "languages": ["la", "en"], "hasCatalog": false, "images": []}
+                """);
+            const string content = """{"prayers": {"exampleBody": "Kyrie eleison."}, "mysteries": {}}""";
+            Put("content/la.json", content);
+            Put("content/en.json", content);
+            Put("devotion.json", """
+                {"type": "steps", "steps": [
+                  {"title": "Sign of the Cross", "bodyKey": "signumCrucis", "imageKey": "crucifix"},
+                  {"title": "Example Prayer", "bodyKey": "exampleBody"}
+                ]}
+                """);
+            Put("audio.json", """
+                {"tracks": [
+                  {"id": "en", "language": "en", "file": "audio/en.opus", "name": "Full recitation",
+                   "chapters": [
+                     {"start": 0, "title": "Sign of the Cross", "stepIndex": 0},
+                     {"start": 12.5, "title": "Example Prayer", "stepIndex": 1}
+                   ]}
+                ]}
+                """);
+            using var opusStream = zip.CreateEntry("audio/en.opus").Open();
+            opusStream.Write(opusBytes);
+        }
+
+        PrayerPackStore.InstallPack(buffer.ToArray());
+
+        var track = Assert.Single(PrayerPackStore.AudioTracks(id));
+        Assert.Equal("en", track.Id);
+        Assert.Equal("en", track.Language);
+        Assert.Equal("audio/en.opus", track.File);
+        Assert.Null(track.VariantId);
+        Assert.Equal("Full recitation", track.Name);
+        Assert.Equal(new double[] { 0, 12.5 }, track.Chapters!.Select(c => c.Start));
+        Assert.Equal(new int?[] { 0, 1 }, track.Chapters!.Select(c => c.StepIndex));
+        Assert.Equal("Sign of the Cross", track.Chapters![0].Title);
+
+        Assert.Equal(opusBytes, PrayerPackStore.AudioData(id, "audio/en.opus"));
+        Assert.Null(PrayerPackStore.AudioData(id, "manifest.json"));
+        Assert.Empty(PrayerPackStore.AudioTracks("angelus"));
+        Assert.Null(PrayerPackStore.AudioData("angelus", "audio/en.opus"));
+
+        PrayerPackStore.RemoveInstalledPack(id);
+        Directory.Delete(PrayerPackStore.InstalledPacksDirectory, recursive: true);
+    }
+
     [Fact]
     public void StationsPackProvidesItsImageData()
     {

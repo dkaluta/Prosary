@@ -392,6 +392,40 @@ of its own — its entire step sequence and per-step text are data-driven from i
   liturgical calendar (proper of the day, psalter weeks), not by a day counter — that needs a
   date→content-key resolution layer, for which the Home feast-day data (`Shared/content/data`)
   is the seed, and it should not be forced into the `days` shape.
+- **Audio (groundwork)** — a bundle may ship narrated recordings of its devotion. An optional
+  **`audio.json`** (declared separately from the structure, the same way catalog.json/options.json
+  are) lists tracks: `{"tracks": [{id, language, file, variantId?, name?, nameByLanguage?,
+  chapters: [{start, title | titleKey, stepIndex?}]}]}` — `id` unique within the bundle (what a
+  future playback position would persist against); `language` one of the manifest's languages (a
+  recording is in one language); `file` a bundle-relative path that must live under `audio/` and
+  end in `.opus`; `variantId` names the steps-type variant the recording follows (a traditional
+  vs. scriptural Stations recording differ); `name`/`nameByLanguage` follow the variant-naming
+  convention (absent = platforms label by language). **Chapters** are the seek points: `start` in
+  seconds (first chapter at 0, strictly increasing), `title` XOR `titleKey` per the step-entry
+  convention (`titleKey` resolves through the track language's ordinary content chain), and an
+  optional advisory `stepIndex` into the built default-options step sequence — advisory because
+  the built sequence is option/calendar-dependent, so the future playback UI treats it as a hint
+  for step-syncing, never an invariant. Chapters live in `audio.json`, not in Ogg chapter
+  comments, because none of the three platforms' media stacks surface embedded Ogg chapters —
+  JSON keeps them parseable by the same loaders that already read the bundle.
+  **The format is Ogg Opus** (RFC 7845, `.opus`): the best speech codec at low bitrates,
+  royalty-free, and seekable; recordings should be mono 48 kHz voice at ~24–32 kbps VBR
+  (`opusenc --bitrate 32 --downmix-mono in.wav out.opus`). Audio sources are devotion-specific
+  (unlike the shared `Shared/Images/` pool), so they live in the devotion's own source directory
+  (`Shared/content/<devotion>/audio/*.opus`); both packers stage `audio.json` plus exactly the
+  declared files, and the validator checks the declarations (unique ids, known
+  language/variant, chapter monotonicity, titleKey resolution) and each file's Ogg Opus
+  signature. Each platform's `PrayerPackLoader` parses `audio.json` into
+  `DevotionAudioTrack`/`DevotionAudioChapter` and exposes `audioTracks(bundleId)` +
+  `audioData(bundleId, file)` — track *metadata* loads eagerly like everything else, but audio
+  *bytes* are re-read from the pack on demand (a full recording dwarfs every other bundle asset;
+  never hold it in the load-time cache the way images are held). Playback itself is
+  **deliberately not yet shipped** — the player UI/service, extract-to-cache for OS players,
+  and chapter↔step syncing land together with the first real recordings (same rationale as the
+  multi-day groundwork above). One platform note for that milestone: Android (ExoPlayer/
+  MediaPlayer) and Windows (Media Foundation) decode Ogg Opus natively; iOS's AVFoundation does
+  not, so the iOS player will decode via libopus or repackage into CAF (CoreAudio's Opus
+  container) at load — the interchange format stays Ogg Opus regardless.
 - **User-installed bundles**: anyone can author a `.prosaryprayer` and import it from the
   Favorites screen (file picker on all three platforms). `installPack` validates the file
   (readable zip; parseable manifest + devotion.json; content for every declared language; not a

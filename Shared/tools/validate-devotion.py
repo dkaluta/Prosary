@@ -15,7 +15,12 @@ Checks, beyond plain JSON validity (which the packer already enforces):
   closing entry, and (when hasClosingCross) the final closing entry is a non-repeated Sign of
   the Cross — BeadLayout assumes the closing cross is the literal last step;
 - announceMystery entries' mystery texts exist per language (bundle "mysteries" map, or the
-  Rosary's shared mystery pool for reused imageKeys).
+  Rosary's shared mystery pool for reused imageKeys);
+- audio.json (when present) declares valid narrated recordings: unique track ids, a manifest
+  language and (when named) a declared variant per track, an existing audio/<name>.opus file
+  with the Ogg Opus signature (RFC 7845), and well-formed chapters (first start 0, strictly
+  increasing, title XOR titleKey with titleKey resolving in the track's language) — see
+  ARCHITECTURE.md's "Audio (groundwork)".
 
 Usage: validate-devotion.py <bundle-source-dir>
 Exit code 0 = valid; non-zero with messages on stderr otherwise.
@@ -123,6 +128,93 @@ def validate_entry(entry: dict, where: str, allow_kind: bool) -> None:
             err(f"{where}: isScriptureByLanguage must be a non-empty map of language -> boolean")
 
 
+def validate_audio(src: Path, languages: list, variant_ids: set) -> None:
+    """audio.json (when present): narrated Ogg Opus recordings + chapter seek points — see
+    ARCHITECTURE.md's "Audio (groundwork)". Runs for override-only bundles too (audio needs no
+    devotion.json), with an empty variant-id set there so any variantId reference errors."""
+    audio_path = src / "audio.json"
+    if not audio_path.exists():
+        return
+    doc = load_json(audio_path)
+    extra = set(doc) - {"tracks"}
+    if extra:
+        err(f"audio.json: unknown fields {sorted(extra)}")
+    tracks = doc.get("tracks")
+    if not isinstance(tracks, list) or not tracks:
+        err("audio.json: 'tracks' must be a non-empty array")
+        return
+
+    allowlist_path = src / "validation-allowlist.json"
+    allowlist = load_json(allowlist_path).get("missingKeys", {}) if allowlist_path.exists() else {}
+
+    seen_ids: set = set()
+    for i, track in enumerate(tracks):
+        where = f"audio.tracks[{i}]"
+        track_id = track.get("id")
+        if not track_id or not isinstance(track_id, str):
+            err(f"{where}: missing id")
+        elif track_id in seen_ids:
+            err(f"{where}: duplicate id {track_id!r}")
+        else:
+            seen_ids.add(track_id)
+        lang = track.get("language")
+        if lang not in languages:
+            err(f"{where}: language {lang!r} is not one of the manifest's languages")
+        file = track.get("file")
+        if not isinstance(file, str) or not file.startswith("audio/") or not file.endswith(".opus"):
+            err(f"{where}: file must be a bundle-relative audio/<name>.opus path")
+        elif not (src / file).exists():
+            err(f"{where}: {file} is missing")
+        else:
+            with open(src / file, "rb") as f:
+                header = f.read(36)
+            # An Ogg page starts "OggS"; the first page's payload of an Opus stream is the
+            # "OpusHead" identification header at a fixed offset 28 (RFC 7845 §5.1).
+            if header[:4] != b"OggS" or header[28:36] != b"OpusHead":
+                err(f"{where}: {file} is not an Ogg Opus file (RFC 7845)")
+        variant_id = track.get("variantId")
+        if variant_id is not None and variant_id not in variant_ids:
+            err(f"{where}: variantId {variant_id!r} is not a declared variant")
+        extra = set(track) - {"id", "language", "file", "variantId", "name", "nameByLanguage", "chapters"}
+        if extra:
+            err(f"{where}: unknown fields {sorted(extra)}")
+
+        chapters = track.get("chapters")
+        if not isinstance(chapters, list) or not chapters:
+            err(f"{where}: 'chapters' must be a non-empty array")
+            continue
+        lang_file = src / "content" / f"{lang}.json" if isinstance(lang, str) else None
+        prayers = load_json(lang_file).get("prayers", {}) if lang_file and lang_file.exists() else {}
+        allowed_missing = set(allowlist.get(lang, [])) if isinstance(lang, str) else set()
+        previous_start = None
+        for j, chapter in enumerate(chapters):
+            cwhere = f"{where}.chapters[{j}]"
+            start = chapter.get("start")
+            if not isinstance(start, (int, float)) or isinstance(start, bool) or start < 0:
+                err(f"{cwhere}: start must be a number >= 0")
+            else:
+                if j == 0 and start != 0:
+                    err(f"{cwhere}: the first chapter must start at 0")
+                if previous_start is not None and start <= previous_start:
+                    err(f"{cwhere}: starts must be strictly increasing")
+                previous_start = start
+            if not chapter.get("title") and not chapter.get("titleKey"):
+                err(f"{cwhere}: needs a literal title or a titleKey")
+            if chapter.get("title") and chapter.get("titleKey"):
+                err(f"{cwhere}: title and titleKey are mutually exclusive")
+            title_key = chapter.get("titleKey")
+            if title_key and title_key not in prayers and title_key not in HARDCODED_PRAYER_KEYS \
+                    and title_key not in allowed_missing:
+                err(f"{cwhere}: unresolved titleKey {title_key!r} in content/{lang}.json")
+            if "stepIndex" in chapter and (not isinstance(chapter["stepIndex"], int)
+                                           or isinstance(chapter["stepIndex"], bool)
+                                           or chapter["stepIndex"] < 0):
+                err(f"{cwhere}: stepIndex must be an integer >= 0")
+            extra = set(chapter) - {"start", "title", "titleKey", "stepIndex"}
+            if extra:
+                err(f"{cwhere}: unknown fields {sorted(extra)}")
+
+
 def collect_entry_refs(entry: dict, body_keys: set, title_keys: set, image_keys: set) -> None:
     if entry.get("kind"):
         return
@@ -152,7 +244,8 @@ def main() -> int:
             err(f"manifest.images: {key} has no Shared/Images/{key}.jpg")
 
     if not devotion_path.exists():
-        # Override-only bundle (rosary/angelus pre-migration shape) — nothing more to check.
+        # Override-only bundle (rosary/angelus pre-migration shape) — audio may still ship.
+        validate_audio(src, languages, set())
         return report()
 
     devotion = load_json(devotion_path)
@@ -214,6 +307,7 @@ def main() -> int:
     title_keys: set = set()
     image_keys: set = set()
     mystery_keys: set = set()
+    declared_variant_ids: set = set()
 
     if dtype == "steps":
         def check_step_list(steps, where):
@@ -240,6 +334,7 @@ def main() -> int:
                     err(f"{where}: duplicate id {vid!r}")
                 else:
                     seen_ids.add(vid)
+                    declared_variant_ids.add(vid)
                 if not variant.get("name"):
                     err(f"{where}: missing name")
                 check_step_list(variant.get("steps") or [], f"{where}.steps")
@@ -416,6 +511,8 @@ def main() -> int:
     for key in sorted(image_keys):
         if not (shared_images / f"{key}.jpg").exists():
             err(f"imageKey {key!r} has no Shared/Images/{key}.jpg")
+
+    validate_audio(src, languages, declared_variant_ids)
 
     return report()
 

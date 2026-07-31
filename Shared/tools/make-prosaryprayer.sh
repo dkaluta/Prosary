@@ -88,6 +88,16 @@ if [ -f "$SRC_DIR/options.json" ]; then
   validate_json "$SRC_DIR/options.json"
   cp "$SRC_DIR/options.json" "$STAGE_DIR/options.json"
 fi
+if [ -f "$SRC_DIR/audio.json" ]; then
+  validate_json "$SRC_DIR/audio.json"
+  cp "$SRC_DIR/audio.json" "$STAGE_DIR/audio.json"
+  mkdir -p "$STAGE_DIR/audio"
+  python3 -c "import json; [print(t['file']) for t in json.load(open('$SRC_DIR/audio.json', encoding='utf-8'))['tracks']]" |
+  while IFS= read -r AUDIO_FILE; do
+    [ -f "$SRC_DIR/$AUDIO_FILE" ] || fail "audio.json declares '$AUDIO_FILE' but $SRC_DIR/$AUDIO_FILE is missing"
+    cp "$SRC_DIR/$AUDIO_FILE" "$STAGE_DIR/$AUDIO_FILE"
+  done
+fi
 
 mkdir -p "$STAGE_DIR/images"
 python3 -c "import json; [print(i) for i in json.load(open('$MANIFEST', encoding='utf-8'))['images']]" |

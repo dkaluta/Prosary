@@ -45,6 +45,12 @@ public static class PrayerPackStore
     private static readonly Dictionary<string, Dictionary<string, Dictionary<string, string>>> RawContentByBundle = new();
     private static readonly Dictionary<string, CustomDevotionDefinition> DefinitionByBundle = new();
     private static readonly Dictionary<string, List<CustomDevotionOption>> OptionsByBundle = new();
+    private static readonly Dictionary<string, List<DevotionAudioTrack>> AudioTracksByBundle = new();
+
+    /// <summary>Each loaded bundle's re-openable pack source — audio bytes are re-read from here
+    /// on demand rather than held in the load-time cache the way images are (a recording dwarfs
+    /// every other bundle asset). See <see cref="AudioData"/>.</summary>
+    private static readonly Dictionary<string, Func<Stream?>> PackSourceByBundle = new();
 
     /// <summary>Bundle ids with a devotion.json, in pack-load order.</summary>
     private static readonly List<string> OrderedCustomIds = new();
@@ -140,6 +146,7 @@ public static class PrayerPackStore
         }
 
         InstalledIds.Add(manifest.Id);
+        PackSourceByBundle[manifest.Id] = () => File.OpenRead(destination);
         return manifest.Id;
     }
 
@@ -160,6 +167,8 @@ public static class PrayerPackStore
         DefinitionByBundle.Remove(id);
         InfoByBundle.Remove(id);
         OptionsByBundle.Remove(id);
+        AudioTracksByBundle.Remove(id);
+        PackSourceByBundle.Remove(id);
     }
 
     /// <summary>The options a bundle's <c>options.json</c> declares, in authored order (the
@@ -174,6 +183,33 @@ public static class PrayerPackStore
 
     public static CustomDevotionInfo? Info(string bundleId) =>
         InfoByBundle.TryGetValue(bundleId, out var info) ? info : null;
+
+    /// <summary>The narrated recordings a bundle's <c>audio.json</c> declares, in authored order.
+    /// Empty for bundles without audio — every shipped bundle today; groundwork for the audio
+    /// expansion (see Shared/ARCHITECTURE.md's "Audio (groundwork)").</summary>
+    public static IReadOnlyList<DevotionAudioTrack> AudioTracks(string bundleId) =>
+        AudioTracksByBundle.TryGetValue(bundleId, out var tracks) ? tracks : [];
+
+    /// <summary>The raw Ogg Opus bytes of one of a bundle's *declared* audio files
+    /// (<see cref="DevotionAudioTrack.File"/>), re-read from the pack on demand. Null for a file
+    /// no track declares. The playback milestone will extract to a cache file for the OS player
+    /// (the <see cref="ImageFileUri"/> pattern) rather than keep whole recordings in memory;
+    /// this byte-level accessor is the seam it builds on.</summary>
+    public static byte[]? AudioData(string bundleId, string file)
+    {
+        if (!AudioTracksByBundle.TryGetValue(bundleId, out var tracks) || tracks.All(t => t.File != file))
+        {
+            return null;
+        }
+        if (!PackSourceByBundle.TryGetValue(bundleId, out var openPack)) return null;
+
+        using var stream = openPack();
+        if (stream is null) return null;
+        using var seekable = stream.CanSeek ? stream : CopyToMemory(stream);
+        using var archive = new ZipArchive(seekable, ZipArchiveMode.Read);
+        var entry = archive.GetEntry(file);
+        return entry is null ? null : ReadAllBytes(entry);
+    }
 
     /// <summary>Resolves a <c>devotion.json</c> entry's <c>bodyKey</c>/<c>titleKey</c> to display
     /// text: (1) the bundle's own raw content for this key — the requested language, else the
@@ -249,7 +285,12 @@ public static class PrayerPackStore
                 if (stream is null) continue;
                 try
                 {
-                    Load(stream);
+                    // openPack is documented re-callable with a fresh stream, which is what lets
+                    // audio bytes be re-read on demand instead of cached at load — see AudioData.
+                    if (Load(stream) is { } id)
+                    {
+                        PackSourceByBundle[id] = () => openPack(packName);
+                    }
                 }
                 catch
                 {
@@ -268,8 +309,11 @@ public static class PrayerPackStore
                     try
                     {
                         using var stream = File.OpenRead(path);
-                        Load(stream);
-                        InstalledIds.Add(id);
+                        if (Load(stream) is not null)
+                        {
+                            InstalledIds.Add(id);
+                            PackSourceByBundle[id] = () => File.OpenRead(path);
+                        }
                     }
                     catch
                     {
@@ -282,7 +326,9 @@ public static class PrayerPackStore
         }
     }
 
-    private static void Load(Stream stream)
+    /// <summary>Returns the loaded bundle's id (null for a zip with no manifest) so callers can
+    /// register a re-openable pack source for it — see <see cref="AudioData"/>.</summary>
+    private static string? Load(Stream stream)
     {
         using var seekable = stream.CanSeek ? stream : CopyToMemory(stream);
         using var archive = new ZipArchive(seekable, ZipArchiveMode.Read);
@@ -294,7 +340,7 @@ public static class PrayerPackStore
             .Where(e => !e.FullName.EndsWith('/'))
             .ToDictionary(e => e.FullName, e => e);
 
-        if (!entries.TryGetValue("manifest.json", out var manifestEntry)) return;
+        if (!entries.TryGetValue("manifest.json", out var manifestEntry)) return null;
         var manifest = JsonSerializer.Deserialize<PackManifest>(ReadAllBytes(manifestEntry), JsonOptions)
             ?? throw new InvalidDataException("manifest.json did not deserialize");
 
@@ -363,6 +409,13 @@ public static class PrayerPackStore
             OptionsByBundle[manifest.Id] = packOptions.Options;
         }
 
+        if (entries.TryGetValue("audio.json", out var audioEntry))
+        {
+            var packAudio = JsonSerializer.Deserialize<PackAudio>(ReadAllBytes(audioEntry), JsonOptions)
+                ?? throw new InvalidDataException("audio.json did not deserialize");
+            AudioTracksByBundle[manifest.Id] = packAudio.Tracks;
+        }
+
         foreach (var entry in entries.Values)
         {
             if (entry.FullName.StartsWith("images/", StringComparison.Ordinal))
@@ -371,6 +424,8 @@ public static class PrayerPackStore
                 ImageDataByKey[imageKey] = ReadAllBytes(entry);
             }
         }
+
+        return manifest.Id;
     }
 
     /// <summary>Bundle content JSON keys are the camelCase form used across every platform's
@@ -415,6 +470,49 @@ public static class PrayerPackStore
     private sealed record PackContent(Dictionary<string, string>? Prayers, Dictionary<string, MysteryText>? Mysteries);
 
     private sealed record PackOptions(List<CustomDevotionOption> Options);
+
+    private sealed record PackAudio(List<DevotionAudioTrack> Tracks);
+}
+
+/// <summary>One narrated recording a bundle declares in its <c>audio.json</c> (an optional
+/// bundle file, staged by both packers like options.json — see Shared/ARCHITECTURE.md's "Audio
+/// (groundwork)"). Groundwork only: the metadata parses and the bytes are servable via
+/// <see cref="PrayerPackStore.AudioData"/>, but no playback UI/service ships yet — that lands
+/// with the first real recordings. Files are Ogg Opus (RFC 7845, <c>.opus</c>) under the
+/// bundle's <c>audio/</c> directory; structure is enforced at authoring time by
+/// <c>Shared/tools/validate-devotion.py</c>.</summary>
+public sealed record DevotionAudioTrack(
+    // Unique within the bundle — what a future playback position would persist against.
+    string Id,
+    // The single language this recording is in (one of the manifest's languages).
+    string Language,
+    // Bundle-relative path, always audio/<name>.opus.
+    string File,
+    // The steps-type variant this recording follows (a traditional vs. scriptural Stations
+    // recording differ). Null for single-form devotions.
+    string? VariantId = null,
+    // English UI label; NameByLanguage overrides it per UI localization. Null = platforms label
+    // the track by its language.
+    string? Name = null,
+    Dictionary<string, string>? NameByLanguage = null,
+    List<DevotionAudioTrack.Chapter>? Chapters = null)
+{
+    /// <summary>One seek point. <see cref="Start"/> is seconds from the track's beginning (the
+    /// first chapter starts at 0, starts strictly increase); <see cref="Title"/> XOR
+    /// <see cref="TitleKey"/> per the step-entry convention (<see cref="TitleKey"/> resolves
+    /// through the track language's ordinary content chain); <see cref="StepIndex"/> is an
+    /// *advisory* link into the built default-options step sequence — the built sequence is
+    /// option/calendar-dependent, so the future playback UI treats it as a step-syncing hint,
+    /// never an invariant.</summary>
+    public sealed record Chapter(
+        double Start,
+        string? Title = null,
+        string? TitleKey = null,
+        int? StepIndex = null);
+
+    public string? LocalizedName =>
+        NameByLanguage?.GetValueOrDefault(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
+        ?? Name;
 }
 
 /// <summary>One entry in a generic devotion's <c>devotion.json</c> — a step of the flat "steps"

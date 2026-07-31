@@ -95,6 +95,21 @@ try {
         Copy-Item $OptionsPath (Join-Path $StageDir "options.json")
     }
 
+    $AudioPath = Join-Path $SourceDir "audio.json"
+    if (Test-Path $AudioPath) {
+        Test-JsonFile $AudioPath
+        Copy-Item $AudioPath (Join-Path $StageDir "audio.json")
+        $Audio = Get-Content -Raw -Encoding UTF8 $AudioPath | ConvertFrom-Json
+        New-Item -ItemType Directory -Path (Join-Path $StageDir "audio") | Out-Null
+        foreach ($Track in $Audio.tracks) {
+            $TrackPath = Join-Path $SourceDir $Track.file
+            if (-not (Test-Path $TrackPath)) {
+                Fail "audio.json declares '$($Track.file)' but $TrackPath is missing"
+            }
+            Copy-Item $TrackPath (Join-Path $StageDir $Track.file)
+        }
+    }
+
     # Deep-validate the devotion definition when python3 is available (see validate-devotion.py);
     # the same Shared sources are always validated by make-prosaryprayer.sh on macOS/Linux, so a
     # missing python3 here only skips a redundant check.

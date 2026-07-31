@@ -419,6 +419,59 @@
         }
       }
     },
+    "DevotionAudioTrack": {
+      "description": "One narrated recording a bundle declares in its audio.json (a separate optional bundle file, staged by both packers like options.json) — groundwork only: loaders parse the metadata and serve the bytes on demand, but no playback UI/service ships yet (see ARCHITECTURE.md's \"Audio (groundwork)\"). Files are Ogg Opus (RFC 7845, .opus) under the bundle's audio/ directory.",
+      "fields": {
+        "id": {
+          "type": "string",
+          "description": "Unique within the bundle — what a future playback position would persist against."
+        },
+        "language": {
+          "type": "string",
+          "description": "One of the manifest's languages; a recording is in one language."
+        },
+        "file": {
+          "type": "string",
+          "description": "Bundle-relative path; must live under audio/ and end in .opus (validator-enforced, plus the Ogg Opus signature of the file itself)."
+        },
+        "variantId": {
+          "type": "string?",
+          "description": "The steps-type variant this recording follows (traditional vs. scriptural Stations recordings differ). Must name a declared variant; null for single-form devotions."
+        },
+        "name": {
+          "type": "string?",
+          "description": "English UI label (the app-wide convention); nameByLanguage overrides it per UI localization. Absent = platforms label the track by its language."
+        },
+        "nameByLanguage": {
+          "type": "map<string, string>?"
+        },
+        "chapters": {
+          "type": "DevotionAudioChapter[]",
+          "description": "Non-empty; first chapter starts at 0, starts strictly increasing. Kept as JSON metadata rather than embedded Ogg chapter comments because none of the three platforms' media stacks surface those."
+        }
+      }
+    },
+    "DevotionAudioChapter": {
+      "description": "One seek point of a DevotionAudioTrack.",
+      "fields": {
+        "start": {
+          "type": "double",
+          "description": "Seconds from the start of the track."
+        },
+        "title": {
+          "type": "string?",
+          "description": "Literal English display string. Mutually exclusive with titleKey (the step-entry convention)."
+        },
+        "titleKey": {
+          "type": "string?",
+          "description": "Content key resolved through the track language's ordinary content chain."
+        },
+        "stepIndex": {
+          "type": "int?",
+          "description": "Advisory index into the built default-options step sequence — a hint for the future playback UI's step-syncing, never an invariant (the built sequence is option/calendar-dependent)."
+        }
+      }
+    },
     "CustomDevotionOption": {
       "description": "One user-configurable setting a bundle declares in its options.json (a separate bundle file, staged by both packers like catalog.json) — a toggle or a multi-case choice. Entry-level \"if\" expressions gate steps on the resulting values; the generic-devotion editor renders one schema-driven row per option. First real use: the Franciscan Crown's optional closing devotions (seventyTwoHailMarys, popeIntentions — both default true so the traditional sequence is unchanged).",
       "fields": {

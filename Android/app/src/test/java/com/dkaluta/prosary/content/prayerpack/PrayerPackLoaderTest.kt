@@ -8,6 +8,7 @@ import com.dkaluta.prosary.engine.PrayerEngine
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import java.io.File
+import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
@@ -182,6 +183,72 @@ class PrayerPackLoaderTest {
         )
         assertEquals(listOf("Sign of the Cross", "Day 1", "Glory Be"), steps.map { it.title })
         assertEquals("Day one prayer.", steps[1].body)
+        PrayerPackStore.removeInstalledPack(id)
+    }
+
+    /** An audio-bearing bundle (audio.json + Ogg Opus files — see ARCHITECTURE.md's "Audio
+     * (groundwork)") parses its track metadata and serves a declared file's bytes on demand;
+     * undeclared files stay unreachable, and audio-less bundles report no tracks. */
+    @Test
+    fun audioBearingBundleParsesTracksAndServesDeclaredBytes() {
+        PrayerPackStore.installedPacksDirectory =
+            java.nio.file.Files.createTempDirectory("prosary-test-packs").toFile()
+        val id = "audio${(1000..9999).random()}"
+        // A minimal Ogg Opus signature (RFC 7845): an "OggS" page whose one-segment payload is
+        // the "OpusHead" identification header at offset 28 — enough for the format's checks,
+        // no real audio needed to prove the metadata/bytes plumbing.
+        val opusBytes = "OggS".toByteArray() + ByteArray(24) + "OpusHead".toByteArray() + ByteArray(11)
+        val out = java.io.ByteArrayOutputStream()
+        java.util.zip.ZipOutputStream(out).use { zip ->
+            fun put(name: String, bytes: ByteArray) {
+                zip.putNextEntry(java.util.zip.ZipEntry(name))
+                zip.write(bytes)
+                zip.closeEntry()
+            }
+            put(
+                "manifest.json",
+                """{"schemaVersion": 1, "id": "$id", "kind": "$id", "displayName": "Example Devotion",
+                    "languages": ["la", "en"], "hasCatalog": false, "images": []}""".toByteArray(),
+            )
+            val content = """{"prayers": {"exampleBody": "Kyrie eleison."}, "mysteries": {}}"""
+            put("content/la.json", content.toByteArray())
+            put("content/en.json", content.toByteArray())
+            put(
+                "devotion.json",
+                """{"type": "steps", "steps": [
+                    {"title": "Sign of the Cross", "bodyKey": "signumCrucis", "imageKey": "crucifix"},
+                    {"title": "Example Prayer", "bodyKey": "exampleBody"}
+                ]}""".toByteArray(),
+            )
+            put(
+                "audio.json",
+                """{"tracks": [
+                    {"id": "en", "language": "en", "file": "audio/en.opus", "name": "Full recitation",
+                     "chapters": [
+                       {"start": 0, "title": "Sign of the Cross", "stepIndex": 0},
+                       {"start": 12.5, "title": "Example Prayer", "stepIndex": 1}
+                     ]}
+                ]}""".toByteArray(),
+            )
+            put("audio/en.opus", opusBytes)
+        }
+        PrayerPackStore.installPack(out.toByteArray())
+
+        val tracks = PrayerPackStore.audioTracks(id)
+        assertEquals(listOf("en"), tracks.map { it.id })
+        val track = tracks.single()
+        assertEquals("en", track.language)
+        assertEquals("audio/en.opus", track.file)
+        assertNull(track.variantId)
+        assertEquals("Full recitation", track.name)
+        assertEquals(listOf(0.0, 12.5), track.chapters.map { it.start })
+        assertEquals(listOf(0, 1), track.chapters.map { it.stepIndex })
+        assertEquals("Sign of the Cross", track.chapters[0].title)
+
+        assertArrayEquals(opusBytes, PrayerPackStore.audioData(id, "audio/en.opus"))
+        assertNull(PrayerPackStore.audioData(id, "manifest.json"))
+        assertTrue(PrayerPackStore.audioTracks("angelus").isEmpty())
+        assertNull(PrayerPackStore.audioData("angelus", "audio/en.opus"))
         PrayerPackStore.removeInstalledPack(id)
     }
 

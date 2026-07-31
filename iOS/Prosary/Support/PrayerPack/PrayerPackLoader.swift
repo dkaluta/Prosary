@@ -152,6 +152,51 @@ private struct PackOptions: Decodable {
   let options: [CustomDevotionOption]
 }
 
+/// One narrated recording a bundle declares in its `audio.json` (an optional bundle file, staged
+/// by both packers like options.json — see Shared/ARCHITECTURE.md's "Audio (groundwork)").
+/// Groundwork only: the metadata parses and the bytes are servable via
+/// `PrayerPackStore.audioData`, but no playback UI/service ships yet — that lands with the first
+/// real recordings. Files are Ogg Opus (RFC 7845, `.opus`) under the bundle's `audio/` directory;
+/// structure is enforced at authoring time by `Shared/tools/validate-devotion.py`.
+struct DevotionAudioTrack: Decodable {
+  /// One seek point. `start` is seconds from the track's beginning (the first chapter starts at
+  /// 0, starts strictly increase); `title` XOR `titleKey` per the step-entry convention
+  /// (`titleKey` resolves through the track language's ordinary content chain); `stepIndex` is
+  /// an *advisory* link into the built default-options step sequence — the built sequence is
+  /// option/calendar-dependent, so the future playback UI treats it as a step-syncing hint,
+  /// never an invariant.
+  struct Chapter: Decodable {
+    let start: Double
+    let title: String?
+    let titleKey: String?
+    let stepIndex: Int?
+  }
+
+  /// Unique within the bundle — what a future playback position would persist against.
+  let id: String
+  /// The single language this recording is in (one of the manifest's languages).
+  let language: String
+  /// Bundle-relative path, always `audio/<name>.opus`.
+  let file: String
+  /// The steps-type variant this recording follows (a traditional vs. scriptural Stations
+  /// recording differ). Nil for single-form devotions.
+  let variantId: String?
+  /// English UI label; `nameByLanguage` overrides it per UI localization. Nil = platforms label
+  /// the track by its language.
+  let name: String?
+  let nameByLanguage: [String: String]?
+  let chapters: [Chapter]
+
+  var localizedName: String? {
+    guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else { return name }
+    return nameByLanguage?[String(uiLanguage)] ?? name
+  }
+}
+
+private struct PackAudio: Decodable {
+  let tracks: [DevotionAudioTrack]
+}
+
 /// Parsed `devotion.json` — the complete structural description of a generic devotion.
 /// Field validity per type is enforced at authoring time by `Shared/tools/validate-devotion.py`;
 /// the decoder is deliberately lenient (all optionals) so the engine can switch on `type` alone.
@@ -335,6 +380,11 @@ enum PrayerPackStore {
   private static var rawContentByBundle: [String: [String: [String: String]]] = [:]
   private static var definitionByBundle: [String: CustomDevotionDefinition] = [:]
   private static var optionsByBundle: [String: [CustomDevotionOption]] = [:]
+  private static var audioTracksByBundle: [String: [DevotionAudioTrack]] = [:]
+  /// Each loaded bundle's pack file — audio bytes are re-read from here on demand rather than
+  /// held in the load-time cache the way images are (a recording dwarfs every other bundle
+  /// asset). See `audioData`.
+  private static var packUrlByBundle: [String: URL] = [:]
   /// Bundle ids with a devotion.json, in pack-load order.
   private static var orderedCustomIds: [String] = []
   private static var infoByBundle: [String: CustomDevotionInfo] = [:]
@@ -382,6 +432,27 @@ enum PrayerPackStore {
   static func customDevotionIds() -> [String] {
     ensureLoaded()
     return orderedCustomIds
+  }
+
+  /// The narrated recordings a bundle's `audio.json` declares, in authored order. Empty for
+  /// bundles without audio — every shipped bundle today; this is groundwork for the audio
+  /// expansion (see Shared/ARCHITECTURE.md's "Audio (groundwork)").
+  static func audioTracks(for bundleId: String) -> [DevotionAudioTrack] {
+    ensureLoaded()
+    return audioTracksByBundle[bundleId] ?? []
+  }
+
+  /// The raw Ogg Opus bytes of one of a bundle's *declared* audio files
+  /// (`DevotionAudioTrack.file`), re-read from the pack on demand. Nil for a file no track
+  /// declares. The playback milestone will extract to a cache file for the OS player rather
+  /// than keep whole recordings in memory; this byte-level accessor is the seam it builds on.
+  static func audioData(bundleId: String, file: String) -> Data? {
+    ensureLoaded()
+    guard audioTracksByBundle[bundleId]?.contains(where: { $0.file == file }) == true,
+          let url = packUrlByBundle[bundleId],
+          let data = try? Data(contentsOf: url),
+          let zip = try? MinimalZipReader(data: data) else { return nil }
+    return try? zip.contents(of: file)
   }
 
   static func info(for bundleId: String) -> CustomDevotionInfo? {
@@ -471,6 +542,8 @@ enum PrayerPackStore {
     definitionByBundle[id] = nil
     infoByBundle[id] = nil
     optionsByBundle[id] = nil
+    audioTracksByBundle[id] = nil
+    packUrlByBundle[id] = nil
   }
 
   /// Resolves a `devotion.json` entry's `bodyKey`/`titleKey` to display text: (1) the bundle's
@@ -576,6 +649,12 @@ enum PrayerPackStore {
       optionsByBundle[manifest.id] =
         try decoder.decode(PackOptions.self, from: zip.contents(of: "options.json")).options
     }
+
+    if zip.fileNames().contains("audio.json") {
+      audioTracksByBundle[manifest.id] =
+        try decoder.decode(PackAudio.self, from: zip.contents(of: "audio.json")).tracks
+    }
+    packUrlByBundle[manifest.id] = url
 
     for name in zip.fileNames() where name.hasPrefix("images/") {
       let imageKey = String(name.dropFirst("images/".count).dropLast(4))  // strip "images/" and ".jpg"

@@ -136,6 +136,52 @@ private data class PackOptions(
     val options: List<CustomDevotionOption>,
 )
 
+/** One narrated recording a bundle declares in its `audio.json` (an optional bundle file, staged
+ * by both packers like options.json — see Shared/ARCHITECTURE.md's "Audio (groundwork)").
+ * Groundwork only: the metadata parses and the bytes are servable via
+ * [PrayerPackStore.audioData], but no playback UI/service ships yet — that lands with the first
+ * real recordings. Files are Ogg Opus (RFC 7845, `.opus`) under the bundle's `audio/` directory;
+ * structure is enforced at authoring time by `Shared/tools/validate-devotion.py`. */
+@Serializable
+data class DevotionAudioTrack(
+    /** Unique within the bundle — what a future playback position would persist against. */
+    val id: String,
+    /** The single language this recording is in (one of the manifest's languages). */
+    val language: String,
+    /** Bundle-relative path, always `audio/<name>.opus`. */
+    val file: String,
+    /** The steps-type variant this recording follows (a traditional vs. scriptural Stations
+     * recording differ). Null for single-form devotions. */
+    val variantId: String? = null,
+    /** English UI label; [nameByLanguage] overrides it per UI localization. Null = platforms
+     * label the track by its language. */
+    val name: String? = null,
+    val nameByLanguage: Map<String, String>? = null,
+    val chapters: List<Chapter>,
+) {
+    /** One seek point. [start] is seconds from the track's beginning (the first chapter starts
+     * at 0, starts strictly increase); [title] XOR [titleKey] per the step-entry convention
+     * ([titleKey] resolves through the track language's ordinary content chain); [stepIndex] is
+     * an *advisory* link into the built default-options step sequence — the built sequence is
+     * option/calendar-dependent, so the future playback UI treats it as a step-syncing hint,
+     * never an invariant. */
+    @Serializable
+    data class Chapter(
+        val start: Double,
+        val title: String? = null,
+        val titleKey: String? = null,
+        val stepIndex: Int? = null,
+    )
+
+    val localizedName: String?
+        get() = nameByLanguage?.get(Locale.getDefault().language) ?: name
+}
+
+@Serializable
+private data class PackAudio(
+    val tracks: List<DevotionAudioTrack>,
+)
+
 /** Parsed `devotion.json` — the complete structural description of a generic devotion.
  * Field validity per type is enforced at authoring time by `Shared/tools/validate-devotion.py`;
  * the decoder is deliberately lenient (all optionals) so the engine can switch on [type] alone. */
@@ -333,6 +379,11 @@ object PrayerPackStore {
     private val rawContentByBundle = mutableMapOf<String, MutableMap<String, Map<String, String>>>()
     private val definitionByBundle = mutableMapOf<String, CustomDevotionDefinition>()
     private val optionsByBundle = mutableMapOf<String, List<CustomDevotionOption>>()
+    private val audioTracksByBundle = mutableMapOf<String, List<DevotionAudioTrack>>()
+    /** Each loaded bundle's re-openable pack source — audio bytes are re-read from here on
+     * demand rather than held in the load-time cache the way images are (a recording dwarfs
+     * every other bundle asset). See [audioData]. */
+    private val packSourceByBundle = mutableMapOf<String, () -> InputStream?>()
     /** Bundle ids with a devotion.json, in pack-load order. */
     private val orderedCustomIds = mutableListOf<String>()
     private val infoByBundle = mutableMapOf<String, CustomDevotionInfo>()
@@ -365,6 +416,22 @@ object PrayerPackStore {
      * at load time, in pack-load order, without hardcoding devotion names anywhere in view code. */
     fun customDevotionIds(): List<String> = orderedCustomIds.toList()
 
+    /** The narrated recordings a bundle's `audio.json` declares, in authored order. Empty for
+     * bundles without audio — every shipped bundle today; groundwork for the audio expansion
+     * (see Shared/ARCHITECTURE.md's "Audio (groundwork)"). */
+    fun audioTracks(bundleId: String): List<DevotionAudioTrack> =
+        audioTracksByBundle[bundleId].orEmpty()
+
+    /** The raw Ogg Opus bytes of one of a bundle's *declared* audio files
+     * ([DevotionAudioTrack.file]), re-read from the pack on demand. Null for a file no track
+     * declares. The playback milestone will extract to a cache file for the OS player rather
+     * than keep whole recordings in memory; this byte-level accessor is the seam it builds on. */
+    fun audioData(bundleId: String, file: String): ByteArray? {
+        if (audioTracksByBundle[bundleId]?.any { it.file == file } != true) return null
+        val stream = packSourceByBundle[bundleId]?.invoke() ?: return null
+        return readZipEntries(stream)[file]
+    }
+
     fun info(bundleId: String): CustomDevotionInfo? = infoByBundle[bundleId]
 
     /** Resolves a `devotion.json` entry's `bodyKey`/`titleKey` to display text: (1) the bundle's
@@ -395,7 +462,11 @@ object PrayerPackStore {
 
         for (packName in packNames) {
             val stream = openPack(packName) ?: continue
-            runCatching { load(stream) }
+            // openPack is documented re-callable with a fresh stream, which is what lets audio
+            // bytes be re-read on demand instead of cached at load — see [audioData].
+            runCatching { load(stream) }.getOrNull()?.let { id ->
+                packSourceByBundle[id] = { openPack(packName) }
+            }
         }
 
         // User-installed bundles load after the built-ins (so shipped content always wins the
@@ -405,8 +476,9 @@ object PrayerPackStore {
         for (file in installedFiles) {
             val id = file.nameWithoutExtension
             if (infoByBundle.containsKey(id)) continue
-            if (runCatching { load(file.inputStream()) }.isSuccess) {
+            if (runCatching { load(file.inputStream()) }.getOrNull() != null) {
                 installedIdsList.add(id)
+                packSourceByBundle[id] = { file.inputStream() }
             }
         }
     }
@@ -447,6 +519,7 @@ object PrayerPackStore {
         destination.writeBytes(bytes)
         load(destination.inputStream())
         installedIdsList.add(manifest.id)
+        packSourceByBundle[manifest.id] = { destination.inputStream() }
         return manifest.id
     }
 
@@ -461,11 +534,15 @@ object PrayerPackStore {
         definitionByBundle.remove(id)
         infoByBundle.remove(id)
         optionsByBundle.remove(id)
+        audioTracksByBundle.remove(id)
+        packSourceByBundle.remove(id)
     }
 
-    private fun load(stream: InputStream) {
+    /** Returns the loaded bundle's id (null for a zip with no manifest) so callers can register
+     * a re-openable pack source for it — see [audioData]. */
+    private fun load(stream: InputStream): String? {
         val entries = readZipEntries(stream)
-        val manifestBytes = entries["manifest.json"] ?: return
+        val manifestBytes = entries["manifest.json"] ?: return null
         val manifest = json.decodeFromString<PackManifest>(String(manifestBytes, Charsets.UTF_8))
 
         infoByBundle[manifest.id] = CustomDevotionInfo(
@@ -515,11 +592,17 @@ object PrayerPackStore {
                 json.decodeFromString<PackOptions>(String(optionBytes, Charsets.UTF_8)).options
         }
 
+        entries["audio.json"]?.let { audioBytes ->
+            audioTracksByBundle[manifest.id] =
+                json.decodeFromString<PackAudio>(String(audioBytes, Charsets.UTF_8)).tracks
+        }
+
         for ((name, bytes) in entries) {
             if (name.startsWith("images/")) {
                 imageDataByKey[name.removePrefix("images/").removeSuffix(".jpg")] = bytes
             }
         }
+        return manifest.id
     }
 
     /** Bundle content JSON keys are the camelCase form used across every platform's schema (e.g.
