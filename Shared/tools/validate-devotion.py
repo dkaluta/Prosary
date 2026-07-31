@@ -508,9 +508,12 @@ def main() -> int:
                 continue
             err(f"content/{lang}.json: no mystery text for {key!r}")
 
+    # Step imageKeys only need to resolve at runtime (pack data or the platform asset
+    # catalogs), so .png counts too — cross_placeholder, every platform's built-in fallback,
+    # ships as a png. manifest.images stays .jpg-only above: those are what the packers stage.
     for key in sorted(image_keys):
-        if not (shared_images / f"{key}.jpg").exists():
-            err(f"imageKey {key!r} has no Shared/Images/{key}.jpg")
+        if not (shared_images / f"{key}.jpg").exists() and not (shared_images / f"{key}.png").exists():
+            err(f"imageKey {key!r} has no Shared/Images/{key}.jpg or .png")
 
     validate_audio(src, languages, declared_variant_ids)
 

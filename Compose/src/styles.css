@@ -1,0 +1,367 @@
+/* Prosary Compose — shares the landing page's palette (Shared/website) so the family
+   resemblance is obvious; light/dark follows the system, same as the apps. */
+
+:root {
+  --brand-primary: #7a1f3d;
+  --brand-headline: #4a0e23;
+  --bg: #ffffff;
+  --panel: #faf7f8;
+  --border: #e3dadd;
+  --text: #1f1f1f;
+  --text-muted: #6e6e6e;
+  --danger: #b3261e;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --brand-primary: #d8a8b5;
+    --brand-headline: #ffffff;
+    --bg: #1f1f1f;
+    --panel: #2a2528;
+    --border: #453a3f;
+    --text: #f2f2f2;
+    --text-muted: #c8c8c8;
+    --danger: #f2b8b5;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+#root {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 24px 24px 96px;
+}
+
+header.top {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 8px 0 16px;
+}
+
+header.top h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--brand-headline);
+}
+
+header.top .spacer {
+  flex: 1;
+}
+
+.tagline {
+  color: var(--text-muted);
+  margin: 0 0 20px;
+}
+
+nav.stepper {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+nav.stepper button {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+nav.stepper button.active {
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
+  color: var(--bg);
+  font-weight: 600;
+}
+
+nav.stepper button .badge {
+  display: inline-block;
+  min-width: 1.4em;
+  margin-inline-start: 6px;
+  border-radius: 999px;
+  background: var(--danger);
+  color: var(--bg);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+h2 {
+  color: var(--brand-headline);
+  font-size: 1.2rem;
+  margin: 0 0 4px;
+}
+
+p.help {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0 0 16px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.card header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.card header .title {
+  font-weight: 600;
+  flex: 1;
+}
+
+label.field {
+  display: block;
+  margin: 12px 0;
+}
+
+label.field > span,
+fieldset > legend {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+label.field .hint {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+
+textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+textarea[dir="rtl"],
+input[dir="rtl"] {
+  font-size: 1.05rem;
+}
+
+fieldset {
+  border: none;
+  margin: 12px 0;
+  padding: 0;
+}
+
+.choices {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.choices label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.choices label:has(input:checked) {
+  border-color: var(--brand-primary);
+  outline: 1px solid var(--brand-primary);
+}
+
+.choices input {
+  accent-color: var(--brand-primary);
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.row > * {
+  flex: 1;
+}
+
+.row > .tight {
+  flex: 0 0 auto;
+}
+
+button.primary,
+button.secondary,
+button.subtle {
+  font: inherit;
+  border-radius: 8px;
+  padding: 10px 18px;
+  cursor: pointer;
+}
+
+button.primary {
+  background: var(--brand-primary);
+  border: 1px solid var(--brand-primary);
+  color: var(--bg);
+  font-weight: 600;
+}
+
+button.primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.secondary {
+  background: transparent;
+  border: 1px solid var(--brand-primary);
+  color: var(--brand-primary);
+  font-weight: 600;
+}
+
+button.subtle {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 6px 10px;
+}
+
+button.subtle:hover {
+  color: var(--text);
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.lang-block {
+  border-inline-start: 3px solid var(--border);
+  padding-inline-start: 12px;
+  margin: 12px 0;
+}
+
+.lang-block .lang-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.art-thumb {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+}
+
+.issue {
+  color: var(--danger);
+  margin: 6px 0;
+}
+
+.issue button {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}
+
+.ok {
+  color: var(--brand-primary);
+  font-weight: 600;
+}
+
+.summary dt {
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.summary dd {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+details.json-preview pre {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  overflow-x: auto;
+  font-size: 0.8rem;
+  direction: ltr;
+}
+
+table.chapters {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table.chapters td,
+table.chapters th {
+  padding: 4px 6px;
+  text-align: start;
+}
+
+table.chapters input,
+table.chapters select {
+  width: 100%;
+}
+
+.color-swatch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.color-swatch input[type="color"] {
+  width: 44px;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: none;
+  padding: 2px;
+}
+
+.icon-choice {
+  font-size: 1.2rem;
+}
+
+a {
+  color: var(--brand-primary);
+}

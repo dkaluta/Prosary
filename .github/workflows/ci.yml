@@ -2,7 +2,9 @@ name: CI
 
 # The Android and Windows test suites (see Shared/ARCHITECTURE.md) — iOS runs on Xcode Cloud.
 # The Windows job matters most: WinUI can't build on the macOS dev machine, so this is the
-# only place Prosary.Tests actually executes.
+# only place Prosary.Tests actually executes. The Compose job type-checks/builds the
+# compose.prosary.app webapp and proves its emitted bundle round-trips and passes the
+# canonical validator (Vercel builds the deployed site itself; this guards branches).
 # Work happens on feature branches; main only receives finished "major" projects — so CI runs
 # on every branch push (no separate pull_request trigger: same-repo PRs would double-run).
 on:
@@ -28,6 +30,30 @@ jobs:
       - name: Run tests
         working-directory: Android
         run: ./gradlew --console=plain testDebugUnitTest
+
+  compose:
+    name: Compose (build + bundle e2e)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: Compose/package-lock.json
+      - name: Install dependencies
+        working-directory: Compose
+        run: npm ci
+      - name: Build
+        working-directory: Compose
+        run: npm run build
+      - name: Bundle round-trip + canonical validator
+        working-directory: Compose
+        run: |
+          npm run e2e
+          python3 -c "import zipfile; zipfile.ZipFile('dist-e2e/exampleDevotion.prosaryprayer').extractall('dist-e2e/extracted')"
+          python3 ../Shared/tools/validate-devotion.py dist-e2e/extracted
 
   windows:
     name: Windows (Prosary.Tests)
