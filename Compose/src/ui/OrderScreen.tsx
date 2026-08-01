@@ -1,16 +1,19 @@
 import type { Dispatch, SetStateAction } from "react";
-import { COMMON_PRAYERS, LANGUAGES, commonPrayer, isRtl } from "../format/catalog";
+import { COMMON_PRAYERS } from "../format/catalog";
 import type { CommonPrayerKey } from "../format/catalog";
 import type { EditorStep, Project } from "../format/project";
 import { newUid } from "../format/project";
+import { prayerLabel } from "../format/validate";
+import { stepLabel } from "./labels";
 import { imageToSquareJpeg, pickFile } from "./media";
 
 interface Props {
   project: Project;
   setProject: Dispatch<SetStateAction<Project>>;
+  goToPrayers: () => void;
 }
 
-export function StepsScreen({ project, setProject }: Props) {
+export function OrderScreen({ project, setProject, goToPrayers }: Props) {
   const updateStep = (uid: string, patch: Partial<EditorStep>) =>
     setProject((p) => ({
       ...p,
@@ -20,34 +23,13 @@ export function StepsScreen({ project, setProject }: Props) {
   const addCommon = (key: CommonPrayerKey) =>
     setProject((p) => ({
       ...p,
-      steps: [
-        ...p.steps,
-        {
-          uid: newUid(),
-          kind: "common",
-          commonKey: key,
-          title: commonPrayer(key)?.label ?? "",
-          titleByLanguage: {},
-          bodyByLanguage: {},
-          isScripture: false,
-        },
-      ],
+      steps: [...p.steps, { uid: newUid(), kind: "common", commonKey: key }],
     }));
 
-  const addCustom = () =>
+  const addOwn = (prayerUid: string) =>
     setProject((p) => ({
       ...p,
-      steps: [
-        ...p.steps,
-        {
-          uid: newUid(),
-          kind: "custom",
-          title: "",
-          titleByLanguage: {},
-          bodyByLanguage: {},
-          isScripture: false,
-        },
-      ],
+      steps: [...p.steps, { uid: newUid(), kind: "own", prayerUid }],
     }));
 
   const move = (uid: string, delta: -1 | 1) =>
@@ -78,11 +60,14 @@ export function StepsScreen({ project, setProject }: Props) {
 
   return (
     <section>
-      <h2>The prayers</h2>
+      <h2>The order of prayer</h2>
       <p className="help">
-        A devotion is a sequence of steps, prayed one screen at a time. Common prayers (the Our
-        Father, the Hail Mary…) are already in the app in every language — just add them. Your own
-        prayers you write yourself, once per language.
+        Arrange the devotion as it is prayed, one screen at a time. Add common prayers straight
+        from the list; your own prayers come from the{" "}
+        <button className="subtle" onClick={goToPrayers} style={{ padding: "0 4px" }}>
+          Prayers
+        </button>{" "}
+        page and can appear at as many points as you like.
       </p>
 
       {project.steps.map((step, index) => (
@@ -113,9 +98,26 @@ export function StepsScreen({ project, setProject }: Props) {
             </option>
           ))}
         </select>
-        <button className="secondary tight" onClick={addCustom}>
-          + Write your own prayer
-        </button>
+        {project.prayers.length > 0 ? (
+          <select
+            className="tight"
+            value=""
+            onChange={(e) => {
+              if (e.target.value) addOwn(e.target.value);
+            }}
+          >
+            <option value="">+ Add one of your prayers…</option>
+            {project.prayers.map((prayer, i) => (
+              <option key={prayer.uid} value={prayer.uid}>
+                {prayerLabel(prayer, i)}
+              </option>
+            ))}
+          </select>
+        ) : (
+          <button className="secondary tight" onClick={goToPrayers}>
+            Write your first prayer →
+          </button>
+        )}
       </div>
     </section>
   );
@@ -143,18 +145,13 @@ function StepCard({
     stepImage?.kind === "upload"
       ? project.images.find((image) => image.uid === stepImage.uid)
       : undefined;
-  const label =
-    step.kind === "common"
-      ? commonPrayer(step.commonKey ?? "")?.label ?? "Common prayer"
-      : step.titleByLanguage.en?.trim() ||
-        Object.values(step.titleByLanguage).find((t) => t?.trim()) ||
-        "Your prayer";
 
   return (
     <div className="card">
       <header>
         <span className="title">
-          {index + 1}. {label}
+          {index + 1}. {stepLabel(project, step)}
+          {step.kind === "own" && <span className="hint"> · yours</span>}
         </span>
         <button className="subtle" onClick={() => onMove(-1)} aria-label="Move up">
           ↑
@@ -166,66 +163,6 @@ function StepCard({
           ✕
         </button>
       </header>
-
-      {step.kind === "common" ? (
-        <label className="field">
-          <span>Which prayer?</span>
-          <select
-            value={step.commonKey ?? ""}
-            onChange={(e) => {
-              const prayer = commonPrayer(e.target.value);
-              onChange({ commonKey: e.target.value as CommonPrayerKey, title: prayer?.label ?? "" });
-            }}
-          >
-            {COMMON_PRAYERS.map((prayer) => (
-              <option key={prayer.key} value={prayer.key}>
-                {prayer.label}
-              </option>
-            ))}
-          </select>
-        </label>
-      ) : (
-        <>
-          {project.languages.map((code) => {
-            const language = LANGUAGES.find((l) => l.code === code)!;
-            const dir = isRtl(code) ? "rtl" : "ltr";
-            return (
-              <div className="lang-block" key={code}>
-                <div className="lang-name">{language.name}</div>
-                <label className="field">
-                  <span>Step name</span>
-                  <input
-                    type="text"
-                    dir={dir}
-                    value={step.titleByLanguage[code] ?? ""}
-                    onChange={(e) =>
-                      onChange({ titleByLanguage: { ...step.titleByLanguage, [code]: e.target.value } })
-                    }
-                  />
-                </label>
-                <label className="field">
-                  <span>Prayer text</span>
-                  <textarea
-                    dir={dir}
-                    value={step.bodyByLanguage[code] ?? ""}
-                    onChange={(e) =>
-                      onChange({ bodyByLanguage: { ...step.bodyByLanguage, [code]: e.target.value } })
-                    }
-                  />
-                </label>
-              </div>
-            );
-          })}
-          <label className="field">
-            <input
-              type="checkbox"
-              checked={step.isScripture}
-              onChange={(e) => onChange({ isScripture: e.target.checked })}
-            />{" "}
-            This text is a Bible reading (the app shows it in the Scripture typeface)
-          </label>
-        </>
-      )}
 
       <div className="row">
         <label className="field tight">

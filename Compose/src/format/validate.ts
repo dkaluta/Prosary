@@ -4,9 +4,9 @@
 // are shown to non-technical authors.
 
 import { LANGUAGES, RESERVED_IDS, commonPrayer } from "./catalog";
-import type { Project } from "./project";
+import type { EditorPrayer, Project } from "./project";
 
-export type WizardScreen = "basics" | "steps" | "audio" | "review";
+export type WizardScreen = "basics" | "prayers" | "order" | "audio" | "review";
 
 export interface Issue {
   screen: WizardScreen;
@@ -22,10 +22,17 @@ export function isOggOpus(bytes: Uint8Array): boolean {
 const HEX_COLOR = /^#[0-9a-fA-F]{6}$/;
 const ID_SHAPE = /^[a-z][a-zA-Z0-9]*$/;
 
+/** The label the wizard shows for a library prayer. */
+export function prayerLabel(prayer: EditorPrayer, index: number): string {
+  const named = Object.values(prayer.titleByLanguage).find((t) => t?.trim());
+  return named?.trim() || `Prayer ${index + 1}`;
+}
+
 export function validateProject(project: Project): Issue[] {
   const issues: Issue[] = [];
   const basics = (message: string) => issues.push({ screen: "basics", message });
-  const steps = (message: string) => issues.push({ screen: "steps", message });
+  const prayers = (message: string) => issues.push({ screen: "prayers", message });
+  const order = (message: string) => issues.push({ screen: "order", message });
   const audio = (message: string) => issues.push({ screen: "audio", message });
 
   if (!project.name.trim()) basics("Give your devotion a name.");
@@ -44,31 +51,43 @@ export function validateProject(project: Project): Issue[] {
     if (!HEX_COLOR.test(value)) basics(`The ${field} accent color must be a hex color like #7A1F3D.`);
   }
 
-  if (project.steps.length === 0) steps("Add at least one prayer step.");
   const languageNames = new Map(LANGUAGES.map((l) => [l.code, l.name] as const));
+
+  // Only prayers the sequence actually prays must be complete — unfinished drafts in the
+  // library are fine and simply don't ship.
+  const usedUids = new Set(
+    project.steps.filter((s) => s.kind === "own" && s.prayerUid).map((s) => s.prayerUid!),
+  );
+  project.prayers.forEach((prayer, i) => {
+    if (!usedUids.has(prayer.uid)) return;
+    const label = `“${prayerLabel(prayer, i)}”`;
+    for (const language of project.languages) {
+      const name = languageNames.get(language);
+      if (!prayer.titleByLanguage[language]?.trim()) {
+        prayers(`${label}: the prayer's name is missing in ${name}.`);
+      }
+      if (!prayer.bodyByLanguage[language]?.trim()) {
+        prayers(`${label}: the prayer text is missing in ${name}.`);
+      }
+    }
+  });
+
+  if (project.steps.length === 0) order("Add at least one step to the order of prayer.");
   project.steps.forEach((step, i) => {
     const where = `Step ${i + 1}`;
     if (step.kind === "common") {
       if (!step.commonKey || !commonPrayer(step.commonKey)) {
-        steps(`${where}: pick which common prayer this is.`);
+        order(`${where}: pick which common prayer this is.`);
       }
-    } else {
-      for (const language of project.languages) {
-        const name = languageNames.get(language);
-        if (!step.titleByLanguage[language]?.trim()) {
-          steps(`${where}: the step name is missing in ${name}.`);
-        }
-        if (!step.bodyByLanguage[language]?.trim()) {
-          steps(`${where}: the prayer text is missing in ${name}.`);
-        }
-      }
+    } else if (!step.prayerUid || !project.prayers.some((p) => p.uid === step.prayerUid)) {
+      order(`${where}: the prayer it prayed was removed — pick another.`);
     }
     if (step.repeat !== undefined && (!Number.isInteger(step.repeat) || step.repeat < 2)) {
-      steps(`${where}: “pray n times” must be a whole number of 2 or more.`);
+      order(`${where}: “pray n times” must be a whole number of 2 or more.`);
     }
     const image = step.image;
     if (image?.kind === "upload" && !project.images.some((img) => img.uid === image.uid)) {
-      steps(`${where}: its artwork was removed — pick another image.`);
+      order(`${where}: its artwork was removed — pick another image.`);
     }
   });
 

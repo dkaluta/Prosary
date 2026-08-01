@@ -6,8 +6,9 @@ import type { WizardScreen } from "./format/validate";
 import { validateProject } from "./format/validate";
 import { AudioScreen } from "./ui/AudioScreen";
 import { BasicsScreen } from "./ui/BasicsScreen";
+import { OrderScreen } from "./ui/OrderScreen";
+import { PrayersScreen } from "./ui/PrayersScreen";
 import { ReviewScreen } from "./ui/ReviewScreen";
-import { StepsScreen } from "./ui/StepsScreen";
 import { download, pickFile, readFileBytes } from "./ui/media";
 
 const AUTOSAVE_KEY = "prosary-compose-autosave";
@@ -23,9 +24,10 @@ function restoreAutosave(): Project | null {
 
 const SCREENS: { id: WizardScreen; label: string }[] = [
   { id: "basics", label: "1 · Basics" },
-  { id: "steps", label: "2 · Prayers" },
-  { id: "audio", label: "3 · Audio" },
-  { id: "review", label: "4 · Finish" },
+  { id: "prayers", label: "2 · Prayers" },
+  { id: "order", label: "3 · Order" },
+  { id: "audio", label: "4 · Audio" },
+  { id: "review", label: "5 · Finish" },
 ];
 
 export function App() {
@@ -121,7 +123,12 @@ export function App() {
       </nav>
 
       {screen === "basics" && <BasicsScreen project={project} setProject={setProject} />}
-      {screen === "steps" && <StepsScreen project={project} setProject={setProject} />}
+      {screen === "prayers" && (
+        <PrayersScreen project={project} setProject={setProject} goToOrder={() => setScreen("order")} />
+      )}
+      {screen === "order" && (
+        <OrderScreen project={project} setProject={setProject} goToPrayers={() => setScreen("prayers")} />
+      )}
       {screen === "audio" && <AudioScreen project={project} setProject={setProject} />}
       {screen === "review" && (
         <ReviewScreen project={project} issues={issues} goTo={setScreen} />

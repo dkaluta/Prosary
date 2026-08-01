@@ -5,11 +5,18 @@
 
 import { COMMON_PRAYERS, PLACEHOLDER_IMAGE_KEY, commonPrayer } from "./catalog";
 import type { EditorStep, Project } from "./project";
+import { usedPrayers } from "./project";
 import { buildZip, type ZipFile } from "./zip";
 
-/** Bundle-local content key base for the i-th step ("step03"). */
-function stepKeyBase(index: number): string {
-  return `step${String(index + 1).padStart(2, "0")}`;
+/** Bundle-local content key base per library prayer ("prayer03"). Only prayers some step
+ * actually prays get a key and ship; steps praying the same prayer share its bodyKey/titleKey,
+ * exactly like the built-in bundles' repeated acclamations (the Trisagion's five steps). */
+function prayerKeyBases(project: Project): Map<string, string> {
+  const bases = new Map<string, string>();
+  usedPrayers(project).forEach((prayer, index) => {
+    bases.set(prayer.uid, `prayer${String(index + 1).padStart(2, "0")}`);
+  });
+  return bases;
 }
 
 /** The zip-shipped key for the i-th uploaded image, namespaced by bundle id so a user upload
@@ -32,18 +39,13 @@ export function stepImageKey(project: Project, step: EditorStep): string {
   return PLACEHOLDER_IMAGE_KEY;
 }
 
-/** The chapter label for a step: common prayers get the literal English title (the app-wide
- * step-title convention), custom steps their translated titleKey. */
-function chapterTitle(step: EditorStep, index: number): { title?: string; titleKey?: string } {
-  return step.kind === "custom" ? { titleKey: `${stepKeyBase(index)}Title` } : { title: step.title };
-}
-
 function jsonBytes(value: unknown): Uint8Array {
   return new TextEncoder().encode(JSON.stringify(value, null, 2) + "\n");
 }
 
 export function buildBundleFiles(project: Project): ZipFile[] {
   const files: ZipFile[] = [];
+  const keyBases = prayerKeyBases(project);
   const usedMainKeys = COMMON_PRAYERS.filter(
     (p) => p.main && project.steps.some((s) => s.kind === "common" && s.commonKey === p.key),
   ).map((p) => p.key);
@@ -80,23 +82,28 @@ export function buildBundleFiles(project: Project): ZipFile[] {
     name: "devotion.json",
     data: jsonBytes({
       type: "steps",
-      steps: project.steps.map((step, i) => ({
-        ...(step.kind === "custom" ? { titleKey: `${stepKeyBase(i)}Title` } : { title: step.title }),
-        bodyKey: step.kind === "common" ? step.commonKey : `${stepKeyBase(i)}Body`,
-        imageKey: stepImageKey(project, step),
-        ...(step.isScripture ? { isScripture: true } : {}),
-        ...(step.repeat && step.repeat >= 2 ? { repeat: step.repeat } : {}),
-      })),
+      steps: project.steps.map((step) => {
+        const base = step.prayerUid ? keyBases.get(step.prayerUid) : undefined;
+        const prayer = project.prayers.find((p) => p.uid === step.prayerUid);
+        return {
+          ...(step.kind === "common"
+            ? { title: commonPrayer(step.commonKey ?? "")?.label ?? "Prayer", bodyKey: step.commonKey }
+            : { titleKey: `${base}Title`, bodyKey: `${base}Body` }),
+          imageKey: stepImageKey(project, step),
+          ...(step.kind === "own" && prayer?.isScripture ? { isScripture: true } : {}),
+          ...(step.repeat && step.repeat >= 2 ? { repeat: step.repeat } : {}),
+        };
+      }),
     }),
   });
 
   for (const language of project.languages) {
     const prayers: Record<string, string> = {};
-    project.steps.forEach((step, i) => {
-      if (step.kind !== "custom") return;
-      prayers[`${stepKeyBase(i)}Title`] = step.titleByLanguage[language]?.trim() ?? "";
-      prayers[`${stepKeyBase(i)}Body`] = step.bodyByLanguage[language]?.trim() ?? "";
-    });
+    for (const prayer of usedPrayers(project)) {
+      const base = keyBases.get(prayer.uid)!;
+      prayers[`${base}Title`] = prayer.titleByLanguage[language]?.trim() ?? "";
+      prayers[`${base}Body`] = prayer.bodyByLanguage[language]?.trim() ?? "";
+    }
     files.push({ name: `content/${language}.json`, data: jsonBytes({ prayers, mysteries: {} }) });
   }
 
@@ -122,9 +129,12 @@ export function buildBundleFiles(project: Project): ZipFile[] {
         chapters: track.chapters.map((chapter) => {
           const index = project.steps.findIndex((s) => s.uid === chapter.stepUid);
           const step = project.steps[index];
+          const base = step?.prayerUid ? keyBases.get(step.prayerUid) : undefined;
           return {
             start: chapter.start,
-            ...(step ? chapterTitle(step, index) : { title: "Chapter" }),
+            ...(step?.kind === "own" && base
+              ? { titleKey: `${base}Title` }
+              : { title: step ? commonPrayer(step.commonKey ?? "")?.label ?? "Prayer" : "Chapter" }),
             ...(index >= 0 ? { stepIndex: index } : {}),
           };
         }),

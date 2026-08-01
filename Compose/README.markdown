@@ -35,7 +35,10 @@ defaults do the rest (`npm run build`, output `dist`). Production deploys track 
   mirrored from the apps), `project.ts` (editor state + project-file serialization),
   `zip.ts`, `pack.ts` (Project → bundle), `unpack.ts` (bundle → Project), `validate.ts`
   (client-side authoring rules).
-- `src/ui/` — the four wizard screens (Basics, Prayers, Audio, Finish) and media helpers.
+- `src/ui/` — the five wizard screens (Basics, Prayers, Order, Audio, Finish) and media
+  helpers. Prayers is the library where texts are written per language; Order arranges the
+  sequence, and several steps may pray the same library prayer (they share one bodyKey in the
+  emitted bundle, like the Trisagion's repeated acclamation).
 - The wizard authors the flat `steps` devotion type; bead-structured ("rosary"), multi-day
   ("days"), variants, and options.json authoring are future work — `unpack.ts` declines such
   bundles with a plain-language message rather than flattening them.
