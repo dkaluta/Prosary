@@ -104,6 +104,12 @@ fun PrayerStepFlowScreen(
      * flow's one big tap target and replaces the footer's Next entirely — for a counter flow,
      * advancing is the only action, so it deserves more than a corner button. */
     centralActionLabel: String? = null,
+    /** The audio transport strip (AudioPlaybackBar), when the session has a narrated recording —
+     * same optional-slot convention as [accessory]. Rendered above the footer divider. */
+    audioBar: (@Composable () -> Unit)? = null,
+    /** True while that recording is actually playing: the timer auto-advance stands down, since
+     * the audio's chapters are driving the steps and two advance drivers would fight. */
+    audioIsPlaying: Boolean = false,
 ) {
     // Matches the pre-load "no step yet" instant to "last step" so the footer doesn't flash a
     // "Next" label a moment before content briefly reads "Finish" (imperceptible in practice,
@@ -117,9 +123,10 @@ fun PrayerStepFlowScreen(
 
     // Restarts whenever the step, the interval, or the loaded state changes — so tapping
     // Back/Next resets the countdown, and turning the setting off cancels it. Never fires on
-    // the last step: auto-"Finish" would dismiss the whole flow mid-prayer.
-    LaunchedEffect(autoAdvanceSeconds, currentIndex, step != null) {
-        if (autoAdvanceSeconds > 0 && step != null && !isLastStep) {
+    // the last step: auto-"Finish" would dismiss the whole flow mid-prayer. Suspended outright
+    // while a recording plays (audioIsPlaying is a key, so pausing re-arms it).
+    LaunchedEffect(autoAdvanceSeconds, currentIndex, step != null, audioIsPlaying) {
+        if (autoAdvanceSeconds > 0 && step != null && !isLastStep && !audioIsPlaying) {
             delay(autoAdvanceSeconds * 1000L)
             onNext()
         }
@@ -233,6 +240,12 @@ fun PrayerStepFlowScreen(
                 } else {
                     Box(modifier = Modifier.weight(1f).fillMaxWidth(), contentAlignment = Alignment.Center) {
                         CircularProgressIndicator()
+                    }
+                }
+
+                if (audioBar != null) {
+                    Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).padding(bottom = 6.dp)) {
+                        audioBar()
                     }
                 }
 
