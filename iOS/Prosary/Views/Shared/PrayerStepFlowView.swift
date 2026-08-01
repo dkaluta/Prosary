@@ -39,6 +39,12 @@ struct PrayerStepFlowView: View {
   /// flow's one big tap target and replaces the footer's Next entirely — for a counter flow,
   /// advancing is the only action, so it deserves more than a corner button.
   var centralActionLabel: String? = nil
+  /// The audio transport strip (AudioPlaybackBar), when the session has a narrated recording —
+  /// same optional-slot convention as `accessory`. Rendered above the footer divider.
+  var audioBar: AnyView? = nil
+  /// True while that recording is actually playing: the timer auto-advance stands down, since
+  /// the audio's chapters are driving the steps and two advance drivers would fight.
+  var audioIsPlaying: Bool = false
 
   @Environment(\.horizontalSizeClass) private var horizontalSizeClass
   @Environment(\.verticalSizeClass) private var verticalSizeClass
@@ -97,6 +103,12 @@ struct PrayerStepFlowView: View {
         Spacer()
       }
 
+      if let audioBar {
+        audioBar
+          .padding(.horizontal)
+          .padding(.bottom, 6)
+      }
+
       Divider()
 
       HStack {
@@ -147,9 +159,10 @@ struct PrayerStepFlowView: View {
     }
     // Restarts whenever the step, the interval, or the loaded state changes — so tapping
     // Back/Next resets the countdown, and turning the setting off cancels it. Never fires on
-    // the last step: auto-"Finish" would dismiss the whole flow mid-prayer.
-    .task(id: "\(autoAdvanceSeconds)-\(currentIndex)-\(step != nil)") {
-      guard autoAdvanceSeconds > 0, step != nil, !isLastStep else { return }
+    // the last step: auto-"Finish" would dismiss the whole flow mid-prayer. Suspended outright
+    // while a recording plays (audioIsPlaying is part of the id, so pausing re-arms it).
+    .task(id: "\(autoAdvanceSeconds)-\(currentIndex)-\(step != nil)-\(audioIsPlaying)") {
+      guard autoAdvanceSeconds > 0, step != nil, !isLastStep, !audioIsPlaying else { return }
       try? await Task.sleep(for: .seconds(autoAdvanceSeconds))
       guard !Task.isCancelled else { return }
       onNext()

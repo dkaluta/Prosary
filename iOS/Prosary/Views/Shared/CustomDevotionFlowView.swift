@@ -30,6 +30,7 @@ struct CustomDevotionFlowView: View {
   /// The favorite's raw language choice: an explicit code, or the sentinel ("follow the
   /// app-level default setting"). `languageCode` above is always the resolved code.
   @State private var chosenLanguage: String = LanguageCatalog.defaultSentinel
+  @State private var audio = AudioPlaybackController()
 
   private var currentStep: RosaryStep? {
     steps.indices.contains(currentIndex) ? steps[currentIndex] : nil
@@ -74,8 +75,23 @@ struct CustomDevotionFlowView: View {
                            hasRoomForSingleMinorColumn: hasRoomForSingleMinorColumn)
             .frame(width: beadColumnAreaWidth(hasRoomForSingleMinorColumn: hasRoomForSingleMinorColumn))
         )
-      } : nil
+      } : nil,
+      audioBar: audio.isLoaded ? AnyView(
+        AudioPlaybackBar(controller: audio, seasonColor: seasonColor,
+                         chapterTitles: resolvedChapterTitles)
+      ) : nil,
+      audioIsPlaying: audio.isPlaying
     )
+    // The recording's chapters drive the text while it plays: entering a chapter that carries
+    // a stepIndex hint turns the page. Hints are advisory (the built sequence is option- and
+    // calendar-dependent), so out-of-range ones are ignored rather than trusted.
+    .onChange(of: audio.currentChapterIndex) { _, chapterIndex in
+      guard let chapterIndex,
+            let hint = audio.track?.chapters[chapterIndex].stepIndex,
+            steps.indices.contains(hint), currentIndex != hint else { return }
+      currentIndex = hint
+    }
+    .onDisappear { audio.stop() }
     .toolbar {
       // Language switcher — the app-level prayer-language setting was the only way to change
       // a generic devotion's language, and testers didn't find it (they assumed the devotion
@@ -148,6 +164,48 @@ struct CustomDevotionFlowView: View {
     steps = builtSteps()
     currentIndex = 0
     seasonColor = services.calendar.seasonColorToday()
+    pickAudioTrack()
+  }
+
+  /// The recording for this session, if the bundle ships one: language must match, and the
+  /// track's variant (nil = the bundle's single/default form) must match the session's.
+  /// First declared match wins — audio.json order is the author's preference order.
+  private func pickAudioTrack() {
+    let defaultVariantId = PrayerPackStore.definition(for: devotionId)?.variants?.first?.id
+    let effectiveVariant = variantId ?? defaultVariantId
+    let match = PrayerPackStore.audioTracks(for: devotionId).first {
+      $0.language == languageCode && ($0.variantId ?? defaultVariantId) == effectiveVariant
+    }
+    if let match {
+      if audio.track?.id != match.id || !audio.isLoaded {
+        audio.load(bundleId: devotionId, track: match)
+        alignAudioToCurrentStep()
+      }
+    } else {
+      audio.stop()
+    }
+  }
+
+  /// Titles for the loaded track's chapters, `titleKey` resolved through the same per-bundle
+  /// content chain as step text (the track's own language, not the UI language).
+  private var resolvedChapterTitles: [String] {
+    guard let track = audio.track else { return [] }
+    return track.chapters.map { chapter in
+      chapter.title
+        ?? chapter.titleKey.map {
+          PrayerPackStore.resolveBodyText(bundleId: devotionId, languageCode: track.language, key: $0)
+        }
+        ?? ""
+    }
+  }
+
+  /// After a manual Back/Next, bring the recording to the chapter that narrates the new step —
+  /// when one does; steps between chapter hints leave the audio where it is.
+  private func alignAudioToCurrentStep() {
+    guard audio.isLoaded, let chapters = audio.track?.chapters,
+          let target = chapters.firstIndex(where: { $0.stepIndex == currentIndex }),
+          audio.currentChapterIndex != target else { return }
+    audio.seekToChapter(target)
   }
 
   private func builtSteps() -> [RosaryStep] {
@@ -179,6 +237,7 @@ struct CustomDevotionFlowView: View {
     let position = currentIndex
     steps = builtSteps()
     currentIndex = min(position, max(steps.count - 1, 0))
+    pickAudioTrack()
 
     // Remember the choice on the matching favorite, if one exists.
     guard let id = matchingFavoriteId else { return }
@@ -194,6 +253,7 @@ struct CustomDevotionFlowView: View {
     variantId = newVariantId == defaultVariantId ? nil : newVariantId
     steps = builtSteps()
     currentIndex = 0
+    pickAudioTrack()
 
     // Remember the choice on the matching favorite, if one exists.
     guard let id = matchingFavoriteId else { return }
@@ -229,11 +289,13 @@ struct CustomDevotionFlowView: View {
   private func next() {
     if currentIndex >= steps.count - 1 { dismiss(); return }
     currentIndex += 1
+    alignAudioToCurrentStep()
   }
 
   private func back() {
     guard currentIndex > 0 else { return }
     currentIndex -= 1
+    alignAudioToCurrentStep()
   }
 }
 
