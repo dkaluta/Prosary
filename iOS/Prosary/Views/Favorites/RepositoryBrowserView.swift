@@ -74,6 +74,11 @@ struct RepositoryBrowserView: View {
         Text(installError ?? "")
       }
     }
+    #if os(macOS)
+    // A macOS sheet sizes to its content's ideal height, and a List has none — without an
+    // explicit frame the whole content area collapses to zero (iOS sheets are unaffected).
+    .frame(minWidth: 560, idealWidth: 640, minHeight: 460, idealHeight: 560)
+    #endif
     .task { await load() }
   }
 
