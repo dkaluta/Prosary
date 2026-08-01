@@ -46,3 +46,12 @@ public interface IPrayerStepFlowViewModel : System.ComponentModel.INotifyPropert
     IRelayCommand NextCommand { get; }
     IRelayCommand BackCommand { get; }
 }
+
+/// <summary>Optional add-on contract for a flow that can play a bundle's narrated recording
+/// (today only <see cref="CustomDevotionViewModel"/>): while the recording plays, its chapters
+/// drive the steps, so <see cref="Prosary.Controls.AutoAdvanceTimer"/> stands down instead of
+/// fighting it — the Windows mirror of the audioIsPlaying guard on iOS/Android.</summary>
+public interface IAudioAwareStepFlowViewModel
+{
+    bool IsAudioPlaying { get; }
+}

@@ -25,6 +25,13 @@ public sealed class AutoAdvanceTimer : IDisposable
         _timer.IsRepeating = false;
         _timer.Tick += (_, _) =>
         {
+            // A playing recording drives the steps through its chapters — the timer stands
+            // down rather than fight it (pausing re-arms via the next ProgressText render).
+            if (_viewModel is IAudioAwareStepFlowViewModel { IsAudioPlaying: true })
+            {
+                return;
+            }
+
             if (!_viewModel.IsLastStep)
             {
                 _viewModel.NextCommand.Execute(null);
