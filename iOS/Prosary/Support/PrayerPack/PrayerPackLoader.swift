@@ -154,17 +154,17 @@ private struct PackOptions: Decodable {
 }
 
 /// One narrated recording a bundle declares in its `audio.json` (an optional bundle file, staged
-/// by both packers like options.json — see Shared/ARCHITECTURE.md's "Audio (groundwork)").
-/// Groundwork only: the metadata parses and the bytes are servable via
-/// `PrayerPackStore.audioData`, but no playback UI/service ships yet — that lands with the first
-/// real recordings. Files are Ogg Opus (RFC 7845, `.opus`) under the bundle's `audio/` directory;
+/// by both packers like options.json — see Shared/ARCHITECTURE.md's "Audio").
+/// AudioPlaybackController plays these through the prayer flow's transport bar — metadata loads
+/// eagerly here, bytes are served on demand via `PrayerPackStore.audioData` and extracted to a
+/// cache file at load. Files are Ogg Opus (RFC 7845, `.opus`) under the bundle's `audio/` directory;
 /// structure is enforced at authoring time by `Shared/tools/validate-devotion.py`.
 struct DevotionAudioTrack: Decodable {
   /// One seek point. `start` is seconds from the track's beginning (the first chapter starts at
   /// 0, starts strictly increase); `title` XOR `titleKey` per the step-entry convention
   /// (`titleKey` resolves through the track language's ordinary content chain); `stepIndex` is
   /// an *advisory* link into the built default-options step sequence — the built sequence is
-  /// option/calendar-dependent, so the future playback UI treats it as a step-syncing hint,
+  /// option/calendar-dependent, so the playback UI treats it as a step-syncing hint,
   /// never an invariant.
   struct Chapter: Decodable {
     let start: Double
@@ -173,7 +173,7 @@ struct DevotionAudioTrack: Decodable {
     let stepIndex: Int?
   }
 
-  /// Unique within the bundle — what a future playback position would persist against.
+  /// Unique within the bundle — what a persisted playback position would key against (persistence itself is future work).
   let id: String
   /// The single language this recording is in (one of the manifest's languages).
   let language: String
@@ -474,8 +474,7 @@ enum PrayerPackStore {
   }
 
   /// The narrated recordings a bundle's `audio.json` declares, in authored order. Empty for
-  /// bundles without audio — every shipped bundle today; this is groundwork for the audio
-  /// expansion (see Shared/ARCHITECTURE.md's "Audio (groundwork)").
+  /// bundles without audio (see Shared/ARCHITECTURE.md's "Audio").
   static func audioTracks(for bundleId: String) -> [DevotionAudioTrack] {
     ensureLoaded()
     return audioTracksByBundle[bundleId] ?? []
@@ -483,8 +482,8 @@ enum PrayerPackStore {
 
   /// The raw Ogg Opus bytes of one of a bundle's *declared* audio files
   /// (`DevotionAudioTrack.file`), re-read from the pack on demand. Nil for a file no track
-  /// declares. The playback milestone will extract to a cache file for the OS player rather
-  /// than keep whole recordings in memory; this byte-level accessor is the seam it builds on.
+  /// declares. AudioPlaybackController extracts these bytes to a cache file for the OS player
+  /// rather than keep whole recordings in memory.
   static func audioData(bundleId: String, file: String) -> Data? {
     ensureLoaded()
     guard audioTracksByBundle[bundleId]?.contains(where: { $0.file == file }) == true,
