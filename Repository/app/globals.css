@@ -25,6 +25,9 @@
   }
 }
 * { box-sizing: border-box; }
+/* Brand-colored links everywhere — the browser's dark-blue default is unreadable on the
+   dark background (links inside cards/hints had no rule of their own). */
+a { color: var(--brand-primary); }
 html { scrollbar-gutter: stable; }
 body {
   margin: 0;

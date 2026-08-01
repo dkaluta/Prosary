@@ -24,6 +24,13 @@
   box-sizing: border-box;
 }
 
+/* Every link takes the brand color — without this, links outside .hint/footer (the
+   "Author it, share it" section's, for one) fall back to the browser default, and
+   Chrome's dark-blue default is unreadable on the dark background. */
+a {
+  color: var(--brand-primary);
+}
+
 body {
   margin: 0;
   font-family:
