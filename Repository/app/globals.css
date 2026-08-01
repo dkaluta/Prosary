@@ -8,6 +8,8 @@
   --text: #1f1f1f;
   --text-muted: #6e6e6e;
   --danger: #b3261e;
+  /* Text ON a brand-primary background — dark mode's pale rose needs dark text. */
+  --on-primary: #ffffff;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -19,6 +21,7 @@
     --text: #f2f2f2;
     --text-muted: #c8c8c8;
     --danger: #f2b8b5;
+    --on-primary: #3a1020;
   }
 }
 * { box-sizing: border-box; }
@@ -49,7 +52,7 @@ p.tagline { color: var(--text-muted); margin: 4px 0 24px; }
 .desc { margin: 0 0 12px; }
 a.download, button.primary {
   display: inline-block; padding: 9px 16px; border-radius: 8px;
-  background: var(--brand-primary); color: var(--bg); border: 1px solid var(--brand-primary);
+  background: var(--brand-primary); color: var(--on-primary); border: 1px solid var(--brand-primary);
   text-decoration: none; font-weight: 600; font-size: 0.95rem; cursor: pointer;
 }
 button.primary:disabled { opacity: 0.5; cursor: not-allowed; }

@@ -10,6 +10,10 @@
   --text: #1f1f1f;
   --text-muted: #6e6e6e;
   --danger: #b3261e;
+  /* Text ON brand-primary / danger backgrounds — dark mode's pale variants need dark
+     text, not light (white-on-rose is unreadable). */
+  --on-primary: #ffffff;
+  --on-danger: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,6 +26,8 @@
     --text: #f2f2f2;
     --text-muted: #c8c8c8;
     --danger: #f2b8b5;
+    --on-primary: #3a1020;
+    --on-danger: #3a0d0b;
   }
 }
 
@@ -91,7 +97,7 @@ nav.stepper button {
 nav.stepper button.active {
   background: var(--brand-primary);
   border-color: var(--brand-primary);
-  color: var(--bg);
+  color: var(--on-primary);
   font-weight: 600;
 }
 
@@ -101,7 +107,7 @@ nav.stepper button .badge {
   margin-inline-start: 6px;
   border-radius: 999px;
   background: var(--danger);
-  color: var(--bg);
+  color: var(--on-danger);
   font-size: 0.75rem;
   font-weight: 700;
 }
@@ -238,7 +244,7 @@ button.subtle {
 button.primary {
   background: var(--brand-primary);
   border: 1px solid var(--brand-primary);
-  color: var(--bg);
+  color: var(--on-primary);
   font-weight: 600;
 }
 

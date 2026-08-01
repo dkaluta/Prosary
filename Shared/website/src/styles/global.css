@@ -1,6 +1,9 @@
 :root {
   --brand-primary: #7a1f3d;
   --brand-headline: #4a0e23;
+  /* Text sitting ON a brand-primary background. Light mode's deep maroon takes white;
+     dark mode's pale rose needs dark text — white-on-rose is ~1.6:1, unreadable. */
+  --on-primary: #ffffff;
   --bg: #ffffff;
   --text: #1f1f1f;
   --text-muted: #6e6e6e;
@@ -10,6 +13,7 @@
   :root {
     --brand-primary: #d8a8b5;
     --brand-headline: #ffffff;
+    --on-primary: #3a1020;
     --bg: #1f1f1f;
     --text: #f2f2f2;
     --text-muted: #c8c8c8;
@@ -59,7 +63,7 @@ body {
   padding: 12px 24px;
   border-radius: 8px;
   background: var(--brand-primary);
-  color: white;
+  color: var(--on-primary);
   text-decoration: none;
   font-weight: 600;
 }

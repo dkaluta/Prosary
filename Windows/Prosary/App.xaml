@@ -36,6 +36,10 @@
             </ResourceDictionary.ThemeDictionaries>
 
             <SolidColorBrush x:Key="BrandPrimaryBrush" Color="{ThemeResource BrandPrimaryColor}" />
+            <!-- Translucent brand wash for chip/tag backgrounds whose text is BrandPrimaryBrush —
+                 a solid brand background with white text is unreadable in dark mode, where
+                 BrandPrimary is a pale rose. Mirrors iOS's accentColor.opacity(0.15) capsules. -->
+            <SolidColorBrush x:Key="BrandPrimaryFaintBrush" Color="{ThemeResource BrandPrimaryColor}" Opacity="0.15" />
             <SolidColorBrush x:Key="BrandHeadlineBrush" Color="{ThemeResource BrandHeadlineColor}" />
 
             <conv:ColorToBrushConverter x:Key="ColorToBrush" />
