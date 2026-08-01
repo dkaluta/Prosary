@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   // so Next's tracer must bundle them into the function (freebee's pattern).
   outputFileTracingIncludes: {
     "/api/admin/migrate": ["./migrations/**/*.sql"],
+    "/api/admin/seed": ["./migrations/**/*.sql", "./seed/**"],
   },
   experimental: {
     serverActions: {
