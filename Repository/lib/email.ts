@@ -66,6 +66,22 @@ async function deliver(message: { to: string; subject: string; text: string }): 
   }
 }
 
+/** Quarterly cron heartbeat — exercises the Brevo key so it can't go stale unnoticed;
+ * the arriving mail is the proof of life. Deliberately does NOT include the key itself
+ * (email persists in plaintext; the key lives in Vercel's env and the user's 1Password). */
+export async function sendHeartbeatEmail(to: string): Promise<void> {
+  await deliver({
+    to,
+    subject: "Prosary Prayers — quarterly heartbeat, email sending works",
+    text:
+      "This is the scheduled quarterly heartbeat from prayers.prosary.app.\n\n" +
+      "Receiving it means the Brevo API key is alive and recovery emails will deliver. " +
+      "The key itself stays where it belongs — the Vercel project's environment variables " +
+      "and your password manager.\n\n" +
+      "If these ever stop arriving, check the Vercel cron logs and the Brevo dashboard.",
+  });
+}
+
 export async function sendRecoveryEmail(to: string, username: string, link: string): Promise<void> {
   await deliver({
     to,
