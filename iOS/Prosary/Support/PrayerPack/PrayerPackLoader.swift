@@ -394,9 +394,44 @@ enum PrayerPackStore {
 
   /// Where user-imported .prosaryprayer files live — scanned (sorted by filename) after the
   /// built-in packs on every load, so installs survive restarts. Overridable for tests.
+  /// When iCloud Drive is available this is re-pointed at the ubiquity container before the
+  /// first scan — see `adoptUbiquityDirectoryIfAvailable`.
   static var installedPacksDirectory: URL = FileManager.default
     .urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
     .appendingPathComponent("PrayerPacks", isDirectory: true)
+
+  private static var didAdoptUbiquity = false
+
+  /// Groundwork for installed-pack sync: when the user's iCloud Drive is available, installed
+  /// packs live in the app's ubiquity container (`Documents/PrayerPacks`) so manual imports
+  /// follow the user across their devices. Packs installed before this existed migrate in
+  /// (`setUbiquitous` moves them); with iCloud signed out or disabled the local directory keeps
+  /// working exactly as before. Files another device added but this one hasn't materialized
+  /// yet appear as ".….prosaryprayer.icloud" placeholders — `ensureLoaded` kicks off their
+  /// download so they load on a later launch. Deliberately not yet shipped: NSFileCoordinator
+  /// wrapping and live NSMetadataQuery updates (mid-session appearance); those land with a
+  /// visible sync UI.
+  private static func adoptUbiquityDirectoryIfAvailable() {
+    guard !didAdoptUbiquity else { return }
+    didAdoptUbiquity = true
+    // First call after launch can do daemon I/O; subsequent launches are fast. Acceptable next
+    // to the pack-zip reads this same lazy load already does.
+    guard let container = FileManager.default.url(forUbiquityContainerIdentifier: nil) else { return }
+    let cloudPacks = container.appendingPathComponent("Documents/PrayerPacks", isDirectory: true)
+    try? FileManager.default.createDirectory(at: cloudPacks, withIntermediateDirectories: true)
+
+    let localDirectory = installedPacksDirectory
+    if localDirectory != cloudPacks,
+       let localFiles = try? FileManager.default.contentsOfDirectory(at: localDirectory, includingPropertiesForKeys: nil) {
+      for file in localFiles where file.pathExtension == "prosaryprayer" {
+        let destination = cloudPacks.appendingPathComponent(file.lastPathComponent)
+        if !FileManager.default.fileExists(atPath: destination.path) {
+          try? FileManager.default.setUbiquitous(true, itemAt: file, destinationURL: destination)
+        }
+      }
+    }
+    installedPacksDirectory = cloudPacks
+  }
 
   static func prayerOverride(languageCode: String, key: PrayerKey) -> String? {
     ensureLoaded()
@@ -581,8 +616,15 @@ enum PrayerPackStore {
 
     // User-installed bundles load after the built-ins (so shipped content always wins the
     // shared merges) and are skipped on id collision with anything already loaded.
-    let installedFiles = ((try? FileManager.default.contentsOfDirectory(
-      at: installedPacksDirectory, includingPropertiesForKeys: nil)) ?? [])
+    adoptUbiquityDirectoryIfAvailable()
+    let directoryContents = (try? FileManager.default.contentsOfDirectory(
+      at: installedPacksDirectory, includingPropertiesForKeys: nil)) ?? []
+    // Undownloaded iCloud placeholders can't load this launch — start their download so a
+    // pack imported on another device appears on a later one.
+    for placeholder in directoryContents where placeholder.lastPathComponent.hasSuffix(".prosaryprayer.icloud") {
+      try? FileManager.default.startDownloadingUbiquitousItem(at: placeholder)
+    }
+    let installedFiles = directoryContents
       .filter { $0.pathExtension == "prosaryprayer" }
       .sorted { $0.lastPathComponent < $1.lastPathComponent }
     for url in installedFiles {

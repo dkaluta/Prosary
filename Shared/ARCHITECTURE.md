@@ -208,6 +208,16 @@ Windows: `Persistence/IPresetStore.cs` + `SqlitePresetStore.cs`) with the same c
 - `delete(prayer)` / `DeleteAsync(prayer)` — if the deleted favorite was default and others of the
   same (kind, customDevotionId) remain, one is promoted to default.
 
+iOS favorites sync through SwiftData + CloudKit (`ModelConfiguration(cloudKitDatabase:
+.automatic)` against `iCloud.com.dkaluta.prosary`, falling back to a local-only store when
+iCloud is unavailable). Three things must all be present for sync to actually propagate — the
+first two were once missing, which looked like "broken sync" (devices only caught up on cold
+launch): the `aps-environment` push entitlement (+ its `com.apple.developer.` macOS twin), the
+`remote-notification` UIBackgroundModes entry (CloudKit announces remote changes via silent
+push), and the CloudKit schema deployed to the **Production** environment in the CloudKit
+Console before a TestFlight/App Store build ships (debug builds auto-create it in Development
+only — this last step is a console action, not code).
+
 The per-devotion (not global) default/delete scoping is the one behavioral detail worth calling
 out explicitly: it's easy to accidentally implement an unscoped version if a platform's store
 started out Rosary-only, since "every row" and "every Rosary row" are indistinguishable until a
@@ -456,8 +466,15 @@ of its own — its entire step sequence and per-step text are data-driven from i
   Favorites screen (file picker on all three platforms). `installPack` validates the file
   (readable zip; parseable manifest + devotion.json; content for every declared language; not a
   `builtinKind` pack; no id collision with anything loaded), copies it into a per-platform
-  installed-packs directory (iOS Application Support/PrayerPacks, Android
-  filesDir/prayerpacks, Windows LocalFolder/PrayerPacks), and loads it live. The directory is
+  installed-packs directory (iOS Application Support/PrayerPacks — re-pointed at the iCloud
+  ubiquity container's `Documents/PrayerPacks` when iCloud Drive is available, so manual
+  imports follow the user across Apple devices (existing local packs migrate in;
+  `.…icloud` placeholders from other devices get their download kicked off at scan;
+  NSFileCoordinator/NSMetadataQuery live updates are deliberately deferred until a visible
+  sync UI exists); Android filesDir/prayerpacks, Windows LocalFolder/PrayerPacks), and loads
+  it live. Bundles installed from the prayers.prosary.app repository use ids of the form
+  `repo.<username>.<name>` — the `repo.` prefix is what the UI keys its "Repository" tag on,
+  and it can never collide with compose-authored ids (whose shape forbids dots). The directory is
   rescanned (sorted by filename) after the built-ins on every launch, so installs persist;
   id collisions are skipped so shipped devotions always win. Imported devotions get the same
   Favorites star row plus a remove affordance; `removeInstalledPack` deletes the file and
