@@ -43,7 +43,7 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     private string _body = string.Empty;
 
     [ObservableProperty]
-    private string _mysteryImageFile = "ms-appx:///Assets/Images/jesus_portrait.jpg";
+    private string _mysteryImageFile = "ms-appx:///Assets/Images/christ_pantocrator.jpg";
 
     [ObservableProperty]
     private string _progressText = string.Empty;
@@ -78,6 +78,8 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     public bool CanGoBack => RepetitionState.CanGoBack;
 
     public string NextButtonText => RepetitionState.IsLastRep ? "Finish" : "Next";
+
+    public bool IsLastStep => RepetitionState.IsLastRep;
 
     public bool IsFavorited => MatchingFavoriteId is not null;
 
@@ -121,13 +123,16 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
         var all = await _presets.GetAllAsync();
         var defaultJesusPrayer = all.FirstOrDefault(p => p.Kind == PrayerKind.JesusPrayer && p.IsDefault)
             ?? all.FirstOrDefault(p => p.Kind == PrayerKind.JesusPrayer);
-        return defaultJesusPrayer?.ResolvedLanguageCode;
+        // No favorite yet: the app-level default language, never a silent Latin fallback.
+        return defaultJesusPrayer?.ResolvedLanguageCode
+            ?? LanguageCatalog.Resolve(LanguageCatalog.DefaultSentinel).Code;
     }
 
     partial void OnRepetitionStateChanged(JesusPrayerProgress value)
     {
         OnPropertyChanged(nameof(CanGoBack));
         OnPropertyChanged(nameof(NextButtonText));
+        OnPropertyChanged(nameof(IsLastStep));
         RenderCurrentStep();
     }
 

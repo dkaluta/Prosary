@@ -152,6 +152,16 @@ fun AboutScreen(onBack: () -> Unit) {
                 )
             }
 
+            AboutSection(title = "Jesus Prayer Illustration") {
+                Text(
+                    "Christ Pantocrator: encaustic icon (6th century), Saint Catherine\u2019s Monastery, " +
+                        "Mount Sinai \u2014 the oldest surviving icon of Christ Pantocrator, honoring the " +
+                        "prayer\u2019s Eastern tradition; public domain.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+
             AboutSection(title = "Scripture Sources") {
                 Text(
                     "Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), " +

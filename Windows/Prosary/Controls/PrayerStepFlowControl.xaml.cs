@@ -15,6 +15,24 @@ public sealed partial class PrayerStepFlowControl : UserControl
         set => SetValue(ViewModelProperty, value);
     }
 
+    /// <summary>When set ("Pray" — the Jesus Prayer), a large round button below the text becomes
+    /// the flow's one big tap target and replaces the footer's Next entirely — for a counter
+    /// flow, advancing is the only action, so it deserves more than a corner button.</summary>
+    public static readonly DependencyProperty CentralActionLabelProperty = DependencyProperty.Register(
+        nameof(CentralActionLabel), typeof(string), typeof(PrayerStepFlowControl), new PropertyMetadata(null));
+
+    public string? CentralActionLabel
+    {
+        get => (string?)GetValue(CentralActionLabelProperty);
+        set => SetValue(CentralActionLabelProperty, value);
+    }
+
+    public Visibility VisibleWhenSet(string? label) =>
+        string.IsNullOrEmpty(label) ? Visibility.Collapsed : Visibility.Visible;
+
+    public Visibility CollapsedWhenSet(string? label) =>
+        string.IsNullOrEmpty(label) ? Visibility.Visible : Visibility.Collapsed;
+
     public PrayerStepFlowControl()
     {
         InitializeComponent();

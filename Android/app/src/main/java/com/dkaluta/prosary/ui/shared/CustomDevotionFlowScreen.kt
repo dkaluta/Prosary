@@ -3,6 +3,7 @@ package com.dkaluta.prosary.ui.shared
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Language
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material3.DropdownMenu
@@ -39,8 +40,10 @@ import kotlinx.coroutines.launch
  * decadeIndex) get none.
  *
  * [prayer] is set when launched from an existing favorite (via PrayerDispatchScreen) — seeds the
- * star as already-favorited immediately, without waiting on the initial favorites fetch. A
- * generic devotion has no per-favorite language — it always follows the app default. */
+ * star as already-favorited immediately, without waiting on the initial favorites fetch. The
+ * session language follows the favorite's languageCode (sentinel = the app default), switchable
+ * in place from the toolbar's language menu — testers assumed generic devotions shipped fewer
+ * languages than they do when the only switch was the app-level setting. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack: () -> Unit) {
@@ -56,29 +59,39 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
     var displayName by remember { mutableStateOf(devotionId) }
     var variantId by remember { mutableStateOf(prayer?.variantId) }
     var variantMenuExpanded by remember { mutableStateOf(false) }
+    /** The favorite's raw language choice: an explicit code, or the sentinel ("follow the
+     * app-level default setting"). [languageCode] is always the resolved code. */
+    var chosenLanguage by remember { mutableStateOf(prayer?.languageCode ?: LanguageCatalog.defaultSentinel) }
+    var languageMenuExpanded by remember { mutableStateOf(false) }
 
     LaunchedEffect(prayer, devotionId, variantId) {
         displayName = PrayerPackStore.info(devotionId)?.localizedDisplayName ?: devotionId
-        val resolvedLanguageCode = LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).code
-        languageCode = resolvedLanguageCode
-        isRightToLeft = LanguageCatalog.resolve(resolvedLanguageCode).isRightToLeft
+
+        // The favorite (when one exists) carries the language and variant to pray in, so it
+        // loads before the first build rather than after it.
+        if (matchingFavoriteId == null && prayer == null) {
+            val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
+            val favorite = all.firstOrNull { it.kind == PrayerKind.Custom && it.customDevotionId == devotionId }
+            matchingFavoriteId = favorite?.id
+            if (favorite != null) {
+                chosenLanguage = favorite.languageCode
+                if (variantId == null && favorite.variantId != null) {
+                    variantId = favorite.variantId
+                }
+            }
+        }
+
+        val resolved = LanguageCatalog.resolve(chosenLanguage)
+        languageCode = resolved.code
+        isRightToLeft = resolved.isRightToLeft
         steps = services.engine.buildSteps(
             Prayer(
-                kind = PrayerKind.Custom, languageCode = resolvedLanguageCode,
+                kind = PrayerKind.Custom, languageCode = chosenLanguage,
                 customDevotionId = devotionId, variantId = variantId,
             ),
         )
         currentIndex = 0
         seasonColor = services.calendar.seasonColorToday()
-
-        if (matchingFavoriteId == null) {
-            val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
-            val favorite = all.firstOrNull { it.kind == PrayerKind.Custom && it.customDevotionId == devotionId }
-            matchingFavoriteId = favorite?.id
-            if (favorite?.variantId != variantId && variantId == null) {
-                variantId = favorite?.variantId
-            }
-        }
     }
 
     val currentStep = steps.getOrNull(currentIndex)
@@ -110,6 +123,54 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
             { _, _ -> }
         },
         topBarActions = {
+            // Language switcher — the app-level prayer-language setting was the only way to
+            // change a generic devotion's language, and testers didn't find it. Mirrors the
+            // variant menu: rebuilds the session in place (keeping the position — the step
+            // sequence is identical across languages) and persists to the matching favorite.
+            val bundleLanguages = PrayerPackStore.info(devotionId)?.languages.orEmpty()
+            if (bundleLanguages.size > 1) {
+                IconButton(onClick = { languageMenuExpanded = true }) {
+                    Icon(Icons.Filled.Language, contentDescription = "Prayer language")
+                }
+                DropdownMenu(expanded = languageMenuExpanded, onDismissRequest = { languageMenuExpanded = false }) {
+                    val choices = listOf(LanguageCatalog.defaultSentinel to "App setting") +
+                        bundleLanguages.mapNotNull { code ->
+                            LanguageCatalog.all.firstOrNull { it.code == code }?.let { it.code to it.nativeName }
+                        }
+                    for ((raw, name) in choices) {
+                        DropdownMenuItem(
+                            text = { Text(name) },
+                            leadingIcon = if (chosenLanguage == raw) {
+                                { Icon(Icons.Filled.Check, contentDescription = null) }
+                            } else {
+                                null
+                            },
+                            onClick = {
+                                languageMenuExpanded = false
+                                chosenLanguage = raw
+                                val resolved = LanguageCatalog.resolve(raw)
+                                languageCode = resolved.code
+                                isRightToLeft = resolved.isRightToLeft
+                                val position = currentIndex
+                                steps = services.engine.buildSteps(
+                                    Prayer(
+                                        kind = PrayerKind.Custom, languageCode = raw,
+                                        customDevotionId = devotionId, variantId = variantId,
+                                    ),
+                                )
+                                currentIndex = position.coerceIn(0, (steps.size - 1).coerceAtLeast(0))
+                                matchingFavoriteId?.let { id ->
+                                    scope.launch {
+                                        services.presetStore.get(id)?.let { favorite ->
+                                            services.presetStore.save(favorite.copy(languageCode = raw))
+                                        }
+                                    }
+                                }
+                            },
+                        )
+                    }
+                }
+            }
             // Variant switcher — only for bundles declaring alternate step-sets (e.g. the
             // Stations' traditional vs. scriptural forms). Switching rebuilds the session from
             // step 0 (via the LaunchedEffect keyed on variantId) and persists the choice to the

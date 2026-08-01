@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using Prosary.Controls;
 using Prosary.Navigation;
 using Prosary.ViewModels;
 
@@ -22,6 +23,8 @@ public sealed partial class RosaryPrayerPage : Page
     private const double WideMinorColumnHeightThreshold = 300;
 
     public RosaryViewModel ViewModel { get; }
+
+    private AutoAdvanceTimer? _autoAdvance;
 
     public RosaryPrayerPage()
     {
@@ -44,6 +47,17 @@ public sealed partial class RosaryPrayerPage : Page
         {
             await ViewModel.LoadAsync(e.Parameter as Guid?);
         }
+
+        AutoAdvanceMenu.Populate(AutoAdvanceFlyout, () => _autoAdvance?.Restart());
+        _autoAdvance?.Dispose();
+        _autoAdvance = new AutoAdvanceTimer(ViewModel);
+    }
+
+    protected override void OnNavigatedFrom(NavigationEventArgs e)
+    {
+        base.OnNavigatedFrom(e);
+        _autoAdvance?.Dispose();
+        _autoAdvance = null;
     }
 
     private void OnActualThemeChanged(FrameworkElement sender, object args)

@@ -95,3 +95,11 @@ fixed-prayer illustrations (`crucifix`, `our_father`, `glory_be`, `jesus_portrai
 `eternal_rest`, `madonna_and_child`, `st_michael`, `virtue_*`) predate this file; their
 attributions are listed in the app's About screen. `cross_placeholder.png` is original to the
 project.
+
+## Jesus Prayer (`christ_pantocrator`)
+
+**Christ Pantocrator, encaustic icon (6th century), Saint Catherine's Monastery, Mount
+Sinai** — the oldest surviving icon of Christ Pantocrator, chosen for the Jesus Prayer's
+Eastern (hesychast) tradition. Public domain (PD-Art; the icon is ancient and the photograph a
+faithful reproduction). Source file: Wikimedia Commons,
+`File:Spas_vsederzhitel_sinay.jpg`, face-centered square crop.

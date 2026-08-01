@@ -79,6 +79,12 @@ struct AboutView: View {
             defaultValue: "Eugeniusz Kazimirowski, Divine Mercy (\u{201C}Jezu, ufam Tobie\u{201D}, 1934), Divine Mercy Sanctuary, Vilnius \u{2014} the original image painted under St. Faustina\u{2019}s direction; public domain."))
         }
 
+        section("Jesus Prayer Illustration") {
+          Text(String(
+            localized: "about.jesusPrayerImage.pantocrator",
+            defaultValue: "Christ Pantocrator: encaustic icon (6th century), Saint Catherine\u{2019}s Monastery, Mount Sinai \u{2014} the oldest surviving icon of Christ Pantocrator, honoring the prayer\u{2019}s Eastern tradition; public domain."))
+        }
+
         section("Scripture Sources") {
           Text("about.scriptureSources")
             .font(.footnote)

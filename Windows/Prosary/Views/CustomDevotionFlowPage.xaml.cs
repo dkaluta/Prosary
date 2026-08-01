@@ -2,6 +2,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using Prosary.Controls;
+using Prosary.Models;
 using Prosary.Navigation;
 using Prosary.ViewModels;
 
@@ -19,6 +21,8 @@ public sealed partial class CustomDevotionFlowPage : Page
 
     public CustomDevotionViewModel ViewModel { get; }
 
+    private AutoAdvanceTimer? _autoAdvance;
+
     public CustomDevotionFlowPage()
     {
         ViewModel = App.Services.GetRequiredService<CustomDevotionViewModel>();
@@ -35,7 +39,19 @@ public sealed partial class CustomDevotionFlowPage : Page
         {
             await ViewModel.LoadAsync(p.PrayerId, p.BundleId);
             BuildVariantFlyout();
+            BuildLanguageFlyout();
         }
+
+        AutoAdvanceMenu.Populate(AutoAdvanceFlyout, () => _autoAdvance?.Restart());
+        _autoAdvance?.Dispose();
+        _autoAdvance = new AutoAdvanceTimer(ViewModel);
+    }
+
+    protected override void OnNavigatedFrom(NavigationEventArgs e)
+    {
+        base.OnNavigatedFrom(e);
+        _autoAdvance?.Dispose();
+        _autoAdvance = null;
     }
 
     // MenuFlyout has no ItemsSource, so the variant items are built here after load — one
@@ -57,6 +73,30 @@ public sealed partial class CustomDevotionFlowPage : Page
                 BuildVariantFlyout();
             };
             VariantFlyout.Items.Add(item);
+        }
+    }
+
+    // Same MenuFlyout-has-no-ItemsSource pattern as the variant flyout: "App setting" first,
+    // then the bundle's languages by native name, checkmark refreshed on every switch.
+    private void BuildLanguageFlyout()
+    {
+        LanguageFlyout.Items.Clear();
+        var choices = new List<(string Raw, string Name)> { (LanguageCatalog.DefaultSentinel, "App setting") };
+        choices.AddRange(ViewModel.Languages.Select(l => (l.Code, l.NativeName)));
+        foreach (var (raw, name) in choices)
+        {
+            var item = new ToggleMenuFlyoutItem
+            {
+                Text = name,
+                IsChecked = raw == ViewModel.CurrentLanguageRaw,
+            };
+            var chosen = raw;
+            item.Click += async (_, _) =>
+            {
+                await ViewModel.SelectLanguageAsync(chosen);
+                BuildLanguageFlyout();
+            };
+            LanguageFlyout.Items.Add(item);
         }
     }
 

@@ -54,6 +54,13 @@
                            FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
                            FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
                            TextWrapping="Wrap" TextAlignment="Center" />
+
+                <Button Content="{x:Bind CentralActionLabel, Mode=OneWay}"
+                        Visibility="{x:Bind VisibleWhenSet(CentralActionLabel), Mode=OneWay}"
+                        Command="{x:Bind ViewModel.NextCommand, Mode=OneWay}"
+                        Width="104" Height="104" CornerRadius="52" Margin="0,12,0,0"
+                        HorizontalAlignment="Center" FontSize="18" FontWeight="SemiBold"
+                        Style="{StaticResource AccentButtonStyle}" />
             </StackPanel>
         </ScrollViewer>
 
@@ -66,7 +73,8 @@
             <Button Grid.Column="0" Content="Back" Command="{x:Bind ViewModel.BackCommand, Mode=OneWay}"
                     IsEnabled="{x:Bind ViewModel.CanGoBack, Mode=OneWay}" Background="Transparent" />
             <Button Grid.Column="2" Content="{x:Bind ViewModel.NextButtonText, Mode=OneWay}"
-                    Command="{x:Bind ViewModel.NextCommand, Mode=OneWay}" Style="{StaticResource AccentButtonStyle}" MinWidth="120" />
+                    Command="{x:Bind ViewModel.NextCommand, Mode=OneWay}" Style="{StaticResource AccentButtonStyle}" MinWidth="120"
+                    Visibility="{x:Bind CollapsedWhenSet(CentralActionLabel), Mode=OneWay}" />
         </Grid>
     </Grid>
 </UserControl>

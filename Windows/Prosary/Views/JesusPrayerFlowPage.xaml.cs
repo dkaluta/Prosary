@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using Prosary.Controls;
 using Prosary.Navigation;
 using Prosary.ViewModels;
 
@@ -10,6 +11,8 @@ namespace Prosary.Views;
 public sealed partial class JesusPrayerFlowPage : Page
 {
     public JesusPrayerViewModel ViewModel { get; }
+
+    private AutoAdvanceTimer? _autoAdvance;
 
     public JesusPrayerFlowPage()
     {
@@ -22,6 +25,17 @@ public sealed partial class JesusPrayerFlowPage : Page
         base.OnNavigatedTo(e);
         var parameters = e.Parameter as JesusPrayerFlowParams ?? new JesusPrayerFlowParams(null, null);
         await ViewModel.LoadAsync(parameters.PrayerId, parameters.Target);
+
+        AutoAdvanceMenu.Populate(AutoAdvanceFlyout, () => _autoAdvance?.Restart());
+        _autoAdvance?.Dispose();
+        _autoAdvance = new AutoAdvanceTimer(ViewModel);
+    }
+
+    protected override void OnNavigatedFrom(NavigationEventArgs e)
+    {
+        base.OnNavigatedFrom(e);
+        _autoAdvance?.Dispose();
+        _autoAdvance = null;
     }
 
     // A plain back-arrow pop correctly returns to Setup when reached fresh (Home → Setup →

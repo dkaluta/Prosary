@@ -71,7 +71,9 @@ fun JesusPrayerFlowScreen(
             val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
             val defaultJP = all.firstOrNull { it.kind == PrayerKind.JesusPrayer && it.isDefault }
                 ?: all.firstOrNull { it.kind == PrayerKind.JesusPrayer }
+            // No favorite yet: the app-level default language, never a silent Latin fallback.
             defaultJP?.resolvedLanguageCode
+                ?: LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).code
         }
         isRightToLeft = LanguageCatalog.resolve(languageCode ?: LanguageCatalog.defaultCode).isRightToLeft
         seasonColor = services.calendar.seasonColorToday()
@@ -88,7 +90,7 @@ fun JesusPrayerFlowScreen(
         RosaryStep(
             title = "Jesus Prayer",
             body = PrayerTranslations.get(languageCode, PrayerKey.OratioIesu),
-            imageOverrideKey = "jesus_portrait",
+            imageOverrideKey = "christ_pantocrator",
         )
     } else {
         null
@@ -96,6 +98,7 @@ fun JesusPrayerFlowScreen(
 
     PrayerStepFlowScreen(
         title = "The Jesus Prayer",
+        centralActionLabel = "Pray",
         step = currentStep,
         currentIndex = progress.currentIndex,
         totalSteps = progress.targetCount,

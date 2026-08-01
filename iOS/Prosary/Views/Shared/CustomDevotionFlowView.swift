@@ -27,6 +27,9 @@ struct CustomDevotionFlowView: View {
   @State private var matchingFavoriteId: Prayer.ID? = nil
   @State private var displayName: String = ""
   @State private var variantId: String? = nil
+  /// The favorite's raw language choice: an explicit code, or the sentinel ("follow the
+  /// app-level default setting"). `languageCode` above is always the resolved code.
+  @State private var chosenLanguage: String = LanguageCatalog.defaultSentinel
 
   private var currentStep: RosaryStep? {
     steps.indices.contains(currentIndex) ? steps[currentIndex] : nil
@@ -74,6 +77,29 @@ struct CustomDevotionFlowView: View {
       } : nil
     )
     .toolbar {
+      // Language switcher — the app-level prayer-language setting was the only way to change
+      // a generic devotion's language, and testers didn't find it (they assumed the devotion
+      // shipped fewer languages than it does). Mirrors the variant menu: rebuilds the session
+      // in place and persists the choice to the matching favorite when one exists.
+      if let languages = PrayerPackStore.info(for: devotionId)?.languages, languages.count > 1 {
+        ToolbarItem(placement: .primaryAction) {
+          Menu {
+            languageButton(
+              raw: LanguageCatalog.defaultSentinel,
+              name: String(localized: "prayerFlow.language.appDefault", defaultValue: "App setting"))
+            Divider()
+            ForEach(languages, id: \.self) { code in
+              if let option = LanguageCatalog.all.first(where: { $0.code == code }) {
+                languageButton(raw: option.code, name: option.nativeName)
+              }
+            }
+          } label: {
+            Image(systemName: "globe")
+          }
+          .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer language"))
+          .accessibilityIdentifier("languageMenu")
+        }
+      }
       // Variant switcher — only for bundles declaring alternate step-sets (e.g. the Stations'
       // traditional vs. scriptural forms). Switching rebuilds the session from step 0 and
       // persists the choice to the matching favorite when one exists.
@@ -113,7 +139,8 @@ struct CustomDevotionFlowView: View {
     let all = (try? await services.presetStore.all()) ?? []
     let favorite = prayer ?? all.first { $0.kind == .custom && $0.customDevotionId == devotionId }
     matchingFavoriteId = favorite?.id
-    languageCode = favorite?.resolvedLanguageCode ?? LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).code
+    chosenLanguage = favorite?.languageCode ?? LanguageCatalog.defaultSentinel
+    languageCode = LanguageCatalog.resolve(chosenLanguage).code
 
     variantId = favorite?.variantId
 
@@ -125,8 +152,42 @@ struct CustomDevotionFlowView: View {
 
   private func builtSteps() -> [RosaryStep] {
     services.engine.buildSteps(for: Prayer(
-      kind: .custom, languageCode: languageCode ?? LanguageCatalog.defaultSentinel,
+      kind: .custom, languageCode: chosenLanguage,
       customDevotionId: devotionId, variantId: variantId))
+  }
+
+  @ViewBuilder
+  private func languageButton(raw: String, name: String) -> some View {
+    Button {
+      switchLanguage(to: raw)
+    } label: {
+      if raw == chosenLanguage {
+        Label(name, systemImage: "checkmark")
+      } else {
+        Text(name)
+      }
+    }
+  }
+
+  /// Rebuilds the session in the chosen language, keeping the current position — unlike a
+  /// variant switch, the step sequence is identical across languages, only its text changes.
+  private func switchLanguage(to raw: String) {
+    chosenLanguage = raw
+    let resolved = LanguageCatalog.resolve(raw)
+    languageCode = resolved.code
+    isRightToLeft = resolved.isRightToLeft
+    let position = currentIndex
+    steps = builtSteps()
+    currentIndex = min(position, max(steps.count - 1, 0))
+
+    // Remember the choice on the matching favorite, if one exists.
+    guard let id = matchingFavoriteId else { return }
+    Task {
+      if var favorite = try? await services.presetStore.get(id: id) {
+        favorite.languageCode = raw
+        try? await services.presetStore.save(favorite)
+      }
+    }
   }
 
   private func switchVariant(to newVariantId: String, defaultVariantId: String) {

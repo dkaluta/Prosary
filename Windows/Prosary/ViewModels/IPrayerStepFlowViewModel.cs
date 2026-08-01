@@ -37,6 +37,12 @@ public interface IPrayerStepFlowViewModel : System.ComponentModel.INotifyPropert
     bool CanGoBack { get; }
     string NextButtonText { get; }
 
+    /// <summary>True when Next would finish/dismiss the flow — the auto-advance timer
+    /// (<see cref="Prosary.Controls.AutoAdvanceTimer"/>) never fires then, so a hands-free
+    /// session stops on the last step instead of closing itself mid-prayer. For the Jesus
+    /// Prayer this is the bounded session's last repetition; an unbounded one never ends.</summary>
+    bool IsLastStep { get; }
+
     IRelayCommand NextCommand { get; }
     IRelayCommand BackCommand { get; }
 }

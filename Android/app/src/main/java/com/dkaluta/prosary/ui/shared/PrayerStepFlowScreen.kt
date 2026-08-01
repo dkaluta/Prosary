@@ -18,18 +18,24 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Timer
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
@@ -38,7 +44,12 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -59,9 +70,11 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
+import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.RosaryStep
 import com.dkaluta.prosary.typography.PrayerTypography
 import com.dkaluta.prosary.ui.theme.extraColors
+import kotlinx.coroutines.delay
 
 /**
  * Shared presentation chrome for any linear prayer flow: season-color bar, progress readout (a
@@ -87,11 +100,30 @@ fun PrayerStepFlowScreen(
     onNavigateUp: () -> Unit,
     topBarActions: @Composable () -> Unit = {},
     accessory: @Composable (isWide: Boolean, hasRoomForSingleMinorColumn: Boolean) -> Unit = { _, _ -> },
+    /** When set ("Pray" — the Jesus Prayer), a large round button below the text becomes the
+     * flow's one big tap target and replaces the footer's Next entirely — for a counter flow,
+     * advancing is the only action, so it deserves more than a corner button. */
+    centralActionLabel: String? = null,
 ) {
     // Matches the pre-load "no step yet" instant to "last step" so the footer doesn't flash a
     // "Next" label a moment before content briefly reads "Finish" (imperceptible in practice,
     // since loading is a near-instant in-memory lookup).
     val isLastStep = step == null || (totalSteps != null && currentIndex >= totalSteps - 1)
+
+    // Seconds between automatic advances (hands-free praying); 0 = off. One app-wide setting
+    // shared by every flow, so a choice made in the Rosary carries into the Stations.
+    var autoAdvanceSeconds by remember { mutableIntStateOf(AppSettings.autoAdvanceSeconds) }
+    var autoAdvanceMenuExpanded by remember { mutableStateOf(false) }
+
+    // Restarts whenever the step, the interval, or the loaded state changes — so tapping
+    // Back/Next resets the countdown, and turning the setting off cancels it. Never fires on
+    // the last step: auto-"Finish" would dismiss the whole flow mid-prayer.
+    LaunchedEffect(autoAdvanceSeconds, currentIndex, step != null) {
+        if (autoAdvanceSeconds > 0 && step != null && !isLastStep) {
+            delay(autoAdvanceSeconds * 1000L)
+            onNext()
+        }
+    }
 
     BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
         // A landscape phone is wide but short (compact height), unlike a tablet/wide split which
@@ -132,7 +164,38 @@ fun PrayerStepFlowScreen(
                             Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                         }
                     },
-                    actions = { topBarActions() },
+                    actions = {
+                        topBarActions()
+                        IconButton(onClick = { autoAdvanceMenuExpanded = true }) {
+                            Icon(
+                                Icons.Filled.Timer,
+                                contentDescription = "Auto-advance",
+                                tint = if (autoAdvanceSeconds > 0) MaterialTheme.colorScheme.primary else LocalContentColor.current,
+                            )
+                        }
+                        DropdownMenu(
+                            expanded = autoAdvanceMenuExpanded,
+                            onDismissRequest = { autoAdvanceMenuExpanded = false },
+                        ) {
+                            for ((seconds, label) in listOf(
+                                0 to "Off", 3 to "Every 3 seconds", 5 to "Every 5 seconds", 10 to "Every 10 seconds",
+                            )) {
+                                DropdownMenuItem(
+                                    text = { Text(label) },
+                                    leadingIcon = if (autoAdvanceSeconds == seconds) {
+                                        { Icon(Icons.Filled.Check, contentDescription = null) }
+                                    } else {
+                                        null
+                                    },
+                                    onClick = {
+                                        autoAdvanceMenuExpanded = false
+                                        autoAdvanceSeconds = seconds
+                                        AppSettings.setAutoAdvanceSeconds(seconds)
+                                    },
+                                )
+                            }
+                        }
+                    },
                 )
             },
         ) { paddingValues ->
@@ -153,6 +216,8 @@ fun PrayerStepFlowScreen(
                                 isRightToLeft = isRightToLeft,
                                 availableHeight = maxHeight,
                                 accessory = accessory,
+                                centralActionLabel = centralActionLabel,
+                                onCentralAction = onNext,
                             )
                         } else {
                             NarrowContent(
@@ -160,6 +225,8 @@ fun PrayerStepFlowScreen(
                                 languageCode = languageCode,
                                 isRightToLeft = isRightToLeft,
                                 accessory = accessory,
+                                centralActionLabel = centralActionLabel,
+                                onCentralAction = onNext,
                             )
                         }
                     }
@@ -186,11 +253,13 @@ fun PrayerStepFlowScreen(
                         Text("Back")
                     }
                     Spacer(modifier = Modifier.weight(1f))
-                    Button(
-                        onClick = onNext,
-                        contentPadding = if (isCompactHeight) compactButtonPadding else ButtonDefaults.ContentPadding,
-                    ) {
-                        Text(if (isLastStep) "Finish" else "Next")
+                    if (centralActionLabel == null) {
+                        Button(
+                            onClick = onNext,
+                            contentPadding = if (isCompactHeight) compactButtonPadding else ButtonDefaults.ContentPadding,
+                        ) {
+                            Text(if (isLastStep) "Finish" else "Next")
+                        }
                     }
                 }
             }
@@ -230,6 +299,8 @@ private fun NarrowContent(
     languageCode: String?,
     isRightToLeft: Boolean,
     accessory: @Composable (isWide: Boolean, hasRoomForSingleMinorColumn: Boolean) -> Unit,
+    centralActionLabel: String? = null,
+    onCentralAction: (() -> Unit)? = null,
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
         // The extra top padding + full-width modifier live here (applied to whatever the
@@ -256,7 +327,10 @@ private fun NarrowContent(
                         .align(Alignment.CenterHorizontally)
                         .clip(RoundedCornerShape(16.dp)),
                 )
-                TextBlock(step = step, languageCode = languageCode)
+                TextBlock(
+                    step = step, languageCode = languageCode,
+                    centralActionLabel = centralActionLabel, onCentralAction = onCentralAction,
+                )
             }
         }
     }
@@ -269,6 +343,8 @@ private fun WideContent(
     isRightToLeft: Boolean,
     availableHeight: Dp,
     accessory: @Composable (isWide: Boolean, hasRoomForSingleMinorColumn: Boolean) -> Unit,
+    centralActionLabel: String? = null,
+    onCentralAction: (() -> Unit)? = null,
 ) {
     val isCompactHeight = availableHeight < 480.dp
     val imageSide = if (isCompactHeight) 190.dp else 320.dp
@@ -291,7 +367,10 @@ private fun WideContent(
 
         CompositionLocalProvider(LocalLayoutDirection provides if (isRightToLeft) LayoutDirection.Rtl else LayoutDirection.Ltr) {
             Column(modifier = Modifier.weight(1f).fillMaxHeight().verticalScroll(rememberScrollState())) {
-                TextBlock(step = step, languageCode = languageCode, modifier = Modifier.padding(16.dp))
+                TextBlock(
+                    step = step, languageCode = languageCode, modifier = Modifier.padding(16.dp),
+                    centralActionLabel = centralActionLabel, onCentralAction = onCentralAction,
+                )
             }
         }
     }
@@ -331,7 +410,13 @@ private fun MysteryImage(imageKey: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun TextBlock(step: RosaryStep, languageCode: String?, modifier: Modifier = Modifier) {
+private fun TextBlock(
+    step: RosaryStep,
+    languageCode: String?,
+    modifier: Modifier = Modifier,
+    centralActionLabel: String? = null,
+    onCentralAction: (() -> Unit)? = null,
+) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -367,5 +452,20 @@ private fun TextBlock(step: RosaryStep, languageCode: String?, modifier: Modifie
             step.body.parseBoldMarkdown(),
             style = PrayerTypography.style(languageCode = languageCode, isScripture = step.isScripture),
         )
+
+        if (centralActionLabel != null && onCentralAction != null) {
+            Button(
+                onClick = onCentralAction,
+                shape = CircleShape,
+                modifier = Modifier.padding(top = 12.dp).size(104.dp),
+            ) {
+                Text(
+                    centralActionLabel,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                )
+            }
+        }
     }
 }

@@ -20,6 +20,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Click="OnNavigateUp" Background="Transparent" Padding="8">
                 <FontIcon Glyph="&#xE72B;" />
@@ -31,7 +32,13 @@
             <Button Grid.Column="2" Content="Finish" Command="{x:Bind ViewModel.FinishCommand, Mode=OneWay}"
                     Visibility="{x:Bind ViewModel.IsUnbounded, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
 
-            <Button Grid.Column="3" Command="{x:Bind ViewModel.ToggleFavoriteCommand, Mode=OneWay}" Background="Transparent" Padding="8">
+            <Button Grid.Column="3" Background="Transparent" Padding="8">
+                <FontIcon Glyph="&#xE916;" /> <!-- Stopwatch — hands-free auto-advance -->
+                <Button.Flyout>
+                    <MenuFlyout x:Name="AutoAdvanceFlyout" />
+                </Button.Flyout>
+            </Button>
+            <Button Grid.Column="4" Command="{x:Bind ViewModel.ToggleFavoriteCommand, Mode=OneWay}" Background="Transparent" Padding="8">
                 <Grid>
                     <FontIcon Glyph="&#xE735;" Foreground="{StaticResource BrandPrimaryBrush}"
                               Visibility="{x:Bind ViewModel.IsFavorited, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
@@ -41,6 +48,6 @@
             </Button>
         </Grid>
 
-        <controls:PrayerStepFlowControl Grid.Row="1" ViewModel="{x:Bind ViewModel}" />
+        <controls:PrayerStepFlowControl Grid.Row="1" ViewModel="{x:Bind ViewModel}" CentralActionLabel="Pray" />
     </Grid>
 </Page>

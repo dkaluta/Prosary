@@ -35,9 +35,19 @@ struct PrayerStepFlowView: View {
   /// isWide/hasRoomForSingleMinorColumn flags this view already resolved for its own layout, so
   /// a caller's accessory sizes itself consistently without re-deriving them.
   var accessory: ((_ isWide: Bool, _ hasRoomForSingleMinorColumn: Bool) -> AnyView)?
+  /// When set ("Pray" — the Jesus Prayer), a large round button below the text becomes the
+  /// flow's one big tap target and replaces the footer's Next entirely — for a counter flow,
+  /// advancing is the only action, so it deserves more than a corner button.
+  var centralActionLabel: String? = nil
 
   @Environment(\.horizontalSizeClass) private var horizontalSizeClass
   @Environment(\.verticalSizeClass) private var verticalSizeClass
+
+  /// Seconds between automatic advances (hands-free praying); 0 = off. One app-wide setting
+  /// shared by every flow, so a choice made in the Rosary carries into the Stations.
+  @AppStorage("autoAdvanceSeconds") private var autoAdvanceSeconds = 0
+
+  private static let autoAdvanceChoices = [3, 5, 10]
 
   /// Regular width (Mac, a wide iPad window, Vision) gets the taller three-column layout; so
   /// does a compact-*height* window, which is how even a non-Max iPhone reports itself in
@@ -100,13 +110,15 @@ struct PrayerStepFlowView: View {
 
         Spacer()
 
-        Button(isLastStep ? "prayerFlow.finish" : "prayerFlow.next") { onNext() }
-          .prosaryProminentButtonStyle()
-          .tint(seasonColor)
-          .accessibilityIdentifier("prayerFlowNextButton")
-          #if os(macOS)
-          .keyboardShortcut(.space, modifiers: [])
-          #endif
+        if centralActionLabel == nil {
+          Button(isLastStep ? "prayerFlow.finish" : "prayerFlow.next") { onNext() }
+            .prosaryProminentButtonStyle()
+            .tint(seasonColor)
+            .accessibilityIdentifier("prayerFlowNextButton")
+            #if os(macOS)
+            .keyboardShortcut(.space, modifiers: [])
+            #endif
+        }
       }
       .controlSize(isCompactHeight ? .regular : .large)
       .padding(isCompactHeight ? 8 : 16)
@@ -115,6 +127,33 @@ struct PrayerStepFlowView: View {
     #if os(iOS)
     .navigationBarTitleDisplayMode(.inline)
     #endif
+    .toolbar {
+      ToolbarItem(placement: .primaryAction) {
+        Menu {
+          Picker(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-advance"),
+                 selection: $autoAdvanceSeconds) {
+            Text(String(localized: "prayerFlow.autoAdvance.off", defaultValue: "Off")).tag(0)
+            ForEach(Self.autoAdvanceChoices, id: \.self) { seconds in
+              Text(String(localized: "prayerFlow.autoAdvance.everySeconds",
+                          defaultValue: "Every \(seconds) seconds")).tag(seconds)
+            }
+          }
+        } label: {
+          Image(systemName: autoAdvanceSeconds > 0 ? "timer.circle.fill" : "timer")
+        }
+        .accessibilityLabel(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-advance"))
+        .accessibilityIdentifier("autoAdvanceMenu")
+      }
+    }
+    // Restarts whenever the step, the interval, or the loaded state changes — so tapping
+    // Back/Next resets the countdown, and turning the setting off cancels it. Never fires on
+    // the last step: auto-"Finish" would dismiss the whole flow mid-prayer.
+    .task(id: "\(autoAdvanceSeconds)-\(currentIndex)-\(step != nil)") {
+      guard autoAdvanceSeconds > 0, step != nil, !isLastStep else { return }
+      try? await Task.sleep(for: .seconds(autoAdvanceSeconds))
+      guard !Task.isCancelled else { return }
+      onNext()
+    }
   }
 
   @ViewBuilder
@@ -253,6 +292,22 @@ struct PrayerStepFlowView: View {
       Text(bodyAttributedString(step.body))
         .font(PrayerTypography.font(languageCode: languageCode, isScripture: step.isScripture))
         .lineSpacing(4)
+
+      if let centralActionLabel {
+        Button(action: onNext) {
+          Text(centralActionLabel)
+            .font(.title3.weight(.bold))
+            .foregroundStyle(.white)
+            .frame(width: 104, height: 104)
+            .background(Circle().fill(seasonColor))
+        }
+        .buttonStyle(.plain)
+        .padding(.top, 12)
+        .accessibilityIdentifier("centralActionButton")
+        #if os(macOS)
+        .keyboardShortcut(.space, modifiers: [])
+        #endif
+      }
     }
     .frame(maxWidth: .infinity)
   }

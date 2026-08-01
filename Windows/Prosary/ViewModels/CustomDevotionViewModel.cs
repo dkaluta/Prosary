@@ -37,6 +37,10 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     private bool _hasClosingCross;
     private string? _variantId;
 
+    /// <summary>The favorite's raw language choice: an explicit code, or the sentinel ("follow
+    /// the app-level default setting"). <see cref="_languageCode"/> is always the resolved code.</summary>
+    private string _chosenLanguage = LanguageCatalog.DefaultSentinel;
+
     [ObservableProperty]
     private string _devotionTitle = string.Empty;
 
@@ -151,6 +155,46 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
 
     public string? CurrentVariantId => _variantId ?? (Variants.Count > 0 ? Variants[0].Id : null);
 
+    /// <summary>The bundle's languages (manifest order); the page builds its language flyout
+    /// from this. The app-level setting was the only way to change a generic devotion's language
+    /// and testers didn't find it — they assumed the devotion shipped fewer languages than it
+    /// does.</summary>
+    public IReadOnlyList<LanguageOption> Languages { get; private set; } = [];
+
+    public bool ShowsLanguageMenu => Languages.Count > 1;
+
+    /// <summary>What the flyout's checkmark matches: an explicit code, or the sentinel for
+    /// "App setting".</summary>
+    public string CurrentLanguageRaw => _chosenLanguage;
+
+    /// <summary>Switches the session's language in place, keeping the current position — unlike
+    /// a variant switch, the step sequence is identical across languages, only its text changes.
+    /// Persists to the matching favorite when one exists.</summary>
+    public async Task SelectLanguageAsync(string raw)
+    {
+        _chosenLanguage = raw;
+        var resolved = LanguageCatalog.Resolve(raw);
+        _languageCode = resolved.Code;
+        IsRightToLeft = resolved.IsRightToLeft;
+        OnPropertyChanged(nameof(CurrentLanguageRaw));
+
+        var position = _index;
+        _steps = _engine.BuildSteps(new Prayer
+        {
+            Kind = PrayerKind.Custom,
+            LanguageCode = raw,
+            CustomDevotionId = _bundleId,
+            VariantId = _variantId,
+        });
+        _index = Math.Clamp(position, 0, Math.Max(_steps.Count - 1, 0));
+        RenderCurrentStep();
+
+        if (MatchingFavoriteId is { } id && await _presets.GetAsync(id) is { } favorite)
+        {
+            await _presets.SaveAsync(favorite with { LanguageCode = raw });
+        }
+    }
+
     /// <summary>Switches the session to another variant: rebuilds from step 0 and persists the
     /// choice to the matching favorite when one exists.</summary>
     public async Task SelectVariantAsync(string variantId)
@@ -162,7 +206,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         _steps = _engine.BuildSteps(new Prayer
         {
             Kind = PrayerKind.Custom,
-            LanguageCode = _languageCode,
+            LanguageCode = _chosenLanguage,
             CustomDevotionId = _bundleId,
             VariantId = _variantId,
         });
@@ -197,19 +241,28 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             // favorites fetch below.
             MatchingFavoriteId = prayerId;
 
-            _languageCode = LanguageCatalog.Resolve(LanguageCatalog.DefaultSentinel).Code;
-
-            IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
             var all = await _presets.GetAllAsync();
             var favorite = all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId);
             MatchingFavoriteId ??= favorite?.Id;
             _variantId = favorite?.VariantId;
             OnPropertyChanged(nameof(CurrentVariantId));
 
+            // The favorite carries the language to pray in (sentinel = the app default).
+            _chosenLanguage = favorite?.LanguageCode ?? LanguageCatalog.DefaultSentinel;
+            var resolvedLanguage = LanguageCatalog.Resolve(_chosenLanguage);
+            _languageCode = resolvedLanguage.Code;
+            IsRightToLeft = resolvedLanguage.IsRightToLeft;
+            Languages = (PrayerPackStore.Info(bundleId)?.Languages ?? [])
+                .Select(code => LanguageCatalog.All.FirstOrDefault(l => l.Code == code))
+                .OfType<LanguageOption>()
+                .ToList();
+            OnPropertyChanged(nameof(ShowsLanguageMenu));
+            OnPropertyChanged(nameof(CurrentLanguageRaw));
+
             _steps = _engine.BuildSteps(new Prayer
             {
                 Kind = PrayerKind.Custom,
-                LanguageCode = _languageCode,
+                LanguageCode = _chosenLanguage,
                 CustomDevotionId = bundleId,
                 VariantId = _variantId,
             });

@@ -4,8 +4,9 @@ import android.content.Context
 import android.content.SharedPreferences
 
 /**
- * App-wide preferences that aren't tied to any single [Prayer] — currently just the default
- * prayer language, resolved whenever a Prayer's own languageCode is [LanguageCatalog.defaultSentinel].
+ * App-wide preferences that aren't tied to any single [Prayer] — the default prayer language
+ * (resolved whenever a Prayer's own languageCode is [LanguageCatalog.defaultSentinel]) and the
+ * prayer flows' auto-advance interval.
  *
  * [LanguageCatalog.resolve] is called from many non-Composable sites (engines, stores) that have
  * no [Context] of their own, so this holds the resolved value in a plain `var` initialized once
@@ -15,8 +16,13 @@ import android.content.SharedPreferences
 object AppSettings {
     private const val PREFS_NAME = "prosary_settings"
     private const val KEY_DEFAULT_LANGUAGE = "defaultLanguageCode"
+    private const val KEY_AUTO_ADVANCE = "autoAdvanceSeconds"
 
     var defaultLanguageCode: String = LanguageCatalog.defaultCode
+        private set
+
+    /** Seconds between automatic step advances in the prayer flows; 0 = off. */
+    var autoAdvanceSeconds: Int = 0
         private set
 
     private var prefs: SharedPreferences? = null
@@ -26,10 +32,16 @@ object AppSettings {
         prefs = resolved
         defaultLanguageCode = resolved.getString(KEY_DEFAULT_LANGUAGE, LanguageCatalog.defaultCode)
             ?: LanguageCatalog.defaultCode
+        autoAdvanceSeconds = resolved.getInt(KEY_AUTO_ADVANCE, 0)
     }
 
     fun setDefaultLanguageCode(code: String) {
         defaultLanguageCode = code
         prefs?.edit()?.putString(KEY_DEFAULT_LANGUAGE, code)?.apply()
+    }
+
+    fun setAutoAdvanceSeconds(seconds: Int) {
+        autoAdvanceSeconds = seconds
+        prefs?.edit()?.putInt(KEY_AUTO_ADVANCE, seconds)?.apply()
     }
 }

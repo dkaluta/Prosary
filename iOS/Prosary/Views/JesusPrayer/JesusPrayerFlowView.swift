@@ -45,7 +45,7 @@ struct JesusPrayerFlowView: View {
     return RosaryStep(
       title: PrayerKind.jesusPrayer.displayName, subtitle: nil,
       body: PrayerTranslations.get(languageCode: languageCode, key: .oratioIesu),
-      imageOverrideKey: "jesus_portrait")
+      imageOverrideKey: "christ_pantocrator")
   }
 
   var body: some View {
@@ -59,7 +59,8 @@ struct JesusPrayerFlowView: View {
       languageCode: languageCode,
       canGoBack: progress.canGoBack,
       onBack: { progress.goBack() },
-      onNext: next
+      onNext: next,
+      centralActionLabel: String(localized: "jesusPrayerFlow.pray", defaultValue: "Pray")
     )
     .toolbar {
       if case .unbounded = effectiveTarget {
@@ -84,7 +85,9 @@ struct JesusPrayerFlowView: View {
       let all = (try? await services.presetStore.all()) ?? []
       let defaultJP = all.first { $0.kind == .jesusPrayer && $0.isDefault }
         ?? all.first { $0.kind == .jesusPrayer }
+      // No favorite yet: the app-level default language, never a silent Latin fallback.
       languageCode = defaultJP?.resolvedLanguageCode
+        ?? LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).code
     }
 
     isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft

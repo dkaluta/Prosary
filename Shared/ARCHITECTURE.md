@@ -170,6 +170,27 @@ share the exact same model (iOS: `Views/RosaryFlow/BeadModels.swift`; Android:
 If you touch the bead track on one platform, check whether the same behavioral change belongs on
 the other two — this is one of the most exactly-mirrored pieces of the whole app.
 
+## Prayer flow chrome
+
+Every linear flow shares one presentation chrome per platform (iOS `PrayerStepFlowView`, Android
+`PrayerStepFlowScreen`, Windows `PrayerStepFlowControl` plus the bespoke Rosary/generic pages
+that mirror it). Two toolbar affordances belong to the flows themselves:
+
+- **Auto-advance** (all flows) — hands-free praying, from tester feedback: Off / every 3 / 5 /
+  10 seconds, one app-wide setting (`autoAdvanceSeconds` in UserDefaults / SharedPreferences /
+  LocalSettings — the `defaultLanguageCode` convention). The countdown restarts on every step
+  change, so a manual Back/Next resets it, and it never fires on a flow's last step —
+  auto-"Finish" would dismiss the session mid-prayer. The Jesus Prayer's bounded sessions stop
+  on their last repetition the same way (Windows `IPrayerStepFlowViewModel.IsLastStep`); an
+  unbounded session keeps counting.
+- **Language menu** (generic-devotion flows) — testers assumed Divine Mercy/Seven Sorrows
+  shipped fewer languages than they do, because the app-level setting was the only switch. The
+  generic flow's toolbar globe lists "App setting" plus the bundle manifest's languages,
+  rebuilds the session in place *keeping the position* (unlike a variant switch, the sequence is
+  identical across languages), and persists the choice to the matching favorite's
+  `languageCode` (sentinel = follow the app setting). The Rosary keeps its per-favorite editor
+  language instead.
+
 ## Persistence
 
 Each platform has its own `PresetStore` abstraction (iOS: `Protocols/PresetStore.swift` +
@@ -204,8 +225,10 @@ editor (name, language, kind-specific options, reminders). Every generic (bundle
 renders as a single star row instead, one per discovered bundle in pack-load order — no
 name/language editing, no "+ Add another". Tapping the star still just calls `save`/`delete` on a
 `Prayer` row through the same `PresetStore` (no separate persistence entity), but constrained at
-the UI layer to at most one row per devotion: matched by **bundle id** (not language), and always
-saved with the sentinel `languageCode` (follows the app-level default language setting). Once
+the UI layer to at most one row per devotion: matched by **bundle id** (not language), and
+initially saved with the sentinel `languageCode` (follows the app-level default language
+setting) — the flow's toolbar language menu (see "Prayer flow chrome") may later persist an
+explicit code onto that same row. Once
 favorited, a small reminders-only editor (iOS: `RemindersOnlyEditorView`; Android:
 `RemindersOnlyEditorScreen`; Windows: `RemindersOnlyEditorPage`) is reachable from the row — it
 shares its reminders-list UI with the full editor via one extracted component (iOS:
@@ -247,7 +270,8 @@ its current enabled ones), `removeAll(prayer)`, `rescheduleAll(prayers)` (called
   Magi (Murillo), the Divine Mercy image (Kazimirowski, 1934) — all public-domain classical art,
   every file an exact 1:1 square — plus ~10 override illustrations used by steps not tied to a
   specific mystery (`crucifix`, `our_father`, `glory_be`, `jesus_portrait`, `eternal_rest`,
-  `madonna_and_child`, `st_michael`, `virtue_faith`/`virtue_hope`/`virtue_charity`) and
+  `madonna_and_child`, `st_michael`, `virtue_faith`/`virtue_hope`/`virtue_charity`,
+  `christ_pantocrator` — the Sinai icon, the Jesus Prayer's Eastern face) and
   `cross_placeholder` (a simple generated placeholder, not classical art). `Images/CREDITS.md`
   records artwork/museum/Commons-file/license per file; each platform's About screen carries the
   user-facing attributions. Devotion artwork ships *inside* the bundles (every platform prefers
