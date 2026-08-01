@@ -39,6 +39,17 @@
         }
       }
     },
+    "about.jesusPrayerImage.pantocrator" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Christ Pantocrator: encaustic icon (6th century), Saint Catherine’s Monastery, Mount Sinai — the oldest surviving icon of Christ Pantocrator, honoring the prayer’s Eastern tradition; public domain."
+          }
+        }
+      }
+    },
     "about.mysteryImage.agonyInTheGarden" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1592,6 +1603,17 @@
         }
       }
     },
+    "favorites.repositoryTag" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Repository"
+          }
+        }
+      }
+    },
     "favorites.setDefault" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1775,6 +1797,17 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "The Pope’s intention: %@"
+          }
+        }
+      }
+    },
+    "jesusPrayerFlow.pray" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Pray"
           }
         }
       }
@@ -2247,6 +2280,39 @@
         }
       }
     },
+    "prayerFlow.autoAdvance" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Auto-advance"
+          }
+        }
+      }
+    },
+    "prayerFlow.autoAdvance.everySeconds" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Every %lld seconds"
+          }
+        }
+      }
+    },
+    "prayerFlow.autoAdvance.off" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Off"
+          }
+        }
+      }
+    },
     "prayerFlow.back" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2277,6 +2343,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "סיום"
+          }
+        }
+      }
+    },
+    "prayerFlow.language" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prayer language"
+          }
+        }
+      }
+    },
+    "prayerFlow.language.appDefault" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "App setting"
           }
         }
       }

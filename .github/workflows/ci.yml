@@ -55,6 +55,24 @@ jobs:
           python3 -c "import zipfile; zipfile.ZipFile('dist-e2e/exampleDevotion.prosaryprayer').extractall('dist-e2e/extracted')"
           python3 ../Shared/tools/validate-devotion.py dist-e2e/extracted
 
+  repository:
+    name: Repository (next build)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: Repository/package-lock.json
+      - name: Install dependencies
+        working-directory: Repository
+        run: npm ci
+      - name: Build (type-check included)
+        working-directory: Repository
+        run: npm run build
+
   windows:
     name: Windows (Prosary.Tests)
     runs-on: windows-latest

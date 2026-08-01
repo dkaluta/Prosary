@@ -1,0 +1,30 @@
+{
+  "name": "repository",
+  "private": true,
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=20.0.0 <23.0.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "db:migrate": "node --experimental-strip-types scripts/migrate.ts",
+    "db:seed": "node --experimental-strip-types scripts/seed.ts"
+  },
+  "dependencies": {
+    "@simplewebauthn/browser": "^13.3.0",
+    "@simplewebauthn/server": "^13.3.0",
+    "@vercel/blob": "^2.3.3",
+    "next": "^16.2.4",
+    "postgres": "^3.4.9",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "typescript": "^5.9.0"
+  }
+}
