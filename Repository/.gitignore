@@ -6,3 +6,6 @@ next-env.d.ts
 .vercel
 .env*.local
 .env*
+
+# The user-global gitignore excludes *.sql; migrations must ship.
+!migrations/*.sql
