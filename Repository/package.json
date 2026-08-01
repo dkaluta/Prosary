@@ -7,9 +7,12 @@
   },
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node --experimental-strip-types scripts/embed-assets.ts",
     "build": "next build",
     "start": "next start",
+    "predb:migrate": "node --experimental-strip-types scripts/embed-assets.ts",
     "db:migrate": "node --experimental-strip-types scripts/migrate.ts",
+    "predb:seed": "node --experimental-strip-types scripts/embed-assets.ts",
     "db:seed": "node --experimental-strip-types scripts/seed.ts"
   },
   "dependencies": {

@@ -1,9 +1,8 @@
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
 import { randomUUID } from "node:crypto";
 import { put } from "@vercel/blob";
 import { createSqlClient } from "@/lib/db-connection";
-import { resolveTracedDir, runMigrations } from "@/lib/migrate";
+import { SEED_BUNDLES } from "@/lib/embedded-assets.generated";
+import { runMigrations } from "@/lib/migrate";
 
 // Migrations + founding data, run where the sensitive connection string lives
 // (the Neon integration's env vars can't be pulled locally) — freebee's
@@ -34,7 +33,9 @@ export async function POST(request: Request) {
       await sql`INSERT INTO users (id, username, email) VALUES (${userId}, ${USERNAME}, ${EMAIL})`;
     }
 
-    const bytes = await readFile(join(resolveTracedDir("seed"), "repo.dkaluta.kyrie.prosaryprayer"));
+    const seed = SEED_BUNDLES.find((b) => b.name === `${BUNDLE_ID}.prosaryprayer`);
+    if (!seed) return Response.json({ error: "seed_bundle_missing" }, { status: 500 });
+    const bytes = Buffer.from(seed.base64, "base64");
     const blob = await put(`bundles/${BUNDLE_ID}.prosaryprayer`, bytes, {
       access: "public",
       contentType: "application/zip",

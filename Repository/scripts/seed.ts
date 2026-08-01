@@ -4,7 +4,6 @@
 // The seeded account has no passkey — per the recovery design, its owner claims
 // it by requesting a recovery link on /account (email → new passkey).
 
-import { readFile } from "node:fs/promises";
 import { randomUUID } from "node:crypto";
 import { put } from "@vercel/blob";
 import { createSqlClient } from "../lib/db-connection.ts";
@@ -25,7 +24,8 @@ try {
     console.log(`created user ${USERNAME}`);
   }
 
-  const bytes = await readFile(new URL("../seed/repo.dkaluta.kyrie.prosaryprayer", import.meta.url));
+  const { SEED_BUNDLES } = await import("../lib/embedded-assets.generated.ts");
+  const bytes = Buffer.from(SEED_BUNDLES.find((b) => b.name === `${BUNDLE_ID}.prosaryprayer`)!.base64, "base64");
   const blob = await put(`bundles/${BUNDLE_ID}.prosaryprayer`, bytes, {
     access: "public",
     contentType: "application/zip",
