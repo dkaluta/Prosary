@@ -34,6 +34,7 @@ private struct PackManifest: Decodable {
   let reminderBody: [String: String]?
   let reminderPresetHours: [Int]?
   let reminderPresetFooter: [String: String]?
+  let tags: [String]?
 }
 
 private struct PackContent: Decodable {
@@ -333,6 +334,9 @@ struct CustomDevotionInfo {
   let reminderBody: [String: String]
   let reminderPresetHours: [Int]?
   let reminderPresetFooter: [String: String]
+  /// Lowercase category labels from the manifest ("marian", "passion") — what the Categories
+  /// tab groups by.
+  let tags: [String]
 
   /// The display name in the app's active UI localization (falling back to the manifest's
   /// base `displayName`) — preserves e.g. the Hebrew devotion names that used to live in
@@ -652,7 +656,8 @@ enum PrayerPackStore {
       displayNameByLanguage: manifest.displayNameByLanguage ?? [:],
       reminderBody: manifest.reminderBody ?? [:],
       reminderPresetHours: manifest.reminderPresetHours,
-      reminderPresetFooter: manifest.reminderPresetFooter ?? [:])
+      reminderPresetFooter: manifest.reminderPresetFooter ?? [:],
+      tags: manifest.tags ?? [])
 
     for language in manifest.languages {
       let content = try decoder.decode(PackContent.self, from: zip.contents(of: "content/\(language).json"))

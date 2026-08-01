@@ -52,7 +52,7 @@ import kotlinx.coroutines.launch
  * "Repository" tag, remove affordance). Mirrors iOS's RepositoryBrowserView. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RepositoryBrowserScreen(onBack: () -> Unit) {
+fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true) {
     val scope = rememberCoroutineScope()
     var bundles by remember { mutableStateOf<List<RepositoryBundle>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -86,8 +86,10 @@ fun RepositoryBrowserScreen(onBack: () -> Unit) {
             TopAppBar(
                 title = { Text("Community Devotions") },
                 navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    if (showsBackButton) {
+                        IconButton(onClick = onBack) {
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        }
                     }
                 },
             )

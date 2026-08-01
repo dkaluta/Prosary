@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Prosary.Views.SearchPage"
+    x:Name="Root"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:Prosary.ViewModels"
+    xmlns:svc="using:Prosary.Services"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Padding="16" RowSpacing="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Search" Style="{StaticResource SubHeadlineTextStyle}" />
+        <TextBox Grid.Row="1" PlaceholderText="Devotions, categories, authors"
+                 Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <ScrollViewer Grid.Row="2">
+            <StackPanel Spacing="8" MaxWidth="640" HorizontalAlignment="Stretch">
+                <TextBlock Text="On this device" Foreground="{StaticResource BrandPrimaryBrush}" FontWeight="SemiBold" />
+                <ItemsControl ItemsSource="{x:Bind ViewModel.LocalMatches, Mode=OneWay}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="svc:DevotionListing">
+                            <Button Background="Transparent" BorderThickness="0" HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Left" Padding="8,10"
+                                    Command="{Binding ElementName=Root, Path=ViewModel.OpenCommand}"
+                                    CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" Spacing="12">
+                                    <FontIcon Glyph="{x:Bind IconGlyph}" Foreground="{StaticResource BrandPrimaryBrush}" />
+                                    <TextBlock Text="{x:Bind Title}" FontSize="15" />
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <TextBlock Text="From the community" Foreground="{StaticResource BrandPrimaryBrush}" FontWeight="SemiBold"
+                           Visibility="{x:Bind ViewModel.HasCommunityMatches, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                <ItemsControl ItemsSource="{x:Bind ViewModel.CommunityMatches, Mode=OneWay}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:RepositoryRow">
+                            <Grid ColumnSpacing="10" Padding="8,6">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Spacing="2">
+                                    <TextBlock Text="{x:Bind Bundle.Name}" FontSize="15" />
+                                    <TextBlock Text="{x:Bind Subtitle}" Style="{StaticResource MutedCaptionTextStyle}" />
+                                </StackPanel>
+                                <Grid Grid.Column="1" VerticalAlignment="Center">
+                                    <ProgressRing IsActive="{x:Bind IsBusy, Mode=OneWay}" Width="22" Height="22"
+                                                  Visibility="{x:Bind IsBusy, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                                    <Button Content="Install" Style="{StaticResource AccentButtonStyle}"
+                                            Visibility="{x:Bind IsInstallable, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                            Command="{Binding ElementName=Root, Path=ViewModel.InstallCommand}"
+                                            CommandParameter="{Binding}" />
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <TextBlock Text="{x:Bind ViewModel.InstallError, Mode=OneWay}" TextWrapping="Wrap"
+                           Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+                           Visibility="{x:Bind ViewModel.InstallError, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

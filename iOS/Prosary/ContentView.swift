@@ -2,43 +2,62 @@
 //  ContentView.swift
 //  Prosary
 //
+//  The app's tab shell: Pray (Home), Browse (the prayers.prosary.app catalog), Categories
+//  (devotions grouped by manifest tags), and Search (local + community). Bottom tabs on
+//  iPhone; on iOS 18/macOS 15 the sidebarAdaptable style turns them into a sidebar on
+//  iPad/Mac, matching the "bottom on phone, side on computer" design.
+//
 
 import SwiftUI
 import UniformTypeIdentifiers
 
 struct ContentView: View {
-  @State private var path = NavigationPath()
+  @State private var prayPath = NavigationPath()
+  @State private var browsePath = NavigationPath()
+  @State private var categoriesPath = NavigationPath()
+  @State private var searchPath = NavigationPath()
   private var coordinator = NavigationCoordinator.shared
   @State private var showsBundleImporter = false
   @State private var importError: String?
 
   var body: some View {
-    NavigationStack(path: $path) {
-      HomeView(path: $path)
-        .navigationDestination(for: AppRoute.self) { route in
-          switch route {
-          case .prayer(let id):
-            PrayerDispatchView(prayerId: id, path: $path)
-          case .favorites:
-            FavoritesListView(path: $path)
-          case .about:
-            AboutView()
-          case .jesusPrayerSetup:
-            JesusPrayerSetupView(path: $path)
-          case .jesusPrayer(let target):
-            JesusPrayerFlowView(path: $path, target: target)
-          case .custom(let devotionId):
-            CustomDevotionFlowView(devotionId: devotionId)
-          case .rosaryPicker:
-            RosaryPresetPickerView(path: $path)
-          case .rosaryQuickPray(let prayer):
-            RosaryFlowView(prayer: prayer)
-          }
-        }
+    TabView {
+      NavigationStack(path: $prayPath) {
+        HomeView(path: $prayPath)
+          .appRouteDestinations(path: $prayPath)
+      }
+      .tabItem {
+        Label(String(localized: "tabs.pray", defaultValue: "Pray"), systemImage: "hands.and.sparkles")
+      }
+
+      NavigationStack(path: $browsePath) {
+        RepositoryBrowserView(presentedAsSheet: false)
+          .appRouteDestinations(path: $browsePath)
+      }
+      .tabItem {
+        Label(String(localized: "tabs.browse", defaultValue: "Browse"), systemImage: "globe")
+      }
+
+      NavigationStack(path: $categoriesPath) {
+        CategoriesView(path: $categoriesPath)
+          .appRouteDestinations(path: $categoriesPath)
+      }
+      .tabItem {
+        Label(String(localized: "tabs.categories", defaultValue: "Categories"), systemImage: "square.grid.2x2")
+      }
+
+      NavigationStack(path: $searchPath) {
+        SearchTabView(path: $searchPath)
+          .appRouteDestinations(path: $searchPath)
+      }
+      .tabItem {
+        Label(String(localized: "tabs.search", defaultValue: "Search"), systemImage: "magnifyingglass")
+      }
     }
+    .adaptiveTabViewStyle()
     .onChange(of: coordinator.pendingRoute) { _, newValue in
       guard let newValue else { return }
-      path.append(newValue)
+      prayPath.append(newValue)
       coordinator.pendingRoute = nil
     }
     // File → Import Devotion Bundle… (menu commands run outside the view hierarchy, so the
@@ -56,7 +75,7 @@ struct ContentView: View {
       guard case .success(let url) = result else { return }
       do {
         try PrayerPackStore.installPack(fromUserSelected: url)
-        path.append(AppRoute.favorites)
+        prayPath.append(AppRoute.favorites)
       } catch {
         importError = error.localizedDescription
       }
@@ -71,9 +90,22 @@ struct ContentView: View {
     }
     .task {
       if let pending = coordinator.pendingRoute {
-        path.append(pending)
+        prayPath.append(pending)
         coordinator.pendingRoute = nil
       }
+    }
+  }
+}
+
+private extension View {
+  /// Sidebar on iPad/Mac where the OS supports it (iOS 18 / macOS 15); the classic bottom
+  /// tab bar / tab control everywhere else — the deployment targets are iOS 17 / macOS 14.
+  @ViewBuilder
+  func adaptiveTabViewStyle() -> some View {
+    if #available(iOS 18.0, macOS 15.0, *) {
+      self.tabViewStyle(.sidebarAdaptable)
+    } else {
+      self
     }
   }
 }

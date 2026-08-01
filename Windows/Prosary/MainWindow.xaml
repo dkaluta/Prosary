@@ -28,6 +28,29 @@
             <TextBlock Grid.Column="1" Text="Prosary" VerticalAlignment="Center" FontSize="12" />
         </Grid>
 
-        <Frame x:Name="RootFrame" Grid.Row="1" />
+        <!-- The tab shell: Pray / Browse / Categories / Search in a left NavigationView pane
+             ("side on computer" — phones get bottom bars on iOS/Android). Selecting a section
+             resets the frame's back stack so sections feel like tabs, not pushes. -->
+        <NavigationView x:Name="AppNav" Grid.Row="1"
+                        PaneDisplayMode="Auto"
+                        IsBackButtonVisible="Collapsed"
+                        IsSettingsVisible="False"
+                        SelectionChanged="OnNavSelectionChanged">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Pray" Tag="pray">
+                    <NavigationViewItem.Icon><FontIcon Glyph="&#xEB51;" /></NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Browse" Tag="browse">
+                    <NavigationViewItem.Icon><FontIcon Glyph="&#xE774;" /></NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Categories" Tag="categories">
+                    <NavigationViewItem.Icon><FontIcon Glyph="&#xF0E2;" /></NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Search" Tag="search">
+                    <NavigationViewItem.Icon><FontIcon Glyph="&#xE721;" /></NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+            <Frame x:Name="RootFrame" />
+        </NavigationView>
     </Grid>
 </Window>

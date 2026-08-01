@@ -18,6 +18,9 @@ struct HomeView: View {
   @State private var todayFeast: FeastDay? = nil
   @State private var monthIntention: PopeIntention? = nil
 
+  /// Bumped on every appearance — see devotionCards.
+  @State private var packGeneration = 0
+
   private var rosaryAccent: Color { todayMysteryGroup?.color ?? Color.brandPrimary }
   private var jesusPrayerAccent: Color { .adaptive(light: "#8B1A1A", dark: "#C62828") }
 
@@ -54,6 +57,9 @@ struct HomeView: View {
   /// manifest, nothing hardcoded here — and the Jesus Prayer (the counter-based odd one out)
   /// last. Adding a devotion means shipping a bundle; this view doesn't change.
   private var devotionCards: [DevotionCard] {
+    // Read the generation so installing a bundle elsewhere (Browse/Search/Favorites)
+    // invalidates this body and the new card appears without a relaunch.
+    _ = packGeneration
     var cards = [
       DevotionCard(
         id: PrayerKind.rosary.rawValue, systemImage: PrayerKind.rosary.systemImage, title: PrayerKind.rosary.displayName,
@@ -176,6 +182,10 @@ struct HomeView: View {
       .frame(maxWidth: .infinity)
     }
     .task { await load() }
+    .onAppear {
+      packGeneration += 1
+      Task { await load() }
+    }
   }
 
   private func load() async {

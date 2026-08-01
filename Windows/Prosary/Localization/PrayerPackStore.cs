@@ -353,7 +353,8 @@ public static class PrayerPackStore
             manifest.DisplayNameByLanguage ?? new Dictionary<string, string>(),
             manifest.ReminderBody ?? new Dictionary<string, string>(),
             manifest.ReminderPresetHours,
-            manifest.ReminderPresetFooter ?? new Dictionary<string, string>());
+            manifest.ReminderPresetFooter ?? new Dictionary<string, string>(),
+            manifest.Tags ?? []);
 
         foreach (var language in manifest.Languages)
         {
@@ -465,7 +466,8 @@ public static class PrayerPackStore
         Dictionary<string, string>? DisplayNameByLanguage = null,
         Dictionary<string, string>? ReminderBody = null,
         List<int>? ReminderPresetHours = null,
-        Dictionary<string, string>? ReminderPresetFooter = null);
+        Dictionary<string, string>? ReminderPresetFooter = null,
+        List<string>? Tags = null);
 
     private sealed record PackContent(Dictionary<string, string>? Prayers, Dictionary<string, MysteryText>? Mysteries);
 
@@ -741,7 +743,10 @@ public sealed record CustomDevotionInfo(
     IReadOnlyDictionary<string, string> DisplayNameByLanguage,
     IReadOnlyDictionary<string, string> ReminderBody,
     IReadOnlyList<int>? ReminderPresetHours,
-    IReadOnlyDictionary<string, string> ReminderPresetFooter)
+    IReadOnlyDictionary<string, string> ReminderPresetFooter,
+    // Lowercase category labels from the manifest ("marian", "passion") — what the
+    // Categories page groups by.
+    IReadOnlyList<string> Tags)
 {
     private static string UiLanguage => CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 

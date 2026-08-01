@@ -1,11 +1,36 @@
 package com.dkaluta.prosary.ui
 
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Language
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.GridView
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationRail
+import androidx.compose.material3.NavigationRailItem
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.compose.runtime.Composable
+import com.dkaluta.prosary.ui.categories.CategoriesScreen
+import com.dkaluta.prosary.ui.search.SearchScreen
+import com.dkaluta.prosary.ui.shared.LaunchTarget
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.models.jesusPrayerTargetFromRouteValue
 import com.dkaluta.prosary.models.toRouteValue
@@ -31,6 +56,9 @@ private object AdHocRosaryHolder {
 
 private object Routes {
     const val Home = "home"
+    const val Browse = "browse"
+    const val Categories = "categories"
+    const val Search = "search"
     const val Favorites = "favorites"
     const val RepositoryBrowser = "favorites/repository"
     // `kind` seeds a brand-new favorite's type when prayerId is absent (Android has no
@@ -64,11 +92,93 @@ private object Routes {
     fun custom(devotionId: String) = "custom/$devotionId"
 }
 
+private data class TabSpec(val route: String, val label: String, val icon: ImageVector)
+
+/** The app's tab shell: Pray (Home), Browse (prayers.prosary.app), Categories, Search —
+ * bottom NavigationBar on phones, NavigationRail on wide layouts ("bottom on phone, side on
+ * computer"). The bar shows only on the four top-level tab destinations; inner screens
+ * (flows, editors) keep the full height. Mirrors iOS's ContentView TabView. */
 @Composable
 fun ProsaryApp() {
     val navController = rememberNavController()
+    val tabs = listOf(
+        TabSpec(Routes.Home, "Pray", Icons.Filled.Home),
+        TabSpec(Routes.Browse, "Browse", Icons.Filled.Language),
+        TabSpec(Routes.Categories, "Categories", Icons.Filled.GridView),
+        TabSpec(Routes.Search, "Search", Icons.Filled.Search),
+    )
+    val backStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = backStackEntry?.destination?.route
+    val showsTabs = tabs.any { it.route == currentRoute }
 
-    NavHost(navController = navController, startDestination = Routes.Home) {
+    fun selectTab(route: String) {
+        navController.navigate(route) {
+            popUpTo(Routes.Home) { saveState = true }
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
+
+    BoxWithConstraints {
+        if (maxWidth >= 840.dp) {
+            Row(Modifier.fillMaxSize()) {
+                if (showsTabs) {
+                    NavigationRail {
+                        for (tab in tabs) {
+                            NavigationRailItem(
+                                selected = currentRoute == tab.route,
+                                onClick = { selectTab(tab.route) },
+                                icon = { Icon(tab.icon, contentDescription = null) },
+                                label = { Text(tab.label) },
+                            )
+                        }
+                    }
+                }
+                AppNavHost(navController, Modifier.weight(1f))
+            }
+        } else {
+            Scaffold(
+                bottomBar = {
+                    if (showsTabs) {
+                        NavigationBar {
+                            for (tab in tabs) {
+                                NavigationBarItem(
+                                    selected = currentRoute == tab.route,
+                                    onClick = { selectTab(tab.route) },
+                                    icon = { Icon(tab.icon, contentDescription = null) },
+                                    label = { Text(tab.label) },
+                                )
+                            }
+                        }
+                    }
+                },
+            ) { paddingValues ->
+                AppNavHost(navController, Modifier.padding(paddingValues))
+            }
+        }
+    }
+}
+
+private fun NavHostController.launch(target: LaunchTarget) {
+    when (target) {
+        LaunchTarget.Rosary -> navigate(Routes.RosaryPicker)
+        is LaunchTarget.Custom -> navigate(Routes.custom(target.bundleId))
+        LaunchTarget.JesusPrayer -> navigate(Routes.JesusPrayerSetup)
+    }
+}
+
+@Composable
+private fun AppNavHost(navController: NavHostController, modifier: Modifier = Modifier) {
+    NavHost(navController = navController, startDestination = Routes.Home, modifier = modifier) {
+        composable(Routes.Browse) {
+            com.dkaluta.prosary.ui.favorites.RepositoryBrowserScreen(onBack = {}, showsBackButton = false)
+        }
+        composable(Routes.Categories) {
+            CategoriesScreen(onLaunch = { target -> navController.launch(target) })
+        }
+        composable(Routes.Search) {
+            SearchScreen(onLaunch = { target -> navController.launch(target) })
+        }
         composable(Routes.Home) {
             HomeScreen(
                 onOpenPrayer = { id -> navController.navigate(Routes.prayer(id)) },

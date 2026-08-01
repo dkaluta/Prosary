@@ -3,6 +3,7 @@ using Microsoft.UI;
 using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Prosary.Navigation;
 using Prosary.Views;
@@ -73,6 +74,21 @@ public sealed partial class MainWindow : Window
         }
 
         Router.Initialize(RootFrame);
-        Router.Navigate<HomePage>();
+        // Selecting the item routes through OnNavSelectionChanged, which navigates to Home.
+        AppNav.SelectedItem = AppNav.MenuItems[0];
+    }
+
+    private void OnNavSelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+    {
+        if (args.SelectedItem is not NavigationViewItem item) return;
+        // Sections behave like tabs: switching resets the stack instead of pushing onto it.
+        RootFrame.BackStack.Clear();
+        switch (item.Tag as string)
+        {
+            case "pray": Router.Navigate<HomePage>(); break;
+            case "browse": Router.Navigate<RepositoryBrowserPage>(); break;
+            case "categories": Router.Navigate<CategoriesPage>(); break;
+            case "search": Router.Navigate<SearchPage>(); break;
+        }
     }
 }

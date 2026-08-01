@@ -170,6 +170,19 @@ share the exact same model (iOS: `Views/RosaryFlow/BeadModels.swift`; Android:
 If you touch the bead track on one platform, check whether the same behavioral change belongs on
 the other two — this is one of the most exactly-mirrored pieces of the whole app.
 
+## Navigation shell
+
+The apps are tabbed (2026-08): **Pray** (the former Home — Rosary card, devotion cards, Jesus
+Prayer, "Today"), **Browse** (the prayers.prosary.app catalog), **Categories** (devotions
+grouped by manifest `tags`, via a shared per-platform `DevotionDirectory` so nothing
+devotion-specific is hardcoded), and **Search** (local + community in one query). Bottom tab
+bar on phones, sidebar on desktop: iOS/macOS via `sidebarAdaptable` where available (targets
+are iOS 17/macOS 14, so older OSes keep the classic tab control), Android switches
+NavigationBar → NavigationRail at 840 dp, Windows wraps the root frame in a NavigationView
+whose section switches reset the back stack. Pray/Categories/Search re-derive their devotion
+lists on every appearance, so a bundle installed on any tab (or removed in Favorites) shows up
+everywhere without a relaunch — the bug that motivated the restructure.
+
 ## Prayer flow chrome
 
 Every linear flow shares one presentation chrome per platform (iOS `PrayerStepFlowView`, Android

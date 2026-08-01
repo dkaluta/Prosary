@@ -29,6 +29,7 @@ private data class PackManifest(
     val reminderBody: Map<String, String>? = null,
     val reminderPresetHours: List<Int>? = null,
     val reminderPresetFooter: Map<String, String>? = null,
+    val tags: List<String>? = null,
 )
 
 @Serializable
@@ -328,6 +329,9 @@ data class CustomDevotionInfo(
     val reminderBody: Map<String, String>,
     val reminderPresetHours: List<Int>?,
     val reminderPresetFooter: Map<String, String>,
+    /** Lowercase category labels from the manifest ("marian", "passion") — what the
+     * Categories tab groups by. */
+    val tags: List<String> = emptyList(),
 ) {
     /** The display name in the device's UI language (falling back to the manifest's base
      * [displayName]) — preserves e.g. the Hebrew devotion names that used to live in
@@ -555,6 +559,7 @@ object PrayerPackStore {
             reminderBody = manifest.reminderBody ?: emptyMap(),
             reminderPresetHours = manifest.reminderPresetHours,
             reminderPresetFooter = manifest.reminderPresetFooter ?: emptyMap(),
+            tags = manifest.tags ?: emptyList(),
         )
 
         for (language in manifest.languages) {

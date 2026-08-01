@@ -139,11 +139,38 @@
     "repositoryBrowser": {
       "purpose": "The in-app browser for prayers.prosary.app: fetches the versioned /index.json catalog, filters by search text and tag, and installs a bundle through the same installPack pipeline as a manual file import (star row, 'Repository' tag, remove affordance all identical). Downloads go through the catalog's same-origin /api/download/<id> path so server-side counting works.",
       "parameters": {},
-      "navigation": "From the Favorites screen's 'Get Community Devotions…' row (below Import Devotion Bundle).",
+      "navigation": "The Browse tab (primary), plus the Favorites screen's 'Get Community Devotions…' row (sheet on iOS).",
       "sources": {
         "iOS": "Views/Favorites/RepositoryBrowserView.swift (sheet) + Support/RepositoryClient.swift",
         "android": "ui/favorites/RepositoryBrowserScreen.kt (route favorites/repository) + content/repository/RepositoryClient.kt (the app's first and only INTERNET-permission feature)",
         "windows": "Views/RepositoryBrowserPage.xaml(.cs) + ViewModels/RepositoryBrowserViewModel.cs + Services/RepositoryClient.cs"
+      }
+    },
+    "tabShell": {
+      "purpose": "The app's top-level navigation: four sections — Pray (Home), Browse (the prayers.prosary.app catalog), Categories (devotions grouped by manifest tags), Search (local + community). Bottom tab bar on phones; sidebar on desktop (iOS 18/macOS 15 sidebarAdaptable, Android NavigationRail at >=840dp, WinUI NavigationView pane). Inner screens (flows, editors) hide the tab chrome on Android; each iOS tab owns its own NavigationStack; Windows resets the frame back stack on section switch so sections feel like tabs.",
+      "parameters": {},
+      "sources": {
+        "iOS": "ContentView.swift (TabView + adaptiveTabViewStyle)",
+        "android": "ui/ProsaryApp.kt (TabSpec shell around AppNavHost)",
+        "windows": "MainWindow.xaml(.cs) (NavigationView around RootFrame)"
+      }
+    },
+    "categories": {
+      "purpose": "View prayers by category: every launchable devotion (Rosary, loaded bundles, Jesus Prayer) grouped by its manifest tags via the shared DevotionDirectory; a devotion appears under each of its tags, untagged ones under 'Other'.",
+      "parameters": {},
+      "sources": {
+        "iOS": "Views/Categories/CategoriesView.swift + Views/Shared/DevotionDirectory.swift",
+        "android": "ui/categories/CategoriesScreen.kt + ui/shared/DevotionDirectory.kt",
+        "windows": "Views/CategoriesPage.xaml(.cs) + ViewModels/CategoriesViewModel.cs + Services/DevotionDirectory.cs"
+      }
+    },
+    "search": {
+      "purpose": "One search across everything prayable: local devotions (opened in place, title/tag match) and the prayers.prosary.app catalog (installed in place); the repository half degrades silently offline.",
+      "parameters": {},
+      "sources": {
+        "iOS": "Views/Search/SearchTabView.swift",
+        "android": "ui/search/SearchScreen.kt",
+        "windows": "Views/SearchPage.xaml(.cs) + ViewModels/SearchViewModel.cs"
       }
     }
   }

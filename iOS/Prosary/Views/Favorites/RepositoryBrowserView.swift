@@ -11,6 +11,10 @@
 import SwiftUI
 
 struct RepositoryBrowserView: View {
+  /// True when presented as a sheet from Favorites (Done button, explicit macOS frame);
+  /// false when living inside the Browse tab's own NavigationStack.
+  var presentedAsSheet = true
+
   @Environment(\.dismiss) private var dismiss
 
   @State private var bundles: [RepositoryBundle] = []
@@ -36,7 +40,7 @@ struct RepositoryBrowserView: View {
   }
 
   var body: some View {
-    NavigationStack {
+    Group {
       Group {
         if isLoading {
           ProgressView()
@@ -61,8 +65,10 @@ struct RepositoryBrowserView: View {
       .navigationBarTitleDisplayMode(.inline)
       #endif
       .toolbar {
-        ToolbarItem(placement: .cancellationAction) {
-          Button(String(localized: "favoriteEditor.done", defaultValue: "Done")) { dismiss() }
+        if presentedAsSheet {
+          ToolbarItem(placement: .cancellationAction) {
+            Button(String(localized: "favoriteEditor.done", defaultValue: "Done")) { dismiss() }
+          }
         }
       }
       .alert(
@@ -76,8 +82,9 @@ struct RepositoryBrowserView: View {
     }
     #if os(macOS)
     // A macOS sheet sizes to its content's ideal height, and a List has none — without an
-    // explicit frame the whole content area collapses to zero (iOS sheets are unaffected).
-    .frame(minWidth: 560, idealWidth: 640, minHeight: 460, idealHeight: 560)
+    // explicit frame the whole content area collapses to zero (iOS sheets are unaffected;
+    // the Browse tab fills its window and needs none).
+    .frame(minWidth: presentedAsSheet ? 560 : nil, minHeight: presentedAsSheet ? 460 : nil)
     #endif
     .task { await load() }
   }

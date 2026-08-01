@@ -33,6 +33,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.Lifecycle
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -87,7 +92,20 @@ fun HomeScreen(
     // One entry per discovered generic devotion (bundle id -> its favorite, if any).
     var defaultCustomDevotions by remember { mutableStateOf<Map<String, Prayer>>(emptyMap()) }
 
-    LaunchedEffect(Unit) {
+    // Re-runs on every return to this screen (ON_RESUME) so devotions installed on other
+    // tabs (Browse/Search) or in Favorites gain their Home card without a relaunch — the
+    // generation read here also invalidates the card list built below.
+    var refreshGeneration by remember { mutableIntStateOf(0) }
+    val lifecycleOwner = LocalLifecycleOwner.current
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME) refreshGeneration++
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+    }
+
+    LaunchedEffect(refreshGeneration) {
         todayMysteryGroup = services.calendar.mysteryGroupToday()
         val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
         defaultRosary = all.firstOrNull { it.kind == PrayerKind.Rosary && it.isDefault }

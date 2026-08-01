@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Prosary.Views.CategoriesPage"
+    x:Name="Root"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:Prosary.ViewModels"
+    xmlns:svc="using:Prosary.Services"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer Padding="16">
+        <StackPanel Spacing="4" MaxWidth="640" HorizontalAlignment="Stretch">
+            <TextBlock Text="Categories" Style="{StaticResource SubHeadlineTextStyle}" Margin="0,0,0,8" />
+            <ItemsControl ItemsSource="{x:Bind ViewModel.Sections, Mode=OneWay}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:CategorySection">
+                        <StackPanel Spacing="2" Margin="0,0,0,14">
+                            <TextBlock Text="{x:Bind Title}" Foreground="{StaticResource BrandPrimaryBrush}"
+                                       FontWeight="SemiBold" Margin="4,0,0,4" />
+                            <ItemsControl ItemsSource="{x:Bind Listings}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="svc:DevotionListing">
+                                        <Button Background="Transparent" BorderThickness="0" HorizontalAlignment="Stretch"
+                                                HorizontalContentAlignment="Left" Padding="8,10"
+                                                Command="{Binding ElementName=Root, Path=ViewModel.OpenCommand}"
+                                                CommandParameter="{Binding}">
+                                            <StackPanel Orientation="Horizontal" Spacing="12">
+                                                <FontIcon Glyph="{x:Bind IconGlyph}" Foreground="{StaticResource BrandPrimaryBrush}" />
+                                                <TextBlock Text="{x:Bind Title}" FontSize="15" />
+                                            </StackPanel>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

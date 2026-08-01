@@ -172,7 +172,9 @@ struct FavoritesListView: View {
       installedGeneration += 1
       Task { await reload() }
     }) {
-      RepositoryBrowserView()
+      NavigationStack {
+        RepositoryBrowserView(presentedAsSheet: true)
+      }
     }
     .fileImporter(
       isPresented: $showsImporter,
