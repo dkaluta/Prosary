@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { LANGUAGES, isRtl } from "../format/catalog";
 import type { EditorPrayer, Project } from "../format/project";
@@ -12,21 +11,6 @@ interface Props {
 }
 
 export function PrayersScreen({ project, setProject, goToOrder }: Props) {
-  // An empty library must not greet the author with a bare button — open with a blank
-  // prayer card so the text fields are immediately on screen. Idempotent (checks inside the
-  // updater), so StrictMode's double-run and re-visits add nothing extra; a deliberately
-  // emptied library stays empty until the author acts.
-  useEffect(() => {
-    setProject((p) =>
-      p.prayers.length === 0
-        ? {
-            ...p,
-            prayers: [{ uid: newUid(), titleByLanguage: {}, bodyByLanguage: {}, isScripture: false }],
-          }
-        : p,
-    );
-  }, [setProject]);
-
   const updatePrayer = (uid: string, patch: Partial<EditorPrayer>) =>
     setProject((p) => ({
       ...p,
@@ -74,6 +58,12 @@ export function PrayersScreen({ project, setProject, goToOrder }: Props) {
         you like. Common prayers (the Our Father, the Hail Mary…) are already in the app; you add
         those directly on the Order page.
       </p>
+      {project.languages.length === 0 && (
+        <p className="issue">
+          The text fields appear once the devotion has languages — choose them on the Basics page
+          first.
+        </p>
+      )}
 
       {project.prayers.map((prayer, index) => {
         const used = usageCount(prayer.uid);
