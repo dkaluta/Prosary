@@ -1,11 +1,10 @@
 import { useEffect, useMemo } from "react";
 import type { Dispatch, SetStateAction } from "react";
-import { LANGUAGES } from "../format/catalog";
+import { LANGUAGES, commonPrayer } from "../format/catalog";
 import type { LanguageCode } from "../format/catalog";
 import type { EditorAudioTrack, Project } from "../format/project";
 import { newUid } from "../format/project";
 import { isOggOpus } from "../format/validate";
-import { stepLabel } from "./labels";
 import { formatTime, parseTime, pickFile, readFileBytes } from "./media";
 
 interface Props {
@@ -80,11 +79,17 @@ function TrackCard({
   onChange: (patch: Partial<EditorAudioTrack>) => void;
   onRemove: () => void;
 }) {
-  const rowLabel = (uid: string) => {
+  const stepLabel = (uid: string) => {
     const stepIndex = project.steps.findIndex((s) => s.uid === uid);
     const step = project.steps[stepIndex];
     if (!step) return "(removed step)";
-    return `${stepIndex + 1}. ${stepLabel(project, step, track.language)}`;
+    const name =
+      step.kind === "common"
+        ? commonPrayer(step.commonKey ?? "")?.label ?? "Common prayer"
+        : step.titleByLanguage[track.language]?.trim() ||
+          step.titleByLanguage.en?.trim() ||
+          "Your prayer";
+    return `${stepIndex + 1}. ${name}`;
   };
 
   const oneChapterPerStep = () =>
@@ -160,7 +165,7 @@ function TrackCard({
                 >
                   {project.steps.map((step) => (
                     <option key={step.uid} value={step.uid}>
-                      {rowLabel(step.uid)}
+                      {stepLabel(step.uid)}
                     </option>
                   ))}
                 </select>

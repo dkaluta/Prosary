@@ -13,8 +13,7 @@ interface Props {
 
 const SCREEN_LABELS: Record<WizardScreen, string> = {
   basics: "Basics",
-  prayers: "Prayers",
-  order: "Order",
+  steps: "Prayers",
   audio: "Audio",
   review: "Finish",
 };
@@ -64,7 +63,6 @@ export function ReviewScreen({ project, issues, goTo }: Props) {
         <dl className="summary">
           <dt>{project.name || "Untitled devotion"}</dt>
           <dd>
-            {project.prayers.length} prayer{project.prayers.length === 1 ? "" : "s"} ·{" "}
             {project.steps.length} step{project.steps.length === 1 ? "" : "s"} ·{" "}
             {project.languages
               .map((code) => LANGUAGES.find((l) => l.code === code)?.name)

@@ -7,33 +7,24 @@ import type { CommonPrayerKey, LanguageCode } from "./catalog";
 
 export type PerLanguage = Partial<Record<LanguageCode, string>>;
 
-/**
- * One prayer the author wrote, independent of where it appears — the editor's counterpart of
- * a bundle-local content key. Several steps may pray the same prayer (the Trisagion prays its
- * acclamation five times), which is why texts live here and the sequence in [EditorStep].
- */
-export interface EditorPrayer {
-  uid: string;
-  /** The prayer's name per language, emitted as its steps' titleKey content. */
-  titleByLanguage: PerLanguage;
-  /** The prayer text per language, emitted as the shared bodyKey content. */
-  bodyByLanguage: PerLanguage;
-  /** The text is quoted Scripture, so the apps render it in the scripture typeface —
-   * emitted as isScripture on every step that prays it. */
-  isScripture: boolean;
-}
-
-/** One step of the devotion's sequence. */
+/** One step of the devotion as authored. */
 export interface EditorStep {
   uid: string;
   /** "common": a prayer every app already carries (referenced by key, text never bundled).
-   * "own": one of the author's prayers from the project's library. */
-  kind: "common" | "own";
+   * "custom": the author's own text, written per language. */
+  kind: "common" | "custom";
   commonKey?: CommonPrayerKey;
-  prayerUid?: string;
+  /** English display label (the app-wide convention for step titles). */
+  title: string;
+  /** Custom steps only: translated titles, emitted as bundle-local titleKey content. */
+  titleByLanguage: PerLanguage;
+  /** Custom steps only: the prayer text per language. */
+  bodyByLanguage: PerLanguage;
   /** Artwork: the author's own upload, or one of the app's shared illustrations. Absent =
    * the step's default (the common prayer's traditional image, or the cross placeholder). */
   image?: { kind: "upload"; uid: string } | { kind: "shared"; key: string };
+  /** The body is quoted Scripture, so the apps render it in the scripture typeface. */
+  isScripture: boolean;
   /** Pray this step n times in a row (emitted as the format's `repeat`, n >= 2). */
   repeat?: number;
 }
@@ -67,7 +58,6 @@ export interface Project {
   accentColorHex: string;
   accentColorDarkHex: string;
   iconSystemName: string;
-  prayers: EditorPrayer[];
   steps: EditorStep[];
   images: EditorImage[];
   audio: EditorAudioTrack[];
@@ -87,18 +77,10 @@ export function newProject(): Project {
     accentColorHex: "#7A1F3D",
     accentColorDarkHex: "#D8A8B5",
     iconSystemName: "star",
-    prayers: [],
     steps: [],
     images: [],
     audio: [],
   };
-}
-
-/** The prayers actually prayed by at least one step — the ones a bundle ships. */
-export function usedPrayers(project: Project): EditorPrayer[] {
-  return project.prayers.filter((prayer) =>
-    project.steps.some((step) => step.kind === "own" && step.prayerUid === prayer.uid),
-  );
 }
 
 /** "My Little Devotion" -> "myLittleDevotion" — bundle ids are camelCase like the built-ins'. */
@@ -136,54 +118,26 @@ function fromBase64(base64: string): Uint8Array {
 
 export function serializeProject(project: Project): string {
   return JSON.stringify({
-    prosaryCompose: 2,
+    prosaryCompose: 1,
     ...project,
     images: project.images.map((image) => ({ ...image, jpeg: toBase64(image.jpeg) })),
     audio: project.audio.map((track) => ({ ...track, bytes: toBase64(track.bytes) })),
   });
 }
 
-/** Version-1 projects stored each custom step's text inline; version 2 moved the texts into
- * the prayer library. Old autosaves/project files migrate to one prayer per old step. */
-function migrateV1(project: Project): Project {
-  interface V1Step extends EditorStep {
-    titleByLanguage?: PerLanguage;
-    bodyByLanguage?: PerLanguage;
-    isScripture?: boolean;
-  }
-  const prayers: EditorPrayer[] = [];
-  const steps = (project.steps as V1Step[]).map((step) => {
-    const { titleByLanguage, bodyByLanguage, isScripture, ...bare } = step;
-    if ((step.kind as string) !== "custom") return bare;
-    const prayer: EditorPrayer = {
-      uid: newUid(),
-      titleByLanguage: titleByLanguage ?? {},
-      bodyByLanguage: bodyByLanguage ?? {},
-      isScripture: isScripture === true,
-    };
-    prayers.push(prayer);
-    return { ...bare, kind: "own" as const, prayerUid: prayer.uid };
-  });
-  return { ...project, prayers, steps };
-}
-
 export function deserializeProject(json: string): Project {
   const raw = JSON.parse(json);
-  if (raw?.prosaryCompose !== 1 && raw?.prosaryCompose !== 2) {
-    throw new Error("Not a Prosary Compose project file.");
-  }
-  const { prosaryCompose: version, ...rest } = raw;
-  const project: Project = {
+  if (raw?.prosaryCompose !== 1) throw new Error("Not a Prosary Compose project file.");
+  const { prosaryCompose: _, ...rest } = raw;
+  return {
     ...rest,
-    prayers: rest.prayers ?? [],
-    images: (rest.images ?? []).map((image: EditorImage & { jpeg: string }) => ({
-      ...image,
-      jpeg: fromBase64(image.jpeg),
-    })),
+    images: (rest.images ?? []).map((image: EditorImage & { jpeg: string }) => {
+      const jpeg = fromBase64(image.jpeg);
+      return { ...image, jpeg };
+    }),
     audio: (rest.audio ?? []).map((track: EditorAudioTrack & { bytes: string }) => ({
       ...track,
       bytes: fromBase64(track.bytes),
     })),
   };
-  return version === 1 ? migrateV1(project) : project;
 }
