@@ -1,9 +1,10 @@
 // All Postgres access, via postgres.js tagged templates (interpolations
 // auto-parameterize — freebee's conventions). Schema lives in migrations/.
 
-import { randomBytes, randomUUID } from "node:crypto";
+import { randomBytes } from "node:crypto";
 import type { Sql } from "postgres";
 import { createSqlClient } from "./db-connection.ts";
+import { uuidv7 } from "./uuidv7.ts";
 
 let _sql: Sql | null = null;
 
@@ -236,5 +237,5 @@ export async function countDownload(id: string): Promise<void> {
 }
 
 export function newId(): string {
-  return randomUUID();
+  return uuidv7();
 }

@@ -1,7 +1,8 @@
-import { put } from "@vercel/blob";
+import { del, put } from "@vercel/blob";
 import { getCurrentUser } from "@/lib/auth";
 import { BundleError, validateAndRestamp } from "@/lib/bundles";
 import { getBundle, listBundles, upsertBundle } from "@/lib/db";
+import { uuidv7 } from "@/lib/uuidv7";
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
@@ -57,11 +58,12 @@ export async function POST(request: Request) {
     return Response.json({ error: "id_taken" }, { status: 409 });
   }
 
-  const blob = await put(`bundles/${validated.id}.prosaryprayer`, Buffer.from(validated.bytes), {
+  // Blob keys are UUIDv7s, not bundle ids: the public URL stays unguessable, and a
+  // deleted-then-re-registered username can never resurrect a predecessor's file.
+  const blob = await put(`bundles/${uuidv7()}.prosaryprayer`, Buffer.from(validated.bytes), {
     access: "public",
     contentType: "application/zip",
     addRandomSuffix: false,
-    allowOverwrite: true,
   });
   await upsertBundle({
     id: validated.id,
@@ -74,5 +76,9 @@ export async function POST(request: Request) {
     fileUrl: blob.url,
     fileSize: validated.bytes.length,
   });
+  // Each resubmission lands on a fresh key, so retire the old file once the row points away.
+  if (existing && existing.file_url !== blob.url) {
+    await del(existing.file_url).catch(() => {});
+  }
   return Response.json({ ok: true, id: validated.id });
 }
