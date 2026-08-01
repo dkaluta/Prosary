@@ -56,6 +56,6 @@ bundle. The seeded account has no passkey — claim it via **Recover** on `/acco
 
 ## Deliberately not yet built
 
-Rate limiting on the auth endpoints (freebee's `rate_limits` pattern is the template),
-passkey naming/removal UI, tag-based browsing (the `tags` column and catalog field exist —
-see the prayer-tags future feature), and the in-app repository browser.
+Rate limiting on the auth endpoints (freebee's `rate_limits` pattern is the template) and
+passkey naming/removal UI. Account deletion is self-serve (`DELETE /api/auth/account`);
+tag browsing and the in-app browser shipped with the apps' 0.4 tab shell.

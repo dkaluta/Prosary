@@ -49,6 +49,22 @@ export function AccountPanel({
     window.location.href = "/";
   };
 
+  const deleteAccount = async () => {
+    const typed = window.prompt(
+      `This permanently deletes your account, your passkeys, your recovery email, and ALL your published bundles. ` +
+        `Installed copies on people's devices keep working, but nobody can download them again.\n\n` +
+        `Type your username (${username}) to confirm:`
+    );
+    if (typed === null) return;
+    if (typed.trim().toLowerCase() !== username.toLowerCase()) {
+      setError("The username didn't match — nothing was deleted.");
+      return;
+    }
+    const response = await fetch("/api/auth/account", { method: "DELETE" });
+    if (response.ok) window.location.href = "/";
+    else setError("The account could not be deleted — try again.");
+  };
+
   const removeBundle = async (id: string) => {
     if (!window.confirm(`Remove ${id} from the repository? Installed copies keep working.`)) return;
     const response = await fetch(`/api/bundles/${encodeURIComponent(id)}`, { method: "DELETE" });
@@ -92,6 +108,17 @@ export function AccountPanel({
             </p>
           ))
         )}
+      </div>
+
+      <div className="card">
+        <h2>Delete account</h2>
+        <p className="hint">
+          Removes your passkeys, recovery email, and every bundle you've published — immediately
+          and permanently. Copies already installed on devices keep working.
+        </p>
+        <button className="subtle" style={{ color: "var(--danger)", borderColor: "var(--danger)" }} onClick={deleteAccount}>
+          Delete my account…
+        </button>
       </div>
 
       {error && <p className="error" aria-live="polite">{error}</p>}

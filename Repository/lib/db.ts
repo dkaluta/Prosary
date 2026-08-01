@@ -49,6 +49,19 @@ export async function createUser(user: { id: string; username: string; email: st
   await sql()`INSERT INTO users (id, username, email) VALUES (${user.id}, ${user.username}, ${user.email})`;
 }
 
+/** Every blob URL the user's bundles occupy — fetched before deletion so the files can be
+ * removed from storage alongside the rows. */
+export async function bundleFileUrlsForUser(userId: string): Promise<string[]> {
+  const rows = await sql()<{ file_url: string }[]>`SELECT file_url FROM bundles WHERE user_id = ${userId}`;
+  return rows.map((r) => r.file_url);
+}
+
+/** Removes the account and, via ON DELETE CASCADE, its passkeys, pending recovery tokens,
+ * and bundle rows. */
+export async function deleteUser(userId: string): Promise<void> {
+  await sql()`DELETE FROM users WHERE id = ${userId}`;
+}
+
 // --- Passkeys ---
 
 export type Passkey = {
