@@ -57,7 +57,7 @@ public sealed partial class CustomDevotionFlowPage : Page
 
     /// <summary>x:Bind function for the transport strip's play/pause FontIcon (Segoe glyphs:
     /// Play E768, Pause E769).</summary>
-    public string PlayPauseGlyph(bool isPlaying) => isPlaying ? "" : "";
+    public string PlayPauseGlyph(bool isPlaying) => isPlaying ? "\uE769" : "\uE768";
 
     // MenuFlyout has no ItemsSource, so the variant items are built here after load — one
     // toggle item per variant, checked state refreshed on every switch.
