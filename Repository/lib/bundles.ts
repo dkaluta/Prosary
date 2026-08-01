@@ -17,6 +17,8 @@ export type ValidatedBundle = {
   id: string;
   displayName: string;
   languages: string[];
+  /** The manifest's own tags (Compose writes them) — the submission form can override. */
+  tags: string[];
   bytes: Uint8Array;
 };
 
@@ -99,6 +101,14 @@ export async function validateAndRestamp(bytes: Uint8Array, username: string): P
   }
   const id = `repo.${username}.${localName}`;
 
+  const manifestTags = Array.isArray(manifest.tags)
+    ? manifest.tags
+        .filter((t): t is string => typeof t === "string")
+        .map((t) => t.trim().toLowerCase())
+        .filter(Boolean)
+        .slice(0, 8)
+    : [];
+
   // Re-stamp manifest id/kind and rebuild the zip byte-for-byte otherwise.
   const restamped = { ...manifest, id, kind: id };
   const files: ZipFile[] = [];
@@ -112,5 +122,5 @@ export async function validateAndRestamp(bytes: Uint8Array, username: string): P
     });
   }
 
-  return { id, displayName, languages, bytes: buildZip(files) };
+  return { id, displayName, languages, tags: manifestTags, bytes: buildZip(files) };
 }

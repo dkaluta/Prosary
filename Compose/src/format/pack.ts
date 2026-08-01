@@ -69,6 +69,7 @@ export function buildBundleFiles(project: Project): ZipFile[] {
       hasCatalog: false,
       images: usedImageKeys,
       ...(usedMainKeys.length > 0 ? { mainPrayerKeysOmitted: usedMainKeys } : {}),
+      ...(project.tags.length > 0 ? { tags: project.tags } : {}),
       ...(Object.keys(nameByLanguage).length > 0 ? { displayNameByLanguage: nameByLanguage } : {}),
       accentColorHex: project.accentColorHex,
       accentColorDarkHex: project.accentColorDarkHex,

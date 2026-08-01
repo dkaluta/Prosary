@@ -58,6 +58,10 @@ export interface Project {
   accentColorHex: string;
   accentColorDarkHex: string;
   iconSystemName: string;
+  /** Free-form category tags ("marian", "evening") — packed into the manifest and used as
+   * the repository's default tags on submission; category browsing in the apps is the
+   * planned consumer. */
+  tags: string[];
   steps: EditorStep[];
   images: EditorImage[];
   audio: EditorAudioTrack[];
@@ -77,6 +81,7 @@ export function newProject(): Project {
     accentColorHex: "#7A1F3D",
     accentColorDarkHex: "#D8A8B5",
     iconSystemName: "star",
+    tags: [],
     steps: [],
     images: [],
     audio: [],

@@ -47,7 +47,7 @@ export function SubmitForm({ username }: { username: string }) {
         <textarea name="description" maxLength={500} rows={3} />
       </label>
       <label className="field">
-        <span>Tags (comma-separated, optional)</span>
+        <span>Tags (comma-separated — blank keeps the ones authored in Compose)</span>
         <input type="text" name="tags" placeholder="marian, evening, litany" />
       </label>
       <button className="primary" type="submit" disabled={busy}>

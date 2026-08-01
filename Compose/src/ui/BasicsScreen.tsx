@@ -124,6 +124,25 @@ export function BasicsScreen({ project, setProject }: Props) {
             </span>
           </div>
         </fieldset>
+        <label className="field">
+          <span>
+            Tags <span className="hint">— optional, comma-separated; used for browsing by category</span>
+          </span>
+          <input
+            type="text"
+            placeholder="marian, evening, litany"
+            value={project.tags.join(", ")}
+            onChange={(e) =>
+              update({
+                tags: e.target.value
+                  .split(",")
+                  .map((t) => t.trim().toLowerCase())
+                  .filter(Boolean)
+                  .slice(0, 8),
+              })
+            }
+          />
+        </label>
         <fieldset>
           <legend>Icon</legend>
           <div className="choices">

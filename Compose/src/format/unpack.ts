@@ -50,6 +50,7 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
     accentColorDarkHex?: string;
     iconSystemName?: string;
     builtinKind?: string;
+    tags?: string[];
   };
   if (!zip.has("devotion.json")) {
     throw new Error("This bundle has no prayer steps the composer can edit.");
@@ -76,6 +77,9 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
   project.accentColorHex = manifest.accentColorHex ?? project.accentColorHex;
   project.accentColorDarkHex = manifest.accentColorDarkHex ?? project.accentColorDarkHex;
   project.iconSystemName = manifest.iconSystemName ?? project.iconSystemName;
+  project.tags = Array.isArray(manifest.tags)
+    ? manifest.tags.filter((t): t is string => typeof t === "string")
+    : [];
   for (const [language, name] of Object.entries(manifest.displayNameByLanguage ?? {})) {
     if (project.languages.includes(language as LanguageCode)) {
       project.nameByLanguage[language as LanguageCode] = name;

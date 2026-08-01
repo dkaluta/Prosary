@@ -399,8 +399,11 @@ of its own — its entire step sequence and per-step text are data-driven from i
   `accentColorDarkHex` (light/dark pair), `iconSystemName` (an SF Symbol name; mapped to the
   nearest Material icon on Android and Segoe Fluent Icons glyph on Windows via a small fixed
   per-platform table), `displayNameByLanguage` (preserves e.g. the Hebrew devotion names),
-  `reminderBody` (per-language notification body), and optional `reminderPresetHours` +
-  `reminderPresetFooter` (the Angelus's traditional bell times).
+  `reminderBody` (per-language notification body), optional `reminderPresetHours` +
+  `reminderPresetFooter` (the Angelus's traditional bell times), and optional **`tags`**
+  (lowercase category labels, e.g. "marian" — Compose writes them, the repository uses them
+  as submission defaults, and the planned browse-by-category surface is their in-app
+  consumer; loaders currently ignore them).
 - **`options.json`** (optional bundle file): user-configurable settings, declared separately
   from the structure the same way catalog.json is —
   `{"options": [{key, kind: "toggle" | "choice", name, nameByLanguage?, default,

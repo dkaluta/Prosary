@@ -34,7 +34,7 @@ export async function POST(request: Request) {
     return Response.json({ error: "missing_file" }, { status: 400 });
   }
   const description = String(form.get("description") ?? "").trim().slice(0, 500);
-  const tags = String(form.get("tags") ?? "")
+  const formTags = String(form.get("tags") ?? "")
     .split(",")
     .map((t) => t.trim().toLowerCase())
     .filter(Boolean)
@@ -69,7 +69,8 @@ export async function POST(request: Request) {
     name: validated.displayName,
     description,
     languages: validated.languages,
-    tags,
+    // The form wins when filled; otherwise the manifest's own tags (Compose writes them).
+    tags: formTags.length > 0 ? formTags : validated.tags,
     fileUrl: blob.url,
     fileSize: validated.bytes.length,
   });
