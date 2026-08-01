@@ -62,7 +62,7 @@ struct RepositoryBrowserView: View {
       #endif
       .toolbar {
         ToolbarItem(placement: .cancellationAction) {
-          Button("favoriteEditor.done") { dismiss() }
+          Button(String(localized: "favoriteEditor.done", defaultValue: "Done")) { dismiss() }
         }
       }
       .alert(
