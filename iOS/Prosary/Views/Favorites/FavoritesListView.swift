@@ -93,7 +93,9 @@ struct FavoritesListView: View {
                 accentColor: customAccent(info),
                 isFavorited: favorite != nil,
                 onToggleFavorite: { toggleCustomFavorite(bundleId: bundleId, displayName: info.localizedDisplayName, existing: favorite) },
-                onEditReminders: { favorite.map { remindersPrayer = $0 } }
+                onEditReminders: { favorite.map { remindersPrayer = $0 } },
+                badge: bundleId.hasPrefix("repo.")
+                  ? String(localized: "favorites.repositoryTag", defaultValue: "Repository") : nil
               )
               .contextMenu {
                 if PrayerPackStore.installedBundleIds().contains(bundleId) {
@@ -361,6 +363,9 @@ private struct SimpleFavoriteRow: View {
   let isFavorited: Bool
   let onToggleFavorite: () -> Void
   let onEditReminders: () -> Void
+  /// Small capsule after the title — "Repository" for bundles installed from
+  /// prayers.prosary.app (ids prefixed "repo.", see ARCHITECTURE.md). Nil hides it.
+  var badge: String? = nil
 
   var body: some View {
     HStack(spacing: 0) {
@@ -383,6 +388,15 @@ private struct SimpleFavoriteRow: View {
           .foregroundStyle(accentColor)
         Text(title)
           .font(.headline)
+
+        if let badge {
+          Text(badge)
+            .font(.caption2.weight(.semibold))
+            .padding(.horizontal, 6)
+            .padding(.vertical, 2)
+            .background(Capsule().fill(accentColor.opacity(0.15)))
+            .foregroundStyle(accentColor)
+        }
 
         Spacer()
 

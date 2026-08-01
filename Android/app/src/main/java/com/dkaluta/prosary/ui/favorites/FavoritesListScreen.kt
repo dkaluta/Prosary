@@ -8,6 +8,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -208,6 +209,7 @@ fun FavoritesListScreen(
                         icon = iconForSystemName(info.iconSystemName),
                         accentColor = colorForHex(info.accentColorHex) ?: MaterialTheme.colorScheme.primary,
                         isFavorited = favorite != null,
+                        badge = if (bundleId.startsWith("repo.")) "Repository" else null,
                         onToggleFavorite = {
                             scope.launch {
                                 if (favorite != null) {
@@ -359,6 +361,9 @@ private fun SimpleFavoriteRow(
     onEditReminders: () -> Unit,
     /** Non-null only for user-imported bundles — shows the trailing remove button. */
     onRemoveInstalled: (() -> Unit)? = null,
+    /** Small capsule after the title — "Repository" for bundles installed from
+     * prayers.prosary.app (ids prefixed "repo.", see ARCHITECTURE.md). Null hides it. */
+    badge: String? = null,
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -379,7 +384,19 @@ private fun SimpleFavoriteRow(
         }
 
         Icon(icon, contentDescription = null, tint = accentColor)
-        Text(title, style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
+        Text(title, style = MaterialTheme.typography.titleMedium)
+        if (badge != null) {
+            Text(
+                badge,
+                style = MaterialTheme.typography.labelSmall,
+                color = accentColor,
+                modifier = Modifier
+                    .clip(RoundedCornerShape(999.dp))
+                    .background(accentColor.copy(alpha = 0.15f))
+                    .padding(horizontal = 6.dp, vertical = 2.dp),
+            )
+        }
+        Spacer(modifier = Modifier.weight(1f))
 
         if (isFavorited) {
             IconButton(onClick = onEditReminders) {

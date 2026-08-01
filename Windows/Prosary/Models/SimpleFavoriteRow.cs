@@ -21,4 +21,9 @@ public sealed record SimpleFavoriteRow(
     Guid? PrayerId,
     string? CustomDevotionId = null,
     // True only for user-imported bundles — shows the trailing remove button.
-    bool IsInstalled = false);
+    bool IsInstalled = false)
+{
+    /// <summary>Bundles installed from the prayers.prosary.app repository carry ids prefixed
+    /// "repo." (see ARCHITECTURE.md) — drives the row's "Repository" tag.</summary>
+    public bool IsFromRepository => CustomDevotionId?.StartsWith("repo.", StringComparison.Ordinal) == true;
+}

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A repository of shareable devotions for the Prosary app — download a .prosaryprayer bundle and import it from the app's Favorites screen."
+    />
+    <title>Prosary Prayers</title>
+    <style>
+      :root {
+        --brand-primary: #7a1f3d;
+        --brand-headline: #4a0e23;
+        --bg: #ffffff;
+        --panel: #faf7f8;
+        --border: #e3dadd;
+        --text: #1f1f1f;
+        --text-muted: #6e6e6e;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --brand-primary: #d8a8b5;
+          --brand-headline: #ffffff;
+          --bg: #1f1f1f;
+          --panel: #2a2528;
+          --border: #453a3f;
+          --text: #f2f2f2;
+          --text-muted: #c8c8c8;
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scrollbar-gutter: stable; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+      main { max-width: 720px; margin: 0 auto; padding: 48px 24px 96px; }
+      h1 { color: var(--brand-headline); margin: 0 0 4px; }
+      p.tagline { color: var(--text-muted); margin: 0 0 32px; }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 16px;
+      }
+      .card h2 { margin: 0 0 4px; font-size: 1.1rem; color: var(--brand-headline); }
+      .meta { color: var(--text-muted); font-size: 0.85rem; margin: 0 0 8px; }
+      .meta .id { font-family: ui-monospace, monospace; }
+      .card p.desc { margin: 0 0 12px; }
+      a.download {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 8px;
+        background: var(--brand-primary);
+        color: var(--bg);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .how { color: var(--text-muted); font-size: 0.9rem; }
+      .how a, .empty a { color: var(--brand-primary); }
+      .empty { color: var(--text-muted); }
+      footer { margin-top: 48px; color: var(--text-muted); font-size: 0.85rem; }
+      footer a { color: var(--brand-primary); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Prosary Prayers</h1>
+      <p class="tagline">
+        Devotions shared by the <a href="https://prosary.app" style="color: var(--brand-primary)">Prosary</a>
+        community — download a bundle, then import it in the app: <strong>Favorites → Import
+        Devotion Bundle</strong>. Repository devotions show a “Repository” tag in the app.
+      </p>
+      <div id="list"><p class="empty">Loading…</p></div>
+      <footer>
+        Built something? Author a devotion with
+        <a href="https://compose.prosary.app">Prosary Compose</a> and submit it — for now, by
+        opening a pull request adding your bundle under <code>Repository/bundles/</code> with an
+        <code>index.json</code> entry (ids are <code>repo.&lt;your&nbsp;username&gt;.&lt;name&gt;</code>).
+      </footer>
+    </main>
+    <script>
+      const list = document.getElementById("list");
+      fetch("index.json")
+        .then((r) => r.json())
+        .then(({ bundles }) => {
+          if (!bundles?.length) {
+            list.innerHTML = '<p class="empty">Nothing here yet — be the first to share a devotion.</p>';
+            return;
+          }
+          list.innerHTML = "";
+          for (const bundle of bundles) {
+            const card = document.createElement("div");
+            card.className = "card";
+            const link = document.createElement("a");
+            link.className = "download";
+            link.href = bundle.file;
+            link.download = "";
+            link.textContent = "Download .prosaryprayer";
+            card.innerHTML =
+              `<h2></h2><p class="meta"><span class="author"></span> · <span class="langs"></span> · ` +
+              `<span class="id"></span></p><p class="desc"></p>`;
+            card.querySelector("h2").textContent = bundle.name;
+            card.querySelector(".author").textContent = "by " + bundle.author;
+            card.querySelector(".langs").textContent = (bundle.languages || []).join(", ");
+            card.querySelector(".id").textContent = bundle.id;
+            card.querySelector(".desc").textContent = bundle.description || "";
+            card.appendChild(link);
+            list.appendChild(card);
+          }
+        })
+        .catch(() => {
+          list.innerHTML = '<p class="empty">The catalog could not be loaded.</p>';
+        });
+    </script>
+  </body>
+</html>
