@@ -18,11 +18,28 @@
     </Page.Resources>
 
     <ScrollViewer>
-        <StackPanel Spacing="16" MaxWidth="480" HorizontalAlignment="Center" Padding="24">
-            <StackPanel Spacing="4" HorizontalAlignment="Center" Padding="0,0,0,4">
-                <TextBlock Text="Prosary" Style="{StaticResource HeadlineTextStyle}" HorizontalAlignment="Center" />
-                <TextBlock Text="A companion for Catholic prayer" Style="{StaticResource MutedSubtitleTextStyle}" HorizontalAlignment="Center" />
-            </StackPanel>
+        <StackPanel Spacing="16" MaxWidth="960" HorizontalAlignment="Center" Padding="20">
+            <Grid ColumnSpacing="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Pray" Style="{StaticResource HeadlineTextStyle}" VerticalAlignment="Center" />
+                <Button Grid.Column="1" Background="Transparent" Padding="8" ToolTipService.ToolTip="My Favorites"
+                        Command="{x:Bind ViewModel.OpenFavoritesCommand}">
+                    <FontIcon Glyph="&#xE734;" />
+                </Button>
+                <Button Grid.Column="2" Background="Transparent" Padding="8" ToolTipService.ToolTip="Settings"
+                        Command="{x:Bind ViewModel.OpenSettingsCommand}">
+                    <FontIcon Glyph="&#xE713;" />
+                </Button>
+                <Button Grid.Column="3" Background="Transparent" Padding="8" ToolTipService.ToolTip="About"
+                        Command="{x:Bind ViewModel.OpenAboutCommand}">
+                    <FontIcon Glyph="&#xE946;" />
+                </Button>
+            </Grid>
 
             <!-- "Today" — the day's feast per the Holy Land (Latin Patriarchate of Jerusalem)
                  calendar and the Pope's monthly prayer intention. Rows hide when the bundled
@@ -55,7 +72,7 @@
                 </StackPanel>
             </Border>
 
-            <ItemsControl ItemsSource="{x:Bind ViewModel.DevotionCards}">
+            <ItemsControl ItemsSource="{x:Bind ViewModel.DevotionCards}" MaxWidth="560" HorizontalAlignment="Stretch">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Spacing="12" />
@@ -72,15 +89,6 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
 
-            <Rectangle Height="1" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" Margin="0,4" />
-
-            <Button Content="My Favorites" HorizontalAlignment="Stretch" Height="52"
-                    Command="{x:Bind ViewModel.OpenFavoritesCommand}" />
-
-            <StackPanel Orientation="Horizontal" Spacing="16" HorizontalAlignment="Center">
-                <Button Content="Settings" Background="Transparent" Command="{x:Bind ViewModel.OpenSettingsCommand}" />
-                <Button Content="About" Background="Transparent" Command="{x:Bind ViewModel.OpenAboutCommand}" />
-            </StackPanel>
         </StackPanel>
     </ScrollViewer>
 </Page>

@@ -89,18 +89,7 @@ struct HomeView: View {
 
   var body: some View {
     ScrollView {
-      VStack(spacing: 20) {
-        VStack(spacing: 6) {
-          Text("home.title")
-            .font(.largeTitle.bold())
-            .foregroundStyle(Color.brandHeadline)
-          Text("home.tagline")
-            .font(.subheadline)
-            .foregroundStyle(.secondary)
-            .multilineTextAlignment(.center)
-        }
-        .padding(.bottom, 4)
-
+      VStack(spacing: 16) {
         // "Today" — the day's feast per the Holy Land (Latin Patriarchate of Jerusalem)
         // calendar and the Pope's monthly prayer intention. Rows hide when the bundled
         // datasets have no entry (ferial days; dates past the generated years).
@@ -141,7 +130,10 @@ struct HomeView: View {
           .accessibilityIdentifier("todaySection")
         }
 
-        VStack(spacing: 12) {
+        LazyVGrid(
+          columns: [GridItem(.adaptive(minimum: 300, maximum: 480), spacing: 12, alignment: .top)],
+          spacing: 12
+        ) {
           ForEach(devotionCards) { card in
             PrayerCard(
               systemImage: card.systemImage,
@@ -154,32 +146,30 @@ struct HomeView: View {
             .accessibilityIdentifier(card.accessibilityIdentifier)
           }
         }
-
-        Divider().padding(.vertical, 4)
-
-        VStack(spacing: 12) {
-          NavigationLink(value: AppRoute.favorites) {
-            Label("home.myFavorites", systemImage: "star")
-              .frame(maxWidth: .infinity)
-          }
-          .prosarySecondaryButtonStyle()
-          .tint(Color.brandPrimary)
-          .controlSize(.large)
-
-          #if !os(macOS)
-          NavigationLink(value: AppRoute.about) {
-            Text("home.about")
-              .font(.footnote)
-          }
-          .buttonStyle(.plain)
-          .foregroundStyle(.secondary)
-          .padding(.top, 4)
-          #endif
-        }
       }
-      .padding(24)
-      .frame(maxWidth: 480)
+      .padding(20)
+      .frame(maxWidth: 1000)
       .frame(maxWidth: .infinity)
+    }
+    // The tab shell carries the app's identity now — the bar shows the section name, and the
+    // old bottom Favorites button / About link become toolbar icons.
+    .navigationTitle(String(localized: "tabs.pray", defaultValue: "Pray"))
+    .toolbar {
+      ToolbarItem(placement: .primaryAction) {
+        NavigationLink(value: AppRoute.favorites) {
+          Image(systemName: "star")
+        }
+        .accessibilityLabel(Text("home.myFavorites"))
+        .accessibilityIdentifier("favoritesButton")
+      }
+      #if !os(macOS)
+      ToolbarItem(placement: .primaryAction) {
+        NavigationLink(value: AppRoute.about) {
+          Image(systemName: "info.circle")
+        }
+        .accessibilityLabel(Text("home.about"))
+      }
+      #endif
     }
     .task { await load() }
     .onAppear {

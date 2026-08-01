@@ -55,6 +55,18 @@ import com.dkaluta.prosary.models.MysteryGroup
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.services.LocalAppServices
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TopAppBar
 import com.dkaluta.prosary.ui.shared.PrayerCard
 import com.dkaluta.prosary.ui.shared.colorForHex
 import com.dkaluta.prosary.ui.shared.iconForSystemName
@@ -71,6 +83,7 @@ private data class DevotionCard(
     val onClick: () -> Unit,
 )
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     onOpenPrayer: (String) -> Unit,
@@ -194,40 +207,39 @@ fun HomeScreen(
         )
     }
 
-    Box(modifier = Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Pray") },
+                actions = {
+                    IconButton(onClick = onOpenFavorites) {
+                        Icon(Icons.Filled.Star, contentDescription = "My Favorites")
+                    }
+                    IconButton(onClick = onOpenSettings) {
+                        Icon(Icons.Filled.Settings, contentDescription = "Settings")
+                    }
+                    IconButton(onClick = onOpenAbout) {
+                        Icon(Icons.Filled.Info, contentDescription = "About")
+                    }
+                },
+            )
+        },
+    ) { paddingValues ->
+        LazyVerticalGrid(
+            columns = GridCells.Adaptive(minSize = 300.dp),
+            contentPadding = PaddingValues(20.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
             modifier = Modifier
-                .align(Alignment.TopCenter)
-                .widthIn(max = 480.dp)
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
-                .padding(24.dp),
+                .padding(paddingValues)
+                .fillMaxSize()
+                .windowInsetsPadding(WindowInsets.safeDrawing),
         ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(4.dp),
-                modifier = Modifier.padding(bottom = 4.dp),
-            ) {
-                Text(
-                    "Prosary",
-                    style = MaterialTheme.typography.headlineLarge,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.extraColors.headline,
-                )
-                Text(
-                    "A companion for Catholic prayer",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    textAlign = TextAlign.Center,
-                )
-            }
-
             // "Today" — the day's feast per the Holy Land (Latin Patriarchate of Jerusalem)
             // calendar and the Pope's monthly prayer intention. Rows hide when the bundled
             // datasets have no entry (ferial days; dates past the generated years).
             if (todayFeast != null || monthIntention != null) {
+                item(key = "today", span = { GridItemSpan(maxLineSpan) }) {
                 Column(
                     verticalArrangement = Arrangement.spacedBy(10.dp),
                     modifier = Modifier
@@ -277,33 +289,18 @@ fun HomeScreen(
                         }
                     }
                 }
-            }
-
-            Column(verticalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
-                for (card in devotionCards) {
-                    PrayerCard(
-                        icon = card.icon,
-                        title = card.title,
-                        subtitle = card.subtitle,
-                        accentColor = card.accentColor,
-                        onClick = card.onClick,
-                        modifier = Modifier.testTag(card.testTag),
-                    )
                 }
             }
 
-            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
-
-            OutlinedButton(onClick = onOpenFavorites, modifier = Modifier.fillMaxWidth().height(52.dp)) {
-                Text("My Favorites")
-            }
-
-            TextButton(onClick = onOpenSettings) {
-                Text("Settings", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            }
-
-            TextButton(onClick = onOpenAbout) {
-                Text("About", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            items(devotionCards, key = { it.id }) { card ->
+                PrayerCard(
+                    icon = card.icon,
+                    title = card.title,
+                    subtitle = card.subtitle,
+                    accentColor = card.accentColor,
+                    onClick = card.onClick,
+                    modifier = Modifier.testTag(card.testTag),
+                )
             }
         }
     }
