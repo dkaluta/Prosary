@@ -32,6 +32,7 @@ private object AdHocRosaryHolder {
 private object Routes {
     const val Home = "home"
     const val Favorites = "favorites"
+    const val RepositoryBrowser = "favorites/repository"
     // `kind` seeds a brand-new favorite's type when prayerId is absent (Android has no
     // equivalent to iOS's sheet(item:) passing a whole ad-hoc Prayer object across screens, so
     // the "Add" action threads just enough to construct one — see FavoriteEditorScreen).
@@ -134,6 +135,12 @@ fun ProsaryApp() {
                 onEdit = { prayerId -> navController.navigate(Routes.favoriteEditor(prayerId)) },
                 onAddNew = { kind -> navController.navigate(Routes.favoriteEditor(null, kind)) },
                 onEditReminders = { prayerId -> navController.navigate(Routes.remindersOnlyEditor(prayerId)) },
+                onBrowseRepository = { navController.navigate(Routes.RepositoryBrowser) },
+                onBack = { navController.popBackStack() },
+            )
+        }
+        composable(Routes.RepositoryBrowser) {
+            com.dkaluta.prosary.ui.favorites.RepositoryBrowserScreen(
                 onBack = { navController.popBackStack() },
             )
         }

@@ -149,6 +149,15 @@
                             <TextBlock Text="Import Devotion Bundle…" />
                         </StackPanel>
                     </Button>
+
+                    <!-- The other half of importing: browse prayers.prosary.app's catalog in
+                         place and install with one tap — same InstallPack pipeline. -->
+                    <Button Background="Transparent" Click="OnBrowseRepository" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <FontIcon Glyph="&#xE774;" FontSize="14" />
+                            <TextBlock Text="Get Community Devotions…" />
+                        </StackPanel>
+                    </Button>
                 </StackPanel>
 
             </StackPanel>

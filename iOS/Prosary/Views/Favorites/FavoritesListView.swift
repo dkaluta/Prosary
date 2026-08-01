@@ -19,6 +19,7 @@ struct FavoritesListView: View {
   @State private var isNew = false
   @State private var remindersPrayer: Prayer?
   @State private var showsImporter = false
+  @State private var showsRepository = false
   @State private var importError: String?
   // Bumped after install/remove so the customDevotionIds ForEach re-evaluates.
   @State private var installedGeneration = 0
@@ -121,6 +122,20 @@ struct FavoritesListView: View {
           .foregroundStyle(.secondary)
           .padding(.horizontal, 20)
           .padding(.vertical, 4)
+
+          // The other half of importing: browse prayers.prosary.app's catalog in place and
+          // install with one tap — same installPack pipeline, no file juggling.
+          Button {
+            showsRepository = true
+          } label: {
+            Label(String(localized: "favorites.browseRepository", defaultValue: "Get Community Devotions…"),
+                  systemImage: "globe")
+              .font(.subheadline)
+          }
+          .buttonStyle(.plain)
+          .foregroundStyle(.secondary)
+          .padding(.horizontal, 20)
+          .padding(.vertical, 4)
         } header: {
           HStack(spacing: 8) {
             Image(systemName: "star")
@@ -153,6 +168,12 @@ struct FavoritesListView: View {
       .onDisappear { Task { await reload() } }
     }
     .task { await reload() }
+    .sheet(isPresented: $showsRepository, onDismiss: {
+      installedGeneration += 1
+      Task { await reload() }
+    }) {
+      RepositoryBrowserView()
+    }
     .fileImporter(
       isPresented: $showsImporter,
       allowedContentTypes: [UTType(filenameExtension: "prosaryprayer") ?? .zip, .zip]

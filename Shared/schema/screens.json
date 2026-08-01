@@ -135,6 +135,16 @@
         "android": "ui/home/RosaryPresetPickerScreen.kt",
         "windows": "Views/RosaryPresetPickerPage.xaml(.cs) + ViewModels/RosaryPresetPickerViewModel.cs"
       }
+    },
+    "repositoryBrowser": {
+      "purpose": "The in-app browser for prayers.prosary.app: fetches the versioned /index.json catalog, filters by search text and tag, and installs a bundle through the same installPack pipeline as a manual file import (star row, 'Repository' tag, remove affordance all identical). Downloads go through the catalog's same-origin /api/download/<id> path so server-side counting works.",
+      "parameters": {},
+      "navigation": "From the Favorites screen's 'Get Community Devotions…' row (below Import Devotion Bundle).",
+      "sources": {
+        "iOS": "Views/Favorites/RepositoryBrowserView.swift (sheet) + Support/RepositoryClient.swift",
+        "android": "ui/favorites/RepositoryBrowserScreen.kt (route favorites/repository) + content/repository/RepositoryClient.kt (the app's first and only INTERNET-permission feature)",
+        "windows": "Views/RepositoryBrowserPage.xaml(.cs) + ViewModels/RepositoryBrowserViewModel.cs + Services/RepositoryClient.cs"
+      }
     }
   }
 }

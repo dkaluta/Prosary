@@ -479,7 +479,14 @@ of its own — its entire step sequence and per-step text are data-driven from i
   id collisions are skipped so shipped devotions always win. Imported devotions get the same
   Favorites star row plus a remove affordance; `removeInstalledPack` deletes the file and
   unregisters the devotion (its merged text/images stay in memory until the next launch,
-  harmlessly). This is the runtime half of the planned bundle-authoring webapp.
+  harmlessly). Alongside the file picker, every platform ships a **repository browser** (iOS
+  `RepositoryBrowserView`, Android `RepositoryBrowserScreen`, Windows `RepositoryBrowserPage` —
+  each with a platform `RepositoryClient`): it fetches prayers.prosary.app's versioned
+  `/index.json` catalog (`{prosaryRepository: 1, bundles: [...]}` — reject newer versions with
+  an update prompt, never guess), filters by search text and tag, and installs through the very
+  same `installPack` path, downloading via the catalog's same-origin `/api/download/<id>` so
+  server-side counting keeps working. This is the only networked feature in the apps (Android's
+  sole INTERNET permission). Compose is the authoring half; the repository is the sharing half.
 - **`bodyKey`/`titleKey` resolution** (`resolveBodyText`, per bundle): (1) the bundle's own raw
   content for the requested language; (2) the bundle's own **Latin** content (so a sentinel/
   unknown/undeclared language prays in Latin, never raw keys — the same convention as

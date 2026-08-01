@@ -3,6 +3,7 @@ package com.dkaluta.prosary.ui.favorites
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.material.icons.filled.Download
+import androidx.compose.material.icons.filled.Language
 import androidx.compose.material3.AlertDialog
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -95,6 +96,7 @@ fun FavoritesListScreen(
     onEdit: (String) -> Unit,
     onAddNew: (PrayerKind) -> Unit,
     onEditReminders: (String) -> Unit,
+    onBrowseRepository: () -> Unit,
     onBack: () -> Unit,
 ) {
     val services = LocalAppServices.current
@@ -258,6 +260,18 @@ fun FavoritesListScreen(
                 ) {
                     Icon(Icons.Filled.Download, contentDescription = null)
                     Text("Import Devotion Bundle…", modifier = Modifier.padding(start = 8.dp))
+                }
+            }
+
+            // The other half of importing: browse prayers.prosary.app's catalog in place and
+            // install with one tap — same installPack pipeline, no file juggling.
+            item(key = "browseRepository") {
+                TextButton(
+                    onClick = onBrowseRepository,
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                ) {
+                    Icon(Icons.Filled.Language, contentDescription = null)
+                    Text("Get Community Devotions…", modifier = Modifier.padding(start = 8.dp))
                 }
             }
         }

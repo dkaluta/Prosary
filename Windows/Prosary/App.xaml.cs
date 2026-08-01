@@ -59,6 +59,7 @@ public partial class App : Application
 
         services.AddTransient<HomeViewModel>();
         services.AddTransient<FavoritesViewModel>();
+        services.AddTransient<RepositoryBrowserViewModel>();
         services.AddTransient<FavoriteEditorViewModel>();
         services.AddTransient<RemindersOnlyEditorViewModel>();
         services.AddTransient<RosaryViewModel>();
