@@ -26,9 +26,9 @@ try {
 
   const { SEED_BUNDLES } = await import("../lib/embedded-assets.generated.ts");
   const bytes = Buffer.from(SEED_BUNDLES.find((b) => b.name === `${BUNDLE_ID}.prosaryprayer`)!.base64, "base64");
-  // Blob keys are UUIDv7s, never bundle ids; each seed run rolls onto a fresh key.
+  // Blob keys live under a UUIDv7 directory; each seed run rolls onto a fresh key.
   const previous = await sql<{ file_url: string }[]>`SELECT file_url FROM bundles WHERE id = ${BUNDLE_ID}`;
-  const blob = await put(`bundles/${uuidv7()}.prosaryprayer`, bytes, {
+  const blob = await put(`bundles/${uuidv7()}/${BUNDLE_ID}.prosaryprayer`, bytes, {
     access: "public",
     contentType: "application/zip",
     addRandomSuffix: false,

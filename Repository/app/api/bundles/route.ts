@@ -58,9 +58,10 @@ export async function POST(request: Request) {
     return Response.json({ error: "id_taken" }, { status: 409 });
   }
 
-  // Blob keys are UUIDv7s, not bundle ids: the public URL stays unguessable, and a
-  // deleted-then-re-registered username can never resurrect a predecessor's file.
-  const blob = await put(`bundles/${uuidv7()}.prosaryprayer`, Buffer.from(validated.bytes), {
+  // Blob keys live under a UUIDv7 directory with the id as filename: the URL stays
+  // unguessable and a deleted-then-re-registered username can never resurrect a
+  // predecessor's file, while direct downloads still save under a meaningful name.
+  const blob = await put(`bundles/${uuidv7()}/${validated.id}.prosaryprayer`, Buffer.from(validated.bytes), {
     access: "public",
     contentType: "application/zip",
     addRandomSuffix: false,

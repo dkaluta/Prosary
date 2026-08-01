@@ -37,11 +37,11 @@ export async function POST(request: Request) {
     if (!seed) return Response.json({ error: "seed_bundle_missing" }, { status: 500 });
     const bytes = Buffer.from(seed.base64, "base64");
 
-    // Blob keys are UUIDv7s (never bundle ids); re-running the seed rolls the file onto a
-    // fresh key and retires the previous one — which is also how the original id-keyed
-    // kyrie blob gets migrated.
+    // Blob keys live under a UUIDv7 directory (never a bare bundle id); re-running the
+    // seed rolls the file onto a fresh key and retires the previous one — which is also
+    // how older-layout kyrie blobs get migrated.
     const previous = await sql<{ file_url: string }[]>`SELECT file_url FROM bundles WHERE id = ${BUNDLE_ID}`;
-    const blob = await put(`bundles/${uuidv7()}.prosaryprayer`, bytes, {
+    const blob = await put(`bundles/${uuidv7()}/${BUNDLE_ID}.prosaryprayer`, bytes, {
       access: "public",
       contentType: "application/zip",
       addRandomSuffix: false,
