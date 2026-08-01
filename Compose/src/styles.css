@@ -29,6 +29,12 @@
   box-sizing: border-box;
 }
 
+html {
+  /* The wizard tabs differ in height; without a reserved gutter the centered column shifts
+     sideways whenever the page scrollbar appears or disappears between tabs. */
+  scrollbar-gutter: stable;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
