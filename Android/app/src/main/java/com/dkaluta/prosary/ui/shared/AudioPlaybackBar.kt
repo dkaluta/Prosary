@@ -20,6 +20,10 @@ import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -84,9 +88,17 @@ fun AudioPlaybackBar(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
+                    // Scrubbing holds a local value and seeks once on release — seeking per
+                    // drag-pixel storms the (asynchronous) MediaPlayer and fights the playback
+                    // ticker's writes, snapping the thumb around mid-drag.
+                    var scrubPosition by remember { mutableStateOf<Float?>(null) }
                     Slider(
-                        value = controller.currentTime.toFloat(),
-                        onValueChange = { controller.seek(it.toDouble()) },
+                        value = scrubPosition ?: controller.currentTime.toFloat(),
+                        onValueChange = { scrubPosition = it },
+                        onValueChangeFinished = {
+                            scrubPosition?.let { controller.seek(it.toDouble()) }
+                            scrubPosition = null
+                        },
                         valueRange = 0f..maxOf(controller.duration.toFloat(), 0.01f),
                         colors = SliderDefaults.colors(
                             thumbColor = seasonColor,

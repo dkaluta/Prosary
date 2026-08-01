@@ -505,9 +505,12 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
 
     partial void OnAudioPositionChanged(double value)
     {
-        if (!_updatingAudioFromPlayback)
+        // The playback-tick echo is suppressed by the flag; the distance threshold keeps a
+        // drag from storming the (asynchronous) MediaPlayer with a seek per thumb-pixel and
+        // ignores the session's own sub-tick jitter writing back through the TwoWay binding.
+        if (!_updatingAudioFromPlayback && _audio is { } audio && Math.Abs(value - audio.CurrentTime) > 0.25)
         {
-            _audio?.Seek(value);
+            audio.Seek(value);
         }
     }
 

@@ -17,6 +17,11 @@ struct AudioPlaybackBar: View {
   /// the bundle content chain only the flow's context knows).
   let chapterTitles: [String]
 
+  /// Non-nil while the user is dragging the timeline: the thumb shows this value and the seek
+  /// happens once on release — seeking per drag-tick fights the playback ticker's writes and
+  /// hammers the decoder with a seek storm.
+  @State private var scrubTime: Double? = nil
+
   private var chapterCount: Int { controller.track?.chapters.count ?? 0 }
 
   var body: some View {
@@ -60,9 +65,14 @@ struct AudioPlaybackBar: View {
         HStack(spacing: 8) {
           Slider(
             value: Binding(
-              get: { controller.currentTime },
-              set: { controller.seek(to: $0) }),
-            in: 0...max(controller.duration, 0.01)
+              get: { scrubTime ?? controller.currentTime },
+              set: { scrubTime = $0 }),
+            in: 0...max(controller.duration, 0.01),
+            onEditingChanged: { editing in
+              guard !editing, let target = scrubTime else { return }
+              controller.seek(to: target)
+              scrubTime = nil
+            }
           )
           .tint(seasonColor)
           .controlSize(.mini)

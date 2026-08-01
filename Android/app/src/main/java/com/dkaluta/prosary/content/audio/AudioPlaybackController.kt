@@ -3,6 +3,7 @@ package com.dkaluta.prosary.content.audio
 import android.content.Context
 import android.media.AudioAttributes
 import android.media.MediaPlayer
+import android.os.Build
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -62,6 +63,9 @@ class AudioPlaybackController {
             isPlaying = false
             currentTime = duration
         }
+        // seekTo is asynchronous — this corrects the optimistic time in [seek] to wherever the
+        // player actually landed (callbacks arrive on the creating thread's Looper: main).
+        prepared.setOnSeekCompleteListener { currentTime = it.currentPosition / 1000.0 }
         player = prepared
         duration = prepared.duration / 1000.0
         currentTime = 0.0
@@ -83,19 +87,33 @@ class AudioPlaybackController {
         if (player.isPlaying) {
             player.pause()
             isPlaying = false
+            // No seek can be pending while playing normally, so this read-back is safe.
+            currentTime = player.currentPosition / 1000.0
         } else {
             // Finished-and-restarted: tapping play at the end starts over instead of nothing.
-            if (duration > 0 && currentTime >= duration - 0.05) player.seekTo(0)
+            // Through seek() so the published time updates optimistically — a read-back here
+            // would briefly report the end position and bounce the step to the last chapter.
+            if (duration > 0 && currentTime >= duration - 0.05) seek(0.0)
             player.start()
             isPlaying = true
         }
-        currentTime = player.currentPosition / 1000.0
     }
 
     fun seek(seconds: Double) {
         val player = player ?: return
-        player.seekTo((seconds.coerceIn(0.0, duration) * 1000).toInt())
-        currentTime = player.currentPosition / 1000.0
+        val clamped = seconds.coerceIn(0.0, if (duration > 0) duration else seconds)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Frame-precise; the legacy int overload lands on the nearest sync point.
+            player.seekTo((clamped * 1000).toLong(), MediaPlayer.SEEK_CLOSEST)
+        } else {
+            @Suppress("DEPRECATION")
+            player.seekTo((clamped * 1000).toInt())
+        }
+        // seekTo is asynchronous and currentPosition reports the OLD position until it
+        // completes — reading it back here left paused chapter skips and slider drags looking
+        // dead (the published time snapped straight back). Publish the requested time now;
+        // OnSeekComplete corrects to the actual landing frame.
+        currentTime = clamped
     }
 
     fun seekToChapter(index: Int) {
