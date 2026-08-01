@@ -237,7 +237,6 @@ public sealed class BeadLayout
             {
                 Kind = BeadKind.Decade,
                 State = state,
-                IsGroupStart = h > 1 && (h - 1) % 5 == 0,
                 IsDarkTheme = isDarkTheme
             });
         }

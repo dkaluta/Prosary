@@ -25,12 +25,6 @@ public sealed class BeadInfo
     public required BeadKind Kind { get; init; }
     public required BeadState State { get; init; }
 
-    /// <summary>True for the first bead of each group-of-5, so the UI can add extra spacing there
-    /// — only ever set on the bottom/minor (current-decade) beads, and only actually used by the
-    /// narrow layout's single-row rendering (see RosaryPrayerPage.xaml's GroupStartLeadingMargin
-    /// converter usage) — the wide layout's minor-bead column(s) don't add this extra gap.</summary>
-    public bool IsGroupStart { get; init; }
-
     /// <summary>Set by <see cref="BeadLayout.Build"/> from the page's own
     /// <c>FrameworkElement.ActualTheme</c> at render time — beads are plain, short-lived data
     /// (rebuilt on every step change), not live XAML elements, so there's no

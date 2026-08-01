@@ -142,8 +142,10 @@ share the exact same model (iOS: `Views/RosaryFlow/BeadModels.swift`; Android:
 `ui/rosaryflow/BeadModels.kt`; Windows: `ViewModels/BeadLayout.cs`):
 
 - **`BeadInfo`** — one dot/glyph: `kind` (cross / decade / antiphon), `state` (completed /
-  current / upcoming — drives its color), `isGroupStart` (true for the first bead of each
-  group-of-5, used only by the narrow layout's single-row minor beads to add extra spacing there).
+  current / upcoming — drives its color). The narrow layout's single-row minor beads are evenly
+  spaced — the group-of-5 gap that once marked the 5-bead boundary (`isGroupStart`) was removed
+  on every platform: decades that aren't 10 beads long (the Seven Sorrows' 7) split awkwardly
+  (5+2) around it.
 - **`BeadColumn`** — one mystery group's column of decade beads, for the wide layout's grid: one
   column *per mystery group in the session* (e.g. 3 columns for a 15-mystery session, 4 for a
   20-mystery session), not a flat rows-of-N track spanning every decade regardless of group — a

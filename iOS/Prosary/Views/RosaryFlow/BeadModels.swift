@@ -25,8 +25,6 @@ struct BeadInfo: Identifiable {
   let id = UUID()
   var kind: BeadKind
   var state: BeadState
-  /// True for the first bead of each group-of-5, so the UI can add extra spacing there.
-  var isGroupStart: Bool = false
 
   var circleSize: CGFloat { kind == .antiphon ? 20 : 14 }
 
@@ -197,7 +195,7 @@ struct BeadLayout {
       } else {
         state = .upcoming
       }
-      bottom.append(BeadInfo(kind: .decade, state: state, isGroupStart: h > 1 && (h - 1) % 5 == 0))
+      bottom.append(BeadInfo(kind: .decade, state: state))
     }
 
     return BeadLayout(

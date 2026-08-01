@@ -15,8 +15,6 @@ data class BeadInfo(
     val id: String = UUID.randomUUID().toString(),
     val kind: BeadKind,
     val state: BeadState,
-    /** True for the first bead of each group-of-5, so the UI can add extra spacing there. */
-    val isGroupStart: Boolean = false,
 )
 
 /** One mystery group's column of decade beads, for the wide layout's grid (one column per
@@ -222,7 +220,7 @@ data class BeadLayout(
                 } else {
                     BeadState.Upcoming
                 }
-                BeadInfo(kind = BeadKind.Decade, state = state, isGroupStart = h > 1 && (h - 1) % 5 == 0)
+                BeadInfo(kind = BeadKind.Decade, state = state)
             }
 
             return BeadLayout(

@@ -34,18 +34,6 @@
             </Grid>
         </DataTemplate>
 
-        <DataTemplate x:Key="GroupStartAwareBeadTemplate">
-            <Grid Width="20" Height="20" Margin="{Binding IsGroupStart, Converter={StaticResource GroupStartLeadingMargin}}">
-                <Ellipse Fill="{Binding Color, Converter={StaticResource ColorToBrush}}"
-                         Width="{Binding CircleSize}" Height="{Binding CircleSize}"
-                         Visibility="{Binding IsCircle, Converter={StaticResource BoolToVisibility}}"
-                         HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <TextBlock Text="M" Foreground="White" FontSize="10" FontWeight="Bold"
-                           Visibility="{Binding IsAntiphon, Converter={StaticResource BoolToVisibility}}"
-                           HorizontalAlignment="Center" VerticalAlignment="Center" />
-            </Grid>
-        </DataTemplate>
-
         <ItemsPanelTemplate x:Key="HorizontalBeadPanelTemplate">
             <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center" />
         </ItemsPanelTemplate>
@@ -114,7 +102,7 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeads, Mode=OneWay}" ItemTemplate="{StaticResource GroupStartAwareBeadTemplate}"
+                <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeads, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
                               ItemsPanel="{StaticResource HorizontalBeadPanelTemplate}"
                               Visibility="{x:Bind ViewModel.ShowBottomBeads, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
             </StackPanel>

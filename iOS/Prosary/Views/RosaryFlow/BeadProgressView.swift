@@ -51,6 +51,8 @@ private struct GroupColumnsGridView: View {
   }
 }
 
+/// Evenly spaced — deliberately no group-of-5 gap: decades that aren't 10 beads long (the
+/// Seven Sorrows' 7) would split awkwardly (5+2) around it.
 private struct MinorBeadsRowView: View {
   let beads: [BeadInfo]
 
@@ -58,9 +60,6 @@ private struct MinorBeadsRowView: View {
     HStack(spacing: beadSpacing) {
       ForEach(beads) { bead in
         BeadDotView(bead: bead)
-          // A single extra-wide gap marks the group-of-5 boundary, instead of extra
-          // space on both sides isolating that one bead.
-          .padding(.leading, bead.isGroupStart ? beadSpacing : 0)
       }
     }
   }
@@ -78,10 +77,9 @@ private struct MinorBeadsColumnView: View {
   }
 }
 
-/// Splits the 10 minor beads into two 5-bead columns (matching the group-of-5 boundary already
-/// encoded in `isGroupStart`) instead of one 10-tall column — half the height, for when there
-/// isn't enough vertical room for the single tall column (an iPhone in landscape, or a Mac window
-/// resized short).
+/// Splits the minor beads into two half-length columns (5+5 for a 10-bead decade) instead of
+/// one tall column — half the height, for when there isn't enough vertical room for the single
+/// tall column (an iPhone in landscape, or a Mac window resized short).
 private struct MinorBeadsTwoColumnView: View {
   let beads: [BeadInfo]
 

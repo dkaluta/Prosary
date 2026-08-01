@@ -40,14 +40,12 @@ private fun GroupColumnsGridView(columns: List<BeadColumn>) {
     }
 }
 
+/** Evenly spaced — deliberately no group-of-5 gap: decades that aren't 10 beads long (the
+ * Seven Sorrows' 7) would split awkwardly (5+2) around it. */
 @Composable
 private fun MinorBeadsRowView(beads: List<BeadInfo>) {
     Row(horizontalArrangement = Arrangement.spacedBy(beadSpacing)) {
-        beads.forEach { bead ->
-            // A single extra-wide gap marks the group-of-5 boundary, instead of extra
-            // space on both sides isolating that one bead.
-            BeadDotView(bead = bead, modifier = Modifier.padding(start = if (bead.isGroupStart) beadSpacing else 0.dp))
-        }
+        beads.forEach { bead -> BeadDotView(bead = bead) }
     }
 }
 
@@ -58,10 +56,9 @@ private fun MinorBeadsColumnView(beads: List<BeadInfo>) {
     }
 }
 
-/** Splits the 10 minor beads into two 5-bead columns (matching the group-of-5 boundary already
- * encoded in [BeadInfo.isGroupStart]) instead of one 10-tall column — half the height, for when
- * there isn't enough vertical room for the single tall column (a phone in landscape, or a resized
- * short window). */
+/** Splits the minor beads into two half-length columns (5+5 for a 10-bead decade) instead of
+ * one tall column — half the height, for when there isn't enough vertical room for the single
+ * tall column (a phone in landscape, or a resized short window). */
 @Composable
 private fun MinorBeadsTwoColumnView(beads: List<BeadInfo>) {
     val half = (beads.size + 1) / 2
