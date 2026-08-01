@@ -35,7 +35,8 @@ templates, SQL migrations, HMAC-cookie sessions, request-derived WebAuthn RP inf
 | `BLOB_READ_WRITE_TOKEN` | Vercel Blob — auto-injected by the Blob store |
 | `SESSION_SECRET` | 32+ chars, `openssl rand -base64 48` — required in production |
 | `ADMIN_SECRET` | guards `POST /api/admin/migrate` |
-| `RESEND_API_KEY` | recovery email via Resend; unset = links log to stdout (dev) |
+| `BREVO_API_KEY` | recovery email via Brevo (free tier allows multiple sender domains) |
+| `RESEND_API_KEY` | fallback provider when Brevo isn't configured; both unset = links log to stdout (dev) |
 | `EMAIL_FROM` | optional sender override (default `Prosary Prayers <noreply@prosary.app>`) |
 | `APP_ORIGIN` | optional; pins emailed link origins (otherwise request-derived) |
 

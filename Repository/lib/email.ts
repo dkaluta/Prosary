@@ -1,6 +1,8 @@
-// Email transport — Resend when RESEND_API_KEY is set, stdout logging
-// otherwise so dev works without any external service (freebee's pattern).
-// Email exists in this app for exactly one purpose: account recovery.
+// Email transport — Brevo when BREVO_API_KEY is set (free tier allows multiple
+// sender domains, unlike Resend's single-domain limit), else Resend when
+// RESEND_API_KEY is set, else stdout logging so dev works without any external
+// service (freebee's pattern). Email exists in this app for exactly one
+// purpose: account recovery.
 
 import { headers } from "next/headers";
 
@@ -15,16 +17,41 @@ export async function getAppOrigin(): Promise<string> {
   return `${proto}://${host}`;
 }
 
+function parseFromAddress(): { name: string; email: string } {
+  const match = /^(.*)<([^>]+)>\s*$/.exec(FROM_ADDRESS);
+  return match
+    ? { name: match[1].trim(), email: match[2].trim() }
+    : { name: "Prosary Prayers", email: FROM_ADDRESS };
+}
+
 async function deliver(message: { to: string; subject: string; text: string }): Promise<void> {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
+  const brevoKey = process.env.BREVO_API_KEY;
+  if (brevoKey) {
+    const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: { "api-key": brevoKey, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        sender: parseFromAddress(),
+        to: [{ email: message.to }],
+        subject: message.subject,
+        textContent: message.text,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error(`Brevo failed: ${response.status} ${await response.text()}`);
+    }
+    return;
+  }
+
+  const resendKey = process.env.RESEND_API_KEY;
+  if (!resendKey) {
     console.log(`[email:dev] To: ${message.to}\nSubject: ${message.subject}\n\n${message.text}`);
     return;
   }
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${apiKey}`,
+      Authorization: `Bearer ${resendKey}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
