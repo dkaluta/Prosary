@@ -178,8 +178,9 @@ public static class PrayerPackStore
 
     /// <summary>Every loaded bundle id that has a <c>devotion.json</c> — i.e. every generic
     /// devotion discovered at load time, in pack-load order, without hardcoding devotion names
-    /// anywhere in view code.</summary>
-    public static IReadOnlyList<string> CustomDevotionIds() => OrderedCustomIds;
+    /// anywhere in view code. A snapshot, not the live list — a caller iterating while an
+    /// install/remove mutates the store (tests; a future background install) must not throw.</summary>
+    public static IReadOnlyList<string> CustomDevotionIds() => OrderedCustomIds.ToList();
 
     public static CustomDevotionInfo? Info(string bundleId) =>
         InfoByBundle.TryGetValue(bundleId, out var info) ? info : null;
