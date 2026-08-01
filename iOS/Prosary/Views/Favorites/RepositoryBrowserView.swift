@@ -42,11 +42,15 @@ struct RepositoryBrowserView: View {
           ProgressView()
         } else if let loadError {
           ContentUnavailableView {
-            Label("repository.unavailable", systemImage: "wifi.slash")
+            Label(
+              String(localized: "repository.unavailable", defaultValue: "Repository Unavailable"),
+              systemImage: "wifi.slash")
           } description: {
             Text(loadError)
           } actions: {
-            Button("repository.retry") { Task { await load() } }
+            Button(String(localized: "repository.retry", defaultValue: "Try Again")) {
+              Task { await load() }
+            }
           }
         } else {
           list
