@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using Prosary.Navigation;
 using Prosary.ViewModels;
 
 namespace Prosary.Views;
@@ -21,6 +22,12 @@ public sealed partial class FavoritesListPage : Page
         base.OnNavigatedTo(e);
         await ViewModel.LoadAsync();
     }
+
+    // The same repository browser the Browse tab hosts — Favorites keeps its own entry point
+    // next to the file import, matching iOS/Android. (Handler dropped by accident in the 0.4
+    // tab-shell restructure; Windows builds only in CI, so it surfaced there.)
+    private void OnBrowseRepository(object sender, RoutedEventArgs e)
+        => Router.Navigate<RepositoryBrowserPage>();
 
     // FileOpenPicker needs the window handle and a UI-thread continuation, so the pick stays
     // code-behind and only the bytes reach the ViewModel.
