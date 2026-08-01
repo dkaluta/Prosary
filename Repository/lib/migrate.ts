@@ -7,16 +7,25 @@
 //
 // Idempotent — safe to run on every deploy.
 
+import { existsSync } from "node:fs";
 import { readdir, readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { createSqlClient } from "./db-connection.ts";
 
-// Resolve the migrations dir relative to cwd. The /*turbopackIgnore*/ hint
-// keeps the bundler from trying to trace every possible filesystem path —
-// we explicitly list this directory in next.config.ts's
-// outputFileTracingIncludes so the SQL files ship with the function.
-function defaultMigrationsDir(): string {
-  return join(/*turbopackIgnore: true*/ process.cwd(), "migrations");
+/**
+ * Resolves a directory shipped with the function via outputFileTracingIncludes.
+ * In this monorepo (Vercel Root Directory `Repository`) the function's cwd is
+ * `/var/task/Repository` while traced files land under `/var/task/…` — so both
+ * the cwd and its parent are candidates; locally cwd alone matches. The
+ * turbopackIgnore hint keeps the bundler from tracing every possible path.
+ */
+export function resolveTracedDir(name: string): string {
+  const cwd = /*turbopackIgnore: true*/ process.cwd();
+  const candidates = [join(cwd, name), join(dirname(cwd), name)];
+  for (const candidate of candidates) {
+    if (existsSync(candidate)) return candidate;
+  }
+  throw new Error(`Traced directory '${name}' not found in: ${candidates.join(", ")}`);
 }
 
 export type MigrationResult = {
@@ -28,7 +37,7 @@ export async function runMigrations(opts?: {
   migrationsDir?: string;
   log?: (msg: string) => void;
 }): Promise<MigrationResult> {
-  const dir = opts?.migrationsDir ?? defaultMigrationsDir();
+  const dir = opts?.migrationsDir ?? resolveTracedDir("migrations");
   const log = opts?.log ?? (() => {});
   // max:1 — migrations are short and serial; no need to keep a pool around.
   const sql = createSqlClient({ max: 1 });

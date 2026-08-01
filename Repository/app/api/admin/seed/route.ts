@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { randomUUID } from "node:crypto";
 import { put } from "@vercel/blob";
 import { createSqlClient } from "@/lib/db-connection";
-import { runMigrations } from "@/lib/migrate";
+import { resolveTracedDir, runMigrations } from "@/lib/migrate";
 
 // Migrations + founding data, run where the sensitive connection string lives
 // (the Neon integration's env vars can't be pulled locally) — freebee's
@@ -34,9 +34,7 @@ export async function POST(request: Request) {
       await sql`INSERT INTO users (id, username, email) VALUES (${userId}, ${USERNAME}, ${EMAIL})`;
     }
 
-    const bytes = await readFile(
-      join(/*turbopackIgnore: true*/ process.cwd(), "seed", "repo.dkaluta.kyrie.prosaryprayer")
-    );
+    const bytes = await readFile(join(resolveTracedDir("seed"), "repo.dkaluta.kyrie.prosaryprayer"));
     const blob = await put(`bundles/${BUNDLE_ID}.prosaryprayer`, bytes, {
       access: "public",
       contentType: "application/zip",
