@@ -3,7 +3,9 @@ package com.dkaluta.prosary.ui
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -160,7 +162,22 @@ fun ProsaryApp() {
                     }
                 },
             ) { paddingValues ->
-                AppNavHost(navController, Modifier.padding(paddingValues))
+                AppNavHost(
+                    navController,
+                    Modifier
+                        .padding(paddingValues)
+                        // The tab bar already spans the gesture-nav inset, so tab screens'
+                        // own Scaffolds must not pad for it again — that painted a dead band
+                        // between the scrolling content and the bar. Flow destinations hide
+                        // the bar and keep the inset for their own footers.
+                        .then(
+                            if (showsTabs) {
+                                Modifier.consumeWindowInsets(WindowInsets.navigationBars)
+                            } else {
+                                Modifier
+                            },
+                        ),
+                )
             }
         }
     }
