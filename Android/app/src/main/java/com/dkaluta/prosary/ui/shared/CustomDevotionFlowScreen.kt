@@ -94,7 +94,15 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
         if (match != null) {
             if (audio.track?.id != match.id || !audio.isLoaded) {
                 audio.load(context, devotionId, match)
-                alignAudioToStep(currentStepIndex)
+                if (audio.didRestorePosition) {
+                    // Resumed mid-recording: pull the page to the restored chapter instead of
+                    // yanking the recording back to the step-0 chapter.
+                    val hint = audio.currentChapterIndex
+                        ?.let { audio.track?.chapters?.getOrNull(it)?.stepIndex }
+                    if (hint != null && hint in steps.indices) currentIndex = hint
+                } else {
+                    alignAudioToStep(currentStepIndex)
+                }
             }
         } else {
             audio.stop()

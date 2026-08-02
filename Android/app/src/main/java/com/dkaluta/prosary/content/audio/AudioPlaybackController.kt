@@ -1,6 +1,7 @@
 package com.dkaluta.prosary.content.audio
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.os.Build
@@ -33,6 +34,11 @@ class AudioPlaybackController {
     var duration by mutableDoubleStateOf(0.0)
         private set
 
+    /** True when [load] resumed a previous session's position — the flow then skips its
+     * align-to-step-0 and lets the chapter sync pull the page to the restored chapter. */
+    var didRestorePosition = false
+        private set
+
     val isLoaded: Boolean get() = player != null
 
     /** Index into the track's chapters of the chapter [currentTime] falls in. */
@@ -40,6 +46,8 @@ class AudioPlaybackController {
         get() = track?.chapters?.let { chapterIndexFor(it, currentTime) }
 
     private var player: MediaPlayer? = null
+    private var prefs: SharedPreferences? = null
+    private var positionKey: String? = null
 
     /** Extracts and opens the track; leaves the player paused at 0. Any previous track stops. */
     fun load(context: Context, bundleId: String, track: DevotionAudioTrack) {
@@ -62,6 +70,7 @@ class AudioPlaybackController {
         prepared.setOnCompletionListener {
             isPlaying = false
             currentTime = duration
+            savePosition() // at duration this clears the key — a finished listen restarts fresh
         }
         // seekTo is asynchronous — this corrects the optimistic time in [seek] to wherever the
         // player actually landed (callbacks arrive on the creating thread's Looper: main).
@@ -70,6 +79,22 @@ class AudioPlaybackController {
         duration = prepared.duration / 1000.0
         currentTime = 0.0
         this.track = track
+
+        // Resume where the last session left off (positions persist per track id).
+        prefs = context.getSharedPreferences("audio_positions", Context.MODE_PRIVATE)
+        positionKey = "audioPosition.$bundleId.${track.id}"
+        val saved = prefs?.getFloat(positionKey, 0f)?.toDouble() ?: 0.0
+        didRestorePosition = shouldRestore(saved, duration)
+        if (didRestorePosition) seek(saved)
+    }
+
+    /** Persists the position (or clears it near the edges, so finished/abandoned-at-start
+     * sessions begin fresh next time). Called on pause, stop, and natural completion. */
+    private fun savePosition() {
+        val key = positionKey ?: return
+        prefs?.edit()?.apply {
+            if (shouldRestore(currentTime, duration)) putFloat(key, currentTime.toFloat()) else remove(key)
+        }?.apply()
     }
 
     /** The cached audio file for a track, extracted from the pack on first use. */
@@ -89,6 +114,7 @@ class AudioPlaybackController {
             isPlaying = false
             // No seek can be pending while playing normally, so this read-back is safe.
             currentTime = player.currentPosition / 1000.0
+            savePosition()
         } else {
             // Finished-and-restarted: tapping play at the end starts over instead of nothing.
             // Through seek() so the published time updates optimistically — a read-back here
@@ -143,12 +169,15 @@ class AudioPlaybackController {
     }
 
     fun stop() {
+        if (player != null) savePosition() // currentTime already tracks pending seeks
         player?.release()
         player = null
         track = null
         isPlaying = false
         currentTime = 0.0
         duration = 0.0
+        didRestorePosition = false
+        positionKey = null
     }
 
     companion object {
@@ -158,6 +187,11 @@ class AudioPlaybackController {
             if (chapters.isEmpty()) return null
             return chapters.indexOfLast { it.start <= time + 0.01 }.coerceAtLeast(0)
         }
+
+        /** A stored position worth resuming: past the first moments, short of the last
+         * stretch — the same rule on all three platforms. */
+        fun shouldRestore(position: Double, duration: Double): Boolean =
+            position > 10 && duration > 0 && position < duration * 0.9
 
         fun previousChapterTarget(
             chapters: List<DevotionAudioTrack.Chapter>,

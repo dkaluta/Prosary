@@ -24,6 +24,9 @@ final class AudioPlaybackController: NSObject, AVAudioPlayerDelegate {
   private(set) var isPlaying = false
   private(set) var currentTime: Double = 0
   private(set) var duration: Double = 0
+  /// True when `load` resumed a previous session's position — the flow then skips its
+  /// align-to-step-0 and lets the chapter sync pull the page to the restored chapter instead.
+  private(set) var didRestorePosition = false
   /// Nil while no track is loaded (the flow omits its audio bar entirely).
   var isLoaded: Bool { player != nil }
 
@@ -37,6 +40,16 @@ final class AudioPlaybackController: NSObject, AVAudioPlayerDelegate {
 
   private var player: AVAudioPlayer?
   private var ticker: Timer?
+  /// UserDefaults key for the loaded track's saved position — track ids are unique within a
+  /// bundle (the format reserved them for exactly this).
+  private var positionKey: String?
+
+  /// A stored position worth resuming: past the first moments (a fresh start isn't a
+  /// "session"), short of the last stretch (a nearly-finished listen restarts instead).
+  /// Shared rule across platforms.
+  static func shouldRestore(position: Double, duration: Double) -> Bool {
+    position > 10 && duration > 0 && position < duration * 0.9
+  }
 
   // MARK: Loading
 
@@ -52,6 +65,26 @@ final class AudioPlaybackController: NSObject, AVAudioPlayerDelegate {
     duration = opened.duration
     currentTime = 0
     self.track = track
+
+    // Resume where the last session left off (positions persist per track id).
+    positionKey = "audioPosition.\(bundleId).\(track.id)"
+    let saved = UserDefaults.standard.double(forKey: positionKey!)
+    didRestorePosition = Self.shouldRestore(position: saved, duration: duration)
+    if didRestorePosition {
+      opened.currentTime = saved
+      currentTime = opened.currentTime
+    }
+  }
+
+  /// Persists the position (or clears it near the edges, so finished/abandoned-at-start
+  /// sessions begin fresh next time). Called on pause, stop, and natural finish.
+  private func savePosition() {
+    guard let positionKey else { return }
+    if Self.shouldRestore(position: currentTime, duration: duration) {
+      UserDefaults.standard.set(currentTime, forKey: positionKey)
+    } else {
+      UserDefaults.standard.removeObject(forKey: positionKey)
+    }
   }
 
   /// The cached audio file for a track, extracting from the pack on first use. Returns the
@@ -93,6 +126,8 @@ final class AudioPlaybackController: NSObject, AVAudioPlayerDelegate {
       player.pause()
       isPlaying = false
       stopTicker()
+      currentTime = player.currentTime
+      savePosition()
     } else {
       #if canImport(UIKit) && !os(watchOS)
       // Prayer audio should sound with the ringer switch silenced, like any audiobook.
@@ -139,12 +174,18 @@ final class AudioPlaybackController: NSObject, AVAudioPlayerDelegate {
   }
 
   func stop() {
+    if let player {
+      currentTime = player.currentTime
+      savePosition()
+    }
     player?.stop()
     player = nil
     track = nil
     isPlaying = false
     currentTime = 0
     duration = 0
+    didRestorePosition = false
+    positionKey = nil
     stopTicker()
     #if canImport(UIKit) && !os(watchOS)
     try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
@@ -176,6 +217,7 @@ final class AudioPlaybackController: NSObject, AVAudioPlayerDelegate {
       isPlaying = false
       currentTime = duration
       stopTicker()
+      savePosition() // at duration this clears the key — a finished listen restarts fresh
     }
   }
 }

@@ -30,6 +30,11 @@ public sealed class AudioPlaybackService : IDisposable
 
     public bool IsPlaying { get; private set; }
 
+    /// <summary>True when <see cref="Load"/> resumed a previous session's position (applied at
+    /// MediaOpened, when the real duration arrives). The ViewModel's state handler then pulls
+    /// the page to the restored chapter through the ordinary chapter→step hint path.</summary>
+    public bool DidRestorePosition { get; private set; }
+
     /// <summary>Seconds, mirrored from the playback session on its position ticks.</summary>
     public double CurrentTime { get; private set; }
 
@@ -64,12 +69,22 @@ public sealed class AudioPlaybackService : IDisposable
         player.MediaOpened += (_, _) => OnUi(() =>
         {
             Duration = player.PlaybackSession.NaturalDuration.TotalSeconds;
+            // Resume where the last session left off (positions persist per track id).
+            var saved = ReadSavedPosition();
+            if (ShouldRestore(saved, Duration))
+            {
+                DidRestorePosition = true;
+                player.PlaybackSession.Position = TimeSpan.FromSeconds(saved);
+                CurrentTime = saved;
+            }
+
             StateChanged?.Invoke();
         });
         player.MediaEnded += (_, _) => OnUi(() =>
         {
             IsPlaying = false;
             CurrentTime = Duration;
+            SavePosition(); // at the duration this clears the key — a finished listen restarts fresh
             StateChanged?.Invoke();
         });
         // No Ogg Opus demuxer on this machine (Web Media Extensions absent) or a corrupt file —
@@ -83,10 +98,59 @@ public sealed class AudioPlaybackService : IDisposable
 
         _player = player;
         Track = track;
+        _positionKey = $"audioPosition.{bundleId}.{track.Id}";
         CurrentTime = 0;
-        Duration = 0; // real value arrives with MediaOpened
+        Duration = 0; // real value arrives with MediaOpened (which also restores the position)
         StateChanged?.Invoke();
     }
+
+    private string? _positionKey;
+
+    private double ReadSavedPosition()
+    {
+        try
+        {
+            return _positionKey is { } key
+                && ApplicationData.Current.LocalSettings.Values.TryGetValue(key, out var value)
+                && value is double seconds ? seconds : 0;
+        }
+        catch
+        {
+            return 0;
+        }
+    }
+
+    /// <summary>Persists the position (or clears it near the edges, so finished and
+    /// abandoned-at-start sessions begin fresh next time). Called on pause, stop, and
+    /// natural end.</summary>
+    private void SavePosition()
+    {
+        if (_positionKey is not { } key)
+        {
+            return;
+        }
+
+        try
+        {
+            if (ShouldRestore(CurrentTime, Duration))
+            {
+                ApplicationData.Current.LocalSettings.Values[key] = CurrentTime;
+            }
+            else
+            {
+                ApplicationData.Current.LocalSettings.Values.Remove(key);
+            }
+        }
+        catch
+        {
+            // Settings I/O never breaks playback.
+        }
+    }
+
+    /// <summary>A stored position worth resuming: past the first moments, short of the last
+    /// stretch — the same rule on all three platforms.</summary>
+    public static bool ShouldRestore(double position, double duration) =>
+        position > 10 && duration > 0 && position < duration * 0.9;
 
     /// <summary>The cached audio file for a track, extracted from the pack on first use.</summary>
     private static string? ExtractedFilePath(string bundleId, DevotionAudioTrack track)
@@ -128,6 +192,7 @@ public sealed class AudioPlaybackService : IDisposable
         {
             player.Pause();
             IsPlaying = false;
+            SavePosition();
         }
         else
         {
@@ -186,12 +251,19 @@ public sealed class AudioPlaybackService : IDisposable
 
     public void Stop()
     {
+        if (_player is not null)
+        {
+            SavePosition();
+        }
+
         _player?.Dispose();
         _player = null;
         Track = null;
         IsPlaying = false;
         CurrentTime = 0;
         Duration = 0;
+        DidRestorePosition = false;
+        _positionKey = null;
         StateChanged?.Invoke();
     }
 

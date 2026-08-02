@@ -112,6 +112,40 @@ final class AudioPlaybackControllerTests: XCTestCase {
     controller.stop()
   }
 
+  func testResumesASavedPositionAndForgetsItNearTheEdges() throws {
+    let track = try XCTUnwrap(PrayerPackStore.audioTracks(for: bundleId).first { $0.language == "la" })
+    UserDefaults.standard.removeObject(forKey: "audioPosition.\(bundleId).\(track.id)")
+
+    // A mid-recording stop persists the position…
+    let first = AudioPlaybackController()
+    first.load(bundleId: bundleId, track: track)
+    XCTAssertFalse(first.didRestorePosition)
+    first.seek(to: 15)
+    first.stop()
+
+    // …which the next session resumes.
+    let second = AudioPlaybackController()
+    second.load(bundleId: bundleId, track: track)
+    XCTAssertTrue(second.didRestorePosition)
+    XCTAssertEqual(second.currentTime, 15, accuracy: 0.6)
+    XCTAssertEqual(second.currentChapterIndex, 3) // 15s falls in the third Kyrie's chapter
+
+    // Stopping in the final stretch clears the memory — next session starts fresh.
+    second.seek(to: second.duration - 0.5)
+    second.stop()
+    let third = AudioPlaybackController()
+    third.load(bundleId: bundleId, track: track)
+    XCTAssertFalse(third.didRestorePosition)
+    XCTAssertEqual(third.currentTime, 0)
+    third.stop()
+
+    // The rule itself, at its edges.
+    XCTAssertFalse(AudioPlaybackController.shouldRestore(position: 9, duration: 100))
+    XCTAssertTrue(AudioPlaybackController.shouldRestore(position: 11, duration: 100))
+    XCTAssertFalse(AudioPlaybackController.shouldRestore(position: 91, duration: 100))
+    XCTAssertFalse(AudioPlaybackController.shouldRestore(position: 15, duration: 0))
+  }
+
   func testLoadingTheOtherLanguageSwapsTracks() throws {
     let tracks = PrayerPackStore.audioTracks(for: bundleId)
     let controller = AudioPlaybackController()

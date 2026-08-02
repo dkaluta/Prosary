@@ -37,6 +37,9 @@ const custom: EditorStep = {
   titleByLanguage: { la: "Oratio", en: "Prayer" },
   bodyByLanguage: { la: "Kyrie eleison.", en: "Lord, have mercy." },
   isScripture: false,
+  // Repeated mid-sequence on purpose: every chapter AFTER this step must carry a
+  // repeat-expanded (built) stepIndex, not its authored index.
+  repeat: 2,
 };
 const gloria: EditorStep = {
   uid: newUid(),
@@ -63,6 +66,7 @@ project.audio = [
     chapters: [
       { start: 0, stepUid: cross.uid },
       { start: 12.5, stepUid: custom.uid },
+      { start: 20, stepUid: gloria.uid },
     ],
   },
 ];
@@ -73,6 +77,20 @@ if (issues.length > 0) fail("expected a clean project", issues);
 const bundle = buildBundle(project);
 mkdirSync("dist-e2e", { recursive: true });
 writeFileSync("dist-e2e/exampleDevotion.prosaryprayer", bundle);
+
+// Chapters must hint BUILT indices: cross=0, custom=1 (its 2 repetitions span built 1–2),
+// gloria=3 — an authored-index regression would emit [0, 1, 2].
+{
+  const audioFile = buildBundleFiles(project).find((f) => f.name === "audio.json");
+  if (!audioFile) fail("audio.json missing from the built bundle");
+  const packed = JSON.parse(new TextDecoder().decode(audioFile!.data)) as {
+    tracks: { chapters: { stepIndex?: number }[] }[];
+  };
+  const stepIndices = packed.tracks[0].chapters.map((c) => c.stepIndex);
+  if (JSON.stringify(stepIndices) !== JSON.stringify([0, 1, 3])) {
+    fail("chapter stepIndex hints must be built-sequence indices", stepIndices);
+  }
+}
 
 const reopened = await openBundle(bundle);
 const reopenedIssues = validateProject(reopened);

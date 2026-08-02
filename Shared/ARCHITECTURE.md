@@ -494,8 +494,14 @@ of its own — its entire step sequence and per-step text are data-driven from i
   page; manual Back/Next seeks the recording to the chapter narrating the new step when one
   exists; and the timer auto-advance stands down while audio plays, so the two advance
   drivers never fight. Only the generic custom-devotion flow surfaces the bar today (no
-  built-in bundle ships recordings yet); per-track position persistence and Compose-side
-  audio authoring remain future work. `Shared/tools/make-audio-fixture.sh` builds the
+  built-in bundle ships recordings yet). Playback positions persist per track id (the id's
+  reserved purpose): saved on pause/stop/finish, resumed on load when past 10 s and short of
+  90 % (finished or barely-started sessions begin fresh), and a resumed session pulls the
+  page to the restored chapter instead of re-aligning the recording to step 0. Compose
+  authors audio end to end (the Audio wizard screen: one .opus per language, chapters bound
+  to authored steps with in-browser preview where the browser decodes Ogg Opus) — and its
+  chapter stepIndex hints are emitted as BUILT-sequence indices, repeat-expanded exactly like
+  the engines expand them, with the reverse mapping on re-import. `Shared/tools/make-audio-fixture.sh` builds the
   committed test bundle (`Shared/tools/fixtures/kyrieaudiodemo.prosaryprayer`): the Kyrie
   narrated by macOS TTS in Latin/English with measured chapter boundaries — strictly test
   material, never shippable content.

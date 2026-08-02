@@ -38,6 +38,14 @@ class AudioChapterMathTest {
     }
 
     @Test
+    fun restoreRuleSkipsTheEdges() {
+        org.junit.Assert.assertFalse(AudioPlaybackController.shouldRestore(9.0, 100.0))
+        org.junit.Assert.assertTrue(AudioPlaybackController.shouldRestore(11.0, 100.0))
+        org.junit.Assert.assertFalse(AudioPlaybackController.shouldRestore(91.0, 100.0))
+        org.junit.Assert.assertFalse(AudioPlaybackController.shouldRestore(15.0, 0.0))
+    }
+
+    @Test
     fun previousMeansTheChapterBeforeEarlyAndRestartLate() {
         // Just after chapter 3 begins → the chapter before it.
         assertEquals(2, AudioPlaybackController.previousChapterTarget(chapters, 3, 14.5))

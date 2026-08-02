@@ -182,7 +182,17 @@ struct CustomDevotionFlowView: View {
     if let match {
       if audio.track?.id != match.id || !audio.isLoaded {
         audio.load(bundleId: devotionId, track: match)
-        alignAudioToCurrentStep()
+        if audio.didRestorePosition {
+          // Resumed mid-recording: pull the page to the restored chapter instead of
+          // yanking the recording back to the step-0 chapter.
+          if let chapterIndex = audio.currentChapterIndex,
+             let hint = audio.track?.chapters[chapterIndex].stepIndex,
+             steps.indices.contains(hint) {
+            currentIndex = hint
+          }
+        } else {
+          alignAudioToCurrentStep()
+        }
       }
     } else {
       audio.stop()
