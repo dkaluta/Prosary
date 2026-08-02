@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(entities = [PresetEntity::class], version = 5, exportSchema = false)
+@Database(entities = [PresetEntity::class], version = 6, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun presetDao(): PresetDao
 }
@@ -42,5 +42,12 @@ val MIGRATION_3_4 = object : Migration(3, 4) {
 val MIGRATION_4_5 = object : Migration(4, 5) {
     override fun migrate(db: SupportSQLiteDatabase) {
         db.execSQL("ALTER TABLE presets ADD COLUMN customOptionsJson TEXT NOT NULL DEFAULT '{}'")
+    }
+}
+
+/** Adds multi-day progress — see [PresetEntity.dayIndex]. */
+val MIGRATION_5_6 = object : Migration(5, 6) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("ALTER TABLE presets ADD COLUMN dayIndex INTEGER")
     }
 }

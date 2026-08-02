@@ -39,6 +39,7 @@ data class PresetEntity(
     // Which bundle variant (alternate step-set) this favorite prays; null = the bundle's
     // default. Added in DB version 4 (see MIGRATION_3_4).
     val variantId: String? = null,
+    val dayIndex: Int? = null,
 
     // JSON-encoded Map<String, String> of the favorite's options.json choices (see
     // Prayer.customOptions). Added in DB version 5 (see MIGRATION_4_5).
@@ -91,6 +92,7 @@ data class PresetEntity(
             languageCode = languageCode,
             customDevotionId = resolvedDevotionId,
             variantId = variantId,
+            dayIndex = dayIndex,
             customOptions = customOptionsFromJson(customOptionsJson),
             rosary = RosaryOptions(
                 mysterySelectionMode = runCatching { MysterySelectionMode.valueOf(mysterySelectionMode) }
@@ -128,6 +130,7 @@ data class PresetEntity(
                 kind = prayer.kind.name,
                 customDevotionId = prayer.customDevotionId,
                 variantId = prayer.variantId,
+                dayIndex = prayer.dayIndex,
                 customOptionsJson = customOptionsToJson(prayer.customOptions),
                 mysterySelectionMode = prayer.rosary.mysterySelectionMode.name,
                 specificMysteryGroup = prayer.rosary.specificMysteryGroup.name,

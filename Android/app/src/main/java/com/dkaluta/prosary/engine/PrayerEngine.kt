@@ -55,6 +55,7 @@ class PrayerEngine(
             if (bundleId != null) {
                 buildCustomDevotionSteps(
                     bundleId, prayer.languageCode, prayer.variantId, prayer.customOptions,
+                    dayIndex = prayer.dayIndex ?: 0,
                 )
             } else {
                 emptyList()
