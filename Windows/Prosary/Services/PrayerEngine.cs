@@ -128,11 +128,12 @@ public sealed class PrayerEngine
 
     private IReadOnlyList<RosaryStep> BuildCustomDevotionSteps(
         string bundleId, string? languageCode, string? variantId = null,
-        Dictionary<string, string>? optionOverrides = null, RosaryOptions? rosaryOptions = null) =>
+        Dictionary<string, string>? optionOverrides = null, RosaryOptions? rosaryOptions = null,
+        int dayIndex = 0) =>
         BuildCustomDevotionSteps(
             bundleId, languageCode,
             _calendar.IsEasterSeasonForToday(), _calendar.GetSeasonalMarianAntiphonForToday(), variantId,
-            optionOverrides, rosaryOptions, _calendar.GetMysteryGroupForToday());
+            optionOverrides, rosaryOptions, _calendar.GetMysteryGroupForToday(), dayIndex);
 
     /// <summary>The only builder for every <see cref="PrayerKind.Custom"/> devotion — reads
     /// <paramref name="bundleId"/>'s parsed <c>devotion.json</c> and produces the full step
