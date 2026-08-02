@@ -135,7 +135,6 @@ public partial class RepositoryBrowserViewModel : ObservableObject
                  .Contains(query, StringComparison.OrdinalIgnoreCase))));
     }
 
-    [RelayCommand]
     private static string StampKey(string bundleId) => $"repoUpdatedAt.{bundleId}";
 
     private static string? ReadInstallStamp(string bundleId)
@@ -169,6 +168,7 @@ public partial class RepositoryBrowserViewModel : ObservableObject
         }
     }
 
+    [RelayCommand]
     private async Task InstallAsync(RepositoryRow row)
     {
         row.IsBusy = true;
