@@ -144,7 +144,16 @@ struct RepositoryBrowserView: View {
             .foregroundStyle(.secondary)
         }
         Spacer()
-        if isInstalled {
+        if busyBundleIds.contains(bundle.id) {
+          ProgressView()
+        } else if RepositoryInstallStamps.hasUpdate(bundle: bundle, isInstalled: isInstalled) {
+          // The author republished since this was installed: same pipeline, replace in place.
+          Button(String(localized: "repository.update", defaultValue: "Update")) {
+            install(bundle, replacingExisting: true)
+          }
+          .buttonStyle(.borderedProminent)
+          .tint(.brandPrimary)
+        } else if isInstalled {
           Label(String(localized: "repository.installed", defaultValue: "Installed"), systemImage: "checkmark")
             .font(.subheadline)
             .foregroundStyle(.secondary)
@@ -190,14 +199,18 @@ struct RepositoryBrowserView: View {
     isLoading = false
   }
 
-  private func install(_ bundle: RepositoryBundle) {
+  private func install(_ bundle: RepositoryBundle, replacingExisting: Bool = false) {
     busyBundleIds.insert(bundle.id)
     Task {
       defer { busyBundleIds.remove(bundle.id) }
       do {
         let data = try await RepositoryClient.downloadBundle(bundle)
+        // installPack skips id collisions (shipped devotions always win), so an update
+        // removes the old copy first — download succeeded, the window without a pack is tiny.
+        if replacingExisting { PrayerPackStore.removeInstalledPack(id: bundle.id) }
         try PrayerPackStore.installPack(from: data)
         installedIds.insert(bundle.id)
+        RepositoryInstallStamps.record(bundle.updatedAt, for: bundle.id)
       } catch {
         installError = error.localizedDescription
       }

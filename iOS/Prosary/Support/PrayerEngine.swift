@@ -46,7 +46,7 @@ struct PrayerEngine {
       guard let bundleId = prayer.customDevotionId else { return [] }
       return buildCustomDevotionSteps(
         bundleId: bundleId, languageCode: prayer.languageCode, variantId: prayer.variantId,
-        optionOverrides: prayer.customOptions)
+        optionOverrides: prayer.customOptions, dayIndex: prayer.dayIndex ?? 0)
     }
   }
 
@@ -165,9 +165,9 @@ struct PrayerEngine {
         rosaryOptions: rosaryOptions)
     case .days:
       // Multi-day devotions: shared opening + the day's own steps + shared closing. `dayIndex`
-      // is clamped, so a finished novena keeps praying its last day rather than crashing; the
-      // per-favorite progress that will drive it is a planned follow-up (see ARCHITECTURE.md)
-      // — until it lands, sessions pray day 1.
+      // is clamped, so a finished novena keeps praying its last day rather than crashing.
+      // Per-favorite progress drives it: Prayer.dayIndex advances when a day's session
+      // finishes, and the flow's day picker jumps anywhere.
       guard let days = definition.days, !days.isEmpty else { return [] }
       let day = days[min(max(dayIndex, 0), days.count - 1)]
       let entries = (definition.opening ?? []) + day.steps + (definition.closing ?? [])

@@ -14,7 +14,10 @@ public sealed record RepositoryBundle(
     List<string> Tags,
     string Description,
     // Same-origin download path ("/api/download/<id>") — downloads count server-side.
-    string File);
+    string File,
+    // Server-side last-modified stamp; optional so older catalogs (pre-0.6) still parse.
+    // The browser keys its "Update" badge on this changing after install.
+    string? UpdatedAt = null);
 
 /// <summary>Fetches the prayers.prosary.app catalog (the versioned /index.json contract — see
 /// Shared/ARCHITECTURE.md § Content bundles) and downloads bundles through the same-origin

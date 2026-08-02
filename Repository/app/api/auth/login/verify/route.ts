@@ -1,3 +1,4 @@
+import { rateLimited } from "@/lib/limits";
 import { verifyAuthenticationResponse } from "@simplewebauthn/server";
 import type { AuthenticationResponseJSON } from "@simplewebauthn/server";
 import { setSession } from "@/lib/auth";
@@ -6,6 +7,9 @@ import { getRpInfo } from "@/lib/webauthn";
 import { extractChallenge, publicKeyFromText, transportsFromText } from "@/lib/webauthn-helpers";
 
 export async function POST(request: Request) {
+  const limited = await rateLimited(request, "login-verify", 30, 600);
+  if (limited) return limited;
+
   const body = (await request.json().catch(() => null)) as
     | { response?: AuthenticationResponseJSON }
     | null;

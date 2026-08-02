@@ -37,6 +37,12 @@ struct Prayer: Identifiable, Hashable, Codable {
   /// meaningful when `kind == .custom` and the bundle declares variants.
   var variantId: String? = nil
 
+  /// Multi-day ("days"-type) devotions: the day this favorite prays next, 0-based. Advances
+  /// when a day's session finishes; clamped by the engine so a completed novena re-prays its
+  /// last day. Nil (the CloudKit-safe optional default) means day 1. Only meaningful when
+  /// `kind == .custom` and the bundle's devotion is days-type.
+  var dayIndex: Int? = nil
+
   /// This favorite's choices for the bundle's `options.json` options, keyed by option key —
   /// "true"/"false" for toggles, a case id for choices. Only overrides: an absent key means the
   /// option's declared default. Only meaningful when `kind == .custom`.

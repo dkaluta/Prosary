@@ -18,6 +18,9 @@ data class RepositoryBundle(
     val description: String = "",
     /** Same-origin download path ("/api/download/<id>") — downloads count server-side. */
     val file: String,
+    /** Server-side last-modified stamp; optional so older catalogs (pre-0.6) still parse.
+     * The browser keys its "Update" badge on this changing after install. */
+    val updatedAt: String? = null,
 )
 
 @Serializable
@@ -51,5 +54,26 @@ object RepositoryClient {
 
     suspend fun downloadBundle(bundle: RepositoryBundle): ByteArray = withContext(Dispatchers.IO) {
         URL(BASE_URL + bundle.file).readBytes()
+    }
+}
+
+/** Which catalog `updatedAt` each repository bundle was installed at — the whole "update
+ * available" feature: a bundle shows Update when the live catalog's stamp differs from the
+ * one recorded at install. File-imported bundles have no record and never nag. */
+object RepositoryInstallStamps {
+    private fun prefs(context: android.content.Context) =
+        context.getSharedPreferences("repo_install_stamps", android.content.Context.MODE_PRIVATE)
+
+    fun record(context: android.content.Context, bundleId: String, updatedAt: String?) {
+        prefs(context).edit().apply {
+            if (updatedAt == null) remove(bundleId) else putString(bundleId, updatedAt)
+        }.apply()
+    }
+
+    fun hasUpdate(context: android.content.Context, bundle: RepositoryBundle, isInstalled: Boolean): Boolean {
+        if (!isInstalled) return false
+        val live = bundle.updatedAt ?: return false
+        val installed = prefs(context).getString(bundle.id, null) ?: return false
+        return live != installed
     }
 }

@@ -21,6 +21,9 @@ struct RepositoryBundle: Decodable, Identifiable, Hashable {
   let description: String
   /// Same-origin download path ("/api/download/<id>").
   let file: String
+  /// Server-side last-modified stamp; optional so older catalogs (pre-0.6) still parse.
+  /// The browser keys its "Update" badge on this changing after install.
+  let updatedAt: String?
 }
 
 enum RepositoryClientError: LocalizedError {
@@ -68,5 +71,29 @@ enum RepositoryClient {
     let (data, response) = try await URLSession.shared.data(from: url)
     guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw RepositoryClientError.badResponse }
     return data
+  }
+}
+
+/// Which catalog `updatedAt` each repository bundle was installed at — the whole "update
+/// available" feature: a bundle shows Update when the live catalog's stamp differs from the
+/// one recorded at install. File-imported bundles have no record and never nag.
+enum RepositoryInstallStamps {
+  private static let key = "repoInstalledUpdatedAt"
+
+  static func stamp(for bundleId: String) -> String? {
+    (UserDefaults.standard.dictionary(forKey: key) as? [String: String])?[bundleId]
+  }
+
+  static func record(_ updatedAt: String?, for bundleId: String) {
+    var stamps = (UserDefaults.standard.dictionary(forKey: key) as? [String: String]) ?? [:]
+    stamps[bundleId] = updatedAt
+    UserDefaults.standard.set(stamps, forKey: key)
+  }
+
+  static func hasUpdate(bundle: RepositoryBundle, isInstalled: Bool) -> Bool {
+    guard isInstalled, let live = bundle.updatedAt, let installed = stamp(for: bundle.id) else {
+      return false
+    }
+    return live != installed
   }
 }

@@ -1,3 +1,4 @@
+import { rateLimited } from "@/lib/limits";
 import { verifyRegistrationResponse } from "@simplewebauthn/server";
 import type { RegistrationResponseJSON } from "@simplewebauthn/server";
 import { getCurrentUser, setSession } from "@/lib/auth";
@@ -8,6 +9,9 @@ import { extractChallenge, publicKeyToText, transportsToText } from "@/lib/webau
 type Body = { mode: "signup" | "add"; response: RegistrationResponseJSON };
 
 export async function POST(request: Request) {
+  const limited = await rateLimited(request, "register-verify", 10, 3600);
+  if (limited) return limited;
+
   const body = (await request.json().catch(() => null)) as Body | null;
   if (!body?.response || (body.mode !== "signup" && body.mode !== "add")) {
     return Response.json({ error: "invalid_body" }, { status: 400 });

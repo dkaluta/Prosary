@@ -681,9 +681,14 @@ public sealed record CustomDevotionDefinition(
         string Name,
         Dictionary<string, string>? NameByLanguage = null,
         // Optional grouping label for the Montfort-style structure ("First Week: Knowledge of
-        // Self"), shown as period context by the future day-picker UI.
+        // Self"), shown as period context by the day picker.
         string? Period = null,
-        List<CustomDevotionStep>? Steps = null);
+        List<CustomDevotionStep>? Steps = null)
+    {
+        public string LocalizedName =>
+            NameByLanguage?.GetValueOrDefault(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
+            ?? Name;
+    }
 
     public sealed record DecadesDefinition(
         // "Joy" / "Sorrow" / "Decade" — combined with the engine's ordinal array into "1st Joy" etc.

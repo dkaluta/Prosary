@@ -1,3 +1,4 @@
+import { rateLimited } from "@/lib/limits";
 import { generateRegistrationOptions } from "@simplewebauthn/server";
 import { getCurrentUser } from "@/lib/auth";
 import {
@@ -15,6 +16,9 @@ import { transportsFromText } from "@/lib/webauthn-helpers";
 type Body = { mode: "signup"; username?: string; email?: string } | { mode: "add" };
 
 export async function POST(request: Request) {
+  const limited = await rateLimited(request, "register-options", 10, 3600);
+  if (limited) return limited;
+
   await pruneExpiredChallenges();
   const body = (await request.json().catch(() => null)) as Body | null;
   if (!body || (body.mode !== "signup" && body.mode !== "add")) {

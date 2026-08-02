@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { listBundles } from "@/lib/db";
 import { LANGUAGE_NAMES } from "@/lib/languages";
 
@@ -47,9 +48,9 @@ export default async function Home({
       ) : (
         bundles.map((bundle) => (
           <article className="card" key={bundle.id}>
-            <h2>{bundle.name}</h2>
+            <h2><Link href={`/bundle/${bundle.id}`}>{bundle.name}</Link></h2>
             <p className="meta">
-              by {bundle.author} · {bundle.languages.map((l) => LANGUAGE_NAMES[l] ?? l).join(", ")} ·{" "}
+              by <Link href={`/u/${bundle.author}`}>{bundle.author}</Link> · {bundle.languages.map((l) => LANGUAGE_NAMES[l] ?? l).join(", ")} ·{" "}
               <span className="id">{bundle.id}</span> · {Number(bundle.downloads)} download
               {Number(bundle.downloads) === 1 ? "" : "s"}
             </p>

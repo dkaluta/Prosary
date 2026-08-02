@@ -40,6 +40,7 @@ public sealed partial class CustomDevotionFlowPage : Page
             await ViewModel.LoadAsync(p.PrayerId, p.BundleId);
             BuildVariantFlyout();
             BuildLanguageFlyout();
+            BuildDayFlyout();
         }
 
         AutoAdvanceMenu.Populate(AutoAdvanceFlyout, () => _autoAdvance?.Restart());
@@ -58,6 +59,29 @@ public sealed partial class CustomDevotionFlowPage : Page
     /// <summary>x:Bind function for the transport strip's play/pause FontIcon (Segoe glyphs:
     /// Play E768, Pause E769).</summary>
     public string PlayPauseGlyph(bool isPlaying) => isPlaying ? "\uE769" : "\uE768";
+
+    // Same MenuFlyout rebuild pattern as the variant flyout: one toggle item per authored day,
+    // period-prefixed for the Montfort-style groupings.
+    private void BuildDayFlyout()
+    {
+        DayFlyout.Items.Clear();
+        for (var i = 0; i < ViewModel.Days.Count; i++)
+        {
+            var day = ViewModel.Days[i];
+            var item = new ToggleMenuFlyoutItem
+            {
+                Text = day.Period is { } period ? $"{period} — {day.LocalizedName}" : day.LocalizedName,
+                IsChecked = i == ViewModel.CurrentDayIndex,
+            };
+            var dayIndex = i;
+            item.Click += async (_, _) =>
+            {
+                await ViewModel.SelectDayAsync(dayIndex);
+                BuildDayFlyout();
+            };
+            DayFlyout.Items.Add(item);
+        }
+    }
 
     // MenuFlyout has no ItemsSource, so the variant items are built here after load — one
     // toggle item per variant, checked state refreshed on every switch.

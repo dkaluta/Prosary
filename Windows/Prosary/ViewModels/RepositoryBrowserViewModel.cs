@@ -14,13 +14,28 @@ public partial class RepositoryRow : ObservableObject
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsInstallable))]
+    [NotifyPropertyChangedFor(nameof(ShowsInstalledLabel))]
     private bool _isInstalled;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsInstallable))]
+    [NotifyPropertyChangedFor(nameof(HasUpdate))]
     private bool _isBusy;
 
+    /// <summary>The author republished since this copy was installed (catalog updatedAt differs
+    /// from the stamp recorded at install; file imports have no stamp and never nag).</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsInstallable))]
+    [NotifyPropertyChangedFor(nameof(HasUpdate))]
+    [NotifyPropertyChangedFor(nameof(ShowsInstalledLabel))]
+    private bool _updateAvailable;
+
     public bool IsInstallable => !IsInstalled && !IsBusy;
+
+    public bool HasUpdate => UpdateAvailable && !IsBusy;
+
+    /// <summary>The quiet "Installed" caption yields to the Update button when one is due.</summary>
+    public bool ShowsInstalledLabel => IsInstalled && !UpdateAvailable;
 
     public string Subtitle
     {
@@ -88,6 +103,10 @@ public partial class RepositoryBrowserViewModel : ObservableObject
             {
                 Bundle = bundle,
                 IsInstalled = PrayerPackStore.CustomDevotionIds().Contains(bundle.Id),
+                UpdateAvailable = PrayerPackStore.CustomDevotionIds().Contains(bundle.Id)
+                    && bundle.UpdatedAt is { } live
+                    && ReadInstallStamp(bundle.Id) is { } installed
+                    && live != installed,
             }).ToList();
             Tags = new ObservableCollection<string>(
                 new[] { "All" }.Concat(_all.SelectMany(r => r.Bundle.Tags).Distinct().Order()));
@@ -116,6 +135,39 @@ public partial class RepositoryBrowserViewModel : ObservableObject
                  .Contains(query, StringComparison.OrdinalIgnoreCase))));
     }
 
+    private static string StampKey(string bundleId) => $"repoUpdatedAt.{bundleId}";
+
+    private static string? ReadInstallStamp(string bundleId)
+    {
+        try
+        {
+            return Windows.Storage.ApplicationData.Current.LocalSettings.Values[StampKey(bundleId)] as string;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private static void RecordInstallStamp(string bundleId, string? updatedAt)
+    {
+        try
+        {
+            if (updatedAt is null)
+            {
+                Windows.Storage.ApplicationData.Current.LocalSettings.Values.Remove(StampKey(bundleId));
+            }
+            else
+            {
+                Windows.Storage.ApplicationData.Current.LocalSettings.Values[StampKey(bundleId)] = updatedAt;
+            }
+        }
+        catch
+        {
+            // Settings I/O never blocks an install.
+        }
+    }
+
     [RelayCommand]
     private async Task InstallAsync(RepositoryRow row)
     {
@@ -123,8 +175,17 @@ public partial class RepositoryBrowserViewModel : ObservableObject
         try
         {
             var bytes = await RepositoryClient.DownloadBundleAsync(row.Bundle);
+            // InstallPack skips id collisions (shipped devotions always win), so an update
+            // removes the old copy first — download succeeded, the pack-less window is tiny.
+            if (row.UpdateAvailable)
+            {
+                PrayerPackStore.RemoveInstalledPack(row.Bundle.Id);
+            }
+
             PrayerPackStore.InstallPack(bytes);
             row.IsInstalled = true;
+            row.UpdateAvailable = false;
+            RecordInstallStamp(row.Bundle.Id, row.Bundle.UpdatedAt);
         }
         catch (PrayerPackStore.InstallException ex)
         {

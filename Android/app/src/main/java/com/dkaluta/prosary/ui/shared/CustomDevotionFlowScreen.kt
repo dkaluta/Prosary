@@ -3,6 +3,7 @@ package com.dkaluta.prosary.ui.shared
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Language
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
@@ -68,6 +69,19 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
      * app-level default setting"). [languageCode] is always the resolved code. */
     var chosenLanguage by remember { mutableStateOf(prayer?.languageCode ?: LanguageCatalog.defaultSentinel) }
     var languageMenuExpanded by remember { mutableStateOf(false) }
+    /** Multi-day devotions: the day this session prays (0-based; sourced from the favorite). */
+    var dayIndex by remember { mutableIntStateOf(prayer?.dayIndex ?: 0) }
+    var dayMenuExpanded by remember { mutableStateOf(false) }
+
+    fun persistDayIndex(value: Int) {
+        matchingFavoriteId?.let { id ->
+            scope.launch {
+                services.presetStore.get(id)?.let { favorite ->
+                    services.presetStore.save(favorite.copy(dayIndex = value))
+                }
+            }
+        }
+    }
 
     val context = LocalContext.current
     val audio = remember { AudioPlaybackController() }
@@ -109,7 +123,7 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
         }
     }
 
-    LaunchedEffect(prayer, devotionId, variantId) {
+    LaunchedEffect(prayer, devotionId, variantId, dayIndex) {
         displayName = PrayerPackStore.info(devotionId)?.localizedDisplayName ?: devotionId
 
         // The favorite (when one exists) carries the language and variant to pray in, so it
@@ -123,6 +137,7 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
                 if (variantId == null && favorite.variantId != null) {
                     variantId = favorite.variantId
                 }
+                dayIndex = favorite.dayIndex ?: 0
             }
         }
 
@@ -132,7 +147,7 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
         steps = services.engine.buildSteps(
             Prayer(
                 kind = PrayerKind.Custom, languageCode = chosenLanguage,
-                customDevotionId = devotionId, variantId = variantId,
+                customDevotionId = devotionId, variantId = variantId, dayIndex = dayIndex,
             ),
         )
         currentIndex = 0
@@ -182,6 +197,10 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
         },
         onNext = {
             if (steps.isEmpty() || currentIndex == steps.size - 1) {
+                // Finishing a multi-day session advances the favorite to the next day (staying
+                // on the last once complete) — tomorrow opens where the novena left off.
+                val days = PrayerPackStore.definition(devotionId)?.days.orEmpty()
+                if (days.size > 1) persistDayIndex(minOf(dayIndex + 1, days.size - 1))
                 onBack()
             } else {
                 currentIndex++
@@ -246,6 +265,7 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
                                     Prayer(
                                         kind = PrayerKind.Custom, languageCode = raw,
                                         customDevotionId = devotionId, variantId = variantId,
+                                        dayIndex = dayIndex,
                                     ),
                                 )
                                 currentIndex = position.coerceIn(0, (steps.size - 1).coerceAtLeast(0))
@@ -257,6 +277,32 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
                                         }
                                     }
                                 }
+                            },
+                        )
+                    }
+                }
+            }
+            // Day picker — multi-day ("days"-type) devotions only: jump to any day; finishing
+            // a session advances the favorite to the next one automatically.
+            val days = PrayerPackStore.definition(devotionId)?.days.orEmpty()
+            if (days.size > 1) {
+                IconButton(onClick = { dayMenuExpanded = true }) {
+                    Icon(Icons.Filled.DateRange, contentDescription = "Day")
+                }
+                DropdownMenu(expanded = dayMenuExpanded, onDismissRequest = { dayMenuExpanded = false }) {
+                    days.forEachIndexed { index, day ->
+                        val label = day.period?.let { "$it — ${day.localizedName}" } ?: day.localizedName
+                        DropdownMenuItem(
+                            text = { Text(label) },
+                            leadingIcon = if (index == dayIndex) {
+                                { Icon(Icons.Filled.Check, contentDescription = null) }
+                            } else {
+                                null
+                            },
+                            onClick = {
+                                dayMenuExpanded = false
+                                dayIndex = index
+                                persistDayIndex(index)
                             },
                         )
                     }

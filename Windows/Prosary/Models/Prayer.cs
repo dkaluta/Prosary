@@ -36,6 +36,10 @@ public sealed record Prayer
     /// variants.</summary>
     public string? VariantId { get; init; } = null;
 
+    /// <summary>Multi-day ("days"-type) devotions: the day this favorite prays next, 0-based;
+    /// advances when a day's session finishes (clamped by the engine). Null = day 1.</summary>
+    public int? DayIndex { get; init; } = null;
+
     /// <summary>This favorite's choices for the bundle's <c>options.json</c> options, keyed by
     /// option key — "true"/"false" for toggles, a case id for choices. Only overrides: an absent
     /// key means the option's declared default. Only meaningful when Kind == Custom.</summary>

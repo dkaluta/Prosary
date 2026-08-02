@@ -31,6 +31,9 @@ data class Prayer(
      * scriptural forms) this favorite prays. Null = the bundle's default (first) variant; only
      * meaningful when kind == Custom and the bundle declares variants. */
     var variantId: String? = null,
+    /** Multi-day ("days"-type) devotions: the day this favorite prays next, 0-based; advances
+     * when a day's session finishes (clamped by the engine). Null = day 1. */
+    var dayIndex: Int? = null,
 
     /** This favorite's choices for the bundle's `options.json` options, keyed by option key —
      * "true"/"false" for toggles, a case id for choices. Only overrides: an absent key means the

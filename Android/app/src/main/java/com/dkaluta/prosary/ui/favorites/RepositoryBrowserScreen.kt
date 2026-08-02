@@ -43,8 +43,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
+import androidx.compose.ui.platform.LocalContext
 import com.dkaluta.prosary.content.repository.RepositoryBundle
 import com.dkaluta.prosary.content.repository.RepositoryClient
+import com.dkaluta.prosary.content.repository.RepositoryInstallStamps
 import com.dkaluta.prosary.models.LanguageCatalog
 import kotlinx.coroutines.launch
 
@@ -153,7 +155,27 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
                     }
                 }
                 items(filtered, key = { "bundle.$installedGeneration.${it.id}" }) { bundle ->
+                    val context = LocalContext.current
                     val isInstalled = bundle.id in PrayerPackStore.customDevotionIds()
+                    val hasUpdate = RepositoryInstallStamps.hasUpdate(context, bundle, isInstalled)
+                    fun installBundle(replacingExisting: Boolean) {
+                        busyIds = busyIds + bundle.id
+                        scope.launch {
+                            runCatching {
+                                val bytes = RepositoryClient.downloadBundle(bundle)
+                                // installPack skips id collisions, so an update removes the old
+                                // copy first — download succeeded, the pack-less window is tiny.
+                                if (replacingExisting) PrayerPackStore.removeInstalledPack(bundle.id)
+                                PrayerPackStore.installPack(bytes)
+                            }.onSuccess {
+                                RepositoryInstallStamps.record(context, bundle.id, bundle.updatedAt)
+                                installedGeneration++
+                            }.onFailure { error ->
+                                installError = error.message ?: "Could not install the devotion."
+                            }
+                            busyIds = busyIds - bundle.id
+                        }
+                    }
                     Card {
                         Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -167,6 +189,10 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
                                 }
                                 Spacer(Modifier.width(8.dp))
                                 when {
+                                    bundle.id in busyIds -> CircularProgressIndicator(Modifier.width(24.dp))
+                                    hasUpdate -> Button(onClick = { installBundle(replacingExisting = true) }) {
+                                        Text("Update")
+                                    }
                                     isInstalled -> Row(verticalAlignment = Alignment.CenterVertically) {
                                         Icon(Icons.Filled.Check, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
                                         Text(
@@ -175,21 +201,7 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
                                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         )
                                     }
-                                    bundle.id in busyIds -> CircularProgressIndicator(Modifier.width(24.dp))
-                                    else -> Button(onClick = {
-                                        busyIds = busyIds + bundle.id
-                                        scope.launch {
-                                            runCatching {
-                                                val bytes = RepositoryClient.downloadBundle(bundle)
-                                                PrayerPackStore.installPack(bytes)
-                                            }.onSuccess {
-                                                installedGeneration++
-                                            }.onFailure { error ->
-                                                installError = error.message ?: "Could not install the devotion."
-                                            }
-                                            busyIds = busyIds - bundle.id
-                                        }
-                                    }) { Text("Install") }
+                                    else -> Button(onClick = { installBundle(replacingExisting = false) }) { Text("Install") }
                                 }
                             }
                             if (bundle.description.isNotEmpty()) {

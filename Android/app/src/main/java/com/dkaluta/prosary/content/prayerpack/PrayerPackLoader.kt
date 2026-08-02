@@ -211,10 +211,13 @@ data class CustomDevotionDefinition(
         val name: String,
         val nameByLanguage: Map<String, String>? = null,
         /** Optional grouping label for the Montfort-style structure ("First Week: Knowledge
-         * of Self"), shown as period context by the future day-picker UI. */
+         * of Self"), shown as period context by the day picker. */
         val period: String? = null,
         val steps: List<CustomDevotionStep>,
-    )
+    ) {
+        val localizedName: String
+            get() = nameByLanguage?.get(java.util.Locale.getDefault().language) ?: name
+    }
 
     /** One named alternate step-set of a steps-type devotion (e.g. the Stations' traditional
      * vs. scriptural forms). */
