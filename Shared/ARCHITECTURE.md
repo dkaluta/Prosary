@@ -529,7 +529,14 @@ of its own — its entire step sequence and per-step text are data-driven from i
   an update prompt, never guess), filters by search text and tag, and installs through the very
   same `installPack` path, downloading via the catalog's same-origin `/api/download/<id>` so
   server-side counting keeps working. This is the only networked feature in the apps (Android's
-  sole INTERNET permission). Compose is the authoring half; the repository is the sharing half.
+  sole INTERNET permission). Compose is the authoring half; the repository is the sharing half — joined
+  directly by **publish-from-Compose**: the Finish screen's "Publish" opens the repository's
+  `/publish` receiver in a popup and hands the built bundle across via postMessage
+  (origin-checked both ways). Everything sensitive stays first-party on the repository origin —
+  the session cookie, the passkey ceremony (WebAuthn credentials are bound to
+  prayers.prosary.app), and the actual POST /api/bundles — so no CORS or cross-site cookies
+  exist. The receiver re-announces readiness on every mount and Compose answers every
+  announcement, which makes the handshake survive the sign-in reload for free.
 - **`bodyKey`/`titleKey` resolution** (`resolveBodyText`, per bundle): (1) the bundle's own raw
   content for the requested language; (2) the bundle's own **Latin** content (so a sentinel/
   unknown/undeclared language prays in Latin, never raw keys — the same convention as
