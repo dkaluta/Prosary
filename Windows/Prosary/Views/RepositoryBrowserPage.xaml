@@ -68,11 +68,16 @@
                                             <Grid Grid.Column="1" VerticalAlignment="Center">
                                                 <TextBlock Text="Installed" Style="{StaticResource MutedCaptionTextStyle}"
                                                            VerticalAlignment="Center"
-                                                           Visibility="{x:Bind IsInstalled, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                                                           Visibility="{x:Bind ShowsInstalledLabel, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                                                 <ProgressRing IsActive="{x:Bind IsBusy, Mode=OneWay}" Width="22" Height="22"
                                                               Visibility="{x:Bind IsBusy, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                                                 <Button Content="Install" Style="{StaticResource AccentButtonStyle}"
                                                         Visibility="{x:Bind IsInstallable, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                                        Command="{Binding ElementName=Root, Path=ViewModel.InstallCommand}"
+                                                        CommandParameter="{Binding}" />
+                                                <!-- The author republished since this copy was installed. -->
+                                                <Button Content="Update" Style="{StaticResource AccentButtonStyle}"
+                                                        Visibility="{x:Bind HasUpdate, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                                                         Command="{Binding ElementName=Root, Path=ViewModel.InstallCommand}"
                                                         CommandParameter="{Binding}" />
                                             </Grid>
