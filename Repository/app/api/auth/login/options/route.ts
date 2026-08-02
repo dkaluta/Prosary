@@ -1,3 +1,4 @@
+import { rateLimited } from "@/lib/limits";
 import { generateAuthenticationOptions } from "@simplewebauthn/server";
 import {
   findUserByUsername,
@@ -10,6 +11,9 @@ import { getRpInfo } from "@/lib/webauthn";
 import { transportsFromText } from "@/lib/webauthn-helpers";
 
 export async function POST(request: Request) {
+  const limited = await rateLimited(request, "login-options", 30, 600);
+  if (limited) return limited;
+
   await pruneExpiredChallenges();
   const body = (await request.json().catch(() => null)) as { username?: string } | null;
   const username = normalizeUsername(body?.username ?? "");

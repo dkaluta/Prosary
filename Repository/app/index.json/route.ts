@@ -15,6 +15,7 @@ export async function GET() {
       tags: b.tags,
       description: b.description,
       file: `/api/download/${b.id}`,
+      updatedAt: b.updated_at,
     })),
   });
 }

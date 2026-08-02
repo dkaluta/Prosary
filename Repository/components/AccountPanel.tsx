@@ -3,17 +3,23 @@
 import { startRegistration } from "@simplewebauthn/browser";
 import { useState } from "react";
 
+type PasskeyInfo = { credentialId: string; name: string | null; createdAt: string };
+type BundleInfo = { id: string; name: string; description: string; tags: string[] };
+
 export function AccountPanel({
   username,
-  passkeyCount,
+  passkeys,
   bundles,
 }: {
   username: string;
-  passkeyCount: number;
-  bundles: { id: string; name: string }[];
+  passkeys: PasskeyInfo[];
+  bundles: BundleInfo[];
 }) {
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editDescription, setEditDescription] = useState("");
+  const [editTags, setEditTags] = useState("");
 
   const addPasskey = async () => {
     setError(null);
@@ -41,6 +47,34 @@ export function AccountPanel({
       window.location.reload();
     } catch {
       setError("Passkey creation was cancelled or failed.");
+    }
+  };
+
+  const renamePasskey = async (credentialId: string, current: string | null) => {
+    const name = window.prompt("Name this passkey (e.g. “MacBook”, “1Password”):", current ?? "");
+    if (name === null || !name.trim()) return;
+    const response = await fetch(`/api/auth/passkeys/${encodeURIComponent(credentialId)}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: name.trim() }),
+    });
+    if (response.ok) window.location.reload();
+    else setError("Could not rename the passkey.");
+  };
+
+  const removePasskey = async (credentialId: string) => {
+    if (!window.confirm("Remove this passkey? You keep signing in with the others.")) return;
+    const response = await fetch(`/api/auth/passkeys/${encodeURIComponent(credentialId)}`, {
+      method: "DELETE",
+    });
+    if (response.ok) window.location.reload();
+    else {
+      const body = await response.json().catch(() => null);
+      setError(
+        body?.error === "last_passkey"
+          ? "That's your only passkey — add another before removing it."
+          : "Could not remove the passkey.",
+      );
     }
   };
 
@@ -72,13 +106,33 @@ export function AccountPanel({
     else setError("Could not remove the bundle.");
   };
 
+  const startEditing = (bundle: BundleInfo) => {
+    setEditingId(bundle.id);
+    setEditDescription(bundle.description);
+    setEditTags(bundle.tags.join(", "));
+  };
+
+  const saveEdits = async (id: string) => {
+    const response = await fetch(`/api/bundles/${encodeURIComponent(id)}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        description: editDescription,
+        tags: editTags.split(",").map((t) => t.trim()).filter(Boolean),
+      }),
+    });
+    if (response.ok) window.location.reload();
+    else setError("Could not save the changes.");
+  };
+
   return (
     <>
       <div className="card">
         <h2>{username}</h2>
         <p className="hint">
-          Your bundles publish under <span style={{ fontFamily: "ui-monospace, monospace" }}>repo.{username}.…</span>{" "}
-          · {passkeyCount} passkey{passkeyCount === 1 ? "" : "s"} on this account
+          Your bundles publish under{" "}
+          <span style={{ fontFamily: "ui-monospace, monospace" }}>repo.{username}.…</span> — public
+          page: <a href={`/u/${username}`}>/u/{username}</a>
         </p>
         <p style={{ display: "flex", gap: 10 }}>
           <button className="primary" onClick={addPasskey}>
@@ -91,6 +145,29 @@ export function AccountPanel({
       </div>
 
       <div className="card">
+        <h2>Passkeys</h2>
+        {passkeys.map((passkey) => (
+          <p key={passkey.credentialId} style={{ display: "flex", gap: 10, alignItems: "center" }}>
+            <span style={{ flex: 1 }}>
+              {passkey.name ?? "Unnamed passkey"}{" "}
+              <span className="hint">added {passkey.createdAt.slice(0, 10)}</span>
+            </span>
+            <button className="subtle" onClick={() => renamePasskey(passkey.credentialId, passkey.name)}>
+              Rename
+            </button>
+            <button
+              className="subtle"
+              onClick={() => removePasskey(passkey.credentialId)}
+              disabled={passkeys.length <= 1}
+              title={passkeys.length <= 1 ? "Add another passkey before removing this one." : undefined}
+            >
+              Remove
+            </button>
+          </p>
+        ))}
+      </div>
+
+      <div className="card">
         <h2>Your bundles</h2>
         {bundles.length === 0 ? (
           <p className="hint">
@@ -98,14 +175,45 @@ export function AccountPanel({
           </p>
         ) : (
           bundles.map((bundle) => (
-            <p key={bundle.id} style={{ display: "flex", gap: 10, alignItems: "center" }}>
-              <span style={{ flex: 1 }}>
-                {bundle.name} <span className="hint">({bundle.id})</span>
-              </span>
-              <button className="subtle" onClick={() => removeBundle(bundle.id)}>
-                Remove
-              </button>
-            </p>
+            <div key={bundle.id} style={{ marginBottom: 10 }}>
+              <p style={{ display: "flex", gap: 10, alignItems: "center", margin: 0 }}>
+                <span style={{ flex: 1 }}>
+                  <a href={`/bundle/${bundle.id}`}>{bundle.name}</a>{" "}
+                  <span className="hint">({bundle.id})</span>
+                </span>
+                <button className="subtle" onClick={() => startEditing(bundle)}>
+                  Edit details
+                </button>
+                <button className="subtle" onClick={() => removeBundle(bundle.id)}>
+                  Remove
+                </button>
+              </p>
+              {editingId === bundle.id && (
+                <div style={{ paddingLeft: 12, borderLeft: "2px solid var(--brand-primary)" }}>
+                  <label className="field">
+                    <span>Description</span>
+                    <textarea
+                      maxLength={500}
+                      rows={2}
+                      value={editDescription}
+                      onChange={(e) => setEditDescription(e.target.value)}
+                    />
+                  </label>
+                  <label className="field">
+                    <span>Tags (comma-separated)</span>
+                    <input value={editTags} onChange={(e) => setEditTags(e.target.value)} />
+                  </label>
+                  <p style={{ display: "flex", gap: 10 }}>
+                    <button className="primary" onClick={() => saveEdits(bundle.id)}>
+                      Save
+                    </button>
+                    <button className="subtle" onClick={() => setEditingId(null)}>
+                      Cancel
+                    </button>
+                  </p>
+                </div>
+              )}
+            </div>
           ))
         )}
       </div>

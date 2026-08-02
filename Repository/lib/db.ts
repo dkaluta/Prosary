@@ -71,6 +71,7 @@ export type Passkey = {
   public_key: string;
   counter: string; // BIGINT arrives as string
   transports: string | null;
+  name: string | null;
   created_at: string;
 };
 
@@ -97,6 +98,21 @@ export async function insertPasskey(passkey: {
 
 export async function updatePasskeyCounter(credentialId: string, counter: number): Promise<void> {
   await sql()`UPDATE passkeys SET counter = ${counter} WHERE credential_id = ${credentialId}`;
+}
+
+export async function renamePasskey(credentialId: string, userId: string, name: string): Promise<boolean> {
+  const rows = await sql()`
+    UPDATE passkeys SET name = ${name.slice(0, 60)}
+    WHERE credential_id = ${credentialId} AND user_id = ${userId} RETURNING credential_id`;
+  return rows.length > 0;
+}
+
+/** Owner-scoped; the route refuses to delete the last one so accounts can't lock themselves
+ * out short of the email recovery flow. */
+export async function deletePasskey(credentialId: string, userId: string): Promise<boolean> {
+  const rows = await sql()`
+    DELETE FROM passkeys WHERE credential_id = ${credentialId} AND user_id = ${userId} RETURNING credential_id`;
+  return rows.length > 0;
 }
 
 // --- WebAuthn challenges (consumed exactly once) ---
@@ -227,6 +243,25 @@ export async function upsertBundle(bundle: {
     WHERE bundles.user_id = EXCLUDED.user_id`;
 }
 
+export async function listBundlesByUsername(username: string): Promise<BundleRow[]> {
+  return sql()<BundleRow[]>`
+    SELECT b.*, u.username AS author
+    FROM bundles b JOIN users u ON u.id = b.user_id
+    WHERE u.username = ${username}
+    ORDER BY b.created_at DESC`;
+}
+
+/** Owner-scoped metadata edit — the bundle file itself is untouched (a content change is a
+ * resubmission through the ordinary upload path). */
+export async function updateBundleMeta(
+  id: string, userId: string, description: string, tags: string[],
+): Promise<boolean> {
+  const rows = await sql()`
+    UPDATE bundles SET description = ${description}, tags = ${tags}, updated_at = NOW()
+    WHERE id = ${id} AND user_id = ${userId} RETURNING id`;
+  return rows.length > 0;
+}
+
 export async function deleteBundle(id: string, userId: string): Promise<boolean> {
   const rows = await sql()`DELETE FROM bundles WHERE id = ${id} AND user_id = ${userId} RETURNING id`;
   return rows.length > 0;
@@ -234,6 +269,20 @@ export async function deleteBundle(id: string, userId: string): Promise<boolean>
 
 export async function countDownload(id: string): Promise<void> {
   await sql()`UPDATE bundles SET downloads = downloads + 1 WHERE id = ${id}`;
+}
+
+// --- Rate limiting (freebee's fixed-window pattern: one row per key, window resets lazily) ---
+
+export async function withinRateLimit(key: string, limit: number, windowSeconds: number): Promise<boolean> {
+  const rows = await sql()<{ count: number }[]>`
+    INSERT INTO rate_limits (key, window_start, count) VALUES (${key}, NOW(), 1)
+    ON CONFLICT (key) DO UPDATE SET
+      count = CASE WHEN rate_limits.window_start < NOW() - make_interval(secs => ${windowSeconds})
+                   THEN 1 ELSE rate_limits.count + 1 END,
+      window_start = CASE WHEN rate_limits.window_start < NOW() - make_interval(secs => ${windowSeconds})
+                          THEN NOW() ELSE rate_limits.window_start END
+    RETURNING count`;
+  return Number(rows[0].count) <= limit;
 }
 
 export function newId(): string {

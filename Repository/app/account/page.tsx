@@ -1,5 +1,5 @@
 import { getCurrentUser, slideSessionIfNeeded } from "@/lib/auth";
-import { getPasskeysForUser, listBundles } from "@/lib/db";
+import { getPasskeysForUser, listBundlesByUsername } from "@/lib/db";
 import { AccountPanel } from "@/components/AccountPanel";
 import { AuthForms } from "@/components/AuthForms";
 
@@ -7,16 +7,23 @@ export const dynamic = "force-dynamic";
 
 export default async function AccountPage() {
   let user = null;
-  let passkeyCount = 0;
-  let ownBundles: { id: string; name: string }[] = [];
+  let passkeys: { credentialId: string; name: string | null; createdAt: string }[] = [];
+  let ownBundles: { id: string; name: string; description: string; tags: string[] }[] = [];
   try {
     await slideSessionIfNeeded();
     user = await getCurrentUser();
     if (user) {
-      passkeyCount = (await getPasskeysForUser(user.id)).length;
-      ownBundles = (await listBundles({}))
-        .filter((b) => b.author === user!.username)
-        .map((b) => ({ id: b.id, name: b.name }));
+      passkeys = (await getPasskeysForUser(user.id)).map((p) => ({
+        credentialId: p.credential_id,
+        name: p.name,
+        createdAt: String(p.created_at),
+      }));
+      ownBundles = (await listBundlesByUsername(user.username)).map((b) => ({
+        id: b.id,
+        name: b.name,
+        description: b.description,
+        tags: b.tags,
+      }));
     }
   } catch {
     return (
@@ -29,7 +36,7 @@ export default async function AccountPage() {
   return (
     <main>
       {user ? (
-        <AccountPanel username={user.username} passkeyCount={passkeyCount} bundles={ownBundles} />
+        <AccountPanel username={user.username} passkeys={passkeys} bundles={ownBundles} />
       ) : (
         <AuthForms />
       )}
