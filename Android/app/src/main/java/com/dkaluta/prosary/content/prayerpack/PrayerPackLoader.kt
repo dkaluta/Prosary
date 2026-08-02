@@ -138,14 +138,14 @@ private data class PackOptions(
 )
 
 /** One narrated recording a bundle declares in its `audio.json` (an optional bundle file, staged
- * by both packers like options.json — see Shared/ARCHITECTURE.md's "Audio (groundwork)").
- * Groundwork only: the metadata parses and the bytes are servable via
- * [PrayerPackStore.audioData], but no playback UI/service ships yet — that lands with the first
- * real recordings. Files are Ogg Opus (RFC 7845, `.opus`) under the bundle's `audio/` directory;
+ * by both packers like options.json — see Shared/ARCHITECTURE.md's "Audio").
+ * AudioPlaybackController plays these through the prayer flow's transport bar — metadata loads
+ * eagerly here, bytes are served on demand via [PrayerPackStore.audioData] and extracted to a
+ * cache file at load. Files are Ogg Opus (RFC 7845, `.opus`) under the bundle's `audio/` directory;
  * structure is enforced at authoring time by `Shared/tools/validate-devotion.py`. */
 @Serializable
 data class DevotionAudioTrack(
-    /** Unique within the bundle — what a future playback position would persist against. */
+    /** Unique within the bundle — what a persisted playback position would key against (persistence itself is future work). */
     val id: String,
     /** The single language this recording is in (one of the manifest's languages). */
     val language: String,
@@ -164,7 +164,7 @@ data class DevotionAudioTrack(
      * at 0, starts strictly increase); [title] XOR [titleKey] per the step-entry convention
      * ([titleKey] resolves through the track language's ordinary content chain); [stepIndex] is
      * an *advisory* link into the built default-options step sequence — the built sequence is
-     * option/calendar-dependent, so the future playback UI treats it as a step-syncing hint,
+     * option/calendar-dependent, so the playback UI treats it as a step-syncing hint,
      * never an invariant. */
     @Serializable
     data class Chapter(
@@ -421,8 +421,7 @@ object PrayerPackStore {
     fun customDevotionIds(): List<String> = orderedCustomIds.toList()
 
     /** The narrated recordings a bundle's `audio.json` declares, in authored order. Empty for
-     * bundles without audio — every shipped bundle today; groundwork for the audio expansion
-     * (see Shared/ARCHITECTURE.md's "Audio (groundwork)"). */
+     * bundles without audio (see Shared/ARCHITECTURE.md's "Audio"). */
     fun audioTracks(bundleId: String): List<DevotionAudioTrack> =
         audioTracksByBundle[bundleId].orEmpty()
 

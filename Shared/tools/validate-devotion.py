@@ -20,7 +20,7 @@ Checks, beyond plain JSON validity (which the packer already enforces):
   language and (when named) a declared variant per track, an existing audio/<name>.opus file
   with the Ogg Opus signature (RFC 7845), and well-formed chapters (first start 0, strictly
   increasing, title XOR titleKey with titleKey resolving in the track's language) — see
-  ARCHITECTURE.md's "Audio (groundwork)".
+  ARCHITECTURE.md's "Audio".
 
 Usage: validate-devotion.py <bundle-source-dir>
 Exit code 0 = valid; non-zero with messages on stderr otherwise.
@@ -130,7 +130,7 @@ def validate_entry(entry: dict, where: str, allow_kind: bool) -> None:
 
 def validate_audio(src: Path, languages: list, variant_ids: set) -> None:
     """audio.json (when present): narrated Ogg Opus recordings + chapter seek points — see
-    ARCHITECTURE.md's "Audio (groundwork)". Runs for override-only bundles too (audio needs no
+    ARCHITECTURE.md's "Audio". Runs for override-only bundles too (audio needs no
     devotion.json), with an empty variant-id set there so any variantId reference errors."""
     audio_path = src / "audio.json"
     if not audio_path.exists():

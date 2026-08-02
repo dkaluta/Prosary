@@ -208,7 +208,7 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     /// <summary>An audio-bearing bundle (audio.json + Ogg Opus files — see ARCHITECTURE.md's
-    /// "Audio (groundwork)") parses its track metadata and serves a declared file's bytes on
+    /// "Audio") parses its track metadata and serves a declared file's bytes on
     /// demand; undeclared files stay unreachable, and audio-less bundles report no tracks.</summary>
     [Fact]
     public void AudioBearingBundleParsesTracksAndServesDeclaredBytes()

@@ -444,7 +444,7 @@ of its own — its entire step sequence and per-step text are data-driven from i
   liturgical calendar (proper of the day, psalter weeks), not by a day counter — that needs a
   date→content-key resolution layer, for which the Home feast-day data (`Shared/content/data`)
   is the seed, and it should not be forced into the `days` shape.
-- **Audio (groundwork)** — a bundle may ship narrated recordings of its devotion. An optional
+- **Audio** — a bundle may ship narrated recordings of its devotion. An optional
   **`audio.json`** (declared separately from the structure, the same way catalog.json/options.json
   are) lists tracks: `{"tracks": [{id, language, file, variantId?, name?, nameByLanguage?,
   chapters: [{start, title | titleKey, stepIndex?}]}]}` — `id` unique within the bundle (what a
@@ -471,13 +471,40 @@ of its own — its entire step sequence and per-step text are data-driven from i
   `DevotionAudioTrack`/`DevotionAudioChapter` and exposes `audioTracks(bundleId)` +
   `audioData(bundleId, file)` — track *metadata* loads eagerly like everything else, but audio
   *bytes* are re-read from the pack on demand (a full recording dwarfs every other bundle asset;
-  never hold it in the load-time cache the way images are held). Playback itself is
-  **deliberately not yet shipped** — the player UI/service, extract-to-cache for OS players,
-  and chapter↔step syncing land together with the first real recordings (same rationale as the
-  multi-day groundwork above). One platform note for that milestone: Android (ExoPlayer/
-  MediaPlayer) and Windows (Media Foundation) decode Ogg Opus natively; iOS's AVFoundation does
-  not, so the iOS player will decode via libopus or repackage into CAF (CoreAudio's Opus
-  container) at load — the interchange format stays Ogg Opus regardless.
+  never hold it in the load-time cache the way images are held). **Playback** ships on
+  all three platforms: a per-platform player plus the same compact transport bar above the
+  prayer flow's footer (chapter skip / play-pause / seekable timeline / current chapter title),
+  shown when the session's devotion+language(+variant) has a matching track — the track's
+  language must equal the session's resolved code and its variantId (nil = the bundle's
+  single/default form) must match the session's; the first declared match wins (audio.json
+  order is the author's preference order). Track bytes are extracted once to a per-platform
+  cache (iOS `Caches/PrayerAudio/<bundleId>/`, Android `cacheDir/PrayerAudio/`, Windows
+  `LocalCacheFolder\PrayerAudio\`) and handed to the OS player: Android's stock `MediaPlayer`
+  and Windows' `Windows.Media.Playback.MediaPlayer` demux Ogg Opus natively (Windows through
+  the usually-preinstalled Web Media Extensions codecs — `MediaFailed` degrades to the
+  no-audio experience rather than a dead bar), while on Apple platforms
+  `AudioPlaybackController` *always* plays through `OggOpusCAF` — a lossless Ogg→CAF
+  repackager (packets copied as-is into desc/pakt/data chunks, priming frames from OpusHead's
+  pre-skip) whose output is cached beside the extract. Never the `.opus` directly: the
+  deployment floor (iOS 17/macOS 14) can't demux bare Ogg at all, and where newer OSes can,
+  AVAudioPlayer's Ogg scheduling is byte-rate estimated — measured on macOS 26, a 29 s VBR
+  narration "finishes successfully" at 20.6 s (cutting the final section mid-word) and seeks
+  land off target the same way; the CAF's explicit packet table plays and seeks exactly.
+  Chapter→step syncing: entering a chapter whose advisory `stepIndex` is in range turns the
+  page; manual Back/Next seeks the recording to the chapter narrating the new step when one
+  exists; and the timer auto-advance stands down while audio plays, so the two advance
+  drivers never fight. Only the generic custom-devotion flow surfaces the bar today (no
+  built-in bundle ships recordings yet). Playback positions persist per track id (the id's
+  reserved purpose): saved on pause/stop/finish, resumed on load when past 10 s and short of
+  90 % (finished or barely-started sessions begin fresh), and a resumed session pulls the
+  page to the restored chapter instead of re-aligning the recording to step 0. Compose
+  authors audio end to end (the Audio wizard screen: one .opus per language, chapters bound
+  to authored steps with in-browser preview where the browser decodes Ogg Opus) — and its
+  chapter stepIndex hints are emitted as BUILT-sequence indices, repeat-expanded exactly like
+  the engines expand them, with the reverse mapping on re-import. `Shared/tools/make-audio-fixture.sh` builds the
+  committed test bundle (`Shared/tools/fixtures/kyrieaudiodemo.prosaryprayer`): the Kyrie
+  narrated by macOS TTS in Latin/English with measured chapter boundaries — strictly test
+  material, never shippable content.
 - **User-installed bundles**: anyone can author a `.prosaryprayer` and import it from the
   Favorites screen (file picker on all three platforms). `installPack` validates the file
   (readable zip; parseable manifest + devotion.json; content for every declared language; not a
@@ -502,7 +529,14 @@ of its own — its entire step sequence and per-step text are data-driven from i
   an update prompt, never guess), filters by search text and tag, and installs through the very
   same `installPack` path, downloading via the catalog's same-origin `/api/download/<id>` so
   server-side counting keeps working. This is the only networked feature in the apps (Android's
-  sole INTERNET permission). Compose is the authoring half; the repository is the sharing half.
+  sole INTERNET permission). Compose is the authoring half; the repository is the sharing half — joined
+  directly by **publish-from-Compose**: the Finish screen's "Publish" opens the repository's
+  `/publish` receiver in a popup and hands the built bundle across via postMessage
+  (origin-checked both ways). Everything sensitive stays first-party on the repository origin —
+  the session cookie, the passkey ceremony (WebAuthn credentials are bound to
+  prayers.prosary.app), and the actual POST /api/bundles — so no CORS or cross-site cookies
+  exist. The receiver re-announces readiness on every mount and Compose answers every
+  announcement, which makes the handshake survive the sign-in reload for free.
 - **`bodyKey`/`titleKey` resolution** (`resolveBodyText`, per bundle): (1) the bundle's own raw
   content for the requested language; (2) the bundle's own **Latin** content (so a sentinel/
   unknown/undeclared language prays in Latin, never raw keys — the same convention as

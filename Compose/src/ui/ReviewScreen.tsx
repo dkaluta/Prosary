@@ -1,9 +1,14 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { LANGUAGES } from "../format/catalog";
 import { buildBundle, buildBundleFiles } from "../format/pack";
 import type { Project } from "../format/project";
 import type { Issue, WizardScreen } from "../format/validate";
 import { download } from "./media";
+
+/** Where "Publish" hands the bundle over (see the repository's /publish receiver): the popup
+ * runs on the repository's own origin, so the session cookie and the passkey ceremony stay
+ * first-party — Compose only ever passes the built bytes across via postMessage. */
+const REPO_ORIGIN = import.meta.env.VITE_REPO_ORIGIN ?? "https://prayers.prosary.app";
 
 interface Props {
   project: Project;
@@ -20,7 +25,50 @@ const SCREEN_LABELS: Record<WizardScreen, string> = {
 
 export function ReviewScreen({ project, issues, goTo }: Props) {
   const [downloaded, setDownloaded] = useState(false);
+  const [publishState, setPublishState] = useState<
+    { kind: "idle" } | { kind: "waiting" } | { kind: "done"; id: string } | { kind: "blocked" }
+  >({ kind: "idle" });
+  const publishCleanup = useRef<(() => void) | null>(null);
+  useEffect(() => () => publishCleanup.current?.(), []);
   const ready = issues.length === 0;
+
+  /** Opens the repository's /publish receiver and hands the built bundle over. The receiver
+   * re-announces readiness after any reload (e.g. signing in over there), and we answer every
+   * announcement — so the handshake survives auth round-trips without special cases. */
+  const publishBundle = () => {
+    const bytes = buildBundle(project);
+    const popup = window.open(`${REPO_ORIGIN}/publish`, "prosary-publish", "popup,width=560,height=760");
+    if (!popup) {
+      setPublishState({ kind: "blocked" });
+      return;
+    }
+    publishCleanup.current?.();
+    const onMessage = (event: MessageEvent) => {
+      if (event.origin !== REPO_ORIGIN) return;
+      if (event.data?.type === "prosary-publish-ready") {
+        popup.postMessage(
+          {
+            type: "prosary-publish-bundle",
+            name: project.id || "devotion",
+            tags: project.tags,
+            // A fresh copy per send: the buffer is structured-cloned, never transferred, so
+            // repeated ready-announcements (post-sign-in reloads) can be answered again.
+            bytes: bytes.slice().buffer,
+          },
+          REPO_ORIGIN,
+        );
+      } else if (event.data?.type === "prosary-publish-done" && typeof event.data.id === "string") {
+        setPublishState({ kind: "done", id: event.data.id });
+        publishCleanup.current?.();
+      }
+    };
+    window.addEventListener("message", onMessage);
+    publishCleanup.current = () => {
+      window.removeEventListener("message", onMessage);
+      publishCleanup.current = null;
+    };
+    setPublishState({ kind: "waiting" });
+  };
 
   const previews = useMemo(() => {
     if (!ready) return null;
@@ -76,8 +124,32 @@ export function ReviewScreen({ project, issues, goTo }: Props) {
         <p>
           <button className="primary" disabled={!ready} onClick={downloadBundle}>
             Download {project.id || "devotion"}.prosaryprayer
+          </button>{" "}
+          <button className="secondary" disabled={!ready} onClick={publishBundle}>
+            Publish to prayers.prosary.app…
           </button>
         </p>
+        {publishState.kind === "waiting" && (
+          <p className="help">
+            Finishing up in the prayers.prosary.app window — sign in there if asked; your
+            bundle rides along.
+          </p>
+        )}
+        {publishState.kind === "done" && (
+          <p className="ok">
+            Published as {publishState.id} — it&apos;s live in the{" "}
+            <a href={REPO_ORIGIN} target="_blank" rel="noreferrer">
+              catalog
+            </a>{" "}
+            and in the apps&apos; Browse tab.
+          </p>
+        )}
+        {publishState.kind === "blocked" && (
+          <p className="issue">
+            The publish window was blocked — allow popups for this site and try again, or
+            download the file and upload it at {REPO_ORIGIN}/submit.
+          </p>
+        )}
         {downloaded && (
           <p className="help">
             To pray it: open Prosary on your phone or computer, go to <strong>Favorites</strong>, and

@@ -38,6 +38,18 @@ function chapterTitle(step: EditorStep, index: number): { title?: string; titleK
   return step.kind === "custom" ? { titleKey: `${stepKeyBase(index)}Title` } : { title: step.title };
 }
 
+/** Built-sequence index of the i-th authored step. The apps' engines expand `repeat: n` into
+ * n consecutive built steps, and chapters' advisory stepIndex hints point into that BUILT
+ * sequence — an authored index would land every post-repeat chapter on the wrong page. A
+ * repeated step's chapter points at its first repetition. */
+export function builtStepIndex(steps: EditorStep[], authoredIndex: number): number {
+  let built = 0;
+  for (let i = 0; i < authoredIndex && i < steps.length; i++) {
+    built += Math.max(steps[i].repeat ?? 1, 1);
+  }
+  return built;
+}
+
 function jsonBytes(value: unknown): Uint8Array {
   return new TextEncoder().encode(JSON.stringify(value, null, 2) + "\n");
 }
@@ -126,7 +138,7 @@ export function buildBundleFiles(project: Project): ZipFile[] {
           return {
             start: chapter.start,
             ...(step ? chapterTitle(step, index) : { title: "Chapter" }),
-            ...(index >= 0 ? { stepIndex: index } : {}),
+            ...(index >= 0 ? { stepIndex: builtStepIndex(project.steps, index) } : {}),
           };
         }),
       };

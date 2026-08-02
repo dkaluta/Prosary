@@ -420,7 +420,7 @@
       }
     },
     "DevotionAudioTrack": {
-      "description": "One narrated recording a bundle declares in its audio.json (a separate optional bundle file, staged by both packers like options.json) — groundwork only: loaders parse the metadata and serve the bytes on demand, but no playback UI/service ships yet (see ARCHITECTURE.md's \"Audio (groundwork)\"). Files are Ogg Opus (RFC 7845, .opus) under the bundle's audio/ directory.",
+      "description": "One narrated recording a bundle declares in its audio.json (a separate optional bundle file, staged by both packers like options.json) — loaders parse the metadata eagerly and serve the bytes on demand; each platform's player extracts them to a cache file and plays them on the prayer flow's transport bar (see ARCHITECTURE.md's \"Audio\"). Files are Ogg Opus (RFC 7845, .opus) under the bundle's audio/ directory.",
       "fields": {
         "id": {
           "type": "string",

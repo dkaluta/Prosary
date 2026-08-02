@@ -49,6 +49,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Padding="0,0,0,4" ColumnSpacing="8">
@@ -221,7 +222,59 @@
             </ScrollViewer>
         </Grid>
 
-        <Grid Grid.Row="4">
+        <!-- The audio transport strip — shown only when the session's devotion+language(+variant)
+             has a narrated recording (ViewModel.HasAudio); chapter skip / play-pause controls,
+             the current chapter's title, and a seekable timeline. Mirrors iOS/Android's
+             AudioPlaybackBar. -->
+        <Border Grid.Row="4" CornerRadius="12" Padding="8,4"
+                Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
+                Visibility="{x:Bind ViewModel.HasAudio, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+            <Grid ColumnSpacing="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Background="Transparent" BorderThickness="0"
+                        Command="{x:Bind ViewModel.AudioPreviousChapterCommand}"
+                        IsEnabled="{x:Bind ViewModel.CanSkipAudioChapter, Mode=OneWay}"
+                        AutomationProperties.Name="Previous chapter" VerticalAlignment="Center">
+                    <FontIcon Glyph="&#xE892;" FontSize="14" />
+                </Button>
+                <Button Grid.Column="1" Background="Transparent" BorderThickness="0"
+                        Command="{x:Bind ViewModel.AudioPlayPauseCommand}"
+                        AutomationProperties.Name="Play or pause" VerticalAlignment="Center">
+                    <FontIcon Glyph="{x:Bind PlayPauseGlyph(ViewModel.IsAudioPlaying), Mode=OneWay}" FontSize="22"
+                              Foreground="{x:Bind ViewModel.SeasonColor, Mode=OneWay, Converter={StaticResource ColorToBrush}}" />
+                </Button>
+                <Button Grid.Column="2" Background="Transparent" BorderThickness="0"
+                        Command="{x:Bind ViewModel.AudioNextChapterCommand}"
+                        IsEnabled="{x:Bind ViewModel.CanSkipAudioChapter, Mode=OneWay}"
+                        AutomationProperties.Name="Next chapter" VerticalAlignment="Center">
+                    <FontIcon Glyph="&#xE893;" FontSize="14" />
+                </Button>
+                <StackPanel Grid.Column="3" VerticalAlignment="Center">
+                    <TextBlock Text="{x:Bind ViewModel.AudioChapterTitle, Mode=OneWay}"
+                               Style="{StaticResource CaptionTextBlockStyle}" Opacity="0.7"
+                               TextTrimming="CharacterEllipsis" />
+                    <Grid ColumnSpacing="8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Slider Grid.Column="0" Minimum="0" StepFrequency="0.1" IsThumbToolTipEnabled="False"
+                                Maximum="{x:Bind ViewModel.AudioDuration, Mode=OneWay}"
+                                Value="{x:Bind ViewModel.AudioPosition, Mode=TwoWay}" />
+                        <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.AudioTimeText, Mode=OneWay}"
+                                   Style="{StaticResource CaptionTextBlockStyle}" Opacity="0.7"
+                                   FontFamily="Consolas" VerticalAlignment="Center" />
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />

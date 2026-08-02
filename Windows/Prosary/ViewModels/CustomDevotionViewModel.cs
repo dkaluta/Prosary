@@ -24,11 +24,19 @@ namespace Prosary.ViewModels;
 /// unchanged from <see cref="RosaryViewModel"/>); flat devotions (no step carries a DecadeIndex)
 /// get none — <see cref="ShowsBeadTrack"/> drives the page's Visibility bindings.
 /// </summary>
-public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlowViewModel
+public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlowViewModel, IAudioAwareStepFlowViewModel
 {
     private readonly IPresetStore _presets;
     private readonly PrayerEngine _engine;
     private readonly LiturgicalCalendarService _calendar;
+
+    /// <summary>Created lazily on first successful track pick — the service captures the UI
+    /// thread's DispatcherQueue, and the ViewModel is always constructed there.</summary>
+    private AudioPlaybackService? _audio;
+    private IReadOnlyList<string> _audioChapterTitles = [];
+    /// <summary>True while <see cref="OnAudioServiceStateChanged"/> is writing the observable
+    /// audio properties, so the Slider's TwoWay write-back doesn't echo every tick into a seek.</summary>
+    private bool _updatingAudioFromPlayback;
 
     private IReadOnlyList<RosaryStep> _steps = [];
     private int _index;
@@ -137,6 +145,33 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     [ObservableProperty]
     private Guid? _matchingFavoriteId;
 
+    // --- Audio playback (the transport bar above the footer; hidden when the session's
+    // --- devotion+language(+variant) has no narrated recording). ---
+
+    [ObservableProperty]
+    private bool _hasAudio;
+
+    [ObservableProperty]
+    private bool _isAudioPlaying;
+
+    [ObservableProperty]
+    private string _audioChapterTitle = string.Empty;
+
+    [ObservableProperty]
+    private string _audioTimeText = "0:00/0:00";
+
+    /// <summary>Seconds; TwoWay-bound to the bar's Slider — user writes seek, playback ticks
+    /// write through <see cref="_updatingAudioFromPlayback"/> without re-seeking.</summary>
+    [ObservableProperty]
+    private double _audioPosition;
+
+    /// <summary>Slider Maximum — kept off 0 so an empty slider never divides by zero.</summary>
+    [ObservableProperty]
+    private double _audioDuration = 0.01;
+
+    [ObservableProperty]
+    private bool _canSkipAudioChapter;
+
     public string MysteryImageFile => PrayerPackStore.ImageFileUri(MysteryImageKey) ?? (MysteryImageKey == "cross_placeholder"
         ? "ms-appx:///Assets/Images/cross_placeholder.png"
         : $"ms-appx:///Assets/Images/{MysteryImageKey}.jpg");
@@ -188,6 +223,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         });
         _index = Math.Clamp(position, 0, Math.Max(_steps.Count - 1, 0));
         RenderCurrentStep();
+        PickAudioTrack();
 
         if (MatchingFavoriteId is { } id && await _presets.GetAsync(id) is { } favorite)
         {
@@ -212,6 +248,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         });
         _index = 0;
         RenderCurrentStep();
+        PickAudioTrack();
 
         if (MatchingFavoriteId is { } id && await _presets.GetAsync(id) is { } favorite)
         {
@@ -271,6 +308,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             SeasonColor = _calendar.GetSeasonColorForToday();
 
             RenderCurrentStep();
+            PickAudioTrack();
         }
         catch (Exception ex)
         {
@@ -343,12 +381,14 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     {
         if (IsLastStep)
         {
+            StopAudio();
             Router.GoBack();
             return;
         }
 
         _index++;
         RenderCurrentStep();
+        AlignAudioToCurrentStep();
     }
 
     [RelayCommand]
@@ -361,6 +401,153 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
 
         _index--;
         RenderCurrentStep();
+        AlignAudioToCurrentStep();
+    }
+
+    // --- Audio playback wiring (mirrors iOS's CustomDevotionFlowView / Android's
+    // --- CustomDevotionFlowScreen; the service holds the MediaPlayer, this holds the bindables). ---
+
+    /// <summary>The recording for this session, if the bundle ships one: language must match,
+    /// and the track's variant (null = the bundle's single/default form) must match the
+    /// session's. First declared match wins — audio.json order is the author's preference
+    /// order.</summary>
+    private void PickAudioTrack()
+    {
+        var defaultVariantId = Variants.Count > 0 ? Variants[0].Id : null;
+        var effectiveVariant = _variantId ?? defaultVariantId;
+        var match = PrayerPackStore.AudioTracks(_bundleId)
+            .FirstOrDefault(t => t.Language == _languageCode && (t.VariantId ?? defaultVariantId) == effectiveVariant);
+        if (match is null)
+        {
+            StopAudio();
+            return;
+        }
+
+        if (_audio?.Track?.Id == match.Id && _audio.IsLoaded)
+        {
+            return;
+        }
+
+        if (_audio is null)
+        {
+            _audio = new AudioPlaybackService();
+            _audio.StateChanged += OnAudioServiceStateChanged;
+        }
+
+        // titleKey resolves through the same per-bundle content chain as step text (the track's
+        // own language, not the UI language).
+        _audioChapterTitles = (match.Chapters ?? [])
+            .Select(c => c.Title
+                ?? (c.TitleKey is { } key ? PrayerPackStore.ResolveBodyText(_bundleId, match.Language, key) : string.Empty))
+            .ToList();
+        _audio.Load(_bundleId, match);
+        AlignAudioToCurrentStep();
+    }
+
+    /// <summary>After a manual Back/Next (or a fresh load), bring the recording to the chapter
+    /// that narrates the current step — when one does; steps between chapter hints leave the
+    /// audio where it is.</summary>
+    private void AlignAudioToCurrentStep()
+    {
+        if (_audio is not { IsLoaded: true } audio || audio.Track?.Chapters is not { } chapters)
+        {
+            return;
+        }
+
+        var target = chapters.ToList().FindIndex(c => c.StepIndex == _index);
+        if (target >= 0 && audio.CurrentChapterIndex != target)
+        {
+            audio.SeekToChapter(target);
+        }
+    }
+
+    /// <summary>Copies the service's state into the bindables, and lets the recording's
+    /// chapters drive the text: entering a chapter that carries a StepIndex hint turns the
+    /// page. Hints are advisory (the built sequence is option- and calendar-dependent), so
+    /// out-of-range ones are ignored rather than trusted.</summary>
+    private void OnAudioServiceStateChanged()
+    {
+        if (_audio is not { } audio)
+        {
+            return;
+        }
+
+        _updatingAudioFromPlayback = true;
+        try
+        {
+            HasAudio = audio.IsLoaded;
+            IsAudioPlaying = audio.IsPlaying;
+            AudioPosition = audio.CurrentTime;
+            AudioDuration = Math.Max(audio.Duration, 0.01);
+            AudioTimeText = $"{Timestamp(audio.CurrentTime)}/{Timestamp(audio.Duration)}";
+            var chapterCount = audio.Track?.Chapters?.Count ?? 0;
+            CanSkipAudioChapter = chapterCount > 1;
+            if (audio.CurrentChapterIndex is { } chapterIndex)
+            {
+                AudioChapterTitle = chapterIndex < _audioChapterTitles.Count ? _audioChapterTitles[chapterIndex] : string.Empty;
+                if (audio.Track?.Chapters?[chapterIndex].StepIndex is { } hint
+                    && hint >= 0 && hint < _steps.Count && hint != _index)
+                {
+                    _index = hint;
+                    RenderCurrentStep();
+                }
+            }
+            else
+            {
+                AudioChapterTitle = string.Empty;
+            }
+        }
+        finally
+        {
+            _updatingAudioFromPlayback = false;
+        }
+    }
+
+    partial void OnAudioPositionChanged(double value)
+    {
+        // The playback-tick echo is suppressed by the flag; the distance threshold keeps a
+        // drag from storming the (asynchronous) MediaPlayer with a seek per thumb-pixel and
+        // ignores the session's own sub-tick jitter writing back through the TwoWay binding.
+        if (!_updatingAudioFromPlayback && _audio is { } audio && Math.Abs(value - audio.CurrentTime) > 0.25)
+        {
+            audio.Seek(value);
+        }
+    }
+
+    [RelayCommand]
+    private void AudioPlayPause() => _audio?.PlayPause();
+
+    [RelayCommand]
+    private void AudioPreviousChapter() => _audio?.PreviousChapter();
+
+    [RelayCommand]
+    private void AudioNextChapter() => _audio?.NextChapter();
+
+    /// <summary>Page calls this on navigate-away; also runs when a language/variant switch
+    /// finds no matching recording.</summary>
+    public void StopAudio()
+    {
+        if (_audio is { } audio)
+        {
+            audio.StateChanged -= OnAudioServiceStateChanged;
+            audio.Dispose();
+            _audio = null;
+        }
+
+        _audioChapterTitles = [];
+        HasAudio = false;
+        IsAudioPlaying = false;
+        AudioChapterTitle = string.Empty;
+        AudioTimeText = "0:00/0:00";
+        AudioPosition = 0;
+        AudioDuration = 0.01;
+        CanSkipAudioChapter = false;
+    }
+
+    private static string Timestamp(double seconds)
+    {
+        var whole = (int)seconds;
+        return $"{whole / 60}:{whole % 60:D2}";
     }
 
     [RelayCommand]

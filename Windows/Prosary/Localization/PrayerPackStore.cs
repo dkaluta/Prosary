@@ -178,15 +178,15 @@ public static class PrayerPackStore
 
     /// <summary>Every loaded bundle id that has a <c>devotion.json</c> — i.e. every generic
     /// devotion discovered at load time, in pack-load order, without hardcoding devotion names
-    /// anywhere in view code.</summary>
-    public static IReadOnlyList<string> CustomDevotionIds() => OrderedCustomIds;
+    /// anywhere in view code. A snapshot, not the live list — a caller iterating while an
+    /// install/remove mutates the store (tests; a future background install) must not throw.</summary>
+    public static IReadOnlyList<string> CustomDevotionIds() => OrderedCustomIds.ToList();
 
     public static CustomDevotionInfo? Info(string bundleId) =>
         InfoByBundle.TryGetValue(bundleId, out var info) ? info : null;
 
     /// <summary>The narrated recordings a bundle's <c>audio.json</c> declares, in authored order.
-    /// Empty for bundles without audio — every shipped bundle today; groundwork for the audio
-    /// expansion (see Shared/ARCHITECTURE.md's "Audio (groundwork)").</summary>
+    /// Empty for bundles without audio (see Shared/ARCHITECTURE.md's "Audio").</summary>
     public static IReadOnlyList<DevotionAudioTrack> AudioTracks(string bundleId) =>
         AudioTracksByBundle.TryGetValue(bundleId, out var tracks) ? tracks : [];
 
@@ -477,14 +477,14 @@ public static class PrayerPackStore
 }
 
 /// <summary>One narrated recording a bundle declares in its <c>audio.json</c> (an optional
-/// bundle file, staged by both packers like options.json — see Shared/ARCHITECTURE.md's "Audio
-/// (groundwork)"). Groundwork only: the metadata parses and the bytes are servable via
-/// <see cref="PrayerPackStore.AudioData"/>, but no playback UI/service ships yet — that lands
-/// with the first real recordings. Files are Ogg Opus (RFC 7845, <c>.opus</c>) under the
+/// bundle file, staged by both packers like options.json — see Shared/ARCHITECTURE.md's
+/// "Audio"). AudioPlaybackService plays these through the prayer flow's transport bar —
+/// metadata loads eagerly here, bytes are served on demand via
+/// <see cref="PrayerPackStore.AudioData"/> and extracted to a cache file at load. Files are Ogg Opus (RFC 7845, <c>.opus</c>) under the
 /// bundle's <c>audio/</c> directory; structure is enforced at authoring time by
 /// <c>Shared/tools/validate-devotion.py</c>.</summary>
 public sealed record DevotionAudioTrack(
-    // Unique within the bundle — what a future playback position would persist against.
+    // Unique within the bundle — what a persisted playback position would key against (persistence itself is future work).
     string Id,
     // The single language this recording is in (one of the manifest's languages).
     string Language,
@@ -504,7 +504,7 @@ public sealed record DevotionAudioTrack(
     /// <see cref="TitleKey"/> per the step-entry convention (<see cref="TitleKey"/> resolves
     /// through the track language's ordinary content chain); <see cref="StepIndex"/> is an
     /// *advisory* link into the built default-options step sequence — the built sequence is
-    /// option/calendar-dependent, so the future playback UI treats it as a step-syncing hint,
+    /// option/calendar-dependent, so the playback UI treats it as a step-syncing hint,
     /// never an invariant.</summary>
     public sealed record Chapter(
         double Start,

@@ -160,11 +160,28 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
         bytes: await zip.contents(track.file),
         chapters: (track.chapters ?? []).map((chapter) => ({
           start: chapter.start ?? 0,
-          stepUid: project.steps[chapter.stepIndex ?? 0]?.uid ?? project.steps[0]?.uid ?? "",
+          // stepIndex hints point into the BUILT sequence (repeat-expanded) — invert the
+          // expansion to find the authored step the hint falls inside.
+          stepUid:
+            project.steps[authoredIndexForBuilt(project.steps, chapter.stepIndex ?? 0)]?.uid ??
+            project.steps[0]?.uid ??
+            "",
         })),
       });
     }
   }
 
   return project;
+}
+
+/** Inverse of pack.ts's builtStepIndex: the authored step whose repeat-expanded span contains
+ * the given built-sequence index. */
+function authoredIndexForBuilt(steps: Project["steps"], builtIndex: number): number {
+  let cursor = 0;
+  for (let i = 0; i < steps.length; i++) {
+    const span = Math.max(steps[i].repeat ?? 1, 1);
+    if (builtIndex < cursor + span) return i;
+    cursor += span;
+  }
+  return Math.max(steps.length - 1, 0);
 }
