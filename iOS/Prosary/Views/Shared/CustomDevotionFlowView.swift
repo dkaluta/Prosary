@@ -86,8 +86,11 @@ struct CustomDevotionFlowView: View {
     // a stepIndex hint turns the page. Hints are advisory (the built sequence is option- and
     // calendar-dependent), so out-of-range ones are ignored rather than trusted.
     .onChange(of: audio.currentChapterIndex) { _, chapterIndex in
-      guard let chapterIndex,
-            let hint = audio.track?.chapters[chapterIndex].stepIndex,
+      // The chapters are re-read (not trusted from the event) and bounds-checked: a language
+      // switch can swap the track between the change being observed and delivered.
+      guard let chapterIndex, let chapters = audio.track?.chapters,
+            chapters.indices.contains(chapterIndex),
+            let hint = chapters[chapterIndex].stepIndex,
             steps.indices.contains(hint), currentIndex != hint else { return }
       currentIndex = hint
     }

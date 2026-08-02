@@ -46,6 +46,7 @@ final class AudioPlaybackController: NSObject, AVAudioPlayerDelegate {
     guard let url = Self.extractedFileURL(bundleId: bundleId, track: track),
           let opened = Self.openPlayer(for: url) else { return }
     opened.delegate = self
+    opened.enableRate = true // must precede prepareToPlay; lets setPlaybackRate work later
     opened.prepareToPlay()
     player = opened
     duration = opened.duration
@@ -69,10 +70,13 @@ final class AudioPlaybackController: NSObject, AVAudioPlayerDelegate {
     return url
   }
 
-  /// Direct .opus open where the OS supports it; otherwise the CAF repackage (cached beside
-  /// the .opus so the conversion happens once per track, not once per session).
+  /// Always plays through the CAF repackage (cached beside the .opus, converted once per
+  /// track). Never the .opus directly: the deployment floor (iOS 17/macOS 14) can't demux
+  /// bare Ogg at all, and where newer OSes can, AVAudioPlayer's Ogg scheduling is byte-rate
+  /// *estimated* — measured on macOS 26, a 29 s VBR narration "finishes successfully" after
+  /// 20.6 s, cutting the last section off mid-word, and seeks land off target the same way.
+  /// The CAF's explicit packet table plays and seeks exactly, and identically on every OS.
   private static func openPlayer(for opusURL: URL) -> AVAudioPlayer? {
-    if let direct = try? AVAudioPlayer(contentsOf: opusURL) { return direct }
     let cafURL = opusURL.deletingPathExtension().appendingPathExtension("caf")
     if let cached = try? AVAudioPlayer(contentsOf: cafURL) { return cached }
     guard let ogg = try? Data(contentsOf: opusURL),
@@ -102,6 +106,12 @@ final class AudioPlaybackController: NSObject, AVAudioPlayerDelegate {
       startTicker()
     }
     currentTime = player.currentTime
+  }
+
+  /// Playback rate multiplier (1 = normal). No UI surfaces this yet — the full-length
+  /// playback test uses it to fast-forward through a real narration.
+  func setPlaybackRate(_ rate: Float) {
+    player?.rate = rate
   }
 
   func seek(to time: Double) {

@@ -482,11 +482,14 @@ of its own — its entire step sequence and per-step text are data-driven from i
   `LocalCacheFolder\PrayerAudio\`) and handed to the OS player: Android's stock `MediaPlayer`
   and Windows' `Windows.Media.Playback.MediaPlayer` demux Ogg Opus natively (Windows through
   the usually-preinstalled Web Media Extensions codecs — `MediaFailed` degrades to the
-  no-audio experience rather than a dead bar), while Apple's deployment floor (iOS 17/
-  macOS 14) decodes the Opus *codec* but demuxes it only from MP4/CAF, so
-  `AudioPlaybackController` tries the `.opus` directly (current OSes open it) and falls back
-  to `OggOpusCAF` — a lossless Ogg→CAF repackager (packets copied as-is into desc/pakt/data
-  chunks, priming frames from OpusHead's pre-skip) whose output is cached beside the extract.
+  no-audio experience rather than a dead bar), while on Apple platforms
+  `AudioPlaybackController` *always* plays through `OggOpusCAF` — a lossless Ogg→CAF
+  repackager (packets copied as-is into desc/pakt/data chunks, priming frames from OpusHead's
+  pre-skip) whose output is cached beside the extract. Never the `.opus` directly: the
+  deployment floor (iOS 17/macOS 14) can't demux bare Ogg at all, and where newer OSes can,
+  AVAudioPlayer's Ogg scheduling is byte-rate estimated — measured on macOS 26, a 29 s VBR
+  narration "finishes successfully" at 20.6 s (cutting the final section mid-word) and seeks
+  land off target the same way; the CAF's explicit packet table plays and seeks exactly.
   Chapter→step syncing: entering a chapter whose advisory `stepIndex` is in range turns the
   page; manual Back/Next seeks the recording to the chapter narrating the new step when one
   exists; and the timer auto-advance stands down while audio plays, so the two advance

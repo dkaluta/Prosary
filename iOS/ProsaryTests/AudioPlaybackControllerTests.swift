@@ -22,6 +22,9 @@ final class AudioPlaybackControllerTests: XCTestCase {
   private let bundleId = "kyrieaudiodemo"
 
   override func setUp() async throws {
+    // On macOS the test host shares the real app's container — the fixture may already be
+    // imported there for manual testing, which would make a bare install collide.
+    PrayerPackStore.removeInstalledPack(id: bundleId)
     let data = try Data(contentsOf: Self.fixtureURL)
     try PrayerPackStore.installPack(from: data)
   }
@@ -51,9 +54,10 @@ final class AudioPlaybackControllerTests: XCTestCase {
     XCTAssertTrue(controller.isLoaded)
     XCTAssertFalse(controller.isPlaying)
     XCTAssertEqual(controller.currentTime, 0)
-    // Longer than the last chapter's start (the Gloria still has to be narrated after it),
-    // shorter than a minute — sanity that the whole concatenated narration decoded.
-    XCTAssertGreaterThan(controller.duration, track.chapters.last!.start)
+    // The last chapter (the Gloria, ~9 s of narration) must fit AFTER its own start — the
+    // original `duration > lastChapter.start` let a track truncated just past the final
+    // boundary slide through ("it says 'Glo-' and stops").
+    XCTAssertGreaterThan(controller.duration, track.chapters.last!.start + 5)
     XCTAssertLessThan(controller.duration, 60)
     XCTAssertEqual(controller.currentChapterIndex, 0)
 
@@ -80,6 +84,32 @@ final class AudioPlaybackControllerTests: XCTestCase {
     controller.stop()
     XCTAssertFalse(controller.isLoaded)
     XCTAssertEqual(controller.currentTime, 0)
+  }
+
+  /// Real playback, end to end — the one test that catches under-scheduled audio. Playing the
+  /// bundled .opus directly looked fine by every static measure (correct duration, full
+  /// AVAudioFile decode) yet AVAudioPlayer's byte-estimated Ogg scheduling "finished" a 29 s
+  /// narration at 20.6 s, cutting the Gloria off mid-word; only actually playing to the end
+  /// distinguishes the CAF path from that. Costs real time (~6 s via rate 4) but guards the
+  /// player's core promise.
+  func testPlaysTheEntireTrackWithoutFinishingEarly() throws {
+    let track = try XCTUnwrap(PrayerPackStore.audioTracks(for: bundleId).first { $0.language == "la" })
+    let controller = AudioPlaybackController()
+    controller.load(bundleId: bundleId, track: track)
+    XCTAssertGreaterThan(controller.duration, 25) // full Latin narration ≈ 27.9 s
+
+    controller.playPause()
+    XCTAssertTrue(controller.isPlaying)
+    controller.setPlaybackRate(4.0) // test-only fast-forward; pitch is irrelevant here
+
+    let deadline = Date(timeIntervalSinceNow: controller.duration / 4 + 6)
+    while controller.isPlaying, Date() < deadline {
+      RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.25))
+    }
+    XCTAssertFalse(controller.isPlaying, "never finished — still at \(controller.currentTime)")
+    XCTAssertEqual(controller.currentTime, controller.duration, accuracy: 0.5,
+                   "finished early at \(controller.currentTime) of \(controller.duration)")
+    controller.stop()
   }
 
   func testLoadingTheOtherLanguageSwapsTracks() throws {
