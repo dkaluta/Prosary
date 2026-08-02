@@ -60,6 +60,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Click="OnNavigateUp" Background="Transparent" Padding="8">
                 <FontIcon Glyph="&#xE72B;" />
@@ -79,13 +80,20 @@
                     <MenuFlyout x:Name="VariantFlyout" />
                 </Button.Flyout>
             </Button>
-            <Button Grid.Column="4" Background="Transparent" Padding="8">
+            <Button x:Name="DayMenuButton" Grid.Column="4" Background="Transparent" Padding="8"
+                    Visibility="{x:Bind ViewModel.ShowsDayMenu, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                <FontIcon Glyph="&#xE787;" /> <!-- Calendar — the multi-day day picker -->
+                <Button.Flyout>
+                    <MenuFlyout x:Name="DayFlyout" />
+                </Button.Flyout>
+            </Button>
+            <Button Grid.Column="5" Background="Transparent" Padding="8">
                 <FontIcon Glyph="&#xE916;" /> <!-- Stopwatch — hands-free auto-advance -->
                 <Button.Flyout>
                     <MenuFlyout x:Name="AutoAdvanceFlyout" />
                 </Button.Flyout>
             </Button>
-            <Button Grid.Column="5" Command="{x:Bind ViewModel.ToggleFavoriteCommand, Mode=OneWay}" Background="Transparent" Padding="8">
+            <Button Grid.Column="6" Command="{x:Bind ViewModel.ToggleFavoriteCommand, Mode=OneWay}" Background="Transparent" Padding="8">
                 <Grid>
                     <FontIcon Glyph="&#xE735;" Foreground="{StaticResource BrandPrimaryBrush}"
                               Visibility="{x:Bind ViewModel.IsFavorited, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />

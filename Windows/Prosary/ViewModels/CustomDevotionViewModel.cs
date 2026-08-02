@@ -188,6 +188,41 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
 
     public bool ShowsVariantMenu => Variants.Count > 1;
 
+    /// <summary>Multi-day devotions: every authored day; empty for single-session types. The
+    /// page builds its day flyout from this.</summary>
+    public IReadOnlyList<CustomDevotionDefinition.Day> Days { get; private set; } = [];
+
+    public bool ShowsDayMenu => Days.Count > 1;
+
+    /// <summary>The day this session prays (0-based; sourced from the favorite).</summary>
+    public int CurrentDayIndex { get; private set; }
+
+    /// <summary>Jump to a day: rebuilds from step 0 and persists to the matching favorite.</summary>
+    public async Task SelectDayAsync(int dayIndex)
+    {
+        CurrentDayIndex = dayIndex;
+        _steps = _engine.BuildSteps(new Prayer
+        {
+            Kind = PrayerKind.Custom,
+            LanguageCode = _chosenLanguage,
+            CustomDevotionId = _bundleId,
+            VariantId = _variantId,
+            DayIndex = dayIndex,
+        });
+        _index = 0;
+        RenderCurrentStep();
+        PickAudioTrack();
+        await PersistDayIndexAsync(dayIndex);
+    }
+
+    private async Task PersistDayIndexAsync(int dayIndex)
+    {
+        if (MatchingFavoriteId is { } id && await _presets.GetAsync(id) is { } favorite)
+        {
+            await _presets.SaveAsync(favorite with { DayIndex = dayIndex });
+        }
+    }
+
     public string? CurrentVariantId => _variantId ?? (Variants.Count > 0 ? Variants[0].Id : null);
 
     /// <summary>The bundle's languages (manifest order); the page builds its language flyout
@@ -220,6 +255,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             LanguageCode = raw,
             CustomDevotionId = _bundleId,
             VariantId = _variantId,
+            DayIndex = CurrentDayIndex,
         });
         _index = Math.Clamp(position, 0, Math.Max(_steps.Count - 1, 0));
         RenderCurrentStep();
@@ -245,6 +281,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             LanguageCode = _chosenLanguage,
             CustomDevotionId = _bundleId,
             VariantId = _variantId,
+            DayIndex = CurrentDayIndex,
         });
         _index = 0;
         RenderCurrentStep();
@@ -273,6 +310,8 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             _hasClosingCross = definition?.HasClosingCross ?? false;
             Variants = definition?.Variants ?? [];
             OnPropertyChanged(nameof(ShowsVariantMenu));
+            Days = definition?.Days ?? [];
+            OnPropertyChanged(nameof(ShowsDayMenu));
 
             // Seeds the star as already-favorited immediately, without waiting on the initial
             // favorites fetch below.
@@ -286,6 +325,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
 
             // The favorite carries the language to pray in (sentinel = the app default).
             _chosenLanguage = favorite?.LanguageCode ?? LanguageCatalog.DefaultSentinel;
+            CurrentDayIndex = favorite?.DayIndex ?? 0;
             var resolvedLanguage = LanguageCatalog.Resolve(_chosenLanguage);
             _languageCode = resolvedLanguage.Code;
             IsRightToLeft = resolvedLanguage.IsRightToLeft;
@@ -302,6 +342,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
                 LanguageCode = _chosenLanguage,
                 CustomDevotionId = bundleId,
                 VariantId = _variantId,
+                DayIndex = CurrentDayIndex,
             });
             _index = 0;
             ShowsBeadTrack = _steps.Any(s => s.DecadeIndex.HasValue);
@@ -381,6 +422,13 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     {
         if (IsLastStep)
         {
+            // Finishing a multi-day session advances the favorite to the next day (staying on
+            // the last once complete) — tomorrow opens where the novena left off.
+            if (Days.Count > 1)
+            {
+                _ = PersistDayIndexAsync(Math.Min(CurrentDayIndex + 1, Days.Count - 1));
+            }
+
             StopAudio();
             Router.GoBack();
             return;

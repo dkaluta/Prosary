@@ -36,6 +36,8 @@ public sealed class PresetEntry
     /// bundle's default. CreateTableAsync auto-adds this column to existing databases.</summary>
     public string? VariantId { get; set; } = null;
 
+    public int? DayIndex { get; set; } = null;
+
     /// <summary>JSON-encoded <c>Dictionary&lt;string, string&gt;</c> of the favorite's
     /// options.json choices (see <c>Prayer.CustomOptions</c>). CreateTableAsync auto-adds this
     /// column to existing databases.</summary>
@@ -80,6 +82,7 @@ public sealed class PresetEntry
         LanguageCode = LanguageCode,
         CustomDevotionId = CustomDevotionId,
         VariantId = VariantId,
+        DayIndex = DayIndex,
         CustomOptions = DeserializeCustomOptions(CustomOptionsJson),
         Rosary = new RosaryOptions
         {
@@ -113,6 +116,7 @@ public sealed class PresetEntry
         LanguageCode = prayer.LanguageCode,
         CustomDevotionId = prayer.CustomDevotionId,
         VariantId = prayer.VariantId,
+        DayIndex = prayer.DayIndex,
         CustomOptionsJson = JsonSerializer.Serialize(prayer.CustomOptions),
         MysterySelectionMode = prayer.Rosary.MysterySelectionMode,
         SpecificMysteryGroup = prayer.Rosary.SpecificMysteryGroup,
