@@ -153,7 +153,7 @@ class CustomDevotionEngineTest {
     fun stationsHebrewUsesTheScripturalMeditations() {
         val steps = steps("stationsOfTheCross", language = "he")
         assertEquals("יֵשׁוּעַ נִדּוֹן לַמָּוֶת", steps[2].title)
-        assertTrue(steps[2].body.contains("מֵעֹצֶר וּמִמִּשְׁפָּט לֻקָּח"))
+        assertTrue(steps[2].body.contains("מֵעֹ֤צֶר וּמִמִּשְׁפָּט֙ לֻקָּ֔ח"))
         assertTrue(steps.last().body.contains("נֶפֶשׁ הַמָּשִׁיחַ קַדְּשִׁינִי"))
     }
 

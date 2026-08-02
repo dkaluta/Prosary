@@ -107,7 +107,7 @@ final class CustomDevotionEngineTests: XCTestCase {
   func testStationsHebrewUsesTheScripturalMeditations() {
     let steps = steps("stationsOfTheCross", language: "he")
     XCTAssertEqual(steps[2].title, "יֵשׁוּעַ נִדּוֹן לַמָּוֶת")
-    XCTAssertTrue(steps[2].body.contains("מֵעֹצֶר וּמִמִּשְׁפָּט לֻקָּח"))
+    XCTAssertTrue(steps[2].body.contains("מֵעֹ֤צֶר וּמִמִּשְׁפָּט֙ לֻקָּ֔ח"))
     XCTAssertEqual(steps[2].acclamation?.contains("**כִּי בִּצְלָבְךָ גָּאַלְתָּ אֶת הָעוֹלָם.**"), true)
     XCTAssertTrue(steps.last!.body.contains("נֶפֶשׁ הַמָּשִׁיחַ קַדְּשִׁינִי"))
   }
