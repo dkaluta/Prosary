@@ -31,6 +31,8 @@ struct CustomDevotionFlowView: View {
   /// app-level default setting"). `languageCode` above is always the resolved code.
   @State private var chosenLanguage: String = LanguageCatalog.defaultSentinel
   @State private var audio = AudioPlaybackController()
+  /// Multi-day devotions: the day this session prays (0-based; sourced from the favorite).
+  @State private var dayIndex = 0
 
   private var currentStep: RosaryStep? {
     steps.indices.contains(currentIndex) ? steps[currentIndex] : nil
@@ -119,6 +121,30 @@ struct CustomDevotionFlowView: View {
           .accessibilityIdentifier("languageMenu")
         }
       }
+      // Day picker — multi-day ("days"-type) devotions only: jump to any day; finishing a
+      // session advances the favorite to the next one automatically.
+      if let days = PrayerPackStore.definition(for: devotionId)?.days, days.count > 1 {
+        ToolbarItem(placement: .primaryAction) {
+          Menu {
+            ForEach(Array(days.enumerated()), id: \.offset) { index, day in
+              Button {
+                switchDay(to: index)
+              } label: {
+                let label = day.period.map { "\($0) — \(day.localizedName)" } ?? day.localizedName
+                if index == dayIndex {
+                  Label(label, systemImage: "checkmark")
+                } else {
+                  Text(label)
+                }
+              }
+            }
+          } label: {
+            Image(systemName: "calendar")
+          }
+          .accessibilityLabel(String(localized: "prayerFlow.day", defaultValue: "Day"))
+          .accessibilityIdentifier("dayMenu")
+        }
+      }
       // Variant switcher — only for bundles declaring alternate step-sets (e.g. the Stations'
       // traditional vs. scriptural forms). Switching rebuilds the session from step 0 and
       // persists the choice to the matching favorite when one exists.
@@ -162,6 +188,7 @@ struct CustomDevotionFlowView: View {
     languageCode = LanguageCatalog.resolve(chosenLanguage).code
 
     variantId = favorite?.variantId
+    dayIndex = favorite?.dayIndex ?? 0
 
     isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
     steps = builtSteps()
@@ -224,7 +251,7 @@ struct CustomDevotionFlowView: View {
   private func builtSteps() -> [RosaryStep] {
     services.engine.buildSteps(for: Prayer(
       kind: .custom, languageCode: chosenLanguage,
-      customDevotionId: devotionId, variantId: variantId))
+      customDevotionId: devotionId, variantId: variantId, dayIndex: dayIndex))
   }
 
   @ViewBuilder
@@ -299,8 +326,33 @@ struct CustomDevotionFlowView: View {
     }
   }
 
+  private func switchDay(to newDayIndex: Int) {
+    dayIndex = newDayIndex
+    steps = builtSteps()
+    currentIndex = 0
+    persistDayIndex(newDayIndex)
+  }
+
+  private func persistDayIndex(_ value: Int) {
+    guard let id = matchingFavoriteId else { return }
+    Task {
+      if var favorite = try? await services.presetStore.get(id: id) {
+        favorite.dayIndex = value
+        try? await services.presetStore.save(favorite)
+      }
+    }
+  }
+
   private func next() {
-    if currentIndex >= steps.count - 1 { dismiss(); return }
+    if currentIndex >= steps.count - 1 {
+      // Finishing a multi-day session advances the favorite to the next day (staying on the
+      // last one once the devotion is complete) — tomorrow opens where the novena left off.
+      if let days = PrayerPackStore.definition(for: devotionId)?.days, days.count > 1 {
+        persistDayIndex(min(dayIndex + 1, days.count - 1))
+      }
+      dismiss()
+      return
+    }
     currentIndex += 1
     alignAudioToCurrentStep()
   }
