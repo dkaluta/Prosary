@@ -18,12 +18,14 @@ import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -57,9 +59,18 @@ fun JesusPrayerSetupScreen(onBack: () -> Unit, onBegin: (JesusPrayerTarget) -> U
         else -> JesusPrayerTarget.Count(selection.fixedCount ?: 1)
     }
 
+    // Tints the pinned bar once content scrolls beneath it — without this the bar is
+
+    // invisible and scrolled content clips at a dead band around the floating title.
+
+    val topBarScroll = TopAppBarDefaults.pinnedScrollBehavior()
+
     Scaffold(
+
+        modifier = Modifier.nestedScroll(topBarScroll.nestedScrollConnection),
         topBar = {
             TopAppBar(
+                scrollBehavior = topBarScroll,
                 title = { Text("The Jesus Prayer") },
                 navigationIcon = {
                     IconButton(onClick = onBack) {

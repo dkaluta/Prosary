@@ -17,8 +17,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import com.dkaluta.prosary.content.MysteryTranslations
 import com.dkaluta.prosary.models.EternalRestPlacement
@@ -41,9 +43,18 @@ import com.dkaluta.prosary.ui.presets.OptionPickerField
 fun RosaryOptionsEditorScreen(rosary: RosaryOptions, onRosaryChange: (RosaryOptions) -> Unit, onBack: () -> Unit) {
     BackHandler(onBack = onBack)
 
+    // Tints the pinned bar once content scrolls beneath it — without this the bar is
+
+    // invisible and scrolled content clips at a dead band around the floating title.
+
+    val topBarScroll = TopAppBarDefaults.pinnedScrollBehavior()
+
     Scaffold(
+
+        modifier = Modifier.nestedScroll(topBarScroll.nestedScrollConnection),
         topBar = {
             TopAppBar(
+                scrollBehavior = topBarScroll,
                 title = { Text("Rosary Options") },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
