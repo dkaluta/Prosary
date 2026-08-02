@@ -44,6 +44,11 @@
           "default": null,
           "description": "Which of the bundle's variants (alternate step-sets, e.g. the Stations' traditional vs. scriptural forms) this favorite prays. Null/nil = the bundle's default (first) variant; only meaningful when kind == custom and the bundle declares variants."
         },
+        "dayIndex": {
+          "type": "int?",
+          "default": null,
+          "description": "Multi-day (days-type) devotions: the day this favorite prays next, 0-based; advances when a day's session finishes (clamped by the engine so a completed devotion re-prays its last day). Null/nil = day 1. Only meaningful when kind == custom and the bundle's devotion is days-type."
+        },
         "customOptions": {
           "type": "map<string, string>",
           "description": "This favorite's choices for the bundle's options.json options, keyed by option key — \"true\"/\"false\" for toggles, a case id for choices. Only overrides: an absent key means the option's declared default. Persisted as one JSON column on every platform (customOptionsJSON Data / customOptionsJson TEXT / CustomOptionsJson TEXT). Only meaningful when kind == custom."

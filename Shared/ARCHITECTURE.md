@@ -430,17 +430,19 @@ of its own — its entire step sequence and per-step text are data-driven from i
   72-completion Hail Marys, the Our Father for the Pope's intentions), both defaulting on so
   the traditional sequence is unchanged out of the box. The validator checks the declarations
   and that every `if` references a declared option/case.
-- **Multi-day devotions (groundwork)** — `{"type": "days"}`: one step list per day
+- **Multi-day devotions** — `{"type": "days"}`: one step list per day
   (`days: [{name, nameByLanguage?, period?, steps: [Entry…]}]` — `period` carries the
   Montfort-style grouping labels), plus optional shared `opening`/`closing` prayed every day.
   Novenas are 9 entries; the de Montfort Total Consecration is 33 (12 preliminary days + three
   weeks + the consecration day). The schema, decoders, engines (shared opening + the day's
-  steps + shared closing, with a clamped `dayIndex` seam), and validator all ship now;
-  **deliberately not yet shipped**: per-favorite day progress (a
-  `{startedOn, lastCompletedDay, lastCompletedOn}` JSON column on the stores + a
-  session-completion hook to advance it + a day-picker UI) and any actual days-type bundle —
-  those land together so the persistence isn't designed speculatively. Until then a days-type
-  bundle prays day 1. Hours/missals are a different beast: their content is selected by the
+  steps + shared closing, with a clamped `dayIndex`), and validator all ship — and so does
+  **per-favorite day progress**: `Prayer.dayIndex` (nullable Int on all three stores; null =
+  day 1; SwiftData/sqlite-net auto-add the column, Room migration 5→6 adds it explicitly)
+  feeds the engine, the flow's calendar toolbar menu jumps to any day (period-prefixed,
+  localized names), switching persists to the matching favorite, and finishing a day's
+  session advances the favorite to the next day — clamped to the last, so a completed
+  devotion re-prays its final day and tomorrow always opens where the novena left off. What
+  remains content-side is an actual days-type bundle. Hours/missals are a different beast: their content is selected by the
   liturgical calendar (proper of the day, psalter weeks), not by a day counter — that needs a
   date→content-key resolution layer, for which the Home feast-day data (`Shared/content/data`)
   is the seed, and it should not be forced into the `days` shape.
