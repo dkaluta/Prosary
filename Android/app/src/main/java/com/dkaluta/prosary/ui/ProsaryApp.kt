@@ -2,6 +2,7 @@ package com.dkaluta.prosary.ui
 
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -138,6 +139,12 @@ fun ProsaryApp() {
             }
         } else {
             Scaffold(
+                // Every destination carries its own Scaffold/TopAppBar and applies the system
+                // insets itself — if the shell consumes them too, status- and nav-bar padding
+                // lands twice and the whole app looks "framed by bars". The shell's padding
+                // should only ever be the tab bar's own height (the NavigationBar composable
+                // handles its own bottom inset internally).
+                contentWindowInsets = WindowInsets(0, 0, 0, 0),
                 bottomBar = {
                     if (showsTabs) {
                         NavigationBar {
