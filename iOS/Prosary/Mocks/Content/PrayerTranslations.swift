@@ -20,6 +20,17 @@ enum PrayerTranslations {
       return text
     }
 
+    // Community variants ("he-x-gamliel") overlay their base language: anything the variant
+    // doesn't override reads from plain "he" before falling to Latin.
+    if let languageCode, let base = LanguageCatalog.baseLanguage(of: languageCode) {
+      if let override = PrayerPackStore.prayerOverride(languageCode: base, key: key) {
+        return override
+      }
+      if let table = byLanguage[base], let text = table[key] {
+        return text
+      }
+    }
+
     return latin[key] ?? key.rawValue
   }
 

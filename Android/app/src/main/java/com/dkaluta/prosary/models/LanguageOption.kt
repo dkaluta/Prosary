@@ -13,6 +13,11 @@ data class LanguageOption(
 /** Languages available for prayer text. Latin is the default — it's the neutral fallback every
  * lookup falls back to if a translation is missing in the chosen language. */
 object LanguageCatalog {
+    /** "he-x-gamliel" → "he": community variants overlay their base language — resolve
+     * chains try the exact code first, then this. Null when the code has no subtag. */
+    fun baseLanguage(code: String): String? =
+        code.indexOf('-').takeIf { it > 0 }?.let { code.substring(0, it) }
+
     const val defaultCode = "la"
 
     /** Sentinel stored in a favorite's `languageCode` meaning "follow the app-level default setting". */
@@ -25,6 +30,9 @@ object LanguageCatalog {
         LanguageOption(code = "he", nativeName = "עברית", isRightToLeft = true),
         // Aramaic in Hebrew script — the Aramaic-rite communities' liturgical language.
         LanguageOption(code = "arc", nativeName = "ארמית", isRightToLeft = true),
+        // TODO(gamaliel-texts): activate with the Mission's translations — the base-language
+        // fallback mechanism already treats "he-x-gamliel" as an overlay on "he".
+        // LanguageOption(code = "he-x-gamliel", nativeName = "עברית — נוסח השליחות", isRightToLeft = true),
         LanguageOption(code = "ru", nativeName = "Русский", isRightToLeft = false),
         LanguageOption(code = "tl", nativeName = "Tagalog", isRightToLeft = false),
     )

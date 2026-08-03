@@ -16,6 +16,13 @@ object PrayerTranslations {
         val text = table?.get(key)
         if (text != null) return text
 
+        // Community variants ("he-x-gamliel") overlay their base language before Latin.
+        val base = languageCode?.let { com.dkaluta.prosary.models.LanguageCatalog.baseLanguage(it) }
+        if (base != null) {
+            PrayerPackStore.prayerOverride(base, key)?.let { return it }
+            byLanguage[base]?.get(key)?.let { return it }
+        }
+
         return prayerTranslationsLatin[key] ?: key.name
     }
 

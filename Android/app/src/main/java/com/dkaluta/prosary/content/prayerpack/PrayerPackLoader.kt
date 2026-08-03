@@ -460,7 +460,11 @@ object PrayerPackStore {
     fun effectiveLanguage(bundleId: String, chosen: String?): String {
         val resolved = LanguageCatalog.resolve(chosen ?: LanguageCatalog.defaultSentinel).code
         val available = info(bundleId)?.languages.orEmpty()
-        return if (available.isEmpty() || resolved in available) resolved else available.first()
+        if (available.isEmpty() || resolved in available) return resolved
+        // A community variant keeps its code when the bundle ships its base language —
+        // bundle text falls back per key.
+        LanguageCatalog.baseLanguage(resolved)?.let { if (it in available) return resolved }
+        return available.first()
     }
 
     /** Resolves a `devotion.json` entry's `bodyKey`/`titleKey` to display text: (1) the bundle's
@@ -478,6 +482,9 @@ object PrayerPackStore {
     fun resolveBodyText(bundleId: String, languageCode: String?, key: String): String {
         if (languageCode != null) {
             rawContentByBundle[bundleId]?.get(languageCode)?.get(key)?.let { return it }
+            LanguageCatalog.baseLanguage(languageCode)
+                ?.let { base -> rawContentByBundle[bundleId]?.get(base)?.get(key) }
+                ?.let { return it }
         }
         rawContentByBundle[bundleId]?.get("la")?.get(key)?.let { return it }
         val prayerKey = keyToPrayerKey(key)

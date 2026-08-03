@@ -521,6 +521,11 @@ enum PrayerPackStore {
     let resolved = LanguageCatalog.resolve(rawChoice ?? LanguageCatalog.defaultSentinel).code
     let available = info(for: bundleId)?.languages ?? []
     if available.isEmpty || available.contains(resolved) { return resolved }
+    // A community variant ("he-x-gamliel") prays a bundle that only ships the base language
+    // in the variant: bundle text falls back per-key, so keep the variant code alive here.
+    if let base = LanguageCatalog.baseLanguage(of: resolved), available.contains(base) {
+      return resolved
+    }
     return available[0]
   }
 
@@ -637,7 +642,9 @@ enum PrayerPackStore {
 
   static func resolveBodyText(bundleId: String, languageCode: String?, key: String) -> String {
     ensureLoaded()
-    if let languageCode, let text = rawContentByBundle[bundleId]?[languageCode]?[key] {
+    if let languageCode,
+       let text = rawContentByBundle[bundleId]?[languageCode]?[key]
+         ?? LanguageCatalog.baseLanguage(of: languageCode).flatMap({ rawContentByBundle[bundleId]?[$0]?[key] }) {
       return text
     }
     if let latinText = rawContentByBundle[bundleId]?["la"]?[key] {

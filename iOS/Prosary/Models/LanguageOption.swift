@@ -20,6 +20,13 @@ struct LanguageOption: Identifiable, Hashable, Codable {
 /// Languages available for prayer text. Latin is the default — it's the neutral fallback every
 /// lookup falls back to if a translation is missing in the chosen language.
 enum LanguageCatalog {
+  /// "he-x-gamliel" → "he": regional/community variants overlay their base language — the
+  /// resolve chains try the exact code first, then this.
+  static func baseLanguage(of code: String) -> String? {
+    guard let dash = code.firstIndex(of: "-") else { return nil }
+    return String(code[..<dash])
+  }
+
   static let defaultCode = "la"
   /// Sentinel stored in a preset's `languageCode` meaning "follow the app-level default setting".
   static let defaultSentinel = ""
@@ -32,6 +39,11 @@ enum LanguageCatalog {
     // Aramaic in Hebrew script — the Aramaic-rite Hebrew Catholic communities' liturgical
     // language (requested by the Mission of St. Gamaliel for v0.7).
     LanguageOption(code: "arc", nativeName: "ארמית", isRightToLeft: true),
+    // TODO(gamaliel-texts): uncomment when the Mission of St. Gamaliel's translations of the
+    // common prayers arrive from Erez — the whole mechanism (base-language fallback in every
+    // resolve chain, typography, effectiveLanguage) already treats "he-x-gamliel" as an
+    // overlay on "he", so activation is this one line plus their content.
+    // LanguageOption(code: "he-x-gamliel", nativeName: "עברית — נוסח השליחות", isRightToLeft: true),
     LanguageOption(code: "ru", nativeName: "Русский", isRightToLeft: false),
     LanguageOption(code: "tl", nativeName: "Tagalog", isRightToLeft: false),
   ]

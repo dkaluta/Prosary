@@ -21,7 +21,9 @@ object PrayerTypography {
     private val amiri = FontFamily(Font(R.font.amiri_regular))
     private val scheherazadeNew = FontFamily(Font(R.font.scheherazade_new_regular))
 
-    fun style(languageCode: String?, isScripture: Boolean): TextStyle = when (languageCode) {
+    // Variants key on their base script: "he-x-gamliel" typesets exactly like "he".
+    fun style(languageCode: String?, isScripture: Boolean): TextStyle =
+        when (languageCode?.let { com.dkaluta.prosary.models.LanguageCatalog.baseLanguage(it) ?: it }) {
         "he", "arc" -> if (isScripture) {
             TextStyle(fontFamily = shofar, fontSize = 16.sp, lineHeight = 23.sp)
         } else {
