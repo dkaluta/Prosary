@@ -256,10 +256,10 @@ public sealed class PrayerEngine
             ? perLanguage
             : entry.IsScripture) ?? false;
         var acclamation = entry.AcclamationKey is { } acclamationKey
+            ? PrayerPackStore.ResolveBodyText(bundleId, languageCode, acclamationKey)
+            : null;
         var transliteratedBody = entry.BodyKey is { } bodyKeyForTranslit
             ? PrayerPackStore.Transliteration(bundleId, languageCode, bodyKeyForTranslit)
-            : null;
-            ? PrayerPackStore.ResolveBodyText(bundleId, languageCode, acclamationKey)
             : null;
         if (entry.Repeat is not { } count || count <= 1)
         {
