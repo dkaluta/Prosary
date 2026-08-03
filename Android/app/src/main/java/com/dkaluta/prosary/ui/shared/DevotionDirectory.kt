@@ -18,6 +18,9 @@ data class DevotionListing(
     val title: String,
     val icon: ImageVector,
     val accentColor: Color?,
+    /** One grapheme (letter or emoji) drawn instead of [icon] — Compose's "your own" icon
+     * (v0.7, Gamaliel item 6). */
+    val iconGlyph: String? = null,
     /** Lowercase category labels from the manifest; the Jesus Prayer, having no bundle,
      * carries its tags here. */
     val tags: List<String>,
@@ -46,6 +49,7 @@ object DevotionDirectory {
                     id = bundleId,
                     title = info.localizedDisplayName,
                     icon = iconForSystemName(info.iconSystemName),
+                    iconGlyph = info.iconGlyph,
                     accentColor = colorForHex(info.accentColorHex),
                     tags = info.tags,
                     target = LaunchTarget.Custom(bundleId),

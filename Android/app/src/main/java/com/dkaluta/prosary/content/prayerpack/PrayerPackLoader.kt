@@ -27,6 +27,9 @@ private data class PackManifest(
     val accentColorHex: String? = null,
     val accentColorDarkHex: String? = null,
     val iconSystemName: String? = null,
+    /** One grapheme (letter or emoji) drawn instead of [iconSystemName] — Compose's "your
+     * own" icon (v0.7, Gamaliel item 6). */
+    val iconGlyph: String? = null,
     val displayNameByLanguage: Map<String, String>? = null,
     val reminderBody: Map<String, String>? = null,
     val reminderPresetHours: List<Int>? = null,
@@ -330,6 +333,9 @@ data class CustomDevotionInfo(
     val accentColorHex: String?,
     val accentColorDarkHex: String?,
     val iconSystemName: String?,
+    /** One grapheme (letter or emoji) drawn instead of [iconSystemName] — Compose's "your
+     * own" icon (v0.7, Gamaliel item 6). */
+    val iconGlyph: String?,
     val displayNameByLanguage: Map<String, String>,
     val reminderBody: Map<String, String>,
     val reminderPresetHours: List<Int>?,
@@ -578,6 +584,7 @@ object PrayerPackStore {
             accentColorHex = manifest.accentColorHex,
             accentColorDarkHex = manifest.accentColorDarkHex,
             iconSystemName = manifest.iconSystemName,
+            iconGlyph = manifest.iconGlyph,
             displayNameByLanguage = manifest.displayNameByLanguage ?: emptyMap(),
             reminderBody = manifest.reminderBody ?: emptyMap(),
             reminderPresetHours = manifest.reminderPresetHours,

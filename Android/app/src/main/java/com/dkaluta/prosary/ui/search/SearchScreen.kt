@@ -104,7 +104,11 @@ fun SearchScreen(onLaunch: (LaunchTarget) -> Unit) {
                             .clickable { onLaunch(listing.target) }
                             .padding(vertical = 10.dp),
                     ) {
-                        Icon(listing.icon, contentDescription = null, tint = listing.accentColor ?: MaterialTheme.colorScheme.primary)
+                        if (listing.iconGlyph != null) {
+                            Text(listing.iconGlyph, color = listing.accentColor ?: MaterialTheme.colorScheme.primary)
+                        } else {
+                            Icon(listing.icon, contentDescription = null, tint = listing.accentColor ?: MaterialTheme.colorScheme.primary)
+                        }
                         Text(listing.title, style = MaterialTheme.typography.bodyLarge)
                     }
                 }

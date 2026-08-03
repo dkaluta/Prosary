@@ -98,7 +98,7 @@ public partial class HomeViewModel : ObservableObject
             {
                 Id = $"custom.{bundleId}",
                 Title = info.LocalizedDisplayName,
-                IconGlyph = GlyphForSystemName(info.IconSystemName),
+                IconGlyph = info.IconGlyph ?? GlyphForSystemName(info.IconSystemName),
                 AccentColor = CustomAccent(info),
                 Command = new RelayCommand(() => OpenCustomDevotion(bundleId)),
             };

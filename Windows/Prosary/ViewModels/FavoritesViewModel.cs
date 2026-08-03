@@ -56,7 +56,7 @@ public partial class FavoritesViewModel : ObservableObject
             {
                 var match = all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == x.bundleId);
                 return new SimpleFavoriteRow(
-                    PrayerKind.Custom, x.info!.LocalizedDisplayName, HomeViewModel.GlyphForSystemName(x.info.IconSystemName),
+                    PrayerKind.Custom, x.info!.LocalizedDisplayName, x.info.IconGlyph ?? HomeViewModel.GlyphForSystemName(x.info.IconSystemName),
                     match is not null, match?.Id, x.bundleId);
             });
 

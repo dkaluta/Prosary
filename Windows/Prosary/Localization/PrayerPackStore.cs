@@ -372,6 +372,7 @@ public static class PrayerPackStore
             manifest.AccentColorHex,
             manifest.AccentColorDarkHex,
             manifest.IconSystemName,
+            manifest.IconGlyph,
             manifest.DisplayNameByLanguage ?? new Dictionary<string, string>(),
             manifest.ReminderBody ?? new Dictionary<string, string>(),
             manifest.ReminderPresetHours,
@@ -485,6 +486,9 @@ public static class PrayerPackStore
         string? AccentColorHex = null,
         string? AccentColorDarkHex = null,
         string? IconSystemName = null,
+        // One grapheme (letter or emoji) drawn instead of IconSystemName — Compose's "your
+        // own" icon (v0.7, Gamaliel item 6).
+        string? IconGlyph = null,
         Dictionary<string, string>? DisplayNameByLanguage = null,
         Dictionary<string, string>? ReminderBody = null,
         List<int>? ReminderPresetHours = null,
@@ -767,6 +771,7 @@ public sealed record CustomDevotionInfo(
     string? AccentColorHex,
     string? AccentColorDarkHex,
     string? IconSystemName,
+    string? IconGlyph,
     IReadOnlyDictionary<string, string> DisplayNameByLanguage,
     IReadOnlyDictionary<string, string> ReminderBody,
     IReadOnlyList<int>? ReminderPresetHours,

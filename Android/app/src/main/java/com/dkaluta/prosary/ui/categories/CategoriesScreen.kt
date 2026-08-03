@@ -100,11 +100,15 @@ private fun androidx.compose.foundation.lazy.LazyListScope.items_(
                     .clickable { onLaunch(listing.target) }
                     .padding(horizontal = 20.dp, vertical = 12.dp),
             ) {
-                Icon(
-                    listing.icon,
-                    contentDescription = null,
-                    tint = listing.accentColor ?: MaterialTheme.colorScheme.primary,
-                )
+                if (listing.iconGlyph != null) {
+                    Text(listing.iconGlyph, color = listing.accentColor ?: MaterialTheme.colorScheme.primary)
+                } else {
+                    Icon(
+                        listing.icon,
+                        contentDescription = null,
+                        tint = listing.accentColor ?: MaterialTheme.colorScheme.primary,
+                    )
+                }
                 Text(listing.title, style = MaterialTheme.typography.bodyLarge)
             }
         }

@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun PrayerCard(
     icon: ImageVector,
+    iconGlyph: String? = null,
     title: String,
     subtitle: String,
     accentColor: Color,
@@ -56,7 +57,18 @@ fun PrayerCard(
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp, vertical = 14.dp),
         ) {
-            Icon(icon, contentDescription = null, tint = accentColor, modifier = Modifier.size(28.dp))
+            if (iconGlyph != null) {
+                // Compose's "your own" one-grapheme icon (v0.7, Gamaliel item 6).
+                Text(
+                    iconGlyph,
+                    color = accentColor,
+                    style = MaterialTheme.typography.headlineSmall,
+                    modifier = Modifier.width(28.dp),
+                    textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                )
+            } else {
+                Icon(icon, contentDescription = null, tint = accentColor, modifier = Modifier.size(28.dp))
+            }
 
             Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
                 Text(title, style = MaterialTheme.typography.titleMedium)

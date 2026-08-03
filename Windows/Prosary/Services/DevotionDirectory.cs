@@ -62,7 +62,7 @@ public static class DevotionDirectory
             listings.Add(new DevotionListing(
                 bundleId,
                 info.LocalizedDisplayName,
-                HomeViewModel.GlyphForSystemName(info.IconSystemName),
+                info.IconGlyph ?? HomeViewModel.GlyphForSystemName(info.IconSystemName),
                 info.Tags,
                 LaunchTargetKind.Custom,
                 bundleId));

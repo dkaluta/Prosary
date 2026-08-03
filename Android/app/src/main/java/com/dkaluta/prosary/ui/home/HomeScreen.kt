@@ -75,6 +75,7 @@ import com.dkaluta.prosary.ui.theme.extraColors
 private data class DevotionCard(
     val id: String,
     val icon: ImageVector,
+    val iconGlyph: String? = null,
     val title: String,
     val accentColor: Color,
     val subtitle: String,
@@ -178,6 +179,7 @@ fun HomeScreen(
                 DevotionCard(
                     id = "custom.$bundleId",
                     icon = iconForSystemName(info.iconSystemName),
+                    iconGlyph = info.iconGlyph,
                     title = info.localizedDisplayName,
                     accentColor = customAccent(info),
                     subtitle = defaultCustomDevotions[bundleId]?.name ?: "Tap to pray",
@@ -302,6 +304,7 @@ fun HomeScreen(
             items(devotionCards, key = { it.id }) { card ->
                 PrayerCard(
                     icon = card.icon,
+                    iconGlyph = card.iconGlyph,
                     title = card.title,
                     subtitle = card.subtitle,
                     accentColor = card.accentColor,
