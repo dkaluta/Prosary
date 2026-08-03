@@ -514,6 +514,15 @@ enum PrayerPackStore {
     return available[0]
   }
 
+  /// The on-disk .prosaryprayer file of an *installed* bundle — the export seam: sharing this
+  /// file is how a devotion travels back to Compose for editing (v0.7, Gamaliel item 7).
+  /// Nil for shipped bundles, whose packs live inside the app bundle.
+  static func installedPackURL(for bundleId: String) -> URL? {
+    ensureLoaded()
+    guard installedIds.contains(bundleId) else { return nil }
+    return packUrlByBundle[bundleId]
+  }
+
   /// Bundle ids the user has imported (subset of `customDevotionIds()`), in load order.
   static func installedBundleIds() -> [String] {
     ensureLoaded()

@@ -3,6 +3,7 @@ package com.dkaluta.prosary.ui.favorites
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.material.icons.filled.Download
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Language
 import androidx.compose.material3.AlertDialog
 import androidx.compose.foundation.background
@@ -108,6 +109,21 @@ fun FavoritesListScreen(
     var importError by remember { mutableStateOf<String?>(null) }
     // Bumped after install/remove so the customDevotionIds list re-evaluates.
     var installedGeneration by remember { mutableStateOf(0) }
+
+    // Round-trip to Compose (Gamaliel item 7): SAF create-document, then copy the installed
+    // pack's bytes out — no FileProvider needed.
+    var exportBundleId by remember { mutableStateOf<String?>(null) }
+    val exportLauncher = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/zip")) { uri ->
+        val id = exportBundleId
+        exportBundleId = null
+        if (uri != null && id != null) {
+            PrayerPackStore.installedPackFile(id)?.let { file ->
+                context.contentResolver.openOutputStream(uri)?.use { out ->
+                    file.inputStream().use { it.copyTo(out) }
+                }
+            }
+        }
+    }
 
     val importLauncher = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
         if (uri == null) return@rememberLauncherForActivityResult
@@ -243,6 +259,14 @@ fun FavoritesListScreen(
                             }
                         },
                         onEditReminders = { favorite?.let { onEditReminders(it.id) } },
+                        onExportInstalled = if (bundleId in PrayerPackStore.installedBundleIds()) {
+                            {
+                                exportBundleId = bundleId
+                                exportLauncher.launch("$bundleId.prosaryprayer")
+                            }
+                        } else {
+                            null
+                        },
                         onRemoveInstalled = if (bundleId in PrayerPackStore.installedBundleIds()) {
                             {
                                 scope.launch {
@@ -385,6 +409,7 @@ private fun SimpleFavoriteRow(
     onToggleFavorite: () -> Unit,
     onEditReminders: () -> Unit,
     /** Non-null only for user-imported bundles — shows the trailing remove button. */
+    onExportInstalled: (() -> Unit)? = null,
     onRemoveInstalled: (() -> Unit)? = null,
     /** Small capsule after the title — "Repository" for bundles installed from
      * prayers.prosary.app (ids prefixed "repo.", see ARCHITECTURE.md). Null hides it. */
@@ -429,6 +454,13 @@ private fun SimpleFavoriteRow(
             }
         }
 
+        if (onExportInstalled != null) {
+            // Round-trip to Compose: save the .prosaryprayer, edit it at compose.prosary.app,
+            // re-import (or republish) — Gamaliel item 7.
+            IconButton(onClick = onExportInstalled) {
+                Icon(Icons.Filled.Share, contentDescription = "Export $title for editing", tint = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+        }
         if (onRemoveInstalled != null) {
             IconButton(onClick = onRemoveInstalled) {
                 Icon(Icons.Filled.Delete, contentDescription = "Remove imported devotion $title", tint = MaterialTheme.colorScheme.onSurfaceVariant)

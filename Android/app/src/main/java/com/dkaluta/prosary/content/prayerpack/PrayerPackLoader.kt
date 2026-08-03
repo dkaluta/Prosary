@@ -510,6 +510,15 @@ object PrayerPackStore {
      * devotion.json, content for every declared language, not a builtin-kind pack, no id
      * collision), copies it into the installed-packs directory, and loads it live. Returns the
      * installed bundle id. */
+    /** The on-disk .prosaryprayer file of an *installed* bundle — the export seam: sharing
+     * this file is how a devotion travels back to Compose for editing (v0.7, Gamaliel
+     * item 7). Null for shipped bundles, whose packs live in the app's assets. */
+    fun installedPackFile(bundleId: String): java.io.File? {
+        if (bundleId !in installedIdsList) return null
+        val dir = installedPacksDirectory ?: return null
+        return java.io.File(dir, "$bundleId.prosaryprayer").takeIf { it.exists() }
+    }
+
     fun installPack(bytes: ByteArray): String {
         val entries = runCatching { readZipEntries(bytes.inputStream()) }.getOrNull()
             ?: throw InstallException("This file is not a readable .prosaryprayer bundle.")

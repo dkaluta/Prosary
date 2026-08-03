@@ -88,6 +88,16 @@ public static class PrayerPackStore
     /// in load order.</summary>
     public static IReadOnlyList<string> InstalledBundleIds() => InstalledIds;
 
+    /// <summary>The on-disk .prosaryprayer file of an *installed* bundle — the export seam:
+    /// sharing this file is how a devotion travels back to Compose for editing (v0.7,
+    /// Gamaliel item 7). Null for shipped bundles.</summary>
+    public static string? InstalledPackPath(string bundleId)
+    {
+        if (!InstalledIds.Contains(bundleId) || InstalledPacksDirectory is not { } dir) return null;
+        var path = Path.Combine(dir, $"{bundleId}.prosaryprayer");
+        return File.Exists(path) ? path : null;
+    }
+
     /// <summary>The language a session actually prays a bundle in: the chosen (or app-default)
     /// language when the bundle ships it, else the bundle's own first (manifest-order)
     /// language — never a language the bundle lacks, which would degrade bundle-local text

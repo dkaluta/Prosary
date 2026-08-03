@@ -183,6 +183,32 @@ public partial class FavoritesViewModel : ObservableObject
         }
     }
 
+    /// <summary>Round-trip to Compose (Gamaliel item 7): save a copy of the installed
+    /// .prosaryprayer wherever the user picks — edit it at compose.prosary.app, re-import.</summary>
+    [RelayCommand]
+    private async Task ExportInstalledAsync(SimpleFavoriteRow row)
+    {
+        if (row.CustomDevotionId is not { } bundleId
+            || PrayerPackStore.InstalledPackPath(bundleId) is not { } source)
+        {
+            return;
+        }
+
+        var picker = new Windows.Storage.Pickers.FileSavePicker
+        {
+            SuggestedFileName = bundleId,
+        };
+        picker.FileTypeChoices.Add("Prosary devotion bundle", [".prosaryprayer"]);
+        WinRT.Interop.InitializeWithWindow.Initialize(
+            picker, WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow));
+        if (await picker.PickSaveFileAsync() is { } destination)
+        {
+            await using var output = await destination.OpenStreamForWriteAsync();
+            await using var input = File.OpenRead(source);
+            await input.CopyToAsync(output);
+        }
+    }
+
     /// <summary>Removes a user-imported bundle (file + registration + its favorite row, whose
     /// reminders are cancelled first).</summary>
     [RelayCommand]

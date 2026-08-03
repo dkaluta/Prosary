@@ -61,7 +61,8 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
                     <Button Grid.Column="0" Background="Transparent" Padding="6"
                             Command="{Binding ElementName=Root, Path=ViewModel.ToggleSimpleFavoriteCommand}" CommandParameter="{Binding}">
                         <FontIcon Glyph="{Binding IsFavorited, Converter={StaticResource BoolToStarGlyph}}" Foreground="{StaticResource BrandPrimaryBrush}" />
@@ -84,6 +85,12 @@
                         <FontIcon Glyph="&#xEA8F;" />
                     </Button>
                     <Button Grid.Column="4" Background="Transparent" Padding="6"
+                            Visibility="{Binding IsInstalled, Converter={StaticResource BoolToVisibility}}"
+                            Command="{Binding ElementName=Root, Path=ViewModel.ExportInstalledCommand}" CommandParameter="{Binding}"
+                            ToolTipService.ToolTip="Export for editing (compose.prosary.app)">
+                        <FontIcon Glyph="&#xE72D;" />
+                    </Button>
+                    <Button Grid.Column="5" Background="Transparent" Padding="6"
                             Visibility="{Binding IsInstalled, Converter={StaticResource BoolToVisibility}}"
                             Command="{Binding ElementName=Root, Path=ViewModel.RemoveInstalledCommand}" CommandParameter="{Binding}"
                             ToolTipService.ToolTip="Remove imported devotion">
