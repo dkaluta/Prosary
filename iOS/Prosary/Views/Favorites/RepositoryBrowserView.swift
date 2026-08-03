@@ -189,20 +189,23 @@ struct RepositoryBrowserView: View {
   }
 
   private func load() async {
-    isLoading = true
+    // Only the initial load gets the full-screen spinner: flipping isLoading during a
+    // pull-to-refresh would remove the List — which cancels the .refreshable task that is
+    // running this very function, a self-inflicted eternal spinner.
+    if bundles.isEmpty { isLoading = true }
     loadError = nil
+    // Every exit path resets, cancellation included — an early return here is how the
+    // spinner got stuck.
+    defer { isLoading = false }
     do {
       bundles = try await RepositoryClient.fetchCatalog()
     } catch is CancellationError {
-      // Pull-to-refresh being interrupted or the view going away is not a repository outage —
-      // surfacing it painted "unavailable / cancelled" over a perfectly healthy catalog.
-      return
+      // Navigation or gesture cancellation is not a repository outage — surfacing it painted
+      // "unavailable / cancelled" over a perfectly healthy catalog.
     } catch let error as URLError where error.code == .cancelled {
-      return
     } catch {
       loadError = error.localizedDescription
     }
-    isLoading = false
   }
 
   private func install(_ bundle: RepositoryBundle, replacingExisting: Bool = false) {
