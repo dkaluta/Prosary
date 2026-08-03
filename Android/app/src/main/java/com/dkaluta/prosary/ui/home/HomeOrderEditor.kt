@@ -1,0 +1,114 @@
+package com.dkaluta.prosary.ui.home
+
+import androidx.compose.foundation.gestures.detectDragGestures
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DragHandle
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
+
+/** The approved reorder pattern (not jiggle): rows with drag handles inside a dialog; the
+ * dragged row rides the finger and swaps neighbors as it crosses their midlines. Order is
+ * committed on every swap via [onMove]; Reset returns to directory order. */
+@Composable
+fun HomeOrderEditor(
+    titles: List<Pair<String, String>>, // id to display title, in current order
+    onMove: (List<String>) -> Unit,
+    onReset: () -> Unit,
+    onDismiss: () -> Unit,
+) {
+    var ids by remember { mutableStateOf(titles.map { it.first }) }
+    val labels = remember(titles) { titles.toMap() }
+    var draggingIndex by remember { mutableIntStateOf(-1) }
+    var dragOffset by remember { mutableFloatStateOf(0f) }
+    val rowHeightPx = with(LocalDensity.current) { 48.dp.toPx() }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Home order") },
+        text = {
+            Column {
+                ids.forEachIndexed { index, id ->
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .zIndex(if (index == draggingIndex) 1f else 0f)
+                            .graphicsLayer {
+                                translationY = if (index == draggingIndex) dragOffset else 0f
+                            }
+                            .padding(vertical = 12.dp),
+                    ) {
+                        Icon(
+                            Icons.Filled.DragHandle,
+                            contentDescription = "Reorder ${labels[id]}",
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.pointerInput(id) {
+                                detectDragGestures(
+                                    onDragStart = {
+                                        draggingIndex = ids.indexOf(id)
+                                        dragOffset = 0f
+                                    },
+                                    onDragEnd = {
+                                        draggingIndex = -1
+                                        dragOffset = 0f
+                                        onMove(ids)
+                                    },
+                                    onDragCancel = {
+                                        draggingIndex = -1
+                                        dragOffset = 0f
+                                    },
+                                ) { change, dragAmount ->
+                                    change.consume()
+                                    dragOffset += dragAmount.y
+                                    // Crossed a neighbor's midline: swap and rebase the offset.
+                                    while (dragOffset > rowHeightPx / 2 && draggingIndex < ids.lastIndex) {
+                                        ids = ids.toMutableList().apply {
+                                            add(draggingIndex + 1, removeAt(draggingIndex))
+                                        }
+                                        draggingIndex += 1
+                                        dragOffset -= rowHeightPx
+                                    }
+                                    while (dragOffset < -rowHeightPx / 2 && draggingIndex > 0) {
+                                        ids = ids.toMutableList().apply {
+                                            add(draggingIndex - 1, removeAt(draggingIndex))
+                                        }
+                                        draggingIndex -= 1
+                                        dragOffset += rowHeightPx
+                                    }
+                                }
+                            },
+                        )
+                        Text(
+                            labels[id] ?: id,
+                            style = MaterialTheme.typography.bodyLarge,
+                            modifier = Modifier.padding(start = 12.dp),
+                        )
+                    }
+                }
+            }
+        },
+        confirmButton = { TextButton(onClick = onDismiss) { Text("Done") } },
+        dismissButton = { TextButton(onClick = { onReset(); onDismiss() }) { Text("Reset") } },
+    )
+}
