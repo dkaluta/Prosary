@@ -48,12 +48,18 @@ object RepositoryClient {
         return catalog.bundles
     }
 
+    private fun openConnection(url: String) = (URL(url).openConnection()).apply {
+        // A hung route should become a clean error, not an eternal spinner.
+        connectTimeout = 15_000
+        readTimeout = 15_000
+    }
+
     suspend fun fetchCatalog(): List<RepositoryBundle> = withContext(Dispatchers.IO) {
-        parseCatalog(URL("$BASE_URL/index.json").readText())
+        parseCatalog(openConnection("$BASE_URL/index.json").getInputStream().bufferedReader().readText())
     }
 
     suspend fun downloadBundle(bundle: RepositoryBundle): ByteArray = withContext(Dispatchers.IO) {
-        URL(BASE_URL + bundle.file).readBytes()
+        openConnection(BASE_URL + bundle.file).getInputStream().readBytes()
     }
 }
 

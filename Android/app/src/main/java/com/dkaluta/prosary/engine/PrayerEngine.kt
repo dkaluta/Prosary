@@ -54,7 +54,9 @@ class PrayerEngine(
             val bundleId = prayer.customDevotionId
             if (bundleId != null) {
                 buildCustomDevotionSteps(
-                    bundleId, prayer.languageCode, prayer.variantId, prayer.customOptions,
+                    bundleId,
+                    PrayerPackStore.effectiveLanguage(bundleId, prayer.languageCode),
+                    prayer.variantId, prayer.customOptions,
                     dayIndex = prayer.dayIndex ?: 0,
                 )
             } else {

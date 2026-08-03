@@ -193,6 +193,12 @@ struct RepositoryBrowserView: View {
     loadError = nil
     do {
       bundles = try await RepositoryClient.fetchCatalog()
+    } catch is CancellationError {
+      // Pull-to-refresh being interrupted or the view going away is not a repository outage —
+      // surfacing it painted "unavailable / cancelled" over a perfectly healthy catalog.
+      return
+    } catch let error as URLError where error.code == .cancelled {
+      return
     } catch {
       loadError = error.localizedDescription
     }

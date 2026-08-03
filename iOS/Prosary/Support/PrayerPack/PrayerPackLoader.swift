@@ -503,6 +503,17 @@ enum PrayerPackStore {
     return infoByBundle[bundleId]
   }
 
+  /// The language a session actually prays a bundle in: the chosen (or app-default) language
+  /// when the bundle ships it, else the bundle's own first (manifest-order) language — never a
+  /// language the bundle lacks, which would degrade bundle-local text into fallback chains or
+  /// raw keys.
+  static func effectiveLanguage(for bundleId: String, chosen rawChoice: String?) -> String {
+    let resolved = LanguageCatalog.resolve(rawChoice ?? LanguageCatalog.defaultSentinel).code
+    let available = info(for: bundleId)?.languages ?? []
+    if available.isEmpty || available.contains(resolved) { return resolved }
+    return available[0]
+  }
+
   /// Bundle ids the user has imported (subset of `customDevotionIds()`), in load order.
   static func installedBundleIds() -> [String] {
     ensureLoaded()

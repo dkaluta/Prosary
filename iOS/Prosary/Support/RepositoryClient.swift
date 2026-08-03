@@ -59,7 +59,8 @@ enum RepositoryClient {
   }
 
   static func fetchCatalog() async throws -> [RepositoryBundle] {
-    let (data, response) = try await URLSession.shared.data(from: baseURL.appendingPathComponent("index.json"))
+    let (data, response) = try await URLSession.shared.data(
+      for: URLRequest(url: baseURL.appendingPathComponent("index.json"), timeoutInterval: 15))
     guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw RepositoryClientError.badResponse }
     return try parseCatalog(data)
   }

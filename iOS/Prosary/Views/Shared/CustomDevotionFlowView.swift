@@ -185,7 +185,7 @@ struct CustomDevotionFlowView: View {
     let favorite = prayer ?? all.first { $0.kind == .custom && $0.customDevotionId == devotionId }
     matchingFavoriteId = favorite?.id
     chosenLanguage = favorite?.languageCode ?? LanguageCatalog.defaultSentinel
-    languageCode = LanguageCatalog.resolve(chosenLanguage).code
+    languageCode = PrayerPackStore.effectiveLanguage(for: devotionId, chosen: chosenLanguage)
 
     variantId = favorite?.variantId
     dayIndex = favorite?.dayIndex ?? 0
@@ -271,9 +271,8 @@ struct CustomDevotionFlowView: View {
   /// variant switch, the step sequence is identical across languages, only its text changes.
   private func switchLanguage(to raw: String) {
     chosenLanguage = raw
-    let resolved = LanguageCatalog.resolve(raw)
-    languageCode = resolved.code
-    isRightToLeft = resolved.isRightToLeft
+    languageCode = PrayerPackStore.effectiveLanguage(for: devotionId, chosen: raw)
+    isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
     let position = currentIndex
     steps = builtSteps()
     currentIndex = min(position, max(steps.count - 1, 0))

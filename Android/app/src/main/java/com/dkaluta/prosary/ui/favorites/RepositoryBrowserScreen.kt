@@ -26,6 +26,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -48,6 +49,7 @@ import com.dkaluta.prosary.content.repository.RepositoryBundle
 import com.dkaluta.prosary.content.repository.RepositoryClient
 import com.dkaluta.prosary.content.repository.RepositoryInstallStamps
 import com.dkaluta.prosary.models.LanguageCatalog
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.launch
 
 /** The in-app browser for prayers.prosary.app: fetches the catalog, filters by search text
@@ -68,14 +70,27 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
     var installError by remember { mutableStateOf<String?>(null) }
     var reloadToken by remember { mutableIntStateOf(0) }
 
-    LaunchedEffect(reloadToken) {
-        isLoading = true
+    var isRefreshing by remember { mutableStateOf(false) }
+
+    suspend fun refresh(pulled: Boolean) {
+        if (pulled) isRefreshing = true else isLoading = true
         loadError = null
-        runCatching { RepositoryClient.fetchCatalog() }
-            .onSuccess { bundles = it }
-            .onFailure { loadError = it.message ?: "The repository could not be reached." }
-        isLoading = false
+        try {
+            bundles = RepositoryClient.fetchCatalog()
+        } catch (cancelled: CancellationException) {
+            // Leaving the tab (or a superseding refresh) mid-fetch is not a repository
+            // outage — swallowing it into runCatching painted "unavailable / cancelled"
+            // over a perfectly healthy catalog.
+            throw cancelled
+        } catch (error: Exception) {
+            loadError = error.message ?: "The repository could not be reached."
+        } finally {
+            isRefreshing = false
+            isLoading = false
+        }
     }
+
+    LaunchedEffect(reloadToken) { refresh(pulled = false) }
 
     val allTags = remember(bundles) { bundles.flatMap { it.tags }.distinct().sorted() }
     val filtered = bundles.filter { bundle ->
@@ -120,8 +135,13 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
                 Text(loadError ?: "", textAlign = androidx.compose.ui.text.style.TextAlign.Center)
                 TextButton(onClick = { reloadToken++ }) { Text("Retry") }
             }
-            else -> LazyColumn(
+            else -> PullToRefreshBox(
+                isRefreshing = isRefreshing,
+                onRefresh = { scope.launch { refresh(pulled = true) } },
                 modifier = Modifier.padding(paddingValues).fillMaxSize(),
+            ) {
+                LazyColumn(
+                modifier = Modifier.fillMaxSize(),
                 contentPadding = androidx.compose.foundation.layout.PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
@@ -229,6 +249,7 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
                             modifier = Modifier.padding(8.dp),
                         )
                     }
+                }
                 }
             }
         }

@@ -243,9 +243,8 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     public async Task SelectLanguageAsync(string raw)
     {
         _chosenLanguage = raw;
-        var resolved = LanguageCatalog.Resolve(raw);
-        _languageCode = resolved.Code;
-        IsRightToLeft = resolved.IsRightToLeft;
+        _languageCode = PrayerPackStore.EffectiveLanguage(_bundleId, raw);
+        IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
         OnPropertyChanged(nameof(CurrentLanguageRaw));
 
         var position = _index;
@@ -326,9 +325,8 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             // The favorite carries the language to pray in (sentinel = the app default).
             _chosenLanguage = favorite?.LanguageCode ?? LanguageCatalog.DefaultSentinel;
             CurrentDayIndex = favorite?.DayIndex ?? 0;
-            var resolvedLanguage = LanguageCatalog.Resolve(_chosenLanguage);
-            _languageCode = resolvedLanguage.Code;
-            IsRightToLeft = resolvedLanguage.IsRightToLeft;
+            _languageCode = PrayerPackStore.EffectiveLanguage(bundleId, _chosenLanguage);
+            IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
             Languages = (PrayerPackStore.Info(bundleId)?.Languages ?? [])
                 .Select(code => LanguageCatalog.All.FirstOrDefault(l => l.Code == code))
                 .OfType<LanguageOption>()

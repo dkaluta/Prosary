@@ -1,5 +1,7 @@
 package com.dkaluta.prosary.content.prayerpack
 
+import com.dkaluta.prosary.models.LanguageCatalog
+
 import com.dkaluta.prosary.content.MysteryText
 import com.dkaluta.prosary.content.PrayerKey
 import com.dkaluta.prosary.content.PrayerTranslations
@@ -439,6 +441,16 @@ object PrayerPackStore {
     }
 
     fun info(bundleId: String): CustomDevotionInfo? = infoByBundle[bundleId]
+
+    /** The language a session actually prays a bundle in: the chosen (or app-default) language
+     * when the bundle ships it, else the bundle's own first (manifest-order) language — never a
+     * language the bundle lacks, which would degrade bundle-local text into fallback chains or
+     * raw keys. */
+    fun effectiveLanguage(bundleId: String, chosen: String?): String {
+        val resolved = LanguageCatalog.resolve(chosen ?: LanguageCatalog.defaultSentinel).code
+        val available = info(bundleId)?.languages.orEmpty()
+        return if (available.isEmpty() || resolved in available) resolved else available.first()
+    }
 
     /** Resolves a `devotion.json` entry's `bodyKey`/`titleKey` to display text: (1) the bundle's
      * own raw content for this key — the requested language, else the bundle's Latin (mirroring

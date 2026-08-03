@@ -45,7 +45,9 @@ struct PrayerEngine {
     case .custom:
       guard let bundleId = prayer.customDevotionId else { return [] }
       return buildCustomDevotionSteps(
-        bundleId: bundleId, languageCode: prayer.languageCode, variantId: prayer.variantId,
+        bundleId: bundleId,
+        languageCode: PrayerPackStore.effectiveLanguage(for: bundleId, chosen: prayer.languageCode),
+        variantId: prayer.variantId,
         optionOverrides: prayer.customOptions, dayIndex: prayer.dayIndex ?? 0)
     }
   }

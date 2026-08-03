@@ -141,9 +141,8 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
             }
         }
 
-        val resolved = LanguageCatalog.resolve(chosenLanguage)
-        languageCode = resolved.code
-        isRightToLeft = resolved.isRightToLeft
+        languageCode = PrayerPackStore.effectiveLanguage(devotionId, chosenLanguage)
+        isRightToLeft = LanguageCatalog.resolve(languageCode ?: LanguageCatalog.defaultCode).isRightToLeft
         steps = services.engine.buildSteps(
             Prayer(
                 kind = PrayerKind.Custom, languageCode = chosenLanguage,
@@ -257,9 +256,8 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
                             onClick = {
                                 languageMenuExpanded = false
                                 chosenLanguage = raw
-                                val resolved = LanguageCatalog.resolve(raw)
-                                languageCode = resolved.code
-                                isRightToLeft = resolved.isRightToLeft
+                                languageCode = PrayerPackStore.effectiveLanguage(devotionId, raw)
+                                isRightToLeft = LanguageCatalog.resolve(languageCode ?: LanguageCatalog.defaultCode).isRightToLeft
                                 val position = currentIndex
                                 steps = services.engine.buildSteps(
                                     Prayer(

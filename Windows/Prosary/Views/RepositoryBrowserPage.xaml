@@ -20,12 +20,18 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Click="OnNavigateUp" Background="Transparent" Padding="8">
                 <FontIcon Glyph="&#xE72B;" />
             </Button>
             <TextBlock Grid.Column="1" Text="Community Devotions" VerticalAlignment="Center"
                        HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
+            <!-- Refresh lives in the chrome, not only inside the error state. -->
+            <Button Grid.Column="2" Background="Transparent" Padding="8"
+                    Command="{x:Bind ViewModel.LoadCommand}" AutomationProperties.Name="Refresh">
+                <FontIcon Glyph="&#xE72C;" />
+            </Button>
         </Grid>
 
         <Grid Grid.Row="1" ColumnSpacing="8">

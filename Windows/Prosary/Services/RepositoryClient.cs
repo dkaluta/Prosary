@@ -27,7 +27,8 @@ public static class RepositoryClient
 {
     public const string BaseUrl = "https://prayers.prosary.app";
 
-    private static readonly HttpClient Http = new();
+    // A hung route should become a clean error, not an eternal spinner.
+    private static readonly HttpClient Http = new() { Timeout = TimeSpan.FromSeconds(15) };
     private static readonly JsonSerializerOptions JsonOptions = new() { PropertyNameCaseInsensitive = true };
 
     private sealed record Catalog(int ProsaryRepository, List<RepositoryBundle>? Bundles);

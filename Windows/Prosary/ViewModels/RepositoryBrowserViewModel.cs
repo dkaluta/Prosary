@@ -114,6 +114,16 @@ public partial class RepositoryBrowserViewModel : ObservableObject
             OnPropertyChanged(nameof(ShowsTagFilter));
             ApplyFilter();
         }
+        catch (TaskCanceledException timeout) when (timeout.InnerException is TimeoutException)
+        {
+            // HttpClient's 15 s timeout — a real outage, worth the error state.
+            LoadError = "The repository could not be reached.";
+        }
+        catch (OperationCanceledException)
+        {
+            // Navigation away mid-fetch is not a repository outage — surfacing it painted
+            // "unavailable / cancelled" over a perfectly healthy catalog.
+        }
         catch (Exception ex)
         {
             LoadError = ex is RepositoryClient.UnsupportedCatalogException

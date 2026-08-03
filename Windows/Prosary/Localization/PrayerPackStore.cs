@@ -88,6 +88,18 @@ public static class PrayerPackStore
     /// in load order.</summary>
     public static IReadOnlyList<string> InstalledBundleIds() => InstalledIds;
 
+    /// <summary>The language a session actually prays a bundle in: the chosen (or app-default)
+    /// language when the bundle ships it, else the bundle's own first (manifest-order)
+    /// language — never a language the bundle lacks, which would degrade bundle-local text
+    /// into fallback chains or raw keys.</summary>
+    public static string EffectiveLanguage(string bundleId, string? chosen)
+    {
+        var resolved = Prosary.Models.LanguageCatalog.Resolve(
+            chosen ?? Prosary.Models.LanguageCatalog.DefaultSentinel).Code;
+        var available = Info(bundleId)?.Languages ?? [];
+        return available.Count == 0 || available.Contains(resolved) ? resolved : available[0];
+    }
+
     public sealed class InstallException : Exception
     {
         public InstallException(string message) : base(message)

@@ -42,7 +42,9 @@ public sealed class PrayerEngine
         // JesusPrayerViewModel, which never calls this engine at all.
         PrayerKind.JesusPrayer => [],
         PrayerKind.Custom => prayer.CustomDevotionId is { } bundleId
-            ? BuildCustomDevotionSteps(bundleId, prayer.LanguageCode, prayer.VariantId, prayer.CustomOptions, dayIndex: prayer.DayIndex ?? 0)
+            ? BuildCustomDevotionSteps(
+                bundleId, PrayerPackStore.EffectiveLanguage(bundleId, prayer.LanguageCode),
+                prayer.VariantId, prayer.CustomOptions, dayIndex: prayer.DayIndex ?? 0)
             : [],
         _ => throw new ArgumentOutOfRangeException(nameof(prayer), prayer.Kind, "Unhandled PrayerKind in PrayerEngine.BuildSteps")
     };
