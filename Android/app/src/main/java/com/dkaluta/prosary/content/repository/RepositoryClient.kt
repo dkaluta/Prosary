@@ -2,7 +2,9 @@ package com.dkaluta.prosary.content.repository
 
 import java.net.URL
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeout
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
@@ -54,12 +56,25 @@ object RepositoryClient {
         readTimeout = 15_000
     }
 
-    suspend fun fetchCatalog(): List<RepositoryBundle> = withContext(Dispatchers.IO) {
-        parseCatalog(openConnection("$BASE_URL/index.json").getInputStream().bufferedReader().readText())
+    /** Bounds the WHOLE operation — DNS included, which connect/read timeouts don't cover —
+     * and turns the coroutine timeout into an ordinary IOException: the screens rethrow
+     * CancellationException (navigation is not an outage), but a timeout very much is one. */
+    private suspend fun <T> bounded(block: suspend () -> T): T = try {
+        withTimeout(20_000) { block() }
+    } catch (timeout: TimeoutCancellationException) {
+        throw java.io.IOException("The repository could not be reached.")
     }
 
-    suspend fun downloadBundle(bundle: RepositoryBundle): ByteArray = withContext(Dispatchers.IO) {
-        openConnection(BASE_URL + bundle.file).getInputStream().readBytes()
+    suspend fun fetchCatalog(): List<RepositoryBundle> = bounded {
+        withContext(Dispatchers.IO) {
+            parseCatalog(openConnection("$BASE_URL/index.json").getInputStream().bufferedReader().readText())
+        }
+    }
+
+    suspend fun downloadBundle(bundle: RepositoryBundle): ByteArray = bounded {
+        withContext(Dispatchers.IO) {
+            openConnection(BASE_URL + bundle.file).getInputStream().readBytes()
+        }
     }
 }
 
