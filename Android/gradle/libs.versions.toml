@@ -8,6 +8,7 @@ espressoCore = "3.7.0"
 material = "1.13.0"
 lifecycleRuntimeKtx = "2.9.0"
 activityCompose = "1.13.0"
+playPublisher = "4.0.0"
 composeBom = "2026.06.01"
 navigationCompose = "2.9.8"
 room = "2.8.4"
@@ -39,6 +40,7 @@ androidx-material-icons-extended = { group = "androidx.compose.material", name =
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 
 [plugins]
+play-publisher = { id = "com.github.triplet.play", version.ref = "playPublisher" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

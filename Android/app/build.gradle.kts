@@ -7,6 +7,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
+    // Publishes straight to Play (./gradlew publishReleaseBundle) with a service-account JSON —
+    // configured below only when the credentials file exists, so clones and CI build fine
+    // without it.
+    alias(libs.plugins.play.publisher)
     alias(libs.plugins.ksp)
 }
 
@@ -14,6 +18,21 @@ plugins {
 // keystore/keystore.properties in .gitignore) — absent on a fresh clone or in CI without the
 // secret provisioned, which is fine for debug work; only signing a release build needs it.
 val keystorePropertiesFile = rootProject.file("keystore/keystore.properties")
+// Play publishing: drop the service-account JSON at Android/keystore/play-publisher.json
+// (gitignored, like the upload keystore) and grant that service account access to this app in
+// Play Console -> Users & permissions. Then: ./gradlew publishReleaseBundle
+val playCredentials = rootProject.file("keystore/play-publisher.json")
+play {
+    enabled.set(playCredentials.exists())
+    if (playCredentials.exists()) {
+        serviceAccountCredentials.set(playCredentials)
+    }
+    // The track your testers live on; "internal" is the safe default — switch to "beta"
+    // or "production" (or promote in Play Console) as the release process matures.
+    track.set("internal")
+    defaultToAppBundles.set(true)
+}
+
 val keystoreProperties = Properties().apply {
     if (keystorePropertiesFile.exists()) {
         keystorePropertiesFile.inputStream().use { load(it) }
