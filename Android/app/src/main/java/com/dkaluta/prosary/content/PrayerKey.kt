@@ -22,6 +22,11 @@ enum class PrayerKey {
 
     /** The oldest known Marian prayer; traditionally recited on its own, without a versicle/collect. */
     SubTuumPraesidium,
+    SalveReginaTitle,
+    AlmaRedemptorisMaterTitle,
+    AveReginaCaelorumTitle,
+    ReginaCaeliTitle,
+    SubTuumPraesidiumTitle,
 
     VersiculumStandard,
     ResponsiumStandard,

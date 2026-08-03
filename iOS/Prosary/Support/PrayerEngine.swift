@@ -117,20 +117,23 @@ struct PrayerEngine {
       body = "\(text(titleKey))\n\n\(text(.versiculumPaschale))\n**\(text(.responsiumPaschale))**\n\n\(text(.collectaPaschale))"
     }
 
-    var step = RosaryStep(title: marianAntiphonHeader(for: antiphon), subtitle: nil, body: body)
+    var step = RosaryStep(title: text(marianAntiphonHeaderKey(for: antiphon)), subtitle: nil, body: body)
     step.isAntiphon = true
     step.imageOverrideKey = "madonna_and_child"
     return step
   }
 
-  private func marianAntiphonHeader(for antiphon: MarianAntiphonOption) -> String {
+  /// The heading names the antiphon in the language being prayed, not in Latin — the same
+  /// choice the step's body already makes.
+  private func marianAntiphonHeaderKey(for antiphon: MarianAntiphonOption) -> PrayerKey {
     switch antiphon {
-    case .salveRegina:          return "Salve Regina"
-    case .almaRedemptorisMater: return "Alma Redemptoris Mater"
-    case .aveReginaCaelorum:    return "Ave Regina Caelorum"
-    case .reginaCaeli:          return "Regina Caeli"
-    case .subTuumPraesidium:    return "Sub Tuum Praesidium"
-    case .none, .seasonal:      return "Marian Antiphon"
+    case .salveRegina:          return .salveReginaTitle
+    case .almaRedemptorisMater: return .almaRedemptorisMaterTitle
+    case .aveReginaCaelorum:    return .aveReginaCaelorumTitle
+    case .reginaCaeli:          return .reginaCaeliTitle
+    case .subTuumPraesidium:    return .subTuumPraesidiumTitle
+    // Unreachable: both resolve to a concrete antiphon before this is called.
+    case .none, .seasonal:      return .salveReginaTitle
     }
   }
 
@@ -261,6 +264,9 @@ struct PrayerEngine {
     func resolve(_ key: String) -> String {
       PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: languageCode, key: key)
     }
+    func fixedTitle(_ step: CustomDevotionDefinition.Decades.FixedStep) -> String {
+      step.titleKey.map(resolve) ?? step.title ?? ""
+    }
 
     var steps: [RosaryStep] = []
     for entry in definition.opening ?? [] {
@@ -297,12 +303,12 @@ struct PrayerEngine {
         }
 
         steps.append(RosaryStep(
-          title: decades.majorStep.title, subtitle: decadeSubtitle, body: majorBody,
+          title: fixedTitle(decades.majorStep), subtitle: decadeSubtitle, body: majorBody,
           decadeIndex: d, imageOverrideKey: decades.majorStep.imageKey ?? imageKey))
 
         for h in 1...decades.minorCount {
           steps.append(RosaryStep(
-            title: "\(decades.minorStep.title) (\(h) of \(decades.minorCount))",
+            title: "\(fixedTitle(decades.minorStep)) (\(h) of \(decades.minorCount))",
             subtitle: decadeSubtitle, body: minorBody,
             decadeIndex: d, hailMaryIndexInDecade: h, imageOverrideKey: imageKey))
         }
@@ -333,6 +339,9 @@ struct PrayerEngine {
     func resolve(_ key: String) -> String {
       PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: languageCode, key: key)
     }
+    func fixedTitle(_ step: CustomDevotionDefinition.Decades.FixedStep) -> String {
+      step.titleKey.map(resolve) ?? step.title ?? ""
+    }
 
     let groups = resolveMysteryGroups(rosary: rosary)
     let fruitLabel = PrayerTranslations.get(languageCode: languageCode, key: .fructusMysteriiLabel)
@@ -362,18 +371,18 @@ struct PrayerEngine {
           body: "\(mysteryText.description)\n\n\(fruitLabel): \(mysteryText.fruit)",
           mystery: mystery, isScripture: true, decadeIndex: decadeIndex))
         steps.append(RosaryStep(
-          title: decades.majorStep.title, subtitle: decadeSubtitle, body: majorBody,
+          title: fixedTitle(decades.majorStep), subtitle: decadeSubtitle, body: majorBody,
           decadeIndex: decadeIndex, imageOverrideKey: decades.majorStep.imageKey))
 
         if presenterOn, let presenter = decades.presenter {
           steps.append(RosaryStep(
-            title: presenter.combinedTitle, subtitle: decadeSubtitle,
+            title: presenter.combinedTitleKey.map(resolve) ?? presenter.combinedTitle ?? "", subtitle: decadeSubtitle,
             body: presenter.bodyKeys.map(resolve).joined(separator: "\n\n"),
             mystery: mystery, decadeIndex: decadeIndex, hailMaryIndexInDecade: decades.minorCount))
         } else {
           for h in 1...decades.minorCount {
             steps.append(RosaryStep(
-              title: "\(decades.minorStep.title) (\(h) of \(decades.minorCount))",
+              title: "\(fixedTitle(decades.minorStep)) (\(h) of \(decades.minorCount))",
               subtitle: decadeSubtitle, body: minorBody,
               mystery: mystery, decadeIndex: decadeIndex, hailMaryIndexInDecade: h))
           }

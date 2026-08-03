@@ -83,7 +83,7 @@ class BeadModelsTest {
      * that design decision, even though BeadLayout itself needed no code changes to support it. */
     @Test
     fun presenterModeStepStillShowsTenTraditionalBottomBeads() {
-        val steps = PrayerEngine().buildSteps(Prayer(rosary = RosaryOptions(presenterMode = true)))
+        val steps = PrayerEngine().buildSteps(Prayer(rosary = RosaryOptions(presenterMode = true), languageCode = "en"))
         val currentIndex = steps.indexOfFirst { it.title == "Hail Mary & Glory Be" && it.decadeIndex == 0 }
         val layout = BeadLayout.build(steps, currentIndex = currentIndex, hasClosingCross = true)
 

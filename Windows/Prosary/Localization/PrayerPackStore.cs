@@ -795,15 +795,19 @@ public sealed record CustomDevotionDefinition(
             // (the Seven Sorrows' meeting on the way) opts out.
             bool? IsScripture = null);
 
+        // Title/TitleKey: a decade's Our Father/Hail Mary heading — carries a literal title or a translatable titleKey, exactly like every other step,
+        // so it reads in the language being prayed.
         public sealed record FixedStep(
-            string Title,
+            string? Title,
+            string? TitleKey,
             string BodyKey,
             // Fixed illustration for this step (the Rosary's Our Father icon between
             // mystery-specific images). Null = the decade's own image.
             string? ImageKey = null);
 
         public sealed record PresenterDefinition(
-            string CombinedTitle,
+            string? CombinedTitle,
+            string? CombinedTitleKey,
             // Bodies joined with a blank line (Hail Mary + Glory Be).
             List<string> BodyKeys);
     }

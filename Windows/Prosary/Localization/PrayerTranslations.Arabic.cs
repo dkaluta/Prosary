@@ -64,6 +64,16 @@ public static partial class PrayerTranslations
             "يا ملكةَ السماءِ افرحي، هللويا. لأنَّ مَن استحققتِ حملَه، هللويا. قد قامَ كما قال، هللويا. " +
             "صلّي لأجلِنا إلى اللهِ، هللويا.",
 
+        [PrayerKey.SalveReginaTitle] = "السلام عليك يا ملكة",
+
+        [PrayerKey.AlmaRedemptorisMaterTitle] = "يا أم الفادي",
+
+        [PrayerKey.AveReginaCaelorumTitle] = "السلام عليك يا ملكة السماوات",
+
+        [PrayerKey.ReginaCaeliTitle] = "يا ملكة السماء",
+
+        [PrayerKey.SubTuumPraesidiumTitle] = "تحت حمايتك",
+
         [PrayerKey.SubTuumPraesidium] =
             "نلجأ إلى حمايتكِ، أيتها القديسةُ والدةُ الإلهِ، لا تُهملي تضرعاتِنا في حاجاتِنا، بل نجّينا " +
             "دائماً من جميعِ الأخطارِ، أيتها العذراءُ المجيدةُ المباركةُ.",

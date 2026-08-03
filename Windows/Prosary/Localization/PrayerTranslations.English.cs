@@ -67,6 +67,16 @@ public static partial class PrayerTranslations
             "Queen of Heaven, rejoice, alleluia. For He whom you did merit to bear, alleluia, has risen as " +
             "He said, alleluia. Pray for us to God, alleluia.",
 
+        [PrayerKey.SalveReginaTitle] = "Salve Regina",
+
+        [PrayerKey.AlmaRedemptorisMaterTitle] = "Alma Redemptoris Mater",
+
+        [PrayerKey.AveReginaCaelorumTitle] = "Ave Regina Caelorum",
+
+        [PrayerKey.ReginaCaeliTitle] = "Regina Caeli",
+
+        [PrayerKey.SubTuumPraesidiumTitle] = "Sub Tuum Praesidium",
+
         [PrayerKey.SubTuumPraesidium] =
             "We fly to thy patronage, O holy Mother of God; despise not our petitions in our necessities, " +
             "but deliver us always from all dangers, O glorious and blessed Virgin.",

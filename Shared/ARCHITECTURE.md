@@ -372,11 +372,11 @@ of its own — its entire step sequence and per-step text are data-driven from i
     Crown/Seven Sorrows), *or* `count` + `fixedImageKey` (Divine Mercy), *or*
     `source: "mysteryGroups"` (the Rosary — the decade catalog comes from the engine's
     mystery-group machinery instead of bundle data); `majorStep`/`minorStep`
-    `{title, bodyKey, imageKey?}` (the optional `imageKey` is the Rosary's fixed Our Father
-    icon between mystery-specific images); `minorCount`; optional `postMinor: [Entry…]` emitted
+    `{title | titleKey, bodyKey, imageKey?}` (the optional `imageKey` is the Rosary's fixed Our
+    Father icon between mystery-specific images); `minorCount`; optional `postMinor: [Entry…]` emitted
     after each decade's minors carrying the decade's subtitle/index (the Rosary's Glory Be /
     Fatima Prayer / per-decade eternal rest, each gated with an `"if"`); optional
-    `presenter: {combinedTitle, bodyKeys}` — when the gating `presenterMode` option is on, the
+    `presenter: {combinedTitle | combinedTitleKey, bodyKeys}` — when the gating `presenterMode` option is on, the
     minors collapse into one combined step with `hailMaryIndexInDecade = minorCount` so the
     bead track still renders a full decade), `closing: [Entry…]`, and `hasClosingCross` (when
     true the closing cross must be the literal last step — another bead-track invariant).

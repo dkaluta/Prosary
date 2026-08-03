@@ -30,6 +30,14 @@ enum PrayerKey: String, CaseIterable {
   /// The oldest known Marian prayer; traditionally recited on its own, without a versicle/collect.
   case subTuumPraesidium
 
+  /// Headings for the antiphon step — the antiphon named in the praying language
+  /// (Latin keeps the incipit the antiphons are known by).
+  case salveReginaTitle
+  case almaRedemptorisMaterTitle
+  case aveReginaCaelorumTitle
+  case reginaCaeliTitle
+  case subTuumPraesidiumTitle
+
   case versiculumStandard
   case responsiumStandard
   case collectaStandard

@@ -347,7 +347,7 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
 
         Assert.Equal(63, steps.Count);
         Assert.Equal(
-            ["Sign of the Cross", "Our Father", "Hail Mary", "The Apostles' Creed"],
+            ["Sign of the Cross", "Our Father", "Hail Mary", "Apostles' Creed"],
             steps.Take(4).Select(s => s.Title));
         Assert.Equal(Enumerable.Range(0, 5), steps.Where(s => s.DecadeIndex.HasValue).Select(s => s.DecadeIndex!.Value).Distinct().OrderBy(i => i));
         Assert.Equal("Eternal Father, I Offer You...", steps[4].Title);

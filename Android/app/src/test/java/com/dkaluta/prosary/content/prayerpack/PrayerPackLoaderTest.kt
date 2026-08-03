@@ -306,9 +306,13 @@ class PrayerPackLoaderTest {
         val definition = PrayerPackStore.definition("trisagion")
         assertEquals(CustomDevotionDefinition.DevotionType.Steps, definition?.type)
         val steps = definition?.steps.orEmpty()
+        // Headings are translatable keys, not literals, so they read in the prayer's language.
         assertEquals(
-            listOf("Holy God", "Holy God", "Holy God", "Glory Be", "Holy God", "Holy God"),
-            steps.map { it.title },
+            listOf(
+                "trisagionAcclamationTitle", "trisagionAcclamationTitle", "trisagionAcclamationTitle",
+                "gloriaPatriTitle", "trisagionAcclamationTitle", "trisagionAcclamationTitle",
+            ),
+            steps.map { it.titleKey },
         )
         assertEquals(
             listOf(

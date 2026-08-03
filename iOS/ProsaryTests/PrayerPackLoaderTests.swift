@@ -302,8 +302,10 @@ final class PrayerPackLoaderTests: XCTestCase {
     let definition = PrayerPackStore.definition(for: "trisagion")
     XCTAssertEqual(definition?.type, .steps)
     let steps = definition?.steps ?? []
-    XCTAssertEqual(steps.map(\.title), [
-      "Holy God", "Holy God", "Holy God", "Glory Be", "Holy God", "Holy God",
+    // Headings are translatable keys, not literals, so they read in the prayer's language.
+    XCTAssertEqual(steps.map(\.titleKey), [
+      "trisagionAcclamationTitle", "trisagionAcclamationTitle", "trisagionAcclamationTitle",
+      "gloriaPatriTitle", "trisagionAcclamationTitle", "trisagionAcclamationTitle",
     ])
     XCTAssertEqual(steps.map(\.bodyKey), [
       "trisagionAcclamation", "trisagionAcclamation", "trisagionAcclamation",

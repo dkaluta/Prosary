@@ -101,7 +101,7 @@ struct PrayerStepFlowView: View {
           if isWide && geo.size.width >= 700 {
             wideContent(step: step, availableHeight: geo.size.height)
           } else {
-            narrowContent(step: step)
+            narrowContent(step: step, available: geo.size)
           }
         }
       } else {
@@ -195,7 +195,16 @@ struct PrayerStepFlowView: View {
   }
 
   @ViewBuilder
-  private func narrowContent(step: RosaryStep) -> some View {
+  private func narrowContent(step: RosaryStep, available: CGSize) -> some View {
+    // Sized from the flow's own column, measured by the GeometryReader above.
+    // containerRelativeFrame resolved against the whole window instead, so on a slim Mac
+    // window the square overflowed the sidebar-split column — and because the scrolling
+    // VStack then took that overflowed width, the prayer text laid out against it too and
+    // clipped mid-word at the column's edge. Capping against the column's *height* as well
+    // keeps the body visible without scrolling when the window is short.
+    let contentWidth = max(available.width - Self.narrowContentPadding * 2, 0)
+    let imageSide = max(min(contentWidth * 0.75, available.height * 0.4, 340), 120)
+
     VStack(spacing: 12) {
       if let accessory {
         accessory(false, true)
@@ -205,23 +214,18 @@ struct PrayerStepFlowView: View {
       ScrollView {
         VStack(spacing: 16) {
           mysteryImage(step: step)
-            // A square at 3/4 of the column, capped at 340pt: containerRelativeFrame
-            // measured the WINDOW, not the sidebar-split column, so on a slim Mac window
-            // the image overflowed the column and pushed the prayer text below the fold.
-            .aspectRatio(1, contentMode: .fit)
-            .frame(maxWidth: 340)
-            .containerRelativeFrame(.horizontal, alignment: .center) { length, _ in
-              min(length * 0.75, 340)
-            }
+            .frame(width: imageSide, height: imageSide)
             .clipShape(RoundedRectangle(cornerRadius: 16))
 
           textBlock(step: step)
         }
-        .padding()
+        .frame(width: contentWidth)
+        .padding(Self.narrowContentPadding)
       }
-      .environment(\.layoutDirection, isRightToLeft ? .rightToLeft : .leftToRight)
     }
   }
+
+  private static let narrowContentPadding: CGFloat = 16
 
   @ViewBuilder
   private func wideContent(step: RosaryStep, availableHeight: CGFloat) -> some View {
@@ -251,7 +255,6 @@ struct PrayerStepFlowView: View {
         textBlock(step: step)
           .padding()
       }
-      .environment(\.layoutDirection, isRightToLeft ? .rightToLeft : .leftToRight)
       .frame(maxWidth: .infinity)
     }
     .padding(.leading, isCompactHeight ? 16 : 40)
@@ -354,6 +357,12 @@ struct PrayerStepFlowView: View {
       }
     }
     .frame(maxWidth: .infinity)
+    // Scoped to the text, never to the scrolling container: mirroring a ScrollView that sits
+    // inside a NavigationSplitView detail column made SwiftUI flip its content against the
+    // WINDOW's bounds rather than the column's, sliding the image and prayer text left by the
+    // column's own x-origin — under the sidebar, clipped mid-word (measured: column 472pt at
+    // x=148, content drawn 148pt to the left of where it belonged).
+    .environment(\.layoutDirection, isRightToLeft ? .rightToLeft : .leftToRight)
   }
 
   /// Prayer bodies use `**bold**` for the traditional versicle/response typographic distinction

@@ -119,19 +119,22 @@ class PrayerEngine(
                     text(PrayerKey.CollectaPaschale)
         }
 
-        val step = RosaryStep(title = marianAntiphonHeader(antiphon), body = body)
+        val step = RosaryStep(title = text(marianAntiphonHeaderKey(antiphon)), body = body)
         step.isAntiphon = true
         step.imageOverrideKey = "madonna_and_child"
         return step
     }
 
-    private fun marianAntiphonHeader(antiphon: MarianAntiphonOption): String = when (antiphon) {
-        MarianAntiphonOption.SalveRegina -> "Salve Regina"
-        MarianAntiphonOption.AlmaRedemptorisMater -> "Alma Redemptoris Mater"
-        MarianAntiphonOption.AveReginaCaelorum -> "Ave Regina Caelorum"
-        MarianAntiphonOption.ReginaCaeli -> "Regina Caeli"
-        MarianAntiphonOption.SubTuumPraesidium -> "Sub Tuum Praesidium"
-        MarianAntiphonOption.None, MarianAntiphonOption.Seasonal -> "Marian Antiphon"
+    /** The heading names the antiphon in the language being prayed, not in Latin — the same
+     * choice the step's body already makes. */
+    private fun marianAntiphonHeaderKey(antiphon: MarianAntiphonOption): PrayerKey = when (antiphon) {
+        MarianAntiphonOption.SalveRegina -> PrayerKey.SalveReginaTitle
+        MarianAntiphonOption.AlmaRedemptorisMater -> PrayerKey.AlmaRedemptorisMaterTitle
+        MarianAntiphonOption.AveReginaCaelorum -> PrayerKey.AveReginaCaelorumTitle
+        MarianAntiphonOption.ReginaCaeli -> PrayerKey.ReginaCaeliTitle
+        MarianAntiphonOption.SubTuumPraesidium -> PrayerKey.SubTuumPraesidiumTitle
+        // Unreachable: both resolve to a concrete antiphon before this is called.
+        MarianAntiphonOption.None, MarianAntiphonOption.Seasonal -> PrayerKey.SalveReginaTitle
     }
 
     // MARK: Custom (bundle-driven) devotions
@@ -269,6 +272,8 @@ class PrayerEngine(
     ): List<RosaryStep> {
         val decades = definition.decades ?: return emptyList()
         fun resolve(key: String): String = PrayerPackStore.resolveBodyText(bundleId, languageCode, key)
+        fun fixedTitle(step: CustomDevotionDefinition.Decades.FixedStep): String =
+            step.titleKey?.let { resolve(it) } ?: step.title.orEmpty()
 
         val steps = mutableListOf<RosaryStep>()
         for (entry in definition.opening.orEmpty()) {
@@ -310,7 +315,7 @@ class PrayerEngine(
 
                 steps.add(
                     RosaryStep(
-                        title = decades.majorStep.title, subtitle = decadeSubtitle, body = majorBody,
+                        title = fixedTitle(decades.majorStep), subtitle = decadeSubtitle, body = majorBody,
                         decadeIndex = d, imageOverrideKey = decades.majorStep.imageKey ?: imageKey,
                     ),
                 )
@@ -318,7 +323,7 @@ class PrayerEngine(
                 for (h in 1..decades.minorCount) {
                     steps.add(
                         RosaryStep(
-                            title = "${decades.minorStep.title} ($h of ${decades.minorCount})",
+                            title = "${fixedTitle(decades.minorStep)} ($h of ${decades.minorCount})",
                             subtitle = decadeSubtitle, body = minorBody,
                             decadeIndex = d, hailMaryIndexInDecade = h, imageOverrideKey = imageKey,
                         ),
@@ -350,6 +355,8 @@ class PrayerEngine(
         rosary: RosaryOptions,
     ): List<RosaryStep> {
         fun resolve(key: String): String = PrayerPackStore.resolveBodyText(bundleId, languageCode, key)
+        fun fixedTitle(step: CustomDevotionDefinition.Decades.FixedStep): String =
+            step.titleKey?.let { resolve(it) } ?: step.title.orEmpty()
 
         val groups = resolveMysteryGroups(rosary)
         val fruitLabel = PrayerTranslations.get(languageCode, PrayerKey.FructusMysteriiLabel)
@@ -388,7 +395,7 @@ class PrayerEngine(
                 )
                 steps.add(
                     RosaryStep(
-                        title = decades.majorStep.title, subtitle = decadeSubtitle, body = majorBody,
+                        title = fixedTitle(decades.majorStep), subtitle = decadeSubtitle, body = majorBody,
                         decadeIndex = decadeIndex, imageOverrideKey = decades.majorStep.imageKey,
                     ),
                 )
@@ -396,7 +403,8 @@ class PrayerEngine(
                 if (presenterOn && presenter != null) {
                     steps.add(
                         RosaryStep(
-                            title = presenter.combinedTitle, subtitle = decadeSubtitle,
+                            title = presenter.combinedTitleKey?.let { resolve(it) } ?: presenter.combinedTitle.orEmpty(),
+                            subtitle = decadeSubtitle,
                             body = presenter.bodyKeys.joinToString("\n\n") { resolve(it) },
                             mystery = mystery, decadeIndex = decadeIndex, hailMaryIndexInDecade = decades.minorCount,
                         ),
@@ -405,7 +413,7 @@ class PrayerEngine(
                     for (h in 1..decades.minorCount) {
                         steps.add(
                             RosaryStep(
-                                title = "${decades.minorStep.title} ($h of ${decades.minorCount})",
+                                title = "${fixedTitle(decades.minorStep)} ($h of ${decades.minorCount})",
                                 subtitle = decadeSubtitle, body = minorBody,
                                 mystery = mystery, decadeIndex = decadeIndex, hailMaryIndexInDecade = h,
                             ),

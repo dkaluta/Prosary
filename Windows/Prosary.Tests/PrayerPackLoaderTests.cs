@@ -328,9 +328,13 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
         var definition = PrayerPackStore.Definition("trisagion");
         Assert.Equal(CustomDevotionDefinition.DevotionType.Steps, definition?.Type);
         var steps = definition?.Steps ?? [];
+        // Headings are translatable keys, not literals, so they read in the prayer's language.
         Assert.Equal(
-            ["Holy God", "Holy God", "Holy God", "Glory Be", "Holy God", "Holy God"],
-            steps.Select(s => s.Title));
+            [
+                "trisagionAcclamationTitle", "trisagionAcclamationTitle", "trisagionAcclamationTitle",
+                "gloriaPatriTitle", "trisagionAcclamationTitle", "trisagionAcclamationTitle",
+            ],
+            steps.Select(s => s.TitleKey));
         Assert.Equal(
             [
                 "trisagionAcclamation", "trisagionAcclamation", "trisagionAcclamation",

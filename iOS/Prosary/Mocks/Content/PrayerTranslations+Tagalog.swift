@@ -77,6 +77,16 @@ extension PrayerTranslations {
       "aleluya, ay nabuhay na mag-uli ayon sa sinabi niya, aleluya. Ipanalangin mo kami sa " +
       "Diyos, aleluya.",
 
+    .salveReginaTitle: "Aba, Reyna",
+
+    .almaRedemptorisMaterTitle: "Mapagmahal na Ina ng Manunubos",
+
+    .aveReginaCaelorumTitle: "Aba, Reyna ng Langit",
+
+    .reginaCaeliTitle: "Reyna ng Langit",
+
+    .subTuumPraesidiumTitle: "Sa Iyong Kalinga",
+
     .subTuumPraesidium:
       "Sa ilalim ng iyong pangangalaga kami lumapit, O banal na Ina ng Diyos; huwag mong itakwil " +
       "ang aming mga panalangin sa aming mga pangangailangan, kundi iligtas mo kami sa lahat ng " +

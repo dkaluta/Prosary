@@ -273,7 +273,10 @@ struct CustomDevotionDefinition: Decodable {
     }
 
     struct FixedStep: Decodable {
-      let title: String
+      /// A decade's Our Father/Hail Mary heading — carries a literal title or a translatable titleKey, exactly like every other step,
+      /// so it reads in the language being prayed.
+      let title: String?
+      let titleKey: String?
       let bodyKey: String
       /// Fixed illustration for this step (the Rosary's Our Father icon between
       /// mystery-specific images). Nil = the decade's own image.
@@ -281,7 +284,8 @@ struct CustomDevotionDefinition: Decodable {
     }
 
     struct Presenter: Decodable {
-      let combinedTitle: String
+      let combinedTitle: String?
+      let combinedTitleKey: String?
       /// Bodies joined with a blank line (Hail Mary + Glory Be).
       let bodyKeys: [String]
     }

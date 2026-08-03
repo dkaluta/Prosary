@@ -2,7 +2,7 @@
   "type": "rosary",
   "opening": [
     {
-      "title": "Sign of the Cross",
+      "titleKey": "signumCrucisTitle",
       "bodyKey": "signumCrucis",
       "imageKey": "crucifix"
     }
@@ -35,30 +35,30 @@
       }
     ],
     "majorStep": {
-      "title": "Our Father",
+      "titleKey": "paterNosterTitle",
       "bodyKey": "paterNoster"
     },
     "minorStep": {
-      "title": "Hail Mary",
+      "titleKey": "aveMariaTitle",
       "bodyKey": "aveMaria"
     },
     "minorCount": 7
   },
   "closing": [
     {
-      "title": "Hail Mary",
+      "titleKey": "aveMariaTitle",
       "subtitle": "For the tears of Our Lady",
       "bodyKey": "aveMaria",
       "imageKey": "madonna_and_child",
       "repeat": 3
     },
     {
-      "title": "Our Lady of Sorrows",
+      "titleKey": "sevenSorrowsClosingTitle",
       "bodyKey": "sevenSorrowsClosingBody",
       "imageKey": "madonna_and_child"
     },
     {
-      "title": "Sign of the Cross",
+      "titleKey": "signumCrucisTitle",
       "bodyKey": "signumCrucis",
       "imageKey": "crucifix"
     }

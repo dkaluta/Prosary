@@ -2,45 +2,45 @@
   "type": "rosary",
   "opening": [
     {
-      "title": "Sign of the Cross",
+      "titleKey": "signumCrucisTitle",
       "bodyKey": "signumCrucis",
       "imageKey": "crucifix"
     },
     {
-      "title": "Apostles' Creed",
+      "titleKey": "symbolumApostolorumTitle",
       "bodyKey": "symbolumApostolorum",
       "imageKey": "crucifix",
       "if": "apostlesCreed"
     },
     {
-      "title": "Our Father",
+      "titleKey": "paterNosterTitle",
       "bodyKey": "paterNoster",
       "imageKey": "our_father",
       "if": "openingPrayers"
     },
     {
-      "title": "Hail Mary",
+      "titleKey": "aveMariaTitle",
       "subtitleKey": "aveMariaProFide",
       "bodyKey": "aveMaria",
       "imageKey": "virtue_faith",
       "if": "openingPrayers"
     },
     {
-      "title": "Hail Mary",
+      "titleKey": "aveMariaTitle",
       "subtitleKey": "aveMariaProSpe",
       "bodyKey": "aveMaria",
       "imageKey": "virtue_hope",
       "if": "openingPrayers"
     },
     {
-      "title": "Hail Mary",
+      "titleKey": "aveMariaTitle",
       "subtitleKey": "aveMariaProCaritate",
       "bodyKey": "aveMaria",
       "imageKey": "virtue_charity",
       "if": "openingPrayers"
     },
     {
-      "title": "Glory Be",
+      "titleKey": "gloriaPatriTitle",
       "bodyKey": "gloriaPatri",
       "imageKey": "glory_be",
       "if": "openingPrayers"
@@ -51,37 +51,37 @@
     "announceMystery": true,
     "source": "mysteryGroups",
     "majorStep": {
-      "title": "Our Father",
+      "titleKey": "paterNosterTitle",
       "bodyKey": "paterNoster",
       "imageKey": "our_father"
     },
     "minorStep": {
-      "title": "Hail Mary",
+      "titleKey": "aveMariaTitle",
       "bodyKey": "aveMaria"
     },
     "minorCount": 10,
     "postMinor": [
       {
-        "title": "Glory Be",
+        "titleKey": "gloriaPatriTitle",
         "bodyKey": "gloriaPatri",
         "imageKey": "glory_be",
         "if": "!presenterMode"
       },
       {
-        "title": "Fatima Prayer",
+        "titleKey": "oratioFatimaeTitle",
         "bodyKey": "oratioFatimae",
         "imageKey": "jesus_portrait",
         "if": "fatimaPrayer"
       },
       {
-        "title": "For the Faithful Departed",
+        "titleKey": "requiemAeternamTitle",
         "bodyKey": "requiemAeternam",
         "imageKey": "eternal_rest",
         "if": "eternalRest=afterEachDecade"
       }
     ],
     "presenter": {
-      "combinedTitle": "Hail Mary & Glory Be",
+      "combinedTitleKey": "presenterCombinedTitle",
       "bodyKeys": [
         "aveMaria",
         "gloriaPatri"
@@ -94,19 +94,19 @@
       "optionKey": "antiphon"
     },
     {
-      "title": "St. Michael the Archangel",
+      "titleKey": "sanctusMichaelTitle",
       "bodyKey": "sanctusMichael",
       "imageKey": "st_michael",
       "if": "stMichael"
     },
     {
-      "title": "For the Faithful Departed",
+      "titleKey": "requiemAeternamTitle",
       "bodyKey": "requiemAeternam",
       "imageKey": "eternal_rest",
       "if": "eternalRest=atEndOnly"
     },
     {
-      "title": "Sign of the Cross",
+      "titleKey": "signumCrucisTitle",
       "bodyKey": "signumCrucis",
       "imageKey": "crucifix",
       "if": "finalSignOfCross"
