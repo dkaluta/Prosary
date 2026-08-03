@@ -36,7 +36,14 @@ struct BeadInfo: Identifiable {
     // same light-mode maroon but uses a more saturated dark-mode value so the current bead
     // still visibly pops against its gray neighbors.
     case .current: return Color("BeadCurrent")
-    case .completed: return Color(hex: "#6E6E6E")
+    case .completed:
+      // On visionOS the window is glass, not near-black — the mid-gray "completed" reads
+      // as dirty smoke there; white is the bead that has been prayed (user request, v0.7).
+      #if os(visionOS)
+      return .white
+      #else
+      return Color(hex: "#6E6E6E")
+      #endif
     case .upcoming: return Color(hex: "#ACACAC")
     }
   }

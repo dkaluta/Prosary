@@ -11,19 +11,27 @@ import SwiftUI
 extension View {
   @ViewBuilder
   func prosaryProminentButtonStyle() -> some View {
-    if #available(iOS 26.0, macOS 26.0, visionOS 26.0, *) {
+    #if os(visionOS)
+    self.buttonStyle(.borderedProminent)
+    #else
+    if #available(iOS 26.0, macOS 26.0, *) {
       self.buttonStyle(.glassProminent)
     } else {
       self.buttonStyle(.borderedProminent)
     }
+    #endif
   }
 
   @ViewBuilder
   func prosarySecondaryButtonStyle() -> some View {
-    if #available(iOS 26.0, macOS 26.0, visionOS 26.0, *) {
+    #if os(visionOS)
+    self.buttonStyle(.bordered)
+    #else
+    if #available(iOS 26.0, macOS 26.0, *) {
       self.buttonStyle(.glass)
     } else {
       self.buttonStyle(.bordered)
     }
+    #endif
   }
 }

@@ -102,7 +102,7 @@ private extension View {
   /// tab bar / tab control everywhere else — the deployment targets are iOS 17 / macOS 14.
   @ViewBuilder
   func adaptiveTabViewStyle() -> some View {
-    if #available(iOS 18.0, macOS 15.0, *) {
+    if #available(iOS 18.0, macOS 15.0, visionOS 2.0, *) {
       self.tabViewStyle(.sidebarAdaptable)
     } else {
       self

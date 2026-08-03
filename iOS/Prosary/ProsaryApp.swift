@@ -54,6 +54,11 @@ struct ProsaryApp: App {
     #else
     WindowGroup {
       ContentView()
+        #if os(visionOS)
+        // visionOS windows resize freely with no size-class change — a floor keeps the
+        // prayer text from ever being squeezed into clipping (user request, v0.7).
+        .frame(minWidth: 560, minHeight: 560)
+        #endif
         .task { await presetsMenuState.reload() }
     }
     .modelContainer(AppServices.modelContainer)

@@ -88,14 +88,16 @@ struct PrayerStepFlowView: View {
         .padding(.top, isCompactHeight ? 6 : 12)
 
       if let step {
-        if isWide {
-          // Measures the actual room available for this row — unlike a size class, this
-          // responds to a Mac window being resized short, not just to device/orientation.
-          GeometryReader { geo in
+        // Measured, not size-classed: a visionOS window resizes freely while its size class
+        // stays .regular, so the wide three-column layout used to squeeze until text clipped
+        // (and a narrow Mac window had the same failure). Below the same 700pt breakpoint the
+        // Windows port uses, the single-column phone layout takes over regardless of class.
+        GeometryReader { geo in
+          if isWide && geo.size.width >= 700 {
             wideContent(step: step, availableHeight: geo.size.height)
+          } else {
+            narrowContent(step: step)
           }
-        } else {
-          narrowContent(step: step)
         }
       } else {
         Spacer()
