@@ -171,7 +171,7 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
         var steps = _engine.BuildSteps(prayer);
         var antiphonSteps = steps.Where(s => s.IsAntiphon).ToList();
         Assert.Single(antiphonSteps);
-        Assert.Equal("Hail, Holy Queen (Salve Regina)", antiphonSteps[0].Title);
+        Assert.Equal("Salve Regina", antiphonSteps[0].Title);
     }
 
     [Fact]
