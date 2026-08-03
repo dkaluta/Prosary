@@ -25,6 +25,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Timer
+import androidx.compose.material.icons.filled.Translate
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -461,10 +462,28 @@ private fun TextBlock(
             )
         }
 
-        Text(
-            step.body.parseBoldMarkdown(),
-            style = PrayerTypography.style(languageCode = languageCode, isScripture = step.isScripture),
-        )
+        if (step.transliteratedBody != null) {
+            // The v0.7 reading aid: swap the body for its transliteration. Sticky across
+            // steps — someone praying along in an unfamiliar script wants it on all session.
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+                IconButton(onClick = { TransliterationState.shows = !TransliterationState.shows }) {
+                    Icon(
+                        Icons.Filled.Translate,
+                        contentDescription = "Show transliteration",
+                        tint = if (TransliterationState.shows) MaterialTheme.colorScheme.primary else LocalContentColor.current,
+                    )
+                }
+            }
+            Text(
+                (if (TransliterationState.shows) step.transliteratedBody!! else step.body).parseBoldMarkdown(),
+                style = PrayerTypography.style(languageCode = languageCode, isScripture = step.isScripture),
+            )
+        } else {
+            Text(
+                step.body.parseBoldMarkdown(),
+                style = PrayerTypography.style(languageCode = languageCode, isScripture = step.isScripture),
+            )
+        }
 
         if (centralActionLabel != null && onCentralAction != null) {
             Button(
@@ -481,4 +500,11 @@ private fun TextBlock(
             }
         }
     }
+}
+
+
+/** Session-sticky transliteration toggle (v0.7): object state so it survives step
+ * recompositions without threading a parameter through every flow caller. */
+private object TransliterationState {
+    var shows by androidx.compose.runtime.mutableStateOf(false)
 }

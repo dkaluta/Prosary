@@ -41,6 +41,8 @@ private data class PackManifest(
 private data class PackContent(
     val prayers: Map<String, String> = emptyMap(),
     val mysteries: Map<String, MysteryText> = emptyMap(),
+    /** Optional reading aid (v0.7): prayer key → the same text in another script. */
+    val transliterations: Map<String, String> = emptyMap(),
 )
 
 /** One entry in a generic devotion's `devotion.json` — a step of the flat "steps" type, an
@@ -392,6 +394,9 @@ object PrayerPackStore {
      * "trisagionAcclamation"), which is how a generic devotion's `devotion.json` resolves
      * bundle-local body text. See [resolveBodyText]. */
     private val rawContentByBundle = mutableMapOf<String, MutableMap<String, Map<String, String>>>()
+
+    /** bundleId → language → prayer key → transliterated text (v0.7 reading aid). */
+    private val transliterationsByBundle = mutableMapOf<String, MutableMap<String, Map<String, String>>>()
     private val definitionByBundle = mutableMapOf<String, CustomDevotionDefinition>()
     private val optionsByBundle = mutableMapOf<String, List<CustomDevotionOption>>()
     private val audioTracksByBundle = mutableMapOf<String, List<DevotionAudioTrack>>()
@@ -464,6 +469,12 @@ object PrayerPackStore {
      * Latin, not raw keys); (2) else, if the key happens to match an existing [PrayerKey] case,
      * the ordinary hardcoded/override lookup — this is how shared "main" keys (e.g. "gloriaPatri")
      * resolve; (3) else the raw key string, matching `PrayerTranslations.get`'s own last resort. */
+    /** The v0.7 reading aid: this key's text transliterated into another script, if the
+     * bundle's language file carries one. No fallback chain — a transliteration belongs to
+     * exactly the language it transliterates. */
+    fun transliteration(bundleId: String, languageCode: String?, key: String): String? =
+        languageCode?.let { transliterationsByBundle[bundleId]?.get(it)?.get(key) }
+
     fun resolveBodyText(bundleId: String, languageCode: String?, key: String): String {
         if (languageCode != null) {
             rawContentByBundle[bundleId]?.get(languageCode)?.get(key)?.let { return it }
@@ -568,6 +579,7 @@ object PrayerPackStore {
         infoByBundle.remove(id)
         optionsByBundle.remove(id)
         audioTracksByBundle.remove(id)
+        transliterationsByBundle.remove(id)
         packSourceByBundle.remove(id)
     }
 
@@ -598,6 +610,9 @@ object PrayerPackStore {
 
             val bundleRawContent = rawContentByBundle.getOrPut(manifest.id) { mutableMapOf() }
             bundleRawContent[language] = content.prayers
+            if (content.transliterations.isNotEmpty()) {
+                transliterationsByBundle.getOrPut(manifest.id) { mutableMapOf() }[language] = content.transliterations
+            }
 
             val prayers = prayerOverrides.getOrPut(language) { mutableMapOf() }
             for ((key, text) in content.prayers) {
