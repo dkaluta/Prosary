@@ -66,6 +66,7 @@ import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.reminders.ReminderScheduler
 import com.dkaluta.prosary.services.LocalAppServices
+import com.dkaluta.prosary.ui.shared.installErrorMessage
 import com.dkaluta.prosary.ui.shared.colorForHex
 import com.dkaluta.prosary.ui.shared.iconForSystemName
 import kotlinx.coroutines.launch
@@ -131,12 +132,12 @@ fun FavoritesListScreen(
         if (uri == null) return@rememberLauncherForActivityResult
         runCatching {
             val bytes = context.contentResolver.openInputStream(uri)?.use { it.readBytes() }
-                ?: throw PrayerPackStore.InstallException("This file is not a readable .prosaryprayer bundle.")
+                ?: throw PrayerPackStore.InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
             PrayerPackStore.installPack(bytes)
         }.onSuccess {
             installedGeneration++
         }.onFailure { error ->
-            importError = error.message ?: "Could not import the bundle."
+            importError = installErrorMessage(context, error)
         }
     }
 

@@ -16,6 +16,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.ui.theme.BeadCompleted
 import com.dkaluta.prosary.ui.theme.BeadUpcoming
 import com.dkaluta.prosary.ui.theme.extraColors
@@ -52,7 +54,7 @@ fun BeadDotView(bead: BeadInfo, modifier: Modifier = Modifier) {
                 modifier = Modifier.size(circleSize).background(color, CircleShape),
                 contentAlignment = Alignment.Center,
             ) {
-                Text("M", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 10.sp)
+                Text(stringResource(R.string.bead_antiphon_letter), color = Color.White, fontWeight = FontWeight.Bold, fontSize = 10.sp)
             }
         }
     }

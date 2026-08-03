@@ -264,7 +264,7 @@ fun PrayerStepFlowScreen(
                         enabled = canGoBack,
                         contentPadding = if (isCompactHeight) compactButtonPadding else ButtonDefaults.ContentPadding,
                     ) {
-                        Text(stringResource(R.string.common_back))
+                        Text(stringResource(R.string.flow_back))
                     }
                     Spacer(modifier = Modifier.weight(1f))
                     if (centralActionLabel == null) {

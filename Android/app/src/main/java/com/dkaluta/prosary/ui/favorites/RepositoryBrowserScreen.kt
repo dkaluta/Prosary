@@ -50,6 +50,7 @@ import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import androidx.compose.ui.platform.LocalContext
 import com.dkaluta.prosary.content.repository.RepositoryBundle
 import com.dkaluta.prosary.content.repository.RepositoryClient
+import com.dkaluta.prosary.ui.shared.installErrorMessage
 import com.dkaluta.prosary.content.repository.RepositoryInstallStamps
 import com.dkaluta.prosary.models.LanguageCatalog
 import kotlinx.coroutines.CancellationException
@@ -87,7 +88,7 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
             // over a perfectly healthy catalog.
             throw cancelled
         } catch (error: Exception) {
-            loadError = error.message ?: context.getString(R.string.browse_unreachable)
+            loadError = installErrorMessage(context, error, fallbackRes = R.string.browse_unreachable)
         } finally {
             isRefreshing = false
             isLoading = false
@@ -195,7 +196,7 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
                                 RepositoryInstallStamps.record(context, bundle.id, bundle.updatedAt)
                                 installedGeneration++
                             }.onFailure { error ->
-                                installError = error.message ?: context.getString(R.string.browse_install_error_generic)
+                                installError = installErrorMessage(context, error)
                             }
                             busyIds = busyIds - bundle.id
                         }

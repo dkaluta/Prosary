@@ -1,5 +1,7 @@
 package com.dkaluta.prosary.content.prayerpack
 
+import androidx.annotation.StringRes
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.LanguageCatalog
 
 import com.dkaluta.prosary.content.MysteryText
@@ -528,7 +530,13 @@ object PrayerPackStore {
     /** Bundle ids the user has imported (subset of [customDevotionIds]), in load order. */
     fun installedBundleIds(): List<String> = installedIdsList.toList()
 
-    class InstallException(message: String) : Exception(message)
+    /** Carries a string resource so the UI can show the failure in the app language; the
+     * English [message] stays for logs. */
+    class InstallException(
+        message: String,
+        @param:StringRes val messageRes: Int,
+        val formatArg: String? = null,
+    ) : Exception(message)
 
     /** Imports a user-provided bundle: validates it (readable zip, parseable manifest +
      * devotion.json, content for every declared language, not a builtin-kind pack, no id
@@ -545,26 +553,26 @@ object PrayerPackStore {
 
     fun installPack(bytes: ByteArray): String {
         val entries = runCatching { readZipEntries(bytes.inputStream()) }.getOrNull()
-            ?: throw InstallException("This file is not a readable .prosaryprayer bundle.")
+            ?: throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
         val manifest = runCatching {
             json.decodeFromString<PackManifest>(String(entries["manifest.json"]!!, Charsets.UTF_8))
-        }.getOrNull() ?: throw InstallException("This file is not a readable .prosaryprayer bundle.")
+        }.getOrNull() ?: throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
         val hasDevotion = runCatching {
             json.decodeFromString<CustomDevotionDefinition>(String(entries["devotion.json"]!!, Charsets.UTF_8))
         }.isSuccess
         if (!hasDevotion || manifest.builtinKind != null) {
-            throw InstallException("This bundle does not contain a devotion.")
+            throw InstallException("This bundle does not contain a devotion.", R.string.pack_error_not_devotion)
         }
         for (language in manifest.languages) {
             runCatching {
                 json.decodeFromString<PackContent>(String(entries["content/$language.json"]!!, Charsets.UTF_8))
-            }.getOrNull() ?: throw InstallException("This file is not a readable .prosaryprayer bundle.")
+            }.getOrNull() ?: throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
         }
         if (infoByBundle.containsKey(manifest.id)) {
-            throw InstallException("A devotion named \"${manifest.id}\" is already installed.")
+            throw InstallException("A devotion named \"${manifest.id}\" is already installed.", R.string.pack_error_duplicate, manifest.id)
         }
         val dir = installedPacksDirectory
-            ?: throw InstallException("This file is not a readable .prosaryprayer bundle.")
+            ?: throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
         dir.mkdirs()
         val destination = File(dir, "${manifest.id}.prosaryprayer")
         destination.writeBytes(bytes)
