@@ -289,7 +289,7 @@ public sealed class PrayerEngine
         if (definition.Decades is not { } decades) return [];
 
         string Resolve(string key) => PrayerPackStore.ResolveBodyText(bundleId, languageCode, key);
-        string FixedTitle(CustomDevotionDefinition.Decades.FixedStep step) =>
+        string FixedTitle(CustomDevotionDefinition.DecadesDefinition.FixedStep step) =>
             step.TitleKey is { } key ? Resolve(key) : step.Title ?? string.Empty;
 
         var steps = new List<RosaryStep>();
@@ -365,7 +365,7 @@ public sealed class PrayerEngine
         IReadOnlyDictionary<string, string>? optionValues, RosaryOptions rosary, MysteryGroup todaysGroup)
     {
         string Resolve(string key) => PrayerPackStore.ResolveBodyText(bundleId, languageCode, key);
-        string FixedTitle(CustomDevotionDefinition.Decades.FixedStep step) =>
+        string FixedTitle(CustomDevotionDefinition.DecadesDefinition.FixedStep step) =>
             step.TitleKey is { } key ? Resolve(key) : step.Title ?? string.Empty;
 
         var groups = ResolveMysteryGroups(rosary, todaysGroup);
