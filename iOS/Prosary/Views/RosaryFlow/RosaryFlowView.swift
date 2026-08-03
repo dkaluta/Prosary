@@ -33,7 +33,7 @@ struct RosaryFlowView: View {
 
   var body: some View {
     PrayerStepFlowView(
-      navigationTitle: "Praying the Rosary",
+      navigationTitle: String(localized: "rosaryFlow.navigationTitle", defaultValue: "Praying the Rosary"),
       step: currentStep,
       currentIndex: currentIndex,
       totalSteps: steps.count,

@@ -1,12 +1,8 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
-    "%@" : {
-
-    },
+    "" : {},
+    "%@" : {},
     "%@ • %@" : {
       "localizations" : {
         "en" : {
@@ -3366,23 +3362,6 @@
         }
       }
     },
-    "repository.installed" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Installed"
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "מותקן"
-          }
-        }
-      }
-    },
     "repository.installFailed" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -3396,6 +3375,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "לא ניתן להתקין את המסלול"
+          }
+        }
+      }
+    },
+    "repository.installed" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Installed"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "מותקן"
           }
         }
       }
@@ -3485,6 +3481,23 @@
         }
       }
     },
+    "rosaryFlow.navigationTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Praying the Rosary"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "תפילת המחרוזת"
+          }
+        }
+      }
+    },
     "rosaryOptions.summary.always" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3565,7 +3578,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "תפילת רוזריון חופשית"
+            "value" : "תפילת מחרוזת חופשית"
           }
         }
       }
@@ -3701,7 +3714,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "הרוזריון הקדוש"
+            "value" : "המחרוזת הקדושה"
           }
         }
       }
