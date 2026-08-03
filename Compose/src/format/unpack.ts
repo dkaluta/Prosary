@@ -89,16 +89,29 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
   }
 
   const contentByLanguage = new Map<LanguageCode, Record<string, string>>();
+  const transliterationsByLanguage = new Map<LanguageCode, Record<string, string>>();
   for (const language of project.languages) {
     if (!zip.has(`content/${language}.json`)) continue;
-    const content = (await zip.json(`content/${language}.json`)) as { prayers?: Record<string, string> };
+    const content = (await zip.json(`content/${language}.json`)) as {
+      prayers?: Record<string, string>;
+      transliterations?: Record<string, string>;
+    };
     contentByLanguage.set(language, content.prayers ?? {});
+    transliterationsByLanguage.set(language, content.transliterations ?? {});
   }
   const perLanguage = (key: string | undefined): PerLanguage => {
     const result: PerLanguage = {};
     if (!key) return result;
     for (const [language, prayers] of contentByLanguage) {
       if (prayers[key] !== undefined) result[language] = prayers[key];
+    }
+    return result;
+  };
+  const perLanguageTransliteration = (key: string | undefined): PerLanguage => {
+    const result: PerLanguage = {};
+    if (!key) return result;
+    for (const [language, transliterations] of transliterationsByLanguage) {
+      if (transliterations[key] !== undefined) result[language] = transliterations[key];
     }
     return result;
   };
@@ -134,6 +147,7 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
       title: raw.title ?? common?.label ?? "",
       titleByLanguage: perLanguage(raw.titleKey),
       bodyByLanguage: common ? {} : perLanguage(raw.bodyKey),
+      transliterationByLanguage: common ? {} : perLanguageTransliteration(raw.bodyKey),
       image,
       isScripture: raw.isScripture === true,
       repeat: raw.repeat,

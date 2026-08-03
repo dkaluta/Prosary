@@ -106,12 +106,22 @@ export function buildBundleFiles(project: Project): ZipFile[] {
 
   for (const language of project.languages) {
     const prayers: Record<string, string> = {};
+    const transliterations: Record<string, string> = {};
     project.steps.forEach((step, i) => {
       if (step.kind !== "custom") return;
       prayers[`${stepKeyBase(i)}Title`] = step.titleByLanguage[language]?.trim() ?? "";
       prayers[`${stepKeyBase(i)}Body`] = step.bodyByLanguage[language]?.trim() ?? "";
+      const transliteration = step.transliterationByLanguage?.[language]?.trim();
+      if (transliteration) transliterations[`${stepKeyBase(i)}Body`] = transliteration;
     });
-    files.push({ name: `content/${language}.json`, data: jsonBytes({ prayers, mysteries: {} }) });
+    files.push({
+      name: `content/${language}.json`,
+      data: jsonBytes({
+        prayers,
+        mysteries: {},
+        ...(Object.keys(transliterations).length > 0 ? { transliterations } : {}),
+      }),
+    });
   }
 
   for (const image of project.images) {
