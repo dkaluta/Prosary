@@ -507,6 +507,16 @@ def main() -> int:
             if key in mysteries or key in SHARED_MYSTERY_IMAGE_KEYS or key in allowed_missing:
                 continue
             err(f"content/{lang}.json: no mystery text for {key!r}")
+        # Optional transliterations (v0.7): a parallel reading aid per prayer key — every
+        # entry must transliterate a key this language actually ships.
+        transliterations = contents[lang].get("transliterations", {})
+        if not isinstance(transliterations, dict):
+            err(f"content/{lang}.json: 'transliterations' must be a map of prayer key to text")
+        else:
+            for key in sorted(transliterations):
+                if key not in prayers:
+                    err(f"content/{lang}.json: transliteration for unknown key {key!r} "
+                        f"(must transliterate one of this language's own prayers)")
 
     # Step imageKeys only need to resolve at runtime (pack data or the platform asset
     # catalogs), so .png counts too — cross_placeholder, every platform's built-in fallback,

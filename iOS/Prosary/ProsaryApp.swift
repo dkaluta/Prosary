@@ -29,7 +29,10 @@ struct ProsaryApp: App {
         // three-column layout is gone — a slim Mac window beside your work is a feature,
         // not a breakage. The remaining floor only guards against absurdity; the ceiling
         // keeps the window from looking sparse on very large displays.
-        .frame(minWidth: 480, idealWidth: 1000, maxWidth: 1400, minHeight: 560, idealHeight: 750)
+        // 620, not 480: the Mac keeps its sidebar at every width, so the floor must
+        // leave a phone-width content column beside it — 480 total squeezed the column
+        // into overflow (janky slim mode, user screenshot 2026-08-03).
+        .frame(minWidth: 620, idealWidth: 1000, maxWidth: 1400, minHeight: 560, idealHeight: 750)
         .task { await presetsMenuState.reload() }
     }
     .modelContainer(AppServices.modelContainer)

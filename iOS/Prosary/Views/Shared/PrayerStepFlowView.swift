@@ -200,10 +200,14 @@ struct PrayerStepFlowView: View {
       ScrollView {
         VStack(spacing: 16) {
           mysteryImage(step: step)
-            // Ties height to width so the image is always a square, however wide the
-            // phone is; sized at 3/4 of that width so it doesn't dominate the screen.
+            // A square at 3/4 of the column, capped at 340pt: containerRelativeFrame
+            // measured the WINDOW, not the sidebar-split column, so on a slim Mac window
+            // the image overflowed the column and pushed the prayer text below the fold.
             .aspectRatio(1, contentMode: .fit)
-            .containerRelativeFrame(.horizontal) { length, _ in length * 0.75 }
+            .frame(maxWidth: 340)
+            .containerRelativeFrame(.horizontal, alignment: .center) { length, _ in
+              min(length * 0.75, 340)
+            }
             .clipShape(RoundedRectangle(cornerRadius: 16))
 
           textBlock(step: step)
