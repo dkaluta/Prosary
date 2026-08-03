@@ -129,19 +129,22 @@ final class RosaryEngineTests: XCTestCase {
 
   func testFirstStepIsSignOfCross() {
     let engine = makeEngine()
-    let steps = engine.buildSteps(for: prayer())
+    var p = prayer(); p.languageCode = "en"
+    let steps = engine.buildSteps(for: p)
     XCTAssertEqual(steps.first?.title, "Sign of the Cross")
   }
 
   func testLastStepIsSignOfCrossWhenEnabled() {
     let engine = makeEngine()
-    let steps = engine.buildSteps(for: prayer(includeFinalCross: true))
+    var p = prayer(includeFinalCross: true); p.languageCode = "en"
+    let steps = engine.buildSteps(for: p)
     XCTAssertEqual(steps.last?.title, "Sign of the Cross")
   }
 
   func testStepsContainHailMarys() {
     let engine = makeEngine()
-    let steps = engine.buildSteps(for: prayer())
+    var p = prayer(); p.languageCode = "en"
+    let steps = engine.buildSteps(for: p)
     let hailMarys = steps.filter { $0.title.hasPrefix("Hail Mary") }
     // 3 opening + 50 decade = 53
     XCTAssertEqual(hailMarys.count, 53)
@@ -176,7 +179,7 @@ final class RosaryEngineTests: XCTestCase {
     var p = prayer()
     p.languageCode = "la"
     let steps = engine.buildSteps(for: p)
-    let creed = steps.first { $0.title == "Apostles' Creed" }
+    let creed = steps.first { $0.title == "Symbolum Apostolorum" }
     XCTAssertTrue(creed?.body.contains("Credo in Deum") == true)
   }
 
@@ -246,7 +249,8 @@ final class RosaryEngineTests: XCTestCase {
 
   func testPresenterModeCollapsesHailMaryAndGloryBeIntoOneStepPerDecade() {
     let engine = makeEngine()
-    let steps = engine.buildSteps(for: prayer(presenterMode: true))
+    var p = prayer(presenterMode: true); p.languageCode = "en"
+    let steps = engine.buildSteps(for: p)
 
     for d in 0..<5 {
       let hailMarySteps = steps.filter { $0.decadeIndex == d && $0.hailMaryIndexInDecade != nil }
@@ -268,13 +272,15 @@ final class RosaryEngineTests: XCTestCase {
 
   func testPresenterModeStillIncludesFatimaPrayerPerDecade() {
     let engine = makeEngine()
-    let steps = engine.buildSteps(for: prayer(includeFatima: true, presenterMode: true))
+    var p = prayer(includeFatima: true, presenterMode: true); p.languageCode = "en"
+    let steps = engine.buildSteps(for: p)
     XCTAssertEqual(steps.filter { $0.title == "Fatima Prayer" }.count, 5)
   }
 
   func testPresenterModeKeepsAnnouncementAndOurFatherAsSeparateSteps() {
     let engine = makeEngine()
-    let steps = engine.buildSteps(for: prayer(presenterMode: true))
+    var p = prayer(presenterMode: true); p.languageCode = "en"
+    let steps = engine.buildSteps(for: p)
     let decadeZeroSteps = steps.filter { $0.decadeIndex == 0 }
     // Announcement, Our Father, Hail Mary & Glory Be, Fatima Prayer = 4 (default config includes Fatima).
     XCTAssertEqual(decadeZeroSteps.count, 4)

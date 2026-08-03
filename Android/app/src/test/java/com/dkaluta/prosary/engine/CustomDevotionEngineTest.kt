@@ -358,7 +358,7 @@ class CustomDevotionEngineTest {
         val steps = steps("divineMercyChaplet")
         assertEquals(63, steps.size)
         assertEquals(
-            listOf("Sign of the Cross", "Our Father", "Hail Mary", "The Apostles' Creed"),
+            listOf("Sign of the Cross", "Our Father", "Hail Mary", "Apostles' Creed"),
             steps.take(4).map { it.title },
         )
         assertEquals((0..4).toSet(), steps.mapNotNull { it.decadeIndex }.toSet())

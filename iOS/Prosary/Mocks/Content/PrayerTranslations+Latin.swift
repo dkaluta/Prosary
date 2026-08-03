@@ -67,6 +67,16 @@ extension PrayerTranslations {
       "Regina caeli, laetare, alleluia. Quia quem meruisti portare, alleluia. Resurrexit, sicut " +
       "dixit, alleluia. Ora pro nobis Deum, alleluia.",
 
+    .salveReginaTitle: "Salve Regina",
+
+    .almaRedemptorisMaterTitle: "Alma Redemptoris Mater",
+
+    .aveReginaCaelorumTitle: "Ave Regina Caelorum",
+
+    .reginaCaeliTitle: "Regina Caeli",
+
+    .subTuumPraesidiumTitle: "Sub Tuum Praesidium",
+
     .subTuumPraesidium:
       "Sub tuum praesidium confugimus, sancta Dei Genetrix; nostras deprecationes ne despicias in " +
       "necessitatibus nostris, sed a periculis cunctis libera nos semper, Virgo gloriosa et benedicta.",

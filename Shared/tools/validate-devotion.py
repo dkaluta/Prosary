@@ -428,10 +428,16 @@ def main() -> int:
             err("decades: minorCount must be an integer >= 1")
         for role in ("majorStep", "minorStep"):
             step = decades.get(role) or {}
-            if not step.get("title") or not step.get("bodyKey"):
-                err(f"decades.{role}: needs title and bodyKey")
+            # A literal title or a titleKey, same as every other entry — the decade steps
+            # carry titleKeys so "Our Father"/"Hail Mary" read in the prayer's own language.
+            if not (step.get("title") or step.get("titleKey")) or not step.get("bodyKey"):
+                err(f"decades.{role}: needs a title (or titleKey) and bodyKey")
             else:
                 body_keys.add(step["bodyKey"])
+            if step.get("title") and step.get("titleKey"):
+                err(f"decades.{role}: title and titleKey are mutually exclusive")
+            if step.get("titleKey"):
+                title_keys.add(step["titleKey"])
             if step.get("imageKey"):
                 image_keys.add(step["imageKey"])
         for i, entry in enumerate(entries or []):
@@ -448,8 +454,10 @@ def main() -> int:
             collect_entry_refs(entry, body_keys, title_keys, image_keys)
         presenter = decades.get("presenter")
         if presenter is not None:
-            if not presenter.get("combinedTitle"):
-                err("decades.presenter: needs combinedTitle")
+            if not (presenter.get("combinedTitle") or presenter.get("combinedTitleKey")):
+                err("decades.presenter: needs a combinedTitle (or combinedTitleKey)")
+            if presenter.get("combinedTitleKey"):
+                title_keys.add(presenter["combinedTitleKey"])
             if not presenter.get("bodyKeys"):
                 err("decades.presenter: needs a non-empty bodyKeys list")
             for key in presenter.get("bodyKeys") or []:

@@ -64,6 +64,16 @@ public static partial class PrayerTranslations
             "Regina caeli, laetare, alleluia. Quia quem meruisti portare, alleluia. Resurrexit, sicut " +
             "dixit, alleluia. Ora pro nobis Deum, alleluia.",
 
+        [PrayerKey.SalveReginaTitle] = "Salve Regina",
+
+        [PrayerKey.AlmaRedemptorisMaterTitle] = "Alma Redemptoris Mater",
+
+        [PrayerKey.AveReginaCaelorumTitle] = "Ave Regina Caelorum",
+
+        [PrayerKey.ReginaCaeliTitle] = "Regina Caeli",
+
+        [PrayerKey.SubTuumPraesidiumTitle] = "Sub Tuum Praesidium",
+
         [PrayerKey.SubTuumPraesidium] =
             "Sub tuum praesidium confugimus, sancta Dei Genetrix; nostras deprecationes ne despicias in " +
             "necessitatibus nostris, sed a periculis cunctis libera nos semper, Virgo gloriosa et benedicta.",

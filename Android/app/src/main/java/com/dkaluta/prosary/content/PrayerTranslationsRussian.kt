@@ -62,6 +62,16 @@ val prayerTranslationsRussian: Map<PrayerKey, String> = mapOf(
         "Царица Небесная, радуйся, аллилуйя. Ибо Тот, Которого Ты удостоилась носить, аллилуйя, " +
             "воскрес, как и обещал, аллилуйя. Молись о нас к Богу, аллилуйя.",
 
+    PrayerKey.SalveReginaTitle to "Славься, Царица",
+
+    PrayerKey.AlmaRedemptorisMaterTitle to "Матерь Искупителя",
+
+    PrayerKey.AveReginaCaelorumTitle to "Радуйся, Царица Небесная",
+
+    PrayerKey.ReginaCaeliTitle to "Царица Небесная",
+
+    PrayerKey.SubTuumPraesidiumTitle to "Под Твою защиту",
+
     PrayerKey.SubTuumPraesidium to
         "Под покров Твой прибегаем, Святая Матерь Божия; молений наших не презри в скорбях " +
             "наших, но от бед избавляй нас всегда, Дева Преславная и Благословенная.",

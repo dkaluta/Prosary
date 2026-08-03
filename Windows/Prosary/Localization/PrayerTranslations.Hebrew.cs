@@ -75,6 +75,16 @@ public static partial class PrayerTranslations
             "רֹנִּי מַלְכַּת שָׁמַיִם, הַלְלוּיָה, כִּי הוּא, אֲשֶׁר זָכִית לָשֵׂאתוֹ, הַלְלוּיָה, קָם " +
             "לִתְחִיָּה כְּפִי שֶׁאָמַר, הַלְלוּיָה, הַעְתִּירִי אֶל הָאֵל בַּעֲדֵנוּ, הַלְלוּיָה.",
 
+        [PrayerKey.SalveReginaTitle] = "שלום עליך מלכה",
+
+        [PrayerKey.AlmaRedemptorisMaterTitle] = "אם הגואל",
+
+        [PrayerKey.AveReginaCaelorumTitle] = "שלום לך מלכת שמים",
+
+        [PrayerKey.ReginaCaeliTitle] = "רוני מלכת שמים",
+
+        [PrayerKey.SubTuumPraesidiumTitle] = "בצל רחמיך",
+
         [PrayerKey.SubTuumPraesidium] =
             "בְּצֵל רַחֲמַיִךְ אָנוּ חוֹסִים, אֵם הָאֱלֹהִים הַקְּדוֹשָׁה, אַל תַּעְלִימִי אֹזֶן " +
             "מִתְּחִנּוֹתֵינוּ בְּעֵת צָרָה, אֶלָּא חַלְּצִינוּ תָּמִיד, בְּכָל סַכָּנָה, אַתְּ " +

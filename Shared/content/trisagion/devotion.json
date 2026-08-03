@@ -1,11 +1,35 @@
 {
   "type": "steps",
   "steps": [
-    { "title": "Holy God", "bodyKey": "trisagionAcclamation", "imageKey": "jesus_portrait" },
-    { "title": "Holy God", "bodyKey": "trisagionAcclamation", "imageKey": "jesus_portrait" },
-    { "title": "Holy God", "bodyKey": "trisagionAcclamation", "imageKey": "jesus_portrait" },
-    { "title": "Glory Be", "bodyKey": "gloriaPatri", "imageKey": "glory_be" },
-    { "title": "Holy God", "bodyKey": "trisagionShortAcclamation", "imageKey": "jesus_portrait" },
-    { "title": "Holy God", "bodyKey": "trisagionAcclamation", "imageKey": "jesus_portrait" }
+    {
+      "titleKey": "trisagionAcclamationTitle",
+      "bodyKey": "trisagionAcclamation",
+      "imageKey": "jesus_portrait"
+    },
+    {
+      "titleKey": "trisagionAcclamationTitle",
+      "bodyKey": "trisagionAcclamation",
+      "imageKey": "jesus_portrait"
+    },
+    {
+      "titleKey": "trisagionAcclamationTitle",
+      "bodyKey": "trisagionAcclamation",
+      "imageKey": "jesus_portrait"
+    },
+    {
+      "titleKey": "gloriaPatriTitle",
+      "bodyKey": "gloriaPatri",
+      "imageKey": "glory_be"
+    },
+    {
+      "titleKey": "trisagionAcclamationTitle",
+      "bodyKey": "trisagionShortAcclamation",
+      "imageKey": "jesus_portrait"
+    },
+    {
+      "titleKey": "trisagionAcclamationTitle",
+      "bodyKey": "trisagionAcclamation",
+      "imageKey": "jesus_portrait"
+    }
   ]
 }

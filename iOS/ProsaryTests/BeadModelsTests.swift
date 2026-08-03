@@ -107,7 +107,7 @@ final class BeadModelsTests: XCTestCase {
   /// single bead — see PrayerEngine.buildRosarySteps' presenter-mode branch. This is the crux of
   /// that design decision, even though BeadLayout itself needed no code changes to support it.
   func testPresenterModeStepStillShowsTenTraditionalBottomBeads() {
-    let steps = PrayerEngine().buildSteps(for: Prayer(rosary: RosaryOptions(presenterMode: true)))
+    let steps = PrayerEngine().buildSteps(for: Prayer(languageCode: "en", rosary: RosaryOptions(presenterMode: true)))
     let currentIndex = steps.firstIndex { $0.title == "Hail Mary & Glory Be" && $0.decadeIndex == 0 }!
     let layout = BeadLayout.build(steps: steps, currentIndex: currentIndex, hasClosingCross: true)
 

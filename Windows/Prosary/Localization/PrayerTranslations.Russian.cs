@@ -65,6 +65,16 @@ public static partial class PrayerTranslations
             "Царица Небесная, радуйся, аллилуйя. Ибо Тот, Которого Ты удостоилась носить, аллилуйя, " +
             "воскрес, как и обещал, аллилуйя. Молись о нас к Богу, аллилуйя.",
 
+        [PrayerKey.SalveReginaTitle] = "Славься, Царица",
+
+        [PrayerKey.AlmaRedemptorisMaterTitle] = "Матерь Искупителя",
+
+        [PrayerKey.AveReginaCaelorumTitle] = "Радуйся, Царица Небесная",
+
+        [PrayerKey.ReginaCaeliTitle] = "Царица Небесная",
+
+        [PrayerKey.SubTuumPraesidiumTitle] = "Под Твою защиту",
+
         [PrayerKey.SubTuumPraesidium] =
             "Под покров Твой прибегаем, Святая Матерь Божия; молений наших не презри в скорбях " +
             "наших, но от бед избавляй нас всегда, Дева Преславная и Благословенная.",

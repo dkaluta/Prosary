@@ -27,6 +27,11 @@ public static class PrayerKey
 
     /// <summary>The oldest known Marian prayer; traditionally recited on its own, without a versicle/collect.</summary>
     public const string SubTuumPraesidium = nameof(SubTuumPraesidium);
+    public const string SalveReginaTitle = nameof(SalveReginaTitle);
+    public const string AlmaRedemptorisMaterTitle = nameof(AlmaRedemptorisMaterTitle);
+    public const string AveReginaCaelorumTitle = nameof(AveReginaCaelorumTitle);
+    public const string ReginaCaeliTitle = nameof(ReginaCaeliTitle);
+    public const string SubTuumPraesidiumTitle = nameof(SubTuumPraesidiumTitle);
 
     public const string VersiculumStandard = nameof(VersiculumStandard);
     public const string ResponsiumStandard = nameof(ResponsiumStandard);

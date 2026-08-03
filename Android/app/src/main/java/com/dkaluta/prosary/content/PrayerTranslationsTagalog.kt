@@ -70,6 +70,16 @@ val prayerTranslationsTagalog: Map<PrayerKey, String> = mapOf(
             "aleluya, ay nabuhay na mag-uli ayon sa sinabi niya, aleluya. Ipanalangin mo kami sa " +
             "Diyos, aleluya.",
 
+    PrayerKey.SalveReginaTitle to "Aba, Reyna",
+
+    PrayerKey.AlmaRedemptorisMaterTitle to "Mapagmahal na Ina ng Manunubos",
+
+    PrayerKey.AveReginaCaelorumTitle to "Aba, Reyna ng Langit",
+
+    PrayerKey.ReginaCaeliTitle to "Reyna ng Langit",
+
+    PrayerKey.SubTuumPraesidiumTitle to "Sa Iyong Kalinga",
+
     PrayerKey.SubTuumPraesidium to
         "Sa ilalim ng iyong pangangalaga kami lumapit, O banal na Ina ng Diyos; huwag mong itakwil " +
             "ang aming mga panalangin sa aming mga pangangailangan, kundi iligtas mo kami sa lahat ng " +

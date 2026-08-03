@@ -61,6 +61,16 @@ val prayerTranslationsLatin: Map<PrayerKey, String> = mapOf(
         "Regina caeli, laetare, alleluia. Quia quem meruisti portare, alleluia. Resurrexit, sicut " +
             "dixit, alleluia. Ora pro nobis Deum, alleluia.",
 
+    PrayerKey.SalveReginaTitle to "Salve Regina",
+
+    PrayerKey.AlmaRedemptorisMaterTitle to "Alma Redemptoris Mater",
+
+    PrayerKey.AveReginaCaelorumTitle to "Ave Regina Caelorum",
+
+    PrayerKey.ReginaCaeliTitle to "Regina Caeli",
+
+    PrayerKey.SubTuumPraesidiumTitle to "Sub Tuum Praesidium",
+
     PrayerKey.SubTuumPraesidium to
         "Sub tuum praesidium confugimus, sancta Dei Genetrix; nostras deprecationes ne despicias in " +
             "necessitatibus nostris, sed a periculis cunctis libera nos semper, Virgo gloriosa et benedicta.",

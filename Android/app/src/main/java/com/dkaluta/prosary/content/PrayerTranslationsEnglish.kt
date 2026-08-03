@@ -64,6 +64,16 @@ val prayerTranslationsEnglish: Map<PrayerKey, String> = mapOf(
         "Queen of Heaven, rejoice, alleluia. For He whom you did merit to bear, alleluia, has risen as " +
             "He said, alleluia. Pray for us to God, alleluia.",
 
+    PrayerKey.SalveReginaTitle to "Salve Regina",
+
+    PrayerKey.AlmaRedemptorisMaterTitle to "Alma Redemptoris Mater",
+
+    PrayerKey.AveReginaCaelorumTitle to "Ave Regina Caelorum",
+
+    PrayerKey.ReginaCaeliTitle to "Regina Caeli",
+
+    PrayerKey.SubTuumPraesidiumTitle to "Sub Tuum Praesidium",
+
     PrayerKey.SubTuumPraesidium to
         "We fly to thy patronage, O holy Mother of God; despise not our petitions in our necessities, " +
             "but deliver us always from all dangers, O glorious and blessed Virgin.",

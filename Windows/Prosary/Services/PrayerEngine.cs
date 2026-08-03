@@ -111,19 +111,21 @@ public sealed class PrayerEngine
               $"\n**{Text(style == AntiphonStyle.Paschal ? PrayerKey.ResponsiumPaschale : PrayerKey.ResponsiumStandard)}**" +
               $"\n\n{Text(style == AntiphonStyle.Paschal ? PrayerKey.CollectaPaschale : PrayerKey.CollectaStandard)}";
 
-        return new RosaryStep(GetMarianAntiphonHeader(antiphon), null, body) with { IsAntiphon = true, ImageOverrideKey = "madonna_and_child" };
+        return new RosaryStep(Text(GetMarianAntiphonHeaderKey(antiphon)), null, body) with { IsAntiphon = true, ImageOverrideKey = "madonna_and_child" };
     }
 
-    // Preserves a pre-existing minor divergence from iOS/Android (which just say "Salve Regina")
-    // — kept as-is when this was originally extracted into MarianAntiphonBuilder, not "fixed".
-    private static string GetMarianAntiphonHeader(MarianAntiphonOption antiphon) => antiphon switch
+    // The heading names the antiphon in the language being prayed, not in Latin — the same
+    // choice the step's body already makes. (This also retires a pre-existing divergence from
+    // iOS/Android, which used to hardcode a different English form here.)
+    private static string GetMarianAntiphonHeaderKey(MarianAntiphonOption antiphon) => antiphon switch
     {
-        MarianAntiphonOption.SalveRegina => "Hail, Holy Queen (Salve Regina)",
-        MarianAntiphonOption.AlmaRedemptorisMater => "Alma Redemptoris Mater",
-        MarianAntiphonOption.AveReginaCaelorum => "Ave Regina Caelorum",
-        MarianAntiphonOption.ReginaCaeli => "Regina Caeli",
-        MarianAntiphonOption.SubTuumPraesidium => "Sub Tuum Praesidium",
-        _ => "Marian Antiphon"
+        MarianAntiphonOption.SalveRegina => PrayerKey.SalveReginaTitle,
+        MarianAntiphonOption.AlmaRedemptorisMater => PrayerKey.AlmaRedemptorisMaterTitle,
+        MarianAntiphonOption.AveReginaCaelorum => PrayerKey.AveReginaCaelorumTitle,
+        MarianAntiphonOption.ReginaCaeli => PrayerKey.ReginaCaeliTitle,
+        MarianAntiphonOption.SubTuumPraesidium => PrayerKey.SubTuumPraesidiumTitle,
+        // Unreachable: both resolve to a concrete antiphon before this is called.
+        _ => PrayerKey.SalveReginaTitle
     };
 
     // Custom (bundle-driven) devotions
@@ -287,6 +289,8 @@ public sealed class PrayerEngine
         if (definition.Decades is not { } decades) return [];
 
         string Resolve(string key) => PrayerPackStore.ResolveBodyText(bundleId, languageCode, key);
+        string FixedTitle(CustomDevotionDefinition.Decades.FixedStep step) =>
+            step.TitleKey is { } key ? Resolve(key) : step.Title ?? string.Empty;
 
         var steps = new List<RosaryStep>();
         foreach (var entry in definition.Opening ?? [])
@@ -327,13 +331,13 @@ public sealed class PrayerEngine
                     decadeSubtitle = $"{ordinalLabel} — {mysteryText.Title}";
                 }
 
-                steps.Add(new RosaryStep(decades.MajorStep.Title, decadeSubtitle, majorBody,
+                steps.Add(new RosaryStep(FixedTitle(decades.MajorStep), decadeSubtitle, majorBody,
                     DecadeIndex: d, ImageOverrideKey: decades.MajorStep.ImageKey ?? imageKey));
 
                 for (var h = 1; h <= decades.MinorCount; h++)
                 {
                     steps.Add(new RosaryStep(
-                        $"{decades.MinorStep.Title} ({h} of {decades.MinorCount})", decadeSubtitle, minorBody,
+                        $"{FixedTitle(decades.MinorStep)} ({h} of {decades.MinorCount})", decadeSubtitle, minorBody,
                         DecadeIndex: d, HailMaryIndexInDecade: h, ImageOverrideKey: imageKey));
                 }
 
@@ -361,6 +365,8 @@ public sealed class PrayerEngine
         IReadOnlyDictionary<string, string>? optionValues, RosaryOptions rosary, MysteryGroup todaysGroup)
     {
         string Resolve(string key) => PrayerPackStore.ResolveBodyText(bundleId, languageCode, key);
+        string FixedTitle(CustomDevotionDefinition.Decades.FixedStep step) =>
+            step.TitleKey is { } key ? Resolve(key) : step.Title ?? string.Empty;
 
         var groups = ResolveMysteryGroups(rosary, todaysGroup);
         var fruitLabel = PrayerTranslations.Get(languageCode, PrayerKey.FructusMysteriiLabel);
@@ -390,12 +396,12 @@ public sealed class PrayerEngine
                 steps.Add(new RosaryStep(mysteryText.Title, ordinalLabel,
                     $"{mysteryText.Description}\n\n{fruitLabel}: {mysteryText.Fruit}",
                     mystery, IsScripture: true, DecadeIndex: decadeIndex));
-                steps.Add(new RosaryStep(decades.MajorStep.Title, decadeSubtitle, majorBody,
+                steps.Add(new RosaryStep(FixedTitle(decades.MajorStep), decadeSubtitle, majorBody,
                     DecadeIndex: decadeIndex, ImageOverrideKey: decades.MajorStep.ImageKey));
 
                 if (presenterOn && decades.Presenter is { } presenter)
                 {
-                    steps.Add(new RosaryStep(presenter.CombinedTitle, decadeSubtitle,
+                    steps.Add(new RosaryStep(presenter.CombinedTitleKey is { } ck ? Resolve(ck) : presenter.CombinedTitle ?? string.Empty, decadeSubtitle,
                         string.Join("\n\n", presenter.BodyKeys.Select(Resolve)),
                         mystery, DecadeIndex: decadeIndex, HailMaryIndexInDecade: decades.MinorCount));
                 }
@@ -404,7 +410,7 @@ public sealed class PrayerEngine
                     for (var h = 1; h <= decades.MinorCount; h++)
                     {
                         steps.Add(new RosaryStep(
-                            $"{decades.MinorStep.Title} ({h} of {decades.MinorCount})", decadeSubtitle, minorBody,
+                            $"{FixedTitle(decades.MinorStep)} ({h} of {decades.MinorCount})", decadeSubtitle, minorBody,
                             mystery, DecadeIndex: decadeIndex, HailMaryIndexInDecade: h));
                     }
                 }

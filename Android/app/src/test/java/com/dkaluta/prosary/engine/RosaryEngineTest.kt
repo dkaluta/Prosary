@@ -146,19 +146,19 @@ class RosaryEngineTest {
 
     @Test
     fun firstStepIsSignOfCross() {
-        val steps = engine().buildSteps(prayer())
+        val steps = engine().buildSteps(prayer().copy(languageCode = "en"))
         assertEquals("Sign of the Cross", steps.first().title)
     }
 
     @Test
     fun lastStepIsSignOfCrossWhenEnabled() {
-        val steps = engine().buildSteps(prayer(includeFinalCross = true))
+        val steps = engine().buildSteps(prayer(includeFinalCross = true).copy(languageCode = "en"))
         assertEquals("Sign of the Cross", steps.last().title)
     }
 
     @Test
     fun stepsContainHailMarys() {
-        val steps = engine().buildSteps(prayer())
+        val steps = engine().buildSteps(prayer().copy(languageCode = "en"))
         val hailMarys = steps.filter { it.title.startsWith("Hail Mary") }
         // 3 opening + 50 decade = 53
         assertEquals(53, hailMarys.size)
@@ -191,7 +191,7 @@ class RosaryEngineTest {
     fun latinBodyContainsLatinText() {
         val p = prayer().copy(languageCode = "la")
         val steps = engine().buildSteps(p)
-        val creed = steps.firstOrNull { it.title == "Apostles' Creed" }
+        val creed = steps.firstOrNull { it.title == "Symbolum Apostolorum" }
         assertTrue(creed!!.body.contains("Credo in Deum"))
     }
 
@@ -243,9 +243,8 @@ class RosaryEngineTest {
 
     @Test
     fun singleMysteryAnnouncesTheChosenMysteryNotTheFirst() {
-        // Mystery announcement titles are translated per-language (unlike fixed prayer titles
-        // like "Our Father"), so this must be pinned explicitly rather than relying on the
-        // app-level default language.
+        // Every step title is translated per-language now, so the language is pinned
+        // explicitly rather than relying on the app-level default.
         val p = prayer(group = MysteryGroup.Sorrowful, mode = MysterySelectionMode.SingleMystery, order = 3).copy(languageCode = "en")
         val steps = engine().buildSteps(p)
         val announcement = steps.first { it.isScripture }
@@ -264,7 +263,7 @@ class RosaryEngineTest {
 
     @Test
     fun presenterModeCollapsesHailMaryAndGloryBeIntoOneStepPerDecade() {
-        val steps = engine().buildSteps(prayer(presenterMode = true))
+        val steps = engine().buildSteps(prayer(presenterMode = true).copy(languageCode = "en"))
 
         for (d in 0 until 5) {
             val hailMarySteps = steps.filter { it.decadeIndex == d && it.hailMaryIndexInDecade != null }
@@ -285,13 +284,13 @@ class RosaryEngineTest {
 
     @Test
     fun presenterModeStillIncludesFatimaPrayerPerDecade() {
-        val steps = engine().buildSteps(prayer(includeFatima = true, presenterMode = true))
+        val steps = engine().buildSteps(prayer(includeFatima = true, presenterMode = true).copy(languageCode = "en"))
         assertEquals(5, steps.count { it.title == "Fatima Prayer" })
     }
 
     @Test
     fun presenterModeKeepsAnnouncementAndOurFatherAsSeparateSteps() {
-        val steps = engine().buildSteps(prayer(presenterMode = true))
+        val steps = engine().buildSteps(prayer(presenterMode = true).copy(languageCode = "en"))
         val decadeZeroSteps = steps.filter { it.decadeIndex == 0 }
         // Announcement, Our Father, Hail Mary & Glory Be, Fatima Prayer = 4 (default config includes Fatima).
         assertEquals(4, decadeZeroSteps.size)

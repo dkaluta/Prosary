@@ -2,7 +2,7 @@
   "type": "rosary",
   "opening": [
     {
-      "title": "Sign of the Cross",
+      "titleKey": "signumCrucisTitle",
       "bodyKey": "signumCrucis",
       "imageKey": "crucifix"
     }
@@ -34,18 +34,18 @@
       }
     ],
     "majorStep": {
-      "title": "Our Father",
+      "titleKey": "paterNosterTitle",
       "bodyKey": "paterNoster"
     },
     "minorStep": {
-      "title": "Hail Mary",
+      "titleKey": "aveMariaTitle",
       "bodyKey": "aveMaria"
     },
     "minorCount": 10
   },
   "closing": [
     {
-      "title": "Hail Mary",
+      "titleKey": "aveMariaTitle",
       "subtitle": "For the years of Our Lady's life",
       "bodyKey": "aveMaria",
       "imageKey": "madonna_and_child",
@@ -53,7 +53,7 @@
       "if": "seventyTwoHailMarys"
     },
     {
-      "title": "Our Father",
+      "titleKey": "paterNosterTitle",
       "subtitle": "For the intentions of the Holy Father",
       "bodyKey": "paterNoster",
       "imageKey": "our_father",
@@ -63,7 +63,7 @@
       "kind": "seasonalMarianAntiphon"
     },
     {
-      "title": "Sign of the Cross",
+      "titleKey": "signumCrucisTitle",
       "bodyKey": "signumCrucis",
       "imageKey": "crucifix"
     }

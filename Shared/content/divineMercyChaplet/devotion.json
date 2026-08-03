@@ -2,22 +2,22 @@
   "type": "rosary",
   "opening": [
     {
-      "title": "Sign of the Cross",
+      "titleKey": "signumCrucisTitle",
       "bodyKey": "signumCrucis",
       "imageKey": "divine_mercy_image"
     },
     {
-      "title": "Our Father",
+      "titleKey": "paterNosterTitle",
       "bodyKey": "paterNoster",
       "imageKey": "divine_mercy_image"
     },
     {
-      "title": "Hail Mary",
+      "titleKey": "aveMariaTitle",
       "bodyKey": "aveMaria",
       "imageKey": "divine_mercy_image"
     },
     {
-      "title": "The Apostles' Creed",
+      "titleKey": "symbolumApostolorumTitle",
       "bodyKey": "symbolumApostolorum",
       "imageKey": "divine_mercy_image"
     }
@@ -28,24 +28,24 @@
     "count": 5,
     "fixedImageKey": "divine_mercy_image",
     "majorStep": {
-      "title": "Eternal Father, I Offer You...",
+      "titleKey": "divineMercyOfferingTitle",
       "bodyKey": "divineMercyOffering"
     },
     "minorStep": {
-      "title": "For the Sake of His Sorrowful Passion",
+      "titleKey": "divineMercyPetitionTitle",
       "bodyKey": "divineMercyPetition"
     },
     "minorCount": 10
   },
   "closing": [
     {
-      "title": "Holy God, Holy Mighty One, Holy Immortal One",
+      "titleKey": "divineMercyClosingAcclamationTitle",
       "bodyKey": "divineMercyClosingAcclamation",
       "imageKey": "divine_mercy_image",
       "repeat": 3
     },
     {
-      "title": "Sign of the Cross",
+      "titleKey": "signumCrucisTitle",
       "bodyKey": "signumCrucis",
       "imageKey": "divine_mercy_image"
     }

@@ -312,7 +312,10 @@ data class CustomDevotionDefinition(
 
         @Serializable
         data class FixedStep(
-            val title: String,
+            /** A decade's Our Father/Hail Mary heading — carries a literal title or a translatable titleKey, exactly like every other step,
+             * so it reads in the language being prayed. */
+            val title: String? = null,
+            val titleKey: String? = null,
             val bodyKey: String,
             /** Fixed illustration for this step (the Rosary's Our Father icon between
              * mystery-specific images). Null = the decade's own image. */
@@ -321,7 +324,8 @@ data class CustomDevotionDefinition(
 
         @Serializable
         data class Presenter(
-            val combinedTitle: String,
+            val combinedTitle: String? = null,
+            val combinedTitleKey: String? = null,
             /** Bodies joined with a blank line (Hail Mary + Glory Be). */
             val bodyKeys: List<String>,
         )

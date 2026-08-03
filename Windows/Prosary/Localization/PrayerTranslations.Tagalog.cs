@@ -74,6 +74,16 @@ public static partial class PrayerTranslations
             "aleluya, ay nabuhay na mag-uli ayon sa sinabi niya, aleluya. Ipanalangin mo kami sa " +
             "Diyos, aleluya.",
 
+        [PrayerKey.SalveReginaTitle] = "Aba, Reyna",
+
+        [PrayerKey.AlmaRedemptorisMaterTitle] = "Mapagmahal na Ina ng Manunubos",
+
+        [PrayerKey.AveReginaCaelorumTitle] = "Aba, Reyna ng Langit",
+
+        [PrayerKey.ReginaCaeliTitle] = "Reyna ng Langit",
+
+        [PrayerKey.SubTuumPraesidiumTitle] = "Sa Iyong Kalinga",
+
         [PrayerKey.SubTuumPraesidium] =
             "Sa ilalim ng iyong pangangalaga kami lumapit, O banal na Ina ng Diyos; huwag mong itakwil " +
             "ang aming mga panalangin sa aming mga pangangailangan, kundi iligtas mo kami sa lahat ng " +

@@ -312,7 +312,7 @@ final class CustomDevotionEngineTests: XCTestCase {
     let steps = steps("divineMercyChaplet")
     XCTAssertEqual(steps.count, 63)
     XCTAssertEqual(steps.map(\.title).prefix(4), [
-      "Sign of the Cross", "Our Father", "Hail Mary", "The Apostles' Creed",
+      "Sign of the Cross", "Our Father", "Hail Mary", "Apostles' Creed",
     ])
     XCTAssertEqual(Set(steps.compactMap(\.decadeIndex)), Set(0...4))
     XCTAssertEqual(steps[4].title, "Eternal Father, I Offer You...")
