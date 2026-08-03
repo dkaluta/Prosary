@@ -29,6 +29,9 @@ enum LanguageCatalog {
     LanguageOption(code: "en", nativeName: "English", isRightToLeft: false),
     LanguageOption(code: "ar", nativeName: "العربية", isRightToLeft: true),
     LanguageOption(code: "he", nativeName: "עברית", isRightToLeft: true),
+    // Aramaic in Hebrew script — the Aramaic-rite Hebrew Catholic communities' liturgical
+    // language (requested by the Mission of St. Gamaliel for v0.7).
+    LanguageOption(code: "arc", nativeName: "ארמית", isRightToLeft: true),
     LanguageOption(code: "ru", nativeName: "Русский", isRightToLeft: false),
     LanguageOption(code: "tl", nativeName: "Tagalog", isRightToLeft: false),
   ]

@@ -25,7 +25,7 @@ public static class PrayerTypography
     // the default UI font.
     public static string ResolveBodyFontFamily(string languageCode, bool isScripture) => languageCode switch
     {
-        "he" => isScripture
+        "he" or "arc" => isScripture
             ? "/Assets/Fonts/ShofarRegular.ttf#Shofar"
             : "/Assets/Fonts/FrankRuhlLibre-Variable.ttf#Frank Ruhl Libre",
         "ar" => isScripture
@@ -50,7 +50,7 @@ public static class PrayerTypography
     // one, which is the closer precedent for a platform with no special desktop-only type ramp.
     public static double ResolveBodyFontSize(string languageCode, bool isScripture) => languageCode switch
     {
-        "he" => isScripture ? 16 : 21,
+        "he" or "arc" => isScripture ? 16 : 21,
         "ar" => isScripture ? 16 : 18,
         "la" or "en" => isScripture ? 19 : 17,
         _ => 17

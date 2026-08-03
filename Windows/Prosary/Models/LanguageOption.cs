@@ -25,6 +25,8 @@ public static class LanguageCatalog
         new("en", "English", false),
         new("ar", "العربية", true),
         new("he", "עברית", true),
+        // Aramaic in Hebrew script — the Aramaic-rite communities' liturgical language.
+        new("arc", "ארמית", true),
         new("ru", "Русский", false),
         new("tl", "Tagalog", false),
     ];

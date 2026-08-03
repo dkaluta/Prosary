@@ -23,6 +23,8 @@ object LanguageCatalog {
         LanguageOption(code = "en", nativeName = "English", isRightToLeft = false),
         LanguageOption(code = "ar", nativeName = "العربية", isRightToLeft = true),
         LanguageOption(code = "he", nativeName = "עברית", isRightToLeft = true),
+        // Aramaic in Hebrew script — the Aramaic-rite communities' liturgical language.
+        LanguageOption(code = "arc", nativeName = "ארמית", isRightToLeft = true),
         LanguageOption(code = "ru", nativeName = "Русский", isRightToLeft = false),
         LanguageOption(code = "tl", nativeName = "Tagalog", isRightToLeft = false),
     )

@@ -22,7 +22,7 @@ object PrayerTypography {
     private val scheherazadeNew = FontFamily(Font(R.font.scheherazade_new_regular))
 
     fun style(languageCode: String?, isScripture: Boolean): TextStyle = when (languageCode) {
-        "he" -> if (isScripture) {
+        "he", "arc" -> if (isScripture) {
             TextStyle(fontFamily = shofar, fontSize = 16.sp, lineHeight = 23.sp)
         } else {
             TextStyle(fontFamily = frankRuhlLibre, fontSize = 21.sp, lineHeight = 29.sp)

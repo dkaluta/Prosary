@@ -9,6 +9,8 @@ export const LANGUAGES = [
   { code: "he", name: "Hebrew", rtl: true },
   { code: "ru", name: "Russian", rtl: false },
   { code: "tl", name: "Tagalog", rtl: false },
+  // Aramaic in Hebrew script — the Aramaic-rite communities' liturgical language.
+  { code: "arc", name: "ארמית (Aramaic)", rtl: true },
 ] as const;
 
 export type LanguageCode = (typeof LANGUAGES)[number]["code"];
