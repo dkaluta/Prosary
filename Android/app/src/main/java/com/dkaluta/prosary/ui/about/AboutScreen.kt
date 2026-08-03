@@ -22,6 +22,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -29,6 +30,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.ui.theme.extraColors
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -42,10 +44,10 @@ fun AboutScreen(onBack: () -> Unit) {
         topBar = {
             TopAppBar(
                 scrollBehavior = topBarScroll,
-                title = { Text("About Prosary") },
+                title = { Text(stringResource(R.string.about_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.common_back))
                     }
                 },
             )
@@ -70,12 +72,12 @@ fun AboutScreen(onBack: () -> Unit) {
                     color = MaterialTheme.extraColors.headline,
                 )
                 Text(
-                    "A companion for praying the Rosary and other Catholic devotions.",
+                    stringResource(R.string.about_tagline),
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
 
-            AboutSection(title = "Typefaces") {
+            AboutSection(title = stringResource(R.string.about_typefaces)) {
                 BoldLeadLine("Frank Ruhl Libre", " — SIL Open Font License 1.1 — Hebrew prayers.")
                 BoldLeadLine("Shofar", " — GPL v2 with font-embedding exception — Hebrew Scripture (Culmus Project, Yoram Gnat).")
                 BoldLeadLine("Amiri", " — SIL Open Font License 1.1 — Arabic prayers.")
@@ -89,7 +91,7 @@ fun AboutScreen(onBack: () -> Unit) {
                 )
             }
 
-            AboutSection(title = "Mystery Illustrations") {
+            AboutSection(title = stringResource(R.string.about_mystery_illustrations)) {
                 Text(
                     "All 20 mystery images are classical paintings in the public domain (artist deceased over 100 years), sourced from Wikimedia Commons.",
                     style = MaterialTheme.typography.bodySmall,
@@ -98,11 +100,11 @@ fun AboutScreen(onBack: () -> Unit) {
                 mysteryAttributions.forEach { line -> ItalicLeadLine(line) }
             }
 
-            AboutSection(title = "Other Images") {
+            AboutSection(title = stringResource(R.string.about_other_images)) {
                 otherImageAttributions.forEach { line -> ItalicLeadLine(line) }
             }
 
-            AboutSection(title = "Stations of the Cross Illustrations") {
+            AboutSection(title = stringResource(R.string.about_stations_illustrations)) {
                 Text(
                     "All 14 stations: Gebhard Fugel (1863\u20131939), Kreuzweg (1921), St. Antonius, " +
                         "Bad Saulgau \u2014 public domain; photographs by Andreas Praefcke, released into " +
@@ -135,7 +137,7 @@ fun AboutScreen(onBack: () -> Unit) {
                 )
             }
 
-            AboutSection(title = "Franciscan Crown Illustration") {
+            AboutSection(title = stringResource(R.string.about_crown_illustration)) {
                 Text(
                     "The Adoration of the Magi: Bartolom\u00E9 Esteban Murillo (c. 1655\u201360), " +
                         "Toledo Museum of Art \u2014 public domain. The other six Joys reuse the Rosary " +
@@ -145,11 +147,11 @@ fun AboutScreen(onBack: () -> Unit) {
                 )
             }
 
-            AboutSection(title = "Seven Sorrows Illustrations") {
+            AboutSection(title = stringResource(R.string.about_sorrows_illustrations)) {
                 sevenSorrowsAttributions.forEach { line -> ItalicLeadLine(line) }
             }
 
-            AboutSection(title = "Divine Mercy Illustration") {
+            AboutSection(title = stringResource(R.string.about_mercy_illustration)) {
                 Text(
                     "Eugeniusz Kazimirowski, Divine Mercy (\u201CJezu, ufam Tobie\u201D, 1934), Divine " +
                         "Mercy Sanctuary, Vilnius \u2014 the original image painted under St. Faustina\u2019s " +
@@ -159,7 +161,7 @@ fun AboutScreen(onBack: () -> Unit) {
                 )
             }
 
-            AboutSection(title = "Jesus Prayer Illustration") {
+            AboutSection(title = stringResource(R.string.about_jesus_prayer_illustration)) {
                 Text(
                     "Christ Pantocrator: encaustic icon (6th century), Saint Catherine\u2019s Monastery, " +
                         "Mount Sinai \u2014 the oldest surviving icon of Christ Pantocrator, honoring the " +
@@ -169,7 +171,7 @@ fun AboutScreen(onBack: () -> Unit) {
                 )
             }
 
-            AboutSection(title = "Scripture Sources") {
+            AboutSection(title = stringResource(R.string.about_scripture_sources)) {
                 Text(
                     "Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), " +
                         "Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) " +

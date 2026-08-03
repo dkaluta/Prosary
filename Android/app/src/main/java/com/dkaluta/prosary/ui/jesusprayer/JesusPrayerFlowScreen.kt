@@ -16,6 +16,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.PrayerKey
 import com.dkaluta.prosary.content.PrayerTranslations
 import com.dkaluta.prosary.models.JesusPrayerOptions
@@ -55,6 +58,7 @@ fun JesusPrayerFlowScreen(
 ) {
     val services = LocalAppServices.current
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
     val effectiveTarget = prayer?.jesusPrayer?.target ?: target
 
     var progress by remember { mutableStateOf(JesusPrayerProgress(target = effectiveTarget)) }
@@ -88,7 +92,7 @@ fun JesusPrayerFlowScreen(
 
     val currentStep = if (hasLoaded) {
         RosaryStep(
-            title = "Jesus Prayer",
+            title = stringResource(R.string.kind_jesus_prayer),
             body = PrayerTranslations.get(languageCode, PrayerKey.OratioIesu),
             imageOverrideKey = "christ_pantocrator",
         )
@@ -97,8 +101,8 @@ fun JesusPrayerFlowScreen(
     }
 
     PrayerStepFlowScreen(
-        title = "The Jesus Prayer",
-        centralActionLabel = "Pray",
+        title = stringResource(R.string.jp_title),
+        centralActionLabel = stringResource(R.string.common_pray),
         step = currentStep,
         currentIndex = progress.currentIndex,
         totalSteps = progress.targetCount,
@@ -114,24 +118,25 @@ fun JesusPrayerFlowScreen(
         topBarActions = {
             IconButton(onClick = {
                 scope.launch {
-                    matchingFavoriteId = toggleJesusPrayerFavorite(services, matchingFavoriteId, languageCode, effectiveTarget)
+                    matchingFavoriteId = toggleJesusPrayerFavorite(context, services, matchingFavoriteId, languageCode, effectiveTarget)
                 }
             }) {
                 Icon(
                     if (matchingFavoriteId != null) Icons.Filled.Star else Icons.Filled.StarBorder,
-                    contentDescription = if (matchingFavoriteId != null) "Remove from Favorites" else "Add to Favorites",
+                    contentDescription = if (matchingFavoriteId != null) stringResource(R.string.favorites_remove_from_favorites) else stringResource(R.string.favorites_add_to_favorites),
                 )
             }
             // The footer button never turns into "Finish" for an unbounded session (see
             // JesusPrayerProgress.isLastRep) — this is the only way to end that session.
             if (effectiveTarget is JesusPrayerTarget.Unbounded) {
-                TextButton(onClick = onFinish) { Text("Finish") }
+                TextButton(onClick = onFinish) { Text(stringResource(R.string.common_finish)) }
             }
         },
     )
 }
 
 private suspend fun toggleJesusPrayerFavorite(
+    context: android.content.Context,
     services: AppServices,
     currentFavoriteId: String?,
     languageCode: String?,
@@ -145,13 +150,13 @@ private suspend fun toggleJesusPrayerFavorite(
     val resolved = languageCode ?: LanguageCatalog.defaultCode
     val langName = LanguageCatalog.all.firstOrNull { it.code == resolved }?.nativeName ?: resolved
     val targetLabel = when (target) {
-        is JesusPrayerTarget.Count -> "× ${target.value}"
-        JesusPrayerTarget.Unbounded -> "Unbounded"
+        is JesusPrayerTarget.Count -> context.getString(R.string.jp_times_prefix, target.value)
+        JesusPrayerTarget.Unbounded -> context.getString(R.string.jp_unbounded)
     }
     val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
     val isFirst = all.none { it.kind == PrayerKind.JesusPrayer }
     val newFavorite = Prayer(
-        name = "Jesus Prayer $targetLabel ($langName)",
+        name = context.getString(R.string.jp_favorite_name, targetLabel, langName),
         kind = PrayerKind.JesusPrayer,
         isDefault = isFirst,
         languageCode = resolved,

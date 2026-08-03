@@ -48,6 +48,8 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.CustomDevotionInfo
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.content.today.TodayInfoStore
@@ -139,18 +141,20 @@ fun HomeScreen(
     val rosaryAccent = todayMysteryGroup?.color ?: MaterialTheme.colorScheme.primary
     val jesusPrayerAccent = if (isDarkTheme) Color(0xFFC62828) else Color(0xFF8B1A1A)
 
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val todayLine = todayMysteryGroup?.let { stringResource(R.string.home_today, stringResource(it.displayNameRes)) }
     val rosarySubtitle = buildString {
-        todayMysteryGroup?.let { append("Today: ${it.displayName}") }
+        todayLine?.let { append(it) }
         defaultRosary?.let {
             if (isNotEmpty()) append(" • ")
             append(it.name)
         }
     }
-    val jesusPrayerSubtitle = defaultJesusPrayer?.let { "${it.name} • ${it.jesusPrayer.targetDisplayName}" } ?: "Tap to set up"
+    val jesusPrayerSubtitle = defaultJesusPrayer?.let { "${it.name} • ${it.jesusPrayer.targetDisplayName(context)}" }
+        ?: stringResource(R.string.home_tap_to_set_up)
 
     // Accent color for a generic devotion's card, honoring the manifest's light/dark pair.
     val fallbackAccent = MaterialTheme.colorScheme.primary
-    val context = androidx.compose.ui.platform.LocalContext.current
 
     fun customAccent(info: CustomDevotionInfo): Color {
         val hex = if (isDarkTheme) info.accentColorDarkHex ?: info.accentColorHex else info.accentColorHex
@@ -166,7 +170,7 @@ fun HomeScreen(
             DevotionCard(
                 id = PrayerKind.Rosary.name,
                 icon = Icons.Filled.Circle,
-                title = PrayerKind.Rosary.displayName,
+                title = stringResource(PrayerKind.Rosary.displayNameRes),
                 accentColor = rosaryAccent,
                 subtitle = rosarySubtitle,
                 testTag = "rosaryCard",
@@ -187,7 +191,7 @@ fun HomeScreen(
                     iconGlyph = info.iconGlyph,
                     title = info.localizedDisplayName,
                     accentColor = customAccent(info),
-                    subtitle = defaultCustomDevotions[bundleId]?.name ?: "Tap to pray",
+                    subtitle = defaultCustomDevotions[bundleId]?.name ?: stringResource(R.string.home_tap_to_pray),
                     testTag = "${bundleId}Card",
                     onClick = {
                         val prayer = defaultCustomDevotions[bundleId]
@@ -201,7 +205,7 @@ fun HomeScreen(
             DevotionCard(
                 id = PrayerKind.JesusPrayer.name,
                 icon = Icons.Filled.Favorite,
-                title = PrayerKind.JesusPrayer.displayName,
+                title = stringResource(PrayerKind.JesusPrayer.displayNameRes),
                 accentColor = jesusPrayerAccent,
                 subtitle = jesusPrayerSubtitle,
                 testTag = "jesusPrayerCard",
@@ -241,16 +245,16 @@ fun HomeScreen(
         topBar = {
             TopAppBar(
                 scrollBehavior = topBarScroll,
-                title = { Text("Pray") },
+                title = { Text(stringResource(R.string.tab_pray)) },
                 actions = {
                     IconButton(onClick = onOpenFavorites) {
-                        Icon(Icons.Filled.Star, contentDescription = "My Favorites")
+                        Icon(Icons.Filled.Star, contentDescription = stringResource(R.string.home_my_favorites))
                     }
                     IconButton(onClick = onOpenSettings) {
-                        Icon(Icons.Filled.Settings, contentDescription = "Settings")
+                        Icon(Icons.Filled.Settings, contentDescription = stringResource(R.string.common_settings))
                     }
                     IconButton(onClick = onOpenAbout) {
-                        Icon(Icons.Filled.Info, contentDescription = "About")
+                        Icon(Icons.Filled.Info, contentDescription = stringResource(R.string.common_about))
                     }
                 },
             )
@@ -306,7 +310,7 @@ fun HomeScreen(
                             )
                             Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
                                 Text(
-                                    "The Pope\u2019s intention: ${monthIntention.title}",
+                                    stringResource(R.string.home_pope_intention, monthIntention.title),
                                     style = MaterialTheme.typography.titleSmall,
                                     fontWeight = FontWeight.SemiBold,
                                 )
@@ -337,7 +341,7 @@ fun HomeScreen(
                     )
                     DropdownMenu(expanded = cardMenu, onDismissRequest = { cardMenu = false }) {
                         DropdownMenuItem(
-                            text = { Text("Move to top") },
+                            text = { Text(stringResource(R.string.home_move_to_top)) },
                             onClick = {
                                 cardMenu = false
                                 HomeOrder.moveToTop(context, card.id, orderedCards.map { it.id })
@@ -345,7 +349,7 @@ fun HomeScreen(
                             },
                         )
                         DropdownMenuItem(
-                            text = { Text("Edit order…") },
+                            text = { Text(stringResource(R.string.home_edit_order)) },
                             onClick = {
                                 cardMenu = false
                                 showsOrderEditor = true

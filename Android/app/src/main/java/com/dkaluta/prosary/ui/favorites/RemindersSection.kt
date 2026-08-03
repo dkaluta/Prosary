@@ -25,7 +25,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.PrayerReminder
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -47,7 +49,7 @@ fun RemindersSection(
     onRemindersChange: (List<PrayerReminder>) -> Unit,
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text("Reminders", style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
+        Text(stringResource(R.string.reminders_title), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
         Card {
             Column(
                 verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -78,7 +80,7 @@ fun RemindersSection(
 
                 TextButton(onClick = { onRemindersChange(reminders + PrayerReminder(hour = 9, minute = 0)) }) {
                     Icon(Icons.Filled.Add, contentDescription = null)
-                    Text("Add Reminder")
+                    Text(stringResource(R.string.reminders_add))
                 }
             }
         }
@@ -136,7 +138,7 @@ private fun ReminderRow(reminder: PrayerReminder, onTimeChange: (Int, Int) -> Un
             Text(reminder.displayTime)
         }
         IconButton(onClick = onDelete) {
-            Icon(Icons.Filled.Delete, contentDescription = "Delete reminder", tint = MaterialTheme.colorScheme.error)
+            Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.reminders_delete_desc), tint = MaterialTheme.colorScheme.error)
         }
     }
 
@@ -148,9 +150,9 @@ private fun ReminderRow(reminder: PrayerReminder, onTimeChange: (Int, Int) -> Un
                 TextButton(onClick = {
                     onTimeChange(state.hour, state.minute)
                     showPicker = false
-                }) { Text("OK") }
+                }) { Text(stringResource(R.string.common_ok)) }
             },
-            dismissButton = { TextButton(onClick = { showPicker = false }) { Text("Cancel") } },
+            dismissButton = { TextButton(onClick = { showPicker = false }) { Text(stringResource(R.string.common_cancel)) } },
             text = { TimePicker(state = state) },
         )
     }

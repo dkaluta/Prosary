@@ -1,5 +1,6 @@
 package com.dkaluta.prosary.ui.shared
 
+import android.content.Context
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
@@ -31,11 +32,11 @@ data class DevotionListing(
  * Prayer — so the Categories and Search tabs hardcode nothing devotion-specific. Mirrors
  * iOS's DevotionDirectory. */
 object DevotionDirectory {
-    fun all(): List<DevotionListing> = buildList {
+    fun all(context: Context): List<DevotionListing> = buildList {
         add(
             DevotionListing(
                 id = "rosary",
-                title = PrayerKind.Rosary.displayName,
+                title = context.getString(PrayerKind.Rosary.displayNameRes),
                 icon = iconForSystemName("rosary"),
                 accentColor = null,
                 tags = PrayerPackStore.info("rosary")?.tags ?: listOf("marian"),
@@ -59,7 +60,7 @@ object DevotionDirectory {
         add(
             DevotionListing(
                 id = "jesusPrayer",
-                title = PrayerKind.JesusPrayer.displayName,
+                title = context.getString(PrayerKind.JesusPrayer.displayNameRes),
                 icon = iconForSystemName("jesusPrayer"),
                 accentColor = null,
                 tags = listOf("eastern", "meditative"),

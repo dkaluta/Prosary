@@ -1,0 +1,223 @@
+<!-- Hebrew UI drafts (v0.7, Gamaliel item 3) — pending review by Erez (Mission of
+     St. Gamaliel for Hebrew Catholics). Terminology draws on Hebrew-Catholic usage:
+     מחרוזת הוורד (Rosary), רזים (mysteries), שלום לך מרים (Hail Mary).
+     The About attribution paragraphs and app name deliberately stay untranslated
+     (resource fallback). -->
+<resources>
+    <!-- Shared -->
+    <string name="common_back">חזרה</string>
+    <string name="common_cancel">ביטול</string>
+    <string name="common_save">שמירה</string>
+    <string name="common_done">בוצע</string>
+    <string name="common_reset">איפוס</string>
+    <string name="common_ok">אישור</string>
+    <string name="common_retry">ניסיון נוסף</string>
+    <string name="common_pray">להתפלל</string>
+    <string name="common_next">הבא</string>
+    <string name="common_finish">סיום</string>
+    <string name="common_install">התקנה</string>
+    <string name="common_update">עדכון</string>
+    <string name="common_installed">מותקן</string>
+    <string name="common_settings">הגדרות</string>
+    <string name="common_about">אודות</string>
+
+    <!-- Bottom tabs -->
+    <string name="tab_pray">תפילה</string>
+    <string name="tab_browse">עיון</string>
+    <string name="tab_categories">קטגוריות</string>
+    <string name="tab_search">חיפוש</string>
+
+    <!-- Home -->
+    <string name="home_today">היום: %1$s</string>
+    <string name="home_pope_intention">כוונת האפיפיור: %1$s</string>
+    <string name="home_tap_to_set_up">הקישו להגדרה</string>
+    <string name="home_tap_to_pray">הקישו לתפילה</string>
+    <string name="home_my_favorites">המועדפים שלי</string>
+    <string name="home_move_to_top">העברה לראש</string>
+    <string name="home_edit_order">עריכת הסדר…</string>
+    <string name="home_order_title">סדר מסך הבית</string>
+    <string name="home_order_reorder">סידור מחדש של %1$s</string>
+
+    <!-- Settings -->
+    <string name="settings_default_prayer_language">שפת תפילה כברירת מחדל</string>
+    <string name="settings_praying">תפילה</string>
+    <string name="settings_auto_advance">מעבר אוטומטי</string>
+    <string name="auto_advance_off">כבוי</string>
+    <string name="auto_advance_every">כל %1$d שניות</string>
+    <string name="settings_reset_home_order">איפוס סדר מסך הבית</string>
+    <string name="settings_downloads">הורדות</string>
+    <string name="settings_installed_devotions">מסלולי תפילה מותקנים: %1$d</string>
+    <string name="settings_clear_audio_cache">ניקוי מטמון השמע</string>
+    <string name="settings_clear_audio_cache_size">ניקוי מטמון השמע (%1$s)</string>
+    <string name="settings_remove_all">הסרת כל המסלולים שהורדו…</string>
+    <string name="settings_downloads_footer">מסלולים מובנים לעולם אינם מוסרים. הסרת מסלול שהורד מסירה גם את המועדף שלו.</string>
+    <string name="settings_links">קישורים</string>
+    <string name="settings_repository_site">מאגר הקהילה</string>
+    <string name="settings_compose_site">יצירת מסלול תפילה</string>
+    <string name="settings_privacy_policy">מדיניות פרטיות</string>
+    <string name="settings_remove_all_title">להסיר את כל המסלולים שהורדו?</string>
+    <string name="settings_remove_all_message">מסלולים מהמאגר אפשר להוריד שוב; קבצים שיובאו ידנית — לא.</string>
+    <string name="settings_remove_all_confirm">הסרת הכול</string>
+
+    <!-- Prayer kinds -->
+    <string name="kind_rosary">מחרוזת הוורד</string>
+    <string name="kind_jesus_prayer">תפילת ישוע</string>
+    <string name="kind_devotion">מסלול תפילה</string>
+    <string name="kind_default_name_rosary">המחרוזת שלי</string>
+
+    <!-- Mystery groups and selection modes -->
+    <string name="mystery_group_joyful">רזי השמחה</string>
+    <string name="mystery_group_sorrowful">רזי הצער</string>
+    <string name="mystery_group_glorious">רזי הכבוד</string>
+    <string name="mystery_group_luminous">רזי האור</string>
+    <string name="mode_todays_mysteries">הרזים של היום</string>
+    <string name="mode_specific">תמיד סדרה מסוימת</string>
+    <string name="mode_fifteen">15 הרזים (שמחה, צער, כבוד)</string>
+    <string name="mode_twenty">20 הרזים (כל ארבע הסדרות)</string>
+    <string name="mode_single">רז אחד בלבד</string>
+    <string name="summary_always">תמיד %1$s</string>
+    <string name="summary_only">רק %1$s</string>
+    <string name="summary_fifteen">15 הרזים</string>
+    <string name="summary_twenty">20 הרזים</string>
+
+    <!-- Eternal Rest placement -->
+    <string name="eternal_rest_none">ללא</string>
+    <string name="eternal_rest_each_decade">אחרי כל עשירייה</string>
+    <string name="eternal_rest_at_end">פעם אחת, לקראת הסוף</string>
+
+    <!-- Marian antiphon options (Latin titles stay Latin) -->
+    <string name="antiphon_none">ללא</string>
+    <string name="antiphon_seasonal">אוטומטי (לפי העונה הליטורגית)</string>
+
+    <!-- Language display -->
+    <string name="language_default_parenthesized">ברירת מחדל (%1$s)</string>
+    <string name="language_default_dash">ברירת מחדל — %1$s</string>
+
+    <!-- Rosary preset picker -->
+    <string name="rosary_title">מחרוזת הוורד הקדושה</string>
+    <string name="rosary_manage">ניהול</string>
+    <string name="rosary_default_preset">תבנית ברירת המחדל</string>
+    <string name="rosary_custom">מותאם אישית</string>
+    <string name="rosary_pray_any">תפילת מחרוזת חופשית</string>
+    <string name="rosary_options">אפשרויות המחרוזת</string>
+    <string name="rosary_save_as_preset">שמירה כתבנית</string>
+    <string name="rosary_presets">תבניות</string>
+    <string name="rosary_preset_name">שם התבנית</string>
+    <string name="rosary_praying">תפילת מחרוזת הוורד</string>
+
+    <!-- Rosary options editor -->
+    <string name="ro_which_mysteries">אילו רזים?</string>
+    <string name="ro_mysteries">רזים</string>
+    <string name="ro_specific_set">סדרה מסוימת</string>
+    <string name="ro_which_mystery">איזה רז</string>
+    <string name="ro_opening_section">תפילות פתיחה ועשיריות</string>
+    <string name="ro_apostles_creed">אני מאמין של השליחים</string>
+    <string name="ro_opening_prayers">״אבינו״ ושלוש ״שלום לך מרים״ בפתיחה</string>
+    <string name="ro_fatima">תפילת פאטימה אחרי כל עשירייה</string>
+    <string name="ro_faithful_departed">למען המאמינים שהלכו לעולמם</string>
+    <string name="ro_display_section">תצוגה</string>
+    <string name="ro_presenter_mode">מצב מנחה</string>
+    <string name="ro_presenter_hint">איחוד עשר ה״שלום לך מרים״ וה״כבוד לאב״ של כל עשירייה למסך אחד — שימושי למי שמוביל תפילה בציבור בעל־פה.</string>
+    <string name="ro_closing_section">תפילות סיום</string>
+    <string name="ro_marian_antiphon">אנטיפון מריאני</string>
+    <string name="ro_st_michael">תפילת מיכאל הקדוש</string>
+    <string name="ro_final_sign">אות הצלב לסיום</string>
+
+    <!-- Favorites -->
+    <string name="favorites_title">מועדפים</string>
+    <string name="favorites_add_kind">הוספת %1$s</string>
+    <string name="favorites_more_devotions">מסלולי תפילה נוספים</string>
+    <string name="favorites_repository_badge">מהמאגר</string>
+    <string name="favorites_import">ייבוא חבילת תפילה…</string>
+    <string name="favorites_get_community">מסלולים מהקהילה…</string>
+    <string name="favorites_import_error_title">לא ניתן לייבא את המסלול</string>
+    <string name="favorites_set_default">קביעה כברירת מחדל</string>
+    <string name="favorites_edit_desc">עריכת %1$s</string>
+    <string name="favorites_delete_desc">מחיקת %1$s</string>
+    <string name="favorites_add_favorite_desc">הוספת %1$s למועדפים</string>
+    <string name="favorites_remove_favorite_desc">הסרת %1$s מהמועדפים</string>
+    <string name="favorites_add_to_favorites">הוספה למועדפים</string>
+    <string name="favorites_remove_from_favorites">הסרה מהמועדפים</string>
+    <string name="favorites_reminders_desc">עריכת התזכורות של %1$s</string>
+    <string name="favorites_export_desc">ייצוא %1$s לעריכה</string>
+    <string name="favorites_remove_imported_desc">הסרת המסלול המיובא %1$s</string>
+
+    <!-- Favorite editor -->
+    <string name="editor_new_favorite">מועדף חדש</string>
+    <string name="editor_edit_favorite">עריכת מועדף</string>
+    <string name="editor_name">שם</string>
+    <string name="editor_name_hint">למשל: מחרוזת של בוקר</string>
+    <string name="editor_set_default_for">קביעה כברירת מחדל עבור %1$s</string>
+    <string name="editor_prayer_language">שפת התפילה</string>
+    <string name="editor_language">שפה</string>
+    <string name="editor_target">יעד</string>
+    <string name="editor_options">אפשרויות</string>
+
+    <!-- Reminders -->
+    <string name="reminders_title">תזכורות</string>
+    <string name="reminders_add">הוספת תזכורת</string>
+    <string name="reminders_delete_desc">מחיקת תזכורת</string>
+
+    <!-- Jesus Prayer -->
+    <string name="jp_title">תפילת ישוע</string>
+    <string name="jp_how_many">כמה פעמים?</string>
+    <string name="jp_repetitions">מספר חזרות</string>
+    <string name="jp_begin">התחלה</string>
+    <string name="jp_unbounded">ללא הגבלה</string>
+    <string name="jp_custom">מותאם אישית</string>
+    <string name="jp_count_times">‏%1$d×</string>
+    <string name="jp_times_prefix">‏× %1$d</string>
+    <string name="jp_favorite_name">תפילת ישוע %1$s (%2$s)</string>
+
+    <!-- Prayer step flow -->
+    <string name="flow_step_of">%1$d מתוך %2$d</string>
+    <string name="flow_show_transliteration">הצגת תעתיק</string>
+    <string name="flow_prayer_language">שפת התפילה</string>
+    <string name="flow_app_setting">הגדרת האפליקציה</string>
+    <string name="flow_day">יום</string>
+    <string name="flow_choose_form">בחירת נוסח</string>
+
+    <!-- Audio playback -->
+    <string name="audio_previous_chapter">הפרק הקודם</string>
+    <string name="audio_next_chapter">הפרק הבא</string>
+    <string name="audio_play">ניגון</string>
+    <string name="audio_pause">השהיה</string>
+
+    <!-- Rosary bead accessibility -->
+    <string name="bead_opening_cross">אות הצלב בפתיחה</string>
+    <string name="bead_closing_cross">אות הצלב לסיום</string>
+    <string name="bead_marian_antiphon">אנטיפון מריאני</string>
+    <string name="bead_opening_prayers">תפילות פתיחה</string>
+    <string name="bead_closing_prayers">תפילות סיום</string>
+    <string name="bead_decade_of">עשירייה %1$d מתוך %2$d</string>
+    <string name="bead_hail_mary_of">שלום לך מרים %1$d מתוך %2$d</string>
+    <string name="bead_progress">התקדמות המחרוזת. %1$s</string>
+
+    <!-- Repository browser -->
+    <string name="browse_title">מסלולי תפילה מהקהילה</string>
+    <string name="browse_search_label">חיפוש מסלולים</string>
+    <string name="browse_all">הכול</string>
+    <string name="browse_unreachable">לא ניתן להגיע למאגר.</string>
+    <string name="browse_install_error_title">לא ניתן להתקין את המסלול</string>
+    <string name="browse_install_error_generic">לא ניתן היה להתקין את המסלול.</string>
+    <string name="browse_no_match">אין מסלולים תואמים.</string>
+
+    <!-- Search -->
+    <string name="search_hint">מסלולים, קטגוריות, יוצרים</string>
+    <string name="search_on_device">במכשיר הזה</string>
+    <string name="search_no_device_match">שום דבר במכשיר אינו תואם.</string>
+    <string name="search_from_community">מהקהילה</string>
+
+    <!-- About -->
+    <string name="about_title">אודות Prosary</string>
+    <string name="about_tagline">מלווה לתפילת מחרוזת הוורד ולמסלולי תפילה קתוליים נוספים.</string>
+    <string name="about_typefaces">גופנים</string>
+    <string name="about_mystery_illustrations">איורי הרזים</string>
+    <string name="about_other_images">תמונות נוספות</string>
+    <string name="about_stations_illustrations">איורי דרך הצלב</string>
+    <string name="about_crown_illustration">איור הכתר הפרנציסקני</string>
+    <string name="about_sorrows_illustrations">איורי שבעת מכאובי מרים</string>
+    <string name="about_mercy_illustration">איור החסד האלוהי</string>
+    <string name="about_jesus_prayer_illustration">איור תפילת ישוע</string>
+    <string name="about_scripture_sources">מקורות כתבי הקודש</string>
+</resources>

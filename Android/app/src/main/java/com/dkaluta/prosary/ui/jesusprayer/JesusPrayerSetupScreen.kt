@@ -29,17 +29,27 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.JesusPrayerTarget
 
 /** UI-only choice for the setup segmented control — collapses into a plain
  * [JesusPrayerTarget.Count]/[JesusPrayerTarget.Unbounded] the moment Begin is tapped, so nothing
  * downstream ever sees "custom" as a distinct runtime value. */
-private enum class SetupOption(val displayName: String, val fixedCount: Int?) {
-    ThirtyThree("33", 33),
-    SixtySix("66", 66),
-    NinetyNine("99", 99),
-    Custom("Custom", null),
-    Unbounded("Unbounded", null),
+private enum class SetupOption(val fixedCount: Int?) {
+    ThirtyThree(33),
+    SixtySix(66),
+    NinetyNine(99),
+    Custom(null),
+    Unbounded(null);
+
+    /** Numeric options label as digits everywhere; the two word options localize. */
+    @Composable
+    fun displayName(): String = when (this) {
+        Custom -> stringResource(R.string.jp_custom)
+        Unbounded -> stringResource(R.string.jp_unbounded)
+        else -> fixedCount.toString()
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -71,10 +81,10 @@ fun JesusPrayerSetupScreen(onBack: () -> Unit, onBegin: (JesusPrayerTarget) -> U
         topBar = {
             TopAppBar(
                 scrollBehavior = topBarScroll,
-                title = { Text("The Jesus Prayer") },
+                title = { Text(stringResource(R.string.jp_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.common_back))
                     }
                 },
             )
@@ -84,7 +94,7 @@ fun JesusPrayerSetupScreen(onBack: () -> Unit, onBegin: (JesusPrayerTarget) -> U
             verticalArrangement = Arrangement.spacedBy(16.dp),
             modifier = Modifier.padding(paddingValues).padding(24.dp).fillMaxWidth(),
         ) {
-            Text("How many times?")
+            Text(stringResource(R.string.jp_how_many))
 
             SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
                 SetupOption.entries.forEachIndexed { index, option ->
@@ -102,7 +112,7 @@ fun JesusPrayerSetupScreen(onBack: () -> Unit, onBegin: (JesusPrayerTarget) -> U
                         icon = {},
                     ) {
                         Text(
-                            option.displayName,
+                            option.displayName(),
                             style = MaterialTheme.typography.labelMedium,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
@@ -115,7 +125,7 @@ fun JesusPrayerSetupScreen(onBack: () -> Unit, onBegin: (JesusPrayerTarget) -> U
                 OutlinedTextField(
                     value = customCountText,
                     onValueChange = { customCountText = it.filter(Char::isDigit) },
-                    label = { Text("Number of repetitions") },
+                    label = { Text(stringResource(R.string.jp_repetitions)) },
                     keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(keyboardType = KeyboardType.Number),
                     modifier = Modifier.fillMaxWidth(),
                 )
@@ -126,7 +136,7 @@ fun JesusPrayerSetupScreen(onBack: () -> Unit, onBegin: (JesusPrayerTarget) -> U
                 enabled = canBegin,
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                Text("Begin")
+                Text(stringResource(R.string.jp_begin))
             }
         }
     }

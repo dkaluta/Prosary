@@ -31,8 +31,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.content.repository.RepositoryBundle
 import com.dkaluta.prosary.content.repository.RepositoryClient
@@ -47,6 +50,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun SearchScreen(onLaunch: (LaunchTarget) -> Unit) {
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
     var query by remember { mutableStateOf("") }
     var repoBundles by remember { mutableStateOf<List<RepositoryBundle>>(emptyList()) }
     var busyIds by remember { mutableStateOf(setOf<String>()) }
@@ -57,7 +61,7 @@ fun SearchScreen(onLaunch: (LaunchTarget) -> Unit) {
     }
 
     @Suppress("UNUSED_EXPRESSION") generation
-    val localMatches = DevotionDirectory.all().filter { listing ->
+    val localMatches = DevotionDirectory.all(context).filter { listing ->
         query.isBlank() || listing.title.contains(query, ignoreCase = true) ||
             listing.tags.any { it.contains(query, ignoreCase = true) }
     }
@@ -75,7 +79,7 @@ fun SearchScreen(onLaunch: (LaunchTarget) -> Unit) {
     val topBarScroll = TopAppBarDefaults.pinnedScrollBehavior()
     Scaffold(
         modifier = Modifier.nestedScroll(topBarScroll.nestedScrollConnection),
-        topBar = { TopAppBar(title = { Text("Search") }, scrollBehavior = topBarScroll) },
+        topBar = { TopAppBar(title = { Text(stringResource(R.string.tab_search)) }, scrollBehavior = topBarScroll) },
     ) { paddingValues ->
         LazyColumn(
             modifier = Modifier.padding(paddingValues).fillMaxSize(),
@@ -86,13 +90,13 @@ fun SearchScreen(onLaunch: (LaunchTarget) -> Unit) {
                 OutlinedTextField(
                     value = query,
                     onValueChange = { query = it },
-                    label = { Text("Devotions, categories, authors") },
+                    label = { Text(stringResource(R.string.search_hint)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                 )
             }
             item(key = "localHeader") {
-                Text("On this device", style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
+                Text(stringResource(R.string.search_on_device), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
             }
             for (listing in localMatches) {
                 item(key = "local.${listing.id}") {
@@ -115,12 +119,12 @@ fun SearchScreen(onLaunch: (LaunchTarget) -> Unit) {
             }
             if (localMatches.isEmpty()) {
                 item(key = "localEmpty") {
-                    Text("Nothing on this device matches.", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(stringResource(R.string.search_no_device_match), color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
             if (communityMatches.isNotEmpty()) {
                 item(key = "communityHeader") {
-                    Text("From the community", style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
+                    Text(stringResource(R.string.search_from_community), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
                 }
                 for (bundle in communityMatches) {
                     item(key = "community.${bundle.id}") {
@@ -146,7 +150,7 @@ fun SearchScreen(onLaunch: (LaunchTarget) -> Unit) {
                                         busyIds = busyIds - bundle.id
                                         generation++
                                     }
-                                }) { Text("Install") }
+                                }) { Text(stringResource(R.string.common_install)) }
                             }
                         }
                     }

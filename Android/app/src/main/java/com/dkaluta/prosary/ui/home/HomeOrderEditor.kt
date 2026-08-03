@@ -24,8 +24,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import com.dkaluta.prosary.R
 
 /** The approved reorder pattern (not jiggle): rows with drag handles inside a dialog; the
  * dragged row rides the finger and swaps neighbors as it crosses their midlines. Order is
@@ -45,7 +47,7 @@ fun HomeOrderEditor(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Home order") },
+        title = { Text(stringResource(R.string.home_order_title)) },
         text = {
             Column {
                 ids.forEachIndexed { index, id ->
@@ -61,7 +63,7 @@ fun HomeOrderEditor(
                     ) {
                         Icon(
                             Icons.Filled.DragHandle,
-                            contentDescription = "Reorder ${labels[id]}",
+                            contentDescription = stringResource(R.string.home_order_reorder, labels[id] ?: ""),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.pointerInput(id) {
                                 detectDragGestures(
@@ -108,7 +110,7 @@ fun HomeOrderEditor(
                 }
             }
         },
-        confirmButton = { TextButton(onClick = onDismiss) { Text("Done") } },
-        dismissButton = { TextButton(onClick = { onReset(); onDismiss() }) { Text("Reset") } },
+        confirmButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.common_done)) } },
+        dismissButton = { TextButton(onClick = { onReset(); onDismiss() }) { Text(stringResource(R.string.common_reset)) } },
     )
 }

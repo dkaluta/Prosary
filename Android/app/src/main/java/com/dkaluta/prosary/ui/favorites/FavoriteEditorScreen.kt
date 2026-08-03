@@ -41,7 +41,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.JesusPrayerOptions
 import com.dkaluta.prosary.models.JesusPrayerTarget
 import com.dkaluta.prosary.models.LanguageCatalog
@@ -82,7 +84,7 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
         } else {
             val existing = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
             Prayer(
-                name = newFavoriteKind.defaultName,
+                name = context.getString(newFavoriteKind.defaultNameRes),
                 kind = newFavoriteKind,
                 isDefault = existing.none { it.kind == newFavoriteKind },
             )
@@ -104,7 +106,7 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
 
     fun save() {
         var toSave = prayer
-        if (toSave.name.isBlank()) toSave = toSave.copy(name = toSave.kind.defaultName)
+        if (toSave.name.isBlank()) toSave = toSave.copy(name = context.getString(toSave.kind.defaultNameRes))
         scope.launch {
             val needsPermission = toSave.reminders.any { it.isEnabled } &&
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
@@ -131,9 +133,9 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
         topBar = {
             TopAppBar(
                 scrollBehavior = topBarScroll,
-                title = { Text(if (isNew) "New Favorite" else "Edit Favorite") },
-                navigationIcon = { TextButton(onClick = onDone) { Text("Cancel") } },
-                actions = { TextButton(onClick = { save() }) { Text("Save") } },
+                title = { Text(if (isNew) stringResource(R.string.editor_new_favorite) else stringResource(R.string.editor_edit_favorite)) },
+                navigationIcon = { TextButton(onClick = onDone) { Text(stringResource(R.string.common_cancel)) } },
+                actions = { TextButton(onClick = { save() }) { Text(stringResource(R.string.common_save)) } },
             )
         },
     ) { padding ->
@@ -149,25 +151,25 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
                 OutlinedTextField(
                     value = prayer.name,
                     onValueChange = { prayer = prayer.copy(name = it) },
-                    label = { Text("Name") },
-                    placeholder = { Text("e.g. Morning Rosary") },
+                    label = { Text(stringResource(R.string.editor_name)) },
+                    placeholder = { Text(stringResource(R.string.editor_name_hint)) },
                     modifier = Modifier.fillMaxWidth(),
                 )
-                SwitchRow("Set as default for ${prayer.kind.displayName}", prayer.isDefault) {
+                SwitchRow(stringResource(R.string.editor_set_default_for, stringResource(prayer.kind.displayNameRes)), prayer.isDefault) {
                     prayer = prayer.copy(isDefault = it)
                 }
             }
 
-            FormSection(title = "Prayer Language") {
+            FormSection(title = stringResource(R.string.editor_prayer_language)) {
                 val defaultName = LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).nativeName
                 val languageOptions = listOf(LanguageCatalog.defaultSentinel) + LanguageCatalog.all.map { it.code }
                 OptionPickerField(
-                    label = "Language",
+                    label = stringResource(R.string.editor_language),
                     options = languageOptions,
                     selected = prayer.languageCode,
                     optionLabel = { code ->
                         if (code == LanguageCatalog.defaultSentinel) {
-                            "Default — $defaultName"
+                            context.getString(R.string.language_default_dash, defaultName)
                         } else {
                             LanguageCatalog.resolve(code).nativeName
                         }
@@ -185,9 +187,9 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
                             .fillMaxWidth()
                             .clickable { showingRosaryOptions = true },
                     ) {
-                        Text("Rosary Options", modifier = Modifier.weight(1f))
+                        Text(stringResource(R.string.rosary_options), modifier = Modifier.weight(1f))
                         Text(
-                            prayer.rosary.mysterySelectionSummary,
+                            prayer.rosary.mysterySelectionSummary(context),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
@@ -197,12 +199,12 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
             }
 
             if (prayer.kind == PrayerKind.JesusPrayer) {
-                FormSection(title = "Target") {
+                FormSection(title = stringResource(R.string.editor_target)) {
                     val options = listOf(
                         JesusPrayerTarget.Count(33) to "33",
                         JesusPrayerTarget.Count(66) to "66",
                         JesusPrayerTarget.Count(99) to "99",
-                        JesusPrayerTarget.Unbounded to "Unbounded",
+                        JesusPrayerTarget.Unbounded to stringResource(R.string.jp_unbounded),
                     )
                     SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
                         options.forEachIndexed { index, (target, label) ->

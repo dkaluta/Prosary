@@ -58,6 +58,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
@@ -169,7 +170,7 @@ fun PrayerStepFlowScreen(
                     title = { Text(title) },
                     navigationIcon = {
                         IconButton(onClick = onNavigateUp) {
-                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.common_back))
                         }
                     },
                     actions = {
@@ -177,7 +178,7 @@ fun PrayerStepFlowScreen(
                         IconButton(onClick = { autoAdvanceMenuExpanded = true }) {
                             Icon(
                                 Icons.Filled.Timer,
-                                contentDescription = "Auto-advance",
+                                contentDescription = stringResource(R.string.settings_auto_advance),
                                 tint = if (autoAdvanceSeconds > 0) MaterialTheme.colorScheme.primary else LocalContentColor.current,
                             )
                         }
@@ -185,9 +186,8 @@ fun PrayerStepFlowScreen(
                             expanded = autoAdvanceMenuExpanded,
                             onDismissRequest = { autoAdvanceMenuExpanded = false },
                         ) {
-                            for ((seconds, label) in listOf(
-                                0 to "Off", 3 to "Every 3 seconds", 5 to "Every 5 seconds", 10 to "Every 10 seconds",
-                            )) {
+                            for (seconds in listOf(0, 3, 5, 10)) {
+                                val label = if (seconds == 0) stringResource(R.string.auto_advance_off) else stringResource(R.string.auto_advance_every, seconds)
                                 DropdownMenuItem(
                                     text = { Text(label) },
                                     leadingIcon = if (autoAdvanceSeconds == seconds) {
@@ -264,7 +264,7 @@ fun PrayerStepFlowScreen(
                         enabled = canGoBack,
                         contentPadding = if (isCompactHeight) compactButtonPadding else ButtonDefaults.ContentPadding,
                     ) {
-                        Text("Back")
+                        Text(stringResource(R.string.common_back))
                     }
                     Spacer(modifier = Modifier.weight(1f))
                     if (centralActionLabel == null) {
@@ -272,7 +272,7 @@ fun PrayerStepFlowScreen(
                             onClick = onNext,
                             contentPadding = if (isCompactHeight) compactButtonPadding else ButtonDefaults.ContentPadding,
                         ) {
-                            Text(if (isLastStep) "Finish" else "Next")
+                            Text(if (isLastStep) stringResource(R.string.common_finish) else stringResource(R.string.common_next))
                         }
                     }
                 }
@@ -293,7 +293,7 @@ private fun ProgressHeader(step: RosaryStep?, currentIndex: Int, totalSteps: Int
             totalSteps != null && totalSteps > 0 -> {
                 LinearProgressIndicator(progress = { (currentIndex + 1).toFloat() / totalSteps }, modifier = Modifier.fillMaxWidth())
                 Text(
-                    "${currentIndex + 1} of $totalSteps",
+                    stringResource(R.string.flow_step_of, currentIndex + 1, totalSteps),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -469,7 +469,7 @@ private fun TextBlock(
                 IconButton(onClick = { TransliterationState.shows = !TransliterationState.shows }) {
                     Icon(
                         Icons.Filled.Translate,
-                        contentDescription = "Show transliteration",
+                        contentDescription = stringResource(R.string.flow_show_transliteration),
                         tint = if (TransliterationState.shows) MaterialTheme.colorScheme.primary else LocalContentColor.current,
                     )
                 }

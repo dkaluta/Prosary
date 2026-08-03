@@ -41,8 +41,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import androidx.compose.ui.platform.LocalContext
 import com.dkaluta.prosary.content.repository.RepositoryBundle
@@ -60,6 +63,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true) {
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
     var bundles by remember { mutableStateOf<List<RepositoryBundle>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var loadError by remember { mutableStateOf<String?>(null) }
@@ -83,7 +87,7 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
             // over a perfectly healthy catalog.
             throw cancelled
         } catch (error: Exception) {
-            loadError = error.message ?: "The repository could not be reached."
+            loadError = error.message ?: context.getString(R.string.browse_unreachable)
         } finally {
             isRefreshing = false
             isLoading = false
@@ -112,11 +116,11 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
         topBar = {
             TopAppBar(
                 scrollBehavior = topBarScroll,
-                title = { Text("Community Devotions") },
+                title = { Text(stringResource(R.string.browse_title)) },
                 navigationIcon = {
                     if (showsBackButton) {
                         IconButton(onClick = onBack) {
-                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.common_back))
                         }
                     }
                 },
@@ -133,7 +137,7 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
                 verticalArrangement = Arrangement.Center,
             ) {
                 Text(loadError ?: "", textAlign = androidx.compose.ui.text.style.TextAlign.Center)
-                TextButton(onClick = { reloadToken++ }) { Text("Retry") }
+                TextButton(onClick = { reloadToken++ }) { Text(stringResource(R.string.common_retry)) }
             }
             else -> PullToRefreshBox(
                 isRefreshing = isRefreshing,
@@ -149,7 +153,7 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
                     OutlinedTextField(
                         value = searchText,
                         onValueChange = { searchText = it },
-                        label = { Text("Search devotions") },
+                        label = { Text(stringResource(R.string.browse_search_label)) },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth(),
                     )
@@ -161,7 +165,7 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
                                 FilterChip(
                                     selected = selectedTag == null,
                                     onClick = { selectedTag = null },
-                                    label = { Text("All") },
+                                    label = { Text(stringResource(R.string.browse_all)) },
                                 )
                             }
                             items(allTags) { tag ->
@@ -191,7 +195,7 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
                                 RepositoryInstallStamps.record(context, bundle.id, bundle.updatedAt)
                                 installedGeneration++
                             }.onFailure { error ->
-                                installError = error.message ?: "Could not install the devotion."
+                                installError = error.message ?: context.getString(R.string.browse_install_error_generic)
                             }
                             busyIds = busyIds - bundle.id
                         }
@@ -211,17 +215,17 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
                                 when {
                                     bundle.id in busyIds -> CircularProgressIndicator(Modifier.width(24.dp))
                                     hasUpdate -> Button(onClick = { installBundle(replacingExisting = true) }) {
-                                        Text("Update")
+                                        Text(stringResource(R.string.common_update))
                                     }
                                     isInstalled -> Row(verticalAlignment = Alignment.CenterVertically) {
                                         Icon(Icons.Filled.Check, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
                                         Text(
-                                            "Installed",
+                                            stringResource(R.string.common_installed),
                                             style = MaterialTheme.typography.bodySmall,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         )
                                     }
-                                    else -> Button(onClick = { installBundle(replacingExisting = false) }) { Text("Install") }
+                                    else -> Button(onClick = { installBundle(replacingExisting = false) }) { Text(stringResource(R.string.common_install)) }
                                 }
                             }
                             if (bundle.description.isNotEmpty()) {
@@ -244,7 +248,7 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
                 if (filtered.isEmpty()) {
                     item(key = "empty") {
                         Text(
-                            "No devotions match.",
+                            stringResource(R.string.browse_no_match),
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.padding(8.dp),
                         )
@@ -258,9 +262,9 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
     installError?.let { message ->
         AlertDialog(
             onDismissRequest = { installError = null },
-            title = { Text("Could Not Install Devotion") },
+            title = { Text(stringResource(R.string.browse_install_error_title)) },
             text = { Text(message) },
-            confirmButton = { TextButton(onClick = { installError = null }) { Text("OK") } },
+            confirmButton = { TextButton(onClick = { installError = null }) { Text(stringResource(R.string.common_ok)) } },
         )
     }
 }

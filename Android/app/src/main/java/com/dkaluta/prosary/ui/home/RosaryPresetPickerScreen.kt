@@ -38,8 +38,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.models.RosaryOptions
@@ -61,6 +64,7 @@ fun RosaryPresetPickerScreen(
 ) {
     val services = LocalAppServices.current
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     var presets by remember { mutableStateOf<List<Prayer>>(emptyList()) }
     var options by remember { mutableStateOf(RosaryOptions()) }
@@ -105,13 +109,13 @@ fun RosaryPresetPickerScreen(
         topBar = {
             TopAppBar(
                 scrollBehavior = topBarScroll,
-                title = { Text("The Holy Rosary") },
+                title = { Text(stringResource(R.string.rosary_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.common_back))
                     }
                 },
-                actions = { TextButton(onClick = onOpenFavorites) { Text("Manage") } },
+                actions = { TextButton(onClick = onOpenFavorites) { Text(stringResource(R.string.rosary_manage)) } },
             )
         },
     ) { padding ->
@@ -124,11 +128,11 @@ fun RosaryPresetPickerScreen(
                 .padding(16.dp),
         ) {
             defaultPreset?.let { preset ->
-                Text("Default Preset", style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
+                Text(stringResource(R.string.rosary_default_preset), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
                 PresetCard(preset, prominent = true) { onPrayPreset(preset.id) }
             }
 
-            Text("Custom", style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
+            Text(stringResource(R.string.rosary_custom), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
             Column(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier
@@ -137,16 +141,16 @@ fun RosaryPresetPickerScreen(
                     .background(MaterialTheme.colorScheme.surfaceContainerHigh)
                     .padding(14.dp),
             ) {
-                Text("Pray any Rosary", style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.rosary_pray_any), style = MaterialTheme.typography.titleMedium)
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable { showingOptionsEditor = true },
                 ) {
-                    Text("Rosary Options", modifier = Modifier.weight(1f))
+                    Text(stringResource(R.string.rosary_options), modifier = Modifier.weight(1f))
                     Text(
-                        options.mysterySelectionSummary,
+                        options.mysterySelectionSummary(context),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -156,16 +160,16 @@ fun RosaryPresetPickerScreen(
                     Button(
                         onClick = { onPrayAdHoc(Prayer(kind = PrayerKind.Rosary, rosary = options)) },
                         modifier = Modifier.weight(1f),
-                    ) { Text("Pray") }
+                    ) { Text(stringResource(R.string.common_pray)) }
                     OutlinedButton(
                         onClick = { showingSaveDialog = true },
                         modifier = Modifier.weight(1f),
-                    ) { Text("Save as Preset") }
+                    ) { Text(stringResource(R.string.rosary_save_as_preset)) }
                 }
             }
 
             if (otherPresets.isNotEmpty()) {
-                Text("Presets", style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
+                Text(stringResource(R.string.rosary_presets), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
                 for (preset in otherPresets) {
                     PresetCard(preset, prominent = false) { onPrayPreset(preset.id) }
                 }
@@ -176,12 +180,12 @@ fun RosaryPresetPickerScreen(
     if (showingSaveDialog) {
         AlertDialog(
             onDismissRequest = { showingSaveDialog = false },
-            title = { Text("Save as Preset") },
+            title = { Text(stringResource(R.string.rosary_save_as_preset)) },
             text = {
                 OutlinedTextField(
                     value = presetName,
                     onValueChange = { presetName = it },
-                    label = { Text("Preset name") },
+                    label = { Text(stringResource(R.string.rosary_preset_name)) },
                     singleLine = true,
                 )
             },
@@ -191,7 +195,7 @@ fun RosaryPresetPickerScreen(
                     scope.launch {
                         services.presetStore.save(
                             Prayer(
-                                name = presetName.trim().ifEmpty { PrayerKind.Rosary.defaultName },
+                                name = presetName.trim().ifEmpty { context.getString(PrayerKind.Rosary.defaultNameRes) },
                                 kind = PrayerKind.Rosary,
                                 // Never steal the default slot unless it's the first preset.
                                 isDefault = presets.isEmpty(),
@@ -201,9 +205,9 @@ fun RosaryPresetPickerScreen(
                         presetName = ""
                         reload()
                     }
-                }) { Text("Save") }
+                }) { Text(stringResource(R.string.common_save)) }
             },
-            dismissButton = { TextButton(onClick = { showingSaveDialog = false }) { Text("Cancel") } },
+            dismissButton = { TextButton(onClick = { showingSaveDialog = false }) { Text(stringResource(R.string.common_cancel)) } },
         )
     }
 }
@@ -223,10 +227,10 @@ private fun PresetCard(preset: Prayer, prominent: Boolean, onPray: () -> Unit) {
             style = if (prominent) MaterialTheme.typography.titleLarge else MaterialTheme.typography.titleMedium,
         )
         Text(
-            "${preset.rosary.mysterySelectionSummary} • ${preset.languageDisplayName}",
+            "${preset.rosary.mysterySelectionSummary(LocalContext.current)} • ${preset.languageDisplayName(LocalContext.current)}",
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
-        Button(onClick = onPray, modifier = Modifier.fillMaxWidth()) { Text("Pray") }
+        Button(onClick = onPray, modifier = Modifier.fillMaxWidth()) { Text(stringResource(R.string.common_pray)) }
     }
 }

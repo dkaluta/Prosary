@@ -1,5 +1,6 @@
 package com.dkaluta.prosary.models
 
+import android.content.Context
 import java.util.UUID
 
 /** A saved, user-configurable prayer session (a "Favorite"). [kind] selects the prayer type;
@@ -49,9 +50,12 @@ data class Prayer(
     val languageNativeName: String get() = LanguageCatalog.resolve(languageCode).nativeName
 
     /** Display string for list rows — shows "Default (Latina)" for the sentinel, plain name otherwise. */
-    val languageDisplayName: String
-        get() = if (languageCode == LanguageCatalog.defaultSentinel) {
-            "Default (${LanguageCatalog.resolve(languageCode).nativeName})"
+    fun languageDisplayName(context: Context): String =
+        if (languageCode == LanguageCatalog.defaultSentinel) {
+            context.getString(
+                com.dkaluta.prosary.R.string.language_default_parenthesized,
+                LanguageCatalog.resolve(languageCode).nativeName,
+            )
         } else {
             LanguageCatalog.resolve(languageCode).nativeName
         }

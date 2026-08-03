@@ -26,9 +26,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.audio.AudioPlaybackController
 
 /**
@@ -60,18 +62,18 @@ fun AudioPlaybackBar(
             modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
         ) {
             IconButton(onClick = { controller.previousChapter() }, enabled = chapterCount > 1) {
-                Icon(Icons.Filled.SkipPrevious, contentDescription = "Previous chapter")
+                Icon(Icons.Filled.SkipPrevious, contentDescription = stringResource(R.string.audio_previous_chapter))
             }
             IconButton(onClick = { controller.playPause() }) {
                 Icon(
                     if (controller.isPlaying) Icons.Filled.Pause else Icons.Filled.PlayArrow,
-                    contentDescription = if (controller.isPlaying) "Pause" else "Play",
+                    contentDescription = if (controller.isPlaying) stringResource(R.string.audio_pause) else stringResource(R.string.audio_play),
                     tint = seasonColor,
                     modifier = Modifier.size(34.dp),
                 )
             }
             IconButton(onClick = { controller.nextChapter() }, enabled = chapterCount > 1) {
-                Icon(Icons.Filled.SkipNext, contentDescription = "Next chapter")
+                Icon(Icons.Filled.SkipNext, contentDescription = stringResource(R.string.audio_next_chapter))
             }
 
             Column(modifier = Modifier.weight(1f)) {

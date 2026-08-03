@@ -33,7 +33,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.HomeOrder
@@ -67,10 +69,10 @@ fun SettingsScreen(onBack: () -> Unit) {
         topBar = {
             TopAppBar(
                 scrollBehavior = topBarScroll,
-                title = { Text("Settings") },
+                title = { Text(stringResource(R.string.common_settings)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.common_back))
                     }
                 },
             )
@@ -85,7 +87,7 @@ fun SettingsScreen(onBack: () -> Unit) {
                 .padding(16.dp),
         ) {
             OptionPickerField(
-                label = "Default Prayer Language",
+                label = stringResource(R.string.settings_default_prayer_language),
                 options = LanguageCatalog.all,
                 selected = LanguageCatalog.resolve(defaultLanguageCode),
                 optionLabel = { it.nativeName },
@@ -95,15 +97,15 @@ fun SettingsScreen(onBack: () -> Unit) {
                 },
             )
 
-            SectionHeader("Praying")
+            SectionHeader(stringResource(R.string.settings_praying))
 
             // The same app-wide setting the flow toolbars offer — surfaced here so it's
             // discoverable outside a session.
             OptionPickerField(
-                label = "Auto-advance",
+                label = stringResource(R.string.settings_auto_advance),
                 options = listOf(0, 3, 5, 10),
                 selected = autoAdvanceSeconds,
-                optionLabel = { if (it == 0) "Off" else "Every $it seconds" },
+                optionLabel = { if (it == 0) context.getString(R.string.auto_advance_off) else context.getString(R.string.auto_advance_every, it) },
                 onSelect = {
                     autoAdvanceSeconds = it
                     AppSettings.setAutoAdvanceSeconds(it)
@@ -117,12 +119,12 @@ fun SettingsScreen(onBack: () -> Unit) {
                 },
                 enabled = homeOrderIsCustom,
                 modifier = Modifier.fillMaxWidth(),
-            ) { Text("Reset Home Order") }
+            ) { Text(stringResource(R.string.settings_reset_home_order)) }
 
-            SectionHeader("Downloads")
+            SectionHeader(stringResource(R.string.settings_downloads))
 
             Text(
-                "Installed devotions: $installedCount",
+                stringResource(R.string.settings_installed_devotions, installedCount),
                 style = MaterialTheme.typography.bodyLarge,
             )
 
@@ -136,9 +138,9 @@ fun SettingsScreen(onBack: () -> Unit) {
             ) {
                 Text(
                     if (audioCacheBytes > 0L) {
-                        "Clear Audio Cache (${Formatter.formatShortFileSize(context, audioCacheBytes)})"
+                        stringResource(R.string.settings_clear_audio_cache_size, Formatter.formatShortFileSize(context, audioCacheBytes))
                     } else {
-                        "Clear Audio Cache"
+                        stringResource(R.string.settings_clear_audio_cache)
                     },
                 )
             }
@@ -150,24 +152,24 @@ fun SettingsScreen(onBack: () -> Unit) {
                     contentColor = MaterialTheme.colorScheme.error,
                 ),
                 modifier = Modifier.fillMaxWidth(),
-            ) { Text("Remove All Downloaded Devotions…") }
+            ) { Text(stringResource(R.string.settings_remove_all)) }
 
             Text(
-                "Built-in devotions are never removed. Removing a downloaded devotion also removes its favorite.",
+                stringResource(R.string.settings_downloads_footer),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
 
-            SectionHeader("Links")
+            SectionHeader(stringResource(R.string.settings_links))
 
             TextButton(onClick = { uriHandler.openUri("https://prayers.prosary.app") }) {
-                Text("Community repository")
+                Text(stringResource(R.string.settings_repository_site))
             }
             TextButton(onClick = { uriHandler.openUri("https://compose.prosary.app") }) {
-                Text("Compose a devotion")
+                Text(stringResource(R.string.settings_compose_site))
             }
             TextButton(onClick = { uriHandler.openUri("https://prosary.app/privacy") }) {
-                Text("Privacy policy")
+                Text(stringResource(R.string.settings_privacy_policy))
             }
         }
     }
@@ -175,8 +177,8 @@ fun SettingsScreen(onBack: () -> Unit) {
     if (confirmsRemoveAll) {
         AlertDialog(
             onDismissRequest = { confirmsRemoveAll = false },
-            title = { Text("Remove all downloaded devotions?") },
-            text = { Text("Devotions from the repository can be downloaded again; hand-imported files cannot.") },
+            title = { Text(stringResource(R.string.settings_remove_all_title)) },
+            text = { Text(stringResource(R.string.settings_remove_all_message)) },
             confirmButton = {
                 TextButton(
                     onClick = {
@@ -184,10 +186,10 @@ fun SettingsScreen(onBack: () -> Unit) {
                         installedCount = PrayerPackStore.installedBundleIds().size
                         confirmsRemoveAll = false
                     },
-                ) { Text("Remove All", color = MaterialTheme.colorScheme.error) }
+                ) { Text(stringResource(R.string.settings_remove_all_confirm), color = MaterialTheme.colorScheme.error) }
             },
             dismissButton = {
-                TextButton(onClick = { confirmsRemoveAll = false }) { Text("Cancel") }
+                TextButton(onClick = { confirmsRemoveAll = false }) { Text(stringResource(R.string.common_cancel)) }
             },
         )
     }

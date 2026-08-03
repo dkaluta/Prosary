@@ -1,5 +1,8 @@
 package com.dkaluta.prosary.models
 
+import androidx.annotation.StringRes
+import com.dkaluta.prosary.R
+
 /** Discriminant for the type of a saved prayer session. Only the Rosary (deeply configurable,
  * options/calendar-driven) and the Jesus Prayer (a repetition counter with no steps) warrant
  * their own cases; every other devotion is [Custom]. */
@@ -19,18 +22,20 @@ enum class PrayerKind {
      * [PrayerKind] value can't carry per-bundle data. */
     Custom;
 
-    val displayName: String
+    @get:StringRes
+    val displayNameRes: Int
         get() = when (this) {
-            Rosary -> "Rosary"
-            JesusPrayer -> "Jesus Prayer"
-            Custom -> "Devotion"
+            Rosary -> R.string.kind_rosary
+            JesusPrayer -> R.string.kind_jesus_prayer
+            Custom -> R.string.kind_devotion
         }
 
     /** Default name suggested when the user creates a new favorite of this kind. */
-    val defaultName: String
+    @get:StringRes
+    val defaultNameRes: Int
         get() = when (this) {
-            Rosary -> "My Rosary"
-            JesusPrayer -> "Jesus Prayer"
-            Custom -> "Devotion"
+            Rosary -> R.string.kind_default_name_rosary
+            JesusPrayer -> R.string.kind_jesus_prayer
+            Custom -> R.string.kind_devotion
         }
 }

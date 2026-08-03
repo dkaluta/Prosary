@@ -2595,6 +2595,17 @@
         }
       }
     },
+    "prayerFlow.transliteration" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Show transliteration"
+          }
+        }
+      }
+    },
     "prayerKind.custom" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -3042,6 +3053,39 @@
         }
       }
     },
+    "settings.aboutHeader" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Links"
+          }
+        }
+      }
+    },
+    "settings.clearAudioCache" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Clear Audio Cache"
+          }
+        }
+      }
+    },
+    "settings.composeSite" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Compose a devotion"
+          }
+        }
+      }
+    },
     "settings.defaultLanguage" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3059,6 +3103,39 @@
         }
       }
     },
+    "settings.downloadsFooter" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Built-in devotions are never removed. Removing a downloaded devotion also removes its favorite."
+          }
+        }
+      }
+    },
+    "settings.downloadsHeader" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Downloads"
+          }
+        }
+      }
+    },
+    "settings.installedDevotions" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Installed devotions"
+          }
+        }
+      }
+    },
     "settings.prayerLanguageHeader" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3072,6 +3149,94 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "שפת תפילה"
+          }
+        }
+      }
+    },
+    "settings.prayingHeader" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Praying"
+          }
+        }
+      }
+    },
+    "settings.privacyPolicy" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy policy"
+          }
+        }
+      }
+    },
+    "settings.removeAllDownloads" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Remove All Downloaded Devotions…"
+          }
+        }
+      }
+    },
+    "settings.removeAllDownloads.confirm" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Remove All"
+          }
+        }
+      }
+    },
+    "settings.removeAllDownloads.message" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Devotions from the repository can be downloaded again; hand-imported files cannot."
+          }
+        }
+      }
+    },
+    "settings.removeAllDownloads.title" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Remove all downloaded devotions?"
+          }
+        }
+      }
+    },
+    "settings.repositorySite" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Community repository"
+          }
+        }
+      }
+    },
+    "settings.resetHomeOrder" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Reset Home Order"
           }
         }
       }
