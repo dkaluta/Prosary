@@ -59,6 +59,7 @@ struct HomeView: View {
   /// Bumped whenever the saved order changes so the grid re-derives.
   @State private var orderGeneration = 0
   @State private var showsOrderEditor = false
+  @State private var showsSettings = false
 
   private var devotionCards: [DevotionCard] {
     _ = orderGeneration
@@ -176,10 +177,33 @@ struct HomeView: View {
     // The tab shell carries the app's identity now — the bar shows the section name, and the
     // old bottom Favorites button / About link become toolbar icons.
     .navigationTitle(String(localized: "tabs.pray", defaultValue: "Pray"))
+    #if !os(macOS)
+    .sheet(isPresented: $showsSettings) {
+      NavigationStack {
+        SettingsView()
+          .navigationTitle(String(localized: "settings.title", defaultValue: "Settings"))
+          .navigationBarTitleDisplayMode(.inline)
+          .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+              Button(String(localized: "favoriteEditor.done", defaultValue: "Done")) { showsSettings = false }
+            }
+          }
+      }
+    }
+    #endif
     .sheet(isPresented: $showsOrderEditor) {
       HomeOrderEditor(cards: devotionCards) { orderGeneration += 1 }
     }
     .toolbar {
+      #if !os(macOS)
+      ToolbarItem(placement: .primaryAction) {
+        Button { showsSettings = true } label: {
+          Image(systemName: "gearshape")
+        }
+        .accessibilityLabel(String(localized: "settings.title", defaultValue: "Settings"))
+        .accessibilityIdentifier("settingsButton")
+      }
+      #endif
       ToolbarItem(placement: .primaryAction) {
         Button { showsOrderEditor = true } label: {
           Image(systemName: "arrow.up.arrow.down")
