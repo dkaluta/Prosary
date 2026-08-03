@@ -149,6 +149,13 @@
            FontFamily="{x:Bind ViewModel.AcclamationFontFamily, Mode=OneWay}"
                                FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
                                TextWrapping="Wrap" Margin="0,0,0,12" />
+                    <!-- v0.7 reading aid: swap the body for its transliteration. -->
+                    <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"
+                            Visibility="{x:Bind ViewModel.HasTransliteration, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                            Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
+                            ToolTipService.ToolTip="Show transliteration">
+                        <FontIcon Glyph="&#xE8C1;" FontSize="14" />
+                    </Button>
                     <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
                                FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
                                FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
@@ -222,6 +229,13 @@
            FontFamily="{x:Bind ViewModel.AcclamationFontFamily, Mode=OneWay}"
                                FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
                                TextWrapping="Wrap" Margin="0,0,0,12" />
+                    <!-- v0.7 reading aid: swap the body for its transliteration. -->
+                    <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"
+                            Visibility="{x:Bind ViewModel.HasTransliteration, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                            Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
+                            ToolTipService.ToolTip="Show transliteration">
+                        <FontIcon Glyph="&#xE8C1;" FontSize="14" />
+                    </Button>
                     <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
                                FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
                                FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"

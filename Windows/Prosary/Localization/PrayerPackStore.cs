@@ -43,6 +43,9 @@ public static class PrayerPackStore
     /// keeps each bundle's own keys addressable per bundle, which is how a generic devotion's
     /// <c>devotion.json</c> resolves bundle-local body text. See <see cref="ResolveBodyText"/>.</summary>
     private static readonly Dictionary<string, Dictionary<string, Dictionary<string, string>>> RawContentByBundle = new();
+
+    /// <summary>bundleId → language → prayer key → transliterated text (v0.7 reading aid).</summary>
+    private static readonly Dictionary<string, Dictionary<string, Dictionary<string, string>>> TransliterationsByBundle = new();
     private static readonly Dictionary<string, CustomDevotionDefinition> DefinitionByBundle = new();
     private static readonly Dictionary<string, List<CustomDevotionOption>> OptionsByBundle = new();
     private static readonly Dictionary<string, List<DevotionAudioTrack>> AudioTracksByBundle = new();
@@ -190,6 +193,7 @@ public static class PrayerPackStore
         InfoByBundle.Remove(id);
         OptionsByBundle.Remove(id);
         AudioTracksByBundle.Remove(id);
+        TransliterationsByBundle.Remove(id);
         PackSourceByBundle.Remove(id);
     }
 
@@ -239,6 +243,17 @@ public static class PrayerPackStore
     /// the sentinel/unknown language prays in Latin, not raw keys); (2) else the ordinary
     /// PascalCased <see cref="PrayerTranslations.Get"/> chain — this is how shared "main" keys
     /// (e.g. "gloriaPatri") resolve, and it ends in the raw-key last resort.</summary>
+    /// <summary>The v0.7 reading aid: this key's text transliterated into another script, if
+    /// the bundle's language file carries one. No fallback chain — a transliteration belongs
+    /// to exactly the language it transliterates.</summary>
+    public static string? Transliteration(string bundleId, string? languageCode, string key) =>
+        languageCode is not null
+            && TransliterationsByBundle.TryGetValue(bundleId, out var byLanguage)
+            && byLanguage.TryGetValue(languageCode, out var map)
+            && map.TryGetValue(key, out var text)
+        ? text
+        : null;
+
     public static string ResolveBodyText(string bundleId, string? languageCode, string key)
     {
         if (RawContentByBundle.TryGetValue(bundleId, out var byLanguage))
@@ -392,6 +407,15 @@ public static class PrayerPackStore
                 RawContentByBundle[manifest.Id] = byLanguage;
             }
             byLanguage[language] = rawContent;
+            if (content.Transliterations is { Count: > 0 } transliterations)
+            {
+                if (!TransliterationsByBundle.TryGetValue(manifest.Id, out var translitByLanguage))
+                {
+                    translitByLanguage = new Dictionary<string, Dictionary<string, string>>();
+                    TransliterationsByBundle[manifest.Id] = translitByLanguage;
+                }
+                translitByLanguage[language] = transliterations;
+            }
 
             var prayers = PrayerOverrides.TryGetValue(language, out var existingPrayers) ? existingPrayers : new Dictionary<string, string>();
             foreach (var (key, text) in rawContent)
@@ -495,7 +519,11 @@ public static class PrayerPackStore
         Dictionary<string, string>? ReminderPresetFooter = null,
         List<string>? Tags = null);
 
-    private sealed record PackContent(Dictionary<string, string>? Prayers, Dictionary<string, MysteryText>? Mysteries);
+    private sealed record PackContent(
+        Dictionary<string, string>? Prayers,
+        Dictionary<string, MysteryText>? Mysteries,
+        // Optional reading aid (v0.7): prayer key -> the same text in another script.
+        Dictionary<string, string>? Transliterations = null);
 
     private sealed record PackOptions(List<CustomDevotionOption> Options);
 

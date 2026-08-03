@@ -172,6 +172,22 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     [ObservableProperty]
     private bool _canSkipAudioChapter;
 
+    // --- Transliteration (v0.7 reading aid): swap the body for the author's other-script
+    // --- rendering; sticky across steps for pray-along sessions. ---
+
+    [ObservableProperty]
+    private bool _hasTransliteration;
+
+    [ObservableProperty]
+    private bool _showsTransliteration;
+
+    [RelayCommand]
+    private void ToggleTransliteration()
+    {
+        ShowsTransliteration = !ShowsTransliteration;
+        RenderCurrentStep();
+    }
+
     public string MysteryImageFile => PrayerPackStore.ImageFileUri(MysteryImageKey) ?? (MysteryImageKey == "cross_placeholder"
         ? "ms-appx:///Assets/Images/cross_placeholder.png"
         : $"ms-appx:///Assets/Images/{MysteryImageKey}.jpg");
@@ -381,7 +397,10 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         var step = _steps[_index];
         Header = step.Title;
         Subtitle = step.Subtitle;
-        Body = step.Body;
+        HasTransliteration = step.TransliteratedBody is not null;
+        Body = ShowsTransliteration && step.TransliteratedBody is { } transliterated
+            ? transliterated
+            : step.Body;
         Acclamation = step.Acclamation ?? string.Empty;
         HasAcclamation = step.Acclamation is not null;
         MysteryImageKey = step.Mystery?.ImageKey ?? step.ImageOverrideKey ?? "cross_placeholder";
