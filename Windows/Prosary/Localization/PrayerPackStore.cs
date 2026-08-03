@@ -110,7 +110,19 @@ public static class PrayerPackStore
         var resolved = Prosary.Models.LanguageCatalog.Resolve(
             chosen ?? Prosary.Models.LanguageCatalog.DefaultSentinel).Code;
         var available = Info(bundleId)?.Languages ?? [];
-        return available.Count == 0 || available.Contains(resolved) ? resolved : available[0];
+        if (available.Count == 0 || available.Contains(resolved))
+        {
+            return resolved;
+        }
+
+        // A community variant keeps its code when the bundle ships its base language —
+        // bundle text falls back per key.
+        if (Prosary.Models.LanguageCatalog.BaseLanguage(resolved) is { } baseLang && available.Contains(baseLang))
+        {
+            return resolved;
+        }
+
+        return available[0];
     }
 
     public sealed class InstallException : Exception
@@ -262,6 +274,13 @@ public static class PrayerPackStore
                 byLanguage.TryGetValue(languageCode, out var content) && content.TryGetValue(key, out var text))
             {
                 return text;
+            }
+
+            // Community variants ("he-x-gamliel") overlay their base language's bundle text.
+            if (languageCode is not null && Prosary.Models.LanguageCatalog.BaseLanguage(languageCode) is { } baseCode
+                && byLanguage.TryGetValue(baseCode, out var baseContent) && baseContent.TryGetValue(key, out var baseText))
+            {
+                return baseText;
             }
 
             if (byLanguage.TryGetValue("la", out var latinContent) && latinContent.TryGetValue(key, out var latinText))

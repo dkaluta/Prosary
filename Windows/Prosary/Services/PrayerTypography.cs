@@ -23,7 +23,7 @@ public static class PrayerTypography
     // non-installed fonts) — NOT yet verified against a real Windows build from this environment;
     // check these resolve correctly on first run and adjust the #-suffix if a font falls back to
     // the default UI font.
-    public static string ResolveBodyFontFamily(string languageCode, bool isScripture) => languageCode switch
+    public static string ResolveBodyFontFamily(string languageCode, bool isScripture) => (languageCode is not null ? Prosary.Models.LanguageCatalog.BaseLanguage(languageCode) ?? languageCode : languageCode) switch
     {
         "he" or "arc" => isScripture
             ? "/Assets/Fonts/ShofarRegular.ttf#Shofar"
@@ -48,7 +48,7 @@ public static class PrayerTypography
     // noticeably smaller than this app's own button/caption text — the opposite problem. Android's
     // own PrayerTypography.kt uses these exact numbers with no correction at all and never needed
     // one, which is the closer precedent for a platform with no special desktop-only type ramp.
-    public static double ResolveBodyFontSize(string languageCode, bool isScripture) => languageCode switch
+    public static double ResolveBodyFontSize(string languageCode, bool isScripture) => (languageCode is not null ? Prosary.Models.LanguageCatalog.BaseLanguage(languageCode) ?? languageCode : languageCode) switch
     {
         "he" or "arc" => isScripture ? 16 : 21,
         "ar" => isScripture ? 16 : 18,

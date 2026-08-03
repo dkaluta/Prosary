@@ -13,6 +13,14 @@ public sealed record LanguageOption(string Code, string NativeName, bool IsRight
 /// every lookup falls back to if a translation is missing in the chosen language.</summary>
 public static class LanguageCatalog
 {
+    /// <summary>"he-x-gamliel" → "he": community variants overlay their base language — the
+    /// resolve chains try the exact code first, then this. Null when there is no subtag.</summary>
+    public static string? BaseLanguage(string code)
+    {
+        var dash = code.IndexOf('-');
+        return dash > 0 ? code[..dash] : null;
+    }
+
     public const string DefaultCode = "la";
 
     /// <summary>Sentinel stored in a favorite's LanguageCode meaning "follow the app-level default
@@ -27,6 +35,9 @@ public static class LanguageCatalog
         new("he", "עברית", true),
         // Aramaic in Hebrew script — the Aramaic-rite communities' liturgical language.
         new("arc", "ארמית", true),
+        // TODO(gamaliel-texts): activate with the Mission's translations — the base-language
+        // fallback mechanism already treats "he-x-gamliel" as an overlay on "he".
+        // new("he-x-gamliel", "עברית — נוסח השליחות", true),
         new("ru", "Русский", false),
         new("tl", "Tagalog", false),
     ];
