@@ -6,6 +6,7 @@ using Prosary.Controls;
 using Prosary.Models;
 using Prosary.Navigation;
 using Prosary.ViewModels;
+using Prosary.Localization;
 
 namespace Prosary.Views;
 
@@ -110,7 +111,7 @@ public sealed partial class CustomDevotionFlowPage : Page
     private void BuildLanguageFlyout()
     {
         LanguageFlyout.Items.Clear();
-        var choices = new List<(string Raw, string Name)> { (LanguageCatalog.DefaultSentinel, "App setting") };
+        var choices = new List<(string Raw, string Name)> { (LanguageCatalog.DefaultSentinel, Loc.Tr("flow_app_setting", "App setting")) };
         choices.AddRange(ViewModel.Languages.Select(l => (l.Code, l.NativeName)));
         foreach (var (raw, name) in choices)
         {

@@ -102,7 +102,7 @@ public partial class FavoriteEditorViewModel : ObservableObject
 
     public RemindersEditorViewModel RemindersEditor { get; } = new();
 
-    public string Title => IsNew ? "New Favorite" : "Edit Favorite";
+    public string Title => IsNew ? Loc.Tr("editor_new_favorite", "New Favorite") : Loc.Tr("editor_edit_favorite", "Edit Favorite");
 
     public bool IsRosary => Kind == PrayerKind.Rosary;
     public bool IsJesusPrayer => Kind == PrayerKind.JesusPrayer;
@@ -115,11 +115,11 @@ public partial class FavoriteEditorViewModel : ObservableObject
     /// hold one directly; see <see cref="BuildPrayer"/>).</summary>
     public string MysterySelectionSummary => MysterySelectionMode switch
     {
-        MysterySelectionMode.Specific => $"Always {SpecificMysteryGroup}",
-        MysterySelectionMode.SingleMystery => $"Only {(SelectedMystery is { } m ? MysteryTranslations.Get("en", m.ImageKey).Title : SpecificMysteryGroup.ToString())}",
-        MysterySelectionMode.FifteenMystery => "The 15 Mysteries",
-        MysterySelectionMode.TwentyMystery => "The 20 Mysteries",
-        MysterySelectionMode.TodaysMysteries => "Today's Mysteries",
+        MysterySelectionMode.Specific => string.Format(Loc.Tr("summary_always", "Always {0}"), SpecificMysteryGroup.UiName()),
+        MysterySelectionMode.SingleMystery => string.Format(Loc.Tr("summary_only", "Only {0}"), SelectedMystery is { } m ? MysteryTranslations.Get("en", m.ImageKey).Title : SpecificMysteryGroup.UiName()),
+        MysterySelectionMode.FifteenMystery => Loc.Tr("summary_fifteen", "The 15 Mysteries"),
+        MysterySelectionMode.TwentyMystery => Loc.Tr("summary_twenty", "The 20 Mysteries"),
+        MysterySelectionMode.TodaysMysteries => Loc.Tr("mode_todays_mysteries", "Today's Mysteries"),
         _ => throw new ArgumentOutOfRangeException(nameof(MysterySelectionMode)),
     };
 

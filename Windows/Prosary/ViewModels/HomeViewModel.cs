@@ -71,7 +71,7 @@ public partial class HomeViewModel : ObservableObject
     public string TodayFeastRank => TodayFeast?.Rank ?? string.Empty;
 
     public string MonthIntentionTitle => MonthIntention is { } intention
-        ? $"The Pope’s intention: {intention.Title}"
+        ? string.Format(Loc.Tr("home_pope_intention", "The Pope’s intention: {0}"), intention.Title)
         : string.Empty;
 
     public string MonthIntentionText => MonthIntention?.Text ?? string.Empty;
@@ -212,7 +212,7 @@ public partial class HomeViewModel : ObservableObject
         _defaultJesusPrayer = all.FirstOrDefault(p => p.Kind == PrayerKind.JesusPrayer && p.IsDefault)
             ?? all.FirstOrDefault(p => p.Kind == PrayerKind.JesusPrayer);
 
-        var rosaryParts = new List<string> { $"Today: {todayGroup.DisplayName()}" };
+        var rosaryParts = new List<string> { string.Format(Loc.Tr("home_today", "Today: {0}"), todayGroup.UiName()) };
         if (_defaultRosary is { } rosary)
         {
             rosaryParts.Add(rosary.Name);
@@ -224,14 +224,14 @@ public partial class HomeViewModel : ObservableObject
         Card("jesusPrayer").AccentColor = PrayerKind.JesusPrayer.AccentColor();
         Card("jesusPrayer").Subtitle = _defaultJesusPrayer is { } jp
             ? $"{jp.Name} • {jp.JesusPrayer.TargetDisplayName}"
-            : "Click to set up";
+            : Loc.Tr("home_click_to_set_up", "Click to set up");
 
         foreach (var bundleId in _customCardsByBundleId.Keys)
         {
             var match = all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId && p.IsDefault)
                 ?? all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId);
             _defaultCustomDevotions[bundleId] = match;
-            _customCardsByBundleId[bundleId].Subtitle = match?.Name ?? "Click to pray";
+            _customCardsByBundleId[bundleId].Subtitle = match?.Name ?? Loc.Tr("home_click_to_pray", "Click to pray");
         }
     }
 

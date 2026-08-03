@@ -21,7 +21,7 @@
                          Width="{Binding CircleSize}" Height="{Binding CircleSize}"
                          Visibility="{Binding IsCircle, Converter={StaticResource BoolToVisibility}}"
                          HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <TextBlock Text="M" Foreground="White" FontSize="10" FontWeight="Bold"
+                <TextBlock x:Uid="BeadAntiphonLabel" Text="M" Foreground="White" FontSize="10" FontWeight="Bold"
                            Visibility="{Binding IsAntiphon, Converter={StaticResource BoolToVisibility}}"
                            HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Grid Width="13" Height="17" HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -153,7 +153,7 @@
                     <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"
                             Visibility="{x:Bind ViewModel.HasTransliteration, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                             Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
-                            ToolTipService.ToolTip="Show transliteration">
+                            x:Uid="FlowTransliterationButton" ToolTipService.ToolTip="Show transliteration">
                         <FontIcon Glyph="&#xE8C1;" FontSize="14" />
                     </Button>
                     <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
@@ -233,7 +233,7 @@
                     <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"
                             Visibility="{x:Bind ViewModel.HasTransliteration, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                             Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
-                            ToolTipService.ToolTip="Show transliteration">
+                            x:Uid="FlowTransliterationButton" ToolTipService.ToolTip="Show transliteration">
                         <FontIcon Glyph="&#xE8C1;" FontSize="14" />
                     </Button>
                     <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"

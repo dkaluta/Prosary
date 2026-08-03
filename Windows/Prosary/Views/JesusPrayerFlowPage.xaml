@@ -25,7 +25,7 @@
             <Button Grid.Column="0" Click="OnNavigateUp" Background="Transparent" Padding="8">
                 <FontIcon Glyph="&#xE72B;" />
             </Button>
-            <TextBlock Grid.Column="1" Text="The Jesus Prayer" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
+            <TextBlock x:Uid="JpTitle" Grid.Column="1" Text="The Jesus Prayer" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
 
             <!-- The footer's Next button never turns into "Finish" for an unbounded session (see
                  JesusPrayerProgress.IsLastRep) — this is the only way to end that session. -->

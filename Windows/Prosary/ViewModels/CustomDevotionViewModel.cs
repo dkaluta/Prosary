@@ -192,7 +192,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         ? "ms-appx:///Assets/Images/cross_placeholder.png"
         : $"ms-appx:///Assets/Images/{MysteryImageKey}.jpg");
 
-    public string NextButtonText => IsLastStep ? "Finish" : "Next";
+    public string NextButtonText => IsLastStep ? Loc.Tr("common_finish", "Finish") : Loc.Tr("common_next", "Next");
 
     public bool HasSubtitle => !string.IsNullOrEmpty(Subtitle);
 
@@ -368,8 +368,8 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         catch (Exception ex)
         {
             System.Diagnostics.Debug.WriteLine($"[CustomDevotionViewModel] Failed to load devotion '{bundleId}': {ex}");
-            Header = "Something went wrong";
-            Body = "This devotion couldn't be loaded. Please go back and try again.";
+            Header = Loc.Tr("flow_error_header", "Something went wrong");
+            Body = Loc.Tr("flow_error_body", "This devotion couldn't be loaded. Please go back and try again.");
         }
     }
 
@@ -404,7 +404,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         Acclamation = step.Acclamation ?? string.Empty;
         HasAcclamation = step.Acclamation is not null;
         MysteryImageKey = step.Mystery?.ImageKey ?? step.ImageOverrideKey ?? "cross_placeholder";
-        ProgressText = $"{_index + 1} of {_steps.Count}";
+        ProgressText = string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), _index + 1, _steps.Count);
         Progress = (_index + 1) / (double)_steps.Count;
         CanGoBack = _index > 0;
         IsLastStep = _index == _steps.Count - 1;

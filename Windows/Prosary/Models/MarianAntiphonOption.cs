@@ -1,3 +1,5 @@
+using Prosary.Localization;
+
 namespace Prosary.Models;
 
 public enum MarianAntiphonOption
@@ -20,13 +22,13 @@ public static class MarianAntiphonOptionExtensions
 {
     public static string DisplayName(this MarianAntiphonOption option) => option switch
     {
-        MarianAntiphonOption.None => "None",
-        MarianAntiphonOption.Seasonal => "Automatic (Seasonal)",
-        MarianAntiphonOption.SalveRegina => "Salve Regina",
-        MarianAntiphonOption.AlmaRedemptorisMater => "Alma Redemptoris Mater",
-        MarianAntiphonOption.AveReginaCaelorum => "Ave Regina Caelorum",
-        MarianAntiphonOption.ReginaCaeli => "Regina Caeli",
-        MarianAntiphonOption.SubTuumPraesidium => "Sub Tuum Praesidium",
+        MarianAntiphonOption.None => Loc.Tr("antiphon_none", "None"),
+        MarianAntiphonOption.Seasonal => Loc.Tr("antiphon_seasonal", "Automatic (Seasonal)"),
+        MarianAntiphonOption.SalveRegina => Loc.Tr("antiphon_salve_regina", "Salve Regina"),
+        MarianAntiphonOption.AlmaRedemptorisMater => Loc.Tr("antiphon_alma_redemptoris", "Alma Redemptoris Mater"),
+        MarianAntiphonOption.AveReginaCaelorum => Loc.Tr("antiphon_ave_regina", "Ave Regina Caelorum"),
+        MarianAntiphonOption.ReginaCaeli => Loc.Tr("antiphon_regina_caeli", "Regina Caeli"),
+        MarianAntiphonOption.SubTuumPraesidium => Loc.Tr("antiphon_sub_tuum", "Sub Tuum Praesidium"),
         _ => throw new ArgumentOutOfRangeException(nameof(option))
     };
 }

@@ -76,23 +76,23 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Cancel" Background="Transparent" Command="{x:Bind ViewModel.CancelCommand}" />
+            <Button x:Uid="BtnCancel" Grid.Column="0" Content="Cancel" Background="Transparent" Command="{x:Bind ViewModel.CancelCommand}" />
             <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.Title, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
-            <Button Grid.Column="2" Content="Save" Style="{StaticResource AccentButtonStyle}" Command="{x:Bind ViewModel.SaveCommand}" />
+            <Button x:Uid="BtnSave" Grid.Column="2" Content="Save" Style="{StaticResource AccentButtonStyle}" Command="{x:Bind ViewModel.SaveCommand}" />
         </Grid>
 
         <ScrollViewer Grid.Row="1">
             <StackPanel Spacing="20" MaxWidth="480" HorizontalAlignment="Center" Padding="16">
 
                 <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.HasOptions, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                    <TextBlock Text="OPTIONS" Style="{StaticResource SectionHeaderStyle}" />
+                    <TextBlock x:Uid="RemOptionsHeader" Text="OPTIONS" Style="{StaticResource SectionHeaderStyle}" />
                     <Border Style="{StaticResource SectionCardStyle}">
                         <ItemsControl ItemsSource="{x:Bind ViewModel.OptionRows}" ItemTemplate="{StaticResource OptionRowTemplate}" />
                     </Border>
                 </StackPanel>
 
                 <StackPanel Spacing="8">
-                    <TextBlock Text="REMINDERS" Style="{StaticResource SectionHeaderStyle}" />
+                    <TextBlock x:Uid="EdRemindersHeader" Text="REMINDERS" Style="{StaticResource SectionHeaderStyle}" />
                     <Border Style="{StaticResource SectionCardStyle}">
                         <StackPanel Spacing="8">
                             <!-- Traditional fixed prayer times from the bundle manifest's
@@ -130,7 +130,7 @@
                             <Button Command="{x:Bind ViewModel.RemindersEditor.AddReminderCommand}" Background="Transparent">
                                 <StackPanel Orientation="Horizontal" Spacing="6">
                                     <FontIcon Glyph="&#xE710;" FontSize="14" />
-                                    <TextBlock Text="Add Reminder" />
+                                    <TextBlock x:Uid="EdAddReminder" Text="Add Reminder" />
                                 </StackPanel>
                             </Button>
                         </StackPanel>

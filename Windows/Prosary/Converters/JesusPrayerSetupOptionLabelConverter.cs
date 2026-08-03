@@ -1,6 +1,8 @@
 using Microsoft.UI.Xaml.Data;
 using Prosary.ViewModels;
 
+using Prosary.Localization;
+
 namespace Prosary.Converters;
 
 /// <summary>Display label for a <see cref="JesusPrayerSetupOption"/> ComboBox item — Convert-only,
@@ -13,8 +15,8 @@ public sealed class JesusPrayerSetupOptionLabelConverter : IValueConverter
         JesusPrayerSetupOption.ThirtyThree => "33",
         JesusPrayerSetupOption.SixtySix => "66",
         JesusPrayerSetupOption.NinetyNine => "99",
-        JesusPrayerSetupOption.Custom => "Custom",
-        JesusPrayerSetupOption.Unbounded => "Unbounded",
+        JesusPrayerSetupOption.Custom => Loc.Tr("jp_custom", "Custom"),
+        JesusPrayerSetupOption.Unbounded => Loc.Tr("jp_unbounded", "Unbounded"),
         _ => value?.ToString() ?? string.Empty
     };
 

@@ -37,16 +37,16 @@
                         IsSettingsVisible="False"
                         SelectionChanged="OnNavSelectionChanged">
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="Pray" Tag="pray">
+                <NavigationViewItem x:Uid="NavPray" Content="Pray" Tag="pray">
                     <NavigationViewItem.Icon><FontIcon Glyph="&#xEB51;" /></NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Browse" Tag="browse">
+                <NavigationViewItem x:Uid="NavBrowse" Content="Browse" Tag="browse">
                     <NavigationViewItem.Icon><FontIcon Glyph="&#xE774;" /></NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Categories" Tag="categories">
+                <NavigationViewItem x:Uid="NavCategories" Content="Categories" Tag="categories">
                     <NavigationViewItem.Icon><FontIcon Glyph="&#xF0E2;" /></NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Search" Tag="search">
+                <NavigationViewItem x:Uid="NavSearch" Content="Search" Tag="search">
                     <NavigationViewItem.Icon><FontIcon Glyph="&#xE721;" /></NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>

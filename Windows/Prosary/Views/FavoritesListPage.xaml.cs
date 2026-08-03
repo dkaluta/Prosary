@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using Prosary.Navigation;
 using Prosary.ViewModels;
+using Prosary.Localization;
 
 namespace Prosary.Views;
 
@@ -50,9 +51,9 @@ public sealed partial class FavoritesListPage : Page
             ViewModel.ImportError = null;
             var dialog = new ContentDialog
             {
-                Title = "Could Not Import Devotion",
+                Title = Loc.Tr("favorites_import_error_title", "Could Not Import Devotion"),
                 Content = message,
-                CloseButtonText = "OK",
+                CloseButtonText = Loc.Tr("common_ok", "OK"),
                 XamlRoot = XamlRoot,
             };
             await dialog.ShowAsync();

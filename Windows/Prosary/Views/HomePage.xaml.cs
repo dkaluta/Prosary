@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using Prosary.ViewModels;
+using Prosary.Localization;
 
 namespace Prosary.Views;
 
@@ -38,11 +39,11 @@ public sealed partial class HomePage : Page
         };
         var dialog = new Microsoft.UI.Xaml.Controls.ContentDialog
         {
-            Title = "Home order",
+            Title = Loc.Tr("home_order_title", "Home order"),
             Content = list,
-            PrimaryButtonText = "Done",
-            SecondaryButtonText = "Reset",
-            CloseButtonText = "Cancel",
+            PrimaryButtonText = Loc.Tr("common_done", "Done"),
+            SecondaryButtonText = Loc.Tr("common_reset", "Reset"),
+            CloseButtonText = Loc.Tr("common_cancel", "Cancel"),
             DefaultButton = Microsoft.UI.Xaml.Controls.ContentDialogButton.Primary,
             XamlRoot = XamlRoot,
         };

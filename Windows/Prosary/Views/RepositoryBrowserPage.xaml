@@ -25,7 +25,7 @@
             <Button Grid.Column="0" Click="OnNavigateUp" Background="Transparent" Padding="8">
                 <FontIcon Glyph="&#xE72B;" />
             </Button>
-            <TextBlock Grid.Column="1" Text="Community Devotions" VerticalAlignment="Center"
+            <TextBlock x:Uid="BrowseTitle" Grid.Column="1" Text="Community Devotions" VerticalAlignment="Center"
                        HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
             <!-- Refresh lives in the chrome, not only inside the error state. -->
             <Button Grid.Column="2" Background="Transparent" Padding="8"
@@ -39,7 +39,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" PlaceholderText="Search devotions"
+            <TextBox x:Uid="BrowseSearchBox" Grid.Column="0" PlaceholderText="Search devotions"
                      Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <ComboBox Grid.Column="1" MinWidth="140"
                       Visibility="{x:Bind ViewModel.ShowsTagFilter, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
@@ -52,7 +52,7 @@
             <StackPanel Spacing="10" HorizontalAlignment="Center" VerticalAlignment="Center"
                         Visibility="{x:Bind ViewModel.LoadError, Mode=OneWay, Converter={StaticResource NullToVisibility}}">
                 <TextBlock Text="{x:Bind ViewModel.LoadError, Mode=OneWay}" TextWrapping="Wrap" TextAlignment="Center" />
-                <Button Content="Retry" HorizontalAlignment="Center" Command="{x:Bind ViewModel.LoadCommand}" />
+                <Button x:Uid="BtnRetry" Content="Retry" HorizontalAlignment="Center" Command="{x:Bind ViewModel.LoadCommand}" />
             </StackPanel>
             <ScrollViewer>
                 <StackPanel Spacing="10" MaxWidth="640" HorizontalAlignment="Stretch">
@@ -72,17 +72,17 @@
                                                 <TextBlock Text="{x:Bind Subtitle}" Style="{StaticResource MutedCaptionTextStyle}" />
                                             </StackPanel>
                                             <Grid Grid.Column="1" VerticalAlignment="Center">
-                                                <TextBlock Text="Installed" Style="{StaticResource MutedCaptionTextStyle}"
+                                                <TextBlock x:Uid="BrowseInstalled" Text="Installed" Style="{StaticResource MutedCaptionTextStyle}"
                                                            VerticalAlignment="Center"
                                                            Visibility="{x:Bind ShowsInstalledLabel, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                                                 <ProgressRing IsActive="{x:Bind IsBusy, Mode=OneWay}" Width="22" Height="22"
                                                               Visibility="{x:Bind IsBusy, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                                                <Button Content="Install" Style="{StaticResource AccentButtonStyle}"
+                                                <Button x:Uid="BtnInstall" Content="Install" Style="{StaticResource AccentButtonStyle}"
                                                         Visibility="{x:Bind IsInstallable, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                                                         Command="{Binding ElementName=Root, Path=ViewModel.InstallCommand}"
                                                         CommandParameter="{Binding}" />
                                                 <!-- The author republished since this copy was installed. -->
-                                                <Button Content="Update" Style="{StaticResource AccentButtonStyle}"
+                                                <Button x:Uid="BtnUpdate" Content="Update" Style="{StaticResource AccentButtonStyle}"
                                                         Visibility="{x:Bind HasUpdate, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                                                         Command="{Binding ElementName=Root, Path=ViewModel.InstallCommand}"
                                                         CommandParameter="{Binding}" />

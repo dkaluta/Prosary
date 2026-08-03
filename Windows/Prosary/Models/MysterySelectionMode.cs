@@ -1,3 +1,5 @@
+using Prosary.Localization;
+
 namespace Prosary.Models;
 
 public enum MysterySelectionMode
@@ -27,11 +29,11 @@ public static class MysterySelectionModeExtensions
 {
     public static string DisplayName(this MysterySelectionMode mode) => mode switch
     {
-        MysterySelectionMode.TodaysMysteries => "Today's Mysteries",
-        MysterySelectionMode.Specific => "Always a Specific Set",
-        MysterySelectionMode.FifteenMystery => "The 15 Mysteries (Joyful, Sorrowful, Glorious)",
-        MysterySelectionMode.TwentyMystery => "The 20 Mysteries (All Four Sets)",
-        MysterySelectionMode.SingleMystery => "One Mystery Only",
+        MysterySelectionMode.TodaysMysteries => Loc.Tr("mode_todays_mysteries", "Today's Mysteries"),
+        MysterySelectionMode.Specific => Loc.Tr("mode_specific", "Always a Specific Set"),
+        MysterySelectionMode.FifteenMystery => Loc.Tr("mode_fifteen", "The 15 Mysteries (Joyful, Sorrowful, Glorious)"),
+        MysterySelectionMode.TwentyMystery => Loc.Tr("mode_twenty", "The 20 Mysteries (All Four Sets)"),
+        MysterySelectionMode.SingleMystery => Loc.Tr("mode_single", "One Mystery Only"),
         _ => throw new ArgumentOutOfRangeException(nameof(mode))
     };
 }

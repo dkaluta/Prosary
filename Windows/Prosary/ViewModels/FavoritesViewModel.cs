@@ -198,7 +198,7 @@ public partial class FavoritesViewModel : ObservableObject
         {
             SuggestedFileName = bundleId,
         };
-        picker.FileTypeChoices.Add("Prosary devotion bundle", [".prosaryprayer"]);
+        picker.FileTypeChoices.Add(Loc.Tr("favorites_bundle_file_type", "Prosary devotion bundle"), [".prosaryprayer"]);
         WinRT.Interop.InitializeWithWindow.Initialize(
             picker, WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow));
         if (await picker.PickSaveFileAsync() is { } destination)

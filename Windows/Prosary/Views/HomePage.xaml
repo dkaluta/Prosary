@@ -27,16 +27,16 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="Pray" Style="{StaticResource HeadlineTextStyle}" VerticalAlignment="Center" />
-                <Button Grid.Column="1" Background="Transparent" Padding="8" ToolTipService.ToolTip="My Favorites"
+                <TextBlock x:Uid="HomeTitle" Grid.Column="0" Text="Pray" Style="{StaticResource HeadlineTextStyle}" VerticalAlignment="Center" />
+                <Button x:Uid="HomeFavoritesButton" Grid.Column="1" Background="Transparent" Padding="8" ToolTipService.ToolTip="My Favorites"
                         Command="{x:Bind ViewModel.OpenFavoritesCommand}">
                     <FontIcon Glyph="&#xE734;" />
                 </Button>
-                <Button Grid.Column="2" Background="Transparent" Padding="8" ToolTipService.ToolTip="Settings"
+                <Button x:Uid="HomeSettingsButton" Grid.Column="2" Background="Transparent" Padding="8" ToolTipService.ToolTip="Settings"
                         Command="{x:Bind ViewModel.OpenSettingsCommand}">
                     <FontIcon Glyph="&#xE713;" />
                 </Button>
-                <Button Grid.Column="3" Background="Transparent" Padding="8" ToolTipService.ToolTip="About"
+                <Button x:Uid="HomeAboutButton" Grid.Column="3" Background="Transparent" Padding="8" ToolTipService.ToolTip="About"
                         Command="{x:Bind ViewModel.OpenAboutCommand}">
                     <FontIcon Glyph="&#xE946;" />
                 </Button>
@@ -88,10 +88,10 @@
                                               Command="{x:Bind Command}">
                             <controls:PrayerCard.ContextFlyout>
                                 <MenuFlyout>
-                                    <MenuFlyoutItem Text="Move to top"
+                                    <MenuFlyoutItem x:Uid="HomeMoveToTop" Text="Move to top"
                                                     Command="{Binding ElementName=Root, Path=ViewModel.MoveCardToTopCommand}"
                                                     CommandParameter="{Binding}" />
-                                    <MenuFlyoutItem Text="Edit order…" Click="OnEditOrder" />
+                                    <MenuFlyoutItem x:Uid="HomeEditOrder" Text="Edit order…" Click="OnEditOrder" />
                                 </MenuFlyout>
                             </controls:PrayerCard.ContextFlyout>
                         </controls:PrayerCard>

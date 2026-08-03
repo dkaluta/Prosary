@@ -29,7 +29,7 @@
                 <StackPanel Spacing="6">
                     <TextBlock Text="{Binding Name}" FontWeight="SemiBold" FontSize="16" />
                     <TextBlock Text="{Binding FavoriteSubtitle}" Style="{StaticResource MutedCaptionTextStyle}" />
-                    <Button Content="Pray" HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}"
+                    <Button x:Uid="BtnPray" Content="Pray" HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}"
                             Command="{Binding ElementName=Root, Path=ViewModel.PrayPresetCommand}" CommandParameter="{Binding}" />
                 </StackPanel>
             </Border>
@@ -51,7 +51,7 @@
             <Button Grid.Column="0" Background="Transparent" Command="{x:Bind ViewModel.BackCommand}">
                 <FontIcon Glyph="&#xE72B;" />
             </Button>
-            <TextBlock Grid.Column="1" Text="The Holy Rosary" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
+            <TextBlock x:Uid="PickerTitle" Grid.Column="1" Text="The Holy Rosary" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
             <Button Grid.Column="2" Content="Manage" Background="Transparent" Command="{x:Bind ViewModel.ManagePresetsCommand}" />
         </Grid>
 
@@ -59,15 +59,15 @@
             <StackPanel Spacing="12" MaxWidth="480" HorizontalAlignment="Center" Padding="16">
 
                 <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.HasDefaultPreset, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                    <TextBlock Text="DEFAULT PRESET" Style="{StaticResource SectionHeaderStyle}" />
+                    <TextBlock x:Uid="PickerDefaultHeader" Text="DEFAULT PRESET" Style="{StaticResource SectionHeaderStyle}" />
                     <ContentControl Content="{x:Bind ViewModel.DefaultPreset, Mode=OneWay}" ContentTemplate="{StaticResource PresetCardTemplate}" HorizontalContentAlignment="Stretch" />
                 </StackPanel>
 
                 <StackPanel Spacing="8">
-                    <TextBlock Text="CUSTOM" Style="{StaticResource SectionHeaderStyle}" />
+                    <TextBlock x:Uid="PickerCustomHeader" Text="CUSTOM" Style="{StaticResource SectionHeaderStyle}" />
                     <Border Style="{StaticResource SectionCardStyle}">
                         <StackPanel Spacing="12">
-                            <TextBlock Text="Pray any Rosary" FontWeight="SemiBold" FontSize="16" />
+                            <TextBlock x:Uid="PickerPrayAny" Text="Pray any Rosary" FontWeight="SemiBold" FontSize="16" />
                             <ComboBox HorizontalAlignment="Stretch" Header="Mysteries" ItemsSource="{x:Bind ViewModel.SelectionModes}"
                                       SelectedItem="{x:Bind ViewModel.SelectedMode, Mode=TwoWay}">
                                 <ComboBox.ItemTemplate>
@@ -88,23 +88,23 @@
                             <ComboBox HorizontalAlignment="Stretch" Header="Which mystery (1–5)" ItemsSource="{x:Bind ViewModel.Ordinals}"
                                       SelectedItem="{x:Bind ViewModel.SelectedOrdinal, Mode=TwoWay}"
                                       Visibility="{x:Bind ViewModel.ShowsOrdinalPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                            <TextBlock Text="Every other option follows your default preset — full customization lives in presets."
+                            <TextBlock x:Uid="PickerAnyDetail" Text="Every other option follows your default preset — full customization lives in presets."
                                        Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
                             <Grid ColumnSpacing="8">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Button Grid.Column="0" Content="Pray" HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}"
+                                <Button x:Uid="BtnPray" Grid.Column="0" Content="Pray" HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}"
                                         Command="{x:Bind ViewModel.PrayAdHocCommand}" />
-                                <Button Grid.Column="1" Content="Save as Preset" HorizontalAlignment="Stretch" Click="OnSaveAsPreset" />
+                                <Button x:Uid="PickerSaveAsPreset" Grid.Column="1" Content="Save as Preset" HorizontalAlignment="Stretch" Click="OnSaveAsPreset" />
                             </Grid>
                         </StackPanel>
                     </Border>
                 </StackPanel>
 
                 <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.HasOtherPresets, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                    <TextBlock Text="PRESETS" Style="{StaticResource SectionHeaderStyle}" />
+                    <TextBlock x:Uid="PickerPresetsHeader" Text="PRESETS" Style="{StaticResource SectionHeaderStyle}" />
                     <ItemsControl ItemsSource="{x:Bind ViewModel.OtherPresets, Mode=OneWay}" ItemTemplate="{StaticResource PresetCardTemplate}" />
                 </StackPanel>
 

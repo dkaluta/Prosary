@@ -17,13 +17,13 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Search" Style="{StaticResource SubHeadlineTextStyle}" />
-        <TextBox Grid.Row="1" PlaceholderText="Devotions, categories, authors"
+        <TextBlock x:Uid="SearchTitle" Grid.Row="0" Text="Search" Style="{StaticResource SubHeadlineTextStyle}" />
+        <TextBox x:Uid="SearchBox" Grid.Row="1" PlaceholderText="Devotions, categories, authors"
                  Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <ScrollViewer Grid.Row="2">
             <StackPanel Spacing="8" MaxWidth="640" HorizontalAlignment="Stretch">
-                <TextBlock Text="On this device" Foreground="{StaticResource BrandPrimaryBrush}" FontWeight="SemiBold" />
+                <TextBlock x:Uid="SearchOnDevice" Text="On this device" Foreground="{StaticResource BrandPrimaryBrush}" FontWeight="SemiBold" />
                 <ItemsControl ItemsSource="{x:Bind ViewModel.LocalMatches, Mode=OneWay}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate x:DataType="svc:DevotionListing">
@@ -40,7 +40,7 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
-                <TextBlock Text="From the community" Foreground="{StaticResource BrandPrimaryBrush}" FontWeight="SemiBold"
+                <TextBlock x:Uid="SearchCommunity" Text="From the community" Foreground="{StaticResource BrandPrimaryBrush}" FontWeight="SemiBold"
                            Visibility="{x:Bind ViewModel.HasCommunityMatches, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                 <ItemsControl ItemsSource="{x:Bind ViewModel.CommunityMatches, Mode=OneWay}">
                     <ItemsControl.ItemTemplate>
@@ -57,7 +57,7 @@
                                 <Grid Grid.Column="1" VerticalAlignment="Center">
                                     <ProgressRing IsActive="{x:Bind IsBusy, Mode=OneWay}" Width="22" Height="22"
                                                   Visibility="{x:Bind IsBusy, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                                    <Button Content="Install" Style="{StaticResource AccentButtonStyle}"
+                                    <Button x:Uid="BtnInstall" Content="Install" Style="{StaticResource AccentButtonStyle}"
                                             Visibility="{x:Bind IsInstallable, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                                             Command="{Binding ElementName=Root, Path=ViewModel.InstallCommand}"
                                             CommandParameter="{Binding}" />

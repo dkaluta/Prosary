@@ -37,7 +37,7 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     private JesusPrayerProgress _repetitionState = new(new JesusPrayerTarget.Count(33));
 
     [ObservableProperty]
-    private string _header = "Jesus Prayer";
+    private string _header = Loc.Tr("kind_jesus_prayer", "Jesus Prayer");
 
     [ObservableProperty]
     private string _body = string.Empty;
@@ -77,7 +77,7 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
 
     public bool CanGoBack => RepetitionState.CanGoBack;
 
-    public string NextButtonText => RepetitionState.IsLastRep ? "Finish" : "Next";
+    public string NextButtonText => RepetitionState.IsLastRep ? Loc.Tr("common_finish", "Finish") : Loc.Tr("common_next", "Next");
 
     public bool IsLastStep => RepetitionState.IsLastRep;
 
@@ -114,7 +114,7 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
         catch (Exception ex)
         {
             System.Diagnostics.Debug.WriteLine($"[JesusPrayerViewModel] Failed to load Jesus Prayer session: {ex}");
-            Body = "The Jesus Prayer couldn't be loaded. Please go back and try again.";
+            Body = Loc.Tr("jp_error_body", "The Jesus Prayer couldn't be loaded. Please go back and try again.");
         }
     }
 
@@ -147,7 +147,7 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
 
         Body = PrayerTranslations.Get(_languageCode, PrayerKey.OratioIesu);
         ProgressText = RepetitionState.TargetCount is { } count
-            ? $"{RepetitionState.CurrentIndex + 1} of {count}"
+            ? string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), RepetitionState.CurrentIndex + 1, count)
             : $"{RepetitionState.CurrentIndex + 1}";
         Progress = RepetitionState.ProgressFraction;
         BodyFontFamily = PrayerTypography.ResolveBodyFontFamily(_languageCode, isScripture: false);
@@ -191,8 +191,8 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
         var langName = LanguageCatalog.All.FirstOrDefault(l => l.Code == resolved)?.NativeName ?? resolved;
         var targetLabel = _effectiveTarget switch
         {
-            JesusPrayerTarget.Count(var n) => $"× {n}",
-            JesusPrayerTarget.Unbounded => "Unbounded",
+            JesusPrayerTarget.Count(var n) => string.Format(Loc.Tr("jp_times_prefix", "× {0}"), n),
+            JesusPrayerTarget.Unbounded => Loc.Tr("jp_unbounded", "Unbounded"),
             _ => throw new ArgumentOutOfRangeException()
         };
         var all = await _presets.GetAllAsync();
@@ -200,7 +200,7 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
 
         var newFavorite = new Prayer
         {
-            Name = $"Jesus Prayer {targetLabel} ({langName})",
+            Name = string.Format(Loc.Tr("jp_favorite_name", "Jesus Prayer {0} ({1})"), targetLabel, langName),
             Kind = PrayerKind.JesusPrayer,
             IsDefault = isFirst,
             LanguageCode = resolved,

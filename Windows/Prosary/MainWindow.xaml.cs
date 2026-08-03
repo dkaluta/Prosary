@@ -22,6 +22,18 @@ public sealed partial class MainWindow : Window
         InitializeComponent();
         Title = "Prosary";
 
+        // Hebrew (or any RTL app language) flips the whole tree — resources themselves resolve
+        // per the app language, this only handles layout direction (v0.7, Gamaliel item 3).
+        var appLanguage = Windows.Globalization.ApplicationLanguages.Languages.FirstOrDefault() ?? "en";
+        if (appLanguage.StartsWith("he", StringComparison.OrdinalIgnoreCase)
+            || appLanguage.StartsWith("ar", StringComparison.OrdinalIgnoreCase))
+        {
+            if (Content is FrameworkElement rootElement)
+            {
+                rootElement.FlowDirection = FlowDirection.RightToLeft;
+            }
+        }
+
         var hwnd = WindowNative.GetWindowHandle(this);
         var windowId = Win32Interop.GetWindowIdFromWindow(hwnd);
         var appWindow = AppWindow.GetFromWindowId(windowId);
