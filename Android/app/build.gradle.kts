@@ -28,9 +28,10 @@ play {
     if (playCredentials.exists()) {
         serviceAccountCredentials.set(playCredentials)
     }
-    // The track your testers live on; "internal" is the safe default — switch to "beta"
-    // or "production" (or promote in Play Console) as the release process matures.
-    track.set("internal")
+    // The track your testers live on. "alpha" is Play's closed testing track — where the
+    // Mission of St. Gamaliel reviewers read the Hebrew; "internal" is the smaller circle,
+    // "beta"/"production" come later (or promote in Play Console).
+    track.set("alpha")
     defaultToAppBundles.set(true)
 }
 
@@ -52,8 +53,8 @@ android {
         applicationId = "com.dkaluta.prosary"
         minSdk = 24
         targetSdk = 36
-        versionCode = 17
-        versionName = "0.7.0"
+        versionCode = 18
+        versionName = "0.7.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
