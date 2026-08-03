@@ -53,6 +53,11 @@ struct PrayerStepFlowView: View {
   /// shared by every flow, so a choice made in the Rosary carries into the Stations.
   @AppStorage("autoAdvanceSeconds") private var autoAdvanceSeconds = 0
 
+  /// The v0.7 reading aid: swap the body for its transliteration when the step carries one.
+  /// Deliberately sticky across steps — someone praying along in an unfamiliar script wants
+  /// it on for the whole session, not per page.
+  @State private var showsTransliteration = false
+
   private static let autoAdvanceChoices = [3, 5, 10]
 
   /// Regular width (Mac, a wide iPad window, Vision) gets the taller three-column layout; so
@@ -308,9 +313,29 @@ struct PrayerStepFlowView: View {
           .lineSpacing(4)
       }
 
-      Text(bodyAttributedString(step.body))
-        .font(PrayerTypography.font(languageCode: languageCode, isScripture: step.isScripture))
-        .lineSpacing(4)
+      if let transliteration = step.transliteratedBody {
+        // The side toggle Erez asked for: read the prayer in its own script, or in the
+        // transliteration the author provided (e.g. Hebrew letters for Tagalog).
+        HStack {
+          Spacer()
+          Button {
+            showsTransliteration.toggle()
+          } label: {
+            Image(systemName: showsTransliteration ? "character.book.closed.fill" : "character.book.closed")
+          }
+          .buttonStyle(.borderless)
+          .accessibilityLabel(String(localized: "prayerFlow.transliteration",
+                                     defaultValue: "Show transliteration"))
+          .accessibilityIdentifier("transliterationToggle")
+        }
+        Text(bodyAttributedString(showsTransliteration ? transliteration : step.body))
+          .font(PrayerTypography.font(languageCode: languageCode, isScripture: step.isScripture))
+          .lineSpacing(4)
+      } else {
+        Text(bodyAttributedString(step.body))
+          .font(PrayerTypography.font(languageCode: languageCode, isScripture: step.isScripture))
+          .lineSpacing(4)
+      }
 
       if let centralActionLabel {
         Button(action: onNext) {

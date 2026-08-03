@@ -230,17 +230,22 @@ struct PrayerEngine {
     let acclamation = entry.acclamationKey.map {
       PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: languageCode, key: $0)
     }
+    let transliteratedBody = entry.bodyKey.flatMap {
+      PrayerPackStore.transliteration(bundleId: bundleId, languageCode: languageCode, key: $0)
+    }
     guard let count = entry.repeatCount, count > 1 else {
       return [
         RosaryStep(
           title: title, subtitle: subtitle, body: body, acclamation: acclamation,
-          isScripture: isScripture, imageOverrideKey: entry.imageKey)
+          isScripture: isScripture, transliteratedBody: transliteratedBody,
+          imageOverrideKey: entry.imageKey)
       ]
     }
     return (1...count).map { h in
       RosaryStep(
         title: "\(title) (\(h) of \(count))", subtitle: subtitle, body: body, acclamation: acclamation,
-        isScripture: isScripture, imageOverrideKey: entry.imageKey)
+        isScripture: isScripture, transliteratedBody: transliteratedBody,
+        imageOverrideKey: entry.imageKey)
     }
   }
 

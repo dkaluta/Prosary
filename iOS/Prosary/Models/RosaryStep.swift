@@ -26,6 +26,10 @@ struct RosaryStep: Identifiable, Hashable {
   var mystery: Mystery?
   /// True only for the mystery-announcement step, whose body is an actual quoted Bible verse rather than a traditional prayer.
   var isScripture: Bool = false
+  /// Optional reading aid (v0.7, Gamaliel item 5): the body transliterated into another
+  /// script (author's choice — e.g. Hebrew letters for a Tagalog prayer). The flow shows a
+  /// toggle beside the text whenever this is present.
+  var transliteratedBody: String? = nil
   /// True only for the Marian antiphon step (the "M" bead in the progress indicator).
   var isAntiphon: Bool = false
   /// 0-based index of this step's decade, counted globally across every mystery group in the session (0..<N for an N-decade session). Nil for steps not tied to a decade (opening, antiphon, closing, etc).
