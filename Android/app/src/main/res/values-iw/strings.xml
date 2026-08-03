@@ -1,0 +1,289 @@
+<!-- Hebrew UI (v0.7, Gamaliel item 3) — based on iOS's existing Localizable.xcstrings Hebrew
+     entries (terminology: מחרוזת = Rosary, הרוזריון הקדוש = picker title, רז = mystery/decade,
+     שמחי מרים = Hail Mary, המוכאבות = Sorrowful). Keys iOS hasn't translated follow the same
+     style; artist names come from Hebrew Wikipedia (langlinks), transliterated with geresh ׳
+     where no article exists. Pending review by Erez. -->
+<resources>
+    <!-- Shared -->
+    <string name="common_back">חזרה</string>
+    <string name="common_cancel">ביטול</string>
+    <string name="common_save">שמור</string>
+    <string name="common_done">סיום</string>
+    <string name="common_reset">איפוס</string>
+    <string name="common_ok">אישור</string>
+    <string name="common_retry">נסה שוב</string>
+    <string name="common_pray">התפלל</string>
+    <string name="common_next">הבא</string>
+    <string name="common_finish">סיום</string>
+    <string name="common_install">התקנה</string>
+    <string name="common_update">עדכון</string>
+    <string name="common_installed">מותקן</string>
+    <string name="common_settings">הגדרות</string>
+    <string name="common_about">אודות</string>
+
+    <!-- Bottom tabs -->
+    <string name="tab_pray">תפילה</string>
+    <string name="tab_browse">עיון</string>
+    <string name="tab_categories">קטגוריות</string>
+    <string name="tab_search">חיפוש</string>
+
+    <!-- Home -->
+    <string name="home_today">היום: %1$s</string>
+    <string name="home_pope_intention">כוונת האפיפיור: %1$s</string>
+    <string name="home_tap_to_set_up">גע להגדרה</string>
+    <string name="home_tap_to_pray">גע לתפילה</string>
+    <string name="home_my_favorites">המועדפים שלי</string>
+    <string name="home_move_to_top">העבר לראש</string>
+    <string name="home_edit_order">ערוך סדר…</string>
+    <string name="home_order_title">סדר מסך הבית</string>
+    <string name="home_order_reorder">סידור מחדש של %1$s</string>
+
+    <!-- Settings -->
+    <string name="settings_default_prayer_language">שפת תפילה כברירת מחדל</string>
+    <string name="settings_praying">בתפילה</string>
+    <string name="settings_auto_advance">מעבר אוטומטי</string>
+    <string name="auto_advance_off">כבוי</string>
+    <string name="auto_advance_every">כל %1$d שניות</string>
+    <string name="settings_reset_home_order">איפוס סדר מסך הבית</string>
+    <string name="settings_downloads">הורדות</string>
+    <string name="settings_installed_devotions">מסלולי תפילה מותקנים: %1$d</string>
+    <string name="settings_clear_audio_cache">ניקוי מטמון השמע</string>
+    <string name="settings_clear_audio_cache_size">ניקוי מטמון השמע (%1$s)</string>
+    <string name="settings_remove_all">הסרת כל המסלולים שהורדו…</string>
+    <string name="settings_downloads_footer">מסלולים מובנים לעולם אינם מוסרים. הסרת מסלול שהורד מסירה גם את המועדף שלו.</string>
+    <string name="settings_links">קישורים</string>
+    <string name="settings_repository_site">מאגר הקהילה</string>
+    <string name="settings_compose_site">יצירת מסלול תפילה</string>
+    <string name="settings_privacy_policy">מדיניות פרטיות</string>
+    <string name="settings_remove_all_title">להסיר את כל המסלולים שהורדו?</string>
+    <string name="settings_remove_all_message">מסלולים מהמאגר אפשר להוריד שוב; קבצים שיובאו ידנית — לא.</string>
+    <string name="settings_remove_all_confirm">הסר הכול</string>
+
+    <!-- Prayer kinds -->
+    <string name="kind_rosary">מחרוזת</string>
+    <string name="kind_jesus_prayer">תפילת ישוע</string>
+    <string name="kind_devotion">מסלול תפילה</string>
+    <string name="kind_default_name_rosary">המחרוזת שלי</string>
+
+    <!-- Mystery groups and selection modes -->
+    <string name="mystery_group_joyful">השמחה</string>
+    <string name="mystery_group_sorrowful">המוכאבות</string>
+    <string name="mystery_group_glorious">הכבוד</string>
+    <string name="mystery_group_luminous">האור</string>
+    <string name="mode_todays_mysteries">הרזים של היום</string>
+    <string name="mode_specific">תמיד אוסף ספציפי</string>
+    <string name="mode_fifteen">15 הרזים (השמחה, המוכאבות, הכבוד)</string>
+    <string name="mode_twenty">20 הרזים (כל ארבעת האוספים)</string>
+    <string name="mode_single">רז אחד בלבד</string>
+    <string name="summary_always">תמיד %1$s</string>
+    <string name="summary_only">רק %1$s</string>
+    <string name="summary_fifteen">15 הרזים</string>
+    <string name="summary_twenty">20 הרזים</string>
+
+    <!-- Eternal Rest placement -->
+    <string name="eternal_rest_none">לא לכלול</string>
+    <string name="eternal_rest_each_decade">בסיום כל רז</string>
+    <string name="eternal_rest_at_end">פעם אחת, בסוף</string>
+
+    <!-- Marian antiphon options -->
+    <string name="antiphon_none">ללא</string>
+    <string name="antiphon_seasonal">אוטומטי (עונתי)</string>
+    <string name="antiphon_salve_regina">שלום עליך מלכה</string>
+    <string name="antiphon_alma_redemptoris">אם הגואל</string>
+    <string name="antiphon_ave_regina">שלום לך מלכת שמים</string>
+    <string name="antiphon_regina_caeli">רוני מלכת שמים</string>
+    <string name="antiphon_sub_tuum">בצל רחמיך</string>
+
+    <!-- Language display -->
+    <string name="language_default_parenthesized">ברירת מחדל (%1$s)</string>
+    <string name="language_default_dash">ברירת מחדל — %1$s</string>
+
+    <!-- Rosary preset picker -->
+    <string name="rosary_title">הרוזריון הקדוש</string>
+    <string name="rosary_manage">ניהול</string>
+    <string name="rosary_default_preset">ברירת המחדל</string>
+    <string name="rosary_custom">מותאם אישית</string>
+    <string name="rosary_pray_any">תפילת רוזריון חופשית</string>
+    <string name="rosary_options">אפשרויות המחרוזת</string>
+    <string name="rosary_save_as_preset">שמירה כתבנית</string>
+    <string name="rosary_presets">תבניות</string>
+    <string name="rosary_preset_name">שם התבנית</string>
+    <string name="rosary_praying">תפילת המחרוזת</string>
+
+    <!-- Rosary options editor -->
+    <string name="ro_which_mysteries">אילו רזים?</string>
+    <string name="ro_mysteries">רזים</string>
+    <string name="ro_specific_set">אוסף ספציפי</string>
+    <string name="ro_which_mystery">איזה רז</string>
+    <string name="ro_opening_section">תפילות הפתיחה והרזים</string>
+    <string name="ro_apostles_creed">אני מאמין</string>
+    <string name="ro_opening_prayers">“אבינו שבשמים” ו־3 “שמחי מרים” בפתיחה</string>
+    <string name="ro_fatima">“הו ישוע שלי” בסוף כל רז</string>
+    <string name="ro_faithful_departed">למען הנפטרים</string>
+    <string name="ro_display_section">תצוגה</string>
+    <string name="ro_presenter_mode">מצב מנחה</string>
+    <string name="ro_presenter_hint">איחוד עשר ה“שמחי מרים” וה“שבח לאב” של כל רז למסך אחד — שימושי למי שמוביל תפילה בציבור בעל־פה.</string>
+    <string name="ro_closing_section">תפילות סיום</string>
+    <string name="ro_marian_antiphon">אנטיפונה למרים</string>
+    <string name="ro_st_michael">תפילת המלאך מיכאל</string>
+    <string name="ro_final_sign">סימן הצלב בסוף</string>
+
+    <!-- Favorites -->
+    <string name="favorites_title">מועדפים</string>
+    <string name="favorites_add_kind">הוסף %1$s</string>
+    <string name="favorites_more_devotions">מסלולי תפילה נוספים</string>
+    <string name="favorites_repository_badge">מהמאגר</string>
+    <string name="favorites_import">ייבוא חבילת תפילה…</string>
+    <string name="favorites_get_community">מסלולים מהקהילה…</string>
+    <string name="favorites_import_error_title">לא ניתן לייבא את המסלול</string>
+    <string name="favorites_set_default">הגדר כברירת מחדל</string>
+    <string name="favorites_edit_desc">ערוך את %1$s</string>
+    <string name="favorites_delete_desc">הסר את %1$s</string>
+    <string name="favorites_add_favorite_desc">הוסף את %1$s למועדפים</string>
+    <string name="favorites_remove_favorite_desc">הסר את %1$s מהמועדפים</string>
+    <string name="favorites_add_to_favorites">הוסף למועדפים</string>
+    <string name="favorites_remove_from_favorites">הסר מהמועדפים</string>
+    <string name="favorites_reminders_desc">ערוך את התזכורות של %1$s</string>
+    <string name="favorites_export_desc">ייצא את %1$s לעריכה</string>
+    <string name="favorites_remove_imported_desc">הסר את המסלול המיובא %1$s</string>
+
+    <!-- Favorite editor -->
+    <string name="editor_new_favorite">מועדף חדש</string>
+    <string name="editor_edit_favorite">ערוך מועדף</string>
+    <string name="editor_name">שם</string>
+    <string name="editor_name_hint">לדוג׳ מחרוזת בוקר</string>
+    <string name="editor_set_default_for">הגדר כברירת מחדל עבור %1$s</string>
+    <string name="editor_prayer_language">שפת התפילה</string>
+    <string name="editor_language">שפה</string>
+    <string name="editor_target">מטרה</string>
+    <string name="editor_options">אפשרויות</string>
+
+    <!-- Reminders -->
+    <string name="reminders_title">תזכורות</string>
+    <string name="reminders_add">הוסף תזכורת</string>
+    <string name="reminders_delete_desc">הסר תזכורת</string>
+
+    <!-- Jesus Prayer -->
+    <string name="jp_title">תפילת ישוע</string>
+    <string name="jp_how_many">כמה פעמים?</string>
+    <string name="jp_repetitions">מספר החזרות</string>
+    <string name="jp_begin">התחל</string>
+    <string name="jp_unbounded">ללא מגבלה</string>
+    <string name="jp_custom">מותאם אישית</string>
+    <string name="jp_count_times">‏%1$d×</string>
+    <string name="jp_times_prefix">‏× %1$d</string>
+    <string name="jp_favorite_name">תפילת ישוע %1$s (%2$s)</string>
+
+    <!-- Prayer step flow -->
+    <string name="flow_back">הקודם</string>
+    <string name="flow_step_of">%1$d מתוך %2$d</string>
+    <string name="flow_show_transliteration">הצג תעתיק</string>
+    <string name="flow_prayer_language">שפת התפילה</string>
+    <string name="flow_app_setting">הגדרת האפליקציה</string>
+    <string name="flow_day">יום</string>
+    <string name="flow_choose_form">בחר נוסח</string>
+
+    <!-- Audio playback -->
+    <string name="audio_previous_chapter">הפרק הקודם</string>
+    <string name="audio_next_chapter">הפרק הבא</string>
+    <string name="audio_play">נגן</string>
+    <string name="audio_pause">השהה</string>
+
+    <!-- Rosary bead accessibility -->
+    <string name="bead_opening_cross">סימן הצלב בפתיחה</string>
+    <string name="bead_closing_cross">סימן הצלב בסיום</string>
+    <string name="bead_marian_antiphon">אנטיפונה למרים</string>
+    <string name="bead_opening_prayers">תפילות פתיחה</string>
+    <string name="bead_closing_prayers">תפילות סיום</string>
+    <string name="bead_decade_of">רז %1$d מתוך %2$d</string>
+    <string name="bead_hail_mary_of">שמחי מרים %1$d מתוך %2$d</string>
+    <string name="bead_antiphon_letter">מ</string>
+    <string name="bead_progress">התקדמות המחרוזת. %1$s</string>
+
+    <!-- Repository browser -->
+    <string name="browse_title">מסלולי תפילה מהקהילה</string>
+    <string name="browse_search_label">חיפוש מסלולים</string>
+    <string name="browse_all">הכול</string>
+    <string name="browse_unreachable">לא ניתן להגיע למאגר.</string>
+    <string name="browse_install_error_title">לא ניתן להתקין את המסלול</string>
+    <string name="browse_install_error_generic">לא ניתן היה להתקין את המסלול.</string>
+    <string name="browse_no_match">אין מסלולים תואמים.</string>
+    <string name="browse_unsupported_catalog">המאגר משתמש בפורמט קטלוג חדש יותר — עדכן את Prosary כדי לעיין בו.</string>
+    <string name="pack_error_unreadable">קובץ זה אינו חבילת ‎.prosaryprayer קריאה.</string>
+    <string name="pack_error_not_devotion">חבילה זו אינה מכילה מסלול תפילה.</string>
+    <string name="pack_error_duplicate">מסלול תפילה בשם “%1$s” כבר מותקן.</string>
+
+    <!-- Search -->
+    <string name="search_hint">מסלולים, קטגוריות, יוצרים</string>
+    <string name="search_on_device">במכשיר הזה</string>
+    <string name="search_no_device_match">שום דבר במכשיר אינו תואם.</string>
+    <string name="search_from_community">מהקהילה</string>
+
+    <!-- About -->
+    <string name="about_title">אודות Prosary</string>
+    <string name="about_tagline">עזר לתפילת המחרוזת ולתפילות קתוליות נוספות.</string>
+    <string name="about_typefaces">גופנים</string>
+    <string name="about_typeface_frank_ruhl">" — רישיון SIL Open Font 1.1 — תפילות בעברית."</string>
+    <string name="about_typeface_shofar">" — GPL v2 עם חריגת הטמעת גופנים — פסוקי מקרא בעברית (פרויקט קולמוס, יורם גנת)."</string>
+    <string name="about_typeface_amiri">" — רישיון SIL Open Font 1.1 — תפילות בערבית."</string>
+    <string name="about_typeface_scheherazade">" — רישיון SIL Open Font 1.1 — פסוקי מקרא בערבית (SIL)."</string>
+    <string name="about_typeface_cardo">" — רישיון SIL Open Font 1.1 — פסוקי מקרא בלטינית ובאנגלית (David J. Perry)."</string>
+    <string name="about_typefaces_footer">תפילות בכתב לטיני משתמשות בגופן הסריפי של המערכת — אינו מצורף לאפליקציה.</string>
+    <string name="about_mystery_illustrations">איורי הרזים</string>
+    <string name="about_mystery_intro">כל 20 תמונות הרזים הן ציורים קלאסיים ברשות הציבור (האמן נפטר לפני יותר מ־100 שנים), מתוך ויקישיתוף.</string>
+    <string-array name="about_mystery_attributions">
+        <item>*הבשורה* — פרה אנג׳ליקו (נפ׳ 1455)</item>
+        <item>*הביקור* — מריוטו אלברטינלי (נפ׳ 1515)</item>
+        <item>*הלילה הקדוש* — אנטוניו דה קורג׳ו (נפ׳ 1534)</item>
+        <item>*ההצגה בבית המקדש* — אנדראה מנטניה (נפ׳ 1506)</item>
+        <item>*מציאת ישוע בבית המקדש* — סימונה מרטיני (נפ׳ 1344)</item>
+        <item>*טבילת המשיח* — פיירו דלה פרנצ׳סקה (נפ׳ 1492)</item>
+        <item>*החתונה בכנא* — פאולו ורונזה (נפ׳ 1588)</item>
+        <item>*הדרשה על ההר* — קוזימו רוסלי (נפ׳ 1507)</item>
+        <item>*ההשתנות* — רפאל (נפ׳ 1520)</item>
+        <item>*הסעודה האחרונה* — לאונרדו דה וינצ׳י (נפ׳ 1519)</item>
+        <item>*הייסורים בגן* — אנדראה מנטניה (נפ׳ 1506)</item>
+        <item>*הלקאת המשיח* — קאראווג׳ו (נפ׳ 1610)</item>
+        <item>*הכתרת הקוצים* — קאראווג׳ו (נפ׳ 1610)</item>
+        <item>*המשיח נושא את צלבו* — טיציאן (נפ׳ 1576)</item>
+        <item>*המשיח הצלוב* — דייגו ולאסקס (נפ׳ 1660)</item>
+        <item>*התחייה* — פיירו דלה פרנצ׳סקה (נפ׳ 1492)</item>
+        <item>*עליית המשיח השמימה* — רמברנדט (נפ׳ 1669)</item>
+        <item>*ירידת רוח הקודש* — אל גרקו (נפ׳ 1614)</item>
+        <item>*העלאת הבתולה* — טיציאן (נפ׳ 1576)</item>
+        <item>*הכתרת הבתולה* — דייגו ולאסקס (נפ׳ 1660)</item>
+    </string-array>
+    <string name="about_other_images">תמונות נוספות</string>
+    <string-array name="about_other_image_attributions">
+        <item>*הצלב* — צ׳ימבואה (נפ׳ 1302).</item>
+        <item>*מדונת קאופר הקטנה* — רפאל (נפ׳ 1520).</item>
+        <item>*אמונה, תקווה ואהבה* — רפאל, פרדלת מזבח בליוני (נפ׳ 1520).</item>
+        <item>*ידיים מתפללות* — אלברכט דירר (נפ׳ 1528).</item>
+        <item>*השילוש הקדוש* — מזאצ׳ו (נפ׳ 1428).</item>
+        <item>*המשיח בלימבו* — פרה אנג׳ליקו (נפ׳ 1455).</item>
+        <item>*מיכאל* — גווידו רני (נפ׳ 1642).</item>
+        <item>*ראש המשיח* — רמברנדט (נפ׳ 1669).</item>
+    </string-array>
+    <string name="about_stations_illustrations">איורי דרך הצלב</string>
+    <string name="about_stations_fugel">כל 14 התחנות: גבהרד פוגל (1863–1939), דרך הצלב (Kreuzweg, 1921), כנסיית אנטוניוס הקדוש, באד זאולגאו — רשות הציבור; צילומים מאת אנדראס פרפקה, שהוקדשו לרשות הציבור.</string>
+    <string name="about_stations_scriptural">הנוסח המקראי (של יוחנן פאולוס השני הקדוש) מוסיף: נשיקת יהודה — ג׳וטו די בונדונה (קפלת סקרובני, 1305 לערך); המשיח לפני הכהן הגדול — חרארד ואן הונטהורסט (1617 לערך), הגלריה הלאומית, לונדון; התכחשות פטרוס הקדוש — רמברנדט (1660), הרייקסמוזיאום; דקירת החנית (Le Coup de Lance) — פטר פאול רובנס (1620), המוזיאון המלכותי לאמנויות יפות, אנטוורפן — כולם ברשות הציבור. שאר הסצנות עושות שימוש באיורים המופיעים במקומות אחרים בדף זה.</string>
+    <string name="about_stations_via_lucis">סצנות דרך האור: התלמידים בקבר — אז׳ן בורנאן (1898), מוזיאון ד׳אורסה; אל תיגעי בי (Noli me tangere) — פרה אנג׳ליקו (סן מרקו, 1440 לערך); הדרך לאמאוס, ההתגלויות לשליחים, בים כנרת ובגליל — דוצ׳ו (מאסטה, 1308–1311), סיינה; הסעודה באמאוס (1601) וספקנותו של תומאס הקדוש (1601–1602) — קאראווג׳ו; המשיח מצווה על פטרוס — רפאל (1515 לערך), האוסף המלכותי; הבתולה בתפילה — סאסופראטו (1640–1650), הגלריה הלאומית, לונדון — כולם ברשות הציבור. שאר הסצנות עושות שימוש באיורי רזי הכבוד של המחרוזת.</string>
+    <string name="about_crown_illustration">איור הכתר הפרנציסקני</string>
+    <string name="about_crown_magi">ההתגלות (הערצת האמגושים): ברטולומה אסטבן מוריו (1655–60 לערך), מוזיאון האמנות של טולדו — רשות הציבור. שש השמחות האחרות עושות שימוש באיורי רזי המחרוזת שלמעלה.</string>
+    <string name="about_sorrows_illustrations">איורי שבעת המכאובים</string>
+    <string-array name="about_sorrows_attributions">
+        <item>*נבואת שמעון* — רמברנדט ואן ריין, שיר ההלל של שמעון (1631), מאוריצהאוס — רשות הציבור.</item>
+        <item>*הבריחה למצרים* — ברטולומה אסטבן מוריו (1647–50 לערך), מכון דטרויט לאמנויות — רשות הציבור.</item>
+        <item>*אובדן ישוע בבית המקדש* — פאולו ורונזה, המשיח בין החכמים (1560 לערך), מוזיאון הפראדו — רשות הציבור.</item>
+        <item>*הפגישה בדרך הצלב* — רפאל, לו ספאזימו (1514–16 לערך), מוזיאון הפראדו — רשות הציבור.</item>
+        <item>*הצליבה* — הנדריק טר ברוחן, הצליבה עם הבתולה ויוחנן הקדוש (1625 לערך), מוזיאון המטרופוליטן לאמנות — CC0.</item>
+        <item>*ההורדה מהצלב* — פטר פאול רובנס (1612–14 לערך), קתדרלת גבירתנו, אנטוורפן — רשות הציבור.</item>
+        <item>*קבורת ישוע* — טיציאן, הטמנת המשיח (1520 לערך), מוזיאון הלובר — רשות הציבור.</item>
+    </string-array>
+    <string name="about_mercy_illustration">איור רחמי האלוהים</string>
+    <string name="about_mercy_kazimirowski">יוגניוש קזימירובסקי, רחמי האלוהים (“ישוע, אבטח בך”, 1934), מקדש רחמי האלוהים, וילנה — התמונה המקורית שצוירה בהנחיית פאוסטינה הקדושה; רשות הציבור.</string>
+    <string name="about_jesus_prayer_illustration">איור תפילת ישוע</string>
+    <string name="about_jesus_pantocrator">המשיח כל־יכול: איקונה (המאה ה־6), מנזר הק׳ קתרינה, הר סיני — איקונת “המשיח הכל־יכול” העתיקה ביותר ששרדה, לכבוד מסורתה המזרחית של התפילה; רשות הציבור.</string>
+    <string name="about_scripture_sources">מקורות כתבי הקודש</string>
+    <string name="about_scripture_text">ציטוטי המקרא לקוחים מביבליית דואיי־רימס (אנגלית), הוולגאטה הקלמנטית (לטינית), תרגום דליטש לברית החדשה (מתוך kirjasilta.net/ha-berit) עם קטעי התנ״ך על פי נוסח המסורה, תרגום הישועים לביבליה לערבית (ביירות, 1880, נערך 1988), הביבליה הסינודלית ברוסית (1876) ו־Ang Dating Biblia (טאגאלוג, 1905) — כולם בנחלת הכלל.</string>
+</resources>

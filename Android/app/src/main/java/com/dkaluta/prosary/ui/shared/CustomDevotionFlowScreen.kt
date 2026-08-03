@@ -24,6 +24,8 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.audio.AudioPlaybackController
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.LanguageCatalog
@@ -238,10 +240,10 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
             val bundleLanguages = PrayerPackStore.info(devotionId)?.languages.orEmpty()
             if (bundleLanguages.size > 1) {
                 IconButton(onClick = { languageMenuExpanded = true }) {
-                    Icon(Icons.Filled.Language, contentDescription = "Prayer language")
+                    Icon(Icons.Filled.Language, contentDescription = stringResource(R.string.flow_prayer_language))
                 }
                 DropdownMenu(expanded = languageMenuExpanded, onDismissRequest = { languageMenuExpanded = false }) {
-                    val choices = listOf(LanguageCatalog.defaultSentinel to "App setting") +
+                    val choices = listOf(LanguageCatalog.defaultSentinel to stringResource(R.string.flow_app_setting)) +
                         bundleLanguages.mapNotNull { code ->
                             LanguageCatalog.all.firstOrNull { it.code == code }?.let { it.code to it.nativeName }
                         }
@@ -285,7 +287,7 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
             val days = PrayerPackStore.definition(devotionId)?.days.orEmpty()
             if (days.size > 1) {
                 IconButton(onClick = { dayMenuExpanded = true }) {
-                    Icon(Icons.Filled.DateRange, contentDescription = "Day")
+                    Icon(Icons.Filled.DateRange, contentDescription = stringResource(R.string.flow_day))
                 }
                 DropdownMenu(expanded = dayMenuExpanded, onDismissRequest = { dayMenuExpanded = false }) {
                     days.forEachIndexed { index, day ->
@@ -313,7 +315,7 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
             val variants = PrayerPackStore.definition(devotionId)?.variants
             if (variants != null && variants.size > 1) {
                 IconButton(onClick = { variantMenuExpanded = true }) {
-                    Icon(Icons.AutoMirrored.Filled.MenuBook, contentDescription = "Choose form")
+                    Icon(Icons.AutoMirrored.Filled.MenuBook, contentDescription = stringResource(R.string.flow_choose_form))
                 }
                 DropdownMenu(expanded = variantMenuExpanded, onDismissRequest = { variantMenuExpanded = false }) {
                     for (variant in variants) {
@@ -348,7 +350,7 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
             }) {
                 Icon(
                     if (matchingFavoriteId != null) Icons.Filled.Star else Icons.Filled.StarBorder,
-                    contentDescription = if (matchingFavoriteId != null) "Remove from Favorites" else "Add to Favorites",
+                    contentDescription = if (matchingFavoriteId != null) stringResource(R.string.favorites_remove_from_favorites) else stringResource(R.string.favorites_add_to_favorites),
                 )
             }
         },

@@ -56,7 +56,13 @@ struct HomeView: View {
   /// (bundle-driven) devotion in pack-load order — icon/title/accent read from each bundle's own
   /// manifest, nothing hardcoded here — and the Jesus Prayer (the counter-based odd one out)
   /// last. Adding a devotion means shipping a bundle; this view doesn't change.
+  /// Bumped whenever the saved order changes so the grid re-derives.
+  @State private var orderGeneration = 0
+  @State private var showsOrderEditor = false
+  @State private var showsSettings = false
+
   private var devotionCards: [DevotionCard] {
+    _ = orderGeneration
     // Read the generation so installing a bundle elsewhere (Browse/Search/Favorites)
     // invalidates this body and the new card appears without a relaunch.
     _ = packGeneration
@@ -72,6 +78,7 @@ struct HomeView: View {
       cards.append(DevotionCard(
         id: "custom.\(bundleId)",
         systemImage: info.iconSystemName ?? PrayerKind.custom.systemImage,
+        iconGlyph: info.iconGlyph,
         title: info.localizedDisplayName,
         accentColor: customAccent(info),
         subtitle: customDevotionSubtitle(bundleId: bundleId),
@@ -84,7 +91,7 @@ struct HomeView: View {
       accentColor: jesusPrayerAccent, subtitle: jesusPrayerSubtitle,
       accessibilityIdentifier: "jesusPrayerCard", action: launchJesusPrayer))
 
-    return cards
+    return HomeOrder.apply(cards, id: \.id)
   }
 
   var body: some View {
@@ -137,6 +144,7 @@ struct HomeView: View {
           ForEach(devotionCards) { card in
             PrayerCard(
               systemImage: card.systemImage,
+              iconGlyph: card.iconGlyph,
               title: card.title,
               subtitle: card.subtitle,
               accentColor: card.accentColor
@@ -144,6 +152,21 @@ struct HomeView: View {
               card.action()
             }
             .accessibilityIdentifier(card.accessibilityIdentifier)
+            .contextMenu {
+              Button {
+                HomeOrder.moveToTop(card.id, allIdsInDisplayOrder: devotionCards.map(\.id))
+                orderGeneration += 1
+              } label: {
+                Label(String(localized: "home.moveToTop", defaultValue: "Move to Top"),
+                      systemImage: "arrow.up.to.line")
+              }
+              Button {
+                showsOrderEditor = true
+              } label: {
+                Label(String(localized: "home.editOrder", defaultValue: "Edit Order…"),
+                      systemImage: "arrow.up.arrow.down")
+              }
+            }
           }
         }
       }
@@ -154,7 +177,40 @@ struct HomeView: View {
     // The tab shell carries the app's identity now — the bar shows the section name, and the
     // old bottom Favorites button / About link become toolbar icons.
     .navigationTitle(String(localized: "tabs.pray", defaultValue: "Pray"))
+    #if !os(macOS)
+    .sheet(isPresented: $showsSettings) {
+      NavigationStack {
+        SettingsView()
+          .navigationTitle(String(localized: "settings.title", defaultValue: "Settings"))
+          .navigationBarTitleDisplayMode(.inline)
+          .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+              Button(String(localized: "favoriteEditor.done", defaultValue: "Done")) { showsSettings = false }
+            }
+          }
+      }
+    }
+    #endif
+    .sheet(isPresented: $showsOrderEditor) {
+      HomeOrderEditor(cards: devotionCards) { orderGeneration += 1 }
+    }
     .toolbar {
+      #if !os(macOS)
+      ToolbarItem(placement: .primaryAction) {
+        Button { showsSettings = true } label: {
+          Image(systemName: "gearshape")
+        }
+        .accessibilityLabel(String(localized: "settings.title", defaultValue: "Settings"))
+        .accessibilityIdentifier("settingsButton")
+      }
+      #endif
+      ToolbarItem(placement: .primaryAction) {
+        Button { showsOrderEditor = true } label: {
+          Image(systemName: "arrow.up.arrow.down")
+        }
+        .accessibilityLabel(String(localized: "home.editOrder", defaultValue: "Edit Order…"))
+        .accessibilityIdentifier("editOrderButton")
+      }
       ToolbarItem(placement: .primaryAction) {
         NavigationLink(value: AppRoute.favorites) {
           Image(systemName: "star")
@@ -223,6 +279,7 @@ struct HomeView: View {
 private struct DevotionCard: Identifiable {
   let id: String
   let systemImage: String
+    var iconGlyph: String? = nil
   let title: String
   let accentColor: Color
   let subtitle: String
@@ -241,4 +298,58 @@ private struct DevotionCard: Identifiable {
     HomeView(path: .constant(NavigationPath()))
   }
   .preferredColorScheme(.dark)
+}
+
+
+/// The approved reorder pattern (not jiggle): a plain List in permanent edit mode — drag
+/// handles appear, rows move, order persists on every change. Reset returns to directory
+/// order. Presented as a sheet so the Home grid itself stays a grid.
+private struct HomeOrderEditor: View {
+  let cards: [DevotionCard]
+  let onChange: () -> Void
+  @Environment(\.dismiss) private var dismiss
+  @State private var ids: [String] = []
+  @State private var titles: [String: String] = [:]
+
+  var body: some View {
+    NavigationStack {
+      List {
+        ForEach(ids, id: \.self) { id in
+          Text(titles[id] ?? id)
+        }
+        .onMove { from, to in
+          ids.move(fromOffsets: from, toOffset: to)
+          HomeOrder.save(ids)
+          onChange()
+        }
+      }
+      #if os(iOS)
+      .environment(\.editMode, .constant(.active)) // drag handles; macOS Lists drag natively
+      #endif
+      #if os(macOS)
+      .frame(minWidth: 340, minHeight: 420)
+      #endif
+      .navigationTitle(String(localized: "home.editOrder.title", defaultValue: "Home Order"))
+      #if os(iOS)
+      .navigationBarTitleDisplayMode(.inline)
+      #endif
+      .toolbar {
+        ToolbarItem(placement: .cancellationAction) {
+          Button(String(localized: "home.editOrder.reset", defaultValue: "Reset")) {
+            HomeOrder.reset()
+            ids = cards.map(\.id) // cards arrive already ordered; reset shows directory order next open
+            onChange()
+            dismiss()
+          }
+        }
+        ToolbarItem(placement: .confirmationAction) {
+          Button(String(localized: "favoriteEditor.done", defaultValue: "Done")) { dismiss() }
+        }
+      }
+      .onAppear {
+        ids = cards.map(\.id)
+        titles = Dictionary(uniqueKeysWithValues: cards.map { ($0.id, $0.title) })
+      }
+    }
+  }
 }

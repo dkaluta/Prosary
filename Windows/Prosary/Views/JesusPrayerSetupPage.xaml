@@ -21,11 +21,11 @@
             <Button Grid.Column="0" Command="{x:Bind ViewModel.BackCommand}" Background="Transparent" Padding="8">
                 <FontIcon Glyph="&#xE72B;" />
             </Button>
-            <TextBlock Grid.Column="1" Text="The Jesus Prayer" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
+            <TextBlock x:Uid="JpTitle" Grid.Column="1" Text="The Jesus Prayer" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
         </Grid>
 
         <StackPanel Grid.Row="1" Spacing="16" MaxWidth="360" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="24">
-            <TextBlock Text="How many times?" HorizontalAlignment="Center" />
+            <TextBlock x:Uid="JpHowMany" Text="How many times?" HorizontalAlignment="Center" />
 
             <ComboBox HorizontalAlignment="Stretch" ItemsSource="{x:Bind ViewModel.Options}" SelectedItem="{x:Bind ViewModel.Selection, Mode=TwoWay}">
                 <ComboBox.ItemTemplate>
@@ -35,11 +35,11 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <TextBox Header="Number of repetitions" InputScope="Number"
+            <TextBox x:Uid="JpRepetitions" Header="Number of repetitions" InputScope="Number"
                      Text="{x:Bind ViewModel.CustomCountText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Visibility="{x:Bind ViewModel.IsCustomSelected, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
 
-            <Button Content="Begin" HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}"
+            <Button x:Uid="JpBegin" Content="Begin" HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}"
                     Command="{x:Bind ViewModel.BeginCommand, Mode=OneWay}" />
         </StackPanel>
     </Grid>

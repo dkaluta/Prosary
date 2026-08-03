@@ -1,5 +1,8 @@
 package com.dkaluta.prosary.models
 
+import androidx.annotation.StringRes
+import com.dkaluta.prosary.R
+
 /** How a [RosaryOptions] decides which mystery group(s) to pray in a given session. */
 enum class MysterySelectionMode {
     /** Follow the traditional weekday assignment (with liturgical-season overrides on Sundays). */
@@ -21,12 +24,13 @@ enum class MysterySelectionMode {
      * though iOS/Android's own storage (name-keyed) wouldn't require it. */
     SingleMystery;
 
-    val displayName: String
+    @get:StringRes
+    val displayNameRes: Int
         get() = when (this) {
-            TodaysMysteries -> "Today's Mysteries"
-            Specific -> "Always a Specific Set"
-            FifteenMystery -> "The 15 Mysteries (Joyful, Sorrowful, Glorious)"
-            TwentyMystery -> "The 20 Mysteries (All Four Sets)"
-            SingleMystery -> "One Mystery Only"
+            TodaysMysteries -> R.string.mode_todays_mysteries
+            Specific -> R.string.mode_specific
+            FifteenMystery -> R.string.mode_fifteen
+            TwentyMystery -> R.string.mode_twenty
+            SingleMystery -> R.string.mode_single
         }
 }

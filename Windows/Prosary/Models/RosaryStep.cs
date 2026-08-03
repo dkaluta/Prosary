@@ -20,6 +20,9 @@ public sealed record RosaryStep(
     // existing four-positional-argument call sites keep their meaning.
     string? Acclamation = null,
     bool IsScripture = false,
+    // Optional reading aid (v0.7, Gamaliel item 5): the body transliterated into another
+    // script; the flow shows a toggle beside the text whenever present.
+    string? TransliteratedBody = null,
     bool IsAntiphon = false,
     int? DecadeIndex = null,
     int? HailMaryIndexInDecade = null,

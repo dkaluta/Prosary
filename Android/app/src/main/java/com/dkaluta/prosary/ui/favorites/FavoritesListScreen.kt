@@ -3,6 +3,7 @@ package com.dkaluta.prosary.ui.favorites
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.material.icons.filled.Download
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Language
 import androidx.compose.material3.AlertDialog
 import androidx.compose.foundation.background
@@ -53,16 +54,19 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.reminders.ReminderScheduler
 import com.dkaluta.prosary.services.LocalAppServices
+import com.dkaluta.prosary.ui.shared.installErrorMessage
 import com.dkaluta.prosary.ui.shared.colorForHex
 import com.dkaluta.prosary.ui.shared.iconForSystemName
 import kotlinx.coroutines.launch
@@ -109,16 +113,31 @@ fun FavoritesListScreen(
     // Bumped after install/remove so the customDevotionIds list re-evaluates.
     var installedGeneration by remember { mutableStateOf(0) }
 
+    // Round-trip to Compose (Gamaliel item 7): SAF create-document, then copy the installed
+    // pack's bytes out — no FileProvider needed.
+    var exportBundleId by remember { mutableStateOf<String?>(null) }
+    val exportLauncher = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/zip")) { uri ->
+        val id = exportBundleId
+        exportBundleId = null
+        if (uri != null && id != null) {
+            PrayerPackStore.installedPackFile(id)?.let { file ->
+                context.contentResolver.openOutputStream(uri)?.use { out ->
+                    file.inputStream().use { it.copyTo(out) }
+                }
+            }
+        }
+    }
+
     val importLauncher = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
         if (uri == null) return@rememberLauncherForActivityResult
         runCatching {
             val bytes = context.contentResolver.openInputStream(uri)?.use { it.readBytes() }
-                ?: throw PrayerPackStore.InstallException("This file is not a readable .prosaryprayer bundle.")
+                ?: throw PrayerPackStore.InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
             PrayerPackStore.installPack(bytes)
         }.onSuccess {
             installedGeneration++
         }.onFailure { error ->
-            importError = error.message ?: "Could not import the bundle."
+            importError = installErrorMessage(context, error)
         }
     }
 
@@ -152,10 +171,10 @@ fun FavoritesListScreen(
         topBar = {
             TopAppBar(
                 scrollBehavior = topBarScroll,
-                title = { Text("Favorites") },
+                title = { Text(stringResource(R.string.favorites_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.common_back))
                     }
                 },
             )
@@ -192,7 +211,7 @@ fun FavoritesListScreen(
                 item {
                     TextButton(onClick = { onAddNew(kind) }, modifier = Modifier.padding(horizontal = 12.dp)) {
                         Icon(Icons.Filled.Add, contentDescription = null, tint = accentFor(kind))
-                        Text("Add ${kind.displayName}", color = accentFor(kind))
+                        Text(stringResource(R.string.favorites_add_kind, stringResource(kind.displayNameRes)), color = accentFor(kind))
                     }
                 }
             }
@@ -207,7 +226,7 @@ fun FavoritesListScreen(
                         .padding(horizontal = 20.dp, vertical = 12.dp),
                 ) {
                     Icon(Icons.Filled.Star, contentDescription = null)
-                    Text("More Devotions", style = MaterialTheme.typography.titleMedium)
+                    Text(stringResource(R.string.favorites_more_devotions), style = MaterialTheme.typography.titleMedium)
                 }
             }
 
@@ -222,7 +241,7 @@ fun FavoritesListScreen(
                         icon = iconForSystemName(info.iconSystemName),
                         accentColor = colorForHex(info.accentColorHex) ?: MaterialTheme.colorScheme.primary,
                         isFavorited = favorite != null,
-                        badge = if (bundleId.startsWith("repo.")) "Repository" else null,
+                        badge = if (bundleId.startsWith("repo.")) stringResource(R.string.favorites_repository_badge) else null,
                         onToggleFavorite = {
                             scope.launch {
                                 if (favorite != null) {
@@ -243,6 +262,14 @@ fun FavoritesListScreen(
                             }
                         },
                         onEditReminders = { favorite?.let { onEditReminders(it.id) } },
+                        onExportInstalled = if (bundleId in PrayerPackStore.installedBundleIds()) {
+                            {
+                                exportBundleId = bundleId
+                                exportLauncher.launch("$bundleId.prosaryprayer")
+                            }
+                        } else {
+                            null
+                        },
                         onRemoveInstalled = if (bundleId in PrayerPackStore.installedBundleIds()) {
                             {
                                 scope.launch {
@@ -270,7 +297,7 @@ fun FavoritesListScreen(
                     modifier = Modifier.padding(horizontal = 16.dp),
                 ) {
                     Icon(Icons.Filled.Download, contentDescription = null)
-                    Text("Import Devotion Bundle…", modifier = Modifier.padding(start = 8.dp))
+                    Text(stringResource(R.string.favorites_import), modifier = Modifier.padding(start = 8.dp))
                 }
             }
 
@@ -282,7 +309,7 @@ fun FavoritesListScreen(
                     modifier = Modifier.padding(horizontal = 16.dp),
                 ) {
                     Icon(Icons.Filled.Language, contentDescription = null)
-                    Text("Get Community Devotions…", modifier = Modifier.padding(start = 8.dp))
+                    Text(stringResource(R.string.favorites_get_community), modifier = Modifier.padding(start = 8.dp))
                 }
             }
         }
@@ -291,9 +318,9 @@ fun FavoritesListScreen(
     importError?.let { message ->
         AlertDialog(
             onDismissRequest = { importError = null },
-            title = { Text("Could Not Import Devotion") },
+            title = { Text(stringResource(R.string.favorites_import_error_title)) },
             text = { Text(message) },
-            confirmButton = { TextButton(onClick = { importError = null }) { Text("OK") } },
+            confirmButton = { TextButton(onClick = { importError = null }) { Text(stringResource(R.string.common_ok)) } },
         )
     }
 }
@@ -309,7 +336,7 @@ private fun KindHeader(kind: PrayerKind) {
             .padding(horizontal = 20.dp, vertical = 12.dp),
     ) {
         Icon(iconFor(kind), contentDescription = null, tint = accentFor(kind))
-        Text(kind.displayName, style = MaterialTheme.typography.titleMedium)
+        Text(stringResource(kind.displayNameRes), style = MaterialTheme.typography.titleMedium)
     }
 }
 
@@ -322,12 +349,13 @@ private fun FavoriteCard(
     onMakeDefault: () -> Unit,
     onDelete: () -> Unit,
 ) {
+    val rowContext = LocalContext.current
     val subtitle = when (prayer.kind) {
-        PrayerKind.Rosary -> "${prayer.rosary.mysterySelectionSummary} • ${prayer.languageDisplayName}"
-        PrayerKind.JesusPrayer -> "${prayer.jesusPrayer.targetDisplayName} • ${prayer.languageDisplayName}"
+        PrayerKind.Rosary -> "${prayer.rosary.mysterySelectionSummary(rowContext)} • ${prayer.languageDisplayName(rowContext)}"
+        PrayerKind.JesusPrayer -> "${prayer.jesusPrayer.targetDisplayName(rowContext)} • ${prayer.languageDisplayName(rowContext)}"
         // Unreachable in practice — .Custom favorites render via SimpleFavoriteRow, never
         // FavoriteCard (see configurableKinds above). Still needed for exhaustiveness.
-        PrayerKind.Custom -> prayer.languageDisplayName
+        PrayerKind.Custom -> prayer.languageDisplayName(rowContext)
     }
 
     Column(
@@ -345,10 +373,10 @@ private fun FavoriteCard(
                 Icon(Icons.Filled.Star, contentDescription = null, tint = accentColor, modifier = Modifier.padding(end = 4.dp))
             }
             IconButton(onClick = onEdit) {
-                Icon(Icons.Filled.Edit, contentDescription = "Edit ${prayer.name}", tint = MaterialTheme.colorScheme.onSurfaceVariant)
+                Icon(Icons.Filled.Edit, contentDescription = stringResource(R.string.favorites_edit_desc, prayer.name), tint = MaterialTheme.colorScheme.onSurfaceVariant)
             }
             IconButton(onClick = onDelete) {
-                Icon(Icons.Filled.Delete, contentDescription = "Delete ${prayer.name}", tint = MaterialTheme.colorScheme.error)
+                Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.favorites_delete_desc, prayer.name), tint = MaterialTheme.colorScheme.error)
             }
         }
 
@@ -360,12 +388,12 @@ private fun FavoriteCard(
                 modifier = Modifier.weight(1f),
                 colors = ButtonDefaults.buttonColors(containerColor = accentColor),
             ) {
-                Text("Pray")
+                Text(stringResource(R.string.common_pray))
             }
 
             if (!prayer.isDefault) {
                 OutlinedButton(onClick = onMakeDefault, modifier = Modifier.weight(1f)) {
-                    Text("Set Default")
+                    Text(stringResource(R.string.favorites_set_default))
                 }
             }
         }
@@ -385,6 +413,7 @@ private fun SimpleFavoriteRow(
     onToggleFavorite: () -> Unit,
     onEditReminders: () -> Unit,
     /** Non-null only for user-imported bundles — shows the trailing remove button. */
+    onExportInstalled: (() -> Unit)? = null,
     onRemoveInstalled: (() -> Unit)? = null,
     /** Small capsule after the title — "Repository" for bundles installed from
      * prayers.prosary.app (ids prefixed "repo.", see ARCHITECTURE.md). Null hides it. */
@@ -403,7 +432,7 @@ private fun SimpleFavoriteRow(
         IconButton(onClick = onToggleFavorite) {
             Icon(
                 if (isFavorited) Icons.Filled.Star else Icons.Filled.StarBorder,
-                contentDescription = if (isFavorited) "Remove $title from Favorites" else "Add $title to Favorites",
+                contentDescription = if (isFavorited) stringResource(R.string.favorites_remove_favorite_desc, title) else stringResource(R.string.favorites_add_favorite_desc, title),
                 tint = if (isFavorited) accentColor else MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
@@ -425,13 +454,20 @@ private fun SimpleFavoriteRow(
 
         if (isFavorited) {
             IconButton(onClick = onEditReminders) {
-                Icon(Icons.Filled.Notifications, contentDescription = "Edit $title reminders", tint = MaterialTheme.colorScheme.onSurfaceVariant)
+                Icon(Icons.Filled.Notifications, contentDescription = stringResource(R.string.favorites_reminders_desc, title), tint = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
 
+        if (onExportInstalled != null) {
+            // Round-trip to Compose: save the .prosaryprayer, edit it at compose.prosary.app,
+            // re-import (or republish) — Gamaliel item 7.
+            IconButton(onClick = onExportInstalled) {
+                Icon(Icons.Filled.Share, contentDescription = stringResource(R.string.favorites_export_desc, title), tint = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+        }
         if (onRemoveInstalled != null) {
             IconButton(onClick = onRemoveInstalled) {
-                Icon(Icons.Filled.Delete, contentDescription = "Remove imported devotion $title", tint = MaterialTheme.colorScheme.onSurfaceVariant)
+                Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.favorites_remove_imported_desc, title), tint = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
     }

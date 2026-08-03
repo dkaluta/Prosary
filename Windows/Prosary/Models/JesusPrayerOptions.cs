@@ -1,3 +1,5 @@
+using Prosary.Localization;
+
 namespace Prosary.Models;
 
 /// <summary>Configuration options specific to the Jesus Prayer. Lives inside a <see cref="Prayer"/>
@@ -8,8 +10,8 @@ public sealed record JesusPrayerOptions
 
     public string TargetDisplayName => Target switch
     {
-        JesusPrayerTarget.Count(var n) => $"{n}×",
-        JesusPrayerTarget.Unbounded => "Unbounded",
+        JesusPrayerTarget.Count(var n) => string.Format(Loc.Tr("jp_count_times", "{0}×"), n),
+        JesusPrayerTarget.Unbounded => Loc.Tr("jp_unbounded", "Unbounded"),
         _ => throw new ArgumentOutOfRangeException(nameof(Target))
     };
 }

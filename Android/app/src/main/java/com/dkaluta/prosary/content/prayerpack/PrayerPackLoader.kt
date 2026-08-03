@@ -1,5 +1,7 @@
 package com.dkaluta.prosary.content.prayerpack
 
+import androidx.annotation.StringRes
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.LanguageCatalog
 
 import com.dkaluta.prosary.content.MysteryText
@@ -27,6 +29,9 @@ private data class PackManifest(
     val accentColorHex: String? = null,
     val accentColorDarkHex: String? = null,
     val iconSystemName: String? = null,
+    /** One grapheme (letter or emoji) drawn instead of [iconSystemName] — Compose's "your
+     * own" icon (v0.7, Gamaliel item 6). */
+    val iconGlyph: String? = null,
     val displayNameByLanguage: Map<String, String>? = null,
     val reminderBody: Map<String, String>? = null,
     val reminderPresetHours: List<Int>? = null,
@@ -38,6 +43,8 @@ private data class PackManifest(
 private data class PackContent(
     val prayers: Map<String, String> = emptyMap(),
     val mysteries: Map<String, MysteryText> = emptyMap(),
+    /** Optional reading aid (v0.7): prayer key → the same text in another script. */
+    val transliterations: Map<String, String> = emptyMap(),
 )
 
 /** One entry in a generic devotion's `devotion.json` — a step of the flat "steps" type, an
@@ -330,6 +337,9 @@ data class CustomDevotionInfo(
     val accentColorHex: String?,
     val accentColorDarkHex: String?,
     val iconSystemName: String?,
+    /** One grapheme (letter or emoji) drawn instead of [iconSystemName] — Compose's "your
+     * own" icon (v0.7, Gamaliel item 6). */
+    val iconGlyph: String?,
     val displayNameByLanguage: Map<String, String>,
     val reminderBody: Map<String, String>,
     val reminderPresetHours: List<Int>?,
@@ -386,6 +396,9 @@ object PrayerPackStore {
      * "trisagionAcclamation"), which is how a generic devotion's `devotion.json` resolves
      * bundle-local body text. See [resolveBodyText]. */
     private val rawContentByBundle = mutableMapOf<String, MutableMap<String, Map<String, String>>>()
+
+    /** bundleId → language → prayer key → transliterated text (v0.7 reading aid). */
+    private val transliterationsByBundle = mutableMapOf<String, MutableMap<String, Map<String, String>>>()
     private val definitionByBundle = mutableMapOf<String, CustomDevotionDefinition>()
     private val optionsByBundle = mutableMapOf<String, List<CustomDevotionOption>>()
     private val audioTracksByBundle = mutableMapOf<String, List<DevotionAudioTrack>>()
@@ -449,7 +462,11 @@ object PrayerPackStore {
     fun effectiveLanguage(bundleId: String, chosen: String?): String {
         val resolved = LanguageCatalog.resolve(chosen ?: LanguageCatalog.defaultSentinel).code
         val available = info(bundleId)?.languages.orEmpty()
-        return if (available.isEmpty() || resolved in available) resolved else available.first()
+        if (available.isEmpty() || resolved in available) return resolved
+        // A community variant keeps its code when the bundle ships its base language —
+        // bundle text falls back per key.
+        LanguageCatalog.baseLanguage(resolved)?.let { if (it in available) return resolved }
+        return available.first()
     }
 
     /** Resolves a `devotion.json` entry's `bodyKey`/`titleKey` to display text: (1) the bundle's
@@ -458,9 +475,18 @@ object PrayerPackStore {
      * Latin, not raw keys); (2) else, if the key happens to match an existing [PrayerKey] case,
      * the ordinary hardcoded/override lookup — this is how shared "main" keys (e.g. "gloriaPatri")
      * resolve; (3) else the raw key string, matching `PrayerTranslations.get`'s own last resort. */
+    /** The v0.7 reading aid: this key's text transliterated into another script, if the
+     * bundle's language file carries one. No fallback chain — a transliteration belongs to
+     * exactly the language it transliterates. */
+    fun transliteration(bundleId: String, languageCode: String?, key: String): String? =
+        languageCode?.let { transliterationsByBundle[bundleId]?.get(it)?.get(key) }
+
     fun resolveBodyText(bundleId: String, languageCode: String?, key: String): String {
         if (languageCode != null) {
             rawContentByBundle[bundleId]?.get(languageCode)?.get(key)?.let { return it }
+            LanguageCatalog.baseLanguage(languageCode)
+                ?.let { base -> rawContentByBundle[bundleId]?.get(base)?.get(key) }
+                ?.let { return it }
         }
         rawContentByBundle[bundleId]?.get("la")?.get(key)?.let { return it }
         val prayerKey = keyToPrayerKey(key)
@@ -504,34 +530,49 @@ object PrayerPackStore {
     /** Bundle ids the user has imported (subset of [customDevotionIds]), in load order. */
     fun installedBundleIds(): List<String> = installedIdsList.toList()
 
-    class InstallException(message: String) : Exception(message)
+    /** Carries a string resource so the UI can show the failure in the app language; the
+     * English [message] stays for logs. */
+    class InstallException(
+        message: String,
+        @param:StringRes val messageRes: Int,
+        val formatArg: String? = null,
+    ) : Exception(message)
 
     /** Imports a user-provided bundle: validates it (readable zip, parseable manifest +
      * devotion.json, content for every declared language, not a builtin-kind pack, no id
      * collision), copies it into the installed-packs directory, and loads it live. Returns the
      * installed bundle id. */
+    /** The on-disk .prosaryprayer file of an *installed* bundle — the export seam: sharing
+     * this file is how a devotion travels back to Compose for editing (v0.7, Gamaliel
+     * item 7). Null for shipped bundles, whose packs live in the app's assets. */
+    fun installedPackFile(bundleId: String): java.io.File? {
+        if (bundleId !in installedIdsList) return null
+        val dir = installedPacksDirectory ?: return null
+        return java.io.File(dir, "$bundleId.prosaryprayer").takeIf { it.exists() }
+    }
+
     fun installPack(bytes: ByteArray): String {
         val entries = runCatching { readZipEntries(bytes.inputStream()) }.getOrNull()
-            ?: throw InstallException("This file is not a readable .prosaryprayer bundle.")
+            ?: throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
         val manifest = runCatching {
             json.decodeFromString<PackManifest>(String(entries["manifest.json"]!!, Charsets.UTF_8))
-        }.getOrNull() ?: throw InstallException("This file is not a readable .prosaryprayer bundle.")
+        }.getOrNull() ?: throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
         val hasDevotion = runCatching {
             json.decodeFromString<CustomDevotionDefinition>(String(entries["devotion.json"]!!, Charsets.UTF_8))
         }.isSuccess
         if (!hasDevotion || manifest.builtinKind != null) {
-            throw InstallException("This bundle does not contain a devotion.")
+            throw InstallException("This bundle does not contain a devotion.", R.string.pack_error_not_devotion)
         }
         for (language in manifest.languages) {
             runCatching {
                 json.decodeFromString<PackContent>(String(entries["content/$language.json"]!!, Charsets.UTF_8))
-            }.getOrNull() ?: throw InstallException("This file is not a readable .prosaryprayer bundle.")
+            }.getOrNull() ?: throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
         }
         if (infoByBundle.containsKey(manifest.id)) {
-            throw InstallException("A devotion named \"${manifest.id}\" is already installed.")
+            throw InstallException("A devotion named \"${manifest.id}\" is already installed.", R.string.pack_error_duplicate, manifest.id)
         }
         val dir = installedPacksDirectory
-            ?: throw InstallException("This file is not a readable .prosaryprayer bundle.")
+            ?: throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
         dir.mkdirs()
         val destination = File(dir, "${manifest.id}.prosaryprayer")
         destination.writeBytes(bytes)
@@ -553,6 +594,7 @@ object PrayerPackStore {
         infoByBundle.remove(id)
         optionsByBundle.remove(id)
         audioTracksByBundle.remove(id)
+        transliterationsByBundle.remove(id)
         packSourceByBundle.remove(id)
     }
 
@@ -569,6 +611,7 @@ object PrayerPackStore {
             accentColorHex = manifest.accentColorHex,
             accentColorDarkHex = manifest.accentColorDarkHex,
             iconSystemName = manifest.iconSystemName,
+            iconGlyph = manifest.iconGlyph,
             displayNameByLanguage = manifest.displayNameByLanguage ?: emptyMap(),
             reminderBody = manifest.reminderBody ?: emptyMap(),
             reminderPresetHours = manifest.reminderPresetHours,
@@ -582,6 +625,9 @@ object PrayerPackStore {
 
             val bundleRawContent = rawContentByBundle.getOrPut(manifest.id) { mutableMapOf() }
             bundleRawContent[language] = content.prayers
+            if (content.transliterations.isNotEmpty()) {
+                transliterationsByBundle.getOrPut(manifest.id) { mutableMapOf() }[language] = content.transliterations
+            }
 
             val prayers = prayerOverrides.getOrPut(language) { mutableMapOf() }
             for ((key, text) in content.prayers) {

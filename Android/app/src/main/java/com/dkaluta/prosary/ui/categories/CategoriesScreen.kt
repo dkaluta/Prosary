@@ -22,12 +22,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.compose.runtime.DisposableEffect
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.ui.shared.DevotionDirectory
 import com.dkaluta.prosary.ui.shared.DevotionListing
 import com.dkaluta.prosary.ui.shared.LaunchTarget
@@ -38,6 +41,7 @@ import com.dkaluta.prosary.ui.shared.LaunchTarget
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CategoriesScreen(onLaunch: (LaunchTarget) -> Unit) {
+    val context = LocalContext.current
     // Re-read the directory whenever we come back into view so a bundle installed on
     // another tab appears without a relaunch.
     var generation by remember { mutableIntStateOf(0) }
@@ -52,7 +56,7 @@ fun CategoriesScreen(onLaunch: (LaunchTarget) -> Unit) {
 
     val sections = remember(generation) {
         val byTag = mutableMapOf<String, MutableList<DevotionListing>>()
-        for (listing in DevotionDirectory.all()) {
+        for (listing in DevotionDirectory.all(context)) {
             if (listing.tags.isEmpty()) byTag.getOrPut("other") { mutableListOf() }.add(listing)
             for (tag in listing.tags) byTag.getOrPut(tag) { mutableListOf() }.add(listing)
         }
@@ -64,7 +68,7 @@ fun CategoriesScreen(onLaunch: (LaunchTarget) -> Unit) {
     val topBarScroll = TopAppBarDefaults.pinnedScrollBehavior()
     Scaffold(
         modifier = Modifier.nestedScroll(topBarScroll.nestedScrollConnection),
-        topBar = { TopAppBar(title = { Text("Categories") }, scrollBehavior = topBarScroll) },
+        topBar = { TopAppBar(title = { Text(stringResource(R.string.tab_categories)) }, scrollBehavior = topBarScroll) },
     ) { paddingValues ->
         LazyColumn(
             modifier = Modifier.padding(paddingValues).fillMaxSize(),
@@ -100,11 +104,15 @@ private fun androidx.compose.foundation.lazy.LazyListScope.items_(
                     .clickable { onLaunch(listing.target) }
                     .padding(horizontal = 20.dp, vertical = 12.dp),
             ) {
-                Icon(
-                    listing.icon,
-                    contentDescription = null,
-                    tint = listing.accentColor ?: MaterialTheme.colorScheme.primary,
-                )
+                if (listing.iconGlyph != null) {
+                    Text(listing.iconGlyph, color = listing.accentColor ?: MaterialTheme.colorScheme.primary)
+                } else {
+                    Icon(
+                        listing.icon,
+                        contentDescription = null,
+                        tint = listing.accentColor ?: MaterialTheme.colorScheme.primary,
+                    )
+                }
                 Text(listing.title, style = MaterialTheme.typography.bodyLarge)
             }
         }

@@ -9,6 +9,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.RosaryStep
@@ -39,7 +41,7 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit) {
     }
 
     PrayerStepFlowScreen(
-        title = "Praying the Rosary",
+        title = stringResource(R.string.rosary_praying),
         step = currentStep,
         currentIndex = currentIndex,
         totalSteps = steps.size,

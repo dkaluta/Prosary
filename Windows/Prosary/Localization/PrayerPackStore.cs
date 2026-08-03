@@ -43,6 +43,9 @@ public static class PrayerPackStore
     /// keeps each bundle's own keys addressable per bundle, which is how a generic devotion's
     /// <c>devotion.json</c> resolves bundle-local body text. See <see cref="ResolveBodyText"/>.</summary>
     private static readonly Dictionary<string, Dictionary<string, Dictionary<string, string>>> RawContentByBundle = new();
+
+    /// <summary>bundleId → language → prayer key → transliterated text (v0.7 reading aid).</summary>
+    private static readonly Dictionary<string, Dictionary<string, Dictionary<string, string>>> TransliterationsByBundle = new();
     private static readonly Dictionary<string, CustomDevotionDefinition> DefinitionByBundle = new();
     private static readonly Dictionary<string, List<CustomDevotionOption>> OptionsByBundle = new();
     private static readonly Dictionary<string, List<DevotionAudioTrack>> AudioTracksByBundle = new();
@@ -88,6 +91,16 @@ public static class PrayerPackStore
     /// in load order.</summary>
     public static IReadOnlyList<string> InstalledBundleIds() => InstalledIds;
 
+    /// <summary>The on-disk .prosaryprayer file of an *installed* bundle — the export seam:
+    /// sharing this file is how a devotion travels back to Compose for editing (v0.7,
+    /// Gamaliel item 7). Null for shipped bundles.</summary>
+    public static string? InstalledPackPath(string bundleId)
+    {
+        if (!InstalledIds.Contains(bundleId) || InstalledPacksDirectory is not { } dir) return null;
+        var path = Path.Combine(dir, $"{bundleId}.prosaryprayer");
+        return File.Exists(path) ? path : null;
+    }
+
     /// <summary>The language a session actually prays a bundle in: the chosen (or app-default)
     /// language when the bundle ships it, else the bundle's own first (manifest-order)
     /// language — never a language the bundle lacks, which would degrade bundle-local text
@@ -97,7 +110,19 @@ public static class PrayerPackStore
         var resolved = Prosary.Models.LanguageCatalog.Resolve(
             chosen ?? Prosary.Models.LanguageCatalog.DefaultSentinel).Code;
         var available = Info(bundleId)?.Languages ?? [];
-        return available.Count == 0 || available.Contains(resolved) ? resolved : available[0];
+        if (available.Count == 0 || available.Contains(resolved))
+        {
+            return resolved;
+        }
+
+        // A community variant keeps its code when the bundle ships its base language —
+        // bundle text falls back per key.
+        if (Prosary.Models.LanguageCatalog.BaseLanguage(resolved) is { } baseLang && available.Contains(baseLang))
+        {
+            return resolved;
+        }
+
+        return available[0];
     }
 
     public sealed class InstallException : Exception
@@ -180,6 +205,7 @@ public static class PrayerPackStore
         InfoByBundle.Remove(id);
         OptionsByBundle.Remove(id);
         AudioTracksByBundle.Remove(id);
+        TransliterationsByBundle.Remove(id);
         PackSourceByBundle.Remove(id);
     }
 
@@ -229,6 +255,17 @@ public static class PrayerPackStore
     /// the sentinel/unknown language prays in Latin, not raw keys); (2) else the ordinary
     /// PascalCased <see cref="PrayerTranslations.Get"/> chain — this is how shared "main" keys
     /// (e.g. "gloriaPatri") resolve, and it ends in the raw-key last resort.</summary>
+    /// <summary>The v0.7 reading aid: this key's text transliterated into another script, if
+    /// the bundle's language file carries one. No fallback chain — a transliteration belongs
+    /// to exactly the language it transliterates.</summary>
+    public static string? Transliteration(string bundleId, string? languageCode, string key) =>
+        languageCode is not null
+            && TransliterationsByBundle.TryGetValue(bundleId, out var byLanguage)
+            && byLanguage.TryGetValue(languageCode, out var map)
+            && map.TryGetValue(key, out var text)
+        ? text
+        : null;
+
     public static string ResolveBodyText(string bundleId, string? languageCode, string key)
     {
         if (RawContentByBundle.TryGetValue(bundleId, out var byLanguage))
@@ -237,6 +274,13 @@ public static class PrayerPackStore
                 byLanguage.TryGetValue(languageCode, out var content) && content.TryGetValue(key, out var text))
             {
                 return text;
+            }
+
+            // Community variants ("he-x-gamliel") overlay their base language's bundle text.
+            if (languageCode is not null && Prosary.Models.LanguageCatalog.BaseLanguage(languageCode) is { } baseCode
+                && byLanguage.TryGetValue(baseCode, out var baseContent) && baseContent.TryGetValue(key, out var baseText))
+            {
+                return baseText;
             }
 
             if (byLanguage.TryGetValue("la", out var latinContent) && latinContent.TryGetValue(key, out var latinText))
@@ -362,6 +406,7 @@ public static class PrayerPackStore
             manifest.AccentColorHex,
             manifest.AccentColorDarkHex,
             manifest.IconSystemName,
+            manifest.IconGlyph,
             manifest.DisplayNameByLanguage ?? new Dictionary<string, string>(),
             manifest.ReminderBody ?? new Dictionary<string, string>(),
             manifest.ReminderPresetHours,
@@ -381,6 +426,15 @@ public static class PrayerPackStore
                 RawContentByBundle[manifest.Id] = byLanguage;
             }
             byLanguage[language] = rawContent;
+            if (content.Transliterations is { Count: > 0 } transliterations)
+            {
+                if (!TransliterationsByBundle.TryGetValue(manifest.Id, out var translitByLanguage))
+                {
+                    translitByLanguage = new Dictionary<string, Dictionary<string, string>>();
+                    TransliterationsByBundle[manifest.Id] = translitByLanguage;
+                }
+                translitByLanguage[language] = transliterations;
+            }
 
             var prayers = PrayerOverrides.TryGetValue(language, out var existingPrayers) ? existingPrayers : new Dictionary<string, string>();
             foreach (var (key, text) in rawContent)
@@ -475,13 +529,20 @@ public static class PrayerPackStore
         string? AccentColorHex = null,
         string? AccentColorDarkHex = null,
         string? IconSystemName = null,
+        // One grapheme (letter or emoji) drawn instead of IconSystemName — Compose's "your
+        // own" icon (v0.7, Gamaliel item 6).
+        string? IconGlyph = null,
         Dictionary<string, string>? DisplayNameByLanguage = null,
         Dictionary<string, string>? ReminderBody = null,
         List<int>? ReminderPresetHours = null,
         Dictionary<string, string>? ReminderPresetFooter = null,
         List<string>? Tags = null);
 
-    private sealed record PackContent(Dictionary<string, string>? Prayers, Dictionary<string, MysteryText>? Mysteries);
+    private sealed record PackContent(
+        Dictionary<string, string>? Prayers,
+        Dictionary<string, MysteryText>? Mysteries,
+        // Optional reading aid (v0.7): prayer key -> the same text in another script.
+        Dictionary<string, string>? Transliterations = null);
 
     private sealed record PackOptions(List<CustomDevotionOption> Options);
 
@@ -757,6 +818,7 @@ public sealed record CustomDevotionInfo(
     string? AccentColorHex,
     string? AccentColorDarkHex,
     string? IconSystemName,
+    string? IconGlyph,
     IReadOnlyDictionary<string, string> DisplayNameByLanguage,
     IReadOnlyDictionary<string, string> ReminderBody,
     IReadOnlyList<int>? ReminderPresetHours,

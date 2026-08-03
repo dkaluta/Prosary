@@ -539,6 +539,14 @@ of its own — its entire step sequence and per-step text are data-driven from i
   prayers.prosary.app), and the actual POST /api/bundles — so no CORS or cross-site cookies
   exist. The receiver re-announces readiness on every mount and Compose answers every
   announcement, which makes the handshake survive the sign-in reload for free.
+- **Transliterations** (v0.7) — a language file may carry an optional
+  `"transliterations": {key: text}` map: a parallel rendering of that language's own prayer
+  text in another script, for praying along in a language one can't read (a Hebrew
+  transliteration of Tagalog was the motivating case — Gamaliel item 5). The target script is
+  the author's choice and every key must exist in the same file's `prayers`. Loaders carry it
+  into the built step (`RosaryStep.transliteratedBody`), and the prayer flow shows a toggle
+  beside the text whenever the current step has one. Compose authors it per custom step and
+  language.
 - **`bodyKey`/`titleKey` resolution** (`resolveBodyText`, per bundle): (1) the bundle's own raw
   content for the requested language; (2) the bundle's own **Latin** content (so a sentinel/
   unknown/undeclared language prays in Latin, never raw keys — the same convention as

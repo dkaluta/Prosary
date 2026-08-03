@@ -71,7 +71,7 @@ public partial class HomeViewModel : ObservableObject
     public string TodayFeastRank => TodayFeast?.Rank ?? string.Empty;
 
     public string MonthIntentionTitle => MonthIntention is { } intention
-        ? $"The Pope’s intention: {intention.Title}"
+        ? string.Format(Loc.Tr("home_pope_intention", "The Pope’s intention: {0}"), intention.Title)
         : string.Empty;
 
     public string MonthIntentionText => MonthIntention?.Text ?? string.Empty;
@@ -98,7 +98,7 @@ public partial class HomeViewModel : ObservableObject
             {
                 Id = $"custom.{bundleId}",
                 Title = info.LocalizedDisplayName,
-                IconGlyph = GlyphForSystemName(info.IconSystemName),
+                IconGlyph = info.IconGlyph ?? GlyphForSystemName(info.IconSystemName),
                 AccentColor = CustomAccent(info),
                 Command = new RelayCommand(() => OpenCustomDevotion(bundleId)),
             };
@@ -111,6 +111,47 @@ public partial class HomeViewModel : ObservableObject
             Id = "jesusPrayer", Title = PrayerKind.JesusPrayer.DisplayName(), IconGlyph = "\uEB52", // HeartFill
             Command = OpenJesusPrayerCommand,
         });
+
+        ApplySavedOrder();
+    }
+
+    /// <summary>Re-sorts <see cref="DevotionCards"/> by the persisted per-user order
+    /// (v0.7, Gamaliel item 2 — the approved drag-handle pattern lives in HomePage's
+    /// reorder dialog; this applies whatever it saved).</summary>
+    public void ApplySavedOrder()
+    {
+        var ordered = HomeOrder.Apply(DevotionCards.ToList(), c => c.Id);
+        for (var target = 0; target < ordered.Count; target++)
+        {
+            var current = DevotionCards.IndexOf(ordered[target]);
+            if (current != target)
+            {
+                DevotionCards.Move(current, target);
+            }
+        }
+    }
+
+    [RelayCommand]
+    private void MoveCardToTop(DevotionCardModel card)
+    {
+        HomeOrder.MoveToTop(card.Id, DevotionCards.Select(c => c.Id));
+        ApplySavedOrder();
+    }
+
+    /// <summary>Called by the reorder dialog after a drag-drop: persists the ListView's new
+    /// sequence and mirrors it onto the Home list.</summary>
+    public void CommitOrder(IEnumerable<string> ids)
+    {
+        HomeOrder.Save(ids);
+        ApplySavedOrder();
+    }
+
+    public void ResetOrder()
+    {
+        HomeOrder.Reset();
+        // Directory order can't be recovered by re-sorting alone (the collection is already
+        // user-ordered), so just leave the current arrangement until next launch — the reset
+        // dialog says so.
     }
 
     /// <summary>Maps a bundle manifest's <c>IconSystemName</c> (an SF Symbol name, the iOS
@@ -171,7 +212,7 @@ public partial class HomeViewModel : ObservableObject
         _defaultJesusPrayer = all.FirstOrDefault(p => p.Kind == PrayerKind.JesusPrayer && p.IsDefault)
             ?? all.FirstOrDefault(p => p.Kind == PrayerKind.JesusPrayer);
 
-        var rosaryParts = new List<string> { $"Today: {todayGroup.DisplayName()}" };
+        var rosaryParts = new List<string> { string.Format(Loc.Tr("home_today", "Today: {0}"), todayGroup.UiName()) };
         if (_defaultRosary is { } rosary)
         {
             rosaryParts.Add(rosary.Name);
@@ -183,14 +224,14 @@ public partial class HomeViewModel : ObservableObject
         Card("jesusPrayer").AccentColor = PrayerKind.JesusPrayer.AccentColor();
         Card("jesusPrayer").Subtitle = _defaultJesusPrayer is { } jp
             ? $"{jp.Name} • {jp.JesusPrayer.TargetDisplayName}"
-            : "Click to set up";
+            : Loc.Tr("home_click_to_set_up", "Click to set up");
 
         foreach (var bundleId in _customCardsByBundleId.Keys)
         {
             var match = all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId && p.IsDefault)
                 ?? all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId);
             _defaultCustomDevotions[bundleId] = match;
-            _customCardsByBundleId[bundleId].Subtitle = match?.Name ?? "Click to pray";
+            _customCardsByBundleId[bundleId].Subtitle = match?.Name ?? Loc.Tr("home_click_to_pray", "Click to pray");
         }
     }
 

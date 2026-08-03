@@ -1,5 +1,8 @@
 package com.dkaluta.prosary.models
 
+import androidx.annotation.StringRes
+import com.dkaluta.prosary.R
+
 /** Which closing Marian antiphon (if any) follows the Rosary. */
 enum class MarianAntiphonOption {
     None,
@@ -12,14 +15,15 @@ enum class MarianAntiphonOption {
     ReginaCaeli,
     SubTuumPraesidium;
 
-    val displayName: String
+    @get:StringRes
+    val displayNameRes: Int
         get() = when (this) {
-            None -> "None"
-            Seasonal -> "Automatic (Seasonal)"
-            SalveRegina -> "Salve Regina"
-            AlmaRedemptorisMater -> "Alma Redemptoris Mater"
-            AveReginaCaelorum -> "Ave Regina Caelorum"
-            ReginaCaeli -> "Regina Caeli"
-            SubTuumPraesidium -> "Sub Tuum Praesidium"
+            None -> R.string.antiphon_none
+            Seasonal -> R.string.antiphon_seasonal
+            SalveRegina -> R.string.antiphon_salve_regina
+            AlmaRedemptorisMater -> R.string.antiphon_alma_redemptoris
+            AveReginaCaelorum -> R.string.antiphon_ave_regina
+            ReginaCaeli -> R.string.antiphon_regina_caeli
+            SubTuumPraesidium -> R.string.antiphon_sub_tuum
         }
 }

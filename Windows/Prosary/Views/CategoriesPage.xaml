@@ -12,7 +12,7 @@
 
     <ScrollViewer Padding="16">
         <StackPanel Spacing="4" MaxWidth="640" HorizontalAlignment="Stretch">
-            <TextBlock Text="Categories" Style="{StaticResource SubHeadlineTextStyle}" Margin="0,0,0,8" />
+            <TextBlock x:Uid="CategoriesTitle" Text="Categories" Style="{StaticResource SubHeadlineTextStyle}" Margin="0,0,0,8" />
             <ItemsControl ItemsSource="{x:Bind ViewModel.Sections, Mode=OneWay}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate x:DataType="vm:CategorySection">

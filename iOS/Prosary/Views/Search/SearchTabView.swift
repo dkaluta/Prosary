@@ -49,7 +49,11 @@ struct SearchTabView: View {
             Label {
               Text(listing.title).foregroundStyle(.primary)
             } icon: {
+              if let glyph = listing.iconGlyph {
+                Text(glyph).foregroundStyle(listing.accentColor)
+              } else {
               Image(systemName: listing.systemImage).foregroundStyle(listing.accentColor)
+              }
             }
           }
         }

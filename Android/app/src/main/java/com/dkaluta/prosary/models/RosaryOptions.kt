@@ -1,5 +1,7 @@
 package com.dkaluta.prosary.models
 
+import android.content.Context
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.MysteryTranslations
 
 /** Configuration options specific to the Rosary. Lives inside a [Prayer] when kind == Rosary. */
@@ -24,16 +26,17 @@ data class RosaryOptions(
      * screens. See `PrayerEngine.buildRosarySteps`. */
     var presenterMode: Boolean = false,
 ) {
-    val mysterySelectionSummary: String
-        get() = when (mysterySelectionMode) {
-            MysterySelectionMode.Specific -> "Always ${specificMysteryGroup.displayName}"
-            MysterySelectionMode.SingleMystery -> {
-                val chosen = MysteryCatalog.forGroup(specificMysteryGroup).firstOrNull { it.order == specificMysteryOrder }
-                val title = chosen?.let { MysteryTranslations.get(languageCode = "en", imageKey = it.imageKey).title } ?: specificMysteryGroup.displayName
-                "Only $title"
-            }
-            MysterySelectionMode.FifteenMystery -> "The 15 Mysteries"
-            MysterySelectionMode.TwentyMystery -> "The 20 Mysteries"
-            MysterySelectionMode.TodaysMysteries -> "Today's Mysteries"
+    fun mysterySelectionSummary(context: Context): String = when (mysterySelectionMode) {
+        MysterySelectionMode.Specific ->
+            context.getString(R.string.summary_always, context.getString(specificMysteryGroup.displayNameRes))
+        MysterySelectionMode.SingleMystery -> {
+            val chosen = MysteryCatalog.forGroup(specificMysteryGroup).firstOrNull { it.order == specificMysteryOrder }
+            val title = chosen?.let { MysteryTranslations.get(languageCode = "en", imageKey = it.imageKey).title }
+                ?: context.getString(specificMysteryGroup.displayNameRes)
+            context.getString(R.string.summary_only, title)
         }
+        MysterySelectionMode.FifteenMystery -> context.getString(R.string.summary_fifteen)
+        MysterySelectionMode.TwentyMystery -> context.getString(R.string.summary_twenty)
+        MysterySelectionMode.TodaysMysteries -> context.getString(R.string.mode_todays_mysteries)
+    }
 }

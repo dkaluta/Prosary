@@ -99,6 +99,14 @@ struct FavoritesListView: View {
                   ? String(localized: "favorites.repositoryTag", defaultValue: "Repository") : nil
               )
               .contextMenu {
+                // Round-trip to Compose: share the .prosaryprayer, edit it at
+                // compose.prosary.app, re-import (or republish) — Gamaliel item 7.
+                if let packURL = PrayerPackStore.installedPackURL(for: bundleId) {
+                  ShareLink(item: packURL) {
+                    Label(String(localized: "favorites.exportBundle", defaultValue: "Export for Editing…"),
+                          systemImage: "square.and.arrow.up")
+                  }
+                }
                 if PrayerPackStore.installedBundleIds().contains(bundleId) {
                   Button(role: .destructive) {
                     removeInstalledBundle(bundleId, favorite: favorite)

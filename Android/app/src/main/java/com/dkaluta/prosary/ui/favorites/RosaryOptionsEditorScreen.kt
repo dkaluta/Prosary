@@ -20,8 +20,11 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.MysteryTranslations
 import com.dkaluta.prosary.models.EternalRestPlacement
 import com.dkaluta.prosary.models.MarianAntiphonOption
@@ -42,6 +45,7 @@ import com.dkaluta.prosary.ui.presets.OptionPickerField
 @Composable
 fun RosaryOptionsEditorScreen(rosary: RosaryOptions, onRosaryChange: (RosaryOptions) -> Unit, onBack: () -> Unit) {
     BackHandler(onBack = onBack)
+    val context = LocalContext.current
 
     // Tints the pinned bar once content scrolls beneath it — without this the bar is
 
@@ -55,10 +59,10 @@ fun RosaryOptionsEditorScreen(rosary: RosaryOptions, onRosaryChange: (RosaryOpti
         topBar = {
             TopAppBar(
                 scrollBehavior = topBarScroll,
-                title = { Text("Rosary Options") },
+                title = { Text(stringResource(R.string.rosary_options)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.common_back))
                     }
                 },
             )
@@ -72,12 +76,12 @@ fun RosaryOptionsEditorScreen(rosary: RosaryOptions, onRosaryChange: (RosaryOpti
                 .verticalScroll(rememberScrollState())
                 .padding(16.dp),
         ) {
-            FormSection(title = "Which mysteries?") {
+            FormSection(title = stringResource(R.string.ro_which_mysteries)) {
                 OptionPickerField(
-                    label = "Mysteries",
+                    label = stringResource(R.string.ro_mysteries),
                     options = MysterySelectionMode.entries,
                     selected = rosary.mysterySelectionMode,
-                    optionLabel = { it.displayName },
+                    optionLabel = { context.getString(it.displayNameRes) },
                     onSelect = { onRosaryChange(rosary.copy(mysterySelectionMode = it)) },
                     modifier = Modifier.fillMaxWidth(),
                 )
@@ -85,10 +89,10 @@ fun RosaryOptionsEditorScreen(rosary: RosaryOptions, onRosaryChange: (RosaryOpti
                     rosary.mysterySelectionMode == MysterySelectionMode.SingleMystery
                 ) {
                     OptionPickerField(
-                        label = "Specific set",
+                        label = stringResource(R.string.ro_specific_set),
                         options = MysteryGroup.entries,
                         selected = rosary.specificMysteryGroup,
-                        optionLabel = { it.displayName },
+                        optionLabel = { context.getString(it.displayNameRes) },
                         onSelect = { onRosaryChange(rosary.copy(specificMysteryGroup = it)) },
                         modifier = Modifier.fillMaxWidth(),
                     )
@@ -97,7 +101,7 @@ fun RosaryOptionsEditorScreen(rosary: RosaryOptions, onRosaryChange: (RosaryOpti
                     val mysteries = MysteryCatalog.forGroup(rosary.specificMysteryGroup)
                     val selectedMystery = mysteries.firstOrNull { it.order == rosary.specificMysteryOrder } ?: mysteries.first()
                     OptionPickerField(
-                        label = "Which mystery",
+                        label = stringResource(R.string.ro_which_mystery),
                         options = mysteries,
                         selected = selectedMystery,
                         optionLabel = { MysteryTranslations.get(languageCode = "en", imageKey = it.imageKey).title },
@@ -107,50 +111,50 @@ fun RosaryOptionsEditorScreen(rosary: RosaryOptions, onRosaryChange: (RosaryOpti
                 }
             }
 
-            FormSection(title = "Opening & Decade Prayers") {
-                SwitchRow("Apostles' Creed", rosary.includeApostlesCreed) {
+            FormSection(title = stringResource(R.string.ro_opening_section)) {
+                SwitchRow(stringResource(R.string.ro_apostles_creed), rosary.includeApostlesCreed) {
                     onRosaryChange(rosary.copy(includeApostlesCreed = it))
                 }
-                SwitchRow("Opening Our Father & 3 Hail Marys", rosary.includeOpeningPrayers) {
+                SwitchRow(stringResource(R.string.ro_opening_prayers), rosary.includeOpeningPrayers) {
                     onRosaryChange(rosary.copy(includeOpeningPrayers = it))
                 }
-                SwitchRow("Fatima Prayer after each decade", rosary.includeFatimaPrayer) {
+                SwitchRow(stringResource(R.string.ro_fatima), rosary.includeFatimaPrayer) {
                     onRosaryChange(rosary.copy(includeFatimaPrayer = it))
                 }
                 OptionPickerField(
-                    label = "For the faithful departed",
+                    label = stringResource(R.string.ro_faithful_departed),
                     options = EternalRestPlacement.entries,
                     selected = rosary.eternalRestForDeceased,
-                    optionLabel = { it.displayName },
+                    optionLabel = { context.getString(it.displayNameRes) },
                     onSelect = { onRosaryChange(rosary.copy(eternalRestForDeceased = it)) },
                     modifier = Modifier.fillMaxWidth(),
                 )
             }
 
-            FormSection(title = "Display") {
-                SwitchRow("Presenter Mode", rosary.presenterMode) {
+            FormSection(title = stringResource(R.string.ro_display_section)) {
+                SwitchRow(stringResource(R.string.ro_presenter_mode), rosary.presenterMode) {
                     onRosaryChange(rosary.copy(presenterMode = it))
                 }
                 Text(
-                    "Combine each decade's Hail Marys and Glory Be onto one screen — useful when leading a group aloud from memory.",
+                    stringResource(R.string.ro_presenter_hint),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
 
-            FormSection(title = "Closing Prayers") {
+            FormSection(title = stringResource(R.string.ro_closing_section)) {
                 OptionPickerField(
-                    label = "Marian antiphon",
+                    label = stringResource(R.string.ro_marian_antiphon),
                     options = MarianAntiphonOption.entries,
                     selected = rosary.marianAntiphon,
-                    optionLabel = { it.displayName },
+                    optionLabel = { context.getString(it.displayNameRes) },
                     onSelect = { onRosaryChange(rosary.copy(marianAntiphon = it)) },
                     modifier = Modifier.fillMaxWidth(),
                 )
-                SwitchRow("St. Michael Prayer", rosary.includeStMichaelPrayer) {
+                SwitchRow(stringResource(R.string.ro_st_michael), rosary.includeStMichaelPrayer) {
                     onRosaryChange(rosary.copy(includeStMichaelPrayer = it))
                 }
-                SwitchRow("Final Sign of the Cross", rosary.includeFinalSignOfCross) {
+                SwitchRow(stringResource(R.string.ro_final_sign), rosary.includeFinalSignOfCross) {
                     onRosaryChange(rosary.copy(includeFinalSignOfCross = it))
                 }
             }

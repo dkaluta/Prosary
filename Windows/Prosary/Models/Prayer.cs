@@ -1,3 +1,5 @@
+using Prosary.Localization;
+
 namespace Prosary.Models;
 
 /// <summary>A saved, user-configurable prayer session (a "Favorite"). <see cref="Kind"/> selects
@@ -55,7 +57,7 @@ public sealed record Prayer
     /// <summary>Display string for list rows — shows "Default (Latina)" for the sentinel, plain
     /// name otherwise.</summary>
     public string LanguageDisplayName => LanguageCode == LanguageCatalog.DefaultSentinel
-        ? $"Default ({LanguageCatalog.Resolve(LanguageCode).NativeName})"
+        ? string.Format(Loc.Tr("language_default_parenthesized", "Default ({0})"), LanguageCatalog.Resolve(LanguageCode).NativeName)
         : LanguageCatalog.Resolve(LanguageCode).NativeName;
 
     /// <summary>Second line shown on a Favorites list card — matches Android's inline

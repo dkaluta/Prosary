@@ -21,6 +21,9 @@ data class RosaryStep(
     val mystery: Mystery? = null,
     /** True only for the mystery-announcement step, whose body is an actual quoted Bible verse rather than a traditional prayer. */
     var isScripture: Boolean = false,
+    /** Optional reading aid (v0.7, Gamaliel item 5): the body transliterated into another
+     * script; the flow shows a toggle beside the text whenever present. */
+    var transliteratedBody: String? = null,
     /** True only for the Marian antiphon step (the "M" bead in the progress indicator). */
     var isAntiphon: Boolean = false,
     /** 0-based index of this step's decade, counted globally across every mystery group in the session (0..<N for an N-decade session). Null for steps not tied to a decade (opening, antiphon, closing, etc). */

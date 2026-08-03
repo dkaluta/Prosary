@@ -1,6 +1,8 @@
 using Microsoft.UI;
 using Windows.UI;
 
+using Prosary.Localization;
+
 namespace Prosary.Models;
 
 /// <summary>Discriminant for the type of a saved prayer session. Values are explicit and
@@ -28,18 +30,18 @@ public static class PrayerKindExtensions
 {
     public static string DisplayName(this PrayerKind kind) => kind switch
     {
-        PrayerKind.Rosary => "Rosary",
-        PrayerKind.JesusPrayer => "Jesus Prayer",
-        PrayerKind.Custom => "Devotion",
+        PrayerKind.Rosary => Loc.Tr("kind_rosary", "Rosary"),
+        PrayerKind.JesusPrayer => Loc.Tr("kind_jesus_prayer", "Jesus Prayer"),
+        PrayerKind.Custom => Loc.Tr("kind_devotion", "Devotion"),
         _ => throw new ArgumentOutOfRangeException(nameof(kind))
     };
 
     /// <summary>Default name suggested when the user creates a new favorite of this kind.</summary>
     public static string DefaultName(this PrayerKind kind) => kind switch
     {
-        PrayerKind.Rosary => "My Rosary",
-        PrayerKind.JesusPrayer => "Jesus Prayer",
-        PrayerKind.Custom => "Devotion",
+        PrayerKind.Rosary => Loc.Tr("kind_default_name_rosary", "My Rosary"),
+        PrayerKind.JesusPrayer => Loc.Tr("kind_jesus_prayer", "Jesus Prayer"),
+        PrayerKind.Custom => Loc.Tr("kind_devotion", "Devotion"),
         _ => throw new ArgumentOutOfRangeException(nameof(kind))
     };
 

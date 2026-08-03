@@ -11,6 +11,9 @@ import SwiftUI
 
 struct PrayerCard: View {
   let systemImage: String
+  /// One grapheme (letter or emoji) drawn instead of `systemImage` — the Compose "your own"
+  /// icon (v0.7). Nil for the fixed icon set.
+  var iconGlyph: String? = nil
   let title: String
   let subtitle: String
   let accentColor: Color
@@ -24,10 +27,17 @@ struct PrayerCard: View {
           .frame(width: 5)
 
         HStack(spacing: 12) {
-          Image(systemName: systemImage)
-            .font(.title2)
-            .foregroundStyle(accentColor)
-            .frame(width: 32)
+          if let iconGlyph {
+            Text(iconGlyph)
+              .font(.title2)
+              .foregroundStyle(accentColor)
+              .frame(width: 32)
+          } else {
+            Image(systemName: systemImage)
+              .font(.title2)
+              .foregroundStyle(accentColor)
+              .frame(width: 32)
+          }
 
           VStack(alignment: .leading, spacing: 3) {
             Text(title)

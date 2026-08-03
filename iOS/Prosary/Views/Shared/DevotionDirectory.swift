@@ -13,6 +13,9 @@ struct DevotionListing: Identifiable {
   let id: String
   let title: String
   let systemImage: String
+  /// One grapheme (letter or emoji) drawn instead of `systemImage` when the author chose
+  /// their own icon in Compose (v0.7, Gamaliel item 6).
+  var iconGlyph: String? = nil
   let accentColor: Color
   /// Lowercase category labels from the manifest ("marian", "passion"). The Jesus Prayer,
   /// having no bundle, carries its tags here.
@@ -45,6 +48,7 @@ enum DevotionDirectory {
         id: bundleId,
         title: info.localizedDisplayName,
         systemImage: info.iconSystemName ?? PrayerKind.custom.systemImage,
+        iconGlyph: info.iconGlyph,
         accentColor: accent,
         tags: info.tags,
         route: .custom(devotionId: bundleId)))

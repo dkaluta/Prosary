@@ -42,6 +42,17 @@ public static partial class PrayerTranslations
             return text;
         }
 
+        // Community variants ("he-x-gamliel") overlay their base language before Latin.
+        if (languageCode is not null && Prosary.Models.LanguageCatalog.BaseLanguage(languageCode) is { } baseCode)
+        {
+            var baseOverride = PrayerPackStore.PrayerOverride(baseCode, key);
+            if (baseOverride is not null) return baseOverride;
+            if (ByLanguage.TryGetValue(baseCode, out var baseTable) && baseTable.TryGetValue(key, out var baseText))
+            {
+                return baseText;
+            }
+        }
+
         // Pack-provided Latin before the hardcoded Latin table — some texts (the converted
         // devotions' bundle-local keys) live only in their bundles.
         return PrayerPackStore.PrayerOverride("la", key)

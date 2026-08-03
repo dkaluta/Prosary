@@ -8,6 +8,9 @@ import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.dkaluta.prosary.R
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.unit.dp
@@ -82,8 +85,10 @@ fun BeadProgressView(
 ) {
     // The individual dots carry no meaning of their own to accessibility services — expose the
     // whole track as a single element with a spoken summary instead of dozens of unlabeled circles.
+    val beadSummary = layout.accessibilityDescription(LocalContext.current)
+    val progressLabel = stringResource(R.string.bead_progress, beadSummary)
     val semanticsModifier = modifier.clearAndSetSemantics {
-        contentDescription = "Rosary progress. ${layout.accessibilityDescription}"
+        contentDescription = progressLabel
     }
 
     if (isWide) {

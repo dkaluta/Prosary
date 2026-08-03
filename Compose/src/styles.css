@@ -377,3 +377,11 @@ table.chapters select {
 a {
   color: var(--brand-primary);
 }
+
+/* The one-grapheme custom-icon input (Basics → Icon → "Your own"). */
+.glyph-input {
+  width: 3.2em;
+  margin-inline-start: 0.5em;
+  text-align: center;
+  font-size: 1.2em;
+}

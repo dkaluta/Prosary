@@ -30,6 +30,9 @@ private struct PackManifest: Decodable {
   let accentColorHex: String?
   let accentColorDarkHex: String?
   let iconSystemName: String?
+  /// One grapheme (letter or emoji) drawn as the icon instead of `iconSystemName` — the
+  /// Compose "your own" icon (v0.7, Gamaliel item 6).
+  let iconGlyph: String?
   let displayNameByLanguage: [String: String]?
   let reminderBody: [String: String]?
   let reminderPresetHours: [Int]?
@@ -40,6 +43,8 @@ private struct PackManifest: Decodable {
 private struct PackContent: Decodable {
   let prayers: [String: String]
   let mysteries: [String: MysteryText]
+  /// Optional reading aid (v0.7): prayer key → the same text in another script.
+  let transliterations: [String: String]?
 }
 
 /// One entry in a generic devotion's `devotion.json` — a step of the flat "steps" type, an
@@ -335,6 +340,9 @@ struct CustomDevotionInfo {
   let accentColorHex: String?
   let accentColorDarkHex: String?
   let iconSystemName: String?
+  /// One grapheme (letter or emoji) drawn as the icon instead of `iconSystemName` — the
+  /// Compose "your own" icon (v0.7, Gamaliel item 6).
+  let iconGlyph: String?
   let displayNameByLanguage: [String: String]
   let reminderBody: [String: String]
   let reminderPresetHours: [Int]?
@@ -387,6 +395,8 @@ enum PrayerPackStore {
   /// "trisagionAcclamation"), which is how a generic devotion's `devotion.json` resolves
   /// bundle-local body text. See `resolveBodyText`.
   private static var rawContentByBundle: [String: [String: [String: String]]] = [:]
+  /// bundleId → language → prayer key → transliterated text (v0.7 reading aid).
+  private static var transliterationsByBundle: [String: [String: [String: String]]] = [:]
   private static var definitionByBundle: [String: CustomDevotionDefinition] = [:]
   private static var optionsByBundle: [String: [CustomDevotionOption]] = [:]
   private static var audioTracksByBundle: [String: [DevotionAudioTrack]] = [:]
@@ -511,7 +521,21 @@ enum PrayerPackStore {
     let resolved = LanguageCatalog.resolve(rawChoice ?? LanguageCatalog.defaultSentinel).code
     let available = info(for: bundleId)?.languages ?? []
     if available.isEmpty || available.contains(resolved) { return resolved }
+    // A community variant ("he-x-gamliel") prays a bundle that only ships the base language
+    // in the variant: bundle text falls back per-key, so keep the variant code alive here.
+    if let base = LanguageCatalog.baseLanguage(of: resolved), available.contains(base) {
+      return resolved
+    }
     return available[0]
+  }
+
+  /// The on-disk .prosaryprayer file of an *installed* bundle — the export seam: sharing this
+  /// file is how a devotion travels back to Compose for editing (v0.7, Gamaliel item 7).
+  /// Nil for shipped bundles, whose packs live inside the app bundle.
+  static func installedPackURL(for bundleId: String) -> URL? {
+    ensureLoaded()
+    guard installedIds.contains(bundleId) else { return nil }
+    return packUrlByBundle[bundleId]
   }
 
   /// Bundle ids the user has imported (subset of `customDevotionIds()`), in load order.
@@ -597,6 +621,7 @@ enum PrayerPackStore {
     infoByBundle[id] = nil
     optionsByBundle[id] = nil
     audioTracksByBundle[id] = nil
+    transliterationsByBundle[id] = nil
     packUrlByBundle[id] = nil
   }
 
@@ -606,9 +631,20 @@ enum PrayerPackStore {
   /// Latin, not raw keys); (2) else, if the key happens to match an existing `PrayerKey` case,
   /// the ordinary hardcoded/override lookup — this is how shared "main" keys (e.g. "gloriaPatri")
   /// resolve; (3) else the raw key string, matching `PrayerTranslations.get`'s own last resort.
+  /// The v0.7 reading aid: this key's text transliterated into another script, if the
+  /// bundle's language file carries one. No fallback chain — a transliteration belongs to
+  /// exactly the language it transliterates.
+  static func transliteration(bundleId: String, languageCode: String?, key: String) -> String? {
+    ensureLoaded()
+    guard let languageCode else { return nil }
+    return transliterationsByBundle[bundleId]?[languageCode]?[key]
+  }
+
   static func resolveBodyText(bundleId: String, languageCode: String?, key: String) -> String {
     ensureLoaded()
-    if let languageCode, let text = rawContentByBundle[bundleId]?[languageCode]?[key] {
+    if let languageCode,
+       let text = rawContentByBundle[bundleId]?[languageCode]?[key]
+         ?? LanguageCatalog.baseLanguage(of: languageCode).flatMap({ rawContentByBundle[bundleId]?[$0]?[key] }) {
       return text
     }
     if let latinText = rawContentByBundle[bundleId]?["la"]?[key] {
@@ -668,6 +704,7 @@ enum PrayerPackStore {
       accentColorHex: manifest.accentColorHex,
       accentColorDarkHex: manifest.accentColorDarkHex,
       iconSystemName: manifest.iconSystemName,
+      iconGlyph: manifest.iconGlyph,
       displayNameByLanguage: manifest.displayNameByLanguage ?? [:],
       reminderBody: manifest.reminderBody ?? [:],
       reminderPresetHours: manifest.reminderPresetHours,
@@ -685,6 +722,9 @@ enum PrayerPackStore {
         prayers[prayerKey] = text
       }
       rawContentByBundle[manifest.id, default: [:]][language] = rawContent
+      if let transliterations = content.transliterations, !transliterations.isEmpty {
+        transliterationsByBundle[manifest.id, default: [:]][language] = transliterations
+      }
       prayerOverrides[language] = prayers
 
       // Mysteries merge whenever a bundle ships any — `hasCatalog` strictly means "has a

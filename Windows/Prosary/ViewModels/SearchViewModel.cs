@@ -84,7 +84,7 @@ public partial class SearchViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            InstallError = "The devotion could not be downloaded.";
+            InstallError = Loc.Tr("browse_download_failed", "The devotion could not be downloaded.");
             System.Diagnostics.Debug.WriteLine($"[Search] install: {ex}");
         }
         row.IsBusy = false;

@@ -22,6 +22,8 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringArrayResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -29,6 +31,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.ui.theme.extraColors
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -42,10 +45,10 @@ fun AboutScreen(onBack: () -> Unit) {
         topBar = {
             TopAppBar(
                 scrollBehavior = topBarScroll,
-                title = { Text("About Prosary") },
+                title = { Text(stringResource(R.string.about_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.common_back))
                     }
                 },
             )
@@ -70,112 +73,87 @@ fun AboutScreen(onBack: () -> Unit) {
                     color = MaterialTheme.extraColors.headline,
                 )
                 Text(
-                    "A companion for praying the Rosary and other Catholic devotions.",
+                    stringResource(R.string.about_tagline),
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
 
-            AboutSection(title = "Typefaces") {
-                BoldLeadLine("Frank Ruhl Libre", " — SIL Open Font License 1.1 — Hebrew prayers.")
-                BoldLeadLine("Shofar", " — GPL v2 with font-embedding exception — Hebrew Scripture (Culmus Project, Yoram Gnat).")
-                BoldLeadLine("Amiri", " — SIL Open Font License 1.1 — Arabic prayers.")
-                BoldLeadLine("Scheherazade New", " — SIL Open Font License 1.1 — Arabic Scripture (SIL).")
-                BoldLeadLine("Cardo", " — SIL Open Font License 1.1 — Latin/English Scripture (David J. Perry).")
+            AboutSection(title = stringResource(R.string.about_typefaces)) {
+                BoldLeadLine("Frank Ruhl Libre", stringResource(R.string.about_typeface_frank_ruhl))
+                BoldLeadLine("Shofar", stringResource(R.string.about_typeface_shofar))
+                BoldLeadLine("Amiri", stringResource(R.string.about_typeface_amiri))
+                BoldLeadLine("Scheherazade New", stringResource(R.string.about_typeface_scheherazade))
+                BoldLeadLine("Cardo", stringResource(R.string.about_typeface_cardo))
                 Text(
-                    "Latin-script prayers use the platform's system serif design — not bundled with the app.",
+                    stringResource(R.string.about_typefaces_footer),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(top = 4.dp),
                 )
             }
 
-            AboutSection(title = "Mystery Illustrations") {
+            AboutSection(title = stringResource(R.string.about_mystery_illustrations)) {
                 Text(
-                    "All 20 mystery images are classical paintings in the public domain (artist deceased over 100 years), sourced from Wikimedia Commons.",
+                    stringResource(R.string.about_mystery_intro),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
-                mysteryAttributions.forEach { line -> ItalicLeadLine(line) }
+                stringArrayResource(R.array.about_mystery_attributions).forEach { line -> ItalicLeadLine(line) }
             }
 
-            AboutSection(title = "Other Images") {
-                otherImageAttributions.forEach { line -> ItalicLeadLine(line) }
+            AboutSection(title = stringResource(R.string.about_other_images)) {
+                stringArrayResource(R.array.about_other_image_attributions).forEach { line -> ItalicLeadLine(line) }
             }
 
-            AboutSection(title = "Stations of the Cross Illustrations") {
+            AboutSection(title = stringResource(R.string.about_stations_illustrations)) {
                 Text(
-                    "All 14 stations: Gebhard Fugel (1863\u20131939), Kreuzweg (1921), St. Antonius, " +
-                        "Bad Saulgau \u2014 public domain; photographs by Andreas Praefcke, released into " +
-                        "the public domain.",
+                    stringResource(R.string.about_stations_fugel),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 Text(
-                    "The scriptural (St. John Paul II) form adds: The Kiss of Judas \u2014 Giotto " +
-                        "(Scrovegni Chapel, c. 1305); Christ before the High Priest \u2014 Gerrit van " +
-                        "Honthorst (c. 1617), National Gallery, London; The Denial of St Peter \u2014 " +
-                        "Rembrandt (1660), Rijksmuseum; Le Coup de Lance \u2014 Peter Paul Rubens (1620), " +
-                        "Royal Museum of Fine Arts Antwerp \u2014 all public domain. Its other scenes " +
-                        "reuse illustrations listed elsewhere on this page.",
+                    stringResource(R.string.about_stations_scriptural),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 Text(
-                    "The Via Lucis scenes: The Disciples at the Tomb \u2014 Eug\u00e8ne Burnand (1898), " +
-                        "Mus\u00e9e d'Orsay; Noli me tangere \u2014 Fra Angelico (San Marco, c. 1440); " +
-                        "The Road to Emmaus, the appearances to the apostles, at Lake Tiberias, and in " +
-                        "Galilee \u2014 Duccio di Buoninsegna (Maest\u00e0, 1308\u20131311), Siena; " +
-                        "Supper at Emmaus (1601) and The Incredulity of Saint Thomas (1601\u20131602) \u2014 " +
-                        "Caravaggio; Christ's Charge to Peter \u2014 Raphael (c. 1515), Royal Collection; " +
-                        "The Virgin in Prayer \u2014 Sassoferrato (1640\u20131650), National Gallery, " +
-                        "London \u2014 all public domain. Its other scenes reuse the Rosary's " +
-                        "glorious-mystery illustrations.",
+                    stringResource(R.string.about_stations_via_lucis),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
 
-            AboutSection(title = "Franciscan Crown Illustration") {
+            AboutSection(title = stringResource(R.string.about_crown_illustration)) {
                 Text(
-                    "The Adoration of the Magi: Bartolom\u00E9 Esteban Murillo (c. 1655\u201360), " +
-                        "Toledo Museum of Art \u2014 public domain. The other six Joys reuse the Rosary " +
-                        "mystery illustrations above.",
+                    stringResource(R.string.about_crown_magi),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
 
-            AboutSection(title = "Seven Sorrows Illustrations") {
-                sevenSorrowsAttributions.forEach { line -> ItalicLeadLine(line) }
+            AboutSection(title = stringResource(R.string.about_sorrows_illustrations)) {
+                stringArrayResource(R.array.about_sorrows_attributions).forEach { line -> ItalicLeadLine(line) }
             }
 
-            AboutSection(title = "Divine Mercy Illustration") {
+            AboutSection(title = stringResource(R.string.about_mercy_illustration)) {
                 Text(
-                    "Eugeniusz Kazimirowski, Divine Mercy (\u201CJezu, ufam Tobie\u201D, 1934), Divine " +
-                        "Mercy Sanctuary, Vilnius \u2014 the original image painted under St. Faustina\u2019s " +
-                        "direction; public domain.",
+                    stringResource(R.string.about_mercy_kazimirowski),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
 
-            AboutSection(title = "Jesus Prayer Illustration") {
+            AboutSection(title = stringResource(R.string.about_jesus_prayer_illustration)) {
                 Text(
-                    "Christ Pantocrator: encaustic icon (6th century), Saint Catherine\u2019s Monastery, " +
-                        "Mount Sinai \u2014 the oldest surviving icon of Christ Pantocrator, honoring the " +
-                        "prayer\u2019s Eastern tradition; public domain.",
+                    stringResource(R.string.about_jesus_pantocrator),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
 
-            AboutSection(title = "Scripture Sources") {
+            AboutSection(title = stringResource(R.string.about_scripture_sources)) {
                 Text(
-                    "Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), " +
-                        "Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) " +
-                        "with Hebrew Old Testament passages following the Masoretic text, " +
-                        "the Jesuit Arabic Bible (Beirut, 1880, revised 1988), the Russian Synodal Bible (1876), and " +
-                        "Ang Dating Biblia (Tagalog, 1905) — all public domain.",
+                    stringResource(R.string.about_scripture_text),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -225,46 +203,5 @@ private fun ItalicLeadLine(line: String) {
     Text(annotated)
 }
 
-private val mysteryAttributions = listOf(
-    "*The Annunciation* — Fra Angelico (d. 1455)",
-    "*The Visitation* — Mariotto Albertinelli (d. 1515)",
-    "*The Holy Night* — Antonio da Correggio (d. 1534)",
-    "*The Presentation at the Temple* — Andrea Mantegna (d. 1506)",
-    "*Christ Discovered in the Temple* — Simone Martini (d. 1344)",
-    "*The Baptism of Christ* — Piero della Francesca (d. 1492)",
-    "*The Wedding at Cana* — Paolo Veronese (d. 1588)",
-    "*The Sermon on the Mount* — Cosimo Rosselli (d. 1507)",
-    "*The Transfiguration* — Raphael (d. 1520)",
-    "*The Last Supper* — Leonardo da Vinci (d. 1519)",
-    "*The Agony in the Garden* — Andrea Mantegna (d. 1506)",
-    "*The Flagellation of Christ* — Caravaggio (d. 1610)",
-    "*The Crowning with Thorns* — Caravaggio (d. 1610)",
-    "*Christ Carrying the Cross* — Titian (d. 1576)",
-    "*Christ Crucified* — Diego Velázquez (d. 1660)",
-    "*The Resurrection* — Piero della Francesca (d. 1492)",
-    "*The Ascension of Christ* — Rembrandt (d. 1669)",
-    "*The Pentecost* — El Greco (d. 1614)",
-    "*Assumption of the Virgin* — Titian (d. 1576)",
-    "*Coronation of the Virgin* — Diego Velázquez (d. 1660)",
-)
 
-private val otherImageAttributions = listOf(
-    "*Crucifix* — Cimabue (d. 1302).",
-    "*The Small Cowper Madonna* — Raphael (d. 1520).",
-    "*Faith, Hope, and Charity* — Raphael, Baglioni altarpiece predella (d. 1520).",
-    "*Praying Hands* — Albrecht Dürer (d. 1528).",
-    "*Holy Trinity* — Masaccio (d. 1428).",
-    "*Christ in Limbo* — Fra Angelico (d. 1455).",
-    "*Michael* — Guido Reni (d. 1642).",
-    "*Head of Christ* — Rembrandt (d. 1669).",
-)
 
-private val sevenSorrowsAttributions = listOf(
-    "*The Prophecy of Simeon* — Rembrandt van Rijn, Simeon\u2019s Song of Praise (1631), Mauritshuis — public domain.",
-    "*The Flight into Egypt* — Bartolom\u00E9 Esteban Murillo (c. 1647\u201350), Detroit Institute of Arts — public domain.",
-    "*The Loss of Jesus in the Temple* — Paolo Veronese, Christ Among the Doctors (c. 1560), Museo del Prado — public domain.",
-    "*The Meeting on the Way of the Cross* — Raphael, Lo Spasimo (c. 1514\u201316), Museo del Prado — public domain.",
-    "*The Crucifixion* — Hendrick ter Brugghen, The Crucifixion with the Virgin and Saint John (c. 1625), Metropolitan Museum of Art — CC0.",
-    "*The Descent from the Cross* — Peter Paul Rubens (c. 1612\u201314), Cathedral of Our Lady, Antwerp — public domain.",
-    "*The Burial of Jesus* — Titian, The Entombment of Christ (c. 1520), Mus\u00E9e du Louvre — public domain.",
-)

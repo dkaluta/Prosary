@@ -56,7 +56,7 @@ public partial class FavoritesViewModel : ObservableObject
             {
                 var match = all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == x.bundleId);
                 return new SimpleFavoriteRow(
-                    PrayerKind.Custom, x.info!.LocalizedDisplayName, HomeViewModel.GlyphForSystemName(x.info.IconSystemName),
+                    PrayerKind.Custom, x.info!.LocalizedDisplayName, x.info.IconGlyph ?? HomeViewModel.GlyphForSystemName(x.info.IconSystemName),
                     match is not null, match?.Id, x.bundleId);
             });
 
@@ -180,6 +180,32 @@ public partial class FavoritesViewModel : ObservableObject
         catch (PrayerPackStore.InstallException e)
         {
             ImportError = e.Message;
+        }
+    }
+
+    /// <summary>Round-trip to Compose (Gamaliel item 7): save a copy of the installed
+    /// .prosaryprayer wherever the user picks — edit it at compose.prosary.app, re-import.</summary>
+    [RelayCommand]
+    private async Task ExportInstalledAsync(SimpleFavoriteRow row)
+    {
+        if (row.CustomDevotionId is not { } bundleId
+            || PrayerPackStore.InstalledPackPath(bundleId) is not { } source)
+        {
+            return;
+        }
+
+        var picker = new Windows.Storage.Pickers.FileSavePicker
+        {
+            SuggestedFileName = bundleId,
+        };
+        picker.FileTypeChoices.Add(Loc.Tr("favorites_bundle_file_type", "Prosary devotion bundle"), [".prosaryprayer"]);
+        WinRT.Interop.InitializeWithWindow.Initialize(
+            picker, WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow));
+        if (await picker.PickSaveFileAsync() is { } destination)
+        {
+            await using var output = await destination.OpenStreamForWriteAsync();
+            await using var input = File.OpenRead(source);
+            await input.CopyToAsync(output);
         }
     }
 

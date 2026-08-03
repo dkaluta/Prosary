@@ -75,12 +75,16 @@ public partial class RepositoryBrowserViewModel : ObservableObject
     [ObservableProperty]
     private string _searchText = string.Empty;
 
+    /// <summary>The localized "All" chip — one shared instance so the tag list, the selection,
+    /// and the filter comparison all agree on the same string.</summary>
+    private static readonly string AllTag = Loc.Tr("browse_all", "All");
+
     /// <summary>"All" plus every tag the catalog uses.</summary>
     [ObservableProperty]
-    private ObservableCollection<string> _tags = ["All"];
+    private ObservableCollection<string> _tags = [AllTag];
 
     [ObservableProperty]
-    private string _selectedTag = "All";
+    private string _selectedTag = AllTag;
 
     [ObservableProperty]
     private ObservableCollection<RepositoryRow> _filtered = [];
@@ -109,15 +113,15 @@ public partial class RepositoryBrowserViewModel : ObservableObject
                     && live != installed,
             }).ToList();
             Tags = new ObservableCollection<string>(
-                new[] { "All" }.Concat(_all.SelectMany(r => r.Bundle.Tags).Distinct().Order()));
-            SelectedTag = "All";
+                new[] { AllTag }.Concat(_all.SelectMany(r => r.Bundle.Tags).Distinct().Order()));
+            SelectedTag = AllTag;
             OnPropertyChanged(nameof(ShowsTagFilter));
             ApplyFilter();
         }
         catch (TaskCanceledException timeout) when (timeout.InnerException is TimeoutException)
         {
             // HttpClient's 15 s timeout — a real outage, worth the error state.
-            LoadError = "The repository could not be reached.";
+            LoadError = Loc.Tr("browse_unreachable", "The repository could not be reached.");
         }
         catch (OperationCanceledException)
         {
@@ -128,7 +132,7 @@ public partial class RepositoryBrowserViewModel : ObservableObject
         {
             LoadError = ex is RepositoryClient.UnsupportedCatalogException
                 ? ex.Message
-                : "The repository could not be reached.";
+                : Loc.Tr("browse_unreachable", "The repository could not be reached.");
             System.Diagnostics.Debug.WriteLine($"[RepositoryBrowser] {ex}");
         }
 
@@ -139,7 +143,7 @@ public partial class RepositoryBrowserViewModel : ObservableObject
     {
         var query = SearchText.Trim();
         Filtered = new ObservableCollection<RepositoryRow>(_all.Where(row =>
-            (SelectedTag == "All" || row.Bundle.Tags.Contains(SelectedTag)) &&
+            (SelectedTag == AllTag || row.Bundle.Tags.Contains(SelectedTag)) &&
             (query.Length == 0 ||
              $"{row.Bundle.Name} {row.Bundle.Author} {row.Bundle.Description} {row.Bundle.Id}"
                  .Contains(query, StringComparison.OrdinalIgnoreCase))));
@@ -203,7 +207,7 @@ public partial class RepositoryBrowserViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            InstallError = "The devotion could not be downloaded.";
+            InstallError = Loc.Tr("browse_download_failed", "The devotion could not be downloaded.");
             System.Diagnostics.Debug.WriteLine($"[RepositoryBrowser] install: {ex}");
         }
 

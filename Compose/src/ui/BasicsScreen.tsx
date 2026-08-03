@@ -151,12 +151,38 @@ export function BasicsScreen({ project, setProject }: Props) {
                 <input
                   type="radio"
                   name="icon"
-                  checked={project.iconSystemName === icon.systemName}
-                  onChange={() => update({ iconSystemName: icon.systemName })}
+                  checked={!project.iconGlyph && project.iconSystemName === icon.systemName}
+                  onChange={() => update({ iconSystemName: icon.systemName, iconGlyph: "" })}
                 />
                 <span className="icon-choice">{icon.glyph}</span> {icon.label}
               </label>
             ))}
+            <label title="Any letter or emoji of your own">
+              <input
+                type="radio"
+                name="icon"
+                checked={project.iconGlyph !== ""}
+                onChange={() => update({ iconGlyph: project.iconGlyph || "✣" })}
+              />
+              <span className="icon-choice">{project.iconGlyph || "✣"}</span> Your own:
+              <input
+                type="text"
+                className="glyph-input"
+                value={project.iconGlyph}
+                placeholder="✣"
+                aria-label="Custom icon — one letter or emoji"
+                onChange={(e) => {
+                  // Exactly one grapheme cluster: the keyboard types freely (emoji arrive as
+                  // several code units), and we keep only the LAST cluster typed.
+                  const clusters = [
+                    ...new Intl.Segmenter(undefined, { granularity: "grapheme" }).segment(
+                      e.target.value,
+                    ),
+                  ];
+                  update({ iconGlyph: clusters.at(-1)?.segment ?? "" });
+                }}
+              />
+            </label>
           </div>
         </fieldset>
       </div>

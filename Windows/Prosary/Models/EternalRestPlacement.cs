@@ -1,3 +1,5 @@
+using Prosary.Localization;
+
 namespace Prosary.Models;
 
 public enum EternalRestPlacement
@@ -15,9 +17,9 @@ public static class EternalRestPlacementExtensions
 {
     public static string DisplayName(this EternalRestPlacement placement) => placement switch
     {
-        EternalRestPlacement.None => "Don't Include",
-        EternalRestPlacement.AfterEachDecade => "After Each Decade",
-        EternalRestPlacement.AtEndOnly => "Once, Near the End",
+        EternalRestPlacement.None => Loc.Tr("eternal_rest_none", "Don't Include"),
+        EternalRestPlacement.AfterEachDecade => Loc.Tr("eternal_rest_each_decade", "After Each Decade"),
+        EternalRestPlacement.AtEndOnly => Loc.Tr("eternal_rest_at_end", "Once, Near the End"),
         _ => throw new ArgumentOutOfRangeException(nameof(placement))
     };
 }

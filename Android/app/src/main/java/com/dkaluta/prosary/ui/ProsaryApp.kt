@@ -1,5 +1,6 @@
 package com.dkaluta.prosary.ui
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
@@ -21,6 +22,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -31,6 +33,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.compose.runtime.Composable
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.ui.categories.CategoriesScreen
 import com.dkaluta.prosary.ui.search.SearchScreen
 import com.dkaluta.prosary.ui.shared.LaunchTarget
@@ -95,7 +98,7 @@ private object Routes {
     fun custom(devotionId: String) = "custom/$devotionId"
 }
 
-private data class TabSpec(val route: String, val label: String, val icon: ImageVector)
+private data class TabSpec(val route: String, @param:StringRes val labelRes: Int, val icon: ImageVector)
 
 /** The app's tab shell: Pray (Home), Browse (prayers.prosary.app), Categories, Search —
  * bottom NavigationBar on phones, NavigationRail on wide layouts ("bottom on phone, side on
@@ -105,10 +108,10 @@ private data class TabSpec(val route: String, val label: String, val icon: Image
 fun ProsaryApp() {
     val navController = rememberNavController()
     val tabs = listOf(
-        TabSpec(Routes.Home, "Pray", Icons.Filled.Home),
-        TabSpec(Routes.Browse, "Browse", Icons.Filled.Language),
-        TabSpec(Routes.Categories, "Categories", Icons.Filled.GridView),
-        TabSpec(Routes.Search, "Search", Icons.Filled.Search),
+        TabSpec(Routes.Home, R.string.tab_pray, Icons.Filled.Home),
+        TabSpec(Routes.Browse, R.string.tab_browse, Icons.Filled.Language),
+        TabSpec(Routes.Categories, R.string.tab_categories, Icons.Filled.GridView),
+        TabSpec(Routes.Search, R.string.tab_search, Icons.Filled.Search),
     )
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
@@ -132,7 +135,7 @@ fun ProsaryApp() {
                                 selected = currentRoute == tab.route,
                                 onClick = { selectTab(tab.route) },
                                 icon = { Icon(tab.icon, contentDescription = null) },
-                                label = { Text(tab.label) },
+                                label = { Text(stringResource(tab.labelRes)) },
                             )
                         }
                     }
@@ -155,7 +158,7 @@ fun ProsaryApp() {
                                     selected = currentRoute == tab.route,
                                     onClick = { selectTab(tab.route) },
                                     icon = { Icon(tab.icon, contentDescription = null) },
-                                    label = { Text(tab.label) },
+                                    label = { Text(stringResource(tab.labelRes)) },
                                 )
                             }
                         }

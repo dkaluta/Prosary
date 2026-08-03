@@ -41,8 +41,12 @@ struct CategoriesView: View {
                 Text(listing.title)
                   .foregroundStyle(.primary)
               } icon: {
-                Image(systemName: listing.systemImage)
-                  .foregroundStyle(listing.accentColor)
+                if let glyph = listing.iconGlyph {
+                  Text(glyph).foregroundStyle(listing.accentColor)
+                } else {
+                  Image(systemName: listing.systemImage)
+                    .foregroundStyle(listing.accentColor)
+                }
               }
             }
           }

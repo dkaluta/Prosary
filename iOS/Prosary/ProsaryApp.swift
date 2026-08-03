@@ -24,12 +24,15 @@ struct ProsaryApp: App {
     #if os(macOS)
     WindowGroup {
       ContentView()
-        // macOS windows always report a `.regular` horizontal size class — unlike iPad,
-        // there's no automatic switch to a narrower layout as the window shrinks — so the
-        // window itself needs a floor to keep the wide 3-column Rosary flow layout from
-        // being resized into something cramped and broken. The ceiling just keeps the
-        // window from looking sparse on very large displays.
-        .frame(minWidth: 760, idealWidth: 1000, maxWidth: 1400, minHeight: 700, idealHeight: 750)
+        // The prayer flow now switches to the single-column layout below 700pt of measured
+        // width (same fix as visionOS), so the old 760pt floor that protected the wide
+        // three-column layout is gone — a slim Mac window beside your work is a feature,
+        // not a breakage. The remaining floor only guards against absurdity; the ceiling
+        // keeps the window from looking sparse on very large displays.
+        // 620, not 480: the Mac keeps its sidebar at every width, so the floor must
+        // leave a phone-width content column beside it — 480 total squeezed the column
+        // into overflow (janky slim mode, user screenshot 2026-08-03).
+        .frame(minWidth: 620, idealWidth: 1000, maxWidth: 1400, minHeight: 560, idealHeight: 750)
         .task { await presetsMenuState.reload() }
     }
     .modelContainer(AppServices.modelContainer)
@@ -54,6 +57,11 @@ struct ProsaryApp: App {
     #else
     WindowGroup {
       ContentView()
+        #if os(visionOS)
+        // visionOS windows resize freely with no size-class change — a floor keeps the
+        // prayer text from ever being squeezed into clipping (user request, v0.7).
+        .frame(minWidth: 560, minHeight: 560)
+        #endif
         .task { await presetsMenuState.reload() }
     }
     .modelContainer(AppServices.modelContainer)

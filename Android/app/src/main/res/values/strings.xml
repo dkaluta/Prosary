@@ -1,3 +1,286 @@
 <resources>
     <string name="app_name">Prosary</string>
+
+    <!-- Shared -->
+    <string name="common_back">Back</string>
+    <string name="common_cancel">Cancel</string>
+    <string name="common_save">Save</string>
+    <string name="common_done">Done</string>
+    <string name="common_reset">Reset</string>
+    <string name="common_ok">OK</string>
+    <string name="common_retry">Retry</string>
+    <string name="common_pray">Pray</string>
+    <string name="common_next">Next</string>
+    <string name="common_finish">Finish</string>
+    <string name="common_install">Install</string>
+    <string name="common_update">Update</string>
+    <string name="common_installed">Installed</string>
+    <string name="common_settings">Settings</string>
+    <string name="common_about">About</string>
+
+    <!-- Bottom tabs -->
+    <string name="tab_pray">Pray</string>
+    <string name="tab_browse">Browse</string>
+    <string name="tab_categories">Categories</string>
+    <string name="tab_search">Search</string>
+
+    <!-- Home -->
+    <string name="home_today">Today: %1$s</string>
+    <string name="home_pope_intention">The Pope’s intention: %1$s</string>
+    <string name="home_tap_to_set_up">Tap to set up</string>
+    <string name="home_tap_to_pray">Tap to pray</string>
+    <string name="home_my_favorites">My Favorites</string>
+    <string name="home_move_to_top">Move to top</string>
+    <string name="home_edit_order">Edit order…</string>
+    <string name="home_order_title">Home order</string>
+    <string name="home_order_reorder">Reorder %1$s</string>
+
+    <!-- Settings -->
+    <string name="settings_default_prayer_language">Default Prayer Language</string>
+    <string name="settings_praying">Praying</string>
+    <string name="settings_auto_advance">Auto-advance</string>
+    <string name="auto_advance_off">Off</string>
+    <string name="auto_advance_every">Every %1$d seconds</string>
+    <string name="settings_reset_home_order">Reset Home Order</string>
+    <string name="settings_downloads">Downloads</string>
+    <string name="settings_installed_devotions">Installed devotions: %1$d</string>
+    <string name="settings_clear_audio_cache">Clear Audio Cache</string>
+    <string name="settings_clear_audio_cache_size">Clear Audio Cache (%1$s)</string>
+    <string name="settings_remove_all">Remove All Downloaded Devotions…</string>
+    <string name="settings_downloads_footer">Built-in devotions are never removed. Removing a downloaded devotion also removes its favorite.</string>
+    <string name="settings_links">Links</string>
+    <string name="settings_repository_site">Community repository</string>
+    <string name="settings_compose_site">Compose a devotion</string>
+    <string name="settings_privacy_policy">Privacy policy</string>
+    <string name="settings_remove_all_title">Remove all downloaded devotions?</string>
+    <string name="settings_remove_all_message">Devotions from the repository can be downloaded again; hand-imported files cannot.</string>
+    <string name="settings_remove_all_confirm">Remove All</string>
+
+    <!-- Prayer kinds (models/PrayerKind.kt) -->
+    <string name="kind_rosary">Rosary</string>
+    <string name="kind_jesus_prayer">Jesus Prayer</string>
+    <string name="kind_devotion">Devotion</string>
+    <string name="kind_default_name_rosary">My Rosary</string>
+
+    <!-- Mystery groups and selection modes -->
+    <string name="mystery_group_joyful">Joyful</string>
+    <string name="mystery_group_sorrowful">Sorrowful</string>
+    <string name="mystery_group_glorious">Glorious</string>
+    <string name="mystery_group_luminous">Luminous</string>
+    <string name="mode_todays_mysteries">Today\'s Mysteries</string>
+    <string name="mode_specific">Always a Specific Set</string>
+    <string name="mode_fifteen">The 15 Mysteries (Joyful, Sorrowful, Glorious)</string>
+    <string name="mode_twenty">The 20 Mysteries (All Four Sets)</string>
+    <string name="mode_single">One Mystery Only</string>
+    <string name="summary_always">Always %1$s</string>
+    <string name="summary_only">Only %1$s</string>
+    <string name="summary_fifteen">The 15 Mysteries</string>
+    <string name="summary_twenty">The 20 Mysteries</string>
+
+    <!-- Eternal Rest placement -->
+    <string name="eternal_rest_none">Don\'t Include</string>
+    <string name="eternal_rest_each_decade">After Each Decade</string>
+    <string name="eternal_rest_at_end">Once, Near the End</string>
+
+    <!-- Marian antiphon options (Latin titles stay Latin in every language) -->
+    <string name="antiphon_none">None</string>
+    <string name="antiphon_seasonal">Automatic (Seasonal)</string>
+    <string name="antiphon_salve_regina">Salve Regina</string>
+    <string name="antiphon_alma_redemptoris">Alma Redemptoris Mater</string>
+    <string name="antiphon_ave_regina">Ave Regina Caelorum</string>
+    <string name="antiphon_regina_caeli">Regina Caeli</string>
+    <string name="antiphon_sub_tuum">Sub Tuum Praesidium</string>
+
+    <!-- Language display -->
+    <string name="language_default_parenthesized">Default (%1$s)</string>
+    <string name="language_default_dash">Default — %1$s</string>
+
+    <!-- Rosary preset picker -->
+    <string name="rosary_title">The Holy Rosary</string>
+    <string name="rosary_manage">Manage</string>
+    <string name="rosary_default_preset">Default Preset</string>
+    <string name="rosary_custom">Custom</string>
+    <string name="rosary_pray_any">Pray any Rosary</string>
+    <string name="rosary_options">Rosary Options</string>
+    <string name="rosary_save_as_preset">Save as Preset</string>
+    <string name="rosary_presets">Presets</string>
+    <string name="rosary_preset_name">Preset name</string>
+    <string name="rosary_praying">Praying the Rosary</string>
+
+    <!-- Rosary options editor -->
+    <string name="ro_which_mysteries">Which mysteries?</string>
+    <string name="ro_mysteries">Mysteries</string>
+    <string name="ro_specific_set">Specific set</string>
+    <string name="ro_which_mystery">Which mystery</string>
+    <string name="ro_opening_section">Opening &amp; Decade Prayers</string>
+    <string name="ro_apostles_creed">Apostles\' Creed</string>
+    <string name="ro_opening_prayers">Opening Our Father &amp; 3 Hail Marys</string>
+    <string name="ro_fatima">Fatima Prayer after each decade</string>
+    <string name="ro_faithful_departed">For the faithful departed</string>
+    <string name="ro_display_section">Display</string>
+    <string name="ro_presenter_mode">Presenter Mode</string>
+    <string name="ro_presenter_hint">Combine each decade\'s Hail Marys and Glory Be onto one screen — useful when leading a group aloud from memory.</string>
+    <string name="ro_closing_section">Closing Prayers</string>
+    <string name="ro_marian_antiphon">Marian antiphon</string>
+    <string name="ro_st_michael">St. Michael Prayer</string>
+    <string name="ro_final_sign">Final Sign of the Cross</string>
+
+    <!-- Favorites -->
+    <string name="favorites_title">Favorites</string>
+    <string name="favorites_add_kind">Add %1$s</string>
+    <string name="favorites_more_devotions">More Devotions</string>
+    <string name="favorites_repository_badge">Repository</string>
+    <string name="favorites_import">Import Devotion Bundle…</string>
+    <string name="favorites_get_community">Get Community Devotions…</string>
+    <string name="favorites_import_error_title">Could Not Import Devotion</string>
+    <string name="favorites_set_default">Set Default</string>
+    <string name="favorites_edit_desc">Edit %1$s</string>
+    <string name="favorites_delete_desc">Delete %1$s</string>
+    <string name="favorites_add_favorite_desc">Add %1$s to Favorites</string>
+    <string name="favorites_remove_favorite_desc">Remove %1$s from Favorites</string>
+    <string name="favorites_add_to_favorites">Add to Favorites</string>
+    <string name="favorites_remove_from_favorites">Remove from Favorites</string>
+    <string name="favorites_reminders_desc">Edit %1$s reminders</string>
+    <string name="favorites_export_desc">Export %1$s for editing</string>
+    <string name="favorites_remove_imported_desc">Remove imported devotion %1$s</string>
+
+    <!-- Favorite editor -->
+    <string name="editor_new_favorite">New Favorite</string>
+    <string name="editor_edit_favorite">Edit Favorite</string>
+    <string name="editor_name">Name</string>
+    <string name="editor_name_hint">e.g. Morning Rosary</string>
+    <string name="editor_set_default_for">Set as default for %1$s</string>
+    <string name="editor_prayer_language">Prayer Language</string>
+    <string name="editor_language">Language</string>
+    <string name="editor_target">Target</string>
+    <string name="editor_options">Options</string>
+
+    <!-- Reminders -->
+    <string name="reminders_title">Reminders</string>
+    <string name="reminders_add">Add Reminder</string>
+    <string name="reminders_delete_desc">Delete reminder</string>
+
+    <!-- Jesus Prayer -->
+    <string name="jp_title">The Jesus Prayer</string>
+    <string name="jp_how_many">How many times?</string>
+    <string name="jp_repetitions">Number of repetitions</string>
+    <string name="jp_begin">Begin</string>
+    <string name="jp_unbounded">Unbounded</string>
+    <string name="jp_custom">Custom</string>
+    <string name="jp_count_times">%1$d×</string>
+    <string name="jp_times_prefix">× %1$d</string>
+    <string name="jp_favorite_name">Jesus Prayer %1$s (%2$s)</string>
+
+    <!-- Prayer step flow -->
+    <string name="flow_back">Back</string>
+    <string name="flow_step_of">%1$d of %2$d</string>
+    <string name="flow_show_transliteration">Show transliteration</string>
+    <string name="flow_prayer_language">Prayer language</string>
+    <string name="flow_app_setting">App setting</string>
+    <string name="flow_day">Day</string>
+    <string name="flow_choose_form">Choose form</string>
+
+    <!-- Audio playback -->
+    <string name="audio_previous_chapter">Previous chapter</string>
+    <string name="audio_next_chapter">Next chapter</string>
+    <string name="audio_play">Play</string>
+    <string name="audio_pause">Pause</string>
+
+    <!-- Rosary bead accessibility -->
+    <string name="bead_opening_cross">Opening sign of the cross</string>
+    <string name="bead_closing_cross">Closing sign of the cross</string>
+    <string name="bead_marian_antiphon">Marian antiphon</string>
+    <string name="bead_opening_prayers">Opening prayers</string>
+    <string name="bead_closing_prayers">Closing prayers</string>
+    <string name="bead_decade_of">Decade %1$d of %2$d</string>
+    <string name="bead_hail_mary_of">Hail Mary %1$d of %2$d</string>
+    <string name="bead_antiphon_letter">M</string>
+    <string name="bead_progress">Rosary progress. %1$s</string>
+
+    <!-- Repository browser -->
+    <string name="browse_title">Community Devotions</string>
+    <string name="browse_search_label">Search devotions</string>
+    <string name="browse_all">All</string>
+    <string name="browse_unreachable">The repository could not be reached.</string>
+    <string name="browse_install_error_title">Could Not Install Devotion</string>
+    <string name="browse_install_error_generic">Could not install the devotion.</string>
+    <string name="browse_no_match">No devotions match.</string>
+    <string name="browse_unsupported_catalog">The repository uses a newer catalog format — update Prosary to browse it.</string>
+    <string name="pack_error_unreadable">This file is not a readable .prosaryprayer bundle.</string>
+    <string name="pack_error_not_devotion">This bundle does not contain a devotion.</string>
+    <string name="pack_error_duplicate">A devotion named \"%1$s\" is already installed.</string>
+
+    <!-- Search -->
+    <string name="search_hint">Devotions, categories, authors</string>
+    <string name="search_on_device">On this device</string>
+    <string name="search_no_device_match">Nothing on this device matches.</string>
+    <string name="search_from_community">From the community</string>
+
+    <!-- About -->
+    <string name="about_title">About Prosary</string>
+    <string name="about_tagline">A companion for praying the Rosary and other Catholic devotions.</string>
+    <string name="about_typefaces">Typefaces</string>
+    <string name="about_typeface_frank_ruhl">" — SIL Open Font License 1.1 — Hebrew prayers."</string>
+    <string name="about_typeface_shofar">" — GPL v2 with font-embedding exception — Hebrew Scripture (Culmus Project, Yoram Gnat)."</string>
+    <string name="about_typeface_amiri">" — SIL Open Font License 1.1 — Arabic prayers."</string>
+    <string name="about_typeface_scheherazade">" — SIL Open Font License 1.1 — Arabic Scripture (SIL)."</string>
+    <string name="about_typeface_cardo">" — SIL Open Font License 1.1 — Latin/English Scripture (David J. Perry)."</string>
+    <string name="about_typefaces_footer">Latin-script prayers use the platform\'s system serif design — not bundled with the app.</string>
+    <string name="about_mystery_illustrations">Mystery Illustrations</string>
+    <string name="about_mystery_intro">All 20 mystery images are classical paintings in the public domain (artist deceased over 100 years), sourced from Wikimedia Commons.</string>
+    <string-array name="about_mystery_attributions">
+        <item>*The Annunciation* — Fra Angelico (d. 1455)</item>
+        <item>*The Visitation* — Mariotto Albertinelli (d. 1515)</item>
+        <item>*The Holy Night* — Antonio da Correggio (d. 1534)</item>
+        <item>*The Presentation at the Temple* — Andrea Mantegna (d. 1506)</item>
+        <item>*Christ Discovered in the Temple* — Simone Martini (d. 1344)</item>
+        <item>*The Baptism of Christ* — Piero della Francesca (d. 1492)</item>
+        <item>*The Wedding at Cana* — Paolo Veronese (d. 1588)</item>
+        <item>*The Sermon on the Mount* — Cosimo Rosselli (d. 1507)</item>
+        <item>*The Transfiguration* — Raphael (d. 1520)</item>
+        <item>*The Last Supper* — Leonardo da Vinci (d. 1519)</item>
+        <item>*The Agony in the Garden* — Andrea Mantegna (d. 1506)</item>
+        <item>*The Flagellation of Christ* — Caravaggio (d. 1610)</item>
+        <item>*The Crowning with Thorns* — Caravaggio (d. 1610)</item>
+        <item>*Christ Carrying the Cross* — Titian (d. 1576)</item>
+        <item>*Christ Crucified* — Diego Velázquez (d. 1660)</item>
+        <item>*The Resurrection* — Piero della Francesca (d. 1492)</item>
+        <item>*The Ascension of Christ* — Rembrandt (d. 1669)</item>
+        <item>*The Pentecost* — El Greco (d. 1614)</item>
+        <item>*Assumption of the Virgin* — Titian (d. 1576)</item>
+        <item>*Coronation of the Virgin* — Diego Velázquez (d. 1660)</item>
+    </string-array>
+    <string name="about_other_images">Other Images</string>
+    <string-array name="about_other_image_attributions">
+        <item>*Crucifix* — Cimabue (d. 1302).</item>
+        <item>*The Small Cowper Madonna* — Raphael (d. 1520).</item>
+        <item>*Faith, Hope, and Charity* — Raphael, Baglioni altarpiece predella (d. 1520).</item>
+        <item>*Praying Hands* — Albrecht Dürer (d. 1528).</item>
+        <item>*Holy Trinity* — Masaccio (d. 1428).</item>
+        <item>*Christ in Limbo* — Fra Angelico (d. 1455).</item>
+        <item>*Michael* — Guido Reni (d. 1642).</item>
+        <item>*Head of Christ* — Rembrandt (d. 1669).</item>
+    </string-array>
+    <string name="about_stations_illustrations">Stations of the Cross Illustrations</string>
+    <string name="about_stations_fugel">All 14 stations: Gebhard Fugel (1863–1939), Kreuzweg (1921), St. Antonius, Bad Saulgau — public domain; photographs by Andreas Praefcke, released into the public domain.</string>
+    <string name="about_stations_scriptural">The scriptural (St. John Paul II) form adds: The Kiss of Judas — Giotto (Scrovegni Chapel, c. 1305); Christ before the High Priest — Gerrit van Honthorst (c. 1617), National Gallery, London; The Denial of St Peter — Rembrandt (1660), Rijksmuseum; Le Coup de Lance — Peter Paul Rubens (1620), Royal Museum of Fine Arts Antwerp — all public domain. Its other scenes reuse illustrations listed elsewhere on this page.</string>
+    <string name="about_stations_via_lucis">The Via Lucis scenes: The Disciples at the Tomb — Eugène Burnand (1898), Musée d\'Orsay; Noli me tangere — Fra Angelico (San Marco, c. 1440); The Road to Emmaus, the appearances to the apostles, at Lake Tiberias, and in Galilee — Duccio di Buoninsegna (Maestà, 1308–1311), Siena; Supper at Emmaus (1601) and The Incredulity of Saint Thomas (1601–1602) — Caravaggio; Christ\'s Charge to Peter — Raphael (c. 1515), Royal Collection; The Virgin in Prayer — Sassoferrato (1640–1650), National Gallery, London — all public domain. Its other scenes reuse the Rosary\'s glorious-mystery illustrations.</string>
+    <string name="about_crown_illustration">Franciscan Crown Illustration</string>
+    <string name="about_crown_magi">The Adoration of the Magi: Bartolomé Esteban Murillo (c. 1655–60), Toledo Museum of Art — public domain. The other six Joys reuse the Rosary mystery illustrations above.</string>
+    <string name="about_sorrows_illustrations">Seven Sorrows Illustrations</string>
+    <string-array name="about_sorrows_attributions">
+        <item>*The Prophecy of Simeon* — Rembrandt van Rijn, Simeon’s Song of Praise (1631), Mauritshuis — public domain.</item>
+        <item>*The Flight into Egypt* — Bartolomé Esteban Murillo (c. 1647–50), Detroit Institute of Arts — public domain.</item>
+        <item>*The Loss of Jesus in the Temple* — Paolo Veronese, Christ Among the Doctors (c. 1560), Museo del Prado — public domain.</item>
+        <item>*The Meeting on the Way of the Cross* — Raphael, Lo Spasimo (c. 1514–16), Museo del Prado — public domain.</item>
+        <item>*The Crucifixion* — Hendrick ter Brugghen, The Crucifixion with the Virgin and Saint John (c. 1625), Metropolitan Museum of Art — CC0.</item>
+        <item>*The Descent from the Cross* — Peter Paul Rubens (c. 1612–14), Cathedral of Our Lady, Antwerp — public domain.</item>
+        <item>*The Burial of Jesus* — Titian, The Entombment of Christ (c. 1520), Musée du Louvre — public domain.</item>
+    </string-array>
+    <string name="about_mercy_illustration">Divine Mercy Illustration</string>
+    <string name="about_mercy_kazimirowski">Eugeniusz Kazimirowski, Divine Mercy (“Jezu, ufam Tobie”, 1934), Divine Mercy Sanctuary, Vilnius — the original image painted under St. Faustina’s direction; public domain.</string>
+    <string name="about_jesus_prayer_illustration">Jesus Prayer Illustration</string>
+    <string name="about_jesus_pantocrator">Christ Pantocrator: encaustic icon (6th century), Saint Catherine’s Monastery, Mount Sinai — the oldest surviving icon of Christ Pantocrator, honoring the prayer’s Eastern tradition; public domain.</string>
+    <string name="about_scripture_sources">Scripture Sources</string>
+    <string name="about_scripture_text">Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch\'s Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) with Hebrew Old Testament passages following the Masoretic text, the Jesuit Arabic Bible (Beirut, 1880, revised 1988), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905) — all public domain.</string>
 </resources>

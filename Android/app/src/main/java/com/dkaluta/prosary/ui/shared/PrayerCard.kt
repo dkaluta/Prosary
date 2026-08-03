@@ -1,7 +1,9 @@
 package com.dkaluta.prosary.ui.shared
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,13 +32,16 @@ import androidx.compose.ui.unit.dp
 
 /** Tappable card for a prayer kind on the Home screen. Accent strip color is passed in by the
  * caller so the Rosary card can use the dynamic mystery-group color of the day. */
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PrayerCard(
     icon: ImageVector,
+    iconGlyph: String? = null,
     title: String,
     subtitle: String,
     accentColor: Color,
     onClick: () -> Unit,
+    onLongClick: (() -> Unit)? = null,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -45,7 +50,7 @@ fun PrayerCard(
             .height(IntrinsicSize.Min)
             .clip(RoundedCornerShape(14.dp))
             .background(MaterialTheme.colorScheme.surfaceContainerHigh)
-            .clickable(onClick = onClick),
+            .combinedClickable(onClick = onClick, onLongClick = onLongClick),
     ) {
         Box(modifier = Modifier.width(5.dp).fillMaxHeight().background(accentColor))
 
@@ -56,7 +61,18 @@ fun PrayerCard(
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp, vertical = 14.dp),
         ) {
-            Icon(icon, contentDescription = null, tint = accentColor, modifier = Modifier.size(28.dp))
+            if (iconGlyph != null) {
+                // Compose's "your own" one-grapheme icon (v0.7, Gamaliel item 6).
+                Text(
+                    iconGlyph,
+                    color = accentColor,
+                    style = MaterialTheme.typography.headlineSmall,
+                    modifier = Modifier.width(28.dp),
+                    textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                )
+            } else {
+                Icon(icon, contentDescription = null, tint = accentColor, modifier = Modifier.size(28.dp))
+            }
 
             Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
                 Text(title, style = MaterialTheme.typography.titleMedium)

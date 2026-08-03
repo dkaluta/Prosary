@@ -26,8 +26,12 @@ enum PrayerTypography {
   #endif
 
   static func font(languageCode: String?, isScripture: Bool) -> Font {
-    switch languageCode {
-    case "he":
+    // Variants key on their base script: "he-x-gamliel" typesets exactly like "he".
+    let baseCode = languageCode.map { code in
+      LanguageCatalog.baseLanguage(of: code) ?? code
+    }
+    switch baseCode {
+    case "he", "arc": // Aramaic is written in Hebrew script — same faces and sizes
       return isScripture
         ? .custom(FontRegistration.PostScriptName.shofar, size: 16 * scale, relativeTo: .body)
         : .custom(FontRegistration.PostScriptName.frankRuhlLibre, size: 21 * scale, relativeTo: .body)

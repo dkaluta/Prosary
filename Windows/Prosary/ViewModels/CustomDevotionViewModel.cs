@@ -172,11 +172,27 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     [ObservableProperty]
     private bool _canSkipAudioChapter;
 
+    // --- Transliteration (v0.7 reading aid): swap the body for the author's other-script
+    // --- rendering; sticky across steps for pray-along sessions. ---
+
+    [ObservableProperty]
+    private bool _hasTransliteration;
+
+    [ObservableProperty]
+    private bool _showsTransliteration;
+
+    [RelayCommand]
+    private void ToggleTransliteration()
+    {
+        ShowsTransliteration = !ShowsTransliteration;
+        RenderCurrentStep();
+    }
+
     public string MysteryImageFile => PrayerPackStore.ImageFileUri(MysteryImageKey) ?? (MysteryImageKey == "cross_placeholder"
         ? "ms-appx:///Assets/Images/cross_placeholder.png"
         : $"ms-appx:///Assets/Images/{MysteryImageKey}.jpg");
 
-    public string NextButtonText => IsLastStep ? "Finish" : "Next";
+    public string NextButtonText => IsLastStep ? Loc.Tr("common_finish", "Finish") : Loc.Tr("common_next", "Next");
 
     public bool HasSubtitle => !string.IsNullOrEmpty(Subtitle);
 
@@ -352,8 +368,8 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         catch (Exception ex)
         {
             System.Diagnostics.Debug.WriteLine($"[CustomDevotionViewModel] Failed to load devotion '{bundleId}': {ex}");
-            Header = "Something went wrong";
-            Body = "This devotion couldn't be loaded. Please go back and try again.";
+            Header = Loc.Tr("flow_error_header", "Something went wrong");
+            Body = Loc.Tr("flow_error_body", "This devotion couldn't be loaded. Please go back and try again.");
         }
     }
 
@@ -381,11 +397,14 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         var step = _steps[_index];
         Header = step.Title;
         Subtitle = step.Subtitle;
-        Body = step.Body;
+        HasTransliteration = step.TransliteratedBody is not null;
+        Body = ShowsTransliteration && step.TransliteratedBody is { } transliterated
+            ? transliterated
+            : step.Body;
         Acclamation = step.Acclamation ?? string.Empty;
         HasAcclamation = step.Acclamation is not null;
         MysteryImageKey = step.Mystery?.ImageKey ?? step.ImageOverrideKey ?? "cross_placeholder";
-        ProgressText = $"{_index + 1} of {_steps.Count}";
+        ProgressText = string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), _index + 1, _steps.Count);
         Progress = (_index + 1) / (double)_steps.Count;
         CanGoBack = _index > 0;
         IsLastStep = _index == _steps.Count - 1;

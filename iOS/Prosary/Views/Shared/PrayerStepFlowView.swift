@@ -53,6 +53,11 @@ struct PrayerStepFlowView: View {
   /// shared by every flow, so a choice made in the Rosary carries into the Stations.
   @AppStorage("autoAdvanceSeconds") private var autoAdvanceSeconds = 0
 
+  /// The v0.7 reading aid: swap the body for its transliteration when the step carries one.
+  /// Deliberately sticky across steps — someone praying along in an unfamiliar script wants
+  /// it on for the whole session, not per page.
+  @State private var showsTransliteration = false
+
   private static let autoAdvanceChoices = [3, 5, 10]
 
   /// Regular width (Mac, a wide iPad window, Vision) gets the taller three-column layout; so
@@ -88,14 +93,16 @@ struct PrayerStepFlowView: View {
         .padding(.top, isCompactHeight ? 6 : 12)
 
       if let step {
-        if isWide {
-          // Measures the actual room available for this row — unlike a size class, this
-          // responds to a Mac window being resized short, not just to device/orientation.
-          GeometryReader { geo in
+        // Measured, not size-classed: a visionOS window resizes freely while its size class
+        // stays .regular, so the wide three-column layout used to squeeze until text clipped
+        // (and a narrow Mac window had the same failure). Below the same 700pt breakpoint the
+        // Windows port uses, the single-column phone layout takes over regardless of class.
+        GeometryReader { geo in
+          if isWide && geo.size.width >= 700 {
             wideContent(step: step, availableHeight: geo.size.height)
+          } else {
+            narrowContent(step: step)
           }
-        } else {
-          narrowContent(step: step)
         }
       } else {
         Spacer()
@@ -198,10 +205,14 @@ struct PrayerStepFlowView: View {
       ScrollView {
         VStack(spacing: 16) {
           mysteryImage(step: step)
-            // Ties height to width so the image is always a square, however wide the
-            // phone is; sized at 3/4 of that width so it doesn't dominate the screen.
+            // A square at 3/4 of the column, capped at 340pt: containerRelativeFrame
+            // measured the WINDOW, not the sidebar-split column, so on a slim Mac window
+            // the image overflowed the column and pushed the prayer text below the fold.
             .aspectRatio(1, contentMode: .fit)
-            .containerRelativeFrame(.horizontal) { length, _ in length * 0.75 }
+            .frame(maxWidth: 340)
+            .containerRelativeFrame(.horizontal, alignment: .center) { length, _ in
+              min(length * 0.75, 340)
+            }
             .clipShape(RoundedRectangle(cornerRadius: 16))
 
           textBlock(step: step)
@@ -302,9 +313,29 @@ struct PrayerStepFlowView: View {
           .lineSpacing(4)
       }
 
-      Text(bodyAttributedString(step.body))
-        .font(PrayerTypography.font(languageCode: languageCode, isScripture: step.isScripture))
-        .lineSpacing(4)
+      if let transliteration = step.transliteratedBody {
+        // The side toggle Erez asked for: read the prayer in its own script, or in the
+        // transliteration the author provided (e.g. Hebrew letters for Tagalog).
+        HStack {
+          Spacer()
+          Button {
+            showsTransliteration.toggle()
+          } label: {
+            Image(systemName: showsTransliteration ? "character.book.closed.fill" : "character.book.closed")
+          }
+          .buttonStyle(.borderless)
+          .accessibilityLabel(String(localized: "prayerFlow.transliteration",
+                                     defaultValue: "Show transliteration"))
+          .accessibilityIdentifier("transliterationToggle")
+        }
+        Text(bodyAttributedString(showsTransliteration ? transliteration : step.body))
+          .font(PrayerTypography.font(languageCode: languageCode, isScripture: step.isScripture))
+          .lineSpacing(4)
+      } else {
+        Text(bodyAttributedString(step.body))
+          .font(PrayerTypography.font(languageCode: languageCode, isScripture: step.isScripture))
+          .lineSpacing(4)
+      }
 
       if let centralActionLabel {
         Button(action: onNext) {

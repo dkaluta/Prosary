@@ -1,5 +1,6 @@
 package com.dkaluta.prosary.ui.shared
 
+import android.content.Context
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
@@ -18,6 +19,9 @@ data class DevotionListing(
     val title: String,
     val icon: ImageVector,
     val accentColor: Color?,
+    /** One grapheme (letter or emoji) drawn instead of [icon] — Compose's "your own" icon
+     * (v0.7, Gamaliel item 6). */
+    val iconGlyph: String? = null,
     /** Lowercase category labels from the manifest; the Jesus Prayer, having no bundle,
      * carries its tags here. */
     val tags: List<String>,
@@ -28,11 +32,11 @@ data class DevotionListing(
  * Prayer — so the Categories and Search tabs hardcode nothing devotion-specific. Mirrors
  * iOS's DevotionDirectory. */
 object DevotionDirectory {
-    fun all(): List<DevotionListing> = buildList {
+    fun all(context: Context): List<DevotionListing> = buildList {
         add(
             DevotionListing(
                 id = "rosary",
-                title = PrayerKind.Rosary.displayName,
+                title = context.getString(PrayerKind.Rosary.displayNameRes),
                 icon = iconForSystemName("rosary"),
                 accentColor = null,
                 tags = PrayerPackStore.info("rosary")?.tags ?: listOf("marian"),
@@ -46,6 +50,7 @@ object DevotionDirectory {
                     id = bundleId,
                     title = info.localizedDisplayName,
                     icon = iconForSystemName(info.iconSystemName),
+                    iconGlyph = info.iconGlyph,
                     accentColor = colorForHex(info.accentColorHex),
                     tags = info.tags,
                     target = LaunchTarget.Custom(bundleId),
@@ -55,7 +60,7 @@ object DevotionDirectory {
         add(
             DevotionListing(
                 id = "jesusPrayer",
-                title = PrayerKind.JesusPrayer.displayName,
+                title = context.getString(PrayerKind.JesusPrayer.displayNameRes),
                 icon = iconForSystemName("jesusPrayer"),
                 accentColor = null,
                 tags = listOf("eastern", "meditative"),

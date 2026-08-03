@@ -1,6 +1,8 @@
 package com.dkaluta.prosary.models
 
+import androidx.annotation.StringRes
 import androidx.compose.ui.graphics.Color
+import com.dkaluta.prosary.R
 
 /** One of the four traditional sets of Rosary mysteries. */
 enum class MysteryGroup {
@@ -17,6 +19,17 @@ enum class MysteryGroup {
             Sorrowful -> "Sorrowful"
             Glorious -> "Glorious"
             Luminous -> "Luminous"
+        }
+
+    /** UI-language name for chrome like Home's "Today: …" line. [displayName] above stays
+     * English on purpose: the engine uses it as a *prayer-language* content fallback. */
+    @get:StringRes
+    val displayNameRes: Int
+        get() = when (this) {
+            Joyful -> R.string.mystery_group_joyful
+            Sorrowful -> R.string.mystery_group_sorrowful
+            Glorious -> R.string.mystery_group_glorious
+            Luminous -> R.string.mystery_group_luminous
         }
 
     /** Accent color for the Home screen's Rosary card — distinct per mystery group, not the

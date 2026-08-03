@@ -52,9 +52,9 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Cancel" Background="Transparent" Command="{x:Bind ViewModel.CancelCommand}" />
+            <Button x:Uid="BtnCancel" Grid.Column="0" Content="Cancel" Background="Transparent" Command="{x:Bind ViewModel.CancelCommand}" />
             <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.Title, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
-            <Button Grid.Column="2" Content="Save" Style="{StaticResource AccentButtonStyle}" Command="{x:Bind ViewModel.SaveCommand}" />
+            <Button x:Uid="BtnSave" Grid.Column="2" Content="Save" Style="{StaticResource AccentButtonStyle}" Command="{x:Bind ViewModel.SaveCommand}" />
         </Grid>
 
         <!-- The "Rosary Options" submenu's own header — a same-page content swap (not a separate
@@ -68,10 +68,10 @@
             <Button Grid.Column="0" Background="Transparent" Command="{x:Bind ViewModel.HideRosaryOptionsCommand}">
                 <StackPanel Orientation="Horizontal" Spacing="4">
                     <FontIcon Glyph="&#xE76B;" FontSize="14" />
-                    <TextBlock Text="Back" />
+                    <TextBlock x:Uid="EdBack" Text="Back" />
                 </StackPanel>
             </Button>
-            <TextBlock Grid.Column="1" Text="Rosary Options" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
+            <TextBlock x:Uid="EdOptionsTitle" Grid.Column="1" Text="Rosary Options" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
         </Grid>
 
         <ScrollViewer Grid.Row="1" Visibility="{x:Bind ViewModel.ShowingRosaryOptions, Mode=OneWay, Converter={StaticResource InverseBoolToVisibility}}">
@@ -85,14 +85,14 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="Set as default" VerticalAlignment="Center" />
+                            <TextBlock x:Uid="EdSetDefault" Grid.Column="0" Text="Set as default" VerticalAlignment="Center" />
                             <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IsDefault, Mode=TwoWay}" />
                         </Grid>
                     </StackPanel>
                 </Border>
 
                 <StackPanel Spacing="8">
-                    <TextBlock Text="PRAYER LANGUAGE" Style="{StaticResource SectionHeaderStyle}" />
+                    <TextBlock x:Uid="EdLanguageHeader" Text="PRAYER LANGUAGE" Style="{StaticResource SectionHeaderStyle}" />
                     <Border Style="{StaticResource SectionCardStyle}">
                         <ComboBox HorizontalAlignment="Stretch" ItemsSource="{x:Bind ViewModel.LanguageCodeOptions}"
                                   SelectedItem="{x:Bind ViewModel.LanguageCode, Mode=TwoWay}">
@@ -116,7 +116,7 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Rosary Options" VerticalAlignment="Center" />
+                                <TextBlock x:Uid="EdRosaryOptionsRow" Grid.Column="0" Text="Rosary Options" VerticalAlignment="Center" />
                                 <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.MysterySelectionSummary, Mode=OneWay}"
                                            HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource MutedSubtitleTextStyle}" />
                                 <FontIcon Grid.Column="2" Glyph="&#xE76C;" FontSize="14" VerticalAlignment="Center" />
@@ -127,7 +127,7 @@
 
                 <!-- Jesus Prayer-only section -->
                 <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.IsJesusPrayer, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                    <TextBlock Text="TARGET" Style="{StaticResource SectionHeaderStyle}" />
+                    <TextBlock x:Uid="EdTargetHeader" Text="TARGET" Style="{StaticResource SectionHeaderStyle}" />
                     <Border Style="{StaticResource SectionCardStyle}">
                         <ComboBox HorizontalAlignment="Stretch" ItemsSource="{x:Bind ViewModel.JesusPrayerTargetOptions}"
                                   SelectedItem="{x:Bind ViewModel.JesusPrayerTarget, Mode=TwoWay}">
@@ -142,7 +142,7 @@
 
                 <!-- Reminders -->
                 <StackPanel Spacing="8">
-                    <TextBlock Text="REMINDERS" Style="{StaticResource SectionHeaderStyle}" />
+                    <TextBlock x:Uid="EdRemindersHeader" Text="REMINDERS" Style="{StaticResource SectionHeaderStyle}" />
                     <Border Style="{StaticResource SectionCardStyle}">
                         <StackPanel Spacing="8">
                             <ItemsControl ItemsSource="{x:Bind ViewModel.RemindersEditor.Reminders, Mode=OneWay}" ItemTemplate="{StaticResource ReminderRowTemplate}" />
@@ -150,7 +150,7 @@
                             <Button Command="{x:Bind ViewModel.RemindersEditor.AddReminderCommand}" Background="Transparent">
                                 <StackPanel Orientation="Horizontal" Spacing="6">
                                     <FontIcon Glyph="&#xE710;" FontSize="14" />
-                                    <TextBlock Text="Add Reminder" />
+                                    <TextBlock x:Uid="EdAddReminder" Text="Add Reminder" />
                                 </StackPanel>
                             </Button>
                         </StackPanel>
@@ -165,7 +165,7 @@
             <StackPanel Spacing="20" MaxWidth="480" HorizontalAlignment="Center" Padding="16">
 
                 <StackPanel Spacing="8">
-                    <TextBlock Text="WHICH MYSTERIES?" Style="{StaticResource SectionHeaderStyle}" />
+                    <TextBlock x:Uid="EdWhichMysteries" Text="WHICH MYSTERIES?" Style="{StaticResource SectionHeaderStyle}" />
                     <Border Style="{StaticResource SectionCardStyle}">
                         <StackPanel Spacing="12">
                             <ComboBox HorizontalAlignment="Stretch" Header="Mysteries" ItemsSource="{x:Bind ViewModel.MysterySelectionModeOptions}"
@@ -197,7 +197,7 @@
                         </StackPanel>
                     </Border>
 
-                    <TextBlock Text="OPENING &amp; DECADE PRAYERS" Style="{StaticResource SectionHeaderStyle}" />
+                    <TextBlock x:Uid="EdOpeningHeader" Text="OPENING &amp; DECADE PRAYERS" Style="{StaticResource SectionHeaderStyle}" />
                     <Border Style="{StaticResource SectionCardStyle}">
                         <StackPanel Spacing="12">
                             <Grid>
@@ -205,7 +205,7 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Apostles' Creed" VerticalAlignment="Center" />
+                                <TextBlock x:Uid="EdApostlesCreed" Grid.Column="0" Text="Apostles' Creed" VerticalAlignment="Center" />
                                 <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeApostlesCreed, Mode=TwoWay}" />
                             </Grid>
                             <Grid>
@@ -213,7 +213,7 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Opening Our Father &amp; 3 Hail Marys" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                <TextBlock x:Uid="EdOpeningPrayers" Grid.Column="0" Text="Opening Our Father &amp; 3 Hail Marys" VerticalAlignment="Center" TextWrapping="Wrap" />
                                 <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeOpeningPrayers, Mode=TwoWay}" />
                             </Grid>
                             <Grid>
@@ -221,7 +221,7 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Fatima Prayer after each decade" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                <TextBlock x:Uid="EdFatima" Grid.Column="0" Text="Fatima Prayer after each decade" VerticalAlignment="Center" TextWrapping="Wrap" />
                                 <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeFatimaPrayer, Mode=TwoWay}" />
                             </Grid>
                             <ComboBox HorizontalAlignment="Stretch" Header="For the faithful departed" ItemsSource="{x:Bind ViewModel.EternalRestPlacementOptions}"
@@ -235,7 +235,7 @@
                         </StackPanel>
                     </Border>
 
-                    <TextBlock Text="DISPLAY" Style="{StaticResource SectionHeaderStyle}" />
+                    <TextBlock x:Uid="EdDisplayHeader" Text="DISPLAY" Style="{StaticResource SectionHeaderStyle}" />
                     <Border Style="{StaticResource SectionCardStyle}">
                         <StackPanel Spacing="8">
                             <Grid>
@@ -243,15 +243,15 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Presenter Mode" VerticalAlignment="Center" />
+                                <TextBlock x:Uid="EdPresenterMode" Grid.Column="0" Text="Presenter Mode" VerticalAlignment="Center" />
                                 <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.PresenterMode, Mode=TwoWay}" />
                             </Grid>
-                            <TextBlock Text="Combine each decade's Hail Marys and Glory Be onto one screen — useful when leading a group aloud from memory."
+                            <TextBlock x:Uid="EdPresenterHint" Text="Combine each decade's Hail Marys and Glory Be onto one screen — useful when leading a group aloud from memory."
                                        Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
                         </StackPanel>
                     </Border>
 
-                    <TextBlock Text="CLOSING PRAYERS" Style="{StaticResource SectionHeaderStyle}" />
+                    <TextBlock x:Uid="EdClosingHeader" Text="CLOSING PRAYERS" Style="{StaticResource SectionHeaderStyle}" />
                     <Border Style="{StaticResource SectionCardStyle}">
                         <StackPanel Spacing="12">
                             <ComboBox HorizontalAlignment="Stretch" Header="Marian antiphon" ItemsSource="{x:Bind ViewModel.MarianAntiphonOptions}"
@@ -267,7 +267,7 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="St. Michael Prayer" VerticalAlignment="Center" />
+                                <TextBlock x:Uid="EdStMichael" Grid.Column="0" Text="St. Michael Prayer" VerticalAlignment="Center" />
                                 <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeStMichaelPrayer, Mode=TwoWay}" />
                             </Grid>
                             <Grid>
@@ -275,7 +275,7 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Final Sign of the Cross" VerticalAlignment="Center" />
+                                <TextBlock x:Uid="EdFinalSign" Grid.Column="0" Text="Final Sign of the Cross" VerticalAlignment="Center" />
                                 <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeFinalSignOfCross, Mode=TwoWay}" />
                             </Grid>
                         </StackPanel>

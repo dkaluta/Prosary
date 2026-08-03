@@ -129,7 +129,7 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         ? "ms-appx:///Assets/Images/cross_placeholder.png"
         : $"ms-appx:///Assets/Images/{MysteryImageKey}.jpg");
 
-    public string NextButtonText => IsLastStep ? "Finish" : "Next";
+    public string NextButtonText => IsLastStep ? Loc.Tr("common_finish", "Finish") : Loc.Tr("common_next", "Next");
 
     public bool HasSubtitle => !string.IsNullOrEmpty(Subtitle);
 
@@ -146,8 +146,8 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         prayer ??= await _presets.GetDefaultAsync(PrayerKind.Rosary);
         if (prayer is null)
         {
-            Header = "No Rosary favorites yet";
-            Body = "Add a Rosary favorite first.";
+            Header = Loc.Tr("rosary_no_favorites_header", "No Rosary favorites yet");
+            Body = Loc.Tr("rosary_no_favorites_body", "Add a Rosary favorite first.");
             return;
         }
 
@@ -181,8 +181,8 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         catch (Exception ex)
         {
             System.Diagnostics.Debug.WriteLine($"[RosaryViewModel] Failed to load Rosary session: {ex}");
-            Header = "Something went wrong";
-            Body = "This Rosary session couldn't be loaded. Please go back and try again.";
+            Header = Loc.Tr("flow_error_header", "Something went wrong");
+            Body = Loc.Tr("rosary_error_body", "This Rosary session couldn't be loaded. Please go back and try again.");
         }
     }
 
@@ -210,7 +210,7 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         Subtitle = step.Subtitle;
         Body = step.Body;
         MysteryImageKey = step.Mystery?.ImageKey ?? step.ImageOverrideKey ?? "cross_placeholder";
-        ProgressText = $"{_index + 1} of {_steps.Count}";
+        ProgressText = string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), _index + 1, _steps.Count);
         Progress = (_index + 1) / (double)_steps.Count;
         CanGoBack = _index > 0;
         IsLastStep = _index == _steps.Count - 1;

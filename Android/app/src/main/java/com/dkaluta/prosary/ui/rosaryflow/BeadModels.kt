@@ -1,5 +1,7 @@
 package com.dkaluta.prosary.ui.rosaryflow
 
+import android.content.Context
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.MysteryGroup
 import com.dkaluta.prosary.models.RosaryStep
 import java.util.UUID
@@ -52,42 +54,41 @@ data class BeadLayout(
     /** A single spoken summary of where the beads currently show progress — the dots themselves
      * carry no individual meaning to accessibility services, so the whole track is exposed as one
      * element with this label instead of dozens of unlabeled circles. */
-    val accessibilityDescription: String
-        get() {
-            if (closingCross?.state == BeadState.Current) {
-                return "Closing sign of the cross"
-            }
-            if (antiphon?.state == BeadState.Current) {
-                return "Marian antiphon"
-            }
-
-            val decadeBeads = groupColumns.flatMap { it.beads }
-            val currentDecade = decadeBeads.indexOfFirst { it.state == BeadState.Current }
-            if (currentDecade >= 0) {
-                var description = "Decade ${currentDecade + 1} of ${decadeBeads.size}"
-                if (showBottomBeads) {
-                    val currentHailMary = bottomBeads.indexOfFirst { it.state == BeadState.Current }
-                    if (currentHailMary >= 0) {
-                        description += ", Hail Mary ${currentHailMary + 1} of ${bottomBeads.size}"
-                    }
-                }
-                return description
-            }
-
-            if (openingCross?.state == BeadState.Current) {
-                return "Opening sign of the cross"
-            }
-
-            // Not on a decade, the opening cross, the antiphon, or the closing cross — one of the
-            // closing steps between the last decade and the closing cross (e.g. Franciscan
-            // Crown's/Seven Sorrows' extra closing Hail Marys and closing prayer) if every decade
-            // bead already reads completed, otherwise the pre-decade opening prayers.
-            if (decadeBeads.isNotEmpty() && decadeBeads.all { it.state == BeadState.Completed }) {
-                return "Closing prayers"
-            }
-
-            return "Opening prayers"
+    fun accessibilityDescription(context: Context): String {
+        if (closingCross?.state == BeadState.Current) {
+            return context.getString(R.string.bead_closing_cross)
         }
+        if (antiphon?.state == BeadState.Current) {
+            return context.getString(R.string.bead_marian_antiphon)
+        }
+
+        val decadeBeads = groupColumns.flatMap { it.beads }
+        val currentDecade = decadeBeads.indexOfFirst { it.state == BeadState.Current }
+        if (currentDecade >= 0) {
+            var description = context.getString(R.string.bead_decade_of, currentDecade + 1, decadeBeads.size)
+            if (showBottomBeads) {
+                val currentHailMary = bottomBeads.indexOfFirst { it.state == BeadState.Current }
+                if (currentHailMary >= 0) {
+                    description += ", " + context.getString(R.string.bead_hail_mary_of, currentHailMary + 1, bottomBeads.size)
+                }
+            }
+            return description
+        }
+
+        if (openingCross?.state == BeadState.Current) {
+            return context.getString(R.string.bead_opening_cross)
+        }
+
+        // Not on a decade, the opening cross, the antiphon, or the closing cross — one of the
+        // closing steps between the last decade and the closing cross (e.g. Franciscan
+        // Crown's/Seven Sorrows' extra closing Hail Marys and closing prayer) if every decade
+        // bead already reads completed, otherwise the pre-decade opening prayers.
+        if (decadeBeads.isNotEmpty() && decadeBeads.all { it.state == BeadState.Completed }) {
+            return context.getString(R.string.bead_closing_prayers)
+        }
+
+        return context.getString(R.string.bead_opening_prayers)
+    }
 
     companion object {
         fun build(steps: List<RosaryStep>, currentIndex: Int, hasClosingCross: Boolean): BeadLayout {

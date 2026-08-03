@@ -219,6 +219,21 @@ function StepCard({
                     }
                   />
                 </label>
+                <label className="field">
+                  <span>Transliteration (optional — the same prayer in another script, e.g. Hebrew letters for Tagalog)</span>
+                  <textarea
+                    rows={2}
+                    value={step.transliterationByLanguage?.[code] ?? ""}
+                    onChange={(e) =>
+                      onChange({
+                        transliterationByLanguage: {
+                          ...step.transliterationByLanguage,
+                          [code]: e.target.value,
+                        },
+                      })
+                    }
+                  />
+                </label>
               </div>
             );
           })}

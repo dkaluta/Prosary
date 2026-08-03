@@ -21,13 +21,55 @@
             <Button Grid.Column="0" Command="{x:Bind ViewModel.BackCommand}" Background="Transparent" Padding="8">
                 <FontIcon Glyph="&#xE72B;" />
             </Button>
-            <TextBlock Grid.Column="1" Text="Settings" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
+            <TextBlock x:Uid="SetTitle" Grid.Column="1" Text="Settings" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
         </Grid>
 
-        <StackPanel Grid.Row="1" Padding="24" Spacing="16" MaxWidth="400" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <ComboBox Header="Default Prayer Language" HorizontalAlignment="Stretch"
-                      ItemsSource="{x:Bind ViewModel.LanguageOptions}" DisplayMemberPath="NativeName"
-                      SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}" />
-        </StackPanel>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Padding="24" Spacing="16" MaxWidth="560" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <ComboBox x:Uid="SetLanguageCombo" Header="Default Prayer Language" HorizontalAlignment="Stretch"
+                          ItemsSource="{x:Bind ViewModel.LanguageOptions}" DisplayMemberPath="NativeName"
+                          SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}" />
+
+                <ComboBox x:Uid="SetAppLanguageCombo" Header="App language" HorizontalAlignment="Stretch"
+                          ItemsSource="{x:Bind ViewModel.AppLanguageOptions}" DisplayMemberPath="Label"
+                          SelectedItem="{x:Bind ViewModel.SelectedAppLanguage, Mode=TwoWay}" />
+                <TextBlock x:Uid="SetAppLanguageFooter" Text="Takes effect after the app restarts."
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+
+                <TextBlock x:Uid="SetPrayingHeader" Text="Praying" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
+
+                <ComboBox x:Uid="SetAutoAdvanceCombo" Header="Auto-advance" HorizontalAlignment="Stretch"
+                          ItemsSource="{x:Bind ViewModel.AutoAdvanceOptions}" DisplayMemberPath="Label"
+                          SelectedItem="{x:Bind ViewModel.SelectedAutoAdvance, Mode=TwoWay}" />
+
+                <Button x:Uid="SetResetHomeOrder" Content="Reset Home Order" HorizontalAlignment="Stretch"
+                        Command="{x:Bind ViewModel.ResetHomeOrderCommand}" />
+
+                <TextBlock x:Uid="SetDownloadsHeader" Text="Downloads" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
+
+                <TextBlock Text="{x:Bind ViewModel.InstalledCountLabel, Mode=OneWay}" />
+
+                <Button Content="{x:Bind ViewModel.AudioCacheLabel, Mode=OneWay}" HorizontalAlignment="Stretch"
+                        Command="{x:Bind ViewModel.ClearAudioCacheCommand}" />
+
+                <Button x:Uid="SetRemoveAll" Content="Remove All Downloaded Devotions…" HorizontalAlignment="Stretch"
+                        Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+                        Command="{x:Bind ViewModel.RequestRemoveAllDownloadsCommand}" />
+
+                <TextBlock x:Uid="SetDownloadsFooter" Text="Built-in devotions are never removed. Removing a downloaded devotion also removes its favorite."
+                           TextWrapping="Wrap" Style="{StaticResource CaptionTextBlockStyle}"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+
+                <TextBlock x:Uid="SetLinksHeader" Text="Links" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
+
+                <HyperlinkButton x:Uid="SetRepoLink" Content="Community repository"
+                                 Command="{x:Bind ViewModel.OpenLinkCommand}" CommandParameter="https://prayers.prosary.app" />
+                <HyperlinkButton x:Uid="SetComposeLink" Content="Compose a devotion"
+                                 Command="{x:Bind ViewModel.OpenLinkCommand}" CommandParameter="https://compose.prosary.app" />
+                <HyperlinkButton x:Uid="SetPrivacyLink" Content="Privacy policy"
+                                 Command="{x:Bind ViewModel.OpenLinkCommand}" CommandParameter="https://prosary.app/privacy" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

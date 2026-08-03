@@ -25,9 +25,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.CustomDevotionOption
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.Prayer
@@ -72,7 +74,7 @@ fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
     } else {
         null
     }
-    val titleText = info?.localizedDisplayName ?: current.kind.displayName
+    val titleText = info?.localizedDisplayName ?: stringResource(current.kind.displayNameRes)
 
     fun save() {
         val toSave = current
@@ -103,8 +105,8 @@ fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
             TopAppBar(
                 scrollBehavior = topBarScroll,
                 title = { Text(titleText) },
-                navigationIcon = { TextButton(onClick = onDone) { Text("Cancel") } },
-                actions = { TextButton(onClick = { save() }) { Text("Save") } },
+                navigationIcon = { TextButton(onClick = onDone) { Text(stringResource(R.string.common_cancel)) } },
+                actions = { TextButton(onClick = { save() }) { Text(stringResource(R.string.common_save)) } },
             )
         },
     ) { padding ->
@@ -118,7 +120,7 @@ fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
         ) {
             val options = current.customDevotionId?.let { PrayerPackStore.options(it) }.orEmpty()
             if (options.isNotEmpty()) {
-                FormSection(title = "Options") {
+                FormSection(title = stringResource(R.string.editor_options)) {
                     for (option in options) {
                         // Rows read through to the option's declared default so they show the
                         // effective value even before the user has ever touched them; changes

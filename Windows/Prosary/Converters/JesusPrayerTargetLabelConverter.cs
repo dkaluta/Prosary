@@ -1,6 +1,8 @@
 using Microsoft.UI.Xaml.Data;
 using Prosary.Models;
 
+using Prosary.Localization;
+
 namespace Prosary.Converters;
 
 /// <summary>Display label for a <see cref="JesusPrayerTarget"/> option in
@@ -12,7 +14,7 @@ public sealed class JesusPrayerTargetLabelConverter : IValueConverter
     public object Convert(object value, Type targetType, object parameter, string language) => value switch
     {
         JesusPrayerTarget.Count(var n) => n.ToString(),
-        JesusPrayerTarget.Unbounded => "Unbounded",
+        JesusPrayerTarget.Unbounded => Loc.Tr("jp_unbounded", "Unbounded"),
         _ => value?.ToString() ?? string.Empty
     };
 

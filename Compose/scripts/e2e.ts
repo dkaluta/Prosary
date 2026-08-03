@@ -36,6 +36,8 @@ const custom: EditorStep = {
   title: "",
   titleByLanguage: { la: "Oratio", en: "Prayer" },
   bodyByLanguage: { la: "Kyrie eleison.", en: "Lord, have mercy." },
+  // v0.7 reading aid: pin the transliterations emission end to end.
+  transliterationByLanguage: { la: "קיריה אלייסון." },
   isScripture: false,
   // Repeated mid-sequence on purpose: every chapter AFTER this step must carry a
   // repeat-expanded (built) stepIndex, not its authored index.
@@ -77,6 +79,18 @@ if (issues.length > 0) fail("expected a clean project", issues);
 const bundle = buildBundle(project);
 mkdirSync("dist-e2e", { recursive: true });
 writeFileSync("dist-e2e/exampleDevotion.prosaryprayer", bundle);
+
+// The transliteration must land in la's content file, keyed like its body — and only there.
+{
+  const laFile = buildBundleFiles(project).find((f) => f.name === "content/la.json");
+  const la = JSON.parse(new TextDecoder().decode(laFile!.data));
+  if (la.transliterations?.step02Body !== "קיריה אלייסון.") {
+    fail("la transliteration missing or mis-keyed", la.transliterations);
+  }
+  const enFile = buildBundleFiles(project).find((f) => f.name === "content/en.json");
+  const en = JSON.parse(new TextDecoder().decode(enFile!.data));
+  if (en.transliterations !== undefined) fail("en should carry no transliterations", en);
+}
 
 // Chapters must hint BUILT indices: cross=0, custom=1 (its 2 repetitions span built 1–2),
 // gloria=3 — an authored-index regression would emit [0, 1, 2].
