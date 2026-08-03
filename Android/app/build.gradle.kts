@@ -18,10 +18,11 @@ plugins {
 // keystore/keystore.properties in .gitignore) — absent on a fresh clone or in CI without the
 // secret provisioned, which is fine for debug work; only signing a release build needs it.
 val keystorePropertiesFile = rootProject.file("keystore/keystore.properties")
-// Play publishing: drop the service-account JSON at Android/keystore/play-publisher.json
+// Play publishing: service-account JSON at ~/.local/share/keystore/play-publisher.json
 // (gitignored, like the upload keystore) and grant that service account access to this app in
 // Play Console -> Users & permissions. Then: ./gradlew publishReleaseBundle
-val playCredentials = rootProject.file("keystore/play-publisher.json")
+val playCredentials = file("${System.getProperty("user.home")}/.local/share/keystore/play-publisher.json")
+    .takeIf { it.exists() } ?: rootProject.file("keystore/play-publisher.json")
 play {
     enabled.set(playCredentials.exists())
     if (playCredentials.exists()) {
