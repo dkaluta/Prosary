@@ -111,6 +111,47 @@ public partial class HomeViewModel : ObservableObject
             Id = "jesusPrayer", Title = PrayerKind.JesusPrayer.DisplayName(), IconGlyph = "\uEB52", // HeartFill
             Command = OpenJesusPrayerCommand,
         });
+
+        ApplySavedOrder();
+    }
+
+    /// <summary>Re-sorts <see cref="DevotionCards"/> by the persisted per-user order
+    /// (v0.7, Gamaliel item 2 — the approved drag-handle pattern lives in HomePage's
+    /// reorder dialog; this applies whatever it saved).</summary>
+    public void ApplySavedOrder()
+    {
+        var ordered = HomeOrder.Apply(DevotionCards.ToList(), c => c.Id);
+        for (var target = 0; target < ordered.Count; target++)
+        {
+            var current = DevotionCards.IndexOf(ordered[target]);
+            if (current != target)
+            {
+                DevotionCards.Move(current, target);
+            }
+        }
+    }
+
+    [RelayCommand]
+    private void MoveCardToTop(DevotionCardModel card)
+    {
+        HomeOrder.MoveToTop(card.Id, DevotionCards.Select(c => c.Id));
+        ApplySavedOrder();
+    }
+
+    /// <summary>Called by the reorder dialog after a drag-drop: persists the ListView's new
+    /// sequence and mirrors it onto the Home list.</summary>
+    public void CommitOrder(IEnumerable<string> ids)
+    {
+        HomeOrder.Save(ids);
+        ApplySavedOrder();
+    }
+
+    public void ResetOrder()
+    {
+        HomeOrder.Reset();
+        // Directory order can't be recovered by re-sorting alone (the collection is already
+        // user-ordered), so just leave the current arrangement until next launch — the reset
+        // dialog says so.
     }
 
     /// <summary>Maps a bundle manifest's <c>IconSystemName</c> (an SF Symbol name, the iOS

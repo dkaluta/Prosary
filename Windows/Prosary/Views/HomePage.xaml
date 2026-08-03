@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page
     x:Class="Prosary.Views.HomePage"
+    x:Name="Root"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:Prosary.Controls"
@@ -84,7 +85,16 @@
                                               Subtitle="{x:Bind Subtitle, Mode=OneWay}"
                                               AccentColor="{x:Bind AccentColor, Mode=OneWay}"
                                               IconGlyph="{x:Bind IconGlyph}"
-                                              Command="{x:Bind Command}" />
+                                              Command="{x:Bind Command}">
+                            <controls:PrayerCard.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Move to top"
+                                                    Command="{Binding ElementName=Root, Path=ViewModel.MoveCardToTopCommand}"
+                                                    CommandParameter="{Binding}" />
+                                    <MenuFlyoutItem Text="Edit order…" Click="OnEditOrder" />
+                                </MenuFlyout>
+                            </controls:PrayerCard.ContextFlyout>
+                        </controls:PrayerCard>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
