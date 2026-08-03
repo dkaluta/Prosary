@@ -30,6 +30,9 @@ private struct PackManifest: Decodable {
   let accentColorHex: String?
   let accentColorDarkHex: String?
   let iconSystemName: String?
+  /// One grapheme (letter or emoji) drawn as the icon instead of `iconSystemName` — the
+  /// Compose "your own" icon (v0.7, Gamaliel item 6).
+  let iconGlyph: String?
   let displayNameByLanguage: [String: String]?
   let reminderBody: [String: String]?
   let reminderPresetHours: [Int]?
@@ -335,6 +338,9 @@ struct CustomDevotionInfo {
   let accentColorHex: String?
   let accentColorDarkHex: String?
   let iconSystemName: String?
+  /// One grapheme (letter or emoji) drawn as the icon instead of `iconSystemName` — the
+  /// Compose "your own" icon (v0.7, Gamaliel item 6).
+  let iconGlyph: String?
   let displayNameByLanguage: [String: String]
   let reminderBody: [String: String]
   let reminderPresetHours: [Int]?
@@ -677,6 +683,7 @@ enum PrayerPackStore {
       accentColorHex: manifest.accentColorHex,
       accentColorDarkHex: manifest.accentColorDarkHex,
       iconSystemName: manifest.iconSystemName,
+      iconGlyph: manifest.iconGlyph,
       displayNameByLanguage: manifest.displayNameByLanguage ?? [:],
       reminderBody: manifest.reminderBody ?? [:],
       reminderPresetHours: manifest.reminderPresetHours,

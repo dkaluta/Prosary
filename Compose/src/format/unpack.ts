@@ -49,6 +49,7 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
     accentColorHex?: string;
     accentColorDarkHex?: string;
     iconSystemName?: string;
+    iconGlyph?: string;
     builtinKind?: string;
     tags?: string[];
   };
@@ -77,6 +78,7 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
   project.accentColorHex = manifest.accentColorHex ?? project.accentColorHex;
   project.accentColorDarkHex = manifest.accentColorDarkHex ?? project.accentColorDarkHex;
   project.iconSystemName = manifest.iconSystemName ?? project.iconSystemName;
+  project.iconGlyph = manifest.iconGlyph ?? "";
   project.tags = Array.isArray(manifest.tags)
     ? manifest.tags.filter((t): t is string => typeof t === "string")
     : [];

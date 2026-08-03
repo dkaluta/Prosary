@@ -86,6 +86,7 @@ export function buildBundleFiles(project: Project): ZipFile[] {
       accentColorHex: project.accentColorHex,
       accentColorDarkHex: project.accentColorDarkHex,
       iconSystemName: project.iconSystemName,
+      ...(project.iconGlyph ? { iconGlyph: project.iconGlyph } : {}),
     }),
   });
 

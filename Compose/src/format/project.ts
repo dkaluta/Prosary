@@ -58,6 +58,9 @@ export interface Project {
   accentColorHex: string;
   accentColorDarkHex: string;
   iconSystemName: string;
+  /** One grapheme (a letter or emoji) drawn as the devotion's icon instead of the fixed icon
+   * set — Gamaliel item 6. Empty string = use iconSystemName. */
+  iconGlyph: string;
   /** Free-form category tags ("marian", "evening") — packed into the manifest and used as
    * the repository's default tags on submission; category browsing in the apps is the
    * planned consumer. */
@@ -81,6 +84,7 @@ export function newProject(): Project {
     accentColorHex: "#7A1F3D",
     accentColorDarkHex: "#D8A8B5",
     iconSystemName: "star",
+    iconGlyph: "",
     tags: [],
     steps: [],
     images: [],
@@ -135,6 +139,7 @@ export function deserializeProject(json: string): Project {
   if (raw?.prosaryCompose !== 1) throw new Error("Not a Prosary Compose project file.");
   const { prosaryCompose: _, ...rest } = raw;
   return {
+    iconGlyph: "",
     ...rest,
     images: (rest.images ?? []).map((image: EditorImage & { jpeg: string }) => {
       const jpeg = fromBase64(image.jpeg);

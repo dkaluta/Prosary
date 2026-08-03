@@ -72,6 +72,7 @@ struct HomeView: View {
       cards.append(DevotionCard(
         id: "custom.\(bundleId)",
         systemImage: info.iconSystemName ?? PrayerKind.custom.systemImage,
+        iconGlyph: info.iconGlyph,
         title: info.localizedDisplayName,
         accentColor: customAccent(info),
         subtitle: customDevotionSubtitle(bundleId: bundleId),
@@ -137,6 +138,7 @@ struct HomeView: View {
           ForEach(devotionCards) { card in
             PrayerCard(
               systemImage: card.systemImage,
+              iconGlyph: card.iconGlyph,
               title: card.title,
               subtitle: card.subtitle,
               accentColor: card.accentColor
@@ -223,6 +225,7 @@ struct HomeView: View {
 private struct DevotionCard: Identifiable {
   let id: String
   let systemImage: String
+    var iconGlyph: String? = nil
   let title: String
   let accentColor: Color
   let subtitle: String
