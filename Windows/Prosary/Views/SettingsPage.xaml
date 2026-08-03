@@ -25,7 +25,7 @@
         </Grid>
 
         <ScrollViewer Grid.Row="1">
-            <StackPanel Padding="24" Spacing="16" MaxWidth="400" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <StackPanel Padding="24" Spacing="16" MaxWidth="560" HorizontalAlignment="Center" VerticalAlignment="Top">
                 <ComboBox Header="Default Prayer Language" HorizontalAlignment="Stretch"
                           ItemsSource="{x:Bind ViewModel.LanguageOptions}" DisplayMemberPath="NativeName"
                           SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}" />
