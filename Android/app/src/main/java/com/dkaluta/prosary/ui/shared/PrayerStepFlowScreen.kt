@@ -252,22 +252,25 @@ fun PrayerStepFlowScreen(
 
                 HorizontalDivider()
 
-                Row(
-                    modifier = Modifier.fillMaxWidth().padding(
-                        horizontal = 24.dp,
-                        vertical = if (isCompactHeight) 8.dp else 16.dp,
-                    ),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    OutlinedButton(
-                        onClick = onBack,
-                        enabled = canGoBack,
-                        contentPadding = if (isCompactHeight) compactButtonPadding else ButtonDefaults.ContentPadding,
+                // A counter flow's only action is its central button: a lone Back beside it
+                // competes with the thing the screen exists for, and "undo one repetition"
+                // isn't worth a permanent control (the top bar still leaves the session).
+                if (centralActionLabel == null) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth().padding(
+                            horizontal = 24.dp,
+                            vertical = if (isCompactHeight) 8.dp else 16.dp,
+                        ),
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Text(stringResource(R.string.flow_back))
-                    }
-                    Spacer(modifier = Modifier.weight(1f))
-                    if (centralActionLabel == null) {
+                        OutlinedButton(
+                            onClick = onBack,
+                            enabled = canGoBack,
+                            contentPadding = if (isCompactHeight) compactButtonPadding else ButtonDefaults.ContentPadding,
+                        ) {
+                            Text(stringResource(R.string.flow_back))
+                        }
+                        Spacer(modifier = Modifier.weight(1f))
                         Button(
                             onClick = onNext,
                             contentPadding = if (isCompactHeight) compactButtonPadding else ButtonDefaults.ContentPadding,

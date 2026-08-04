@@ -64,7 +64,11 @@
             </StackPanel>
         </ScrollViewer>
 
-        <Grid Grid.Row="3" Padding="20">
+        <!-- A counter flow's only action is its central button: a lone Back beside it competes
+             with the thing the screen exists for, and "undo one repetition" isn't worth a
+             permanent control (the header's back arrow still leaves the session). -->
+        <Grid Grid.Row="3" Padding="20"
+              Visibility="{x:Bind CollapsedWhenSet(CentralActionLabel), Mode=OneWay}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />

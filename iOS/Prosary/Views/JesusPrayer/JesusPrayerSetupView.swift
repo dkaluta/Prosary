@@ -82,8 +82,13 @@ struct JesusPrayerSetupView: View {
             .minimumScaleFactor(0.8)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 8)
+            // Without this only the glyphs are hit-testable, so every tap on the pill's
+            // padding — most of it — falls through and the row feels dead.
+            .contentShape(Rectangle())
         }
-        .buttonStyle(.plain)
+        // .plain in a Form row lets the row swallow the tap; .borderless keeps each
+        // segment individually clickable.
+        .buttonStyle(.borderless)
         .background(
           RoundedRectangle(cornerRadius: 8)
             .fill(isSelected ? Color.brandPrimary.opacity(0.18) : Color.secondary.opacity(0.12))

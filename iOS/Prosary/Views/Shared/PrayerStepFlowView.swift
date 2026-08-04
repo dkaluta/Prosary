@@ -116,20 +116,24 @@ struct PrayerStepFlowView: View {
           .padding(.bottom, 6)
       }
 
-      Divider()
+      // A counter flow's only action is its central button: a lone Back beside it competes with
+      // the thing the screen exists for, and "undo one repetition" isn't worth a permanent
+      // control (the navigation bar still leaves the session). Dropping the whole footer also
+      // gives the prayer text back the space.
+      if centralActionLabel == nil {
+        Divider()
 
-      HStack {
-        Button("prayerFlow.back") { onBack() }
-          .disabled(!canGoBack)
-          .prosarySecondaryButtonStyle()
-          // Distinguishes this step-to-step Back button from the system navigation-bar
-          // back button, which also reads as plain "Back" whenever the previous screen
-          // (e.g. Home) has no navigationTitle of its own to show instead.
-          .accessibilityIdentifier("prayerFlowBackButton")
+        HStack {
+          Button("prayerFlow.back") { onBack() }
+            .disabled(!canGoBack)
+            .prosarySecondaryButtonStyle()
+            // Distinguishes this step-to-step Back button from the system navigation-bar
+            // back button, which also reads as plain "Back" whenever the previous screen
+            // (e.g. Home) has no navigationTitle of its own to show instead.
+            .accessibilityIdentifier("prayerFlowBackButton")
 
-        Spacer()
+          Spacer()
 
-        if centralActionLabel == nil {
           Button(isLastStep ? "prayerFlow.finish" : "prayerFlow.next") { onNext() }
             .prosaryProminentButtonStyle()
             .tint(seasonColor)
@@ -138,9 +142,9 @@ struct PrayerStepFlowView: View {
             .keyboardShortcut(.space, modifiers: [])
             #endif
         }
+        .controlSize(isCompactHeight ? .regular : .large)
+        .padding(isCompactHeight ? 8 : 16)
       }
-      .controlSize(isCompactHeight ? .regular : .large)
-      .padding(isCompactHeight ? 8 : 16)
     }
     .navigationTitle(navigationTitle)
     #if os(iOS)

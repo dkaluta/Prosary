@@ -8,7 +8,8 @@
 //  open-ended choices below) rather than one five-segment picker, so the segments are ordinary
 //  buttons carrying the `.isSelected` trait on both iOS and macOS. The counter flow advances
 //  through its central "Pray" button — it passes a centralActionLabel, so PrayerStepFlowView
-//  renders that instead of a footer Next.
+//  renders that instead of a footer Next — and since 0.7.3 no footer at all, so there is no
+//  step-back control here either.
 //
 
 import XCTest
@@ -36,9 +37,16 @@ final class JesusPrayerFlowUITests: XCTestCase {
     }
     // 33 is the default, and the two rows share one selection.
     XCTAssertTrue(app.buttons["33"].isSelected)
-    app.buttons["99"].tap()
+
+    // Tapped near the pill's edge, well away from the glyphs: the whole segment has to be
+    // hit-testable, which is exactly what a missing contentShape breaks (an element-centre
+    // tap would pass either way).
+    app.buttons["99"].coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5)).tap()
     XCTAssertTrue(app.buttons["99"].isSelected)
     XCTAssertFalse(app.buttons["33"].isSelected)
+
+    app.buttons["Unbounded"].coordinate(withNormalizedOffset: CGVector(dx: 0.15, dy: 0.5)).tap()
+    XCTAssertTrue(app.buttons["Unbounded"].isSelected)
   }
 
   @MainActor
@@ -56,8 +64,10 @@ final class JesusPrayerFlowUITests: XCTestCase {
     app.buttons["centralActionButton"].tap()
     XCTAssertTrue(app.staticTexts["3 of 33"].waitForExistence(timeout: 5))
 
-    app.buttons["prayerFlowBackButton"].tap()
-    XCTAssertTrue(app.staticTexts["2 of 33"].waitForExistence(timeout: 5))
+    // A counter flow offers no step-back control at all — the central Pray button is the
+    // whole footer's worth of action.
+    XCTAssertFalse(app.buttons["prayerFlowBackButton"].exists,
+                   "The Jesus Prayer should not offer a step-back button")
   }
 
   @MainActor
