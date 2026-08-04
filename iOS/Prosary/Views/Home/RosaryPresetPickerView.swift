@@ -161,7 +161,7 @@ struct RosaryQuickSetupView: View {
   var body: some View {
     NavigationStack {
       Form {
-        RosaryOptionsEditorView(rosary: $options)
+        RosaryOptionsSections(rosary: $options)
 
         Section {
           Button {

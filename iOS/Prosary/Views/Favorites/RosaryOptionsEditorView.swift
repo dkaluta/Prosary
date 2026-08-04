@@ -16,6 +16,25 @@ struct RosaryOptionsEditorView: View {
 
   var body: some View {
     Form {
+      RosaryOptionsSections(rosary: $rosary)
+    }
+    .formStyle(.grouped)
+    .navigationTitle("favoriteEditor.rosaryOptionsTitle")
+    #if os(iOS)
+    .navigationBarTitleDisplayMode(.inline)
+    #endif
+  }
+}
+
+/// Just the option `Section`s, with no `Form` or navigation chrome of their own, so they can be
+/// embedded by a host that already provides one — "Pray any Rosary" shows them inside its own
+/// Form alongside Save as Preset. Nesting a Form inside a Form collapses the inner one to a
+/// clipped stub (and its navigationTitle wins), which is exactly how that sheet used to render.
+struct RosaryOptionsSections: View {
+  @Binding var rosary: RosaryOptions
+
+  var body: some View {
+    Group {
       Section("favoriteEditor.whichMysteries") {
         Picker("favoriteEditor.mysteriesPicker", selection: $rosary.mysterySelectionMode) {
           ForEach(MysterySelectionMode.allCases) { mode in
@@ -67,11 +86,6 @@ struct RosaryOptionsEditorView: View {
         Toggle("favoriteEditor.finalSignOfCross", isOn: $rosary.includeFinalSignOfCross)
       }
     }
-    .formStyle(.grouped)
-    .navigationTitle("favoriteEditor.rosaryOptionsTitle")
-    #if os(iOS)
-    .navigationBarTitleDisplayMode(.inline)
-    #endif
   }
 }
 
