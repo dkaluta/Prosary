@@ -12,8 +12,13 @@ import SwiftUI
 struct JesusPrayerSetupView: View {
   @Binding var path: NavigationPath
 
+  /// Laid out two to a row — the counts across the top, the two open-ended choices below —
+  /// rather than one five-segment control, where "Unbounded" never fit on a phone.
   private enum SetupOption: String, CaseIterable, Identifiable {
     case thirtyThree, sixtySix, ninetyNine, custom, unbounded
+
+    static let countRow: [SetupOption] = [.thirtyThree, .sixtySix, .ninetyNine]
+    static let openRow: [SetupOption] = [.unbounded, .custom]
 
     var id: String { rawValue }
 
@@ -60,15 +65,49 @@ struct JesusPrayerSetupView: View {
     }
   }
 
+  /// One row of the target chooser. Each segment fills its share of the row so the two rows
+  /// line up, and carries the `.isSelected` trait so VoiceOver and the tests can read the
+  /// choice the way a segmented control would report it.
+  @ViewBuilder
+  private func targetRow(_ options: [SetupOption]) -> some View {
+    HStack(spacing: 8) {
+      ForEach(options) { option in
+        let isSelected = selection == option
+        Button {
+          selection = option
+        } label: {
+          Text(option.displayName)
+            .font(.callout)
+            .lineLimit(1)
+            .minimumScaleFactor(0.8)
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 8)
+        }
+        .buttonStyle(.plain)
+        .background(
+          RoundedRectangle(cornerRadius: 8)
+            .fill(isSelected ? Color.brandPrimary.opacity(0.18) : Color.secondary.opacity(0.12))
+        )
+        .overlay(
+          RoundedRectangle(cornerRadius: 8)
+            .strokeBorder(isSelected ? Color.brandPrimary : .clear, lineWidth: 1.5)
+        )
+        .foregroundStyle(isSelected ? Color.brandPrimary : .primary)
+        .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : [.isButton])
+      }
+    }
+  }
+
   var body: some View {
     Form {
       Section("jesusPrayerSetup.howManyTimes") {
-        Picker("jesusPrayerSetup.target", selection: $selection) {
-          ForEach(SetupOption.allCases) { option in
-            Text(option.displayName).tag(option)
-          }
+        VStack(spacing: 8) {
+          targetRow(SetupOption.countRow)
+          targetRow(SetupOption.openRow)
         }
-        .pickerStyle(.segmented)
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel(Text("jesusPrayerSetup.target"))
+        .listRowInsets(EdgeInsets(top: 10, leading: 12, bottom: 10, trailing: 12))
 
         if selection == .custom {
           TextField("jesusPrayerSetup.numberOfRepetitions", text: $customCountText)

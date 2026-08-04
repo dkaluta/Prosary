@@ -4,8 +4,11 @@
 //
 //  These tests use -resetStore so the SwiftData store starts clean (no Jesus Prayer default),
 //  ensuring tapping the home card always goes to JesusPrayerSetupView instead of jumping
-//  straight to a flow. On macOS the target picker is an NSSegmentedControl, so segments are
-//  accessed via app.segmentedControls.firstMatch.buttons rather than app.buttons.
+//  straight to a flow. The target chooser is two rows of plain buttons (counts on top, the
+//  open-ended choices below) rather than one five-segment picker, so the segments are ordinary
+//  buttons carrying the `.isSelected` trait on both iOS and macOS. The counter flow advances
+//  through its central "Pray" button — it passes a centralActionLabel, so PrayerStepFlowView
+//  renders that instead of a footer Next.
 //
 
 import XCTest
@@ -23,21 +26,34 @@ final class JesusPrayerFlowUITests: XCTestCase {
   }
 
   @MainActor
+  func testTargetChooserOffersBothRows() throws {
+    let app = launchClean()
+    app.buttons["jesusPrayerCard"].tap()
+
+    for target in ["33", "66", "99", "Unbounded", "Custom"] {
+      XCTAssertTrue(app.buttons[target].waitForExistence(timeout: 5),
+                    "\(target) should be offered")
+    }
+    // 33 is the default, and the two rows share one selection.
+    XCTAssertTrue(app.buttons["33"].isSelected)
+    app.buttons["99"].tap()
+    XCTAssertTrue(app.buttons["99"].isSelected)
+    XCTAssertFalse(app.buttons["33"].isSelected)
+  }
+
+  @MainActor
   func testBoundedTargetDefaultsTo33AndTracksCount() throws {
     let app = launchClean()
 
     app.buttons["jesusPrayerCard"].tap()
-
-    // On macOS, the segmented target picker segments live inside an NSSegmentedControl.
-    let targetPicker = app.segmentedControls.firstMatch
-    XCTAssertTrue(targetPicker.waitForExistence(timeout: 5))
-    XCTAssertTrue(targetPicker.buttons["33"].isSelected)
+    XCTAssertTrue(app.buttons["33"].waitForExistence(timeout: 5))
+    XCTAssertTrue(app.buttons["33"].isSelected)
 
     app.buttons["Begin"].tap()
     XCTAssertTrue(app.staticTexts["1 of 33"].waitForExistence(timeout: 5))
 
-    app.buttons["prayerFlowNextButton"].tap()
-    app.buttons["prayerFlowNextButton"].tap()
+    app.buttons["centralActionButton"].tap()
+    app.buttons["centralActionButton"].tap()
     XCTAssertTrue(app.staticTexts["3 of 33"].waitForExistence(timeout: 5))
 
     app.buttons["prayerFlowBackButton"].tap()
@@ -49,19 +65,20 @@ final class JesusPrayerFlowUITests: XCTestCase {
     let app = launchClean()
 
     app.buttons["jesusPrayerCard"].tap()
-    let targetPicker = app.segmentedControls.firstMatch
-    XCTAssertTrue(targetPicker.waitForExistence(timeout: 5))
-    targetPicker.buttons["Unbounded"].tap()
+    XCTAssertTrue(app.buttons["Unbounded"].waitForExistence(timeout: 5))
+    app.buttons["Unbounded"].tap()
     app.buttons["Begin"].tap()
 
     XCTAssertTrue(app.staticTexts["1"].waitForExistence(timeout: 5))
     XCTAssertFalse(app.staticTexts["1 of 33"].exists)
 
-    app.buttons["prayerFlowNextButton"].tap()
-    app.buttons["prayerFlowNextButton"].tap()
+    app.buttons["centralActionButton"].tap()
+    app.buttons["centralActionButton"].tap()
     XCTAssertTrue(app.staticTexts["3"].waitForExistence(timeout: 5))
-    XCTAssertEqual(app.buttons["prayerFlowNextButton"].label, "Next")
+    XCTAssertFalse(app.buttons["prayerFlowNextButton"].exists,
+                   "A counter flow replaces Next with the central Pray button")
 
+    // An open-ended session never turns Next into Finish, so the toolbar offers it instead.
     let finishButton = app.buttons["Finish"]
     XCTAssertTrue(finishButton.exists)
     finishButton.tap()
@@ -74,9 +91,8 @@ final class JesusPrayerFlowUITests: XCTestCase {
     let app = launchClean()
 
     app.buttons["jesusPrayerCard"].tap()
-    let targetPicker = app.segmentedControls.firstMatch
-    XCTAssertTrue(targetPicker.waitForExistence(timeout: 5))
-    targetPicker.buttons["Custom"].tap()
+    XCTAssertTrue(app.buttons["Custom"].waitForExistence(timeout: 5))
+    app.buttons["Custom"].tap()
 
     XCTAssertFalse(app.buttons["Begin"].isEnabled)
 

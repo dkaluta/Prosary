@@ -2,6 +2,11 @@
 //  AngelusFlowUITests.swift
 //  ProsaryUITests
 //
+//  A devotion with no favorite prays in the app's default language, which is Latin — and since
+//  0.7.2 the step headings are translated too, so this walks the Angelus by its Latin headings
+//  ("Angelus Domini", not "The Annunciation"). Asserting English is what made these tests fail
+//  once the headings stopped being hardcoded literals.
+//
 
 import XCTest
 
@@ -18,8 +23,8 @@ final class AngelusFlowUITests: XCTestCase {
     // The Angelus card has a stable accessibility identifier regardless of the dynamic subtitle.
     app.buttons["angelusCard"].tap()
 
-    // First step of the standard (non-Eastertide) form.
-    XCTAssertTrue(app.staticTexts["The Annunciation"].waitForExistence(timeout: 5))
+    // First step of the standard (non-Eastertide) form, headed in the praying language.
+    XCTAssertTrue(app.staticTexts["Angelus Domini"].waitForExistence(timeout: 5))
 
     // Queried by identifier, not the "Next"/"Back" label text, since the system
     // navigation-bar back button also reads as plain "Back" and would otherwise collide.
@@ -45,12 +50,25 @@ final class AngelusFlowUITests: XCTestCase {
     app.launch()
 
     app.buttons["angelusCard"].tap()
-    XCTAssertTrue(app.staticTexts["The Annunciation"].waitForExistence(timeout: 5))
+    XCTAssertTrue(app.staticTexts["Angelus Domini"].waitForExistence(timeout: 5))
 
     app.buttons["prayerFlowNextButton"].tap()
-    XCTAssertTrue(app.staticTexts["Hail Mary"].waitForExistence(timeout: 5))
+    // The second step is the first Hail Mary — "Ave Maria" while praying in Latin.
+    XCTAssertTrue(app.staticTexts["Ave Maria"].waitForExistence(timeout: 5))
 
     app.buttons["prayerFlowBackButton"].tap()
+    XCTAssertTrue(app.staticTexts["Angelus Domini"].waitForExistence(timeout: 5))
+  }
+
+  /// Headings follow the prayer, not the interface: the same devotion prayed in English heads
+  /// its first step "The Annunciation". Covers titleKey resolution end to end.
+  @MainActor
+  func testHeadingsFollowThePrayerLanguage() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-defaultLanguageCode", "en"]
+    app.launch()
+
+    app.buttons["angelusCard"].tap()
     XCTAssertTrue(app.staticTexts["The Annunciation"].waitForExistence(timeout: 5))
   }
 }
