@@ -27,6 +27,16 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Dictionary<string, string>? customOptions = null) =>
         PrayerEngine.BuildCustomDevotionSteps(bundleId, languageCode, isEasterSeason, seasonalAntiphon, variantId, customOptions);
 
+    // A repeated step's counter is part of the prayer, not the interface: praying in Hebrew, the Divine Mercy
+    // decade reads "(1 מתוך 10)" rather than splicing an English word into right-to-left text.
+    [Fact]
+    public void RepeatCounterUsesThePrayerLanguage()
+    {
+        Assert.Contains("(1 מתוך 10)", BuildSteps("divineMercyChaplet", "he")[5].Title);
+        Assert.Contains("(1 ex 10)", BuildSteps("divineMercyChaplet", "la")[5].Title);
+        Assert.Contains("(1 of 10)", BuildSteps("divineMercyChaplet", "en")[5].Title);
+    }
+
     // Trisagion (flat)
 
     [Fact]

@@ -137,6 +137,12 @@ class PrayerEngine(
         MarianAntiphonOption.None, MarianAntiphonOption.Seasonal -> PrayerKey.SalveReginaTitle
     }
 
+    /** "(3 of 10)" for a repeated step, connector translated into the prayer's own language. */
+    private fun counter(index: Int, total: Int, languageCode: String?): String {
+        val connector = PrayerTranslations.get(languageCode, PrayerKey.RepetitionCounterConnector)
+        return "($index $connector $total)"
+    }
+
     // MARK: Custom (bundle-driven) devotions
 
     /** The only builder for every [PrayerKind.Custom] devotion — reads [bundleId]'s parsed
@@ -252,7 +258,7 @@ class PrayerEngine(
         }
         return (1..count).map { h ->
             RosaryStep(
-                title = "$title ($h of $count)", subtitle = subtitle, body = body, acclamation = acclamation,
+                title = "$title ${counter(h, count, languageCode)}", subtitle = subtitle, body = body, acclamation = acclamation,
                 isScripture = isScripture, transliteratedBody = transliteratedBody,
                 imageOverrideKey = entry.imageKey,
             )
@@ -323,7 +329,7 @@ class PrayerEngine(
                 for (h in 1..decades.minorCount) {
                     steps.add(
                         RosaryStep(
-                            title = "${fixedTitle(decades.minorStep)} ($h of ${decades.minorCount})",
+                            title = "${fixedTitle(decades.minorStep)} ${counter(h, decades.minorCount, languageCode)}",
                             subtitle = decadeSubtitle, body = minorBody,
                             decadeIndex = d, hailMaryIndexInDecade = h, imageOverrideKey = imageKey,
                         ),
@@ -413,7 +419,7 @@ class PrayerEngine(
                     for (h in 1..decades.minorCount) {
                         steps.add(
                             RosaryStep(
-                                title = "${fixedTitle(decades.minorStep)} ($h of ${decades.minorCount})",
+                                title = "${fixedTitle(decades.minorStep)} ${counter(h, decades.minorCount, languageCode)}",
                                 subtitle = decadeSubtitle, body = minorBody,
                                 mystery = mystery, decadeIndex = decadeIndex, hailMaryIndexInDecade = h,
                             ),

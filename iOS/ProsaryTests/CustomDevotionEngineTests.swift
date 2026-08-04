@@ -45,6 +45,21 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertFalse(steps[4].body.contains("Holy Mighty One"))
   }
 
+
+  /// A repeated step's counter is part of the prayer, not the interface: praying in Hebrew, the Divine Mercy
+  /// decade reads "(1 מתוך 10)". Splicing the English "of" into right-to-left text left bidi
+  /// to reorder it into "(of 10 1)".
+  func testRepeatCounterUsesThePrayerLanguage() {
+    let hebrew = steps("divineMercyChaplet", language: "he")
+    XCTAssertTrue(hebrew[5].title.contains("(1 מתוך 10)"), hebrew[5].title)
+
+    let latin = steps("divineMercyChaplet", language: "la")
+    XCTAssertTrue(latin[5].title.contains("(1 ex 10)"), latin[5].title)
+
+    let english = steps("divineMercyChaplet", language: "en")
+    XCTAssertTrue(english[5].title.contains("(1 of 10)"), english[5].title)
+  }
+
   // MARK: - Angelus (flat + Eastertide swap)
 
   func testAngelusStandardFormOutsideEastertide() {

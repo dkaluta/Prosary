@@ -101,6 +101,8 @@ public static partial class PrayerTranslations
         [PrayerKey.AveMariaProSpe] = "Hail Mary — for an increase of Hope.",
         [PrayerKey.AveMariaProCaritate] = "Hail Mary — for an increase of Charity.",
 
+        [PrayerKey.RepetitionCounterConnector] = "of",
+
         [PrayerKey.FructusMysteriiLabel] = "Fruit of the Mystery",
 
 

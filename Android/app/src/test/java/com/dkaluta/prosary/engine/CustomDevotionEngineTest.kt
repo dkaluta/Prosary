@@ -83,6 +83,16 @@ class CustomDevotionEngineTest {
         )
     }
 
+
+    /** A repeated step's counter is part of the prayer, not the interface: praying in Hebrew, the Divine Mercy decade
+     * reads "(1 מתוך 10)" rather than splicing an English word into right-to-left text. */
+    @Test
+    fun repeatCounterUsesThePrayerLanguage() {
+        assertTrue(steps("divineMercyChaplet", language = "he")[5].title.contains("(1 מתוך 10)"))
+        assertTrue(steps("divineMercyChaplet", language = "la")[5].title.contains("(1 ex 10)"))
+        assertTrue(steps("divineMercyChaplet", language = "en")[5].title.contains("(1 of 10)"))
+    }
+
     // MARK: Angelus (flat + Eastertide swap)
 
     @Test

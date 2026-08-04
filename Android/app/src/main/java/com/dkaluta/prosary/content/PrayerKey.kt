@@ -46,6 +46,11 @@ enum class PrayerKey {
 
     FructusMysteriiLabel,
 
+    /** The connector in a repeated step's "(3 of 10)" counter — in the language being prayed,
+     * so a Hebrew Hail Mary reads "(3 מתוך 10)" rather than splicing an English word into
+     * right-to-left text. */
+    RepetitionCounterConnector,
+
     /** The Jesus Prayer ("Lord Jesus Christ, Son of God, have mercy on me, a sinner."). */
     OratioIesu,
 

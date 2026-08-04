@@ -100,6 +100,8 @@ extension PrayerTranslations {
     .aveMariaProSpe: "Ave Maria — ad augendam spem.",
     .aveMariaProCaritate: "Ave Maria — ad augendam caritatem.",
 
+    .repetitionCounterConnector: "ex",
+
     .fructusMysteriiLabel: "Fructus Mysterii",
 
     .oratioIesu: "Domine Iesu Christe, Fili Dei, miserere mei peccatoris.",

@@ -128,6 +128,10 @@ public sealed class PrayerEngine
         _ => PrayerKey.SalveReginaTitle
     };
 
+    // "(3 of 10)" for a repeated step, connector translated into the prayer's own language.
+    private static string Counter(int index, int total, string? languageCode) =>
+        $"({index} {PrayerTranslations.Get(languageCode, PrayerKey.RepetitionCounterConnector)} {total})";
+
     // Custom (bundle-driven) devotions
 
     private IReadOnlyList<RosaryStep> BuildCustomDevotionSteps(
@@ -271,7 +275,7 @@ public sealed class PrayerEngine
 
         return Enumerable.Range(1, count)
             .Select(h => new RosaryStep(
-                $"{title} ({h} of {count})", subtitle, body,
+                $"{title} {Counter(h, count, languageCode)}", subtitle, body,
                 Acclamation: acclamation, IsScripture: isScripture,
                 TransliteratedBody: transliteratedBody, ImageOverrideKey: entry.ImageKey))
             .ToList();
@@ -337,7 +341,7 @@ public sealed class PrayerEngine
                 for (var h = 1; h <= decades.MinorCount; h++)
                 {
                     steps.Add(new RosaryStep(
-                        $"{FixedTitle(decades.MinorStep)} ({h} of {decades.MinorCount})", decadeSubtitle, minorBody,
+                        $"{FixedTitle(decades.MinorStep)} {Counter(h, decades.MinorCount, languageCode)}", decadeSubtitle, minorBody,
                         DecadeIndex: d, HailMaryIndexInDecade: h, ImageOverrideKey: imageKey));
                 }
 
@@ -410,7 +414,7 @@ public sealed class PrayerEngine
                     for (var h = 1; h <= decades.MinorCount; h++)
                     {
                         steps.Add(new RosaryStep(
-                            $"{FixedTitle(decades.MinorStep)} ({h} of {decades.MinorCount})", decadeSubtitle, minorBody,
+                            $"{FixedTitle(decades.MinorStep)} {Counter(h, decades.MinorCount, languageCode)}", decadeSubtitle, minorBody,
                             mystery, DecadeIndex: decadeIndex, HailMaryIndexInDecade: h));
                     }
                 }

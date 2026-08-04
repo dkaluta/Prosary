@@ -115,6 +115,8 @@ extension PrayerTranslations {
     .aveMariaProSpe: "Aba Ginoong Maria — para sa pagdami ng Pag-asa.",
     .aveMariaProCaritate: "Aba Ginoong Maria — para sa pagdami ng Pag-ibig.",
 
+    .repetitionCounterConnector: "sa",
+
     .fructusMysteriiLabel: "Bunga ng Misteryo",
 
     .oratioIesu: "Panginoong Jesucristo, Anak ng Diyos, kaawaan Mo ako, na makasalanan.",

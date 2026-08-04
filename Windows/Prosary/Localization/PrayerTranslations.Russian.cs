@@ -98,6 +98,8 @@ public static partial class PrayerTranslations
         [PrayerKey.AveMariaProSpe] = "Радуйся, Мария — за умножение Надежды.",
         [PrayerKey.AveMariaProCaritate] = "Радуйся, Мария — за умножение Любви.",
 
+        [PrayerKey.RepetitionCounterConnector] = "из",
+
         [PrayerKey.FructusMysteriiLabel] = "Плод тайны",
 
 

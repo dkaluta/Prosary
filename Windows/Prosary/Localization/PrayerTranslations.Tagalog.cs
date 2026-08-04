@@ -112,6 +112,8 @@ public static partial class PrayerTranslations
         [PrayerKey.AveMariaProSpe] = "Aba Ginoong Maria — para sa pagdami ng Pag-asa.",
         [PrayerKey.AveMariaProCaritate] = "Aba Ginoong Maria — para sa pagdami ng Pag-ibig.",
 
+        [PrayerKey.RepetitionCounterConnector] = "sa",
+
         [PrayerKey.FructusMysteriiLabel] = "Bunga ng Misteryo",
 
 

@@ -137,6 +137,12 @@ struct PrayerEngine {
     }
   }
 
+  /// "(3 of 10)" for a repeated step, connector translated into the prayer's own language.
+  private func counter(_ index: Int, of total: Int, languageCode: String?) -> String {
+    let connector = PrayerTranslations.get(languageCode: languageCode, key: .repetitionCounterConnector)
+    return "(\(index) \(connector) \(total))"
+  }
+
   // MARK: - Custom (bundle-driven) devotions
 
   /// The only builder for every `PrayerKind.custom` devotion — reads `bundleId`'s parsed
@@ -246,7 +252,7 @@ struct PrayerEngine {
     }
     return (1...count).map { h in
       RosaryStep(
-        title: "\(title) (\(h) of \(count))", subtitle: subtitle, body: body, acclamation: acclamation,
+        title: "\(title) \(counter(h, of: count, languageCode: languageCode))", subtitle: subtitle, body: body, acclamation: acclamation,
         isScripture: isScripture, transliteratedBody: transliteratedBody,
         imageOverrideKey: entry.imageKey)
     }
@@ -308,7 +314,7 @@ struct PrayerEngine {
 
         for h in 1...decades.minorCount {
           steps.append(RosaryStep(
-            title: "\(fixedTitle(decades.minorStep)) (\(h) of \(decades.minorCount))",
+            title: "\(fixedTitle(decades.minorStep)) \(counter(h, of: decades.minorCount, languageCode: languageCode))",
             subtitle: decadeSubtitle, body: minorBody,
             decadeIndex: d, hailMaryIndexInDecade: h, imageOverrideKey: imageKey))
         }
@@ -382,7 +388,7 @@ struct PrayerEngine {
         } else {
           for h in 1...decades.minorCount {
             steps.append(RosaryStep(
-              title: "\(fixedTitle(decades.minorStep)) (\(h) of \(decades.minorCount))",
+              title: "\(fixedTitle(decades.minorStep)) \(counter(h, of: decades.minorCount, languageCode: languageCode))",
               subtitle: decadeSubtitle, body: minorBody,
               mystery: mystery, decadeIndex: decadeIndex, hailMaryIndexInDecade: h))
           }

@@ -98,6 +98,8 @@ val prayerTranslationsEnglish: Map<PrayerKey, String> = mapOf(
     PrayerKey.AveMariaProSpe to "Hail Mary — for an increase of Hope.",
     PrayerKey.AveMariaProCaritate to "Hail Mary — for an increase of Charity.",
 
+    PrayerKey.RepetitionCounterConnector to "of",
+
     PrayerKey.FructusMysteriiLabel to "Fruit of the Mystery",
 
 

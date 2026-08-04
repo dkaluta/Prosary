@@ -109,6 +109,8 @@ public static partial class PrayerTranslations
         [PrayerKey.AveMariaProSpe] = "שִׂמְחִי מִרְיָם — לְגִדּוּל הַתִּקְוָה.",
         [PrayerKey.AveMariaProCaritate] = "שִׂמְחִי מִרְיָם — לְגִדּוּל הָאַהֲבָה.",
 
+        [PrayerKey.RepetitionCounterConnector] = "מתוך",
+
         [PrayerKey.FructusMysteriiLabel] = "פְּרִי הָרָז",
 
         [PrayerKey.OratioIesu] = "הָאָדוֹן יֵשׁוּעַ הַמָּשִׁיחַ, בֶּן הָאֱלֹהִים, רַחֵם עָלַי הַחוֹטֵא.",

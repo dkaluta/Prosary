@@ -51,6 +51,15 @@ public static class PrayerKey
 
     public const string FructusMysteriiLabel = nameof(FructusMysteriiLabel);
 
+
+    // The connector in a repeated step's "(3 of 10)" counter — in the language being prayed,
+
+    // so a Hebrew Hail Mary reads "(3 מתוך 10)" rather than splicing an English word into
+
+    // right-to-left text.
+
+    public const string RepetitionCounterConnector = nameof(RepetitionCounterConnector);
+
     /// <summary>The Jesus Prayer ("Lord Jesus Christ, Son of God, have mercy on me, a sinner.").</summary>
     public const string OratioIesu = nameof(OratioIesu);
 

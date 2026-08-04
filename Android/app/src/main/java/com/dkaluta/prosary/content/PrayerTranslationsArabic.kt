@@ -94,6 +94,8 @@ val prayerTranslationsArabic: Map<PrayerKey, String> = mapOf(
     PrayerKey.AveMariaProSpe to "السلامُ عليكِ يا مريمُ — لأجلِ نموِّ الرجاء.",
     PrayerKey.AveMariaProCaritate to "السلامُ عليكِ يا مريمُ — لأجلِ نموِّ المحبة.",
 
+    PrayerKey.RepetitionCounterConnector to "من",
+
     PrayerKey.FructusMysteriiLabel to "ثمرة السر",
 
 

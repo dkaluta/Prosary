@@ -94,6 +94,8 @@ val prayerTranslationsLatin: Map<PrayerKey, String> = mapOf(
     PrayerKey.AveMariaProSpe to "Ave Maria — ad augendam spem.",
     PrayerKey.AveMariaProCaritate to "Ave Maria — ad augendam caritatem.",
 
+    PrayerKey.RepetitionCounterConnector to "ex",
+
     PrayerKey.FructusMysteriiLabel to "Fructus Mysterii",
 
 

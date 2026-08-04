@@ -101,6 +101,8 @@ extension PrayerTranslations {
     .aveMariaProSpe: "Радуйся, Мария — за умножение Надежды.",
     .aveMariaProCaritate: "Радуйся, Мария — за умножение Любви.",
 
+    .repetitionCounterConnector: "из",
+
     .fructusMysteriiLabel: "Плод тайны",
 
     // The historic Church Slavonic/Russian formula of the Jesus Prayer.
