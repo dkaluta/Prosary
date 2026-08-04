@@ -128,6 +128,22 @@ public sealed class PrayerEngine
         _ => PrayerKey.SalveReginaTitle
     };
 
+    // A decade's ordinal in the language being prayed: "1st Mystery" in English, "רז 1" in
+    // Hebrew. English is the only one of the six languages that inflects the number itself,
+    // so it alone takes an ordinal word; the rest read the plain digit.
+    private static string DecadeOrdinal(
+        int index, CustomDevotionDefinition.DecadesDefinition decades, string bundleId, string? languageCode)
+    {
+        var noun = decades.OrdinalNounKey is { } key
+            ? PrayerPackStore.ResolveBodyText(bundleId, languageCode, key)
+            : decades.OrdinalNoun ?? string.Empty;
+        var isEnglish = languageCode is { } code && (LanguageCatalog.BaseLanguage(code) ?? code) == "en";
+        var number = isEnglish && index < Ordinals.Length ? Ordinals[index] : $"{index + 1}";
+        return PrayerTranslations.Get(languageCode, PrayerKey.DecadeOrdinalFormat)
+            .Replace("{n}", number)
+            .Replace("{noun}", noun);
+    }
+
     // "(3 of 10)" for a repeated step, connector translated into the prayer's own language.
     private static string Counter(int index, int total, string? languageCode) =>
         $"({index} {PrayerTranslations.Get(languageCode, PrayerKey.RepetitionCounterConnector)} {total})";
@@ -318,7 +334,7 @@ public sealed class PrayerEngine
             {
                 var entry = decades.Entries?[d];
                 var imageKey = entry?.ImageKey ?? decades.FixedImageKey;
-                var ordinalLabel = $"{Ordinals[d]} {decades.OrdinalNoun}";
+                var ordinalLabel = DecadeOrdinal(d, decades, bundleId, languageCode);
                 var decadeSubtitle = ordinalLabel;
 
                 if (decades.AnnounceMystery && entry is not null)
@@ -393,8 +409,10 @@ public sealed class PrayerEngine
                 var mystery = mysteries[d];
                 var mysteryText = MysteryTranslations.Get(languageCode, mystery.ImageKey);
                 var ordinalLabel = showGroupName
-                    ? $"{group} — {Ordinals[d]} {decades.OrdinalNoun}"
-                    : $"{Ordinals[d]} {decades.OrdinalNoun}";
+                    // The group prefix is still English — MysteryGroup has no
+                    // per-prayer-language name yet.
+                    ? $"{group} — {DecadeOrdinal(d, decades, bundleId, languageCode)}"
+                    : DecadeOrdinal(d, decades, bundleId, languageCode);
                 var decadeSubtitle = $"{ordinalLabel} — {mysteryText.Title}";
 
                 steps.Add(new RosaryStep(mysteryText.Title, ordinalLabel,

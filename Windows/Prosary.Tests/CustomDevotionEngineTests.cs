@@ -29,6 +29,16 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
 
     // A repeated step's counter is part of the prayer, not the interface: praying in Hebrew, the Divine Mercy
     // decade reads "(1 מתוך 10)" rather than splicing an English word into right-to-left text.
+    // The decade ordinal is part of the prayer too: "1st Sorrow" in English, "מכאוב 1" in
+    // Hebrew — English is the only one of the six that inflects the number.
+    [Fact]
+    public void DecadeOrdinalUsesThePrayerLanguage()
+    {
+        Assert.StartsWith("1st Sorrow", BuildSteps("sevenSorrows", "en")[3].Subtitle);
+        Assert.StartsWith("מכאוב 1", BuildSteps("sevenSorrows", "he")[3].Subtitle);
+        Assert.StartsWith("Скорбь 1", BuildSteps("sevenSorrows", "ru")[3].Subtitle);
+    }
+
     [Fact]
     public void RepeatCounterUsesThePrayerLanguage()
     {

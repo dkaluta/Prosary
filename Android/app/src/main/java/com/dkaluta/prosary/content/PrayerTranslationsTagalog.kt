@@ -108,6 +108,8 @@ val prayerTranslationsTagalog: Map<PrayerKey, String> = mapOf(
     PrayerKey.AveMariaProSpe to "Aba Ginoong Maria — para sa pagdami ng Pag-asa.",
     PrayerKey.AveMariaProCaritate to "Aba Ginoong Maria — para sa pagdami ng Pag-ibig.",
 
+    PrayerKey.DecadeOrdinalFormat to "{noun} {n}",
+
     PrayerKey.RepetitionCounterConnector to "sa",
 
     PrayerKey.FructusMysteriiLabel to "Bunga ng Misteryo",

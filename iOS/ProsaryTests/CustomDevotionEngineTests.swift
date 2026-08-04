@@ -49,6 +49,14 @@ final class CustomDevotionEngineTests: XCTestCase {
   /// A repeated step's counter is part of the prayer, not the interface: praying in Hebrew, the Divine Mercy
   /// decade reads "(1 מתוך 10)". Splicing the English "of" into right-to-left text left bidi
   /// to reorder it into "(of 10 1)".
+  /// The decade ordinal is part of the prayer too: "1st Sorrow" in English, "מכאוב 1" in
+  /// Hebrew — English is the only one of the six that inflects the number.
+  func testDecadeOrdinalUsesThePrayerLanguage() {
+    XCTAssertTrue(steps("sevenSorrows", language: "en")[3].subtitle?.hasPrefix("1st Sorrow") == true)
+    XCTAssertTrue(steps("sevenSorrows", language: "he")[3].subtitle?.hasPrefix("מכאוב 1") == true)
+    XCTAssertTrue(steps("sevenSorrows", language: "ru")[3].subtitle?.hasPrefix("Скорбь 1") == true)
+  }
+
   func testRepeatCounterUsesThePrayerLanguage() {
     let hebrew = steps("divineMercyChaplet", language: "he")
     XCTAssertTrue(hebrew[5].title.contains("(1 מתוך 10)"), hebrew[5].title)

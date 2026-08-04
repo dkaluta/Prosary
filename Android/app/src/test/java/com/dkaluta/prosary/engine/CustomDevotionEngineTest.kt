@@ -86,6 +86,15 @@ class CustomDevotionEngineTest {
 
     /** A repeated step's counter is part of the prayer, not the interface: praying in Hebrew, the Divine Mercy decade
      * reads "(1 מתוך 10)" rather than splicing an English word into right-to-left text. */
+    /** The decade ordinal is part of the prayer too: "1st Sorrow" in English, "מכאוב 1" in
+     * Hebrew — English is the only one of the six that inflects the number. */
+    @Test
+    fun decadeOrdinalUsesThePrayerLanguage() {
+        assertTrue(steps("sevenSorrows", language = "en")[3].subtitle!!.startsWith("1st Sorrow"))
+        assertTrue(steps("sevenSorrows", language = "he")[3].subtitle!!.startsWith("מכאוב 1"))
+        assertTrue(steps("sevenSorrows", language = "ru")[3].subtitle!!.startsWith("Скорбь 1"))
+    }
+
     @Test
     fun repeatCounterUsesThePrayerLanguage() {
         assertTrue(steps("divineMercyChaplet", language = "he")[5].title.contains("(1 מתוך 10)"))

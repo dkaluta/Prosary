@@ -95,6 +95,8 @@ val prayerTranslationsRussian: Map<PrayerKey, String> = mapOf(
     PrayerKey.AveMariaProSpe to "Радуйся, Мария — за умножение Надежды.",
     PrayerKey.AveMariaProCaritate to "Радуйся, Мария — за умножение Любви.",
 
+    PrayerKey.DecadeOrdinalFormat to "{noun} {n}",
+
     PrayerKey.RepetitionCounterConnector to "из",
 
     PrayerKey.FructusMysteriiLabel to "Плод тайны",

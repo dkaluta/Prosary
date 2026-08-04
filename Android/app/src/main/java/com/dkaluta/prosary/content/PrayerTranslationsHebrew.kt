@@ -107,6 +107,8 @@ val prayerTranslationsHebrew: Map<PrayerKey, String> = mapOf(
     PrayerKey.AveMariaProSpe to "שִׂמְחִי מִרְיָם — לְגִדּוּל הַתִּקְוָה.",
     PrayerKey.AveMariaProCaritate to "שִׂמְחִי מִרְיָם — לְגִדּוּל הָאַהֲבָה.",
 
+    PrayerKey.DecadeOrdinalFormat to "{noun} {n}",
+
     PrayerKey.RepetitionCounterConnector to "מתוך",
 
     PrayerKey.FructusMysteriiLabel to "פְּרִי הָרָז",

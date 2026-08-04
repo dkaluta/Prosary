@@ -101,6 +101,8 @@ extension PrayerTranslations {
     .aveMariaProSpe: "Радуйся, Мария — за умножение Надежды.",
     .aveMariaProCaritate: "Радуйся, Мария — за умножение Любви.",
 
+    .decadeOrdinalFormat: "{noun} {n}",
+
     .repetitionCounterConnector: "из",
 
     .fructusMysteriiLabel: "Плод тайны",

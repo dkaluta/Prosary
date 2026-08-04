@@ -47,6 +47,12 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
 - **`LanguageOption`/`LanguageCatalog`** — the 6 supported prayer languages (`la` default, `en`,
   `ar`, `he`, `ru`, `tl`; `ar`/`he` right-to-left), independent of the device's own UI language.
 
+
+> **Running the Apple test suites:** pass `-parallel-testing-enabled NO`. Both targets share
+> global state — `PrayerPackStore` is a singleton and one loader test installs/removes a pack —
+> so parallel clones produce failures that have nothing to do with the code under test (and, for
+> UI tests, runners that fail to launch at all). Serially: 56 unit tests and 14 UI tests, green.
+
 ## Content layer
 
 - **`PrayerKey`** — stable, language-independent identifiers for every fixed prayer text (the

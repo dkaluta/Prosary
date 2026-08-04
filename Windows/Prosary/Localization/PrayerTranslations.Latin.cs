@@ -97,6 +97,8 @@ public static partial class PrayerTranslations
         [PrayerKey.AveMariaProSpe] = "Ave Maria — ad augendam spem.",
         [PrayerKey.AveMariaProCaritate] = "Ave Maria — ad augendam caritatem.",
 
+        [PrayerKey.DecadeOrdinalFormat] = "{noun} {n}",
+
         [PrayerKey.RepetitionCounterConnector] = "ex",
 
         [PrayerKey.FructusMysteriiLabel] = "Fructus Mysterii",

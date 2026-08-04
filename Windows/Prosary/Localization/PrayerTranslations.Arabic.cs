@@ -95,6 +95,8 @@ public static partial class PrayerTranslations
         [PrayerKey.AveMariaProSpe] = "السلامُ عليكِ يا مريمُ — لأجلِ نموِّ الرجاء.",
         [PrayerKey.AveMariaProCaritate] = "السلامُ عليكِ يا مريمُ — لأجلِ نموِّ المحبة.",
 
+        [PrayerKey.DecadeOrdinalFormat] = "{noun} {n}",
+
         [PrayerKey.RepetitionCounterConnector] = "من",
 
         [PrayerKey.FructusMysteriiLabel] = "ثمرة السر",

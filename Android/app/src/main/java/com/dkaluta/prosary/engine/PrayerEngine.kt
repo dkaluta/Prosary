@@ -8,6 +8,7 @@ import com.dkaluta.prosary.content.MysteryTranslations
 import com.dkaluta.prosary.content.prayerpack.CustomDevotionDefinition
 import com.dkaluta.prosary.content.prayerpack.CustomDevotionStep
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
+import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.EternalRestPlacement
 import com.dkaluta.prosary.models.MarianAntiphonOption
 import com.dkaluta.prosary.models.Mystery
@@ -135,6 +136,25 @@ class PrayerEngine(
         MarianAntiphonOption.SubTuumPraesidium -> PrayerKey.SubTuumPraesidiumTitle
         // Unreachable: both resolve to a concrete antiphon before this is called.
         MarianAntiphonOption.None, MarianAntiphonOption.Seasonal -> PrayerKey.SalveReginaTitle
+    }
+
+    /** A decade's ordinal in the language being prayed: "1st Mystery" in English, "רז 1" in
+     * Hebrew. English is the only one of the six languages that inflects the number itself,
+     * so it alone takes an ordinal word; the rest read the plain digit. */
+    private fun decadeOrdinal(
+        index: Int,
+        decades: CustomDevotionDefinition.Decades,
+        bundleId: String,
+        languageCode: String?,
+    ): String {
+        val noun = decades.ordinalNounKey?.let {
+            PrayerPackStore.resolveBodyText(bundleId, languageCode, it)
+        } ?: decades.ordinalNoun.orEmpty()
+        val isEnglish = (languageCode?.let { LanguageCatalog.baseLanguage(it) ?: it }) == "en"
+        val number = if (isEnglish && index < ordinals.size) ordinals[index] else "${index + 1}"
+        return PrayerTranslations.get(languageCode, PrayerKey.DecadeOrdinalFormat)
+            .replace("{n}", number)
+            .replace("{noun}", noun)
     }
 
     /** "(3 of 10)" for a repeated step, connector translated into the prayer's own language. */
@@ -301,7 +321,7 @@ class PrayerEngine(
             for (d in 0 until decadeCount) {
                 val entry = decades.entries?.get(d)
                 val imageKey = entry?.imageKey ?: decades.fixedImageKey
-                val ordinalLabel = "${ordinals[d]} ${decades.ordinalNoun}"
+                val ordinalLabel = decadeOrdinal(d, decades, bundleId, languageCode)
                 var decadeSubtitle = ordinalLabel
 
                 if (decades.announceMystery && entry != null) {
@@ -384,11 +404,10 @@ class PrayerEngine(
             for (d in indices) {
                 val mystery = mysteries[d]
                 val mysteryText = MysteryTranslations.get(languageCode, mystery.imageKey)
-                val ordinalLabel = if (showGroupName) {
-                    "${group.displayName} — ${ordinals[d]} ${decades.ordinalNoun}"
-                } else {
-                    "${ordinals[d]} ${decades.ordinalNoun}"
-                }
+                val ordinal = decadeOrdinal(d, decades, bundleId, languageCode)
+                // The group prefix is still English — MysteryGroup has no per-prayer-language
+                // name yet.
+                val ordinalLabel = if (showGroupName) "${group.displayName} — $ordinal" else ordinal
                 val decadeSubtitle = "$ordinalLabel — ${mysteryText.title}"
                 val presenter = decades.presenter
 

@@ -104,6 +104,8 @@ extension PrayerTranslations {
     .aveMariaProSpe: "Hail Mary — for an increase of Hope.",
     .aveMariaProCaritate: "Hail Mary — for an increase of Charity.",
 
+    .decadeOrdinalFormat: "{n} {noun}",
+
     .repetitionCounterConnector: "of",
 
     .fructusMysteriiLabel: "Fruit of the Mystery",

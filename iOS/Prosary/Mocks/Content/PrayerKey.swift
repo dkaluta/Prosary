@@ -59,6 +59,12 @@ enum PrayerKey: String, CaseIterable {
   /// right-to-left text (where bidi reordered it into nonsense).
   case repetitionCounterConnector
 
+  /// How a decade's ordinal reads: "{n}" is the number (an English ordinal word for English,
+  /// a digit elsewhere — English is the only one of the six that inflects it) and "{noun}" is
+  /// the bundle's own `decadeOrdinalNoun`. A template rather than a printf format so all three
+  /// platforms carry the identical string.
+  case decadeOrdinalFormat
+
   /// The Jesus Prayer ("Lord Jesus Christ, Son of God, have mercy on me, a sinner.").
   case oratioIesu
 

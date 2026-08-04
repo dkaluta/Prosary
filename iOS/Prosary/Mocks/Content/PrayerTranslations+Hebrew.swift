@@ -112,6 +112,8 @@ extension PrayerTranslations {
     .aveMariaProSpe: "שִׂמְחִי מִרְיָם — לְגִדּוּל הַתִּקְוָה.",
     .aveMariaProCaritate: "שִׂמְחִי מִרְיָם — לְגִדּוּל הָאַהֲבָה.",
 
+    .decadeOrdinalFormat: "{noun} {n}",
+
     .repetitionCounterConnector: "מתוך",
 
     .fructusMysteriiLabel: "פְּרִי הָרָז",

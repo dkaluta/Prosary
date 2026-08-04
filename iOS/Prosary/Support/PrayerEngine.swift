@@ -137,6 +137,22 @@ struct PrayerEngine {
     }
   }
 
+  /// A decade's ordinal in the language being prayed: "1st Mystery" in English, "רז 1" in
+  /// Hebrew. English is the only one of the six languages that inflects the number itself,
+  /// so it alone takes an ordinal word; the rest read the plain digit.
+  private func decadeOrdinal(
+    _ index: Int, decades: CustomDevotionDefinition.Decades, bundleId: String, languageCode: String?
+  ) -> String {
+    let noun = decades.ordinalNounKey.map {
+      PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: languageCode, key: $0)
+    } ?? decades.ordinalNoun ?? ""
+    let isEnglish = languageCode.map { LanguageCatalog.baseLanguage(of: $0) ?? $0 } == "en"
+    let number = isEnglish && index < Self.ordinals.count ? Self.ordinals[index] : "\(index + 1)"
+    return PrayerTranslations.get(languageCode: languageCode, key: .decadeOrdinalFormat)
+      .replacingOccurrences(of: "{n}", with: number)
+      .replacingOccurrences(of: "{noun}", with: noun)
+  }
+
   /// "(3 of 10)" for a repeated step, connector translated into the prayer's own language.
   private func counter(_ index: Int, of total: Int, languageCode: String?) -> String {
     let connector = PrayerTranslations.get(languageCode: languageCode, key: .repetitionCounterConnector)
@@ -293,7 +309,7 @@ struct PrayerEngine {
       for d in 0..<decadeCount {
         let entry = decades.entries?[d]
         let imageKey = entry?.imageKey ?? decades.fixedImageKey
-        let ordinalLabel = "\(Self.ordinals[d]) \(decades.ordinalNoun)"
+        let ordinalLabel = decadeOrdinal(d, decades: decades, bundleId: bundleId, languageCode: languageCode)
         var decadeSubtitle = ordinalLabel
 
         if decades.announceMystery, let entry {
@@ -367,9 +383,9 @@ struct PrayerEngine {
       for d in indices {
         let mystery = mysteries[d]
         let mysteryText = MysteryTranslations.get(languageCode: languageCode, imageKey: mystery.imageKey)
-        let ordinalLabel = showGroupName
-          ? "\(group.displayName) — \(Self.ordinals[d]) \(decades.ordinalNoun)"
-          : "\(Self.ordinals[d]) \(decades.ordinalNoun)"
+        let ordinal = decadeOrdinal(d, decades: decades, bundleId: bundleId, languageCode: languageCode)
+        // The group prefix is still English — MysteryGroup has no per-prayer-language name yet.
+        let ordinalLabel = showGroupName ? "\(group.displayName) — \(ordinal)" : ordinal
         let decadeSubtitle = "\(ordinalLabel) — \(mysteryText.title)"
 
         steps.append(RosaryStep(

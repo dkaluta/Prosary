@@ -99,6 +99,8 @@ extension PrayerTranslations {
     .aveMariaProSpe: "السلامُ عليكِ يا مريمُ — لأجلِ نموِّ الرجاء.",
     .aveMariaProCaritate: "السلامُ عليكِ يا مريمُ — لأجلِ نموِّ المحبة.",
 
+    .decadeOrdinalFormat: "{noun} {n}",
+
     .repetitionCounterConnector: "من",
 
     .fructusMysteriiLabel: "ثمرة السر",

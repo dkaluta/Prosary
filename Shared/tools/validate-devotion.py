@@ -420,8 +420,14 @@ def main() -> int:
             err("decades: 'count' requires 'fixedImageKey'")
         if entries is not None and fixed_image:
             err("decades: 'entries' and 'fixedImageKey' are mutually exclusive")
-        if not decades.get("ordinalNoun"):
-            err("decades: ordinalNoun is required")
+        # The noun a decade is counted in ("Mystery"/"Joy"/…) — a literal, or a key so it
+        # reads in the language being prayed.
+        if not (decades.get("ordinalNoun") or decades.get("ordinalNounKey")):
+            err("decades: ordinalNoun (or ordinalNounKey) is required")
+        if decades.get("ordinalNoun") and decades.get("ordinalNounKey"):
+            err("decades: ordinalNoun and ordinalNounKey are mutually exclusive")
+        if decades.get("ordinalNounKey"):
+            title_keys.add(decades["ordinalNounKey"])
         if decades.get("announceMystery") and entries is None and source is None:
             err("decades: announceMystery requires 'entries' (or an engine 'source')")
         if not isinstance(decades.get("minorCount"), int) or decades.get("minorCount", 0) < 1:

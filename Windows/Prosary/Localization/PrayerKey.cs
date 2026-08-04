@@ -60,6 +60,13 @@ public static class PrayerKey
 
     public const string RepetitionCounterConnector = nameof(RepetitionCounterConnector);
 
+
+    // How a decade's ordinal reads: "{n}" is the number (an English ordinal word for English,
+
+    // a digit elsewhere) and "{noun}" is the bundle's own `decadeOrdinalNoun`.
+
+    public const string DecadeOrdinalFormat = nameof(DecadeOrdinalFormat);
+
     /// <summary>The Jesus Prayer ("Lord Jesus Christ, Son of God, have mercy on me, a sinner.").</summary>
     public const string OratioIesu = nameof(OratioIesu);
 

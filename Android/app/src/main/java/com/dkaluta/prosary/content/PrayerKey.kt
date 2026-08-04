@@ -51,6 +51,10 @@ enum class PrayerKey {
      * right-to-left text. */
     RepetitionCounterConnector,
 
+    /** How a decade's ordinal reads: "{n}" is the number (an English ordinal word for English,
+     * a digit elsewhere) and "{noun}" is the bundle's own `decadeOrdinalNoun`. */
+    DecadeOrdinalFormat,
+
     /** The Jesus Prayer ("Lord Jesus Christ, Son of God, have mercy on me, a sinner."). */
     OratioIesu,
 

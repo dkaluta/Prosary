@@ -764,8 +764,10 @@ public sealed record CustomDevotionDefinition(
     }
 
     public sealed record DecadesDefinition(
-        // "Joy" / "Sorrow" / "Decade" — combined with the engine's ordinal array into "1st Joy" etc.
-        string OrdinalNoun,
+        // The noun a decade is counted in ("Joy" / "Sorrow" / "Decade") — a literal, or a key
+        // so it reads in the language being prayed ("Mystery" / "רז" / "Тайна").
+        string? OrdinalNoun,
+        string? OrdinalNounKey,
         // True: each decade opens with an announcement step whose title/body come from the
         // mystery text of that decade's catalog entry (via the merged MysteryTranslations path).
         bool AnnounceMystery,

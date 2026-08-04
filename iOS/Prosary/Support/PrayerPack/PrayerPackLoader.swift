@@ -238,7 +238,10 @@ struct CustomDevotionDefinition: Decodable {
 
   struct Decades: Decodable {
     /// "Joy" / "Sorrow" / "Decade" — combined with the engine's ordinal array into "1st Joy" etc.
-    let ordinalNoun: String
+    /// The noun a decade is counted in — a literal, or a key so it reads in the language
+    /// being prayed ("Mystery" / "רז" / "Тайна").
+    let ordinalNoun: String?
+    let ordinalNounKey: String?
     /// True: each decade opens with an announcement step whose title/body come from the mystery
     /// text of that decade's catalog entry (via the merged MysteryTranslations path).
     let announceMystery: Bool
