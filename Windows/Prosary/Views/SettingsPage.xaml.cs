@@ -1,5 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Navigation;
 using Prosary.ViewModels;
 using Prosary.Localization;
 
@@ -28,5 +30,66 @@ public sealed partial class SettingsPage : Page
             };
             return await dialog.ShowAsync() == ContentDialogResult.Primary;
         };
+    }
+
+    protected override void OnNavigatedTo(NavigationEventArgs e)
+    {
+        base.OnNavigatedTo(e);
+        ViewModel.RefreshInstalledDevotions();
+    }
+
+    // The file pickers need the window handle and a UI-thread continuation, so picking stays
+    // code-behind and only bytes (or a path) reach the ViewModel — same split the retired
+    // Favorites page used.
+    private async void OnImportBundle(object sender, RoutedEventArgs e)
+    {
+        var picker = new Windows.Storage.Pickers.FileOpenPicker();
+        WinRT.Interop.InitializeWithWindow.Initialize(
+            picker, WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow));
+        picker.FileTypeFilter.Add(".prosaryprayer");
+        if (await picker.PickSingleFileAsync() is not { } file)
+        {
+            return;
+        }
+
+        var buffer = await Windows.Storage.FileIO.ReadBufferAsync(file);
+        var bytes = new byte[buffer.Length];
+        Windows.Storage.Streams.DataReader.FromBuffer(buffer).ReadBytes(bytes);
+
+        if (ViewModel.ImportPack(bytes) is { } message)
+        {
+            var dialog = new ContentDialog
+            {
+                XamlRoot = XamlRoot,
+                Title = Loc.Tr("favorites_import_error_title", "Could Not Import Devotion"),
+                Content = message,
+                CloseButtonText = Loc.Tr("common_ok", "OK"),
+            };
+            await dialog.ShowAsync();
+        }
+    }
+
+    /// <summary>Round-trip to Compose (Gamaliel item 7): a copy of the installed
+    /// .prosaryprayer, saved wherever the user picks, edited at compose.prosary.app, re-imported.</summary>
+    private async void OnExportBundle(object sender, RoutedEventArgs e)
+    {
+        if (sender is not FrameworkElement { Tag: string bundleId } ||
+            SettingsViewModel.InstalledPackPath(bundleId) is not { } source)
+        {
+            return;
+        }
+
+        var picker = new Windows.Storage.Pickers.FileSavePicker { SuggestedFileName = bundleId };
+        picker.FileTypeChoices.Add(
+            Loc.Tr("favorites_bundle_file_type", "Prosary devotion bundle"), [".prosaryprayer"]);
+        WinRT.Interop.InitializeWithWindow.Initialize(
+            picker, WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow));
+
+        if (await picker.PickSaveFileAsync() is { } destination)
+        {
+            await using var output = await destination.OpenStreamForWriteAsync();
+            await using var input = System.IO.File.OpenRead(source);
+            await input.CopyToAsync(output);
+        }
     }
 }

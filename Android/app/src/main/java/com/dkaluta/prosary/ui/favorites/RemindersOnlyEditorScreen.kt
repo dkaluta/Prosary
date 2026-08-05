@@ -40,7 +40,7 @@ import com.dkaluta.prosary.services.LocalAppServices
 import kotlinx.coroutines.launch
 
 /** The editor for the generic (bundle-driven) devotions — these have no name or language to
- * edit (see FavoritesListScreen), just the bundle's own `options.json` options (schema-driven
+ * edit, just the bundle's own `options.json` options (schema-driven
  * toggle/choice rows, e.g. the Franciscan Crown's optional closing devotions) and reminders.
  * Reachable from the star row's bell button, and only once the devotion is favorited (a Prayer
  * row must already exist to attach settings to — this screen never creates one). Preset

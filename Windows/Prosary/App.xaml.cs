@@ -58,7 +58,6 @@ public partial class App : Application
         services.AddSingleton<IReminderScheduler, WindowsReminderScheduler>();
 
         services.AddTransient<HomeViewModel>();
-        services.AddTransient<FavoritesViewModel>();
         services.AddTransient<RepositoryBrowserViewModel>();
         services.AddTransient<CategoriesViewModel>();
         services.AddTransient<SearchViewModel>();

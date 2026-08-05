@@ -11,7 +11,7 @@ namespace Prosary.ViewModels;
 
 /// <summary>
 /// Drives the editor for the generic (bundle-driven) devotions — these have no name/language to
-/// edit (see <see cref="FavoritesViewModel"/>), just the bundle's own <c>options.json</c>
+/// edit, just the bundle's own <c>options.json</c>
 /// options (schema-driven toggle/choice rows, e.g. the Franciscan Crown's optional closing
 /// devotions) and reminders. Reachable from the star row's bell button, and only once the
 /// devotion is favorited (a <see cref="Prayer"/> row must already exist to attach settings to —

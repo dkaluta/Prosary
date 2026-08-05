@@ -17,7 +17,7 @@ namespace Prosary.ViewModels;
 /// preset hour plus an explanatory footer, instead of any kind-specific special case here. The
 /// three toggle rows themselves are fixed at 6/12/18 in XAML (WinUI's command-binding model makes
 /// fully data-driven per-row toggle commands awkward — same reasoning as
-/// <c>FavoritesViewModel.AddNewRosary</c>); each row's visibility is manifest-driven, and 6/12/18
+/// Home's + menu); each row's visibility is manifest-driven, and 6/12/18
 /// covers every preset devotion that exists. A future bundle with different preset hours needs
 /// matching rows added here.
 /// </summary>
@@ -78,7 +78,7 @@ public partial class RemindersEditorViewModel : ObservableObject
 
     // Three concrete commands rather than one CommandParameter-driven TogglePresetTime(int) — a
     // plain XAML CommandParameter ("6") would arrive as a string, not an int, so each quick-toggle
-    // row gets its own no-argument command instead (same reasoning as FavoritesViewModel's
+    // row gets its own no-argument command instead (same reasoning as the preset list's
     // AddNewRosary/AddNewJesusPrayer).
     [RelayCommand]
     private void TogglePreset6Am() => TogglePresetTime(6);

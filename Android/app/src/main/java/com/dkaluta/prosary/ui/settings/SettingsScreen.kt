@@ -1,5 +1,14 @@
 package com.dkaluta.prosary.ui.settings
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.compose.ui.Alignment
+import com.dkaluta.prosary.ui.shared.installErrorMessage
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.layout.Row
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.FileUpload
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import android.content.Context
 import android.text.format.Formatter
 import androidx.compose.foundation.layout.Arrangement
@@ -57,6 +66,41 @@ fun SettingsScreen(onBack: () -> Unit) {
     var autoAdvanceSeconds by remember { mutableIntStateOf(AppSettings.autoAdvanceSeconds) }
     var homeOrderIsCustom by remember { mutableStateOf(HomeOrder.saved(context).isNotEmpty()) }
     var installedCount by remember { mutableIntStateOf(PrayerPackStore.installedBundleIds().size) }
+    // Bumped after an install or a removal so the list below re-reads.
+    var installedGeneration by remember { mutableIntStateOf(0) }
+    val installedBundleIds = remember(installedGeneration) { PrayerPackStore.installedBundleIds() }
+    var importError by remember { mutableStateOf<String?>(null) }
+
+    var exportBundleId by remember { mutableStateOf<String?>(null) }
+    val exportLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.CreateDocument("application/zip"),
+    ) { uri ->
+        val id = exportBundleId
+        exportBundleId = null
+        if (uri != null && id != null) {
+            PrayerPackStore.installedPackFile(id)?.let { file ->
+                context.contentResolver.openOutputStream(uri)?.use { out ->
+                    file.inputStream().use { it.copyTo(out) }
+                }
+            }
+        }
+    }
+
+    val importLauncher = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        if (uri == null) return@rememberLauncherForActivityResult
+        runCatching {
+            val bytes = context.contentResolver.openInputStream(uri)?.use { it.readBytes() }
+                ?: throw PrayerPackStore.InstallException(
+                    "This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
+            PrayerPackStore.installPack(bytes)
+        }.onSuccess {
+            importError = null
+            installedGeneration++
+            installedCount = PrayerPackStore.installedBundleIds().size
+        }.onFailure { error ->
+            importError = installErrorMessage(context, error)
+        }
+    }
     var audioCacheBytes by remember { mutableLongStateOf(SettingsMaintenance.audioCacheSize(context)) }
     var confirmsRemoveAll by remember { mutableStateOf(false) }
 
@@ -149,6 +193,54 @@ fun SettingsScreen(onBack: () -> Unit) {
                 stringResource(R.string.settings_installed_devotions, installedCount),
                 style = MaterialTheme.typography.bodyLarge,
             )
+
+            // Importing, exporting and removing a devotion moved here when the Favorites screen
+            // was retired: Downloads is where iOS/Mac keep them too. Round-trip to Compose
+            // (Gamaliel item 7) is the export — SAF create-document, then copy the pack's bytes.
+            OutlinedButton(
+                onClick = { importLauncher.launch(arrayOf("*/*")) },
+                modifier = Modifier.fillMaxWidth(),
+            ) { Text(stringResource(R.string.favorites_import)) }
+
+            for (bundleId in installedBundleIds) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    Text(
+                        PrayerPackStore.info(bundleId)?.localizedDisplayName ?: bundleId,
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.weight(1f),
+                    )
+                    IconButton(onClick = {
+                        exportBundleId = bundleId
+                        exportLauncher.launch("$bundleId.prosaryprayer")
+                    }) {
+                        Icon(
+                            Icons.Filled.FileUpload,
+                            contentDescription = stringResource(R.string.favorites_export),
+                        )
+                    }
+                    IconButton(onClick = {
+                        PrayerPackStore.removeInstalledPack(bundleId)
+                        installedGeneration++
+                        installedCount = PrayerPackStore.installedBundleIds().size
+                    }) {
+                        Icon(
+                            Icons.Filled.Delete,
+                            contentDescription = stringResource(R.string.favorites_remove_installed),
+                        )
+                    }
+                }
+            }
+
+            if (importError != null) {
+                Text(
+                    importError.orEmpty(),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.error,
+                )
+            }
 
             OutlinedButton(
                 onClick = {

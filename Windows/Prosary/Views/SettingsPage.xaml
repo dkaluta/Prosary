@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page
     x:Class="Prosary.Views.SettingsPage"
+    x:Name="Root"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:Prosary.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -55,6 +57,38 @@
                 <TextBlock x:Uid="SetDownloadsHeader" Text="Downloads" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
 
                 <TextBlock Text="{x:Bind ViewModel.InstalledCountLabel, Mode=OneWay}" />
+
+                <!-- Importing, exporting and removing a devotion moved here when the Favorites
+                     screen was retired: Downloads is where the Mac keeps them too. -->
+                <Button x:Uid="SetImportBundle" Content="Import Devotion Bundle…" HorizontalAlignment="Stretch"
+                        Click="OnImportBundle" />
+
+                <ItemsControl ItemsSource="{x:Bind ViewModel.InstalledDevotions, Mode=OneWay}"
+                              Visibility="{x:Bind ViewModel.HasInstalledDevotions, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:SettingsViewModel+InstalledDevotionRow">
+                            <Grid ColumnSpacing="8" Margin="0,4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{x:Bind Title}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                <Button Grid.Column="1" x:Uid="SetExportBundle" Background="Transparent" Padding="8"
+                                        ToolTipService.ToolTip="Export for editing"
+                                        Click="OnExportBundle" Tag="{x:Bind BundleId}">
+                                    <FontIcon Glyph="&#xEDE1;" FontSize="14" />
+                                </Button>
+                                <Button Grid.Column="2" x:Uid="SetRemoveBundle" Background="Transparent" Padding="8"
+                                        ToolTipService.ToolTip="Remove"
+                                        Command="{Binding ElementName=Root, Path=ViewModel.RemoveInstalledCommand}"
+                                        CommandParameter="{Binding}">
+                                    <FontIcon Glyph="&#xE74D;" FontSize="14" />
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
                 <Button Content="{x:Bind ViewModel.AudioCacheLabel, Mode=OneWay}" HorizontalAlignment="Stretch"
                         Command="{x:Bind ViewModel.ClearAudioCacheCommand}" />

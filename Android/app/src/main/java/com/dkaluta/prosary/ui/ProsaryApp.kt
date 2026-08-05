@@ -42,7 +42,6 @@ import com.dkaluta.prosary.models.jesusPrayerTargetFromRouteValue
 import com.dkaluta.prosary.models.toRouteValue
 import com.dkaluta.prosary.ui.about.AboutScreen
 import com.dkaluta.prosary.ui.favorites.FavoriteEditorScreen
-import com.dkaluta.prosary.ui.favorites.FavoritesListScreen
 import com.dkaluta.prosary.ui.favorites.RemindersOnlyEditorScreen
 import com.dkaluta.prosary.ui.home.HomeScreen
 import com.dkaluta.prosary.ui.home.RosaryPresetPickerScreen
@@ -65,7 +64,6 @@ private object Routes {
     const val Browse = "browse"
     const val Categories = "categories"
     const val Search = "search"
-    const val Favorites = "favorites"
     const val RepositoryBrowser = "favorites/repository"
     // `kind` seeds a brand-new favorite's type when prayerId is absent (Android has no
     // equivalent to iOS's sheet(item:) passing a whole ad-hoc Prayer object across screens, so
@@ -274,16 +272,6 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
             )
         }
 
-        composable(Routes.Favorites) {
-            FavoritesListScreen(
-                onPray = { id -> navController.navigate(Routes.prayer(id)) },
-                onEdit = { prayerId -> navController.navigate(Routes.favoriteEditor(prayerId)) },
-                onAddNew = { kind -> navController.navigate(Routes.favoriteEditor(null, kind)) },
-                onEditReminders = { prayerId -> navController.navigate(Routes.remindersOnlyEditor(prayerId)) },
-                onBrowseRepository = { navController.navigate(Routes.RepositoryBrowser) },
-                onBack = { navController.popBackStack() },
-            )
-        }
         composable(Routes.RepositoryBrowser) {
             com.dkaluta.prosary.ui.favorites.RepositoryBrowserScreen(
                 onBack = { navController.popBackStack() },

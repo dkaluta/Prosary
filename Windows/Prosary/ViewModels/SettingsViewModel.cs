@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Prosary.Localization;
@@ -184,6 +185,55 @@ public partial class SettingsViewModel : ObservableObject
             return;
         }
         RemoveAllInstalledPacks();
+    }
+
+    /// <summary>One downloaded or hand-imported devotion, listed under Downloads with the two
+    /// actions the retired Favorites screen used to carry: a copy out for editing at
+    /// compose.prosary.app (Gamaliel item 7) and a removal.</summary>
+    public sealed record InstalledDevotionRow(string BundleId, string Title);
+
+    public ObservableCollection<InstalledDevotionRow> InstalledDevotions { get; } = [];
+
+    public bool HasInstalledDevotions => InstalledDevotions.Count > 0;
+
+    /// <summary>Re-reads the installed list; called when Settings appears and after any change.</summary>
+    public void RefreshInstalledDevotions()
+    {
+        InstalledDevotions.Clear();
+        foreach (var bundleId in PrayerPackStore.InstalledBundleIds())
+        {
+            InstalledDevotions.Add(new InstalledDevotionRow(
+                bundleId, PrayerPackStore.Info(bundleId)?.LocalizedDisplayName ?? bundleId));
+        }
+
+        InstalledCount = PrayerPackStore.InstalledBundleIds().Count;
+        OnPropertyChanged(nameof(HasInstalledDevotions));
+    }
+
+    /// <summary>Installs a bundle the user picked; returns the error to show, or null.</summary>
+    public string? ImportPack(byte[] bytes)
+    {
+        try
+        {
+            PrayerPackStore.InstallPack(bytes);
+        }
+        catch (PrayerPackStore.InstallException error)
+        {
+            return error.Message;
+        }
+
+        RefreshInstalledDevotions();
+        return null;
+    }
+
+    /// <summary>The file a devotion was installed from — what Export copies out.</summary>
+    public static string? InstalledPackPath(string bundleId) => PrayerPackStore.InstalledPackPath(bundleId);
+
+    [RelayCommand]
+    private void RemoveInstalled(InstalledDevotionRow row)
+    {
+        PrayerPackStore.RemoveInstalledPack(row.BundleId);
+        RefreshInstalledDevotions();
     }
 
     public void RemoveAllInstalledPacks()

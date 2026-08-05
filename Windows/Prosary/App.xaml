@@ -52,8 +52,6 @@
             <conv:EnumDisplayNameConverter x:Key="EnumDisplayName" />
             <conv:LanguageCodeLabelConverter x:Key="LanguageCodeLabel" />
             <conv:JesusPrayerTargetLabelConverter x:Key="JesusPrayerTargetLabel" />
-            <conv:PrayerKindIconGlyphConverter x:Key="PrayerKindIconGlyph" />
-            <conv:BoolToStarGlyphConverter x:Key="BoolToStarGlyph" />
             <conv:MysteryTitleConverter x:Key="MysteryTitle" />
 
             <!-- Shared text styles, matching irosary's Styles.xaml naming/intent. -->
