@@ -42,6 +42,23 @@ function chapterTitle(step: EditorStep, index: number): { title?: string; titleK
  * n consecutive built steps, and chapters' advisory stepIndex hints point into that BUILT
  * sequence — an authored index would land every post-repeat chapter on the wrong page. A
  * repeated step's chapter points at its first repetition. */
+/** Every authored step in order, whichever project type it is — days projects number their
+ * content keys across the whole devotion so a step's key never shifts when a day is edited. */
+export function authoredSteps(project: Project): EditorStep[] {
+  return project.devotionType === "days" ? project.days.flatMap((day) => day.steps) : project.steps;
+}
+
+/** One step's devotion.json entry; identical in both project types. */
+function packStep(project: Project, step: EditorStep, index: number) {
+  return {
+    ...(step.kind === "custom" ? { titleKey: `${stepKeyBase(index)}Title` } : { title: step.title }),
+    bodyKey: step.kind === "common" ? step.commonKey : `${stepKeyBase(index)}Body`,
+    imageKey: stepImageKey(project, step),
+    ...(step.isScripture ? { isScripture: true } : {}),
+    ...(step.repeat && step.repeat >= 2 ? { repeat: step.repeat } : {}),
+  };
+}
+
 export function builtStepIndex(steps: EditorStep[], authoredIndex: number): number {
   let built = 0;
   for (let i = 0; i < authoredIndex && i < steps.length; i++) {
@@ -90,24 +107,41 @@ export function buildBundleFiles(project: Project): ZipFile[] {
     }),
   });
 
+  // A days project carries its steps inside days[]; the entry shape is identical, so the same
+  // key numbering runs across every day (see authoredSteps).
+  const devotionBody =
+    project.devotionType === "days"
+      ? {
+          type: "days" as const,
+          dayProgression: project.dayProgression,
+          ...(project.suggestedStart ? { suggestedStart: project.suggestedStart } : {}),
+          ...(project.suggestedReminderTime
+            ? { suggestedReminderTime: project.suggestedReminderTime }
+            : {}),
+          ...(project.suggestedNext ? { suggestedNext: project.suggestedNext } : {}),
+          days: project.days.map((day) => ({
+            name: day.name,
+            ...(Object.keys(day.nameByLanguage).length
+              ? { nameByLanguage: day.nameByLanguage }
+              : {}),
+            steps: day.steps.map((step) => packStep(project, step, authoredSteps(project).indexOf(step))),
+          })),
+        }
+      : {
+          type: "steps" as const,
+          steps: project.steps.map((step, i) => packStep(project, step, i)),
+        };
+
   files.push({
     name: "devotion.json",
-    data: jsonBytes({
-      type: "steps",
-      steps: project.steps.map((step, i) => ({
-        ...(step.kind === "custom" ? { titleKey: `${stepKeyBase(i)}Title` } : { title: step.title }),
-        bodyKey: step.kind === "common" ? step.commonKey : `${stepKeyBase(i)}Body`,
-        imageKey: stepImageKey(project, step),
-        ...(step.isScripture ? { isScripture: true } : {}),
-        ...(step.repeat && step.repeat >= 2 ? { repeat: step.repeat } : {}),
-      })),
-    }),
+    data: jsonBytes(devotionBody),
   });
+
 
   for (const language of project.languages) {
     const prayers: Record<string, string> = {};
     const transliterations: Record<string, string> = {};
-    project.steps.forEach((step, i) => {
+    authoredSteps(project).forEach((step, i) => {
       if (step.kind !== "custom") return;
       prayers[`${stepKeyBase(i)}Title`] = step.titleByLanguage[language]?.trim() ?? "";
       prayers[`${stepKeyBase(i)}Body`] = step.bodyByLanguage[language]?.trim() ?? "";
