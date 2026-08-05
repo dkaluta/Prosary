@@ -15,6 +15,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Circle
 import androidx.compose.material.icons.filled.Favorite
@@ -53,7 +54,9 @@ import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.CustomDevotionInfo
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.content.today.TodayInfoStore
+import com.dkaluta.prosary.models.FavoriteDevotions
 import com.dkaluta.prosary.models.HomeOrder
+import com.dkaluta.prosary.models.MultiDayStatus
 import com.dkaluta.prosary.models.MysteryGroup
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
@@ -79,6 +82,9 @@ import com.dkaluta.prosary.ui.theme.extraColors
 /** One devotion's rendering state for a Home card. See [HomeScreen]'s card list. */
 private data class DevotionCard(
     val id: String,
+    /** The id the pin list uses — "rosary", "jesusPrayer" or a bundle id — as distinct from
+     * [id], which is the ordering key. */
+    val devotionId: String,
     val icon: ImageVector,
     val iconGlyph: String? = null,
     val title: String,
@@ -169,6 +175,7 @@ fun HomeScreen(
         add(
             DevotionCard(
                 id = PrayerKind.Rosary.name,
+                devotionId = "rosary",
                 icon = Icons.Filled.Circle,
                 title = stringResource(PrayerKind.Rosary.displayNameRes),
                 accentColor = rosaryAccent,
@@ -187,11 +194,14 @@ fun HomeScreen(
             add(
                 DevotionCard(
                     id = "custom.$bundleId",
+                    devotionId = bundleId,
                     icon = iconForSystemName(info.iconSystemName),
                     iconGlyph = info.iconGlyph,
                     title = info.localizedDisplayName,
                     accentColor = customAccent(info),
-                    subtitle = defaultCustomDevotions[bundleId]?.name ?: stringResource(R.string.home_tap_to_pray),
+                    subtitle = MultiDayStatus.subtitle(context, bundleId)
+                        ?: defaultCustomDevotions[bundleId]?.name
+                        ?: stringResource(R.string.home_tap_to_pray),
                     testTag = "${bundleId}Card",
                     onClick = {
                         val prayer = defaultCustomDevotions[bundleId]
@@ -204,6 +214,7 @@ fun HomeScreen(
         add(
             DevotionCard(
                 id = PrayerKind.JesusPrayer.name,
+                devotionId = "jesusPrayer",
                 icon = Icons.Filled.Favorite,
                 title = stringResource(PrayerKind.JesusPrayer.displayNameRes),
                 accentColor = jesusPrayerAccent,
@@ -217,11 +228,25 @@ fun HomeScreen(
         )
     }
 
+    // Pray is the pinned list: a devotion appears here because you put it here (or, on a fresh
+    // install, because it already had a preset). Everything installed stays reachable on
+    // Categories and Search, so unpinning hides a card without losing anything.
+    var pinGeneration by remember { mutableIntStateOf(0) }
+    val impliedPinned = buildList {
+        add("rosary")
+        addAll(defaultCustomDevotions.keys)
+        if (defaultJesusPrayer != null) add("jesusPrayer")
+    }
+    val pinnedCards = remember(devotionCards, pinGeneration, impliedPinned) {
+        devotionCards.filter { FavoriteDevotions.contains(context, it.devotionId, impliedPinned) }
+    }
+    val unpinnedCards = devotionCards.filter { card -> pinnedCards.none { it.id == card.id } }
+
     // The user's personal ordering (v0.7): long-press a card for Move to Top / Edit Order.
     var orderGeneration by remember { mutableIntStateOf(0) }
     var showsOrderEditor by remember { mutableStateOf(false) }
-    val orderedCards = remember(devotionCards, orderGeneration) {
-        HomeOrder.apply(context, devotionCards) { it.id }
+    val orderedCards = remember(pinnedCards, orderGeneration) {
+        HomeOrder.apply(context, pinnedCards) { it.id }
     }
 
     if (showsOrderEditor) {
@@ -247,6 +272,27 @@ fun HomeScreen(
                 scrollBehavior = topBarScroll,
                 title = { Text(stringResource(R.string.tab_pray)) },
                 actions = {
+                    if (unpinnedCards.isNotEmpty()) {
+                        var addMenu by remember { mutableStateOf(false) }
+                        IconButton(onClick = { addMenu = true }) {
+                            Icon(
+                                Icons.Filled.Add,
+                                contentDescription = stringResource(R.string.home_add_devotion),
+                            )
+                        }
+                        DropdownMenu(expanded = addMenu, onDismissRequest = { addMenu = false }) {
+                            for (card in unpinnedCards) {
+                                DropdownMenuItem(
+                                    text = { Text(card.title) },
+                                    onClick = {
+                                        addMenu = false
+                                        FavoriteDevotions.pin(context, card.devotionId, impliedPinned)
+                                        pinGeneration++
+                                    },
+                                )
+                            }
+                        }
+                    }
                     IconButton(onClick = onOpenFavorites) {
                         Icon(Icons.Filled.Star, contentDescription = stringResource(R.string.home_my_favorites))
                     }
@@ -353,6 +399,14 @@ fun HomeScreen(
                             onClick = {
                                 cardMenu = false
                                 showsOrderEditor = true
+                            },
+                        )
+                        DropdownMenuItem(
+                            text = { Text(stringResource(R.string.home_remove_from_pray)) },
+                            onClick = {
+                                cardMenu = false
+                                FavoriteDevotions.toggle(context, card.devotionId, impliedPinned)
+                                pinGeneration++
                             },
                         )
                     }

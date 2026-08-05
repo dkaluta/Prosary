@@ -7,12 +7,15 @@ import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Language
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
+import androidx.compose.foundation.layout.Row
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -23,12 +26,17 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.audio.AudioPlaybackController
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
+import com.dkaluta.prosary.models.FavoriteDevotions
 import com.dkaluta.prosary.models.LanguageCatalog
+import com.dkaluta.prosary.models.MultiDayRun
+import com.dkaluta.prosary.models.MultiDayRuns
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.models.RosaryStep
@@ -74,6 +82,9 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
     /** Multi-day devotions: the day this session prays (0-based; sourced from the favorite). */
     var dayIndex by remember { mutableIntStateOf(prayer?.dayIndex ?: 0) }
     var dayMenuExpanded by remember { mutableStateOf(false) }
+    /** Set when a day was missed: the day that should have happened and the one today calls for. */
+    var missedDayChoice by remember { mutableStateOf<Pair<Int, Int>?>(null) }
+    var isPinned by remember { mutableStateOf(false) }
 
     fun persistDayIndex(value: Int) {
         matchingFavoriteId?.let { id ->
@@ -142,6 +153,28 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
                 dayIndex = favorite.dayIndex ?: 0
             }
         }
+        isPinned = FavoriteDevotions.contains(context, devotionId, impliedPinnedIds(services))
+
+        // A series decides its own day: today's if it is unprayed, the same day again if it was
+        // already prayed today, and a choice when one was missed.
+        val definition = PrayerPackStore.definition(devotionId)
+        val days = definition?.days.orEmpty()
+        if (days.size > 1 && (definition?.dayProgression ?: "series") == "series") {
+            val run = MultiDayRuns.run(context, devotionId)
+            when (val resumption = run?.resumption(days.size) ?: MultiDayRun.Resumption.Start) {
+                is MultiDayRun.Resumption.Start -> dayIndex = 0
+                is MultiDayRun.Resumption.Resume -> dayIndex = resumption.day
+                is MultiDayRun.Resumption.Choose -> {
+                    dayIndex = resumption.missed
+                    missedDayChoice = resumption.missed to resumption.next
+                }
+                is MultiDayRun.Resumption.Complete -> dayIndex = days.size - 1
+            }
+            // Praying twice in one day re-prays that day rather than eating tomorrow's.
+            if (run != null && run.hasPrayedToday()) {
+                run.prayedDays.lastOrNull()?.let { dayIndex = it }
+            }
+        }
 
         languageCode = PrayerPackStore.effectiveLanguage(devotionId, chosenLanguage)
         isRightToLeft = LanguageCatalog.resolve(languageCode ?: LanguageCatalog.defaultCode).isRightToLeft
@@ -181,6 +214,37 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
         BeadLayout.build(steps, currentIndex, hasClosingCross = hasClosingCross)
     }
 
+    // A missed day is a real choice, not an error: take the day that should have happened,
+    // stay with the calendar, or start the run over.
+    missedDayChoice?.let { (missed, next) ->
+        AlertDialog(
+            onDismissRequest = { missedDayChoice = null },
+            title = { Text(stringResource(R.string.multi_day_missed_title)) },
+            confirmButton = {
+                TextButton(onClick = {
+                    dayIndex = missed
+                    persistDayIndex(missed)
+                    missedDayChoice = null
+                }) { Text(stringResource(R.string.multi_day_pray_missed, missed + 1)) }
+            },
+            dismissButton = {
+                Row {
+                    TextButton(onClick = {
+                        dayIndex = next
+                        persistDayIndex(next)
+                        missedDayChoice = null
+                    }) { Text(stringResource(R.string.multi_day_pray_today, next + 1)) }
+                    TextButton(onClick = {
+                        MultiDayRuns.startFresh(context, devotionId)
+                        dayIndex = 0
+                        persistDayIndex(0)
+                        missedDayChoice = null
+                    }) { Text(stringResource(R.string.multi_day_start_over)) }
+                }
+            },
+        )
+    }
+
     PrayerStepFlowScreen(
         title = displayName,
         step = currentStep,
@@ -200,8 +264,17 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
             if (steps.isEmpty() || currentIndex == steps.size - 1) {
                 // Finishing a multi-day session advances the favorite to the next day (staying
                 // on the last once complete) — tomorrow opens where the novena left off.
-                val days = PrayerPackStore.definition(devotionId)?.days.orEmpty()
-                if (days.size > 1) persistDayIndex(minOf(dayIndex + 1, days.size - 1))
+                val definition = PrayerPackStore.definition(devotionId)
+                val days = definition?.days.orEmpty()
+                if (days.size > 1) {
+                    // A series advances by calendar day, so record *which* day was prayed and
+                    // let the run decide what comes next — praying twice today must not skip
+                    // tomorrow's day.
+                    if ((definition?.dayProgression ?: "series") == "series") {
+                        MultiDayRuns.recordPrayed(context, devotionId, dayIndex)
+                    }
+                    persistDayIndex(minOf(dayIndex + 1, days.size - 1))
+                }
                 onBack()
             } else {
                 currentIndex++
@@ -345,29 +418,42 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
             }
             IconButton(onClick = {
                 scope.launch {
-                    matchingFavoriteId = toggleCustomDevotionFavorite(services, devotionId, displayName, matchingFavoriteId)
+                    // Pinning is what puts a devotion on Pray; the Prayer alongside it only
+                    // carries this devotion's language/variant/day, so unpinning leaves those
+                    // settings intact.
+                    val implied = impliedPinnedIds(services)
+                    FavoriteDevotions.toggle(context, devotionId, implied)
+                    isPinned = FavoriteDevotions.contains(context, devotionId, implied)
+                    if (isPinned && matchingFavoriteId == null) {
+                        matchingFavoriteId = createCustomDevotionFavorite(services, devotionId, displayName)
+                    }
                 }
-            }) {
+            }, modifier = Modifier.testTag("pinDevotionButton")) {
                 Icon(
-                    if (matchingFavoriteId != null) Icons.Filled.Star else Icons.Filled.StarBorder,
-                    contentDescription = if (matchingFavoriteId != null) stringResource(R.string.favorites_remove_from_favorites) else stringResource(R.string.favorites_add_to_favorites),
+                    if (isPinned) Icons.Filled.Star else Icons.Filled.StarBorder,
+                    contentDescription = if (isPinned) stringResource(R.string.home_remove_from_pray) else stringResource(R.string.home_add_to_pray),
                 )
             }
         },
     )
 }
 
-private suspend fun toggleCustomDevotionFavorite(
+/** A devotion counts as pinned by default when it already has a saved configuration — the same
+ * fallback the Pray tab uses, so the star agrees with what that tab shows. */
+private suspend fun impliedPinnedIds(services: AppServices): List<String> =
+    runCatching { services.presetStore.all() }.getOrDefault(emptyList()).mapNotNull { prayer ->
+        when (prayer.kind) {
+            PrayerKind.Rosary -> "rosary"
+            PrayerKind.JesusPrayer -> "jesusPrayer"
+            PrayerKind.Custom -> prayer.customDevotionId
+        }
+    }
+
+private suspend fun createCustomDevotionFavorite(
     services: AppServices,
     devotionId: String,
     displayName: String,
-    currentFavoriteId: String?,
-): String? {
-    if (currentFavoriteId != null) {
-        services.presetStore.get(currentFavoriteId)?.let { services.presetStore.delete(it) }
-        return null
-    }
-
+): String {
     val newFavorite = Prayer(
         name = displayName,
         kind = PrayerKind.Custom,
