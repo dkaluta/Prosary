@@ -48,6 +48,10 @@ struct AppServices {
     if CommandLine.arguments.contains("-resetStore") {
       try? context.delete(model: PresetEntry.self)
       try? context.save()
+      // Pins and their order outlive the store — they are iCloud preferences, not records —
+      // so a "clean slate" has to clear them too or a run inherits the previous one's Pray tab.
+      FavoriteDevotions.reset()
+      HomeOrder.reset()
     }
     return AppServices(
       presetStore: SwiftDataPresetStore(context: context),

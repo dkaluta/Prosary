@@ -12,16 +12,18 @@ import Foundation
 enum HomeOrder {
   private static let key = "homeCardOrder"
 
+  /// Synced with the pins it orders — an order that stayed on one device would rank a list
+  /// that device might not even have.
   static var saved: [String] {
-    UserDefaults.standard.stringArray(forKey: key) ?? []
+    CloudSyncedList.read(key) ?? []
   }
 
   static func save(_ ids: [String]) {
-    UserDefaults.standard.set(ids, forKey: key)
+    CloudSyncedList.write(ids, forKey: key)
   }
 
   static func reset() {
-    UserDefaults.standard.removeObject(forKey: key)
+    CloudSyncedList.remove(key)
   }
 
   /// Stable sort by saved position; unknown ids keep their relative (directory) order at the

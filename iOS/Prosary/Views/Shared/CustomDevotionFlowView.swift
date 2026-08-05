@@ -25,6 +25,7 @@ struct CustomDevotionFlowView: View {
   @State private var seasonColor = Color.clear
   @State private var languageCode: String?
   @State private var matchingFavoriteId: Prayer.ID? = nil
+  @State private var isPinned = false
   @State private var displayName: String = ""
   @State private var variantId: String? = nil
   /// The favorite's raw language choice: an explicit code, or the sentinel ("follow the
@@ -170,9 +171,10 @@ struct CustomDevotionFlowView: View {
       }
       ToolbarItem(placement: .primaryAction) {
         Button { toggleFavorite() } label: {
-          Image(systemName: matchingFavoriteId != nil ? "star.fill" : "star")
+          Image(systemName: isPinned ? "star.fill" : "star")
         }
-        .accessibilityLabel(matchingFavoriteId != nil ? "prayerFlow.removeFromFavorites" : "prayerFlow.addToFavorites")
+        .accessibilityLabel(isPinned ? "prayerFlow.removeFromFavorites" : "prayerFlow.addToFavorites")
+        .accessibilityIdentifier("pinDevotionButton")
       }
     }
     .task { await load() }
@@ -184,6 +186,7 @@ struct CustomDevotionFlowView: View {
     let all = (try? await services.presetStore.all()) ?? []
     let favorite = prayer ?? all.first { $0.kind == .custom && $0.customDevotionId == devotionId }
     matchingFavoriteId = favorite?.id
+    isPinned = FavoriteDevotions.contains(devotionId, defaultingTo: await impliedPinnedIds())
     chosenLanguage = favorite?.languageCode ?? LanguageCatalog.defaultSentinel
     languageCode = PrayerPackStore.effectiveLanguage(for: devotionId, chosen: chosenLanguage)
 
@@ -306,12 +309,14 @@ struct CustomDevotionFlowView: View {
 
   private func toggleFavorite() {
     Task {
-      if let id = matchingFavoriteId {
-        if let existing = try? await services.presetStore.get(id: id) {
-          try? await services.presetStore.delete(existing)
-        }
-        matchingFavoriteId = nil
-      } else {
+      // Pinning is what puts a devotion on Pray; the Prayer alongside it only carries this
+      // devotion's language/variant/day, so unpinning leaves those settings intact.
+      let implied = await impliedPinnedIds()
+      FavoriteDevotions.toggle(devotionId, defaultingTo: implied)
+      isPinned = FavoriteDevotions.contains(devotionId, defaultingTo: implied)
+
+      // Unpinning keeps the Prayer: it holds the language/variant/day for next time.
+      if isPinned, matchingFavoriteId == nil {
         let newFavorite = Prayer(
           name: displayName,
           kind: .custom,
@@ -321,6 +326,19 @@ struct CustomDevotionFlowView: View {
         )
         try? await services.presetStore.save(newFavorite)
         matchingFavoriteId = newFavorite.id
+      }
+    }
+  }
+
+  /// A devotion counts as pinned by default when it already has a saved configuration — the
+  /// same fallback the Pray tab uses, so the star agrees with what that tab shows.
+  private func impliedPinnedIds() async -> [String] {
+    let all = (try? await services.presetStore.all()) ?? []
+    return all.compactMap { prayer in
+      switch prayer.kind {
+      case .rosary: return "rosary"
+      case .jesusPrayer: return "jesusPrayer"
+      case .custom: return prayer.customDevotionId
       }
     }
   }

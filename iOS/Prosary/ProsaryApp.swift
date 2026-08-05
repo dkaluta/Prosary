@@ -18,6 +18,8 @@ struct ProsaryApp: App {
   init() {
     FontRegistration.registerBundledFontsIfNeeded()
     UserDefaults.standard.register(defaults: ["defaultLanguageCode": LanguageCatalog.defaultCode])
+    // Pull pins/order written on another device, and keep listening for later ones.
+    CloudSyncedList.startSyncing()
   }
 
   var body: some Scene {

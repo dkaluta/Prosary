@@ -5,7 +5,8 @@
 //  Which devotions are pinned to the Pray tab. Deliberately separate from `Prayer`: a Prayer is
 //  a *saved configuration* (a preset), while this is only "show it on Pray", so unpinning a
 //  devotion never destroys the presets underneath it. Devotion ids are the ones the rest of the
-//  app already uses — "rosary", "jesusPrayer", or a bundle id.
+//  app already uses — "rosary", "jesusPrayer", or a bundle id. Synced through iCloud's
+//  key-value store, so a device that receives a preset also receives the pin that shows it.
 //
 
 import Foundation
@@ -16,7 +17,7 @@ enum FavoriteDevotions {
   /// Nil until the user first pins or unpins something, which is what lets a fresh install fall
   /// back to "whatever already has a preset" instead of an empty Pray tab.
   private static var stored: [String]? {
-    UserDefaults.standard.stringArray(forKey: key)
+    CloudSyncedList.read(key)
   }
 
   static func ids(defaultingTo implied: [String]) -> [String] {
@@ -36,7 +37,7 @@ enum FavoriteDevotions {
     } else {
       current.append(devotionId)
     }
-    UserDefaults.standard.set(current, forKey: key)
+    CloudSyncedList.write(current, forKey: key)
   }
 
   static func pin(_ devotionId: String, defaultingTo implied: [String]) {
@@ -45,6 +46,6 @@ enum FavoriteDevotions {
   }
 
   static func reset() {
-    UserDefaults.standard.removeObject(forKey: key)
+    CloudSyncedList.remove(key)
   }
 }

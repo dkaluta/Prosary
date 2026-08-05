@@ -37,6 +37,8 @@ struct HomeView: View {
   /// starred anything.
   private var pinnedDevotions: [DevotionRow] {
     _ = orderGeneration
+    // Re-derive when iCloud delivers a pin or an order from another device.
+    _ = CloudPreferencesGeneration.shared.value
     let implied = impliedPinnedIds
     let rows = allDevotions.filter { FavoriteDevotions.contains($0.id, defaultingTo: implied) }
     return HomeOrder.apply(rows) { $0.id }
