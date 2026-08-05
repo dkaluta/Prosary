@@ -34,6 +34,9 @@ struct CustomDevotionFlowView: View {
   @State private var audio = AudioPlaybackController()
   /// Multi-day devotions: the day this session prays (0-based; sourced from the favorite).
   @State private var dayIndex = 0
+  /// Set when a day was missed: the day that should have happened and the one today calls for.
+  @State private var missedDayChoice: (missed: Int, next: Int)?
+  @State private var runIsComplete = false
 
   private var currentStep: RosaryStep? {
     steps.indices.contains(currentIndex) ? steps[currentIndex] : nil
@@ -177,6 +180,27 @@ struct CustomDevotionFlowView: View {
         .accessibilityIdentifier("pinDevotionButton")
       }
     }
+    .confirmationDialog(
+      String(localized: "multiDay.missedTitle", defaultValue: "You missed a day"),
+      isPresented: .init(get: { missedDayChoice != nil }, set: { if !$0 { missedDayChoice = nil } }),
+      titleVisibility: .visible
+    ) {
+      if let choice = missedDayChoice {
+        Button(String(localized: "multiDay.prayMissed", defaultValue: "Pray day \(choice.missed + 1)")) {
+          switchDay(to: choice.missed)
+          missedDayChoice = nil
+        }
+        Button(String(localized: "multiDay.prayToday", defaultValue: "Continue with day \(choice.next + 1)")) {
+          switchDay(to: choice.next)
+          missedDayChoice = nil
+        }
+        Button(String(localized: "multiDay.startOver", defaultValue: "Start over"), role: .destructive) {
+          MultiDayRuns.startFresh(devotionId)
+          switchDay(to: 0)
+          missedDayChoice = nil
+        }
+      }
+    }
     .task { await load() }
   }
 
@@ -192,6 +216,29 @@ struct CustomDevotionFlowView: View {
 
     variantId = favorite?.variantId
     dayIndex = favorite?.dayIndex ?? 0
+
+    // A series decides its own day: today's if it is unprayed, the same day again if it was
+    // already prayed today, and a choice when one was missed.
+    if let definition = PrayerPackStore.definition(for: devotionId),
+       let days = definition.days, days.count > 1,
+       (definition.dayProgression ?? .series) == .series {
+      let run = MultiDayRuns.run(for: devotionId)
+      switch run?.resumption(dayCount: days.count) ?? .start {
+      case .start:
+        dayIndex = 0
+      case .resume(let day):
+        dayIndex = day
+      case .choose(let missed, let next):
+        dayIndex = missed
+        missedDayChoice = (missed, next)
+      case .complete:
+        dayIndex = days.count - 1
+        runIsComplete = true
+      }
+      if let run, run.hasPrayedToday(), let last = run.prayedDays.last {
+        dayIndex = last
+      }
+    }
 
     isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
     steps = builtSteps()
@@ -364,7 +411,13 @@ struct CustomDevotionFlowView: View {
     if currentIndex >= steps.count - 1 {
       // Finishing a multi-day session advances the favorite to the next day (staying on the
       // last one once the devotion is complete) — tomorrow opens where the novena left off.
-      if let days = PrayerPackStore.definition(for: devotionId)?.days, days.count > 1 {
+      if let definition = PrayerPackStore.definition(for: devotionId),
+         let days = definition.days, days.count > 1 {
+        if (definition.dayProgression ?? .series) == .series {
+          // A series advances by calendar day, so record *which* day was prayed and let the
+          // run decide what comes next — praying twice today must not skip tomorrow's day.
+          MultiDayRuns.recordPrayed(devotionId: devotionId, day: dayIndex)
+        }
         persistDayIndex(min(dayIndex + 1, days.count - 1))
       }
       dismiss()
