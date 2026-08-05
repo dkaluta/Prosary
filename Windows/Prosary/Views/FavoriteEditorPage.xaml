@@ -75,7 +75,7 @@
         </Grid>
 
         <ScrollViewer Grid.Row="1" Visibility="{x:Bind ViewModel.ShowingRosaryOptions, Mode=OneWay, Converter={StaticResource InverseBoolToVisibility}}">
-            <StackPanel Spacing="20" MaxWidth="480" HorizontalAlignment="Center" Padding="16">
+            <StackPanel Spacing="20" MaxWidth="640" HorizontalAlignment="Center" Padding="16">
 
                 <Border Style="{StaticResource SectionCardStyle}">
                     <StackPanel Spacing="12">

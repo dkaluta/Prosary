@@ -74,7 +74,7 @@
         </Grid>
 
         <ScrollViewer Grid.Row="1">
-            <StackPanel Spacing="12" MaxWidth="480" HorizontalAlignment="Center" Padding="16">
+            <StackPanel Spacing="12" MaxWidth="640" HorizontalAlignment="Center" Padding="16">
 
                 <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.HasDefaultPreset, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
                     <TextBlock x:Uid="PickerDefaultHeader" Text="DEFAULT PRESET" Style="{StaticResource SectionHeaderStyle}" />
@@ -127,18 +127,54 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <ToggleSwitch x:Uid="PickerApostlesCreed" Header="Apostles' Creed" OnContent="" OffContent=""
-                                          IsOn="{x:Bind ViewModel.IncludeApostlesCreed, Mode=TwoWay}" />
-                            <ToggleSwitch x:Uid="PickerOpeningPrayers" Header="Opening Our Father &amp; 3 Hail Marys" OnContent="" OffContent=""
-                                          IsOn="{x:Bind ViewModel.IncludeOpeningPrayers, Mode=TwoWay}" />
-                            <ToggleSwitch x:Uid="PickerFatima" Header="Fatima Prayer after each decade" OnContent="" OffContent=""
-                                          IsOn="{x:Bind ViewModel.IncludeFatimaPrayer, Mode=TwoWay}" />
-                            <ToggleSwitch x:Uid="PickerPresenterMode" Header="Presenter mode" OnContent="" OffContent=""
-                                          IsOn="{x:Bind ViewModel.PresenterMode, Mode=TwoWay}" />
-                            <ToggleSwitch x:Uid="PickerStMichael" Header="St. Michael prayer" OnContent="" OffContent=""
-                                          IsOn="{x:Bind ViewModel.IncludeStMichaelPrayer, Mode=TwoWay}" />
-                            <ToggleSwitch x:Uid="PickerFinalCross" Header="Final Sign of the Cross" OnContent="" OffContent=""
-                                          IsOn="{x:Bind ViewModel.IncludeFinalSignOfCross, Mode=TwoWay}" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Uid="PickerApostlesCreed" Grid.Column="0" Text="Apostles' Creed" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeApostlesCreed, Mode=TwoWay}" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Uid="PickerOpeningPrayers" Grid.Column="0" Text="Opening Our Father &amp; 3 Hail Marys" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeOpeningPrayers, Mode=TwoWay}" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Uid="PickerFatima" Grid.Column="0" Text="Fatima Prayer after each decade" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeFatimaPrayer, Mode=TwoWay}" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Uid="PickerPresenterMode" Grid.Column="0" Text="Presenter mode" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.PresenterMode, Mode=TwoWay}" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Uid="PickerStMichael" Grid.Column="0" Text="St. Michael prayer" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeStMichaelPrayer, Mode=TwoWay}" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Uid="PickerFinalCross" Grid.Column="0" Text="Final Sign of the Cross" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeFinalSignOfCross, Mode=TwoWay}" />
+                            </Grid>
                             <Grid ColumnSpacing="8">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
