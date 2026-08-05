@@ -52,6 +52,7 @@ struct AppServices {
       // so a "clean slate" has to clear them too or a run inherits the previous one's Pray tab.
       FavoriteDevotions.reset()
       HomeOrder.reset()
+      MultiDayRuns.reset()
     }
     return AppServices(
       presetStore: SwiftDataPresetStore(context: context),

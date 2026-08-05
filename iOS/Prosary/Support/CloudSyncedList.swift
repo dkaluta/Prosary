@@ -40,6 +40,18 @@ enum CloudSyncedList {
     cloud.synchronize()
   }
 
+  /// Small Codable payloads (the multi-day runs) ride the same store — same size class as the
+  /// lists, same reason for syncing.
+  static func readData(_ key: String) -> Data? {
+    cloud.data(forKey: key) ?? UserDefaults.standard.data(forKey: key)
+  }
+
+  static func writeData(_ value: Data, forKey key: String) {
+    UserDefaults.standard.set(value, forKey: key)
+    cloud.set(value, forKey: key)
+    cloud.synchronize()
+  }
+
   static func remove(_ key: String) {
     UserDefaults.standard.removeObject(forKey: key)
     cloud.removeObject(forKey: key)
@@ -57,6 +69,8 @@ enum CloudSyncedList {
       for key in changed {
         if let value = cloud.array(forKey: key) as? [String] {
           UserDefaults.standard.set(value, forKey: key)
+        } else if let data = cloud.data(forKey: key) {
+          UserDefaults.standard.set(data, forKey: key)
         } else {
           UserDefaults.standard.removeObject(forKey: key)
         }
