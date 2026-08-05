@@ -36,11 +36,15 @@ final class StoreScreenshotTests: XCTestCase {
     XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10))
     snap("01-home")
 
-    // 2 — praying the Rosary (bead track). A saved session prays on one tap now; there is no
-    // picker in between since the Pray tab became the favorites list.
+    // 2 — praying the Rosary (bead track). The card opens the Rosary's presets; the default
+    // one sits at the top of that screen and prays on a tap.
     app.buttons["rosaryCard"].tap()
+    let defaultPreset = app.buttons["prayDefaultPreset"].firstMatch
+    XCTAssertTrue(defaultPreset.waitForExistence(timeout: 10))
+    defaultPreset.tap()
     XCTAssertTrue(app.buttons["prayerFlowNextButton"].waitForExistence(timeout: 10))
     snap("02-rosary")
+    app.navigationBars.buttons.element(boundBy: 0).tap() // back to the presets
     app.navigationBars.buttons.element(boundBy: 0).tap() // back to Pray
 
     // 3 — Stations of the Cross flow, opened from Categories (it has no saved session).

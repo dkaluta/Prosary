@@ -160,6 +160,7 @@ struct RosaryPresetsView: View {
         .tint(Color.brandPrimary)
         .padding(.top, 2)
         .accessibilityLabel(String(localized: "favorites.prayPrayer", defaultValue: "Pray \(preset.name)"))
+        .accessibilityIdentifier(preset.isDefault ? "prayDefaultPreset" : "prayPreset")
       }
       .padding(14)
     }
