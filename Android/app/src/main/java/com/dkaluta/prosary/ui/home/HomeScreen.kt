@@ -99,7 +99,8 @@ private data class DevotionCard(
 fun HomeScreen(
     onOpenPrayer: (String) -> Unit,
     onOpenRosaryPicker: () -> Unit,
-    onOpenFavorites: () -> Unit,
+    /** Opens the preset editor for a new preset of this kind — the + menu's "Add …" items. */
+    onAddPreset: (PrayerKind) -> Unit,
     onOpenAbout: () -> Unit,
     onOpenSettings: () -> Unit,
     onOpenJesusPrayerSetup: () -> Unit,
@@ -272,15 +273,37 @@ fun HomeScreen(
                 scrollBehavior = topBarScroll,
                 title = { Text(stringResource(R.string.tab_pray)) },
                 actions = {
-                    if (unpinnedCards.isNotEmpty()) {
-                        var addMenu by remember { mutableStateOf(false) }
-                        IconButton(onClick = { addMenu = true }) {
-                            Icon(
-                                Icons.Filled.Add,
-                                contentDescription = stringResource(R.string.home_add_devotion),
+                    // The same menu iOS/Mac and Windows open: an ad-hoc Rosary, a new preset of
+                    // either configurable kind, then anything currently off the Pray list —
+                    // without that last part, unpinning the Rosary would hide it for good.
+                    var addMenu by remember { mutableStateOf(false) }
+                    IconButton(onClick = { addMenu = true }) {
+                        Icon(
+                            Icons.Filled.Add,
+                            contentDescription = stringResource(R.string.home_add_devotion),
+                        )
+                    }
+                    DropdownMenu(expanded = addMenu, onDismissRequest = { addMenu = false }) {
+                        DropdownMenuItem(
+                            text = { Text(stringResource(R.string.home_pray_any_rosary)) },
+                            onClick = { addMenu = false; onOpenRosaryPicker() },
+                        )
+                        DropdownMenuItem(
+                            text = { Text(stringResource(R.string.home_add_rosary)) },
+                            onClick = { addMenu = false; onAddPreset(PrayerKind.Rosary) },
+                        )
+                        DropdownMenuItem(
+                            text = { Text(stringResource(R.string.home_add_jesus_prayer)) },
+                            onClick = { addMenu = false; onAddPreset(PrayerKind.JesusPrayer) },
+                        )
+                        if (unpinnedCards.isNotEmpty()) {
+                            HorizontalDivider()
+                            Text(
+                                stringResource(R.string.home_add_to_pray),
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
                             )
-                        }
-                        DropdownMenu(expanded = addMenu, onDismissRequest = { addMenu = false }) {
                             for (card in unpinnedCards) {
                                 DropdownMenuItem(
                                     text = { Text(card.title) },
@@ -292,9 +315,6 @@ fun HomeScreen(
                                 )
                             }
                         }
-                    }
-                    IconButton(onClick = onOpenFavorites) {
-                        Icon(Icons.Filled.Star, contentDescription = stringResource(R.string.home_my_favorites))
                     }
                     IconButton(onClick = onOpenSettings) {
                         Icon(Icons.Filled.Settings, contentDescription = stringResource(R.string.common_settings))

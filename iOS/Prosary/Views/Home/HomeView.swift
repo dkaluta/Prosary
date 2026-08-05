@@ -312,6 +312,24 @@ struct HomeView: View {
           Label(String(localized: "favorites.addJesusPrayer", defaultValue: "Add Jesus Prayer"),
                 systemImage: "heart")
         }
+
+        // Anything currently off the Pray list, so unpinning is never a one-way door — the
+        // Rosary and the Jesus Prayer have no bundle flow to carry a star.
+        let unpinned = allDevotions.filter { row in
+          !FavoriteDevotions.contains(row.id, defaultingTo: impliedPinnedIds)
+        }
+        if !unpinned.isEmpty {
+          Section(String(localized: "home.addToPray", defaultValue: "Add to Pray")) {
+            ForEach(unpinned) { row in
+              Button {
+                FavoriteDevotions.pin(row.id, defaultingTo: impliedPinnedIds)
+                orderGeneration += 1
+              } label: {
+                Label(row.title, systemImage: row.systemImage)
+              }
+            }
+          }
+        }
       } label: {
         Image(systemName: "plus")
       }

@@ -210,7 +210,7 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
             HomeScreen(
                 onOpenPrayer = { id -> navController.navigate(Routes.prayer(id)) },
                 onOpenRosaryPicker = { navController.navigate(Routes.RosaryPicker) },
-                onOpenFavorites = { navController.navigate(Routes.Favorites) },
+                onAddPreset = { kind -> navController.navigate(Routes.favoriteEditor(null, kind)) },
                 onOpenAbout = { navController.navigate(Routes.About) },
                 onOpenSettings = { navController.navigate(Routes.Settings) },
                 onOpenJesusPrayerSetup = { navController.navigate(Routes.JesusPrayerSetup) },

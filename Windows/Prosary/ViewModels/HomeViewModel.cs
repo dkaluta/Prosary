@@ -23,6 +23,10 @@ public partial class DevotionCardModel : ObservableObject
     public required string IconGlyph { get; init; }
     public required ICommand Command { get; init; }
 
+    /// <summary>Whether this devotion has saved presets worth a menu item — the Rosary does,
+    /// the rest are configured in their own flow. Mirrors iOS's DevotionRow.presetsRoute.</summary>
+    public bool HasSavedPresets { get; init; }
+
     [ObservableProperty]
     private string _subtitle = string.Empty;
 
@@ -91,7 +95,11 @@ public partial class HomeViewModel : ObservableObject
         _calendar = calendar;
 
         _allCards.Add(
-            new DevotionCardModel { Id = "rosary", Title = PrayerKind.Rosary.DisplayName(), IconGlyph = "\uEA3A", Command = OpenRosaryCommand }); // CircleRing
+            new DevotionCardModel
+            {
+                Id = "rosary", Title = PrayerKind.Rosary.DisplayName(), IconGlyph = "\uEA3A", // CircleRing
+                Command = OpenRosaryCommand, HasSavedPresets = true,
+            });
 
         foreach (var bundleId in PrayerPackStore.CustomDevotionIds())
         {
@@ -311,10 +319,34 @@ public partial class HomeViewModel : ObservableObject
     [RelayCommand]
     private void OpenRosary()
     {
-        // The picker handles every case itself (default preset up top, ad-hoc quick pray, the
-        // remaining presets) — including having no presets at all.
+        // One click prays, the way it does on iOS/Mac: the card's own menu holds the presets.
+        // With nothing saved there is nothing to pray, so the picker (which offers an ad-hoc
+        // Rosary and a Save) takes over.
+        if (_defaultRosary is { } prayer)
+        {
+            Router.Navigate<RosaryPrayerPage>(prayer.Id);
+            return;
+        }
+
         Router.Navigate<RosaryPresetPickerPage>();
     }
+
+    /// <summary>A card's "Saved presets…" — only the Rosary has any, matching the disclosure the
+    /// Mac shows on that one row.</summary>
+    [RelayCommand]
+    private void OpenSavedPresets() => Router.Navigate<RosaryPresetPickerPage>();
+
+    /// <summary>"Pray any Rosary" — the ad-hoc session the Mac's + menu opens first.</summary>
+    [RelayCommand]
+    private void PrayAnyRosary() => Router.Navigate<RosaryPresetPickerPage>();
+
+    [RelayCommand]
+    private void AddRosaryPreset() =>
+        Router.Navigate<FavoriteEditorPage>(new FavoriteEditorParams(null, PrayerKind.Rosary));
+
+    [RelayCommand]
+    private void AddJesusPrayerPreset() =>
+        Router.Navigate<FavoriteEditorPage>(new FavoriteEditorParams(null, PrayerKind.JesusPrayer));
 
     [RelayCommand]
     private void OpenJesusPrayer()
@@ -328,9 +360,6 @@ public partial class HomeViewModel : ObservableObject
             Router.Navigate<JesusPrayerSetupPage>();
         }
     }
-
-    [RelayCommand]
-    private void OpenFavorites() => Router.Navigate<FavoritesListPage>();
 
     [RelayCommand]
     private void OpenSettings() => Router.Navigate<SettingsPage>();

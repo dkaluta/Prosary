@@ -30,26 +30,42 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock x:Uid="HomeTitle" Grid.Column="0" Text="Pray" Style="{StaticResource HeadlineTextStyle}" VerticalAlignment="Center" />
                 <!-- Puts a devotion back on Pray; hidden once everything installed is here. -->
-                <Button x:Uid="HomeAddDevotionButton" Grid.Column="1" Background="Transparent" Padding="8" ToolTipService.ToolTip="Add a devotion"
-                        Visibility="{x:Bind ViewModel.HasUnpinnedCards, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                <!-- The same menu the Mac's + opens: an ad-hoc Rosary, a new preset of either
+                     configurable kind, and then anything currently off the Pray list. -->
+                <Button x:Uid="HomeAddDevotionButton" Grid.Column="1" Background="Transparent" Padding="8" ToolTipService.ToolTip="Add a prayer">
                     <FontIcon Glyph="&#xE710;" />
                     <Button.Flyout>
                         <Flyout>
-                            <ItemsControl ItemsSource="{x:Bind ViewModel.UnpinnedCards, Mode=OneWay}" MinWidth="220">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate x:DataType="vm:DevotionCardModel">
-                                        <HyperlinkButton Content="{x:Bind Title}" HorizontalAlignment="Stretch"
-                                                         Command="{Binding ElementName=Root, Path=ViewModel.PinCardCommand}"
-                                                         CommandParameter="{Binding}" />
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
+                            <StackPanel Spacing="4" MinWidth="240">
+                                <HyperlinkButton x:Uid="HomePrayAnyRosary" Content="Pray any Rosary" HorizontalAlignment="Stretch"
+                                                 Command="{x:Bind ViewModel.PrayAnyRosaryCommand}" />
+                                <HyperlinkButton x:Uid="HomeAddRosary" Content="Add Rosary" HorizontalAlignment="Stretch"
+                                                 Command="{x:Bind ViewModel.AddRosaryPresetCommand}" />
+                                <HyperlinkButton x:Uid="HomeAddJesusPrayer" Content="Add Jesus Prayer" HorizontalAlignment="Stretch"
+                                                 Command="{x:Bind ViewModel.AddJesusPrayerPresetCommand}" />
+                                <StackPanel Spacing="4"
+                                            Visibility="{x:Bind ViewModel.HasUnpinnedCards, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                                    <TextBlock x:Uid="HomeAddToPrayHeader" Text="Add to Pray" Margin="12,8,0,0"
+                                               Style="{StaticResource CaptionTextBlockStyle}"
+                                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                    <ItemsControl ItemsSource="{x:Bind ViewModel.UnpinnedCards, Mode=OneWay}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="vm:DevotionCardModel">
+                                                <HyperlinkButton Content="{x:Bind Title}" HorizontalAlignment="Stretch"
+                                                                 Command="{Binding ElementName=Root, Path=ViewModel.PinCardCommand}"
+                                                                 CommandParameter="{Binding}" />
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </StackPanel>
                         </Flyout>
                     </Button.Flyout>
                 </Button>
-                <Button x:Uid="HomeFavoritesButton" Grid.Column="2" Background="Transparent" Padding="8" ToolTipService.ToolTip="My Favorites"
-                        Command="{x:Bind ViewModel.OpenFavoritesCommand}">
-                    <FontIcon Glyph="&#xE734;" />
+                <!-- Reordering is a header button here too, not only a card's menu. -->
+                <Button x:Uid="HomeEditOrderButton" Grid.Column="2" Background="Transparent" Padding="8" ToolTipService.ToolTip="Edit order…"
+                        Click="OnEditOrder">
+                    <FontIcon Glyph="&#xE8CB;" />
                 </Button>
                 <Button x:Uid="HomeSettingsButton" Grid.Column="3" Background="Transparent" Padding="8" ToolTipService.ToolTip="Settings"
                         Command="{x:Bind ViewModel.OpenSettingsCommand}">
@@ -107,6 +123,9 @@
                                               Command="{x:Bind Command}">
                             <controls:PrayerCard.ContextFlyout>
                                 <MenuFlyout>
+                                    <MenuFlyoutItem x:Uid="HomeSavedPresets" Text="Saved presets…"
+                                                    Command="{Binding ElementName=Root, Path=ViewModel.OpenSavedPresetsCommand}"
+                                                    Visibility="{Binding HasSavedPresets, Converter={StaticResource BoolToVisibility}}" />
                                     <MenuFlyoutItem x:Uid="HomeMoveToTop" Text="Move to top"
                                                     Command="{Binding ElementName=Root, Path=ViewModel.MoveCardToTopCommand}"
                                                     CommandParameter="{Binding}" />
