@@ -16,4 +16,5 @@ struct MockLiturgicalCalendar: LiturgicalCalendarProviding {
   func seasonColor(for date: Date) -> Color                { inner.seasonColor(for: date) }
   func seasonalMarianAntiphon(for date: Date) -> MarianAntiphonOption { inner.seasonalMarianAntiphon(for: date) }
   func isEasterSeason(for date: Date) -> Bool              { inner.isEasterSeason(for: date) }
+  func isLent(for date: Date) -> Bool                      { inner.isLent(for: date) }
 }

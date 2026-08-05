@@ -47,7 +47,7 @@ struct RosaryPresetsView: View {
                 .foregroundStyle(.secondary)
             }
             Spacer()
-            Image(systemName: "chevron.right")
+            Image(systemName: "chevron.forward")
               .foregroundStyle(.secondary)
           }
           .padding(14)

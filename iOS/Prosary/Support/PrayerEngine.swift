@@ -179,6 +179,12 @@ struct PrayerEngine {
     for option in PrayerPackStore.options(for: bundleId) {
       optionValues[option.key] = optionOverrides[option.key] ?? option.defaultValue
     }
+    // Calendar facts an entry may gate on beside the user's own choices — the Alleluia that
+    // leaves the invitatory during Lent is the first of them. Seeded after the declared
+    // options and reserved by the validator, so a bundle cannot declare an option of the same
+    // name and shadow the season.
+    optionValues["isLent"] = calendar.isLentToday() ? "true" : "false"
+    optionValues["isEasterSeason"] = calendar.isEasterSeasonToday() ? "true" : "false"
     switch definition.type {
     case .steps:
       let (baseSteps, eastertideSteps) = definition.resolvedSteps(variantId: variantId)
@@ -205,17 +211,24 @@ struct PrayerEngine {
   }
 
   /// Evaluates an entry's `"if"` gate against the effective option values: `"key"` — toggle
-  /// on; `"!key"` — toggle off; `"key=caseId"` — choice equals. The validator guarantees every
-  /// authored expression references a declared option, so a missing key (impossible for shipped
-  /// bundles) simply reads as "not on".
+  /// on; `"!key"` — toggle off; `"key=caseId"` — choice equals; and `"a & b"` — every term must
+  /// hold, which is how a step gates on a choice *and* the season ("invitatory & !isLent").
+  /// The validator guarantees every authored term references a declared option or a reserved
+  /// calendar fact, so a missing key (impossible for shipped bundles) simply reads as "not on".
   static func evaluateCondition(_ expression: String, values: [String: String]) -> Bool {
-    if let equals = expression.firstIndex(of: "=") {
-      return values[String(expression[..<equals])] == String(expression[expression.index(after: equals)...])
+    let terms = expression.split(separator: "&").map { $0.trimmingCharacters(in: .whitespaces) }
+    guard terms.count > 1 else { return evaluateTerm(expression, values: values) }
+    return terms.allSatisfy { evaluateTerm($0, values: values) }
+  }
+
+  private static func evaluateTerm(_ term: String, values: [String: String]) -> Bool {
+    if let equals = term.firstIndex(of: "=") {
+      return values[String(term[..<equals])] == String(term[term.index(after: equals)...])
     }
-    if expression.hasPrefix("!") {
-      return values[String(expression.dropFirst())] != "true"
+    if term.hasPrefix("!") {
+      return values[String(term.dropFirst())] != "true"
     }
-    return values[expression] == "true"
+    return values[term] == "true"
   }
 
   /// Expands one `devotion.json` entry into its step(s): resolves the title (literal or

@@ -736,8 +736,18 @@ enum PrayerPackStore {
       reminderPresetFooter: manifest.reminderPresetFooter ?? [:],
       tags: manifest.tags ?? [])
 
-    for language in manifest.languages {
-      let content = try decoder.decode(PackContent.self, from: zip.contents(of: "content/\(language).json"))
+    // Declared languages are what the bundle *offers*; any other content/<code>.json it carries
+    // is an overlay resolved key by key — how a community variant ("he-x-gamliel") ships its
+    // own wording for a few prayers without owing a complete translation of the devotion.
+    let overlayLanguages = zip.fileNames().compactMap { name -> String? in
+      guard name.hasPrefix("content/"), name.hasSuffix(".json") else { return nil }
+      let code = String(name.dropFirst("content/".count).dropLast(".json".count))
+      return manifest.languages.contains(code) ? nil : code
+    }
+
+    for language in manifest.languages + overlayLanguages {
+      guard let contentData = try? zip.contents(of: "content/\(language).json") else { continue }
+      let content = try decoder.decode(PackContent.self, from: contentData)
 
       var rawContent = rawContentByBundle[manifest.id]?[language] ?? [:]
       var prayers = prayerOverrides[language] ?? [:]

@@ -63,7 +63,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Click="OnNavigateUp" Background="Transparent" Padding="8">
-                <FontIcon Glyph="&#xE72B;" />
+                <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
             </Button>
             <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.DevotionTitle, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
             <Button x:Name="LanguageMenuButton" Grid.Column="2" Background="Transparent" Padding="8"

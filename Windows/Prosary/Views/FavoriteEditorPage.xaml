@@ -67,7 +67,7 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Background="Transparent" Command="{x:Bind ViewModel.HideRosaryOptionsCommand}">
                 <StackPanel Orientation="Horizontal" Spacing="4">
-                    <FontIcon Glyph="&#xE76B;" FontSize="14" />
+                    <FontIcon Glyph="&#xE76B;" MirroredWhenRightToLeft="True" FontSize="14" />
                     <TextBlock x:Uid="EdBack" Text="Back" />
                 </StackPanel>
             </Button>
@@ -119,7 +119,7 @@
                                 <TextBlock x:Uid="EdRosaryOptionsRow" Grid.Column="0" Text="Rosary Options" VerticalAlignment="Center" />
                                 <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.MysterySelectionSummary, Mode=OneWay}"
                                            HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource MutedSubtitleTextStyle}" />
-                                <FontIcon Grid.Column="2" Glyph="&#xE76C;" FontSize="14" VerticalAlignment="Center" />
+                                <FontIcon Grid.Column="2" Glyph="&#xE76C;" MirroredWhenRightToLeft="True" FontSize="14" VerticalAlignment="Center" />
                             </Grid>
                         </Border>
                     </Button>

@@ -21,12 +21,14 @@ import org.junit.Test
 
 private class FixedLiturgicalCalendar(
     private val isEasterSeasonValue: Boolean = false,
+    private val isLentValue: Boolean = false,
     private val seasonalAntiphonValue: MarianAntiphonOption = MarianAntiphonOption.SalveRegina,
 ) : LiturgicalCalendarProviding {
     override fun mysteryGroup(date: Date): MysteryGroup = MysteryGroup.Joyful
     override fun seasonColor(date: Date): Color = Color.Transparent
     override fun seasonalMarianAntiphon(date: Date): MarianAntiphonOption = seasonalAntiphonValue
     override fun isEasterSeason(date: Date): Boolean = isEasterSeasonValue
+    override fun isLent(date: Date): Boolean = isLentValue
 }
 
 /** [PrayerEngine.buildCustomDevotionSteps] is the one generic builder behind every
@@ -434,6 +436,55 @@ class CustomDevotionEngineTest {
         assertEquals("angelus", definition?.suggestedNext)
         assertEquals("17 December", definition?.days?.first()?.period)
         assertEquals("O Sapientia", definition?.days?.first()?.name)
+    }
+
+    // MARK: The invitatory, and the Mission's Hebrew
+
+    /** The Rosary may open with "O God, come to my assistance" — off by default, and the
+     * Alleluia leaves it during Lent, which is what the "invitatory & !isLent" gate is for. */
+    @Test
+    fun invitatoryIsOptionalAndDropsItsAlleluiaInLent() {
+        assertFalse(steps("rosary")[1].body.contains("come to my assistance"))
+
+        val on = steps("rosary", customOptions = mapOf("invitatory" to "true"))
+        assertEquals("O God, Come to My Assistance", on[1].title)
+        assertTrue(on[1].body.contains("O Lord, make haste to help me"))
+        assertTrue(on[1].body.contains("Glory be to the Father"))
+        assertTrue(on[1].body.endsWith("Alleluia."))
+
+        val inLent = steps(
+            "rosary",
+            customOptions = mapOf("invitatory" to "true"),
+            calendar = FixedLiturgicalCalendar(isLentValue = true),
+        )
+        assertTrue(inLent[1].body.contains("Glory be to the Father"))
+        assertFalse(inLent[1].body.contains("Alleluia"))
+    }
+
+    @Test
+    fun conjoinedConditionsRequireEveryTerm() {
+        val values = mapOf("invitatory" to "true", "isLent" to "false", "antiphon" to "reginaCaeli")
+        assertTrue(PrayerEngine.evaluateCondition("invitatory & !isLent", values))
+        assertFalse(PrayerEngine.evaluateCondition("invitatory & isLent", values))
+        assertTrue(PrayerEngine.evaluateCondition("invitatory & antiphon=reginaCaeli", values))
+        assertFalse(PrayerEngine.evaluateCondition("invitatory & antiphon=salveRegina", values))
+        // A single term still parses exactly as before.
+        assertTrue(PrayerEngine.evaluateCondition("invitatory", values))
+    }
+
+    /** The Mission of St. Gamaliel's wording overlays plain Hebrew key by key — their Creed is
+     * the Nicene one, and anything they have not sent still reads in the app's Hebrew. */
+    @Test
+    fun gamalielVariantOverlaysHebrew() {
+        val variant = steps("rosary", language = "he-x-gamliel", customOptions = mapOf("apostlesCreed" to "true"))
+        assertTrue("the Creed is the Nicene one", variant[1].body.contains("אָנוּ מַאֲמִינִים"))
+        assertEquals("מאמינים של ניקאה", variant[1].title)
+        assertTrue("their Hail Mary", variant.any { it.body.contains("שָׁלוֹם לָךְ מִרְיָם") })
+
+        // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
+        val hebrew = steps("rosary", language = "he", customOptions = mapOf("apostlesCreed" to "true"))
+        fun fatima(list: List<RosaryStep>) = list.firstOrNull { it.title.contains("הו ישוע") }?.body
+        assertEquals(fatima(hebrew), fatima(variant))
     }
 
     // MARK: Structural guards

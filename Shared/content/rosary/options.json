@@ -1,6 +1,12 @@
 {
   "options": [
     {
+      "key": "invitatory",
+      "kind": "toggle",
+      "name": "Opening versicle (O God, come to my assistance)",
+      "default": false
+    },
+    {
       "key": "apostlesCreed",
       "kind": "toggle",
       "name": "Apostles' Creed",

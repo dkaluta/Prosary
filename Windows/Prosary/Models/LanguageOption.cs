@@ -35,9 +35,9 @@ public static class LanguageCatalog
         new("he", "עברית", true),
         // Aramaic in Hebrew script — the Aramaic-rite communities' liturgical language.
         new("arc", "ארמית", true),
-        // TODO(gamaliel-texts): activate with the Mission's translations — the base-language
-        // fallback mechanism already treats "he-x-gamliel" as an overlay on "he".
-        // new("he-x-gamliel", "עברית — נוסח השליחות", true),
+        // The Mission of St. Gamaliel's own wording, sent by Erez 2026-08-05: an overlay on "he",
+        // so the prayers they have not sent still read in the app's Hebrew.
+        new("he-x-gamliel", "עברית — נוסח השליחות", true),
         new("ru", "Русский", false),
         new("tl", "Tagalog", false),
     ];

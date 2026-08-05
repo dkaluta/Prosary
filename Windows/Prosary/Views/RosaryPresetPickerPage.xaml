@@ -49,7 +49,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Background="Transparent" Command="{x:Bind ViewModel.BackCommand}">
-                <FontIcon Glyph="&#xE72B;" />
+                <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
             </Button>
             <TextBlock x:Uid="PickerTitle" Grid.Column="1" Text="The Holy Rosary" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
             <Button Grid.Column="2" Content="Manage" Background="Transparent" Command="{x:Bind ViewModel.ManagePresetsCommand}" />

@@ -48,6 +48,12 @@ public sealed class LiturgicalCalendarService
 
     public bool IsEasterSeasonForToday() => IsEasterSeason(DateOnly.FromDateTime(DateTime.Today));
 
+    /// <summary>True through Lent — the season that strips the Alleluia from the liturgy, and so
+    /// from any devotion's step that carries one.</summary>
+    public bool IsLent(DateOnly date) => GetSeason(date) == LiturgicalSeason.Lent;
+
+    public bool IsLentForToday() => IsLent(DateOnly.FromDateTime(DateTime.Today));
+
     /// <summary>The traditional liturgical color for the day, for use as an accent/banner color.</summary>
     public Color GetSeasonColor(DateOnly date)
     {

@@ -60,7 +60,7 @@ struct PrayerCard: View {
             // Its own button so tapping the chevron opens the presets while tapping the card
             // still prays; .borderless keeps the row's own Button from swallowing it.
             Button(action: onDisclosure) {
-              Image(systemName: "chevron.right.circle")
+              Image(systemName: "chevron.forward.circle")
                 .font(.title3)
                 .foregroundStyle(accentColor)
                 .padding(.leading, 8)
@@ -69,7 +69,7 @@ struct PrayerCard: View {
             .buttonStyle(.borderless)
             .accessibilityLabel(String(localized: "home.savedPresets", defaultValue: "Saved Presets…"))
           } else {
-            Image(systemName: "chevron.right")
+            Image(systemName: "chevron.forward")
               .font(.subheadline)
               .foregroundStyle(.tertiary)
           }

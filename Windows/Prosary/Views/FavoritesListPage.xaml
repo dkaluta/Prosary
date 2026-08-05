@@ -113,7 +113,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Command="{x:Bind ViewModel.BackCommand}" Background="Transparent" Padding="8">
-                <FontIcon Glyph="&#xE72B;" />
+                <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
             </Button>
             <TextBlock x:Uid="FavTitle" Grid.Column="1" Text="Favorites" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
         </Grid>

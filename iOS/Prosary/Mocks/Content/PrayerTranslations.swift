@@ -39,6 +39,8 @@ enum PrayerTranslations {
     "en": english,
     "ar": arabic,
     "he": hebrew,
+    // The Mission of St. Gamaliel's wording, overlaying plain Hebrew key by key.
+    "he-x-gamliel": hebrewGamaliel,
     "ru": russian,
     "tl": tagalog,
   ]

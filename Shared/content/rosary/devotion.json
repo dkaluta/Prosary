@@ -7,6 +7,18 @@
       "imageKey": "crucifix"
     },
     {
+      "titleKey": "invitatoryTitle",
+      "bodyKey": "invitatoryBody",
+      "imageKey": "our_father",
+      "if": "invitatory & !isLent"
+    },
+    {
+      "titleKey": "invitatoryTitle",
+      "bodyKey": "invitatoryBodyLent",
+      "imageKey": "our_father",
+      "if": "invitatory & isLent"
+    },
+    {
       "titleKey": "symbolumApostolorumTitle",
       "bodyKey": "symbolumApostolorum",
       "imageKey": "crucifix",

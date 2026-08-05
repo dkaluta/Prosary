@@ -413,7 +413,17 @@ public static class PrayerPackStore
             manifest.ReminderPresetFooter ?? new Dictionary<string, string>(),
             manifest.Tags ?? []);
 
-        foreach (var language in manifest.Languages)
+        // Declared languages are what the bundle *offers*; any other content/<code>.json it
+        // carries is an overlay resolved key by key — how a community variant ("he-x-gamliel")
+        // ships its own wording for a few prayers without owing a complete translation.
+        var overlayLanguages = entries.Keys
+            .Where(name => name.StartsWith("content/", StringComparison.Ordinal) &&
+                           name.EndsWith(".json", StringComparison.Ordinal))
+            .Select(name => name["content/".Length..^".json".Length])
+            .Where(code => !manifest.Languages.Contains(code))
+            .ToList();
+
+        foreach (var language in manifest.Languages.Concat(overlayLanguages))
         {
             if (!entries.TryGetValue($"content/{language}.json", out var contentEntry)) continue;
             var content = JsonSerializer.Deserialize<PackContent>(ReadAllBytes(contentEntry), JsonOptions)

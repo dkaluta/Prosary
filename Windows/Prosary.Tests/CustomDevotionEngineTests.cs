@@ -24,8 +24,11 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         bool isEasterSeason = false,
         MarianAntiphonOption seasonalAntiphon = MarianAntiphonOption.SalveRegina,
         string? variantId = null,
-        Dictionary<string, string>? customOptions = null) =>
-        PrayerEngine.BuildCustomDevotionSteps(bundleId, languageCode, isEasterSeason, seasonalAntiphon, variantId, customOptions);
+        Dictionary<string, string>? customOptions = null,
+        bool isLent = false) =>
+        PrayerEngine.BuildCustomDevotionSteps(
+            bundleId, languageCode, isEasterSeason, seasonalAntiphon, variantId, customOptions,
+            rosaryOptions: null, todaysGroup: MysteryGroup.Joyful, dayIndex: 0, isLent: isLent);
 
     // A repeated step's counter is part of the prayer, not the interface: praying in Hebrew, the Divine Mercy
     // decade reads "(1 מתוך 10)" rather than splicing an English word into right-to-left text.
@@ -421,6 +424,60 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Equal("angelus", definition?.SuggestedNext);
         Assert.Equal("17 December", definition?.Days?[0].Period);
         Assert.Equal("O Sapientia", definition?.Days?[0].Name);
+    }
+
+    // The invitatory, and the Mission's Hebrew
+
+    /// <summary>The Rosary may open with "O God, come to my assistance" — off by default, and
+    /// the Alleluia leaves it during Lent, which is what the "invitatory &amp; !isLent" gate is
+    /// for.</summary>
+    [Fact]
+    public void InvitatoryIsOptionalAndDropsItsAlleluiaInLent()
+    {
+        Assert.DoesNotContain("come to my assistance", BuildSteps("rosary", "en")[1].Body);
+
+        var on = BuildSteps("rosary", "en", customOptions: new() { ["invitatory"] = "true" });
+        Assert.Equal("O God, Come to My Assistance", on[1].Title);
+        Assert.Contains("O Lord, make haste to help me", on[1].Body);
+        Assert.Contains("Glory be to the Father", on[1].Body);
+        Assert.EndsWith("Alleluia.", on[1].Body);
+
+        var inLent = BuildSteps("rosary", "en", customOptions: new() { ["invitatory"] = "true" }, isLent: true);
+        Assert.Contains("Glory be to the Father", inLent[1].Body);
+        Assert.DoesNotContain("Alleluia", inLent[1].Body);
+    }
+
+    [Fact]
+    public void ConjoinedConditionsRequireEveryTerm()
+    {
+        var values = new Dictionary<string, string>
+        {
+            ["invitatory"] = "true", ["isLent"] = "false", ["antiphon"] = "reginaCaeli",
+        };
+        Assert.True(PrayerEngine.EvaluateCondition("invitatory & !isLent", values));
+        Assert.False(PrayerEngine.EvaluateCondition("invitatory & isLent", values));
+        Assert.True(PrayerEngine.EvaluateCondition("invitatory & antiphon=reginaCaeli", values));
+        Assert.False(PrayerEngine.EvaluateCondition("invitatory & antiphon=salveRegina", values));
+        // A single term still parses exactly as before.
+        Assert.True(PrayerEngine.EvaluateCondition("invitatory", values));
+    }
+
+    /// <summary>The Mission of St. Gamaliel's wording overlays plain Hebrew key by key — their
+    /// Creed is the Nicene one, and anything they have not sent still reads in the app's
+    /// Hebrew.</summary>
+    [Fact]
+    public void GamalielVariantOverlaysHebrew()
+    {
+        var variant = BuildSteps("rosary", "he-x-gamliel", customOptions: new() { ["apostlesCreed"] = "true" });
+        Assert.Contains("אָנוּ מַאֲמִינִים", variant[1].Body);
+        Assert.Equal("מאמינים של ניקאה", variant[1].Title);
+        Assert.Contains(variant, step => step.Body.Contains("שָׁלוֹם לָךְ מִרְיָם"));
+
+        // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
+        var hebrew = BuildSteps("rosary", "he", customOptions: new() { ["apostlesCreed"] = "true" });
+        static string? Fatima(IReadOnlyList<RosaryStep> steps) =>
+            steps.FirstOrDefault(s => s.Title.Contains("הו ישוע"))?.Body;
+        Assert.Equal(Fatima(hebrew), Fatima(variant));
     }
 
     // Structural guards

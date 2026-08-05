@@ -157,7 +157,8 @@ public sealed class PrayerEngine
         BuildCustomDevotionSteps(
             bundleId, languageCode,
             _calendar.IsEasterSeasonForToday(), _calendar.GetSeasonalMarianAntiphonForToday(), variantId,
-            optionOverrides, rosaryOptions, _calendar.GetMysteryGroupForToday(), dayIndex);
+            optionOverrides, rosaryOptions, _calendar.GetMysteryGroupForToday(), dayIndex,
+            _calendar.IsLentForToday());
 
     /// <summary>The only builder for every <see cref="PrayerKind.Custom"/> devotion — reads
     /// <paramref name="bundleId"/>'s parsed <c>devotion.json</c> and produces the full step
@@ -171,7 +172,7 @@ public sealed class PrayerEngine
         string bundleId, string? languageCode, bool isEasterSeason, MarianAntiphonOption seasonalAntiphon,
         string? variantId = null, Dictionary<string, string>? optionOverrides = null,
         RosaryOptions? rosaryOptions = null, MysteryGroup todaysGroup = MysteryGroup.Joyful,
-        int dayIndex = 0)
+        int dayIndex = 0, bool isLent = false)
     {
         var definition = PrayerPackStore.Definition(bundleId);
         if (definition is null) return [];
@@ -184,6 +185,13 @@ public sealed class PrayerEngine
         {
             optionValues[option.Key] = optionOverrides?.GetValueOrDefault(option.Key) ?? option.DefaultValue;
         }
+
+        // Calendar facts an entry may gate on beside the user's own choices — the Alleluia that
+        // leaves the invitatory during Lent is the first of them. Seeded after the declared
+        // options and reserved by the validator, so a bundle cannot declare an option of the
+        // same name and shadow the season.
+        optionValues["isLent"] = isLent ? "true" : "false";
+        optionValues["isEasterSeason"] = isEasterSeason ? "true" : "false";
 
         switch (definition.Type)
         {
@@ -213,20 +221,26 @@ public sealed class PrayerEngine
     /// <c>"key"</c> — toggle on; <c>"!key"</c> — toggle off; <c>"key=caseId"</c> — choice
     /// equals. The validator guarantees every authored expression references a declared option,
     /// so a missing key (impossible for shipped bundles) simply reads as "not on".</summary>
-    internal static bool EvaluateCondition(string expression, IReadOnlyDictionary<string, string> values)
+    /// <summary>"key" — toggle on; "!key" — toggle off; "key=caseId" — choice equals; and
+    /// "a &amp; b" — every term must hold, which is how a step gates on a choice *and* the
+    /// season ("invitatory &amp; !isLent").</summary>
+    internal static bool EvaluateCondition(string expression, IReadOnlyDictionary<string, string> values) =>
+        expression.Split('&').All(term => EvaluateTerm(term.Trim(), values));
+
+    private static bool EvaluateTerm(string term, IReadOnlyDictionary<string, string> values)
     {
-        var equals = expression.IndexOf('=');
+        var equals = term.IndexOf('=');
         if (equals >= 0)
         {
-            return values.GetValueOrDefault(expression[..equals]) == expression[(equals + 1)..];
+            return values.GetValueOrDefault(term[..equals]) == term[(equals + 1)..];
         }
 
-        if (expression.StartsWith('!'))
+        if (term.StartsWith('!'))
         {
-            return values.GetValueOrDefault(expression[1..]) != "true";
+            return values.GetValueOrDefault(term[1..]) != "true";
         }
 
-        return values.GetValueOrDefault(expression) == "true";
+        return values.GetValueOrDefault(term) == "true";
     }
 
     /// <summary>Expands one <c>devotion.json</c> entry into its step(s): resolves the title

@@ -30,9 +30,9 @@ object LanguageCatalog {
         LanguageOption(code = "he", nativeName = "עברית", isRightToLeft = true),
         // Aramaic in Hebrew script — the Aramaic-rite communities' liturgical language.
         LanguageOption(code = "arc", nativeName = "ארמית", isRightToLeft = true),
-        // TODO(gamaliel-texts): activate with the Mission's translations — the base-language
-        // fallback mechanism already treats "he-x-gamliel" as an overlay on "he".
-        // LanguageOption(code = "he-x-gamliel", nativeName = "עברית — נוסח השליחות", isRightToLeft = true),
+        // The Mission of St. Gamaliel's own wording, sent by Erez 2026-08-05: an overlay on "he",
+        // so the prayers they have not sent still read in the app's Hebrew.
+        LanguageOption(code = "he-x-gamliel", nativeName = "עברית — נוסח השליחות", isRightToLeft = true),
         LanguageOption(code = "ru", nativeName = "Русский", isRightToLeft = false),
         LanguageOption(code = "tl", nativeName = "Tagalog", isRightToLeft = false),
     )

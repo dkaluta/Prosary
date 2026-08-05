@@ -17,6 +17,7 @@ private struct FixedCalendar: LiturgicalCalendarProviding {
   func seasonColor(for date: Date) -> Color { .clear }
   func seasonalMarianAntiphon(for date: Date) -> MarianAntiphonOption { .salveRegina }
   func isEasterSeason(for date: Date) -> Bool { false }
+  func isLent(for date: Date) -> Bool { false }
 }
 
 final class RosaryEngineTests: XCTestCase {

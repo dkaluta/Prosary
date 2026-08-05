@@ -39,11 +39,9 @@ enum LanguageCatalog {
     // Aramaic in Hebrew script — the Aramaic-rite Hebrew Catholic communities' liturgical
     // language (requested by the Mission of St. Gamaliel for v0.7).
     LanguageOption(code: "arc", nativeName: "ארמית", isRightToLeft: true),
-    // TODO(gamaliel-texts): uncomment when the Mission of St. Gamaliel's translations of the
-    // common prayers arrive from Erez — the whole mechanism (base-language fallback in every
-    // resolve chain, typography, effectiveLanguage) already treats "he-x-gamliel" as an
-    // overlay on "he", so activation is this one line plus their content.
-    // LanguageOption(code: "he-x-gamliel", nativeName: "עברית — נוסח השליחות", isRightToLeft: true),
+    // The Mission of St. Gamaliel's own wording, sent by Erez 2026-08-05: an overlay on "he",
+    // so the prayers they have not sent still read in the app's Hebrew.
+    LanguageOption(code: "he-x-gamliel", nativeName: "עברית — נוסח השליחות", isRightToLeft: true),
     LanguageOption(code: "ru", nativeName: "Русский", isRightToLeft: false),
     LanguageOption(code: "tl", nativeName: "Tagalog", isRightToLeft: false),
   ]
