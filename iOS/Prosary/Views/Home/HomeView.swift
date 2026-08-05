@@ -63,8 +63,10 @@ struct HomeView: View {
         id: "rosary", title: PrayerKind.rosary.displayName,
         systemImage: PrayerKind.rosary.systemImage, iconGlyph: nil,
         accent: todayMysteryGroup?.color ?? .brandPrimary,
-        subtitle: rosarySubtitle, presetsRoute: .rosaryPresets,
-        prayAction: { prayRosary() }),
+        // The whole row leads to the presets screen, so no separate disclosure button: the
+        // card's own chevron says it goes somewhere.
+        subtitle: rosarySubtitle, presetsRoute: nil,
+        prayAction: { path.append(AppRoute.rosaryPresets) }),
     ]
     for bundleId in PrayerPackStore.customDevotionIds() {
       guard let info = PrayerPackStore.info(for: bundleId) else { continue }
@@ -277,11 +279,6 @@ struct HomeView: View {
 
   @ViewBuilder
   private func rowMenu(for row: DevotionRow) -> some View {
-    if let route = row.presetsRoute {
-      Button { path.append(route) } label: {
-        Label(String(localized: "home.savedPresets", defaultValue: "Saved Presets…"), systemImage: "bookmark")
-      }
-    }
     if let prayer = savedPrayer(for: row) {
       Button { remindersPrayer = prayer } label: {
         Label(String(localized: "favorites.reminders", defaultValue: "Reminders…"), systemImage: "bell")
@@ -386,14 +383,6 @@ struct HomeView: View {
     monthIntention = TodayInfoStore.intention()
     prayers = (try? await services.presetStore.all()) ?? []
     HomeOrder.dropOrderIfUnrelated(to: allDevotions.map(\.id))
-  }
-
-  private func prayRosary() {
-    if let preset = defaultRosary {
-      path.append(AppRoute.prayer(id: preset.id))
-    } else {
-      path.append(AppRoute.rosaryPresets)
-    }
   }
 
   private func prayJesusPrayer() {

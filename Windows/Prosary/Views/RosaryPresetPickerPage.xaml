@@ -106,8 +106,39 @@
                             <ComboBox HorizontalAlignment="Stretch" Header="Which mystery (1–5)" ItemsSource="{x:Bind ViewModel.Ordinals}"
                                       SelectedItem="{x:Bind ViewModel.SelectedOrdinal, Mode=TwoWay}"
                                       Visibility="{x:Bind ViewModel.ShowsOrdinalPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                            <TextBlock x:Uid="PickerAnyDetail" Text="Every other option follows your default preset — full customization lives in presets."
-                                       Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                            <!-- The whole of RosaryOptions, as the Mac's quick setup offers — this
+                                 is where "Save as Preset" creates one from, so an option missing
+                                 here could never be chosen at creation time. -->
+                            <ComboBox x:Uid="PickerEternalRest" HorizontalAlignment="Stretch" Header="For the faithful departed"
+                                      ItemsSource="{x:Bind ViewModel.EternalRestPlacements}"
+                                      SelectedItem="{x:Bind ViewModel.EternalRestForDeceased, Mode=TwoWay}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource EnumDisplayName}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox x:Uid="PickerAntiphon" HorizontalAlignment="Stretch" Header="Marian antiphon"
+                                      ItemsSource="{x:Bind ViewModel.MarianAntiphons}"
+                                      SelectedItem="{x:Bind ViewModel.MarianAntiphon, Mode=TwoWay}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource EnumDisplayName}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ToggleSwitch x:Uid="PickerApostlesCreed" Header="Apostles' Creed" OnContent="" OffContent=""
+                                          IsOn="{x:Bind ViewModel.IncludeApostlesCreed, Mode=TwoWay}" />
+                            <ToggleSwitch x:Uid="PickerOpeningPrayers" Header="Opening Our Father &amp; 3 Hail Marys" OnContent="" OffContent=""
+                                          IsOn="{x:Bind ViewModel.IncludeOpeningPrayers, Mode=TwoWay}" />
+                            <ToggleSwitch x:Uid="PickerFatima" Header="Fatima Prayer after each decade" OnContent="" OffContent=""
+                                          IsOn="{x:Bind ViewModel.IncludeFatimaPrayer, Mode=TwoWay}" />
+                            <ToggleSwitch x:Uid="PickerPresenterMode" Header="Presenter mode" OnContent="" OffContent=""
+                                          IsOn="{x:Bind ViewModel.PresenterMode, Mode=TwoWay}" />
+                            <ToggleSwitch x:Uid="PickerStMichael" Header="St. Michael prayer" OnContent="" OffContent=""
+                                          IsOn="{x:Bind ViewModel.IncludeStMichaelPrayer, Mode=TwoWay}" />
+                            <ToggleSwitch x:Uid="PickerFinalCross" Header="Final Sign of the Cross" OnContent="" OffContent=""
+                                          IsOn="{x:Bind ViewModel.IncludeFinalSignOfCross, Mode=TwoWay}" />
                             <Grid ColumnSpacing="8">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />

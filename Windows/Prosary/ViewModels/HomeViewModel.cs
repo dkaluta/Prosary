@@ -319,22 +319,10 @@ public partial class HomeViewModel : ObservableObject
     [RelayCommand]
     private void OpenRosary()
     {
-        // One click prays, the way it does on iOS/Mac: the card's own menu holds the presets.
-        // With nothing saved there is nothing to pray, so the picker (which offers an ad-hoc
-        // Rosary and a Save) takes over.
-        if (_defaultRosary is { } prayer)
-        {
-            Router.Navigate<RosaryPrayerPage>(prayer.Id);
-            return;
-        }
-
+        // The Rosary card opens its presets: one card on Pray, however many saved Rosaries
+        // behind it, with the default the first thing that screen offers.
         Router.Navigate<RosaryPresetPickerPage>();
     }
-
-    /// <summary>A card's "Saved presets…" — only the Rosary has any, matching the disclosure the
-    /// Mac shows on that one row.</summary>
-    [RelayCommand]
-    private void OpenSavedPresets() => Router.Navigate<RosaryPresetPickerPage>();
 
     /// <summary>A card's "Reminders…" — the saved configuration behind the card is what they
     /// belong to, so a devotion pinned but never configured has none to edit.</summary>

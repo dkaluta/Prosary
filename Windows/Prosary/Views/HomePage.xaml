@@ -123,9 +123,6 @@
                                               Command="{x:Bind Command}">
                             <controls:PrayerCard.ContextFlyout>
                                 <MenuFlyout>
-                                    <MenuFlyoutItem x:Uid="HomeSavedPresets" Text="Saved presets…"
-                                                    Command="{Binding ElementName=Root, Path=ViewModel.OpenSavedPresetsCommand}"
-                                                    Visibility="{Binding HasSavedPresets, Converter={StaticResource BoolToVisibility}}" />
                                     <MenuFlyoutItem x:Uid="HomeReminders" Text="Reminders…"
                                                     Command="{Binding ElementName=Root, Path=ViewModel.OpenRemindersCommand}"
                                                     CommandParameter="{Binding}" />

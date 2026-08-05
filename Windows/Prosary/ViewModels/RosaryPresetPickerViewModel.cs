@@ -49,6 +49,36 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
     [ObservableProperty]
     private int _selectedOrdinal = 1;
 
+    // The rest of RosaryOptions, editable here rather than inherited silently: the Mac's quick
+    // setup offers the whole set, and this is where a preset gets created from ("Save as
+    // Preset"), so anything not offered here could never be set at creation time.
+    public IReadOnlyList<EternalRestPlacement> EternalRestPlacements { get; } = Enum.GetValues<EternalRestPlacement>();
+    public IReadOnlyList<MarianAntiphonOption> MarianAntiphons { get; } = Enum.GetValues<MarianAntiphonOption>();
+
+    [ObservableProperty]
+    private bool _includeApostlesCreed = true;
+
+    [ObservableProperty]
+    private bool _includeOpeningPrayers = true;
+
+    [ObservableProperty]
+    private bool _includeFatimaPrayer = true;
+
+    [ObservableProperty]
+    private EternalRestPlacement _eternalRestForDeceased = EternalRestPlacement.None;
+
+    [ObservableProperty]
+    private bool _presenterMode;
+
+    [ObservableProperty]
+    private MarianAntiphonOption _marianAntiphon = MarianAntiphonOption.Seasonal;
+
+    [ObservableProperty]
+    private bool _includeStMichaelPrayer;
+
+    [ObservableProperty]
+    private bool _includeFinalSignOfCross = true;
+
     public bool ShowsGroupPicker =>
         SelectedMode is MysterySelectionMode.Specific or MysterySelectionMode.SingleMystery;
 
@@ -67,16 +97,24 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
         HasDefaultPreset = DefaultPreset is not null;
         HasOtherPresets = OtherPresets.Count > 0;
 
+        // Seeded from the default preset, so "any Rosary" starts where your usual one does.
         if (DefaultPreset is { } preset)
         {
             SelectedMode = preset.Rosary.MysterySelectionMode;
             SelectedGroup = preset.Rosary.SpecificMysteryGroup;
             SelectedOrdinal = preset.Rosary.SpecificMysteryOrder;
+            IncludeApostlesCreed = preset.Rosary.IncludeApostlesCreed;
+            IncludeOpeningPrayers = preset.Rosary.IncludeOpeningPrayers;
+            IncludeFatimaPrayer = preset.Rosary.IncludeFatimaPrayer;
+            EternalRestForDeceased = preset.Rosary.EternalRestForDeceased;
+            PresenterMode = preset.Rosary.PresenterMode;
+            MarianAntiphon = preset.Rosary.MarianAntiphon;
+            IncludeStMichaelPrayer = preset.Rosary.IncludeStMichaelPrayer;
+            IncludeFinalSignOfCross = preset.Rosary.IncludeFinalSignOfCross;
         }
     }
 
-    /// <summary>The ad-hoc Prayer the current quick-setup selection describes — the default
-    /// preset's options with the mystery selection swapped in.</summary>
+    /// <summary>The ad-hoc Prayer the current quick-setup selection describes.</summary>
     public Prayer AdHocPrayer()
     {
         var seed = DefaultPreset?.Rosary ?? new RosaryOptions();
@@ -89,6 +127,14 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
                 MysterySelectionMode = SelectedMode,
                 SpecificMysteryGroup = SelectedGroup,
                 SpecificMysteryOrder = SelectedOrdinal,
+                IncludeApostlesCreed = IncludeApostlesCreed,
+                IncludeOpeningPrayers = IncludeOpeningPrayers,
+                IncludeFatimaPrayer = IncludeFatimaPrayer,
+                EternalRestForDeceased = EternalRestForDeceased,
+                PresenterMode = PresenterMode,
+                MarianAntiphon = MarianAntiphon,
+                IncludeStMichaelPrayer = IncludeStMichaelPrayer,
+                IncludeFinalSignOfCross = IncludeFinalSignOfCross,
             },
         };
     }
