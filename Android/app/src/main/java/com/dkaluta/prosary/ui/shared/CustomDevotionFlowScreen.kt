@@ -37,6 +37,7 @@ import com.dkaluta.prosary.models.FavoriteDevotions
 import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.MultiDayRun
 import com.dkaluta.prosary.models.MultiDayRuns
+import com.dkaluta.prosary.reminders.ReminderScheduler
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.models.RosaryStep
@@ -236,6 +237,7 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
                     }) { Text(stringResource(R.string.multi_day_pray_today, next + 1)) }
                     TextButton(onClick = {
                         MultiDayRuns.startFresh(context, devotionId)
+                        ReminderScheduler.refreshSeries(context, devotionId)
                         dayIndex = 0
                         persistDayIndex(0)
                         missedDayChoice = null
@@ -272,6 +274,8 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
                     // tomorrow's day.
                     if ((definition?.dayProgression ?: "series") == "series") {
                         MultiDayRuns.recordPrayed(context, devotionId, dayIndex)
+                        // The remaining days keep their prompts; the finished ones lose theirs.
+                        ReminderScheduler.refreshSeries(context, devotionId)
                     }
                     persistDayIndex(minOf(dayIndex + 1, days.size - 1))
                 }

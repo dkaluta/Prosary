@@ -29,6 +29,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     private readonly IPresetStore _presets;
     private readonly PrayerEngine _engine;
     private readonly LiturgicalCalendarService _calendar;
+    private readonly IReminderScheduler _reminders;
 
     /// <summary>Created lazily on first successful track pick — the service captures the UI
     /// thread's DispatcherQueue, and the ViewModel is always constructed there.</summary>
@@ -325,11 +326,16 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         }
     }
 
-    public CustomDevotionViewModel(IPresetStore presets, PrayerEngine engine, LiturgicalCalendarService calendar)
+    public CustomDevotionViewModel(
+        IPresetStore presets,
+        PrayerEngine engine,
+        LiturgicalCalendarService calendar,
+        IReminderScheduler reminders)
     {
         _presets = presets;
         _engine = engine;
         _calendar = calendar;
+        _reminders = reminders;
     }
 
     public async Task LoadAsync(Guid? prayerId, string bundleId)
@@ -498,6 +504,8 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
                 if ((PrayerPackStore.Definition(_bundleId)?.DayProgression ?? "series") == "series")
                 {
                     MultiDayRuns.RecordPrayed(_bundleId, CurrentDayIndex);
+                    // The remaining days keep their prompts; the finished ones lose theirs.
+                    _reminders.RefreshSeries(_bundleId);
                 }
 
                 _ = PersistDayIndexAsync(Math.Min(CurrentDayIndex + 1, Days.Count - 1));
@@ -727,6 +735,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     {
         ShowsMissedDayChoice = false;
         MultiDayRuns.StartFresh(_bundleId);
+        _reminders.RefreshSeries(_bundleId);
         await SelectDayAsync(0);
     }
 }

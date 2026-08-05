@@ -1,4 +1,5 @@
 using Prosary.Models;
+using Prosary.Services;
 using Xunit;
 
 namespace Prosary.Tests;
@@ -50,4 +51,41 @@ public class MultiDayRunTests
     [Fact]
     public void DueDayNeverRunsPastTheLastDay() =>
         Assert.Equal(8, new MultiDayRun("novena", Start, []).DueDay(Nine, Day(400)));
+}
+
+/// <summary>One prompt per remaining day, never for a day already prayed or already past.
+/// Mirrors iOS's MultiDaySeriesReminderTests and Android's SeriesReminderTest.</summary>
+public class SeriesReminderTests
+{
+    private static DateTimeOffset At(int year, int month, int day, int hour = 9) =>
+        new(new DateTime(year, month, day, hour, 0, 0), TimeSpan.Zero);
+
+    [Fact]
+    public void EveryUnprayedDayGetsOnePromptOnItsOwnDate()
+    {
+        var run = new MultiDayRun("oAntiphons", At(2026, 12, 17), []);
+        var pending = WindowsReminderScheduler.PendingSeriesDays(run, 7, 18, 0, At(2026, 12, 17, 8));
+
+        Assert.Equal([0, 1, 2, 3, 4, 5, 6], pending.Select(p => p.Day));
+        Assert.Equal(At(2026, 12, 17, 18), pending[0].When);
+        Assert.Equal(At(2026, 12, 23, 18), pending[^1].When);
+    }
+
+    [Fact]
+    public void PrayedAndPastDaysAreSkipped()
+    {
+        var run = new MultiDayRun("oAntiphons", At(2026, 12, 17), []).RecordingPrayed(0, At(2026, 12, 17, 19));
+        // Two evenings in: day 0 was prayed, day 1's prompt has already fired.
+        var pending = WindowsReminderScheduler.PendingSeriesDays(run, 7, 18, 0, At(2026, 12, 18, 20));
+
+        Assert.Equal([2, 3, 4, 5, 6], pending.Select(p => p.Day));
+    }
+
+    [Fact]
+    public void TheBundlesSuggestedTimeWinsAndNonsenseFallsBack()
+    {
+        Assert.Equal((7, 30), WindowsReminderScheduler.ReminderTime("07:30"));
+        Assert.Equal((18, 0), WindowsReminderScheduler.ReminderTime(null));
+        Assert.Equal((18, 0), WindowsReminderScheduler.ReminderTime("25:00"));
+    }
 }
