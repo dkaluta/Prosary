@@ -52,7 +52,16 @@ public partial class HomeViewModel : ObservableObject
 
     private readonly Dictionary<string, DevotionCardModel> _customCardsByBundleId = [];
 
-    public ObservableCollection<DevotionCardModel> DevotionCards { get; }
+    /// <summary>Every devotion the app can pray, pinned or not — <see cref="DevotionCards"/> is
+    /// the subset that Pray shows.</summary>
+    private readonly List<DevotionCardModel> _allCards = [];
+
+    public ObservableCollection<DevotionCardModel> DevotionCards { get; } = [];
+
+    /// <summary>What the + button offers: everything installed that is not on Pray.</summary>
+    public ObservableCollection<DevotionCardModel> UnpinnedCards { get; } = [];
+
+    public bool HasUnpinnedCards => UnpinnedCards.Count > 0;
 
     // The Home "Today" section — the day's feast per the Holy Land (Latin Patriarchate of
     // Jerusalem) calendar and the Pope's monthly prayer intention; null hides each row.
@@ -81,10 +90,8 @@ public partial class HomeViewModel : ObservableObject
         _presets = presets;
         _calendar = calendar;
 
-        DevotionCards =
-        [
-            new DevotionCardModel { Id = "rosary", Title = PrayerKind.Rosary.DisplayName(), IconGlyph = "\uEA3A", Command = OpenRosaryCommand }, // CircleRing
-        ];
+        _allCards.Add(
+            new DevotionCardModel { Id = "rosary", Title = PrayerKind.Rosary.DisplayName(), IconGlyph = "\uEA3A", Command = OpenRosaryCommand }); // CircleRing
 
         foreach (var bundleId in PrayerPackStore.CustomDevotionIds())
         {
@@ -103,16 +110,70 @@ public partial class HomeViewModel : ObservableObject
                 Command = new RelayCommand(() => OpenCustomDevotion(bundleId)),
             };
             _customCardsByBundleId[bundleId] = card;
-            DevotionCards.Add(card);
+            _allCards.Add(card);
         }
 
-        DevotionCards.Add(new DevotionCardModel
+        _allCards.Add(new DevotionCardModel
         {
             Id = "jesusPrayer", Title = PrayerKind.JesusPrayer.DisplayName(), IconGlyph = "\uEB52", // HeartFill
             Command = OpenJesusPrayerCommand,
         });
+    }
 
-        ApplySavedOrder();
+    /// <summary>The devotion id a card pins under — "custom.trisagion" orders, "trisagion"
+    /// pins.</summary>
+    private static string DevotionIdOf(DevotionCardModel card) =>
+        card.Id.StartsWith("custom.", StringComparison.Ordinal) ? card.Id["custom.".Length..] : card.Id;
+
+    /// <summary>A devotion counts as pinned by default when it already has a saved configuration,
+    /// which is what keeps a fresh install from opening on an empty Pray page.</summary>
+    private List<string> ImpliedPinnedIds()
+    {
+        var ids = new List<string> { "rosary" };
+        ids.AddRange(_defaultCustomDevotions.Where(pair => pair.Value is not null).Select(pair => pair.Key));
+        if (_defaultJesusPrayer is not null)
+        {
+            ids.Add("jesusPrayer");
+        }
+
+        return ids;
+    }
+
+    /// <summary>Pray is the pinned list: a devotion appears here because you put it here.
+    /// Everything installed stays reachable on Categories and Search, so unpinning hides a card
+    /// without losing anything.</summary>
+    private void RebuildPinnedCards()
+    {
+        var implied = ImpliedPinnedIds();
+        var pinned = _allCards.Where(card => FavoriteDevotions.Contains(DevotionIdOf(card), implied)).ToList();
+
+        DevotionCards.Clear();
+        foreach (var card in HomeOrder.Apply(pinned, c => c.Id))
+        {
+            DevotionCards.Add(card);
+        }
+
+        UnpinnedCards.Clear();
+        foreach (var card in _allCards.Where(card => !pinned.Contains(card)))
+        {
+            UnpinnedCards.Add(card);
+        }
+
+        OnPropertyChanged(nameof(HasUnpinnedCards));
+    }
+
+    [RelayCommand]
+    private void PinCard(DevotionCardModel card)
+    {
+        FavoriteDevotions.Pin(DevotionIdOf(card), ImpliedPinnedIds());
+        RebuildPinnedCards();
+    }
+
+    [RelayCommand]
+    private void UnpinCard(DevotionCardModel card)
+    {
+        FavoriteDevotions.Toggle(DevotionIdOf(card), ImpliedPinnedIds());
+        RebuildPinnedCards();
     }
 
     /// <summary>Re-sorts <see cref="DevotionCards"/> by the persisted per-user order
@@ -231,11 +292,15 @@ public partial class HomeViewModel : ObservableObject
             var match = all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId && p.IsDefault)
                 ?? all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId);
             _defaultCustomDevotions[bundleId] = match;
-            _customCardsByBundleId[bundleId].Subtitle = match?.Name ?? Loc.Tr("home_click_to_pray", "Click to pray");
+            _customCardsByBundleId[bundleId].Subtitle = MultiDayStatus.Subtitle(bundleId)
+                ?? match?.Name
+                ?? Loc.Tr("home_click_to_pray", "Click to pray");
         }
+
+        RebuildPinnedCards();
     }
 
-    private DevotionCardModel Card(string id) => DevotionCards.First(c => c.Id == id);
+    private DevotionCardModel Card(string id) => _allCards.First(c => c.Id == id);
 
     private void OpenCustomDevotion(string bundleId)
     {

@@ -96,9 +96,9 @@
             <Button Grid.Column="6" Command="{x:Bind ViewModel.ToggleFavoriteCommand, Mode=OneWay}" Background="Transparent" Padding="8">
                 <Grid>
                     <FontIcon Glyph="&#xE735;" Foreground="{StaticResource BrandPrimaryBrush}"
-                              Visibility="{x:Bind ViewModel.IsFavorited, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                              Visibility="{x:Bind ViewModel.IsPinned, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                     <FontIcon Glyph="&#xE734;"
-                              Visibility="{x:Bind ViewModel.IsFavorited, Mode=OneWay, Converter={StaticResource InverseBoolToVisibility}}" />
+                              Visibility="{x:Bind ViewModel.IsPinned, Mode=OneWay, Converter={StaticResource InverseBoolToVisibility}}" />
                 </Grid>
             </Button>
         </Grid>
@@ -108,6 +108,23 @@
         <StackPanel Grid.Row="2" Spacing="8">
             <ProgressBar Minimum="0" Maximum="1" Value="{x:Bind ViewModel.Progress, Mode=OneWay, Converter={StaticResource NullableDoubleToValue}}" />
             <TextBlock Text="{x:Bind ViewModel.ProgressText, Mode=OneWay}" HorizontalAlignment="Center" Style="{StaticResource MutedCaptionTextStyle}" />
+
+            <!-- A missed day of a series is a real choice, not an error: pray the day that
+                 should have happened, stay with the calendar, or start the run over. -->
+            <InfoBar x:Uid="MultiDayMissedBar" IsOpen="{x:Bind ViewModel.ShowsMissedDayChoice, Mode=OneWay}"
+                     IsClosable="False" Severity="Informational" Title="You missed a day"
+                     Message="Pray the day you missed, stay with today, or start the whole devotion over.">
+                <InfoBar.Content>
+                    <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,12">
+                        <Button Content="{x:Bind ViewModel.MissedDayPrayMissedText, Mode=OneWay}"
+                                Command="{x:Bind ViewModel.PrayMissedDayCommand}" />
+                        <Button Content="{x:Bind ViewModel.MissedDayPrayTodayText, Mode=OneWay}"
+                                Command="{x:Bind ViewModel.PrayCalendarDayCommand}" />
+                        <Button x:Uid="MultiDayStartOverButton" Content="Start over"
+                                Command="{x:Bind ViewModel.StartRunOverCommand}" />
+                    </StackPanel>
+                </InfoBar.Content>
+            </InfoBar>
         </StackPanel>
 
         <Grid x:Name="NarrowLayout" Grid.Row="3" RowSpacing="16">
