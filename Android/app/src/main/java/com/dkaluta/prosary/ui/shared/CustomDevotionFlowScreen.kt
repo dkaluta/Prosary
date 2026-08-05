@@ -360,10 +360,14 @@ fun CustomDevotionFlowScreen(
                     Icon(Icons.Filled.Language, contentDescription = stringResource(R.string.flow_prayer_language))
                 }
                 DropdownMenu(expanded = languageMenuExpanded, onDismissRequest = { languageMenuExpanded = false }) {
+                    // A language prayed in more than one use lists those under it — the rite is
+                    // a second question, and one whose gaps fall back to the language's own.
+                    val rites = LanguageCatalog.rites(LanguageCatalog.resolve(chosenLanguage).code)
                     val choices = listOf(LanguageCatalog.defaultSentinel to stringResource(R.string.flow_app_setting)) +
                         bundleLanguages.mapNotNull { code ->
                             LanguageCatalog.all.firstOrNull { it.code == code }?.let { it.code to it.nativeName }
-                        }
+                        } +
+                        (if (rites.size > 1) rites.map { it.code to it.nativeName } else emptyList())
                     for ((raw, name) in choices) {
                         DropdownMenuItem(
                             text = { Text(name) },

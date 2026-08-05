@@ -433,6 +433,21 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertEqual(fatima(variant), fatima(hebrew))
   }
 
+  /// A rite lives under its language, not beside it: the language list stays the eight tongues,
+  /// and the rite's own code still resolves (that is what the pickers store).
+  func testRitesAreListedUnderTheirLanguage() {
+    XCTAssertFalse(LanguageCatalog.all.contains { $0.code == "he-x-gamliel" })
+    XCTAssertEqual(LanguageCatalog.rites(of: "he").map(\.code), ["he", "he-x-gamliel"])
+    XCTAssertEqual(LanguageCatalog.rites(of: "he-x-gamliel").map(\.code), ["he", "he-x-gamliel"])
+    XCTAssertTrue(LanguageCatalog.rites(of: "la").isEmpty)
+
+    // A rite resolves as its language for display, keeps its own code, and reads right-to-left.
+    let resolved = LanguageCatalog.resolve("he-x-gamliel")
+    XCTAssertEqual(resolved.code, "he-x-gamliel")
+    XCTAssertEqual(resolved.nativeName, "עברית")
+    XCTAssertTrue(resolved.isRightToLeft)
+  }
+
   // MARK: - Structural guards
 
   func testMissingCustomDevotionIdProducesNoSteps() {

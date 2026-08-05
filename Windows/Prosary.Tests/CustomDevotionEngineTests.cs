@@ -480,6 +480,24 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Equal(Fatima(hebrew), Fatima(variant));
     }
 
+    /// <summary>A rite lives under its language, not beside it: the language list stays the
+    /// eight tongues, and the rite's own code still resolves (that is what the pickers
+    /// store).</summary>
+    [Fact]
+    public void RitesAreListedUnderTheirLanguage()
+    {
+        Assert.DoesNotContain(LanguageCatalog.All, l => l.Code == "he-x-gamliel");
+        Assert.Equal(["he", "he-x-gamliel"], LanguageCatalog.Rites("he").Select(r => r.Code));
+        Assert.Equal(["he", "he-x-gamliel"], LanguageCatalog.Rites("he-x-gamliel").Select(r => r.Code));
+        Assert.Empty(LanguageCatalog.Rites("la"));
+
+        // A rite resolves as its language for display, keeps its own code, and reads right-to-left.
+        var resolved = LanguageCatalog.Resolve("he-x-gamliel");
+        Assert.Equal("he-x-gamliel", resolved.Code);
+        Assert.Equal("עברית", resolved.NativeName);
+        Assert.True(resolved.IsRightToLeft);
+    }
+
     // Structural guards
 
     [Fact]

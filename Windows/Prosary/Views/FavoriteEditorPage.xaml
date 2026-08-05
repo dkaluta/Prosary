@@ -95,13 +95,20 @@
                     <TextBlock x:Uid="EdLanguageHeader" Text="PRAYER LANGUAGE" Style="{StaticResource SectionHeaderStyle}" />
                     <Border Style="{StaticResource SectionCardStyle}">
                         <ComboBox HorizontalAlignment="Stretch" ItemsSource="{x:Bind ViewModel.LanguageCodeOptions}"
-                                  SelectedItem="{x:Bind ViewModel.LanguageCode, Mode=TwoWay}">
+                                  SelectedItem="{x:Bind ViewModel.BaseLanguageCode, Mode=TwoWay}">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Converter={StaticResource LanguageCodeLabel}}" />
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
+                    </Border>
+                    <!-- Whose use of that language — shown only where there is more than one. -->
+                    <Border Style="{StaticResource SectionCardStyle}"
+                            Visibility="{x:Bind ViewModel.ShowsRitePicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                        <ComboBox x:Uid="EdRiteCombo" Header="Rite" HorizontalAlignment="Stretch"
+                                  ItemsSource="{x:Bind ViewModel.RiteOptions, Mode=OneWay}" DisplayMemberPath="NativeName"
+                                  SelectedItem="{x:Bind ViewModel.SelectedRite, Mode=TwoWay}" />
                     </Border>
                 </StackPanel>
 

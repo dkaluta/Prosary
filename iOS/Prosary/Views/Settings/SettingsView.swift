@@ -18,14 +18,38 @@ struct SettingsView: View {
   @State private var audioCacheBytes = SettingsMaintenance.audioCacheSize()
   @State private var homeOrderIsCustom = !HomeOrder.saved.isEmpty
 
+  /// Choosing a language keeps the rite when that language has one, and drops it otherwise —
+  /// so switching Hebrew → Latin → Hebrew does not silently forget whose Hebrew you pray.
+  private var languageBinding: Binding<String> {
+    Binding(
+      get: { LanguageCatalog.baseLanguage(of: languageCode) ?? languageCode },
+      set: { newBase in
+        languageCode = LanguageCatalog.rites(of: newBase).first?.code ?? newBase
+      })
+  }
+
   var body: some View {
     Form {
       Section(String(localized: "settings.prayerLanguageHeader", defaultValue: "Prayer Language")) {
+        // The stored code may name a rite ("he-x-gamliel"), so the language row binds to its
+        // base and the rite row below chooses among that language's uses.
         Picker(String(localized: "settings.defaultLanguage", defaultValue: "Default language"),
-               selection: $languageCode) {
+               selection: languageBinding) {
           ForEach(LanguageCatalog.all) { lang in
             Text(lang.nativeName).tag(lang.code)
           }
+        }
+
+        // Only for a language prayed in more than one use — everywhere else there is nothing
+        // to choose, so nothing is shown.
+        let rites = LanguageCatalog.rites(of: languageCode)
+        if rites.count > 1 {
+          Picker(String(localized: "settings.rite", defaultValue: "Rite"), selection: $languageCode) {
+            ForEach(rites) { rite in
+              Text(rite.nativeName).tag(rite.code)
+            }
+          }
+          .accessibilityIdentifier("ritePicker")
         }
       }
 

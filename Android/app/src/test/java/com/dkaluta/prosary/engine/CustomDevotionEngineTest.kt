@@ -6,6 +6,7 @@ import com.dkaluta.prosary.content.prayerpack.CustomDevotionDefinition
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.MarianAntiphonOption
 import com.dkaluta.prosary.models.MysteryGroup
+import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.models.RosaryStep
@@ -485,6 +486,22 @@ class CustomDevotionEngineTest {
         val hebrew = steps("rosary", language = "he", customOptions = mapOf("apostlesCreed" to "true"))
         fun fatima(list: List<RosaryStep>) = list.firstOrNull { it.title.contains("הו ישוע") }?.body
         assertEquals(fatima(hebrew), fatima(variant))
+    }
+
+    /** A rite lives under its language, not beside it: the language list stays the eight
+     * tongues, and the rite's own code still resolves (that is what the pickers store). */
+    @Test
+    fun ritesAreListedUnderTheirLanguage() {
+        assertFalse(LanguageCatalog.all.any { it.code == "he-x-gamliel" })
+        assertEquals(listOf("he", "he-x-gamliel"), LanguageCatalog.rites("he").map { it.code })
+        assertEquals(listOf("he", "he-x-gamliel"), LanguageCatalog.rites("he-x-gamliel").map { it.code })
+        assertTrue(LanguageCatalog.rites("la").isEmpty())
+
+        // A rite resolves as its language for display, keeps its own code, and reads right-to-left.
+        val resolved = LanguageCatalog.resolve("he-x-gamliel")
+        assertEquals("he-x-gamliel", resolved.code)
+        assertEquals("עברית", resolved.nativeName)
+        assertTrue(resolved.isRightToLeft)
     }
 
     // MARK: Structural guards

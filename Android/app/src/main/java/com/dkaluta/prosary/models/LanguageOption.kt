@@ -30,17 +30,43 @@ object LanguageCatalog {
         LanguageOption(code = "he", nativeName = "עברית", isRightToLeft = true),
         // Aramaic in Hebrew script — the Aramaic-rite communities' liturgical language.
         LanguageOption(code = "arc", nativeName = "ארמית", isRightToLeft = true),
-        // The Mission of St. Gamaliel's own wording, sent by Erez 2026-08-05: an overlay on "he",
-        // so the prayers they have not sent still read in the app's Hebrew.
-        LanguageOption(code = "he-x-gamliel", nativeName = "עברית — נוסח השליחות", isRightToLeft = true),
         LanguageOption(code = "ru", nativeName = "Русский", isRightToLeft = false),
         LanguageOption(code = "tl", nativeName = "Tagalog", isRightToLeft = false),
     )
 
+    /** Rites (community uses) of one language: the same tongue, a different wording. Listed
+     * under the language rather than beside it, because choosing "Hebrew" and choosing *whose*
+     * Hebrew are two different questions — and because a rite that lacks a prayer falls back to
+     * the language's own, so they are never truly separate languages.
+     *
+     * The first entry of each list is the language's own (base) use; the rest overlay it. */
+    val ritesByLanguage: Map<String, List<LanguageOption>> = mapOf(
+        "he" to listOf(
+            LanguageOption(code = "he", nativeName = "נוסח הנציגות", isRightToLeft = true),
+            // The Mission of St. Gamaliel's wording, sent by Erez 2026-08-05.
+            LanguageOption(code = "he-x-gamliel", nativeName = "נוסח השליחות", isRightToLeft = true),
+        ),
+    )
+
+    /** The rites offered for a code's language — empty when there is only one way to pray it. */
+    fun rites(code: String): List<LanguageOption> =
+        ritesByLanguage[baseLanguage(code) ?: code].orEmpty()
+
     fun resolve(code: String?): LanguageOption {
         if (code == null || code == defaultSentinel) {
-            return all.firstOrNull { it.code == AppSettings.defaultLanguageCode }
-                ?: all.first { it.code == defaultCode }
+            return option(AppSettings.defaultLanguageCode)
+        }
+        return option(code)
+    }
+
+    /** Resolves a stored code, which may name a rite ("he-x-gamliel") rather than a plain
+     * language — the rite keeps its own code so every lookup can overlay it on the base. */
+    private fun option(code: String?): LanguageOption {
+        val rite = code?.let { c -> rites(c).firstOrNull { it.code == c } }
+        if (rite != null) {
+            // A rite carries its language's name in pickers; its own name belongs to the rite row.
+            val language = all.firstOrNull { it.code == (baseLanguage(rite.code) ?: rite.code) }
+            if (language != null) return rite.copy(nativeName = language.nativeName)
         }
         return all.firstOrNull { it.code == code } ?: all.first { it.code == defaultCode }
     }

@@ -121,6 +121,17 @@ struct CustomDevotionFlowView: View {
                 languageButton(raw: option.code, name: option.nativeName)
               }
             }
+
+            // A language prayed in more than one use lists those under it — the rite is a
+            // second question, and one whose gaps fall back to the language's own wording.
+            let rites = LanguageCatalog.rites(of: LanguageCatalog.resolve(chosenLanguage).code)
+            if rites.count > 1 {
+              Section(String(localized: "settings.rite", defaultValue: "Rite")) {
+                ForEach(rites) { rite in
+                  languageButton(raw: rite.code, name: rite.nativeName)
+                }
+              }
+            }
           } label: {
             Image(systemName: "globe")
           }

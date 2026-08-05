@@ -22,12 +22,48 @@ public sealed record AppLanguageOption(string Tag, string Label);
 /// </summary>
 public partial class SettingsViewModel : ObservableObject
 {
+    // The stored code may name a rite ("he-x-gamliel"), so this row holds its base language and
+    // the rite row below chooses among that language's uses.
     [ObservableProperty]
-    private LanguageOption _selectedLanguage = LanguageCatalog.Resolve(AppSettings.DefaultLanguageCode);
+    private LanguageOption _selectedLanguage = LanguageCatalog.All.FirstOrDefault(
+        l => l.Code == (LanguageCatalog.BaseLanguage(AppSettings.DefaultLanguageCode)
+                        ?? AppSettings.DefaultLanguageCode))
+        ?? LanguageCatalog.Resolve(AppSettings.DefaultLanguageCode);
 
     public IReadOnlyList<LanguageOption> LanguageOptions => LanguageCatalog.All;
 
-    partial void OnSelectedLanguageChanged(LanguageOption value) => AppSettings.SetDefaultLanguageCode(value.Code);
+    partial void OnSelectedLanguageChanged(LanguageOption value)
+    {
+        // Choosing a language keeps its rite when it has one, and drops it otherwise.
+        var rites = LanguageCatalog.Rites(value.Code);
+        AppSettings.SetDefaultLanguageCode(rites.Count > 0 ? rites[0].Code : value.Code);
+        RiteOptions = rites;
+        SelectedRite = rites.FirstOrDefault();
+        OnPropertyChanged(nameof(ShowsRitePicker));
+    }
+
+    /// <summary>The rites of the chosen language — empty (and hidden) when there is only one way
+    /// to pray it. A rite that lacks a prayer reads it in the language's own wording, so this is
+    /// a preference, never a restriction.</summary>
+    [ObservableProperty]
+    private IReadOnlyList<LanguageOption> _riteOptions =
+        LanguageCatalog.Rites(AppSettings.DefaultLanguageCode);
+
+    [ObservableProperty]
+    private LanguageOption? _selectedRite =
+        LanguageCatalog.Rites(AppSettings.DefaultLanguageCode)
+            .FirstOrDefault(r => r.Code == AppSettings.DefaultLanguageCode)
+        ?? LanguageCatalog.Rites(AppSettings.DefaultLanguageCode).FirstOrDefault();
+
+    public bool ShowsRitePicker => RiteOptions.Count > 1;
+
+    partial void OnSelectedRiteChanged(LanguageOption? value)
+    {
+        if (value is not null)
+        {
+            AppSettings.SetDefaultLanguageCode(value.Code);
+        }
+    }
 
     // The same app-wide setting the flow toolbars offer — surfaced here so it's discoverable
     // outside a session. Static so the selection's field initializer can consult it.
