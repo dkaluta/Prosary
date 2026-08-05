@@ -30,7 +30,7 @@ public static class PrayerPackStore
     private static readonly string[] PackNames =
     [
         "rosary", "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
-        "divineMercyChaplet", "trisagion",
+        "divineMercyChaplet", "trisagion", "oAntiphons",
     ];
 
     private static readonly Dictionary<string, Dictionary<string, string>> PrayerOverrides = new();

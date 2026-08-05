@@ -391,6 +391,51 @@ class CustomDevotionEngineTest {
         assertTrue(steps.all { it.imageKey == "divine_mercy_image" })
     }
 
+    // MARK: O Antiphons (days)
+
+    /** The one shipped days-type bundle: seven evenings of Advent Vespers, each a reading, the
+     * antiphon, the Magnificat, the Glory Be, and the antiphon again. */
+    @Test
+    fun oAntiphonsDayIsSelectedByTheDayIndex() {
+        fun day(index: Int, language: String = "en"): List<RosaryStep> = PrayerEngine().buildSteps(
+            Prayer(
+                kind = PrayerKind.Custom, languageCode = language,
+                customDevotionId = "oAntiphons", dayIndex = index,
+            ),
+        )
+
+        assertEquals(
+            listOf("A Reading", "O Wisdom", "The Magnificat", "Glory Be", "O Wisdom"),
+            day(0).map { it.title },
+        )
+        assertEquals(
+            listOf("A Reading", "O Root of Jesse", "The Magnificat", "Glory Be", "O Root of Jesse"),
+            day(2).map { it.title },
+        )
+        assertEquals("O Emmanuel", day(6)[1].title)
+        assertEquals("O Radix Iesse", day(2, language = "la")[1].title)
+        assertTrue(day(6)[1].body.contains("come to save us, O Lord our God"))
+        // The reading and the canticle are Scripture; the antiphon is not.
+        assertTrue(day(0)[0].isScripture)
+        assertTrue(day(0)[2].isScripture)
+        assertFalse(day(0)[1].isScripture)
+        // Past the last day the engine clamps rather than emitting nothing.
+        assertEquals("O Emmanuel", day(99)[1].title)
+    }
+
+    /** The declarations the Pray row and the resumption logic read. */
+    @Test
+    fun oAntiphonsDeclaresItselfASeriesOfSevenDays() {
+        val definition = PrayerPackStore.definition("oAntiphons")
+        assertEquals(7, definition?.days?.size)
+        assertEquals("series", definition?.dayProgression)
+        assertEquals("12-17", definition?.suggestedStart)
+        assertEquals("18:00", definition?.suggestedReminderTime)
+        assertEquals("angelus", definition?.suggestedNext)
+        assertEquals("17 December", definition?.days?.first()?.period)
+        assertEquals("O Sapientia", definition?.days?.first()?.name)
+    }
+
     // MARK: Structural guards
 
     @Test

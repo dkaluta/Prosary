@@ -348,6 +348,44 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertTrue(steps.allSatisfy { $0.imageKey == "divine_mercy_image" })
   }
 
+  // MARK: - O Antiphons (days)
+
+  /// The one shipped days-type bundle: seven evenings of Advent Vespers, each a reading, the
+  /// antiphon, the Magnificat, the Glory Be, and the antiphon again.
+  func testOAntiphonsDayIsSelectedByTheDayIndex() {
+    func day(_ index: Int, language: String = "en") -> [RosaryStep] {
+      PrayerEngine().buildSteps(
+        for: Prayer(kind: .custom, languageCode: language, customDevotionId: "oAntiphons",
+                    dayIndex: index))
+    }
+
+    XCTAssertEqual(day(0).map(\.title),
+                   ["A Reading", "O Wisdom", "The Magnificat", "Glory Be", "O Wisdom"])
+    XCTAssertEqual(day(2).map(\.title),
+                   ["A Reading", "O Root of Jesse", "The Magnificat", "Glory Be", "O Root of Jesse"])
+    XCTAssertEqual(day(6)[1].title, "O Emmanuel")
+    XCTAssertEqual(day(2, language: "la")[1].title, "O Radix Iesse")
+    XCTAssertTrue(day(6)[1].body.contains("come to save us, O Lord our God"))
+    // The reading and the canticle are Scripture; the antiphon is not.
+    XCTAssertTrue(day(0)[0].isScripture)
+    XCTAssertTrue(day(0)[2].isScripture)
+    XCTAssertFalse(day(0)[1].isScripture)
+    // Past the last day the engine clamps rather than emitting nothing.
+    XCTAssertEqual(day(99)[1].title, "O Emmanuel")
+  }
+
+  /// The declarations the Pray row and the resumption logic read.
+  func testOAntiphonsDeclaresItselfASeriesOfSevenDays() {
+    let definition = PrayerPackStore.definition(for: "oAntiphons")
+    XCTAssertEqual(definition?.days?.count, 7)
+    XCTAssertEqual(definition?.dayProgression, .series)
+    XCTAssertEqual(definition?.suggestedStart, "12-17")
+    XCTAssertEqual(definition?.suggestedReminderTime, "18:00")
+    XCTAssertEqual(definition?.suggestedNext, "angelus")
+    XCTAssertEqual(definition?.days?.first?.period, "17 December")
+    XCTAssertEqual(definition?.days?.first?.name, "O Sapientia")
+  }
+
   // MARK: - Structural guards
 
   func testMissingCustomDevotionIdProducesNoSteps() {

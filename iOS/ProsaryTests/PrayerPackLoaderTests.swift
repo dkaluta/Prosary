@@ -15,7 +15,7 @@ import XCTest
 final class PrayerPackLoaderTests: XCTestCase {
   func testBundledPacksExist() {
     for pack in ["rosary", "angelus", "stationsOfTheCross", "franciscanCrown", "sevenSorrows",
-                 "divineMercyChaplet", "trisagion"] {
+                 "divineMercyChaplet", "trisagion", "oAntiphons"] {
       XCTAssertNotNil(
         Bundle.main.url(forResource: pack, withExtension: "prosaryprayer"),
         "missing \(pack).prosaryprayer")
@@ -283,10 +283,10 @@ final class PrayerPackLoaderTests: XCTestCase {
   /// its manifest's builtinKind keeps it off the generic-devotion list — it backs the dedicated
   /// PrayerKind and must never appear as a Home/Favorites card twice. The six generic devotions
   /// appear in pack-load order.
-  func testCustomDevotionIdsAreTheSevenGenericDevotionsInLoadOrder() {
+  func testCustomDevotionIdsAreTheGenericDevotionsInLoadOrder() {
     XCTAssertEqual(PrayerPackStore.customDevotionIds(), [
       "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
-      "divineMercyChaplet", "trisagion",
+      "divineMercyChaplet", "trisagion", "oAntiphons",
     ])
     XCTAssertNotNil(PrayerPackStore.definition(for: "rosary"))
   }

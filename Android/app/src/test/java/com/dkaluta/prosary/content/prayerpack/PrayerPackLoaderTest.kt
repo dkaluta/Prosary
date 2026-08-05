@@ -271,7 +271,7 @@ class PrayerPackLoaderTest {
     fun bundledPacksExist() {
         for (pack in listOf(
             "rosary", "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
-            "divineMercyChaplet", "trisagion",
+            "divineMercyChaplet", "trisagion", "oAntiphons",
         )) {
             assertTrue("missing $pack.prosaryprayer", File("src/main/assets/$pack.prosaryprayer").exists())
         }
@@ -279,14 +279,14 @@ class PrayerPackLoaderTest {
 
     /** The Rosary's pack now ships a devotion.json (the engine builds the Rosary from it), but
      * its manifest's builtinKind keeps it off the generic-devotion list — it backs the
-     * dedicated PrayerKind and must never appear as a Home/Favorites card twice. The six
-     * generic devotions appear in pack-load order. */
+     * dedicated PrayerKind and must never appear as a Home/Favorites card twice. The generic
+     * devotions appear in pack-load order. */
     @Test
-    fun customDevotionIdsAreTheSevenGenericDevotionsInLoadOrder() {
+    fun customDevotionIdsAreTheGenericDevotionsInLoadOrder() {
         assertEquals(
             listOf(
                 "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
-                "divineMercyChaplet", "trisagion",
+                "divineMercyChaplet", "trisagion", "oAntiphons",
             ),
             PrayerPackStore.customDevotionIds(),
         )

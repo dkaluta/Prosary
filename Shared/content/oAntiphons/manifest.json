@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "oAntiphons",
+  "kind": "oAntiphons",
+  "displayName": "The O Antiphons",
+  "languages": [
+    "la",
+    "en"
+  ],
+  "hasCatalog": false,
+  "images": [
+    "christ_pantocrator",
+    "jesus_portrait",
+    "joyful_01_annunciation",
+    "glorious_01_resurrection",
+    "franciscan_04_adoration_of_the_magi",
+    "joyful_03_nativity",
+    "madonna_and_child",
+    "glory_be"
+  ],
+  "mainPrayerKeysOmitted": [
+    "gloriaPatri"
+  ],
+  "accentColorHex": "#5B3E8E",
+  "accentColorDarkHex": "#B39DDB",
+  "iconSystemName": "star",
+  "reminderBody": {
+    "en": "Vespers of Advent — today's antiphon awaits."
+  },
+  "reminderPresetHours": [
+    18
+  ],
+  "reminderPresetFooter": {
+    "en": "The antiphons belong to Vespers, sung as evening falls. All reminders repeat daily."
+  },
+  "tags": [
+    "advent",
+    "meditative"
+  ]
+}

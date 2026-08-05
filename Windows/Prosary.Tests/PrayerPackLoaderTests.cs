@@ -302,13 +302,13 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
 
     /// <summary>The Rosary's pack now ships a devotion.json (the engine builds the Rosary from
     /// it), but its manifest's builtinKind keeps it off the generic-devotion list — it backs
-    /// the dedicated PrayerKind and must never appear as a Home/Favorites card twice. The six
+    /// the dedicated PrayerKind and must never appear as a Home/Favorites card twice. The
     /// generic devotions appear in pack-load order.</summary>
     [Fact]
-    public void CustomDevotionIdsAreTheSevenGenericDevotionsInLoadOrder()
+    public void CustomDevotionIdsAreTheGenericDevotionsInLoadOrder()
     {
         Assert.Equal(
-            ["angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows", "divineMercyChaplet", "trisagion"],
+            ["angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows", "divineMercyChaplet", "trisagion", "oAntiphons"],
             PrayerPackStore.CustomDevotionIds());
         Assert.NotNull(PrayerPackStore.Definition("rosary"));
     }

@@ -392,7 +392,7 @@
         },
         "days": {
           "type": "object[]?",
-          "description": "days type only: [{name, nameByLanguage?, period?, steps: [Entry]}] — one entry per day, with optional shared opening/closing prayed every day. Planned (not yet persisted): per-favorite progress {startedOn, lastCompletedDay, lastCompletedOn} as one JSON column, a session-completion hook to advance it, and a day-picker UI."
+          "description": "days type only: [{name, nameByLanguage?, period?, steps: [Entry]}] — one entry per day, with optional shared opening/closing prayed every day. A series' progress lives in a MultiDayRun keyed by devotion id (start date + which days were prayed), not on the favorite; Prayer.dayIndex still holds the day a favorite opens on."
         },
         "steps": {
           "type": "CustomDevotionStep[]?",

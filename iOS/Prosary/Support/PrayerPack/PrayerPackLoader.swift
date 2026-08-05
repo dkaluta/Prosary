@@ -409,7 +409,7 @@ enum PrayerPackStore {
   /// pack loads first so its shared mystery texts/images are the base other bundles build on.
   private static let packNames = [
     "rosary", "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
-    "divineMercyChaplet", "trisagion",
+    "divineMercyChaplet", "trisagion", "oAntiphons",
   ]
 
   private static var prayerOverrides: [String: [PrayerKey: String]] = [:]

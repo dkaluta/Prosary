@@ -404,7 +404,7 @@ object PrayerPackStore {
      * loads first so its shared mystery texts/images are the base other bundles build on. */
     private val packNames = listOf(
         "rosary", "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
-        "divineMercyChaplet", "trisagion",
+        "divineMercyChaplet", "trisagion", "oAntiphons",
     )
 
     private val prayerOverrides = mutableMapOf<String, MutableMap<PrayerKey, String>>()

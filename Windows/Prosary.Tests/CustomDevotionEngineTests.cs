@@ -380,6 +380,49 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.All(steps, s => Assert.Equal("divine_mercy_image", s.ImageOverrideKey));
     }
 
+    // O Antiphons (days)
+
+    /// <summary>The one shipped days-type bundle: seven evenings of Advent Vespers, each a
+    /// reading, the antiphon, the Magnificat, the Glory Be, and the antiphon again.</summary>
+    [Fact]
+    public void OAntiphonsDayIsSelectedByTheDayIndex()
+    {
+        static IReadOnlyList<RosaryStep> Day(int index, string language = "en") =>
+            PrayerEngine.BuildCustomDevotionSteps(
+                "oAntiphons", language, isEasterSeason: false,
+                MarianAntiphonOption.SalveRegina, dayIndex: index);
+
+        Assert.Equal(
+            ["A Reading", "O Wisdom", "The Magnificat", "Glory Be", "O Wisdom"],
+            Day(0).Select(s => s.Title));
+        Assert.Equal(
+            ["A Reading", "O Root of Jesse", "The Magnificat", "Glory Be", "O Root of Jesse"],
+            Day(2).Select(s => s.Title));
+        Assert.Equal("O Emmanuel", Day(6)[1].Title);
+        Assert.Equal("O Radix Iesse", Day(2, "la")[1].Title);
+        Assert.Contains("come to save us, O Lord our God", Day(6)[1].Body);
+        // The reading and the canticle are Scripture; the antiphon is not.
+        Assert.True(Day(0)[0].IsScripture);
+        Assert.True(Day(0)[2].IsScripture);
+        Assert.False(Day(0)[1].IsScripture);
+        // Past the last day the engine clamps rather than emitting nothing.
+        Assert.Equal("O Emmanuel", Day(99)[1].Title);
+    }
+
+    /// <summary>The declarations the Pray row and the resumption logic read.</summary>
+    [Fact]
+    public void OAntiphonsDeclaresItselfASeriesOfSevenDays()
+    {
+        var definition = PrayerPackStore.Definition("oAntiphons");
+        Assert.Equal(7, definition?.Days?.Count);
+        Assert.Equal("series", definition?.DayProgression);
+        Assert.Equal("12-17", definition?.SuggestedStart);
+        Assert.Equal("18:00", definition?.SuggestedReminderTime);
+        Assert.Equal("angelus", definition?.SuggestedNext);
+        Assert.Equal("17 December", definition?.Days?[0].Period);
+        Assert.Equal("O Sapientia", definition?.Days?[0].Name);
+    }
+
     // Structural guards
 
     [Fact]
