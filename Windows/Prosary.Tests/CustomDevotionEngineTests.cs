@@ -473,8 +473,18 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Equal("מאמינים של ניקאה", variant[1].Title);
         Assert.Contains(variant, step => step.Body.Contains("שָׁלוֹם לָךְ מִרְיָם"));
 
-        // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
+        // Headings belong to the rite that uses them: the Mission's in the Mission's rite, the
+        // app's own in plain Hebrew.
         var hebrew = BuildSteps("rosary", "he", customOptions: new() { ["apostlesCreed"] = "true" });
+        Assert.Equal("אות הצלב", variant[0].Title);
+        Assert.Equal("סימן הצלב", hebrew[0].Title);
+        Assert.Equal("אני מאמין", hebrew[1].Title);
+        Assert.Contains(variant, s => s.Title == "שלום לך מרים");
+        Assert.Contains(hebrew, s => s.Title == "שמחי מרים");
+        Assert.Contains(variant, s => s.Title == "השבח לאב");
+        Assert.Contains(hebrew, s => s.Title == "כבוד לאב");
+
+        // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
         static string? Fatima(IReadOnlyList<RosaryStep> steps) =>
             steps.FirstOrDefault(s => s.Title.Contains("הו ישוע"))?.Body;
         Assert.Equal(Fatima(hebrew), Fatima(variant));

@@ -427,8 +427,18 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertEqual(variant[1].title, "מאמינים של ניקאה")
     XCTAssertTrue(variant.contains { $0.body.contains("שָׁלוֹם לָךְ מִרְיָם") }, "their Hail Mary")
 
-    // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
+    // Headings belong to the rite that uses them: the Mission's in the Mission's rite, the
+    // app's own in plain Hebrew.
     let hebrew = steps("rosary", language: "he", customOptions: ["apostlesCreed": "true"])
+    XCTAssertEqual(variant.first?.title, "אות הצלב")
+    XCTAssertEqual(hebrew.first?.title, "סימן הצלב")
+    XCTAssertEqual(hebrew[1].title, "אני מאמין")
+    XCTAssertTrue(variant.contains { $0.title == "שלום לך מרים" })
+    XCTAssertTrue(hebrew.contains { $0.title == "שמחי מרים" })
+    XCTAssertTrue(variant.contains { $0.title == "השבח לאב" })
+    XCTAssertTrue(hebrew.contains { $0.title == "כבוד לאב" })
+
+    // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
     let fatima = { (list: [RosaryStep]) in list.first { $0.title.contains("הו ישוע") }?.body }
     XCTAssertEqual(fatima(variant), fatima(hebrew))
   }

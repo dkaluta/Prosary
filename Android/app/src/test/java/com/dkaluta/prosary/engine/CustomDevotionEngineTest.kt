@@ -482,8 +482,18 @@ class CustomDevotionEngineTest {
         assertEquals("מאמינים של ניקאה", variant[1].title)
         assertTrue("their Hail Mary", variant.any { it.body.contains("שָׁלוֹם לָךְ מִרְיָם") })
 
-        // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
+        // Headings belong to the rite that uses them: the Mission's in the Mission's rite, the
+        // app's own in plain Hebrew.
         val hebrew = steps("rosary", language = "he", customOptions = mapOf("apostlesCreed" to "true"))
+        assertEquals("אות הצלב", variant.first().title)
+        assertEquals("סימן הצלב", hebrew.first().title)
+        assertEquals("אני מאמין", hebrew[1].title)
+        assertTrue(variant.any { it.title == "שלום לך מרים" })
+        assertTrue(hebrew.any { it.title == "שמחי מרים" })
+        assertTrue(variant.any { it.title == "השבח לאב" })
+        assertTrue(hebrew.any { it.title == "כבוד לאב" })
+
+        // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
         fun fatima(list: List<RosaryStep>) = list.firstOrNull { it.title.contains("הו ישוע") }?.body
         assertEquals(fatima(hebrew), fatima(variant))
     }
