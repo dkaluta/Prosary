@@ -163,10 +163,17 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
             FormSection(title = stringResource(R.string.editor_prayer_language)) {
                 val defaultName = LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).nativeName
                 val languageOptions = listOf(LanguageCatalog.defaultSentinel) + LanguageCatalog.all.map { it.code }
+                // The stored code may name a rite ("he-x-gamliel"), so this row shows its base
+                // language and the rite row below chooses among that language's uses.
+                val storedBase = if (prayer.languageCode == LanguageCatalog.defaultSentinel) {
+                    prayer.languageCode
+                } else {
+                    LanguageCatalog.baseLanguage(prayer.languageCode) ?: prayer.languageCode
+                }
                 OptionPickerField(
                     label = stringResource(R.string.editor_language),
                     options = languageOptions,
-                    selected = prayer.languageCode,
+                    selected = storedBase,
                     optionLabel = { code ->
                         if (code == LanguageCatalog.defaultSentinel) {
                             context.getString(R.string.language_default_dash, defaultName)
@@ -174,9 +181,30 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
                             LanguageCatalog.resolve(code).nativeName
                         }
                     },
-                    onSelect = { prayer = prayer.copy(languageCode = it) },
+                    onSelect = { code ->
+                        val kept = if (code == LanguageCatalog.defaultSentinel) {
+                            code
+                        } else {
+                            LanguageCatalog.rites(code).firstOrNull()?.code ?: code
+                        }
+                        prayer = prayer.copy(languageCode = kept)
+                    },
                     modifier = Modifier.fillMaxWidth(),
                 )
+
+                // Only for a language prayed in more than one use; a rite that lacks a prayer
+                // reads it in the language's own wording, so this is a preference, not a limit.
+                val rites = LanguageCatalog.rites(prayer.languageCode)
+                if (rites.size > 1) {
+                    OptionPickerField(
+                        label = stringResource(R.string.settings_rite),
+                        options = rites.map { it.code },
+                        selected = prayer.languageCode,
+                        optionLabel = { code -> rites.first { it.code == code }.nativeName },
+                        onSelect = { prayer = prayer.copy(languageCode = it) },
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                }
             }
 
             if (prayer.kind == PrayerKind.Rosary) {

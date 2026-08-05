@@ -1,7 +1,8 @@
+import { useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { COMMON_PRAYERS, LANGUAGES, commonPrayer, isRtl } from "../format/catalog";
 import type { CommonPrayerKey } from "../format/catalog";
-import type { EditorStep, Project } from "../format/project";
+import type { EditorDay, EditorStep, Project } from "../format/project";
 import { newUid } from "../format/project";
 import { imageToSquareJpeg, pickFile } from "./media";
 
@@ -11,57 +12,67 @@ interface Props {
 }
 
 export function StepsScreen({ project, setProject }: Props) {
-  const updateStep = (uid: string, patch: Partial<EditorStep>) =>
-    setProject((p) => ({
-      ...p,
-      steps: p.steps.map((step) => (step.uid === uid ? { ...step, ...patch } : step)),
-    }));
+  const isDays = project.devotionType === "days";
+  const [openDayUid, setOpenDayUid] = useState<string | null>(null);
+  // The open day may have been deleted, and a project that has just become a days project has
+  // none chosen: fall back to the first rather than showing an empty editor, which reads as
+  // data loss.
+  const day = project.days.find((d) => d.uid === openDayUid) ?? project.days[0];
+  const steps = isDays ? (day?.steps ?? []) : project.steps;
 
-  const addCommon = (key: CommonPrayerKey) =>
-    setProject((p) => ({
-      ...p,
-      steps: [
-        ...p.steps,
-        {
-          uid: newUid(),
-          kind: "common",
-          commonKey: key,
-          title: commonPrayer(key)?.label ?? "",
-          titleByLanguage: {},
-          bodyByLanguage: {},
-          isScripture: false,
-        },
-      ],
-    }));
-
-  const addCustom = () =>
-    setProject((p) => ({
-      ...p,
-      steps: [
-        ...p.steps,
-        {
-          uid: newUid(),
-          kind: "custom",
-          title: "",
-          titleByLanguage: {},
-          bodyByLanguage: {},
-          isScripture: false,
-        },
-      ],
-    }));
-
-  const move = (uid: string, delta: -1 | 1) =>
+  /** Step edits land inside the open day for a days project, and in the flat list otherwise. */
+  const editSteps = (edit: (steps: EditorStep[]) => EditorStep[]) =>
     setProject((p) => {
-      const index = p.steps.findIndex((s) => s.uid === uid);
-      const target = index + delta;
-      if (index < 0 || target < 0 || target >= p.steps.length) return p;
-      const steps = [...p.steps];
-      [steps[index], steps[target]] = [steps[target], steps[index]];
-      return { ...p, steps };
+      if (p.devotionType !== "days") return { ...p, steps: edit(p.steps) };
+      const target = p.days.find((d) => d.uid === day?.uid) ?? p.days[0];
+      if (!target) return p;
+      return {
+        ...p,
+        days: p.days.map((d) => (d.uid === target.uid ? { ...d, steps: edit(d.steps) } : d)),
+      };
     });
 
-  const remove = (uid: string) =>
-    setProject((p) => ({ ...p, steps: p.steps.filter((s) => s.uid !== uid) }));
+  const updateStep = (uid: string, patch: Partial<EditorStep>) =>
+    editSteps((steps) => steps.map((step) => (step.uid === uid ? { ...step, ...patch } : step)));
+
+  const addCommon = (key: CommonPrayerKey) =>
+    editSteps((steps) => [
+      ...steps,
+      {
+        uid: newUid(),
+        kind: "common",
+        commonKey: key,
+        title: commonPrayer(key)?.label ?? "",
+        titleByLanguage: {},
+        bodyByLanguage: {},
+        isScripture: false,
+      },
+    ]);
+
+  const addCustom = () =>
+    editSteps((steps) => [
+      ...steps,
+      {
+        uid: newUid(),
+        kind: "custom",
+        title: "",
+        titleByLanguage: {},
+        bodyByLanguage: {},
+        isScripture: false,
+      },
+    ]);
+
+  const move = (uid: string, delta: -1 | 1) =>
+    editSteps((steps) => {
+      const index = steps.findIndex((s) => s.uid === uid);
+      const target = index + delta;
+      if (index < 0 || target < 0 || target >= steps.length) return steps;
+      const moved = [...steps];
+      [moved[index], moved[target]] = [moved[target], moved[index]];
+      return moved;
+    });
+
+  const remove = (uid: string) => editSteps((steps) => steps.filter((s) => s.uid !== uid));
 
   const uploadArt = (uid: string) =>
     pickFile("image/*", async (file) => {
@@ -70,17 +81,57 @@ export function StepsScreen({ project, setProject }: Props) {
       setProject((p) => ({
         ...p,
         images: [...p.images, { uid: imageUid, label: file.name, jpeg, dataUrl }],
-        steps: p.steps.map((step) =>
-          step.uid === uid ? { ...step, image: { kind: "upload", uid: imageUid } } : step,
-        ),
       }));
+      updateStep(uid, { image: { kind: "upload", uid: imageUid } });
     });
+
+  const addDay = () => {
+    const uid = newUid();
+    setProject((p) => ({
+      ...p,
+      days: [
+        ...p.days,
+        { uid, name: `Day ${p.days.length + 1}`, nameByLanguage: {}, steps: [] },
+      ],
+    }));
+    setOpenDayUid(uid);
+  };
+
+  const updateDay = (uid: string, patch: Partial<EditorDay>) =>
+    setProject((p) => ({
+      ...p,
+      days: p.days.map((d) => (d.uid === uid ? { ...d, ...patch } : d)),
+    }));
+
+  const moveDay = (uid: string, delta: -1 | 1) =>
+    setProject((p) => {
+      const index = p.days.findIndex((d) => d.uid === uid);
+      const target = index + delta;
+      if (index < 0 || target < 0 || target >= p.days.length) return p;
+      const days = [...p.days];
+      [days[index], days[target]] = [days[target], days[index]];
+      return { ...p, days };
+    });
+
+  const removeDay = (uid: string) => {
+    const doomed = project.days.find((d) => d.uid === uid);
+    if (
+      doomed?.steps.length &&
+      !window.confirm(`Delete ${doomed.name}? Its ${doomed.steps.length} step(s) go with it.`)
+    ) {
+      return;
+    }
+    setProject((p) => ({ ...p, days: p.days.filter((d) => d.uid !== uid) }));
+    if (uid === day?.uid) setOpenDayUid(null);
+  };
 
   return (
     <section>
       <h2>The prayers</h2>
       <p className="help">
-        A devotion is a sequence of steps, prayed one screen at a time. Common prayers (the Our
+        {isDays
+          ? "Each day is its own sequence of steps, prayed one screen at a time. Choose a day below, then build it."
+          : "A devotion is a sequence of steps, prayed one screen at a time."}{" "} Common prayers (the Our
         Father, the Hail Mary…) are already in the app in every language — just add them. Your own
         prayers you write yourself, once per language.
       </p>
@@ -91,7 +142,84 @@ export function StepsScreen({ project, setProject }: Props) {
         </p>
       )}
 
-      {project.steps.map((step, index) => (
+      {isDays && (
+        <div className="card">
+          <header>
+            <span className="title">The days</span>
+            <button className="subtle" onClick={addDay}>
+              + Add a day
+            </button>
+          </header>
+          {project.days.length === 0 ? (
+            <p className="help">
+              {project.dayProgression === "series"
+                ? "A novena has nine days, a triduum three — add as many as this devotion asks for."
+                : "Add one day for each prayer in the set."}
+            </p>
+          ) : (
+            <div className="row wrap">
+              {project.days.map((d) => (
+                <button
+                  key={d.uid}
+                  className={d.uid === day?.uid ? "tight" : "secondary tight"}
+                  onClick={() => setOpenDayUid(d.uid)}
+                >
+                  {d.name || "Untitled day"}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {isDays && day && (
+        <div className="card">
+          <header>
+            <span className="title">{day.name || "Untitled day"}</span>
+            <button className="subtle" onClick={() => moveDay(day.uid, -1)} aria-label="Move day earlier">
+              ↑
+            </button>
+            <button className="subtle" onClick={() => moveDay(day.uid, 1)} aria-label="Move day later">
+              ↓
+            </button>
+            <button className="subtle" onClick={() => removeDay(day.uid)} aria-label="Remove day">
+              ✕
+            </button>
+          </header>
+          <label className="field">
+            <span>
+              Day name <span className="hint">— shown at the top of the day's prayers</span>
+            </span>
+            <input
+              type="text"
+              value={day.name}
+              onChange={(e) => updateDay(day.uid, { name: e.target.value })}
+            />
+          </label>
+          {project.languages.map((code) => {
+            const language = LANGUAGES.find((l) => l.code === code)!;
+            return (
+              <label className="field" key={code}>
+                <span>
+                  Day name in {language.name} <span className="hint">— optional</span>
+                </span>
+                <input
+                  type="text"
+                  dir={isRtl(code) ? "rtl" : "ltr"}
+                  value={day.nameByLanguage[code] ?? ""}
+                  onChange={(e) =>
+                    updateDay(day.uid, {
+                      nameByLanguage: { ...day.nameByLanguage, [code]: e.target.value },
+                    })
+                  }
+                />
+              </label>
+            );
+          })}
+        </div>
+      )}
+
+      {steps.map((step, index) => (
         <StepCard
           key={step.uid}
           project={project}
@@ -104,7 +232,7 @@ export function StepsScreen({ project, setProject }: Props) {
         />
       ))}
 
-      <div className="row">
+      <div className="row" hidden={isDays && !day}>
         <select
           className="tight"
           value=""

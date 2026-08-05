@@ -392,7 +392,7 @@
         },
         "days": {
           "type": "object[]?",
-          "description": "days type only: [{name, nameByLanguage?, period?, steps: [Entry]}] — one entry per day, with optional shared opening/closing prayed every day. Planned (not yet persisted): per-favorite progress {startedOn, lastCompletedDay, lastCompletedOn} as one JSON column, a session-completion hook to advance it, and a day-picker UI."
+          "description": "days type only: [{name, nameByLanguage?, period?, steps: [Entry]}] — one entry per day, with optional shared opening/closing prayed every day. A series' progress lives in a MultiDayRun keyed by devotion id (start date + which days were prayed), not on the favorite; Prayer.dayIndex still holds the day a favorite opens on."
         },
         "steps": {
           "type": "CustomDevotionStep[]?",
@@ -409,6 +409,22 @@
         "opening": {
           "type": "CustomDevotionStep[]?",
           "description": "rosary type only. Entry 0 MUST be the Sign of the Cross (bead-track invariant)."
+        },
+        "dayProgression": {
+          "type": "string",
+          "description": "days type only: \"series\" (default — consecutive days worked through in order, so the app tracks a run, advances by calendar day and can remind you each day; a novena, triduum or 33-day consecration) or \"free\" (the days are a set to pick from, like a prayer for each day of the week, with no run to be behind on)."
+        },
+        "suggestedReminderTime": {
+          "type": "string",
+          "description": "days type, series only: \"HH:mm\" the author suggests for the daily reminder. Advisory — the user's own reminder times always win."
+        },
+        "suggestedStart": {
+          "type": "string",
+          "description": "days type, series only: \"MM-DD\" the series traditionally begins on, repeating annually (a novena to the Immaculate Conception starts \"11-29\"). Lets a pinned devotion announce itself — \"Starts 29 November\" — before its first day arrives. Advisory: starting it any day always works."
+        },
+        "suggestedNext": {
+          "type": "string",
+          "description": "days type, series only: the id of a devotion to offer when the last day is prayed — a novena ending on its feast can point at the feast-day prayer. May name a devotion this device does not have (including a repo.* id): the reference is resolved at runtime and simply not offered when it is missing, so a bundle is never broken by a dangling suggestion."
         },
         "decades": {
           "type": "object?",

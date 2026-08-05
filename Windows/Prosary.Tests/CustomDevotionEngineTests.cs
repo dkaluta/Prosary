@@ -24,8 +24,11 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         bool isEasterSeason = false,
         MarianAntiphonOption seasonalAntiphon = MarianAntiphonOption.SalveRegina,
         string? variantId = null,
-        Dictionary<string, string>? customOptions = null) =>
-        PrayerEngine.BuildCustomDevotionSteps(bundleId, languageCode, isEasterSeason, seasonalAntiphon, variantId, customOptions);
+        Dictionary<string, string>? customOptions = null,
+        bool isLent = false) =>
+        PrayerEngine.BuildCustomDevotionSteps(
+            bundleId, languageCode, isEasterSeason, seasonalAntiphon, variantId, customOptions,
+            rosaryOptions: null, todaysGroup: MysteryGroup.Joyful, dayIndex: 0, isLent: isLent);
 
     // A repeated step's counter is part of the prayer, not the interface: praying in Hebrew, the Divine Mercy
     // decade reads "(1 מתוך 10)" rather than splicing an English word into right-to-left text.
@@ -378,6 +381,131 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Equal("Sign of the Cross", steps[^1].Title);
         // Every step reuses the single Divine Mercy image.
         Assert.All(steps, s => Assert.Equal("divine_mercy_image", s.ImageOverrideKey));
+    }
+
+    // O Antiphons (days)
+
+    /// <summary>The one shipped days-type bundle: seven evenings of Advent Vespers, each a
+    /// reading, the antiphon, the Magnificat, the Glory Be, and the antiphon again.</summary>
+    [Fact]
+    public void OAntiphonsDayIsSelectedByTheDayIndex()
+    {
+        static IReadOnlyList<RosaryStep> Day(int index, string language = "en") =>
+            PrayerEngine.BuildCustomDevotionSteps(
+                "oAntiphons", language, isEasterSeason: false,
+                MarianAntiphonOption.SalveRegina, dayIndex: index);
+
+        Assert.Equal(
+            ["A Reading", "O Wisdom", "The Magnificat", "Glory Be", "O Wisdom"],
+            Day(0).Select(s => s.Title));
+        Assert.Equal(
+            ["A Reading", "O Root of Jesse", "The Magnificat", "Glory Be", "O Root of Jesse"],
+            Day(2).Select(s => s.Title));
+        Assert.Equal("O Emmanuel", Day(6)[1].Title);
+        Assert.Equal("O Radix Iesse", Day(2, "la")[1].Title);
+        Assert.Contains("come to save us, O Lord our God", Day(6)[1].Body);
+        // The reading and the canticle are Scripture; the antiphon is not.
+        Assert.True(Day(0)[0].IsScripture);
+        Assert.True(Day(0)[2].IsScripture);
+        Assert.False(Day(0)[1].IsScripture);
+        // Past the last day the engine clamps rather than emitting nothing.
+        Assert.Equal("O Emmanuel", Day(99)[1].Title);
+    }
+
+    /// <summary>The declarations the Pray row and the resumption logic read.</summary>
+    [Fact]
+    public void OAntiphonsDeclaresItselfASeriesOfSevenDays()
+    {
+        var definition = PrayerPackStore.Definition("oAntiphons");
+        Assert.Equal(7, definition?.Days?.Count);
+        Assert.Equal("series", definition?.DayProgression);
+        Assert.Equal("12-17", definition?.SuggestedStart);
+        Assert.Equal("18:00", definition?.SuggestedReminderTime);
+        Assert.Equal("angelus", definition?.SuggestedNext);
+        Assert.Equal("17 December", definition?.Days?[0].Period);
+        Assert.Equal("O Sapientia", definition?.Days?[0].Name);
+    }
+
+    // The invitatory, and the Mission's Hebrew
+
+    /// <summary>The Rosary may open with "O God, come to my assistance" — off by default, and
+    /// the Alleluia leaves it during Lent, which is what the "invitatory &amp; !isLent" gate is
+    /// for.</summary>
+    [Fact]
+    public void InvitatoryIsOptionalAndDropsItsAlleluiaInLent()
+    {
+        Assert.DoesNotContain("come to my assistance", BuildSteps("rosary", "en")[1].Body);
+
+        var on = BuildSteps("rosary", "en", customOptions: new() { ["invitatory"] = "true" });
+        Assert.Equal("O God, Come to My Assistance", on[1].Title);
+        Assert.Contains("O Lord, make haste to help me", on[1].Body);
+        Assert.Contains("Glory be to the Father", on[1].Body);
+        Assert.EndsWith("Alleluia.", on[1].Body);
+
+        var inLent = BuildSteps("rosary", "en", customOptions: new() { ["invitatory"] = "true" }, isLent: true);
+        Assert.Contains("Glory be to the Father", inLent[1].Body);
+        Assert.DoesNotContain("Alleluia", inLent[1].Body);
+    }
+
+    [Fact]
+    public void ConjoinedConditionsRequireEveryTerm()
+    {
+        var values = new Dictionary<string, string>
+        {
+            ["invitatory"] = "true", ["isLent"] = "false", ["antiphon"] = "reginaCaeli",
+        };
+        Assert.True(PrayerEngine.EvaluateCondition("invitatory & !isLent", values));
+        Assert.False(PrayerEngine.EvaluateCondition("invitatory & isLent", values));
+        Assert.True(PrayerEngine.EvaluateCondition("invitatory & antiphon=reginaCaeli", values));
+        Assert.False(PrayerEngine.EvaluateCondition("invitatory & antiphon=salveRegina", values));
+        // A single term still parses exactly as before.
+        Assert.True(PrayerEngine.EvaluateCondition("invitatory", values));
+    }
+
+    /// <summary>The Mission of St. Gamaliel's wording overlays plain Hebrew key by key — their
+    /// Creed is the Nicene one, and anything they have not sent still reads in the app's
+    /// Hebrew.</summary>
+    [Fact]
+    public void GamalielVariantOverlaysHebrew()
+    {
+        var variant = BuildSteps("rosary", "he-x-gamliel", customOptions: new() { ["apostlesCreed"] = "true" });
+        Assert.Contains("אָנוּ מַאֲמִינִים", variant[1].Body);
+        Assert.Equal("מאמינים של ניקאה", variant[1].Title);
+        Assert.Contains(variant, step => step.Body.Contains("שָׁלוֹם לָךְ מִרְיָם"));
+
+        // Headings belong to the rite that uses them: the Mission's in the Mission's rite, the
+        // app's own in plain Hebrew.
+        var hebrew = BuildSteps("rosary", "he", customOptions: new() { ["apostlesCreed"] = "true" });
+        Assert.Equal("אות הצלב", variant[0].Title);
+        Assert.Equal("סימן הצלב", hebrew[0].Title);
+        Assert.Equal("אני מאמין", hebrew[1].Title);
+        Assert.Contains(variant, s => s.Title == "שלום לך מרים");
+        Assert.Contains(hebrew, s => s.Title == "שמחי מרים");
+        Assert.Contains(variant, s => s.Title == "השבח לאב");
+        Assert.Contains(hebrew, s => s.Title == "כבוד לאב");
+
+        // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
+        static string? Fatima(IReadOnlyList<RosaryStep> steps) =>
+            steps.FirstOrDefault(s => s.Title.Contains("הו ישוע"))?.Body;
+        Assert.Equal(Fatima(hebrew), Fatima(variant));
+    }
+
+    /// <summary>A rite lives under its language, not beside it: the language list stays the
+    /// eight tongues, and the rite's own code still resolves (that is what the pickers
+    /// store).</summary>
+    [Fact]
+    public void RitesAreListedUnderTheirLanguage()
+    {
+        Assert.DoesNotContain(LanguageCatalog.All, l => l.Code == "he-x-gamliel");
+        Assert.Equal(["he", "he-x-gamliel"], LanguageCatalog.Rites("he").Select(r => r.Code));
+        Assert.Equal(["he", "he-x-gamliel"], LanguageCatalog.Rites("he-x-gamliel").Select(r => r.Code));
+        Assert.Empty(LanguageCatalog.Rites("la"));
+
+        // A rite resolves as its language for display, keeps its own code, and reads right-to-left.
+        var resolved = LanguageCatalog.Resolve("he-x-gamliel");
+        Assert.Equal("he-x-gamliel", resolved.Code);
+        Assert.Equal("עברית", resolved.NativeName);
+        Assert.True(resolved.IsRightToLeft);
     }
 
     // Structural guards

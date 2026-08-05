@@ -11,6 +11,13 @@ import { newProject, newUid } from "../src/format/project";
 import { openBundle } from "../src/format/unpack";
 import { validateProject } from "../src/format/validate";
 
+function assert(condition: boolean, message: string): void {
+  if (!condition) {
+    console.error(`✗ ${message}`);
+    process.exit(1);
+  }
+}
+
 function fail(message: string, ...detail: unknown[]): never {
   console.error("e2e FAILED:", message, ...detail);
   process.exit(1);
@@ -131,3 +138,81 @@ for (const file of original) {
 }
 
 console.log("e2e OK —", original.map((f) => f.name).join(", "));
+
+// A days-type project round-trips: the declarations survive, and content keys stay numbered
+// across the whole devotion so a step's key does not shift when a day is edited.
+{
+  const project = newProject();
+  project.name = "A Novena";
+  project.id = "novena";
+  project.devotionType = "days";
+  project.dayProgression = "series";
+  project.suggestedStart = "11-29";
+  project.suggestedReminderTime = "07:00";
+  project.suggestedNext = "divineMercyChaplet";
+  project.days = [1, 2].map((n) => ({
+    uid: `day${n}`,
+    name: `Day ${n}`,
+    nameByLanguage: {},
+    steps: [
+      {
+        uid: `d${n}s1`,
+        kind: "custom" as const,
+        title: `Day ${n} prayer`,
+        titleByLanguage: { en: `Day ${n} prayer`, la: `Oratio ${n}` },
+        bodyByLanguage: { en: `Text ${n}`, la: `Textus ${n}` },
+        isScripture: false,
+      },
+    ],
+  }));
+
+  const files = buildBundleFiles(project);
+  const devotion = JSON.parse(
+    new TextDecoder().decode(files.find((f) => f.name === "devotion.json")!.data),
+  );
+  assert(devotion.type === "days", "days project packs a days devotion");
+  assert(devotion.dayProgression === "series", "progression survives");
+  assert(devotion.suggestedStart === "11-29", "start survives");
+  assert(devotion.suggestedNext === "divineMercyChaplet", "next survives");
+  assert(devotion.days.length === 2, "both days packed");
+  // Second day's step is the second authored step overall, so it takes step02's keys.
+  assert(
+    devotion.days[1].steps[0].bodyKey === "step02Body",
+    `keys number across days, got ${devotion.days[1].steps[0].bodyKey}`,
+  );
+  const en = JSON.parse(
+    new TextDecoder().decode(files.find((f) => f.name === "content/en.json")!.data),
+  );
+  assert(en.prayers.step02Body === "Text 2", "the second day's text is emitted");
+
+  // The wizard's own checks must agree with the canonical validator about what a days project
+  // owes: every day named, and none of them empty.
+  const clean = validateProject(project);
+  assert(clean.length === 0, `days project should validate clean, got ${JSON.stringify(clean)}`);
+  const emptyDay = validateProject({
+    ...project,
+    days: [...project.days, { uid: "day3", name: "", nameByLanguage: {}, steps: [] }],
+  });
+  assert(
+    emptyDay.some((i) => i.message.includes("needs a name")) &&
+      emptyDay.some((i) => i.message.includes("no prayers")),
+    `an empty unnamed day should be flagged, got ${JSON.stringify(emptyDay)}`,
+  );
+
+  // Reopening must produce the same bundle, exactly as the steps type does.
+  const reopenedDays = await openBundle(buildBundle(project));
+  const repackedDays = buildBundleFiles(reopenedDays);
+  for (const file of files) {
+    const twin = repackedDays.find((f) => f.name === file.name);
+    assert(twin !== undefined, `missing after the days round trip: ${file.name}`);
+    assert(
+      file.data.length === twin!.data.length && file.data.every((b, i) => b === twin!.data[i]),
+      `days round-trip mismatch in ${file.name}: ${decoder.decode(file.data)} vs ${decoder.decode(twin!.data)}`,
+    );
+  }
+
+  // Written out so CI can run the canonical Shared/tools/validate-devotion.py over it — no
+  // shipped bundle uses days yet, so this is the only thing holding that path honest.
+  writeFileSync("dist-e2e/novena.prosaryprayer", buildBundle(project));
+  console.log("✓ days-type project packs, validates and round-trips");
+}

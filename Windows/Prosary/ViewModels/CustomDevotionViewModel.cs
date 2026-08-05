@@ -29,6 +29,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     private readonly IPresetStore _presets;
     private readonly PrayerEngine _engine;
     private readonly LiturgicalCalendarService _calendar;
+    private readonly IReminderScheduler _reminders;
 
     /// <summary>Created lazily on first successful track pick — the service captures the UI
     /// thread's DispatcherQueue, and the ViewModel is always constructed there.</summary>
@@ -196,7 +197,39 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
 
     public bool HasSubtitle => !string.IsNullOrEmpty(Subtitle);
 
-    public bool IsFavorited => MatchingFavoriteId is not null;
+    /// <summary>Whether this devotion is on Pray. The star pins; the Prayer alongside it only
+    /// carries the language/variant/day, so unpinning leaves those settings intact.</summary>
+    [ObservableProperty]
+    private bool _isPinned;
+
+    /// <summary>Set when a day was missed: the day that should have happened, and the one today
+    /// calls for. The page shows the three-way choice while this is non-null.</summary>
+    [ObservableProperty]
+    private bool _showsMissedDayChoice;
+
+    private int _missedDay;
+    private int _calendarDueDay;
+    private string? _suggestedNextId;
+
+    /// <summary>Set when the last day of a series is finished and the bundle's SuggestedNext
+    /// resolves to something this device actually has.</summary>
+    [ObservableProperty]
+    private bool _showsCompletionSuggestion;
+
+    [ObservableProperty]
+    private string _suggestedNextName = string.Empty;
+
+    public string CompletionTitleText =>
+        string.Format(Loc.Tr("multi_day_completed_title", "That completes it. Pray {0} next?"), SuggestedNextName);
+
+    public string PrayNextText =>
+        string.Format(Loc.Tr("multi_day_pray_next", "Pray {0}"), SuggestedNextName);
+
+    public string MissedDayPrayMissedText =>
+        string.Format(Loc.Tr("multi_day_pray_missed", "Pray day {0}"), _missedDay + 1);
+
+    public string MissedDayPrayTodayText =>
+        string.Format(Loc.Tr("multi_day_pray_today", "Continue with day {0}"), _calendarDueDay + 1);
 
     /// <summary>The bundle's alternate step-sets (e.g. the Stations' traditional vs. scriptural
     /// forms); empty for single-form devotions. The page builds its variant flyout from this.</summary>
@@ -308,11 +341,16 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         }
     }
 
-    public CustomDevotionViewModel(IPresetStore presets, PrayerEngine engine, LiturgicalCalendarService calendar)
+    public CustomDevotionViewModel(
+        IPresetStore presets,
+        PrayerEngine engine,
+        LiturgicalCalendarService calendar,
+        IReminderScheduler reminders)
     {
         _presets = presets;
         _engine = engine;
         _calendar = calendar;
+        _reminders = reminders;
     }
 
     public async Task LoadAsync(Guid? prayerId, string bundleId)
@@ -341,12 +379,55 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             // The favorite carries the language to pray in (sentinel = the app default).
             _chosenLanguage = favorite?.LanguageCode ?? LanguageCatalog.DefaultSentinel;
             CurrentDayIndex = favorite?.DayIndex ?? 0;
+            IsPinned = FavoriteDevotions.Contains(bundleId, ImpliedPinnedIds(all));
+
+            // A series decides its own day: today's if it is unprayed, the same day again if it
+            // was already prayed today, and a choice when one was missed.
+            if (Days.Count > 1 && (definition?.DayProgression ?? "series") == "series")
+            {
+                var run = MultiDayRuns.Run(bundleId);
+                switch (run?.GetResumption(Days.Count) ?? new MultiDayRun.Resumption.Start())
+                {
+                    case MultiDayRun.Resumption.Start _:
+                        CurrentDayIndex = 0;
+                        break;
+                    case MultiDayRun.Resumption.Resume resume:
+                        CurrentDayIndex = resume.Day;
+                        break;
+                    case MultiDayRun.Resumption.Choose choose:
+                        CurrentDayIndex = choose.Missed;
+                        _missedDay = choose.Missed;
+                        _calendarDueDay = choose.Next;
+                        OnPropertyChanged(nameof(MissedDayPrayMissedText));
+                        OnPropertyChanged(nameof(MissedDayPrayTodayText));
+                        ShowsMissedDayChoice = true;
+                        break;
+                    case MultiDayRun.Resumption.Complete _:
+                        CurrentDayIndex = Days.Count - 1;
+                        break;
+                }
+
+                // Praying twice in one day re-prays that day rather than eating tomorrow's.
+                if (run is not null && run.HasPrayedToday() && run.PrayedDays.Count > 0)
+                {
+                    CurrentDayIndex = run.PrayedDays[^1];
+                }
+            }
             _languageCode = PrayerPackStore.EffectiveLanguage(bundleId, _chosenLanguage);
             IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
-            Languages = (PrayerPackStore.Info(bundleId)?.Languages ?? [])
+            // A language prayed in more than one use lists those under it — the rite is a second
+            // question, and one whose gaps fall back to the language's own wording.
+            var languages = (PrayerPackStore.Info(bundleId)?.Languages ?? [])
                 .Select(code => LanguageCatalog.All.FirstOrDefault(l => l.Code == code))
                 .OfType<LanguageOption>()
                 .ToList();
+            var rites = LanguageCatalog.Rites(LanguageCatalog.Resolve(_chosenLanguage).Code);
+            if (rites.Count > 1)
+            {
+                languages.AddRange(rites);
+            }
+
+            Languages = languages;
             OnPropertyChanged(nameof(ShowsLanguageMenu));
             OnPropertyChanged(nameof(CurrentLanguageRaw));
 
@@ -379,7 +460,6 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
 
     partial void OnSubtitleChanged(string? value) => OnPropertyChanged(nameof(HasSubtitle));
 
-    partial void OnMatchingFavoriteIdChanged(Guid? value) => OnPropertyChanged(nameof(IsFavorited));
 
     partial void OnBottomBeadsChanged(ObservableCollection<BeadInfo> value)
     {
@@ -443,6 +523,29 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             // the last once complete) — tomorrow opens where the novena left off.
             if (Days.Count > 1)
             {
+                // A series advances by calendar day, so record *which* day was prayed and let
+                // the run decide what comes next — praying twice today must not skip tomorrow's.
+                if ((PrayerPackStore.Definition(_bundleId)?.DayProgression ?? "series") == "series")
+                {
+                    MultiDayRuns.RecordPrayed(_bundleId, CurrentDayIndex);
+                    // The remaining days keep their prompts; the finished ones lose theirs.
+                    _reminders.RefreshSeries(_bundleId);
+
+                    // The last day earns the bundle's parting suggestion — but only when it
+                    // names a devotion this device has, so a hand-written series can point at
+                    // its author's other work without leaving a dead end elsewhere.
+                    if (MultiDayRuns.Run(_bundleId)?.IsComplete(Days.Count) == true &&
+                        MultiDayStatus.SuggestedNext(_bundleId) is { } suggestion)
+                    {
+                        _ = PersistDayIndexAsync(Math.Min(CurrentDayIndex + 1, Days.Count - 1));
+                        _suggestedNextId = suggestion.Id;
+                        SuggestedNextName = suggestion.Name;
+                        ShowsCompletionSuggestion = true;
+                        StopAudio();
+                        return;
+                    }
+                }
+
                 _ = PersistDayIndexAsync(Math.Min(CurrentDayIndex + 1, Days.Count - 1));
             }
 
@@ -615,30 +718,90 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         return $"{whole / 60}:{whole % 60:D2}";
     }
 
+    /// <summary>A devotion counts as pinned by default when it already has a saved configuration
+    /// — the same fallback the Pray page uses, so the star agrees with what that page shows.</summary>
+    private static List<string> ImpliedPinnedIds(IEnumerable<Prayer> all) =>
+        all.Select(prayer => prayer.Kind switch
+        {
+            PrayerKind.Rosary => "rosary",
+            PrayerKind.JesusPrayer => "jesusPrayer",
+            _ => prayer.CustomDevotionId,
+        }).OfType<string>().ToList();
+
     [RelayCommand]
     private async Task ToggleFavoriteAsync()
     {
-        if (MatchingFavoriteId is { } id)
-        {
-            var existing = await _presets.GetAsync(id);
-            if (existing is not null)
-            {
-                await _presets.DeleteAsync(existing);
-            }
+        // Pinning is what puts a devotion on Pray; unpinning keeps the Prayer, which holds the
+        // language, variant and day for next time.
+        var implied = ImpliedPinnedIds(await _presets.GetAllAsync());
+        FavoriteDevotions.Toggle(_bundleId, implied);
+        IsPinned = FavoriteDevotions.Contains(_bundleId, implied);
 
-            MatchingFavoriteId = null;
+        if (IsPinned && MatchingFavoriteId is null)
+        {
+            var newFavorite = new Prayer
+            {
+                Name = DevotionTitle,
+                Kind = PrayerKind.Custom,
+                IsDefault = true,
+                LanguageCode = LanguageCatalog.DefaultSentinel,
+                CustomDevotionId = _bundleId,
+            };
+            await _presets.SaveAsync(newFavorite);
+            MatchingFavoriteId = newFavorite.Id;
+        }
+    }
+
+    /// <summary>A missed day is a real choice, not an error: take the day that should have
+    /// happened, stay with the calendar, or start the run over.</summary>
+    [RelayCommand]
+    private async Task PrayMissedDayAsync()
+    {
+        ShowsMissedDayChoice = false;
+        await SelectDayAsync(_missedDay);
+    }
+
+    [RelayCommand]
+    private async Task PrayCalendarDayAsync()
+    {
+        ShowsMissedDayChoice = false;
+        await SelectDayAsync(_calendarDueDay);
+    }
+
+    partial void OnSuggestedNextNameChanged(string value)
+    {
+        OnPropertyChanged(nameof(CompletionTitleText));
+        OnPropertyChanged(nameof(PrayNextText));
+    }
+
+    /// <summary>Hands over to the devotion the finished series suggests.</summary>
+    [RelayCommand]
+    private void PraySuggestedNext()
+    {
+        ShowsCompletionSuggestion = false;
+        if (_suggestedNextId is { } next)
+        {
+            Router.GoBack();
+            Router.Navigate<Views.CustomDevotionFlowPage>(new CustomDevotionFlowParams(null, next));
             return;
         }
 
-        var newFavorite = new Prayer
-        {
-            Name = DevotionTitle,
-            Kind = PrayerKind.Custom,
-            IsDefault = true,
-            LanguageCode = LanguageCatalog.DefaultSentinel,
-            CustomDevotionId = _bundleId,
-        };
-        await _presets.SaveAsync(newFavorite);
-        MatchingFavoriteId = newFavorite.Id;
+        Router.GoBack();
+    }
+
+    [RelayCommand]
+    private void DismissCompletionSuggestion()
+    {
+        ShowsCompletionSuggestion = false;
+        Router.GoBack();
+    }
+
+    [RelayCommand]
+    private async Task StartRunOverAsync()
+    {
+        ShowsMissedDayChoice = false;
+        MultiDayRuns.StartFresh(_bundleId);
+        _reminders.RefreshSeries(_bundleId);
+        await SelectDayAsync(0);
     }
 }

@@ -17,6 +17,9 @@ struct PrayerCard: View {
   let title: String
   let subtitle: String
   let accentColor: Color
+  /// Shown as a chevron the caller can tap separately — a row whose devotion has presets prays
+  /// its default on tap and opens the list from here, so the common case stays one tap.
+  var onDisclosure: (() -> Void)? = nil
   let action: () -> Void
 
   var body: some View {
@@ -53,9 +56,23 @@ struct PrayerCard: View {
 
           Spacer()
 
-          Image(systemName: "chevron.right")
-            .font(.subheadline)
-            .foregroundStyle(.tertiary)
+          if let onDisclosure {
+            // Its own button so tapping the chevron opens the presets while tapping the card
+            // still prays; .borderless keeps the row's own Button from swallowing it.
+            Button(action: onDisclosure) {
+              Image(systemName: "chevron.forward.circle")
+                .font(.title3)
+                .foregroundStyle(accentColor)
+                .padding(.leading, 8)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.borderless)
+            .accessibilityLabel(String(localized: "home.savedPresets", defaultValue: "Saved Presets…"))
+          } else {
+            Image(systemName: "chevron.forward")
+              .font(.subheadline)
+              .foregroundStyle(.tertiary)
+          }
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 14)

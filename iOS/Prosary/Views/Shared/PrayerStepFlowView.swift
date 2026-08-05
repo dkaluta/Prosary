@@ -258,12 +258,22 @@ struct PrayerStepFlowView: View {
       ScrollView {
         textBlock(step: step)
           .padding()
+          // A ScrollView pins its content to the top, so on a tall window (full screen on a
+          // Mac) a short prayer floated level with the title while the art sat centred half a
+          // screen below it. Filling the viewport centres the prayer beside the art; anything
+          // longer than the viewport still scrolls.
+          .frame(minHeight: availableHeight - (isCompactHeight ? 8 : 16), alignment: .center)
       }
       .frame(maxWidth: .infinity)
     }
     .padding(.leading, isCompactHeight ? 16 : 40)
     .padding(.trailing, isCompactHeight ? 12 : 28)
     .padding(.top, isCompactHeight ? 8 : 16)
+    // Full screen on a Mac is ~1700pt: without a ceiling the three columns drift to opposite
+    // edges — art in one corner, prayer in the other, nothing to read as one page. Capped and
+    // centred, a wider window gives the prayer more room until it has enough, then stops.
+    .frame(maxWidth: 1100)
+    .frame(maxWidth: .infinity)
   }
 
   /// Deliberately not clipped/framed here — `.aspectRatio(contentMode: .fill)` reports an

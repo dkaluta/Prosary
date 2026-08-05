@@ -4,6 +4,7 @@
 // are shown to non-technical authors.
 
 import { LANGUAGES, RESERVED_IDS, commonPrayer } from "./catalog";
+import { authoredSteps } from "./pack";
 import type { Project } from "./project";
 
 export type WizardScreen = "basics" | "steps" | "audio" | "review";
@@ -44,10 +45,49 @@ export function validateProject(project: Project): Issue[] {
     if (!HEX_COLOR.test(value)) basics(`The ${field} accent color must be a hex color like #7A1F3D.`);
   }
 
-  if (project.steps.length === 0) steps("Add at least one prayer step.");
   const languageNames = new Map(LANGUAGES.map((l) => [l.code, l.name] as const));
-  project.steps.forEach((step, i) => {
-    const where = `Step ${i + 1}`;
+
+  if (project.devotionType === "days") {
+    if (project.days.length === 0) {
+      steps("Add at least one day.");
+    }
+    project.days.forEach((day, i) => {
+      if (!day.name.trim()) steps(`Day ${i + 1} needs a name.`);
+      if (day.steps.length === 0) steps(`${day.name || `Day ${i + 1}`} has no prayers in it yet.`);
+    });
+    if (project.dayProgression === "series") {
+      if (project.suggestedStart && !/^\d{2}-\d{2}$/.test(project.suggestedStart)) {
+        basics("The traditional start date must be written as MM-DD, like 11-29.");
+      }
+      if (
+        project.suggestedReminderTime &&
+        !/^([01]\d|2[0-3]):[0-5]\d$/.test(project.suggestedReminderTime)
+      ) {
+        basics("The suggested reminder time must be written as HH:mm, like 07:00.");
+      }
+      if (project.suggestedNext) {
+        if (!ID_SHAPE.test(project.suggestedNext)) {
+          basics("What to suggest afterwards must be a devotion identifier — letters and numbers.");
+        } else if (project.suggestedNext === project.id) {
+          basics("A devotion cannot suggest itself afterwards.");
+        }
+      }
+    }
+  } else if (project.steps.length === 0) {
+    steps("Add at least one prayer step.");
+  }
+
+  /** Numbered the way the author sees them: within the day for a days project. */
+  const stepLabel = (step: (typeof allSteps)[number]) => {
+    if (project.devotionType !== "days") return `Step ${project.steps.indexOf(step) + 1}`;
+    const day = project.days.find((d) => d.steps.includes(step));
+    const within = (day?.steps.indexOf(step) ?? 0) + 1;
+    return `${day?.name || "Day"}, step ${within}`;
+  };
+
+  const allSteps = authoredSteps(project);
+  allSteps.forEach((step) => {
+    const where = stepLabel(step);
     if (step.kind === "common") {
       if (!step.commonKey || !commonPrayer(step.commonKey)) {
         steps(`${where}: pick which common prayer this is.`);
@@ -85,7 +125,7 @@ export function validateProject(project: Project): Issue[] {
       audio(`${where} needs at least one chapter so listeners can follow along.`);
     }
     track.chapters.forEach((chapter, j) => {
-      if (!project.steps.some((s) => s.uid === chapter.stepUid)) {
+      if (!allSteps.some((s) => s.uid === chapter.stepUid)) {
         audio(`${where}: chapter ${j + 1} points at a step that was removed.`);
       }
       if (chapter.start < 0 || Number.isNaN(chapter.start)) {

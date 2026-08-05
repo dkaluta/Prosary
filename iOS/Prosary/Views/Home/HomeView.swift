@@ -2,6 +2,12 @@
 //  HomeView.swift
 //  Prosary
 //
+//  The Pray tab is the devotions you have pinned — not every saved preset. Tapping a row prays
+//  its default straight away; the disclosure opens the presets underneath it, so four saved
+//  Rosaries are one row rather than four. Pinning is separate from presets (see
+//  FavoriteDevotions), so removing something from Pray never deletes its configurations.
+//  Discovery lives in Categories/Search/Browse.
+//
 
 import SwiftUI
 
@@ -10,20 +16,99 @@ struct HomeView: View {
 
   @Environment(\.appServices) private var services
 
+  @State private var prayers: [Prayer] = []
   @State private var todayMysteryGroup: MysteryGroup? = nil
-  @State private var defaultRosary: Prayer? = nil
-  @State private var defaultJesusPrayer: Prayer? = nil
-  /// One entry per discovered generic devotion (bundle id -> its favorite, if any).
-  @State private var defaultCustomDevotions: [String: Prayer] = [:]
   @State private var todayFeast: FeastDay? = nil
   @State private var monthIntention: PopeIntention? = nil
 
-  /// Bumped on every appearance — see devotionCards.
-  @State private var packGeneration = 0
+  @State private var editorPrayer: Prayer?
+  @State private var isNew = false
+  @State private var remindersPrayer: Prayer?
+  @State private var showsQuickSetup = false
+  @State private var showsOrderEditor = false
+  @State private var showsSettings = false
+  /// Bumped whenever the saved order changes so the list re-derives.
+  @State private var orderGeneration = 0
 
-  private var rosaryAccent: Color { todayMysteryGroup?.color ?? Color.brandPrimary }
   private var jesusPrayerAccent: Color { .adaptive(light: "#8B1A1A", dark: "#C62828") }
 
+  /// One row per pinned devotion, in the user's own order. A devotion is implied-pinned when
+  /// it already has a preset, so a fresh install shows the seeded Rosary without anyone having
+  /// starred anything.
+  private var pinnedDevotions: [DevotionRow] {
+    _ = orderGeneration
+    // Re-derive when iCloud delivers a pin or an order from another device.
+    _ = CloudPreferencesGeneration.shared.value
+    let implied = impliedPinnedIds
+    let rows = allDevotions.filter { FavoriteDevotions.contains($0.id, defaultingTo: implied) }
+    return HomeOrder.apply(rows) { $0.id }
+  }
+
+  private var impliedPinnedIds: [String] {
+    var ids = Set<String>()
+    for prayer in prayers {
+      switch prayer.kind {
+      case .rosary: ids.insert("rosary")
+      case .jesusPrayer: ids.insert("jesusPrayer")
+      case .custom: if let id = prayer.customDevotionId { ids.insert(id) }
+      }
+    }
+    return Array(ids)
+  }
+
+  /// Every devotion the app knows: the Rosary, each loaded bundle, the Jesus Prayer.
+  private var allDevotions: [DevotionRow] {
+    var rows: [DevotionRow] = [
+      DevotionRow(
+        id: "rosary", title: PrayerKind.rosary.displayName,
+        systemImage: PrayerKind.rosary.systemImage, iconGlyph: nil,
+        accent: todayMysteryGroup?.color ?? .brandPrimary,
+        subtitle: rosarySubtitle, presetsRoute: .rosaryPresets,
+        prayAction: { prayRosary() }),
+    ]
+    for bundleId in PrayerPackStore.customDevotionIds() {
+      guard let info = PrayerPackStore.info(for: bundleId) else { continue }
+      let accent: Color
+      if let light = info.accentColorHex, let dark = info.accentColorDarkHex {
+        accent = .adaptive(light: light, dark: dark)
+      } else {
+        accent = info.accentColorHex.map { Color(hex: $0) } ?? .brandPrimary
+      }
+      rows.append(DevotionRow(
+        id: bundleId, title: info.localizedDisplayName,
+        systemImage: info.iconSystemName ?? PrayerKind.custom.systemImage,
+        iconGlyph: info.iconGlyph, accent: accent,
+        // A tracked series says where you are, or when it begins — that is the whole reason a
+        // pinned novena is worth pinning before its first day.
+        subtitle: MultiDayStatus.subtitle(for: bundleId)
+          ?? savedPreset(forBundle: bundleId)?.languageDisplayName
+          ?? String(localized: "home.customCard.tapToPray", defaultValue: "Tap to pray"),
+        presetsRoute: nil,
+        prayAction: { prayCustom(bundleId) }))
+    }
+    rows.append(DevotionRow(
+      id: "jesusPrayer", title: PrayerKind.jesusPrayer.displayName,
+      systemImage: PrayerKind.jesusPrayer.systemImage, iconGlyph: nil,
+      accent: jesusPrayerAccent, subtitle: jesusPrayerSubtitle,
+      presetsRoute: nil, prayAction: { prayJesusPrayer() }))
+    return rows
+  }
+
+  private var defaultRosary: Prayer? {
+    prayers.first { $0.kind == .rosary && $0.isDefault } ?? prayers.first { $0.kind == .rosary }
+  }
+
+  private var defaultJesusPrayer: Prayer? {
+    prayers.first { $0.kind == .jesusPrayer && $0.isDefault } ?? prayers.first { $0.kind == .jesusPrayer }
+  }
+
+  private func savedPreset(forBundle bundleId: String) -> Prayer? {
+    prayers.first { $0.kind == .custom && $0.customDevotionId == bundleId && $0.isDefault }
+      ?? prayers.first { $0.kind == .custom && $0.customDevotionId == bundleId }
+  }
+
+  /// The row still answers "what will I pray today?" — today's mysteries plus the preset that
+  /// one tap would start.
   private var rosarySubtitle: String {
     var parts: [String] = []
     if let group = todayMysteryGroup {
@@ -40,132 +125,36 @@ struct HomeView: View {
     return "\(fav.name) • \(fav.jesusPrayer.targetDisplayName)"
   }
 
-  private func customDevotionSubtitle(bundleId: String) -> String {
-    defaultCustomDevotions[bundleId].map { $0.name } ?? String(localized: "home.customCard.tapToPray", defaultValue: "Tap to pray")
-  }
 
-  /// Accent color for a generic devotion's card, honoring the manifest's light/dark pair.
-  private func customAccent(_ info: CustomDevotionInfo) -> Color {
-    if let light = info.accentColorHex, let dark = info.accentColorDarkHex {
-      return .adaptive(light: light, dark: dark)
-    }
-    return info.accentColorHex.map { Color(hex: $0) } ?? .brandPrimary
-  }
 
-  /// One card per devotion: the Rosary first (the app's namesake), then every generic
-  /// (bundle-driven) devotion in pack-load order — icon/title/accent read from each bundle's own
-  /// manifest, nothing hardcoded here — and the Jesus Prayer (the counter-based odd one out)
-  /// last. Adding a devotion means shipping a bundle; this view doesn't change.
-  /// Bumped whenever the saved order changes so the grid re-derives.
-  @State private var orderGeneration = 0
-  @State private var showsOrderEditor = false
-  @State private var showsSettings = false
-
-  private var devotionCards: [DevotionCard] {
-    _ = orderGeneration
-    // Read the generation so installing a bundle elsewhere (Browse/Search/Favorites)
-    // invalidates this body and the new card appears without a relaunch.
-    _ = packGeneration
-    var cards = [
-      DevotionCard(
-        id: PrayerKind.rosary.rawValue, systemImage: PrayerKind.rosary.systemImage, title: PrayerKind.rosary.displayName,
-        accentColor: rosaryAccent, subtitle: rosarySubtitle,
-        accessibilityIdentifier: "rosaryCard", action: launchRosary),
-    ]
-
-    for bundleId in PrayerPackStore.customDevotionIds() {
-      guard let info = PrayerPackStore.info(for: bundleId) else { continue }
-      cards.append(DevotionCard(
-        id: "custom.\(bundleId)",
-        systemImage: info.iconSystemName ?? PrayerKind.custom.systemImage,
-        iconGlyph: info.iconGlyph,
-        title: info.localizedDisplayName,
-        accentColor: customAccent(info),
-        subtitle: customDevotionSubtitle(bundleId: bundleId),
-        accessibilityIdentifier: "\(bundleId)Card",
-        action: { launchCustomDevotion(bundleId: bundleId) }))
-    }
-
-    cards.append(DevotionCard(
-      id: PrayerKind.jesusPrayer.rawValue, systemImage: PrayerKind.jesusPrayer.systemImage, title: PrayerKind.jesusPrayer.displayName,
-      accentColor: jesusPrayerAccent, subtitle: jesusPrayerSubtitle,
-      accessibilityIdentifier: "jesusPrayerCard", action: launchJesusPrayer))
-
-    return HomeOrder.apply(cards, id: \.id)
-  }
 
   var body: some View {
     ScrollView {
       VStack(spacing: 16) {
-        // "Today" — the day's feast per the Holy Land (Latin Patriarchate of Jerusalem)
-        // calendar and the Pope's monthly prayer intention. Rows hide when the bundled
-        // datasets have no entry (ferial days; dates past the generated years).
-        if todayFeast != nil || monthIntention != nil {
-          VStack(alignment: .leading, spacing: 10) {
-            if let feast = todayFeast {
-              HStack(alignment: .firstTextBaseline, spacing: 8) {
-                Image(systemName: "calendar")
-                  .foregroundStyle(Color.brandPrimary)
-                VStack(alignment: .leading, spacing: 2) {
-                  Text(feast.title)
-                    .font(.subheadline.weight(feast.rank == "Solemnity" ? .bold : .semibold))
-                  Text(feast.rank)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                }
-              }
-            }
-            if let intention = monthIntention {
-              HStack(alignment: .firstTextBaseline, spacing: 8) {
-                Image(systemName: "hands.sparkles")
-                  .foregroundStyle(Color.brandPrimary)
-                VStack(alignment: .leading, spacing: 2) {
-                  Text(String(
-                    localized: "home.today.popesIntention",
-                    defaultValue: "The Pope’s intention: \(intention.title)"))
-                    .font(.subheadline.weight(.semibold))
-                  Text(intention.text)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                }
-              }
-            }
-          }
-          .frame(maxWidth: .infinity, alignment: .leading)
-          .padding(14)
-          .background(.quaternary.opacity(0.5), in: RoundedRectangle(cornerRadius: 14))
-          .accessibilityIdentifier("todaySection")
-        }
+        todaySection
 
-        LazyVGrid(
-          columns: [GridItem(.adaptive(minimum: 300, maximum: 480), spacing: 12, alignment: .top)],
-          spacing: 12
-        ) {
-          ForEach(devotionCards) { card in
-            PrayerCard(
-              systemImage: card.systemImage,
-              iconGlyph: card.iconGlyph,
-              title: card.title,
-              subtitle: card.subtitle,
-              accentColor: card.accentColor
-            ) {
-              card.action()
-            }
-            .accessibilityIdentifier(card.accessibilityIdentifier)
-            .contextMenu {
-              Button {
-                HomeOrder.moveToTop(card.id, allIdsInDisplayOrder: devotionCards.map(\.id))
-                orderGeneration += 1
-              } label: {
-                Label(String(localized: "home.moveToTop", defaultValue: "Move to Top"),
-                      systemImage: "arrow.up.to.line")
+        if pinnedDevotions.isEmpty {
+          emptyState
+        } else {
+          LazyVGrid(
+            columns: [GridItem(.adaptive(minimum: 300, maximum: 480), spacing: 12, alignment: .top)],
+            spacing: 12
+          ) {
+            ForEach(pinnedDevotions) { row in
+              PrayerCard(
+                systemImage: row.systemImage,
+                iconGlyph: row.iconGlyph,
+                title: row.title,
+                subtitle: row.subtitle,
+                accentColor: row.accent,
+                // One tap prays the default; the disclosure is the way into the presets, so
+                // the common case stays a single tap.
+                onDisclosure: row.presetsRoute.map { route in { path.append(route) } }
+              ) {
+                row.prayAction()
               }
-              Button {
-                showsOrderEditor = true
-              } label: {
-                Label(String(localized: "home.editOrder", defaultValue: "Edit Order…"),
-                      systemImage: "arrow.up.arrow.down")
-              }
+              .accessibilityIdentifier("\(row.id)Card")
+              .contextMenu { rowMenu(for: row) }
             }
           }
         }
@@ -174,9 +163,30 @@ struct HomeView: View {
       .frame(maxWidth: 1000)
       .frame(maxWidth: .infinity)
     }
-    // The tab shell carries the app's identity now — the bar shows the section name, and the
-    // old bottom Favorites button / About link become toolbar icons.
     .navigationTitle(String(localized: "tabs.pray", defaultValue: "Pray"))
+    .toolbar { toolbarContent }
+    .sheet(item: $editorPrayer) { prayer in
+      NavigationStack { FavoriteEditorView(prayer: prayer, isNew: isNew) }
+        .onDisappear { Task { await load() } }
+    }
+    .sheet(item: $remindersPrayer) { prayer in
+      NavigationStack { RemindersOnlyEditorView(prayer: prayer) }
+        .onDisappear { Task { await load() } }
+    }
+    .sheet(isPresented: $showsQuickSetup) {
+      RosaryQuickSetupView(
+        seed: prayers.first { $0.kind == .rosary && $0.isDefault }?.rosary ?? RosaryOptions(),
+        hasPresets: prayers.contains { $0.kind == .rosary }
+      ) { prayer in
+        showsQuickSetup = false
+        path.append(AppRoute.rosaryQuickPray(prayer: prayer))
+      } onSaved: {
+        Task { await load() }
+      }
+    }
+    .sheet(isPresented: $showsOrderEditor) {
+      HomeOrderEditor(rows: pinnedDevotions) { orderGeneration += 1 }
+    }
     #if !os(macOS)
     .sheet(isPresented: $showsSettings) {
       NavigationStack {
@@ -191,19 +201,124 @@ struct HomeView: View {
       }
     }
     #endif
-    .sheet(isPresented: $showsOrderEditor) {
-      HomeOrderEditor(cards: devotionCards) { orderGeneration += 1 }
-    }
-    .toolbar {
-      #if !os(macOS)
-      ToolbarItem(placement: .primaryAction) {
-        Button { showsSettings = true } label: {
-          Image(systemName: "gearshape")
+    .task { await load() }
+    .onAppear { Task { await load() } }
+  }
+
+  // MARK: - Pieces
+
+  /// "Today" — the day's feast per the Holy Land (Latin Patriarchate of Jerusalem) calendar and
+  /// the Pope's monthly prayer intention. Rows hide when the bundled datasets have no entry
+  /// (ferial days; dates past the generated years).
+  @ViewBuilder
+  private var todaySection: some View {
+    if todayFeast != nil || monthIntention != nil {
+      VStack(alignment: .leading, spacing: 10) {
+        if let feast = todayFeast {
+          HStack(alignment: .firstTextBaseline, spacing: 8) {
+            Image(systemName: "calendar").foregroundStyle(Color.brandPrimary)
+            VStack(alignment: .leading, spacing: 2) {
+              Text(feast.title)
+                .font(.subheadline.weight(feast.rank == "Solemnity" ? .bold : .semibold))
+              Text(feast.rank).font(.caption).foregroundStyle(.secondary)
+            }
+          }
         }
-        .accessibilityLabel(String(localized: "settings.title", defaultValue: "Settings"))
-        .accessibilityIdentifier("settingsButton")
+        if let intention = monthIntention {
+          HStack(alignment: .firstTextBaseline, spacing: 8) {
+            Image(systemName: "hands.sparkles").foregroundStyle(Color.brandPrimary)
+            VStack(alignment: .leading, spacing: 2) {
+              Text(String(
+                localized: "home.today.popesIntention",
+                defaultValue: "The Pope’s intention: \(intention.title)"))
+                .font(.subheadline.weight(.semibold))
+              Text(intention.text).font(.caption).foregroundStyle(.secondary)
+            }
+          }
+        }
       }
-      #endif
+      .frame(maxWidth: .infinity, alignment: .leading)
+      .padding(14)
+      .background(.quaternary.opacity(0.5), in: RoundedRectangle(cornerRadius: 14))
+      .accessibilityIdentifier("todaySection")
+    }
+  }
+
+  /// Only reachable by deleting every favorite — the store seeds one on first run — so it
+  /// points at the tabs that find devotions rather than apologising.
+  private var emptyState: some View {
+    VStack(spacing: 10) {
+      Image(systemName: "star")
+        .font(.largeTitle)
+        .foregroundStyle(.secondary)
+      Text(String(localized: "home.empty.title", defaultValue: "No saved prayers yet"))
+        .font(.headline)
+      Text(String(
+        localized: "home.empty.detail",
+        defaultValue: "Find a devotion in Categories or Search and pin it here."))
+        .font(.subheadline)
+        .foregroundStyle(.secondary)
+        .multilineTextAlignment(.center)
+    }
+    .padding(.vertical, 40)
+    .frame(maxWidth: 420)
+    .accessibilityIdentifier("noFavoritesState")
+  }
+
+  @ViewBuilder
+  private func rowMenu(for row: DevotionRow) -> some View {
+    if let route = row.presetsRoute {
+      Button { path.append(route) } label: {
+        Label(String(localized: "home.savedPresets", defaultValue: "Saved Presets…"), systemImage: "bookmark")
+      }
+    }
+    Button {
+      HomeOrder.moveToTop(row.id, allIdsInDisplayOrder: pinnedDevotions.map(\.id))
+      orderGeneration += 1
+    } label: {
+      Label(String(localized: "home.moveToTop", defaultValue: "Move to Top"), systemImage: "arrow.up.to.line")
+    }
+    Button {
+      showsOrderEditor = true
+    } label: {
+      Label(String(localized: "home.editOrder", defaultValue: "Edit Order…"), systemImage: "arrow.up.arrow.down")
+    }
+    Divider()
+    // Unpinning is not deletion: the presets underneath stay exactly where they are, which is
+    // the whole reason pinning is stored separately from them.
+    Button {
+      FavoriteDevotions.toggle(row.id, defaultingTo: impliedPinnedIds)
+      orderGeneration += 1
+    } label: {
+      Label(String(localized: "home.unpin", defaultValue: "Remove from Pray"), systemImage: "star.slash")
+    }
+  }
+
+  @ToolbarContentBuilder
+  private var toolbarContent: some ToolbarContent {
+    ToolbarItem(placement: .primaryAction) {
+      Menu {
+        Button {
+          showsQuickSetup = true
+        } label: {
+          Label("rosaryPicker.anyRosary", systemImage: "sparkles")
+        }
+        Divider()
+        Button { addNew(kind: .rosary) } label: {
+          Label(String(localized: "favorites.addKind", defaultValue: "Add \(PrayerKind.rosary.displayName)"),
+                systemImage: "circle.hexagongrid")
+        }
+        Button { addNew(kind: .jesusPrayer) } label: {
+          Label(String(localized: "favorites.addJesusPrayer", defaultValue: "Add Jesus Prayer"),
+                systemImage: "heart")
+        }
+      } label: {
+        Image(systemName: "plus")
+      }
+      .accessibilityLabel(String(localized: "home.addFavorite", defaultValue: "Add a prayer"))
+      .accessibilityIdentifier("addFavoriteButton")
+    }
+    if !pinnedDevotions.isEmpty {
       ToolbarItem(placement: .primaryAction) {
         Button { showsOrderEditor = true } label: {
           Image(systemName: "arrow.up.arrow.down")
@@ -211,111 +326,96 @@ struct HomeView: View {
         .accessibilityLabel(String(localized: "home.editOrder", defaultValue: "Edit Order…"))
         .accessibilityIdentifier("editOrderButton")
       }
-      ToolbarItem(placement: .primaryAction) {
-        NavigationLink(value: AppRoute.favorites) {
-          Image(systemName: "star")
-        }
-        .accessibilityLabel(Text("home.myFavorites"))
-        .accessibilityIdentifier("favoritesButton")
-      }
-      #if !os(macOS)
-      ToolbarItem(placement: .primaryAction) {
-        NavigationLink(value: AppRoute.about) {
-          Image(systemName: "info.circle")
-        }
-        .accessibilityLabel(Text("home.about"))
-      }
-      #endif
     }
-    .task { await load() }
-    .onAppear {
-      packGeneration += 1
-      Task { await load() }
+    #if !os(macOS)
+    ToolbarItem(placement: .primaryAction) {
+      Button { showsSettings = true } label: {
+        Image(systemName: "gearshape")
+      }
+      .accessibilityLabel(String(localized: "settings.title", defaultValue: "Settings"))
+      .accessibilityIdentifier("settingsButton")
     }
+    ToolbarItem(placement: .primaryAction) {
+      NavigationLink(value: AppRoute.about) {
+        Image(systemName: "info.circle")
+      }
+      .accessibilityLabel(Text("home.about"))
+    }
+    #endif
   }
+
+  // MARK: - Actions
+
 
   private func load() async {
     todayMysteryGroup = services.calendar.mysteryGroupToday()
     todayFeast = TodayInfoStore.feast()
     monthIntention = TodayInfoStore.intention()
-    let all = (try? await services.presetStore.all()) ?? []
-    defaultRosary = all.first { $0.kind == .rosary && $0.isDefault }
-      ?? all.first { $0.kind == .rosary }
-    defaultJesusPrayer = all.first { $0.kind == .jesusPrayer && $0.isDefault }
-      ?? all.first { $0.kind == .jesusPrayer }
-
-    defaultCustomDevotions = Dictionary(
-      uniqueKeysWithValues: PrayerPackStore.customDevotionIds().compactMap { bundleId -> (String, Prayer)? in
-        let favorite = all.first { $0.kind == .custom && $0.customDevotionId == bundleId && $0.isDefault }
-          ?? all.first { $0.kind == .custom && $0.customDevotionId == bundleId }
-        return favorite.map { (bundleId, $0) }
-      })
+    prayers = (try? await services.presetStore.all()) ?? []
+    HomeOrder.dropOrderIfUnrelated(to: allDevotions.map(\.id))
   }
 
-  private func launchRosary() {
-    // The picker handles every case itself (default preset up top, ad-hoc quick pray, the
-    // remaining presets) — including having no presets at all.
-    path.append(AppRoute.rosaryPicker)
+  private func prayRosary() {
+    if let preset = defaultRosary {
+      path.append(AppRoute.prayer(id: preset.id))
+    } else {
+      path.append(AppRoute.rosaryPresets)
+    }
   }
 
-  private func launchJesusPrayer() {
-    if let prayer = defaultJesusPrayer {
-      path.append(AppRoute.prayer(id: prayer.id))
+  private func prayJesusPrayer() {
+    if let preset = defaultJesusPrayer {
+      path.append(AppRoute.prayer(id: preset.id))
     } else {
       path.append(AppRoute.jesusPrayerSetup)
     }
   }
 
-  private func launchCustomDevotion(bundleId: String) {
-    if let prayer = defaultCustomDevotions[bundleId] {
-      path.append(AppRoute.prayer(id: prayer.id))
+  private func prayCustom(_ bundleId: String) {
+    if let preset = savedPreset(forBundle: bundleId) {
+      path.append(AppRoute.prayer(id: preset.id))
     } else {
       path.append(AppRoute.custom(devotionId: bundleId))
     }
   }
-}
 
-/// One devotion's rendering state for a Home card. See `HomeView.devotionCards`.
-private struct DevotionCard: Identifiable {
-  let id: String
-  let systemImage: String
-    var iconGlyph: String? = nil
-  let title: String
-  let accentColor: Color
-  let subtitle: String
-  let accessibilityIdentifier: String
-  let action: () -> Void
-}
+  private func addNew(kind: PrayerKind) {
+    isNew = true
+    editorPrayer = Prayer(name: kind.defaultName, kind: kind, isDefault: !prayers.contains { $0.kind == kind })
+  }
 
-#Preview {
-  NavigationStack {
-    HomeView(path: .constant(NavigationPath()))
+  private func makeDefault(_ prayer: Prayer) {
+    var updated = prayer
+    updated.isDefault = true
+    Task {
+      try? await services.presetStore.save(updated)
+      await load()
+    }
+  }
+
+  private func delete(_ prayer: Prayer) {
+    ReminderScheduler.removeAll(for: prayer)
+    Task {
+      try? await services.presetStore.delete(prayer)
+      await load()
+    }
   }
 }
-
-#Preview("Dark Mode") {
-  NavigationStack {
-    HomeView(path: .constant(NavigationPath()))
-  }
-  .preferredColorScheme(.dark)
-}
-
 
 /// The approved reorder pattern (not jiggle): a plain List in permanent edit mode — drag
-/// handles appear, rows move, order persists on every change. Reset returns to directory
-/// order. Presented as a sheet so the Home grid itself stays a grid.
+/// handles appear, rows move, order persists on every change. Reset returns to save order.
 private struct HomeOrderEditor: View {
-  let cards: [DevotionCard]
+  let rows: [DevotionRow]
   let onChange: () -> Void
   @Environment(\.dismiss) private var dismiss
   @State private var ids: [String] = []
-  @State private var titles: [String: String] = [:]
+  @State private var names: [String: String] = [:]
 
   var body: some View {
     NavigationStack {
       List {
         ForEach(ids, id: \.self) { id in
-          Text(titles[id] ?? id)
+          Text(names[id] ?? id)
         }
         .onMove { from, to in
           ids.move(fromOffsets: from, toOffset: to)
@@ -337,7 +437,7 @@ private struct HomeOrderEditor: View {
         ToolbarItem(placement: .cancellationAction) {
           Button(String(localized: "home.editOrder.reset", defaultValue: "Reset")) {
             HomeOrder.reset()
-            ids = cards.map(\.id) // cards arrive already ordered; reset shows directory order next open
+            ids = rows.map(\.id)
             onChange()
             dismiss()
           }
@@ -347,9 +447,28 @@ private struct HomeOrderEditor: View {
         }
       }
       .onAppear {
-        ids = cards.map(\.id)
-        titles = Dictionary(uniqueKeysWithValues: cards.map { ($0.id, $0.title) })
+        ids = rows.map(\.id)
+        names = Dictionary(uniqueKeysWithValues: rows.map { ($0.id, $0.title) })
       }
     }
+  }
+}
+
+/// One pinned devotion's rendering state. `presetsRoute` is nil for devotions with nothing to
+/// choose between — a bundle devotion has at most one saved configuration.
+private struct DevotionRow: Identifiable {
+  let id: String
+  let title: String
+  let systemImage: String
+  let iconGlyph: String?
+  let accent: Color
+  let subtitle: String
+  let presetsRoute: AppRoute?
+  let prayAction: () -> Void
+}
+
+#Preview {
+  NavigationStack {
+    HomeView(path: .constant(NavigationPath()))
   }
 }

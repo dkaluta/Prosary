@@ -59,6 +59,10 @@ SHARED_MYSTERY_IMAGE_KEYS = {
     for order, name in enumerate(names, start=1)
 }
 
+# Seeded by every engine beside a bundle's declared options, so an entry can gate on the season
+# ("invitatory & !isLent") without the bundle inventing an option for it.
+CALENDAR_CONDITION_KEYS = {"isLent", "isEasterSeason"}
+
 SIGN_OF_CROSS_KEY = "signumCrucis"
 ANTIPHON_KIND = "seasonalMarianAntiphon"
 OPTION_ANTIPHON_KIND = "marianAntiphon"
@@ -370,6 +374,42 @@ def main() -> int:
             extra = set(day) - {"name", "nameByLanguage", "period", "steps"}
             if extra:
                 err(f"{where}: unknown fields {sorted(extra)}")
+        # How the days relate to each other, which is the difference between a novena you work
+        # through on consecutive days and a weekly cycle you pick from.
+        progression = devotion.get("dayProgression", "series")
+        if progression not in ("series", "free"):
+            err('dayProgression must be "series" (consecutive days, tracked) or "free" (pick any)')
+        reminder = devotion.get("suggestedReminderTime")
+        if reminder is not None:
+            ok = (isinstance(reminder, str) and len(reminder) == 5 and reminder[2] == ":"
+                  and reminder[:2].isdigit() and reminder[3:].isdigit()
+                  and int(reminder[:2]) < 24 and int(reminder[3:]) < 60)
+            if not ok:
+                err('suggestedReminderTime must be "HH:mm"')
+            elif progression != "series":
+                err("suggestedReminderTime only means anything for a series")
+        # When a series traditionally begins, so a pinned devotion can announce itself before
+        # the day arrives ("Starts 29 November"). Annual month-day, not a full date.
+        start = devotion.get("suggestedStart")
+        if start is not None:
+            parts = start.split("-") if isinstance(start, str) else []
+            ok = (len(parts) == 2 and all(p.isdigit() for p in parts)
+                  and 1 <= int(parts[0]) <= 12 and 1 <= int(parts[1]) <= 31)
+            if not ok:
+                err('suggestedStart must be "MM-DD"')
+            elif progression != "series":
+                err("suggestedStart only means anything for a series")
+        # What to offer when the last day is prayed. A bundle id, possibly one this device does
+        # not have — a bundle is validated on its own, so the reference is checked at runtime
+        # and simply not offered when it cannot be resolved.
+        nxt = devotion.get("suggestedNext")
+        if nxt is not None:
+            if not isinstance(nxt, str) or not nxt:
+                err("suggestedNext must be a devotion id")
+            elif nxt == manifest.get("id"):
+                err("suggestedNext points at this devotion")
+            elif progression != "series":
+                err("suggestedNext only means anything for a series")
         check_entry_list(devotion.get("opening") or [], "opening")
         check_entry_list(devotion.get("closing") or [], "closing")
         for field in ("steps", "eastertideSteps", "variants", "decades", "hasClosingCross"):
@@ -473,24 +513,32 @@ def main() -> int:
         return report()
 
     # --- Entry "if" expressions must reference declared options ---
+    # "a & b": every term must hold, which is how a step gates on a choice *and* the season.
     for where, expr in if_refs:
-        key, wanted_case = expr, None
-        if "=" in expr:
-            key, _, wanted_case = expr.partition("=")
-        elif expr.startswith("!"):
-            key = expr[1:]
-        declared = declared_options.get(key)
-        if declared is None:
-            err(f"{where}: 'if' references undeclared option {key!r}")
-            continue
-        kind, case_ids = declared
-        if wanted_case is not None:
-            if kind != "choice":
-                err(f"{where}: '{expr}' — {key!r} is a {kind}, not a choice")
-            elif wanted_case not in case_ids:
-                err(f"{where}: '{expr}' — {wanted_case!r} is not a case of {key!r}")
-        elif kind != "toggle":
-            err(f"{where}: '{expr}' — bare/negated 'if' needs a toggle, {key!r} is a {kind}")
+        for term in (t.strip() for t in expr.split("&")):
+            key, wanted_case = term, None
+            if "=" in term:
+                key, _, wanted_case = term.partition("=")
+            elif term.startswith("!"):
+                key = term[1:]
+            # Calendar facts the engines seed beside a bundle's declared options; a bundle may
+            # gate on them but never declare them (the engine would shadow the season).
+            if key in CALENDAR_CONDITION_KEYS:
+                if wanted_case is not None:
+                    err(f"{where}: '{term}' — {key!r} is a calendar fact, not a choice")
+                continue
+            declared = declared_options.get(key)
+            if declared is None:
+                err(f"{where}: 'if' references undeclared option {key!r}")
+                continue
+            kind, case_ids = declared
+            if wanted_case is not None:
+                if kind != "choice":
+                    err(f"{where}: '{term}' — {key!r} is a {kind}, not a choice")
+                elif wanted_case not in case_ids:
+                    err(f"{where}: '{term}' — {wanted_case!r} is not a case of {key!r}")
+            elif kind != "toggle":
+                err(f"{where}: '{term}' — bare/negated 'if' needs a toggle, {key!r} is a {kind}")
 
     for where, option_key in antiphon_option_refs:
         declared = declared_options.get(option_key)

@@ -207,6 +207,10 @@ private struct PackAudio: Decodable {
 /// Field validity per type is enforced at authoring time by `Shared/tools/validate-devotion.py`;
 /// the decoder is deliberately lenient (all optionals) so the engine can switch on `type` alone.
 struct CustomDevotionDefinition: Decodable {
+  enum DayProgression: String, Decodable {
+    case series, free
+  }
+
   enum DevotionType: String, Decodable {
     /// A flat, fixed step list (Angelus, Stations, Trisagion).
     case steps
@@ -314,6 +318,20 @@ struct CustomDevotionDefinition: Decodable {
   let type: DevotionType
   // days type
   let days: [Day]?
+  /// How the days relate: a series is worked through on consecutive days (a novena, a triduum,
+  /// a 33-day consecration) and gets a tracked run; "free" days are a set to pick from, like a
+  /// prayer for each day of the week, where there is nothing to be behind on. Absent means
+  /// series — a numbered list of days is sequential unless its author says otherwise.
+  let dayProgression: DayProgression?
+  /// Advisory "HH:mm" for the daily reminder; the user's own times always win.
+  let suggestedReminderTime: String?
+  /// Annual "MM-DD" the series traditionally begins on, so a pinned devotion can announce
+  /// itself before its first day. Advisory — starting it any day always works.
+  let suggestedStart: String?
+  /// A devotion to offer once the last day is prayed. May name one this device does not have —
+  /// resolved at runtime, and quietly dropped when it cannot be, so a dangling suggestion never
+  /// breaks the bundle carrying it.
+  let suggestedNext: String?
   // steps type
   let steps: [CustomDevotionStep]?
   /// Whole-sequence swap during Eastertide (the Angelus → Regina Caeli substitution).
@@ -391,7 +409,7 @@ enum PrayerPackStore {
   /// pack loads first so its shared mystery texts/images are the base other bundles build on.
   private static let packNames = [
     "rosary", "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
-    "divineMercyChaplet", "trisagion",
+    "divineMercyChaplet", "trisagion", "oAntiphons",
   ]
 
   private static var prayerOverrides: [String: [PrayerKey: String]] = [:]
@@ -718,8 +736,18 @@ enum PrayerPackStore {
       reminderPresetFooter: manifest.reminderPresetFooter ?? [:],
       tags: manifest.tags ?? [])
 
-    for language in manifest.languages {
-      let content = try decoder.decode(PackContent.self, from: zip.contents(of: "content/\(language).json"))
+    // Declared languages are what the bundle *offers*; any other content/<code>.json it carries
+    // is an overlay resolved key by key — how a community variant ("he-x-gamliel") ships its
+    // own wording for a few prayers without owing a complete translation of the devotion.
+    let overlayLanguages = zip.fileNames().compactMap { name -> String? in
+      guard name.hasPrefix("content/"), name.hasSuffix(".json") else { return nil }
+      let code = String(name.dropFirst("content/".count).dropLast(".json".count))
+      return manifest.languages.contains(code) ? nil : code
+    }
+
+    for language in manifest.languages + overlayLanguages {
+      guard let contentData = try? zip.contents(of: "content/\(language).json") else { continue }
+      let content = try decoder.decode(PackContent.self, from: contentData)
 
       var rawContent = rawContentByBundle[manifest.id]?[language] ?? [:]
       var prayers = prayerOverrides[language] ?? [:]

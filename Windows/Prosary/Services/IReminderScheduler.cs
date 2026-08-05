@@ -23,4 +23,8 @@ public interface IReminderScheduler
     /// scheduled toasts are pre-materialized a fixed number of days ahead rather than being a
     /// true recurring trigger the way iOS's UNCalendarNotificationTrigger is.</summary>
     void RescheduleAll(IEnumerable<Prayer> prayers);
+
+    /// <summary>Rewrites the per-day prompts of a multi-day series in progress: one for each day
+    /// it still owes, on that day's own date, and none at all once the run is complete.</summary>
+    void RefreshSeries(string devotionId);
 }

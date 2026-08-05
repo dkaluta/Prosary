@@ -184,7 +184,14 @@ class PrayerEngine(
         // stale favorite can't gate on options that stopped existing.
         val optionValues = PrayerPackStore.options(bundleId).associate { option ->
             option.key to (optionOverrides[option.key] ?: option.defaultValue)
-        }
+        } + mapOf(
+            // Calendar facts an entry may gate on beside the user's own choices — the Alleluia
+            // that leaves the invitatory during Lent is the first of them. Added after the
+            // declared options and reserved by the validator, so a bundle cannot declare an
+            // option of the same name and shadow the season.
+            "isLent" to calendar.isLentToday().toString(),
+            "isEasterSeason" to calendar.isEasterSeasonToday().toString(),
+        )
         return when (definition.type) {
             CustomDevotionDefinition.DevotionType.Steps -> {
                 val (baseSteps, eastertideSteps) = definition.resolvedSteps(variantId)
@@ -213,15 +220,21 @@ class PrayerEngine(
          * toggle on; `"!key"` — toggle off; `"key=caseId"` — choice equals. The validator
          * guarantees every authored expression references a declared option, so a missing key
          * (impossible for shipped bundles) simply reads as "not on". */
-        fun evaluateCondition(expression: String, values: Map<String, String>): Boolean {
-            val equals = expression.indexOf('=')
+        /** `"key"` — toggle on; `"!key"` — toggle off; `"key=caseId"` — choice equals; and
+         * `"a & b"` — every term must hold, which is how a step gates on a choice *and* the
+         * season ("invitatory & !isLent"). */
+        fun evaluateCondition(expression: String, values: Map<String, String>): Boolean =
+            expression.split('&').all { evaluateTerm(it.trim(), values) }
+
+        private fun evaluateTerm(term: String, values: Map<String, String>): Boolean {
+            val equals = term.indexOf('=')
             if (equals >= 0) {
-                return values[expression.substring(0, equals)] == expression.substring(equals + 1)
+                return values[term.substring(0, equals)] == term.substring(equals + 1)
             }
-            if (expression.startsWith("!")) {
-                return values[expression.substring(1)] != "true"
+            if (term.startsWith("!")) {
+                return values[term.substring(1)] != "true"
             }
-            return values[expression] == "true"
+            return values[term] == "true"
         }
     }
 

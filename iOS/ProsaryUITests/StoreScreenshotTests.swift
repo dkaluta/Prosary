@@ -12,6 +12,15 @@
 import XCTest
 
 final class StoreScreenshotTests: XCTestCase {
+  override func setUpWithError() throws {
+    // The simulator remembers its orientation between runs, and landscape shortens every
+    // list — rows fall below the fold and queries that assume a visible row fail for reasons
+    // that have nothing to do with the app. Start upright, always.
+    #if !os(macOS)
+    XCUIDevice.shared.orientation = .portrait
+    #endif
+  }
+
   private func snap(_ name: String) {
     let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
     attachment.name = name
@@ -27,21 +36,30 @@ final class StoreScreenshotTests: XCTestCase {
     XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10))
     snap("01-home")
 
-    // 2 — praying the Rosary (bead track).
+    // 2 — praying the Rosary (bead track). A saved session prays on one tap now; there is no
+    // picker in between since the Pray tab became the favorites list.
     app.buttons["rosaryCard"].tap()
-    // The default preset's Pray button carries the "Pray <preset name>" accessibility label
-    // (prayAnyRosary opens the quick-setup sheet instead, learned the hard way).
-    let pray = app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Pray '")).firstMatch
-    XCTAssertTrue(pray.waitForExistence(timeout: 5))
-    pray.tap()
     XCTAssertTrue(app.buttons["prayerFlowNextButton"].waitForExistence(timeout: 10))
     snap("02-rosary")
-    app.navigationBars.buttons.element(boundBy: 0).tap() // back to the picker
-    app.navigationBars.buttons.element(boundBy: 0).tap() // back home
+    app.navigationBars.buttons.element(boundBy: 0).tap() // back to Pray
 
-    // 3 — Stations of the Cross flow.
-    XCTAssertTrue(app.buttons["stationsOfTheCrossCard"].waitForExistence(timeout: 5))
-    app.buttons["stationsOfTheCrossCard"].tap()
+    // 3 — Stations of the Cross flow, opened from Categories (it has no saved session).
+    app.tabBars.buttons["Categories"].tap()
+    // A List keeps only visible rows in the accessibility tree, and the Stations sit below the
+    // fold under their tag, so scroll until the row is actually reachable — existing is not
+    // enough, since a row half-under the tab bar swallows the tap (which is how adding a
+    // devotion above it broke this).
+    let stations = app.buttons["category.stationsOfTheCross"].firstMatch
+    for _ in 0..<8 where !stations.isHittable {
+      app.swipeUp(velocity: .slow)
+    }
+    XCTAssertTrue(stations.isHittable)
+    stations.tap()
+    // A list still carrying scroll momentum swallows the tap: the row is hittable where it was
+    // a moment ago, not where the finger lands. One retry rather than a longer sleep.
+    if !app.buttons["prayerFlowNextButton"].waitForExistence(timeout: 5) {
+      stations.tap()
+    }
     XCTAssertTrue(app.buttons["prayerFlowNextButton"].waitForExistence(timeout: 10))
     snap("03-stations")
     app.navigationBars.buttons.element(boundBy: 0).tap()

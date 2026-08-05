@@ -10,6 +10,12 @@ import XCTest
 
 final class AppShellUITests: XCTestCase {
   override func setUpWithError() throws {
+    // The simulator remembers its orientation between runs, and landscape shortens every
+    // list — rows fall below the fold and queries that assume a visible row fail for reasons
+    // that have nothing to do with the app. Start upright, always.
+    #if !os(macOS)
+    XCUIDevice.shared.orientation = .portrait
+    #endif
     continueAfterFailure = false
   }
 
@@ -18,9 +24,9 @@ final class AppShellUITests: XCTestCase {
     let app = XCUIApplication()
     app.launch()
 
-    XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10), "Pray shows the devotions")
+    XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10), "Pray lists the seeded favorite")
 
-    // Categories groups every devotion by tag — the discovery surface Home no longer duplicates.
+    // Categories groups every devotion by tag — the discovery surface Pray no longer duplicates.
     app.tabBars.buttons["Categories"].tap()
     XCTAssertTrue(app.navigationBars["Categories"].waitForExistence(timeout: 5))
 

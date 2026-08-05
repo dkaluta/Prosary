@@ -1,22 +1,25 @@
 //
-//  RosaryPresetPickerView.swift
+//  RosaryPresetsView.swift
 //  Prosary
 //
-//  Home → Rosary lands here instead of launching a session directly: the default preset up
-//  top (one tap to pray), then "Pray any Rosary" (an ad-hoc quick-setup sheet whose options
-//  seed from the default preset and can be saved as a new preset), then the remaining presets.
-//  Preset management (rename/delete/set-default) stays in Favorites.
+//  The Rosary's saved presets, opened from its row on Pray. Tapping the row prays the default
+//  straight away; this is where the other presets live, so someone with four saved Rosaries has
+//  one Pray row instead of four.
 //
 
 import SwiftUI
 
-struct RosaryPresetPickerView: View {
+struct RosaryPresetsView: View {
   @Binding var path: NavigationPath
 
   @Environment(\.appServices) private var services
 
   @State private var presets: [Prayer] = []
   @State private var showsQuickSetup = false
+  // Preset management lives here now that the separate Favorites screen is gone.
+  @State private var editorPreset: Prayer?
+  @State private var isNew = false
+  @State private var remindersPreset: Prayer?
 
   private var defaultPreset: Prayer? { presets.first { $0.isDefault } }
   private var otherPresets: [Prayer] { presets.filter { !$0.isDefault } }
@@ -44,7 +47,7 @@ struct RosaryPresetPickerView: View {
                 .foregroundStyle(.secondary)
             }
             Spacer()
-            Image(systemName: "chevron.right")
+            Image(systemName: "chevron.forward")
               .foregroundStyle(.secondary)
           }
           .padding(14)
@@ -70,8 +73,16 @@ struct RosaryPresetPickerView: View {
     #endif
     .toolbar {
       ToolbarItem(placement: .primaryAction) {
-        Button("rosaryPicker.managePresets") { path.append(AppRoute.favorites) }
+        EmptyView()
       }
+    }
+    .sheet(item: $editorPreset) { preset in
+      NavigationStack { FavoriteEditorView(prayer: preset, isNew: isNew) }
+        .onDisappear { Task { await reload() } }
+    }
+    .sheet(item: $remindersPreset) { preset in
+      NavigationStack { RemindersOnlyEditorView(prayer: preset) }
+        .onDisappear { Task { await reload() } }
     }
     .sheet(isPresented: $showsQuickSetup) {
       RosaryQuickSetupView(
@@ -97,6 +108,28 @@ struct RosaryPresetPickerView: View {
 
   @ViewBuilder
   private func presetCard(_ preset: Prayer, prominent: Bool) -> some View {
+    presetCardBody(preset, prominent: prominent)
+      .contextMenu {
+        Button { isNew = false; editorPreset = preset } label: {
+          Label("favorites.edit", systemImage: "pencil")
+        }
+        Button { remindersPreset = preset } label: {
+          Label("favorites.reminders", systemImage: "bell")
+        }
+        if !preset.isDefault {
+          Button { makeDefault(preset) } label: {
+            Label("favorites.setDefault", systemImage: "star")
+          }
+        }
+        Divider()
+        Button(role: .destructive) { delete(preset) } label: {
+          Label("favorites.delete", systemImage: "trash")
+        }
+      }
+  }
+
+  @ViewBuilder
+  private func presetCardBody(_ preset: Prayer, prominent: Bool) -> some View {
     HStack(spacing: 0) {
       Rectangle()
         .fill(Color.brandPrimary)
@@ -135,89 +168,32 @@ struct RosaryPresetPickerView: View {
     .padding(.horizontal, 16)
   }
 
+  private func makeDefault(_ preset: Prayer) {
+    var updated = preset
+    updated.isDefault = true
+    Task {
+      try? await services.presetStore.save(updated)
+      await reload()
+    }
+  }
+
+  private func delete(_ preset: Prayer) {
+    ReminderScheduler.removeAll(for: preset)
+    Task {
+      try? await services.presetStore.delete(preset)
+      await reload()
+    }
+  }
+
   private func reload() async {
     presets = ((try? await services.presetStore.all()) ?? [])
       .filter { $0.kind == .rosary }
   }
 }
 
-/// The "Pray any Rosary" quick setup: the full Rosary options editor over a scratch Prayer —
-/// pray it without saving anything, or keep it as a new preset (never stealing the default
-/// slot unless it's the first preset).
-struct RosaryQuickSetupView: View {
-  let seed: RosaryOptions
-  let hasPresets: Bool
-  let onPray: (Prayer) -> Void
-  let onSaved: () -> Void
-
-  @Environment(\.appServices) private var services
-  @Environment(\.dismiss) private var dismiss
-
-  @State private var options = RosaryOptions()
-  @State private var showsSaveNamePrompt = false
-  @State private var presetName = ""
-  @State private var didSeed = false
-
-  var body: some View {
-    NavigationStack {
-      Form {
-        RosaryOptionsSections(rosary: $options)
-
-        Section {
-          Button {
-            showsSaveNamePrompt = true
-          } label: {
-            Label("rosaryPicker.saveAsPreset", systemImage: "bookmark")
-          }
-        }
-      }
-      .formStyle(.grouped)
-      .navigationTitle("rosaryPicker.anyRosary")
-      #if os(iOS)
-      .navigationBarTitleDisplayMode(.inline)
-      #endif
-      .toolbar {
-        ToolbarItem(placement: .cancellationAction) {
-          Button("favoriteEditor.cancel") { dismiss() }
-        }
-        ToolbarItem(placement: .confirmationAction) {
-          Button("favorites.pray") {
-            onPray(Prayer(name: "", kind: .rosary, rosary: options))
-          }
-        }
-      }
-      .alert("rosaryPicker.saveAsPreset", isPresented: $showsSaveNamePrompt) {
-        TextField(
-          String(localized: "rosaryPicker.presetNamePlaceholder", defaultValue: "Preset name"),
-          text: $presetName)
-        Button("favoriteEditor.save") { save() }
-        Button("favoriteEditor.cancel", role: .cancel) {}
-      }
-      .onAppear {
-        guard !didSeed else { return }
-        didSeed = true
-        options = seed
-      }
-    }
-  }
-
-  private func save() {
-    let name = presetName.trimmingCharacters(in: .whitespaces)
-    let preset = Prayer(
-      name: name.isEmpty ? PrayerKind.rosary.defaultName : name,
-      kind: .rosary,
-      isDefault: !hasPresets,
-      rosary: options)
-    Task {
-      try? await services.presetStore.save(preset)
-      onSaved()
-      dismiss()
-    }
-  }
-}
 
 #Preview {
   NavigationStack {
-    RosaryPresetPickerView(path: .constant(NavigationPath()))
+    RosaryPresetsView(path: .constant(NavigationPath()))
   }
 }

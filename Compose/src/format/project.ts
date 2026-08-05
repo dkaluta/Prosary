@@ -51,6 +51,19 @@ export interface EditorAudioTrack {
   chapters: { start: number; stepUid: string }[];
 }
 
+/** A day of a multi-day devotion: a novena's nine, a triduum's three. Its steps are authored
+ * exactly like a single-day devotion's. */
+export interface EditorDay {
+  uid: string;
+  /** English label ("Day 1", "First Day of the Novena"). */
+  name: string;
+  nameByLanguage: PerLanguage;
+  steps: EditorStep[];
+}
+
+/** How a multi-day devotion's days relate — see Shared/schema/domain-model.json. */
+export type DayProgression = "series" | "free";
+
 export interface Project {
   name: string;
   nameByLanguage: PerLanguage;
@@ -68,7 +81,18 @@ export interface Project {
    * the repository's default tags on submission; category browsing in the apps is the
    * planned consumer. */
   tags: string[];
+  /** "steps" — one sequence — or "days", a multi-day devotion. A days project authors its
+   * steps inside `days` and leaves `steps` empty. */
+  devotionType: "steps" | "days";
   steps: EditorStep[];
+  /** days type only. */
+  days: EditorDay[];
+  /** days type only: consecutive series (tracked, remindable) or a set to pick from. */
+  dayProgression: DayProgression;
+  /** days/series only, all advisory — the apps treat them as suggestions. */
+  suggestedStart?: string;
+  suggestedReminderTime?: string;
+  suggestedNext?: string;
   images: EditorImage[];
   audio: EditorAudioTrack[];
 }
@@ -89,7 +113,10 @@ export function newProject(): Project {
     iconSystemName: "star",
     iconGlyph: "",
     tags: [],
+    devotionType: "steps",
     steps: [],
+    days: [],
+    dayProgression: "series",
     images: [],
     audio: [],
   };

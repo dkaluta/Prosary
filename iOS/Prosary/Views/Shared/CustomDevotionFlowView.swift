@@ -25,6 +25,7 @@ struct CustomDevotionFlowView: View {
   @State private var seasonColor = Color.clear
   @State private var languageCode: String?
   @State private var matchingFavoriteId: Prayer.ID? = nil
+  @State private var isPinned = false
   @State private var displayName: String = ""
   @State private var variantId: String? = nil
   /// The favorite's raw language choice: an explicit code, or the sentinel ("follow the
@@ -33,6 +34,12 @@ struct CustomDevotionFlowView: View {
   @State private var audio = AudioPlaybackController()
   /// Multi-day devotions: the day this session prays (0-based; sourced from the favorite).
   @State private var dayIndex = 0
+  /// Set when a day was missed: the day that should have happened and the one today calls for.
+  @State private var missedDayChoice: (missed: Int, next: Int)?
+  @State private var runIsComplete = false
+  /// Set when the last day of a series is finished and the bundle's `suggestedNext` resolves to
+  /// something this device actually has.
+  @State private var completionSuggestion: (id: String, name: String)?
 
   private var currentStep: RosaryStep? {
     steps.indices.contains(currentIndex) ? steps[currentIndex] : nil
@@ -114,6 +121,17 @@ struct CustomDevotionFlowView: View {
                 languageButton(raw: option.code, name: option.nativeName)
               }
             }
+
+            // A language prayed in more than one use lists those under it — the rite is a
+            // second question, and one whose gaps fall back to the language's own wording.
+            let rites = LanguageCatalog.rites(of: LanguageCatalog.resolve(chosenLanguage).code)
+            if rites.count > 1 {
+              Section(String(localized: "settings.rite", defaultValue: "Rite")) {
+                ForEach(rites) { rite in
+                  languageButton(raw: rite.code, name: rite.nativeName)
+                }
+              }
+            }
           } label: {
             Image(systemName: "globe")
           }
@@ -170,9 +188,53 @@ struct CustomDevotionFlowView: View {
       }
       ToolbarItem(placement: .primaryAction) {
         Button { toggleFavorite() } label: {
-          Image(systemName: matchingFavoriteId != nil ? "star.fill" : "star")
+          Image(systemName: isPinned ? "star.fill" : "star")
         }
-        .accessibilityLabel(matchingFavoriteId != nil ? "prayerFlow.removeFromFavorites" : "prayerFlow.addToFavorites")
+        .accessibilityLabel(isPinned ? "prayerFlow.removeFromFavorites" : "prayerFlow.addToFavorites")
+        .accessibilityIdentifier("pinDevotionButton")
+      }
+    }
+    .confirmationDialog(
+      completionSuggestion.map {
+        String(localized: "multiDay.completedTitle", defaultValue: "That completes it. Pray \($0.name) next?")
+      } ?? "",
+      isPresented: .init(
+        get: { completionSuggestion != nil },
+        set: { if !$0 { completionSuggestion = nil } }),
+      titleVisibility: .visible
+    ) {
+      if let suggestion = completionSuggestion {
+        Button(String(localized: "multiDay.prayNext", defaultValue: "Pray \(suggestion.name)")) {
+          completionSuggestion = nil
+          NavigationCoordinator.shared.pendingRoute = .custom(devotionId: suggestion.id)
+          dismiss()
+        }
+      }
+      Button(String(localized: "multiDay.notNow", defaultValue: "Not now"), role: .cancel) {
+        completionSuggestion = nil
+        dismiss()
+      }
+    }
+    .confirmationDialog(
+      String(localized: "multiDay.missedTitle", defaultValue: "You missed a day"),
+      isPresented: .init(get: { missedDayChoice != nil }, set: { if !$0 { missedDayChoice = nil } }),
+      titleVisibility: .visible
+    ) {
+      if let choice = missedDayChoice {
+        Button(String(localized: "multiDay.prayMissed", defaultValue: "Pray day \(choice.missed + 1)")) {
+          switchDay(to: choice.missed)
+          missedDayChoice = nil
+        }
+        Button(String(localized: "multiDay.prayToday", defaultValue: "Continue with day \(choice.next + 1)")) {
+          switchDay(to: choice.next)
+          missedDayChoice = nil
+        }
+        Button(String(localized: "multiDay.startOver", defaultValue: "Start over"), role: .destructive) {
+          MultiDayRuns.startFresh(devotionId)
+          ReminderScheduler.refreshSeries(devotionId: devotionId)
+          switchDay(to: 0)
+          missedDayChoice = nil
+        }
       }
     }
     .task { await load() }
@@ -184,11 +246,35 @@ struct CustomDevotionFlowView: View {
     let all = (try? await services.presetStore.all()) ?? []
     let favorite = prayer ?? all.first { $0.kind == .custom && $0.customDevotionId == devotionId }
     matchingFavoriteId = favorite?.id
+    isPinned = FavoriteDevotions.contains(devotionId, defaultingTo: await impliedPinnedIds())
     chosenLanguage = favorite?.languageCode ?? LanguageCatalog.defaultSentinel
     languageCode = PrayerPackStore.effectiveLanguage(for: devotionId, chosen: chosenLanguage)
 
     variantId = favorite?.variantId
     dayIndex = favorite?.dayIndex ?? 0
+
+    // A series decides its own day: today's if it is unprayed, the same day again if it was
+    // already prayed today, and a choice when one was missed.
+    if let definition = PrayerPackStore.definition(for: devotionId),
+       let days = definition.days, days.count > 1,
+       (definition.dayProgression ?? .series) == .series {
+      let run = MultiDayRuns.run(for: devotionId)
+      switch run?.resumption(dayCount: days.count) ?? .start {
+      case .start:
+        dayIndex = 0
+      case .resume(let day):
+        dayIndex = day
+      case .choose(let missed, let next):
+        dayIndex = missed
+        missedDayChoice = (missed, next)
+      case .complete:
+        dayIndex = days.count - 1
+        runIsComplete = true
+      }
+      if let run, run.hasPrayedToday(), let last = run.prayedDays.last {
+        dayIndex = last
+      }
+    }
 
     isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
     steps = builtSteps()
@@ -306,12 +392,14 @@ struct CustomDevotionFlowView: View {
 
   private func toggleFavorite() {
     Task {
-      if let id = matchingFavoriteId {
-        if let existing = try? await services.presetStore.get(id: id) {
-          try? await services.presetStore.delete(existing)
-        }
-        matchingFavoriteId = nil
-      } else {
+      // Pinning is what puts a devotion on Pray; the Prayer alongside it only carries this
+      // devotion's language/variant/day, so unpinning leaves those settings intact.
+      let implied = await impliedPinnedIds()
+      FavoriteDevotions.toggle(devotionId, defaultingTo: implied)
+      isPinned = FavoriteDevotions.contains(devotionId, defaultingTo: implied)
+
+      // Unpinning keeps the Prayer: it holds the language/variant/day for next time.
+      if isPinned, matchingFavoriteId == nil {
         let newFavorite = Prayer(
           name: displayName,
           kind: .custom,
@@ -321,6 +409,19 @@ struct CustomDevotionFlowView: View {
         )
         try? await services.presetStore.save(newFavorite)
         matchingFavoriteId = newFavorite.id
+      }
+    }
+  }
+
+  /// A devotion counts as pinned by default when it already has a saved configuration — the
+  /// same fallback the Pray tab uses, so the star agrees with what that tab shows.
+  private func impliedPinnedIds() async -> [String] {
+    let all = (try? await services.presetStore.all()) ?? []
+    return all.compactMap { prayer in
+      switch prayer.kind {
+      case .rosary: return "rosary"
+      case .jesusPrayer: return "jesusPrayer"
+      case .custom: return prayer.customDevotionId
       }
     }
   }
@@ -346,7 +447,25 @@ struct CustomDevotionFlowView: View {
     if currentIndex >= steps.count - 1 {
       // Finishing a multi-day session advances the favorite to the next day (staying on the
       // last one once the devotion is complete) — tomorrow opens where the novena left off.
-      if let days = PrayerPackStore.definition(for: devotionId)?.days, days.count > 1 {
+      if let definition = PrayerPackStore.definition(for: devotionId),
+         let days = definition.days, days.count > 1 {
+        if (definition.dayProgression ?? .series) == .series {
+          // A series advances by calendar day, so record *which* day was prayed and let the
+          // run decide what comes next — praying twice today must not skip tomorrow's day.
+          MultiDayRuns.recordPrayed(devotionId: devotionId, day: dayIndex)
+          // The remaining days keep their prompts; the finished ones lose theirs.
+          ReminderScheduler.refreshSeries(devotionId: devotionId)
+
+          // The last day earns the bundle's parting suggestion — but only when it names a
+          // devotion this device has, so a hand-written series can point at its author's other
+          // work without leaving a dead end on everyone else's phone.
+          if MultiDayRuns.run(for: devotionId)?.isComplete(dayCount: days.count) == true,
+             let suggestion = MultiDayStatus.suggestedNext(after: devotionId) {
+            persistDayIndex(min(dayIndex + 1, days.count - 1))
+            completionSuggestion = suggestion
+            return
+          }
+        }
         persistDayIndex(min(dayIndex + 1, days.count - 1))
       }
       dismiss()

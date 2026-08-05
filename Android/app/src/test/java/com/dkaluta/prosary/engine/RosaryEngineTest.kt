@@ -39,6 +39,7 @@ class RosaryEngineTest {
         override fun seasonColor(date: Date) = Color.Transparent
         override fun seasonalMarianAntiphon(date: Date) = MarianAntiphonOption.SalveRegina
         override fun isEasterSeason(date: Date) = false
+        override fun isLent(date: Date) = false
     }
 
     private fun engine(group: MysteryGroup = MysteryGroup.Joyful) = PrayerEngine(calendar = FixedCalendar(group))

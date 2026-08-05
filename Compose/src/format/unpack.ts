@@ -59,10 +59,15 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
   const devotion = (await zip.json("devotion.json")) as {
     type?: string;
     steps?: RawStep[];
+    days?: { name: string; nameByLanguage?: Record<string, string>; steps: RawStep[] }[];
+    dayProgression?: "series" | "free";
+    suggestedStart?: string;
+    suggestedReminderTime?: string;
+    suggestedNext?: string;
     eastertideSteps?: unknown;
     variants?: unknown;
   };
-  if (devotion.type !== "steps" || devotion.variants || devotion.eastertideSteps) {
+  if (!["steps", "days"].includes(devotion.type ?? "") || devotion.variants || devotion.eastertideSteps) {
     throw new Error(
       "This bundle uses a richer structure (beads, variants, or seasonal forms) than the composer can edit yet.",
     );
@@ -127,7 +132,20 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
     project.images.push({ uid, label: key, jpeg, dataUrl: bytesToDataUrl(jpeg, "image/jpeg") });
   }
 
-  for (const raw of devotion.steps ?? []) {
+  // A days project reads back day by day; the content keys were numbered across the whole
+  // devotion at pack time, so the flat walk below still lines up.
+  if (devotion.type === "days") {
+    project.devotionType = "days";
+    project.dayProgression = devotion.dayProgression ?? "series";
+    if (devotion.suggestedStart) project.suggestedStart = devotion.suggestedStart;
+    if (devotion.suggestedReminderTime) project.suggestedReminderTime = devotion.suggestedReminderTime;
+    if (devotion.suggestedNext) project.suggestedNext = devotion.suggestedNext;
+  }
+
+  // Read every step in prayed order first; a days project then hands them back out to its days
+  // below, which is why the content keys were numbered across the whole devotion at pack time.
+  const readSteps: EditorStep[] = [];
+  for (const raw of devotion.steps ?? (devotion.days ?? []).flatMap((day) => day.steps)) {
     if (raw.kind) {
       throw new Error("This bundle uses a special step the composer can't edit yet.");
     }
@@ -140,7 +158,7 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
           raw.imageKey !== (common?.image ?? PLACEHOLDER_IMAGE_KEY)
         ? { kind: "shared", key: raw.imageKey }
         : undefined;
-    project.steps.push({
+    readSteps.push({
       uid: newUid(),
       kind: common ? "common" : "custom",
       commonKey: common?.key as CommonPrayerKey | undefined,
@@ -152,6 +170,22 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
       isScripture: raw.isScripture === true,
       repeat: raw.repeat,
     });
+  }
+
+  if (devotion.type === "days") {
+    let cursor = 0;
+    project.days = (devotion.days ?? []).map((day) => {
+      const steps = readSteps.slice(cursor, cursor + day.steps.length);
+      cursor += day.steps.length;
+      return {
+        uid: newUid(),
+        name: day.name,
+        nameByLanguage: (day.nameByLanguage ?? {}) as PerLanguage,
+        steps,
+      };
+    });
+  } else {
+    project.steps = readSteps;
   }
 
   if (zip.has("audio.json")) {
@@ -179,8 +213,8 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
           // stepIndex hints point into the BUILT sequence (repeat-expanded) — invert the
           // expansion to find the authored step the hint falls inside.
           stepUid:
-            project.steps[authoredIndexForBuilt(project.steps, chapter.stepIndex ?? 0)]?.uid ??
-            project.steps[0]?.uid ??
+            readSteps[authoredIndexForBuilt(readSteps, chapter.stepIndex ?? 0)]?.uid ??
+            readSteps[0]?.uid ??
             "",
         })),
       });
@@ -192,7 +226,7 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
 
 /** Inverse of pack.ts's builtStepIndex: the authored step whose repeat-expanded span contains
  * the given built-sequence index. */
-function authoredIndexForBuilt(steps: Project["steps"], builtIndex: number): number {
+function authoredIndexForBuilt(steps: EditorStep[], builtIndex: number): number {
   let cursor = 0;
   for (let i = 0; i < steps.length; i++) {
     const span = Math.max(steps[i].repeat ?? 1, 1);

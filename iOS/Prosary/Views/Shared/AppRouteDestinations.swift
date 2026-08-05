@@ -16,18 +16,16 @@ private struct AppRouteDestinations: ViewModifier {
       switch route {
       case .prayer(let id):
         PrayerDispatchView(prayerId: id, path: $path)
-      case .favorites:
-        FavoritesListView(path: $path)
       case .about:
         AboutView()
+      case .rosaryPresets:
+        RosaryPresetsView(path: $path)
       case .jesusPrayerSetup:
         JesusPrayerSetupView(path: $path)
       case .jesusPrayer(let target):
         JesusPrayerFlowView(path: $path, target: target)
       case .custom(let devotionId):
         CustomDevotionFlowView(devotionId: devotionId)
-      case .rosaryPicker:
-        RosaryPresetPickerView(path: $path)
       case .rosaryQuickPray(let prayer):
         RosaryFlowView(prayer: prayer)
       }

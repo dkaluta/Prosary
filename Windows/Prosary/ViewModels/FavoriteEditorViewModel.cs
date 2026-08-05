@@ -48,6 +48,41 @@ public partial class FavoriteEditorViewModel : ObservableObject
     [ObservableProperty]
     private string _languageCode = LanguageCatalog.DefaultSentinel;
 
+    /// <summary>The language row's own value: the base of <see cref="LanguageCode"/>, since a
+    /// stored code may name a rite ("he-x-gamliel").</summary>
+    public string BaseLanguageCode
+    {
+        get => LanguageCode == LanguageCatalog.DefaultSentinel
+            ? LanguageCode
+            : LanguageCatalog.BaseLanguage(LanguageCode) ?? LanguageCode;
+        set
+        {
+            // Choosing a language keeps its rite when it has one, and drops it otherwise.
+            var rites = LanguageCatalog.Rites(value);
+            LanguageCode = value != LanguageCatalog.DefaultSentinel && rites.Count > 0
+                ? rites[0].Code
+                : value;
+        }
+    }
+
+    /// <summary>The rites of the chosen language — empty (and hidden) when there is only one way
+    /// to pray it. A rite that lacks a prayer reads it in the language's own wording.</summary>
+    public IReadOnlyList<LanguageOption> RiteOptions => LanguageCatalog.Rites(LanguageCode);
+
+    public bool ShowsRitePicker => RiteOptions.Count > 1;
+
+    public LanguageOption? SelectedRite
+    {
+        get => RiteOptions.FirstOrDefault(r => r.Code == LanguageCode) ?? RiteOptions.FirstOrDefault();
+        set
+        {
+            if (value is not null)
+            {
+                LanguageCode = value.Code;
+            }
+        }
+    }
+
     [ObservableProperty]
     private MysterySelectionMode _mysterySelectionMode = MysterySelectionMode.TodaysMysteries;
 
@@ -247,6 +282,16 @@ public partial class FavoriteEditorViewModel : ObservableObject
     }
 
     partial void OnSelectedMysteryChanged(Mystery? value) => OnPropertyChanged(nameof(MysterySelectionSummary));
+
+    // The language and rite rows are two views of one stored code, so each has to hear about
+    // the other's edit.
+    partial void OnLanguageCodeChanged(string value)
+    {
+        OnPropertyChanged(nameof(BaseLanguageCode));
+        OnPropertyChanged(nameof(RiteOptions));
+        OnPropertyChanged(nameof(ShowsRitePicker));
+        OnPropertyChanged(nameof(SelectedRite));
+    }
 
     [RelayCommand]
     private void ShowRosaryOptions() => ShowingRosaryOptions = true;

@@ -119,7 +119,7 @@ options.json values (`rosaryOptionValues`), so there is **no data migration**.
   completed, bead 10 current) — do not "simplify" this back to `nil`/omitted, since Windows'
   `BeadLayout` force-unwraps `HailMaryIndexInDecade` in that code path and would crash on null.
 - **Generic devotions** (`.custom`) — flat ("steps" type: Angelus, Stations, Via Lucis,
-  Trisagion) or
+  Trisagion), day-by-day ("days" type: the O Antiphons) or
   decade/bead-structured ("rosary" type: Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet),
   entirely data-driven; the rosary-type builder mirrors the shared decade helper's emission
   (dense global `decadeIndex`, `hailMaryIndexInDecade` on minors only, "ordinal — title"
@@ -349,10 +349,26 @@ override the Rosary's own content. `hasCatalog` in a manifest strictly means "ha
 rosary-type bundles ship per-decade texts without any catalog.json. Only the Jesus Prayer has no
 bundle at all (it has no per-step content to carry).
 
+### Community language overlays
+
+A bundle's `manifest.languages` is what it *offers* — the languages its picker lists and the
+ones the validator holds to completeness. Any other `content/<code>.json` the pack carries is an
+**overlay**: the loaders read it, and `resolveBodyText` resolves a key against the exact code
+first, then its base language (`he-x-gamliel` → `he`), then Latin. So a community variant can
+ship its own wording for three keys without owing a translation of the whole devotion, and the
+packer needs no new manifest field — it already copies every content file it finds.
+
+The hardcoded tables work the same way: `PrayerTranslations` keys `he-x-gamliel` beside `he`,
+and `PrayerTranslations.get` falls back through the base language. The Mission of St. Gamaliel's
+Hebrew is the first user of both halves; in that variant the Nicene Creed occupies the
+Apostles' Creed's key, which is what "the Eastern Hebrew prays the Nicene Creed wherever the
+Latin tradition says the Apostles'" means in practice.
+
 ### Generic (bundle-driven) devotions
 
 Every devotion except the Rosary and the Jesus Prayer is a **generic devotion**: Angelus,
-Stations of the Cross, Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet, and Trisagion. A
+Stations of the Cross, Via Lucis, Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet,
+Trisagion, and the O Antiphons. A
 generic devotion needs *no* hardcoded `PrayerKind` case, engine builder, flow view, or view-model
 of its own — its entire step sequence and per-step text are data-driven from its bundle:
 
@@ -447,8 +463,19 @@ of its own — its entire step sequence and per-step text are data-driven from i
   feeds the engine, the flow's calendar toolbar menu jumps to any day (period-prefixed,
   localized names), switching persists to the matching favorite, and finishing a day's
   session advances the favorite to the next day — clamped to the last, so a completed
-  devotion re-prays its final day and tomorrow always opens where the novena left off. What
-  remains content-side is an actual days-type bundle. Hours/missals are a different beast: their content is selected by the
+  devotion re-prays its final day and tomorrow always opens where the novena left off.
+
+  A **series** (`dayProgression: "series"`, the default — the alternative is `"free"`, a set of
+  days to pick from with nothing to be behind on) additionally gets a tracked **run**:
+  `MultiDayRun` records the start date and *which* days were prayed, so the day the calendar
+  calls for and the day that was missed stay separate answers. Opening the devotion resumes,
+  offers the three-way choice (the missed day / today's day / start over), or reports the run
+  complete; praying twice in one day shows that same day again rather than eating tomorrow's.
+  A series may also declare `suggestedStart` ("MM-DD"), `suggestedReminderTime` ("HH:mm") and
+  `suggestedNext` (another devotion's id, silently skipped when that bundle is not installed) —
+  all advisory, which is what lets a pinned novena announce itself before its first day.
+  The **O Antiphons** (7 days, 17–23 December) is the shipped bundle this all runs against.
+  Hours/missals are a different beast: their content is selected by the
   liturgical calendar (proper of the day, psalter weeks), not by a day counter — that needs a
   date→content-key resolution layer, for which the Home feast-day data (`Shared/content/data`)
   is the seed, and it should not be forced into the `days` shape.

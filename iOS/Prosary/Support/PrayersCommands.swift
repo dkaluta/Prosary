@@ -74,11 +74,6 @@ struct PrayersCommands: Commands {
         }
       }
 
-      Divider()
-
-      Button("commands.editFavorites") {
-        NavigationCoordinator.shared.pendingRoute = .favorites
-      }
     }
   }
 }

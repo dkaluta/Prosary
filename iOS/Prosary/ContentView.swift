@@ -74,8 +74,9 @@ struct ContentView: View {
     ) { result in
       guard case .success(let url) = result else { return }
       do {
+        // Installed devotions are found through Categories/Search/Browse and become saved
+        // sessions only when starred, so there is nowhere to push to — stay put.
         try PrayerPackStore.installPack(fromUserSelected: url)
-        prayPath.append(AppRoute.favorites)
       } catch {
         importError = error.localizedDescription
       }

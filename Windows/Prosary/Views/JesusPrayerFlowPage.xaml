@@ -23,7 +23,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Click="OnNavigateUp" Background="Transparent" Padding="8">
-                <FontIcon Glyph="&#xE72B;" />
+                <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
             </Button>
             <TextBlock x:Uid="JpTitle" Grid.Column="1" Text="The Jesus Prayer" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
 

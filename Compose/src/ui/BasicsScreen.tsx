@@ -1,6 +1,7 @@
 import type { Dispatch, SetStateAction } from "react";
 import { ICONS, LANGUAGES, isRtl } from "../format/catalog";
 import type { LanguageCode } from "../format/catalog";
+import { newUid } from "../format/project";
 import type { Project } from "../format/project";
 import { slugify } from "../format/project";
 
@@ -124,6 +125,120 @@ export function BasicsScreen({ project, setProject }: Props) {
             </span>
           </div>
         </fieldset>
+        <fieldset className="field">
+          <legend>Shape</legend>
+          <label>
+            <input
+              type="radio"
+              name="devotionType"
+              checked={project.devotionType === "steps"}
+              onChange={() => update({ devotionType: "steps" })}
+            />{" "}
+            One sequence of prayers
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="devotionType"
+              checked={project.devotionType === "days"}
+              onChange={() =>
+                update({
+                  devotionType: "days",
+                  // Carry whatever was already written into the first day rather than
+                  // stranding it — switching shape should never lose someone's text.
+                  days: project.days.length
+                    ? project.days
+                    : [{ uid: newUid(), name: "Day 1", nameByLanguage: {}, steps: project.steps }],
+                  steps: [],
+                })
+              }
+            />{" "}
+            Several days <span className="hint">— a novena, a triduum, a consecration</span>
+          </label>
+        </fieldset>
+
+        {project.devotionType === "days" && (
+          <>
+            <fieldset className="field">
+              <legend>How the days relate</legend>
+              <label>
+                <input
+                  type="radio"
+                  name="dayProgression"
+                  checked={project.dayProgression === "series"}
+                  onChange={() => update({ dayProgression: "series" })}
+                />{" "}
+                Prayed in order, day after day
+                <span className="hint"> — the app tracks progress and can remind each day</span>
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="dayProgression"
+                  checked={project.dayProgression === "free"}
+                  onChange={() =>
+                    update({
+                      dayProgression: "free",
+                      // These only mean anything for a series; the validator rejects them
+                      // otherwise, so drop them with the choice.
+                      suggestedStart: undefined,
+                      suggestedReminderTime: undefined,
+                      suggestedNext: undefined,
+                    })
+                  }
+                />{" "}
+                A set to choose from
+                <span className="hint"> — a prayer for each day of the week</span>
+              </label>
+            </fieldset>
+
+            {project.dayProgression === "series" && (
+              <>
+                <label className="field">
+                  <span>
+                    Traditionally starts{" "}
+                    <span className="hint">— optional MM-DD; the app announces it beforehand</span>
+                  </span>
+                  <input
+                    type="text"
+                    placeholder="11-29"
+                    value={project.suggestedStart ?? ""}
+                    onChange={(e) => update({ suggestedStart: e.target.value.trim() || undefined })}
+                  />
+                </label>
+                <label className="field">
+                  <span>
+                    Suggested reminder time{" "}
+                    <span className="hint">— optional HH:mm; the reader's own times win</span>
+                  </span>
+                  <input
+                    type="text"
+                    placeholder="07:00"
+                    value={project.suggestedReminderTime ?? ""}
+                    onChange={(e) =>
+                      update({ suggestedReminderTime: e.target.value.trim() || undefined })
+                    }
+                  />
+                </label>
+                <label className="field">
+                  <span>
+                    Suggest afterwards{" "}
+                    <span className="hint">
+                      — optional devotion id; skipped for anyone who does not have it
+                    </span>
+                  </span>
+                  <input
+                    type="text"
+                    placeholder="divineMercyChaplet"
+                    value={project.suggestedNext ?? ""}
+                    onChange={(e) => update({ suggestedNext: e.target.value.trim() || undefined })}
+                  />
+                </label>
+              </>
+            )}
+          </>
+        )}
+
         <label className="field">
           <span>
             Tags <span className="hint">— optional, comma-separated; used for browsing by category</span>

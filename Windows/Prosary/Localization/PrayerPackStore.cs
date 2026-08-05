@@ -30,7 +30,7 @@ public static class PrayerPackStore
     private static readonly string[] PackNames =
     [
         "rosary", "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
-        "divineMercyChaplet", "trisagion",
+        "divineMercyChaplet", "trisagion", "oAntiphons",
     ];
 
     private static readonly Dictionary<string, Dictionary<string, string>> PrayerOverrides = new();
@@ -413,7 +413,17 @@ public static class PrayerPackStore
             manifest.ReminderPresetFooter ?? new Dictionary<string, string>(),
             manifest.Tags ?? []);
 
-        foreach (var language in manifest.Languages)
+        // Declared languages are what the bundle *offers*; any other content/<code>.json it
+        // carries is an overlay resolved key by key — how a community variant ("he-x-gamliel")
+        // ships its own wording for a few prayers without owing a complete translation.
+        var overlayLanguages = entries.Keys
+            .Where(name => name.StartsWith("content/", StringComparison.Ordinal) &&
+                           name.EndsWith(".json", StringComparison.Ordinal))
+            .Select(name => name["content/".Length..^".json".Length])
+            .Where(code => !manifest.Languages.Contains(code))
+            .ToList();
+
+        foreach (var language in manifest.Languages.Concat(overlayLanguages))
         {
             if (!entries.TryGetValue($"content/{language}.json", out var contentEntry)) continue;
             var content = JsonSerializer.Deserialize<PackContent>(ReadAllBytes(contentEntry), JsonOptions)
@@ -689,6 +699,18 @@ public sealed record CustomDevotionDefinition(
     CustomDevotionDefinition.DevotionType Type,
     // days type
     List<CustomDevotionDefinition.Day>? Days = null,
+    // How the days relate: a series is worked through on consecutive days (a novena, a triduum,
+    // a 33-day consecration) and gets a tracked run; "free" days are a set to pick from, like a
+    // prayer for each day of the week. Null means series.
+    string? DayProgression = null,
+    // Advisory "HH:mm" for the daily reminder; the user's own times always win.
+    string? SuggestedReminderTime = null,
+    // Annual "MM-DD" the series traditionally begins on, so a pinned devotion can announce
+    // itself before its first day. Advisory — starting it any day always works.
+    string? SuggestedStart = null,
+    // A devotion to offer once the last day is prayed. May name one this device does not
+    // have — resolved at runtime and quietly dropped when it cannot be.
+    string? SuggestedNext = null,
     // steps type
     List<CustomDevotionStep>? Steps = null,
     // Whole-sequence swap during Eastertide (the Angelus → Regina Caeli substitution).

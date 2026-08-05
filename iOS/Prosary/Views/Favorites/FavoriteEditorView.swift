@@ -17,6 +17,21 @@ struct FavoriteEditorView: View {
   @Environment(\.dismiss) private var dismiss
   @AppStorage("defaultLanguageCode") private var appDefaultCode = LanguageCatalog.defaultCode
 
+  /// The picker rows edit one stored code between them: the language row binds to its base,
+  /// the rite row to the full code ("he-x-gamliel").
+  private var languageBinding: Binding<String> {
+    Binding(
+      get: {
+        let code = prayer.languageCode
+        return code == LanguageCatalog.defaultSentinel ? code : (LanguageCatalog.baseLanguage(of: code) ?? code)
+      },
+      set: { newBase in
+        prayer.languageCode = newBase == LanguageCatalog.defaultSentinel
+          ? newBase
+          : (LanguageCatalog.rites(of: newBase).first?.code ?? newBase)
+      })
+  }
+
   var body: some View {
     Form {
       // MARK: Common fields
@@ -26,11 +41,22 @@ struct FavoriteEditorView: View {
       }
 
       Section {
-        Picker("favoriteEditor.language", selection: $prayer.languageCode) {
+        Picker("favoriteEditor.language", selection: languageBinding) {
           let defaultName = LanguageCatalog.resolve(appDefaultCode).nativeName
           Text(String(localized: "favoriteEditor.defaultLanguageOption", defaultValue: "Default — \(defaultName)")).tag(LanguageCatalog.defaultSentinel)
           ForEach(LanguageCatalog.all) { language in
             Text(language.nativeName).tag(language.code)
+          }
+        }
+
+        // Only for a language prayed in more than one use; a rite that lacks a prayer reads it
+        // in the language's own wording, so this is a preference, never a restriction.
+        let rites = LanguageCatalog.rites(of: prayer.languageCode)
+        if rites.count > 1 {
+          Picker(String(localized: "settings.rite", defaultValue: "Rite"), selection: $prayer.languageCode) {
+            ForEach(rites) { rite in
+              Text(rite.nativeName).tag(rite.code)
+            }
           }
         }
       } header: {

@@ -86,16 +86,38 @@ fun SettingsScreen(onBack: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(16.dp),
         ) {
+            // The stored code may name a rite ("he-x-gamliel"), so this row shows its base
+            // language and the rite row below chooses among that language's uses. Choosing a
+            // language keeps its rite when it has one, and drops it otherwise.
+            val baseLanguageCode = LanguageCatalog.baseLanguage(defaultLanguageCode) ?: defaultLanguageCode
             OptionPickerField(
                 label = stringResource(R.string.settings_default_prayer_language),
                 options = LanguageCatalog.all,
-                selected = LanguageCatalog.resolve(defaultLanguageCode),
+                selected = LanguageCatalog.all.firstOrNull { it.code == baseLanguageCode }
+                    ?: LanguageCatalog.resolve(defaultLanguageCode),
                 optionLabel = { it.nativeName },
                 onSelect = {
-                    defaultLanguageCode = it.code
-                    AppSettings.setDefaultLanguageCode(it.code)
+                    val code = LanguageCatalog.rites(it.code).firstOrNull()?.code ?: it.code
+                    defaultLanguageCode = code
+                    AppSettings.setDefaultLanguageCode(code)
                 },
             )
+
+            // Only for a language prayed in more than one use — everywhere else there is
+            // nothing to choose, so nothing is shown.
+            val rites = LanguageCatalog.rites(defaultLanguageCode)
+            if (rites.size > 1) {
+                OptionPickerField(
+                    label = stringResource(R.string.settings_rite),
+                    options = rites,
+                    selected = rites.firstOrNull { it.code == defaultLanguageCode } ?: rites.first(),
+                    optionLabel = { it.nativeName },
+                    onSelect = {
+                        defaultLanguageCode = it.code
+                        AppSettings.setDefaultLanguageCode(it.code)
+                    },
+                )
+            }
 
             SectionHeader(stringResource(R.string.settings_praying))
 

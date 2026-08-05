@@ -12,16 +12,18 @@ import Foundation
 enum HomeOrder {
   private static let key = "homeCardOrder"
 
+  /// Synced with the pins it orders — an order that stayed on one device would rank a list
+  /// that device might not even have.
   static var saved: [String] {
-    UserDefaults.standard.stringArray(forKey: key) ?? []
+    CloudSyncedList.read(key) ?? []
   }
 
   static func save(_ ids: [String]) {
-    UserDefaults.standard.set(ids, forKey: key)
+    CloudSyncedList.write(ids, forKey: key)
   }
 
   static func reset() {
-    UserDefaults.standard.removeObject(forKey: key)
+    CloudSyncedList.remove(key)
   }
 
   /// Stable sort by saved position; unknown ids keep their relative (directory) order at the
@@ -36,6 +38,17 @@ enum HomeOrder {
         return ia != ib ? ia < ib : a.offset < b.offset
       }
       .map(\.element)
+  }
+
+  /// The Pray tab used to order devotion *cards* ("rosary", "custom.trisagion"); it now orders
+  /// favorites, whose ids are UUIDs. A saved order from the old scheme would silently rank
+  /// nothing, so drop it the first time none of its ids belong to the list being ordered.
+  static func dropOrderIfUnrelated(to currentIds: [String]) {
+    let order = saved
+    guard !order.isEmpty, !currentIds.isEmpty else { return }
+    if order.allSatisfy({ !currentIds.contains($0) }) {
+      reset()
+    }
   }
 
   /// "My most important prayer first" — the one-move path (card context menu).

@@ -15,6 +15,11 @@
 		<string>CloudKit</string>
 		<string>CloudDocuments</string>
 	</array>
+	<!-- The iCloud key-value store, for the small preferences that belong to the person rather
+	     than the device: which devotions are pinned to Pray and the order they sit in. The
+	     presets themselves ride SwiftData's CloudKit mirroring. -->
+	<key>com.apple.developer.ubiquity-kvstore-identifier</key>
+	<string>$(TeamIdentifierPrefix)$(CFBundleIdentifier)</string>
 	<key>com.apple.developer.ubiquity-container-identifiers</key>
 	<array>
 		<string>iCloud.com.dkaluta.prosary</string>

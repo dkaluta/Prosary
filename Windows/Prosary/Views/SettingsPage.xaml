@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Command="{x:Bind ViewModel.BackCommand}" Background="Transparent" Padding="8">
-                <FontIcon Glyph="&#xE72B;" />
+                <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
             </Button>
             <TextBlock x:Uid="SetTitle" Grid.Column="1" Text="Settings" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
         </Grid>
@@ -29,6 +29,12 @@
                 <ComboBox x:Uid="SetLanguageCombo" Header="Default Prayer Language" HorizontalAlignment="Stretch"
                           ItemsSource="{x:Bind ViewModel.LanguageOptions}" DisplayMemberPath="NativeName"
                           SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}" />
+
+                <!-- Whose use of that language — shown only where there is more than one. -->
+                <ComboBox x:Uid="SetRiteCombo" Header="Rite" HorizontalAlignment="Stretch"
+                          Visibility="{x:Bind ViewModel.ShowsRitePicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                          ItemsSource="{x:Bind ViewModel.RiteOptions, Mode=OneWay}" DisplayMemberPath="NativeName"
+                          SelectedItem="{x:Bind ViewModel.SelectedRite, Mode=TwoWay}" />
 
                 <ComboBox x:Uid="SetAppLanguageCombo" Header="App language" HorizontalAlignment="Stretch"
                           ItemsSource="{x:Bind ViewModel.AppLanguageOptions}" DisplayMemberPath="Label"

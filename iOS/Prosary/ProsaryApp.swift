@@ -18,6 +18,8 @@ struct ProsaryApp: App {
   init() {
     FontRegistration.registerBundledFontsIfNeeded()
     UserDefaults.standard.register(defaults: ["defaultLanguageCode": LanguageCatalog.defaultCode])
+    // Pull pins/order written on another device, and keep listening for later ones.
+    CloudSyncedList.startSyncing()
   }
 
   var body: some Scene {
@@ -27,12 +29,16 @@ struct ProsaryApp: App {
         // The prayer flow now switches to the single-column layout below 700pt of measured
         // width (same fix as visionOS), so the old 760pt floor that protected the wide
         // three-column layout is gone — a slim Mac window beside your work is a feature,
-        // not a breakage. The remaining floor only guards against absurdity; the ceiling
-        // keeps the window from looking sparse on very large displays.
+        // not a breakage. The floor only guards against absurdity.
         // 620, not 480: the Mac keeps its sidebar at every width, so the floor must
         // leave a phone-width content column beside it — 480 total squeezed the column
         // into overflow (janky slim mode, user screenshot 2026-08-03).
-        .frame(minWidth: 620, idealWidth: 1000, maxWidth: 1400, minHeight: 560, idealHeight: 750)
+        //
+        // Deliberately no maxWidth: a ceiling here doesn't stop the window from growing, it
+        // just stops the *content* from filling it — in full screen that left the sidebar
+        // floating in the middle of a black band either side. Sparseness on a large display
+        // is each screen's own business (Home caps its column at 1000pt and centres it).
+        .frame(minWidth: 620, idealWidth: 1000, minHeight: 560, idealHeight: 750)
         .task { await presetsMenuState.reload() }
     }
     .modelContainer(AppServices.modelContainer)

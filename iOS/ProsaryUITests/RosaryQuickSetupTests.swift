@@ -12,14 +12,24 @@
 import XCTest
 
 final class RosaryQuickSetupTests: XCTestCase {
+  override func setUpWithError() throws {
+    // The simulator remembers its orientation between runs, and landscape shortens every
+    // list — rows fall below the fold and queries that assume a visible row fail for reasons
+    // that have nothing to do with the app. Start upright, always.
+    #if !os(macOS)
+    XCUIDevice.shared.orientation = .portrait
+    #endif
+  }
+
   func testPrayAnyRosaryShowsItsOptionsAndCanStartASession() {
     let app = XCUIApplication()
     app.launch()
 
-    XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10))
-    app.buttons["rosaryCard"].tap()
+    // "Pray any Rosary" moved into Pray's + menu when the tab became the favorites list.
+    XCTAssertTrue(app.buttons["addFavoriteButton"].waitForExistence(timeout: 10))
+    app.buttons["addFavoriteButton"].tap()
 
-    let anyRosary = app.buttons["prayAnyRosary"]
+    let anyRosary = app.buttons["Pray any Rosary"]
     XCTAssertTrue(anyRosary.waitForExistence(timeout: 5))
     anyRosary.tap()
 
@@ -33,8 +43,11 @@ final class RosaryQuickSetupTests: XCTestCase {
 
     // A Form only keeps visible rows in the accessibility tree, so reach the last section
     // by scrolling rather than asserting on something below the fold.
-    app.swipeUp()
-    XCTAssertTrue(app.switches["Final Sign of the Cross"].waitForExistence(timeout: 5),
+    let finalCross = app.switches["Final Sign of the Cross"]
+    for _ in 0..<5 where !finalCross.exists {
+      app.swipeUp()
+    }
+    XCTAssertTrue(finalCross.waitForExistence(timeout: 5),
                   "The closing section should render too")
 
     // And the point of the sheet: it starts a session.

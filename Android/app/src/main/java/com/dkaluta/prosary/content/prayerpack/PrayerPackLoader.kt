@@ -200,6 +200,18 @@ data class CustomDevotionDefinition(
     val type: DevotionType,
     // days type
     val days: List<Day>? = null,
+    /** How the days relate: a series is worked through on consecutive days (a novena, a
+     * triduum, a 33-day consecration) and gets a tracked run; "free" days are a set to pick
+     * from, like a prayer for each day of the week. Absent means series. */
+    val dayProgression: String? = null,
+    /** Advisory "HH:mm" for the daily reminder; the user's own times always win. */
+    val suggestedReminderTime: String? = null,
+    /** Annual "MM-DD" the series traditionally begins on, so a pinned devotion can announce
+     * itself before its first day. Advisory — starting it any day always works. */
+    val suggestedStart: String? = null,
+    /** A devotion to offer once the last day is prayed. May name one this device does not
+     * have — resolved at runtime and quietly dropped when it cannot be. */
+    val suggestedNext: String? = null,
     // steps type
     val steps: List<CustomDevotionStep>? = null,
     /** Whole-sequence swap during Eastertide (the Angelus → Regina Caeli substitution). */
@@ -392,7 +404,7 @@ object PrayerPackStore {
      * loads first so its shared mystery texts/images are the base other bundles build on. */
     private val packNames = listOf(
         "rosary", "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
-        "divineMercyChaplet", "trisagion",
+        "divineMercyChaplet", "trisagion", "oAntiphons",
     )
 
     private val prayerOverrides = mutableMapOf<String, MutableMap<PrayerKey, String>>()
@@ -626,7 +638,15 @@ object PrayerPackStore {
             tags = manifest.tags ?: emptyList(),
         )
 
-        for (language in manifest.languages) {
+        // Declared languages are what the bundle *offers*; any other content/<code>.json it
+        // carries is an overlay resolved key by key — how a community variant ("he-x-gamliel")
+        // ships its own wording for a few prayers without owing a complete translation.
+        val overlayLanguages = entries.keys
+            .filter { it.startsWith("content/") && it.endsWith(".json") }
+            .map { it.removePrefix("content/").removeSuffix(".json") }
+            .filterNot { it in manifest.languages }
+
+        for (language in manifest.languages + overlayLanguages) {
             val contentBytes = entries["content/$language.json"] ?: continue
             val content = json.decodeFromString<PackContent>(String(contentBytes, Charsets.UTF_8))
 

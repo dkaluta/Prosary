@@ -46,6 +46,8 @@ struct StubLiturgicalCalendar: LiturgicalCalendarProviding {
     season(for: date) == .easterSeason
   }
 
+  func isLent(for date: Date) -> Bool { season(for: date) == .lent }
+
   func seasonColor(for date: Date) -> Color {
     let easter = Self.computeEasterSunday(year: Self.calendar.component(.year, from: date))
     if let pentecost = Self.calendar.date(byAdding: .day, value: 49, to: easter),

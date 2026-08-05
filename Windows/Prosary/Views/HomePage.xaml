@@ -26,17 +26,36 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock x:Uid="HomeTitle" Grid.Column="0" Text="Pray" Style="{StaticResource HeadlineTextStyle}" VerticalAlignment="Center" />
-                <Button x:Uid="HomeFavoritesButton" Grid.Column="1" Background="Transparent" Padding="8" ToolTipService.ToolTip="My Favorites"
+                <!-- Puts a devotion back on Pray; hidden once everything installed is here. -->
+                <Button x:Uid="HomeAddDevotionButton" Grid.Column="1" Background="Transparent" Padding="8" ToolTipService.ToolTip="Add a devotion"
+                        Visibility="{x:Bind ViewModel.HasUnpinnedCards, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                    <FontIcon Glyph="&#xE710;" />
+                    <Button.Flyout>
+                        <Flyout>
+                            <ItemsControl ItemsSource="{x:Bind ViewModel.UnpinnedCards, Mode=OneWay}" MinWidth="220">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="vm:DevotionCardModel">
+                                        <HyperlinkButton Content="{x:Bind Title}" HorizontalAlignment="Stretch"
+                                                         Command="{Binding ElementName=Root, Path=ViewModel.PinCardCommand}"
+                                                         CommandParameter="{Binding}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <Button x:Uid="HomeFavoritesButton" Grid.Column="2" Background="Transparent" Padding="8" ToolTipService.ToolTip="My Favorites"
                         Command="{x:Bind ViewModel.OpenFavoritesCommand}">
                     <FontIcon Glyph="&#xE734;" />
                 </Button>
-                <Button x:Uid="HomeSettingsButton" Grid.Column="2" Background="Transparent" Padding="8" ToolTipService.ToolTip="Settings"
+                <Button x:Uid="HomeSettingsButton" Grid.Column="3" Background="Transparent" Padding="8" ToolTipService.ToolTip="Settings"
                         Command="{x:Bind ViewModel.OpenSettingsCommand}">
                     <FontIcon Glyph="&#xE713;" />
                 </Button>
-                <Button x:Uid="HomeAboutButton" Grid.Column="3" Background="Transparent" Padding="8" ToolTipService.ToolTip="About"
+                <Button x:Uid="HomeAboutButton" Grid.Column="4" Background="Transparent" Padding="8" ToolTipService.ToolTip="About"
                         Command="{x:Bind ViewModel.OpenAboutCommand}">
                     <FontIcon Glyph="&#xE946;" />
                 </Button>
@@ -92,6 +111,9 @@
                                                     Command="{Binding ElementName=Root, Path=ViewModel.MoveCardToTopCommand}"
                                                     CommandParameter="{Binding}" />
                                     <MenuFlyoutItem x:Uid="HomeEditOrder" Text="Edit order…" Click="OnEditOrder" />
+                                    <MenuFlyoutItem x:Uid="HomeRemoveFromPray" Text="Remove from Pray"
+                                                    Command="{Binding ElementName=Root, Path=ViewModel.UnpinCardCommand}"
+                                                    CommandParameter="{Binding}" />
                                 </MenuFlyout>
                             </controls:PrayerCard.ContextFlyout>
                         </controls:PrayerCard>

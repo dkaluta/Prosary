@@ -15,12 +15,14 @@ import SwiftUI
 
 private struct FixedLiturgicalCalendar: LiturgicalCalendarProviding {
   var isEasterSeasonValue = false
+  var isLentValue = false
   var seasonalAntiphonValue: MarianAntiphonOption = .salveRegina
 
   func mysteryGroup(for date: Date) -> MysteryGroup { .joyful }
   func seasonColor(for date: Date) -> Color { .clear }
   func seasonalMarianAntiphon(for date: Date) -> MarianAntiphonOption { seasonalAntiphonValue }
   func isEasterSeason(for date: Date) -> Bool { isEasterSeasonValue }
+  func isLent(for date: Date) -> Bool { isLentValue }
 }
 
 @MainActor
@@ -346,6 +348,114 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertEqual(steps.last?.title, "Sign of the Cross")
     // Every step reuses the single Divine Mercy image.
     XCTAssertTrue(steps.allSatisfy { $0.imageKey == "divine_mercy_image" })
+  }
+
+  // MARK: - O Antiphons (days)
+
+  /// The one shipped days-type bundle: seven evenings of Advent Vespers, each a reading, the
+  /// antiphon, the Magnificat, the Glory Be, and the antiphon again.
+  func testOAntiphonsDayIsSelectedByTheDayIndex() {
+    func day(_ index: Int, language: String = "en") -> [RosaryStep] {
+      PrayerEngine().buildSteps(
+        for: Prayer(kind: .custom, languageCode: language, customDevotionId: "oAntiphons",
+                    dayIndex: index))
+    }
+
+    XCTAssertEqual(day(0).map(\.title),
+                   ["A Reading", "O Wisdom", "The Magnificat", "Glory Be", "O Wisdom"])
+    XCTAssertEqual(day(2).map(\.title),
+                   ["A Reading", "O Root of Jesse", "The Magnificat", "Glory Be", "O Root of Jesse"])
+    XCTAssertEqual(day(6)[1].title, "O Emmanuel")
+    XCTAssertEqual(day(2, language: "la")[1].title, "O Radix Iesse")
+    XCTAssertTrue(day(6)[1].body.contains("come to save us, O Lord our God"))
+    // The reading and the canticle are Scripture; the antiphon is not.
+    XCTAssertTrue(day(0)[0].isScripture)
+    XCTAssertTrue(day(0)[2].isScripture)
+    XCTAssertFalse(day(0)[1].isScripture)
+    // Past the last day the engine clamps rather than emitting nothing.
+    XCTAssertEqual(day(99)[1].title, "O Emmanuel")
+  }
+
+  /// The declarations the Pray row and the resumption logic read.
+  func testOAntiphonsDeclaresItselfASeriesOfSevenDays() {
+    let definition = PrayerPackStore.definition(for: "oAntiphons")
+    XCTAssertEqual(definition?.days?.count, 7)
+    XCTAssertEqual(definition?.dayProgression, .series)
+    XCTAssertEqual(definition?.suggestedStart, "12-17")
+    XCTAssertEqual(definition?.suggestedReminderTime, "18:00")
+    XCTAssertEqual(definition?.suggestedNext, "angelus")
+    XCTAssertEqual(definition?.days?.first?.period, "17 December")
+    XCTAssertEqual(definition?.days?.first?.name, "O Sapientia")
+  }
+
+  // MARK: - The invitatory, and the Mission's Hebrew
+
+  /// The Rosary may open with "O God, come to my assistance" — off by default, and the Alleluia
+  /// leaves it during Lent, which is what the "invitatory & !isLent" gate is for.
+  func testInvitatoryIsOptionalAndDropsItsAlleluiaInLent() {
+    XCTAssertFalse(steps("rosary")[1].body.contains("come to my assistance"))
+
+    let on = steps("rosary", customOptions: ["invitatory": "true"])
+    XCTAssertEqual(on[1].title, "O God, Come to My Assistance")
+    XCTAssertTrue(on[1].body.contains("O Lord, make haste to help me"))
+    XCTAssertTrue(on[1].body.contains("Glory be to the Father"))
+    XCTAssertTrue(on[1].body.hasSuffix("Alleluia."))
+
+    var lenten = FixedLiturgicalCalendar()
+    lenten.isLentValue = true
+    let inLent = steps("rosary", customOptions: ["invitatory": "true"], calendar: lenten)
+    XCTAssertEqual(inLent[1].title, "O God, Come to My Assistance")
+    XCTAssertTrue(inLent[1].body.contains("Glory be to the Father"))
+    XCTAssertFalse(inLent[1].body.contains("Alleluia"))
+  }
+
+  func testConjoinedConditionsRequireEveryTerm() {
+    let values = ["invitatory": "true", "isLent": "false", "antiphon": "reginaCaeli"]
+    XCTAssertTrue(PrayerEngine.evaluateCondition("invitatory & !isLent", values: values))
+    XCTAssertFalse(PrayerEngine.evaluateCondition("invitatory & isLent", values: values))
+    XCTAssertTrue(PrayerEngine.evaluateCondition("invitatory & antiphon=reginaCaeli", values: values))
+    XCTAssertFalse(PrayerEngine.evaluateCondition("invitatory & antiphon=salveRegina", values: values))
+    // A single term still parses exactly as before.
+    XCTAssertTrue(PrayerEngine.evaluateCondition("invitatory", values: values))
+  }
+
+  /// The Mission of St. Gamaliel's wording overlays plain Hebrew key by key — their Creed is the
+  /// Nicene one, and anything they have not sent still reads in the app's Hebrew.
+  func testGamalielVariantOverlaysHebrew() {
+    let variant = steps("rosary", language: "he-x-gamliel", customOptions: ["apostlesCreed": "true"])
+    XCTAssertTrue(variant[1].body.contains("אָנוּ מַאֲמִינִים"), "the Creed is the Nicene one")
+    XCTAssertEqual(variant[1].title, "מאמינים של ניקאה")
+    XCTAssertTrue(variant.contains { $0.body.contains("שָׁלוֹם לָךְ מִרְיָם") }, "their Hail Mary")
+
+    // Headings belong to the rite that uses them: the Mission's in the Mission's rite, the
+    // app's own in plain Hebrew.
+    let hebrew = steps("rosary", language: "he", customOptions: ["apostlesCreed": "true"])
+    XCTAssertEqual(variant.first?.title, "אות הצלב")
+    XCTAssertEqual(hebrew.first?.title, "סימן הצלב")
+    XCTAssertEqual(hebrew[1].title, "אני מאמין")
+    XCTAssertTrue(variant.contains { $0.title == "שלום לך מרים" })
+    XCTAssertTrue(hebrew.contains { $0.title == "שמחי מרים" })
+    XCTAssertTrue(variant.contains { $0.title == "השבח לאב" })
+    XCTAssertTrue(hebrew.contains { $0.title == "כבוד לאב" })
+
+    // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
+    let fatima = { (list: [RosaryStep]) in list.first { $0.title.contains("הו ישוע") }?.body }
+    XCTAssertEqual(fatima(variant), fatima(hebrew))
+  }
+
+  /// A rite lives under its language, not beside it: the language list stays the eight tongues,
+  /// and the rite's own code still resolves (that is what the pickers store).
+  func testRitesAreListedUnderTheirLanguage() {
+    XCTAssertFalse(LanguageCatalog.all.contains { $0.code == "he-x-gamliel" })
+    XCTAssertEqual(LanguageCatalog.rites(of: "he").map(\.code), ["he", "he-x-gamliel"])
+    XCTAssertEqual(LanguageCatalog.rites(of: "he-x-gamliel").map(\.code), ["he", "he-x-gamliel"])
+    XCTAssertTrue(LanguageCatalog.rites(of: "la").isEmpty)
+
+    // A rite resolves as its language for display, keeps its own code, and reads right-to-left.
+    let resolved = LanguageCatalog.resolve("he-x-gamliel")
+    XCTAssertEqual(resolved.code, "he-x-gamliel")
+    XCTAssertEqual(resolved.nativeName, "עברית")
+    XCTAssertTrue(resolved.isRightToLeft)
   }
 
   // MARK: - Structural guards

@@ -35,20 +35,56 @@ public static class LanguageCatalog
         new("he", "עברית", true),
         // Aramaic in Hebrew script — the Aramaic-rite communities' liturgical language.
         new("arc", "ארמית", true),
-        // TODO(gamaliel-texts): activate with the Mission's translations — the base-language
-        // fallback mechanism already treats "he-x-gamliel" as an overlay on "he".
-        // new("he-x-gamliel", "עברית — נוסח השליחות", true),
         new("ru", "Русский", false),
         new("tl", "Tagalog", false),
     ];
+
+    /// <summary>Rites (community uses) of one language: the same tongue, a different wording.
+    /// Listed under the language rather than beside it, because choosing "Hebrew" and choosing
+    /// *whose* Hebrew are two different questions — and because a rite that lacks a prayer falls
+    /// back to the language's own, so they are never truly separate languages. The first entry of
+    /// each list is the language's own (base) use; the rest overlay it.</summary>
+    public static readonly IReadOnlyDictionary<string, IReadOnlyList<LanguageOption>> RitesByLanguage =
+        new Dictionary<string, IReadOnlyList<LanguageOption>>
+        {
+            ["he"] =
+            [
+                new("he", "נוסח הנציגות", true),
+                // The Mission of St. Gamaliel's wording, sent by Erez 2026-08-05.
+                new("he-x-gamliel", "נוסח השליחות", true),
+            ],
+        };
+
+    /// <summary>The rites offered for a code's language — empty when there is only one way to
+    /// pray it.</summary>
+    public static IReadOnlyList<LanguageOption> Rites(string code) =>
+        RitesByLanguage.GetValueOrDefault(BaseLanguage(code) ?? code) ?? [];
 
     public static LanguageOption Resolve(string? code)
     {
         if (code is null || code == DefaultSentinel)
         {
-            var stored = AppSettings.DefaultLanguageCode;
-            return All.FirstOrDefault(l => l.Code == stored) ?? All.First(l => l.Code == DefaultCode);
+            return Option(AppSettings.DefaultLanguageCode);
         }
+
+        return Option(code);
+    }
+
+    /// <summary>Resolves a stored code, which may name a rite ("he-x-gamliel") rather than a
+    /// plain language — the rite keeps its own code so every lookup can overlay it on the
+    /// base.</summary>
+    private static LanguageOption Option(string? code)
+    {
+        if (code is not null && Rites(code).FirstOrDefault(r => r.Code == code) is { } rite)
+        {
+            // A rite carries its language's name in pickers; its own name belongs to the rite row.
+            var language = All.FirstOrDefault(l => l.Code == (BaseLanguage(rite.Code) ?? rite.Code));
+            if (language is not null)
+            {
+                return rite with { NativeName = language.NativeName };
+            }
+        }
+
         return All.FirstOrDefault(l => l.Code == code) ?? All.First(l => l.Code == DefaultCode);
     }
 }

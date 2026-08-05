@@ -72,6 +72,91 @@ public sealed class WindowsReminderScheduler : IReminderScheduler
         }
     }
 
+    /// <summary>A series in progress earns one toast per remaining day — the spec's "a
+    /// notification per day prompting you to continue" — rather than a rolling daily window that
+    /// would keep nagging after the last day. Rewritten from scratch on every call, so recording
+    /// a day, starting over, or finishing the run all leave exactly the right ones scheduled.
+    /// Mirrors iOS's RefreshSeries.</summary>
+    public void RefreshSeries(string devotionId)
+    {
+        var notifier = ToastNotificationManager.CreateToastNotifier();
+        var group = SeriesGroup(devotionId);
+
+        var stale = notifier.GetScheduledToastNotifications().Where(n => n.Group == group).ToList();
+        foreach (var scheduled in stale)
+        {
+            notifier.RemoveFromSchedule(scheduled);
+        }
+
+        var definition = Localization.PrayerPackStore.Definition(devotionId);
+        var days = definition?.Days;
+        if (days is null || days.Count <= 1 || (definition!.DayProgression ?? "series") != "series")
+        {
+            return;
+        }
+
+        if (MultiDayRuns.Run(devotionId) is not { } run || run.IsComplete(days.Count))
+        {
+            return;
+        }
+
+        var (hour, minute) = ReminderTime(definition.SuggestedReminderTime);
+        var title = Localization.PrayerPackStore.Info(devotionId)?.LocalizedDisplayName ?? devotionId;
+
+        foreach (var (day, deliveryTime) in PendingSeriesDays(run, days.Count, hour, minute))
+        {
+            var body = string.Format(
+                Localization.Loc.Tr("multi_day_reminder_body", "Day {0} of {1} awaits."),
+                day + 1, days.Count);
+            notifier.AddToSchedule(BuildToast(title, body, deliveryTime, group, tag: $"day-{day}"));
+        }
+    }
+
+    /// <summary>Which days still deserve a prompt and when: each unprayed day on the calendar
+    /// date the run puts it on, skipping anything already past. Pure, so the dates are
+    /// testable.</summary>
+    public static List<(int Day, DateTimeOffset When)> PendingSeriesDays(
+        MultiDayRun run, int dayCount, int hour, int minute, DateTimeOffset? now = null)
+    {
+        var today = now ?? DateTimeOffset.Now;
+        var start = run.StartedOn;
+        var pending = new List<(int, DateTimeOffset)>();
+
+        for (var day = 0; day < dayCount; day++)
+        {
+            if (run.PrayedDays.Contains(day))
+            {
+                continue;
+            }
+
+            var midnight = start.Date.AddDays(day);
+            var fire = new DateTimeOffset(midnight.AddHours(hour).AddMinutes(minute), start.Offset);
+            if (fire > today)
+            {
+                pending.Add((day, fire));
+            }
+        }
+
+        return pending;
+    }
+
+    /// <summary>The bundle's suggested "HH:mm", or early evening — when the day's prayer is
+    /// traditionally said and, failing that, when someone is most likely free to say it.</summary>
+    public static (int Hour, int Minute) ReminderTime(string? suggested)
+    {
+        var parts = suggested?.Split(':');
+        if (parts is { Length: 2 } &&
+            int.TryParse(parts[0], out var hour) && hour is >= 0 and <= 23 &&
+            int.TryParse(parts[1], out var minute) && minute is >= 0 and <= 59)
+        {
+            return (hour, minute);
+        }
+
+        return (18, 0);
+    }
+
+    private static string SeriesGroup(string devotionId) => $"series-{devotionId}";
+
     private static IEnumerable<DateTimeOffset> NextOccurrences(int hour, int minute, int days)
     {
         var now = DateTimeOffset.Now;

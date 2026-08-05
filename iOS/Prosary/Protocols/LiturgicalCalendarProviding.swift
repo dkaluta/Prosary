@@ -18,6 +18,9 @@ protocol LiturgicalCalendarProviding {
   /// True from Easter Sunday through the day before Pentecost, inclusive — the window in which
   /// the Angelus is traditionally replaced by the Regina Caeli.
   func isEasterSeason(for date: Date) -> Bool
+  /// True through Lent — the season that strips the Alleluia from the liturgy, and so from any
+  /// devotion's step that carries one.
+  func isLent(for date: Date) -> Bool
 }
 
 extension LiturgicalCalendarProviding {
@@ -25,4 +28,5 @@ extension LiturgicalCalendarProviding {
   func seasonColorToday() -> Color { seasonColor(for: Date()) }
   func seasonalMarianAntiphonToday() -> MarianAntiphonOption { seasonalMarianAntiphon(for: Date()) }
   func isEasterSeasonToday() -> Bool { isEasterSeason(for: Date()) }
+  func isLentToday() -> Bool { isLent(for: Date()) }
 }

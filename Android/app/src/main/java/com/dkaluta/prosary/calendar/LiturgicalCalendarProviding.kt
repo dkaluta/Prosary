@@ -20,8 +20,13 @@ interface LiturgicalCalendarProviding {
      * the Angelus is traditionally replaced by the Regina Caeli. */
     fun isEasterSeason(date: Date): Boolean
 
+    /** True through Lent — the season that strips the Alleluia from the liturgy, and so from
+     * any devotion's step that carries one. */
+    fun isLent(date: Date): Boolean
+
     fun mysteryGroupToday(): MysteryGroup = mysteryGroup(Date())
     fun seasonColorToday(): Color = seasonColor(Date())
     fun seasonalMarianAntiphonToday(): MarianAntiphonOption = seasonalMarianAntiphon(Date())
     fun isEasterSeasonToday(): Boolean = isEasterSeason(Date())
+    fun isLentToday(): Boolean = isLent(Date())
 }

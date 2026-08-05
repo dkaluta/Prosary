@@ -39,6 +39,8 @@ class MockLiturgicalCalendar : LiturgicalCalendarProviding {
 
     override fun isEasterSeason(date: Date): Boolean = season(utcCalendar(date)) == LiturgicalSeason.EasterSeason
 
+    override fun isLent(date: Date): Boolean = season(utcCalendar(date)) == LiturgicalSeason.Lent
+
     /** The traditional liturgical color for the day, for use as an accent/banner color. */
     override fun seasonColor(date: Date): Color {
         val cal = utcCalendar(date)

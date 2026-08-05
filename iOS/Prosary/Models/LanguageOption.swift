@@ -39,19 +39,46 @@ enum LanguageCatalog {
     // Aramaic in Hebrew script — the Aramaic-rite Hebrew Catholic communities' liturgical
     // language (requested by the Mission of St. Gamaliel for v0.7).
     LanguageOption(code: "arc", nativeName: "ארמית", isRightToLeft: true),
-    // TODO(gamaliel-texts): uncomment when the Mission of St. Gamaliel's translations of the
-    // common prayers arrive from Erez — the whole mechanism (base-language fallback in every
-    // resolve chain, typography, effectiveLanguage) already treats "he-x-gamliel" as an
-    // overlay on "he", so activation is this one line plus their content.
-    // LanguageOption(code: "he-x-gamliel", nativeName: "עברית — נוסח השליחות", isRightToLeft: true),
     LanguageOption(code: "ru", nativeName: "Русский", isRightToLeft: false),
     LanguageOption(code: "tl", nativeName: "Tagalog", isRightToLeft: false),
   ]
 
+  /// Rites (community uses) of one language: the same tongue, a different wording. Listed
+  /// under the language rather than beside it, because choosing "Hebrew" and choosing *whose*
+  /// Hebrew are two different questions — and because a rite that lacks a prayer falls back to
+  /// the language's own, so they are never truly separate languages.
+  ///
+  /// The first entry of each list is the language's own (base) use; the rest overlay it.
+  static let rites: [String: [LanguageOption]] = [
+    "he": [
+      LanguageOption(code: "he", nativeName: "נוסח הנציגות", isRightToLeft: true),
+      // The Mission of St. Gamaliel's wording, sent by Erez 2026-08-05.
+      LanguageOption(code: "he-x-gamliel", nativeName: "נוסח השליחות", isRightToLeft: true),
+    ],
+  ]
+
+  /// The rites offered for a code's language — empty when there is only one way to pray it.
+  static func rites(of code: String) -> [LanguageOption] {
+    rites[baseLanguage(of: code) ?? code] ?? []
+  }
+
   static func resolve(_ code: String?) -> LanguageOption {
     if code == nil || code == defaultSentinel {
       let stored = UserDefaults.standard.string(forKey: "defaultLanguageCode") ?? defaultCode
-      return all.first { $0.code == stored } ?? all.first { $0.code == defaultCode }!
+      return option(for: stored)
+    }
+    return option(for: code)
+  }
+
+  /// Resolves a stored code, which may name a rite ("he-x-gamliel") rather than a plain
+  /// language — the rite keeps its own code so every lookup can overlay it on the base.
+  private static func option(for code: String?) -> LanguageOption {
+    if let code, let rite = rites(of: code).first(where: { $0.code == code }) {
+      // A rite carries its language's name in pickers; its own name belongs to the rite row.
+      let base = baseLanguage(of: code) ?? code
+      if let language = all.first(where: { $0.code == base }) {
+        return LanguageOption(code: code, nativeName: language.nativeName, isRightToLeft: rite.isRightToLeft)
+      }
     }
     return all.first { $0.code == code } ?? all.first { $0.code == defaultCode }!
   }
