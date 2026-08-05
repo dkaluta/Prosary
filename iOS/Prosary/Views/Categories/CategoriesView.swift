@@ -49,6 +49,7 @@ struct CategoriesView: View {
                 }
               }
             }
+            .accessibilityIdentifier("category.\(listing.id)")
           }
         }
       }

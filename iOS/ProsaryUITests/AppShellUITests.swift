@@ -18,9 +18,9 @@ final class AppShellUITests: XCTestCase {
     let app = XCUIApplication()
     app.launch()
 
-    XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10), "Pray shows the devotions")
+    XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10), "Pray lists the seeded favorite")
 
-    // Categories groups every devotion by tag — the discovery surface Home no longer duplicates.
+    // Categories groups every devotion by tag — the discovery surface Pray no longer duplicates.
     app.tabBars.buttons["Categories"].tap()
     XCTAssertTrue(app.navigationBars["Categories"].waitForExistence(timeout: 5))
 

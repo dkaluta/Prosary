@@ -34,7 +34,7 @@ enum DevotionDirectory {
       systemImage: PrayerKind.rosary.systemImage,
       accentColor: .brandPrimary,
       tags: PrayerPackStore.info(for: "rosary")?.tags ?? ["marian"],
-      route: .rosaryPicker))
+      route: .rosaryQuickPray(prayer: Prayer(name: "", kind: .rosary, rosary: RosaryOptions()))))
 
     for bundleId in PrayerPackStore.customDevotionIds() {
       guard let info = PrayerPackStore.info(for: bundleId) else { continue }

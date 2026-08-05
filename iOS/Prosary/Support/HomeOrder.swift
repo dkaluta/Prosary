@@ -38,6 +38,17 @@ enum HomeOrder {
       .map(\.element)
   }
 
+  /// The Pray tab used to order devotion *cards* ("rosary", "custom.trisagion"); it now orders
+  /// favorites, whose ids are UUIDs. A saved order from the old scheme would silently rank
+  /// nothing, so drop it the first time none of its ids belong to the list being ordered.
+  static func dropOrderIfUnrelated(to currentIds: [String]) {
+    let order = saved
+    guard !order.isEmpty, !currentIds.isEmpty else { return }
+    if order.allSatisfy({ !currentIds.contains($0) }) {
+      reset()
+    }
+  }
+
   /// "My most important prayer first" — the one-move path (card context menu).
   static func moveToTop(_ cardId: String, allIdsInDisplayOrder: [String]) {
     save([cardId] + allIdsInDisplayOrder.filter { $0 != cardId })

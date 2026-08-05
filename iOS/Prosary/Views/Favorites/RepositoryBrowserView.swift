@@ -9,6 +9,7 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct RepositoryBrowserView: View {
   /// True when presented as a sheet from Favorites (Done button, explicit macOS frame);
@@ -25,6 +26,7 @@ struct RepositoryBrowserView: View {
   @State private var busyBundleIds: Set<String> = []
   @State private var installedIds: Set<String> = []
   @State private var installError: String?
+  @State private var showsImporter = false
 
   private var allTags: [String] {
     Array(Set(bundles.flatMap(\.tags))).sorted()
@@ -69,6 +71,27 @@ struct RepositoryBrowserView: View {
           ToolbarItem(placement: .cancellationAction) {
             Button(String(localized: "favoriteEditor.done", defaultValue: "Done")) { dismiss() }
           }
+        }
+        // Importing a hand-made bundle belongs with the catalogue, not with saved sessions —
+        // it moved here when the Pray tab became the favorites list.
+        ToolbarItem(placement: .primaryAction) {
+          Button { showsImporter = true } label: {
+            Image(systemName: "square.and.arrow.down")
+          }
+          .accessibilityLabel(Text("favorites.importBundle"))
+          .accessibilityIdentifier("importBundleButton")
+        }
+      }
+      .fileImporter(
+        isPresented: $showsImporter,
+        allowedContentTypes: [UTType(filenameExtension: "prosaryprayer") ?? .zip, .zip]
+      ) { result in
+        guard case .success(let url) = result else { return }
+        do {
+          let id = try PrayerPackStore.installPack(fromUserSelected: url)
+          installedIds.insert(id)
+        } catch {
+          installError = error.localizedDescription
         }
       }
       .alert(

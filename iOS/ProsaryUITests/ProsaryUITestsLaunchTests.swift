@@ -20,11 +20,10 @@ final class ProsaryUITestsLaunchTests: XCTestCase {
     let app = XCUIApplication()
     app.launch()
 
-    // A pack that fails to load would leave Home without its cards — the failure mode a bare
-    // "did it launch" check misses entirely.
+    // Pray lists saved sessions, and a fresh store seeds exactly one — a store that failed to
+    // open would leave the tab empty, which "did it launch" alone would miss. This runs once
+    // per UI configuration, so it asserts only what every configuration shows.
     XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 15))
-    XCTAssertTrue(app.buttons["angelusCard"].exists)
-    XCTAssertTrue(app.buttons["jesusPrayerCard"].exists)
 
     let attachment = XCTAttachment(screenshot: app.screenshot())
     attachment.name = "Launch Screen"

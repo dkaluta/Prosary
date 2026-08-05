@@ -2,7 +2,9 @@
 //  AngelusFlowUITests.swift
 //  ProsaryUITests
 //
-//  A devotion with no favorite prays in the app's default language, which is Latin — and since
+//  The Pray tab lists saved sessions, so a devotion nobody has starred is reached through
+//  Categories — which is the point of the merge. A devotion with no favorite prays in the
+//  app's default language, which is Latin — and since
 //  0.7.2 the step headings are translated too, so this walks the Angelus by its Latin headings
 //  ("Angelus Domini", not "The Annunciation"). Asserting English is what made these tests fail
 //  once the headings stopped being hardcoded literals.
@@ -15,13 +17,21 @@ final class AngelusFlowUITests: XCTestCase {
     continueAfterFailure = false
   }
 
+  /// Categories is where every devotion lives, starred or not.
+  private func openAngelus(_ app: XCUIApplication) {
+    app.tabBars.buttons["Categories"].tap()
+    // A devotion listed under two tags appears twice, so the query has to take the first.
+    let row = app.buttons["category.angelus"].firstMatch
+    XCTAssertTrue(row.waitForExistence(timeout: 10))
+    row.tap()
+  }
+
   @MainActor
   func testAngelusFlowFromHomeToFinish() throws {
     let app = XCUIApplication()
     app.launch()
 
-    // The Angelus card has a stable accessibility identifier regardless of the dynamic subtitle.
-    app.buttons["angelusCard"].tap()
+    openAngelus(app)
 
     // First step of the standard (non-Eastertide) form, headed in the praying language.
     XCTAssertTrue(app.staticTexts["Angelus Domini"].waitForExistence(timeout: 5))
@@ -40,8 +50,8 @@ final class AngelusFlowUITests: XCTestCase {
     XCTAssertEqual(nextButton.label, "Finish")
     nextButton.tap()
 
-    // Back at Home — the Rosary card should be visible.
-    XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 5))
+    // Finishing returns to the list it was started from.
+    XCTAssertTrue(app.buttons["category.angelus"].firstMatch.waitForExistence(timeout: 5))
   }
 
   @MainActor
@@ -49,7 +59,7 @@ final class AngelusFlowUITests: XCTestCase {
     let app = XCUIApplication()
     app.launch()
 
-    app.buttons["angelusCard"].tap()
+    openAngelus(app)
     XCTAssertTrue(app.staticTexts["Angelus Domini"].waitForExistence(timeout: 5))
 
     app.buttons["prayerFlowNextButton"].tap()
@@ -68,7 +78,7 @@ final class AngelusFlowUITests: XCTestCase {
     app.launchArguments = ["-defaultLanguageCode", "en"]
     app.launch()
 
-    app.buttons["angelusCard"].tap()
+    openAngelus(app)
     XCTAssertTrue(app.staticTexts["The Annunciation"].waitForExistence(timeout: 5))
   }
 }

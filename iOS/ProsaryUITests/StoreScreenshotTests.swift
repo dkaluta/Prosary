@@ -27,21 +27,23 @@ final class StoreScreenshotTests: XCTestCase {
     XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10))
     snap("01-home")
 
-    // 2 — praying the Rosary (bead track).
+    // 2 — praying the Rosary (bead track). A saved session prays on one tap now; there is no
+    // picker in between since the Pray tab became the favorites list.
     app.buttons["rosaryCard"].tap()
-    // The default preset's Pray button carries the "Pray <preset name>" accessibility label
-    // (prayAnyRosary opens the quick-setup sheet instead, learned the hard way).
-    let pray = app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Pray '")).firstMatch
-    XCTAssertTrue(pray.waitForExistence(timeout: 5))
-    pray.tap()
     XCTAssertTrue(app.buttons["prayerFlowNextButton"].waitForExistence(timeout: 10))
     snap("02-rosary")
-    app.navigationBars.buttons.element(boundBy: 0).tap() // back to the picker
-    app.navigationBars.buttons.element(boundBy: 0).tap() // back home
+    app.navigationBars.buttons.element(boundBy: 0).tap() // back to Pray
 
-    // 3 — Stations of the Cross flow.
-    XCTAssertTrue(app.buttons["stationsOfTheCrossCard"].waitForExistence(timeout: 5))
-    app.buttons["stationsOfTheCrossCard"].tap()
+    // 3 — Stations of the Cross flow, opened from Categories (it has no saved session).
+    app.tabBars.buttons["Categories"].tap()
+    // A List keeps only visible rows in the accessibility tree, and the Stations sit below the
+    // fold under their tag, so scroll until the row is actually there.
+    let stations = app.buttons["category.stationsOfTheCross"].firstMatch
+    for _ in 0..<6 where !stations.exists {
+      app.swipeUp()
+    }
+    XCTAssertTrue(stations.waitForExistence(timeout: 5))
+    stations.tap()
     XCTAssertTrue(app.buttons["prayerFlowNextButton"].waitForExistence(timeout: 10))
     snap("03-stations")
     app.navigationBars.buttons.element(boundBy: 0).tap()

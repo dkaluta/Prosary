@@ -19,6 +19,15 @@ final class JesusPrayerFlowUITests: XCTestCase {
     continueAfterFailure = false
   }
 
+  /// The Jesus Prayer has no saved session on a clean store, so Categories is its way in.
+  private func openJesusPrayer(_ app: XCUIApplication) {
+    app.tabBars.buttons["Categories"].tap()
+    // A devotion listed under two tags appears twice, so the query has to take the first.
+    let row = app.buttons["category.jesusPrayer"].firstMatch
+    XCTAssertTrue(row.waitForExistence(timeout: 10))
+    row.tap()
+  }
+
   private func launchClean() -> XCUIApplication {
     let app = XCUIApplication()
     app.launchArguments = ["-resetStore"]
@@ -29,7 +38,7 @@ final class JesusPrayerFlowUITests: XCTestCase {
   @MainActor
   func testTargetChooserOffersBothRows() throws {
     let app = launchClean()
-    app.buttons["jesusPrayerCard"].tap()
+    openJesusPrayer(app)
 
     for target in ["33", "66", "99", "Unbounded", "Custom"] {
       XCTAssertTrue(app.buttons[target].waitForExistence(timeout: 5),
@@ -53,7 +62,7 @@ final class JesusPrayerFlowUITests: XCTestCase {
   func testBoundedTargetDefaultsTo33AndTracksCount() throws {
     let app = launchClean()
 
-    app.buttons["jesusPrayerCard"].tap()
+    openJesusPrayer(app)
     XCTAssertTrue(app.buttons["33"].waitForExistence(timeout: 5))
     XCTAssertTrue(app.buttons["33"].isSelected)
 
@@ -74,7 +83,7 @@ final class JesusPrayerFlowUITests: XCTestCase {
   func testUnboundedTargetHasNoFixedTotalAndAlwaysOffersFinish() throws {
     let app = launchClean()
 
-    app.buttons["jesusPrayerCard"].tap()
+    openJesusPrayer(app)
     XCTAssertTrue(app.buttons["Unbounded"].waitForExistence(timeout: 5))
     app.buttons["Unbounded"].tap()
     app.buttons["Begin"].tap()
@@ -93,14 +102,14 @@ final class JesusPrayerFlowUITests: XCTestCase {
     XCTAssertTrue(finishButton.exists)
     finishButton.tap()
 
-    XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 5))
+    XCTAssertTrue(app.buttons["category.jesusPrayer"].firstMatch.waitForExistence(timeout: 5))
   }
 
   @MainActor
   func testCustomTargetRequiresAValidNumberBeforeBeginIsEnabled() throws {
     let app = launchClean()
 
-    app.buttons["jesusPrayerCard"].tap()
+    openJesusPrayer(app)
     XCTAssertTrue(app.buttons["Custom"].waitForExistence(timeout: 5))
     app.buttons["Custom"].tap()
 

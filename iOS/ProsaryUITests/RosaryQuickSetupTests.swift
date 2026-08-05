@@ -16,10 +16,11 @@ final class RosaryQuickSetupTests: XCTestCase {
     let app = XCUIApplication()
     app.launch()
 
-    XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10))
-    app.buttons["rosaryCard"].tap()
+    // "Pray any Rosary" moved into Pray's + menu when the tab became the favorites list.
+    XCTAssertTrue(app.buttons["addFavoriteButton"].waitForExistence(timeout: 10))
+    app.buttons["addFavoriteButton"].tap()
 
-    let anyRosary = app.buttons["prayAnyRosary"]
+    let anyRosary = app.buttons["Pray any Rosary"]
     XCTAssertTrue(anyRosary.waitForExistence(timeout: 5))
     anyRosary.tap()
 
