@@ -54,6 +54,8 @@ jobs:
           npm run e2e
           python3 -c "import zipfile; zipfile.ZipFile('dist-e2e/exampleDevotion.prosaryprayer').extractall('dist-e2e/extracted')"
           python3 ../Shared/tools/validate-devotion.py dist-e2e/extracted
+          python3 -c "import zipfile; zipfile.ZipFile('dist-e2e/novena.prosaryprayer').extractall('dist-e2e/extracted-days')"
+          python3 ../Shared/tools/validate-devotion.py dist-e2e/extracted-days
 
   repository:
     name: Repository (next build)

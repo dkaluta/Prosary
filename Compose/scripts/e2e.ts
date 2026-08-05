@@ -184,5 +184,35 @@ console.log("e2e OK —", original.map((f) => f.name).join(", "));
     new TextDecoder().decode(files.find((f) => f.name === "content/en.json")!.data),
   );
   assert(en.prayers.step02Body === "Text 2", "the second day's text is emitted");
-  console.log("✓ days-type project packs with its declarations");
+
+  // The wizard's own checks must agree with the canonical validator about what a days project
+  // owes: every day named, and none of them empty.
+  const clean = validateProject(project);
+  assert(clean.length === 0, `days project should validate clean, got ${JSON.stringify(clean)}`);
+  const emptyDay = validateProject({
+    ...project,
+    days: [...project.days, { uid: "day3", name: "", nameByLanguage: {}, steps: [] }],
+  });
+  assert(
+    emptyDay.some((i) => i.message.includes("needs a name")) &&
+      emptyDay.some((i) => i.message.includes("no prayers")),
+    `an empty unnamed day should be flagged, got ${JSON.stringify(emptyDay)}`,
+  );
+
+  // Reopening must produce the same bundle, exactly as the steps type does.
+  const reopenedDays = await openBundle(buildBundle(project));
+  const repackedDays = buildBundleFiles(reopenedDays);
+  for (const file of files) {
+    const twin = repackedDays.find((f) => f.name === file.name);
+    assert(twin !== undefined, `missing after the days round trip: ${file.name}`);
+    assert(
+      file.data.length === twin!.data.length && file.data.every((b, i) => b === twin!.data[i]),
+      `days round-trip mismatch in ${file.name}: ${decoder.decode(file.data)} vs ${decoder.decode(twin!.data)}`,
+    );
+  }
+
+  // Written out so CI can run the canonical Shared/tools/validate-devotion.py over it — no
+  // shipped bundle uses days yet, so this is the only thing holding that path honest.
+  writeFileSync("dist-e2e/novena.prosaryprayer", buildBundle(project));
+  console.log("✓ days-type project packs, validates and round-trips");
 }

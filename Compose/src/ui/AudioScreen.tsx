@@ -1,6 +1,7 @@
 import { useEffect, useMemo } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { LANGUAGES, commonPrayer } from "../format/catalog";
+import { authoredSteps } from "../format/pack";
 import type { LanguageCode } from "../format/catalog";
 import type { EditorAudioTrack, Project } from "../format/project";
 import { newUid } from "../format/project";
@@ -31,7 +32,7 @@ export function AudioScreen({ project, setProject }: Props) {
             language: p.languages[0] ?? "la",
             fileName: file.name,
             bytes,
-            chapters: p.steps.length > 0 ? [{ start: 0, stepUid: p.steps[0].uid }] : [],
+            chapters: authoredSteps(p).length > 0 ? [{ start: 0, stepUid: authoredSteps(p)[0].uid }] : [],
           },
         ],
       }));
@@ -79,9 +80,13 @@ function TrackCard({
   onChange: (patch: Partial<EditorAudioTrack>) => void;
   onRemove: () => void;
 }) {
+  // A days devotion is narrated as one recording, so chapters address the steps of every day
+  // in the order they are prayed.
+  const steps = authoredSteps(project);
+
   const stepLabel = (uid: string) => {
-    const stepIndex = project.steps.findIndex((s) => s.uid === uid);
-    const step = project.steps[stepIndex];
+    const stepIndex = steps.findIndex((s) => s.uid === uid);
+    const step = steps[stepIndex];
     if (!step) return "(removed step)";
     const name =
       step.kind === "common"
@@ -94,7 +99,7 @@ function TrackCard({
 
   const oneChapterPerStep = () =>
     onChange({
-      chapters: project.steps.map((step, i) => ({
+      chapters: steps.map((step, i) => ({
         start: track.chapters[i]?.start ?? (i === 0 ? 0 : Number.NaN),
         stepUid: step.uid,
       })),
@@ -163,7 +168,7 @@ function TrackCard({
                     })
                   }
                 >
-                  {project.steps.map((step) => (
+                  {steps.map((step) => (
                     <option key={step.uid} value={step.uid}>
                       {stepLabel(step.uid)}
                     </option>
@@ -192,7 +197,7 @@ function TrackCard({
                 ...track.chapters,
                 {
                   start: Number.NaN,
-                  stepUid: project.steps[track.chapters.length]?.uid ?? project.steps[0]?.uid ?? "",
+                  stepUid: steps[track.chapters.length]?.uid ?? steps[0]?.uid ?? "",
                 },
               ],
             })
@@ -200,7 +205,7 @@ function TrackCard({
         >
           + Add chapter
         </button>
-        {project.steps.length > 0 && (
+        {steps.length > 0 && (
           <button className="subtle tight" onClick={oneChapterPerStep}>
             One chapter per step
           </button>

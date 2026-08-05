@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { LANGUAGES } from "../format/catalog";
-import { buildBundle, buildBundleFiles } from "../format/pack";
+import { authoredSteps, buildBundle, buildBundleFiles } from "../format/pack";
 import type { Project } from "../format/project";
 import type { Issue, WizardScreen } from "../format/validate";
 import { download } from "./media";
@@ -111,7 +111,9 @@ export function ReviewScreen({ project, issues, goTo }: Props) {
         <dl className="summary">
           <dt>{project.name || "Untitled devotion"}</dt>
           <dd>
-            {project.steps.length} step{project.steps.length === 1 ? "" : "s"} ·{" "}
+            {project.devotionType === "days" &&
+              `${project.days.length} day${project.days.length === 1 ? "" : "s"} · `}
+            {authoredSteps(project).length} step{authoredSteps(project).length === 1 ? "" : "s"} ·{" "}
             {project.languages
               .map((code) => LANGUAGES.find((l) => l.code === code)?.name)
               .join(", ") || "no languages"}
