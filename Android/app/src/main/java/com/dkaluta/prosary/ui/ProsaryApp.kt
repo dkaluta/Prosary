@@ -242,7 +242,8 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
                     AdHocRosaryHolder.prayer = prayer
                     navController.navigate(Routes.RosaryQuickPray)
                 },
-                onOpenFavorites = { navController.navigate(Routes.Favorites) },
+                onEditPreset = { id -> navController.navigate(Routes.favoriteEditor(id)) },
+                onEditReminders = { id -> navController.navigate(Routes.remindersOnlyEditor(id)) },
                 onBack = { navController.popBackStack() },
             )
         }

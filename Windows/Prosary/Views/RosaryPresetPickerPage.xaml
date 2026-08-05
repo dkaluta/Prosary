@@ -32,6 +32,25 @@
                     <Button x:Uid="BtnPray" Content="Pray" HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}"
                             Command="{Binding ElementName=Root, Path=ViewModel.PrayPresetCommand}" CommandParameter="{Binding}" />
                 </StackPanel>
+                <!-- Edit / reminders / default / delete, the same four the Mac offers on a
+                     preset — this screen is where presets are managed now. -->
+                <Border.ContextFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem x:Uid="PresetEdit" Text="Edit"
+                                        Command="{Binding ElementName=Root, Path=ViewModel.EditPresetCommand}"
+                                        CommandParameter="{Binding}" />
+                        <MenuFlyoutItem x:Uid="PresetReminders" Text="Reminders…"
+                                        Command="{Binding ElementName=Root, Path=ViewModel.EditRemindersCommand}"
+                                        CommandParameter="{Binding}" />
+                        <MenuFlyoutItem x:Uid="PresetSetDefault" Text="Set as default"
+                                        Command="{Binding ElementName=Root, Path=ViewModel.MakeDefaultCommand}"
+                                        CommandParameter="{Binding}" />
+                        <MenuFlyoutSeparator />
+                        <MenuFlyoutItem x:Uid="PresetDelete" Text="Delete"
+                                        Command="{Binding ElementName=Root, Path=ViewModel.DeletePresetCommand}"
+                                        CommandParameter="{Binding}" />
+                    </MenuFlyout>
+                </Border.ContextFlyout>
             </Border>
         </DataTemplate>
     </Page.Resources>
@@ -52,7 +71,6 @@
                 <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
             </Button>
             <TextBlock x:Uid="PickerTitle" Grid.Column="1" Text="The Holy Rosary" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
-            <Button Grid.Column="2" Content="Manage" Background="Transparent" Command="{x:Bind ViewModel.ManagePresetsCommand}" />
         </Grid>
 
         <ScrollViewer Grid.Row="1">

@@ -1,5 +1,9 @@
 package com.dkaluta.prosary.ui.home
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -59,7 +63,9 @@ import kotlinx.coroutines.launch
 fun RosaryPresetPickerScreen(
     onPrayPreset: (String) -> Unit,
     onPrayAdHoc: (Prayer) -> Unit,
-    onOpenFavorites: () -> Unit,
+    /** A preset's own actions — this screen manages presets now, as it does on iOS/Mac. */
+    onEditPreset: (String) -> Unit,
+    onEditReminders: (String) -> Unit,
     onBack: () -> Unit,
 ) {
     val services = LocalAppServices.current
@@ -115,7 +121,6 @@ fun RosaryPresetPickerScreen(
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.common_back))
                     }
                 },
-                actions = { TextButton(onClick = onOpenFavorites) { Text(stringResource(R.string.rosary_manage)) } },
             )
         },
     ) { padding ->
@@ -129,7 +134,13 @@ fun RosaryPresetPickerScreen(
         ) {
             defaultPreset?.let { preset ->
                 Text(stringResource(R.string.rosary_default_preset), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
-                PresetCard(preset, prominent = true) { onPrayPreset(preset.id) }
+                PresetCard(
+                    preset,
+                    prominent = true,
+                    onEdit = { onEditPreset(preset.id) },
+                    onReminders = { onEditReminders(preset.id) },
+                    onDelete = { scope.launch { services.presetStore.delete(preset); reload() } },
+                ) { onPrayPreset(preset.id) }
             }
 
             Text(stringResource(R.string.rosary_custom), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
@@ -171,7 +182,24 @@ fun RosaryPresetPickerScreen(
             if (otherPresets.isNotEmpty()) {
                 Text(stringResource(R.string.rosary_presets), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
                 for (preset in otherPresets) {
-                    PresetCard(preset, prominent = false) { onPrayPreset(preset.id) }
+                    PresetCard(
+                        preset,
+                        prominent = false,
+                        onEdit = { onEditPreset(preset.id) },
+                        onReminders = { onEditReminders(preset.id) },
+                        onMakeDefault = {
+                            scope.launch {
+                                for (other in services.presetStore.all().filter { it.kind == PrayerKind.Rosary }) {
+                                    val shouldBeDefault = other.id == preset.id
+                                    if (other.isDefault != shouldBeDefault) {
+                                        services.presetStore.save(other.copy(isDefault = shouldBeDefault))
+                                    }
+                                }
+                                reload()
+                            }
+                        },
+                        onDelete = { scope.launch { services.presetStore.delete(preset); reload() } },
+                    ) { onPrayPreset(preset.id) }
                 }
             }
         }
@@ -212,16 +240,53 @@ fun RosaryPresetPickerScreen(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun PresetCard(preset: Prayer, prominent: Boolean, onPray: () -> Unit) {
+private fun PresetCard(
+    preset: Prayer,
+    prominent: Boolean,
+    onEdit: (() -> Unit)? = null,
+    onReminders: (() -> Unit)? = null,
+    onMakeDefault: (() -> Unit)? = null,
+    onDelete: (() -> Unit)? = null,
+    onPray: () -> Unit,
+) {
+    var menu by remember { mutableStateOf(false) }
     Column(
         verticalArrangement = Arrangement.spacedBy(6.dp),
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(14.dp))
             .background(MaterialTheme.colorScheme.surfaceContainerHigh)
+            .combinedClickable(onClick = {}, onLongClick = { menu = true })
             .padding(14.dp),
     ) {
+        DropdownMenu(expanded = menu, onDismissRequest = { menu = false }) {
+            onEdit?.let {
+                DropdownMenuItem(
+                    text = { Text(stringResource(R.string.favorites_edit)) },
+                    onClick = { menu = false; it() },
+                )
+            }
+            onReminders?.let {
+                DropdownMenuItem(
+                    text = { Text(stringResource(R.string.favorites_reminders)) },
+                    onClick = { menu = false; it() },
+                )
+            }
+            onMakeDefault?.let {
+                DropdownMenuItem(
+                    text = { Text(stringResource(R.string.favorites_set_default)) },
+                    onClick = { menu = false; it() },
+                )
+            }
+            onDelete?.let {
+                DropdownMenuItem(
+                    text = { Text(stringResource(R.string.favorites_delete)) },
+                    onClick = { menu = false; it() },
+                )
+            }
+        }
         Text(
             preset.name,
             style = if (prominent) MaterialTheme.typography.titleLarge else MaterialTheme.typography.titleMedium,

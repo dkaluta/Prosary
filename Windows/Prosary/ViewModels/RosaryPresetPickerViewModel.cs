@@ -113,7 +113,39 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void ManagePresets() => Router.Navigate<FavoritesListPage>();
+    private void EditPreset(Prayer preset) =>
+        Router.Navigate<FavoriteEditorPage>(new FavoriteEditorParams(preset.Id));
+
+    [RelayCommand]
+    private void EditReminders(Prayer preset) =>
+        Router.Navigate<RemindersOnlyEditorPage>(preset.Id);
+
+    [RelayCommand]
+    private async Task MakeDefaultAsync(Prayer preset)
+    {
+        foreach (var other in await _presets.GetAllAsync())
+        {
+            if (other.Kind != PrayerKind.Rosary)
+            {
+                continue;
+            }
+
+            var shouldBeDefault = other.Id == preset.Id;
+            if (other.IsDefault != shouldBeDefault)
+            {
+                await _presets.SaveAsync(other with { IsDefault = shouldBeDefault });
+            }
+        }
+
+        await LoadAsync();
+    }
+
+    [RelayCommand]
+    private async Task DeletePresetAsync(Prayer preset)
+    {
+        await _presets.DeleteAsync(preset);
+        await LoadAsync();
+    }
 
     [RelayCommand]
     private void Back() => Router.GoBack();

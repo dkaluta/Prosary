@@ -336,6 +336,24 @@ public partial class HomeViewModel : ObservableObject
     [RelayCommand]
     private void OpenSavedPresets() => Router.Navigate<RosaryPresetPickerPage>();
 
+    /// <summary>A card's "Reminders…" — the saved configuration behind the card is what they
+    /// belong to, so a devotion pinned but never configured has none to edit.</summary>
+    [RelayCommand]
+    private void OpenReminders(DevotionCardModel card)
+    {
+        var prayer = DevotionIdOf(card) switch
+        {
+            "rosary" => _defaultRosary,
+            "jesusPrayer" => _defaultJesusPrayer,
+            var bundleId => _defaultCustomDevotions.GetValueOrDefault(bundleId),
+        };
+
+        if (prayer is not null)
+        {
+            Router.Navigate<RemindersOnlyEditorPage>(prayer.Id);
+        }
+    }
+
     /// <summary>"Pray any Rosary" — the ad-hoc session the Mac's + menu opens first.</summary>
     [RelayCommand]
     private void PrayAnyRosary() => Router.Navigate<RosaryPresetPickerPage>();

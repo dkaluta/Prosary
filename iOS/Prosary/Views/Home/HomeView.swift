@@ -265,11 +265,26 @@ struct HomeView: View {
     .accessibilityIdentifier("noFavoritesState")
   }
 
+  /// The saved configuration behind a pinned row, when it has one — what its reminders belong
+  /// to. Nil for a devotion pinned without ever being configured.
+  private func savedPrayer(for row: DevotionRow) -> Prayer? {
+    switch row.id {
+    case "rosary": return defaultRosary
+    case "jesusPrayer": return defaultJesusPrayer
+    default: return prayers.first { $0.kind == .custom && $0.customDevotionId == row.id }
+    }
+  }
+
   @ViewBuilder
   private func rowMenu(for row: DevotionRow) -> some View {
     if let route = row.presetsRoute {
       Button { path.append(route) } label: {
         Label(String(localized: "home.savedPresets", defaultValue: "Saved Presets…"), systemImage: "bookmark")
+      }
+    }
+    if let prayer = savedPrayer(for: row) {
+      Button { remindersPrayer = prayer } label: {
+        Label(String(localized: "favorites.reminders", defaultValue: "Reminders…"), systemImage: "bell")
       }
     }
     Button {
