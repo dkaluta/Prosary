@@ -19,9 +19,19 @@ public sealed class SchemaMigrationTests : IDisposable
 
     public void Dispose()
     {
+        // sqlite-net pools its connections, so the store's handle outlives the test and Windows
+        // refuses to delete a file still open. Draining the pool first is what releases it.
+        SQLiteAsyncConnection.ResetPool();
         if (File.Exists(_dbPath))
         {
-            File.Delete(_dbPath);
+            try
+            {
+                File.Delete(_dbPath);
+            }
+            catch (IOException)
+            {
+                // A temp file the OS will collect; never fail a green test over cleanup.
+            }
         }
     }
 
