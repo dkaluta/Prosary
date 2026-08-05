@@ -200,6 +200,12 @@ data class CustomDevotionDefinition(
     val type: DevotionType,
     // days type
     val days: List<Day>? = null,
+    /** How the days relate: a series is worked through on consecutive days (a novena, a
+     * triduum, a 33-day consecration) and gets a tracked run; "free" days are a set to pick
+     * from, like a prayer for each day of the week. Absent means series. */
+    val dayProgression: String? = null,
+    /** Advisory "HH:mm" for the daily reminder; the user's own times always win. */
+    val suggestedReminderTime: String? = null,
     // steps type
     val steps: List<CustomDevotionStep>? = null,
     /** Whole-sequence swap during Eastertide (the Angelus → Regina Caeli substitution). */

@@ -370,6 +370,20 @@ def main() -> int:
             extra = set(day) - {"name", "nameByLanguage", "period", "steps"}
             if extra:
                 err(f"{where}: unknown fields {sorted(extra)}")
+        # How the days relate to each other, which is the difference between a novena you work
+        # through on consecutive days and a weekly cycle you pick from.
+        progression = devotion.get("dayProgression", "series")
+        if progression not in ("series", "free"):
+            err('dayProgression must be "series" (consecutive days, tracked) or "free" (pick any)')
+        reminder = devotion.get("suggestedReminderTime")
+        if reminder is not None:
+            ok = (isinstance(reminder, str) and len(reminder) == 5 and reminder[2] == ":"
+                  and reminder[:2].isdigit() and reminder[3:].isdigit()
+                  and int(reminder[:2]) < 24 and int(reminder[3:]) < 60)
+            if not ok:
+                err('suggestedReminderTime must be "HH:mm"')
+            elif progression != "series":
+                err("suggestedReminderTime only means anything for a series")
         check_entry_list(devotion.get("opening") or [], "opening")
         check_entry_list(devotion.get("closing") or [], "closing")
         for field in ("steps", "eastertideSteps", "variants", "decades", "hasClosingCross"):

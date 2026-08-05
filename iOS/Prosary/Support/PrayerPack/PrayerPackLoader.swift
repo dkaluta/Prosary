@@ -207,6 +207,10 @@ private struct PackAudio: Decodable {
 /// Field validity per type is enforced at authoring time by `Shared/tools/validate-devotion.py`;
 /// the decoder is deliberately lenient (all optionals) so the engine can switch on `type` alone.
 struct CustomDevotionDefinition: Decodable {
+  enum DayProgression: String, Decodable {
+    case series, free
+  }
+
   enum DevotionType: String, Decodable {
     /// A flat, fixed step list (Angelus, Stations, Trisagion).
     case steps
@@ -314,6 +318,13 @@ struct CustomDevotionDefinition: Decodable {
   let type: DevotionType
   // days type
   let days: [Day]?
+  /// How the days relate: a series is worked through on consecutive days (a novena, a triduum,
+  /// a 33-day consecration) and gets a tracked run; "free" days are a set to pick from, like a
+  /// prayer for each day of the week, where there is nothing to be behind on. Absent means
+  /// series — a numbered list of days is sequential unless its author says otherwise.
+  let dayProgression: DayProgression?
+  /// Advisory "HH:mm" for the daily reminder; the user's own times always win.
+  let suggestedReminderTime: String?
   // steps type
   let steps: [CustomDevotionStep]?
   /// Whole-sequence swap during Eastertide (the Angelus → Regina Caeli substitution).

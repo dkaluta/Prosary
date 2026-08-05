@@ -689,6 +689,12 @@ public sealed record CustomDevotionDefinition(
     CustomDevotionDefinition.DevotionType Type,
     // days type
     List<CustomDevotionDefinition.Day>? Days = null,
+    // How the days relate: a series is worked through on consecutive days (a novena, a triduum,
+    // a 33-day consecration) and gets a tracked run; "free" days are a set to pick from, like a
+    // prayer for each day of the week. Null means series.
+    string? DayProgression = null,
+    // Advisory "HH:mm" for the daily reminder; the user's own times always win.
+    string? SuggestedReminderTime = null,
     // steps type
     List<CustomDevotionStep>? Steps = null,
     // Whole-sequence swap during Eastertide (the Angelus → Regina Caeli substitution).

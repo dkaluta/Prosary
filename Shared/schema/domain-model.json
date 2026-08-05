@@ -410,6 +410,14 @@
           "type": "CustomDevotionStep[]?",
           "description": "rosary type only. Entry 0 MUST be the Sign of the Cross (bead-track invariant)."
         },
+        "dayProgression": {
+          "type": "string",
+          "description": "days type only: \"series\" (default — consecutive days worked through in order, so the app tracks a run, advances by calendar day and can remind you each day; a novena, triduum or 33-day consecration) or \"free\" (the days are a set to pick from, like a prayer for each day of the week, with no run to be behind on)."
+        },
+        "suggestedReminderTime": {
+          "type": "string",
+          "description": "days type, series only: \"HH:mm\" the author suggests for the daily reminder. Advisory — the user's own reminder times always win."
+        },
         "decades": {
           "type": "object?",
           "description": "rosary type only: { ordinalNoun | ordinalNounKey (the noun a decade is counted in — \"Joy\"/\"Sorrow\"/\"Mystery\"/\"Decade\"; the key form resolves in the praying language), announceMystery, entries: [{imageKey, isScripture? = true}] XOR count + fixedImageKey XOR source: \"mysteryGroups\" (the Rosary — decade catalog from the engine's mystery-group machinery: selection mode + liturgical calendar, group-labelled ordinals, single-mystery true ordinal, real Mystery values on steps), majorStep {title | titleKey, bodyKey, imageKey?}, minorStep {title | titleKey, bodyKey}, minorCount, postMinor?: [Entry] (emitted after each decade's minors with the decade's subtitle/index — the Rosary's Glory Be/Fatima/eternal rest, gated with \"if\"), presenter?: {combinedTitle | combinedTitleKey, bodyKeys} (when the gating presenterMode option is on, the minors collapse into one combined step with hailMaryIndexInDecade = minorCount) }. Announcement steps pull title/body from the merged mystery tables by imageKey."
