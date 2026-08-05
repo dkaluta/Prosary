@@ -18,6 +18,8 @@ private struct AppRouteDestinations: ViewModifier {
         PrayerDispatchView(prayerId: id, path: $path)
       case .about:
         AboutView()
+      case .rosaryPresets:
+        RosaryPresetsView(path: $path)
       case .jesusPrayerSetup:
         JesusPrayerSetupView(path: $path)
       case .jesusPrayer(let target):

@@ -34,8 +34,11 @@ final class RosaryQuickSetupTests: XCTestCase {
 
     // A Form only keeps visible rows in the accessibility tree, so reach the last section
     // by scrolling rather than asserting on something below the fold.
-    app.swipeUp()
-    XCTAssertTrue(app.switches["Final Sign of the Cross"].waitForExistence(timeout: 5),
+    let finalCross = app.switches["Final Sign of the Cross"]
+    for _ in 0..<5 where !finalCross.exists {
+      app.swipeUp()
+    }
+    XCTAssertTrue(finalCross.waitForExistence(timeout: 5),
                   "The closing section should render too")
 
     // And the point of the sheet: it starts a session.
