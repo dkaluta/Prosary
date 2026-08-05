@@ -96,3 +96,37 @@ final class MultiDayStartDateTests: XCTestCase {
     XCTAssertNil(MultiDayStatus.startDate("not-a-date", on: date(2026, 8, 5)))
   }
 }
+
+/// One prompt per remaining day, never for a day already prayed or already past.
+final class MultiDaySeriesReminderTests: XCTestCase {
+  private func date(_ year: Int, _ month: Int, _ day: Int, _ hour: Int = 9) -> Date {
+    Calendar.current.date(from: DateComponents(year: year, month: month, day: day, hour: hour))!
+  }
+
+  func testEveryUnprayedDayGetsOnePromptOnItsOwnDate() {
+    let run = MultiDayRun(devotionId: "oAntiphons", startedOn: date(2026, 12, 17))
+    let pending = ReminderScheduler.pendingSeriesDays(
+      run: run, dayCount: 7, time: (hour: 18, minute: 0), now: date(2026, 12, 17, 8))
+
+    XCTAssertEqual(pending.map(\.day), [0, 1, 2, 3, 4, 5, 6])
+    XCTAssertEqual(pending.first?.date, date(2026, 12, 17, 18))
+    XCTAssertEqual(pending.last?.date, date(2026, 12, 23, 18))
+  }
+
+  func testPrayedAndPastDaysAreSkipped() {
+    var run = MultiDayRun(devotionId: "oAntiphons", startedOn: date(2026, 12, 17))
+    run.recordPrayed(day: 0, on: date(2026, 12, 17, 19))
+    // Two evenings in: day 0 was prayed, day 1's prompt has already fired.
+    let pending = ReminderScheduler.pendingSeriesDays(
+      run: run, dayCount: 7, time: (hour: 18, minute: 0), now: date(2026, 12, 18, 20))
+
+    XCTAssertEqual(pending.map(\.day), [2, 3, 4, 5, 6])
+  }
+
+  func testTheBundlesSuggestedTimeWinsAndNonsenseFallsBack() {
+    XCTAssertEqual(ReminderScheduler.reminderTime("07:30").hour, 7)
+    XCTAssertEqual(ReminderScheduler.reminderTime("07:30").minute, 30)
+    XCTAssertEqual(ReminderScheduler.reminderTime(nil).hour, 18)
+    XCTAssertEqual(ReminderScheduler.reminderTime("25:00").hour, 18)
+  }
+}

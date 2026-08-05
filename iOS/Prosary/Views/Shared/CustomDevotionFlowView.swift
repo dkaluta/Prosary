@@ -196,6 +196,7 @@ struct CustomDevotionFlowView: View {
         }
         Button(String(localized: "multiDay.startOver", defaultValue: "Start over"), role: .destructive) {
           MultiDayRuns.startFresh(devotionId)
+          ReminderScheduler.refreshSeries(devotionId: devotionId)
           switchDay(to: 0)
           missedDayChoice = nil
         }
@@ -417,6 +418,8 @@ struct CustomDevotionFlowView: View {
           // A series advances by calendar day, so record *which* day was prayed and let the
           // run decide what comes next — praying twice today must not skip tomorrow's day.
           MultiDayRuns.recordPrayed(devotionId: devotionId, day: dayIndex)
+          // The remaining days keep their prompts; the finished ones lose theirs.
+          ReminderScheduler.refreshSeries(devotionId: devotionId)
         }
         persistDayIndex(min(dayIndex + 1, days.count - 1))
       }

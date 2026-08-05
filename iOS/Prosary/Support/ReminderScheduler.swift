@@ -70,6 +70,95 @@ struct ReminderScheduler {
     }
   }
 
+  // MARK: - Multi-day series
+
+  /// A series in progress earns one notification per remaining day — the spec's "a notification
+  /// per day prompting you to continue" — rather than a daily repeat that would keep nagging
+  /// after the last day. Rewritten from scratch on every call, so recording a day, starting
+  /// over, or finishing the run all leave exactly the right ones pending.
+  static func refreshSeries(devotionId: String) {
+    let center = UNUserNotificationCenter.current()
+    let prefix = seriesPrefix(devotionId)
+
+    center.getPendingNotificationRequests { existing in
+      let stale = existing.filter { $0.identifier.hasPrefix(prefix) }.map(\.identifier)
+      center.removePendingNotificationRequests(withIdentifiers: stale)
+    }
+
+    Task { @MainActor in
+      guard let definition = PrayerPackStore.definition(for: devotionId),
+            let days = definition.days, days.count > 1,
+            (definition.dayProgression ?? .series) == .series,
+            let run = MultiDayRuns.run(for: devotionId),
+            !run.isComplete(dayCount: days.count) else { return }
+
+      let time = reminderTime(definition.suggestedReminderTime)
+      let name = PrayerPackStore.info(for: devotionId)?.localizedDisplayName ?? devotionId
+      let pending = Self.pendingSeriesDays(run: run, dayCount: days.count, time: time)
+      guard !pending.isEmpty, await requestPermission() else { return }
+
+      for (day, date) in pending {
+        let content = UNMutableNotificationContent()
+        content.title = name
+        content.body = String(
+          localized: "multiDay.reminderBody",
+          defaultValue: "Day \(day + 1) of \(days.count) awaits.")
+        content.sound = .default
+        content.userInfo = ["devotionId": devotionId, "dayIndex": day]
+
+        let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
+        let request = UNNotificationRequest(
+          identifier: "\(prefix)\(day)",
+          content: content,
+          trigger: UNCalendarNotificationTrigger(dateMatching: components, repeats: false))
+        try? await center.add(request)
+      }
+    }
+  }
+
+  static func removeSeries(devotionId: String) {
+    let center = UNUserNotificationCenter.current()
+    let prefix = seriesPrefix(devotionId)
+    center.getPendingNotificationRequests { existing in
+      let ids = existing.filter { $0.identifier.hasPrefix(prefix) }.map(\.identifier)
+      center.removePendingNotificationRequests(withIdentifiers: ids)
+    }
+  }
+
+  /// Which days still deserve a notification and when: each unprayed day on the calendar date
+  /// the run puts it on, skipping anything already past. Pure, so the dates are testable
+  /// without a notification centre.
+  static func pendingSeriesDays(
+    run: MultiDayRun,
+    dayCount: Int,
+    time: (hour: Int, minute: Int),
+    now: Date = Date()
+  ) -> [(day: Int, date: Date)] {
+    let calendar = Calendar.current
+    let start = calendar.startOfDay(for: run.startedOn)
+    return (0..<dayCount).compactMap { day in
+      guard !run.prayedDays.contains(day),
+            let midnight = calendar.date(byAdding: .day, value: day, to: start),
+            let fire = calendar.date(bySettingHour: time.hour, minute: time.minute, second: 0, of: midnight),
+            fire > now else { return nil }
+      return (day, fire)
+    }
+  }
+
+  /// The bundle's suggested "HH:mm", or early evening — when the day's prayer is traditionally
+  /// said and, failing that, when someone is most likely free to say it.
+  static func reminderTime(_ suggested: String?) -> (hour: Int, minute: Int) {
+    let parts = suggested?.split(separator: ":").compactMap { Int($0) } ?? []
+    guard parts.count == 2, (0...23).contains(parts[0]), (0...59).contains(parts[1]) else {
+      return (hour: 18, minute: 0)
+    }
+    return (hour: parts[0], minute: parts[1])
+  }
+
+  private static func seriesPrefix(_ devotionId: String) -> String {
+    "prosary-series-\(devotionId)-"
+  }
+
   private static func notificationPrefix(for prayer: Prayer) -> String {
     "prosary-\(prayer.id)-"
   }

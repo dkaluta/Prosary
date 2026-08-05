@@ -2869,6 +2869,23 @@
         }
       }
     },
+    "multiDay.reminderBody": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Day %lld of %lld awaits."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יום %1$lld מתוך %2$lld ממתין."
+          }
+        }
+      }
+    },
     "multiDay.startOver": {
       "extractionState": "manual",
       "localizations": {
