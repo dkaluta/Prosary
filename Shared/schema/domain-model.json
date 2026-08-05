@@ -418,6 +418,10 @@
           "type": "string",
           "description": "days type, series only: \"HH:mm\" the author suggests for the daily reminder. Advisory — the user's own reminder times always win."
         },
+        "suggestedStart": {
+          "type": "string",
+          "description": "days type, series only: \"MM-DD\" the series traditionally begins on, repeating annually (a novena to the Immaculate Conception starts \"11-29\"). Lets a pinned devotion announce itself — \"Starts 29 November\" — before its first day arrives. Advisory: starting it any day always works."
+        },
         "decades": {
           "type": "object?",
           "description": "rosary type only: { ordinalNoun | ordinalNounKey (the noun a decade is counted in — \"Joy\"/\"Sorrow\"/\"Mystery\"/\"Decade\"; the key form resolves in the praying language), announceMystery, entries: [{imageKey, isScripture? = true}] XOR count + fixedImageKey XOR source: \"mysteryGroups\" (the Rosary — decade catalog from the engine's mystery-group machinery: selection mode + liturgical calendar, group-labelled ordinals, single-mystery true ordinal, real Mystery values on steps), majorStep {title | titleKey, bodyKey, imageKey?}, minorStep {title | titleKey, bodyKey}, minorCount, postMinor?: [Entry] (emitted after each decade's minors with the decade's subtitle/index — the Rosary's Glory Be/Fatima/eternal rest, gated with \"if\"), presenter?: {combinedTitle | combinedTitleKey, bodyKeys} (when the gating presenterMode option is on, the minors collapse into one combined step with hailMaryIndexInDecade = minorCount) }. Announcement steps pull title/body from the merged mystery tables by imageKey."

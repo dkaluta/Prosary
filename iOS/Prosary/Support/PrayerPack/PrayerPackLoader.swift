@@ -325,6 +325,9 @@ struct CustomDevotionDefinition: Decodable {
   let dayProgression: DayProgression?
   /// Advisory "HH:mm" for the daily reminder; the user's own times always win.
   let suggestedReminderTime: String?
+  /// Annual "MM-DD" the series traditionally begins on, so a pinned devotion can announce
+  /// itself before its first day. Advisory — starting it any day always works.
+  let suggestedStart: String?
   // steps type
   let steps: [CustomDevotionStep]?
   /// Whole-sequence swap during Eastertide (the Angelus → Regina Caeli substitution).

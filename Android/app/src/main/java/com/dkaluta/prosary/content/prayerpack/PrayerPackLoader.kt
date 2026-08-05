@@ -206,6 +206,9 @@ data class CustomDevotionDefinition(
     val dayProgression: String? = null,
     /** Advisory "HH:mm" for the daily reminder; the user's own times always win. */
     val suggestedReminderTime: String? = null,
+    /** Annual "MM-DD" the series traditionally begins on, so a pinned devotion can announce
+     * itself before its first day. Advisory — starting it any day always works. */
+    val suggestedStart: String? = null,
     // steps type
     val steps: List<CustomDevotionStep>? = null,
     /** Whole-sequence swap during Eastertide (the Angelus → Regina Caeli substitution). */

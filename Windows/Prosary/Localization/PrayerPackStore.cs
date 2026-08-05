@@ -695,6 +695,9 @@ public sealed record CustomDevotionDefinition(
     string? DayProgression = null,
     // Advisory "HH:mm" for the daily reminder; the user's own times always win.
     string? SuggestedReminderTime = null,
+    // Annual "MM-DD" the series traditionally begins on, so a pinned devotion can announce
+    // itself before its first day. Advisory — starting it any day always works.
+    string? SuggestedStart = null,
     // steps type
     List<CustomDevotionStep>? Steps = null,
     // Whole-sequence swap during Eastertide (the Angelus → Regina Caeli substitution).

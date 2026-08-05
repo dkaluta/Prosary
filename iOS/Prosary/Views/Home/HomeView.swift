@@ -78,7 +78,10 @@ struct HomeView: View {
         id: bundleId, title: info.localizedDisplayName,
         systemImage: info.iconSystemName ?? PrayerKind.custom.systemImage,
         iconGlyph: info.iconGlyph, accent: accent,
-        subtitle: savedPreset(forBundle: bundleId)?.languageDisplayName
+        // A tracked series says where you are, or when it begins — that is the whole reason a
+        // pinned novena is worth pinning before its first day.
+        subtitle: MultiDayStatus.subtitle(for: bundleId)
+          ?? savedPreset(forBundle: bundleId)?.languageDisplayName
           ?? String(localized: "home.customCard.tapToPray", defaultValue: "Tap to pray"),
         presetsRoute: nil,
         prayAction: { prayCustom(bundleId) }))

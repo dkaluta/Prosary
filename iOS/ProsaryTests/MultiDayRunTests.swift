@@ -68,3 +68,31 @@ final class MultiDayRunTests: XCTestCase {
     XCTAssertEqual(run.dueDay(dayCount: nine, on: day(400, from: start)), 8)
   }
 }
+
+/// The announcement a pinned series makes before it has begun.
+final class MultiDayStartDateTests: XCTestCase {
+  private func date(_ year: Int, _ month: Int, _ day: Int) -> Date {
+    Calendar.current.date(from: DateComponents(year: year, month: month, day: day))!
+  }
+
+  func testAnUpcomingDateResolvesToThisYear() {
+    let start = MultiDayStatus.startDate("11-29", on: date(2026, 8, 5))
+    XCTAssertEqual(start, date(2026, 11, 29))
+  }
+
+  func testAPassedDateResolvesToNextYear() {
+    // The Immaculate Conception novena has already run this year; announce the coming one.
+    let start = MultiDayStatus.startDate("11-29", on: date(2026, 12, 20))
+    XCTAssertEqual(start, date(2027, 11, 29))
+  }
+
+  func testTodayCountsAsUpcoming() {
+    let start = MultiDayStatus.startDate("11-29", on: date(2026, 11, 29))
+    XCTAssertEqual(start, date(2026, 11, 29))
+  }
+
+  func testNoDeclarationMeansNoAnnouncement() {
+    XCTAssertNil(MultiDayStatus.startDate(nil, on: date(2026, 8, 5)))
+    XCTAssertNil(MultiDayStatus.startDate("not-a-date", on: date(2026, 8, 5)))
+  }
+}

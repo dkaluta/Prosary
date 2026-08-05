@@ -384,6 +384,17 @@ def main() -> int:
                 err('suggestedReminderTime must be "HH:mm"')
             elif progression != "series":
                 err("suggestedReminderTime only means anything for a series")
+        # When a series traditionally begins, so a pinned devotion can announce itself before
+        # the day arrives ("Starts 29 November"). Annual month-day, not a full date.
+        start = devotion.get("suggestedStart")
+        if start is not None:
+            parts = start.split("-") if isinstance(start, str) else []
+            ok = (len(parts) == 2 and all(p.isdigit() for p in parts)
+                  and 1 <= int(parts[0]) <= 12 and 1 <= int(parts[1]) <= 31)
+            if not ok:
+                err('suggestedStart must be "MM-DD"')
+            elif progression != "series":
+                err("suggestedStart only means anything for a series")
         check_entry_list(devotion.get("opening") or [], "opening")
         check_entry_list(devotion.get("closing") or [], "closing")
         for field in ("steps", "eastertideSteps", "variants", "decades", "hasClosingCross"):
