@@ -209,6 +209,21 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
 
     private int _missedDay;
     private int _calendarDueDay;
+    private string? _suggestedNextId;
+
+    /// <summary>Set when the last day of a series is finished and the bundle's SuggestedNext
+    /// resolves to something this device actually has.</summary>
+    [ObservableProperty]
+    private bool _showsCompletionSuggestion;
+
+    [ObservableProperty]
+    private string _suggestedNextName = string.Empty;
+
+    public string CompletionTitleText =>
+        string.Format(Loc.Tr("multi_day_completed_title", "That completes it. Pray {0} next?"), SuggestedNextName);
+
+    public string PrayNextText =>
+        string.Format(Loc.Tr("multi_day_pray_next", "Pray {0}"), SuggestedNextName);
 
     public string MissedDayPrayMissedText =>
         string.Format(Loc.Tr("multi_day_pray_missed", "Pray day {0}"), _missedDay + 1);
@@ -506,6 +521,20 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
                     MultiDayRuns.RecordPrayed(_bundleId, CurrentDayIndex);
                     // The remaining days keep their prompts; the finished ones lose theirs.
                     _reminders.RefreshSeries(_bundleId);
+
+                    // The last day earns the bundle's parting suggestion — but only when it
+                    // names a devotion this device has, so a hand-written series can point at
+                    // its author's other work without leaving a dead end elsewhere.
+                    if (MultiDayRuns.Run(_bundleId)?.IsComplete(Days.Count) == true &&
+                        MultiDayStatus.SuggestedNext(_bundleId) is { } suggestion)
+                    {
+                        _ = PersistDayIndexAsync(Math.Min(CurrentDayIndex + 1, Days.Count - 1));
+                        _suggestedNextId = suggestion.Id;
+                        SuggestedNextName = suggestion.Name;
+                        ShowsCompletionSuggestion = true;
+                        StopAudio();
+                        return;
+                    }
                 }
 
                 _ = PersistDayIndexAsync(Math.Min(CurrentDayIndex + 1, Days.Count - 1));
@@ -728,6 +757,34 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     {
         ShowsMissedDayChoice = false;
         await SelectDayAsync(_calendarDueDay);
+    }
+
+    partial void OnSuggestedNextNameChanged(string value)
+    {
+        OnPropertyChanged(nameof(CompletionTitleText));
+        OnPropertyChanged(nameof(PrayNextText));
+    }
+
+    /// <summary>Hands over to the devotion the finished series suggests.</summary>
+    [RelayCommand]
+    private void PraySuggestedNext()
+    {
+        ShowsCompletionSuggestion = false;
+        if (_suggestedNextId is { } next)
+        {
+            Router.GoBack();
+            Router.Navigate<Views.CustomDevotionFlowPage>(new CustomDevotionFlowParams(null, next));
+            return;
+        }
+
+        Router.GoBack();
+    }
+
+    [RelayCommand]
+    private void DismissCompletionSuggestion()
+    {
+        ShowsCompletionSuggestion = false;
+        Router.GoBack();
     }
 
     [RelayCommand]

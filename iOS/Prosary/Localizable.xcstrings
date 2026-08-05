@@ -2801,6 +2801,23 @@
         }
       }
     },
+    "multiDay.completedTitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "That completes it. Pray %@ next?"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בזאת הושלמה. להתפלל %@ עכשיו?"
+          }
+        }
+      }
+    },
     "multiDay.dayOf": {
       "extractionState": "manual",
       "localizations": {
@@ -2835,6 +2852,23 @@
         }
       }
     },
+    "multiDay.notNow": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not now"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא עכשיו"
+          }
+        }
+      }
+    },
     "multiDay.prayMissed": {
       "extractionState": "manual",
       "localizations": {
@@ -2848,6 +2882,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "התפלל את יום %lld"
+          }
+        }
+      }
+    },
+    "multiDay.prayNext": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pray %@"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "התפלל %@"
           }
         }
       }

@@ -37,6 +37,9 @@ struct CustomDevotionFlowView: View {
   /// Set when a day was missed: the day that should have happened and the one today calls for.
   @State private var missedDayChoice: (missed: Int, next: Int)?
   @State private var runIsComplete = false
+  /// Set when the last day of a series is finished and the bundle's `suggestedNext` resolves to
+  /// something this device actually has.
+  @State private var completionSuggestion: (id: String, name: String)?
 
   private var currentStep: RosaryStep? {
     steps.indices.contains(currentIndex) ? steps[currentIndex] : nil
@@ -178,6 +181,27 @@ struct CustomDevotionFlowView: View {
         }
         .accessibilityLabel(isPinned ? "prayerFlow.removeFromFavorites" : "prayerFlow.addToFavorites")
         .accessibilityIdentifier("pinDevotionButton")
+      }
+    }
+    .confirmationDialog(
+      completionSuggestion.map {
+        String(localized: "multiDay.completedTitle", defaultValue: "That completes it. Pray \($0.name) next?")
+      } ?? "",
+      isPresented: .init(
+        get: { completionSuggestion != nil },
+        set: { if !$0 { completionSuggestion = nil } }),
+      titleVisibility: .visible
+    ) {
+      if let suggestion = completionSuggestion {
+        Button(String(localized: "multiDay.prayNext", defaultValue: "Pray \(suggestion.name)")) {
+          completionSuggestion = nil
+          NavigationCoordinator.shared.pendingRoute = .custom(devotionId: suggestion.id)
+          dismiss()
+        }
+      }
+      Button(String(localized: "multiDay.notNow", defaultValue: "Not now"), role: .cancel) {
+        completionSuggestion = nil
+        dismiss()
       }
     }
     .confirmationDialog(
@@ -420,6 +444,16 @@ struct CustomDevotionFlowView: View {
           MultiDayRuns.recordPrayed(devotionId: devotionId, day: dayIndex)
           // The remaining days keep their prompts; the finished ones lose theirs.
           ReminderScheduler.refreshSeries(devotionId: devotionId)
+
+          // The last day earns the bundle's parting suggestion — but only when it names a
+          // devotion this device has, so a hand-written series can point at its author's other
+          // work without leaving a dead end on everyone else's phone.
+          if MultiDayRuns.run(for: devotionId)?.isComplete(dayCount: days.count) == true,
+             let suggestion = MultiDayStatus.suggestedNext(after: devotionId) {
+            persistDayIndex(min(dayIndex + 1, days.count - 1))
+            completionSuggestion = suggestion
+            return
+          }
         }
         persistDayIndex(min(dayIndex + 1, days.count - 1))
       }

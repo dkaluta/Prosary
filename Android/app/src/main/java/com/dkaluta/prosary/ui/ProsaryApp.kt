@@ -224,7 +224,14 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
         ) { backStackEntry ->
             val devotionId = backStackEntry.arguments?.getString("devotionId")
             if (devotionId != null) {
-                CustomDevotionFlowScreen(devotionId = devotionId, onBack = { navController.popBackStack() })
+                CustomDevotionFlowScreen(
+                    devotionId = devotionId,
+                    onBack = { navController.popBackStack() },
+                    onOpenDevotion = { suggested ->
+                        navController.popBackStack()
+                        navController.navigate(Routes.custom(suggested))
+                    },
+                )
             }
         }
 

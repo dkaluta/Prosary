@@ -37,6 +37,7 @@ import com.dkaluta.prosary.models.FavoriteDevotions
 import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.MultiDayRun
 import com.dkaluta.prosary.models.MultiDayRuns
+import com.dkaluta.prosary.models.MultiDayStatus
 import com.dkaluta.prosary.reminders.ReminderScheduler
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
@@ -63,7 +64,14 @@ import kotlinx.coroutines.launch
  * languages than they do when the only switch was the app-level setting. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack: () -> Unit) {
+fun CustomDevotionFlowScreen(
+    devotionId: String,
+    prayer: Prayer? = null,
+    onBack: () -> Unit,
+    /** Opens another devotion in place of this one — how a finished series hands over to the
+     * one its bundle suggests. Null (previews, tests) just closes the flow. */
+    onOpenDevotion: ((String) -> Unit)? = null,
+) {
     val services = LocalAppServices.current
     val scope = rememberCoroutineScope()
 
@@ -86,6 +94,9 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
     /** Set when a day was missed: the day that should have happened and the one today calls for. */
     var missedDayChoice by remember { mutableStateOf<Pair<Int, Int>?>(null) }
     var isPinned by remember { mutableStateOf(false) }
+    /** Set when the last day of a series is finished and the bundle's suggestedNext resolves to
+     * something this device actually has. */
+    var completionSuggestion by remember { mutableStateOf<Pair<String, String>?>(null) }
 
     fun persistDayIndex(value: Int) {
         matchingFavoriteId?.let { id ->
@@ -215,6 +226,24 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
         BeadLayout.build(steps, currentIndex, hasClosingCross = hasClosingCross)
     }
 
+    completionSuggestion?.let { (suggestedId, suggestedName) ->
+        AlertDialog(
+            onDismissRequest = { completionSuggestion = null; onBack() },
+            title = { Text(stringResource(R.string.multi_day_completed_title, suggestedName)) },
+            confirmButton = {
+                TextButton(onClick = {
+                    completionSuggestion = null
+                    onOpenDevotion?.invoke(suggestedId) ?: onBack()
+                }) { Text(stringResource(R.string.multi_day_pray_next, suggestedName)) }
+            },
+            dismissButton = {
+                TextButton(onClick = { completionSuggestion = null; onBack() }) {
+                    Text(stringResource(R.string.multi_day_not_now))
+                }
+            },
+        )
+    }
+
     // A missed day is a real choice, not an error: take the day that should have happened,
     // stay with the calendar, or start the run over.
     missedDayChoice?.let { (missed, next) ->
@@ -276,6 +305,17 @@ fun CustomDevotionFlowScreen(devotionId: String, prayer: Prayer? = null, onBack:
                         MultiDayRuns.recordPrayed(context, devotionId, dayIndex)
                         // The remaining days keep their prompts; the finished ones lose theirs.
                         ReminderScheduler.refreshSeries(context, devotionId)
+
+                        // The last day earns the bundle's parting suggestion — but only when it
+                        // names a devotion this device has, so a hand-written series can point
+                        // at its author's other work without leaving a dead end elsewhere.
+                        val run = MultiDayRuns.run(context, devotionId)
+                        val suggestion = MultiDayStatus.suggestedNext(devotionId)
+                        if (run?.isComplete(days.size) == true && suggestion != null) {
+                            persistDayIndex(minOf(dayIndex + 1, days.size - 1))
+                            completionSuggestion = suggestion
+                            return@PrayerStepFlowScreen
+                        }
                     }
                     persistDayIndex(minOf(dayIndex + 1, days.size - 1))
                 }
