@@ -31,8 +31,24 @@ public sealed class SqlitePresetStore : IPresetStore
         _initialization = InitializeAsync();
     }
 
+    /// <summary>Columns declared <c>[NotNull]</c> on <see cref="PresetEntry"/> that were added
+    /// after this table first shipped, with the default the entity itself uses. sqlite-net's
+    /// auto-migration adds a missing column with a bare <c>ALTER TABLE … ADD COLUMN</c>, and
+    /// SQLite refuses that outright for a NOT NULL column ("Cannot add a NOT NULL column with
+    /// default value NULL") — a NOT NULL column can only be added *with* a default. So they are
+    /// added here first; <c>CreateTableAsync</c> then finds them present and leaves them alone.
+    /// A column added to the entity in future belongs in this list the same day, unless it is
+    /// nullable.</summary>
+    private static readonly (string Name, string Declaration)[] NotNullColumnsAddedLater =
+    [
+        ("LanguageCode", "varchar NOT NULL DEFAULT ''"),
+        ("CustomOptionsJson", "varchar NOT NULL DEFAULT '{}'"),
+        ("RemindersJson", "varchar NOT NULL DEFAULT '[]'"),
+    ];
+
     private async Task InitializeAsync()
     {
+        await AddMissingNotNullColumnsAsync();
         await _connection.CreateTableAsync<PresetEntry>();
 
         // Rows written before the generic-devotion migration store the retired per-devotion
@@ -53,6 +69,31 @@ public sealed class SqlitePresetStore : IPresetStore
         if (await _connection.Table<PresetEntry>().CountAsync() == 0)
         {
             await _connection.InsertAsync(new PresetEntry { Name = "Classic Rosary", IsDefault = true, Kind = PrayerKind.Rosary });
+        }
+    }
+
+    /// <summary>Adds any <see cref="NotNullColumnsAddedLater"/> the database is missing, with
+    /// their defaults. No-op on a fresh install, where <c>CreateTableAsync</c> builds the whole
+    /// table in one statement and no ALTER is involved.</summary>
+    private async Task AddMissingNotNullColumnsAsync()
+    {
+        var tableExists = await _connection.ExecuteScalarAsync<int>(
+            "SELECT count(*) FROM sqlite_master WHERE type = 'table' AND name = 'PresetEntry'");
+        if (tableExists == 0)
+        {
+            return;
+        }
+
+        foreach (var (name, declaration) in NotNullColumnsAddedLater)
+        {
+            var present = await _connection.ExecuteScalarAsync<int>(
+                "SELECT count(*) FROM pragma_table_info('PresetEntry') WHERE name = ?", name);
+            if (present > 0)
+            {
+                continue;
+            }
+
+            await _connection.ExecuteAsync($"ALTER TABLE PresetEntry ADD COLUMN \"{name}\" {declaration}");
         }
     }
 
