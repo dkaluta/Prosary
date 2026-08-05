@@ -42,10 +42,15 @@ final class StoreScreenshotTests: XCTestCase {
     // devotion above it broke this).
     let stations = app.buttons["category.stationsOfTheCross"].firstMatch
     for _ in 0..<8 where !stations.isHittable {
-      app.swipeUp()
+      app.swipeUp(velocity: .slow)
     }
     XCTAssertTrue(stations.isHittable)
     stations.tap()
+    // A list still carrying scroll momentum swallows the tap: the row is hittable where it was
+    // a moment ago, not where the finger lands. One retry rather than a longer sleep.
+    if !app.buttons["prayerFlowNextButton"].waitForExistence(timeout: 5) {
+      stations.tap()
+    }
     XCTAssertTrue(app.buttons["prayerFlowNextButton"].waitForExistence(timeout: 10))
     snap("03-stations")
     app.navigationBars.buttons.element(boundBy: 0).tap()
