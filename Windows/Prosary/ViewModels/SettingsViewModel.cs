@@ -21,6 +21,12 @@ public sealed record AppLanguageOption(string Tag, string Label);
 /// lives in the page's code-behind (dialogs need a XamlRoot); it calls
 /// <see cref="RemoveAllInstalledPacks"/> here.
 /// </summary>
+/// <summary>One downloaded or hand-imported devotion, listed under Settings → Downloads with the
+/// two actions the retired Favorites screen used to carry: a copy out for editing at
+/// compose.prosary.app (Gamaliel item 7) and a removal. Top-level rather than nested because
+/// x:DataType has no syntax for a nested type.</summary>
+public sealed record InstalledDevotionRow(string BundleId, string Title);
+
 public partial class SettingsViewModel : ObservableObject
 {
     // The stored code may name a rite ("he-x-gamliel"), so this row holds its base language and
@@ -186,11 +192,6 @@ public partial class SettingsViewModel : ObservableObject
         }
         RemoveAllInstalledPacks();
     }
-
-    /// <summary>One downloaded or hand-imported devotion, listed under Downloads with the two
-    /// actions the retired Favorites screen used to carry: a copy out for editing at
-    /// compose.prosary.app (Gamaliel item 7) and a removal.</summary>
-    public sealed record InstalledDevotionRow(string BundleId, string Title);
 
     public ObservableCollection<InstalledDevotionRow> InstalledDevotions { get; } = [];
 
