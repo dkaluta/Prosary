@@ -349,6 +349,21 @@ override the Rosary's own content. `hasCatalog` in a manifest strictly means "ha
 rosary-type bundles ship per-decade texts without any catalog.json. Only the Jesus Prayer has no
 bundle at all (it has no per-step content to carry).
 
+### Community language overlays
+
+A bundle's `manifest.languages` is what it *offers* — the languages its picker lists and the
+ones the validator holds to completeness. Any other `content/<code>.json` the pack carries is an
+**overlay**: the loaders read it, and `resolveBodyText` resolves a key against the exact code
+first, then its base language (`he-x-gamliel` → `he`), then Latin. So a community variant can
+ship its own wording for three keys without owing a translation of the whole devotion, and the
+packer needs no new manifest field — it already copies every content file it finds.
+
+The hardcoded tables work the same way: `PrayerTranslations` keys `he-x-gamliel` beside `he`,
+and `PrayerTranslations.get` falls back through the base language. The Mission of St. Gamaliel's
+Hebrew is the first user of both halves; in that variant the Nicene Creed occupies the
+Apostles' Creed's key, which is what "the Eastern Hebrew prays the Nicene Creed wherever the
+Latin tradition says the Apostles'" means in practice.
+
 ### Generic (bundle-driven) devotions
 
 Every devotion except the Rosary and the Jesus Prayer is a **generic devotion**: Angelus,
