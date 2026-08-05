@@ -698,6 +698,9 @@ public sealed record CustomDevotionDefinition(
     // Annual "MM-DD" the series traditionally begins on, so a pinned devotion can announce
     // itself before its first day. Advisory — starting it any day always works.
     string? SuggestedStart = null,
+    // A devotion to offer once the last day is prayed. May name one this device does not
+    // have — resolved at runtime and quietly dropped when it cannot be.
+    string? SuggestedNext = null,
     // steps type
     List<CustomDevotionStep>? Steps = null,
     // Whole-sequence swap during Eastertide (the Angelus → Regina Caeli substitution).

@@ -52,4 +52,13 @@ enum MultiDayStatus {
     components.year = (components.year ?? 0) + 1
     return calendar.date(from: components)
   }
+
+  /// The devotion to offer when a run finishes, or nil. A bundle may point at something this
+  /// device has never installed — a hand-written series naming its author's other work, say —
+  /// so an unresolvable suggestion is simply not offered rather than shown as a dead end.
+  static func suggestedNext(after devotionId: String) -> (id: String, name: String)? {
+    guard let suggestion = PrayerPackStore.definition(for: devotionId)?.suggestedNext,
+          let info = PrayerPackStore.info(for: suggestion) else { return nil }
+    return (suggestion, info.localizedDisplayName)
+  }
 }

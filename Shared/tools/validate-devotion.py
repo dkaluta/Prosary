@@ -395,6 +395,17 @@ def main() -> int:
                 err('suggestedStart must be "MM-DD"')
             elif progression != "series":
                 err("suggestedStart only means anything for a series")
+        # What to offer when the last day is prayed. A bundle id, possibly one this device does
+        # not have — a bundle is validated on its own, so the reference is checked at runtime
+        # and simply not offered when it cannot be resolved.
+        nxt = devotion.get("suggestedNext")
+        if nxt is not None:
+            if not isinstance(nxt, str) or not nxt:
+                err("suggestedNext must be a devotion id")
+            elif nxt == manifest.get("id"):
+                err("suggestedNext points at this devotion")
+            elif progression != "series":
+                err("suggestedNext only means anything for a series")
         check_entry_list(devotion.get("opening") or [], "opening")
         check_entry_list(devotion.get("closing") or [], "closing")
         for field in ("steps", "eastertideSteps", "variants", "decades", "hasClosingCross"):

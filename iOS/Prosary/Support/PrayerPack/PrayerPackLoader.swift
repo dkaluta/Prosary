@@ -328,6 +328,10 @@ struct CustomDevotionDefinition: Decodable {
   /// Annual "MM-DD" the series traditionally begins on, so a pinned devotion can announce
   /// itself before its first day. Advisory — starting it any day always works.
   let suggestedStart: String?
+  /// A devotion to offer once the last day is prayed. May name one this device does not have —
+  /// resolved at runtime, and quietly dropped when it cannot be, so a dangling suggestion never
+  /// breaks the bundle carrying it.
+  let suggestedNext: String?
   // steps type
   let steps: [CustomDevotionStep]?
   /// Whole-sequence swap during Eastertide (the Angelus → Regina Caeli substitution).
