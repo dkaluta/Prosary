@@ -477,9 +477,20 @@ private fun TextBlock(
                     )
                 }
             }
+            // A transliteration is in a different script from its language's own, so the face
+            // has to follow the text rather than the language — otherwise Syriac letters are
+            // drawn with a Hebrew face that has no glyphs for them, and the toggle shows tofu.
             Text(
                 (if (TransliterationState.shows) step.transliteratedBody!! else step.body).parseBoldMarkdown(),
-                style = PrayerTypography.style(languageCode = languageCode, isScripture = step.isScripture),
+                style = PrayerTypography.style(
+                    languageCode = languageCode,
+                    isScripture = step.isScripture,
+                    script = if (TransliterationState.shows) {
+                        PrayerTypography.scriptOf(step.transliteratedBody!!)
+                    } else {
+                        null
+                    },
+                ),
             )
         } else {
             Text(

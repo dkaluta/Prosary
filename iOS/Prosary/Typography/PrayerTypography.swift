@@ -25,23 +25,67 @@ enum PrayerTypography {
   private static let scale: CGFloat = 1.0
   #endif
 
-  static func font(languageCode: String?, isScripture: Bool) -> Font {
+  /// The writing system a run of text is actually in.
+  ///
+  /// Nearly always this follows from the language, and `font(languageCode:isScripture:)` derives
+  /// it that way. The exception is a transliteration, which is *by definition* in a different
+  /// script from its own language's — and the bundle format deliberately leaves which script to
+  /// the author (Hebrew letters for Tagalog, Syriac letters for Aramaic). So rather than have
+  /// the format declare it and risk the declaration drifting from the text, it is read off the
+  /// characters, which cannot disagree with themselves.
+  enum Script {
+    case hebrew, arabic, syriac, latin
+  }
+
+  /// The script the majority of a text's letters belong to. Counted rather than sampled: a
+  /// citation line ("— ܡܬܝ 28:1-7") mixes digits and punctuation into every body.
+  static func script(of text: String) -> Script {
+    var hebrew = 0, arabic = 0, syriac = 0, latin = 0
+    for scalar in text.unicodeScalars {
+      switch scalar.value {
+      case 0x0590...0x05FF: hebrew += 1
+      case 0x0600...0x06FF, 0x0750...0x077F: arabic += 1
+      case 0x0700...0x074F, 0x0860...0x086F: syriac += 1
+      case 0x0041...0x005A, 0x0061...0x007A, 0x0370...0x03FF, 0x1F00...0x1FFF: latin += 1
+      default: break
+      }
+    }
+    let counts = [(hebrew, Script.hebrew), (arabic, .arabic), (syriac, .syriac), (latin, .latin)]
+    return counts.max(by: { $0.0 < $1.0 })?.1 ?? .latin
+  }
+
+  /// `script` overrides what the language would imply — pass it when rendering a transliteration.
+  static func font(languageCode: String?, isScripture: Bool, script: Script? = nil) -> Font {
     // Variants key on their base script: "he-x-gamliel" typesets exactly like "he".
     let baseCode = languageCode.map { code in
       LanguageCatalog.baseLanguage(of: code) ?? code
     }
-    switch baseCode {
-    case "he", "arc": // Aramaic is written in Hebrew script — same faces and sizes
+    let resolved: Script = script ?? {
+      switch baseCode {
+      case "he", "arc": return .hebrew  // Aramaic ships in Hebrew square script
+      case "ar": return .arabic
+      default: return .latin
+      }
+    }()
+
+    switch resolved {
+    case .hebrew:
       return isScripture
         ? .custom(FontRegistration.PostScriptName.shofar, size: 16 * scale, relativeTo: .body)
         : .custom(FontRegistration.PostScriptName.frankRuhlLibre, size: 21 * scale, relativeTo: .body)
 
-    case "ar":
+    case .arabic:
       return isScripture
         ? .custom(FontRegistration.PostScriptName.scheherazadeNew, size: 16 * scale, relativeTo: .body)
         : .custom(FontRegistration.PostScriptName.amiri, size: 18 * scale, relativeTo: .body)
 
-    default: // "la", "en", and any other Latin-script language
+    case .syriac:
+      // Only ever reached through a transliteration: no language's own text is in Syriac
+      // letters, because "arc" ships Aramaic in Hebrew script. Without a face that covers the
+      // block the toggle would draw a line of tofu, which is worse than not offering it.
+      return .custom(FontRegistration.PostScriptName.notoSansSyriac, size: 19 * scale, relativeTo: .body)
+
+    case .latin: // "la", "en", and any other Latin- or Greek-script language
       return isScripture
         ? .custom(FontRegistration.PostScriptName.cardo, size: 19 * scale, relativeTo: .body)
         : .system(.body, design: .serif)
@@ -67,6 +111,13 @@ enum PrayerTypography {
             .environment(\.layoutDirection, language.isRightToLeft ? .rightToLeft : .leftToRight)
         }
         Divider()
+      }
+
+      VStack(alignment: .leading, spacing: 8) {
+        Text("Syriac (a transliteration)").font(.headline)
+        Text("ܡܛܠ ܗܢܐ ܢܬܠ ܠܟܘܢ ܡܪܝܐ ܐܠܗܐ ܐܬܐ")
+          .font(PrayerTypography.font(languageCode: "arc", isScripture: true, script: .syriac))
+          .environment(\.layoutDirection, .rightToLeft)
       }
     }
     .padding()

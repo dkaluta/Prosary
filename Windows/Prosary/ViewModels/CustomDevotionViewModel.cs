@@ -489,9 +489,15 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         CanGoBack = _index > 0;
         IsLastStep = _index == _steps.Count - 1;
 
-        BodyFontFamily = PrayerTypography.ResolveBodyFontFamily(_languageCode, step.IsScripture);
+        // A transliteration is in a different script from its language's own, so the face has to
+        // follow the text rather than the language — otherwise Syriac letters are drawn with a
+        // Hebrew face that has no glyphs for them, and the toggle shows a row of tofu.
+        var bodyScript = ShowsTransliteration && step.TransliteratedBody is { } shown
+            ? PrayerTypography.ScriptOf(shown)
+            : (PrayerTypography.Script?)null;
+        BodyFontFamily = PrayerTypography.ResolveBodyFontFamily(_languageCode, step.IsScripture, bodyScript);
         AcclamationFontFamily = PrayerTypography.ResolveBodyFontFamily(_languageCode, isScripture: false);
-        BodyFontSize = PrayerTypography.ResolveBodyFontSize(_languageCode, step.IsScripture);
+        BodyFontSize = PrayerTypography.ResolveBodyFontSize(_languageCode, step.IsScripture, bodyScript);
 
         RebuildBeads();
     }

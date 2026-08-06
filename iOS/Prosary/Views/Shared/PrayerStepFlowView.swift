@@ -345,8 +345,13 @@ struct PrayerStepFlowView: View {
                                      defaultValue: "Show transliteration"))
           .accessibilityIdentifier("transliterationToggle")
         }
+        // A transliteration is in a different script from its language's own, so the face has
+        // to follow the text rather than the language — otherwise Syriac letters are drawn with
+        // a Hebrew face that has no glyphs for them, and the toggle shows a row of tofu.
         Text(bodyAttributedString(showsTransliteration ? transliteration : step.body))
-          .font(PrayerTypography.font(languageCode: languageCode, isScripture: step.isScripture))
+          .font(PrayerTypography.font(
+            languageCode: languageCode, isScripture: step.isScripture,
+            script: showsTransliteration ? PrayerTypography.script(of: transliteration) : nil))
           .lineSpacing(4)
       } else {
         Text(bodyAttributedString(step.body))

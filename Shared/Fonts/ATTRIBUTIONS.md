@@ -8,6 +8,16 @@
 | Amiri-Regular.ttf | Amiri | SIL OFL 1.1 | Arabic prayers (non-Scripture) |
 | ScheherazadeNew-Regular.ttf | Scheherazade New (SIL) | SIL OFL 1.1 | Arabic Scripture (mystery meditations) |
 | Cardo-Regular.ttf | Cardo (David J. Perry) | SIL OFL 1.1 | Latin/English Scripture (mystery meditations) |
+| NotoSansSyriac-Variable.ttf | Noto Sans Syriac (Google) | SIL OFL 1.1 | Aramaic in Syriac letters (the script toggle only) |
+
+## Why a Syriac face at all
+
+No language in the catalogue writes its own text in Syriac letters: `arc` is Aramaic *in Hebrew
+script*, which is what the Aramaic-rite Hebrew Catholic communities read. The Syriac face exists
+purely for the prayer flow's script toggle, which shows the same Aramaic text in the alphabet the
+Peshitta itself is written in. None of the other five fonts covers the Syriac block — checked
+against their OS/2 Unicode ranges, not assumed — so without this one the toggle would draw a row
+of tofu, which is worse than not offering it.
 
 ## Why not the original "Frank Ruehl CLM"?
 

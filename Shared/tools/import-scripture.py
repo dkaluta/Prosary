@@ -30,6 +30,8 @@ tool's to perform.
 from __future__ import annotations
 
 import json
+import csv
+import io
 import re
 import sys
 import unicodedata
@@ -40,14 +42,8 @@ TOOLS = Path(__file__).resolve().parent
 CONTENT = TOOLS.parent / "content"
 CACHE = TOOLS / ".scripture-cache"
 
-SOURCES = {
-    "nt": ("https://raw.githubusercontent.com/ETCBC/syrnt/master/plain/0.1/{book}.txt",
-           "Peshitta New Testament (ETCBC/syrnt, MIT)"),
-    "ot": ("https://raw.githubusercontent.com/ETCBC/peshitta/master/plain/0.2/{book}.txt",
-           "Peshitta Old Testament (ETCBC/peshitta, MIT)"),
-}
-
-# The Latin abbreviations the bundles actually use -> (testament, Peshitta file stem).
+# Which book each Latin abbreviation in the bundles names. "ot"/"nt" only picks the source file;
+# nothing else depends on the testament.
 BOOKS = {
     "Matt": ("nt", "Matthew"), "Matth": ("nt", "Matthew"),
     "Marc": ("nt", "Mark"),
@@ -58,18 +54,51 @@ BOOKS = {
     "Is": ("ot", "Isaiah"), "Isaias": ("ot", "Isaiah"),
 }
 
-# How each book is named in the citation line the Aramaic text carries, in both alphabets.
-BOOK_NAMES = {
-    "Matthew": ("ܡܬܝ", "מתי"),
-    "Mark": ("ܡܪܩܘܣ", "מרקוס"),
-    "Luke": ("ܠܘܩܐ", "לוקא"),
-    "John": ("ܝܘܚܢܢ", "יוחנן"),
-    "Acts": ("ܦܪܟܣܝܣ", "פרכסיס"),
-    "Revelation": ("ܓܠܝܢܐ", "גלינא"),
-    "Isaiah": ("ܐܫܥܝܐ", "אשעיא"),
+# Each target language: where its text comes from, how a book is named in its citation line, and
+# what the edition is called there. A language may render one text in two alphabets (Aramaic), in
+# which case `second_script` names the transform and the result rides in "transliterations" —
+# which is exactly what the prayer flow's script toggle reads.
+LANGUAGES = {
+    "arc": {
+        "sources": {
+            "nt": ("https://raw.githubusercontent.com/ETCBC/syrnt/master/plain/0.1/{book}.txt",
+                   "plain", "Peshitta New Testament (ETCBC/syrnt, MIT)"),
+            "ot": ("https://raw.githubusercontent.com/ETCBC/peshitta/master/plain/0.2/{book}.txt",
+                   "plain", "Peshitta Old Testament (ETCBC/peshitta, MIT)"),
+        },
+        # The bundle ships Hebrew letters, per the catalogue's promise that "arc" is Aramaic in
+        # Hebrew script; the Syriac original goes to transliterations.
+        "primary_script": "hebrew",
+        "second_script": "syriac",
+        "books": {"Matthew": ("ܡܬܝ", "מתי"), "Mark": ("ܡܪܩܘܣ", "מרקוס"),
+                  "Luke": ("ܠܘܩܐ", "לוקא"), "John": ("ܝܘܚܢܢ", "יוחנן"),
+                  "Acts": ("ܦܪܟܣܝܣ", "פרכסיס"), "Revelation": ("ܓܠܝܢܐ", "גלינא"),
+                  "Isaiah": ("ܐܫܥܝܐ", "אשעיא")},
+        "edition": ("ܦܫܝܛܬܐ", "פשיטתא"),
+    },
+    "el": {
+        # Robinson-Pierpont's Byzantine Majority text: accented polytonic Unicode and released
+        # into the public domain outright. The Patriarchal 1904 edition is the same tradition and
+        # was the first choice, but the only machine-readable form of it is accentless Beta Code,
+        # and polytonic accents cannot be restored mechanically from that.
+        "sources": {
+            "nt": ("https://raw.githubusercontent.com/byztxt/byzantine-majority-text/master/"
+                   "csv-unicode/ccat/no-variants/{book}.csv",
+                   "csv", "Byzantine Majority Text (Robinson-Pierpont, public domain)"),
+        },
+        "primary_script": None,
+        "second_script": None,
+        "books": {"Matthew": ("Ματθαῖος",), "Mark": ("Μᾶρκος",), "Luke": ("Λουκᾶς",),
+                  "John": ("Ἰωάννης",), "Acts": ("Πράξεις",), "Revelation": ("Ἀποκάλυψις",)},
+        "edition": ("Βυζαντινὸν κείμενον",),
+        # Isaiah would need a Septuagint. Every machine-readable accented LXX found so far puts a
+        # ShareAlike or NonCommercial claim on the digitisation even where the edition beneath it
+        # is public domain by age, so the seven Isaiah readings wait for a source rather than
+        # being filled from a licence the app cannot ship under.
+        "file_names": {"Matthew": "MAT", "Mark": "MAR", "Luke": "LUK", "John": "JOH",
+                       "Acts": "ACT", "Revelation": "REV"},
+    },
 }
-
-EDITION = ("ܦܫܝܛܬܐ", "פשיטתא")
 
 # Classical Syriac -> Hebrew square script. Both alphabets are the same 22 letters in the same
 # order, so this is a transliteration in the strict sense: one letter for one letter, nothing
@@ -128,19 +157,32 @@ def to_syriac(hebrew: str) -> str:
     return "".join(HEBREW_TO_SYRIAC.get(ch, ch) for ch in hebrew)
 
 
-def fetch(testament: str, book: str) -> str:
+def fetch(language: str, testament: str, book: str) -> str:
+    spec = LANGUAGES[language]
+    url_template, _layout, _credit = spec["sources"][testament]
+    stem = spec.get("file_names", {}).get(book, book)
     CACHE.mkdir(exist_ok=True)
-    cached = CACHE / f"{testament}-{book}.txt"
+    cached = CACHE / f"{language}-{testament}-{stem}"
     if not cached.exists():
-        url = SOURCES[testament][0].format(book=book)
+        url = url_template.format(book=stem)
         print(f"  fetching {url}", file=sys.stderr)
         with urllib.request.urlopen(url, timeout=60) as response:
             cached.write_bytes(response.read())
     return cached.read_text(encoding="utf-8")
 
 
-def verses(testament: str, book: str) -> dict:
-    """(chapter, verse) -> Syriac text.
+def verses(language: str, testament: str, book: str) -> dict:
+    """(chapter, verse) -> text, in whatever layout this language's source uses."""
+    if LANGUAGES[language]["sources"][testament][1] == "csv":
+        table = {}
+        for row in csv.DictReader(io.StringIO(fetch(language, testament, book))):
+            table[(int(row["chapter"]), int(row["verse"]))] = row["text"].strip()
+        return table
+    return _verses_plain(language, testament, book)
+
+
+def _verses_plain(language: str, testament: str, book: str) -> dict:
+    """The ETCBC plain layout.
 
     The two ETCBC sets are laid out differently and neither is quite predictable from the
     filename. The Old Testament heads a chapter "Chapter 3". The New Testament heads it with the
@@ -151,7 +193,7 @@ def verses(testament: str, book: str) -> dict:
     table: dict = {}
     chapter = None
     current = None
-    lines = fetch(testament, book).splitlines()
+    lines = fetch(language, testament, book).splitlines()
     words = {re.escape(book.replace("_", " ")), "Chapter"}
     for line in lines:
         declared = re.match(r"^\s*(.+?)\s+\((.+?)\)\s*$", line)
@@ -199,8 +241,8 @@ def parse_reference(reference: str) -> list:
     return spans
 
 
-def passage(book: str, testament: str, spans: list, where: str) -> str | None:
-    table = verses(testament, book)
+def passage(language: str, book: str, testament: str, spans: list, where: str) -> str | None:
+    table = verses(language, testament, book)
     out = []
     for chapter, first, last in spans:
         for number in range(first, last + 1):
@@ -212,13 +254,15 @@ def passage(book: str, testament: str, spans: list, where: str) -> str | None:
     return " ".join(out)
 
 
-def citation_line(book: str, reference: str, syriac: bool) -> str:
-    name = BOOK_NAMES[book][0 if syriac else 1]
-    edition = EDITION[0 if syriac else 1]
+def citation_line(language: str, book: str, reference: str, second: bool) -> str:
+    spec = LANGUAGES[language]
+    index = 0 if second else min(1, len(spec["edition"]) - 1)
+    name = spec["books"][book][index if index < len(spec["books"][book]) else 0]
+    edition = spec["edition"][index]
     return f"\n\n— {name} {reference} ({edition})"
 
 
-def build(bundle: Path) -> dict | None:
+def build(language: str, bundle: Path) -> dict | None:
     latin_path = bundle / "content" / "la.json"
     if not latin_path.exists():
         return None
@@ -228,7 +272,8 @@ def build(bundle: Path) -> dict | None:
     mysteries = {k: m for k, m in (latin.get("mysteries") or {}).items()
                  if isinstance(m, dict) and m.get("description")}
 
-    prayers, transliterations, mystery_out, skipped = {}, {}, {}, []
+    prayers, transliterations, mystery_out = {}, {}, {}
+    skipped, unsourced = [], []
     for key, value in list(texts.items()) + [(f"mystery:{k}", m["description"])
                                              for k, m in mysteries.items()]:
         match = CITATION.search(value.strip())
@@ -243,16 +288,26 @@ def build(bundle: Path) -> dict | None:
             err(f"{bundle.name}:{key}: unknown book {abbreviation!r}")
             continue
         testament, book = BOOKS[abbreviation]
+        spec = LANGUAGES[language]
+        if testament not in spec["sources"] or book not in spec["books"]:
+            # No source for that testament in this language — the Septuagint question for Greek.
+            unsourced.append(f"{bundle.name}:{key} ({book})")
+            continue
         spans = parse_reference(reference)
         if not spans:
             err(f"{bundle.name}:{key}: cannot read reference {reference!r}")
             continue
-        syriac = passage(book, testament, spans, f"{bundle.name}:{key}")
-        if syriac is None:
+        source_text = passage(language, book, testament, spans, f"{bundle.name}:{key}")
+        if source_text is None:
             continue
 
-        syriac_body = syriac + citation_line(book, reference, syriac=True)
-        hebrew_body = to_hebrew(syriac) + citation_line(book, reference, syriac=False)
+        if spec["second_script"] == "syriac":
+            second_body = source_text + citation_line(language, book, reference, second=True)
+            primary_body = to_hebrew(source_text) + citation_line(language, book, reference,
+                                                                 second=False)
+        else:
+            second_body = None
+            primary_body = source_text + citation_line(language, book, reference, second=True)
         if key.startswith("mystery:"):
             # Deliberately not written. A mystery override is an all-or-nothing MysteryText on
             # every platform — title, fruit and description are non-optional — so writing a
@@ -264,37 +319,43 @@ def build(bundle: Path) -> dict | None:
             # language. Counted so the gap is reported rather than silent.
             skipped.append(f"{bundle.name}:{key[len('mystery:'):]}")
         else:
-            prayers[key] = hebrew_body
-            transliterations[key] = syriac_body
+            prayers[key] = primary_body
+            if second_body is not None:
+                transliterations[key] = second_body
 
     if skipped:
-        print(f"  {bundle.name}: {len(skipped)} mystery announcement(s) left alone "
+        print(f"  {bundle.name} [{language}]: {len(skipped)} mystery announcement(s) left alone "
               f"(need per-field mystery overrides)", file=sys.stderr)
+    if unsourced:
+        print(f"  {bundle.name} [{language}]: {len(unsourced)} passage(s) have no source in this "
+              f"language: {', '.join(unsourced)}", file=sys.stderr)
     if not prayers:
         return None
     return {"prayers": prayers, "transliterations": transliterations, "mysteries": mystery_out}
 
 
-def render(built: dict, existing: dict) -> dict:
-    """Merge into whatever content/arc.json already holds — a hand-authored prayer must never be
-    clobbered by a scripture import."""
+NOTES = {
+    "arc": ("Scripture imported from the Peshitta by Shared/tools/import-scripture.py — re-run it "
+            "rather than editing these by hand. Prayers are Hebrew square script; the same text in "
+            "Syriac letters is in transliterations, which is what the flow's script toggle shows. "
+            "Unpointed, as the source has it."),
+    "el": ("Scripture imported from the Byzantine Majority Text (Robinson-Pierpont, public domain) "
+           "by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. "
+           "Polytonic, as the source has it. Old Testament readings are absent pending a "
+           "Septuagint whose digitisation the app can ship under."),
+}
+
+
+def render(language: str, built: dict, existing: dict) -> dict:
+    """Merge into whatever content/<lang>.json already holds — a hand-authored prayer must never
+    be clobbered by a scripture import."""
     out = json.loads(json.dumps(existing)) if existing else {}
-    out.setdefault("$comment",
-                   "Scripture imported from the Peshitta by Shared/tools/import-scripture.py — "
-                   "re-run it rather than editing these by hand. Prayers are Hebrew square "
-                   "script; the same text in Syriac letters is in transliterations, which is "
-                   "what the flow's script toggle shows. Unpointed, as the source has it.")
+    out.setdefault("$comment", NOTES[language])
     prayers = out.setdefault("prayers", {})
     prayers.update(built["prayers"])
     if built["transliterations"]:
         out.setdefault("transliterations", {}).update(built["transliterations"])
-    if built["mysteries"]:
-        mysteries = out.setdefault("mysteries", {})
-        for key, (hebrew, _syriac) in built["mysteries"].items():
-            entry = mysteries.setdefault(key, {})
-            entry["description"] = hebrew
-            entry.setdefault("title", "")
-            entry.setdefault("fruit", "")
+    out.setdefault("mysteries", {})
     return out
 
 
@@ -317,23 +378,24 @@ def main() -> int:
                else sorted(p for p in CONTENT.iterdir() if (p / "manifest.json").exists()))
 
     changed = 0
-    for bundle in bundles:
-        built = build(bundle)
-        if built is None:
-            continue
-        target = bundle / "content" / "arc.json"
-        existing = json.loads(target.read_text(encoding="utf-8")) if target.exists() else {}
-        rendered = render(built, existing)
-        serialized = json.dumps(rendered, ensure_ascii=False, indent=2) + "\n"
-        if target.exists() and target.read_text(encoding="utf-8") == serialized:
-            continue
-        changed += 1
-        if check:
-            err(f"{bundle.name}: content/arc.json is out of date (run import-scripture.py)")
-            continue
-        target.write_text(serialized, encoding="utf-8")
-        print(f"{bundle.name}: {len(built['prayers'])} prayers, "
-              f"{len(built['mysteries'])} mysteries")
+    for language in LANGUAGES:
+        for bundle in bundles:
+            built = build(language, bundle)
+            if built is None:
+                continue
+            target = bundle / "content" / f"{language}.json"
+            existing = json.loads(target.read_text(encoding="utf-8")) if target.exists() else {}
+            rendered = render(language, built, existing)
+            serialized = json.dumps(rendered, ensure_ascii=False, indent=2) + "\n"
+            if target.exists() and target.read_text(encoding="utf-8") == serialized:
+                continue
+            changed += 1
+            if check:
+                err(f"{bundle.name}: content/{language}.json is out of date "
+                    f"(run import-scripture.py)")
+                continue
+            target.write_text(serialized, encoding="utf-8")
+            print(f"{bundle.name} [{language}]: {len(built['prayers'])} passages")
 
     for message in errors:
         print(f"import-scripture: {message}", file=sys.stderr)
