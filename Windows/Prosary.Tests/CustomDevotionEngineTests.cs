@@ -66,6 +66,32 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.DoesNotContain("Holy Mighty One", steps[4].Body);
     }
 
+    /// <summary>The Mission of St. Gamaliel's Trisagion (sent by Erez 2026-08-06) addresses God
+    /// in the second person where the app's own Hebrew declares of him, and heads the prayer
+    /// with the Aramaic קדישת. Pinned so their wording — including the ✠▼▲ marks exactly as sent
+    /// — cannot drift, and so it stays visibly distinct from the plain-Hebrew form beside
+    /// it.</summary>
+    [Fact]
+    public void TrisagionInTheMissionsRite()
+    {
+        var mission = BuildSteps("trisagion", "he-x-gamliel");
+        var hebrew = BuildSteps("trisagion", "he");
+
+        Assert.Equal(
+            ["קדישת", "קדישת", "קדישת", "השבח לאב", "קדישת", "קדישת"],
+            mission.Select(s => s.Title));
+        Assert.StartsWith("אַתָּה ✠▼▲ קָדוֹשׁ – אֱלוֹהִים", mission[0].Body);
+        Assert.Contains("תְּרַחֵם עָלֵינוּ", mission[0].Body);
+        Assert.DoesNotContain("חַיִל", mission[4].Body);
+
+        Assert.NotEqual(hebrew[0].Body, mission[0].Body);
+        Assert.Equal("קדוש האלוהים", hebrew[0].Title);
+
+        // Not sent by the Mission: the Glory Be itself still reads their wording from the shared
+        // table, and everything else falls through to plain Hebrew.
+        Assert.Contains("הַשֶּׁבַח לָאָב", mission[3].Body);
+    }
+
     [Fact]
     public void TrisagionImagesMatchTheDevotionJsonImageKeys()
     {

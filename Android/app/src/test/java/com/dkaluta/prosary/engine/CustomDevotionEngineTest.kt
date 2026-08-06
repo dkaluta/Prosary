@@ -78,6 +78,31 @@ class CustomDevotionEngineTest {
         assertFalse(steps[4].body.contains("Holy Mighty One"))
     }
 
+    /** The Mission of St. Gamaliel's Trisagion (sent by Erez 2026-08-06) addresses God in the
+     * second person where the app's own Hebrew declares of him, and heads the prayer with the
+     * Aramaic קדישת. Pinned so their wording — including the ✠▼▲ marks exactly as sent — cannot
+     * drift, and so it stays visibly distinct from the plain-Hebrew form beside it. */
+    @Test
+    fun trisagionInTheMissionsRite() {
+        val mission = steps("trisagion", language = "he-x-gamliel")
+        val hebrew = steps("trisagion", language = "he")
+
+        assertEquals(
+            listOf("קדישת", "קדישת", "קדישת", "השבח לאב", "קדישת", "קדישת"),
+            mission.map { it.title },
+        )
+        assertTrue(mission[0].body.startsWith("אַתָּה ✠▼▲ קָדוֹשׁ – אֱלוֹהִים"))
+        assertTrue(mission[0].body.contains("תְּרַחֵם עָלֵינוּ"))
+        assertFalse("the short form drops the second acclamation", mission[4].body.contains("חַיִל"))
+
+        assertNotEquals(hebrew[0].body, mission[0].body)
+        assertEquals("קדוש האלוהים", hebrew[0].title)
+
+        // Not sent by the Mission: the Glory Be itself still reads their wording from the shared
+        // table, and everything else falls through to plain Hebrew.
+        assertTrue(mission[3].body.contains("הַשֶּׁבַח לָאָב"))
+    }
+
     @Test
     fun trisagionImagesMatchTheDevotionJsonImageKeys() {
         val steps = steps("trisagion")

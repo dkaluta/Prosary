@@ -47,6 +47,28 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertFalse(steps[4].body.contains("Holy Mighty One"))
   }
 
+  /// The Mission of St. Gamaliel's Trisagion (sent by Erez 2026-08-06) addresses God in the
+  /// second person where the app's own Hebrew declares of him, and heads the prayer with the
+  /// Aramaic קדישת. Pinned so their wording — including the ✠▼▲ marks exactly as sent — cannot
+  /// drift, and so it stays visibly distinct from the plain-Hebrew form beside it.
+  func testTrisagionInTheMissionsRite() {
+    let mission = steps("trisagion", language: "he-x-gamliel")
+    let hebrew = steps("trisagion", language: "he")
+
+    XCTAssertEqual(mission.map(\.title), Array(repeating: "קדישת", count: 3) + ["השבח לאב"]
+      + Array(repeating: "קדישת", count: 2))
+    XCTAssertTrue(mission[0].body.hasPrefix("אַתָּה ✠▼▲ קָדוֹשׁ – אֱלוֹהִים"))
+    XCTAssertTrue(mission[0].body.contains("תְּרַחֵם עָלֵינוּ"))
+    XCTAssertFalse(mission[4].body.contains("חַיִל"), "the short form drops the second acclamation")
+
+    XCTAssertNotEqual(mission[0].body, hebrew[0].body)
+    XCTAssertEqual(hebrew[0].title, "קדוש האלוהים")
+
+    // Not sent by the Mission: the Glory Be itself still reads their wording from the shared
+    // table, and everything else falls through to plain Hebrew.
+    XCTAssertTrue(mission[3].body.contains("הַשֶּׁבַח לָאָב"))
+  }
+
 
   /// A repeated step's counter is part of the prayer, not the interface: praying in Hebrew, the Divine Mercy
   /// decade reads "(1 מתוך 10)". Splicing the English "of" into right-to-left text left bidi
