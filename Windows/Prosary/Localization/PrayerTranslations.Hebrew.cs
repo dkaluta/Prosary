@@ -7,7 +7,7 @@ public static partial class PrayerTranslations
     private static readonly Dictionary<string, string> Hebrew = new()
     {
         [PrayerKey.SignumCrucis] =
-            "בְּשֵׁם הָאָב וְהַבֵּן וְרוּחַ הַקֹּדֶשׁ, אֱלֹהִים אֶחָד. אָמֵן.",
+            "בְּשֵׁם הָאָב ✠ וְהַבֵּן וְרוּחַ הַקֹּדֶשׁ, אֱלֹהִים אֶחָד. אָמֵן.",
 
         [PrayerKey.SymbolumApostolorum] =
             "אֲנִי מַאֲמִין בֵּאלֹהִים, הָאָב הַכֹּל־יָכוֹל, בּוֹרֵא שָׁמַיִם וָאָרֶץ. וּבְיֵשׁוּעַ " +

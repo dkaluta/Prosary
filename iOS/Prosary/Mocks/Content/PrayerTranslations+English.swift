@@ -8,7 +8,7 @@ import Foundation
 extension PrayerTranslations {
   static let english: [PrayerKey: String] = [
     .signumCrucis:
-      "In the name of the Father, and of the Son, and of the Holy Spirit. Amen.",
+      "In the name of the Father ✠, and of the Son, and of the Holy Spirit. Amen.",
 
     .symbolumApostolorum:
       "I believe in God, the Father almighty, Creator of heaven and earth, and in Jesus Christ, " +

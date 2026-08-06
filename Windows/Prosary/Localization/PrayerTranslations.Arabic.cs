@@ -7,7 +7,7 @@ public static partial class PrayerTranslations
     private static readonly Dictionary<string, string> Arabic = new()
     {
         [PrayerKey.SignumCrucis] =
-            "باسم الآب والابن والروح القدس، الإله الواحد. آمين.",
+            "باسم الآب ✠ والابن والروح القدس، الإله الواحد. آمين.",
 
         [PrayerKey.SymbolumApostolorum] =
             "أؤمنُ بالله الآبِ القديرِ خالقِ السماءِ والأرضِ. وبيسوعَ المسيحِ ابنِه الوحيدِ ربِّنا، الذي " +

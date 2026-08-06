@@ -6,7 +6,7 @@ package com.dkaluta.prosary.content
  */
 val prayerTranslationsHebrew: Map<PrayerKey, String> = mapOf(
     PrayerKey.SignumCrucis to
-        "בְּשֵׁם הָאָב וְהַבֵּן וְרוּחַ הַקֹּדֶשׁ, אֱלֹהִים אֶחָד. אָמֵן.",
+        "בְּשֵׁם הָאָב ✠ וְהַבֵּן וְרוּחַ הַקֹּדֶשׁ, אֱלֹהִים אֶחָד. אָמֵן.",
 
     PrayerKey.SymbolumApostolorum to
         "אֲנִי מַאֲמִין בֵּאלֹהִים, הָאָב הַכֹּל־יָכוֹל, בּוֹרֵא שָׁמַיִם וָאָרֶץ. וּבְיֵשׁוּעַ " +

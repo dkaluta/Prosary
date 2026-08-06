@@ -11,7 +11,7 @@ import Foundation
 extension PrayerTranslations {
   static let hebrew: [PrayerKey: String] = [
     .signumCrucis:
-      "בְּשֵׁם הָאָב וְהַבֵּן וְרוּחַ הַקֹּדֶשׁ, אֱלֹהִים אֶחָד. אָמֵן.",
+      "בְּשֵׁם הָאָב ✠ וְהַבֵּן וְרוּחַ הַקֹּדֶשׁ, אֱלֹהִים אֶחָד. אָמֵן.",
 
     .symbolumApostolorum:
       "אֲנִי מַאֲמִין בֵּאלֹהִים, הָאָב הַכֹּל־יָכוֹל, בּוֹרֵא שָׁמַיִם וָאָרֶץ. וּבְיֵשׁוּעַ " +

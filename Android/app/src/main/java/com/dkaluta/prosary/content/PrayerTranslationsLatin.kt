@@ -2,7 +2,7 @@ package com.dkaluta.prosary.content
 
 val prayerTranslationsLatin: Map<PrayerKey, String> = mapOf(
     PrayerKey.SignumCrucis to
-        "In nomine Patris, et Filii, et Spiritus Sancti. Amen.",
+        "In nomine Patris ✠, et Filii, et Spiritus Sancti. Amen.",
 
     PrayerKey.SymbolumApostolorum to
         "Credo in Deum Patrem omnipotentem, Creatorem caeli et terrae. Et in Iesum Christum, Filium " +

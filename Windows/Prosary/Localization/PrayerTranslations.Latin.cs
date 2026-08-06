@@ -5,7 +5,7 @@ public static partial class PrayerTranslations
     private static readonly Dictionary<string, string> Latin = new()
     {
         [PrayerKey.SignumCrucis] =
-            "In nomine Patris, et Filii, et Spiritus Sancti. Amen.",
+            "In nomine Patris ✠, et Filii, et Spiritus Sancti. Amen.",
 
         [PrayerKey.SymbolumApostolorum] =
             "Credo in Deum Patrem omnipotentem, Creatorem caeli et terrae. Et in Iesum Christum, Filium " +

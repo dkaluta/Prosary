@@ -66,6 +66,32 @@ final class PrayerTranslationsCompletenessTests: XCTestCase {
     }
   }
 
+  /// The cross mark shows where the sign of the cross is made. It has to be in every language's
+  /// Sign of the Cross — a reader who prays in Tagalog needs it as much as one who prays in
+  /// Hebrew — and it belongs immediately after the word for "Father", where the gesture begins,
+  /// which is where the Mission of St. Gamaliel's own texts put it. Dropping it is the kind of
+  /// thing that happens silently when someone re-types a prayer.
+  func testEverySignOfTheCrossCarriesTheCrossMark() {
+    for (language, table) in PrayerTranslations.byLanguage {
+      guard let text = table[.signumCrucis] else { continue }
+      XCTAssertTrue(text.contains("✠"), "\(language)'s Sign of the Cross has no ✠")
+      // Never at the very start or the very end: it marks a point inside the formula.
+      let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+      XCTAssertFalse(trimmed.hasPrefix("✠"), "\(language): the ✠ should sit inside the formula")
+      XCTAssertFalse(trimmed.hasSuffix("✠"), "\(language): the ✠ should sit inside the formula")
+    }
+  }
+
+  /// ...and nowhere else outside the Mission's own rite. Signing at the Glory Be is their use,
+  /// not the Latin rite's, and quietly spreading it would be inventing practice.
+  func testTheCrossMarkStaysOutOfOtherRitesPrayers() {
+    for (language, table) in PrayerTranslations.byLanguage where language != "he-x-gamliel" {
+      for (key, text) in table where key != .signumCrucis {
+        XCTAssertFalse(text.contains("✠"), "\(language)'s \(key) should not carry a ✠")
+      }
+    }
+  }
+
   func testEveryRosaryMysteryImageKeyHasAllSixLanguages() {
     for imageKey in allMysteryImageKeys {
       for language in ["la", "en"] + fullyTranslatedLanguages {

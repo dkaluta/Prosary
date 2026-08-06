@@ -11,9 +11,10 @@
 //  falls back to Latin per key. Adding an invented translation of a prayer a community actually
 //  recites is worse than the honest Latin fallback. See Shared/ARCHITECTURE.md.
 //
-//  Scripture in Greek follows the Septuagint (Rahlfs) for the Old Testament and the Patriarchal
-//  Text of 1904 for the New — one tradition end to end, both public domain, and what is read
-//  aloud in Greek churches. Bundle content follows the same sources.
+//  Scripture in Greek follows Brenton's Septuagint for the Old Testament and Robinson-Pierpont's
+//  Byzantine Majority text for the New, both public domain. The Patriarchal 1904 edition was the
+//  first choice and is the same tradition, but the only machine-readable form of it is accentless
+//  Beta Code — see Shared/tools/import-scripture.py.
 //
 
 import Foundation
@@ -21,7 +22,7 @@ import Foundation
 extension PrayerTranslations {
   static let greek: [PrayerKey: String] = [
     .signumCrucis:
-      "Εἰς τὸ ὄνομα τοῦ Πατρὸς καὶ τοῦ Υἱοῦ καὶ τοῦ Ἁγίου Πνεύματος. Ἀμήν.",
+      "Εἰς τὸ ὄνομα τοῦ Πατρὸς ✠ καὶ τοῦ Υἱοῦ καὶ τοῦ Ἁγίου Πνεύματος. Ἀμήν.",
 
     // Greek use says the Nicene-Constantinopolitan Creed wherever the Latin tradition says the
     // Apostles' — including the Rosary's opening — so it takes that key outright here, exactly as

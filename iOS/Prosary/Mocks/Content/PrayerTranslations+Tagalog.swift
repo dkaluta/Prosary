@@ -8,7 +8,7 @@ import Foundation
 extension PrayerTranslations {
   static let tagalog: [PrayerKey: String] = [
     .signumCrucis:
-      "Sa ngalan ng Ama, at ng Anak, at ng Espiritu Santo. Amen.",
+      "Sa ngalan ng Ama ✠, at ng Anak, at ng Espiritu Santo. Amen.",
 
     .symbolumApostolorum:
       "Naniniwala ako sa Dios Ama, Makapangyarihan sa lahat, na may gawa ng langit at lupa. " +

@@ -9,6 +9,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertTrue
 import org.junit.BeforeClass
 import org.junit.Test
 
@@ -70,6 +71,36 @@ class PrayerTranslationsCompletenessTest {
                 val text = PrayerTranslations.byLanguage[language]?.get(key)
                 assertNotNull("$key missing a $language translation", text)
                 assertFalse("$key has an empty $language translation", text.isNullOrEmpty())
+            }
+        }
+    }
+
+    /** The cross mark shows where the sign of the cross is made. It has to be in every
+     * language's Sign of the Cross — a reader who prays in Tagalog needs it as much as one who
+     * prays in Hebrew — and it belongs immediately after the word for "Father", where the
+     * gesture begins, which is where the Mission of St. Gamaliel's own texts put it. Dropping it
+     * is the kind of thing that happens silently when someone re-types a prayer. */
+    @Test
+    fun everySignOfTheCrossCarriesTheCrossMark() {
+        for ((language, table) in PrayerTranslations.byLanguage) {
+            val text = table[PrayerKey.SignumCrucis] ?: continue
+            assertTrue("$language's Sign of the Cross has no cross mark", text.contains("\u2720"))
+            val trimmed = text.trim()
+            assertFalse("$language: the mark should sit inside the formula",
+                trimmed.startsWith("\u2720") || trimmed.endsWith("\u2720"))
+        }
+    }
+
+    /** ...and nowhere else outside the Mission's own rite. Signing at the Glory Be is their use,
+     * not the Latin rite's, and quietly spreading it would be inventing practice. */
+    @Test
+    fun theCrossMarkStaysOutOfOtherRitesPrayers() {
+        for ((language, table) in PrayerTranslations.byLanguage) {
+            if (language == "he-x-gamliel") continue
+            for ((key, text) in table) {
+                if (key == PrayerKey.SignumCrucis) continue
+                assertFalse("$language's $key should not carry a cross mark",
+                    text.contains("\u2720"))
             }
         }
     }

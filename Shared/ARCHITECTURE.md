@@ -59,6 +59,16 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   Sign of the Cross, Our Father, Hail Mary, Glory Be, the Angelus's versicles, etc.).
 - **`PrayerTranslations`** — `Get(languageCode, key)`-style lookup, one dictionary per language,
   falling back to Latin then the raw key if a translation is missing.
+- **The cross mark `✠`** marks the point in a prayer's text where the sign of the cross is made —
+  a reading aid for a gesture, not part of the wording. The Mission of St. Gamaliel's texts
+  brought the convention in and use it most: in their Sign of the Cross, their Nicene Creed
+  ("with the Father ✠ and the Son is adored") and their Glory Be, always straight after the word
+  for *Father*, where the gesture begins. `signumCrucis` now carries it in **every** language, on
+  the same principle and in the same position. It deliberately stops there. Signing at the Glory
+  Be or mid-Creed is the Mission's own use, and stamping ✠ onto the Latin rite's Glory Be would
+  be inventing a practice rather than recording one — the same reason their wording is overlaid
+  key by key instead of corrected. Each platform's completeness tests pin the mark's presence and
+  position so it cannot be dropped by a well-meaning re-typing.
 - **`Mystery`/`MysteryCatalog`** — the fixed catalog of all 20 mysteries, grouped into
   `MysteryGroup` (Joyful/Sorrowful/Glorious/Luminous) and ordered within each group. Carries no
   display text itself — title/fruit/description are looked up by `imageKey` via

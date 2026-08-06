@@ -11,7 +11,7 @@ import Foundation
 extension PrayerTranslations {
   static let arabic: [PrayerKey: String] = [
     .signumCrucis:
-      "باسم الآب والابن والروح القدس، الإله الواحد. آمين.",
+      "باسم الآب ✠ والابن والروح القدس، الإله الواحد. آمين.",
 
     .symbolumApostolorum:
       "أؤمنُ بالله الآبِ القديرِ خالقِ السماءِ والأرضِ. وبيسوعَ المسيحِ ابنِه الوحيدِ ربِّنا، الذي " +
