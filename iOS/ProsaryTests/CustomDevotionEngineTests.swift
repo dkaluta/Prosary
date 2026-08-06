@@ -47,6 +47,22 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertFalse(steps[4].body.contains("Holy Mighty One"))
   }
 
+  /// The Vicariate's Hebrew prayerbook leads each of the three acclamations with a cross, and
+  /// gives the short form none. The asymmetry is the point: it is exactly what an editor would
+  /// "tidy up" later, so both halves are pinned. Hebrew only — the other languages keep the
+  /// plain text until someone has seen a prayerbook in those.
+  func testTrisagionCrossesFollowTheVicariatesPrayerbook() {
+    let hebrew = steps("trisagion", language: "he")
+    XCTAssertEqual(hebrew[0].body.filter { $0 == "✠" }.count, 3, "one cross per acclamation")
+    XCTAssertTrue(hebrew[0].body.hasPrefix("✠ קָדוֹשׁ הָאֱלֹהִים"))
+    XCTAssertFalse(hebrew[4].body.contains("✠"), "the short form takes no cross")
+
+    for language in ["la", "en", "ar", "ru", "tl"] {
+      XCTAssertFalse(steps("trisagion", language: language)[0].body.contains("✠"),
+                     "\(language) has no prayerbook behind it yet")
+    }
+  }
+
   /// The Mission of St. Gamaliel's Trisagion (sent by Erez 2026-08-06) addresses God in the
   /// second person where the app's own Hebrew declares of him, and heads the prayer with the
   /// Aramaic קדישת. Pinned so their wording — including the ✠▼▲ marks exactly as sent — cannot

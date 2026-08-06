@@ -499,6 +499,24 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.True(PrayerEngine.EvaluateCondition("invitatory", values));
     }
 
+    /// <summary>The Vicariate's Hebrew prayerbook leads each of the three acclamations with a
+    /// cross, and gives the short form none. The asymmetry is the point: it is exactly what an
+    /// editor would "tidy up" later, so both halves are pinned. Hebrew only — the other languages
+    /// keep the plain text until someone has seen a prayerbook in those.</summary>
+    [Fact]
+    public void TrisagionCrossesFollowTheVicariatesPrayerbook()
+    {
+        var hebrew = BuildSteps("trisagion", "he");
+        Assert.Equal(3, hebrew[0].Body.Count(c => c == '\u2720'));
+        Assert.StartsWith("\u2720 \u05E7\u05B8\u05D3\u05D5\u05B9\u05E9\u05C1", hebrew[0].Body);
+        Assert.DoesNotContain("\u2720", hebrew[4].Body);
+
+        foreach (var language in new[] { "la", "en", "ar", "ru", "tl" })
+        {
+            Assert.DoesNotContain("\u2720", BuildSteps("trisagion", language)[0].Body);
+        }
+    }
+
     /// <summary>The Mission of St. Gamaliel's wording overlays plain Hebrew key by key — their
     /// Creed is the Nicene one, and anything they have not sent still reads in the app's
     /// Hebrew.</summary>

@@ -509,6 +509,25 @@ class CustomDevotionEngineTest {
         assertTrue(PrayerEngine.evaluateCondition("invitatory", values))
     }
 
+    /** The Vicariate's Hebrew prayerbook leads each of the three acclamations with a cross, and
+     * gives the short form none. The asymmetry is the point: it is exactly what an editor would
+     * "tidy up" later, so both halves are pinned. Hebrew only — the other languages keep the
+     * plain text until someone has seen a prayerbook in those. */
+    @Test
+    fun trisagionCrossesFollowTheVicariatesPrayerbook() {
+        val hebrew = steps("trisagion", language = "he")
+        assertEquals(3, hebrew[0].body.count { it == '\u2720' })
+        assertTrue(hebrew[0].body.startsWith("\u2720 \u05E7\u05B8\u05D3\u05D5\u05B9\u05E9\u05C1"))
+        assertFalse("the short form takes no cross", hebrew[4].body.contains("\u2720"))
+
+        for (language in listOf("la", "en", "ar", "ru", "tl")) {
+            assertFalse(
+                "$language has no prayerbook behind it yet",
+                steps("trisagion", language = language)[0].body.contains("\u2720"),
+            )
+        }
+    }
+
     /** The Mission of St. Gamaliel's wording overlays plain Hebrew key by key — their Creed is
      * the Nicene one, and anything they have not sent still reads in the app's Hebrew. */
     @Test
