@@ -42,6 +42,21 @@ public static partial class MysteryTranslations
             return text;
         }
 
+        // Community variants ("he-x-gamliel") overlay their base language, exactly as
+        // PrayerTranslations.Get does — without this step a rite that ships no mystery texts of
+        // its own announced the mysteries in *Latin* while the rest of the session prayed Hebrew.
+        if (languageCode is not null && Prosary.Models.LanguageCatalog.BaseLanguage(languageCode) is { } baseCode)
+        {
+            var basePackOverride = PrayerPackStore.MysteryOverride(baseCode, imageKey);
+            if (basePackOverride is not null) return basePackOverride;
+
+            if (ByLanguage.TryGetValue(baseCode, out var baseTable) &&
+                baseTable.TryGetValue(imageKey, out var baseText))
+            {
+                return baseText;
+            }
+        }
+
         // Pack-provided Latin before the hardcoded Latin table — some mystery texts (the Seven
         // Sorrows, the Franciscan Crown's Adoration of the Magi) live only in their bundles.
         return PrayerPackStore.MysteryOverride("la", imageKey)

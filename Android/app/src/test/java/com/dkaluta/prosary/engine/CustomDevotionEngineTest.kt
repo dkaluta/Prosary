@@ -14,6 +14,7 @@ import java.io.File
 import java.util.Date
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
@@ -506,6 +507,21 @@ class CustomDevotionEngineTest {
         // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
         fun fatima(list: List<RosaryStep>) = list.firstOrNull { it.title.contains("הו ישוע") }?.body
         assertEquals(fatima(hebrew), fatima(variant))
+
+        // The mysteries are announced in Hebrew too. The Mission ships no mystery texts of its
+        // own, and the announcement is the one step whose body is quoted Scripture — before the
+        // base language step in MysteryTranslations.get it fell past plain Hebrew all the way to
+        // Latin, so the rite prayed its Rosary in Hebrew but heard every mystery announced in
+        // Latin.
+        fun announcement(list: List<RosaryStep>) = list.firstOrNull { it.mystery != null }
+        assertNotNull(announcement(variant))
+        assertEquals(announcement(hebrew)?.title, announcement(variant)?.title)
+        assertEquals(announcement(hebrew)?.body, announcement(variant)?.body)
+        assertNotEquals(
+            "the rite must not fall through to Latin while its prayers read Hebrew",
+            announcement(steps("rosary", language = "la"))?.body,
+            announcement(variant)?.body,
+        )
     }
 
     /** A rite lives under its language, not beside it: the language list stays the eight

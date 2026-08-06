@@ -499,6 +499,18 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         static string? Fatima(IReadOnlyList<RosaryStep> steps) =>
             steps.FirstOrDefault(s => s.Title.Contains("הו ישוע"))?.Body;
         Assert.Equal(Fatima(hebrew), Fatima(variant));
+
+        // The mysteries are announced in Hebrew too. The Mission ships no mystery texts of its
+        // own, and the announcement is the one step whose body is quoted Scripture — before the
+        // base language step in MysteryTranslations.Get it fell past plain Hebrew all the way to
+        // Latin, so the rite prayed its Rosary in Hebrew but heard every mystery announced in
+        // Latin.
+        static RosaryStep? Announcement(IReadOnlyList<RosaryStep> steps) =>
+            steps.FirstOrDefault(s => s.Mystery is not null);
+        Assert.NotNull(Announcement(variant));
+        Assert.Equal(Announcement(hebrew)?.Title, Announcement(variant)?.Title);
+        Assert.Equal(Announcement(hebrew)?.Body, Announcement(variant)?.Body);
+        Assert.NotEqual(Announcement(BuildSteps("rosary", "la"))?.Body, Announcement(variant)?.Body);
     }
 
     /// <summary>A rite lives under its language, not beside it: the language list stays the

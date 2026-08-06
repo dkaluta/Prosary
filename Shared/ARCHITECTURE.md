@@ -586,7 +586,15 @@ of its own — its entire step sequence and per-step text are data-driven from i
   `PrayerTranslations.get`'s Latin fallback); (3) the ordinary `PrayerTranslations` chain for
   shared keys like `gloriaPatri`; (4) the raw key string as last resort.
   `MysteryTranslations.get` has the matching bundle-Latin step in its own chain, since the
-  Sorrows/Magi texts live only in bundles. On Windows, `PrayerKey` is a set of string constants
+  Sorrows/Magi texts live only in bundles. **Every one of these chains tries the code's base
+  language before Latin** — `he-x-gamliel` reads plain `he` for anything the rite has not sent,
+  in the pack overrides and the hardcoded tables alike. `MysteryTranslations.get` was missing
+  that step until 2026-08-06: a rite that ships no mystery texts of its own announced every
+  mystery in *Latin* — title, Vulgate body and the fruit spliced into a Hebrew label — while the
+  rest of the session prayed Hebrew. The mystery announcement is the one step whose body is
+  quoted Scripture, so this was the most visible place it could have gone wrong; each platform's
+  `CustomDevotionEngineTests` now pins the announcement against plain Hebrew *and* against Latin.
+  On Windows, `PrayerKey` is a set of string constants
   rather than a validating enum and every content key also merges into one global PascalCased
   override table, but `ResolveBodyText` follows the same per-bundle-raw-first chain.
 - **Validation**: `Shared/tools/validate-devotion.py` (run by both packers) checks the schema per

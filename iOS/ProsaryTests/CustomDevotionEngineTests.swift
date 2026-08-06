@@ -453,6 +453,18 @@ final class CustomDevotionEngineTests: XCTestCase {
     // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
     let fatima = { (list: [RosaryStep]) in list.first { $0.title.contains("הו ישוע") }?.body }
     XCTAssertEqual(fatima(variant), fatima(hebrew))
+
+    // The mysteries are announced in Hebrew too. The Mission ships no mystery texts of its own,
+    // and the announcement is the one step whose body is quoted Scripture — before the base
+    // language step in MysteryTranslations.get it fell past plain Hebrew all the way to Latin,
+    // so the rite prayed its Rosary in Hebrew but heard every mystery announced in Latin.
+    let announcement = { (list: [RosaryStep]) in list.first { $0.mystery != nil } }
+    XCTAssertNotNil(announcement(variant))
+    XCTAssertEqual(announcement(variant)?.title, announcement(hebrew)?.title)
+    XCTAssertEqual(announcement(variant)?.body, announcement(hebrew)?.body)
+    XCTAssertNotEqual(
+      announcement(variant)?.body, announcement(steps("rosary", language: "la"))?.body,
+      "the rite must not fall through to Latin while its prayers read Hebrew")
   }
 
   /// A rite lives under its language, not beside it: the language list stays the eight tongues,
