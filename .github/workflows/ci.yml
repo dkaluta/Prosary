@@ -24,6 +24,8 @@ jobs:
       - uses: actions/checkout@v7
       - name: Validate
         run: python3 Shared/tools/test-validate-devotion.py
+      - name: Prayer line breaks are applied on all three platforms
+        run: python3 Shared/tools/reflow-prayers.py --check
 
   android:
     name: Android (testDebugUnitTest)
