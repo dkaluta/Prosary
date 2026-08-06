@@ -29,13 +29,14 @@ tool's to perform.
 
 from __future__ import annotations
 
-import json
 import csv
 import io
+import json
 import re
 import sys
 import unicodedata
 import urllib.request
+import zipfile
 from pathlib import Path
 
 TOOLS = Path(__file__).resolve().parent
@@ -85,18 +86,27 @@ LANGUAGES = {
             "nt": ("https://raw.githubusercontent.com/byztxt/byzantine-majority-text/master/"
                    "csv-unicode/ccat/no-variants/{book}.csv",
                    "csv", "Byzantine Majority Text (Robinson-Pierpont, public domain)"),
+            # Brenton's Septuagint, accented and marked public domain by eBible.org. Every other
+            # machine-readable accented LXX traces back to CCAT (BY-NC-SA) or Perseus (BY-SA),
+            # whose claims sit on the digitisation rather than the long-public-domain edition
+            # underneath — but a claim the app would have to honour either way.
+            "ot": ("https://eBible.org/Scriptures/grcbrent_vpl.zip",
+                   "vplzip", "Brenton's Septuagint (eBible.org grcbrent, public domain)"),
         },
         "primary_script": None,
         "second_script": None,
         "books": {"Matthew": ("Ματθαῖος",), "Mark": ("Μᾶρκος",), "Luke": ("Λουκᾶς",),
-                  "John": ("Ἰωάννης",), "Acts": ("Πράξεις",), "Revelation": ("Ἀποκάλυψις",)},
+                  "John": ("Ἰωάννης",), "Acts": ("Πράξεις",), "Revelation": ("Ἀποκάλυψις",),
+                  "Isaiah": ("Ἠσαΐας",)},
         "edition": ("Βυζαντινὸν κείμενον",),
+        # A book's edition line follows the testament it comes from, not the language.
+        "edition_by_testament": {"ot": ("Ἑβδομήκοντα",)},
         # Isaiah would need a Septuagint. Every machine-readable accented LXX found so far puts a
         # ShareAlike or NonCommercial claim on the digitisation even where the edition beneath it
         # is public domain by age, so the seven Isaiah readings wait for a source rather than
         # being filled from a licence the app cannot ship under.
         "file_names": {"Matthew": "MAT", "Mark": "MAR", "Luke": "LUK", "John": "JOH",
-                       "Acts": "ACT", "Revelation": "REV"},
+                       "Acts": "ACT", "Revelation": "REV", "Isaiah": "ISA"},
     },
 }
 
@@ -138,6 +148,18 @@ HEBREW_TO_SYRIAC = {v: k for k, v in SYRIAC_TO_HEBREW.items()}
 # nothing there; the Syriac form, which is what a Syriac reader reads, keeps every one. This is
 # the one respect in which the two forms differ, and why the round trip is asserted on letters.
 
+# The bundles cite the Vulgate's chapter-and-verse. The Peshitta and the Septuagint both follow
+# the Hebrew numbering, which parts company with the Vulgate's in a handful of well-known places
+# — and where it does, importing the cited number verbatim silently fetches the *wrong verse*.
+# Isaiah 9 is the one this app actually touches: Hebrew 8:23 is the Vulgate's 9:1, so every
+# Vulgate verse from 9:2 on sits one earlier in both sources. O Oriens cites Is. 9:2, "the people
+# that walked in darkness", and without this it imported 9:3, "thou hast multiplied the nation".
+# Verified against both sources and pinned by a self-check below; extend it per book/chapter as
+# more of the Old Testament arrives, and never by guessing.
+VERSIFICATION = {
+    ("Isaiah", 9): (2, -1),  # (from this Vulgate verse onward, shift by this much)
+}
+
 CITATION = re.compile(r"—\s*([^\n(]+?)\s*\(([^)]+)\)\s*$")
 REFERENCE = re.compile(r"^([1-3]?\s*[A-Za-z]+)\.?\s+(.+)$")
 
@@ -157,23 +179,40 @@ def to_syriac(hebrew: str) -> str:
     return "".join(HEBREW_TO_SYRIAC.get(ch, ch) for ch in hebrew)
 
 
-def fetch(language: str, testament: str, book: str) -> str:
+def fetch(language: str, testament: str, book: str, binary: bool = False):
     spec = LANGUAGES[language]
-    url_template, _layout, _credit = spec["sources"][testament]
+    url_template, layout, _credit = spec["sources"][testament]
     stem = spec.get("file_names", {}).get(book, book)
     CACHE.mkdir(exist_ok=True)
-    cached = CACHE / f"{language}-{testament}-{stem}"
+    # A whole-testament archive is fetched once, not once per book.
+    cached = CACHE / (f"{language}-{testament}-archive" if layout == "vplzip"
+                      else f"{language}-{testament}-{stem}")
     if not cached.exists():
         url = url_template.format(book=stem)
         print(f"  fetching {url}", file=sys.stderr)
-        with urllib.request.urlopen(url, timeout=60) as response:
+        # eBible.org refuses urllib's default agent outright (403), so identify properly.
+        request = urllib.request.Request(url, headers={
+            "User-Agent": "Prosary-import-scripture/1.0 (+https://prosary.app)"})
+        with urllib.request.urlopen(request, timeout=120) as response:
             cached.write_bytes(response.read())
-    return cached.read_text(encoding="utf-8")
+    return cached.read_bytes() if binary else cached.read_text(encoding="utf-8")
 
 
 def verses(language: str, testament: str, book: str) -> dict:
     """(chapter, verse) -> text, in whatever layout this language's source uses."""
-    if LANGUAGES[language]["sources"][testament][1] == "csv":
+    layout = LANGUAGES[language]["sources"][testament][1]
+    if layout == "vplzip":
+        stem = LANGUAGES[language].get("file_names", {}).get(book, book)
+        table = {}
+        raw = fetch(language, testament, book, binary=True)
+        with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+            name = next(n for n in archive.namelist() if n.endswith("_vpl.txt"))
+            for line in archive.read(name).decode("utf-8").splitlines():
+                match = re.match(rf"^{re.escape(stem)}\s+(\d+):(\d+)\s+(.*)$", line)
+                if match:
+                    table[(int(match.group(1)), int(match.group(2)))] = match.group(3).strip()
+        return table
+    if layout == "csv":
         table = {}
         for row in csv.DictReader(io.StringIO(fetch(language, testament, book))):
             table[(int(row["chapter"]), int(row["verse"]))] = row["text"].strip()
@@ -241,11 +280,29 @@ def parse_reference(reference: str) -> list:
     return spans
 
 
+def source_verse(book: str, chapter: int, number: int, where: str) -> int | None:
+    """The verse number this citation has in the source's own numbering."""
+    rule = VERSIFICATION.get((book, chapter))
+    if rule is None:
+        return number
+    threshold, shift = rule
+    if number < threshold:
+        # Below the threshold the divergence crosses a chapter boundary, which no offset can
+        # express. Refuse rather than fetch a plausible-looking wrong verse.
+        err(f"{where}: {book} {chapter}:{number} falls in a chapter whose Vulgate and Hebrew "
+            f"numbering diverge across the chapter break — resolve it by hand")
+        return None
+    return number + shift
+
+
 def passage(language: str, book: str, testament: str, spans: list, where: str) -> str | None:
     table = verses(language, testament, book)
     out = []
     for chapter, first, last in spans:
-        for number in range(first, last + 1):
+        for cited in range(first, last + 1):
+            number = source_verse(book, chapter, cited, where)
+            if number is None:
+                return None
             text = table.get((chapter, number))
             if text is None:
                 err(f"{where}: {book} {chapter}:{number} is not in the source")
@@ -254,11 +311,13 @@ def passage(language: str, book: str, testament: str, spans: list, where: str) -
     return " ".join(out)
 
 
-def citation_line(language: str, book: str, reference: str, second: bool) -> str:
+def citation_line(language: str, book: str, testament: str, reference: str, second: bool) -> str:
     spec = LANGUAGES[language]
     index = 0 if second else min(1, len(spec["edition"]) - 1)
-    name = spec["books"][book][index if index < len(spec["books"][book]) else 0]
-    edition = spec["edition"][index]
+    names = spec["books"][book]
+    name = names[index if index < len(names) else 0]
+    editions = spec.get("edition_by_testament", {}).get(testament, spec["edition"])
+    edition = editions[index if index < len(editions) else 0]
     return f"\n\n— {name} {reference} ({edition})"
 
 
@@ -302,12 +361,14 @@ def build(language: str, bundle: Path) -> dict | None:
             continue
 
         if spec["second_script"] == "syriac":
-            second_body = source_text + citation_line(language, book, reference, second=True)
-            primary_body = to_hebrew(source_text) + citation_line(language, book, reference,
-                                                                 second=False)
+            second_body = source_text + citation_line(language, book, testament, reference,
+                                                      second=True)
+            primary_body = to_hebrew(source_text) + citation_line(language, book, testament,
+                                                                  reference, second=False)
         else:
             second_body = None
-            primary_body = source_text + citation_line(language, book, reference, second=True)
+            primary_body = source_text + citation_line(language, book, testament, reference,
+                                                       second=True)
         if key.startswith("mystery:"):
             # Deliberately not written. A mystery override is an all-or-nothing MysteryText on
             # every platform — title, fruit and description are non-optional — so writing a
@@ -373,6 +434,21 @@ def main() -> int:
     for word in ("ܐܒܘܢ ܕܒܫܡܝܐ ܢܬܩܕܫ ܫܡܟ", "ܩܕܝܫܬ ܐܠܗܐ"):
         if to_syriac(to_hebrew(word)) != word:
             err(f"round trip failed for {word!r}")
+
+    # Isaiah 9 is where the Vulgate's numbering and the sources' part company, and a silent
+    # off-by-one there is indistinguishable from a correct import by eye. Pin both sources to the
+    # verse the Vulgate calls 9:2 — "the people that walked in darkness".
+    if not arguments:
+        for language, marker in (("arc", "ܥܡܐ"), ("el", "λαὸς")):
+            try:
+                number = source_verse("Isaiah", 9, 2, "versification self-check")
+                text = verses(language, "ot", "Isaiah").get((9, number), "")
+            except Exception as exc:  # noqa: BLE001 - a source being unreachable is not a failure
+                print(f"  skipped {language} versification check: {exc}", file=sys.stderr)
+                continue
+            if marker not in text:
+                err(f"versification self-check failed for {language}: Isaiah 9:2 should be "
+                    f"'the people that walked in darkness', got {text[:60]!r}")
 
     bundles = ([CONTENT / name for name in arguments] if arguments
                else sorted(p for p in CONTENT.iterdir() if (p / "manifest.json").exists()))
