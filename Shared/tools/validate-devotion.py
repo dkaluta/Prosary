@@ -4,7 +4,12 @@
 Called by make-prosaryprayer.sh (and Make-ProsaryPrayer.ps1 when python3 is available).
 Checks, beyond plain JSON validity (which the packer already enforces):
 
-- devotion.json (when present) matches the v2 schema for its "type" ("steps" | "rosary");
+- devotion.json (when present) matches the v2 schema for its "type" ("steps" | "rosary" |
+  "days" | "hours");
+- hours-type structural rules: unique hour ids, every slot a hour's skeleton asks for is filled
+  by some proper (or carries its own "default") so no slot can silently vanish, every proper
+  names a slot some hour actually asks for, each "when" constrains only known calendar facets
+  with valid values, and no two propers for one slot share a selector;
 - every bodyKey/titleKey referenced by devotion.json resolves in every manifest language —
   either in the bundle's own content/<lang>.json "prayers" map, or in the surviving hardcoded
   PrayerKey pool (the keys every platform still ships in code after the generic-devotion
@@ -66,6 +71,60 @@ CALENDAR_CONDITION_KEYS = {"isLent", "isEasterSeason"}
 SIGN_OF_CROSS_KEY = "signumCrucis"
 ANTIPHON_KIND = "seasonalMarianAntiphon"
 OPTION_ANTIPHON_KIND = "marianAntiphon"
+SLOT_KIND = "proper"
+
+# --- hours-type vocabulary -------------------------------------------------------------------
+# The facets a proper may constrain. Each is a closed set the runtime calendar must be able to
+# answer for a given date; the format pins the spelling so a bundle and an engine cannot drift.
+
+# Mirrors LiturgicalSeason on every platform ("other" is Ordinary Time, named plainly here).
+SEASONS = {"advent", "christmas", "lent", "easterSeason", "ordinary"}
+
+WEEKDAYS = {"sun", "mon", "tue", "wed", "thu", "fri", "sat"}
+
+# The ranks Shared/data/feasts.json already records per day, camelCased to the app convention.
+# A day with no feasts.json entry is "ferial".
+RANKS = {"solemnity", "feast", "memorial", "optionalMemorial", "sunday", "ferial"}
+
+# Which proper wins when several match today. Compared as a tuple over these facets in this
+# order — a proper that constrains an earlier facet beats one that does not, regardless of how
+# many facets either constrains. This is the Church's own hierarchy, not a count of conditions:
+# the proper of a saint's day (date) outranks a solemnity's (rank), which outranks the proper of
+# the season (season/week/weekday), which outranks the running psalter (psalterWeek/weekday).
+# Counting conditions instead would let "Advent, week 3, Sunday" (three facets) beat Christmas
+# Day (one), which is exactly backwards. Ties go to the earlier declaration.
+PROPER_FACET_PRECEDENCE = ["date", "rank", "season", "week", "weekday", "psalterWeek",
+                           "readingYear"]
+
+# facet -> validator for one of its values.
+PROPER_FACETS = {
+    "date": lambda v: isinstance(v, str) and _is_month_day(v),
+    "rank": lambda v: v in RANKS,
+    "season": lambda v: v in SEASONS,
+    "week": lambda v: isinstance(v, int) and not isinstance(v, bool) and v >= 1,
+    "weekday": lambda v: v in WEEKDAYS,
+    "psalterWeek": lambda v: isinstance(v, int) and not isinstance(v, bool) and 1 <= v <= 4,
+    "readingYear": lambda v: v in (1, 2),
+}
+
+
+def _is_month_day(value: str) -> bool:
+    parts = value.split("-")
+    return (len(parts) == 2 and all(p.isdigit() and len(p) == 2 for p in parts)
+            and 1 <= int(parts[0]) <= 12 and 1 <= int(parts[1]) <= 31)
+
+
+def unknown_fields(obj: dict, allowed: set) -> list:
+    """Fields that are neither allowed nor an author's note. Any key starting with '$' is a
+    note — the same convention Shared/schema uses — so a bundle can say why a proper exists
+    without the format having to grow a field for prose."""
+    return sorted(k for k in obj if k not in allowed and not k.startswith("$"))
+
+
+def _is_hour_minute(value) -> bool:
+    return (isinstance(value, str) and len(value) == 5 and value[2] == ":"
+            and value[:2].isdigit() and value[3:].isdigit()
+            and int(value[:2]) < 24 and int(value[3:]) < 60)
 
 errors: list[str] = []
 
@@ -89,12 +148,26 @@ if_refs: list = []
 antiphon_option_refs: list = []
 
 
-def validate_entry(entry: dict, where: str, allow_kind: bool) -> None:
+def validate_entry(entry: dict, where: str, allow_kind: bool, slots: set | None = None) -> None:
     if "if" in entry:
         if not isinstance(entry["if"], str) or not entry["if"]:
             err(f"{where}: 'if' must be a non-empty string")
         else:
             if_refs.append((where, entry["if"]))
+    # hours type: a placeholder for whatever the calendar says belongs here today. It is the one
+    # entry that is not itself a step — the propers table fills it, or its own `default` does.
+    if slots is not None and entry.get("kind") == SLOT_KIND:
+        slot = entry.get("slot")
+        if not slot or not isinstance(slot, str):
+            err(f"{where}: a {SLOT_KIND} entry needs a slot name")
+        else:
+            slots.add(slot)
+        for i, fallback in enumerate(entry.get("default") or []):
+            validate_entry(fallback, f"{where}.default[{i}]", allow_kind=False)
+        extra = set(entry) - {"kind", "slot", "default", "if"}
+        if extra:
+            err(f"{where}: a {SLOT_KIND} entry must have no other fields (has {sorted(extra)})")
+        return
     if allow_kind and entry.get("kind") == ANTIPHON_KIND:
         extra = set(entry) - {"kind", "if"}
         if extra:
@@ -221,6 +294,9 @@ def validate_audio(src: Path, languages: list, variant_ids: set) -> None:
 
 def collect_entry_refs(entry: dict, body_keys: set, title_keys: set, image_keys: set) -> None:
     if entry.get("kind"):
+        # A slot's own fallback steps are ordinary entries and must resolve like any other.
+        for fallback in entry.get("default") or []:
+            collect_entry_refs(fallback, body_keys, title_keys, image_keys)
         return
     if entry.get("bodyKey"):
         body_keys.add(entry["bodyKey"])
@@ -415,6 +491,140 @@ def main() -> int:
         for field in ("steps", "eastertideSteps", "variants", "decades", "hasClosingCross"):
             if field in devotion:
                 err(f"days-type devotion must not have {field!r}")
+
+    elif dtype == "hours":
+        # An office is not chosen by a counter the way a novena's day is — the calendar chooses
+        # it. So a bundle declares the *skeleton* of each hour once, leaves the parts that vary
+        # as slots, and files every variable part in one propers table keyed by which days it
+        # belongs to. See ARCHITECTURE.md's "Hours".
+        def check_entry_list(entries, where, slots=None):
+            for i, entry in enumerate(entries):
+                validate_entry(entry, f"{where}[{i}]", allow_kind=False, slots=slots)
+                collect_entry_refs(entry, body_keys, title_keys, image_keys)
+
+        # slot name -> the hour ids whose skeleton asks for it.
+        slots_by_hour: dict = {}
+        hours = devotion.get("hours")
+        if not isinstance(hours, list) or not hours:
+            err("hours-type devotion needs a non-empty 'hours' array")
+            hours = []
+        hour_ids: list = []
+        for i, hour in enumerate(hours):
+            where = f"hours[{i}]"
+            hid = hour.get("id")
+            if not hid or not isinstance(hid, str):
+                err(f"{where}: missing id")
+                hid = None
+            elif hid in hour_ids:
+                err(f"{where}: duplicate id {hid!r}")
+                hid = None
+            else:
+                hour_ids.append(hid)
+            if not hour.get("name"):
+                err(f"{where}: missing name")
+            # The hour's traditional time, which is what a reminder for it should default to.
+            # Advisory exactly like a series' suggestedReminderTime: the user's own time wins.
+            if "suggestedTime" in hour and not _is_hour_minute(hour["suggestedTime"]):
+                err(f'{where}: suggestedTime must be "HH:mm"')
+            steps = hour.get("steps")
+            if not steps:
+                err(f"{where}: empty step list")
+            mine: set = set()
+            check_entry_list(steps or [], f"{where}.steps", slots=mine)
+            for slot in mine:
+                slots_by_hour.setdefault(slot, set()).add(hid)
+            extra = unknown_fields(hour, {"id", "name", "nameByLanguage", "suggestedTime",
+                                          "steps"})
+            if extra:
+                err(f"{where}: unknown fields {extra}")
+
+        # Prayed around every hour — the introduction and doxology that open each one, and
+        # whatever closes it. Same shape and purpose as a days-type devotion's shared pair.
+        check_entry_list(devotion.get("opening") or [], "opening")
+        for i, entry in enumerate(devotion.get("closing") or []):
+            validate_entry(entry, f"closing[{i}]", allow_kind=True)
+            collect_entry_refs(entry, body_keys, title_keys, image_keys)
+
+        propers = devotion.get("propers") or []
+        if not isinstance(propers, list):
+            err("propers must be an array")
+            propers = []
+        filled: dict = {}
+        seen_selectors: dict = {}
+        for i, proper in enumerate(propers):
+            where = f"propers[{i}]"
+            slot = proper.get("slot")
+            if not slot or not isinstance(slot, str):
+                err(f"{where}: missing slot")
+                slot = None
+            elif slot not in slots_by_hour:
+                err(f"{where}: slot {slot!r} is not asked for by any hour's steps")
+            hour_id = proper.get("hour")
+            if hour_id is not None:
+                if hour_id not in hour_ids:
+                    err(f"{where}: hour {hour_id!r} is not a declared hour")
+                elif slot in slots_by_hour and hour_id not in slots_by_hour[slot]:
+                    err(f"{where}: hour {hour_id!r} has no {slot!r} slot to fill")
+
+            when = proper.get("when")
+            if when is None:
+                # The catch-all for a slot: legal, and how an author says "unless the calendar
+                # says otherwise, this". Distinct from an unconstrained {} only in spelling.
+                when = {}
+            if not isinstance(when, dict):
+                err(f"{where}: 'when' must be an object of calendar facets")
+                when = {}
+            for facet, values in when.items():
+                check = PROPER_FACETS.get(facet)
+                if check is None:
+                    err(f"{where}.when: unknown facet {facet!r} "
+                        f"(expected one of {sorted(PROPER_FACETS)})")
+                    continue
+                if not isinstance(values, list) or not values:
+                    err(f"{where}.when.{facet}: must be a non-empty array of values")
+                    continue
+                for value in values:
+                    if not check(value):
+                        err(f"{where}.when.{facet}: {value!r} is not a valid {facet}")
+
+            # Two propers that can never be told apart would make the day's office depend on
+            # declaration order alone — almost always an authoring slip, never worth guessing at.
+            selector = (hour_id, slot, json.dumps(when, sort_keys=True))
+            if selector in seen_selectors:
+                err(f"{where}: same slot and 'when' as {seen_selectors[selector]} — one of them "
+                    f"can never be chosen")
+            else:
+                seen_selectors[selector] = where
+
+            steps = proper.get("steps")
+            if not steps:
+                err(f"{where}: empty step list")
+            check_entry_list(steps or [], f"{where}.steps")
+            if slot:
+                filled.setdefault(slot, set()).update(
+                    hour_ids if hour_id is None else [hour_id])
+            extra = unknown_fields(proper, {"when", "hour", "slot", "steps"})
+            if extra:
+                err(f"{where}: unknown fields {extra}")
+
+        # A slot no proper ever fills, and with no fallback of its own, is a hole in the office —
+        # it would simply vanish from the sequence, silently, on every day of the year.
+        defaults_by_hour: dict = {}
+        for i, hour in enumerate(hours):
+            for entry in hour.get("steps") or []:
+                if entry.get("kind") == SLOT_KIND and entry.get("default"):
+                    defaults_by_hour.setdefault(entry.get("slot"), set()).add(hour.get("id"))
+        for slot, asking in slots_by_hour.items():
+            for hid in asking:
+                if hid in filled.get(slot, set()) or hid in defaults_by_hour.get(slot, set()):
+                    continue
+                err(f"hours[{hid!r}]: slot {slot!r} has no proper to fill it and no 'default' — "
+                    f"it can never produce a step")
+
+        for field in ("steps", "eastertideSteps", "variants", "days", "dayProgression",
+                      "decades", "hasClosingCross"):
+            if field in devotion:
+                err(f"hours-type devotion must not have {field!r}")
 
     elif dtype == "rosary":
         opening = devotion.get("opening") or []

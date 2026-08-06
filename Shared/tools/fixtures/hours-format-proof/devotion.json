@@ -1,0 +1,207 @@
+{
+  "$comment": "Not a shippable office — a proof that the hours type can express the shapes the Liturgy of the Hours actually needs, and the fixture validate-devotion.py is exercised against. Every hard case has a line here: two hours in one bundle, an ordinary prayed around both, a slot filled from the running psalter, a proper of the season that outranks the psalter, a saint's day that outranks the season, a rank-based proper that overrides whatever else the day would be, a two-year reading cycle, a slot that carries its own default, and an option-gated step inside an hour. The texts are the Vulgate and Douay-Rheims, kept to a handful of lines: this file is about structure.",
+  "type": "hours",
+
+  "opening": [
+    {
+      "titleKey": "introductionTitle",
+      "bodyKey": "introduction",
+      "imageKey": "christ_pantocrator"
+    },
+    {
+      "title": "Glory Be",
+      "bodyKey": "gloriaPatri",
+      "imageKey": "glory_be",
+      "if": "!isLent"
+    }
+  ],
+
+  "hours": [
+    {
+      "id": "vespers",
+      "name": "Evening Prayer",
+      "nameByLanguage": { "la": "Vesperae" },
+      "suggestedTime": "18:00",
+      "steps": [
+        { "kind": "proper", "slot": "hymn" },
+        { "kind": "proper", "slot": "psalmody" },
+        { "kind": "proper", "slot": "reading" },
+        {
+          "titleKey": "magnificatTitle",
+          "bodyKey": "magnificat",
+          "imageKey": "madonna_and_child",
+          "isScripture": true
+        },
+        { "kind": "proper", "slot": "collect" }
+      ]
+    },
+    {
+      "id": "compline",
+      "name": "Night Prayer",
+      "nameByLanguage": { "la": "Completorium" },
+      "suggestedTime": "21:30",
+      "steps": [
+        {
+          "titleKey": "examinationTitle",
+          "bodyKey": "examination",
+          "imageKey": "crucifix",
+          "if": "examination"
+        },
+        { "kind": "proper", "slot": "psalmody" },
+        {
+          "titleKey": "nuncDimittisTitle",
+          "bodyKey": "nuncDimittis",
+          "acclamationKey": "salvaNos",
+          "imageKey": "christ_pantocrator",
+          "isScripture": true
+        },
+        {
+          "kind": "proper",
+          "slot": "collect",
+          "default": [
+            {
+              "titleKey": "collectTitle",
+              "bodyKey": "collectNight",
+              "imageKey": "christ_pantocrator"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+
+  "closing": [
+    { "kind": "seasonalMarianAntiphon" }
+  ],
+
+  "propers": [
+    {
+      "$case": "the running psalter — the least specific thing that can fill a psalmody slot",
+      "when": { "psalterWeek": [1], "weekday": ["sat"] },
+      "slot": "psalmody",
+      "steps": [
+        {
+          "titleKey": "psalm4Title",
+          "bodyKey": "psalm4",
+          "acclamationKey": "antiphonMiserere",
+          "imageKey": "christ_pantocrator",
+          "isScripture": true
+        }
+      ]
+    },
+    {
+      "$case": "same slot, a different week of the four — the psalter cycling",
+      "when": { "psalterWeek": [2], "weekday": ["sat"] },
+      "slot": "psalmody",
+      "steps": [
+        {
+          "titleKey": "psalm91Title",
+          "bodyKey": "psalm91",
+          "acclamationKey": "antiphonScapulis",
+          "imageKey": "christ_pantocrator",
+          "isScripture": true
+        }
+      ]
+    },
+    {
+      "$case": "one hour only: Compline's psalmody does not follow Vespers'",
+      "hour": "compline",
+      "when": {},
+      "slot": "psalmody",
+      "steps": [
+        {
+          "titleKey": "psalm91Title",
+          "bodyKey": "psalm91",
+          "acclamationKey": "antiphonScapulis",
+          "imageKey": "christ_pantocrator",
+          "isScripture": true
+        }
+      ]
+    },
+    {
+      "$case": "proper of the season — outranks the psalter above on Advent Sundays",
+      "when": { "season": ["advent"], "week": [1, 2, 3, 4], "weekday": ["sun"] },
+      "slot": "hymn",
+      "steps": [
+        {
+          "titleKey": "hymnTitle",
+          "bodyKey": "conditorAlme",
+          "imageKey": "christ_pantocrator"
+        }
+      ]
+    },
+    {
+      "$case": "the catch-all for the same slot, so the hymn never disappears",
+      "when": {},
+      "slot": "hymn",
+      "steps": [
+        {
+          "titleKey": "hymnTitle",
+          "bodyKey": "teLucisAnte",
+          "imageKey": "christ_pantocrator"
+        }
+      ]
+    },
+    {
+      "$case": "proper of saints — a fixed date, which outranks both season and psalter",
+      "when": { "date": ["12-25"] },
+      "slot": "collect",
+      "steps": [
+        {
+          "titleKey": "collectTitle",
+          "bodyKey": "collectNativity",
+          "imageKey": "joyful_03_nativity"
+        }
+      ]
+    },
+    {
+      "$case": "by rank alone — any solemnity takes this, whatever season it falls in",
+      "when": { "rank": ["solemnity"] },
+      "slot": "collect",
+      "steps": [
+        {
+          "titleKey": "collectTitle",
+          "bodyKey": "collectSolemnity",
+          "imageKey": "glorious_01_resurrection"
+        }
+      ]
+    },
+    {
+      "$case": "the collect a plain Saturday in Advent gets",
+      "when": { "season": ["advent"], "weekday": ["sat"] },
+      "slot": "collect",
+      "steps": [
+        {
+          "titleKey": "collectTitle",
+          "bodyKey": "collectAdvent",
+          "imageKey": "christ_pantocrator"
+        }
+      ]
+    },
+    {
+      "$case": "the Office of Readings' two-year cycle, the one facet no other type could express",
+      "when": { "readingYear": [1] },
+      "slot": "reading",
+      "steps": [
+        {
+          "titleKey": "readingTitle",
+          "bodyKey": "readingYearOne",
+          "imageKey": "christ_pantocrator",
+          "isScripture": true
+        }
+      ]
+    },
+    {
+      "when": { "readingYear": [2] },
+      "slot": "reading",
+      "steps": [
+        {
+          "titleKey": "readingTitle",
+          "bodyKey": "readingYearTwo",
+          "imageKey": "christ_pantocrator",
+          "isScripture": true
+        }
+      ]
+    }
+  ]
+}

@@ -16,6 +16,15 @@ on:
   workflow_dispatch:
 
 jobs:
+  format:
+    name: Bundle format (validator rules + every shipped bundle)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - name: Validate
+        run: python3 Shared/tools/test-validate-devotion.py
+
   android:
     name: Android (testDebugUnitTest)
     runs-on: ubuntu-latest

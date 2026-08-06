@@ -475,10 +475,66 @@ of its own — its entire step sequence and per-step text are data-driven from i
   `suggestedNext` (another devotion's id, silently skipped when that bundle is not installed) —
   all advisory, which is what lets a pinned novena announce itself before its first day.
   The **O Antiphons** (7 days, 17–23 December) is the shipped bundle this all runs against.
-  Hours/missals are a different beast: their content is selected by the
-  liturgical calendar (proper of the day, psalter weeks), not by a day counter — that needs a
-  date→content-key resolution layer, for which the Home feast-day data (`Shared/content/data`)
-  is the seed, and it should not be forced into the `days` shape.
+  Hours are a different beast and get their own type rather than being forced into this
+  shape — see below.
+- **The Hours** — `{"type": "hours"}`: several offices a day, each of whose contents the
+  liturgical calendar chooses. A days-type devotion advances by a counter; an office does not,
+  which is the whole reason this is a separate type. **Format and validator only (2026-08-06):
+  no decoders, engines, Compose support or bundles ship yet** — this is the shape settled so
+  that authoring one is possible, not a feature.
+
+  A bundle declares the *skeleton* of each hour once and leaves the parts that vary as holes:
+
+  - **`hours: [{id, name, nameByLanguage?, suggestedTime?, steps: [Entry…]}]`** — one per office
+    (Vespers, Compline, the Office of Readings). Each is structurally a steps-type sequence, so
+    `Entry` is reused unchanged. `id` is the reserved handle for which office a favorite opens
+    on (a future `Prayer.hourId`, exactly as `Prayer.dayIndex` names a day) and for a per-hour
+    reminder; `suggestedTime` ("HH:mm") is the hour's traditional time, advisory the same way a
+    series' `suggestedReminderTime` is — which is how the Angelus's `reminderPresetHours`
+    generalizes to an office of the day.
+  - **Shared `opening`/`closing`** are prayed around every hour, the same pair days-type has —
+    the "O God, come to my assistance" that opens each one, and a closing that may be the
+    existing `{"kind": "seasonalMarianAntiphon"}` entry, which is precisely what ends Compline.
+  - **A slot** — `{"kind": "proper", "slot": "psalmody", "default"?: [Entry…]}` — is the one
+    entry that is not itself a step: a named hole the calendar fills. `default` is how an author
+    says "unless the calendar says otherwise, this".
+  - **`propers: [{when?, hour?, slot, steps: [Entry…]}]`** is the date→content-key resolution
+    layer, expressed as data rather than code. Each entry files a piece of content under the days
+    it belongs to. `when` constrains any of seven facets, each a non-empty array of allowed
+    values — `date` ("MM-DD", the sanctoral), `rank`, `season`, `week` (of the season),
+    `weekday`, `psalterWeek` (1–4), `readingYear` (1–2). Every declared facet must match, any
+    listed value within a facet matches, an omitted facet is unconstrained, and absent/`{}` is
+    the catch-all for that slot.
+
+  **Precedence is a fixed facet order, not a count**: `date`, `rank`, `season`, `week`,
+  `weekday`, `psalterWeek`, `readingYear`, compared lexicographically — a proper constraining an
+  earlier facet beats one that does not, however many facets either constrains. That is the
+  Church's own hierarchy (proper of saints over proper of season over the running psalter);
+  counting conditions instead would let "Advent, week 3, Sunday" outrank Christmas Day, which is
+  exactly backwards. Ties go to the earlier declaration, and the validator rejects two propers
+  for one slot with an identical selector so declaration order never silently decides an office.
+
+  The validator earns the word "robust" by refusing the ways this shape goes wrong: a slot no
+  proper can fill and with no `default` (it would vanish from the office silently, every day of
+  the year), a proper for a slot no hour asks for, a proper naming an hour that lacks its slot,
+  an unknown facet or an out-of-range value, duplicate hour ids, and indistinguishable propers.
+  `Shared/tools/fixtures/hours-format-proof/` is the bundle those rules are exercised against —
+  two hours, a shared ordinary, the running psalter, a proper of the season, a saint's day, a
+  rank override, the two-year reading cycle, a slot with its own default, and an option-gated
+  step — and `Shared/tools/test-validate-devotion.py` runs it plus nineteen deliberate breakages
+  plus every shipped bundle. Any key beginning with `$` is an author's note anywhere in a
+  devotion.json, so a proper can say why it exists without the format growing a field for prose.
+
+  **What implementing it still needs**, none of which is format work:
+  `LiturgicalCalendarProviding` must answer week-of-season, `psalterWeek`, `rank` and
+  `readingYear` for a date. Only week-of-season is genuinely new computation — `psalterWeek` is
+  arithmetic on it, `rank` is a lookup in the `feasts.json` the Home screen already ships (whose
+  `rank` values this vocabulary deliberately mirrors), and `readingYear` alternates with the
+  liturgical year. Then decoders, an engine that walks the precedence list per slot, a way to
+  choose an hour, and — the part the format cannot help with — texts. The Church's modern
+  Liturgy of the Hours (ICEL, the Grail psalms) is under copyright; a shippable bundle wants
+  public-domain sources, and **Compline is the sane first office**: a seven-day cycle, a fixed
+  ordinary, and a closing Marian antiphon the engine already builds.
 - **Audio** — a bundle may ship narrated recordings of its devotion. An optional
   **`audio.json`** (declared separately from the structure, the same way catalog.json/options.json
   are) lists tracks: `{"tracks": [{id, language, file, variantId?, name?, nameByLanguage?,
