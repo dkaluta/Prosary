@@ -388,6 +388,18 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertEqual(definition?.days?.first?.name, "O Sapientia")
   }
 
+  /// The Divine Mercy chaplet's Hebrew is the Latin Patriarchate's own — approved by Patriarch
+  /// Michel Sabbah in 2003 — so it is pinned here rather than left to drift.
+  func testDivineMercyHebrewIsTheApprovedText() {
+    let steps = steps("divineMercyChaplet", language: "he")
+    XCTAssertTrue(steps.contains { $0.body.hasPrefix("אב נצחי שבשמים, אני מציע בפניך") },
+                  "the offering on each major bead")
+    XCTAssertTrue(steps.contains { $0.body == "למען אהבתו אותנו בייסוריו רחם עלינו ועל העולם כולו." },
+                  "the petition on each minor bead")
+    XCTAssertTrue(steps.contains { $0.body.hasPrefix("קדוש אלוהינו, קדוש וחזק") },
+                  "the closing acclamation")
+  }
+
   // MARK: - The invitatory, and the Mission's Hebrew
 
   /// The Rosary may open with "O God, come to my assistance" — off by default, and the Alleluia

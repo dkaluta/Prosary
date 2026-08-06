@@ -85,6 +85,12 @@ struct AboutView: View {
             defaultValue: "Christ Pantocrator: encaustic icon (6th century), Saint Catherine\u{2019}s Monastery, Mount Sinai \u{2014} the oldest surviving icon of Christ Pantocrator, honoring the prayer\u{2019}s Eastern tradition; public domain."))
         }
 
+        section("Prayer Texts") {
+          Text("about.prayerTexts")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+        }
+
         section("Scripture Sources") {
           Text("about.scriptureSources")
             .font(.footnote)

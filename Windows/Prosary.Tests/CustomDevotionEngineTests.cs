@@ -426,6 +426,17 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Equal("O Sapientia", definition?.Days?[0].Name);
     }
 
+    /// <summary>The Divine Mercy chaplet's Hebrew is the Latin Patriarchate's own — approved by
+    /// Patriarch Michel Sabbah in 2003 — so it is pinned here rather than left to drift.</summary>
+    [Fact]
+    public void DivineMercyHebrewIsTheApprovedText()
+    {
+        var steps = BuildSteps("divineMercyChaplet", "he");
+        Assert.Contains(steps, s => s.Body.StartsWith("אב נצחי שבשמים, אני מציע בפניך"));
+        Assert.Contains(steps, s => s.Body == "למען אהבתו אותנו בייסוריו רחם עלינו ועל העולם כולו.");
+        Assert.Contains(steps, s => s.Body.StartsWith("קדוש אלוהינו, קדוש וחזק"));
+    }
+
     // The invitatory, and the Mission's Hebrew
 
     /// <summary>The Rosary may open with "O God, come to my assistance" — off by default, and

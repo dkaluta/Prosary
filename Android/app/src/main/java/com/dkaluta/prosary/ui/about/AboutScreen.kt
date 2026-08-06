@@ -151,6 +151,14 @@ fun AboutScreen(onBack: () -> Unit) {
                 )
             }
 
+            AboutSection(title = stringResource(R.string.about_prayer_texts)) {
+                Text(
+                    stringResource(R.string.about_prayer_texts_body),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+
             AboutSection(title = stringResource(R.string.about_scripture_sources)) {
                 Text(
                     stringResource(R.string.about_scripture_text),

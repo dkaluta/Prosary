@@ -439,6 +439,16 @@ class CustomDevotionEngineTest {
         assertEquals("O Sapientia", definition?.days?.first()?.name)
     }
 
+    /** The Divine Mercy chaplet's Hebrew is the Latin Patriarchate's own — approved by Patriarch
+     * Michel Sabbah in 2003 — so it is pinned here rather than left to drift. */
+    @Test
+    fun divineMercyHebrewIsTheApprovedText() {
+        val steps = steps("divineMercyChaplet", language = "he")
+        assertTrue(steps.any { it.body.startsWith("אב נצחי שבשמים, אני מציע בפניך") })
+        assertTrue(steps.any { it.body == "למען אהבתו אותנו בייסוריו רחם עלינו ועל העולם כולו." })
+        assertTrue(steps.any { it.body.startsWith("קדוש אלוהינו, קדוש וחזק") })
+    }
+
     // MARK: The invitatory, and the Mission's Hebrew
 
     /** The Rosary may open with "O God, come to my assistance" — off by default, and the

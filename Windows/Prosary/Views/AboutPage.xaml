@@ -133,6 +133,12 @@
                 </StackPanel>
 
                 <StackPanel Spacing="8">
+                    <TextBlock x:Uid="AbtPrayerTextsHeader" Text="Prayer Texts" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                    <TextBlock x:Uid="AbtPrayerTextsBody" Text="The Divine Mercy Chaplet in Hebrew is the Latin Patriarchate of Jerusalem's own text, approved by Patriarch Michel Sabbah in 2003."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
                     <TextBlock x:Uid="AbtScriptureHeader" Text="Scripture Sources" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
                     <TextBlock x:Uid="AbtScriptureBody" Text="Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) with Hebrew Old Testament passages following the Masoretic text, the Jesuit Arabic Bible (Beirut, 1880, revised 1988), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905) — all public domain."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
