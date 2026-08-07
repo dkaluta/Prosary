@@ -323,6 +323,11 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         _variantId = variantId == defaultId ? null : variantId;
         OnPropertyChanged(nameof(CurrentVariantId));
 
+        // Rosary-type forms can differ in whether they end with the cross, so the bead track's
+        // closing bead has to follow the switch too.
+        _hasClosingCross =
+            PrayerPackStore.Definition(_bundleId)?.ResolvedRosary(_variantId).HasClosingCross ?? false;
+
         _steps = _engine.BuildSteps(new Prayer
         {
             Kind = PrayerKind.Custom,
@@ -360,7 +365,6 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             _bundleId = bundleId;
             DevotionTitle = PrayerPackStore.Info(bundleId)?.LocalizedDisplayName ?? bundleId;
             var definition = PrayerPackStore.Definition(bundleId);
-            _hasClosingCross = definition?.HasClosingCross ?? false;
             Variants = definition?.Variants ?? [];
             OnPropertyChanged(nameof(ShowsVariantMenu));
             Days = definition?.Days ?? [];
@@ -375,6 +379,12 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             MatchingFavoriteId ??= favorite?.Id;
             _variantId = favorite?.VariantId;
             OnPropertyChanged(nameof(CurrentVariantId));
+
+            // Per form, not per bundle: one recension of a chaplet can end with the cross where
+            // another does not, and the bead track draws a closing bead on the strength of this.
+            // Computed here rather than beside the definition lookup because it depends on the
+            // variant the favorite chose, which is only known now.
+            _hasClosingCross = definition?.ResolvedRosary(_variantId).HasClosingCross ?? false;
 
             // The favorite carries the language to pray in (sentinel = the app default).
             _chosenLanguage = favorite?.LanguageCode ?? LanguageCatalog.DefaultSentinel;

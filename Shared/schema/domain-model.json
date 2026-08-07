@@ -412,11 +412,11 @@
         },
         "variants": {
           "type": "object[]?",
-          "description": "steps type only: named alternate step-sets [{id, name, nameByLanguage?, steps, eastertideSteps?}], mutually exclusive with steps; the first variant is the default. Resolved via Prayer.variantId."
+          "description": "Named alternate forms of one devotion, mutually exclusive with the type's own top-level fields; the first variant is the default, resolved via Prayer.variantId. **steps type**: [{id, name, nameByLanguage?, steps, eastertideSteps?}] — the Stations' traditional vs. scriptural sets. **rosary type** (2026-08-07): [{id, name, nameByLanguage?, opening, decades, closing, hasClosingCross?}] — a chaplet's shorter and fuller recensions, which can differ in their opening prayers, their per-decade invocations and their close while praying the same mysteries. Every rosary-type bead-track invariant is checked per form, not per bundle: a second form with no opening Sign of the Cross would crash the bead track exactly as a single-form devotion would."
         },
         "opening": {
           "type": "CustomDevotionStep[]?",
-          "description": "rosary, days and hours types. For rosary, entry 0 MUST be the Sign of the Cross (bead-track invariant); for days it is prayed before every day's own steps, and for hours before every office (the \"O God, come to my assistance\" that opens each one)."
+          "description": "rosary, days and hours types; for rosary it may instead live inside each variant. For rosary, entry 0 MUST be the Sign of the Cross (bead-track invariant); for days it is prayed before every day's own steps, and for hours before every office."
         },
         "dayProgression": {
           "type": "string",
@@ -436,7 +436,7 @@
         },
         "decades": {
           "type": "object?",
-          "description": "rosary type only: { ordinalNoun | ordinalNounKey (the noun a decade is counted in — \"Joy\"/\"Sorrow\"/\"Mystery\"/\"Decade\"; the key form resolves in the praying language), announceMystery, entries: [{imageKey, isScripture? = true}] XOR count + fixedImageKey XOR source: \"mysteryGroups\" (the Rosary — decade catalog from the engine's mystery-group machinery: selection mode + liturgical calendar, group-labelled ordinals, single-mystery true ordinal, real Mystery values on steps), majorStep {title | titleKey, bodyKey, imageKey?}, minorStep {title | titleKey, bodyKey}, minorCount, postMinor?: [Entry] (emitted after each decade's minors with the decade's subtitle/index — the Rosary's Glory Be/Fatima/eternal rest, gated with \"if\"), presenter?: {combinedTitle | combinedTitleKey, bodyKeys} (when the gating presenterMode option is on, the minors collapse into one combined step with hailMaryIndexInDecade = minorCount) }. Announcement steps pull title/body from the merged mystery tables by imageKey."
+          "description": "rosary type only: { ordinalNoun | ordinalNounKey (the noun a decade is counted in — \"Joy\"/\"Sorrow\"/\"Mystery\"/\"Decade\"; the key form resolves in the praying language), announceMystery, entries: [{imageKey, isScripture? = true}] XOR count + fixedImageKey XOR source: \"mysteryGroups\" (the Rosary — decade catalog from the engine's mystery-group machinery: selection mode + liturgical calendar, group-labelled ordinals, single-mystery true ordinal, real Mystery values on steps), majorStep {title | titleKey, bodyKey, imageKey?}, minorStep {title | titleKey, bodyKey}, minorCount, preAnnouncement?: [Entry] (emitted BEFORE each decade's announcement, carrying the decade's subtitle but no decadeIndex — the Servite chaplet's invocation to Our Lady before each sorrow is named; postMinor could not express it, firing after a decade rather than before one), postMinor?: [Entry] (emitted after each decade's minors with the decade's subtitle/index — the Rosary's Glory Be/Fatima/eternal rest, gated with \"if\"), presenter?: {combinedTitle | combinedTitleKey, bodyKeys} (when the gating presenterMode option is on, the minors collapse into one combined step with hailMaryIndexInDecade = minorCount) }. Announcement steps pull title/body from the merged mystery tables by imageKey."
         },
         "hours": {
           "type": "DevotionHour[]?",

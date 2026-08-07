@@ -1,0 +1,140 @@
+{
+  "$comment": "Not a shippable devotion — the fixture proving a rosary-type devotion can carry alternate forms, and that each form's bead-track invariants are checked on its own. The second form differs exactly where a real recension does: extra opening prayers, an invocation before each decade, and a different close.",
+  "type": "rosary",
+  "variants": [
+    {
+      "id": "short",
+      "name": "Short form",
+      "opening": [
+        {
+          "titleKey": "signumCrucisTitle",
+          "bodyKey": "signumCrucis",
+          "imageKey": "crucifix"
+        }
+      ],
+      "decades": {
+        "ordinalNounKey": "proofOrdinalNoun",
+        "announceMystery": true,
+        "entries": [
+          {
+            "imageKey": "madonna_and_child"
+          },
+          {
+            "imageKey": "madonna_and_child"
+          }
+        ],
+        "majorStep": {
+          "titleKey": "paterNosterTitle",
+          "bodyKey": "paterNoster",
+          "imageKey": "our_father"
+        },
+        "minorStep": {
+          "titleKey": "aveMariaTitle",
+          "bodyKey": "aveMaria"
+        },
+        "minorCount": 7,
+        "postMinor": [
+          {
+            "titleKey": "gloriaPatriTitle",
+            "bodyKey": "gloriaPatri",
+            "imageKey": "glory_be"
+          }
+        ]
+      },
+      "closing": [
+        {
+          "titleKey": "aveMariaTitle",
+          "bodyKey": "aveMaria",
+          "imageKey": "madonna_and_child",
+          "repeat": 3
+        },
+        {
+          "titleKey": "signumCrucisTitle",
+          "bodyKey": "signumCrucis",
+          "imageKey": "crucifix"
+        }
+      ],
+      "hasClosingCross": true
+    },
+    {
+      "id": "servite",
+      "name": "Fuller form",
+      "nameByLanguage": {
+        "la": "Forma plenior"
+      },
+      "opening": [
+        {
+          "titleKey": "signumCrucisTitle",
+          "bodyKey": "signumCrucis",
+          "imageKey": "crucifix"
+        },
+        {
+          "titleKey": "offeringTitle",
+          "bodyKey": "offeringBody",
+          "imageKey": "madonna_and_child"
+        },
+        {
+          "titleKey": "aveMariaTitle",
+          "bodyKey": "aveMaria",
+          "imageKey": "madonna_and_child",
+          "repeat": 3
+        }
+      ],
+      "decades": {
+        "ordinalNounKey": "proofOrdinalNoun",
+        "announceMystery": true,
+        "entries": [
+          {
+            "imageKey": "madonna_and_child"
+          },
+          {
+            "imageKey": "madonna_and_child"
+          }
+        ],
+        "majorStep": {
+          "titleKey": "paterNosterTitle",
+          "bodyKey": "paterNoster",
+          "imageKey": "our_father"
+        },
+        "minorStep": {
+          "titleKey": "aveMariaTitle",
+          "bodyKey": "aveMaria"
+        },
+        "minorCount": 7,
+        "preAnnouncement": [
+          {
+            "titleKey": "invocationTitle",
+            "bodyKey": "invocationBody",
+            "imageKey": "madonna_and_child"
+          }
+        ],
+        "postMinor": [
+          {
+            "titleKey": "gloriaPatriTitle",
+            "bodyKey": "gloriaPatri",
+            "imageKey": "glory_be"
+          }
+        ]
+      },
+      "closing": [
+        {
+          "titleKey": "queenTitle",
+          "bodyKey": "queenBody",
+          "imageKey": "madonna_and_child"
+        },
+        {
+          "titleKey": "invocationTitle",
+          "bodyKey": "conceivedBody",
+          "imageKey": "madonna_and_child",
+          "repeat": 3
+        },
+        {
+          "titleKey": "signumCrucisTitle",
+          "bodyKey": "signumCrucis",
+          "imageKey": "crucifix"
+        }
+      ],
+      "hasClosingCross": true
+    }
+  ]
+}

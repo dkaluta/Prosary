@@ -53,7 +53,10 @@ struct CustomDevotionFlowView: View {
   }
 
   private var hasClosingCross: Bool {
-    PrayerPackStore.definition(for: devotionId)?.hasClosingCross ?? false
+    // Per form, not per bundle: one recension of a chaplet can end with the cross where another
+    // does not, and the bead track draws a closing bead on the strength of this.
+    PrayerPackStore.definition(for: devotionId)?
+      .resolvedRosary(variantId: variantId).hasClosingCross ?? false
   }
 
   private var beadLayout: BeadLayout {

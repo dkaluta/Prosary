@@ -221,7 +221,10 @@ fun CustomDevotionFlowScreen(
 
     val currentStep = steps.getOrNull(currentIndex)
     val showsBeadTrack = steps.any { it.decadeIndex != null }
-    val hasClosingCross = PrayerPackStore.definition(devotionId)?.hasClosingCross ?: false
+    // Per form, not per bundle: one recension of a chaplet can end with the cross where
+    // another does not, and the bead track draws a closing bead on the strength of this.
+    val hasClosingCross =
+        PrayerPackStore.definition(devotionId)?.resolvedRosary(variantId)?.hasClosingCross ?: false
     val beadLayout = remember(steps, currentIndex) {
         BeadLayout.build(steps, currentIndex, hasClosingCross = hasClosingCross)
     }

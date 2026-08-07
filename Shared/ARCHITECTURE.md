@@ -398,6 +398,17 @@ of its own — its entire step sequence and per-step text are data-driven from i
     default) selects one; the flow screens show a toolbar variant menu when a bundle declares
     more than one, rebuilding the session on switch and persisting the choice to the matching
     favorite.
+  - A **rosary-type devotion may declare `variants`** too (2026-08-07), the same idea the steps
+    type has carried since the Stations grew a scriptural form: `[{id, name, nameByLanguage?,
+    opening, decades, closing, hasClosingCross?}]`, mutually exclusive with the top-level four,
+    first is the default, selected by the same `Prayer.variantId`. A chaplet's recensions differ
+    in their opening prayers, their per-decade invocations and their close while praying the same
+    mysteries — the Seven Sorrows is the case that asked for it. Every bead-track invariant is
+    checked **per form**: a second form missing its opening Sign of the Cross would crash the
+    bead track exactly as a single-form devotion would, so `validate_rosary_form` runs once per
+    variant. `hasClosingCross` is likewise per form, and each platform's flow reads it through
+    `resolvedRosary(variantId)` rather than off the bundle — one recension can end with the cross
+    where another does not.
   - `{"type": "rosary"}` — decade/bead-structured: `opening: [Entry…]` (entry 0 MUST be the Sign
     of the Cross — a bead-track invariant), `decades` (`ordinalNoun` "Joy"/"Sorrow"/"Decade";
     `announceMystery`; either inline `entries: [{imageKey, isScripture? = true}]` (Franciscan
@@ -405,7 +416,11 @@ of its own — its entire step sequence and per-step text are data-driven from i
     `source: "mysteryGroups"` (the Rosary — the decade catalog comes from the engine's
     mystery-group machinery instead of bundle data); `majorStep`/`minorStep`
     `{title | titleKey, bodyKey, imageKey?}` (the optional `imageKey` is the Rosary's fixed Our
-    Father icon between mystery-specific images); `minorCount`; optional `postMinor: [Entry…]` emitted
+    Father icon between mystery-specific images); `minorCount`; optional `preAnnouncement: [Entry…]` emitted
+    *before* each decade's announcement (carrying the decade's subtitle but no `decadeIndex` —
+    they are not beads; the Servite chaplet asks Our Lady to recall her Son's sorrows before each
+    one is named, which `postMinor` could not express because it fires after a decade rather than
+    before one), optional `postMinor: [Entry…]` emitted
     after each decade's minors carrying the decade's subtitle/index (the Rosary's Glory Be /
     Fatima Prayer / per-decade eternal rest, each gated with an `"if"`); optional
     `presenter: {combinedTitle | combinedTitleKey, bodyKeys}` — when the gating `presenterMode` option is on, the

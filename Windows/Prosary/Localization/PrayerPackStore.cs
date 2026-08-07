@@ -733,7 +733,12 @@ public sealed record CustomDevotionDefinition(
         string Name,
         Dictionary<string, string>? NameByLanguage = null,
         List<CustomDevotionStep>? Steps = null,
-        List<CustomDevotionStep>? EastertideSteps = null)
+        List<CustomDevotionStep>? EastertideSteps = null,
+        // rosary type: the same four fields a single-form rosary devotion has.
+        List<CustomDevotionStep>? Opening = null,
+        DecadesDefinition? Decades = null,
+        List<CustomDevotionStep>? Closing = null,
+        bool? HasClosingCross = null)
     {
         public string LocalizedName =>
             NameByLanguage?.GetValueOrDefault(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
@@ -752,6 +757,22 @@ public sealed record CustomDevotionDefinition(
         }
 
         return (Steps ?? [], EastertideSteps);
+    }
+
+    /// <summary>One rosary-type form: the matching variant, else the default (first) one, else
+    /// the top-level fields. Mirrors <see cref="ResolvedSteps"/> so both types pick a form the
+    /// same way.</summary>
+    public (List<CustomDevotionStep> Opening, DecadesDefinition? Decades,
+            List<CustomDevotionStep> Closing, bool HasClosingCross) ResolvedRosary(string? variantId)
+    {
+        if (Variants is { Count: > 0 } variants)
+        {
+            var variant = variants.FirstOrDefault(v => v.Id == variantId) ?? variants[0];
+            return (variant.Opening ?? [], variant.Decades, variant.Closing ?? [],
+                    variant.HasClosingCross ?? false);
+        }
+
+        return (Opening ?? [], Decades, Closing ?? [], HasClosingCross ?? false);
     }
 
     public enum DevotionType
@@ -808,6 +829,10 @@ public sealed record CustomDevotionDefinition(
         string? Source = null,
         // Entries emitted after each decade's minors, carrying the decade's subtitle/index (the
         // Rosary's Glory Be / Fatima Prayer / per-decade eternal rest), usually gated.
+        /// <summary>Emitted before each decade's announcement — the Servite chaplet's
+        /// invocation to Our Lady before each sorrow is named. Not beads: they carry the
+        /// decade's subtitle but no DecadeIndex.</summary>
+        List<CustomDevotionStep>? PreAnnouncement = null,
         List<CustomDevotionStep>? PostMinor = null,
         // Presenter-mode alternate decade tail: the minors collapse into one combined step with
         // HailMaryIndexInDecade = MinorCount so the bead track still renders a full decade.

@@ -22,6 +22,7 @@ from pathlib import Path
 
 TOOLS = Path(__file__).resolve().parent
 FIXTURE = TOOLS / "fixtures" / "hours-format-proof"
+ROSARY_FIXTURE = TOOLS / "fixtures" / "rosary-variants-proof"
 VALIDATOR = TOOLS / "validate-devotion.py"
 SHARED_CONTENT = TOOLS.parent / "content"
 
@@ -40,11 +41,11 @@ def check_valid(directory: Path, label: str) -> None:
         failures.append(f"{label}: expected valid, got:\n{output}")
 
 
-def check_rejects(label: str, mutate, expected: str) -> None:
-    """Apply `mutate` to a copy of the fixture's devotion.json and require a matching error."""
+def check_rejects(label: str, mutate, expected: str, fixture: Path = FIXTURE) -> None:
+    """Apply `mutate` to a copy of a fixture's devotion.json and require a matching error."""
     with tempfile.TemporaryDirectory() as tmp:
         work = Path(tmp) / "bundle"
-        shutil.copytree(FIXTURE, work)
+        shutil.copytree(fixture, work)
         devotion = json.loads((work / "devotion.json").read_text(encoding="utf-8"))
         mutate(devotion)
         (work / "devotion.json").write_text(json.dumps(devotion), encoding="utf-8")
@@ -170,6 +171,58 @@ def main() -> int:
         "a proper referencing a key no language ships",
         lambda d: proper(d, "collect")["steps"][0].update({"bodyKey": "collectNoSuchThing"}),
         "unresolved key 'collectNoSuchThing'")
+
+    # --- rosary-type variants: every form carries the bead track's invariants on its own ------
+    check_valid(ROSARY_FIXTURE, "rosary-variants-proof")
+
+    def rosary(label, mutate, expected):
+        check_rejects(label, mutate, expected, fixture=ROSARY_FIXTURE)
+
+    rosary(
+        "a second form whose opening does not start with the cross",
+        lambda d: d["variants"][1]["opening"].pop(0),
+        "must be the Sign of the Cross",
+    )
+    rosary(
+        "a second form promising a closing cross it does not end with",
+        lambda d: d["variants"][1]["closing"].pop(),
+        "hasClosingCross",
+    )
+    rosary(
+        "a form with no opening at all",
+        lambda d: d["variants"][0].update({"opening": []}),
+        "needs an opening",
+    )
+    rosary(
+        "two forms sharing an id",
+        lambda d: d["variants"].append(dict(d["variants"][0])),
+        "duplicate id 'short'",
+    )
+    rosary(
+        "a form missing its name",
+        lambda d: d["variants"][1].pop("name"),
+        "missing name",
+    )
+    rosary(
+        "variants alongside a top-level form",
+        lambda d: d.update({"decades": d["variants"][0]["decades"]}),
+        "must not also have top-level",
+    )
+    rosary(
+        "a broken decade inside the second form only",
+        lambda d: d["variants"][1]["decades"].update({"minorCount": 0}),
+        "minorCount must be an integer >= 1",
+    )
+    rosary(
+        "a preAnnouncement entry missing its body",
+        lambda d: d["variants"][1]["decades"]["preAnnouncement"][0].pop("bodyKey"),
+        "missing bodyKey",
+    )
+    rosary(
+        "a preAnnouncement key no language ships",
+        lambda d: d["variants"][1]["decades"]["preAnnouncement"][0].update({"bodyKey": "nope"}),
+        "unresolved key 'nope'",
+    )
 
     for failure in failures:
         print(f"FAIL {failure}", file=sys.stderr)

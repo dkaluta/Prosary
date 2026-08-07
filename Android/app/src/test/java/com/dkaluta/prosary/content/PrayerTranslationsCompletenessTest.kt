@@ -124,17 +124,31 @@ class PrayerTranslationsCompletenessTest {
     private fun referencedKeys(definition: CustomDevotionDefinition): Pair<Set<String>, Set<String>> {
         val text = mutableSetOf<String>()
         val mysteries = mutableSetOf<String>()
+        // Every decade block in the bundle: the single-form one, and one per rosary-type
+        // variant. Missing a variant's block would quietly stop checking the keys only that form
+        // uses, which is the whole thing this test exists to catch.
+        val allDecades = listOfNotNull(definition.decades) +
+            definition.variants.orEmpty().mapNotNull { it.decades }
         val allEntries = definition.steps.orEmpty() + definition.eastertideSteps.orEmpty() +
             definition.opening.orEmpty() + definition.closing.orEmpty() +
-            definition.variants.orEmpty().flatMap { it.steps + it.eastertideSteps.orEmpty() }
+            definition.variants.orEmpty().flatMap {
+                it.steps.orEmpty() + it.eastertideSteps.orEmpty() +
+                    it.opening.orEmpty() + it.closing.orEmpty()
+            } +
+            allDecades.flatMap { it.preAnnouncement.orEmpty() + it.postMinor.orEmpty() }
         for (entry in allEntries) {
             if (entry.kind != null) continue
             entry.bodyKey?.let { text.add(it) }
             entry.titleKey?.let { text.add(it) }
+            entry.acclamationKey?.let { text.add(it) }
+            entry.subtitleKey?.let { text.add(it) }
         }
-        definition.decades?.let { decades ->
+        for (decades in allDecades) {
             text.add(decades.majorStep.bodyKey)
             text.add(decades.minorStep.bodyKey)
+            decades.majorStep.titleKey?.let { text.add(it) }
+            decades.minorStep.titleKey?.let { text.add(it) }
+            decades.ordinalNounKey?.let { text.add(it) }
             if (decades.announceMystery) {
                 for (entry in decades.entries.orEmpty()) mysteries.add(entry.imageKey)
             }

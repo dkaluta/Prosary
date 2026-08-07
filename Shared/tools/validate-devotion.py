@@ -310,6 +310,110 @@ def collect_entry_refs(entry: dict, body_keys: set, title_keys: set, image_keys:
         image_keys.add(entry["imageKey"])
 
 
+def validate_rosary_form(opening, decades, closing, has_closing_cross, prefix,
+                         body_keys, title_keys, image_keys, mystery_keys):
+    """The bead-track invariants and decade rules for one rosary-type form.
+
+    Factored out when variants grew to cover the rosary type: a devotion offering several
+    forms must satisfy these once per form, not once per bundle — otherwise a second form
+    could ship without an opening cross and crash the bead track that assumes one.
+    """
+
+    if not opening:
+        err(prefix + "rosary-type devotion needs an opening")
+    elif opening[0].get("bodyKey") != SIGN_OF_CROSS_KEY:
+        err(prefix + "opening[0] must be the Sign of the Cross (bead track assumes step 0 is the opening cross)")
+    for i, entry in enumerate(opening):
+        validate_entry(entry, f"{prefix}opening[{i}]", allow_kind=False)
+        collect_entry_refs(entry, body_keys, title_keys, image_keys)
+
+    antiphons = 0
+    for i, entry in enumerate(closing):
+        validate_entry(entry, f"{prefix}closing[{i}]", allow_kind=True)
+        if entry.get("kind") in (ANTIPHON_KIND, OPTION_ANTIPHON_KIND):
+            antiphons += 1
+        collect_entry_refs(entry, body_keys, title_keys, image_keys)
+    if antiphons > 1:
+        err(prefix + "at most one antiphon-kind closing entry is allowed (single 'M' bead)")
+    if has_closing_cross:
+        last = closing[-1] if closing else {}
+        if last.get("bodyKey") != SIGN_OF_CROSS_KEY or "repeat" in last:
+            err(prefix + "hasClosingCross: the final closing entry must be a non-repeated Sign of the "
+                "Cross (BeadLayout assumes the closing cross is the literal last step)")
+
+    entries = decades.get("entries")
+    count = decades.get("count")
+    fixed_image = decades.get("fixedImageKey")
+    source = decades.get("source")
+    if source is not None and source != "mysteryGroups":
+        err(f"{prefix}decades: unknown source {source!r}")
+    if source is not None:
+        # Engine-cataloged decades (the Rosary): the decade list comes from the
+        # mystery-group machinery, so a bundle catalog would be dead data.
+        if entries is not None or count is not None or fixed_image:
+            err(prefix + "decades: 'source' is mutually exclusive with 'entries'/'count'/'fixedImageKey'")
+    elif (entries is None) == (count is None):
+        err(prefix + "decades: exactly one of 'entries' or 'count' is required (or a 'source')")
+    if count is not None and not fixed_image:
+        err(prefix + "decades: 'count' requires 'fixedImageKey'")
+    if entries is not None and fixed_image:
+        err(prefix + "decades: 'entries' and 'fixedImageKey' are mutually exclusive")
+    # The noun a decade is counted in ("Mystery"/"Joy"/…) — a literal, or a key so it
+    # reads in the language being prayed.
+    if not (decades.get("ordinalNoun") or decades.get("ordinalNounKey")):
+        err(prefix + "decades: ordinalNoun (or ordinalNounKey) is required")
+    if decades.get("ordinalNoun") and decades.get("ordinalNounKey"):
+        err(prefix + "decades: ordinalNoun and ordinalNounKey are mutually exclusive")
+    if decades.get("ordinalNounKey"):
+        title_keys.add(decades["ordinalNounKey"])
+    if decades.get("announceMystery") and entries is None and source is None:
+        err(prefix + "decades: announceMystery requires 'entries' (or an engine 'source')")
+    if not isinstance(decades.get("minorCount"), int) or decades.get("minorCount", 0) < 1:
+        err(prefix + "decades: minorCount must be an integer >= 1")
+    for role in ("majorStep", "minorStep"):
+        step = decades.get(role) or {}
+        # A literal title or a titleKey, same as every other entry — the decade steps
+        # carry titleKeys so "Our Father"/"Hail Mary" read in the prayer's own language.
+        if not (step.get("title") or step.get("titleKey")) or not step.get("bodyKey"):
+            err(f"{prefix}decades.{role}: needs a title (or titleKey) and bodyKey")
+        else:
+            body_keys.add(step["bodyKey"])
+        if step.get("title") and step.get("titleKey"):
+            err(f"{prefix}decades.{role}: title and titleKey are mutually exclusive")
+        if step.get("titleKey"):
+            title_keys.add(step["titleKey"])
+        if step.get("imageKey"):
+            image_keys.add(step["imageKey"])
+    for i, entry in enumerate(entries or []):
+        if not entry.get("imageKey"):
+            err(f"{prefix}decades.entries[{i}]: missing imageKey")
+        else:
+            image_keys.add(entry["imageKey"])
+            if decades.get("announceMystery"):
+                mystery_keys.add(entry["imageKey"])
+    if fixed_image:
+        image_keys.add(fixed_image)
+    # Said before each decade's announcement, not after its beads — the Servite chaplet asks
+    # Our Lady to recall her Son's sorrows before naming each one. postMinor could not express
+    # it: the invocation precedes the first sorrow, and postMinor fires after a decade.
+    for i, entry in enumerate(decades.get("preAnnouncement") or []):
+        validate_entry(entry, f"{prefix}decades.preAnnouncement[{i}]", allow_kind=False)
+        collect_entry_refs(entry, body_keys, title_keys, image_keys)
+    for i, entry in enumerate(decades.get("postMinor") or []):
+        validate_entry(entry, f"decades.postMinor[{i}]", allow_kind=False)
+        collect_entry_refs(entry, body_keys, title_keys, image_keys)
+    presenter = decades.get("presenter")
+    if presenter is not None:
+        if not (presenter.get("combinedTitle") or presenter.get("combinedTitleKey")):
+            err("decades.presenter: needs a combinedTitle (or combinedTitleKey)")
+        if presenter.get("combinedTitleKey"):
+            title_keys.add(presenter["combinedTitleKey"])
+        if not presenter.get("bodyKeys"):
+            err("decades.presenter: needs a non-empty bodyKeys list")
+        for key in presenter.get("bodyKeys") or []:
+            body_keys.add(key)
+
+
 def main() -> int:
     src = Path(sys.argv[1]).resolve()
     shared_images = Path(__file__).resolve().parent.parent / "Images"
@@ -627,97 +731,43 @@ def main() -> int:
                 err(f"hours-type devotion must not have {field!r}")
 
     elif dtype == "rosary":
-        opening = devotion.get("opening") or []
-        closing = devotion.get("closing") or []
-        decades = devotion.get("decades") or {}
+        # Alternate forms of one devotion, the same idea the steps type has carried since the
+        # Stations grew a scriptural form — a rosary-type devotion can differ in its opening,
+        # its per-decade invocations and its closing while praying the same seven sorrows.
+        variants = devotion.get("variants")
+        if variants is not None:
+            if any(f in devotion for f in ("opening", "decades", "closing", "hasClosingCross")):
+                err("a rosary devotion with variants must not also have top-level "
+                    "opening/decades/closing/hasClosingCross")
+            if not variants:
+                err("variants must not be empty")
+            seen_ids = set()
+            for v, variant in enumerate(variants):
+                where = f"variants[{v}]"
+                vid = variant.get("id")
+                if not vid or not isinstance(vid, str):
+                    err(f"{where}: missing id")
+                elif vid in seen_ids:
+                    err(f"{where}: duplicate id {vid!r}")
+                else:
+                    seen_ids.add(vid)
+                    declared_variant_ids.add(vid)
+                if not variant.get("name"):
+                    err(f"{where}: missing name")
+                validate_rosary_form(
+                    variant.get("opening") or [], variant.get("decades") or {},
+                    variant.get("closing") or [], variant.get("hasClosingCross"),
+                    f"{where}.", body_keys, title_keys, image_keys, mystery_keys)
+                extra = unknown_fields(variant, {"id", "name", "nameByLanguage", "opening",
+                                                 "decades", "closing", "hasClosingCross"})
+                if extra:
+                    err(f"{where}: unknown fields {extra}")
+        else:
+            validate_rosary_form(
+                devotion.get("opening") or [], devotion.get("decades") or {},
+                devotion.get("closing") or [], devotion.get("hasClosingCross"),
+                "", body_keys, title_keys, image_keys, mystery_keys)
 
-        if not opening:
-            err("rosary-type devotion needs an opening")
-        elif opening[0].get("bodyKey") != SIGN_OF_CROSS_KEY:
-            err("opening[0] must be the Sign of the Cross (bead track assumes step 0 is the opening cross)")
-        for i, entry in enumerate(opening):
-            validate_entry(entry, f"opening[{i}]", allow_kind=False)
-            collect_entry_refs(entry, body_keys, title_keys, image_keys)
-
-        antiphons = 0
-        for i, entry in enumerate(closing):
-            validate_entry(entry, f"closing[{i}]", allow_kind=True)
-            if entry.get("kind") in (ANTIPHON_KIND, OPTION_ANTIPHON_KIND):
-                antiphons += 1
-            collect_entry_refs(entry, body_keys, title_keys, image_keys)
-        if antiphons > 1:
-            err("at most one antiphon-kind closing entry is allowed (single 'M' bead)")
-        if devotion.get("hasClosingCross"):
-            last = closing[-1] if closing else {}
-            if last.get("bodyKey") != SIGN_OF_CROSS_KEY or "repeat" in last:
-                err("hasClosingCross: the final closing entry must be a non-repeated Sign of the "
-                    "Cross (BeadLayout assumes the closing cross is the literal last step)")
-
-        entries = decades.get("entries")
-        count = decades.get("count")
-        fixed_image = decades.get("fixedImageKey")
-        source = decades.get("source")
-        if source is not None and source != "mysteryGroups":
-            err(f"decades: unknown source {source!r}")
-        if source is not None:
-            # Engine-cataloged decades (the Rosary): the decade list comes from the
-            # mystery-group machinery, so a bundle catalog would be dead data.
-            if entries is not None or count is not None or fixed_image:
-                err("decades: 'source' is mutually exclusive with 'entries'/'count'/'fixedImageKey'")
-        elif (entries is None) == (count is None):
-            err("decades: exactly one of 'entries' or 'count' is required (or a 'source')")
-        if count is not None and not fixed_image:
-            err("decades: 'count' requires 'fixedImageKey'")
-        if entries is not None and fixed_image:
-            err("decades: 'entries' and 'fixedImageKey' are mutually exclusive")
-        # The noun a decade is counted in ("Mystery"/"Joy"/…) — a literal, or a key so it
-        # reads in the language being prayed.
-        if not (decades.get("ordinalNoun") or decades.get("ordinalNounKey")):
-            err("decades: ordinalNoun (or ordinalNounKey) is required")
-        if decades.get("ordinalNoun") and decades.get("ordinalNounKey"):
-            err("decades: ordinalNoun and ordinalNounKey are mutually exclusive")
-        if decades.get("ordinalNounKey"):
-            title_keys.add(decades["ordinalNounKey"])
-        if decades.get("announceMystery") and entries is None and source is None:
-            err("decades: announceMystery requires 'entries' (or an engine 'source')")
-        if not isinstance(decades.get("minorCount"), int) or decades.get("minorCount", 0) < 1:
-            err("decades: minorCount must be an integer >= 1")
-        for role in ("majorStep", "minorStep"):
-            step = decades.get(role) or {}
-            # A literal title or a titleKey, same as every other entry — the decade steps
-            # carry titleKeys so "Our Father"/"Hail Mary" read in the prayer's own language.
-            if not (step.get("title") or step.get("titleKey")) or not step.get("bodyKey"):
-                err(f"decades.{role}: needs a title (or titleKey) and bodyKey")
-            else:
-                body_keys.add(step["bodyKey"])
-            if step.get("title") and step.get("titleKey"):
-                err(f"decades.{role}: title and titleKey are mutually exclusive")
-            if step.get("titleKey"):
-                title_keys.add(step["titleKey"])
-            if step.get("imageKey"):
-                image_keys.add(step["imageKey"])
-        for i, entry in enumerate(entries or []):
-            if not entry.get("imageKey"):
-                err(f"decades.entries[{i}]: missing imageKey")
-            else:
-                image_keys.add(entry["imageKey"])
-                if decades.get("announceMystery"):
-                    mystery_keys.add(entry["imageKey"])
-        if fixed_image:
-            image_keys.add(fixed_image)
-        for i, entry in enumerate(decades.get("postMinor") or []):
-            validate_entry(entry, f"decades.postMinor[{i}]", allow_kind=False)
-            collect_entry_refs(entry, body_keys, title_keys, image_keys)
-        presenter = decades.get("presenter")
-        if presenter is not None:
-            if not (presenter.get("combinedTitle") or presenter.get("combinedTitleKey")):
-                err("decades.presenter: needs a combinedTitle (or combinedTitleKey)")
-            if presenter.get("combinedTitleKey"):
-                title_keys.add(presenter["combinedTitleKey"])
-            if not presenter.get("bodyKeys"):
-                err("decades.presenter: needs a non-empty bodyKeys list")
-            for key in presenter.get("bodyKeys") or []:
-                body_keys.add(key)
     else:
         err(f"devotion.json: unknown type {dtype!r}")
         return report()

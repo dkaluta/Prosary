@@ -240,8 +240,13 @@ data class CustomDevotionDefinition(
             get() = nameByLanguage?.get(java.util.Locale.getDefault().language) ?: name
     }
 
-    /** One named alternate step-set of a steps-type devotion (e.g. the Stations' traditional
-     * vs. scriptural forms). */
+    /** One named alternate form of a devotion — the Stations' traditional vs. scriptural sets,
+     * or a chaplet's shorter and fuller recensions. The first variant is the default.
+     *
+     * A steps-type variant carries [steps]; a rosary-type one carries the same four fields a
+     * single-form rosary devotion has. Which pair is populated follows the devotion's type, and
+     * the validator enforces it — the decoders stay lenient so the engines can switch on type
+     * alone. */
     @Serializable
     data class Variant(
         val id: String,
@@ -249,8 +254,13 @@ data class CustomDevotionDefinition(
          * per UI localization, mirroring the manifest's displayNameByLanguage. */
         val name: String,
         val nameByLanguage: Map<String, String>? = null,
-        val steps: List<CustomDevotionStep>,
+        val steps: List<CustomDevotionStep>? = null,
         val eastertideSteps: List<CustomDevotionStep>? = null,
+        // rosary type
+        val opening: List<CustomDevotionStep>? = null,
+        val decades: Decades? = null,
+        val closing: List<CustomDevotionStep>? = null,
+        val hasClosingCross: Boolean? = null,
     ) {
         val localizedName: String
             get() = nameByLanguage?.get(Locale.getDefault().language) ?: name
@@ -261,9 +271,29 @@ data class CustomDevotionDefinition(
     fun resolvedSteps(variantId: String?): Pair<List<CustomDevotionStep>, List<CustomDevotionStep>?> {
         if (!variants.isNullOrEmpty()) {
             val variant = variants.firstOrNull { it.id == variantId } ?: variants.first()
-            return variant.steps to variant.eastertideSteps
+            return variant.steps.orEmpty() to variant.eastertideSteps
         }
         return steps.orEmpty() to eastertideSteps
+    }
+
+    /** One rosary-type form: the matching variant, else the default (first) one, else the
+     * top-level fields. Mirrors [resolvedSteps] so both types pick a form the same way. */
+    data class RosaryForm(
+        val opening: List<CustomDevotionStep>,
+        val decades: Decades?,
+        val closing: List<CustomDevotionStep>,
+        val hasClosingCross: Boolean,
+    )
+
+    fun resolvedRosary(variantId: String?): RosaryForm {
+        if (!variants.isNullOrEmpty()) {
+            val variant = variants.firstOrNull { it.id == variantId } ?: variants.first()
+            return RosaryForm(
+                variant.opening.orEmpty(), variant.decades, variant.closing.orEmpty(),
+                variant.hasClosingCross ?: false,
+            )
+        }
+        return RosaryForm(opening.orEmpty(), decades, closing.orEmpty(), hasClosingCross ?: false)
     }
 
     @Serializable
@@ -311,6 +341,10 @@ data class CustomDevotionDefinition(
         val minorCount: Int,
         /** Entries emitted after each decade's minors, carrying the decade's subtitle/index
          * (the Rosary's Glory Be / Fatima Prayer / per-decade eternal rest), usually gated. */
+        /** Emitted before each decade's announcement — the Servite chaplet's invocation
+         * to Our Lady before each sorrow is named. Not beads: they carry the decade's
+         * subtitle but no decadeIndex. */
+        val preAnnouncement: List<CustomDevotionStep>? = null,
         val postMinor: List<CustomDevotionStep>? = null,
         /** Presenter-mode alternate decade tail: the minors collapse into one combined step
          * with `hailMaryIndexInDecade = minorCount` so the bead track still renders a full

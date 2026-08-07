@@ -195,7 +195,7 @@ struct PrayerEngine {
     case .rosary:
       return buildCustomRosarySteps(
         definition, bundleId: bundleId, languageCode: languageCode, optionValues: optionValues,
-        rosaryOptions: rosaryOptions)
+        rosaryOptions: rosaryOptions, variantId: variantId)
     case .days:
       // Multi-day devotions: shared opening + the day's own steps + shared closing. `dayIndex`
       // is clamped, so a finished novena keeps praying its last day rather than crashing.
@@ -293,9 +293,11 @@ struct PrayerEngine {
   /// exactly so the bead track and step chrome behave identically everywhere.
   private func buildCustomRosarySteps(
     _ definition: CustomDevotionDefinition, bundleId: String, languageCode: String?,
-    optionValues: [String: String] = [:], rosaryOptions: RosaryOptions? = nil
+    optionValues: [String: String] = [:], rosaryOptions: RosaryOptions? = nil,
+    variantId: String? = nil
   ) -> [RosaryStep] {
-    guard let decades = definition.decades else { return [] }
+    let form = definition.resolvedRosary(variantId: variantId)
+    guard let decades = form.decades else { return [] }
     func resolve(_ key: String) -> String {
       PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: languageCode, key: key)
     }
@@ -304,7 +306,7 @@ struct PrayerEngine {
     }
 
     var steps: [RosaryStep] = []
-    for entry in definition.opening ?? [] {
+    for entry in form.opening {
       steps.append(contentsOf: expand(
         entry, bundleId: bundleId, languageCode: languageCode, optionValues: optionValues))
     }
@@ -324,6 +326,17 @@ struct PrayerEngine {
         let imageKey = entry?.imageKey ?? decades.fixedImageKey
         let ordinalLabel = decadeOrdinal(d, decades: decades, bundleId: bundleId, languageCode: languageCode)
         var decadeSubtitle = ordinalLabel
+
+        // Said before the sorrow is named, not after its beads — see the format's
+        // `decades.preAnnouncement`. Carries the decade's subtitle so the chrome reads as part
+        // of that decade, but no decadeIndex: it is not a bead.
+        for pre in decades.preAnnouncement ?? [] {
+          for var step in expand(pre, bundleId: bundleId, languageCode: languageCode,
+                                 optionValues: optionValues) {
+            step.subtitle = step.subtitle ?? decadeSubtitle
+            steps.append(step)
+          }
+        }
 
         if decades.announceMystery, let entry {
           let mysteryText = MysteryTranslations.get(languageCode: languageCode, imageKey: entry.imageKey)
@@ -354,7 +367,7 @@ struct PrayerEngine {
       }
     }
 
-    for entry in definition.closing ?? [] {
+    for entry in form.closing {
       steps.append(contentsOf: expand(
         entry, bundleId: bundleId, languageCode: languageCode, optionValues: optionValues))
     }

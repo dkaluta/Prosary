@@ -111,16 +111,32 @@ final class PrayerTranslationsCompletenessTests: XCTestCase {
     var mysteries = Set<String>()
     var allEntries = (definition.steps ?? []) + (definition.eastertideSteps ?? [])
       + (definition.opening ?? []) + (definition.closing ?? [])
+
+    // Every decade block in the bundle: the single-form one, and one per rosary-type variant.
+    // Missing a variant's block here would quietly stop checking the keys only that form uses,
+    // which is the whole thing this test exists to catch.
+    var allDecades = [definition.decades].compactMap { $0 }
     for variant in definition.variants ?? [] {
-      allEntries += variant.steps + (variant.eastertideSteps ?? [])
+      allEntries += (variant.steps ?? []) + (variant.eastertideSteps ?? [])
+        + (variant.opening ?? []) + (variant.closing ?? [])
+      if let decades = variant.decades { allDecades.append(decades) }
     }
+    for decades in allDecades {
+      allEntries += (decades.preAnnouncement ?? []) + (decades.postMinor ?? [])
+    }
+
     for entry in allEntries where entry.kind == nil {
       entry.bodyKey.map { text.insert($0) }
       entry.titleKey.map { text.insert($0) }
+      entry.acclamationKey.map { text.insert($0) }
+      entry.subtitleKey.map { text.insert($0) }
     }
-    if let decades = definition.decades {
+    for decades in allDecades {
       text.insert(decades.majorStep.bodyKey)
       text.insert(decades.minorStep.bodyKey)
+      decades.majorStep.titleKey.map { text.insert($0) }
+      decades.minorStep.titleKey.map { text.insert($0) }
+      decades.ordinalNounKey.map { text.insert($0) }
       if decades.announceMystery {
         for entry in decades.entries ?? [] { mysteries.insert(entry.imageKey) }
       }
