@@ -1,8 +1,6 @@
 {
   "$comment": "Where each prayer's lines fall, for Shared/tools/reflow-prayers.py. A marker is a substring of the prayer; a line break goes immediately before it. Only whitespace changes — the tool refuses to run if collapsing the result back to spaces does not reproduce the original wording exactly.",
-
-  "$he": "The Hebrew breaks are not editorial judgement. They are transcribed from the prayer sheets a woman from the Rosary Zoom call sent in August 2026 — the Latin-rite Vicariate's Hebrew, vocalised, as she prays it and as she laid it out for others to pray. Where her sheet sets a line, this sets a line. Her wording also matches the app's almost exactly, which is worth knowing on its own; the handful of places it does not are listed in the notes below and are for a person to settle, not this file.",
-
+  "$he": "The Hebrew breaks are not editorial judgement. They are transcribed from the prayer sheets a woman from the Rosary Zoom call sent in August 2026 — the Latin-rite Vicariate's Hebrew, vocalised, as she prays it and as she laid it out for others to pray. Where her sheet sets a line, this sets a line. Her wording also matches the app's almost exactly, which is no coincidence: the app's Hebrew was transcribed from the Vicariate's own prayer book, so the two are the same text reaching us by different routes. The handful of places her copy differs in pointing are noted in PrayerTranslations+Hebrew and deliberately changed nothing — print wins over a photograph.",
   "he": {
     "paterNoster": [
       "תָּבוֹא מַלְכוּתֶךָ",

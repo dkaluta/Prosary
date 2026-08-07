@@ -1,8 +1,17 @@
 package com.dkaluta.prosary.content
 
 /**
- * Official Hebrew Catholic wording as used by Hebrew-speaking Catholic communities in the Holy
- * Land (e.g. the St. James Vicariate), vocalized with niqqud for readability.
+ * Transcribed directly from the prayer book of the Saint James Vicariate for Hebrew Speaking
+ * Catholics — not assembled from what is around online. That is why the rites picker calls
+ * this one נוסח הנציגות, the Vicariate's own usage: it is theirs, vocalized with niqqud as
+ * they print it.
+ * 
+ * Worth knowing when a second witness turns up and disagrees. A tester's own prayer sheets
+ * (August 2026) matched this almost word for word, differing in about six places of
+ * pointing and spelling — יִתְקַדֵּשׁ for יִתְקַדַּשׁ, יָאֵר for יָאִיר. Those are her copy
+ * against the printed book, not an open question about which is right, and nothing here
+ * moved on their account. Her sheets did settle where the lines break: see
+ * Shared/tools/prayer-line-breaks.json.
  */
 val prayerTranslationsHebrew: Map<PrayerKey, String> = mapOf(
     PrayerKey.SignumCrucis to
