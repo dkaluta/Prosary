@@ -10,7 +10,7 @@ import { ReviewScreen } from "./ui/ReviewScreen";
 import { StepsScreen } from "./ui/StepsScreen";
 import { download, pickFile, readFileBytes } from "./ui/media";
 
-const AUTOSAVE_KEY = "prosary-compose-autosave";
+export const AUTOSAVE_KEY = "prosary-compose-autosave";
 
 function restoreAutosave(): Project | null {
   try {

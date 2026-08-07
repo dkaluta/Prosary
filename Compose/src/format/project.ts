@@ -169,7 +169,14 @@ export function deserializeProject(json: string): Project {
   if (raw?.prosaryCompose !== 1) throw new Error("Not a Prosary Compose project file.");
   const { prosaryCompose: _, ...rest } = raw;
   return {
-    iconGlyph: "",
+    // Every field a saved project might predate, defaulted in one go. A project saved before a
+    // feature landed simply has no key for it — and the screens read those keys without asking.
+    // This used to name `iconGlyph` alone, so when multi-day authoring added `days`, every
+    // autosave written before it restored with `days: undefined`, and opening the Prayers screen
+    // threw on `.find` and left a blank page: the bad state sits in the browser, so it followed
+    // the one person who had it and no clean profile could reproduce it. Spreading the real
+    // defaults means the next field costs nothing to remember.
+    ...newProject(),
     ...rest,
     images: (rest.images ?? []).map((image: EditorImage & { jpeg: string }) => {
       const jpeg = fromBase64(image.jpeg);
