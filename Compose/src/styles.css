@@ -385,3 +385,16 @@ a {
   text-align: center;
   font-size: 1.2em;
 }
+
+/* Shown only by ErrorBoundary, when a render has thrown and the wizard is gone. */
+.crash {
+  border: 1px solid var(--rule, #d9d2c7);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 16px;
+}
+.crash pre.issue {
+  white-space: pre-wrap;
+  font-size: 0.85em;
+  margin-top: 16px;
+}

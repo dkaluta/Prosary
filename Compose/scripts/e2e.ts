@@ -7,7 +7,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { buildBundle, buildBundleFiles } from "../src/format/pack";
 import type { EditorStep } from "../src/format/project";
-import { newProject, newUid } from "../src/format/project";
+import { deserializeProject, newProject, newUid, serializeProject } from "../src/format/project";
 import { openBundle } from "../src/format/unpack";
 import { validateProject } from "../src/format/validate";
 
@@ -215,4 +215,27 @@ console.log("e2e OK —", original.map((f) => f.name).join(", "));
   // shipped bundle uses days yet, so this is the only thing holding that path honest.
   writeFileSync("dist-e2e/novena.prosaryprayer", buildBundle(project));
   console.log("✓ days-type project packs, validates and round-trips");
+}
+
+
+// A project saved by an older Compose is missing every key added since — and the screens read
+// those keys without checking. When multi-day authoring landed, autosaves written before it
+// restored with `days: undefined` and the Prayers screen threw on `.find`, leaving a blank page
+// that only the person holding that localStorage could see. deserializeProject now fills from
+// newProject(), so the guard is simply: drop each key in turn and demand it comes back.
+{
+  const current = JSON.parse(serializeProject(newProject())) as Record<string, unknown>;
+  const defaults = newProject() as unknown as Record<string, unknown>;
+
+  for (const key of Object.keys(defaults)) {
+    const aged = { ...current };
+    delete aged[key];
+    const restored = deserializeProject(JSON.stringify(aged)) as unknown as Record<string, unknown>;
+    assert(
+      restored[key] !== undefined,
+      `a project saved without "${key}" restores with it undefined — the screen that reads it ` +
+        `will throw and blank the page. deserializeProject must default every field.`,
+    );
+  }
+  console.log(`✓ projects saved before any of ${Object.keys(defaults).length} fields still restore`);
 }
