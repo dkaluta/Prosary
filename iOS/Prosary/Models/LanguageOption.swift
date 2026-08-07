@@ -39,6 +39,9 @@ enum LanguageCatalog {
     // Aramaic in Hebrew script — the Aramaic-rite Hebrew Catholic communities' liturgical
     // language (requested by the Mission of St. Gamaliel for v0.7).
     LanguageOption(code: "arc", nativeName: "ארמית", isRightToLeft: true),
+    // Greek: the language a great deal of the app's own Scripture and prayer was first
+    // written in — the Creed, the Sub Tuum, the Jesus Prayer.
+    LanguageOption(code: "el", nativeName: "Ἑλληνικά", isRightToLeft: false),
     LanguageOption(code: "ru", nativeName: "Русский", isRightToLeft: false),
     LanguageOption(code: "tl", nativeName: "Tagalog", isRightToLeft: false),
   ]

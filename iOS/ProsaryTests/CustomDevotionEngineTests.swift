@@ -47,6 +47,39 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertFalse(steps[4].body.contains("Holy Mighty One"))
   }
 
+  /// Where Greek stands, pinned exactly — because it is half-finished and the half that is done
+  /// should not be mistaken for the whole.
+  ///
+  /// The shared prayers work: a Greek session says the Jesus Prayer and the Sub Tuum in the
+  /// language they were written in, and falls back to Latin per key for the Latin-tradition
+  /// prayers Greek has none of.
+  ///
+  /// The bundle Scripture does not, yet. The Peshitta/Byzantine import put 36 passages into the
+  /// packs, and they are genuinely there — resolveBodyText finds them. But a *session* never
+  /// asks for them: no bundle's manifest declares "el", so effectiveLanguage falls to the
+  /// bundle's first language and the whole devotion prays Latin. Declaring it would fix that and
+  /// would also be a lie — Greek covers 22–43% of those bundles' keys, so the offer would be a
+  /// devotion that is mostly Latin wearing a Greek label. What flips this test is Greek titles
+  /// and prayers in the bundles, not a manifest edit.
+  func testGreekPraysItsOwnPrayersAndFallsBackForTheRest() {
+    XCTAssertEqual(PrayerTranslations.get(languageCode: "el", key: .oratioIesu),
+                   "Κύριε Ἰησοῦ Χριστέ, Υἱὲ τοῦ Θεοῦ, ἐλέησόν με τὸν ἁμαρτωλόν.")
+    XCTAssertTrue(PrayerTranslations.get(languageCode: "el", key: .subTuumPraesidium)
+      .hasPrefix("Ὑπὸ τὴν σὴν εὐσπλαγχνίαν"))
+    XCTAssertEqual(PrayerTranslations.get(languageCode: "el", key: .salveRegina),
+                   PrayerTranslations.get(languageCode: "la", key: .salveRegina),
+                   "no citable Greek Salve Regina exists, so Latin stands")
+
+    // The imported Scripture is in the pack...
+    let greek = PrayerPackStore.resolveBodyText(
+      bundleId: "viaLucis", languageCode: "el", key: "viaLucis01Body")
+    XCTAssertTrue(greek.contains("Ὀψὲ δὲ σαββάτων"), "Matthew 28 in the Byzantine text")
+
+    // ...and a session still prays Latin, because no manifest offers Greek yet.
+    let session = steps("viaLucis", language: "el")
+    XCTAssertEqual(session.map(\.body), steps("viaLucis", language: "la").map(\.body))
+  }
+
   /// The Vicariate's Hebrew prayerbook leads each of the three acclamations with a cross, and
   /// gives the short form none. The asymmetry is the point: it is exactly what an editor would
   /// "tidy up" later, so both halves are pinned. Hebrew only — the other languages keep the

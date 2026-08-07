@@ -33,6 +33,7 @@ object PrayerTranslations {
         "he" to prayerTranslationsHebrew,
         // The Mission of St. Gamaliel's wording, overlaying plain Hebrew key by key.
         "he-x-gamliel" to prayerTranslationsHebrewGamaliel,
+        "el" to prayerTranslationsGreek,
         "ru" to prayerTranslationsRussian,
         "tl" to prayerTranslationsTagalog,
     )
