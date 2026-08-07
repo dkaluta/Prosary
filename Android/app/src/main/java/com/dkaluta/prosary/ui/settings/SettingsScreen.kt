@@ -169,7 +169,7 @@ fun SettingsScreen(onBack: () -> Unit) {
             // discoverable outside a session.
             OptionPickerField(
                 label = stringResource(R.string.settings_auto_advance),
-                options = listOf(0, 3, 5, 10),
+                options = listOf(0, 3, 5, 10, 15),
                 selected = autoAdvanceSeconds,
                 optionLabel = { if (it == 0) context.getString(R.string.auto_advance_off) else context.getString(R.string.auto_advance_every, it) },
                 onSelect = {

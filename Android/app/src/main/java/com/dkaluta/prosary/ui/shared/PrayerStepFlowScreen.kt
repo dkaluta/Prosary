@@ -186,7 +186,7 @@ fun PrayerStepFlowScreen(
                             expanded = autoAdvanceMenuExpanded,
                             onDismissRequest = { autoAdvanceMenuExpanded = false },
                         ) {
-                            for (seconds in listOf(0, 3, 5, 10)) {
+                            for (seconds in listOf(0, 3, 5, 10, 15)) {
                                 val label = if (seconds == 0) stringResource(R.string.auto_advance_off) else stringResource(R.string.auto_advance_every, seconds)
                                 DropdownMenuItem(
                                     text = { Text(label) },

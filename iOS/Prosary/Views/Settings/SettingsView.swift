@@ -59,7 +59,7 @@ struct SettingsView: View {
         Picker(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-advance"),
                selection: $autoAdvanceSeconds) {
           Text(String(localized: "prayerFlow.autoAdvance.off", defaultValue: "Off")).tag(0)
-          ForEach([3, 5, 10], id: \.self) { seconds in
+          ForEach([3, 5, 10, 15], id: \.self) { seconds in
             Text(String(localized: "prayerFlow.autoAdvance.everySeconds",
                         defaultValue: "Every \(seconds) seconds")).tag(seconds)
           }

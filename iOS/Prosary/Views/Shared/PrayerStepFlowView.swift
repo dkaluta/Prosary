@@ -58,7 +58,7 @@ struct PrayerStepFlowView: View {
   /// it on for the whole session, not per page.
   @State private var showsTransliteration = false
 
-  private static let autoAdvanceChoices = [3, 5, 10]
+  private static let autoAdvanceChoices = [3, 5, 10, 15]
 
   /// Regular width (Mac, a wide iPad window, Vision) gets the taller three-column layout; so
   /// does a compact-*height* window, which is how even a non-Max iPhone reports itself in

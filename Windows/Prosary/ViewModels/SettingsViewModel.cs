@@ -80,6 +80,9 @@ public partial class SettingsViewModel : ObservableObject
         new(3, string.Format(Loc.Tr("auto_advance_every", "Every {0} seconds"), 3)),
         new(5, string.Format(Loc.Tr("auto_advance_every", "Every {0} seconds"), 5)),
         new(10, string.Format(Loc.Tr("auto_advance_every", "Every {0} seconds"), 10)),
+        // A tester praying in Latin wanted longer between steps — reading an unfamiliar
+        // language aloud takes more than ten seconds a bead.
+        new(15, string.Format(Loc.Tr("auto_advance_every", "Every {0} seconds"), 15)),
     ];
 
     public IReadOnlyList<AutoAdvanceOption> AutoAdvanceOptions => AllAutoAdvanceOptions;

@@ -75,7 +75,8 @@ public sealed class AutoAdvanceTimer : IDisposable
 public static class AutoAdvanceMenu
 {
     private static readonly (int Seconds, string Label)[] Choices =
-        [(0, "Off"), (3, "Every 3 seconds"), (5, "Every 5 seconds"), (10, "Every 10 seconds")];
+        [(0, "Off"), (3, "Every 3 seconds"), (5, "Every 5 seconds"), (10, "Every 10 seconds"),
+         (15, "Every 15 seconds")];
 
     public static void Populate(MenuFlyout flyout, Action onChanged)
     {
