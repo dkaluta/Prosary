@@ -30,11 +30,13 @@ tool's to perform.
 from __future__ import annotations
 
 import csv
+import html
 import io
 import json
 import re
 import sys
 import unicodedata
+import urllib.parse
 import urllib.request
 import zipfile
 from pathlib import Path
@@ -76,6 +78,31 @@ LANGUAGES = {
                   "Acts": ("ܦܪܟܣܝܣ", "פרכסיס"), "Revelation": ("ܓܠܝܢܐ", "גלינא"),
                   "Isaiah": ("ܐܫܥܝܐ", "אשעיא")},
         "edition": ("ܦܫܝܛܬܐ", "פשיטתא"),
+    },
+    "es": {
+        # Félix Torres Amat's Spanish Bible (1836), translated from the Vulgate — which is why it
+        # is the right one here: every citation in this app is Vulgate chapter-and-verse, so no
+        # versification map is needed. Public domain by age (Torres Amat died 1847); Wikisource
+        # transcribes it from the volume scans, and only the New Testament volumes (XIII–XV) have
+        # been transcribed, so Isaiah is absent and the O Antiphons' readings stay empty.
+        "sources": {
+            "nt": ("https://es.wikisource.org/w/api.php?action=parse&page={book}"
+                   "&prop=text&format=json",
+                   "wikisource", "La Sagrada Biblia, Félix Torres Amat (1836), public domain"),
+        },
+        "primary_script": None,
+        "second_script": None,
+        "books": {"Matthew": ("San Mateo",), "Mark": ("San Marcos",), "Luke": ("San Lucas",),
+                  "John": ("San Juan",), "Acts": ("Hechos",), "Revelation": ("Apocalipsis",)},
+        "edition": ("Torres Amat",),
+        "file_names": {
+            "Matthew": "La Sagrada Biblia (XIII)/Mateo",
+            "Mark": "La Sagrada Biblia (XIII)/Marcos",
+            "Luke": "La Sagrada Biblia (XIII)/Lucas",
+            "John": "La Sagrada Biblia (XIII)/Juan",
+            "Acts": "La Sagrada Biblia (XIV)/Hechos",
+            "Revelation": "La Sagrada Biblia (XV)/Apocalipsis",
+        },
     },
     "el": {
         # Robinson-Pierpont's Byzantine Majority text: accented polytonic Unicode and released
@@ -156,8 +183,49 @@ HEBREW_TO_SYRIAC = {v: k for k, v in SYRIAC_TO_HEBREW.items()}
 # that walked in darkness", and without this it imported 9:3, "thou hast multiplied the nation".
 # Verified against both sources and pinned by a self-check below; extend it per book/chapter as
 # more of the Old Testament arrives, and never by guessing.
+# Keyed by language, because the divergence belongs to the *source*, not to the citation. The
+# Peshitta and the Septuagint follow the Hebrew numbering and part company with the Vulgate in
+# Isaiah 9; Torres Amat translated the Vulgate itself, so its numbering is the citation's own and
+# shifting it would introduce the very error this table exists to prevent.
+# Passages a language's source genuinely does not contain, each with the reason. Declared rather
+# than tolerated: a verse missing from the table is otherwise indistinguishable from a parser
+# that has quietly stopped reading, and that is exactly the failure worth keeping loud.
+SOURCE_GAPS = {
+    # Wikisource's Torres Amat transcribes John through chapter 20 only — the scan's last
+    # chapter has not been proofread, so the Via Lucis' two Johannine appearances have no
+    # Spanish text yet. Remove this the day chapter 21 appears.
+    "es": {("John", 21): "Wikisource has transcribed John only through chapter 20"},
+}
+
 VERSIFICATION = {
-    ("Isaiah", 9): (2, -1),  # (from this Vulgate verse onward, shift by this much)
+    "arc": {("Isaiah", 9): (2, -1)},  # (from this Vulgate verse onward, shift by this much)
+    "es": {
+        # Félix Torres Amat's Spanish Bible (1836), translated from the Vulgate — which is why it
+        # is the right one here: every citation in this app is Vulgate chapter-and-verse, so no
+        # versification map is needed. Public domain by age (Torres Amat died 1847); Wikisource
+        # transcribes it from the volume scans, and only the New Testament volumes (XIII–XV) have
+        # been transcribed, so Isaiah is absent and the O Antiphons' readings stay empty.
+        "sources": {
+            "nt": ("https://es.wikisource.org/w/api.php?action=parse&page={book}"
+                   "&prop=text&format=json",
+                   "wikisource", "La Sagrada Biblia, Félix Torres Amat (1836), public domain"),
+        },
+        "primary_script": None,
+        "second_script": None,
+        "books": {"Matthew": ("San Mateo",), "Mark": ("San Marcos",), "Luke": ("San Lucas",),
+                  "John": ("San Juan",), "Acts": ("Hechos",), "Revelation": ("Apocalipsis",)},
+        "edition": ("Torres Amat",),
+        "file_names": {
+            "Matthew": "La Sagrada Biblia (XIII)/Mateo",
+            "Mark": "La Sagrada Biblia (XIII)/Marcos",
+            "Luke": "La Sagrada Biblia (XIII)/Lucas",
+            "John": "La Sagrada Biblia (XIII)/Juan",
+            "Acts": "La Sagrada Biblia (XIV)/Hechos",
+            "Revelation": "La Sagrada Biblia (XV)/Apocalipsis",
+        },
+    },
+    "el": {("Isaiah", 9): (2, -1)},
+    "es": {},
 }
 
 CITATION = re.compile(r"—\s*([^\n(]+?)\s*\(([^)]+)\)\s*$")
@@ -186,9 +254,9 @@ def fetch(language: str, testament: str, book: str, binary: bool = False):
     CACHE.mkdir(exist_ok=True)
     # A whole-testament archive is fetched once, not once per book.
     cached = CACHE / (f"{language}-{testament}-archive" if layout == "vplzip"
-                      else f"{language}-{testament}-{stem}")
+                      else f"{language}-{testament}-{stem}".replace("/", "_"))
     if not cached.exists():
-        url = url_template.format(book=stem)
+        url = url_template.format(book=urllib.parse.quote(stem, safe=""))
         print(f"  fetching {url}", file=sys.stderr)
         # eBible.org refuses urllib's default agent outright (403), so identify properly.
         request = urllib.request.Request(url, headers={
@@ -201,6 +269,8 @@ def fetch(language: str, testament: str, book: str, binary: bool = False):
 def verses(language: str, testament: str, book: str) -> dict:
     """(chapter, verse) -> text, in whatever layout this language's source uses."""
     layout = LANGUAGES[language]["sources"][testament][1]
+    if layout == "wikisource":
+        return _verses_wikisource(language, testament, book)
     if layout == "vplzip":
         stem = LANGUAGES[language].get("file_names", {}).get(book, book)
         table = {}
@@ -262,6 +332,64 @@ def _verses_plain(language: str, testament: str, book: str) -> dict:
     return table
 
 
+# Chapter headings in the 1836 printing are spelled out or set in Roman numerals, and change
+# style partway through a volume — so both are read.
+_SPANISH_ORDINALS = ("PRIMERO SEGUNDO TERCERO CUARTO QUINTO SEXTO SÉPTIMO OCTAVO NOVENO DÉCIMO"
+                     .split())
+_ROMAN = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+
+
+def _roman(label: str) -> int | None:
+    total = previous = 0
+    for ch in reversed(label):
+        value = _ROMAN.get(ch)
+        if value is None:
+            return None
+        total = total - value if value < previous else total + value
+        previous = max(previous, value)
+    return total or None
+
+
+def _chapter_number(label: str) -> int | None:
+    label = label.strip().rstrip(".").upper()
+    if label in _SPANISH_ORDINALS:
+        return _SPANISH_ORDINALS.index(label) + 1
+    return _roman(label)
+
+
+def _verses_wikisource(language: str, testament: str, book: str) -> dict:
+    """A transcribed scan, read through the MediaWiki parser.
+
+    The book is one page transcluding a hundred-odd scan pages, so the rendered HTML is the only
+    practical form. Chapters head as "CAPÍTULO PRIMERO." or "CAPÍTULO XIV.", verses run inline as
+    a number followed by their text. Each chapter opens with an unnumbered summary paragraph
+    whose own digits would otherwise read as verses, which is why only the first sighting of a
+    (chapter, verse) is kept — the summary precedes verse 1, so a real verse always wins.
+    """
+    raw = json.loads(fetch(language, testament, book))
+    if "error" in raw:
+        err(f"{book}: Wikisource says {raw['error'].get('info')}")
+        return {}
+    text = raw["parse"]["text"]["*"]
+    text = re.sub(r"<[^>]+>", "\n", text)
+    text = html.unescape(text)
+    text = re.sub(r"\[\d+\]", "", text)      # footnote markers
+    text = re.sub(r"[ \t]+", " ", text)
+
+    table: dict = {}
+    parts = re.split(r"CAPÍTULO\s+([A-ZÁÉÍÓÚÑ]+|[IVXLCDM]+)\s*\.", text)
+    for i in range(1, len(parts) - 1, 2):
+        chapter = _chapter_number(parts[i])
+        if chapter is None:
+            continue
+        body = re.sub(r"\s*\n\s*", " ", parts[i + 1])
+        for m in re.finditer(r"(?:^|\s)—?\s*(\d{1,3})\s+(.+?)(?=\s—?\s*\d{1,3}\s|$)", body):
+            key = (chapter, int(m.group(1)))
+            if key not in table:
+                table[key] = m.group(2).strip()
+    return table
+
+
 def parse_reference(reference: str) -> list:
     """"14:55, 60-64" -> [(14,55,55), (14,60,64)]. Chapter carries across segments."""
     spans, chapter = [], None
@@ -280,9 +408,9 @@ def parse_reference(reference: str) -> list:
     return spans
 
 
-def source_verse(book: str, chapter: int, number: int, where: str) -> int | None:
-    """The verse number this citation has in the source's own numbering."""
-    rule = VERSIFICATION.get((book, chapter))
+def source_verse(language: str, book: str, chapter: int, number: int, where: str) -> int | None:
+    """The verse number this citation has in this language's source numbering."""
+    rule = VERSIFICATION.get(language, {}).get((book, chapter))
     if rule is None:
         return number
     threshold, shift = rule
@@ -300,12 +428,16 @@ def passage(language: str, book: str, testament: str, spans: list, where: str) -
     out = []
     for chapter, first, last in spans:
         for cited in range(first, last + 1):
-            number = source_verse(book, chapter, cited, where)
+            number = source_verse(language, book, chapter, cited, where)
             if number is None:
                 return None
             text = table.get((chapter, number))
             if text is None:
-                err(f"{where}: {book} {chapter}:{number} is not in the source")
+                gap = SOURCE_GAPS.get(language, {}).get((book, chapter))
+                if gap:
+                    print(f"  {where}: {book} {chapter} unavailable — {gap}", file=sys.stderr)
+                else:
+                    err(f"{where}: {book} {chapter}:{number} is not in the source")
                 return None
             out.append(text)
     return " ".join(out)
@@ -400,6 +532,12 @@ NOTES = {
             "rather than editing these by hand. Prayers are Hebrew square script; the same text in "
             "Syriac letters is in transliterations, which is what the flow's script toggle shows. "
             "Unpointed, as the source has it."),
+    "es": ("Scripture imported from Félix Torres Amat's Spanish Bible (1836) by "
+           "Shared/tools/import-scripture.py — re-run it rather than editing these by hand. "
+           "Torres Amat translated the Vulgate, so its chapter-and-verse is the same one these "
+           "devotions cite and no versification map is needed. Spelling and accentuation are the "
+           "1836 printing's own. Old Testament readings are absent: only the New Testament "
+           "volumes of it have been transcribed from the scans."),
     "el": ("Scripture imported from the Byzantine Majority Text (Robinson-Pierpont, public domain) "
            "by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. "
            "Polytonic, as the source has it. Old Testament readings are absent pending a "
@@ -441,7 +579,7 @@ def main() -> int:
     if not arguments:
         for language, marker in (("arc", "ܥܡܐ"), ("el", "λαὸς")):
             try:
-                number = source_verse("Isaiah", 9, 2, "versification self-check")
+                number = source_verse(language, "Isaiah", 9, 2, "versification self-check")
                 text = verses(language, "ot", "Isaiah").get((9, number), "")
             except Exception as exc:  # noqa: BLE001 - a source being unreachable is not a failure
                 print(f"  skipped {language} versification check: {exc}", file=sys.stderr)

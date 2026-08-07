@@ -38,6 +38,7 @@ public static class LanguageCatalog
         // Greek: the language a great deal of the app's own Scripture and prayer was first
         // written in — the Creed, the Sub Tuum, the Jesus Prayer.
         new("el", "Ἑλληνικά", false),
+        new("es", "Español", false),
         new("ru", "Русский", false),
         new("tl", "Tagalog", false),
     ];
