@@ -26,6 +26,7 @@ public static partial class PrayerTranslations
             // The Mission of St. Gamaliel's wording, overlaying plain Hebrew key by key.
             ["he-x-gamliel"] = HebrewGamaliel,
             ["el"] = Greek,
+            ["es"] = Spanish,
             ["ru"] = Russian,
             ["tl"] = Tagalog,
         };

@@ -47,6 +47,30 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertFalse(steps[4].body.contains("Holy Mighty One"))
   }
 
+  /// Spanish, pinned the same way as Greek — what is sourced works, what is not falls back.
+  /// Its prayers come from the Holy See's own Spanish Compendium, which prints each beside its
+  /// Latin twin; the Creed, the Fatima prayer and the St Michael prayer are not in that
+  /// appendix and are deliberately absent rather than reconstructed.
+  func testSpanishPraysWhatWasSourcedAndFallsBackForTheRest() {
+    XCTAssertTrue(PrayerTranslations.get(languageCode: "es", key: .paterNoster)
+      .hasPrefix("Padre nuestro que estás en el cielo"))
+    XCTAssertTrue(PrayerTranslations.get(languageCode: "es", key: .salveRegina)
+      .hasPrefix("Dios te salve, Reina y Madre de misericordia"))
+    // The Rosary's own collect, not the Angelus's — both are in the appendix and only one fits.
+    XCTAssertTrue(PrayerTranslations.get(languageCode: "es", key: .collectaStandard)
+      .contains("los misterios del Rosario"))
+
+    XCTAssertEqual(PrayerTranslations.get(languageCode: "es", key: .symbolumApostolorum),
+                   PrayerTranslations.get(languageCode: "la", key: .symbolumApostolorum),
+                   "the Compendium's appendix has no Creed, so Latin stands")
+
+    // The Scripture is imported and in the pack; a session cannot reach it until a manifest
+    // offers Spanish, which waits on Spanish bundle text — same as Greek.
+    XCTAssertTrue(PrayerPackStore.resolveBodyText(
+      bundleId: "stationsOfTheCross", languageCode: "es", key: "scriptural01Body")
+      .contains("Gethsemaní"))
+  }
+
   /// Where Greek stands, pinned exactly — because it is half-finished and the half that is done
   /// should not be mistaken for the whole.
   ///
