@@ -129,7 +129,7 @@ data class CustomDevotionOption(
         val nameByLanguage: Map<String, String>? = null,
     ) {
         val localizedName: String
-            get() = nameByLanguage?.get(Locale.getDefault().language) ?: name
+            get() = nameByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: name
     }
 
     /** Canonical string form of the authored default: "true"/"false" for a toggle, a case id
@@ -138,7 +138,7 @@ data class CustomDevotionOption(
         get() = default.content
 
     val localizedName: String
-        get() = nameByLanguage?.get(Locale.getDefault().language) ?: name
+        get() = nameByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: name
 }
 
 @Serializable
@@ -184,7 +184,7 @@ data class DevotionAudioTrack(
     )
 
     val localizedName: String?
-        get() = nameByLanguage?.get(Locale.getDefault().language) ?: name
+        get() = nameByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: name
 }
 
 @Serializable
@@ -237,7 +237,7 @@ data class CustomDevotionDefinition(
         val steps: List<CustomDevotionStep>,
     ) {
         val localizedName: String
-            get() = nameByLanguage?.get(java.util.Locale.getDefault().language) ?: name
+            get() = nameByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: name
     }
 
     /** One named alternate form of a devotion — the Stations' traditional vs. scriptural sets,
@@ -263,7 +263,7 @@ data class CustomDevotionDefinition(
         val hasClosingCross: Boolean? = null,
     ) {
         val localizedName: String
-            get() = nameByLanguage?.get(Locale.getDefault().language) ?: name
+            get() = nameByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: name
     }
 
     /** The step lists to build for [variantId] — the matching variant, else the default (first)
@@ -414,14 +414,14 @@ data class CustomDevotionInfo(
             LanguageCatalog.baseLanguage(prayerCode)?.let { base ->
                 displayNameByLanguage[base]?.let { return it }
             }
-            return displayNameByLanguage[Locale.getDefault().language] ?: displayName
+            return displayNameByLanguage[LanguageCatalog.uiLanguageCode()] ?: displayName
         }
 
     val localizedReminderBody: String?
-        get() = reminderBody[Locale.getDefault().language] ?: reminderBody["en"]
+        get() = reminderBody[LanguageCatalog.uiLanguageCode()] ?: reminderBody["en"]
 
     val localizedReminderPresetFooter: String?
-        get() = reminderPresetFooter[Locale.getDefault().language] ?: reminderPresetFooter["en"]
+        get() = reminderPresetFooter[LanguageCatalog.uiLanguageCode()] ?: reminderPresetFooter["en"]
 }
 
 /** Loads the bundled .prosaryprayer packs (Rosary, and every generic bundle-driven devotion —

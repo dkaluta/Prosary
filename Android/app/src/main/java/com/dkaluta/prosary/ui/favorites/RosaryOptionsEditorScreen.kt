@@ -26,6 +26,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.MysteryTranslations
+import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.EternalRestPlacement
 import com.dkaluta.prosary.models.MarianAntiphonOption
 import com.dkaluta.prosary.models.MysteryCatalog
@@ -104,7 +105,10 @@ fun RosaryOptionsEditorScreen(rosary: RosaryOptions, onRosaryChange: (RosaryOpti
                         label = stringResource(R.string.ro_which_mystery),
                         options = mysteries,
                         selected = selectedMystery,
-                        optionLabel = { MysteryTranslations.get(languageCode = "en", imageKey = it.imageKey).title },
+                        // The mystery is named in the UI language, like the group row above it — the
+                        // hardcoded "en" left an all-Hebrew editor naming mysteries in English
+                        // (Erez, 2026-08-08).
+                        optionLabel = { MysteryTranslations.get(languageCode = LanguageCatalog.uiLanguageCode(), imageKey = it.imageKey).title },
                         onSelect = { onRosaryChange(rosary.copy(specificMysteryOrder = it.order)) },
                         modifier = Modifier.fillMaxWidth(),
                     )

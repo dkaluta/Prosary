@@ -31,7 +31,7 @@ data class RosaryOptions(
             context.getString(R.string.summary_always, context.getString(specificMysteryGroup.displayNameRes))
         MysterySelectionMode.SingleMystery -> {
             val chosen = MysteryCatalog.forGroup(specificMysteryGroup).firstOrNull { it.order == specificMysteryOrder }
-            val title = chosen?.let { MysteryTranslations.get(languageCode = "en", imageKey = it.imageKey).title }
+            val title = chosen?.let { MysteryTranslations.get(languageCode = LanguageCatalog.uiLanguageCode(), imageKey = it.imageKey).title }
                 ?: context.getString(specificMysteryGroup.displayNameRes)
             context.getString(R.string.summary_only, title)
         }

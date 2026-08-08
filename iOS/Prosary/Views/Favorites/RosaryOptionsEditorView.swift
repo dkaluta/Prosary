@@ -51,7 +51,10 @@ struct RosaryOptionsSections: View {
         if rosary.mysterySelectionMode == .singleMystery {
           Picker("favoriteEditor.specificMystery", selection: $rosary.specificMysteryOrder) {
             ForEach(MysteryCatalog.forGroup(rosary.specificMysteryGroup)) { mystery in
-              Text(MysteryTranslations.get(languageCode: "en", imageKey: mystery.imageKey).title).tag(mystery.order)
+              // The mystery is named in the UI language, like the group row above it.
+              Text(MysteryTranslations.get(
+                languageCode: Bundle.main.preferredLocalizations.first.map { String($0.prefix(2)) },
+                imageKey: mystery.imageKey).title).tag(mystery.order)
             }
           }
         }

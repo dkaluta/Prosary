@@ -6,6 +6,7 @@ import com.dkaluta.prosary.content.PrayerTranslations
 import com.dkaluta.prosary.content.prayerTranslationsEnglish
 import com.dkaluta.prosary.engine.PrayerEngine
 import com.dkaluta.prosary.models.AppSettings
+import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import java.io.File
@@ -300,6 +301,18 @@ class PrayerPackLoaderTest {
         assertEquals("Trisagion", info?.displayName)
         assertEquals("#00796B", info?.accentColorHex)
         assertEquals("triangle", info?.iconSystemName)
+    }
+
+    /** Android's Locale reports Hebrew by its pre-1989 code — getLanguage() gives "iw", never
+     * "he" — so every UI-language lookup that fed it straight into a manifest's "he" keys fell
+     * back to English for exactly the audience those keys were written for. The normalization
+     * is a pure function so this can pin it without fighting the JVM's own Locale behavior. */
+    @Test
+    fun legacyLocaleCodesNormalizeToTheContentLayersSpelling() {
+        assertEquals("he", LanguageCatalog.uiLanguageCode("iw"))
+        assertEquals("he", LanguageCatalog.uiLanguageCode("he"))
+        assertEquals("id", LanguageCatalog.uiLanguageCode("in"))
+        assertEquals("en", LanguageCatalog.uiLanguageCode("en"))
     }
 
     /** A devotion's name follows the prayer language, rites included — Erez's ask: with his

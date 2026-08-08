@@ -1,5 +1,6 @@
 package com.dkaluta.prosary.typography
 
+import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -60,16 +61,34 @@ object PrayerTypography {
             "ar" -> Script.Arabic
             else -> Script.Latin
         }) {
+        // includeFontPadding is forced back ON for the marked scripts. Compose's modern default
+        // (false) clips combining marks that rise above the ascender — and Masoretic Scripture
+        // stacks cantillation over niqqud exactly there, so the first line of the first
+        // station's Isaiah reading (מֵעֹ֤צֶר, a mahpakh on its first word) lost its marks on
+        // Android while iOS drew them whole. The scripture line height also gains headroom:
+        // te'amim above and vowels below need more than 1.4em or neighbouring lines collide.
         Script.Hebrew -> if (isScripture) {
-            TextStyle(fontFamily = shofar, fontSize = 16.sp, lineHeight = 23.sp)
+            TextStyle(
+                fontFamily = shofar, fontSize = 16.sp, lineHeight = 26.sp,
+                platformStyle = PlatformTextStyle(includeFontPadding = true),
+            )
         } else {
-            TextStyle(fontFamily = frankRuhlLibre, fontSize = 21.sp, lineHeight = 29.sp)
+            TextStyle(
+                fontFamily = frankRuhlLibre, fontSize = 21.sp, lineHeight = 29.sp,
+                platformStyle = PlatformTextStyle(includeFontPadding = true),
+            )
         }
 
         Script.Arabic -> if (isScripture) {
-            TextStyle(fontFamily = scheherazadeNew, fontSize = 16.sp, lineHeight = 23.sp)
+            TextStyle(
+                fontFamily = scheherazadeNew, fontSize = 16.sp, lineHeight = 24.sp,
+                platformStyle = PlatformTextStyle(includeFontPadding = true),
+            )
         } else {
-            TextStyle(fontFamily = amiri, fontSize = 18.sp, lineHeight = 26.sp)
+            TextStyle(
+                fontFamily = amiri, fontSize = 18.sp, lineHeight = 26.sp,
+                platformStyle = PlatformTextStyle(includeFontPadding = true),
+            )
         }
 
         // Without a face covering the block the toggle would draw a line of tofu, which is

@@ -20,6 +20,18 @@ object LanguageCatalog {
 
     const val defaultCode = "la"
 
+    /** The UI language as the content layer spells it. Android's Locale still reports Hebrew by
+     * its pre-1989 legacy code — getLanguage() returns "iw", never "he" — so every lookup that
+     * fed it straight into a manifest's displayNameByLanguage / nameByLanguage / reminderBody
+     * missed the "he" keys and quietly fell back to English for exactly the audience those keys
+     * were written for. Normalized here once; the other two legacy codes come along for free. */
+    fun uiLanguageCode(raw: String = java.util.Locale.getDefault().language): String = when (raw) {
+        "iw" -> "he"
+        "in" -> "id"
+        "ji" -> "yi"
+        else -> raw
+    }
+
     /** Sentinel stored in a favorite's `languageCode` meaning "follow the app-level default setting". */
     const val defaultSentinel = ""
 
