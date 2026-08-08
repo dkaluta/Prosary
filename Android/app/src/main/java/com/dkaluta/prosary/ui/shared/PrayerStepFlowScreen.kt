@@ -45,6 +45,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
+import android.view.HapticFeedbackConstants
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -122,6 +123,19 @@ fun PrayerStepFlowScreen(
     // shared by every flow, so a choice made in the Rosary carries into the Stations.
     var autoAdvanceSeconds by remember { mutableIntStateOf(AppSettings.autoAdvanceSeconds) }
     var autoAdvanceMenuExpanded by remember { mutableStateOf(false) }
+
+    // A gentle tap when the step changes — tester-requested (Erez), off by default, app-wide
+    // like autoAdvanceSeconds. Keyed to the step change rather than the button, so Back and a
+    // timer advance feel the same as Next. The initial composition is skipped: opening a flow
+    // is not a step change.
+    val flowView = LocalView.current
+    var hapticArmed by remember { mutableStateOf(false) }
+    LaunchedEffect(currentIndex) {
+        if (hapticArmed && AppSettings.hapticsOnAdvance && step != null) {
+            flowView.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
+        }
+        hapticArmed = true
+    }
 
     // Restarts whenever the step, the interval, or the loaded state changes — so tapping
     // Back/Next resets the countdown, and turning the setting off cancels it. Never fires on

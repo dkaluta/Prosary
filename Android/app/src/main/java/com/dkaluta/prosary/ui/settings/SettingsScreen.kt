@@ -27,6 +27,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -64,6 +65,7 @@ fun SettingsScreen(onBack: () -> Unit) {
 
     var defaultLanguageCode by remember { mutableStateOf(AppSettings.defaultLanguageCode) }
     var autoAdvanceSeconds by remember { mutableIntStateOf(AppSettings.autoAdvanceSeconds) }
+    var hapticsOnAdvance by remember { mutableStateOf(AppSettings.hapticsOnAdvance) }
     var homeOrderIsCustom by remember { mutableStateOf(HomeOrder.saved(context).isNotEmpty()) }
     var installedCount by remember { mutableIntStateOf(PrayerPackStore.installedBundleIds().size) }
     // Bumped after an install or a removal so the list below re-reads.
@@ -177,6 +179,24 @@ fun SettingsScreen(onBack: () -> Unit) {
                     AppSettings.setAutoAdvanceSeconds(it)
                 },
             )
+
+            // Erez's ask: a felt confirmation that the step turned. Off by default.
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(
+                    stringResource(R.string.settings_haptics_on_advance),
+                    modifier = Modifier.weight(1f),
+                )
+                Switch(
+                    checked = hapticsOnAdvance,
+                    onCheckedChange = {
+                        hapticsOnAdvance = it
+                        AppSettings.setHapticsOnAdvance(it)
+                    },
+                )
+            }
 
             OutlinedButton(
                 onClick = {

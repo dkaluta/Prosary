@@ -53,6 +53,11 @@ struct PrayerStepFlowView: View {
   /// shared by every flow, so a choice made in the Rosary carries into the Stations.
   @AppStorage("autoAdvanceSeconds") private var autoAdvanceSeconds = 0
 
+  /// A gentle tap when the step changes — tester-requested (Erez), off by default, app-wide
+  /// like autoAdvanceSeconds. Keyed to the step change rather than the button, so Back and a
+  /// timer advance feel the same as Next; a Mac quietly does nothing with it.
+  @AppStorage("hapticsOnAdvance") private var hapticsOnAdvance = false
+
   /// The v0.7 reading aid: swap the body for its transliteration when the step carries one.
   /// Deliberately sticky across steps — someone praying along in an unfamiliar script wants
   /// it on for the whole session, not per page.
@@ -172,6 +177,9 @@ struct PrayerStepFlowView: View {
     // Back/Next resets the countdown, and turning the setting off cancels it. Never fires on
     // the last step: auto-"Finish" would dismiss the whole flow mid-prayer. Suspended outright
     // while a recording plays (audioIsPlaying is part of the id, so pausing re-arms it).
+    .sensoryFeedback(.impact(weight: .light), trigger: currentIndex) { _, _ in
+      hapticsOnAdvance && step != nil
+    }
     .task(id: "\(autoAdvanceSeconds)-\(currentIndex)-\(step != nil)-\(audioIsPlaying)") {
       guard autoAdvanceSeconds > 0, step != nil, !isLastStep, !audioIsPlaying else { return }
       try? await Task.sleep(for: .seconds(autoAdvanceSeconds))
