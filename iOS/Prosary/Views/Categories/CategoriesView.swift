@@ -11,8 +11,10 @@ import SwiftUI
 struct CategoriesView: View {
   /// Names on this screen follow the default prayer language, so the screen must re-derive
   /// the moment that setting changes — including from the Mac's Settings window, which never
-  /// re-triggers onAppear. Observing the key is the whole mechanism: body re-evaluates, and
-  /// every name below is computed fresh.
+  /// re-triggers onAppear. Declaring this is NOT enough: SwiftUI only registers the dependency
+  /// when body actually reads the value (verified live on the Mac, 2026-08-08 — the Settings
+  /// window showed עברית while Pray behind it stayed English), which is what the
+  /// `let _ = observedPrayerLanguage` at the top of body is for.
   @AppStorage("defaultLanguageCode") private var observedPrayerLanguage = LanguageCatalog.defaultCode
 
   @Binding var path: NavigationPath
