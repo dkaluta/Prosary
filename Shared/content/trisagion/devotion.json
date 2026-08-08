@@ -1,35 +1,74 @@
 {
+  "$comment": "Two forms of one prayer, named for the traditions that sing them. The bundle shipped the Byzantine form from the start without saying so — acclamation thrice, Glory Be, the short acclamation, acclamation — and it stays the default, byte-identical (the engine tests pin its six steps). The Syriac form is how Erez prays it (2026-08-07): the acclamation thrice, then the Kyrie. The Kyrie is ONE composed step — the threefold response as one text, confirmed by the user 2026-08-08: the Western form alternates Kyrie eleison, Christe eleison, Kyrie eleison (the Vicariate's Hebrew being ישוע שמענו, המשיח עזרנו, האדון חננו, sent unvocalized as it arrived), and the EASTERN equivalent of that same threefold is one line said three times — which is exactly what Erez's ה׳ רחם־נא thrice is, not a simplification of it. So every language carries its own threefold form in the one slot, and his rite overlays it with his. The Hebrew heading is the line's own incipit, ישוע שמענו — the same convention every other heading here follows (sent 2026-08-08).",
   "type": "steps",
-  "steps": [
+  "variants": [
     {
-      "titleKey": "trisagionAcclamationTitle",
-      "bodyKey": "trisagionAcclamation",
-      "imageKey": "jesus_portrait"
+      "id": "byzantine",
+      "name": "Byzantine",
+      "nameByLanguage": {
+        "he": "ביזנטי"
+      },
+      "steps": [
+        {
+          "titleKey": "trisagionAcclamationTitle",
+          "bodyKey": "trisagionAcclamation",
+          "imageKey": "jesus_portrait"
+        },
+        {
+          "titleKey": "trisagionAcclamationTitle",
+          "bodyKey": "trisagionAcclamation",
+          "imageKey": "jesus_portrait"
+        },
+        {
+          "titleKey": "trisagionAcclamationTitle",
+          "bodyKey": "trisagionAcclamation",
+          "imageKey": "jesus_portrait"
+        },
+        {
+          "titleKey": "gloriaPatriTitle",
+          "bodyKey": "gloriaPatri",
+          "imageKey": "glory_be"
+        },
+        {
+          "titleKey": "trisagionAcclamationTitle",
+          "bodyKey": "trisagionShortAcclamation",
+          "imageKey": "jesus_portrait"
+        },
+        {
+          "titleKey": "trisagionAcclamationTitle",
+          "bodyKey": "trisagionAcclamation",
+          "imageKey": "jesus_portrait"
+        }
+      ]
     },
     {
-      "titleKey": "trisagionAcclamationTitle",
-      "bodyKey": "trisagionAcclamation",
-      "imageKey": "jesus_portrait"
-    },
-    {
-      "titleKey": "trisagionAcclamationTitle",
-      "bodyKey": "trisagionAcclamation",
-      "imageKey": "jesus_portrait"
-    },
-    {
-      "titleKey": "gloriaPatriTitle",
-      "bodyKey": "gloriaPatri",
-      "imageKey": "glory_be"
-    },
-    {
-      "titleKey": "trisagionAcclamationTitle",
-      "bodyKey": "trisagionShortAcclamation",
-      "imageKey": "jesus_portrait"
-    },
-    {
-      "titleKey": "trisagionAcclamationTitle",
-      "bodyKey": "trisagionAcclamation",
-      "imageKey": "jesus_portrait"
+      "id": "syriac",
+      "name": "Syriac",
+      "nameByLanguage": {
+        "he": "סורי"
+      },
+      "steps": [
+        {
+          "titleKey": "trisagionAcclamationTitle",
+          "bodyKey": "trisagionAcclamation",
+          "imageKey": "jesus_portrait"
+        },
+        {
+          "titleKey": "trisagionAcclamationTitle",
+          "bodyKey": "trisagionAcclamation",
+          "imageKey": "jesus_portrait"
+        },
+        {
+          "titleKey": "trisagionAcclamationTitle",
+          "bodyKey": "trisagionAcclamation",
+          "imageKey": "jesus_portrait"
+        },
+        {
+          "titleKey": "trisagionKyrieTitle",
+          "bodyKey": "trisagionKyrie",
+          "imageKey": "jesus_portrait"
+        }
+      ]
     }
   ]
 }

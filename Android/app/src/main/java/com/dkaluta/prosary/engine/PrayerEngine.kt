@@ -200,7 +200,9 @@ class PrayerEngine(
                 entries.flatMap { expand(it, bundleId, languageCode, optionValues) }
             }
             CustomDevotionDefinition.DevotionType.Rosary ->
-                buildCustomRosarySteps(definition, bundleId, languageCode, optionValues, rosaryOptions)
+                buildCustomRosarySteps(
+                    definition, bundleId, languageCode, optionValues, rosaryOptions, variantId,
+                )
             CustomDevotionDefinition.DevotionType.Days -> {
                 // Multi-day devotions: shared opening + the day's own steps + shared closing.
                 // dayIndex is clamped, so a finished novena keeps praying its last day; the
@@ -308,14 +310,16 @@ class PrayerEngine(
         languageCode: String?,
         optionValues: Map<String, String> = emptyMap(),
         rosaryOptions: RosaryOptions? = null,
+        variantId: String? = null,
     ): List<RosaryStep> {
-        val decades = definition.decades ?: return emptyList()
+        val form = definition.resolvedRosary(variantId)
+        val decades = form.decades ?: return emptyList()
         fun resolve(key: String): String = PrayerPackStore.resolveBodyText(bundleId, languageCode, key)
         fun fixedTitle(step: CustomDevotionDefinition.Decades.FixedStep): String =
             step.titleKey?.let { resolve(it) } ?: step.title.orEmpty()
 
         val steps = mutableListOf<RosaryStep>()
-        for (entry in definition.opening.orEmpty()) {
+        for (entry in form.opening) {
             steps.addAll(expand(entry, bundleId, languageCode, optionValues))
         }
 
@@ -336,6 +340,15 @@ class PrayerEngine(
                 val imageKey = entry?.imageKey ?: decades.fixedImageKey
                 val ordinalLabel = decadeOrdinal(d, decades, bundleId, languageCode)
                 var decadeSubtitle = ordinalLabel
+
+                // Said before the sorrow is named, not after its beads — see the format's
+                // decades.preAnnouncement. Carries the decade's subtitle so the chrome reads as
+                // part of that decade, but no decadeIndex: it is not a bead.
+                for (pre in decades.preAnnouncement.orEmpty()) {
+                    for (step in expand(pre, bundleId, languageCode, optionValues)) {
+                        steps.add(step.copy(subtitle = step.subtitle ?: decadeSubtitle))
+                    }
+                }
 
                 if (decades.announceMystery && entry != null) {
                     val mysteryText = MysteryTranslations.get(languageCode, entry.imageKey)
@@ -373,7 +386,7 @@ class PrayerEngine(
             }
         }
 
-        for (entry in definition.closing.orEmpty()) {
+        for (entry in form.closing) {
             steps.addAll(expand(entry, bundleId, languageCode, optionValues))
         }
         return steps

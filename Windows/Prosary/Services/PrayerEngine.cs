@@ -201,7 +201,8 @@ public sealed class PrayerEngine
                 return entries.SelectMany(e => Expand(e, bundleId, languageCode, seasonalAntiphon, optionValues)).ToList();
             case CustomDevotionDefinition.DevotionType.Rosary:
                 return BuildCustomRosarySteps(
-                    definition, bundleId, languageCode, seasonalAntiphon, optionValues, rosaryOptions, todaysGroup);
+                    definition, bundleId, languageCode, seasonalAntiphon, optionValues, rosaryOptions,
+                    todaysGroup, variantId);
             case CustomDevotionDefinition.DevotionType.Days:
                 // Multi-day devotions: shared opening + the day's own steps + shared closing.
                 // dayIndex is clamped, so a finished novena keeps praying its last day; the
@@ -318,16 +319,17 @@ public sealed class PrayerEngine
     private static IReadOnlyList<RosaryStep> BuildCustomRosarySteps(
         CustomDevotionDefinition definition, string bundleId, string? languageCode, MarianAntiphonOption seasonalAntiphon,
         IReadOnlyDictionary<string, string>? optionValues = null, RosaryOptions? rosaryOptions = null,
-        MysteryGroup todaysGroup = MysteryGroup.Joyful)
+        MysteryGroup todaysGroup = MysteryGroup.Joyful, string? variantId = null)
     {
-        if (definition.Decades is not { } decades) return [];
+        var form = definition.ResolvedRosary(variantId);
+        if (form.Decades is not { } decades) return [];
 
         string Resolve(string key) => PrayerPackStore.ResolveBodyText(bundleId, languageCode, key);
         string FixedTitle(CustomDevotionDefinition.DecadesDefinition.FixedStep step) =>
             step.TitleKey is { } key ? Resolve(key) : step.Title ?? string.Empty;
 
         var steps = new List<RosaryStep>();
-        foreach (var entry in definition.Opening ?? [])
+        foreach (var entry in form.Opening)
         {
             steps.AddRange(Expand(entry, bundleId, languageCode, seasonalAntiphon, optionValues));
         }
@@ -350,6 +352,17 @@ public sealed class PrayerEngine
                 var imageKey = entry?.ImageKey ?? decades.FixedImageKey;
                 var ordinalLabel = DecadeOrdinal(d, decades, bundleId, languageCode);
                 var decadeSubtitle = ordinalLabel;
+
+                // Said before the sorrow is named, not after its beads — see the format's
+                // decades.preAnnouncement. Carries the decade's subtitle so the chrome reads as
+                // part of that decade, but no DecadeIndex: it is not a bead.
+                foreach (var pre in decades.PreAnnouncement ?? [])
+                {
+                    foreach (var step in Expand(pre, bundleId, languageCode, seasonalAntiphon, optionValues))
+                    {
+                        steps.Add(step with { Subtitle = step.Subtitle ?? decadeSubtitle });
+                    }
+                }
 
                 if (decades.AnnounceMystery && entry is not null)
                 {
@@ -379,7 +392,7 @@ public sealed class PrayerEngine
             }
         }
 
-        foreach (var entry in definition.Closing ?? [])
+        foreach (var entry in form.Closing)
         {
             steps.AddRange(Expand(entry, bundleId, languageCode, seasonalAntiphon, optionValues));
         }

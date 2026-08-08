@@ -151,7 +151,7 @@ public partial class FavoriteEditorViewModel : ObservableObject
     public string MysterySelectionSummary => MysterySelectionMode switch
     {
         MysterySelectionMode.Specific => string.Format(Loc.Tr("summary_always", "Always {0}"), SpecificMysteryGroup.UiName()),
-        MysterySelectionMode.SingleMystery => string.Format(Loc.Tr("summary_only", "Only {0}"), SelectedMystery is { } m ? MysteryTranslations.Get("en", m.ImageKey).Title : SpecificMysteryGroup.UiName()),
+        MysterySelectionMode.SingleMystery => string.Format(Loc.Tr("summary_only", "Only {0}"), SelectedMystery is { } m ? MysteryTranslations.Get(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName, m.ImageKey).Title : SpecificMysteryGroup.UiName()),
         MysterySelectionMode.FifteenMystery => Loc.Tr("summary_fifteen", "The 15 Mysteries"),
         MysterySelectionMode.TwentyMystery => Loc.Tr("summary_twenty", "The 20 Mysteries"),
         MysterySelectionMode.TodaysMysteries => Loc.Tr("mode_todays_mysteries", "Today's Mysteries"),

@@ -17,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -51,6 +52,14 @@ fun HomeOrderEditor(
         text = {
             Column {
                 ids.forEachIndexed { index, id ->
+                    // key(id) is what makes dragging work at all. Without it the Column reuses
+                    // composables positionally, so the first mid-drag swap puts a *different*
+                    // id at the dragged position — pointerInput(id) sees its key change,
+                    // restarts, and cancels the live gesture coroutine. The visible symptom:
+                    // one swap, a row stuck mid-air, and onDragEnd never firing — so onMove
+                    // never saved and the order silently reverted (Erez, 2026-08-08). With
+                    // stable identity the gesture survives every swap and commits at the end.
+                    key(id) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier
@@ -106,6 +115,7 @@ fun HomeOrderEditor(
                             style = MaterialTheme.typography.bodyLarge,
                             modifier = Modifier.padding(start = 12.dp),
                         )
+                    }
                     }
                 }
             }

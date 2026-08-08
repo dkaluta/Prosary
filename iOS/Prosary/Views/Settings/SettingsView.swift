@@ -12,6 +12,7 @@ import SwiftUI
 struct SettingsView: View {
   @AppStorage("defaultLanguageCode") private var languageCode = LanguageCatalog.defaultCode
   @AppStorage("autoAdvanceSeconds") private var autoAdvanceSeconds = 0
+  @AppStorage("hapticsOnAdvance") private var hapticsOnAdvance = false
 
   @State private var installedCount = PrayerPackStore.installedBundleIds().count
   @State private var confirmsRemoveAll = false
@@ -59,11 +60,17 @@ struct SettingsView: View {
         Picker(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-advance"),
                selection: $autoAdvanceSeconds) {
           Text(String(localized: "prayerFlow.autoAdvance.off", defaultValue: "Off")).tag(0)
-          ForEach([3, 5, 10], id: \.self) { seconds in
+          ForEach([3, 5, 10, 15], id: \.self) { seconds in
             Text(String(localized: "prayerFlow.autoAdvance.everySeconds",
                         defaultValue: "Every \(seconds) seconds")).tag(seconds)
           }
         }
+        #if os(iOS)
+        // Erez's ask: a felt confirmation that the step turned. iOS-only — a Mac has nothing
+        // useful to buzz, so the row would be a lie there.
+        Toggle(String(localized: "settings.hapticsOnAdvance",
+                      defaultValue: "Vibrate on step change"), isOn: $hapticsOnAdvance)
+        #endif
 
         Button(String(localized: "settings.resetHomeOrder", defaultValue: "Reset Home Order")) {
           HomeOrder.reset()

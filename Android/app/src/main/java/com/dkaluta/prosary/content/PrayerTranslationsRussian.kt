@@ -2,7 +2,7 @@ package com.dkaluta.prosary.content
 
 val prayerTranslationsRussian: Map<PrayerKey, String> = mapOf(
     PrayerKey.SignumCrucis to
-        "Во имя Отца, и Сына, и Святого Духа. Аминь.",
+        "Во имя Отца ✠, и Сына, и Святого Духа. Аминь.",
 
     PrayerKey.SymbolumApostolorum to
         "Верую в Бога Отца Всемогущего, Творца неба и земли. И в Иисуса Христа, единственного " +

@@ -14,6 +14,7 @@ import java.io.File
 import java.util.Date
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
@@ -75,6 +76,31 @@ class CustomDevotionEngineTest {
         assertTrue(steps[0].body.contains("Holy God, Holy Mighty One, Holy Immortal One"))
         assertTrue(steps[3].body.contains("Glory be to the Father"))
         assertFalse(steps[4].body.contains("Holy Mighty One"))
+    }
+
+    /** The Mission of St. Gamaliel's Trisagion (sent by Erez 2026-08-06) addresses God in the
+     * second person where the app's own Hebrew declares of him, and heads the prayer with the
+     * Aramaic קדישת. Pinned so their wording — including the ✠▼▲ marks exactly as sent — cannot
+     * drift, and so it stays visibly distinct from the plain-Hebrew form beside it. */
+    @Test
+    fun trisagionInTheMissionsRite() {
+        val mission = steps("trisagion", language = "he-x-gamliel")
+        val hebrew = steps("trisagion", language = "he")
+
+        assertEquals(
+            listOf("קדישת", "קדישת", "קדישת", "השבח לאב", "קדישת", "קדישת"),
+            mission.map { it.title },
+        )
+        assertTrue(mission[0].body.startsWith("אַתָּה ✠▼▲ קָדוֹשׁ – אֱלוֹהִים"))
+        assertTrue(mission[0].body.contains("תְּרַחֵם עָלֵינוּ"))
+        assertFalse("the short form drops the second acclamation", mission[4].body.contains("חַיִל"))
+
+        assertNotEquals(hebrew[0].body, mission[0].body)
+        assertEquals("קדוש האלוהים", hebrew[0].title)
+
+        // Not sent by the Mission: the Glory Be itself still reads their wording from the shared
+        // table, and everything else falls through to plain Hebrew.
+        assertTrue(mission[3].body.contains("הַשֶּׁבַח לָאָב"))
     }
 
     @Test
@@ -483,6 +509,47 @@ class CustomDevotionEngineTest {
         assertTrue(PrayerEngine.evaluateCondition("invitatory", values))
     }
 
+    /** The shipped Trisagion was always the Byzantine form; it just never said so. Erez prays
+     * the Syriac one — the acclamation thrice, then Lord-have-mercy thrice. Byzantine stays
+     * first so the default sequence is byte-identical; plain Hebrew's Kyrie falls back to the
+     * bundle's Latin until the Vicariate's wording arrives. */
+    @Test
+    fun trisagionSyriacVariant() {
+        val syriac = steps("trisagion", variantId = "syriac")
+        assertEquals(4, syriac.size)
+        assertEquals(List(3) { "Holy God" } + "Lord, Have Mercy", syriac.map { it.title })
+        // The Kyrie is ONE composed step — the threefold form is a single text, so repeating it
+        // would pray nine invocations.
+        assertEquals("Lord, have mercy.\nChrist, have mercy.\nLord, have mercy.", syriac[3].body)
+        assertFalse(syriac.any { it.body.contains("Glory be") })
+
+        // The Vicariate's Hebrew is the full threefold form in one line, exactly as sent;
+        // Erez's rite overlays the same slot with his own line said thrice.
+        val hebrewKyrie = steps("trisagion", language = "he", variantId = "syriac")[3]
+        assertEquals("ישוע שמענו, המשיח עזרנו, האדון חננו.", hebrewKyrie.body)
+        assertEquals("ישוע שמענו", hebrewKyrie.title)
+        assertEquals("ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא", steps("trisagion", language = "he-x-gamliel", variantId = "syriac")[3].body)
+    }
+
+    /** The Vicariate's Hebrew prayerbook leads each of the three acclamations with a cross, and
+     * gives the short form none. The asymmetry is the point: it is exactly what an editor would
+     * "tidy up" later, so both halves are pinned. Hebrew only — the other languages keep the
+     * plain text until someone has seen a prayerbook in those. */
+    @Test
+    fun trisagionCrossesFollowTheVicariatesPrayerbook() {
+        val hebrew = steps("trisagion", language = "he")
+        assertEquals(3, hebrew[0].body.count { it == '\u2720' })
+        assertTrue(hebrew[0].body.startsWith("\u2720 \u05E7\u05B8\u05D3\u05D5\u05B9\u05E9\u05C1"))
+        assertFalse("the short form takes no cross", hebrew[4].body.contains("\u2720"))
+
+        for (language in listOf("la", "en", "ar", "ru", "tl")) {
+            assertFalse(
+                "$language has no prayerbook behind it yet",
+                steps("trisagion", language = language)[0].body.contains("\u2720"),
+            )
+        }
+    }
+
     /** The Mission of St. Gamaliel's wording overlays plain Hebrew key by key — their Creed is
      * the Nicene one, and anything they have not sent still reads in the app's Hebrew. */
     @Test
@@ -506,6 +573,21 @@ class CustomDevotionEngineTest {
         // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
         fun fatima(list: List<RosaryStep>) = list.firstOrNull { it.title.contains("הו ישוע") }?.body
         assertEquals(fatima(hebrew), fatima(variant))
+
+        // The mysteries are announced in Hebrew too. The Mission ships no mystery texts of its
+        // own, and the announcement is the one step whose body is quoted Scripture — before the
+        // base language step in MysteryTranslations.get it fell past plain Hebrew all the way to
+        // Latin, so the rite prayed its Rosary in Hebrew but heard every mystery announced in
+        // Latin.
+        fun announcement(list: List<RosaryStep>) = list.firstOrNull { it.mystery != null }
+        assertNotNull(announcement(variant))
+        assertEquals(announcement(hebrew)?.title, announcement(variant)?.title)
+        assertEquals(announcement(hebrew)?.body, announcement(variant)?.body)
+        assertNotEquals(
+            "the rite must not fall through to Latin while its prayers read Hebrew",
+            announcement(steps("rosary", language = "la"))?.body,
+            announcement(variant)?.body,
+        )
     }
 
     /** A rite lives under its language, not beside it: the language list stays the eight

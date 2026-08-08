@@ -66,6 +66,32 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.DoesNotContain("Holy Mighty One", steps[4].Body);
     }
 
+    /// <summary>The Mission of St. Gamaliel's Trisagion (sent by Erez 2026-08-06) addresses God
+    /// in the second person where the app's own Hebrew declares of him, and heads the prayer
+    /// with the Aramaic קדישת. Pinned so their wording — including the ✠▼▲ marks exactly as sent
+    /// — cannot drift, and so it stays visibly distinct from the plain-Hebrew form beside
+    /// it.</summary>
+    [Fact]
+    public void TrisagionInTheMissionsRite()
+    {
+        var mission = BuildSteps("trisagion", "he-x-gamliel");
+        var hebrew = BuildSteps("trisagion", "he");
+
+        Assert.Equal(
+            ["קדישת", "קדישת", "קדישת", "השבח לאב", "קדישת", "קדישת"],
+            mission.Select(s => s.Title));
+        Assert.StartsWith("אַתָּה ✠▼▲ קָדוֹשׁ – אֱלוֹהִים", mission[0].Body);
+        Assert.Contains("תְּרַחֵם עָלֵינוּ", mission[0].Body);
+        Assert.DoesNotContain("חַיִל", mission[4].Body);
+
+        Assert.NotEqual(hebrew[0].Body, mission[0].Body);
+        Assert.Equal("קדוש האלוהים", hebrew[0].Title);
+
+        // Not sent by the Mission: the Glory Be itself still reads their wording from the shared
+        // table, and everything else falls through to plain Hebrew.
+        Assert.Contains("הַשֶּׁבַח לָאָב", mission[3].Body);
+    }
+
     [Fact]
     public void TrisagionImagesMatchTheDevotionJsonImageKeys()
     {
@@ -473,6 +499,49 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.True(PrayerEngine.EvaluateCondition("invitatory", values));
     }
 
+    /// <summary>The shipped Trisagion was always the Byzantine form; it just never said so.
+    /// Erez prays the Syriac one — the acclamation thrice, then Lord-have-mercy thrice.
+    /// Byzantine stays first so the default sequence is byte-identical; plain Hebrew's Kyrie
+    /// falls back to the bundle's Latin until the Vicariate's wording arrives.</summary>
+    [Fact]
+    public void TrisagionSyriacVariant()
+    {
+        var syriac = BuildSteps("trisagion", "en", variantId: "syriac");
+        Assert.Equal(4, syriac.Count);
+        Assert.Equal(
+            ["Holy God", "Holy God", "Holy God", "Lord, Have Mercy"],
+            syriac.Select(s => s.Title));
+        // The Kyrie is ONE composed step — the threefold form is a single text, so repeating it
+        // would pray nine invocations.
+        Assert.Equal("Lord, have mercy.\nChrist, have mercy.\nLord, have mercy.", syriac[3].Body);
+        Assert.DoesNotContain(syriac, s => s.Body.Contains("Glory be"));
+
+        // The Vicariate's Hebrew is the full threefold form in one line, exactly as sent;
+        // Erez's rite overlays the same slot with his own line said thrice.
+        var hebrewKyrie = BuildSteps("trisagion", "he", variantId: "syriac")[3];
+        Assert.Equal("ישוע שמענו, המשיח עזרנו, האדון חננו.", hebrewKyrie.Body);
+        Assert.Equal("ישוע שמענו", hebrewKyrie.Title);
+        Assert.Equal("ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא", BuildSteps("trisagion", "he-x-gamliel", variantId: "syriac")[3].Body);
+    }
+
+    /// <summary>The Vicariate's Hebrew prayerbook leads each of the three acclamations with a
+    /// cross, and gives the short form none. The asymmetry is the point: it is exactly what an
+    /// editor would "tidy up" later, so both halves are pinned. Hebrew only — the other languages
+    /// keep the plain text until someone has seen a prayerbook in those.</summary>
+    [Fact]
+    public void TrisagionCrossesFollowTheVicariatesPrayerbook()
+    {
+        var hebrew = BuildSteps("trisagion", "he");
+        Assert.Equal(3, hebrew[0].Body.Count(c => c == '\u2720'));
+        Assert.StartsWith("\u2720 \u05E7\u05B8\u05D3\u05D5\u05B9\u05E9\u05C1", hebrew[0].Body);
+        Assert.DoesNotContain("\u2720", hebrew[4].Body);
+
+        foreach (var language in new[] { "la", "en", "ar", "ru", "tl" })
+        {
+            Assert.DoesNotContain("\u2720", BuildSteps("trisagion", language)[0].Body);
+        }
+    }
+
     /// <summary>The Mission of St. Gamaliel's wording overlays plain Hebrew key by key — their
     /// Creed is the Nicene one, and anything they have not sent still reads in the app's
     /// Hebrew.</summary>
@@ -499,6 +568,18 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         static string? Fatima(IReadOnlyList<RosaryStep> steps) =>
             steps.FirstOrDefault(s => s.Title.Contains("הו ישוע"))?.Body;
         Assert.Equal(Fatima(hebrew), Fatima(variant));
+
+        // The mysteries are announced in Hebrew too. The Mission ships no mystery texts of its
+        // own, and the announcement is the one step whose body is quoted Scripture — before the
+        // base language step in MysteryTranslations.Get it fell past plain Hebrew all the way to
+        // Latin, so the rite prayed its Rosary in Hebrew but heard every mystery announced in
+        // Latin.
+        static RosaryStep? Announcement(IReadOnlyList<RosaryStep> steps) =>
+            steps.FirstOrDefault(s => s.Mystery is not null);
+        Assert.NotNull(Announcement(variant));
+        Assert.Equal(Announcement(hebrew)?.Title, Announcement(variant)?.Title);
+        Assert.Equal(Announcement(hebrew)?.Body, Announcement(variant)?.Body);
+        Assert.NotEqual(Announcement(BuildSteps("rosary", "la"))?.Body, Announcement(variant)?.Body);
     }
 
     /// <summary>A rite lives under its language, not beside it: the language list stays the

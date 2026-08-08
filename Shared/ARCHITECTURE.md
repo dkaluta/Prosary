@@ -59,6 +59,16 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   Sign of the Cross, Our Father, Hail Mary, Glory Be, the Angelus's versicles, etc.).
 - **`PrayerTranslations`** — `Get(languageCode, key)`-style lookup, one dictionary per language,
   falling back to Latin then the raw key if a translation is missing.
+- **The cross mark `✠`** marks the point in a prayer's text where the sign of the cross is made —
+  a reading aid for a gesture, not part of the wording. The Mission of St. Gamaliel's texts
+  brought the convention in and use it most: in their Sign of the Cross, their Nicene Creed
+  ("with the Father ✠ and the Son is adored") and their Glory Be, always straight after the word
+  for *Father*, where the gesture begins. `signumCrucis` now carries it in **every** language, on
+  the same principle and in the same position. It deliberately stops there. Signing at the Glory
+  Be or mid-Creed is the Mission's own use, and stamping ✠ onto the Latin rite's Glory Be would
+  be inventing a practice rather than recording one — the same reason their wording is overlaid
+  key by key instead of corrected. Each platform's completeness tests pin the mark's presence and
+  position so it cannot be dropped by a well-meaning re-typing.
 - **`Mystery`/`MysteryCatalog`** — the fixed catalog of all 20 mysteries, grouped into
   `MysteryGroup` (Joyful/Sorrowful/Glorious/Luminous) and ordered within each group. Carries no
   display text itself — title/fruit/description are looked up by `imageKey` via
@@ -388,6 +398,17 @@ of its own — its entire step sequence and per-step text are data-driven from i
     default) selects one; the flow screens show a toolbar variant menu when a bundle declares
     more than one, rebuilding the session on switch and persisting the choice to the matching
     favorite.
+  - A **rosary-type devotion may declare `variants`** too (2026-08-07), the same idea the steps
+    type has carried since the Stations grew a scriptural form: `[{id, name, nameByLanguage?,
+    opening, decades, closing, hasClosingCross?}]`, mutually exclusive with the top-level four,
+    first is the default, selected by the same `Prayer.variantId`. A chaplet's recensions differ
+    in their opening prayers, their per-decade invocations and their close while praying the same
+    mysteries — the Seven Sorrows is the case that asked for it. Every bead-track invariant is
+    checked **per form**: a second form missing its opening Sign of the Cross would crash the
+    bead track exactly as a single-form devotion would, so `validate_rosary_form` runs once per
+    variant. `hasClosingCross` is likewise per form, and each platform's flow reads it through
+    `resolvedRosary(variantId)` rather than off the bundle — one recension can end with the cross
+    where another does not.
   - `{"type": "rosary"}` — decade/bead-structured: `opening: [Entry…]` (entry 0 MUST be the Sign
     of the Cross — a bead-track invariant), `decades` (`ordinalNoun` "Joy"/"Sorrow"/"Decade";
     `announceMystery`; either inline `entries: [{imageKey, isScripture? = true}]` (Franciscan
@@ -395,7 +416,11 @@ of its own — its entire step sequence and per-step text are data-driven from i
     `source: "mysteryGroups"` (the Rosary — the decade catalog comes from the engine's
     mystery-group machinery instead of bundle data); `majorStep`/`minorStep`
     `{title | titleKey, bodyKey, imageKey?}` (the optional `imageKey` is the Rosary's fixed Our
-    Father icon between mystery-specific images); `minorCount`; optional `postMinor: [Entry…]` emitted
+    Father icon between mystery-specific images); `minorCount`; optional `preAnnouncement: [Entry…]` emitted
+    *before* each decade's announcement (carrying the decade's subtitle but no `decadeIndex` —
+    they are not beads; the Servite chaplet asks Our Lady to recall her Son's sorrows before each
+    one is named, which `postMinor` could not express because it fires after a decade rather than
+    before one), optional `postMinor: [Entry…]` emitted
     after each decade's minors carrying the decade's subtitle/index (the Rosary's Glory Be /
     Fatima Prayer / per-decade eternal rest, each gated with an `"if"`); optional
     `presenter: {combinedTitle | combinedTitleKey, bodyKeys}` — when the gating `presenterMode` option is on, the
@@ -433,7 +458,12 @@ of its own — its entire step sequence and per-step text are data-driven from i
   Home/Favorites don't list it twice; `accentColorHex` + optional
   `accentColorDarkHex` (light/dark pair), `iconSystemName` (an SF Symbol name; mapped to the
   nearest Material icon on Android and Segoe Fluent Icons glyph on Windows via a small fixed
-  per-platform table), `displayNameByLanguage` (preserves e.g. the Hebrew devotion names),
+  per-platform table), `displayNameByLanguage` (preserves e.g. the Hebrew devotion names — resolved
+  **prayer-language-first** as of 2026-08-08: the exact resolved default prayer code, rites
+  included, then its base, then the UI language, then `displayName`. A devotion's name is part
+  of the prayer, the same principle that moved step headings into the prayed language; it is
+  also the only way a key like `"he-x-gamliel": "קדישת"` can ever be read, since UI-language
+  lookups truncate to two characters),
   `reminderBody` (per-language notification body), optional `reminderPresetHours` +
   `reminderPresetFooter` (the Angelus's traditional bell times), and optional **`tags`**
   (lowercase category labels, e.g. "marian" — Compose writes them, the repository uses them
@@ -475,10 +505,66 @@ of its own — its entire step sequence and per-step text are data-driven from i
   `suggestedNext` (another devotion's id, silently skipped when that bundle is not installed) —
   all advisory, which is what lets a pinned novena announce itself before its first day.
   The **O Antiphons** (7 days, 17–23 December) is the shipped bundle this all runs against.
-  Hours/missals are a different beast: their content is selected by the
-  liturgical calendar (proper of the day, psalter weeks), not by a day counter — that needs a
-  date→content-key resolution layer, for which the Home feast-day data (`Shared/content/data`)
-  is the seed, and it should not be forced into the `days` shape.
+  Hours are a different beast and get their own type rather than being forced into this
+  shape — see below.
+- **The Hours** — `{"type": "hours"}`: several offices a day, each of whose contents the
+  liturgical calendar chooses. A days-type devotion advances by a counter; an office does not,
+  which is the whole reason this is a separate type. **Format and validator only (2026-08-06):
+  no decoders, engines, Compose support or bundles ship yet** — this is the shape settled so
+  that authoring one is possible, not a feature.
+
+  A bundle declares the *skeleton* of each hour once and leaves the parts that vary as holes:
+
+  - **`hours: [{id, name, nameByLanguage?, suggestedTime?, steps: [Entry…]}]`** — one per office
+    (Vespers, Compline, the Office of Readings). Each is structurally a steps-type sequence, so
+    `Entry` is reused unchanged. `id` is the reserved handle for which office a favorite opens
+    on (a future `Prayer.hourId`, exactly as `Prayer.dayIndex` names a day) and for a per-hour
+    reminder; `suggestedTime` ("HH:mm") is the hour's traditional time, advisory the same way a
+    series' `suggestedReminderTime` is — which is how the Angelus's `reminderPresetHours`
+    generalizes to an office of the day.
+  - **Shared `opening`/`closing`** are prayed around every hour, the same pair days-type has —
+    the "O God, come to my assistance" that opens each one, and a closing that may be the
+    existing `{"kind": "seasonalMarianAntiphon"}` entry, which is precisely what ends Compline.
+  - **A slot** — `{"kind": "proper", "slot": "psalmody", "default"?: [Entry…]}` — is the one
+    entry that is not itself a step: a named hole the calendar fills. `default` is how an author
+    says "unless the calendar says otherwise, this".
+  - **`propers: [{when?, hour?, slot, steps: [Entry…]}]`** is the date→content-key resolution
+    layer, expressed as data rather than code. Each entry files a piece of content under the days
+    it belongs to. `when` constrains any of seven facets, each a non-empty array of allowed
+    values — `date` ("MM-DD", the sanctoral), `rank`, `season`, `week` (of the season),
+    `weekday`, `psalterWeek` (1–4), `readingYear` (1–2). Every declared facet must match, any
+    listed value within a facet matches, an omitted facet is unconstrained, and absent/`{}` is
+    the catch-all for that slot.
+
+  **Precedence is a fixed facet order, not a count**: `date`, `rank`, `season`, `week`,
+  `weekday`, `psalterWeek`, `readingYear`, compared lexicographically — a proper constraining an
+  earlier facet beats one that does not, however many facets either constrains. That is the
+  Church's own hierarchy (proper of saints over proper of season over the running psalter);
+  counting conditions instead would let "Advent, week 3, Sunday" outrank Christmas Day, which is
+  exactly backwards. Ties go to the earlier declaration, and the validator rejects two propers
+  for one slot with an identical selector so declaration order never silently decides an office.
+
+  The validator earns the word "robust" by refusing the ways this shape goes wrong: a slot no
+  proper can fill and with no `default` (it would vanish from the office silently, every day of
+  the year), a proper for a slot no hour asks for, a proper naming an hour that lacks its slot,
+  an unknown facet or an out-of-range value, duplicate hour ids, and indistinguishable propers.
+  `Shared/tools/fixtures/hours-format-proof/` is the bundle those rules are exercised against —
+  two hours, a shared ordinary, the running psalter, a proper of the season, a saint's day, a
+  rank override, the two-year reading cycle, a slot with its own default, and an option-gated
+  step — and `Shared/tools/test-validate-devotion.py` runs it plus nineteen deliberate breakages
+  plus every shipped bundle. Any key beginning with `$` is an author's note anywhere in a
+  devotion.json, so a proper can say why it exists without the format growing a field for prose.
+
+  **What implementing it still needs**, none of which is format work:
+  `LiturgicalCalendarProviding` must answer week-of-season, `psalterWeek`, `rank` and
+  `readingYear` for a date. Only week-of-season is genuinely new computation — `psalterWeek` is
+  arithmetic on it, `rank` is a lookup in the `feasts.json` the Home screen already ships (whose
+  `rank` values this vocabulary deliberately mirrors), and `readingYear` alternates with the
+  liturgical year. Then decoders, an engine that walks the precedence list per slot, a way to
+  choose an hour, and — the part the format cannot help with — texts. The Church's modern
+  Liturgy of the Hours (ICEL, the Grail psalms) is under copyright; a shippable bundle wants
+  public-domain sources, and **Compline is the sane first office**: a seven-day cycle, a fixed
+  ordinary, and a closing Marian antiphon the engine already builds.
 - **Audio** — a bundle may ship narrated recordings of its devotion. An optional
   **`audio.json`** (declared separately from the structure, the same way catalog.json/options.json
   are) lists tracks: `{"tracks": [{id, language, file, variantId?, name?, nameByLanguage?,
@@ -586,7 +672,15 @@ of its own — its entire step sequence and per-step text are data-driven from i
   `PrayerTranslations.get`'s Latin fallback); (3) the ordinary `PrayerTranslations` chain for
   shared keys like `gloriaPatri`; (4) the raw key string as last resort.
   `MysteryTranslations.get` has the matching bundle-Latin step in its own chain, since the
-  Sorrows/Magi texts live only in bundles. On Windows, `PrayerKey` is a set of string constants
+  Sorrows/Magi texts live only in bundles. **Every one of these chains tries the code's base
+  language before Latin** — `he-x-gamliel` reads plain `he` for anything the rite has not sent,
+  in the pack overrides and the hardcoded tables alike. `MysteryTranslations.get` was missing
+  that step until 2026-08-06: a rite that ships no mystery texts of its own announced every
+  mystery in *Latin* — title, Vulgate body and the fruit spliced into a Hebrew label — while the
+  rest of the session prayed Hebrew. The mystery announcement is the one step whose body is
+  quoted Scripture, so this was the most visible place it could have gone wrong; each platform's
+  `CustomDevotionEngineTests` now pins the announcement against plain Hebrew *and* against Latin.
+  On Windows, `PrayerKey` is a set of string constants
   rather than a validating enum and every content key also merges into one global PascalCased
   override table, but `ResolveBodyText` follows the same per-bundle-raw-first chain.
 - **Validation**: `Shared/tools/validate-devotion.py` (run by both packers) checks the schema per

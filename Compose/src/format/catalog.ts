@@ -7,6 +7,8 @@ export const LANGUAGES = [
   { code: "en", name: "English", rtl: false },
   { code: "ar", name: "Arabic", rtl: true },
   { code: "he", name: "Hebrew", rtl: true },
+  { code: "el", name: "Greek", rtl: false },
+  { code: "es", name: "Spanish", rtl: false },
   { code: "ru", name: "Russian", rtl: false },
   { code: "tl", name: "Tagalog", rtl: false },
   // Aramaic in Hebrew script — the Aramaic-rite communities' liturgical language.

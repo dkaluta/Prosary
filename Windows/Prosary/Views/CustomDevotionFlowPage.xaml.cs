@@ -113,17 +113,27 @@ public sealed partial class CustomDevotionFlowPage : Page
         LanguageFlyout.Items.Clear();
         var choices = new List<(string Raw, string Name)> { (LanguageCatalog.DefaultSentinel, Loc.Tr("flow_app_setting", "App setting")) };
         choices.AddRange(ViewModel.Languages.Select(l => (l.Code, l.NativeName)));
+        // A language row checks whenever the chosen code IS that language — rites included, by
+        // base: a favorite carrying "he-x-gamliel" keeps עברית checked. Exact matching made the
+        // Hebrew check vanish for the Mission's rite while the Vicariate's (whose code IS "he")
+        // kept it. This flyout does not offer the rites themselves yet — the rite is chosen in
+        // Settings/the editor — but the check must still tell the truth about the language.
+        var chosen = ViewModel.CurrentLanguageRaw;
+        var chosenBase = LanguageCatalog.BaseLanguage(chosen) ?? chosen;
         foreach (var (raw, name) in choices)
         {
+            var isChecked = raw == LanguageCatalog.DefaultSentinel
+                ? chosen == LanguageCatalog.DefaultSentinel
+                : chosen != LanguageCatalog.DefaultSentinel && chosenBase == raw;
             var item = new ToggleMenuFlyoutItem
             {
                 Text = name,
-                IsChecked = raw == ViewModel.CurrentLanguageRaw,
+                IsChecked = isChecked,
             };
-            var chosen = raw;
+            var picked = raw;
             item.Click += async (_, _) =>
             {
-                await ViewModel.SelectLanguageAsync(chosen);
+                await ViewModel.SelectLanguageAsync(picked);
                 BuildLanguageFlyout();
             };
             LanguageFlyout.Items.Add(item);

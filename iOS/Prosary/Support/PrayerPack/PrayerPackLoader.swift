@@ -266,6 +266,10 @@ struct CustomDevotionDefinition: Decodable {
     /// Entries emitted after each decade's minors, carrying the decade's subtitle/index (the
     /// Rosary's Glory Be / Fatima Prayer / per-decade eternal rest), each usually gated with
     /// an `"if"`.
+    /// Emitted before each decade's announcement — the Servite chaplet's invocation to
+    /// Our Lady before each sorrow is named. Not beads: they carry the decade's subtitle
+    /// but no decadeIndex.
+    let preAnnouncement: [CustomDevotionStep]?
     let postMinor: [CustomDevotionStep]?
     /// Presenter-mode alternate decade tail: when the gating option is on, the minors (and any
     /// postMinor entry gated `"!presenterMode"`) collapse into one combined step with
@@ -298,16 +302,26 @@ struct CustomDevotionDefinition: Decodable {
     }
   }
 
-  /// One named alternate step-set of a steps-type devotion (e.g. the Stations' traditional vs.
-  /// scriptural forms). The first variant is the default.
+  /// One named alternate form of a devotion — the Stations' traditional vs. scriptural sets, or
+  /// a chaplet's shorter and fuller recensions. The first variant is the default.
+  ///
+  /// A steps-type variant carries `steps`; a rosary-type one carries the same four fields a
+  /// single-form rosary devotion has. Which pair is populated follows the devotion's `type`, and
+  /// the validator enforces it — the decoders stay lenient so the engines can switch on type
+  /// alone, the same bargain every other part of this format makes.
   struct Variant: Decodable {
     let id: String
     /// English UI label (the app-wide step-title convention); `nameByLanguage` overrides it per
     /// UI localization, mirroring the manifest's `displayNameByLanguage`.
     let name: String
     let nameByLanguage: [String: String]?
-    let steps: [CustomDevotionStep]
+    let steps: [CustomDevotionStep]?
     let eastertideSteps: [CustomDevotionStep]?
+    // rosary type
+    let opening: [CustomDevotionStep]?
+    let decades: Decades?
+    let closing: [CustomDevotionStep]?
+    let hasClosingCross: Bool?
 
     var localizedName: String {
       guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else { return name }
@@ -350,9 +364,24 @@ struct CustomDevotionDefinition: Decodable {
   func resolvedSteps(variantId: String?) -> (steps: [CustomDevotionStep], eastertideSteps: [CustomDevotionStep]?) {
     if let variants, !variants.isEmpty {
       let variant = variants.first { $0.id == variantId } ?? variants[0]
-      return (variant.steps, variant.eastertideSteps)
+      return (variant.steps ?? [], variant.eastertideSteps)
     }
     return (steps ?? [], eastertideSteps)
+  }
+
+  /// The rosary-type form to build for `variantId` — the matching variant, else the default
+  /// (first) one, else the top-level fields. Mirrors `resolvedSteps` so both types pick a form
+  /// the same way.
+  func resolvedRosary(
+    variantId: String?
+  ) -> (opening: [CustomDevotionStep], decades: Decades?, closing: [CustomDevotionStep],
+        hasClosingCross: Bool) {
+    if let variants, !variants.isEmpty {
+      let variant = variants.first { $0.id == variantId } ?? variants[0]
+      return (variant.opening ?? [], variant.decades, variant.closing ?? [],
+              variant.hasClosingCross ?? false)
+    }
+    return (opening ?? [], decades, closing ?? [], hasClosingCross ?? false)
   }
 }
 
@@ -376,10 +405,20 @@ struct CustomDevotionInfo {
   /// tab groups by.
   let tags: [String]
 
-  /// The display name in the app's active UI localization (falling back to the manifest's
-  /// base `displayName`) — preserves e.g. the Hebrew devotion names that used to live in
-  /// Localizable.xcstrings.
+  /// The devotion's name, resolved the way its headings are: the prayer language first, then
+  /// the UI language, then the manifest's base `displayName`.
+  ///
+  /// A devotion's name is part of the prayer — the same principle that moved step headings into
+  /// the prayed language (the Trisagion reads טריסאגיון over Hebrew steps, and in the Mission of
+  /// St. Gamaliel's rite קדישת, the Aramaic word the Syriac churches sing it under). The prayer
+  /// language is tried by its exact resolved code — rites included, which a UI-language lookup
+  /// could never see (`preferredLocalizations` truncates to two characters) — then by its base,
+  /// so a rite whose bundle only names the base language still reads that language's name.
   var localizedDisplayName: String {
+    let prayerCode = LanguageCatalog.resolve(nil).code
+    if let name = displayNameByLanguage[prayerCode] { return name }
+    if let base = LanguageCatalog.baseLanguage(of: prayerCode),
+       let name = displayNameByLanguage[base] { return name }
     guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else { return displayName }
     return displayNameByLanguage[String(uiLanguage)] ?? displayName
   }

@@ -5,6 +5,8 @@ import com.dkaluta.prosary.content.PrayerKey
 import com.dkaluta.prosary.content.PrayerTranslations
 import com.dkaluta.prosary.content.prayerTranslationsEnglish
 import com.dkaluta.prosary.engine.PrayerEngine
+import com.dkaluta.prosary.models.AppSettings
+import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import java.io.File
@@ -301,11 +303,50 @@ class PrayerPackLoaderTest {
         assertEquals("triangle", info?.iconSystemName)
     }
 
+    /** Android's Locale reports Hebrew by its pre-1989 code — getLanguage() gives "iw", never
+     * "he" — so every UI-language lookup that fed it straight into a manifest's "he" keys fell
+     * back to English for exactly the audience those keys were written for. The normalization
+     * is a pure function so this can pin it without fighting the JVM's own Locale behavior. */
+    @Test
+    fun legacyLocaleCodesNormalizeToTheContentLayersSpelling() {
+        assertEquals("he", LanguageCatalog.uiLanguageCode("iw"))
+        assertEquals("he", LanguageCatalog.uiLanguageCode("he"))
+        assertEquals("id", LanguageCatalog.uiLanguageCode("in"))
+        assertEquals("en", LanguageCatalog.uiLanguageCode("en"))
+    }
+
+    /** A devotion's name follows the prayer language, rites included — Erez's ask: with his
+     * rite as the default prayer language, the Trisagion card reads קדישת; plain Hebrew reads
+     * טריסאגיון; a rite falls to its base when the bundle only names the base language. */
+    @Test
+    fun displayNameFollowsThePrayerLanguage() {
+        val saved = AppSettings.defaultLanguageCode
+        try {
+            AppSettings.setDefaultLanguageCode("he-x-gamliel")
+            assertEquals("קדישת", PrayerPackStore.info("trisagion")?.localizedDisplayName)
+            assertEquals(
+                PrayerPackStore.info("divineMercyChaplet")?.displayNameByLanguage?.get("he"),
+                PrayerPackStore.info("divineMercyChaplet")?.localizedDisplayName,
+            )
+
+            AppSettings.setDefaultLanguageCode("he")
+            assertEquals("טריסאגיון", PrayerPackStore.info("trisagion")?.localizedDisplayName)
+
+            AppSettings.setDefaultLanguageCode("la")
+            assertEquals("Trisagion", PrayerPackStore.info("trisagion")?.localizedDisplayName)
+        } finally {
+            AppSettings.setDefaultLanguageCode(saved)
+        }
+    }
+
     @Test
     fun trisagionDefinitionMatchesTheAuthoredSixStepSequence() {
         val definition = PrayerPackStore.definition("trisagion")
         assertEquals(CustomDevotionDefinition.DevotionType.Steps, definition?.type)
-        val steps = definition?.steps.orEmpty()
+        // The bundle names its forms now (Byzantine first = the default, Syriac second); the
+        // default form must remain the authored six steps, byte-identical.
+        assertEquals(listOf("byzantine", "syriac"), definition?.variants?.map { it.id })
+        val steps = definition?.resolvedSteps(null)?.first.orEmpty()
         // Headings are translatable keys, not literals, so they read in the prayer's language.
         assertEquals(
             listOf(

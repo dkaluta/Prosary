@@ -129,7 +129,7 @@ data class CustomDevotionOption(
         val nameByLanguage: Map<String, String>? = null,
     ) {
         val localizedName: String
-            get() = nameByLanguage?.get(Locale.getDefault().language) ?: name
+            get() = nameByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: name
     }
 
     /** Canonical string form of the authored default: "true"/"false" for a toggle, a case id
@@ -138,7 +138,7 @@ data class CustomDevotionOption(
         get() = default.content
 
     val localizedName: String
-        get() = nameByLanguage?.get(Locale.getDefault().language) ?: name
+        get() = nameByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: name
 }
 
 @Serializable
@@ -184,7 +184,7 @@ data class DevotionAudioTrack(
     )
 
     val localizedName: String?
-        get() = nameByLanguage?.get(Locale.getDefault().language) ?: name
+        get() = nameByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: name
 }
 
 @Serializable
@@ -237,11 +237,16 @@ data class CustomDevotionDefinition(
         val steps: List<CustomDevotionStep>,
     ) {
         val localizedName: String
-            get() = nameByLanguage?.get(java.util.Locale.getDefault().language) ?: name
+            get() = nameByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: name
     }
 
-    /** One named alternate step-set of a steps-type devotion (e.g. the Stations' traditional
-     * vs. scriptural forms). */
+    /** One named alternate form of a devotion — the Stations' traditional vs. scriptural sets,
+     * or a chaplet's shorter and fuller recensions. The first variant is the default.
+     *
+     * A steps-type variant carries [steps]; a rosary-type one carries the same four fields a
+     * single-form rosary devotion has. Which pair is populated follows the devotion's type, and
+     * the validator enforces it — the decoders stay lenient so the engines can switch on type
+     * alone. */
     @Serializable
     data class Variant(
         val id: String,
@@ -249,11 +254,16 @@ data class CustomDevotionDefinition(
          * per UI localization, mirroring the manifest's displayNameByLanguage. */
         val name: String,
         val nameByLanguage: Map<String, String>? = null,
-        val steps: List<CustomDevotionStep>,
+        val steps: List<CustomDevotionStep>? = null,
         val eastertideSteps: List<CustomDevotionStep>? = null,
+        // rosary type
+        val opening: List<CustomDevotionStep>? = null,
+        val decades: Decades? = null,
+        val closing: List<CustomDevotionStep>? = null,
+        val hasClosingCross: Boolean? = null,
     ) {
         val localizedName: String
-            get() = nameByLanguage?.get(Locale.getDefault().language) ?: name
+            get() = nameByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: name
     }
 
     /** The step lists to build for [variantId] — the matching variant, else the default (first)
@@ -261,9 +271,29 @@ data class CustomDevotionDefinition(
     fun resolvedSteps(variantId: String?): Pair<List<CustomDevotionStep>, List<CustomDevotionStep>?> {
         if (!variants.isNullOrEmpty()) {
             val variant = variants.firstOrNull { it.id == variantId } ?: variants.first()
-            return variant.steps to variant.eastertideSteps
+            return variant.steps.orEmpty() to variant.eastertideSteps
         }
         return steps.orEmpty() to eastertideSteps
+    }
+
+    /** One rosary-type form: the matching variant, else the default (first) one, else the
+     * top-level fields. Mirrors [resolvedSteps] so both types pick a form the same way. */
+    data class RosaryForm(
+        val opening: List<CustomDevotionStep>,
+        val decades: Decades?,
+        val closing: List<CustomDevotionStep>,
+        val hasClosingCross: Boolean,
+    )
+
+    fun resolvedRosary(variantId: String?): RosaryForm {
+        if (!variants.isNullOrEmpty()) {
+            val variant = variants.firstOrNull { it.id == variantId } ?: variants.first()
+            return RosaryForm(
+                variant.opening.orEmpty(), variant.decades, variant.closing.orEmpty(),
+                variant.hasClosingCross ?: false,
+            )
+        }
+        return RosaryForm(opening.orEmpty(), decades, closing.orEmpty(), hasClosingCross ?: false)
     }
 
     @Serializable
@@ -311,6 +341,10 @@ data class CustomDevotionDefinition(
         val minorCount: Int,
         /** Entries emitted after each decade's minors, carrying the decade's subtitle/index
          * (the Rosary's Glory Be / Fatima Prayer / per-decade eternal rest), usually gated. */
+        /** Emitted before each decade's announcement — the Servite chaplet's invocation
+         * to Our Lady before each sorrow is named. Not beads: they carry the decade's
+         * subtitle but no decadeIndex. */
+        val preAnnouncement: List<CustomDevotionStep>? = null,
         val postMinor: List<CustomDevotionStep>? = null,
         /** Presenter-mode alternate decade tail: the minors collapse into one combined step
          * with `hailMaryIndexInDecade = minorCount` so the bead track still renders a full
@@ -370,14 +404,24 @@ data class CustomDevotionInfo(
     /** The display name in the device's UI language (falling back to the manifest's base
      * [displayName]) — preserves e.g. the Hebrew devotion names that used to live in
      * strings.xml. */
+    /** The devotion's name, resolved the way its headings are: the prayer language first
+     * (exact resolved code, rites included, then its base), then the UI language, then the
+     * manifest's base displayName — a devotion's name is part of the prayer. */
     val localizedDisplayName: String
-        get() = displayNameByLanguage[Locale.getDefault().language] ?: displayName
+        get() {
+            val prayerCode = LanguageCatalog.resolve(null).code
+            displayNameByLanguage[prayerCode]?.let { return it }
+            LanguageCatalog.baseLanguage(prayerCode)?.let { base ->
+                displayNameByLanguage[base]?.let { return it }
+            }
+            return displayNameByLanguage[LanguageCatalog.uiLanguageCode()] ?: displayName
+        }
 
     val localizedReminderBody: String?
-        get() = reminderBody[Locale.getDefault().language] ?: reminderBody["en"]
+        get() = reminderBody[LanguageCatalog.uiLanguageCode()] ?: reminderBody["en"]
 
     val localizedReminderPresetFooter: String?
-        get() = reminderPresetFooter[Locale.getDefault().language] ?: reminderPresetFooter["en"]
+        get() = reminderPresetFooter[LanguageCatalog.uiLanguageCode()] ?: reminderPresetFooter["en"]
 }
 
 /** Loads the bundled .prosaryprayer packs (Rosary, and every generic bundle-driven devotion —

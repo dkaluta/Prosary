@@ -1,7 +1,7 @@
 package com.dkaluta.prosary.content
 
 val prayerTranslationsTagalog: Map<PrayerKey, String> = mapOf(
-    PrayerKey.SignumCrucis to "Sa ngalan ng Ama, at ng Anak, at ng Espiritu Santo. Amen.",
+    PrayerKey.SignumCrucis to "Sa ngalan ng Ama ✠, at ng Anak, at ng Espiritu Santo. Amen.",
 
     PrayerKey.SymbolumApostolorum to
         "Naniniwala ako sa Dios Ama, Makapangyarihan sa lahat, na may gawa ng langit at lupa. " +

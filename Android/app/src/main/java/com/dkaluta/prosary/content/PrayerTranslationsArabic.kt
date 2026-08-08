@@ -6,7 +6,7 @@ package com.dkaluta.prosary.content
  */
 val prayerTranslationsArabic: Map<PrayerKey, String> = mapOf(
     PrayerKey.SignumCrucis to
-        "باسم الآب والابن والروح القدس، الإله الواحد. آمين.",
+        "باسم الآب ✠ والابن والروح القدس، الإله الواحد. آمين.",
 
     PrayerKey.SymbolumApostolorum to
         "أؤمنُ بالله الآبِ القديرِ خالقِ السماءِ والأرضِ. وبيسوعَ المسيحِ ابنِه الوحيدِ ربِّنا، الذي " +

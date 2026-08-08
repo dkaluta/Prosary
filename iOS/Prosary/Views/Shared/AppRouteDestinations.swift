@@ -28,6 +28,10 @@ private struct AppRouteDestinations: ViewModifier {
         CustomDevotionFlowView(devotionId: devotionId)
       case .rosaryQuickPray(let prayer):
         RosaryFlowView(prayer: prayer)
+      case .basicPrayers:
+        BasicPrayersView()
+      case .basicPrayer(let id):
+        BasicPrayerFlowView(prayerId: id)
       }
     }
   }

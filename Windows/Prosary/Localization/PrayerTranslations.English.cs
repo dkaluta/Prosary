@@ -5,7 +5,7 @@ public static partial class PrayerTranslations
     private static readonly Dictionary<string, string> English = new()
     {
         [PrayerKey.SignumCrucis] =
-            "In the name of the Father, and of the Son, and of the Holy Spirit. Amen.",
+            "In the name of the Father ✠, and of the Son, and of the Holy Spirit. Amen.",
 
         [PrayerKey.SymbolumApostolorum] =
             "I believe in God, the Father almighty, Creator of heaven and earth, and in Jesus Christ, " +

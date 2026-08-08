@@ -47,6 +47,158 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertFalse(steps[4].body.contains("Holy Mighty One"))
   }
 
+  /// The shipped Trisagion was always the Byzantine form; it just never said so. Erez prays the
+  /// Syriac one — the acclamation thrice, then Lord-have-mercy thrice — so the bundle now names
+  /// both, Byzantine first so the default sequence stays byte-identical (the six-step test above
+  /// is the guard). His rite's Kyrie is his own ה׳ רחם־נא; plain Hebrew has no Vicariate wording
+  /// for it yet and deliberately falls back to the bundle's Latin rather than to an invention.
+  func testTrisagionSyriacVariant() {
+    let syriac = steps("trisagion", variantId: "syriac")
+    XCTAssertEqual(syriac.count, 4)
+    XCTAssertEqual(syriac.map(\.title),
+                   Array(repeating: "Holy God", count: 3) + ["Lord, Have Mercy"])
+    XCTAssertTrue(syriac[0].body.contains("Holy God, Holy Mighty One"))
+    // The Kyrie is ONE composed step — the threefold form is a single text, so repeating it
+    // would pray nine invocations.
+    XCTAssertEqual(syriac[3].body, "Lord, have mercy.\nChrist, have mercy.\nLord, have mercy.")
+    XCTAssertFalse(syriac.contains { $0.body.contains("Glory be") }, "the Syriac form has no Gloria")
+
+    // The Vicariate's Hebrew is the full threefold form in one line, exactly as sent; Erez's
+    // rite overlays the same slot with his own line said thrice.
+    let hebrewKyrie = steps("trisagion", language: "he", variantId: "syriac")[3]
+    XCTAssertEqual(hebrewKyrie.body, "ישוע שמענו, המשיח עזרנו, האדון חננו.")
+    XCTAssertEqual(hebrewKyrie.title, "ישוע שמענו", "the heading is the line's own incipit")
+    XCTAssertEqual(steps("trisagion", language: "he-x-gamliel", variantId: "syriac")[3].body,
+                   "ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא")
+  }
+
+  /// The basic-prayers list resolves through the same chains the flows use, so it follows the
+  /// prayer language rites included — the whole point of surfacing it: in Erez's rite the Holy
+  /// God is קדישת over his own acclamation, and the Hail Mary reads his community's text.
+  func testBasicPrayerCatalogResolvesInThePrayerLanguage() {
+    let saved = UserDefaults.standard.string(forKey: "defaultLanguageCode")
+    defer {
+      if let saved { UserDefaults.standard.set(saved, forKey: "defaultLanguageCode") }
+      else { UserDefaults.standard.removeObject(forKey: "defaultLanguageCode") }
+    }
+
+    XCTAssertEqual(BasicPrayerCatalog.all.map(\.id),
+                   ["signOfCross", "ourFather", "hailMary", "gloryBe", "holyGod"])
+
+    UserDefaults.standard.set("en", forKey: "defaultLanguageCode")
+    let english = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "holyGod")!)
+    XCTAssertEqual(english.title, "Holy God")
+    XCTAssertTrue(english.body.contains("Holy Immortal One"))
+
+    UserDefaults.standard.set("he-x-gamliel", forKey: "defaultLanguageCode")
+    let rite = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "holyGod")!)
+    XCTAssertEqual(rite.title, "קדישת")
+    XCTAssertTrue(rite.body.hasPrefix("אַתָּה ✠▼▲ קָדוֹשׁ"))
+
+    let hailMary = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "hailMary")!)
+    XCTAssertTrue(hailMary.body.contains("שָׁלוֹם לָךְ מִרְיָם"), "his community's Hail Mary")
+
+    // The Sign of the Cross carries its mark in every language the same way the flows show it.
+    UserDefaults.standard.set("la", forKey: "defaultLanguageCode")
+    let cross = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "signOfCross")!)
+    XCTAssertTrue(cross.body.contains("✠"))
+  }
+
+  /// Spanish, pinned the same way as Greek — what is sourced works, what is not falls back.
+  /// Its prayers come from the Holy See's own Spanish Compendium, which prints each beside its
+  /// Latin twin; the Creed, the Fatima prayer and the St Michael prayer are not in that
+  /// appendix and are deliberately absent rather than reconstructed.
+  func testSpanishPraysWhatWasSourcedAndFallsBackForTheRest() {
+    XCTAssertTrue(PrayerTranslations.get(languageCode: "es", key: .paterNoster)
+      .hasPrefix("Padre nuestro que estás en el cielo"))
+    XCTAssertTrue(PrayerTranslations.get(languageCode: "es", key: .salveRegina)
+      .hasPrefix("Dios te salve, Reina y Madre de misericordia"))
+    // The Rosary's own collect, not the Angelus's — both are in the appendix and only one fits.
+    XCTAssertTrue(PrayerTranslations.get(languageCode: "es", key: .collectaStandard)
+      .contains("los misterios del Rosario"))
+
+    XCTAssertEqual(PrayerTranslations.get(languageCode: "es", key: .symbolumApostolorum),
+                   PrayerTranslations.get(languageCode: "la", key: .symbolumApostolorum),
+                   "the Compendium's appendix has no Creed, so Latin stands")
+
+    // The Scripture is imported and in the pack; a session cannot reach it until a manifest
+    // offers Spanish, which waits on Spanish bundle text — same as Greek.
+    XCTAssertTrue(PrayerPackStore.resolveBodyText(
+      bundleId: "stationsOfTheCross", languageCode: "es", key: "scriptural01Body")
+      .contains("Gethsemaní"))
+  }
+
+  /// Where Greek stands, pinned exactly — because it is half-finished and the half that is done
+  /// should not be mistaken for the whole.
+  ///
+  /// The shared prayers work: a Greek session says the Jesus Prayer and the Sub Tuum in the
+  /// language they were written in, and falls back to Latin per key for the Latin-tradition
+  /// prayers Greek has none of.
+  ///
+  /// The bundle Scripture does not, yet. The Peshitta/Byzantine import put 36 passages into the
+  /// packs, and they are genuinely there — resolveBodyText finds them. But a *session* never
+  /// asks for them: no bundle's manifest declares "el", so effectiveLanguage falls to the
+  /// bundle's first language and the whole devotion prays Latin. Declaring it would fix that and
+  /// would also be a lie — Greek covers 22–43% of those bundles' keys, so the offer would be a
+  /// devotion that is mostly Latin wearing a Greek label. What flips this test is Greek titles
+  /// and prayers in the bundles, not a manifest edit.
+  func testGreekPraysItsOwnPrayersAndFallsBackForTheRest() {
+    XCTAssertEqual(PrayerTranslations.get(languageCode: "el", key: .oratioIesu),
+                   "Κύριε Ἰησοῦ Χριστέ, Υἱὲ τοῦ Θεοῦ, ἐλέησόν με τὸν ἁμαρτωλόν.")
+    XCTAssertTrue(PrayerTranslations.get(languageCode: "el", key: .subTuumPraesidium)
+      .hasPrefix("Ὑπὸ τὴν σὴν εὐσπλαγχνίαν"))
+    XCTAssertEqual(PrayerTranslations.get(languageCode: "el", key: .salveRegina),
+                   PrayerTranslations.get(languageCode: "la", key: .salveRegina),
+                   "no citable Greek Salve Regina exists, so Latin stands")
+
+    // The imported Scripture is in the pack...
+    let greek = PrayerPackStore.resolveBodyText(
+      bundleId: "viaLucis", languageCode: "el", key: "viaLucis01Body")
+    XCTAssertTrue(greek.contains("Ὀψὲ δὲ σαββάτων"), "Matthew 28 in the Byzantine text")
+
+    // ...and a session still prays Latin, because no manifest offers Greek yet.
+    let session = steps("viaLucis", language: "el")
+    XCTAssertEqual(session.map(\.body), steps("viaLucis", language: "la").map(\.body))
+  }
+
+  /// The Vicariate's Hebrew prayerbook leads each of the three acclamations with a cross, and
+  /// gives the short form none. The asymmetry is the point: it is exactly what an editor would
+  /// "tidy up" later, so both halves are pinned. Hebrew only — the other languages keep the
+  /// plain text until someone has seen a prayerbook in those.
+  func testTrisagionCrossesFollowTheVicariatesPrayerbook() {
+    let hebrew = steps("trisagion", language: "he")
+    XCTAssertEqual(hebrew[0].body.filter { $0 == "✠" }.count, 3, "one cross per acclamation")
+    XCTAssertTrue(hebrew[0].body.hasPrefix("✠ קָדוֹשׁ הָאֱלֹהִים"))
+    XCTAssertFalse(hebrew[4].body.contains("✠"), "the short form takes no cross")
+
+    for language in ["la", "en", "ar", "ru", "tl"] {
+      XCTAssertFalse(steps("trisagion", language: language)[0].body.contains("✠"),
+                     "\(language) has no prayerbook behind it yet")
+    }
+  }
+
+  /// The Mission of St. Gamaliel's Trisagion (sent by Erez 2026-08-06) addresses God in the
+  /// second person where the app's own Hebrew declares of him, and heads the prayer with the
+  /// Aramaic קדישת. Pinned so their wording — including the ✠▼▲ marks exactly as sent — cannot
+  /// drift, and so it stays visibly distinct from the plain-Hebrew form beside it.
+  func testTrisagionInTheMissionsRite() {
+    let mission = steps("trisagion", language: "he-x-gamliel")
+    let hebrew = steps("trisagion", language: "he")
+
+    XCTAssertEqual(mission.map(\.title), Array(repeating: "קדישת", count: 3) + ["השבח לאב"]
+      + Array(repeating: "קדישת", count: 2))
+    XCTAssertTrue(mission[0].body.hasPrefix("אַתָּה ✠▼▲ קָדוֹשׁ – אֱלוֹהִים"))
+    XCTAssertTrue(mission[0].body.contains("תְּרַחֵם עָלֵינוּ"))
+    XCTAssertFalse(mission[4].body.contains("חַיִל"), "the short form drops the second acclamation")
+
+    XCTAssertNotEqual(mission[0].body, hebrew[0].body)
+    XCTAssertEqual(hebrew[0].title, "קדוש האלוהים")
+
+    // Not sent by the Mission: the Glory Be itself still reads their wording from the shared
+    // table, and everything else falls through to plain Hebrew.
+    XCTAssertTrue(mission[3].body.contains("הַשֶּׁבַח לָאָב"))
+  }
+
 
   /// A repeated step's counter is part of the prayer, not the interface: praying in Hebrew, the Divine Mercy
   /// decade reads "(1 מתוך 10)". Splicing the English "of" into right-to-left text left bidi
@@ -453,6 +605,18 @@ final class CustomDevotionEngineTests: XCTestCase {
     // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
     let fatima = { (list: [RosaryStep]) in list.first { $0.title.contains("הו ישוע") }?.body }
     XCTAssertEqual(fatima(variant), fatima(hebrew))
+
+    // The mysteries are announced in Hebrew too. The Mission ships no mystery texts of its own,
+    // and the announcement is the one step whose body is quoted Scripture — before the base
+    // language step in MysteryTranslations.get it fell past plain Hebrew all the way to Latin,
+    // so the rite prayed its Rosary in Hebrew but heard every mystery announced in Latin.
+    let announcement = { (list: [RosaryStep]) in list.first { $0.mystery != nil } }
+    XCTAssertNotNil(announcement(variant))
+    XCTAssertEqual(announcement(variant)?.title, announcement(hebrew)?.title)
+    XCTAssertEqual(announcement(variant)?.body, announcement(hebrew)?.body)
+    XCTAssertNotEqual(
+      announcement(variant)?.body, announcement(steps("rosary", language: "la"))?.body,
+      "the rite must not fall through to Latin while its prayers read Hebrew")
   }
 
   /// A rite lives under its language, not beside it: the language list stays the eight tongues,

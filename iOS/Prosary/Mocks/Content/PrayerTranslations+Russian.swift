@@ -8,7 +8,7 @@ import Foundation
 extension PrayerTranslations {
   static let russian: [PrayerKey: String] = [
     .signumCrucis:
-      "Во имя Отца, и Сына, и Святого Духа. Аминь.",
+      "Во имя Отца ✠, и Сына, и Святого Духа. Аминь.",
 
     .symbolumApostolorum:
       "Верую в Бога Отца Всемогущего, Творца неба и земли. И в Иисуса Христа, единственного " +

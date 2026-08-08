@@ -590,16 +590,17 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Divine Mercy Chaplet in Hebrew is the Latin Patriarchate of Jerusalem’s own text, approved by Patriarch Michel Sabbah in 2003."
+            "value": "The Divine Mercy Chaplet in Hebrew is the Latin Patriarchate of Jerusalem’s own text, approved by Patriarch Michel Sabbah in 2003. Some of the prayers in Hebrew and Aramaic are used with the permission of the Patriarchal Exarch of the Aramaic (Syriac) Catholic community. The Hebrew prayers are the Saint James Vicariate for Hebrew Speaking Catholics’ own texts, from their prayer book."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "תפילת רחמי האלוהים בעברית היא נוסח הפטריארכיה הלטינית של ירושלים, שאושר על ידי הפטריארך מישל צבאח בשנת 2003."
+            "value": "תפילת רחמי האלוהים בעברית היא נוסח הפטריארכיה הלטינית של ירושלים, שאושר על ידי הפטריארך מישל צבאח בשנת 2003. חלק מן התפילות בעברית ובארמית נלקחו באישור האפוטרוף הפטריארכלי של העדה הארמית (סורית) קתולית. התפילות בעברית לקוחות מספר התפילות של הנציגות הפטריארכלית לקתולים דוברי עברית."
           }
         }
-      }
+      },
+      "comment": "Attribution. Two of these lines are the communities' own words, used verbatim: the Latin Patriarchate's Divine Mercy approval, and the Aramaic (Syriac) Catholic Exarchate's, which Erez sent and which stands exactly as he wrote it. The Saint James Vicariate line is NOT theirs yet — it is a provisional attribution of fact, pending the exact wording Fr. Piotr (who runs the Vicariate) sends. Replace it verbatim when it arrives, the same way the Exarchate's was, and do not strengthen it to 'with the permission of' before then."
     },
     "about.scriptureSources": {
       "extractionState": "manual",
@@ -4508,6 +4509,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "חיפוש"
+          }
+        }
+      }
+    },
+    "settings.hapticsOnAdvance": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vibrate on step change"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "רטט במעבר בין שלבים"
+          }
+        }
+      }
+    },
+    "basicPrayers.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Basic Prayers"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "תפילות בסיסיות"
           }
         }
       }

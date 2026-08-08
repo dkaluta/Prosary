@@ -67,6 +67,8 @@ public partial class App : Application
         services.AddTransient<RosaryPresetPickerViewModel>();
         services.AddTransient<JesusPrayerSetupViewModel>();
         services.AddTransient<JesusPrayerViewModel>();
+        services.AddTransient<BasicPrayersViewModel>();
+        services.AddTransient<BasicPrayerViewModel>();
         services.AddTransient<SettingsViewModel>();
         services.AddTransient<CustomDevotionViewModel>();
 

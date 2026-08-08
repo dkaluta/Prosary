@@ -327,7 +327,10 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
     {
         var definition = PrayerPackStore.Definition("trisagion");
         Assert.Equal(CustomDevotionDefinition.DevotionType.Steps, definition?.Type);
-        var steps = definition?.Steps ?? [];
+        // The bundle names its forms now (Byzantine first = the default, Syriac second); the
+        // default form must remain the authored six steps, byte-identical.
+        Assert.Equal(["byzantine", "syriac"], definition?.Variants?.Select(v => v.Id));
+        var steps = definition?.ResolvedSteps(null).Steps ?? [];
         // Headings are translatable keys, not literals, so they read in the prayer's language.
         Assert.Equal(
             [

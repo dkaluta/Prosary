@@ -18,6 +18,18 @@ object MysteryTranslations {
         val text = table?.get(imageKey)
         if (text != null) return text
 
+        // Community variants ("he-x-gamliel") overlay their base language, exactly as
+        // PrayerTranslations.get does — without this step a rite that ships no mystery texts of
+        // its own announced the mysteries in *Latin* while the rest of the session prayed Hebrew.
+        val base = languageCode?.let { com.dkaluta.prosary.models.LanguageCatalog.baseLanguage(it) }
+        if (base != null) {
+            val baseOverride = PrayerPackStore.mysteryOverride(base, imageKey)
+            if (baseOverride != null) return baseOverride
+
+            val baseText = byLanguage[base]?.get(imageKey)
+            if (baseText != null) return baseText
+        }
+
         return PrayerPackStore.mysteryOverride("la", imageKey)
             ?: mysteryTranslationsLatin[imageKey]
             ?: MysteryText(title = imageKey, fruit = "", description = "")

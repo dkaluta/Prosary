@@ -221,7 +221,10 @@ fun CustomDevotionFlowScreen(
 
     val currentStep = steps.getOrNull(currentIndex)
     val showsBeadTrack = steps.any { it.decadeIndex != null }
-    val hasClosingCross = PrayerPackStore.definition(devotionId)?.hasClosingCross ?: false
+    // Per form, not per bundle: one recension of a chaplet can end with the cross where
+    // another does not, and the bead track draws a closing bead on the strength of this.
+    val hasClosingCross =
+        PrayerPackStore.definition(devotionId)?.resolvedRosary(variantId)?.hasClosingCross ?: false
     val beadLayout = remember(steps, currentIndex) {
         BeadLayout.build(steps, currentIndex, hasClosingCross = hasClosingCross)
     }
@@ -363,15 +366,35 @@ fun CustomDevotionFlowScreen(
                     // A language prayed in more than one use lists those under it — the rite is
                     // a second question, and one whose gaps fall back to the language's own.
                     val rites = LanguageCatalog.rites(LanguageCatalog.resolve(chosenLanguage).code)
-                    val choices = listOf(LanguageCatalog.defaultSentinel to stringResource(R.string.flow_app_setting)) +
+                    // A language row checks whenever the chosen code IS that language — rites
+                    // included, by base: praying he-x-gamliel keeps עברית checked, with the
+                    // rite rows below saying whose Hebrew. Exact matching here made the Hebrew
+                    // check vanish the moment the Mission's rite was chosen — while the
+                    // Vicariate's rite (whose code IS "he") kept it, which is how the
+                    // inconsistency read as a bug to the person praying it (Erez, 2026-08-08).
+                    data class Choice(val raw: String, val name: String, val checked: Boolean)
+                    val chosenBase = LanguageCatalog.baseLanguage(chosenLanguage) ?: chosenLanguage
+                    val choices =
+                        listOf(Choice(
+                            LanguageCatalog.defaultSentinel,
+                            stringResource(R.string.flow_app_setting),
+                            chosenLanguage == LanguageCatalog.defaultSentinel,
+                        )) +
                         bundleLanguages.mapNotNull { code ->
-                            LanguageCatalog.all.firstOrNull { it.code == code }?.let { it.code to it.nativeName }
+                            LanguageCatalog.all.firstOrNull { it.code == code }?.let {
+                                Choice(it.code, it.nativeName,
+                                    chosenLanguage != LanguageCatalog.defaultSentinel && chosenBase == it.code)
+                            }
                         } +
-                        (if (rites.size > 1) rites.map { it.code to it.nativeName } else emptyList())
-                    for ((raw, name) in choices) {
+                        (if (rites.size > 1) {
+                            rites.map { Choice(it.code, it.nativeName, chosenLanguage == it.code) }
+                        } else {
+                            emptyList()
+                        })
+                    for ((raw, name, checked) in choices) {
                         DropdownMenuItem(
                             text = { Text(name) },
-                            leadingIcon = if (chosenLanguage == raw) {
+                            leadingIcon = if (checked) {
                                 { Icon(Icons.Filled.Check, contentDescription = null) }
                             } else {
                                 null

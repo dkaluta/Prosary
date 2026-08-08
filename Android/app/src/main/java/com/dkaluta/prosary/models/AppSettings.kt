@@ -17,12 +17,17 @@ object AppSettings {
     private const val PREFS_NAME = "prosary_settings"
     private const val KEY_DEFAULT_LANGUAGE = "defaultLanguageCode"
     private const val KEY_AUTO_ADVANCE = "autoAdvanceSeconds"
+    private const val KEY_HAPTICS = "hapticsOnAdvance"
 
     var defaultLanguageCode: String = LanguageCatalog.defaultCode
         private set
 
     /** Seconds between automatic step advances in the prayer flows; 0 = off. */
     var autoAdvanceSeconds: Int = 0
+        private set
+
+    /** A gentle tap when a flow's step changes — tester-requested (Erez), off by default. */
+    var hapticsOnAdvance: Boolean = false
         private set
 
     private var prefs: SharedPreferences? = null
@@ -33,6 +38,7 @@ object AppSettings {
         defaultLanguageCode = resolved.getString(KEY_DEFAULT_LANGUAGE, LanguageCatalog.defaultCode)
             ?: LanguageCatalog.defaultCode
         autoAdvanceSeconds = resolved.getInt(KEY_AUTO_ADVANCE, 0)
+        hapticsOnAdvance = resolved.getBoolean(KEY_HAPTICS, false)
     }
 
     fun setDefaultLanguageCode(code: String) {
@@ -43,5 +49,10 @@ object AppSettings {
     fun setAutoAdvanceSeconds(seconds: Int) {
         autoAdvanceSeconds = seconds
         prefs?.edit()?.putInt(KEY_AUTO_ADVANCE, seconds)?.apply()
+    }
+
+    fun setHapticsOnAdvance(enabled: Boolean) {
+        hapticsOnAdvance = enabled
+        prefs?.edit()?.putBoolean(KEY_HAPTICS, enabled)?.apply()
     }
 }

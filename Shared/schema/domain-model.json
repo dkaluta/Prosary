@@ -375,7 +375,15 @@
         },
         "kind": {
           "type": "string?",
-          "description": "\"seasonalMarianAntiphon\" (closing only): emitted by the engine's shared, calendar-dependent antiphon builder instead of bundle data (the Franciscan Crown). \"marianAntiphon\" (closing only): option-selected antiphon (the Rosary) — optionKey names a choice option whose value picks the antiphon, with \"seasonal\" calendar-resolved and \"none\" dropping the step."
+          "description": "\"seasonalMarianAntiphon\" (closing only): emitted by the engine's shared, calendar-dependent antiphon builder instead of bundle data (the Franciscan Crown, and an hours-type closing). \"marianAntiphon\" (closing only): option-selected antiphon (the Rosary) — optionKey names a choice option whose value picks the antiphon, with \"seasonal\" calendar-resolved and \"none\" dropping the step. \"proper\" (hours type only): not a step at all but a named hole in an office — see slot/default below."
+        },
+        "slot": {
+          "type": "string?",
+          "description": "kind == \"proper\": the name of this hole in the office (\"psalmody\", \"hymn\", \"reading\", \"collect\"). Whichever of the bundle's propers matches today with the highest precedence supplies the steps that stand here. Validator-enforced: some proper must be able to fill it, or it must carry a default, so a slot can never silently vanish from an office."
+        },
+        "default": {
+          "type": "CustomDevotionStep[]?",
+          "description": "kind == \"proper\": the steps to use on a day no proper matches — how an author says \"unless the calendar says otherwise, this\"."
         },
         "optionKey": {
           "type": "string?",
@@ -387,8 +395,8 @@
       "description": "Parsed devotion.json — the complete structural description of a generic devotion. Field validity per type is enforced at authoring time by Shared/tools/validate-devotion.py; decoders are deliberately lenient (all optionals) so engines can switch on type alone.",
       "fields": {
         "type": {
-          "type": "enum(steps | rosary | days)",
-          "description": "\"steps\": a flat, fixed list (Angelus, Stations, Via Lucis, Trisagion). \"rosary\": decade/bead-structured (the Rosary itself, Franciscan Crown, Seven Sorrows, Divine Mercy). \"days\": multi-day (novenas, the 33-day Montfort consecration) — groundwork only; sessions pray day 1 until per-favorite day progress ships."
+          "type": "enum(steps | rosary | days | hours)",
+          "description": "\"steps\": a flat, fixed list (Angelus, Stations, Via Lucis, Trisagion). \"rosary\": decade/bead-structured (the Rosary itself, Franciscan Crown, Seven Sorrows, Divine Mercy). \"days\": multi-day (novenas, the 33-day Montfort consecration), worked through by a counter. \"hours\": several offices a day whose contents the liturgical calendar chooses (the Liturgy of the Hours) — format and validator only as of 2026-08-06; no decoders, engines or bundles ship yet."
         },
         "days": {
           "type": "object[]?",
@@ -404,11 +412,11 @@
         },
         "variants": {
           "type": "object[]?",
-          "description": "steps type only: named alternate step-sets [{id, name, nameByLanguage?, steps, eastertideSteps?}], mutually exclusive with steps; the first variant is the default. Resolved via Prayer.variantId."
+          "description": "Named alternate forms of one devotion, mutually exclusive with the type's own top-level fields; the first variant is the default, resolved via Prayer.variantId. **steps type**: [{id, name, nameByLanguage?, steps, eastertideSteps?}] — the Stations' traditional vs. scriptural sets. **rosary type** (2026-08-07): [{id, name, nameByLanguage?, opening, decades, closing, hasClosingCross?}] — a chaplet's shorter and fuller recensions, which can differ in their opening prayers, their per-decade invocations and their close while praying the same mysteries. Every rosary-type bead-track invariant is checked per form, not per bundle: a second form with no opening Sign of the Cross would crash the bead track exactly as a single-form devotion would."
         },
         "opening": {
           "type": "CustomDevotionStep[]?",
-          "description": "rosary type only. Entry 0 MUST be the Sign of the Cross (bead-track invariant)."
+          "description": "rosary, days and hours types; for rosary it may instead live inside each variant. For rosary, entry 0 MUST be the Sign of the Cross (bead-track invariant); for days it is prayed before every day's own steps, and for hours before every office."
         },
         "dayProgression": {
           "type": "string",
@@ -428,17 +436,72 @@
         },
         "decades": {
           "type": "object?",
-          "description": "rosary type only: { ordinalNoun | ordinalNounKey (the noun a decade is counted in — \"Joy\"/\"Sorrow\"/\"Mystery\"/\"Decade\"; the key form resolves in the praying language), announceMystery, entries: [{imageKey, isScripture? = true}] XOR count + fixedImageKey XOR source: \"mysteryGroups\" (the Rosary — decade catalog from the engine's mystery-group machinery: selection mode + liturgical calendar, group-labelled ordinals, single-mystery true ordinal, real Mystery values on steps), majorStep {title | titleKey, bodyKey, imageKey?}, minorStep {title | titleKey, bodyKey}, minorCount, postMinor?: [Entry] (emitted after each decade's minors with the decade's subtitle/index — the Rosary's Glory Be/Fatima/eternal rest, gated with \"if\"), presenter?: {combinedTitle | combinedTitleKey, bodyKeys} (when the gating presenterMode option is on, the minors collapse into one combined step with hailMaryIndexInDecade = minorCount) }. Announcement steps pull title/body from the merged mystery tables by imageKey."
+          "description": "rosary type only: { ordinalNoun | ordinalNounKey (the noun a decade is counted in — \"Joy\"/\"Sorrow\"/\"Mystery\"/\"Decade\"; the key form resolves in the praying language), announceMystery, entries: [{imageKey, isScripture? = true}] XOR count + fixedImageKey XOR source: \"mysteryGroups\" (the Rosary — decade catalog from the engine's mystery-group machinery: selection mode + liturgical calendar, group-labelled ordinals, single-mystery true ordinal, real Mystery values on steps), majorStep {title | titleKey, bodyKey, imageKey?}, minorStep {title | titleKey, bodyKey}, minorCount, preAnnouncement?: [Entry] (emitted BEFORE each decade's announcement, carrying the decade's subtitle but no decadeIndex — the Servite chaplet's invocation to Our Lady before each sorrow is named; postMinor could not express it, firing after a decade rather than before one), postMinor?: [Entry] (emitted after each decade's minors with the decade's subtitle/index — the Rosary's Glory Be/Fatima/eternal rest, gated with \"if\"), presenter?: {combinedTitle | combinedTitleKey, bodyKeys} (when the gating presenterMode option is on, the minors collapse into one combined step with hailMaryIndexInDecade = minorCount) }. Announcement steps pull title/body from the merged mystery tables by imageKey."
+        },
+        "hours": {
+          "type": "DevotionHour[]?",
+          "description": "hours type only: one entry per office of the day (Vespers, Compline, ...). Non-empty, ids unique."
+        },
+        "propers": {
+          "type": "DevotionProper[]?",
+          "description": "hours type only: every variable part of every office, each filed under the days it belongs to. This is the date→content resolution the type exists for — the engine picks, per slot, the matching proper of highest precedence (see DevotionProper.when)."
         },
         "closing": {
           "type": "CustomDevotionStep[]?",
-          "description": "rosary type only."
+          "description": "rosary and hours types: the rosary's closing sequence; for hours, prayed after every office (Compline's seasonal Marian antiphon is the motivating case, and the existing kind: \"seasonalMarianAntiphon\" entry serves it unchanged). days type has the same shared pair."
         },
         "hasClosingCross": {
           "type": "boolean?",
           "description": "rosary type only; when true the closing cross must be the literal last step (bead-track invariant), and BeadLayout.build receives it."
         }
       }
+    },
+    "DevotionHour": {
+      "description": "One office of an hours-type devotion — Vespers, Compline, the Office of Readings. Structurally a steps-type sequence: the parts that are the same every day are ordinary entries, the parts the calendar chooses are kind: \"proper\" slots. The bundle's shared opening/closing are prayed around it.",
+      "fields": {
+        "id": {
+          "type": "string",
+          "description": "Unique within the bundle. Reserved purpose: which office a favorite opens on (a future Prayer.hourId, the way Prayer.dayIndex names a days-type day), and what a per-hour reminder is scheduled against."
+        },
+        "name": {
+          "type": "string",
+          "description": "English UI label (the app-wide convention); nameByLanguage overrides it per UI localization."
+        },
+        "nameByLanguage": {
+          "type": "map<string, string>?"
+        },
+        "suggestedTime": {
+          "type": "string?",
+          "description": "\"HH:mm\" — the hour's traditional time, which a reminder for it should default to. Advisory exactly like a days-type series' suggestedReminderTime: the user's own reminder times always win. This is what makes the Angelus's reminderPresetHours generalize to an office of the day."
+        },
+        "steps": {
+          "type": "CustomDevotionStep[]",
+          "description": "Non-empty. Ordinary entries and kind: \"proper\" slots, in the order the office is prayed."
+        }
+      }
+    },
+    "DevotionProper": {
+      "description": "One variable part of an office, filed under the days it belongs to — a page of the psalter, a proper of the season, a saint's collect. The engine resolves a slot by taking every proper whose \"when\" matches today and choosing the one of highest precedence.",
+      "fields": {
+        "when": {
+          "type": "object?",
+          "description": "The calendar facets this proper is constrained to, each a non-empty array of allowed values: date (\"MM-DD\", the sanctoral), rank (solemnity | feast | memorial | optionalMemorial | sunday | ferial — the vocabulary Shared/data/feasts.json already records, camelCased; a day with no entry is ferial), season (advent | christmas | lent | easterSeason | ordinary), week (>= 1, the week of the season), weekday (sun..sat), psalterWeek (1-4), readingYear (1 | 2, the Office of Readings' two-year cycle). Every declared facet must match (AND); within a facet any listed value matches (OR); an omitted facet is unconstrained. Absent or {} is the catch-all for its slot."
+        },
+        "hour": {
+          "type": "string?",
+          "description": "Restricts this proper to one declared hour — Compline's psalmody does not follow Vespers'. Omitted = any hour that asks for the slot."
+        },
+        "slot": {
+          "type": "string",
+          "description": "The slot name this fills. Validator-enforced to be one some hour actually asks for, and (when hour is named) one that hour actually has."
+        },
+        "steps": {
+          "type": "CustomDevotionStep[]",
+          "description": "Non-empty; ordinary entries, resolved exactly like any other step's."
+        }
+      },
+      "precedence": "Fixed facet order — date, rank, season, week, weekday, psalterWeek, readingYear — compared lexicographically: a proper constraining an earlier facet beats one that does not, regardless of how many facets either constrains. This is the Church's own hierarchy rather than a count of conditions (counting would let \"Advent, week 3, Sunday\" outrank Christmas Day, which is backwards). Ties go to the earlier declaration. The validator rejects two propers for one slot with an identical selector, so declaration order never silently decides an office.",
+      "runtimeRequirement": "The engine side of this type needs LiturgicalCalendarProviding to answer week-of-season, psalterWeek, rank and readingYear for a date — none of which it does today. psalterWeek is arithmetic on the week of the season, rank is a lookup in the feasts.json the Home screen already ships, and readingYear alternates with the liturgical year; only week-of-season is genuinely new computation. See ARCHITECTURE.md's \"Hours\"."
     },
     "DevotionAudioTrack": {
       "description": "One narrated recording a bundle declares in its audio.json (a separate optional bundle file, staged by both packers like options.json) — loaders parse the metadata eagerly and serve the bytes on demand; each platform's player extracts them to a cache file and plays them on the prayer flow's transport bar (see ARCHITECTURE.md's \"Audio\"). Files are Ogg Opus (RFC 7845, .opus) under the bundle's audio/ directory.",

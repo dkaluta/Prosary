@@ -733,7 +733,12 @@ public sealed record CustomDevotionDefinition(
         string Name,
         Dictionary<string, string>? NameByLanguage = null,
         List<CustomDevotionStep>? Steps = null,
-        List<CustomDevotionStep>? EastertideSteps = null)
+        List<CustomDevotionStep>? EastertideSteps = null,
+        // rosary type: the same four fields a single-form rosary devotion has.
+        List<CustomDevotionStep>? Opening = null,
+        DecadesDefinition? Decades = null,
+        List<CustomDevotionStep>? Closing = null,
+        bool? HasClosingCross = null)
     {
         public string LocalizedName =>
             NameByLanguage?.GetValueOrDefault(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
@@ -752,6 +757,22 @@ public sealed record CustomDevotionDefinition(
         }
 
         return (Steps ?? [], EastertideSteps);
+    }
+
+    /// <summary>One rosary-type form: the matching variant, else the default (first) one, else
+    /// the top-level fields. Mirrors <see cref="ResolvedSteps"/> so both types pick a form the
+    /// same way.</summary>
+    public (List<CustomDevotionStep> Opening, DecadesDefinition? Decades,
+            List<CustomDevotionStep> Closing, bool HasClosingCross) ResolvedRosary(string? variantId)
+    {
+        if (Variants is { Count: > 0 } variants)
+        {
+            var variant = variants.FirstOrDefault(v => v.Id == variantId) ?? variants[0];
+            return (variant.Opening ?? [], variant.Decades, variant.Closing ?? [],
+                    variant.HasClosingCross ?? false);
+        }
+
+        return (Opening ?? [], Decades, Closing ?? [], HasClosingCross ?? false);
     }
 
     public enum DevotionType
@@ -808,6 +829,10 @@ public sealed record CustomDevotionDefinition(
         string? Source = null,
         // Entries emitted after each decade's minors, carrying the decade's subtitle/index (the
         // Rosary's Glory Be / Fatima Prayer / per-decade eternal rest), usually gated.
+        /// <summary>Emitted before each decade's announcement — the Servite chaplet's
+        /// invocation to Our Lady before each sorrow is named. Not beads: they carry the
+        /// decade's subtitle but no DecadeIndex.</summary>
+        List<CustomDevotionStep>? PreAnnouncement = null,
         List<CustomDevotionStep>? PostMinor = null,
         // Presenter-mode alternate decade tail: the minors collapse into one combined step with
         // HailMaryIndexInDecade = MinorCount so the bead track still renders a full decade.
@@ -859,8 +884,20 @@ public sealed record CustomDevotionInfo(
 
     /// <summary>The display name in the app's active UI localization (falling back to the
     /// manifest's base <see cref="DisplayName"/>) — preserves e.g. the Hebrew devotion names.</summary>
-    public string LocalizedDisplayName =>
-        DisplayNameByLanguage.TryGetValue(UiLanguage, out var name) ? name : DisplayName;
+    /// <summary>The devotion's name, resolved the way its headings are: the prayer language
+    /// first (exact resolved code, rites included, then its base), then the UI language, then
+    /// the manifest's base DisplayName — a devotion's name is part of the prayer.</summary>
+    public string LocalizedDisplayName
+    {
+        get
+        {
+            var prayerCode = Prosary.Models.LanguageCatalog.Resolve(null).Code;
+            if (DisplayNameByLanguage.TryGetValue(prayerCode, out var prayerName)) return prayerName;
+            if (Prosary.Models.LanguageCatalog.BaseLanguage(prayerCode) is { } baseCode &&
+                DisplayNameByLanguage.TryGetValue(baseCode, out var baseName)) return baseName;
+            return DisplayNameByLanguage.TryGetValue(UiLanguage, out var name) ? name : DisplayName;
+        }
+    }
 
     public string? LocalizedReminderBody =>
         ReminderBody.TryGetValue(UiLanguage, out var body) ? body

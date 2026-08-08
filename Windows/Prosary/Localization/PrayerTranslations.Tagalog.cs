@@ -5,7 +5,7 @@ public static partial class PrayerTranslations
     private static readonly Dictionary<string, string> Tagalog = new()
     {
         [PrayerKey.SignumCrucis] =
-            "Sa ngalan ng Ama, at ng Anak, at ng Espiritu Santo. Amen.",
+            "Sa ngalan ng Ama ✠, at ng Anak, at ng Espiritu Santo. Amen.",
 
         [PrayerKey.SymbolumApostolorum] =
             "Naniniwala ako sa Dios Ama, Makapangyarihan sa lahat, na may gawa ng langit at lupa. " +

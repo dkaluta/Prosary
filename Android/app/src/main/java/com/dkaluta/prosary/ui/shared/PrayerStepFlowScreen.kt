@@ -45,6 +45,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
+import android.view.HapticFeedbackConstants
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -123,6 +124,19 @@ fun PrayerStepFlowScreen(
     var autoAdvanceSeconds by remember { mutableIntStateOf(AppSettings.autoAdvanceSeconds) }
     var autoAdvanceMenuExpanded by remember { mutableStateOf(false) }
 
+    // A gentle tap when the step changes — tester-requested (Erez), off by default, app-wide
+    // like autoAdvanceSeconds. Keyed to the step change rather than the button, so Back and a
+    // timer advance feel the same as Next. The initial composition is skipped: opening a flow
+    // is not a step change.
+    val flowView = LocalView.current
+    var hapticArmed by remember { mutableStateOf(false) }
+    LaunchedEffect(currentIndex) {
+        if (hapticArmed && AppSettings.hapticsOnAdvance && step != null) {
+            flowView.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
+        }
+        hapticArmed = true
+    }
+
     // Restarts whenever the step, the interval, or the loaded state changes — so tapping
     // Back/Next resets the countdown, and turning the setting off cancels it. Never fires on
     // the last step: auto-"Finish" would dismiss the whole flow mid-prayer. Suspended outright
@@ -186,7 +200,7 @@ fun PrayerStepFlowScreen(
                             expanded = autoAdvanceMenuExpanded,
                             onDismissRequest = { autoAdvanceMenuExpanded = false },
                         ) {
-                            for (seconds in listOf(0, 3, 5, 10)) {
+                            for (seconds in listOf(0, 3, 5, 10, 15)) {
                                 val label = if (seconds == 0) stringResource(R.string.auto_advance_off) else stringResource(R.string.auto_advance_every, seconds)
                                 DropdownMenuItem(
                                     text = { Text(label) },
@@ -398,7 +412,7 @@ private fun WideContent(
  * shipped pack (currently Rosary/Angelus) renders that pack's artwork; devotions without one fall
  * through to drawable resources exactly as before this existed. */
 @Composable
-private fun MysteryImage(imageKey: String, modifier: Modifier = Modifier) {
+internal fun MysteryImage(imageKey: String, modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val packBitmap = remember(imageKey) {
         PrayerPackStore.imageData(imageKey)?.let { data ->
@@ -477,9 +491,20 @@ private fun TextBlock(
                     )
                 }
             }
+            // A transliteration is in a different script from its language's own, so the face
+            // has to follow the text rather than the language — otherwise Syriac letters are
+            // drawn with a Hebrew face that has no glyphs for them, and the toggle shows tofu.
             Text(
                 (if (TransliterationState.shows) step.transliteratedBody!! else step.body).parseBoldMarkdown(),
-                style = PrayerTypography.style(languageCode = languageCode, isScripture = step.isScripture),
+                style = PrayerTypography.style(
+                    languageCode = languageCode,
+                    isScripture = step.isScripture,
+                    script = if (TransliterationState.shows) {
+                        PrayerTypography.scriptOf(step.transliteratedBody!!)
+                    } else {
+                        null
+                    },
+                ),
             )
         } else {
             Text(

@@ -9,6 +9,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertTrue
 import org.junit.BeforeClass
 import org.junit.Test
 
@@ -74,6 +75,36 @@ class PrayerTranslationsCompletenessTest {
         }
     }
 
+    /** The cross mark shows where the sign of the cross is made. It has to be in every
+     * language's Sign of the Cross — a reader who prays in Tagalog needs it as much as one who
+     * prays in Hebrew — and it belongs immediately after the word for "Father", where the
+     * gesture begins, which is where the Mission of St. Gamaliel's own texts put it. Dropping it
+     * is the kind of thing that happens silently when someone re-types a prayer. */
+    @Test
+    fun everySignOfTheCrossCarriesTheCrossMark() {
+        for ((language, table) in PrayerTranslations.byLanguage) {
+            val text = table[PrayerKey.SignumCrucis] ?: continue
+            assertTrue("$language's Sign of the Cross has no cross mark", text.contains("\u2720"))
+            val trimmed = text.trim()
+            assertFalse("$language: the mark should sit inside the formula",
+                trimmed.startsWith("\u2720") || trimmed.endsWith("\u2720"))
+        }
+    }
+
+    /** ...and nowhere else outside the Mission's own rite. Signing at the Glory Be is their use,
+     * not the Latin rite's, and quietly spreading it would be inventing practice. */
+    @Test
+    fun theCrossMarkStaysOutOfOtherRitesPrayers() {
+        for ((language, table) in PrayerTranslations.byLanguage) {
+            if (language == "he-x-gamliel") continue
+            for ((key, text) in table) {
+                if (key == PrayerKey.SignumCrucis) continue
+                assertFalse("$language's $key should not carry a cross mark",
+                    text.contains("\u2720"))
+            }
+        }
+    }
+
     @Test
     fun everyRosaryMysteryImageKeyHasAllSixLanguages() {
         for (imageKey in allMysteryImageKeys) {
@@ -93,17 +124,31 @@ class PrayerTranslationsCompletenessTest {
     private fun referencedKeys(definition: CustomDevotionDefinition): Pair<Set<String>, Set<String>> {
         val text = mutableSetOf<String>()
         val mysteries = mutableSetOf<String>()
+        // Every decade block in the bundle: the single-form one, and one per rosary-type
+        // variant. Missing a variant's block would quietly stop checking the keys only that form
+        // uses, which is the whole thing this test exists to catch.
+        val allDecades = listOfNotNull(definition.decades) +
+            definition.variants.orEmpty().mapNotNull { it.decades }
         val allEntries = definition.steps.orEmpty() + definition.eastertideSteps.orEmpty() +
             definition.opening.orEmpty() + definition.closing.orEmpty() +
-            definition.variants.orEmpty().flatMap { it.steps + it.eastertideSteps.orEmpty() }
+            definition.variants.orEmpty().flatMap {
+                it.steps.orEmpty() + it.eastertideSteps.orEmpty() +
+                    it.opening.orEmpty() + it.closing.orEmpty()
+            } +
+            allDecades.flatMap { it.preAnnouncement.orEmpty() + it.postMinor.orEmpty() }
         for (entry in allEntries) {
             if (entry.kind != null) continue
             entry.bodyKey?.let { text.add(it) }
             entry.titleKey?.let { text.add(it) }
+            entry.acclamationKey?.let { text.add(it) }
+            entry.subtitleKey?.let { text.add(it) }
         }
-        definition.decades?.let { decades ->
+        for (decades in allDecades) {
             text.add(decades.majorStep.bodyKey)
             text.add(decades.minorStep.bodyKey)
+            decades.majorStep.titleKey?.let { text.add(it) }
+            decades.minorStep.titleKey?.let { text.add(it) }
+            decades.ordinalNounKey?.let { text.add(it) }
             if (decades.announceMystery) {
                 for (entry in decades.entries.orEmpty()) mysteries.add(entry.imageKey)
             }

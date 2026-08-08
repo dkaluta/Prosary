@@ -25,6 +25,9 @@ public sealed partial class HomePage : Page
     /// <summary>The approved reorder pattern (not jiggle): a ListView with built-in
     /// drag-reorder inside a dialog; Done persists the new sequence, Reset returns to
     /// directory order at next launch.</summary>
+    private void OnOpenBasicPrayers(object sender, Microsoft.UI.Xaml.RoutedEventArgs e) =>
+        Prosary.Navigation.Router.Navigate<BasicPrayersPage>();
+
     private async void OnEditOrder(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         var working = new System.Collections.ObjectModel.ObservableCollection<Prosary.ViewModels.DevotionCardModel>(ViewModel.DevotionCards);

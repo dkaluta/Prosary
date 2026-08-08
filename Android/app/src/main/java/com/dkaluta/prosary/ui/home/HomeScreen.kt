@@ -13,8 +13,13 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Circle
@@ -105,6 +110,7 @@ fun HomeScreen(
     onOpenSettings: () -> Unit,
     onOpenJesusPrayerSetup: () -> Unit,
     onOpenCustomDevotion: (String) -> Unit,
+    onOpenBasicPrayers: () -> Unit,
 ) {
     val services = LocalAppServices.current
     val isDarkTheme = isSystemInDarkTheme()
@@ -430,6 +436,27 @@ fun HomeScreen(
                             },
                         )
                     }
+                }
+            }
+
+            // The basic prayers on their own (Erez, 2026-08-07) — a fixed quiet row below the
+            // cards, not a pinnable card: a reference shelf, not a devotion, so it neither
+            // reorders nor unpins. Always present, which is the point of the ask.
+            item(key = "basicPrayers", span = { GridItemSpan(maxLineSpan) }) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f))
+                        .clickable { onOpenBasicPrayers() }
+                        .padding(horizontal = 16.dp, vertical = 14.dp)
+                        .testTag("basicPrayersRow"),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Icon(Icons.AutoMirrored.Filled.MenuBook, contentDescription = null)
+                    Spacer(Modifier.width(12.dp))
+                    Text(stringResource(R.string.basic_prayers_title), modifier = Modifier.weight(1f))
+                    Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null)
                 }
             }
         }

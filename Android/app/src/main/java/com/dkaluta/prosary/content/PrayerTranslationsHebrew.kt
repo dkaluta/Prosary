@@ -1,12 +1,21 @@
 package com.dkaluta.prosary.content
 
 /**
- * Official Hebrew Catholic wording as used by Hebrew-speaking Catholic communities in the Holy
- * Land (e.g. the St. James Vicariate), vocalized with niqqud for readability.
+ * Transcribed directly from the prayer book of the Saint James Vicariate for Hebrew Speaking
+ * Catholics — not assembled from what is around online. That is why the rites picker calls
+ * this one נוסח הנציגות, the Vicariate's own usage: it is theirs, vocalized with niqqud as
+ * they print it.
+ * 
+ * Worth knowing when a second witness turns up and disagrees. A tester's own prayer sheets
+ * (August 2026) matched this almost word for word, differing in about six places of
+ * pointing and spelling — יִתְקַדֵּשׁ for יִתְקַדַּשׁ, יָאֵר for יָאִיר. Those are her copy
+ * against the printed book, not an open question about which is right, and nothing here
+ * moved on their account. Her sheets did settle where the lines break: see
+ * Shared/tools/prayer-line-breaks.json.
  */
 val prayerTranslationsHebrew: Map<PrayerKey, String> = mapOf(
     PrayerKey.SignumCrucis to
-        "בְּשֵׁם הָאָב וְהַבֵּן וְרוּחַ הַקֹּדֶשׁ, אֱלֹהִים אֶחָד. אָמֵן.",
+        "בְּשֵׁם הָאָב ✠ וְהַבֵּן וְרוּחַ הַקֹּדֶשׁ, אֱלֹהִים אֶחָד. אָמֵן.",
 
     PrayerKey.SymbolumApostolorum to
         "אֲנִי מַאֲמִין בֵּאלֹהִים, הָאָב הַכֹּל־יָכוֹל, בּוֹרֵא שָׁמַיִם וָאָרֶץ. וּבְיֵשׁוּעַ " +
@@ -18,19 +27,28 @@ val prayerTranslationsHebrew: Map<PrayerKey, String> = mapOf(
             "הַחֲטָאִים, בִּתְחִיַּת הַגּוּף וּבְחַיֵּי הַנֶּצַח. אָמֵן.",
 
     PrayerKey.PaterNoster to
-        "אָבִינוּ שֶׁבַּשָּׁמַיִם, יִתְקַדַּשׁ שְׁמֶךָ, תָּבוֹא מַלְכוּתֶךָ, יֵעָשֶׂה רְצוֹנְךָ, " +
-            "כְּבַשָּׁמַיִם כֵּן בָּאָרֶץ.\nאֶת לֶחֶם חֻקֵּנוּ תֵּן לָנוּ הַיּוֹם וּסְלַח לָנוּ עַל " +
-            "חֲטָאֵינוּ, כְּפִי שֶׁסּוֹלְחִים גַּם אֲנַחְנוּ לַחוֹטְאִים לָנוּ וְאַל תְּבִיאֵנוּ לִידֵי " +
-            "נִסָּיוֹן, כִּי אִם חַלְּצֵנוּ מִן הָרָע.",
+        "אָבִינוּ שֶׁבַּשָּׁמַיִם, יִתְקַדַּשׁ שְׁמֶךָ,\n" +
+        "תָּבוֹא מַלְכוּתֶךָ, יֵעָשֶׂה רְצוֹנְךָ,\n" +
+        "כְּבַשָּׁמַיִם כֵּן בָּאָרֶץ.\n" +
+        "אֶת לֶחֶם חֻקֵּנוּ תֵּן לָנוּ הַיּוֹם\n" +
+        "וּסְלַח לָנוּ עַל חֲטָאֵינוּ,\n" +
+        "כְּפִי שֶׁסּוֹלְחִים גַּם אֲנַחְנוּ לַחוֹטְאִים לָנוּ\n" +
+        "וְאַל תְּבִיאֵנוּ לִידֵי נִסָּיוֹן,\n" +
+        "כִּי אִם חַלְּצֵנוּ מִן הָרָע.",
 
     PrayerKey.AveMaria to
-        "שִׂמְחִי מִרְיָם, מְלֵאַת הַחֶסֶד, ה׳ עִמָּךְ. בְּרוּכָה אַתְּ בַּנָּשִׁים וּבָרוּךְ פְּרִי " +
-            "בִטְנֵךְ, יֵשׁוּעַ.\nמִרְיָם הַקְּדוֹשָׁה, אֵם הָאֱלֹהִים, הִתְפַּלְּלִי בַּעֲדֵנוּ, " +
-            "הַחוֹטְאִים, עַתָּה וּבִשְׁעַת מוֹתֵנוּ. אָמֵן.",
+        "שִׂמְחִי מִרְיָם,\n" +
+        "מְלֵאַת הַחֶסֶד, ה׳ עִמָּךְ.\n" +
+        "בְּרוּכָה אַתְּ בַּנָּשִׁים\n" +
+        "וּבָרוּךְ פְּרִי בִטְנֵךְ, יֵשׁוּעַ.\n" +
+        "מִרְיָם הַקְּדוֹשָׁה, אֵם הָאֱלֹהִים,\n" +
+        "הִתְפַּלְּלִי בַּעֲדֵנוּ, הַחוֹטְאִים,\n" +
+        "עַתָּה וּבִשְׁעַת מוֹתֵנוּ. אָמֵן.",
 
     PrayerKey.GloriaPatri to
-        "כָּבוֹד לָאָב וְלַבֵּן וּלְרוּחַ הַקֹּדֶשׁ\nכְּפִי שֶׁהָיָה בְּרֵאשִׁית וְעַתָּה וְתָמִיד " +
-            "וּלְעוֹלְמֵי עוֹלָמִים. אָמֵן.",
+        "כָּבוֹד לָאָב וְלַבֵּן וּלְרוּחַ הַקֹּדֶשׁ\n" +
+        "כְּפִי שֶׁהָיָה בְּרֵאשִׁית וְעַתָּה וְתָמִיד\n" +
+        "וּלְעוֹלְמֵי עוֹלָמִים. אָמֵן.",
 
     // "Lesser Doxology" — not currently used anywhere in the Rosary flow; kept available for future use.
     PrayerKey.DoxologiaMinor to
@@ -41,8 +59,10 @@ val prayerTranslationsHebrew: Map<PrayerKey, String> = mapOf(
             "כֻּלָּן הַשָּׁמַיְמָה, וַעֲזֹר בְּעִקָּר לְאֵלֶּה אֲשֶׁר הֲכִי זְקוּקִים. אָמֵן.",
 
     PrayerKey.RequiemAeternam to
-        "מְנוּחַת עוֹלָמִים תֵּן לָהֶם אֱלֹהִים. הָאוֹר הַנִּצְחִי יָאִיר עֲלֵיהֶם. שָׁלוֹם וְשַׁלְוָה " +
-            "תְּהֵא מְנוּחָתָם.",
+        "מְנוּחַת עוֹלָמִים\n" +
+        "תֵּן לָהֶם אֱלֹהִים.\n" +
+        "הָאוֹר הַנִּצְחִי יָאִיר עֲלֵיהֶם.\n" +
+        "שָׁלוֹם וְשַׁלְוָה תְּהֵא מְנוּחָתָם.",
 
     PrayerKey.SanctusMichael to
         "מִיכָאֵל הַמַּלְאָךְ הַקָּדוֹשׁ, הָגֵן עָלֵינוּ בַּמִּלְחָמָה, הֱיֵה לָנוּ לְמָגֵן נֶגֶד " +
@@ -84,9 +104,11 @@ val prayerTranslationsHebrew: Map<PrayerKey, String> = mapOf(
     PrayerKey.SubTuumPraesidiumTitle to "בצל רחמיך",
 
     PrayerKey.SubTuumPraesidium to
-        "בְּצֵל רַחֲמַיִךְ אָנוּ חוֹסִים, אֵם הָאֱלֹהִים הַקְּדוֹשָׁה, אַל תַּעְלִימִי אֹזֶן " +
-            "מִתְּחִנּוֹתֵינוּ בְּעֵת צָרָה, אֶלָּא חַלְּצִינוּ תָּמִיד, בְּכָל סַכָּנָה, אַתְּ " +
-            "הָעַלְמָה הָעֲטוּרָה כָבוֹד וְהַמְּבֹרֶכֶת.",
+        "בְּצֵל רַחֲמַיִךְ אָנוּ חוֹסִים,\n" +
+        "אֵם הָאֱלֹהִים הַקְּדוֹשָׁה,\n" +
+        "אַל תַּעְלִימִי אֹזֶן מִתְּחִנּוֹתֵינוּ בְּעֵת צָרָה,\n" +
+        "אֶלָּא חַלְּצִינוּ תָּמִיד, בְּכָל סַכָּנָה,\n" +
+        "אַתְּ הָעַלְמָה הָעֲטוּרָה כָבוֹד וְהַמְּבֹרֶכֶת.",
 
     PrayerKey.VersiculumStandard to "הִתְפַּלְּלִי בַּעֲדֵנוּ, אֵם הָאֱלֹהִים הַקְּדוֹשָׁה.",
     PrayerKey.ResponsiumStandard to "לְמַעַן נִזְכֶּה לְהַבְטָחוֹת הַמָּשִׁיחַ.",

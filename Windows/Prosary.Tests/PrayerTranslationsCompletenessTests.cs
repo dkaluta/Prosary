@@ -70,6 +70,42 @@ public class PrayerTranslationsCompletenessTests : IClassFixture<PrayerPackLoade
         }
     }
 
+    /// <summary>The cross mark shows where the sign of the cross is made. It has to be in every
+    /// language's Sign of the Cross — a reader who prays in Tagalog needs it as much as one who
+    /// prays in Hebrew — and it belongs immediately after the word for "Father", where the
+    /// gesture begins, which is where the Mission of St. Gamaliel's own texts put it. Dropping it
+    /// is the kind of thing that happens silently when someone re-types a prayer.</summary>
+    [Fact]
+    public void EverySignOfTheCrossCarriesTheCrossMark()
+    {
+        foreach (var (language, table) in PrayerTranslations.ByLanguage)
+        {
+            if (!table.TryGetValue(PrayerKey.SignumCrucis, out var text)) continue;
+            Assert.Contains("\u2720", text);
+            var trimmed = text.Trim();
+            Assert.False(trimmed.StartsWith("\u2720") || trimmed.EndsWith("\u2720"),
+                $"{language}: the mark should sit inside the formula");
+        }
+    }
+
+    /// <summary>...and nowhere else outside the Mission's own rite. Signing at the Glory Be is
+    /// their use, not the Latin rite's, and quietly spreading it would be inventing
+    /// practice.</summary>
+    [Fact]
+    public void TheCrossMarkStaysOutOfOtherRitesPrayers()
+    {
+        foreach (var (language, table) in PrayerTranslations.ByLanguage)
+        {
+            if (language == "he-x-gamliel") continue;
+            foreach (var (key, text) in table)
+            {
+                if (key == PrayerKey.SignumCrucis) continue;
+                Assert.False(text.Contains("\u2720"),
+                    $"{language}'s {key} should not carry a cross mark");
+            }
+        }
+    }
+
     [Fact]
     public void EveryRosaryMysteryImageKeyHasAllSixLanguages()
     {

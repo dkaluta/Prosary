@@ -283,11 +283,38 @@ final class PrayerPackLoaderTests: XCTestCase {
   /// its manifest's builtinKind keeps it off the generic-devotion list — it backs the dedicated
   /// PrayerKind and must never appear as a Home/Favorites card twice. The six generic devotions
   /// appear in pack-load order.
+  /// A devotion's name follows the prayer language, rites included — Erez's ask: with his rite
+  /// as the default prayer language, the Trisagion card reads קדישת; plain Hebrew reads
+  /// טריסאגיון; a language the manifest does not name falls back to the UI-language behavior.
+  func testDisplayNameFollowsThePrayerLanguage() {
+    let saved = UserDefaults.standard.string(forKey: "defaultLanguageCode")
+    defer {
+      if let saved { UserDefaults.standard.set(saved, forKey: "defaultLanguageCode") }
+      else { UserDefaults.standard.removeObject(forKey: "defaultLanguageCode") }
+    }
+
+    UserDefaults.standard.set("he-x-gamliel", forKey: "defaultLanguageCode")
+    XCTAssertEqual(PrayerPackStore.info(for: "trisagion")?.localizedDisplayName, "קדישת")
+
+    UserDefaults.standard.set("he", forKey: "defaultLanguageCode")
+    XCTAssertEqual(PrayerPackStore.info(for: "trisagion")?.localizedDisplayName, "טריסאגיון")
+
+    // A rite falls to its base when the bundle only names the base language.
+    UserDefaults.standard.set("he-x-gamliel", forKey: "defaultLanguageCode")
+    XCTAssertEqual(PrayerPackStore.info(for: "divineMercyChaplet")?.localizedDisplayName,
+                   PrayerPackStore.info(for: "divineMercyChaplet")?.displayNameByLanguage["he"])
+
+    // Latin names nothing in the manifest, so the UI language decides as before.
+    UserDefaults.standard.set("la", forKey: "defaultLanguageCode")
+    XCTAssertEqual(PrayerPackStore.info(for: "trisagion")?.localizedDisplayName, "Trisagion")
+  }
+
   func testCustomDevotionIdsAreTheGenericDevotionsInLoadOrder() {
-    XCTAssertEqual(PrayerPackStore.customDevotionIds(), [
-      "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
-      "divineMercyChaplet", "trisagion", "oAntiphons",
-    ])
+    // A prefix assertion, not equality: user-installed bundles (repo.* imports) legitimately
+    // append after the built-ins on a dev machine, and shipped order is what this test pins.
+    let shipped = ["angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
+                   "divineMercyChaplet", "trisagion", "oAntiphons"]
+    XCTAssertEqual(Array(PrayerPackStore.customDevotionIds().prefix(shipped.count)), shipped)
     XCTAssertNotNil(PrayerPackStore.definition(for: "rosary"))
   }
 
@@ -301,7 +328,10 @@ final class PrayerPackLoaderTests: XCTestCase {
   func testTrisagionDefinitionMatchesTheAuthoredSixStepSequence() {
     let definition = PrayerPackStore.definition(for: "trisagion")
     XCTAssertEqual(definition?.type, .steps)
-    let steps = definition?.steps ?? []
+    // The bundle names its forms now (Byzantine first = the default, Syriac second); the
+    // default form must remain the authored six steps, byte-identical.
+    XCTAssertEqual(definition?.variants?.map(\.id), ["byzantine", "syriac"])
+    let steps = definition?.resolvedSteps(variantId: nil).steps ?? []
     // Headings are translatable keys, not literals, so they read in the prayer's language.
     XCTAssertEqual(steps.map(\.titleKey), [
       "trisagionAcclamationTitle", "trisagionAcclamationTitle", "trisagionAcclamationTitle",

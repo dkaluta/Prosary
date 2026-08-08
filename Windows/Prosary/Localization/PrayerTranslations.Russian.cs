@@ -5,7 +5,7 @@ public static partial class PrayerTranslations
     private static readonly Dictionary<string, string> Russian = new()
     {
         [PrayerKey.SignumCrucis] =
-            "Во имя Отца, и Сына, и Святого Духа. Аминь.",
+            "Во имя Отца ✠, и Сына, и Святого Духа. Аминь.",
 
         [PrayerKey.SymbolumApostolorum] =
             "Верую в Бога Отца Всемогущего, Творца неба и земли. И в Иисуса Христа, единственного " +
