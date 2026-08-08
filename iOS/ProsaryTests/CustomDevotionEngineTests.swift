@@ -86,6 +86,18 @@ final class CustomDevotionEngineTests: XCTestCase {
                    "the Vicariate's Hebrew keeps the Byzantine default")
     XCTAssertEqual(steps("trisagion", language: "he-x-gamliel", variantId: "byzantine").count, 6,
                    "an explicit choice beats the rite's default")
+
+    // Classical Syriac claims the same form (2026-08-08): the Qadishat thrice, then the
+    // Kurielaison the Syriac liturgy keeps in Greek — in Hebrew square script, the Syriac
+    // letters riding in the transliteration the script toggle shows.
+    let aramaic = steps("trisagion", language: "arc")
+    XCTAssertEqual(aramaic.count, 4)
+    XCTAssertEqual(aramaic[0].title, "קדישת אלהא")
+    XCTAssertEqual(aramaic[3].body, "קוריאליסונ\nקוריאליסונ\nקוריאליסונ")
+    // The Byzantine form of the bundle carries its own arc doxology, so switching to it
+    // never falls back to Latin mid-prayer.
+    XCTAssertTrue(steps("trisagion", language: "arc", variantId: "byzantine")[3].body
+      .hasPrefix("שובחא לאבא"))
   }
 
   /// The basic-prayers list resolves through the same chains the flows use, so it follows the
@@ -127,6 +139,21 @@ final class CustomDevotionEngineTests: XCTestCase {
     UserDefaults.standard.set("la", forKey: "defaultLanguageCode")
     let cross = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "signOfCross")!)
     XCTAssertTrue(cross.body.contains("✠"))
+
+    // Aramaic (2026-08-08): the Peshitta's own Our Father in Hebrew square script, with the
+    // Syriac letters in the transliteration the script toggle shows — both alphabets, one
+    // text, mechanically mapped. The Creed is deliberately absent (no checkable edition yet),
+    // so it falls back per key rather than being reconstructed.
+    UserDefaults.standard.set("arc", forKey: "defaultLanguageCode")
+    let abun = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "ourFather")!)
+    XCTAssertTrue(abun.body.hasPrefix("אבונ דבשמיא נתקדש שמכ"))
+    XCTAssertTrue(abun.transliteratedBody?.hasPrefix("ܐܒܘܢ ܕܒܫܡܝܐ ܢܬܩܕܫ ܫܡܟ") == true)
+    let qadishat = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "holyGod")!)
+    XCTAssertEqual(qadishat.title, "קדישת אלהא")
+    XCTAssertTrue(
+      BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "creed")!)
+        .body.hasPrefix("Credo in Deum"),
+      "unsourced falls to Latin, never to invention")
   }
 
   /// Spanish, pinned the same way as Greek — what is sourced works, what is not falls back.

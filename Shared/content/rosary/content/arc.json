@@ -1,0 +1,24 @@
+{
+  "$comment": "The classic prayers in Classical Syriac (West Syriac use), for the basic-prayers surface and any chain that asks for arc. The Our Father is the Peshitta's own text (Mt 6:9-13, ETCBC/syrnt — assembled by Shared/tools/import-scripture.py's machinery, with the liturgical Amen); the Sign of the Cross, Hail Mary (Shlom lekh) and Gloria (Shubho l'Abo, the Syriac doxology — 'from everlasting to everlasting', not the Latin 'as it was in the beginning') are the standard Syriac Catholic forms, provisional until the Mission of St. Gamaliel sends their own wording (2026-08-08). Prayers are Hebrew square script; the same text in Syriac letters is in transliterations, which is what the flow's script toggle shows. Unpointed, as the scripture files are. Deliberately absent, falling back per key rather than reconstructed: the Creed, the mysteries, the Marian antiphons, the Fatima prayer and the versicles — a prayer a community actually recites is not something to compose from memory, the same rule the Greek and Spanish tables follow.",
+  "prayers": {
+    "signumCrucisTitle": "רושמא דצליבא",
+    "signumCrucis": "בשמ אבא וברא ורוחא קדישא\nחד אלהא שרירא אמינ",
+    "paterNosterTitle": "אבונ דבשמיא",
+    "paterNoster": "אבונ דבשמיא נתקדש שמכ\nתאתא מלכותכ\nנהוא צבינכ איכנא דבשמיא אפ בארעא\nהב לנ לחמא דסונקננ יומנא\nושבוק לנ חובינ איכנא דאפ חננ שבקנ לחיבינ\nולא תעלנ לנסיונא אלא פצנ מנ בישא\nמטל דדילכ הי מלכותא וחילא ותשבוחתא לעלמ עלמינ אמינ",
+    "aveMariaTitle": "שלמ לכי מרימ",
+    "aveMaria": "שלמ לכי בתולתא מרימ מלית טיבותא\nמרנ עמכי\nמברכתא אנתי בנשא\nומברכ הו פארא דבכרסכי מרנ ישוע\nאו קדישתא מרימ ילדת אלהא\nצלי חלפינ חטיא\nהשא ובשעת מותנ אמינ",
+    "gloriaPatriTitle": "שובחא לאבא",
+    "gloriaPatri": "שובחא לאבא ולברא ולרוחא קדישא\nמנ עלמ ועדמא לעלמ עלמינ אמינ"
+  },
+  "transliterations": {
+    "signumCrucisTitle": "ܪܘܫܡܐ ܕܨܠܝܒܐ",
+    "signumCrucis": "ܒܫܡ ܐܒܐ ܘܒܪܐ ܘܪܘܚܐ ܩܕܝܫܐ\nܚܕ ܐܠܗܐ ܫܪܝܪܐ ܐܡܝܢ",
+    "paterNosterTitle": "ܐܒܘܢ ܕܒܫܡܝܐ",
+    "paterNoster": "ܐܒܘܢ ܕܒܫܡܝܐ ܢܬܩܕܫ ܫܡܟ\nܬܐܬܐ ܡܠܟܘܬܟ\nܢܗܘܐ ܨܒܝܢܟ ܐܝܟܢܐ ܕܒܫܡܝܐ ܐܦ ܒܐܪܥܐ\nܗܒ ܠܢ ܠܚܡܐ ܕܣܘܢܩܢܢ ܝܘܡܢܐ\nܘܫܒܘܩ ܠܢ ܚܘܒܝܢ ܐܝܟܢܐ ܕܐܦ ܚܢܢ ܫܒܩܢ ܠܚܝܒܝܢ\nܘܠܐ ܬܥܠܢ ܠܢܣܝܘܢܐ ܐܠܐ ܦܨܢ ܡܢ ܒܝܫܐ\nܡܛܠ ܕܕܝܠܟ ܗܝ ܡܠܟܘܬܐ ܘܚܝܠܐ ܘܬܫܒܘܚܬܐ ܠܥܠܡ ܥܠܡܝܢ ܐܡܝܢ",
+    "aveMariaTitle": "ܫܠܡ ܠܟܝ ܡܪܝܡ",
+    "aveMaria": "ܫܠܡ ܠܟܝ ܒܬܘܠܬܐ ܡܪܝܡ ܡܠܝܬ ܛܝܒܘܬܐ\nܡܪܢ ܥܡܟܝ\nܡܒܪܟܬܐ ܐܢܬܝ ܒܢܫܐ\nܘܡܒܪܟ ܗܘ ܦܐܪܐ ܕܒܟܪܣܟܝ ܡܪܢ ܝܫܘܥ\nܐܘ ܩܕܝܫܬܐ ܡܪܝܡ ܝܠܕܬ ܐܠܗܐ\nܨܠܝ ܚܠܦܝܢ ܚܛܝܐ\nܗܫܐ ܘܒܫܥܬ ܡܘܬܢ ܐܡܝܢ",
+    "gloriaPatriTitle": "ܫܘܒܚܐ ܠܐܒܐ",
+    "gloriaPatri": "ܫܘܒܚܐ ܠܐܒܐ ܘܠܒܪܐ ܘܠܪܘܚܐ ܩܕܝܫܐ\nܡܢ ܥܠܡ ܘܥܕܡܐ ܠܥܠܡ ܥܠܡܝܢ ܐܡܝܢ"
+  },
+  "mysteries": {}
+}

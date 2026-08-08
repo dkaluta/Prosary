@@ -550,6 +550,19 @@ class CustomDevotionEngineTest {
             "an explicit choice beats the rite's default",
             6, steps("trisagion", language = "he-x-gamliel", variantId = "byzantine").size,
         )
+
+        // Classical Syriac claims the same form (2026-08-08): the Qadishat thrice, then the
+        // Kurielaison the Syriac liturgy keeps in Greek — Hebrew square script, the Syriac
+        // letters riding in the transliteration the script toggle shows.
+        val aramaic = steps("trisagion", language = "arc")
+        assertEquals(4, aramaic.size)
+        assertEquals("קדישת אלהא", aramaic[0].title)
+        assertEquals("קוריאליסונ\nקוריאליסונ\nקוריאליסונ", aramaic[3].body)
+        // The Byzantine form carries its own arc doxology — no Latin fallback mid-prayer.
+        assertTrue(
+            steps("trisagion", language = "arc", variantId = "byzantine")[3]
+                .body.startsWith("שובחא לאבא"),
+        )
     }
 
     /** The Vicariate's Hebrew prayerbook leads each of the three acclamations with a cross, and

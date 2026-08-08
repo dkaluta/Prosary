@@ -109,6 +109,16 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Equal("ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא", gamliel[3].Body);
         Assert.Equal(6, BuildSteps("trisagion", "he").Count);
         Assert.Equal(6, BuildSteps("trisagion", "he-x-gamliel", variantId: "byzantine").Count);
+
+        // Classical Syriac claims the same form (2026-08-08): the Qadishat thrice, then the
+        // Kurielaison the Syriac liturgy keeps in Greek — Hebrew square script, the Syriac
+        // letters riding in the transliteration the script toggle shows.
+        var aramaic = BuildSteps("trisagion", "arc");
+        Assert.Equal(4, aramaic.Count);
+        Assert.Equal("קדישת אלהא", aramaic[0].Title);
+        Assert.Equal("קוריאליסונ\nקוריאליסונ\nקוריאליסונ", aramaic[3].Body);
+        // The Byzantine form carries its own arc doxology — no Latin fallback mid-prayer.
+        Assert.StartsWith("שובחא לאבא", BuildSteps("trisagion", "arc", variantId: "byzantine")[3].Body);
     }
 
     [Fact]
