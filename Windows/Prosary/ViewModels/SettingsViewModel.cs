@@ -47,6 +47,9 @@ public partial class SettingsViewModel : ObservableObject
         RiteOptions = rites;
         SelectedRite = rites.FirstOrDefault();
         OnPropertyChanged(nameof(ShowsRitePicker));
+        // The installed rows' titles were snapshotted at load; the names follow the prayer
+        // language, so a language change on this very page must re-derive them (2026-08-08).
+        RefreshInstalledDevotions();
     }
 
     /// <summary>The rites of the chosen language — empty (and hidden) when there is only one way
@@ -69,6 +72,8 @@ public partial class SettingsViewModel : ObservableObject
         if (value is not null)
         {
             AppSettings.SetDefaultLanguageCode(value.Code);
+            // The installed rows' titles follow the prayer language — re-derive on this page.
+            RefreshInstalledDevotions();
         }
     }
 
