@@ -509,6 +509,26 @@ class CustomDevotionEngineTest {
         assertTrue(PrayerEngine.evaluateCondition("invitatory", values))
     }
 
+    /** The shipped Trisagion was always the Byzantine form; it just never said so. Erez prays
+     * the Syriac one — the acclamation thrice, then Lord-have-mercy thrice. Byzantine stays
+     * first so the default sequence is byte-identical; plain Hebrew's Kyrie falls back to the
+     * bundle's Latin until the Vicariate's wording arrives. */
+    @Test
+    fun trisagionSyriacVariant() {
+        val syriac = steps("trisagion", variantId = "syriac")
+        assertEquals(4, syriac.size)
+        assertEquals(List(3) { "Holy God" } + "Lord, Have Mercy", syriac.map { it.title })
+        // The Kyrie is ONE composed step — the threefold form is a single text, so repeating it
+        // would pray nine invocations.
+        assertEquals("Lord, have mercy.\nChrist, have mercy.\nLord, have mercy.", syriac[3].body)
+        assertFalse(syriac.any { it.body.contains("Glory be") })
+
+        // The Vicariate's Hebrew is the full threefold form in one line, exactly as sent;
+        // Erez's rite overlays the same slot with his own line said thrice.
+        assertEquals("ישוע שמענו, המשיח עזרנו, האדון חננו.", steps("trisagion", language = "he", variantId = "syriac")[3].body)
+        assertEquals("ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא", steps("trisagion", language = "he-x-gamliel", variantId = "syriac")[3].body)
+    }
+
     /** The Vicariate's Hebrew prayerbook leads each of the three acclamations with a cross, and
      * gives the short form none. The asymmetry is the point: it is exactly what an editor would
      * "tidy up" later, so both halves are pinned. Hebrew only — the other languages keep the

@@ -499,6 +499,29 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.True(PrayerEngine.EvaluateCondition("invitatory", values));
     }
 
+    /// <summary>The shipped Trisagion was always the Byzantine form; it just never said so.
+    /// Erez prays the Syriac one — the acclamation thrice, then Lord-have-mercy thrice.
+    /// Byzantine stays first so the default sequence is byte-identical; plain Hebrew's Kyrie
+    /// falls back to the bundle's Latin until the Vicariate's wording arrives.</summary>
+    [Fact]
+    public void TrisagionSyriacVariant()
+    {
+        var syriac = BuildSteps("trisagion", "en", variantId: "syriac");
+        Assert.Equal(4, syriac.Count);
+        Assert.Equal(
+            ["Holy God", "Holy God", "Holy God", "Lord, Have Mercy"],
+            syriac.Select(s => s.Title));
+        // The Kyrie is ONE composed step — the threefold form is a single text, so repeating it
+        // would pray nine invocations.
+        Assert.Equal("Lord, have mercy.\nChrist, have mercy.\nLord, have mercy.", syriac[3].Body);
+        Assert.DoesNotContain(syriac, s => s.Body.Contains("Glory be"));
+
+        // The Vicariate's Hebrew is the full threefold form in one line, exactly as sent;
+        // Erez's rite overlays the same slot with his own line said thrice.
+        Assert.Equal("ישוע שמענו, המשיח עזרנו, האדון חננו.", BuildSteps("trisagion", "he", variantId: "syriac")[3].Body);
+        Assert.Equal("ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא", BuildSteps("trisagion", "he-x-gamliel", variantId: "syriac")[3].Body);
+    }
+
     /// <summary>The Vicariate's Hebrew prayerbook leads each of the three acclamations with a
     /// cross, and gives the short form none. The asymmetry is the point: it is exactly what an
     /// editor would "tidy up" later, so both halves are pinned. Hebrew only — the other languages

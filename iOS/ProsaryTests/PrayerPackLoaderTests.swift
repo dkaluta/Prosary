@@ -284,10 +284,11 @@ final class PrayerPackLoaderTests: XCTestCase {
   /// PrayerKind and must never appear as a Home/Favorites card twice. The six generic devotions
   /// appear in pack-load order.
   func testCustomDevotionIdsAreTheGenericDevotionsInLoadOrder() {
-    XCTAssertEqual(PrayerPackStore.customDevotionIds(), [
-      "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
-      "divineMercyChaplet", "trisagion", "oAntiphons",
-    ])
+    // A prefix assertion, not equality: user-installed bundles (repo.* imports) legitimately
+    // append after the built-ins on a dev machine, and shipped order is what this test pins.
+    let shipped = ["angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
+                   "divineMercyChaplet", "trisagion", "oAntiphons"]
+    XCTAssertEqual(Array(PrayerPackStore.customDevotionIds().prefix(shipped.count)), shipped)
     XCTAssertNotNil(PrayerPackStore.definition(for: "rosary"))
   }
 
@@ -301,7 +302,10 @@ final class PrayerPackLoaderTests: XCTestCase {
   func testTrisagionDefinitionMatchesTheAuthoredSixStepSequence() {
     let definition = PrayerPackStore.definition(for: "trisagion")
     XCTAssertEqual(definition?.type, .steps)
-    let steps = definition?.steps ?? []
+    // The bundle names its forms now (Byzantine first = the default, Syriac second); the
+    // default form must remain the authored six steps, byte-identical.
+    XCTAssertEqual(definition?.variants?.map(\.id), ["byzantine", "syriac"])
+    let steps = definition?.resolvedSteps(variantId: nil).steps ?? []
     // Headings are translatable keys, not literals, so they read in the prayer's language.
     XCTAssertEqual(steps.map(\.titleKey), [
       "trisagionAcclamationTitle", "trisagionAcclamationTitle", "trisagionAcclamationTitle",

@@ -47,6 +47,30 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertFalse(steps[4].body.contains("Holy Mighty One"))
   }
 
+  /// The shipped Trisagion was always the Byzantine form; it just never said so. Erez prays the
+  /// Syriac one — the acclamation thrice, then Lord-have-mercy thrice — so the bundle now names
+  /// both, Byzantine first so the default sequence stays byte-identical (the six-step test above
+  /// is the guard). His rite's Kyrie is his own ה׳ רחם־נא; plain Hebrew has no Vicariate wording
+  /// for it yet and deliberately falls back to the bundle's Latin rather than to an invention.
+  func testTrisagionSyriacVariant() {
+    let syriac = steps("trisagion", variantId: "syriac")
+    XCTAssertEqual(syriac.count, 4)
+    XCTAssertEqual(syriac.map(\.title),
+                   Array(repeating: "Holy God", count: 3) + ["Lord, Have Mercy"])
+    XCTAssertTrue(syriac[0].body.contains("Holy God, Holy Mighty One"))
+    // The Kyrie is ONE composed step — the threefold form is a single text, so repeating it
+    // would pray nine invocations.
+    XCTAssertEqual(syriac[3].body, "Lord, have mercy.\nChrist, have mercy.\nLord, have mercy.")
+    XCTAssertFalse(syriac.contains { $0.body.contains("Glory be") }, "the Syriac form has no Gloria")
+
+    // The Vicariate's Hebrew is the full threefold form in one line, exactly as sent; Erez's
+    // rite overlays the same slot with his own line said thrice.
+    XCTAssertEqual(steps("trisagion", language: "he", variantId: "syriac")[3].body,
+                   "ישוע שמענו, המשיח עזרנו, האדון חננו.")
+    XCTAssertEqual(steps("trisagion", language: "he-x-gamliel", variantId: "syriac")[3].body,
+                   "ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא")
+  }
+
   /// Spanish, pinned the same way as Greek — what is sourced works, what is not falls back.
   /// Its prayers come from the Holy See's own Spanish Compendium, which prints each beside its
   /// Latin twin; the Creed, the Fatima prayer and the St Michael prayer are not in that

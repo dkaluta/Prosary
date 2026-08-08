@@ -305,7 +305,10 @@ class PrayerPackLoaderTest {
     fun trisagionDefinitionMatchesTheAuthoredSixStepSequence() {
         val definition = PrayerPackStore.definition("trisagion")
         assertEquals(CustomDevotionDefinition.DevotionType.Steps, definition?.type)
-        val steps = definition?.steps.orEmpty()
+        // The bundle names its forms now (Byzantine first = the default, Syriac second); the
+        // default form must remain the authored six steps, byte-identical.
+        assertEquals(listOf("byzantine", "syriac"), definition?.variants?.map { it.id })
+        val steps = definition?.resolvedSteps(null)?.first.orEmpty()
         // Headings are translatable keys, not literals, so they read in the prayer's language.
         assertEquals(
             listOf(

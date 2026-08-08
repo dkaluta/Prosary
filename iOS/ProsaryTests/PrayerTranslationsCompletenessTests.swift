@@ -34,6 +34,11 @@ final class PrayerTranslationsCompletenessTests: XCTestCase {
   private let bundleKeysMissingLanguages: [String: [String: Set<String>]] = [
     // Veronica's station quotes Judith, and the Arabic/Tagalog scripture sources carry no
     // deuterocanon — those two fall back to the bundle's Latin text.
+    // The Kyrie's Hebrew heading waits for the Vicariate's prayer book; its body arrived
+    // 2026-08-08 (the threefold ישוע שמענו line), so only the title still falls to Latin.
+    "trisagion": [
+      "he": ["trisagionKyrieTitle"],
+    ],
     "stationsOfTheCross": [
       "ar": ["station06Body"],
       "tl": ["station06Body"],
