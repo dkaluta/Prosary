@@ -21,6 +21,10 @@ public static class BasicPrayerCatalog
         new("ourFather", "rosary", "paterNosterTitle", "paterNoster", "our_father"),
         new("hailMary", "rosary", "aveMariaTitle", "aveMaria", "madonna_and_child"),
         new("gloryBe", "rosary", "gloriaPatriTitle", "gloriaPatri", "glory_be"),
+        // "The Creed" resolves per community, not per catalog: the shared tables carry the
+        // Apostles' Creed, and the Mission of St. Gamaliel's overlay replaces it with the
+        // Nicene — exactly as their Rosary prays it (Erez, 2026-08-08).
+        new("creed", "rosary", "symbolumApostolorumTitle", "symbolumApostolorum", "crucifix"),
         new("holyGod", "trisagion", "trisagionAcclamationTitle", "trisagionAcclamation", "jesus_portrait"),
     ];
 

@@ -38,6 +38,12 @@ enum BasicPrayerCatalog {
                 titleKey: "aveMariaTitle", bodyKey: "aveMaria", imageKey: "madonna_and_child"),
     BasicPrayer(id: "gloryBe", bundleId: "rosary",
                 titleKey: "gloriaPatriTitle", bodyKey: "gloriaPatri", imageKey: "glory_be"),
+    // "The Creed" resolves per community, not per catalog: the shared tables carry the
+    // Apostles' Creed, and the Mission of St. Gamaliel's overlay replaces it with the Nicene —
+    // exactly as their Rosary prays it (Erez, 2026-08-08).
+    BasicPrayer(id: "creed", bundleId: "rosary",
+                titleKey: "symbolumApostolorumTitle", bodyKey: "symbolumApostolorum",
+                imageKey: "crucifix"),
     BasicPrayer(id: "holyGod", bundleId: "trisagion",
                 titleKey: "trisagionAcclamationTitle", bodyKey: "trisagionAcclamation",
                 imageKey: "jesus_portrait"),

@@ -11,7 +11,12 @@
 
     <ScrollViewer Padding="16">
         <StackPanel Spacing="4" MaxWidth="640" HorizontalAlignment="Stretch">
-            <TextBlock x:Uid="BasicPrayersTitle" Text="Basic Prayers" Style="{StaticResource SubHeadlineTextStyle}" Margin="0,0,0,8" />
+            <Grid Margin="0,0,0,8">
+                <TextBlock x:Uid="BasicPrayersTitle" Text="Basic Prayers" Style="{StaticResource SubHeadlineTextStyle}" VerticalAlignment="Center" />
+                <!-- Reorderable per Erez (2026-08-08) — the approved Home reorder-dialog pattern. -->
+                <Button x:Uid="BasicPrayersEditOrder" Content="Edit order…" HorizontalAlignment="Right"
+                        Click="OnEditOrder" />
+            </Grid>
             <ItemsControl ItemsSource="{x:Bind ViewModel.Rows, Mode=OneWay}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate x:DataType="vm:BasicPrayerRow">

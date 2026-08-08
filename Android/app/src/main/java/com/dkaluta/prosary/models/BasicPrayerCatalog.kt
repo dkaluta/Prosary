@@ -26,6 +26,10 @@ object BasicPrayerCatalog {
         BasicPrayer("ourFather", "rosary", "paterNosterTitle", "paterNoster", "our_father"),
         BasicPrayer("hailMary", "rosary", "aveMariaTitle", "aveMaria", "madonna_and_child"),
         BasicPrayer("gloryBe", "rosary", "gloriaPatriTitle", "gloriaPatri", "glory_be"),
+        // "The Creed" resolves per community, not per catalog: the shared tables carry the
+        // Apostles' Creed, and the Mission of St. Gamaliel's overlay replaces it with the
+        // Nicene — exactly as their Rosary prays it (Erez, 2026-08-08).
+        BasicPrayer("creed", "rosary", "symbolumApostolorumTitle", "symbolumApostolorum", "crucifix"),
         BasicPrayer(
             "holyGod", "trisagion", "trisagionAcclamationTitle", "trisagionAcclamation",
             "jesus_portrait",

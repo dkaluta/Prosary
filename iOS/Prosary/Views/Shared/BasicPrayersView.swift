@@ -22,14 +22,33 @@ struct BasicPrayersView: View {
   /// graveyard of simpler attempts. Reading `.code` in body registers the dependency.
   @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
 
+  /// Bumped after a move so the list re-derives from the saved order — the order lives in
+  /// BasicPrayersOrder, not in view state, so the flows and every future surface agree on it.
+  @State private var orderGeneration = 0
+
   var body: some View {
     let _ = prayerLanguage.code  // dependency registration — see the property's comment
-    List(BasicPrayerCatalog.all) { prayer in
-      NavigationLink(value: AppRoute.basicPrayer(id: prayer.id)) {
-        BasicPrayerRow(prayer: prayer)
+    let _ = orderGeneration
+    let ordered = BasicPrayersOrder.apply(BasicPrayerCatalog.all)
+    List {
+      ForEach(ordered) { prayer in
+        NavigationLink(value: AppRoute.basicPrayer(id: prayer.id)) {
+          BasicPrayerRow(prayer: prayer)
+        }
+      }
+      // Reorderable per Erez (2026-08-08): drag on macOS, Edit mode on iOS. The same
+      // HomeOrder idea — persisted ids, catalog order for the rest.
+      .onMove { from, to in
+        var ids = ordered.map(\.id)
+        ids.move(fromOffsets: from, toOffset: to)
+        BasicPrayersOrder.save(ids)
+        orderGeneration += 1
       }
     }
     .navigationTitle(String(localized: "basicPrayers.title", defaultValue: "Basic Prayers"))
+    #if os(iOS)
+    .toolbar { EditButton() }
+    #endif
   }
 }
 

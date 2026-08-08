@@ -30,8 +30,16 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.BasicPrayerCatalog
+import com.dkaluta.prosary.models.BasicPrayersOrder
 import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
+import com.dkaluta.prosary.ui.home.HomeOrderEditor
+import androidx.compose.material.icons.filled.SwapVert
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.runtime.CompositionLocalProvider
 
 /**
@@ -44,6 +52,15 @@ import androidx.compose.runtime.CompositionLocalProvider
 @Composable
 fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
     val language = remember { LanguageCatalog.resolve(null) }
+    val context = LocalContext.current
+    // The order lives in BasicPrayersOrder, not in view state; the generation bump just makes
+    // this composition re-derive after the editor saves (the HomeOrder pattern, Erez
+    // 2026-08-08).
+    var orderGeneration by remember { mutableIntStateOf(0) }
+    var showsOrderEditor by remember { mutableStateOf(false) }
+    val ordered = remember(orderGeneration) {
+        BasicPrayersOrder.apply(context, BasicPrayerCatalog.all)
+    }
     Scaffold(
         topBar = {
             TopAppBar(
@@ -53,6 +70,11 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.common_back))
                     }
                 },
+                actions = {
+                    IconButton(onClick = { showsOrderEditor = true }) {
+                        Icon(Icons.Filled.SwapVert, contentDescription = stringResource(R.string.prayer_order_title))
+                    }
+                },
             )
         },
     ) { padding ->
@@ -60,7 +82,7 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
             modifier = Modifier.padding(padding),
             verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
-            items(BasicPrayerCatalog.all, key = { it.id }) { prayer ->
+            items(ordered, key = { it.id }) { prayer ->
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -87,6 +109,24 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
                 }
             }
         }
+    }
+    if (showsOrderEditor) {
+        // The same generic drag-handle editor Home uses; titles resolve in the prayer
+        // language, so the dialog reads exactly like the list behind it.
+        HomeOrderEditor(
+            titles = ordered.map {
+                it.id to PrayerPackStore.resolveBodyText(it.bundleId, language.code, it.titleKey)
+            },
+            onMove = { ids ->
+                BasicPrayersOrder.save(context, ids)
+                orderGeneration++
+            },
+            onReset = {
+                BasicPrayersOrder.reset(context)
+                orderGeneration++
+            },
+            onDismiss = { showsOrderEditor = false },
+        )
     }
 }
 

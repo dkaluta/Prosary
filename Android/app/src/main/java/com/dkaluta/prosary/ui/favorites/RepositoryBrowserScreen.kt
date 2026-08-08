@@ -201,11 +201,20 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
                             busyIds = busyIds - bundle.id
                         }
                     }
+                    // The repository listing is English-only, but once a bundle is installed its
+                    // own manifest is on disk — so an installed row reads like the Home card it
+                    // just became (Erez: his bundles' Hebrew names). Derived per composition, so
+                    // returning from Settings re-resolves it.
+                    val rowTitle = if (isInstalled) {
+                        PrayerPackStore.info(bundle.id)?.localizedDisplayName ?: bundle.name
+                    } else {
+                        bundle.name
+                    }
                     Card {
                         Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Column(Modifier.weight(1f)) {
-                                    Text(bundle.name, style = MaterialTheme.typography.titleMedium)
+                                    Text(rowTitle, style = MaterialTheme.typography.titleMedium)
                                     Text(
                                         "${bundle.author} · ${languageNames(bundle.languages)}",
                                         style = MaterialTheme.typography.bodySmall,

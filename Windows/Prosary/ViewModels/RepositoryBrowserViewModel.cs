@@ -15,7 +15,16 @@ public partial class RepositoryRow : ObservableObject
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsInstallable))]
     [NotifyPropertyChangedFor(nameof(ShowsInstalledLabel))]
+    [NotifyPropertyChangedFor(nameof(Title))]
     private bool _isInstalled;
+
+    /// <summary>The repository listing is English-only, but once a bundle is installed its own
+    /// manifest is on disk — so an installed row reads like the Home card it just became
+    /// (Erez: his bundles' Hebrew names). Re-derived per page load, and the page reloads on
+    /// every navigation, so a language change in Settings shows on the way back.</summary>
+    public string Title => IsInstalled
+        ? PrayerPackStore.Info(Bundle.Id)?.LocalizedDisplayName ?? Bundle.Name
+        : Bundle.Name;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsInstallable))]

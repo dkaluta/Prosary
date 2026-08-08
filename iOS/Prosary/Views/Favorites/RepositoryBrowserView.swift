@@ -18,6 +18,11 @@ struct RepositoryBrowserView: View {
 
   @Environment(\.dismiss) private var dismiss
 
+  /// Installed rows read their localized manifest name in the prayer language; the monitor is
+  /// the one mechanism that survives the Mac's Settings menu — see PrayerLanguageMonitor's
+  /// header. Reading `.code` in body registers the dependency.
+  @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
+
   @State private var bundles: [RepositoryBundle] = []
   @State private var isLoading = true
   @State private var loadError: String?
@@ -42,6 +47,7 @@ struct RepositoryBrowserView: View {
   }
 
   var body: some View {
+    let _ = prayerLanguage.code  // dependency registration — see the property's comment
     Group {
       Group {
         if isLoading {
@@ -157,10 +163,16 @@ struct RepositoryBrowserView: View {
   @ViewBuilder
   private func bundleRow(_ bundle: RepositoryBundle) -> some View {
     let isInstalled = installedIds.contains(bundle.id) || PrayerPackStore.customDevotionIds().contains(bundle.id)
+    // The repository listing is English-only, but once a bundle is installed its own manifest
+    // is on disk — so an installed row reads like the Pray card it just became (Erez: his
+    // bundles' Hebrew names), and follows the prayer language live via the monitor above.
+    let title = isInstalled
+      ? PrayerPackStore.info(for: bundle.id)?.localizedDisplayName ?? bundle.name
+      : bundle.name
     VStack(alignment: .leading, spacing: 4) {
       HStack {
         VStack(alignment: .leading, spacing: 2) {
-          Text(bundle.name)
+          Text(title)
             .font(.headline)
           Text(verbatim: "\(bundle.author) · \(languageNames(bundle.languages))")
             .font(.caption)

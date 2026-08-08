@@ -28,12 +28,28 @@ public partial class BasicPrayersViewModel : ObservableObject
     {
         var language = LanguageCatalog.Resolve(null);
         IsRightToLeft = language.IsRightToLeft;
-        Rows = BasicPrayerCatalog.All
+        // Reorderable per Erez (2026-08-08): the HomeOrder pattern — persisted ids first,
+        // catalog order for the rest.
+        Rows = BasicPrayersOrder.Apply(BasicPrayerCatalog.All)
             .Select(p => new BasicPrayerRow(
                 p.Id,
                 PrayerPackStore.ResolveBodyText(p.BundleId, language.Code, p.TitleKey),
                 ImageFile(p.ImageKey)))
             .ToList();
+    }
+
+    /// <summary>Called by the page's reorder dialog after a drag-drop: persists the ListView's
+    /// new sequence and re-derives the rows.</summary>
+    public void CommitOrder(IEnumerable<string> ids)
+    {
+        BasicPrayersOrder.Save(ids);
+        Load();
+    }
+
+    public void ResetOrder()
+    {
+        BasicPrayersOrder.Reset();
+        Load();
     }
 
     [RelayCommand]

@@ -174,7 +174,7 @@
       }
     },
     "basicPrayers": {
-      "purpose": "The basic prayers on their own, outside any devotion (Erez, 2026-08-07): Sign of the Cross, Our Father, Hail Mary, Glory Be, and the Trisagion's Holy God — a fixed BasicPrayerCatalog naming keys, never text, so each row and its prayer resolve in the prayer language through the same chains the flows use, rites included (Erez's rite reads קדישת over his own acclamation). Reached from a fixed, non-pinnable row below the Pray cards. Each prayer opens as a single bounded step in the shared flow chrome with Finish as its only action.",
+      "purpose": "The basic prayers on their own, outside any devotion (Erez, 2026-08-07): Sign of the Cross, Our Father, Hail Mary, Glory Be, the Creed (2026-08-08 — the shared tables' Apostles', which the Mission of St. Gamaliel's overlay replaces with the Nicene), and the Trisagion's Holy God — a fixed BasicPrayerCatalog naming keys, never text, so each row and its prayer resolve in the prayer language through the same chains the flows use, rites included (Erez's rite reads קדישת over his own acclamation). The list is reorderable (Erez, 2026-08-08) via BasicPrayersOrder, the HomeOrder pattern: a persisted id list, catalog order for ids it doesn't name. Reached from a fixed, non-pinnable row below the Pray cards. Each prayer opens as a single bounded step in the shared flow chrome with Finish as its only action.",
       "parameters": {
         "prayerId": "BasicPrayerCatalog id (\"hailMary\") — the single-prayer flow only."
       },

@@ -99,17 +99,26 @@ final class CustomDevotionEngineTests: XCTestCase {
     }
 
     XCTAssertEqual(BasicPrayerCatalog.all.map(\.id),
-                   ["signOfCross", "ourFather", "hailMary", "gloryBe", "holyGod"])
+                   ["signOfCross", "ourFather", "hailMary", "gloryBe", "creed", "holyGod"])
 
     UserDefaults.standard.set("en", forKey: "defaultLanguageCode")
     let english = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "holyGod")!)
     XCTAssertEqual(english.title, "Holy God")
     XCTAssertTrue(english.body.contains("Holy Immortal One"))
+    XCTAssertTrue(
+      BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "creed")!)
+        .body.contains("I believe in God"),
+      "the shared tables' Apostles' Creed")
 
     UserDefaults.standard.set("he-x-gamliel", forKey: "defaultLanguageCode")
     let rite = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "holyGod")!)
     XCTAssertEqual(rite.title, "קדישת")
     XCTAssertTrue(rite.body.hasPrefix("אַתָּה ✠▼▲ קָדוֹשׁ"))
+
+    // "The Creed" is the community's own: the Mission's overlay replaces the Apostles' with
+    // the Nicene, so the basic prayer follows — the whole reason it names keys, not text.
+    let creed = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "creed")!)
+    XCTAssertTrue(creed.body.hasPrefix("אָנוּ מַאֲמִינִים"), "the Nicene confesses in the plural")
 
     let hailMary = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "hailMary")!)
     XCTAssertTrue(hailMary.body.contains("שָׁלוֹם לָךְ מִרְיָם"), "his community's Hail Mary")
