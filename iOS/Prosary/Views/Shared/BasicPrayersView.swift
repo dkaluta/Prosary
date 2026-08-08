@@ -17,15 +17,13 @@ import AppKit
 #endif
 
 struct BasicPrayersView: View {
-  /// Names on this screen follow the default prayer language, so the screen must re-derive
-  /// the moment that setting changes — including from the Mac's Settings window, which never
-  /// re-triggers onAppear. Declaring this is NOT enough: SwiftUI only registers the dependency
-  /// when body actually reads the value (verified live on the Mac, 2026-08-08 — the Settings
-  /// window showed עברית while Pray behind it stayed English), which is what the
-  /// `let _ = observedPrayerLanguage` at the top of body is for.
-  @AppStorage("defaultLanguageCode") private var observedPrayerLanguage = LanguageCatalog.defaultCode
+  /// Names here follow the default prayer language; the monitor is the one mechanism
+  /// that survives the Mac's Settings menu — see PrayerLanguageMonitor's header for the
+  /// graveyard of simpler attempts. Reading `.code` in body registers the dependency.
+  @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
 
   var body: some View {
+    let _ = prayerLanguage.code  // dependency registration — see the property's comment
     List(BasicPrayerCatalog.all) { prayer in
       NavigationLink(value: AppRoute.basicPrayer(id: prayer.id)) {
         BasicPrayerRow(prayer: prayer)
@@ -39,6 +37,7 @@ private struct BasicPrayerRow: View {
   let prayer: BasicPrayer
 
   var body: some View {
+    // Re-rendered by the observing parent list; no monitor of its own needed.
     let language = LanguageCatalog.resolve(nil)
     HStack(spacing: 12) {
       resolvedImage(for: prayer.imageKey)
@@ -74,11 +73,16 @@ struct BasicPrayerFlowView: View {
   @Environment(\.appServices) private var services
   @Environment(\.dismiss) private var dismiss
 
-  @State private var step: RosaryStep?
+  /// A basic prayer is a reference page, not a session — it re-derives live. See
+  /// PrayerLanguageMonitor for why nothing simpler works.
+  @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
+
   @State private var seasonColor = Color.clear
 
   var body: some View {
+    let _ = prayerLanguage.code
     let language = LanguageCatalog.resolve(nil)
+    let step = BasicPrayerCatalog.prayer(id: prayerId).map { BasicPrayerCatalog.step(for: $0) }
     PrayerStepFlowView(
       navigationTitle: step?.title ?? "",
       step: step,
@@ -91,9 +95,6 @@ struct BasicPrayerFlowView: View {
       onBack: {},
       onNext: { dismiss() })
     .onAppear {
-      if let prayer = BasicPrayerCatalog.prayer(id: prayerId) {
-        step = BasicPrayerCatalog.step(for: prayer)
-      }
       seasonColor = services.calendar.seasonColorToday()
     }
   }

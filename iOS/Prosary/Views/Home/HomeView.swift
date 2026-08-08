@@ -12,13 +12,10 @@
 import SwiftUI
 
 struct HomeView: View {
-  /// Names on this screen follow the default prayer language, so the screen must re-derive
-  /// the moment that setting changes — including from the Mac's Settings window, which never
-  /// re-triggers onAppear. Declaring this is NOT enough: SwiftUI only registers the dependency
-  /// when body actually reads the value (verified live on the Mac, 2026-08-08 — the Settings
-  /// window showed עברית while Pray behind it stayed English), which is what the
-  /// `let _ = observedPrayerLanguage` at the top of body is for.
-  @AppStorage("defaultLanguageCode") private var observedPrayerLanguage = LanguageCatalog.defaultCode
+  /// Names here follow the default prayer language; the monitor is the one mechanism
+  /// that survives the Mac's Settings menu — see PrayerLanguageMonitor's header for the
+  /// graveyard of simpler attempts. Reading `.code` in body registers the dependency.
+  @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
 
   @Binding var path: NavigationPath
 
@@ -139,6 +136,7 @@ struct HomeView: View {
 
 
   var body: some View {
+    let _ = prayerLanguage.code  // dependency registration — see the property's comment
     ScrollView {
       VStack(spacing: 16) {
         todaySection
