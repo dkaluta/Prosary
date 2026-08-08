@@ -65,8 +65,9 @@ final class CustomDevotionEngineTests: XCTestCase {
 
     // The Vicariate's Hebrew is the full threefold form in one line, exactly as sent; Erez's
     // rite overlays the same slot with his own line said thrice.
-    XCTAssertEqual(steps("trisagion", language: "he", variantId: "syriac")[3].body,
-                   "ישוע שמענו, המשיח עזרנו, האדון חננו.")
+    let hebrewKyrie = steps("trisagion", language: "he", variantId: "syriac")[3]
+    XCTAssertEqual(hebrewKyrie.body, "ישוע שמענו, המשיח עזרנו, האדון חננו.")
+    XCTAssertEqual(hebrewKyrie.title, "ישוע שמענו", "the heading is the line's own incipit")
     XCTAssertEqual(steps("trisagion", language: "he-x-gamliel", variantId: "syriac")[3].body,
                    "ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא")
   }

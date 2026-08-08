@@ -52,11 +52,6 @@ class PrayerTranslationsCompletenessTest {
     private val bundleKeysMissingLanguages: Map<String, Map<String, Set<String>>> = mapOf(
         // Veronica's station quotes Judith, and the Arabic/Tagalog scripture sources carry no
         // deuterocanon — those two fall back to the bundle's Latin text.
-        // The Kyrie's Hebrew heading waits for the Vicariate's prayer book; its body arrived
-        // 2026-08-08 (the threefold ישוע שמענו line), so only the title still falls to Latin.
-        "trisagion" to mapOf(
-            "he" to setOf("trisagionKyrieTitle"),
-        ),
         "stationsOfTheCross" to mapOf(
             "ar" to setOf("station06Body"),
             "tl" to setOf("station06Body"),

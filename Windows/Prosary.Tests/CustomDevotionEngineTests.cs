@@ -518,7 +518,9 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
 
         // The Vicariate's Hebrew is the full threefold form in one line, exactly as sent;
         // Erez's rite overlays the same slot with his own line said thrice.
-        Assert.Equal("ישוע שמענו, המשיח עזרנו, האדון חננו.", BuildSteps("trisagion", "he", variantId: "syriac")[3].Body);
+        var hebrewKyrie = BuildSteps("trisagion", "he", variantId: "syriac")[3];
+        Assert.Equal("ישוע שמענו, המשיח עזרנו, האדון חננו.", hebrewKyrie.Body);
+        Assert.Equal("ישוע שמענו", hebrewKyrie.Title);
         Assert.Equal("ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא", BuildSteps("trisagion", "he-x-gamliel", variantId: "syriac")[3].Body);
     }
 

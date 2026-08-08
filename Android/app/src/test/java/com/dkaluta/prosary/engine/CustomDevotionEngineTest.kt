@@ -525,7 +525,9 @@ class CustomDevotionEngineTest {
 
         // The Vicariate's Hebrew is the full threefold form in one line, exactly as sent;
         // Erez's rite overlays the same slot with his own line said thrice.
-        assertEquals("ישוע שמענו, המשיח עזרנו, האדון חננו.", steps("trisagion", language = "he", variantId = "syriac")[3].body)
+        val hebrewKyrie = steps("trisagion", language = "he", variantId = "syriac")[3]
+        assertEquals("ישוע שמענו, המשיח עזרנו, האדון חננו.", hebrewKyrie.body)
+        assertEquals("ישוע שמענו", hebrewKyrie.title)
         assertEquals("ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא", steps("trisagion", language = "he-x-gamliel", variantId = "syriac")[3].body)
     }
 
