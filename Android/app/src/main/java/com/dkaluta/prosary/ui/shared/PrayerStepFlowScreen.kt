@@ -412,7 +412,7 @@ private fun WideContent(
  * shipped pack (currently Rosary/Angelus) renders that pack's artwork; devotions without one fall
  * through to drawable resources exactly as before this existed. */
 @Composable
-private fun MysteryImage(imageKey: String, modifier: Modifier = Modifier) {
+internal fun MysteryImage(imageKey: String, modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val packBitmap = remember(imageKey) {
         PrayerPackStore.imageData(imageKey)?.let { data ->

@@ -71,6 +71,38 @@ final class CustomDevotionEngineTests: XCTestCase {
                    "ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא")
   }
 
+  /// The basic-prayers list resolves through the same chains the flows use, so it follows the
+  /// prayer language rites included — the whole point of surfacing it: in Erez's rite the Holy
+  /// God is קדישת over his own acclamation, and the Hail Mary reads his community's text.
+  func testBasicPrayerCatalogResolvesInThePrayerLanguage() {
+    let saved = UserDefaults.standard.string(forKey: "defaultLanguageCode")
+    defer {
+      if let saved { UserDefaults.standard.set(saved, forKey: "defaultLanguageCode") }
+      else { UserDefaults.standard.removeObject(forKey: "defaultLanguageCode") }
+    }
+
+    XCTAssertEqual(BasicPrayerCatalog.all.map(\.id),
+                   ["signOfCross", "ourFather", "hailMary", "gloryBe", "holyGod"])
+
+    UserDefaults.standard.set("en", forKey: "defaultLanguageCode")
+    let english = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "holyGod")!)
+    XCTAssertEqual(english.title, "Holy God")
+    XCTAssertTrue(english.body.contains("Holy Immortal One"))
+
+    UserDefaults.standard.set("he-x-gamliel", forKey: "defaultLanguageCode")
+    let rite = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "holyGod")!)
+    XCTAssertEqual(rite.title, "קדישת")
+    XCTAssertTrue(rite.body.hasPrefix("אַתָּה ✠▼▲ קָדוֹשׁ"))
+
+    let hailMary = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "hailMary")!)
+    XCTAssertTrue(hailMary.body.contains("שָׁלוֹם לָךְ מִרְיָם"), "his community's Hail Mary")
+
+    // The Sign of the Cross carries its mark in every language the same way the flows show it.
+    UserDefaults.standard.set("la", forKey: "defaultLanguageCode")
+    let cross = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "signOfCross")!)
+    XCTAssertTrue(cross.body.contains("✠"))
+  }
+
   /// Spanish, pinned the same way as Greek — what is sourced works, what is not falls back.
   /// Its prayers come from the Holy See's own Spanish Compendium, which prints each beside its
   /// Latin twin; the Creed, the Fatima prayer and the St Michael prayer are not in that

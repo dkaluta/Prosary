@@ -160,6 +160,8 @@ struct HomeView: View {
             }
           }
         }
+
+        basicPrayersSection
       }
       .padding(20)
       .frame(maxWidth: 1000)
@@ -208,6 +210,30 @@ struct HomeView: View {
   }
 
   // MARK: - Pieces
+
+  /// The basic prayers on their own (Erez, 2026-08-07) — a fixed quiet row below the cards, not
+  /// a pinnable card: it is a reference shelf, not a devotion, so it neither reorders nor
+  /// unpins. Always present, which is the point of the ask.
+  private var basicPrayersSection: some View {
+    Button {
+      path.append(AppRoute.basicPrayers)
+    } label: {
+      HStack {
+        Image(systemName: "text.book.closed")
+        Text(String(localized: "basicPrayers.title", defaultValue: "Basic Prayers"))
+        Spacer()
+        Image(systemName: "chevron.forward")
+          .font(.footnote.weight(.semibold))
+          .foregroundStyle(.tertiary)
+      }
+      .padding(.vertical, 12)
+      .padding(.horizontal, 16)
+      .background(.quaternary.opacity(0.4), in: RoundedRectangle(cornerRadius: 12))
+    }
+    .buttonStyle(.plain)
+    .accessibilityIdentifier("basicPrayersRow")
+  }
+
 
   /// "Today" — the day's feast per the Holy Land (Latin Patriarchate of Jerusalem) calendar and
   /// the Pope's monthly prayer intention. Rows hide when the bundled datasets have no entry

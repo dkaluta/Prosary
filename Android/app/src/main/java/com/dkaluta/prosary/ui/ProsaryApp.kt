@@ -36,6 +36,8 @@ import androidx.compose.runtime.Composable
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.ui.categories.CategoriesScreen
 import com.dkaluta.prosary.ui.search.SearchScreen
+import com.dkaluta.prosary.ui.shared.BasicPrayerFlowScreen
+import com.dkaluta.prosary.ui.shared.BasicPrayersScreen
 import com.dkaluta.prosary.ui.shared.LaunchTarget
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.models.jesusPrayerTargetFromRouteValue
@@ -82,6 +84,10 @@ private object Routes {
     // Launches a generic (bundle-driven) devotion with no existing favorite — devotionId is the
     // bundle id, e.g. "trisagion". See PrayerKind.Custom.
     const val Custom = "custom/{devotionId}"
+    // The basic prayers on their own (Erez, 2026-08-07) — the list, and one prayer as a
+    // single-step flow. The id is a BasicPrayerCatalog id, not a bundle id.
+    const val BasicPrayers = "basicPrayers"
+    const val BasicPrayerFlow = "basicPrayers/{prayerId}"
 
     fun prayer(id: String) = "prayer/$id"
     fun favoriteEditor(prayerId: String?, kind: PrayerKind? = null): String {
@@ -94,6 +100,7 @@ private object Routes {
     fun remindersOnlyEditor(prayerId: String) = "favorites/reminders/$prayerId"
     fun jesusPrayerFlow(target: String) = "jesusPrayer/$target"
     fun custom(devotionId: String) = "custom/$devotionId"
+    fun basicPrayer(prayerId: String) = "basicPrayers/$prayerId"
 }
 
 private data class TabSpec(val route: String, @param:StringRes val labelRes: Int, val icon: ImageVector)
@@ -213,6 +220,7 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
                 onOpenSettings = { navController.navigate(Routes.Settings) },
                 onOpenJesusPrayerSetup = { navController.navigate(Routes.JesusPrayerSetup) },
                 onOpenCustomDevotion = { devotionId -> navController.navigate(Routes.custom(devotionId)) },
+                onOpenBasicPrayers = { navController.navigate(Routes.BasicPrayers) },
             )
         }
 
@@ -233,6 +241,19 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
             }
         }
 
+        composable(Routes.BasicPrayers) {
+            BasicPrayersScreen(
+                onOpen = { navController.navigate(Routes.basicPrayer(it)) },
+                onNavigateUp = { navController.popBackStack() },
+            )
+        }
+        composable(
+            route = Routes.BasicPrayerFlow,
+            arguments = listOf(navArgument("prayerId") { type = NavType.StringType }),
+        ) { backStackEntry ->
+            val prayerId = backStackEntry.arguments?.getString("prayerId") ?: return@composable
+            BasicPrayerFlowScreen(prayerId = prayerId, onNavigateUp = { navController.popBackStack() })
+        }
         composable(Routes.RosaryPicker) {
             RosaryPresetPickerScreen(
                 onPrayPreset = { id -> navController.navigate(Routes.prayer(id)) },

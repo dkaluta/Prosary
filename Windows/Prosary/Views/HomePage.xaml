@@ -140,6 +140,24 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
 
+            <!-- The basic prayers on their own (Erez, 2026-08-07) — a fixed quiet row below the
+                 cards, not a pinnable card: a reference shelf, not a devotion, so it neither
+                 reorders nor unpins. Always present, which is the point of the ask. -->
+            <Button Click="OnOpenBasicPrayers" HorizontalAlignment="Stretch" MaxWidth="560"
+                    HorizontalContentAlignment="Stretch" Padding="16,12"
+                    AutomationProperties.AutomationId="basicPrayersRow">
+                <Grid ColumnSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <FontIcon Grid.Column="0" Glyph="&#xE8F1;" />
+                    <TextBlock x:Uid="BasicPrayersTitle" Grid.Column="1" Text="Basic Prayers" VerticalAlignment="Center" />
+                    <FontIcon Grid.Column="2" Glyph="&#xE76C;" MirroredWhenRightToLeft="True" FontSize="12" />
+                </Grid>
+            </Button>
+
         </StackPanel>
     </ScrollViewer>
 </Page>

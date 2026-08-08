@@ -18,4 +18,8 @@ enum AppRoute: Hashable {
   case custom(devotionId: String)
   /// An ad-hoc, unsaved Rosary session configured in the picker's quick-setup sheet.
   case rosaryQuickPray(prayer: Prayer)
+  /// The basic prayers on their own (Erez, 2026-08-07) — the list, and one prayer as a
+  /// single-step flow. `id` is a BasicPrayerCatalog id, not a bundle id.
+  case basicPrayers
+  case basicPrayer(id: String)
 }
