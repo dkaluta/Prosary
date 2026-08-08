@@ -30,6 +30,26 @@ enum class PrayerKind {
             Custom -> R.string.kind_devotion
         }
 
+    /** The built-in kinds' names in each prayer language — the same map a bundle carries in
+     * its manifest's displayNameByLanguage, kept here because the Rosary and the Jesus Prayer
+     * have no manifest to carry it. Resolution mirrors localizedDisplayName exactly: the
+     * prayer language (exact code, rites included, then its base), then the UI string. */
+    private val namesByPrayerLanguage: Map<String, String>
+        get() = when (this) {
+            Rosary -> mapOf("he" to "מחרוזת")
+            JesusPrayer -> mapOf("he" to "תפילת ישוע")
+            Custom -> emptyMap()
+        }
+
+    fun displayName(context: android.content.Context): String {
+        val prayerCode = LanguageCatalog.resolve(null).code
+        namesByPrayerLanguage[prayerCode]?.let { return it }
+        LanguageCatalog.baseLanguage(prayerCode)?.let { base ->
+            namesByPrayerLanguage[base]?.let { return it }
+        }
+        return context.getString(displayNameRes)
+    }
+
     /** Default name suggested when the user creates a new favorite of this kind. */
     @get:StringRes
     val defaultNameRes: Int

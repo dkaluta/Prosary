@@ -24,7 +24,26 @@ enum PrayerKind: String, CaseIterable, Codable, Hashable {
   /// since a single `PrayerKind` value can't carry per-bundle data.
   case custom
 
+  /// The built-in kinds' names in each prayer language — the same map a bundle carries in its
+  /// manifest's displayNameByLanguage, kept here because the Rosary and the Jesus Prayer have
+  /// no manifest to carry it. Without this, the devotion-name-follows-prayer-language rule
+  /// (2026-08-08) applied to every card except these two, and a Hebrew prayer list read
+  /// מחרוזת ,המלאך ,טריסאגיון … Rosary.
+  private var namesByPrayerLanguage: [String: String] {
+    switch self {
+    case .rosary:      return ["he": "מחרוזת"]
+    case .jesusPrayer: return ["he": "תפילת ישוע"]
+    case .custom:      return [:]
+    }
+  }
+
   var displayName: String {
+    // Prayer language first (exact code, rites included, then its base), then the UI
+    // localization — mirroring CustomDevotionInfo.localizedDisplayName exactly.
+    let prayerCode = LanguageCatalog.resolve(nil).code
+    if let name = namesByPrayerLanguage[prayerCode] { return name }
+    if let base = LanguageCatalog.baseLanguage(of: prayerCode),
+       let name = namesByPrayerLanguage[base] { return name }
     switch self {
     case .rosary:      return String(localized: "prayerKind.rosary", defaultValue: "Rosary")
     case .jesusPrayer: return String(localized: "prayerKind.jesusPrayer", defaultValue: "Jesus Prayer")

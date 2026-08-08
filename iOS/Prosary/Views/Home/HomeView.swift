@@ -12,6 +12,12 @@
 import SwiftUI
 
 struct HomeView: View {
+  /// Names on this screen follow the default prayer language, so the screen must re-derive
+  /// the moment that setting changes — including from the Mac's Settings window, which never
+  /// re-triggers onAppear. Observing the key is the whole mechanism: body re-evaluates, and
+  /// every name below is computed fresh.
+  @AppStorage("defaultLanguageCode") private var observedPrayerLanguage = LanguageCatalog.defaultCode
+
   @Binding var path: NavigationPath
 
   @Environment(\.appServices) private var services
