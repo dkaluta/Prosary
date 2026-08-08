@@ -121,7 +121,14 @@ struct CustomDevotionFlowView: View {
             Divider()
             ForEach(languages, id: \.self) { code in
               if let option = LanguageCatalog.all.first(where: { $0.code == code }) {
-                languageButton(raw: option.code, name: option.nativeName)
+                // A rite is still that language: praying he-x-gamliel keeps עברית checked,
+                // with the rite section below saying whose Hebrew. Exact matching here made
+                // the Hebrew check vanish the moment the Mission's rite was chosen — while the
+                // Vicariate's rite (whose code IS "he") kept it, which is how the
+                // inconsistency read as a bug to the person praying it.
+                languageButton(raw: option.code, name: option.nativeName,
+                               isChosen: chosenLanguage == option.code
+                                 || LanguageCatalog.baseLanguage(of: chosenLanguage) == option.code)
               }
             }
 
@@ -344,11 +351,11 @@ struct CustomDevotionFlowView: View {
   }
 
   @ViewBuilder
-  private func languageButton(raw: String, name: String) -> some View {
+  private func languageButton(raw: String, name: String, isChosen: Bool? = nil) -> some View {
     Button {
       switchLanguage(to: raw)
     } label: {
-      if raw == chosenLanguage {
+      if isChosen ?? (raw == chosenLanguage) {
         Label(name, systemImage: "checkmark")
       } else {
         Text(name)
