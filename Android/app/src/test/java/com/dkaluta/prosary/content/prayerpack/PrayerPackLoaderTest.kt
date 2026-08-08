@@ -5,6 +5,7 @@ import com.dkaluta.prosary.content.PrayerKey
 import com.dkaluta.prosary.content.PrayerTranslations
 import com.dkaluta.prosary.content.prayerTranslationsEnglish
 import com.dkaluta.prosary.engine.PrayerEngine
+import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import java.io.File
@@ -299,6 +300,30 @@ class PrayerPackLoaderTest {
         assertEquals("Trisagion", info?.displayName)
         assertEquals("#00796B", info?.accentColorHex)
         assertEquals("triangle", info?.iconSystemName)
+    }
+
+    /** A devotion's name follows the prayer language, rites included — Erez's ask: with his
+     * rite as the default prayer language, the Trisagion card reads קדישת; plain Hebrew reads
+     * טריסאגיון; a rite falls to its base when the bundle only names the base language. */
+    @Test
+    fun displayNameFollowsThePrayerLanguage() {
+        val saved = AppSettings.defaultLanguageCode
+        try {
+            AppSettings.setDefaultLanguageCode("he-x-gamliel")
+            assertEquals("קדישת", PrayerPackStore.info("trisagion")?.localizedDisplayName)
+            assertEquals(
+                PrayerPackStore.info("divineMercyChaplet")?.displayNameByLanguage?.get("he"),
+                PrayerPackStore.info("divineMercyChaplet")?.localizedDisplayName,
+            )
+
+            AppSettings.setDefaultLanguageCode("he")
+            assertEquals("טריסאגיון", PrayerPackStore.info("trisagion")?.localizedDisplayName)
+
+            AppSettings.setDefaultLanguageCode("la")
+            assertEquals("Trisagion", PrayerPackStore.info("trisagion")?.localizedDisplayName)
+        } finally {
+            AppSettings.setDefaultLanguageCode(saved)
+        }
     }
 
     @Test

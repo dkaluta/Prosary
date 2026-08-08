@@ -458,7 +458,12 @@ of its own — its entire step sequence and per-step text are data-driven from i
   Home/Favorites don't list it twice; `accentColorHex` + optional
   `accentColorDarkHex` (light/dark pair), `iconSystemName` (an SF Symbol name; mapped to the
   nearest Material icon on Android and Segoe Fluent Icons glyph on Windows via a small fixed
-  per-platform table), `displayNameByLanguage` (preserves e.g. the Hebrew devotion names),
+  per-platform table), `displayNameByLanguage` (preserves e.g. the Hebrew devotion names — resolved
+  **prayer-language-first** as of 2026-08-08: the exact resolved default prayer code, rites
+  included, then its base, then the UI language, then `displayName`. A devotion's name is part
+  of the prayer, the same principle that moved step headings into the prayed language; it is
+  also the only way a key like `"he-x-gamliel": "קדישת"` can ever be read, since UI-language
+  lookups truncate to two characters),
   `reminderBody` (per-language notification body), optional `reminderPresetHours` +
   `reminderPresetFooter` (the Angelus's traditional bell times), and optional **`tags`**
   (lowercase category labels, e.g. "marian" — Compose writes them, the repository uses them

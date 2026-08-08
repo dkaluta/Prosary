@@ -283,6 +283,32 @@ final class PrayerPackLoaderTests: XCTestCase {
   /// its manifest's builtinKind keeps it off the generic-devotion list — it backs the dedicated
   /// PrayerKind and must never appear as a Home/Favorites card twice. The six generic devotions
   /// appear in pack-load order.
+  /// A devotion's name follows the prayer language, rites included — Erez's ask: with his rite
+  /// as the default prayer language, the Trisagion card reads קדישת; plain Hebrew reads
+  /// טריסאגיון; a language the manifest does not name falls back to the UI-language behavior.
+  func testDisplayNameFollowsThePrayerLanguage() {
+    let saved = UserDefaults.standard.string(forKey: "defaultLanguageCode")
+    defer {
+      if let saved { UserDefaults.standard.set(saved, forKey: "defaultLanguageCode") }
+      else { UserDefaults.standard.removeObject(forKey: "defaultLanguageCode") }
+    }
+
+    UserDefaults.standard.set("he-x-gamliel", forKey: "defaultLanguageCode")
+    XCTAssertEqual(PrayerPackStore.info(for: "trisagion")?.localizedDisplayName, "קדישת")
+
+    UserDefaults.standard.set("he", forKey: "defaultLanguageCode")
+    XCTAssertEqual(PrayerPackStore.info(for: "trisagion")?.localizedDisplayName, "טריסאגיון")
+
+    // A rite falls to its base when the bundle only names the base language.
+    UserDefaults.standard.set("he-x-gamliel", forKey: "defaultLanguageCode")
+    XCTAssertEqual(PrayerPackStore.info(for: "divineMercyChaplet")?.localizedDisplayName,
+                   PrayerPackStore.info(for: "divineMercyChaplet")?.displayNameByLanguage["he"])
+
+    // Latin names nothing in the manifest, so the UI language decides as before.
+    UserDefaults.standard.set("la", forKey: "defaultLanguageCode")
+    XCTAssertEqual(PrayerPackStore.info(for: "trisagion")?.localizedDisplayName, "Trisagion")
+  }
+
   func testCustomDevotionIdsAreTheGenericDevotionsInLoadOrder() {
     // A prefix assertion, not equality: user-installed bundles (repo.* imports) legitimately
     // append after the built-ins on a dev machine, and shipped order is what this test pins.

@@ -404,8 +404,18 @@ data class CustomDevotionInfo(
     /** The display name in the device's UI language (falling back to the manifest's base
      * [displayName]) — preserves e.g. the Hebrew devotion names that used to live in
      * strings.xml. */
+    /** The devotion's name, resolved the way its headings are: the prayer language first
+     * (exact resolved code, rites included, then its base), then the UI language, then the
+     * manifest's base displayName — a devotion's name is part of the prayer. */
     val localizedDisplayName: String
-        get() = displayNameByLanguage[Locale.getDefault().language] ?: displayName
+        get() {
+            val prayerCode = LanguageCatalog.resolve(null).code
+            displayNameByLanguage[prayerCode]?.let { return it }
+            LanguageCatalog.baseLanguage(prayerCode)?.let { base ->
+                displayNameByLanguage[base]?.let { return it }
+            }
+            return displayNameByLanguage[Locale.getDefault().language] ?: displayName
+        }
 
     val localizedReminderBody: String?
         get() = reminderBody[Locale.getDefault().language] ?: reminderBody["en"]

@@ -405,10 +405,20 @@ struct CustomDevotionInfo {
   /// tab groups by.
   let tags: [String]
 
-  /// The display name in the app's active UI localization (falling back to the manifest's
-  /// base `displayName`) — preserves e.g. the Hebrew devotion names that used to live in
-  /// Localizable.xcstrings.
+  /// The devotion's name, resolved the way its headings are: the prayer language first, then
+  /// the UI language, then the manifest's base `displayName`.
+  ///
+  /// A devotion's name is part of the prayer — the same principle that moved step headings into
+  /// the prayed language (the Trisagion reads טריסאגיון over Hebrew steps, and in the Mission of
+  /// St. Gamaliel's rite קדישת, the Aramaic word the Syriac churches sing it under). The prayer
+  /// language is tried by its exact resolved code — rites included, which a UI-language lookup
+  /// could never see (`preferredLocalizations` truncates to two characters) — then by its base,
+  /// so a rite whose bundle only names the base language still reads that language's name.
   var localizedDisplayName: String {
+    let prayerCode = LanguageCatalog.resolve(nil).code
+    if let name = displayNameByLanguage[prayerCode] { return name }
+    if let base = LanguageCatalog.baseLanguage(of: prayerCode),
+       let name = displayNameByLanguage[base] { return name }
     guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else { return displayName }
     return displayNameByLanguage[String(uiLanguage)] ?? displayName
   }

@@ -884,8 +884,20 @@ public sealed record CustomDevotionInfo(
 
     /// <summary>The display name in the app's active UI localization (falling back to the
     /// manifest's base <see cref="DisplayName"/>) — preserves e.g. the Hebrew devotion names.</summary>
-    public string LocalizedDisplayName =>
-        DisplayNameByLanguage.TryGetValue(UiLanguage, out var name) ? name : DisplayName;
+    /// <summary>The devotion's name, resolved the way its headings are: the prayer language
+    /// first (exact resolved code, rites included, then its base), then the UI language, then
+    /// the manifest's base DisplayName — a devotion's name is part of the prayer.</summary>
+    public string LocalizedDisplayName
+    {
+        get
+        {
+            var prayerCode = Prosary.Models.LanguageCatalog.Resolve(null).Code;
+            if (DisplayNameByLanguage.TryGetValue(prayerCode, out var prayerName)) return prayerName;
+            if (Prosary.Models.LanguageCatalog.BaseLanguage(prayerCode) is { } baseCode &&
+                DisplayNameByLanguage.TryGetValue(baseCode, out var baseName)) return baseName;
+            return DisplayNameByLanguage.TryGetValue(UiLanguage, out var name) ? name : DisplayName;
+        }
+    }
 
     public string? LocalizedReminderBody =>
         ReminderBody.TryGetValue(UiLanguage, out var body) ? body
