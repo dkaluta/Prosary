@@ -55,8 +55,10 @@ struct CustomDevotionFlowView: View {
   private var hasClosingCross: Bool {
     // Per form, not per bundle: one recension of a chaplet can end with the cross where another
     // does not, and the bead track draws a closing bead on the strength of this.
-    PrayerPackStore.definition(for: devotionId)?
-      .resolvedRosary(variantId: variantId).hasClosingCross ?? false
+    guard let definition = PrayerPackStore.definition(for: devotionId) else { return false }
+    return definition
+      .resolvedRosary(variantId: definition.effectiveVariantId(variantId, languageCode: languageCode))
+      .hasClosingCross
   }
 
   private var beadLayout: BeadLayout {
@@ -176,14 +178,19 @@ struct CustomDevotionFlowView: View {
       // Variant switcher — only for bundles declaring alternate step-sets (e.g. the Stations'
       // traditional vs. scriptural forms). Switching rebuilds the session from step 0 and
       // persists the choice to the matching favorite when one exists.
-      if let variants = PrayerPackStore.definition(for: devotionId)?.variants, variants.count > 1 {
+      if let definition = PrayerPackStore.definition(for: devotionId),
+         let variants = definition.variants, variants.count > 1 {
+        // "No explicit choice" resolves per the prayer language (a rite can declare a form its
+        // own), so both the checkmark and the persistence baseline use the effective default.
+        let defaultVariantId =
+          definition.effectiveVariantId(nil, languageCode: languageCode) ?? variants[0].id
         ToolbarItem(placement: .primaryAction) {
           Menu {
             ForEach(variants, id: \.id) { variant in
               Button {
-                switchVariant(to: variant.id, defaultVariantId: variants[0].id)
+                switchVariant(to: variant.id, defaultVariantId: defaultVariantId)
               } label: {
-                if variant.id == (variantId ?? variants[0].id) {
+                if variant.id == (variantId ?? defaultVariantId) {
                   Label(variant.localizedName, systemImage: "checkmark")
                 } else {
                   Text(variant.localizedName)
@@ -297,7 +304,9 @@ struct CustomDevotionFlowView: View {
   /// track's variant (nil = the bundle's single/default form) must match the session's.
   /// First declared match wins — audio.json order is the author's preference order.
   private func pickAudioTrack() {
-    let defaultVariantId = PrayerPackStore.definition(for: devotionId)?.variants?.first?.id
+    let definition = PrayerPackStore.definition(for: devotionId)
+    let defaultVariantId =
+      definition?.effectiveVariantId(nil, languageCode: languageCode) ?? definition?.variants?.first?.id
     let effectiveVariant = variantId ?? defaultVariantId
     let match = PrayerPackStore.audioTracks(for: devotionId).first {
       $0.language == languageCode && ($0.variantId ?? defaultVariantId) == effectiveVariant

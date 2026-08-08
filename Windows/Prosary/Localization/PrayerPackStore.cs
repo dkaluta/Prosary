@@ -734,6 +734,11 @@ public sealed record CustomDevotionDefinition(
         Dictionary<string, string>? NameByLanguage = null,
         List<CustomDevotionStep>? Steps = null,
         List<CustomDevotionStep>? EastertideSteps = null,
+        // Exact prayer-language codes (rites included) whose sessions open in this variant when
+        // the favorite carries no explicit choice — the Mission of St. Gamaliel's rite opening
+        // the Trisagion in its Syriac form. Exact match only: choosing a rite is deliberate,
+        // and the base language keeps the bundle's ordinary (first-variant) default.
+        List<string>? DefaultForLanguages = null,
         // rosary type: the same four fields a single-form rosary devotion has.
         List<CustomDevotionStep>? Opening = null,
         DecadesDefinition? Decades = null,
@@ -743,6 +748,19 @@ public sealed record CustomDevotionDefinition(
         public string LocalizedName =>
             NameByLanguage?.GetValueOrDefault(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
             ?? Name;
+    }
+
+    /// <summary>The variant a session with no explicit choice opens in: the explicit
+    /// <paramref name="variantId"/> when given, else the variant that names the resolved prayer
+    /// language among its DefaultForLanguages, else null — which every resolver reads as the
+    /// first variant. All callers that pass a possibly-null variant id route through this so a
+    /// rite's native form wins everywhere (engine, variant menu, closing cross) without any
+    /// per-rite code.</summary>
+    public string? EffectiveVariantId(string? variantId, string? languageCode)
+    {
+        if (variantId is not null) return variantId;
+        if (Variants is not { Count: > 0 } || languageCode is null) return null;
+        return Variants.FirstOrDefault(v => v.DefaultForLanguages?.Contains(languageCode) == true)?.Id;
     }
 
     /// <summary>The step lists to build for <paramref name="variantId"/> — the matching

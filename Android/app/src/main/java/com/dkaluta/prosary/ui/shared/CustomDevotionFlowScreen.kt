@@ -125,7 +125,9 @@ fun CustomDevotionFlowScreen(
      * track's variant (null = the bundle's single/default form) must match the session's.
      * First declared match wins — audio.json order is the author's preference order. */
     fun pickAudioTrack(currentStepIndex: Int) {
-        val defaultVariantId = PrayerPackStore.definition(devotionId)?.variants?.firstOrNull()?.id
+        val definition = PrayerPackStore.definition(devotionId)
+        val defaultVariantId = definition?.effectiveVariantId(null, languageCode)
+            ?: definition?.variants?.firstOrNull()?.id
         val effectiveVariant = variantId ?: defaultVariantId
         val match = PrayerPackStore.audioTracks(devotionId).firstOrNull {
             it.language == languageCode && (it.variantId ?: defaultVariantId) == effectiveVariant
@@ -223,8 +225,9 @@ fun CustomDevotionFlowScreen(
     val showsBeadTrack = steps.any { it.decadeIndex != null }
     // Per form, not per bundle: one recension of a chaplet can end with the cross where
     // another does not, and the bead track draws a closing bead on the strength of this.
-    val hasClosingCross =
-        PrayerPackStore.definition(devotionId)?.resolvedRosary(variantId)?.hasClosingCross ?: false
+    val hasClosingCross = PrayerPackStore.definition(devotionId)?.let {
+        it.resolvedRosary(it.effectiveVariantId(variantId, languageCode)).hasClosingCross
+    } ?: false
     val beadLayout = remember(steps, currentIndex) {
         BeadLayout.build(steps, currentIndex, hasClosingCross = hasClosingCross)
     }
@@ -456,14 +459,20 @@ fun CustomDevotionFlowScreen(
             // Stations' traditional vs. scriptural forms). Switching rebuilds the session from
             // step 0 (via the LaunchedEffect keyed on variantId) and persists the choice to the
             // matching favorite when one exists.
-            val variants = PrayerPackStore.definition(devotionId)?.variants
+            val flowDefinition = PrayerPackStore.definition(devotionId)
+            val variants = flowDefinition?.variants
             if (variants != null && variants.size > 1) {
+                // "No explicit choice" resolves per the prayer language (a rite can declare a
+                // form its own), so both the checkmark and the persistence baseline use the
+                // effective default.
+                val defaultVariantId =
+                    flowDefinition.effectiveVariantId(null, languageCode) ?: variants.first().id
                 IconButton(onClick = { variantMenuExpanded = true }) {
                     Icon(Icons.AutoMirrored.Filled.MenuBook, contentDescription = stringResource(R.string.flow_choose_form))
                 }
                 DropdownMenu(expanded = variantMenuExpanded, onDismissRequest = { variantMenuExpanded = false }) {
                     for (variant in variants) {
-                        val isCurrent = variant.id == (variantId ?: variants.first().id)
+                        val isCurrent = variant.id == (variantId ?: defaultVariantId)
                         DropdownMenuItem(
                             text = { Text(variant.localizedName) },
                             leadingIcon = if (isCurrent) {
@@ -473,7 +482,7 @@ fun CustomDevotionFlowScreen(
                             },
                             onClick = {
                                 variantMenuExpanded = false
-                                val newVariantId = if (variant.id == variants.first().id) null else variant.id
+                                val newVariantId = if (variant.id == defaultVariantId) null else variant.id
                                 variantId = newVariantId
                                 matchingFavoriteId?.let { id ->
                                     scope.launch {

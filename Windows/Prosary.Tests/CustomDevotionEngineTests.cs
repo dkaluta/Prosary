@@ -74,7 +74,9 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
     [Fact]
     public void TrisagionInTheMissionsRite()
     {
-        var mission = BuildSteps("trisagion", "he-x-gamliel");
+        // Explicitly the Byzantine form: the rite's *default* is now the Syriac one (see
+        // TrisagionDefaultFormFollowsThePrayerLanguage); this test pins the wording overlay.
+        var mission = BuildSteps("trisagion", "he-x-gamliel", variantId: "byzantine");
         var hebrew = BuildSteps("trisagion", "he");
 
         Assert.Equal(
@@ -90,6 +92,23 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         // Not sent by the Mission: the Glory Be itself still reads their wording from the shared
         // table, and everything else falls through to plain Hebrew.
         Assert.Contains("הַשֶּׁבַח לָאָב", mission[3].Body);
+    }
+
+    /// <summary>A variant can claim a prayer language as its own (defaultForLanguages), and a
+    /// favorite with no explicit choice opens in it: the Mission prays the Syriac form, so
+    /// Erez's rite gets it without touching the variant menu. Exact-code match only — plain
+    /// Hebrew (the Vicariate, Latin rite) keeps the first-declared default, which per the
+    /// canonical tradition order (latin → byzantine → west syriac → armenian → alexandrian →
+    /// east syriac) is the earliest tradition the bundle ships: today the Byzantine. An
+    /// explicit choice always wins.</summary>
+    [Fact]
+    public void TrisagionDefaultFormFollowsThePrayerLanguage()
+    {
+        var gamliel = BuildSteps("trisagion", "he-x-gamliel");
+        Assert.Equal(4, gamliel.Count);
+        Assert.Equal("ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא", gamliel[3].Body);
+        Assert.Equal(6, BuildSteps("trisagion", "he").Count);
+        Assert.Equal(6, BuildSteps("trisagion", "he-x-gamliel", variantId: "byzantine").Count);
     }
 
     [Fact]

@@ -213,6 +213,47 @@ def main() -> int:
         lambda d: d["variants"][1]["decades"].update({"minorCount": 0}),
         "minorCount must be an integer >= 1",
     )
+
+    # --- per-language default forms (defaultForLanguages) and the canonical tradition order ---
+    def claims(d, index, langs):
+        d["variants"][index]["defaultForLanguages"] = langs
+
+    def accepts_rosary(label, mutate):
+        with tempfile.TemporaryDirectory() as tmp:
+            work = Path(tmp) / "bundle"
+            shutil.copytree(ROSARY_FIXTURE, work)
+            devotion = json.loads((work / "devotion.json").read_text(encoding="utf-8"))
+            mutate(devotion)
+            (work / "devotion.json").write_text(json.dumps(devotion), encoding="utf-8")
+            check_valid(work, label)
+
+    accepts_rosary(
+        "a form claiming a rite as its default audience",
+        lambda d: claims(d, 1, ["he-x-gamliel"]),
+    )
+    rosary(
+        "two forms claiming the same default language",
+        lambda d: (claims(d, 0, ["he-x-gamliel"]), claims(d, 1, ["he-x-gamliel"])),
+        "already another variant's default language",
+    )
+    rosary(
+        "a defaultForLanguages that is not a list of codes",
+        lambda d: claims(d, 1, "he-x-gamliel"),
+        "must be a non-empty array",
+    )
+    rosary(
+        # Declaration order is the default rule, so the canonical order latin → byzantine →
+        # west syriac → armenian → alexandrian → east syriac is machine-checked, not folklore.
+        "tradition-named forms out of canonical order",
+        lambda d: [d["variants"][i].update({"id": vid})
+                   for i, vid in enumerate(["syriac", "latin"])],
+        "canonical order",
+    )
+    accepts_rosary(
+        "tradition-named forms in canonical order",
+        lambda d: [d["variants"][i].update({"id": vid})
+                   for i, vid in enumerate(["latin", "syriac"])],
+    )
     rosary(
         "a preAnnouncement entry missing its body",
         lambda d: d["variants"][1]["decades"]["preAnnouncement"][0].pop("bodyKey"),

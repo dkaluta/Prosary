@@ -148,6 +148,58 @@ if_refs: list = []
 antiphon_option_refs: list = []
 
 
+# The liturgical families in canonical order — the order the Church's own taxonomies use, and
+# the order a bundle must declare tradition-named variants in. Because the first declared
+# variant is the default, this ordering IS the default rule: everyone without a rite claim gets
+# the Latin form when the bundle ships one (the Vicariate's Hebrew among them), else the
+# Byzantine, and so on down. defaultForLanguages then overrides per rite (the Mission opening
+# the Trisagion in its Syriac form). Ids that name no tradition (traditional, scriptural,
+# shorter…) stay ordered however the author likes.
+TRADITION_RANK = {
+    "latin": 0, "roman": 0,
+    "byzantine": 1, "greek": 1,
+    "westSyriac": 2, "syriac": 2, "antiochene": 2, "maronite": 2,
+    "armenian": 3,
+    "alexandrian": 4, "coptic": 4, "geez": 4, "ethiopian": 4,
+    "eastSyriac": 5, "chaldean": 5, "assyrian": 5,
+}
+
+
+def check_variant_defaults(variants: list) -> None:
+    """Cross-variant rules: no two variants may claim the same default language (the winner
+    would silently be declaration order), and tradition-named variants must be declared in the
+    canonical order TRADITION_RANK encodes."""
+    claimed: set = set()
+    for v, variant in enumerate(variants):
+        if not isinstance(variant, dict):
+            continue
+        for lang in variant.get("defaultForLanguages") or []:
+            if lang in claimed:
+                err(f"variants[{v}]: {lang!r} is already another variant's default language")
+            claimed.add(lang)
+    ranked = [(v, TRADITION_RANK[variant["id"]])
+              for v, variant in enumerate(variants)
+              if isinstance(variant, dict) and variant.get("id") in TRADITION_RANK]
+    for (_, earlier), (v, later) in zip(ranked, ranked[1:]):
+        if later < earlier:
+            err(f"variants[{v}]: tradition-named variants must follow the canonical order "
+                "latin, byzantine, west syriac, armenian, alexandrian, east syriac — the first "
+                "declared variant is the default, and the default belongs to the earliest "
+                "tradition the bundle ships")
+
+
+def check_default_for_languages(variant: dict, where: str) -> None:
+    """A variant may declare the prayer languages (exact codes, rites included) whose sessions
+    open in it when the favorite has no explicit choice — the Mission's rite opening the
+    Trisagion in its Syriac form. Exact codes only: a rite is a deliberate choice, and its base
+    language keeps the bundle's ordinary default."""
+    langs = variant.get("defaultForLanguages")
+    if langs is None:
+        return
+    if not isinstance(langs, list) or not langs or not all(isinstance(x, str) and x for x in langs):
+        err(f"{where}: defaultForLanguages must be a non-empty array of language codes")
+
+
 def validate_entry(entry: dict, where: str, allow_kind: bool, slots: set | None = None) -> None:
     if "if" in entry:
         if not isinstance(entry["if"], str) or not entry["if"]:
@@ -509,6 +561,7 @@ def main() -> int:
             if not variants:
                 err("variants must not be empty")
             seen_ids = set()
+            check_variant_defaults(variants)
             for v, variant in enumerate(variants):
                 where = f"variants[{v}]"
                 vid = variant.get("id")
@@ -524,7 +577,9 @@ def main() -> int:
                 check_step_list(variant.get("steps") or [], f"{where}.steps")
                 if "eastertideSteps" in variant:
                     check_step_list(variant["eastertideSteps"], f"{where}.eastertideSteps")
-                extra = set(variant) - {"id", "name", "nameByLanguage", "steps", "eastertideSteps"}
+                check_default_for_languages(variant, where)
+                extra = set(variant) - {"id", "name", "nameByLanguage", "steps", "eastertideSteps",
+                                        "defaultForLanguages"}
                 if extra:
                     err(f"{where}: unknown fields {sorted(extra)}")
         else:
@@ -742,6 +797,7 @@ def main() -> int:
             if not variants:
                 err("variants must not be empty")
             seen_ids = set()
+            check_variant_defaults(variants)
             for v, variant in enumerate(variants):
                 where = f"variants[{v}]"
                 vid = variant.get("id")
@@ -758,8 +814,10 @@ def main() -> int:
                     variant.get("opening") or [], variant.get("decades") or {},
                     variant.get("closing") or [], variant.get("hasClosingCross"),
                     f"{where}.", body_keys, title_keys, image_keys, mystery_keys)
+                check_default_for_languages(variant, where)
                 extra = unknown_fields(variant, {"id", "name", "nameByLanguage", "opening",
-                                                 "decades", "closing", "hasClosingCross"})
+                                                 "decades", "closing", "hasClosingCross",
+                                                 "defaultForLanguages"})
                 if extra:
                     err(f"{where}: unknown fields {extra}")
         else:

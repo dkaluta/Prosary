@@ -172,6 +172,9 @@ struct PrayerEngine {
     dayIndex: Int = 0
   ) -> [RosaryStep] {
     guard let definition = PrayerPackStore.definition(for: bundleId) else { return [] }
+    // No explicit variant on the favorite → the form the prayer language declares as its own
+    // (the Mission's rite opens the Trisagion Syriac), else the first.
+    let variantId = definition.effectiveVariantId(variantId, languageCode: languageCode)
     // Effective option values: the bundle's declared defaults overlaid with the favorite's
     // stored choices. Overrides for keys the bundle no longer declares are ignored, so a stale
     // favorite can't gate on options that stopped existing.

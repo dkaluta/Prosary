@@ -72,6 +72,22 @@ final class CustomDevotionEngineTests: XCTestCase {
                    "ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא")
   }
 
+  /// A variant can claim a prayer language as its own (`defaultForLanguages`), and a favorite
+  /// with no explicit choice opens in it: the Mission prays the Syriac form, so Erez's rite gets
+  /// it without touching the variant menu. Exact-code match only — plain Hebrew (the Vicariate,
+  /// Latin rite) keeps the first-declared default, which per the canonical tradition order
+  /// (latin → byzantine → west syriac → armenian → alexandrian → east syriac) is the earliest
+  /// tradition the bundle ships: today the Byzantine. An explicit choice always wins.
+  func testTrisagionDefaultFormFollowsThePrayerLanguage() {
+    let gamliel = steps("trisagion", language: "he-x-gamliel")
+    XCTAssertEqual(gamliel.count, 4, "no explicit variant: the rite's own Syriac form")
+    XCTAssertEqual(gamliel[3].body, "ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא")
+    XCTAssertEqual(steps("trisagion", language: "he").count, 6,
+                   "the Vicariate's Hebrew keeps the Byzantine default")
+    XCTAssertEqual(steps("trisagion", language: "he-x-gamliel", variantId: "byzantine").count, 6,
+                   "an explicit choice beats the rite's default")
+  }
+
   /// The basic-prayers list resolves through the same chains the flows use, so it follows the
   /// prayer language rites included — the whole point of surfacing it: in Erez's rite the Holy
   /// God is קדישת over his own acclamation, and the Hail Mary reads his community's text.
@@ -182,7 +198,9 @@ final class CustomDevotionEngineTests: XCTestCase {
   /// Aramaic קדישת. Pinned so their wording — including the ✠▼▲ marks exactly as sent — cannot
   /// drift, and so it stays visibly distinct from the plain-Hebrew form beside it.
   func testTrisagionInTheMissionsRite() {
-    let mission = steps("trisagion", language: "he-x-gamliel")
+    // Explicitly the Byzantine form: the rite's *default* is now the Syriac one (see
+    // testTrisagionDefaultFormFollowsThePrayerLanguage); this test pins the wording overlay.
+    let mission = steps("trisagion", language: "he-x-gamliel", variantId: "byzantine")
     let hebrew = steps("trisagion", language: "he")
 
     XCTAssertEqual(mission.map(\.title), Array(repeating: "קדישת", count: 3) + ["השבח לאב"]

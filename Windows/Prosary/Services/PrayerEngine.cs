@@ -177,6 +177,10 @@ public sealed class PrayerEngine
         var definition = PrayerPackStore.Definition(bundleId);
         if (definition is null) return [];
 
+        // No explicit variant on the favorite → the form the prayer language declares as its
+        // own (the Mission's rite opens the Trisagion Syriac), else the first.
+        variantId = definition.EffectiveVariantId(variantId, languageCode);
+
         // Effective option values: the bundle's declared defaults overlaid with the favorite's
         // stored choices. Overrides for keys the bundle no longer declares are ignored, so a
         // stale favorite can't gate on options that stopped existing.

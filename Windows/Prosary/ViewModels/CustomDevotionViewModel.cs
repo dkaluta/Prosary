@@ -272,7 +272,14 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         }
     }
 
-    public string? CurrentVariantId => _variantId ?? (Variants.Count > 0 ? Variants[0].Id : null);
+    /// <summary>"No explicit choice" resolves per the prayer language (a rite can declare a
+    /// form its own), so the flyout checkmark and the persistence baseline both use the
+    /// effective default rather than blindly the first variant.</summary>
+    private string? DefaultVariantId =>
+        PrayerPackStore.Definition(_bundleId)?.EffectiveVariantId(null, _languageCode)
+        ?? (Variants.Count > 0 ? Variants[0].Id : null);
+
+    public string? CurrentVariantId => _variantId ?? DefaultVariantId;
 
     /// <summary>The bundle's languages (manifest order); the page builds its language flyout
     /// from this. The app-level setting was the only way to change a generic devotion's language
@@ -295,6 +302,15 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         _languageCode = PrayerPackStore.EffectiveLanguage(_bundleId, raw);
         IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
         OnPropertyChanged(nameof(CurrentLanguageRaw));
+        // The language can carry its own default form (a rite's native variant), so the
+        // effective variant — and with it the closing cross — can change with the language.
+        OnPropertyChanged(nameof(CurrentVariantId));
+        if (PrayerPackStore.Definition(_bundleId) is { } switchedDefinition)
+        {
+            _hasClosingCross = switchedDefinition
+                .ResolvedRosary(switchedDefinition.EffectiveVariantId(_variantId, _languageCode))
+                .HasClosingCross;
+        }
 
         var position = _index;
         _steps = _engine.BuildSteps(new Prayer
@@ -319,14 +335,15 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     /// choice to the matching favorite when one exists.</summary>
     public async Task SelectVariantAsync(string variantId)
     {
-        var defaultId = Variants.Count > 0 ? Variants[0].Id : null;
-        _variantId = variantId == defaultId ? null : variantId;
+        _variantId = variantId == DefaultVariantId ? null : variantId;
         OnPropertyChanged(nameof(CurrentVariantId));
 
         // Rosary-type forms can differ in whether they end with the cross, so the bead track's
         // closing bead has to follow the switch too.
-        _hasClosingCross =
-            PrayerPackStore.Definition(_bundleId)?.ResolvedRosary(_variantId).HasClosingCross ?? false;
+        var definition = PrayerPackStore.Definition(_bundleId);
+        _hasClosingCross = definition?
+            .ResolvedRosary(definition.EffectiveVariantId(_variantId, _languageCode))
+            .HasClosingCross ?? false;
 
         _steps = _engine.BuildSteps(new Prayer
         {
@@ -383,8 +400,12 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             // Per form, not per bundle: one recension of a chaplet can end with the cross where
             // another does not, and the bead track draws a closing bead on the strength of this.
             // Computed here rather than beside the definition lookup because it depends on the
-            // variant the favorite chose, which is only known now.
-            _hasClosingCross = definition?.ResolvedRosary(_variantId).HasClosingCross ?? false;
+            // variant the favorite chose — and, absent one, on the language's own default form —
+            // both of which are only known now (_languageCode itself is resolved further down).
+            _hasClosingCross = definition?
+                .ResolvedRosary(definition.EffectiveVariantId(
+                    _variantId, PrayerPackStore.EffectiveLanguage(bundleId, favorite?.LanguageCode)))
+                .HasClosingCross ?? false;
 
             // The favorite carries the language to pray in (sentinel = the app default).
             _chosenLanguage = favorite?.LanguageCode ?? LanguageCatalog.DefaultSentinel;
@@ -597,7 +618,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     /// order.</summary>
     private void PickAudioTrack()
     {
-        var defaultVariantId = Variants.Count > 0 ? Variants[0].Id : null;
+        var defaultVariantId = DefaultVariantId;
         var effectiveVariant = _variantId ?? defaultVariantId;
         var match = PrayerPackStore.AudioTracks(_bundleId)
             .FirstOrDefault(t => t.Language == _languageCode && (t.VariantId ?? defaultVariantId) == effectiveVariant);

@@ -317,6 +317,11 @@ struct CustomDevotionDefinition: Decodable {
     let nameByLanguage: [String: String]?
     let steps: [CustomDevotionStep]?
     let eastertideSteps: [CustomDevotionStep]?
+    /// Exact prayer-language codes (rites included) whose sessions open in this variant when the
+    /// favorite carries no explicit choice — the Mission of St. Gamaliel's rite opening the
+    /// Trisagion in its Syriac form. Exact match only: choosing a rite is deliberate, and the
+    /// base language keeps the bundle's ordinary (first-variant) default.
+    let defaultForLanguages: [String]?
     // rosary type
     let opening: [CustomDevotionStep]?
     let decades: Decades?
@@ -358,6 +363,17 @@ struct CustomDevotionDefinition: Decodable {
   let decades: Decades?
   let closing: [CustomDevotionStep]?
   let hasClosingCross: Bool?
+
+  /// The variant a session with no explicit choice opens in: the explicit `variantId` when
+  /// given, else the variant that names the resolved prayer language among its
+  /// `defaultForLanguages`, else nil — which every resolver reads as the first variant. All
+  /// callers that pass a possibly-nil variant id route through this so a rite's native form
+  /// wins everywhere (engine, variant menu, closing cross) without any per-rite code.
+  func effectiveVariantId(_ variantId: String?, languageCode: String?) -> String? {
+    if let variantId { return variantId }
+    guard let variants, let languageCode else { return nil }
+    return variants.first { $0.defaultForLanguages?.contains(languageCode) == true }?.id
+  }
 
   /// The step lists to build for `variantId` — the matching variant, else the default (first)
   /// variant, else the top-level lists (single-form devotions).

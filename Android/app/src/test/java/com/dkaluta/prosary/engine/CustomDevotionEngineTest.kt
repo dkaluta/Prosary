@@ -84,7 +84,9 @@ class CustomDevotionEngineTest {
      * drift, and so it stays visibly distinct from the plain-Hebrew form beside it. */
     @Test
     fun trisagionInTheMissionsRite() {
-        val mission = steps("trisagion", language = "he-x-gamliel")
+        // Explicitly the Byzantine form: the rite's *default* is now the Syriac one (see
+        // trisagionDefaultFormFollowsThePrayerLanguage); this test pins the wording overlay.
+        val mission = steps("trisagion", language = "he-x-gamliel", variantId = "byzantine")
         val hebrew = steps("trisagion", language = "he")
 
         assertEquals(
@@ -529,6 +531,25 @@ class CustomDevotionEngineTest {
         assertEquals("ישוע שמענו, המשיח עזרנו, האדון חננו.", hebrewKyrie.body)
         assertEquals("ישוע שמענו", hebrewKyrie.title)
         assertEquals("ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא", steps("trisagion", language = "he-x-gamliel", variantId = "syriac")[3].body)
+    }
+
+    /** A variant can claim a prayer language as its own (defaultForLanguages), and a favorite
+     * with no explicit choice opens in it: the Mission prays the Syriac form, so Erez's rite
+     * gets it without touching the variant menu. Exact-code match only — plain Hebrew (the
+     * Vicariate, Latin rite) keeps the first-declared default, which per the canonical
+     * tradition order (latin → byzantine → west syriac → armenian → alexandrian → east syriac)
+     * is the earliest tradition the bundle ships: today the Byzantine. An explicit choice
+     * always wins. */
+    @Test
+    fun trisagionDefaultFormFollowsThePrayerLanguage() {
+        val gamliel = steps("trisagion", language = "he-x-gamliel")
+        assertEquals("no explicit variant: the rite's own Syriac form", 4, gamliel.size)
+        assertEquals("ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא", gamliel[3].body)
+        assertEquals("the Vicariate's Hebrew keeps the Byzantine default", 6, steps("trisagion", language = "he").size)
+        assertEquals(
+            "an explicit choice beats the rite's default",
+            6, steps("trisagion", language = "he-x-gamliel", variantId = "byzantine").size,
+        )
     }
 
     /** The Vicariate's Hebrew prayerbook leads each of the three acclamations with a cross, and

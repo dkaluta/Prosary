@@ -409,6 +409,21 @@ of its own — its entire step sequence and per-step text are data-driven from i
     variant. `hasClosingCross` is likewise per form, and each platform's flow reads it through
     `resolvedRosary(variantId)` rather than off the bundle — one recension can end with the cross
     where another does not.
+  - **Per-language default forms** (2026-08-08): any variant (either type) may declare
+    `defaultForLanguages: ["he-x-gamliel", …]` — exact prayer-language codes, rites included,
+    whose sessions open in that variant when `Prayer.variantId` is nil. The Mission of St.
+    Gamaliel prays the Trisagion in its Syriac form, so their rite gets it without touching the
+    variant menu. Exact match only (a rite is a deliberate choice; its base language keeps the
+    ordinary default), no two variants may claim the same code, and an explicit `variantId`
+    always wins — each platform routes every nil-variant lookup (engine, variant-menu checkmark,
+    persistence baseline, `hasClosingCross`, audio-track matching) through one
+    `effectiveVariantId(variantId, languageCode)` resolver. For everyone without a rite claim,
+    "first declared is the default" carries the canonical tradition order **latin → byzantine →
+    west syriac → armenian → alexandrian → east syriac**: the validator rejects tradition-named
+    variant ids declared out of that order, so the default is always the earliest tradition the
+    bundle ships — the Latin form once one exists (what the Vicariate's Hebrew should open in),
+    the Byzantine until then. Ids that name no tradition (`traditional`, `scriptural`, …) stay
+    in author order.
   - `{"type": "rosary"}` — decade/bead-structured: `opening: [Entry…]` (entry 0 MUST be the Sign
     of the Cross — a bead-track invariant), `decades` (`ordinalNoun` "Joy"/"Sorrow"/"Decade";
     `announceMystery`; either inline `entries: [{imageKey, isScripture? = true}]` (Franciscan

@@ -256,6 +256,11 @@ data class CustomDevotionDefinition(
         val nameByLanguage: Map<String, String>? = null,
         val steps: List<CustomDevotionStep>? = null,
         val eastertideSteps: List<CustomDevotionStep>? = null,
+        /** Exact prayer-language codes (rites included) whose sessions open in this variant when
+         * the favorite carries no explicit choice — the Mission of St. Gamaliel's rite opening
+         * the Trisagion in its Syriac form. Exact match only: choosing a rite is deliberate, and
+         * the base language keeps the bundle's ordinary (first-variant) default. */
+        val defaultForLanguages: List<String>? = null,
         // rosary type
         val opening: List<CustomDevotionStep>? = null,
         val decades: Decades? = null,
@@ -264,6 +269,17 @@ data class CustomDevotionDefinition(
     ) {
         val localizedName: String
             get() = nameByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: name
+    }
+
+    /** The variant a session with no explicit choice opens in: the explicit [variantId] when
+     * given, else the variant that names the resolved prayer language among its
+     * defaultForLanguages, else null — which every resolver reads as the first variant. All
+     * callers that pass a possibly-null variant id route through this so a rite's native form
+     * wins everywhere (engine, variant menu, closing cross) without any per-rite code. */
+    fun effectiveVariantId(variantId: String?, languageCode: String?): String? {
+        if (variantId != null) return variantId
+        if (variants.isNullOrEmpty() || languageCode == null) return null
+        return variants.firstOrNull { it.defaultForLanguages?.contains(languageCode) == true }?.id
     }
 
     /** The step lists to build for [variantId] — the matching variant, else the default (first)

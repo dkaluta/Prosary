@@ -179,6 +179,10 @@ class PrayerEngine(
         dayIndex: Int = 0,
     ): List<RosaryStep> {
         val definition = PrayerPackStore.definition(bundleId) ?: return emptyList()
+        // No explicit variant on the favorite → the form the prayer language declares as its
+        // own (the Mission's rite opens the Trisagion Syriac), else the first.
+        @Suppress("NAME_SHADOWING")
+        val variantId = definition.effectiveVariantId(variantId, languageCode)
         // Effective option values: the bundle's declared defaults overlaid with the favorite's
         // stored choices. Overrides for keys the bundle no longer declares are ignored, so a
         // stale favorite can't gate on options that stopped existing.
