@@ -12,6 +12,9 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct ContentView: View {
+  private enum Tab: Hashable { case pray, browse, categories, search }
+
+  @State private var selectedTab: Tab = .pray
   @State private var prayPath = NavigationPath()
   @State private var browsePath = NavigationPath()
   @State private var categoriesPath = NavigationPath()
@@ -21,7 +24,7 @@ struct ContentView: View {
   @State private var importError: String?
 
   var body: some View {
-    TabView {
+    TabView(selection: $selectedTab) {
       NavigationStack(path: $prayPath) {
         HomeView(path: $prayPath)
           .appRouteDestinations(path: $prayPath)
@@ -29,6 +32,7 @@ struct ContentView: View {
       .tabItem {
         Label(String(localized: "tabs.pray", defaultValue: "Pray"), systemImage: "hands.and.sparkles")
       }
+      .tag(Tab.pray)
 
       NavigationStack(path: $browsePath) {
         RepositoryBrowserView(presentedAsSheet: false)
@@ -37,6 +41,7 @@ struct ContentView: View {
       .tabItem {
         Label(String(localized: "tabs.browse", defaultValue: "Browse"), systemImage: "globe")
       }
+      .tag(Tab.browse)
 
       NavigationStack(path: $categoriesPath) {
         CategoriesView(path: $categoriesPath)
@@ -45,6 +50,7 @@ struct ContentView: View {
       .tabItem {
         Label(String(localized: "tabs.categories", defaultValue: "Categories"), systemImage: "square.grid.2x2")
       }
+      .tag(Tab.categories)
 
       NavigationStack(path: $searchPath) {
         SearchTabView(path: $searchPath)
@@ -53,11 +59,12 @@ struct ContentView: View {
       .tabItem {
         Label(String(localized: "tabs.search", defaultValue: "Search"), systemImage: "magnifyingglass")
       }
+      .tag(Tab.search)
     }
     .adaptiveTabViewStyle()
     .onChange(of: coordinator.pendingRoute) { _, newValue in
       guard let newValue else { return }
-      prayPath.append(newValue)
+      land(newValue)
       coordinator.pendingRoute = nil
     }
     // File → Import Devotion Bundle… (menu commands run outside the view hierarchy, so the
@@ -91,8 +98,31 @@ struct ContentView: View {
     }
     .task {
       if let pending = coordinator.pendingRoute {
-        prayPath.append(pending)
+        land(pending)
         coordinator.pendingRoute = nil
+      }
+    }
+  }
+
+  /// Lands a route that arrived from outside the view hierarchy — the Mac's Prayers menu, an
+  /// App Intent, or a finished devotion's suggestedNext handover. Two rules, both learned from
+  /// the Back button dropping people into sessions they never opened (2026-08-08): bring the
+  /// Pray tab forward (the route lands on prayPath, so navigating it invisibly under another
+  /// tab left ghosts), and replace the stack rather than append — "pray THIS now" must not
+  /// stand on whatever leftovers the last session pushed, or Back walks down through them.
+  private func land(_ route: AppRoute) {
+    // Two separate update cycles, both scheduled via RunLoop.main (default mode only — a menu
+    // command fires while the NSMenu's tracking run-loop is still alive). The split is the
+    // load-bearing part: replacing the path at the same depth (one flow already open, one
+    // route arriving) renders as a no-op — instrumentation showed the assignment executing
+    // and the stack still showing the old flow, from the menu and from cold alike. Popping to
+    // root in one cycle and pushing in the next changes the depth both times, and the stack
+    // honors each.
+    RunLoop.main.perform {
+      selectedTab = .pray
+      prayPath = NavigationPath()
+      RunLoop.main.perform {
+        prayPath.append(route)
       }
     }
   }
