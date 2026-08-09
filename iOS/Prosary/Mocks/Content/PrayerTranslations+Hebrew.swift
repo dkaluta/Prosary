@@ -98,15 +98,15 @@ extension PrayerTranslations {
       "רֹנִּי מַלְכַּת שָׁמַיִם, הַלְלוּיָה, כִּי הוּא, אֲשֶׁר זָכִית לָשֵׂאתוֹ, הַלְלוּיָה, קָם " +
       "לִתְחִיָּה כְּפִי שֶׁאָמַר, הַלְלוּיָה, הַעְתִּירִי אֶל הָאֵל בַּעֲדֵנוּ, הַלְלוּיָה.",
 
-    .salveReginaTitle: "שלום עליך מלכה",
+    .salveReginaTitle: "שָׁלוֹם עָלַיִךְ מַלְכָּה",
 
-    .almaRedemptorisMaterTitle: "אם הגואל",
+    .almaRedemptorisMaterTitle: "אֵם הַגּוֹאֵל",
 
-    .aveReginaCaelorumTitle: "שלום לך מלכת שמים",
+    .aveReginaCaelorumTitle: "שָׁלוֹם לָךְ מַלְכַּת שָׁמַיִם",
 
-    .reginaCaeliTitle: "רוני מלכת שמים",
+    .reginaCaeliTitle: "רוֹנִּי מַלְכַּת שָׁמַיִם",
 
-    .subTuumPraesidiumTitle: "בצל רחמיך",
+    .subTuumPraesidiumTitle: "בְּצֵל רַחֲמַיִךְ",
 
     .subTuumPraesidium:
       "בְּצֵל רַחֲמַיִךְ אָנוּ חוֹסִים,\n" +
@@ -136,7 +136,7 @@ extension PrayerTranslations {
 
     .decadeOrdinalFormat: "{noun} {n}",
 
-    .repetitionCounterConnector: "מתוך",
+    .repetitionCounterConnector: "מִתּוֹךְ",
 
     .fructusMysteriiLabel: "פְּרִי הָרָז",
 

@@ -93,15 +93,15 @@ val prayerTranslationsHebrew: Map<PrayerKey, String> = mapOf(
         "רֹנִּי מַלְכַּת שָׁמַיִם, הַלְלוּיָה, כִּי הוּא, אֲשֶׁר זָכִית לָשֵׂאתוֹ, הַלְלוּיָה, קָם " +
             "לִתְחִיָּה כְּפִי שֶׁאָמַר, הַלְלוּיָה, הַעְתִּירִי אֶל הָאֵל בַּעֲדֵנוּ, הַלְלוּיָה.",
 
-    PrayerKey.SalveReginaTitle to "שלום עליך מלכה",
+    PrayerKey.SalveReginaTitle to "שָׁלוֹם עָלַיִךְ מַלְכָּה",
 
-    PrayerKey.AlmaRedemptorisMaterTitle to "אם הגואל",
+    PrayerKey.AlmaRedemptorisMaterTitle to "אֵם הַגּוֹאֵל",
 
-    PrayerKey.AveReginaCaelorumTitle to "שלום לך מלכת שמים",
+    PrayerKey.AveReginaCaelorumTitle to "שָׁלוֹם לָךְ מַלְכַּת שָׁמַיִם",
 
-    PrayerKey.ReginaCaeliTitle to "רוני מלכת שמים",
+    PrayerKey.ReginaCaeliTitle to "רוֹנִּי מַלְכַּת שָׁמַיִם",
 
-    PrayerKey.SubTuumPraesidiumTitle to "בצל רחמיך",
+    PrayerKey.SubTuumPraesidiumTitle to "בְּצֵל רַחֲמַיִךְ",
 
     PrayerKey.SubTuumPraesidium to
         "בְּצֵל רַחֲמַיִךְ אָנוּ חוֹסִים,\n" +
@@ -131,7 +131,7 @@ val prayerTranslationsHebrew: Map<PrayerKey, String> = mapOf(
 
     PrayerKey.DecadeOrdinalFormat to "{noun} {n}",
 
-    PrayerKey.RepetitionCounterConnector to "מתוך",
+    PrayerKey.RepetitionCounterConnector to "מִתּוֹךְ",
 
     PrayerKey.FructusMysteriiLabel to "פְּרִי הָרָז",
 

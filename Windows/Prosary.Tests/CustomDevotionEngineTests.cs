@@ -31,21 +31,21 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
             rosaryOptions: null, todaysGroup: MysteryGroup.Joyful, dayIndex: 0, isLent: isLent);
 
     // A repeated step's counter is part of the prayer, not the interface: praying in Hebrew, the Divine Mercy
-    // decade reads "(1 מתוך 10)" rather than splicing an English word into right-to-left text.
-    // The decade ordinal is part of the prayer too: "1st Sorrow" in English, "מכאוב 1" in
+    // decade reads "(1 מִתּוֹךְ 10)" rather than splicing an English word into right-to-left text.
+    // The decade ordinal is part of the prayer too: "1st Sorrow" in English, "מַכְאוֹב 1" in
     // Hebrew — English is the only one of the six that inflects the number.
     [Fact]
     public void DecadeOrdinalUsesThePrayerLanguage()
     {
         Assert.StartsWith("1st Sorrow", BuildSteps("sevenSorrows", "en")[3].Subtitle);
-        Assert.StartsWith("מכאוב 1", BuildSteps("sevenSorrows", "he")[3].Subtitle);
+        Assert.StartsWith("מַכְאוֹב 1", BuildSteps("sevenSorrows", "he")[3].Subtitle);
         Assert.StartsWith("Скорбь 1", BuildSteps("sevenSorrows", "ru")[3].Subtitle);
     }
 
     [Fact]
     public void RepeatCounterUsesThePrayerLanguage()
     {
-        Assert.Contains("(1 מתוך 10)", BuildSteps("divineMercyChaplet", "he")[5].Title);
+        Assert.Contains("(1 מִתּוֹךְ 10)", BuildSteps("divineMercyChaplet", "he")[5].Title);
         Assert.Contains("(1 ex 10)", BuildSteps("divineMercyChaplet", "la")[5].Title);
         Assert.Contains("(1 of 10)", BuildSteps("divineMercyChaplet", "en")[5].Title);
     }
@@ -80,14 +80,14 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         var hebrew = BuildSteps("trisagion", "he");
 
         Assert.Equal(
-            ["קדישת", "קדישת", "קדישת", "השבח לאב", "קדישת", "קדישת"],
+            ["קדישת", "קדישת", "קדישת", "הַשֶּׁבַח לָאָב", "קדישת", "קדישת"],
             mission.Select(s => s.Title));
         Assert.StartsWith("אַתָּה ✠▼▲ קָדוֹשׁ – אֱלוֹהִים", mission[0].Body);
         Assert.Contains("תְּרַחֵם עָלֵינוּ", mission[0].Body);
         Assert.DoesNotContain("חַיִל", mission[4].Body);
 
         Assert.NotEqual(hebrew[0].Body, mission[0].Body);
-        Assert.Equal("קדוש האלוהים", hebrew[0].Title);
+        Assert.Equal("קָדוֹשׁ הָאֱלֹהִים", hebrew[0].Title);
 
         // Not sent by the Mission: the Glory Be itself still reads their wording from the shared
         // table, and everything else falls through to plain Hebrew.
@@ -106,7 +106,7 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
     {
         var gamliel = BuildSteps("trisagion", "he-x-gamliel");
         Assert.Equal(4, gamliel.Count);
-        Assert.Equal("ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא", gamliel[3].Body);
+        Assert.Equal("ה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא", gamliel[3].Body);
         Assert.Equal(6, BuildSteps("trisagion", "he").Count);
         Assert.Equal(6, BuildSteps("trisagion", "he-x-gamliel", variantId: "byzantine").Count);
 
@@ -548,9 +548,9 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         // The Vicariate's Hebrew is the full threefold form in one line, exactly as sent;
         // Erez's rite overlays the same slot with his own line said thrice.
         var hebrewKyrie = BuildSteps("trisagion", "he", variantId: "syriac")[3];
-        Assert.Equal("ישוע שמענו, המשיח עזרנו, האדון חננו.", hebrewKyrie.Body);
-        Assert.Equal("ישוע שמענו", hebrewKyrie.Title);
-        Assert.Equal("ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא", BuildSteps("trisagion", "he-x-gamliel", variantId: "syriac")[3].Body);
+        Assert.Equal("יֵשׁוּעַ שְׁמָעֵנוּ, הַמָּשִׁיחַ עָזְרֵנוּ, הָאָדוֹן חָנֵּנוּ.", hebrewKyrie.Body);
+        Assert.Equal("יֵשׁוּעַ שְׁמָעֵנוּ", hebrewKyrie.Title);
+        Assert.Equal("ה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא", BuildSteps("trisagion", "he-x-gamliel", variantId: "syriac")[3].Body);
     }
 
     /// <summary>The Vicariate's Hebrew prayerbook leads each of the three acclamations with a
@@ -579,19 +579,19 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
     {
         var variant = BuildSteps("rosary", "he-x-gamliel", customOptions: new() { ["apostlesCreed"] = "true" });
         Assert.Contains("אָנוּ מַאֲמִינִים", variant[1].Body);
-        Assert.Equal("מאמינים של ניקאה", variant[1].Title);
+        Assert.Equal("מַאֲמִינִים שֶׁל נִיקֵאָה", variant[1].Title);
         Assert.Contains(variant, step => step.Body.Contains("שָׁלוֹם לָךְ מִרְיָם"));
 
         // Headings belong to the rite that uses them: the Mission's in the Mission's rite, the
         // app's own in plain Hebrew.
         var hebrew = BuildSteps("rosary", "he", customOptions: new() { ["apostlesCreed"] = "true" });
-        Assert.Equal("אות הצלב", variant[0].Title);
-        Assert.Equal("סימן הצלב", hebrew[0].Title);
-        Assert.Equal("אני מאמין", hebrew[1].Title);
-        Assert.Contains(variant, s => s.Title == "שלום לך מרים");
-        Assert.Contains(hebrew, s => s.Title == "שמחי מרים");
-        Assert.Contains(variant, s => s.Title == "השבח לאב");
-        Assert.Contains(hebrew, s => s.Title == "כבוד לאב");
+        Assert.Equal("אוֹת הַצְּלָב", variant[0].Title);
+        Assert.Equal("סִימַן הַצְּלָב", hebrew[0].Title);
+        Assert.Equal("אֲנִי מַאֲמִין", hebrew[1].Title);
+        Assert.Contains(variant, s => s.Title == "שָׁלוֹם לָךְ מִרְיָם");
+        Assert.Contains(hebrew, s => s.Title == "שִׂמְחִי מִרְיָם");
+        Assert.Contains(variant, s => s.Title == "הַשֶּׁבַח לָאָב");
+        Assert.Contains(hebrew, s => s.Title == "כָּבוֹד לָאָב");
 
         // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
         static string? Fatima(IReadOnlyList<RosaryStep> steps) =>

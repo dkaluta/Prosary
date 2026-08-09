@@ -90,7 +90,7 @@ class CustomDevotionEngineTest {
         val hebrew = steps("trisagion", language = "he")
 
         assertEquals(
-            listOf("קדישת", "קדישת", "קדישת", "השבח לאב", "קדישת", "קדישת"),
+            listOf("קדישת", "קדישת", "קדישת", "הַשֶּׁבַח לָאָב", "קדישת", "קדישת"),
             mission.map { it.title },
         )
         assertTrue(mission[0].body.startsWith("אַתָּה ✠▼▲ קָדוֹשׁ – אֱלוֹהִים"))
@@ -98,7 +98,7 @@ class CustomDevotionEngineTest {
         assertFalse("the short form drops the second acclamation", mission[4].body.contains("חַיִל"))
 
         assertNotEquals(hebrew[0].body, mission[0].body)
-        assertEquals("קדוש האלוהים", hebrew[0].title)
+        assertEquals("קָדוֹשׁ הָאֱלֹהִים", hebrew[0].title)
 
         // Not sent by the Mission: the Glory Be itself still reads their wording from the shared
         // table, and everything else falls through to plain Hebrew.
@@ -116,19 +116,19 @@ class CustomDevotionEngineTest {
 
 
     /** A repeated step's counter is part of the prayer, not the interface: praying in Hebrew, the Divine Mercy decade
-     * reads "(1 מתוך 10)" rather than splicing an English word into right-to-left text. */
-    /** The decade ordinal is part of the prayer too: "1st Sorrow" in English, "מכאוב 1" in
+     * reads "(1 מִתּוֹךְ 10)" rather than splicing an English word into right-to-left text. */
+    /** The decade ordinal is part of the prayer too: "1st Sorrow" in English, "מַכְאוֹב 1" in
      * Hebrew — English is the only one of the six that inflects the number. */
     @Test
     fun decadeOrdinalUsesThePrayerLanguage() {
         assertTrue(steps("sevenSorrows", language = "en")[3].subtitle!!.startsWith("1st Sorrow"))
-        assertTrue(steps("sevenSorrows", language = "he")[3].subtitle!!.startsWith("מכאוב 1"))
+        assertTrue(steps("sevenSorrows", language = "he")[3].subtitle!!.startsWith("מַכְאוֹב 1"))
         assertTrue(steps("sevenSorrows", language = "ru")[3].subtitle!!.startsWith("Скорбь 1"))
     }
 
     @Test
     fun repeatCounterUsesThePrayerLanguage() {
-        assertTrue(steps("divineMercyChaplet", language = "he")[5].title.contains("(1 מתוך 10)"))
+        assertTrue(steps("divineMercyChaplet", language = "he")[5].title.contains("(1 מִתּוֹךְ 10)"))
         assertTrue(steps("divineMercyChaplet", language = "la")[5].title.contains("(1 ex 10)"))
         assertTrue(steps("divineMercyChaplet", language = "en")[5].title.contains("(1 of 10)"))
     }
@@ -528,9 +528,9 @@ class CustomDevotionEngineTest {
         // The Vicariate's Hebrew is the full threefold form in one line, exactly as sent;
         // Erez's rite overlays the same slot with his own line said thrice.
         val hebrewKyrie = steps("trisagion", language = "he", variantId = "syriac")[3]
-        assertEquals("ישוע שמענו, המשיח עזרנו, האדון חננו.", hebrewKyrie.body)
-        assertEquals("ישוע שמענו", hebrewKyrie.title)
-        assertEquals("ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא", steps("trisagion", language = "he-x-gamliel", variantId = "syriac")[3].body)
+        assertEquals("יֵשׁוּעַ שְׁמָעֵנוּ, הַמָּשִׁיחַ עָזְרֵנוּ, הָאָדוֹן חָנֵּנוּ.", hebrewKyrie.body)
+        assertEquals("יֵשׁוּעַ שְׁמָעֵנוּ", hebrewKyrie.title)
+        assertEquals("ה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא", steps("trisagion", language = "he-x-gamliel", variantId = "syriac")[3].body)
     }
 
     /** A variant can claim a prayer language as its own (defaultForLanguages), and a favorite
@@ -544,7 +544,7 @@ class CustomDevotionEngineTest {
     fun trisagionDefaultFormFollowsThePrayerLanguage() {
         val gamliel = steps("trisagion", language = "he-x-gamliel")
         assertEquals("no explicit variant: the rite's own Syriac form", 4, gamliel.size)
-        assertEquals("ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא", gamliel[3].body)
+        assertEquals("ה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא", gamliel[3].body)
         assertEquals("the Vicariate's Hebrew keeps the Byzantine default", 6, steps("trisagion", language = "he").size)
         assertEquals(
             "an explicit choice beats the rite's default",
@@ -590,19 +590,19 @@ class CustomDevotionEngineTest {
     fun gamalielVariantOverlaysHebrew() {
         val variant = steps("rosary", language = "he-x-gamliel", customOptions = mapOf("apostlesCreed" to "true"))
         assertTrue("the Creed is the Nicene one", variant[1].body.contains("אָנוּ מַאֲמִינִים"))
-        assertEquals("מאמינים של ניקאה", variant[1].title)
+        assertEquals("מַאֲמִינִים שֶׁל נִיקֵאָה", variant[1].title)
         assertTrue("their Hail Mary", variant.any { it.body.contains("שָׁלוֹם לָךְ מִרְיָם") })
 
         // Headings belong to the rite that uses them: the Mission's in the Mission's rite, the
         // app's own in plain Hebrew.
         val hebrew = steps("rosary", language = "he", customOptions = mapOf("apostlesCreed" to "true"))
-        assertEquals("אות הצלב", variant.first().title)
-        assertEquals("סימן הצלב", hebrew.first().title)
-        assertEquals("אני מאמין", hebrew[1].title)
-        assertTrue(variant.any { it.title == "שלום לך מרים" })
-        assertTrue(hebrew.any { it.title == "שמחי מרים" })
-        assertTrue(variant.any { it.title == "השבח לאב" })
-        assertTrue(hebrew.any { it.title == "כבוד לאב" })
+        assertEquals("אוֹת הַצְּלָב", variant.first().title)
+        assertEquals("סִימַן הַצְּלָב", hebrew.first().title)
+        assertEquals("אֲנִי מַאֲמִין", hebrew[1].title)
+        assertTrue(variant.any { it.title == "שָׁלוֹם לָךְ מִרְיָם" })
+        assertTrue(hebrew.any { it.title == "שִׂמְחִי מִרְיָם" })
+        assertTrue(variant.any { it.title == "הַשֶּׁבַח לָאָב" })
+        assertTrue(hebrew.any { it.title == "כָּבוֹד לָאָב" })
 
         // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
         fun fatima(list: List<RosaryStep>) = list.firstOrNull { it.title.contains("הו ישוע") }?.body

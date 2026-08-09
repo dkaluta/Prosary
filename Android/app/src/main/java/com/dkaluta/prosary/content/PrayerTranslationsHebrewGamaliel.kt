@@ -65,7 +65,7 @@ val prayerTranslationsHebrewGamaliel: Map<PrayerKey, String> = mapOf(
         "הָאָדוֹן יֵשׁוּעַ הַמָּשִׁיחַ, בֶּן אֱלוֹהִים, רַחֵם־נָא עָלַי הַחוֹטֵא.",
 
     PrayerKey.SubTuumPraesidiumTitle to
-        "תחת רחמייך",
+        "תַּחַת רַחֲמַיִיךְ",
 
     PrayerKey.SubTuumPraesidium to
         "תַּחַת רַחֲמַיִךְ אָנוּ נִמְלָטִים, יוֹלֶדֶת אֱלוֹהַ;\n" +

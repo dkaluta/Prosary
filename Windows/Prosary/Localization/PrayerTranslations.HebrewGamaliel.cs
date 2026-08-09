@@ -66,7 +66,7 @@ public static partial class PrayerTranslations
             "הָאָדוֹן יֵשׁוּעַ הַמָּשִׁיחַ, בֶּן אֱלוֹהִים, רַחֵם־נָא עָלַי הַחוֹטֵא.",
 
         [PrayerKey.SubTuumPraesidiumTitle] =
-            "תחת רחמייך",
+            "תַּחַת רַחֲמַיִיךְ",
 
         [PrayerKey.SubTuumPraesidium] =
             "תַּחַת רַחֲמַיִךְ אָנוּ נִמְלָטִים, יוֹלֶדֶת אֱלוֹהַ;\n" +

@@ -50,7 +50,7 @@ final class CustomDevotionEngineTests: XCTestCase {
   /// The shipped Trisagion was always the Byzantine form; it just never said so. Erez prays the
   /// Syriac one — the acclamation thrice, then Lord-have-mercy thrice — so the bundle now names
   /// both, Byzantine first so the default sequence stays byte-identical (the six-step test above
-  /// is the guard). His rite's Kyrie is his own ה׳ רחם־נא; plain Hebrew has no Vicariate wording
+  /// is the guard). His rite's Kyrie is his own ה׳ רַחֵם־נָא; plain Hebrew has no Vicariate wording
   /// for it yet and deliberately falls back to the bundle's Latin rather than to an invention.
   func testTrisagionSyriacVariant() {
     let syriac = steps("trisagion", variantId: "syriac")
@@ -66,10 +66,10 @@ final class CustomDevotionEngineTests: XCTestCase {
     // The Vicariate's Hebrew is the full threefold form in one line, exactly as sent; Erez's
     // rite overlays the same slot with his own line said thrice.
     let hebrewKyrie = steps("trisagion", language: "he", variantId: "syriac")[3]
-    XCTAssertEqual(hebrewKyrie.body, "ישוע שמענו, המשיח עזרנו, האדון חננו.")
-    XCTAssertEqual(hebrewKyrie.title, "ישוע שמענו", "the heading is the line's own incipit")
+    XCTAssertEqual(hebrewKyrie.body, "יֵשׁוּעַ שְׁמָעֵנוּ, הַמָּשִׁיחַ עָזְרֵנוּ, הָאָדוֹן חָנֵּנוּ.")
+    XCTAssertEqual(hebrewKyrie.title, "יֵשׁוּעַ שְׁמָעֵנוּ", "the heading is the line's own incipit")
     XCTAssertEqual(steps("trisagion", language: "he-x-gamliel", variantId: "syriac")[3].body,
-                   "ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא")
+                   "ה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא")
   }
 
   /// A variant can claim a prayer language as its own (`defaultForLanguages`), and a favorite
@@ -81,7 +81,7 @@ final class CustomDevotionEngineTests: XCTestCase {
   func testTrisagionDefaultFormFollowsThePrayerLanguage() {
     let gamliel = steps("trisagion", language: "he-x-gamliel")
     XCTAssertEqual(gamliel.count, 4, "no explicit variant: the rite's own Syriac form")
-    XCTAssertEqual(gamliel[3].body, "ה׳ רחם־נא\nה׳ רחם־נא\nה׳ רחם־נא")
+    XCTAssertEqual(gamliel[3].body, "ה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא")
     XCTAssertEqual(steps("trisagion", language: "he").count, 6,
                    "the Vicariate's Hebrew keeps the Byzantine default")
     XCTAssertEqual(steps("trisagion", language: "he-x-gamliel", variantId: "byzantine").count, 6,
@@ -239,14 +239,14 @@ final class CustomDevotionEngineTests: XCTestCase {
     let mission = steps("trisagion", language: "he-x-gamliel", variantId: "byzantine")
     let hebrew = steps("trisagion", language: "he")
 
-    XCTAssertEqual(mission.map(\.title), Array(repeating: "קדישת", count: 3) + ["השבח לאב"]
+    XCTAssertEqual(mission.map(\.title), Array(repeating: "קדישת", count: 3) + ["הַשֶּׁבַח לָאָב"]
       + Array(repeating: "קדישת", count: 2))
     XCTAssertTrue(mission[0].body.hasPrefix("אַתָּה ✠▼▲ קָדוֹשׁ – אֱלוֹהִים"))
     XCTAssertTrue(mission[0].body.contains("תְּרַחֵם עָלֵינוּ"))
     XCTAssertFalse(mission[4].body.contains("חַיִל"), "the short form drops the second acclamation")
 
     XCTAssertNotEqual(mission[0].body, hebrew[0].body)
-    XCTAssertEqual(hebrew[0].title, "קדוש האלוהים")
+    XCTAssertEqual(hebrew[0].title, "קָדוֹשׁ הָאֱלֹהִים")
 
     // Not sent by the Mission: the Glory Be itself still reads their wording from the shared
     // table, and everything else falls through to plain Hebrew.
@@ -255,19 +255,19 @@ final class CustomDevotionEngineTests: XCTestCase {
 
 
   /// A repeated step's counter is part of the prayer, not the interface: praying in Hebrew, the Divine Mercy
-  /// decade reads "(1 מתוך 10)". Splicing the English "of" into right-to-left text left bidi
+  /// decade reads "(1 מִתּוֹךְ 10)". Splicing the English "of" into right-to-left text left bidi
   /// to reorder it into "(of 10 1)".
-  /// The decade ordinal is part of the prayer too: "1st Sorrow" in English, "מכאוב 1" in
+  /// The decade ordinal is part of the prayer too: "1st Sorrow" in English, "מַכְאוֹב 1" in
   /// Hebrew — English is the only one of the six that inflects the number.
   func testDecadeOrdinalUsesThePrayerLanguage() {
     XCTAssertTrue(steps("sevenSorrows", language: "en")[3].subtitle?.hasPrefix("1st Sorrow") == true)
-    XCTAssertTrue(steps("sevenSorrows", language: "he")[3].subtitle?.hasPrefix("מכאוב 1") == true)
+    XCTAssertTrue(steps("sevenSorrows", language: "he")[3].subtitle?.hasPrefix("מַכְאוֹב 1") == true)
     XCTAssertTrue(steps("sevenSorrows", language: "ru")[3].subtitle?.hasPrefix("Скорбь 1") == true)
   }
 
   func testRepeatCounterUsesThePrayerLanguage() {
     let hebrew = steps("divineMercyChaplet", language: "he")
-    XCTAssertTrue(hebrew[5].title.contains("(1 מתוך 10)"), hebrew[5].title)
+    XCTAssertTrue(hebrew[5].title.contains("(1 מִתּוֹךְ 10)"), hebrew[5].title)
 
     let latin = steps("divineMercyChaplet", language: "la")
     XCTAssertTrue(latin[5].title.contains("(1 ex 10)"), latin[5].title)
@@ -642,19 +642,19 @@ final class CustomDevotionEngineTests: XCTestCase {
   func testGamalielVariantOverlaysHebrew() {
     let variant = steps("rosary", language: "he-x-gamliel", customOptions: ["apostlesCreed": "true"])
     XCTAssertTrue(variant[1].body.contains("אָנוּ מַאֲמִינִים"), "the Creed is the Nicene one")
-    XCTAssertEqual(variant[1].title, "מאמינים של ניקאה")
+    XCTAssertEqual(variant[1].title, "מַאֲמִינִים שֶׁל נִיקֵאָה")
     XCTAssertTrue(variant.contains { $0.body.contains("שָׁלוֹם לָךְ מִרְיָם") }, "their Hail Mary")
 
     // Headings belong to the rite that uses them: the Mission's in the Mission's rite, the
     // app's own in plain Hebrew.
     let hebrew = steps("rosary", language: "he", customOptions: ["apostlesCreed": "true"])
-    XCTAssertEqual(variant.first?.title, "אות הצלב")
-    XCTAssertEqual(hebrew.first?.title, "סימן הצלב")
-    XCTAssertEqual(hebrew[1].title, "אני מאמין")
-    XCTAssertTrue(variant.contains { $0.title == "שלום לך מרים" })
-    XCTAssertTrue(hebrew.contains { $0.title == "שמחי מרים" })
-    XCTAssertTrue(variant.contains { $0.title == "השבח לאב" })
-    XCTAssertTrue(hebrew.contains { $0.title == "כבוד לאב" })
+    XCTAssertEqual(variant.first?.title, "אוֹת הַצְּלָב")
+    XCTAssertEqual(hebrew.first?.title, "סִימַן הַצְּלָב")
+    XCTAssertEqual(hebrew[1].title, "אֲנִי מַאֲמִין")
+    XCTAssertTrue(variant.contains { $0.title == "שָׁלוֹם לָךְ מִרְיָם" })
+    XCTAssertTrue(hebrew.contains { $0.title == "שִׂמְחִי מִרְיָם" })
+    XCTAssertTrue(variant.contains { $0.title == "הַשֶּׁבַח לָאָב" })
+    XCTAssertTrue(hebrew.contains { $0.title == "כָּבוֹד לָאָב" })
 
     // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
     let fatima = { (list: [RosaryStep]) in list.first { $0.title.contains("הו ישוע") }?.body }

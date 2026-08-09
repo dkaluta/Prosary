@@ -78,6 +78,7 @@ LANGUAGES = {
                   "Acts": ("ܦܪܟܣܝܣ", "פרכסיס"), "Revelation": ("ܓܠܝܢܐ", "גלינא"),
                   "Isaiah": ("ܐܫܥܝܐ", "אשעיא")},
         "edition": ("ܦܫܝܛܬܐ", "פשיטתא"),
+        "hebrewChapterIndex": 1,
     },
     "es": {
         # Félix Torres Amat's Spanish Bible (1836), translated from the Vulgate — which is why it
@@ -443,6 +444,24 @@ def passage(language: str, book: str, testament: str, spans: list, where: str) -
     return " ".join(out)
 
 
+def hebrew_numeral(n: int) -> str:
+    """Chapter numbers as Hebrew numerals with their traditional punctuation — geresh after a
+    single letter (כ׳), gershayim before the last of several (נ״ג) — matching the convention
+    the hand-authored Hebrew citations already follow (— יְשַׁעְיָהוּ נ״ג 8). 15 and 16 take
+    the ט forms, as always, so no numeral spells a fragment of the Name."""
+    ones = ["", "א", "ב", "ג", "ד", "ה", "ו", "ז", "ח", "ט"]
+    tens = ["", "י", "כ", "ל", "מ", "נ", "ס", "ע", "פ", "צ"]
+    hundreds = ["", "ק", "ר", "ש", "ת"]
+    letters = ""
+    h, rest = divmod(n, 100)
+    letters += "ת" * (h // 4) + hundreds[h % 4]
+    if rest in (15, 16):
+        letters += "טו" if rest == 15 else "טז"
+    else:
+        letters += tens[rest // 10] + ones[rest % 10]
+    return letters + "׳" if len(letters) == 1 else letters[:-1] + "״" + letters[-1]
+
+
 def citation_line(language: str, book: str, testament: str, reference: str, second: bool) -> str:
     spec = LANGUAGES[language]
     index = 0 if second else min(1, len(spec["edition"]) - 1)
@@ -450,6 +469,12 @@ def citation_line(language: str, book: str, testament: str, reference: str, seco
     name = names[index if index < len(names) else 0]
     editions = spec.get("edition_by_testament", {}).get(testament, spec["edition"])
     edition = editions[index if index < len(editions) else 0]
+    # The Hebrew-lettered side cites the way Hebrew citations do everywhere else in the app:
+    # book, chapter as a Hebrew numeral, verses in Arabic numerals ("אשעיא י״א 2-3"), while the
+    # Syriac side keeps the source's own chapter:verse form.
+    if index == spec.get("hebrewChapterIndex", -1):
+        chapter, _, verses = reference.partition(":")
+        reference = f"{hebrew_numeral(int(chapter))} {verses}"
     return f"\n\n— {name} {reference} ({edition})"
 
 

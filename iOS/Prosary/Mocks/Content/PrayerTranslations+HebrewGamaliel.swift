@@ -72,7 +72,7 @@ extension PrayerTranslations {
     .oratioIesu:
       "הָאָדוֹן יֵשׁוּעַ הַמָּשִׁיחַ, בֶּן אֱלוֹהִים, רַחֵם־נָא עָלַי הַחוֹטֵא.",
 
-    .subTuumPraesidiumTitle: "תחת רחמייך",
+    .subTuumPraesidiumTitle: "תַּחַת רַחֲמַיִיךְ",
 
     .subTuumPraesidium:
       "תַּחַת רַחֲמַיִךְ אָנוּ נִמְלָטִים, יוֹלֶדֶת אֱלוֹהַ;\n" +

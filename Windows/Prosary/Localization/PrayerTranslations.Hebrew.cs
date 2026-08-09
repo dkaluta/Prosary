@@ -95,15 +95,15 @@ public static partial class PrayerTranslations
             "רֹנִּי מַלְכַּת שָׁמַיִם, הַלְלוּיָה, כִּי הוּא, אֲשֶׁר זָכִית לָשֵׂאתוֹ, הַלְלוּיָה, קָם " +
             "לִתְחִיָּה כְּפִי שֶׁאָמַר, הַלְלוּיָה, הַעְתִּירִי אֶל הָאֵל בַּעֲדֵנוּ, הַלְלוּיָה.",
 
-        [PrayerKey.SalveReginaTitle] = "שלום עליך מלכה",
+        [PrayerKey.SalveReginaTitle] = "שָׁלוֹם עָלַיִךְ מַלְכָּה",
 
-        [PrayerKey.AlmaRedemptorisMaterTitle] = "אם הגואל",
+        [PrayerKey.AlmaRedemptorisMaterTitle] = "אֵם הַגּוֹאֵל",
 
-        [PrayerKey.AveReginaCaelorumTitle] = "שלום לך מלכת שמים",
+        [PrayerKey.AveReginaCaelorumTitle] = "שָׁלוֹם לָךְ מַלְכַּת שָׁמַיִם",
 
-        [PrayerKey.ReginaCaeliTitle] = "רוני מלכת שמים",
+        [PrayerKey.ReginaCaeliTitle] = "רוֹנִּי מַלְכַּת שָׁמַיִם",
 
-        [PrayerKey.SubTuumPraesidiumTitle] = "בצל רחמיך",
+        [PrayerKey.SubTuumPraesidiumTitle] = "בְּצֵל רַחֲמַיִךְ",
 
         [PrayerKey.SubTuumPraesidium] =
         "בְּצֵל רַחֲמַיִךְ אָנוּ חוֹסִים,\n" +
@@ -133,7 +133,7 @@ public static partial class PrayerTranslations
 
         [PrayerKey.DecadeOrdinalFormat] = "{noun} {n}",
 
-        [PrayerKey.RepetitionCounterConnector] = "מתוך",
+        [PrayerKey.RepetitionCounterConnector] = "מִתּוֹךְ",
 
         [PrayerKey.FructusMysteriiLabel] = "פְּרִי הָרָז",
 
