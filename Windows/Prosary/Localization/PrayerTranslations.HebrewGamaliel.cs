@@ -9,7 +9,7 @@ public static partial class PrayerTranslations
     private static readonly Dictionary<string, string> HebrewGamaliel = new()
     {
         [PrayerKey.SignumCrucis] =
-            "בְּשֵׁם הָאָב ✠ וְהַבֶּן וְרוּחַ הַקוֹדֶשׁ, יהוה אֶחָד – אֱמֶת\nאָמֵן.",
+            "בְּשֵׁם הָאָב ✠ וְהַבֶּן וְרוּחַ הַקוֹדֶשׁ, יְהֹוָה אֶחָד – אֱמֶת\nאָמֵן.",
 
         // The Mission prays the Nicene Creed wherever the Latin tradition says the
         // Apostles' — including the Rosary's opening — so it takes that key here.

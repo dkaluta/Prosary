@@ -530,7 +530,7 @@ class CustomDevotionEngineTest {
         val hebrewKyrie = steps("trisagion", language = "he", variantId = "syriac")[3]
         assertEquals("יֵשׁוּעַ שְׁמָעֵנוּ, הַמָּשִׁיחַ עָזְרֵנוּ, הָאָדוֹן חָנֵּנוּ.", hebrewKyrie.body)
         assertEquals("יֵשׁוּעַ שְׁמָעֵנוּ", hebrewKyrie.title)
-        assertEquals("ה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא", steps("trisagion", language = "he-x-gamliel", variantId = "syriac")[3].body)
+        assertEquals("יְהֹוָה רַחֵם־נָא\nיְהֹוָה רַחֵם־נָא\nיְהֹוָה רַחֵם־נָא", steps("trisagion", language = "he-x-gamliel", variantId = "syriac")[3].body)
     }
 
     /** A variant can claim a prayer language as its own (defaultForLanguages), and a favorite
@@ -544,7 +544,7 @@ class CustomDevotionEngineTest {
     fun trisagionDefaultFormFollowsThePrayerLanguage() {
         val gamliel = steps("trisagion", language = "he-x-gamliel")
         assertEquals("no explicit variant: the rite's own Syriac form", 4, gamliel.size)
-        assertEquals("ה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא", gamliel[3].body)
+        assertEquals("יְהֹוָה רַחֵם־נָא\nיְהֹוָה רַחֵם־נָא\nיְהֹוָה רַחֵם־נָא", gamliel[3].body)
         assertEquals("the Vicariate's Hebrew keeps the Byzantine default", 6, steps("trisagion", language = "he").size)
         assertEquals(
             "an explicit choice beats the rite's default",

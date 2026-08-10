@@ -7,7 +7,7 @@
 //  not sent still prays in the wording the rest of the app uses.
 //
 //  Their text is distinctive in ways worth not "fixing": the cross mark ✠ stands inside the
-//  Trinitarian formulae where it is signed, the Sign of the Cross confesses יהוה אֶחָד – אֱמֶת,
+//  Trinitarian formulae where it is signed, the Sign of the Cross confesses יְהֹוָה אֶחָד – אֱמֶת,
 //  the Our Father keeps the doxology, and the Hail Mary names Mary גְּבִרְתֵּנוּ ... יוֹלֶדֶת אֱלוֹהַ.
 //
 
@@ -16,7 +16,7 @@ import Foundation
 extension PrayerTranslations {
   static let hebrewGamaliel: [PrayerKey: String] = [
     .signumCrucis:
-      "בְּשֵׁם הָאָב ✠ וְהַבֶּן וְרוּחַ הַקוֹדֶשׁ, יהוה אֶחָד – אֱמֶת\nאָמֵן.",
+      "בְּשֵׁם הָאָב ✠ וְהַבֶּן וְרוּחַ הַקוֹדֶשׁ, יְהֹוָה אֶחָד – אֱמֶת\nאָמֵן.",
 
     // The Mission prays the Nicene Creed wherever the Latin tradition says the Apostles' —
     // including the Rosary's opening — so it takes that key outright in this variant.

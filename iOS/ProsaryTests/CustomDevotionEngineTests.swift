@@ -50,7 +50,7 @@ final class CustomDevotionEngineTests: XCTestCase {
   /// The shipped Trisagion was always the Byzantine form; it just never said so. Erez prays the
   /// Syriac one — the acclamation thrice, then Lord-have-mercy thrice — so the bundle now names
   /// both, Byzantine first so the default sequence stays byte-identical (the six-step test above
-  /// is the guard). His rite's Kyrie is his own ה׳ רַחֵם־נָא; plain Hebrew has no Vicariate wording
+  /// is the guard). His rite's Kyrie is his own יְהֹוָה רַחֵם־נָא; plain Hebrew has no Vicariate wording
   /// for it yet and deliberately falls back to the bundle's Latin rather than to an invention.
   func testTrisagionSyriacVariant() {
     let syriac = steps("trisagion", variantId: "syriac")
@@ -69,7 +69,7 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertEqual(hebrewKyrie.body, "יֵשׁוּעַ שְׁמָעֵנוּ, הַמָּשִׁיחַ עָזְרֵנוּ, הָאָדוֹן חָנֵּנוּ.")
     XCTAssertEqual(hebrewKyrie.title, "יֵשׁוּעַ שְׁמָעֵנוּ", "the heading is the line's own incipit")
     XCTAssertEqual(steps("trisagion", language: "he-x-gamliel", variantId: "syriac")[3].body,
-                   "ה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא")
+                   "יְהֹוָה רַחֵם־נָא\nיְהֹוָה רַחֵם־נָא\nיְהֹוָה רַחֵם־נָא")
   }
 
   /// A variant can claim a prayer language as its own (`defaultForLanguages`), and a favorite
@@ -81,7 +81,7 @@ final class CustomDevotionEngineTests: XCTestCase {
   func testTrisagionDefaultFormFollowsThePrayerLanguage() {
     let gamliel = steps("trisagion", language: "he-x-gamliel")
     XCTAssertEqual(gamliel.count, 4, "no explicit variant: the rite's own Syriac form")
-    XCTAssertEqual(gamliel[3].body, "ה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא")
+    XCTAssertEqual(gamliel[3].body, "יְהֹוָה רַחֵם־נָא\nיְהֹוָה רַחֵם־נָא\nיְהֹוָה רַחֵם־נָא")
     XCTAssertEqual(steps("trisagion", language: "he").count, 6,
                    "the Vicariate's Hebrew keeps the Byzantine default")
     XCTAssertEqual(steps("trisagion", language: "he-x-gamliel", variantId: "byzantine").count, 6,

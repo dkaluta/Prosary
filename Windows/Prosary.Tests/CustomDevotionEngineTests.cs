@@ -106,7 +106,7 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
     {
         var gamliel = BuildSteps("trisagion", "he-x-gamliel");
         Assert.Equal(4, gamliel.Count);
-        Assert.Equal("ה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא", gamliel[3].Body);
+        Assert.Equal("יְהֹוָה רַחֵם־נָא\nיְהֹוָה רַחֵם־נָא\nיְהֹוָה רַחֵם־נָא", gamliel[3].Body);
         Assert.Equal(6, BuildSteps("trisagion", "he").Count);
         Assert.Equal(6, BuildSteps("trisagion", "he-x-gamliel", variantId: "byzantine").Count);
 
@@ -550,7 +550,7 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         var hebrewKyrie = BuildSteps("trisagion", "he", variantId: "syriac")[3];
         Assert.Equal("יֵשׁוּעַ שְׁמָעֵנוּ, הַמָּשִׁיחַ עָזְרֵנוּ, הָאָדוֹן חָנֵּנוּ.", hebrewKyrie.Body);
         Assert.Equal("יֵשׁוּעַ שְׁמָעֵנוּ", hebrewKyrie.Title);
-        Assert.Equal("ה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא\nה׳ רַחֵם־נָא", BuildSteps("trisagion", "he-x-gamliel", variantId: "syriac")[3].Body);
+        Assert.Equal("יְהֹוָה רַחֵם־נָא\nיְהֹוָה רַחֵם־נָא\nיְהֹוָה רַחֵם־נָא", BuildSteps("trisagion", "he-x-gamliel", variantId: "syriac")[3].Body);
     }
 
     /// <summary>The Vicariate's Hebrew prayerbook leads each of the three acclamations with a

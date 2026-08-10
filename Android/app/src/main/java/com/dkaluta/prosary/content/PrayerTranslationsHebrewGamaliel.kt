@@ -8,7 +8,7 @@ package com.dkaluta.prosary.content
  */
 val prayerTranslationsHebrewGamaliel: Map<PrayerKey, String> = mapOf(
     PrayerKey.SignumCrucis to
-        "בְּשֵׁם הָאָב ✠ וְהַבֶּן וְרוּחַ הַקוֹדֶשׁ, יהוה אֶחָד – אֱמֶת\nאָמֵן.",
+        "בְּשֵׁם הָאָב ✠ וְהַבֶּן וְרוּחַ הַקוֹדֶשׁ, יְהֹוָה אֶחָד – אֱמֶת\nאָמֵן.",
 
     // The Mission prays the Nicene Creed wherever the Latin tradition says the Apostles' —
     // including the Rosary's opening — so it takes that key outright in this variant.
