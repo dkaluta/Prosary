@@ -1,4 +1,7 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.11"
+# ///
 """Content audit across every bundle: flags likely-truncated texts and drift from the
 hardcoded translation tables.
 

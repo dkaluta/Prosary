@@ -22,10 +22,11 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v6
       - name: Validate
-        run: python3 Shared/tools/test-validate-devotion.py
+        run: uv run --script Shared/tools/test-validate-devotion.py
       - name: Prayer line breaks are applied on all three platforms
-        run: python3 Shared/tools/reflow-prayers.py --check
+        run: uv run --script Shared/tools/reflow-prayers.py --check
 
   android:
     name: Android (testDebugUnitTest)
@@ -48,6 +49,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v6
       - uses: actions/setup-node@v7
         with:
           node-version: 22
@@ -63,10 +65,12 @@ jobs:
         working-directory: Compose
         run: |
           npm run e2e
-          python3 -c "import zipfile; zipfile.ZipFile('dist-e2e/exampleDevotion.prosaryprayer').extractall('dist-e2e/extracted')"
-          python3 ../Shared/tools/validate-devotion.py dist-e2e/extracted
-          python3 -c "import zipfile; zipfile.ZipFile('dist-e2e/novena.prosaryprayer').extractall('dist-e2e/extracted-days')"
-          python3 ../Shared/tools/validate-devotion.py dist-e2e/extracted-days
+          uv run python -c "import zipfile; zipfile.ZipFile('dist-e2e/exampleDevotion.prosaryprayer').extractall('dist-e2e/extracted')"
+          uv run --script ../Shared/tools/validate-devotion.py dist-e2e/extracted
+          uv run python -c "import zipfile; zipfile.ZipFile('dist-e2e/exampleForms.prosaryprayer').extractall('dist-e2e/extracted-forms')"
+          uv run --script ../Shared/tools/validate-devotion.py dist-e2e/extracted-forms
+          uv run python -c "import zipfile; zipfile.ZipFile('dist-e2e/novena.prosaryprayer').extractall('dist-e2e/extracted-days')"
+          uv run --script ../Shared/tools/validate-devotion.py dist-e2e/extracted-days
 
   repository:
     name: Repository (next build)

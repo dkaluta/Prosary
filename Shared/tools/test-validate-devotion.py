@@ -1,4 +1,7 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.11"
+# ///
 """Tests validate-devotion.py against the hours-format-proof fixture and deliberate breakages.
 
 A validator that only ever says yes is worth nothing, so every rule the hours type adds gets a
