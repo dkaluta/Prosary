@@ -101,7 +101,7 @@ build_track en Samantha \
   "Glory be to the Father, and to the Son, and to the Holy Spirit. As it was in the beginning, is now, and ever shall be, world without end. Amen."
 
 # --- audio.json from the measured durations.
-python3 - "$WORK" <<'PY'
+uv run python - "$WORK" <<'PY'
 import json, subprocess, sys
 work = sys.argv[1]
 GAP = 0.5
@@ -136,7 +136,7 @@ print("audio.json chapters:", [c["start"] for c in tracks[0]["chapters"]],
       "and", [c["start"] for c in tracks[1]["chapters"]])
 PY
 
-python3 "$ROOT/Shared/tools/validate-devotion.py" "$WORK/bundle"
+uv run --script "$ROOT/Shared/tools/validate-devotion.py" "$WORK/bundle"
 
 rm -f "$OUT_DIR/kyrieaudiodemo.prosaryprayer"
 (cd "$WORK/bundle" && zip -q -X -r "$OUT_DIR/kyrieaudiodemo.prosaryprayer" .)

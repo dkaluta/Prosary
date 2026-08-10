@@ -1,4 +1,7 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.11"
+# ///
 """Fills a bundle's Aramaic scripture from the Peshitta, in both alphabets.
 
 Every Scripture body a bundle ships already names its passage — the Latin text ends

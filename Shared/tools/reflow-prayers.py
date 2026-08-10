@@ -1,4 +1,7 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.11"
+# ///
 """Break the hardcoded prayer texts onto sense-lines, identically on all three platforms.
 
 A prayer read from a screen wants the shape it is said in — one clause to a line, the way it
