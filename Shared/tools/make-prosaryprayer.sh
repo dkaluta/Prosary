@@ -6,7 +6,7 @@
 #   source-dir   e.g. Shared/content/rosary
 #   output-path  defaults to Shared/dist/<manifest id>.prosaryprayer
 #
-# Requires: uv (runs the Python tooling), zip (archive creation).
+# Requires: python3 (JSON validation), zip (archive creation).
 
 set -e
 
@@ -29,7 +29,7 @@ fail() {
 }
 
 validate_json() {
-  uv run python -c "import json,sys; json.load(open(sys.argv[1], encoding='utf-8'))" "$1" \
+  python3 -c "import json,sys; json.load(open(sys.argv[1], encoding='utf-8'))" "$1" \
     || fail "$1 is not valid JSON"
 }
 
@@ -37,8 +37,8 @@ MANIFEST="$SRC_DIR/manifest.json"
 [ -f "$MANIFEST" ] || fail "missing manifest.json in $SRC_DIR"
 validate_json "$MANIFEST"
 
-DEVOTION_ID=$(uv run python -c "import json; print(json.load(open('$MANIFEST', encoding='utf-8'))['id'])")
-HAS_CATALOG=$(uv run python -c "import json; print(json.load(open('$MANIFEST', encoding='utf-8'))['hasCatalog'])")
+DEVOTION_ID=$(python3 -c "import json; print(json.load(open('$MANIFEST', encoding='utf-8'))['id'])")
+HAS_CATALOG=$(python3 -c "import json; print(json.load(open('$MANIFEST', encoding='utf-8'))['hasCatalog'])")
 
 if [ -z "$OUT_PATH" ]; then
   OUT_PATH="$SHARED_DIR/dist/$DEVOTION_ID.prosaryprayer"
@@ -47,7 +47,7 @@ fi
 echo "Packing '$DEVOTION_ID' from $SRC_DIR"
 
 # Validate every declared language file exists and parses.
-uv run python -c "import json; [print(l) for l in json.load(open('$MANIFEST', encoding='utf-8'))['languages']]" |
+python3 -c "import json; [print(l) for l in json.load(open('$MANIFEST', encoding='utf-8'))['languages']]" |
 while IFS= read -r LANG; do
   LANG_FILE="$SRC_DIR/content/$LANG.json"
   [ -f "$LANG_FILE" ] || fail "manifest declares language '$LANG' but $LANG_FILE is missing"
@@ -62,13 +62,13 @@ if [ "$HAS_CATALOG" = "True" ]; then
 fi
 
 # Validate every declared image exists in Shared/Images/.
-uv run python -c "import json; [print(i) for i in json.load(open('$MANIFEST', encoding='utf-8'))['images']]" |
+python3 -c "import json; [print(i) for i in json.load(open('$MANIFEST', encoding='utf-8'))['images']]" |
 while IFS= read -r IMAGE_KEY; do
   [ -f "$IMAGES_DIR/$IMAGE_KEY.jpg" ] || fail "manifest declares image '$IMAGE_KEY' but $IMAGES_DIR/$IMAGE_KEY.jpg is missing"
 done
 
 # Deep-validate the devotion definition + per-language key resolution (see validate-devotion.py).
-uv run --script "$SCRIPT_DIR/validate-devotion.py" "$SRC_DIR" || fail "devotion validation failed"
+python3 "$SCRIPT_DIR/validate-devotion.py" "$SRC_DIR" || fail "devotion validation failed"
 
 # Stage the bundle contents, then zip.
 STAGE_DIR=$(mktemp -d)
@@ -92,7 +92,7 @@ if [ -f "$SRC_DIR/audio.json" ]; then
   validate_json "$SRC_DIR/audio.json"
   cp "$SRC_DIR/audio.json" "$STAGE_DIR/audio.json"
   mkdir -p "$STAGE_DIR/audio"
-  uv run python -c "import json; [print(t['file']) for t in json.load(open('$SRC_DIR/audio.json', encoding='utf-8'))['tracks']]" |
+  python3 -c "import json; [print(t['file']) for t in json.load(open('$SRC_DIR/audio.json', encoding='utf-8'))['tracks']]" |
   while IFS= read -r AUDIO_FILE; do
     [ -f "$SRC_DIR/$AUDIO_FILE" ] || fail "audio.json declares '$AUDIO_FILE' but $SRC_DIR/$AUDIO_FILE is missing"
     cp "$SRC_DIR/$AUDIO_FILE" "$STAGE_DIR/$AUDIO_FILE"
@@ -100,7 +100,7 @@ if [ -f "$SRC_DIR/audio.json" ]; then
 fi
 
 mkdir -p "$STAGE_DIR/images"
-uv run python -c "import json; [print(i) for i in json.load(open('$MANIFEST', encoding='utf-8'))['images']]" |
+python3 -c "import json; [print(i) for i in json.load(open('$MANIFEST', encoding='utf-8'))['images']]" |
 while IFS= read -r IMAGE_KEY; do
   cp "$IMAGES_DIR/$IMAGE_KEY.jpg" "$STAGE_DIR/images/$IMAGE_KEY.jpg"
 done

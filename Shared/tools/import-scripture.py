@@ -1,7 +1,4 @@
-#!/usr/bin/env -S uv run --script
-# /// script
-# requires-python = ">=3.11"
-# ///
+#!/usr/bin/env python3
 """Fills a bundle's Aramaic scripture from the Peshitta, in both alphabets.
 
 Every Scripture body a bundle ships already names its passage — the Latin text ends
@@ -28,9 +25,6 @@ tool's to perform.
 
     usage: import-scripture.py [bundle ...]   default: every bundle with Latin citations
            import-scripture.py --check        re-derive and diff, writing nothing (CI)
-           import-scripture.py --prefetch     download every source edition into
-                                              .scripture-cache and stop — offline priming;
-                                              download-data.sh / Download-Data.ps1 wrap this
 """
 
 from __future__ import annotations
@@ -592,7 +586,6 @@ def render(language: str, built: dict, existing: dict) -> dict:
 def main() -> int:
     arguments = [a for a in sys.argv[1:] if not a.startswith("--")]
     check = "--check" in sys.argv[1:]
-    prefetch = "--prefetch" in sys.argv[1:]
 
     # The letters must map exactly both ways, or the toggle is showing two different texts.
     # Checked on the whole alphabet, not a sample of it, and on real unpointed words.
@@ -622,22 +615,6 @@ def main() -> int:
 
     bundles = ([CONTENT / name for name in arguments] if arguments
                else sorted(p for p in CONTENT.iterdir() if (p / "manifest.json").exists()))
-
-    # --prefetch: the same walk --check does — build() pulls every needed edition through
-    # fetch(), which caches — but nothing is compared and nothing written. One source of truth
-    # for WHAT to download: the citations themselves.
-    if prefetch:
-        for language in LANGUAGES:
-            for bundle in bundles:
-                build(language, bundle)
-        for message in errors:
-            print(f"import-scripture: {message}", file=sys.stderr)
-        if errors:
-            return 1
-        files = sorted(CACHE.iterdir()) if CACHE.exists() else []
-        total = sum(f.stat().st_size for f in files)
-        print(f"cache primed: {len(files)} source file(s), {total // 1024} KiB in {CACHE}")
-        return 0
 
     changed = 0
     for language in LANGUAGES:

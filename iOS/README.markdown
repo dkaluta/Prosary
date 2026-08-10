@@ -1,15 +1,12 @@
 # Prosary
 
 A SwiftUI multiplatform (iPhone + Mac, iPad and Vision Pro along for the ride) companion for
-praying the Rosary, the Angelus, the Stations of the Cross, the Divine Mercy Chaplet, novenas,
-the Jesus Prayer, and every other devotion the `.prosaryprayer` bundle format can describe —
-serving Holy Land Christian communities. Latin is the default prayer language, with English,
-Arabic, Hebrew (in the communities' own rites), Russian, Tagalog, Spanish, Greek, and Classical
-Syriac as alternatives.
+praying the Rosary, the Angelus, and the Jesus Prayer — serving Holy Land Christian communities.
+Latin is the default prayer language, with English, Arabic, Hebrew, Russian, and Tagalog
+(Arabic and Hebrew right-to-left) as alternatives.
 
-This is the iOS/Mac app of a monorepo — the Android and Windows ports, the shared bundle
-format, and the web tools live beside it; see the [repository README](../README.markdown).
-The apps are in closed testing — see [prosary.app](https://prosary.app) to join.
+An Android port lives at [dkaluta/Prosary-Android](https://github.com/dkaluta/Prosary-Android).
+Both apps are currently in testing — see [prosary.app](https://prosary.app) to join.
 
 ## Requirements
 
@@ -37,10 +34,11 @@ something a normal build needs afterward.
 
 ## Architecture
 
-A `Prayer` (`Models/Prayer.swift`) is a saved, user-configurable prayer session, discriminated
-by `PrayerKind`: the Rosary, the Jesus Prayer, and `custom` — every other devotion, driven
-entirely by a `.prosaryprayer` bundle (see `Shared/ARCHITECTURE.md`). New devotions are new
-bundles, not new code.
+A `Prayer` (`Models/Prayer.swift`) is a saved, user-configurable prayer session — a Rosary, the
+Angelus, or the Jesus Prayer — discriminated by `PrayerKind`, each with its own nested options
+(`RosaryOptions`, `JesusPrayerOptions`; the Angelus needs none beyond a language). Add a new
+`PrayerKind` case and a matching option struct to expand into another devotion (Divine Mercy
+Chaplet, Seven Sorrows, etc.).
 
 The UI is built entirely against four protocols in `Prosary/Protocols/`:
 
@@ -91,9 +89,8 @@ for full attribution.
 
 ## Website
 
-An Astro + TypeScript landing page for `https://prosary.app` lives in
-[`../Shared/website/`](../Shared/website/), auto-deployed to GitHub Pages on push — see its
-[README](../Shared/website/README.markdown)
+An Astro + TypeScript landing page for `https://prosary.app` lives in [`website/`](website/),
+auto-deployed to GitHub Pages on push — see [`website/README.markdown`](website/README.markdown)
 for local dev, deployment, and DNS setup. The site links to the TestFlight beta and the Android
 closed test, and hosts the shared privacy policy and license pages for both apps.
 

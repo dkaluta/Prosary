@@ -1,7 +1,4 @@
-#!/usr/bin/env -S uv run --script
-# /// script
-# requires-python = ">=3.11"
-# ///
+#!/usr/bin/env python3
 """Increments (or syncs) the app version across all three platforms in one shot.
 
 Usage:

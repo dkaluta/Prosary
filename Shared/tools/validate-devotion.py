@@ -1,7 +1,4 @@
-#!/usr/bin/env -S uv run --script
-# /// script
-# requires-python = ">=3.11"
-# ///
+#!/usr/bin/env python3
 """Validates a devotion bundle source directory (Shared/content/<id>/) before packing.
 
 Called by make-prosaryprayer.sh (and Make-ProsaryPrayer.ps1 when python3 is available).
