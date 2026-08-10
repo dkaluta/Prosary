@@ -22,6 +22,19 @@ export function isOggOpus(bytes: Uint8Array): boolean {
 
 const HEX_COLOR = /^#[0-9a-fA-F]{6}$/;
 const ID_SHAPE = /^[a-z][a-zA-Z0-9]*$/;
+const LANGUAGE_CODE = /^[a-z]{2,3}(-x-[a-z0-9]+)?$/;
+
+/** The liturgical families in canonical order — mirrors validate-devotion.py's TRADITION_RANK.
+ * Because the first form is the default, tradition-named forms must be declared in this order:
+ * latin, byzantine, west syriac, armenian, alexandrian, east syriac. */
+const TRADITION_RANK: Record<string, number> = {
+  latin: 0, roman: 0,
+  byzantine: 1, greek: 1,
+  westSyriac: 2, syriac: 2, antiochene: 2, maronite: 2,
+  armenian: 3,
+  alexandrian: 4, coptic: 4, geez: 4, ethiopian: 4,
+  eastSyriac: 5, chaldean: 5, assyrian: 5,
+};
 
 export function validateProject(project: Project): Issue[] {
   const issues: Issue[] = [];
@@ -73,16 +86,63 @@ export function validateProject(project: Project): Issue[] {
         }
       }
     }
+  } else if (project.variants.length > 0) {
+    if (project.variants.length < 2) {
+      steps("A devotion with alternate forms needs at least two — or go back to a single form.");
+    }
+    const claimed = new Set<string>();
+    const seenIds = new Set<string>();
+    let highestTradition = -1;
+    project.variants.forEach((form, i) => {
+      const where = form.name.trim() || `Form ${i + 1}`;
+      if (!form.name.trim()) steps(`Form ${i + 1} needs a name.`);
+      if (form.steps.length === 0) steps(`${where} has no prayers in it yet.`);
+      const id = form.variantId.trim();
+      if (id && !ID_SHAPE.test(id)) {
+        steps(`${where}: the identifier must start with a lowercase letter and use only letters and numbers.`);
+      }
+      if (id) {
+        if (seenIds.has(id)) steps(`${where}: another form already uses the identifier “${id}”.`);
+        seenIds.add(id);
+        const rank = TRADITION_RANK[id];
+        if (rank !== undefined) {
+          if (rank < highestTradition) {
+            steps(
+              `${where}: forms named for liturgical traditions go in their canonical order — Latin, Byzantine, West Syriac, Armenian, Alexandrian, East Syriac — because the first form is the default.`,
+            );
+          }
+          highestTradition = Math.max(highestTradition, rank);
+        }
+      }
+      form.defaultForLanguages.forEach((code) => {
+        if (!LANGUAGE_CODE.test(code)) {
+          steps(`${where}: “${code}” is not a language code — use codes like he, arc, or he-x-gamliel.`);
+        } else if (claimed.has(code)) {
+          steps(`${where}: another form already opens by default for “${code}”.`);
+        }
+        claimed.add(code);
+      });
+    });
+    if (project.audio.length > 0) {
+      audio("Recordings and alternate forms can't be combined yet — remove one or the other.");
+    }
   } else if (project.steps.length === 0) {
     steps("Add at least one prayer step.");
   }
 
-  /** Numbered the way the author sees them: within the day for a days project. */
+  /** Numbered the way the author sees them: within the day or form that holds them. */
   const stepLabel = (step: (typeof allSteps)[number]) => {
-    if (project.devotionType !== "days") return `Step ${project.steps.indexOf(step) + 1}`;
-    const day = project.days.find((d) => d.steps.includes(step));
-    const within = (day?.steps.indexOf(step) ?? 0) + 1;
-    return `${day?.name || "Day"}, step ${within}`;
+    if (project.devotionType === "days") {
+      const day = project.days.find((d) => d.steps.includes(step));
+      const within = (day?.steps.indexOf(step) ?? 0) + 1;
+      return `${day?.name || "Day"}, step ${within}`;
+    }
+    if (project.variants.length > 0) {
+      const form = project.variants.find((f) => f.steps.includes(step));
+      const within = (form?.steps.indexOf(step) ?? 0) + 1;
+      return `${form?.name || "Form"}, step ${within}`;
+    }
+    return `Step ${project.steps.indexOf(step) + 1}`;
   };
 
   const allSteps = authoredSteps(project);

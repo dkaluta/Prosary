@@ -113,6 +113,7 @@ export function ReviewScreen({ project, issues, goTo }: Props) {
           <dd>
             {project.devotionType === "days" &&
               `${project.days.length} day${project.days.length === 1 ? "" : "s"} · `}
+            {project.variants.length > 0 && `${project.variants.length} forms · `}
             {authoredSteps(project).length} step{authoredSteps(project).length === 1 ? "" : "s"} ·{" "}
             {project.languages
               .map((code) => LANGUAGES.find((l) => l.code === code)?.name)

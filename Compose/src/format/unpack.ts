@@ -1,11 +1,12 @@
 // .prosaryprayer -> Project, the best-effort inverse of pack.ts so an author can reopen and
-// keep editing a bundle. Only the wizard's own subset round-trips: flat steps-type devotions
-// (what this composer emits). Anything richer — rosary/days types, variants, options — is
-// declined with a plain-language message rather than silently flattened.
+// keep editing a bundle. Only the wizard's own subset round-trips: steps-type devotions (flat
+// or with alternate forms) and days-type ones (what this composer emits). Anything richer —
+// the rosary type, seasonal step swaps, option-gated steps — is declined with a plain-language
+// message rather than silently flattened.
 
 import type { CommonPrayerKey, LanguageCode } from "./catalog";
 import { LANGUAGES, PLACEHOLDER_IMAGE_KEY, commonPrayer } from "./catalog";
-import type { EditorStep, PerLanguage, Project } from "./project";
+import type { EditorStep, EditorVariant, PerLanguage, Project } from "./project";
 import { newProject, newUid } from "./project";
 import { ZipReader } from "./zip";
 
@@ -65,11 +66,29 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
     suggestedReminderTime?: string;
     suggestedNext?: string;
     eastertideSteps?: unknown;
-    variants?: unknown;
+    variants?: {
+      id?: string;
+      name?: string;
+      nameByLanguage?: Record<string, string>;
+      defaultForLanguages?: string[];
+      steps?: RawStep[];
+      eastertideSteps?: unknown;
+    }[];
   };
-  if (!["steps", "days"].includes(devotion.type ?? "") || devotion.variants || devotion.eastertideSteps) {
+  if (!["steps", "days"].includes(devotion.type ?? "")) {
     throw new Error(
-      "This bundle uses a richer structure (beads, variants, or seasonal forms) than the composer can edit yet.",
+      "This bundle uses a richer structure (beads and decades) than the composer can edit yet.",
+    );
+  }
+  if (devotion.eastertideSteps || (devotion.variants ?? []).some((form) => form.eastertideSteps)) {
+    throw new Error(
+      "This bundle swaps its steps in Eastertide — a seasonal form the composer can't edit yet.",
+    );
+  }
+  const rawVariants = devotion.variants ?? [];
+  if (rawVariants.length > 0 && zip.has("audio.json")) {
+    throw new Error(
+      "This bundle has recordings tied to its alternate forms — the composer can't edit that combination yet.",
     );
   }
 
@@ -145,9 +164,19 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
   // Read every step in prayed order first; a days project then hands them back out to its days
   // below, which is why the content keys were numbered across the whole devotion at pack time.
   const readSteps: EditorStep[] = [];
-  for (const raw of devotion.steps ?? (devotion.days ?? []).flatMap((day) => day.steps)) {
+  const rawSteps =
+    devotion.steps ??
+    (rawVariants.length > 0
+      ? rawVariants.flatMap((form) => form.steps ?? [])
+      : (devotion.days ?? []).flatMap((day) => day.steps));
+  for (const raw of rawSteps) {
     if (raw.kind) {
       throw new Error("This bundle uses a special step the composer can't edit yet.");
+    }
+    if (raw.if) {
+      // Refused rather than imported without its condition — reopening and republishing would
+      // silently turn an option-gated step into an always-prayed one.
+      throw new Error("This bundle shows some steps only under an option — the composer can't edit that yet.");
     }
     const common = raw.bodyKey ? commonPrayer(raw.bodyKey) : undefined;
     const uploadUid = raw.imageKey ? imageUidByKey.get(raw.imageKey) : undefined;
@@ -181,6 +210,24 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
         uid: newUid(),
         name: day.name,
         nameByLanguage: (day.nameByLanguage ?? {}) as PerLanguage,
+        steps,
+      };
+    });
+  } else if (rawVariants.length > 0) {
+    let cursor = 0;
+    project.variants = rawVariants.map((form): EditorVariant => {
+      const count = (form.steps ?? []).length;
+      const steps = readSteps.slice(cursor, cursor + count);
+      cursor += count;
+      return {
+        uid: newUid(),
+        variantId: form.id ?? "",
+        variantIdEdited: true,
+        name: form.name ?? "",
+        nameByLanguage: (form.nameByLanguage ?? {}) as PerLanguage,
+        defaultForLanguages: (form.defaultForLanguages ?? []).filter(
+          (code): code is string => typeof code === "string",
+        ),
         steps,
       };
     });

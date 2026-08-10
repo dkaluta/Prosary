@@ -51,6 +51,24 @@ export interface EditorAudioTrack {
   chapters: { start: number; stepUid: string }[];
 }
 
+/** One named alternate form of a steps devotion — the Stations' traditional vs. scriptural
+ * sets, a Trisagion's Byzantine vs. Syriac. Its steps are authored exactly like a single-form
+ * devotion's; the first form is the default. */
+export interface EditorVariant {
+  uid: string;
+  /** Bundle variant id ("byzantine") — fills in from the name until edited by hand, and is
+   * preserved on round-trip so a republish never breaks a favorite's saved choice. */
+  variantId: string;
+  variantIdEdited: boolean;
+  /** English display label (the app-wide convention). */
+  name: string;
+  nameByLanguage: PerLanguage;
+  /** Exact prayer-language codes (rites included, e.g. "he-x-gamliel") whose sessions open in
+   * this form when the pray-er hasn't chosen one — see the format's defaultForLanguages. */
+  defaultForLanguages: string[];
+  steps: EditorStep[];
+}
+
 /** A day of a multi-day devotion: a novena's nine, a triduum's three. Its steps are authored
  * exactly like a single-day devotion's. */
 export interface EditorDay {
@@ -85,6 +103,9 @@ export interface Project {
    * steps inside `days` and leaves `steps` empty. */
   devotionType: "steps" | "days";
   steps: EditorStep[];
+  /** steps type only: alternate forms. Empty = a single-form devotion using `steps`; non-empty
+   * means each form carries its own steps and `steps` is unused. */
+  variants: EditorVariant[];
   /** days type only. */
   days: EditorDay[];
   /** days type only: consecutive series (tracked, remindable) or a set to pick from. */
@@ -115,6 +136,7 @@ export function newProject(): Project {
     tags: [],
     devotionType: "steps",
     steps: [],
+    variants: [],
     days: [],
     dayProgression: "series",
     images: [],

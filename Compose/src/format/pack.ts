@@ -5,6 +5,7 @@
 
 import { COMMON_PRAYERS, PLACEHOLDER_IMAGE_KEY, commonPrayer } from "./catalog";
 import type { EditorStep, Project } from "./project";
+import { slugify } from "./project";
 import { buildZip, type ZipFile } from "./zip";
 
 /** Bundle-local content key base for the i-th step ("step03"). */
@@ -45,7 +46,9 @@ function chapterTitle(step: EditorStep, index: number): { title?: string; titleK
 /** Every authored step in order, whichever project type it is — days projects number their
  * content keys across the whole devotion so a step's key never shifts when a day is edited. */
 export function authoredSteps(project: Project): EditorStep[] {
-  return project.devotionType === "days" ? project.days.flatMap((day) => day.steps) : project.steps;
+  if (project.devotionType === "days") return project.days.flatMap((day) => day.steps);
+  if (project.variants.length > 0) return project.variants.flatMap((form) => form.steps);
+  return project.steps;
 }
 
 /** One step's devotion.json entry; identical in both project types. */
@@ -73,12 +76,13 @@ function jsonBytes(value: unknown): Uint8Array {
 
 export function buildBundleFiles(project: Project): ZipFile[] {
   const files: ZipFile[] = [];
+  const allSteps = authoredSteps(project);
   const usedMainKeys = COMMON_PRAYERS.filter(
-    (p) => p.main && project.steps.some((s) => s.kind === "common" && s.commonKey === p.key),
+    (p) => p.main && allSteps.some((s) => s.kind === "common" && s.commonKey === p.key),
   ).map((p) => p.key);
   const usedImageKeys = [
     ...new Set(
-      project.steps
+      allSteps
         .map((step) => (step.image?.kind === "upload" ? imageKey(project, step.image.uid) : undefined))
         .filter((key): key is string => key !== undefined),
     ),
@@ -127,7 +131,27 @@ export function buildBundleFiles(project: Project): ZipFile[] {
             steps: day.steps.map((step) => packStep(project, step, authoredSteps(project).indexOf(step))),
           })),
         }
-      : {
+      : project.variants.length > 0
+        ? {
+            type: "steps" as const,
+            variants: project.variants.map((form) => {
+              const nameByLanguage = Object.fromEntries(
+                Object.entries(form.nameByLanguage).filter(([, v]) => v?.trim()),
+              );
+              return {
+                id: form.variantId || slugify(form.name),
+                name: form.name,
+                ...(Object.keys(nameByLanguage).length > 0 ? { nameByLanguage } : {}),
+                ...(form.defaultForLanguages.length > 0
+                  ? { defaultForLanguages: form.defaultForLanguages }
+                  : {}),
+                steps: form.steps.map((step) =>
+                  packStep(project, step, allSteps.indexOf(step)),
+                ),
+              };
+            }),
+          }
+        : {
           type: "steps" as const,
           steps: project.steps.map((step, i) => packStep(project, step, i)),
         };
@@ -178,12 +202,12 @@ export function buildBundleFiles(project: Project): ZipFile[] {
         language: track.language,
         file,
         chapters: track.chapters.map((chapter) => {
-          const index = project.steps.findIndex((s) => s.uid === chapter.stepUid);
-          const step = project.steps[index];
+          const index = allSteps.findIndex((s) => s.uid === chapter.stepUid);
+          const step = allSteps[index];
           return {
             start: chapter.start,
             ...(step ? chapterTitle(step, index) : { title: "Chapter" }),
-            ...(index >= 0 ? { stepIndex: builtStepIndex(project.steps, index) } : {}),
+            ...(index >= 0 ? { stepIndex: builtStepIndex(allSteps, index) } : {}),
           };
         }),
       };

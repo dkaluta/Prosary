@@ -137,7 +137,103 @@ for (const file of original) {
   }
 }
 
-console.log("e2e OK —", original.map((f) => f.name).join(", "));
+// --- Alternate forms (steps-type variants): pack shape, reopen, byte-stable repack ---
+
+const formsProject = newProject();
+formsProject.name = "Example Forms";
+formsProject.id = "exampleForms";
+formsProject.languages = ["la", "en"];
+const formStep = (body: string): EditorStep => ({
+  uid: newUid(),
+  kind: "custom",
+  title: "",
+  titleByLanguage: { la: "Oratio", en: "Prayer" },
+  bodyByLanguage: { la: body, en: body },
+  isScripture: false,
+});
+formsProject.variants = [
+  {
+    uid: newUid(),
+    variantId: "byzantine",
+    variantIdEdited: true,
+    name: "Byzantine",
+    nameByLanguage: { la: "Byzantina" },
+    defaultForLanguages: [],
+    steps: [formStep("Sanctus Deus."), formStep("Gloria Patri.")],
+  },
+  {
+    uid: newUid(),
+    variantId: "syriac",
+    variantIdEdited: true,
+    name: "Syriac",
+    nameByLanguage: {},
+    defaultForLanguages: ["he-x-gamliel", "arc"],
+    steps: [formStep("Qadishat Aloho.")],
+  },
+];
+
+const formsIssues = validateProject(formsProject);
+if (formsIssues.length > 0) fail("expected a clean forms project", formsIssues);
+
+// Tradition-named forms out of canonical order must be caught (first form is the default).
+{
+  const reordered = {
+    ...formsProject,
+    variants: [...formsProject.variants].reverse(),
+  };
+  const ordering = validateProject(reordered);
+  if (!ordering.some((i) => i.message.includes("canonical order"))) {
+    fail("out-of-order tradition forms were not flagged", ordering);
+  }
+}
+
+const formsBundle = buildBundle(formsProject);
+writeFileSync("dist-e2e/exampleForms.prosaryprayer", formsBundle);
+
+{
+  const devotionFile = buildBundleFiles(formsProject).find((f) => f.name === "devotion.json");
+  const devotion = JSON.parse(new TextDecoder().decode(devotionFile!.data)) as {
+    type: string;
+    steps?: unknown;
+    variants?: { id: string; defaultForLanguages?: string[]; steps: unknown[] }[];
+  };
+  if (devotion.type !== "steps" || devotion.steps !== undefined) {
+    fail("a forms project must emit variants instead of top-level steps", devotion);
+  }
+  const ids = (devotion.variants ?? []).map((v) => v.id);
+  if (JSON.stringify(ids) !== JSON.stringify(["byzantine", "syriac"])) {
+    fail("variant ids wrong", ids);
+  }
+  if (JSON.stringify(devotion.variants?.[1].defaultForLanguages) !== JSON.stringify(["he-x-gamliel", "arc"])) {
+    fail("defaultForLanguages not emitted", devotion.variants?.[1]);
+  }
+}
+
+const reopenedForms = await openBundle(formsBundle);
+if (reopenedForms.variants.length !== 2) fail("reopened forms lost a variant");
+const formsReopenedIssues = validateProject(reopenedForms);
+if (formsReopenedIssues.length > 0) fail("reopened forms project has issues", formsReopenedIssues);
+{
+  const originalFiles = buildBundleFiles(formsProject);
+  const repackedFiles = buildBundleFiles(reopenedForms);
+  if (originalFiles.length !== repackedFiles.length) fail("forms round trip changed file count");
+  for (const file of originalFiles) {
+    const twin = repackedFiles.find((f) => f.name === file.name);
+    if (!twin) fail(`forms round trip missing ${file.name}`);
+    const same =
+      file.data.length === twin.data.length && file.data.every((byte, i) => byte === twin.data[i]);
+    if (!same) {
+      fail(`forms round-trip mismatch in ${file.name}`, decoder.decode(file.data), decoder.decode(twin.data));
+    }
+  }
+}
+
+console.log(
+  "e2e OK —",
+  original.map((f) => f.name).join(", "),
+  "· forms:",
+  buildBundleFiles(formsProject).map((f) => f.name).join(", "),
+);
 
 // A days-type project round-trips: the declarations survive, and content keys stay numbered
 // across the whole devotion so a step's key does not shift when a day is edited.

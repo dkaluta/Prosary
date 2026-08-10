@@ -2,8 +2,8 @@ import { useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { COMMON_PRAYERS, LANGUAGES, commonPrayer, isRtl } from "../format/catalog";
 import type { CommonPrayerKey } from "../format/catalog";
-import type { EditorDay, EditorStep, Project } from "../format/project";
-import { newUid } from "../format/project";
+import type { EditorDay, EditorStep, EditorVariant, Project } from "../format/project";
+import { newUid, slugify } from "../format/project";
 import { imageToSquareJpeg, pickFile } from "./media";
 
 interface Props {
@@ -13,23 +13,38 @@ interface Props {
 
 export function StepsScreen({ project, setProject }: Props) {
   const isDays = project.devotionType === "days";
+  const hasForms = !isDays && project.variants.length > 0;
   const [openDayUid, setOpenDayUid] = useState<string | null>(null);
+  const [openFormUid, setOpenFormUid] = useState<string | null>(null);
   // The open day may have been deleted, and a project that has just become a days project has
   // none chosen: fall back to the first rather than showing an empty editor, which reads as
   // data loss.
   const day = project.days.find((d) => d.uid === openDayUid) ?? project.days[0];
-  const steps = isDays ? (day?.steps ?? []) : project.steps;
+  const form = project.variants.find((f) => f.uid === openFormUid) ?? project.variants[0];
+  const steps = isDays ? (day?.steps ?? []) : hasForms ? (form?.steps ?? []) : project.steps;
 
-  /** Step edits land inside the open day for a days project, and in the flat list otherwise. */
+  /** Step edits land inside the open day or form, and in the flat list otherwise. */
   const editSteps = (edit: (steps: EditorStep[]) => EditorStep[]) =>
     setProject((p) => {
-      if (p.devotionType !== "days") return { ...p, steps: edit(p.steps) };
-      const target = p.days.find((d) => d.uid === day?.uid) ?? p.days[0];
-      if (!target) return p;
-      return {
-        ...p,
-        days: p.days.map((d) => (d.uid === target.uid ? { ...d, steps: edit(d.steps) } : d)),
-      };
+      if (p.devotionType === "days") {
+        const target = p.days.find((d) => d.uid === day?.uid) ?? p.days[0];
+        if (!target) return p;
+        return {
+          ...p,
+          days: p.days.map((d) => (d.uid === target.uid ? { ...d, steps: edit(d.steps) } : d)),
+        };
+      }
+      if (p.variants.length > 0) {
+        const target = p.variants.find((f) => f.uid === form?.uid) ?? p.variants[0];
+        if (!target) return p;
+        return {
+          ...p,
+          variants: p.variants.map((f) =>
+            f.uid === target.uid ? { ...f, steps: edit(f.steps) } : f,
+          ),
+        };
+      }
+      return { ...p, steps: edit(p.steps) };
     });
 
   const updateStep = (uid: string, patch: Partial<EditorStep>) =>
@@ -84,6 +99,85 @@ export function StepsScreen({ project, setProject }: Props) {
       }));
       updateStep(uid, { image: { kind: "upload", uid: imageUid } });
     });
+
+  const startForms = () => {
+    // The existing sequence becomes the first form, so nothing the author wrote is lost.
+    const uid = newUid();
+    setProject((p) => ({
+      ...p,
+      variants: [
+        {
+          uid,
+          variantId: "",
+          variantIdEdited: false,
+          name: "",
+          nameByLanguage: {},
+          defaultForLanguages: [],
+          steps: p.steps,
+        },
+        {
+          uid: newUid(),
+          variantId: "",
+          variantIdEdited: false,
+          name: "",
+          nameByLanguage: {},
+          defaultForLanguages: [],
+          steps: [],
+        },
+      ],
+      steps: [],
+    }));
+    setOpenFormUid(uid);
+  };
+
+  const addForm = () => {
+    const uid = newUid();
+    setProject((p) => ({
+      ...p,
+      variants: [
+        ...p.variants,
+        { uid, variantId: "", variantIdEdited: false, name: "", nameByLanguage: {}, defaultForLanguages: [], steps: [] },
+      ],
+    }));
+    setOpenFormUid(uid);
+  };
+
+  const updateForm = (uid: string, patch: Partial<EditorVariant>) =>
+    setProject((p) => ({
+      ...p,
+      variants: p.variants.map((f) => (f.uid === uid ? { ...f, ...patch } : f)),
+    }));
+
+  const moveForm = (uid: string, delta: -1 | 1) =>
+    setProject((p) => {
+      const index = p.variants.findIndex((f) => f.uid === uid);
+      const target = index + delta;
+      if (index < 0 || target < 0 || target >= p.variants.length) return p;
+      const variants = [...p.variants];
+      [variants[index], variants[target]] = [variants[target], variants[index]];
+      return { ...p, variants };
+    });
+
+  const removeForm = (uid: string) => {
+    const doomed = project.variants.find((f) => f.uid === uid);
+    if (
+      doomed?.steps.length &&
+      !window.confirm(
+        `Delete ${doomed.name || "this form"}? Its ${doomed.steps.length} step(s) go with it.`,
+      )
+    ) {
+      return;
+    }
+    setProject((p) => {
+      const variants = p.variants.filter((f) => f.uid !== uid);
+      // Down to one form = back to a single-form devotion; its steps return to the flat list.
+      if (variants.length === 1) {
+        return { ...p, variants: [], steps: variants[0].steps };
+      }
+      return { ...p, variants };
+    });
+    if (uid === form?.uid) setOpenFormUid(null);
+  };
 
   const addDay = () => {
     const uid = newUid();
@@ -140,6 +234,121 @@ export function StepsScreen({ project, setProject }: Props) {
           The text fields appear once the devotion has languages — choose them on the Basics page
           first.
         </p>
+      )}
+
+      {!isDays && !hasForms && (
+        <p className="help">
+          Prays two ways — a shorter and a fuller form, or one form per tradition?{" "}
+          <button className="subtle" onClick={startForms}>
+            Give this devotion alternate forms…
+          </button>
+        </p>
+      )}
+
+      {hasForms && (
+        <div className="card">
+          <header>
+            <span className="title">The forms</span>
+            <button className="subtle" onClick={addForm}>
+              + Add a form
+            </button>
+          </header>
+          <p className="help">
+            Each form is its own sequence of steps — the app shows a form menu and opens the
+            first one unless a language below claims the session. Forms named for liturgical
+            traditions (latin, byzantine, syriac…) go in their canonical order.
+          </p>
+          <div className="row wrap">
+            {project.variants.map((f, i) => (
+              <button
+                key={f.uid}
+                className={f.uid === form?.uid ? "tight" : "secondary tight"}
+                onClick={() => setOpenFormUid(f.uid)}
+              >
+                {f.name || `Form ${i + 1}`}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {hasForms && form && (
+        <div className="card">
+          <header>
+            <span className="title">{form.name || "Untitled form"}</span>
+            <button className="subtle" onClick={() => moveForm(form.uid, -1)} aria-label="Move form earlier">
+              ↑
+            </button>
+            <button className="subtle" onClick={() => moveForm(form.uid, 1)} aria-label="Move form later">
+              ↓
+            </button>
+            <button className="subtle" onClick={() => removeForm(form.uid)} aria-label="Remove form">
+              ✕
+            </button>
+          </header>
+          <label className="field">
+            <span>
+              Form name <span className="hint">— shown in the app's form menu ("Byzantine", "Fuller form")</span>
+            </span>
+            <input
+              type="text"
+              value={form.name}
+              onChange={(e) =>
+                updateForm(form.uid, {
+                  name: e.target.value,
+                  ...(form.variantIdEdited ? {} : { variantId: slugify(e.target.value) }),
+                })
+              }
+            />
+          </label>
+          {project.languages.map((code) => {
+            const language = LANGUAGES.find((l) => l.code === code)!;
+            return (
+              <label className="field" key={code}>
+                <span>
+                  Form name in {language.name} <span className="hint">— optional</span>
+                </span>
+                <input
+                  type="text"
+                  dir={isRtl(code) ? "rtl" : "ltr"}
+                  value={form.nameByLanguage[code] ?? ""}
+                  onChange={(e) =>
+                    updateForm(form.uid, {
+                      nameByLanguage: { ...form.nameByLanguage, [code]: e.target.value },
+                    })
+                  }
+                />
+              </label>
+            );
+          })}
+          <label className="field">
+            <span>
+              Identifier <span className="hint">— fills in from the name; keep it stable once published</span>
+            </span>
+            <input
+              type="text"
+              value={form.variantId}
+              onChange={(e) => updateForm(form.uid, { variantId: e.target.value, variantIdEdited: true })}
+            />
+          </label>
+          <label className="field">
+            <span>
+              Opens by default for{" "}
+              <span className="hint">
+                — language codes, space-separated (he, arc, he-x-gamliel…); leave empty for none
+              </span>
+            </span>
+            <input
+              type="text"
+              value={form.defaultForLanguages.join(" ")}
+              onChange={(e) =>
+                updateForm(form.uid, {
+                  defaultForLanguages: e.target.value.split(/[,\s]+/).filter(Boolean),
+                })
+              }
+            />
+          </label>
+        </div>
       )}
 
       {isDays && (
@@ -232,7 +441,7 @@ export function StepsScreen({ project, setProject }: Props) {
         />
       ))}
 
-      <div className="row" hidden={isDays && !day}>
+      <div className="row" hidden={(isDays && !day) || (hasForms && !form)}>
         <select
           className="tight"
           value=""
