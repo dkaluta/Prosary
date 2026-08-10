@@ -1,15 +1,16 @@
 # Prosary
 
-A native WinUI3 (Windows App SDK) companion for praying the Rosary, the Angelus, and the Jesus
-Prayer — a Windows port of [dkaluta/Prosary-iOS](https://github.com/dkaluta/Prosary-iOS) (also
-ported to [dkaluta/Prosary-Android](https://github.com/dkaluta/Prosary-Android)), serving Holy
-Land Christian communities. Latin is the default prayer language, with English, Arabic, Hebrew,
-Russian, and Tagalog (Arabic and Hebrew right-to-left) as alternatives.
+A native WinUI3 (Windows App SDK) companion for praying the Rosary, the Angelus, the Stations
+of the Cross, the chaplets, novenas, the Jesus Prayer, and every other devotion the
+`.prosaryprayer` bundle format describes — the Windows port in the Prosary monorepo (see the
+[repository README](../README.markdown)), kept at feature parity with the iOS app it mirrors.
+Latin is the default prayer language, with English, Arabic, Hebrew (in the communities' own
+rites), Russian, Tagalog, Spanish, Greek, and Classical Syriac as alternatives.
 
-Built with plain WinUI3, not .NET MAUI — see the "Why not MAUI" note below. An earlier standalone
-MAUI prototype, [`irosary`](../../irosary), was mined for its validated Rosary engine, liturgical
-calendar algorithm, SQLite persistence pattern, and prayer/Scripture text in 4 of the current
-app's 6 languages.
+Built with plain WinUI3, not .NET MAUI — see the "Why not MAUI" note below. An earlier
+standalone MAUI prototype (`irosary`, not part of this repo) was mined for its validated Rosary
+engine, liturgical calendar algorithm, SQLite persistence pattern, and prayer/Scripture text in
+four of the app's original six languages.
 
 ## Requirements
 
@@ -42,14 +43,14 @@ A signed MSIX package additionally needs the packaging certificate — see Signi
 
 ## Architecture
 
-Mirrors iOS/Android's unified model: a `Prayer` (`Models/Prayer.cs`) is a saved, user-configurable
-prayer session — a Rosary, the Angelus, or the Jesus Prayer — discriminated by `PrayerKind`, each
-with its own nested options (`RosaryOptions`, `JesusPrayerOptions`; the Angelus needs none beyond
-a language).
+Mirrors iOS/Android's unified model: a `Prayer` (`Models/Prayer.cs`) is a saved,
+user-configurable prayer session, discriminated by `PrayerKind`: the Rosary, the Jesus Prayer,
+and `Custom` — every other devotion, driven entirely by a `.prosaryprayer` bundle (see
+`../Shared/ARCHITECTURE.md`). ViewModels strictly use CommunityToolkit.Mvvm
+(`[ObservableProperty]`/`[RelayCommand]` — no hand-rolled `INotifyPropertyChanged`).
 
-- `Services/RosaryEngine.cs` / `AngelusEngine.cs` — build the ordered prayer-step sequence for
-  each devotion, ported from irosary's `RosaryEngine.cs` (Rosary) and iOS's `StubAngelusEngine.swift`
-  (Angelus, no irosary precedent).
+- `Services/PrayerEngine.cs` — the one generic step builder for every devotion, reading
+  bundles through `Localization/PrayerPackStore.cs`; no devotion-specific code.
 - `Services/LiturgicalCalendarService.cs` — today's mystery group, season, seasonal Marian
   antiphon, Easter-season check; ported from irosary's `LiturgicalCalendarService.cs`.
 - `Persistence/SqlitePresetStore.cs` — SQLite-backed (`sqlite-net-pcl`) favorites store, with
@@ -102,20 +103,19 @@ before any real distribution.
 ## Tests
 
 `Prosary.Tests` (xUnit) covers the algorithmic core end to end from a plain test host — no
-Windows App SDK/UI dependency needed for any of it:
+Windows App SDK/UI dependency needed for any of it. The load-bearing suites:
 
-- `RosaryEngineTests` — decade counts per `MysterySelectionMode`, opening/closing prayer toggles,
-  eternal-rest placement, Marian antiphon selection.
-- `AngelusEngineTests` — the fixed seven-step sequence vs. the Easter-season Regina Caeli
-  substitute (via an `internal` `BuildSteps` overload that takes the Easter-season flag directly,
-  so both branches are deterministic regardless of the real system date).
+- `CustomDevotionEngineTests` — the generic engine against the real shipped bundles, per
+  devotion, per language, rites and variants included (the step sequences are pinned).
+- `PrayerPackLoaderTests` — bundle parsing, install validation, the per-key fallback chain.
 - `LiturgicalCalendarServiceTests` — the Meeus/Jones/Butcher Easter calculation against known
   public Easter dates, weekday/Sunday mystery-group assignment, season colors, seasonal Marian
   antiphon.
-- `SqlitePresetStoreTests` — the one real behavioral correction over irosary's `PresetRepository`:
-  saving/deleting a default favorite of one `PrayerKind` must never touch another kind's default.
-  Each test runs against its own temp SQLite file (`SqlitePresetStore(string dbPath)` takes an
-  explicit path so tests don't need a packaged app's `ApplicationData`).
+- `SqlitePresetStoreTests` — favorites persistence; saving/deleting a default favorite of one
+  `PrayerKind` must never touch another kind's default. Each test runs against its own temp
+  SQLite file.
+- Plus bead layout, multi-day runs, audio position rules, translation completeness, repository
+  client, and legacy-kind migration suites.
 
 Run with `dotnet test Prosary.sln` (Windows only, same constraint as building the app itself).
 

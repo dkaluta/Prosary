@@ -21,8 +21,8 @@ templates, SQL migrations, HMAC-cookie sessions, request-derived WebAuthn RP inf
   (`bundles/<id>.prosaryprayer`, public); metadata lands in **Postgres (Neon)**. Resubmitting
   the same devotion updates it; ids are guarded against cross-user takeover.
 - **Catalog**: `/` (search + language filter), `GET /api/bundles`, and the versioned
-  **`/index.json`** contract (`{prosaryRepository: 1, bundles: [...]}`) for the future in-app
-  browser. Downloads go through `/api/download/<id>` (counts, then redirects to the blob).
+  **`/index.json`** contract (`{prosaryRepository: 1, bundles: [...]}`) the apps' Browse tab
+  reads. Downloads go through `/api/download/<id>` (counts, then redirects to the blob).
 - **Database**: schema in `migrations/NNNN_*.sql` — forward-only, idempotent, tracked in
   `_migrations`. Apply locally with `npm run db:migrate`; in production with
   `POST /api/admin/migrate` (header `x-admin-secret: $ADMIN_SECRET`).

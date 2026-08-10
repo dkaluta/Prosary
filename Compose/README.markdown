@@ -36,6 +36,11 @@ defaults do the rest (`npm run build`, output `dist`). Production deploys track 
   `zip.ts`, `pack.ts` (Project → bundle), `unpack.ts` (bundle → Project), `validate.ts`
   (client-side authoring rules).
 - `src/ui/` — the four wizard screens (Basics, Prayers, Audio, Finish) and media helpers.
-- The wizard authors the flat `steps` devotion type; bead-structured ("rosary"), multi-day
-  ("days"), variants, and options.json authoring are future work — `unpack.ts` declines such
-  bundles with a plain-language message rather than flattening them.
+- The wizard authors the `steps` devotion type — flat or with **alternate forms** (the
+  format's variants, per-rite `defaultForLanguages` included) — and the multi-day `days`
+  type. Bead-structured ("rosary") devotions, option-gated steps, seasonal step swaps, and
+  recordings-tied-to-forms remain future work — `unpack.ts` declines such bundles with a
+  plain-language message rather than silently flattening them.
+- `scripts/e2e.ts` (`npm run e2e`) authors projects through the same modules the browser
+  uses, packs, reopens, and demands a byte-stable round trip; CI then validates the emitted
+  bundles with the canonical `validate-devotion.py` — two writers, one format.
