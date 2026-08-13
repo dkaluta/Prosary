@@ -1,3 +1,4 @@
+using Prosary.Localization;
 using Prosary.Models;
 using Prosary.Services;
 using Xunit;
@@ -313,5 +314,129 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.True(decadeZeroSteps[0].IsScripture);
         Assert.Equal("Our Father", decadeZeroSteps[1].Title);
         Assert.Equal("Hail Mary & Glory Be", decadeZeroSteps[2].Title);
+    }
+
+    [Fact]
+    public void BuildSteps_ClosingIntentions_AddTenSteps()
+    {
+        var withoutIntentions = _engine.BuildSteps(SpecificRosary(new RosaryOptions
+        {
+            MysterySelectionMode = MysterySelectionMode.Specific,
+            SpecificMysteryGroup = MysteryGroup.Joyful,
+            IncludeClosingIntentions = false,
+        }));
+        var withIntentions = _engine.BuildSteps(SpecificRosary(new RosaryOptions
+        {
+            MysterySelectionMode = MysterySelectionMode.Specific,
+            SpecificMysteryGroup = MysteryGroup.Joyful,
+            IncludeClosingIntentions = true,
+        }));
+
+        // 3 intentions × Our Father/Hail Mary/Glory Be + "Requiescant in pace".
+        Assert.Equal(withoutIntentions.Count + 10, withIntentions.Count);
+    }
+
+    [Fact]
+    public void BuildSteps_ClosingIntentions_FollowTheAntiphonDirectly()
+    {
+        var prayer = new Prayer
+        {
+            Kind = PrayerKind.Rosary,
+            LanguageCode = "la",
+            Rosary = new RosaryOptions
+            {
+                MysterySelectionMode = MysterySelectionMode.Specific,
+                SpecificMysteryGroup = MysteryGroup.Joyful,
+                IncludeClosingIntentions = true,
+            },
+        };
+        var steps = _engine.BuildSteps(prayer).ToList();
+
+        var antiphonIndex = steps.FindIndex(s => s.IsAntiphon);
+        Assert.True(antiphonIndex >= 0);
+        Assert.Equal("Pater Noster", steps[antiphonIndex + 1].Title);
+        Assert.Equal(
+            "Pro intentionibus Summi Pontificis et necessitatibus Ecclesiae et patriae.",
+            steps[antiphonIndex + 1].Subtitle);
+        Assert.Equal("Requiescant in pace.\n**Amen.**", steps[antiphonIndex + 10].Body);
+    }
+
+    /// <summary>The local ordinary the second intention prays for is the Patriarch in the
+    /// Vicariate's Hebrew and the Exarch in the Mission's rite — the he-x-gamliel overlay swaps
+    /// that one subtitle and only that one.</summary>
+    [Fact]
+    public void BuildSteps_ClosingIntentions_PatriarchInHebrewExarchInGamlielRite()
+    {
+        Prayer RosaryIn(string languageCode) => new()
+        {
+            Kind = PrayerKind.Rosary,
+            LanguageCode = languageCode,
+            Rosary = new RosaryOptions
+            {
+                MysterySelectionMode = MysterySelectionMode.Specific,
+                SpecificMysteryGroup = MysteryGroup.Joyful,
+                IncludeClosingIntentions = true,
+            },
+        };
+
+        var hebrew = _engine.BuildSteps(RosaryIn("he"));
+        Assert.Contains(hebrew, s => s.Subtitle?.Contains("הַפַּטְרִיאַרְךְ") == true);
+
+        var gamliel = _engine.BuildSteps(RosaryIn("he-x-gamliel"));
+        Assert.Contains(gamliel, s => s.Subtitle?.Contains("הַהֶגְמוֹן") == true);
+        Assert.DoesNotContain(gamliel, s => s.Subtitle?.Contains("הַפַּטְרִיאַרְךְ") == true);
+    }
+
+    [Fact]
+    public void BuildSteps_EasternImageStyle_SwapsOnlyMysteryImagery()
+    {
+        var classic = _engine.BuildSteps(SpecificRosary(new RosaryOptions
+        {
+            MysterySelectionMode = MysterySelectionMode.Specific,
+            SpecificMysteryGroup = MysteryGroup.Joyful,
+            MysteryImageStyle = MysteryImageStyle.Classic,
+        }));
+        var eastern = _engine.BuildSteps(SpecificRosary(new RosaryOptions
+        {
+            MysterySelectionMode = MysterySelectionMode.Specific,
+            SpecificMysteryGroup = MysteryGroup.Joyful,
+            MysteryImageStyle = MysteryImageStyle.Eastern,
+        }));
+
+        Assert.Equal(classic.Count, eastern.Count);
+        Assert.All(classic, s => Assert.Null(s.ImageVariantKey));
+        for (var i = 0; i < eastern.Count; i++)
+        {
+            if (eastern[i].Mystery is { } mystery)
+            {
+                Assert.Equal($"eastern_{mystery.ImageKey}", eastern[i].ImageVariantKey);
+            }
+            else
+            {
+                Assert.Null(eastern[i].ImageVariantKey);
+            }
+        }
+    }
+
+    [Fact]
+    public void BuildSteps_EasternImageStyle_AppliesToPresenterCombinedStep()
+    {
+        var steps = _engine.BuildSteps(SpecificRosary(new RosaryOptions
+        {
+            MysterySelectionMode = MysterySelectionMode.Specific,
+            SpecificMysteryGroup = MysteryGroup.Joyful,
+            PresenterMode = true,
+            MysteryImageStyle = MysteryImageStyle.Eastern,
+        }));
+
+        var combined = steps.Where(s => s.HailMaryIndexInDecade == 10).ToList();
+        Assert.Equal(5, combined.Count);
+        Assert.All(combined, s => Assert.StartsWith("eastern_", s.ImageVariantKey));
+    }
+
+    [Fact]
+    public void EveryEasternMysteryImageShipsInTheRosaryPack()
+    {
+        Assert.All(MysteryCatalog.All, m => Assert.NotNull(PrayerPackStore.ImageData($"eastern_{m.ImageKey}")));
     }
 }

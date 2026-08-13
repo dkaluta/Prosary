@@ -75,6 +75,8 @@
                         <Run x:Uid="AbtMys19Title" Text="Assumption of the Virgin" FontStyle="Italic" /><Run x:Uid="AbtCredit12" Text=" — Titian (d. 1576)" /><LineBreak />
                         <Run x:Uid="AbtMys20Title" Text="Coronation of the Virgin" FontStyle="Italic" /><Run x:Uid="AbtCredit13" Text=" — Diego Velázquez (d. 1660)" />
                     </TextBlock>
+                    <TextBlock x:Uid="AboutEasternIcons" Text="The collection of illustrations of the Mysteries in the Eastern style is used with approval from the St. Gamliel Apostolate for Hebrew Catholics in the Aramaic (Syriac) Catholic Church."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
                 </StackPanel>
 
                 <StackPanel Spacing="8">

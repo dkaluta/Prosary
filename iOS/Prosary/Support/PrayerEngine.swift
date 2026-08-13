@@ -82,8 +82,10 @@ struct PrayerEngine {
       "fatimaPrayer": rosary.includeFatimaPrayer ? "true" : "false",
       "eternalRest": rosary.eternalRestForDeceased.rawValue,
       "antiphon": rosary.marianAntiphon.rawValue,
+      "closingIntentions": rosary.includeClosingIntentions ? "true" : "false",
       "stMichael": rosary.includeStMichaelPrayer ? "true" : "false",
       "finalSignOfCross": rosary.includeFinalSignOfCross ? "true" : "false",
+      "imageStyle": rosary.mysteryImageStyle.rawValue,
     ]
   }
 
@@ -400,6 +402,12 @@ struct PrayerEngine {
     let minorBody = resolve(decades.minorStep.bodyKey)
     let presenterOn = optionValues["presenterMode"] == "true"
     let showGroupName = groups.count > 1
+    // The alternate-artwork seam: an eastern-style favorite stamps every Mystery-carrying step
+    // with the parallel "eastern_" image key, leaving Mystery.imageKey (identity + translation
+    // lookup) untouched.
+    func variantKey(_ mystery: Mystery) -> String? {
+      rosary.mysteryImageStyle == .eastern ? "eastern_\(mystery.imageKey)" : nil
+    }
 
     var steps: [RosaryStep] = []
     var decadeIndex = 0
@@ -420,7 +428,8 @@ struct PrayerEngine {
         steps.append(RosaryStep(
           title: mysteryText.title, subtitle: ordinalLabel,
           body: "\(mysteryText.description)\n\n\(fruitLabel): \(mysteryText.fruit)",
-          mystery: mystery, isScripture: true, decadeIndex: decadeIndex))
+          mystery: mystery, isScripture: true, decadeIndex: decadeIndex,
+          imageVariantKey: variantKey(mystery)))
         steps.append(RosaryStep(
           title: fixedTitle(decades.majorStep), subtitle: decadeSubtitle, body: majorBody,
           decadeIndex: decadeIndex, imageOverrideKey: decades.majorStep.imageKey))
@@ -429,13 +438,15 @@ struct PrayerEngine {
           steps.append(RosaryStep(
             title: presenter.combinedTitleKey.map(resolve) ?? presenter.combinedTitle ?? "", subtitle: decadeSubtitle,
             body: presenter.bodyKeys.map(resolve).joined(separator: "\n\n"),
-            mystery: mystery, decadeIndex: decadeIndex, hailMaryIndexInDecade: decades.minorCount))
+            mystery: mystery, decadeIndex: decadeIndex, hailMaryIndexInDecade: decades.minorCount,
+            imageVariantKey: variantKey(mystery)))
         } else {
           for h in 1...decades.minorCount {
             steps.append(RosaryStep(
               title: "\(fixedTitle(decades.minorStep)) \(counter(h, of: decades.minorCount, languageCode: languageCode))",
               subtitle: decadeSubtitle, body: minorBody,
-              mystery: mystery, decadeIndex: decadeIndex, hailMaryIndexInDecade: h))
+              mystery: mystery, decadeIndex: decadeIndex, hailMaryIndexInDecade: h,
+              imageVariantKey: variantKey(mystery)))
           }
         }
 

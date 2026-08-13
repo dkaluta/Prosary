@@ -99,6 +99,11 @@ fun AboutScreen(onBack: () -> Unit) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 stringArrayResource(R.array.about_mystery_attributions).forEach { line -> ItalicLeadLine(line) }
+                Text(
+                    stringResource(R.string.about_eastern_icons),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
             }
 
             AboutSection(title = stringResource(R.string.about_other_images)) {

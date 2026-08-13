@@ -38,6 +38,8 @@
   <data name="antiphon_ave_regina" xml:space="preserve"><value>Ave Regina Caelorum</value></data>
   <data name="antiphon_regina_caeli" xml:space="preserve"><value>Regina Caeli</value></data>
   <data name="antiphon_sub_tuum" xml:space="preserve"><value>Sub Tuum Praesidium</value></data>
+  <data name="imageStyle_classic" xml:space="preserve"><value>Classical paintings</value></data>
+  <data name="imageStyle_eastern" xml:space="preserve"><value>Eastern icons</value></data>
   <data name="language_default_parenthesized" xml:space="preserve"><value>Default ({0})</value></data>
   <data name="jp_count_times" xml:space="preserve"><value>{0}×</value></data>
   <data name="jp_times_prefix" xml:space="preserve"><value>× {0}</value></data>
@@ -151,9 +153,11 @@
   <data name="EdOpeningPrayers.Text" xml:space="preserve"><value>Opening Our Father &amp; 3 Hail Marys</value></data>
   <data name="EdFatima.Text" xml:space="preserve"><value>Fatima Prayer after each decade</value></data>
   <data name="EdDisplayHeader.Text" xml:space="preserve"><value>DISPLAY</value></data>
+  <data name="EdMysteryArtwork.Header" xml:space="preserve"><value>Mystery artwork</value></data>
   <data name="EdPresenterMode.Text" xml:space="preserve"><value>Presenter Mode</value></data>
   <data name="EdPresenterHint.Text" xml:space="preserve"><value>Combine each decade's Hail Marys and Glory Be onto one screen — useful when leading a group aloud from memory.</value></data>
   <data name="EdClosingHeader.Text" xml:space="preserve"><value>CLOSING PRAYERS</value></data>
+  <data name="EdClosingIntentions.Text" xml:space="preserve"><value>Closing Intentions</value></data>
   <data name="EdStMichael.Text" xml:space="preserve"><value>St. Michael Prayer</value></data>
   <data name="EdFinalSign.Text" xml:space="preserve"><value>Final Sign of the Cross</value></data>
   <data name="RemOptionsHeader.Text" xml:space="preserve"><value>OPTIONS</value></data>
@@ -170,6 +174,7 @@
   <data name="AbtTypeFooter.Text" xml:space="preserve"><value>Latin-script prayers use Cambria, which ships with Windows — not bundled with the app.</value></data>
   <data name="AbtMysteryHeader.Text" xml:space="preserve"><value>Mystery Illustrations</value></data>
   <data name="AbtMysteryIntro.Text" xml:space="preserve"><value>All 20 mystery images are classical paintings in the public domain (artist deceased over 100 years), sourced from Wikimedia Commons.</value></data>
+  <data name="AboutEasternIcons.Text" xml:space="preserve"><value>The collection of illustrations of the Mysteries in the Eastern style is used with approval from the St. Gamliel Apostolate for Hebrew Catholics in the Aramaic (Syriac) Catholic Church.</value></data>
   <data name="AbtOtherHeader.Text" xml:space="preserve"><value>Other Images</value></data>
   <data name="AbtStationsHeader.Text" xml:space="preserve"><value>Stations of the Cross Illustrations</value></data>
   <data name="AbtStationsFugel.Text" xml:space="preserve"><value>All 14 stations: Gebhard Fugel (1863–1939), Kreuzweg (1921), St. Antonius, Bad Saulgau — public domain; photographs by Andreas Praefcke, released into the public domain.</value></data>
@@ -289,10 +294,12 @@
   <data name="SetRemoveBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Remove</value></data>
   <data name="PickerEternalRest.Header" xml:space="preserve"><value>For the faithful departed</value></data>
   <data name="PickerAntiphon.Header" xml:space="preserve"><value>Marian antiphon</value></data>
+  <data name="PickerMysteryArtwork.Header" xml:space="preserve"><value>Mystery artwork</value></data>
   <data name="PickerApostlesCreed.Text" xml:space="preserve"><value>Apostles' Creed</value></data>
   <data name="PickerOpeningPrayers.Text" xml:space="preserve"><value>Opening Our Father &amp; 3 Hail Marys</value></data>
   <data name="PickerFatima.Text" xml:space="preserve"><value>Fatima Prayer after each decade</value></data>
   <data name="PickerPresenterMode.Text" xml:space="preserve"><value>Presenter mode</value></data>
+  <data name="PickerClosingIntentions.Text" xml:space="preserve"><value>Closing Intentions</value></data>
   <data name="PickerStMichael.Text" xml:space="preserve"><value>St. Michael prayer</value></data>
   <data name="PickerFinalCross.Text" xml:space="preserve"><value>Final Sign of the Cross</value></data>
   <data name="AbtPrayerTextsHeader.Text" xml:space="preserve"><value>Prayer Texts</value></data>

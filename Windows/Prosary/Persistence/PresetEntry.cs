@@ -57,11 +57,18 @@ public sealed class PresetEntry
     public bool IncludeFatimaPrayer { get; set; } = true;
     public EternalRestPlacement EternalRestForDeceased { get; set; } = EternalRestPlacement.None;
     public MarianAntiphonOption MarianAntiphon { get; set; } = MarianAntiphonOption.Seasonal;
+
+    /// <summary>Defaults to false for existing rows.</summary>
+    public bool IncludeClosingIntentions { get; set; }
+
     public bool IncludeStMichaelPrayer { get; set; }
     public bool IncludeFinalSignOfCross { get; set; } = true;
 
     /// <summary>Defaults to false for existing rows.</summary>
     public bool PresenterMode { get; set; }
+
+    /// <summary>Defaults to Classic (0) for existing rows.</summary>
+    public MysteryImageStyle MysteryImageStyle { get; set; } = MysteryImageStyle.Classic;
 
     // Flattened JesusPrayerOptions (only meaningful when Kind == JesusPrayer).
     public bool JesusPrayerIsUnbounded { get; set; }
@@ -94,9 +101,11 @@ public sealed class PresetEntry
             IncludeFatimaPrayer = IncludeFatimaPrayer,
             EternalRestForDeceased = EternalRestForDeceased,
             MarianAntiphon = MarianAntiphon,
+            IncludeClosingIntentions = IncludeClosingIntentions,
             IncludeStMichaelPrayer = IncludeStMichaelPrayer,
             IncludeFinalSignOfCross = IncludeFinalSignOfCross,
             PresenterMode = PresenterMode,
+            MysteryImageStyle = MysteryImageStyle,
         },
         JesusPrayer = new JesusPrayerOptions
         {
@@ -126,9 +135,11 @@ public sealed class PresetEntry
         IncludeFatimaPrayer = prayer.Rosary.IncludeFatimaPrayer,
         EternalRestForDeceased = prayer.Rosary.EternalRestForDeceased,
         MarianAntiphon = prayer.Rosary.MarianAntiphon,
+        IncludeClosingIntentions = prayer.Rosary.IncludeClosingIntentions,
         IncludeStMichaelPrayer = prayer.Rosary.IncludeStMichaelPrayer,
         IncludeFinalSignOfCross = prayer.Rosary.IncludeFinalSignOfCross,
         PresenterMode = prayer.Rosary.PresenterMode,
+        MysteryImageStyle = prayer.Rosary.MysteryImageStyle,
         JesusPrayerIsUnbounded = prayer.JesusPrayer.Target is JesusPrayerTarget.Unbounded,
         JesusPrayerCount = prayer.JesusPrayer.Target is JesusPrayerTarget.Count(var n) ? n : 33,
         RemindersJson = JsonSerializer.Serialize(prayer.Reminders),

@@ -32,9 +32,14 @@ data class RosaryStep(
     val hailMaryIndexInDecade: Int? = null,
     /** Image key for steps not tied to a Mystery but that still want a specific illustration (e.g. "crucifix" for the Sign of the Cross/Apostles' Creed, "madonna_and_child" for the antiphon) instead of the generic placeholder. */
     var imageOverrideKey: String? = null,
+    /** Alternate-artwork override set by the engine on Mystery-carrying steps when the
+     * favorite's mysteryImageStyle selects a non-default set (e.g. "eastern_joyful_01_annunciation").
+     * A separate field because [Mystery.imageKey] is the mystery's identity and the
+     * MysteryTranslations lookup key, which must not change with the artwork. */
+    val imageVariantKey: String? = null,
 ) {
-    /** The drawable resource name this step should display: the mystery's own image, an
-     * explicit override, or the neutral placeholder. */
+    /** The drawable resource name this step should display: the artwork-style variant, the
+     * mystery's own image, an explicit override, or the neutral placeholder. */
     val imageKey: String
-        get() = mystery?.imageKey ?: imageOverrideKey ?: "cross_placeholder"
+        get() = imageVariantKey ?: mystery?.imageKey ?: imageOverrideKey ?: "cross_placeholder"
 }

@@ -112,6 +112,9 @@ public partial class FavoriteEditorViewModel : ObservableObject
     private MarianAntiphonOption _marianAntiphon = MarianAntiphonOption.Seasonal;
 
     [ObservableProperty]
+    private bool _includeClosingIntentions;
+
+    [ObservableProperty]
     private bool _includeStMichaelPrayer;
 
     [ObservableProperty]
@@ -122,6 +125,9 @@ public partial class FavoriteEditorViewModel : ObservableObject
     /// visually-identical screens. See <c>PrayerEngine.BuildRosarySteps</c>.</summary>
     [ObservableProperty]
     private bool _presenterMode;
+
+    [ObservableProperty]
+    private MysteryImageStyle _mysteryImageStyle = MysteryImageStyle.Classic;
 
     [ObservableProperty]
     private JesusPrayerTarget _jesusPrayerTarget = new JesusPrayerTarget.Count(33);
@@ -171,6 +177,7 @@ public partial class FavoriteEditorViewModel : ObservableObject
     public IReadOnlyList<MysteryGroup> MysteryGroupOptions { get; } = Enum.GetValues<MysteryGroup>();
     public IReadOnlyList<EternalRestPlacement> EternalRestPlacementOptions { get; } = Enum.GetValues<EternalRestPlacement>();
     public IReadOnlyList<MarianAntiphonOption> MarianAntiphonOptions { get; } = Enum.GetValues<MarianAntiphonOption>();
+    public IReadOnlyList<MysteryImageStyle> MysteryImageStyleOptions { get; } = Enum.GetValues<MysteryImageStyle>();
 
     public IReadOnlyList<JesusPrayerTarget> JesusPrayerTargetOptions { get; } =
     [
@@ -226,9 +233,11 @@ public partial class FavoriteEditorViewModel : ObservableObject
         IncludeFatimaPrayer = prayer.Rosary.IncludeFatimaPrayer;
         EternalRestForDeceased = prayer.Rosary.EternalRestForDeceased;
         MarianAntiphon = prayer.Rosary.MarianAntiphon;
+        IncludeClosingIntentions = prayer.Rosary.IncludeClosingIntentions;
         IncludeStMichaelPrayer = prayer.Rosary.IncludeStMichaelPrayer;
         IncludeFinalSignOfCross = prayer.Rosary.IncludeFinalSignOfCross;
         PresenterMode = prayer.Rosary.PresenterMode;
+        MysteryImageStyle = prayer.Rosary.MysteryImageStyle;
         JesusPrayerTarget = prayer.JesusPrayer.Target;
         RemindersEditor.Reminders = new ObservableCollection<PrayerReminder>(prayer.Reminders);
     }
@@ -250,9 +259,11 @@ public partial class FavoriteEditorViewModel : ObservableObject
             IncludeFatimaPrayer = IncludeFatimaPrayer,
             EternalRestForDeceased = EternalRestForDeceased,
             MarianAntiphon = MarianAntiphon,
+            IncludeClosingIntentions = IncludeClosingIntentions,
             IncludeStMichaelPrayer = IncludeStMichaelPrayer,
             IncludeFinalSignOfCross = IncludeFinalSignOfCross,
             PresenterMode = PresenterMode,
+            MysteryImageStyle = MysteryImageStyle,
         },
         JesusPrayer = new JesusPrayerOptions { Target = JesusPrayerTarget },
         Reminders = [.. RemindersEditor.Reminders],

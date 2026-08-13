@@ -34,9 +34,15 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
 - **`RosaryOptions`** — `mysterySelectionMode` (today's mysteries / a specific fixed set / all 15
   / all 20 / a single mystery), `specificMysteryGroup`, `specificMysteryOrder` (1-based, used only
   for the single-mystery mode), `presenterMode` (collapses each decade's Hail Marys + Glory Be
-  onto one combined step — see "Engines" below), and toggles for the Apostles' Creed, opening Our
+  onto one combined step — see "Engines" below), toggles for the Apostles' Creed, opening Our
   Father + 3 Hail Marys, the Fatima Prayer, eternal-rest placement, the closing Marian antiphon,
-  the St. Michael prayer, and the final Sign of the Cross.
+  the closing intentions (the customary intercessions right after the antiphon — for the Pope,
+  the local ordinary, and the holy souls — each unfolding into an Our Father/Hail Mary/Glory Be,
+  from the Mission of St. Gamaliel's prayer book), the St. Michael prayer, and the final Sign of
+  the Cross, and `mysteryImageStyle` (classic paintings vs. the `eastern_*` icon set; the engine
+  stamps `RosaryStep.imageVariantKey` on every Mystery-carrying step so display resolution —
+  `imageVariantKey ?? mystery.imageKey ?? imageOverrideKey` — swaps artwork without touching
+  `Mystery.imageKey`, which stays the mystery's identity and translation-lookup key).
 - **`JesusPrayerOptions`** / **`JesusPrayerTarget`** — a repetition count (`Count(n)`) or
   `Unbounded` (no target; the user ends the session explicitly).
 - **`JesusPrayerProgress`** — the live repetition counter during a session. Immutable
@@ -84,10 +90,13 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   step, whose body is a real quoted Bible verse), `isAntiphon`, `decadeIndex` (0-based, counted
   *globally* across every mystery group in the session — this is what the bead track uses to tell
   decades apart, so it must never reset per group), `hailMaryIndexInDecade` (1–10 for the Rosary/
-  Franciscan Crown/Divine Mercy Chaplet, 1–7 for Seven Sorrows), and an
+  Franciscan Crown/Divine Mercy Chaplet, 1–7 for Seven Sorrows), an
   `imageOverrideKey` for steps not tied to a Mystery that still want a specific illustration
   (e.g. "crucifix" for the Sign of the Cross, "our_father" for the Our Father, "madonna_and_child"
-  for the antiphon).
+  for the antiphon), and an `imageVariantKey` the engine sets on Mystery-carrying steps when the
+  favorite's `mysteryImageStyle` selects an alternate artwork set (`"eastern_" + imageKey`);
+  display resolution is `imageVariantKey ?? mystery.imageKey ?? imageOverrideKey ??
+  "cross_placeholder"` on every platform.
 
 ## Engines
 
@@ -115,8 +124,9 @@ options.json values (`rosaryOptionValues`), so there is **no data migration**.
 - **Rosary** — the richest: opening (Sign of the Cross, optional Creed, optional opening Our
   Father/3 Hail Marys for Faith/Hope/Charity), one loop per decade across every resolved
   `MysteryGroup` (mystery announcement → Our Father → 10 Hail Marys → Glory Be → optional Fatima
-  Prayer → optional per-decade eternal rest), closing (Marian antiphon → optional St. Michael
-  prayer → optional end-of-session eternal rest → optional final Sign of the Cross). The
+  Prayer → optional per-decade eternal rest), closing (Marian antiphon → optional closing intentions: three intercessions each unfolding
+  into Our Father/Hail Mary/Glory Be and closed by "May they rest in peace" → optional St.
+  Michael prayer → optional end-of-session eternal rest → optional final Sign of the Cross). The
   single-mystery mode (`mysterySelectionMode == singleMystery`) resolves to the same one-group
   shape as the fixed-set mode, but the per-group loop only builds the one decade at
   `specificMysteryOrder - 1`, keeping the mystery's true ordinal (e.g. "3rd Mystery") for its
@@ -304,7 +314,10 @@ its current enabled ones), `removeAll(prayer)`, `rescheduleAll(prayers)` (called
   text, and Latin/English Scripture quotations. Latin-script *ordinary* prayer text uses each
   platform's own system serif instead (Apple's "New York" on iOS/Mac, the system serif on
   Android, Cambria on Windows) — none of those are bundled, only the 5 above are.
-- **`Images/`** — the 20 mystery paintings, the 14 Stations (Gebhard Fugel's 1921 Bad Saulgau
+- **`Images/`** — the 20 mystery paintings (plus the alternate `eastern_*` icon set — the same
+  20 mysteries in an Eastern/illuminated-manuscript style, selected per favorite by
+  `RosaryOptions.mysteryImageStyle`; see `Images/CREDITS.md` for their AI-generated provenance),
+  the 14 Stations (Gebhard Fugel's 1921 Bad Saulgau
   Kreuzweg cycle), the 7 Sorrows (per-scene old masters), the Franciscan Crown's Adoration of the
   Magi (Murillo), the Divine Mercy image (Kazimirowski, 1934) — all public-domain classical art,
   every file an exact 1:1 square — plus ~10 override illustrations used by steps not tied to a

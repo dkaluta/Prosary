@@ -4,7 +4,9 @@ import androidx.compose.ui.graphics.Color
 import com.dkaluta.prosary.calendar.LiturgicalCalendarProviding
 import com.dkaluta.prosary.models.EternalRestPlacement
 import com.dkaluta.prosary.models.MarianAntiphonOption
+import com.dkaluta.prosary.models.MysteryCatalog
 import com.dkaluta.prosary.models.MysteryGroup
+import com.dkaluta.prosary.models.MysteryImageStyle
 import com.dkaluta.prosary.models.MysterySelectionMode
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.RosaryOptions
@@ -53,9 +55,11 @@ class RosaryEngineTest {
         includeFatima: Boolean = true,
         eternalRest: EternalRestPlacement = EternalRestPlacement.None,
         antiphon: MarianAntiphonOption = MarianAntiphonOption.SalveRegina,
+        closingIntentions: Boolean = false,
         includeMichael: Boolean = false,
         includeFinalCross: Boolean = true,
         presenterMode: Boolean = false,
+        imageStyle: MysteryImageStyle = MysteryImageStyle.Classic,
     ) = Prayer(
         rosary = RosaryOptions(
             mysterySelectionMode = mode,
@@ -66,9 +70,11 @@ class RosaryEngineTest {
             includeFatimaPrayer = includeFatima,
             eternalRestForDeceased = eternalRest,
             marianAntiphon = antiphon,
+            includeClosingIntentions = closingIntentions,
             includeStMichaelPrayer = includeMichael,
             includeFinalSignOfCross = includeFinalCross,
             presenterMode = presenterMode,
+            mysteryImageStyle = imageStyle,
         ),
     )
 
@@ -132,6 +138,75 @@ class RosaryEngineTest {
         val without = engine().buildSteps(prayer(eternalRest = EternalRestPlacement.None)).size
         val atEnd = engine().buildSteps(prayer(eternalRest = EternalRestPlacement.AtEndOnly)).size
         assertEquals(without + 1, atEnd)
+    }
+
+    // MARK: - Closing intentions
+
+    @Test
+    fun closingIntentionsAddTenSteps() {
+        val without = engine().buildSteps(prayer(closingIntentions = false)).size
+        val with = engine().buildSteps(prayer(closingIntentions = true)).size
+        // 3 intentions x (Our Father + Hail Mary + Glory Be) + the requiescant versicle = 10
+        assertEquals(without + 10, with)
+    }
+
+    @Test
+    fun closingIntentionsFollowTheAntiphonDirectly() {
+        val steps = engine().buildSteps(prayer(closingIntentions = true).copy(languageCode = "la"))
+        val antiphonIndex = steps.indexOfFirst { it.isAntiphon }
+        assertTrue(antiphonIndex >= 0)
+        val intentions = steps.subList(antiphonIndex + 1, antiphonIndex + 11)
+        assertEquals("Pater Noster", intentions.first().title)
+        assertEquals(
+            "Pro intentionibus Summi Pontificis et necessitatibus Ecclesiae et patriae.",
+            intentions.first().subtitle,
+        )
+        assertEquals("Requiescant in pace.\n**Amen.**", intentions.last().body)
+    }
+
+    @Test
+    fun closingIntentionsPrayThePatriarchInHebrewAndTheExarchInTheGamlielRite() {
+        val vicariate = engine().buildSteps(prayer(closingIntentions = true).copy(languageCode = "he"))
+        assertTrue(vicariate.any { it.subtitle?.contains("הַפַּטְרִיאַרְךְ") == true })
+        val gamliel = engine().buildSteps(prayer(closingIntentions = true).copy(languageCode = "he-x-gamliel"))
+        assertTrue(gamliel.any { it.subtitle?.contains("הַהֶגְמוֹן") == true })
+        assertFalse(gamliel.any { it.subtitle?.contains("הַפַּטְרִיאַרְךְ") == true })
+    }
+
+    // MARK: - Mystery artwork
+
+    @Test
+    fun easternImageStyleSwapsOnlyMysteryImagery() {
+        val classic = engine().buildSteps(prayer())
+        assertFalse(classic.any { it.imageKey.startsWith("eastern_") })
+        val eastern = engine().buildSteps(prayer(imageStyle = MysteryImageStyle.Eastern))
+        assertEquals(classic.size, eastern.size)
+        for ((c, e) in classic.zip(eastern)) {
+            val mystery = c.mystery
+            if (mystery != null) {
+                assertEquals("eastern_${mystery.imageKey}", e.imageKey)
+            } else {
+                assertEquals(c.imageKey, e.imageKey)
+            }
+        }
+    }
+
+    @Test
+    fun easternImageStyleAppliesToPresenterCombinedStep() {
+        val steps = engine().buildSteps(prayer(presenterMode = true, imageStyle = MysteryImageStyle.Eastern))
+        val combined = steps.filter { it.hailMaryIndexInDecade == 10 }
+        assertEquals(5, combined.size)
+        assertTrue(combined.all { it.imageKey.startsWith("eastern_") })
+    }
+
+    @Test
+    fun everyEasternMysteryImageShipsInTheRosaryPack() {
+        for (mystery in MysteryCatalog.all) {
+            assertNotNull(
+                "missing eastern image for ${mystery.imageKey}",
+                PrayerPackStore.imageData("eastern_${mystery.imageKey}"),
+            )
+        }
     }
 
     // MARK: - Twenty mysteries

@@ -87,10 +87,32 @@
       ]
     },
     {
+      "key": "closingIntentions",
+      "kind": "toggle",
+      "name": "Closing intentions (for the Pope, the local bishop, and the faithful departed)",
+      "default": false
+    },
+    {
       "key": "stMichael",
       "kind": "toggle",
       "name": "St. Michael prayer",
       "default": false
+    },
+    {
+      "key": "imageStyle",
+      "kind": "choice",
+      "name": "Mystery artwork",
+      "default": "classic",
+      "cases": [
+        {
+          "id": "classic",
+          "name": "Classical paintings"
+        },
+        {
+          "id": "eastern",
+          "name": "Eastern icons"
+        }
+      ]
     },
     {
       "key": "finalSignOfCross",

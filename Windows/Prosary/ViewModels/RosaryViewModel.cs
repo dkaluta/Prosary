@@ -209,7 +209,7 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         Header = step.Title;
         Subtitle = step.Subtitle;
         Body = step.Body;
-        MysteryImageKey = step.Mystery?.ImageKey ?? step.ImageOverrideKey ?? "cross_placeholder";
+        MysteryImageKey = step.ImageVariantKey ?? step.Mystery?.ImageKey ?? step.ImageOverrideKey ?? "cross_placeholder";
         ProgressText = string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), _index + 1, _steps.Count);
         Progress = (_index + 1) / (double)_steps.Count;
         CanGoBack = _index > 0;

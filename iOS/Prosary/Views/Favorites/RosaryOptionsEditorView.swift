@@ -72,6 +72,11 @@ struct RosaryOptionsSections: View {
       }
 
       Section {
+        Picker("favoriteEditor.mysteryArtwork", selection: $rosary.mysteryImageStyle) {
+          ForEach(MysteryImageStyle.allCases) { style in
+            Text(style.displayName).tag(style)
+          }
+        }
         Toggle("favoriteEditor.presenterMode", isOn: $rosary.presenterMode)
       } header: {
         Text("favoriteEditor.presenterModeHeader")
@@ -85,6 +90,7 @@ struct RosaryOptionsSections: View {
             Text(option.displayName).tag(option)
           }
         }
+        Toggle("favoriteEditor.closingIntentions", isOn: $rosary.includeClosingIntentions)
         Toggle("favoriteEditor.stMichaelPrayer", isOn: $rosary.includeStMichaelPrayer)
         Toggle("favoriteEditor.finalSignOfCross", isOn: $rosary.includeFinalSignOfCross)
       }

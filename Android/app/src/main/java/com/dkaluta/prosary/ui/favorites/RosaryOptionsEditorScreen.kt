@@ -31,6 +31,7 @@ import com.dkaluta.prosary.models.EternalRestPlacement
 import com.dkaluta.prosary.models.MarianAntiphonOption
 import com.dkaluta.prosary.models.MysteryCatalog
 import com.dkaluta.prosary.models.MysteryGroup
+import com.dkaluta.prosary.models.MysteryImageStyle
 import com.dkaluta.prosary.models.MysterySelectionMode
 import com.dkaluta.prosary.models.RosaryOptions
 import com.dkaluta.prosary.ui.presets.OptionPickerField
@@ -136,6 +137,14 @@ fun RosaryOptionsEditorScreen(rosary: RosaryOptions, onRosaryChange: (RosaryOpti
             }
 
             FormSection(title = stringResource(R.string.ro_display_section)) {
+                OptionPickerField(
+                    label = stringResource(R.string.ro_mystery_artwork),
+                    options = MysteryImageStyle.entries,
+                    selected = rosary.mysteryImageStyle,
+                    optionLabel = { context.getString(it.displayNameRes) },
+                    onSelect = { onRosaryChange(rosary.copy(mysteryImageStyle = it)) },
+                    modifier = Modifier.fillMaxWidth(),
+                )
                 SwitchRow(stringResource(R.string.ro_presenter_mode), rosary.presenterMode) {
                     onRosaryChange(rosary.copy(presenterMode = it))
                 }
@@ -155,6 +164,9 @@ fun RosaryOptionsEditorScreen(rosary: RosaryOptions, onRosaryChange: (RosaryOpti
                     onSelect = { onRosaryChange(rosary.copy(marianAntiphon = it)) },
                     modifier = Modifier.fillMaxWidth(),
                 )
+                SwitchRow(stringResource(R.string.ro_closing_intentions), rosary.includeClosingIntentions) {
+                    onRosaryChange(rosary.copy(includeClosingIntentions = it))
+                }
                 SwitchRow(stringResource(R.string.ro_st_michael), rosary.includeStMichaelPrayer) {
                     onRosaryChange(rosary.copy(includeStMichaelPrayer = it))
                 }

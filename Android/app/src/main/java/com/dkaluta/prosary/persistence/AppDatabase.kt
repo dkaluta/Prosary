@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(entities = [PresetEntity::class], version = 6, exportSchema = false)
+@Database(entities = [PresetEntity::class], version = 7, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun presetDao(): PresetDao
 }
@@ -51,3 +51,19 @@ val MIGRATION_5_6 = object : Migration(5, 6) {
         db.execSQL("ALTER TABLE presets ADD COLUMN dayIndex INTEGER")
     }
 }
+
+/** Adds the Rosary's closing-intentions toggle and mystery-artwork style — see
+ * [PresetEntity.includeClosingIntentions] and [PresetEntity.mysteryImageStyle]. */
+val MIGRATION_6_7 = object : Migration(6, 7) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("ALTER TABLE presets ADD COLUMN includeClosingIntentions INTEGER NOT NULL DEFAULT 0")
+        db.execSQL("ALTER TABLE presets ADD COLUMN mysteryImageStyle TEXT NOT NULL DEFAULT 'Classic'")
+    }
+}
+
+/** Every schema migration, in order. Register this wherever a Room instance is built
+ * ([com.dkaluta.prosary.services.AppServices] and the boot-time reopen in
+ * [com.dkaluta.prosary.reminders.BootReceiver]) — a secondary open that registers only a
+ * subset crashes the moment it meets a database version whose step it lacks (an app update
+ * followed by a reboot before the first launch reaches BootReceiver first). */
+val ALL_MIGRATIONS = arrayOf(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7)

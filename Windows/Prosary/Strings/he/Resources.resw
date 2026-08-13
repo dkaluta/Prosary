@@ -38,6 +38,8 @@
   <data name="antiphon_ave_regina" xml:space="preserve"><value>שלום לך מלכת שמים</value></data>
   <data name="antiphon_regina_caeli" xml:space="preserve"><value>רוני מלכת שמים</value></data>
   <data name="antiphon_sub_tuum" xml:space="preserve"><value>בצל רחמיך</value></data>
+  <data name="imageStyle_classic" xml:space="preserve"><value>ציורים קלאסיים</value></data>
+  <data name="imageStyle_eastern" xml:space="preserve"><value>איקונות מזרחיות</value></data>
   <data name="language_default_parenthesized" xml:space="preserve"><value>ברירת מחדל ({0})</value></data>
   <data name="jp_count_times" xml:space="preserve"><value>‏{0}×</value></data>
   <data name="jp_times_prefix" xml:space="preserve"><value>‏× {0}</value></data>
@@ -151,9 +153,11 @@
   <data name="EdOpeningPrayers.Text" xml:space="preserve"><value>“אבינו שבשמים” ו־3 “שמחי מרים” בפתיחה</value></data>
   <data name="EdFatima.Text" xml:space="preserve"><value>“הו ישוע שלי” בסוף כל רז</value></data>
   <data name="EdDisplayHeader.Text" xml:space="preserve"><value>תצוגה</value></data>
+  <data name="EdMysteryArtwork.Header" xml:space="preserve"><value>איורי הרזים</value></data>
   <data name="EdPresenterMode.Text" xml:space="preserve"><value>מצב מנחה</value></data>
   <data name="EdPresenterHint.Text" xml:space="preserve"><value>איחוד עשר ה“שמחי מרים” וה“כבוד לאב” של כל רז למסך אחד — שימושי למי שמוביל תפילה בציבור בעל־פה.</value></data>
   <data name="EdClosingHeader.Text" xml:space="preserve"><value>תפילות סיום</value></data>
+  <data name="EdClosingIntentions.Text" xml:space="preserve"><value>כוונות הסיום</value></data>
   <data name="EdStMichael.Text" xml:space="preserve"><value>תפילת המלאך מיכאל</value></data>
   <data name="EdFinalSign.Text" xml:space="preserve"><value>סימן הצלב בסוף</value></data>
   <data name="RemOptionsHeader.Text" xml:space="preserve"><value>אפשרויות</value></data>
@@ -170,6 +174,7 @@
   <data name="AbtTypeFooter.Text" xml:space="preserve"><value>תפילות בכתב לטיני משתמשות בגופן Cambria, המצורף ל־Windows — אינו מצורף לאפליקציה.</value></data>
   <data name="AbtMysteryHeader.Text" xml:space="preserve"><value>איורי הרזים</value></data>
   <data name="AbtMysteryIntro.Text" xml:space="preserve"><value>כל 20 תמונות הרזים הן ציורים קלאסיים ברשות הציבור (האמן נפטר לפני יותר מ־100 שנים), מתוך ויקישיתוף.</value></data>
+  <data name="AboutEasternIcons.Text" xml:space="preserve"><value>אוסף איורי הרזים בסגנון המזרחי מובא באישור שליחות גמליאל הקדוש לקתולים עבריים של העדה הארמית (סורית) קתולית.</value></data>
   <data name="AbtOtherHeader.Text" xml:space="preserve"><value>תמונות נוספות</value></data>
   <data name="AbtStationsHeader.Text" xml:space="preserve"><value>איורי דרך הצלב</value></data>
   <data name="AbtStationsFugel.Text" xml:space="preserve"><value>כל 14 התחנות: גבהרד פוגל (1863–1939), דרך הצלב (Kreuzweg, 1921), כנסיית אנטוניוס הקדוש, באד זאולגאו — רשות הציבור; צילומים מאת אנדראס פרפקה, שהוקדשו לרשות הציבור.</value></data>
@@ -289,10 +294,12 @@
   <data name="SetRemoveBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>הסר</value></data>
   <data name="PickerEternalRest.Header" xml:space="preserve"><value>למען הנפטרים</value></data>
   <data name="PickerAntiphon.Header" xml:space="preserve"><value>אנטיפון מריאני</value></data>
+  <data name="PickerMysteryArtwork.Header" xml:space="preserve"><value>איורי הרזים</value></data>
   <data name="PickerApostlesCreed.Text" xml:space="preserve"><value>אני מאמין</value></data>
   <data name="PickerOpeningPrayers.Text" xml:space="preserve"><value>אבינו ושלוש פעמים שלום לך מרים בפתיחה</value></data>
   <data name="PickerFatima.Text" xml:space="preserve"><value>תפילת פאטימה אחרי כל עשור</value></data>
   <data name="PickerPresenterMode.Text" xml:space="preserve"><value>מצב מנחה</value></data>
+  <data name="PickerClosingIntentions.Text" xml:space="preserve"><value>כוונות הסיום</value></data>
   <data name="PickerStMichael.Text" xml:space="preserve"><value>תפילת המלאך מיכאל</value></data>
   <data name="PickerFinalCross.Text" xml:space="preserve"><value>אות הצלב בסיום</value></data>
   <data name="AbtPrayerTextsHeader.Text" xml:space="preserve"><value>נוסחי התפילות</value></data>

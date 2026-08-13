@@ -4,8 +4,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.room.Room
+import com.dkaluta.prosary.persistence.ALL_MIGRATIONS
 import com.dkaluta.prosary.persistence.AppDatabase
-import com.dkaluta.prosary.persistence.MIGRATION_1_2
 import com.dkaluta.prosary.persistence.RoomPresetStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -23,7 +23,7 @@ class BootReceiver : BroadcastReceiver() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val db = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "prosary.db")
-                    .addMigrations(MIGRATION_1_2)
+                    .addMigrations(*ALL_MIGRATIONS)
                     .build()
                 val store = RoomPresetStore(db.presetDao())
                 ReminderScheduler.rescheduleAll(context, store.all())

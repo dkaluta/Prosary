@@ -26,4 +26,12 @@ public sealed record RosaryStep(
     bool IsAntiphon = false,
     int? DecadeIndex = null,
     int? HailMaryIndexInDecade = null,
-    string? ImageOverrideKey = null);
+    string? ImageOverrideKey = null)
+{
+    /// <summary>Alternate-artwork override the engine sets on Mystery-carrying steps when the
+    /// favorite's <c>MysteryImageStyle</c> selects a non-default set (e.g.
+    /// "eastern_joyful_01_annunciation"). A separate field rather than a rewrite of
+    /// <see cref="Mystery"/>.<c>ImageKey</c> because that key is the mystery's identity and
+    /// translation-lookup key.</summary>
+    public string? ImageVariantKey { get; init; }
+}
