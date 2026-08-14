@@ -752,9 +752,20 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
   - `roman1962` — **`feasts-roman1962.json`**: the 1962 Vetus Ordo calendar (missalemeum.com,
     MIT), I–III class days with class ranks ("1st Class"…"3rd Class"); IV-class days and bare
     ferias are omitted the way ferial days are elsewhere. The Home screens bold a feast title
-    when its rank is "Solemnity" **or "1st Class"**.
-  - Wanted next, each pending a source (no licensed machine-readable data exists): Syriac
-    Catholic (Erez's apostolate would be the witness) and Ukrainian Greek Catholic. Adding one
+    when its rank is "Solemnity", **"1st Class"**, or **"Great Feast"**.
+  - `ugcc` — **`feasts-ugcc.json`**: Byzantine — Ukrainian Greek Catholic, deliberately the
+    **diasporic (fully Gregorian) usage** — the variant its Holy Land faithful pray — not
+    Ukraine's new-calendar-with-Julian-Pascha hybrid. No licensed machine-readable source
+    exists, so the fixed menologion is curated inside `fetch-feasts.py` (the Twelve Great
+    Feasts, the major wall-calendar commemorations, and the UGCC's own: Josaphat, Volodymyr,
+    Olha, the Blessed New Martyrs) and the movable Paschal cycle is computed from the
+    Gregorian computus; every Sunday is named (Triodion/Pentecostarion names, pre-Nativity/
+    Theophany specials, otherwise numbered after Pentecost), and a fixed Great Feast falling
+    on a movable-cycle day is joined into one title rather than displaced (the Annunciation
+    on Great and Holy Thursday, 2027). Ranks: "Great Feast" / "Feast" / "Sunday" /
+    "Holy Week" / "Fast". Curated data awaiting eparchial/community verification.
+  - Wanted next, pending a community source (no machine-readable data exists): Syriac
+    Catholic — Erez's apostolate would be the witness. Adding a calendar
     is a pure data drop: a registry entry + a dataset file + platform copies.
   `Shared/tools/fetch-feasts.py` regenerates every table (litcal + missalemeum; `--sync`
   copies all of `Shared/data/*.json` into the three platform asset dirs). `TodayInfoStore`

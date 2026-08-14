@@ -81,13 +81,14 @@ final class TodayInfoStoreTests: XCTestCase {
   // MARK: - Switchable calendars
 
   func testCalendarRegistryListsTheShippedCalendarsInPickerOrder() {
-    XCTAssertEqual(TodayInfoStore.calendars.map(\.id), ["lpj", "roman", "roman1962"])
+    XCTAssertEqual(TodayInfoStore.calendars.map(\.id), ["lpj", "roman", "roman1962", "ugcc"])
     XCTAssertEqual(TodayInfoStore.selectedCalendarId, "lpj")
   }
 
-  /// October 25, 2026 wears three different faces: the LPJ's patronal solemnity, a plain
-  /// Sunday of Ordinary Time in the general calendar, and Christ the King in the 1962 books
-  /// (which place the feast on October's last Sunday).
+  /// October 25, 2026 wears four different faces: the LPJ's patronal solemnity, a plain
+  /// Sunday of Ordinary Time in the general calendar, Christ the King in the 1962 books
+  /// (which place the feast on October's last Sunday), and a numbered Sunday after Pentecost
+  /// in the Byzantine reckoning.
   func testSwitchingCalendarsResolvesEachCalendarsOwnFeast() {
     XCTAssertEqual(
       TodayInfoStore.feast(on: date("2026-10-25"))?.title,
@@ -101,6 +102,27 @@ final class TodayInfoStoreTests: XCTestCase {
     let vetus = TodayInfoStore.feast(on: date("2026-10-25"))
     XCTAssertEqual(vetus?.title, "Christ the King")
     XCTAssertEqual(vetus?.rank, "1st Class")
+
+    select("ugcc")
+    XCTAssertEqual(
+      TodayInfoStore.feast(on: date("2026-10-25"))?.title, "22nd Sunday after Pentecost")
+  }
+
+  /// The UGCC dataset is the diasporic (fully Gregorian) usage prayed in the Holy Land:
+  /// Pascha falls with the Gregorian computus (April 5, 2026 — the same day as the Roman
+  /// Easter), and a fixed Great Feast landing in Holy Week is joined, never displaced —
+  /// in 2027 the Annunciation falls on Great and Holy Thursday.
+  func testUkrainianCalendarPraysTheGregorianPascha() {
+    select("ugcc")
+    let pascha = TodayInfoStore.feast(on: date("2026-04-05"))
+    XCTAssertEqual(pascha?.title, "The Resurrection of Our Lord — Holy Pascha")
+    XCTAssertEqual(pascha?.rank, "Great Feast")
+    XCTAssertEqual(
+      TodayInfoStore.feast(on: date("2026-10-01"))?.title,
+      "The Protection of the Most Holy Theotokos (Pokrov)")
+    XCTAssertEqual(
+      TodayInfoStore.feast(on: date("2027-03-25"))?.title,
+      "The Annunciation of the Most Holy Theotokos; Great and Holy Thursday")
   }
 
   func testUnknownCalendarIdFallsBackToTheDefault() {

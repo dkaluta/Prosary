@@ -66,13 +66,14 @@ public class TodayInfoStoreTests
     [Fact]
     public void CalendarRegistryListsTheShippedCalendarsInPickerOrder()
     {
-        Assert.Equal(new[] { "lpj", "roman", "roman1962" }, TodayInfoStore.Calendars.Select(c => c.Id));
+        Assert.Equal(new[] { "lpj", "roman", "roman1962", "ugcc" }, TodayInfoStore.Calendars.Select(c => c.Id));
         Assert.Equal("lpj", TodayInfoStore.ResolvedCalendarId);
     }
 
-    /// <summary>October 25, 2026 wears three different faces: the LPJ's patronal solemnity, a
-    /// plain Sunday of Ordinary Time in the general calendar, and Christ the King in the 1962
-    /// books (which place the feast on October's last Sunday).</summary>
+    /// <summary>October 25, 2026 wears four different faces: the LPJ's patronal solemnity, a
+    /// plain Sunday of Ordinary Time in the general calendar, Christ the King in the 1962
+    /// books (which place the feast on October's last Sunday), and a numbered Sunday after
+    /// Pentecost in the Byzantine reckoning.</summary>
     [Fact]
     public void SwitchingCalendarsResolvesEachCalendarsOwnFeast()
     {
@@ -89,6 +90,30 @@ public class TodayInfoStoreTests
         var vetus = TodayInfoStore.Feast(new DateOnly(2026, 10, 25));
         Assert.Equal("Christ the King", vetus?.Title);
         Assert.Equal("1st Class", vetus?.Rank);
+
+        TodayInfoStore.SelectedCalendarId = "ugcc";
+        Assert.Equal(
+            "22nd Sunday after Pentecost",
+            TodayInfoStore.Feast(new DateOnly(2026, 10, 25))?.Title);
+    }
+
+    /// <summary>The UGCC dataset is the diasporic (fully Gregorian) usage prayed in the Holy
+    /// Land: Pascha falls with the Gregorian computus (April 5, 2026 — the same day as the
+    /// Roman Easter), and a fixed Great Feast landing in Holy Week is joined, never
+    /// displaced — in 2027 the Annunciation falls on Great and Holy Thursday.</summary>
+    [Fact]
+    public void UkrainianCalendarPraysTheGregorianPascha()
+    {
+        TodayInfoStore.SelectedCalendarId = "ugcc";
+        var pascha = TodayInfoStore.Feast(new DateOnly(2026, 4, 5));
+        Assert.Equal("The Resurrection of Our Lord — Holy Pascha", pascha?.Title);
+        Assert.Equal("Great Feast", pascha?.Rank);
+        Assert.Equal(
+            "The Protection of the Most Holy Theotokos (Pokrov)",
+            TodayInfoStore.Feast(new DateOnly(2026, 10, 1))?.Title);
+        Assert.Equal(
+            "The Annunciation of the Most Holy Theotokos; Great and Holy Thursday",
+            TodayInfoStore.Feast(new DateOnly(2027, 3, 25))?.Title);
     }
 
     [Fact]

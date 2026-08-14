@@ -82,13 +82,14 @@ class TodayInfoStoreTest {
 
     @Test
     fun calendarRegistryListsTheShippedCalendarsInPickerOrder() {
-        assertEquals(listOf("lpj", "roman", "roman1962"), TodayInfoStore.calendars.map { it.id })
+        assertEquals(listOf("lpj", "roman", "roman1962", "ugcc"), TodayInfoStore.calendars.map { it.id })
         assertEquals("lpj", TodayInfoStore.selectedCalendarId)
     }
 
-    /** October 25, 2026 wears three different faces: the LPJ's patronal solemnity, a plain
-     * Sunday of Ordinary Time in the general calendar, and Christ the King in the 1962 books
-     * (which place the feast on October's last Sunday). */
+    /** October 25, 2026 wears four different faces: the LPJ's patronal solemnity, a plain
+     * Sunday of Ordinary Time in the general calendar, Christ the King in the 1962 books
+     * (which place the feast on October's last Sunday), and a numbered Sunday after Pentecost
+     * in the Byzantine reckoning. */
     @Test
     fun switchingCalendarsResolvesEachCalendarsOwnFeast() {
         assertEquals(
@@ -106,6 +107,29 @@ class TodayInfoStoreTest {
         val vetus = TodayInfoStore.feast(date("2026-10-25"))
         assertEquals("Christ the King", vetus?.title)
         assertEquals("1st Class", vetus?.rank)
+
+        AppSettings.feastCalendarId = "ugcc"
+        assertEquals("22nd Sunday after Pentecost", TodayInfoStore.feast(date("2026-10-25"))?.title)
+    }
+
+    /** The UGCC dataset is the diasporic (fully Gregorian) usage prayed in the Holy Land:
+     * Pascha falls with the Gregorian computus (April 5, 2026 — the same day as the Roman
+     * Easter), and a fixed Great Feast landing in Holy Week is joined, never displaced — in
+     * 2027 the Annunciation falls on Great and Holy Thursday. */
+    @Test
+    fun ukrainianCalendarPraysTheGregorianPascha() {
+        AppSettings.feastCalendarId = "ugcc"
+        val pascha = TodayInfoStore.feast(date("2026-04-05"))
+        assertEquals("The Resurrection of Our Lord — Holy Pascha", pascha?.title)
+        assertEquals("Great Feast", pascha?.rank)
+        assertEquals(
+            "The Protection of the Most Holy Theotokos (Pokrov)",
+            TodayInfoStore.feast(date("2026-10-01"))?.title,
+        )
+        assertEquals(
+            "The Annunciation of the Most Holy Theotokos; Great and Holy Thursday",
+            TodayInfoStore.feast(date("2027-03-25"))?.title,
+        )
     }
 
     @Test

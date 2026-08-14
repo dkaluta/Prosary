@@ -367,8 +367,8 @@ fun HomeScreen(
                                     todayFeast.title,
                                     style = MaterialTheme.typography.titleSmall,
                                     // Each calendar's top rank gets the bold: "Solemnity"
-                                    // (Roman), "1st Class" (1962).
-                                    fontWeight = if (todayFeast.rank == "Solemnity" || todayFeast.rank == "1st Class") FontWeight.Bold else FontWeight.SemiBold,
+                                    // (Roman), "1st Class" (1962), "Great Feast" (Byzantine).
+                                    fontWeight = if (todayFeast.rank in setOf("Solemnity", "1st Class", "Great Feast")) FontWeight.Bold else FontWeight.SemiBold,
                                 )
                                 Text(
                                     todayFeast.rank,

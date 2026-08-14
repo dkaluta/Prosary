@@ -1,5 +1,5 @@
 {
- "$comment": "Registry of the Home 'Today' row's switchable liturgical calendars (Erez's request, 2026-08). Each entry names a feast dataset: 'file' is the Shared/data/<file>.json (and platform data-asset) basename, 'name'/'nameByLanguage' the Settings picker label (resolved by UI language, falling back to 'name'). 'default' is the calendar prayed when the feastCalendarId setting is unset or names an id that is not listed — the Latin Patriarchate overlay, the app's home base, which also keeps the plain feasts.json filename it had before calendars were switchable. Order here is the picker order. Adding a calendar = one entry + one dataset file (+ platform copies); no code changes. Wanted next, pending machine-readable or community sources: Syriac Catholic (Erez's apostolate) and Ukrainian Greek Catholic.",
+ "$comment": "Registry of the Home 'Today' row's switchable liturgical calendars (Erez's request, 2026-08). Each entry names a feast dataset: 'file' is the Shared/data/<file>.json (and platform data-asset) basename, 'name'/'nameByLanguage' the Settings picker label (resolved by UI language, falling back to 'name'). 'default' is the calendar prayed when the feastCalendarId setting is unset or names an id that is not listed — the Latin Patriarchate overlay, the app's home base, which also keeps the plain feasts.json filename it had before calendars were switchable. Order here is the picker order. Adding a calendar = one entry + one dataset file (+ platform copies); no code changes. The ugcc dataset is the diasporic (fully Gregorian) usage — the variant prayed in the Holy Land — curated in fetch-feasts.py pending eparchial verification. Wanted next, pending a community source: Syriac Catholic (Erez's apostolate).",
  "default": "lpj",
  "calendars": [
   {
@@ -24,6 +24,14 @@
    "name": "Roman — 1962 (Vetus Ordo)",
    "nameByLanguage": {
     "he": "רומי — 1962 (וטוס אורדו)"
+   }
+  },
+  {
+   "id": "ugcc",
+   "file": "feasts-ugcc",
+   "name": "Byzantine — Ukrainian Greek Catholic",
+   "nameByLanguage": {
+    "he": "ביזנטי — אוקראיני-קתולי"
    }
   }
  ]

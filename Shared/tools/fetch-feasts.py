@@ -22,6 +22,20 @@ Calendars and their sources:
   feasts-roman1962.json  Roman — 1962 (Vetus Ordo): missalemeum.com's API (MIT), with the
                          1962 class ranks ("1st Class" … "3rd Class"; IV-class days and bare
                          ferias are omitted the same way ferial days are omitted elsewhere).
+  feasts-ugcc.json       Byzantine — Ukrainian Greek Catholic, the diasporic (fully Gregorian)
+                         usage prayed in the Holy Land: no licensed machine-readable source
+                         exists, so the fixed menologion is CURATED IN THIS SCRIPT
+                         (UGCC_MENOLOGION — the Twelve Great Feasts and the major
+                         commemorations of every Byzantine wall calendar, plus the UGCC's own:
+                         Josaphat, Volodymyr, Olha, the Blessed New Martyrs) and the movable
+                         Paschal cycle is computed from the Gregorian Pascha. Ranks: "Great
+                         Feast" (bolded like "Solemnity"), "Feast", "Sunday", "Holy Week",
+                         "Fast". Every Sunday gets a name — the Triodion/Pentecostarion
+                         Sundays their own, the rest numbered after Pentecost with the
+                         pre-Nativity/Theophany specials. A fixed Great Feast falling on a
+                         movable-cycle day is joined into one title (the Annunciation in Holy
+                         Week — 2027 is such a year). Curated data wants eparchial
+                         verification; corrections are one table edit away.
 
 Movable feasts are baked in per year at generation time — no computus ships in the app. A
 date outside a table simply hides the Today row. pope-intentions.json is maintained by hand
@@ -66,6 +80,168 @@ LPJ_PROPERS = {
 
 LITCAL = "https://litcal.johnromanodorazio.com/api/v5/calendar/{year}?year_type=CIVIL"
 MISSALEMEUM = "https://www.missalemeum.com/en/api/v5/calendar/{year}"
+
+# The UGCC fixed menologion (new-style/Gregorian dates), curated — see the module docstring.
+# G = Great Feast, F = Feast.
+UGCC_MENOLOGION = {
+    "01-01": ("The Circumcision of Our Lord; Saint Basil the Great", "F"),
+    "01-06": ("The Holy Theophany of Our Lord", "G"),
+    "01-07": ("Synaxis of the Holy Prophet and Forerunner John the Baptist", "F"),
+    "01-17": ("Venerable Anthony the Great", "F"),
+    "01-25": ("Saint Gregory the Theologian", "F"),
+    "01-30": ("The Three Holy Hierarchs", "F"),
+    "02-02": ("The Encounter of Our Lord", "G"),
+    "03-09": ("The Holy Forty Martyrs of Sebaste", "F"),
+    "03-25": ("The Annunciation of the Most Holy Theotokos", "G"),
+    "04-23": ("Holy Great-Martyr George", "F"),
+    "05-08": ("Holy Apostle and Evangelist John the Theologian", "F"),
+    "05-21": ("Holy Equal-to-the-Apostles Constantine and Helena", "F"),
+    "06-24": ("The Nativity of the Holy Prophet John the Baptist", "F"),
+    "06-27": ("The Blessed New Martyrs of the Ukrainian Catholic Church", "F"),
+    "06-29": ("Holy Apostles Peter and Paul", "F"),
+    "07-11": ("Holy Equal-to-the-Apostles Olha, Princess of Kyiv", "F"),
+    "07-15": ("Holy Equal-to-the-Apostles Great Prince Volodymyr", "F"),
+    "07-20": ("The Holy Prophet Elijah", "F"),
+    "08-06": ("The Holy Transfiguration of Our Lord", "G"),
+    "08-15": ("The Dormition of the Most Holy Theotokos", "G"),
+    "08-29": ("The Beheading of the Holy Prophet John the Baptist", "F"),
+    "09-08": ("The Nativity of the Most Holy Theotokos", "G"),
+    "09-14": ("The Exaltation of the Precious and Life-Giving Cross", "G"),
+    "10-01": ("The Protection of the Most Holy Theotokos (Pokrov)", "F"),
+    "10-26": ("Holy Great-Martyr Demetrius", "F"),
+    "11-08": ("Synaxis of the Archangel Michael and the Other Bodiless Powers", "F"),
+    "11-12": ("Holy Priest-Martyr Josaphat, Archbishop of Polotsk", "F"),
+    "11-13": ("Saint John Chrysostom", "F"),
+    "11-21": ("The Entrance of the Most Holy Theotokos into the Temple", "G"),
+    "11-30": ("Holy Apostle Andrew the First-Called", "F"),
+    "12-06": ("Saint Nicholas the Wonderworker", "F"),
+    "12-09": ("The Conception of the Most Holy Theotokos by Saint Anna", "F"),
+    "12-25": ("The Nativity of Our Lord", "G"),
+    "12-26": ("Synaxis of the Most Holy Theotokos", "F"),
+    "12-27": ("Holy First-Martyr and Archdeacon Stephen", "F"),
+}
+
+# The movable Paschal cycle as offsets in days from Pascha. Sundays carry rank "Sunday" except
+# Palm Sunday (one of the Twelve Great Feasts); Holy Week days rank "Holy Week".
+UGCC_PASCHAL_CYCLE = [
+    (-70, "Sunday of the Publican and the Pharisee", "Sunday"),
+    (-63, "Sunday of the Prodigal Son", "Sunday"),
+    (-56, "Meatfare Sunday — of the Last Judgment", "Sunday"),
+    (-49, "Cheesefare Sunday — of Forgiveness", "Sunday"),
+    (-48, "First Day of the Great Fast", "Fast"),
+    (-42, "First Sunday of the Great Fast — of Orthodoxy", "Sunday"),
+    (-35, "Second Sunday of the Great Fast — Saint Gregory Palamas", "Sunday"),
+    (-28, "Third Sunday of the Great Fast — Veneration of the Cross", "Sunday"),
+    (-21, "Fourth Sunday of the Great Fast — Saint John Climacus", "Sunday"),
+    (-14, "Fifth Sunday of the Great Fast — Saint Mary of Egypt", "Sunday"),
+    (-8, "Lazarus Saturday", "Feast"),
+    (-7, "Flowery (Palm) Sunday — the Entrance into Jerusalem", "G"),
+    (-6, "Great and Holy Monday", "Holy Week"),
+    (-5, "Great and Holy Tuesday", "Holy Week"),
+    (-4, "Great and Holy Wednesday", "Holy Week"),
+    (-3, "Great and Holy Thursday", "Holy Week"),
+    (-2, "Great and Holy Friday", "Holy Week"),
+    (-1, "Great and Holy Saturday", "Holy Week"),
+    (0, "The Resurrection of Our Lord — Holy Pascha", "G"),
+    (1, "Bright Monday", "Feast"),
+    (2, "Bright Tuesday", "Feast"),
+    (7, "Thomas Sunday", "Sunday"),
+    (14, "Sunday of the Myrrh-Bearing Women", "Sunday"),
+    (21, "Sunday of the Paralytic", "Sunday"),
+    (24, "Mid-Pentecost", "Feast"),
+    (28, "Sunday of the Samaritan Woman", "Sunday"),
+    (35, "Sunday of the Man Born Blind", "Sunday"),
+    (39, "The Ascension of Our Lord", "G"),
+    (42, "Sunday of the Fathers of the First Council of Nicaea", "Sunday"),
+    (49, "The Descent of the Holy Spirit — Pentecost", "G"),
+    (50, "Monday of the Holy Spirit", "Feast"),
+    (56, "Sunday of All Saints", "Sunday"),
+]
+
+UGCC_RANKS = {"G": "Great Feast", "F": "Feast"}
+
+
+def gregorian_easter(year: int) -> dt.date:
+    """Meeus/Jones/Butcher — the same Gregorian computus the apps' calendar service uses."""
+    a, b, c = year % 19, year // 100, year % 100
+    d, e = b // 4, b % 4
+    f = (b + 8) // 25
+    g = (b - f + 1) // 3
+    h = (19 * a + b - d - g + 15) % 30
+    i, k = c // 4, c % 4
+    l = (32 + 2 * e + 2 * i - h - k) % 7
+    m = (a + 11 * h + 22 * l) // 451
+    month = (h + l - 7 * m + 114) // 31
+    day = (h + l - 7 * m + 114) % 31 + 1
+    return dt.date(year, month, day)
+
+
+def _ordinal(n: int) -> str:
+    suffix = "th" if 11 <= n % 100 <= 13 else {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suffix}"
+
+
+def ugcc_days(year: int) -> dict:
+    """One entry per feast/named day of the UGCC's diasporic (fully Gregorian) calendar.
+
+    Layered lowest to highest: numbered Sundays after Pentecost (counted from the previous
+    year's Pentecost before this year's) → fixed Feasts → the pre-Nativity/Theophany special
+    Sundays → fixed Great Feasts → the movable Paschal cycle, which joins rather than
+    replaces a fixed Great Feast it lands on (the Annunciation in Holy Week).
+    """
+    pascha = gregorian_easter(year)
+    pentecost_previous = gregorian_easter(year - 1) + dt.timedelta(days=49)
+    pentecost = pascha + dt.timedelta(days=49)
+    days: dict[str, dict] = {}
+
+    def put(date: dt.date, title: str, rank: str) -> None:
+        days[date.isoformat()] = {"title": title, "rank": rank}
+
+    # Numbered Sundays after Pentecost — the base layer every other layer may cover.
+    day = dt.date(year, 1, 1)
+    while day.year == year:
+        if day.weekday() == 6:
+            since = pentecost if day > pentecost else pentecost_previous
+            n = (day - since).days // 7
+            if n >= 2:  # 1st after Pentecost is All Saints, a movable-cycle entry.
+                put(day, f"{_ordinal(n)} Sunday after Pentecost", "Sunday")
+        day += dt.timedelta(days=1)
+
+    # Fixed Feasts, then the special Sundays around Nativity and Theophany, then fixed Great
+    # Feasts — a Great Feast outranks a special Sunday, which outranks a plain fixed feast.
+    for month_day, (title, code) in UGCC_MENOLOGION.items():
+        if code == "F":
+            put(dt.date.fromisoformat(f"{year}-{month_day}"), title, UGCC_RANKS[code])
+    specials = [
+        ((12, 11), (12, 17), "Sunday of the Holy Forefathers"),
+        ((12, 18), (12, 24), "Sunday before the Nativity — of the Holy Fathers"),
+        ((12, 26), (12, 31), "Sunday after the Nativity"),
+        ((1, 1), (1, 5), "Sunday before Theophany"),
+        ((1, 7), (1, 13), "Sunday after Theophany"),
+    ]
+    for (m1, d1), (m2, d2), title in specials:
+        day = dt.date(year, m1, d1)
+        last = dt.date(year, m2, d2)
+        while day <= last:
+            if day.weekday() == 6:
+                put(day, title, "Sunday")
+            day += dt.timedelta(days=1)
+    for month_day, (title, code) in UGCC_MENOLOGION.items():
+        if code == "G":
+            put(dt.date.fromisoformat(f"{year}-{month_day}"), title, UGCC_RANKS[code])
+
+    # The movable Paschal cycle wins the day — but a fixed Great Feast it lands on is joined
+    # into the title, never displaced (Byzantine practice celebrates them together).
+    for offset, title, code in UGCC_PASCHAL_CYCLE:
+        date = pascha + dt.timedelta(days=offset)
+        rank = UGCC_RANKS.get(code, code)
+        existing = days.get(date.isoformat())
+        if existing and existing["rank"] == "Great Feast" and code not in ("G",):
+            put(date, f"{existing['title']}; {title}", "Great Feast")
+        else:
+            put(date, title, rank)
+
+    return dict(sorted(days.items()))
 
 
 CACHE_DIR: Path | None = None
@@ -152,9 +328,11 @@ def main() -> int:
 
     roman: dict = {}
     vetus: dict = {}
+    ugcc: dict = {}
     for year in years:
         roman.update(roman_days(year))
         vetus.update(roman1962_days(year))
+        ugcc.update(ugcc_days(year))
 
     lpj = dict(roman)
     for year in years:
@@ -182,6 +360,14 @@ def main() -> int:
         "with the 1962 class ranks; IV-class days and bare ferias are omitted. Generated by "
         "Shared/tools/fetch-feasts.py; see feasts.json for the conventions.",
         years, vetus)
+    write_dataset(
+        DATA / "feasts-ugcc.json",
+        "Per-day table, Byzantine — Ukrainian Greek Catholic, the diasporic (fully Gregorian) "
+        "usage: CURATED in Shared/tools/fetch-feasts.py (no licensed machine-readable source "
+        "exists — fixed menologion authored there, movable Paschal cycle computed from the "
+        "Gregorian Pascha). Ranks: Great Feast / Feast / Sunday / Holy Week / Fast. Awaiting "
+        "eparchial/community verification; see the script for the layering rules.",
+        years, ugcc)
 
     if args.sync:
         for target in PLATFORM_DATA_DIRS:
