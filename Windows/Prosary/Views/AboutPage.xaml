@@ -146,6 +146,12 @@
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
                 </StackPanel>
 
+                <StackPanel Spacing="8">
+                    <TextBlock x:Uid="AbtCalendarDataHeader" Text="Calendar Data" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                    <TextBlock x:Uid="AbtCalendarDataBody" Text="Feast calendar data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar via Missale Meum (missalemeum.com); the Syriac Catholic calendar courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic table compiled in-app from the traditional sources."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                </StackPanel>
+
             </StackPanel>
         </ScrollViewer>
     </Grid>

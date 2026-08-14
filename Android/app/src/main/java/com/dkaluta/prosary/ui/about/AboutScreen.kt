@@ -171,6 +171,14 @@ fun AboutScreen(onBack: () -> Unit) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
+
+            AboutSection(title = stringResource(R.string.about_calendar_data)) {
+                Text(
+                    stringResource(R.string.about_calendar_data_body),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
         }
     }
 }

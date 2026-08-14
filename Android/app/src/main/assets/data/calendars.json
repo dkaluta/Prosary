@@ -1,5 +1,5 @@
 {
- "$comment": "Registry of the Home 'Today' row's switchable liturgical calendars (Erez's request, 2026-08). Each entry names a feast dataset: 'file' is the Shared/data/<file>.json (and platform data-asset) basename, 'name'/'nameByLanguage' the Settings picker label (resolved by UI language, falling back to 'name'). 'default' is the calendar prayed when the feastCalendarId setting is unset or names an id that is not listed — the Latin Patriarchate overlay, the app's home base, which also keeps the plain feasts.json filename it had before calendars were switchable. Order here is the picker order. Adding a calendar = one entry + one dataset file (+ platform copies); no code changes. The ugcc dataset is the diasporic (fully Gregorian) usage — the variant prayed in the Holy Land — curated in fetch-feasts.py pending eparchial verification. Wanted next, pending a community source: Syriac Catholic (Erez's apostolate).",
+ "$comment": "Registry of the Home 'Today' row's switchable liturgical calendars (Erez's request, 2026-08). Each entry names a feast dataset: 'file' is the Shared/data/<file>.json (and platform data-asset) basename, 'name'/'nameByLanguage' the Settings picker label (resolved by UI language, falling back to 'name'). 'default' is the calendar prayed when the feastCalendarId setting is unset or names an id that is not listed — the Latin Patriarchate overlay, the app's home base, which also keeps the plain feasts.json filename it had before calendars were switchable. Order here is the picker order. Adding a calendar = one entry + one dataset file (+ platform copies); no code changes. The ugcc dataset is the diasporic (fully Gregorian) usage — the variant prayed in the Holy Land — curated in fetch-feasts.py pending eparchial verification. The syriac dataset is courtesy of Evangelizo.org — Daily Gospel (© Evangelizo.org, credited on the About screens) and covers a rolling window (~3 months past today at generation time): regenerate more often than yearly.",
  "default": "lpj",
  "calendars": [
   {
@@ -32,6 +32,14 @@
    "name": "Byzantine — Ukrainian Greek Catholic",
    "nameByLanguage": {
     "he": "ביזנטי — אוקראיני-קתולי"
+   }
+  },
+  {
+   "id": "syriac",
+   "file": "feasts-syriac",
+   "name": "West Syriac — Syriac Catholic",
+   "nameByLanguage": {
+    "he": "סורי-קתולי (ארמי)"
    }
   }
  ]

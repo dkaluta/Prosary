@@ -82,8 +82,27 @@ class TodayInfoStoreTest {
 
     @Test
     fun calendarRegistryListsTheShippedCalendarsInPickerOrder() {
-        assertEquals(listOf("lpj", "roman", "roman1962", "ugcc"), TodayInfoStore.calendars.map { it.id })
+        assertEquals(
+            listOf("lpj", "roman", "roman1962", "ugcc", "syriac"),
+            TodayInfoStore.calendars.map { it.id },
+        )
         assertEquals("lpj", TodayInfoStore.selectedCalendarId)
+    }
+
+    /** The Syriac Catholic table comes from Evangelizo.org's Daily Gospel (credited on the
+     * About screen): the Antiochene year names its Sundays from the season's anchor feasts,
+     * and Evangelizo's plain-date ferial titles are omitted like ferial days everywhere else. */
+    @Test
+    fun syriacCalendarNamesTheAntiocheneSeasons() {
+        AppSettings.feastCalendarId = "syriac"
+        val sunday = TodayInfoStore.feast(date("2026-10-25"))
+        assertEquals("Sixth Sunday after the Feast of the Cross", sunday?.title)
+        assertEquals("Sunday", sunday?.rank)
+        assertEquals(
+            "Assumption of the Mother of God",
+            TodayInfoStore.feast(date("2026-08-15"))?.title,
+        )
+        assertNull(TodayInfoStore.feast(date("2026-07-27")))
     }
 
     /** October 25, 2026 wears four different faces: the LPJ's patronal solemnity, a plain

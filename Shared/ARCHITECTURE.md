@@ -764,9 +764,16 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
     on a movable-cycle day is joined into one title rather than displaced (the Annunciation
     on Great and Holy Thursday, 2027). Ranks: "Great Feast" / "Feast" / "Sunday" /
     "Holy Week" / "Fast". Curated data awaiting eparchial/community verification.
-  - Wanted next, pending a community source (no machine-readable data exists): Syriac
-    Catholic — Erez's apostolate would be the witness. Adding a calendar
-    is a pure data drop: a registry entry + a dataset file + platform copies.
+  - `syriac` — **`feasts-syriac.json`**: West Syriac — Syriac Catholic (Erez's own rite),
+    liturgical day titles **courtesy of Evangelizo.org — Daily Gospel (© Evangelizo.org)**,
+    via its publication API's English Syriac-calendar edition ("SYE"), one request per day;
+    the credit is required and carried on every platform's About screen ("Calendar Data"
+    section, which also names LitCal and Missale Meum). Plain-date ferial titles are omitted;
+    ranks are title-derived ("Sunday" / "Fast" / "Feast", with Pascha as "Great Feast").
+    Evangelizo serves a rolling ~3-month horizon, so this one table ends where the API did at
+    generation time and extends on each rerun — regenerate more often than yearly.
+    Adding a further calendar remains a pure data drop: a registry entry + a dataset file +
+    platform copies.
   `Shared/tools/fetch-feasts.py` regenerates every table (litcal + missalemeum; `--sync`
   copies all of `Shared/data/*.json` into the three platform asset dirs). `TodayInfoStore`
   reloads the feast table when the selected calendar changes; the calendar choice affects the

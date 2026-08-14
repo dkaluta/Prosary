@@ -66,8 +66,27 @@ public class TodayInfoStoreTests
     [Fact]
     public void CalendarRegistryListsTheShippedCalendarsInPickerOrder()
     {
-        Assert.Equal(new[] { "lpj", "roman", "roman1962", "ugcc" }, TodayInfoStore.Calendars.Select(c => c.Id));
+        Assert.Equal(
+            new[] { "lpj", "roman", "roman1962", "ugcc", "syriac" },
+            TodayInfoStore.Calendars.Select(c => c.Id));
         Assert.Equal("lpj", TodayInfoStore.ResolvedCalendarId);
+    }
+
+    /// <summary>The Syriac Catholic table comes from Evangelizo.org's Daily Gospel (credited
+    /// on the About screen): the Antiochene year names its Sundays from the season's anchor
+    /// feasts, and Evangelizo's plain-date ferial titles are omitted like ferial days
+    /// everywhere else.</summary>
+    [Fact]
+    public void SyriacCalendarNamesTheAntiocheneSeasons()
+    {
+        TodayInfoStore.SelectedCalendarId = "syriac";
+        var sunday = TodayInfoStore.Feast(new DateOnly(2026, 10, 25));
+        Assert.Equal("Sixth Sunday after the Feast of the Cross", sunday?.Title);
+        Assert.Equal("Sunday", sunday?.Rank);
+        Assert.Equal(
+            "Assumption of the Mother of God",
+            TodayInfoStore.Feast(new DateOnly(2026, 8, 15))?.Title);
+        Assert.Null(TodayInfoStore.Feast(new DateOnly(2026, 7, 27)));
     }
 
     /// <summary>October 25, 2026 wears four different faces: the LPJ's patronal solemnity, a

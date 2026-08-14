@@ -100,6 +100,12 @@ struct AboutView: View {
             .font(.footnote)
             .foregroundStyle(.secondary)
         }
+
+        section("Calendar Data") {
+          Text("about.calendarData")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+        }
       }
       .padding(24)
       .frame(maxWidth: 560, alignment: .leading)
