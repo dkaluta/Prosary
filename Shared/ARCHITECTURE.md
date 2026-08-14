@@ -764,8 +764,8 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
     on a movable-cycle day is joined into one title rather than displaced (the Annunciation
     on Great and Holy Thursday, 2027). Ranks: "Great Feast" / "Feast" / "Sunday" /
     "Holy Week" / "Fast". Curated data awaiting eparchial/community verification.
-  - `syriac` — **`feasts-syriac.json`**: "West Aramaic (Syriac) — Syriac Catholic" (the
-    apostolate's own chosen name for its tradition),
+  - `syriac` — **`feasts-syriac.json`**: "West Aramaic — Syriac Catholic" (the apostolate's
+    own chosen name for its tradition),
     liturgical day titles **courtesy of Evangelizo.org — Daily Gospel (© Evangelizo.org)**,
     via its publication API's English Syriac-calendar edition ("SYE"), one request per day;
     the credit is required and carried on every platform's About screen ("Calendar Data"
