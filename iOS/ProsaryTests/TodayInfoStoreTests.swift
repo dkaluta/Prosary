@@ -13,6 +13,30 @@ import XCTest
 
 @MainActor
 final class TodayInfoStoreTests: XCTestCase {
+  // The test host shares the real app's UserDefaults, so every case pins the calendar
+  // selection explicitly and the original value is restored afterwards — the store reloads
+  // live on selection change, so no reset hook is needed.
+  private var originalCalendarId: String?
+
+  override func setUp() {
+    super.setUp()
+    originalCalendarId = UserDefaults.standard.string(forKey: TodayInfoStore.calendarDefaultsKey)
+    UserDefaults.standard.removeObject(forKey: TodayInfoStore.calendarDefaultsKey)
+  }
+
+  override func tearDown() {
+    if let originalCalendarId {
+      UserDefaults.standard.set(originalCalendarId, forKey: TodayInfoStore.calendarDefaultsKey)
+    } else {
+      UserDefaults.standard.removeObject(forKey: TodayInfoStore.calendarDefaultsKey)
+    }
+    super.tearDown()
+  }
+
+  private func select(_ calendarId: String) {
+    UserDefaults.standard.set(calendarId, forKey: TodayInfoStore.calendarDefaultsKey)
+  }
+
   private func date(_ string: String) -> Date {
     let formatter = DateFormatter()
     formatter.locale = Locale(identifier: "en_US_POSIX")
@@ -52,6 +76,47 @@ final class TodayInfoStoreTests: XCTestCase {
 
   func testDateOutsideTheGeneratedYearsHasNoFeast() {
     XCTAssertNil(TodayInfoStore.feast(on: date("2031-12-25")))
+  }
+
+  // MARK: - Switchable calendars
+
+  func testCalendarRegistryListsTheShippedCalendarsInPickerOrder() {
+    XCTAssertEqual(TodayInfoStore.calendars.map(\.id), ["lpj", "roman", "roman1962"])
+    XCTAssertEqual(TodayInfoStore.selectedCalendarId, "lpj")
+  }
+
+  /// October 25, 2026 wears three different faces: the LPJ's patronal solemnity, a plain
+  /// Sunday of Ordinary Time in the general calendar, and Christ the King in the 1962 books
+  /// (which place the feast on October's last Sunday).
+  func testSwitchingCalendarsResolvesEachCalendarsOwnFeast() {
+    XCTAssertEqual(
+      TodayInfoStore.feast(on: date("2026-10-25"))?.title,
+      "Our Lady, Queen of Palestine and of the Holy Land")
+
+    select("roman")
+    XCTAssertEqual(
+      TodayInfoStore.feast(on: date("2026-10-25"))?.title, "30th Sunday of Ordinary Time")
+
+    select("roman1962")
+    let vetus = TodayInfoStore.feast(on: date("2026-10-25"))
+    XCTAssertEqual(vetus?.title, "Christ the King")
+    XCTAssertEqual(vetus?.rank, "1st Class")
+  }
+
+  func testUnknownCalendarIdFallsBackToTheDefault() {
+    select("narnia")
+    XCTAssertEqual(TodayInfoStore.selectedCalendarId, "lpj")
+    XCTAssertEqual(
+      TodayInfoStore.feast(on: date("2026-10-25"))?.title,
+      "Our Lady, Queen of Palestine and of the Holy Land")
+  }
+
+  func testVetusOrdoKeepsSeptuagesimaAndClassRanks() {
+    select("roman1962")
+    let septuagesima = TodayInfoStore.feast(on: date("2026-02-01"))
+    XCTAssertEqual(septuagesima?.title, "Septuagesima Sunday")
+    XCTAssertEqual(septuagesima?.rank, "2nd Class")
+    XCTAssertEqual(TodayInfoStore.feast(on: date("2026-12-25"))?.rank, "1st Class")
   }
 
   func testMonthIntentionResolves() {

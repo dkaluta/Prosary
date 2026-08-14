@@ -1,0 +1,30 @@
+{
+ "$comment": "Registry of the Home 'Today' row's switchable liturgical calendars (Erez's request, 2026-08). Each entry names a feast dataset: 'file' is the Shared/data/<file>.json (and platform data-asset) basename, 'name'/'nameByLanguage' the Settings picker label (resolved by UI language, falling back to 'name'). 'default' is the calendar prayed when the feastCalendarId setting is unset or names an id that is not listed — the Latin Patriarchate overlay, the app's home base, which also keeps the plain feasts.json filename it had before calendars were switchable. Order here is the picker order. Adding a calendar = one entry + one dataset file (+ platform copies); no code changes. Wanted next, pending machine-readable or community sources: Syriac Catholic (Erez's apostolate) and Ukrainian Greek Catholic.",
+ "default": "lpj",
+ "calendars": [
+  {
+   "id": "lpj",
+   "file": "feasts",
+   "name": "Roman — Holy Land (Latin Patriarchate)",
+   "nameByLanguage": {
+    "he": "רומי — ארץ הקודש (הפטריארכיה הלטינית)"
+   }
+  },
+  {
+   "id": "roman",
+   "file": "feasts-roman",
+   "name": "Roman — General Calendar",
+   "nameByLanguage": {
+    "he": "רומי — הלוח הכללי"
+   }
+  },
+  {
+   "id": "roman1962",
+   "file": "feasts-roman1962",
+   "name": "Roman — 1962 (Vetus Ordo)",
+   "nameByLanguage": {
+    "he": "רומי — 1962 (וטוס אורדו)"
+   }
+  }
+ ]
+}

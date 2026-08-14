@@ -732,18 +732,37 @@ of its own — its entire step sequence and per-step text are data-driven from i
 
 ## Offline "Today" data (`Shared/data/`)
 
-Two dev-time-generated datasets back the Home screen's "Today" section (per-platform physical
+Dev-time-generated datasets back the Home screen's "Today" section (per-platform physical
 copies, same convention as the bundles; per-platform `TodayInfoStore` providers):
 
-- **`feasts.json`** — a per-day sanctoral table (`days: {"YYYY-MM-DD": {title, rank}}`) for the
-  generated years: the General Roman Calendar (fetched from the litcal API at generation time,
-  movable feasts baked in per year — no computus or precedence logic ships in the app) overlaid
-  with the Latin Patriarchate of Jerusalem's documented propers (Our Lady, Queen of Palestine and
-  of the Holy Land — Oct 25, patronal solemnity; the Dedication of the Basilica of the Holy
-  Sepulchre — Jul 15; Saint Mary of Jesus Crucified Baouardy — Aug 26). Ferial days have no
-  entry.
+- **Feast tables, one per liturgical calendar** (2026-08: switchable, Erez's request) — each a
+  per-day sanctoral table (`days: {"YYYY-MM-DD": {title, rank}}`) for the generated years,
+  movable feasts baked in per year at generation time; no computus or precedence logic ships in
+  the app, and ferial days have no entry. `calendars.json` is the registry: id, dataset file
+  basename, and the Settings picker label (`name`/`nameByLanguage`, resolved by UI language);
+  its `default` names the calendar used when the app-wide `feastCalendarId` setting (stored
+  beside `defaultLanguageCode` on every platform) is unset or unknown. Shipped calendars:
+  - `lpj` — **`feasts.json`**: the General Roman Calendar (litcal API) overlaid with the Latin
+    Patriarchate of Jerusalem's documented propers (Our Lady, Queen of Palestine and of the
+    Holy Land — Oct 25, patronal solemnity; the Dedication of the Basilica of the Holy
+    Sepulchre — Jul 15; Saint Mary of Jesus Crucified Baouardy — Aug 26). The default; keeps
+    the pre-switchable filename.
+  - `roman` — **`feasts-roman.json`**: the General Roman Calendar, no overlay (litcal,
+    Apache-2.0).
+  - `roman1962` — **`feasts-roman1962.json`**: the 1962 Vetus Ordo calendar (missalemeum.com,
+    MIT), I–III class days with class ranks ("1st Class"…"3rd Class"); IV-class days and bare
+    ferias are omitted the way ferial days are elsewhere. The Home screens bold a feast title
+    when its rank is "Solemnity" **or "1st Class"**.
+  - Wanted next, each pending a source (no licensed machine-readable data exists): Syriac
+    Catholic (Erez's apostolate would be the witness) and Ukrainian Greek Catholic. Adding one
+    is a pure data drop: a registry entry + a dataset file + platform copies.
+  `Shared/tools/fetch-feasts.py` regenerates every table (litcal + missalemeum; `--sync`
+  copies all of `Shared/data/*.json` into the three platform asset dirs). `TodayInfoStore`
+  reloads the feast table when the selected calendar changes; the calendar choice affects the
+  Today feast row only — seasons, mysteries, and antiphons stay `LiturgicalCalendarService`'s
+  computed Latin machinery, and the Pope's intention shows for every calendar.
 - **`pope-intentions.json`** — the Pope's Worldwide Prayer Network monthly intentions
-  (`months: {"YYYY-MM": {title, text}}`), from popesprayer.va.
+  (`months: {"YYYY-MM": {title, text}}`), from popesprayer.va; maintained by hand (no API).
 
 A date/month outside the datasets returns nothing and the row simply hides — regenerating the
-JSON (roughly yearly) is the only maintenance.
+JSON (roughly yearly, `fetch-feasts.py`) is the only maintenance.

@@ -253,7 +253,9 @@ struct HomeView: View {
             Image(systemName: "calendar").foregroundStyle(Color.brandPrimary)
             VStack(alignment: .leading, spacing: 2) {
               Text(feast.title)
-                .font(.subheadline.weight(feast.rank == "Solemnity" ? .bold : .semibold))
+                // "1st Class" is the 1962 calendar's solemnity-equivalent top rank.
+                .font(.subheadline.weight(
+                  feast.rank == "Solemnity" || feast.rank == "1st Class" ? .bold : .semibold))
               Text(feast.rank).font(.caption).foregroundStyle(.secondary)
             }
           }

@@ -54,6 +54,24 @@
                 <Button x:Uid="SetResetHomeOrder" Content="Reset Home Order" HorizontalAlignment="Stretch"
                         Command="{x:Bind ViewModel.ResetHomeOrderCommand}" />
 
+                <!-- The Home "Today" feast row's liturgical calendar — the choices come from the
+                     bundled calendars.json registry (labels included, so no resw entries per
+                     calendar); hidden entirely if the registry ever ships a single calendar. -->
+                <ComboBox x:Uid="SetFeastCalendar" Header="Liturgical calendar" HorizontalAlignment="Stretch"
+                          Visibility="{x:Bind ViewModel.ShowsFeastCalendarPicker, Converter={StaticResource BoolToVisibility}}"
+                          ItemsSource="{x:Bind ViewModel.FeastCalendarOptions}"
+                          SelectedItem="{x:Bind ViewModel.SelectedFeastCalendar, Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding DisplayName}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock x:Uid="SetFeastCalendarHint" Text="Which calendar's feasts the Today section shows."
+                           Visibility="{x:Bind ViewModel.ShowsFeastCalendarPicker, Converter={StaticResource BoolToVisibility}}"
+                           TextWrapping="Wrap" Style="{StaticResource CaptionTextBlockStyle}"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+
                 <TextBlock x:Uid="SetDownloadsHeader" Text="Downloads" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
 
                 <TextBlock Text="{x:Bind ViewModel.InstalledCountLabel, Mode=OneWay}" />

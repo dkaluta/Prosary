@@ -14,9 +14,11 @@ namespace Prosary.Models;
 public static class AppSettings
 {
     private const string KeyDefaultLanguage = "defaultLanguageCode";
+    private const string KeyFeastCalendar = "feastCalendarId";
     private const string KeyAutoAdvance = "autoAdvanceSeconds";
 
     private static string? _defaultLanguageCode;
+    private static string? _feastCalendarId;
     private static int? _autoAdvanceSeconds;
 
     public static string DefaultLanguageCode
@@ -37,6 +39,29 @@ public static class AppSettings
     {
         DefaultLanguageCode = code;
         ApplicationData.Current.LocalSettings.Values[KeyDefaultLanguage] = code;
+    }
+
+    /// <summary>The Home "Today" feast row's calendar id (calendars.json registry); empty — or
+    /// an id the registry no longer lists — resolves to the registry's default inside
+    /// <c>TodayInfoStore</c>.</summary>
+    public static string FeastCalendarId
+    {
+        get
+        {
+            if (_feastCalendarId is null)
+            {
+                _feastCalendarId = ApplicationData.Current.LocalSettings.Values[KeyFeastCalendar] as string
+                    ?? string.Empty;
+            }
+            return _feastCalendarId;
+        }
+        private set => _feastCalendarId = value;
+    }
+
+    public static void SetFeastCalendarId(string id)
+    {
+        FeastCalendarId = id;
+        ApplicationData.Current.LocalSettings.Values[KeyFeastCalendar] = id;
     }
 
     /// <summary>Seconds between automatic step advances in the prayer flows; 0 = off.</summary>

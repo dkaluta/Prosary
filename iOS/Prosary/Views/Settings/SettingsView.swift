@@ -19,6 +19,15 @@ struct SettingsView: View {
   @State private var audioCacheBytes = SettingsMaintenance.audioCacheSize()
   @State private var homeOrderIsCustom = !HomeOrder.saved.isEmpty
 
+  @AppStorage(TodayInfoStore.calendarDefaultsKey) private var feastCalendarId = ""
+
+  /// Reads through the store so an unset/unknown stored id shows as the registry default.
+  private var feastCalendarBinding: Binding<String> {
+    Binding(
+      get: { TodayInfoStore.selectedCalendarId },
+      set: { feastCalendarId = $0 })
+  }
+
   /// Choosing a language keeps the rite when that language has one, and drops it otherwise —
   /// so switching Hebrew → Latin → Hebrew does not silently forget whose Hebrew you pray.
   private var languageBinding: Binding<String> {
@@ -77,6 +86,27 @@ struct SettingsView: View {
           homeOrderIsCustom = false
         }
         .disabled(!homeOrderIsCustom)
+      }
+
+      // The Home "Today" feast row's liturgical calendar (Erez's request). The choices come
+      // from the bundled calendars.json registry, so adding a calendar is a data drop, never
+      // a new case here; hidden entirely if the registry ever ships a single calendar.
+      let calendars = TodayInfoStore.calendars
+      if calendars.count > 1 {
+        Section {
+          Picker(String(localized: "settings.feastCalendar", defaultValue: "Liturgical calendar"),
+                 selection: feastCalendarBinding) {
+            ForEach(calendars) { calendar in
+              Text(calendar.displayName).tag(calendar.id)
+            }
+          }
+          .accessibilityIdentifier("feastCalendarPicker")
+        } header: {
+          Text(String(localized: "settings.todayHeader", defaultValue: "Today"))
+        } footer: {
+          Text(String(localized: "settings.feastCalendarFooter",
+                      defaultValue: "Which calendar's feasts the Today section shows."))
+        }
       }
 
       Section {

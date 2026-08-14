@@ -4326,6 +4326,40 @@
         }
       }
     },
+    "settings.feastCalendar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liturgical calendar"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הלוח הליטורגי"
+          }
+        }
+      }
+    },
+    "settings.feastCalendarFooter": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Which calendar's feasts the Today section shows."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לפי איזה לוח מוצגים חגי המדור „היום“."
+          }
+        }
+      }
+    },
     "settings.installedDevotions": {
       "extractionState": "extracted_with_value",
       "localizations": {
@@ -4526,6 +4560,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "הגדרות"
+          }
+        }
+      }
+    },
+    "settings.todayHeader": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "היום"
           }
         }
       }
