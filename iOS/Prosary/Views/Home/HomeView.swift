@@ -209,6 +209,9 @@ struct HomeView: View {
             }
           }
       }
+      // Home stays alive under the sheet, so nothing else re-reads the Today row after a
+      // liturgical-calendar change — without this the new calendar shows only on relaunch.
+      .onDisappear { Task { await load() } }
     }
     #endif
     .task { await load() }
