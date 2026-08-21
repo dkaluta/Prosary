@@ -41,6 +41,10 @@ struct AboutView: View {
           ForEach(mysteryAttributions, id: \.self) { key in
             Text(LocalizedStringKey(key))
           }
+          Text(String(
+            localized: "about.mysteryImages.easternIcons",
+            defaultValue: "The collection of illustrations of the Mysteries in the Eastern style is used with approval from the St. Gamliel Apostolate for Hebrew Catholics in the Aramaic (Syriac) Catholic Church."))
+            .padding(.top, 4)
         }
 
         section("Other Images") {
@@ -93,6 +97,12 @@ struct AboutView: View {
 
         section("Scripture Sources") {
           Text("about.scriptureSources")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+        }
+
+        section("Calendar Data") {
+          Text("about.calendarData")
             .font(.footnote)
             .foregroundStyle(.secondary)
         }

@@ -78,8 +78,10 @@ public sealed class PrayerEngine
         ["fatimaPrayer"] = rosary.IncludeFatimaPrayer ? "true" : "false",
         ["eternalRest"] = CamelCase(rosary.EternalRestForDeceased.ToString()),
         ["antiphon"] = CamelCase(rosary.MarianAntiphon.ToString()),
+        ["closingIntentions"] = rosary.IncludeClosingIntentions ? "true" : "false",
         ["stMichael"] = rosary.IncludeStMichaelPrayer ? "true" : "false",
         ["finalSignOfCross"] = rosary.IncludeFinalSignOfCross ? "true" : "false",
+        ["imageStyle"] = CamelCase(rosary.MysteryImageStyle.ToString()),
     };
 
     private static string CamelCase(string name) =>
@@ -419,6 +421,12 @@ public sealed class PrayerEngine
         string FixedTitle(CustomDevotionDefinition.DecadesDefinition.FixedStep step) =>
             step.TitleKey is { } key ? Resolve(key) : step.Title ?? string.Empty;
 
+        // The alternate-artwork seam: an eastern-style favorite stamps every Mystery-carrying step
+        // with the parallel "eastern_" image key, leaving Mystery.ImageKey (identity + translation
+        // lookup) untouched.
+        string? VariantKey(Mystery mystery) =>
+            rosary.MysteryImageStyle == MysteryImageStyle.Eastern ? $"eastern_{mystery.ImageKey}" : null;
+
         var groups = ResolveMysteryGroups(rosary, todaysGroup);
         var fruitLabel = PrayerTranslations.Get(languageCode, PrayerKey.FructusMysteriiLabel);
         var majorBody = Resolve(decades.MajorStep.BodyKey);
@@ -448,7 +456,7 @@ public sealed class PrayerEngine
 
                 steps.Add(new RosaryStep(mysteryText.Title, ordinalLabel,
                     $"{mysteryText.Description}\n\n{fruitLabel}: {mysteryText.Fruit}",
-                    mystery, IsScripture: true, DecadeIndex: decadeIndex));
+                    mystery, IsScripture: true, DecadeIndex: decadeIndex) { ImageVariantKey = VariantKey(mystery) });
                 steps.Add(new RosaryStep(FixedTitle(decades.MajorStep), decadeSubtitle, majorBody,
                     DecadeIndex: decadeIndex, ImageOverrideKey: decades.MajorStep.ImageKey));
 
@@ -456,7 +464,7 @@ public sealed class PrayerEngine
                 {
                     steps.Add(new RosaryStep(presenter.CombinedTitleKey is { } ck ? Resolve(ck) : presenter.CombinedTitle ?? string.Empty, decadeSubtitle,
                         string.Join("\n\n", presenter.BodyKeys.Select(Resolve)),
-                        mystery, DecadeIndex: decadeIndex, HailMaryIndexInDecade: decades.MinorCount));
+                        mystery, DecadeIndex: decadeIndex, HailMaryIndexInDecade: decades.MinorCount) { ImageVariantKey = VariantKey(mystery) });
                 }
                 else
                 {
@@ -464,7 +472,7 @@ public sealed class PrayerEngine
                     {
                         steps.Add(new RosaryStep(
                             $"{FixedTitle(decades.MinorStep)} {Counter(h, decades.MinorCount, languageCode)}", decadeSubtitle, minorBody,
-                            mystery, DecadeIndex: decadeIndex, HailMaryIndexInDecade: h));
+                            mystery, DecadeIndex: decadeIndex, HailMaryIndexInDecade: h) { ImageVariantKey = VariantKey(mystery) });
                     }
                 }
 

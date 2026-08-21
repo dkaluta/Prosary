@@ -16,6 +16,7 @@ public sealed class EnumDisplayNameConverter : IValueConverter
         MysteryGroup g => g.DisplayName(),
         EternalRestPlacement e => e.DisplayName(),
         MarianAntiphonOption a => a.DisplayName(),
+        MysteryImageStyle s => s.DisplayName(),
         PrayerKind k => k.DisplayName(),
         _ => value?.ToString() ?? string.Empty
     };

@@ -38,10 +38,15 @@ struct RosaryStep: Identifiable, Hashable {
   var hailMaryIndexInDecade: Int?
   /// Image key for steps not tied to a Mystery but that still want a specific illustration (e.g. "crucifix" for the Sign of the Cross/Apostles' Creed, "madonna_and_child" for the antiphon) instead of the generic placeholder.
   var imageOverrideKey: String?
+  /// Alternate-artwork override the engine sets on Mystery-carrying steps when the favorite's
+  /// `mysteryImageStyle` selects a non-default set (e.g. "eastern_joyful_01_annunciation").
+  /// A separate field rather than a rewritten `Mystery.imageKey`, because the mystery's own
+  /// key is its identity and its MysteryTranslations lookup key.
+  var imageVariantKey: String?
 
-  /// The asset-catalog image name this step should display: the mystery's own image, an
-  /// explicit override, or the neutral placeholder.
+  /// The asset-catalog image name this step should display: the alternate-artwork variant,
+  /// the mystery's own image, an explicit override, or the neutral placeholder.
   var imageKey: String {
-    mystery?.imageKey ?? imageOverrideKey ?? "cross_placeholder"
+    imageVariantKey ?? mystery?.imageKey ?? imageOverrideKey ?? "cross_placeholder"
   }
 }

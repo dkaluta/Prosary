@@ -245,6 +245,14 @@
                     <TextBlock x:Uid="EdDisplayHeader" Text="DISPLAY" Style="{StaticResource SectionHeaderStyle}" />
                     <Border Style="{StaticResource SectionCardStyle}">
                         <StackPanel Spacing="8">
+                            <ComboBox x:Uid="EdMysteryArtwork" HorizontalAlignment="Stretch" Header="Mystery artwork" ItemsSource="{x:Bind ViewModel.MysteryImageStyleOptions}"
+                                      SelectedItem="{x:Bind ViewModel.MysteryImageStyle, Mode=TwoWay}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource EnumDisplayName}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
@@ -269,6 +277,14 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Uid="EdClosingIntentions" Grid.Column="0" Text="Closing Intentions" VerticalAlignment="Center" />
+                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeClosingIntentions, Mode=TwoWay}" />
+                            </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />

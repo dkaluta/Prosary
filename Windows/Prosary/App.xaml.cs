@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Prosary.Localization;
+using Prosary.Models;
 using Prosary.Persistence;
 using Prosary.Services;
 using Prosary.ViewModels;
@@ -37,6 +38,10 @@ public partial class App : Application
             var path = Path.Combine(AppContext.BaseDirectory, "PrayerPacks", $"{packName}.prosaryprayer");
             return File.Exists(path) ? File.OpenRead(path) : null;
         });
+
+        // The Home "Today" feast row prays the calendar chosen in Settings — an unset or
+        // no-longer-listed id resolves to the calendars.json registry's default in the store.
+        TodayInfoStore.SelectedCalendarId = AppSettings.FeastCalendarId;
 
         MainWindow = new MainWindow();
         MainWindow.Activate();

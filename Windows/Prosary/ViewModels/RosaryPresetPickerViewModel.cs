@@ -54,6 +54,7 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
     // Preset"), so anything not offered here could never be set at creation time.
     public IReadOnlyList<EternalRestPlacement> EternalRestPlacements { get; } = Enum.GetValues<EternalRestPlacement>();
     public IReadOnlyList<MarianAntiphonOption> MarianAntiphons { get; } = Enum.GetValues<MarianAntiphonOption>();
+    public IReadOnlyList<MysteryImageStyle> MysteryImageStyles { get; } = Enum.GetValues<MysteryImageStyle>();
 
     [ObservableProperty]
     private bool _includeApostlesCreed = true;
@@ -74,10 +75,16 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
     private MarianAntiphonOption _marianAntiphon = MarianAntiphonOption.Seasonal;
 
     [ObservableProperty]
+    private bool _includeClosingIntentions;
+
+    [ObservableProperty]
     private bool _includeStMichaelPrayer;
 
     [ObservableProperty]
     private bool _includeFinalSignOfCross = true;
+
+    [ObservableProperty]
+    private MysteryImageStyle _mysteryImageStyle = MysteryImageStyle.Classic;
 
     public bool ShowsGroupPicker =>
         SelectedMode is MysterySelectionMode.Specific or MysterySelectionMode.SingleMystery;
@@ -109,8 +116,10 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
             EternalRestForDeceased = preset.Rosary.EternalRestForDeceased;
             PresenterMode = preset.Rosary.PresenterMode;
             MarianAntiphon = preset.Rosary.MarianAntiphon;
+            IncludeClosingIntentions = preset.Rosary.IncludeClosingIntentions;
             IncludeStMichaelPrayer = preset.Rosary.IncludeStMichaelPrayer;
             IncludeFinalSignOfCross = preset.Rosary.IncludeFinalSignOfCross;
+            MysteryImageStyle = preset.Rosary.MysteryImageStyle;
         }
     }
 
@@ -133,8 +142,10 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
                 EternalRestForDeceased = EternalRestForDeceased,
                 PresenterMode = PresenterMode,
                 MarianAntiphon = MarianAntiphon,
+                IncludeClosingIntentions = IncludeClosingIntentions,
                 IncludeStMichaelPrayer = IncludeStMichaelPrayer,
                 IncludeFinalSignOfCross = IncludeFinalSignOfCross,
+                MysteryImageStyle = MysteryImageStyle,
             },
         };
     }

@@ -19,12 +19,17 @@ data class RosaryOptions(
     var includeFatimaPrayer: Boolean = true,
     var eternalRestForDeceased: EternalRestPlacement = EternalRestPlacement.None,
     var marianAntiphon: MarianAntiphonOption = MarianAntiphonOption.Seasonal,
+    /** Three closing intentions (for the Pope, the local bishop, and the faithful departed),
+     * each an Our Father + Hail Mary + Glory Be, closed by the "Requiescant in pace" versicle. */
+    var includeClosingIntentions: Boolean = false,
     var includeStMichaelPrayer: Boolean = false,
     var includeFinalSignOfCross: Boolean = true,
     /** Collapses each decade's 10 Hail Marys and Glory Be onto one combined screen — for someone
      * leading a group aloud from memory who doesn't need to tap through 10 visually-identical
      * screens. See `PrayerEngine.buildRosarySteps`. */
     var presenterMode: Boolean = false,
+    /** Which artwork set illustrates the mysteries during a session — see [MysteryImageStyle]. */
+    var mysteryImageStyle: MysteryImageStyle = MysteryImageStyle.Classic,
 ) {
     fun mysterySelectionSummary(context: Context): String = when (mysterySelectionMode) {
         MysterySelectionMode.Specific ->

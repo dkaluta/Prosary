@@ -96,6 +96,25 @@ fixed-prayer illustrations (`crucifix`, `our_father`, `glory_be`, `jesus_portrai
 attributions are listed in the app's About screen. `cross_placeholder.png` is original to the
 project.
 
+## Eastern-style mystery icons (`eastern_*`, 20 files)
+
+An alternate, Eastern/illuminated-manuscript-style set for the 20 Rosary mysteries, shown when
+a Rosary favorite's "Mystery artwork" option is set to *Eastern icons* (the classical paintings
+above remain the default). The user-facing credit, as given by the apostolate (2026-08), on the
+About screens in English and Hebrew:
+
+> The collection of illustrations of the Mysteries in the Eastern style is used with approval
+> from the St. Gamliel Apostolate for Hebrew Catholics in the Aramaic (Syriac) Catholic Church
+
+> אוסף איורי הרזים בסגנון המזרחי מובא באישור שליחות גמליאל הקדוש לקתולים עבריים של העדה
+> הארמית (סורית) קתולית
+
+Factual note on provenance: the source files carry an embedded Hebrew notice in the bottom
+border, "תוכן שהופק על ידי בינה מלאכותית" ("content produced by artificial intelligence";
+generator not identified) — the notice bands fall outside the square crops. Each file is a
+square crop centered on Christ where he is present, otherwise on the scene's subject, keyed
+`eastern_<group>_<NN>_<title>` parallel to the classical set.
+
 ## Jesus Prayer (`christ_pantocrator`)
 
 **Christ Pantocrator, encaustic icon (6th century), Saint Catherine's Monastery, Mount

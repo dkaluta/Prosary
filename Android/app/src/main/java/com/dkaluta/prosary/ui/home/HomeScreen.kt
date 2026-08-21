@@ -59,6 +59,7 @@ import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.CustomDevotionInfo
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.content.today.TodayInfoStore
+import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.FavoriteDevotions
 import com.dkaluta.prosary.models.HomeOrder
 import com.dkaluta.prosary.models.MultiDayStatus
@@ -115,7 +116,8 @@ fun HomeScreen(
     val services = LocalAppServices.current
     val isDarkTheme = isSystemInDarkTheme()
 
-    val todayFeast = remember { TodayInfoStore.feast() }
+    // Keyed on the selection so returning from Settings re-resolves under the new calendar.
+    val todayFeast = remember(AppSettings.feastCalendarId) { TodayInfoStore.feast() }
     val monthIntention = remember { TodayInfoStore.intention() }
     var todayMysteryGroup by remember { mutableStateOf<MysteryGroup?>(null) }
     var defaultRosary by remember { mutableStateOf<Prayer?>(null) }
@@ -364,7 +366,9 @@ fun HomeScreen(
                                 Text(
                                     todayFeast.title,
                                     style = MaterialTheme.typography.titleSmall,
-                                    fontWeight = if (todayFeast.rank == "Solemnity") FontWeight.Bold else FontWeight.SemiBold,
+                                    // Each calendar's top rank gets the bold: "Solemnity"
+                                    // (Roman), "1st Class" (1962), "Great Feast" (Byzantine).
+                                    fontWeight = if (todayFeast.rank in setOf("Solemnity", "1st Class", "Great Feast")) FontWeight.Bold else FontWeight.SemiBold,
                                 )
                                 Text(
                                     todayFeast.rank,

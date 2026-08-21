@@ -120,7 +120,7 @@
       }
     },
     "settings": {
-      "purpose": "App-wide preferences — currently just the default prayer language.",
+      "purpose": "App-wide preferences: the default prayer language (+ rite when the language has more than one), auto-advance, haptics (iOS), the Today row's liturgical calendar (a picker over Shared/data/calendars.json's registry, persisted as feastCalendarId beside defaultLanguageCode, hidden if the registry ships a single calendar), downloads management, and links.",
       "parameters": {},
       "sources": {
         "iOS": "Views/Settings/SettingsView.swift (macOS Settings scene, Cmd+,; iOS has no in-app equivalent — the system Settings app via Settings.bundle/Root.plist instead)",

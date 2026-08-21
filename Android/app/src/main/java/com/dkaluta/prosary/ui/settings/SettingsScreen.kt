@@ -47,6 +47,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
+import com.dkaluta.prosary.content.today.TodayInfoStore
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.HomeOrder
 import com.dkaluta.prosary.models.LanguageCatalog
@@ -206,6 +207,34 @@ fun SettingsScreen(onBack: () -> Unit) {
                 enabled = homeOrderIsCustom,
                 modifier = Modifier.fillMaxWidth(),
             ) { Text(stringResource(R.string.settings_reset_home_order)) }
+
+            // The Home "Today" feast row's liturgical calendar (Erez's request). The choices
+            // come from the bundled calendars.json registry, so adding a calendar is a data
+            // drop, never a new case here; hidden entirely if the registry ever ships a single
+            // calendar. Reads through the store so an unset/unknown stored id shows as the
+            // registry default.
+            val feastCalendars = TodayInfoStore.calendars
+            if (feastCalendars.size > 1) {
+                SectionHeader(stringResource(R.string.settings_today_header))
+
+                var feastCalendarId by remember { mutableStateOf(TodayInfoStore.selectedCalendarId) }
+                OptionPickerField(
+                    label = stringResource(R.string.settings_feast_calendar),
+                    options = feastCalendars,
+                    selected = feastCalendars.firstOrNull { it.id == feastCalendarId }
+                        ?: feastCalendars.first(),
+                    optionLabel = { it.displayName },
+                    onSelect = {
+                        feastCalendarId = it.id
+                        AppSettings.feastCalendarId = it.id
+                    },
+                )
+                Text(
+                    stringResource(R.string.settings_feast_calendar_hint),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
 
             SectionHeader(stringResource(R.string.settings_downloads))
 

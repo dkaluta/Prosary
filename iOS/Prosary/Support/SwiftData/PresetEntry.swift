@@ -48,10 +48,18 @@ final class PresetEntry {
   var includeFatimaPrayers: Bool = true
   var eternalRestForDeceased: EternalRestPlacement = EternalRestPlacement.none
   var marianAntiphon: MarianAntiphonOption = MarianAntiphonOption.seasonal
+  // Default false handles existing rows.
+  var includeClosingIntentions: Bool = false
   var includeStMichaelPrayer: Bool = false
   var includeFinalSignOfCross: Bool = true
   // Default false handles existing rows.
   var presenterMode: Bool = false
+  // Default "classic" handles existing rows. Stored as the raw string, not the enum type:
+  // SwiftData lightweight-migrates a missing String column to its default, but a column of an
+  // enum type added to an existing store trips a swift_dynamicCastFailure abort in the
+  // generated getter the first time an old row is read (observed 2026-08-13; the older enum
+  // columns above predate every shipped store, so they never hit this).
+  var mysteryImageStyleRaw: String = MysteryImageStyle.classic.rawValue
 
   // Jesus Prayer-specific fields (populated when kind == "jesusPrayer")
   var jesusPrayerIsUnbounded: Bool = false
@@ -78,9 +86,11 @@ final class PresetEntry {
     includeFatimaPrayers = prayer.rosary.includeFatimaPrayer
     eternalRestForDeceased = prayer.rosary.eternalRestForDeceased
     marianAntiphon = prayer.rosary.marianAntiphon
+    includeClosingIntentions = prayer.rosary.includeClosingIntentions
     includeStMichaelPrayer = prayer.rosary.includeStMichaelPrayer
     includeFinalSignOfCross = prayer.rosary.includeFinalSignOfCross
     presenterMode = prayer.rosary.presenterMode
+    mysteryImageStyleRaw = prayer.rosary.mysteryImageStyle.rawValue
 
     if case .count(let n) = prayer.jesusPrayer.target {
       jesusPrayerIsUnbounded = false
@@ -110,9 +120,11 @@ final class PresetEntry {
     includeFatimaPrayers = prayer.rosary.includeFatimaPrayer
     eternalRestForDeceased = prayer.rosary.eternalRestForDeceased
     marianAntiphon = prayer.rosary.marianAntiphon
+    includeClosingIntentions = prayer.rosary.includeClosingIntentions
     includeStMichaelPrayer = prayer.rosary.includeStMichaelPrayer
     includeFinalSignOfCross = prayer.rosary.includeFinalSignOfCross
     presenterMode = prayer.rosary.presenterMode
+    mysteryImageStyleRaw = prayer.rosary.mysteryImageStyle.rawValue
 
     if case .count(let n) = prayer.jesusPrayer.target {
       jesusPrayerIsUnbounded = false
@@ -157,9 +169,11 @@ final class PresetEntry {
         includeFatimaPrayer: includeFatimaPrayers,
         eternalRestForDeceased: eternalRestForDeceased,
         marianAntiphon: marianAntiphon,
+        includeClosingIntentions: includeClosingIntentions,
         includeStMichaelPrayer: includeStMichaelPrayer,
         includeFinalSignOfCross: includeFinalSignOfCross,
-        presenterMode: presenterMode
+        presenterMode: presenterMode,
+        mysteryImageStyle: MysteryImageStyle(rawValue: mysteryImageStyleRaw) ?? .classic
       ),
       jesusPrayer: JesusPrayerOptions(target: jpTarget),
       customDevotionId: resolved.customDevotionId,

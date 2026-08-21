@@ -18,9 +18,19 @@ object AppSettings {
     private const val KEY_DEFAULT_LANGUAGE = "defaultLanguageCode"
     private const val KEY_AUTO_ADVANCE = "autoAdvanceSeconds"
     private const val KEY_HAPTICS = "hapticsOnAdvance"
+    private const val KEY_FEAST_CALENDAR = "feastCalendarId"
 
     var defaultLanguageCode: String = LanguageCatalog.defaultCode
         private set
+
+    /** The Home "Today" feast row's liturgical calendar, by calendars.json id; "" (the
+     * default) follows the registry's own default. Assigning persists; with no [init] yet
+     * (plain JVM unit tests) the assignment simply caches. */
+    var feastCalendarId: String = ""
+        set(value) {
+            field = value
+            prefs?.edit()?.putString(KEY_FEAST_CALENDAR, value)?.apply()
+        }
 
     /** Seconds between automatic step advances in the prayer flows; 0 = off. */
     var autoAdvanceSeconds: Int = 0
@@ -39,6 +49,7 @@ object AppSettings {
             ?: LanguageCatalog.defaultCode
         autoAdvanceSeconds = resolved.getInt(KEY_AUTO_ADVANCE, 0)
         hapticsOnAdvance = resolved.getBoolean(KEY_HAPTICS, false)
+        feastCalendarId = resolved.getString(KEY_FEAST_CALENDAR, "") ?: ""
     }
 
     fun setDefaultLanguageCode(code: String) {

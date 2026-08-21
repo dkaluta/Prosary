@@ -108,6 +108,11 @@
           "type": "MarianAntiphonOption",
           "default": "seasonal"
         },
+        "includeClosingIntentions": {
+          "type": "boolean",
+          "default": false,
+          "description": "The customary intercessions immediately after the Marian antiphon, each answered with an Our Father, Hail Mary, and Glory Be: for the Pope's intentions and the needs of the Church and the nation; for the local ordinary and his intentions (the Latin Patriarch in the vicariate's Hebrew, the exarch in the Mission of St. Gamaliel's overlay); and for the holy souls in purgatory, closed by \"May they rest in peace. Amen.\" From the Mission of St. Gamaliel's prayer book (2026-08); ten bundle-driven closing steps gated on the rosary bundle's closingIntentions option."
+        },
         "includeStMichaelPrayer": {
           "type": "boolean",
           "default": false
@@ -120,8 +125,25 @@
           "type": "boolean",
           "default": false,
           "description": "Collapses each decade's 10 Hail Marys and its Glory Be onto one combined step (title \"Hail Mary & Glory Be\", body = both prayers' text) instead of 10 individual Hail Mary steps + a separate Glory Be step. Announcement and Our Father steps are unaffected. The combined step still sets hailMaryIndexInDecade = 10 so the bead-track UI renders the traditional 10-bead decade (see ARCHITECTURE.md)."
+        },
+        "mysteryImageStyle": {
+          "type": "MysteryImageStyle",
+          "default": "classic",
+          "description": "Which artwork set illustrates the mysteries during the session. Maps onto the rosary bundle's imageStyle choice option; the engine resolves it by setting RosaryStep.imageVariantKey = \"eastern_\" + the mystery's imageKey on every step that carries a Mystery, so Mystery.imageKey itself (identity + translation lookup) is never touched."
         }
       }
+    },
+    "MysteryImageStyle": {
+      "description": "The Rosary's mystery artwork set. classic = the public-domain classical paintings (default); eastern = the eastern/illuminated-manuscript-style icon set (eastern_* imageKeys). Windows persists this enum as a raw integer ordinal, so new cases must only ever be appended.",
+      "kind": "enum",
+      "cases": [
+        {
+          "value": "classic"
+        },
+        {
+          "value": "eastern"
+        }
+      ]
     },
     "MysterySelectionMode": {
       "kind": "enum",
@@ -324,6 +346,10 @@
         "imageOverrideKey": {
           "type": "string?",
           "description": "For steps not tied to a Mystery that still want a specific illustration — see mysteries.json's overrideImages."
+        },
+        "imageVariantKey": {
+          "type": "string?",
+          "description": "Alternate-artwork override, set by the engine on steps that carry a Mystery when the favorite's mysteryImageStyle asks for a non-default set (e.g. \"eastern_joyful_01_annunciation\"). Display resolution prefers it over everything: imageVariantKey ?? mystery.imageKey ?? imageOverrideKey ?? cross_placeholder. A separate field (not a rewritten Mystery.imageKey) because the mystery's own key is its identity and its translation-lookup key."
         }
       }
     },

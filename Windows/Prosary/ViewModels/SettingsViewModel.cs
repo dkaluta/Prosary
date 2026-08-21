@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using Prosary.Localization;
 using Prosary.Models;
 using Prosary.Navigation;
+using Prosary.Services;
 using Windows.Storage;
 
 namespace Prosary.ViewModels;
@@ -129,6 +130,26 @@ public partial class SettingsViewModel : ObservableObject
         catch
         {
             return string.Empty;
+        }
+    }
+
+    // The Home "Today" feast row's liturgical calendar (Erez's request). The choices come from
+    // the bundled calendars.json registry, so adding a calendar is a data drop, never a new
+    // case here; hidden entirely if the registry ever ships a single calendar.
+    public IReadOnlyList<TodayInfoStore.FeastCalendar> FeastCalendarOptions => TodayInfoStore.Calendars;
+
+    public bool ShowsFeastCalendarPicker => FeastCalendarOptions.Count > 1;
+
+    [ObservableProperty]
+    private TodayInfoStore.FeastCalendar? _selectedFeastCalendar =
+        TodayInfoStore.Calendars.FirstOrDefault(c => c.Id == TodayInfoStore.ResolvedCalendarId);
+
+    partial void OnSelectedFeastCalendarChanged(TodayInfoStore.FeastCalendar? value)
+    {
+        if (value is not null)
+        {
+            AppSettings.SetFeastCalendarId(value.Id);
+            TodayInfoStore.SelectedCalendarId = value.Id;
         }
     }
 

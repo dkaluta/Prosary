@@ -34,9 +34,15 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
 - **`RosaryOptions`** — `mysterySelectionMode` (today's mysteries / a specific fixed set / all 15
   / all 20 / a single mystery), `specificMysteryGroup`, `specificMysteryOrder` (1-based, used only
   for the single-mystery mode), `presenterMode` (collapses each decade's Hail Marys + Glory Be
-  onto one combined step — see "Engines" below), and toggles for the Apostles' Creed, opening Our
+  onto one combined step — see "Engines" below), toggles for the Apostles' Creed, opening Our
   Father + 3 Hail Marys, the Fatima Prayer, eternal-rest placement, the closing Marian antiphon,
-  the St. Michael prayer, and the final Sign of the Cross.
+  the closing intentions (the customary intercessions right after the antiphon — for the Pope,
+  the local ordinary, and the holy souls — each unfolding into an Our Father/Hail Mary/Glory Be,
+  from the Mission of St. Gamaliel's prayer book), the St. Michael prayer, and the final Sign of
+  the Cross, and `mysteryImageStyle` (classic paintings vs. the `eastern_*` icon set; the engine
+  stamps `RosaryStep.imageVariantKey` on every Mystery-carrying step so display resolution —
+  `imageVariantKey ?? mystery.imageKey ?? imageOverrideKey` — swaps artwork without touching
+  `Mystery.imageKey`, which stays the mystery's identity and translation-lookup key).
 - **`JesusPrayerOptions`** / **`JesusPrayerTarget`** — a repetition count (`Count(n)`) or
   `Unbounded` (no target; the user ends the session explicitly).
 - **`JesusPrayerProgress`** — the live repetition counter during a session. Immutable
@@ -84,10 +90,13 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   step, whose body is a real quoted Bible verse), `isAntiphon`, `decadeIndex` (0-based, counted
   *globally* across every mystery group in the session — this is what the bead track uses to tell
   decades apart, so it must never reset per group), `hailMaryIndexInDecade` (1–10 for the Rosary/
-  Franciscan Crown/Divine Mercy Chaplet, 1–7 for Seven Sorrows), and an
+  Franciscan Crown/Divine Mercy Chaplet, 1–7 for Seven Sorrows), an
   `imageOverrideKey` for steps not tied to a Mystery that still want a specific illustration
   (e.g. "crucifix" for the Sign of the Cross, "our_father" for the Our Father, "madonna_and_child"
-  for the antiphon).
+  for the antiphon), and an `imageVariantKey` the engine sets on Mystery-carrying steps when the
+  favorite's `mysteryImageStyle` selects an alternate artwork set (`"eastern_" + imageKey`);
+  display resolution is `imageVariantKey ?? mystery.imageKey ?? imageOverrideKey ??
+  "cross_placeholder"` on every platform.
 
 ## Engines
 
@@ -115,8 +124,9 @@ options.json values (`rosaryOptionValues`), so there is **no data migration**.
 - **Rosary** — the richest: opening (Sign of the Cross, optional Creed, optional opening Our
   Father/3 Hail Marys for Faith/Hope/Charity), one loop per decade across every resolved
   `MysteryGroup` (mystery announcement → Our Father → 10 Hail Marys → Glory Be → optional Fatima
-  Prayer → optional per-decade eternal rest), closing (Marian antiphon → optional St. Michael
-  prayer → optional end-of-session eternal rest → optional final Sign of the Cross). The
+  Prayer → optional per-decade eternal rest), closing (Marian antiphon → optional closing intentions: three intercessions each unfolding
+  into Our Father/Hail Mary/Glory Be and closed by "May they rest in peace" → optional St.
+  Michael prayer → optional end-of-session eternal rest → optional final Sign of the Cross). The
   single-mystery mode (`mysterySelectionMode == singleMystery`) resolves to the same one-group
   shape as the fixed-set mode, but the per-group loop only builds the one decade at
   `specificMysteryOrder - 1`, keeping the mystery's true ordinal (e.g. "3rd Mystery") for its
@@ -304,7 +314,10 @@ its current enabled ones), `removeAll(prayer)`, `rescheduleAll(prayers)` (called
   text, and Latin/English Scripture quotations. Latin-script *ordinary* prayer text uses each
   platform's own system serif instead (Apple's "New York" on iOS/Mac, the system serif on
   Android, Cambria on Windows) — none of those are bundled, only the 5 above are.
-- **`Images/`** — the 20 mystery paintings, the 14 Stations (Gebhard Fugel's 1921 Bad Saulgau
+- **`Images/`** — the 20 mystery paintings (plus the alternate `eastern_*` icon set — the same
+  20 mysteries in an Eastern/illuminated-manuscript style, selected per favorite by
+  `RosaryOptions.mysteryImageStyle`; see `Images/CREDITS.md` for their AI-generated provenance),
+  the 14 Stations (Gebhard Fugel's 1921 Bad Saulgau
   Kreuzweg cycle), the 7 Sorrows (per-scene old masters), the Franciscan Crown's Adoration of the
   Magi (Murillo), the Divine Mercy image (Kazimirowski, 1934) — all public-domain classical art,
   every file an exact 1:1 square — plus ~10 override illustrations used by steps not tied to a
@@ -719,18 +732,56 @@ of its own — its entire step sequence and per-step text are data-driven from i
 
 ## Offline "Today" data (`Shared/data/`)
 
-Two dev-time-generated datasets back the Home screen's "Today" section (per-platform physical
+Dev-time-generated datasets back the Home screen's "Today" section (per-platform physical
 copies, same convention as the bundles; per-platform `TodayInfoStore` providers):
 
-- **`feasts.json`** — a per-day sanctoral table (`days: {"YYYY-MM-DD": {title, rank}}`) for the
-  generated years: the General Roman Calendar (fetched from the litcal API at generation time,
-  movable feasts baked in per year — no computus or precedence logic ships in the app) overlaid
-  with the Latin Patriarchate of Jerusalem's documented propers (Our Lady, Queen of Palestine and
-  of the Holy Land — Oct 25, patronal solemnity; the Dedication of the Basilica of the Holy
-  Sepulchre — Jul 15; Saint Mary of Jesus Crucified Baouardy — Aug 26). Ferial days have no
-  entry.
+- **Feast tables, one per liturgical calendar** (2026-08: switchable, Erez's request) — each a
+  per-day sanctoral table (`days: {"YYYY-MM-DD": {title, rank}}`) for the generated years,
+  movable feasts baked in per year at generation time; no computus or precedence logic ships in
+  the app, and ferial days have no entry. `calendars.json` is the registry: id, dataset file
+  basename, and the Settings picker label (`name`/`nameByLanguage`, resolved by UI language);
+  its `default` names the calendar used when the app-wide `feastCalendarId` setting (stored
+  beside `defaultLanguageCode` on every platform) is unset or unknown. Shipped calendars:
+  - `lpj` — **`feasts.json`**: the General Roman Calendar (litcal API) overlaid with the Latin
+    Patriarchate of Jerusalem's documented propers (Our Lady, Queen of Palestine and of the
+    Holy Land — Oct 25, patronal solemnity; the Dedication of the Basilica of the Holy
+    Sepulchre — Jul 15; Saint Mary of Jesus Crucified Baouardy — Aug 26). The default; keeps
+    the pre-switchable filename.
+  - `roman` — **`feasts-roman.json`**: the General Roman Calendar, no overlay (litcal,
+    Apache-2.0).
+  - `roman1962` — **`feasts-roman1962.json`**: the 1962 Vetus Ordo calendar (missalemeum.com,
+    MIT), I–III class days with class ranks ("1st Class"…"3rd Class"); IV-class days and bare
+    ferias are omitted the way ferial days are elsewhere. The Home screens bold a feast title
+    when its rank is "Solemnity", **"1st Class"**, or **"Great Feast"**.
+  - `ugcc` — **`feasts-ugcc.json`**: Byzantine — Ukrainian Greek Catholic, deliberately the
+    **diasporic (fully Gregorian) usage** — the variant its Holy Land faithful pray — not
+    Ukraine's new-calendar-with-Julian-Pascha hybrid. No licensed machine-readable source
+    exists, so the fixed menologion is curated inside `fetch-feasts.py` (the Twelve Great
+    Feasts, the major wall-calendar commemorations, and the UGCC's own: Josaphat, Volodymyr,
+    Olha, the Blessed New Martyrs) and the movable Paschal cycle is computed from the
+    Gregorian computus; every Sunday is named (Triodion/Pentecostarion names, pre-Nativity/
+    Theophany specials, otherwise numbered after Pentecost), and a fixed Great Feast falling
+    on a movable-cycle day is joined into one title rather than displaced (the Annunciation
+    on Great and Holy Thursday, 2027). Ranks: "Great Feast" / "Feast" / "Sunday" /
+    "Holy Week" / "Fast". Curated data awaiting eparchial/community verification.
+  - `syriac` — **`feasts-syriac.json`**: "West Aramaic — Syriac Catholic" (the apostolate's
+    own chosen name for its tradition),
+    liturgical day titles **courtesy of Evangelizo.org — Daily Gospel (© Evangelizo.org)**,
+    via its publication API's English Syriac-calendar edition ("SYE"), one request per day;
+    the credit is required and carried on every platform's About screen ("Calendar Data"
+    section, which also names LitCal and Missale Meum). Plain-date ferial titles are omitted;
+    ranks are title-derived ("Sunday" / "Fast" / "Feast", with Pascha as "Great Feast").
+    Evangelizo serves a rolling ~3-month horizon, so this one table ends where the API did at
+    generation time and extends on each rerun — regenerate more often than yearly.
+    Adding a further calendar remains a pure data drop: a registry entry + a dataset file +
+    platform copies.
+  `Shared/tools/fetch-feasts.py` regenerates every table (litcal + missalemeum; `--sync`
+  copies all of `Shared/data/*.json` into the three platform asset dirs). `TodayInfoStore`
+  reloads the feast table when the selected calendar changes; the calendar choice affects the
+  Today feast row only — seasons, mysteries, and antiphons stay `LiturgicalCalendarService`'s
+  computed Latin machinery, and the Pope's intention shows for every calendar.
 - **`pope-intentions.json`** — the Pope's Worldwide Prayer Network monthly intentions
-  (`months: {"YYYY-MM": {title, text}}`), from popesprayer.va.
+  (`months: {"YYYY-MM": {title, text}}`), from popesprayer.va; maintained by hand (no API).
 
 A date/month outside the datasets returns nothing and the row simply hides — regenerating the
-JSON (roughly yearly) is the only maintenance.
+JSON (roughly yearly, `fetch-feasts.py`) is the only maintenance.

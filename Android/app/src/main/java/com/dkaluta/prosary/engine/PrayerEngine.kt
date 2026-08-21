@@ -13,6 +13,7 @@ import com.dkaluta.prosary.models.EternalRestPlacement
 import com.dkaluta.prosary.models.MarianAntiphonOption
 import com.dkaluta.prosary.models.Mystery
 import com.dkaluta.prosary.models.MysteryCatalog
+import com.dkaluta.prosary.models.MysteryImageStyle
 import com.dkaluta.prosary.models.MysteryGroup
 import com.dkaluta.prosary.models.MysterySelectionMode
 import com.dkaluta.prosary.models.Prayer
@@ -90,8 +91,10 @@ class PrayerEngine(
         "fatimaPrayer" to rosary.includeFatimaPrayer.toString(),
         "eternalRest" to rosary.eternalRestForDeceased.name.replaceFirstChar { it.lowercaseChar() },
         "antiphon" to rosary.marianAntiphon.name.replaceFirstChar { it.lowercaseChar() },
+        "closingIntentions" to rosary.includeClosingIntentions.toString(),
         "stMichael" to rosary.includeStMichaelPrayer.toString(),
         "finalSignOfCross" to rosary.includeFinalSignOfCross.toString(),
+        "imageStyle" to rosary.mysteryImageStyle.name.replaceFirstChar { it.lowercaseChar() },
     )
 
     // MARK: Marian antiphon (shared by the Rosary and generic rosary-type devotions)
@@ -414,6 +417,12 @@ class PrayerEngine(
         fun fixedTitle(step: CustomDevotionDefinition.Decades.FixedStep): String =
             step.titleKey?.let { resolve(it) } ?: step.title.orEmpty()
 
+        // The alternate-artwork seam: an eastern-style favorite stamps every Mystery-carrying step
+        // with the parallel "eastern_" image key, leaving Mystery.imageKey (identity + translation
+        // lookup) untouched.
+        fun variantKey(mystery: Mystery): String? =
+            if (rosary.mysteryImageStyle == MysteryImageStyle.Eastern) "eastern_${mystery.imageKey}" else null
+
         val groups = resolveMysteryGroups(rosary)
         val fruitLabel = PrayerTranslations.get(languageCode, PrayerKey.FructusMysteriiLabel)
         val majorBody = resolve(decades.majorStep.bodyKey)
@@ -446,6 +455,7 @@ class PrayerEngine(
                         title = mysteryText.title, subtitle = ordinalLabel,
                         body = "${mysteryText.description}\n\n$fruitLabel: ${mysteryText.fruit}",
                         mystery = mystery, isScripture = true, decadeIndex = decadeIndex,
+                        imageVariantKey = variantKey(mystery),
                     ),
                 )
                 steps.add(
@@ -462,6 +472,7 @@ class PrayerEngine(
                             subtitle = decadeSubtitle,
                             body = presenter.bodyKeys.joinToString("\n\n") { resolve(it) },
                             mystery = mystery, decadeIndex = decadeIndex, hailMaryIndexInDecade = decades.minorCount,
+                            imageVariantKey = variantKey(mystery),
                         ),
                     )
                 } else {
@@ -471,6 +482,7 @@ class PrayerEngine(
                                 title = "${fixedTitle(decades.minorStep)} ${counter(h, decades.minorCount, languageCode)}",
                                 subtitle = decadeSubtitle, body = minorBody,
                                 mystery = mystery, decadeIndex = decadeIndex, hailMaryIndexInDecade = h,
+                                imageVariantKey = variantKey(mystery),
                             ),
                         )
                     }

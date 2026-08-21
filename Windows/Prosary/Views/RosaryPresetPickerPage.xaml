@@ -127,6 +127,15 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
+                            <ComboBox x:Uid="PickerMysteryArtwork" HorizontalAlignment="Stretch" Header="Mystery artwork"
+                                      ItemsSource="{x:Bind ViewModel.MysteryImageStyles}"
+                                      SelectedItem="{x:Bind ViewModel.MysteryImageStyle, Mode=TwoWay}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource EnumDisplayName}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
@@ -158,6 +167,14 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBlock x:Uid="PickerPresenterMode" Grid.Column="0" Text="Presenter mode" VerticalAlignment="Center" TextWrapping="Wrap" />
                                 <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.PresenterMode, Mode=TwoWay}" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Uid="PickerClosingIntentions" Grid.Column="0" Text="Closing Intentions" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeClosingIntentions, Mode=TwoWay}" />
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>

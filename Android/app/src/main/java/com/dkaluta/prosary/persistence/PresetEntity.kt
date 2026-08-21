@@ -7,6 +7,7 @@ import com.dkaluta.prosary.models.JesusPrayerOptions
 import com.dkaluta.prosary.models.JesusPrayerTarget
 import com.dkaluta.prosary.models.MarianAntiphonOption
 import com.dkaluta.prosary.models.MysteryGroup
+import com.dkaluta.prosary.models.MysteryImageStyle
 import com.dkaluta.prosary.models.MysterySelectionMode
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
@@ -56,10 +57,14 @@ data class PresetEntity(
     val includeFatimaPrayers: Boolean = true,
     val eternalRestForDeceased: String = EternalRestPlacement.None.name,
     val marianAntiphon: String = MarianAntiphonOption.Seasonal.name,
+    // Defaults to false for existing rows. Added in DB version 7 (see MIGRATION_6_7).
+    val includeClosingIntentions: Boolean = false,
     val includeStMichaelPrayer: Boolean = false,
     val includeFinalSignOfCross: Boolean = true,
     // Defaults to false for existing rows.
     val presenterMode: Boolean = false,
+    // MysteryImageStyle's enum name. Added in DB version 7 (see MIGRATION_6_7).
+    val mysteryImageStyle: String = MysteryImageStyle.Classic.name,
 
     // Jesus Prayer-specific fields (populated when kind == JesusPrayer)
     val jesusPrayerIsUnbounded: Boolean = false,
@@ -107,9 +112,12 @@ data class PresetEntity(
                     .getOrDefault(EternalRestPlacement.None),
                 marianAntiphon = runCatching { MarianAntiphonOption.valueOf(marianAntiphon) }
                     .getOrDefault(MarianAntiphonOption.Seasonal),
+                includeClosingIntentions = includeClosingIntentions,
                 includeStMichaelPrayer = includeStMichaelPrayer,
                 includeFinalSignOfCross = includeFinalSignOfCross,
                 presenterMode = presenterMode,
+                mysteryImageStyle = runCatching { MysteryImageStyle.valueOf(mysteryImageStyle) }
+                    .getOrDefault(MysteryImageStyle.Classic),
             ),
             jesusPrayer = JesusPrayerOptions(target = target),
             reminders = remindersFromJson(remindersJson),
@@ -140,9 +148,11 @@ data class PresetEntity(
                 includeFatimaPrayers = prayer.rosary.includeFatimaPrayer,
                 eternalRestForDeceased = prayer.rosary.eternalRestForDeceased.name,
                 marianAntiphon = prayer.rosary.marianAntiphon.name,
+                includeClosingIntentions = prayer.rosary.includeClosingIntentions,
                 includeStMichaelPrayer = prayer.rosary.includeStMichaelPrayer,
                 includeFinalSignOfCross = prayer.rosary.includeFinalSignOfCross,
                 presenterMode = prayer.rosary.presenterMode,
+                mysteryImageStyle = prayer.rosary.mysteryImageStyle.name,
                 jesusPrayerIsUnbounded = isUnbounded,
                 jesusPrayerCount = count,
                 remindersJson = remindersToJson(prayer.reminders),

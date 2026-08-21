@@ -75,6 +75,8 @@
                         <Run x:Uid="AbtMys19Title" Text="Assumption of the Virgin" FontStyle="Italic" /><Run x:Uid="AbtCredit12" Text=" — Titian (d. 1576)" /><LineBreak />
                         <Run x:Uid="AbtMys20Title" Text="Coronation of the Virgin" FontStyle="Italic" /><Run x:Uid="AbtCredit13" Text=" — Diego Velázquez (d. 1660)" />
                     </TextBlock>
+                    <TextBlock x:Uid="AboutEasternIcons" Text="The collection of illustrations of the Mysteries in the Eastern style is used with approval from the St. Gamliel Apostolate for Hebrew Catholics in the Aramaic (Syriac) Catholic Church."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
                 </StackPanel>
 
                 <StackPanel Spacing="8">
@@ -141,6 +143,12 @@
                 <StackPanel Spacing="8">
                     <TextBlock x:Uid="AbtScriptureHeader" Text="Scripture Sources" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
                     <TextBlock x:Uid="AbtScriptureBody" Text="Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) with Hebrew Old Testament passages following the Masoretic text, the Jesuit Arabic Bible (Beirut, 1880, revised 1988), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905) — all public domain."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock x:Uid="AbtCalendarDataHeader" Text="Calendar Data" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                    <TextBlock x:Uid="AbtCalendarDataBody" Text="Feast calendar data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar via Missale Meum (missalemeum.com); the Syriac Catholic calendar courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic table compiled in-app from the traditional sources."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
                 </StackPanel>
 

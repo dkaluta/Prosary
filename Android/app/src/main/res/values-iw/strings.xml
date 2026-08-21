@@ -60,6 +60,9 @@
     <string name="auto_advance_off">כבוי</string>
     <string name="auto_advance_every">כל %1$d שניות</string>
     <string name="settings_reset_home_order">איפוס סדר מסך הבית</string>
+    <string name="settings_today_header">היום</string>
+    <string name="settings_feast_calendar">הלוח הליטורגי</string>
+    <string name="settings_feast_calendar_hint">לפי איזה לוח מוצגים חגי המדור „היום“.</string>
     <string name="settings_downloads">הורדות</string>
     <string name="settings_installed_devotions">מסלולי תפילה מותקנים: %1$d</string>
     <string name="settings_clear_audio_cache">ניקוי מטמון השמע</string>
@@ -109,6 +112,10 @@
     <string name="antiphon_regina_caeli">רוני מלכת שמים</string>
     <string name="antiphon_sub_tuum">בצל רחמיך</string>
 
+    <!-- Mystery artwork styles -->
+    <string name="image_style_classic">ציורים קלאסיים</string>
+    <string name="image_style_eastern">איקונות מזרחיות</string>
+
     <!-- Language display -->
     <string name="language_default_parenthesized">ברירת מחדל (%1$s)</string>
     <string name="language_default_dash">ברירת מחדל — %1$s</string>
@@ -136,10 +143,12 @@
     <string name="ro_fatima">“הו ישוע שלי” בסוף כל רז</string>
     <string name="ro_faithful_departed">למען הנפטרים</string>
     <string name="ro_display_section">תצוגה</string>
+    <string name="ro_mystery_artwork">איורי הרזים</string>
     <string name="ro_presenter_mode">מצב מנחה</string>
     <string name="ro_presenter_hint">איחוד עשר ה“שמחי מרים” וה“כבוד לאב” של כל רז למסך אחד — שימושי למי שמוביל תפילה בציבור בעל־פה.</string>
     <string name="ro_closing_section">תפילות סיום</string>
     <string name="ro_marian_antiphon">אנטיפונה למרים</string>
+    <string name="ro_closing_intentions">כוונות הסיום</string>
     <string name="ro_st_michael">תפילת המלאך מיכאל</string>
     <string name="ro_final_sign">סימן הצלב בסוף</string>
 
@@ -268,6 +277,7 @@
         <item>*העלאת הבתולה* — טיציאן (נפ׳ 1576)</item>
         <item>*הכתרת הבתולה* — דייגו ולאסקס (נפ׳ 1660)</item>
     </string-array>
+    <string name="about_eastern_icons">אוסף איורי הרזים בסגנון המזרחי מובא באישור שליחות גמליאל הקדוש לקתולים עבריים של העדה הארמית (סורית) קתולית.</string>
     <string name="about_other_images">תמונות נוספות</string>
     <string-array name="about_other_image_attributions">
         <item>*הצלב* — צ׳ימבואה (נפ׳ 1302).</item>
@@ -301,6 +311,8 @@
     <string name="about_jesus_pantocrator">המשיח כל־יכול: איקונה (המאה ה־6), מנזר הק׳ קתרינה, הר סיני — איקונת “המשיח הכל־יכול” העתיקה ביותר ששרדה, לכבוד מסורתה המזרחית של התפילה; רשות הציבור.</string>
     <string name="about_scripture_sources">מקורות כתבי הקודש</string>
     <string name="about_scripture_text">ציטוטי המקרא לקוחים מביבליית דואיי־רימס (אנגלית), הוולגאטה הקלמנטית (לטינית), תרגום דליטש לברית החדשה (מתוך kirjasilta.net/ha-berit) עם קטעי התנ״ך על פי נוסח המסורה, תרגום הישועים לביבליה לערבית (ביירות, 1880, נערך 1988), הביבליה הסינודלית ברוסית (1876) ו־Ang Dating Biblia (טאגאלוג, 1905) — כולם בנחלת הכלל.</string>
+    <string name="about_calendar_data">נתוני לוחות</string>
+    <string name="about_calendar_data_body">נתוני לוחות החגים: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 מ־Missale Meum‏ (missalemeum.com); הלוח הסורי-קתולי באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; הלוח האוקראיני-קתולי נערך באפליקציה מן המקורות המסורתיים.</string>
     <string name="multi_day_reminder_body">יום %1$d מתוך %2$d ממתין.</string>
     <string name="multi_day_completed_title">בזאת הושלמה. להתפלל %1$s עכשיו?</string>
     <string name="multi_day_pray_next">התפלל %1$s</string>

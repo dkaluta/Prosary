@@ -514,7 +514,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             : step.Body;
         Acclamation = step.Acclamation ?? string.Empty;
         HasAcclamation = step.Acclamation is not null;
-        MysteryImageKey = step.Mystery?.ImageKey ?? step.ImageOverrideKey ?? "cross_placeholder";
+        MysteryImageKey = step.ImageVariantKey ?? step.Mystery?.ImageKey ?? step.ImageOverrideKey ?? "cross_placeholder";
         ProgressText = string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), _index + 1, _steps.Count);
         Progress = (_index + 1) / (double)_steps.Count;
         CanGoBack = _index > 0;

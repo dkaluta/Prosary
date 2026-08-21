@@ -30,6 +30,12 @@ struct RosaryOptions: Hashable, Codable {
 
   var marianAntiphon: MarianAntiphonOption = .seasonal
 
+  /// The customary closing intercessions right after the Marian antiphon — for the Pope's
+  /// intentions and the needs of the Church and the nation, for the local ordinary and his
+  /// intentions, and for the holy souls in purgatory — each unfolding into an Our Father,
+  /// Hail Mary, and Glory Be. From the Mission of St. Gamaliel's prayer book.
+  var includeClosingIntentions: Bool = false
+
   var includeStMichaelPrayer: Bool = false
 
   var includeFinalSignOfCross: Bool = true
@@ -38,6 +44,10 @@ struct RosaryOptions: Hashable, Codable {
   /// leading a group aloud from memory who doesn't need to tap through 10 visually-identical
   /// screens. See `PrayerEngine.buildRosarySteps`.
   var presenterMode: Bool = false
+
+  /// Which artwork set illustrates the mysteries during the session. Resolved by the engine
+  /// into `RosaryStep.imageVariantKey`, never by rewriting `Mystery.imageKey`.
+  var mysteryImageStyle: MysteryImageStyle = .classic
 
   var mysterySelectionSummary: String {
     switch mysterySelectionMode {

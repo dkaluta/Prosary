@@ -29,6 +29,10 @@ public sealed record RosaryOptions
 
     public MarianAntiphonOption MarianAntiphon { get; init; } = MarianAntiphonOption.Seasonal;
 
+    /// <summary>The closing intentions (for the Pope, the local bishop, and the faithful
+    /// departed) prayed after the Marian antiphon.</summary>
+    public bool IncludeClosingIntentions { get; init; } = false;
+
     public bool IncludeStMichaelPrayer { get; init; } = false;
 
     public bool IncludeFinalSignOfCross { get; init; } = true;
@@ -37,6 +41,10 @@ public sealed record RosaryOptions
     /// for someone leading a group aloud from memory who doesn't need to tap through 10
     /// visually-identical screens. See <c>PrayerEngine.BuildRosarySteps</c>.</summary>
     public bool PresenterMode { get; init; } = false;
+
+    /// <summary>Which artwork set illustrates the mysteries — the classical paintings or the
+    /// Eastern icons. See <c>PrayerEngine.BuildMysteryGroupDecades</c>.</summary>
+    public MysteryImageStyle MysteryImageStyle { get; init; } = MysteryImageStyle.Classic;
 
     public string MysterySelectionSummary => MysterySelectionMode switch
     {

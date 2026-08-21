@@ -34,9 +34,11 @@ final class RosaryEngineTests: XCTestCase {
     includeFatima: Bool = true,
     eternalRest: EternalRestPlacement = .none,
     antiphon: MarianAntiphonOption = .salveRegina,
+    closingIntentions: Bool = false,
     includeMichael: Bool = false,
     includeFinalCross: Bool = true,
-    presenterMode: Bool = false
+    presenterMode: Bool = false,
+    imageStyle: MysteryImageStyle = .classic
   ) -> Prayer {
     Prayer(rosary: RosaryOptions(
       mysterySelectionMode: mode,
@@ -47,9 +49,11 @@ final class RosaryEngineTests: XCTestCase {
       includeFatimaPrayer: includeFatima,
       eternalRestForDeceased: eternalRest,
       marianAntiphon: antiphon,
+      includeClosingIntentions: closingIntentions,
       includeStMichaelPrayer: includeMichael,
       includeFinalSignOfCross: includeFinalCross,
-      presenterMode: presenterMode
+      presenterMode: presenterMode,
+      mysteryImageStyle: imageStyle
     ))
   }
 
@@ -114,6 +118,78 @@ final class RosaryEngineTests: XCTestCase {
     let without = engine.buildSteps(for: prayer(eternalRest: .none)).count
     let atEnd = engine.buildSteps(for: prayer(eternalRest: .atEndOnly)).count
     XCTAssertEqual(atEnd, without + 1)
+  }
+
+  // MARK: - Closing intentions
+
+  func testClosingIntentionsAddTenSteps() {
+    let engine = makeEngine()
+    let without = engine.buildSteps(for: prayer(closingIntentions: false)).count
+    let with_ = engine.buildSteps(for: prayer(closingIntentions: true)).count
+    // 3 intentions x (Our Father + Hail Mary + Glory Be) + the requiescant versicle = 10
+    XCTAssertEqual(with_, without + 10)
+  }
+
+  func testClosingIntentionsFollowTheAntiphonDirectly() {
+    let engine = makeEngine()
+    var p = prayer(closingIntentions: true)
+    p.languageCode = "la"
+    let steps = engine.buildSteps(for: p)
+    guard let antiphonIndex = steps.firstIndex(where: { $0.isAntiphon }) else {
+      return XCTFail("no antiphon step")
+    }
+    let intentions = Array(steps[(antiphonIndex + 1)...(antiphonIndex + 10)])
+    XCTAssertEqual(intentions.first?.title, "Pater Noster")
+    XCTAssertEqual(
+      intentions.first?.subtitle,
+      "Pro intentionibus Summi Pontificis et necessitatibus Ecclesiae et patriae.")
+    XCTAssertEqual(intentions.last?.body, "Requiescant in pace.\n**Amen.**")
+  }
+
+  func testClosingIntentionsPrayThePatriarchInHebrewAndTheExarchInTheGamlielRite() {
+    let engine = makeEngine()
+    var p = prayer(closingIntentions: true)
+    p.languageCode = "he"
+    let vicariate = engine.buildSteps(for: p)
+    XCTAssertTrue(vicariate.contains { $0.subtitle?.contains("הַפַּטְרִיאַרְךְ") == true })
+    p.languageCode = "he-x-gamliel"
+    let gamliel = engine.buildSteps(for: p)
+    XCTAssertTrue(gamliel.contains { $0.subtitle?.contains("הַהֶגְמוֹן") == true })
+    XCTAssertFalse(gamliel.contains { $0.subtitle?.contains("הַפַּטְרִיאַרְךְ") == true })
+  }
+
+  // MARK: - Mystery artwork
+
+  func testEasternImageStyleSwapsOnlyMysteryImagery() {
+    let engine = makeEngine()
+    let classic = engine.buildSteps(for: prayer())
+    XCTAssertFalse(classic.contains { $0.imageKey.hasPrefix("eastern_") })
+    let eastern = engine.buildSteps(for: prayer(imageStyle: .eastern))
+    XCTAssertEqual(classic.count, eastern.count)
+    for (c, e) in zip(classic, eastern) {
+      if let mystery = c.mystery {
+        XCTAssertEqual(e.imageKey, "eastern_\(mystery.imageKey)")
+      } else {
+        XCTAssertEqual(e.imageKey, c.imageKey)
+      }
+    }
+  }
+
+  func testEasternImageStyleAppliesToPresenterCombinedStep() {
+    let engine = makeEngine()
+    let steps = engine.buildSteps(for: prayer(presenterMode: true, imageStyle: .eastern))
+    let combined = steps.filter { $0.hailMaryIndexInDecade == 10 }
+    XCTAssertEqual(combined.count, 5)
+    XCTAssertTrue(combined.allSatisfy { $0.imageKey.hasPrefix("eastern_") })
+  }
+
+  @MainActor
+  func testEveryEasternMysteryImageShipsInTheRosaryPack() {
+    for mystery in MysteryCatalog.all {
+      XCTAssertNotNil(
+        PrayerPackStore.imageData(for: "eastern_\(mystery.imageKey)"),
+        "missing eastern image for \(mystery.imageKey)")
+    }
   }
 
   // MARK: - Twenty mysteries

@@ -209,6 +209,9 @@ struct HomeView: View {
             }
           }
       }
+      // Home stays alive under the sheet, so nothing else re-reads the Today row after a
+      // liturgical-calendar change — without this the new calendar shows only on relaunch.
+      .onDisappear { Task { await load() } }
     }
     #endif
     .task { await load() }
@@ -253,7 +256,10 @@ struct HomeView: View {
             Image(systemName: "calendar").foregroundStyle(Color.brandPrimary)
             VStack(alignment: .leading, spacing: 2) {
               Text(feast.title)
-                .font(.subheadline.weight(feast.rank == "Solemnity" ? .bold : .semibold))
+                // Each calendar's own top rank: Roman "Solemnity", 1962 "1st Class",
+                // Byzantine "Great Feast".
+                .font(.subheadline.weight(
+                  ["Solemnity", "1st Class", "Great Feast"].contains(feast.rank) ? .bold : .semibold))
               Text(feast.rank).font(.caption).foregroundStyle(.secondary)
             }
           }

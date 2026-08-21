@@ -13,6 +13,30 @@ import XCTest
 
 @MainActor
 final class TodayInfoStoreTests: XCTestCase {
+  // The test host shares the real app's UserDefaults, so every case pins the calendar
+  // selection explicitly and the original value is restored afterwards — the store reloads
+  // live on selection change, so no reset hook is needed.
+  private var originalCalendarId: String?
+
+  override func setUp() {
+    super.setUp()
+    originalCalendarId = UserDefaults.standard.string(forKey: TodayInfoStore.calendarDefaultsKey)
+    UserDefaults.standard.removeObject(forKey: TodayInfoStore.calendarDefaultsKey)
+  }
+
+  override func tearDown() {
+    if let originalCalendarId {
+      UserDefaults.standard.set(originalCalendarId, forKey: TodayInfoStore.calendarDefaultsKey)
+    } else {
+      UserDefaults.standard.removeObject(forKey: TodayInfoStore.calendarDefaultsKey)
+    }
+    super.tearDown()
+  }
+
+  private func select(_ calendarId: String) {
+    UserDefaults.standard.set(calendarId, forKey: TodayInfoStore.calendarDefaultsKey)
+  }
+
   private func date(_ string: String) -> Date {
     let formatter = DateFormatter()
     formatter.locale = Locale(identifier: "en_US_POSIX")
@@ -52,6 +76,83 @@ final class TodayInfoStoreTests: XCTestCase {
 
   func testDateOutsideTheGeneratedYearsHasNoFeast() {
     XCTAssertNil(TodayInfoStore.feast(on: date("2031-12-25")))
+  }
+
+  // MARK: - Switchable calendars
+
+  func testCalendarRegistryListsTheShippedCalendarsInPickerOrder() {
+    XCTAssertEqual(
+      TodayInfoStore.calendars.map(\.id), ["lpj", "roman", "roman1962", "ugcc", "syriac"])
+    XCTAssertEqual(TodayInfoStore.selectedCalendarId, "lpj")
+  }
+
+  /// The Syriac Catholic table comes from Evangelizo.org's Daily Gospel (credited on the
+  /// About screen): the Antiochene year names its Sundays from the season's anchor feasts,
+  /// and Evangelizo's plain-date ferial titles are omitted like ferial days everywhere else.
+  func testSyriacCalendarNamesTheAntiocheneSeasons() {
+    select("syriac")
+    let sunday = TodayInfoStore.feast(on: date("2026-10-25"))
+    XCTAssertEqual(sunday?.title, "Sixth Sunday after the Feast of the Cross")
+    XCTAssertEqual(sunday?.rank, "Sunday")
+    XCTAssertEqual(
+      TodayInfoStore.feast(on: date("2026-08-15"))?.title, "Assumption of the Mother of God")
+    XCTAssertNil(TodayInfoStore.feast(on: date("2026-07-27")))
+  }
+
+  /// October 25, 2026 wears four different faces: the LPJ's patronal solemnity, a plain
+  /// Sunday of Ordinary Time in the general calendar, Christ the King in the 1962 books
+  /// (which place the feast on October's last Sunday), and a numbered Sunday after Pentecost
+  /// in the Byzantine reckoning.
+  func testSwitchingCalendarsResolvesEachCalendarsOwnFeast() {
+    XCTAssertEqual(
+      TodayInfoStore.feast(on: date("2026-10-25"))?.title,
+      "Our Lady, Queen of Palestine and of the Holy Land")
+
+    select("roman")
+    XCTAssertEqual(
+      TodayInfoStore.feast(on: date("2026-10-25"))?.title, "30th Sunday of Ordinary Time")
+
+    select("roman1962")
+    let vetus = TodayInfoStore.feast(on: date("2026-10-25"))
+    XCTAssertEqual(vetus?.title, "Christ the King")
+    XCTAssertEqual(vetus?.rank, "1st Class")
+
+    select("ugcc")
+    XCTAssertEqual(
+      TodayInfoStore.feast(on: date("2026-10-25"))?.title, "22nd Sunday after Pentecost")
+  }
+
+  /// The UGCC dataset is the diasporic (fully Gregorian) usage prayed in the Holy Land:
+  /// Pascha falls with the Gregorian computus (April 5, 2026 — the same day as the Roman
+  /// Easter), and a fixed Great Feast landing in Holy Week is joined, never displaced —
+  /// in 2027 the Annunciation falls on Great and Holy Thursday.
+  func testUkrainianCalendarPraysTheGregorianPascha() {
+    select("ugcc")
+    let pascha = TodayInfoStore.feast(on: date("2026-04-05"))
+    XCTAssertEqual(pascha?.title, "The Resurrection of Our Lord — Holy Pascha")
+    XCTAssertEqual(pascha?.rank, "Great Feast")
+    XCTAssertEqual(
+      TodayInfoStore.feast(on: date("2026-10-01"))?.title,
+      "The Protection of the Most Holy Theotokos (Pokrov)")
+    XCTAssertEqual(
+      TodayInfoStore.feast(on: date("2027-03-25"))?.title,
+      "The Annunciation of the Most Holy Theotokos; Great and Holy Thursday")
+  }
+
+  func testUnknownCalendarIdFallsBackToTheDefault() {
+    select("narnia")
+    XCTAssertEqual(TodayInfoStore.selectedCalendarId, "lpj")
+    XCTAssertEqual(
+      TodayInfoStore.feast(on: date("2026-10-25"))?.title,
+      "Our Lady, Queen of Palestine and of the Holy Land")
+  }
+
+  func testVetusOrdoKeepsSeptuagesimaAndClassRanks() {
+    select("roman1962")
+    let septuagesima = TodayInfoStore.feast(on: date("2026-02-01"))
+    XCTAssertEqual(septuagesima?.title, "Septuagesima Sunday")
+    XCTAssertEqual(septuagesima?.rank, "2nd Class")
+    XCTAssertEqual(TodayInfoStore.feast(on: date("2026-12-25"))?.rank, "1st Class")
   }
 
   func testMonthIntentionResolves() {
