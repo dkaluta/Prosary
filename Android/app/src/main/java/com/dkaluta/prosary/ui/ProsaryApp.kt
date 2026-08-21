@@ -107,8 +107,11 @@ private data class TabSpec(val route: String, @param:StringRes val labelRes: Int
 
 /** The app's tab shell: Pray (Home), Browse (prayers.prosary.app), Categories, Search —
  * bottom NavigationBar on phones, NavigationRail on wide layouts ("bottom on phone, side on
- * computer"). The bar shows only on the four top-level tab destinations; inner screens
- * (flows, editors) keep the full height. Mirrors iOS's ContentView TabView. */
+ * computer"). The phone bar shows only on the four top-level tab destinations; inner screens
+ * (flows, editors) keep the full height so a prayer owns the screen and a stray tap can't
+ * wander off mid-Rosary. The wide rail stays put everywhere — big screens keep their
+ * sidebar, like the iPad/Mac sidebar and the Windows pane. Mirrors iOS's ContentView
+ * TabView. */
 @Composable
 fun ProsaryApp() {
     val navController = rememberNavController()
@@ -133,16 +136,16 @@ fun ProsaryApp() {
     BoxWithConstraints {
         if (maxWidth >= 840.dp) {
             Row(Modifier.fillMaxSize()) {
-                if (showsTabs) {
-                    NavigationRail {
-                        for (tab in tabs) {
-                            NavigationRailItem(
-                                selected = currentRoute == tab.route,
-                                onClick = { selectTab(tab.route) },
-                                icon = { Icon(tab.icon, contentDescription = null) },
-                                label = { Text(stringResource(tab.labelRes)) },
-                            )
-                        }
+                // Unlike the phone bar below, the rail never leaves — on inner screens no
+                // tab is current, so no item highlights.
+                NavigationRail {
+                    for (tab in tabs) {
+                        NavigationRailItem(
+                            selected = currentRoute == tab.route,
+                            onClick = { selectTab(tab.route) },
+                            icon = { Icon(tab.icon, contentDescription = null) },
+                            label = { Text(stringResource(tab.labelRes)) },
+                        )
                     }
                 }
                 AppNavHost(navController, Modifier.weight(1f))
