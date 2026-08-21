@@ -118,11 +118,18 @@ struct ContentView: View {
     // and the stack still showing the old flow, from the menu and from cold alike. Popping to
     // root in one cycle and pushing in the next changes the depth both times, and the stack
     // honors each.
+    // RunLoop.perform takes a nonisolated closure, but RunLoop.main always runs it on the
+    // main thread — assumeIsolated states that, so AppRoute's main-actor Hashable witness
+    // is usable inside without giving up the run-loop scheduling above.
     RunLoop.main.perform {
-      selectedTab = .pray
-      prayPath = NavigationPath()
+      MainActor.assumeIsolated {
+        selectedTab = .pray
+        prayPath = NavigationPath()
+      }
       RunLoop.main.perform {
-        prayPath.append(route)
+        MainActor.assumeIsolated {
+          prayPath.append(route)
+        }
       }
     }
   }
