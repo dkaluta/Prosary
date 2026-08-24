@@ -116,9 +116,14 @@ fun HomeScreen(
     val services = LocalAppServices.current
     val isDarkTheme = isSystemInDarkTheme()
 
-    // Keyed on the selection so returning from Settings re-resolves under the new calendar.
-    val todayFeast = remember(AppSettings.feastCalendarId) { TodayInfoStore.feast() }
-    val monthIntention = remember { TodayInfoStore.intention() }
+    // Keyed on the Settings choices so returning from Settings re-resolves under the new
+    // calendar (or drops a row its toggle switched off).
+    val todayFeast = remember(AppSettings.feastCalendarId, AppSettings.showTodayFeast) {
+        if (AppSettings.showTodayFeast) TodayInfoStore.feast() else null
+    }
+    val monthIntention = remember(AppSettings.showTodayIntention) {
+        if (AppSettings.showTodayIntention) TodayInfoStore.intention() else null
+    }
     var todayMysteryGroup by remember { mutableStateOf<MysteryGroup?>(null) }
     var defaultRosary by remember { mutableStateOf<Prayer?>(null) }
     var defaultJesusPrayer by remember { mutableStateOf<Prayer?>(null) }

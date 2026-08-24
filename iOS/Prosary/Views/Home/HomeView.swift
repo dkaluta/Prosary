@@ -26,6 +26,11 @@ struct HomeView: View {
   @State private var todayFeast: FeastDay? = nil
   @State private var monthIntention: PopeIntention? = nil
 
+  /// The Today rows can be switched off one by one in Settings (Erez's request) — an off
+  /// row simply never loads, and with both off the whole section stays away.
+  @AppStorage("showTodayFeast") private var showsTodayFeast = true
+  @AppStorage("showTodayIntention") private var showsTodayIntention = true
+
   @State private var editorPrayer: Prayer?
   @State private var isNew = false
   @State private var remindersPrayer: Prayer?
@@ -417,8 +422,8 @@ struct HomeView: View {
 
   private func load() async {
     todayMysteryGroup = services.calendar.mysteryGroupToday()
-    todayFeast = TodayInfoStore.feast()
-    monthIntention = TodayInfoStore.intention()
+    todayFeast = showsTodayFeast ? TodayInfoStore.feast() : nil
+    monthIntention = showsTodayIntention ? TodayInfoStore.intention() : nil
     prayers = (try? await services.presetStore.all()) ?? []
     HomeOrder.dropOrderIfUnrelated(to: allDevotions.map(\.id))
   }

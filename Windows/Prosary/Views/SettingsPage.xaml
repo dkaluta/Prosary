@@ -54,9 +54,18 @@
                 <Button x:Uid="SetResetHomeOrder" Content="Reset Home Order" HorizontalAlignment="Stretch"
                         Command="{x:Bind ViewModel.ResetHomeOrderCommand}" />
 
-                <!-- The Home "Today" feast row's liturgical calendar — the choices come from the
+                <!-- The Home "Today" section: which of its rows show at all, and which
+                     calendar's feasts the feast row prays. The calendar choices come from the
                      bundled calendars.json registry (labels included, so no resw entries per
-                     calendar); hidden entirely if the registry ever ships a single calendar. -->
+                     calendar); the picker hides entirely if the registry ever ships a single
+                     calendar. -->
+                <TextBlock x:Uid="SetTodayHeader" Text="Today" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
+
+                <ToggleSwitch x:Uid="SetShowTodayFeast" Header="Show the day's feast"
+                              IsOn="{x:Bind ViewModel.ShowTodayFeast, Mode=TwoWay}" />
+                <ToggleSwitch x:Uid="SetShowTodayIntention" Header="Show the Pope's intention"
+                              IsOn="{x:Bind ViewModel.ShowTodayIntention, Mode=TwoWay}" />
+
                 <ComboBox x:Uid="SetFeastCalendar" Header="Liturgical calendar" HorizontalAlignment="Stretch"
                           Visibility="{x:Bind ViewModel.ShowsFeastCalendarPicker, Converter={StaticResource BoolToVisibility}}"
                           ItemsSource="{x:Bind ViewModel.FeastCalendarOptions}"

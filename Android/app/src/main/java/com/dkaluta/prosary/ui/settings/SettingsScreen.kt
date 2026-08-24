@@ -67,6 +67,8 @@ fun SettingsScreen(onBack: () -> Unit) {
     var defaultLanguageCode by remember { mutableStateOf(AppSettings.defaultLanguageCode) }
     var autoAdvanceSeconds by remember { mutableIntStateOf(AppSettings.autoAdvanceSeconds) }
     var hapticsOnAdvance by remember { mutableStateOf(AppSettings.hapticsOnAdvance) }
+    var showTodayFeast by remember { mutableStateOf(AppSettings.showTodayFeast) }
+    var showTodayIntention by remember { mutableStateOf(AppSettings.showTodayIntention) }
     var homeOrderIsCustom by remember { mutableStateOf(HomeOrder.saved(context).isNotEmpty()) }
     var installedCount by remember { mutableIntStateOf(PrayerPackStore.installedBundleIds().size) }
     // Bumped after an install or a removal so the list below re-reads.
@@ -208,15 +210,49 @@ fun SettingsScreen(onBack: () -> Unit) {
                 modifier = Modifier.fillMaxWidth(),
             ) { Text(stringResource(R.string.settings_reset_home_order)) }
 
-            // The Home "Today" feast row's liturgical calendar (Erez's request). The choices
-            // come from the bundled calendars.json registry, so adding a calendar is a data
-            // drop, never a new case here; hidden entirely if the registry ever ships a single
+            // The Home "Today" section (Erez's requests): which of its rows show at all, and
+            // which calendar's feasts the feast row prays. The calendar choices come from the
+            // bundled calendars.json registry, so adding a calendar is a data drop, never a
+            // new case here; the picker hides entirely if the registry ever ships a single
             // calendar. Reads through the store so an unset/unknown stored id shows as the
             // registry default.
+            SectionHeader(stringResource(R.string.settings_today_header))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(
+                    stringResource(R.string.settings_show_today_feast),
+                    modifier = Modifier.weight(1f),
+                )
+                Switch(
+                    checked = showTodayFeast,
+                    onCheckedChange = {
+                        showTodayFeast = it
+                        AppSettings.showTodayFeast = it
+                    },
+                )
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(
+                    stringResource(R.string.settings_show_today_intention),
+                    modifier = Modifier.weight(1f),
+                )
+                Switch(
+                    checked = showTodayIntention,
+                    onCheckedChange = {
+                        showTodayIntention = it
+                        AppSettings.showTodayIntention = it
+                    },
+                )
+            }
+
             val feastCalendars = TodayInfoStore.calendars
             if (feastCalendars.size > 1) {
-                SectionHeader(stringResource(R.string.settings_today_header))
-
                 var feastCalendarId by remember { mutableStateOf(TodayInfoStore.selectedCalendarId) }
                 OptionPickerField(
                     label = stringResource(R.string.settings_feast_calendar),

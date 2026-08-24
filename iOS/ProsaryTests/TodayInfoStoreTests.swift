@@ -82,8 +82,24 @@ final class TodayInfoStoreTests: XCTestCase {
 
   func testCalendarRegistryListsTheShippedCalendarsInPickerOrder() {
     XCTAssertEqual(
-      TodayInfoStore.calendars.map(\.id), ["lpj", "roman", "roman1962", "ugcc", "syriac"])
+      TodayInfoStore.calendars.map(\.id),
+      ["lpj", "roman", "roman-he", "roman1962", "ugcc", "syriac"])
     XCTAssertEqual(TodayInfoStore.selectedCalendarId, "lpj")
+  }
+
+  /// The Hebrew Roman table is Evangelizo's lectionary edition (credited on the About
+  /// screen): it titles the days whose readings are proper — so Bartholomew's feast and the
+  /// numbered Sundays appear in Hebrew, while a saint's memorial on ferial readings
+  /// (Gregory the Great, September 3) is absent by design, like ferial days everywhere else.
+  func testHebrewRomanCalendarRelaysTheLectionaryDays() {
+    select("roman-he")
+    let bartholomew = TodayInfoStore.feast(on: date("2026-08-24"))
+    XCTAssertEqual(bartholomew?.title, "חג בר-תלמי השליח")
+    XCTAssertEqual(bartholomew?.rank, "Feast")
+    let sunday = TodayInfoStore.feast(on: date("2026-08-30"))
+    XCTAssertEqual(sunday?.title, "יום א ה-22 של הזמן הרגיל")
+    XCTAssertEqual(sunday?.rank, "Sunday")
+    XCTAssertNil(TodayInfoStore.feast(on: date("2026-09-03")))
   }
 
   /// The Syriac Catholic table comes from Evangelizo.org's Daily Gospel (credited on the
