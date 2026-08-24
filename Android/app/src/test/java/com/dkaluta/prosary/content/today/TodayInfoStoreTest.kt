@@ -83,10 +83,26 @@ class TodayInfoStoreTest {
     @Test
     fun calendarRegistryListsTheShippedCalendarsInPickerOrder() {
         assertEquals(
-            listOf("lpj", "roman", "roman1962", "ugcc", "syriac"),
+            listOf("lpj", "roman", "roman-he", "roman1962", "ugcc", "syriac"),
             TodayInfoStore.calendars.map { it.id },
         )
         assertEquals("lpj", TodayInfoStore.selectedCalendarId)
+    }
+
+    /** The Hebrew Roman table is Evangelizo's lectionary edition (credited on the About
+     * screen): it titles the days whose readings are proper — so Bartholomew's feast and the
+     * numbered Sundays appear in Hebrew, while a saint's memorial on ferial readings
+     * (Gregory the Great, September 3) is absent by design, like ferial days everywhere else. */
+    @Test
+    fun hebrewRomanCalendarRelaysTheLectionaryDays() {
+        AppSettings.feastCalendarId = "roman-he"
+        val bartholomew = TodayInfoStore.feast(date("2026-08-24"))
+        assertEquals("חג בר-תלמי השליח", bartholomew?.title)
+        assertEquals("Feast", bartholomew?.rank)
+        val sunday = TodayInfoStore.feast(date("2026-08-30"))
+        assertEquals("יום א ה-22 של הזמן הרגיל", sunday?.title)
+        assertEquals("Sunday", sunday?.rank)
+        assertNull(TodayInfoStore.feast(date("2026-09-03")))
     }
 
     /** The Syriac Catholic table comes from Evangelizo.org's Daily Gospel (credited on the

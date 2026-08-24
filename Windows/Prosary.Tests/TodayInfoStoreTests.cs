@@ -67,9 +67,27 @@ public class TodayInfoStoreTests
     public void CalendarRegistryListsTheShippedCalendarsInPickerOrder()
     {
         Assert.Equal(
-            new[] { "lpj", "roman", "roman1962", "ugcc", "syriac" },
+            new[] { "lpj", "roman", "roman-he", "roman1962", "ugcc", "syriac" },
             TodayInfoStore.Calendars.Select(c => c.Id));
         Assert.Equal("lpj", TodayInfoStore.ResolvedCalendarId);
+    }
+
+    /// <summary>The Hebrew Roman table is Evangelizo's lectionary edition (credited on the
+    /// About screen): it titles the days whose readings are proper — so Bartholomew's feast
+    /// and the numbered Sundays appear in Hebrew, while a saint's memorial on ferial readings
+    /// (Gregory the Great, September 3) is absent by design, like ferial days everywhere
+    /// else.</summary>
+    [Fact]
+    public void HebrewRomanCalendarRelaysTheLectionaryDays()
+    {
+        TodayInfoStore.SelectedCalendarId = "roman-he";
+        var bartholomew = TodayInfoStore.Feast(new DateOnly(2026, 8, 24));
+        Assert.Equal("חג בר-תלמי השליח", bartholomew?.Title);
+        Assert.Equal("Feast", bartholomew?.Rank);
+        var sunday = TodayInfoStore.Feast(new DateOnly(2026, 8, 30));
+        Assert.Equal("יום א ה-22 של הזמן הרגיל", sunday?.Title);
+        Assert.Equal("Sunday", sunday?.Rank);
+        Assert.Null(TodayInfoStore.Feast(new DateOnly(2026, 9, 3)));
     }
 
     /// <summary>The Syriac Catholic table comes from Evangelizo.org's Daily Gospel (credited

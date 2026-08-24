@@ -67,11 +67,16 @@ public partial class HomeViewModel : ObservableObject
 
     public bool HasUnpinnedCards => UnpinnedCards.Count > 0;
 
-    // The Home "Today" section — the day's feast per the Holy Land (Latin Patriarchate of
-    // Jerusalem) calendar and the Pope's monthly prayer intention; null hides each row.
-    public FeastDay? TodayFeast { get; } = TodayInfoStore.Feast(DateOnly.FromDateTime(DateTime.Today));
+    // The Home "Today" section — the day's feast per the chosen calendar and the Pope's
+    // monthly prayer intention; null hides each row, and a row switched off in Settings
+    // (Erez's request) never loads at all.
+    public FeastDay? TodayFeast { get; } = AppSettings.ShowTodayFeast
+        ? TodayInfoStore.Feast(DateOnly.FromDateTime(DateTime.Today))
+        : null;
 
-    public PopeIntention? MonthIntention { get; } = TodayInfoStore.Intention(DateOnly.FromDateTime(DateTime.Today));
+    public PopeIntention? MonthIntention { get; } = AppSettings.ShowTodayIntention
+        ? TodayInfoStore.Intention(DateOnly.FromDateTime(DateTime.Today))
+        : null;
 
     public bool ShowsTodaySection => TodayFeast is not null || MonthIntention is not null;
 

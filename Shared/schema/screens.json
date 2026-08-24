@@ -3,7 +3,7 @@
   "rootScreen": "home",
   "screens": {
     "home": {
-      "purpose": "One card per devotion — the Rosary first, then every discovered generic (bundle-driven) devotion in pack-load order (title/accent/icon read from each bundle's own manifest — see customDevotionFlow), then the Jesus Prayer last — each showing that devotion's default favorite; plus a \"Today\" section (the day's feast per the Holy Land Latin calendar and the Pope's monthly prayer intention, from the bundled Shared/data datasets — rows hide when the datasets have no entry); plus My Favorites/Settings/About. The Rosary card opens the preset picker (default preset up top, then Pray-any-Rosary ad-hoc quick setup with save-as-preset, then the remaining presets) rather than launching a session directly.",
+      "purpose": "One card per devotion — the Rosary first, then every discovered generic (bundle-driven) devotion in pack-load order (title/accent/icon read from each bundle's own manifest — see customDevotionFlow), then the Jesus Prayer last — each showing that devotion's default favorite; plus a \"Today\" section (the day's feast per the chosen liturgical calendar and the Pope's monthly prayer intention, from the bundled Shared/data datasets — rows hide when the datasets have no entry, and each row has its own Settings switch, so either, both, or neither can show); plus My Favorites/Settings/About. The Rosary card opens the preset picker (default preset up top, then Pray-any-Rosary ad-hoc quick setup with save-as-preset, then the remaining presets) rather than launching a session directly.",
       "parameters": {},
       "sources": {
         "iOS": "Views/Home/HomeView.swift",
@@ -120,7 +120,7 @@
       }
     },
     "settings": {
-      "purpose": "App-wide preferences: the default prayer language (+ rite when the language has more than one), auto-advance, haptics (iOS), the Today row's liturgical calendar (a picker over Shared/data/calendars.json's registry, persisted as feastCalendarId beside defaultLanguageCode, hidden if the registry ships a single calendar), downloads management, and links.",
+      "purpose": "App-wide preferences: the default prayer language (+ rite when the language has more than one), auto-advance, haptics (iOS), the Today section's rows (per-row switches persisted as showTodayFeast/showTodayIntention, both on by default — either, both, or neither row can show) and its liturgical calendar (a picker over Shared/data/calendars.json's registry, persisted as feastCalendarId beside defaultLanguageCode, hidden if the registry ships a single calendar), downloads management, and links.",
       "parameters": {},
       "sources": {
         "iOS": "Views/Settings/SettingsView.swift (macOS Settings scene, Cmd+,; iOS has no in-app equivalent — the system Settings app via Settings.bundle/Root.plist instead)",

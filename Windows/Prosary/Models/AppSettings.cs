@@ -16,10 +16,14 @@ public static class AppSettings
     private const string KeyDefaultLanguage = "defaultLanguageCode";
     private const string KeyFeastCalendar = "feastCalendarId";
     private const string KeyAutoAdvance = "autoAdvanceSeconds";
+    private const string KeyShowTodayFeast = "showTodayFeast";
+    private const string KeyShowTodayIntention = "showTodayIntention";
 
     private static string? _defaultLanguageCode;
     private static string? _feastCalendarId;
     private static int? _autoAdvanceSeconds;
+    private static bool? _showTodayFeast;
+    private static bool? _showTodayIntention;
 
     public static string DefaultLanguageCode
     {
@@ -62,6 +66,41 @@ public static class AppSettings
     {
         FeastCalendarId = id;
         ApplicationData.Current.LocalSettings.Values[KeyFeastCalendar] = id;
+    }
+
+    /// <summary>Whether Home's Today section shows the day's feast row — Erez's request: each
+    /// Today row can be switched off on its own, so any of both/either/neither can show.</summary>
+    public static bool ShowTodayFeast
+    {
+        get
+        {
+            _showTodayFeast ??= ApplicationData.Current.LocalSettings.Values[KeyShowTodayFeast] as bool? ?? true;
+            return _showTodayFeast.Value;
+        }
+        private set => _showTodayFeast = value;
+    }
+
+    public static void SetShowTodayFeast(bool shows)
+    {
+        ShowTodayFeast = shows;
+        ApplicationData.Current.LocalSettings.Values[KeyShowTodayFeast] = shows;
+    }
+
+    /// <summary>Whether Home's Today section shows the Pope's monthly intention row.</summary>
+    public static bool ShowTodayIntention
+    {
+        get
+        {
+            _showTodayIntention ??= ApplicationData.Current.LocalSettings.Values[KeyShowTodayIntention] as bool? ?? true;
+            return _showTodayIntention.Value;
+        }
+        private set => _showTodayIntention = value;
+    }
+
+    public static void SetShowTodayIntention(bool shows)
+    {
+        ShowTodayIntention = shows;
+        ApplicationData.Current.LocalSettings.Values[KeyShowTodayIntention] = shows;
     }
 
     /// <summary>Seconds between automatic step advances in the prayer flows; 0 = off.</summary>

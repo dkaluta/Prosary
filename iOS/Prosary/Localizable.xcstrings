@@ -33,13 +33,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Feast calendar data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar via Missale Meum (missalemeum.com); the Syriac Catholic calendar courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic table compiled in-app from the traditional sources."
+            "value" : "Feast calendar data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar via Missale Meum (missalemeum.com); the Syriac Catholic calendar and the Roman lectionary calendar in Hebrew courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic table compiled in-app from the traditional sources."
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "נתוני לוחות החגים: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 מ־Missale Meum‏ (missalemeum.com); הלוח הסורי-קתולי באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; הלוח האוקראיני-קתולי נערך באפליקציה מן המקורות המסורתיים."
+            "value" : "נתוני לוחות החגים: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 מ־Missale Meum‏ (missalemeum.com); הלוח הסורי-קתולי ולוח המקראות הרומי בעברית באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; הלוח האוקראיני-קתולי נערך באפליקציה מן המקורות המסורתיים."
           }
         }
       }
@@ -4530,6 +4530,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "נוסח"
+          }
+        }
+      }
+    },
+    "settings.showTodayFeast" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show the day's feast"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הצגת חג היום"
+          }
+        }
+      }
+    },
+    "settings.showTodayIntention" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show the Pope's intention"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הצגת כוונת האפיפיור"
           }
         }
       }

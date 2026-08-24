@@ -19,6 +19,8 @@ object AppSettings {
     private const val KEY_AUTO_ADVANCE = "autoAdvanceSeconds"
     private const val KEY_HAPTICS = "hapticsOnAdvance"
     private const val KEY_FEAST_CALENDAR = "feastCalendarId"
+    private const val KEY_SHOW_TODAY_FEAST = "showTodayFeast"
+    private const val KEY_SHOW_TODAY_INTENTION = "showTodayIntention"
 
     var defaultLanguageCode: String = LanguageCatalog.defaultCode
         private set
@@ -30,6 +32,21 @@ object AppSettings {
         set(value) {
             field = value
             prefs?.edit()?.putString(KEY_FEAST_CALENDAR, value)?.apply()
+        }
+
+    /** Whether Home's Today section shows the day's feast row — Erez's request: each Today
+     * row can be switched off on its own, so any of both/either/neither can show. */
+    var showTodayFeast: Boolean = true
+        set(value) {
+            field = value
+            prefs?.edit()?.putBoolean(KEY_SHOW_TODAY_FEAST, value)?.apply()
+        }
+
+    /** Whether Home's Today section shows the Pope's monthly intention row. */
+    var showTodayIntention: Boolean = true
+        set(value) {
+            field = value
+            prefs?.edit()?.putBoolean(KEY_SHOW_TODAY_INTENTION, value)?.apply()
         }
 
     /** Seconds between automatic step advances in the prayer flows; 0 = off. */
@@ -50,6 +67,8 @@ object AppSettings {
         autoAdvanceSeconds = resolved.getInt(KEY_AUTO_ADVANCE, 0)
         hapticsOnAdvance = resolved.getBoolean(KEY_HAPTICS, false)
         feastCalendarId = resolved.getString(KEY_FEAST_CALENDAR, "") ?: ""
+        showTodayFeast = resolved.getBoolean(KEY_SHOW_TODAY_FEAST, true)
+        showTodayIntention = resolved.getBoolean(KEY_SHOW_TODAY_INTENTION, true)
     }
 
     fun setDefaultLanguageCode(code: String) {

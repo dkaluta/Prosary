@@ -749,6 +749,15 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
     the pre-switchable filename.
   - `roman` — **`feasts-roman.json`**: the General Roman Calendar, no overlay (litcal,
     Apache-2.0).
+  - `roman-he` — **`feasts-roman-he.json`**: "Roman — Lectionary Calendar (Hebrew)" (Erez's
+    request, 2026-08), liturgical day titles **courtesy of Evangelizo.org — Daily Gospel
+    (© Evangelizo.org)** via its Hebrew edition ("HE", Evangelizo's own name for it is
+    לוח המקראות הרומי — "the Roman lectionary calendar"), ranks joined from litcal by date.
+    The edition titles the days whose *readings* are proper — Sundays, feasts, solemnities,
+    and the few proper-Gospel memorials — so saints' memorials on ferial readings have no
+    entry, on purpose: Hebrew titles are relayed from the source, never invented (the
+    Vicariate's print governs the app's own Hebrew). Same rolling horizon and credit
+    obligations as `syriac` below.
   - `roman1962` — **`feasts-roman1962.json`**: the 1962 Vetus Ordo calendar (missalemeum.com,
     MIT), I–III class days with class ranks ("1st Class"…"3rd Class"); IV-class days and bare
     ferias are omitted the way ferial days are elsewhere. The Home screens bold a feast title
@@ -771,15 +780,19 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
     the credit is required and carried on every platform's About screen ("Calendar Data"
     section, which also names LitCal and Missale Meum). Plain-date ferial titles are omitted;
     ranks are title-derived ("Sunday" / "Fast" / "Feast", with Pascha as "Great Feast").
-    Evangelizo serves a rolling ~3-month horizon, so this one table ends where the API did at
-    generation time and extends on each rerun — regenerate more often than yearly.
+    Evangelizo serves a rolling ~3-month horizon, so the `roman-he` and `syriac` tables end
+    where the API did at generation time and extend on each rerun — regenerate more often
+    than yearly.
     Adding a further calendar remains a pure data drop: a registry entry + a dataset file +
     platform copies.
-  `Shared/tools/fetch-feasts.py` regenerates every table (litcal + missalemeum; `--sync`
-  copies all of `Shared/data/*.json` into the three platform asset dirs). `TodayInfoStore`
-  reloads the feast table when the selected calendar changes; the calendar choice affects the
-  Today feast row only — seasons, mysteries, and antiphons stay `LiturgicalCalendarService`'s
-  computed Latin machinery, and the Pope's intention shows for every calendar.
+  `Shared/tools/fetch-feasts.py` regenerates every table (litcal + missalemeum + Evangelizo;
+  `--sync` copies all of `Shared/data/*.json` into the three platform asset dirs).
+  `TodayInfoStore` reloads the feast table when the selected calendar changes; the calendar
+  choice affects the Today feast row only — seasons, mysteries, and antiphons stay
+  `LiturgicalCalendarService`'s computed Latin machinery, and the Pope's intention shows for
+  every calendar. Each Today row also has its own Settings switch (2026-08, Erez's request:
+  `showTodayFeast` / `showTodayIntention`, both on by default) — either, both, or neither
+  row can show, and a row switched off simply never loads.
 - **`pope-intentions.json`** — the Pope's Worldwide Prayer Network monthly intentions
   (`months: {"YYYY-MM": {title, text}}`), from popesprayer.va; maintained by hand (no API).
 

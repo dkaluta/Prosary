@@ -20,6 +20,8 @@ struct SettingsView: View {
   @State private var homeOrderIsCustom = !HomeOrder.saved.isEmpty
 
   @AppStorage(TodayInfoStore.calendarDefaultsKey) private var feastCalendarId = ""
+  @AppStorage("showTodayFeast") private var showsTodayFeast = true
+  @AppStorage("showTodayIntention") private var showsTodayIntention = true
 
   /// Reads through the store so an unset/unknown stored id shows as the registry default.
   private var feastCalendarBinding: Binding<String> {
@@ -88,12 +90,18 @@ struct SettingsView: View {
         .disabled(!homeOrderIsCustom)
       }
 
-      // The Home "Today" feast row's liturgical calendar (Erez's request). The choices come
-      // from the bundled calendars.json registry, so adding a calendar is a data drop, never
-      // a new case here; hidden entirely if the registry ever ships a single calendar.
-      let calendars = TodayInfoStore.calendars
-      if calendars.count > 1 {
-        Section {
+      // The Home "Today" section (Erez's requests): which of its rows show at all, and which
+      // calendar's feasts the feast row prays. The calendar choices come from the bundled
+      // calendars.json registry, so adding a calendar is a data drop, never a new case here;
+      // the picker hides entirely if the registry ever ships a single calendar.
+      Section {
+        Toggle(String(localized: "settings.showTodayFeast", defaultValue: "Show the day's feast"),
+               isOn: $showsTodayFeast)
+        Toggle(String(localized: "settings.showTodayIntention",
+                      defaultValue: "Show the Pope's intention"),
+               isOn: $showsTodayIntention)
+        let calendars = TodayInfoStore.calendars
+        if calendars.count > 1 {
           Picker(String(localized: "settings.feastCalendar", defaultValue: "Liturgical calendar"),
                  selection: feastCalendarBinding) {
             ForEach(calendars) { calendar in
@@ -101,12 +109,12 @@ struct SettingsView: View {
             }
           }
           .accessibilityIdentifier("feastCalendarPicker")
-        } header: {
-          Text(String(localized: "settings.todayHeader", defaultValue: "Today"))
-        } footer: {
-          Text(String(localized: "settings.feastCalendarFooter",
-                      defaultValue: "Which calendar's feasts the Today section shows."))
         }
+      } header: {
+        Text(String(localized: "settings.todayHeader", defaultValue: "Today"))
+      } footer: {
+        Text(String(localized: "settings.feastCalendarFooter",
+                    defaultValue: "Which calendar's feasts the Today section shows."))
       }
 
       Section {

@@ -33,6 +33,20 @@ Calendars and their sources:
                          (~3 months ahead; farther dates answer "too far in the future"), so
                          this dataset covers as far as the API allows at generation time and
                          extends on each rerun — regenerate more often than yearly.
+  feasts-roman-he.json   Roman — Lectionary Calendar in Hebrew (Erez's request, 2026-08):
+                         Evangelizo's "HE" edition (its own Hebrew name is לוח המקראות הרומי,
+                         "the Roman lectionary calendar"), same publication API, credit, and
+                         rolling ~3-month window as SYE. The edition titles the days whose
+                         READINGS are proper — Sundays, feasts, solemnities, and the few
+                         memorials with their own Gospel (the Passion of John the Baptist,
+                         Our Lady of Sorrows, the Guardian Angels, All Souls) — while saints'
+                         memorials that keep the ferial readings arrive as plain ferias
+                         ("יום ה בשבוע כב' של הזמן הרגיל") and are skipped; the dataset is
+                         therefore sparser than feasts-roman.json, on purpose: Hebrew titles
+                         are never invented here (the Vicariate's print governs Hebrew), only
+                         relayed. Ranks are joined in from the litcal General Roman Calendar
+                         by date ("Sunday" for its Sundays), falling back to "Feast" (logged)
+                         when Evangelizo names a day litcal leaves ferial.
   feasts-ugcc.json       Byzantine — Ukrainian Greek Catholic, the diasporic (fully Gregorian)
                          usage prayed in the Holy Land: no licensed machine-readable source
                          exists, so the fixed menologion is CURATED IN THIS SCRIPT
@@ -66,6 +80,7 @@ import json
 import re
 import shutil
 import sys
+import time
 from collections import defaultdict
 from pathlib import Path
 
@@ -92,11 +107,20 @@ LPJ_PROPERS = {
 
 LITCAL = "https://litcal.johnromanodorazio.com/api/v5/calendar/{year}?year_type=CIVIL"
 MISSALEMEUM = "https://www.missalemeum.com/en/api/v5/calendar/{year}"
-EVANGELIZO = "https://publication.evangelizo.ws/SYE/days/{date}"
+EVANGELIZO = "https://publication.evangelizo.ws/{edition}/days/{date}"
 
-# Evangelizo's ferial days carry a plain date title ("The fourteenth day of August") — the
-# equivalent of the litcal weekdays every other dataset omits.
-EVANGELIZO_FERIAL = re.compile(r"^The [\w-]+ day of [A-Z][a-z]+$")
+# Evangelizo's ferial days in the SYE edition carry a plain date title ("The fourteenth day
+# of August") — the equivalent of the litcal weekdays every other dataset omits. The HE
+# edition is less uniform; its observed ferial forms are the weekday-in-week
+# ("יום ה בשבוע כב' של הזמן הרגיל", Saturdays "שבת בשבוע …", sometimes without the ב:
+# "יום ב שבוע יא'"), the days-after ("שבת אחרי יום האפר", "היום ה-2 אחרי ההתגלות"), and
+# Christmastide's plain-date "המקראות ל- 2 בינואר". Sundays ("יום א ה-22 של הזמן הרגיל",
+# "יום א' ה-1 בצום") match none of these and are kept, as are the Holy Week day names
+# ("יום השישי הגדול").
+EVANGELIZO_FERIAL = {
+    "SYE": re.compile(r"^The [\w-]+ day of [A-Z][a-z]+$"),
+    "HE": re.compile(r"^(?:(?:יום \S{1,2}|שבת) (?:ב?שבוע|אחרי)|היום ה-\d+ אחרי|המקראות ל)"),
+}
 
 # The UGCC fixed menologion (new-style/Gregorian dates), curated — see the module docstring.
 # G = Great Feast, F = Feast.
@@ -178,39 +202,77 @@ UGCC_PASCHAL_CYCLE = [
 UGCC_RANKS = {"G": "Great Feast", "F": "Feast"}
 
 
-def syriac_days(start_year: int) -> dict:
-    """One entry per named day of the Syriac Catholic calendar, from Evangelizo's Daily
-    Gospel publication API (edition SYE), one request per day starting January 1 of the first
-    requested year. The API serves a rolling ~3-month horizon — the walk stops at the first
-    "too far in the future" answer (or any network failure past the cache), so coverage grows
-    with every rerun. Sundays rank "Sunday", fast-season weekdays "Fast", the rest "Feast"."""
-    days: dict[str, dict] = {}
+def evangelizo_titles(edition: str, start_year: int) -> dict[str, str]:
+    """{date: non-ferial liturgic_title} from Evangelizo's Daily Gospel publication API, one
+    request per day starting January 1 of the first requested year. The API answers HTTP 400
+    ("This date is too far in the future") past its rolling ~3-month horizon — that is the
+    stop signal, so coverage grows with every rerun. Anything else (the API drops sporadic
+    requests under sequential load) is retried before giving up on the remainder. A title
+    Evangelizo pipe-joins ("חג מרים אם האדון | חג ברית ישו") is rejoined with the datasets'
+    usual '; '."""
+    titles: dict[str, str] = {}
+    ferial = EVANGELIZO_FERIAL[edition]
     day = dt.date(start_year, 1, 1)
     while True:
         date = day.isoformat()
-        try:
-            payload = fetch_json(EVANGELIZO.format(date=date), f"evangelizo-sye-{date}")
-        except requests.RequestException:
-            break
-        data = payload.get("data")
-        if data is None:  # {"error": … "too far in the future"} once past the horizon
-            break
-        title = (data.get("liturgic_title") or "").strip()
-        if title and not EVANGELIZO_FERIAL.match(title):
-            if "Pascha" in title:
-                # The feast of feasts outranks its own Sunday — and gets the bolded top rank.
-                rank = "Great Feast"
-            elif "Sunday" in title:
-                rank = "Sunday"
-            elif "Fast" in title:
-                rank = "Fast"
+        payload = horizon = None
+        for attempt in range(4):
+            try:
+                payload = fetch_json(
+                    EVANGELIZO.format(edition=edition, date=date),
+                    f"evangelizo-{edition.lower()}-{date}")
+                break
+            except requests.HTTPError as error:
+                if error.response is not None and error.response.status_code == 400:
+                    horizon = True
+                    break
+                time.sleep(2 * (attempt + 1))
+            except requests.RequestException:
+                time.sleep(2 * (attempt + 1))
+        if payload is None:
+            if horizon:
+                print(f"  (Evangelizo {edition} horizon reached after {date})")
             else:
-                rank = "Feast"
-            days[date] = {"title": title, "rank": rank}
+                print(f"  (warning: Evangelizo {edition} kept failing at {date} — stopping early)")
+            break
+        title = (payload.get("data") or {}).get("liturgic_title", "").strip()
+        if title and not ferial.match(title):
+            titles[date] = "; ".join(part.strip() for part in title.split("|"))
         day += dt.timedelta(days=1)
-    if not days:
-        raise SystemExit("error: Evangelizo returned no Syriac days at all")
-    print(f"  (Evangelizo horizon reached after {day.isoformat()})")
+    if not titles:
+        raise SystemExit(f"error: Evangelizo returned no {edition} days at all")
+    return titles
+
+
+def syriac_days(start_year: int) -> dict:
+    """One entry per named day of the Syriac Catholic calendar (Evangelizo edition SYE).
+    Sundays rank "Sunday", fast-season weekdays "Fast", the rest "Feast"."""
+    days: dict[str, dict] = {}
+    for date, title in evangelizo_titles("SYE", start_year).items():
+        if "Pascha" in title:
+            # The feast of feasts outranks its own Sunday — and gets the bolded top rank.
+            rank = "Great Feast"
+        elif "Sunday" in title:
+            rank = "Sunday"
+        elif "Fast" in title:
+            rank = "Fast"
+        else:
+            rank = "Feast"
+        days[date] = {"title": title, "rank": rank}
+    return days
+
+
+def roman_hebrew_days(start_year: int, roman: dict) -> dict:
+    """One entry per day the HE edition titles (see the module docstring — Sundays, feasts,
+    solemnities, proper-reading memorials; nothing is translated here, only relayed). The
+    rank is joined in from the litcal General Roman Calendar table by date; a day Evangelizo
+    names but litcal leaves ferial falls back to "Feast" and is logged for audit."""
+    days: dict[str, dict] = {}
+    for date, title in evangelizo_titles("HE", start_year).items():
+        entry = roman.get(date)
+        if entry is None:
+            print(f"  (no litcal rank for {date} — {title!r} kept as Feast)")
+        days[date] = {"title": title, "rank": entry["rank"] if entry else "Feast"}
     return days
 
 
@@ -387,6 +449,7 @@ def main() -> int:
         vetus.update(roman1962_days(year))
         ugcc.update(ugcc_days(year))
     syriac = syriac_days(years[0])
+    roman_he = roman_hebrew_days(years[0], roman)
 
     lpj = dict(roman)
     for year in years:
@@ -423,6 +486,19 @@ def main() -> int:
         "the API did at generation time and extends on each rerun of "
         "Shared/tools/fetch-feasts.py — regenerate more often than yearly.",
         sorted({int(key[:4]) for key in syriac}), syriac)
+    write_dataset(
+        DATA / "feasts-roman-he.json",
+        "Per-day table, Roman — Lectionary Calendar in Hebrew: liturgical day titles "
+        "courtesy of Evangelizo.org — Daily Gospel (© Evangelizo.org), publication edition "
+        "HE (לוח המקראות הרומי), used with attribution (also on every platform's About "
+        "screen); ranks joined from litcal.johnromanodorazio.com by date. The edition "
+        "titles the days whose readings are proper — Sundays, feasts, solemnities, the few "
+        "proper-Gospel memorials — so saints' memorials on ferial readings are absent by "
+        "design (Hebrew titles are relayed, never invented). Evangelizo serves a rolling "
+        "~3-month horizon, so this table ends where the API did at generation time and "
+        "extends on each rerun of Shared/tools/fetch-feasts.py — regenerate more often "
+        "than yearly.",
+        sorted({int(key[:4]) for key in roman_he}), roman_he)
     write_dataset(
         DATA / "feasts-ugcc.json",
         "Per-day table, Byzantine — Ukrainian Greek Catholic, the diasporic (fully Gregorian) "
