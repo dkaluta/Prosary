@@ -1,19 +1,26 @@
 # Privacy Policy for Prosary
 
-**Last updated:** 2026-07-25
+**Last updated:** 2026-08-24
 
-Prosary is a Catholic prayer companion app (Rosary, Angelus, and the Jesus Prayer). This policy
-covers the Android app.
+Prosary is a Catholic prayer companion app for the Rosary, chaplets, novenas, and other
+devotions. This policy covers the Android app. The full policy covering the apps and Prosary's
+web services is published at [prosary.app/privacy](https://prosary.app/privacy).
 
 ## Data collection
 
-Prosary does not collect, transmit, or share any personal data. Specifically:
+The Android app has no account, sign-in, analytics, crash-reporting, advertising, or tracking
+SDK. Your saved prayer configurations, reminder times, settings, progress, and installed devotion
+bundles are stored by the app on your device.
 
-- The app has no network access — it does not request the Android `INTERNET` permission, and it
-  is not capable of sending or receiving data over the internet.
-- There are no accounts, sign-in, analytics, crash reporting, advertising, or third-party SDKs.
-- Your saved prayer favorites and reminder times are stored only in a local database on your
-  device (using Android's Room persistence library) and are never uploaded anywhere.
+The optional Browse and Search features fetch the public catalog from prayers.prosary.app and
+download only the devotion bundles you choose to install. As with any web request, the hosting
+provider processes technical request information such as an IP address to serve it. A download
+increments an anonymous aggregate counter for that bundle; the app sends no Prosary account,
+advertising identifier, saved prayer, reminder, or other personal profile.
+
+Android's operating-system backup or device-transfer service may copy local app data according to
+the backup settings of your Google account and device. Prosary does not operate or have access to
+that backup service.
 
 ## Notifications
 
@@ -25,8 +32,10 @@ Prayer reminders you configure are scheduled locally on your device using Androi
 - **Notifications** (`POST_NOTIFICATIONS`): used only to show the prayer reminders you configure.
 - **Receive boot completed** (`RECEIVE_BOOT_COMPLETED`): used only to re-schedule your existing
   reminders after your device restarts, since Android clears scheduled alarms on reboot.
+- **Internet** (`INTERNET`): used only to browse, search, and download public community devotion
+  bundles from prayers.prosary.app.
 
-Neither permission is used to collect or transmit data.
+No permission is used for analytics, advertising, or tracking.
 
 ## Changes to this policy
 

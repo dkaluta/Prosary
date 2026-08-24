@@ -9,11 +9,9 @@
 //  bundle devotions alike), so a pack can only ever add to the hardcoded tables, never replace
 //  them wholesale.
 //
-//  A bundle with a `devotion.json` is a *generic devotion*: `PrayerKind.custom` + a
-//  `customDevotionId` are the only engine/model plumbing it needs (see `PrayerEngine.
-//  buildCustomDevotionSteps`) — its step sequence (flat "steps" type, or decade/bead-structured
-//  "rosary" type) and per-step body text are entirely data-driven from here, via
-//  `definition(for:)`/`resolveBodyText`.
+//  Every bundle with a `devotion.json` supplies data-driven step structure. A `builtinKind`
+//  bundle such as the Rosary keeps its dedicated PrayerKind/options UI; every other one uses
+//  `PrayerKind.custom` + `customDevotionId` with no per-devotion engine or flow plumbing.
 //
 
 import Foundation
@@ -22,7 +20,7 @@ private struct PackManifest: Decodable {
   let id: String
   /// Set ("rosary") when this bundle's devotion.json backs a dedicated PrayerKind rather than
   /// a generic .custom devotion — the definition loads, but the bundle stays out of
-  /// `customDevotionIds()` so Home/Favorites don't list it twice.
+  /// `customDevotionIds()` so the devotion directory does not list it twice.
   let builtinKind: String?
   let displayName: String
   let languages: [String]
@@ -678,7 +676,7 @@ enum PrayerPackStore {
   }
 
   /// Convenience for user-picked files (fileImporter, the File menu): resolves the security
-  /// scope, reads the bytes, and installs. Shared by the Favorites import button and the menu
+  /// scope, reads the bytes, and installs. Shared by the Browse import button and the menu
   /// bar command.
   @discardableResult
   static func installPack(fromUserSelected url: URL) throws -> String {

@@ -37,7 +37,7 @@ public static class MysteryGroupExtensions
         _ => throw new ArgumentOutOfRangeException(nameof(group))
     };
 
-    /// <summary>Accent color for the Home screen's Rosary card — distinct per mystery group, not
+    /// <summary>Accent color for the Pray tab's Rosary card — distinct per mystery group, not
     /// the liturgical season color used inside the flow screen's top banner. Matches Android's
     /// <c>MysteryGroup.color</c>.</summary>
     public static Color AccentColor(this MysteryGroup group) => group switch

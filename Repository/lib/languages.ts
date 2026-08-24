@@ -1,4 +1,5 @@
-// The 6 prayer languages the apps ship (LanguageCatalog) — display names for the catalog UI.
+// The 6 prayer languages the repository currently accepts — a subset of the apps' 9-language
+// LanguageCatalog. See README.markdown for the publication limitation.
 export const LANGUAGE_NAMES: Record<string, string> = {
   la: "Latina",
   en: "English",

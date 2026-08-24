@@ -36,8 +36,8 @@ data class AppServices(
         )
 
         /** Built once in `MainActivity.onCreate`. Seeds the database synchronously (a single
-         * cheap insert-if-empty check) so the very first Compose frame never races an empty
-         * Favorites list against the seed insert. */
+         * cheap insert-if-empty check) so the first Pray frame never races an empty preset
+         * store against the seed insert. */
         fun create(context: Context): AppServices {
             val db = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "prosary.db")
                 .addMigrations(*ALL_MIGRATIONS)

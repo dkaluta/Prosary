@@ -39,13 +39,9 @@ import com.dkaluta.prosary.ui.presets.OptionPickerField
 import com.dkaluta.prosary.services.LocalAppServices
 import kotlinx.coroutines.launch
 
-/** The editor for the generic (bundle-driven) devotions — these have no name or language to
- * edit, just the bundle's own `options.json` options (schema-driven
- * toggle/choice rows, e.g. the Franciscan Crown's optional closing devotions) and reminders.
- * Reachable from the star row's bell button, and only once the devotion is favorited (a Prayer
- * row must already exist to attach settings to — this screen never creates one). Preset
- * quick-toggle hours and their footer come from the devotion's bundle manifest (the Angelus's
- * bell times). Mirrors iOS's RemindersOnlyEditorView. */
+/** Compact editor for an existing [Prayer] row. Generic bundle rows expose their schema-driven
+ * `options.json` choices plus reminders; Rosary/Jesus rows use it for reminder-only actions.
+ * This screen never creates a row. Bundle reminder presets come from the manifest. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {

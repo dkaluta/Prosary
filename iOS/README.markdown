@@ -5,7 +5,8 @@ praying the Rosary, the Angelus, the Stations of the Cross, the Divine Mercy Cha
 the Jesus Prayer, and every other devotion the `.prosaryprayer` bundle format can describe —
 serving Holy Land Christian communities. Latin is the default prayer language, with English,
 Arabic, Hebrew (in the communities' own rites), Russian, Tagalog, Spanish, Greek, and Classical
-Syriac as alternatives.
+Syriac as alternatives. Each bundle lists the subset it actually supplies; most built-ins
+currently cover Latin, English, Arabic, Hebrew, Russian, and Tagalog.
 
 This is the iOS/Mac app of a monorepo — the Android and Windows ports, the shared bundle
 format, and the web tools live beside it; see the [repository README](../README.markdown).
@@ -23,17 +24,15 @@ destination.
 
 ## iCloud Sync
 
-Saved favorites (`PresetEntry`, via SwiftData) sync across a user's devices through CloudKit's
+Saved configurations (`PresetEntry`, via SwiftData) sync across a user's devices through CloudKit's
 private database — `Prosary/Prosary.entitlements` declares the `iCloud.com.dkaluta.prosary`
 container, and `AppServices.modelContainer` builds its `ModelConfiguration` with
 `cloudKitDatabase: .automatic`, falling back to a local-only store if iCloud is unavailable
 (signed out, disabled for this app, or offline) rather than crashing at launch.
 
-**First build after pulling this change**: opening the project in Xcode will prompt to fix a
-signing issue, since the CloudKit capability needs a provisioning profile that doesn't exist yet —
-accept the prompt once (Xcode registers the container against your Apple Developer account and
-regenerates the profile automatically). This is a one-time step per developer machine, not
-something a normal build needs afterward.
+The first CloudKit-enabled build on a developer machine may prompt Xcode to repair signing and
+create a provisioning profile for the container. Accept that prompt once; ordinary builds do not
+need to repeat it.
 
 ## Architecture
 
@@ -42,13 +41,13 @@ by `PrayerKind`: the Rosary, the Jesus Prayer, and `custom` — every other devo
 entirely by a `.prosaryprayer` bundle (see `Shared/ARCHITECTURE.md`). New devotions are new
 bundles, not new code.
 
-One engine builds every devotion: `Support/PrayerEngine.swift` reads a bundle's parsed
-`devotion.json` and produces the full step sequence with no devotion-specific code —
-`Support/PrayerPack/PrayerPackLoader.swift` is the bundle loader behind it. The UI is built
+`Support/PrayerEngine.swift` builds Rosary sessions and every bundle-driven devotion;
+`Support/PrayerPack/PrayerPackLoader.swift` supplies the parsed bundle content. The Jesus Prayer
+is a separate tap counter and needs no step engine. The UI is built
 against two protocols in `Prosary/Protocols/`:
 
-- `PresetStore` — CRUD over saved `Prayer`s (the UI calls these "favorites"; the protocol name
-  and the underlying SwiftData model class, `PresetEntry`, predate that renaming).
+- `PresetStore` — CRUD over saved `Prayer` configurations. Older source directories still use
+  `Favorites`; the current UI calls these presets or saved configurations.
 - `LiturgicalCalendarProviding` — today's mystery group, season accent color, seasonal antiphon,
   Easter-season and Lent checks.
 
@@ -87,7 +86,7 @@ Other notable pieces:
 
 Fonts, mystery illustrations, and other artwork are bundled with their original third-party
 licenses intact — see the in-app About screen (Mac: **Prosary → About Prosary** in the app menu;
-iPhone/iPad: the About button on the Home screen), implemented in `Views/About/AboutView.swift`,
+iPhone/iPad: the About button on the Pray tab), implemented in `Views/About/AboutView.swift`,
 for full attribution.
 
 ## Website

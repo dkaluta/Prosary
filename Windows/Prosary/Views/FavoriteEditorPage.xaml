@@ -8,10 +8,9 @@
     x:Name="Root"
     mc:Ignorable="d">
 
-    <!-- Editor for any kind of saved favorite — kind-specific sections appear conditionally via
-         Visibility bindings to ViewModel.IsRosary/IsAngelus/IsJesusPrayer. Ported from Android's
-         FavoriteEditorScreen.kt. Reminder row item-level commands use classic
-         {Binding ElementName=Root} for the same reason FavoritesListPage's cards do. -->
+    <!-- Full editor for named Rosary and Jesus Prayer configurations; generic bundles use
+         RemindersOnlyEditorPage. Reminder row item-level commands bind back to the page's shared
+         RemindersEditorViewModel through ElementName=Root. -->
     <Page.Resources>
         <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="13" />

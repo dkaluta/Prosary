@@ -8,13 +8,9 @@
     x:Name="Root"
     mc:Ignorable="d">
 
-    <!-- The editor for the generic (bundle-driven) devotions — reachable from
-         FavoritesListPage's star row bell button. An Options section (schema-driven rows from
-         the bundle's options.json — e.g. the Franciscan Crown's optional closing devotions)
-         above the Reminders section, which mirrors FavoriteEditorPage's exactly (same
-         ReminderRowTemplate shape), since both bind through the shared
-         RemindersEditorViewModel. Ported from iOS's RemindersOnlyEditorView/Android's
-         RemindersOnlyEditorScreen.kt. -->
+    <!-- Compact editor for an existing Prayer row. Generic bundles show schema-driven options
+         above reminders; Rosary/Jesus rows use the same page for reminder-only actions. Both
+         editors bind through the shared RemindersEditorViewModel. -->
     <Page.Resources>
         <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="13" />

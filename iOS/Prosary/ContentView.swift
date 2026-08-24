@@ -68,8 +68,8 @@ struct ContentView: View {
       coordinator.pendingRoute = nil
     }
     // File → Import Devotion Bundle… (menu commands run outside the view hierarchy, so the
-    // importer is presented here at the root). Success lands on Favorites, where the new
-    // devotion's star row is visible.
+    // importer is presented here at the root). Installed devotions are then discoverable in
+    // Browse, Categories, and Search and may be pinned to Pray.
     .onChange(of: coordinator.pendingBundleImport) { _, newValue in
       guard newValue else { return }
       coordinator.pendingBundleImport = false

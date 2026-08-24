@@ -531,7 +531,7 @@ public static class PrayerPackStore
         string Id,
         // Set ("rosary") when this bundle's devotion.json backs a dedicated PrayerKind rather
         // than a generic Custom devotion — the definition loads, but the bundle stays out of
-        // CustomDevotionIds() so Home/Favorites don't list it twice.
+        // CustomDevotionIds() so the devotion directory does not list it twice.
         string? BuiltinKind,
         string DisplayName,
         List<string> Languages,

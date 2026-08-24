@@ -30,7 +30,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 
-/** Tappable card for a prayer kind on the Home screen. Accent strip color is passed in by the
+/** Tappable devotion card on the Pray tab. Accent strip color is passed in by the
  * caller so the Rosary card can use the dynamic mystery-group color of the day. */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

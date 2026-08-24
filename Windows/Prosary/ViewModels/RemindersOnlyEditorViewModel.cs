@@ -10,14 +10,10 @@ using Prosary.Services;
 namespace Prosary.ViewModels;
 
 /// <summary>
-/// Drives the editor for the generic (bundle-driven) devotions — these have no name/language to
-/// edit, just the bundle's own <c>options.json</c>
-/// options (schema-driven toggle/choice rows, e.g. the Franciscan Crown's optional closing
-/// devotions) and reminders. Reachable from the star row's bell button, and only once the
-/// devotion is favorited (a <see cref="Prayer"/> row must already exist to attach settings to —
-/// this ViewModel never creates one, unlike <see cref="FavoriteEditorViewModel"/>). Preset
-/// quick-toggle hours and their footer come from the devotion's bundle manifest (the Angelus's
-/// bell times). Mirrors iOS's RemindersOnlyEditorView/Android's RemindersOnlyEditorScreen.
+/// Drives the compact editor for an existing <see cref="Prayer"/> row. Generic bundles expose
+/// schema-driven <c>options.json</c> choices plus reminders; Rosary/Jesus rows use it for
+/// reminder-only actions. This ViewModel never creates a row. Bundle reminder presets come from
+/// the manifest. Mirrors iOS's RemindersOnlyEditorView/Android's RemindersOnlyEditorScreen.
 /// </summary>
 public partial class RemindersOnlyEditorViewModel : ObservableObject
 {

@@ -66,8 +66,8 @@ public partial class RepositoryRow : ObservableObject
 
 /// <summary>The in-app browser for prayers.prosary.app: fetches the catalog, filters by search
 /// text and tag, and installs through the exact same <see cref="PrayerPackStore.InstallPack"/>
-/// pipeline as a manual file import — so an installed community devotion behaves identically
-/// (star row, "Repository" tag, remove affordance). Mirrors iOS's RepositoryBrowserView.</summary>
+/// pipeline as a manual file import. Installed rows gain the "Repository" tag and become
+/// available to Categories, Search, and Pray pinning.</summary>
 public partial class RepositoryBrowserViewModel : ObservableObject
 {
     private IReadOnlyList<RepositoryRow> _all = [];

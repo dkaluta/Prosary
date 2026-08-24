@@ -32,7 +32,7 @@ enum class MysteryGroup {
             Luminous -> R.string.mystery_group_luminous
         }
 
-    /** Accent color for the Home screen's Rosary card — distinct per mystery group, not the
+    /** Accent color for the Pray tab's Rosary card — distinct per mystery group, not the
      * liturgical season color used inside the flow screen's top banner. */
     val color: Color
         get() = when (this) {

@@ -39,13 +39,10 @@ public sealed partial class MainWindow : Window
         var appWindow = AppWindow.GetFromWindowId(windowId);
         if (appWindow?.Presenter is OverlappedPresenter presenter)
         {
-            // Minimum width matches iOS's own Mac WindowGroup exactly (.frame(minWidth: 760, ...)
-            // in ProsaryApp.swift) rather than irosary's narrower MinimumWidth=420 — 760 is tuned
-            // for the wide 3-column Rosary flow layout specifically, per that file's own comment
-            // ("the window itself needs a floor to keep the wide 3-column Rosary flow layout from
-            // being resized into something cramped and broken"), the same layout this Windows
-            // port has too. Height keeps irosary's original 600 floor; only width was asked to
-            // match Mac's.
+            // Windows keeps a 760pt floor so its NavigationView pane plus the prayer surface do
+            // not squeeze the wide layout. The Mac app now permits a 620pt window and switches
+            // its content to a narrow layout below 700pt; WinUI's persistent sidebar needs the
+            // larger floor here. Height keeps irosary's original 600pt minimum.
             //
             // PreferredMinimumWidth/Height take raw physical pixels, not the DPI-independent
             // effective pixels these numbers are expressed in — left un-scaled, the window would

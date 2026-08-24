@@ -50,16 +50,14 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
-/** The single flow screen for every [PrayerKind.Custom] devotion — mirrors the hardcoded flow
- * screens' shape exactly, but reads its title/steps from [PrayerPackStore]/
- * [com.dkaluta.prosary.engine.PrayerEngine] instead of a per-devotion hardcoded builder, so a
- * new generic devotion needs no new screen at all. A decade/bead-structured ("rosary" type)
+/** The single flow screen for every [PrayerKind.Custom] devotion. It reads its title and
+ * structure from [PrayerPackStore]/[com.dkaluta.prosary.engine.PrayerEngine], so a new generic
+ * devotion needs no new screen. A decade/bead-structured ("rosary" type)
  * devotion gets the same bead track as the Rosary; flat devotions (no step carries a
  * decadeIndex) get none.
  *
- * [prayer] is set when launched from an existing favorite (via PrayerDispatchScreen) — seeds the
- * star as already-favorited immediately, without waiting on the initial favorites fetch. The
- * session language follows the favorite's languageCode (sentinel = the app default), switchable
+ * [prayer] is set when launched from an existing saved configuration (via PrayerDispatchScreen),
+ * avoiding a second store read. The session language follows its languageCode (sentinel = the app default), switchable
  * in place from the toolbar's language menu — testers assumed generic devotions shipped fewer
  * languages than they do when the only switch was the app-level setting. */
 @OptIn(ExperimentalMaterial3Api::class)

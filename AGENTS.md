@@ -42,7 +42,8 @@ new ones identical on all three platforms.
   `gradlew build` currently fails on pre-existing `lintDebug` errors in older files; do not
   "fix" those inside an unrelated change.
 - **iOS**: `cd iOS && xcodebuild test -scheme Prosary -destination
-  'platform=iOS Simulator,name=iPhone 17 Pro' -only-testing:ProsaryTests`
+  'platform=iOS Simulator,name=iPhone 17 Pro' -parallel-testing-enabled NO
+  -only-testing:ProsaryTests`
   (`platform=macOS` also works and is faster).
 - **Windows**: `dotnet test Windows/Prosary.Tests/Prosary.Tests.csproj -c Debug
   -p:Platform=x64` — needs Windows; on other hosts follow the existing patterns exactly and

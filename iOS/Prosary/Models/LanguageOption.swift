@@ -7,7 +7,7 @@ import Foundation
 
 /// A prayer language the app can display, independent of the device's own UI/system language.
 struct LanguageOption: Identifiable, Hashable, Codable {
-  /// ISO 639-1 code used as the key into the content layer's prayer/mystery translations.
+  /// Prayer-language identifier used as the key into the content layer's translations.
   var code: String
   /// The language's own name, in its own script (shown in pickers).
   var nativeName: String

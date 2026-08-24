@@ -2,7 +2,7 @@ namespace Prosary.Models;
 
 /// <summary>A prayer language the app can display, independent of the device's own UI/system
 /// language.</summary>
-/// <param name="Code">ISO 639-1 code used as the key into the content layer's prayer/mystery
+/// <param name="Code">Prayer-language identifier used as the key into the content layer's
 /// translations.</param>
 /// <param name="NativeName">The language's own name, in its own script (shown in pickers).</param>
 /// <param name="IsRightToLeft">Whether prayer text in this language should be displayed

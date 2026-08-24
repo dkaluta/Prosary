@@ -3,7 +3,7 @@
   "rootScreen": "home",
   "screens": {
     "home": {
-      "purpose": "One card per devotion — the Rosary first, then every discovered generic (bundle-driven) devotion in pack-load order (title/accent/icon read from each bundle's own manifest — see customDevotionFlow), then the Jesus Prayer last — each showing that devotion's default favorite; plus a \"Today\" section (the day's feast per the chosen liturgical calendar and the Pope's monthly prayer intention, from the bundled Shared/data datasets — rows hide when the datasets have no entry, and each row has its own Settings switch, so either, both, or neither can show); plus My Favorites/Settings/About. The Rosary card opens the preset picker (default preset up top, then Pray-any-Rosary ad-hoc quick setup with save-as-preset, then the remaining presets) rather than launching a session directly.",
+      "purpose": "The Pray tab: a \"Today\" section (the day's feast per the chosen liturgical calendar and the Pope's monthly prayer intention, with independent Settings switches), followed by one card per pinned devotion in the user's HomeOrder. The base directory is Rosary, every discovered generic bundle in pack-load order, then Jesus Prayer; saved configurations imply a pin on migration, while FavoriteDevotions lets a user pin/unpin without deleting any saved Prayer. The Rosary card opens its presets surface; generic and Jesus Prayer cards launch the saved default or an unsaved flow/setup when none exists. A fixed Basic Prayers row sits below the cards. Toolbar actions add Rosary/Jesus configurations, restore unpinned devotions, edit order, and open Settings/About where the platform exposes them in-app.",
       "parameters": {},
       "sources": {
         "iOS": "Views/Home/HomeView.swift",
@@ -11,26 +11,17 @@
         "windows": "Views/HomePage.xaml(.cs) + ViewModels/HomeViewModel.cs"
       }
     },
-    "favorites": {
-      "purpose": "Saved favorites: full card lists with Pray/Edit/Delete/Set-Default and an Add-new button for the two configurable kinds (Rosary, Jesus Prayer), plus one star-row per generic devotion in pack-load order (favorite toggle + the generic-devotion editor: schema-driven rows for the bundle's options.json options above the reminders section), an Import Devotion Bundle button (file picker -> PrayerPackStore.installPack), and a remove affordance on user-imported rows.",
-      "parameters": {},
-      "sources": {
-        "iOS": "Views/Favorites/FavoritesListView.swift",
-        "android": "ui/favorites/FavoritesListScreen.kt",
-        "windows": "Views/FavoritesListPage.xaml(.cs) + ViewModels/FavoritesViewModel.cs"
-      }
-    },
     "favoriteEditor": {
-      "purpose": "Create or edit a favorite of any kind; kind-specific sections shown conditionally.",
+      "purpose": "Create or edit a named Rosary or Jesus Prayer configuration: name, default flag, prayer language/rite, kind-specific options, and reminders. Generic bundle devotions use remindersOnlyEditor instead.",
       "parameters": {
         "prayerId": {
           "type": "uuid?",
-          "description": "Editing an existing favorite. Null when creating new."
+          "description": "Editing an existing saved configuration. Null when creating new."
         },
         "newFavoriteKind": {
           "type": "PrayerKind",
           "default": "rosary",
-          "description": "Seeds a brand-new favorite's kind when prayerId is null. iOS passes the whole ad-hoc Prayer object directly instead (sheet(item:)); Android/Windows thread this + prayerId as separate params since neither has an iOS-sheet-style whole-object-across-navigation mechanism."
+          "description": "Seeds a brand-new saved configuration's kind when prayerId is null. iOS passes the whole ad-hoc Prayer object directly instead (sheet(item:)); Android/Windows thread this + prayerId as separate params since neither has an iOS-sheet-style whole-object-across-navigation mechanism."
         }
       },
       "sources": {
@@ -39,18 +30,32 @@
         "windows": "Views/FavoriteEditorPage.xaml(.cs) + ViewModels/FavoriteEditorViewModel.cs"
       }
     },
+    "remindersOnlyEditor": {
+      "purpose": "Compact editor reached from a saved devotion's Pray/preset actions. For generic bundles it renders schema-driven options from options.json followed by reminder times and any manifest reminder presets; for Rosary or Jesus Prayer entries it provides the shared reminders section without reopening the full configuration editor.",
+      "parameters": {
+        "prayerId": {
+          "type": "uuid",
+          "description": "Existing saved Prayer whose options/reminders are edited; this screen never creates a row."
+        }
+      },
+      "sources": {
+        "iOS": "Views/Favorites/RemindersOnlyEditorView.swift + Views/Favorites/RemindersSection.swift",
+        "android": "ui/favorites/RemindersOnlyEditorScreen.kt + ui/favorites/RemindersSection.kt",
+        "windows": "Views/RemindersOnlyEditorPage.xaml(.cs) + ViewModels/RemindersOnlyEditorViewModel.cs"
+      }
+    },
     "rosaryFlow": {
       "purpose": "The Rosary prayer flow — season bar, progress, bead track, mystery image/text, Back/Next footer.",
       "parameters": {
         "prayerId": {
           "type": "uuid?",
-          "description": "Favorite to pray; null falls back to the default Rosary favorite."
+          "description": "Saved configuration to pray; null falls back to the default Rosary configuration."
         }
       },
       "reachedVia": {
         "iOS": "The generic prayer(id) route -> PrayerDispatchView resolves the Prayer and picks the flow by kind.",
         "android": "The generic prayer/{id} route -> PrayerDispatchScreen, same dispatch-by-kind pattern.",
-        "windows": "Routed to directly by name (RosaryPrayerPage) — Home/Favorites already hold the full Prayer in memory, so Windows skips the generic-dispatcher indirection entirely (see ARCHITECTURE.md, \"Skip iOS's PrayerDispatchView indirection\")."
+        "windows": "Routed to directly by name (RosaryPrayerPage) — the calling Pray/preset surface already holds the full Prayer in memory, so Windows skips the generic-dispatcher indirection used by iOS/Android."
       },
       "sources": {
         "iOS": "Views/RosaryFlow/RosaryFlowView.swift + Views/Shared/PrayerStepFlowView.swift",
@@ -59,21 +64,21 @@
       }
     },
     "customDevotionFlow": {
-      "purpose": "The single flow for every generic (bundle-driven) devotion (PrayerKind.custom): Angelus, Stations of the Cross, Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet, Trisagion. Steps/title/season color are entirely data-driven from the bundle's devotion.json/manifest.json — see ARCHITECTURE.md's \"Content bundles\" section. A decade/bead-structured (\"rosary\" type) devotion renders the same bead track as rosaryFlow (shown whenever any built step carries a decadeIndex; hasClosingCross from the definition); flat (\"steps\" type) devotions get a plain progress bar. Has its own favorite-star toggle since it can be launched with no saved favorite at all. Adding a new generic devotion needs no new screen, just a new bundle. Bundles declaring variants (alternate step-sets) additionally get a toolbar variant menu that rebuilds the session on switch and persists Prayer.variantId to the matching favorite. When the bundle ships a narrated recording matching the session's language and variant (audio.json), a compact transport bar appears above the footer — chapter skip / play-pause / seekable timeline / current chapter title. The chapters' advisory stepIndex hints drive the step while playing, manual Back/Next re-aligns the recording to the chapter narrating the new step, and the timer auto-advance stands down during playback. Multi-day (days-type) bundles add a calendar toolbar menu listing every day (period-prefixed for Montfort-style groupings); the session prays the favorite's saved dayIndex, switching persists it, and finishing a day advances it (clamped to the last).",
+      "purpose": "The single flow for every generic (bundle-driven) devotion (PrayerKind.custom), including Angelus, Stations of the Cross, Via Lucis, Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet, Trisagion, and the O Antiphons. Steps/title/season color are entirely data-driven from devotion.json/manifest.json. Rosary-type bundles render the shared bead track; steps-type bundles use a plain progress bar; days-type bundles add a day menu and tracked progression. The flow can pin/unpin the devotion, choose language and alternate form, edit schema-driven options through the saved row, and show an audio transport when audio.json has a matching language/form track. Chapter hints drive step syncing, manual Back/Next re-aligns audio, and auto-advance stands down during playback. Adding a generic devotion needs no new screen, only a bundle.",
       "parameters": {
         "devotionId": {
           "type": "string",
-          "description": "The bundle id (e.g. \"angelus\") to load — always required, even when a favorite exists, since PrayerKind.custom alone doesn't say which devotion to load."
+          "description": "The bundle id (e.g. \"angelus\") to load — always required, even when a saved configuration exists, since PrayerKind.custom alone doesn't say which devotion to load."
         },
         "prayerId": {
           "type": "uuid?",
-          "description": "Launched from a saved favorite. Null when launched from Home with no favorite saved yet for this devotionId — falls back to the app's default language (generic devotions have no per-favorite options)."
+          "description": "Launched from a saved configuration. Null when launched from Pray/Categories/Search with no saved row for this devotionId; the flow then uses the app language and bundle defaults. Saved generic rows may carry language, variant, custom options, day progress, and reminders."
         }
       },
       "reachedVia": {
-        "iOS": "The generic prayer(id) route -> PrayerDispatchView resolves the Prayer and picks CustomDevotionFlowView by kind (reading devotionId from Prayer.customDevotionId); a fresh (no-favorite) launch uses AppRoute.custom(devotionId:) instead.",
+        "iOS": "The generic prayer(id) route -> PrayerDispatchView resolves the Prayer and picks CustomDevotionFlowView by kind (reading devotionId from Prayer.customDevotionId); a fresh launch without a saved configuration uses AppRoute.custom(devotionId:) instead.",
         "android": "The generic prayer/{id} route -> PrayerDispatchScreen, same dispatch-by-kind pattern; a fresh launch uses the custom/{devotionId} route.",
-        "windows": "Routed to directly by name (CustomDevotionFlowPage) via CustomDevotionFlowParams(prayerId, bundleId) — Home/Favorites already know the bundle id at the call site, so Windows skips the generic-dispatcher indirection entirely, same as rosaryFlow."
+        "windows": "Routed to directly by name (CustomDevotionFlowPage) via CustomDevotionFlowParams(prayerId, bundleId) — Pray/Categories/Search already know the bundle id at the call site, so Windows skips the generic-dispatcher indirection, same as rosaryFlow."
       },
       "sources": {
         "iOS": "Views/Shared/CustomDevotionFlowView.swift + Views/Shared/PrayerStepFlowView.swift + Views/RosaryFlow/BeadProgressView.swift (rosary-type accessory)",
@@ -92,15 +97,15 @@
       }
     },
     "jesusPrayerFlow": {
-      "purpose": "The Jesus Prayer flow — single fixed line + repetition counter, no engine. Own favorite-star toggle, same reason as angelusFlow.",
+      "purpose": "The Jesus Prayer flow — one fixed prayer line plus a repetition counter, with no PrayerEngine step sequence. A star action saves/removes the matching target-and-language configuration so an unsaved setup can be pinned to Pray.",
       "parameters": {
         "prayerId": {
           "type": "uuid?",
-          "description": "Launched from a saved favorite — its own target overrides target, and its language is used."
+          "description": "Launched from a saved configuration — its own target overrides target, and its language is used."
         },
         "target": {
           "type": "JesusPrayerTarget?",
-          "description": "Set when launched fresh from jesusPrayerSetup (no favorite yet)."
+          "description": "Set when launched fresh from jesusPrayerSetup (no saved configuration yet)."
         }
       },
       "navigationNote": "Finish (pop-to-Home) and the back arrow (pop-one-level, back to Setup) are deliberately distinct commands — see ARCHITECTURE.md and JesusPrayerViewModel's class doc.",
@@ -114,40 +119,40 @@
       "purpose": "Attribution: typefaces, mystery/other image sources, Scripture sources. Static content.",
       "parameters": {},
       "sources": {
-        "iOS": "Views/About/AboutView.swift (Mac: app-menu-only, own window; iPhone/iPad: linked from Home)",
+        "iOS": "Views/About/AboutView.swift (Mac: app-menu-only, own window; iPhone/iPad: linked from Pray)",
         "android": "ui/about/AboutScreen.kt",
         "windows": "Views/AboutPage.xaml(.cs)"
       }
     },
     "settings": {
-      "purpose": "App-wide preferences: the default prayer language (+ rite when the language has more than one), auto-advance, haptics (iOS), the Today section's rows (per-row switches persisted as showTodayFeast/showTodayIntention, both on by default — either, both, or neither row can show) and its liturgical calendar (a picker over Shared/data/calendars.json's registry, persisted as feastCalendarId beside defaultLanguageCode, hidden if the registry ships a single calendar), downloads management, and links.",
+      "purpose": "App-wide preferences: default prayer language and rite, auto-advance, phone haptics (iOS/Android), Pray ordering reset, independent Today-row switches and feast-calendar selection, installed-bundle import/export/removal where supported, audio-cache cleanup, and links to the repository, composer, and privacy policy.",
       "parameters": {},
       "sources": {
-        "iOS": "Views/Settings/SettingsView.swift (macOS Settings scene, Cmd+,; iOS has no in-app equivalent — the system Settings app via Settings.bundle/Root.plist instead)",
-        "android": "ui/settings/SettingsScreen.kt (Android has no external settings surface to extend, unlike iOS)",
-        "windows": "Views/SettingsPage.xaml(.cs) + ViewModels/SettingsViewModel.cs (same reasoning as Android)"
+        "iOS": "Views/Settings/SettingsView.swift (macOS Settings scene, Cmd+,; iPhone/iPad sheet from Pray)",
+        "android": "ui/settings/SettingsScreen.kt",
+        "windows": "Views/SettingsPage.xaml(.cs) + ViewModels/SettingsViewModel.cs"
       }
     },
     "rosaryPresetPicker": {
-      "purpose": "Home -> Rosary: the default preset (one tap to pray), a Pray-any-Rosary quick setup (iOS/Android embed the full Rosary options editor seeded from the default preset; Windows exposes the mystery selection inline and inherits the rest from the default preset — a deliberate, documented divergence), with save-as-preset (never stealing the default slot unless it's the first preset), then the remaining presets. Preset management stays in Favorites (a Manage action links there). Ad-hoc sessions are unsaved: iOS routes a Prayer value (AppRoute.rosaryQuickPray), Android rides a holder object (Compose routes are strings), Windows passes the Prayer as the navigation parameter.",
+      "purpose": "Pray -> Rosary: the default preset (one tap to pray), a full Pray-any-Rosary quick setup seeded from it with save-as-preset (never stealing the default slot unless it is the first), then the remaining presets. This surface now owns preset management through each card's edit/reminders/default/delete actions. Ad-hoc sessions are unsaved: iOS routes a Prayer value (AppRoute.rosaryQuickPray), Android uses a holder object because Compose routes are strings, and Windows passes the Prayer as the navigation parameter.",
       "files": {
-        "ios": "Views/Home/RosaryPresetPickerView.swift",
+        "ios": "Views/Home/RosaryPresetsView.swift + Views/Home/RosaryQuickSetupView.swift",
         "android": "ui/home/RosaryPresetPickerScreen.kt",
         "windows": "Views/RosaryPresetPickerPage.xaml(.cs) + ViewModels/RosaryPresetPickerViewModel.cs"
       }
     },
     "repositoryBrowser": {
-      "purpose": "The in-app browser for prayers.prosary.app: fetches the versioned /index.json catalog, filters by search text and tag, and installs a bundle through the same installPack pipeline as a manual file import (star row, 'Repository' tag, remove affordance all identical). Downloads go through the catalog's same-origin /api/download/<id> path so server-side counting works.",
+      "purpose": "The in-app browser for prayers.prosary.app: fetches the versioned /index.json catalog, filters by search text and tag, and installs through the same installPack pipeline as manual file import. Installed repository bundles gain the manifest-derived 'Repository' tag, appear in Categories/Search, and can be pinned to Pray. Downloads go through the catalog's same-origin /api/download/<id> path so server-side counting works.",
       "parameters": {},
-      "navigation": "The Browse tab (primary), plus the Favorites screen's 'Get Community Devotions…' row (sheet on iOS).",
+      "navigation": "The Browse tab is the primary surface; Search also queries and installs from the same catalog. Manual bundle import lives in Browse/File commands on Apple and Settings on Android/Windows; installed-download management is platform-appropriate Settings UI.",
       "sources": {
-        "iOS": "Views/Favorites/RepositoryBrowserView.swift (sheet) + Support/RepositoryClient.swift",
-        "android": "ui/favorites/RepositoryBrowserScreen.kt (route favorites/repository) + content/repository/RepositoryClient.kt (the app's first and only INTERNET-permission feature)",
+        "iOS": "Views/Favorites/RepositoryBrowserView.swift + Support/RepositoryClient.swift",
+        "android": "ui/favorites/RepositoryBrowserScreen.kt + content/repository/RepositoryClient.kt (the app's only INTERNET-permission feature)",
         "windows": "Views/RepositoryBrowserPage.xaml(.cs) + ViewModels/RepositoryBrowserViewModel.cs + Services/RepositoryClient.cs"
       }
     },
     "tabShell": {
-      "purpose": "The app's top-level navigation: four sections — Pray (Home), Browse (the prayers.prosary.app catalog), Categories (devotions grouped by manifest tags), Search (local + community). Bottom tab bar on phones; sidebar on desktop (iOS 18/macOS 15 sidebarAdaptable, Android NavigationRail at >=840dp, WinUI NavigationView pane). Inner screens (flows, editors) hide the tab chrome on Android; each iOS tab owns its own NavigationStack; Windows resets the frame back stack on section switch so sections feel like tabs.",
+      "purpose": "The app's top-level navigation: four sections — Pray, Browse (the prayers.prosary.app catalog), Categories (devotions grouped by manifest tags), and Search (local + community). Phones use a bottom bar; desktop/tablet layouts use a sidebar or rail (iOS 18/macOS 15 sidebarAdaptable, Android NavigationRail at >=840dp, WinUI NavigationView). Active prayer flows hide the bottom bar on iPhone and Android phones, while large-screen sidebars remain. Each iOS tab owns a NavigationStack; Windows resets the frame back stack on section switch so sections behave like tabs.",
       "parameters": {},
       "sources": {
         "iOS": "ContentView.swift (TabView + adaptiveTabViewStyle)",

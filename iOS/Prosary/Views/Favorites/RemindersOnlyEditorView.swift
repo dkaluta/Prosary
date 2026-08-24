@@ -2,12 +2,10 @@
 //  RemindersOnlyEditorView.swift
 //  Prosary
 //
-//  The editor for the generic (bundle-driven) devotions — these have no name or language to
-//  edit (see FavoritesListView), just the bundle's own `options.json` options (schema-driven
-//  toggle/choice rows, e.g. the Franciscan Crown's optional closing devotions) and reminders.
-//  Reachable from the star row's bell button, and only once the devotion is favorited (a Prayer
-//  row must already exist to attach settings to — this view never creates one). The devotion's
-//  display name and any traditional preset reminder times come from its bundle manifest.
+//  The compact editor for an existing Prayer row. Generic bundle rows expose their schema-driven
+//  `options.json` choices plus reminders; Rosary/Jesus rows use it for reminder-only actions.
+//  This view never creates a row. Bundle display names and traditional reminder presets come
+//  from the manifest.
 //
 
 import SwiftUI

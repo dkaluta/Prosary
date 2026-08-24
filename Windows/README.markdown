@@ -5,7 +5,9 @@ of the Cross, the chaplets, novenas, the Jesus Prayer, and every other devotion 
 `.prosaryprayer` bundle format describes — the Windows port in the Prosary monorepo (see the
 [repository README](../README.markdown)), kept at feature parity with the iOS app it mirrors.
 Latin is the default prayer language, with English, Arabic, Hebrew (in the communities' own
-rites), Russian, Tagalog, Spanish, Greek, and Classical Syriac as alternatives.
+rites), Russian, Tagalog, Spanish, Greek, and Classical Syriac as alternatives. Each bundle lists
+the subset it actually supplies; most built-ins currently cover Latin, English, Arabic, Hebrew,
+Russian, and Tagalog.
 
 Built with plain WinUI3, not .NET MAUI — see the "Why not MAUI" note below. An earlier
 standalone MAUI prototype (`irosary`, not part of this repo) was mined for its validated Rosary
@@ -49,11 +51,11 @@ and `Custom` — every other devotion, driven entirely by a `.prosaryprayer` bun
 `../Shared/ARCHITECTURE.md`). ViewModels strictly use CommunityToolkit.Mvvm
 (`[ObservableProperty]`/`[RelayCommand]` — no hand-rolled `INotifyPropertyChanged`).
 
-- `Services/PrayerEngine.cs` — the one generic step builder for every devotion, reading
-  bundles through `Localization/PrayerPackStore.cs`; no devotion-specific code.
+- `Services/PrayerEngine.cs` — builds Rosary sessions and every bundle-driven devotion, reading
+  bundles through `Localization/PrayerPackStore.cs`; the Jesus Prayer is a separate counter.
 - `Services/LiturgicalCalendarService.cs` — today's mystery group, season, seasonal Marian
   antiphon, Easter-season check; ported from irosary's `LiturgicalCalendarService.cs`.
-- `Persistence/SqlitePresetStore.cs` — SQLite-backed (`sqlite-net-pcl`) favorites store, with
+- `Persistence/SqlitePresetStore.cs` — SQLite-backed (`sqlite-net-pcl`) saved-configuration store, with
   reminders stored as a JSON column; per-kind default/delete scoping (a correction over irosary's
   unscoped version, matching iOS/Android's actual behavior).
 - `Services/WindowsReminderScheduler.cs` — local reminder notifications via
@@ -93,9 +95,9 @@ signed identity, which Windows treats as a different app for update purposes.
 Bundled prayer typefaces and the mystery/prayer illustration images under `Prosary/Assets/Fonts`
 and `Prosary/Assets/Images` are physical copies of the canonical originals in `../Shared/` (a
 sibling directory to `iOS`/`Android`/`Windows` — see `../Shared/README.md` for what lives there
-and why). Each platform keeps its own physical copy rather than referencing `Shared/` live, so
-this repo builds standalone even if cloned without `Shared/` alongside it; if you update an image
-or font, update `Shared/` and re-copy into each platform that uses it. Placeholder tile/splash
+and why). Each platform keeps its own physical copy rather than referencing `Shared/` at build
+time; if you update an image or font, update `Shared/` and re-copy it into each platform that uses
+it. Placeholder tile/splash
 icons (generated to match the app's brand gradient/cross, lower-fidelity than the real launcher
 art on iOS/Android) live in `Prosary/Assets/` directly too — swap those for real icon assets
 before any real distribution.

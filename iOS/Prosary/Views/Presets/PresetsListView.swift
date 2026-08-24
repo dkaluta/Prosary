@@ -1,2 +1,3 @@
-// PresetsListView has been replaced by FavoritesListView (Views/Favorites/FavoritesListView.swift).
-// This file is retained in the project tree to avoid a manual Xcode removal step.
+// The old standalone presets/favorites list was retired. Rosary preset management now lives in
+// Views/Home/RosaryPresetsView.swift; this empty file remains in the project to avoid a manual
+// Xcode project-file removal.

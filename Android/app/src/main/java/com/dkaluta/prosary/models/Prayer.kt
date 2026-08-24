@@ -3,45 +3,42 @@ package com.dkaluta.prosary.models
 import android.content.Context
 import java.util.UUID
 
-/** A saved, user-configurable prayer session (a "Favorite"). [kind] selects the prayer type;
- * kind-specific settings live in nested option classes. Add new [PrayerKind] cases and matching
- * option classes here to expand into new devotions (Divine Mercy Chaplet, Seven Sorrows, etc.). */
+/** A saved, user-configurable prayer session. [kind] selects the Rosary, the Jesus Prayer, or
+ * the generic bundle path; adding an ordinary devotion means adding a bundle, not a new case. */
 data class Prayer(
     val id: String = UUID.randomUUID().toString(),
     var name: String = "My Prayer",
     var kind: PrayerKind = PrayerKind.Rosary,
 
-    /** The starred/primary favorite for its kind — used when the home screen launches this
-     * kind of prayer without the user picking one explicitly. At most one per kind at a time. */
+    /** The primary configuration for its devotion. At most one per
+     * ([kind], [customDevotionId]) at a time. */
     var isDefault: Boolean = false,
 
-    /** Prayer language for this favorite. [LanguageCatalog.defaultSentinel] means follow the
+    /** Prayer language for this configuration. [LanguageCatalog.defaultSentinel] means follow the
      * app-level default language setting. */
     var languageCode: String = LanguageCatalog.defaultSentinel,
 
     // Kind-specific options — populate the relevant class when creating a Prayer.
     var rosary: RosaryOptions = RosaryOptions(),
     var jesusPrayer: JesusPrayerOptions = JesusPrayerOptions(),
-    // Angelus has no options beyond languageCode.
-
-    /** The bundle id (e.g. "trisagion") whose `steps.json` defines this favorite's step sequence
+    /** The bundle id (e.g. "trisagion") whose `devotion.json` defines this configuration's step sequence
      * — populated only when [kind] is [PrayerKind.Custom], null otherwise. See
      * [com.dkaluta.prosary.engine.PrayerEngine.buildCustomDevotionSteps]. */
     var customDevotionId: String? = null,
     /** Which of the bundle's variants (alternate step-sets, e.g. the Stations' traditional vs.
-     * scriptural forms) this favorite prays. Null = the bundle's default (first) variant; only
+     * scriptural forms) this configuration prays. Null = the bundle's default variant; only
      * meaningful when kind == Custom and the bundle declares variants. */
     var variantId: String? = null,
-    /** Multi-day ("days"-type) devotions: the day this favorite prays next, 0-based; advances
+    /** Multi-day ("days"-type) devotions: the day this configuration opens on, 0-based; advances
      * when a day's session finishes (clamped by the engine). Null = day 1. */
     var dayIndex: Int? = null,
 
-    /** This favorite's choices for the bundle's `options.json` options, keyed by option key —
+    /** This configuration's choices for the bundle's `options.json` options, keyed by option key —
      * "true"/"false" for toggles, a case id for choices. Only overrides: an absent key means the
      * option's declared default. Only meaningful when [kind] == [PrayerKind.Custom]. */
     var customOptions: Map<String, String> = emptyMap(),
 
-    /** Daily reminders to pray this favorite. Scheduled via
+    /** Daily reminders for this configuration. Scheduled via
      * [com.dkaluta.prosary.reminders.ReminderScheduler]. */
     var reminders: List<PrayerReminder> = emptyList(),
 ) {

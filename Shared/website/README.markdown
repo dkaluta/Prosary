@@ -45,5 +45,5 @@ HTTPS" once DNS has propagated (can take up to 24-48 hours).
 
 - `src/pages/index.astro` — the landing page markup/content.
 - `src/styles/global.css` — styling (light/dark via `prefers-color-scheme`).
-- TODOs are marked inline in `index.astro` for the App Store badge link and real screenshots once
-  available.
+- The remaining inline TODO in `index.astro` is for real screenshots. The TestFlight badge should
+  become an App Store badge when the Apple release leaves testing.

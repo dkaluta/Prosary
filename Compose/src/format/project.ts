@@ -96,8 +96,7 @@ export interface Project {
    * set — Gamaliel item 6. Empty string = use iconSystemName. */
   iconGlyph: string;
   /** Free-form category tags ("marian", "evening") — packed into the manifest and used as
-   * the repository's default tags on submission; category browsing in the apps is the
-   * planned consumer. */
+   * the repository's default tags on submission; the apps group and search devotions by them. */
   tags: string[];
   /** "steps" — one sequence — or "days", a multi-day devotion. A days project authors its
    * steps inside `days` and leaves `steps` empty. */
