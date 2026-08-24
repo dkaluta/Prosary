@@ -80,9 +80,8 @@ public static class PrayerKindExtensions
         _ => throw new ArgumentOutOfRangeException(nameof(kind))
     };
 
-    /// <summary>Accent color for this kind's cards/buttons across Home and Favorites — matches
-    /// Android's <c>accentFor(kind)</c> in <c>FavoritesListScreen.kt</c> (and, for Rosary, the
-    /// bead-progress color in <c>BeadInfo</c>).</summary>
+    /// <summary>Accent color for this kind's cards/buttons across Pray and configuration
+    /// surfaces (and, for Rosary, the bead-progress color in <c>BeadInfo</c>).</summary>
     public static Color AccentColor(this PrayerKind kind) => kind switch
     {
         PrayerKind.Rosary => Color.FromArgb(0xFF, 0x7A, 0x1F, 0x3D),

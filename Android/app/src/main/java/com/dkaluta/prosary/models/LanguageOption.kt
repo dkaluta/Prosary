@@ -2,7 +2,7 @@ package com.dkaluta.prosary.models
 
 /** A prayer language the app can display, independent of the device's own UI/system language. */
 data class LanguageOption(
-    /** ISO 639-1 code used as the key into the content layer's prayer/mystery translations. */
+    /** Prayer-language identifier used as the key into the content layer's translations. */
     val code: String,
     /** The language's own name, in its own script (shown in pickers). */
     val nativeName: String,

@@ -76,7 +76,7 @@ export function BasicsScreen({ project, setProject }: Props) {
         {project.languages.filter((l) => l !== "en").length > 0 && (
           <fieldset>
             <legend>
-              Name in each language <span className="hint">— optional; shown on the app's Home screen</span>
+              Name in each language <span className="hint">— optional; shown throughout the app</span>
             </legend>
             {project.languages
               .filter((l) => l !== "en")

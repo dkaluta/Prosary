@@ -19,7 +19,8 @@ public sealed class PresetEntry
     [MaxLength(80), NotNull]
     public string Name { get; set; } = "My Prayer";
 
-    /// <summary>The starred/primary favorite for its <see cref="Kind"/>. At most one per kind.</summary>
+    /// <summary>The primary configuration for its devotion. Default scoping includes
+    /// <see cref="CustomDevotionId"/> for generic bundles.</summary>
     public bool IsDefault { get; set; }
 
     /// <summary>Empty string means "follow the app-level default" — see <see cref="LanguageCatalog.DefaultSentinel"/>.</summary>

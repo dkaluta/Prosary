@@ -21,7 +21,7 @@ private data class PackManifest(
     val id: String,
     /** Set ("rosary") when this bundle's devotion.json backs a dedicated PrayerKind rather
      * than a generic Custom devotion — the definition loads, but the bundle stays out of
-     * [PrayerPackStore.customDevotionIds] so Home/Favorites don't list it twice. */
+     * [PrayerPackStore.customDevotionIds] so the devotion directory does not list it twice. */
     val builtinKind: String? = null,
     val displayName: String,
     val languages: List<String>,

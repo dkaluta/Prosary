@@ -281,7 +281,7 @@ final class PrayerPackLoaderTests: XCTestCase {
 
   /// The Rosary's pack now ships a devotion.json (the engine builds the Rosary from it), but
   /// its manifest's builtinKind keeps it off the generic-devotion list — it backs the dedicated
-  /// PrayerKind and must never appear as a Home/Favorites card twice. The six generic devotions
+  /// PrayerKind and must never appear in the devotion directory twice. The eight generic devotions
   /// appear in pack-load order.
   /// A devotion's name follows the prayer language, rites included — Erez's ask: with his rite
   /// as the default prayer language, the Trisagion card reads קדישת; plain Hebrew reads

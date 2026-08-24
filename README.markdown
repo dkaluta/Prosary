@@ -2,12 +2,14 @@
 
 A prayer companion for Holy Land Christian communities — the Rosary, the Angelus, the Stations
 of the Cross, the Via Lucis, the Divine Mercy Chaplet, the Franciscan Crown, the Seven Sorrows,
-the Trisagion, novenas and other multi-day devotions, the Jesus Prayer, and the basic prayers on
+the Trisagion, the O Antiphons and other multi-day devotions, the Jesus Prayer, and basic prayers on
 their own. Latin is the default prayer language, alongside English, Arabic, Hebrew, Russian,
 Tagalog, Spanish, Greek, and Classical Syriac (Aramaic, in both the Hebrew and Syriac scripts).
 Hebrew comes in the communities' own uses: the St James Vicariate's wording (נוסח הנציגות) and
 the Mission of St. Gamaliel's Aramaic-rite recension — a devotion can even open in a different
-form per rite, the way the Mission's Trisagion opens Syriac.
+form per rite, the way the Mission's Trisagion opens Syriac. Language availability is declared
+per devotion: most built-in bundles currently cover Latin, English, Arabic, Hebrew, Russian, and
+Tagalog; the broader catalog is used where sourced text exists.
 
 Three native apps, one format, one repo:
 
@@ -24,11 +26,12 @@ Both mobile apps are in closed testing — see [prosary.app](https://prosary.app
 
 ## The bundle format
 
-Every devotion the apps pray is a `.prosaryprayer` bundle — a zip of JSON declaring the steps,
-per-language content (rites ride as overlay files), options, alternate forms with per-rite
-defaults, multi-day structure, artwork, and narrated audio. The apps carry no per-devotion
-code; [`Shared/ARCHITECTURE.md`](Shared/ARCHITECTURE.md) is the spec, and
-`Shared/tools/validate-devotion.py` is its enforcement.
+Every stepped devotion, including the Rosary, is a `.prosaryprayer` bundle — a zip of JSON
+declaring the steps, per-language content (rites ride as overlay files), options, alternate forms
+with per-rite defaults, multi-day structure, artwork, and narrated audio. Generic devotions need
+no devotion-specific app code; the counter-only Jesus Prayer is the exception and has no bundle.
+[`Shared/ARCHITECTURE.md`](Shared/ARCHITECTURE.md) is the spec, and
+`Shared/tools/validate-devotion.py` enforces it.
 
 ## Tooling
 

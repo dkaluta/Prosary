@@ -6,7 +6,7 @@ import { AccountLink } from "@/components/AccountLink";
 export const metadata: Metadata = {
   title: "Prosary Prayers",
   description:
-    "Devotions shared by the Prosary community — download a .prosaryprayer bundle and import it from the app's Favorites screen.",
+    "Devotions shared by the Prosary community — browse and install them in the Prosary app, or download a .prosaryprayer bundle directly.",
   icons: { icon: "/favicon.svg" },
 };
 

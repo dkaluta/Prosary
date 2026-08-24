@@ -70,7 +70,7 @@ public sealed class AutoAdvanceTimer : IDisposable
     }
 }
 
-/// <summary>Builds the shared Off / every-3/5/10-seconds flyout (MenuFlyout has no ItemsSource —
+/// <summary>Builds the shared Off / every-3/5/10/15-seconds flyout (MenuFlyout has no ItemsSource —
 /// the same rebuild-on-click pattern as the pages' variant flyouts).</summary>
 public static class AutoAdvanceMenu
 {

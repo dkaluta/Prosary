@@ -5,7 +5,9 @@ the chaplets, novenas, the Jesus Prayer, and every other devotion the `.prosaryp
 format describes — the Android port in the Prosary monorepo (see the
 [repository README](../README.markdown)), kept at feature parity with the iOS app it mirrors.
 Latin is the default prayer language, with English, Arabic, Hebrew (in the communities' own
-rites), Russian, Tagalog, Spanish, Greek, and Classical Syriac as alternatives.
+rites), Russian, Tagalog, Spanish, Greek, and Classical Syriac as alternatives. Each bundle lists
+the subset it actually supplies; most built-ins currently cover Latin, English, Arabic, Hebrew,
+Russian, and Tagalog.
 
 The app is currently in Play Store closed testing — see [prosary.app](https://prosary.app) or
 [the Play Store listing](https://play.google.com/store/apps/details?id=com.dkaluta.prosary) to
@@ -32,14 +34,13 @@ A signed release build additionally needs an upload keystore. See [Signing](#sig
 A `Prayer` (`models/Prayer.kt`) is a saved, user-configurable prayer session, discriminated by
 `PrayerKind`: the Rosary, the Jesus Prayer, and `Custom` — every other devotion, driven
 entirely by a `.prosaryprayer` bundle (see `../Shared/ARCHITECTURE.md`). New devotions are new
-bundles, not new code: `engine/PrayerEngine.kt` is the one generic step builder, reading
-bundles through `content/prayerpack/PrayerPackLoader.kt`, and this mirrors the iOS model
-exactly so the ports stay in lockstep. (The Jesus Prayer needs no engine — it's just a tap
-counter toward a target, modeled directly by `JesusPrayerOptions`/`JesusPrayerProgress`.)
+bundles, not new code. `engine/PrayerEngine.kt` builds Rosary sessions and every bundle-driven
+devotion, reading bundles through `content/prayerpack/PrayerPackLoader.kt`; the Jesus Prayer is a
+separate tap counter modeled directly by `JesusPrayerOptions`/`JesusPrayerProgress`.
 
 Persistence is Room, not SwiftData: `persistence/PresetEntity.kt` is the `@Entity`, with reminders
 stored as a JSON string (`org.json`, no extra dependency); `persistence/RoomPresetStore.kt`
-implements `presets/PresetStore.kt` against it, seeding one "Classic Rosary" favorite on first
+implements `presets/PresetStore.kt` against it, seeding one "Classic Rosary" configuration on first
 launch. `services/AppServices.kt` owns the single `AppDatabase`.
 
 Reminders are local notifications, scheduled with `AlarmManager` rather than iOS's

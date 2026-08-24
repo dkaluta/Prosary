@@ -4,8 +4,8 @@
 //
 //  The in-app browser for prayers.prosary.app: fetches the catalog, filters by search text
 //  and tag, and installs a bundle through the exact same PrayerPackStore.installPack pipeline
-//  as a manual file import — so an installed community devotion behaves identically (star row,
-//  "Repository" tag, remove affordance).
+//  as a manual file import. Installed community devotions gain the "Repository" tag and become
+//  available to Categories, Search, and Pray pinning.
 //
 
 import SwiftUI

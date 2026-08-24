@@ -2,18 +2,17 @@
 //  CustomDevotionFlowView.swift
 //  Prosary
 //
-//  The single flow view for every PrayerKind.custom devotion (currently just Trisagion) —
-//  mirrors AngelusFlowView/StationsFlowView's shape exactly, but reads its title/steps from
-//  PrayerPackStore/PrayerEngine instead of a per-devotion hardcoded builder, so a new generic
-//  devotion needs no new View at all.
+//  The single flow view for every PrayerKind.custom bundle devotion. It reads title, structure,
+//  options, variants, days, and audio from PrayerPackStore/PrayerEngine, so a new generic
+//  devotion needs no new View.
 //
 
 import SwiftUI
 
 struct CustomDevotionFlowView: View {
   let devotionId: String
-  /// If provided (launched from Favorites with an existing favorite), used directly instead of
-  /// re-querying the store — same convention as AngelusFlowView.
+  /// If provided (launched with an existing saved configuration), used directly instead of
+  /// re-querying the store.
   var prayer: Prayer? = nil
 
   @Environment(\.appServices) private var services

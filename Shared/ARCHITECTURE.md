@@ -1,25 +1,23 @@
 # Prosary: shared architecture across iOS, Android, and Windows
 
-Prosary ships as three independent, native apps — iOS/macOS (SwiftUI, `../iOS`), Android (Jetpack
-Compose, `../Android`), and Windows (WinUI3, `../Windows`) — each its own git repo with no shared
-code. **This directory holds no code.** It's the canonical copy of assets used by all three
-(`Fonts/`, `Images/` — see below) and this doc, which exists so that changing a concept on one
-platform is easy to replicate correctly on the other two: the three codebases are independent
-*implementations* of one shared *design*, and that design is what's described here. iOS is the
-canonical source of truth when the three genuinely disagree — if you find a real divergence,
-prefer iOS's current behavior over Android's or Windows's.
+Prosary ships as three parallel native apps — iOS/macOS (SwiftUI, `../iOS`), Android (Jetpack
+Compose, `../Android`), and Windows (WinUI 3, `../Windows`) — in one repository. They share formats
+and source assets, not runtime code: each port builds from the copies inside its own tree.
+`Shared/` is the canonical home of the cross-platform design, schemas, datasets, bundle source,
+tools, fonts, images, and marketing site. A platform change must preserve three-way parity and
+update the shared schema or source asset when it changes a shared shape or resource.
 
 ## Domain model
 
 Every platform models a saved, user-configurable prayer session the same way, just in its native
 idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
 
-- **`Prayer`** — a saved favorite: `id`, `name`, `kind` (`PrayerKind`), `isDefault` (starred/
-  primary for its devotion — at most one per (kind, customDevotionId) at a time), `languageCode`
+- **`Prayer`** — a saved configuration (called a "favorite" in older type and directory names):
+  `id`, `name`, `kind` (`PrayerKind`), `isDefault` (primary for its devotion — at most one per
+  (kind, customDevotionId) at a time), `languageCode`
   (an empty-string/"default" sentinel means "follow the app-level default language setting"),
-  nested `RosaryOptions`/`JesusPrayerOptions` (generic devotions need no options beyond a
-  language), `customDevotionId` (populated only when `kind == custom` — see "Content bundles"
-  below), and a list of `PrayerReminder`s.
+  nested `RosaryOptions`/`JesusPrayerOptions`, `customDevotionId`, `variantId`, `dayIndex`, and
+  schema-driven `customOptions` for generic devotions, plus a list of `PrayerReminder`s.
 - **`PrayerKind`** — `Rosary` / `JesusPrayer` / `Custom`, and nothing else. Only the Rosary
   (deeply configurable, options/calendar-driven) and the Jesus Prayer (a repetition counter with
   no steps) warrant their own cases; **every other devotion is `Custom`** — one case covering
@@ -50,14 +48,18 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   is a deliberate, known divergence, not a bug.
 - **`PrayerReminder`** — `id`, `hour`, `minute`, `isEnabled`. One-off local reminder times, not a
   recurrence rule — see "Reminders" below for why each platform schedules these differently.
-- **`LanguageOption`/`LanguageCatalog`** — the 6 supported prayer languages (`la` default, `en`,
-  `ar`, `he`, `ru`, `tl`; `ar`/`he` right-to-left), independent of the device's own UI language.
+- **`LanguageOption`/`LanguageCatalog`** — the 9 supported prayer languages (`la` default, `en`,
+  `ar`, `he`, `arc`, `el`, `es`, `ru`, `tl`; `ar`/`he`/`arc` right-to-left), independent of the
+  device's own UI language. A bundle advertises only the subset it actually supplies, and Hebrew
+  additionally offers community rites through exact language-code overlays such as
+  `he-x-gamliel`.
 
 
 > **Running the Apple test suites:** pass `-parallel-testing-enabled NO`. Both targets share
 > global state — `PrayerPackStore` is a singleton and one loader test installs/removes a pack —
 > so parallel clones produce failures that have nothing to do with the code under test (and, for
-> UI tests, runners that fail to launch at all). Serially: 56 unit tests and 14 UI tests, green.
+> UI tests, runners that fail to launch at all). Do not pin a test count here; the suites grow
+> frequently, and the checked-in test targets are the current inventory.
 
 ## Content layer
 
@@ -206,7 +208,8 @@ bar on phones, sidebar on desktop: iOS/macOS via `sidebarAdaptable` where availa
 are iOS 17/macOS 14, so older OSes keep the classic tab control), Android switches
 NavigationBar → NavigationRail at 840 dp, Windows wraps the root frame in a NavigationView
 whose section switches reset the back stack. Pray/Categories/Search re-derive their devotion
-lists on every appearance, so a bundle installed on any tab (or removed in Favorites) shows up
+lists on every appearance, so a bundle installed from Browse/Search/import (or removed in
+Settings) shows up
 everywhere without a relaunch — the bug that motivated the restructure.
 
 ## Prayer flow chrome
@@ -216,7 +219,7 @@ Every linear flow shares one presentation chrome per platform (iOS `PrayerStepFl
 that mirror it). Two toolbar affordances belong to the flows themselves:
 
 - **Auto-advance** (all flows) — hands-free praying, from tester feedback: Off / every 3 / 5 /
-  10 seconds, one app-wide setting (`autoAdvanceSeconds` in UserDefaults / SharedPreferences /
+  10 / 15 seconds, one app-wide setting (`autoAdvanceSeconds` in UserDefaults / SharedPreferences /
   LocalSettings — the `defaultLanguageCode` convention). The countdown restarts on every step
   change, so a manual Back/Next resets it, and it never fires on a flow's last step —
   auto-"Finish" would dismiss the session mid-prayer. The Jesus Prayer's bounded sessions stop
@@ -227,7 +230,7 @@ that mirror it). Two toolbar affordances belong to the flows themselves:
   generic flow's toolbar globe lists "App setting" plus the bundle manifest's languages,
   rebuilds the session in place *keeping the position* (unlike a variant switch, the sequence is
   identical across languages), and persists the choice to the matching favorite's
-  `languageCode` (sentinel = follow the app setting). The Rosary keeps its per-favorite editor
+  `languageCode` (sentinel = follow the app setting). The Rosary keeps its per-configuration editor
   language instead.
 
 ## Persistence
@@ -236,9 +239,9 @@ Each platform has its own `PresetStore` abstraction (iOS: `Protocols/PresetStore
 `SwiftDataPresetStore`; Android: `presets/PresetStore.kt` + `persistence/RoomPresetStore.kt`;
 Windows: `Persistence/IPresetStore.cs` + `SqlitePresetStore.cs`) with the same contract:
 
-- `all()` / `GetAllAsync()` — every saved favorite.
-- `defaultPreset(kind)` / `GetDefaultAsync(kind)` — the starred favorite of that kind, or the
-  first favorite of that kind, or none.
+- `all()` / `GetAllAsync()` — every saved configuration.
+- `defaultPreset(kind)` / `GetDefaultAsync(kind)` — the primary configuration of that kind, or the
+  first configuration of that kind, or none.
 - `get(id)` / `GetAsync(id)`.
 - `save(prayer)` / `SaveAsync(prayer)` — insert or update by id. If the saved favorite is
   default, every *other favorite of the same devotion* has its default flag cleared — the default
@@ -247,7 +250,7 @@ Windows: `Persistence/IPresetStore.cs` + `SqlitePresetStore.cs`) with the same c
 - `delete(prayer)` / `DeleteAsync(prayer)` — if the deleted favorite was default and others of the
   same (kind, customDevotionId) remain, one is promoted to default.
 
-iOS favorites sync through SwiftData + CloudKit (`ModelConfiguration(cloudKitDatabase:
+iOS saved configurations sync through SwiftData + CloudKit (`ModelConfiguration(cloudKitDatabase:
 .automatic)` against `iCloud.com.dkaluta.prosary`, falling back to a local-only store when
 iCloud is unavailable). Three things must all be present for sync to actually propagate — the
 first two were once missing, which looked like "broken sync" (devices only caught up on cold
@@ -266,25 +269,28 @@ per platform as described under `PrayerKind` above (iOS: `PresetEntry.resolvedKi
 `PresetEntity.resolvedKind`; Windows: the `user_version`-guarded SQL pass in
 `SqlitePresetStore.InitializeAsync`), and each platform ships `LegacyKindMigration` tests.
 
-### Favorites UI: configurable vs. simplified kinds
+### Pray pins and saved configurations
 
-Rosary and Jesus Prayer are the only kinds with real per-favorite options worth naming and saving
-multiple variants of, so they keep the full favorites experience: a card list, "+ Add", and a full
-editor (name, language, kind-specific options, reminders). Every generic (bundle-driven) devotion
-renders as a single star row instead, one per discovered bundle in pack-load order — no
-name/language editing, no "+ Add another". Tapping the star still just calls `save`/`delete` on a
-`Prayer` row through the same `PresetStore` (no separate persistence entity), but constrained at
-the UI layer to at most one row per devotion: matched by **bundle id** (not language), and
-initially saved with the sentinel `languageCode` (follows the app-level default language
-setting) — the flow's toolbar language menu (see "Prayer flow chrome") may later persist an
-explicit code onto that same row. Once
-favorited, a small reminders-only editor (iOS: `RemindersOnlyEditorView`; Android:
-`RemindersOnlyEditorScreen`; Windows: `RemindersOnlyEditorPage`) is reachable from the row — it
-shares its reminders-list UI with the full editor via one extracted component (iOS:
-`RemindersSection`) rather than duplicating it. A devotion with traditional fixed prayer times
-declares them in its manifest (`reminderPresetHours` + `reminderPresetFooter` — the Angelus's
-6am/noon/6pm bells) and gets quick-toggle preset rows there; reminder notification bodies
-likewise come from each manifest's `reminderBody`, not any hardcoded per-kind table.
+The former Favorites screen is gone. **Pray is a pinned list of devotions**, one row per devotion,
+not a flat list of every saved `Prayer`. Pinning (`FavoriteDevotions`) and ordering (`HomeOrder`)
+are persisted separately from `PresetStore`, so removing a devotion from Pray never deletes its
+saved configuration; Categories and Search remain the discovery surfaces, and the Pray toolbar's
+add menu can restore an unpinned devotion. A devotion with an existing saved row is implied-pinned
+on first migration so the navigation change does not hide anyone's prayers.
+
+The Rosary is the one devotion with a dedicated presets surface: its Pray row opens the default
+preset, an ad-hoc "Pray any Rosary" setup, and the remaining named presets, with full editors and
+reminder actions. The Jesus Prayer row prays its default saved target or opens setup when none
+exists; the Pray add menu can create another named Rosary or Jesus Prayer configuration.
+
+Every generic bundle is still constrained at the UI layer to at most one `Prayer` row, matched by
+**bundle id** rather than language. Pinning it from a flow creates that row with the sentinel
+`languageCode` (follow the app setting); the flow's language and variant menus, multi-day progress,
+and schema-driven options later persist onto the same row. Its compact editor (iOS:
+`RemindersOnlyEditorView`; Android: `RemindersOnlyEditorScreen`; Windows:
+`RemindersOnlyEditorPage`) exposes bundle `options.json` choices plus reminders. Traditional
+times come from `reminderPresetHours`/`reminderPresetFooter` (the Angelus's 6am/noon/6pm bells),
+and notification text comes from `reminderBody`, never a hardcoded per-kind table.
 
 ## Reminders
 
@@ -333,15 +339,15 @@ its current enabled ones), `removeAll(prayer)`, `rescheduleAll(prayers)` (called
 **Each platform keeps its own physical copy** of these files (iOS: `Assets.xcassets` imagesets +
 `Fonts/`; Android: `res/drawable-nodpi/` + `res/font/` — filenames snake_cased per Android's
 resource-naming requirements; Windows: `Prosary/Assets/Images/` + `Prosary/Assets/Fonts/`) rather
-than referencing this directory directly at build time — this directory has no git repo of its
-own, so a live cross-repo reference would break any platform repo cloned on its own. If you add or
-change an asset, update it here *and* copy it into whichever platform(s) use it.
+than referencing this directory at build time. If you add or change an asset, update it here and
+copy it into every platform that uses it in the same change.
 
 ## Content bundles (`.prosaryprayer`)
 
-A portable, zip-based content format (UTI `app.prosary.prayer`) for a single devotion's translated
-text + images, designed so devotion content can eventually live outside each platform's hardcoded
-source. `Shared/content/<devotion>/` is the actual canonical, authored source (not just a
+A portable, zip-based content format (UTI `app.prosary.prayer`) for a single devotion's structure,
+translated text, artwork, options, alternate forms, multi-day progress, and narrated audio. It is
+the production content path for every stepped devotion, including the Rosary; only the counter-
+based Jesus Prayer has no bundle. `Shared/content/<devotion>/` is the actual canonical, authored source (not just a
 human-synced spec like `Shared/schema/`) — one directory per devotion, each with `manifest.json`,
 `content/<lang>.json` per supported language, an optional `catalog.json` for devotions with a
 mystery-style catalog, and images pulled from `Shared/Images/` at pack time. `Shared/tools/
@@ -356,10 +362,13 @@ same `PrayerKey` as always. Each manifest's `mainPrayerKeysOmitted` array docume
 of these 5 a given devotion's flow uses, so their absence from the bundle reads as intentional, not
 a content gap.
 
-The **Rosary** is packaged this way as the one remaining **override bundle** — it is a hardcoded
-`PrayerKind` devotion with its own engine builder, and its bundle only supplies translated
-*text/artwork* that overrides the hardcoded fallback. At runtime, each platform's
-`PrayerPackLoader` merges every loaded bundle's content into the existing
+The **Rosary** keeps a dedicated `PrayerKind` and typed `RosaryOptions`, but its step structure is
+not hardcoded: the shared `PrayerEngine` builds it from the Rosary bundle's `devotion.json` and
+maps the typed options onto `options.json`. Its calendar-driven mystery-group resolution remains
+engine-side behind `decades.source: "mysteryGroups"`. The manifest's `builtinKind: "rosary"`
+keeps the bundle out of generic-devotion discovery so it is not listed twice.
+
+At runtime, each platform's `PrayerPackLoader` also merges every loaded bundle's content into the existing
 `PrayerTranslations`/`MysteryTranslations` tables (bundle wins on collision) rather than
 replacing them — necessary because `PrayerKey`/mystery `imageKey` entries are a shared pool
 across devotions (e.g. `our_father` is used by the Rosary and several bundle devotions alike), so
@@ -483,7 +492,7 @@ of its own — its entire step sequence and per-step text are data-driven from i
 - **`manifest.json`** fields for a generic devotion: optional `builtinKind` ("rosary") marks a
   bundle whose devotion.json backs a dedicated `PrayerKind` rather than a generic `.custom`
   devotion — its definition loads, but the bundle stays out of `customDevotionIds()` so
-  Home/Favorites don't list it twice; `accentColorHex` + optional
+  Pray/Categories/Search don't list it twice; `accentColorHex` + optional
   `accentColorDarkHex` (light/dark pair), `iconSystemName` (an SF Symbol name; mapped to the
   nearest Material icon on Android and Segoe Fluent Icons glyph on Windows via a small fixed
   per-platform table), `displayNameByLanguage` (preserves e.g. the Hebrew devotion names — resolved
@@ -495,8 +504,8 @@ of its own — its entire step sequence and per-step text are data-driven from i
   `reminderBody` (per-language notification body), optional `reminderPresetHours` +
   `reminderPresetFooter` (the Angelus's traditional bell times), and optional **`tags`**
   (lowercase category labels, e.g. "marian" — Compose writes them, the repository uses them
-  as submission defaults, and the planned browse-by-category surface is their in-app
-  consumer; loaders currently ignore them).
+  as submission defaults, every loader exposes them, Categories groups by them, and Search
+  matches them).
 - **`options.json`** (optional bundle file): user-configurable settings, declared separately
   from the structure the same way catalog.json is —
   `{"options": [{key, kind: "toggle" | "choice", name, nameByLanguage?, default,
@@ -586,7 +595,7 @@ of its own — its entire step sequence and per-step text are data-driven from i
   **What implementing it still needs**, none of which is format work:
   `LiturgicalCalendarProviding` must answer week-of-season, `psalterWeek`, `rank` and
   `readingYear` for a date. Only week-of-season is genuinely new computation — `psalterWeek` is
-  arithmetic on it, `rank` is a lookup in the `feasts.json` the Home screen already ships (whose
+  arithmetic on it, `rank` is a lookup in the `feasts.json` the Pray tab already ships (whose
   `rank` values this vocabulary deliberately mirrors), and `readingYear` alternates with the
   liturgical year. Then decoders, an engine that walks the precedence list per slot, a way to
   choose an hour, and — the part the format cannot help with — texts. The Church's modern
@@ -597,7 +606,7 @@ of its own — its entire step sequence and per-step text are data-driven from i
   **`audio.json`** (declared separately from the structure, the same way catalog.json/options.json
   are) lists tracks: `{"tracks": [{id, language, file, variantId?, name?, nameByLanguage?,
   chapters: [{start, title | titleKey, stepIndex?}]}]}` — `id` unique within the bundle (what a
-  future playback position would persist against); `language` one of the manifest's languages (a
+  persisted playback position keys against); `language` one of the manifest's languages (a
   recording is in one language); `file` a bundle-relative path that must live under `audio/` and
   end in `.opus`; `variantId` names the steps-type variant the recording follows (a traditional
   vs. scriptural Stations recording differ); `name`/`nameByLanguage` follow the variant-naming
@@ -605,7 +614,7 @@ of its own — its entire step sequence and per-step text are data-driven from i
   seconds (first chapter at 0, strictly increasing), `title` XOR `titleKey` per the step-entry
   convention (`titleKey` resolves through the track language's ordinary content chain), and an
   optional advisory `stepIndex` into the built default-options step sequence — advisory because
-  the built sequence is option/calendar-dependent, so the future playback UI treats it as a hint
+  the built sequence is option/calendar-dependent, so the playback UI treats it as a hint
   for step-syncing, never an invariant. Chapters live in `audio.json`, not in Ogg chapter
   comments, because none of the three platforms' media stacks surface embedded Ogg chapters —
   JSON keeps them parseable by the same loaders that already read the bundle.
@@ -654,8 +663,9 @@ of its own — its entire step sequence and per-step text are data-driven from i
   committed test bundle (`Shared/tools/fixtures/kyrieaudiodemo.prosaryprayer`): the Kyrie
   narrated by macOS TTS in Latin/English with measured chapter boundaries — strictly test
   material, never shippable content.
-- **User-installed bundles**: anyone can author a `.prosaryprayer` and import it from the
-  Favorites screen (file picker on all three platforms). `installPack` validates the file
+- **User-installed bundles**: anyone can author a `.prosaryprayer` and import it through Browse
+  on Apple platforms, through Settings on Android/Windows, or through Apple File menu commands
+  where available. `installPack` validates the file
   (readable zip; parseable manifest + devotion.json; content for every declared language; not a
   `builtinKind` pack; no id collision with anything loaded), copies it into a per-platform
   installed-packs directory (iOS Application Support/PrayerPacks — re-pointed at the iCloud
@@ -668,10 +678,12 @@ of its own — its entire step sequence and per-step text are data-driven from i
   `repo.<username>.<name>` — the `repo.` prefix is what the UI keys its "Repository" tag on,
   and it can never collide with compose-authored ids (whose shape forbids dots). The directory is
   rescanned (sorted by filename) after the built-ins on every launch, so installs persist;
-  id collisions are skipped so shipped devotions always win. Imported devotions get the same
-  Favorites star row plus a remove affordance; `removeInstalledPack` deletes the file and
-  unregisters the devotion (its merged text/images stay in memory until the next launch,
-  harmlessly). Alongside the file picker, every platform ships a **repository browser** (iOS
+  id collisions are skipped so shipped devotions always win. Imported devotions appear in
+  Categories and Search immediately and can be pinned to Pray like built-ins. Android and Windows
+  Settings can export an installed pack for editing and remove individual packs; all platforms
+  can clear installed downloads, while Apple also imports through Browse/File. The loader's
+  removal currently unregisters the bundle but does not delete a persisted `Prayer` row for it.
+  Its merged text/images stay in memory until the next launch, harmlessly. Every platform also ships a **repository browser** (iOS
   `RepositoryBrowserView`, Android `RepositoryBrowserScreen`, Windows `RepositoryBrowserPage` —
   each with a platform `RepositoryClient`): it fetches prayers.prosary.app's versioned
   `/index.json` catalog (`{prosaryRepository: 1, bundles: [...]}` — reject newer versions with
@@ -719,10 +731,10 @@ of its own — its entire step sequence and per-step text are data-driven from i
   actually-shipped packs and runtime merge, with the same explicit allowlists (currently: the
   Divine Mercy offering/petition in Hebrew; the Seven Sorrows closing in ar/he/ru/tl).
 - **Discovery**: `customDevotionIds()` returns every loaded bundle id that has a
-  `devotion.json`, **in pack-load order** — the display order everywhere. Home renders the Rosary
-  card first, then one card per discovered bundle (title/accent/icon from the manifest), then the
-  Jesus Prayer last; Favorites renders one star-row per bundle. Nothing in view code hardcodes a
-  devotion name.
+  `devotion.json`, **in pack-load order** — the base directory order. `DevotionDirectory` presents
+  the Rosary first, then those bundles (title/accent/icon/tags from each manifest), then the Jesus
+  Prayer. Categories and Search use the whole directory; Pray filters it through the user's pins
+  and applies `HomeOrder`. Nothing in view code hardcodes a bundle devotion's name.
 - **Flow UI**: one shared flow surface per platform (iOS `CustomDevotionFlowView`, Android
   `CustomDevotionFlowScreen`, Windows `CustomDevotionFlowPage`) renders every generic devotion,
   showing the same bead track as the Rosary whenever any built step carries a `decadeIndex` (the
@@ -732,7 +744,7 @@ of its own — its entire step sequence and per-step text are data-driven from i
 
 ## Offline "Today" data (`Shared/data/`)
 
-Dev-time-generated datasets back the Home screen's "Today" section (per-platform physical
+Dev-time-generated datasets back the Pray tab's "Today" section (per-platform physical
 copies, same convention as the bundles; per-platform `TodayInfoStore` providers):
 
 - **Feast tables, one per liturgical calendar** (2026-08: switchable, Erez's request) — each a
@@ -760,7 +772,7 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
     obligations as `syriac` below.
   - `roman1962` — **`feasts-roman1962.json`**: the 1962 Vetus Ordo calendar (missalemeum.com,
     MIT), I–III class days with class ranks ("1st Class"…"3rd Class"); IV-class days and bare
-    ferias are omitted the way ferial days are elsewhere. The Home screens bold a feast title
+    ferias are omitted the way ferial days are elsewhere. The Pray screens bold a feast title
     when its rank is "Solemnity", **"1st Class"**, or **"Great Feast"**.
   - `ugcc` — **`feasts-ugcc.json`**: Byzantine — Ukrainian Greek Catholic, deliberately the
     **diasporic (fully Gregorian) usage** — the variant its Holy Land faithful pray — not

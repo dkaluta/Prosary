@@ -281,7 +281,7 @@ class PrayerPackLoaderTest {
 
     /** The Rosary's pack now ships a devotion.json (the engine builds the Rosary from it), but
      * its manifest's builtinKind keeps it off the generic-devotion list — it backs the
-     * dedicated PrayerKind and must never appear as a Home/Favorites card twice. The generic
+     * dedicated PrayerKind and must never appear in the devotion directory twice. The generic
      * devotions appear in pack-load order. */
     @Test
     fun customDevotionIdsAreTheGenericDevotionsInLoadOrder() {

@@ -4,8 +4,8 @@
 //
 //  The menu bar, shared by macOS and iPad (iPadOS surfaces .commands in its menu bar / the
 //  hardware-keyboard shortcuts HUD): a real File menu whose one item imports .prosaryprayer
-//  bundles, and a "Prayers" menu — Rosary favorites as a submenu, each bundle devotion as an
-//  item (or a favorites submenu once favorited), then the Jesus Prayer. The macOS-only strips
+//  bundles, and a "Prayers" menu — Rosary configurations as a submenu, each bundle devotion as
+//  an item (or a saved-configuration submenu), then the Jesus Prayer. The macOS-only strips
 //  (About replacement, removing Edit/Format/View noise) stay gated: iPad's menu bar manages
 //  its own system menus.
 //

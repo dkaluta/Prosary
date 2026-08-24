@@ -9,8 +9,8 @@
 
     <!-- Attribution content ported from iOS's AboutView.swift (the current canonical source —
          irosary's older AboutPage.xaml has the same content but predates the app being retitled
-         "Prosary"). Scripture Sources now lists all 6 supported languages' sources (this session
-         also fixed the same gap on iOS/Android, which previously only listed 3). -->
+         "Prosary"). Scripture Sources lists the six languages with full built-in devotion
+         coverage; additional catalog languages are credited where their sourced texts appear. -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

@@ -67,7 +67,7 @@ date outside a table simply hides the Today row. pope-intentions.json is maintai
 from popesprayer.va (monthly prose, no API) and is untouched here.
 
 The per-day shape every platform's TodayInfoStore decodes is {"title": …, "rank": …}; the
-Home screens bold the title when the rank is "Solemnity" or "1st Class". Sundays of the
+Pray screens bold the title when the rank is "Solemnity" or "1st Class". Sundays of the
 season carry rank "Sunday". Never rename ranks casually: validate-devotion.py's hours-type
 rank vocabulary camelCases the default calendar's set.
 """

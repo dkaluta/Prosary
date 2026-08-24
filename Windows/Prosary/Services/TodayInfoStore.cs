@@ -9,7 +9,7 @@ public sealed record FeastDay(string Title, string Rank);
 public sealed record PopeIntention(string Title, string Text);
 
 /// <summary>
-/// Backs the Home screen's "Today" section: the day's feast per the selected liturgical
+/// Backs the Pray tab's "Today" section: the day's feast per the selected liturgical
 /// calendar, and the Pope's monthly prayer intention. Everything comes from bundled offline
 /// datasets (Shared/data/, generated at dev time — movable feasts baked in per year, no
 /// computus in the app; and popesprayer.va's published intentions). calendars.json is the

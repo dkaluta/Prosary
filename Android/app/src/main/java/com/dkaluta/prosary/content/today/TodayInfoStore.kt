@@ -54,7 +54,7 @@ private data class CalendarsFile(
     val calendars: List<FeastCalendar> = emptyList(),
 )
 
-/** Backs the Home screen's "Today" section: the day's feast per the selected liturgical
+/** Backs the Pray tab's "Today" section: the day's feast per the selected liturgical
  * calendar, and the Pope's monthly prayer intention. Everything comes from bundled offline
  * datasets (Shared/data/, generated at dev time — movable feasts baked in per year, no computus
  * in the app). calendars.json is the registry of switchable calendars (2026-08, Erez's

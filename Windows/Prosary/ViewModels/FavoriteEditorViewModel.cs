@@ -12,8 +12,8 @@ namespace Prosary.ViewModels;
 /// <summary>
 /// Drives the favorite editor for Rosary/Jesus Prayer — the only two kinds with real
 /// per-favorite options worth naming and saving multiple variants of (see
-/// the retired Favorites screen for the other 5 kinds' single-star-row
-/// treatment). Ported from Android's <c>FavoriteEditorScreen.kt</c>. Unlike that screen's single
+/// <c>RemindersOnlyEditorViewModel</c> for generic bundles' single-row treatment). Ported from
+/// Android's <c>FavoriteEditorScreen.kt</c>. Unlike that screen's single
 /// mutable <c>Prayer</c> copy, this flattens every field onto its own <c>[ObservableProperty]</c>
 /// (matching every other ViewModel in this project) since <see cref="Prayer"/> is an immutable
 /// record and two-way XAML bindings want plain mutable properties, not a record rebuilt via

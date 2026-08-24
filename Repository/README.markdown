@@ -20,6 +20,9 @@ templates, SQL migrations, HMAC-cookie sessions, request-derived WebAuthn RP inf
   Compose's zip module — keep them in sync). The file lands in **Vercel Blob**
   (`bundles/<id>.prosaryprayer`, public); metadata lands in **Postgres (Neon)**. Resubmitting
   the same devotion updates it; ids are guarded against cross-user takeover.
+  The repository currently accepts `la`, `en`, `ar`, `he`, `ru`, and `tl`; the apps and Compose
+  also understand `arc`, `el`, and `es`, but repository publication for those three has not
+  landed yet.
 - **Catalog**: `/` (search + language filter), `GET /api/bundles`, and the versioned
   **`/index.json`** contract (`{prosaryRepository: 1, bundles: [...]}`) the apps' Browse tab
   reads. Downloads go through `/api/download/<id>` (counts, then redirects to the blob).
@@ -56,6 +59,8 @@ bundle. The seeded account has no passkey — claim it via **Recover** on `/acco
 
 ## Deliberately not yet built
 
-Rate limiting on the auth endpoints (freebee's `rate_limits` pattern is the template) and
-passkey naming/removal UI. Account deletion is self-serve (`DELETE /api/auth/account`);
-tag browsing and the in-app browser shipped with the apps' 0.4 tab shell.
+Rate limiting on the auth endpoints (freebee's `rate_limits` pattern is the template) and tag
+filtering on the repository website. The account page already supports adding, renaming, and
+removing passkeys; editing or removing published bundles; and self-serve account deletion
+(`DELETE /api/auth/account`). The native apps browse the repository and use manifest tags for
+Categories and Search.

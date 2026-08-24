@@ -35,12 +35,12 @@ public partial class DevotionCardModel : ObservableObject
 }
 
 /// <summary>
-/// Drives the Home screen's devotion cards — one card per devotion: the Rosary first (the app's
+/// Drives the Pray tab's devotion cards — one card per devotion: the Rosary first (the app's
 /// namesake), then every generic (bundle-driven) devotion in pack-load order — icon/title/accent
 /// read from each bundle's own manifest, nothing hardcoded here — and the Jesus Prayer (the
 /// counter-based odd one out) last. Adding a devotion means shipping a bundle; this ViewModel
 /// doesn't change. Each card routes straight to its flow page when a default favorite exists, or
-/// to that devotion's "getting started" surface otherwise (Favorites for the Rosary, the flow
+/// to that devotion's "getting started" surface otherwise (the preset picker for the Rosary, the flow
 /// page itself with no favorite for generic devotions, Setup for Jesus Prayer).
 /// </summary>
 public partial class HomeViewModel : ObservableObject

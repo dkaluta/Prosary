@@ -1,7 +1,7 @@
 // Fixed catalogs mirrored from the apps — see Shared/ARCHITECTURE.md ("Content bundles") and
 // Shared/tools/validate-devotion.py. These must track the apps, not the other way round.
 
-/** The 6 prayer languages every platform ships (LanguageCatalog). */
+/** The 9 prayer languages every platform ships (LanguageCatalog). */
 export const LANGUAGES = [
   { code: "la", name: "Latin", rtl: false },
   { code: "en", name: "English", rtl: false },

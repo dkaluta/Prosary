@@ -7,7 +7,7 @@ using Prosary.ViewModels;
 
 namespace Prosary.Views;
 
-/// <summary>Navigation parameter: the favorited <see cref="Prosary.Models.Prayer"/>'s
+/// <summary>Navigation parameter: the saved <see cref="Prosary.Models.Prayer"/>'s
 /// <see cref="Guid"/> id.</summary>
 public sealed partial class RemindersOnlyEditorPage : Page
 {

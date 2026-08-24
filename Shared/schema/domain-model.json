@@ -2,7 +2,7 @@
   "$comment": "Canonical shape of Prosary's domain model, independent of any one platform's language. Field names here are the camelCase form; each platform's own idiom (Swift camelCase, Kotlin camelCase, C# PascalCase) maps 1:1. See ../ARCHITECTURE.md for the prose version and per-file source locations. Keep this file in sync whenever a field is added, removed, renamed, or its default changes on any platform — see README.md in this directory.",
   "types": {
     "Prayer": {
-      "description": "A saved, user-configurable prayer session (a \"favorite\").",
+      "description": "A saved, user-configurable prayer session. Older source identifiers call this a favorite; current UI calls it a saved configuration or preset.",
       "fields": {
         "id": {
           "type": "uuid",
@@ -19,12 +19,12 @@
         "isDefault": {
           "type": "boolean",
           "default": false,
-          "description": "The starred/primary favorite for its devotion. At most one per (kind, customDevotionId) at a time — see persistence.perDevotionDefaultScoping below."
+          "description": "The primary saved configuration for its devotion. At most one per (kind, customDevotionId) at a time — see persistence.perDevotionDefaultScoping below."
         },
         "languageCode": {
           "type": "string",
           "default": "",
-          "description": "ISO 639-1 code, or the empty-string sentinel meaning \"follow the app-level default language setting\" (see AppSettings.defaultLanguageCode)."
+          "description": "Prayer-language identifier (normally an ISO 639 code, optionally with a private-use rite subtag), or the empty-string sentinel meaning \"follow the app-level default language setting\" (see AppSettings.defaultLanguageCode)."
         },
         "rosary": {
           "type": "RosaryOptions",
@@ -293,7 +293,7 @@
       "fields": {
         "code": {
           "type": "string",
-          "description": "ISO 639-1, used as the key into the content layer's translation dictionaries."
+          "description": "Prayer-language identifier used as the key into the content layer's translation dictionaries; values include ISO 639-1 codes, ISO 639-2 `arc`, and private-use rite variants such as `he-x-gamliel`."
         },
         "nativeName": {
           "type": "string"
@@ -385,7 +385,7 @@
         },
         "repeat": {
           "type": "int?",
-          "description": "Unrolls into n steps titled \"Title (h of n)\" — deliberately without bead fields, matching the hardcoded devotions' closing Hail Marys."
+          "description": "Unrolls into n steps titled \"Title (h of n)\" — deliberately without bead fields, as used by bundle-defined closing Hail Marys."
         },
         "isScripture": {
           "type": "bool? = false",
@@ -487,7 +487,7 @@
       "fields": {
         "id": {
           "type": "string",
-          "description": "Unique within the bundle. Reserved purpose: which office a favorite opens on (a future Prayer.hourId, the way Prayer.dayIndex names a days-type day), and what a per-hour reminder is scheduled against."
+          "description": "Unique within the bundle. Reserved purpose: which office a saved configuration opens on (a future Prayer.hourId, the way Prayer.dayIndex names a days-type day), and what a per-hour reminder is scheduled against."
         },
         "name": {
           "type": "string",
@@ -527,14 +527,14 @@
         }
       },
       "precedence": "Fixed facet order — date, rank, season, week, weekday, psalterWeek, readingYear — compared lexicographically: a proper constraining an earlier facet beats one that does not, regardless of how many facets either constrains. This is the Church's own hierarchy rather than a count of conditions (counting would let \"Advent, week 3, Sunday\" outrank Christmas Day, which is backwards). Ties go to the earlier declaration. The validator rejects two propers for one slot with an identical selector, so declaration order never silently decides an office.",
-      "runtimeRequirement": "The engine side of this type needs LiturgicalCalendarProviding to answer week-of-season, psalterWeek, rank and readingYear for a date — none of which it does today. psalterWeek is arithmetic on the week of the season, rank is a lookup in the feasts.json the Home screen already ships, and readingYear alternates with the liturgical year; only week-of-season is genuinely new computation. See ARCHITECTURE.md's \"Hours\"."
+      "runtimeRequirement": "The engine side of this type needs LiturgicalCalendarProviding to answer week-of-season, psalterWeek, rank and readingYear for a date — none of which it does today. psalterWeek is arithmetic on the week of the season, rank is a lookup in the feasts.json the Pray tab already ships, and readingYear alternates with the liturgical year; only week-of-season is genuinely new computation. See ARCHITECTURE.md's \"Hours\"."
     },
     "DevotionAudioTrack": {
       "description": "One narrated recording a bundle declares in its audio.json (a separate optional bundle file, staged by both packers like options.json) — loaders parse the metadata eagerly and serve the bytes on demand; each platform's player extracts them to a cache file and plays them on the prayer flow's transport bar (see ARCHITECTURE.md's \"Audio\"). Files are Ogg Opus (RFC 7845, .opus) under the bundle's audio/ directory.",
       "fields": {
         "id": {
           "type": "string",
-          "description": "Unique within the bundle — what a future playback position would persist against."
+          "description": "Unique within the bundle — the key used for persisted playback position."
         },
         "language": {
           "type": "string",
@@ -578,7 +578,7 @@
         },
         "stepIndex": {
           "type": "int?",
-          "description": "Advisory index into the built default-options step sequence — a hint for the future playback UI's step-syncing, never an invariant (the built sequence is option/calendar-dependent)."
+          "description": "Advisory index into the built default-options step sequence. The playback UI uses it for chapter-to-step syncing, but it is never an invariant because the built sequence is option/calendar-dependent."
         }
       }
     },
@@ -611,7 +611,7 @@
     }
   },
   "languages": {
-    "$ref": "See LanguageCatalog.all in ARCHITECTURE.md — la (default), en, ar (RTL), he (RTL), ru, tl"
+    "$ref": "See LanguageCatalog.all in ARCHITECTURE.md — la (default), en, ar (RTL), he (RTL), arc (RTL), el, es, ru, tl; community rites such as he-x-gamliel overlay a base language"
   },
   "persistence": {
     "perDevotionDefaultScoping": "save()/delete() clear or promote isDefault scoped to (Prayer.kind, Prayer.customDevotionId), never across devotions — two generic devotions must not steal each other's default slot. Legacy rows with retired per-devotion kinds resolve through the same identity (iOS PresetEntry.resolvedKind / Android PresetEntity.resolvedKind / Windows's SQL migration). See ARCHITECTURE.md#persistence."
