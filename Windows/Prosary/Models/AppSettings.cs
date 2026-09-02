@@ -147,13 +147,37 @@ public static class AppSettings
     }
 
     public static IReadOnlyList<string> LanguageFallbackOrder => _languageFallbackOrder ??=
-        ((ApplicationData.Current.LocalSettings.Values[KeyLanguageFallbackOrder] as string) ?? string.Empty)
-            .Split('\n', StringSplitOptions.RemoveEmptyEntries);
+        ReadLanguageFallbackOrder();
 
     public static void SetLanguageFallbackOrder(IEnumerable<string> codes)
     {
         _languageFallbackOrder = codes.ToArray();
-        ApplicationData.Current.LocalSettings.Values[KeyLanguageFallbackOrder] = string.Join('\n', _languageFallbackOrder);
+        var localSettings = TryGetLocalSettings();
+        if (localSettings is not null)
+        {
+            localSettings.Values[KeyLanguageFallbackOrder] = string.Join('\n', _languageFallbackOrder);
+        }
+    }
+
+    private static IReadOnlyList<string> ReadLanguageFallbackOrder()
+    {
+        var localSettings = TryGetLocalSettings();
+        return ((localSettings?.Values[KeyLanguageFallbackOrder] as string) ?? string.Empty)
+            .Split('\n', StringSplitOptions.RemoveEmptyEntries);
+    }
+
+    private static ApplicationDataContainer? TryGetLocalSettings()
+    {
+        try
+        {
+            return ApplicationData.Current.LocalSettings;
+        }
+        catch (InvalidOperationException)
+        {
+            // ApplicationData.Current requires package identity. Unit tests run in an unpackaged
+            // host, where this setting remains available from the process-local cache above.
+            return null;
+        }
     }
 
     /// <summary>The Home "Today" feast row's calendar id (calendars.json registry); empty — or
