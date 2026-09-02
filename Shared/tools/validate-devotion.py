@@ -42,7 +42,7 @@ from pathlib import Path
 # generic-devotion migration (main prayers, Rosary-specific keys, Marian antiphons, Jesus
 # Prayer). A bundle may reference these without shipping its own translation.
 HARDCODED_PRAYER_KEYS = {
-    "signumCrucis", "symbolumApostolorum", "paterNoster", "aveMaria", "gloriaPatri",
+    "signumCrucis", "signumCrucisFormB", "symbolumApostolorum", "paterNoster", "aveMaria", "gloriaPatri",
     "doxologiaMinor", "oratioFatimae", "requiemAeternam", "sanctusMichael",
     "salveRegina", "almaRedemptorisMater", "aveReginaCaelorum", "reginaCaeli",
     "subTuumPraesidium",

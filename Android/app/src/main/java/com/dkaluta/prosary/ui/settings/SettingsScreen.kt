@@ -7,6 +7,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.FileUpload
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import android.content.Context
@@ -15,6 +17,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -65,8 +68,13 @@ fun SettingsScreen(onBack: () -> Unit) {
     val uriHandler = LocalUriHandler.current
 
     var defaultLanguageCode by remember { mutableStateOf(AppSettings.defaultLanguageCode) }
+    var aramaicSignOfCrossForm by remember { mutableStateOf(AppSettings.aramaicSignOfCrossForm) }
     var autoAdvanceSeconds by remember { mutableIntStateOf(AppSettings.autoAdvanceSeconds) }
     var hapticsOnAdvance by remember { mutableStateOf(AppSettings.hapticsOnAdvance) }
+    var syriacTypeface by remember { mutableStateOf(AppSettings.syriacTypeface) }
+    var hebrewPrayerTypeface by remember { mutableStateOf(AppSettings.hebrewPrayerTypeface) }
+    var hebrewScriptureTypeface by remember { mutableStateOf(AppSettings.hebrewScriptureTypeface) }
+    var favoriteBasicPrayersFirst by remember { mutableStateOf(AppSettings.favoriteBasicPrayersFirst) }
     var showTodayFeast by remember { mutableStateOf(AppSettings.showTodayFeast) }
     var showTodayIntention by remember { mutableStateOf(AppSettings.showTodayIntention) }
     var homeOrderIsCustom by remember { mutableStateOf(HomeOrder.saved(context).isNotEmpty()) }
@@ -108,6 +116,8 @@ fun SettingsScreen(onBack: () -> Unit) {
     }
     var audioCacheBytes by remember { mutableLongStateOf(SettingsMaintenance.audioCacheSize(context)) }
     var confirmsRemoveAll by remember { mutableStateOf(false) }
+    var showsLanguageFallbackOrder by remember { mutableStateOf(false) }
+    var languageFallbackOrder by remember { mutableStateOf(LanguageCatalog.fallbackOrder) }
 
     // Tints the pinned bar once content scrolls beneath it — without this the bar is
     // invisible and scrolled content clips at a dead band around the floating title.
@@ -135,36 +145,48 @@ fun SettingsScreen(onBack: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(16.dp),
         ) {
-            // The stored code may name a rite ("he-x-gamliel"), so this row shows its base
-            // language and the rite row below chooses among that language's uses. Choosing a
-            // language keeps its rite when it has one, and drops it otherwise.
-            val baseLanguageCode = LanguageCatalog.baseLanguage(defaultLanguageCode) ?: defaultLanguageCode
             OptionPickerField(
                 label = stringResource(R.string.settings_default_prayer_language),
                 options = LanguageCatalog.all,
-                selected = LanguageCatalog.all.firstOrNull { it.code == baseLanguageCode }
+                selected = LanguageCatalog.all.firstOrNull { it.code == defaultLanguageCode }
                     ?: LanguageCatalog.resolve(defaultLanguageCode),
                 optionLabel = { it.nativeName },
                 onSelect = {
-                    val code = LanguageCatalog.rites(it.code).firstOrNull()?.code ?: it.code
-                    defaultLanguageCode = code
-                    AppSettings.setDefaultLanguageCode(code)
+                    defaultLanguageCode = it.code
+                    AppSettings.setDefaultLanguageCode(it.code)
                 },
             )
 
-            // Only for a language prayed in more than one use — everywhere else there is
-            // nothing to choose, so nothing is shown.
-            val rites = LanguageCatalog.rites(defaultLanguageCode)
-            if (rites.size > 1) {
+            OutlinedButton(
+                onClick = {
+                    languageFallbackOrder = LanguageCatalog.fallbackOrder
+                    showsLanguageFallbackOrder = true
+                },
+                modifier = Modifier.fillMaxWidth(),
+            ) { Text(stringResource(R.string.settings_language_fallback_order)) }
+
+            if ((LanguageCatalog.baseLanguage(defaultLanguageCode) ?: defaultLanguageCode) == "arc") {
                 OptionPickerField(
-                    label = stringResource(R.string.settings_rite),
-                    options = rites,
-                    selected = rites.firstOrNull { it.code == defaultLanguageCode } ?: rites.first(),
-                    optionLabel = { it.nativeName },
-                    onSelect = {
-                        defaultLanguageCode = it.code
-                        AppSettings.setDefaultLanguageCode(it.code)
+                    label = stringResource(R.string.settings_aramaic_sign_of_cross),
+                    options = listOf(
+                        AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_A,
+                        AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B,
+                    ),
+                    selected = aramaicSignOfCrossForm,
+                    optionLabel = {
+                        context.getString(
+                            if (it == AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B) {
+                                R.string.settings_aramaic_sign_of_cross_form_b
+                            } else {
+                                R.string.settings_aramaic_sign_of_cross_form_a
+                            },
+                        )
                     },
+                    onSelect = {
+                        aramaicSignOfCrossForm = it
+                        AppSettings.setAramaicSignOfCrossForm(it)
+                    },
+                    modifier = Modifier.fillMaxWidth(),
                 )
             }
 
@@ -209,6 +231,62 @@ fun SettingsScreen(onBack: () -> Unit) {
                 enabled = homeOrderIsCustom,
                 modifier = Modifier.fillMaxWidth(),
             ) { Text(stringResource(R.string.settings_reset_home_order)) }
+
+            Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                Text(stringResource(R.string.settings_favorite_basic_prayers_first), modifier = Modifier.weight(1f))
+                Switch(
+                    checked = favoriteBasicPrayersFirst,
+                    onCheckedChange = {
+                        favoriteBasicPrayersFirst = it
+                        AppSettings.setFavoriteBasicPrayersFirst(it)
+                    },
+                )
+            }
+
+            SectionHeader(stringResource(R.string.settings_typography_header))
+
+            OptionPickerField(
+                label = stringResource(R.string.settings_syriac_typeface),
+                options = listOf(AppSettings.TYPEFACE_DEFAULT, AppSettings.TYPEFACE_WESTERN, AppSettings.TYPEFACE_EASTERN),
+                selected = syriacTypeface,
+                optionLabel = {
+                    context.getString(when (it) {
+                        AppSettings.TYPEFACE_WESTERN -> R.string.settings_typeface_western_aramaic
+                        AppSettings.TYPEFACE_EASTERN -> R.string.settings_typeface_eastern_aramaic
+                        else -> R.string.settings_typeface_default
+                    })
+                },
+                onSelect = { syriacTypeface = it; AppSettings.setSyriacTypeface(it) },
+            )
+
+            OptionPickerField(
+                label = stringResource(R.string.settings_hebrew_prayer_typeface),
+                options = listOf(AppSettings.TYPEFACE_DEFAULT, AppSettings.TYPEFACE_DAVID_LIBRE, AppSettings.TYPEFACE_SANS_SERIF),
+                selected = hebrewPrayerTypeface,
+                optionLabel = {
+                    context.getString(when (it) {
+                        AppSettings.TYPEFACE_DAVID_LIBRE -> R.string.settings_typeface_david_libre
+                        AppSettings.TYPEFACE_SANS_SERIF -> R.string.settings_typeface_sans_serif
+                        else -> R.string.settings_typeface_default
+                    })
+                },
+                onSelect = { hebrewPrayerTypeface = it; AppSettings.setHebrewPrayerTypeface(it) },
+            )
+
+            OptionPickerField(
+                label = stringResource(R.string.settings_hebrew_scripture_typeface),
+                options = listOf(AppSettings.TYPEFACE_DEFAULT, AppSettings.TYPEFACE_STAM_ASHKENAZ, AppSettings.TYPEFACE_STAM_SEFARAD, AppSettings.TYPEFACE_RASHI),
+                selected = hebrewScriptureTypeface,
+                optionLabel = {
+                    context.getString(when (it) {
+                        AppSettings.TYPEFACE_STAM_ASHKENAZ -> R.string.settings_typeface_stam_ashkenaz
+                        AppSettings.TYPEFACE_STAM_SEFARAD -> R.string.settings_typeface_stam_sefarad
+                        AppSettings.TYPEFACE_RASHI -> R.string.settings_typeface_rashi
+                        else -> R.string.settings_typeface_default
+                    })
+                },
+                onSelect = { hebrewScriptureTypeface = it; AppSettings.setHebrewScriptureTypeface(it) },
+            )
 
             // The Home "Today" section (Erez's requests): which of its rows show at all, and
             // which calendar's feasts the feast row prays. The calendar choices come from the
@@ -389,6 +467,54 @@ fun SettingsScreen(onBack: () -> Unit) {
             },
             dismissButton = {
                 TextButton(onClick = { confirmsRemoveAll = false }) { Text(stringResource(R.string.common_cancel)) }
+            },
+        )
+    }
+
+    if (showsLanguageFallbackOrder) {
+        AlertDialog(
+            onDismissRequest = { showsLanguageFallbackOrder = false },
+            title = { Text(stringResource(R.string.settings_language_fallback_order_title)) },
+            text = {
+                Column(
+                    modifier = Modifier.heightIn(max = 520.dp).verticalScroll(rememberScrollState()),
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
+                ) {
+                    Text(
+                        stringResource(R.string.settings_language_fallback_order_footer),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                    languageFallbackOrder.forEachIndexed { index, code ->
+                        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
+                            Text(
+                                LanguageCatalog.all.firstOrNull { it.code == code }?.nativeName ?: code,
+                                modifier = Modifier.weight(1f),
+                            )
+                            IconButton(
+                                enabled = index > 0,
+                                onClick = {
+                                    languageFallbackOrder = languageFallbackOrder.toMutableList().also {
+                                        val item = it.removeAt(index); it.add(index - 1, item)
+                                    }
+                                    AppSettings.setLanguageFallbackOrder(languageFallbackOrder)
+                                },
+                            ) { Icon(Icons.Filled.KeyboardArrowUp, contentDescription = stringResource(R.string.common_move_up)) }
+                            IconButton(
+                                enabled = index < languageFallbackOrder.lastIndex,
+                                onClick = {
+                                    languageFallbackOrder = languageFallbackOrder.toMutableList().also {
+                                        val item = it.removeAt(index); it.add(index + 1, item)
+                                    }
+                                    AppSettings.setLanguageFallbackOrder(languageFallbackOrder)
+                                },
+                            ) { Icon(Icons.Filled.KeyboardArrowDown, contentDescription = stringResource(R.string.common_move_down)) }
+                        }
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = { showsLanguageFallbackOrder = false }) { Text(stringResource(R.string.common_done)) }
             },
         )
     }

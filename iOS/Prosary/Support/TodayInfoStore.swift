@@ -27,6 +27,23 @@ struct FeastDay: Decodable, Equatable {
 struct PopeIntention: Decodable, Equatable {
   let title: String
   let text: String
+  let titleByLanguage: [String: String]?
+  let textByLanguage: [String: String]?
+
+  func localizedTitle(_ language: String) -> String { titleByLanguage?[language] ?? title }
+  func localizedText(_ language: String) -> String { textByLanguage?[language] ?? text }
+}
+
+struct ReadingCitation: Decodable, Equatable {
+  let type: String
+  let short: String
+  let full: String
+  let hebrew: String
+}
+
+struct LiturgicalDayInfo: Equatable {
+  let english: String
+  let hebrew: String
 }
 
 /// One entry of calendars.json — a switchable feast calendar.
@@ -56,6 +73,9 @@ enum TodayInfoStore {
     let months: [String: PopeIntention]
   }
 
+  private struct ReadingDay: Decodable { let readings: [ReadingCitation] }
+  private struct ReadingsFile: Decodable { let days: [String: ReadingDay] }
+
   private struct CalendarsFile: Decodable {
     let `default`: String
     let calendars: [FeastCalendar]
@@ -63,6 +83,7 @@ enum TodayInfoStore {
 
   private static var feastsByDay: [String: FeastDay] = [:]
   private static var intentionsByMonth: [String: PopeIntention] = [:]
+  private static var readingsByDay: [String: ReadingDay] = [:]
   private static var registry: CalendarsFile?
   private static var loadedCalendarId: String?
 
@@ -92,6 +113,62 @@ enum TodayInfoStore {
   static func intention(for date: Date = Date()) -> PopeIntention? {
     ensureIntentionsLoaded()
     return intentionsByMonth[key(for: date, format: "yyyy-MM")]
+  }
+
+  static func readings(on date: Date = Date()) -> [ReadingCitation] {
+    ensureReadingsLoaded()
+    return readingsByDay[key(for: date, format: "yyyy-MM-dd")]?.readings ?? []
+  }
+
+  static func liturgicalDayInfo(on date: Date = Date()) -> LiturgicalDayInfo {
+    let calendar = Calendar(identifier: .gregorian)
+    let start = calendar.startOfDay(for: date)
+    let year = calendar.component(.year, from: start)
+    let easter = StubLiturgicalCalendar.computeEasterSunday(year: year)
+    let ashWednesday = calendar.date(byAdding: .day, value: -46, to: easter)!
+    let pentecost = calendar.date(byAdding: .day, value: 49, to: easter)!
+    let advent = StubLiturgicalCalendar.firstSunday(onOrAfter: calendar.date(
+      from: DateComponents(year: year, month: 11, day: 27))!)
+    let christmasThisYear = calendar.date(from: DateComponents(year: year, month: 12, day: 25))!
+    let christmasStart = start < calendar.date(from: DateComponents(year: year, month: 2, day: 1))!
+      ? calendar.date(from: DateComponents(year: year - 1, month: 12, day: 25))!
+      : christmasThisYear
+    let baptism = StubLiturgicalCalendar.firstSunday(onOrAfter: calendar.date(
+      from: DateComponents(year: year, month: 1, day: 7))!)
+
+    let season: (String, String, Int)
+    if start >= ashWednesday && start < easter {
+      season = ("Lent", "בצום", week(from: ashWednesday, to: start, calendar: calendar))
+    } else if start >= easter && start <= pentecost {
+      season = ("Easter Season", "בזמן הפסחא", week(from: easter, to: start, calendar: calendar))
+    } else if start >= advent && start < christmasThisYear {
+      season = ("Advent", "בזמן הציפייה", week(from: advent, to: start, calendar: calendar))
+    } else if start >= christmasStart && (start < baptism || start >= christmasThisYear) {
+      season = ("Christmas Season", "בזמן חג המולד", week(from: christmasStart, to: start, calendar: calendar))
+    } else if start > pentecost && start < advent {
+      let days = calendar.dateComponents([.day], from: start, to: advent).day ?? 0
+      season = ("Ordinary Time", "בזמן הרגיל", max(1, 35 - Int(ceil(Double(days) / 7.0))))
+    } else {
+      let ordinaryStart = calendar.date(byAdding: .day, value: 1, to: baptism)!
+      season = ("Ordinary Time", "בזמן הרגיל", week(from: ordinaryStart, to: start, calendar: calendar))
+    }
+
+    let enWeekday = weekday(start, locale: "en_US")
+    let heWeekday = weekday(start, locale: "he_IL")
+    return LiturgicalDayInfo(
+      english: "\(enWeekday) · Week \(season.2) of \(season.0)",
+      hebrew: "\(heWeekday) · השבוע ה־\(season.2) \(season.1)")
+  }
+
+  private static func week(from origin: Date, to date: Date, calendar: Calendar) -> Int {
+    max(1, (calendar.dateComponents([.day], from: origin, to: date).day ?? 0) / 7 + 1)
+  }
+
+  private static func weekday(_ date: Date, locale: String) -> String {
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: locale)
+    formatter.dateFormat = "EEEE"
+    return formatter.string(from: date)
   }
 
   private static func key(for date: Date, format: String) -> String {
@@ -125,5 +202,12 @@ enum TodayInfoStore {
     guard !didLoadIntentions else { return }
     didLoadIntentions = true
     intentionsByMonth = decode(IntentionsFile.self, resource: "pope-intentions")?.months ?? [:]
+  }
+
+  private static var didLoadReadings = false
+  private static func ensureReadingsLoaded() {
+    guard !didLoadReadings else { return }
+    didLoadReadings = true
+    readingsByDay = decode(ReadingsFile.self, resource: "readings")?.days ?? [:]
   }
 }

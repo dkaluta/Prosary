@@ -100,10 +100,10 @@ struct PrayerStepFlowView: View {
       if let step {
         // Measured, not size-classed: a visionOS window resizes freely while its size class
         // stays .regular, so the wide three-column layout used to squeeze until text clipped
-        // (and a narrow Mac window had the same failure). Below the same 700pt breakpoint the
-        // Windows port uses, the single-column phone layout takes over regardless of class.
+        // (and a narrow Mac window had the same failure). A regular-height window needs 860pt
+        // to preserve the prayer column's minimum width; compact landscape can switch at 700pt.
         GeometryReader { geo in
-          if isWide && geo.size.width >= 700 {
+          if isWide && geo.size.width >= (isCompactHeight ? 700 : 860) {
             wideContent(step: step, availableHeight: geo.size.height)
           } else {
             narrowContent(step: step, available: geo.size)
@@ -272,7 +272,7 @@ struct PrayerStepFlowView: View {
           // longer than the viewport still scrolls.
           .frame(minHeight: availableHeight - (isCompactHeight ? 8 : 16), alignment: .center)
       }
-      .frame(maxWidth: .infinity)
+      .frame(minWidth: 320, maxWidth: .infinity)
     }
     .padding(.leading, isCompactHeight ? 16 : 40)
     .padding(.trailing, isCompactHeight ? 12 : 28)
@@ -361,10 +361,12 @@ struct PrayerStepFlowView: View {
             languageCode: languageCode, isScripture: step.isScripture,
             script: showsTransliteration ? PrayerTypography.script(of: transliteration) : nil))
           .lineSpacing(4)
+          .textSelection(.enabled)
       } else {
         Text(bodyAttributedString(step.body))
           .font(PrayerTypography.font(languageCode: languageCode, isScripture: step.isScripture))
           .lineSpacing(4)
+          .textSelection(.enabled)
       }
 
       if let centralActionLabel {

@@ -3,7 +3,7 @@
   "rootScreen": "home",
   "screens": {
     "home": {
-      "purpose": "The Pray tab: a \"Today\" section (the day's feast per the chosen liturgical calendar and the Pope's monthly prayer intention, with independent Settings switches), followed by one card per pinned devotion in the user's HomeOrder. The base directory is Rosary, every discovered generic bundle in pack-load order, then Jesus Prayer; saved configurations imply a pin on migration, while FavoriteDevotions lets a user pin/unpin without deleting any saved Prayer. The Rosary card opens its presets surface; generic and Jesus Prayer cards launch the saved default or an unsaved flow/setup when none exists. A fixed Basic Prayers row sits below the cards. Toolbar actions add Rosary/Jesus configurations, restore unpinned devotions, edit order, and open Settings/About where the platform exposes them in-app.",
+      "purpose": "The Pray tab: a Today section that always shows the weekday and numbered week of the liturgical season, with an English/Hebrew display toggle; optional independently-switchable rows show the chosen calendar's feast and the Pope's monthly intention; a readings row shows shorthand lectionary citations and can expand them to full citations. Below it is one card per pinned devotion in the user's HomeOrder. The base directory is Rosary, every discovered generic bundle in pack-load order, then Jesus Prayer; saved configurations imply a pin on migration, while FavoriteDevotions lets a user pin/unpin without deleting any saved Prayer. The Rosary card opens its presets surface; generic and Jesus Prayer cards launch the saved default or an unsaved flow/setup when none exists. A fixed Basic Prayers row sits below the cards. Toolbar actions add Rosary/Jesus configurations, restore unpinned devotions, edit order, and open Settings/About where the platform exposes them in-app.",
       "parameters": {},
       "sources": {
         "iOS": "Views/Home/HomeView.swift",
@@ -12,7 +12,7 @@
       }
     },
     "favoriteEditor": {
-      "purpose": "Create or edit a named Rosary or Jesus Prayer configuration: name, default flag, prayer language/rite, kind-specific options, and reminders. Generic bundle devotions use remindersOnlyEditor instead.",
+      "purpose": "Create or edit a named Rosary or Jesus Prayer configuration: name, default flag, prayer language (including the separate Hebrew Vicariate and Mission choices), kind-specific options, and reminders. An explicitly-Aramaic Rosary also offers its own Sign of the Cross form only when the app default is not Aramaic. Generic bundle devotions use remindersOnlyEditor instead.",
       "parameters": {
         "prayerId": {
           "type": "uuid?",
@@ -125,7 +125,7 @@
       }
     },
     "settings": {
-      "purpose": "App-wide preferences: default prayer language and rite, auto-advance, phone haptics (iOS/Android), Pray ordering reset, independent Today-row switches and feast-calendar selection, installed-bundle import/export/removal where supported, audio-cache cleanup, and links to the repository, composer, and privacy policy.",
+      "purpose": "App-wide preferences: default prayer language (with the Hebrew Vicariate and Mission always listed separately), ordered language fallback precedence, the system-wide Aramaic Sign of the Cross form, Syriac/Hebrew prayer and Scripture typefaces, auto-advance, phone haptics (iOS/Android), favorite-basic-prayers-first, Pray ordering reset, independent Today-row switches and feast-calendar selection, installed-bundle import/export/removal where supported, audio-cache cleanup, and links to the repository, composer, and privacy policy.",
       "parameters": {},
       "sources": {
         "iOS": "Views/Settings/SettingsView.swift (macOS Settings scene, Cmd+,; iPhone/iPad sheet from Pray)",
@@ -179,7 +179,7 @@
       }
     },
     "basicPrayers": {
-      "purpose": "The basic prayers on their own, outside any devotion (Erez, 2026-08-07): Sign of the Cross, Our Father, Hail Mary, Glory Be, the Creed (2026-08-08 — the shared tables' Apostles', which the Mission of St. Gamaliel's overlay replaces with the Nicene), and the Trisagion's Holy God — a fixed BasicPrayerCatalog naming keys, never text, so each row and its prayer resolve in the prayer language through the same chains the flows use, rites included (Erez's rite reads קדישת over his own acclamation). The list is reorderable (Erez, 2026-08-08) via BasicPrayersOrder, the HomeOrder pattern: a persisted id list, catalog order for ids it doesn't name. Reached from a fixed, non-pinnable row below the Pray cards. Each prayer opens as a single bounded step in the shared flow chrome with Finish as its only action.",
+      "purpose": "The basic prayers on their own, outside any devotion: Sign of the Cross, Our Father, Hail Mary, Glory Be, the Creed (the shared tables' Apostles', which the Mission of St. Gamaliel's overlay replaces with the Nicene), and the Trisagion's Holy God — a fixed BasicPrayerCatalog naming keys, never text, so each row and prayer resolves through the same language and fallback chains as the flows. Rows are selectable for copying, reorderable through BasicPrayersOrder, and individually favoritable; favoriteBasicPrayersFirst optionally groups starred prayers at the top without discarding the user's order. Reached from a fixed, non-pinnable row below the Pray cards. Each prayer opens as a single bounded step in the shared flow chrome with Finish as its only action.",
       "parameters": {
         "prayerId": "BasicPrayerCatalog id (\"hailMary\") — the single-prayer flow only."
       },

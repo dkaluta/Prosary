@@ -100,11 +100,11 @@ project.
 
 An alternate, Eastern/illuminated-manuscript-style set for the 20 Rosary mysteries, shown when
 a Rosary favorite's "Mystery artwork" option is set to *Eastern icons* (the classical paintings
-above remain the default). The user-facing credit, as given by the apostolate (2026-08), on the
+above remain the default). The user-facing credit, as given by the Mission (2026-08), on the
 About screens in English and Hebrew:
 
 > The collection of illustrations of the Mysteries in the Eastern style is used with approval
-> from the St. Gamliel Apostolate for Hebrew Catholics in the Aramaic (Syriac) Catholic Church
+> from the Mission of St. Gamaliel for Hebrew Catholics in the Aramaic (Syriac) Catholic Church
 
 > אוסף איורי הרזים בסגנון המזרחי מובא באישור שליחות גמליאל הקדוש לקתולים עבריים של העדה
 > הארמית (סורית) קתולית

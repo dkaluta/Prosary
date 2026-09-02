@@ -62,6 +62,7 @@ import com.dkaluta.prosary.content.today.TodayInfoStore
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.FavoriteDevotions
 import com.dkaluta.prosary.models.HomeOrder
+import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.MultiDayStatus
 import com.dkaluta.prosary.models.MysteryGroup
 import com.dkaluta.prosary.models.Prayer
@@ -124,6 +125,13 @@ fun HomeScreen(
     val monthIntention = remember(AppSettings.showTodayIntention) {
         if (AppSettings.showTodayIntention) TodayInfoStore.intention() else null
     }
+    val liturgicalDayInfo = remember { TodayInfoStore.liturgicalDayInfo() }
+    val todayReadings = remember { TodayInfoStore.readings() }
+    var todayInHebrew by remember {
+        mutableStateOf((LanguageCatalog.baseLanguage(AppSettings.defaultLanguageCode)
+            ?: AppSettings.defaultLanguageCode) == "he")
+    }
+    var showsFullCitations by remember { mutableStateOf(false) }
     var todayMysteryGroup by remember { mutableStateOf<MysteryGroup?>(null) }
     var defaultRosary by remember { mutableStateOf<Prayer?>(null) }
     var defaultJesusPrayer by remember { mutableStateOf<Prayer?>(null) }
@@ -351,8 +359,7 @@ fun HomeScreen(
             // "Today" — the day's feast per the Holy Land (Latin Patriarchate of Jerusalem)
             // calendar and the Pope's monthly prayer intention. Rows hide when the bundled
             // datasets have no entry (ferial days; dates past the generated years).
-            if (todayFeast != null || monthIntention != null) {
-                item(key = "today", span = { GridItemSpan(maxLineSpan) }) {
+            item(key = "today", span = { GridItemSpan(maxLineSpan) }) {
                 Column(
                     verticalArrangement = Arrangement.spacedBy(10.dp),
                     modifier = Modifier
@@ -361,6 +368,18 @@ fun HomeScreen(
                         .background(MaterialTheme.colorScheme.surfaceContainerHigh)
                         .padding(14.dp),
                 ) {
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Icon(Icons.Filled.CalendarMonth, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                        Text(
+                            if (todayInHebrew) liturgicalDayInfo.hebrew else liturgicalDayInfo.english,
+                            style = MaterialTheme.typography.titleSmall,
+                            fontWeight = FontWeight.SemiBold,
+                            modifier = Modifier.weight(1f),
+                        )
+                        TextButton(onClick = { todayInHebrew = !todayInHebrew }) {
+                            Text(if (todayInHebrew) stringResource(R.string.home_today_show_english) else "עברית")
+                        }
+                    }
                     if (todayFeast != null) {
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             Icon(
@@ -391,19 +410,45 @@ fun HomeScreen(
                             )
                             Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
                                 Text(
-                                    stringResource(R.string.home_pope_intention, monthIntention.title),
+                                    if (todayInHebrew) "כוונת האפיפיור: ${monthIntention.localizedTitle("he")}" else
+                                        stringResource(R.string.home_pope_intention, monthIntention.localizedTitle("en")),
                                     style = MaterialTheme.typography.titleSmall,
                                     fontWeight = FontWeight.SemiBold,
                                 )
                                 Text(
-                                    monthIntention.text,
+                                    monthIntention.localizedText(if (todayInHebrew) "he" else "en"),
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 )
                             }
                         }
                     }
-                }
+                    if (todayReadings.isNotEmpty()) {
+                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Icon(Icons.AutoMirrored.Filled.MenuBook, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                            Column(verticalArrangement = Arrangement.spacedBy(2.dp), modifier = Modifier.weight(1f)) {
+                                Text(stringResource(R.string.home_today_readings), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
+                                if (showsFullCitations) {
+                                    todayReadings.forEach { citation ->
+                                        Text(
+                                            if (todayInHebrew) citation.hebrew else citation.full,
+                                            style = MaterialTheme.typography.bodySmall,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        )
+                                    }
+                                } else {
+                                    Text(
+                                        todayReadings.joinToString(", ") { it.short },
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    )
+                                }
+                                TextButton(onClick = { showsFullCitations = !showsFullCitations }) {
+                                    Text(stringResource(if (showsFullCitations) R.string.home_today_compact_citations else R.string.home_today_full_citations))
+                                }
+                            }
+                        }
+                    }
                 }
             }
 

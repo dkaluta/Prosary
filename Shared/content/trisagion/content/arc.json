@@ -1,22 +1,22 @@
 {
-  "$comment": "The Trisagion in Classical Syriac (West Syriac use): the Qadishat, its short form, the Kurielaison that follows it in the Syriac liturgy (the Greek kept in Syriac letters, as the liturgical books keep it), and the Syriac doxology as a bundle-local gloriaPatri so the Byzantine form of this bundle never falls back to Latin mid-prayer. Standard Syriac Catholic wording, provisional until the Mission of St. Gamaliel sends their own (2026-08-08). Prayers are Hebrew square script; the same text in Syriac letters is in transliterations, which is what the flow's script toggle shows. Unpointed. Punctuation-free, clause per line, as the scripture files are — the comma is the print editions' habit, not the manuscripts'.",
+  "$comment": "The Trisagion in Classical Syriac (West Syriac use): the Qadishat, its short form, the Kurielaison that follows it in the Syriac liturgy (the Greek kept in Syriac letters, as the liturgical books keep it), and the Syriac doxology as a bundle-local gloriaPatri so the Byzantine form of this bundle never falls back to Latin mid-prayer. The Holy God and Glory Be were supplied by Erez for the Mission on 2026-08-26 as Aramaic in both Hebrew square script and pointed Syriac script; both were finally corrected on 2026-08-31. Their characters and line divisions are preserved exactly. The Kurielaison remains provisional standard Syriac Catholic wording until the Mission sends its own. The primary strings are Aramaic in Hebrew square script; the same Aramaic in Syriac letters is in transliterations, which is what the flow's script toggle shows.",
   "prayers": {
-    "trisagionAcclamationTitle": "קדישת אלהא",
-    "trisagionAcclamation": "קדישת אלהא\nקדישת חילתנא\nקדישת לא מיותא\nאתרחמ עלינ",
-    "trisagionShortAcclamation": "קדישת לא מיותא\nאתרחמ עלינ",
+    "trisagionAcclamationTitle": "קַדּישַת אַלָהָא",
+    "trisagionAcclamation": "קַדּישַת אַלָהָא\nקַדִישַת חַילתָּנָא\nקַדִישַת לָא מִיותָּא אֶתַרחַמעלִין",
+    "trisagionShortAcclamation": "קַדִישַת לָא מִיותָּא אֶתַרחַמעלִין",
     "trisagionKyrieTitle": "קוריאליסונ",
     "trisagionKyrie": "קוריאליסונ\nקוריאליסונ\nקוריאליסונ",
-    "gloriaPatriTitle": "שובחא לאבא",
-    "gloriaPatri": "שובחא לאבא ולברא ולרוחא קדישא\nמנ עלמ ועדמא לעלמ עלמינ אמינ"
+    "gloriaPatriTitle": "שוּבחָא לַאבָא",
+    "gloriaPatri": "שוּבחָא לַאבָא ולַברָא וַלרוּחָא קַדישָא\nמֶן עָלַם וַעדַמָא לעָלַם עָלמִין. אַמִין."
   },
   "transliterations": {
-    "trisagionAcclamationTitle": "ܩܕܝܫܬ ܐܠܗܐ",
-    "trisagionAcclamation": "ܩܕܝܫܬ ܐܠܗܐ\nܩܕܝܫܬ ܚܝܠܬܢܐ\nܩܕܝܫܬ ܠܐ ܡܝܘܬܐ\nܐܬܪܚܡ ܥܠܝܢ",
-    "trisagionShortAcclamation": "ܩܕܝܫܬ ܠܐ ܡܝܘܬܐ\nܐܬܪܚܡ ܥܠܝܢ",
+    "trisagionAcclamationTitle": "ܩܰܕ݁ܝܫܰܬ݂ ܐܰܠܳܗܳܐ",
+    "trisagionAcclamation": "ܩܰܕ݁ܝܫܰܬ݂ ܐܰܠܳܗܳܐ\nܩܰܕܺܝܫܰܬ݂ ܚܰܝܠܬ݁ܳܢܳܐ\nܩܰܕܺܝܫܰܬ݂ ܠܳܐ ܡܺܝܘܬ݁ܳܐ ܐܶܬܰܪܚܰܡܥܠܺܝܢ",
+    "trisagionShortAcclamation": "ܩܰܕܺܝܫܰܬ݂ ܠܳܐ ܡܺܝܘܬ݁ܳܐ ܐܶܬܰܪܚܰܡܥܠܺܝܢ",
     "trisagionKyrieTitle": "ܩܘܪܝܐܠܝܣܘܢ",
     "trisagionKyrie": "ܩܘܪܝܐܠܝܣܘܢ\nܩܘܪܝܐܠܝܣܘܢ\nܩܘܪܝܐܠܝܣܘܢ",
-    "gloriaPatriTitle": "ܫܘܒܚܐ ܠܐܒܐ",
-    "gloriaPatri": "ܫܘܒܚܐ ܠܐܒܐ ܘܠܒܪܐ ܘܠܪܘܚܐ ܩܕܝܫܐ\nܡܢ ܥܠܡ ܘܥܕܡܐ ܠܥܠܡ ܥܠܡܝܢ ܐܡܝܢ"
+    "gloriaPatriTitle": "ܫܽܘܒܚܳܐ ܠܰܐܒܳܐ",
+    "gloriaPatri": "ܫܽܘܒܚܳܐ ܠܰܐܒܳܐ ܘܠܰܒܪܳܐ ܘܰܠܪܽܘܚܳܐ ܩܰܕܝܫܳܐ\nܡܶܢ ܥܳܠܰܡ ܘܰܥܕܰܡܳܐ ܠܥܳܠܰܡ ܥܳܠܡܺܝܢ. ܐܰܡܺܝܢ."
   },
   "mysteries": {}
 }

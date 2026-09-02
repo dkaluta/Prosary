@@ -49,6 +49,13 @@
   <data name="jp_error_body" xml:space="preserve"><value>לא ניתן היה לטעון את תפילת ישוע. חזור ונסה שוב.</value></data>
   <data name="home_today" xml:space="preserve"><value>היום: {0}</value></data>
   <data name="home_pope_intention" xml:space="preserve"><value>כוונת האפיפיור: {0}</value></data>
+  <data name="SetLanguageFallbackOrder.Content" xml:space="preserve"><value>סדר עדיפות לשפות…</value></data>
+  <data name="settings_language_fallback_order_title" xml:space="preserve"><value>סדר עדיפות לשפות</value></data>
+  <data name="settings_language_fallback_order_footer" xml:space="preserve"><value>כאשר תפילה חסרה, Prosary מנסה את השפות האלה מלמעלה למטה אחרי השפה שנבחרה והנוסח שלה.</value></data>
+  <data name="home_today_show_english" xml:space="preserve"><value>English</value></data>
+  <data name="home_today_full_citations" xml:space="preserve"><value>הצג מראי מקום מלאים</value></data>
+  <data name="home_today_compact_citations" xml:space="preserve"><value>הצג קיצור</value></data>
+  <data name="HomeTodayReadings.Text" xml:space="preserve"><value>מקראות היום</value></data>
   <data name="home_click_to_set_up" xml:space="preserve"><value>הקלק להגדרה</value></data>
   <data name="home_click_to_pray" xml:space="preserve"><value>הקלק לתפילה</value></data>
   <data name="home_order_title" xml:space="preserve"><value>סדר מסך הבית</value></data>
@@ -176,6 +183,9 @@
   <data name="AbtTypeAmiri.Text" xml:space="preserve"><value> — רישיון SIL Open Font 1.1 — תפילות בערבית.</value></data>
   <data name="AbtTypeScheherazade.Text" xml:space="preserve"><value> — רישיון SIL Open Font 1.1 — פסוקי מקרא בערבית (SIL).</value></data>
   <data name="AbtTypeCardo.Text" xml:space="preserve"><value> — רישיון SIL Open Font 1.1 — פסוקי מקרא בלטינית ובאנגלית (David J. Perry).</value></data>
+  <data name="AbtTypeNotoSyriac.Text" xml:space="preserve"><value> — רישיון SIL Open Font 1.1 — גופנים לבחירה לארמית בכתב סורי.</value></data>
+  <data name="AbtTypeOptionalHebrew.Text" xml:space="preserve"><value> — רישיון SIL Open Font 1.1 — גופנים לבחירה לתפילות ולכתבי הקודש בעברית.</value></data>
+  <data name="AbtTypeStam.Text" xml:space="preserve"><value> — GPL v2 עם חריגת הטמעת גופנים — גופנים לבחירה לכתבי הקודש בעברית (פרויקט קולמוס, יורם גנת).</value></data>
   <data name="AbtTypeFooter.Text" xml:space="preserve"><value>תפילות בכתב לטיני משתמשות בגופן Cambria, המצורף ל־Windows — אינו מצורף לאפליקציה.</value></data>
   <data name="AbtMysteryHeader.Text" xml:space="preserve"><value>איורי הרזים</value></data>
   <data name="AbtMysteryIntro.Text" xml:space="preserve"><value>כל 20 תמונות הרזים הן ציורים קלאסיים ברשות הציבור (האמן נפטר לפני יותר מ־100 שנים), מתוך ויקישיתוף.</value></data>
@@ -195,7 +205,7 @@
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>מקורות כתבי הקודש</value></data>
   <data name="AbtScriptureBody.Text" xml:space="preserve"><value>ציטוטי המקרא לקוחים מביבליית דואיי־רימס (אנגלית), הוולגאטה הקלמנטית (לטינית), תרגום דליטש לברית החדשה (מתוך kirjasilta.net/ha-berit) עם קטעי התנ״ך על פי נוסח המסורה, תרגום הישועים לביבליה לערבית (ביירות, 1880, נערך 1988), הביבליה הסינודלית ברוסית (1876) ו־Ang Dating Biblia (טאגאלוג, 1905) — כולם בנחלת הכלל.</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>נתוני לוחות</value></data>
-  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>נתוני לוחות החגים: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 מ־Missale Meum‏ (missalemeum.com); הלוח הסורי-קתולי ולוח המקראות הרומי בעברית באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; הלוח האוקראיני-קתולי נערך באפליקציה מן המקורות המסורתיים.</value></data>
+  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>נתוני לוחות ומקראות: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 מ־Missale Meum‏ (missalemeum.com); הלוח הסורי-קתולי, לוח המקראות הרומי בעברית ומראי המקום היומיים של המקראות באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; הלוח האוקראיני-קתולי נערך באפליקציה מן המקורות המסורתיים.</value></data>
   <data name="AbtMys01Title.Text" xml:space="preserve"><value>הבשורה</value></data>
   <data name="AbtCredit01.Text" xml:space="preserve"><value> — פרה אנג׳ליקו (נפ׳ 1455)</value></data>
   <data name="AbtMys02Title.Text" xml:space="preserve"><value>הביקור</value></data>
@@ -284,6 +294,24 @@
   <data name="multi_day_not_now" xml:space="preserve"><value>לא עכשיו</value></data>
   <data name="SetRiteCombo.Header" xml:space="preserve"><value>נוסח</value></data>
   <data name="settings_rite" xml:space="preserve"><value>נוסח</value></data>
+  <data name="settings_aramaic_sign_of_cross" xml:space="preserve"><value>נוסח אות הצלב בארמית</value></data>
+  <data name="settings_aramaic_sign_of_cross_form_a" xml:space="preserve"><value>נוסח א׳</value></data>
+  <data name="settings_aramaic_sign_of_cross_form_b" xml:space="preserve"><value>נוסח ב׳</value></data>
+  <data name="SetTypographyHeader.Text" xml:space="preserve"><value>טיפוגרפיה</value></data>
+  <data name="SetSyriacTypeface.Header" xml:space="preserve"><value>ארמית בכתב סורי</value></data>
+  <data name="SetHebrewPrayerTypeface.Header" xml:space="preserve"><value>תפילות בכתב עברי</value></data>
+  <data name="SetHebrewScriptureTypeface.Header" xml:space="preserve"><value>כתבי הקודש בעברית</value></data>
+  <data name="settings_typeface_default" xml:space="preserve"><value>ברירת מחדל</value></data>
+  <data name="settings_typeface_western_aramaic" xml:space="preserve"><value>ארמית מערבית</value></data>
+  <data name="settings_typeface_eastern_aramaic" xml:space="preserve"><value>ארמית מזרחית</value></data>
+  <data name="settings_typeface_david_libre" xml:space="preserve"><value>David Libre</value></data>
+  <data name="settings_typeface_sans_serif" xml:space="preserve"><value>ללא תגיות</value></data>
+  <data name="settings_typeface_stam_ashkenaz" xml:space="preserve"><value>סת״ם אשכנזי</value></data>
+  <data name="settings_typeface_stam_sefarad" xml:space="preserve"><value>סת״ם ספרדי</value></data>
+  <data name="settings_typeface_rashi" xml:space="preserve"><value>רש״י</value></data>
+  <data name="SetFavoriteBasicPrayersFirst.Header" xml:space="preserve"><value>העבר תפילות בסיסיות מועדפות לראש הרשימה</value></data>
+  <data name="SetAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>נוסח אות הצלב בארמית</value></data>
+  <data name="EdAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>נוסח אות הצלב בארמית</value></data>
   <data name="EdRiteCombo.Header" xml:space="preserve"><value>נוסח</value></data>
   <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>התפלל מחרוזת כלשהי</value></data>
   <data name="HomeAddRosary.Content" xml:space="preserve"><value>הוסף מחרוזת</value></data>

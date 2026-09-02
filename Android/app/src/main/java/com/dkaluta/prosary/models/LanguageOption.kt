@@ -39,7 +39,8 @@ object LanguageCatalog {
         LanguageOption(code = "la", nativeName = "Latina", isRightToLeft = false),
         LanguageOption(code = "en", nativeName = "English", isRightToLeft = false),
         LanguageOption(code = "ar", nativeName = "العربية", isRightToLeft = true),
-        LanguageOption(code = "he", nativeName = "עברית", isRightToLeft = true),
+        LanguageOption(code = "he", nativeName = "עברית — נוסח הנציגות", isRightToLeft = true),
+        LanguageOption(code = "he-x-gamliel", nativeName = "עברית — נוסח השליחות", isRightToLeft = true),
         // Aramaic in Hebrew script — the Aramaic-rite communities' liturgical language.
         LanguageOption(code = "arc", nativeName = "ארמית", isRightToLeft = true),
         // Greek: the language a great deal of the app's own Scripture and prayer was first
@@ -50,10 +51,38 @@ object LanguageCatalog {
         LanguageOption(code = "tl", nativeName = "Tagalog", isRightToLeft = false),
     )
 
-    /** Rites (community uses) of one language: the same tongue, a different wording. Listed
-     * under the language rather than beside it, because choosing "Hebrew" and choosing *whose*
-     * Hebrew are two different questions — and because a rite that lacks a prayer falls back to
-     * the language's own, so they are never truly separate languages.
+    /** Picker choices for a bundle's declared languages. The Mission is a sparse overlay rather
+     * than a manifest language of its own, so every bundle offering Hebrew exposes both sourced
+     * Hebrew uses as adjacent, independent choices. */
+    fun availableOptions(declaredCodes: List<String>): List<LanguageOption> {
+        val available = declaredCodes.flatMap { code ->
+            if (code == "he") listOf("he", "he-x-gamliel") else listOf(code)
+        }.toSet()
+        return all.filter { it.code in available }
+    }
+
+    val fallbackOrder: List<String>
+        get() {
+            val known = all.map { it.code }.toSet()
+            val stored = AppSettings.languageFallbackOrder.filter { it in known }.distinct()
+            val defaults = all.map { it.code }.filter { it != defaultCode } + defaultCode
+            return (stored + defaults.filter { it !in stored }).distinct()
+        }
+
+    fun fallbackChain(requested: String?): List<String> = buildList {
+        fun append(code: String?) {
+            if (code == null || code in this) return
+            add(code)
+            baseLanguage(code)?.takeIf { it !in this }?.let(::add)
+        }
+        append(requested?.takeIf { it.isNotEmpty() } ?: AppSettings.defaultLanguageCode)
+        fallbackOrder.forEach(::append)
+        append(defaultCode)
+    }
+
+    /** Legacy grouping metadata for the two Hebrew community uses. Pickers expose them beside
+     * one another as independent prayer languages; the relationship remains useful when
+     * resolving older stored codes and documenting the base-language fallback.
      *
      * The first entry of each list is the language's own (base) use; the rest overlay it. */
     val ritesByLanguage: Map<String, List<LanguageOption>> = mapOf(
@@ -78,6 +107,7 @@ object LanguageCatalog {
     /** Resolves a stored code, which may name a rite ("he-x-gamliel") rather than a plain
      * language — the rite keeps its own code so every lookup can overlay it on the base. */
     private fun option(code: String?): LanguageOption {
+        all.firstOrNull { it.code == code }?.let { return it }
         val rite = code?.let { c -> rites(c).firstOrNull { it.code == c } }
         if (rite != null) {
             // A rite carries its language's name in pickers; its own name belongs to the rite row.

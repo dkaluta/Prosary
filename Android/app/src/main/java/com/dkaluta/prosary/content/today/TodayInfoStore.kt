@@ -21,7 +21,17 @@ data class FeastDay(
 data class PopeIntention(
     val title: String,
     val text: String,
-)
+    val titleByLanguage: Map<String, String>? = null,
+    val textByLanguage: Map<String, String>? = null,
+) {
+    fun localizedTitle(language: String) = titleByLanguage?.get(language) ?: title
+    fun localizedText(language: String) = textByLanguage?.get(language) ?: text
+}
+
+@Serializable
+data class ReadingCitation(val type: String, val short: String, val full: String, val hebrew: String)
+
+data class LiturgicalDayInfo(val english: String, val hebrew: String)
 
 /** One entry of calendars.json — a switchable feast calendar. */
 @Serializable
@@ -49,6 +59,12 @@ private data class FeastsFile(val days: Map<String, FeastDay> = emptyMap())
 private data class IntentionsFile(val months: Map<String, PopeIntention> = emptyMap())
 
 @Serializable
+private data class ReadingDay(val readings: List<ReadingCitation> = emptyList())
+
+@Serializable
+private data class ReadingsFile(val days: Map<String, ReadingDay> = emptyMap())
+
+@Serializable
 private data class CalendarsFile(
     val default: String,
     val calendars: List<FeastCalendar> = emptyList(),
@@ -72,6 +88,7 @@ object TodayInfoStore {
     private var openData: ((String) -> InputStream?)? = null
     private var feastsByDay: Map<String, FeastDay> = emptyMap()
     private var intentionsByMonth: Map<String, PopeIntention> = emptyMap()
+    private var readingsByDay: Map<String, ReadingDay> = emptyMap()
     private var registry: CalendarsFile? = null
     private var loadedCalendarId: String? = null
     private var didLoad = false
@@ -97,6 +114,56 @@ object TodayInfoStore {
 
     fun intention(date: Date = Date()): PopeIntention? = intentionsByMonth[key(date, "yyyy-MM")]
 
+    fun readings(date: Date = Date()): List<ReadingCitation> =
+        readingsByDay[key(date, "yyyy-MM-dd")]?.readings.orEmpty()
+
+    fun liturgicalDayInfo(date: Date = Date()): LiturgicalDayInfo {
+        val cal = java.util.Calendar.getInstance().apply { time = date }
+        val year = cal.get(java.util.Calendar.YEAR)
+        val day = java.time.LocalDate.of(year, cal.get(java.util.Calendar.MONTH) + 1, cal.get(java.util.Calendar.DAY_OF_MONTH))
+        val easter = easterSunday(year)
+        val ash = easter.minusDays(46)
+        val pentecost = easter.plusDays(49)
+        val advent = firstSundayOnOrAfter(java.time.LocalDate.of(year, 11, 27))
+        val christmas = java.time.LocalDate.of(year, 12, 25)
+        val baptism = firstSundayOnOrAfter(java.time.LocalDate.of(year, 1, 7))
+        val christmasStart = if (day.monthValue == 1) java.time.LocalDate.of(year - 1, 12, 25) else christmas
+
+        val season = when {
+            !day.isBefore(ash) && day.isBefore(easter) -> Triple("Lent", "בצום", week(ash, day))
+            !day.isBefore(easter) && !day.isAfter(pentecost) -> Triple("Easter Season", "בזמן הפסחא", week(easter, day))
+            !day.isBefore(advent) && day.isBefore(christmas) -> Triple("Advent", "בזמן הציפייה", week(advent, day))
+            !day.isBefore(christmasStart) && (day.isBefore(baptism) || !day.isBefore(christmas)) ->
+                Triple("Christmas Season", "בזמן חג המולד", week(christmasStart, day))
+            day.isAfter(pentecost) && day.isBefore(advent) -> {
+                val days = java.time.temporal.ChronoUnit.DAYS.between(day, advent)
+                Triple("Ordinary Time", "בזמן הרגיל", maxOf(1, 35 - kotlin.math.ceil(days / 7.0).toInt()))
+            }
+            else -> Triple("Ordinary Time", "בזמן הרגיל", week(baptism.plusDays(1), day))
+        }
+        val englishWeekday = java.time.format.DateTimeFormatter.ofPattern("EEEE", Locale.US).format(day)
+        val hebrewWeekday = java.time.format.DateTimeFormatter.ofPattern("EEEE", Locale("he", "IL")).format(day)
+        return LiturgicalDayInfo(
+            "$englishWeekday · Week ${season.third} of ${season.first}",
+            "$hebrewWeekday · השבוע ה־${season.third} ${season.second}",
+        )
+    }
+
+    private fun week(origin: java.time.LocalDate, day: java.time.LocalDate) =
+        maxOf(1, (java.time.temporal.ChronoUnit.DAYS.between(origin, day) / 7).toInt() + 1)
+
+    private fun firstSundayOnOrAfter(day: java.time.LocalDate): java.time.LocalDate =
+        day.plusDays(((java.time.DayOfWeek.SUNDAY.value - day.dayOfWeek.value + 7) % 7).toLong())
+
+    private fun easterSunday(year: Int): java.time.LocalDate {
+        val a = year % 19; val b = year / 100; val c = year % 100; val d = b / 4; val e = b % 4
+        val f = (b + 8) / 25; val g = (b - f + 1) / 3; val h = (19 * a + b - d - g + 15) % 30
+        val i = c / 4; val k = c % 4; val l = (32 + 2 * e + 2 * i - h - k) % 7
+        val m = (a + 11 * h + 22 * l) / 451; val month = (h + l - 7 * m + 114) / 31
+        val day = (h + l - 7 * m + 114) % 31 + 1
+        return java.time.LocalDate.of(year, month, day)
+    }
+
     private fun key(date: Date, format: String): String =
         SimpleDateFormat(format, Locale.US).format(date)
 
@@ -112,6 +179,7 @@ object TodayInfoStore {
 
         registry = decode<CalendarsFile>("calendars")
         intentionsByMonth = decode<IntentionsFile>("pope-intentions")?.months ?: emptyMap()
+        readingsByDay = decode<ReadingsFile>("readings")?.days ?: emptyMap()
     }
 
     /** The feast table is per-calendar: whenever the resolved selection differs from what is

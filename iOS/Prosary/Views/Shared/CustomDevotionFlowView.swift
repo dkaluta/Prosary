@@ -113,35 +113,19 @@ struct CustomDevotionFlowView: View {
       // a generic devotion's language, and testers didn't find it (they assumed the devotion
       // shipped fewer languages than it does). Mirrors the variant menu: rebuilds the session
       // in place and persists the choice to the matching favorite when one exists.
-      if let languages = PrayerPackStore.info(for: devotionId)?.languages, languages.count > 1 {
+      if let languages = PrayerPackStore.info(for: devotionId)?.languages,
+         languages.count > 1 || languages.contains("he") {
         ToolbarItem(placement: .primaryAction) {
           Menu {
             languageButton(
               raw: LanguageCatalog.defaultSentinel,
               name: String(localized: "prayerFlow.language.appDefault", defaultValue: "App setting"))
             Divider()
-            ForEach(languages, id: \.self) { code in
-              if let option = LanguageCatalog.all.first(where: { $0.code == code }) {
-                // A rite is still that language: praying he-x-gamliel keeps עברית checked,
-                // with the rite section below saying whose Hebrew. Exact matching here made
-                // the Hebrew check vanish the moment the Mission's rite was chosen — while the
-                // Vicariate's rite (whose code IS "he") kept it, which is how the
-                // inconsistency read as a bug to the person praying it.
-                languageButton(raw: option.code, name: option.nativeName,
-                               isChosen: chosenLanguage == option.code
-                                 || LanguageCatalog.baseLanguage(of: chosenLanguage) == option.code)
-              }
-            }
-
-            // A language prayed in more than one use lists those under it — the rite is a
-            // second question, and one whose gaps fall back to the language's own wording.
-            let rites = LanguageCatalog.rites(of: LanguageCatalog.resolve(chosenLanguage).code)
-            if rites.count > 1 {
-              Section(String(localized: "settings.rite", defaultValue: "Rite")) {
-                ForEach(rites) { rite in
-                  languageButton(raw: rite.code, name: rite.nativeName)
-                }
-              }
+            // Hebrew Vicariate and Mission are independent prayer-language choices. A bundle
+            // that advertises base Hebrew therefore offers both; the Mission's sparse overlay
+            // falls back to Vicariate Hebrew one prayer at a time.
+            ForEach(LanguageCatalog.availableOptions(for: languages)) { option in
+              languageButton(raw: option.code, name: option.nativeName)
             }
           } label: {
             Image(systemName: "globe")

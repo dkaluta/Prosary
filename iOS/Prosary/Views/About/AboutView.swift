@@ -28,6 +28,9 @@ struct AboutView: View {
           Text("about.typefaces.amiri")
           Text("about.typefaces.scheherazadeNew")
           Text("about.typefaces.cardo")
+          Text("about.typefaces.notoSyriac")
+          Text("about.typefaces.optionalHebrew")
+          Text("about.typefaces.stam")
           Text("about.typefaces.systemSerifNote")
             .font(.footnote)
             .foregroundStyle(.secondary)
@@ -43,7 +46,7 @@ struct AboutView: View {
           }
           Text(String(
             localized: "about.mysteryImages.easternIcons",
-            defaultValue: "The collection of illustrations of the Mysteries in the Eastern style is used with approval from the St. Gamliel Apostolate for Hebrew Catholics in the Aramaic (Syriac) Catholic Church."))
+            defaultValue: "The collection of illustrations of the Mysteries in the Eastern style is used with approval from the Mission of St. Gamaliel for Hebrew Catholics in the Aramaic (Syriac) Catholic Church."))
             .padding(.top, 4)
         }
 

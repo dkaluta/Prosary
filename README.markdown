@@ -6,7 +6,8 @@ the Trisagion, the O Antiphons and other multi-day devotions, the Jesus Prayer, 
 their own. Latin is the default prayer language, alongside English, Arabic, Hebrew, Russian,
 Tagalog, Spanish, Greek, and Classical Syriac (Aramaic, in both the Hebrew and Syriac scripts).
 Hebrew comes in the communities' own uses: the St James Vicariate's wording (נוסח הנציגות) and
-the Mission of St. Gamaliel's Aramaic-rite recension — a devotion can even open in a different
+the Mission of St. Gamaliel's Aramaic-rite recension (נוסח השליחות), both always present as
+separate prayer-language choices — a devotion can even open in a different
 form per rite, the way the Mission's Trisagion opens Syriac. Language availability is declared
 per devotion: most built-in bundles currently cover Latin, English, Arabic, Hebrew, Russian, and
 Tagalog; the broader catalog is used where sourced text exists.
@@ -43,6 +44,7 @@ uv run --script Shared/tools/validate-devotion.py Shared/content/rosary   # vali
 Shared/tools/make-prosaryprayer.sh Shared/content/rosary                  # pack it (validates first)
 uv run --script Shared/tools/test-validate-devotion.py                    # the validator's own test suite
 uv run --script Shared/tools/import-scripture.py --check                  # Aramaic/Greek/Spanish scripture, from checkable editions
+uv run --script Shared/tools/fetch-readings.py --sync                    # Daily lectionary citations for the Today card
 uv run --script Shared/tools/bump-version.py --check                      # one version across all three platforms
 uv run --script Shared/tools/reflow-prayers.py --check                    # canonical prayer line breaks
 ```

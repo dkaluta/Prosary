@@ -92,6 +92,7 @@ public sealed class SchemaMigrationTests : IDisposable
         Assert.Equal("he", prayer.LanguageCode);
         // The column the old database lacked reads as its default rather than as null.
         Assert.Empty(prayer.CustomOptions);
+        Assert.Equal(AppSettings.AramaicSignOfCrossFormA, prayer.Rosary.AramaicSignOfCrossForm);
     }
 
     [Fact]

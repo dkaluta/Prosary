@@ -4,7 +4,14 @@
     {
       "titleKey": "signumCrucisTitle",
       "bodyKey": "signumCrucis",
-      "imageKey": "crucifix"
+      "imageKey": "crucifix",
+      "if": "aramaicSignOfCrossForm=formA"
+    },
+    {
+      "titleKey": "signumCrucisTitle",
+      "bodyKey": "signumCrucisFormB",
+      "imageKey": "crucifix",
+      "if": "aramaicSignOfCrossForm=formB"
     },
     {
       "titleKey": "invitatoryTitle",
@@ -189,9 +196,15 @@
     },
     {
       "titleKey": "signumCrucisTitle",
+      "bodyKey": "signumCrucisFormB",
+      "imageKey": "crucifix",
+      "if": "finalSignOfCross & aramaicSignOfCrossForm=formB"
+    },
+    {
+      "titleKey": "signumCrucisTitle",
       "bodyKey": "signumCrucis",
       "imageKey": "crucifix",
-      "if": "finalSignOfCross"
+      "if": "finalSignOfCross & aramaicSignOfCrossForm=formA"
     }
   ],
   "hasClosingCross": true

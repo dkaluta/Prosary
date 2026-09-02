@@ -191,6 +191,21 @@ class TodayInfoStoreTest {
         val intention = TodayInfoStore.intention(date("2026-07-27"))
         assertEquals("For respect for human life", intention?.title)
         assertTrue(intention?.text?.contains("human life in all its stages") ?: false)
+        assertEquals("למען כבוד לחיי אדם", intention?.localizedTitle("he"))
+        assertTrue(intention?.localizedText("he")?.contains("בכל שלביהם") ?: false)
+    }
+
+    @Test
+    fun readingsAndLiturgicalDayResolve() {
+        val readings = TodayInfoStore.readings(date("2026-08-31"))
+        assertEquals(listOf("1 Cor. 2", "Ps. 119", "Lk. 4"), readings.map { it.short })
+        assertEquals("Luke 4:16–30", readings.last().full)
+        assertEquals("הבשורה על-פי לוקס 4:16–30", readings.last().hebrew)
+
+        val day = TodayInfoStore.liturgicalDayInfo(date("2026-08-31"))
+        assertTrue(day.english.startsWith("Monday · Week "))
+        assertTrue(day.english.endsWith(" of Ordinary Time"))
+        assertTrue(day.hebrew.contains("בזמן הרגיל"))
     }
 
     @Test

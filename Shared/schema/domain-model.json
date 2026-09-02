@@ -24,7 +24,7 @@
         "languageCode": {
           "type": "string",
           "default": "",
-          "description": "Prayer-language identifier (normally an ISO 639 code, optionally with a private-use rite subtag), or the empty-string sentinel meaning \"follow the app-level default language setting\" (see AppSettings.defaultLanguageCode)."
+          "description": "Prayer-language identifier (normally an ISO 639 code, optionally with a private-use community subtag), or the empty-string sentinel meaning \"follow the app-level default language setting\" (see AppSettings.defaultLanguageCode). Hebrew Vicariate (`he`) and Hebrew Mission (`he-x-gamliel`) are always separate picker choices."
         },
         "rosary": {
           "type": "RosaryOptions",
@@ -70,7 +70,7 @@
       "note": "\"custom\" is the single case covering every generic, bundle-driven devotion (Angelus, Stations of the Cross, Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet, Trisagion, ...) — adding a new generic devotion needs no new PrayerKind case, only a new .prosaryprayer bundle with a devotion.json. The five retired per-devotion cases' raw values double as the matching bundle ids; iOS/Android remap legacy persisted rows to custom + that id permanently at read time (resolvedKind), while Windows persists the enum as its int (Rosary=0, JesusPrayer=2, Custom=7 — explicit, permanent values) and runs a one-time PRAGMA user_version-guarded SQL migration. Never renumber or reuse a retired Windows ordinal (1, 3-6)."
     },
     "RosaryOptions": {
-      "description": "Configuration specific to the Rosary. Lives inside a Prayer when kind == rosary. Remains the persisted shape (typed columns, bespoke editor) even though the Rosary builds from the rosary bundle's devotion.json — PrayerEngine.rosaryOptionValues maps it onto the bundle's options.json values (no data migration).",
+      "description": "Configuration specific to the Rosary. Lives inside a Prayer when kind == rosary. Remains the persisted shape (typed columns, bespoke editor) even though the Rosary builds from the rosary bundle's devotion.json — PrayerEngine.rosaryOptionValues maps it onto the bundle's options.json values.",
       "fields": {
         "mysterySelectionMode": {
           "type": "MysterySelectionMode",
@@ -85,6 +85,15 @@
           "type": "int",
           "default": 1,
           "description": "1-based index into MysteryCatalog.forGroup(specificMysteryGroup) (always 5 mysteries per group). Used only when mysterySelectionMode == singleMystery."
+        },
+        "aramaicSignOfCrossForm": {
+          "type": "string",
+          "default": "formA",
+          "allowed": [
+            "formA",
+            "formB"
+          ],
+          "description": "Per-Rosary choice used only when this Rosary explicitly prays in Aramaic while the app default language is not Aramaic. When the app default is Aramaic, the app-wide aramaicSignOfCrossForm setting takes precedence and this saved value is ignored."
         },
         "includeApostlesCreed": {
           "type": "boolean",
@@ -293,7 +302,7 @@
       "fields": {
         "code": {
           "type": "string",
-          "description": "Prayer-language identifier used as the key into the content layer's translation dictionaries; values include ISO 639-1 codes, ISO 639-2 `arc`, and private-use rite variants such as `he-x-gamliel`."
+          "description": "Prayer-language identifier used as the key into the content layer's translation dictionaries; values include ISO 639-1 codes, ISO 639-2 `arc`, and private-use community variants such as `he-x-gamliel`. Missing content resolves exact code → base code → the user's `languageFallbackOrder`; Latin starts last but can be reordered."
         },
         "nativeName": {
           "type": "string"
@@ -374,7 +383,7 @@
         },
         "bodyKey": {
           "type": "string?",
-          "description": "Resolved bundle-raw-first (requested language, then the bundle's Latin), then the shared PrayerTranslations chain, then the raw key — see ARCHITECTURE.md."
+          "description": "Resolved from bundle content in the exact requested code and its base, then the shared PrayerTranslations table for a shared key, then bundle content through the user's languageFallbackOrder and finally the raw key — see ARCHITECTURE.md."
         },
         "acclamationKey": {
           "type": "string?",
@@ -611,7 +620,7 @@
     }
   },
   "languages": {
-    "$ref": "See LanguageCatalog.all in ARCHITECTURE.md — la (default), en, ar (RTL), he (RTL), arc (RTL), el, es, ru, tl; community rites such as he-x-gamliel overlay a base language"
+    "$ref": "See LanguageCatalog.all in ARCHITECTURE.md — la (default), en, ar (RTL), he (RTL, Vicariate), he-x-gamliel (RTL, Mission), arc (RTL), el, es, ru, tl. he-x-gamliel overlays he when its own prayer is absent; all missing content then follows languageFallbackOrder (initially ending in Latin)."
   },
   "persistence": {
     "perDevotionDefaultScoping": "save()/delete() clear or promote isDefault scoped to (Prayer.kind, Prayer.customDevotionId), never across devotions — two generic devotions must not steal each other's default slot. Legacy rows with retired per-devotion kinds resolve through the same identity (iOS PresetEntry.resolvedKind / Android PresetEntity.resolvedKind / Windows's SQL migration). See ARCHITECTURE.md#persistence."

@@ -2,6 +2,7 @@ package com.dkaluta.prosary.content.prayerpack
 
 import androidx.annotation.StringRes
 import com.dkaluta.prosary.R
+import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.LanguageCatalog
 
 import com.dkaluta.prosary.content.MysteryText
@@ -496,8 +497,17 @@ object PrayerPackStore {
     var installedPacksDirectory: File? = null
     private var didLoad = false
 
-    fun prayerOverride(languageCode: String, key: PrayerKey): String? =
-        prayerOverrides[languageCode]?.get(key)
+    fun prayerOverride(languageCode: String, key: PrayerKey): String? {
+        if (
+            key == PrayerKey.SignumCrucis &&
+            (LanguageCatalog.baseLanguage(languageCode) ?: languageCode) == "arc" &&
+            AppSettings.usesSystemWideAramaicSignOfCrossForm &&
+            AppSettings.aramaicSignOfCrossForm == AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B
+        ) {
+            rawContentByBundle["rosary"]?.get("arc")?.get("signumCrucisFormB")?.let { return it }
+        }
+        return prayerOverrides[languageCode]?.get(key)
+    }
 
     fun mysteryOverride(languageCode: String, imageKey: String): MysteryText? =
         mysteryOverrides[languageCode]?.get(imageKey)
@@ -541,36 +551,57 @@ object PrayerPackStore {
     fun effectiveLanguage(bundleId: String, chosen: String?): String {
         val resolved = LanguageCatalog.resolve(chosen ?: LanguageCatalog.defaultSentinel).code
         val available = info(bundleId)?.languages.orEmpty()
-        if (available.isEmpty() || resolved in available) return resolved
-        // A community variant keeps its code when the bundle ships its base language —
-        // bundle text falls back per key.
-        LanguageCatalog.baseLanguage(resolved)?.let { if (it in available) return resolved }
+        if (available.isEmpty()) return resolved
+        for (code in LanguageCatalog.fallbackChain(resolved)) {
+            if (code in available) return if (code == LanguageCatalog.baseLanguage(resolved)) resolved else code
+        }
         return available.first()
     }
 
-    /** Resolves a `devotion.json` entry's `bodyKey`/`titleKey` to display text: (1) the bundle's
-     * own raw content for this key — the requested language, else the bundle's Latin (mirroring
-     * `PrayerTranslations.get`'s Latin fallback, so e.g. the sentinel/unknown language prays in
-     * Latin, not raw keys); (2) else, if the key happens to match an existing [PrayerKey] case,
-     * the ordinary hardcoded/override lookup — this is how shared "main" keys (e.g. "gloriaPatri")
-     * resolve; (3) else the raw key string, matching `PrayerTranslations.get`'s own last resort. */
+    /** Resolves a `devotion.json` `bodyKey`/`titleKey`: bundle content in the requested code and
+     * its base language first; then the shared prayer table for shared keys; then bundle content
+     * through the user's language precedence; finally the raw key. */
     /** The v0.7 reading aid: this key's text transliterated into another script, if the
      * bundle's language file carries one. No fallback chain — a transliteration belongs to
      * exactly the language it transliterates. */
-    fun transliteration(bundleId: String, languageCode: String?, key: String): String? =
-        languageCode?.let { transliterationsByBundle[bundleId]?.get(it)?.get(key) }
+    fun transliteration(bundleId: String, languageCode: String?, key: String): String? {
+        if (
+            key == "signumCrucis" && languageCode != null &&
+            (LanguageCatalog.baseLanguage(languageCode) ?: languageCode) == "arc" &&
+            AppSettings.usesSystemWideAramaicSignOfCrossForm &&
+            AppSettings.aramaicSignOfCrossForm == AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B
+        ) {
+            return transliterationsByBundle["rosary"]?.get("arc")?.get("signumCrucisFormB")
+        }
+        return languageCode?.let { transliterationsByBundle[bundleId]?.get(it)?.get(key) }
+    }
 
     fun resolveBodyText(bundleId: String, languageCode: String?, key: String): String {
-        if (languageCode != null) {
-            rawContentByBundle[bundleId]?.get(languageCode)?.get(key)?.let { return it }
-            LanguageCatalog.baseLanguage(languageCode)
-                ?.let { base -> rawContentByBundle[bundleId]?.get(base)?.get(key) }
-                ?.let { return it }
+        if (languageCode == "he-x-gamliel" && key == "paterNosterTitle") return "תפילת האדון"
+        if (
+            key == "signumCrucis" && languageCode != null &&
+            (LanguageCatalog.baseLanguage(languageCode) ?: languageCode) == "arc" &&
+            AppSettings.usesSystemWideAramaicSignOfCrossForm &&
+            AppSettings.aramaicSignOfCrossForm == AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B
+        ) {
+            rawContentByBundle["rosary"]?.get("arc")?.get("signumCrucisFormB")?.let { return it }
         }
-        rawContentByBundle[bundleId]?.get("la")?.get(key)?.let { return it }
+        val chain = LanguageCatalog.fallbackChain(languageCode)
+        val requestedCodes = chain.take(1) + chain.drop(1).takeWhile {
+            it == LanguageCatalog.baseLanguage(chain.first())
+        }
+        for (code in requestedCodes.distinct()) {
+            rawContentByBundle[bundleId]?.get(code)?.get(key)?.let { return it }
+        }
+        if (key == "signumCrucisFormB") {
+            return PrayerTranslations.get(languageCode, PrayerKey.SignumCrucis)
+        }
         val prayerKey = keyToPrayerKey(key)
         if (prayerKey != null) {
             return PrayerTranslations.get(languageCode, prayerKey)
+        }
+        for (code in chain.drop(requestedCodes.size)) {
+            rawContentByBundle[bundleId]?.get(code)?.get(key)?.let { return it }
         }
         return key
     }

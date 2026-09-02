@@ -19,14 +19,18 @@ enum MarianAntiphonOption: String, Codable, CaseIterable, Identifiable {
   var id: String { rawValue }
 
   var displayName: String {
+    displayName(languageCode: LanguageCatalog.resolve(nil).code)
+  }
+
+  func displayName(languageCode: String) -> String {
     switch self {
     case .none:                 return String(localized: "marianAntiphon.none", defaultValue: "None")
     case .seasonal:             return String(localized: "marianAntiphon.seasonal", defaultValue: "Automatic (Seasonal)")
-    case .salveRegina:          return String(localized: "marianAntiphon.salveRegina", defaultValue: "Salve Regina")
-    case .almaRedemptorisMater: return String(localized: "marianAntiphon.almaRedemptorisMater", defaultValue: "Alma Redemptoris Mater")
-    case .aveReginaCaelorum:    return String(localized: "marianAntiphon.aveReginaCaelorum", defaultValue: "Ave Regina Caelorum")
-    case .reginaCaeli:          return String(localized: "marianAntiphon.reginaCaeli", defaultValue: "Regina Caeli")
-    case .subTuumPraesidium:    return String(localized: "marianAntiphon.subTuumPraesidium", defaultValue: "Sub Tuum Praesidium")
+    case .salveRegina:          return PrayerTranslations.get(languageCode: languageCode, key: .salveReginaTitle)
+    case .almaRedemptorisMater: return PrayerTranslations.get(languageCode: languageCode, key: .almaRedemptorisMaterTitle)
+    case .aveReginaCaelorum:    return PrayerTranslations.get(languageCode: languageCode, key: .aveReginaCaelorumTitle)
+    case .reginaCaeli:          return PrayerTranslations.get(languageCode: languageCode, key: .reginaCaeliTitle)
+    case .subTuumPraesidium:    return PrayerTranslations.get(languageCode: languageCode, key: .subTuumPraesidiumTitle)
     }
   }
 }

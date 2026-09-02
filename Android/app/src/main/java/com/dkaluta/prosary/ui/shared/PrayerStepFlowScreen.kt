@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -64,6 +65,7 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
@@ -230,7 +232,7 @@ fun PrayerStepFlowScreen(
                     BoxWithConstraints(modifier = Modifier.weight(1f).fillMaxWidth()) {
                         // Regular/wide window (tablet, a wide split, landscape) gets the taller
                         // three-column layout; a narrow portrait phone keeps the single scrolling column.
-                        val isWide = maxWidth >= 600.dp || maxHeight < 480.dp
+                        val isWide = maxWidth >= 840.dp || (maxHeight < 480.dp && maxWidth >= 640.dp)
                         if (isWide) {
                             WideContent(
                                 step = step,
@@ -397,7 +399,7 @@ private fun WideContent(
         accessory(true, hasRoomForSingleMinorColumn)
 
         CompositionLocalProvider(LocalLayoutDirection provides if (isRightToLeft) LayoutDirection.Rtl else LayoutDirection.Ltr) {
-            Column(modifier = Modifier.weight(1f).fillMaxHeight().verticalScroll(rememberScrollState())) {
+            Column(modifier = Modifier.weight(1f).widthIn(min = 280.dp).fillMaxHeight().verticalScroll(rememberScrollState())) {
                 TextBlock(
                     step = step, languageCode = languageCode, modifier = Modifier.padding(16.dp),
                     centralActionLabel = centralActionLabel, onCentralAction = onCentralAction,
@@ -494,23 +496,27 @@ private fun TextBlock(
             // A transliteration is in a different script from its language's own, so the face
             // has to follow the text rather than the language — otherwise Syriac letters are
             // drawn with a Hebrew face that has no glyphs for them, and the toggle shows tofu.
-            Text(
-                (if (TransliterationState.shows) step.transliteratedBody!! else step.body).parseBoldMarkdown(),
-                style = PrayerTypography.style(
-                    languageCode = languageCode,
-                    isScripture = step.isScripture,
-                    script = if (TransliterationState.shows) {
-                        PrayerTypography.scriptOf(step.transliteratedBody!!)
-                    } else {
-                        null
-                    },
-                ),
-            )
+            SelectionContainer {
+                Text(
+                    (if (TransliterationState.shows) step.transliteratedBody!! else step.body).parseBoldMarkdown(),
+                    style = PrayerTypography.style(
+                        languageCode = languageCode,
+                        isScripture = step.isScripture,
+                        script = if (TransliterationState.shows) {
+                            PrayerTypography.scriptOf(step.transliteratedBody!!)
+                        } else {
+                            null
+                        },
+                    ),
+                )
+            }
         } else {
-            Text(
-                step.body.parseBoldMarkdown(),
-                style = PrayerTypography.style(languageCode = languageCode, isScripture = step.isScripture),
-            )
+            SelectionContainer {
+                Text(
+                    step.body.parseBoldMarkdown(),
+                    style = PrayerTypography.style(languageCode = languageCode, isScripture = step.isScripture),
+                )
+            }
         }
 
         if (centralActionLabel != null && onCentralAction != null) {

@@ -43,6 +43,7 @@ public sealed class SqlitePresetStore : IPresetStore
     [
         ("LanguageCode", "varchar NOT NULL DEFAULT ''"),
         ("CustomOptionsJson", "varchar NOT NULL DEFAULT '{}'"),
+        ("AramaicSignOfCrossForm", "varchar NOT NULL DEFAULT 'formA'"),
         ("RemindersJson", "varchar NOT NULL DEFAULT '[]'"),
     ];
 

@@ -25,15 +25,30 @@ struct BasicPrayersView: View {
   /// Bumped after a move so the list re-derives from the saved order — the order lives in
   /// BasicPrayersOrder, not in view state, so the flows and every future surface agree on it.
   @State private var orderGeneration = 0
+  @AppStorage(BasicPrayerFavorites.moveToTopKey) private var favoritesFirst = false
 
   var body: some View {
     let _ = prayerLanguage.code  // dependency registration — see the property's comment
     let _ = orderGeneration
-    let ordered = BasicPrayersOrder.apply(BasicPrayerCatalog.all)
+    let _ = favoritesFirst
+    let ordered = BasicPrayerFavorites.apply(BasicPrayersOrder.apply(BasicPrayerCatalog.all))
     List {
       ForEach(ordered) { prayer in
-        NavigationLink(value: AppRoute.basicPrayer(id: prayer.id)) {
-          BasicPrayerRow(prayer: prayer)
+        HStack(spacing: 8) {
+          NavigationLink(value: AppRoute.basicPrayer(id: prayer.id)) {
+            BasicPrayerRow(prayer: prayer)
+          }
+          Button {
+            BasicPrayerFavorites.toggle(prayer.id)
+            orderGeneration += 1
+          } label: {
+            Image(systemName: BasicPrayerFavorites.contains(prayer.id) ? "star.fill" : "star")
+              .foregroundStyle(BasicPrayerFavorites.contains(prayer.id) ? .yellow : .secondary)
+          }
+          .buttonStyle(.plain)
+          .accessibilityLabel(BasicPrayerFavorites.contains(prayer.id)
+            ? String(localized: "basicPrayers.unfavorite", defaultValue: "Remove from favorites")
+            : String(localized: "basicPrayers.favorite", defaultValue: "Add to favorites"))
         }
       }
       // Reorderable per Erez (2026-08-08): drag on macOS, Edit mode on iOS. The same

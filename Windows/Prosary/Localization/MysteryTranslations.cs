@@ -30,31 +30,11 @@ public static partial class MysteryTranslations
 
     public static MysteryText Get(string? languageCode, string imageKey)
     {
-        if (languageCode is not null)
+        foreach (var code in Prosary.Models.LanguageCatalog.FallbackChain(languageCode))
         {
-            var packOverride = PrayerPackStore.MysteryOverride(languageCode, imageKey);
+            var packOverride = PrayerPackStore.MysteryOverride(code, imageKey);
             if (packOverride is not null) return packOverride;
-        }
-
-        if (languageCode is not null && ByLanguage.TryGetValue(languageCode, out var table) &&
-            table.TryGetValue(imageKey, out var text))
-        {
-            return text;
-        }
-
-        // Community variants ("he-x-gamliel") overlay their base language, exactly as
-        // PrayerTranslations.Get does — without this step a rite that ships no mystery texts of
-        // its own announced the mysteries in *Latin* while the rest of the session prayed Hebrew.
-        if (languageCode is not null && Prosary.Models.LanguageCatalog.BaseLanguage(languageCode) is { } baseCode)
-        {
-            var basePackOverride = PrayerPackStore.MysteryOverride(baseCode, imageKey);
-            if (basePackOverride is not null) return basePackOverride;
-
-            if (ByLanguage.TryGetValue(baseCode, out var baseTable) &&
-                baseTable.TryGetValue(imageKey, out var baseText))
-            {
-                return baseText;
-            }
+            if (ByLanguage.TryGetValue(code, out var table) && table.TryGetValue(imageKey, out var text)) return text;
         }
 
         // Pack-provided Latin before the hardcoded Latin table — some mystery texts (the Seven

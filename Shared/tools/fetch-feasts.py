@@ -24,7 +24,7 @@ Calendars and their sources:
                          ferias are omitted the same way ferial days are omitted elsewhere).
   feasts-syriac.json     West Syriac — Syriac Catholic: Evangelizo.org's Daily Gospel
                          publication API (the "SYE" English Syriac-calendar edition — the
-                         very rite Erez's apostolate belongs to), one request per day, taking
+                         very rite Erez's Mission belongs to), one request per day, taking
                          only the liturgical day title; ferial days arrive as plain date
                          titles ("The fourteenth day of August") and are skipped. CREDIT IS
                          REQUIRED AND GIVEN — dataset comment, ARCHITECTURE.md, and every

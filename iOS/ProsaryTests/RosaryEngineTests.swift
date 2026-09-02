@@ -38,9 +38,11 @@ final class RosaryEngineTests: XCTestCase {
     includeMichael: Bool = false,
     includeFinalCross: Bool = true,
     presenterMode: Bool = false,
-    imageStyle: MysteryImageStyle = .classic
+    imageStyle: MysteryImageStyle = .classic,
+    language: String = LanguageCatalog.defaultSentinel,
+    aramaicSignOfCrossForm: String = AramaicSignOfCrossForm.formA
   ) -> Prayer {
-    Prayer(rosary: RosaryOptions(
+    Prayer(languageCode: language, rosary: RosaryOptions(
       mysterySelectionMode: mode,
       specificMysteryGroup: group,
       specificMysteryOrder: order,
@@ -52,6 +54,7 @@ final class RosaryEngineTests: XCTestCase {
       includeClosingIntentions: closingIntentions,
       includeStMichaelPrayer: includeMichael,
       includeFinalSignOfCross: includeFinalCross,
+      aramaicSignOfCrossForm: aramaicSignOfCrossForm,
       presenterMode: presenterMode,
       mysteryImageStyle: imageStyle
     ))
@@ -97,6 +100,42 @@ final class RosaryEngineTests: XCTestCase {
     let with = engine.buildSteps(for: prayer(includeFinalCross: true)).count
     let without = engine.buildSteps(for: prayer(includeFinalCross: false)).count
     XCTAssertEqual(without, with - 1)
+  }
+
+  func testAramaicSignOfCrossUsesPerRosaryFormUntilAramaicBecomesTheAppDefault() {
+    let defaults = UserDefaults.standard
+    let savedDefault = defaults.string(forKey: "defaultLanguageCode")
+    let savedForm = defaults.string(forKey: AramaicSignOfCrossForm.defaultsKey)
+    defer {
+      if let savedDefault { defaults.set(savedDefault, forKey: "defaultLanguageCode") }
+      else { defaults.removeObject(forKey: "defaultLanguageCode") }
+      if let savedForm { defaults.set(savedForm, forKey: AramaicSignOfCrossForm.defaultsKey) }
+      else { defaults.removeObject(forKey: AramaicSignOfCrossForm.defaultsKey) }
+    }
+
+    defaults.set("en", forKey: "defaultLanguageCode")
+    defaults.set(AramaicSignOfCrossForm.formB, forKey: AramaicSignOfCrossForm.defaultsKey)
+
+    let formA = makeEngine().buildSteps(for: prayer(
+      language: "arc", aramaicSignOfCrossForm: AramaicSignOfCrossForm.formA))
+    XCTAssertEqual(formA.first?.body,
+                   "בשמָא דַאבָא ודַברָא ודרוּחָא קַדִישָא, חַד אַלָהָא שַרִירָא. אַמִין.")
+    XCTAssertEqual(formA.first?.transliteratedBody,
+                   "ܒܫܡܳܐ ܕܰܐܒܳܐ ܘܕܰܒܪܳܐ ܘܕܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ، ܚܰܕ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܐܰܡܺܝܢ.")
+    XCTAssertEqual(formA.last?.body, formA.first?.body)
+
+    let formB = makeEngine().buildSteps(for: prayer(
+      language: "arc", aramaicSignOfCrossForm: AramaicSignOfCrossForm.formB))
+    XCTAssertEqual(formB.first?.body,
+                   "בשֶם אַבָא ובַרָא ורוּחָא קַדִישָא، חַד אַלָהָא שַרִירָא. אַמִין.")
+    XCTAssertEqual(formB.first?.transliteratedBody,
+                   "ܒܫܶܡ ܐܰܒܳܐ ܘܒܰܪܳܐ ܘܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ، ܚܰܕ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܐܰܡܺܝܢ.")
+
+    defaults.set("arc", forKey: "defaultLanguageCode")
+    let systemWide = makeEngine().buildSteps(for: prayer(
+      language: "arc", aramaicSignOfCrossForm: AramaicSignOfCrossForm.formA))
+    XCTAssertEqual(systemWide.first?.body, formB.first?.body,
+                   "the app-wide form wins once Aramaic is the default")
   }
 
   func testStMichaelPrayerAddsOneStep() {

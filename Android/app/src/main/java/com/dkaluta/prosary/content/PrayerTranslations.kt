@@ -7,20 +7,9 @@ import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
  * per-language tables. */
 object PrayerTranslations {
     fun get(languageCode: String?, key: PrayerKey): String {
-        if (languageCode != null) {
-            val override = PrayerPackStore.prayerOverride(languageCode, key)
-            if (override != null) return override
-        }
-
-        val table = languageCode?.let { byLanguage[it] }
-        val text = table?.get(key)
-        if (text != null) return text
-
-        // Community variants ("he-x-gamliel") overlay their base language before Latin.
-        val base = languageCode?.let { com.dkaluta.prosary.models.LanguageCatalog.baseLanguage(it) }
-        if (base != null) {
-            PrayerPackStore.prayerOverride(base, key)?.let { return it }
-            byLanguage[base]?.get(key)?.let { return it }
+        for (code in com.dkaluta.prosary.models.LanguageCatalog.fallbackChain(languageCode)) {
+            PrayerPackStore.prayerOverride(code, key)?.let { return it }
+            byLanguage[code]?.get(key)?.let { return it }
         }
 
         return prayerTranslationsLatin[key] ?: key.name

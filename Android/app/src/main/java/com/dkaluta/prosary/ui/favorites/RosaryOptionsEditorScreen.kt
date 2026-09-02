@@ -45,7 +45,12 @@ import com.dkaluta.prosary.ui.presets.OptionPickerField
  * ViewModel — see FavoriteEditorScreen's own state-ownership comment. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RosaryOptionsEditorScreen(rosary: RosaryOptions, onRosaryChange: (RosaryOptions) -> Unit, onBack: () -> Unit) {
+fun RosaryOptionsEditorScreen(
+    rosary: RosaryOptions,
+    onRosaryChange: (RosaryOptions) -> Unit,
+    onBack: () -> Unit,
+    languageCode: String = LanguageCatalog.resolve(null).code,
+) {
     BackHandler(onBack = onBack)
     val context = LocalContext.current
 
@@ -160,7 +165,7 @@ fun RosaryOptionsEditorScreen(rosary: RosaryOptions, onRosaryChange: (RosaryOpti
                     label = stringResource(R.string.ro_marian_antiphon),
                     options = MarianAntiphonOption.entries,
                     selected = rosary.marianAntiphon,
-                    optionLabel = { context.getString(it.displayNameRes) },
+                    optionLabel = { it.displayName(context, languageCode) },
                     onSelect = { onRosaryChange(rosary.copy(marianAntiphon = it)) },
                     modifier = Modifier.fillMaxWidth(),
                 )

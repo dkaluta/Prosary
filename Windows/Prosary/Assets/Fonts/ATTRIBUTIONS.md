@@ -4,10 +4,28 @@
 |---|---|---|---|
 | OpenSans-Regular.ttf / OpenSans-Semibold.ttf | Open Sans | Apache 2.0 | (legacy; no longer applied anywhere by default) |
 | FrankRuhlLibre-Variable.ttf | Frank Ruhl Libre | SIL OFL 1.1 | Hebrew prayers (non-Scripture) |
+| DavidLibre-Regular.ttf | David Libre | SIL OFL 1.1 | Optional Hebrew serif prayer face |
+| NotoSansHebrew-Variable.ttf | Noto Sans Hebrew (Google) | SIL OFL 1.1 | Android fallback for the optional Roboto prayer face |
+| Roboto-Variable.ttf | Roboto (Google) | SIL OFL 1.1 | Android-only optional sans-serif prayer face |
 | ShofarRegular.ttf | Shofar (Culmus Project, Yoram Gnat) | GPL v2 **with font-embedding exception** | Hebrew Scripture (mystery meditations) |
+| StamAshkenazCLM.ttf | Stam Ashkenaz CLM (Culmus Project, Yoram Gnat) | GPL v2 **with font-embedding exception** | Optional Ashkenazi Torah-script Scripture face |
+| StamSefaradCLM.ttf | Stam Sefarad CLM (Culmus Project, Yoram Gnat) | GPL v2 **with font-embedding exception** | Optional Sephardi Torah-script Scripture face |
+| NotoRashiHebrew-Variable.ttf | Noto Rashi Hebrew (Google) | SIL OFL 1.1 | Optional Rashi-style Hebrew Scripture face |
 | Amiri-Regular.ttf | Amiri | SIL OFL 1.1 | Arabic prayers (non-Scripture) |
 | ScheherazadeNew-Regular.ttf | Scheherazade New (SIL) | SIL OFL 1.1 | Arabic Scripture (mystery meditations) |
 | Cardo-Regular.ttf | Cardo (David J. Perry) | SIL OFL 1.1 | Latin/English Scripture (mystery meditations) |
+| NotoSansSyriac-Variable.ttf | Noto Sans Syriac (Google) | SIL OFL 1.1 | Aramaic in Syriac letters (the script toggle only) |
+| NotoSansSyriacWestern-Variable.ttf | Noto Sans Syriac Western (Google) | SIL OFL 1.1 | Optional Western Aramaic Syriac-script face |
+| NotoSansSyriacEastern-Variable.ttf | Noto Sans Syriac Eastern (Google) | SIL OFL 1.1 | Optional Eastern Aramaic Syriac-script face |
+
+## Why a Syriac face at all
+
+No language in the catalogue writes its own text in Syriac letters: `arc` is Aramaic *in Hebrew
+script*, which is what the Aramaic-rite Hebrew Catholic communities read. The Syriac face exists
+purely for the prayer flow's script toggle, which shows the same Aramaic text in the alphabet the
+Peshitta itself is written in. None of the non-Syriac faces covers the Syriac block — checked
+against their OS/2 Unicode ranges, not assumed — so without this one the toggle would draw a row
+of tofu, which is worse than not offering it.
 
 ## Why not the original "Frank Ruehl CLM"?
 
@@ -23,6 +41,29 @@ Shofar (also Culmus Project, but by Yoram Gnat) **does** carry the exception —
 states: "if you create a document which uses this font, and embed this font ... into the document,
 this font does not by itself cause the resulting document to be covered by the GNU General Public
 License." Confirmed safe to embed as-is.
+
+The two optional Stam faces carry the same exception and are embedded unmodified. Their supplied
+copyright and exception notices are preserved here verbatim:
+
+> Stam Ashkenaz font is copyright 2007-2010 by Yoram Gnat (yoram.gnat@gmail.com).
+> As a special exception, if you create a document which uses this font, and
+> embed this font or unaltered portions of this font into the document, this
+> font does not by itself cause the resulting document to be covered by the
+> GNU General Public License. This exception does not however invalidate any
+> other reasons why the document might be covered by the GNU General Public
+> License. If you modify this font, you may extend this exception to your
+> version of the font, but you are not obligated to do so. If you do not wish
+> to do so, delete this exception statement from your version.
+
+> Stam Sefarad font is copyright 2008-2010 by Yoram Gnat (yoram.gnat@gmail.com).
+> As a special exception, if you create a document which uses this font, and
+> embed this font or unaltered portions of this font into the document, this
+> font does not by itself cause the resulting document to be covered by the
+> GNU General Public License. This exception does not however invalidate any
+> other reasons why the document might be covered by the GNU General Public
+> License. If you modify this font, you may extend this exception to your
+> version of the font, but you are not obligated to do so. If you do not wish
+> to do so, delete this exception statement from your version.
 
 ## Scripture vs. prayer typography
 

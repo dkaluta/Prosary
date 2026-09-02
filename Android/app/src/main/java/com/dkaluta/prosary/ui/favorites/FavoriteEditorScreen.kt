@@ -44,6 +44,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.dkaluta.prosary.R
+import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.JesusPrayerOptions
 import com.dkaluta.prosary.models.JesusPrayerTarget
 import com.dkaluta.prosary.models.LanguageCatalog
@@ -100,6 +101,7 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
             rosary = prayer.rosary,
             onRosaryChange = { prayer = prayer.copy(rosary = it) },
             onBack = { showingRosaryOptions = false },
+            languageCode = LanguageCatalog.resolve(prayer.languageCode).code,
         )
         return
     }
@@ -163,17 +165,11 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
             FormSection(title = stringResource(R.string.editor_prayer_language)) {
                 val defaultName = LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).nativeName
                 val languageOptions = listOf(LanguageCatalog.defaultSentinel) + LanguageCatalog.all.map { it.code }
-                // The stored code may name a rite ("he-x-gamliel"), so this row shows its base
-                // language and the rite row below chooses among that language's uses.
-                val storedBase = if (prayer.languageCode == LanguageCatalog.defaultSentinel) {
-                    prayer.languageCode
-                } else {
-                    LanguageCatalog.baseLanguage(prayer.languageCode) ?: prayer.languageCode
-                }
+                val storedCode = prayer.languageCode
                 OptionPickerField(
                     label = stringResource(R.string.editor_language),
                     options = languageOptions,
-                    selected = storedBase,
+                    selected = storedCode,
                     optionLabel = { code ->
                         if (code == LanguageCatalog.defaultSentinel) {
                             context.getString(R.string.language_default_dash, defaultName)
@@ -181,27 +177,35 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
                             LanguageCatalog.resolve(code).nativeName
                         }
                     },
-                    onSelect = { code ->
-                        val kept = if (code == LanguageCatalog.defaultSentinel) {
-                            code
-                        } else {
-                            LanguageCatalog.rites(code).firstOrNull()?.code ?: code
-                        }
-                        prayer = prayer.copy(languageCode = kept)
-                    },
+                    onSelect = { code -> prayer = prayer.copy(languageCode = code) },
                     modifier = Modifier.fillMaxWidth(),
                 )
 
-                // Only for a language prayed in more than one use; a rite that lacks a prayer
-                // reads it in the language's own wording, so this is a preference, not a limit.
-                val rites = LanguageCatalog.rites(prayer.languageCode)
-                if (rites.size > 1) {
+                val appDefaultBase = LanguageCatalog.baseLanguage(AppSettings.defaultLanguageCode)
+                    ?: AppSettings.defaultLanguageCode
+                if (
+                    prayer.kind == PrayerKind.Rosary && storedCode == "arc" &&
+                    appDefaultBase != "arc"
+                ) {
                     OptionPickerField(
-                        label = stringResource(R.string.settings_rite),
-                        options = rites.map { it.code },
-                        selected = prayer.languageCode,
-                        optionLabel = { code -> rites.first { it.code == code }.nativeName },
-                        onSelect = { prayer = prayer.copy(languageCode = it) },
+                        label = stringResource(R.string.settings_aramaic_sign_of_cross),
+                        options = listOf(
+                            AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_A,
+                            AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B,
+                        ),
+                        selected = prayer.rosary.aramaicSignOfCrossForm,
+                        optionLabel = {
+                            context.getString(
+                                if (it == AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B) {
+                                    R.string.settings_aramaic_sign_of_cross_form_b
+                                } else {
+                                    R.string.settings_aramaic_sign_of_cross_form_a
+                                },
+                            )
+                        },
+                        onSelect = {
+                            prayer = prayer.copy(rosary = prayer.rosary.copy(aramaicSignOfCrossForm = it))
+                        },
                         modifier = Modifier.fillMaxWidth(),
                     )
                 }

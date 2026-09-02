@@ -6,7 +6,19 @@ namespace Prosary.Services;
 /// "Optional Memorial" (Roman), "1st Class" … "3rd Class" (1962).</summary>
 public sealed record FeastDay(string Title, string Rank);
 
-public sealed record PopeIntention(string Title, string Text);
+public sealed record PopeIntention(
+    string Title,
+    string Text,
+    Dictionary<string, string>? TitleByLanguage,
+    Dictionary<string, string>? TextByLanguage)
+{
+    public string LocalizedTitle(string language) => TitleByLanguage?.GetValueOrDefault(language) ?? Title;
+    public string LocalizedText(string language) => TextByLanguage?.GetValueOrDefault(language) ?? Text;
+}
+
+public sealed record ReadingCitation(string Type, string Short, string Full, string Hebrew);
+
+public sealed record LiturgicalDayInfo(string English, string Hebrew);
 
 /// <summary>
 /// Backs the Pray tab's "Today" section: the day's feast per the selected liturgical
@@ -53,15 +65,21 @@ public static class TodayInfoStore
 
     private sealed record IntentionsFile(Dictionary<string, PopeIntention>? Months);
 
+    private sealed record ReadingDay(List<ReadingCitation>? Readings);
+
+    private sealed record ReadingsFile(Dictionary<string, ReadingDay>? Days);
+
     private sealed record CalendarsFile(string? Default, List<FeastCalendar>? Calendars);
 
     private static readonly JsonSerializerOptions JsonOptions = new() { PropertyNameCaseInsensitive = true };
 
     private static Dictionary<string, FeastDay> _feastsByDay = new();
     private static Dictionary<string, PopeIntention> _intentionsByMonth = new();
+    private static Dictionary<string, ReadingDay> _readingsByDay = new();
     private static CalendarsFile? _registry;
     private static bool _didLoadRegistry;
     private static bool _didLoadIntentions;
+    private static bool _didLoadReadings;
     private static string? _loadedCalendarId;
 
     /// <summary>The stored calendar selection — App startup and Settings assign it from
@@ -114,6 +132,60 @@ public static class TodayInfoStore
         return _intentionsByMonth.GetValueOrDefault(date.ToString("yyyy-MM"));
     }
 
+    public static IReadOnlyList<ReadingCitation> Readings(DateOnly date)
+    {
+        EnsureReadingsLoaded();
+        return _readingsByDay.GetValueOrDefault(date.ToString("yyyy-MM-dd"))?.Readings ?? [];
+    }
+
+    public static LiturgicalDayInfo LiturgicalDay(DateOnly date)
+    {
+        var year = date.Year;
+        var easter = ComputeEasterSunday(year);
+        var ashWednesday = easter.AddDays(-46);
+        var pentecost = easter.AddDays(49);
+        var advent = FirstSundayOnOrAfter(new DateOnly(year, 11, 27));
+        var christmas = new DateOnly(year, 12, 25);
+        var baptism = FirstSundayOnOrAfter(new DateOnly(year, 1, 7));
+        var christmasStart = date.Month == 1 ? new DateOnly(year - 1, 12, 25) : christmas;
+
+        (string English, string Hebrew, int Week) season = date switch
+        {
+            _ when date >= ashWednesday && date < easter => ("Lent", "בצום", Week(ashWednesday, date)),
+            _ when date >= easter && date <= pentecost => ("Easter Season", "בזמן הפסחא", Week(easter, date)),
+            _ when date >= advent && date < christmas => ("Advent", "בזמן הציפייה", Week(advent, date)),
+            _ when date >= christmasStart && (date < baptism || date >= christmas) =>
+                ("Christmas Season", "בזמן חג המולד", Week(christmasStart, date)),
+            _ when date > pentecost && date < advent =>
+                ("Ordinary Time", "בזמן הרגיל", Math.Max(1, 35 - (int)Math.Ceiling((advent.DayNumber - date.DayNumber) / 7.0))),
+            _ => ("Ordinary Time", "בזמן הרגיל", Week(baptism.AddDays(1), date)),
+        };
+
+        var englishWeekday = date.ToDateTime(TimeOnly.MinValue).ToString("dddd", System.Globalization.CultureInfo.GetCultureInfo("en-US"));
+        var hebrewWeekday = date.ToDateTime(TimeOnly.MinValue).ToString("dddd", System.Globalization.CultureInfo.GetCultureInfo("he-IL"));
+        return new LiturgicalDayInfo(
+            $"{englishWeekday} · Week {season.Week} of {season.English}",
+            $"{hebrewWeekday} · השבוע ה־{season.Week} {season.Hebrew}");
+    }
+
+    private static int Week(DateOnly origin, DateOnly date) => Math.Max(1, (date.DayNumber - origin.DayNumber) / 7 + 1);
+
+    private static DateOnly FirstSundayOnOrAfter(DateOnly date)
+    {
+        var offset = ((int)DayOfWeek.Sunday - (int)date.DayOfWeek + 7) % 7;
+        return date.AddDays(offset);
+    }
+
+    private static DateOnly ComputeEasterSunday(int year)
+    {
+        var a = year % 19; var b = year / 100; var c = year % 100; var d = b / 4; var e = b % 4;
+        var f = (b + 8) / 25; var g = (b - f + 1) / 3; var h = (19 * a + b - d - g + 15) % 30;
+        var i = c / 4; var k = c % 4; var l = (32 + 2 * e + 2 * i - h - k) % 7;
+        var m = (a + 11 * h + 22 * l) / 451; var month = (h + l - 7 * m + 114) / 31;
+        var day = (h + l - 7 * m + 114) % 31 + 1;
+        return new DateOnly(year, month, day);
+    }
+
     private static void EnsureRegistryLoaded()
     {
         if (_didLoadRegistry) return;
@@ -140,6 +212,13 @@ public static class TodayInfoStore
         _didLoadIntentions = true;
 
         _intentionsByMonth = LoadFile<IntentionsFile>("pope-intentions")?.Months ?? new Dictionary<string, PopeIntention>();
+    }
+
+    private static void EnsureReadingsLoaded()
+    {
+        if (_didLoadReadings) return;
+        _didLoadReadings = true;
+        _readingsByDay = LoadFile<ReadingsFile>("readings")?.Days ?? new Dictionary<string, ReadingDay>();
     }
 
     private static T? LoadFile<T>(string name) where T : class

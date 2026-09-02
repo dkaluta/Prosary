@@ -20,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </h1>
           <nav>
             <Link href="/">Browse</Link>
+            <a href="https://compose.prosary.app">Compose</a>
             <Link href="/submit">Submit</Link>
             <AccountLink />
           </nav>

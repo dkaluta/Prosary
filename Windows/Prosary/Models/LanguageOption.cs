@@ -32,7 +32,8 @@ public static class LanguageCatalog
         new("la", "Latina", false),
         new("en", "English", false),
         new("ar", "العربية", true),
-        new("he", "עברית", true),
+        new("he", "עברית — נוסח הנציגות", true),
+        new("he-x-gamliel", "עברית — נוסח השליחות", true),
         // Aramaic in Hebrew script — the Aramaic-rite communities' liturgical language.
         new("arc", "ארמית", true),
         // Greek: the language a great deal of the app's own Scripture and prayer was first
@@ -43,11 +44,47 @@ public static class LanguageCatalog
         new("tl", "Tagalog", false),
     ];
 
-    /// <summary>Rites (community uses) of one language: the same tongue, a different wording.
-    /// Listed under the language rather than beside it, because choosing "Hebrew" and choosing
-    /// *whose* Hebrew are two different questions — and because a rite that lacks a prayer falls
-    /// back to the language's own, so they are never truly separate languages. The first entry of
-    /// each list is the language's own (base) use; the rest overlay it.</summary>
+    /// <summary>Picker choices for a bundle's declared languages. The Mission is a sparse
+    /// overlay rather than a manifest language of its own, so every bundle offering Hebrew
+    /// exposes both sourced Hebrew uses as adjacent, independent choices.</summary>
+    public static IReadOnlyList<LanguageOption> AvailableOptions(IEnumerable<string> declaredCodes)
+    {
+        var available = declaredCodes
+            .SelectMany(code => code == "he" ? new[] { "he", "he-x-gamliel" } : new[] { code })
+            .ToHashSet();
+        return All.Where(language => available.Contains(language.Code)).ToList();
+    }
+
+    public static IReadOnlyList<string> FallbackOrder
+    {
+        get
+        {
+            var known = All.Select(l => l.Code).ToHashSet();
+            var result = AppSettings.LanguageFallbackOrder.Where(known.Contains).Distinct().ToList();
+            var defaults = All.Select(l => l.Code).Where(c => c != DefaultCode).Append(DefaultCode);
+            result.AddRange(defaults.Where(c => !result.Contains(c)));
+            return result;
+        }
+    }
+
+    public static IReadOnlyList<string> FallbackChain(string? requested)
+    {
+        var result = new List<string>();
+        void Append(string? code)
+        {
+            if (string.IsNullOrEmpty(code) || result.Contains(code)) return;
+            result.Add(code);
+            if (BaseLanguage(code) is { } baseCode && !result.Contains(baseCode)) result.Add(baseCode);
+        }
+        Append(string.IsNullOrEmpty(requested) ? AppSettings.DefaultLanguageCode : requested);
+        foreach (var code in FallbackOrder) Append(code);
+        Append(DefaultCode);
+        return result;
+    }
+
+    /// <summary>Legacy grouping metadata for the two Hebrew community uses. Pickers expose them
+    /// beside one another as independent prayer languages; the relationship remains useful when
+    /// resolving older stored codes and documenting the base-language fallback.</summary>
     public static readonly IReadOnlyDictionary<string, IReadOnlyList<LanguageOption>> RitesByLanguage =
         new Dictionary<string, IReadOnlyList<LanguageOption>>
         {
@@ -79,6 +116,7 @@ public static class LanguageCatalog
     /// base.</summary>
     private static LanguageOption Option(string? code)
     {
+        if (All.FirstOrDefault(l => l.Code == code) is { } exact) return exact;
         if (code is not null && Rites(code).FirstOrDefault(r => r.Code == code) is { } rite)
         {
             // A rite carries its language's name in pickers; its own name belongs to the rite row.

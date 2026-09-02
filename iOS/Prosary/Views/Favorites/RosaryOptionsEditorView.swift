@@ -13,10 +13,11 @@ import SwiftUI
 
 struct RosaryOptionsEditorView: View {
   @Binding var rosary: RosaryOptions
+  var languageCode = LanguageCatalog.resolve(nil).code
 
   var body: some View {
     Form {
-      RosaryOptionsSections(rosary: $rosary)
+      RosaryOptionsSections(rosary: $rosary, languageCode: languageCode)
     }
     .formStyle(.grouped)
     .navigationTitle("favoriteEditor.rosaryOptionsTitle")
@@ -32,6 +33,7 @@ struct RosaryOptionsEditorView: View {
 /// clipped stub (and its navigationTitle wins), which is exactly how that sheet used to render.
 struct RosaryOptionsSections: View {
   @Binding var rosary: RosaryOptions
+  var languageCode = LanguageCatalog.resolve(nil).code
 
   var body: some View {
     Group {
@@ -87,7 +89,7 @@ struct RosaryOptionsSections: View {
       Section("favoriteEditor.closingPrayers") {
         Picker("favoriteEditor.marianAntiphon", selection: $rosary.marianAntiphon) {
           ForEach(MarianAntiphonOption.allCases) { option in
-            Text(option.displayName).tag(option)
+            Text(option.displayName(languageCode: languageCode)).tag(option)
           }
         }
         Toggle("favoriteEditor.closingIntentions", isOn: $rosary.includeClosingIntentions)

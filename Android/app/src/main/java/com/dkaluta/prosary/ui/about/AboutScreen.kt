@@ -84,6 +84,9 @@ fun AboutScreen(onBack: () -> Unit) {
                 BoldLeadLine("Amiri", stringResource(R.string.about_typeface_amiri))
                 BoldLeadLine("Scheherazade New", stringResource(R.string.about_typeface_scheherazade))
                 BoldLeadLine("Cardo", stringResource(R.string.about_typeface_cardo))
+                BoldLeadLine("Noto Sans Syriac", stringResource(R.string.about_typeface_noto_syriac))
+                BoldLeadLine("David Libre, Noto Sans Hebrew, Noto Rashi Hebrew & Roboto", stringResource(R.string.about_typeface_optional_hebrew))
+                BoldLeadLine("Stam Ashkenaz & Stam Sefarad", stringResource(R.string.about_typeface_stam))
                 Text(
                     stringResource(R.string.about_typefaces_footer),
                     style = MaterialTheme.typography.bodySmall,
@@ -223,6 +226,5 @@ private fun ItalicLeadLine(line: String) {
 
     Text(annotated)
 }
-
 
 

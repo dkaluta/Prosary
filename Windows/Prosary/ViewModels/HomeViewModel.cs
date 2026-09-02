@@ -78,21 +78,63 @@ public partial class HomeViewModel : ObservableObject
         ? TodayInfoStore.Intention(DateOnly.FromDateTime(DateTime.Today))
         : null;
 
-    public bool ShowsTodaySection => TodayFeast is not null || MonthIntention is not null;
+    public LiturgicalDayInfo TodayDay { get; } = TodayInfoStore.LiturgicalDay(DateOnly.FromDateTime(DateTime.Today));
+
+    public IReadOnlyList<ReadingCitation> TodayReadings { get; } =
+        TodayInfoStore.Readings(DateOnly.FromDateTime(DateTime.Today));
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(TodayDayText))]
+    [NotifyPropertyChangedFor(nameof(MonthIntentionTitle))]
+    [NotifyPropertyChangedFor(nameof(MonthIntentionText))]
+    [NotifyPropertyChangedFor(nameof(ReadingsText))]
+    [NotifyPropertyChangedFor(nameof(TodayLanguageButtonText))]
+    private bool _todayInHebrew = AppSettings.DefaultLanguageCode.StartsWith("he", StringComparison.OrdinalIgnoreCase);
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ReadingsText))]
+    [NotifyPropertyChangedFor(nameof(CitationButtonText))]
+    private bool _showsFullCitations;
+
+    public bool ShowsTodaySection => true;
 
     public bool ShowsTodayFeast => TodayFeast is not null;
 
     public bool ShowsMonthIntention => MonthIntention is not null;
+
+    public bool ShowsTodayReadings => TodayReadings.Count > 0;
+
+    public string TodayDayText => TodayInHebrew ? TodayDay.Hebrew : TodayDay.English;
+
+    public string TodayLanguageButtonText => TodayInHebrew
+        ? Loc.Tr("home_today_show_english", "English")
+        : "עברית";
 
     public string TodayFeastTitle => TodayFeast?.Title ?? string.Empty;
 
     public string TodayFeastRank => TodayFeast?.Rank ?? string.Empty;
 
     public string MonthIntentionTitle => MonthIntention is { } intention
-        ? string.Format(Loc.Tr("home_pope_intention", "The Pope’s intention: {0}"), intention.Title)
+        ? TodayInHebrew
+            ? $"כוונת האפיפיור: {intention.LocalizedTitle("he")}"
+            : string.Format(Loc.Tr("home_pope_intention", "The Pope’s intention: {0}"), intention.LocalizedTitle("en"))
         : string.Empty;
 
-    public string MonthIntentionText => MonthIntention?.Text ?? string.Empty;
+    public string MonthIntentionText => MonthIntention?.LocalizedText(TodayInHebrew ? "he" : "en") ?? string.Empty;
+
+    public string ReadingsText => ShowsFullCitations
+        ? string.Join(Environment.NewLine, TodayReadings.Select(r => TodayInHebrew ? r.Hebrew : r.Full))
+        : string.Join(", ", TodayReadings.Select(r => r.Short));
+
+    public string CitationButtonText => ShowsFullCitations
+        ? Loc.Tr("home_today_compact_citations", "Show shorthand")
+        : Loc.Tr("home_today_full_citations", "View full citations");
+
+    [RelayCommand]
+    private void ToggleTodayLanguage() => TodayInHebrew = !TodayInHebrew;
+
+    [RelayCommand]
+    private void ToggleCitations() => ShowsFullCitations = !ShowsFullCitations;
 
     public HomeViewModel(IPresetStore presets, LiturgicalCalendarService calendar)
     {

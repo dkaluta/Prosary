@@ -16,10 +16,10 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
     {
     }
 
-    private static Prayer SpecificRosary(RosaryOptions? options = null) => new()
+    private static Prayer SpecificRosary(RosaryOptions? options = null, string languageCode = "en") => new()
     {
         Kind = PrayerKind.Rosary,
-        LanguageCode = "en",
+        LanguageCode = languageCode,
         Rosary = options ?? new RosaryOptions
         {
             MysterySelectionMode = MysterySelectionMode.Specific,
@@ -119,6 +119,59 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
         });
         var steps = _engine.BuildSteps(prayer);
         Assert.NotEqual("Sign of the Cross", steps[^1].Title);
+    }
+
+    [Fact]
+    public void AramaicSignOfCrossUsesPerRosaryFormUntilAramaicBecomesTheAppDefault()
+    {
+        var savedDefault = AppSettings.DefaultLanguageCode;
+        var savedForm = AppSettings.AramaicSignOfCrossForm;
+        try
+        {
+            AppSettings.SetDefaultLanguageCode("en");
+            AppSettings.SetAramaicSignOfCrossForm(AppSettings.AramaicSignOfCrossFormB);
+
+            var formA = _engine.BuildSteps(SpecificRosary(new RosaryOptions
+            {
+                MysterySelectionMode = MysterySelectionMode.Specific,
+                SpecificMysteryGroup = MysteryGroup.Joyful,
+                AramaicSignOfCrossForm = AppSettings.AramaicSignOfCrossFormA,
+            }, "arc"));
+            Assert.Equal(
+                "בשמָא דַאבָא ודַברָא ודרוּחָא קַדִישָא, חַד אַלָהָא שַרִירָא. אַמִין.",
+                formA[0].Body);
+            Assert.Equal(
+                "ܒܫܡܳܐ ܕܰܐܒܳܐ ܘܕܰܒܪܳܐ ܘܕܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ، ܚܰܕ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܐܰܡܺܝܢ.",
+                formA[0].TransliteratedBody);
+            Assert.Equal(formA[0].Body, formA[^1].Body);
+
+            var formB = _engine.BuildSteps(SpecificRosary(new RosaryOptions
+            {
+                MysterySelectionMode = MysterySelectionMode.Specific,
+                SpecificMysteryGroup = MysteryGroup.Joyful,
+                AramaicSignOfCrossForm = AppSettings.AramaicSignOfCrossFormB,
+            }, "arc"));
+            Assert.Equal(
+                "בשֶם אַבָא ובַרָא ורוּחָא קַדִישָא، חַד אַלָהָא שַרִירָא. אַמִין.",
+                formB[0].Body);
+            Assert.Equal(
+                "ܒܫܶܡ ܐܰܒܳܐ ܘܒܰܪܳܐ ܘܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ، ܚܰܕ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܐܰܡܺܝܢ.",
+                formB[0].TransliteratedBody);
+
+            AppSettings.SetDefaultLanguageCode("arc");
+            var systemWide = _engine.BuildSteps(SpecificRosary(new RosaryOptions
+            {
+                MysterySelectionMode = MysterySelectionMode.Specific,
+                SpecificMysteryGroup = MysteryGroup.Joyful,
+                AramaicSignOfCrossForm = AppSettings.AramaicSignOfCrossFormA,
+            }, "arc"));
+            Assert.Equal(formB[0].Body, systemWide[0].Body);
+        }
+        finally
+        {
+            AppSettings.SetDefaultLanguageCode(savedDefault);
+            AppSettings.SetAramaicSignOfCrossForm(savedForm);
+        }
     }
 
     [Fact]

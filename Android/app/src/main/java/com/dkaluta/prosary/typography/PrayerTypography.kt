@@ -6,6 +6,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.sp
 import com.dkaluta.prosary.R
+import com.dkaluta.prosary.models.AppSettings
 
 /**
  * Resolves the serif typeface used for prayer/Scripture body text, per language and content
@@ -19,12 +20,22 @@ object PrayerTypography {
     private val cardo = FontFamily(Font(R.font.cardo_regular))
     private val frankRuhlLibre = FontFamily(Font(R.font.frank_ruhl_libre_regular))
     private val shofar = FontFamily(Font(R.font.shofar_regular))
+    private val davidLibre = FontFamily(Font(R.font.david_libre_regular))
+    private val robotoWithNotoHebrewFallback = FontFamily(
+        Font(R.font.roboto_regular),
+        Font(R.font.noto_sans_hebrew_regular),
+    )
+    private val notoRashiHebrew = FontFamily(Font(R.font.noto_rashi_hebrew_regular))
+    private val stamAshkenaz = FontFamily(Font(R.font.stam_ashkenaz_clm))
+    private val stamSefarad = FontFamily(Font(R.font.stam_sefarad_clm))
     private val amiri = FontFamily(Font(R.font.amiri_regular))
     private val scheherazadeNew = FontFamily(Font(R.font.scheherazade_new_regular))
 
     /** Only ever reached through a transliteration: no language ships its own text in Syriac
      * letters, because "arc" is Aramaic in Hebrew script. */
     private val notoSansSyriac = FontFamily(Font(R.font.noto_sans_syriac_regular))
+    private val notoSansSyriacWestern = FontFamily(Font(R.font.noto_sans_syriac_western_regular))
+    private val notoSansSyriacEastern = FontFamily(Font(R.font.noto_sans_syriac_eastern_regular))
 
     /** The writing system a run of text is actually in.
      *
@@ -68,13 +79,24 @@ object PrayerTypography {
         // Android while iOS drew them whole. The scripture line height also gains headroom:
         // te'amim above and vowels below need more than 1.4em or neighbouring lines collide.
         Script.Hebrew -> if (isScripture) {
+            val family = when (AppSettings.hebrewScriptureTypeface) {
+                AppSettings.TYPEFACE_STAM_ASHKENAZ -> stamAshkenaz
+                AppSettings.TYPEFACE_STAM_SEFARAD -> stamSefarad
+                AppSettings.TYPEFACE_RASHI -> notoRashiHebrew
+                else -> shofar
+            }
             TextStyle(
-                fontFamily = shofar, fontSize = 16.sp, lineHeight = 26.sp,
+                fontFamily = family, fontSize = 16.sp, lineHeight = 26.sp,
                 platformStyle = PlatformTextStyle(includeFontPadding = true),
             )
         } else {
+            val family = when (AppSettings.hebrewPrayerTypeface) {
+                AppSettings.TYPEFACE_DAVID_LIBRE -> davidLibre
+                AppSettings.TYPEFACE_SANS_SERIF -> robotoWithNotoHebrewFallback
+                else -> frankRuhlLibre
+            }
             TextStyle(
-                fontFamily = frankRuhlLibre, fontSize = 21.sp, lineHeight = 29.sp,
+                fontFamily = family, fontSize = 21.sp, lineHeight = 29.sp,
                 platformStyle = PlatformTextStyle(includeFontPadding = true),
             )
         }
@@ -93,7 +115,15 @@ object PrayerTypography {
 
         // Without a face covering the block the toggle would draw a line of tofu, which is
         // worse than not offering it at all.
-        Script.Syriac -> TextStyle(fontFamily = notoSansSyriac, fontSize = 19.sp, lineHeight = 27.sp)
+        Script.Syriac -> TextStyle(
+            fontFamily = when (AppSettings.syriacTypeface) {
+                AppSettings.TYPEFACE_WESTERN -> notoSansSyriacWestern
+                AppSettings.TYPEFACE_EASTERN -> notoSansSyriacEastern
+                else -> notoSansSyriac
+            },
+            fontSize = 19.sp,
+            lineHeight = 27.sp,
+        )
 
         Script.Latin -> if (isScripture) {
             TextStyle(fontFamily = cardo, fontSize = 19.sp, lineHeight = 27.sp)

@@ -33,13 +33,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Feast calendar data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar via Missale Meum (missalemeum.com); the Syriac Catholic calendar and the Roman lectionary calendar in Hebrew courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic table compiled in-app from the traditional sources."
+            "value" : "Calendar and readings data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar via Missale Meum (missalemeum.com); the Syriac Catholic calendar, the Roman lectionary calendar in Hebrew, and daily Roman-lectionary citations courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic table compiled in-app from the traditional sources."
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "נתוני לוחות החגים: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 מ־Missale Meum‏ (missalemeum.com); הלוח הסורי-קתולי ולוח המקראות הרומי בעברית באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; הלוח האוקראיני-קתולי נערך באפליקציה מן המקורות המסורתיים."
+            "value" : "נתוני לוחות ומקראות: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 מ־Missale Meum‏ (missalemeum.com); הלוח הסורי-קתולי, לוח המקראות הרומי בעברית ומראי המקום היומיים של המקראות באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; הלוח האוקראיני-קתולי נערך באפליקציה מן המקורות המסורתיים."
           }
         }
       }
@@ -441,7 +441,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The collection of illustrations of the Mysteries in the Eastern style is used with approval from the St. Gamliel Apostolate for Hebrew Catholics in the Aramaic (Syriac) Catholic Church."
+            "value" : "The collection of illustrations of the Mysteries in the Eastern style is used with approval from the Mission of St. Gamaliel for Hebrew Catholics in the Aramaic (Syriac) Catholic Church."
           }
         },
         "he" : {
@@ -868,6 +868,57 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "**Cardo** — רישיון SIL Open Font 1.1 — פסוקי מקרא בלטינית ובאנגלית (David J. Perry)."
+          }
+        }
+      }
+    },
+    "about.typefaces.notoSyriac" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Noto Sans Syriac, Western & Eastern** — SIL Open Font License 1.1 — selectable Syriac-script Aramaic faces."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Noto Sans Syriac, מערבי ומזרחי** — רישיון SIL Open Font 1.1 — גופנים לבחירה לארמית בכתב סורי."
+          }
+        }
+      }
+    },
+    "about.typefaces.optionalHebrew" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**David Libre, Noto Sans Hebrew & Noto Rashi Hebrew** — SIL Open Font License 1.1 — optional Hebrew prayer and Scripture faces."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**David Libre, Noto Sans Hebrew ו־Noto Rashi Hebrew** — רישיון SIL Open Font 1.1 — גופנים לבחירה לתפילות ולכתבי הקודש בעברית."
+          }
+        }
+      }
+    },
+    "about.typefaces.stam" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Stam Ashkenaz & Stam Sefarad** — GPL v2 with font-embedding exception — optional Hebrew Scripture faces (Culmus Project, Yoram Gnat)."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**סת״ם אשכנזי וסת״ם ספרדי** — GPL v2 עם חריגת הטמעת גופנים — גופנים לבחירה לכתבי הקודש בעברית (פרויקט קולמוס, יורם גנת)."
           }
         }
       }
@@ -1363,6 +1414,27 @@
             "value" : "ברירת מחדל — %@"
           }
         }
+      }
+    },
+    "common.done" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Done" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "סיום" } }
+      }
+    },
+    "common.moveUp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Move up" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "העבר למעלה" } }
+      }
+    },
+    "common.moveDown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Move down" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "העבר למטה" } }
       }
     },
     "favoriteEditor.done" : {
@@ -2511,6 +2583,20 @@
         }
       }
     },
+    "home.today.compactCitations" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Show shorthand" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "הצג קיצור" } }
+      }
+    },
+    "home.today.fullCitations" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "View full citations" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "הצג מראי מקום מלאים" } }
+      }
+    },
     "home.today.popesIntention" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -2526,6 +2612,20 @@
             "value" : "כוונת האפיפיור: %@"
           }
         }
+      }
+    },
+    "home.today.readings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Today’s readings" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "מקראות היום" } }
+      }
+    },
+    "home.today.showEnglish" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "English" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "English" } }
       }
     },
     "home.unpin" : {
@@ -4517,6 +4617,57 @@
         }
       }
     },
+    "settings.aramaicSignOfCross" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aramaic Sign of the Cross"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "נוסח אות הצלב בארמית"
+          }
+        }
+      }
+    },
+    "settings.aramaicSignOfCross.formA" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Form A"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "נוסח א׳"
+          }
+        }
+      }
+    },
+    "settings.aramaicSignOfCross.formB" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Form B"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "נוסח ב׳"
+          }
+        }
+      }
+    },
     "settings.rite" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4634,6 +4785,132 @@
             "value" : "קטגוריות"
           }
         }
+      }
+    },
+    "basicPrayers.favorite" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add to favorites" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "הוסף למועדפים" } }
+      }
+    },
+    "basicPrayers.unfavorite" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Remove from favorites" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "הסר מהמועדפים" } }
+      }
+    },
+    "settings.favoriteBasicPrayersFirst" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Move favorite basic prayers to top" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "העבר תפילות בסיסיות מועדפות לראש הרשימה" } }
+      }
+    },
+    "settings.languageFallbackOrder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Language fallback order…" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "סדר עדיפות לשפות חלופיות…" } }
+      }
+    },
+    "settings.languageFallbackOrder.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Language fallback order" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "סדר עדיפות לשפות חלופיות" } }
+      }
+    },
+    "settings.languageFallbackOrder.footer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "When a prayer is missing, Prosary tries these languages from top to bottom after the chosen language and its own variation." } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "כאשר תפילה חסרה, Prosary מנסה את השפות לפי הסדר, אחרי השפה שנבחרה והנוסח שלה." } }
+      }
+    },
+    "settings.typographyHeader" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Typography" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "טיפוגרפיה" } }
+      }
+    },
+    "settings.syriacTypeface" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Syriac Aramaic" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "ארמית בכתב סורי" } }
+      }
+    },
+    "settings.hebrewPrayerTypeface" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Hebrew prayers" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "תפילות בכתב עברי" } }
+      }
+    },
+    "settings.hebrewScriptureTypeface" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Hebrew Scripture" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "כתבי הקודש בעברית" } }
+      }
+    },
+    "settings.typeface.default" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Default" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "ברירת מחדל" } }
+      }
+    },
+    "settings.typeface.davidLibre" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "David Libre" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "David Libre" } }
+      }
+    },
+    "settings.typeface.stamAshkenaz" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Stam Ashkenaz" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "סת״ם אשכנזי" } }
+      }
+    },
+    "settings.typeface.stamSefarad" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Stam Sefarad" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "סת״ם ספרדי" } }
+      }
+    },
+    "settings.typeface.westernAramaic" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Western Aramaic" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "ארמית מערבית" } }
+      }
+    },
+    "settings.typeface.easternAramaic" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Eastern Aramaic" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "ארמית מזרחית" } }
+      }
+    },
+    "settings.typeface.sansSerif" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "System sans-serif" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "ללא תגיות" } }
+      }
+    },
+    "settings.typeface.rashi" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Rashi" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "רש״י" } }
       }
     },
     "tabs.pray" : {

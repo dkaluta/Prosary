@@ -15,6 +15,10 @@ public sealed record AutoAdvanceOption(int Seconds, string Label);
 /// <summary>One app-UI-language choice; an empty <see cref="Tag"/> means "follow Windows".</summary>
 public sealed record AppLanguageOption(string Tag, string Label);
 
+/// <summary>One sourced Aramaic Sign of the Cross form.</summary>
+public sealed record AramaicSignOfCrossOption(string Value, string Label);
+public sealed record TypefaceOption(string Value, string Label);
+
 /// <summary>
 /// App-wide preferences (v0.7: populated beyond the single language picker — auto-advance,
 /// Home order reset, and downloads management, mirroring iOS's <c>SettingsView</c> and
@@ -30,24 +34,17 @@ public sealed record InstalledDevotionRow(string BundleId, string Title);
 
 public partial class SettingsViewModel : ObservableObject
 {
-    // The stored code may name a rite ("he-x-gamliel"), so this row holds its base language and
-    // the rite row below chooses among that language's uses.
     [ObservableProperty]
     private LanguageOption _selectedLanguage = LanguageCatalog.All.FirstOrDefault(
-        l => l.Code == (LanguageCatalog.BaseLanguage(AppSettings.DefaultLanguageCode)
-                        ?? AppSettings.DefaultLanguageCode))
+        l => l.Code == AppSettings.DefaultLanguageCode)
         ?? LanguageCatalog.Resolve(AppSettings.DefaultLanguageCode);
 
     public IReadOnlyList<LanguageOption> LanguageOptions => LanguageCatalog.All;
 
     partial void OnSelectedLanguageChanged(LanguageOption value)
     {
-        // Choosing a language keeps its rite when it has one, and drops it otherwise.
-        var rites = LanguageCatalog.Rites(value.Code);
-        AppSettings.SetDefaultLanguageCode(rites.Count > 0 ? rites[0].Code : value.Code);
-        RiteOptions = rites;
-        SelectedRite = rites.FirstOrDefault();
-        OnPropertyChanged(nameof(ShowsRitePicker));
+        AppSettings.SetDefaultLanguageCode(value.Code);
+        OnPropertyChanged(nameof(ShowsAramaicSignOfCrossPicker));
         // The installed rows' titles were snapshotted at load; the names follow the prayer
         // language, so a language change on this very page must re-derive them (2026-08-08).
         RefreshInstalledDevotions();
@@ -57,16 +54,12 @@ public partial class SettingsViewModel : ObservableObject
     /// to pray it. A rite that lacks a prayer reads it in the language's own wording, so this is
     /// a preference, never a restriction.</summary>
     [ObservableProperty]
-    private IReadOnlyList<LanguageOption> _riteOptions =
-        LanguageCatalog.Rites(AppSettings.DefaultLanguageCode);
+    private IReadOnlyList<LanguageOption> _riteOptions = [];
 
     [ObservableProperty]
-    private LanguageOption? _selectedRite =
-        LanguageCatalog.Rites(AppSettings.DefaultLanguageCode)
-            .FirstOrDefault(r => r.Code == AppSettings.DefaultLanguageCode)
-        ?? LanguageCatalog.Rites(AppSettings.DefaultLanguageCode).FirstOrDefault();
+    private LanguageOption? _selectedRite;
 
-    public bool ShowsRitePicker => RiteOptions.Count > 1;
+    public bool ShowsRitePicker => false;
 
     partial void OnSelectedRiteChanged(LanguageOption? value)
     {
@@ -77,6 +70,86 @@ public partial class SettingsViewModel : ObservableObject
             RefreshInstalledDevotions();
         }
     }
+
+    private static readonly IReadOnlyList<AramaicSignOfCrossOption> AllAramaicSignOfCrossOptions =
+    [
+        new(AppSettings.AramaicSignOfCrossFormA,
+            Loc.Tr("settings_aramaic_sign_of_cross_form_a", "Form A")),
+        new(AppSettings.AramaicSignOfCrossFormB,
+            Loc.Tr("settings_aramaic_sign_of_cross_form_b", "Form B")),
+    ];
+
+    public IReadOnlyList<AramaicSignOfCrossOption> AramaicSignOfCrossOptions =>
+        AllAramaicSignOfCrossOptions;
+
+    [ObservableProperty]
+    private AramaicSignOfCrossOption _selectedAramaicSignOfCross =
+        AllAramaicSignOfCrossOptions.FirstOrDefault(
+            option => option.Value == AppSettings.AramaicSignOfCrossForm)
+        ?? AllAramaicSignOfCrossOptions[0];
+
+    partial void OnSelectedAramaicSignOfCrossChanged(AramaicSignOfCrossOption value) =>
+        AppSettings.SetAramaicSignOfCrossForm(value.Value);
+
+    public bool ShowsAramaicSignOfCrossPicker =>
+        (LanguageCatalog.BaseLanguage(SelectedLanguage.Code) ?? SelectedLanguage.Code) == "arc";
+
+    private static TypefaceOption Option(string value, string key, string fallback) =>
+        new(value, Loc.Tr(key, fallback));
+
+    private static TypefaceOption TypefaceOptionFor(string value) => value switch
+    {
+        AppSettings.TypefaceWestern => Option(value, "settings_typeface_western_aramaic", "Western Aramaic"),
+        AppSettings.TypefaceEastern => Option(value, "settings_typeface_eastern_aramaic", "Eastern Aramaic"),
+        AppSettings.TypefaceDavidLibre => Option(value, "settings_typeface_david_libre", "David Libre"),
+        AppSettings.TypefaceSansSerif => Option(value, "settings_typeface_sans_serif", "System sans-serif"),
+        AppSettings.TypefaceStamAshkenaz => Option(value, "settings_typeface_stam_ashkenaz", "Stam Ashkenaz"),
+        AppSettings.TypefaceStamSefarad => Option(value, "settings_typeface_stam_sefarad", "Stam Sefarad"),
+        AppSettings.TypefaceRashi => Option(value, "settings_typeface_rashi", "Rashi"),
+        _ => Option(AppSettings.TypefaceDefault, "settings_typeface_default", "Default"),
+    };
+
+    public IReadOnlyList<TypefaceOption> SyriacTypefaceOptions { get; } =
+    [
+        Option(AppSettings.TypefaceDefault, "settings_typeface_default", "Default"),
+        Option(AppSettings.TypefaceWestern, "settings_typeface_western_aramaic", "Western Aramaic"),
+        Option(AppSettings.TypefaceEastern, "settings_typeface_eastern_aramaic", "Eastern Aramaic"),
+    ];
+
+    [ObservableProperty]
+    private TypefaceOption _selectedSyriacTypeface = TypefaceOptionFor(AppSettings.SyriacTypeface);
+
+    partial void OnSelectedSyriacTypefaceChanged(TypefaceOption value) => AppSettings.SetSyriacTypeface(value.Value);
+
+    public IReadOnlyList<TypefaceOption> HebrewPrayerTypefaceOptions { get; } =
+    [
+        Option(AppSettings.TypefaceDefault, "settings_typeface_default", "Default"),
+        Option(AppSettings.TypefaceDavidLibre, "settings_typeface_david_libre", "David Libre"),
+        Option(AppSettings.TypefaceSansSerif, "settings_typeface_sans_serif", "System sans-serif"),
+    ];
+
+    [ObservableProperty]
+    private TypefaceOption _selectedHebrewPrayerTypeface = TypefaceOptionFor(AppSettings.HebrewPrayerTypeface);
+
+    partial void OnSelectedHebrewPrayerTypefaceChanged(TypefaceOption value) => AppSettings.SetHebrewPrayerTypeface(value.Value);
+
+    public IReadOnlyList<TypefaceOption> HebrewScriptureTypefaceOptions { get; } =
+    [
+        Option(AppSettings.TypefaceDefault, "settings_typeface_default", "Default"),
+        Option(AppSettings.TypefaceStamAshkenaz, "settings_typeface_stam_ashkenaz", "Stam Ashkenaz"),
+        Option(AppSettings.TypefaceStamSefarad, "settings_typeface_stam_sefarad", "Stam Sefarad"),
+        Option(AppSettings.TypefaceRashi, "settings_typeface_rashi", "Rashi"),
+    ];
+
+    [ObservableProperty]
+    private TypefaceOption _selectedHebrewScriptureTypeface = TypefaceOptionFor(AppSettings.HebrewScriptureTypeface);
+
+    partial void OnSelectedHebrewScriptureTypefaceChanged(TypefaceOption value) => AppSettings.SetHebrewScriptureTypeface(value.Value);
+
+    [ObservableProperty]
+    private bool _favoriteBasicPrayersFirst = AppSettings.FavoriteBasicPrayersFirst;
+
+    partial void OnFavoriteBasicPrayersFirstChanged(bool value) => AppSettings.SetFavoriteBasicPrayersFirst(value);
 
     // The same app-wide setting the flow toolbars offer — surfaced here so it's discoverable
     // outside a session. Static so the selection's field initializer can consult it.

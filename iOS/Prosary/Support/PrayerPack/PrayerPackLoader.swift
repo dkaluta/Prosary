@@ -532,6 +532,13 @@ enum PrayerPackStore {
 
   static func prayerOverride(languageCode: String, key: PrayerKey) -> String? {
     ensureLoaded()
+    if key == .signumCrucis,
+       (LanguageCatalog.baseLanguage(of: languageCode) ?? languageCode) == "arc",
+       AramaicSignOfCrossForm.isSystemWideActive,
+       AramaicSignOfCrossForm.current == AramaicSignOfCrossForm.formB,
+       let text = rawContentByBundle["rosary"]?["arc"]?["signumCrucisFormB"] {
+      return text
+    }
     return prayerOverrides[languageCode]?[key]
   }
 
@@ -598,11 +605,11 @@ enum PrayerPackStore {
   static func effectiveLanguage(for bundleId: String, chosen rawChoice: String?) -> String {
     let resolved = LanguageCatalog.resolve(rawChoice ?? LanguageCatalog.defaultSentinel).code
     let available = info(for: bundleId)?.languages ?? []
-    if available.isEmpty || available.contains(resolved) { return resolved }
-    // A community variant ("he-x-gamliel") prays a bundle that only ships the base language
-    // in the variant: bundle text falls back per-key, so keep the variant code alive here.
-    if let base = LanguageCatalog.baseLanguage(of: resolved), available.contains(base) {
-      return resolved
+    if available.isEmpty { return resolved }
+    for code in LanguageCatalog.fallbackChain(for: resolved) {
+      if available.contains(code) {
+        return code == LanguageCatalog.baseLanguage(of: resolved) ? resolved : code
+      }
     }
     return available[0]
   }
@@ -703,33 +710,49 @@ enum PrayerPackStore {
     packUrlByBundle[id] = nil
   }
 
-  /// Resolves a `devotion.json` entry's `bodyKey`/`titleKey` to display text: (1) the bundle's
-  /// own raw content for this key — the requested language, else the bundle's Latin (mirroring
-  /// `PrayerTranslations.get`'s Latin fallback, so e.g. the sentinel/unknown language prays in
-  /// Latin, not raw keys); (2) else, if the key happens to match an existing `PrayerKey` case,
-  /// the ordinary hardcoded/override lookup — this is how shared "main" keys (e.g. "gloriaPatri")
-  /// resolve; (3) else the raw key string, matching `PrayerTranslations.get`'s own last resort.
+  /// Resolves a `devotion.json` `bodyKey`/`titleKey`: bundle content in the requested code and
+  /// its base language first; then the shared prayer table for shared keys; then bundle content
+  /// through the user's language precedence; finally the raw key.
   /// The v0.7 reading aid: this key's text transliterated into another script, if the
   /// bundle's language file carries one. No fallback chain — a transliteration belongs to
   /// exactly the language it transliterates.
   static func transliteration(bundleId: String, languageCode: String?, key: String) -> String? {
     ensureLoaded()
     guard let languageCode else { return nil }
+    if key == PrayerKey.signumCrucis.rawValue,
+       (LanguageCatalog.baseLanguage(of: languageCode) ?? languageCode) == "arc",
+       AramaicSignOfCrossForm.isSystemWideActive,
+       AramaicSignOfCrossForm.current == AramaicSignOfCrossForm.formB {
+      return transliterationsByBundle["rosary"]?["arc"]?["signumCrucisFormB"]
+    }
     return transliterationsByBundle[bundleId]?[languageCode]?[key]
   }
 
   static func resolveBodyText(bundleId: String, languageCode: String?, key: String) -> String {
     ensureLoaded()
-    if let languageCode,
-       let text = rawContentByBundle[bundleId]?[languageCode]?[key]
-         ?? LanguageCatalog.baseLanguage(of: languageCode).flatMap({ rawContentByBundle[bundleId]?[$0]?[key] }) {
+    if languageCode == "he-x-gamliel", key == "paterNosterTitle" { return "תפילת האדון" }
+    if key == PrayerKey.signumCrucis.rawValue,
+       let languageCode,
+       (LanguageCatalog.baseLanguage(of: languageCode) ?? languageCode) == "arc",
+       AramaicSignOfCrossForm.isSystemWideActive,
+       AramaicSignOfCrossForm.current == AramaicSignOfCrossForm.formB,
+       let text = rawContentByBundle["rosary"]?["arc"]?["signumCrucisFormB"] {
       return text
     }
-    if let latinText = rawContentByBundle[bundleId]?["la"]?[key] {
-      return latinText
+    let chain = LanguageCatalog.fallbackChain(for: languageCode)
+    let requested = chain.first ?? LanguageCatalog.defaultCode
+    let requestedCodes = [requested, LanguageCatalog.baseLanguage(of: requested)].compactMap { $0 }
+    for code in requestedCodes {
+      if let text = rawContentByBundle[bundleId]?[code]?[key] { return text }
+    }
+    if key == "signumCrucisFormB" {
+      return PrayerTranslations.get(languageCode: languageCode, key: .signumCrucis)
     }
     if let prayerKey = PrayerKey(rawValue: key) {
       return PrayerTranslations.get(languageCode: languageCode, key: prayerKey)
+    }
+    for code in chain where !requestedCodes.contains(code) {
+      if let text = rawContentByBundle[bundleId]?[code]?[key] { return text }
     }
     return key
   }

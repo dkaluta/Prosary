@@ -48,28 +48,17 @@ public partial class FavoriteEditorViewModel : ObservableObject
     [ObservableProperty]
     private string _languageCode = LanguageCatalog.DefaultSentinel;
 
-    /// <summary>The language row's own value: the base of <see cref="LanguageCode"/>, since a
-    /// stored code may name a rite ("he-x-gamliel").</summary>
     public string BaseLanguageCode
     {
-        get => LanguageCode == LanguageCatalog.DefaultSentinel
-            ? LanguageCode
-            : LanguageCatalog.BaseLanguage(LanguageCode) ?? LanguageCode;
-        set
-        {
-            // Choosing a language keeps its rite when it has one, and drops it otherwise.
-            var rites = LanguageCatalog.Rites(value);
-            LanguageCode = value != LanguageCatalog.DefaultSentinel && rites.Count > 0
-                ? rites[0].Code
-                : value;
-        }
+        get => LanguageCode;
+        set => LanguageCode = value;
     }
 
     /// <summary>The rites of the chosen language — empty (and hidden) when there is only one way
     /// to pray it. A rite that lacks a prayer reads it in the language's own wording.</summary>
     public IReadOnlyList<LanguageOption> RiteOptions => LanguageCatalog.Rites(LanguageCode);
 
-    public bool ShowsRitePicker => RiteOptions.Count > 1;
+    public bool ShowsRitePicker => false;
 
     public LanguageOption? SelectedRite
     {
@@ -119,6 +108,9 @@ public partial class FavoriteEditorViewModel : ObservableObject
 
     [ObservableProperty]
     private bool _includeFinalSignOfCross = true;
+
+    [ObservableProperty]
+    private string _aramaicSignOfCrossForm = AppSettings.AramaicSignOfCrossFormA;
 
     /// <summary>Collapses each decade's 10 Hail Marys and Glory Be onto one combined screen —
     /// for someone leading a group aloud from memory who doesn't need to tap through 10
@@ -176,8 +168,17 @@ public partial class FavoriteEditorViewModel : ObservableObject
     public IReadOnlyList<MysterySelectionMode> MysterySelectionModeOptions { get; } = Enum.GetValues<MysterySelectionMode>();
     public IReadOnlyList<MysteryGroup> MysteryGroupOptions { get; } = Enum.GetValues<MysteryGroup>();
     public IReadOnlyList<EternalRestPlacement> EternalRestPlacementOptions { get; } = Enum.GetValues<EternalRestPlacement>();
-    public IReadOnlyList<MarianAntiphonOption> MarianAntiphonOptions { get; } = Enum.GetValues<MarianAntiphonOption>();
+    public IReadOnlyList<MarianAntiphonChoice> MarianAntiphonOptions =>
+        MarianAntiphonOptionExtensions.Choices(LanguageCode);
     public IReadOnlyList<MysteryImageStyle> MysteryImageStyleOptions { get; } = Enum.GetValues<MysteryImageStyle>();
+
+    public IReadOnlyList<AramaicSignOfCrossOption> AramaicSignOfCrossOptions { get; } =
+    [
+        new(AppSettings.AramaicSignOfCrossFormA,
+            Loc.Tr("settings_aramaic_sign_of_cross_form_a", "Form A")),
+        new(AppSettings.AramaicSignOfCrossFormB,
+            Loc.Tr("settings_aramaic_sign_of_cross_form_b", "Form B")),
+    ];
 
     public IReadOnlyList<JesusPrayerTarget> JesusPrayerTargetOptions { get; } =
     [
@@ -236,6 +237,7 @@ public partial class FavoriteEditorViewModel : ObservableObject
         IncludeClosingIntentions = prayer.Rosary.IncludeClosingIntentions;
         IncludeStMichaelPrayer = prayer.Rosary.IncludeStMichaelPrayer;
         IncludeFinalSignOfCross = prayer.Rosary.IncludeFinalSignOfCross;
+        AramaicSignOfCrossForm = prayer.Rosary.AramaicSignOfCrossForm;
         PresenterMode = prayer.Rosary.PresenterMode;
         MysteryImageStyle = prayer.Rosary.MysteryImageStyle;
         JesusPrayerTarget = prayer.JesusPrayer.Target;
@@ -262,6 +264,7 @@ public partial class FavoriteEditorViewModel : ObservableObject
             IncludeClosingIntentions = IncludeClosingIntentions,
             IncludeStMichaelPrayer = IncludeStMichaelPrayer,
             IncludeFinalSignOfCross = IncludeFinalSignOfCross,
+            AramaicSignOfCrossForm = AramaicSignOfCrossForm,
             PresenterMode = PresenterMode,
             MysteryImageStyle = MysteryImageStyle,
         },
@@ -273,6 +276,8 @@ public partial class FavoriteEditorViewModel : ObservableObject
     {
         OnPropertyChanged(nameof(IsRosary));
         OnPropertyChanged(nameof(IsJesusPrayer));
+        OnPropertyChanged(nameof(ShowsAramaicSignOfCrossPicker));
+        OnPropertyChanged(nameof(MarianAntiphonOptions));
     }
 
     partial void OnMysterySelectionModeChanged(MysterySelectionMode value)
@@ -302,7 +307,16 @@ public partial class FavoriteEditorViewModel : ObservableObject
         OnPropertyChanged(nameof(RiteOptions));
         OnPropertyChanged(nameof(ShowsRitePicker));
         OnPropertyChanged(nameof(SelectedRite));
+        OnPropertyChanged(nameof(ShowsAramaicSignOfCrossPicker));
+        OnPropertyChanged(nameof(MarianAntiphonOptions));
     }
+
+    /// <summary>The per-Rosary form is relevant only for an explicitly-Aramaic Rosary under a
+    /// different app default. If the app default becomes Aramaic, the app-wide form wins.</summary>
+    public bool ShowsAramaicSignOfCrossPicker => IsRosary
+        && BaseLanguageCode == "arc"
+        && (LanguageCatalog.BaseLanguage(AppSettings.DefaultLanguageCode)
+            ?? AppSettings.DefaultLanguageCode) != "arc";
 
     [RelayCommand]
     private void ShowRosaryOptions() => ShowingRosaryOptions = true;

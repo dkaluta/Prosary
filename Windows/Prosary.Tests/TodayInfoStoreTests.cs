@@ -179,6 +179,22 @@ public class TodayInfoStoreTests
         var intention = TodayInfoStore.Intention(new DateOnly(2026, 7, 27));
         Assert.Equal("For respect for human life", intention?.Title);
         Assert.Contains("human life in all its stages", intention?.Text);
+        Assert.Equal("למען כבוד לחיי אדם", intention?.LocalizedTitle("he"));
+        Assert.Contains("בכל שלביהם", intention?.LocalizedText("he"));
+    }
+
+    [Fact]
+    public void ReadingsAndLiturgicalDayResolve()
+    {
+        var readings = TodayInfoStore.Readings(new DateOnly(2026, 8, 31));
+        Assert.Equal(new[] { "1 Cor. 2", "Ps. 119", "Lk. 4" }, readings.Select(r => r.Short));
+        Assert.Equal("Luke 4:16–30", readings.Last().Full);
+        Assert.Equal("הבשורה על-פי לוקס 4:16–30", readings.Last().Hebrew);
+
+        var day = TodayInfoStore.LiturgicalDay(new DateOnly(2026, 8, 31));
+        Assert.StartsWith("Monday · Week ", day.English);
+        Assert.EndsWith(" of Ordinary Time", day.English);
+        Assert.Contains("בזמן הרגיל", day.Hebrew);
     }
 
     [Fact]

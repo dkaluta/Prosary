@@ -177,12 +177,11 @@ final class PrayerTranslationsCompletenessTests: XCTestCase {
       for (language, keys) in languages {
         for key in keys {
           let resolved = PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: language, key: key)
-          // A missing bundle-local translation falls back to the bundle's Latin text (or the
-          // hardcoded chain) — "still missing" means it doesn't resolve to language-specific
-          // bundle content, i.e. it equals the Latin resolution.
-          let latin = PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: "la", key: key)
+          // The default precedence's first applicable language is English. Equality keeps the
+          // allowlist honest without assuming Latin is the only possible fallback.
+          let fallback = PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: "en", key: key)
           XCTAssertEqual(
-            resolved, latin,
+            resolved, fallback,
             "\(bundleId)/\(language): \(key) now has its own translation — narrow bundleKeysMissingLanguages")
         }
       }

@@ -5,6 +5,7 @@ import com.dkaluta.prosary.calendar.LiturgicalCalendarProviding
 import com.dkaluta.prosary.content.prayerpack.CustomDevotionDefinition
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.MarianAntiphonOption
+import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.MysteryGroup
 import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.Prayer
@@ -552,16 +553,94 @@ class CustomDevotionEngineTest {
         )
 
         // Classical Syriac claims the same form (2026-08-08): the Qadishat thrice, then the
-        // Kurielaison the Syriac liturgy keeps in Greek — Hebrew square script, the Syriac
-        // letters riding in the transliteration the script toggle shows.
+        // Kurielaison the Syriac liturgy keeps in Greek — Aramaic in Hebrew square script, with
+        // the same Aramaic in Syriac letters riding in the script-toggle transliteration.
         val aramaic = steps("trisagion", language = "arc")
         assertEquals(4, aramaic.size)
-        assertEquals("קדישת אלהא", aramaic[0].title)
+        assertEquals("קַדּישַת אַלָהָא", aramaic[0].title)
+        assertEquals(
+            "קַדּישַת אַלָהָא\nקַדִישַת חַילתָּנָא\nקַדִישַת לָא מִיותָּא אֶתַרחַמעלִין",
+            aramaic[0].body,
+        )
+        assertEquals(
+            "ܩܰܕ݁ܝܫܰܬ݂ ܐܰܠܳܗܳܐ\nܩܰܕܺܝܫܰܬ݂ ܚܰܝܠܬ݁ܳܢܳܐ\nܩܰܕܺܝܫܰܬ݂ ܠܳܐ ܡܺܝܘܬ݁ܳܐ ܐܶܬܰܪܚܰܡܥܠܺܝܢ",
+            aramaic[0].transliteratedBody,
+        )
         assertEquals("קוריאליסונ\nקוריאליסונ\nקוריאליסונ", aramaic[3].body)
-        // The Byzantine form carries its own arc doxology — no Latin fallback mid-prayer.
-        assertTrue(
-            steps("trisagion", language = "arc", variantId = "byzantine")[3]
-                .body.startsWith("שובחא לאבא"),
+        // Erez supplied the Mission's doxology in both scripts on 2026-08-26. Pin every mark and
+        // vowel so the Hebrew-square-script Aramaic and its pointed Syriac rendering cannot drift.
+        val glory = steps("trisagion", language = "arc", variantId = "byzantine")[3]
+        assertEquals("שוּבחָא לַאבָא", glory.title)
+        assertEquals(
+            "שוּבחָא לַאבָא ולַברָא וַלרוּחָא קַדישָא\nמֶן עָלַם וַעדַמָא לעָלַם עָלמִין. אַמִין.",
+            glory.body,
+        )
+        assertEquals(
+            "ܫܽܘܒܚܳܐ ܠܰܐܒܳܐ ܘܠܰܒܪܳܐ ܘܰܠܪܽܘܚܳܐ ܩܰܕܝܫܳܐ\nܡܶܢ ܥܳܠܰܡ ܘܰܥܕܰܡܳܐ ܠܥܳܠܰܡ ܥܳܠܡܺܝܢ. ܐܰܡܺܝܢ.",
+            glory.transliteratedBody,
+        )
+    }
+
+    /** Erez's Aramaic Nicene Creed (2026-08-31), in Hebrew square and pointed Syriac scripts. */
+    @Test
+    fun aramaicNiceneCreedPreservesBothSuppliedScripts() {
+        val rosary = steps("rosary", language = "arc")
+        val creed = rosary.firstOrNull { it.title == "מהַימנִינַן" }
+        assertNotNull("Aramaic Rosary titles: ${rosary.map { it.title }}", creed)
+        creed!!
+        assertEquals(
+            "מהַימנִינַן בחד אַלָהָא, אַבָּא אַחִיד כֻּל, עָבוּדָא דַּשמַיָא ודַארעָא וַדכֻלהֶין אַיללין דמֶתחַזין וַדלָא מֶתחַזיָן, וַבחַד מָריָא יֶשוּע משיחָא יַחחָדָיֶא ברא דַּאַלָהָא, הַו דּמֶן אַבָּא אֶתִילֶד קדדם כלהון עָלמֶא, אַלָהָא מֶן אַלָהָא, נוּהרָא מֶן נוּהרָא, אַלָהָא שַרִירא מֶן אַלָהָא שַרִירָא, יַלִידא ולָא עבִידא, וַשוֶא בֻּאוסִיא לַאבּוּהי, הַו דבּאִידֶה הוֹא כַּל מֶדֶם, הַו דּמֶטֻלָתַן בּנַינשָא, ומֶטֻל פּוּרקָנַן נחֶת מֶן שמַיָא ואֶתגַשַם מֶן רוּחָא קַדִישָא, מֶן מַריַם בּתוּלתָא וַהוֹא בַּרננשֶא, ואֶצטלֶב חלָפִין ביומי פַּנטִיָוס פִילַטָוס, חַש ומִית וְאתקבַר, קם לַתלָתָא יַוַמִין אַיך דַכתִיב, וַסלֶק לַשמַיָא וִיתֶב מֶן יָמִין אַבּוּהי, ותוב אִתֶּא בשוּבחֶה רַבָא לַמן ליַיֶא וַלמִיָתֶא, הַו דַּלמַלכּוּתֶּה שוּלָמָא לָאאית, וַבחַד רוּחָא קַדִישָא דאַיָתַוהי מָריָא מַחינָא דכֻל, הַו דּמֶן אַבָא ובא ננפֶק, ועַם אַבָא ועַם ברא מֶסתגֶד ומֶשתַבַח, הַו דּמַלֶל בַנכָיֶא, ובַחדָא עִדתָא קַדִישתָא קָתוּלִיקִי וַשלִיחָיתָא, ומַודֶינַן דַחדָא הי מַעמַודָיתָא לשוּבקָנָא דּחַטָהֶא, וַמסַכֶינַן לַקיָמתָא דמִיתֶא וַלִיֶא חַדתֶא דבעָלמָא דַעתִיד. אַמִין.",
+            creed.body,
+        )
+        assertEquals(
+            "ܡܗܰܝܡܢܺܝܢܰܢ ܒܚܕ ܐܰܠܳܗܳܐ. ܐܰܒ݁ܳܐ ܐܰܚܺܝܕ݂ ܟ݁ܽܠ. ܥܳܒܽܘܕܳܐ ܕ݁ܰܫܡܰܝܳܐ ܘܕ݂ܰܐܪܥܳܐ ܘܰܕ݂ܟܽܠܗܶܝܢ ܐܰܝܠܠ̈ܝܢ ܕܡܶܬ݂ܚܰܙܝܢ ܘܰܕ݂ܠܳܐ ܡܶܬ݂ܚܰܙܝܳܢ. ܘܰܒ݂ܚܰܕ݂ ܡܳܪܝܳܐ ܝܶܫܽܘܥ ܡܫܝܚܳܐ ܝܰܚܚܳܕ݂ܳܝܶܐ ܒܪܐ ܕ݁ܰܐܰܠܳܗܳܐ. ܗܰܘ ܕ݁ܡܶܢ ܐܰܒ݁ܳܐ ܐܶܬܺܝܠܶܕ݂ ܩ݀ܕܕܡ ܟܠܗ݇ܘܢ ܥܳܠܡ̈ܶܐ. ܐܰܠܳܗܳܐ ܡܶܢ ܐܰܠܳܗܳܐ. ܢܽܘܗܪܳܐ ܡܶܢ ܢܽܘܗܪܳܐ. ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܐ ܡܶܢ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܝܰܠܺܝܕܐ ܘܠܳܐ ܥܒܿܺܝܕܐ. ܘܰܫܘܶܐ ܒ݁ܽܐܘܣܺܝܐ ܠܰܐܒ݁ܽܘܗ̄ܝ. ܗܰܘ ܕܒ݁ܐܺܝܕ݂ܶܗ ܗ݈ܘܳܐ ܟ݁ܰܠ ܡܶܕܶܡ. ܗܰܘ ܕ݁ܡܶܛܽܠܳܬ݂ܰܢ ܒ݁ܢܰܝ̈ܢܫܳܐ. ܘܡܶܛܽܠ ܦ݁ܽܘܪܩܳܢܰܢ ܢܚܶܬ݂ ܡܶܢ ܫܡܰܝܳܐ ܘܐܶܬ݂ܓܰܫܰܡ ܡܶܢ ܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ. ܡܶܢ ܡܰܪܝܰܡ ܒ݁ܬ݂ܽܘܠܬ݂ܳܐ ܘܰܗ݈ܘܳܐ ܒ݁ܰܪܢܢܫܶܐ. ܘܐܶܨܛܠܶܒ݂ ܚܠܳܦ݂ܺܝܢ ܒܝܵܘ̈ܡ̇ܝ ܦ݁ܰܢܛܺܝܳܘܣ ܦܺܝܠܰܛܳܘܣ. ܚܰܫ ܘܡܺܝܬ ܘܶܐܬܩܒܰܪ. ܩܿܡ ܠܰܬ݂ܠܳܬ݂ܳܐ ܝܰܘܰܡܺܝܢ ܐܰܝܟ݂ ܕܰܟܬܺܝܒ. ܘܰܣܠܶܩ ܠܰܫܡܰܝܳܐ ܘܺܝܬ݂ܶܒ݂ ܡܶܢ ܝܳܡܺܝܢ ܐܰܒ݁ܽܘܗ̄ܝ. ܘܬܘܒ ܐܺܬ݁ܶܐ ܒܫܽܘܒ݂ܚܶܗ ܪܰܒܳܐ ܠܰܡܢ ܠܝܰܝܶܐ ܘܰܠܡܺܝܳܬ݂ܶܐ. ܗܰܘ ܕ݁ܰܠܡܰܠܟ݁ܽܘܬ݁ܶܗ ܫܽܘܠܳܡܳܐ ܠܳܐܐܝܬ. ܘܰܒ݂ܚܰܕ݂ ܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ ܕܐܰܝܳܬ݂ܰܘܗ݈ܝ ܡܳܪܝܳܐ ܡܰܚܝܢܳܐ ܕܟܽܠ. ܗܰܘ ܕ݁ܡܶܢ ܐܰܒܳܐ ܘܒܐ ܢܢܦܶܩ. ܘܥܰܡ ܐܰܒ݂ܳܐ ܘܥܰܡ ܒܪܐ ܡܶܣܬܓܶܕ ܘܡܶܫܬ݂ܰܒ݂ܰܚ. ܗܰܘ ܕ݁ܡܰܠܶܠ ܒܰܢ̈ܟܿܳܝܶܐ. ܘܒ݂ܰܚܕܳܐ ܥܺܕܬ݂ܳܐ ܩܰܕܺܝܫܬ݂ܳܐ ܩܳܬ݂ܽܘܠܺܝܩܺܝ ܘܰܫܠܺܝܚܳܝܬ݂ܳܐ. ܘܡܰܘܕ݂ܶܝܢܰܢ ܕܰܚܕ݂ܳܐ ܗ̄ܝ ܡܰܥܡܰܘܕ݂ܳܝܬܳܐ ܠܫܽܘܒܩܳܢܳܐ ܕ݁ܚܰܛܳܗܶܐ. ܘܰܡܣܰܟܶܝܢܰܢ ܠܰܩ݀ܝܳܡܬܳܐ ܕܡܺܝ̈ܬ݂ܶܐ ܘܰܠܺܝ̈ܶܐ ܚܰܕ̈ܬ݂ܶܐ ܕܒ݂ܥܳܠܡܳܐ ܕܰܥܬ݂ܺܝܕ݂. ܐܰܡܺܝܢ.",
+            creed.transliteratedBody,
+        )
+    }
+
+    /** Erez's Aramaic Our Father (2026-08-31), in Hebrew square and pointed Syriac scripts. */
+    @Test
+    fun aramaicOurFatherPreservesBothSuppliedScripts() {
+        val rosary = steps("rosary", language = "arc")
+        val abun = rosary.firstOrNull { it.title == "צלוּתָא מָרָנָיתָא" }
+        assertNotNull("Aramaic Rosary titles: ${rosary.map { it.title }}", abun)
+        abun!!
+        assertEquals(
+            "אַבוּן דבַשמַיָא נֶתקַדַש שמָך תִאתֶא מַלכוּתָך נֶהוֶא צֶביָנָך, " +
+                "אַיכַנָא דבַשמַיָא אָף בַארעָא, הַבלַן לַחמָא דסוּנקָנַן יַומָנָא, " +
+                "וַשבוּק לַן חַובַין וַחטָהַין אַיכַנָא דָאף חנַן שבַקן לחַיָבַין, " +
+                "ולָא תַעלַן לנֶסיוּנָא אֶלָא פַצָא לַן מֶן בִישָא, מֶטֻל דדִילָך הִי " +
+                "מַלכוּתָא וחַילָא ותֶשבוּחתָא לעָלַם עָלמִין אַמִין.",
+            abun.body,
+        )
+        assertEquals(
+            "ܐܰܒ݁ܽܘܢ ܕܒܰܫܡܰܝܳܐ ܢܶܬܩܰܕܰܫ ܫܡܳܟ ܬܺܐܬܶܐ ܡܰܠܟܽܘܬܳܟ ܢܶܗܘܶܐ ܨܶܒܝܳܢܳܟ. " +
+                "ܐܰܝܟܰܢܳܐ ܕܒܰܫܡܰܝܳܐ ܐܳܦ ܒܰܐܪܥܳܐ. ܗܰܒܠܰܢ ܠܰܚܡܳܐ ܕܣܽܘܢܩܳܢܰܢ ܝܰܘܡܳܢܳܐ. " +
+                "ܘܰܫܒܽܘܩ ܠܰܢ ܚܰܘܒܰܝ̈ܢ ܘܰܚܛܳܗܰܝ̈ܢ ܐܰܝܟܰܢܳܐ ܕܳܐܦ ܚܢܰܢ ܫܒܰܩܢ ܠܚܰܝܳܒܰܝ̈ܢ. " +
+                "ܘܠܳܐ ܬܰܥܠܰܢ ܠܢܶܣܝܽܘܢܳܐ ܐܶܠܳܐ ܦܰܨܳܐ ܠܰܢ ܡܶܢ ܒܺܝܫܳܐ. " +
+                "ܡܶܛܽܠ ܕܕܺܝܠܳܟ ܗܺܝ ܡܰܠܟܽܘܬܳܐ ܘܚܰܝܠܳܐ ܘܬܶܫܒܽܘܚܬܳܐ ܠܥܳܠܰܡ ܥܳܠܡܺܝܢ ܐܰܡܺܝܢ܀",
+            abun.transliteratedBody,
+        )
+    }
+
+    /** Erez's Aramaic Hail Mary (2026-08-31), in Hebrew square and pointed Syriac scripts. */
+    @Test
+    fun aramaicHailMaryPreservesBothSuppliedScripts() {
+        val rosary = steps("rosary", language = "arc")
+        val hailMary = rosary.firstOrNull { it.title == "שלָם לֶך מַריַם" }
+        assertNotNull("Aramaic Rosary titles: ${rosary.map { it.title }}", hailMary)
+        hailMary!!
+        assertEquals(
+            "שלָם לֶך מַריַם מַליַת טַיבוּתָא, מָרַן עַמֶך מבַרַכתָא אַנת בנֶשָא " +
+                "וַמבַרַך הוּ פִירָא דַבכַרסֶך מָרַן יֶשוּע משִיחָא, מָרַת מַריַם יָלדַת " +
+                "אַלָהָא אַפִיס חלָפַין חנַן חַטָיָא, הָשָא וַבכֻלזבַן וַלעָלַם עָלמִין אַמִין.",
+            hailMary.body,
+        )
+        assertEquals(
+            "ܫܠܳܡ ܠܶܟ ܡܰܪܝܰܡ ܡܰܠܝܰܬ ܛܰܝܒܽܘܬܳܐ, ܡܳܪܰܢ ܥܰܡܶܟ ܡܒܰܪܰܟܬܳܐ ܐܰܢܬ ܒܢܶܫܳܐ " +
+                "ܘܰܡܒܰܪܰܟ ܗܽܘ ܦܺܝܪܳܐ ܕܰܒܟܰܪܣܶܟ ܡܳܪܰܢ ܝܶܫܽܘܥ ܡܫܺܝܚܳܐ, ܡܳܪܰܬ ܡܰܪܝܰܡ ܝܳܠܕܰܬ " +
+                "ܐܰܠܳܗܳܐ ܐܰܦܺܝܣ ܚܠܳܦܰܝܢ ܚܢܰܢ ܚܰܛܳܝܳܐ, ܗܳܫܳܐ ܘܰܒܟܽܠܙܒܰܢ ܘܰܠܥܳܠܰܡ ܥܳܠܡܺܝܢ ܐܰܡܺܝܢ.",
+            hailMary.transliteratedBody,
         )
     }
 
@@ -624,11 +703,16 @@ class CustomDevotionEngineTest {
         )
     }
 
-    /** A rite lives under its language, not beside it: the language list stays the eight
-     * tongues, and the rite's own code still resolves (that is what the pickers store). */
+    /** Both sourced Hebrew uses stay visible as separate prayer-language choices. */
     @Test
     fun ritesAreListedUnderTheirLanguage() {
-        assertFalse(LanguageCatalog.all.any { it.code == "he-x-gamliel" })
+        assertEquals(listOf("he", "he-x-gamliel"), LanguageCatalog.all.filter {
+            it.code.startsWith("he")
+        }.map { it.code })
+        assertEquals(
+            listOf("la", "en", "he", "he-x-gamliel"),
+            LanguageCatalog.availableOptions(listOf("la", "he", "en")).map { it.code },
+        )
         assertEquals(listOf("he", "he-x-gamliel"), LanguageCatalog.rites("he").map { it.code })
         assertEquals(listOf("he", "he-x-gamliel"), LanguageCatalog.rites("he-x-gamliel").map { it.code })
         assertTrue(LanguageCatalog.rites("la").isEmpty())
@@ -636,8 +720,21 @@ class CustomDevotionEngineTest {
         // A rite resolves as its language for display, keeps its own code, and reads right-to-left.
         val resolved = LanguageCatalog.resolve("he-x-gamliel")
         assertEquals("he-x-gamliel", resolved.code)
-        assertEquals("עברית", resolved.nativeName)
+        assertEquals("עברית — נוסח השליחות", resolved.nativeName)
         assertTrue(resolved.isRightToLeft)
+    }
+
+    @Test
+    fun languageFallbackOrderKeepsBaseFirstAndLatinLast() {
+        val original = AppSettings.languageFallbackOrder
+        try {
+            AppSettings.setLanguageFallbackOrder(listOf("ru", "en", "ar", "he", "he-x-gamliel", "arc", "el", "es", "tl", "la"))
+            val chain = LanguageCatalog.fallbackChain("he-x-gamliel")
+            assertEquals(listOf("he-x-gamliel", "he", "ru", "en"), chain.take(4))
+            assertEquals("la", chain.last())
+        } finally {
+            AppSettings.setLanguageFallbackOrder(original)
+        }
     }
 
     // MARK: Structural guards

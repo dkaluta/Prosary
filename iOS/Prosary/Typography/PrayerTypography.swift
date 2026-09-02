@@ -15,6 +15,21 @@
 import SwiftUI
 
 enum PrayerTypography {
+  static let syriacTypefaceKey = "syriacTypeface"
+  static let hebrewPrayerTypefaceKey = "hebrewPrayerTypeface"
+  static let hebrewScriptureTypefaceKey = "hebrewScriptureTypeface"
+
+  enum TypefaceValue {
+    static let `default` = "default"
+    static let western = "western"
+    static let eastern = "eastern"
+    static let davidLibre = "davidLibre"
+    static let sansSerif = "sansSerif"
+    static let stamAshkenaz = "stamAshkenaz"
+    static let stamSefarad = "stamSefarad"
+    static let rashi = "rashi"
+  }
+
   // macOS's native `.body` runs a good deal smaller than iOS's (~13pt vs. ~17pt). The sizes
   // below were tuned by eye against iOS, so without this correction the same literal point
   // sizes read as oversized next to the rest of a Mac window. Scaling keeps every custom
@@ -70,9 +85,24 @@ enum PrayerTypography {
 
     switch resolved {
     case .hebrew:
-      return isScripture
-        ? .custom(FontRegistration.PostScriptName.shofar, size: 16 * scale, relativeTo: .body)
-        : .custom(FontRegistration.PostScriptName.frankRuhlLibre, size: 21 * scale, relativeTo: .body)
+      if isScripture {
+        let name = switch UserDefaults.standard.string(forKey: hebrewScriptureTypefaceKey) {
+        case TypefaceValue.stamAshkenaz: FontRegistration.PostScriptName.stamAshkenaz
+        case TypefaceValue.stamSefarad: FontRegistration.PostScriptName.stamSefarad
+        case TypefaceValue.rashi: FontRegistration.PostScriptName.notoRashiHebrew
+        default: FontRegistration.PostScriptName.shofar
+        }
+        return .custom(name, size: 16 * scale, relativeTo: .body)
+      }
+      let prayerTypeface = UserDefaults.standard.string(forKey: hebrewPrayerTypefaceKey)
+      if prayerTypeface == TypefaceValue.sansSerif {
+        return .system(size: 21 * scale, weight: .regular, design: .default)
+      }
+      let name = switch prayerTypeface {
+      case TypefaceValue.davidLibre: FontRegistration.PostScriptName.davidLibre
+      default: FontRegistration.PostScriptName.frankRuhlLibre
+      }
+      return .custom(name, size: 21 * scale, relativeTo: .body)
 
     case .arabic:
       return isScripture
@@ -83,7 +113,12 @@ enum PrayerTypography {
       // Only ever reached through a transliteration: no language's own text is in Syriac
       // letters, because "arc" ships Aramaic in Hebrew script. Without a face that covers the
       // block the toggle would draw a line of tofu, which is worse than not offering it.
-      return .custom(FontRegistration.PostScriptName.notoSansSyriac, size: 19 * scale, relativeTo: .body)
+      let name = switch UserDefaults.standard.string(forKey: syriacTypefaceKey) {
+      case TypefaceValue.western: FontRegistration.PostScriptName.notoSansSyriacWestern
+      case TypefaceValue.eastern: FontRegistration.PostScriptName.notoSansSyriacEastern
+      default: FontRegistration.PostScriptName.notoSansSyriac
+      }
+      return .custom(name, size: 19 * scale, relativeTo: .body)
 
     case .latin: // "la", "en", and any other Latin- or Greek-script language
       return isScripture

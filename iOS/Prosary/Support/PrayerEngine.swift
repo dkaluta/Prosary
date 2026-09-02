@@ -75,8 +75,15 @@ struct PrayerEngine {
   /// no-data-migration seam: favorites keep their typed columns and bespoke editor, while the
   /// engine speaks the bundle's generic option encoding.
   static func rosaryOptionValues(_ rosary: RosaryOptions) -> [String: String] {
-    [
+    let savedAramaicForm = rosary.aramaicSignOfCrossForm == AramaicSignOfCrossForm.formB
+      ? AramaicSignOfCrossForm.formB
+      : AramaicSignOfCrossForm.formA
+    let effectiveAramaicForm = AramaicSignOfCrossForm.isSystemWideActive
+      ? AramaicSignOfCrossForm.current
+      : savedAramaicForm
+    return [
       "apostlesCreed": rosary.includeApostlesCreed ? "true" : "false",
+      "aramaicSignOfCrossForm": effectiveAramaicForm,
       "openingPrayers": rosary.includeOpeningPrayers ? "true" : "false",
       "presenterMode": rosary.presenterMode ? "true" : "false",
       "fatimaPrayer": rosary.includeFatimaPrayer ? "true" : "false",

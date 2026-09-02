@@ -20,9 +20,16 @@ enum FontRegistration {
     static let shofar = "ShofarRegular"
     static let amiri = "Amiri-Regular"
     static let scheherazadeNew = "ScheherazadeNew-Regular"
+    static let davidLibre = "DavidLibre-Regular"
+    static let notoSansHebrew = "NotoSansHebrew-Regular"
+    static let notoRashiHebrew = "NotoRashiHebrew-Regular"
+    static let stamAshkenaz = "StamAshkenazCLM"
+    static let stamSefarad = "StamSefaradCLM"
     /// Only ever used for a Syriac transliteration — no language ships its own text
     /// in Syriac letters. Variable font; its Regular instance is what registers.
     static let notoSansSyriac = "NotoSansSyriac-Regular"
+    static let notoSansSyriacWestern = "NotoSansSyriacWestern-Regular"
+    static let notoSansSyriacEastern = "NotoSansSyriacEastern-Regular"
   }
 
   private static let fileNames = [
@@ -32,6 +39,13 @@ enum FontRegistration {
     "Amiri-Regular.ttf",
     "ScheherazadeNew-Regular.ttf",
     "NotoSansSyriac-Variable.ttf",
+    "NotoSansSyriacWestern-Variable.ttf",
+    "NotoSansSyriacEastern-Variable.ttf",
+    "DavidLibre-Regular.ttf",
+    "NotoSansHebrew-Variable.ttf",
+    "NotoRashiHebrew-Variable.ttf",
+    "StamAshkenazCLM.ttf",
+    "StamSefaradCLM.ttf",
   ]
 
   private static var didRegister = false
