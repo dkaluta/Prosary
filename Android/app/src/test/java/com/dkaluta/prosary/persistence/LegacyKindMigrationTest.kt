@@ -1,6 +1,7 @@
 package com.dkaluta.prosary.persistence
 
 import com.dkaluta.prosary.models.PrayerKind
+import com.dkaluta.prosary.models.AppSettings
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -48,6 +49,17 @@ class LegacyKindMigrationTest {
         val prayer = entity.toPrayer()
         assertEquals(PrayerKind.Custom, prayer.kind)
         assertEquals("trisagion", prayer.customDevotionId)
+    }
+
+    @Test
+    fun perRosaryAramaicCrossFormSurvivesTheEntityMapping() {
+        val entity = legacyEntity(PrayerKind.Rosary.name).copy(
+            aramaicSignOfCrossForm = AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B,
+        )
+        assertEquals(
+            AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B,
+            entity.toPrayer().rosary.aramaicSignOfCrossForm,
+        )
     }
 
     /** A migrated legacy row and a freshly created Custom favorite must share one default slot. */

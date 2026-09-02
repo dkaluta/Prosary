@@ -14,16 +14,30 @@ namespace Prosary.Models;
 public static class AppSettings
 {
     private const string KeyDefaultLanguage = "defaultLanguageCode";
+    private const string KeyAramaicSignOfCrossForm = "aramaicSignOfCrossForm";
     private const string KeyFeastCalendar = "feastCalendarId";
     private const string KeyAutoAdvance = "autoAdvanceSeconds";
     private const string KeyShowTodayFeast = "showTodayFeast";
     private const string KeyShowTodayIntention = "showTodayIntention";
+    private const string KeySyriacTypeface = "syriacTypeface";
+    private const string KeyHebrewPrayerTypeface = "hebrewPrayerTypeface";
+    private const string KeyHebrewScriptureTypeface = "hebrewScriptureTypeface";
+    private const string KeyFavoriteBasicPrayers = "favoriteBasicPrayerIds";
+    private const string KeyFavoriteBasicPrayersFirst = "favoriteBasicPrayersFirst";
+    private const string KeyLanguageFallbackOrder = "languageFallbackOrder";
 
     private static string? _defaultLanguageCode;
+    private static string? _aramaicSignOfCrossForm;
     private static string? _feastCalendarId;
     private static int? _autoAdvanceSeconds;
     private static bool? _showTodayFeast;
     private static bool? _showTodayIntention;
+    private static string? _syriacTypeface;
+    private static string? _hebrewPrayerTypeface;
+    private static string? _hebrewScriptureTypeface;
+    private static HashSet<string>? _favoriteBasicPrayerIds;
+    private static bool? _favoriteBasicPrayersFirst;
+    private static IReadOnlyList<string>? _languageFallbackOrder;
 
     public static string DefaultLanguageCode
     {
@@ -43,6 +57,103 @@ public static class AppSettings
     {
         DefaultLanguageCode = code;
         ApplicationData.Current.LocalSettings.Values[KeyDefaultLanguage] = code;
+    }
+
+    public const string AramaicSignOfCrossFormA = "formA";
+    public const string AramaicSignOfCrossFormB = "formB";
+    public const string TypefaceDefault = "default";
+    public const string TypefaceWestern = "western";
+    public const string TypefaceEastern = "eastern";
+    public const string TypefaceDavidLibre = "davidLibre";
+    public const string TypefaceSansSerif = "sansSerif";
+    public const string TypefaceStamAshkenaz = "stamAshkenaz";
+    public const string TypefaceStamSefarad = "stamSefarad";
+    public const string TypefaceRashi = "rashi";
+
+    /// <summary>Which of Erez's two sourced Aramaic Sign of the Cross forms is used app-wide.</summary>
+    public static string AramaicSignOfCrossForm
+    {
+        get
+        {
+            if (_aramaicSignOfCrossForm is null)
+            {
+                var stored = ApplicationData.Current.LocalSettings.Values[KeyAramaicSignOfCrossForm] as string;
+                _aramaicSignOfCrossForm = stored == AramaicSignOfCrossFormB
+                    ? AramaicSignOfCrossFormB
+                    : AramaicSignOfCrossFormA;
+            }
+            return _aramaicSignOfCrossForm;
+        }
+        private set => _aramaicSignOfCrossForm = value;
+    }
+
+    public static void SetAramaicSignOfCrossForm(string form)
+    {
+        AramaicSignOfCrossForm = form == AramaicSignOfCrossFormB
+            ? AramaicSignOfCrossFormB
+            : AramaicSignOfCrossFormA;
+        ApplicationData.Current.LocalSettings.Values[KeyAramaicSignOfCrossForm] = AramaicSignOfCrossForm;
+    }
+
+    /// <summary>Whether the app-wide Aramaic form currently governs prayer text. An explicitly
+    /// Aramaic Rosary under another app default uses its own saved form instead.</summary>
+    public static bool UsesSystemWideAramaicSignOfCrossForm =>
+        (LanguageCatalog.BaseLanguage(DefaultLanguageCode) ?? DefaultLanguageCode) == "arc";
+
+    public static string SyriacTypeface => _syriacTypeface ??=
+        ApplicationData.Current.LocalSettings.Values[KeySyriacTypeface] as string ?? TypefaceDefault;
+    public static string HebrewPrayerTypeface => _hebrewPrayerTypeface ??=
+        ApplicationData.Current.LocalSettings.Values[KeyHebrewPrayerTypeface] as string ?? TypefaceDefault;
+    public static string HebrewScriptureTypeface => _hebrewScriptureTypeface ??=
+        ApplicationData.Current.LocalSettings.Values[KeyHebrewScriptureTypeface] as string ?? TypefaceDefault;
+
+    public static void SetSyriacTypeface(string value)
+    {
+        _syriacTypeface = value;
+        ApplicationData.Current.LocalSettings.Values[KeySyriacTypeface] = value;
+    }
+
+    public static void SetHebrewPrayerTypeface(string value)
+    {
+        _hebrewPrayerTypeface = value;
+        ApplicationData.Current.LocalSettings.Values[KeyHebrewPrayerTypeface] = value;
+    }
+
+    public static void SetHebrewScriptureTypeface(string value)
+    {
+        _hebrewScriptureTypeface = value;
+        ApplicationData.Current.LocalSettings.Values[KeyHebrewScriptureTypeface] = value;
+    }
+
+    public static IReadOnlySet<string> FavoriteBasicPrayerIds => _favoriteBasicPrayerIds ??=
+        ((ApplicationData.Current.LocalSettings.Values[KeyFavoriteBasicPrayers] as string) ?? string.Empty)
+            .Split('\n', StringSplitOptions.RemoveEmptyEntries).ToHashSet();
+
+    public static bool FavoriteBasicPrayersFirst => _favoriteBasicPrayersFirst ??=
+        ApplicationData.Current.LocalSettings.Values[KeyFavoriteBasicPrayersFirst] as bool? ?? false;
+
+    public static void ToggleFavoriteBasicPrayer(string id)
+    {
+        var updated = FavoriteBasicPrayerIds.ToHashSet();
+        if (!updated.Add(id)) updated.Remove(id);
+        _favoriteBasicPrayerIds = updated;
+        ApplicationData.Current.LocalSettings.Values[KeyFavoriteBasicPrayers] = string.Join('\n', updated);
+    }
+
+    public static void SetFavoriteBasicPrayersFirst(bool value)
+    {
+        _favoriteBasicPrayersFirst = value;
+        ApplicationData.Current.LocalSettings.Values[KeyFavoriteBasicPrayersFirst] = value;
+    }
+
+    public static IReadOnlyList<string> LanguageFallbackOrder => _languageFallbackOrder ??=
+        ((ApplicationData.Current.LocalSettings.Values[KeyLanguageFallbackOrder] as string) ?? string.Empty)
+            .Split('\n', StringSplitOptions.RemoveEmptyEntries);
+
+    public static void SetLanguageFallbackOrder(IEnumerable<string> codes)
+    {
+        _languageFallbackOrder = codes.ToArray();
+        ApplicationData.Current.LocalSettings.Values[KeyLanguageFallbackOrder] = string.Join('\n', _languageFallbackOrder);
     }
 
     /// <summary>The Home "Today" feast row's calendar id (calendars.json registry); empty — or

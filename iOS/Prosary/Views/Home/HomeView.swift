@@ -25,6 +25,10 @@ struct HomeView: View {
   @State private var todayMysteryGroup: MysteryGroup? = nil
   @State private var todayFeast: FeastDay? = nil
   @State private var monthIntention: PopeIntention? = nil
+  @State private var liturgicalDayInfo: LiturgicalDayInfo? = nil
+  @State private var todayReadings: [ReadingCitation] = []
+  @State private var todayInHebrew = false
+  @State private var showsFullCitations = false
 
   /// The Today rows can be switched off one by one in Settings (Erez's request) — an off
   /// row simply never loads, and with both off the whole section stays away.
@@ -254,8 +258,22 @@ struct HomeView: View {
   /// (ferial days; dates past the generated years).
   @ViewBuilder
   private var todaySection: some View {
-    if todayFeast != nil || monthIntention != nil {
+    if liturgicalDayInfo != nil || todayFeast != nil || monthIntention != nil || !todayReadings.isEmpty {
       VStack(alignment: .leading, spacing: 10) {
+        if let info = liturgicalDayInfo {
+          HStack(alignment: .firstTextBaseline, spacing: 8) {
+            Image(systemName: "sun.max").foregroundStyle(Color.brandPrimary)
+            Text(todayInHebrew ? info.hebrew : info.english)
+              .font(.subheadline.weight(.semibold))
+              .frame(maxWidth: .infinity, alignment: .leading)
+            Button(todayInHebrew
+              ? String(localized: "home.today.showEnglish", defaultValue: "English")
+              : String(localized: "home.today.translate", defaultValue: "עברית")) {
+              todayInHebrew.toggle()
+            }
+            .font(.caption)
+          }
+        }
         if let feast = todayFeast {
           HStack(alignment: .firstTextBaseline, spacing: 8) {
             Image(systemName: "calendar").foregroundStyle(Color.brandPrimary)
@@ -273,11 +291,38 @@ struct HomeView: View {
           HStack(alignment: .firstTextBaseline, spacing: 8) {
             Image(systemName: "hands.sparkles").foregroundStyle(Color.brandPrimary)
             VStack(alignment: .leading, spacing: 2) {
-              Text(String(
-                localized: "home.today.popesIntention",
-                defaultValue: "The Pope’s intention: \(intention.title)"))
+              Text(todayInHebrew
+                ? "כוונת האפיפיור: \(intention.localizedTitle("he"))"
+                : String(
+                    localized: "home.today.popesIntention",
+                    defaultValue: "The Pope’s intention: \(intention.localizedTitle("en"))"))
                 .font(.subheadline.weight(.semibold))
-              Text(intention.text).font(.caption).foregroundStyle(.secondary)
+              Text(intention.localizedText(todayInHebrew ? "he" : "en"))
+                .font(.caption).foregroundStyle(.secondary)
+            }
+          }
+        }
+        if !todayReadings.isEmpty {
+          HStack(alignment: .firstTextBaseline, spacing: 8) {
+            Image(systemName: "book.closed").foregroundStyle(Color.brandPrimary)
+            VStack(alignment: .leading, spacing: 3) {
+              Text(String(localized: "home.today.readings", defaultValue: "Today’s readings"))
+                .font(.subheadline.weight(.semibold))
+              if showsFullCitations {
+                ForEach(Array(todayReadings.enumerated()), id: \.offset) { _, citation in
+                  Text(todayInHebrew ? citation.hebrew : citation.full)
+                    .font(.caption).foregroundStyle(.secondary)
+                }
+              } else {
+                Text(todayReadings.map(\.short).joined(separator: ", "))
+                  .font(.caption).foregroundStyle(.secondary)
+              }
+              Button(showsFullCitations
+                ? String(localized: "home.today.compactCitations", defaultValue: "Show shorthand")
+                : String(localized: "home.today.fullCitations", defaultValue: "View full citations")) {
+                showsFullCitations.toggle()
+              }
+              .font(.caption)
             }
           }
         }
@@ -424,6 +469,10 @@ struct HomeView: View {
     todayMysteryGroup = services.calendar.mysteryGroupToday()
     todayFeast = showsTodayFeast ? TodayInfoStore.feast() : nil
     monthIntention = showsTodayIntention ? TodayInfoStore.intention() : nil
+    liturgicalDayInfo = TodayInfoStore.liturgicalDayInfo()
+    todayReadings = TodayInfoStore.readings()
+    let base = LanguageCatalog.baseLanguage(of: prayerLanguage.code) ?? prayerLanguage.code
+    if base == "he" { todayInHebrew = true }
     prayers = (try? await services.presetStore.all()) ?? []
     HomeOrder.dropOrderIfUnrelated(to: allDevotions.map(\.id))
   }

@@ -446,19 +446,10 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             }
             _languageCode = PrayerPackStore.EffectiveLanguage(bundleId, _chosenLanguage);
             IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
-            // A language prayed in more than one use lists those under it — the rite is a second
-            // question, and one whose gaps fall back to the language's own wording.
-            var languages = (PrayerPackStore.Info(bundleId)?.Languages ?? [])
-                .Select(code => LanguageCatalog.All.FirstOrDefault(l => l.Code == code))
-                .OfType<LanguageOption>()
-                .ToList();
-            var rites = LanguageCatalog.Rites(LanguageCatalog.Resolve(_chosenLanguage).Code);
-            if (rites.Count > 1)
-            {
-                languages.AddRange(rites);
-            }
-
-            Languages = languages;
+            // Hebrew Vicariate and Mission are independent prayer-language choices. A bundle
+            // advertising base Hebrew offers both; the Mission's sparse overlay falls back to
+            // Vicariate Hebrew one prayer at a time.
+            Languages = LanguageCatalog.AvailableOptions(PrayerPackStore.Info(bundleId)?.Languages ?? []);
             OnPropertyChanged(nameof(ShowsLanguageMenu));
             OnPropertyChanged(nameof(CurrentLanguageRaw));
 

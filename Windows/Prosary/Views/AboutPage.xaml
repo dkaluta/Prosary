@@ -44,6 +44,9 @@
                         <Run Text="Amiri" FontWeight="Bold" /><Run x:Uid="AbtTypeAmiri" Text=" — SIL Open Font License 1.1 — Arabic prayers." /><LineBreak />
                         <Run Text="Scheherazade New" FontWeight="Bold" /><Run x:Uid="AbtTypeScheherazade" Text=" — SIL Open Font License 1.1 — Arabic Scripture (SIL)." /><LineBreak />
                         <Run Text="Cardo" FontWeight="Bold" /><Run x:Uid="AbtTypeCardo" Text=" — SIL Open Font License 1.1 — Latin/English Scripture (David J. Perry)." />
+                        <LineBreak /><Run Text="Noto Sans Syriac, Western &amp; Eastern" FontWeight="Bold" /><Run x:Uid="AbtTypeNotoSyriac" Text=" — SIL Open Font License 1.1 — selectable Syriac-script Aramaic faces." />
+                        <LineBreak /><Run Text="David Libre, Noto Sans Hebrew &amp; Noto Rashi Hebrew" FontWeight="Bold" /><Run x:Uid="AbtTypeOptionalHebrew" Text=" — SIL Open Font License 1.1 — optional Hebrew prayer and Scripture faces." />
+                        <LineBreak /><Run Text="Stam Ashkenaz &amp; Stam Sefarad" FontWeight="Bold" /><Run x:Uid="AbtTypeStam" Text=" — GPL v2 with font-embedding exception — optional Hebrew Scripture faces (Culmus Project, Yoram Gnat)." />
                     </TextBlock>
                     <TextBlock x:Uid="AbtTypeFooter" Text="Latin-script prayers use Cambria, which ships with Windows — not bundled with the app."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
@@ -75,7 +78,7 @@
                         <Run x:Uid="AbtMys19Title" Text="Assumption of the Virgin" FontStyle="Italic" /><Run x:Uid="AbtCredit12" Text=" — Titian (d. 1576)" /><LineBreak />
                         <Run x:Uid="AbtMys20Title" Text="Coronation of the Virgin" FontStyle="Italic" /><Run x:Uid="AbtCredit13" Text=" — Diego Velázquez (d. 1660)" />
                     </TextBlock>
-                    <TextBlock x:Uid="AboutEasternIcons" Text="The collection of illustrations of the Mysteries in the Eastern style is used with approval from the St. Gamliel Apostolate for Hebrew Catholics in the Aramaic (Syriac) Catholic Church."
+                    <TextBlock x:Uid="AboutEasternIcons" Text="The collection of illustrations of the Mysteries in the Eastern style is used with approval from the Mission of St. Gamaliel for Hebrew Catholics in the Aramaic (Syriac) Catholic Church."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
                 </StackPanel>
 
@@ -148,7 +151,7 @@
 
                 <StackPanel Spacing="8">
                     <TextBlock x:Uid="AbtCalendarDataHeader" Text="Calendar Data" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
-                    <TextBlock x:Uid="AbtCalendarDataBody" Text="Feast calendar data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar via Missale Meum (missalemeum.com); the Syriac Catholic calendar courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic table compiled in-app from the traditional sources."
+                    <TextBlock x:Uid="AbtCalendarDataBody" Text="Calendar and readings data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar via Missale Meum (missalemeum.com); the Syriac Catholic calendar, the Roman lectionary calendar in Hebrew, and daily Roman-lectionary citations courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic table compiled in-app from the traditional sources."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
                 </StackPanel>
 

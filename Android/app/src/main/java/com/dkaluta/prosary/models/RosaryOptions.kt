@@ -24,6 +24,8 @@ data class RosaryOptions(
     var includeClosingIntentions: Boolean = false,
     var includeStMichaelPrayer: Boolean = false,
     var includeFinalSignOfCross: Boolean = true,
+    /** Per-Rosary Aramaic form, ignored when Aramaic is the app-wide default language. */
+    var aramaicSignOfCrossForm: String = AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_A,
     /** Collapses each decade's 10 Hail Marys and Glory Be onto one combined screen — for someone
      * leading a group aloud from memory who doesn't need to tap through 10 visually-identical
      * screens. See `PrayerEngine.buildRosarySteps`. */

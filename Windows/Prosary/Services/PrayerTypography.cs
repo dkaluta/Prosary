@@ -61,21 +61,39 @@ public static class PrayerTypography
     /// Syriac letters, because "arc" is Aramaic in Hebrew script. Without a face covering the
     /// block the toggle would draw a line of tofu, which is worse than not offering it.</summary>
     public const string SyriacFontFamily = "/Assets/Fonts/NotoSansSyriac-Variable.ttf#Noto Sans Syriac";
+    private const string SyriacWesternFontFamily = "/Assets/Fonts/NotoSansSyriacWestern-Variable.ttf#Noto Sans Syriac Western";
+    private const string SyriacEasternFontFamily = "/Assets/Fonts/NotoSansSyriacEastern-Variable.ttf#Noto Sans Syriac Eastern";
 
     /// <summary><paramref name="script"/> overrides what the language would imply — pass it when
     /// rendering a transliteration.</summary>
     public static string ResolveBodyFontFamily(string languageCode, bool isScripture, Script? script) =>
         script switch
         {
-            Script.Syriac => SyriacFontFamily,
+            Script.Syriac => AppSettings.SyriacTypeface switch
+            {
+                AppSettings.TypefaceWestern => SyriacWesternFontFamily,
+                AppSettings.TypefaceEastern => SyriacEasternFontFamily,
+                _ => SyriacFontFamily,
+            },
             _ => ResolveBodyFontFamily(languageCode, isScripture),
         };
 
     public static string ResolveBodyFontFamily(string languageCode, bool isScripture) => (languageCode is not null ? Prosary.Models.LanguageCatalog.BaseLanguage(languageCode) ?? languageCode : languageCode) switch
     {
         "he" or "arc" => isScripture
-            ? "/Assets/Fonts/ShofarRegular.ttf#Shofar"
-            : "/Assets/Fonts/FrankRuhlLibre-Variable.ttf#Frank Ruhl Libre",
+            ? AppSettings.HebrewScriptureTypeface switch
+            {
+                AppSettings.TypefaceStamAshkenaz => "/Assets/Fonts/StamAshkenazCLM.ttf#Stam Ashkenaz CLM",
+                AppSettings.TypefaceStamSefarad => "/Assets/Fonts/StamSefaradCLM.ttf#Stam Sefarad CLM",
+                AppSettings.TypefaceRashi => "/Assets/Fonts/NotoRashiHebrew-Variable.ttf#Noto Rashi Hebrew",
+                _ => "/Assets/Fonts/ShofarRegular.ttf#Shofar",
+            }
+            : AppSettings.HebrewPrayerTypeface switch
+            {
+                AppSettings.TypefaceDavidLibre => "/Assets/Fonts/DavidLibre-Regular.ttf#David Libre",
+                AppSettings.TypefaceSansSerif => "Segoe UI",
+                _ => "/Assets/Fonts/FrankRuhlLibre-Variable.ttf#Frank Ruhl Libre",
+            },
         "ar" => isScripture
             ? "/Assets/Fonts/ScheherazadeNew-Regular.ttf#Scheherazade New"
             : "/Assets/Fonts/Amiri-Regular.ttf#Amiri",

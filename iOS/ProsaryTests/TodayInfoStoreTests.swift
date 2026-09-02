@@ -175,6 +175,20 @@ final class TodayInfoStoreTests: XCTestCase {
     let intention = TodayInfoStore.intention(for: date("2026-07-27"))
     XCTAssertEqual(intention?.title, "For respect for human life")
     XCTAssertTrue(intention?.text.contains("human life in all its stages") ?? false)
+    XCTAssertEqual(intention?.localizedTitle("he"), "למען כבוד לחיי אדם")
+    XCTAssertTrue(intention?.localizedText("he").contains("בכל שלביהם") ?? false)
+  }
+
+  func testReadingsAndLiturgicalDayResolve() {
+    let readings = TodayInfoStore.readings(on: date("2026-08-31"))
+    XCTAssertEqual(readings.map(\.short), ["1 Cor. 2", "Ps. 119", "Lk. 4"])
+    XCTAssertEqual(readings.last?.full, "Luke 4:16–30")
+    XCTAssertEqual(readings.last?.hebrew, "הבשורה על-פי לוקס 4:16–30")
+
+    let day = TodayInfoStore.liturgicalDayInfo(on: date("2026-08-31"))
+    XCTAssertTrue(day.english.hasPrefix("Monday · Week "))
+    XCTAssertTrue(day.english.hasSuffix(" of Ordinary Time"))
+    XCTAssertTrue(day.hebrew.contains("בזמן הרגיל"))
   }
 
   func testMonthOutsideThePublishedListHasNoIntention() {

@@ -34,27 +34,11 @@ public static partial class PrayerTranslations
 
     public static string Get(string? languageCode, string key)
     {
-        if (languageCode is not null)
+        foreach (var code in Prosary.Models.LanguageCatalog.FallbackChain(languageCode))
         {
-            var packOverride = PrayerPackStore.PrayerOverride(languageCode, key);
+            var packOverride = PrayerPackStore.PrayerOverride(code, key);
             if (packOverride is not null) return packOverride;
-        }
-
-        if (languageCode is not null && ByLanguage.TryGetValue(languageCode, out var table) &&
-            table.TryGetValue(key, out var text))
-        {
-            return text;
-        }
-
-        // Community variants ("he-x-gamliel") overlay their base language before Latin.
-        if (languageCode is not null && Prosary.Models.LanguageCatalog.BaseLanguage(languageCode) is { } baseCode)
-        {
-            var baseOverride = PrayerPackStore.PrayerOverride(baseCode, key);
-            if (baseOverride is not null) return baseOverride;
-            if (ByLanguage.TryGetValue(baseCode, out var baseTable) && baseTable.TryGetValue(key, out var baseText))
-            {
-                return baseText;
-            }
+            if (ByLanguage.TryGetValue(code, out var table) && table.TryGetValue(key, out var text)) return text;
         }
 
         // Pack-provided Latin before the hardcoded Latin table — some texts (the converted

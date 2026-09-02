@@ -15,7 +15,7 @@ public sealed partial class RosaryPrayerPage : Page
     // Desktop windows at/above this width get the wide three-column layout (image, major/minor
     // bead columns, prayer text side by side); narrower windows keep the single-column layout
     // with horizontal bead rows. Matches irosary's RosaryPrayerPage.xaml.cs breakpoint.
-    private const double WideLayoutBreakpoint = 700;
+    private const double WideLayoutBreakpoint = 860;
 
     // A single 10-tall minor-beads column needs roughly 254pt of height (matching iOS's own
     // comment in PrayerStepFlowView.swift) — below that, the wide layout's minor beads split into

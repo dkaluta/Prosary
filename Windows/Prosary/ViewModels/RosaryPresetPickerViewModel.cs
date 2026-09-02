@@ -53,7 +53,8 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
     // setup offers the whole set, and this is where a preset gets created from ("Save as
     // Preset"), so anything not offered here could never be set at creation time.
     public IReadOnlyList<EternalRestPlacement> EternalRestPlacements { get; } = Enum.GetValues<EternalRestPlacement>();
-    public IReadOnlyList<MarianAntiphonOption> MarianAntiphons { get; } = Enum.GetValues<MarianAntiphonOption>();
+    public IReadOnlyList<MarianAntiphonChoice> MarianAntiphons =>
+        MarianAntiphonOptionExtensions.Choices(DefaultPreset?.LanguageCode);
     public IReadOnlyList<MysteryImageStyle> MysteryImageStyles { get; } = Enum.GetValues<MysteryImageStyle>();
 
     [ObservableProperty]
@@ -103,6 +104,7 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
         OtherPresets = new ObservableCollection<Prayer>(rosaries.Where(p => !p.IsDefault));
         HasDefaultPreset = DefaultPreset is not null;
         HasOtherPresets = OtherPresets.Count > 0;
+        OnPropertyChanged(nameof(MarianAntiphons));
 
         // Seeded from the default preset, so "any Rosary" starts where your usual one does.
         if (DefaultPreset is { } preset)

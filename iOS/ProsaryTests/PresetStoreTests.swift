@@ -31,6 +31,12 @@ final class PresetStoreTests: XCTestCase {
     XCTAssertEqual(restored.customOptions, ["seventyTwoHailMarys": "false"])
   }
 
+  func testPresetEntryRoundTripsThePerRosaryAramaicCrossForm() {
+    let prayer = Prayer(rosary: RosaryOptions(aramaicSignOfCrossForm: AramaicSignOfCrossForm.formB))
+    XCTAssertEqual(PresetEntry(prayer: prayer).toPrayer().rosary.aramaicSignOfCrossForm,
+                   AramaicSignOfCrossForm.formB)
+  }
+
   // MARK: - all()
 
   func testAllReturnsSortedByName() async throws {

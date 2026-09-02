@@ -11,6 +11,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.SwapVert
+import androidx.compose.material.icons.outlined.StarOutline
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -31,10 +34,10 @@ import androidx.compose.ui.unit.dp
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.BasicPrayerCatalog
 import com.dkaluta.prosary.models.BasicPrayersOrder
+import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.ui.home.HomeOrderEditor
-import androidx.compose.material.icons.filled.SwapVert
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -59,7 +62,7 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
     var orderGeneration by remember { mutableIntStateOf(0) }
     var showsOrderEditor by remember { mutableStateOf(false) }
     val ordered = remember(orderGeneration) {
-        BasicPrayersOrder.apply(context, BasicPrayerCatalog.all)
+        BasicPrayersOrder.applyFavorites(BasicPrayersOrder.apply(context, BasicPrayerCatalog.all))
     }
     Scaffold(
         topBar = {
@@ -104,6 +107,20 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
                         Text(
                             PrayerPackStore.resolveBodyText(prayer.bundleId, language.code, prayer.titleKey),
                             style = MaterialTheme.typography.titleMedium,
+                            modifier = Modifier.weight(1f),
+                        )
+                    }
+                    IconButton(onClick = {
+                        AppSettings.toggleFavoriteBasicPrayer(prayer.id)
+                        orderGeneration++
+                    }) {
+                        val isFavorite = prayer.id in AppSettings.favoriteBasicPrayerIds
+                        Icon(
+                            if (isFavorite) Icons.Filled.Star else Icons.Outlined.StarOutline,
+                            contentDescription = stringResource(
+                                if (isFavorite) R.string.basic_prayers_unfavorite
+                                else R.string.basic_prayers_favorite,
+                            ),
                         )
                     }
                 }
@@ -114,7 +131,7 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
         // The same generic drag-handle editor Home uses; titles resolve in the prayer
         // language, so the dialog reads exactly like the list behind it.
         HomeOrderEditor(
-            titles = ordered.map {
+            titles = BasicPrayersOrder.apply(context, BasicPrayerCatalog.all).map {
                 it.id to PrayerPackStore.resolveBodyText(it.bundleId, language.code, it.titleKey)
             },
             onMove = { ids ->

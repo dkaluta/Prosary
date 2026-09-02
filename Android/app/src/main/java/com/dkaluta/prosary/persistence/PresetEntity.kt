@@ -61,6 +61,8 @@ data class PresetEntity(
     val includeClosingIntentions: Boolean = false,
     val includeStMichaelPrayer: Boolean = false,
     val includeFinalSignOfCross: Boolean = true,
+    // Added in DB version 8 (see MIGRATION_7_8).
+    val aramaicSignOfCrossForm: String = "formA",
     // Defaults to false for existing rows.
     val presenterMode: Boolean = false,
     // MysteryImageStyle's enum name. Added in DB version 7 (see MIGRATION_6_7).
@@ -115,6 +117,7 @@ data class PresetEntity(
                 includeClosingIntentions = includeClosingIntentions,
                 includeStMichaelPrayer = includeStMichaelPrayer,
                 includeFinalSignOfCross = includeFinalSignOfCross,
+                aramaicSignOfCrossForm = aramaicSignOfCrossForm,
                 presenterMode = presenterMode,
                 mysteryImageStyle = runCatching { MysteryImageStyle.valueOf(mysteryImageStyle) }
                     .getOrDefault(MysteryImageStyle.Classic),
@@ -151,6 +154,7 @@ data class PresetEntity(
                 includeClosingIntentions = prayer.rosary.includeClosingIntentions,
                 includeStMichaelPrayer = prayer.rosary.includeStMichaelPrayer,
                 includeFinalSignOfCross = prayer.rosary.includeFinalSignOfCross,
+                aramaicSignOfCrossForm = prayer.rosary.aramaicSignOfCrossForm,
                 presenterMode = prayer.rosary.presenterMode,
                 mysteryImageStyle = prayer.rosary.mysteryImageStyle.name,
                 jesusPrayerIsUnbounded = isUnbounded,

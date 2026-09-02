@@ -9,6 +9,8 @@
     <string name="common_cancel">ביטול</string>
     <string name="common_save">שמור</string>
     <string name="common_done">סיום</string>
+    <string name="common_move_up">העבר למעלה</string>
+    <string name="common_move_down">העבר למטה</string>
     <string name="common_reset">איפוס</string>
     <string name="common_ok">אישור</string>
     <string name="common_retry">נסה שוב</string>
@@ -52,6 +54,9 @@
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">שפת תפילה כברירת מחדל</string>
+    <string name="settings_language_fallback_order">סדר עדיפות לשפות…</string>
+    <string name="settings_language_fallback_order_title">סדר עדיפות לשפות</string>
+    <string name="settings_language_fallback_order_footer">כאשר תפילה חסרה, Prosary מנסה את השפות האלה מלמעלה למטה אחרי השפה שנבחרה והנוסח שלה.</string>
     <string name="settings_praying">בתפילה</string>
     <string name="prayer_order_title">סדר התפילות</string>
     <string name="basic_prayers_title">תפילות בסיסיות</string>
@@ -254,6 +259,9 @@
     <string name="about_typeface_amiri">" — רישיון SIL Open Font 1.1 — תפילות בערבית."</string>
     <string name="about_typeface_scheherazade">" — רישיון SIL Open Font 1.1 — פסוקי מקרא בערבית (SIL)."</string>
     <string name="about_typeface_cardo">" — רישיון SIL Open Font 1.1 — פסוקי מקרא בלטינית ובאנגלית (David J. Perry)."</string>
+    <string name="about_typeface_noto_syriac">", מערבי ומזרחי — רישיון SIL Open Font 1.1 — גופנים לבחירה לארמית בכתב סורי."</string>
+    <string name="about_typeface_optional_hebrew">" — רישיון SIL Open Font 1.1 — גופנים לבחירה לתפילות ולכתבי הקודש בעברית; ב־Android ‏Roboto משתמש ב־Noto Sans Hebrew כגופן גיבוי."</string>
+    <string name="about_typeface_stam">" — GPL v2 עם חריגת הטמעת גופנים — גופנים לבחירה לכתבי הקודש בעברית (פרויקט קולמוס, יורם גנת)."</string>
     <string name="about_typefaces_footer">תפילות בכתב לטיני משתמשות בגופן הסריפי של המערכת — אינו מצורף לאפליקציה.</string>
     <string name="about_mystery_illustrations">איורי הרזים</string>
     <string name="about_mystery_intro">כל 20 תמונות הרזים הן ציורים קלאסיים ברשות הציבור (האמן נפטר לפני יותר מ־100 שנים), מתוך ויקישיתוף.</string>
@@ -314,12 +322,34 @@
     <string name="about_scripture_sources">מקורות כתבי הקודש</string>
     <string name="about_scripture_text">ציטוטי המקרא לקוחים מביבליית דואיי־רימס (אנגלית), הוולגאטה הקלמנטית (לטינית), תרגום דליטש לברית החדשה (מתוך kirjasilta.net/ha-berit) עם קטעי התנ״ך על פי נוסח המסורה, תרגום הישועים לביבליה לערבית (ביירות, 1880, נערך 1988), הביבליה הסינודלית ברוסית (1876) ו־Ang Dating Biblia (טאגאלוג, 1905) — כולם בנחלת הכלל.</string>
     <string name="about_calendar_data">נתוני לוחות</string>
-    <string name="about_calendar_data_body">נתוני לוחות החגים: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 מ־Missale Meum‏ (missalemeum.com); הלוח הסורי-קתולי ולוח המקראות הרומי בעברית באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; הלוח האוקראיני-קתולי נערך באפליקציה מן המקורות המסורתיים.</string>
+    <string name="about_calendar_data_body">נתוני לוחות ומקראות: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 מ־Missale Meum‏ (missalemeum.com); הלוח הסורי-קתולי, לוח המקראות הרומי בעברית ומראי המקום היומיים של המקראות באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; הלוח האוקראיני-קתולי נערך באפליקציה מן המקורות המסורתיים.</string>
     <string name="multi_day_reminder_body">יום %1$d מתוך %2$d ממתין.</string>
     <string name="multi_day_completed_title">בזאת הושלמה. להתפלל %1$s עכשיו?</string>
     <string name="multi_day_pray_next">התפלל %1$s</string>
     <string name="multi_day_not_now">לא עכשיו</string>
     <string name="settings_rite">נוסח</string>
+    <string name="settings_aramaic_sign_of_cross">נוסח אות הצלב בארמית</string>
+    <string name="settings_aramaic_sign_of_cross_form_a">נוסח א׳</string>
+    <string name="settings_aramaic_sign_of_cross_form_b">נוסח ב׳</string>
+    <string name="settings_typography_header">טיפוגרפיה</string>
+    <string name="settings_syriac_typeface">ארמית בכתב סורי</string>
+    <string name="settings_hebrew_prayer_typeface">תפילות בכתב עברי</string>
+    <string name="settings_hebrew_scripture_typeface">כתבי הקודש בעברית</string>
+    <string name="settings_typeface_default">ברירת מחדל</string>
+    <string name="settings_typeface_western_aramaic">ארמית מערבית</string>
+    <string name="settings_typeface_eastern_aramaic">ארמית מזרחית</string>
+    <string name="settings_typeface_david_libre">David Libre</string>
+    <string name="settings_typeface_sans_serif">Roboto (גיבוי Noto)</string>
+    <string name="settings_typeface_stam_ashkenaz">סת״ם אשכנזי</string>
+    <string name="settings_typeface_stam_sefarad">סת״ם ספרדי</string>
+    <string name="settings_typeface_rashi">רש״י</string>
+    <string name="settings_favorite_basic_prayers_first">העבר תפילות בסיסיות מועדפות לראש הרשימה</string>
+    <string name="basic_prayers_favorite">הוסף למועדפים</string>
+    <string name="basic_prayers_unfavorite">הסר מהמועדפים</string>
+    <string name="home_today_show_english">English</string>
+    <string name="home_today_readings">מקראות היום</string>
+    <string name="home_today_full_citations">הצג מראי מקום מלאים</string>
+    <string name="home_today_compact_citations">הצג קיצור</string>
     <string name="home_pray_any_rosary">התפלל מחרוזת כלשהי</string>
     <string name="home_add_rosary">הוסף מחרוזת</string>
     <string name="home_add_jesus_prayer">הוסף את תפילת ישוע</string>

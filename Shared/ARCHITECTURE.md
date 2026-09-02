@@ -37,7 +37,8 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   the closing intentions (the customary intercessions right after the antiphon — for the Pope,
   the local ordinary, and the holy souls — each unfolding into an Our Father/Hail Mary/Glory Be,
   from the Mission of St. Gamaliel's prayer book), the St. Michael prayer, and the final Sign of
-  the Cross, and `mysteryImageStyle` (classic paintings vs. the `eastern_*` icon set; the engine
+  the Cross, `aramaicSignOfCrossForm` (`formA` / `formB`), and `mysteryImageStyle` (classic paintings
+  vs. the `eastern_*` icon set; the engine
   stamps `RosaryStep.imageVariantKey` on every Mystery-carrying step so display resolution —
   `imageVariantKey ?? mystery.imageKey ?? imageOverrideKey` — swaps artwork without touching
   `Mystery.imageKey`, which stays the mystery's identity and translation-lookup key).
@@ -48,11 +49,11 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   is a deliberate, known divergence, not a bug.
 - **`PrayerReminder`** — `id`, `hour`, `minute`, `isEnabled`. One-off local reminder times, not a
   recurrence rule — see "Reminders" below for why each platform schedules these differently.
-- **`LanguageOption`/`LanguageCatalog`** — the 9 supported prayer languages (`la` default, `en`,
-  `ar`, `he`, `arc`, `el`, `es`, `ru`, `tl`; `ar`/`he`/`arc` right-to-left), independent of the
-  device's own UI language. A bundle advertises only the subset it actually supplies, and Hebrew
-  additionally offers community rites through exact language-code overlays such as
-  `he-x-gamliel`.
+- **`LanguageOption`/`LanguageCatalog`** — ten always-visible prayer-language choices: `la`
+  (default), `en`, `ar`, `he` (Vicariate), `he-x-gamliel` (Mission), `arc`, `el`, `es`, `ru`,
+  and `tl`; `ar`/`he`/`he-x-gamliel`/`arc` are right-to-left. They are independent of the device's
+  UI language. A bundle advertises only the subset it fully supplies; exact community codes can
+  overlay their base language without pretending to be complete.
 
 
 > **Running the Apple test suites:** pass `-parallel-testing-enabled NO`. Both targets share
@@ -121,7 +122,11 @@ behind the rosary bundle's `decades.source: "mysteryGroups"`: mystery-group reso
 (selection mode + calendar), group-labelled ordinals, the single-mystery mode's true ordinal,
 real `Mystery` values on steps, and presenter mode's combined step. `RosaryOptions` remains the
 persisted shape and the bespoke editor keeps writing it — the engine maps it onto the bundle's
-options.json values (`rosaryOptionValues`), so there is **no data migration**.
+options.json values (`rosaryOptionValues`). For the Aramaic Sign of the Cross, an explicitly
+Aramaic Rosary has a per-favorite `formA` / `formB` choice only while the app default is another
+language. Both sourced forms say "and the Son"; they are distinct Syriac recensions, not a
+Word/Son substitution. If the app default is Aramaic, the app-wide `aramaicSignOfCrossForm`
+setting is the single authority and the saved per-Rosary value is deliberately ignored.
 
 - **Rosary** — the richest: opening (Sign of the Cross, optional Creed, optional opening Our
   Father/3 Hail Marys for Faith/Hope/Charity), one loop per decade across every resolved
@@ -315,11 +320,16 @@ its current enabled ones), `removeAll(prayer)`, `rescheduleAll(prayers)` (called
 
 ## Assets
 
-- **`Fonts/`** — the 5 bundled prayer typefaces (Amiri, Cardo, Frank Ruhl Libre, Scheherazade New,
-  Shofar — see `Fonts/ATTRIBUTIONS.md` for licenses) used for Hebrew/Arabic prayer and Scripture
-  text, and Latin/English Scripture quotations. Latin-script *ordinary* prayer text uses each
-  platform's own system serif instead (Apple's "New York" on iOS/Mac, the system serif on
-  Android, Cambria on Windows) — none of those are bundled, only the 5 above are.
+- **`Fonts/`** — bundled faces for prayer and Scripture typography (see
+  `Fonts/ATTRIBUTIONS.md` for the complete license notices). Syriac-script Aramaic can use Noto
+  Sans Syriac (Default), Noto Sans Syriac Western, or Noto Sans Syriac Eastern, in that order.
+  Hebrew prayer text offers Frank Ruhl Libre, David Libre, and a sans-serif choice (the platform
+  system face on Apple/Windows; bundled Roboto with Noto Sans Hebrew fallback on Android).
+  Hebrew Scripture offers Shofar, Stam Ashkenaz, Stam Sefarad, and Noto Rashi Hebrew. The two
+  Stam fonts are the unmodified Culmus fonts by Yoram Gnat, GPL v2 with their font-embedding
+  exception. Amiri/Scheherazade New cover Arabic prayer/Scripture and Cardo covers
+  Latin/English Scripture. Latin-script *ordinary* prayer text continues to use each platform's
+  system serif (Apple's "New York", Android's system serif, Cambria on Windows).
 - **`Images/`** — the 20 mystery paintings (plus the alternate `eastern_*` icon set — the same
   20 mysteries in an Eastern/illuminated-manuscript style, selected per favorite by
   `RosaryOptions.mysteryImageStyle`; see `Images/CREDITS.md` for their AI-generated provenance),
@@ -366,7 +376,13 @@ The **Rosary** keeps a dedicated `PrayerKind` and typed `RosaryOptions`, but its
 not hardcoded: the shared `PrayerEngine` builds it from the Rosary bundle's `devotion.json` and
 maps the typed options onto `options.json`. Its calendar-driven mystery-group resolution remains
 engine-side behind `decades.source: "mysteryGroups"`. The manifest's `builtinKind: "rosary"`
-keeps the bundle out of generic-devotion discovery so it is not listed twice.
+keeps the bundle out of generic-devotion discovery so it is not listed twice. Its sourced
+Aramaic table is the one deliberate exception to the ordinary main-prayer omission: it carries
+both `signumCrucis` (form A) and `signumCrucisFormB` (form B), two sourced variants that both
+say "and the Son". The Rosary
+definition conditionally places exactly one at each cross position. Other languages resolve
+`signumCrucisFormB` to their ordinary Sign of the Cross, so this Aramaic-only distinction never
+changes their wording.
 
 At runtime, each platform's `PrayerPackLoader` also merges every loaded bundle's content into the existing
 `PrayerTranslations`/`MysteryTranslations` tables (bundle wins on collision) rather than
@@ -383,18 +399,21 @@ bundle at all (it has no per-step content to carry).
 
 ### Community language overlays
 
-A bundle's `manifest.languages` is what it *offers* — the languages its picker lists and the
-ones the validator holds to completeness. Any other `content/<code>.json` the pack carries is an
-**overlay**: the loaders read it, and `resolveBodyText` resolves a key against the exact code
-first, then its base language (`he-x-gamliel` → `he`), then Latin. So a community variant can
-ship its own wording for three keys without owing a translation of the whole devotion, and the
-packer needs no new manifest field — it already copies every content file it finds.
+A bundle's `manifest.languages` declares the languages the validator holds to completeness.
+Picker choices normally follow that list, with one deliberate expansion: a bundle declaring
+`he` exposes both adjacent Hebrew prayer languages, Vicariate (`he`) and Mission
+(`he-x-gamliel`). Any `content/<code>.json` whose code is not in the manifest is an **overlay**:
+the loaders read it, and `resolveBodyText` tries the exact code first, then its base language
+(`he-x-gamliel` → `he`), then the user's language precedence. A community use can therefore
+ship its own wording for selected prayers and headings without pretending to translate the
+whole devotion; the packer needs no extra manifest field because it already copies every
+content file it finds.
 
-The hardcoded tables work the same way: `PrayerTranslations` keys `he-x-gamliel` beside `he`,
-and `PrayerTranslations.get` falls back through the base language. The Mission of St. Gamaliel's
-Hebrew is the first user of both halves; in that variant the Nicene Creed occupies the
-Apostles' Creed's key, which is what "the Eastern Hebrew prays the Nicene Creed wherever the
-Latin tradition says the Apostles'" means in practice.
+Loaded overlays merge into the same `PrayerTranslations` lookup used by built-in text, so
+`he-x-gamliel` sits beside `he` and falls back through base Hebrew and the configured precedence.
+The Mission of St. Gamaliel's Hebrew is the first user of both halves; in that language the
+Nicene Creed occupies the Apostles' Creed key, which is how the Mission's Rosary uses its own
+Creed without creating a second prayer-flow shape.
 
 ### Generic (bundle-driven) devotions
 
@@ -706,14 +725,15 @@ of its own — its entire step sequence and per-step text are data-driven from i
   into the built step (`RosaryStep.transliteratedBody`), and the prayer flow shows a toggle
   beside the text whenever the current step has one. Compose authors it per custom step and
   language.
-- **`bodyKey`/`titleKey` resolution** (`resolveBodyText`, per bundle): (1) the bundle's own raw
-  content for the requested language; (2) the bundle's own **Latin** content (so a sentinel/
-  unknown/undeclared language prays in Latin, never raw keys — the same convention as
-  `PrayerTranslations.get`'s Latin fallback); (3) the ordinary `PrayerTranslations` chain for
-  shared keys like `gloriaPatri`; (4) the raw key string as last resort.
-  `MysteryTranslations.get` has the matching bundle-Latin step in its own chain, since the
-  Sorrows/Magi texts live only in bundles. **Every one of these chains tries the code's base
-  language before Latin** — `he-x-gamliel` reads plain `he` for anything the rite has not sent,
+- **`bodyKey`/`titleKey` resolution** (`resolveBodyText`, per bundle): (1) bundle content for the
+  exact requested code and then its base language; (2) the shared `PrayerTranslations` lookup
+  for shared keys such as `gloriaPatri`; (3) bundle content in the user's app-wide
+  `languageFallbackOrder` (whose initial order ends in Latin but is fully reorderable); (4) the
+  raw key string. The shared
+  prayer and mystery tables use the same requested → base → user-order chain. This keeps
+  an available English Glory Be in English instead of replacing it with an unrelated bundle
+  translation, while bundle-only keys still obey the chosen precedence. `he-x-gamliel` reads
+  plain `he` for anything the Mission has not supplied,
   in the pack overrides and the hardcoded tables alike. `MysteryTranslations.get` was missing
   that step until 2026-08-06: a rite that ships no mystery texts of its own announced every
   mystery in *Latin* — title, Vulgate body and the fruit spliced into a Hebrew label — while the
@@ -785,7 +805,7 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
     on a movable-cycle day is joined into one title rather than displaced (the Annunciation
     on Great and Holy Thursday, 2027). Ranks: "Great Feast" / "Feast" / "Sunday" /
     "Holy Week" / "Fast". Curated data awaiting eparchial/community verification.
-  - `syriac` — **`feasts-syriac.json`**: "West Aramaic — Syriac Catholic" (the apostolate's
+  - `syriac` — **`feasts-syriac.json`**: "West Aramaic — Syriac Catholic" (the Mission's
     own chosen name for its tradition),
     liturgical day titles **courtesy of Evangelizo.org — Daily Gospel (© Evangelizo.org)**,
     via its publication API's English Syriac-calendar edition ("SYE"), one request per day;
@@ -801,12 +821,18 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
   `--sync` copies all of `Shared/data/*.json` into the three platform asset dirs).
   `TodayInfoStore` reloads the feast table when the selected calendar changes; the calendar
   choice affects the Today feast row only — seasons, mysteries, and antiphons stay
-  `LiturgicalCalendarService`'s computed Latin machinery, and the Pope's intention shows for
-  every calendar. Each Today row also has its own Settings switch (2026-08, Erez's request:
+  `LiturgicalCalendarService`'s computed Latin machinery. The Today card always names the
+  weekday and numbered week of the liturgical season, with an English/Hebrew display toggle.
+  Its readings row shows compact citations (for example `Gen 1; Ps 23; Jn 3`) from the bundled
+  Evangelizo-derived `readings.json`; a button expands the full citations. Each optional Today
+  row still has its own Settings switch (2026-08, Erez's request:
   `showTodayFeast` / `showTodayIntention`, both on by default) — either, both, or neither
   row can show, and a row switched off simply never loads.
 - **`pope-intentions.json`** — the Pope's Worldwide Prayer Network monthly intentions
-  (`months: {"YYYY-MM": {title, text}}`), from popesprayer.va; maintained by hand (no API).
+  (`months: {"YYYY-MM": {title, text, titleByLanguage, textByLanguage}}`), from popesprayer.va; maintained by
+  hand (no API), with authored Hebrew translations displayed by the Today language toggle.
+- **`readings.json`** — daily English and Hebrew lectionary citations fetched from Evangelizo's
+  publication API by `Shared/tools/fetch-readings.py`; `--sync` copies it into all three apps.
 
 A date/month outside the datasets returns nothing and the row simply hides — regenerating the
 JSON (roughly yearly, `fetch-feasts.py`) is the only maintenance.

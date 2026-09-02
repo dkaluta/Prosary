@@ -359,39 +359,24 @@ fun CustomDevotionFlowScreen(
             // variant menu: rebuilds the session in place (keeping the position — the step
             // sequence is identical across languages) and persists to the matching favorite.
             val bundleLanguages = PrayerPackStore.info(devotionId)?.languages.orEmpty()
-            if (bundleLanguages.size > 1) {
+            if (bundleLanguages.size > 1 || "he" in bundleLanguages) {
                 IconButton(onClick = { languageMenuExpanded = true }) {
                     Icon(Icons.Filled.Language, contentDescription = stringResource(R.string.flow_prayer_language))
                 }
                 DropdownMenu(expanded = languageMenuExpanded, onDismissRequest = { languageMenuExpanded = false }) {
-                    // A language prayed in more than one use lists those under it — the rite is
-                    // a second question, and one whose gaps fall back to the language's own.
-                    val rites = LanguageCatalog.rites(LanguageCatalog.resolve(chosenLanguage).code)
-                    // A language row checks whenever the chosen code IS that language — rites
-                    // included, by base: praying he-x-gamliel keeps עברית checked, with the
-                    // rite rows below saying whose Hebrew. Exact matching here made the Hebrew
-                    // check vanish the moment the Mission's rite was chosen — while the
-                    // Vicariate's rite (whose code IS "he") kept it, which is how the
-                    // inconsistency read as a bug to the person praying it (Erez, 2026-08-08).
                     data class Choice(val raw: String, val name: String, val checked: Boolean)
-                    val chosenBase = LanguageCatalog.baseLanguage(chosenLanguage) ?: chosenLanguage
+                    // Hebrew Vicariate and Mission are independent prayer-language choices.
+                    // A bundle advertising base Hebrew offers both; Mission-only gaps resolve
+                    // through the ordinary base-language chain.
                     val choices =
                         listOf(Choice(
                             LanguageCatalog.defaultSentinel,
                             stringResource(R.string.flow_app_setting),
                             chosenLanguage == LanguageCatalog.defaultSentinel,
                         )) +
-                        bundleLanguages.mapNotNull { code ->
-                            LanguageCatalog.all.firstOrNull { it.code == code }?.let {
-                                Choice(it.code, it.nativeName,
-                                    chosenLanguage != LanguageCatalog.defaultSentinel && chosenBase == it.code)
-                            }
-                        } +
-                        (if (rites.size > 1) {
-                            rites.map { Choice(it.code, it.nativeName, chosenLanguage == it.code) }
-                        } else {
-                            emptyList()
-                        })
+                        LanguageCatalog.availableOptions(bundleLanguages).map {
+                            Choice(it.code, it.nativeName, chosenLanguage == it.code)
+                        }
                     for ((raw, name, checked) in choices) {
                         DropdownMenuItem(
                             text = { Text(name) },

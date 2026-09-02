@@ -49,6 +49,13 @@
   <data name="jp_error_body" xml:space="preserve"><value>The Jesus Prayer couldn't be loaded. Please go back and try again.</value></data>
   <data name="home_today" xml:space="preserve"><value>Today: {0}</value></data>
   <data name="home_pope_intention" xml:space="preserve"><value>The Pope’s intention: {0}</value></data>
+  <data name="SetLanguageFallbackOrder.Content" xml:space="preserve"><value>Language fallback order…</value></data>
+  <data name="settings_language_fallback_order_title" xml:space="preserve"><value>Language fallback order</value></data>
+  <data name="settings_language_fallback_order_footer" xml:space="preserve"><value>When a prayer is missing, Prosary tries these languages from top to bottom after the chosen language and its own variation.</value></data>
+  <data name="home_today_show_english" xml:space="preserve"><value>English</value></data>
+  <data name="home_today_full_citations" xml:space="preserve"><value>View full citations</value></data>
+  <data name="home_today_compact_citations" xml:space="preserve"><value>Show shorthand</value></data>
+  <data name="HomeTodayReadings.Text" xml:space="preserve"><value>Today’s readings</value></data>
   <data name="home_click_to_set_up" xml:space="preserve"><value>Click to set up</value></data>
   <data name="home_click_to_pray" xml:space="preserve"><value>Click to pray</value></data>
   <data name="home_order_title" xml:space="preserve"><value>Home order</value></data>
@@ -176,10 +183,13 @@
   <data name="AbtTypeAmiri.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — Arabic prayers.</value></data>
   <data name="AbtTypeScheherazade.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — Arabic Scripture (SIL).</value></data>
   <data name="AbtTypeCardo.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — Latin/English Scripture (David J. Perry).</value></data>
+  <data name="AbtTypeNotoSyriac.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — selectable Syriac-script Aramaic faces.</value></data>
+  <data name="AbtTypeOptionalHebrew.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — optional Hebrew prayer and Scripture faces.</value></data>
+  <data name="AbtTypeStam.Text" xml:space="preserve"><value> — GPL v2 with font-embedding exception — optional Hebrew Scripture faces (Culmus Project, Yoram Gnat).</value></data>
   <data name="AbtTypeFooter.Text" xml:space="preserve"><value>Latin-script prayers use Cambria, which ships with Windows — not bundled with the app.</value></data>
   <data name="AbtMysteryHeader.Text" xml:space="preserve"><value>Mystery Illustrations</value></data>
   <data name="AbtMysteryIntro.Text" xml:space="preserve"><value>All 20 mystery images are classical paintings in the public domain (artist deceased over 100 years), sourced from Wikimedia Commons.</value></data>
-  <data name="AboutEasternIcons.Text" xml:space="preserve"><value>The collection of illustrations of the Mysteries in the Eastern style is used with approval from the St. Gamliel Apostolate for Hebrew Catholics in the Aramaic (Syriac) Catholic Church.</value></data>
+  <data name="AboutEasternIcons.Text" xml:space="preserve"><value>The collection of illustrations of the Mysteries in the Eastern style is used with approval from the Mission of St. Gamaliel for Hebrew Catholics in the Aramaic (Syriac) Catholic Church.</value></data>
   <data name="AbtOtherHeader.Text" xml:space="preserve"><value>Other Images</value></data>
   <data name="AbtStationsHeader.Text" xml:space="preserve"><value>Stations of the Cross Illustrations</value></data>
   <data name="AbtStationsFugel.Text" xml:space="preserve"><value>All 14 stations: Gebhard Fugel (1863–1939), Kreuzweg (1921), St. Antonius, Bad Saulgau — public domain; photographs by Andreas Praefcke, released into the public domain.</value></data>
@@ -195,7 +205,7 @@
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>Scripture Sources</value></data>
   <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) with Hebrew Old Testament passages following the Masoretic text, the Jesuit Arabic Bible (Beirut, 1880, revised 1988), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905) — all public domain.</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>Calendar Data</value></data>
-  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Feast calendar data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar via Missale Meum (missalemeum.com); the Syriac Catholic calendar and the Roman lectionary calendar in Hebrew courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic table compiled in-app from the traditional sources.</value></data>
+  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Calendar and readings data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar via Missale Meum (missalemeum.com); the Syriac Catholic calendar, the Roman lectionary calendar in Hebrew, and daily Roman-lectionary citations courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic table compiled in-app from the traditional sources.</value></data>
   <data name="AbtMys01Title.Text" xml:space="preserve"><value>The Annunciation</value></data>
   <data name="AbtCredit01.Text" xml:space="preserve"><value> — Fra Angelico (d. 1455)</value></data>
   <data name="AbtMys02Title.Text" xml:space="preserve"><value>The Visitation</value></data>
@@ -284,6 +294,24 @@
   <data name="multi_day_not_now" xml:space="preserve"><value>Not now</value></data>
   <data name="SetRiteCombo.Header" xml:space="preserve"><value>Rite</value></data>
   <data name="settings_rite" xml:space="preserve"><value>Rite</value></data>
+  <data name="settings_aramaic_sign_of_cross" xml:space="preserve"><value>Aramaic Sign of the Cross</value></data>
+  <data name="settings_aramaic_sign_of_cross_form_a" xml:space="preserve"><value>Form A</value></data>
+  <data name="settings_aramaic_sign_of_cross_form_b" xml:space="preserve"><value>Form B</value></data>
+  <data name="SetTypographyHeader.Text" xml:space="preserve"><value>Typography</value></data>
+  <data name="SetSyriacTypeface.Header" xml:space="preserve"><value>Syriac Aramaic</value></data>
+  <data name="SetHebrewPrayerTypeface.Header" xml:space="preserve"><value>Hebrew prayers</value></data>
+  <data name="SetHebrewScriptureTypeface.Header" xml:space="preserve"><value>Hebrew Scripture</value></data>
+  <data name="settings_typeface_default" xml:space="preserve"><value>Default</value></data>
+  <data name="settings_typeface_western_aramaic" xml:space="preserve"><value>Western Aramaic</value></data>
+  <data name="settings_typeface_eastern_aramaic" xml:space="preserve"><value>Eastern Aramaic</value></data>
+  <data name="settings_typeface_david_libre" xml:space="preserve"><value>David Libre</value></data>
+  <data name="settings_typeface_sans_serif" xml:space="preserve"><value>System sans-serif</value></data>
+  <data name="settings_typeface_stam_ashkenaz" xml:space="preserve"><value>Stam Ashkenaz</value></data>
+  <data name="settings_typeface_stam_sefarad" xml:space="preserve"><value>Stam Sefarad</value></data>
+  <data name="settings_typeface_rashi" xml:space="preserve"><value>Rashi</value></data>
+  <data name="SetFavoriteBasicPrayersFirst.Header" xml:space="preserve"><value>Move favorite basic prayers to top</value></data>
+  <data name="SetAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>Aramaic Sign of the Cross</value></data>
+  <data name="EdAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>Aramaic Sign of the Cross</value></data>
   <data name="EdRiteCombo.Header" xml:space="preserve"><value>Rite</value></data>
   <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>Pray any Rosary</value></data>
   <data name="HomeAddRosary.Content" xml:space="preserve"><value>Add Rosary</value></data>

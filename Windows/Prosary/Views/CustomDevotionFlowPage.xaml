@@ -191,7 +191,7 @@
                     <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
                                FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
                                FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
-                               TextWrapping="Wrap" TextAlignment="Center" />
+                               TextWrapping="Wrap" TextAlignment="Center" IsTextSelectionEnabled="True" />
                 </StackPanel>
             </ScrollViewer>
         </Grid>
@@ -200,7 +200,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" MinWidth="300" />
             </Grid.ColumnDefinitions>
 
             <Border Grid.Column="0" Width="320" Height="320" CornerRadius="16" VerticalAlignment="Center">
@@ -271,7 +271,7 @@
                     <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
                                FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
                                FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
-                               TextWrapping="Wrap" TextAlignment="Center" />
+                               TextWrapping="Wrap" TextAlignment="Center" IsTextSelectionEnabled="True" />
                 </StackPanel>
             </ScrollViewer>
         </Grid>

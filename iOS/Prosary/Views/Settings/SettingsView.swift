@@ -11,13 +11,19 @@ import SwiftUI
 
 struct SettingsView: View {
   @AppStorage("defaultLanguageCode") private var languageCode = LanguageCatalog.defaultCode
+  @AppStorage(AramaicSignOfCrossForm.defaultsKey) private var aramaicSignOfCrossForm = AramaicSignOfCrossForm.formA
   @AppStorage("autoAdvanceSeconds") private var autoAdvanceSeconds = 0
   @AppStorage("hapticsOnAdvance") private var hapticsOnAdvance = false
+  @AppStorage(PrayerTypography.syriacTypefaceKey) private var syriacTypeface = PrayerTypography.TypefaceValue.default
+  @AppStorage(PrayerTypography.hebrewPrayerTypefaceKey) private var hebrewPrayerTypeface = PrayerTypography.TypefaceValue.default
+  @AppStorage(PrayerTypography.hebrewScriptureTypefaceKey) private var hebrewScriptureTypeface = PrayerTypography.TypefaceValue.default
+  @AppStorage(BasicPrayerFavorites.moveToTopKey) private var favoriteBasicPrayersFirst = false
 
   @State private var installedCount = PrayerPackStore.installedBundleIds().count
   @State private var confirmsRemoveAll = false
   @State private var audioCacheBytes = SettingsMaintenance.audioCacheSize()
   @State private var homeOrderIsCustom = !HomeOrder.saved.isEmpty
+  @State private var showsLanguageFallbackOrder = false
 
   @AppStorage(TodayInfoStore.calendarDefaultsKey) private var feastCalendarId = ""
   @AppStorage("showTodayFeast") private var showsTodayFeast = true
@@ -30,38 +36,29 @@ struct SettingsView: View {
       set: { feastCalendarId = $0 })
   }
 
-  /// Choosing a language keeps the rite when that language has one, and drops it otherwise —
-  /// so switching Hebrew → Latin → Hebrew does not silently forget whose Hebrew you pray.
-  private var languageBinding: Binding<String> {
-    Binding(
-      get: { LanguageCatalog.baseLanguage(of: languageCode) ?? languageCode },
-      set: { newBase in
-        languageCode = LanguageCatalog.rites(of: newBase).first?.code ?? newBase
-      })
-  }
-
   var body: some View {
     Form {
       Section(String(localized: "settings.prayerLanguageHeader", defaultValue: "Prayer Language")) {
-        // The stored code may name a rite ("he-x-gamliel"), so the language row binds to its
-        // base and the rite row below chooses among that language's uses.
         Picker(String(localized: "settings.defaultLanguage", defaultValue: "Default language"),
-               selection: languageBinding) {
+               selection: $languageCode) {
           ForEach(LanguageCatalog.all) { lang in
             Text(lang.nativeName).tag(lang.code)
           }
         }
 
-        // Only for a language prayed in more than one use — everywhere else there is nothing
-        // to choose, so nothing is shown.
-        let rites = LanguageCatalog.rites(of: languageCode)
-        if rites.count > 1 {
-          Picker(String(localized: "settings.rite", defaultValue: "Rite"), selection: $languageCode) {
-            ForEach(rites) { rite in
-              Text(rite.nativeName).tag(rite.code)
-            }
+        Button(String(localized: "settings.languageFallbackOrder", defaultValue: "Language fallback order…")) {
+          showsLanguageFallbackOrder = true
+        }
+
+        if (LanguageCatalog.baseLanguage(of: languageCode) ?? languageCode) == "arc" {
+          Picker(String(localized: "settings.aramaicSignOfCross",
+                        defaultValue: "Aramaic Sign of the Cross"),
+                 selection: $aramaicSignOfCrossForm) {
+            Text(String(localized: "settings.aramaicSignOfCross.formA",
+                        defaultValue: "Form A")).tag(AramaicSignOfCrossForm.formA)
+            Text(String(localized: "settings.aramaicSignOfCross.formB",
+                        defaultValue: "Form B")).tag(AramaicSignOfCrossForm.formB)
           }
-          .accessibilityIdentifier("ritePicker")
         }
       }
 
@@ -88,6 +85,34 @@ struct SettingsView: View {
           homeOrderIsCustom = false
         }
         .disabled(!homeOrderIsCustom)
+
+        Toggle(String(localized: "settings.favoriteBasicPrayersFirst",
+                      defaultValue: "Move favorite basic prayers to top"),
+               isOn: $favoriteBasicPrayersFirst)
+      }
+
+      Section(String(localized: "settings.typographyHeader", defaultValue: "Typography")) {
+        Picker(String(localized: "settings.syriacTypeface", defaultValue: "Syriac Aramaic"),
+               selection: $syriacTypeface) {
+          Text(String(localized: "settings.typeface.default", defaultValue: "Default")).tag(PrayerTypography.TypefaceValue.default)
+          Text(String(localized: "settings.typeface.westernAramaic", defaultValue: "Western Aramaic")).tag(PrayerTypography.TypefaceValue.western)
+          Text(String(localized: "settings.typeface.easternAramaic", defaultValue: "Eastern Aramaic")).tag(PrayerTypography.TypefaceValue.eastern)
+        }
+
+        Picker(String(localized: "settings.hebrewPrayerTypeface", defaultValue: "Hebrew prayers"),
+               selection: $hebrewPrayerTypeface) {
+          Text(String(localized: "settings.typeface.default", defaultValue: "Default")).tag(PrayerTypography.TypefaceValue.default)
+          Text(String(localized: "settings.typeface.davidLibre", defaultValue: "David Libre")).tag(PrayerTypography.TypefaceValue.davidLibre)
+          Text(String(localized: "settings.typeface.sansSerif", defaultValue: "System sans-serif")).tag(PrayerTypography.TypefaceValue.sansSerif)
+        }
+
+        Picker(String(localized: "settings.hebrewScriptureTypeface", defaultValue: "Hebrew Scripture"),
+               selection: $hebrewScriptureTypeface) {
+          Text(String(localized: "settings.typeface.default", defaultValue: "Default")).tag(PrayerTypography.TypefaceValue.default)
+          Text(String(localized: "settings.typeface.stamAshkenaz", defaultValue: "Stam Ashkenaz")).tag(PrayerTypography.TypefaceValue.stamAshkenaz)
+          Text(String(localized: "settings.typeface.stamSefarad", defaultValue: "Stam Sefarad")).tag(PrayerTypography.TypefaceValue.stamSefarad)
+          Text(String(localized: "settings.typeface.rashi", defaultValue: "Rashi")).tag(PrayerTypography.TypefaceValue.rashi)
+        }
       }
 
       // The Home "Today" section (Erez's requests): which of its rows show at all, and which
@@ -180,6 +205,47 @@ struct SettingsView: View {
       audioCacheBytes = SettingsMaintenance.audioCacheSize()
       homeOrderIsCustom = !HomeOrder.saved.isEmpty
     }
+    .sheet(isPresented: $showsLanguageFallbackOrder) {
+      NavigationStack { LanguageFallbackOrderView() }
+    }
+  }
+}
+
+private struct LanguageFallbackOrderView: View {
+  @Environment(\.dismiss) private var dismiss
+  @State private var order = LanguageCatalog.fallbackOrder
+
+  var body: some View {
+    List {
+      Section {
+        ForEach(order, id: \.self) { code in
+          HStack {
+            Text(LanguageCatalog.all.first(where: { $0.code == code })?.nativeName ?? code)
+            Spacer()
+            let index = order.firstIndex(of: code) ?? 0
+            Button { move(code, by: -1) } label: { Image(systemName: "chevron.up") }
+              .disabled(index == 0)
+              .accessibilityLabel(String(localized: "common.moveUp", defaultValue: "Move up"))
+            Button { move(code, by: 1) } label: { Image(systemName: "chevron.down") }
+              .disabled(index == order.count - 1)
+              .accessibilityLabel(String(localized: "common.moveDown", defaultValue: "Move down"))
+          }
+        }
+      } footer: {
+        Text(String(localized: "settings.languageFallbackOrder.footer",
+                    defaultValue: "When a prayer is missing, Prosary tries these languages from top to bottom after the chosen language and its own variation."))
+      }
+    }
+    .navigationTitle(String(localized: "settings.languageFallbackOrder.title", defaultValue: "Language fallback order"))
+    .toolbar { ToolbarItem(placement: .confirmationAction) { Button("common.done") { dismiss() } } }
+  }
+
+  private func move(_ code: String, by offset: Int) {
+    guard let index = order.firstIndex(of: code) else { return }
+    let destination = index + offset
+    guard order.indices.contains(destination) else { return }
+    order.swapAt(index, destination)
+    LanguageCatalog.setFallbackOrder(order)
   }
 }
 

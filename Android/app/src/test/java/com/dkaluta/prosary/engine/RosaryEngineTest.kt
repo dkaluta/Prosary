@@ -3,6 +3,8 @@ package com.dkaluta.prosary.engine
 import androidx.compose.ui.graphics.Color
 import com.dkaluta.prosary.calendar.LiturgicalCalendarProviding
 import com.dkaluta.prosary.models.EternalRestPlacement
+import com.dkaluta.prosary.models.AppSettings
+import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.MarianAntiphonOption
 import com.dkaluta.prosary.models.MysteryCatalog
 import com.dkaluta.prosary.models.MysteryGroup
@@ -60,7 +62,10 @@ class RosaryEngineTest {
         includeFinalCross: Boolean = true,
         presenterMode: Boolean = false,
         imageStyle: MysteryImageStyle = MysteryImageStyle.Classic,
+        language: String = LanguageCatalog.defaultSentinel,
+        aramaicSignOfCrossForm: String = AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_A,
     ) = Prayer(
+        languageCode = language,
         rosary = RosaryOptions(
             mysterySelectionMode = mode,
             specificMysteryGroup = group,
@@ -75,6 +80,7 @@ class RosaryEngineTest {
             includeFinalSignOfCross = includeFinalCross,
             presenterMode = presenterMode,
             mysteryImageStyle = imageStyle,
+            aramaicSignOfCrossForm = aramaicSignOfCrossForm,
         ),
     )
 
@@ -117,6 +123,53 @@ class RosaryEngineTest {
         val with = engine().buildSteps(prayer(includeFinalCross = true)).size
         val without = engine().buildSteps(prayer(includeFinalCross = false)).size
         assertEquals(with - 1, without)
+    }
+
+    @Test
+    fun aramaicSignOfCrossUsesPerRosaryFormUntilAramaicBecomesTheAppDefault() {
+        val savedDefault = AppSettings.defaultLanguageCode
+        val savedForm = AppSettings.aramaicSignOfCrossForm
+        try {
+            AppSettings.setDefaultLanguageCode("en")
+            AppSettings.setAramaicSignOfCrossForm(AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B)
+
+            val formA = engine().buildSteps(prayer(
+                language = "arc",
+                aramaicSignOfCrossForm = AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_A,
+            ))
+            assertEquals(
+                "בשמָא דַאבָא ודַברָא ודרוּחָא קַדִישָא, חַד אַלָהָא שַרִירָא. אַמִין.",
+                formA.first().body,
+            )
+            assertEquals(
+                "ܒܫܡܳܐ ܕܰܐܒܳܐ ܘܕܰܒܪܳܐ ܘܕܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ، ܚܰܕ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܐܰܡܺܝܢ.",
+                formA.first().transliteratedBody,
+            )
+            assertEquals(formA.first().body, formA.last().body)
+
+            val formB = engine().buildSteps(prayer(
+                language = "arc",
+                aramaicSignOfCrossForm = AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B,
+            ))
+            assertEquals(
+                "בשֶם אַבָא ובַרָא ורוּחָא קַדִישָא، חַד אַלָהָא שַרִירָא. אַמִין.",
+                formB.first().body,
+            )
+            assertEquals(
+                "ܒܫܶܡ ܐܰܒܳܐ ܘܒܰܪܳܐ ܘܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ، ܚܰܕ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܐܰܡܺܝܢ.",
+                formB.first().transliteratedBody,
+            )
+
+            AppSettings.setDefaultLanguageCode("arc")
+            val systemWide = engine().buildSteps(prayer(
+                language = "arc",
+                aramaicSignOfCrossForm = AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_A,
+            ))
+            assertEquals(formB.first().body, systemWide.first().body)
+        } finally {
+            AppSettings.setDefaultLanguageCode(savedDefault)
+            AppSettings.setAramaicSignOfCrossForm(savedForm)
+        }
     }
 
     @Test

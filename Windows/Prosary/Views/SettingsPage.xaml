@@ -32,11 +32,21 @@
                           ItemsSource="{x:Bind ViewModel.LanguageOptions}" DisplayMemberPath="NativeName"
                           SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}" />
 
+                <Button x:Uid="SetLanguageFallbackOrder" Content="Language fallback order…"
+                        HorizontalAlignment="Stretch" Click="OnEditLanguageFallbackOrder" />
+
                 <!-- Whose use of that language — shown only where there is more than one. -->
                 <ComboBox x:Uid="SetRiteCombo" Header="Rite" HorizontalAlignment="Stretch"
                           Visibility="{x:Bind ViewModel.ShowsRitePicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                           ItemsSource="{x:Bind ViewModel.RiteOptions, Mode=OneWay}" DisplayMemberPath="NativeName"
                           SelectedItem="{x:Bind ViewModel.SelectedRite, Mode=TwoWay}" />
+
+                <ComboBox x:Uid="SetAramaicSignOfCrossCombo" Header="Aramaic Sign of the Cross"
+                          HorizontalAlignment="Stretch"
+                          Visibility="{x:Bind ViewModel.ShowsAramaicSignOfCrossPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                          ItemsSource="{x:Bind ViewModel.AramaicSignOfCrossOptions}"
+                          DisplayMemberPath="Label"
+                          SelectedItem="{x:Bind ViewModel.SelectedAramaicSignOfCross, Mode=TwoWay}" />
 
                 <ComboBox x:Uid="SetAppLanguageCombo" Header="App language" HorizontalAlignment="Stretch"
                           ItemsSource="{x:Bind ViewModel.AppLanguageOptions}" DisplayMemberPath="Label"
@@ -53,6 +63,19 @@
 
                 <Button x:Uid="SetResetHomeOrder" Content="Reset Home Order" HorizontalAlignment="Stretch"
                         Command="{x:Bind ViewModel.ResetHomeOrderCommand}" />
+                <ToggleSwitch x:Uid="SetFavoriteBasicPrayersFirst" Header="Move favorite basic prayers to top"
+                              IsOn="{x:Bind ViewModel.FavoriteBasicPrayersFirst, Mode=TwoWay}" />
+
+                <TextBlock x:Uid="SetTypographyHeader" Text="Typography" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
+                <ComboBox x:Uid="SetSyriacTypeface" Header="Syriac Aramaic" HorizontalAlignment="Stretch"
+                          ItemsSource="{x:Bind ViewModel.SyriacTypefaceOptions}" DisplayMemberPath="Label"
+                          SelectedItem="{x:Bind ViewModel.SelectedSyriacTypeface, Mode=TwoWay}" />
+                <ComboBox x:Uid="SetHebrewPrayerTypeface" Header="Hebrew prayers" HorizontalAlignment="Stretch"
+                          ItemsSource="{x:Bind ViewModel.HebrewPrayerTypefaceOptions}" DisplayMemberPath="Label"
+                          SelectedItem="{x:Bind ViewModel.SelectedHebrewPrayerTypeface, Mode=TwoWay}" />
+                <ComboBox x:Uid="SetHebrewScriptureTypeface" Header="Hebrew Scripture" HorizontalAlignment="Stretch"
+                          ItemsSource="{x:Bind ViewModel.HebrewScriptureTypefaceOptions}" DisplayMemberPath="Label"
+                          SelectedItem="{x:Bind ViewModel.SelectedHebrewScriptureTypeface, Mode=TwoWay}" />
 
                 <!-- The Home "Today" section: which of its rows show at all, and which
                      calendar's feasts the feast row prays. The calendar choices come from the

@@ -13,6 +13,22 @@
       "default": true
     },
     {
+      "key": "aramaicSignOfCrossForm",
+      "kind": "choice",
+      "name": "Aramaic Sign of the Cross",
+      "default": "formA",
+      "cases": [
+        {
+          "id": "formA",
+          "name": "Form A"
+        },
+        {
+          "id": "formB",
+          "name": "Form B"
+        }
+      ]
+    },
+    {
       "key": "openingPrayers",
       "kind": "toggle",
       "name": "Opening prayers (Our Father, three Hail Marys, Glory Be)",

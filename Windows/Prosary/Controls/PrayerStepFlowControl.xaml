@@ -53,7 +53,7 @@
                 <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
                            FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
                            FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
-                           TextWrapping="Wrap" TextAlignment="Center" />
+                           TextWrapping="Wrap" TextAlignment="Center" IsTextSelectionEnabled="True" />
 
                 <Button Content="{x:Bind CentralActionLabel, Mode=OneWay}"
                         Visibility="{x:Bind VisibleWhenSet(CentralActionLabel), Mode=OneWay}"

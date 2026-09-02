@@ -12,7 +12,10 @@ namespace Prosary.ViewModels;
 /// <summary>One row of the basic-prayers list — the title resolved in the prayer language
 /// through the same chains the flows use, so the list itself reads in the rite being
 /// prayed.</summary>
-public sealed record BasicPrayerRow(string Id, string Title, string ImageFile);
+public sealed record BasicPrayerRow(string Id, string Title, string ImageFile, bool IsFavorite)
+{
+    public string FavoriteGlyph => IsFavorite ? "★" : "☆";
+}
 
 /// <summary>The basic prayers on their own, outside any devotion (Erez, 2026-08-07). Mirrors
 /// iOS's BasicPrayersView / Android's BasicPrayersScreen.</summary>
@@ -30,11 +33,12 @@ public partial class BasicPrayersViewModel : ObservableObject
         IsRightToLeft = language.IsRightToLeft;
         // Reorderable per Erez (2026-08-08): the HomeOrder pattern — persisted ids first,
         // catalog order for the rest.
-        Rows = BasicPrayersOrder.Apply(BasicPrayerCatalog.All)
+        Rows = BasicPrayersOrder.ApplyFavorites(BasicPrayersOrder.Apply(BasicPrayerCatalog.All))
             .Select(p => new BasicPrayerRow(
                 p.Id,
                 PrayerPackStore.ResolveBodyText(p.BundleId, language.Code, p.TitleKey),
-                ImageFile(p.ImageKey)))
+                ImageFile(p.ImageKey),
+                AppSettings.FavoriteBasicPrayerIds.Contains(p.Id)))
             .ToList();
     }
 
@@ -54,6 +58,13 @@ public partial class BasicPrayersViewModel : ObservableObject
 
     [RelayCommand]
     private void Open(BasicPrayerRow row) => Router.Navigate<Views.BasicPrayerFlowPage>(row.Id);
+
+    [RelayCommand]
+    private void ToggleFavorite(BasicPrayerRow row)
+    {
+        AppSettings.ToggleFavoriteBasicPrayer(row.Id);
+        Load();
+    }
 
     internal static string ImageFile(string imageKey) =>
         PrayerPackStore.ImageFileUri(imageKey) ?? (imageKey == "cross_placeholder"

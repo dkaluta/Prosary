@@ -4,6 +4,8 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using Prosary.ViewModels;
 using Prosary.Localization;
+using Prosary.Models;
+using System.Collections.ObjectModel;
 
 namespace Prosary.Views;
 
@@ -36,6 +38,43 @@ public sealed partial class SettingsPage : Page
     {
         base.OnNavigatedTo(e);
         ViewModel.RefreshInstalledDevotions();
+    }
+
+    private async void OnEditLanguageFallbackOrder(object sender, RoutedEventArgs e)
+    {
+        var rows = new ObservableCollection<LanguageOption>(
+            LanguageCatalog.FallbackOrder.Select(code => LanguageCatalog.All.First(l => l.Code == code)));
+        var list = new ListView
+        {
+            ItemsSource = rows,
+            DisplayMemberPath = nameof(LanguageOption.NativeName),
+            CanReorderItems = true,
+            CanDragItems = true,
+            AllowDrop = true,
+            SelectionMode = ListViewSelectionMode.None,
+            MaxHeight = 520,
+            MinWidth = 320,
+        };
+        var panel = new StackPanel { Spacing = 8 };
+        panel.Children.Add(new TextBlock
+        {
+            Text = Loc.Tr("settings_language_fallback_order_footer",
+                "When a prayer is missing, Prosary tries these languages from top to bottom after the chosen language and its own variation."),
+            TextWrapping = TextWrapping.Wrap,
+        });
+        panel.Children.Add(list);
+        var dialog = new ContentDialog
+        {
+            XamlRoot = XamlRoot,
+            Title = Loc.Tr("settings_language_fallback_order_title", "Language fallback order"),
+            Content = panel,
+            PrimaryButtonText = Loc.Tr("common_done", "Done"),
+            DefaultButton = ContentDialogButton.Primary,
+        };
+        if (await dialog.ShowAsync() == ContentDialogResult.Primary)
+        {
+            AppSettings.SetLanguageFallbackOrder(rows.Select(r => r.Code));
+        }
     }
 
     // The file pickers need the window handle and a UI-thread continuation, so picking stays

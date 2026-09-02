@@ -37,6 +37,9 @@ public sealed record RosaryOptions
 
     public bool IncludeFinalSignOfCross { get; init; } = true;
 
+    /// <summary>Per-Rosary Aramaic form, ignored when Aramaic is the app-wide default.</summary>
+    public string AramaicSignOfCrossForm { get; init; } = AppSettings.AramaicSignOfCrossFormA;
+
     /// <summary>Collapses each decade's 10 Hail Marys and Glory Be onto one combined screen —
     /// for someone leading a group aloud from memory who doesn't need to tap through 10
     /// visually-identical screens. See <c>PrayerEngine.BuildRosarySteps</c>.</summary>

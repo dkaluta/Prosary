@@ -40,6 +40,10 @@ struct RosaryOptions: Hashable, Codable {
 
   var includeFinalSignOfCross: Bool = true
 
+  /// Per-Rosary Aramaic form. Used only when this Rosary explicitly selects Aramaic while the
+  /// app default is another language; an Aramaic app default uses the system-wide setting.
+  var aramaicSignOfCrossForm: String = AramaicSignOfCrossForm.formA
+
   /// Collapses each decade's 10 Hail Marys and Glory Be onto one combined screen — for someone
   /// leading a group aloud from memory who doesn't need to tap through 10 visually-identical
   /// screens. See `PrayerEngine.buildRosarySteps`.

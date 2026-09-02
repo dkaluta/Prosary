@@ -18,17 +18,29 @@ public enum MarianAntiphonOption
     SubTuumPraesidium
 }
 
+public sealed record MarianAntiphonChoice(MarianAntiphonOption Value, string Label);
+
 public static class MarianAntiphonOptionExtensions
 {
-    public static string DisplayName(this MarianAntiphonOption option) => option switch
+    public static IReadOnlyList<MarianAntiphonChoice> Choices(string? languageCode)
+    {
+        var resolved = LanguageCatalog.Resolve(languageCode).Code;
+        return Enum.GetValues<MarianAntiphonOption>()
+            .Select(option => new MarianAntiphonChoice(option, option.DisplayName(resolved)))
+            .ToList();
+    }
+
+    public static string DisplayName(this MarianAntiphonOption option) => option.DisplayName(AppSettings.DefaultLanguageCode);
+
+    public static string DisplayName(this MarianAntiphonOption option, string languageCode) => option switch
     {
         MarianAntiphonOption.None => Loc.Tr("antiphon_none", "None"),
         MarianAntiphonOption.Seasonal => Loc.Tr("antiphon_seasonal", "Automatic (Seasonal)"),
-        MarianAntiphonOption.SalveRegina => Loc.Tr("antiphon_salve_regina", "Salve Regina"),
-        MarianAntiphonOption.AlmaRedemptorisMater => Loc.Tr("antiphon_alma_redemptoris", "Alma Redemptoris Mater"),
-        MarianAntiphonOption.AveReginaCaelorum => Loc.Tr("antiphon_ave_regina", "Ave Regina Caelorum"),
-        MarianAntiphonOption.ReginaCaeli => Loc.Tr("antiphon_regina_caeli", "Regina Caeli"),
-        MarianAntiphonOption.SubTuumPraesidium => Loc.Tr("antiphon_sub_tuum", "Sub Tuum Praesidium"),
+        MarianAntiphonOption.SalveRegina => PrayerTranslations.Get(languageCode, PrayerKey.SalveReginaTitle),
+        MarianAntiphonOption.AlmaRedemptorisMater => PrayerTranslations.Get(languageCode, PrayerKey.AlmaRedemptorisMaterTitle),
+        MarianAntiphonOption.AveReginaCaelorum => PrayerTranslations.Get(languageCode, PrayerKey.AveReginaCaelorumTitle),
+        MarianAntiphonOption.ReginaCaeli => PrayerTranslations.Get(languageCode, PrayerKey.ReginaCaeliTitle),
+        MarianAntiphonOption.SubTuumPraesidium => PrayerTranslations.Get(languageCode, PrayerKey.SubTuumPraesidiumTitle),
         _ => throw new ArgumentOutOfRangeException(nameof(option))
     };
 }

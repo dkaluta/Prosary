@@ -31,4 +31,13 @@ object BasicPrayersOrder {
             compareBy({ order.indexOf(it.value.id).let { i -> if (i < 0) Int.MAX_VALUE else i } }, { it.index }),
         ).map { it.value }
     }
+
+    fun applyFavorites(prayers: List<BasicPrayer>): List<BasicPrayer> {
+        if (!AppSettings.favoriteBasicPrayersFirst) return prayers
+        val favorites = AppSettings.favoriteBasicPrayerIds
+        return prayers.withIndex().sortedWith(
+            compareByDescending<IndexedValue<BasicPrayer>> { it.value.id in favorites }
+                .thenBy { it.index },
+        ).map { it.value }
+    }
 }

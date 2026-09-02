@@ -52,6 +52,8 @@ final class PresetEntry {
   var includeClosingIntentions: Bool = false
   var includeStMichaelPrayer: Bool = false
   var includeFinalSignOfCross: Bool = true
+  // Raw String for safe lightweight migration of existing SwiftData rows.
+  var aramaicSignOfCrossForm: String = AramaicSignOfCrossForm.formA
   // Default false handles existing rows.
   var presenterMode: Bool = false
   // Default "classic" handles existing rows. Stored as the raw string, not the enum type:
@@ -89,6 +91,7 @@ final class PresetEntry {
     includeClosingIntentions = prayer.rosary.includeClosingIntentions
     includeStMichaelPrayer = prayer.rosary.includeStMichaelPrayer
     includeFinalSignOfCross = prayer.rosary.includeFinalSignOfCross
+    aramaicSignOfCrossForm = prayer.rosary.aramaicSignOfCrossForm
     presenterMode = prayer.rosary.presenterMode
     mysteryImageStyleRaw = prayer.rosary.mysteryImageStyle.rawValue
 
@@ -123,6 +126,7 @@ final class PresetEntry {
     includeClosingIntentions = prayer.rosary.includeClosingIntentions
     includeStMichaelPrayer = prayer.rosary.includeStMichaelPrayer
     includeFinalSignOfCross = prayer.rosary.includeFinalSignOfCross
+    aramaicSignOfCrossForm = prayer.rosary.aramaicSignOfCrossForm
     presenterMode = prayer.rosary.presenterMode
     mysteryImageStyleRaw = prayer.rosary.mysteryImageStyle.rawValue
 
@@ -172,6 +176,7 @@ final class PresetEntry {
         includeClosingIntentions: includeClosingIntentions,
         includeStMichaelPrayer: includeStMichaelPrayer,
         includeFinalSignOfCross: includeFinalSignOfCross,
+        aramaicSignOfCrossForm: aramaicSignOfCrossForm,
         presenterMode: presenterMode,
         mysteryImageStyle: MysteryImageStyle(rawValue: mysteryImageStyleRaw) ?? .classic
       ),

@@ -83,6 +83,17 @@
             <Border Style="{StaticResource SectionCardStyle}"
                     Visibility="{x:Bind ViewModel.ShowsTodaySection, Converter={StaticResource BoolToVisibility}}">
                 <StackPanel Spacing="10">
+                    <Grid ColumnSpacing="8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <FontIcon Grid.Column="0" Glyph="&#xE787;" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.TodayDayText, Mode=OneWay}" FontWeight="SemiBold" TextWrapping="Wrap" VerticalAlignment="Center" />
+                        <HyperlinkButton Grid.Column="2" Content="{x:Bind ViewModel.TodayLanguageButtonText, Mode=OneWay}"
+                                         Command="{x:Bind ViewModel.ToggleTodayLanguageCommand}" />
+                    </Grid>
                     <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayFeast, Converter={StaticResource BoolToVisibility}}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -101,8 +112,21 @@
                         </Grid.ColumnDefinitions>
                         <FontIcon Grid.Column="0" Glyph="&#xEB51;" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Top" />
                         <StackPanel Grid.Column="1" Spacing="2">
-                            <TextBlock Text="{x:Bind ViewModel.MonthIntentionTitle}" FontWeight="SemiBold" TextWrapping="Wrap" />
-                            <TextBlock Text="{x:Bind ViewModel.MonthIntentionText}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                            <TextBlock Text="{x:Bind ViewModel.MonthIntentionTitle, Mode=OneWay}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                            <TextBlock Text="{x:Bind ViewModel.MonthIntentionText, Mode=OneWay}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayReadings, Converter={StaticResource BoolToVisibility}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <FontIcon Grid.Column="0" Glyph="&#xE8A9;" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Top" />
+                        <StackPanel Grid.Column="1" Spacing="2">
+                            <TextBlock x:Uid="HomeTodayReadings" Text="Today’s readings" FontWeight="SemiBold" />
+                            <TextBlock Text="{x:Bind ViewModel.ReadingsText, Mode=OneWay}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                            <HyperlinkButton Content="{x:Bind ViewModel.CitationButtonText, Mode=OneWay}"
+                                             Command="{x:Bind ViewModel.ToggleCitationsCommand}" HorizontalAlignment="Left" Padding="0,4" />
                         </StackPanel>
                     </Grid>
                 </StackPanel>

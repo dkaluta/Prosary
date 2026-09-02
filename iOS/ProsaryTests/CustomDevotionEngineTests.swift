@@ -88,16 +88,24 @@ final class CustomDevotionEngineTests: XCTestCase {
                    "an explicit choice beats the rite's default")
 
     // Classical Syriac claims the same form (2026-08-08): the Qadishat thrice, then the
-    // Kurielaison the Syriac liturgy keeps in Greek — in Hebrew square script, the Syriac
-    // letters riding in the transliteration the script toggle shows.
+    // Kurielaison the Syriac liturgy keeps in Greek — Aramaic in Hebrew square script, with
+    // the same Aramaic in Syriac letters riding in the script-toggle transliteration.
     let aramaic = steps("trisagion", language: "arc")
     XCTAssertEqual(aramaic.count, 4)
-    XCTAssertEqual(aramaic[0].title, "קדישת אלהא")
+    XCTAssertEqual(aramaic[0].title, "קַדּישַת אַלָהָא")
+    XCTAssertEqual(aramaic[0].body,
+                   "קַדּישַת אַלָהָא\nקַדִישַת חַילתָּנָא\nקַדִישַת לָא מִיותָּא אֶתַרחַמעלִין")
+    XCTAssertEqual(aramaic[0].transliteratedBody,
+                   "ܩܰܕ݁ܝܫܰܬ݂ ܐܰܠܳܗܳܐ\nܩܰܕܺܝܫܰܬ݂ ܚܰܝܠܬ݁ܳܢܳܐ\nܩܰܕܺܝܫܰܬ݂ ܠܳܐ ܡܺܝܘܬ݁ܳܐ ܐܶܬܰܪܚܰܡܥܠܺܝܢ")
     XCTAssertEqual(aramaic[3].body, "קוריאליסונ\nקוריאליסונ\nקוריאליסונ")
-    // The Byzantine form of the bundle carries its own arc doxology, so switching to it
-    // never falls back to Latin mid-prayer.
-    XCTAssertTrue(steps("trisagion", language: "arc", variantId: "byzantine")[3].body
-      .hasPrefix("שובחא לאבא"))
+    // Erez supplied the Mission's doxology in both scripts on 2026-08-26. Pin every mark and
+    // vowel so the Hebrew-square-script Aramaic and its pointed Syriac rendering cannot drift.
+    let glory = steps("trisagion", language: "arc", variantId: "byzantine")[3]
+    XCTAssertEqual(glory.title, "שוּבחָא לַאבָא")
+    XCTAssertEqual(glory.body,
+                   "שוּבחָא לַאבָא ולַברָא וַלרוּחָא קַדישָא\nמֶן עָלַם וַעדַמָא לעָלַם עָלמִין. אַמִין.")
+    XCTAssertEqual(glory.transliteratedBody,
+                   "ܫܽܘܒܚܳܐ ܠܰܐܒܳܐ ܘܠܰܒܪܳܐ ܘܰܠܪܽܘܚܳܐ ܩܰܕܝܫܳܐ\nܡܶܢ ܥܳܠܰܡ ܘܰܥܕܰܡܳܐ ܠܥܳܠܰܡ ܥܳܠܡܺܝܢ. ܐܰܡܺܝܢ.")
   }
 
   /// The basic-prayers list resolves through the same chains the flows use, so it follows the
@@ -140,20 +148,41 @@ final class CustomDevotionEngineTests: XCTestCase {
     let cross = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "signOfCross")!)
     XCTAssertTrue(cross.body.contains("✠"))
 
-    // Aramaic (2026-08-08): the Peshitta's own Our Father in Hebrew square script, with the
-    // Syriac letters in the transliteration the script toggle shows — both alphabets, one
-    // text, mechanically mapped. The Creed is deliberately absent (no checkable edition yet),
-    // so it falls back per key rather than being reconstructed.
+    // Erez's Aramaic Nicene Creed, Our Father and Hail Mary (2026-08-31), in Hebrew square and
+    // pointed Syriac scripts.
     UserDefaults.standard.set("arc", forKey: "defaultLanguageCode")
+    let aramaicCreed = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "creed")!)
+    XCTAssertEqual(aramaicCreed.title, "מהַימנִינַן")
+    XCTAssertEqual(aramaicCreed.body,
+      "מהַימנִינַן בחד אַלָהָא, אַבָּא אַחִיד כֻּל, עָבוּדָא דַּשמַיָא ודַארעָא וַדכֻלהֶין אַיללין דמֶתחַזין וַדלָא מֶתחַזיָן, וַבחַד מָריָא יֶשוּע משיחָא יַחחָדָיֶא ברא דַּאַלָהָא, הַו דּמֶן אַבָּא אֶתִילֶד קדדם כלהון עָלמֶא, אַלָהָא מֶן אַלָהָא, נוּהרָא מֶן נוּהרָא, אַלָהָא שַרִירא מֶן אַלָהָא שַרִירָא, יַלִידא ולָא עבִידא, וַשוֶא בֻּאוסִיא לַאבּוּהי, הַו דבּאִידֶה הוֹא כַּל מֶדֶם, הַו דּמֶטֻלָתַן בּנַינשָא, ומֶטֻל פּוּרקָנַן נחֶת מֶן שמַיָא ואֶתגַשַם מֶן רוּחָא קַדִישָא, מֶן מַריַם בּתוּלתָא וַהוֹא בַּרננשֶא, ואֶצטלֶב חלָפִין ביומי פַּנטִיָוס פִילַטָוס, חַש ומִית וְאתקבַר, קם לַתלָתָא יַוַמִין אַיך דַכתִיב, וַסלֶק לַשמַיָא וִיתֶב מֶן יָמִין אַבּוּהי, ותוב אִתֶּא בשוּבחֶה רַבָא לַמן ליַיֶא וַלמִיָתֶא, הַו דַּלמַלכּוּתֶּה שוּלָמָא לָאאית, וַבחַד רוּחָא קַדִישָא דאַיָתַוהי מָריָא מַחינָא דכֻל, הַו דּמֶן אַבָא ובא ננפֶק, ועַם אַבָא ועַם ברא מֶסתגֶד ומֶשתַבַח, הַו דּמַלֶל בַנכָיֶא, ובַחדָא עִדתָא קַדִישתָא קָתוּלִיקִי וַשלִיחָיתָא, ומַודֶינַן דַחדָא הי מַעמַודָיתָא לשוּבקָנָא דּחַטָהֶא, וַמסַכֶינַן לַקיָמתָא דמִיתֶא וַלִיֶא חַדתֶא דבעָלמָא דַעתִיד. אַמִין.")
+    XCTAssertEqual(aramaicCreed.transliteratedBody,
+      "ܡܗܰܝܡܢܺܝܢܰܢ ܒܚܕ ܐܰܠܳܗܳܐ. ܐܰܒ݁ܳܐ ܐܰܚܺܝܕ݂ ܟ݁ܽܠ. ܥܳܒܽܘܕܳܐ ܕ݁ܰܫܡܰܝܳܐ ܘܕ݂ܰܐܪܥܳܐ ܘܰܕ݂ܟܽܠܗܶܝܢ ܐܰܝܠܠ̈ܝܢ ܕܡܶܬ݂ܚܰܙܝܢ ܘܰܕ݂ܠܳܐ ܡܶܬ݂ܚܰܙܝܳܢ. ܘܰܒ݂ܚܰܕ݂ ܡܳܪܝܳܐ ܝܶܫܽܘܥ ܡܫܝܚܳܐ ܝܰܚܚܳܕ݂ܳܝܶܐ ܒܪܐ ܕ݁ܰܐܰܠܳܗܳܐ. ܗܰܘ ܕ݁ܡܶܢ ܐܰܒ݁ܳܐ ܐܶܬܺܝܠܶܕ݂ ܩ݀ܕܕܡ ܟܠܗ݇ܘܢ ܥܳܠܡ̈ܶܐ. ܐܰܠܳܗܳܐ ܡܶܢ ܐܰܠܳܗܳܐ. ܢܽܘܗܪܳܐ ܡܶܢ ܢܽܘܗܪܳܐ. ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܐ ܡܶܢ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܝܰܠܺܝܕܐ ܘܠܳܐ ܥܒܿܺܝܕܐ. ܘܰܫܘܶܐ ܒ݁ܽܐܘܣܺܝܐ ܠܰܐܒ݁ܽܘܗ̄ܝ. ܗܰܘ ܕܒ݁ܐܺܝܕ݂ܶܗ ܗ݈ܘܳܐ ܟ݁ܰܠ ܡܶܕܶܡ. ܗܰܘ ܕ݁ܡܶܛܽܠܳܬ݂ܰܢ ܒ݁ܢܰܝ̈ܢܫܳܐ. ܘܡܶܛܽܠ ܦ݁ܽܘܪܩܳܢܰܢ ܢܚܶܬ݂ ܡܶܢ ܫܡܰܝܳܐ ܘܐܶܬ݂ܓܰܫܰܡ ܡܶܢ ܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ. ܡܶܢ ܡܰܪܝܰܡ ܒ݁ܬ݂ܽܘܠܬ݂ܳܐ ܘܰܗ݈ܘܳܐ ܒ݁ܰܪܢܢܫܶܐ. ܘܐܶܨܛܠܶܒ݂ ܚܠܳܦ݂ܺܝܢ ܒܝܵܘ̈ܡ̇ܝ ܦ݁ܰܢܛܺܝܳܘܣ ܦܺܝܠܰܛܳܘܣ. ܚܰܫ ܘܡܺܝܬ ܘܶܐܬܩܒܰܪ. ܩܿܡ ܠܰܬ݂ܠܳܬ݂ܳܐ ܝܰܘܰܡܺܝܢ ܐܰܝܟ݂ ܕܰܟܬܺܝܒ. ܘܰܣܠܶܩ ܠܰܫܡܰܝܳܐ ܘܺܝܬ݂ܶܒ݂ ܡܶܢ ܝܳܡܺܝܢ ܐܰܒ݁ܽܘܗ̄ܝ. ܘܬܘܒ ܐܺܬ݁ܶܐ ܒܫܽܘܒ݂ܚܶܗ ܪܰܒܳܐ ܠܰܡܢ ܠܝܰܝܶܐ ܘܰܠܡܺܝܳܬ݂ܶܐ. ܗܰܘ ܕ݁ܰܠܡܰܠܟ݁ܽܘܬ݁ܶܗ ܫܽܘܠܳܡܳܐ ܠܳܐܐܝܬ. ܘܰܒ݂ܚܰܕ݂ ܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ ܕܐܰܝܳܬ݂ܰܘܗ݈ܝ ܡܳܪܝܳܐ ܡܰܚܝܢܳܐ ܕܟܽܠ. ܗܰܘ ܕ݁ܡܶܢ ܐܰܒܳܐ ܘܒܐ ܢܢܦܶܩ. ܘܥܰܡ ܐܰܒ݂ܳܐ ܘܥܰܡ ܒܪܐ ܡܶܣܬܓܶܕ ܘܡܶܫܬ݂ܰܒ݂ܰܚ. ܗܰܘ ܕ݁ܡܰܠܶܠ ܒܰܢ̈ܟܿܳܝܶܐ. ܘܒ݂ܰܚܕܳܐ ܥܺܕܬ݂ܳܐ ܩܰܕܺܝܫܬ݂ܳܐ ܩܳܬ݂ܽܘܠܺܝܩܺܝ ܘܰܫܠܺܝܚܳܝܬ݂ܳܐ. ܘܡܰܘܕ݂ܶܝܢܰܢ ܕܰܚܕ݂ܳܐ ܗ̄ܝ ܡܰܥܡܰܘܕ݂ܳܝܬܳܐ ܠܫܽܘܒܩܳܢܳܐ ܕ݁ܚܰܛܳܗܶܐ. ܘܰܡܣܰܟܶܝܢܰܢ ܠܰܩ݀ܝܳܡܬܳܐ ܕܡܺܝ̈ܬ݂ܶܐ ܘܰܠܺܝ̈ܶܐ ܚܰܕ̈ܬ݂ܶܐ ܕܒ݂ܥܳܠܡܳܐ ܕܰܥܬ݂ܺܝܕ݂. ܐܰܡܺܝܢ.")
     let abun = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "ourFather")!)
-    XCTAssertTrue(abun.body.hasPrefix("אבונ דבשמיא נתקדש שמכ"))
-    XCTAssertTrue(abun.transliteratedBody?.hasPrefix("ܐܒܘܢ ܕܒܫܡܝܐ ܢܬܩܕܫ ܫܡܟ") == true)
+    XCTAssertEqual(abun.title, "צלוּתָא מָרָנָיתָא")
+    XCTAssertEqual(abun.body,
+      "אַבוּן דבַשמַיָא נֶתקַדַש שמָך תִאתֶא מַלכוּתָך נֶהוֶא צֶביָנָך, " +
+      "אַיכַנָא דבַשמַיָא אָף בַארעָא, הַבלַן לַחמָא דסוּנקָנַן יַומָנָא, " +
+      "וַשבוּק לַן חַובַין וַחטָהַין אַיכַנָא דָאף חנַן שבַקן לחַיָבַין, " +
+      "ולָא תַעלַן לנֶסיוּנָא אֶלָא פַצָא לַן מֶן בִישָא, מֶטֻל דדִילָך הִי " +
+      "מַלכוּתָא וחַילָא ותֶשבוּחתָא לעָלַם עָלמִין אַמִין.")
+    XCTAssertEqual(abun.transliteratedBody,
+      "ܐܰܒ݁ܽܘܢ ܕܒܰܫܡܰܝܳܐ ܢܶܬܩܰܕܰܫ ܫܡܳܟ ܬܺܐܬܶܐ ܡܰܠܟܽܘܬܳܟ ܢܶܗܘܶܐ ܨܶܒܝܳܢܳܟ. " +
+      "ܐܰܝܟܰܢܳܐ ܕܒܰܫܡܰܝܳܐ ܐܳܦ ܒܰܐܪܥܳܐ. ܗܰܒܠܰܢ ܠܰܚܡܳܐ ܕܣܽܘܢܩܳܢܰܢ ܝܰܘܡܳܢܳܐ. " +
+      "ܘܰܫܒܽܘܩ ܠܰܢ ܚܰܘܒܰܝ̈ܢ ܘܰܚܛܳܗܰܝ̈ܢ ܐܰܝܟܰܢܳܐ ܕܳܐܦ ܚܢܰܢ ܫܒܰܩܢ ܠܚܰܝܳܒܰܝ̈ܢ. " +
+      "ܘܠܳܐ ܬܰܥܠܰܢ ܠܢܶܣܝܽܘܢܳܐ ܐܶܠܳܐ ܦܰܨܳܐ ܠܰܢ ܡܶܢ ܒܺܝܫܳܐ. " +
+      "ܡܶܛܽܠ ܕܕܺܝܠܳܟ ܗܺܝ ܡܰܠܟܽܘܬܳܐ ܘܚܰܝܠܳܐ ܘܬܶܫܒܽܘܚܬܳܐ ܠܥܳܠܰܡ ܥܳܠܡܺܝܢ ܐܰܡܺܝܢ܀")
+    let aramaicHailMary = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "hailMary")!)
+    XCTAssertEqual(aramaicHailMary.title, "שלָם לֶך מַריַם")
+    XCTAssertEqual(aramaicHailMary.body,
+      "שלָם לֶך מַריַם מַליַת טַיבוּתָא, מָרַן עַמֶך מבַרַכתָא אַנת בנֶשָא " +
+      "וַמבַרַך הוּ פִירָא דַבכַרסֶך מָרַן יֶשוּע משִיחָא, מָרַת מַריַם יָלדַת " +
+      "אַלָהָא אַפִיס חלָפַין חנַן חַטָיָא, הָשָא וַבכֻלזבַן וַלעָלַם עָלמִין אַמִין.")
+    XCTAssertEqual(aramaicHailMary.transliteratedBody,
+      "ܫܠܳܡ ܠܶܟ ܡܰܪܝܰܡ ܡܰܠܝܰܬ ܛܰܝܒܽܘܬܳܐ, ܡܳܪܰܢ ܥܰܡܶܟ ܡܒܰܪܰܟܬܳܐ ܐܰܢܬ ܒܢܶܫܳܐ " +
+      "ܘܰܡܒܰܪܰܟ ܗܽܘ ܦܺܝܪܳܐ ܕܰܒܟܰܪܣܶܟ ܡܳܪܰܢ ܝܶܫܽܘܥ ܡܫܺܝܚܳܐ, ܡܳܪܰܬ ܡܰܪܝܰܡ ܝܳܠܕܰܬ " +
+      "ܐܰܠܳܗܳܐ ܐܰܦܺܝܣ ܚܠܳܦܰܝܢ ܚܢܰܢ ܚܰܛܳܝܳܐ, ܗܳܫܳܐ ܘܰܒܟܽܠܙܒܰܢ ܘܰܠܥܳܠܰܡ ܥܳܠܡܺܝܢ ܐܰܡܺܝܢ.")
     let qadishat = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "holyGod")!)
-    XCTAssertEqual(qadishat.title, "קדישת אלהא")
-    XCTAssertTrue(
-      BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "creed")!)
-        .body.hasPrefix("Credo in Deum"),
-      "unsourced falls to Latin, never to invention")
+    XCTAssertEqual(qadishat.title, "קַדּישַת אַלָהָא")
   }
 
   /// Spanish, pinned the same way as Greek — what is sourced works, what is not falls back.
@@ -170,8 +199,8 @@ final class CustomDevotionEngineTests: XCTestCase {
       .contains("los misterios del Rosario"))
 
     XCTAssertEqual(PrayerTranslations.get(languageCode: "es", key: .symbolumApostolorum),
-                   PrayerTranslations.get(languageCode: "la", key: .symbolumApostolorum),
-                   "the Compendium's appendix has no Creed, so Latin stands")
+                   PrayerTranslations.get(languageCode: "en", key: .symbolumApostolorum),
+                   "the sourced Spanish set has no Creed, so the configured first fallback stands")
 
     // The Scripture is imported and in the pack; a session cannot reach it until a manifest
     // offers Spanish, which waits on Spanish bundle text — same as Greek.
@@ -184,8 +213,8 @@ final class CustomDevotionEngineTests: XCTestCase {
   /// should not be mistaken for the whole.
   ///
   /// The shared prayers work: a Greek session says the Jesus Prayer and the Sub Tuum in the
-  /// language they were written in, and falls back to Latin per key for the Latin-tradition
-  /// prayers Greek has none of.
+  /// language they were written in, and follows the configured language precedence for the
+  /// Latin-tradition prayers Greek has none of.
   ///
   /// The bundle Scripture does not, yet. The Peshitta/Byzantine import put 36 passages into the
   /// packs, and they are genuinely there — resolveBodyText finds them. But a *session* never
@@ -200,17 +229,18 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertTrue(PrayerTranslations.get(languageCode: "el", key: .subTuumPraesidium)
       .hasPrefix("Ὑπὸ τὴν σὴν εὐσπλαγχνίαν"))
     XCTAssertEqual(PrayerTranslations.get(languageCode: "el", key: .salveRegina),
-                   PrayerTranslations.get(languageCode: "la", key: .salveRegina),
-                   "no citable Greek Salve Regina exists, so Latin stands")
+                   PrayerTranslations.get(languageCode: "en", key: .salveRegina),
+                   "no citable Greek Salve Regina exists, so the configured fallback stands")
 
     // The imported Scripture is in the pack...
     let greek = PrayerPackStore.resolveBodyText(
       bundleId: "viaLucis", languageCode: "el", key: "viaLucis01Body")
     XCTAssertTrue(greek.contains("Ὀψὲ δὲ σαββάτων"), "Matthew 28 in the Byzantine text")
 
-    // ...and a session still prays Latin, because no manifest offers Greek yet.
+    // ...and a session uses the first available configured fallback, because no manifest offers
+    // Greek yet.
     let session = steps("viaLucis", language: "el")
-    XCTAssertEqual(session.map(\.body), steps("viaLucis", language: "la").map(\.body))
+    XCTAssertEqual(session.map(\.body), steps("viaLucis", language: "en").map(\.body))
   }
 
   /// The Vicariate's Hebrew prayerbook leads each of the three acclamations with a cross, and
@@ -305,9 +335,16 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertEqual(steps[0].imageKey, "madonna_and_child")
   }
 
-  func testAngelusFallsBackToLatinWhenLanguageIsSentinel() {
+  func testAngelusSentinelFollowsTheAppDefaultLanguage() {
+    let key = "defaultLanguageCode"
+    let original = UserDefaults.standard.object(forKey: key)
+    defer {
+      if let original { UserDefaults.standard.set(original, forKey: key) }
+      else { UserDefaults.standard.removeObject(forKey: key) }
+    }
+    UserDefaults.standard.set("en", forKey: key)
     let steps = steps("angelus", language: LanguageCatalog.defaultSentinel)
-    XCTAssertTrue(steps[0].body.contains("Angelus Domini nuntiavit Mariae"))
+    XCTAssertTrue(steps[0].body.contains("The Angel of the Lord declared unto Mary"))
   }
 
   // MARK: - Stations of the Cross (flat, translated titles)
@@ -673,10 +710,12 @@ final class CustomDevotionEngineTests: XCTestCase {
       "the rite must not fall through to Latin while its prayers read Hebrew")
   }
 
-  /// A rite lives under its language, not beside it: the language list stays the eight tongues,
-  /// and the rite's own code still resolves (that is what the pickers store).
+  /// Both sourced Hebrew uses stay visible as separate prayer-language choices.
   func testRitesAreListedUnderTheirLanguage() {
-    XCTAssertFalse(LanguageCatalog.all.contains { $0.code == "he-x-gamliel" })
+    XCTAssertEqual(LanguageCatalog.all.filter { $0.code.hasPrefix("he") }.map(\.code),
+                   ["he", "he-x-gamliel"])
+    XCTAssertEqual(LanguageCatalog.availableOptions(for: ["la", "he", "en"]).map(\.code),
+                   ["la", "en", "he", "he-x-gamliel"])
     XCTAssertEqual(LanguageCatalog.rites(of: "he").map(\.code), ["he", "he-x-gamliel"])
     XCTAssertEqual(LanguageCatalog.rites(of: "he-x-gamliel").map(\.code), ["he", "he-x-gamliel"])
     XCTAssertTrue(LanguageCatalog.rites(of: "la").isEmpty)
@@ -684,8 +723,21 @@ final class CustomDevotionEngineTests: XCTestCase {
     // A rite resolves as its language for display, keeps its own code, and reads right-to-left.
     let resolved = LanguageCatalog.resolve("he-x-gamliel")
     XCTAssertEqual(resolved.code, "he-x-gamliel")
-    XCTAssertEqual(resolved.nativeName, "עברית")
+    XCTAssertEqual(resolved.nativeName, "עברית — נוסח השליחות")
     XCTAssertTrue(resolved.isRightToLeft)
+  }
+
+  func testLanguageFallbackOrderKeepsBaseFirstAndLatinLast() {
+    let key = LanguageCatalog.fallbackOrderKey
+    let original = UserDefaults.standard.array(forKey: key)
+    defer {
+      if let original { UserDefaults.standard.set(original, forKey: key) }
+      else { UserDefaults.standard.removeObject(forKey: key) }
+    }
+    LanguageCatalog.setFallbackOrder(["ru", "en", "ar", "he", "he-x-gamliel", "arc", "el", "es", "tl", "la"])
+    let chain = LanguageCatalog.fallbackChain(for: "he-x-gamliel")
+    XCTAssertEqual(Array(chain.prefix(4)), ["he-x-gamliel", "he", "ru", "en"])
+    XCTAssertEqual(chain.last, "la")
   }
 
   // MARK: - Structural guards

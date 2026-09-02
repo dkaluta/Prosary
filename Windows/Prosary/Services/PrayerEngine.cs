@@ -70,9 +70,18 @@ public sealed class PrayerEngine
     /// <summary>Maps the persisted <see cref="RosaryOptions"/> onto the rosary bundle's
     /// options.json values — the no-data-migration seam: favorites keep their typed columns and
     /// bespoke editor, while the engine speaks the bundle's generic option encoding.</summary>
-    internal static Dictionary<string, string> RosaryOptionValues(RosaryOptions rosary) => new()
+    internal static Dictionary<string, string> RosaryOptionValues(RosaryOptions rosary)
     {
+        var savedAramaicForm = rosary.AramaicSignOfCrossForm == AppSettings.AramaicSignOfCrossFormB
+            ? AppSettings.AramaicSignOfCrossFormB
+            : AppSettings.AramaicSignOfCrossFormA;
+        var effectiveAramaicForm = AppSettings.UsesSystemWideAramaicSignOfCrossForm
+            ? AppSettings.AramaicSignOfCrossForm
+            : savedAramaicForm;
+        return new()
+        {
         ["apostlesCreed"] = rosary.IncludeApostlesCreed ? "true" : "false",
+        ["aramaicSignOfCrossForm"] = effectiveAramaicForm,
         ["openingPrayers"] = rosary.IncludeOpeningPrayers ? "true" : "false",
         ["presenterMode"] = rosary.PresenterMode ? "true" : "false",
         ["fatimaPrayer"] = rosary.IncludeFatimaPrayer ? "true" : "false",
@@ -82,7 +91,8 @@ public sealed class PrayerEngine
         ["stMichael"] = rosary.IncludeStMichaelPrayer ? "true" : "false",
         ["finalSignOfCross"] = rosary.IncludeFinalSignOfCross ? "true" : "false",
         ["imageStyle"] = CamelCase(rosary.MysteryImageStyle.ToString()),
-    };
+        };
+    }
 
     private static string CamelCase(string name) =>
         name.Length == 0 ? name : char.ToLowerInvariant(name[0]) + name[1..];

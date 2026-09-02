@@ -119,11 +119,11 @@
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                             <ComboBox x:Uid="PickerAntiphon" HorizontalAlignment="Stretch" Header="Marian antiphon"
-                                      ItemsSource="{x:Bind ViewModel.MarianAntiphons}"
-                                      SelectedItem="{x:Bind ViewModel.MarianAntiphon, Mode=TwoWay}">
+                                      ItemsSource="{x:Bind ViewModel.MarianAntiphons, Mode=OneWay}"
+                                      SelectedValuePath="Value" SelectedValue="{x:Bind ViewModel.MarianAntiphon, Mode=TwoWay}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource EnumDisplayName}}" />
+                                        <TextBlock Text="{Binding Label}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>

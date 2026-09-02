@@ -193,13 +193,14 @@ class PrayerTranslationsCompletenessTest {
             for ((language, keys) in languages) {
                 for (key in keys) {
                     val resolved = PrayerPackStore.resolveBodyText(bundleId, language, key)
-                    // A missing bundle-local translation falls back to the bundle's Latin text
-                    // (or the hardcoded chain) — "still missing" means it doesn't resolve to
-                    // language-specific bundle content, i.e. it equals the Latin resolution.
-                    val latin = PrayerPackStore.resolveBodyText(bundleId, "la", key)
+                    // These keys are absent from the requested language and therefore follow the
+                    // user's precedence list. The default order's first applicable language is
+                    // English; equality keeps the allowlist honest without assuming Latin is the
+                    // only possible fallback.
+                    val fallback = PrayerPackStore.resolveBodyText(bundleId, "en", key)
                     assertEquals(
                         "$bundleId/$language: $key now has its own translation — narrow bundleKeysMissingLanguages",
-                        latin, resolved,
+                        fallback, resolved,
                     )
                 }
             }

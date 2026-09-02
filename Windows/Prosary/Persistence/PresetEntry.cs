@@ -65,6 +65,9 @@ public sealed class PresetEntry
     public bool IncludeStMichaelPrayer { get; set; }
     public bool IncludeFinalSignOfCross { get; set; } = true;
 
+    [NotNull]
+    public string AramaicSignOfCrossForm { get; set; } = AppSettings.AramaicSignOfCrossFormA;
+
     /// <summary>Defaults to false for existing rows.</summary>
     public bool PresenterMode { get; set; }
 
@@ -105,6 +108,7 @@ public sealed class PresetEntry
             IncludeClosingIntentions = IncludeClosingIntentions,
             IncludeStMichaelPrayer = IncludeStMichaelPrayer,
             IncludeFinalSignOfCross = IncludeFinalSignOfCross,
+            AramaicSignOfCrossForm = AramaicSignOfCrossForm,
             PresenterMode = PresenterMode,
             MysteryImageStyle = MysteryImageStyle,
         },
@@ -139,6 +143,7 @@ public sealed class PresetEntry
         IncludeClosingIntentions = prayer.Rosary.IncludeClosingIntentions,
         IncludeStMichaelPrayer = prayer.Rosary.IncludeStMichaelPrayer,
         IncludeFinalSignOfCross = prayer.Rosary.IncludeFinalSignOfCross,
+        AramaicSignOfCrossForm = prayer.Rosary.AramaicSignOfCrossForm,
         PresenterMode = prayer.Rosary.PresenterMode,
         MysteryImageStyle = prayer.Rosary.MysteryImageStyle,
         JesusPrayerIsUnbounded = prayer.JesusPrayer.Target is JesusPrayerTarget.Unbounded,

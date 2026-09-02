@@ -8,6 +8,7 @@ import com.dkaluta.prosary.content.MysteryTranslations
 import com.dkaluta.prosary.content.prayerpack.CustomDevotionDefinition
 import com.dkaluta.prosary.content.prayerpack.CustomDevotionStep
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
+import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.EternalRestPlacement
 import com.dkaluta.prosary.models.MarianAntiphonOption
@@ -84,8 +85,18 @@ class PrayerEngine(
     /** Maps the persisted [RosaryOptions] onto the rosary bundle's options.json values — the
      * no-data-migration seam: favorites keep their typed columns and bespoke editor, while the
      * engine speaks the bundle's generic option encoding. */
-    fun rosaryOptionValues(rosary: RosaryOptions): Map<String, String> = mapOf(
+    fun rosaryOptionValues(rosary: RosaryOptions): Map<String, String> {
+        val savedAramaicForm = if (
+            rosary.aramaicSignOfCrossForm == AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B
+        ) AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B else AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_A
+        val effectiveAramaicForm = if (AppSettings.usesSystemWideAramaicSignOfCrossForm) {
+            AppSettings.aramaicSignOfCrossForm
+        } else {
+            savedAramaicForm
+        }
+        return mapOf(
         "apostlesCreed" to rosary.includeApostlesCreed.toString(),
+        "aramaicSignOfCrossForm" to effectiveAramaicForm,
         "openingPrayers" to rosary.includeOpeningPrayers.toString(),
         "presenterMode" to rosary.presenterMode.toString(),
         "fatimaPrayer" to rosary.includeFatimaPrayer.toString(),
@@ -95,7 +106,8 @@ class PrayerEngine(
         "stMichael" to rosary.includeStMichaelPrayer.toString(),
         "finalSignOfCross" to rosary.includeFinalSignOfCross.toString(),
         "imageStyle" to rosary.mysteryImageStyle.name.replaceFirstChar { it.lowercaseChar() },
-    )
+        )
+    }
 
     // MARK: Marian antiphon (shared by the Rosary and generic rosary-type devotions)
 
