@@ -1,3 +1,5 @@
+using Prosary.Models;
+
 namespace Prosary.Services;
 
 /// <summary>
@@ -66,7 +68,7 @@ public static class PrayerTypography
 
     /// <summary><paramref name="script"/> overrides what the language would imply — pass it when
     /// rendering a transliteration.</summary>
-    public static string ResolveBodyFontFamily(string languageCode, bool isScripture, Script? script) =>
+    public static string ResolveBodyFontFamily(string? languageCode, bool isScripture, Script? script) =>
         script switch
         {
             Script.Syriac => AppSettings.SyriacTypeface switch
@@ -78,7 +80,7 @@ public static class PrayerTypography
             _ => ResolveBodyFontFamily(languageCode, isScripture),
         };
 
-    public static string ResolveBodyFontFamily(string languageCode, bool isScripture) => (languageCode is not null ? Prosary.Models.LanguageCatalog.BaseLanguage(languageCode) ?? languageCode : languageCode) switch
+    public static string ResolveBodyFontFamily(string? languageCode, bool isScripture) => (languageCode is not null ? Prosary.Models.LanguageCatalog.BaseLanguage(languageCode) ?? languageCode : languageCode) switch
     {
         "he" or "arc" => isScripture
             ? AppSettings.HebrewScriptureTypeface switch
@@ -114,10 +116,10 @@ public static class PrayerTypography
     // noticeably smaller than this app's own button/caption text — the opposite problem. Android's
     // own PrayerTypography.kt uses these exact numbers with no correction at all and never needed
     // one, which is the closer precedent for a platform with no special desktop-only type ramp.
-    public static double ResolveBodyFontSize(string languageCode, bool isScripture, Script? script) =>
+    public static double ResolveBodyFontSize(string? languageCode, bool isScripture, Script? script) =>
         script == Script.Syriac ? 19 : ResolveBodyFontSize(languageCode, isScripture);
 
-    public static double ResolveBodyFontSize(string languageCode, bool isScripture) => (languageCode is not null ? Prosary.Models.LanguageCatalog.BaseLanguage(languageCode) ?? languageCode : languageCode) switch
+    public static double ResolveBodyFontSize(string? languageCode, bool isScripture) => (languageCode is not null ? Prosary.Models.LanguageCatalog.BaseLanguage(languageCode) ?? languageCode : languageCode) switch
     {
         "he" or "arc" => isScripture ? 16 : 21,
         "ar" => isScripture ? 16 : 18,

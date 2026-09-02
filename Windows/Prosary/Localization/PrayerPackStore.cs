@@ -316,9 +316,9 @@ public static class PrayerPackStore
                 return PrayerTranslations.Get(languageCode, PrayerKey.SignumCrucis);
             }
 
-            var pascalKey = ToPascalCase(key);
-            var shared = PrayerTranslations.Get(languageCode, pascalKey);
-            if (shared != pascalKey) return shared;
+            var sharedPascalKey = ToPascalCase(key);
+            var shared = PrayerTranslations.Get(languageCode, sharedPascalKey);
+            if (shared != sharedPascalKey) return shared;
 
             foreach (var code in chain.Where(code => !requestedCodes.Contains(code)))
             {
