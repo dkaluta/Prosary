@@ -53,6 +53,7 @@ import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.reminders.ReminderScheduler
 import com.dkaluta.prosary.services.LocalAppServices
 import com.dkaluta.prosary.ui.presets.OptionPickerField
+import com.dkaluta.prosary.typography.HebrewDisplayText
 import kotlinx.coroutines.launch
 
 /** Editor for any kind of saved prayer favorite. Replaces the old Rosary-only preset editor —
@@ -261,7 +262,11 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
 internal fun FormSection(title: String?, content: @Composable ColumnScope.() -> Unit) {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         title?.let {
-            Text(it, style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
+            Text(
+                HebrewDisplayText.unpoint(it),
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary,
+            )
         }
         Card {
             Column(

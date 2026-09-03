@@ -30,6 +30,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     private readonly PrayerEngine _engine;
     private readonly LiturgicalCalendarService _calendar;
     private readonly IReminderScheduler _reminders;
+    private readonly IPrayerRunStore _runStore;
 
     /// <summary>Created lazily on first successful track pick — the service captures the UI
     /// thread's DispatcherQueue, and the ViewModel is always constructed there.</summary>
@@ -45,6 +46,10 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     private string _bundleId = string.Empty;
     private bool _hasClosingCross;
     private string? _variantId;
+    private IReadOnlyDictionary<string, string> _customOptions = new Dictionary<string, string>();
+    private PrayerRunState? _pendingContinuation;
+    private string _runKey = string.Empty;
+    private string _runSignature = string.Empty;
 
     /// <summary>The favorite's raw language choice: an explicit code, or the sentinel ("follow
     /// the app-level default setting"). <see cref="_languageCode"/> is always the resolved code.</summary>
@@ -249,6 +254,8 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     /// <summary>Jump to a day: rebuilds from step 0 and persists to the matching favorite.</summary>
     public async Task SelectDayAsync(int dayIndex)
     {
+        var previousRunKey = _runKey;
+        ClearProgress();
         CurrentDayIndex = dayIndex;
         _steps = _engine.BuildSteps(new Prayer
         {
@@ -257,8 +264,11 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             CustomDevotionId = _bundleId,
             VariantId = _variantId,
             DayIndex = dayIndex,
+            CustomOptions = new Dictionary<string, string>(_customOptions),
         });
         _index = 0;
+        UpdateRunIdentity();
+        ClearChangedConfiguration(previousRunKey);
         RenderCurrentStep();
         PickAudioTrack();
         await PersistDayIndexAsync(dayIndex);
@@ -293,37 +303,21 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     /// "App setting".</summary>
     public string CurrentLanguageRaw => _chosenLanguage;
 
-    /// <summary>Switches the session's language in place, keeping the current position — unlike
-    /// a variant switch, the step sequence is identical across languages, only its text changes.
+    public bool HasSavedContinuation => _pendingContinuation is not null;
+
+    /// <summary>Switches the session's language in place. Most languages share the same authored
+    /// form, so the current position remains meaningful; a language can also select its own
+    /// implicit variant (the Syriac Trisagion does), in which case starting that different form
+    /// at step zero is safer than treating the old numeric index as the same prayer step.
     /// Persists to the matching favorite when one exists.</summary>
     public async Task SelectLanguageAsync(string raw)
     {
-        _chosenLanguage = raw;
-        _languageCode = PrayerPackStore.EffectiveLanguage(_bundleId, raw);
-        IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
-        OnPropertyChanged(nameof(CurrentLanguageRaw));
-        // The language can carry its own default form (a rite's native variant), so the
-        // effective variant — and with it the closing cross — can change with the language.
-        OnPropertyChanged(nameof(CurrentVariantId));
-        if (PrayerPackStore.Definition(_bundleId) is { } switchedDefinition)
-        {
-            _hasClosingCross = switchedDefinition
-                .ResolvedRosary(switchedDefinition.EffectiveVariantId(_variantId, _languageCode))
-                .HasClosingCross;
-        }
-
-        var position = _index;
-        _steps = _engine.BuildSteps(new Prayer
-        {
-            Kind = PrayerKind.Custom,
-            LanguageCode = raw,
-            CustomDevotionId = _bundleId,
-            VariantId = _variantId,
-            DayIndex = CurrentDayIndex,
-        });
-        _index = Math.Clamp(position, 0, Math.Max(_steps.Count - 1, 0));
-        RenderCurrentStep();
-        PickAudioTrack();
+        var oldEffectiveVariant = ResolvedVariantId(_languageCode);
+        var newLanguage = PrayerPackStore.EffectiveLanguage(_bundleId, raw);
+        var newEffectiveVariant = ResolvedVariantId(newLanguage);
+        var position = PositionAfterLanguageSwitch(oldEffectiveVariant, newEffectiveVariant, _index);
+        RebuildAtPosition(raw, position);
+        SaveProgress();
 
         if (MatchingFavoriteId is { } id && await _presets.GetAsync(id) is { } favorite)
         {
@@ -331,10 +325,48 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         }
     }
 
+    internal static int PositionAfterLanguageSwitch(
+        string? oldEffectiveVariant,
+        string? newEffectiveVariant,
+        int currentPosition) =>
+        oldEffectiveVariant == newEffectiveVariant ? currentPosition : 0;
+
+    private void RebuildAtPosition(string raw, int position)
+    {
+        _chosenLanguage = raw;
+        _languageCode = PrayerPackStore.EffectiveLanguage(_bundleId, raw);
+        IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
+        OnPropertyChanged(nameof(CurrentLanguageRaw));
+        OnPropertyChanged(nameof(CurrentVariantId));
+        if (PrayerPackStore.Definition(_bundleId) is { } definition)
+        {
+            _hasClosingCross = definition
+                .ResolvedRosary(definition.EffectiveVariantId(_variantId, _languageCode))
+                .HasClosingCross;
+        }
+
+        _steps = _engine.BuildSteps(new Prayer
+        {
+            Kind = PrayerKind.Custom,
+            LanguageCode = raw,
+            CustomDevotionId = _bundleId,
+            VariantId = _variantId,
+            DayIndex = CurrentDayIndex,
+            CustomOptions = new Dictionary<string, string>(_customOptions),
+        });
+        _index = Math.Clamp(position, 0, Math.Max(_steps.Count - 1, 0));
+        UpdateRunIdentity();
+        ShowsBeadTrack = _steps.Any(step => step.DecadeIndex.HasValue);
+        RenderCurrentStep();
+        PickAudioTrack();
+    }
+
     /// <summary>Switches the session to another variant: rebuilds from step 0 and persists the
     /// choice to the matching favorite when one exists.</summary>
     public async Task SelectVariantAsync(string variantId)
     {
+        var previousRunKey = _runKey;
+        ClearProgress();
         _variantId = variantId == DefaultVariantId ? null : variantId;
         OnPropertyChanged(nameof(CurrentVariantId));
 
@@ -352,8 +384,11 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             CustomDevotionId = _bundleId,
             VariantId = _variantId,
             DayIndex = CurrentDayIndex,
+            CustomOptions = new Dictionary<string, string>(_customOptions),
         });
         _index = 0;
+        UpdateRunIdentity();
+        ClearChangedConfiguration(previousRunKey);
         RenderCurrentStep();
         PickAudioTrack();
 
@@ -367,34 +402,41 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         IPresetStore presets,
         PrayerEngine engine,
         LiturgicalCalendarService calendar,
-        IReminderScheduler reminders)
+        IReminderScheduler reminders,
+        IPrayerRunStore runStore)
     {
         _presets = presets;
         _engine = engine;
         _calendar = calendar;
         _reminders = reminders;
+        _runStore = runStore;
     }
 
     public async Task LoadAsync(Guid? prayerId, string bundleId)
     {
         try
         {
+            _pendingContinuation = null;
+            OnPropertyChanged(nameof(HasSavedContinuation));
             _bundleId = bundleId;
-            DevotionTitle = PrayerPackStore.Info(bundleId)?.LocalizedDisplayName ?? bundleId;
+            DevotionTitle = HebrewDisplayText.WithoutMarks(
+                PrayerPackStore.Info(bundleId)?.LocalizedDisplayName ?? bundleId);
             var definition = PrayerPackStore.Definition(bundleId);
             Variants = definition?.Variants ?? [];
             OnPropertyChanged(nameof(ShowsVariantMenu));
             Days = definition?.Days ?? [];
             OnPropertyChanged(nameof(ShowsDayMenu));
 
-            // Seeds the star as already-favorited immediately, without waiting on the initial
-            // favorites fetch below.
-            MatchingFavoriteId = prayerId;
-
             var all = await _presets.GetAllAsync();
-            var favorite = all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId);
-            MatchingFavoriteId ??= favorite?.Id;
+            var favorite = prayerId is { } requestedId
+                ? all.FirstOrDefault(p => p.Id == requestedId && p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId)
+                : null;
+            favorite ??= all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId);
+            MatchingFavoriteId = favorite?.Id;
             _variantId = favorite?.VariantId;
+            _customOptions = favorite?.CustomOptions is { } options
+                ? new Dictionary<string, string>(options)
+                : new Dictionary<string, string>();
             OnPropertyChanged(nameof(CurrentVariantId));
 
             // Per form, not per bundle: one recension of a chaplet can end with the cross where
@@ -460,13 +502,29 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
                 CustomDevotionId = bundleId,
                 VariantId = _variantId,
                 DayIndex = CurrentDayIndex,
+                CustomOptions = new Dictionary<string, string>(_customOptions),
             });
             _index = 0;
+            UpdateRunIdentity();
             ShowsBeadTrack = _steps.Any(s => s.DecadeIndex.HasValue);
             SeasonColor = _calendar.GetSeasonColorForToday();
 
             RenderCurrentStep();
             PickAudioTrack();
+
+            var saved = _runStore.Get(_runKey);
+            _pendingContinuation = saved?.CanResume(
+                _runSignature,
+                _steps.Count,
+                sameLocalDayOnly: false,
+                DateOnly.FromDateTime(DateTime.Now)) == true
+                ? saved
+                : null;
+            if (saved is not null && _pendingContinuation is null)
+            {
+                _runStore.Remove(_runKey);
+            }
+            OnPropertyChanged(nameof(HasSavedContinuation));
         }
         catch (Exception ex)
         {
@@ -474,6 +532,73 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             Header = Loc.Tr("flow_error_header", "Something went wrong");
             Body = Loc.Tr("flow_error_body", "This devotion couldn't be loaded. Please go back and try again.");
         }
+    }
+
+    public void ContinueSavedRun()
+    {
+        if (_pendingContinuation is not { } saved) return;
+        _pendingContinuation = null;
+        OnPropertyChanged(nameof(HasSavedContinuation));
+        RebuildAtPosition(saved.LanguageCode, saved.Position);
+        SaveProgress();
+    }
+
+    public void RestartRun()
+    {
+        _pendingContinuation = null;
+        OnPropertyChanged(nameof(HasSavedContinuation));
+        ClearProgress();
+        RebuildAtPosition(_chosenLanguage, 0);
+    }
+
+    private void UpdateRunIdentity()
+    {
+        _runKey = PrayerRunKeys.Custom(_bundleId, _variantId, CurrentDayIndex);
+        _runSignature = PrayerRunSignatures.Custom(
+            _bundleId,
+            ResolvedVariantId(_languageCode),
+            CurrentDayIndex,
+            _customOptions);
+    }
+
+    /// <summary>The concrete authored form the engine will build. A null implicit variant means
+    /// the first one, so normalize it to that id before comparing languages or signing a saved
+    /// run.</summary>
+    private string? ResolvedVariantId(string? languageCode)
+    {
+        var definition = PrayerPackStore.Definition(_bundleId);
+        if (definition is null) return null;
+
+        var requested = definition.EffectiveVariantId(_variantId, languageCode);
+        return definition.Variants?.FirstOrDefault(variant => variant.Id == requested)?.Id
+            ?? definition.Variants?.FirstOrDefault()?.Id;
+    }
+
+    private void ClearChangedConfiguration(string previousRunKey)
+    {
+        if (previousRunKey != _runKey) _runStore.Remove(previousRunKey);
+        _runStore.Remove(_runKey);
+    }
+
+    private void SaveProgress()
+    {
+        if (string.IsNullOrEmpty(_runKey) || _steps.Count == 0) return;
+        if (_index <= 0)
+        {
+            _runStore.Remove(_runKey);
+            return;
+        }
+
+        _runStore.Save(_runKey, new PrayerRunState(
+            _runSignature,
+            _index,
+            _chosenLanguage,
+            PrayerRunState.LocalDateString(DateOnly.FromDateTime(DateTime.Now))));
+    }
+
+    private void ClearProgress()
+    {
+        if (!string.IsNullOrEmpty(_runKey)) _runStore.Remove(_runKey);
     }
 
     partial void OnMysteryImageKeyChanged(string value) => OnPropertyChanged(nameof(MysteryImageFile));
@@ -497,8 +622,8 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         }
 
         var step = _steps[_index];
-        Header = step.Title;
-        Subtitle = step.Subtitle;
+        Header = HebrewDisplayText.WithoutMarks(step.Title);
+        Subtitle = HebrewDisplayText.WithoutMarksOrNull(step.Subtitle);
         HasTransliteration = step.TransliteratedBody is not null;
         Body = ShowsTransliteration && step.TransliteratedBody is { } transliterated
             ? transliterated
@@ -547,6 +672,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     {
         if (IsLastStep)
         {
+            ClearProgress();
             // Finishing a multi-day session advances the favorite to the next day (staying on
             // the last once complete) — tomorrow opens where the novena left off.
             if (Days.Count > 1)
@@ -585,6 +711,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         _index++;
         RenderCurrentStep();
         AlignAudioToCurrentStep();
+        SaveProgress();
     }
 
     [RelayCommand]
@@ -598,6 +725,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         _index--;
         RenderCurrentStep();
         AlignAudioToCurrentStep();
+        SaveProgress();
     }
 
     // --- Audio playback wiring (mirrors iOS's CustomDevotionFlowView / Android's
@@ -633,8 +761,8 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         // titleKey resolves through the same per-bundle content chain as step text (the track's
         // own language, not the UI language).
         _audioChapterTitles = (match.Chapters ?? [])
-            .Select(c => c.Title
-                ?? (c.TitleKey is { } key ? PrayerPackStore.ResolveBodyText(_bundleId, match.Language, key) : string.Empty))
+            .Select(c => HebrewDisplayText.WithoutMarks(c.Title
+                ?? (c.TitleKey is { } key ? PrayerPackStore.ResolveDisplayText(_bundleId, match.Language, key) : string.Empty)))
             .ToList();
         _audio.Load(_bundleId, match);
         AlignAudioToCurrentStep();
@@ -686,6 +814,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
                 {
                     _index = hint;
                     RenderCurrentStep();
+                    SaveProgress();
                 }
             }
             else

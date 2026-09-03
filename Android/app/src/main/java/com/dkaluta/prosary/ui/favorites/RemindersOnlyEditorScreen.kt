@@ -37,6 +37,7 @@ import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.reminders.ReminderScheduler
 import com.dkaluta.prosary.ui.presets.OptionPickerField
 import com.dkaluta.prosary.services.LocalAppServices
+import com.dkaluta.prosary.typography.HebrewDisplayText
 import kotlinx.coroutines.launch
 
 /** Compact editor for an existing [Prayer] row. Generic bundle rows expose their schema-driven
@@ -100,7 +101,7 @@ fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
         topBar = {
             TopAppBar(
                 scrollBehavior = topBarScroll,
-                title = { Text(titleText) },
+                title = { Text(HebrewDisplayText.unpoint(titleText)) },
                 navigationIcon = { TextButton(onClick = onDone) { Text(stringResource(R.string.common_cancel)) } },
                 actions = { TextButton(onClick = { save() }) { Text(stringResource(R.string.common_save)) } },
             )

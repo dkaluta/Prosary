@@ -11,6 +11,8 @@
   <data name="common_ok" xml:space="preserve"><value>אישור</value></data>
   <data name="common_finish" xml:space="preserve"><value>סיום</value></data>
   <data name="common_next" xml:space="preserve"><value>הבא</value></data>
+  <data name="common_continue" xml:space="preserve"><value>המשך</value></data>
+  <data name="common_restart" xml:space="preserve"><value>התחל מחדש</value></data>
   <data name="kind_rosary" xml:space="preserve"><value>מחרוזת</value></data>
   <data name="kind_jesus_prayer" xml:space="preserve"><value>תפילת ישוע</value></data>
   <data name="kind_devotion" xml:space="preserve"><value>מסלול תפילה</value></data>
@@ -65,6 +67,8 @@
   <data name="flow_error_header" xml:space="preserve"><value>משהו השתבש</value></data>
   <data name="flow_error_body" xml:space="preserve"><value>לא ניתן היה לטעון את המסלול. חזור ונסה שוב.</value></data>
   <data name="flow_app_setting" xml:space="preserve"><value>הגדרת האפליקציה</value></data>
+  <data name="prayer_resume_title" xml:space="preserve"><value>להמשיך מהמקום שבו הפסקת?</value></data>
+  <data name="prayer_resume_message" xml:space="preserve"><value>אפשר להמשיך בתפילה שלא הסתיימה או להתחיל מחדש.</value></data>
   <data name="rosary_no_favorites_header" xml:space="preserve"><value>אין עדיין מועדפי מחרוזת</value></data>
   <data name="rosary_no_favorites_body" xml:space="preserve"><value>הוסף תחילה מועדף מחרוזת.</value></data>
   <data name="rosary_error_body" xml:space="preserve"><value>לא ניתן היה לטעון את תפילת המחרוזת. חזור ונסה שוב.</value></data>
@@ -113,7 +117,7 @@
   <data name="SetShowTodayFeast.Header" xml:space="preserve"><value>הצגת חג היום</value></data>
   <data name="SetShowTodayIntention.Header" xml:space="preserve"><value>הצגת כוונת האפיפיור</value></data>
   <data name="SetFeastCalendar.Header" xml:space="preserve"><value>הלוח הליטורגי</value></data>
-  <data name="SetFeastCalendarHint.Text" xml:space="preserve"><value>לפי איזה לוח מוצגים חגי המדור „היום“.</value></data>
+  <data name="SetFeastCalendarHint.Text" xml:space="preserve"><value>לפי איזה לוח מוצגים החגים והמקראות במדור „היום“.</value></data>
   <data name="FavTitle.Text" xml:space="preserve"><value>מועדפים</value></data>
   <data name="BtnPray.Content" xml:space="preserve"><value>התפלל</value></data>
   <data name="FavSetDefault.Content" xml:space="preserve"><value>הגדר כברירת מחדל</value></data>
@@ -164,6 +168,7 @@
   <data name="EdApostlesCreed.Text" xml:space="preserve"><value>אני מאמין</value></data>
   <data name="EdOpeningPrayers.Text" xml:space="preserve"><value>“אבינו שבשמים” ו־3 “שמחי מרים” בפתיחה</value></data>
   <data name="EdFatima.Text" xml:space="preserve"><value>“הו ישוע שלי” בסוף כל רז</value></data>
+  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>תפילת פאטימה אחרי שלוש ברכות מרים הפותחות</value></data>
   <data name="EdDisplayHeader.Text" xml:space="preserve"><value>תצוגה</value></data>
   <data name="EdMysteryArtwork.Header" xml:space="preserve"><value>איורי הרזים</value></data>
   <data name="EdPresenterMode.Text" xml:space="preserve"><value>מצב מנחה</value></data>
@@ -205,7 +210,11 @@
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>מקורות כתבי הקודש</value></data>
   <data name="AbtScriptureBody.Text" xml:space="preserve"><value>ציטוטי המקרא לקוחים מביבליית דואיי־רימס (אנגלית), הוולגאטה הקלמנטית (לטינית), תרגום דליטש לברית החדשה (מתוך kirjasilta.net/ha-berit) עם קטעי התנ״ך על פי נוסח המסורה, תרגום הישועים לביבליה לערבית (ביירות, 1880, נערך 1988), הביבליה הסינודלית ברוסית (1876) ו־Ang Dating Biblia (טאגאלוג, 1905) — כולם בנחלת הכלל.</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>נתוני לוחות</value></data>
-  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>נתוני לוחות ומקראות: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 מ־Missale Meum‏ (missalemeum.com); הלוח הסורי-קתולי, לוח המקראות הרומי בעברית ומראי המקום היומיים של המקראות באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; הלוח האוקראיני-קתולי נערך באפליקציה מן המקורות המסורתיים.</value></data>
+  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>נתוני לוחות ומקראות: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 ומקראותיו מ־Missale Meum‏ (missalemeum.com); הלוח והמקראות הסוריים־קתוליים, והכותרות ומראי המקום הרומיים בעברית, באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; מראי המקום הביזנטיים מ־Royal Doors‏ (royaldoors.net), והלוח האוקראיני־קתולי נערך מן המקורות המסורתיים.</value></data>
+  <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>הרז הקודם</value></data>
+  <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>הרז הקודם</value></data>
+  <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>הרז הבא</value></data>
+  <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>הרז הבא</value></data>
   <data name="AbtMys01Title.Text" xml:space="preserve"><value>הבשורה</value></data>
   <data name="AbtCredit01.Text" xml:space="preserve"><value> — פרה אנג׳ליקו (נפ׳ 1455)</value></data>
   <data name="AbtMys02Title.Text" xml:space="preserve"><value>הביקור</value></data>
@@ -333,6 +342,7 @@
   <data name="PickerApostlesCreed.Text" xml:space="preserve"><value>אני מאמין</value></data>
   <data name="PickerOpeningPrayers.Text" xml:space="preserve"><value>אבינו ושלוש פעמים שלום לך מרים בפתיחה</value></data>
   <data name="PickerFatima.Text" xml:space="preserve"><value>תפילת פאטימה אחרי כל עשור</value></data>
+  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>תפילת פאטימה אחרי שלוש ברכות מרים הפותחות</value></data>
   <data name="PickerPresenterMode.Text" xml:space="preserve"><value>מצב מנחה</value></data>
   <data name="PickerClosingIntentions.Text" xml:space="preserve"><value>כוונות הסיום</value></data>
   <data name="PickerStMichael.Text" xml:space="preserve"><value>תפילת המלאך מיכאל</value></data>

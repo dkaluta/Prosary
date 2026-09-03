@@ -34,6 +34,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -51,14 +52,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.res.stringResource
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.CustomDevotionInfo
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.content.today.TodayInfoStore
+import com.dkaluta.prosary.content.today.TodayTranslationLanguage
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.FavoriteDevotions
 import com.dkaluta.prosary.models.HomeOrder
@@ -85,6 +89,7 @@ import com.dkaluta.prosary.ui.shared.PrayerCard
 import com.dkaluta.prosary.ui.shared.colorForHex
 import com.dkaluta.prosary.ui.shared.iconForSystemName
 import com.dkaluta.prosary.ui.theme.extraColors
+import com.dkaluta.prosary.typography.HebrewDisplayText
 
 /** One devotion's rendering state for a Home card. See [HomeScreen]'s card list. */
 private data class DevotionCard(
@@ -126,10 +131,10 @@ fun HomeScreen(
         if (AppSettings.showTodayIntention) TodayInfoStore.intention() else null
     }
     val liturgicalDayInfo = remember { TodayInfoStore.liturgicalDayInfo() }
-    val todayReadings = remember { TodayInfoStore.readings() }
-    var todayInHebrew by remember {
-        mutableStateOf((LanguageCatalog.baseLanguage(AppSettings.defaultLanguageCode)
-            ?: AppSettings.defaultLanguageCode) == "he")
+    val todayReadings = remember(AppSettings.feastCalendarId) { TodayInfoStore.readings() }
+    val defaultLanguageCode = AppSettings.defaultLanguageCode
+    var todayInHebrew by remember(defaultLanguageCode) {
+        mutableStateOf(TodayTranslationLanguage.defaultsToHebrew(defaultLanguageCode))
     }
     var showsFullCitations by remember { mutableStateOf(false) }
     var todayMysteryGroup by remember { mutableStateOf<MysteryGroup?>(null) }
@@ -327,7 +332,7 @@ fun HomeScreen(
                             )
                             for (card in unpinnedCards) {
                                 DropdownMenuItem(
-                                    text = { Text(card.title) },
+                                    text = { Text(HebrewDisplayText.unpoint(card.title)) },
                                     onClick = {
                                         addMenu = false
                                         FavoriteDevotions.pin(context, card.devotionId, impliedPinned)
@@ -370,12 +375,16 @@ fun HomeScreen(
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         Icon(Icons.Filled.CalendarMonth, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
-                        Text(
-                            if (todayInHebrew) liturgicalDayInfo.hebrew else liturgicalDayInfo.english,
-                            style = MaterialTheme.typography.titleSmall,
-                            fontWeight = FontWeight.SemiBold,
-                            modifier = Modifier.weight(1f),
-                        )
+                        CompositionLocalProvider(
+                            LocalLayoutDirection provides if (todayInHebrew) LayoutDirection.Rtl else LayoutDirection.Ltr,
+                        ) {
+                            Text(
+                                if (todayInHebrew) liturgicalDayInfo.hebrew else liturgicalDayInfo.english,
+                                style = MaterialTheme.typography.titleSmall,
+                                fontWeight = FontWeight.SemiBold,
+                                modifier = Modifier.weight(1f),
+                            )
+                        }
                         TextButton(onClick = { todayInHebrew = !todayInHebrew }) {
                             Text(if (todayInHebrew) stringResource(R.string.home_today_show_english) else "עברית")
                         }
@@ -386,19 +395,23 @@ fun HomeScreen(
                                 Icons.Filled.CalendarMonth, contentDescription = null,
                                 tint = MaterialTheme.colorScheme.primary,
                             )
-                            Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                                Text(
-                                    todayFeast.title,
-                                    style = MaterialTheme.typography.titleSmall,
-                                    // Each calendar's top rank gets the bold: "Solemnity"
-                                    // (Roman), "1st Class" (1962), "Great Feast" (Byzantine).
-                                    fontWeight = if (todayFeast.rank in setOf("Solemnity", "1st Class", "Great Feast")) FontWeight.Bold else FontWeight.SemiBold,
-                                )
-                                Text(
-                                    todayFeast.rank,
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                )
+                            CompositionLocalProvider(
+                                LocalLayoutDirection provides if (todayInHebrew) LayoutDirection.Rtl else LayoutDirection.Ltr,
+                            ) {
+                                Column(verticalArrangement = Arrangement.spacedBy(2.dp), modifier = Modifier.weight(1f)) {
+                                    Text(
+                                        todayFeast.localizedTitle(if (todayInHebrew) "he" else "en"),
+                                        style = MaterialTheme.typography.titleSmall,
+                                        // Each calendar's top rank gets the bold: "Solemnity"
+                                        // (Roman), "1st Class" (1962), "Great Feast" (Byzantine).
+                                        fontWeight = if (todayFeast.rank in setOf("Solemnity", "1st Class", "Great Feast")) FontWeight.Bold else FontWeight.SemiBold,
+                                    )
+                                    Text(
+                                        todayFeast.rank,
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    )
+                                }
                             }
                         }
                     }
@@ -408,43 +421,53 @@ fun HomeScreen(
                                 Icons.Filled.VolunteerActivism, contentDescription = null,
                                 tint = MaterialTheme.colorScheme.primary,
                             )
-                            Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                                Text(
-                                    if (todayInHebrew) "כוונת האפיפיור: ${monthIntention.localizedTitle("he")}" else
-                                        stringResource(R.string.home_pope_intention, monthIntention.localizedTitle("en")),
-                                    style = MaterialTheme.typography.titleSmall,
-                                    fontWeight = FontWeight.SemiBold,
-                                )
-                                Text(
-                                    monthIntention.localizedText(if (todayInHebrew) "he" else "en"),
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                )
+                            CompositionLocalProvider(
+                                LocalLayoutDirection provides if (todayInHebrew) LayoutDirection.Rtl else LayoutDirection.Ltr,
+                            ) {
+                                Column(verticalArrangement = Arrangement.spacedBy(2.dp), modifier = Modifier.weight(1f)) {
+                                    Text(
+                                        if (todayInHebrew) "כוונת האפיפיור: ${monthIntention.localizedTitle("he")}" else
+                                            stringResource(R.string.home_pope_intention, monthIntention.localizedTitle("en")),
+                                        style = MaterialTheme.typography.titleSmall,
+                                        fontWeight = FontWeight.SemiBold,
+                                    )
+                                    Text(
+                                        monthIntention.localizedText(if (todayInHebrew) "he" else "en"),
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    )
+                                }
                             }
                         }
                     }
                     if (todayReadings.isNotEmpty()) {
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             Icon(Icons.AutoMirrored.Filled.MenuBook, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
-                            Column(verticalArrangement = Arrangement.spacedBy(2.dp), modifier = Modifier.weight(1f)) {
-                                Text(stringResource(R.string.home_today_readings), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
-                                if (showsFullCitations) {
-                                    todayReadings.forEach { citation ->
+                            CompositionLocalProvider(
+                                LocalLayoutDirection provides if (todayInHebrew) LayoutDirection.Rtl else LayoutDirection.Ltr,
+                            ) {
+                                Column(verticalArrangement = Arrangement.spacedBy(2.dp), modifier = Modifier.weight(1f)) {
+                                    Text(stringResource(R.string.home_today_readings), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
+                                    if (showsFullCitations) {
+                                        todayReadings.forEach { citation ->
+                                            Text(
+                                                citation.localizedFull(if (todayInHebrew) "he" else "en"),
+                                                style = MaterialTheme.typography.bodySmall,
+                                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                            )
+                                        }
+                                    } else {
                                         Text(
-                                            if (todayInHebrew) citation.hebrew else citation.full,
+                                            todayReadings.joinToString(", ") {
+                                                it.localizedShort(if (todayInHebrew) "he" else "en")
+                                            },
                                             style = MaterialTheme.typography.bodySmall,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         )
                                     }
-                                } else {
-                                    Text(
-                                        todayReadings.joinToString(", ") { it.short },
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    )
-                                }
-                                TextButton(onClick = { showsFullCitations = !showsFullCitations }) {
-                                    Text(stringResource(if (showsFullCitations) R.string.home_today_compact_citations else R.string.home_today_full_citations))
+                                    TextButton(onClick = { showsFullCitations = !showsFullCitations }) {
+                                        Text(stringResource(if (showsFullCitations) R.string.home_today_compact_citations else R.string.home_today_full_citations))
+                                    }
                                 }
                             }
                         }

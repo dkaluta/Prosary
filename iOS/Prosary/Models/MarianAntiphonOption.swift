@@ -23,14 +23,15 @@ enum MarianAntiphonOption: String, Codable, CaseIterable, Identifiable {
   }
 
   func displayName(languageCode: String) -> String {
-    switch self {
-    case .none:                 return String(localized: "marianAntiphon.none", defaultValue: "None")
-    case .seasonal:             return String(localized: "marianAntiphon.seasonal", defaultValue: "Automatic (Seasonal)")
-    case .salveRegina:          return PrayerTranslations.get(languageCode: languageCode, key: .salveReginaTitle)
-    case .almaRedemptorisMater: return PrayerTranslations.get(languageCode: languageCode, key: .almaRedemptorisMaterTitle)
-    case .aveReginaCaelorum:    return PrayerTranslations.get(languageCode: languageCode, key: .aveReginaCaelorumTitle)
-    case .reginaCaeli:          return PrayerTranslations.get(languageCode: languageCode, key: .reginaCaeliTitle)
-    case .subTuumPraesidium:    return PrayerTranslations.get(languageCode: languageCode, key: .subTuumPraesidiumTitle)
+    let name = switch self {
+    case .none:                 String(localized: "marianAntiphon.none", defaultValue: "None")
+    case .seasonal:             String(localized: "marianAntiphon.seasonal", defaultValue: "Automatic (Seasonal)")
+    case .salveRegina:          PrayerTranslations.get(languageCode: languageCode, key: .salveReginaTitle)
+    case .almaRedemptorisMater: PrayerTranslations.get(languageCode: languageCode, key: .almaRedemptorisMaterTitle)
+    case .aveReginaCaelorum:    PrayerTranslations.get(languageCode: languageCode, key: .aveReginaCaelorumTitle)
+    case .reginaCaeli:          PrayerTranslations.get(languageCode: languageCode, key: .reginaCaeliTitle)
+    case .subTuumPraesidium:    PrayerTranslations.get(languageCode: languageCode, key: .subTuumPraesidiumTitle)
     }
+    return HebrewDisplayText.unpointed(name)
   }
 }

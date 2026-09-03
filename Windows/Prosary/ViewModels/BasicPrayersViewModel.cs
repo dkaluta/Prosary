@@ -36,7 +36,7 @@ public partial class BasicPrayersViewModel : ObservableObject
         Rows = BasicPrayersOrder.ApplyFavorites(BasicPrayersOrder.Apply(BasicPrayerCatalog.All))
             .Select(p => new BasicPrayerRow(
                 p.Id,
-                PrayerPackStore.ResolveBodyText(p.BundleId, language.Code, p.TitleKey),
+                PrayerPackStore.ResolveDisplayText(p.BundleId, language.Code, p.TitleKey),
                 ImageFile(p.ImageKey),
                 AppSettings.FavoriteBasicPrayerIds.Contains(p.Id)))
             .ToList();
@@ -116,7 +116,7 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     {
         if (BasicPrayerCatalog.Prayer(prayerId) is not { } prayer) return;
         var language = LanguageCatalog.Resolve(null);
-        Header = PrayerPackStore.ResolveBodyText(prayer.BundleId, language.Code, prayer.TitleKey);
+        Header = PrayerPackStore.ResolveDisplayText(prayer.BundleId, language.Code, prayer.TitleKey);
         Body = PrayerPackStore.ResolveBodyText(prayer.BundleId, language.Code, prayer.BodyKey);
         MysteryImageFile = BasicPrayersViewModel.ImageFile(prayer.ImageKey);
         ProgressText = string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), 1, 1);

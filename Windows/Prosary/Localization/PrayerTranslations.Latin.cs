@@ -17,26 +17,38 @@ public static partial class PrayerTranslations
             "aeternam. Amen.",
 
         [PrayerKey.PaterNoster] =
-            "Pater noster, qui es in caelis, sanctificetur nomen tuum. Adveniat regnum tuum. Fiat voluntas " +
-            "tua, sicut in caelo et in terra.\nPanem nostrum cotidianum da nobis hodie, et dimitte nobis " +
-            "debita nostra, sicut et nos dimittimus debitoribus nostris. Et ne nos inducas in tentationem, " +
-            "sed libera nos a malo. Amen.",
+        "Pater noster, qui es in caelis, sanctificetur nomen tuum.\n" +
+        "Adveniat regnum tuum. Fiat voluntas tua,\n" +
+        "sicut in caelo et in terra.\n" +
+        "Panem nostrum cotidianum da nobis hodie,\n" +
+        "et dimitte nobis debita nostra,\n" +
+        "sicut et nos dimittimus debitoribus nostris.\n" +
+        "Et ne nos inducas in tentationem,\n" +
+        "sed libera nos a malo. Amen.",
 
         [PrayerKey.AveMaria] =
-            "Ave Maria, gratia plena, Dominus tecum. Benedicta tu in mulieribus, et benedictus fructus " +
-            "ventris tui, Iesus.\nSancta Maria, Mater Dei, ora pro nobis peccatoribus, nunc et in hora " +
-            "mortis nostrae. Amen.",
+        "Ave Maria,\n" +
+        "gratia plena, Dominus tecum.\n" +
+        "Benedicta tu in mulieribus,\n" +
+        "et benedictus fructus ventris tui, Iesus.\n" +
+        "Sancta Maria, Mater Dei,\n" +
+        "ora pro nobis peccatoribus,\n" +
+        "nunc et in hora mortis nostrae. Amen.",
 
         [PrayerKey.GloriaPatri] =
-            "Gloria Patri, et Filio, et Spiritui Sancto.\nSicut erat in principio, et nunc, et semper, et " +
-            "in saecula saeculorum. Amen.",
+        "Gloria Patri, et Filio, et Spiritui Sancto.\n" +
+        "Sicut erat in principio, et nunc, et semper,\n" +
+        "et in saecula saeculorum. Amen.",
 
         [PrayerKey.OratioFatimae] =
             "Domine Iesu, dimitte nobis debita nostra, libera nos ab igne inferni, conduc in caelum omnes " +
             "animas, praesertim illas quae maxime indigent misericordia tua.",
 
         [PrayerKey.RequiemAeternam] =
-            "Requiem aeternam dona eis, Domine, et lux perpetua luceat eis. Requiescant in pace. Amen.",
+        "Requiem aeternam\n" +
+        "dona eis, Domine,\n" +
+        "et lux perpetua luceat eis.\n" +
+        "Requiescant in pace. Amen.",
 
         [PrayerKey.SanctusMichael] =
             "Sancte Michael Archangele, defende nos in proelio; contra nequitiam et insidias diaboli esto " +
@@ -75,8 +87,11 @@ public static partial class PrayerTranslations
         [PrayerKey.SubTuumPraesidiumTitle] = "Sub Tuum Praesidium",
 
         [PrayerKey.SubTuumPraesidium] =
-            "Sub tuum praesidium confugimus, sancta Dei Genetrix; nostras deprecationes ne despicias in " +
-            "necessitatibus nostris, sed a periculis cunctis libera nos semper, Virgo gloriosa et benedicta.",
+        "Sub tuum praesidium confugimus,\n" +
+        "sancta Dei Genetrix;\n" +
+        "nostras deprecationes ne despicias in necessitatibus nostris,\n" +
+        "sed a periculis cunctis libera nos semper,\n" +
+        "Virgo gloriosa et benedicta.",
 
         [PrayerKey.VersiculumStandard] = "Ora pro nobis, sancta Dei Genetrix.",
         [PrayerKey.ResponsiumStandard] = "Ut digni efficiamur promissionibus Christi.",

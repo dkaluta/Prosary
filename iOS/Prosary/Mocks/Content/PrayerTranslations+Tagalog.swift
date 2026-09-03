@@ -22,29 +22,38 @@ extension PrayerTranslations {
       "buhay na walang hanggan. Amen.",
 
     .paterNoster:
-      "Ama namin, na nasa langit Ka, sambahin nawa ang pangalan Mo. Dumating nawa ang kaharian Mo. " +
-      "Gawin nawa ang kalooban Mo, sa lupa, gayon din sa langit.\n" +
-      "Ibigay Mo sa amin ngayon ang aming tinapay na pagkain sa araw-araw. At patawarin Mo kami " +
-      "sa aming mga kasalanan, kung paano namin pinatatawad ang nangkakasala sa amin. At huwag Mo " +
-      "kaming ihatid sa tukso, kundi iligtas Mo kami sa masama. Amen.",
+      "Ama namin, na nasa langit Ka, sambahin nawa ang pangalan Mo.\n" +
+      "Dumating nawa ang kaharian Mo. Gawin nawa ang kalooban Mo,\n" +
+      "sa lupa, gayon din sa langit.\n" +
+      "Ibigay Mo sa amin ngayon ang aming tinapay na pagkain sa araw-araw.\n" +
+      "At patawarin Mo kami sa aming mga kasalanan,\n" +
+      "kung paano namin pinatatawad ang nangkakasala sa amin.\n" +
+      "At huwag Mo kaming ihatid sa tukso,\n" +
+      "kundi iligtas Mo kami sa masama. Amen.",
 
     .aveMaria:
-      "Aba Ginoong Maria, napupuno ka ng grasya, ang Panginoon ay nasa iyo. Ikaw ay pinagpala sa " +
-      "mga babae, at pinagpala rin ang bunga ng iyong tiyan si Jesus.\n" +
-      "Santa Maria, Ina ng Diyos, ipanalangin mo kami na mga makasalanan, ngayon at sa oras ng " +
-      "aming kamatayan. Amen.",
+      "Aba Ginoong Maria,\n" +
+      "napupuno ka ng grasya, ang Panginoon ay nasa iyo.\n" +
+      "Ikaw ay pinagpala sa mga babae,\n" +
+      "at pinagpala rin ang bunga ng iyong tiyan si Jesus.\n" +
+      "Santa Maria, Ina ng Diyos,\n" +
+      "ipanalangin mo kami na mga makasalanan,\n" +
+      "ngayon at sa oras ng aming kamatayan. Amen.",
 
     .gloriaPatri:
       "Papuri sa Ama, at sa Anak, at sa Espiritu Santo.\n" +
-      "Kapara noong una, ngayon at magpakailanman, at magpasa walang hanggan. Amen.",
+      "Kapara noong una, ngayon at magpakailanman,\n" +
+      "at magpasa walang hanggan. Amen.",
 
     .oratioFatimae:
       "O Jesus ko, patawarin Mo kami sa aming mga kasalanan, iligtas Mo kami sa apoy ng impiyerno, " +
       "dalhin Mo sa langit ang lahat ng kaluluwa, lalo na yaong lubhang nangangailangan ng iyong awa.",
 
     .requiemAeternam:
-      "Bigyan Mo sila ng walang hanggang kapahingahan, O Panginoon, at hayaan Mong ang walang " +
-      "hanggang liwanag ay sumikat sa kanila. Makapahinga nawa sila sa kapayapaan. Amen.",
+      "Bigyan Mo sila ng walang hanggang kapahingahan, O Panginoon,\n" +
+      "at hayaan Mong ang walang hanggang liwanag ay sumikat sa kanila.\n" +
+      "Makapahinga nawa sila sa kapayapaan.\n" +
+      "Amen.",
 
     .sanctusMichael:
       "San Miguel Arkanghel, ipagtanggol mo kami sa pakikidigma. Maging aming pananggalang laban " +
@@ -88,9 +97,11 @@ extension PrayerTranslations {
     .subTuumPraesidiumTitle: "Sa Iyong Kalinga",
 
     .subTuumPraesidium:
-      "Sa ilalim ng iyong pangangalaga kami lumapit, O banal na Ina ng Diyos; huwag mong itakwil " +
-      "ang aming mga panalangin sa aming mga pangangailangan, kundi iligtas mo kami sa lahat ng " +
-      "panganib, O maluwalhati at pinagpalang Birhen.",
+      "Sa ilalim ng iyong pangangalaga kami lumapit,\n" +
+      "O banal na Ina ng Diyos;\n" +
+      "huwag mong itakwil ang aming mga panalangin sa aming mga pangangailangan,\n" +
+      "kundi iligtas mo kami sa lahat ng panganib,\n" +
+      "O maluwalhati at pinagpalang Birhen.",
 
     .versiculumStandard: "Ipanalangin mo kami, O banal na Ina ng Diyos.",
     .responsiumStandard: "Upang tayo'y maging karapat-dapat sa mga pangako ni Kristo.",

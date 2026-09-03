@@ -22,6 +22,10 @@ public sealed record RosaryOptions
     /// <summary>The opening Our Father + 3 Hail Marys (for faith, hope, and charity) + Glory Be.</summary>
     public bool IncludeOpeningPrayers { get; init; } = true;
 
+    /// <summary>Optionally adds the Fatima Prayer immediately after the three opening Hail
+    /// Marys for faith, hope, and charity. Independent of the per-decade Fatima Prayer.</summary>
+    public bool IncludeOpeningFatimaPrayer { get; init; } = false;
+
     /// <summary>The Fatima Prayer ("O my Jesus...") recited after the Glory Be of each decade.</summary>
     public bool IncludeFatimaPrayer { get; init; } = true;
 

@@ -39,7 +39,7 @@ public partial class App : Application
             return File.Exists(path) ? File.OpenRead(path) : null;
         });
 
-        // The Home "Today" feast row prays the calendar chosen in Settings — an unset or
+        // Home's Today feast and readings follow the calendar chosen in Settings — an unset or
         // no-longer-listed id resolves to the calendars.json registry's default in the store.
         TodayInfoStore.SelectedCalendarId = AppSettings.FeastCalendarId;
 
@@ -61,6 +61,7 @@ public partial class App : Application
         services.AddSingleton<PrayerEngine>();
         services.AddSingleton<IPresetStore, SqlitePresetStore>();
         services.AddSingleton<IReminderScheduler, WindowsReminderScheduler>();
+        services.AddSingleton<IPrayerRunStore, LocalPrayerRunStore>();
 
         services.AddTransient<HomeViewModel>();
         services.AddTransient<RepositoryBrowserViewModel>();

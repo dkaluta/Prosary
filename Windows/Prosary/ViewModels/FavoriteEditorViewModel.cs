@@ -92,6 +92,9 @@ public partial class FavoriteEditorViewModel : ObservableObject
     private bool _includeOpeningPrayers = true;
 
     [ObservableProperty]
+    private bool _includeOpeningFatimaPrayer;
+
+    [ObservableProperty]
     private bool _includeFatimaPrayer = true;
 
     [ObservableProperty]
@@ -149,7 +152,7 @@ public partial class FavoriteEditorViewModel : ObservableObject
     public string MysterySelectionSummary => MysterySelectionMode switch
     {
         MysterySelectionMode.Specific => string.Format(Loc.Tr("summary_always", "Always {0}"), SpecificMysteryGroup.UiName()),
-        MysterySelectionMode.SingleMystery => string.Format(Loc.Tr("summary_only", "Only {0}"), SelectedMystery is { } m ? MysteryTranslations.Get(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName, m.ImageKey).Title : SpecificMysteryGroup.UiName()),
+        MysterySelectionMode.SingleMystery => string.Format(Loc.Tr("summary_only", "Only {0}"), SelectedMystery is { } m ? MysteryTranslations.GetDisplay(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName, m.ImageKey).Title : SpecificMysteryGroup.UiName()),
         MysterySelectionMode.FifteenMystery => Loc.Tr("summary_fifteen", "The 15 Mysteries"),
         MysterySelectionMode.TwentyMystery => Loc.Tr("summary_twenty", "The 20 Mysteries"),
         MysterySelectionMode.TodaysMysteries => Loc.Tr("mode_todays_mysteries", "Today's Mysteries"),
@@ -231,6 +234,7 @@ public partial class FavoriteEditorViewModel : ObservableObject
             .FirstOrDefault(m => m.Order == prayer.Rosary.SpecificMysteryOrder);
         IncludeApostlesCreed = prayer.Rosary.IncludeApostlesCreed;
         IncludeOpeningPrayers = prayer.Rosary.IncludeOpeningPrayers;
+        IncludeOpeningFatimaPrayer = prayer.Rosary.IncludeOpeningFatimaPrayer;
         IncludeFatimaPrayer = prayer.Rosary.IncludeFatimaPrayer;
         EternalRestForDeceased = prayer.Rosary.EternalRestForDeceased;
         MarianAntiphon = prayer.Rosary.MarianAntiphon;
@@ -258,6 +262,7 @@ public partial class FavoriteEditorViewModel : ObservableObject
             SpecificMysteryOrder = SelectedMystery?.Order ?? 1,
             IncludeApostlesCreed = IncludeApostlesCreed,
             IncludeOpeningPrayers = IncludeOpeningPrayers,
+            IncludeOpeningFatimaPrayer = IncludeOpeningFatimaPrayer,
             IncludeFatimaPrayer = IncludeFatimaPrayer,
             EternalRestForDeceased = EternalRestForDeceased,
             MarianAntiphon = MarianAntiphon,

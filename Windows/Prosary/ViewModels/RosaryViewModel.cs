@@ -23,10 +23,18 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
 {
     private readonly IPresetStore _presets;
     private readonly PrayerEngine _engine;
+    private readonly IPrayerRunStore _runStore;
 
     private IReadOnlyList<RosaryStep> _steps = [];
     private int _index;
     private string _languageCode = LanguageCatalog.DefaultCode;
+    private string _chosenLanguage = LanguageCatalog.DefaultSentinel;
+    private Prayer? _activePrayer;
+    private Prayer? _initialPrayer;
+    private PrayerRunState? _pendingContinuation;
+    private string _runKey = string.Empty;
+    private string _runSignature = string.Empty;
+    private bool _isSavedPrayer;
 
     // Precomputed once per session load (not per step) — how many decades this session has,
     // whether it ends with a Sign of the Cross, and where the antiphon (if any) sits, so
@@ -58,6 +66,12 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     private bool _canGoBack;
 
     [ObservableProperty]
+    private bool _canGoToPreviousMystery;
+
+    [ObservableProperty]
+    private bool _canGoToNextMystery;
+
+    [ObservableProperty]
     private bool _isLastStep;
 
     [ObservableProperty]
@@ -71,6 +85,21 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
 
     [ObservableProperty]
     private double _bodyFontSize = 18;
+
+    // Alternate-script reading aid. Aramaic mystery announcements use Hebrew-square
+    // Peshitta text as their primary body and the source Syriac as this per-step alternate.
+    [ObservableProperty]
+    private bool _hasTransliteration;
+
+    [ObservableProperty]
+    private bool _showsTransliteration;
+
+    [RelayCommand]
+    private void ToggleTransliteration()
+    {
+        ShowsTransliteration = !ShowsTransliteration;
+        RenderCurrentStep();
+    }
 
     // Decade beads grouped into rows of 5 — like the physical layout of a rosary's Our-Father
     // beads — for the narrow layout's wrapped horizontal grid. See BeadLayout.Build.
@@ -133,15 +162,29 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
 
     public bool HasSubtitle => !string.IsNullOrEmpty(Subtitle);
 
-    public RosaryViewModel(IPresetStore presets, PrayerEngine engine, LiturgicalCalendarService calendar)
+    public IReadOnlyList<LanguageOption> Languages { get; private set; } = [];
+
+    public bool ShowsLanguageMenu => Languages.Count > 1;
+
+    public string CurrentLanguageRaw => _chosenLanguage;
+
+    public bool HasSavedContinuation => _pendingContinuation is not null;
+
+    public RosaryViewModel(
+        IPresetStore presets,
+        PrayerEngine engine,
+        LiturgicalCalendarService calendar,
+        IPrayerRunStore runStore)
     {
         _presets = presets;
         _engine = engine;
+        _runStore = runStore;
         SeasonColor = calendar.GetSeasonColorForToday();
     }
 
     public async Task LoadAsync(Guid? prayerId)
     {
+        ResetContinuationState();
         var prayer = prayerId is { } id ? await _presets.GetAsync(id) : null;
         prayer ??= await _presets.GetDefaultAsync(PrayerKind.Rosary);
         if (prayer is null)
@@ -151,38 +194,114 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
             return;
         }
 
-        LoadFrom(prayer);
+        LoadFrom(prayer, isSavedPrayer: true, PrayerRunKeys.Rosary(prayer.Id));
     }
 
     /// <summary>An ad-hoc, unsaved session from the preset picker's "Pray any Rosary" — the
     /// same build as a saved favorite, just without the store roundtrip.</summary>
-    public void LoadAdHoc(Prayer prayer) => LoadFrom(prayer);
+    public void LoadAdHoc(Prayer prayer)
+    {
+        ResetContinuationState();
+        LoadFrom(prayer, isSavedPrayer: false, "rosary:adhoc");
+    }
 
-    private void LoadFrom(Prayer prayer)
+    private void ResetContinuationState()
+    {
+        _pendingContinuation = null;
+        OnPropertyChanged(nameof(HasSavedContinuation));
+    }
+
+    private void LoadFrom(Prayer prayer, bool isSavedPrayer, string runKey)
     {
         try
         {
-            _languageCode = prayer.ResolvedLanguageCode;
-            IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
-            _steps = _engine.BuildSteps(prayer);
-            _index = 0;
+            _initialPrayer = prayer;
+            _isSavedPrayer = isSavedPrayer;
+            _runKey = runKey;
+            _runSignature = PrayerRunSignatures.Rosary(prayer.Rosary);
+            Languages = LanguageCatalog.AvailableOptions(PrayerPackStore.Info("rosary")?.Languages ?? []);
+            OnPropertyChanged(nameof(ShowsLanguageMenu));
 
-            _totalDecades = _steps.Any(s => s.DecadeIndex.HasValue)
-                ? _steps.Where(s => s.DecadeIndex.HasValue).Max(s => s.DecadeIndex!.Value) + 1
-                : 0;
-            _firstDecadeStepIndex = _steps.Select((s, i) => (s, i)).Where(t => t.s.DecadeIndex.HasValue)
-                .Select(t => (int?)t.i).FirstOrDefault() ?? -1;
-            _antiphonStepIndex = _steps.Select((s, i) => (s, i)).Where(t => t.s.IsAntiphon)
-                .Select(t => (int?)t.i).FirstOrDefault() ?? -1;
-            _hasClosingCross = prayer.Rosary.IncludeFinalSignOfCross;
+            ConfigureSession(prayer, 0);
 
-            RenderCurrentStep();
+            var saved = _runStore.Get(_runKey);
+            _pendingContinuation = saved?.CanResume(
+                _runSignature,
+                _steps.Count,
+                sameLocalDayOnly: true,
+                DateOnly.FromDateTime(DateTime.Now)) == true
+                ? saved
+                : null;
+            if (saved is not null && _pendingContinuation is null)
+            {
+                _runStore.Remove(_runKey);
+            }
+            OnPropertyChanged(nameof(HasSavedContinuation));
         }
         catch (Exception ex)
         {
             System.Diagnostics.Debug.WriteLine($"[RosaryViewModel] Failed to load Rosary session: {ex}");
             Header = Loc.Tr("flow_error_header", "Something went wrong");
             Body = Loc.Tr("rosary_error_body", "This Rosary session couldn't be loaded. Please go back and try again.");
+        }
+    }
+
+    private void ConfigureSession(Prayer prayer, int position)
+    {
+        _activePrayer = prayer;
+        _chosenLanguage = prayer.LanguageCode;
+        _languageCode = prayer.ResolvedLanguageCode;
+        IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
+        _steps = _engine.BuildSteps(prayer);
+        _index = Math.Clamp(position, 0, Math.Max(_steps.Count - 1, 0));
+
+        _totalDecades = _steps.Any(s => s.DecadeIndex.HasValue)
+            ? _steps.Where(s => s.DecadeIndex.HasValue).Max(s => s.DecadeIndex!.Value) + 1
+            : 0;
+        _firstDecadeStepIndex = _steps.Select((s, i) => (s, i)).Where(t => t.s.DecadeIndex.HasValue)
+            .Select(t => (int?)t.i).FirstOrDefault() ?? -1;
+        _antiphonStepIndex = _steps.Select((s, i) => (s, i)).Where(t => t.s.IsAntiphon)
+            .Select(t => (int?)t.i).FirstOrDefault() ?? -1;
+        _hasClosingCross = prayer.Rosary.IncludeFinalSignOfCross;
+
+        OnPropertyChanged(nameof(CurrentLanguageRaw));
+        RenderCurrentStep();
+    }
+
+    public void ContinueSavedRun()
+    {
+        if (_pendingContinuation is not { } saved || _activePrayer is null)
+        {
+            return;
+        }
+
+        _pendingContinuation = null;
+        OnPropertyChanged(nameof(HasSavedContinuation));
+        ConfigureSession(_activePrayer with { LanguageCode = saved.LanguageCode }, saved.Position);
+        SaveProgress();
+    }
+
+    public void RestartRun()
+    {
+        _pendingContinuation = null;
+        OnPropertyChanged(nameof(HasSavedContinuation));
+        if (!string.IsNullOrEmpty(_runKey)) _runStore.Remove(_runKey);
+        if (_initialPrayer is { } prayer) ConfigureSession(prayer, 0);
+    }
+
+    /// <summary>Changes only the prayer text while preserving the exact current bead/mystery.
+    /// A saved preset follows the choice, and an interrupted run checkpoints it too.</summary>
+    public async Task SelectLanguageAsync(string raw)
+    {
+        if (_activePrayer is null) return;
+
+        var position = _index;
+        var changed = _activePrayer with { LanguageCode = raw };
+        ConfigureSession(changed, position);
+        SaveProgress();
+        if (_isSavedPrayer)
+        {
+            await _presets.SaveAsync(changed);
         }
     }
 
@@ -206,17 +325,27 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         }
 
         var step = _steps[_index];
-        Header = step.Title;
-        Subtitle = step.Subtitle;
-        Body = step.Body;
+        Header = HebrewDisplayText.WithoutMarks(step.Title);
+        Subtitle = HebrewDisplayText.WithoutMarksOrNull(step.Subtitle);
+        HasTransliteration = step.TransliteratedBody is not null;
+        Body = ShowsTransliteration && step.TransliteratedBody is { } transliterated
+            ? transliterated
+            : step.Body;
         MysteryImageKey = step.ImageVariantKey ?? step.Mystery?.ImageKey ?? step.ImageOverrideKey ?? "cross_placeholder";
         ProgressText = string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), _index + 1, _steps.Count);
         Progress = (_index + 1) / (double)_steps.Count;
         CanGoBack = _index > 0;
+        CanGoToPreviousMystery = MysteryStepNavigation.Previous(_steps, _index) is not null;
+        CanGoToNextMystery = MysteryStepNavigation.Next(_steps, _index) is not null;
         IsLastStep = _index == _steps.Count - 1;
 
-        BodyFontFamily = PrayerTypography.ResolveBodyFontFamily(_languageCode, step.IsScripture);
-        BodyFontSize = PrayerTypography.ResolveBodyFontSize(_languageCode, step.IsScripture);
+        // The alternate can be a different script from the prayer language (notably Syriac
+        // beside Hebrew-square Aramaic), so choose the face from the body actually on screen.
+        var bodyScript = ShowsTransliteration && step.TransliteratedBody is { } shown
+            ? PrayerTypography.ScriptOf(shown)
+            : (PrayerTypography.Script?)null;
+        BodyFontFamily = PrayerTypography.ResolveBodyFontFamily(_languageCode, step.IsScripture, bodyScript);
+        BodyFontSize = PrayerTypography.ResolveBodyFontSize(_languageCode, step.IsScripture, bodyScript);
 
         RebuildBeads();
     }
@@ -239,12 +368,14 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     {
         if (IsLastStep)
         {
+            ClearProgress();
             Router.GoBack();
             return;
         }
 
         _index++;
         RenderCurrentStep();
+        SaveProgress();
     }
 
     [RelayCommand]
@@ -257,5 +388,45 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
 
         _index--;
         RenderCurrentStep();
+        SaveProgress();
+    }
+
+    [RelayCommand]
+    private void GoToPreviousMystery()
+    {
+        if (MysteryStepNavigation.Previous(_steps, _index) is not { } target) return;
+        _index = target;
+        RenderCurrentStep();
+        SaveProgress();
+    }
+
+    [RelayCommand]
+    private void GoToNextMystery()
+    {
+        if (MysteryStepNavigation.Next(_steps, _index) is not { } target) return;
+        _index = target;
+        RenderCurrentStep();
+        SaveProgress();
+    }
+
+    private void SaveProgress()
+    {
+        if (string.IsNullOrEmpty(_runKey) || _steps.Count == 0) return;
+        if (_index <= 0)
+        {
+            _runStore.Remove(_runKey);
+            return;
+        }
+
+        _runStore.Save(_runKey, new PrayerRunState(
+            _runSignature,
+            _index,
+            _chosenLanguage,
+            PrayerRunState.LocalDateString(DateOnly.FromDateTime(DateTime.Now))));
+    }
+
+    private void ClearProgress()
+    {
+        if (!string.IsNullOrEmpty(_runKey)) _runStore.Remove(_runKey);
     }
 }

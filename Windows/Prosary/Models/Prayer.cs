@@ -48,6 +48,7 @@ public sealed record Prayer
     public List<PrayerReminder> Reminders { get; init; } = [];
 
     public bool IsNotDefault => !IsDefault;
+    public string DisplayName => HebrewDisplayText.WithoutMarks(Name);
     public string ResolvedLanguageCode => LanguageCatalog.Resolve(LanguageCode).Code;
     public string LanguageNativeName => LanguageCatalog.Resolve(LanguageCode).NativeName;
 
@@ -58,7 +59,7 @@ public sealed record Prayer
         : LanguageCatalog.Resolve(LanguageCode).NativeName;
 
     /// <summary>Second line shown on a Rosary preset card.</summary>
-    public string FavoriteSubtitle => Kind switch
+    public string FavoriteSubtitle => HebrewDisplayText.WithoutMarks(Kind switch
     {
         PrayerKind.Rosary => $"{Rosary.MysterySelectionSummary} • {LanguageDisplayName}",
         PrayerKind.JesusPrayer => $"{JesusPrayer.TargetDisplayName} • {LanguageDisplayName}",
@@ -66,5 +67,5 @@ public sealed record Prayer
         // exhaustiveness and older bindings.
         PrayerKind.Custom => LanguageDisplayName,
         _ => throw new ArgumentOutOfRangeException(nameof(Kind))
-    };
+    });
 }

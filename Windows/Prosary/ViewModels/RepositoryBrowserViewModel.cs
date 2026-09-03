@@ -22,9 +22,9 @@ public partial class RepositoryRow : ObservableObject
     /// manifest is on disk — so an installed row reads like the Home card it just became
     /// (Erez: his bundles' Hebrew names). Re-derived per page load, and the page reloads on
     /// every navigation, so a language change in Settings shows on the way back.</summary>
-    public string Title => IsInstalled
+    public string Title => HebrewDisplayText.WithoutMarks(IsInstalled
         ? PrayerPackStore.Info(Bundle.Id)?.LocalizedDisplayName ?? Bundle.Name
-        : Bundle.Name;
+        : Bundle.Name);
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsInstallable))]

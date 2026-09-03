@@ -93,6 +93,7 @@ public sealed class SchemaMigrationTests : IDisposable
         // The column the old database lacked reads as its default rather than as null.
         Assert.Empty(prayer.CustomOptions);
         Assert.Equal(AppSettings.AramaicSignOfCrossFormA, prayer.Rosary.AramaicSignOfCrossForm);
+        Assert.False(prayer.Rosary.IncludeOpeningFatimaPrayer);
     }
 
     [Fact]

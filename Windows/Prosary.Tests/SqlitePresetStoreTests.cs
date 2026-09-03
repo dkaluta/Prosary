@@ -171,6 +171,7 @@ public sealed class SqlitePresetStoreTests : IDisposable
                 MysterySelectionMode = MysterySelectionMode.Specific,
                 SpecificMysteryGroup = MysteryGroup.Sorrowful,
                 IncludeApostlesCreed = false,
+                IncludeOpeningFatimaPrayer = true,
                 EternalRestForDeceased = EternalRestPlacement.AfterEachDecade,
                 MarianAntiphon = MarianAntiphonOption.ReginaCaeli,
             },
@@ -184,6 +185,7 @@ public sealed class SqlitePresetStoreTests : IDisposable
         Assert.Equal(MysterySelectionMode.Specific, loaded!.Rosary.MysterySelectionMode);
         Assert.Equal(MysteryGroup.Sorrowful, loaded.Rosary.SpecificMysteryGroup);
         Assert.False(loaded.Rosary.IncludeApostlesCreed);
+        Assert.True(loaded.Rosary.IncludeOpeningFatimaPrayer);
         Assert.Equal(EternalRestPlacement.AfterEachDecade, loaded.Rosary.EternalRestForDeceased);
         Assert.Equal(MarianAntiphonOption.ReginaCaeli, loaded.Rosary.MarianAntiphon);
         Assert.Equal(2, loaded.Reminders.Count);

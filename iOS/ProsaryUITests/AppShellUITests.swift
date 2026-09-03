@@ -66,4 +66,20 @@ final class AppShellUITests: XCTestCase {
     app.buttons["Done"].tap()
     XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 5))
   }
+
+  @MainActor
+  func testLanguageFallbackOrderUsesTheReorderEditor() throws {
+    let app = XCUIApplication()
+    app.launch()
+
+    XCTAssertTrue(app.buttons["settingsButton"].waitForExistence(timeout: 10))
+    app.buttons["settingsButton"].tap()
+    XCTAssertTrue(app.buttons["languageFallbackOrderButton"].waitForExistence(timeout: 5))
+    app.buttons["languageFallbackOrderButton"].tap()
+
+    XCTAssertTrue(app.navigationBars["Language fallback order"].waitForExistence(timeout: 5))
+    XCTAssertTrue(app.otherElements["languageFallbackOrderList"].exists
+      || app.tables["languageFallbackOrderList"].exists)
+    app.buttons["Done"].tap()
+  }
 }

@@ -77,11 +77,12 @@
                 </Button>
             </Grid>
 
-            <!-- "Today" — the day's feast per the Holy Land (Latin Patriarchate of Jerusalem)
-                 calendar and the Pope's monthly prayer intention. Rows hide when the bundled
-                 datasets have no entry (ferial days; dates past the generated years). -->
+            <!-- "Today" — the day's feast and readings from the selected calendar, plus the
+                 Pope's monthly prayer intention. Rows hide when the bundled datasets have no
+                 entry (ferial days; dates past the generated years). -->
             <Border Style="{StaticResource SectionCardStyle}"
-                    Visibility="{x:Bind ViewModel.ShowsTodaySection, Converter={StaticResource BoolToVisibility}}">
+                    Visibility="{x:Bind ViewModel.ShowsTodaySection, Converter={StaticResource BoolToVisibility}}"
+                    FlowDirection="{x:Bind ViewModel.TodayInHebrew, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
                 <StackPanel Spacing="10">
                     <Grid ColumnSpacing="8">
                         <Grid.ColumnDefinitions>
@@ -90,43 +91,51 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <FontIcon Grid.Column="0" Glyph="&#xE787;" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Center" />
-                        <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.TodayDayText, Mode=OneWay}" FontWeight="SemiBold" TextWrapping="Wrap" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.TodayDayText, Mode=OneWay}" FontWeight="SemiBold" TextWrapping="Wrap" VerticalAlignment="Center"
+                                   TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
                         <HyperlinkButton Grid.Column="2" Content="{x:Bind ViewModel.TodayLanguageButtonText, Mode=OneWay}"
                                          Command="{x:Bind ViewModel.ToggleTodayLanguageCommand}" />
                     </Grid>
-                    <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayFeast, Converter={StaticResource BoolToVisibility}}">
+                    <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayFeast, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <FontIcon Grid.Column="0" Glyph="&#xE787;" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Top" />
                         <StackPanel Grid.Column="1" Spacing="2">
-                            <TextBlock Text="{x:Bind ViewModel.TodayFeastTitle}" FontWeight="SemiBold" TextWrapping="Wrap" />
-                            <TextBlock Text="{x:Bind ViewModel.TodayFeastRank}" Style="{StaticResource MutedCaptionTextStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.TodayFeastTitle, Mode=OneWay}" FontWeight="SemiBold" TextWrapping="Wrap"
+                                       TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
+                            <TextBlock Text="{x:Bind ViewModel.TodayFeastRank, Mode=OneWay}" Style="{StaticResource MutedCaptionTextStyle}"
+                                       TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
                         </StackPanel>
                     </Grid>
-                    <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsMonthIntention, Converter={StaticResource BoolToVisibility}}">
+                    <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsMonthIntention, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <FontIcon Grid.Column="0" Glyph="&#xEB51;" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Top" />
                         <StackPanel Grid.Column="1" Spacing="2">
-                            <TextBlock Text="{x:Bind ViewModel.MonthIntentionTitle, Mode=OneWay}" FontWeight="SemiBold" TextWrapping="Wrap" />
-                            <TextBlock Text="{x:Bind ViewModel.MonthIntentionText, Mode=OneWay}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                            <TextBlock Text="{x:Bind ViewModel.MonthIntentionTitle, Mode=OneWay}" FontWeight="SemiBold" TextWrapping="Wrap"
+                                       TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
+                            <TextBlock Text="{x:Bind ViewModel.MonthIntentionText, Mode=OneWay}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap"
+                                       TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
                         </StackPanel>
                     </Grid>
-                    <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayReadings, Converter={StaticResource BoolToVisibility}}">
+                    <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayReadings, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <FontIcon Grid.Column="0" Glyph="&#xE8A9;" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Top" />
                         <StackPanel Grid.Column="1" Spacing="2">
-                            <TextBlock x:Uid="HomeTodayReadings" Text="Today’s readings" FontWeight="SemiBold" />
-                            <TextBlock Text="{x:Bind ViewModel.ReadingsText, Mode=OneWay}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                            <TextBlock x:Uid="HomeTodayReadings" Text="Today’s readings" FontWeight="SemiBold"
+                                       TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
+                            <TextBlock Text="{x:Bind ViewModel.ReadingsText, Mode=OneWay}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap"
+                                       TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
                             <HyperlinkButton Content="{x:Bind ViewModel.CitationButtonText, Mode=OneWay}"
-                                             Command="{x:Bind ViewModel.ToggleCitationsCommand}" HorizontalAlignment="Left" Padding="0,4" />
+                                             Command="{x:Bind ViewModel.ToggleCitationsCommand}"
+                                             HorizontalAlignment="{x:Bind ViewModel.TodayContentAlignment, Mode=OneWay}" Padding="0,4" />
                         </StackPanel>
                     </Grid>
                 </StackPanel>

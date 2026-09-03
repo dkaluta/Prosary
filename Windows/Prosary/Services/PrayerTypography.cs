@@ -36,7 +36,7 @@ public static class PrayerTypography
     public enum Script { Hebrew, Arabic, Syriac, Latin }
 
     /// <summary>The script most of a text's letters belong to. Counted rather than sampled: a
-    /// citation line ("— ܡܬܝ 28:1-7") mixes digits and punctuation into every body.</summary>
+    /// citation line ("— ܡܬܝ 28:1–7") mixes digits and punctuation into every body.</summary>
     public static Script ScriptOf(string text)
     {
         int hebrew = 0, arabic = 0, syriac = 0, latin = 0;

@@ -235,6 +235,14 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
+                                <TextBlock x:Uid="EdOpeningFatima" Grid.Column="0" Text="Fatima Prayer after the opening Hail Marys" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeOpeningFatimaPrayer, Mode=TwoWay}" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
                                 <TextBlock x:Uid="EdFatima" Grid.Column="0" Text="Fatima Prayer after each decade" VerticalAlignment="Center" TextWrapping="Wrap" />
                                 <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeFatimaPrayer, Mode=TwoWay}" />
                             </Grid>

@@ -14,6 +14,24 @@
 
 import SwiftUI
 
+/// Display headings in Hebrew are deliberately unpointed even when their canonical source text
+/// is vocalized. Keep this at the presentation boundary: prayer bodies and Scripture retain every
+/// authored niqqud/cantillation mark.
+enum HebrewDisplayText {
+  nonisolated static func unpointed(_ text: String) -> String {
+    String(text.unicodeScalars.filter { !isHebrewPoint($0.value) })
+  }
+
+  nonisolated private static func isHebrewPoint(_ value: UInt32) -> Bool {
+    switch value {
+    case 0x0591...0x05BD, 0x05BF, 0x05C1...0x05C2, 0x05C4...0x05C5, 0x05C7, 0xFB1E:
+      return true
+    default:
+      return false
+    }
+  }
+}
+
 enum PrayerTypography {
   static let syriacTypefaceKey = "syriacTypeface"
   static let hebrewPrayerTypefaceKey = "hebrewPrayerTypeface"
@@ -53,7 +71,7 @@ enum PrayerTypography {
   }
 
   /// The script the majority of a text's letters belong to. Counted rather than sampled: a
-  /// citation line ("— ܡܬܝ 28:1-7") mixes digits and punctuation into every body.
+  /// citation line ("— ܡܬܝ 28:1–7") mixes digits and punctuation into every body.
   static func script(of text: String) -> Script {
     var hebrew = 0, arabic = 0, syriac = 0, latin = 0
     for scalar in text.unicodeScalars {

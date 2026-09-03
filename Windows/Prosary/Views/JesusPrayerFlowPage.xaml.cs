@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using Prosary.Controls;
+using Prosary.Localization;
 using Prosary.Navigation;
 using Prosary.ViewModels;
 
@@ -25,10 +26,35 @@ public sealed partial class JesusPrayerFlowPage : Page
         base.OnNavigatedTo(e);
         var parameters = e.Parameter as JesusPrayerFlowParams ?? new JesusPrayerFlowParams(null, null);
         await ViewModel.LoadAsync(parameters.PrayerId, parameters.Target);
+        if (ViewModel.HasSavedContinuation)
+        {
+            await ShowResumeDialogAsync();
+        }
 
         AutoAdvanceMenu.Populate(AutoAdvanceFlyout, () => _autoAdvance?.Restart());
         _autoAdvance?.Dispose();
         _autoAdvance = new AutoAdvanceTimer(ViewModel);
+    }
+
+    private async Task ShowResumeDialogAsync()
+    {
+        var dialog = new ContentDialog
+        {
+            XamlRoot = XamlRoot,
+            Title = Loc.Tr("prayer_resume_title", "Continue where you left off?"),
+            Content = Loc.Tr("prayer_resume_message", "Continue this unfinished prayer, or restart from the beginning."),
+            PrimaryButtonText = Loc.Tr("common_continue", "Continue"),
+            SecondaryButtonText = Loc.Tr("common_restart", "Restart"),
+            DefaultButton = ContentDialogButton.Primary,
+        };
+        if (await dialog.ShowAsync() == ContentDialogResult.Primary)
+        {
+            ViewModel.ContinueSavedRun();
+        }
+        else
+        {
+            ViewModel.RestartRun();
+        }
     }
 
     protected override void OnNavigatedFrom(NavigationEventArgs e)

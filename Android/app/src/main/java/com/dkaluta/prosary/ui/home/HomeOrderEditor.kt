@@ -4,7 +4,10 @@ import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DragHandle
 import androidx.compose.material3.AlertDialog
@@ -29,6 +32,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.dkaluta.prosary.R
+import com.dkaluta.prosary.typography.HebrewDisplayText
 
 /** The approved reorder pattern (not jiggle): rows with drag handles inside a dialog; the
  * dragged row rides the finger and swaps neighbors as it crosses their midlines. Order is
@@ -36,6 +40,25 @@ import com.dkaluta.prosary.R
 @Composable
 fun HomeOrderEditor(
     titles: List<Pair<String, String>>, // id to display title, in current order
+    onMove: (List<String>) -> Unit,
+    onReset: () -> Unit,
+    onDismiss: () -> Unit,
+) = OrderEditor(
+    titles = titles,
+    dialogTitle = stringResource(R.string.home_order_title),
+    onMove = onMove,
+    onReset = onReset,
+    onDismiss = onDismiss,
+)
+
+/** The same drag-handle ordering surface is shared by Home, Basic Prayers, and the language
+ * fallback preference. Stable row identity is intentionally implemented once so every list can
+ * survive several neighbor swaps during one drag. */
+@Composable
+fun OrderEditor(
+    titles: List<Pair<String, String>>, // id to display title, in current order
+    dialogTitle: String,
+    footer: String? = null,
     onMove: (List<String>) -> Unit,
     onReset: () -> Unit,
     onDismiss: () -> Unit,
@@ -48,9 +71,19 @@ fun HomeOrderEditor(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(stringResource(R.string.home_order_title)) },
+        title = { Text(HebrewDisplayText.unpoint(dialogTitle)) },
         text = {
-            Column {
+            Column(
+                modifier = Modifier.heightIn(max = 520.dp).verticalScroll(rememberScrollState()),
+            ) {
+                if (footer != null) {
+                    Text(
+                        footer,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.padding(bottom = 8.dp),
+                    )
+                }
                 ids.forEachIndexed { index, id ->
                     // key(id) is what makes dragging work at all. Without it the Column reuses
                     // composables positionally, so the first mid-drag swap puts a *different*
@@ -111,7 +144,7 @@ fun HomeOrderEditor(
                             },
                         )
                         Text(
-                            labels[id] ?: id,
+                            HebrewDisplayText.unpoint(labels[id] ?: id),
                             style = MaterialTheme.typography.bodyLarge,
                             modifier = Modifier.padding(start = 12.dp),
                         )

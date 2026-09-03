@@ -19,7 +19,7 @@ val mysteryTranslationsLatin: Map<String, MysteryText> = mapOf(
                 "vocabitur Filius Dei. Et ecce Elisabeth cognata tua, et ipsa concepit filium in senectute sua : " +
                 "et hic mensis sextus est illi, quae vocatur sterilis : quia non erit impossibile apud Deum omne " +
                 "verbum. Dixit autem Maria : Ecce ancilla Domini : fiat mihi secundum verbum tuum. Et discessit " +
-                "ab illa angelus.\n\n— Luc. 1:26-38 (Vulgata)"),
+                "ab illa angelus.\n\n— Luc. 1:26–38 (Vulgata)"),
     "joyful_02_visitation" to MysteryText(
         title = "Visitatio", fruit = "Amor Proximi",
         description =
@@ -29,20 +29,20 @@ val mysteryTranslationsLatin: Map<String, MysteryText> = mapOf(
                 "et exclamavit voce magna, et dixit : Benedicta tu inter mulieres, et benedictus fructus ventris " +
                 "tui. Et unde hoc mihi, ut veniat mater Domini mei ad me? Ecce enim ut facta est vox salutationis " +
                 "tuae in auribus meis, exsultavit in gaudio infans in utero meo. Et beata, quae credidisti, " +
-                "quoniam perficientur ea, quae dicta sunt tibi a Domino.\n\n— Luc. 1:39-45 (Vulgata)"),
+                "quoniam perficientur ea, quae dicta sunt tibi a Domino.\n\n— Luc. 1:39–45 (Vulgata)"),
     "joyful_03_nativity" to MysteryText(
         title = "Nativitas", fruit = "Paupertas Spiritus",
         description =
             "Factum est autem, cum essent ibi, impleti sunt dies ut pareret. Et peperit filium suum " +
                 "primogenitum, et pannis eum involvit, et reclinavit eum in praesepio : quia non erat eis locus " +
-                "in diversorio.\n\n— Luc. 2:6-7 (Vulgata)"),
+                "in diversorio.\n\n— Luc. 2:6–7 (Vulgata)"),
     "joyful_04_presentation" to MysteryText(
         title = "Praesentatio", fruit = "Oboedientia",
         description =
             "Et postquam impleti sunt dies purgationis ejus secundum legem Moysi, tulerunt illum in " +
                 "Jerusalem, ut sisterent eum Domino, sicut scriptum est in lege Domini : Quia omne masculinum " +
                 "adaperiens vulvam, sanctum Domino vocabitur : et ut darent hostiam secundum quod dictum est in " +
-                "lege Domini, par turturum, aut duos pullos columbarum.\n\n— Luc. 2:22-24 (Vulgata)"),
+                "lege Domini, par turturum, aut duos pullos columbarum.\n\n— Luc. 2:22–24 (Vulgata)"),
     "joyful_05_finding_in_the_temple" to MysteryText(
         title = "Inventio in Templo", fruit = "Pietas",
         description =
@@ -50,7 +50,7 @@ val mysteryTranslationsLatin: Map<String, MysteryText> = mapOf(
                 "illos, et interrogantem eos. Stupebant autem omnes qui eum audiebant, super prudentia et " +
                 "responsis ejus. Et videntes admirati sunt. Et dixit mater ejus ad illum : Fili, quid fecisti " +
                 "nobis sic? ecce pater tuus et ego dolentes quaerebamus te. Et ait ad illos : Quid est quod me " +
-                "quaerebatis? nesciebatis quia in his quae Patris mei sunt, oportet me esse?\n\n— Luc. 2:46-49 (Vulgata)"),
+                "quaerebatis? nesciebatis quia in his quae Patris mei sunt, oportet me esse?\n\n— Luc. 2:46–49 (Vulgata)"),
 
     // Sorrowful
     "sorrowful_01_agony_in_the_garden" to MysteryText(
@@ -59,7 +59,7 @@ val mysteryTranslationsLatin: Map<String, MysteryText> = mapOf(
             "Et ipse avulsus est ab eis quantum jactus est lapidis : et positis genibus orabat, dicens : " +
                 "Pater, si vis, transfer calicem istum a me : verumtamen non mea voluntas, sed tua fiat. " +
                 "Apparuit autem illi angelus de caelo, confortans eum. Et factus in agonia, prolixius orabat. Et " +
-                "factus est sudor ejus sicut guttae sanguinis decurrentis in terram.\n\n— Luc. 22:41-44 (Vulgata)"),
+                "factus est sudor ejus sicut guttae sanguinis decurrentis in terram.\n\n— Luc. 22:41–44 (Vulgata)"),
     "sorrowful_02_scourging_at_the_pillar" to MysteryText(
         title = "Flagellatio ad Columnam", fruit = "Castitas",
         description =
@@ -69,7 +69,7 @@ val mysteryTranslationsLatin: Map<String, MysteryText> = mapOf(
         description =
             "Et milites plectentes coronam de spinis, imposuerunt capiti ejus : et veste purpurea " +
                 "circumdederunt eum. Et veniebant ad eum, et dicebant : Ave, rex Judaeorum : et dabant ei " +
-                "alapas.\n\n— Ioan. 19:2-3 (Vulgata)"),
+                "alapas.\n\n— Ioan. 19:2–3 (Vulgata)"),
     "sorrowful_04_carrying_of_the_cross" to MysteryText(
         title = "Baiulatio Crucis", fruit = "Patientia",
         description =
@@ -80,7 +80,7 @@ val mysteryTranslationsLatin: Map<String, MysteryText> = mapOf(
         description =
             "Erat autem fere hora sexta, et tenebrae factae sunt in universam terram usque ad horam nonam. " +
                 "Et obscuratus est sol, et velum templi scissum est medium. Et clamans voce magna Jesus ait : " +
-                "Pater, in manus tuas commendo spiritum meum. Et haec dicens, expiravit.\n\n— Luc. 23:44-46 (Vulgata)"),
+                "Pater, in manus tuas commendo spiritum meum. Et haec dicens, expiravit.\n\n— Luc. 23:44–46 (Vulgata)"),
 
     // Glorious
     "glorious_01_resurrection" to MysteryText(
@@ -88,7 +88,7 @@ val mysteryTranslationsLatin: Map<String, MysteryText> = mapOf(
         description =
             "Respondens autem angelus dixit mulieribus : Nolite timere vos : scio enim, quod Jesum, qui " +
                 "crucifixus est, quaeritis. Non est hic : surrexit enim, sicut dixit : venite, et videte locum " +
-                "ubi positus erat Dominus.\n\n— Matt. 28:5-6 (Vulgata)"),
+                "ubi positus erat Dominus.\n\n— Matt. 28:5–6 (Vulgata)"),
     "glorious_02_ascension" to MysteryText(
         title = "Ascensio", fruit = "Spes",
         description =
@@ -96,14 +96,14 @@ val mysteryTranslationsLatin: Map<String, MysteryText> = mapOf(
                 "Cumque intuerentur in caelum euntem illum, ecce duo viri astiterunt juxta illos in vestibus " +
                 "albis, qui et dixerunt : Viri Galilaei, quid statis aspicientes in caelum? Hic Jesus, qui " +
                 "assumptus est a vobis in caelum, sic veniet quemadmodum vidistis eum euntem in " +
-                "caelum.\n\n— Act. 1:9-11 (Vulgata)"),
+                "caelum.\n\n— Act. 1:9–11 (Vulgata)"),
     "glorious_03_descent_of_the_holy_spirit" to MysteryText(
         title = "Descensus Spiritus Sancti", fruit = "Sapientia et Amor Dei",
         description =
             "Et factus est repente de caelo sonus, tamquam advenientis spiritus vehementis, et replevit " +
                 "totam domum ubi erant sedentes. Et apparuerunt illis dispertitae linguae tamquam ignis, seditque " +
                 "supra singulos eorum : et repleti sunt omnes Spiritu Sancto, et coeperunt loqui variis linguis, " +
-                "prout Spiritus Sanctus dabat eloqui illis.\n\n— Act. 2:2-4 (Vulgata)"),
+                "prout Spiritus Sanctus dabat eloqui illis.\n\n— Act. 2:2–4 (Vulgata)"),
     "glorious_04_assumption" to MysteryText(
         title = "Assumptio Mariae", fruit = "Gratia Bonae Mortis",
         description =
@@ -121,7 +121,7 @@ val mysteryTranslationsLatin: Map<String, MysteryText> = mapOf(
         description =
             "Baptizatus autem Jesus, confestim ascendit de aqua, et ecce aperti sunt ei caeli : et vidit " +
                 "Spiritum Dei descendentem sicut columbam, et venientem super se. Et ecce vox de caelis dicens : " +
-                "Hic est Filius meus dilectus, in quo mihi complacui.\n\n— Matt. 3:16-17 (Vulgata)"),
+                "Hic est Filius meus dilectus, in quo mihi complacui.\n\n— Matt. 3:16–17 (Vulgata)"),
     "luminous_02_wedding_at_cana" to MysteryText(
         title = "Nuptiae in Cana", fruit = "Ad Iesum per Mariam",
         description =
@@ -131,13 +131,13 @@ val mysteryTranslationsLatin: Map<String, MysteryText> = mapOf(
                 "sponsum architriclinius, et dicit ei : Omnis homo primum bonum vinum ponit et cum inebriati " +
                 "fuerint, tunc id, quod deterius est. Tu autem servasti bonum vinum usque adhuc. Hoc fecit " +
                 "initium signorum Jesus in Cana Galilaeae; et manifestavit gloriam suam, et crediderunt in eum " +
-                "discipuli ejus.\n\n— Ioan. 2:7-11 (Vulgata)"),
+                "discipuli ejus.\n\n— Ioan. 2:7–11 (Vulgata)"),
     "luminous_03_proclamation_of_the_kingdom" to MysteryText(
         title = "Regni Praedicatio", fruit = "Paenitentia et Fiducia in Deo",
         description =
             "Postquam autem traditus est Joannes, venit Jesus in Galilaeam, praedicans Evangelium regni " +
                 "Dei, et dicens : Quoniam impletum est tempus, et appropinquavit regnum Dei : poenitemini, et " +
-                "credite Evangelio.\n\n— Marc. 1:14-15 (Vulgata)"),
+                "credite Evangelio.\n\n— Marc. 1:14–15 (Vulgata)"),
     "luminous_04_transfiguration" to MysteryText(
         title = "Transfiguratio", fruit = "Desiderium Sanctitatis",
         description =
@@ -145,13 +145,13 @@ val mysteryTranslationsLatin: Map<String, MysteryText> = mapOf(
                 "montem excelsum seorsum : et transfiguratus est ante eos. Et resplenduit facies ejus sicut sol " +
                 ": vestimenta autem ejus facta sunt alba sicut nix. ... Adhuc eo loquente, ecce nubes lucida " +
                 "obumbravit eos. Et ecce vox de nube, dicens : Hic est Filius meus dilectus, in quo mihi bene " +
-                "complacui : ipsum audite.\n\n— Matt. 17:1-2, 5 (Vulgata)"),
+                "complacui : ipsum audite.\n\n— Matt. 17:1–2, 5 (Vulgata)"),
     "luminous_05_institution_of_the_eucharist" to MysteryText(
         title = "Institutio Eucharistiae", fruit = "Adoratio et Amor Eucharistiae",
         description =
             "Coenantibus autem eis, accepit Jesus panem, et benedixit, ac fregit, deditque discipulis suis, " +
                 "et ait : Accipite, et comedite : hoc est corpus meum. Et accipiens calicem, gratias egit : et " +
                 "dedit illis, dicens : Bibite ex hoc omnes. Hic est enim sanguis meus novi testamenti, qui pro " +
-                "multis effundetur in remissionem peccatorum.\n\n— Matt. 26:26-28 (Vulgata)"),
+                "multis effundetur in remissionem peccatorum.\n\n— Matt. 26:26–28 (Vulgata)"),
 
 )

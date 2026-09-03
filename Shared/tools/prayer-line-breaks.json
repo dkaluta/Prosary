@@ -1,5 +1,5 @@
 {
-  "$comment": "Where each prayer's lines fall, for Shared/tools/reflow-prayers.py. A marker is a substring of the prayer; a line break goes immediately before it. Only whitespace changes — the tool refuses to run if collapsing the result back to spaces does not reproduce the original wording exactly.",
+  "$comment": "Where each prayer's lines fall, for Shared/tools/reflow-prayers.py. A marker is a substring of the prayer; a line break goes immediately before it. Only whitespace changes — the tool refuses to run if collapsing the result back to spaces does not reproduce the original wording exactly. The Vicariate Hebrew sense-lines are the reference for corresponding prayers in the other Roman-rite languages; each translation is divided at the matching clause, never by mechanically copying a word position.",
   "$he": "The Hebrew breaks are not editorial judgement. They are transcribed from the prayer sheets a woman from the Rosary Zoom call sent in August 2026 — the Latin-rite Vicariate's Hebrew, vocalised, as she prays it and as she laid it out for others to pray. Where her sheet sets a line, this sets a line. Her wording also matches the app's almost exactly, which is no coincidence: the app's Hebrew was transcribed from the Vicariate's own prayer book, so the two are the same text reaching us by different routes. The handful of places her copy differs in pointing are noted in PrayerTranslations+Hebrew and deliberately changed nothing — print wins over a photograph.",
   "he": {
     "paterNoster": [
@@ -33,6 +33,317 @@
       "תֵּן לָהֶם",
       "הָאוֹר הַנִּצְחִי",
       "שָׁלוֹם וְשַׁלְוָה"
+    ]
+  },
+  "he-x-gamliel": {
+    "paterNoster": [
+      "תָּבוֹא מַלְכוּתְךָ",
+      "כַּאֲשֶׁר בַּשָּׁמַיִם",
+      "תֵּן לָנוּ",
+      "וּמְחַל לָנוּ",
+      "כַּאֲשֶׁר גַּם",
+      "וְאַל תְּבִיאֵנוּ",
+      "אֶלָּא חַלְצֵנוּ",
+      "כִּי לְךָ הִיא"
+    ],
+    "aveMaria": [
+      "מְלֵאַת הַחֶסֶד",
+      "בְּרוּכָה אַתְּ",
+      "וּבָרוּךְ הוּא",
+      "גְּבִרְתֵּנוּ מִרְיָם",
+      "הַעֲתִירִי בַּעֲדֵנוּ",
+      "עַתָּה וּבְכָל־זְמַן"
+    ],
+    "gloriaPatri": [
+      "מִן הָעוֹלָם",
+      "אָמֵן."
+    ],
+    "subTuumPraesidium": [
+      "יוֹלֶדֶת אֱלוֹהַ",
+      "אֶת תְּחִנּוֹתֵינוּ",
+      "אֶלָּא מִתּוֹךְ",
+      "אַתְּ הַיְּחִידָה הַטְּהוֹרָה"
+    ]
+  },
+  "en": {
+    "paterNoster": [
+      "Thy kingdom come",
+      "on earth as it is in heaven.",
+      "Give us this day",
+      "and forgive us our trespasses",
+      "as we forgive those",
+      "and lead us not",
+      "but deliver us"
+    ],
+    "aveMaria": [
+      "full of grace",
+      "Blessed art thou",
+      "and blessed is the fruit",
+      "Holy Mary",
+      "pray for us sinners",
+      "now and at the hour"
+    ],
+    "gloriaPatri": [
+      "As it was in the beginning",
+      "world without end"
+    ],
+    "subTuumPraesidium": [
+      "O holy Mother of God",
+      "despise not our petitions",
+      "but deliver us always",
+      "O glorious and blessed Virgin"
+    ],
+    "requiemAeternam": [
+      "grant unto them",
+      "and let perpetual light",
+      "May they rest in peace"
+    ]
+  },
+  "la": {
+    "paterNoster": [
+      "Adveniat regnum tuum",
+      "sicut in caelo",
+      "Panem nostrum cotidianum",
+      "et dimitte nobis",
+      "sicut et nos dimittimus",
+      "Et ne nos inducas",
+      "sed libera nos"
+    ],
+    "aveMaria": [
+      "gratia plena",
+      "Benedicta tu in mulieribus",
+      "et benedictus fructus",
+      "Sancta Maria",
+      "ora pro nobis peccatoribus",
+      "nunc et in hora"
+    ],
+    "gloriaPatri": [
+      "Sicut erat in principio",
+      "et in saecula saeculorum"
+    ],
+    "subTuumPraesidium": [
+      "sancta Dei Genetrix",
+      "nostras deprecationes",
+      "sed a periculis cunctis",
+      "Virgo gloriosa et benedicta"
+    ],
+    "requiemAeternam": [
+      "dona eis",
+      "et lux perpetua",
+      "Requiescant in pace"
+    ]
+  },
+  "ar": {
+    "paterNoster": [
+      "ليأتِ ملكوتُكَ",
+      "كما في السماءِ",
+      "خبزَنا كفافَنا",
+      "واغفرْ لنا ذنوبَنا",
+      "كما نغفرُ نحنُ",
+      "ولا تُدخِلْنا",
+      "لكن نجِّنا"
+    ],
+    "aveMaria": [
+      "يا ممتلئةً نعمةً",
+      "مباركةٌ أنتِ",
+      "ومباركةٌ ثمرةُ",
+      "يا قديسةَ مريمَ",
+      "صلّي لأجلِنا",
+      "الآنَ وفي ساعةِ"
+    ],
+    "gloriaPatri": [
+      "كما كانَ في البدءِ",
+      "وإلى دهرِ الداهرين"
+    ],
+    "subTuumPraesidium": [
+      "أيتها القديسةُ والدةُ الإلهِ",
+      "لا تُهملي تضرعاتِنا",
+      "بل نجّينا دائماً",
+      "أيتها العذراءُ المجيدةُ"
+    ],
+    "requiemAeternam": [
+      "ونوركَ الدائمُ",
+      "لتَرقُدْ نفوسُهم",
+      "آمين."
+    ]
+  },
+  "ru": {
+    "paterNoster": [
+      "да приидет Царствие Твоё",
+      "яко на небеси",
+      "Хлеб наш насущный",
+      "и остави нам долги",
+      "якоже и мы оставляем",
+      "и не введи нас",
+      "но избави нас"
+    ],
+    "aveMaria": [
+      "благодати полная",
+      "благословена Ты",
+      "и благословен плод",
+      "Святая Мария",
+      "молись о нас",
+      "ныне и в час"
+    ],
+    "gloriaPatri": [
+      "Как было в начале",
+      "и во веки веков"
+    ],
+    "subTuumPraesidium": [
+      "Святая Матерь Божия",
+      "молений наших не презри",
+      "но от бед избавляй",
+      "Дева Преславная"
+    ],
+    "requiemAeternam": [
+      "даруй им",
+      "и свет вечный",
+      "Да покоятся с миром"
+    ]
+  },
+  "tl": {
+    "paterNoster": [
+      "Dumating nawa ang kaharian Mo",
+      "sa lupa, gayon din sa langit.",
+      "Ibigay Mo sa amin ngayon",
+      "At patawarin Mo kami",
+      "kung paano namin pinatatawad",
+      "At huwag Mo kaming ihatid",
+      "kundi iligtas Mo kami"
+    ],
+    "aveMaria": [
+      "napupuno ka ng grasya",
+      "Ikaw ay pinagpala",
+      "at pinagpala rin ang bunga",
+      "Santa Maria",
+      "ipanalangin mo kami",
+      "ngayon at sa oras"
+    ],
+    "gloriaPatri": [
+      "Kapara noong una",
+      "at magpasa walang hanggan"
+    ],
+    "subTuumPraesidium": [
+      "O banal na Ina ng Diyos",
+      "huwag mong itakwil",
+      "kundi iligtas mo kami",
+      "O maluwalhati at pinagpalang Birhen"
+    ],
+    "requiemAeternam": [
+      "at hayaan Mong ang walang hanggang liwanag",
+      "Makapahinga nawa sila",
+      "Amen."
+    ]
+  },
+  "el": {
+    "paterNoster": [
+      "ἐλθέτω ἡ βασιλεία σου",
+      "ὡς ἐν οὐρανῷ",
+      "Τὸν ἄρτον ἡμῶν",
+      "καὶ ἄφες ἡμῖν",
+      "ὡς καὶ ἡμεῖς ἀφίεμεν",
+      "καὶ μὴ εἰσενέγκῃς",
+      "ἀλλὰ ῥῦσαι ἡμᾶς"
+    ],
+    "aveMaria": [
+      "κεχαριτωμένη Μαρία",
+      "Εὐλογημένη σὺ",
+      "καὶ εὐλογημένος ὁ καρπὸς",
+      "Ἁγία Μαρία",
+      "πρέσβευε ὑπὲρ ἡμῶν",
+      "νῦν καὶ ἐν τῇ ὥρᾳ"
+    ],
+    "gloriaPatri": [
+      "καὶ νῦν καὶ ἀεὶ",
+      "καὶ εἰς τοὺς αἰῶνας"
+    ],
+    "subTuumPraesidium": [
+      "Θεοτόκε·",
+      "τὰς ἡμῶν ἱκεσίας",
+      "ἀλλ᾽ ἐκ κινδύνων",
+      "μόνη ἁγνή"
+    ]
+  },
+  "es": {
+    "paterNoster": [
+      "venga a nosotros tu Reino",
+      "en la tierra como en el cielo.",
+      "Danos hoy nuestro pan",
+      "perdona nuestras ofensas",
+      "como también nosotros perdonamos",
+      "no nos dejes caer",
+      "y líbranos del mal"
+    ],
+    "aveMaria": [
+      "el Señor es contigo",
+      "Bendita Tú eres",
+      "y bendito es el fruto",
+      "Santa María",
+      "ruega por nosotros",
+      "ahora y en la hora"
+    ],
+    "gloriaPatri": [
+      "Como era en el principio",
+      "por los siglos de los siglos"
+    ],
+    "subTuumPraesidium": [
+      "Santa Madre de Dios",
+      "no deseches las súplicas",
+      "antes bien, líbranos",
+      "¡Oh Virgen gloriosa"
+    ],
+    "requiemAeternam": [
+      "Brille para él",
+      "Descanse en paz",
+      "Amén."
+    ]
+  },
+  "arc": {
+    "paterNoster": [
+      "תִאתֶא מַלכוּתָך",
+      "אַיכַנָא דבַשמַיָא",
+      "הַבלַן לַחמָא",
+      "וַשבוּק לַן",
+      "אַיכַנָא דָאף",
+      "ולָא תַעלַן",
+      "אֶלָא פַצָא",
+      "מֶטֻל דדִילָך"
+    ],
+    "aveMaria": [
+      "מַליַת טַיבוּתָא",
+      "מבַרַכתָא אַנת",
+      "וַמבַרַך הוּ",
+      "מָרַת מַריַם",
+      "אַפִיס חלָפַין",
+      "הָשָא וַבכֻלזבַן"
+    ],
+    "gloriaPatri": [
+      "מֶן עָלַם",
+      "וַעדַמָא"
+    ]
+  },
+  "arc-Syrc": {
+    "paterNoster": [
+      "ܬܺܐܬܶܐ ܡܰܠܟܽܘܬܳܟ",
+      "ܐܰܝܟܰܢܳܐ ܕܒܰܫܡܰܝܳܐ",
+      "ܗܰܒܠܰܢ ܠܰܚܡܳܐ",
+      "ܘܰܫܒܽܘܩ ܠܰܢ",
+      "ܐܰܝܟܰܢܳܐ ܕܳܐܦ",
+      "ܘܠܳܐ ܬܰܥܠܰܢ",
+      "ܐܶܠܳܐ ܦܰܨܳܐ",
+      "ܡܶܛܽܠ ܕܕܺܝܠܳܟ"
+    ],
+    "aveMaria": [
+      "ܡܰܠܝܰܬ ܛܰܝܒܽܘܬܳܐ",
+      "ܡܒܰܪܰܟܬܳܐ ܐܰܢܬ",
+      "ܘܰܡܒܰܪܰܟ ܗܽܘ",
+      "ܡܳܪܰܬ ܡܰܪܝܰܡ",
+      "ܐܰܦܺܝܣ ܚܠܳܦܰܝܢ",
+      "ܗܳܫܳܐ ܘܰܒܟܽܠܙܒܰܢ"
+    ],
+    "gloriaPatri": [
+      "ܡܶܢ ܥܳܠܰܡ",
+      "ܘܰܥܕܰܡܳܐ"
     ]
   }
 }

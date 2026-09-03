@@ -33,7 +33,8 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   / all 20 / a single mystery), `specificMysteryGroup`, `specificMysteryOrder` (1-based, used only
   for the single-mystery mode), `presenterMode` (collapses each decade's Hail Marys + Glory Be
   onto one combined step — see "Engines" below), toggles for the Apostles' Creed, opening Our
-  Father + 3 Hail Marys, the Fatima Prayer, eternal-rest placement, the closing Marian antiphon,
+  Father + 3 Hail Marys, an optional Fatima Prayer immediately after those three opening Hail
+  Marys, the Fatima Prayer after each decade, eternal-rest placement, the closing Marian antiphon,
   the closing intentions (the customary intercessions right after the antiphon — for the Pope,
   the local ordinary, and the holy souls — each unfolding into an Our Father/Hail Mary/Glory Be,
   from the Mission of St. Gamaliel's prayer book), the St. Michael prayer, and the final Sign of
@@ -129,7 +130,7 @@ Word/Son substitution. If the app default is Aramaic, the app-wide `aramaicSignO
 setting is the single authority and the saved per-Rosary value is deliberately ignored.
 
 - **Rosary** — the richest: opening (Sign of the Cross, optional Creed, optional opening Our
-  Father/3 Hail Marys for Faith/Hope/Charity), one loop per decade across every resolved
+  Father/3 Hail Marys for Faith/Hope/Charity, then an independently optional Fatima Prayer), one loop per decade across every resolved
   `MysteryGroup` (mystery announcement → Our Father → 10 Hail Marys → Glory Be → optional Fatima
   Prayer → optional per-decade eternal rest), closing (Marian antiphon → optional closing intentions: three intercessions each unfolding
   into Our Father/Hail Mary/Glory Be and closed by "May they rest in peace" → optional St.
@@ -203,6 +204,10 @@ share the exact same model (iOS: `Views/RosaryFlow/BeadModels.swift`; Android:
 If you touch the bead track on one platform, check whether the same behavioral change belongs on
 the other two — this is one of the most exactly-mirrored pieces of the whole app.
 
+The Rosary flow also exposes **previous mystery** and **next mystery** controls (`⏮` / `⏭`).
+They jump to the preceding or following mystery-announcement step without replacing the ordinary
+Back/Next bead controls; the unavailable direction is disabled at the first/last mystery.
+
 ## Navigation shell
 
 The apps are tabbed (2026-08): **Pray** (the former Home — Rosary card, devotion cards, Jesus
@@ -230,13 +235,23 @@ that mirror it). Two toolbar affordances belong to the flows themselves:
   auto-"Finish" would dismiss the session mid-prayer. The Jesus Prayer's bounded sessions stop
   on their last repetition the same way (Windows `IPrayerStepFlowViewModel.IsLastStep`); an
   unbounded session keeps counting.
-- **Language menu** (generic-devotion flows) — testers assumed Divine Mercy/Seven Sorrows
+- **Language menu** (Rosary and generic-devotion flows) — testers assumed Divine Mercy/Seven Sorrows
   shipped fewer languages than they do, because the app-level setting was the only switch. The
-  generic flow's toolbar globe lists "App setting" plus the bundle manifest's languages,
+  flow's toolbar globe lists "App setting" plus the bundle manifest's languages,
   rebuilds the session in place *keeping the position* (unlike a variant switch, the sequence is
   identical across languages), and persists the choice to the matching favorite's
-  `languageCode` (sentinel = follow the app setting). The Rosary keeps its per-configuration editor
-  language instead.
+  `languageCode` (sentinel = follow the app setting). The Rosary offers the same in-prayer switch;
+  changing it keeps the current mystery and bead and records the chosen language in any unfinished
+  run bookmark.
+
+An interrupted Rosary, generic devotion, or Jesus Prayer stores a small device-local bookmark and
+offers **Continue** or **Restart** the next time that same prayer is opened. A bookmark contains the
+stable run identity/configuration, the zero-based position, the language selected in the flow, and
+the local civil date on which it was saved; it never duplicates authored prayer content. Rosary
+bookmarks are resumable only on that same local date, while generic devotions and the Jesus Prayer
+remain resumable until completion or an explicit restart. Invalid/out-of-range bookmarks and
+bookmarks for a changed configuration are discarded. Advancing, going back, jumping mysteries,
+or changing language updates the bookmark; Finish clears it.
 
 ## Persistence
 
@@ -330,6 +345,10 @@ its current enabled ones), `removeAll(prayer)`, `rescheduleAll(prayers)` (called
   exception. Amiri/Scheherazade New cover Arabic prayer/Scripture and Cardo covers
   Latin/English Scripture. Latin-script *ordinary* prayer text continues to use each platform's
   system serif (Apple's "New York", Android's system serif, Cambria on Windows).
+  Hebrew-script **headings** are unpointed at presentation time: the shared display helper removes
+  Hebrew cantillation and vowel marks from titles and subtitles only, regardless of whether the
+  language is Hebrew or Hebrew-script Aramaic. Canonical content, prayer bodies, acclamations,
+  Scripture, and search/selectable text remain byte-for-byte pointed as authored.
 - **`Images/`** — the 20 mystery paintings (plus the alternate `eastern_*` icon set — the same
   20 mysteries in an Eastern/illuminated-manuscript style, selected per favorite by
   `RosaryOptions.mysteryImageStyle`; see `Images/CREDITS.md` for their AI-generated provenance),
@@ -397,6 +416,17 @@ override the Rosary's own content. `hasCatalog` in a manifest strictly means "ha
 rosary-type bundles ship per-decade texts without any catalog.json. Only the Jesus Prayer has no
 bundle at all (it has no per-step content to carry).
 
+Mystery entries in `content/<language>.json` are **field-wise overrides**:
+`mysteries: {imageKey: {title?, fruit?, description?, transliteratedDescription?}}`. Title, fruit,
+and description each resolve independently through exact language → base language → the user's
+fallback order → Latin, with a pack override ahead of the hardcoded table at each stop. This is
+load-bearing for rite-specific Scripture: an Aramaic Rosary can use the Peshitta passage and its
+own source-native citation while inheriting a Hebrew mystery name and fruit, rather than carrying
+the Vulgate verse merely because that is where its Latin title lives. A
+`transliteratedDescription` must sit beside `description` in the same override and follows that
+description as one provenance pair; later-loaded bundles merge only the fields they actually
+supply. The engine appends the same resolved fruit to both script renderings.
+
 ### Community language overlays
 
 A bundle's `manifest.languages` declares the languages the validator holds to completeness.
@@ -413,7 +443,9 @@ Loaded overlays merge into the same `PrayerTranslations` lookup used by built-in
 `he-x-gamliel` sits beside `he` and falls back through base Hebrew and the configured precedence.
 The Mission of St. Gamaliel's Hebrew is the first user of both halves; in that language the
 Nicene Creed occupies the Apostles' Creed key, which is how the Mission's Rosary uses its own
-Creed without creating a second prayer-flow shape.
+Creed without creating a second prayer-flow shape. Its Our Father deliberately displays the
+heading `תפילת האדון` (Lord's Prayer), matching the Aramaic title, even when the body falls back
+through another bundle's Hebrew overlay.
 
 ### Generic (bundle-driven) devotions
 
@@ -725,28 +757,47 @@ of its own — its entire step sequence and per-step text are data-driven from i
   into the built step (`RosaryStep.transliteratedBody`), and the prayer flow shows a toggle
   beside the text whenever the current step has one. Compose authors it per custom step and
   language.
+  Peshitta imports keep the extracted ETCBC Syriac passage unchanged by script conversion and
+  generate the Hebrew-square projection with Erez's deterministic converter
+  (`Shared/tools/aramaic_script_converter.py`): contextual Hebrew finals, mapped vowel signs,
+  qushshaya/dagesh, and the Syriac waw rules. Prayer bodies use the ordinary `transliterations`
+  map; mystery Scripture uses `transliteratedDescription` beside its partial mystery override.
+  The current source is unpointed, so the importer never invents points. `$scriptureImport`
+  records exactly which fields are generated, and the offline `test-import-scripture.py` checks
+  the converter, every generated passage, and byte parity of all four packed copies.
 - **`bodyKey`/`titleKey` resolution** (`resolveBodyText`, per bundle): (1) bundle content for the
   exact requested code and then its base language; (2) the shared `PrayerTranslations` lookup
   for shared keys such as `gloriaPatri`; (3) bundle content in the user's app-wide
   `languageFallbackOrder` (whose initial order ends in Latin but is fully reorderable); (4) the
   raw key string. The shared
-  prayer and mystery tables use the same requested → base → user-order chain. This keeps
+  prayer and mystery tables use the same requested → base → user-order chain; mystery title,
+  fruit, and description walk it independently. This keeps
   an available English Glory Be in English instead of replacing it with an unrelated bundle
   translation, while bundle-only keys still obey the chosen precedence. `he-x-gamliel` reads
-  plain `he` for anything the Mission has not supplied,
-  in the pack overrides and the hardcoded tables alike. `MysteryTranslations.get` was missing
-  that step until 2026-08-06: a rite that ships no mystery texts of its own announced every
-  mystery in *Latin* — title, Vulgate body and the fruit spliced into a Hebrew label — while the
-  rest of the session prayed Hebrew. The mystery announcement is the one step whose body is
-  quoted Scripture, so this was the most visible place it could have gone wrong; each platform's
-  `CustomDevotionEngineTests` now pins the announcement against plain Hebrew *and* against Latin.
+  plain `he` for anything the Mission has not supplied, in the pack overrides and the hardcoded
+  tables alike. A rite may now stop at different languages for different mystery fields — most
+  importantly, its Scripture description stops at its own edition while its title/fruit can keep
+  falling back. Each platform's engine tests pin both that partial merge and the Peshitta's
+  Hebrew-square/Syriac pair.
   On Windows, `PrayerKey` is a set of string constants
   rather than a validating enum and every content key also merges into one global PascalCased
   override table, but `ResolveBodyText` follows the same per-bundle-raw-first chain.
+  Settings edits `languageFallbackOrder` with the same drag-handle/reorder interaction as the
+  Pray tab's Home Order editor and provides a reset to the catalog default. It is an actual
+  precedence list, not a collection of independent toggles: each language appears exactly once.
+  Every Scripture citation uses an en dash for a range (`26–38`) in every language; a hyphen stays
+  a hyphen in ISO/calendar dates (`YYYY-MM-DD`), identifiers, language tags, and compound words.
+  Hebrew-script citations, whether in Today
+  data or inside a devotion, additionally follow one display grammar: `[book] [chapter in
+  gematria] [verses in Arabic numerals]`, with no colon (for example `יוחנן ג׳ 16–17`). The book
+  name and verse numbering still belong to the selected edition/rite; formatting must never
+  convert a Peshitta or Septuagint citation back to Vulgate numbering.
 - **Validation**: `Shared/tools/validate-devotion.py` (run by both packers) checks the schema per
   type, that every referenced key resolves in every manifest language (bundle content ∪ the
   surviving hardcoded `PrayerKey` set ∪ merged mystery keys, minus each bundle's explicit
-  `validation-allowlist.json`), that imageKeys exist, and the rosary-type bead invariants. Each
+  `validation-allowlist.json`), field-wise mystery overrides, citation punctuation (en dashes for
+  every range; gematria chapter/no colon in Hebrew script), that imageKeys exist, and the
+  rosary-type bead invariants. Each
   platform's `PrayerTranslationsCompletenessTests` mirrors the same checks against the
   actually-shipped packs and runtime merge, with the same explicit allowlists (currently: the
   Divine Mercy offering/petition in Hebrew; the Seven Sorrows closing in ar/he/ru/tl).
@@ -768,10 +819,11 @@ Dev-time-generated datasets back the Pray tab's "Today" section (per-platform ph
 copies, same convention as the bundles; per-platform `TodayInfoStore` providers):
 
 - **Feast tables, one per liturgical calendar** (2026-08: switchable, Erez's request) — each a
-  per-day sanctoral table (`days: {"YYYY-MM-DD": {title, rank}}`) for the generated years,
+  per-day sanctoral table (`days: {"YYYY-MM-DD": {title, rank, titleByLanguage?}}`) for the generated years,
   movable feasts baked in per year at generation time; no computus or precedence logic ships in
-  the app, and ferial days have no entry. `calendars.json` is the registry: id, dataset file
-  basename, and the Settings picker label (`name`/`nameByLanguage`, resolved by UI language);
+  the app, and ferial days have no entry. `calendars.json` is the registry: id, feast-table
+  basename (`file`), reading-table basename (`readingsFile`), and the Settings picker label
+  (`name`/`nameByLanguage`, resolved by UI language);
   its `default` names the calendar used when the app-wide `feastCalendarId` setting (stored
   beside `defaultLanguageCode` on every platform) is unset or unknown. Shipped calendars:
   - `lpj` — **`feasts.json`**: the General Roman Calendar (litcal API) overlaid with the Latin
@@ -780,16 +832,11 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
     Sepulchre — Jul 15; Saint Mary of Jesus Crucified Baouardy — Aug 26). The default; keeps
     the pre-switchable filename.
   - `roman` — **`feasts-roman.json`**: the General Roman Calendar, no overlay (litcal,
-    Apache-2.0).
-  - `roman-he` — **`feasts-roman-he.json`**: "Roman — Lectionary Calendar (Hebrew)" (Erez's
-    request, 2026-08), liturgical day titles **courtesy of Evangelizo.org — Daily Gospel
-    (© Evangelizo.org)** via its Hebrew edition ("HE", Evangelizo's own name for it is
-    לוח המקראות הרומי — "the Roman lectionary calendar"), ranks joined from litcal by date.
-    The edition titles the days whose *readings* are proper — Sundays, feasts, solemnities,
-    and the few proper-Gospel memorials — so saints' memorials on ferial readings have no
-    entry, on purpose: Hebrew titles are relayed from the source, never invented (the
-    Vicariate's print governs the app's own Hebrew). Same rolling horizon and credit
-    obligations as `syriac` below.
+    Apache-2.0). Its sourced Hebrew day names are inline as `titleByLanguage.he`, courtesy of
+    Evangelizo.org — Daily Gospel (© Evangelizo.org), publication edition HE. The old
+    `roman-he` pseudo-calendar is gone; persisted `roman-he` selections migrate to `roman`.
+    `feasts.json` carries the same sourced General-calendar names where they match, while an LPJ
+    proper without a supplied Hebrew name remains in English rather than being machine-translated.
   - `roman1962` — **`feasts-roman1962.json`**: the 1962 Vetus Ordo calendar (missalemeum.com,
     MIT), I–III class days with class ranks ("1st Class"…"3rd Class"); IV-class days and bare
     ferias are omitted the way ferial days are elsewhere. The Pray screens bold a feast title
@@ -812,27 +859,40 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
     the credit is required and carried on every platform's About screen ("Calendar Data"
     section, which also names LitCal and Missale Meum). Plain-date ferial titles are omitted;
     ranks are title-derived ("Sunday" / "Fast" / "Feast", with Pascha as "Great Feast").
-    Evangelizo serves a rolling ~3-month horizon, so the `roman-he` and `syriac` tables end
-    where the API did at generation time and extend on each rerun — regenerate more often
+    Evangelizo serves a rolling ~3-month horizon, so the sourced Hebrew Roman titles and the
+    `syriac` table end where the API did at generation time and extend on each rerun — regenerate more often
     than yearly.
     Adding a further calendar remains a pure data drop: a registry entry + a dataset file +
-    platform copies.
+    its `readingsFile` + platform copies.
   `Shared/tools/fetch-feasts.py` regenerates every table (litcal + missalemeum + Evangelizo;
   `--sync` copies all of `Shared/data/*.json` into the three platform asset dirs).
-  `TodayInfoStore` reloads the feast table when the selected calendar changes; the calendar
-  choice affects the Today feast row only — seasons, mysteries, and antiphons stay
-  `LiturgicalCalendarService`'s computed Latin machinery. The Today card always names the
-  weekday and numbered week of the liturgical season, with an English/Hebrew display toggle.
-  Its readings row shows compact citations (for example `Gen 1; Ps 23; Jn 3`) from the bundled
-  Evangelizo-derived `readings.json`; a button expands the full citations. Each optional Today
+  `TodayInfoStore` reloads both the feast and reading tables when the selected calendar changes.
+  The calendar choice affects the Today feast and its lectionary citations together; seasons,
+  mystery assignment, and Marian antiphons still use `LiturgicalCalendarService`'s computed
+  Latin-calendar machinery. The Today card always names the weekday and numbered week of the
+  liturgical season. Its English/Hebrew display toggle localizes that heading, the Pope's authored
+  intention, any sourced `titleByLanguage.he` feast name, and any sourced Hebrew citation. Missing
+  localized feast names remain in their source language — especially on non-General calendars —
+  rather than being invented. Hebrew mode gives the whole Today text/citation stack RTL direction
+  and trailing alignment, including the expanded citations.
+  The readings row shows compact citations (for example `Gen. 1; Ps. 23; Jn. 3`); a button expands
+  the same entries to their complete chapter-and-verse citations. A missing reading file/date hides
+  the row: it must never borrow another rite's readings. Each optional Today
   row still has its own Settings switch (2026-08, Erez's request:
   `showTodayFeast` / `showTodayIntention`, both on by default) — either, both, or neither
   row can show, and a row switched off simply never loads.
 - **`pope-intentions.json`** — the Pope's Worldwide Prayer Network monthly intentions
   (`months: {"YYYY-MM": {title, text, titleByLanguage, textByLanguage}}`), from popesprayer.va; maintained by
   hand (no API), with authored Hebrew translations displayed by the Today language toggle.
-- **`readings.json`** — daily English and Hebrew lectionary citations fetched from Evangelizo's
-  publication API by `Shared/tools/fetch-readings.py`; `--sync` copies it into all three apps.
+- **Reading tables, selected through `readingsFile`** — each date contains ordered citation
+  objects (`type`, `short`, `full`, and optional `shortByLanguage`/`fullByLanguage`). Only
+  citations ship; Scripture text does not. `readings-roman.json` is the Novus Ordo table from
+  Evangelizo HE and is shared by `lpj` and `roman`; its Hebrew book names are relayed in the
+  per-language maps. `readings-roman1962.json` is the Vetus Ordo table from Missale Meum's
+  public proper API. `readings-ugcc.json` comes from Royal Doors' published UGCC Gregorian
+  calendar. `readings-syriac.json` comes from Evangelizo's SYE edition. `Shared/tools/
+  fetch-readings.py` refreshes any/all sources incrementally and `--sync` copies all four files
+  plus the registry into the native apps while removing the retired global `readings.json`.
 
-A date/month outside the datasets returns nothing and the row simply hides — regenerating the
-JSON (roughly yearly, `fetch-feasts.py`) is the only maintenance.
+A date/month outside the relevant dataset returns nothing and its row simply hides. Regenerate
+the multi-year feast tables roughly yearly; refresh the rolling Evangelizo-backed data more often.

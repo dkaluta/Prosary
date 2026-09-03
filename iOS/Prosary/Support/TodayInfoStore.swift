@@ -8,8 +8,8 @@
 //  feasts baked in per year, no computus in the app). calendars.json is the registry of
 //  switchable calendars (2026-08, Erez's request): the app-wide "feastCalendarId" setting
 //  picks one, defaulting — also for unknown ids — to the registry's default (the Latin
-//  Patriarchate of Jerusalem overlay). The feast table reloads whenever the selection
-//  changes; the calendar affects this row only, never the engine's season/mystery machinery.
+//  Patriarchate of Jerusalem overlay). Feast and reading tables reload whenever the selection
+//  changes, so the Today card never leaks citations from the previously selected calendar.
 //  A date/month outside the datasets returns nil and the row simply hides — regenerating the
 //  JSON yearly is the only maintenance.
 //
@@ -18,10 +18,15 @@ import Foundation
 
 struct FeastDay: Decodable, Equatable {
   let title: String
+  let titleByLanguage: [String: String]?
   /// The calendar's own vocabulary: "Solemnity" / "Feast" / "Sunday" / "Memorial" /
   /// "Optional Memorial" (Roman), "1st Class" … "3rd Class" (1962). Display styling bolds
   /// "Solemnity" and "1st Class".
   let rank: String
+
+  func localizedTitle(_ language: String) -> String {
+    HebrewDisplayText.unpointed(localizedValue(titleByLanguage, language: language) ?? title)
+  }
 }
 
 struct PopeIntention: Decodable, Equatable {
@@ -30,15 +35,60 @@ struct PopeIntention: Decodable, Equatable {
   let titleByLanguage: [String: String]?
   let textByLanguage: [String: String]?
 
-  func localizedTitle(_ language: String) -> String { titleByLanguage?[language] ?? title }
-  func localizedText(_ language: String) -> String { textByLanguage?[language] ?? text }
+  func localizedTitle(_ language: String) -> String {
+    HebrewDisplayText.unpointed(localizedValue(titleByLanguage, language: language) ?? title)
+  }
+  func localizedText(_ language: String) -> String {
+    localizedValue(textByLanguage, language: language) ?? text
+  }
 }
 
 struct ReadingCitation: Decodable, Equatable {
   let type: String
   let short: String
   let full: String
-  let hebrew: String
+  let shortByLanguage: [String: String]?
+  let fullByLanguage: [String: String]?
+
+  /// Compatibility for the first readings dataset, which stored one Hebrew full citation in
+  /// a dedicated field before citations became language-keyed alongside feast titles.
+  private let legacyHebrew: String?
+
+  private enum CodingKeys: String, CodingKey {
+    case type, short, full, shortByLanguage, fullByLanguage, hebrew
+  }
+
+  init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    type = try container.decode(String.self, forKey: .type)
+    short = try container.decode(String.self, forKey: .short)
+    full = try container.decode(String.self, forKey: .full)
+    shortByLanguage = try container.decodeIfPresent([String: String].self, forKey: .shortByLanguage)
+    fullByLanguage = try container.decodeIfPresent([String: String].self, forKey: .fullByLanguage)
+    legacyHebrew = try container.decodeIfPresent(String.self, forKey: .hebrew)
+  }
+
+  func localizedShort(_ language: String) -> String {
+    localizedValue(shortByLanguage, language: language) ?? short
+  }
+
+  func localizedFull(_ language: String) -> String {
+    localizedValue(fullByLanguage, language: language)
+      ?? ((LanguageCatalog.baseLanguage(of: language) ?? language) == "he" ? legacyHebrew : nil)
+      ?? full
+  }
+
+  /// Kept for source compatibility with callers/tests written against the first schema.
+  var hebrew: String { localizedFull("he") }
+}
+
+/// Language variants inherit display metadata from their base language. This intentionally
+/// returns the authored value unchanged: unlike headings, Scripture citations and intention
+/// prose must not be normalized a second time at runtime.
+private func localizedValue(
+  _ values: [String: String]?, language: String
+) -> String? {
+  values?[language] ?? LanguageCatalog.baseLanguage(of: language).flatMap { values?[$0] }
 }
 
 struct LiturgicalDayInfo: Equatable {
@@ -46,18 +96,28 @@ struct LiturgicalDayInfo: Equatable {
   let hebrew: String
 }
 
+/// The Today card initially follows the app's prayer language, including Hebrew variants.
+/// Its translation button may then override this for the lifetime of the visible Home view.
+enum TodayTranslationLanguage {
+  static func defaultsToHebrew(_ languageCode: String) -> Bool {
+    (LanguageCatalog.baseLanguage(of: languageCode) ?? languageCode) == "he"
+  }
+}
+
 /// One entry of calendars.json — a switchable feast calendar.
 struct FeastCalendar: Decodable, Equatable, Identifiable {
   let id: String
   /// Basename of the calendar's dataset ("feasts", "feasts-roman", …).
   let file: String
+  /// Basename of this calendar's citation dataset. Calendars can share a lectionary file.
+  let readingsFile: String?
   let name: String
   let nameByLanguage: [String: String]?
 
   /// The Settings picker label, resolved by UI language with the plain name as fallback.
   var displayName: String {
     let uiLanguage = Bundle.main.preferredLocalizations.first.map { String($0.prefix(2)) }
-    return uiLanguage.flatMap { nameByLanguage?[$0] } ?? name
+    return HebrewDisplayText.unpointed(uiLanguage.flatMap { nameByLanguage?[$0] } ?? name)
   }
 }
 
@@ -86,6 +146,7 @@ enum TodayInfoStore {
   private static var readingsByDay: [String: ReadingDay] = [:]
   private static var registry: CalendarsFile?
   private static var loadedCalendarId: String?
+  private static var loadedReadingsCalendarId: String?
 
   /// The registry's calendars, in picker order.
   static var calendars: [FeastCalendar] {
@@ -98,7 +159,12 @@ enum TodayInfoStore {
   static var selectedCalendarId: String {
     ensureRegistryLoaded()
     guard let registry else { return "lpj" }
-    let stored = UserDefaults.standard.string(forKey: calendarDefaultsKey)
+    let rawStored = UserDefaults.standard.string(forKey: calendarDefaultsKey)
+    // The former Hebrew Roman picker was folded into General Roman once feast titles became
+    // localizable. Migrate the old persisted id instead of unexpectedly sending those users
+    // back to the LPJ default.
+    let stored = rawStored == "roman-he" ? "roman" : rawStored
+    if rawStored == "roman-he" { UserDefaults.standard.set("roman", forKey: calendarDefaultsKey) }
     if let stored, registry.calendars.contains(where: { $0.id == stored }) {
       return stored
     }
@@ -204,10 +270,17 @@ enum TodayInfoStore {
     intentionsByMonth = decode(IntentionsFile.self, resource: "pope-intentions")?.months ?? [:]
   }
 
-  private static var didLoadReadings = false
   private static func ensureReadingsLoaded() {
-    guard !didLoadReadings else { return }
-    didLoadReadings = true
-    readingsByDay = decode(ReadingsFile.self, resource: "readings")?.days ?? [:]
+    let selected = selectedCalendarId
+    guard selected != loadedReadingsCalendarId else { return }
+    loadedReadingsCalendarId = selected
+
+    // Clearing before the decode is intentional. A missing/corrupt optional data file must
+    // make this calendar's readings row disappear, never retain the last calendar's readings.
+    readingsByDay = [:]
+    guard let file = registry?.calendars.first(where: { $0.id == selected })?.readingsFile else {
+      return
+    }
+    readingsByDay = decode(ReadingsFile.self, resource: file)?.days ?? [:]
   }
 }

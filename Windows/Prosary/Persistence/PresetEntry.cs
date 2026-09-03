@@ -55,6 +55,7 @@ public sealed class PresetEntry
 
     public bool IncludeApostlesCreed { get; set; } = true;
     public bool IncludeOpeningPrayers { get; set; } = true;
+    public bool IncludeOpeningFatimaPrayer { get; set; }
     public bool IncludeFatimaPrayer { get; set; } = true;
     public EternalRestPlacement EternalRestForDeceased { get; set; } = EternalRestPlacement.None;
     public MarianAntiphonOption MarianAntiphon { get; set; } = MarianAntiphonOption.Seasonal;
@@ -102,6 +103,7 @@ public sealed class PresetEntry
             SpecificMysteryOrder = SpecificMysteryOrder,
             IncludeApostlesCreed = IncludeApostlesCreed,
             IncludeOpeningPrayers = IncludeOpeningPrayers,
+            IncludeOpeningFatimaPrayer = IncludeOpeningFatimaPrayer,
             IncludeFatimaPrayer = IncludeFatimaPrayer,
             EternalRestForDeceased = EternalRestForDeceased,
             MarianAntiphon = MarianAntiphon,
@@ -137,6 +139,7 @@ public sealed class PresetEntry
         SpecificMysteryOrder = prayer.Rosary.SpecificMysteryOrder,
         IncludeApostlesCreed = prayer.Rosary.IncludeApostlesCreed,
         IncludeOpeningPrayers = prayer.Rosary.IncludeOpeningPrayers,
+        IncludeOpeningFatimaPrayer = prayer.Rosary.IncludeOpeningFatimaPrayer,
         IncludeFatimaPrayer = prayer.Rosary.IncludeFatimaPrayer,
         EternalRestForDeceased = prayer.Rosary.EternalRestForDeceased,
         MarianAntiphon = prayer.Rosary.MarianAntiphon,

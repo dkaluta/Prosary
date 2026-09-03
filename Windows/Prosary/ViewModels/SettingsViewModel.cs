@@ -207,7 +207,7 @@ public partial class SettingsViewModel : ObservableObject
     }
 
     // The Home "Today" section (Erez's requests): which of its rows show at all, and which
-    // calendar's feasts the feast row prays. The calendar choices come from the bundled
+    // calendar's feasts and readings the section follows. The choices come from the bundled
     // calendars.json registry, so adding a calendar is a data drop, never a new case here;
     // the picker hides entirely if the registry ever ships a single calendar.
     [ObservableProperty]

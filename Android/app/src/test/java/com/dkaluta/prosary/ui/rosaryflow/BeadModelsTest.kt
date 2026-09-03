@@ -1,6 +1,7 @@
 package com.dkaluta.prosary.ui.rosaryflow
 
 import com.dkaluta.prosary.engine.PrayerEngine
+import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.MysteryGroup
 import com.dkaluta.prosary.models.MysterySelectionMode
 import com.dkaluta.prosary.models.Prayer
@@ -9,10 +10,23 @@ import com.dkaluta.prosary.models.RosaryStep
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
+import org.junit.BeforeClass
 import org.junit.Test
+import java.io.File
 
 /** Mirrors iOS's BeadModelsTests.swift. */
 class BeadModelsTest {
+    companion object {
+        @BeforeClass
+        @JvmStatic
+        fun loadPacks() {
+            PrayerPackStore.initialize { packName ->
+                val file = File("src/main/assets/$packName.prosaryprayer")
+                if (file.exists()) file.inputStream() else null
+            }
+        }
+    }
+
     /** Synthesizes a decade-based session with no Mystery at all — the shape every one of
      * Franciscan Crown/Seven Sorrows/Divine Mercy Chaplet's steps has (unlike the Rosary, which
      * always sets `mystery`). Before the bead-track generalization, BeadLayout.build silently
@@ -123,5 +137,29 @@ class BeadModelsTest {
         assertEquals(5, layout.topRows[3].count { it.kind == BeadKind.Decade })
         assertEquals(BeadKind.Cross, layout.topRows[0].first().kind)
         assertEquals(BeadKind.Cross, layout.topRows[3].last().kind)
+    }
+
+    @Test
+    fun mysterySkipTargetsAnnouncementsWithoutReplacingStepNavigation() {
+        val steps = PrayerEngine().buildSteps(Prayer(languageCode = "en"))
+        val starts = steps.indices.filter { index ->
+            val decade = steps[index].decadeIndex ?: return@filter false
+            steps.take(index).none { it.decadeIndex == decade }
+        }
+        assertEquals(5, starts.size)
+
+        // Opening prayers skip forward to the first announcement and cannot skip backward.
+        assertNull(MysteryStepNavigation.previous(steps, 0))
+        assertEquals(starts[0], MysteryStepNavigation.next(steps, 0))
+
+        // Anywhere within the second mystery, the controls mean genuinely previous/next
+        // mystery — not merely the previous or next individual prayer step.
+        val withinSecond = starts[1] + 3
+        assertEquals(starts[0], MysteryStepNavigation.previous(steps, withinSecond))
+        assertEquals(starts[2], MysteryStepNavigation.next(steps, withinSecond))
+
+        // Closing prayers can return to the last mystery but have no mystery after them.
+        assertEquals(starts.last(), MysteryStepNavigation.previous(steps, steps.lastIndex))
+        assertNull(MysteryStepNavigation.next(steps, steps.lastIndex))
     }
 }

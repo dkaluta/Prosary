@@ -31,6 +31,39 @@ data class BeadColumn(
     val beads: List<BeadInfo>,
 )
 
+/** Pure step-index math for the Rosary's mystery-skip buttons. A mystery begins at the first
+ * step carrying its dense decade index (the announcement); closing prayers have no decade and
+ * therefore navigate back to the final announcement, while opening prayers navigate forward to
+ * the first. */
+object MysteryStepNavigation {
+    fun previous(steps: List<RosaryStep>, currentIndex: Int): Int? {
+        val starts = mysteryStarts(steps)
+        val currentDecade = steps.getOrNull(currentIndex)?.decadeIndex
+        return if (currentDecade != null) {
+            starts.firstOrNull { it.first == currentDecade - 1 }?.second
+        } else {
+            starts.lastOrNull { it.second < currentIndex }?.second
+        }
+    }
+
+    fun next(steps: List<RosaryStep>, currentIndex: Int): Int? {
+        val starts = mysteryStarts(steps)
+        val currentDecade = steps.getOrNull(currentIndex)?.decadeIndex
+        return if (currentDecade != null) {
+            starts.firstOrNull { it.first == currentDecade + 1 }?.second
+        } else {
+            starts.firstOrNull { it.second > currentIndex }?.second
+        }
+    }
+
+    private fun mysteryStarts(steps: List<RosaryStep>): List<Pair<Int, Int>> {
+        val seen = mutableSetOf<Int>()
+        return steps.mapIndexedNotNull { index, step ->
+            step.decadeIndex?.takeIf(seen::add)?.let { it to index }
+        }
+    }
+}
+
 /** The full computed bead layout for the current step of a Rosary session. */
 data class BeadLayout(
     /** Decade beads wrapped into one row per mystery group — like the physical five-decade

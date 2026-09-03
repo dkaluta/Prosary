@@ -194,8 +194,14 @@ public static class AppSettings
         {
             if (_feastCalendarId is null)
             {
-                _feastCalendarId = ReadLocalSetting(KeyFeastCalendar) as string
-                    ?? string.Empty;
+                var stored = ReadLocalSetting(KeyFeastCalendar) as string ?? string.Empty;
+                _feastCalendarId = stored == "roman-he" ? "roman" : stored;
+                if (stored == "roman-he")
+                {
+                    // Hebrew titles now live inside the General Roman dataset. Persist the
+                    // one-time alias so old installations do not carry a dead calendar id.
+                    WriteLocalSetting(KeyFeastCalendar, _feastCalendarId);
+                }
             }
             return _feastCalendarId;
         }
@@ -204,8 +210,8 @@ public static class AppSettings
 
     public static void SetFeastCalendarId(string id)
     {
-        FeastCalendarId = id;
-        WriteLocalSetting(KeyFeastCalendar, id);
+        FeastCalendarId = id == "roman-he" ? "roman" : id;
+        WriteLocalSetting(KeyFeastCalendar, FeastCalendarId);
     }
 
     /// <summary>Whether Home's Today section shows the day's feast row — Erez's request: each

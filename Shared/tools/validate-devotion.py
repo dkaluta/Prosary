@@ -35,6 +35,7 @@ Exit code 0 = valid; non-zero with messages on stderr otherwise.
 """
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -139,6 +140,66 @@ def err(msg: str) -> None:
 def load_json(path: Path):
     with open(path, encoding="utf-8") as f:
         return json.load(f)
+
+
+MYSTERY_OVERRIDE_FIELDS = {"title", "fruit", "description", "transliteratedDescription"}
+
+
+def validate_mystery_overrides(path: Path, content: dict) -> None:
+    """Mystery language entries may override any subset of the presentation fields.
+
+    This is intentionally field-wise: a rite can provide its own Scripture body and source-native
+    citation without having to invent a translated mystery title or fruit. The Syriac-script
+    companion is provenance-coupled to that same description, so it may not float by itself.
+    """
+    mysteries = content.get("mysteries", {})
+    label = f"content/{path.name}"
+    if not isinstance(mysteries, dict):
+        err(f"{label}: 'mysteries' must be a map of image key to field overrides")
+        return
+    for key, value in mysteries.items():
+        where = f"{label}: mysteries[{key!r}]"
+        if not isinstance(key, str) or not key:
+            err(f"{label}: mystery image keys must be non-empty strings")
+            continue
+        if not isinstance(value, dict):
+            err(f"{where} must be an object")
+            continue
+        extra = unknown_fields(value, MYSTERY_OVERRIDE_FIELDS)
+        if extra:
+            err(f"{where}: unknown fields {extra}")
+        authored = [field for field in ("title", "fruit", "description") if field in value]
+        if not authored:
+            err(f"{where}: must override title, fruit, or description")
+        for field in MYSTERY_OVERRIDE_FIELDS:
+            if field in value and not isinstance(value[field], str):
+                err(f"{where}: {field} must be a string")
+        if "transliteratedDescription" in value and "description" not in value:
+            err(f"{where}: transliteratedDescription requires description in the same override")
+
+
+def _all_strings(value):
+    if isinstance(value, str):
+        yield value
+    elif isinstance(value, dict):
+        for nested in value.values():
+            yield from _all_strings(nested)
+    elif isinstance(value, list):
+        for nested in value:
+            yield from _all_strings(nested)
+
+
+def validate_citation_style(path: Path, content: dict) -> None:
+    """Keep citation punctuation semantic and uniform without touching dates or identifiers."""
+    label = f"content/{path.name}"
+    for text in _all_strings(content):
+        for citation in re.findall(r"(?:^|\n)— ([^\n]+)", text):
+            if re.search(r"\d-\d", citation):
+                err(f"{label}: citation ranges must use an en dash, not a hyphen: {citation!r}")
+            if (re.search(r"[\u0590-\u05ff]", citation)
+                    and re.search(r"\d+:\d+", citation)):
+                err(f"{label}: Hebrew-script citations use a gematria chapter and no colon: "
+                    f"{citation!r}")
 
 
 # (where, expr) for every entry-level "if" — checked against options.json declarations after
@@ -252,6 +313,17 @@ def validate_entry(entry: dict, where: str, allow_kind: bool, slots: set | None 
         err(f"{where}: subtitle and subtitleKey are mutually exclusive")
     if "repeat" in entry and (not isinstance(entry["repeat"], int) or entry["repeat"] < 2):
         err(f"{where}: repeat must be an integer >= 2")
+    counter_index = entry.get("counterIndex")
+    counter_total = entry.get("counterTotal")
+    if (counter_index is None) != (counter_total is None):
+        err(f"{where}: counterIndex and counterTotal must be supplied together")
+    elif counter_index is not None:
+        if (isinstance(counter_index, bool) or not isinstance(counter_index, int)
+                or isinstance(counter_total, bool) or not isinstance(counter_total, int)
+                or counter_index < 1 or counter_total < 1 or counter_index > counter_total):
+            err(f"{where}: counterIndex/counterTotal must be positive integers with index <= total")
+        if "repeat" in entry:
+            err(f"{where}: counterIndex/counterTotal cannot be combined with repeat")
     if "isScripture" in entry and not isinstance(entry["isScripture"], bool):
         err(f"{where}: isScripture must be a boolean")
     if "isScriptureByLanguage" in entry:
@@ -871,6 +943,14 @@ def main() -> int:
     # --- Reference resolution per language ---
     allowlist_path = src / "validation-allowlist.json"
     allowlist = load_json(allowlist_path).get("missingKeys", {}) if allowlist_path.exists() else {}
+
+    # Validate every authored language overlay, not only the complete languages advertised in
+    # manifest.json. Scripture import overlays (Aramaic/Greek/Spanish today) are intentionally
+    # partial, but their mystery objects still have the same field-wise contract.
+    for content_path in sorted((src / "content").glob("*.json")):
+        overlay = load_json(content_path)
+        validate_mystery_overrides(content_path, overlay)
+        validate_citation_style(content_path, overlay)
 
     contents = {}
     for lang in languages:

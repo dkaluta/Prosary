@@ -151,7 +151,7 @@ struct PrayerStepFlowView: View {
         .padding(isCompactHeight ? 8 : 16)
       }
     }
-    .navigationTitle(navigationTitle)
+    .navigationTitle(HebrewDisplayText.unpointed(navigationTitle))
     #if os(iOS)
     .navigationBarTitleDisplayMode(.inline)
     #endif
@@ -319,13 +319,13 @@ struct PrayerStepFlowView: View {
   private func textBlock(step: RosaryStep) -> some View {
     VStack(spacing: 8) {
       if let subtitle = step.subtitle {
-        Text(subtitle)
+        Text(HebrewDisplayText.unpointed(subtitle))
           .font(.subheadline)
           .foregroundStyle(.secondary)
           .multilineTextAlignment(.center)
       }
 
-      Text(step.title)
+      Text(HebrewDisplayText.unpointed(step.title))
         .font(.title2.weight(.semibold))
         .foregroundStyle(Color.brandHeadline)
         .multilineTextAlignment(.center)

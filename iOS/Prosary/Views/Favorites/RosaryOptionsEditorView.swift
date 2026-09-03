@@ -54,9 +54,9 @@ struct RosaryOptionsSections: View {
           Picker("favoriteEditor.specificMystery", selection: $rosary.specificMysteryOrder) {
             ForEach(MysteryCatalog.forGroup(rosary.specificMysteryGroup)) { mystery in
               // The mystery is named in the UI language, like the group row above it.
-              Text(MysteryTranslations.get(
+              Text(HebrewDisplayText.unpointed(MysteryTranslations.get(
                 languageCode: Bundle.main.preferredLocalizations.first.map { String($0.prefix(2)) },
-                imageKey: mystery.imageKey).title).tag(mystery.order)
+                imageKey: mystery.imageKey).title)).tag(mystery.order)
             }
           }
         }
@@ -65,6 +65,8 @@ struct RosaryOptionsSections: View {
       Section("favoriteEditor.openingDecadePrayers") {
         Toggle("favoriteEditor.apostlesCreed", isOn: $rosary.includeApostlesCreed)
         Toggle("favoriteEditor.openingPrayers", isOn: $rosary.includeOpeningPrayers)
+        Toggle("favoriteEditor.openingFatimaPrayer", isOn: $rosary.includeOpeningFatimaPrayer)
+          .disabled(!rosary.includeOpeningPrayers)
         Toggle("favoriteEditor.fatimaPrayer", isOn: $rosary.includeFatimaPrayer)
         Picker("favoriteEditor.eternalRest", selection: $rosary.eternalRestForDeceased) {
           ForEach(EternalRestPlacement.allCases) { option in

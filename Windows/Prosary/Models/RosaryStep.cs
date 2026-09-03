@@ -1,3 +1,5 @@
+using Prosary.Localization;
+
 namespace Prosary.Models;
 
 /// <summary>One prayer "bead" in a fully built Rosary session, ready to display.</summary>
@@ -28,6 +30,24 @@ public sealed record RosaryStep(
     int? HailMaryIndexInDecade = null,
     string? ImageOverrideKey = null)
 {
+    /// <summary>Titles and subtitles are display chrome rather than prayer text. Normalize them
+    /// once at the presentation-model boundary, while leaving bodies, acclamations and
+    /// transliterations byte-for-byte intact.</summary>
+    private string _title = HebrewDisplayText.WithoutMarks(Title);
+    private string? _subtitle = HebrewDisplayText.WithoutMarksOrNull(Subtitle);
+
+    public string Title
+    {
+        get => _title;
+        init => _title = HebrewDisplayText.WithoutMarks(value);
+    }
+
+    public string? Subtitle
+    {
+        get => _subtitle;
+        init => _subtitle = HebrewDisplayText.WithoutMarksOrNull(value);
+    }
+
     /// <summary>Alternate-artwork override the engine sets on Mystery-carrying steps when the
     /// favorite's <c>MysteryImageStyle</c> selects a non-default set (e.g.
     /// "eastern_joyful_01_annunciation"). A separate field rather than a rewrite of

@@ -2,6 +2,8 @@ package com.dkaluta.prosary.engine
 
 import androidx.compose.ui.graphics.Color
 import com.dkaluta.prosary.calendar.LiturgicalCalendarProviding
+import com.dkaluta.prosary.content.PrayerKey
+import com.dkaluta.prosary.content.PrayerTranslations
 import com.dkaluta.prosary.models.EternalRestPlacement
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.LanguageCatalog
@@ -54,6 +56,7 @@ class RosaryEngineTest {
         order: Int = 1,
         includeCreed: Boolean = true,
         includeOpening: Boolean = true,
+        includeOpeningFatima: Boolean = false,
         includeFatima: Boolean = true,
         eternalRest: EternalRestPlacement = EternalRestPlacement.None,
         antiphon: MarianAntiphonOption = MarianAntiphonOption.SalveRegina,
@@ -72,6 +75,7 @@ class RosaryEngineTest {
             specificMysteryOrder = order,
             includeApostlesCreed = includeCreed,
             includeOpeningPrayers = includeOpening,
+            includeOpeningFatimaPrayer = includeOpeningFatima,
             includeFatimaPrayer = includeFatima,
             eternalRestForDeceased = eternalRest,
             marianAntiphon = antiphon,
@@ -116,6 +120,44 @@ class RosaryEngineTest {
         val with = engine().buildSteps(prayer(includeFatima = true)).size
         val without = engine().buildSteps(prayer(includeFatima = false)).size
         assertEquals(with - 5, without)
+    }
+
+    @Test
+    fun openingFatimaPrayerFollowsTheFaithHopeAndCharityPrayers() {
+        val steps = engine().buildSteps(
+            prayer(includeOpeningFatima = true, language = "en"),
+        )
+        val firstMystery = steps.indexOfFirst { it.decadeIndex != null }
+
+        assertTrue(firstMystery > 1)
+        assertEquals("Fatima Prayer", steps[firstMystery - 2].title)
+        assertEquals("Glory Be", steps[firstMystery - 1].title)
+        assertEquals(null, steps[firstMystery - 2].decadeIndex)
+        assertEquals(6, steps.count { it.title == "Fatima Prayer" })
+    }
+
+    @Test
+    fun openingFatimaPrayerRequiresTheOpeningPrayers() {
+        val steps = engine().buildSteps(
+            prayer(includeOpening = false, includeOpeningFatima = true, language = "en"),
+        )
+        assertEquals(5, steps.count { it.title == "Fatima Prayer" })
+    }
+
+    @Test
+    fun faithHopeAndCharityHailMaryTitlesCarryTheirLocalizedThreePartCount() {
+        fun openingTitles(language: String) = engine().buildSteps(prayer(language = language))
+            .filter { it.imageKey in setOf("virtue_faith", "virtue_hope", "virtue_charity") }
+            .map { it.title }
+
+        assertEquals(
+            listOf("Hail Mary (1 of 3)", "Hail Mary (2 of 3)", "Hail Mary (3 of 3)"),
+            openingTitles("en"),
+        )
+        assertEquals(
+            listOf("שמחי מרים (1 מתוך 3)", "שמחי מרים (2 מתוך 3)", "שמחי מרים (3 מתוך 3)"),
+            openingTitles("he"),
+        )
     }
 
     @Test
@@ -220,10 +262,10 @@ class RosaryEngineTest {
     @Test
     fun closingIntentionsPrayThePatriarchInHebrewAndTheExarchInTheGamlielRite() {
         val vicariate = engine().buildSteps(prayer(closingIntentions = true).copy(languageCode = "he"))
-        assertTrue(vicariate.any { it.subtitle?.contains("הַפַּטְרִיאַרְךְ") == true })
+        assertTrue(vicariate.any { it.subtitle?.contains("הפטריארך") == true })
         val gamliel = engine().buildSteps(prayer(closingIntentions = true).copy(languageCode = "he-x-gamliel"))
-        assertTrue(gamliel.any { it.subtitle?.contains("הַהֶגְמוֹן") == true })
-        assertFalse(gamliel.any { it.subtitle?.contains("הַפַּטְרִיאַרְךְ") == true })
+        assertTrue(gamliel.any { it.subtitle?.contains("ההגמון") == true })
+        assertFalse(gamliel.any { it.subtitle?.contains("הפטריארך") == true })
     }
 
     // MARK: - Mystery artwork
@@ -382,6 +424,43 @@ class RosaryEngineTest {
         assertEquals("3rd Mystery", announcement.subtitle)
     }
 
+    @Test
+    fun hebrewMysteryCitationUsesGematriaChapterAndArabicVersesWithoutAColon() {
+        val announcement = engine().buildSteps(
+            prayer(group = MysteryGroup.Joyful, mode = MysterySelectionMode.SingleMystery, language = "he"),
+        ).first { it.isScripture }
+
+        assertTrue(announcement.body.contains("— לוּקָס א׳ 26–38 (דליטש)"))
+        assertFalse(announcement.body.contains("א׳:"))
+    }
+
+    @Test
+    fun aramaicMysteryUsesPeshittaAndCarriesItsSyriacScriptReadingAid() {
+        val imageKey = "joyful_01_annunciation"
+        val partial = PrayerPackStore.mysteryOverride("arc", imageKey)
+        assertNotNull(partial)
+        assertEquals(null, partial?.title)
+        assertEquals(null, partial?.fruit)
+
+        val resolved = com.dkaluta.prosary.content.MysteryTranslations.get("arc", imageKey)
+        assertEquals(partial?.description, resolved.description)
+        assertEquals(partial?.transliteratedDescription, resolved.transliteratedDescription)
+        assertTrue(resolved.title.isNotBlank())
+        assertTrue(resolved.fruit.isNotBlank())
+        assertTrue(resolved.description.contains("— לוקא א׳ 26–38 (פשיטתא)"))
+        assertFalse(resolved.description.contains("א׳:"))
+
+        val announcement = engine().buildSteps(
+            prayer(group = MysteryGroup.Joyful, mode = MysterySelectionMode.SingleMystery, language = "arc"),
+        ).first { it.isScripture }
+        val fruitLine =
+            "${PrayerTranslations.get("arc", PrayerKey.FructusMysteriiLabel)}: ${resolved.fruit}"
+        assertTrue(announcement.body.startsWith(resolved.description))
+        assertTrue(announcement.body.endsWith(fruitLine))
+        assertTrue(announcement.transliteratedBody?.startsWith(resolved.transliteratedDescription!!) == true)
+        assertTrue(announcement.transliteratedBody?.endsWith(fruitLine) == true)
+    }
+
     // MARK: - Presenter Mode
 
     @Test
@@ -407,7 +486,7 @@ class RosaryEngineTest {
         val p = prayer(presenterMode = true).copy(languageCode = "en")
         val steps = engine().buildSteps(p)
         val combined = steps.first { it.title == "Hail Mary & Glory Be" }
-        assertTrue(combined.body.contains("Hail Mary, full of grace"))
+        assertTrue(combined.body.contains("Hail Mary,\nfull of grace"))
         assertTrue(combined.body.contains("Glory be to the Father"))
     }
 

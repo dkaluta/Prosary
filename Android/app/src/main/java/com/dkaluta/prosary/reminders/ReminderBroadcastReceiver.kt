@@ -8,6 +8,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.dkaluta.prosary.MainActivity
 import com.dkaluta.prosary.R
+import com.dkaluta.prosary.typography.HebrewDisplayText
 
 /** Fired by the alarm [ReminderScheduler.schedule] sets up; builds and posts the notification
  * directly from Intent extras — no live app process or database read needed, mirroring iOS's
@@ -34,7 +35,7 @@ class ReminderBroadcastReceiver : BroadcastReceiver() {
 
         val notification = NotificationCompat.Builder(context, ReminderScheduler.NotificationChannelId)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentTitle(prayerName)
+            .setContentTitle(HebrewDisplayText.unpoint(prayerName))
             .setContentText(body)
             .setAutoCancel(true)
             .setContentIntent(contentIntent)

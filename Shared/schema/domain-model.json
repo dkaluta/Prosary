@@ -104,6 +104,11 @@
           "default": true,
           "description": "The opening Our Father + 3 Hail Marys (for faith, hope, charity) + Glory Be."
         },
+        "includeOpeningFatimaPrayer": {
+          "type": "boolean",
+          "default": false,
+          "description": "When the opening prayers are enabled, recite the Fatima Prayer once after the three Hail Marys for faith, hope, and charity and before the opening Glory Be. Independent of includeFatimaPrayer, which controls the prayer after each decade."
+        },
         "includeFatimaPrayer": {
           "type": "boolean",
           "default": true,
@@ -260,7 +265,7 @@
       ]
     },
     "JesusPrayerProgress": {
-      "description": "Live repetition counter during a Jesus Prayer session. Not persisted. Immutable on Android/Windows (copy/with-based updates); a mutable struct on iOS — a deliberate, known divergence, not a bug.",
+      "description": "Live repetition counter during a Jesus Prayer session. The value itself is not a preset column; an unfinished run's currentIndex is mirrored into PrayerRunProgress. Immutable on Android/Windows (copy/with-based updates); a mutable struct on iOS — a deliberate, known divergence, not a bug.",
       "fields": {
         "target": {
           "type": "JesusPrayerTarget"
@@ -269,6 +274,33 @@
           "type": "int",
           "default": 0,
           "description": "0-based."
+        }
+      }
+    },
+    "PrayerRunProgress": {
+      "description": "A small device-local checkpoint for an unfinished Rosary, generic devotion, or Jesus Prayer, stored in a map by stable run key. It is separate from the saved Prayer and never copies authored content. Re-entry offers Continue or Restart; Finish/restart removes it. Rosary entries are accepted only on savedLocalDate, while other prayer kinds do not expire by date.",
+      "fields": {
+        "runKey": {
+          "type": "string",
+          "description": "Storage-map key identifying the saved preset or ad-hoc devotion/variant/day/target so unrelated prayer forms never share a position."
+        },
+        "configurationSignature": {
+          "type": "string",
+          "description": "Stable signature of the options that determine the run's sequence. A mismatch discards the checkpoint instead of applying an old index to changed content."
+        },
+        "stepIndex": {
+          "type": "int",
+          "default": 0,
+          "description": "Zero-based current step; for the Jesus Prayer this is the repetition counter. Zero, a completed index, or an out-of-range index is not resumable."
+        },
+        "languageCode": {
+          "type": "string",
+          "description": "The effective language last selected inside the flow; continuing restores it together with the position."
+        },
+        "savedLocalDate": {
+          "type": "string",
+          "format": "YYYY-MM-DD",
+          "description": "Local civil date without a timezone, used to enforce same-day-only Rosary continuation."
         }
       }
     },
@@ -312,6 +344,26 @@
         }
       }
     },
+    "MysteryTextOverride": {
+      "description": "One field-wise entry in a bundle content/<language>.json mysteries map. Any subset of title, fruit, and description may be supplied; each missing field continues independently through the requested language, base language, user-ordered fallbacks, and Latin. This lets a rite ship its own Scripture edition and source-native citation without inventing its own mystery title or fruit.",
+      "fields": {
+        "title": {
+          "type": "string?"
+        },
+        "fruit": {
+          "type": "string?"
+        },
+        "description": {
+          "type": "string?",
+          "description": "The mystery Scripture body and citation in this language/rite's own source numbering."
+        },
+        "transliteratedDescription": {
+          "type": "string?",
+          "description": "The same description in a second script. Valid only beside description in the same override, so text and transliteration retain one provenance; used for the untouched Syriac Peshitta beside its Hebrew-square projection."
+        }
+      },
+      "constraints": "At least one of title, fruit, or description is present. transliteratedDescription requires description in the same object. Later bundle contributions merge only their present fields."
+    },
     "RosaryStep": {
       "description": "One prayer \"bead\" in a fully built session for any devotion — the output of PrayerEngine.buildSteps(for:). See ARCHITECTURE.md#engines.",
       "fields": {
@@ -324,6 +376,10 @@
         },
         "body": {
           "type": "string"
+        },
+        "transliteratedBody": {
+          "type": "string?",
+          "description": "The same body in an alternate script. For mystery announcements this is built from the exact override whose description won field-wise resolution, with the same resolved fruit appended."
         },
         "acclamation": {
           "type": "string?",
@@ -395,6 +451,14 @@
         "repeat": {
           "type": "int?",
           "description": "Unrolls into n steps titled \"Title (h of n)\" — deliberately without bead fields, as used by bundle-defined closing Hail Marys."
+        },
+        "counterIndex": {
+          "type": "int?",
+          "description": "Adds the shared localized \"(index of total)\" suffix to this single authored step's title. Must be paired with counterTotal, positive, <= counterTotal, and cannot be combined with repeat. Used by the Rosary's three distinct opening Hail Marys for faith/hope/charity."
+        },
+        "counterTotal": {
+          "type": "int?",
+          "description": "Total paired with counterIndex for a non-repeated step's localized title counter."
         },
         "isScripture": {
           "type": "bool? = false",

@@ -27,6 +27,8 @@ jobs:
         run: uv run --script Shared/tools/test-validate-devotion.py
       - name: Prayer line breaks are applied on all three platforms
         run: uv run --script Shared/tools/reflow-prayers.py --check
+      - name: Erez's Aramaic converter and generated packs stay in step
+        run: uv run --script Shared/tools/test-import-scripture.py
 
   android:
     name: Android (testDebugUnitTest)

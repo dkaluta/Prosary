@@ -30,16 +30,53 @@ public static partial class MysteryTranslations
 
     public static MysteryText Get(string? languageCode, string imageKey)
     {
+        string? title = null;
+        string? fruit = null;
+        string? description = null;
+        string? transliteratedDescription = null;
+
         foreach (var code in Prosary.Models.LanguageCatalog.FallbackChain(languageCode))
         {
             var packOverride = PrayerPackStore.MysteryOverride(code, imageKey);
-            if (packOverride is not null) return packOverride;
-            if (ByLanguage.TryGetValue(code, out var table) && table.TryGetValue(imageKey, out var text)) return text;
+            if (packOverride is not null)
+            {
+                title ??= packOverride.Title;
+                fruit ??= packOverride.Fruit;
+                if (description is null && packOverride.Description is { } suppliedDescription)
+                {
+                    description = suppliedDescription;
+                    // Never resolve this independently: it belongs only to the source that
+                    // supplied the description selected above.
+                    transliteratedDescription = packOverride.TransliteratedDescription;
+                }
+            }
+
+            if (ByLanguage.TryGetValue(code, out var table) && table.TryGetValue(imageKey, out var text))
+            {
+                title ??= text.Title;
+                fruit ??= text.Fruit;
+                if (description is null)
+                {
+                    description = text.Description;
+                    transliteratedDescription = text.TransliteratedDescription;
+                }
+            }
+
+            if (title is not null && fruit is not null && description is not null) break;
         }
 
-        // Pack-provided Latin before the hardcoded Latin table — some mystery texts (the Seven
-        // Sorrows, the Franciscan Crown's Adoration of the Magi) live only in their bundles.
-        return PrayerPackStore.MysteryOverride("la", imageKey)
-            ?? (Latin.TryGetValue(imageKey, out var latinText) ? latinText : new MysteryText(imageKey, string.Empty, string.Empty));
+        return new MysteryText(
+            title ?? imageKey,
+            fruit ?? string.Empty,
+            description ?? string.Empty,
+            transliteratedDescription);
+    }
+
+    /// <summary>Returns a presentation copy with only the mystery heading unpointed. Fruit and
+    /// Scripture description remain exactly as authored.</summary>
+    public static MysteryText GetDisplay(string? languageCode, string imageKey)
+    {
+        var text = Get(languageCode, imageKey);
+        return text with { Title = HebrewDisplayText.WithoutMarks(text.Title) };
     }
 }

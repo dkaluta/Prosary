@@ -43,11 +43,11 @@ struct PrayerCard: View {
           }
 
           VStack(alignment: .leading, spacing: 3) {
-            Text(title)
+            Text(HebrewDisplayText.unpointed(title))
               .font(.headline)
               .foregroundStyle(.primary)
             if !subtitle.isEmpty {
-              Text(subtitle)
+              Text(HebrewDisplayText.unpointed(subtitle))
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .lineLimit(1)

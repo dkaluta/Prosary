@@ -36,7 +36,6 @@ import com.dkaluta.prosary.models.BasicPrayerCatalog
 import com.dkaluta.prosary.models.BasicPrayersOrder
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.LanguageCatalog
-import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.ui.home.HomeOrderEditor
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -105,7 +104,7 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
                             if (language.isRightToLeft) LayoutDirection.Rtl else LayoutDirection.Ltr,
                     ) {
                         Text(
-                            PrayerPackStore.resolveBodyText(prayer.bundleId, language.code, prayer.titleKey),
+                            BasicPrayerCatalog.title(prayer, language.code),
                             style = MaterialTheme.typography.titleMedium,
                             modifier = Modifier.weight(1f),
                         )
@@ -132,7 +131,7 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
         // language, so the dialog reads exactly like the list behind it.
         HomeOrderEditor(
             titles = BasicPrayersOrder.apply(context, BasicPrayerCatalog.all).map {
-                it.id to PrayerPackStore.resolveBodyText(it.bundleId, language.code, it.titleKey)
+                it.id to BasicPrayerCatalog.title(it, language.code)
             },
             onMove = { ids ->
                 BasicPrayersOrder.save(context, ids)

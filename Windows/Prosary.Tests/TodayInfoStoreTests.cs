@@ -1,3 +1,4 @@
+using Prosary.Models;
 using Prosary.Services;
 using Xunit;
 
@@ -67,27 +68,50 @@ public class TodayInfoStoreTests
     public void CalendarRegistryListsTheShippedCalendarsInPickerOrder()
     {
         Assert.Equal(
-            new[] { "lpj", "roman", "roman-he", "roman1962", "ugcc", "syriac" },
+            new[] { "lpj", "roman", "roman1962", "ugcc", "syriac" },
             TodayInfoStore.Calendars.Select(c => c.Id));
         Assert.Equal("lpj", TodayInfoStore.ResolvedCalendarId);
+        Assert.All(TodayInfoStore.Calendars, calendar => Assert.False(string.IsNullOrWhiteSpace(calendar.ReadingsFile)));
     }
 
-    /// <summary>The Hebrew Roman table is Evangelizo's lectionary edition (credited on the
-    /// About screen): it titles the days whose readings are proper — so Bartholomew's feast
-    /// and the numbered Sundays appear in Hebrew, while a saint's memorial on ferial readings
-    /// (Gregory the Great, September 3) is absent by design, like ferial days everywhere
-    /// else.</summary>
+    /// <summary>The Evangelizo Hebrew lectionary titles now overlay the complete General Roman
+    /// table, rather than appearing as a duplicate calendar choice. Days without a sourced
+    /// Hebrew title keep the canonical English title.</summary>
     [Fact]
-    public void HebrewRomanCalendarRelaysTheLectionaryDays()
+    public void GeneralRomanCalendarCarriesHebrewTitlesInline()
     {
-        TodayInfoStore.SelectedCalendarId = "roman-he";
+        TodayInfoStore.SelectedCalendarId = "roman";
         var bartholomew = TodayInfoStore.Feast(new DateOnly(2026, 8, 24));
-        Assert.Equal("חג בר-תלמי השליח", bartholomew?.Title);
+        Assert.Equal("Saint Bartholomew, Apostle", bartholomew?.Title);
+        Assert.Equal("חג בר-תלמי השליח", bartholomew?.LocalizedTitle("he"));
         Assert.Equal("Feast", bartholomew?.Rank);
         var sunday = TodayInfoStore.Feast(new DateOnly(2026, 8, 30));
-        Assert.Equal("יום א ה-22 של הזמן הרגיל", sunday?.Title);
+        Assert.Equal("22nd Sunday of Ordinary Time", sunday?.Title);
+        Assert.Equal("יום א ה-22 של הזמן הרגיל", sunday?.LocalizedTitle("he"));
         Assert.Equal("Sunday", sunday?.Rank);
-        Assert.Null(TodayInfoStore.Feast(new DateOnly(2026, 9, 3)));
+        var gregory = TodayInfoStore.Feast(new DateOnly(2026, 9, 3));
+        Assert.Equal(gregory?.Title, gregory?.LocalizedTitle("he"));
+    }
+
+    [Fact]
+    public void LegacyHebrewRomanSelectionMigratesToGeneralRoman()
+    {
+        var original = AppSettings.FeastCalendarId;
+        try
+        {
+            AppSettings.SetFeastCalendarId("roman-he");
+            Assert.Equal("roman", AppSettings.FeastCalendarId);
+
+            TodayInfoStore.SelectedCalendarId = "roman-he";
+            Assert.Equal("roman", TodayInfoStore.ResolvedCalendarId);
+            Assert.Equal(
+                "Saint Bartholomew, Apostle",
+                TodayInfoStore.Feast(new DateOnly(2026, 8, 24))?.Title);
+        }
+        finally
+        {
+            AppSettings.SetFeastCalendarId(original);
+        }
     }
 
     /// <summary>The Syriac Catholic table comes from Evangelizo.org's Daily Gospel (credited
@@ -188,13 +212,48 @@ public class TodayInfoStoreTests
     {
         var readings = TodayInfoStore.Readings(new DateOnly(2026, 8, 31));
         Assert.Equal(new[] { "1 Cor. 2", "Ps. 119", "Lk. 4" }, readings.Select(r => r.Short));
+        Assert.Equal(new[] { "הראשונה אל הקורינתים ב׳", "תהלים קי״ט", "לוקס ד׳" },
+            readings.Select(r => r.LocalizedShort("he")));
         Assert.Equal("Luke 4:16–30", readings.Last().Full);
-        Assert.Equal("הבשורה על-פי לוקס 4:16–30", readings.Last().Hebrew);
+        Assert.Equal("הבשורה על-פי לוקס ד׳ 16–30", readings.Last().LocalizedFull("he"));
+
+        // Rite-specific Hebrew reads the same localized citation map instead of falling back to
+        // English or rebuilding punctuation at runtime.
+        Assert.Equal(readings.Last().LocalizedFull("he"), readings.Last().LocalizedFull("he-x-gamliel"));
 
         var day = TodayInfoStore.LiturgicalDay(new DateOnly(2026, 8, 31));
         Assert.StartsWith("Monday · Week ", day.English);
         Assert.EndsWith(" of Ordinary Time", day.English);
         Assert.Contains("בזמן הרגיל", day.Hebrew);
+    }
+
+    [Fact]
+    public void SwitchingCalendarsAlsoReloadsThatCalendarsReadings()
+    {
+        var date = new DateOnly(2026, 8, 31);
+
+        TodayInfoStore.SelectedCalendarId = "roman";
+        Assert.Equal(new[] { "1 Cor. 2", "Ps. 119", "Lk. 4" }, TodayInfoStore.Readings(date).Select(r => r.Short));
+
+        TodayInfoStore.SelectedCalendarId = "roman1962";
+        Assert.Equal(new[] { "Lk. 12" }, TodayInfoStore.Readings(date).Select(r => r.Short));
+
+        TodayInfoStore.SelectedCalendarId = "ugcc";
+        Assert.Equal(new[] { "Heb. 9", "Lk. 10" }, TodayInfoStore.Readings(date).Select(r => r.Short));
+
+        TodayInfoStore.SelectedCalendarId = "syriac";
+        Assert.Equal(new[] { "Rom. 7", "Lk. 17" }, TodayInfoStore.Readings(date).Select(r => r.Short));
+
+        // Switching back exercises cache invalidation rather than just first-load behavior.
+        TodayInfoStore.SelectedCalendarId = "roman";
+        Assert.Equal("1 Cor. 2", TodayInfoStore.Readings(date).First().Short);
+    }
+
+    [Fact]
+    public void ReadingsOutsideASelectedCalendarsCoverageAreEmpty()
+    {
+        TodayInfoStore.SelectedCalendarId = "syriac";
+        Assert.Empty(TodayInfoStore.Readings(new DateOnly(2031, 1, 1)));
     }
 
     [Fact]

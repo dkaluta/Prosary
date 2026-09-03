@@ -44,6 +44,39 @@ struct RosaryStep: Identifiable, Hashable {
   /// key is its identity and its MysteryTranslations lookup key.
   var imageVariantKey: String?
 
+  /// A step is already a presentation model, so Hebrew heading normalization belongs here rather
+  /// than in the canonical translation tables. Body/acclamation/transliteration are copied byte
+  /// for byte; only the user-visible title and subtitle lose Hebrew pointing.
+  init(
+    id: UUID = UUID(),
+    title: String,
+    subtitle: String? = nil,
+    body: String,
+    acclamation: String? = nil,
+    mystery: Mystery? = nil,
+    isScripture: Bool = false,
+    transliteratedBody: String? = nil,
+    isAntiphon: Bool = false,
+    decadeIndex: Int? = nil,
+    hailMaryIndexInDecade: Int? = nil,
+    imageOverrideKey: String? = nil,
+    imageVariantKey: String? = nil
+  ) {
+    self.id = id
+    self.title = HebrewDisplayText.unpointed(title)
+    self.subtitle = subtitle.map(HebrewDisplayText.unpointed)
+    self.body = body
+    self.acclamation = acclamation
+    self.mystery = mystery
+    self.isScripture = isScripture
+    self.transliteratedBody = transliteratedBody
+    self.isAntiphon = isAntiphon
+    self.decadeIndex = decadeIndex
+    self.hailMaryIndexInDecade = hailMaryIndexInDecade
+    self.imageOverrideKey = imageOverrideKey
+    self.imageVariantKey = imageVariantKey
+  }
+
   /// The asset-catalog image name this step should display: the alternate-artwork variant,
   /// the mystery's own image, an explicit override, or the neutral placeholder.
   var imageKey: String {

@@ -27,7 +27,7 @@
         <DataTemplate x:Key="PresetCardTemplate" x:DataType="models:Prayer">
             <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" CornerRadius="12" Padding="14" Margin="0,4">
                 <StackPanel Spacing="6">
-                    <TextBlock Text="{Binding Name}" FontWeight="SemiBold" FontSize="16" />
+                    <TextBlock Text="{Binding DisplayName}" FontWeight="SemiBold" FontSize="16" />
                     <TextBlock Text="{Binding FavoriteSubtitle}" Style="{StaticResource MutedCaptionTextStyle}" />
                     <Button x:Uid="BtnPray" Content="Pray" HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}"
                             Command="{Binding ElementName=Root, Path=ViewModel.PrayPresetCommand}" CommandParameter="{Binding}" />
@@ -151,6 +151,14 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBlock x:Uid="PickerOpeningPrayers" Grid.Column="0" Text="Opening Our Father &amp; 3 Hail Marys" VerticalAlignment="Center" TextWrapping="Wrap" />
                                 <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeOpeningPrayers, Mode=TwoWay}" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Uid="PickerOpeningFatima" Grid.Column="0" Text="Fatima Prayer after the opening Hail Marys" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeOpeningFatimaPrayer, Mode=TwoWay}" />
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>

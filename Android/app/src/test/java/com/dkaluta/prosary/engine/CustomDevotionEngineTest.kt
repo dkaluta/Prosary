@@ -11,6 +11,7 @@ import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.models.RosaryStep
+import com.dkaluta.prosary.typography.HebrewDisplayText
 import java.io.File
 import java.util.Date
 import org.junit.Assert.assertEquals
@@ -91,7 +92,7 @@ class CustomDevotionEngineTest {
         val hebrew = steps("trisagion", language = "he")
 
         assertEquals(
-            listOf("קדישת", "קדישת", "קדישת", "הַשֶּׁבַח לָאָב", "קדישת", "קדישת"),
+            listOf("קדישת", "קדישת", "קדישת", "השבח לאב", "קדישת", "קדישת"),
             mission.map { it.title },
         )
         assertTrue(mission[0].body.startsWith("אַתָּה ✠▼▲ קָדוֹשׁ – אֱלוֹהִים"))
@@ -99,7 +100,7 @@ class CustomDevotionEngineTest {
         assertFalse("the short form drops the second acclamation", mission[4].body.contains("חַיִל"))
 
         assertNotEquals(hebrew[0].body, mission[0].body)
-        assertEquals("קָדוֹשׁ הָאֱלֹהִים", hebrew[0].title)
+        assertEquals("קדוש האלהים", hebrew[0].title)
 
         // Not sent by the Mission: the Glory Be itself still reads their wording from the shared
         // table, and everything else falls through to plain Hebrew.
@@ -115,6 +116,19 @@ class CustomDevotionEngineTest {
         )
     }
 
+    @Test
+    fun hebrewHeadingsAreUnpointedWhilePrayerBodiesKeepTheirCanonicalMarks() {
+        val hebrew = steps("rosary", language = "he")
+
+        assertTrue(hebrew.all { it.title == HebrewDisplayText.unpoint(it.title) })
+        assertTrue(hebrew.all { step ->
+            step.subtitle?.let { it == HebrewDisplayText.unpoint(it) } ?: true
+        })
+        val hailMary = hebrew.first { it.imageKey == "virtue_faith" }
+        assertTrue(hailMary.body.contains("שִׂמְחִי מִרְיָם"))
+        assertNotEquals(HebrewDisplayText.unpoint(hailMary.body), hailMary.body)
+    }
+
 
     /** A repeated step's counter is part of the prayer, not the interface: praying in Hebrew, the Divine Mercy decade
      * reads "(1 מִתּוֹךְ 10)" rather than splicing an English word into right-to-left text. */
@@ -123,13 +137,13 @@ class CustomDevotionEngineTest {
     @Test
     fun decadeOrdinalUsesThePrayerLanguage() {
         assertTrue(steps("sevenSorrows", language = "en")[3].subtitle!!.startsWith("1st Sorrow"))
-        assertTrue(steps("sevenSorrows", language = "he")[3].subtitle!!.startsWith("מַכְאוֹב 1"))
+        assertTrue(steps("sevenSorrows", language = "he")[3].subtitle!!.startsWith("מכאוב 1"))
         assertTrue(steps("sevenSorrows", language = "ru")[3].subtitle!!.startsWith("Скорбь 1"))
     }
 
     @Test
     fun repeatCounterUsesThePrayerLanguage() {
-        assertTrue(steps("divineMercyChaplet", language = "he")[5].title.contains("(1 מִתּוֹךְ 10)"))
+        assertTrue(steps("divineMercyChaplet", language = "he")[5].title.contains("(1 מתוך 10)"))
         assertTrue(steps("divineMercyChaplet", language = "la")[5].title.contains("(1 ex 10)"))
         assertTrue(steps("divineMercyChaplet", language = "en")[5].title.contains("(1 of 10)"))
     }
@@ -151,7 +165,7 @@ class CustomDevotionEngineTest {
         )
         assertTrue(steps[0].body.contains("The Angel of the Lord declared unto Mary"))
         assertTrue(steps[0].body.contains("**And she conceived of the Holy Spirit.**"))
-        assertTrue(steps[1].body.contains("Hail Mary, full of grace"))
+        assertTrue(steps[1].body.contains("Hail Mary,\nfull of grace"))
         assertTrue(steps.last().body.contains("Pour forth, we beseech Thee"))
         assertFalse(steps.any { it.body.contains("Queen of Heaven") })
         assertTrue(steps.all { it.imageKey == "joyful_01_annunciation" })
@@ -203,7 +217,7 @@ class CustomDevotionEngineTest {
     @Test
     fun stationsHebrewUsesTheScripturalMeditations() {
         val steps = steps("stationsOfTheCross", language = "he")
-        assertEquals("יֵשׁוּעַ נִדּוֹן לַמָּוֶת", steps[2].title)
+        assertEquals("ישוע נדון למות", steps[2].title)
         assertTrue(steps[2].body.contains("מֵעֹ֤צֶר וּמִמִּשְׁפָּט֙ לֻקָּ֔ח"))
         assertTrue(steps.last().body.contains("נֶפֶשׁ הַמָּשִׁיחַ קַדְּשִׁינִי"))
     }
@@ -231,7 +245,7 @@ class CustomDevotionEngineTest {
         assertEquals("sorrowful_01_agony_in_the_garden", steps[2].imageKey)
         assertTrue(steps[2].acclamation?.contains("We adore You, O Christ") == true)
         assertFalse(steps[2].body.contains("We adore You"))
-        assertTrue(steps[2].body.contains("— Mark 14:32-36 (Douay-Rheims)"))
+        assertTrue(steps[2].body.contains("— Mark 14:32–36 (Douay-Rheims)"))
         assertEquals("scriptural_02_kiss_of_judas", steps[3].imageKey)
         assertEquals("Jesus Promises His Kingdom to the Good Thief", steps[12].title)
         assertEquals("seven_sorrows_05_crucifixion", steps[13].imageKey)
@@ -254,7 +268,7 @@ class CustomDevotionEngineTest {
     @Test
     fun stationsScripturalVariantHebrewTitles() {
         val steps = steps("stationsOfTheCross", language = "he", variantId = "scriptural")
-        assertEquals("יֵשׁוּעַ מִתְפַּלֵּל בְּגַת שְׁמָנִים", steps[2].title)
+        assertEquals("ישוע מתפלל בגת שמנים", steps[2].title)
         assertTrue(steps[2].body.contains("(דליטש)"))
     }
 
@@ -271,7 +285,7 @@ class CustomDevotionEngineTest {
         assertEquals("1st Station", steps[1].subtitle)
         assertEquals("glorious_01_resurrection", steps[1].imageKey)
         assertTrue(steps[1].acclamation?.contains("Because by Your holy Cross and Resurrection") == true)
-        assertTrue(steps[1].body.contains("— Matthew 28:1-7 (Douay-Rheims)"))
+        assertTrue(steps[1].body.contains("— Matthew 28:1–7 (Douay-Rheims)"))
         assertTrue(steps.subList(1, 15).all { it.isScripture })
         assertTrue(steps[4].body.contains("[…]"))
         assertEquals("Jesus Strengthens the Faith of Thomas", steps[8].title)
@@ -288,7 +302,7 @@ class CustomDevotionEngineTest {
     fun viaLucisLatinBodiesComeFromTheVulgate() {
         val steps = steps("viaLucis", language = "la")
         assertEquals("Iesus a mortuis resurgit", steps[1].title)
-        assertTrue(steps[1].body.contains("— Matth. 28:1-7 (Vulgata)"))
+        assertTrue(steps[1].body.contains("— Matth. 28:1–7 (Vulgata)"))
         assertTrue(steps[15].body.contains("Regina caeli, laetare, alleluia."))
     }
 
@@ -530,7 +544,7 @@ class CustomDevotionEngineTest {
         // Erez's rite overlays the same slot with his own line said thrice.
         val hebrewKyrie = steps("trisagion", language = "he", variantId = "syriac")[3]
         assertEquals("יֵשׁוּעַ שְׁמָעֵנוּ, הַמָּשִׁיחַ עָזְרֵנוּ, הָאָדוֹן חָנֵּנוּ.", hebrewKyrie.body)
-        assertEquals("יֵשׁוּעַ שְׁמָעֵנוּ", hebrewKyrie.title)
+        assertEquals("ישוע שמענו", hebrewKyrie.title)
         assertEquals("יְהֹוָה רַחֵם־נָא\nיְהֹוָה רַחֵם־נָא\nיְהֹוָה רַחֵם־נָא", steps("trisagion", language = "he-x-gamliel", variantId = "syriac")[3].body)
     }
 
@@ -557,7 +571,7 @@ class CustomDevotionEngineTest {
         // the same Aramaic in Syriac letters riding in the script-toggle transliteration.
         val aramaic = steps("trisagion", language = "arc")
         assertEquals(4, aramaic.size)
-        assertEquals("קַדּישַת אַלָהָא", aramaic[0].title)
+        assertEquals("קדישת אלהא", aramaic[0].title)
         assertEquals(
             "קַדּישַת אַלָהָא\nקַדִישַת חַילתָּנָא\nקַדִישַת לָא מִיותָּא אֶתַרחַמעלִין",
             aramaic[0].body,
@@ -570,7 +584,7 @@ class CustomDevotionEngineTest {
         // Erez supplied the Mission's doxology in both scripts on 2026-08-26. Pin every mark and
         // vowel so the Hebrew-square-script Aramaic and its pointed Syriac rendering cannot drift.
         val glory = steps("trisagion", language = "arc", variantId = "byzantine")[3]
-        assertEquals("שוּבחָא לַאבָא", glory.title)
+        assertEquals("שובחא לאבא", glory.title)
         assertEquals(
             "שוּבחָא לַאבָא ולַברָא וַלרוּחָא קַדישָא\nמֶן עָלַם וַעדַמָא לעָלַם עָלמִין. אַמִין.",
             glory.body,
@@ -585,7 +599,7 @@ class CustomDevotionEngineTest {
     @Test
     fun aramaicNiceneCreedPreservesBothSuppliedScripts() {
         val rosary = steps("rosary", language = "arc")
-        val creed = rosary.firstOrNull { it.title == "מהַימנִינַן" }
+        val creed = rosary.firstOrNull { it.title == "מהימנינן" }
         assertNotNull("Aramaic Rosary titles: ${rosary.map { it.title }}", creed)
         creed!!
         assertEquals(
@@ -602,7 +616,7 @@ class CustomDevotionEngineTest {
     @Test
     fun aramaicOurFatherPreservesBothSuppliedScripts() {
         val rosary = steps("rosary", language = "arc")
-        val abun = rosary.firstOrNull { it.title == "צלוּתָא מָרָנָיתָא" }
+        val abun = rosary.firstOrNull { it.title == "צלותא מרניתא" }
         assertNotNull("Aramaic Rosary titles: ${rosary.map { it.title }}", abun)
         abun!!
         assertEquals(
@@ -611,7 +625,7 @@ class CustomDevotionEngineTest {
                 "וַשבוּק לַן חַובַין וַחטָהַין אַיכַנָא דָאף חנַן שבַקן לחַיָבַין, " +
                 "ולָא תַעלַן לנֶסיוּנָא אֶלָא פַצָא לַן מֶן בִישָא, מֶטֻל דדִילָך הִי " +
                 "מַלכוּתָא וחַילָא ותֶשבוּחתָא לעָלַם עָלמִין אַמִין.",
-            abun.body,
+            abun.body.replace('\n', ' '),
         )
         assertEquals(
             "ܐܰܒ݁ܽܘܢ ܕܒܰܫܡܰܝܳܐ ܢܶܬܩܰܕܰܫ ܫܡܳܟ ܬܺܐܬܶܐ ܡܰܠܟܽܘܬܳܟ ܢܶܗܘܶܐ ܨܶܒܝܳܢܳܟ. " +
@@ -619,29 +633,33 @@ class CustomDevotionEngineTest {
                 "ܘܰܫܒܽܘܩ ܠܰܢ ܚܰܘܒܰܝ̈ܢ ܘܰܚܛܳܗܰܝ̈ܢ ܐܰܝܟܰܢܳܐ ܕܳܐܦ ܚܢܰܢ ܫܒܰܩܢ ܠܚܰܝܳܒܰܝ̈ܢ. " +
                 "ܘܠܳܐ ܬܰܥܠܰܢ ܠܢܶܣܝܽܘܢܳܐ ܐܶܠܳܐ ܦܰܨܳܐ ܠܰܢ ܡܶܢ ܒܺܝܫܳܐ. " +
                 "ܡܶܛܽܠ ܕܕܺܝܠܳܟ ܗܺܝ ܡܰܠܟܽܘܬܳܐ ܘܚܰܝܠܳܐ ܘܬܶܫܒܽܘܚܬܳܐ ܠܥܳܠܰܡ ܥܳܠܡܺܝܢ ܐܰܡܺܝܢ܀",
-            abun.transliteratedBody,
+            abun.transliteratedBody?.replace('\n', ' '),
         )
+        assertEquals(9, abun.body.lines().size)
+        assertEquals(abun.body.lines().size, abun.transliteratedBody?.lines()?.size)
     }
 
     /** Erez's Aramaic Hail Mary (2026-08-31), in Hebrew square and pointed Syriac scripts. */
     @Test
     fun aramaicHailMaryPreservesBothSuppliedScripts() {
         val rosary = steps("rosary", language = "arc")
-        val hailMary = rosary.firstOrNull { it.title == "שלָם לֶך מַריַם" }
+        val hailMary = rosary.firstOrNull { it.title.startsWith("שלם לך מרים") }
         assertNotNull("Aramaic Rosary titles: ${rosary.map { it.title }}", hailMary)
         hailMary!!
         assertEquals(
             "שלָם לֶך מַריַם מַליַת טַיבוּתָא, מָרַן עַמֶך מבַרַכתָא אַנת בנֶשָא " +
                 "וַמבַרַך הוּ פִירָא דַבכַרסֶך מָרַן יֶשוּע משִיחָא, מָרַת מַריַם יָלדַת " +
                 "אַלָהָא אַפִיס חלָפַין חנַן חַטָיָא, הָשָא וַבכֻלזבַן וַלעָלַם עָלמִין אַמִין.",
-            hailMary.body,
+            hailMary.body.replace('\n', ' '),
         )
         assertEquals(
             "ܫܠܳܡ ܠܶܟ ܡܰܪܝܰܡ ܡܰܠܝܰܬ ܛܰܝܒܽܘܬܳܐ, ܡܳܪܰܢ ܥܰܡܶܟ ܡܒܰܪܰܟܬܳܐ ܐܰܢܬ ܒܢܶܫܳܐ " +
                 "ܘܰܡܒܰܪܰܟ ܗܽܘ ܦܺܝܪܳܐ ܕܰܒܟܰܪܣܶܟ ܡܳܪܰܢ ܝܶܫܽܘܥ ܡܫܺܝܚܳܐ, ܡܳܪܰܬ ܡܰܪܝܰܡ ܝܳܠܕܰܬ " +
                 "ܐܰܠܳܗܳܐ ܐܰܦܺܝܣ ܚܠܳܦܰܝܢ ܚܢܰܢ ܚܰܛܳܝܳܐ, ܗܳܫܳܐ ܘܰܒܟܽܠܙܒܰܢ ܘܰܠܥܳܠܰܡ ܥܳܠܡܺܝܢ ܐܰܡܺܝܢ.",
-            hailMary.transliteratedBody,
+            hailMary.transliteratedBody?.replace('\n', ' '),
         )
+        assertEquals(7, hailMary.body.lines().size)
+        assertEquals(hailMary.body.lines().size, hailMary.transliteratedBody?.lines()?.size)
     }
 
     /** The Vicariate's Hebrew prayerbook leads each of the three acclamations with a cross, and
@@ -669,19 +687,19 @@ class CustomDevotionEngineTest {
     fun gamalielVariantOverlaysHebrew() {
         val variant = steps("rosary", language = "he-x-gamliel", customOptions = mapOf("apostlesCreed" to "true"))
         assertTrue("the Creed is the Nicene one", variant[1].body.contains("אָנוּ מַאֲמִינִים"))
-        assertEquals("מַאֲמִינִים שֶׁל נִיקֵאָה", variant[1].title)
+        assertEquals("מאמינים של ניקאה", variant[1].title)
         assertTrue("their Hail Mary", variant.any { it.body.contains("שָׁלוֹם לָךְ מִרְיָם") })
 
         // Headings belong to the rite that uses them: the Mission's in the Mission's rite, the
         // app's own in plain Hebrew.
         val hebrew = steps("rosary", language = "he", customOptions = mapOf("apostlesCreed" to "true"))
-        assertEquals("אוֹת הַצְּלָב", variant.first().title)
-        assertEquals("סִימַן הַצְּלָב", hebrew.first().title)
-        assertEquals("אֲנִי מַאֲמִין", hebrew[1].title)
-        assertTrue(variant.any { it.title == "שָׁלוֹם לָךְ מִרְיָם" })
-        assertTrue(hebrew.any { it.title == "שִׂמְחִי מִרְיָם" })
-        assertTrue(variant.any { it.title == "הַשֶּׁבַח לָאָב" })
-        assertTrue(hebrew.any { it.title == "כָּבוֹד לָאָב" })
+        assertEquals("אות הצלב", variant.first().title)
+        assertEquals("סימן הצלב", hebrew.first().title)
+        assertEquals("אני מאמין", hebrew[1].title)
+        assertTrue(variant.any { it.title.startsWith("שלום לך מרים") })
+        assertTrue(hebrew.any { it.title.startsWith("שמחי מרים") })
+        assertTrue(variant.any { it.title == "השבח לאב" })
+        assertTrue(hebrew.any { it.title == "כבוד לאב" })
 
         // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
         fun fatima(list: List<RosaryStep>) = list.firstOrNull { it.title.contains("הו ישוע") }?.body

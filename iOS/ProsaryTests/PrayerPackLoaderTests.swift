@@ -48,6 +48,86 @@ final class PrayerPackLoaderTests: XCTestCase {
     XCTAssertEqual(text, PrayerTranslations.english[.aveMaria])
   }
 
+  func testMysteryPartialsMergeWithoutErasingEarlierFields() {
+    let scripture = MysteryTextOverride(
+      title: nil, fruit: nil, description: "Peshitta", transliteratedDescription: "ܦܫܝܛܬܐ")
+    let laterMetadata = MysteryTextOverride(
+      title: "The Mystery", fruit: "Faith", description: nil,
+      transliteratedDescription: nil)
+
+    XCTAssertEqual(
+      scripture.merging(laterMetadata),
+      MysteryTextOverride(
+        title: "The Mystery", fruit: "Faith", description: "Peshitta",
+        transliteratedDescription: "ܦܫܝܛܬܐ"))
+
+    let replacement = scripture.merging(MysteryTextOverride(description: "Later Scripture"))
+    XCTAssertEqual(replacement.description, "Later Scripture")
+    XCTAssertNil(replacement.transliteratedDescription)
+  }
+
+  /// A source-language file may own only the Scripture reading. Its title and fruit resolve
+  /// independently through the ordinary precedence, while its Syriac-script reading aid stays
+  /// paired with that exact Peshitta description in the generated announcement step.
+  func testAramaicDescriptionOnlyMysteryOverrideFallsThroughFieldByField() throws {
+    PrayerPackStore.installedPacksDirectory = FileManager.default.temporaryDirectory
+      .appendingPathComponent("prosary-test-packs-\(UUID().uuidString)", isDirectory: true)
+    defer { try? FileManager.default.removeItem(at: PrayerPackStore.installedPacksDirectory) }
+
+    let id = "peshitta\(Int.random(in: 1000...9999))"
+    let imageKey = "\(id)_annunciation"
+    let manifest = """
+      {"schemaVersion": 1, "id": "\(id)", "kind": "\(id)",
+       "displayName": "Peshitta Test", "languages": ["arc", "en"],
+       "hasCatalog": false, "images": []}
+      """
+    let aramaicDescription = "מלכותא דשמיא קרבת — מתי א׳ 18–25 (פשיטתא)"
+    let syriacDescription = "ܡܠܟܘܬܐ ܕܫܡܝܐ ܩܪܒܬ — ܡܬܝ 1:18–25 (ܦܫܝܛܬܐ)"
+    let aramaicContent = """
+      {"prayers": {}, "mysteries": {"\(imageKey)": {
+        "description": "\(aramaicDescription)",
+        "transliteratedDescription": "\(syriacDescription)"
+      }}}
+      """
+    let englishContent = """
+      {"prayers": {}, "mysteries": {"\(imageKey)": {
+        "title": "The Inherited Mystery", "fruit": "Inherited fruit",
+        "description": "English fallback description"
+      }}}
+      """
+    let devotion = """
+      {"type": "rosary", "opening": [], "decades": {
+        "ordinalNoun": "Mystery", "announceMystery": true,
+        "entries": [{"imageKey": "\(imageKey)"}],
+        "majorStep": {"title": "Major", "bodyKey": "paterNoster"},
+        "minorStep": {"title": "Minor", "bodyKey": "aveMaria"},
+        "minorCount": 1
+      }, "closing": [], "hasClosingCross": false}
+      """
+    try PrayerPackStore.installPack(from: Self.storedZip([
+      ("manifest.json", Data(manifest.utf8)),
+      ("content/arc.json", Data(aramaicContent.utf8)),
+      ("content/en.json", Data(englishContent.utf8)),
+      ("devotion.json", Data(devotion.utf8)),
+    ]))
+    defer { PrayerPackStore.removeInstalledPack(id: id) }
+
+    let resolved = MysteryTranslations.get(languageCode: "arc", imageKey: imageKey)
+    XCTAssertEqual(resolved.title, "The Inherited Mystery")
+    XCTAssertEqual(resolved.fruit, "Inherited fruit")
+    XCTAssertEqual(resolved.description, aramaicDescription)
+    XCTAssertEqual(resolved.transliteratedDescription, syriacDescription)
+
+    let announcement = try XCTUnwrap(PrayerEngine().buildSteps(for: Prayer(
+      kind: .custom, languageCode: "arc", customDevotionId: id)).first)
+    let fruitLabel = PrayerTranslations.get(languageCode: "arc", key: .fructusMysteriiLabel)
+    XCTAssertEqual(announcement.title, "The Inherited Mystery")
+    XCTAssertEqual(announcement.body, "\(aramaicDescription)\n\n\(fruitLabel): Inherited fruit")
+    XCTAssertEqual(
+      announcement.transliteratedBody,
+      "\(syriacDescription)\n\n\(fruitLabel): Inherited fruit")
+  }
+
   /// A devotion converted to a bundle resolves entirely bundle-locally — its keys no longer
   /// exist in the hardcoded tables at all.
   func testConvertedDevotionKeyResolvesFromItsBundle() {

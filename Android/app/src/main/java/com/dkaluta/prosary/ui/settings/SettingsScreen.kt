@@ -1,28 +1,21 @@
 package com.dkaluta.prosary.ui.settings
 
 import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.compose.ui.Alignment
-import com.dkaluta.prosary.ui.shared.installErrorMessage
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.layout.Row
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.FileUpload
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import android.content.Context
 import android.text.format.Formatter
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.FileUpload
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -42,6 +35,7 @@ import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
@@ -54,7 +48,9 @@ import com.dkaluta.prosary.content.today.TodayInfoStore
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.HomeOrder
 import com.dkaluta.prosary.models.LanguageCatalog
+import com.dkaluta.prosary.ui.home.OrderEditor
 import com.dkaluta.prosary.ui.presets.OptionPickerField
+import com.dkaluta.prosary.ui.shared.installErrorMessage
 import java.io.File
 
 /** App-wide preferences (v0.7: populated beyond the single language picker — auto-advance,
@@ -472,50 +468,21 @@ fun SettingsScreen(onBack: () -> Unit) {
     }
 
     if (showsLanguageFallbackOrder) {
-        AlertDialog(
-            onDismissRequest = { showsLanguageFallbackOrder = false },
-            title = { Text(stringResource(R.string.settings_language_fallback_order_title)) },
-            text = {
-                Column(
-                    modifier = Modifier.heightIn(max = 520.dp).verticalScroll(rememberScrollState()),
-                    verticalArrangement = Arrangement.spacedBy(4.dp),
-                ) {
-                    Text(
-                        stringResource(R.string.settings_language_fallback_order_footer),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                    languageFallbackOrder.forEachIndexed { index, code ->
-                        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
-                            Text(
-                                LanguageCatalog.all.firstOrNull { it.code == code }?.nativeName ?: code,
-                                modifier = Modifier.weight(1f),
-                            )
-                            IconButton(
-                                enabled = index > 0,
-                                onClick = {
-                                    languageFallbackOrder = languageFallbackOrder.toMutableList().also {
-                                        val item = it.removeAt(index); it.add(index - 1, item)
-                                    }
-                                    AppSettings.setLanguageFallbackOrder(languageFallbackOrder)
-                                },
-                            ) { Icon(Icons.Filled.KeyboardArrowUp, contentDescription = stringResource(R.string.common_move_up)) }
-                            IconButton(
-                                enabled = index < languageFallbackOrder.lastIndex,
-                                onClick = {
-                                    languageFallbackOrder = languageFallbackOrder.toMutableList().also {
-                                        val item = it.removeAt(index); it.add(index + 1, item)
-                                    }
-                                    AppSettings.setLanguageFallbackOrder(languageFallbackOrder)
-                                },
-                            ) { Icon(Icons.Filled.KeyboardArrowDown, contentDescription = stringResource(R.string.common_move_down)) }
-                        }
-                    }
-                }
+        OrderEditor(
+            titles = languageFallbackOrder.map { code ->
+                code to (LanguageCatalog.all.firstOrNull { it.code == code }?.nativeName ?: code)
             },
-            confirmButton = {
-                TextButton(onClick = { showsLanguageFallbackOrder = false }) { Text(stringResource(R.string.common_done)) }
+            dialogTitle = stringResource(R.string.settings_language_fallback_order_title),
+            footer = stringResource(R.string.settings_language_fallback_order_footer),
+            onMove = { order ->
+                languageFallbackOrder = order
+                AppSettings.setLanguageFallbackOrder(order)
             },
+            onReset = {
+                AppSettings.setLanguageFallbackOrder(emptyList())
+                languageFallbackOrder = LanguageCatalog.fallbackOrder
+            },
+            onDismiss = { showsLanguageFallbackOrder = false },
         )
     }
 }

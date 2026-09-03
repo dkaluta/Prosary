@@ -172,7 +172,7 @@ struct RepositoryBrowserView: View {
     VStack(alignment: .leading, spacing: 4) {
       HStack {
         VStack(alignment: .leading, spacing: 2) {
-          Text(title)
+          Text(HebrewDisplayText.unpointed(title))
             .font(.headline)
           Text(verbatim: "\(bundle.author) · \(languageNames(bundle.languages))")
             .font(.caption)

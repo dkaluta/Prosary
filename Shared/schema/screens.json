@@ -3,7 +3,7 @@
   "rootScreen": "home",
   "screens": {
     "home": {
-      "purpose": "The Pray tab: a Today section that always shows the weekday and numbered week of the liturgical season, with an English/Hebrew display toggle; optional independently-switchable rows show the chosen calendar's feast and the Pope's monthly intention; a readings row shows shorthand lectionary citations and can expand them to full citations. Below it is one card per pinned devotion in the user's HomeOrder. The base directory is Rosary, every discovered generic bundle in pack-load order, then Jesus Prayer; saved configurations imply a pin on migration, while FavoriteDevotions lets a user pin/unpin without deleting any saved Prayer. The Rosary card opens its presets surface; generic and Jesus Prayer cards launch the saved default or an unsaved flow/setup when none exists. A fixed Basic Prayers row sits below the cards. Toolbar actions add Rosary/Jesus configurations, restore unpinned devotions, edit order, and open Settings/About where the platform exposes them in-app.",
+      "purpose": "The Pray tab: a Today section that always shows the weekday and numbered week of the liturgical season, with an English/Hebrew display toggle; optional independently-switchable rows show the chosen calendar's feast and the Pope's monthly intention. The readings row loads that same selected calendar's lectionary table, shows shorthand citations, and can expand them to full citations; a missing date never falls back across rites. Hebrew mode uses sourced title/citation localizations when present and makes the whole Today text stack RTL. Below it is one card per pinned devotion in the user's HomeOrder. The base directory is Rosary, every discovered generic bundle in pack-load order, then Jesus Prayer; saved configurations imply a pin on migration, while FavoriteDevotions lets a user pin/unpin without deleting any saved Prayer. The Rosary card opens its presets surface; generic and Jesus Prayer cards launch the saved default or an unsaved flow/setup when none exists. A fixed Basic Prayers row sits below the cards. Toolbar actions add Rosary/Jesus configurations, restore unpinned devotions, edit order, and open Settings/About where the platform exposes them in-app.",
       "parameters": {},
       "sources": {
         "iOS": "Views/Home/HomeView.swift",
@@ -45,7 +45,7 @@
       }
     },
     "rosaryFlow": {
-      "purpose": "The Rosary prayer flow — season bar, progress, bead track, mystery image/text, Back/Next footer.",
+      "purpose": "The Rosary prayer flow — season bar, progress, bead track, mystery image/text, Back/Next footer, previous/next-mystery jump controls, and an in-prayer language menu that keeps the same mystery/bead. An unfinished run offers Continue or Restart when this same preset is reopened on the same local day; continuing restores both position and language.",
       "parameters": {
         "prayerId": {
           "type": "uuid?",
@@ -64,7 +64,7 @@
       }
     },
     "customDevotionFlow": {
-      "purpose": "The single flow for every generic (bundle-driven) devotion (PrayerKind.custom), including Angelus, Stations of the Cross, Via Lucis, Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet, Trisagion, and the O Antiphons. Steps/title/season color are entirely data-driven from devotion.json/manifest.json. Rosary-type bundles render the shared bead track; steps-type bundles use a plain progress bar; days-type bundles add a day menu and tracked progression. The flow can pin/unpin the devotion, choose language and alternate form, edit schema-driven options through the saved row, and show an audio transport when audio.json has a matching language/form track. Chapter hints drive step syncing, manual Back/Next re-aligns audio, and auto-advance stands down during playback. Adding a generic devotion needs no new screen, only a bundle.",
+      "purpose": "The single flow for every generic (bundle-driven) devotion (PrayerKind.custom), including Angelus, Stations of the Cross, Via Lucis, Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet, Trisagion, and the O Antiphons. Steps/title/season color are entirely data-driven from devotion.json/manifest.json. Rosary-type bundles render the shared bead track; steps-type bundles use a plain progress bar; days-type bundles add a day menu and tracked progression. The flow can pin/unpin the devotion, choose language and alternate form, edit schema-driven options through the saved row, and show an audio transport when audio.json has a matching language/form track. Chapter hints drive step syncing, manual Back/Next re-aligns audio, and auto-advance stands down during playback. An unfinished run offers Continue or Restart and restores its saved position/language; completion clears it. Adding a generic devotion needs no new screen, only a bundle.",
       "parameters": {
         "devotionId": {
           "type": "string",
@@ -97,7 +97,7 @@
       }
     },
     "jesusPrayerFlow": {
-      "purpose": "The Jesus Prayer flow — one fixed prayer line plus a repetition counter, with no PrayerEngine step sequence. A star action saves/removes the matching target-and-language configuration so an unsaved setup can be pinned to Pray.",
+      "purpose": "The Jesus Prayer flow — one fixed prayer line plus a repetition counter, with no PrayerEngine step sequence. A star action saves/removes the matching target-and-language configuration so an unsaved setup can be pinned to Pray. A partially counted run offers Continue or Restart on re-entry and clears its bookmark when finished.",
       "parameters": {
         "prayerId": {
           "type": "uuid?",
@@ -125,7 +125,7 @@
       }
     },
     "settings": {
-      "purpose": "App-wide preferences: default prayer language (with the Hebrew Vicariate and Mission always listed separately), ordered language fallback precedence, the system-wide Aramaic Sign of the Cross form, Syriac/Hebrew prayer and Scripture typefaces, auto-advance, phone haptics (iOS/Android), favorite-basic-prayers-first, Pray ordering reset, independent Today-row switches and feast-calendar selection, installed-bundle import/export/removal where supported, audio-cache cleanup, and links to the repository, composer, and privacy policy.",
+      "purpose": "App-wide preferences: default prayer language (with the Hebrew Vicariate and Mission always listed separately), language fallback precedence edited with the same drag/reorder and reset interaction as Home Order, the system-wide Aramaic Sign of the Cross form, Syriac/Hebrew prayer and Scripture typefaces, auto-advance, phone haptics (iOS/Android), favorite-basic-prayers-first, Pray ordering reset, independent Today-row switches and a feast/reading calendar selection, installed-bundle import/export/removal where supported, audio-cache cleanup, and links to the repository, composer, and privacy policy.",
       "parameters": {},
       "sources": {
         "iOS": "Views/Settings/SettingsView.swift (macOS Settings scene, Cmd+,; iPhone/iPad sheet from Pray)",
@@ -134,7 +134,7 @@
       }
     },
     "rosaryPresetPicker": {
-      "purpose": "Pray -> Rosary: the default preset (one tap to pray), a full Pray-any-Rosary quick setup seeded from it with save-as-preset (never stealing the default slot unless it is the first), then the remaining presets. This surface now owns preset management through each card's edit/reminders/default/delete actions. Ad-hoc sessions are unsaved: iOS routes a Prayer value (AppRoute.rosaryQuickPray), Android uses a holder object because Compose routes are strings, and Windows passes the Prayer as the navigation parameter.",
+      "purpose": "Pray -> Rosary: the default preset (one tap to pray), a full Pray-any-Rosary quick setup seeded from it with save-as-preset (never stealing the default slot unless it is the first), then the remaining presets. This surface now owns preset management through each card's edit/reminders/default/delete actions; opening an iPhone context menu must retain the pressed card's visible bounding background. Ad-hoc sessions are unsaved: iOS routes a Prayer value (AppRoute.rosaryQuickPray), Android uses a holder object because Compose routes are strings, and Windows passes the Prayer as the navigation parameter.",
       "files": {
         "ios": "Views/Home/RosaryPresetsView.swift + Views/Home/RosaryQuickSetupView.swift",
         "android": "ui/home/RosaryPresetPickerScreen.kt",

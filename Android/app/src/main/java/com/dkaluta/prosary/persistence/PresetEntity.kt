@@ -54,6 +54,8 @@ data class PresetEntity(
     val specificMysteryOrder: Int = 1,
     val includeApostlesCreed: Boolean = true,
     val includeOpeningPrayers: Boolean = true,
+    // Defaults off for existing favorites. Added in DB version 9 (see MIGRATION_8_9).
+    val includeOpeningFatimaPrayer: Boolean = false,
     val includeFatimaPrayers: Boolean = true,
     val eternalRestForDeceased: String = EternalRestPlacement.None.name,
     val marianAntiphon: String = MarianAntiphonOption.Seasonal.name,
@@ -109,6 +111,7 @@ data class PresetEntity(
                 specificMysteryOrder = specificMysteryOrder,
                 includeApostlesCreed = includeApostlesCreed,
                 includeOpeningPrayers = includeOpeningPrayers,
+                includeOpeningFatimaPrayer = includeOpeningFatimaPrayer,
                 includeFatimaPrayer = includeFatimaPrayers,
                 eternalRestForDeceased = runCatching { EternalRestPlacement.valueOf(eternalRestForDeceased) }
                     .getOrDefault(EternalRestPlacement.None),
@@ -148,6 +151,7 @@ data class PresetEntity(
                 specificMysteryOrder = prayer.rosary.specificMysteryOrder,
                 includeApostlesCreed = prayer.rosary.includeApostlesCreed,
                 includeOpeningPrayers = prayer.rosary.includeOpeningPrayers,
+                includeOpeningFatimaPrayer = prayer.rosary.includeOpeningFatimaPrayer,
                 includeFatimaPrayers = prayer.rosary.includeFatimaPrayer,
                 eternalRestForDeceased = prayer.rosary.eternalRestForDeceased.name,
                 marianAntiphon = prayer.rosary.marianAntiphon.name,

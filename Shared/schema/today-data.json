@@ -1,0 +1,140 @@
+{
+  "$comment": "Canonical shape of Shared/data's offline Today datasets. The files are generated in Shared and physically copied into all three apps. The selected calendar controls both its feast file and readingsFile. Missing data hides the corresponding row; it never falls back to another rite. See ../ARCHITECTURE.md#offline-today-data-shareddata.",
+  "calendarRegistry": {
+    "file": "calendars.json",
+    "fields": {
+      "default": {
+        "type": "string",
+        "description": "Calendar id used when feastCalendarId is absent or unknown."
+      },
+      "calendars": {
+        "type": "CalendarDefinition[]"
+      }
+    },
+    "CalendarDefinition": {
+      "fields": {
+        "id": {
+          "type": "string"
+        },
+        "file": {
+          "type": "string",
+          "description": "Basename of this calendar's feast JSON."
+        },
+        "readingsFile": {
+          "type": "string",
+          "description": "Basename of this calendar's citation JSON. LPJ and General Roman intentionally share readings-roman."
+        },
+        "name": {
+          "type": "string",
+          "description": "English/source picker label."
+        },
+        "nameByLanguage": {
+          "type": "map<string, string>",
+          "default": {},
+          "description": "Authored localized picker labels."
+        }
+      }
+    },
+    "idsInPickerOrder": [
+      "lpj",
+      "roman",
+      "roman1962",
+      "ugcc",
+      "syriac"
+    ],
+    "legacyMigration": "Persisted roman-he maps to roman; roman-he is not a selectable calendar and has no dataset."
+  },
+  "feastDataset": {
+    "files": "feasts*.json named by CalendarDefinition.file",
+    "fields": {
+      "generated": {
+        "type": "YYYY-MM-DD"
+      },
+      "years": {
+        "type": "int[]"
+      },
+      "days": {
+        "type": "map<YYYY-MM-DD, FeastDay>"
+      }
+    },
+    "FeastDay": {
+      "fields": {
+        "title": {
+          "type": "string"
+        },
+        "rank": {
+          "type": "string"
+        },
+        "titleByLanguage": {
+          "type": "map<string, string>",
+          "default": {},
+          "description": "Sourced/authored localizations only. If the requested language is missing, display title; never machine-translate a feast."
+        }
+      }
+    }
+  },
+  "readingsDataset": {
+    "files": [
+      "readings-roman.json",
+      "readings-roman1962.json",
+      "readings-ugcc.json",
+      "readings-syriac.json"
+    ],
+    "fields": {
+      "generated": {
+        "type": "YYYY-MM-DD"
+      },
+      "days": {
+        "type": "map<YYYY-MM-DD, ReadingDay>"
+      }
+    },
+    "ReadingDay": {
+      "fields": {
+        "readings": {
+          "type": "ReadingCitation[]",
+          "description": "Ordered appointed citations only; no Scripture text."
+        }
+      }
+    },
+    "ReadingCitation": {
+      "constraints": "Every numeric range uses an en dash. Hebrew short/full values use book + gematria chapter + Arabic verse numbers with no colon.",
+      "fields": {
+        "type": {
+          "type": "string",
+          "allowed": [
+            "reading",
+            "psalm",
+            "gospel"
+          ]
+        },
+        "short": {
+          "type": "string",
+          "description": "Compact home form, normally book plus chapter."
+        },
+        "full": {
+          "type": "string",
+          "description": "Complete book/chapter/verse citation shown after expansion."
+        },
+        "shortByLanguage": {
+          "type": "map<string, string>",
+          "default": {}
+        },
+        "fullByLanguage": {
+          "type": "map<string, string>",
+          "default": {}
+        },
+        "hebrew": {
+          "type": "string?",
+          "deprecated": true,
+          "description": "Legacy full Hebrew citation accepted by readers; new generators write fullByLanguage.he."
+        }
+      }
+    },
+    "sources": {
+      "readings-roman": "Evangelizo publication edition HE (Novus Ordo; includes sourced Hebrew citation maps)",
+      "readings-roman1962": "Missale Meum public proper API (Vetus Ordo)",
+      "readings-ugcc": "Royal Doors public UGCC Gregorian calendar (Byzantine)",
+      "readings-syriac": "Evangelizo publication edition SYE (Syriac Catholic)"
+    }
+  }
+}
