@@ -234,10 +234,10 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Fact]
-    public void AngelusFallsBackToLatinWhenLanguageIsUnknown()
+    public void AngelusFollowsDefaultPrecedenceWhenLanguageIsUnknown()
     {
         var steps = BuildSteps("angelus", "xx");
-        Assert.Contains("Angelus Domini nuntiavit Mariae", steps[0].Body);
+        Assert.Contains("The Angel of the Lord declared unto Mary", steps[0].Body);
     }
 
     // Stations of the Cross (flat, translated titles)
@@ -472,13 +472,13 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     /// <summary>The sorrow texts live only in the bundle (they were deleted from the hardcoded
-    /// tables) — a language the bundle doesn't declare must fall back to the bundle's Latin
-    /// mysteries, not leak raw imageKeys as titles.</summary>
+    /// tables) — a language the bundle doesn't declare must follow the configured precedence
+    /// (English first by default), not leak raw imageKeys as titles.</summary>
     [Fact]
-    public void SevenSorrowsFallsBackToBundleLatinForAnUndeclaredLanguage()
+    public void SevenSorrowsFollowsDefaultPrecedenceForAnUndeclaredLanguage()
     {
         var steps = BuildSteps("sevenSorrows", "xx");
-        Assert.Equal("Simeonis Prophetia", steps[1].Title);
+        Assert.Equal("The Prophecy of Simeon", steps[1].Title);
     }
 
     // Divine Mercy Chaplet (rosary type, no announcements, fixed image)

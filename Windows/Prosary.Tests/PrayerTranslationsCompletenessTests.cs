@@ -39,7 +39,7 @@ public class PrayerTranslationsCompletenessTests : IClassFixture<PrayerPackLoade
     private static readonly Dictionary<string, Dictionary<string, string[]>> BundleKeysMissingLanguages = new()
     {
         // Veronica's station quotes Judith, and the Arabic/Tagalog scripture sources carry no
-        // deuterocanon — those two fall back to the bundle's Latin text.
+        // deuterocanon — those two follow the configured fallback order (English by default).
         ["stationsOfTheCross"] = new()
         {
             ["ar"] = ["station06Body"],
@@ -195,12 +195,13 @@ public class PrayerTranslationsCompletenessTests : IClassFixture<PrayerPackLoade
                 foreach (var key in keys)
                 {
                     var resolved = PrayerPackStore.ResolveBodyText(bundleId, language, key);
-                    // A missing bundle-local translation falls back to the bundle's Latin text
-                    // (or the hardcoded chain) — "still missing" means it doesn't resolve to
-                    // language-specific bundle content, i.e. it equals the Latin resolution.
-                    var latin = PrayerPackStore.ResolveBodyText(bundleId, "la", key);
+                    // These keys are absent from the requested language and therefore follow the
+                    // user's precedence list. The default order's first applicable language is
+                    // English; equality keeps the allowlist honest without assuming Latin is the
+                    // only possible fallback.
+                    var fallback = PrayerPackStore.ResolveBodyText(bundleId, "en", key);
                     Assert.True(
-                        resolved == latin,
+                        resolved == fallback,
                         $"{bundleId}/{language}: {key} now has its own translation — narrow BundleKeysMissingLanguages");
                 }
             }
