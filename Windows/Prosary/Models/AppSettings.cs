@@ -45,7 +45,7 @@ public static class AppSettings
         {
             if (_defaultLanguageCode is null)
             {
-                _defaultLanguageCode = ApplicationData.Current.LocalSettings.Values[KeyDefaultLanguage] as string
+                _defaultLanguageCode = ReadLocalSetting(KeyDefaultLanguage) as string
                     ?? LanguageCatalog.DefaultCode;
             }
             return _defaultLanguageCode;
@@ -56,7 +56,7 @@ public static class AppSettings
     public static void SetDefaultLanguageCode(string code)
     {
         DefaultLanguageCode = code;
-        ApplicationData.Current.LocalSettings.Values[KeyDefaultLanguage] = code;
+        WriteLocalSetting(KeyDefaultLanguage, code);
     }
 
     public const string AramaicSignOfCrossFormA = "formA";
@@ -77,7 +77,7 @@ public static class AppSettings
         {
             if (_aramaicSignOfCrossForm is null)
             {
-                var stored = ApplicationData.Current.LocalSettings.Values[KeyAramaicSignOfCrossForm] as string;
+                var stored = ReadLocalSetting(KeyAramaicSignOfCrossForm) as string;
                 _aramaicSignOfCrossForm = stored == AramaicSignOfCrossFormB
                     ? AramaicSignOfCrossFormB
                     : AramaicSignOfCrossFormA;
@@ -92,7 +92,7 @@ public static class AppSettings
         AramaicSignOfCrossForm = form == AramaicSignOfCrossFormB
             ? AramaicSignOfCrossFormB
             : AramaicSignOfCrossFormA;
-        ApplicationData.Current.LocalSettings.Values[KeyAramaicSignOfCrossForm] = AramaicSignOfCrossForm;
+        WriteLocalSetting(KeyAramaicSignOfCrossForm, AramaicSignOfCrossForm);
     }
 
     /// <summary>Whether the app-wide Aramaic form currently governs prayer text. An explicitly
@@ -101,49 +101,49 @@ public static class AppSettings
         (LanguageCatalog.BaseLanguage(DefaultLanguageCode) ?? DefaultLanguageCode) == "arc";
 
     public static string SyriacTypeface => _syriacTypeface ??=
-        ApplicationData.Current.LocalSettings.Values[KeySyriacTypeface] as string ?? TypefaceDefault;
+        ReadLocalSetting(KeySyriacTypeface) as string ?? TypefaceDefault;
     public static string HebrewPrayerTypeface => _hebrewPrayerTypeface ??=
-        ApplicationData.Current.LocalSettings.Values[KeyHebrewPrayerTypeface] as string ?? TypefaceDefault;
+        ReadLocalSetting(KeyHebrewPrayerTypeface) as string ?? TypefaceDefault;
     public static string HebrewScriptureTypeface => _hebrewScriptureTypeface ??=
-        ApplicationData.Current.LocalSettings.Values[KeyHebrewScriptureTypeface] as string ?? TypefaceDefault;
+        ReadLocalSetting(KeyHebrewScriptureTypeface) as string ?? TypefaceDefault;
 
     public static void SetSyriacTypeface(string value)
     {
         _syriacTypeface = value;
-        ApplicationData.Current.LocalSettings.Values[KeySyriacTypeface] = value;
+        WriteLocalSetting(KeySyriacTypeface, value);
     }
 
     public static void SetHebrewPrayerTypeface(string value)
     {
         _hebrewPrayerTypeface = value;
-        ApplicationData.Current.LocalSettings.Values[KeyHebrewPrayerTypeface] = value;
+        WriteLocalSetting(KeyHebrewPrayerTypeface, value);
     }
 
     public static void SetHebrewScriptureTypeface(string value)
     {
         _hebrewScriptureTypeface = value;
-        ApplicationData.Current.LocalSettings.Values[KeyHebrewScriptureTypeface] = value;
+        WriteLocalSetting(KeyHebrewScriptureTypeface, value);
     }
 
     public static IReadOnlySet<string> FavoriteBasicPrayerIds => _favoriteBasicPrayerIds ??=
-        ((ApplicationData.Current.LocalSettings.Values[KeyFavoriteBasicPrayers] as string) ?? string.Empty)
+        ((ReadLocalSetting(KeyFavoriteBasicPrayers) as string) ?? string.Empty)
             .Split('\n', StringSplitOptions.RemoveEmptyEntries).ToHashSet();
 
     public static bool FavoriteBasicPrayersFirst => _favoriteBasicPrayersFirst ??=
-        ApplicationData.Current.LocalSettings.Values[KeyFavoriteBasicPrayersFirst] as bool? ?? false;
+        ReadLocalSetting(KeyFavoriteBasicPrayersFirst) as bool? ?? false;
 
     public static void ToggleFavoriteBasicPrayer(string id)
     {
         var updated = FavoriteBasicPrayerIds.ToHashSet();
         if (!updated.Add(id)) updated.Remove(id);
         _favoriteBasicPrayerIds = updated;
-        ApplicationData.Current.LocalSettings.Values[KeyFavoriteBasicPrayers] = string.Join('\n', updated);
+        WriteLocalSetting(KeyFavoriteBasicPrayers, string.Join('\n', updated));
     }
 
     public static void SetFavoriteBasicPrayersFirst(bool value)
     {
         _favoriteBasicPrayersFirst = value;
-        ApplicationData.Current.LocalSettings.Values[KeyFavoriteBasicPrayersFirst] = value;
+        WriteLocalSetting(KeyFavoriteBasicPrayersFirst, value);
     }
 
     public static IReadOnlyList<string> LanguageFallbackOrder => _languageFallbackOrder ??=
@@ -152,18 +152,23 @@ public static class AppSettings
     public static void SetLanguageFallbackOrder(IEnumerable<string> codes)
     {
         _languageFallbackOrder = codes.ToArray();
-        var localSettings = TryGetLocalSettings();
-        if (localSettings is not null)
-        {
-            localSettings.Values[KeyLanguageFallbackOrder] = string.Join('\n', _languageFallbackOrder);
-        }
+        WriteLocalSetting(KeyLanguageFallbackOrder, string.Join('\n', _languageFallbackOrder));
     }
 
     private static IReadOnlyList<string> ReadLanguageFallbackOrder()
     {
-        var localSettings = TryGetLocalSettings();
-        return ((localSettings?.Values[KeyLanguageFallbackOrder] as string) ?? string.Empty)
+        return ((ReadLocalSetting(KeyLanguageFallbackOrder) as string) ?? string.Empty)
             .Split('\n', StringSplitOptions.RemoveEmptyEntries);
+    }
+
+    private static object? ReadLocalSetting(string key) => TryGetLocalSettings()?.Values[key];
+
+    private static void WriteLocalSetting(string key, object value)
+    {
+        if (TryGetLocalSettings() is { } localSettings)
+        {
+            localSettings.Values[key] = value;
+        }
     }
 
     private static ApplicationDataContainer? TryGetLocalSettings()
@@ -189,7 +194,7 @@ public static class AppSettings
         {
             if (_feastCalendarId is null)
             {
-                _feastCalendarId = ApplicationData.Current.LocalSettings.Values[KeyFeastCalendar] as string
+                _feastCalendarId = ReadLocalSetting(KeyFeastCalendar) as string
                     ?? string.Empty;
             }
             return _feastCalendarId;
@@ -200,7 +205,7 @@ public static class AppSettings
     public static void SetFeastCalendarId(string id)
     {
         FeastCalendarId = id;
-        ApplicationData.Current.LocalSettings.Values[KeyFeastCalendar] = id;
+        WriteLocalSetting(KeyFeastCalendar, id);
     }
 
     /// <summary>Whether Home's Today section shows the day's feast row — Erez's request: each
@@ -209,7 +214,7 @@ public static class AppSettings
     {
         get
         {
-            _showTodayFeast ??= ApplicationData.Current.LocalSettings.Values[KeyShowTodayFeast] as bool? ?? true;
+            _showTodayFeast ??= ReadLocalSetting(KeyShowTodayFeast) as bool? ?? true;
             return _showTodayFeast.Value;
         }
         private set => _showTodayFeast = value;
@@ -218,7 +223,7 @@ public static class AppSettings
     public static void SetShowTodayFeast(bool shows)
     {
         ShowTodayFeast = shows;
-        ApplicationData.Current.LocalSettings.Values[KeyShowTodayFeast] = shows;
+        WriteLocalSetting(KeyShowTodayFeast, shows);
     }
 
     /// <summary>Whether Home's Today section shows the Pope's monthly intention row.</summary>
@@ -226,7 +231,7 @@ public static class AppSettings
     {
         get
         {
-            _showTodayIntention ??= ApplicationData.Current.LocalSettings.Values[KeyShowTodayIntention] as bool? ?? true;
+            _showTodayIntention ??= ReadLocalSetting(KeyShowTodayIntention) as bool? ?? true;
             return _showTodayIntention.Value;
         }
         private set => _showTodayIntention = value;
@@ -235,7 +240,7 @@ public static class AppSettings
     public static void SetShowTodayIntention(bool shows)
     {
         ShowTodayIntention = shows;
-        ApplicationData.Current.LocalSettings.Values[KeyShowTodayIntention] = shows;
+        WriteLocalSetting(KeyShowTodayIntention, shows);
     }
 
     /// <summary>Seconds between automatic step advances in the prayer flows; 0 = off.</summary>
@@ -243,7 +248,7 @@ public static class AppSettings
     {
         get
         {
-            _autoAdvanceSeconds ??= ApplicationData.Current.LocalSettings.Values[KeyAutoAdvance] as int? ?? 0;
+            _autoAdvanceSeconds ??= ReadLocalSetting(KeyAutoAdvance) as int? ?? 0;
             return _autoAdvanceSeconds.Value;
         }
         private set => _autoAdvanceSeconds = value;
@@ -252,6 +257,6 @@ public static class AppSettings
     public static void SetAutoAdvanceSeconds(int seconds)
     {
         AutoAdvanceSeconds = seconds;
-        ApplicationData.Current.LocalSettings.Values[KeyAutoAdvance] = seconds;
+        WriteLocalSetting(KeyAutoAdvance, seconds);
     }
 }
