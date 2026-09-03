@@ -433,11 +433,11 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
         };
 
         var hebrew = _engine.BuildSteps(RosaryIn("he"));
-        Assert.Contains(hebrew, s => s.Subtitle?.Contains("הַפַּטְרִיאַרְךְ") == true);
+        Assert.Contains(hebrew, s => s.Subtitle?.Contains("הפטריארך") == true);
 
         var gamliel = _engine.BuildSteps(RosaryIn("he-x-gamliel"));
-        Assert.Contains(gamliel, s => s.Subtitle?.Contains("הַהֶגְמוֹן") == true);
-        Assert.DoesNotContain(gamliel, s => s.Subtitle?.Contains("הַפַּטְרִיאַרְךְ") == true);
+        Assert.Contains(gamliel, s => s.Subtitle?.Contains("ההגמון") == true);
+        Assert.DoesNotContain(gamliel, s => s.Subtitle?.Contains("הפטריארך") == true);
     }
 
     [Fact]
@@ -485,6 +485,88 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
         var combined = steps.Where(s => s.HailMaryIndexInDecade == 10).ToList();
         Assert.Equal(5, combined.Count);
         Assert.All(combined, s => Assert.StartsWith("eastern_", s.ImageVariantKey));
+    }
+
+    [Fact]
+    public void BuildSteps_OpeningFatimaPrayer_FollowsTheThreeOpeningHailMarys()
+    {
+        var steps = _engine.BuildSteps(SpecificRosary(new RosaryOptions
+        {
+            MysterySelectionMode = MysterySelectionMode.Specific,
+            SpecificMysteryGroup = MysteryGroup.Joyful,
+            IncludeOpeningPrayers = true,
+            IncludeOpeningFatimaPrayer = true,
+            IncludeFatimaPrayer = false,
+        })).ToList();
+
+        var fatimaIndex = steps.FindIndex(step => step.Title == "Fatima Prayer");
+        Assert.True(fatimaIndex > 0);
+        Assert.Equal("Hail Mary (3 of 3)", steps[fatimaIndex - 1].Title);
+        Assert.Equal("Glory Be", steps[fatimaIndex + 1].Title);
+        Assert.Single(steps.Where(step => step.Title == "Fatima Prayer"));
+    }
+
+    [Fact]
+    public void BuildSteps_OpeningVirtueHailMarysCarryLocalizedCounters()
+    {
+        var english = _engine.BuildSteps(SpecificRosary(languageCode: "en"));
+        Assert.Equal(
+            ["Hail Mary (1 of 3)", "Hail Mary (2 of 3)", "Hail Mary (3 of 3)"],
+            english.Where(step => step.ImageOverrideKey?.StartsWith("virtue_") == true)
+                .Select(step => step.Title));
+
+        var hebrew = _engine.BuildSteps(SpecificRosary(languageCode: "he"));
+        var opening = hebrew.Where(step => step.ImageOverrideKey?.StartsWith("virtue_") == true)
+            .ToList();
+        Assert.Equal(
+            ["שמחי מרים (1 מתוך 3)", "שמחי מרים (2 מתוך 3)", "שמחי מרים (3 מתוך 3)"],
+            opening.Select(step => step.Title));
+        Assert.All(opening, step => Assert.Contains('\u05B0', step.Body));
+    }
+
+    /// <summary>The Aramaic Rosary's bundle deliberately contributes only the Peshitta
+    /// Scripture for each mystery. Its ordinary title and fruit therefore continue through
+    /// the configured language fallback chain, while the Syriac-script rendering remains
+    /// paired with the Hebrew-square description that supplied it.</summary>
+    [Fact]
+    public void BuildSteps_AramaicMysteryUsesPeshittaAndItsSyriacTransliteration()
+    {
+        var original = AppSettings.LanguageFallbackOrder.ToArray();
+        try
+        {
+            AppSettings.SetLanguageFallbackOrder(["en", "la"]);
+
+            const string key = "joyful_01_annunciation";
+            var english = MysteryTranslations.Get("en", key);
+            var hebrew = MysteryTranslations.Get("he", key);
+            var aramaic = MysteryTranslations.Get("arc", key);
+
+            Assert.Equal(english.Title, aramaic.Title);
+            Assert.Equal(english.Fruit, aramaic.Fruit);
+            Assert.EndsWith("— לוּקָס א׳ 26–38 (דליטש)", hebrew.Description);
+            Assert.DoesNotContain("לוּקָס א׳:", hebrew.Description);
+            Assert.StartsWith("בירחא דין דשתא", aramaic.Description);
+            Assert.EndsWith("— לוקא א׳ 26–38 (פשיטתא)", aramaic.Description);
+            Assert.DoesNotContain("לוקא א׳:", aramaic.Description);
+            Assert.StartsWith("ܒܝܪܚܐ ܕܝܢ ܕܫܬܐ", aramaic.TransliteratedDescription);
+
+            var announcement = _engine.BuildSteps(SpecificRosary(languageCode: "arc"))
+                .First(step => step.Mystery?.ImageKey == key);
+            Assert.Equal(english.Title, announcement.Title);
+            Assert.StartsWith(aramaic.Description, announcement.Body);
+            Assert.NotNull(announcement.TransliteratedBody);
+            Assert.StartsWith(aramaic.TransliteratedDescription!, announcement.TransliteratedBody!);
+
+            // Both script renderings append exactly the same independently-resolved fruit
+            // label/fruit; a transliteration can never acquire a suffix from another source.
+            Assert.Equal(
+                announcement.Body[aramaic.Description.Length..],
+                announcement.TransliteratedBody![aramaic.TransliteratedDescription!.Length..]);
+        }
+        finally
+        {
+            AppSettings.SetLanguageFallbackOrder(original);
+        }
     }
 
     [Fact]

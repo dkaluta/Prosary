@@ -33,20 +33,11 @@ Calendars and their sources:
                          (~3 months ahead; farther dates answer "too far in the future"), so
                          this dataset covers as far as the API allows at generation time and
                          extends on each rerun — regenerate more often than yearly.
-  feasts-roman-he.json   Roman — Lectionary Calendar in Hebrew (Erez's request, 2026-08):
-                         Evangelizo's "HE" edition (its own Hebrew name is לוח המקראות הרומי,
-                         "the Roman lectionary calendar"), same publication API, credit, and
-                         rolling ~3-month window as SYE. The edition titles the days whose
-                         READINGS are proper — Sundays, feasts, solemnities, and the few
-                         memorials with their own Gospel (the Passion of John the Baptist,
-                         Our Lady of Sorrows, the Guardian Angels, All Souls) — while saints'
-                         memorials that keep the ferial readings arrive as plain ferias
-                         ("יום ה בשבוע כב' של הזמן הרגיל") and are skipped; the dataset is
-                         therefore sparser than feasts-roman.json, on purpose: Hebrew titles
-                         are never invented here (the Vicariate's print governs Hebrew), only
-                         relayed. Ranks are joined in from the litcal General Roman Calendar
-                         by date ("Sunday" for its Sundays), falling back to "Feast" (logged)
-                         when Evangelizo names a day litcal leaves ferial.
+  feasts-roman.json      also carries sourced Hebrew titles inline as
+                         titleByLanguage.he. They are relayed from Evangelizo's "HE" edition
+                         (לוח המקראות הרומי), never translated or invented. Because that
+                         edition only names days with proper readings, dates without a sourced
+                         Hebrew title simply fall back to the English General Roman title.
   feasts-ugcc.json       Byzantine — Ukrainian Greek Catholic, the diasporic (fully Gregorian)
                          usage prayed in the Holy Land: no licensed machine-readable source
                          exists, so the fixed menologion is CURATED IN THIS SCRIPT
@@ -66,7 +57,8 @@ Movable feasts are baked in per year at generation time — no computus ships in
 date outside a table simply hides the Today row. pope-intentions.json is maintained by hand
 from popesprayer.va (monthly prose, no API) and is untouched here.
 
-The per-day shape every platform's TodayInfoStore decodes is {"title": …, "rank": …}; the
+The per-day shape every platform's TodayInfoStore decodes is
+{"title": …, "rank": …, "titleByLanguage"?: {"he": …}}; the
 Pray screens bold the title when the rank is "Solemnity" or "1st Class". Sundays of the
 season carry rank "Sunday". Never rename ranks casually: validate-devotion.py's hours-type
 rank vocabulary camelCases the default calendar's set.
@@ -262,18 +254,21 @@ def syriac_days(start_year: int) -> dict:
     return days
 
 
-def roman_hebrew_days(start_year: int, roman: dict) -> dict:
-    """One entry per day the HE edition titles (see the module docstring — Sundays, feasts,
-    solemnities, proper-reading memorials; nothing is translated here, only relayed). The
-    rank is joined in from the litcal General Roman Calendar table by date; a day Evangelizo
-    names but litcal leaves ferial falls back to "Feast" and is logged for audit."""
-    days: dict[str, dict] = {}
-    for date, title in evangelizo_titles("HE", start_year).items():
-        entry = roman.get(date)
+def add_hebrew_titles(days: dict, titles: dict[str, str]) -> dict:
+    """Return a copy of ``days`` enriched with sourced Hebrew titles.
+
+    The HE publication sometimes names a proper-reading day that LitCal leaves ferial. Such
+    a row cannot safely be inserted into the General Roman sanctoral table with an invented
+    rank, so it is logged and omitted. Existing English titles always remain authoritative.
+    """
+    localized = {date: dict(entry) for date, entry in days.items()}
+    for date, title in titles.items():
+        entry = localized.get(date)
         if entry is None:
-            print(f"  (no litcal rank for {date} — {title!r} kept as Feast)")
-        days[date] = {"title": title, "rank": entry["rank"] if entry else "Feast"}
-    return days
+            print(f"  (no General Roman entry for sourced Hebrew title on {date}: {title!r})")
+            continue
+        entry["titleByLanguage"] = {"he": title}
+    return localized
 
 
 def gregorian_easter(year: int) -> dt.date:
@@ -449,7 +444,7 @@ def main() -> int:
         vetus.update(roman1962_days(year))
         ugcc.update(ugcc_days(year))
     syriac = syriac_days(years[0])
-    roman_he = roman_hebrew_days(years[0], roman)
+    roman = add_hebrew_titles(roman, evangelizo_titles("HE", years[0]))
 
     lpj = dict(roman)
     for year in years:
@@ -486,19 +481,10 @@ def main() -> int:
         "the API did at generation time and extends on each rerun of "
         "Shared/tools/fetch-feasts.py — regenerate more often than yearly.",
         sorted({int(key[:4]) for key in syriac}), syriac)
-    write_dataset(
-        DATA / "feasts-roman-he.json",
-        "Per-day table, Roman — Lectionary Calendar in Hebrew: liturgical day titles "
-        "courtesy of Evangelizo.org — Daily Gospel (© Evangelizo.org), publication edition "
-        "HE (לוח המקראות הרומי), used with attribution (also on every platform's About "
-        "screen); ranks joined from litcal.johnromanodorazio.com by date. The edition "
-        "titles the days whose readings are proper — Sundays, feasts, solemnities, the few "
-        "proper-Gospel memorials — so saints' memorials on ferial readings are absent by "
-        "design (Hebrew titles are relayed, never invented). Evangelizo serves a rolling "
-        "~3-month horizon, so this table ends where the API did at generation time and "
-        "extends on each rerun of Shared/tools/fetch-feasts.py — regenerate more often "
-        "than yearly.",
-        sorted({int(key[:4]) for key in roman_he}), roman_he)
+    obsolete = DATA / "feasts-roman-he.json"
+    if obsolete.exists():
+        obsolete.unlink()
+        print(f"removed obsolete {obsolete.relative_to(ROOT)}")
     write_dataset(
         DATA / "feasts-ugcc.json",
         "Per-day table, Byzantine — Ukrainian Greek Catholic, the diasporic (fully Gregorian) "
@@ -515,6 +501,9 @@ def main() -> int:
                 return 1
             for source in sorted(DATA.glob("*.json")):
                 shutil.copy2(source, target / source.name)
+            stale = target / "feasts-roman-he.json"
+            if stale.exists():
+                stale.unlink()
             print(f"synced -> {target.relative_to(ROOT)}")
     return 0
 

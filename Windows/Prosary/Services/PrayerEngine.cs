@@ -83,6 +83,7 @@ public sealed class PrayerEngine
         ["apostlesCreed"] = rosary.IncludeApostlesCreed ? "true" : "false",
         ["aramaicSignOfCrossForm"] = effectiveAramaicForm,
         ["openingPrayers"] = rosary.IncludeOpeningPrayers ? "true" : "false",
+        ["openingFatimaPrayer"] = rosary.IncludeOpeningFatimaPrayer ? "true" : "false",
         ["presenterMode"] = rosary.PresenterMode ? "true" : "false",
         ["fatimaPrayer"] = rosary.IncludeFatimaPrayer ? "true" : "false",
         ["eternalRest"] = CamelCase(rosary.EternalRestForDeceased.ToString()),
@@ -159,6 +160,22 @@ public sealed class PrayerEngine
     // "(3 of 10)" for a repeated step, connector translated into the prayer's own language.
     private static string Counter(int index, int total, string? languageCode) =>
         $"({index} {PrayerTranslations.Get(languageCode, PrayerKey.RepetitionCounterConnector)} {total})";
+
+    /// <summary>Builds the primary and alternate-script announcement bodies from one resolved
+    /// mystery. The spiritual fruit is shared verbatim between scripts because it resolved
+    /// independently from the Scripture source; only the description itself is transliterated.</summary>
+    private static (string Body, string? TransliteratedBody) MysteryBodies(
+        MysteryText mysteryText, string fruitLabel)
+    {
+        var fruit = string.IsNullOrEmpty(mysteryText.Fruit)
+            ? string.Empty
+            : $"\n\n{fruitLabel}: {mysteryText.Fruit}";
+        return (
+            mysteryText.Description + fruit,
+            mysteryText.TransliteratedDescription is { } transliterated
+                ? transliterated + fruit
+                : null);
+    }
 
     // Custom (bundle-driven) devotions
 
@@ -261,9 +278,10 @@ public sealed class PrayerEngine
     }
 
     /// <summary>Expands one <c>devotion.json</c> entry into its step(s): resolves the title
-    /// (literal or translated <c>titleKey</c>) and body, and unrolls <c>repeat</c> into
-    /// "(h of n)"-suffixed copies — deliberately without bead fields, matching the hardcoded
-    /// devotions' closing Hail Marys.</summary>
+    /// (literal or translated <c>titleKey</c>) and body, adds a localized counter to one
+    /// explicitly numbered entry (<c>counterIndex</c>/<c>counterTotal</c>), or unrolls
+    /// <c>repeat</c> into "(h of n)"-suffixed copies. Repeated copies deliberately carry no
+    /// bead fields.</summary>
     private static IReadOnlyList<RosaryStep> Expand(
         CustomDevotionStep entry, string bundleId, string? languageCode, MarianAntiphonOption seasonalAntiphon,
         IReadOnlyDictionary<string, string>? optionValues = null)
@@ -295,9 +313,12 @@ public sealed class PrayerEngine
             return [BuildMarianAntiphonStep(antiphon, languageCode)];
         }
 
-        var title = entry.TitleKey is { } titleKey
+        var baseTitle = entry.TitleKey is { } titleKey
             ? PrayerPackStore.ResolveBodyText(bundleId, languageCode, titleKey)
             : entry.Title ?? string.Empty;
+        var title = entry.CounterIndex is { } counterIndex && entry.CounterTotal is { } counterTotal
+            ? $"{baseTitle} {Counter(counterIndex, counterTotal, languageCode)}"
+            : baseTitle;
         var subtitle = entry.SubtitleKey is { } subtitleKey
             ? PrayerPackStore.ResolveBodyText(bundleId, languageCode, subtitleKey)
             : entry.Subtitle;
@@ -383,14 +404,11 @@ public sealed class PrayerEngine
                 if (decades.AnnounceMystery && entry is not null)
                 {
                     var mysteryText = MysteryTranslations.Get(languageCode, entry.ImageKey);
-                    var body = mysteryText.Description;
-                    if (!string.IsNullOrEmpty(mysteryText.Fruit))
-                    {
-                        body += $"\n\n{fruitLabel}: {mysteryText.Fruit}";
-                    }
+                    var (body, transliteratedBody) = MysteryBodies(mysteryText, fruitLabel);
 
                     steps.Add(new RosaryStep(mysteryText.Title, ordinalLabel, body,
-                        IsScripture: entry.IsScripture ?? true, DecadeIndex: d, ImageOverrideKey: entry.ImageKey));
+                        IsScripture: entry.IsScripture ?? true, TransliteratedBody: transliteratedBody,
+                        DecadeIndex: d, ImageOverrideKey: entry.ImageKey));
                     decadeSubtitle = $"{ordinalLabel} — {mysteryText.Title}";
                 }
 
@@ -457,6 +475,7 @@ public sealed class PrayerEngine
             {
                 var mystery = mysteries[d];
                 var mysteryText = MysteryTranslations.Get(languageCode, mystery.ImageKey);
+                var (announcementBody, transliteratedBody) = MysteryBodies(mysteryText, fruitLabel);
                 var ordinalLabel = showGroupName
                     // The group prefix is still English — MysteryGroup has no
                     // per-prayer-language name yet.
@@ -465,8 +484,9 @@ public sealed class PrayerEngine
                 var decadeSubtitle = $"{ordinalLabel} — {mysteryText.Title}";
 
                 steps.Add(new RosaryStep(mysteryText.Title, ordinalLabel,
-                    $"{mysteryText.Description}\n\n{fruitLabel}: {mysteryText.Fruit}",
-                    mystery, IsScripture: true, DecadeIndex: decadeIndex) { ImageVariantKey = VariantKey(mystery) });
+                    announcementBody,
+                    mystery, IsScripture: true, TransliteratedBody: transliteratedBody,
+                    DecadeIndex: decadeIndex) { ImageVariantKey = VariantKey(mystery) });
                 steps.Add(new RosaryStep(FixedTitle(decades.MajorStep), decadeSubtitle, majorBody,
                     DecadeIndex: decadeIndex, ImageOverrideKey: decades.MajorStep.ImageKey));
 

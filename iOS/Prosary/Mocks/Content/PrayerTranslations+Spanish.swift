@@ -25,10 +25,9 @@ extension PrayerTranslations {
       "En el nombre del Padre ✠ y del Hijo y del Espíritu Santo. Amén.",
 
     .paterNoster:
-      "Padre nuestro que estás en el cielo,\n" +
-      "santificado sea tu Nombre;\n" +
-      "venga a nosotros tu Reino;\n" +
-      "hágase tu voluntad en la tierra como en el cielo.\n" +
+      "Padre nuestro que estás en el cielo, santificado sea tu Nombre;\n" +
+      "venga a nosotros tu Reino; hágase tu voluntad\n" +
+      "en la tierra como en el cielo.\n" +
       "Danos hoy nuestro pan de cada día;\n" +
       "perdona nuestras ofensas,\n" +
       "como también nosotros perdonamos a los que nos ofenden;\n" +
@@ -52,12 +51,14 @@ extension PrayerTranslations {
     .requiemAeternam:
       "Dale Señor el descanso eterno.\n" +
       "Brille para él la luz perpetua.\n" +
-      "Descanse en paz. Amén.",
+      "Descanse en paz.\n" +
+      "Amén.",
 
     .subTuumPraesidiumTitle: "Bajo tu amparo",
 
     .subTuumPraesidium:
-      "Bajo tu amparo nos acogemos, Santa Madre de Dios;\n" +
+      "Bajo tu amparo nos acogemos,\n" +
+      "Santa Madre de Dios;\n" +
       "no deseches las súplicas que te dirigimos en nuestras necesidades;\n" +
       "antes bien, líbranos siempre de todo peligro,\n" +
       "¡Oh Virgen gloriosa y bendita!",

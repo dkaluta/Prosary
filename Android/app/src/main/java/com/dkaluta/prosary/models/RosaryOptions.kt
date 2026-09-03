@@ -15,6 +15,9 @@ data class RosaryOptions(
     var includeApostlesCreed: Boolean = true,
     /** The opening Our Father + 3 Hail Marys (for faith, hope, and charity) + Glory Be. */
     var includeOpeningPrayers: Boolean = true,
+    /** An optional Fatima Prayer immediately after those three opening Hail Marys, before their
+     * Glory Be and distinct from the usual Fatima Prayer after each mystery. */
+    var includeOpeningFatimaPrayer: Boolean = false,
     /** The Fatima Prayer ("O my Jesus...") recited after the Glory Be of each decade. */
     var includeFatimaPrayer: Boolean = true,
     var eternalRestForDeceased: EternalRestPlacement = EternalRestPlacement.None,

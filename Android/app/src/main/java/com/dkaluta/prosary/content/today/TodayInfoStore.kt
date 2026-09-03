@@ -1,6 +1,8 @@
 package com.dkaluta.prosary.content.today
 
 import com.dkaluta.prosary.models.AppSettings
+import com.dkaluta.prosary.models.LanguageCatalog
+import com.dkaluta.prosary.typography.HebrewDisplayText
 import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -15,7 +17,11 @@ data class FeastDay(
      * "Optional Memorial" (Roman), "1st Class" … "3rd Class" (1962). Display styling bolds
      * "Solemnity" and "1st Class". */
     val rank: String,
-)
+    val titleByLanguage: Map<String, String>? = null,
+) {
+    fun localizedTitle(language: String): String =
+        HebrewDisplayText.unpoint(titleByLanguage.localized(language) ?: title)
+}
 
 @Serializable
 data class PopeIntention(
@@ -24,14 +30,42 @@ data class PopeIntention(
     val titleByLanguage: Map<String, String>? = null,
     val textByLanguage: Map<String, String>? = null,
 ) {
-    fun localizedTitle(language: String) = titleByLanguage?.get(language) ?: title
-    fun localizedText(language: String) = textByLanguage?.get(language) ?: text
+    fun localizedTitle(language: String) =
+        HebrewDisplayText.unpoint(titleByLanguage.localized(language) ?: title)
+    fun localizedText(language: String) = textByLanguage.localized(language) ?: text
 }
 
 @Serializable
-data class ReadingCitation(val type: String, val short: String, val full: String, val hebrew: String)
+data class ReadingCitation(
+    val type: String,
+    val short: String,
+    val full: String,
+    /** Legacy field in the first Roman readings table. New tables use [fullByLanguage]. */
+    val hebrew: String? = null,
+    val shortByLanguage: Map<String, String>? = null,
+    val fullByLanguage: Map<String, String>? = null,
+) {
+    fun localizedShort(language: String): String = shortByLanguage.localized(language) ?: short
+
+    fun localizedFull(language: String): String =
+        fullByLanguage.localized(language)
+            ?: if ((LanguageCatalog.baseLanguage(language) ?: language) == "he") hebrew ?: full else full
+}
+
+/** A prayer-language variant first uses its own authored text, then its base language's text.
+ * This keeps the Hebrew Mission variant on sourced Hebrew feast titles and citations without
+ * duplicating those maps under `he-x-gamliel`. */
+private fun Map<String, String>?.localized(language: String): String? =
+    this?.get(language) ?: LanguageCatalog.baseLanguage(language)?.let { this?.get(it) }
 
 data class LiturgicalDayInfo(val english: String, val hebrew: String)
+
+/** The Today card initially follows the app's prayer language, including Hebrew variants. Its
+ * translation button may then override this for the lifetime of the current Home screen. */
+object TodayTranslationLanguage {
+    fun defaultsToHebrew(languageCode: String): Boolean =
+        (LanguageCatalog.baseLanguage(languageCode) ?: languageCode) == "he"
+}
 
 /** One entry of calendars.json — a switchable feast calendar. */
 @Serializable
@@ -41,6 +75,8 @@ data class FeastCalendar(
     val file: String,
     val name: String,
     val nameByLanguage: Map<String, String>? = null,
+    /** Basename of this rite's readings table. Null deliberately means no readings. */
+    val readingsFile: String? = null,
 ) {
     /** The Settings picker label, resolved by UI language with the plain name as fallback.
      * [Locale.getDefault] still reports Hebrew as the legacy "iw"; the registry speaks
@@ -48,7 +84,7 @@ data class FeastCalendar(
     val displayName: String
         get() {
             val uiLanguage = Locale.getDefault().language.let { if (it == "iw") "he" else it }
-            return nameByLanguage?.get(uiLanguage) ?: name
+            return HebrewDisplayText.unpoint(nameByLanguage?.get(uiLanguage) ?: name)
         }
 }
 
@@ -76,7 +112,7 @@ private data class CalendarsFile(
  * in the app). calendars.json is the registry of switchable calendars (2026-08, Erez's
  * request): the app-wide [AppSettings.feastCalendarId] setting picks one, defaulting — also for
  * unknown ids — to the registry's default (the Latin Patriarchate of Jerusalem overlay). The
- * feast table reloads whenever the selection changes; the calendar affects this row only, never
+ * feast and readings tables reload whenever the selection changes; this setting does not alter
  * the engine's season/mystery machinery. A date/month outside the datasets returns null and the
  * row simply hides — regenerating the JSON yearly is the only maintenance.
  *
@@ -91,6 +127,7 @@ object TodayInfoStore {
     private var readingsByDay: Map<String, ReadingDay> = emptyMap()
     private var registry: CalendarsFile? = null
     private var loadedCalendarId: String? = null
+    private var loadedReadingsCalendarId: String? = null
     private var didLoad = false
 
     /** The registry's calendars, in picker order. */
@@ -102,7 +139,9 @@ object TodayInfoStore {
     val selectedCalendarId: String
         get() {
             val registry = registry ?: return "lpj"
-            val stored = AppSettings.feastCalendarId
+            // v0.10 folded the Hebrew-title Roman entry into the ordinary General Roman
+            // calendar. Preserve that old selection instead of unexpectedly sending it to LPJ.
+            val stored = if (AppSettings.feastCalendarId == "roman-he") "roman" else AppSettings.feastCalendarId
             if (stored.isNotEmpty() && registry.calendars.any { it.id == stored }) return stored
             return registry.default
         }
@@ -114,8 +153,10 @@ object TodayInfoStore {
 
     fun intention(date: Date = Date()): PopeIntention? = intentionsByMonth[key(date, "yyyy-MM")]
 
-    fun readings(date: Date = Date()): List<ReadingCitation> =
-        readingsByDay[key(date, "yyyy-MM-dd")]?.readings.orEmpty()
+    fun readings(date: Date = Date()): List<ReadingCitation> {
+        ensureReadingsLoaded()
+        return readingsByDay[key(date, "yyyy-MM-dd")]?.readings.orEmpty()
+    }
 
     fun liturgicalDayInfo(date: Date = Date()): LiturgicalDayInfo {
         val cal = java.util.Calendar.getInstance().apply { time = date }
@@ -179,7 +220,18 @@ object TodayInfoStore {
 
         registry = decode<CalendarsFile>("calendars")
         intentionsByMonth = decode<IntentionsFile>("pope-intentions")?.months ?: emptyMap()
-        readingsByDay = decode<ReadingsFile>("readings")?.days ?: emptyMap()
+    }
+
+    /** Gives plain JVM tests an isolated store for custom registries and missing-file cases. */
+    internal fun resetForTesting() {
+        openData = null
+        feastsByDay = emptyMap()
+        intentionsByMonth = emptyMap()
+        readingsByDay = emptyMap()
+        registry = null
+        loadedCalendarId = null
+        loadedReadingsCalendarId = null
+        didLoad = false
     }
 
     /** The feast table is per-calendar: whenever the resolved selection differs from what is
@@ -191,6 +243,18 @@ object TodayInfoStore {
         loadedCalendarId = selected
         val file = registry?.calendars?.firstOrNull { it.id == selected }?.file ?: "feasts"
         feastsByDay = decode<FeastsFile>(file)?.days ?: emptyMap()
+    }
+
+    /** Readings are selected independently from feasts because two calendars can share a
+     * lectionary (LPJ and the General Roman calendar), while another calendar can safely ship no
+     * table at all. A missing or malformed file produces an empty row; it must never leak the
+     * Roman readings into a Byzantine, Vetus Ordo, or Syriac selection. */
+    private fun ensureReadingsLoaded() {
+        val selected = selectedCalendarId
+        if (selected == loadedReadingsCalendarId) return
+        loadedReadingsCalendarId = selected
+        val file = registry?.calendars?.firstOrNull { it.id == selected }?.readingsFile
+        readingsByDay = file?.let { decode<ReadingsFile>(it)?.days }.orEmpty()
     }
 
     private inline fun <reified T> decode(name: String): T? =

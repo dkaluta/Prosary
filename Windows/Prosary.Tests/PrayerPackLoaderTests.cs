@@ -48,6 +48,32 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Fact]
+    public void SparseMysteryLayersMergeFieldsWithoutCrossPairingTransliterations()
+    {
+        var complete = new MysteryTextOverride(
+            Title: "Earlier title",
+            Fruit: "Earlier fruit",
+            Description: "Earlier description",
+            TransliteratedDescription: "Earlier transliteration");
+
+        var titleOnly = PrayerPackStore.MergeMysteryOverrides(
+            complete,
+            new MysteryTextOverride(Title: "Later title"));
+        Assert.Equal("Later title", titleOnly.Title);
+        Assert.Equal("Earlier fruit", titleOnly.Fruit);
+        Assert.Equal("Earlier description", titleOnly.Description);
+        Assert.Equal("Earlier transliteration", titleOnly.TransliteratedDescription);
+
+        var newDescription = PrayerPackStore.MergeMysteryOverrides(
+            titleOnly,
+            new MysteryTextOverride(Description: "Later description"));
+        Assert.Equal("Later title", newDescription.Title);
+        Assert.Equal("Earlier fruit", newDescription.Fruit);
+        Assert.Equal("Later description", newDescription.Description);
+        Assert.Null(newDescription.TransliteratedDescription);
+    }
+
+    [Fact]
     public void AngelusPackProvidesHebrewComposedBody()
     {
         var text = PrayerPackStore.ResolveBodyText("angelus", "he", "angelusCollectBody");

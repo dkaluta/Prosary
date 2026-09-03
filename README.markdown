@@ -43,6 +43,7 @@ each is a self-contained uv script, so there is nothing to install beyond uv its
 uv run --script Shared/tools/validate-devotion.py Shared/content/rosary   # validate a bundle source
 Shared/tools/make-prosaryprayer.sh Shared/content/rosary                  # pack it (validates first)
 uv run --script Shared/tools/test-validate-devotion.py                    # the validator's own test suite
+uv run --script Shared/tools/test-import-scripture.py                     # Erez's converter + Peshitta pack parity
 uv run --script Shared/tools/import-scripture.py --check                  # Aramaic/Greek/Spanish scripture, from checkable editions
 uv run --script Shared/tools/fetch-readings.py --sync                    # Daily lectionary citations for the Today card
 uv run --script Shared/tools/bump-version.py --check                      # one version across all three platforms

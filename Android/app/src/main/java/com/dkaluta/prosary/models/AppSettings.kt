@@ -110,7 +110,8 @@ object AppSettings {
             ?: ARAMAIC_SIGN_OF_CROSS_FORM_A
         autoAdvanceSeconds = resolved.getInt(KEY_AUTO_ADVANCE, 0)
         hapticsOnAdvance = resolved.getBoolean(KEY_HAPTICS, false)
-        feastCalendarId = resolved.getString(KEY_FEAST_CALENDAR, "") ?: ""
+        val storedFeastCalendar = resolved.getString(KEY_FEAST_CALENDAR, "") ?: ""
+        feastCalendarId = if (storedFeastCalendar == "roman-he") "roman" else storedFeastCalendar
         showTodayFeast = resolved.getBoolean(KEY_SHOW_TODAY_FEAST, true)
         showTodayIntention = resolved.getBoolean(KEY_SHOW_TODAY_INTENTION, true)
         syriacTypeface = resolved.getString(KEY_SYRIAC_TYPEFACE, TYPEFACE_DEFAULT) ?: TYPEFACE_DEFAULT

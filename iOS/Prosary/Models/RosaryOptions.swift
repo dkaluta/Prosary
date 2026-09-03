@@ -23,6 +23,10 @@ struct RosaryOptions: Hashable, Codable {
   /// The opening Our Father + 3 Hail Marys (for faith, hope, and charity) + Glory Be.
   var includeOpeningPrayers: Bool = true
 
+  /// An optional Fatima Prayer immediately after the three virtue Hail Marys (before the
+  /// opening Glory Be), independent of the usual after-each-decade Fatima Prayer setting.
+  var includeOpeningFatimaPrayer: Bool = false
+
   /// The Fatima Prayer ("O my Jesus...") recited after the Glory Be of each decade.
   var includeFatimaPrayer: Bool = true
 
@@ -59,9 +63,9 @@ struct RosaryOptions: Hashable, Codable {
       return String(localized: "rosaryOptions.summary.always", defaultValue: "Always \(specificMysteryGroup.displayName)")
     case .singleMystery:
       let chosen = MysteryCatalog.forGroup(specificMysteryGroup).first { $0.order == specificMysteryOrder }
-      let title = chosen.map { MysteryTranslations.get(
+      let title = chosen.map { HebrewDisplayText.unpointed(MysteryTranslations.get(
         languageCode: Bundle.main.preferredLocalizations.first.map { String($0.prefix(2)) },
-        imageKey: $0.imageKey).title } ?? specificMysteryGroup.displayName
+        imageKey: $0.imageKey).title) } ?? specificMysteryGroup.displayName
       return String(localized: "rosaryOptions.summary.singleMystery", defaultValue: "Only \(title)")
     case .fifteenMystery:
       return String(localized: "rosaryOptions.summary.fifteenMystery", defaultValue: "The 15 Mysteries")

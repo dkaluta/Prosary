@@ -50,6 +50,7 @@ import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.models.RosaryOptions
+import com.dkaluta.prosary.typography.HebrewDisplayText
 import com.dkaluta.prosary.services.LocalAppServices
 import com.dkaluta.prosary.ui.favorites.RosaryOptionsEditorScreen
 import kotlinx.coroutines.launch
@@ -288,7 +289,7 @@ private fun PresetCard(
             }
         }
         Text(
-            preset.name,
+            HebrewDisplayText.unpoint(preset.name),
             style = if (prominent) MaterialTheme.typography.titleLarge else MaterialTheme.typography.titleMedium,
         )
         Text(

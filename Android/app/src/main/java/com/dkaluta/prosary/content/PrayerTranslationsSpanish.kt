@@ -10,38 +10,39 @@ val prayerTranslationsSpanish: Map<PrayerKey, String> = mapOf(
     PrayerKey.SignumCrucis to
         "En el nombre del Padre ✠ y del Hijo y del Espíritu Santo. Amén.",
     PrayerKey.PaterNoster to
-        "Padre nuestro que estás en el cielo,\n" +
-            "santificado sea tu Nombre;\n" +
-            "venga a nosotros tu Reino;\n" +
-            "hágase tu voluntad en la tierra como en el cielo.\n" +
-            "Danos hoy nuestro pan de cada día;\n" +
-            "perdona nuestras ofensas,\n" +
-            "como también nosotros perdonamos a los que nos ofenden;\n" +
-            "no nos dejes caer en la tentación,\n" +
-            "y líbranos del mal. Amén.",
+        "Padre nuestro que estás en el cielo, santificado sea tu Nombre;\n" +
+        "venga a nosotros tu Reino; hágase tu voluntad\n" +
+        "en la tierra como en el cielo.\n" +
+        "Danos hoy nuestro pan de cada día;\n" +
+        "perdona nuestras ofensas,\n" +
+        "como también nosotros perdonamos a los que nos ofenden;\n" +
+        "no nos dejes caer en la tentación,\n" +
+        "y líbranos del mal. Amén.",
     PrayerKey.AveMaria to
         "Dios te salve, María, llena eres de gracia;\n" +
-            "el Señor es contigo.\n" +
-            "Bendita Tú eres entre todas las mujeres,\n" +
-            "y bendito es el fruto de tu vientre, Jesús.\n" +
-            "Santa María, Madre de Dios,\n" +
-            "ruega por nosotros, pecadores,\n" +
-            "ahora y en la hora de nuestra muerte. Amén.",
+        "el Señor es contigo.\n" +
+        "Bendita Tú eres entre todas las mujeres,\n" +
+        "y bendito es el fruto de tu vientre, Jesús.\n" +
+        "Santa María, Madre de Dios,\n" +
+        "ruega por nosotros, pecadores,\n" +
+        "ahora y en la hora de nuestra muerte. Amén.",
     PrayerKey.GloriaPatri to
         "Gloria al Padre y al Hijo y al Espíritu Santo.\n" +
-            "Como era en el principio, ahora y siempre,\n" +
-            "por los siglos de los siglos. Amén.",
+        "Como era en el principio, ahora y siempre,\n" +
+        "por los siglos de los siglos. Amén.",
     PrayerKey.RequiemAeternam to
         "Dale Señor el descanso eterno.\n" +
-            "Brille para él la luz perpetua.\n" +
-            "Descanse en paz. Amén.",
+        "Brille para él la luz perpetua.\n" +
+        "Descanse en paz.\n" +
+        "Amén.",
     PrayerKey.SubTuumPraesidiumTitle to
         "Bajo tu amparo",
     PrayerKey.SubTuumPraesidium to
-        "Bajo tu amparo nos acogemos, Santa Madre de Dios;\n" +
-            "no deseches las súplicas que te dirigimos en nuestras necesidades;\n" +
-            "antes bien, líbranos siempre de todo peligro,\n" +
-            "¡Oh Virgen gloriosa y bendita!",
+        "Bajo tu amparo nos acogemos,\n" +
+        "Santa Madre de Dios;\n" +
+        "no deseches las súplicas que te dirigimos en nuestras necesidades;\n" +
+        "antes bien, líbranos siempre de todo peligro,\n" +
+        "¡Oh Virgen gloriosa y bendita!",
     PrayerKey.SalveReginaTitle to
         "Dios te salve, Reina",
     PrayerKey.SalveRegina to

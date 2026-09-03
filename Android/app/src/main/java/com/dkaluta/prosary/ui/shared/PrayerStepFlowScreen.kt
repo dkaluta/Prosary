@@ -52,6 +52,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -77,6 +78,7 @@ import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.RosaryStep
+import com.dkaluta.prosary.typography.HebrewDisplayText
 import com.dkaluta.prosary.typography.PrayerTypography
 import com.dkaluta.prosary.ui.theme.extraColors
 import kotlinx.coroutines.delay
@@ -125,6 +127,9 @@ fun PrayerStepFlowScreen(
     // shared by every flow, so a choice made in the Rosary carries into the Stations.
     var autoAdvanceSeconds by remember { mutableIntStateOf(AppSettings.autoAdvanceSeconds) }
     var autoAdvanceMenuExpanded by remember { mutableStateOf(false) }
+    // A reading-aid choice belongs to this prayer run. Keep it through step changes and layout
+    // recompositions, but discard it when this flow leaves composition.
+    var showsTransliteration by rememberSaveable { mutableStateOf(false) }
 
     // A gentle tap when the step changes — tester-requested (Erez), off by default, app-wide
     // like autoAdvanceSeconds. Keyed to the step change rather than the button, so Back and a
@@ -183,7 +188,7 @@ fun PrayerStepFlowScreen(
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text(title) },
+                    title = { Text(HebrewDisplayText.unpoint(title)) },
                     navigationIcon = {
                         IconButton(onClick = onNavigateUp) {
                             Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.common_back))
@@ -240,6 +245,8 @@ fun PrayerStepFlowScreen(
                                 isRightToLeft = isRightToLeft,
                                 availableHeight = maxHeight,
                                 accessory = accessory,
+                                showsTransliteration = showsTransliteration,
+                                onToggleTransliteration = { showsTransliteration = !showsTransliteration },
                                 centralActionLabel = centralActionLabel,
                                 onCentralAction = onNext,
                             )
@@ -249,6 +256,8 @@ fun PrayerStepFlowScreen(
                                 languageCode = languageCode,
                                 isRightToLeft = isRightToLeft,
                                 accessory = accessory,
+                                showsTransliteration = showsTransliteration,
+                                onToggleTransliteration = { showsTransliteration = !showsTransliteration },
                                 centralActionLabel = centralActionLabel,
                                 onCentralAction = onNext,
                             )
@@ -332,6 +341,8 @@ private fun NarrowContent(
     languageCode: String?,
     isRightToLeft: Boolean,
     accessory: @Composable (isWide: Boolean, hasRoomForSingleMinorColumn: Boolean) -> Unit,
+    showsTransliteration: Boolean,
+    onToggleTransliteration: () -> Unit,
     centralActionLabel: String? = null,
     onCentralAction: (() -> Unit)? = null,
 ) {
@@ -362,6 +373,8 @@ private fun NarrowContent(
                 )
                 TextBlock(
                     step = step, languageCode = languageCode,
+                    showsTransliteration = showsTransliteration,
+                    onToggleTransliteration = onToggleTransliteration,
                     centralActionLabel = centralActionLabel, onCentralAction = onCentralAction,
                 )
             }
@@ -376,6 +389,8 @@ private fun WideContent(
     isRightToLeft: Boolean,
     availableHeight: Dp,
     accessory: @Composable (isWide: Boolean, hasRoomForSingleMinorColumn: Boolean) -> Unit,
+    showsTransliteration: Boolean,
+    onToggleTransliteration: () -> Unit,
     centralActionLabel: String? = null,
     onCentralAction: (() -> Unit)? = null,
 ) {
@@ -402,6 +417,8 @@ private fun WideContent(
             Column(modifier = Modifier.weight(1f).widthIn(min = 280.dp).fillMaxHeight().verticalScroll(rememberScrollState())) {
                 TextBlock(
                     step = step, languageCode = languageCode, modifier = Modifier.padding(16.dp),
+                    showsTransliteration = showsTransliteration,
+                    onToggleTransliteration = onToggleTransliteration,
                     centralActionLabel = centralActionLabel, onCentralAction = onCentralAction,
                 )
             }
@@ -447,6 +464,8 @@ private fun TextBlock(
     step: RosaryStep,
     languageCode: String?,
     modifier: Modifier = Modifier,
+    showsTransliteration: Boolean,
+    onToggleTransliteration: () -> Unit,
     centralActionLabel: String? = null,
     onCentralAction: (() -> Unit)? = null,
 ) {
@@ -457,7 +476,7 @@ private fun TextBlock(
     ) {
         step.subtitle?.let { subtitle ->
             Text(
-                subtitle,
+                HebrewDisplayText.unpoint(subtitle),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,
@@ -465,7 +484,7 @@ private fun TextBlock(
         }
 
         Text(
-            step.title,
+            HebrewDisplayText.unpoint(step.title),
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.extraColors.headline,
@@ -485,11 +504,11 @@ private fun TextBlock(
             // The v0.7 reading aid: swap the body for its transliteration. Sticky across
             // steps — someone praying along in an unfamiliar script wants it on all session.
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
-                IconButton(onClick = { TransliterationState.shows = !TransliterationState.shows }) {
+                IconButton(onClick = onToggleTransliteration) {
                     Icon(
                         Icons.Filled.Translate,
                         contentDescription = stringResource(R.string.flow_show_transliteration),
-                        tint = if (TransliterationState.shows) MaterialTheme.colorScheme.primary else LocalContentColor.current,
+                        tint = if (showsTransliteration) MaterialTheme.colorScheme.primary else LocalContentColor.current,
                     )
                 }
             }
@@ -498,11 +517,11 @@ private fun TextBlock(
             // drawn with a Hebrew face that has no glyphs for them, and the toggle shows tofu.
             SelectionContainer {
                 Text(
-                    (if (TransliterationState.shows) step.transliteratedBody!! else step.body).parseBoldMarkdown(),
+                    (if (showsTransliteration) step.transliteratedBody!! else step.body).parseBoldMarkdown(),
                     style = PrayerTypography.style(
                         languageCode = languageCode,
                         isScripture = step.isScripture,
-                        script = if (TransliterationState.shows) {
+                        script = if (showsTransliteration) {
                             PrayerTypography.scriptOf(step.transliteratedBody!!)
                         } else {
                             null
@@ -534,11 +553,4 @@ private fun TextBlock(
             }
         }
     }
-}
-
-
-/** Session-sticky transliteration toggle (v0.7): object state so it survives step
- * recompositions without threading a parameter through every flow caller. */
-private object TransliterationState {
-    var shows by androidx.compose.runtime.mutableStateOf(false)
 }

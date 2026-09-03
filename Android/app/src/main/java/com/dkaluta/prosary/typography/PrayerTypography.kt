@@ -47,7 +47,7 @@ object PrayerTypography {
     enum class Script { Hebrew, Arabic, Syriac, Latin }
 
     /** The script most of a text's letters belong to. Counted rather than sampled: a citation
-     * line ("— ܡܬܝ 28:1-7") mixes digits and punctuation into every body. */
+     * line ("— ܡܬܝ 28:1–7") mixes digits and punctuation into every body. */
     fun scriptOf(text: String): Script {
         var hebrew = 0; var arabic = 0; var syriac = 0; var latin = 0
         for (ch in text) {

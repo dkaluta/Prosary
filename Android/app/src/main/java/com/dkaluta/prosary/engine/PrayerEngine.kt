@@ -4,6 +4,7 @@ import com.dkaluta.prosary.calendar.LiturgicalCalendarProviding
 import com.dkaluta.prosary.calendar.MockLiturgicalCalendar
 import com.dkaluta.prosary.content.PrayerKey
 import com.dkaluta.prosary.content.PrayerTranslations
+import com.dkaluta.prosary.content.MysteryText
 import com.dkaluta.prosary.content.MysteryTranslations
 import com.dkaluta.prosary.content.prayerpack.CustomDevotionDefinition
 import com.dkaluta.prosary.content.prayerpack.CustomDevotionStep
@@ -21,6 +22,7 @@ import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.models.RosaryOptions
 import com.dkaluta.prosary.models.RosaryStep
+import com.dkaluta.prosary.typography.HebrewDisplayText
 
 private val ordinals = listOf(
     "1st", "2nd", "3rd", "4th", "5th", "6th", "7th",
@@ -41,30 +43,41 @@ private val ordinals = listOf(
 class PrayerEngine(
     private val calendar: LiturgicalCalendarProviding = MockLiturgicalCalendar(),
 ) {
-    fun buildSteps(prayer: Prayer): List<RosaryStep> = when (prayer.kind) {
-        // The Rosary builds from the rosary bundle's devotion.json like every other devotion —
-        // RosaryOptions stays the persisted shape (no data migration; the bespoke editor keeps
-        // writing it) and is mapped onto the bundle's option values here.
-        PrayerKind.Rosary -> buildCustomDevotionSteps(
-            "rosary", prayer.resolvedLanguageCode,
-            optionOverrides = rosaryOptionValues(prayer.rosary), rosaryOptions = prayer.rosary,
-        )
-        // The Jesus Prayer has no engine — every repetition prays the same fixed line, so a
-        // single synthesized step plus a JesusPrayerProgress counter is the whole model; see
-        // JesusPrayerFlowScreen, which never calls this engine at all.
-        PrayerKind.JesusPrayer -> emptyList()
-        PrayerKind.Custom -> {
-            val bundleId = prayer.customDevotionId
-            if (bundleId != null) {
-                buildCustomDevotionSteps(
-                    bundleId,
-                    PrayerPackStore.effectiveLanguage(bundleId, prayer.languageCode),
-                    prayer.variantId, prayer.customOptions,
-                    dayIndex = prayer.dayIndex ?: 0,
-                )
-            } else {
-                emptyList()
+    fun buildSteps(prayer: Prayer): List<RosaryStep> {
+        val steps = when (prayer.kind) {
+            // The Rosary builds from the rosary bundle's devotion.json like every other devotion —
+            // RosaryOptions stays the persisted shape (no data migration; the bespoke editor keeps
+            // writing it) and is mapped onto the bundle's option values here.
+            PrayerKind.Rosary -> buildCustomDevotionSteps(
+                "rosary", prayer.resolvedLanguageCode,
+                optionOverrides = rosaryOptionValues(prayer.rosary), rosaryOptions = prayer.rosary,
+            )
+            // The Jesus Prayer has no engine — every repetition prays the same fixed line, so a
+            // single synthesized step plus a JesusPrayerProgress counter is the whole model; see
+            // JesusPrayerFlowScreen, which never calls this engine at all.
+            PrayerKind.JesusPrayer -> emptyList()
+            PrayerKind.Custom -> {
+                val bundleId = prayer.customDevotionId
+                if (bundleId != null) {
+                    buildCustomDevotionSteps(
+                        bundleId,
+                        PrayerPackStore.effectiveLanguage(bundleId, prayer.languageCode),
+                        prayer.variantId, prayer.customOptions,
+                        dayIndex = prayer.dayIndex ?: 0,
+                    )
+                } else {
+                    emptyList()
+                }
             }
+        }
+        // Titles and subtitles are display chrome, not the prayer itself. Preserve canonical
+        // pointed Hebrew in bodies/acclamations/Scripture while presenting every heading in the
+        // app's unpointed Hebrew style.
+        return steps.map { step ->
+            step.copy(
+                title = HebrewDisplayText.unpoint(step.title),
+                subtitle = step.subtitle?.let(HebrewDisplayText::unpoint),
+            )
         }
     }
 
@@ -98,6 +111,7 @@ class PrayerEngine(
         "apostlesCreed" to rosary.includeApostlesCreed.toString(),
         "aramaicSignOfCrossForm" to effectiveAramaicForm,
         "openingPrayers" to rosary.includeOpeningPrayers.toString(),
+        "openingFatimaPrayer" to rosary.includeOpeningFatimaPrayer.toString(),
         "presenterMode" to rosary.presenterMode.toString(),
         "fatimaPrayer" to rosary.includeFatimaPrayer.toString(),
         "eternalRest" to rosary.eternalRestForDeceased.name.replaceFirstChar { it.lowercaseChar() },
@@ -176,6 +190,22 @@ class PrayerEngine(
     private fun counter(index: Int, total: Int, languageCode: String?): String {
         val connector = PrayerTranslations.get(languageCode, PrayerKey.RepetitionCounterConnector)
         return "($index $connector $total)"
+    }
+
+    /** Primary and alternate-script mystery readings share exactly the same resolved fruit
+     * line. The transliteration is emitted only when it belongs to the description chosen by
+     * [MysteryTranslations], never synthesized from another fallback source. */
+    private fun mysteryAnnouncementBodies(
+        mysteryText: MysteryText,
+        fruitLabel: String,
+    ): Pair<String, String?> {
+        fun appendFruit(description: String): String = if (mysteryText.fruit.isEmpty()) {
+            description
+        } else {
+            "$description\n\n$fruitLabel: ${mysteryText.fruit}"
+        }
+        return appendFruit(mysteryText.description) to
+            mysteryText.transliteratedDescription?.let(::appendFruit)
     }
 
     // MARK: Custom (bundle-driven) devotions
@@ -301,10 +331,15 @@ class PrayerEngine(
         val acclamation = entry.acclamationKey?.let { PrayerPackStore.resolveBodyText(bundleId, languageCode, it) }
         val transliteratedBody = entry.bodyKey?.let { PrayerPackStore.transliteration(bundleId, languageCode, it) }
         val count = entry.repeatCount
+        val singleTitle = if (entry.counterIndex != null && entry.counterTotal != null) {
+            "$title ${counter(entry.counterIndex, entry.counterTotal, languageCode)}"
+        } else {
+            title
+        }
         if (count == null || count <= 1) {
             return listOf(
                 RosaryStep(
-                    title = title, subtitle = subtitle, body = body, acclamation = acclamation,
+                    title = singleTitle, subtitle = subtitle, body = body, acclamation = acclamation,
                     isScripture = isScripture, transliteratedBody = transliteratedBody,
                     imageOverrideKey = entry.imageKey,
                 ),
@@ -371,14 +406,13 @@ class PrayerEngine(
 
                 if (decades.announceMystery && entry != null) {
                     val mysteryText = MysteryTranslations.get(languageCode, entry.imageKey)
-                    var body = mysteryText.description
-                    if (mysteryText.fruit.isNotEmpty()) {
-                        body += "\n\n$fruitLabel: ${mysteryText.fruit}"
-                    }
+                    val (body, transliteratedBody) = mysteryAnnouncementBodies(mysteryText, fruitLabel)
                     steps.add(
                         RosaryStep(
                             title = mysteryText.title, subtitle = ordinalLabel, body = body,
-                            isScripture = entry.isScripture ?: true, decadeIndex = d, imageOverrideKey = entry.imageKey,
+                            transliteratedBody = transliteratedBody,
+                            isScripture = entry.isScripture ?: true, decadeIndex = d,
+                            imageOverrideKey = entry.imageKey,
                         ),
                     )
                     decadeSubtitle = "$ordinalLabel — ${mysteryText.title}"
@@ -461,11 +495,14 @@ class PrayerEngine(
                 val ordinalLabel = if (showGroupName) "${group.displayName} — $ordinal" else ordinal
                 val decadeSubtitle = "$ordinalLabel — ${mysteryText.title}"
                 val presenter = decades.presenter
+                val (announcementBody, transliteratedAnnouncementBody) =
+                    mysteryAnnouncementBodies(mysteryText, fruitLabel)
 
                 steps.add(
                     RosaryStep(
                         title = mysteryText.title, subtitle = ordinalLabel,
-                        body = "${mysteryText.description}\n\n$fruitLabel: ${mysteryText.fruit}",
+                        body = announcementBody,
+                        transliteratedBody = transliteratedAnnouncementBody,
                         mystery = mystery, isScripture = true, decadeIndex = decadeIndex,
                         imageVariantKey = variantKey(mystery),
                     ),

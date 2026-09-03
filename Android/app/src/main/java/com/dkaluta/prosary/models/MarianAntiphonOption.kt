@@ -5,6 +5,7 @@ import com.dkaluta.prosary.R
 import android.content.Context
 import com.dkaluta.prosary.content.PrayerKey
 import com.dkaluta.prosary.content.PrayerTranslations
+import com.dkaluta.prosary.typography.HebrewDisplayText
 
 /** Which closing Marian antiphon (if any) follows the Rosary. */
 enum class MarianAntiphonOption {
@@ -30,12 +31,14 @@ enum class MarianAntiphonOption {
             SubTuumPraesidium -> R.string.antiphon_sub_tuum
         }
 
-    fun displayName(context: Context, languageCode: String): String = when (this) {
-        None, Seasonal -> context.getString(displayNameRes)
-        SalveRegina -> PrayerTranslations.get(languageCode, PrayerKey.SalveReginaTitle)
-        AlmaRedemptorisMater -> PrayerTranslations.get(languageCode, PrayerKey.AlmaRedemptorisMaterTitle)
-        AveReginaCaelorum -> PrayerTranslations.get(languageCode, PrayerKey.AveReginaCaelorumTitle)
-        ReginaCaeli -> PrayerTranslations.get(languageCode, PrayerKey.ReginaCaeliTitle)
-        SubTuumPraesidium -> PrayerTranslations.get(languageCode, PrayerKey.SubTuumPraesidiumTitle)
-    }
+    fun displayName(context: Context, languageCode: String): String = HebrewDisplayText.unpoint(
+        when (this) {
+            None, Seasonal -> context.getString(displayNameRes)
+            SalveRegina -> PrayerTranslations.get(languageCode, PrayerKey.SalveReginaTitle)
+            AlmaRedemptorisMater -> PrayerTranslations.get(languageCode, PrayerKey.AlmaRedemptorisMaterTitle)
+            AveReginaCaelorum -> PrayerTranslations.get(languageCode, PrayerKey.AveReginaCaelorumTitle)
+            ReginaCaeli -> PrayerTranslations.get(languageCode, PrayerKey.ReginaCaeliTitle)
+            SubTuumPraesidium -> PrayerTranslations.get(languageCode, PrayerKey.SubTuumPraesidiumTitle)
+        },
+    )
 }

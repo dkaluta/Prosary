@@ -39,6 +39,7 @@ import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.content.repository.RepositoryBundle
 import com.dkaluta.prosary.content.repository.RepositoryClient
+import com.dkaluta.prosary.typography.HebrewDisplayText
 import com.dkaluta.prosary.ui.shared.DevotionDirectory
 import com.dkaluta.prosary.ui.shared.LaunchTarget
 import kotlinx.coroutines.launch
@@ -113,7 +114,10 @@ fun SearchScreen(onLaunch: (LaunchTarget) -> Unit) {
                         } else {
                             Icon(listing.icon, contentDescription = null, tint = listing.accentColor ?: MaterialTheme.colorScheme.primary)
                         }
-                        Text(listing.title, style = MaterialTheme.typography.bodyLarge)
+                        Text(
+                            HebrewDisplayText.unpoint(listing.title),
+                            style = MaterialTheme.typography.bodyLarge,
+                        )
                     }
                 }
             }
@@ -130,7 +134,10 @@ fun SearchScreen(onLaunch: (LaunchTarget) -> Unit) {
                     item(key = "community.${bundle.id}") {
                         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
                             Column(Modifier.weight(1f)) {
-                                Text(bundle.name, style = MaterialTheme.typography.bodyLarge)
+                                Text(
+                                    HebrewDisplayText.unpoint(bundle.name),
+                                    style = MaterialTheme.typography.bodyLarge,
+                                )
                                 Text(
                                     "${bundle.author} · ${bundle.tags.joinToString(" · ")}",
                                     style = MaterialTheme.typography.bodySmall,

@@ -83,12 +83,19 @@ enum LanguageCatalog {
     let known = Set(all.map(\.code))
     let stored = UserDefaults.standard.stringArray(forKey: fallbackOrderKey) ?? []
     let sanitized = stored.filter { known.contains($0) }
-    let defaults = all.map(\.code).filter { $0 != defaultCode } + [defaultCode]
-    return (sanitized + defaults.filter { !sanitized.contains($0) }).unique()
+    return (sanitized + defaultFallbackOrder.filter { !sanitized.contains($0) }).unique()
+  }
+
+  static var defaultFallbackOrder: [String] {
+    all.map(\.code).filter { $0 != defaultCode } + [defaultCode]
   }
 
   static func setFallbackOrder(_ codes: [String]) {
     UserDefaults.standard.set(codes, forKey: fallbackOrderKey)
+  }
+
+  static func resetFallbackOrder() {
+    UserDefaults.standard.removeObject(forKey: fallbackOrderKey)
   }
 
   static func fallbackChain(for requested: String?) -> [String] {

@@ -26,8 +26,13 @@ struct JesusPrayerFlowView: View {
   @State private var isRightToLeft = false
   @State private var seasonColor = Color.clear
   @State private var languageCode: String?
+  @State private var chosenLanguage = LanguageCatalog.defaultSentinel
   @State private var hasLoaded = false
   @State private var matchingFavoriteId: Prayer.ID? = nil
+  @State private var pendingContinuation: PrayerRunProgress?
+  @State private var didFinish = false
+
+  private let progressStore = PrayerRunProgressStore()
 
   private var effectiveTarget: JesusPrayerTarget {
     prayer?.jesusPrayer.target ?? target
@@ -58,14 +63,14 @@ struct JesusPrayerFlowView: View {
       isRightToLeft: isRightToLeft,
       languageCode: languageCode,
       canGoBack: progress.canGoBack,
-      onBack: { progress.goBack() },
+      onBack: back,
       onNext: next,
       centralActionLabel: String(localized: "jesusPrayerFlow.pray", defaultValue: "Pray")
     )
     .toolbar {
       if case .unbounded = effectiveTarget {
         ToolbarItem(placement: .confirmationAction) {
-          Button("prayerFlow.finish") { returnHome() }
+          Button("prayerFlow.finish") { finish() }
         }
       }
       ToolbarItem(placement: .secondaryAction) {
@@ -75,25 +80,61 @@ struct JesusPrayerFlowView: View {
         .accessibilityLabel(matchingFavoriteId != nil ? "prayerFlow.removeFromFavorites" : "prayerFlow.addToFavorites")
       }
     }
+    .alert(
+      String(localized: "prayerFlow.continue.title", defaultValue: "Continue this prayer?"),
+      isPresented: .init(
+        get: { pendingContinuation != nil },
+        set: { if !$0 { pendingContinuation = nil } }),
+      presenting: pendingContinuation
+    ) { saved in
+      Button(String(localized: "prayerFlow.continue", defaultValue: "Continue")) {
+        resume(saved)
+      }
+      Button(String(localized: "prayerFlow.restart", defaultValue: "Restart"), role: .destructive) {
+        restart()
+      }
+    } message: { _ in
+      Text(String(localized: "prayerFlow.continue.message",
+                  defaultValue: "You have an unfinished prayer. Continue where you left off or begin again?"))
+    }
     .task { await load() }
+    .onDisappear {
+      guard hasLoaded, pendingContinuation == nil, !didFinish else { return }
+      persistProgress()
+    }
   }
 
   private func load() async {
+    let configuredLanguage: String
     if let prayer {
-      languageCode = prayer.resolvedLanguageCode
+      configuredLanguage = prayer.languageCode
     } else {
       let all = (try? await services.presetStore.all()) ?? []
       let defaultJP = all.first { $0.kind == .jesusPrayer && $0.isDefault }
         ?? all.first { $0.kind == .jesusPrayer }
       // No favorite yet: the app-level default language, never a silent Latin fallback.
-      languageCode = defaultJP?.resolvedLanguageCode
-        ?? LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).code
+      configuredLanguage = defaultJP?.languageCode ?? LanguageCatalog.defaultSentinel
     }
+
+    chosenLanguage = configuredLanguage
+    languageCode = LanguageCatalog.resolve(configuredLanguage).code
 
     isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
     seasonColor = services.calendar.seasonColorToday()
     hasLoaded = true
     await checkIfFavorited()
+
+    if let saved = progressStore.progress(for: runKey),
+       saved.canResume(
+        stepCount: progress.targetCount ?? Int.max,
+        expectedConfigurationSignature: PrayerRunSignature.jesus(effectiveTarget)) {
+      chosenLanguage = saved.languageCode
+      languageCode = LanguageCatalog.resolve(saved.languageCode).code
+      isRightToLeft = LanguageCatalog.resolve(saved.languageCode).isRightToLeft
+      pendingContinuation = saved
+    } else {
+      progressStore.clear(runKey: runKey)
+    }
   }
 
   private func checkIfFavorited() async {
@@ -137,8 +178,47 @@ struct JesusPrayerFlowView: View {
   }
 
   private func next() {
-    if progress.isLastRep { returnHome(); return }
+    if progress.isLastRep { finish(); return }
     progress.goNext()
+    persistProgress()
+  }
+
+  private func back() {
+    progress.goBack()
+    persistProgress()
+  }
+
+  private var runKey: String {
+    PrayerRunKey.jesus(prayer, target: effectiveTarget)
+  }
+
+  private func resume(_ saved: PrayerRunProgress) {
+    pendingContinuation = nil
+    chosenLanguage = saved.languageCode
+    languageCode = LanguageCatalog.resolve(saved.languageCode).code
+    isRightToLeft = LanguageCatalog.resolve(saved.languageCode).isRightToLeft
+    progress.currentIndex = saved.stepIndex
+    persistProgress()
+  }
+
+  private func restart() {
+    pendingContinuation = nil
+    progress = JesusPrayerProgress(target: effectiveTarget)
+    progressStore.clear(runKey: runKey)
+  }
+
+  private func persistProgress() {
+    progressStore.save(
+      runKey: runKey,
+      stepIndex: progress.currentIndex,
+      languageCode: chosenLanguage,
+      configurationSignature: PrayerRunSignature.jesus(effectiveTarget))
+  }
+
+  private func finish() {
+    didFinish = true
+    progressStore.clear(runKey: runKey)
+    returnHome()
   }
 
   private func returnHome() {

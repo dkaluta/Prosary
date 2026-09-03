@@ -3,6 +3,8 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using Prosary.Controls;
+using Prosary.Localization;
+using Prosary.Models;
 using Prosary.Navigation;
 using Prosary.ViewModels;
 
@@ -48,6 +50,12 @@ public sealed partial class RosaryPrayerPage : Page
             await ViewModel.LoadAsync(e.Parameter as Guid?);
         }
 
+        if (ViewModel.HasSavedContinuation)
+        {
+            await ShowResumeDialogAsync();
+        }
+        BuildLanguageFlyout();
+
         AutoAdvanceMenu.Populate(AutoAdvanceFlyout, () => _autoAdvance?.Restart());
         _autoAdvance?.Dispose();
         _autoAdvance = new AutoAdvanceTimer(ViewModel);
@@ -64,6 +72,52 @@ public sealed partial class RosaryPrayerPage : Page
         => ViewModel.HasDarkTheme = ActualTheme == ElementTheme.Dark;
 
     private void OnNavigateUp(object sender, RoutedEventArgs e) => Router.GoBack();
+
+    private async Task ShowResumeDialogAsync()
+    {
+        var dialog = new ContentDialog
+        {
+            XamlRoot = XamlRoot,
+            Title = Loc.Tr("prayer_resume_title", "Continue where you left off?"),
+            Content = Loc.Tr("prayer_resume_message", "Continue this unfinished prayer, or restart from the beginning."),
+            PrimaryButtonText = Loc.Tr("common_continue", "Continue"),
+            SecondaryButtonText = Loc.Tr("common_restart", "Restart"),
+            DefaultButton = ContentDialogButton.Primary,
+        };
+        if (await dialog.ShowAsync() == ContentDialogResult.Primary)
+        {
+            ViewModel.ContinueSavedRun();
+        }
+        else
+        {
+            ViewModel.RestartRun();
+        }
+    }
+
+    private void BuildLanguageFlyout()
+    {
+        LanguageFlyout.Items.Clear();
+        var choices = new List<(string Raw, string Name)>
+        {
+            (LanguageCatalog.DefaultSentinel, Loc.Tr("flow_app_setting", "App setting")),
+        };
+        choices.AddRange(ViewModel.Languages.Select(language => (language.Code, language.NativeName)));
+        foreach (var (raw, name) in choices)
+        {
+            var item = new ToggleMenuFlyoutItem
+            {
+                Text = name,
+                IsChecked = ViewModel.CurrentLanguageRaw == raw,
+            };
+            var picked = raw;
+            item.Click += async (_, _) =>
+            {
+                await ViewModel.SelectLanguageAsync(picked);
+                BuildLanguageFlyout();
+            };
+            LanguageFlyout.Items.Add(item);
+        }
+    }
 
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
     {

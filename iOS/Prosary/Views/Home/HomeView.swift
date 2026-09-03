@@ -27,8 +27,13 @@ struct HomeView: View {
   @State private var monthIntention: PopeIntention? = nil
   @State private var liturgicalDayInfo: LiturgicalDayInfo? = nil
   @State private var todayReadings: [ReadingCitation] = []
-  @State private var todayInHebrew = false
+  @State private var todayInHebrew = TodayTranslationLanguage.defaultsToHebrew(
+    LanguageCatalog.resolve(nil).code)
   @State private var showsFullCitations = false
+
+  private var todayLanguageCode: String { todayInHebrew ? "he" : "en" }
+  private var todayHorizontalAlignment: HorizontalAlignment { todayInHebrew ? .trailing : .leading }
+  private var todayFrameAlignment: Alignment { todayInHebrew ? .trailing : .leading }
 
   /// The Today rows can be switched off one by one in Settings (Erez's request) — an off
   /// row simply never loads, and with both off the whole section stays away.
@@ -225,6 +230,9 @@ struct HomeView: View {
     #endif
     .task { await load() }
     .onAppear { Task { await load() } }
+    .onChange(of: prayerLanguage.code) { _, languageCode in
+      todayInHebrew = TodayTranslationLanguage.defaultsToHebrew(languageCode)
+    }
   }
 
   // MARK: - Pieces
@@ -259,13 +267,13 @@ struct HomeView: View {
   @ViewBuilder
   private var todaySection: some View {
     if liturgicalDayInfo != nil || todayFeast != nil || monthIntention != nil || !todayReadings.isEmpty {
-      VStack(alignment: .leading, spacing: 10) {
+      VStack(alignment: todayHorizontalAlignment, spacing: 10) {
         if let info = liturgicalDayInfo {
           HStack(alignment: .firstTextBaseline, spacing: 8) {
             Image(systemName: "sun.max").foregroundStyle(Color.brandPrimary)
-            Text(todayInHebrew ? info.hebrew : info.english)
+            Text(HebrewDisplayText.unpointed(todayInHebrew ? info.hebrew : info.english))
               .font(.subheadline.weight(.semibold))
-              .frame(maxWidth: .infinity, alignment: .leading)
+              .frame(maxWidth: .infinity, alignment: todayFrameAlignment)
             Button(todayInHebrew
               ? String(localized: "home.today.showEnglish", defaultValue: "English")
               : String(localized: "home.today.translate", defaultValue: "עברית")) {
@@ -277,20 +285,21 @@ struct HomeView: View {
         if let feast = todayFeast {
           HStack(alignment: .firstTextBaseline, spacing: 8) {
             Image(systemName: "calendar").foregroundStyle(Color.brandPrimary)
-            VStack(alignment: .leading, spacing: 2) {
-              Text(feast.title)
+            VStack(alignment: todayHorizontalAlignment, spacing: 2) {
+              Text(feast.localizedTitle(todayLanguageCode))
                 // Each calendar's own top rank: Roman "Solemnity", 1962 "1st Class",
                 // Byzantine "Great Feast".
                 .font(.subheadline.weight(
                   ["Solemnity", "1st Class", "Great Feast"].contains(feast.rank) ? .bold : .semibold))
-              Text(feast.rank).font(.caption).foregroundStyle(.secondary)
+              Text(HebrewDisplayText.unpointed(feast.rank))
+                .font(.caption).foregroundStyle(.secondary)
             }
           }
         }
         if let intention = monthIntention {
           HStack(alignment: .firstTextBaseline, spacing: 8) {
             Image(systemName: "hands.sparkles").foregroundStyle(Color.brandPrimary)
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: todayHorizontalAlignment, spacing: 2) {
               Text(todayInHebrew
                 ? "כוונת האפיפיור: \(intention.localizedTitle("he"))"
                 : String(
@@ -305,17 +314,19 @@ struct HomeView: View {
         if !todayReadings.isEmpty {
           HStack(alignment: .firstTextBaseline, spacing: 8) {
             Image(systemName: "book.closed").foregroundStyle(Color.brandPrimary)
-            VStack(alignment: .leading, spacing: 3) {
+            VStack(alignment: todayHorizontalAlignment, spacing: 3) {
               Text(String(localized: "home.today.readings", defaultValue: "Today’s readings"))
                 .font(.subheadline.weight(.semibold))
               if showsFullCitations {
                 ForEach(Array(todayReadings.enumerated()), id: \.offset) { _, citation in
-                  Text(todayInHebrew ? citation.hebrew : citation.full)
+                  Text(citation.localizedFull(todayLanguageCode))
                     .font(.caption).foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, alignment: todayFrameAlignment)
                 }
               } else {
-                Text(todayReadings.map(\.short).joined(separator: ", "))
+                Text(todayReadings.map { $0.localizedShort(todayLanguageCode) }.joined(separator: ", "))
                   .font(.caption).foregroundStyle(.secondary)
+                  .frame(maxWidth: .infinity, alignment: todayFrameAlignment)
               }
               Button(showsFullCitations
                 ? String(localized: "home.today.compactCitations", defaultValue: "Show shorthand")
@@ -327,7 +338,8 @@ struct HomeView: View {
           }
         }
       }
-      .frame(maxWidth: .infinity, alignment: .leading)
+      .environment(\.layoutDirection, todayInHebrew ? .rightToLeft : .leftToRight)
+      .frame(maxWidth: .infinity, alignment: todayFrameAlignment)
       .padding(14)
       .background(.quaternary.opacity(0.5), in: RoundedRectangle(cornerRadius: 14))
       .accessibilityIdentifier("todaySection")
@@ -425,7 +437,7 @@ struct HomeView: View {
                 FavoriteDevotions.pin(row.id, defaultingTo: impliedPinnedIds)
                 orderGeneration += 1
               } label: {
-                Label(row.title, systemImage: row.systemImage)
+                Label(HebrewDisplayText.unpointed(row.title), systemImage: row.systemImage)
               }
             }
           }
@@ -471,8 +483,6 @@ struct HomeView: View {
     monthIntention = showsTodayIntention ? TodayInfoStore.intention() : nil
     liturgicalDayInfo = TodayInfoStore.liturgicalDayInfo()
     todayReadings = TodayInfoStore.readings()
-    let base = LanguageCatalog.baseLanguage(of: prayerLanguage.code) ?? prayerLanguage.code
-    if base == "he" { todayInHebrew = true }
     prayers = (try? await services.presetStore.all()) ?? []
     HomeOrder.dropOrderIfUnrelated(to: allDevotions.map(\.id))
   }
@@ -529,7 +539,7 @@ private struct HomeOrderEditor: View {
     NavigationStack {
       List {
         ForEach(ids, id: \.self) { id in
-          Text(names[id] ?? id)
+          Text(HebrewDisplayText.unpointed(names[id] ?? id))
         }
         .onMove { from, to in
           ids.move(fromOffsets: from, toOffset: to)

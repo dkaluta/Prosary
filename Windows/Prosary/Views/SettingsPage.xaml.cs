@@ -69,11 +69,18 @@ public sealed partial class SettingsPage : Page
             Title = Loc.Tr("settings_language_fallback_order_title", "Language fallback order"),
             Content = panel,
             PrimaryButtonText = Loc.Tr("common_done", "Done"),
+            SecondaryButtonText = Loc.Tr("common_reset", "Reset"),
+            CloseButtonText = Loc.Tr("common_cancel", "Cancel"),
             DefaultButton = ContentDialogButton.Primary,
         };
-        if (await dialog.ShowAsync() == ContentDialogResult.Primary)
+        var result = await dialog.ShowAsync();
+        if (result == ContentDialogResult.Primary)
         {
             AppSettings.SetLanguageFallbackOrder(rows.Select(r => r.Code));
+        }
+        else if (result == ContentDialogResult.Secondary)
+        {
+            AppSettings.SetLanguageFallbackOrder([]);
         }
     }
 

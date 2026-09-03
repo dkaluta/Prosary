@@ -53,7 +53,7 @@ struct SearchTabView: View {
             path.append(listing.route)
           } label: {
             Label {
-              Text(listing.title).foregroundStyle(.primary)
+              Text(HebrewDisplayText.unpointed(listing.title)).foregroundStyle(.primary)
             } icon: {
               if let glyph = listing.iconGlyph {
                 Text(glyph).foregroundStyle(listing.accentColor)
@@ -74,8 +74,9 @@ struct SearchTabView: View {
           ForEach(communityMatches) { bundle in
             HStack {
               VStack(alignment: .leading, spacing: 2) {
-                Text(bundle.name)
-                Text(verbatim: "\(bundle.author) · \(bundle.tags.joined(separator: " · "))")
+                Text(HebrewDisplayText.unpointed(bundle.name))
+                Text(verbatim: HebrewDisplayText.unpointed(
+                  "\(bundle.author) · \(bundle.tags.joined(separator: " · "))"))
                   .font(.caption)
                   .foregroundStyle(.secondary)
               }

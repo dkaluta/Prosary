@@ -36,11 +36,11 @@ public static class MarianAntiphonOptionExtensions
     {
         MarianAntiphonOption.None => Loc.Tr("antiphon_none", "None"),
         MarianAntiphonOption.Seasonal => Loc.Tr("antiphon_seasonal", "Automatic (Seasonal)"),
-        MarianAntiphonOption.SalveRegina => PrayerTranslations.Get(languageCode, PrayerKey.SalveReginaTitle),
-        MarianAntiphonOption.AlmaRedemptorisMater => PrayerTranslations.Get(languageCode, PrayerKey.AlmaRedemptorisMaterTitle),
-        MarianAntiphonOption.AveReginaCaelorum => PrayerTranslations.Get(languageCode, PrayerKey.AveReginaCaelorumTitle),
-        MarianAntiphonOption.ReginaCaeli => PrayerTranslations.Get(languageCode, PrayerKey.ReginaCaeliTitle),
-        MarianAntiphonOption.SubTuumPraesidium => PrayerTranslations.Get(languageCode, PrayerKey.SubTuumPraesidiumTitle),
+        MarianAntiphonOption.SalveRegina => PrayerTranslations.GetDisplay(languageCode, PrayerKey.SalveReginaTitle),
+        MarianAntiphonOption.AlmaRedemptorisMater => PrayerTranslations.GetDisplay(languageCode, PrayerKey.AlmaRedemptorisMaterTitle),
+        MarianAntiphonOption.AveReginaCaelorum => PrayerTranslations.GetDisplay(languageCode, PrayerKey.AveReginaCaelorumTitle),
+        MarianAntiphonOption.ReginaCaeli => PrayerTranslations.GetDisplay(languageCode, PrayerKey.ReginaCaeliTitle),
+        MarianAntiphonOption.SubTuumPraesidium => PrayerTranslations.GetDisplay(languageCode, PrayerKey.SubTuumPraesidiumTitle),
         _ => throw new ArgumentOutOfRangeException(nameof(option))
     };
 }

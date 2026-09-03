@@ -42,6 +42,8 @@
       "subtitleKey": "aveMariaProFide",
       "bodyKey": "aveMaria",
       "imageKey": "virtue_faith",
+      "counterIndex": 1,
+      "counterTotal": 3,
       "if": "openingPrayers"
     },
     {
@@ -49,6 +51,8 @@
       "subtitleKey": "aveMariaProSpe",
       "bodyKey": "aveMaria",
       "imageKey": "virtue_hope",
+      "counterIndex": 2,
+      "counterTotal": 3,
       "if": "openingPrayers"
     },
     {
@@ -56,7 +60,15 @@
       "subtitleKey": "aveMariaProCaritate",
       "bodyKey": "aveMaria",
       "imageKey": "virtue_charity",
+      "counterIndex": 3,
+      "counterTotal": 3,
       "if": "openingPrayers"
+    },
+    {
+      "titleKey": "oratioFatimaeTitle",
+      "bodyKey": "oratioFatimae",
+      "imageKey": "jesus_portrait",
+      "if": "openingPrayers & openingFatimaPrayer"
     },
     {
       "titleKey": "gloriaPatriTitle",

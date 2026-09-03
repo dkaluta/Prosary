@@ -46,4 +46,9 @@ public static partial class PrayerTranslations
         return PrayerPackStore.PrayerOverride("la", key)
             ?? (Latin.TryGetValue(key, out var latinText) ? latinText : key);
     }
+
+    /// <summary>A title/label lookup for presentation chrome. The canonical table stays fully
+    /// pointed so the same key can still be used as prayer text where a bundle requires it.</summary>
+    public static string GetDisplay(string? languageCode, string key) =>
+        HebrewDisplayText.WithoutMarks(Get(languageCode, key));
 }

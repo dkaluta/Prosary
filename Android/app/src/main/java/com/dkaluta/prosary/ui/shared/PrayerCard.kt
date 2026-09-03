@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.dkaluta.prosary.typography.HebrewDisplayText
 
 /** Tappable devotion card on the Pray tab. Accent strip color is passed in by the
  * caller so the Rosary card can use the dynamic mystery-group color of the day. */
@@ -75,10 +76,10 @@ fun PrayerCard(
             }
 
             Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
-                Text(title, style = MaterialTheme.typography.titleMedium)
+                Text(HebrewDisplayText.unpoint(title), style = MaterialTheme.typography.titleMedium)
                 if (subtitle.isNotEmpty()) {
                     Text(
-                        subtitle,
+                        HebrewDisplayText.unpoint(subtitle),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         maxLines = 1,

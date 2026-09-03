@@ -151,7 +151,7 @@
 
                 <StackPanel Spacing="8">
                     <TextBlock x:Uid="AbtCalendarDataHeader" Text="Calendar Data" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
-                    <TextBlock x:Uid="AbtCalendarDataBody" Text="Calendar and readings data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar via Missale Meum (missalemeum.com); the Syriac Catholic calendar, the Roman lectionary calendar in Hebrew, and daily Roman-lectionary citations courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic table compiled in-app from the traditional sources."
+                    <TextBlock x:Uid="AbtCalendarDataBody" Text="Calendar and readings data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar and readings via Missale Meum (missalemeum.com); the Syriac Catholic calendar and readings, and General Roman Hebrew titles and citations, courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; Byzantine citations from Royal Doors (royaldoors.net), with the Ukrainian Greek Catholic calendar compiled from traditional sources."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
                 </StackPanel>
 

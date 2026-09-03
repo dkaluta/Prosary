@@ -5,29 +5,24 @@
 """Fills a bundle's Aramaic scripture from the Peshitta, in both alphabets.
 
 Every Scripture body a bundle ships already names its passage — the Latin text ends
-"— Luc. 1:26-38 (Vulgata)". That citation is the input here: this reads it, pulls the same
+"— Luc. 1:26–38 (Vulgata)". That citation is the input here: this reads it, pulls the same
 verses from the Peshitta, and writes them into content/arc.json. Nothing is composed by hand,
 which is the point — a verse in a prayer app has to come from an edition someone can check,
 not from anyone's memory.
 
-Two alphabets, one text. Classical Syriac and Hebrew are both 22-letter abjads descended from
-the same Imperial Aramaic script, so the letters map one to one, reversibly, with no
-transcription judgement involved — the round trip is asserted over the whole alphabet on every
-run. Syriac diacritics have no Hebrew counterpart and are dropped from the Hebrew form only.
-Following the
-catalogue's own promise that "arc" is Aramaic in Hebrew script, the Hebrew-lettered form is
-what content/arc.json ships as its prayers, and the Syriac original rides along in the same
-file's "transliterations" map, which is what the prayer flow's script toggle reads.
-
-The text is unpointed, exactly as the source has it. That is the same courtesy the Latin
-Patriarchate's Divine Mercy Hebrew gets: pointing a text is an editorial act, and not this
-tool's to perform.
+Two alphabets, one text. The Hebrew-square projection uses the deterministic Syriac-to-Hebrew
+converter Erez supplied: the corresponding letters, Hebrew final forms, five vowel signs,
+qushshaya/dagesh, and the Syriac waw patterns all follow his rules. The current ETCBC source is
+unpointed, so final forms are the only rule that changes these Peshitta passages today; no points
+are invented. Unsupported Syriac marks are removed from the Hebrew projection, while the extracted
+Syriac passage is left unchanged by conversion in the same file's "transliterations" map for the
+prayer flow's script toggle.
 
     sources   ETCBC/syrnt      Peshitta New Testament   MIT     (Dirk Roorda / ETCBC, VU Amsterdam)
               ETCBC/peshitta   Peshitta Old Testament   MIT     (Dirk Roorda / ETCBC, VU Amsterdam)
 
     usage: import-scripture.py [bundle ...]   default: every bundle with Latin citations
-           import-scripture.py --check        re-derive and diff, writing nothing (CI)
+           import-scripture.py --check        re-derive and diff, writing nothing
 """
 
 from __future__ import annotations
@@ -38,11 +33,12 @@ import io
 import json
 import re
 import sys
-import unicodedata
 import urllib.parse
 import urllib.request
 import zipfile
 from pathlib import Path
+
+from aramaic_script_converter import SYRIAC_TO_HEBREW, to_hebrew, to_syriac_letters
 
 TOOLS = Path(__file__).resolve().parent
 CONTENT = TOOLS.parent / "content"
@@ -141,43 +137,9 @@ LANGUAGES = {
     },
 }
 
-# Classical Syriac -> Hebrew square script. Both alphabets are the same 22 letters in the same
-# order, so this is a transliteration in the strict sense: one letter for one letter, nothing
-# interpreted. Hebrew's five final forms are deliberately NOT used — Syriac has no such thing,
-# and introducing them would make the mapping lossy in the other direction.
-SYRIAC_TO_HEBREW = {
-    "ܐ": "א",  # ālaph      -> alef
-    "ܒ": "ב",  # bēth       -> bet
-    "ܓ": "ג",  # gāmal      -> gimel
-    "ܕ": "ד",  # dālath     -> dalet
-    "ܗ": "ה",  # hē         -> he
-    "ܘ": "ו",  # waw        -> vav
-    "ܙ": "ז",  # zain       -> zayin
-    "ܚ": "ח",  # ḥēth       -> het
-    "ܛ": "ט",  # ṭēth       -> tet
-    "ܝ": "י",  # yudh       -> yod
-    "ܟ": "כ",  # kāph       -> kaf
-    "ܠ": "ל",  # lāmadh     -> lamed
-    "ܡ": "מ",  # mim        -> mem
-    "ܢ": "נ",  # nun        -> nun
-    "ܣ": "ס",  # semkath    -> samekh
-    "ܥ": "ע",  # ʿē         -> ayin
-    "ܦ": "פ",  # pē         -> pe
-    "ܨ": "צ",  # ṣādhē      -> tsadi
-    "ܩ": "ק",  # qāph       -> qof
-    "ܪ": "ר",  # rish       -> resh
-    "ܫ": "ש",  # shin       -> shin
-    "ܬ": "ת",  # taw        -> tav
-}
-HEBREW_TO_SYRIAC = {v: k for k, v in SYRIAC_TO_HEBREW.items()}
-
-# Syriac diacritics — vowels, the seyame plural dots, the marks that tell homographs apart.
-# They are NOT all in the Syriac Unicode block: the ETCBC text writes seyame and the qushshaya
-# dots as plain combining marks (U+0307, U+0308), so matching on the block alone silently leaves
-# them in the Hebrew. Every nonspacing mark goes instead. Hebrew script has no counterpart for
-# any of them, so the Hebrew-lettered form drops them rather than carrying marks that mean
-# nothing there; the Syriac form, which is what a Syriac reader reads, keeps every one. This is
-# the one respect in which the two forms differ, and why the round trip is asserted on letters.
+# The script transform itself lives in aramaic_script_converter.py. It is separate from fetching
+# and citation parsing so its behavior stays network-free, independently testable, and reusable
+# for future pointed sources without ever rewriting the original Syriac track.
 
 # The bundles cite the Vulgate's chapter-and-verse. The Peshitta and the Septuagint both follow
 # the Hebrew numbering, which parts company with the Vulgate's in a handful of well-known places
@@ -187,10 +149,11 @@ HEBREW_TO_SYRIAC = {v: k for k, v in SYRIAC_TO_HEBREW.items()}
 # that walked in darkness", and without this it imported 9:3, "thou hast multiplied the nation".
 # Verified against both sources and pinned by a self-check below; extend it per book/chapter as
 # more of the Old Testament arrives, and never by guessing.
-# Keyed by language, because the divergence belongs to the *source*, not to the citation. The
-# Peshitta and the Septuagint follow the Hebrew numbering and part company with the Vulgate in
-# Isaiah 9; Torres Amat translated the Vulgate itself, so its numbering is the citation's own and
-# shifting it would introduce the very error this table exists to prevent.
+# Keyed by language/rite because the divergence belongs to the *source*. Both the verse lookup and
+# the citation written into that rite's devotion text follow this mapping: a Peshitta passage must
+# cite its Peshitta number, not retain the Vulgate number that was used to locate the passage.
+# Torres Amat translated the Vulgate itself, so its table is empty; shifting it would introduce the
+# very error this map exists to prevent.
 # Passages a language's source genuinely does not contain, each with the reason. Declared rather
 # than tolerated: a verse missing from the table is otherwise indistinguishable from a parser
 # that has quietly stopped reading, and that is exactly the failure worth keeping loud.
@@ -203,31 +166,6 @@ SOURCE_GAPS = {
 
 VERSIFICATION = {
     "arc": {("Isaiah", 9): (2, -1)},  # (from this Vulgate verse onward, shift by this much)
-    "es": {
-        # Félix Torres Amat's Spanish Bible (1836), translated from the Vulgate — which is why it
-        # is the right one here: every citation in this app is Vulgate chapter-and-verse, so no
-        # versification map is needed. Public domain by age (Torres Amat died 1847); Wikisource
-        # transcribes it from the volume scans, and only the New Testament volumes (XIII–XV) have
-        # been transcribed, so Isaiah is absent and the O Antiphons' readings stay empty.
-        "sources": {
-            "nt": ("https://es.wikisource.org/w/api.php?action=parse&page={book}"
-                   "&prop=text&format=json",
-                   "wikisource", "La Sagrada Biblia, Félix Torres Amat (1836), public domain"),
-        },
-        "primary_script": None,
-        "second_script": None,
-        "books": {"Matthew": ("San Mateo",), "Mark": ("San Marcos",), "Luke": ("San Lucas",),
-                  "John": ("San Juan",), "Acts": ("Hechos",), "Revelation": ("Apocalipsis",)},
-        "edition": ("Torres Amat",),
-        "file_names": {
-            "Matthew": "La Sagrada Biblia (XIII)/Mateo",
-            "Mark": "La Sagrada Biblia (XIII)/Marcos",
-            "Luke": "La Sagrada Biblia (XIII)/Lucas",
-            "John": "La Sagrada Biblia (XIII)/Juan",
-            "Acts": "La Sagrada Biblia (XIV)/Hechos",
-            "Revelation": "La Sagrada Biblia (XV)/Apocalipsis",
-        },
-    },
     "el": {("Isaiah", 9): (2, -1)},
     "es": {},
 }
@@ -240,15 +178,6 @@ errors: list[str] = []
 
 def err(message: str) -> None:
     errors.append(message)
-
-
-def to_hebrew(syriac: str) -> str:
-    return "".join(SYRIAC_TO_HEBREW.get(ch, ch) for ch in syriac
-                   if unicodedata.category(ch) != "Mn")
-
-
-def to_syriac(hebrew: str) -> str:
-    return "".join(HEBREW_TO_SYRIAC.get(ch, ch) for ch in hebrew)
 
 
 def fetch(language: str, testament: str, book: str, binary: bool = False):
@@ -395,10 +324,10 @@ def _verses_wikisource(language: str, testament: str, book: str) -> dict:
 
 
 def parse_reference(reference: str) -> list:
-    """"14:55, 60-64" -> [(14,55,55), (14,60,64)]. Chapter carries across segments."""
+    """"14:55, 60–64" -> [(14,55,55), (14,60,64)]. Chapter carries across segments."""
     spans, chapter = [], None
     for segment in reference.split(","):
-        segment = segment.strip()
+        segment = segment.strip().replace("–", "-")
         if ":" in segment:
             head, _, segment = segment.partition(":")
             chapter = int(head.strip())
@@ -425,6 +354,32 @@ def source_verse(language: str, book: str, chapter: int, number: int, where: str
             f"numbering diverge across the chapter break — resolve it by hand")
         return None
     return number + shift
+
+
+def source_reference(language: str, book: str, spans: list, where: str) -> str | None:
+    """Render a source-native reference from Vulgate-numbered input spans.
+
+    Repeated segments in the same chapter retain the compact ``14:55, 60-64`` form. The mapping
+    must remain linear across every range; a future discontinuity must be represented explicitly
+    rather than producing a plausible but wrong citation.
+    """
+    rendered: list[str] = []
+    previous_chapter: int | None = None
+    for chapter, first, last in spans:
+        mapped_first = source_verse(language, book, chapter, first, where)
+        mapped_last = source_verse(language, book, chapter, last, where)
+        if mapped_first is None or mapped_last is None:
+            return None
+        if mapped_last - mapped_first != last - first:
+            err(f"{where}: {book} {chapter}:{first}-{last} crosses a non-linear source "
+                "versification boundary — split or map it explicitly")
+            return None
+        prefix = f"{chapter}:" if chapter != previous_chapter else ""
+        verses = (str(mapped_first) if mapped_first == mapped_last
+                  else f"{mapped_first}–{mapped_last}")
+        rendered.append(prefix + verses)
+        previous_chapter = chapter
+    return ", ".join(rendered)
 
 
 def passage(language: str, book: str, testament: str, spans: list, where: str) -> str | None:
@@ -465,6 +420,16 @@ def hebrew_numeral(n: int) -> str:
     return letters + "׳" if len(letters) == 1 else letters[:-1] + "״" + letters[-1]
 
 
+def hebrew_reference(reference: str) -> str:
+    """Book-external reference style: gematria chapters, Arabic verses, and no colon."""
+    rendered = re.sub(
+        r"(?<!\d)(\d+):",
+        lambda match: f"{hebrew_numeral(int(match.group(1)))} ",
+        reference,
+    )
+    return re.sub(r"(?<=\d)-(?=\d)", "–", rendered)
+
+
 def citation_line(language: str, book: str, testament: str, reference: str, second: bool) -> str:
     spec = LANGUAGES[language]
     index = 0 if second else min(1, len(spec["edition"]) - 1)
@@ -476,8 +441,7 @@ def citation_line(language: str, book: str, testament: str, reference: str, seco
     # book, chapter as a Hebrew numeral, verses in Arabic numerals ("אשעיא י״א 2-3"), while the
     # Syriac side keeps the source's own chapter:verse form.
     if index == spec.get("hebrewChapterIndex", -1):
-        chapter, _, verses = reference.partition(":")
-        reference = f"{hebrew_numeral(int(chapter))} {verses}"
+        reference = hebrew_reference(reference)
     return f"\n\n— {name} {reference} ({edition})"
 
 
@@ -492,7 +456,7 @@ def build(language: str, bundle: Path) -> dict | None:
                  if isinstance(m, dict) and m.get("description")}
 
     prayers, transliterations, mystery_out = {}, {}, {}
-    skipped, unsourced = [], []
+    unsourced = []
     for key, value in list(texts.items()) + [(f"mystery:{k}", m["description"])
                                              for k, m in mysteries.items()]:
         match = CITATION.search(value.strip())
@@ -519,47 +483,47 @@ def build(language: str, bundle: Path) -> dict | None:
         source_text = passage(language, book, testament, spans, f"{bundle.name}:{key}")
         if source_text is None:
             continue
+        native_reference = source_reference(language, book, spans, f"{bundle.name}:{key}")
+        if native_reference is None:
+            continue
 
         if spec["second_script"] == "syriac":
-            second_body = source_text + citation_line(language, book, testament, reference,
+            second_body = source_text + citation_line(language, book, testament, native_reference,
                                                       second=True)
-            primary_body = to_hebrew(source_text) + citation_line(language, book, testament,
-                                                                  reference, second=False)
+            primary_body = to_hebrew(source_text, keep_plural_dots=False) + citation_line(
+                language, book, testament, native_reference, second=False)
         else:
             second_body = None
-            primary_body = source_text + citation_line(language, book, testament, reference,
+            primary_body = source_text + citation_line(language, book, testament, native_reference,
                                                        second=True)
         if key.startswith("mystery:"):
-            # Deliberately not written. A mystery override is an all-or-nothing MysteryText on
-            # every platform — title, fruit and description are non-optional — so writing a
-            # description-only entry would blank out the announcement's title and its fruit
-            # rather than letting them fall back. And title/fruit are not Scripture: they are
-            # the mystery's name and what it asks for, which belong to a community's own usage,
-            # not to a Bible edition. Unblocking this means letting a pack's mystery override
-            # merge field by field; until then these announcements read in the fallback
-            # language. Counted so the gap is reported rather than silent.
-            skipped.append(f"{bundle.name}:{key[len('mystery:'):]}")
+            # Mystery content is deliberately partial. Scripture and its citation belong to the
+            # edition/rite selected here; the mystery's name and fruit are not Scripture and
+            # continue through the apps' ordinary field-wise language fallback chain. For
+            # Aramaic, the exact Peshitta passage is also kept in Syriac letters for the flow's
+            # script toggle.
+            mystery_key = key[len("mystery:"):]
+            mystery_out[mystery_key] = {"description": primary_body}
+            if second_body is not None:
+                mystery_out[mystery_key]["transliteratedDescription"] = second_body
         else:
             prayers[key] = primary_body
             if second_body is not None:
                 transliterations[key] = second_body
 
-    if skipped:
-        print(f"  {bundle.name} [{language}]: {len(skipped)} mystery announcement(s) left alone "
-              f"(need per-field mystery overrides)", file=sys.stderr)
     if unsourced:
         print(f"  {bundle.name} [{language}]: {len(unsourced)} passage(s) have no source in this "
               f"language: {', '.join(unsourced)}", file=sys.stderr)
-    if not prayers:
+    if not prayers and not mystery_out:
         return None
     return {"prayers": prayers, "transliterations": transliterations, "mysteries": mystery_out}
 
 
 NOTES = {
-    "arc": ("Scripture imported from the Peshitta by Shared/tools/import-scripture.py — re-run it "
-            "rather than editing these by hand. Prayers are Hebrew square script; the same text in "
-            "Syriac letters is in transliterations, which is what the flow's script toggle shows. "
-            "Unpointed, as the source has it."),
+    "arc": ("Scripture entries imported from the Peshitta by Shared/tools/import-scripture.py — "
+            "re-run it rather than editing them by hand. Their Hebrew square script is converted "
+            "with Erez's script rules; the source text in Syriac letters is beside it for the "
+            "flow's script toggle. Unpointed, as the source has it."),
     "es": ("Scripture imported from Félix Torres Amat's Spanish Bible (1836) by "
            "Shared/tools/import-scripture.py — re-run it rather than editing these by hand. "
            "Torres Amat translated the Vulgate, so its chapter-and-verse is the same one these "
@@ -577,12 +541,24 @@ def render(language: str, built: dict, existing: dict) -> dict:
     """Merge into whatever content/<lang>.json already holds — a hand-authored prayer must never
     be clobbered by a scripture import."""
     out = json.loads(json.dumps(existing)) if existing else {}
-    out.setdefault("$comment", NOTES[language])
+    out["$comment"] = NOTES[language]
+    out["$scriptureImport"] = {
+        "prayerKeys": sorted(built["prayers"]),
+        "mysteryKeys": sorted(built["mysteries"]),
+    }
     prayers = out.setdefault("prayers", {})
     prayers.update(built["prayers"])
     if built["transliterations"]:
         out.setdefault("transliterations", {}).update(built["transliterations"])
-    out.setdefault("mysteries", {})
+    mysteries = out.setdefault("mysteries", {})
+    for key, fields in built["mysteries"].items():
+        current = mysteries.get(key)
+        if not isinstance(current, dict):
+            current = {}
+        # Generated Scripture fields replace an earlier generated value, while any authored
+        # title/fruit (or future field) remains untouched.
+        current.update(fields)
+        mysteries[key] = current
     return out
 
 
@@ -590,15 +566,16 @@ def main() -> int:
     arguments = [a for a in sys.argv[1:] if not a.startswith("--")]
     check = "--check" in sys.argv[1:]
 
-    # The letters must map exactly both ways, or the toggle is showing two different texts.
-    # Checked on the whole alphabet, not a sample of it, and on real unpointed words.
+    # Contextual Hebrew finals must still reverse to the same Syriac letter sequence. The original
+    # Syriac itself never depends on this reverse map; it is stored byte-for-byte beside the
+    # projection. Checked on the whole alphabet and on real unpointed words on every import.
     alphabet = "".join(SYRIAC_TO_HEBREW)
-    if to_syriac(to_hebrew(alphabet)) != alphabet:
+    if to_syriac_letters(to_hebrew(alphabet)) != alphabet:
         err("the Syriac/Hebrew alphabet mapping does not round-trip")
     if len(set(SYRIAC_TO_HEBREW.values())) != len(SYRIAC_TO_HEBREW):
         err("two Syriac letters map onto one Hebrew letter — the mapping is lossy")
     for word in ("ܐܒܘܢ ܕܒܫܡܝܐ ܢܬܩܕܫ ܫܡܟ", "ܩܕܝܫܬ ܐܠܗܐ"):
-        if to_syriac(to_hebrew(word)) != word:
+        if to_syriac_letters(to_hebrew(word)) != word:
             err(f"round trip failed for {word!r}")
 
     # Isaiah 9 is where the Vulgate's numbering and the sources' part company, and a silent
@@ -622,10 +599,19 @@ def main() -> int:
     changed = 0
     for language in LANGUAGES:
         for bundle in bundles:
+            target = bundle / "content" / f"{language}.json"
+            manifest_path = bundle / "manifest.json"
+            manifest_languages = (json.loads(manifest_path.read_text(encoding="utf-8"))
+                                  .get("languages", [])) if manifest_path.exists() else []
+            # Existing overlay files are intentional import targets even when the language is
+            # not advertised as a complete bundle language. Do not invent a new partial overlay
+            # merely because the Latin source happens to contain a citation; a new overlay is an
+            # explicit content decision (or a declared manifest language).
+            if not target.exists() and language not in manifest_languages:
+                continue
             built = build(language, bundle)
             if built is None:
                 continue
-            target = bundle / "content" / f"{language}.json"
             existing = json.loads(target.read_text(encoding="utf-8")) if target.exists() else {}
             rendered = render(language, built, existing)
             serialized = json.dumps(rendered, ensure_ascii=False, indent=2) + "\n"
@@ -637,7 +623,8 @@ def main() -> int:
                     f"(run import-scripture.py)")
                 continue
             target.write_text(serialized, encoding="utf-8")
-            print(f"{bundle.name} [{language}]: {len(built['prayers'])} passages")
+            passage_count = len(built["prayers"]) + len(built["mysteries"])
+            print(f"{bundle.name} [{language}]: {passage_count} passages")
 
     for message in errors:
         print(f"import-scripture: {message}", file=sys.stderr)

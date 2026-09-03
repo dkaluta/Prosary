@@ -1,7 +1,13 @@
 {
   "$comment": "Scripture imported from Félix Torres Amat's Spanish Bible (1836) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Torres Amat translated the Vulgate, so its chapter-and-verse is the same one these devotions cite and no versification map is needed. Spelling and accentuation are the 1836 printing's own. Old Testament readings are absent: only the New Testament volumes of it have been transcribed from the scans.",
   "prayers": {
-    "magnificatBody": "Entónces María dijo: Mi alma glorifica al Señor; y mi espíritu está trasportado de gozo en el Dios salvador mio. Porque ha puesto los ojos en la bajeza de su esclava [ Porque ha hecho en mí cosas grandes aquel que es todopoderoso , cuyo nombre es santo; y cuya misericordia se derrama de generacion en generacion sobre los que le temen. Hizo alarde del poder de su brazo: deshizo las miras del corazon de los soberbios. Derribó del solio á los poderosos, y ensalzó á los humildes. Colmó de bienes á los hambrientos, y á los ricos los despidió sin nada. Acordándose de su misericordia, acogió á Israél su siervo; segun la promesa que hizo á nuestros padres, á Abraham y á su descendencia por los siglos de los siglos.\n\n— San Lucas 1:46-55 (Torres Amat)"
+    "magnificatBody": "Entónces María dijo: Mi alma glorifica al Señor; y mi espíritu está trasportado de gozo en el Dios salvador mio. Porque ha puesto los ojos en la bajeza de su esclava [ Porque ha hecho en mí cosas grandes aquel que es todopoderoso , cuyo nombre es santo; y cuya misericordia se derrama de generacion en generacion sobre los que le temen. Hizo alarde del poder de su brazo: deshizo las miras del corazon de los soberbios. Derribó del solio á los poderosos, y ensalzó á los humildes. Colmó de bienes á los hambrientos, y á los ricos los despidió sin nada. Acordándose de su misericordia, acogió á Israél su siervo; segun la promesa que hizo á nuestros padres, á Abraham y á su descendencia por los siglos de los siglos.\n\n— San Lucas 1:46–55 (Torres Amat)"
   },
-  "mysteries": {}
+  "mysteries": {},
+  "$scriptureImport": {
+    "prayerKeys": [
+      "magnificatBody"
+    ],
+    "mysteryKeys": []
+  }
 }

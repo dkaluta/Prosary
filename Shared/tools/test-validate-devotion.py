@@ -59,6 +59,22 @@ def check_rejects(label: str, mutate, expected: str, fixture: Path = FIXTURE) ->
             failures.append(f"{label}: expected {expected!r} in:\n{output}")
 
 
+def check_content_rejects(label: str, mutate, expected: str, language: str = "en") -> None:
+    """Apply `mutate` to a fixture content file and require the validator to reject it."""
+    with tempfile.TemporaryDirectory() as tmp:
+        work = Path(tmp) / "bundle"
+        shutil.copytree(FIXTURE, work)
+        path = work / "content" / f"{language}.json"
+        content = json.loads(path.read_text(encoding="utf-8"))
+        mutate(content)
+        path.write_text(json.dumps(content, ensure_ascii=False), encoding="utf-8")
+        code, output = run(work)
+        if code == 0:
+            failures.append(f"{label}: expected rejection, but it validated")
+        elif expected not in output:
+            failures.append(f"{label}: expected {expected!r} in:\n{output}")
+
+
 def hour(devotion: dict, hid: str) -> dict:
     return next(h for h in devotion["hours"] if h["id"] == hid)
 
@@ -174,6 +190,35 @@ def main() -> int:
         "a proper referencing a key no language ships",
         lambda d: proper(d, "collect")["steps"][0].update({"bodyKey": "collectNoSuchThing"}),
         "unresolved key 'collectNoSuchThing'")
+
+    # --- Content overlays: partial mystery fields and citation punctuation --------------------
+    check_content_rejects(
+        "a citation range written with a hyphen",
+        lambda c: c["prayers"].update(
+            {"magnificat": c["prayers"]["magnificat"].replace("46–47", "46-47")}),
+        "citation ranges must use an en dash",
+    )
+    check_content_rejects(
+        "a Hebrew-script citation written with a colon",
+        lambda c: c["prayers"].update(
+            {"magnificat": "טקסט\n\n— יוחנן 3:16–17 (מהדורה)"}),
+        "Hebrew-script citations use a gematria chapter and no colon",
+    )
+    check_content_rejects(
+        "an empty partial mystery override",
+        lambda c: c["mysteries"].update({"joyful_01_annunciation": {}}),
+        "must override title, fruit, or description",
+    )
+    check_content_rejects(
+        "a mystery transliteration without its source description",
+        lambda c: c["mysteries"].update({
+            "joyful_01_annunciation": {
+                "title": "Annunciation",
+                "transliteratedDescription": "alternate",
+            }
+        }),
+        "transliteratedDescription requires description",
+    )
 
     # --- rosary-type variants: every form carries the bead track's invariants on its own ------
     check_valid(ROSARY_FIXTURE, "rosary-variants-proof")

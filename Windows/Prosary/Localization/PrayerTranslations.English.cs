@@ -17,27 +17,38 @@ public static partial class PrayerTranslations
             "forgiveness of sins, the resurrection of the body, and life everlasting. Amen.",
 
         [PrayerKey.PaterNoster] =
-            "Our Father, who art in heaven, hallowed be Thy name; Thy kingdom come; Thy will be done on " +
-            "earth as it is in heaven.\nGive us this day our daily bread; and forgive us our trespasses as " +
-            "we forgive those who trespass against us; and lead us not into temptation, but deliver us " +
-            "from evil. Amen.",
+        "Our Father, who art in heaven, hallowed be Thy name;\n" +
+        "Thy kingdom come; Thy will be done\n" +
+        "on earth as it is in heaven.\n" +
+        "Give us this day our daily bread;\n" +
+        "and forgive us our trespasses\n" +
+        "as we forgive those who trespass against us;\n" +
+        "and lead us not into temptation,\n" +
+        "but deliver us from evil. Amen.",
 
         [PrayerKey.AveMaria] =
-            "Hail Mary, full of grace, the Lord is with thee. Blessed art thou amongst women, and blessed " +
-            "is the fruit of thy womb, Jesus.\nHoly Mary, Mother of God, pray for us sinners, now and at " +
-            "the hour of our death. Amen.",
+        "Hail Mary,\n" +
+        "full of grace, the Lord is with thee.\n" +
+        "Blessed art thou amongst women,\n" +
+        "and blessed is the fruit of thy womb, Jesus.\n" +
+        "Holy Mary, Mother of God,\n" +
+        "pray for us sinners,\n" +
+        "now and at the hour of our death. Amen.",
 
         [PrayerKey.GloriaPatri] =
-            "Glory be to the Father, and to the Son, and to the Holy Spirit.\nAs it was in the beginning, " +
-            "is now, and ever shall be, world without end. Amen.",
+        "Glory be to the Father, and to the Son, and to the Holy Spirit.\n" +
+        "As it was in the beginning, is now, and ever shall be,\n" +
+        "world without end. Amen.",
 
         [PrayerKey.OratioFatimae] =
             "O my Jesus, forgive us our sins, save us from the fires of hell, lead all souls to Heaven, " +
             "especially those who are in most need of Thy mercy.",
 
         [PrayerKey.RequiemAeternam] =
-            "Eternal rest grant unto them, O Lord, and let perpetual light shine upon them. May they rest " +
-            "in peace. Amen.",
+        "Eternal rest\n" +
+        "grant unto them, O Lord,\n" +
+        "and let perpetual light shine upon them.\n" +
+        "May they rest in peace. Amen.",
 
         [PrayerKey.SanctusMichael] =
             "St. Michael the Archangel, defend us in battle. Be our protection against the wickedness and " +
@@ -78,8 +89,11 @@ public static partial class PrayerTranslations
         [PrayerKey.SubTuumPraesidiumTitle] = "Sub Tuum Praesidium",
 
         [PrayerKey.SubTuumPraesidium] =
-            "We fly to thy patronage, O holy Mother of God; despise not our petitions in our necessities, " +
-            "but deliver us always from all dangers, O glorious and blessed Virgin.",
+        "We fly to thy patronage,\n" +
+        "O holy Mother of God;\n" +
+        "despise not our petitions in our necessities,\n" +
+        "but deliver us always from all dangers,\n" +
+        "O glorious and blessed Virgin.",
 
         [PrayerKey.VersiculumStandard] = "Pray for us, O holy Mother of God.",
         [PrayerKey.ResponsiumStandard] = "That we may be made worthy of the promises of Christ.",

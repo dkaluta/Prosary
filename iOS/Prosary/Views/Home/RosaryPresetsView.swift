@@ -109,6 +109,10 @@ struct RosaryPresetsView: View {
   @ViewBuilder
   private func presetCard(_ preset: Prayer, prominent: Bool) -> some View {
     presetCardBody(preset, prominent: prominent)
+      // Keep the lifted context-menu preview clipped to the actual card. The horizontal page
+      // gutter belongs outside that preview; when it was part of the preview bounds, iPhone
+      // made the material card itself disappear into a wide transparent cutout while pressed.
+      .rosaryPresetContextMenuShape()
       .contextMenu {
         Button { isNew = false; editorPreset = preset } label: {
           Label("favorites.edit", systemImage: "pencil")
@@ -126,6 +130,7 @@ struct RosaryPresetsView: View {
           Label("favorites.delete", systemImage: "trash")
         }
       }
+      .padding(.horizontal, 16)
   }
 
   @ViewBuilder
@@ -137,7 +142,7 @@ struct RosaryPresetsView: View {
 
       VStack(alignment: .leading, spacing: 6) {
         HStack {
-          Text(preset.name)
+          Text(HebrewDisplayText.unpointed(preset.name))
             .font(prominent ? .title3.bold() : .headline)
           if preset.isDefault {
             Image(systemName: "star.fill")
@@ -146,7 +151,8 @@ struct RosaryPresetsView: View {
           }
           Spacer()
         }
-        Text("\(preset.rosary.mysterySelectionSummary) • \(preset.languageDisplayName)")
+        Text(HebrewDisplayText.unpointed(
+          "\(preset.rosary.mysterySelectionSummary) • \(preset.languageDisplayName)"))
           .font(.subheadline)
           .foregroundStyle(.secondary)
 
@@ -166,7 +172,6 @@ struct RosaryPresetsView: View {
     }
     .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
     .clipShape(RoundedRectangle(cornerRadius: 14))
-    .padding(.horizontal, 16)
   }
 
   private func makeDefault(_ preset: Prayer) {
@@ -189,6 +194,17 @@ struct RosaryPresetsView: View {
   private func reload() async {
     presets = ((try? await services.presetStore.all()) ?? [])
       .filter { $0.kind == .rosary }
+  }
+}
+
+private extension View {
+  @ViewBuilder
+  func rosaryPresetContextMenuShape() -> some View {
+    #if os(iOS)
+    contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 14))
+    #else
+    self
+    #endif
   }
 }
 

@@ -49,6 +49,7 @@ struct SettingsView: View {
         Button(String(localized: "settings.languageFallbackOrder", defaultValue: "Language fallback order…")) {
           showsLanguageFallbackOrder = true
         }
+        .accessibilityIdentifier("languageFallbackOrderButton")
 
         if (LanguageCatalog.baseLanguage(of: languageCode) ?? languageCode) == "arc" {
           Picker(String(localized: "settings.aramaicSignOfCross",
@@ -139,7 +140,7 @@ struct SettingsView: View {
         Text(String(localized: "settings.todayHeader", defaultValue: "Today"))
       } footer: {
         Text(String(localized: "settings.feastCalendarFooter",
-                    defaultValue: "Which calendar's feasts the Today section shows."))
+                    defaultValue: "Which calendar’s feasts and readings the Today section shows."))
       }
 
       Section {
@@ -219,33 +220,41 @@ private struct LanguageFallbackOrderView: View {
     List {
       Section {
         ForEach(order, id: \.self) { code in
-          HStack {
-            Text(LanguageCatalog.all.first(where: { $0.code == code })?.nativeName ?? code)
-            Spacer()
-            let index = order.firstIndex(of: code) ?? 0
-            Button { move(code, by: -1) } label: { Image(systemName: "chevron.up") }
-              .disabled(index == 0)
-              .accessibilityLabel(String(localized: "common.moveUp", defaultValue: "Move up"))
-            Button { move(code, by: 1) } label: { Image(systemName: "chevron.down") }
-              .disabled(index == order.count - 1)
-              .accessibilityLabel(String(localized: "common.moveDown", defaultValue: "Move down"))
-          }
+          Text(LanguageCatalog.all.first(where: { $0.code == code })?.nativeName ?? code)
+        }
+        .onMove { from, to in
+          order.move(fromOffsets: from, toOffset: to)
+          LanguageCatalog.setFallbackOrder(order)
         }
       } footer: {
         Text(String(localized: "settings.languageFallbackOrder.footer",
                     defaultValue: "When a prayer is missing, Prosary tries these languages from top to bottom after the chosen language and its own variation."))
       }
     }
+    .accessibilityIdentifier("languageFallbackOrderList")
+    #if os(iOS)
+    .environment(\.editMode, .constant(.active))
+    #endif
+    #if os(macOS)
+    .frame(minWidth: 340, minHeight: 420)
+    #endif
     .navigationTitle(String(localized: "settings.languageFallbackOrder.title", defaultValue: "Language fallback order"))
-    .toolbar { ToolbarItem(placement: .confirmationAction) { Button("common.done") { dismiss() } } }
-  }
-
-  private func move(_ code: String, by offset: Int) {
-    guard let index = order.firstIndex(of: code) else { return }
-    let destination = index + offset
-    guard order.indices.contains(destination) else { return }
-    order.swapAt(index, destination)
-    LanguageCatalog.setFallbackOrder(order)
+    #if os(iOS)
+    .navigationBarTitleDisplayMode(.inline)
+    #endif
+    .toolbar {
+      ToolbarItem(placement: .cancellationAction) {
+        Button(String(localized: "settings.languageFallbackOrder.reset", defaultValue: "Reset")) {
+          LanguageCatalog.resetFallbackOrder()
+          order = LanguageCatalog.fallbackOrder
+          dismiss()
+        }
+        .accessibilityIdentifier("languageFallbackOrderResetButton")
+      }
+      ToolbarItem(placement: .confirmationAction) {
+        Button(String(localized: "favoriteEditor.done", defaultValue: "Done")) { dismiss() }
+      }
+    }
   }
 }
 

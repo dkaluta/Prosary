@@ -2,15 +2,16 @@ package com.dkaluta.prosary.content.today
 
 import com.dkaluta.prosary.models.AppSettings
 import java.io.File
+import java.io.ByteArrayInputStream
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.BeforeClass
 import org.junit.Test
 
 /** Exercises the bundled Shared/data datasets behind the Home "Today" section: fixed and
@@ -18,26 +19,28 @@ import org.junit.Test
  * Roman Calendar), the switchable-calendar registry, the Pope's monthly intention, and the
  * graceful out-of-range null that hides the row. Mirrors iOS's TodayInfoStoreTests.swift. */
 class TodayInfoStoreTest {
-    companion object {
-        @BeforeClass
-        @JvmStatic
-        fun loadData() {
-            TodayInfoStore.initialize { name ->
-                val file = File("src/main/assets/data/$name.json")
-                if (file.exists()) file.inputStream() else null
-            }
-        }
-    }
-
     /** The store resolves the selection live on every lookup, so pinning the setting back to
      * "follow the registry default" is the whole reset. */
     @Before
     fun resetCalendarSelection() {
         AppSettings.feastCalendarId = ""
+        TodayInfoStore.resetForTesting()
+        TodayInfoStore.initialize { name ->
+            val file = File("src/main/assets/data/$name.json")
+            if (file.exists()) file.inputStream() else null
+        }
     }
 
     private fun date(string: String): Date =
         SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(string)!!
+
+    @Test
+    fun todayTranslationDefaultsFollowHebrewLanguageVariants() {
+        assertTrue(TodayTranslationLanguage.defaultsToHebrew("he"))
+        assertTrue(TodayTranslationLanguage.defaultsToHebrew("he-x-gamliel"))
+        assertFalse(TodayTranslationLanguage.defaultsToHebrew("en"))
+        assertFalse(TodayTranslationLanguage.defaultsToHebrew("arc"))
+    }
 
     @Test
     fun fixedSolemnityResolves() {
@@ -83,26 +86,26 @@ class TodayInfoStoreTest {
     @Test
     fun calendarRegistryListsTheShippedCalendarsInPickerOrder() {
         assertEquals(
-            listOf("lpj", "roman", "roman-he", "roman1962", "ugcc", "syriac"),
+            listOf("lpj", "roman", "roman1962", "ugcc", "syriac"),
             TodayInfoStore.calendars.map { it.id },
         )
         assertEquals("lpj", TodayInfoStore.selectedCalendarId)
     }
 
-    /** The Hebrew Roman table is Evangelizo's lectionary edition (credited on the About
-     * screen): it titles the days whose readings are proper — so Bartholomew's feast and the
-     * numbered Sundays appear in Hebrew, while a saint's memorial on ferial readings
-     * (Gregory the Great, September 3) is absent by design, like ferial days everywhere else. */
+    /** v0.10 folds the old Hebrew pseudo-calendar into General Roman. Its persisted id resolves
+     * to Roman while sourced Hebrew titles remain available on each matching feast. */
     @Test
-    fun hebrewRomanCalendarRelaysTheLectionaryDays() {
+    fun legacyHebrewRomanSelectionUsesLocalizedGeneralRomanCalendar() {
         AppSettings.feastCalendarId = "roman-he"
+        assertEquals("roman", TodayInfoStore.selectedCalendarId)
         val bartholomew = TodayInfoStore.feast(date("2026-08-24"))
-        assertEquals("חג בר-תלמי השליח", bartholomew?.title)
+        assertEquals("Saint Bartholomew, Apostle", bartholomew?.title)
+        assertEquals("חג בר-תלמי השליח", bartholomew?.localizedTitle("he"))
         assertEquals("Feast", bartholomew?.rank)
         val sunday = TodayInfoStore.feast(date("2026-08-30"))
-        assertEquals("יום א ה-22 של הזמן הרגיל", sunday?.title)
+        assertEquals("22nd Sunday of Ordinary Time", sunday?.title)
+        assertEquals("יום א ה-22 של הזמן הרגיל", sunday?.localizedTitle("he"))
         assertEquals("Sunday", sunday?.rank)
-        assertNull(TodayInfoStore.feast(date("2026-09-03")))
     }
 
     /** The Syriac Catholic table comes from Evangelizo.org's Daily Gospel (credited on the
@@ -196,16 +199,76 @@ class TodayInfoStoreTest {
     }
 
     @Test
-    fun readingsAndLiturgicalDayResolve() {
+    fun romanReadingsAndLiturgicalDayResolve() {
         val readings = TodayInfoStore.readings(date("2026-08-31"))
         assertEquals(listOf("1 Cor. 2", "Ps. 119", "Lk. 4"), readings.map { it.short })
         assertEquals("Luke 4:16–30", readings.last().full)
-        assertEquals("הבשורה על-פי לוקס 4:16–30", readings.last().hebrew)
+        assertEquals("לוקס ד׳", readings.last().localizedShort("he"))
+        assertEquals("הבשורה על-פי לוקס ד׳ 16–30", readings.last().localizedFull("he"))
+        assertEquals("לוקס ד׳", readings.last().localizedShort("he-x-gamliel"))
+        assertEquals("הבשורה על-פי לוקס ד׳ 16–30", readings.last().localizedFull("he-x-gamliel"))
 
         val day = TodayInfoStore.liturgicalDayInfo(date("2026-08-31"))
         assertTrue(day.english.startsWith("Monday · Week "))
         assertTrue(day.english.endsWith(" of Ordinary Time"))
         assertTrue(day.hebrew.contains("בזמן הרגיל"))
+    }
+
+    @Test
+    fun localizedDisplayTitlesLoseHebrewPointsWithoutChangingBodyText() {
+        val feast = FeastDay(
+            title = "Saint John",
+            rank = "Memorial",
+            titleByLanguage = mapOf("he" to "יוֹחָנָן הַקָּדוֹשׁ"),
+        )
+        val intention = PopeIntention(
+            title = "Peace",
+            text = "Pray for peace.",
+            titleByLanguage = mapOf("he" to "שָׁלוֹם"),
+            textByLanguage = mapOf("he" to "נִתְפַּלֵּל לְשָׁלוֹם."),
+        )
+
+        assertEquals("יוחנן הקדוש", feast.localizedTitle("he-x-gamliel"))
+        assertEquals("שלום", intention.localizedTitle("he"))
+        assertEquals("נִתְפַּלֵּל לְשָׁלוֹם.", intention.localizedText("he"))
+    }
+
+    @Test
+    fun switchingCalendarSwitchesReadingsWithoutLeakingThePreviousTable() {
+        val target = date("2026-08-31")
+        assertEquals(listOf("1 Cor. 2", "Ps. 119", "Lk. 4"), TodayInfoStore.readings(target).map { it.short })
+
+        AppSettings.feastCalendarId = "roman1962"
+        assertEquals(listOf("Lk. 12"), TodayInfoStore.readings(target).map { it.short })
+
+        AppSettings.feastCalendarId = "ugcc"
+        assertEquals(listOf("Heb. 9", "Lk. 10"), TodayInfoStore.readings(target).map { it.short })
+
+        AppSettings.feastCalendarId = "syriac"
+        assertEquals(listOf("Rom. 7", "Lk. 17"), TodayInfoStore.readings(target).map { it.short })
+
+        AppSettings.feastCalendarId = "roman"
+        assertEquals(listOf("1 Cor. 2", "Ps. 119", "Lk. 4"), TodayInfoStore.readings(target).map { it.short })
+    }
+
+    @Test
+    fun missingReadingsFileProducesAnEmptyRow() {
+        TodayInfoStore.resetForTesting()
+        val files = mapOf(
+            "calendars" to """{
+                "default":"test",
+                "calendars":[{
+                    "id":"test", "file":"feasts", "readingsFile":"not-shipped",
+                    "name":"Test"
+                }]
+            }""",
+            "feasts" to """{"days":{}}""",
+        )
+        TodayInfoStore.initialize { name ->
+            files[name]?.let { ByteArrayInputStream(it.toByteArray()) }
+        }
+
+        assertTrue(TodayInfoStore.readings(date("2026-08-31")).isEmpty())
     }
 
     @Test

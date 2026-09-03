@@ -40,7 +40,9 @@ private struct PackManifest: Decodable {
 
 private struct PackContent: Decodable {
   let prayers: [String: String]
-  let mysteries: [String: MysteryText]
+  /// Mystery fields are independently optional: source/rite-specific Scripture can override
+  /// only its description while title and fruit continue through the language fallback chain.
+  let mysteries: [String: MysteryTextOverride]
   /// Optional reading aid (v0.7): prayer key → the same text in another script.
   let transliterations: [String: String]?
 }
@@ -51,7 +53,8 @@ private struct PackContent: Decodable {
 /// UI labels); `titleKey` is the alternative for devotions whose step titles are themselves
 /// translated content (e.g. the Stations' station names). `repeat` expands into n steps titled
 /// "Title (h of n)" — deliberately without bead fields, matching the hardcoded devotions'
-/// closing Hail Marys.
+/// closing Hail Marys. A paired `counterIndex`/`counterTotal` gives one authored entry that same
+/// localized suffix without repeating it (the Rosary's three distinct virtue Hail Marys).
 struct CustomDevotionStep: Decodable {
   let title: String?
   let titleKey: String?
@@ -66,6 +69,8 @@ struct CustomDevotionStep: Decodable {
   let acclamationKey: String?
   let imageKey: String?
   let repeatCount: Int?
+  let counterIndex: Int?
+  let counterTotal: Int?
   let isScripture: Bool?
   /// Per-language override of `isScripture` — for bodies that are quoted scripture in some
   /// languages but composed prose in others (the traditional Stations: Liguori meditations in
@@ -91,6 +96,7 @@ struct CustomDevotionStep: Decodable {
 
   private enum CodingKeys: String, CodingKey {
     case title, titleKey, subtitle, subtitleKey, bodyKey, acclamationKey, imageKey, isScripture, isScriptureByLanguage, kind, optionKey
+    case counterIndex, counterTotal
     case repeatCount = "repeat"
     case condition = "if"
   }
@@ -112,8 +118,10 @@ struct CustomDevotionOption: Decodable {
     let nameByLanguage: [String: String]?
 
     var localizedName: String {
-      guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else { return name }
-      return nameByLanguage?[String(uiLanguage)] ?? name
+      guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else {
+        return HebrewDisplayText.unpointed(name)
+      }
+      return HebrewDisplayText.unpointed(nameByLanguage?[String(uiLanguage)] ?? name)
     }
   }
 
@@ -128,8 +136,10 @@ struct CustomDevotionOption: Decodable {
   let cases: [Case]?
 
   var localizedName: String {
-    guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else { return name }
-    return nameByLanguage?[String(uiLanguage)] ?? name
+    guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else {
+      return HebrewDisplayText.unpointed(name)
+    }
+    return HebrewDisplayText.unpointed(nameByLanguage?[String(uiLanguage)] ?? name)
   }
 
   private enum CodingKeys: String, CodingKey {
@@ -192,8 +202,10 @@ struct DevotionAudioTrack: Decodable {
   let chapters: [Chapter]
 
   var localizedName: String? {
-    guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else { return name }
-    return nameByLanguage?[String(uiLanguage)] ?? name
+    guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else {
+      return name.map(HebrewDisplayText.unpointed)
+    }
+    return (nameByLanguage?[String(uiLanguage)] ?? name).map(HebrewDisplayText.unpointed)
   }
 }
 
@@ -233,8 +245,10 @@ struct CustomDevotionDefinition: Decodable {
     let steps: [CustomDevotionStep]
 
     var localizedName: String {
-      guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else { return name }
-      return nameByLanguage?[String(uiLanguage)] ?? name
+      guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else {
+        return HebrewDisplayText.unpointed(name)
+      }
+      return HebrewDisplayText.unpointed(nameByLanguage?[String(uiLanguage)] ?? name)
     }
   }
 
@@ -327,8 +341,10 @@ struct CustomDevotionDefinition: Decodable {
     let hasClosingCross: Bool?
 
     var localizedName: String {
-      guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else { return name }
-      return nameByLanguage?[String(uiLanguage)] ?? name
+      guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else {
+        return HebrewDisplayText.unpointed(name)
+      }
+      return HebrewDisplayText.unpointed(nameByLanguage?[String(uiLanguage)] ?? name)
     }
   }
 
@@ -430,11 +446,17 @@ struct CustomDevotionInfo {
   /// so a rite whose bundle only names the base language still reads that language's name.
   var localizedDisplayName: String {
     let prayerCode = LanguageCatalog.resolve(nil).code
-    if let name = displayNameByLanguage[prayerCode] { return name }
+    if let name = displayNameByLanguage[prayerCode] {
+      return HebrewDisplayText.unpointed(name)
+    }
     if let base = LanguageCatalog.baseLanguage(of: prayerCode),
-       let name = displayNameByLanguage[base] { return name }
-    guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else { return displayName }
-    return displayNameByLanguage[String(uiLanguage)] ?? displayName
+       let name = displayNameByLanguage[base] {
+      return HebrewDisplayText.unpointed(name)
+    }
+    guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else {
+      return HebrewDisplayText.unpointed(displayName)
+    }
+    return HebrewDisplayText.unpointed(displayNameByLanguage[String(uiLanguage)] ?? displayName)
   }
 
   var localizedReminderBody: String? {
@@ -466,7 +488,7 @@ enum PrayerPackStore {
   ]
 
   private static var prayerOverrides: [String: [PrayerKey: String]] = [:]
-  private static var mysteryOverrides: [String: [String: MysteryText]] = [:]
+  private static var mysteryOverrides: [String: [String: MysteryTextOverride]] = [:]
   private static var imageDataByKey: [String: Data] = [:]
   /// Unfiltered per-bundle content, keyed bundleId -> language -> raw key -> text — unlike
   /// `prayerOverrides`, this retains keys with no matching `PrayerKey` case (e.g.
@@ -542,7 +564,7 @@ enum PrayerPackStore {
     return prayerOverrides[languageCode]?[key]
   }
 
-  static func mysteryOverride(languageCode: String, imageKey: String) -> MysteryText? {
+  static func mysteryOverride(languageCode: String, imageKey: String) -> MysteryTextOverride? {
     ensureLoaded()
     return mysteryOverrides[languageCode]?[imageKey]
   }
@@ -845,7 +867,7 @@ enum PrayerPackStore {
       guard !content.mysteries.isEmpty else { continue }
       var mysteries = mysteryOverrides[language] ?? [:]
       for (key, text) in content.mysteries {
-        mysteries[key] = text
+        mysteries[key] = mysteries[key]?.merging(text) ?? text
       }
       mysteryOverrides[language] = mysteries
     }

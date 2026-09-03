@@ -11,6 +11,8 @@
   <data name="common_ok" xml:space="preserve"><value>OK</value></data>
   <data name="common_finish" xml:space="preserve"><value>Finish</value></data>
   <data name="common_next" xml:space="preserve"><value>Next</value></data>
+  <data name="common_continue" xml:space="preserve"><value>Continue</value></data>
+  <data name="common_restart" xml:space="preserve"><value>Restart</value></data>
   <data name="kind_rosary" xml:space="preserve"><value>Rosary</value></data>
   <data name="kind_jesus_prayer" xml:space="preserve"><value>Jesus Prayer</value></data>
   <data name="kind_devotion" xml:space="preserve"><value>Devotion</value></data>
@@ -65,6 +67,8 @@
   <data name="flow_error_header" xml:space="preserve"><value>Something went wrong</value></data>
   <data name="flow_error_body" xml:space="preserve"><value>This devotion couldn't be loaded. Please go back and try again.</value></data>
   <data name="flow_app_setting" xml:space="preserve"><value>App setting</value></data>
+  <data name="prayer_resume_title" xml:space="preserve"><value>Continue where you left off?</value></data>
+  <data name="prayer_resume_message" xml:space="preserve"><value>Continue this unfinished prayer, or restart from the beginning.</value></data>
   <data name="rosary_no_favorites_header" xml:space="preserve"><value>No Rosary favorites yet</value></data>
   <data name="rosary_no_favorites_body" xml:space="preserve"><value>Add a Rosary favorite first.</value></data>
   <data name="rosary_error_body" xml:space="preserve"><value>This Rosary session couldn't be loaded. Please go back and try again.</value></data>
@@ -113,7 +117,7 @@
   <data name="SetShowTodayFeast.Header" xml:space="preserve"><value>Show the day's feast</value></data>
   <data name="SetShowTodayIntention.Header" xml:space="preserve"><value>Show the Pope's intention</value></data>
   <data name="SetFeastCalendar.Header" xml:space="preserve"><value>Liturgical calendar</value></data>
-  <data name="SetFeastCalendarHint.Text" xml:space="preserve"><value>Which calendar's feasts the Today section shows.</value></data>
+  <data name="SetFeastCalendarHint.Text" xml:space="preserve"><value>Which calendar the Today section's feasts and readings follow.</value></data>
   <data name="FavTitle.Text" xml:space="preserve"><value>Favorites</value></data>
   <data name="BtnPray.Content" xml:space="preserve"><value>Pray</value></data>
   <data name="FavSetDefault.Content" xml:space="preserve"><value>Set Default</value></data>
@@ -164,6 +168,7 @@
   <data name="EdApostlesCreed.Text" xml:space="preserve"><value>Apostles' Creed</value></data>
   <data name="EdOpeningPrayers.Text" xml:space="preserve"><value>Opening Our Father &amp; 3 Hail Marys</value></data>
   <data name="EdFatima.Text" xml:space="preserve"><value>Fatima Prayer after each decade</value></data>
+  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>Fatima Prayer after the opening Hail Marys</value></data>
   <data name="EdDisplayHeader.Text" xml:space="preserve"><value>DISPLAY</value></data>
   <data name="EdMysteryArtwork.Header" xml:space="preserve"><value>Mystery artwork</value></data>
   <data name="EdPresenterMode.Text" xml:space="preserve"><value>Presenter Mode</value></data>
@@ -205,7 +210,11 @@
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>Scripture Sources</value></data>
   <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) with Hebrew Old Testament passages following the Masoretic text, the Jesuit Arabic Bible (Beirut, 1880, revised 1988), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905) — all public domain.</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>Calendar Data</value></data>
-  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Calendar and readings data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar via Missale Meum (missalemeum.com); the Syriac Catholic calendar, the Roman lectionary calendar in Hebrew, and daily Roman-lectionary citations courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic table compiled in-app from the traditional sources.</value></data>
+  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Calendar and readings data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar and readings via Missale Meum (missalemeum.com); the Syriac Catholic calendar and readings, and General Roman Hebrew titles and citations, courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; Byzantine citations from Royal Doors (royaldoors.net), with the Ukrainian Greek Catholic calendar compiled from traditional sources.</value></data>
+  <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Previous mystery</value></data>
+  <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Previous mystery</value></data>
+  <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Next mystery</value></data>
+  <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Next mystery</value></data>
   <data name="AbtMys01Title.Text" xml:space="preserve"><value>The Annunciation</value></data>
   <data name="AbtCredit01.Text" xml:space="preserve"><value> — Fra Angelico (d. 1455)</value></data>
   <data name="AbtMys02Title.Text" xml:space="preserve"><value>The Visitation</value></data>
@@ -333,6 +342,7 @@
   <data name="PickerApostlesCreed.Text" xml:space="preserve"><value>Apostles' Creed</value></data>
   <data name="PickerOpeningPrayers.Text" xml:space="preserve"><value>Opening Our Father &amp; 3 Hail Marys</value></data>
   <data name="PickerFatima.Text" xml:space="preserve"><value>Fatima Prayer after each decade</value></data>
+  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>Fatima Prayer after the opening Hail Marys</value></data>
   <data name="PickerPresenterMode.Text" xml:space="preserve"><value>Presenter mode</value></data>
   <data name="PickerClosingIntentions.Text" xml:space="preserve"><value>Closing Intentions</value></data>
   <data name="PickerStMichael.Text" xml:space="preserve"><value>St. Michael prayer</value></data>

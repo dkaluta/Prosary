@@ -32,6 +32,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.audio.AudioPlaybackController
+import com.dkaluta.prosary.typography.HebrewDisplayText
 
 /**
  * The compact transport strip a prayer flow shows above its footer when the session's
@@ -80,7 +81,7 @@ fun AudioPlaybackBar(
                 val chapterIndex = controller.currentChapterIndex
                 if (chapterIndex != null && chapterIndex in chapterTitles.indices) {
                     Text(
-                        chapterTitles[chapterIndex],
+                        HebrewDisplayText.unpoint(chapterTitles[chapterIndex]),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         maxLines = 1,

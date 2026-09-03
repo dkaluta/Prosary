@@ -64,6 +64,9 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
     private bool _includeOpeningPrayers = true;
 
     [ObservableProperty]
+    private bool _includeOpeningFatimaPrayer;
+
+    [ObservableProperty]
     private bool _includeFatimaPrayer = true;
 
     [ObservableProperty]
@@ -114,6 +117,7 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
             SelectedOrdinal = preset.Rosary.SpecificMysteryOrder;
             IncludeApostlesCreed = preset.Rosary.IncludeApostlesCreed;
             IncludeOpeningPrayers = preset.Rosary.IncludeOpeningPrayers;
+            IncludeOpeningFatimaPrayer = preset.Rosary.IncludeOpeningFatimaPrayer;
             IncludeFatimaPrayer = preset.Rosary.IncludeFatimaPrayer;
             EternalRestForDeceased = preset.Rosary.EternalRestForDeceased;
             PresenterMode = preset.Rosary.PresenterMode;
@@ -140,6 +144,7 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
                 SpecificMysteryOrder = SelectedOrdinal,
                 IncludeApostlesCreed = IncludeApostlesCreed,
                 IncludeOpeningPrayers = IncludeOpeningPrayers,
+                IncludeOpeningFatimaPrayer = IncludeOpeningFatimaPrayer,
                 IncludeFatimaPrayer = IncludeFatimaPrayer,
                 EternalRestForDeceased = EternalRestForDeceased,
                 PresenterMode = PresenterMode,

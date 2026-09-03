@@ -4,6 +4,8 @@
      style; artist names come from Hebrew Wikipedia (langlinks), transliterated with geresh ׳
      where no article exists. Pending review by Erez. -->
 <resources>
+    <string name="app_name">Prosary</string>
+
     <!-- Shared -->
     <string name="common_back">חזרה</string>
     <string name="common_cancel">ביטול</string>
@@ -69,7 +71,7 @@
     <string name="settings_show_today_feast">הצגת חג היום</string>
     <string name="settings_show_today_intention">הצגת כוונת האפיפיור</string>
     <string name="settings_feast_calendar">הלוח הליטורגי</string>
-    <string name="settings_feast_calendar_hint">לפי איזה לוח מוצגים חגי המדור „היום“.</string>
+    <string name="settings_feast_calendar_hint">לפי איזה לוח מוצגים חגי ומקראות המדור „היום“.</string>
     <string name="settings_downloads">הורדות</string>
     <string name="settings_installed_devotions">מסלולי תפילה מותקנים: %1$d</string>
     <string name="settings_clear_audio_cache">ניקוי מטמון השמע</string>
@@ -147,6 +149,7 @@
     <string name="ro_opening_section">תפילות הפתיחה והרזים</string>
     <string name="ro_apostles_creed">אני מאמין</string>
     <string name="ro_opening_prayers">“אבינו שבשמים” ו־3 “שמחי מרים” בפתיחה</string>
+    <string name="ro_opening_fatima">“הו ישוע שלי” אחרי 3 “שמחי מרים” בפתיחה</string>
     <string name="ro_fatima">“הו ישוע שלי” בסוף כל רז</string>
     <string name="ro_faithful_departed">למען הנפטרים</string>
     <string name="ro_display_section">תצוגה</string>
@@ -213,6 +216,13 @@
     <string name="flow_app_setting">הגדרת האפליקציה</string>
     <string name="flow_day">יום</string>
     <string name="flow_choose_form">בחר נוסח</string>
+    <string name="flow_resume_title">להמשיך בתפילה?</string>
+    <string name="flow_resume_message">הפסקת בשלב %1$d מתוך %2$d.</string>
+    <string name="flow_resume_unbounded_message">הפסקת בחזרה %1$d.</string>
+    <string name="flow_continue">המשך</string>
+    <string name="flow_restart">התחל מחדש</string>
+    <string name="flow_previous_mystery">הרז הקודם</string>
+    <string name="flow_next_mystery">הרז הבא</string>
 
     <!-- Audio playback -->
     <string name="audio_previous_chapter">הפרק הקודם</string>
@@ -322,7 +332,7 @@
     <string name="about_scripture_sources">מקורות כתבי הקודש</string>
     <string name="about_scripture_text">ציטוטי המקרא לקוחים מביבליית דואיי־רימס (אנגלית), הוולגאטה הקלמנטית (לטינית), תרגום דליטש לברית החדשה (מתוך kirjasilta.net/ha-berit) עם קטעי התנ״ך על פי נוסח המסורה, תרגום הישועים לביבליה לערבית (ביירות, 1880, נערך 1988), הביבליה הסינודלית ברוסית (1876) ו־Ang Dating Biblia (טאגאלוג, 1905) — כולם בנחלת הכלל.</string>
     <string name="about_calendar_data">נתוני לוחות</string>
-    <string name="about_calendar_data_body">נתוני לוחות ומקראות: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 מ־Missale Meum‏ (missalemeum.com); הלוח הסורי-קתולי, לוח המקראות הרומי בעברית ומראי המקום היומיים של המקראות באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; הלוח האוקראיני-קתולי נערך באפליקציה מן המקורות המסורתיים.</string>
+    <string name="about_calendar_data_body">נתוני לוחות ומקראות: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 ומקראותיו מ־Missale Meum‏ (missalemeum.com); הלוח הסורי־קתולי, שמות עבריים ללוח הרומי הכללי ומראי המקום הרומיים והסוריים באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; הלוח האוקראיני־קתולי נערך באפליקציה מן המקורות המסורתיים, ומראי המקום הביזנטיים לקוחים מלוח השנה הליטורגית האוקראינית־קתולית (גרגוריאני) הציבורי של Royal Doors‏ (royaldoors.net).</string>
     <string name="multi_day_reminder_body">יום %1$d מתוך %2$d ממתין.</string>
     <string name="multi_day_completed_title">בזאת הושלמה. להתפלל %1$s עכשיו?</string>
     <string name="multi_day_pray_next">התפלל %1$s</string>

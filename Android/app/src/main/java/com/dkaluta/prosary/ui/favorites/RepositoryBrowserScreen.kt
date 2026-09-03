@@ -47,12 +47,12 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
-import androidx.compose.ui.platform.LocalContext
 import com.dkaluta.prosary.content.repository.RepositoryBundle
 import com.dkaluta.prosary.content.repository.RepositoryClient
 import com.dkaluta.prosary.ui.shared.installErrorMessage
 import com.dkaluta.prosary.content.repository.RepositoryInstallStamps
 import com.dkaluta.prosary.models.LanguageCatalog
+import com.dkaluta.prosary.typography.HebrewDisplayText
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.launch
 
@@ -214,7 +214,10 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
                         Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Column(Modifier.weight(1f)) {
-                                    Text(rowTitle, style = MaterialTheme.typography.titleMedium)
+                                    Text(
+                                        HebrewDisplayText.unpoint(rowTitle),
+                                        style = MaterialTheme.typography.titleMedium,
+                                    )
                                     Text(
                                         "${bundle.author} · ${languageNames(bundle.languages)}",
                                         style = MaterialTheme.typography.bodySmall,

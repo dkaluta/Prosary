@@ -128,6 +128,9 @@ fun RosaryOptionsEditorScreen(
                 SwitchRow(stringResource(R.string.ro_opening_prayers), rosary.includeOpeningPrayers) {
                     onRosaryChange(rosary.copy(includeOpeningPrayers = it))
                 }
+                SwitchRow(stringResource(R.string.ro_opening_fatima), rosary.includeOpeningFatimaPrayer) {
+                    onRosaryChange(rosary.copy(includeOpeningFatimaPrayer = it))
+                }
                 SwitchRow(stringResource(R.string.ro_fatima), rosary.includeFatimaPrayer) {
                     onRosaryChange(rosary.copy(includeFatimaPrayer = it))
                 }

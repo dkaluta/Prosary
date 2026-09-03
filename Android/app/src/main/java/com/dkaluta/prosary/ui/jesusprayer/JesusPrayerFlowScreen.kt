@@ -1,5 +1,6 @@
 package com.dkaluta.prosary.ui.jesusprayer
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
@@ -27,10 +28,15 @@ import com.dkaluta.prosary.models.JesusPrayerTarget
 import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
+import com.dkaluta.prosary.models.PrayerRunKeys
+import com.dkaluta.prosary.models.PrayerRunProgress
+import com.dkaluta.prosary.models.PrayerRunProgressStore
+import com.dkaluta.prosary.models.PrayerRunSignatures
 import com.dkaluta.prosary.models.RosaryStep
 import com.dkaluta.prosary.services.AppServices
 import com.dkaluta.prosary.services.LocalAppServices
 import com.dkaluta.prosary.ui.shared.PrayerStepFlowScreen
+import com.dkaluta.prosary.ui.shared.ResumePrayerDialog
 import kotlinx.coroutines.launch
 
 /**
@@ -60,6 +66,12 @@ fun JesusPrayerFlowScreen(
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
     val effectiveTarget = prayer?.jesusPrayer?.target ?: target
+    val runKey = remember(prayer?.id, effectiveTarget) {
+        PrayerRunKeys.jesus(prayer?.id, effectiveTarget)
+    }
+    val configurationSignature = remember(effectiveTarget) {
+        PrayerRunSignatures.jesus(effectiveTarget)
+    }
 
     var progress by remember { mutableStateOf(JesusPrayerProgress(target = effectiveTarget)) }
     var isRightToLeft by remember { mutableStateOf(false) }
@@ -67,27 +79,55 @@ fun JesusPrayerFlowScreen(
     var languageCode by remember { mutableStateOf<String?>(null) }
     var hasLoaded by remember { mutableStateOf(false) }
     var matchingFavoriteId by remember { mutableStateOf<String?>(null) }
+    var chosenLanguage by remember { mutableStateOf(prayer?.languageCode ?: LanguageCatalog.defaultSentinel) }
+    var pendingResume by remember(prayer?.id, effectiveTarget) { mutableStateOf<PrayerRunProgress?>(null) }
+    var runReady by remember(prayer?.id, effectiveTarget) { mutableStateOf(false) }
 
-    LaunchedEffect(prayer) {
-        languageCode = if (prayer != null) {
-            prayer.resolvedLanguageCode
-        } else {
-            val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
-            val defaultJP = all.firstOrNull { it.kind == PrayerKind.JesusPrayer && it.isDefault }
-                ?: all.firstOrNull { it.kind == PrayerKind.JesusPrayer }
-            // No favorite yet: the app-level default language, never a silent Latin fallback.
-            defaultJP?.resolvedLanguageCode
-                ?: LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).code
+    LaunchedEffect(prayer, effectiveTarget, runKey) {
+        val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
+        val defaultJP = all.firstOrNull { it.kind == PrayerKind.JesusPrayer && it.isDefault }
+            ?: all.firstOrNull { it.kind == PrayerKind.JesusPrayer }
+        val configuredLanguage = prayer?.languageCode
+            ?: defaultJP?.languageCode
+            ?: LanguageCatalog.defaultSentinel
+        val saved = PrayerRunProgressStore.progress(context, runKey)
+        progress = JesusPrayerProgress(target = effectiveTarget)
+        val validRun = saved?.takeIf {
+            it.canResume(
+                progress.targetCount ?: Int.MAX_VALUE,
+                expectedConfigurationSignature = configurationSignature,
+            )
         }
+        chosenLanguage = validRun?.languageCode ?: configuredLanguage
+        languageCode = LanguageCatalog.resolve(chosenLanguage).code
         isRightToLeft = LanguageCatalog.resolve(languageCode ?: LanguageCatalog.defaultCode).isRightToLeft
         seasonColor = services.calendar.seasonColorToday()
+        pendingResume = validRun
+        runReady = validRun == null
+        if (saved != null && validRun == null) {
+            PrayerRunProgressStore.clear(context, runKey)
+        }
         hasLoaded = true
 
-        val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
         val resolved = languageCode ?: LanguageCatalog.defaultCode
         matchingFavoriteId = all.firstOrNull {
             it.kind == PrayerKind.JesusPrayer && it.resolvedLanguageCode == resolved && it.jesusPrayer.target == effectiveTarget
         }?.id
+    }
+
+    LaunchedEffect(runReady, progress.currentIndex, chosenLanguage, runKey, configurationSignature) {
+        if (!runReady) return@LaunchedEffect
+        if (progress.currentIndex > 0) {
+            PrayerRunProgressStore.save(
+                context,
+                runKey,
+                progress.currentIndex,
+                chosenLanguage,
+                configurationSignature,
+            )
+        } else {
+            PrayerRunProgressStore.clear(context, runKey)
+        }
     }
 
     val currentStep = if (hasLoaded) {
@@ -99,6 +139,44 @@ fun JesusPrayerFlowScreen(
     } else {
         null
     }
+
+    pendingResume?.let { saved ->
+        ResumePrayerDialog(
+            progress = saved,
+            totalSteps = progress.targetCount,
+            onContinue = {
+                progress = progress.copy(currentIndex = saved.stepIndex)
+                pendingResume = null
+                runReady = true
+            },
+            onRestart = {
+                PrayerRunProgressStore.clear(context, runKey)
+                progress = progress.copy(currentIndex = 0)
+                pendingResume = null
+                runReady = true
+            },
+        )
+    }
+
+    fun leave() {
+        if (runReady && progress.currentIndex > 0) {
+            PrayerRunProgressStore.save(
+                context,
+                runKey,
+                progress.currentIndex,
+                chosenLanguage,
+                configurationSignature,
+            )
+        }
+        onNavigateUp()
+    }
+
+    fun finish() {
+        PrayerRunProgressStore.clear(context, runKey)
+        onFinish()
+    }
+
+    BackHandler(onBack = ::leave)
 
     PrayerStepFlowScreen(
         title = stringResource(R.string.jp_title),
@@ -112,9 +190,9 @@ fun JesusPrayerFlowScreen(
         canGoBack = progress.canGoBack,
         onBack = { progress = progress.goBack() },
         onNext = {
-            if (progress.isLastRep) onFinish() else progress = progress.goNext()
+            if (progress.isLastRep) finish() else progress = progress.goNext()
         },
-        onNavigateUp = onNavigateUp,
+        onNavigateUp = ::leave,
         topBarActions = {
             IconButton(onClick = {
                 scope.launch {
@@ -129,7 +207,7 @@ fun JesusPrayerFlowScreen(
             // The footer button never turns into "Finish" for an unbounded session (see
             // JesusPrayerProgress.isLastRep) — this is the only way to end that session.
             if (effectiveTarget is JesusPrayerTarget.Unbounded) {
-                TextButton(onClick = onFinish) { Text(stringResource(R.string.common_finish)) }
+                TextButton(onClick = ::finish) { Text(stringResource(R.string.common_finish)) }
             }
         },
     )

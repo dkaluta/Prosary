@@ -37,6 +37,11 @@ final class PresetStoreTests: XCTestCase {
                    AramaicSignOfCrossForm.formB)
   }
 
+  func testPresetEntryRoundTripsOpeningFatimaPrayer() {
+    let prayer = Prayer(rosary: RosaryOptions(includeOpeningFatimaPrayer: true))
+    XCTAssertTrue(PresetEntry(prayer: prayer).toPrayer().rosary.includeOpeningFatimaPrayer)
+  }
+
   // MARK: - all()
 
   func testAllReturnsSortedByName() async throws {

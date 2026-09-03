@@ -67,7 +67,7 @@ final class CustomDevotionEngineTests: XCTestCase {
     // rite overlays the same slot with his own line said thrice.
     let hebrewKyrie = steps("trisagion", language: "he", variantId: "syriac")[3]
     XCTAssertEqual(hebrewKyrie.body, "יֵשׁוּעַ שְׁמָעֵנוּ, הַמָּשִׁיחַ עָזְרֵנוּ, הָאָדוֹן חָנֵּנוּ.")
-    XCTAssertEqual(hebrewKyrie.title, "יֵשׁוּעַ שְׁמָעֵנוּ", "the heading is the line's own incipit")
+    XCTAssertEqual(hebrewKyrie.title, "ישוע שמענו", "the heading is the unpointed line's own incipit")
     XCTAssertEqual(steps("trisagion", language: "he-x-gamliel", variantId: "syriac")[3].body,
                    "יְהֹוָה רַחֵם־נָא\nיְהֹוָה רַחֵם־נָא\nיְהֹוָה רַחֵם־נָא")
   }
@@ -92,7 +92,7 @@ final class CustomDevotionEngineTests: XCTestCase {
     // the same Aramaic in Syriac letters riding in the script-toggle transliteration.
     let aramaic = steps("trisagion", language: "arc")
     XCTAssertEqual(aramaic.count, 4)
-    XCTAssertEqual(aramaic[0].title, "קַדּישַת אַלָהָא")
+    XCTAssertEqual(aramaic[0].title, "קדישת אלהא")
     XCTAssertEqual(aramaic[0].body,
                    "קַדּישַת אַלָהָא\nקַדִישַת חַילתָּנָא\nקַדִישַת לָא מִיותָּא אֶתַרחַמעלִין")
     XCTAssertEqual(aramaic[0].transliteratedBody,
@@ -101,7 +101,7 @@ final class CustomDevotionEngineTests: XCTestCase {
     // Erez supplied the Mission's doxology in both scripts on 2026-08-26. Pin every mark and
     // vowel so the Hebrew-square-script Aramaic and its pointed Syriac rendering cannot drift.
     let glory = steps("trisagion", language: "arc", variantId: "byzantine")[3]
-    XCTAssertEqual(glory.title, "שוּבחָא לַאבָא")
+    XCTAssertEqual(glory.title, "שובחא לאבא")
     XCTAssertEqual(glory.body,
                    "שוּבחָא לַאבָא ולַברָא וַלרוּחָא קַדישָא\nמֶן עָלַם וַעדַמָא לעָלַם עָלמִין. אַמִין.")
     XCTAssertEqual(glory.transliteratedBody,
@@ -152,37 +152,54 @@ final class CustomDevotionEngineTests: XCTestCase {
     // pointed Syriac scripts.
     UserDefaults.standard.set("arc", forKey: "defaultLanguageCode")
     let aramaicCreed = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "creed")!)
-    XCTAssertEqual(aramaicCreed.title, "מהַימנִינַן")
+    XCTAssertEqual(aramaicCreed.title, "מהימנינן")
     XCTAssertEqual(aramaicCreed.body,
       "מהַימנִינַן בחד אַלָהָא, אַבָּא אַחִיד כֻּל, עָבוּדָא דַּשמַיָא ודַארעָא וַדכֻלהֶין אַיללין דמֶתחַזין וַדלָא מֶתחַזיָן, וַבחַד מָריָא יֶשוּע משיחָא יַחחָדָיֶא ברא דַּאַלָהָא, הַו דּמֶן אַבָּא אֶתִילֶד קדדם כלהון עָלמֶא, אַלָהָא מֶן אַלָהָא, נוּהרָא מֶן נוּהרָא, אַלָהָא שַרִירא מֶן אַלָהָא שַרִירָא, יַלִידא ולָא עבִידא, וַשוֶא בֻּאוסִיא לַאבּוּהי, הַו דבּאִידֶה הוֹא כַּל מֶדֶם, הַו דּמֶטֻלָתַן בּנַינשָא, ומֶטֻל פּוּרקָנַן נחֶת מֶן שמַיָא ואֶתגַשַם מֶן רוּחָא קַדִישָא, מֶן מַריַם בּתוּלתָא וַהוֹא בַּרננשֶא, ואֶצטלֶב חלָפִין ביומי פַּנטִיָוס פִילַטָוס, חַש ומִית וְאתקבַר, קם לַתלָתָא יַוַמִין אַיך דַכתִיב, וַסלֶק לַשמַיָא וִיתֶב מֶן יָמִין אַבּוּהי, ותוב אִתֶּא בשוּבחֶה רַבָא לַמן ליַיֶא וַלמִיָתֶא, הַו דַּלמַלכּוּתֶּה שוּלָמָא לָאאית, וַבחַד רוּחָא קַדִישָא דאַיָתַוהי מָריָא מַחינָא דכֻל, הַו דּמֶן אַבָא ובא ננפֶק, ועַם אַבָא ועַם ברא מֶסתגֶד ומֶשתַבַח, הַו דּמַלֶל בַנכָיֶא, ובַחדָא עִדתָא קַדִישתָא קָתוּלִיקִי וַשלִיחָיתָא, ומַודֶינַן דַחדָא הי מַעמַודָיתָא לשוּבקָנָא דּחַטָהֶא, וַמסַכֶינַן לַקיָמתָא דמִיתֶא וַלִיֶא חַדתֶא דבעָלמָא דַעתִיד. אַמִין.")
     XCTAssertEqual(aramaicCreed.transliteratedBody,
       "ܡܗܰܝܡܢܺܝܢܰܢ ܒܚܕ ܐܰܠܳܗܳܐ. ܐܰܒ݁ܳܐ ܐܰܚܺܝܕ݂ ܟ݁ܽܠ. ܥܳܒܽܘܕܳܐ ܕ݁ܰܫܡܰܝܳܐ ܘܕ݂ܰܐܪܥܳܐ ܘܰܕ݂ܟܽܠܗܶܝܢ ܐܰܝܠܠ̈ܝܢ ܕܡܶܬ݂ܚܰܙܝܢ ܘܰܕ݂ܠܳܐ ܡܶܬ݂ܚܰܙܝܳܢ. ܘܰܒ݂ܚܰܕ݂ ܡܳܪܝܳܐ ܝܶܫܽܘܥ ܡܫܝܚܳܐ ܝܰܚܚܳܕ݂ܳܝܶܐ ܒܪܐ ܕ݁ܰܐܰܠܳܗܳܐ. ܗܰܘ ܕ݁ܡܶܢ ܐܰܒ݁ܳܐ ܐܶܬܺܝܠܶܕ݂ ܩ݀ܕܕܡ ܟܠܗ݇ܘܢ ܥܳܠܡ̈ܶܐ. ܐܰܠܳܗܳܐ ܡܶܢ ܐܰܠܳܗܳܐ. ܢܽܘܗܪܳܐ ܡܶܢ ܢܽܘܗܪܳܐ. ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܐ ܡܶܢ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܝܰܠܺܝܕܐ ܘܠܳܐ ܥܒܿܺܝܕܐ. ܘܰܫܘܶܐ ܒ݁ܽܐܘܣܺܝܐ ܠܰܐܒ݁ܽܘܗ̄ܝ. ܗܰܘ ܕܒ݁ܐܺܝܕ݂ܶܗ ܗ݈ܘܳܐ ܟ݁ܰܠ ܡܶܕܶܡ. ܗܰܘ ܕ݁ܡܶܛܽܠܳܬ݂ܰܢ ܒ݁ܢܰܝ̈ܢܫܳܐ. ܘܡܶܛܽܠ ܦ݁ܽܘܪܩܳܢܰܢ ܢܚܶܬ݂ ܡܶܢ ܫܡܰܝܳܐ ܘܐܶܬ݂ܓܰܫܰܡ ܡܶܢ ܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ. ܡܶܢ ܡܰܪܝܰܡ ܒ݁ܬ݂ܽܘܠܬ݂ܳܐ ܘܰܗ݈ܘܳܐ ܒ݁ܰܪܢܢܫܶܐ. ܘܐܶܨܛܠܶܒ݂ ܚܠܳܦ݂ܺܝܢ ܒܝܵܘ̈ܡ̇ܝ ܦ݁ܰܢܛܺܝܳܘܣ ܦܺܝܠܰܛܳܘܣ. ܚܰܫ ܘܡܺܝܬ ܘܶܐܬܩܒܰܪ. ܩܿܡ ܠܰܬ݂ܠܳܬ݂ܳܐ ܝܰܘܰܡܺܝܢ ܐܰܝܟ݂ ܕܰܟܬܺܝܒ. ܘܰܣܠܶܩ ܠܰܫܡܰܝܳܐ ܘܺܝܬ݂ܶܒ݂ ܡܶܢ ܝܳܡܺܝܢ ܐܰܒ݁ܽܘܗ̄ܝ. ܘܬܘܒ ܐܺܬ݁ܶܐ ܒܫܽܘܒ݂ܚܶܗ ܪܰܒܳܐ ܠܰܡܢ ܠܝܰܝܶܐ ܘܰܠܡܺܝܳܬ݂ܶܐ. ܗܰܘ ܕ݁ܰܠܡܰܠܟ݁ܽܘܬ݁ܶܗ ܫܽܘܠܳܡܳܐ ܠܳܐܐܝܬ. ܘܰܒ݂ܚܰܕ݂ ܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ ܕܐܰܝܳܬ݂ܰܘܗ݈ܝ ܡܳܪܝܳܐ ܡܰܚܝܢܳܐ ܕܟܽܠ. ܗܰܘ ܕ݁ܡܶܢ ܐܰܒܳܐ ܘܒܐ ܢܢܦܶܩ. ܘܥܰܡ ܐܰܒ݂ܳܐ ܘܥܰܡ ܒܪܐ ܡܶܣܬܓܶܕ ܘܡܶܫܬ݂ܰܒ݂ܰܚ. ܗܰܘ ܕ݁ܡܰܠܶܠ ܒܰܢ̈ܟܿܳܝܶܐ. ܘܒ݂ܰܚܕܳܐ ܥܺܕܬ݂ܳܐ ܩܰܕܺܝܫܬ݂ܳܐ ܩܳܬ݂ܽܘܠܺܝܩܺܝ ܘܰܫܠܺܝܚܳܝܬ݂ܳܐ. ܘܡܰܘܕ݂ܶܝܢܰܢ ܕܰܚܕ݂ܳܐ ܗ̄ܝ ܡܰܥܡܰܘܕ݂ܳܝܬܳܐ ܠܫܽܘܒܩܳܢܳܐ ܕ݁ܚܰܛܳܗܶܐ. ܘܰܡܣܰܟܶܝܢܰܢ ܠܰܩ݀ܝܳܡܬܳܐ ܕܡܺܝ̈ܬ݂ܶܐ ܘܰܠܺܝ̈ܶܐ ܚܰܕ̈ܬ݂ܶܐ ܕܒ݂ܥܳܠܡܳܐ ܕܰܥܬ݂ܺܝܕ݂. ܐܰܡܺܝܢ.")
     let abun = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "ourFather")!)
-    XCTAssertEqual(abun.title, "צלוּתָא מָרָנָיתָא")
+    XCTAssertEqual(abun.title, "צלותא מרניתא")
     XCTAssertEqual(abun.body,
-      "אַבוּן דבַשמַיָא נֶתקַדַש שמָך תִאתֶא מַלכוּתָך נֶהוֶא צֶביָנָך, " +
-      "אַיכַנָא דבַשמַיָא אָף בַארעָא, הַבלַן לַחמָא דסוּנקָנַן יַומָנָא, " +
-      "וַשבוּק לַן חַובַין וַחטָהַין אַיכַנָא דָאף חנַן שבַקן לחַיָבַין, " +
-      "ולָא תַעלַן לנֶסיוּנָא אֶלָא פַצָא לַן מֶן בִישָא, מֶטֻל דדִילָך הִי " +
+      "אַבוּן דבַשמַיָא נֶתקַדַש שמָך\n" +
+      "תִאתֶא מַלכוּתָך נֶהוֶא צֶביָנָך,\n" +
+      "אַיכַנָא דבַשמַיָא אָף בַארעָא,\n" +
+      "הַבלַן לַחמָא דסוּנקָנַן יַומָנָא,\n" +
+      "וַשבוּק לַן חַובַין וַחטָהַין\n" +
+      "אַיכַנָא דָאף חנַן שבַקן לחַיָבַין,\n" +
+      "ולָא תַעלַן לנֶסיוּנָא\n" +
+      "אֶלָא פַצָא לַן מֶן בִישָא,\n" +
+      "מֶטֻל דדִילָך הִי " +
       "מַלכוּתָא וחַילָא ותֶשבוּחתָא לעָלַם עָלמִין אַמִין.")
     XCTAssertEqual(abun.transliteratedBody,
-      "ܐܰܒ݁ܽܘܢ ܕܒܰܫܡܰܝܳܐ ܢܶܬܩܰܕܰܫ ܫܡܳܟ ܬܺܐܬܶܐ ܡܰܠܟܽܘܬܳܟ ܢܶܗܘܶܐ ܨܶܒܝܳܢܳܟ. " +
-      "ܐܰܝܟܰܢܳܐ ܕܒܰܫܡܰܝܳܐ ܐܳܦ ܒܰܐܪܥܳܐ. ܗܰܒܠܰܢ ܠܰܚܡܳܐ ܕܣܽܘܢܩܳܢܰܢ ܝܰܘܡܳܢܳܐ. " +
-      "ܘܰܫܒܽܘܩ ܠܰܢ ܚܰܘܒܰܝ̈ܢ ܘܰܚܛܳܗܰܝ̈ܢ ܐܰܝܟܰܢܳܐ ܕܳܐܦ ܚܢܰܢ ܫܒܰܩܢ ܠܚܰܝܳܒܰܝ̈ܢ. " +
-      "ܘܠܳܐ ܬܰܥܠܰܢ ܠܢܶܣܝܽܘܢܳܐ ܐܶܠܳܐ ܦܰܨܳܐ ܠܰܢ ܡܶܢ ܒܺܝܫܳܐ. " +
+      "ܐܰܒ݁ܽܘܢ ܕܒܰܫܡܰܝܳܐ ܢܶܬܩܰܕܰܫ ܫܡܳܟ\n" +
+      "ܬܺܐܬܶܐ ܡܰܠܟܽܘܬܳܟ ܢܶܗܘܶܐ ܨܶܒܝܳܢܳܟ.\n" +
+      "ܐܰܝܟܰܢܳܐ ܕܒܰܫܡܰܝܳܐ ܐܳܦ ܒܰܐܪܥܳܐ.\n" +
+      "ܗܰܒܠܰܢ ܠܰܚܡܳܐ ܕܣܽܘܢܩܳܢܰܢ ܝܰܘܡܳܢܳܐ.\n" +
+      "ܘܰܫܒܽܘܩ ܠܰܢ ܚܰܘܒܰܝ̈ܢ ܘܰܚܛܳܗܰܝ̈ܢ\n" +
+      "ܐܰܝܟܰܢܳܐ ܕܳܐܦ ܚܢܰܢ ܫܒܰܩܢ ܠܚܰܝܳܒܰܝ̈ܢ.\n" +
+      "ܘܠܳܐ ܬܰܥܠܰܢ ܠܢܶܣܝܽܘܢܳܐ\n" +
+      "ܐܶܠܳܐ ܦܰܨܳܐ ܠܰܢ ܡܶܢ ܒܺܝܫܳܐ.\n" +
       "ܡܶܛܽܠ ܕܕܺܝܠܳܟ ܗܺܝ ܡܰܠܟܽܘܬܳܐ ܘܚܰܝܠܳܐ ܘܬܶܫܒܽܘܚܬܳܐ ܠܥܳܠܰܡ ܥܳܠܡܺܝܢ ܐܰܡܺܝܢ܀")
     let aramaicHailMary = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "hailMary")!)
-    XCTAssertEqual(aramaicHailMary.title, "שלָם לֶך מַריַם")
+    XCTAssertEqual(aramaicHailMary.title, "שלם לך מרים")
     XCTAssertEqual(aramaicHailMary.body,
-      "שלָם לֶך מַריַם מַליַת טַיבוּתָא, מָרַן עַמֶך מבַרַכתָא אַנת בנֶשָא " +
-      "וַמבַרַך הוּ פִירָא דַבכַרסֶך מָרַן יֶשוּע משִיחָא, מָרַת מַריַם יָלדַת " +
-      "אַלָהָא אַפִיס חלָפַין חנַן חַטָיָא, הָשָא וַבכֻלזבַן וַלעָלַם עָלמִין אַמִין.")
+      "שלָם לֶך מַריַם\n" +
+      "מַליַת טַיבוּתָא, מָרַן עַמֶך\n" +
+      "מבַרַכתָא אַנת בנֶשָא\n" +
+      "וַמבַרַך הוּ פִירָא דַבכַרסֶך מָרַן יֶשוּע משִיחָא,\n" +
+      "מָרַת מַריַם יָלדַת אַלָהָא\n" +
+      "אַפִיס חלָפַין חנַן חַטָיָא,\n" +
+      "הָשָא וַבכֻלזבַן וַלעָלַם עָלמִין אַמִין.")
     XCTAssertEqual(aramaicHailMary.transliteratedBody,
-      "ܫܠܳܡ ܠܶܟ ܡܰܪܝܰܡ ܡܰܠܝܰܬ ܛܰܝܒܽܘܬܳܐ, ܡܳܪܰܢ ܥܰܡܶܟ ܡܒܰܪܰܟܬܳܐ ܐܰܢܬ ܒܢܶܫܳܐ " +
-      "ܘܰܡܒܰܪܰܟ ܗܽܘ ܦܺܝܪܳܐ ܕܰܒܟܰܪܣܶܟ ܡܳܪܰܢ ܝܶܫܽܘܥ ܡܫܺܝܚܳܐ, ܡܳܪܰܬ ܡܰܪܝܰܡ ܝܳܠܕܰܬ " +
-      "ܐܰܠܳܗܳܐ ܐܰܦܺܝܣ ܚܠܳܦܰܝܢ ܚܢܰܢ ܚܰܛܳܝܳܐ, ܗܳܫܳܐ ܘܰܒܟܽܠܙܒܰܢ ܘܰܠܥܳܠܰܡ ܥܳܠܡܺܝܢ ܐܰܡܺܝܢ.")
+      "ܫܠܳܡ ܠܶܟ ܡܰܪܝܰܡ\n" +
+      "ܡܰܠܝܰܬ ܛܰܝܒܽܘܬܳܐ, ܡܳܪܰܢ ܥܰܡܶܟ\n" +
+      "ܡܒܰܪܰܟܬܳܐ ܐܰܢܬ ܒܢܶܫܳܐ\n" +
+      "ܘܰܡܒܰܪܰܟ ܗܽܘ ܦܺܝܪܳܐ ܕܰܒܟܰܪܣܶܟ ܡܳܪܰܢ ܝܶܫܽܘܥ ܡܫܺܝܚܳܐ,\n" +
+      "ܡܳܪܰܬ ܡܰܪܝܰܡ ܝܳܠܕܰܬ ܐܰܠܳܗܳܐ\n" +
+      "ܐܰܦܺܝܣ ܚܠܳܦܰܝܢ ܚܢܰܢ ܚܰܛܳܝܳܐ,\n" +
+      "ܗܳܫܳܐ ܘܰܒܟܽܠܙܒܰܢ ܘܰܠܥܳܠܰܡ ܥܳܠܡܺܝܢ ܐܰܡܺܝܢ.")
     let qadishat = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "holyGod")!)
-    XCTAssertEqual(qadishat.title, "קַדּישַת אַלָהָא")
+    XCTAssertEqual(qadishat.title, "קדישת אלהא")
   }
 
   /// Spanish, pinned the same way as Greek — what is sourced works, what is not falls back.
@@ -269,14 +286,14 @@ final class CustomDevotionEngineTests: XCTestCase {
     let mission = steps("trisagion", language: "he-x-gamliel", variantId: "byzantine")
     let hebrew = steps("trisagion", language: "he")
 
-    XCTAssertEqual(mission.map(\.title), Array(repeating: "קדישת", count: 3) + ["הַשֶּׁבַח לָאָב"]
+    XCTAssertEqual(mission.map(\.title), Array(repeating: "קדישת", count: 3) + ["השבח לאב"]
       + Array(repeating: "קדישת", count: 2))
     XCTAssertTrue(mission[0].body.hasPrefix("אַתָּה ✠▼▲ קָדוֹשׁ – אֱלוֹהִים"))
     XCTAssertTrue(mission[0].body.contains("תְּרַחֵם עָלֵינוּ"))
     XCTAssertFalse(mission[4].body.contains("חַיִל"), "the short form drops the second acclamation")
 
     XCTAssertNotEqual(mission[0].body, hebrew[0].body)
-    XCTAssertEqual(hebrew[0].title, "קָדוֹשׁ הָאֱלֹהִים")
+    XCTAssertEqual(hebrew[0].title, "קדוש האלהים")
 
     // Not sent by the Mission: the Glory Be itself still reads their wording from the shared
     // table, and everything else falls through to plain Hebrew.
@@ -284,20 +301,20 @@ final class CustomDevotionEngineTests: XCTestCase {
   }
 
 
-  /// A repeated step's counter is part of the prayer, not the interface: praying in Hebrew, the Divine Mercy
-  /// decade reads "(1 מִתּוֹךְ 10)". Splicing the English "of" into right-to-left text left bidi
+  /// A repeated step's counter is part of the heading, not the interface: praying in Hebrew, the Divine Mercy
+  /// decade reads "(1 מתוך 10)". Splicing the English "of" into right-to-left text left bidi
   /// to reorder it into "(of 10 1)".
-  /// The decade ordinal is part of the prayer too: "1st Sorrow" in English, "מַכְאוֹב 1" in
+  /// The decade ordinal is part of the heading too: "1st Sorrow" in English, "מכאוב 1" in
   /// Hebrew — English is the only one of the six that inflects the number.
   func testDecadeOrdinalUsesThePrayerLanguage() {
     XCTAssertTrue(steps("sevenSorrows", language: "en")[3].subtitle?.hasPrefix("1st Sorrow") == true)
-    XCTAssertTrue(steps("sevenSorrows", language: "he")[3].subtitle?.hasPrefix("מַכְאוֹב 1") == true)
+    XCTAssertTrue(steps("sevenSorrows", language: "he")[3].subtitle?.hasPrefix("מכאוב 1") == true)
     XCTAssertTrue(steps("sevenSorrows", language: "ru")[3].subtitle?.hasPrefix("Скорбь 1") == true)
   }
 
   func testRepeatCounterUsesThePrayerLanguage() {
     let hebrew = steps("divineMercyChaplet", language: "he")
-    XCTAssertTrue(hebrew[5].title.contains("(1 מִתּוֹךְ 10)"), hebrew[5].title)
+    XCTAssertTrue(hebrew[5].title.contains("(1 מתוך 10)"), hebrew[5].title)
 
     let latin = steps("divineMercyChaplet", language: "la")
     XCTAssertTrue(latin[5].title.contains("(1 ex 10)"), latin[5].title)
@@ -319,7 +336,7 @@ final class CustomDevotionEngineTests: XCTestCase {
     ])
     XCTAssertTrue(steps[0].body.contains("The Angel of the Lord declared unto Mary"))
     XCTAssertTrue(steps[0].body.contains("**And she conceived of the Holy Spirit.**"))
-    XCTAssertTrue(steps[1].body.contains("Hail Mary, full of grace"))
+    XCTAssertTrue(steps[1].body.contains("Hail Mary,\nfull of grace"))
     XCTAssertTrue(steps.last!.body.contains("Pour forth, we beseech Thee"))
     XCTAssertFalse(steps.contains { $0.body.contains("Queen of Heaven") })
     XCTAssertTrue(steps.allSatisfy { $0.imageKey == "joyful_01_annunciation" })
@@ -374,7 +391,7 @@ final class CustomDevotionEngineTests: XCTestCase {
   /// instead of the Liguori texts — spot-check the translated title and the Isaiah 53:8 body.
   func testStationsHebrewUsesTheScripturalMeditations() {
     let steps = steps("stationsOfTheCross", language: "he")
-    XCTAssertEqual(steps[2].title, "יֵשׁוּעַ נִדּוֹן לַמָּוֶת")
+    XCTAssertEqual(steps[2].title, "ישוע נדון למות")
     XCTAssertTrue(steps[2].body.contains("מֵעֹ֤צֶר וּמִמִּשְׁפָּט֙ לֻקָּ֔ח"))
     XCTAssertEqual(steps[2].acclamation?.contains("**כִּי בִּצְלָבְךָ גָּאַלְתָּ אֶת הָעוֹלָם.**"), true)
     XCTAssertTrue(steps.last!.body.contains("נֶפֶשׁ הַמָּשִׁיחַ קַדְּשִׁינִי"))
@@ -402,8 +419,8 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertEqual(steps[2].acclamation?.contains("We adore You, O Christ"), true)
     XCTAssertFalse(steps[2].body.contains("We adore You"))
     XCTAssertTrue(steps[2].body.contains("Gethsemani"))
-    XCTAssertTrue(steps[2].body.contains("— Mark 14:32-36 (Douay-Rheims)"))
-    // The Sanhedrin scene skips verses 56-59 — the gap is marked, not papered over.
+    XCTAssertTrue(steps[2].body.contains("— Mark 14:32–36 (Douay-Rheims)"))
+    // The Sanhedrin scene skips verses 56–59 — the gap is marked, not papered over.
     XCTAssertTrue(steps[4].body.contains("[…]"))
     XCTAssertEqual(steps[3].imageKey, "scriptural_02_kiss_of_judas")
     XCTAssertEqual(steps[12].title, "Jesus Promises His Kingdom to the Good Thief")
@@ -429,7 +446,7 @@ final class CustomDevotionEngineTests: XCTestCase {
 
   func testStationsScripturalVariantHebrewTitles() {
     let steps = steps("stationsOfTheCross", language: "he", variantId: "scriptural")
-    XCTAssertEqual(steps[2].title, "יֵשׁוּעַ מִתְפַּלֵּל בְּגַת שְׁמָנִים")
+    XCTAssertEqual(steps[2].title, "ישוע מתפלל בגת שמנים")
     XCTAssertTrue(steps[2].body.contains("(דליטש)"))
   }
 
@@ -446,9 +463,9 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertEqual(steps[1].subtitle, "1st Station")
     XCTAssertEqual(steps[1].imageKey, "glorious_01_resurrection")
     XCTAssertEqual(steps[1].acclamation?.contains("Because by Your holy Cross and Resurrection"), true)
-    XCTAssertTrue(steps[1].body.contains("— Matthew 28:1-7 (Douay-Rheims)"))
+    XCTAssertTrue(steps[1].body.contains("— Matthew 28:1–7 (Douay-Rheims)"))
     XCTAssertTrue(steps[1...14].allSatisfy(\.isScripture))
-    // The Emmaus-road station skips verses 17-24 — the gap is marked, not papered over.
+    // The Emmaus-road station skips verses 17–24 — the gap is marked, not papered over.
     XCTAssertTrue(steps[4].body.contains("[…]"))
     XCTAssertEqual(steps[8].title, "Jesus Strengthens the Faith of Thomas")
     XCTAssertEqual(steps[8].imageKey, "via_lucis_08_incredulity_of_thomas")
@@ -468,7 +485,7 @@ final class CustomDevotionEngineTests: XCTestCase {
     let steps = steps("viaLucis", language: "la")
     XCTAssertEqual(steps[1].title, "Iesus a mortuis resurgit")
     XCTAssertEqual(steps[1].acclamation?.contains("Quia per sanctam crucem et resurrectionem tuam"), true)
-    XCTAssertTrue(steps[1].body.contains("— Matth. 28:1-7 (Vulgata)"))
+    XCTAssertTrue(steps[1].body.contains("— Matth. 28:1–7 (Vulgata)"))
     XCTAssertTrue(steps[15].body.contains("Regina caeli, laetare, alleluia."))
   }
 
@@ -679,19 +696,19 @@ final class CustomDevotionEngineTests: XCTestCase {
   func testGamalielVariantOverlaysHebrew() {
     let variant = steps("rosary", language: "he-x-gamliel", customOptions: ["apostlesCreed": "true"])
     XCTAssertTrue(variant[1].body.contains("אָנוּ מַאֲמִינִים"), "the Creed is the Nicene one")
-    XCTAssertEqual(variant[1].title, "מַאֲמִינִים שֶׁל נִיקֵאָה")
+    XCTAssertEqual(variant[1].title, "מאמינים של ניקאה")
     XCTAssertTrue(variant.contains { $0.body.contains("שָׁלוֹם לָךְ מִרְיָם") }, "their Hail Mary")
 
     // Headings belong to the rite that uses them: the Mission's in the Mission's rite, the
     // app's own in plain Hebrew.
     let hebrew = steps("rosary", language: "he", customOptions: ["apostlesCreed": "true"])
-    XCTAssertEqual(variant.first?.title, "אוֹת הַצְּלָב")
-    XCTAssertEqual(hebrew.first?.title, "סִימַן הַצְּלָב")
-    XCTAssertEqual(hebrew[1].title, "אֲנִי מַאֲמִין")
-    XCTAssertTrue(variant.contains { $0.title == "שָׁלוֹם לָךְ מִרְיָם" })
-    XCTAssertTrue(hebrew.contains { $0.title == "שִׂמְחִי מִרְיָם" })
-    XCTAssertTrue(variant.contains { $0.title == "הַשֶּׁבַח לָאָב" })
-    XCTAssertTrue(hebrew.contains { $0.title == "כָּבוֹד לָאָב" })
+    XCTAssertEqual(variant.first?.title, "אות הצלב")
+    XCTAssertEqual(hebrew.first?.title, "סימן הצלב")
+    XCTAssertEqual(hebrew[1].title, "אני מאמין")
+    XCTAssertTrue(variant.contains { $0.title.hasPrefix("שלום לך מרים") })
+    XCTAssertTrue(hebrew.contains { $0.title.hasPrefix("שמחי מרים") })
+    XCTAssertTrue(variant.contains { $0.title == "השבח לאב" })
+    XCTAssertTrue(hebrew.contains { $0.title == "כבוד לאב" })
 
     // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
     let fatima = { (list: [RosaryStep]) in list.first { $0.title.contains("הו ישוע") }?.body }
@@ -738,6 +755,20 @@ final class CustomDevotionEngineTests: XCTestCase {
     let chain = LanguageCatalog.fallbackChain(for: "he-x-gamliel")
     XCTAssertEqual(Array(chain.prefix(4)), ["he-x-gamliel", "he", "ru", "en"])
     XCTAssertEqual(chain.last, "la")
+  }
+
+  func testLanguageFallbackOrderCanResetToTheCanonicalOrder() {
+    let key = LanguageCatalog.fallbackOrderKey
+    let original = UserDefaults.standard.array(forKey: key)
+    defer {
+      if let original { UserDefaults.standard.set(original, forKey: key) }
+      else { UserDefaults.standard.removeObject(forKey: key) }
+    }
+
+    LanguageCatalog.setFallbackOrder(Array(LanguageCatalog.defaultFallbackOrder.reversed()))
+    XCTAssertNotEqual(LanguageCatalog.fallbackOrder, LanguageCatalog.defaultFallbackOrder)
+    LanguageCatalog.resetFallbackOrder()
+    XCTAssertEqual(LanguageCatalog.fallbackOrder, LanguageCatalog.defaultFallbackOrder)
   }
 
   // MARK: - Structural guards

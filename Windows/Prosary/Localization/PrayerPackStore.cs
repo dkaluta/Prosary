@@ -35,7 +35,7 @@ public static class PrayerPackStore
     ];
 
     private static readonly Dictionary<string, Dictionary<string, string>> PrayerOverrides = new();
-    private static readonly Dictionary<string, Dictionary<string, MysteryText>> MysteryOverrides = new();
+    private static readonly Dictionary<string, Dictionary<string, MysteryTextOverride>> MysteryOverrides = new();
     private static readonly Dictionary<string, byte[]> ImageDataByKey = new();
     private static readonly Dictionary<string, string> ExtractedImageUris = new();
 
@@ -92,7 +92,7 @@ public static class PrayerPackStore
             : null;
     }
 
-    public static MysteryText? MysteryOverride(string languageCode, string imageKey) =>
+    public static MysteryTextOverride? MysteryOverride(string languageCode, string imageKey) =>
         MysteryOverrides.TryGetValue(languageCode, out var table) && table.TryGetValue(imageKey, out var text) ? text : null;
 
     public static byte[]? ImageData(string imageKey) => ImageDataByKey.TryGetValue(imageKey, out var data) ? data : null;
@@ -338,6 +338,11 @@ public static class PrayerPackStore
         return resolved == pascalKey ? key : resolved;
     }
 
+    /// <summary>Resolves a bundle key as display chrome. The canonical body resolver remains
+    /// untouched so pointed Hebrew prayer and Scripture text is never rewritten.</summary>
+    public static string ResolveDisplayText(string bundleId, string? languageCode, string key) =>
+        HebrewDisplayText.WithoutMarks(ResolveBodyText(bundleId, languageCode, key));
+
     /// <summary>Extracts a pack-provided image to a cache file on first request — WinUI's
     /// <c>Image.Source</c> needs a file/ms-appx URI, not raw bytes — and returns its <c>file://</c>
     /// URI. Returns null if no pack provides this key, so call sites can fall back to their
@@ -501,10 +506,19 @@ public static class PrayerPackStore
             // per-decade texts in the mysteries map without any catalog.json.
             if (content.Mysteries is { Count: > 0 })
             {
-                var mysteries = MysteryOverrides.TryGetValue(language, out var existingMysteries) ? existingMysteries : new Dictionary<string, MysteryText>();
+                var mysteries = MysteryOverrides.TryGetValue(language, out var existingMysteries)
+                    ? existingMysteries
+                    : new Dictionary<string, MysteryTextOverride>();
                 foreach (var (key, text) in content.Mysteries)
                 {
-                    mysteries[key] = text;
+                    if (mysteries.TryGetValue(key, out var earlier))
+                    {
+                        mysteries[key] = MergeMysteryOverrides(earlier, text);
+                    }
+                    else
+                    {
+                        mysteries[key] = text;
+                    }
                 }
                 MysteryOverrides[language] = mysteries;
             }
@@ -546,6 +560,21 @@ public static class PrayerPackStore
 
         return manifest.Id;
     }
+
+    /// <summary>Combines two pack layers without a sparse later layer blanking fields supplied
+    /// earlier. Description and transliteration form a provenance pair: replacing the former
+    /// also replaces (or deliberately removes) the latter, while a transliteration without its
+    /// own description can never attach itself to unrelated text.</summary>
+    internal static MysteryTextOverride MergeMysteryOverrides(
+        MysteryTextOverride earlier,
+        MysteryTextOverride later) =>
+        new(
+            later.Title ?? earlier.Title,
+            later.Fruit ?? earlier.Fruit,
+            later.Description ?? earlier.Description,
+            later.Description is not null
+                ? later.TransliteratedDescription
+                : earlier.TransliteratedDescription);
 
     /// <summary>Bundle content JSON keys are the camelCase form used across every platform's
     /// schema (e.g. "oratioFatimae"); <see cref="PrayerKey"/>'s constants are the same names
@@ -592,7 +621,7 @@ public static class PrayerPackStore
 
     private sealed record PackContent(
         Dictionary<string, string>? Prayers,
-        Dictionary<string, MysteryText>? Mysteries,
+        Dictionary<string, MysteryTextOverride>? Mysteries,
         // Optional reading aid (v0.7): prayer key -> the same text in another script.
         Dictionary<string, string>? Transliterations = null);
 
@@ -637,9 +666,9 @@ public sealed record DevotionAudioTrack(
         string? TitleKey = null,
         int? StepIndex = null);
 
-    public string? LocalizedName =>
+    public string? LocalizedName => HebrewDisplayText.WithoutMarksOrNull(
         NameByLanguage?.GetValueOrDefault(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
-        ?? Name;
+        ?? Name);
 }
 
 /// <summary>One entry in a generic devotion's <c>devotion.json</c> — a step of the flat "steps"
@@ -647,8 +676,9 @@ public sealed record DevotionAudioTrack(
 /// <see cref="Kind"/>-tagged special step. <see cref="Title"/> is a literal display string (the
 /// app-wide convention that step titles are English-only UI labels); <see cref="TitleKey"/> is
 /// the alternative for devotions whose step titles are themselves translated content (e.g. the
-/// Stations' station names). <see cref="Repeat"/> expands into n steps titled "Title (h of n)" —
-/// deliberately without bead fields, matching the hardcoded devotions' closing Hail Marys.</summary>
+/// Stations' station names). <see cref="Repeat"/> expands into n steps titled "Title (h of n)";
+/// paired <see cref="CounterIndex"/>/<see cref="CounterTotal"/> adds that suffix to one authored
+/// entry without repeating it.</summary>
 public sealed record CustomDevotionStep(
     string? Title = null,
     string? TitleKey = null,
@@ -659,6 +689,8 @@ public sealed record CustomDevotionStep(
     string? AcclamationKey = null,
     string? ImageKey = null,
     int? Repeat = null,
+    int? CounterIndex = null,
+    int? CounterTotal = null,
     bool? IsScripture = null,
     // Per-language override of IsScripture — for bodies that are quoted scripture in some
     // languages but composed prose in others (the traditional Stations: Liguori meditations in
@@ -712,9 +744,9 @@ public sealed record CustomDevotionOption(
         string Name,
         Dictionary<string, string>? NameByLanguage = null)
     {
-        public string LocalizedName =>
+        public string LocalizedName => HebrewDisplayText.WithoutMarks(
             NameByLanguage?.GetValueOrDefault(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
-            ?? Name;
+            ?? Name);
     }
 
     /// <summary>Canonical string form of the authored <c>default</c> (a JSON boolean for a
@@ -728,9 +760,9 @@ public sealed record CustomDevotionOption(
         _ => string.Empty,
     };
 
-    public string LocalizedName =>
+    public string LocalizedName => HebrewDisplayText.WithoutMarks(
         NameByLanguage?.GetValueOrDefault(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
-        ?? Name;
+        ?? Name);
 }
 
 /// <summary>Parsed <c>devotion.json</c> — the complete structural description of a generic
@@ -787,9 +819,9 @@ public sealed record CustomDevotionDefinition(
         List<CustomDevotionStep>? Closing = null,
         bool? HasClosingCross = null)
     {
-        public string LocalizedName =>
+        public string LocalizedName => HebrewDisplayText.WithoutMarks(
             NameByLanguage?.GetValueOrDefault(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
-            ?? Name;
+            ?? Name);
     }
 
     /// <summary>The variant a session with no explicit choice opens in: the explicit
@@ -861,9 +893,9 @@ public sealed record CustomDevotionDefinition(
         string? Period = null,
         List<CustomDevotionStep>? Steps = null)
     {
-        public string LocalizedName =>
+        public string LocalizedName => HebrewDisplayText.WithoutMarks(
             NameByLanguage?.GetValueOrDefault(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
-            ?? Name;
+            ?? Name);
     }
 
     public sealed record DecadesDefinition(
@@ -952,10 +984,13 @@ public sealed record CustomDevotionInfo(
         get
         {
             var prayerCode = Prosary.Models.LanguageCatalog.Resolve(null).Code;
-            if (DisplayNameByLanguage.TryGetValue(prayerCode, out var prayerName)) return prayerName;
+            if (DisplayNameByLanguage.TryGetValue(prayerCode, out var prayerName))
+                return HebrewDisplayText.WithoutMarks(prayerName);
             if (Prosary.Models.LanguageCatalog.BaseLanguage(prayerCode) is { } baseCode &&
-                DisplayNameByLanguage.TryGetValue(baseCode, out var baseName)) return baseName;
-            return DisplayNameByLanguage.TryGetValue(UiLanguage, out var name) ? name : DisplayName;
+                DisplayNameByLanguage.TryGetValue(baseCode, out var baseName))
+                return HebrewDisplayText.WithoutMarks(baseName);
+            return HebrewDisplayText.WithoutMarks(
+                DisplayNameByLanguage.TryGetValue(UiLanguage, out var name) ? name : DisplayName);
         }
     }
 

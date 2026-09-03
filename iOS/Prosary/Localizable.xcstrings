@@ -33,13 +33,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Calendar and readings data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar via Missale Meum (missalemeum.com); the Syriac Catholic calendar, the Roman lectionary calendar in Hebrew, and daily Roman-lectionary citations courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic table compiled in-app from the traditional sources."
+            "value" : "Calendar and readings data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar and citations via Missale Meum (missalemeum.com); the Syriac Catholic calendar and daily Roman and Syriac citations courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic table compiled in-app from the traditional sources, with Byzantine citations courtesy of Royal Doors (royaldoors.net)."
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "נתוני לוחות ומקראות: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 מ־Missale Meum‏ (missalemeum.com); הלוח הסורי-קתולי, לוח המקראות הרומי בעברית ומראי המקום היומיים של המקראות באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; הלוח האוקראיני-קתולי נערך באפליקציה מן המקורות המסורתיים."
+            "value" : "נתוני לוחות ומקראות: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 ומראי המקום שלו מ־Missale Meum‏ (missalemeum.com); הלוח הסורי־קתולי ומראי המקום הרומיים והסוריים היומיים באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; הלוח האוקראיני־קתולי נערך באפליקציה מן המקורות המסורתיים, ומראי המקום הביזנטיים באדיבות Royal Doors‏ (royaldoors.net)."
           }
         }
       }
@@ -831,6 +831,12 @@
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prosary"
+          }
+        },
+        "he" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prosary"
@@ -1675,6 +1681,23 @@
         }
       }
     },
+    "favoriteEditor.openingFatimaPrayer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fatima Prayer after the three Hail Marys"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“הו ישוע שלי” לאחר שלוש תפילות “שמחי מרים”"
+          }
+        }
+      }
+    },
     "favoriteEditor.openingPrayers" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2426,6 +2449,12 @@
             "state" : "new",
             "value" : "Find a devotion in Categories or Search and pin it here."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "אפשר למצוא תפילה בקטגוריות או בחיפוש ולהצמיד אותה כאן."
+          }
         }
       }
     },
@@ -2580,6 +2609,12 @@
             "state" : "translated",
             "value" : "Prosary"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prosary"
+          }
         }
       }
     },
@@ -2626,6 +2661,13 @@
       "localizations" : {
         "en" : { "stringUnit" : { "state" : "translated", "value" : "English" } },
         "he" : { "stringUnit" : { "state" : "translated", "value" : "English" } }
+      }
+    },
+    "home.today.translate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "עברית" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "עברית" } }
       }
     },
     "home.unpin" : {
@@ -3563,6 +3605,27 @@
         }
       }
     },
+    "prayerFlow.continue" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Continue" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "המשך" } }
+      }
+    },
+    "prayerFlow.continue.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "You have an unfinished prayer. Continue where you left off or begin again?" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "יש תפילה שלא הושלמה. להמשיך מהמקום שבו הפסקת או להתחיל מחדש?" } }
+      }
+    },
+    "prayerFlow.continue.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Continue this prayer?" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "להמשיך בתפילה?" } }
+      }
+    },
     "prayerFlow.day" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -3697,6 +3760,13 @@
             "value" : "הסר מהמועדפים"
           }
         }
+      }
+    },
+    "prayerFlow.restart" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Restart" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "התחל מחדש" } }
       }
     },
     "prayerFlow.transliteration" : {
@@ -3986,6 +4056,20 @@
             "value" : "תפילת המחרוזת"
           }
         }
+      }
+    },
+    "rosaryFlow.nextMystery" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Next mystery" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "הרז הבא" } }
+      }
+    },
+    "rosaryFlow.previousMystery" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Previous mystery" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "הרז הקודם" } }
       }
     },
     "rosaryOptions.summary.always" : {
@@ -4419,13 +4503,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Which calendar's feasts the Today section shows."
+            "value" : "Which calendar’s feasts and readings the Today section shows."
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "לפי איזה לוח מוצגים חגי המדור „היום“."
+            "value" : "לפי איזה לוח מוצגים החגים והמקראות במדור „היום“."
           }
         }
       }
@@ -4813,6 +4897,13 @@
       "localizations" : {
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Language fallback order…" } },
         "he" : { "stringUnit" : { "state" : "translated", "value" : "סדר עדיפות לשפות חלופיות…" } }
+      }
+    },
+    "settings.languageFallbackOrder.reset" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reset" } },
+        "he" : { "stringUnit" : { "state" : "translated", "value" : "איפוס" } }
       }
     },
     "settings.languageFallbackOrder.title" : {

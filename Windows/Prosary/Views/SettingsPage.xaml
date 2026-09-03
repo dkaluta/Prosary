@@ -99,7 +99,7 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <TextBlock x:Uid="SetFeastCalendarHint" Text="Which calendar's feasts the Today section shows."
+                <TextBlock x:Uid="SetFeastCalendarHint" Text="Which calendar the Today section's feasts and readings follow."
                            Visibility="{x:Bind ViewModel.ShowsFeastCalendarPicker, Converter={StaticResource BoolToVisibility}}"
                            TextWrapping="Wrap" Style="{StaticResource CaptionTextBlockStyle}"
                            Foreground="{ThemeResource TextFillColorSecondaryBrush}" />

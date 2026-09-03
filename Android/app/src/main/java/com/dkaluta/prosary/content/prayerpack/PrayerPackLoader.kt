@@ -4,8 +4,8 @@ import androidx.annotation.StringRes
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.LanguageCatalog
+import com.dkaluta.prosary.typography.HebrewDisplayText
 
-import com.dkaluta.prosary.content.MysteryText
 import com.dkaluta.prosary.content.PrayerKey
 import com.dkaluta.prosary.content.PrayerTranslations
 import java.io.File
@@ -43,10 +43,35 @@ private data class PackManifest(
 @Serializable
 private data class PackContent(
     val prayers: Map<String, String> = emptyMap(),
-    val mysteries: Map<String, MysteryText> = emptyMap(),
+    val mysteries: Map<String, MysteryTextOverride> = emptyMap(),
     /** Optional reading aid (v0.7): prayer key → the same text in another script. */
     val transliterations: Map<String, String> = emptyMap(),
 )
+
+/** A bundle can contribute one sourced field without restating a mystery's other metadata.
+ * This is especially important for the Aramaic Rosary: the Peshitta supplies Scripture and a
+ * Syriac-script reading aid while its title and fruit continue through the normal language
+ * fallback chain. */
+@Serializable
+data class MysteryTextOverride(
+    val title: String? = null,
+    val fruit: String? = null,
+    val description: String? = null,
+    val transliteratedDescription: String? = null,
+) {
+    /** Packs load in precedence order. Description and transliteration are one provenance pair:
+     * replacing the description also replaces (or removes) its reading aid. */
+    fun mergedWith(later: MysteryTextOverride): MysteryTextOverride = MysteryTextOverride(
+        title = later.title ?: title,
+        fruit = later.fruit ?: fruit,
+        description = later.description ?: description,
+        transliteratedDescription = if (later.description != null) {
+            later.transliteratedDescription
+        } else {
+            transliteratedDescription
+        },
+    )
+}
 
 /** One entry in a generic devotion's `devotion.json` — a step of the flat "steps" type, an
  * opening/closing step of the "rosary" type, or (closing only) a [kind]-tagged special step.
@@ -66,6 +91,11 @@ data class CustomDevotionStep(
     val acclamationKey: String? = null,
     val imageKey: String? = null,
     @SerialName("repeat") val repeatCount: Int? = null,
+    /** Optional authored position for distinct entries that form one numbered sequence (the
+     * Rosary's Faith/Hope/Charity Hail Marys). Paired with [counterTotal]; unlike [repeatCount],
+     * this entry still emits exactly one step. */
+    val counterIndex: Int? = null,
+    val counterTotal: Int? = null,
     val isScripture: Boolean? = null,
     /** Per-language override of [isScripture] — for bodies that are quoted scripture in some
      * languages but composed prose in others (the traditional Stations: Liguori meditations in
@@ -130,7 +160,9 @@ data class CustomDevotionOption(
         val nameByLanguage: Map<String, String>? = null,
     ) {
         val localizedName: String
-            get() = nameByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: name
+            get() = HebrewDisplayText.unpoint(
+                nameByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: name,
+            )
     }
 
     /** Canonical string form of the authored default: "true"/"false" for a toggle, a case id
@@ -139,7 +171,9 @@ data class CustomDevotionOption(
         get() = default.content
 
     val localizedName: String
-        get() = nameByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: name
+        get() = HebrewDisplayText.unpoint(
+            nameByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: name,
+        )
 }
 
 @Serializable
@@ -238,7 +272,9 @@ data class CustomDevotionDefinition(
         val steps: List<CustomDevotionStep>,
     ) {
         val localizedName: String
-            get() = nameByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: name
+            get() = HebrewDisplayText.unpoint(
+                nameByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: name,
+            )
     }
 
     /** One named alternate form of a devotion — the Stations' traditional vs. scriptural sets,
@@ -269,7 +305,9 @@ data class CustomDevotionDefinition(
         val hasClosingCross: Boolean? = null,
     ) {
         val localizedName: String
-            get() = nameByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: name
+            get() = HebrewDisplayText.unpoint(
+                nameByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: name,
+            )
     }
 
     /** The variant a session with no explicit choice opens in: the explicit [variantId] when
@@ -427,11 +465,13 @@ data class CustomDevotionInfo(
     val localizedDisplayName: String
         get() {
             val prayerCode = LanguageCatalog.resolve(null).code
-            displayNameByLanguage[prayerCode]?.let { return it }
+            displayNameByLanguage[prayerCode]?.let { return HebrewDisplayText.unpoint(it) }
             LanguageCatalog.baseLanguage(prayerCode)?.let { base ->
-                displayNameByLanguage[base]?.let { return it }
+                displayNameByLanguage[base]?.let { return HebrewDisplayText.unpoint(it) }
             }
-            return displayNameByLanguage[LanguageCatalog.uiLanguageCode()] ?: displayName
+            return HebrewDisplayText.unpoint(
+                displayNameByLanguage[LanguageCatalog.uiLanguageCode()] ?: displayName,
+            )
         }
 
     val localizedReminderBody: String?
@@ -469,7 +509,7 @@ object PrayerPackStore {
     )
 
     private val prayerOverrides = mutableMapOf<String, MutableMap<PrayerKey, String>>()
-    private val mysteryOverrides = mutableMapOf<String, MutableMap<String, MysteryText>>()
+    private val mysteryOverrides = mutableMapOf<String, MutableMap<String, MysteryTextOverride>>()
     private val imageDataByKey = mutableMapOf<String, ByteArray>()
     /** Unfiltered per-bundle content, keyed bundleId -> language -> raw key -> text — unlike
      * [prayerOverrides], this retains keys with no matching [PrayerKey] case (e.g.
@@ -509,7 +549,7 @@ object PrayerPackStore {
         return prayerOverrides[languageCode]?.get(key)
     }
 
-    fun mysteryOverride(languageCode: String, imageKey: String): MysteryText? =
+    fun mysteryOverride(languageCode: String, imageKey: String): MysteryTextOverride? =
         mysteryOverrides[languageCode]?.get(imageKey)
 
     fun imageData(imageKey: String): ByteArray? = imageDataByKey[imageKey]
@@ -758,7 +798,12 @@ object PrayerPackStore {
             // generic rosary-type devotions (Seven Sorrows, Franciscan Crown) ship their
             // per-decade texts in the mysteries map without any catalog.json.
             if (content.mysteries.isNotEmpty()) {
-                mysteryOverrides.getOrPut(language) { mutableMapOf() }.putAll(content.mysteries)
+                val languageOverrides = mysteryOverrides.getOrPut(language) { mutableMapOf() }
+                for ((imageKey, later) in content.mysteries) {
+                    languageOverrides[imageKey] = languageOverrides[imageKey]
+                        ?.mergedWith(later)
+                        ?: later
+                }
             }
         }
 

@@ -85,6 +85,7 @@ struct PrayerEngine {
       "apostlesCreed": rosary.includeApostlesCreed ? "true" : "false",
       "aramaicSignOfCrossForm": effectiveAramaicForm,
       "openingPrayers": rosary.includeOpeningPrayers ? "true" : "false",
+      "openingFatimaPrayer": rosary.includeOpeningFatimaPrayer ? "true" : "false",
       "presenterMode": rosary.presenterMode ? "true" : "false",
       "fatimaPrayer": rosary.includeFatimaPrayer ? "true" : "false",
       "eternalRest": rosary.eternalRestForDeceased.rawValue,
@@ -244,8 +245,9 @@ struct PrayerEngine {
   }
 
   /// Expands one `devotion.json` entry into its step(s): resolves the title (literal or
-  /// translated `titleKey`) and body, and unrolls `repeat` into "(h of n)"-suffixed copies —
-  /// deliberately without bead fields, matching the hardcoded devotions' closing Hail Marys.
+  /// translated `titleKey`) and body, and adds a localized "(h of n)" suffix either to one
+  /// explicitly numbered entry (`counterIndex`/`counterTotal`) or to every copy unrolled from
+  /// `repeat`. Repeated copies deliberately carry no bead fields, matching the old builders.
   private func expand(
     _ entry: CustomDevotionStep, bundleId: String, languageCode: String?,
     optionValues: [String: String] = [:]
@@ -265,9 +267,15 @@ struct PrayerEngine {
       let antiphon = chosen == .seasonal ? calendar.seasonalMarianAntiphonToday() : chosen
       return [buildMarianAntiphonStep(antiphon, languageCode: languageCode)]
     }
-    let title = entry.titleKey.map {
+    let baseTitle = entry.titleKey.map {
       PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: languageCode, key: $0)
     } ?? entry.title ?? ""
+    let title: String
+    if let index = entry.counterIndex, let total = entry.counterTotal {
+      title = "\(baseTitle) \(counter(index, of: total, languageCode: languageCode))"
+    } else {
+      title = baseTitle
+    }
     let subtitle = entry.subtitleKey.map {
       PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: languageCode, key: $0)
     } ?? entry.subtitle
@@ -353,12 +361,17 @@ struct PrayerEngine {
         if decades.announceMystery, let entry {
           let mysteryText = MysteryTranslations.get(languageCode: languageCode, imageKey: entry.imageKey)
           var body = mysteryText.description
+          var transliteratedBody = mysteryText.transliteratedDescription
           if !mysteryText.fruit.isEmpty {
             body += "\n\n\(fruitLabel): \(mysteryText.fruit)"
+            transliteratedBody = transliteratedBody.map {
+              "\($0)\n\n\(fruitLabel): \(mysteryText.fruit)"
+            }
           }
           steps.append(RosaryStep(
             title: mysteryText.title, subtitle: ordinalLabel, body: body,
-            isScripture: entry.isScripture ?? true, decadeIndex: d, imageOverrideKey: entry.imageKey))
+            isScripture: entry.isScripture ?? true, transliteratedBody: transliteratedBody,
+            decadeIndex: d, imageOverrideKey: entry.imageKey))
           decadeSubtitle = "\(ordinalLabel) — \(mysteryText.title)"
         }
 
@@ -432,10 +445,19 @@ struct PrayerEngine {
         let ordinalLabel = showGroupName ? "\(group.displayName) — \(ordinal)" : ordinal
         let decadeSubtitle = "\(ordinalLabel) — \(mysteryText.title)"
 
+        var body = mysteryText.description
+        var transliteratedBody = mysteryText.transliteratedDescription
+        if !mysteryText.fruit.isEmpty {
+          body += "\n\n\(fruitLabel): \(mysteryText.fruit)"
+          transliteratedBody = transliteratedBody.map {
+            "\($0)\n\n\(fruitLabel): \(mysteryText.fruit)"
+          }
+        }
+
         steps.append(RosaryStep(
           title: mysteryText.title, subtitle: ordinalLabel,
-          body: "\(mysteryText.description)\n\n\(fruitLabel): \(mysteryText.fruit)",
-          mystery: mystery, isScripture: true, decadeIndex: decadeIndex,
+          body: body, mystery: mystery, isScripture: true,
+          transliteratedBody: transliteratedBody, decadeIndex: decadeIndex,
           imageVariantKey: variantKey(mystery)))
         steps.append(RosaryStep(
           title: fixedTitle(decades.majorStep), subtitle: decadeSubtitle, body: majorBody,

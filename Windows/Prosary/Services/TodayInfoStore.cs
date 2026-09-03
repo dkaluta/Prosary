@@ -1,10 +1,23 @@
 using System.Text.Json;
+using Prosary.Localization;
+using Prosary.Models;
 
 namespace Prosary.Services;
 
 /// <summary>The calendar's own vocabulary: "Solemnity" / "Feast" / "Sunday" / "Memorial" /
 /// "Optional Memorial" (Roman), "1st Class" … "3rd Class" (1962).</summary>
-public sealed record FeastDay(string Title, string Rank);
+public sealed record FeastDay(
+    string Title,
+    string Rank,
+    Dictionary<string, string>? TitleByLanguage = null)
+{
+    public string LocalizedTitle(string language) => HebrewDisplayText.WithoutMarks(
+        TitleByLanguage?.GetValueOrDefault(language)
+        ?? (LanguageCatalog.BaseLanguage(language) is { } baseLanguage
+            ? TitleByLanguage?.GetValueOrDefault(baseLanguage)
+            : null)
+        ?? Title);
+}
 
 public sealed record PopeIntention(
     string Title,
@@ -12,11 +25,38 @@ public sealed record PopeIntention(
     Dictionary<string, string>? TitleByLanguage,
     Dictionary<string, string>? TextByLanguage)
 {
-    public string LocalizedTitle(string language) => TitleByLanguage?.GetValueOrDefault(language) ?? Title;
+    public string LocalizedTitle(string language) => HebrewDisplayText.WithoutMarks(
+        TitleByLanguage?.GetValueOrDefault(language)
+        ?? (LanguageCatalog.BaseLanguage(language) is { } baseLanguage
+            ? TitleByLanguage?.GetValueOrDefault(baseLanguage)
+            : null)
+        ?? Title);
     public string LocalizedText(string language) => TextByLanguage?.GetValueOrDefault(language) ?? Text;
 }
 
-public sealed record ReadingCitation(string Type, string Short, string Full, string Hebrew);
+public sealed record ReadingCitation(
+    string Type,
+    string Short,
+    string Full,
+    string? Hebrew = null,
+    Dictionary<string, string>? ShortByLanguage = null,
+    Dictionary<string, string>? FullByLanguage = null)
+{
+    public string LocalizedShort(string language) =>
+        Localized(ShortByLanguage, language) ?? (IsHebrew(language) ? Hebrew : null) ?? Short;
+
+    public string LocalizedFull(string language) =>
+        Localized(FullByLanguage, language) ?? (IsHebrew(language) ? Hebrew : null) ?? Full;
+
+    private static string? Localized(Dictionary<string, string>? values, string language) =>
+        values?.GetValueOrDefault(language)
+        ?? (LanguageCatalog.BaseLanguage(language) is { } baseLanguage
+            ? values?.GetValueOrDefault(baseLanguage)
+            : null);
+
+    private static bool IsHebrew(string language) =>
+        (LanguageCatalog.BaseLanguage(language) ?? language).Equals("he", StringComparison.OrdinalIgnoreCase);
+}
 
 public sealed record LiturgicalDayInfo(string English, string Hebrew);
 
@@ -27,23 +67,28 @@ public sealed record LiturgicalDayInfo(string English, string Hebrew);
 /// computus in the app; and popesprayer.va's published intentions). calendars.json is the
 /// registry of switchable calendars (2026-08, Erez's request): the app-wide "feastCalendarId"
 /// setting picks one, defaulting — also for unknown ids — to the registry's default (the Latin
-/// Patriarchate of Jerusalem overlay). The feast table reloads whenever the selection changes;
-/// the calendar affects this row only, never the engine's season/mystery machinery. A
+/// Patriarchate of Jerusalem overlay). Its feast and readings tables reload whenever the
+/// selection changes; the calendar does not affect the engine's season/mystery machinery. A
 /// date/month outside the datasets returns null and the row simply hides — regenerating the
 /// JSON yearly is the only maintenance.
 /// </summary>
 public static class TodayInfoStore
 {
-    /// <summary>One entry of calendars.json — a switchable feast calendar. <c>File</c> is the
-    /// basename of the calendar's dataset ("feasts", "feasts-roman", …).</summary>
-    public sealed record FeastCalendar(string Id, string File, string Name, Dictionary<string, string>? NameByLanguage)
+    /// <summary>One entry of calendars.json — a switchable liturgical calendar. <c>File</c> and
+    /// <c>ReadingsFile</c> are its feast/readings dataset basenames.</summary>
+    public sealed record FeastCalendar(
+        string Id,
+        string File,
+        string Name,
+        Dictionary<string, string>? NameByLanguage,
+        string? ReadingsFile = null)
     {
         /// <summary>The Settings picker label, resolved by UI language with the plain name as
         /// fallback.</summary>
-        public string DisplayName =>
+        public string DisplayName => HebrewDisplayText.WithoutMarks(
             UiLanguage() is { } language && NameByLanguage?.GetValueOrDefault(language) is { } localized
                 ? localized
-                : Name;
+                : Name);
 
         /// <summary>The app UI language's two-letter code, or null in unpackaged (unit-test)
         /// contexts where the language machinery isn't up — the plain name serves there.</summary>
@@ -79,8 +124,8 @@ public static class TodayInfoStore
     private static CalendarsFile? _registry;
     private static bool _didLoadRegistry;
     private static bool _didLoadIntentions;
-    private static bool _didLoadReadings;
     private static string? _loadedCalendarId;
+    private static string? _loadedReadingsCalendarId;
 
     /// <summary>The stored calendar selection — App startup and Settings assign it from
     /// <c>AppSettings.FeastCalendarId</c> (tests set it directly); readers go through
@@ -111,7 +156,10 @@ public static class TodayInfoStore
             {
                 return "lpj";
             }
-            var stored = SelectedCalendarId;
+            // roman-he was an old pseudo-calendar that duplicated the General Roman Calendar
+            // solely to expose Hebrew titles. Those titles now live inline on roman; keep old
+            // installations on the same calendar rather than falling back to LPJ.
+            var stored = SelectedCalendarId == "roman-he" ? "roman" : SelectedCalendarId;
             if (!string.IsNullOrEmpty(stored) && calendars.Any(c => c.Id == stored))
             {
                 return stored;
@@ -216,9 +264,17 @@ public static class TodayInfoStore
 
     private static void EnsureReadingsLoaded()
     {
-        if (_didLoadReadings) return;
-        _didLoadReadings = true;
-        _readingsByDay = LoadFile<ReadingsFile>("readings")?.Days ?? new Dictionary<string, ReadingDay>();
+        var selected = ResolvedCalendarId;
+        if (selected == _loadedReadingsCalendarId) return;
+        _loadedReadingsCalendarId = selected;
+
+        // A missing/unknown readings file is deliberately empty. Falling back to the Roman
+        // lectionary here would silently show the wrong rite after the user chose Byzantine,
+        // Syriac, or the 1962 calendar.
+        var file = Calendars.FirstOrDefault(c => c.Id == selected)?.ReadingsFile;
+        _readingsByDay = string.IsNullOrWhiteSpace(file)
+            ? new Dictionary<string, ReadingDay>()
+            : LoadFile<ReadingsFile>(file)?.Days ?? new Dictionary<string, ReadingDay>();
     }
 
     private static T? LoadFile<T>(string name) where T : class

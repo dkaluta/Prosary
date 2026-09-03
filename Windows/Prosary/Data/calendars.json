@@ -1,10 +1,11 @@
 {
- "$comment": "Registry of the Home 'Today' row's switchable liturgical calendars (Erez's request, 2026-08). Each entry names a feast dataset: 'file' is the Shared/data/<file>.json (and platform data-asset) basename, 'name'/'nameByLanguage' the Settings picker label (resolved by UI language, falling back to 'name'). 'default' is the calendar prayed when the feastCalendarId setting is unset or names an id that is not listed — the Latin Patriarchate overlay, the app's home base, which also keeps the plain feasts.json filename it had before calendars were switchable. Order here is the picker order. Adding a calendar = one entry + one dataset file (+ platform copies); no code changes. The ugcc dataset is the diasporic (fully Gregorian) usage — the variant prayed in the Holy Land — curated in fetch-feasts.py pending eparchial verification. The syriac and roman-he datasets are courtesy of Evangelizo.org — Daily Gospel (© Evangelizo.org, credited on the About screens) and cover a rolling window (~3 months past today at generation time): regenerate more often than yearly. roman-he is Evangelizo's Hebrew Roman lectionary edition (לוח המקראות הרומי): it titles only the days whose readings are proper, so saints' memorials on ferial readings are absent by design.",
+ "$comment": "Registry of the Home 'Today' row's switchable liturgical calendars. 'file' and 'readingsFile' are Shared/data JSON basenames copied into every app. The selected calendar controls both the feast and its own lectionary citations; a missing date/file shows no row and must never fall back to another rite. 'nameByLanguage' localizes picker labels. 'default' is the Latin Patriarchate overlay used when the setting is unset or unknown. Order here is picker order. The General Roman feast table carries sourced Hebrew titles inline as titleByLanguage.he, replacing the former roman-he pseudo-calendar; persisted roman-he settings are migrated by the apps to roman. LPJ and General Roman share the Novus Ordo readings table. Syriac and Roman readings come from Evangelizo.org — Daily Gospel (© Evangelizo.org); 1962 readings from Missale Meum; Byzantine readings from Royal Doors' public UGCC Gregorian calendar. See ARCHITECTURE.md for coverage and attribution.",
  "default": "lpj",
  "calendars": [
   {
    "id": "lpj",
    "file": "feasts",
+   "readingsFile": "readings-roman",
    "name": "Roman — Holy Land (Latin Patriarchate)",
    "nameByLanguage": {
     "he": "רומי — ארץ הקודש (הפטריארכיה הלטינית)"
@@ -13,22 +14,16 @@
   {
    "id": "roman",
    "file": "feasts-roman",
+   "readingsFile": "readings-roman",
    "name": "Roman — General Calendar",
    "nameByLanguage": {
     "he": "רומי — הלוח הכללי"
    }
   },
   {
-   "id": "roman-he",
-   "file": "feasts-roman-he",
-   "name": "Roman — Lectionary Calendar (Hebrew)",
-   "nameByLanguage": {
-    "he": "רומי — לוח המקראות (בעברית)"
-   }
-  },
-  {
    "id": "roman1962",
    "file": "feasts-roman1962",
+   "readingsFile": "readings-roman1962",
    "name": "Roman — 1962 (Vetus Ordo)",
    "nameByLanguage": {
     "he": "רומי — 1962 (וטוס אורדו)"
@@ -37,6 +32,7 @@
   {
    "id": "ugcc",
    "file": "feasts-ugcc",
+   "readingsFile": "readings-ugcc",
    "name": "Byzantine — Ukrainian Greek Catholic",
    "nameByLanguage": {
     "he": "ביזנטי — אוקראיני-קתולי"
@@ -45,6 +41,7 @@
   {
    "id": "syriac",
    "file": "feasts-syriac",
+   "readingsFile": "readings-syriac",
    "name": "West Aramaic — Syriac Catholic",
    "nameByLanguage": {
     "he": "ארמי מערבי — סורי-קתולי"

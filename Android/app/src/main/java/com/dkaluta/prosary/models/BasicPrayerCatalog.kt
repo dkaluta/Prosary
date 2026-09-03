@@ -2,6 +2,7 @@ package com.dkaluta.prosary.models
 
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.RosaryStep
+import com.dkaluta.prosary.typography.HebrewDisplayText
 
 /**
  * The handful of prayers worth praying on their own, outside any devotion — tester-requested
@@ -38,13 +39,18 @@ object BasicPrayerCatalog {
 
     fun prayer(id: String): BasicPrayer? = all.firstOrNull { it.id == id }
 
+    fun title(prayer: BasicPrayer, languageCode: String): String =
+        HebrewDisplayText.unpoint(
+            PrayerPackStore.resolveBodyText(prayer.bundleId, languageCode, prayer.titleKey),
+        )
+
     /** The prayer as one [RosaryStep], in the resolved app-default prayer language — the same
      * step the flows render, so typography, RTL, the ✠ mark and the transliteration toggle all
      * come along without any new machinery. */
     fun step(prayer: BasicPrayer): RosaryStep {
         val language = LanguageCatalog.resolve(null).code
         return RosaryStep(
-            title = PrayerPackStore.resolveBodyText(prayer.bundleId, language, prayer.titleKey),
+            title = title(prayer, language),
             body = PrayerPackStore.resolveBodyText(prayer.bundleId, language, prayer.bodyKey),
             transliteratedBody = PrayerPackStore.transliteration(prayer.bundleId, language, prayer.bodyKey),
             imageOverrideKey = prayer.imageKey,

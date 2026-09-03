@@ -34,6 +34,7 @@ import com.dkaluta.prosary.R
 import com.dkaluta.prosary.ui.shared.DevotionDirectory
 import com.dkaluta.prosary.ui.shared.DevotionListing
 import com.dkaluta.prosary.ui.shared.LaunchTarget
+import com.dkaluta.prosary.typography.HebrewDisplayText
 
 /** "View prayers by category": every launchable devotion grouped by its manifest tags —
  * a devotion appears under each of its tags; anything untagged lands under "Other".
@@ -77,7 +78,7 @@ fun CategoriesScreen(onLaunch: (LaunchTarget) -> Unit) {
             for ((tag, listings) in sections) {
                 item(key = "header.$tag") {
                     Text(
-                        tag.replaceFirstChar { it.uppercaseChar() },
+                        HebrewDisplayText.unpoint(tag.replaceFirstChar { it.uppercaseChar() }),
                         style = MaterialTheme.typography.titleSmall,
                         color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp),
@@ -113,7 +114,7 @@ private fun androidx.compose.foundation.lazy.LazyListScope.items_(
                         tint = listing.accentColor ?: MaterialTheme.colorScheme.primary,
                     )
                 }
-                Text(listing.title, style = MaterialTheme.typography.bodyLarge)
+                Text(HebrewDisplayText.unpoint(listing.title), style = MaterialTheme.typography.bodyLarge)
             }
         }
     }

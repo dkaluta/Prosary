@@ -45,6 +45,8 @@ final class PresetEntry {
   var specificMysteryOrder: Int = 1
   var includeApostlesCreed: Bool = true
   var includeOpeningPrayers: Bool = true
+  // Default false safely migrates presets saved before the optional opening Fatima prayer.
+  var includeOpeningFatimaPrayer: Bool = false
   var includeFatimaPrayers: Bool = true
   var eternalRestForDeceased: EternalRestPlacement = EternalRestPlacement.none
   var marianAntiphon: MarianAntiphonOption = MarianAntiphonOption.seasonal
@@ -85,6 +87,7 @@ final class PresetEntry {
     specificMysteryOrder = prayer.rosary.specificMysteryOrder
     includeApostlesCreed = prayer.rosary.includeApostlesCreed
     includeOpeningPrayers = prayer.rosary.includeOpeningPrayers
+    includeOpeningFatimaPrayer = prayer.rosary.includeOpeningFatimaPrayer
     includeFatimaPrayers = prayer.rosary.includeFatimaPrayer
     eternalRestForDeceased = prayer.rosary.eternalRestForDeceased
     marianAntiphon = prayer.rosary.marianAntiphon
@@ -120,6 +123,7 @@ final class PresetEntry {
     specificMysteryOrder = prayer.rosary.specificMysteryOrder
     includeApostlesCreed = prayer.rosary.includeApostlesCreed
     includeOpeningPrayers = prayer.rosary.includeOpeningPrayers
+    includeOpeningFatimaPrayer = prayer.rosary.includeOpeningFatimaPrayer
     includeFatimaPrayers = prayer.rosary.includeFatimaPrayer
     eternalRestForDeceased = prayer.rosary.eternalRestForDeceased
     marianAntiphon = prayer.rosary.marianAntiphon
@@ -170,6 +174,7 @@ final class PresetEntry {
         specificMysteryOrder: specificMysteryOrder,
         includeApostlesCreed: includeApostlesCreed,
         includeOpeningPrayers: includeOpeningPrayers,
+        includeOpeningFatimaPrayer: includeOpeningFatimaPrayer,
         includeFatimaPrayer: includeFatimaPrayers,
         eternalRestForDeceased: eternalRestForDeceased,
         marianAntiphon: marianAntiphon,

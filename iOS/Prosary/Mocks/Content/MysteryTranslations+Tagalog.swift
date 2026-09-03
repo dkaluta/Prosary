@@ -34,7 +34,7 @@ extension MysteryTranslations {
         "katandaan; at ito'y ikaanim na buwan na sa kaniya, sa kaniya na tinatawag na baog: " +
         "Sapagka't sa Dios ay walang salitang magiging walang kabuluhan. At sinabi ni Maria, " +
         "Narito, ang alipin ng Panginoon; maganap sa akin ang ayon sa iyong salita. At umalis " +
-        "sa kaniya ang anghel.\n\n— Lucas 1:26-38 (Ang Dating Biblia)"),
+        "sa kaniya ang anghel.\n\n— Lucas 1:26–38 (Ang Dating Biblia)"),
     "joyful_02_visitation": MysteryText(
       title: "Ang Pagdalaw", fruit: "Pagmamahal sa Kapwa",
       description:
@@ -46,14 +46,14 @@ extension MysteryTranslations {
         "tagasaan ko ito, na ang ina ng aking Panginoon ay paririto sa akin? Sapagka't, masdan, " +
         "nang ang tinig ng iyong pagbati ay dumating sa aking mga tainga, ay lumukso ang sanggol " +
         "sa aking tiyan sa kagalakan. At pinagpala ang naniwala: sapagka't magaganap ang mga " +
-        "bagay na sinalita sa kaniya mula sa Panginoon.\n\n— Lucas 1:39-45 (Ang Dating Biblia)"),
+        "bagay na sinalita sa kaniya mula sa Panginoon.\n\n— Lucas 1:39–45 (Ang Dating Biblia)"),
     "joyful_03_nativity": MysteryText(
       title: "Ang Kapanganakan", fruit: "Kahirapan ng Espiritu",
       description:
         "At nangyari, habang naroon sila, ay naganap ang mga araw na siya'y manganak. At " +
         "kaniyang ipinanganak ang kaniyang panganay na anak na lalake; at binalot niya ito ng " +
         "mga lampin, at inihiga sa isang sabsaban, sapagka't wala silang lugar sa tuluyan.\n\n" +
-        "— Lucas 2:6-7 (Ang Dating Biblia)"),
+        "— Lucas 2:6–7 (Ang Dating Biblia)"),
     "joyful_04_presentation": MysteryText(
       title: "Ang Paghahandog", fruit: "Pagsunod",
       description:
@@ -61,7 +61,7 @@ extension MysteryTranslations {
         "dinala nila siya sa Jerusalem, upang iharap sa Panginoon (Gaya ng nasusulat sa kautusan " +
         "ng Panginoon, Ang bawat panganay na lalake ay tatawaging banal sa Panginoon), At upang " +
         "maghandog ayon sa sinabi sa kautusan ng Panginoon, ng isang pares na batobato, o " +
-        "dalawang inakay na kalapati.\n\n— Lucas 2:22-24 (Ang Dating Biblia)"),
+        "dalawang inakay na kalapati.\n\n— Lucas 2:22–24 (Ang Dating Biblia)"),
     "joyful_05_finding_in_the_temple": MysteryText(
       title: "Ang Pagkita sa Templo", fruit: "Kabanalan",
       description:
@@ -72,7 +72,7 @@ extension MysteryTranslations {
         "kaniyang ina sa kaniya, Anak, bakit mo ginawa sa amin ito? narito, ang iyong ama at " +
         "ako ay naghanap sa iyo na nangungulila. At sinabi niya sa kanila, Bakit ninyo ako " +
         "hinanap? hindi baga ninyo talastas na kailangan kong nasa mga bagay ng aking Ama?\n\n" +
-        "— Lucas 2:46-49 (Ang Dating Biblia)"),
+        "— Lucas 2:46–49 (Ang Dating Biblia)"),
 
     // Sorrowful
     "sorrowful_01_agony_in_the_garden": MysteryText(
@@ -83,7 +83,7 @@ extension MysteryTranslations {
         "mangyari ang aking kalooban, kundi ang iyo. At nagpakita sa kaniya ang isang anghel " +
         "mula sa langit, na nagpalalakas sa kaniya. At nang siya'y nasa paghihirap ay lalo " +
         "pang nanalanging may kataimtiman: at ang kaniyang pawis ay naging gaya ng malalaking " +
-        "patak ng dugo na bumabagsak sa lupa.\n\n— Lucas 22:41-44 (Ang Dating Biblia)"),
+        "patak ng dugo na bumabagsak sa lupa.\n\n— Lucas 22:41–44 (Ang Dating Biblia)"),
     "sorrowful_02_scourging_at_the_pillar": MysteryText(
       title: "Ang Paghahagupit", fruit: "Kadalisayan",
       description:
@@ -95,7 +95,7 @@ extension MysteryTranslations {
         "At ang mga kawal ay nag-anat ng isang putong na tinik at inilagay sa kaniyang ulo, at " +
         "siya'y binihisan ng isang damit na kulay ube; At sila'y nagsilapit sa kaniya, at " +
         "nagsasabi, Mabuhay ang hari ng mga Judio! at sila'y nangagsampal sa kaniya.\n\n" +
-        "— Juan 19:2-3 (Ang Dating Biblia)"),
+        "— Juan 19:2–3 (Ang Dating Biblia)"),
     "sorrowful_04_carrying_of_the_cross": MysteryText(
       title: "Ang Pagdadala ng Krus", fruit: "Pasensya",
       description:
@@ -108,7 +108,7 @@ extension MysteryTranslations {
         "oras, Na pumaram ang araw: at nahawi ang tabing ng templo sa gitna. At sumigaw si " +
         "Jesus ng malakas na tinig, at nagsabi, Ama, sa iyong mga kamay ay ipinagtatagubilin " +
         "ko ang aking espiritu: at nang masabi niya ito, ay hininga niya ang huli.\n\n" +
-        "— Lucas 23:44-46 (Ang Dating Biblia)"),
+        "— Lucas 23:44–46 (Ang Dating Biblia)"),
 
     // Glorious
     "glorious_01_resurrection": MysteryText(
@@ -117,7 +117,7 @@ extension MysteryTranslations {
         "At sumagot ang anghel at sinabi sa mga babae, Huwag kayong mangatakot; sapagka't " +
         "talastas ko na hinahanap ninyo si Jesus na ipinako sa krus. Wala siya rito; sapagka't " +
         "siya'y nagbangon, gaya ng kaniyang sinabi. Halina't tingnan ninyo ang dakong pinahigaan " +
-        "sa kaniya.\n\n— Mateo 28:5-6 (Ang Dating Biblia)"),
+        "sa kaniya.\n\n— Mateo 28:5–6 (Ang Dating Biblia)"),
     "glorious_02_ascension": MysteryText(
       title: "Ang Pag-akyat sa Langit", fruit: "Pag-asa",
       description:
@@ -127,7 +127,7 @@ extension MysteryTranslations {
         "nila ang dalawang lalake na may damit na puti; Na nangagsabi rin naman, Kayong mga " +
         "lalaking taga Galilea, bakit kayo'y nangakatayong tumitingin sa langit? itong si " +
         "Jesus, na tinanggap sa langit mula sa inyo, ay paparitong gaya rin ng inyong nakitang " +
-        "pagparoon niya sa langit.\n\n— Mga Gawa 1:9-11 (Ang Dating Biblia)"),
+        "pagparoon niya sa langit.\n\n— Mga Gawa 1:9–11 (Ang Dating Biblia)"),
     "glorious_03_descent_of_the_holy_spirit": MysteryText(
       title: "Ang Pagbaba ng Espiritu Santo", fruit: "Karunungan at Pagmamahal sa Diyos",
       description:
@@ -136,7 +136,7 @@ extension MysteryTranslations {
         "nagpakita sa kanila ang mga dilang gaya ng apoy, na nagkahiwalay-hiwalay, at nagpahinga " +
         "sa bawat isa sa kanila. At silang lahat ay napuspos ng Espiritu Santo, at nagsipagsalita " +
         "ng ibang mga wika, ayon sa pagbibigay sa kanila ng Espiritu na magsalita.\n\n" +
-        "— Mga Gawa 2:2-4 (Ang Dating Biblia)"),
+        "— Mga Gawa 2:2–4 (Ang Dating Biblia)"),
     "glorious_04_assumption": MysteryText(
       title: "Ang Pag-akyat ni Maria sa Langit", fruit: "Biyaya ng Maligayang Kamatayan",
       description:
@@ -158,7 +158,7 @@ extension MysteryTranslations {
         "kaniya ang mga langit, at nakita niya ang Espiritu ng Dios na bumababa na gaya ng isang " +
         "kalapati, at lumalapag sa kaniya; At narito ang isang tinig na mula sa mga langit, na " +
         "nagsasabi, Ito ang sinisinta kong Anak, na siya kong lubos na kinalulugdan.\n\n" +
-        "— Mateo 3:16-17 (Ang Dating Biblia)"),
+        "— Mateo 3:16–17 (Ang Dating Biblia)"),
     "luminous_02_wedding_at_cana": MysteryText(
       title: "Ang Kasal sa Cana", fruit: "Kay Hesus sa pamamagitan ni Maria",
       description:
@@ -171,14 +171,14 @@ extension MysteryTranslations {
         "nalasing na, ay naghahain saka ng pinakahamak; ngunit ikaw ay iniingatan mo ang " +
         "mabuting alak hanggang ngayon. Ito ang unang tanda na ginawa ni Jesus sa Cana ng " +
         "Galilea, at ipinahayag niya ang kaniyang kaluwalhatian; at ang kaniyang mga alagad ay " +
-        "nagsipaniwala sa kaniya.\n\n— Juan 2:7-11 (Ang Dating Biblia)"),
+        "nagsipaniwala sa kaniya.\n\n— Juan 2:7–11 (Ang Dating Biblia)"),
     "luminous_03_proclamation_of_the_kingdom": MysteryText(
       title: "Ang Proklamasyon ng Kaharian", fruit: "Pagsisisi at Tiwala sa Diyos",
       description:
         "Pagkatapos ngang maibigay si Juan, ay napasa Galilea si Jesus, na ipinangangaral ang " +
         "evangelio ng Dios, At nagsasabi, Natupad na ang panahon, at malapit na ang kaharian " +
         "ng Dios: magsisi kayo, at magsisampalataya kayo sa evangelio.\n\n" +
-        "— Marcos 1:14-15 (Ang Dating Biblia)"),
+        "— Marcos 1:14–15 (Ang Dating Biblia)"),
     "luminous_04_transfiguration": MysteryText(
       title: "Ang Pagbabago-anyo", fruit: "Pagnanasa sa Kabanalan",
       description:
@@ -188,7 +188,7 @@ extension MysteryTranslations {
         "ang kaniyang damit ay naging maputi na gaya ng liwanag. ... Samantalang nagsasalita pa " +
         "siya, narito, ang isang maliwanag na ulap ay lumilim sa kanila: at narito ang isang " +
         "tinig na mula sa ulap, na nagsasabi, Ito ang sinisinta kong Anak na siya kong lubos " +
-        "na kinalulugdan; siya ang inyong pakinggan.\n\n— Mateo 17:1-2, 5 (Ang Dating Biblia)"),
+        "na kinalulugdan; siya ang inyong pakinggan.\n\n— Mateo 17:1–2, 5 (Ang Dating Biblia)"),
     "luminous_05_institution_of_the_eucharist": MysteryText(
       title: "Ang Pagtatatag ng Eukaristiya", fruit: "Pagsamba at Pagmamahal sa Eukaristiya",
       description:
@@ -197,6 +197,6 @@ extension MysteryTranslations {
         "Kunin ninyo, kanin ninyo; ito ang aking katawan. At dumampot siya ng isang saro, at " +
         "nagpasalamat, at ibinigay sa kanila, na sinasabi, Inumin ninyong lahat ng ito; " +
         "Sapagka't ito ang aking dugo ng tipan, na naibubuhos para sa marami sa ikapagpapatawad " +
-        "ng mga kasalanan.\n\n— Mateo 26:26-28 (Ang Dating Biblia)"),
+        "ng mga kasalanan.\n\n— Mateo 26:26–28 (Ang Dating Biblia)"),
   ]
 }

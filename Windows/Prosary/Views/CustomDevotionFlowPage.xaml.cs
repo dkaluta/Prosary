@@ -39,6 +39,10 @@ public sealed partial class CustomDevotionFlowPage : Page
         if (e.Parameter is CustomDevotionFlowParams p)
         {
             await ViewModel.LoadAsync(p.PrayerId, p.BundleId);
+            if (ViewModel.HasSavedContinuation)
+            {
+                await ShowResumeDialogAsync();
+            }
             BuildVariantFlyout();
             BuildLanguageFlyout();
             BuildDayFlyout();
@@ -47,6 +51,27 @@ public sealed partial class CustomDevotionFlowPage : Page
         AutoAdvanceMenu.Populate(AutoAdvanceFlyout, () => _autoAdvance?.Restart());
         _autoAdvance?.Dispose();
         _autoAdvance = new AutoAdvanceTimer(ViewModel);
+    }
+
+    private async Task ShowResumeDialogAsync()
+    {
+        var dialog = new ContentDialog
+        {
+            XamlRoot = XamlRoot,
+            Title = Loc.Tr("prayer_resume_title", "Continue where you left off?"),
+            Content = Loc.Tr("prayer_resume_message", "Continue this unfinished prayer, or restart from the beginning."),
+            PrimaryButtonText = Loc.Tr("common_continue", "Continue"),
+            SecondaryButtonText = Loc.Tr("common_restart", "Restart"),
+            DefaultButton = ContentDialogButton.Primary,
+        };
+        if (await dialog.ShowAsync() == ContentDialogResult.Primary)
+        {
+            ViewModel.ContinueSavedRun();
+        }
+        else
+        {
+            ViewModel.RestartRun();
+        }
     }
 
     protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -71,7 +96,9 @@ public sealed partial class CustomDevotionFlowPage : Page
             var day = ViewModel.Days[i];
             var item = new ToggleMenuFlyoutItem
             {
-                Text = day.Period is { } period ? $"{period} — {day.LocalizedName}" : day.LocalizedName,
+                Text = day.Period is { } period
+                    ? $"{HebrewDisplayText.WithoutMarks(period)} — {day.LocalizedName}"
+                    : day.LocalizedName,
                 IsChecked = i == ViewModel.CurrentDayIndex,
             };
             var dayIndex = i;

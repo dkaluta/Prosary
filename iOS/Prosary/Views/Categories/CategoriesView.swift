@@ -44,7 +44,7 @@ struct CategoriesView: View {
               path.append(listing.route)
             } label: {
               Label {
-                Text(listing.title)
+                Text(HebrewDisplayText.unpointed(listing.title))
                   .foregroundStyle(.primary)
               } icon: {
                 if let glyph = listing.iconGlyph {

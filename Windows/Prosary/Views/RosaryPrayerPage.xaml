@@ -65,11 +65,19 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Click="OnNavigateUp" Background="Transparent" Padding="8">
                 <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
             </Button>
-            <Button Grid.Column="2" Background="Transparent" Padding="8">
+            <Button x:Name="LanguageMenuButton" Grid.Column="2" Background="Transparent" Padding="8"
+                    Visibility="{x:Bind ViewModel.ShowsLanguageMenu, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                <FontIcon Glyph="&#xE774;" />
+                <Button.Flyout>
+                    <MenuFlyout x:Name="LanguageFlyout" />
+                </Button.Flyout>
+            </Button>
+            <Button Grid.Column="3" Background="Transparent" Padding="8">
                 <FontIcon Glyph="&#xE916;" /> <!-- Stopwatch — hands-free auto-advance -->
                 <Button.Flyout>
                     <MenuFlyout x:Name="AutoAdvanceFlyout" />
@@ -119,6 +127,12 @@
                         <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
                     </StackPanel>
 
+                    <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"
+                            Visibility="{x:Bind ViewModel.HasTransliteration, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                            Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
+                            x:Uid="FlowTransliterationButton" ToolTipService.ToolTip="Show transliteration">
+                        <FontIcon Glyph="&#xE8C1;" FontSize="14" />
+                    </Button>
                     <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
                                FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
                                FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
@@ -203,6 +217,12 @@
                         <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
                     </StackPanel>
 
+                    <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"
+                            Visibility="{x:Bind ViewModel.HasTransliteration, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                            Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
+                            x:Uid="FlowTransliterationButton" ToolTipService.ToolTip="Show transliteration">
+                        <FontIcon Glyph="&#xE8C1;" FontSize="14" />
+                    </Button>
                     <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
                                FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
                                FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
@@ -214,12 +234,24 @@
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="Back" Command="{x:Bind ViewModel.BackCommand}"
                     IsEnabled="{x:Bind ViewModel.CanGoBack, Mode=OneWay}" Background="Transparent" />
-            <Button Grid.Column="2" Content="{x:Bind ViewModel.NextButtonText, Mode=OneWay}"
+            <Button x:Uid="RosaryPreviousMystery" Grid.Column="1" Content="⏮"
+                    Command="{x:Bind ViewModel.GoToPreviousMysteryCommand}"
+                    IsEnabled="{x:Bind ViewModel.CanGoToPreviousMystery, Mode=OneWay}"
+                    Background="Transparent" Padding="12,8" ToolTipService.ToolTip="Previous mystery"
+                    AutomationProperties.Name="Previous mystery" />
+            <Button x:Uid="RosaryNextMystery" Grid.Column="3" Content="⏭"
+                    Command="{x:Bind ViewModel.GoToNextMysteryCommand}"
+                    IsEnabled="{x:Bind ViewModel.CanGoToNextMystery, Mode=OneWay}"
+                    Background="Transparent" Padding="12,8" ToolTipService.ToolTip="Next mystery"
+                    AutomationProperties.Name="Next mystery" />
+            <Button Grid.Column="4" Content="{x:Bind ViewModel.NextButtonText, Mode=OneWay}"
                     Command="{x:Bind ViewModel.NextCommand}" Style="{StaticResource AccentButtonStyle}" MinWidth="120" />
         </Grid>
     </Grid>

@@ -28,10 +28,15 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
 {
     private readonly IPresetStore _presets;
     private readonly LiturgicalCalendarService _calendar;
+    private readonly IPrayerRunStore _runStore;
 
     private JesusPrayerTarget _effectiveTarget = new JesusPrayerTarget.Count(33);
     private string? _languageCode;
+    private string _chosenLanguage = LanguageCatalog.DefaultSentinel;
     private bool _hasLoaded;
+    private PrayerRunState? _pendingContinuation;
+    private string _runKey = string.Empty;
+    private string _runSignature = string.Empty;
 
     [ObservableProperty]
     private JesusPrayerProgress _repetitionState = new(new JesusPrayerTarget.Count(33));
@@ -83,33 +88,57 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
 
     public bool IsFavorited => MatchingFavoriteId is not null;
 
-    public JesusPrayerViewModel(IPresetStore presets, LiturgicalCalendarService calendar)
+    public bool HasSavedContinuation => _pendingContinuation is not null;
+
+    public JesusPrayerViewModel(
+        IPresetStore presets,
+        LiturgicalCalendarService calendar,
+        IPrayerRunStore runStore)
     {
         _presets = presets;
         _calendar = calendar;
+        _runStore = runStore;
     }
 
     public async Task LoadAsync(Guid? prayerId, JesusPrayerTarget? target)
     {
         try
         {
+            _pendingContinuation = null;
+            OnPropertyChanged(nameof(HasSavedContinuation));
             var prayer = prayerId is { } id ? await _presets.GetAsync(id) : null;
             _effectiveTarget = prayer?.JesusPrayer.Target ?? target ?? new JesusPrayerTarget.Count(33);
             IsUnbounded = _effectiveTarget is JesusPrayerTarget.Unbounded;
 
-            _languageCode = prayer is not null
-                ? prayer.ResolvedLanguageCode
-                : await ResolveDefaultLanguageAsync();
+            _chosenLanguage = prayer?.LanguageCode ?? await ResolveConfiguredLanguageAsync();
+            _languageCode = LanguageCatalog.Resolve(_chosenLanguage).Code;
 
             IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
             SeasonColor = _calendar.GetSeasonColorForToday();
             _hasLoaded = true;
             RepetitionState = new JesusPrayerProgress(_effectiveTarget);
+            _runSignature = PrayerRunSignatures.JesusPrayer(_effectiveTarget);
+            _runKey = PrayerRunKeys.Jesus(prayer?.Id, _effectiveTarget);
 
             var all = await _presets.GetAllAsync();
             var resolved = _languageCode ?? LanguageCatalog.DefaultCode;
             MatchingFavoriteId = all.FirstOrDefault(p =>
                 p.Kind == PrayerKind.JesusPrayer && p.ResolvedLanguageCode == resolved && p.JesusPrayer.Target == _effectiveTarget)?.Id;
+
+            var saved = _runStore.Get(_runKey);
+            var positionCount = RepetitionState.TargetCount ?? int.MaxValue;
+            _pendingContinuation = saved?.CanResume(
+                _runSignature,
+                positionCount,
+                sameLocalDayOnly: false,
+                DateOnly.FromDateTime(DateTime.Now)) == true
+                ? saved
+                : null;
+            if (saved is not null && _pendingContinuation is null)
+            {
+                _runStore.Remove(_runKey);
+            }
+            OnPropertyChanged(nameof(HasSavedContinuation));
         }
         catch (Exception ex)
         {
@@ -118,14 +147,13 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
         }
     }
 
-    private async Task<string?> ResolveDefaultLanguageAsync()
+    private async Task<string> ResolveConfiguredLanguageAsync()
     {
         var all = await _presets.GetAllAsync();
         var defaultJesusPrayer = all.FirstOrDefault(p => p.Kind == PrayerKind.JesusPrayer && p.IsDefault)
             ?? all.FirstOrDefault(p => p.Kind == PrayerKind.JesusPrayer);
         // No favorite yet: the app-level default language, never a silent Latin fallback.
-        return defaultJesusPrayer?.ResolvedLanguageCode
-            ?? LanguageCatalog.Resolve(LanguageCatalog.DefaultSentinel).Code;
+        return defaultJesusPrayer?.LanguageCode ?? LanguageCatalog.DefaultSentinel;
     }
 
     partial void OnRepetitionStateChanged(JesusPrayerProgress value)
@@ -154,23 +182,74 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
         BodyFontSize = PrayerTypography.ResolveBodyFontSize(_languageCode, isScripture: false);
     }
 
+    public void ContinueSavedRun()
+    {
+        if (_pendingContinuation is not { } saved) return;
+        _pendingContinuation = null;
+        OnPropertyChanged(nameof(HasSavedContinuation));
+        _chosenLanguage = saved.LanguageCode;
+        _languageCode = LanguageCatalog.Resolve(_chosenLanguage).Code;
+        IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
+        RepetitionState = new JesusPrayerProgress(_effectiveTarget, saved.Position);
+        SaveProgress();
+    }
+
+    public void RestartRun()
+    {
+        _pendingContinuation = null;
+        OnPropertyChanged(nameof(HasSavedContinuation));
+        ClearProgress();
+        RepetitionState = new JesusPrayerProgress(_effectiveTarget);
+    }
+
     [RelayCommand]
     private void Next()
     {
         if (RepetitionState.IsLastRep)
         {
+            ClearProgress();
             Router.PopToRoot();
             return;
         }
 
         RepetitionState = RepetitionState.GoNext();
+        SaveProgress();
     }
 
     [RelayCommand]
-    private void Back() => RepetitionState = RepetitionState.GoBack();
+    private void Back()
+    {
+        RepetitionState = RepetitionState.GoBack();
+        SaveProgress();
+    }
 
     [RelayCommand]
-    private void Finish() => Router.PopToRoot();
+    private void Finish()
+    {
+        ClearProgress();
+        Router.PopToRoot();
+    }
+
+    private void SaveProgress()
+    {
+        if (string.IsNullOrEmpty(_runKey)) return;
+        if (RepetitionState.CurrentIndex <= 0)
+        {
+            _runStore.Remove(_runKey);
+            return;
+        }
+
+        _runStore.Save(_runKey, new PrayerRunState(
+            _runSignature,
+            RepetitionState.CurrentIndex,
+            _chosenLanguage,
+            PrayerRunState.LocalDateString(DateOnly.FromDateTime(DateTime.Now))));
+    }
+
+    private void ClearProgress()
+    {
+        if (!string.IsNullOrEmpty(_runKey)) _runStore.Remove(_runKey);
+    }
 
     [RelayCommand]
     private async Task ToggleFavoriteAsync()

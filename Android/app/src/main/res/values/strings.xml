@@ -66,7 +66,7 @@
     <string name="settings_show_today_feast">Show the day\'s feast</string>
     <string name="settings_show_today_intention">Show the Pope\'s intention</string>
     <string name="settings_feast_calendar">Liturgical calendar</string>
-    <string name="settings_feast_calendar_hint">Which calendar\'s feasts the Today section shows.</string>
+    <string name="settings_feast_calendar_hint">Which calendar\'s feasts and readings the Today section shows.</string>
     <string name="settings_downloads">Downloads</string>
     <string name="settings_installed_devotions">Installed devotions: %1$d</string>
     <string name="settings_clear_audio_cache">Clear Audio Cache</string>
@@ -144,6 +144,7 @@
     <string name="ro_opening_section">Opening &amp; Decade Prayers</string>
     <string name="ro_apostles_creed">Apostles\' Creed</string>
     <string name="ro_opening_prayers">Opening Our Father &amp; 3 Hail Marys</string>
+    <string name="ro_opening_fatima">Fatima Prayer after the 3 opening Hail Marys</string>
     <string name="ro_fatima">Fatima Prayer after each decade</string>
     <string name="ro_faithful_departed">For the faithful departed</string>
     <string name="ro_display_section">Display</string>
@@ -210,6 +211,13 @@
     <string name="flow_app_setting">App setting</string>
     <string name="flow_day">Day</string>
     <string name="flow_choose_form">Choose form</string>
+    <string name="flow_resume_title">Continue this prayer?</string>
+    <string name="flow_resume_message">You stopped at step %1$d of %2$d.</string>
+    <string name="flow_resume_unbounded_message">You stopped at repetition %1$d.</string>
+    <string name="flow_continue">Continue</string>
+    <string name="flow_restart">Restart</string>
+    <string name="flow_previous_mystery">Previous mystery</string>
+    <string name="flow_next_mystery">Next mystery</string>
 
     <!-- Audio playback -->
     <string name="audio_previous_chapter">Previous chapter</string>
@@ -319,7 +327,7 @@
     <string name="about_scripture_sources">Scripture Sources</string>
     <string name="about_scripture_text">Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch\'s Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) with Hebrew Old Testament passages following the Masoretic text, the Jesuit Arabic Bible (Beirut, 1880, revised 1988), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905) — all public domain.</string>
     <string name="about_calendar_data">Calendar Data</string>
-    <string name="about_calendar_data_body">Calendar and readings data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar via Missale Meum (missalemeum.com); the Syriac Catholic calendar, the Roman lectionary calendar in Hebrew, and daily Roman-lectionary citations courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic table compiled in-app from the traditional sources.</string>
+    <string name="about_calendar_data_body">Calendar and readings data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar and lectionary via Missale Meum (missalemeum.com); the Syriac Catholic calendar, sourced Hebrew General Roman titles, and Roman/Syriac lectionary citations courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic calendar compiled in-app from the traditional sources, with Byzantine citations from Royal Doors’ public UGCC Liturgical Year (Gregorian) calendar (royaldoors.net).</string>
     <string name="multi_day_reminder_body">Day %1$d of %2$d awaits.</string>
     <string name="multi_day_completed_title">That completes it. Pray %1$s next?</string>
     <string name="multi_day_pray_next">Pray %1$s</string>

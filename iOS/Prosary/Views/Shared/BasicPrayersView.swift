@@ -79,8 +79,8 @@ private struct BasicPrayerRow: View {
         .aspectRatio(contentMode: .fill)
         .frame(width: 44, height: 44)
         .clipShape(RoundedRectangle(cornerRadius: 8))
-      Text(PrayerPackStore.resolveBodyText(
-        bundleId: prayer.bundleId, languageCode: language.code, key: prayer.titleKey))
+      Text(HebrewDisplayText.unpointed(PrayerPackStore.resolveBodyText(
+        bundleId: prayer.bundleId, languageCode: language.code, key: prayer.titleKey)))
         .environment(\.layoutDirection, language.isRightToLeft ? .rightToLeft : .leftToRight)
     }
     .accessibilityIdentifier("basicPrayer-\(prayer.id)")

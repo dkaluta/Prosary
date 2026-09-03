@@ -44,6 +44,13 @@ final class TodayInfoStoreTests: XCTestCase {
     return formatter.date(from: string)!
   }
 
+  func testTodayTranslationDefaultsFollowHebrewLanguageVariants() {
+    XCTAssertTrue(TodayTranslationLanguage.defaultsToHebrew("he"))
+    XCTAssertTrue(TodayTranslationLanguage.defaultsToHebrew("he-x-gamliel"))
+    XCTAssertFalse(TodayTranslationLanguage.defaultsToHebrew("en"))
+    XCTAssertFalse(TodayTranslationLanguage.defaultsToHebrew("arc"))
+  }
+
   func testFixedSolemnityResolves() {
     let feast = TodayInfoStore.feast(on: date("2026-12-25"))
     XCTAssertEqual(feast?.title, "Christmas")
@@ -83,23 +90,42 @@ final class TodayInfoStoreTests: XCTestCase {
   func testCalendarRegistryListsTheShippedCalendarsInPickerOrder() {
     XCTAssertEqual(
       TodayInfoStore.calendars.map(\.id),
-      ["lpj", "roman", "roman-he", "roman1962", "ugcc", "syriac"])
+      ["lpj", "roman", "roman1962", "ugcc", "syriac"])
     XCTAssertEqual(TodayInfoStore.selectedCalendarId, "lpj")
   }
 
-  /// The Hebrew Roman table is Evangelizo's lectionary edition (credited on the About
-  /// screen): it titles the days whose readings are proper — so Bartholomew's feast and the
-  /// numbered Sundays appear in Hebrew, while a saint's memorial on ferial readings
-  /// (Gregory the Great, September 3) is absent by design, like ferial days everywhere else.
-  func testHebrewRomanCalendarRelaysTheLectionaryDays() {
-    select("roman-he")
+  /// Hebrew titles are translations on the one General Roman calendar rather than a second
+  /// calendar with a different set of days.
+  func testGeneralRomanCalendarLocalizesItsTitlesWhenAvailable() {
+    select("roman")
     let bartholomew = TodayInfoStore.feast(on: date("2026-08-24"))
-    XCTAssertEqual(bartholomew?.title, "חג בר-תלמי השליח")
+    XCTAssertEqual(bartholomew?.title, "Saint Bartholomew, Apostle")
+    XCTAssertEqual(bartholomew?.localizedTitle("he"), "חג בר-תלמי השליח")
     XCTAssertEqual(bartholomew?.rank, "Feast")
     let sunday = TodayInfoStore.feast(on: date("2026-08-30"))
-    XCTAssertEqual(sunday?.title, "יום א ה-22 של הזמן הרגיל")
+    XCTAssertEqual(sunday?.localizedTitle("he"), "יום א ה-22 של הזמן הרגיל")
     XCTAssertEqual(sunday?.rank, "Sunday")
-    XCTAssertNil(TodayInfoStore.feast(on: date("2026-09-03")))
+    XCTAssertNotNil(TodayInfoStore.feast(on: date("2026-09-03")))
+  }
+
+  func testLocalizedDisplayTitlesDropHebrewPointingOnly() {
+    let feast = FeastDay(
+      title: "Vocalized feast", titleByLanguage: ["he": "חַג הַבְּשׂוֹרָה"], rank: "Feast")
+    XCTAssertEqual(feast.localizedTitle("he"), "חג הבשורה")
+
+    let intention = PopeIntention(
+      title: "Vocalized intention", text: "Body",
+      titleByLanguage: ["he": "כַּוָּנַת הַתְּפִלָּה"],
+      textByLanguage: ["he": "גּוּף מְנֻקָּד"])
+    XCTAssertEqual(intention.localizedTitle("he"), "כונת התפלה")
+    XCTAssertEqual(intention.localizedText("he"), "גּוּף מְנֻקָּד",
+                   "prose/body text keeps its authored pointing")
+  }
+
+  func testLegacyHebrewRomanSelectionMigratesToGeneralRoman() {
+    select("roman-he")
+    XCTAssertEqual(TodayInfoStore.selectedCalendarId, "roman")
+    XCTAssertEqual(UserDefaults.standard.string(forKey: TodayInfoStore.calendarDefaultsKey), "roman")
   }
 
   /// The Syriac Catholic table comes from Evangelizo.org's Daily Gospel (credited on the
@@ -183,12 +209,45 @@ final class TodayInfoStoreTests: XCTestCase {
     let readings = TodayInfoStore.readings(on: date("2026-08-31"))
     XCTAssertEqual(readings.map(\.short), ["1 Cor. 2", "Ps. 119", "Lk. 4"])
     XCTAssertEqual(readings.last?.full, "Luke 4:16–30")
-    XCTAssertEqual(readings.last?.hebrew, "הבשורה על-פי לוקס 4:16–30")
+    XCTAssertEqual(readings.last?.hebrew, "הבשורה על-פי לוקס ד׳ 16–30")
+    XCTAssertEqual(readings.map { $0.localizedShort("he") }, [
+      "הראשונה אל הקורינתים ב׳", "תהלים קי״ט", "לוקס ד׳",
+    ])
+    XCTAssertEqual(readings.map { $0.localizedShort("he-x-gamliel") }, [
+      "הראשונה אל הקורינתים ב׳", "תהלים קי״ט", "לוקס ד׳",
+    ], "Hebrew prayer-language variants inherit the authored Hebrew citations unchanged")
+    XCTAssertEqual(readings.last?.localizedFull("he-x-gamliel"), "הבשורה על-פי לוקס ד׳ 16–30")
 
     let day = TodayInfoStore.liturgicalDayInfo(on: date("2026-08-31"))
     XCTAssertTrue(day.english.hasPrefix("Monday · Week "))
     XCTAssertTrue(day.english.hasSuffix(" of Ordinary Time"))
     XCTAssertTrue(day.hebrew.contains("בזמן הרגיל"))
+  }
+
+  func testReadingsFollowTheSelectedCalendarAndClearBetweenFiles() {
+    select("roman")
+    XCTAssertEqual(
+      TodayInfoStore.readings(on: date("2026-09-03")).map(\.short),
+      ["1 Cor. 3", "Ps. 24", "Lk. 5"])
+
+    select("roman1962")
+    XCTAssertEqual(
+      TodayInfoStore.readings(on: date("2026-09-03")).map(\.short),
+      ["1 Thess. 2", "Jn. 21"])
+
+    select("ugcc")
+    XCTAssertEqual(
+      TodayInfoStore.readings(on: date("2026-09-03")).map(\.short),
+      ["Gal. 3", "Mk. 6"])
+
+    select("syriac")
+    XCTAssertEqual(
+      TodayInfoStore.readings(on: date("2026-09-03")).map(\.short),
+      ["Phil. 1", "Lk. 21"])
+
+    // Syriac's current rolling table has no August 1 entry. It must be empty, not the Roman
+    // values loaded at the start of this test.
+    XCTAssertTrue(TodayInfoStore.readings(on: date("2026-08-01")).isEmpty)
   }
 
   func testMonthOutsideThePublishedListHasNoIntention() {
