@@ -22,6 +22,10 @@ The apps are in closed testing — see [prosary.app](https://prosary.app) to joi
 Open `Prosary.xcodeproj` and run the `Prosary` scheme on an iOS Simulator, "My Mac", or Vision Pro
 destination.
 
+The Mac target keeps its macOS 14 deployment floor and explicitly declines UI compatibility mode.
+Build it with Xcode 27 to review the exact macOS 27 appearance; SwiftUI's standard window, sidebar,
+toolbar, controls, and Liquid Glass styles then adopt the current system design automatically.
+
 ## iCloud Sync
 
 Saved configurations (`PresetEntry`, via SwiftData) sync across a user's devices through CloudKit's

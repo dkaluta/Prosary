@@ -159,31 +159,38 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
             "וַשבוּק לַן חַובַין וַחטָהַין אַיכַנָא דָאף חנַן שבַקן לחַיָבַין, " +
             "ולָא תַעלַן לנֶסיוּנָא אֶלָא פַצָא לַן מֶן בִישָא, מֶטֻל דדִילָך הִי " +
             "מַלכוּתָא וחַילָא ותֶשבוּחתָא לעָלַם עָלמִין אַמִין.",
-            abun.Body);
+            abun.Body.Replace('\n', ' '));
         Assert.Equal(
             "ܐܰܒ݁ܽܘܢ ܕܒܰܫܡܰܝܳܐ ܢܶܬܩܰܕܰܫ ܫܡܳܟ ܬܺܐܬܶܐ ܡܰܠܟܽܘܬܳܟ ܢܶܗܘܶܐ ܨܶܒܝܳܢܳܟ. " +
             "ܐܰܝܟܰܢܳܐ ܕܒܰܫܡܰܝܳܐ ܐܳܦ ܒܰܐܪܥܳܐ. ܗܰܒܠܰܢ ܠܰܚܡܳܐ ܕܣܽܘܢܩܳܢܰܢ ܝܰܘܡܳܢܳܐ. " +
             "ܘܰܫܒܽܘܩ ܠܰܢ ܚܰܘܒܰܝ̈ܢ ܘܰܚܛܳܗܰܝ̈ܢ ܐܰܝܟܰܢܳܐ ܕܳܐܦ ܚܢܰܢ ܫܒܰܩܢ ܠܚܰܝܳܒܰܝ̈ܢ. " +
             "ܘܠܳܐ ܬܰܥܠܰܢ ܠܢܶܣܝܽܘܢܳܐ ܐܶܠܳܐ ܦܰܨܳܐ ܠܰܢ ܡܶܢ ܒܺܝܫܳܐ. " +
             "ܡܶܛܽܠ ܕܕܺܝܠܳܟ ܗܺܝ ܡܰܠܟܽܘܬܳܐ ܘܚܰܝܠܳܐ ܘܬܶܫܒܽܘܚܬܳܐ ܠܥܳܠܰܡ ܥܳܠܡܺܝܢ ܐܰܡܺܝܢ܀",
-            abun.TransliteratedBody);
+            abun.TransliteratedBody?.Replace('\n', ' '));
+        Assert.Equal(9, abun.Body.Split('\n').Length);
+        Assert.NotNull(abun.TransliteratedBody);
+        Assert.Equal(abun.Body.Split('\n').Length, abun.TransliteratedBody!.Split('\n').Length);
     }
 
     /// <summary>Erez's Aramaic Hail Mary (2026-08-31), in Hebrew square and pointed Syriac scripts.</summary>
     [Fact]
     public void AramaicHailMaryPreservesBothSuppliedScripts()
     {
-        var hailMary = BuildSteps("rosary", "arc").First(step => step.Title == "שלם לך מרים");
+        var hailMary = BuildSteps("rosary", "arc")
+            .First(step => step.Title.StartsWith("שלם לך מרים", StringComparison.Ordinal));
         Assert.Equal(
             "שלָם לֶך מַריַם מַליַת טַיבוּתָא, מָרַן עַמֶך מבַרַכתָא אַנת בנֶשָא " +
             "וַמבַרַך הוּ פִירָא דַבכַרסֶך מָרַן יֶשוּע משִיחָא, מָרַת מַריַם יָלדַת " +
             "אַלָהָא אַפִיס חלָפַין חנַן חַטָיָא, הָשָא וַבכֻלזבַן וַלעָלַם עָלמִין אַמִין.",
-            hailMary.Body);
+            hailMary.Body.Replace('\n', ' '));
         Assert.Equal(
             "ܫܠܳܡ ܠܶܟ ܡܰܪܝܰܡ ܡܰܠܝܰܬ ܛܰܝܒܽܘܬܳܐ, ܡܳܪܰܢ ܥܰܡܶܟ ܡܒܰܪܰܟܬܳܐ ܐܰܢܬ ܒܢܶܫܳܐ " +
             "ܘܰܡܒܰܪܰܟ ܗܽܘ ܦܺܝܪܳܐ ܕܰܒܟܰܪܣܶܟ ܡܳܪܰܢ ܝܶܫܽܘܥ ܡܫܺܝܚܳܐ, ܡܳܪܰܬ ܡܰܪܝܰܡ ܝܳܠܕܰܬ " +
             "ܐܰܠܳܗܳܐ ܐܰܦܺܝܣ ܚܠܳܦܰܝܢ ܚܢܰܢ ܚܰܛܳܝܳܐ, ܗܳܫܳܐ ܘܰܒܟܽܠܙܒܰܢ ܘܰܠܥܳܠܰܡ ܥܳܠܡܺܝܢ ܐܰܡܺܝܢ.",
-            hailMary.TransliteratedBody);
+            hailMary.TransliteratedBody?.Replace('\n', ' '));
+        Assert.Equal(7, hailMary.Body.Split('\n').Length);
+        Assert.NotNull(hailMary.TransliteratedBody);
+        Assert.Equal(hailMary.Body.Split('\n').Length, hailMary.TransliteratedBody!.Split('\n').Length);
     }
 
     [Fact]
@@ -214,7 +221,7 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
             steps.Select(s => s.Title));
         Assert.Contains("The Angel of the Lord declared unto Mary", steps[0].Body);
         Assert.Contains("**And she conceived of the Holy Spirit.**", steps[0].Body);
-        Assert.Contains("Hail Mary, full of grace", steps[1].Body);
+        Assert.Contains("Hail Mary,\nfull of grace", steps[1].Body);
         Assert.Contains("Pour forth, we beseech Thee", steps[^1].Body);
         Assert.DoesNotContain(steps, s => s.Body.Contains("Queen of Heaven"));
         Assert.All(steps, s => Assert.Equal("joyful_01_annunciation", s.ImageOverrideKey));
@@ -653,8 +660,8 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Equal("אות הצלב", variant[0].Title);
         Assert.Equal("סימן הצלב", hebrew[0].Title);
         Assert.Equal("אני מאמין", hebrew[1].Title);
-        Assert.Contains(variant, s => s.Title == "שלום לך מרים");
-        Assert.Contains(hebrew, s => s.Title == "שמחי מרים");
+        Assert.Contains(variant, s => s.Title.StartsWith("שלום לך מרים", StringComparison.Ordinal));
+        Assert.Contains(hebrew, s => s.Title.StartsWith("שמחי מרים", StringComparison.Ordinal));
         Assert.Contains(variant, s => s.Title == "השבח לאב");
         Assert.Contains(hebrew, s => s.Title == "כבוד לאב");
 

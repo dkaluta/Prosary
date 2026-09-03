@@ -333,7 +333,7 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
         });
         var steps = _engine.BuildSteps(prayer);
         var combined = steps.First(s => s.Title == "Hail Mary & Glory Be");
-        Assert.Contains("Hail Mary, full of grace", combined.Body);
+        Assert.Contains("Hail Mary,\nfull of grace", combined.Body);
         Assert.Contains("Glory be to the Father", combined.Body);
     }
 

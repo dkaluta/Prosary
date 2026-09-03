@@ -90,9 +90,18 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
     public void MainPrayerKeyStillResolvesFromHardcodedTableNotFromAPack()
     {
         var text = PrayerTranslations.Get("en", PrayerKey.AveMaria);
-        Assert.Equal(
-            "Hail Mary, full of grace, the Lord is with thee. Blessed art thou amongst women, and blessed is the fruit of thy womb, Jesus.\nHoly Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen.",
-            text);
+        var expectedLines = new[]
+        {
+            "Hail Mary,",
+            "full of grace, the Lord is with thee.",
+            "Blessed art thou amongst women,",
+            "and blessed is the fruit of thy womb, Jesus.",
+            "Holy Mary, Mother of God,",
+            "pray for us sinners,",
+            "now and at the hour of our death. Amen.",
+        };
+
+        Assert.Equal(expectedLines, text.Split('\n'));
     }
 
     /// <summary>A devotion converted to a bundle resolves entirely bundle-locally — its keys no

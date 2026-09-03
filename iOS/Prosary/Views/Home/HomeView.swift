@@ -317,6 +317,25 @@ struct HomeView: View {
             VStack(alignment: todayHorizontalAlignment, spacing: 3) {
               Text(String(localized: "home.today.readings", defaultValue: "Today’s readings"))
                 .font(.subheadline.weight(.semibold))
+              #if os(macOS)
+              DisclosureGroup(isExpanded: $showsFullCitations) {
+                ForEach(Array(todayReadings.enumerated()), id: \.offset) { _, citation in
+                  Text(citation.localizedFull(todayLanguageCode))
+                    .font(.caption).foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, alignment: todayFrameAlignment)
+                }
+              } label: {
+                Text(showsFullCitations
+                  ? String(localized: "home.today.compactCitations", defaultValue: "Show shorthand")
+                  : String(localized: "home.today.fullCitations", defaultValue: "View full citations"))
+              }
+              .font(.caption)
+              if !showsFullCitations {
+                Text(todayReadings.map { $0.localizedShort(todayLanguageCode) }.joined(separator: ", "))
+                  .font(.caption).foregroundStyle(.secondary)
+                  .frame(maxWidth: .infinity, alignment: todayFrameAlignment)
+              }
+              #else
               if showsFullCitations {
                 ForEach(Array(todayReadings.enumerated()), id: \.offset) { _, citation in
                   Text(citation.localizedFull(todayLanguageCode))
@@ -334,6 +353,7 @@ struct HomeView: View {
                 showsFullCitations.toggle()
               }
               .font(.caption)
+              #endif
             }
           }
         }
