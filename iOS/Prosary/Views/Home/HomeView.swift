@@ -17,7 +17,7 @@ struct HomeView: View {
   /// graveyard of simpler attempts. Reading `.code` in body registers the dependency.
   @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
 
-  @Binding var path: NavigationPath
+  @Binding var path: [AppRoute]
 
   @Environment(\.appServices) private var services
 
@@ -85,7 +85,7 @@ struct HomeView: View {
         // The whole row leads to the presets screen, so no separate disclosure button: the
         // card's own chevron says it goes somewhere.
         subtitle: rosarySubtitle, presetsRoute: nil,
-        prayAction: { path.append(AppRoute.rosaryPresets) }),
+        prayAction: { path.push(AppRoute.rosaryPresets) }),
     ]
     for bundleId in PrayerPackStore.customDevotionIds() {
       guard let info = PrayerPackStore.info(for: bundleId) else { continue }
@@ -171,7 +171,7 @@ struct HomeView: View {
                 accentColor: row.accent,
                 // One tap prays the default; the disclosure is the way into the presets, so
                 // the common case stays a single tap.
-                onDisclosure: row.presetsRoute.map { route in { path.append(route) } }
+                onDisclosure: row.presetsRoute.map { route in { path.push(route) } }
               ) {
                 row.prayAction()
               }
@@ -203,7 +203,7 @@ struct HomeView: View {
         hasPresets: prayers.contains { $0.kind == .rosary }
       ) { prayer in
         showsQuickSetup = false
-        path.append(AppRoute.rosaryQuickPray(prayer: prayer))
+        path.push(AppRoute.rosaryQuickPray(prayer: prayer))
       } onSaved: {
         Task { await load() }
       }
@@ -242,7 +242,7 @@ struct HomeView: View {
   /// unpins. Always present, which is the point of the ask.
   private var basicPrayersSection: some View {
     Button {
-      path.append(AppRoute.basicPrayers)
+      path.push(AppRoute.basicPrayers)
     } label: {
       HStack {
         Image(systemName: "text.book.closed")
@@ -509,17 +509,17 @@ struct HomeView: View {
 
   private func prayJesusPrayer() {
     if let preset = defaultJesusPrayer {
-      path.append(AppRoute.prayer(id: preset.id))
+      path.push(AppRoute.prayer(id: preset.id))
     } else {
-      path.append(AppRoute.jesusPrayerSetup)
+      path.push(AppRoute.jesusPrayerSetup)
     }
   }
 
   private func prayCustom(_ bundleId: String) {
     if let preset = savedPreset(forBundle: bundleId) {
-      path.append(AppRoute.prayer(id: preset.id))
+      path.push(AppRoute.prayer(id: preset.id))
     } else {
-      path.append(AppRoute.custom(devotionId: bundleId))
+      path.push(AppRoute.custom(devotionId: bundleId))
     }
   }
 
@@ -613,6 +613,6 @@ private struct DevotionRow: Identifiable {
 
 #Preview {
   NavigationStack {
-    HomeView(path: .constant(NavigationPath()))
+    HomeView(path: .constant([]))
   }
 }

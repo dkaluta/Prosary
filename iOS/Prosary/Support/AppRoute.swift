@@ -23,3 +23,16 @@ enum AppRoute: Hashable {
   case basicPrayers
   case basicPrayer(id: String)
 }
+
+extension Array where Element == AppRoute {
+  /// Pushes a destination unless that exact screen is already on top. A Mac button receives
+  /// both clicks of a double-click before SwiftUI removes its source view; appending twice made
+  /// the first Back press reveal an identical screen and look broken. Touch and keyboard input
+  /// can produce the same rapid repeat, so every programmatic route push uses this one guard.
+  @discardableResult
+  mutating func push(_ route: AppRoute) -> Bool {
+    guard last != route else { return false }
+    append(route)
+    return true
+  }
+}

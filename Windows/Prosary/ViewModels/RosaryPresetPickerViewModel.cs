@@ -19,6 +19,7 @@ namespace Prosary.ViewModels;
 public partial class RosaryPresetPickerViewModel : ObservableObject
 {
     private readonly IPresetStore _presets;
+    private Prayer? _adHocPrayerForNavigation;
 
     [ObservableProperty]
     private Prayer? _defaultPreset;
@@ -102,6 +103,10 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
 
     public async Task LoadAsync()
     {
+        // A rapid second activation must pass Router the same object so it can recognize the
+        // duplicate. Returning to/reloading the picker starts a genuinely new ad-hoc session.
+        _adHocPrayerForNavigation = null;
+
         var rosaries = (await _presets.GetAllAsync()).Where(p => p.Kind == PrayerKind.Rosary).ToList();
         DefaultPreset = rosaries.FirstOrDefault(p => p.IsDefault);
         OtherPresets = new ObservableCollection<Prayer>(rosaries.Where(p => !p.IsDefault));
@@ -157,11 +162,14 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
         };
     }
 
+    internal Prayer AdHocPrayerForNavigation() =>
+        _adHocPrayerForNavigation ??= AdHocPrayer();
+
     [RelayCommand]
     private void PrayPreset(Prayer preset) => Router.Navigate<RosaryPrayerPage>(preset.Id);
 
     [RelayCommand]
-    private void PrayAdHoc() => Router.Navigate<RosaryPrayerPage>(AdHocPrayer());
+    private void PrayAdHoc() => Router.Navigate<RosaryPrayerPage>(AdHocPrayerForNavigation());
 
     /// <summary>Keeps the quick-setup selection as a new preset — never stealing the default
     /// slot unless it's the first preset.</summary>

@@ -217,7 +217,9 @@ devotion-specific is hardcoded), and **Search** (local + community in one query)
 bar on phones, sidebar on desktop: iOS/macOS via `sidebarAdaptable` where available (targets
 are iOS 17/macOS 14, so older OSes keep the classic tab control), Android switches
 NavigationBar → NavigationRail at 840 dp, Windows wraps the root frame in a NavigationView
-whose section switches reset the back stack. Pray/Categories/Search re-derive their devotion
+whose section switches reset the back stack. Programmatic pushes are single-top on every port:
+a rapid repeated click/tap of the same destination must not add an invisible duplicate that
+requires an extra Back press. Pray/Categories/Search re-derive their devotion
 lists on every appearance, so a bundle installed from Browse/Search/import (or removed in
 Settings) shows up
 everywhere without a relaunch — the bug that motivated the restructure.

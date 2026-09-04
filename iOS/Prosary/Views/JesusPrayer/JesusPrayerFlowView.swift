@@ -11,7 +11,7 @@ import SwiftUI
 
 struct JesusPrayerFlowView: View {
   /// Used to pop all the way to Home when the session ends.
-  @Binding var path: NavigationPath
+  @Binding var path: [AppRoute]
 
   /// When launched from a saved favorite (via PrayerDispatchView). Provides both the
   /// target and the language. Overrides `target` when set.
@@ -38,7 +38,7 @@ struct JesusPrayerFlowView: View {
     prayer?.jesusPrayer.target ?? target
   }
 
-  init(path: Binding<NavigationPath>, prayer: Prayer? = nil, target: JesusPrayerTarget = .count(33)) {
+  init(path: Binding<[AppRoute]>, prayer: Prayer? = nil, target: JesusPrayerTarget = .count(33)) {
     _path = path
     self.prayer = prayer
     self.target = target
@@ -228,14 +228,14 @@ struct JesusPrayerFlowView: View {
 
 #Preview("Bounded — 33") {
   NavigationStack {
-    JesusPrayerFlowView(path: .constant(NavigationPath()), target: .count(33))
+    JesusPrayerFlowView(path: .constant([]), target: .count(33))
       .environment(\.appServices, AppServices(presetStore: MockPresetStore(), engine: PrayerEngine(calendar: MockLiturgicalCalendar()), calendar: MockLiturgicalCalendar()))
   }
 }
 
 #Preview("Unbounded") {
   NavigationStack {
-    JesusPrayerFlowView(path: .constant(NavigationPath()), target: .unbounded)
+    JesusPrayerFlowView(path: .constant([]), target: .unbounded)
       .environment(\.appServices, AppServices(presetStore: MockPresetStore(), engine: PrayerEngine(calendar: MockLiturgicalCalendar()), calendar: MockLiturgicalCalendar()))
   }
 }

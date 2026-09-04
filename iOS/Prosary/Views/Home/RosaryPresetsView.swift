@@ -10,7 +10,7 @@
 import SwiftUI
 
 struct RosaryPresetsView: View {
-  @Binding var path: NavigationPath
+  @Binding var path: [AppRoute]
 
   @Environment(\.appServices) private var services
 
@@ -90,7 +90,7 @@ struct RosaryPresetsView: View {
         hasPresets: !presets.isEmpty
       ) { prayer in
         showsQuickSetup = false
-        path.append(AppRoute.rosaryQuickPray(prayer: prayer))
+        path.push(AppRoute.rosaryQuickPray(prayer: prayer))
       } onSaved: {
         Task { await reload() }
       }
@@ -157,7 +157,7 @@ struct RosaryPresetsView: View {
           .foregroundStyle(.secondary)
 
         Button {
-          path.append(AppRoute.prayer(id: preset.id))
+          path.push(AppRoute.prayer(id: preset.id))
         } label: {
           Text("favorites.pray")
             .frame(maxWidth: .infinity)
@@ -211,6 +211,6 @@ private extension View {
 
 #Preview {
   NavigationStack {
-    RosaryPresetsView(path: .constant(NavigationPath()))
+    RosaryPresetsView(path: .constant([]))
   }
 }
