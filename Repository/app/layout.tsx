@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import "./globals.css";
 import { AccountLink } from "@/components/AccountLink";
 import { RouteAwareLink } from "@/components/RouteAwareLink";
+import { REPOSITORY_DESCRIPTION } from "@/lib/metadata";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://prayers.prosary.app"),
@@ -12,36 +13,7 @@ export const metadata: Metadata = {
     default: "Prosary Prayers",
     template: "%s · Prosary",
   },
-  description:
-    "Devotions shared by the Prosary community — browse and install them in the Prosary app, or download a .prosaryprayer bundle directly.",
-  openGraph: {
-    type: "website",
-    url: "/",
-    siteName: "Prosary",
-    title: "Prosary Prayers",
-    description:
-      "Devotions shared by the Prosary community — browse and install them in the Prosary app, or download a .prosaryprayer bundle directly.",
-    images: [
-      {
-        url: "/prosary-social.png",
-        width: 1024,
-        height: 1024,
-        alt: "Prosary's white rosary cross on a green app icon",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary",
-    title: "Prosary Prayers",
-    description:
-      "Devotions shared by the Prosary community — browse and install them in the Prosary app, or download a .prosaryprayer bundle directly.",
-    images: [
-      {
-        url: "/prosary-social.png",
-        alt: "Prosary's white rosary cross on a green app icon",
-      },
-    ],
-  },
+  description: REPOSITORY_DESCRIPTION,
   icons: {
     icon: [
       { url: "/favicon.ico" },

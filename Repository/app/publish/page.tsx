@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { PublishReceiver } from "@/components/PublishReceiver";
 import { getCurrentUser } from "@/lib/auth";
+import { privatePageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = privatePageMetadata({
   title: "Publish from Compose",
-  robots: { index: false, follow: false },
-};
+  description: "Review and publish a devotion sent from Prosary Compose.",
+});
 
 export default async function PublishPage() {
   let username: string | null = null;

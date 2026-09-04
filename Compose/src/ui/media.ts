@@ -8,6 +8,15 @@ export const MEDIA_LIMITS = {
   audioBytes: 256 * 1024 * 1024,
 } as const;
 
+// Safari can navigate to Blob-backed custom/text archives instead of downloading them. A
+// generic binary type preserves the exact portable filename across all three browser engines.
+export const PORTABLE_FILE_MIME = "application/octet-stream";
+export const OGG_OPUS_MIME = 'audio/ogg; codecs="opus"';
+
+export function supportsOggOpus(canPlayType: (mimeType: string) => string): boolean {
+  return canPlayType(OGG_OPUS_MIME) !== "";
+}
+
 function mebibytes(bytes: number): number {
   return Math.round(bytes / (1024 * 1024));
 }

@@ -5,11 +5,10 @@ import { PageHeader } from "@/components/PageHeader";
 import { StatusMessage } from "@/components/StatusMessage";
 import { listBundles } from "@/lib/db";
 import { LANGUAGE_NAMES } from "@/lib/languages";
+import { publicPageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = {
-  title: "Browse",
-};
+export const metadata: Metadata = publicPageMetadata({ title: "Browse", path: "/" });
 
 export default async function Home({
   searchParams,

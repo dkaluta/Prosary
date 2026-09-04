@@ -9,13 +9,14 @@ import { PageHeader } from "@/components/PageHeader";
 import { StatusMessage } from "@/components/StatusMessage";
 import { getCurrentUser } from "@/lib/auth";
 import { getPasskeysForUser, listBundlesByUsername } from "@/lib/db";
+import { privatePageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = privatePageMetadata({
   title: "Account",
-  robots: { index: false, follow: false },
-};
+  description: "Sign in without a password and manage your Prosary community account.",
+});
 
 export default async function AccountPage() {
   let user: Awaited<ReturnType<typeof getCurrentUser>> = null;

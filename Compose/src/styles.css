@@ -828,6 +828,14 @@ textarea,
 }
 
 @media (max-width: 640px) {
+  html {
+    scrollbar-gutter: auto;
+  }
+
+  body {
+    min-width: 0;
+  }
+
   #root {
     padding-inline-start: max(16px, env(safe-area-inset-left));
     padding-inline-end: max(16px, env(safe-area-inset-right));
@@ -838,11 +846,19 @@ textarea,
   }
 
   .top-actions {
+    display: grid;
     width: 100%;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .top-actions > button {
-    flex: 1;
+    width: 100%;
+    height: auto;
+    min-height: var(--prosary-control-height);
+    padding: 8px 6px;
+    line-height: 1.2;
+    overflow-wrap: normal;
+    text-wrap: balance;
   }
 
   .intro {
@@ -906,6 +922,11 @@ textarea,
   }
 
   .choice-tab[aria-pressed="true"] {
+    border: 2px solid Highlight;
+  }
+
+  .custom-icon-option:has(input[type="radio"]:checked),
+  .choices > label:has(input:checked) {
     border: 2px solid Highlight;
   }
 }

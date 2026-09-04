@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { RecoverPanel } from "@/components/RecoverPanel";
+import { privatePageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = privatePageMetadata({
   title: "Recover your account",
-  robots: { index: false, follow: false },
-};
+  description: "Add a new passkey with a secure, single-use Prosary recovery link.",
+});
 
 export default async function RecoverPage({ params }: { params: Promise<{ token: string }> }) {
   const { token } = await params;

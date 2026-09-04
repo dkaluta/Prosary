@@ -5,6 +5,7 @@ import { BundleCard } from "@/components/BundleCard";
 import { PageHeader } from "@/components/PageHeader";
 import { StatusMessage } from "@/components/StatusMessage";
 import { listBundlesByUsername, normalizeUsername, type BundleRow } from "@/lib/db";
+import { privatePageMetadata, publicPageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-dynamic";
 
@@ -21,7 +22,17 @@ function profileUsername(raw: string): string | null {
 export async function generateMetadata({ params }: ProfileParams): Promise<Metadata> {
   const { username: raw } = await params;
   const username = profileUsername(raw);
-  return { title: username ? `Devotions by ${username}` : "Community profile" };
+  if (!username) {
+    return privatePageMetadata({
+      title: "Community profile",
+      description: "This Prosary community profile could not be found.",
+    });
+  }
+  return publicPageMetadata({
+    title: `Devotions by ${username}`,
+    path: `/u/${encodeURIComponent(username)}`,
+    description: `Browse devotions shared by ${username} with the Prosary community.`,
+  });
 }
 
 export default async function ProfilePage({ params }: ProfileParams) {

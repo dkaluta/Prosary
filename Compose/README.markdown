@@ -11,13 +11,21 @@ square-cropped with the browser's native image decoder and canvas, and autosaves
 Metadata and binary uploads live in separate records, so typing never re-encodes or duplicates
 large media as base64; old localStorage autosaves migrate automatically after the first successful
 native save. Portable "Save project" files (`.prosarycompose`, JSON) still carry their media so
-they can be moved between devices. Nothing an author writes ever leaves their device.
+they can be moved between devices. Downloads use a generic binary media type so Safari, Chrome,
+and Firefox keep Prosary's custom filename extensions; the file picker also accepts the legacy
+`.json` and `.zip` suffixes a browser may have appended. Nothing an author writes ever leaves
+their device.
 
 Image and audio previews use short-lived object URLs that are revoked as screens and files change.
 Bundle imports reject unsafe paths, duplicate entries, unsupported/encrypted or Zip64 archives,
 oversized indexes and payloads, inconsistent local/central headers, overlapping ranges, invalid
 data descriptors, decompression-size mismatches, and CRC failures before content enters editor
 state. Files not referenced by the devotion are not retained.
+
+Compressed bundle imports use the browser's native `DecompressionStream` support (Safari 16.4+,
+Chrome 103+, and Firefox 113+). Older browsers receive a clear compatibility message instead of
+silently corrupting a bundle. Ogg Opus recordings are always preserved; when a browser cannot
+play them natively, Compose replaces the unusable player with an accessible explanation.
 
 ## Commands
 
@@ -60,7 +68,8 @@ defaults do the rest (`npm run build`, output `dist`). Production deploys track 
 - The community repository currently accepts the six languages with complete coverage across
   the original built-in bundles (`la`, `en`, `ar`, `he`, `ru`, `tl`). Compose can author
   `arc`, `el`, and `es` bundles for direct import, but publishing those through
-  prayers.prosary.app is not supported yet.
+  prayers.prosary.app is not supported yet. Finish checks that language boundary and the
+  repository's 8 MB upload limit before enabling Publish; Download remains available.
 - `scripts/e2e.ts` (`npm run e2e`) authors projects through the same modules the browser
   uses, packs, reopens, and demands a byte-stable round trip; CI then validates the emitted
   bundles with the canonical `validate-devotion.py` — two writers, one format.
