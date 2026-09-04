@@ -15,10 +15,11 @@ struct ContentView: View {
   private enum Tab: Hashable { case pray, browse, categories, search }
 
   @State private var selectedTab: Tab = .pray
-  @State private var prayPath = NavigationPath()
-  @State private var browsePath = NavigationPath()
-  @State private var categoriesPath = NavigationPath()
-  @State private var searchPath = NavigationPath()
+  @State private var prayPath: [AppRoute] = []
+  @State private var browsePath: [AppRoute] = []
+  @State private var categoriesPath: [AppRoute] = []
+  @State private var searchPath: [AppRoute] = []
+  @State private var routeLandingGeneration = 0
   private var coordinator = NavigationCoordinator.shared
   @State private var showsBundleImporter = false
   @State private var importError: String?
@@ -121,14 +122,18 @@ struct ContentView: View {
     // RunLoop.perform takes a nonisolated closure, but RunLoop.main always runs it on the
     // main thread — assumeIsolated states that, so AppRoute's main-actor Hashable witness
     // is usable inside without giving up the run-loop scheduling above.
+    routeLandingGeneration += 1
+    let generation = routeLandingGeneration
     RunLoop.main.perform {
       MainActor.assumeIsolated {
+        guard routeLandingGeneration == generation else { return }
         selectedTab = .pray
-        prayPath = NavigationPath()
+        prayPath = []
       }
       RunLoop.main.perform {
         MainActor.assumeIsolated {
-          prayPath.append(route)
+          guard routeLandingGeneration == generation else { return }
+          prayPath.push(route)
         }
       }
     }

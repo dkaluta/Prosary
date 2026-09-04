@@ -1,4 +1,5 @@
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Navigation;
 
 namespace Prosary.Navigation;
 
@@ -11,11 +12,47 @@ namespace Prosary.Navigation;
 public static class Router
 {
     private static Frame? _frame;
+    private static object? _currentParameter;
 
-    public static void Initialize(Frame frame) => _frame = frame;
+    public static void Initialize(Frame frame)
+    {
+        if (_frame is not null)
+        {
+            _frame.Navigated -= OnNavigated;
+        }
+
+        _frame = frame;
+        _currentParameter = null;
+        _frame.Navigated += OnNavigated;
+    }
 
     public static void Navigate<TPage>(object? parameter = null) where TPage : Page
-        => _frame?.Navigate(typeof(TPage), parameter);
+    {
+        if (_frame is null
+            || IsDuplicateNavigation(
+                _frame.CurrentSourcePageType,
+                _currentParameter,
+                typeof(TPage),
+                parameter))
+        {
+            return;
+        }
+
+        _frame.Navigate(typeof(TPage), parameter);
+    }
+
+    internal static bool IsDuplicateNavigation(
+        Type? currentPageType,
+        object? currentParameter,
+        Type destinationPageType,
+        object? destinationParameter) =>
+        currentPageType == destinationPageType
+        && object.Equals(currentParameter, destinationParameter);
+
+    private static void OnNavigated(object sender, NavigationEventArgs args)
+    {
+        _currentParameter = args.Parameter;
+    }
 
     public static bool CanGoBack => _frame?.CanGoBack ?? false;
 

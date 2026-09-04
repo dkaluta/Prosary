@@ -41,6 +41,29 @@ final class AppShellUITests: XCTestCase {
     XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 5))
   }
 
+  #if os(macOS)
+  @MainActor
+  func testDoubleClickingRosaryCardNeedsOnlyOneBackClick() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-resetStore"]
+    app.launch()
+
+    let rosaryCard = app.buttons["rosaryCard"]
+    XCTAssertTrue(rosaryCard.waitForExistence(timeout: 10))
+    rosaryCard.doubleClick()
+
+    let defaultPresetButton = app.buttons["prayDefaultPreset"]
+    XCTAssertTrue(defaultPresetButton.waitForExistence(timeout: 5))
+    let backButton = app.buttons["Back"]
+    XCTAssertTrue(backButton.waitForExistence(timeout: 5))
+    backButton.click()
+
+    XCTAssertTrue(rosaryCard.waitForExistence(timeout: 5),
+                  "A double-click must not push the Rosary presets screen twice")
+    XCTAssertFalse(defaultPresetButton.exists)
+  }
+  #endif
+
   @MainActor
   func testSettingsOpensFromHomeAndOffersItsSections() throws {
     let app = XCUIApplication()

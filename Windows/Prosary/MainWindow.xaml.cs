@@ -91,13 +91,16 @@ public sealed partial class MainWindow : Window
     {
         if (args.SelectedItem is not NavigationViewItem item) return;
         // Sections behave like tabs: switching resets the stack instead of pushing onto it.
-        RootFrame.BackStack.Clear();
         switch (item.Tag as string)
         {
             case "pray": Router.Navigate<HomePage>(); break;
             case "browse": Router.Navigate<RepositoryBrowserPage>(); break;
             case "categories": Router.Navigate<CategoriesPage>(); break;
             case "search": Router.Navigate<SearchPage>(); break;
+            default: return;
         }
+        // Frame.Navigate adds the page we just left to BackStack, so clear only after the new
+        // section root is active. Clearing first left that old page as one phantom Back step.
+        RootFrame.BackStack.Clear();
     }
 }

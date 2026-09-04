@@ -10,7 +10,7 @@
 import SwiftUI
 
 struct JesusPrayerSetupView: View {
-  @Binding var path: NavigationPath
+  @Binding var path: [AppRoute]
 
   /// Laid out two to a row — the counts across the top, the two open-ended choices below —
   /// rather than one five-segment control, where "Unbounded" never fit on a phone.
@@ -130,7 +130,7 @@ struct JesusPrayerSetupView: View {
     .toolbar {
       ToolbarItem(placement: .confirmationAction) {
         Button("jesusPrayerSetup.begin") {
-          path.append(AppRoute.jesusPrayer(target: resolvedTarget))
+          path.push(AppRoute.jesusPrayer(target: resolvedTarget))
         }
         .disabled(!canBegin)
       }
@@ -140,6 +140,6 @@ struct JesusPrayerSetupView: View {
 
 #Preview {
   NavigationStack {
-    JesusPrayerSetupView(path: .constant(NavigationPath()))
+    JesusPrayerSetupView(path: .constant([]))
   }
 }

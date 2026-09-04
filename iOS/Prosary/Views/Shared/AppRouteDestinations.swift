@@ -9,7 +9,7 @@
 import SwiftUI
 
 private struct AppRouteDestinations: ViewModifier {
-  @Binding var path: NavigationPath
+  @Binding var path: [AppRoute]
 
   func body(content: Content) -> some View {
     content.navigationDestination(for: AppRoute.self) { route in
@@ -63,7 +63,7 @@ private extension View {
 }
 
 extension View {
-  func appRouteDestinations(path: Binding<NavigationPath>) -> some View {
+  func appRouteDestinations(path: Binding<[AppRoute]>) -> some View {
     modifier(AppRouteDestinations(path: path))
   }
 }

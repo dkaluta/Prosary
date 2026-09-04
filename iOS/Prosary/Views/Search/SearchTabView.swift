@@ -15,7 +15,7 @@ struct SearchTabView: View {
   /// graveyard of simpler attempts. Reading `.code` in body registers the dependency.
   @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
 
-  @Binding var path: NavigationPath
+  @Binding var path: [AppRoute]
 
   @State private var query = ""
   @State private var repoBundles: [RepositoryBundle] = []
@@ -50,7 +50,7 @@ struct SearchTabView: View {
       Section(String(localized: "search.onDevice", defaultValue: "On This Device")) {
         ForEach(localMatches) { listing in
           Button {
-            path.append(listing.route)
+            path.push(listing.route)
           } label: {
             Label {
               Text(HebrewDisplayText.unpointed(listing.title)).foregroundStyle(.primary)

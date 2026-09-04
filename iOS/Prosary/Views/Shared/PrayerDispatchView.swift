@@ -11,7 +11,7 @@ import SwiftUI
 
 struct PrayerDispatchView: View {
   let prayerId: Prayer.ID
-  @Binding var path: NavigationPath
+  @Binding var path: [AppRoute]
 
   @Environment(\.appServices) private var services
   @State private var prayer: Prayer?

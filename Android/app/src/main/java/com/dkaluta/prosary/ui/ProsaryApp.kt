@@ -26,12 +26,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import androidx.navigation.navOptions
 import androidx.compose.runtime.Composable
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.ui.categories.CategoriesScreen
@@ -104,6 +106,16 @@ private object Routes {
 }
 
 private data class TabSpec(val route: String, @param:StringRes val labelRes: Int, val icon: ImageVector)
+
+/** Pushes an inner destination without allowing a rapid second activation to put the exact
+ * same destination on top of itself. Tabs have their own save/restore policy in [selectTab]. */
+internal fun singleTopNavOptions(): NavOptions = navOptions {
+    launchSingleTop = true
+}
+
+internal fun NavHostController.navigateSingleTop(route: String) {
+    navigate(route, singleTopNavOptions())
+}
 
 /** The app's tab shell: Pray (Home), Browse (prayers.prosary.app), Categories, Search —
  * bottom NavigationBar on phones, NavigationRail on wide layouts ("bottom on phone, side on
@@ -196,9 +208,9 @@ fun ProsaryApp() {
 
 private fun NavHostController.launch(target: LaunchTarget) {
     when (target) {
-        LaunchTarget.Rosary -> navigate(Routes.RosaryPicker)
-        is LaunchTarget.Custom -> navigate(Routes.custom(target.bundleId))
-        LaunchTarget.JesusPrayer -> navigate(Routes.JesusPrayerSetup)
+        LaunchTarget.Rosary -> navigateSingleTop(Routes.RosaryPicker)
+        is LaunchTarget.Custom -> navigateSingleTop(Routes.custom(target.bundleId))
+        LaunchTarget.JesusPrayer -> navigateSingleTop(Routes.JesusPrayerSetup)
     }
 }
 
@@ -216,14 +228,14 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
         }
         composable(Routes.Home) {
             HomeScreen(
-                onOpenPrayer = { id -> navController.navigate(Routes.prayer(id)) },
-                onOpenRosaryPicker = { navController.navigate(Routes.RosaryPicker) },
-                onAddPreset = { kind -> navController.navigate(Routes.favoriteEditor(null, kind)) },
-                onOpenAbout = { navController.navigate(Routes.About) },
-                onOpenSettings = { navController.navigate(Routes.Settings) },
-                onOpenJesusPrayerSetup = { navController.navigate(Routes.JesusPrayerSetup) },
-                onOpenCustomDevotion = { devotionId -> navController.navigate(Routes.custom(devotionId)) },
-                onOpenBasicPrayers = { navController.navigate(Routes.BasicPrayers) },
+                onOpenPrayer = { id -> navController.navigateSingleTop(Routes.prayer(id)) },
+                onOpenRosaryPicker = { navController.navigateSingleTop(Routes.RosaryPicker) },
+                onAddPreset = { kind -> navController.navigateSingleTop(Routes.favoriteEditor(null, kind)) },
+                onOpenAbout = { navController.navigateSingleTop(Routes.About) },
+                onOpenSettings = { navController.navigateSingleTop(Routes.Settings) },
+                onOpenJesusPrayerSetup = { navController.navigateSingleTop(Routes.JesusPrayerSetup) },
+                onOpenCustomDevotion = { devotionId -> navController.navigateSingleTop(Routes.custom(devotionId)) },
+                onOpenBasicPrayers = { navController.navigateSingleTop(Routes.BasicPrayers) },
             )
         }
 
@@ -238,7 +250,7 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
                     onBack = { navController.popBackStack() },
                     onOpenDevotion = { suggested ->
                         navController.popBackStack()
-                        navController.navigate(Routes.custom(suggested))
+                        navController.navigateSingleTop(Routes.custom(suggested))
                     },
                 )
             }
@@ -246,7 +258,7 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
 
         composable(Routes.BasicPrayers) {
             BasicPrayersScreen(
-                onOpen = { navController.navigate(Routes.basicPrayer(it)) },
+                onOpen = { navController.navigateSingleTop(Routes.basicPrayer(it)) },
                 onNavigateUp = { navController.popBackStack() },
             )
         }
@@ -259,13 +271,13 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
         }
         composable(Routes.RosaryPicker) {
             RosaryPresetPickerScreen(
-                onPrayPreset = { id -> navController.navigate(Routes.prayer(id)) },
+                onPrayPreset = { id -> navController.navigateSingleTop(Routes.prayer(id)) },
                 onPrayAdHoc = { prayer ->
                     AdHocRosaryHolder.prayer = prayer
-                    navController.navigate(Routes.RosaryQuickPray)
+                    navController.navigateSingleTop(Routes.RosaryQuickPray)
                 },
-                onEditPreset = { id -> navController.navigate(Routes.favoriteEditor(id)) },
-                onEditReminders = { id -> navController.navigate(Routes.remindersOnlyEditor(id)) },
+                onEditPreset = { id -> navController.navigateSingleTop(Routes.favoriteEditor(id)) },
+                onEditReminders = { id -> navController.navigateSingleTop(Routes.remindersOnlyEditor(id)) },
                 onBack = { navController.popBackStack() },
             )
         }
@@ -280,7 +292,7 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
         composable(Routes.JesusPrayerSetup) {
             JesusPrayerSetupScreen(
                 onBack = { navController.popBackStack() },
-                onBegin = { target -> navController.navigate(Routes.jesusPrayerFlow(target.toRouteValue())) },
+                onBegin = { target -> navController.navigateSingleTop(Routes.jesusPrayerFlow(target.toRouteValue())) },
             )
         }
 

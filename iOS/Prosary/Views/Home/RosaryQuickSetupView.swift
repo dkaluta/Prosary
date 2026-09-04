@@ -25,6 +25,9 @@ struct RosaryQuickSetupView: View {
   @State private var showsSaveNamePrompt = false
   @State private var presetName = ""
   @State private var didSeed = false
+  /// Both events from a Mac double-click must describe the same transient prayer so the
+  /// navigation path can recognize the second event as a duplicate.
+  @State private var scratchPrayerID = UUID()
 
   var body: some View {
     NavigationStack {
@@ -50,7 +53,7 @@ struct RosaryQuickSetupView: View {
         }
         ToolbarItem(placement: .confirmationAction) {
           Button("favorites.pray") {
-            onPray(Prayer(name: "", kind: .rosary, rosary: options))
+            onPray(Prayer(id: scratchPrayerID, name: "", kind: .rosary, rosary: options))
           }
         }
       }

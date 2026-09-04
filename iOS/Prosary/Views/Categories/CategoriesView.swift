@@ -14,7 +14,7 @@ struct CategoriesView: View {
   /// graveyard of simpler attempts. Reading `.code` in body registers the dependency.
   @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
 
-  @Binding var path: NavigationPath
+  @Binding var path: [AppRoute]
   /// Bumped on every appearance so a devotion installed in another tab shows up here without
   /// a relaunch (same trick as HomeView's card list).
   @State private var packGeneration = 0
@@ -41,7 +41,7 @@ struct CategoriesView: View {
         Section(section.tag.capitalized) {
           ForEach(section.listings) { listing in
             Button {
-              path.append(listing.route)
+              path.push(listing.route)
             } label: {
               Label {
                 Text(HebrewDisplayText.unpointed(listing.title))
