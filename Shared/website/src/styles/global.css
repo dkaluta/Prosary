@@ -46,6 +46,10 @@ a:hover {
   outline-offset: var(--prosary-focus-offset);
 }
 
+:where(a):focus-visible {
+  border-radius: var(--prosary-radius-control);
+}
+
 main:focus-visible {
   outline: var(--prosary-focus-width) solid var(--prosary-focus);
   outline-offset: calc(var(--prosary-focus-offset) * -1);
