@@ -2,11 +2,11 @@
 //  AudioPlaybackController.swift
 //  Prosary
 //
-//  Plays one bundle audio track (see Shared/ARCHITECTURE.md "Audio"): extracts the Ogg Opus
-//  bytes from the pack into Caches (recordings dwarf every other bundle asset, so they are
-//  never held in memory), opens them with AVAudioPlayer — directly where the OS demuxes .opus
-//  (current OSes), via the lossless OggOpusCAF repackage where it doesn't (the iOS 17/macOS 14
-//  deployment floor) — and publishes time/chapter state for the prayer flow's audio bar.
+//  Plays one bundle audio track (see Shared/ARCHITECTURE.markdown "Audio"): extracts the Ogg Opus
+//  bytes from the pack into Caches with bounded streaming (recordings dwarf every other bundle
+//  asset, so they are never retained in the content store), losslessly wraps the recording in
+//  CAF for accurate cross-version scheduling, and publishes time/chapter state for the prayer
+//  flow's audio bar.
 //  Chapter → step syncing itself lives in the flow view, because only it knows the built step
 //  sequence the chapters' advisory stepIndex hints point into.
 //
@@ -92,14 +92,36 @@ final class AudioPlaybackController: NSObject, AVAudioPlayerDelegate {
   private static func extractedFileURL(bundleId: String, track: DevotionAudioTrack) -> URL? {
     guard let caches = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
     else { return nil }
+    guard let cacheKey = PrayerPackStore.audioCacheKey(bundleId: bundleId, file: track.file) else {
+      return nil
+    }
     let dir = caches.appendingPathComponent("PrayerAudio/\(bundleId)", isDirectory: true)
-    let url = dir.appendingPathComponent((track.file as NSString).lastPathComponent)
+    let sourceName = (track.file as NSString).lastPathComponent
+    let sourceExtension = (sourceName as NSString).pathExtension
+    let sourceStem = (sourceName as NSString).deletingPathExtension
+    let cacheName = "\(sourceStem)--\(cacheKey).\(sourceExtension)"
+    let url = dir.appendingPathComponent(cacheName)
     if let size = try? url.resourceValues(forKeys: [.fileSizeKey]).fileSize, size > 0 {
       return url
     }
-    guard let data = PrayerPackStore.audioData(bundleId: bundleId, file: track.file) else { return nil }
     try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
-    guard (try? data.write(to: url, options: .atomic)) != nil else { return nil }
+    guard PrayerPackStore.extractAudioFile(bundleId: bundleId, file: track.file, to: url) else {
+      return nil
+    }
+    // Cache storage is disposable, but a user may replace a same-id pack many times. Keep only
+    // this recording's current content-addressed Opus/CAF pair (and remove the legacy basename).
+    let currentStem = (cacheName as NSString).deletingPathExtension
+    if let cachedFiles = try? FileManager.default.contentsOfDirectory(
+      at: dir, includingPropertiesForKeys: nil)
+    {
+      for cached in cachedFiles {
+        let name = cached.lastPathComponent
+        let stem = (name as NSString).deletingPathExtension
+        let isLegacy = name == sourceName || name == "\(sourceStem).caf"
+        let isOlderRevision = stem.hasPrefix("\(sourceStem)--") && stem != currentStem
+        if isLegacy || isOlderRevision { try? FileManager.default.removeItem(at: cached) }
+      }
+    }
     return url
   }
 

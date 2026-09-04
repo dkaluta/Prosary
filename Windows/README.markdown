@@ -32,6 +32,15 @@ specific quirks. All of irosary's actually-reusable code — the Rosary engine, 
 algorithm, SQLite repository, and every language's prayer text — is plain C#/.NET with zero MAUI
 dependency, so none of that reuse was lost by going with plain WinUI3 instead.
 
+## Why no C++/WinRT component
+
+The Windows hot paths are WinUI layout, zip/JSON content loading, SQLite persistence, and OS
+media playback. SQLite and Media Foundation are native already; moving the thin C# orchestration
+around them across a C++/WinRT ABI would add another binary, ownership boundary, and toolchain
+without removing meaningful work. Pack entries are instead streamed and cached on demand in C#.
+A modern C++17 component (with RAII ownership throughout) would be worth reconsidering only if a
+profiler identifies a genuinely CPU-bound native kernel, such as a future codec or image pipeline.
+
 ## Building
 
 Open `Prosary.sln` in Visual Studio and run the `Prosary` project (x64 or arm64), or from the
@@ -48,7 +57,7 @@ A signed MSIX package additionally needs the packaging certificate — see Signi
 Mirrors iOS/Android's unified model: a `Prayer` (`Models/Prayer.cs`) is a saved,
 user-configurable prayer session, discriminated by `PrayerKind`: the Rosary, the Jesus Prayer,
 and `Custom` — every other devotion, driven entirely by a `.prosaryprayer` bundle (see
-`../Shared/ARCHITECTURE.md`). ViewModels strictly use CommunityToolkit.Mvvm
+`../Shared/ARCHITECTURE.markdown`). ViewModels strictly use CommunityToolkit.Mvvm
 (`[ObservableProperty]`/`[RelayCommand]` — no hand-rolled `INotifyPropertyChanged`).
 
 - `Services/PrayerEngine.cs` — builds Rosary sessions and every bundle-driven devotion, reading
@@ -92,15 +101,16 @@ signed identity, which Windows treats as a different app for update purposes.
 
 ## Shared assets
 
-Bundled prayer typefaces and the mystery/prayer illustration images under `Prosary/Assets/Fonts`
-and `Prosary/Assets/Images` are physical copies of the canonical originals in `../Shared/` (a
-sibling directory to `iOS`/`Android`/`Windows` — see `../Shared/README.md` for what lives there
-and why). Each platform keeps its own physical copy rather than referencing `Shared/` at build
-time; if you update an image or font, update `Shared/` and re-copy it into each platform that uses
-it. Placeholder tile/splash
-icons (generated to match the app's brand gradient/cross, lower-fidelity than the real launcher
-art on iOS/Android) live in `Prosary/Assets/` directly too — swap those for real icon assets
-before any real distribution.
+Bundled prayer typefaces under `Prosary/Assets/Fonts` are physical copies of the canonical
+originals in `../Shared/`. Prayer artwork is already carried by the self-contained built-in
+`.prosaryprayer` files, so Windows does not also ship duplicate loose JPEGs; only
+`Assets/Images/cross_placeholder.png` remains as the no-pack fallback. Update canonical images in
+`Shared/`, regenerate/sync the packs, and do not reintroduce a second Windows copy. Pack artwork
+is streamed to `LocalCacheFolder` only when displayed; the previous process's image cache is
+cleared at launch so installed/removed packs cannot grow it indefinitely. Placeholder
+tile/splash icons (generated to match the app's brand gradient/cross, lower-fidelity than the real
+launcher art on iOS/Android) live in `Prosary/Assets/` directly too — swap those for real icon
+assets before any real distribution.
 
 ## Tests
 
@@ -123,6 +133,6 @@ Run with `dotnet test Prosary.sln` (Windows only, same constraint as building th
 
 ## License
 
-The app's original source code is licensed under the BSD 2-Clause License — see [LICENSE](LICENSE),
-matching the iOS and Android apps. Bundled third-party typefaces retain their own separate
-licenses — see `Prosary/Assets/Fonts/ATTRIBUTIONS.md`.
+All original Prosary material is licensed under the repository-wide BSD 2-Clause License — see
+[LICENSE](../LICENSE). Third-party typefaces retain their original licenses — see
+`Prosary/Assets/Fonts/ATTRIBUTIONS.markdown`.

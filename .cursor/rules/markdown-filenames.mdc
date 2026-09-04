@@ -1,0 +1,12 @@
+---
+description: Use the repository's Markdown filename convention
+alwaysApply: true
+---
+
+# Markdown filenames
+
+- Give new Markdown documents the `.markdown` extension.
+- Use `.md` only when a tool or platform requires an exact conventional filename, such as
+  `AGENTS.md` or `CLAUDE.md`.
+- When renaming an existing document, update every code, documentation, and workflow reference
+  in the same change.

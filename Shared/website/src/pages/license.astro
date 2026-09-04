@@ -1,72 +1,36 @@
 ---
-import "../styles/global.css";
+import { readFile } from "node:fs/promises";
+import { resolve } from "node:path";
+
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const title = "Prosary — License";
-const description = "Prosary's source code is BSD 2-Clause licensed, on iPhone, Mac, and Android.";
+const description =
+	"All original Prosary material is open source under the BSD 2-Clause License in one public monorepo.";
+// npm executes Astro with this package as cwd in development and CI. Resolve from there rather
+// than import.meta.url: Astro relocates page modules into dist/.prerender before rendering.
+const licenseText = await readFile(resolve(process.cwd(), "../../LICENSE"), "utf8");
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={description} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<div class="hero">
-			<h1>License</h1>
-			<p class="tagline">
-				Prosary is open source, under the BSD 2-Clause License, for both the
-				<a href="https://github.com/dkaluta/Prosary-iOS">iPhone/Mac app</a> and
-				the <a href="https://github.com/dkaluta/Prosary-Android">Android app</a>.
-			</p>
-		</div>
+<BaseLayout {title} {description} heading="License" currentPath="/license">
+	<Fragment slot="hero">
+		<p class="tagline">
+			The SwiftUI app for iPhone and Mac, the Jetpack Compose app for
+			Android, the WinUI app for Windows, Prosary's web tools, and their
+			shared data, documentation, tools, and assets live in
+			{" "}
+			<a href="https://github.com/dkaluta/Prosary">one open-source monorepo</a>.
+		</p>
+	</Fragment>
 
-		<section>
-			<pre>
-BSD 2-Clause License
-
-Copyright (c) 2026, David Kaluta
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-1. Redistributions of source code must retain the above copyright notice,
-   this list of conditions and the following disclaimer.
-
-2. Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation
-   and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-POSSIBILITY OF SUCH DAMAGE.
-</pre>
-			<p>
-				This license covers both apps' original source code. Bundled
-				third-party assets (typefaces, mystery illustrations, Scripture
-				sources) carry their own separate licenses — see the in-app About
-				screen for details.
-			</p>
-		</section>
-
-		<footer>
-			<p>
-				&copy; 2026 David Kaluta &middot; <a href="/">Home</a> &middot;
-				<a href="/privacy">Privacy</a>
-			</p>
-		</footer>
-	</body>
-</html>
+	<section>
+		<pre>{licenseText.trim()}</pre>
+		<p>
+			The text above is read from the repository's
+			{" "}
+			<a href="https://github.com/dkaluta/Prosary/blob/main/LICENSE"
+				>canonical license file</a
+			>, so this published copy stays in step with the whole project.
+		</p>
+	</section>
+</BaseLayout>

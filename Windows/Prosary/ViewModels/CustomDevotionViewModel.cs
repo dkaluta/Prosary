@@ -194,9 +194,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         RenderCurrentStep();
     }
 
-    public string MysteryImageFile => PrayerPackStore.ImageFileUri(MysteryImageKey) ?? (MysteryImageKey == "cross_placeholder"
-        ? "ms-appx:///Assets/Images/cross_placeholder.png"
-        : $"ms-appx:///Assets/Images/{MysteryImageKey}.jpg");
+    public string MysteryImageFile => PrayerPackStore.ImageFileUriOrPlaceholder(MysteryImageKey);
 
     public string NextButtonText => IsLastStep ? Loc.Tr("common_finish", "Finish") : Loc.Tr("common_next", "Next");
 

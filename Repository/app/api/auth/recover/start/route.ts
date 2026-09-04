@@ -17,8 +17,10 @@ export async function POST(request: Request) {
     : await findUserByUsername(identifier);
   if (user) {
     const token = newRecoveryToken();
-    await saveRecoveryToken(createHash("sha256").update(token).digest("base64url"), user.id);
-    const origin = await getAppOrigin();
+    const [, origin] = await Promise.all([
+      saveRecoveryToken(createHash("sha256").update(token).digest("base64url"), user.id),
+      getAppOrigin(),
+    ]);
     await sendRecoveryEmail(user.email, user.username, `${origin}/recover/${token}`);
   }
   return Response.json({ ok: true });

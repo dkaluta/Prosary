@@ -2,14 +2,18 @@
    resemblance is obvious; light/dark follows the system, same as the apps. */
 
 :root {
+  color-scheme: light;
   --brand-primary: #7a1f3d;
   --brand-headline: #4a0e23;
-  --bg: #ffffff;
-  --panel: #faf7f8;
+  --bg: #fdfbfc;
+  --panel: #ffffff;
+  --panel-soft: #faf6f8;
   --border: #e3dadd;
   --text: #1f1f1f;
-  --text-muted: #6e6e6e;
-  --danger: #b3261e;
+  --text-muted: #5f5a5c;
+  --danger: #9f1c15;
+  --focus: #1261a0;
+  --shadow: 0 8px 28px rgb(74 14 35 / 0.07);
   /* Text ON brand-primary / danger backgrounds — dark mode's pale variants need dark
      text, not light (white-on-rose is unreadable). */
   --on-primary: #ffffff;
@@ -18,16 +22,20 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+    color-scheme: dark;
     --brand-primary: #d8a8b5;
     --brand-headline: #ffffff;
     --bg: #1f1f1f;
     --panel: #2a2528;
+    --panel-soft: #252124;
     --border: #453a3f;
     --text: #f2f2f2;
     --text-muted: #c8c8c8;
     --danger: #f2b8b5;
     --on-primary: #3a1020;
     --on-danger: #3a0d0b;
+    --focus: #8ac8ff;
+    --shadow: 0 10px 30px rgb(0 0 0 / 0.24);
   }
 }
 
@@ -43,45 +51,106 @@ html {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-  background: var(--bg);
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: ui-rounded, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  background:
+    radial-gradient(circle at 50% -12rem, color-mix(in srgb, var(--brand-primary) 10%, transparent), transparent 34rem),
+    var(--bg);
   color: var(--text);
 }
 
 #root {
-  max-width: 860px;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 24px 24px 96px;
+  padding: max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right))
+    max(96px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+}
+
+#editor:focus {
+  outline: none;
+}
+
+.boot {
+  min-height: 50vh;
+  display: grid;
+  place-items: center;
+  color: var(--text-muted);
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 10;
+  inset-block-start: 8px;
+  inset-inline-start: 8px;
+  transform: translateY(-160%);
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--brand-primary);
+  color: var(--on-primary);
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 header.top {
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
-  padding: 8px 0 16px;
+  padding: 8px 0 10px;
+}
+
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-mark {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--brand-primary);
+  color: var(--on-primary);
+  font-size: 1.25rem;
 }
 
 header.top h1 {
-  font-size: 1.5rem;
+  font-size: clamp(1.35rem, 4vw, 1.65rem);
   margin: 0;
   color: var(--brand-headline);
 }
 
-header.top .spacer {
-  flex: 1;
+.top-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .tagline {
   color: var(--text-muted);
-  margin: 0 0 20px;
+  margin: 0;
+  max-width: 68ch;
+}
+
+.autosave-status {
+  margin: 7px 0 22px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
 }
 
 nav.stepper {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 nav.stepper button {
@@ -89,9 +158,11 @@ nav.stepper button {
   background: var(--panel);
   color: var(--text);
   border-radius: 999px;
-  padding: 8px 16px;
+  min-height: 44px;
+  padding: 8px 14px;
   font-size: 0.9rem;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 nav.stepper button.active {
@@ -114,8 +185,18 @@ nav.stepper button .badge {
 
 h2 {
   color: var(--brand-headline);
-  font-size: 1.2rem;
+  font-size: clamp(1.3rem, 4vw, 1.55rem);
   margin: 0 0 4px;
+}
+
+h3.title {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.editor-section {
+  min-height: 28rem;
 }
 
 p.help {
@@ -127,9 +208,10 @@ p.help {
 .card {
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: 16px;
+  padding: clamp(16px, 3vw, 22px);
   margin-bottom: 16px;
+  box-shadow: var(--shadow);
 }
 
 .card header {
@@ -164,15 +246,23 @@ label.field .hint {
 
 input[type="text"],
 input[type="number"],
+input[type="time"],
 textarea,
 select {
   width: 100%;
-  padding: 9px 10px;
+  min-height: 44px;
+  padding: 9px 11px;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--bg);
   color: var(--text);
   font: inherit;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: color-mix(in srgb, var(--text-muted) 82%, transparent);
+  opacity: 1;
 }
 
 textarea {
@@ -191,30 +281,67 @@ fieldset {
   padding: 0;
 }
 
+fieldset.field > label {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  min-height: 44px;
+  padding-block: 8px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--brand-primary);
+}
+
 .choices {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-.choices label {
+.choices > label {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   border: 1px solid var(--border);
   background: var(--bg);
   border-radius: 8px;
+  min-height: 44px;
   padding: 8px 12px;
   cursor: pointer;
 }
 
-.choices label:has(input:checked) {
+.custom-icon-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  border-radius: 8px;
+  min-height: 44px;
+  padding: 4px 8px 4px 12px;
+}
+
+.custom-icon-option > label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  border: 0;
+  padding: 0;
+}
+
+.custom-icon-option:has(input[type="radio"]:checked) {
   border-color: var(--brand-primary);
   outline: 1px solid var(--brand-primary);
 }
 
-.choices input {
-  accent-color: var(--brand-primary);
+.choices > label:has(input:checked) {
+  border-color: var(--brand-primary);
+  outline: 1px solid var(--brand-primary);
 }
 
 .row {
@@ -234,9 +361,11 @@ fieldset {
 
 button.primary,
 button.secondary,
-button.subtle {
+button.subtle,
+.choice-tab {
   font: inherit;
   border-radius: 8px;
+  min-height: 44px;
   padding: 10px 18px;
   cursor: pointer;
 }
@@ -248,7 +377,7 @@ button.primary {
   font-weight: 600;
 }
 
-button.primary:disabled {
+button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -264,11 +393,35 @@ button.subtle {
   background: transparent;
   border: 1px solid var(--border);
   color: var(--text-muted);
-  padding: 6px 10px;
+  padding: 8px 12px;
 }
 
-button.subtle:hover {
+.icon-button {
+  width: 44px;
+  padding-inline: 0 !important;
+}
+
+.danger-action:not(:disabled) {
+  color: var(--danger);
+}
+
+.choice-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.choice-tab {
+  border: 1px solid var(--border);
+  background: var(--bg);
   color: var(--text);
+}
+
+.choice-tab[aria-pressed="true"] {
+  border-color: var(--brand-primary);
+  background: color-mix(in srgb, var(--brand-primary) 12%, var(--panel));
+  color: var(--brand-headline);
+  font-weight: 700;
 }
 
 .footer-nav {
@@ -299,9 +452,26 @@ button.subtle:hover {
   border: 1px solid var(--border);
 }
 
+.art-thumb-loading {
+  display: inline-block;
+  background: var(--panel-soft);
+}
+
 .issue {
   color: var(--danger);
   margin: 6px 0;
+}
+
+.callout {
+  border-inline-start: 4px solid currentColor;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: color-mix(in srgb, currentColor 7%, transparent);
+}
+
+.issue-list {
+  margin: 0 0 18px;
+  padding-inline-start: 1.4rem;
 }
 
 .issue button {
@@ -317,6 +487,13 @@ button.subtle:hover {
 .ok {
   color: var(--brand-primary);
   font-weight: 600;
+}
+
+.finish-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-block: 16px;
 }
 
 .summary dt {
@@ -344,9 +521,16 @@ table.chapters {
   border-collapse: collapse;
 }
 
+.table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  margin-block: 12px;
+  border-radius: 8px;
+}
+
 table.chapters td,
 table.chapters th {
-  padding: 4px 6px;
+  padding: 6px;
   text-align: start;
 }
 
@@ -363,11 +547,15 @@ table.chapters select {
 
 .color-swatch input[type="color"] {
   width: 44px;
-  height: 32px;
+  height: 44px;
   border: 1px solid var(--border);
   border-radius: 6px;
   background: none;
   padding: 2px;
+}
+
+audio {
+  width: min(100%, 360px);
 }
 
 .icon-choice {
@@ -376,6 +564,34 @@ table.chapters select {
 
 a {
   color: var(--brand-primary);
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.loading {
+  min-height: 28rem;
+  display: grid;
+  place-items: center;
+  color: var(--text-muted);
 }
 
 /* The one-grapheme custom-icon input (Basics → Icon → "Your own"). */
@@ -388,13 +604,91 @@ a {
 
 /* Shown only by ErrorBoundary, when a render has thrown and the wizard is gone. */
 .crash {
-  border: 1px solid var(--rule, #d9d2c7);
-  border-radius: 10px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
   padding: 20px;
   margin-top: 16px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
 }
 .crash pre.issue {
   white-space: pre-wrap;
   font-size: 0.85em;
   margin-top: 16px;
+}
+
+.technical-error {
+  margin-top: 18px;
+}
+
+@media (hover: hover) {
+  button:not(:disabled):hover,
+  .choice-tab:not(:disabled):hover {
+    filter: brightness(0.96);
+  }
+
+  button.subtle:not(:disabled):hover {
+    color: var(--text);
+    border-color: color-mix(in srgb, var(--brand-primary) 50%, var(--border));
+  }
+}
+
+@media (max-width: 640px) {
+  #root {
+    padding-inline-start: max(16px, env(safe-area-inset-left));
+    padding-inline-end: max(16px, env(safe-area-inset-right));
+  }
+
+  header.top {
+    align-items: flex-start;
+  }
+
+  .top-actions {
+    width: 100%;
+  }
+
+  .top-actions > button {
+    flex: 1;
+  }
+
+  nav.stepper {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  nav.stepper button {
+    width: 100%;
+  }
+
+  .card header {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .finish-actions > button,
+  .footer-nav > button {
+    flex: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .brand-mark,
+  nav.stepper button.active {
+    border: 2px solid ButtonText;
+  }
+
+  .card,
+  .callout {
+    box-shadow: none;
+  }
 }

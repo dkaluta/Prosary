@@ -1,7 +1,8 @@
 "use client";
 
-import { startRegistration } from "@simplewebauthn/browser";
+import Link from "next/link";
 import { useState } from "react";
+import { StatusMessage } from "@/components/StatusMessage";
 
 export function RecoverPanel({ token }: { token: string }) {
   const [error, setError] = useState<string | null>(null);
@@ -12,16 +13,21 @@ export function RecoverPanel({ token }: { token: string }) {
     setError(null);
     setBusy(true);
     try {
-      const optionsResponse = await fetch("/api/auth/recover/options", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token }),
-      });
+      const [optionsResponse, { startRegistration }] = await Promise.all([
+        fetch("/api/auth/recover/options", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token }),
+        }),
+        import("@simplewebauthn/browser"),
+      ]);
       if (!optionsResponse.ok) {
         setError("This recovery link is invalid or has expired — request a fresh one.");
         return;
       }
-      const registration = await startRegistration({ optionsJSON: await optionsResponse.json() });
+      const registration = await startRegistration({
+        optionsJSON: await optionsResponse.json(),
+      });
       const verify = await fetch("/api/auth/recover/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -40,21 +46,29 @@ export function RecoverPanel({ token }: { token: string }) {
   };
 
   return (
-    <div className="card">
-      <h2>Recover your account</h2>
+    <section className="card" aria-labelledby="recovery-heading" aria-busy={busy}>
+      <h2 id="recovery-heading">Create a new passkey</h2>
       {done ? (
-        <p className="ok">
-          A new passkey is saved and you're signed in — <a href="/account">back to your account</a>.
-        </p>
+        <StatusMessage tone="success">
+          A new passkey is saved and you are signed in. <Link href="/account">Open your account</Link>.
+        </StatusMessage>
       ) : (
         <>
-          <p className="hint">This adds a fresh passkey to your account on this device.</p>
-          <button className="primary" disabled={busy} onClick={recover}>
-            Create a new passkey
+          <p className="hint">
+            Confirm this recovery request to add a fresh passkey for this device. The link can
+            be used only once.
+          </p>
+          <button
+            className="button button-primary"
+            type="button"
+            disabled={busy}
+            onClick={recover}
+          >
+            {busy ? "Creating passkey…" : "Create a new passkey"}
           </button>
-          {error && <p className="error" aria-live="polite">{error}</p>}
+          {error ? <StatusMessage tone="error">{error}</StatusMessage> : null}
         </>
       )}
-    </div>
+    </section>
   );
 }

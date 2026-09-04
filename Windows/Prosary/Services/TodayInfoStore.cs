@@ -283,7 +283,8 @@ public static class TodayInfoStore
         {
             var path = Path.Combine(AppContext.BaseDirectory, "Data", $"{name}.json");
             if (!File.Exists(path)) return null;
-            return JsonSerializer.Deserialize<T>(File.ReadAllBytes(path), JsonOptions);
+            using var stream = File.OpenRead(path);
+            return JsonSerializer.Deserialize<T>(stream, JsonOptions);
         }
         catch
         {

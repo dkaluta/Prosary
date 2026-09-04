@@ -129,7 +129,7 @@
                         </Grid.ColumnDefinitions>
                         <FontIcon Grid.Column="0" Glyph="&#xE8A9;" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Top" />
                         <StackPanel Grid.Column="1" Spacing="2">
-                            <TextBlock x:Uid="HomeTodayReadings" Text="Today’s readings" FontWeight="SemiBold"
+                            <TextBlock Text="{x:Bind ViewModel.TodayReadingsTitle, Mode=OneWay}" FontWeight="SemiBold"
                                        TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
                             <TextBlock Text="{x:Bind ViewModel.ReadingsText, Mode=OneWay}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap"
                                        TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />

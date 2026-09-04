@@ -17,6 +17,8 @@ Checks, beyond plain JSON validity (which the packer already enforces):
   either in the bundle's own content/<lang>.json "prayers" map, or in the surviving hardcoded
   PrayerKey pool (the keys every platform still ships in code after the generic-devotion
   migration), minus an optional per-bundle gap allowlist (validation-allowlist.json);
+- manifest.id is one portable filename component (`[A-Za-z0-9][A-Za-z0-9._-]*`), because every
+  native installer uses it as the persisted pack filename;
 - every referenced imageKey exists as Shared/Images/<key>.jpg;
 - rosary-type structural invariants the bead track depends on: opening[0] is the Sign of the
   Cross, decade "entries" XOR "count"+"fixedImageKey", at most one seasonalMarianAntiphon
@@ -28,7 +30,7 @@ Checks, beyond plain JSON validity (which the packer already enforces):
   language and (when named) a declared variant per track, an existing audio/<name>.opus file
   with the Ogg Opus signature (RFC 7845), and well-formed chapters (first start 0, strictly
   increasing, title XOR titleKey with titleKey resolving in the track's language) — see
-  ARCHITECTURE.md's "Audio".
+  ARCHITECTURE.markdown's "Audio".
 
 Usage: validate-devotion.py <bundle-source-dir>
 Exit code 0 = valid; non-zero with messages on stderr otherwise.
@@ -76,6 +78,7 @@ SIGN_OF_CROSS_KEY = "signumCrucis"
 ANTIPHON_KIND = "seasonalMarianAntiphon"
 OPTION_ANTIPHON_KIND = "marianAntiphon"
 SLOT_KIND = "proper"
+BUNDLE_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
 
 # --- hours-type vocabulary -------------------------------------------------------------------
 # The facets a proper may constrain. Each is a closed set the runtime calendar must be able to
@@ -334,7 +337,7 @@ def validate_entry(entry: dict, where: str, allow_kind: bool, slots: set | None 
 
 def validate_audio(src: Path, languages: list, variant_ids: set) -> None:
     """audio.json (when present): narrated Ogg Opus recordings + chapter seek points — see
-    ARCHITECTURE.md's "Audio". Runs for override-only bundles too (audio needs no
+    ARCHITECTURE.markdown's "Audio". Runs for override-only bundles too (audio needs no
     devotion.json), with an empty variant-id set there so any variantId reference errors."""
     audio_path = src / "audio.json"
     if not audio_path.exists():
@@ -546,6 +549,9 @@ def main() -> int:
     shared_images = Path(__file__).resolve().parent.parent / "Images"
 
     manifest = load_json(src / "manifest.json")
+    bundle_id = manifest.get("id")
+    if not isinstance(bundle_id, str) or BUNDLE_ID_PATTERN.fullmatch(bundle_id) is None:
+        err("manifest.id: must match [A-Za-z0-9][A-Za-z0-9._-]*")
     languages = manifest.get("languages", [])
     devotion_path = src / "devotion.json"
 
@@ -730,7 +736,7 @@ def main() -> int:
         # An office is not chosen by a counter the way a novena's day is — the calendar chooses
         # it. So a bundle declares the *skeleton* of each hour once, leaves the parts that vary
         # as slots, and files every variable part in one propers table keyed by which days it
-        # belongs to. See ARCHITECTURE.md's "Hours".
+        # belongs to. See ARCHITECTURE.markdown's "Hours".
         def check_entry_list(entries, where, slots=None):
             for i, entry in enumerate(entries):
                 validate_entry(entry, f"{where}[{i}]", allow_kind=False, slots=slots)

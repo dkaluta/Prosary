@@ -98,7 +98,9 @@ fun SettingsScreen(onBack: () -> Unit) {
     val importLauncher = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
         if (uri == null) return@rememberLauncherForActivityResult
         runCatching {
-            val bytes = context.contentResolver.openInputStream(uri)?.use { it.readBytes() }
+            val bytes = context.contentResolver.openInputStream(uri)?.use {
+                PrayerPackStore.readInstallBytes(it)
+            }
                 ?: throw PrayerPackStore.InstallException(
                     "This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
             PrayerPackStore.installPack(bytes)

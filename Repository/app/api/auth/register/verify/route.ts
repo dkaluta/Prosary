@@ -19,17 +19,19 @@ export async function POST(request: Request) {
 
   const challenge = extractChallenge(body.response.response.clientDataJSON);
   if (!challenge) return Response.json({ error: "missing_challenge" }, { status: 400 });
-  const pending = await takeChallenge(challenge, body.mode);
+  const [pending, { rpID, origins }, currentUser] = await Promise.all([
+    takeChallenge(challenge, body.mode),
+    getRpInfo(),
+    body.mode === "add" ? getCurrentUser() : Promise.resolve(null),
+  ]);
   if (!pending) return Response.json({ error: "unknown_challenge" }, { status: 400 });
 
   if (body.mode === "add") {
-    const user = await getCurrentUser();
-    if (!user || user.id !== pending.user_id) {
+    if (!currentUser || currentUser.id !== pending.user_id) {
       return Response.json({ error: "unauthorized" }, { status: 401 });
     }
   }
 
-  const { rpID, origins } = await getRpInfo();
   let verification;
   try {
     verification = await verifyRegistrationResponse({

@@ -1,5 +1,5 @@
 {
-  "$comment": "Canonical shape of Shared/data's offline Today datasets. The files are generated in Shared and physically copied into all three apps. The selected calendar controls both its feast file and readingsFile. Missing data hides the corresponding row; it never falls back to another rite. See ../ARCHITECTURE.md#offline-today-data-shareddata.",
+  "$comment": "Canonical shape of Shared/data's offline Today datasets. The files are generated in Shared and physically copied into all three apps. The selected calendar controls both its feast file and readingsFile. Missing data hides the corresponding row; it never falls back to another rite. See ../ARCHITECTURE.markdown#offline-today-data-shareddata.",
   "calendarRegistry": {
     "file": "calendars.json",
     "fields": {

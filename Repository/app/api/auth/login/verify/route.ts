@@ -17,15 +17,17 @@ export async function POST(request: Request) {
 
   const challenge = extractChallenge(body.response.response.clientDataJSON);
   if (!challenge) return Response.json({ error: "missing_challenge" }, { status: 400 });
-  const pending = await takeChallenge(challenge, "login");
+  const [pending, passkey, { rpID, origins }] = await Promise.all([
+    takeChallenge(challenge, "login"),
+    findPasskey(body.response.id),
+    getRpInfo(),
+  ]);
   if (!pending) return Response.json({ error: "unknown_challenge" }, { status: 400 });
 
-  const passkey = await findPasskey(body.response.id);
   if (!passkey || passkey.user_id !== pending.user_id) {
     return Response.json({ error: "unknown_credential" }, { status: 400 });
   }
 
-  const { rpID, origins } = await getRpInfo();
   let verification;
   try {
     verification = await verifyAuthenticationResponse({

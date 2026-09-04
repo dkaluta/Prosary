@@ -1,0 +1,18 @@
+---
+description: Keep every native and web experience accessible
+globs: "**/*.{swift,kt,kts,cs,xaml,tsx,jsx,astro,css,html}"
+alwaysApply: false
+---
+
+# Accessibility
+
+- Use native semantic controls before recreating controls with gestures or generic containers.
+- Give interactive controls clear accessible names, roles, states, focus order, and keyboard paths.
+- Mark purely decorative artwork as hidden from assistive technology when adjacent text conveys it.
+- Announce asynchronous errors, success, progress, and important state changes without stealing
+  focus.
+- Preserve Dynamic Type or scalable text, RTL layout, high contrast, reduced motion, and usable
+  target sizes.
+- Never encode meaning only through color, position, animation, or an unlabeled icon.
+- Test the affected flow with platform accessibility inspection and keyboard navigation when the
+  environment supports it; record any device-only gap.

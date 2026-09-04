@@ -73,7 +73,10 @@ android {
     buildTypes {
         release {
             optimization {
-                enable = false
+                // AGP 9.3's optimizer combines R8 code shrinking with resource shrinking.
+                // This is especially valuable here because Compose's extended icon artifact is
+                // intentionally broad while Prosary uses only a small set of its vectors.
+                enable = true
             }
             if (keystorePropertiesFile.exists()) {
                 signingConfig = signingConfigs.getByName("release")
@@ -86,6 +89,13 @@ android {
     }
     buildFeatures {
         compose = true
+    }
+    androidResources {
+        // These files are already ZIP containers whose JPEG/Opus payloads gain effectively
+        // nothing from a second APK-level DEFLATE pass. Store them in generated/install APKs so
+        // AssetManager.openFd can expose a seekable file region. (The upload AAB may itself
+        // deflate transport entries; BundleConfig carries this uncompressed glob to bundletool.)
+        noCompress += "prosaryprayer"
     }
 }
 

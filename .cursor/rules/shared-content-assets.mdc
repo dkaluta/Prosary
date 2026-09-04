@@ -1,0 +1,20 @@
+---
+description: Keep canonical content and generated assets in sync without duplication
+globs: "{Shared,iOS,Android,Windows}/**/*"
+alwaysApply: false
+---
+
+# Shared content and assets
+
+- Edit canonical prayer content, datasets, images, fonts, and schemas under `Shared/` first.
+- Regenerate or sync platform copies with the repository tools; never hand-edit generated packs or
+  platform dataset copies.
+- Keep built-in `.prosaryprayer` packs byte-identical to `Shared/dist` and self-contained for
+  import/export.
+- Store prayer artwork only inside the packs. Do not duplicate it in asset catalogs, Android
+  resources, or Windows assets; retain only documented native fallback artwork.
+- Keep `LICENSE` at the repository root as the single license for all original Prosary material,
+  including native and web apps, shared data, documentation, tools, and assets. Link to it rather
+  than creating platform-specific copies; third-party material retains its original license.
+- Update all three native loaders, schemas, and tests together when a shared contract changes.
+- Run the shared validators and asset-deduplication audit before committing.

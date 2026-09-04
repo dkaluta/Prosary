@@ -290,29 +290,10 @@ struct PrayerStepFlowView: View {
   /// shared helper, or the clip bounds itself against the pre-frame oversized size instead of
   /// the intended on-screen box.
   private func mysteryImage(step: RosaryStep) -> some View {
-    resolvedImage(for: step.imageKey)
-      .resizable()
+    PrayerArtworkView(imageKey: step.imageKey)
       .aspectRatio(contentMode: .fill)
       // Decorative — the title/body text alongside it already conveys the same content.
       .accessibilityHidden(true)
-  }
-
-  /// Prefers a loaded .prosaryprayer pack's own image data over the asset catalog, so a devotion
-  /// with a shipped pack (currently Rosary/Angelus) renders that pack's artwork; devotions
-  /// without one fall through to the asset catalog exactly as before this existed.
-  private func resolvedImage(for imageKey: String) -> Image {
-    if let data = PrayerPackStore.imageData(for: imageKey) {
-      #if canImport(UIKit)
-      if let uiImage = UIImage(data: data) {
-        return Image(uiImage: uiImage)
-      }
-      #else
-      if let nsImage = NSImage(data: data) {
-        return Image(nsImage: nsImage)
-      }
-      #endif
-    }
-    return Image(imageKey)
   }
 
   @ViewBuilder

@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.os.Build
+import android.system.Os
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -12,9 +13,10 @@ import androidx.compose.runtime.setValue
 import com.dkaluta.prosary.content.prayerpack.DevotionAudioTrack
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import java.io.File
+import java.io.FileOutputStream
 
 /**
- * Plays one bundle audio track (see Shared/ARCHITECTURE.md "Audio"): extracts the Ogg Opus
+ * Plays one bundle audio track (see Shared/ARCHITECTURE.markdown "Audio"): extracts the Ogg Opus
  * bytes from the pack into the cache directory (recordings dwarf every other bundle asset, so
  * they are never held in memory) and plays them with the platform [MediaPlayer] — Android
  * demuxes Ogg Opus natively, no Media3 dependency needed. Compose-observable state mirrors
@@ -100,11 +102,40 @@ class AudioPlaybackController {
     /** The cached audio file for a track, extracted from the pack on first use. */
     private fun extractedFile(context: Context, bundleId: String, track: DevotionAudioTrack): File? {
         val dir = File(context.cacheDir, "PrayerAudio/$bundleId")
-        val file = File(dir, track.file.substringAfterLast('/'))
-        if (file.length() > 0) return file
-        val data = PrayerPackStore.audioData(bundleId, track.file) ?: return null
-        dir.mkdirs()
-        return runCatching { file.writeBytes(data); file }.getOrNull()
+        val sourceName = track.file.substringAfterLast('/')
+        val sourceExtension = sourceName.substringAfterLast('.', "")
+        val sourceStem = sourceName.removeSuffix(if (sourceExtension.isEmpty()) "" else ".$sourceExtension")
+        val cacheKey = PrayerPackStore.audioCacheKey(bundleId, track.file)
+        val cacheName = cacheKey?.let { "$sourceStem--$it.$sourceExtension" } ?: sourceName
+        val file = File(dir, cacheName)
+        if (cacheKey != null && file.length() > 0) return file
+        if (!dir.exists() && !dir.mkdirs()) return null
+        val staged = runCatching { File.createTempFile(".prosary-audio-", ".tmp", dir) }
+            .getOrNull() ?: return null
+        return try {
+            FileOutputStream(staged).use { output ->
+                if (!PrayerPackStore.writeAudioTo(bundleId, track.file, output)) return null
+                output.fd.sync()
+            }
+            // Same-directory POSIX rename is atomic and replaces a streaming-fallback cache
+            // file, so interruption can never turn a partial recording into a later cache hit.
+            Os.rename(staged.absolutePath, file.absolutePath)
+
+            if (cacheKey != null) {
+                val currentStem = cacheName.substringBeforeLast('.', cacheName)
+                dir.listFiles()?.forEach { cached ->
+                    val stem = cached.name.substringBeforeLast('.', cached.name)
+                    val isLegacy = cached.name == sourceName
+                    val isOlderRevision = stem.startsWith("$sourceStem--") && stem != currentStem
+                    if (isLegacy || isOlderRevision) cached.delete()
+                }
+            }
+            file
+        } catch (_: Exception) {
+            null
+        } finally {
+            staged.delete()
+        }
     }
 
     fun playPause() {

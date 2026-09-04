@@ -7,8 +7,8 @@
 
 Only Scripture *citations* are retained, never the Scripture text. The generated files are:
 
-* ``readings-roman.json`` — Novus Ordo, Evangelizo HE; sourced Hebrew book names are
-  retained in ``shortByLanguage.he`` and ``fullByLanguage.he``.
+* ``readings-roman.json`` — Novus Ordo, Evangelizo HE; sourced Hebrew full book names are
+  retained in ``fullByLanguage.he`` and compacted deterministically for ``shortByLanguage.he``.
 * ``readings-roman1962.json`` — Vetus Ordo, Missale Meum's public v5 proper API.
 * ``readings-ugcc.json`` — Byzantine/UGCC Gregorian usage, Royal Doors' published calendar.
 * ``readings-syriac.json`` — Syriac Catholic, Evangelizo SYE.
@@ -226,13 +226,66 @@ def hebrew_reference(reference: str) -> str:
     )
 
 
+def hebrew_short_book_title(title: str) -> str:
+    """Compact a sourced Hebrew epistle title without translating its book name.
+
+    Evangelizo's ``short_title`` is not consistently short: depending on the book/date it
+    may repeat ``אגרת`` and the author's name, or it may already use a compact form.
+    Today only needs the distinctive recipient/ordinal while the complete, source-authored
+    title remains untouched in ``fullByLanguage``.
+    """
+    source_title = title.strip()
+    title = re.sub(r"\s+", " ", source_title).replace("השניה", "השנייה")
+
+    # Pauline titles retain the sourced recipient and, for numbered letters, the ordinal.
+    pauline = re.fullmatch(r"(?:אגרת|איגרת) שאול (.+)", title)
+    if pauline:
+        return pauline.group(1)
+
+    already_compact_pauline = re.fullmatch(
+        r"(?:הראשונה|השנייה|השלישית) אל .+|אל .+", title)
+    if already_compact_pauline:
+        return title
+
+    # Hebrews has no named author in the source title.
+    hebrews = re.fullmatch(r"(?:האגרת|האיגרת) (.+)", title)
+    if hebrews:
+        return hebrews.group(1)
+
+    # The catholic epistles name the author before the ordinal in the full title. Compact
+    # Hebrew reads more naturally with the ordinal first: "השנייה של כיפא".
+    catholic = re.fullmatch(
+        r"(?:אגרת|איגרת) (.+?) "
+        r"(הראשונה|השנייה|השלישית)",
+        title,
+    )
+    if catholic:
+        author, ordinal = catholic.groups()
+        return f"{ordinal} של {author}"
+
+    already_compact_catholic = re.fullmatch(
+        r"(הראשונה|השנייה|השלישית) ל(.+)", title)
+    if already_compact_catholic:
+        ordinal, author = already_compact_catholic.groups()
+        return f"{ordinal} של {author}"
+
+    # Unnumbered catholic epistles need only their source-authored book/author name.
+    unnumbered = re.fullmatch(r"(?:אגרת|איגרת) (.+)", title)
+    return unnumbered.group(1) if unnumbered else source_title
+
+
 def hebrew_short_citation(text: str) -> str:
-    """Convert the trailing chapter in a compact Hebrew citation to gematria."""
-    return re.sub(
+    """Compact a Hebrew book title and convert its trailing chapter to gematria."""
+    citation = re.sub(
         r"(?<!\d)(\d+)\s*$",
         lambda match: hebrew_numeral(int(match.group(1))),
         text,
     )
+    chapter = re.fullmatch(r"(.+?)\s+([א-ת]+[׳״])", citation)
+    if not chapter:
+        return hebrew_short_book_title(citation)
+    book, numeral = chapter.groups()
+    return f"{hebrew_short_book_title(book)} {numeral}"
 
 
 def request(url: str, *, json_response: bool = True) -> Any:
@@ -327,8 +380,8 @@ def evangelizo_day(day: dt.date, edition: str) -> tuple[str, dict] | None:
             if short_hebrew:
                 chapter = re.search(r"\d+", reference)
                 item["shortByLanguage"] = {
-                    "he": (f"{short_hebrew} {hebrew_numeral(int(chapter.group(0)))}"
-                           if chapter else short_hebrew)
+                    "he": hebrew_short_citation(
+                        f"{short_hebrew} {chapter.group(0)}" if chapter else short_hebrew)
                 }
             if full_hebrew:
                 item["fullByLanguage"] = {"he": f"{full_hebrew} {hebrew_reference(reference)}"}
@@ -463,6 +516,11 @@ def main() -> None:
         assert hebrew_numeral(119) == "קי״ט"
         assert hebrew_reference("1:1–2:2; 15:3–16") == "א׳ 1–ב׳ 2; ט״ו 3–16"
         assert hebrew_short_citation("יוחנן 3") == "יוחנן ג׳"
+        assert hebrew_short_citation("אגרת שאול הראשונה אל הקורינתים 4") == \
+            "הראשונה אל הקורינתים ד׳"
+        assert hebrew_short_citation("אגרת כיפא השניה 2") == "השנייה של כיפא ב׳"
+        assert hebrew_short_citation("אגרת שאול אל הרומים 8") == "אל הרומים ח׳"
+        assert hebrew_short_citation("השניה ליוחנן 1") == "השנייה של יוחנן א׳"
         print("citation self-test passed")
         return
 
@@ -508,8 +566,9 @@ def main() -> None:
         write_dataset(
             "readings-roman",
             "Novus Ordo daily lectionary citations courtesy of Evangelizo.org — Daily "
-            "Gospel (© Evangelizo.org), publication edition HE. Hebrew short/full book "
-            "titles are relayed from the source; Scripture text is not included.",
+            "Gospel (© Evangelizo.org), publication edition HE. Hebrew full book titles "
+            "are relayed from the source; short titles are source-preserving compact forms. "
+            "Scripture text is not included.",
             rows["roman"], legacy="readings.json")
     if "roman1962" in selected:
         write_dataset(

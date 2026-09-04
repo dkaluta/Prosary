@@ -1,28 +1,47 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { getCurrentUser } from "@/lib/auth";
+import { PageHeader } from "@/components/PageHeader";
+import { StatusMessage } from "@/components/StatusMessage";
 import { SubmitForm } from "@/components/SubmitForm";
+import { getCurrentUser } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
+export const metadata: Metadata = {
+  title: "Submit a devotion",
+};
+
 export default async function SubmitPage() {
-  let user = null;
+  let user: Awaited<ReturnType<typeof getCurrentUser>> = null;
+  let offline = false;
   try {
     user = await getCurrentUser();
   } catch {
-    // DB offline — fall through to the signed-out message.
+    offline = true;
   }
+
   return (
-    <main>
-      {user ? (
+    <main id="main-content">
+      <PageHeader eyebrow="Share with the community" title="Submit a devotion">
+        <p>
+          Upload a portable .prosaryprayer bundle. The repository validates it and keeps its
+          contents ready for every native Prosary app.
+        </p>
+      </PageHeader>
+      {offline ? (
+        <StatusMessage tone="error">
+          Submissions are unavailable right now — try again shortly.
+        </StatusMessage>
+      ) : user ? (
         <SubmitForm username={user.username} />
       ) : (
-        <div className="card">
-          <h2>Submit a devotion</h2>
+        <section className="card" aria-labelledby="signin-to-submit-heading">
+          <h2 id="signin-to-submit-heading">Sign in to publish</h2>
           <p className="hint">
-            <Link href="/account">Sign in</Link> first — bundles publish under your username
-            (repo.&lt;username&gt;.…).
+            <Link href="/account">Sign in or create an account</Link> first. Every bundle is
+            published under your <code>repo.&lt;username&gt;.…</code> namespace.
           </p>
-        </div>
+        </section>
       )}
     </main>
   );

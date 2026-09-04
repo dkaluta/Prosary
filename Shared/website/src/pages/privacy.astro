@@ -1,33 +1,23 @@
 ---
-import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const title = "Prosary — Privacy Policy";
 const description =
-  "Prosary's privacy policy: no analytics, no ads, no accounts in the apps; the only network feature is the optional community devotion repository, and the prayers.prosary.app service stores only what an account needs.";
+  "Prosary's privacy policy: no analytics or ads; native apps keep data locally or in private iCloud, while optional web services store only what they need.";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={description} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<div class="hero">
-			<h1>Privacy Policy</h1>
-			<p class="tagline">Last updated: 2026-08-24</p>
-		</div>
+<BaseLayout {title} {description} heading="Privacy Policy" currentPath="/privacy">
+	<Fragment slot="hero">
+			<p class="tagline">Last updated: 2026-09-04</p>
+			</Fragment>
 
 		<section>
 			<p>
 				Prosary is a Catholic prayer companion, available for iPhone, Mac,
 				Android, and (in development) Windows, alongside two web services:
+				{" "}
 				<a href="https://compose.prosary.app">Prosary Compose</a> for
-				authoring devotions and
+				authoring devotions and{" "}
 				<a href="https://prayers.prosary.app">Prosary Prayers</a>, the
 				community devotion repository. This policy covers all of them.
 			</p>
@@ -44,7 +34,7 @@ const description =
 			</p>
 			<ul>
 				<li>
-					<strong>iCloud sync (Apple devices).</strong> On iPhone and Mac,
+					<strong>iCloud sync (Apple devices).</strong>{" "}On iPhone and Mac,
 					your saved configurations and any devotion bundles you import sync between
 					your own devices through your personal iCloud account (Apple's
 					CloudKit and iCloud Drive). This data stays inside your private
@@ -52,15 +42,15 @@ const description =
 					Signing out of iCloud keeps everything working locally.
 				</li>
 				<li>
-					<strong>The community repository (the one network feature).</strong>
+					<strong>The community repository (the one network feature).</strong>{" "}
 					The Browse and Search tabs can fetch the public devotion catalog
 					from prayers.prosary.app and download bundles you choose to
 					install. These requests carry the technical information every web
 					request carries (such as your IP address), processed transiently
 					by our hosting to serve the request; each download also increments
 					an anonymous per-bundle counter. No account, identifier, or
-					tracking of any kind is attached, and if you never open those
-					tabs, the apps make no network requests at all.
+					tracking of any kind is attached. If you never open those tabs,
+					the community repository feature makes no network requests.
 				</li>
 			</ul>
 		</section>
@@ -69,7 +59,7 @@ const description =
 			<h2>Notifications</h2>
 			<p>
 				Prayer reminders you configure are scheduled entirely on your device
-				(via <code>UNUserNotificationCenter</code> on iPhone/Mac,
+				(via <code>UNUserNotificationCenter</code> on iPhone/Mac,{" "}
 				<code>AlarmManager</code> on Android, or scheduled toasts on
 				Windows) and shown as local notifications. No reminder data ever
 				leaves your device.
@@ -101,7 +91,7 @@ const description =
 			<p>
 				Compose runs entirely in your browser: the devotions you write, the
 				artwork you attach, and the bundles you build never leave your
-				device. Work-in-progress is autosaved to your browser's local
+				device. Work-in-progress is autosaved in your browser's IndexedDB
 				storage on your own machine. Compose has no accounts, no analytics,
 				and sets no cookies.
 			</p>
@@ -174,16 +164,9 @@ const description =
 		<section>
 			<h2>Contact</h2>
 			<p>
-				Questions about this policy can be sent to
+				Questions about this policy can be sent to{" "}
 				<a href="mailto:mail@dkaluta.com">mail@dkaluta.com</a>.
 			</p>
 		</section>
 
-		<footer>
-			<p>
-				&copy; 2026 David Kaluta &middot; <a href="/">Home</a> &middot;
-				<a href="/license">License</a>
-			</p>
-		</footer>
-	</body>
-</html>
+</BaseLayout>

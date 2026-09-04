@@ -82,7 +82,7 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     /// <summary>The "main" prayers (Sign of the Cross, Creed, Our Father, Hail Mary, Glory Be) are
-    /// deliberately absent from every bundle (see Shared/ARCHITECTURE.md) and must keep resolving
+    /// deliberately absent from every bundle (see Shared/ARCHITECTURE.markdown) and must keep resolving
     /// from the hardcoded table even with both packs loaded. (Expected text hardcoded here rather
     /// than read from PrayerTranslations' per-language dictionaries — those are private to the
     /// Prosary assembly and not visible from this test project.)</summary>
@@ -122,6 +122,121 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Fact]
+    public void EveryImageShippedByTheBuiltInPacksResolvesFromAPack()
+    {
+        var imageKeys = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var path in Directory.EnumerateFiles(
+                     Path.Combine(AppContext.BaseDirectory, "PrayerPacks"),
+                     "*.prosaryprayer"))
+        {
+            using var stream = File.OpenRead(path);
+            using var archive = new System.IO.Compression.ZipArchive(
+                stream, System.IO.Compression.ZipArchiveMode.Read);
+            foreach (var entry in archive.Entries.Where(entry =>
+                         entry.FullName.StartsWith("images/", StringComparison.Ordinal)
+                         && entry.FullName.EndsWith(".jpg", StringComparison.Ordinal)))
+            {
+                imageKeys.Add(entry.FullName["images/".Length..^".jpg".Length]);
+            }
+        }
+
+        // The counter-based Jesus Prayer has no pack of its own, so its illustration must be
+        // supplied by one of the shared built-in packs before the loose JPEGs can stay deleted.
+        Assert.Contains("christ_pantocrator", imageKeys);
+        Assert.NotEmpty(imageKeys);
+        Assert.All(imageKeys, key => Assert.NotEmpty(PrayerPackStore.ImageData(key) ?? []));
+    }
+
+    [Fact]
+    public void PackImageExtractsInAnUnpackagedHostWithAnInjectedCacheDirectory()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"prosary_image_cache_{Guid.NewGuid():N}");
+        PrayerPackStore.ImageCacheDirectoryOverride = directory;
+        try
+        {
+            var uri = PrayerPackStore.ImageFileUri("christ_pantocrator");
+
+            Assert.NotNull(uri);
+            var path = new Uri(uri!).LocalPath;
+            Assert.True(path.StartsWith(directory, StringComparison.Ordinal));
+            Assert.Equal(PrayerPackStore.ImageData("christ_pantocrator"), File.ReadAllBytes(path));
+            Assert.Equal(uri, PrayerPackStore.ImageFileUri("christ_pantocrator"));
+        }
+        finally
+        {
+            PrayerPackStore.ImageCacheDirectoryOverride = null;
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
+    public void PriorImageCacheCleanupDeletesFilesAndInvalidatesMemoizedUris()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"prosary_image_cache_{Guid.NewGuid():N}");
+        PrayerPackStore.ImageCacheDirectoryOverride = directory;
+        try
+        {
+            var uri = PrayerPackStore.ImageFileUri("christ_pantocrator");
+            Assert.NotNull(uri);
+            var path = new Uri(uri!).LocalPath;
+            Assert.True(File.Exists(path));
+
+            PrayerPackStore.ClearPriorImageCache();
+
+            Assert.False(Directory.Exists(directory));
+            Assert.Equal(uri, PrayerPackStore.ImageFileUri("christ_pantocrator"));
+            Assert.True(File.Exists(path));
+        }
+        finally
+        {
+            PrayerPackStore.ImageCacheDirectoryOverride = null;
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
+    public void ImageOverrideAndRemovalUseRevisionedUrisAndRestoreTheBuiltInBytes()
+    {
+        var packDirectory = Path.Combine(Path.GetTempPath(), $"prosary_test_packs_{Guid.NewGuid():N}");
+        var cacheDirectory = Path.Combine(Path.GetTempPath(), $"prosary_image_cache_{Guid.NewGuid():N}");
+        var id = $"imageoverride{Random.Shared.Next(1000, 9999)}";
+        const string imageKey = "christ_pantocrator";
+        PrayerPackStore.InstalledPacksDirectory = packDirectory;
+        PrayerPackStore.ImageCacheDirectoryOverride = cacheDirectory;
+
+        try
+        {
+            var originalBytes = Assert.IsType<byte[]>(PrayerPackStore.ImageData(imageKey));
+            var originalUri = Assert.IsType<string>(PrayerPackStore.ImageFileUri(imageKey));
+            var originalPath = new Uri(originalUri).LocalPath;
+            using var heldOriginal = new FileStream(
+                originalPath,
+                FileMode.Open,
+                FileAccess.Read,
+                FileShare.Read);
+            var overrideBytes = Assert.IsType<byte[]>(PrayerPackStore.ImageData("jesus_portrait"));
+            Assert.False(originalBytes.SequenceEqual(overrideBytes));
+
+            PrayerPackStore.InstallPack(MakeImageOverridePack(id, imageKey, overrideBytes));
+            var overrideUri = Assert.IsType<string>(PrayerPackStore.ImageFileUri(imageKey));
+            Assert.NotEqual(originalUri, overrideUri);
+            Assert.Equal(overrideBytes, File.ReadAllBytes(new Uri(overrideUri).LocalPath));
+
+            PrayerPackStore.RemoveInstalledPack(id);
+            var restoredUri = Assert.IsType<string>(PrayerPackStore.ImageFileUri(imageKey));
+            Assert.Equal(originalUri, restoredUri);
+            Assert.Equal(originalBytes, File.ReadAllBytes(new Uri(restoredUri).LocalPath));
+        }
+        finally
+        {
+            PrayerPackStore.RemoveInstalledPack(id);
+            PrayerPackStore.ImageCacheDirectoryOverride = null;
+            if (Directory.Exists(packDirectory)) Directory.Delete(packDirectory, recursive: true);
+            if (Directory.Exists(cacheDirectory)) Directory.Delete(cacheDirectory, recursive: true);
+        }
+    }
+
+    [Fact]
     public void FranciscanCrownDeclaresItsOptions()
     {
         var options = PrayerPackStore.Options("franciscanCrown");
@@ -136,6 +251,111 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     // User-installed bundles
+
+    [Fact]
+    public void PackSafetyLimitsRejectOversizedDeclarationsBeforePayloadReads()
+    {
+        PrayerPackStore.ValidateArchiveLength(PrayerPackStore.MaxPackArchiveBytes);
+        PrayerPackStore.ValidateEntryCount(PrayerPackStore.MaxPackEntryCount);
+        Assert.Throws<InvalidDataException>(
+            () => PrayerPackStore.ValidateArchiveLength(PrayerPackStore.MaxPackArchiveBytes + 1));
+        Assert.Throws<InvalidDataException>(
+            () => PrayerPackStore.ValidateEntryCount(PrayerPackStore.MaxPackEntryCount + 1));
+
+        var entryLimits = new (string Name, long Limit)[]
+        {
+            ("manifest.json", PrayerPackStore.MaxControlEntryBytes),
+            ("images/example.jpg", PrayerPackStore.MaxImageEntryBytes),
+            ("audio/example.opus", PrayerPackStore.MaxAudioEntryBytes),
+        };
+        foreach (var (name, limit) in entryLimits)
+        {
+            PrayerPackStore.ValidateEntryDeclaration(name, limit, limit);
+            Assert.Throws<InvalidDataException>(
+                () => PrayerPackStore.ValidateEntryDeclaration(name, limit + 1, 1));
+            Assert.Throws<InvalidDataException>(
+                () => PrayerPackStore.ValidateEntryDeclaration(name, 1, limit + 1));
+        }
+    }
+
+    [Fact]
+    public async Task OversizedPickedArchiveIsRejectedBeforeItsStreamIsRead()
+    {
+        using var input = new OversizedSeekableStream(PrayerPackStore.MaxPackArchiveBytes + 1);
+
+        await Assert.ThrowsAsync<PrayerPackStore.InstallException>(
+            () => PrayerPackStore.ReadInstallBytesAsync(input));
+
+        Assert.False(input.WasRead);
+    }
+
+    [Fact]
+    public async Task KnownInstallLengthRequiresTheCompleteBodyAndNoTrailingBytes()
+    {
+        var expected = "portable bundle"u8.ToArray();
+
+        using (var exact = new NonSeekableReadStream(expected))
+        {
+            Assert.Equal(
+                expected,
+                await PrayerPackStore.ReadInstallBytesAsync(
+                    exact,
+                    expectedLength: expected.Length));
+        }
+
+        using (var tooShort = new NonSeekableReadStream(expected[..^1]))
+        {
+            await Assert.ThrowsAsync<PrayerPackStore.InstallException>(
+                () => PrayerPackStore.ReadInstallBytesAsync(
+                    tooShort,
+                    expectedLength: expected.Length));
+        }
+
+        using (var trailing = new NonSeekableReadStream([.. expected, 0]))
+        {
+            await Assert.ThrowsAsync<PrayerPackStore.InstallException>(
+                () => PrayerPackStore.ReadInstallBytesAsync(
+                    trailing,
+                    expectedLength: expected.Length));
+        }
+
+        using var seekable = new MemoryStream(expected);
+        await Assert.ThrowsAsync<PrayerPackStore.InstallException>(
+            () => PrayerPackStore.ReadInstallBytesAsync(
+                seekable,
+                expectedLength: expected.Length - 1));
+    }
+
+    [Fact]
+    public async Task UnknownInstallLengthSpoolsAndAlwaysRemovesItsTemporaryFile()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"prosary_import_spool_{Guid.NewGuid():N}");
+        var expected = "portable bundle"u8.ToArray();
+
+        try
+        {
+            using (var input = new NonSeekableReadStream(expected))
+            {
+                Assert.Equal(
+                    expected,
+                    await PrayerPackStore.ReadInstallBytesAsync(
+                        input,
+                        temporaryDirectory: directory));
+            }
+            Assert.Empty(Directory.EnumerateFiles(directory));
+
+            using var interrupted = new InterruptedReadStream("partial bundle"u8.ToArray());
+            await Assert.ThrowsAsync<IOException>(
+                () => PrayerPackStore.ReadInstallBytesAsync(
+                    interrupted,
+                    temporaryDirectory: directory));
+            Assert.Empty(Directory.EnumerateFiles(directory));
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
 
     /// <summary>Builds a minimal, valid .prosaryprayer in memory — the same shape a
     /// third-party author would produce.</summary>
@@ -169,6 +389,40 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
         return buffer.ToArray();
     }
 
+    private static byte[] MakeImageOverridePack(
+        string id,
+        string imageKey,
+        byte[] imageBytes)
+    {
+        using var buffer = new MemoryStream();
+        using (var zip = new System.IO.Compression.ZipArchive(
+                   buffer,
+                   System.IO.Compression.ZipArchiveMode.Create,
+                   leaveOpen: true))
+        {
+            void Put(string name, string text)
+            {
+                using var writer = new StreamWriter(zip.CreateEntry(name).Open());
+                writer.Write(text);
+            }
+
+            Put("manifest.json", $$"""
+                {"schemaVersion": 1, "id": "{{id}}", "kind": "{{id}}", "displayName": "Image Override",
+                 "languages": ["en"], "hasCatalog": false, "images": ["{{imageKey}}"]}
+                """);
+            Put("content/en.json", """{"prayers": {"exampleBody": "Kyrie eleison."}, "mysteries": {}}""");
+            Put("devotion.json", $$"""
+                {"type": "steps", "steps": [
+                  {"title": "Example", "bodyKey": "exampleBody", "imageKey": "{{imageKey}}"}
+                ]}
+                """);
+            using var image = zip.CreateEntry($"images/{imageKey}.jpg").Open();
+            image.Write(imageBytes);
+        }
+
+        return buffer.ToArray();
+    }
+
     [Fact]
     public void InstallRemoveRoundTripForAnImportedBundle()
     {
@@ -191,12 +445,32 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
         PrayerPackStore.RemoveInstalledPack(id);
         Assert.DoesNotContain(id, PrayerPackStore.CustomDevotionIds());
         Assert.Null(PrayerPackStore.Definition(id));
+        Assert.Equal("exampleBody", PrayerPackStore.ResolveBodyText(id, "en", "exampleBody"));
         Directory.Delete(PrayerPackStore.InstalledPacksDirectory, recursive: true);
+    }
+
+    [Fact]
+    public void InstallRejectsAPathTraversingBundleId()
+    {
+        var root = Path.Combine(Path.GetTempPath(), $"prosary_path_test_{Guid.NewGuid():N}");
+        PrayerPackStore.InstalledPacksDirectory = Path.Combine(root, "PrayerPacks");
+        var escapedName = $"escaped{Random.Shared.Next(1000, 9999)}";
+
+        try
+        {
+            Assert.Throws<PrayerPackStore.InstallException>(
+                () => PrayerPackStore.InstallPack(MakeExamplePack($"../{escapedName}")));
+            Assert.False(File.Exists(Path.Combine(root, $"{escapedName}.prosaryprayer")));
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, recursive: true);
+        }
     }
 
     /// <summary>A days-type (multi-day) bundle decodes, installs, and prays its first day —
     /// the groundwork contract until per-favorite day progress ships (see
-    /// ARCHITECTURE.md).</summary>
+    /// ARCHITECTURE.markdown).</summary>
     [Fact]
     public void DaysTypeBundlePraysItsFirstDay()
     {
@@ -242,7 +516,7 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
         Directory.Delete(PrayerPackStore.InstalledPacksDirectory, recursive: true);
     }
 
-    /// <summary>An audio-bearing bundle (audio.json + Ogg Opus files — see ARCHITECTURE.md's
+    /// <summary>An audio-bearing bundle (audio.json + Ogg Opus files — see ARCHITECTURE.markdown's
     /// "Audio") parses its track metadata and serves a declared file's bytes on
     /// demand; undeclared files stay unreachable, and audio-less bundles report no tracks.</summary>
     [Fact]
@@ -306,12 +580,73 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Equal("Sign of the Cross", track.Chapters![0].Title);
 
         Assert.Equal(opusBytes, PrayerPackStore.AudioData(id, "audio/en.opus"));
+        Assert.Equal("0b4c4a52-47", PrayerPackStore.AudioCacheKey(id, "audio/en.opus"));
+        Assert.Null(PrayerPackStore.AudioCacheKey(id, "manifest.json"));
         Assert.Null(PrayerPackStore.AudioData(id, "manifest.json"));
         Assert.Empty(PrayerPackStore.AudioTracks("angelus"));
         Assert.Null(PrayerPackStore.AudioData("angelus", "audio/en.opus"));
 
+        var extractedPath = Path.Combine(PrayerPackStore.InstalledPacksDirectory, "extracted.opus");
+        Assert.True(PrayerPackStore.ExtractAudioFile(id, "audio/en.opus", extractedPath));
+        Assert.Equal(opusBytes, File.ReadAllBytes(extractedPath));
+        Assert.False(PrayerPackStore.ExtractAudioFile(id, "manifest.json", extractedPath));
+
         PrayerPackStore.RemoveInstalledPack(id);
         Directory.Delete(PrayerPackStore.InstalledPacksDirectory, recursive: true);
+    }
+
+    [Fact]
+    public void FailedStreamingExtractionLeavesNoTruncatedCacheFile()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"prosary_audio_cache_{Guid.NewGuid():N}");
+        var path = Path.Combine(directory, "interrupted.opus");
+
+        try
+        {
+            using var input = new InterruptedReadStream("partial audio bytes"u8.ToArray());
+
+            Assert.False(PrayerPackStore.TryWriteFileAtomically(input, path));
+            Assert.False(File.Exists(path));
+            Assert.Empty(Directory.EnumerateFiles(directory));
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
+    public void StreamingExtractionRequiresTheDeclaredLength()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"prosary_length_cache_{Guid.NewGuid():N}");
+        var path = Path.Combine(directory, "recording.opus");
+
+        try
+        {
+            using (var exact = new MemoryStream("abc"u8.ToArray()))
+            {
+                Assert.True(PrayerPackStore.TryWriteFileAtomically(
+                    exact, path, expectedLength: 3, maxBytes: 3));
+                Assert.Equal("abc"u8.ToArray(), File.ReadAllBytes(path));
+            }
+
+            File.Delete(path);
+            using (var tooLong = new MemoryStream("abcd"u8.ToArray()))
+            {
+                Assert.False(PrayerPackStore.TryWriteFileAtomically(
+                    tooLong, path, expectedLength: 3, maxBytes: 3));
+                Assert.False(File.Exists(path));
+            }
+
+            using var tooShort = new MemoryStream("ab"u8.ToArray());
+            Assert.False(PrayerPackStore.TryWriteFileAtomically(
+                tooShort, path, expectedLength: 3, maxBytes: 3));
+            Assert.False(File.Exists(path));
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
     }
 
     [Fact]
@@ -409,5 +744,114 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
     {
         var text = PrayerPackStore.ResolveBodyText("trisagion", "en", "notARealKey");
         Assert.Equal("notARealKey", text);
+    }
+
+    private sealed class InterruptedReadStream(byte[] firstChunk) : Stream
+    {
+        private bool _returnedFirstChunk;
+
+        public override bool CanRead => true;
+        public override bool CanSeek => false;
+        public override bool CanWrite => false;
+        public override long Length => throw new NotSupportedException();
+
+        public override long Position
+        {
+            get => throw new NotSupportedException();
+            set => throw new NotSupportedException();
+        }
+
+        public override int Read(byte[] buffer, int offset, int count)
+        {
+            if (_returnedFirstChunk) throw new IOException("Simulated interrupted pack read.");
+
+            var copied = Math.Min(count, firstChunk.Length);
+            Array.Copy(firstChunk, 0, buffer, offset, copied);
+            _returnedFirstChunk = true;
+            return copied;
+        }
+
+        public override ValueTask<int> ReadAsync(
+            Memory<byte> buffer,
+            CancellationToken cancellationToken = default)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (_returnedFirstChunk) throw new IOException("Simulated interrupted pack read.");
+
+            var copied = Math.Min(buffer.Length, firstChunk.Length);
+            firstChunk.AsMemory(0, copied).CopyTo(buffer);
+            _returnedFirstChunk = true;
+            return ValueTask.FromResult(copied);
+        }
+
+        public override void Flush() => throw new NotSupportedException();
+        public override long Seek(long offset, SeekOrigin origin) => throw new NotSupportedException();
+        public override void SetLength(long value) => throw new NotSupportedException();
+        public override void Write(byte[] buffer, int offset, int count) =>
+            throw new NotSupportedException();
+    }
+
+    private sealed class NonSeekableReadStream(byte[] data) : Stream
+    {
+        private int _position;
+
+        public override bool CanRead => true;
+        public override bool CanSeek => false;
+        public override bool CanWrite => false;
+        public override long Length => throw new NotSupportedException();
+
+        public override long Position
+        {
+            get => throw new NotSupportedException();
+            set => throw new NotSupportedException();
+        }
+
+        public override int Read(byte[] buffer, int offset, int count)
+        {
+            var copied = Math.Min(count, data.Length - _position);
+            data.AsSpan(_position, copied).CopyTo(buffer.AsSpan(offset, copied));
+            _position += copied;
+            return copied;
+        }
+
+        public override ValueTask<int> ReadAsync(
+            Memory<byte> buffer,
+            CancellationToken cancellationToken = default)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            var copied = Math.Min(buffer.Length, data.Length - _position);
+            data.AsMemory(_position, copied).CopyTo(buffer);
+            _position += copied;
+            return ValueTask.FromResult(copied);
+        }
+
+        public override void Flush() => throw new NotSupportedException();
+        public override long Seek(long offset, SeekOrigin origin) => throw new NotSupportedException();
+        public override void SetLength(long value) => throw new NotSupportedException();
+        public override void Write(byte[] buffer, int offset, int count) =>
+            throw new NotSupportedException();
+    }
+
+    private sealed class OversizedSeekableStream(long declaredLength) : Stream
+    {
+        public bool WasRead { get; private set; }
+        public override bool CanRead => true;
+        public override bool CanSeek => true;
+        public override bool CanWrite => false;
+        public override long Length => declaredLength;
+
+        public override long Position { get; set; }
+
+        public override int Read(byte[] buffer, int offset, int count)
+        {
+            WasRead = true;
+            throw new InvalidOperationException("The oversized stream must be rejected before reading.");
+        }
+
+        public override void Flush() => throw new NotSupportedException();
+        public override long Seek(long offset, SeekOrigin origin) => throw new NotSupportedException();
+        public override void SetLength(long value) => throw new NotSupportedException();
+        public override void Write(byte[] buffer, int offset, int count) =>
+            throw new NotSupportedException();
     }
 }

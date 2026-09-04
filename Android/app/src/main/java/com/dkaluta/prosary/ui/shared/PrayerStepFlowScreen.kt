@@ -1,7 +1,9 @@
 package com.dkaluta.prosary.ui.shared
 
 import android.app.Activity
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.util.LruCache
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -51,6 +53,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -58,9 +61,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalView
@@ -81,7 +84,9 @@ import com.dkaluta.prosary.models.RosaryStep
 import com.dkaluta.prosary.typography.HebrewDisplayText
 import com.dkaluta.prosary.typography.PrayerTypography
 import com.dkaluta.prosary.ui.theme.extraColors
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 
 /**
  * Shared presentation chrome for any linear prayer flow: season-color bar, progress readout (a
@@ -426,33 +431,88 @@ private fun WideContent(
     }
 }
 
-/** Decorative — the title/body text alongside it already conveys the same content. Prefers a
- * loaded .prosaryprayer pack's own image data over the drawable resources, so a devotion with a
- * shipped pack (currently Rosary/Angelus) renders that pack's artwork; devotions without one fall
- * through to drawable resources exactly as before this existed. */
+internal const val PRAYER_IMAGE_MAX_DIMENSION = 2_048
+
+/** BitmapFactory samples by powers of two. Choose the smallest sample whose decoded width and
+ * height are both bounded, using Long arithmetic so hostile image dimensions cannot overflow. */
+internal fun prayerImageSampleSize(
+    width: Int,
+    height: Int,
+    maxDimension: Int = PRAYER_IMAGE_MAX_DIMENSION,
+): Int {
+    if (width <= 0 || height <= 0 || maxDimension <= 0) return 1
+    val longest = maxOf(width, height).toLong()
+    var sampleSize = 1L
+    while (longest > maxDimension.toLong() * sampleSize) sampleSize *= 2L
+    return sampleSize.coerceAtMost(Int.MAX_VALUE.toLong()).toInt()
+}
+
+/** Reads dimensions without pixel allocation, then decodes at a bounded resolution. */
+private fun decodePrayerImage(data: ByteArray): Bitmap? {
+    val options = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+    BitmapFactory.decodeByteArray(data, 0, data.size, options)
+    if (options.outWidth <= 0 || options.outHeight <= 0) return null
+    options.inSampleSize = prayerImageSampleSize(options.outWidth, options.outHeight)
+    options.inJustDecodeBounds = false
+    return BitmapFactory.decodeByteArray(data, 0, data.size, options)
+}
+
+/** A bounded cache for decoded prayer artwork. The source JPEGs stay lazy in their packs and a
+ * small working set avoids decoding the same adjacent steps repeatedly. Images are sampled to a
+ * 2048-pixel maximum dimension before pixel allocation, so an imported oversized JPEG cannot
+ * transiently exhaust the heap before the LRU rejects it. Evicted bitmaps are not recycled
+ * because Compose may still be drawing one during a cache transition. */
+private object PrayerImageCache {
+    private val maxSizeKiB = (
+        minOf(16L * 1024L * 1024L, Runtime.getRuntime().maxMemory() / 16L) / 1024L
+        ).coerceAtLeast(1024L).toInt()
+
+    private val cache = object : LruCache<String, Bitmap>(maxSizeKiB) {
+        override fun sizeOf(key: String, value: Bitmap): Int =
+            ((value.allocationByteCount.toLong() + 1023L) / 1024L).coerceAtMost(Int.MAX_VALUE.toLong()).toInt()
+    }
+
+    fun cached(cacheKey: String): ImageBitmap? = cache.get(cacheKey)?.asImageBitmap()
+
+    fun load(request: PrayerPackStore.ImageRequest): ImageBitmap? {
+        cache.get(request.cacheKey)?.let { return it.asImageBitmap() }
+        val data = request.read() ?: return null
+        val bitmap = decodePrayerImage(data) ?: return null
+        cache.put(request.cacheKey, bitmap)
+        return bitmap.asImageBitmap()
+    }
+}
+
+/** Decorative — the title/body text alongside it already conveys the same content. Prayer
+ * artwork lives once, inside .prosaryprayer packs; missing/invalid custom artwork falls back to
+ * the tiny generated cross resource. Loading and decoding run off the UI thread. */
 @Composable
 internal fun MysteryImage(imageKey: String, modifier: Modifier = Modifier) {
-    val context = LocalContext.current
-    val packBitmap = remember(imageKey) {
-        PrayerPackStore.imageData(imageKey)?.let { data ->
-            BitmapFactory.decodeByteArray(data, 0, data.size)?.asImageBitmap()
+    val request = PrayerPackStore.imageRequest(imageKey)
+    val cacheKey = request?.cacheKey
+    val cachedBitmap = remember(cacheKey) { cacheKey?.let(PrayerImageCache::cached) }
+    val packBitmap by produceState<ImageBitmap?>(initialValue = cachedBitmap, cacheKey) {
+        // produceState retains its state object while a key restarts the producer, so explicitly
+        // replace the previous source's bitmap before loading the new winner.
+        value = cachedBitmap
+        if (value == null && request != null) {
+            value = withContext(Dispatchers.IO) {
+                PrayerImageCache.load(request)
+            }
         }
     }
-    if (packBitmap != null) {
+    val bitmap = packBitmap
+    if (bitmap != null) {
         androidx.compose.foundation.Image(
-            bitmap = packBitmap,
+            bitmap = bitmap,
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = modifier,
         )
         return
     }
-    val resId = remember(imageKey) {
-        context.resources.getIdentifier(imageKey, "drawable", context.packageName)
-            .takeIf { it != 0 } ?: R.drawable.cross_placeholder
-    }
     androidx.compose.foundation.Image(
-        painter = painterResource(id = resId),
+        painter = painterResource(id = R.drawable.cross_placeholder),
         contentDescription = null,
         contentScale = ContentScale.Crop,
         modifier = modifier,

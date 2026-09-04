@@ -36,4 +36,13 @@ final class AppNavigationTests: XCTestCase {
 
     XCTAssertEqual(path.count, 1)
   }
+
+  func testDoubleClickingABasicPrayerKeepsOnePrayerOnTheList() {
+    var path: [AppRoute] = [.basicPrayers]
+
+    XCTAssertTrue(path.push(.basicPrayer(id: "signOfCross")))
+    XCTAssertFalse(path.push(.basicPrayer(id: "signOfCross")))
+
+    XCTAssertEqual(path, [.basicPrayers, .basicPrayer(id: "signOfCross")])
+  }
 }

@@ -61,7 +61,13 @@ struct SearchTabView: View {
               Image(systemName: listing.systemImage).foregroundStyle(listing.accentColor)
               }
             }
+            // Match Categories: the entire visible List row is clickable on Mac, rather
+            // than only the icon-and-title's intrinsic pill-sized bounds.
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .contentShape(Rectangle())
           }
+          .buttonStyle(.plain)
+          .accessibilityIdentifier("search.local.\(listing.id)")
         }
         if localMatches.isEmpty {
           Text(String(localized: "search.noLocalMatches", defaultValue: "Nothing on this device matches."))

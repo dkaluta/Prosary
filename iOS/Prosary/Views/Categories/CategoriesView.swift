@@ -54,7 +54,13 @@ struct CategoriesView: View {
                     .foregroundStyle(listing.accentColor)
                 }
               }
+              // A List does not automatically stretch a custom Button label on macOS. The
+              // old intrinsic-width label left most of the visible row inert; make the whole
+              // semantic row the target while retaining single-top programmatic navigation.
+              .frame(maxWidth: .infinity, alignment: .leading)
+              .contentShape(Rectangle())
             }
+            .buttonStyle(.plain)
             .accessibilityIdentifier("category.\(listing.id)")
           }
         }

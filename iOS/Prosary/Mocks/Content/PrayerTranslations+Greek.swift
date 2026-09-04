@@ -9,7 +9,7 @@
 //  prayer, Eternal Rest, Anima Christi, both collects — are absent on purpose: Greek renderings
 //  exist in Greek Catholic use, but not ones this app can cite, and `PrayerTranslations.get`
 //  falls back to Latin per key. Adding an invented translation of a prayer a community actually
-//  recites is worse than the honest Latin fallback. See Shared/ARCHITECTURE.md.
+//  recites is worse than the honest Latin fallback. See Shared/ARCHITECTURE.markdown.
 //
 //  Scripture in Greek follows Brenton's Septuagint for the Old Testament and Robinson-Pierpont's
 //  Byzantine Majority text for the New, both public domain. The Patriarchal 1904 edition was the

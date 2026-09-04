@@ -2,11 +2,11 @@
 
 import { cookies } from "next/headers";
 import { createHmac, timingSafeEqual } from "node:crypto";
+import { cache } from "react";
 import { findUserById, type User } from "./db.ts";
 
 const COOKIE_NAME = "prosary_session";
 const SESSION_TTL_SECONDS = 60 * 60 * 24 * 30; // 30 days
-const SLIDE_THRESHOLD_SECONDS = 60 * 60 * 24 * 7; // 7 days
 const VERSION = "v1";
 
 export type SessionUser = User;
@@ -47,7 +47,7 @@ function unpack(value: string): { userId: string; issuedAt: number } | null {
   return { userId, issuedAt };
 }
 
-export async function getCurrentUser(): Promise<SessionUser | null> {
+export const getCurrentUser = cache(async (): Promise<SessionUser | null> => {
   const store = await cookies();
   const cookie = store.get(COOKIE_NAME)?.value;
   if (!cookie) return null;
@@ -56,7 +56,7 @@ export async function getCurrentUser(): Promise<SessionUser | null> {
   const ageSeconds = Math.floor(Date.now() / 1000) - unpacked.issuedAt;
   if (ageSeconds < 0 || ageSeconds > SESSION_TTL_SECONDS) return null;
   return findUserById(unpacked.userId);
-}
+});
 
 export async function setSession(userId: string): Promise<void> {
   const store = await cookies();
@@ -67,19 +67,6 @@ export async function setSession(userId: string): Promise<void> {
     path: "/",
     maxAge: SESSION_TTL_SECONDS,
   });
-}
-
-/** Extends the cookie when an active user nears expiry — freebee's slide pattern. */
-export async function slideSessionIfNeeded(): Promise<void> {
-  const store = await cookies();
-  const cookie = store.get(COOKIE_NAME)?.value;
-  if (!cookie) return;
-  const unpacked = unpack(cookie);
-  if (!unpacked) return;
-  const ageSeconds = Math.floor(Date.now() / 1000) - unpacked.issuedAt;
-  if (ageSeconds > SESSION_TTL_SECONDS - SLIDE_THRESHOLD_SECONDS) {
-    await setSession(unpacked.userId);
-  }
 }
 
 export async function clearSession(): Promise<void> {

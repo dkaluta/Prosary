@@ -1,5 +1,5 @@
 {
-  "$comment": "Canonical shape of Prosary's domain model, independent of any one platform's language. Field names here are the camelCase form; each platform's own idiom (Swift camelCase, Kotlin camelCase, C# PascalCase) maps 1:1. See ../ARCHITECTURE.md for the prose version and per-file source locations. Keep this file in sync whenever a field is added, removed, renamed, or its default changes on any platform — see README.md in this directory.",
+  "$comment": "Canonical shape of Prosary's domain model, independent of any one platform's language. Field names here are the camelCase form; each platform's own idiom (Swift camelCase, Kotlin camelCase, C# PascalCase) maps 1:1. See ../ARCHITECTURE.markdown for the prose version and per-file source locations. Keep this file in sync whenever a field is added, removed, renamed, or its default changes on any platform — see README.markdown in this directory.",
   "types": {
     "Prayer": {
       "description": "A saved, user-configurable prayer session. Older source identifiers call this a favorite; current UI calls it a saved configuration or preset.",
@@ -37,7 +37,7 @@
         "customDevotionId": {
           "type": "string?",
           "default": null,
-          "description": "The bundle id (e.g. \"angelus\") whose devotion.json defines this favorite's step sequence. Populated only when kind == custom, null/nil otherwise. See PrayerEngine.buildCustomDevotionSteps and ARCHITECTURE.md's \"Content bundles\" section."
+          "description": "The bundle id (e.g. \"angelus\") whose devotion.json defines this favorite's step sequence. Populated only when kind == custom, null/nil otherwise. See PrayerEngine.buildCustomDevotionSteps and ARCHITECTURE.markdown's \"Content bundles\" section."
         },
         "variantId": {
           "type": "string?",
@@ -138,7 +138,7 @@
         "presenterMode": {
           "type": "boolean",
           "default": false,
-          "description": "Collapses each decade's 10 Hail Marys and its Glory Be onto one combined step (title \"Hail Mary & Glory Be\", body = both prayers' text) instead of 10 individual Hail Mary steps + a separate Glory Be step. Announcement and Our Father steps are unaffected. The combined step still sets hailMaryIndexInDecade = 10 so the bead-track UI renders the traditional 10-bead decade (see ARCHITECTURE.md)."
+          "description": "Collapses each decade's 10 Hail Marys and its Glory Be onto one combined step (title \"Hail Mary & Glory Be\", body = both prayers' text) instead of 10 individual Hail Mary steps + a separate Glory Be step. Announcement and Our Father steps are unaffected. The combined step still sets hailMaryIndexInDecade = 10 so the bead-track UI renders the traditional 10-bead decade (see ARCHITECTURE.markdown)."
         },
         "mysteryImageStyle": {
           "type": "MysteryImageStyle",
@@ -305,7 +305,7 @@
       }
     },
     "PrayerReminder": {
-      "description": "One saved daily reminder time. Not a recurrence rule by itself — see reminders.schedulingStrategy in screens.json's sibling ARCHITECTURE.md section for how each platform turns this into an actual repeating notification.",
+      "description": "One saved daily reminder time. Not a recurrence rule by itself — see reminders.schedulingStrategy in screens.json's sibling ARCHITECTURE.markdown section for how each platform turns this into an actual repeating notification.",
       "fields": {
         "id": {
           "type": "uuid"
@@ -365,7 +365,7 @@
       "constraints": "At least one of title, fruit, or description is present. transliteratedDescription requires description in the same object. Later bundle contributions merge only their present fields."
     },
     "RosaryStep": {
-      "description": "One prayer \"bead\" in a fully built session for any devotion — the output of PrayerEngine.buildSteps(for:). See ARCHITECTURE.md#engines.",
+      "description": "One prayer \"bead\" in a fully built session for any devotion — the output of PrayerEngine.buildSteps(for:). See ARCHITECTURE.markdown#engines.",
       "fields": {
         "title": {
           "type": "string"
@@ -419,7 +419,7 @@
       }
     },
     "CustomDevotionStep": {
-      "description": "One entry in a generic devotion's devotion.json — a step of the flat \"steps\" type, an opening/closing step of the \"rosary\" type, or (closing only) a kind-tagged special step. See ARCHITECTURE.md's \"Content bundles\" section.",
+      "description": "One entry in a generic devotion's devotion.json — a step of the flat \"steps\" type, an opening/closing step of the \"rosary\" type, or (closing only) a kind-tagged special step. See ARCHITECTURE.markdown's \"Content bundles\" section.",
       "fields": {
         "title": {
           "type": "string?",
@@ -439,7 +439,7 @@
         },
         "bodyKey": {
           "type": "string?",
-          "description": "Resolved from bundle content in the exact requested code and its base, then the shared PrayerTranslations table for a shared key, then bundle content through the user's languageFallbackOrder and finally the raw key — see ARCHITECTURE.md."
+          "description": "Resolved from bundle content in the exact requested code and its base, then the shared PrayerTranslations table for a shared key, then bundle content through the user's languageFallbackOrder and finally the raw key — see ARCHITECTURE.markdown."
         },
         "acclamationKey": {
           "type": "string?",
@@ -600,10 +600,10 @@
         }
       },
       "precedence": "Fixed facet order — date, rank, season, week, weekday, psalterWeek, readingYear — compared lexicographically: a proper constraining an earlier facet beats one that does not, regardless of how many facets either constrains. This is the Church's own hierarchy rather than a count of conditions (counting would let \"Advent, week 3, Sunday\" outrank Christmas Day, which is backwards). Ties go to the earlier declaration. The validator rejects two propers for one slot with an identical selector, so declaration order never silently decides an office.",
-      "runtimeRequirement": "The engine side of this type needs LiturgicalCalendarProviding to answer week-of-season, psalterWeek, rank and readingYear for a date — none of which it does today. psalterWeek is arithmetic on the week of the season, rank is a lookup in the feasts.json the Pray tab already ships, and readingYear alternates with the liturgical year; only week-of-season is genuinely new computation. See ARCHITECTURE.md's \"Hours\"."
+      "runtimeRequirement": "The engine side of this type needs LiturgicalCalendarProviding to answer week-of-season, psalterWeek, rank and readingYear for a date — none of which it does today. psalterWeek is arithmetic on the week of the season, rank is a lookup in the feasts.json the Pray tab already ships, and readingYear alternates with the liturgical year; only week-of-season is genuinely new computation. See ARCHITECTURE.markdown's \"Hours\"."
     },
     "DevotionAudioTrack": {
-      "description": "One narrated recording a bundle declares in its audio.json (a separate optional bundle file, staged by both packers like options.json) — loaders parse the metadata eagerly and serve the bytes on demand; each platform's player extracts them to a cache file and plays them on the prayer flow's transport bar (see ARCHITECTURE.md's \"Audio\"). Files are Ogg Opus (RFC 7845, .opus) under the bundle's audio/ directory.",
+      "description": "One narrated recording a bundle declares in its audio.json (a separate optional bundle file, staged by both packers like options.json) — loaders parse the metadata eagerly and serve the bytes on demand; each platform's player extracts them to a cache file and plays them on the prayer flow's transport bar (see ARCHITECTURE.markdown's \"Audio\"). Files are Ogg Opus (RFC 7845, .opus) under the bundle's audio/ directory.",
       "fields": {
         "id": {
           "type": "string",
@@ -684,9 +684,9 @@
     }
   },
   "languages": {
-    "$ref": "See LanguageCatalog.all in ARCHITECTURE.md — la (default), en, ar (RTL), he (RTL, Vicariate), he-x-gamliel (RTL, Mission), arc (RTL), el, es, ru, tl. he-x-gamliel overlays he when its own prayer is absent; all missing content then follows languageFallbackOrder (initially ending in Latin)."
+    "$ref": "See LanguageCatalog.all in ARCHITECTURE.markdown — la (default), en, ar (RTL), he (RTL, Vicariate), he-x-gamliel (RTL, Mission), arc (RTL), el, es, ru, tl. he-x-gamliel overlays he when its own prayer is absent; all missing content then follows languageFallbackOrder (initially ending in Latin)."
   },
   "persistence": {
-    "perDevotionDefaultScoping": "save()/delete() clear or promote isDefault scoped to (Prayer.kind, Prayer.customDevotionId), never across devotions — two generic devotions must not steal each other's default slot. Legacy rows with retired per-devotion kinds resolve through the same identity (iOS PresetEntry.resolvedKind / Android PresetEntity.resolvedKind / Windows's SQL migration). See ARCHITECTURE.md#persistence."
+    "perDevotionDefaultScoping": "save()/delete() clear or promote isDefault scoped to (Prayer.kind, Prayer.customDevotionId), never across devotions — two generic devotions must not steal each other's default slot. Legacy rows with retired per-devotion kinds resolve through the same identity (iOS PresetEntry.resolvedKind / Android PresetEntity.resolvedKind / Windows's SQL migration). See ARCHITECTURE.markdown#persistence."
   }
 }

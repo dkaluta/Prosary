@@ -4,7 +4,7 @@
 // are shown to non-technical authors.
 
 import { LANGUAGES, RESERVED_IDS, commonPrayer } from "./catalog";
-import { authoredSteps } from "./pack";
+import { projectSteps } from "./project";
 import type { Project } from "./project";
 
 export type WizardScreen = "basics" | "steps" | "audio" | "review";
@@ -145,7 +145,7 @@ export function validateProject(project: Project): Issue[] {
     return `Step ${project.steps.indexOf(step) + 1}`;
   };
 
-  const allSteps = authoredSteps(project);
+  const allSteps = projectSteps(project);
   allSteps.forEach((step) => {
     const where = stepLabel(step);
     if (step.kind === "common") {

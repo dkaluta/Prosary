@@ -6,8 +6,8 @@
 //  Core Audio Format file, losslessly: the Opus packets are copied as-is, only the container
 //  changes. Needed because the deployment floor (iOS 17/macOS 14) decodes the Opus *codec* but
 //  demuxes it only from MP4/CAF — a bare .opus file is "Cannot Open" there, while CAF-wrapped
-//  Opus plays everywhere Core Audio does. Newer OSes open .opus directly, so the player tries
-//  that first and only falls back to this (see AudioPlaybackController).
+//  Opus plays everywhere Core Audio does. The player consistently uses CAF because its packet
+//  table also avoids inaccurate byte-rate scheduling on newer OSes (see AudioPlaybackController).
 //
 
 import Foundation

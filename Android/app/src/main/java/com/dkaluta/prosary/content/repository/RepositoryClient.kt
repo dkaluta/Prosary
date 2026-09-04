@@ -1,5 +1,6 @@
 package com.dkaluta.prosary.content.repository
 
+import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import java.net.URL
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.TimeoutCancellationException
@@ -32,7 +33,7 @@ private data class RepositoryCatalog(
 )
 
 /** Fetches the prayers.prosary.app catalog (the versioned /index.json contract — see
- * Shared/ARCHITECTURE.md § Content bundles) and downloads bundles through the same-origin
+ * Shared/ARCHITECTURE.markdown § Content bundles) and downloads bundles through the same-origin
  * download path, so server-side counting keeps working and the storage behind it can change
  * without breaking installed apps. */
 object RepositoryClient {
@@ -73,7 +74,10 @@ object RepositoryClient {
 
     suspend fun downloadBundle(bundle: RepositoryBundle): ByteArray = bounded {
         withContext(Dispatchers.IO) {
-            openConnection(BASE_URL + bundle.file).getInputStream().readBytes()
+            val connection = openConnection(BASE_URL + bundle.file)
+            connection.connect()
+            PrayerPackStore.requireInstallByteCount(connection.contentLengthLong)
+            connection.getInputStream().use(PrayerPackStore::readInstallBytes)
         }
     }
 }

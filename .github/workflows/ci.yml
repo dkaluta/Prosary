@@ -1,18 +1,18 @@
 name: CI
 
-# The Android and Windows test suites (see Shared/ARCHITECTURE.md) — iOS runs on Xcode Cloud.
+# The Android and Windows test suites (see Shared/ARCHITECTURE.markdown) — iOS runs on Xcode Cloud.
 # The Windows job matters most: WinUI can't build on the macOS dev machine, so this is the
-# only place Prosary.Tests actually executes. The Compose job type-checks/builds the
-# compose.prosary.app webapp and proves its emitted bundle round-trips and passes the
-# canonical validator (Vercel builds the deployed site itself; this guards branches).
+# only place Prosary.Tests actually executes. The web jobs build the Astro landing site,
+# type-check/build both app surfaces, and prove Compose's emitted bundle round-trips through
+# the canonical validator (the deployment hosts build again; this guards branches).
 # Work happens on feature branches; main only receives finished "major" projects — so CI runs
 # on every branch push (no separate pull_request trigger: same-repo PRs would double-run).
 on:
   push:
     branches: ["**"]
     paths-ignore:
-      - "Shared/website/**"
       - "**.md"
+      - "**.markdown"
   workflow_dispatch:
 
 jobs:
@@ -27,11 +27,13 @@ jobs:
         run: uv run --script Shared/tools/test-validate-devotion.py
       - name: Prayer line breaks are applied on all three platforms
         run: uv run --script Shared/tools/reflow-prayers.py --check
+      - name: Portable packs stay canonical without duplicate native artwork
+        run: uv run --script Shared/tools/test-asset-deduplication.py
       - name: Erez's Aramaic converter and generated packs stay in step
         run: uv run --script Shared/tools/test-import-scripture.py
 
   android:
-    name: Android (testDebugUnitTest)
+    name: Android (unit tests + packaged-asset contract)
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -41,9 +43,23 @@ jobs:
           distribution: temurin
           java-version: 21
       - uses: gradle/actions/setup-gradle@v5
-      - name: Run tests
+      - name: Run unit tests and compile the device smoke test
         working-directory: Android
-        run: ./gradlew --console=plain testDebugUnitTest
+        run: ./gradlew --console=plain testDebugUnitTest assembleDebug assembleDebugAndroidTest
+      - name: Prayer packs remain seekable Android assets
+        working-directory: Android
+        run: |
+          expected=$(find app/src/main/assets -maxdepth 1 -name '*.prosaryprayer' | wc -l)
+          unzip -lv app/build/outputs/apk/debug/app-debug.apk 'assets/*.prosaryprayer' |
+            awk -v expected="$expected" '
+              $8 ~ /\.prosaryprayer$/ { count++; if ($2 != "Stored") bad = 1 }
+              END {
+                if (count != expected || bad) {
+                  print "expected every .prosaryprayer asset to be Stored in the APK" > "/dev/stderr"
+                  exit 1
+                }
+              }
+            '
 
   compose:
     name: Compose (build + bundle e2e)
@@ -88,8 +104,29 @@ jobs:
       - name: Install dependencies
         working-directory: Repository
         run: npm ci
+      - name: ZIP and submission policy tests
+        working-directory: Repository
+        run: npm test
       - name: Build (type-check included)
         working-directory: Repository
+        run: npm run build
+
+  website:
+    name: Website (Astro build)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: Shared/website/package-lock.json
+      - name: Install dependencies
+        working-directory: Shared/website
+        run: npm ci
+      - name: Build
+        working-directory: Shared/website
         run: npm run build
 
   windows:

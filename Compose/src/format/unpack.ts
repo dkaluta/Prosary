@@ -7,8 +7,8 @@
 import type { CommonPrayerKey, LanguageCode } from "./catalog";
 import { LANGUAGES, PLACEHOLDER_IMAGE_KEY, commonPrayer } from "./catalog";
 import type { EditorStep, EditorVariant, PerLanguage, Project } from "./project";
-import { newProject, newUid } from "./project";
-import { ZipReader } from "./zip";
+import { newProject, newUid, pruneUnusedImages } from "./project";
+import { ZIP_LIMITS, ZipReader } from "./zip";
 
 interface RawStep {
   title?: string;
@@ -24,21 +24,13 @@ interface RawStep {
   subtitleKey?: string;
 }
 
-function bytesToDataUrl(bytes: Uint8Array, mime: string): string {
-  let binary = "";
-  const chunk = 0x8000;
-  for (let i = 0; i < bytes.length; i += chunk) {
-    binary += String.fromCharCode(...bytes.subarray(i, i + chunk));
-  }
-  return `data:${mime};base64,${btoa(binary)}`;
-}
-
 export async function openBundle(bytes: Uint8Array): Promise<Project> {
   let zip: ZipReader;
   try {
     zip = ZipReader.open(bytes);
-  } catch {
-    throw new Error("This file is not a readable .prosaryprayer bundle.");
+  } catch (error) {
+    const detail = error instanceof Error ? ` ${error.message}` : "";
+    throw new Error(`This file is not a readable .prosaryprayer bundle.${detail}`);
   }
   if (!zip.has("manifest.json")) throw new Error("This file is not a readable .prosaryprayer bundle.");
 
@@ -91,6 +83,18 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
       "This bundle has recordings tied to its alternate forms — the composer can't edit that combination yet.",
     );
   }
+
+  // Read every step in prayed order first; a days project later hands them back out to its days.
+  // Knowing the references up front means unused files in a bloated bundle are never decoded or
+  // retained merely because they happen to sit under images/.
+  const rawSteps =
+    devotion.steps ??
+    (rawVariants.length > 0
+      ? rawVariants.flatMap((form) => form.steps ?? [])
+      : (devotion.days ?? []).flatMap((day) => day.steps));
+  const referencedImageKeys = new Set(
+    rawSteps.flatMap((step) => (typeof step.imageKey === "string" ? [step.imageKey] : [])),
+  );
 
   const project = newProject();
   project.id = manifest.id ?? "";
@@ -145,10 +149,11 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
   for (const name of zip.names()) {
     if (!name.startsWith("images/") || !name.endsWith(".jpg")) continue;
     const key = name.slice("images/".length, -".jpg".length);
-    const jpeg = await zip.contents(name);
+    if (!referencedImageKeys.has(key)) continue;
+    const jpeg = await zip.contents(name, ZIP_LIMITS.imageBytes);
     const uid = newUid();
     imageUidByKey.set(key, uid);
-    project.images.push({ uid, label: key, jpeg, dataUrl: bytesToDataUrl(jpeg, "image/jpeg") });
+    project.images.push({ uid, label: key, jpeg });
   }
 
   // A days project reads back day by day; the content keys were numbered across the whole
@@ -161,14 +166,9 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
     if (devotion.suggestedNext) project.suggestedNext = devotion.suggestedNext;
   }
 
-  // Read every step in prayed order first; a days project then hands them back out to its days
-  // below, which is why the content keys were numbered across the whole devotion at pack time.
+  // Content keys were numbered across the whole devotion at pack time, so this single walk also
+  // keeps day/form content aligned before the arrays are handed back out below.
   const readSteps: EditorStep[] = [];
-  const rawSteps =
-    devotion.steps ??
-    (rawVariants.length > 0
-      ? rawVariants.flatMap((form) => form.steps ?? [])
-      : (devotion.days ?? []).flatMap((day) => day.steps));
   for (const raw of rawSteps) {
     if (raw.kind) {
       throw new Error("This bundle uses a special step the composer can't edit yet.");
@@ -244,17 +244,23 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
         chapters?: { start?: number; stepIndex?: number }[];
       }[];
     };
+    const audioBytesByFile = new Map<string, Uint8Array>();
     for (const track of audio.tracks ?? []) {
       if (!track.file || !zip.has(track.file)) continue;
       const language = project.languages.includes(track.language as LanguageCode)
         ? (track.language as LanguageCode)
         : project.languages[0];
       if (!language) continue;
+      let bytes = audioBytesByFile.get(track.file);
+      if (!bytes) {
+        bytes = await zip.contents(track.file, ZIP_LIMITS.audioBytes);
+        audioBytesByFile.set(track.file, bytes);
+      }
       project.audio.push({
         uid: newUid(),
         language,
         fileName: track.file.slice("audio/".length),
-        bytes: await zip.contents(track.file),
+        bytes,
         chapters: (track.chapters ?? []).map((chapter) => ({
           start: chapter.start ?? 0,
           // stepIndex hints point into the BUILT sequence (repeat-expanded) — invert the
@@ -268,7 +274,7 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
     }
   }
 
-  return project;
+  return pruneUnusedImages(project);
 }
 
 /** Inverse of pack.ts's builtStepIndex: the authored step whose repeat-expanded span contains

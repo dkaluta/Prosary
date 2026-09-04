@@ -1,4 +1,4 @@
-// Fixed catalogs mirrored from the apps — see Shared/ARCHITECTURE.md ("Content bundles") and
+// Fixed catalogs mirrored from the apps — see Shared/ARCHITECTURE.markdown ("Content bundles") and
 // Shared/tools/validate-devotion.py. These must track the apps, not the other way round.
 
 /** The 9 prayer languages every platform ships (LanguageCatalog). */
@@ -71,6 +71,7 @@ export const ICONS = [
 export const RESERVED_IDS = [
   "rosary",
   "angelus",
+  "oAntiphons",
   "stationsOfTheCross",
   "viaLucis",
   "franciscanCrown",

@@ -1,24 +1,13 @@
 ---
-import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const title = "Prosary — A Catholic prayer companion for iPhone, Mac, Android, and Windows";
 const description =
   "Prosary is a companion for the Rosary, Angelus, Stations of the Cross, Via Lucis, Divine Mercy Chaplet, Franciscan Crown, Seven Sorrows, Trisagion, O Antiphons, Jesus Prayer, and community devotions, with a nine-language prayer catalog. In testing for iPhone, Mac, and Android; in development for Windows.";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={description} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<div class="hero">
-			<h1>Prosary</h1>
+<BaseLayout {title} {description} heading="Prosary" currentPath="/">
+			<Fragment slot="hero">
 			<p class="tagline">
 				Ten built-in Catholic devotions, plus prayers shared by the community.
 			</p>
@@ -40,9 +29,9 @@ const description =
 					target="_blank"
 					rel="noopener noreferrer"
 					>Sign up here to be added</a
-				>.
+				><span class="visually-hidden"> (opens in a new tab)</span>.
 			</p>
-		</div>
+			</Fragment>
 
 		<section>
 			<h2>Ten built-in devotions</h2>
@@ -76,10 +65,10 @@ const description =
 			<p>
 				Every stepped devotion is an open <code>.prosaryprayer</code> bundle,
 				and the app imports bundles made by anyone. Build your own —
-				no technical knowledge needed — with
+				no technical knowledge needed — with{" "}
 				<a href="https://compose.prosary.app">Prosary Compose</a>,
 				right in the browser, where nothing you write leaves your
-				device. Then share it with the world on
+				device. Then share it with the world on{" "}
 				<a href="https://prayers.prosary.app">Prosary Prayers</a>, the
 				community repository: sign in with just a username and a
 				passkey, publish under your own name, and download devotions
@@ -120,14 +109,4 @@ const description =
 			<img src="/screenshot-iphone.png" alt="Prosary on iPhone" />
 		</section> -->
 
-		<footer>
-			<p>
-				&copy; 2026 David Kaluta &middot; <a
-					href="https://github.com/dkaluta/Prosary">Source on GitHub</a
-				>
-				&middot; <a href="/privacy">Privacy</a> &middot;
-				<a href="/license">License</a>
-			</p>
-		</footer>
-	</body>
-</html>
+</BaseLayout>

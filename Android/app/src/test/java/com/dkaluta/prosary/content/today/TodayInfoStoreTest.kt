@@ -215,6 +215,26 @@ class TodayInfoStoreTest {
     }
 
     @Test
+    fun hebrewEpistleShorthandPreservesFullSourceCitation() {
+        val corinthians = TodayInfoStore.readings(date("2026-09-04")).first()
+        assertEquals("הראשונה אל הקורינתים ד׳", corinthians.localizedShort("he"))
+        assertEquals(
+            "אגרת שאול הראשונה אל הקורינתים ד׳ 1–5",
+            corinthians.localizedFull("he"),
+        )
+
+        val petrine = ReadingCitation(
+            type = "reading",
+            short = "2 Pet. 2",
+            full = "2 Peter 2:1–3",
+            shortByLanguage = mapOf("he" to "השנייה של כיפא ב׳"),
+            fullByLanguage = mapOf("he" to "אגרת כיפא השניה ב׳ 1–3"),
+        )
+        assertEquals("השנייה של כיפא ב׳", petrine.localizedShort("he"))
+        assertEquals("אגרת כיפא השניה ב׳ 1–3", petrine.localizedFull("he"))
+    }
+
+    @Test
     fun localizedDisplayTitlesLoseHebrewPointsWithoutChangingBodyText() {
         val feast = FeastDay(
             title = "Saint John",

@@ -54,13 +54,91 @@ final class AppShellUITests: XCTestCase {
 
     let defaultPresetButton = app.buttons["prayDefaultPreset"]
     XCTAssertTrue(defaultPresetButton.waitForExistence(timeout: 5))
-    let backButton = app.buttons["Back"]
+    let backButton = app.buttons["chevron.backward"]
     XCTAssertTrue(backButton.waitForExistence(timeout: 5))
     backButton.click()
 
     XCTAssertTrue(rosaryCard.waitForExistence(timeout: 5),
                   "A double-click must not push the Rosary presets screen twice")
     XCTAssertFalse(defaultPresetButton.exists)
+  }
+
+  @MainActor
+  func testDoubleClickingBasicPrayerNeedsOnlyOneBackClick() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-resetStore"]
+    app.launch()
+
+    let basicPrayersRow = app.buttons["basicPrayersRow"]
+    XCTAssertTrue(basicPrayersRow.waitForExistence(timeout: 10))
+    basicPrayersRow.click()
+
+    let signOfCross = app.buttons["basicPrayer-signOfCross"]
+    XCTAssertTrue(signOfCross.waitForExistence(timeout: 5))
+    signOfCross.doubleClick()
+
+    let finishButton = app.buttons["prayerFlowNextButton"]
+    XCTAssertTrue(finishButton.waitForExistence(timeout: 5))
+    // The prayer flow also has its own step-level Back button. Target the native navigation
+    // control explicitly so this verifies the stack rather than the prayer's step state.
+    let backButton = app.buttons["chevron.backward"]
+    XCTAssertTrue(backButton.waitForExistence(timeout: 5))
+    backButton.click()
+
+    XCTAssertTrue(signOfCross.waitForExistence(timeout: 5),
+                  "A double-click must not push the same basic prayer twice")
+    XCTAssertFalse(finishButton.exists)
+  }
+
+  @MainActor
+  func testMenuLandingBackThenLocalNavigationKeepsEachStackHonest() throws {
+    let app = XCUIApplication()
+    app.launchArguments = [
+      "-resetStore",
+      "-AppleLanguages", "(en)",
+      "-defaultLanguageCode", "en",
+    ]
+    app.launch()
+
+    // Reproduce the real menu-tracking handoff: the Pray stack is inactive when the external
+    // route arrives, then its native Back control must write all the way back to the one bound
+    // path that Home's cards subsequently mutate.
+    let searchTab = app.staticTexts["Search"].firstMatch
+    XCTAssertTrue(searchTab.waitForExistence(timeout: 10))
+    searchTab.click()
+    XCTAssertTrue(app.buttons["search.local.rosary"].waitForExistence(timeout: 5))
+
+    let prayersMenu = app.menuBars.menuBarItems["Prayers"]
+    XCTAssertTrue(prayersMenu.waitForExistence(timeout: 5))
+    prayersMenu.click()
+    let angelusMenuItem = app.menuItems["Angelus"]
+    XCTAssertTrue(angelusMenuItem.waitForExistence(timeout: 5))
+    angelusMenuItem.click()
+
+    let prayerNext = app.buttons["prayerFlowNextButton"]
+    XCTAssertTrue(prayerNext.waitForExistence(timeout: 5))
+    XCTAssertTrue(app.buttons["chevron.backward"].waitForExistence(timeout: 5))
+    app.buttons["chevron.backward"].click()
+    let rosaryCard = app.buttons["rosaryCard"]
+    XCTAssertTrue(rosaryCard.waitForExistence(timeout: 5))
+
+    rosaryCard.doubleClick()
+    XCTAssertTrue(app.buttons["prayDefaultPreset"].waitForExistence(timeout: 5))
+    app.buttons["chevron.backward"].click()
+    XCTAssertTrue(rosaryCard.waitForExistence(timeout: 5),
+                  "Rosary Back must return to Pray, not the externally landed Angelus")
+    XCTAssertFalse(prayerNext.exists)
+
+    app.buttons["basicPrayersRow"].click()
+    let signOfCross = app.buttons["basicPrayer-signOfCross"]
+    XCTAssertTrue(signOfCross.waitForExistence(timeout: 5))
+    signOfCross.doubleClick()
+    XCTAssertTrue(prayerNext.waitForExistence(timeout: 5))
+    app.buttons["chevron.backward"].click()
+
+    XCTAssertTrue(signOfCross.waitForExistence(timeout: 5),
+                  "Basic-prayer Back must return to its list after earlier stack replacements")
+    XCTAssertFalse(rosaryCard.exists, "Basic Prayers must remain the current stack destination")
   }
   #endif
 

@@ -7,7 +7,7 @@ Rosary-only engine, and screens that have since been replaced.
 Use the maintained sources instead:
 
 - [`../AGENTS.md`](../AGENTS.md) — repository workflow and the three-way parity rule.
-- [`../Shared/ARCHITECTURE.md`](../Shared/ARCHITECTURE.md) — the current cross-platform behavior
+- [`../Shared/ARCHITECTURE.markdown`](../Shared/ARCHITECTURE.markdown) — the current cross-platform behavior
   and `.prosaryprayer` format.
 - [`../Android/README.markdown`](../Android/README.markdown) — Android requirements,
   architecture, signing, and tests.

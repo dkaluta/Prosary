@@ -31,6 +31,7 @@ export function ReviewScreen({ project, issues, goTo }: Props) {
   const publishCleanup = useRef<(() => void) | null>(null);
   useEffect(() => () => publishCleanup.current?.(), []);
   const ready = issues.length === 0;
+  const stepCount = authoredSteps(project).length;
 
   /** Opens the repository's /publish receiver and hands the built bundle over. The receiver
    * re-announces readiness after any reload (e.g. signing in over there), and we answer every
@@ -91,20 +92,24 @@ export function ReviewScreen({ project, issues, goTo }: Props) {
   };
 
   return (
-    <section>
-      <h2>Finish</h2>
+    <section className="editor-section" aria-labelledby="review-heading">
+      <h2 id="review-heading">Finish</h2>
       {issues.length > 0 ? (
         <>
           <p className="help">A few things still need attention before the bundle can be created:</p>
-          {issues.map((issue, i) => (
-            <p className="issue" key={i}>
-              {issue.message}{" "}
-              <button onClick={() => goTo(issue.screen)}>Fix in {SCREEN_LABELS[issue.screen]}</button>
-            </p>
-          ))}
+          <ul className="issue-list" aria-label="Things to fix">
+            {issues.map((issue, i) => (
+              <li className="issue" key={`${issue.screen}:${i}`}>
+                {issue.message}{" "}
+                <button type="button" onClick={() => goTo(issue.screen)}>
+                  Fix in {SCREEN_LABELS[issue.screen]}
+                </button>
+              </li>
+            ))}
+          </ul>
         </>
       ) : (
-        <p className="ok">Everything checks out — your devotion is ready.</p>
+        <p className="ok" role="status">Everything checks out — your devotion is ready.</p>
       )}
 
       <div className="card">
@@ -114,7 +119,7 @@ export function ReviewScreen({ project, issues, goTo }: Props) {
             {project.devotionType === "days" &&
               `${project.days.length} day${project.days.length === 1 ? "" : "s"} · `}
             {project.variants.length > 0 && `${project.variants.length} forms · `}
-            {authoredSteps(project).length} step{authoredSteps(project).length === 1 ? "" : "s"} ·{" "}
+            {stepCount} step{stepCount === 1 ? "" : "s"} ·{" "}
             {project.languages
               .map((code) => LANGUAGES.find((l) => l.code === code)?.name)
               .join(", ") || "no languages"}
@@ -124,35 +129,37 @@ export function ReviewScreen({ project, issues, goTo }: Props) {
               ` · ${project.audio.length} recording${project.audio.length === 1 ? "" : "s"}`}
           </dd>
         </dl>
-        <p>
-          <button className="primary" disabled={!ready} onClick={downloadBundle}>
+        <div className="finish-actions">
+          <button type="button" className="primary" disabled={!ready} onClick={downloadBundle}>
             Download {project.id || "devotion"}.prosaryprayer
-          </button>{" "}
-          <button className="secondary" disabled={!ready} onClick={publishBundle}>
+          </button>
+          <button type="button" className="secondary" disabled={!ready} onClick={publishBundle}>
             Publish to prayers.prosary.app…
           </button>
-        </p>
-        {publishState.kind === "waiting" && (
-          <p className="help">
-            Finishing up in the prayers.prosary.app window — sign in there if asked; your
-            bundle rides along.
-          </p>
-        )}
-        {publishState.kind === "done" && (
-          <p className="ok">
-            Published as {publishState.id} — it&apos;s live in the{" "}
-            <a href={REPO_ORIGIN} target="_blank" rel="noreferrer">
-              catalog
-            </a>{" "}
-            and in the apps&apos; Browse tab.
-          </p>
-        )}
-        {publishState.kind === "blocked" && (
-          <p className="issue">
-            The publish window was blocked — allow popups for this site and try again, or
-            download the file and upload it at {REPO_ORIGIN}/submit.
-          </p>
-        )}
+        </div>
+        <div aria-live="polite">
+          {publishState.kind === "waiting" && (
+            <p className="help">
+              Finishing up in the prayers.prosary.app window — sign in there if asked; your
+              bundle rides along.
+            </p>
+          )}
+          {publishState.kind === "done" && (
+            <p className="ok">
+              Published as {publishState.id} — it&apos;s live in the{" "}
+              <a href={REPO_ORIGIN} target="_blank" rel="noopener noreferrer">
+                catalog
+              </a>{" "}
+              and in the apps&apos; Browse tab.
+            </p>
+          )}
+          {publishState.kind === "blocked" && (
+            <p className="issue" role="alert">
+              The publish window was blocked — allow popups for this site and try again, or
+              download the file and upload it at {REPO_ORIGIN}/submit.
+            </p>
+          )}
+        </div>
         {downloaded && (
           <p className="help">
             To pray it: open Prosary on your phone or computer, go to <strong>Favorites</strong>, and
@@ -166,8 +173,8 @@ export function ReviewScreen({ project, issues, goTo }: Props) {
         <details className="json-preview">
           <summary>For the curious: what's inside the bundle</summary>
           <p className="help">{previews.names.join(" · ")}</p>
-          <pre>{previews.manifest}</pre>
-          <pre>{previews.devotion}</pre>
+          <pre tabIndex={0}>{previews.manifest}</pre>
+          <pre tabIndex={0}>{previews.devotion}</pre>
         </details>
       )}
     </section>

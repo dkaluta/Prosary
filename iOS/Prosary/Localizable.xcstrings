@@ -878,6 +878,23 @@
         }
       }
     },
+    "about.typefaces.frankRuhlLibre" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Frank Ruhl Libre** — SIL Open Font License 1.1 — Hebrew prayers."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Frank Ruhl Libre** — רישיון SIL Open Font 1.1 — תפילות בעברית."
+          }
+        }
+      }
+    },
     "about.typefaces.notoSyriac" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -912,40 +929,6 @@
         }
       }
     },
-    "about.typefaces.stam" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**Stam Ashkenaz & Stam Sefarad** — GPL v2 with font-embedding exception — optional Hebrew Scripture faces (Culmus Project, Yoram Gnat)."
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**סת״ם אשכנזי וסת״ם ספרדי** — GPL v2 עם חריגת הטמעת גופנים — גופנים לבחירה לכתבי הקודש בעברית (פרויקט קולמוס, יורם גנת)."
-          }
-        }
-      }
-    },
-    "about.typefaces.frankRuhlLibre" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**Frank Ruhl Libre** — SIL Open Font License 1.1 — Hebrew prayers."
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**Frank Ruhl Libre** — רישיון SIL Open Font 1.1 — תפילות בעברית."
-          }
-        }
-      }
-    },
     "about.typefaces.scheherazadeNew" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -976,6 +959,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "**Shofar** — GPL v2 עם חריגת הטמעת גופנים — פסוקי מקרא בעברית (פרויקט קולמוס, יורם גנת)."
+          }
+        }
+      }
+    },
+    "about.typefaces.stam" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Stam Ashkenaz & Stam Sefarad** — GPL v2 with font-embedding exception — optional Hebrew Scripture faces (Culmus Project, Yoram Gnat)."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**סת״ם אשכנזי וסת״ם ספרדי** — GPL v2 עם חריגת הטמעת גופנים — גופנים לבחירה לכתבי הקודש בעברית (פרויקט קולמוס, יורם גנת)."
           }
         }
       }
@@ -1133,6 +1133,23 @@
         }
       }
     },
+    "basicPrayers.favorite" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add to favorites"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הוסף למועדפים"
+          }
+        }
+      }
+    },
     "basicPrayers.title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1146,6 +1163,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "תפילות בסיסיות"
+          }
+        }
+      }
+    },
+    "basicPrayers.unfavorite" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove from favorites"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הסר מהמועדפים"
           }
         }
       }
@@ -1265,6 +1299,57 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הגדר תפילת ישוע…"
+          }
+        }
+      }
+    },
+    "common.done" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "סיום"
+          }
+        }
+      }
+    },
+    "common.moveDown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move down"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "העבר למטה"
+          }
+        }
+      }
+    },
+    "common.moveUp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move up"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "העבר למעלה"
           }
         }
       }
@@ -1420,27 +1505,6 @@
             "value" : "ברירת מחדל — %@"
           }
         }
-      }
-    },
-    "common.done" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Done" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "סיום" } }
-      }
-    },
-    "common.moveUp" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Move up" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "העבר למעלה" } }
-      }
-    },
-    "common.moveDown" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Move down" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "העבר למטה" } }
       }
     },
     "favoriteEditor.done" : {
@@ -2621,19 +2685,39 @@
     "home.today.compactCitations" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Show shorthand" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "הצג קיצור" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show shorthand"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הצג קיצור"
+          }
+        }
       }
     },
     "home.today.fullCitations" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "View full citations" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "הצג מראי מקום מלאים" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View full citations"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הצג מראי מקום מלאים"
+          }
+        }
       }
     },
     "home.today.popesIntention" : {
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2652,22 +2736,52 @@
     "home.today.readings" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Today’s readings" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "מקראות היום" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today’s readings"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "המקרא היומי"
+          }
+        }
       }
     },
     "home.today.showEnglish" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "English" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "English" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "English"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "English"
+          }
+        }
       }
     },
     "home.today.translate" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "עברית" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "עברית" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "עברית"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "עברית"
+          }
+        }
       }
     },
     "home.unpin" : {
@@ -3608,22 +3722,52 @@
     "prayerFlow.continue" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Continue" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "המשך" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "המשך"
+          }
+        }
       }
     },
     "prayerFlow.continue.message" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "You have an unfinished prayer. Continue where you left off or begin again?" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "יש תפילה שלא הושלמה. להמשיך מהמקום שבו הפסקת או להתחיל מחדש?" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You have an unfinished prayer. Continue where you left off or begin again?"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "יש תפילה שלא הושלמה. להמשיך מהמקום שבו הפסקת או להתחיל מחדש?"
+          }
+        }
       }
     },
     "prayerFlow.continue.title" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Continue this prayer?" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "להמשיך בתפילה?" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue this prayer?"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "להמשיך בתפילה?"
+          }
+        }
       }
     },
     "prayerFlow.day" : {
@@ -3765,8 +3909,18 @@
     "prayerFlow.restart" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Restart" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "התחל מחדש" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restart"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "התחל מחדש"
+          }
+        }
       }
     },
     "prayerFlow.transliteration" : {
@@ -4061,15 +4215,35 @@
     "rosaryFlow.nextMystery" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Next mystery" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "הרז הבא" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next mystery"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הרז הבא"
+          }
+        }
       }
     },
     "rosaryFlow.previousMystery" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Previous mystery" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "הרז הקודם" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Previous mystery"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הרז הקודם"
+          }
+        }
       }
     },
     "rosaryOptions.summary.always" : {
@@ -4395,6 +4569,57 @@
         }
       }
     },
+    "settings.aramaicSignOfCross" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aramaic Sign of the Cross"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "נוסח אות הצלב בארמית"
+          }
+        }
+      }
+    },
+    "settings.aramaicSignOfCross.formA" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Form A"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "נוסח א׳"
+          }
+        }
+      }
+    },
+    "settings.aramaicSignOfCross.formB" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Form B"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "נוסח ב׳"
+          }
+        }
+      }
+    },
     "settings.clearAudioCache" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -4480,6 +4705,23 @@
         }
       }
     },
+    "settings.favoriteBasicPrayersFirst" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move favorite basic prayers to top"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "העבר תפילות בסיסיות מועדפות לראש הרשימה"
+          }
+        }
+      }
+    },
     "settings.feastCalendar" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4531,6 +4773,40 @@
         }
       }
     },
+    "settings.hebrewPrayerTypeface" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hebrew prayers"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "תפילות בכתב עברי"
+          }
+        }
+      }
+    },
+    "settings.hebrewScriptureTypeface" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hebrew Scripture"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "כתבי הקודש בעברית"
+          }
+        }
+      }
+    },
     "settings.installedDevotions" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -4544,6 +4820,74 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "מסלולי תפילה מותקנים"
+          }
+        }
+      }
+    },
+    "settings.languageFallbackOrder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Language fallback order…"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "סדר עדיפות לשפות חלופיות…"
+          }
+        }
+      }
+    },
+    "settings.languageFallbackOrder.footer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When a prayer is missing, Prosary tries these languages from top to bottom after the chosen language and its own variation."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "כאשר תפילה חסרה, Prosary מנסה את השפות לפי הסדר, אחרי השפה שנבחרה והנוסח שלה."
+          }
+        }
+      }
+    },
+    "settings.languageFallbackOrder.reset" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "איפוס"
+          }
+        }
+      }
+    },
+    "settings.languageFallbackOrder.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Language fallback order"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "סדר עדיפות לשפות חלופיות"
           }
         }
       }
@@ -4701,57 +5045,6 @@
         }
       }
     },
-    "settings.aramaicSignOfCross" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aramaic Sign of the Cross"
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "נוסח אות הצלב בארמית"
-          }
-        }
-      }
-    },
-    "settings.aramaicSignOfCross.formA" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Form A"
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "נוסח א׳"
-          }
-        }
-      }
-    },
-    "settings.aramaicSignOfCross.formB" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Form B"
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "נוסח ב׳"
-          }
-        }
-      }
-    },
     "settings.rite" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4803,6 +5096,23 @@
         }
       }
     },
+    "settings.syriacTypeface" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syriac Aramaic"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ארמית בכתב סורי"
+          }
+        }
+      }
+    },
     "settings.title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4833,6 +5143,159 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "היום"
+          }
+        }
+      }
+    },
+    "settings.typeface.davidLibre" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "David Libre"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "David Libre"
+          }
+        }
+      }
+    },
+    "settings.typeface.default" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Default"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ברירת מחדל"
+          }
+        }
+      }
+    },
+    "settings.typeface.easternAramaic" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eastern Aramaic"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ארמית מזרחית"
+          }
+        }
+      }
+    },
+    "settings.typeface.rashi" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rashi"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "רש״י"
+          }
+        }
+      }
+    },
+    "settings.typeface.sansSerif" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System sans-serif"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ללא תגיות"
+          }
+        }
+      }
+    },
+    "settings.typeface.stamAshkenaz" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stam Ashkenaz"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "סת״ם אשכנזי"
+          }
+        }
+      }
+    },
+    "settings.typeface.stamSefarad" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stam Sefarad"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "סת״ם ספרדי"
+          }
+        }
+      }
+    },
+    "settings.typeface.westernAramaic" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Western Aramaic"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ארמית מערבית"
+          }
+        }
+      }
+    },
+    "settings.typographyHeader" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Typography"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "טיפוגרפיה"
           }
         }
       }
@@ -4869,139 +5332,6 @@
             "value" : "קטגוריות"
           }
         }
-      }
-    },
-    "basicPrayers.favorite" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add to favorites" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "הוסף למועדפים" } }
-      }
-    },
-    "basicPrayers.unfavorite" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Remove from favorites" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "הסר מהמועדפים" } }
-      }
-    },
-    "settings.favoriteBasicPrayersFirst" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Move favorite basic prayers to top" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "העבר תפילות בסיסיות מועדפות לראש הרשימה" } }
-      }
-    },
-    "settings.languageFallbackOrder" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Language fallback order…" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "סדר עדיפות לשפות חלופיות…" } }
-      }
-    },
-    "settings.languageFallbackOrder.reset" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reset" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "איפוס" } }
-      }
-    },
-    "settings.languageFallbackOrder.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Language fallback order" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "סדר עדיפות לשפות חלופיות" } }
-      }
-    },
-    "settings.languageFallbackOrder.footer" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "When a prayer is missing, Prosary tries these languages from top to bottom after the chosen language and its own variation." } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "כאשר תפילה חסרה, Prosary מנסה את השפות לפי הסדר, אחרי השפה שנבחרה והנוסח שלה." } }
-      }
-    },
-    "settings.typographyHeader" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Typography" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "טיפוגרפיה" } }
-      }
-    },
-    "settings.syriacTypeface" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Syriac Aramaic" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "ארמית בכתב סורי" } }
-      }
-    },
-    "settings.hebrewPrayerTypeface" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Hebrew prayers" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "תפילות בכתב עברי" } }
-      }
-    },
-    "settings.hebrewScriptureTypeface" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Hebrew Scripture" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "כתבי הקודש בעברית" } }
-      }
-    },
-    "settings.typeface.default" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Default" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "ברירת מחדל" } }
-      }
-    },
-    "settings.typeface.davidLibre" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "David Libre" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "David Libre" } }
-      }
-    },
-    "settings.typeface.stamAshkenaz" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Stam Ashkenaz" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "סת״ם אשכנזי" } }
-      }
-    },
-    "settings.typeface.stamSefarad" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Stam Sefarad" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "סת״ם ספרדי" } }
-      }
-    },
-    "settings.typeface.westernAramaic" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Western Aramaic" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "ארמית מערבית" } }
-      }
-    },
-    "settings.typeface.easternAramaic" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Eastern Aramaic" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "ארמית מזרחית" } }
-      }
-    },
-    "settings.typeface.sansSerif" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "System sans-serif" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "ללא תגיות" } }
-      }
-    },
-    "settings.typeface.rashi" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Rashi" } },
-        "he" : { "stringUnit" : { "state" : "translated", "value" : "רש״י" } }
       }
     },
     "tabs.pray" : {

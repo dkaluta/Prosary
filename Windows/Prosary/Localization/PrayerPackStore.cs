@@ -9,7 +9,7 @@ namespace Prosary.Localization;
 
 /// <summary>
 /// Loads the bundled .prosaryprayer packs (Rosary, and every generic bundle-driven devotion —
-/// see Shared/ARCHITECTURE.md's "Content bundles" section) and merges their content into
+/// see Shared/ARCHITECTURE.markdown's "Content bundles" section) and merges their content into
 /// <see cref="PrayerTranslations"/>/<see cref="MysteryTranslations"/> as an override layer.
 /// PrayerKey/mystery imageKey entries are a shared pool across devotions (e.g. "our_father" is
 /// used by Rosary and several bundle devotions alike), so a pack can only ever add to the
@@ -34,10 +34,43 @@ public static class PrayerPackStore
         "divineMercyChaplet", "trisagion", "oAntiphons",
     ];
 
+    // Imported packs are untrusted. These ceilings are intentionally far above every shipped
+    // pack while keeping central-directory metadata, JSON, decoded images, and recordings from
+    // turning attacker-controlled ZIP sizes into unbounded managed allocations.
+    internal const long MaxPackArchiveBytes = 512L * 1024 * 1024;
+    internal const int MaxPackEntryCount = 4_096;
+    internal const long MaxControlEntryBytes = 8L * 1024 * 1024;
+    internal const long MaxControlTotalBytes = 32L * 1024 * 1024;
+    internal const long MaxImageEntryBytes = 64L * 1024 * 1024;
+    internal const long MaxAudioEntryBytes = 256L * 1024 * 1024;
+    private const string UnreadablePackMessage =
+        "This file is not a readable .prosaryprayer bundle.";
+
     private static readonly Dictionary<string, Dictionary<string, string>> PrayerOverrides = new();
     private static readonly Dictionary<string, Dictionary<string, MysteryTextOverride>> MysteryOverrides = new();
-    private static readonly Dictionary<string, byte[]> ImageDataByKey = new();
+    /// <summary>Image key → pack entries that provide it, in load order. Only the tiny entry
+    /// locations stay resident: JPEG bytes are streamed from the winning pack when WinUI first
+    /// asks for an image, then released after the cache file is written. Some shared artwork is
+    /// intentionally present in more than one portable pack, so keeping the earlier locations
+    /// also gives a corrupt/missing later pack a working fallback.</summary>
+    private static readonly Dictionary<string, List<PackEntryLocation>> ImageLocationsByKey = new();
     private static readonly Dictionary<string, string> ExtractedImageUris = new();
+    private static long _nextImageRevision;
+    private static string? _imageCacheDirectoryOverride;
+    private static readonly string ImageCacheSessionName = Guid.NewGuid().ToString("N");
+
+    /// <summary>Test/unpackaged-host seam: those processes have no package identity, hence no
+    /// <see cref="ApplicationData.Current"/>. Changing it also invalidates URI memoization so a
+    /// temporary test directory can never leak into a later caller.</summary>
+    internal static string? ImageCacheDirectoryOverride
+    {
+        get => _imageCacheDirectoryOverride;
+        set
+        {
+            _imageCacheDirectoryOverride = value;
+            ExtractedImageUris.Clear();
+        }
+    }
 
     /// <summary>Unfiltered per-bundle content, keyed bundleId -> language -> raw (camelCase)
     /// key -> text — unlike <see cref="PrayerOverrides"/> (PascalCased, merged globally), this
@@ -51,9 +84,8 @@ public static class PrayerPackStore
     private static readonly Dictionary<string, List<CustomDevotionOption>> OptionsByBundle = new();
     private static readonly Dictionary<string, List<DevotionAudioTrack>> AudioTracksByBundle = new();
 
-    /// <summary>Each loaded bundle's re-openable pack source — audio bytes are re-read from here
-    /// on demand rather than held in the load-time cache the way images are (a recording dwarfs
-    /// every other bundle asset). See <see cref="AudioData"/>.</summary>
+    /// <summary>Each loaded bundle's re-openable pack source. Images and audio are streamed from
+    /// here on demand instead of being retained as byte arrays at startup.</summary>
     private static readonly Dictionary<string, Func<Stream?>> PackSourceByBundle = new();
 
     /// <summary>Bundle ids with a devotion.json, in pack-load order.</summary>
@@ -95,7 +127,27 @@ public static class PrayerPackStore
     public static MysteryTextOverride? MysteryOverride(string languageCode, string imageKey) =>
         MysteryOverrides.TryGetValue(languageCode, out var table) && table.TryGetValue(imageKey, out var text) ? text : null;
 
-    public static byte[]? ImageData(string imageKey) => ImageDataByKey.TryGetValue(imageKey, out var data) ? data : null;
+    /// <summary>Reads one pack-provided image on demand. This byte-level compatibility seam is
+    /// mainly useful to callers/tests that need the encoded data; WinUI rendering goes through
+    /// <see cref="ImageFileUri"/>, which streams directly to disk without creating this array.</summary>
+    public static byte[]? ImageData(string imageKey)
+    {
+        if (!ImageLocationsByKey.TryGetValue(imageKey, out var locations)) return null;
+
+        for (var index = locations.Count - 1; index >= 0; index--)
+        {
+            if (TryReadPackEntry(
+                    locations[index],
+                    MaxImageEntryBytes,
+                    entry => ReadAllBytes(entry, MaxImageEntryBytes),
+                    out byte[] data))
+            {
+                return data;
+            }
+        }
+
+        return null;
+    }
 
     /// <summary>The parsed <c>devotion.json</c> for a generic (bundle-driven) devotion, e.g.
     /// "trisagion". Null for any bundle without one (Rosary, which stays override-only).</summary>
@@ -153,24 +205,30 @@ public static class PrayerPackStore
         PackManifest manifest;
         try
         {
+            ValidateArchiveLength(bytes.LongLength);
             using var probe = new ZipArchive(new MemoryStream(bytes), ZipArchiveMode.Read);
-            var manifestEntry = probe.GetEntry("manifest.json")
+            var entries = ValidateArchive(probe);
+            var manifestEntry = entries.GetValueOrDefault("manifest.json")
                 ?? throw new InstallException("This file is not a readable .prosaryprayer bundle.");
-            manifest = JsonSerializer.Deserialize<PackManifest>(ReadAllBytes(manifestEntry), JsonOptions)
+            manifest = Deserialize<PackManifest>(manifestEntry)
                 ?? throw new InstallException("This file is not a readable .prosaryprayer bundle.");
+            if (!IsValidBundleId(manifest.Id))
+            {
+                throw new InstallException("This file is not a readable .prosaryprayer bundle.");
+            }
 
-            var devotionEntry = probe.GetEntry("devotion.json");
+            var devotionEntry = entries.GetValueOrDefault("devotion.json");
             if (devotionEntry is null || manifest.BuiltinKind is not null
-                || JsonSerializer.Deserialize<CustomDevotionDefinition>(ReadAllBytes(devotionEntry), JsonOptions) is null)
+                || Deserialize<CustomDevotionDefinition>(devotionEntry) is null)
             {
                 throw new InstallException("This bundle does not contain a devotion.");
             }
 
             foreach (var language in manifest.Languages)
             {
-                var contentEntry = probe.GetEntry($"content/{language}.json")
+                var contentEntry = entries.GetValueOrDefault($"content/{language}.json")
                     ?? throw new InstallException("This file is not a readable .prosaryprayer bundle.");
-                _ = JsonSerializer.Deserialize<PackContent>(ReadAllBytes(contentEntry), JsonOptions)
+                _ = Deserialize<PackContent>(contentEntry)
                     ?? throw new InstallException("This file is not a readable .prosaryprayer bundle.");
             }
         }
@@ -199,12 +257,12 @@ public static class PrayerPackStore
         return manifest.Id;
     }
 
-    /// <summary>Deletes an installed bundle's file and unregisters its devotion. Its merged
-    /// prayer/image content stays in memory until the next launch — harmless, since nothing
-    /// references it once the devotion is gone from <see cref="CustomDevotionIds"/>.</summary>
+    /// <summary>Deletes an installed bundle's file and unregisters its devotion. Shared text
+    /// overrides remain until the next launch, matching the existing merge semantics; lazy image
+    /// locations are removed immediately so they never retain a dead pack source.</summary>
     public static void RemoveInstalledPack(string id)
     {
-        if (!InstalledIds.Contains(id)) return;
+        if (!IsValidBundleId(id) || !InstalledIds.Contains(id)) return;
         if (InstalledPacksDirectory is { } directory)
         {
             var path = Path.Combine(directory, $"{id}.prosaryprayer");
@@ -217,8 +275,16 @@ public static class PrayerPackStore
         InfoByBundle.Remove(id);
         OptionsByBundle.Remove(id);
         AudioTracksByBundle.Remove(id);
+        RawContentByBundle.Remove(id);
         TransliterationsByBundle.Remove(id);
         PackSourceByBundle.Remove(id);
+
+        foreach (var (imageKey, locations) in ImageLocationsByKey.ToList())
+        {
+            if (locations.RemoveAll(location => location.BundleId == id) == 0) continue;
+            if (locations.Count == 0) ImageLocationsByKey.Remove(imageKey);
+            ExtractedImageUris.Remove(imageKey);
+        }
     }
 
     /// <summary>The options a bundle's <c>options.json</c> declares, in authored order (the
@@ -236,29 +302,59 @@ public static class PrayerPackStore
         InfoByBundle.TryGetValue(bundleId, out var info) ? info : null;
 
     /// <summary>The narrated recordings a bundle's <c>audio.json</c> declares, in authored order.
-    /// Empty for bundles without audio (see Shared/ARCHITECTURE.md's "Audio").</summary>
+    /// Empty for bundles without audio (see Shared/ARCHITECTURE.markdown's "Audio").</summary>
     public static IReadOnlyList<DevotionAudioTrack> AudioTracks(string bundleId) =>
         AudioTracksByBundle.TryGetValue(bundleId, out var tracks) ? tracks : [];
 
+    /// <summary>Content identity for a declared recording, obtained from the ZIP directory
+    /// without inflating the entry. Extracted-audio filenames include it so a same-id pack
+    /// replacement cannot reuse stale bytes.</summary>
+    public static string? AudioCacheKey(string bundleId, string file)
+    {
+        if (!AudioTracksByBundle.TryGetValue(bundleId, out var tracks) || tracks.All(t => t.File != file))
+        {
+            return null;
+        }
+
+        return TryReadPackEntry(
+            new PackEntryLocation(bundleId, file),
+            MaxAudioEntryBytes,
+            entry => $"{entry.Crc32:x8}-{entry.Length}",
+            out string key)
+            ? key
+            : null;
+    }
+
     /// <summary>The raw Ogg Opus bytes of one of a bundle's *declared* audio files
     /// (<see cref="DevotionAudioTrack.File"/>), re-read from the pack on demand. Null for a file
-    /// no track declares. The playback milestone will extract to a cache file for the OS player
-    /// (the <see cref="ImageFileUri"/> pattern) rather than keep whole recordings in memory;
-    /// this byte-level accessor is the seam it builds on.</summary>
+    /// no track declares. Kept as a byte-level compatibility/test seam; playback uses
+    /// <see cref="ExtractAudioFile"/> so a full recording is never materialized in memory.</summary>
     public static byte[]? AudioData(string bundleId, string file)
     {
         if (!AudioTracksByBundle.TryGetValue(bundleId, out var tracks) || tracks.All(t => t.File != file))
         {
             return null;
         }
-        if (!PackSourceByBundle.TryGetValue(bundleId, out var openPack)) return null;
+        return TryReadPackEntry(
+            new PackEntryLocation(bundleId, file),
+            MaxAudioEntryBytes,
+            entry => ReadAllBytes(entry, MaxAudioEntryBytes),
+            out byte[] data)
+            ? data
+            : null;
+    }
 
-        using var stream = openPack();
-        if (stream is null) return null;
-        using var seekable = stream.CanSeek ? stream : CopyToMemory(stream);
-        using var archive = new ZipArchive(seekable, ZipArchiveMode.Read);
-        var entry = archive.GetEntry(file);
-        return entry is null ? null : ReadAllBytes(entry);
+    /// <summary>Streams one declared Ogg Opus file from its pack to <paramref name="path"/>.
+    /// Unlike <see cref="AudioData"/>, this keeps a full recording out of managed memory and is
+    /// therefore the path used by the player.</summary>
+    public static bool ExtractAudioFile(string bundleId, string file, string path)
+    {
+        if (!AudioTracksByBundle.TryGetValue(bundleId, out var tracks) || tracks.All(t => t.File != file))
+        {
+            return false;
+        }
+
+        return TryCopyPackEntry(new PackEntryLocation(bundleId, file), path, MaxAudioEntryBytes);
     }
 
     /// <summary>Resolves a <c>devotion.json</c> <c>bodyKey</c>/<c>titleKey</c>: bundle content in
@@ -345,27 +441,51 @@ public static class PrayerPackStore
 
     /// <summary>Extracts a pack-provided image to a cache file on first request — WinUI's
     /// <c>Image.Source</c> needs a file/ms-appx URI, not raw bytes — and returns its <c>file://</c>
-    /// URI. Returns null if no pack provides this key, so call sites can fall back to their
-    /// existing <c>ms-appx:///Assets/Images/...</c> URI exactly as before this existed.</summary>
+    /// URI. The encoded JPEG is copied straight from the zip entry rather than retained in the
+    /// process-wide store.</summary>
     public static string? ImageFileUri(string imageKey)
     {
         if (ExtractedImageUris.TryGetValue(imageKey, out var cachedUri)) return cachedUri;
 
-        var data = ImageData(imageKey);
-        if (data is null) return null;
+        if (!ImageLocationsByKey.TryGetValue(imageKey, out var locations)) return null;
+        if (Path.GetFileName(imageKey) != imageKey) return null;
 
-        var directory = Path.Combine(ApplicationData.Current.LocalCacheFolder.Path, "PrayerPackImages");
-        Directory.CreateDirectory(directory);
-        var path = Path.Combine(directory, $"{imageKey}.jpg");
-        if (!File.Exists(path))
+        try
         {
-            File.WriteAllBytes(path, data);
-        }
+            var directory = ImageCacheDirectory();
+            if (directory is null) return null;
+            Directory.CreateDirectory(directory);
+            // The source revision is part of the filename. BitmapImage caches by URI and may
+            // keep a file open, so overwriting one key-stable path would either show stale pixels
+            // or fail while an earlier frame still owns the file.
+            for (var index = locations.Count - 1; index >= 0; index--)
+            {
+                var location = locations[index];
+                var path = Path.Combine(directory, $"{imageKey}-{location.Revision:x}.jpg");
+                // A revisioned final path can only be created by the atomic writer below. Reuse
+                // it when an overridden source becomes active again: WinUI may still hold the
+                // original BitmapImage file open, which would make even an atomic replacement
+                // fail despite the existing bytes already being exactly the ones we need.
+                if (!File.Exists(path)
+                    && !TryCopyPackEntry(location, path, MaxImageEntryBytes)) continue;
 
-        var uri = new Uri(path).AbsoluteUri;
-        ExtractedImageUris[imageKey] = uri;
-        return uri;
+                var uri = new Uri(path).AbsoluteUri;
+                ExtractedImageUris[imageKey] = uri;
+                return uri;
+            }
+            return null;
+        }
+        catch (Exception error)
+        {
+            System.Diagnostics.Debug.WriteLine($"[PrayerPackStore] image extract failed: {error}");
+            return null;
+        }
     }
+
+    /// <summary>Resolves an image from its portable pack, with the only loose raster in the app
+    /// (the tiny generated placeholder) as a graceful fallback.</summary>
+    public static string ImageFileUriOrPlaceholder(string imageKey) =>
+        ImageFileUri(imageKey) ?? "ms-appx:///Assets/Images/cross_placeholder.png";
 
     /// <summary><paramref name="openPack"/> returns a fresh, readable stream for a named pack's
     /// bytes (e.g. a file under the app's install directory), or null if that pack isn't
@@ -381,6 +501,12 @@ public static class PrayerPackStore
         lock (InitLock)
         {
             if (_didLoad) return;
+
+            // Image files exist only to bridge zip entries to WinUI's URI-based Image.Source.
+            // They have no cross-launch value and would otherwise accumulate as users install
+            // and remove packs, so discard the previous process's disposable cache before any
+            // page can hold one of its URIs.
+            ClearPriorImageCache();
 
             foreach (var packName in PackNames)
             {
@@ -412,10 +538,10 @@ public static class PrayerPackStore
                     try
                     {
                         using var stream = File.OpenRead(path);
-                        if (Load(stream) is not null)
+                        if (Load(stream) is { } loadedId)
                         {
-                            InstalledIds.Add(id);
-                            PackSourceByBundle[id] = () => File.OpenRead(path);
+                            InstalledIds.Add(loadedId);
+                            PackSourceByBundle[loadedId] = () => File.OpenRead(path);
                         }
                     }
                     catch
@@ -433,19 +559,21 @@ public static class PrayerPackStore
     /// register a re-openable pack source for it — see <see cref="AudioData"/>.</summary>
     private static string? Load(Stream stream)
     {
-        using var seekable = stream.CanSeek ? stream : CopyToMemory(stream);
+        using var seekable = PrepareSeekablePack(stream);
         using var archive = new ZipArchive(seekable, ZipArchiveMode.Read);
         // Zip directory records (e.g. a bare "images/" entry) have no isDirectory flag in
         // System.IO.Compression — the convention is a FullName ending in "/" — and must be
         // excluded here, not just at each lookup site, or the images/ prefix-stripping loop below
         // would try to slice a name shorter than the prefix+suffix it's stripping.
-        var entries = archive.Entries
-            .Where(e => !e.FullName.EndsWith('/'))
-            .ToDictionary(e => e.FullName, e => e);
+        var entries = ValidateArchive(archive);
 
         if (!entries.TryGetValue("manifest.json", out var manifestEntry)) return null;
-        var manifest = JsonSerializer.Deserialize<PackManifest>(ReadAllBytes(manifestEntry), JsonOptions)
+        var manifest = Deserialize<PackManifest>(manifestEntry)
             ?? throw new InvalidDataException("manifest.json did not deserialize");
+        if (!IsValidBundleId(manifest.Id))
+        {
+            throw new InvalidDataException("manifest.json contains an invalid bundle id");
+        }
 
         InfoByBundle[manifest.Id] = new CustomDevotionInfo(
             manifest.DisplayName,
@@ -473,7 +601,7 @@ public static class PrayerPackStore
         foreach (var language in manifest.Languages.Concat(overlayLanguages))
         {
             if (!entries.TryGetValue($"content/{language}.json", out var contentEntry)) continue;
-            var content = JsonSerializer.Deserialize<PackContent>(ReadAllBytes(contentEntry), JsonOptions)
+            var content = Deserialize<PackContent>(contentEntry)
                 ?? throw new InvalidDataException($"content/{language}.json did not deserialize");
 
             var rawContent = content.Prayers ?? new Dictionary<string, string>();
@@ -526,7 +654,7 @@ public static class PrayerPackStore
 
         if (entries.TryGetValue("devotion.json", out var devotionEntry))
         {
-            var definition = JsonSerializer.Deserialize<CustomDevotionDefinition>(ReadAllBytes(devotionEntry), JsonOptions)
+            var definition = Deserialize<CustomDevotionDefinition>(devotionEntry)
                 ?? throw new InvalidDataException("devotion.json did not deserialize");
             DefinitionByBundle[manifest.Id] = definition;
             if (manifest.BuiltinKind is null)
@@ -537,24 +665,34 @@ public static class PrayerPackStore
 
         if (entries.TryGetValue("options.json", out var optionsEntry))
         {
-            var packOptions = JsonSerializer.Deserialize<PackOptions>(ReadAllBytes(optionsEntry), JsonOptions)
+            var packOptions = Deserialize<PackOptions>(optionsEntry)
                 ?? throw new InvalidDataException("options.json did not deserialize");
             OptionsByBundle[manifest.Id] = packOptions.Options;
         }
 
         if (entries.TryGetValue("audio.json", out var audioEntry))
         {
-            var packAudio = JsonSerializer.Deserialize<PackAudio>(ReadAllBytes(audioEntry), JsonOptions)
+            var packAudio = Deserialize<PackAudio>(audioEntry)
                 ?? throw new InvalidDataException("audio.json did not deserialize");
             AudioTracksByBundle[manifest.Id] = packAudio.Tracks;
         }
 
         foreach (var entry in entries.Values)
         {
-            if (entry.FullName.StartsWith("images/", StringComparison.Ordinal))
+            if (entry.FullName.StartsWith("images/", StringComparison.Ordinal)
+                && entry.FullName.EndsWith(".jpg", StringComparison.Ordinal))
             {
                 var imageKey = entry.FullName["images/".Length..^".jpg".Length];
-                ImageDataByKey[imageKey] = ReadAllBytes(entry);
+                if (!ImageLocationsByKey.TryGetValue(imageKey, out var locations))
+                {
+                    locations = [];
+                    ImageLocationsByKey[imageKey] = locations;
+                }
+                locations.Add(new PackEntryLocation(
+                    manifest.Id,
+                    entry.FullName,
+                    checked(++_nextImageRevision)));
+                ExtractedImageUris.Remove(imageKey);
             }
         }
 
@@ -582,20 +720,416 @@ public static class PrayerPackStore
     private static string ToPascalCase(string jsonKey) =>
         jsonKey.Length == 0 ? jsonKey : char.ToUpperInvariant(jsonKey[0]) + jsonKey[1..];
 
-    private static byte[] ReadAllBytes(ZipArchiveEntry entry)
+    /// <summary>Bundle ids become filenames on every platform. Restrict them to one portable
+    /// ASCII component while continuing to support dotted repository ids.</summary>
+    private static bool IsValidBundleId(string id) =>
+        !string.IsNullOrEmpty(id)
+        && char.IsAsciiLetterOrDigit(id[0])
+        && id.All(character => char.IsAsciiLetterOrDigit(character) || character is '.' or '_' or '-');
+
+    internal static void ValidateArchiveLength(long length)
     {
+        if (length is < 0 or > MaxPackArchiveBytes)
+        {
+            throw new InvalidDataException("Prayer pack is larger than the supported archive limit.");
+        }
+    }
+
+    internal static void ValidateInstallArchiveLength(long length)
+    {
+        try
+        {
+            ValidateArchiveLength(length);
+        }
+        catch (InvalidDataException)
+        {
+            throw new InstallException(UnreadablePackMessage);
+        }
+    }
+
+    /// <summary>Reads a picked or downloaded archive with the same raw-size ceiling enforced by
+    /// <see cref="InstallPack"/>. Seekable inputs are rejected from metadata before the first
+    /// payload allocation; known lengths must also match the complete body. Unknown-length
+    /// network streams spool to a disposable file so only the final, exactly-sized byte array is
+    /// resident in managed memory.</summary>
+    internal static async Task<byte[]> ReadInstallBytesAsync(
+        Stream input,
+        CancellationToken cancellationToken = default,
+        long? expectedLength = null,
+        string? temporaryDirectory = null)
+    {
+        if (input.CanSeek)
+        {
+            var remainingLength = input.Length - input.Position;
+            if (expectedLength is { } declaredLength && declaredLength != remainingLength)
+            {
+                throw new InstallException(UnreadablePackMessage);
+            }
+            expectedLength = remainingLength;
+        }
+
+        if (expectedLength is { } declaredLength)
+        {
+            return await ReadExactArchiveBytesAsync(input, declaredLength, cancellationToken);
+        }
+
+        var spoolDirectory = temporaryDirectory ?? Path.GetTempPath();
+        Directory.CreateDirectory(spoolDirectory);
+        var spoolPath = Path.Combine(spoolDirectory, $"prosary-import-{Guid.NewGuid():N}.tmp");
+        try
+        {
+            await using var spool = new FileStream(
+                spoolPath,
+                new FileStreamOptions
+                {
+                    Mode = FileMode.CreateNew,
+                    Access = FileAccess.ReadWrite,
+                    Share = FileShare.None,
+                    BufferSize = 32 * 1024,
+                    Options = FileOptions.Asynchronous | FileOptions.SequentialScan |
+                              FileOptions.DeleteOnClose,
+                });
+            var buffer = new byte[32 * 1024];
+            long total = 0;
+            while (true)
+            {
+                var count = await input.ReadAsync(buffer.AsMemory(), cancellationToken);
+                if (count == 0) break;
+                if (total > MaxPackArchiveBytes - count)
+                {
+                    throw new InstallException(UnreadablePackMessage);
+                }
+                await spool.WriteAsync(buffer.AsMemory(0, count), cancellationToken);
+                total += count;
+            }
+
+            await spool.FlushAsync(cancellationToken);
+            spool.Position = 0;
+            return await ReadExactArchiveBytesAsync(spool, total, cancellationToken);
+        }
+        finally
+        {
+            try
+            {
+                if (File.Exists(spoolPath)) File.Delete(spoolPath);
+            }
+            catch (Exception error) when (error is IOException or UnauthorizedAccessException)
+            {
+                System.Diagnostics.Debug.WriteLine($"[PrayerPackStore] import spool cleanup failed: {error}");
+            }
+        }
+    }
+
+    private static async Task<byte[]> ReadExactArchiveBytesAsync(
+        Stream input,
+        long expectedLength,
+        CancellationToken cancellationToken)
+    {
+        ValidateInstallArchiveLength(expectedLength);
+        var data = GC.AllocateUninitializedArray<byte>(checked((int)expectedLength));
+        try
+        {
+            await input.ReadExactlyAsync(data.AsMemory(), cancellationToken);
+        }
+        catch (EndOfStreamException)
+        {
+            throw new InstallException(UnreadablePackMessage);
+        }
+
+        var probe = new byte[1];
+        if (await input.ReadAsync(probe.AsMemory(), cancellationToken) != 0)
+        {
+            throw new InstallException(UnreadablePackMessage);
+        }
+        return data;
+    }
+
+    /// <summary>Validates every central-directory declaration before any entry is inflated or an
+    /// output-sized array is allocated. Unknown payloads remain ignored, but the raw archive and
+    /// entry count still bound the amount of metadata they can contribute.</summary>
+    private static Dictionary<string, ZipArchiveEntry> ValidateArchive(ZipArchive archive)
+    {
+        ValidateEntryCount(archive.Entries.Count);
+
+        var files = new Dictionary<string, ZipArchiveEntry>(StringComparer.Ordinal);
+        var seenNames = new HashSet<string>(StringComparer.Ordinal);
+        long controlBytes = 0;
+
+        foreach (var entry in archive.Entries)
+        {
+            if (!seenNames.Add(entry.FullName))
+            {
+                throw new InvalidDataException("Prayer pack contains duplicate entries.");
+            }
+
+            ValidateEntryDeclaration(entry.FullName, entry.Length, entry.CompressedLength);
+
+            if (IsControlEntry(entry.FullName))
+            {
+                if (entry.Length > MaxControlTotalBytes - controlBytes)
+                {
+                    throw new InvalidDataException("Prayer-pack metadata is too large.");
+                }
+                controlBytes += entry.Length;
+            }
+
+            if (!entry.FullName.EndsWith('/'))
+            {
+                files.Add(entry.FullName, entry);
+            }
+        }
+
+        return files;
+    }
+
+    internal static void ValidateEntryCount(int count)
+    {
+        if (count is < 0 or > MaxPackEntryCount)
+        {
+            throw new InvalidDataException("Prayer pack contains too many entries.");
+        }
+    }
+
+    internal static void ValidateEntryDeclaration(
+        string name,
+        long length,
+        long compressedLength)
+    {
+        if (EntryLimit(name) is { } maxBytes)
+        {
+            ValidateDeclaredLength(name, length, compressedLength, maxBytes);
+        }
+    }
+
+    private static long? EntryLimit(string name)
+    {
+        if (IsControlEntry(name)) return MaxControlEntryBytes;
+        if (name.StartsWith("images/", StringComparison.Ordinal)) return MaxImageEntryBytes;
+        if (name.StartsWith("audio/", StringComparison.Ordinal)) return MaxAudioEntryBytes;
+        return null;
+    }
+
+    private static bool IsControlEntry(string name) =>
+        name is "manifest.json" or "devotion.json" or "catalog.json" or "options.json" or "audio.json"
+        || (name.StartsWith("content/", StringComparison.Ordinal)
+            && name.EndsWith(".json", StringComparison.Ordinal));
+
+    private static void ValidateEntryLength(ZipArchiveEntry entry, long maxBytes)
+        => ValidateDeclaredLength(entry.FullName, entry.Length, entry.CompressedLength, maxBytes);
+
+    private static void ValidateDeclaredLength(
+        string name,
+        long length,
+        long compressedLength,
+        long maxBytes)
+    {
+        if (length < 0 || compressedLength < 0
+            || length > maxBytes || compressedLength > maxBytes)
+        {
+            throw new InvalidDataException($"Prayer-pack entry {name} is too large.");
+        }
+    }
+
+    private static byte[] ReadAllBytes(ZipArchiveEntry entry, long maxBytes)
+    {
+        ValidateEntryLength(entry, maxBytes);
         using var entryStream = entry.Open();
-        using var memory = new MemoryStream();
-        entryStream.CopyTo(memory);
-        return memory.ToArray();
+        var data = GC.AllocateUninitializedArray<byte>(checked((int)entry.Length));
+        entryStream.ReadExactly(data);
+        if (entryStream.ReadByte() != -1)
+        {
+            throw new InvalidDataException(
+                $"Prayer-pack entry {entry.FullName} expands beyond its declared size.");
+        }
+        return data;
+    }
+
+    private static T? Deserialize<T>(ZipArchiveEntry entry) =>
+        JsonSerializer.Deserialize<T>(ReadAllBytes(entry, MaxControlEntryBytes), JsonOptions);
+
+    private static bool TryReadPackEntry<T>(
+        PackEntryLocation location,
+        long maxBytes,
+        Func<ZipArchiveEntry, T> read,
+        out T result)
+    {
+        result = default!;
+        if (!PackSourceByBundle.TryGetValue(location.BundleId, out var openPack)) return false;
+
+        try
+        {
+            using var stream = openPack();
+            if (stream is null) return false;
+            using var seekable = PrepareSeekablePack(stream);
+            using var archive = new ZipArchive(seekable, ZipArchiveMode.Read);
+            var entries = ValidateArchive(archive);
+            if (!entries.TryGetValue(location.EntryName, out var entry)) return false;
+            ValidateEntryLength(entry, maxBytes);
+            result = read(entry);
+            return true;
+        }
+        catch (Exception error) when (error is IOException or InvalidDataException or UnauthorizedAccessException)
+        {
+            System.Diagnostics.Debug.WriteLine($"[PrayerPackStore] pack entry read failed: {error}");
+            return false;
+        }
+    }
+
+    private static bool TryCopyPackEntry(PackEntryLocation location, string path, long maxBytes)
+    {
+        return TryReadPackEntry(location, maxBytes, entry =>
+        {
+            using var input = entry.Open();
+            return TryWriteFileAtomically(input, path, entry.Length, maxBytes);
+        }, out bool copied) && copied;
+    }
+
+    /// <summary>Copies a stream through a sibling temporary file so a failed read, decompression,
+    /// or disk write can never leave a truncated cache entry that later callers mistake for a
+    /// complete image or recording.</summary>
+    internal static bool TryWriteFileAtomically(
+        Stream input,
+        string path,
+        long? expectedLength = null,
+        long maxBytes = long.MaxValue)
+    {
+        var directory = Path.GetDirectoryName(path);
+        if (string.IsNullOrEmpty(directory)) return false;
+
+        Directory.CreateDirectory(directory);
+        var temporaryPath = Path.Combine(
+            directory,
+            $".{Path.GetFileName(path)}.{Guid.NewGuid():N}.tmp");
+
+        try
+        {
+            using (var output = new FileStream(
+                       temporaryPath,
+                       FileMode.CreateNew,
+                       FileAccess.Write,
+                       FileShare.None))
+            {
+                CopyBounded(input, output, maxBytes, expectedLength);
+                output.Flush(flushToDisk: true);
+            }
+
+            File.Move(temporaryPath, path, overwrite: true);
+            return true;
+        }
+        catch (Exception error) when (
+            error is IOException or InvalidDataException or UnauthorizedAccessException)
+        {
+            System.Diagnostics.Debug.WriteLine($"[PrayerPackStore] atomic cache write failed: {error}");
+            return false;
+        }
+        finally
+        {
+            try
+            {
+                if (File.Exists(temporaryPath)) File.Delete(temporaryPath);
+            }
+            catch (Exception error) when (error is IOException or UnauthorizedAccessException)
+            {
+                // A stale uniquely named temporary file is never considered a valid cache hit.
+                System.Diagnostics.Debug.WriteLine($"[PrayerPackStore] temporary cache cleanup failed: {error}");
+            }
+        }
+    }
+
+    private static long CopyBounded(
+        Stream input,
+        Stream output,
+        long maxBytes,
+        long? expectedLength = null)
+    {
+        if (maxBytes < 0 || expectedLength is < 0 || expectedLength > maxBytes)
+        {
+            throw new InvalidDataException("Prayer-pack stream has an invalid size.");
+        }
+
+        var hardLimit = expectedLength ?? maxBytes;
+        var buffer = new byte[32 * 1024];
+        long written = 0;
+        while (true)
+        {
+            var remaining = hardLimit - written;
+            var requested = remaining >= buffer.Length
+                ? buffer.Length
+                : checked((int)remaining + 1);
+            var count = input.Read(buffer, 0, requested);
+            if (count == 0) break;
+            if (count < 0 || count > remaining)
+            {
+                throw new InvalidDataException("Prayer-pack stream exceeds its declared size.");
+            }
+            output.Write(buffer, 0, count);
+            written += count;
+        }
+
+        if (expectedLength is { } expected && written != expected)
+        {
+            throw new InvalidDataException("Prayer-pack stream is shorter than its declared size.");
+        }
+        return written;
+    }
+
+    internal static void ClearPriorImageCache()
+    {
+        ExtractedImageUris.Clear();
+        try
+        {
+            var root = ImageCacheRootDirectory();
+            if (root is null) return;
+            if (Directory.Exists(root)) Directory.Delete(root, recursive: true);
+        }
+        catch (Exception error)
+        {
+            // LocalCacheFolder is disposable. A locked/temporarily unavailable old cache is
+            // harmless; the process-unique child name keeps its stale bytes unreachable.
+            System.Diagnostics.Debug.WriteLine($"[PrayerPackStore] old image-cache cleanup failed: {error}");
+        }
+    }
+
+    private static string? ImageCacheDirectory()
+    {
+        var root = ImageCacheRootDirectory();
+        return root is null ? null : Path.Combine(root, ImageCacheSessionName);
+    }
+
+    private static string? ImageCacheRootDirectory()
+    {
+        if (_imageCacheDirectoryOverride is { Length: > 0 } directory) return directory;
+        try
+        {
+            return Path.Combine(ApplicationData.Current.LocalCacheFolder.Path, "PrayerPackImages");
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private static Stream PrepareSeekablePack(Stream stream)
+    {
+        if (!stream.CanSeek) return CopyToMemory(stream);
+        ValidateArchiveLength(stream.Length);
+        return stream;
     }
 
     private static MemoryStream CopyToMemory(Stream stream)
     {
         var memory = new MemoryStream();
-        stream.CopyTo(memory);
-        memory.Position = 0;
-        return memory;
+        try
+        {
+            CopyBounded(stream, memory, MaxPackArchiveBytes);
+            memory.Position = 0;
+            return memory;
+        }
+        catch
+        {
+            memory.Dispose();
+            throw;
+        }
     }
 
     private sealed record PackManifest(
@@ -619,6 +1153,8 @@ public static class PrayerPackStore
         Dictionary<string, string>? ReminderPresetFooter = null,
         List<string>? Tags = null);
 
+    private sealed record PackEntryLocation(string BundleId, string EntryName, long Revision = 0);
+
     private sealed record PackContent(
         Dictionary<string, string>? Prayers,
         Dictionary<string, MysteryTextOverride>? Mysteries,
@@ -631,7 +1167,7 @@ public static class PrayerPackStore
 }
 
 /// <summary>One narrated recording a bundle declares in its <c>audio.json</c> (an optional
-/// bundle file, staged by both packers like options.json — see Shared/ARCHITECTURE.md's
+/// bundle file, staged by both packers like options.json — see Shared/ARCHITECTURE.markdown's
 /// "Audio"). AudioPlaybackService plays these through the prayer flow's transport bar —
 /// metadata loads eagerly here, bytes are served on demand via
 /// <see cref="PrayerPackStore.AudioData"/> and extracted to a cache file at load. Files are Ogg Opus (RFC 7845, <c>.opus</c>) under the
@@ -878,7 +1414,7 @@ public sealed record CustomDevotionDefinition(
 
         /// <summary>A multi-day devotion (novenas, the 33-day Montfort consecration): one step
         /// list per day, with optional shared opening/closing prayed every day. Per-favorite
-        /// day progress is a planned follow-up (see ARCHITECTURE.md's "Multi-day devotions") —
+        /// day progress is a planned follow-up (see ARCHITECTURE.markdown's "Multi-day devotions") —
         /// until it lands, sessions pray day 1.</summary>
         Days,
     }

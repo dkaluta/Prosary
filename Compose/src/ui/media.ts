@@ -2,40 +2,65 @@
 // (Shared/Images files are exact 1:1 squares — uploads are center-cropped to match and
 // re-encoded as JPEG), chapter time parsing, and blob downloads.
 
-export async function readFileBytes(file: File): Promise<Uint8Array> {
+export const MEDIA_LIMITS = {
+  openFileBytes: 528 * 1024 * 1024,
+  imageSourceBytes: 64 * 1024 * 1024,
+  audioBytes: 256 * 1024 * 1024,
+} as const;
+
+function mebibytes(bytes: number): number {
+  return Math.round(bytes / (1024 * 1024));
+}
+
+export async function readFileBytes(
+  file: File,
+  maxBytes = MEDIA_LIMITS.openFileBytes,
+  kind = "file",
+): Promise<Uint8Array> {
+  if (file.size > maxBytes) {
+    throw new Error(`That ${kind} is larger than the ${mebibytes(maxBytes)} MB limit.`);
+  }
   return new Uint8Array(await file.arrayBuffer());
 }
 
 export async function imageToSquareJpeg(
   file: File,
   size = 1024,
-): Promise<{ jpeg: Uint8Array; dataUrl: string }> {
+): Promise<Uint8Array> {
+  if (file.size > MEDIA_LIMITS.imageSourceBytes) {
+    throw new Error(
+      `That image is larger than the ${mebibytes(MEDIA_LIMITS.imageSourceBytes)} MB limit.`,
+    );
+  }
   const bitmap = await createImageBitmap(file);
-  const side = Math.min(bitmap.width, bitmap.height);
-  const target = Math.min(side, size);
-  const canvas = document.createElement("canvas");
-  canvas.width = target;
-  canvas.height = target;
-  const context = canvas.getContext("2d");
-  if (!context) throw new Error("Could not read the image.");
-  context.drawImage(
-    bitmap,
-    (bitmap.width - side) / 2,
-    (bitmap.height - side) / 2,
-    side,
-    side,
-    0,
-    0,
-    target,
-    target,
-  );
-  bitmap.close();
-  const blob = await new Promise<Blob | null>((resolve) =>
-    canvas.toBlob(resolve, "image/jpeg", 0.85),
-  );
-  if (!blob) throw new Error("Could not convert the image.");
-  const jpeg = new Uint8Array(await blob.arrayBuffer());
-  return { jpeg, dataUrl: canvas.toDataURL("image/jpeg", 0.85) };
+  try {
+    const side = Math.min(bitmap.width, bitmap.height);
+    if (side < 1) throw new Error("That image has no visible pixels.");
+    const target = Math.min(side, size);
+    const canvas = document.createElement("canvas");
+    canvas.width = target;
+    canvas.height = target;
+    const context = canvas.getContext("2d");
+    if (!context) throw new Error("Could not read the image.");
+    context.drawImage(
+      bitmap,
+      (bitmap.width - side) / 2,
+      (bitmap.height - side) / 2,
+      side,
+      side,
+      0,
+      0,
+      target,
+      target,
+    );
+    const blob = await new Promise<Blob | null>((resolve) =>
+      canvas.toBlob(resolve, "image/jpeg", 0.85),
+    );
+    if (!blob) throw new Error("Could not convert the image.");
+    return new Uint8Array(await blob.arrayBuffer());
+  } finally {
+    bitmap.close();
+  }
 }
 
 /** 95 -> "1:35". */
@@ -64,7 +89,10 @@ export function download(name: string, bytes: Uint8Array, mime: string): void {
   const anchor = document.createElement("a");
   anchor.href = url;
   anchor.download = name;
+  anchor.hidden = true;
+  document.body.append(anchor);
   anchor.click();
+  anchor.remove();
   setTimeout(() => URL.revokeObjectURL(url), 10_000);
 }
 

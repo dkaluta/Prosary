@@ -5,7 +5,7 @@
 
 let crcTable: Uint32Array | undefined;
 
-function crc32(data: Uint8Array): number {
+function updateCrc32(crc: number, data: Uint8Array): number {
   if (!crcTable) {
     crcTable = new Uint32Array(256);
     for (let i = 0; i < 256; i++) {
@@ -14,11 +14,14 @@ function crc32(data: Uint8Array): number {
       crcTable[i] = c >>> 0;
     }
   }
-  let crc = 0xffffffff;
   for (let i = 0; i < data.length; i++) {
     crc = crcTable[(crc ^ data[i]) & 0xff] ^ (crc >>> 8);
   }
-  return (crc ^ 0xffffffff) >>> 0;
+  return crc;
+}
+
+function crc32(data: Uint8Array): number {
+  return (updateCrc32(0xffffffff, data) ^ 0xffffffff) >>> 0;
 }
 
 class ByteWriter {
@@ -56,15 +59,31 @@ export interface ZipFile {
 
 /** Builds a stored (uncompressed) zip — the same shape the iOS tests' storedZip emits. */
 export function buildZip(files: ZipFile[]): Uint8Array {
+  if (files.length > ZIP64_U16 - 1) {
+    throw new Error("ZIP64 archives are unsupported.");
+  }
   const encoder = new TextEncoder();
   const out = new ByteWriter();
   const central = new ByteWriter();
   const offsets: number[] = [];
-
-  for (const { name, data } of files) {
-    offsets.push(out.length);
+  const seenNames = new Set<string>();
+  // Local and central headers repeat this metadata. Preparing it once avoids scanning large
+  // JPEG/Opus payloads twice merely to emit the same CRC.
+  const prepared = files.map(({ name, data }) => {
+    validateEntryName(name);
+    if (name.endsWith("/")) throw new Error("buildZip accepts files, not directory entries.");
+    if (seenNames.has(name)) throw new Error(`ZIP archive contains duplicate entry ${name}.`);
+    seenNames.add(name);
     const nameBytes = encoder.encode(name);
-    const crc = crc32(data);
+    if (nameBytes.length > ZIP64_U16 - 1 || data.length >= ZIP64_U32) {
+      throw new Error("ZIP64 entries are unsupported.");
+    }
+    return { data, nameBytes, crc: crc32(data) };
+  });
+
+  for (const { data, nameBytes, crc } of prepared) {
+    if (out.length >= ZIP64_U32) throw new Error("ZIP64 archives are unsupported.");
+    offsets.push(out.length);
     out.u32(0x04034b50);
     out.u16(20); // version needed
     out.u16(0x0800); // flags: UTF-8 names
@@ -80,9 +99,7 @@ export function buildZip(files: ZipFile[]): Uint8Array {
     out.bytes(data);
   }
 
-  files.forEach(({ name, data }, i) => {
-    const nameBytes = encoder.encode(name);
-    const crc = crc32(data);
+  prepared.forEach(({ data, nameBytes, crc }, i) => {
     central.u32(0x02014b50);
     central.u16(20);
     central.u16(20);
@@ -105,68 +122,359 @@ export function buildZip(files: ZipFile[]): Uint8Array {
 
   const centralOffset = out.length;
   const centralBytes = central.concat();
+  if (centralOffset >= ZIP64_U32 || centralBytes.length >= ZIP64_U32) {
+    throw new Error("ZIP64 archives are unsupported.");
+  }
   out.bytes(centralBytes);
   out.u32(0x06054b50);
   out.u16(0);
   out.u16(0);
-  out.u16(files.length);
-  out.u16(files.length);
+  out.u16(prepared.length);
+  out.u16(prepared.length);
   out.u32(centralBytes.length);
   out.u32(centralOffset);
   out.u16(0);
   return out.concat();
 }
 
+const EOCD_SIGNATURE = 0x06054b50;
+const CENTRAL_HEADER_SIGNATURE = 0x02014b50;
+const LOCAL_HEADER_SIGNATURE = 0x04034b50;
+const EOCD_BYTES = 22;
+const CENTRAL_HEADER_BYTES = 46;
+const LOCAL_HEADER_BYTES = 30;
+const MAX_ZIP_COMMENT_BYTES = 0xffff;
+const ZIP64_U16 = 0xffff;
+const ZIP64_U32 = 0xffffffff;
+const STORED = 0;
+const DEFLATED = 8;
+const DATA_DESCRIPTOR_FLAG = 0x0008;
+const DEFLATE_OPTION_FLAGS = 0x0006;
+const UTF8_FLAG = 0x0800;
+const ALLOWED_FLAGS = DATA_DESCRIPTOR_FLAG | DEFLATE_OPTION_FLAGS | UTF8_FLAG;
+
+export type ZipReaderLimits = {
+  maxEntries: number;
+  maxCentralDirectoryBytes: number;
+  maxEntryUncompressedBytes: number;
+  maxTotalUncompressedBytes: number;
+};
+
+export const DEFAULT_ZIP_READER_LIMITS: ZipReaderLimits = {
+  maxEntries: 4096,
+  maxCentralDirectoryBytes: 16 * 1024 * 1024,
+  maxEntryUncompressedBytes: 256 * 1024 * 1024,
+  maxTotalUncompressedBytes: 512 * 1024 * 1024,
+};
+
 interface Entry {
   method: number;
+  crc: number;
   compressedSize: number;
-  localHeaderOffset: number;
+  uncompressedSize: number;
+  dataOffset: number;
 }
 
-async function inflateRaw(data: Uint8Array): Promise<Uint8Array> {
-  const stream = new Blob([data as BlobPart]).stream().pipeThrough(new DecompressionStream("deflate-raw"));
-  return new Uint8Array(await new Response(stream).arrayBuffer());
+interface LocalRange {
+  start: number;
+  end: number;
+  name: string;
+}
+
+function requireRange(offset: number, length: number, end: number, label: string): void {
+  if (
+    !Number.isSafeInteger(offset) ||
+    !Number.isSafeInteger(length) ||
+    offset < 0 ||
+    length < 0 ||
+    offset > end - length
+  ) {
+    throw new Error(`${label} points outside the zip archive.`);
+  }
+}
+
+function u16(bytes: Uint8Array, offset: number): number {
+  requireRange(offset, 2, bytes.length, "ZIP field");
+  return bytes[offset] | (bytes[offset + 1] << 8);
+}
+
+function u32(bytes: Uint8Array, offset: number): number {
+  requireRange(offset, 4, bytes.length, "ZIP field");
+  return (bytes[offset] | (bytes[offset + 1] << 8) | (bytes[offset + 2] << 16) | (bytes[offset + 3] << 24)) >>> 0;
+}
+
+function sameBytes(left: Uint8Array, right: Uint8Array): boolean {
+  if (left.length !== right.length) return false;
+  for (let i = 0; i < left.length; i++) {
+    if (left[i] !== right[i]) return false;
+  }
+  return true;
+}
+
+function validateEntryName(name: string): void {
+  const segments = name.split("/");
+  const isDirectory = name.endsWith("/");
+  if (
+    !name ||
+    name.startsWith("/") ||
+    name.includes("\\") ||
+    name.includes("\0") ||
+    segments.some((segment, index) => {
+      const trailingDirectorySegment = isDirectory && index === segments.length - 1;
+      return segment === "." || segment === ".." || (!segment && !trailingDirectorySegment);
+    })
+  ) {
+    throw new Error("ZIP entry has an unsafe path.");
+  }
+}
+
+async function inflateRaw(
+  data: Uint8Array,
+  expectedSize: number,
+  maxOutputBytes: number,
+): Promise<{ bytes: Uint8Array; crc: number }> {
+  const stream = new Blob([data as BlobPart])
+    .stream()
+    .pipeThrough(new DecompressionStream("deflate-raw"));
+  const reader = stream.getReader();
+  const output = new Uint8Array(expectedSize);
+  let offset = 0;
+  let crc = 0xffffffff;
+
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      if (offset + value.byteLength > expectedSize || offset + value.byteLength > maxOutputBytes) {
+        await reader.cancel().catch(() => {});
+        throw new Error("Deflated ZIP entry exceeds its declared or allowed size.");
+      }
+      output.set(value, offset);
+      offset += value.byteLength;
+      crc = updateCrc32(crc, value);
+    }
+  } catch (error) {
+    await reader.cancel().catch(() => {});
+    throw error;
+  }
+
+  if (offset !== expectedSize) {
+    throw new Error("Deflated ZIP entry ended before its declared size.");
+  }
+  return { bytes: output, crc: (crc ^ 0xffffffff) >>> 0 };
 }
 
 export class ZipReader {
+  private bytes: Uint8Array;
+  private entries: Map<string, Entry>;
+  private limits: ZipReaderLimits;
+
   private constructor(
-    private bytes: Uint8Array,
-    private entries: Map<string, Entry>,
-  ) {}
+    bytes: Uint8Array,
+    entries: Map<string, Entry>,
+    limits: ZipReaderLimits,
+  ) {
+    this.bytes = bytes;
+    this.entries = entries;
+    this.limits = limits;
+  }
 
-  static open(bytes: Uint8Array): ZipReader {
-    const u16 = (o: number) => bytes[o] | (bytes[o + 1] << 8);
-    const u32 = (o: number) => (bytes[o] | (bytes[o + 1] << 8) | (bytes[o + 2] << 16) | (bytes[o + 3] << 24)) >>> 0;
+  static open(bytes: Uint8Array, overrides: Partial<ZipReaderLimits> = {}): ZipReader {
+    const limits = { ...DEFAULT_ZIP_READER_LIMITS, ...overrides };
+    if (
+      Object.values(limits).some(
+        (limit) => !Number.isSafeInteger(limit) || limit < 0,
+      )
+    ) {
+      throw new Error("ZIP reader limits must be non-negative safe integers.");
+    }
+    if (bytes.length < EOCD_BYTES) throw new Error("Not a zip archive.");
 
-    // End-of-central-directory: scan backwards past any zip comment.
+    // An EOCD signature inside the comment is not an end record. The candidate's comment must
+    // consume the exact remaining bytes.
     let eocd = -1;
-    for (let i = bytes.length - 22; i >= Math.max(0, bytes.length - 22 - 0xffff); i--) {
-      if (u32(i) === 0x06054b50) {
-        eocd = i;
+    const firstCandidate = Math.max(0, bytes.length - EOCD_BYTES - MAX_ZIP_COMMENT_BYTES);
+    for (let offset = bytes.length - EOCD_BYTES; offset >= firstCandidate; offset--) {
+      if (
+        u32(bytes, offset) === EOCD_SIGNATURE &&
+        offset + EOCD_BYTES + u16(bytes, offset + 20) === bytes.length
+      ) {
+        eocd = offset;
         break;
       }
     }
-    if (eocd < 0) throw new Error("Not a zip archive.");
+    if (eocd < 0) throw new Error("ZIP end record is missing or malformed.");
 
-    const count = u16(eocd + 10);
-    let offset = u32(eocd + 16);
-    const decoder = new TextDecoder();
-    const entries = new Map<string, Entry>();
-    for (let i = 0; i < count; i++) {
-      if (u32(offset) !== 0x02014b50) throw new Error("Corrupt zip central directory.");
-      const method = u16(offset + 10);
-      const compressedSize = u32(offset + 20);
-      const nameLength = u16(offset + 28);
-      const extraLength = u16(offset + 30);
-      const commentLength = u16(offset + 32);
-      const localHeaderOffset = u32(offset + 42);
-      const name = decoder.decode(bytes.subarray(offset + 46, offset + 46 + nameLength));
-      if (!name.endsWith("/")) {
-        entries.set(name, { method, compressedSize, localHeaderOffset });
-      }
-      offset += 46 + nameLength + extraLength + commentLength;
+    const diskNumber = u16(bytes, eocd + 4);
+    const centralDisk = u16(bytes, eocd + 6);
+    const entriesOnDisk = u16(bytes, eocd + 8);
+    const entryCount = u16(bytes, eocd + 10);
+    const centralSize = u32(bytes, eocd + 12);
+    const centralOffset = u32(bytes, eocd + 16);
+    if (
+      diskNumber !== 0 ||
+      centralDisk !== 0 ||
+      entriesOnDisk !== entryCount ||
+      entryCount === ZIP64_U16 ||
+      centralSize === ZIP64_U32 ||
+      centralOffset === ZIP64_U32
+    ) {
+      throw new Error("Multi-disk and ZIP64 archives are unsupported.");
     }
-    return new ZipReader(bytes, entries);
+    if (entryCount > limits.maxEntries) throw new Error("ZIP archive contains too many entries.");
+    if (centralSize > limits.maxCentralDirectoryBytes) {
+      throw new Error("ZIP central directory is too large.");
+    }
+    requireRange(centralOffset, centralSize, eocd, "ZIP central directory");
+
+    const centralEnd = centralOffset + centralSize;
+    const decoder = new TextDecoder("utf-8", { fatal: true });
+    const seenNames = new Set<string>();
+    const entries = new Map<string, Entry>();
+    const localRanges: LocalRange[] = [];
+    let totalUncompressedSize = 0;
+    let cursor = centralOffset;
+
+    for (let i = 0; i < entryCount; i++) {
+      requireRange(cursor, CENTRAL_HEADER_BYTES, centralEnd, "ZIP central-directory entry");
+      if (u32(bytes, cursor) !== CENTRAL_HEADER_SIGNATURE) {
+        throw new Error("Corrupt ZIP central directory.");
+      }
+
+      const flags = u16(bytes, cursor + 8);
+      const method = u16(bytes, cursor + 10);
+      const crc = u32(bytes, cursor + 16);
+      const compressedSize = u32(bytes, cursor + 20);
+      const uncompressedSize = u32(bytes, cursor + 24);
+      const nameLength = u16(bytes, cursor + 28);
+      const extraLength = u16(bytes, cursor + 30);
+      const commentLength = u16(bytes, cursor + 32);
+      const startDisk = u16(bytes, cursor + 34);
+      const localHeaderOffset = u32(bytes, cursor + 42);
+      if (
+        startDisk !== 0 ||
+        compressedSize === ZIP64_U32 ||
+        uncompressedSize === ZIP64_U32 ||
+        localHeaderOffset === ZIP64_U32
+      ) {
+        throw new Error("Multi-disk and ZIP64 entries are unsupported.");
+      }
+      if (method !== STORED && method !== DEFLATED) {
+        throw new Error(`Unsupported ZIP compression method ${method}.`);
+      }
+      if ((flags & ~ALLOWED_FLAGS) !== 0 || (method === STORED && (flags & DEFLATE_OPTION_FLAGS) !== 0)) {
+        throw new Error("Encrypted or unsupported ZIP entry flags.");
+      }
+      if (uncompressedSize > limits.maxEntryUncompressedBytes) {
+        throw new Error("ZIP entry exceeds the uncompressed-size limit.");
+      }
+      totalUncompressedSize += uncompressedSize;
+      if (totalUncompressedSize > limits.maxTotalUncompressedBytes) {
+        throw new Error("ZIP archive exceeds the aggregate uncompressed-size limit.");
+      }
+
+      const recordLength = CENTRAL_HEADER_BYTES + nameLength + extraLength + commentLength;
+      requireRange(cursor, recordLength, centralEnd, "ZIP central-directory entry");
+      const centralNameBytes = bytes.subarray(
+        cursor + CENTRAL_HEADER_BYTES,
+        cursor + CENTRAL_HEADER_BYTES + nameLength,
+      );
+      let name: string;
+      try {
+        name = decoder.decode(centralNameBytes);
+      } catch {
+        throw new Error("ZIP entry name is not valid UTF-8.");
+      }
+      validateEntryName(name);
+      if (seenNames.has(name)) throw new Error(`ZIP archive contains duplicate entry ${name}.`);
+      seenNames.add(name);
+
+      requireRange(localHeaderOffset, LOCAL_HEADER_BYTES, centralOffset, "ZIP local header");
+      if (u32(bytes, localHeaderOffset) !== LOCAL_HEADER_SIGNATURE) {
+        throw new Error("Corrupt ZIP local header.");
+      }
+      const localFlags = u16(bytes, localHeaderOffset + 6);
+      const localMethod = u16(bytes, localHeaderOffset + 8);
+      const localCrc = u32(bytes, localHeaderOffset + 14);
+      const localCompressedSize = u32(bytes, localHeaderOffset + 18);
+      const localUncompressedSize = u32(bytes, localHeaderOffset + 22);
+      const localNameLength = u16(bytes, localHeaderOffset + 26);
+      const localExtraLength = u16(bytes, localHeaderOffset + 28);
+      const localVariableLength = localNameLength + localExtraLength;
+      requireRange(
+        localHeaderOffset + LOCAL_HEADER_BYTES,
+        localVariableLength,
+        centralOffset,
+        "ZIP local name and extra data",
+      );
+      const localNameBytes = bytes.subarray(
+        localHeaderOffset + LOCAL_HEADER_BYTES,
+        localHeaderOffset + LOCAL_HEADER_BYTES + localNameLength,
+      );
+      if (
+        localFlags !== flags ||
+        localMethod !== method ||
+        !sameBytes(localNameBytes, centralNameBytes)
+      ) {
+        throw new Error("ZIP local and central headers disagree.");
+      }
+
+      const usesDataDescriptor = (flags & DATA_DESCRIPTOR_FLAG) !== 0;
+      const localSizesAreZero =
+        localCrc === 0 && localCompressedSize === 0 && localUncompressedSize === 0;
+      const localMetadataMatches =
+        localCrc === crc &&
+        localCompressedSize === compressedSize &&
+        localUncompressedSize === uncompressedSize;
+      if (
+        (!usesDataDescriptor && !localMetadataMatches) ||
+        (usesDataDescriptor && !localSizesAreZero && !localMetadataMatches)
+      ) {
+        throw new Error("ZIP local and central sizes or CRC disagree.");
+      }
+      if (method === STORED && compressedSize !== uncompressedSize) {
+        throw new Error("Stored ZIP entry has inconsistent sizes.");
+      }
+
+      const dataOffset = localHeaderOffset + LOCAL_HEADER_BYTES + localVariableLength;
+      requireRange(dataOffset, compressedSize, centralOffset, "ZIP entry payload");
+      let localEnd = dataOffset + compressedSize;
+      if (usesDataDescriptor) {
+        let descriptorOffset = localEnd;
+        requireRange(descriptorOffset, 12, centralOffset, "ZIP data descriptor");
+        if (u32(bytes, descriptorOffset) === 0x08074b50) {
+          descriptorOffset += 4;
+          requireRange(descriptorOffset, 12, centralOffset, "ZIP data descriptor");
+        }
+        if (
+          u32(bytes, descriptorOffset) !== crc ||
+          u32(bytes, descriptorOffset + 4) !== compressedSize ||
+          u32(bytes, descriptorOffset + 8) !== uncompressedSize
+        ) {
+          throw new Error("ZIP data descriptor disagrees with its central header.");
+        }
+        localEnd = descriptorOffset + 12;
+      }
+      localRanges.push({ start: localHeaderOffset, end: localEnd, name });
+      if (!name.endsWith("/")) {
+        entries.set(name, { method, crc, compressedSize, uncompressedSize, dataOffset });
+      } else if (compressedSize !== 0 || uncompressedSize !== 0) {
+        throw new Error("ZIP directory entry contains a payload.");
+      }
+      cursor += recordLength;
+    }
+    if (cursor !== centralEnd) throw new Error("ZIP central-directory size does not match its entries.");
+
+    localRanges.sort((left, right) => left.start - right.start);
+    for (let i = 1; i < localRanges.length; i++) {
+      const previous = localRanges[i - 1];
+      const current = localRanges[i];
+      if (previous.end > current.start) {
+        throw new Error(`ZIP entries ${previous.name} and ${current.name} overlap.`);
+      }
+    }
+
+    return new ZipReader(bytes, entries, limits);
   }
 
   names(): string[] {
@@ -180,19 +488,29 @@ export class ZipReader {
   async contents(name: string): Promise<Uint8Array> {
     const entry = this.entries.get(name);
     if (!entry) throw new Error(`No such entry: ${name}`);
-    const { bytes } = this;
-    const u16 = (o: number) => bytes[o] | (bytes[o + 1] << 8);
-    const header = entry.localHeaderOffset;
-    const nameLength = u16(header + 26);
-    const extraLength = u16(header + 28);
-    const start = header + 30 + nameLength + extraLength;
-    const raw = bytes.subarray(start, start + entry.compressedSize);
-    if (entry.method === 0) return raw;
-    if (entry.method === 8) return inflateRaw(raw);
-    throw new Error(`Unsupported compression method ${entry.method}.`);
+    const raw = this.bytes.subarray(entry.dataOffset, entry.dataOffset + entry.compressedSize);
+    let contents: Uint8Array;
+    let actualCrc: number;
+    if (entry.method === STORED) {
+      contents = raw;
+      actualCrc = crc32(contents);
+    } else {
+      const inflated = await inflateRaw(
+        raw,
+        entry.uncompressedSize,
+        this.limits.maxEntryUncompressedBytes,
+      );
+      contents = inflated.bytes;
+      actualCrc = inflated.crc;
+    }
+    if (contents.length !== entry.uncompressedSize) {
+      throw new Error("ZIP entry length does not match its central-directory size.");
+    }
+    if (actualCrc !== entry.crc) throw new Error("ZIP entry failed its CRC check.");
+    return contents;
   }
 
   async json(name: string): Promise<unknown> {
-    return JSON.parse(new TextDecoder().decode(await this.contents(name)));
+    return JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(await this.contents(name)));
   }
 }

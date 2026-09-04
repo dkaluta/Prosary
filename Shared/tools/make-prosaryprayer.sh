@@ -1,6 +1,6 @@
 #!/bin/sh
 # Packs a devotion's authored source directory (Shared/content/<devotion>/) into a
-# .prosaryprayer bundle (a zip archive — see Shared/ARCHITECTURE.md for the format).
+# .prosaryprayer bundle (a zip archive — see Shared/ARCHITECTURE.markdown for the format).
 #
 # Usage: make-prosaryprayer.sh <source-dir> [output-path]
 #   source-dir   e.g. Shared/content/rosary
@@ -39,6 +39,12 @@ validate_json "$MANIFEST"
 
 DEVOTION_ID=$(uv run python -c "import json; print(json.load(open('$MANIFEST', encoding='utf-8'))['id'])")
 HAS_CATALOG=$(uv run python -c "import json; print(json.load(open('$MANIFEST', encoding='utf-8'))['hasCatalog'])")
+
+case "$DEVOTION_ID" in
+  ""|[!A-Za-z0-9]*|*[!A-Za-z0-9._-]*)
+    fail "manifest id must match [A-Za-z0-9][A-Za-z0-9._-]*"
+    ;;
+esac
 
 if [ -z "$OUT_PATH" ]; then
   OUT_PATH="$SHARED_DIR/dist/$DEVOTION_ID.prosaryprayer"

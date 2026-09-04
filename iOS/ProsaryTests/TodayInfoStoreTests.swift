@@ -8,6 +8,7 @@
 //  the row.
 //
 
+import Foundation
 import XCTest
 @testable import Prosary
 
@@ -222,6 +223,20 @@ final class TodayInfoStoreTests: XCTestCase {
     XCTAssertTrue(day.english.hasPrefix("Monday · Week "))
     XCTAssertTrue(day.english.hasSuffix(" of Ordinary Time"))
     XCTAssertTrue(day.hebrew.contains("בזמן הרגיל"))
+  }
+
+  func testHebrewEpistleShorthandPreservesFullSourceCitation() throws {
+    let corinthians = TodayInfoStore.readings(on: date("2026-09-04")).first
+    XCTAssertEqual(corinthians?.localizedShort("he"), "הראשונה אל הקורינתים ד׳")
+    XCTAssertEqual(
+      corinthians?.localizedFull("he"),
+      "אגרת שאול הראשונה אל הקורינתים ד׳ 1–5")
+
+    let petrine = try JSONDecoder().decode(
+      ReadingCitation.self,
+      from: Data(#"{"type":"reading","short":"2 Pet. 2","full":"2 Peter 2:1–3","shortByLanguage":{"he":"השנייה של כיפא ב׳"},"fullByLanguage":{"he":"אגרת כיפא השניה ב׳ 1–3"}}"#.utf8))
+    XCTAssertEqual(petrine.localizedShort("he"), "השנייה של כיפא ב׳")
+    XCTAssertEqual(petrine.localizedFull("he"), "אגרת כיפא השניה ב׳ 1–3")
   }
 
   func testReadingsFollowTheSelectedCalendarAndClearBetweenFiles() {

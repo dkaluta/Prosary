@@ -1,6 +1,6 @@
 import { del, put } from "@vercel/blob";
 import { getCurrentUser } from "@/lib/auth";
-import { BundleError, validateAndRestamp } from "@/lib/bundles";
+import { assertBundleByteLength, BundleError, validateAndRestamp } from "@/lib/bundles";
 import { getBundle, listBundles, upsertBundle } from "@/lib/db";
 import { uuidv7 } from "@/lib/uuidv7";
 
@@ -43,6 +43,7 @@ export async function POST(request: Request) {
 
   let validated;
   try {
+    assertBundleByteLength(file.size);
     validated = await validateAndRestamp(new Uint8Array(await file.arrayBuffer()), user.username);
   } catch (err) {
     if (err instanceof BundleError) {

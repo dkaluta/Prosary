@@ -22,8 +22,8 @@ export function BasicsScreen({ project, setProject }: Props) {
     }));
 
   return (
-    <section>
-      <h2>The basics</h2>
+    <section className="editor-section" aria-labelledby="basics-heading">
+      <h2 id="basics-heading">The basics</h2>
       <p className="help">
         What is this devotion called, and which languages will you write it in? People pray in the
         language they chose in the app, so every language you tick here needs its own text later.
@@ -107,22 +107,22 @@ export function BasicsScreen({ project, setProject }: Props) {
         <fieldset>
           <legend>Accent color</legend>
           <div className="row">
-            <span className="color-swatch tight">
+            <label className="color-swatch tight">
               <input
                 type="color"
                 value={project.accentColorHex}
                 onChange={(e) => update({ accentColorHex: e.target.value.toUpperCase() })}
               />
               in light mode
-            </span>
-            <span className="color-swatch tight">
+            </label>
+            <label className="color-swatch tight">
               <input
                 type="color"
                 value={project.accentColorDarkHex}
                 onChange={(e) => update({ accentColorDarkHex: e.target.value.toUpperCase() })}
               />
               in dark mode
-            </span>
+            </label>
           </div>
         </fieldset>
         <fieldset className="field">
@@ -201,6 +201,9 @@ export function BasicsScreen({ project, setProject }: Props) {
                   </span>
                   <input
                     type="text"
+                    inputMode="numeric"
+                    maxLength={5}
+                    pattern="[0-9]{2}-[0-9]{2}"
                     placeholder="11-29"
                     value={project.suggestedStart ?? ""}
                     onChange={(e) => update({ suggestedStart: e.target.value.trim() || undefined })}
@@ -212,8 +215,7 @@ export function BasicsScreen({ project, setProject }: Props) {
                     <span className="hint">— optional HH:mm; the reader's own times win</span>
                   </span>
                   <input
-                    type="text"
-                    placeholder="07:00"
+                    type="time"
                     value={project.suggestedReminderTime ?? ""}
                     onChange={(e) =>
                       update({ suggestedReminderTime: e.target.value.trim() || undefined })
@@ -272,14 +274,16 @@ export function BasicsScreen({ project, setProject }: Props) {
                 <span className="icon-choice">{icon.glyph}</span> {icon.label}
               </label>
             ))}
-            <label title="Any letter or emoji of your own">
-              <input
-                type="radio"
-                name="icon"
-                checked={project.iconGlyph !== ""}
-                onChange={() => update({ iconGlyph: project.iconGlyph || "✣" })}
-              />
-              <span className="icon-choice">{project.iconGlyph || "✣"}</span> Your own:
+            <div className="custom-icon-option" title="Any letter or emoji of your own">
+              <label>
+                <input
+                  type="radio"
+                  name="icon"
+                  checked={project.iconGlyph !== ""}
+                  onChange={() => update({ iconGlyph: project.iconGlyph || "✣" })}
+                />
+                <span className="icon-choice">{project.iconGlyph || "✣"}</span> Your own
+              </label>
               <input
                 type="text"
                 className="glyph-input"
@@ -297,7 +301,7 @@ export function BasicsScreen({ project, setProject }: Props) {
                   update({ iconGlyph: clusters.at(-1)?.segment ?? "" });
                 }}
               />
-            </label>
+            </div>
           </div>
         </fieldset>
       </div>

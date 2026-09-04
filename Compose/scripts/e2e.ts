@@ -4,12 +4,25 @@
 // Shared/tools/validate-devotion.py from the shell (see package.json's e2e script) — proving
 // the webapp and the CLI packer are two writers of one format.
 
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { buildBundle, buildBundleFiles } from "../src/format/pack";
 import type { EditorStep } from "../src/format/project";
-import { deserializeProject, newProject, newUid, serializeProject } from "../src/format/project";
+import {
+  attachUploadedArtwork,
+  newProject,
+  newUid,
+  pruneUnusedImages,
+  replaceAudioTrackMedia,
+} from "../src/format/project";
+import { deserializeProject, serializeProject } from "../src/format/projectFile";
+import {
+  changedAutosaveAssetKeys,
+  joinAutosaveProject,
+  splitAutosaveProject,
+} from "../src/storage/autosave";
 import { openBundle } from "../src/format/unpack";
 import { validateProject } from "../src/format/validate";
+import { ZIP_LIMITS, ZipReader, buildZip } from "../src/format/zip";
 
 function assert(condition: boolean, message: string): void {
   if (!condition) {
@@ -21,6 +34,79 @@ function assert(condition: boolean, message: string): void {
 function fail(message: string, ...detail: unknown[]): never {
   console.error("e2e FAILED:", message, ...detail);
   process.exit(1);
+}
+
+function expectThrow(action: () => unknown, message: string): void {
+  try {
+    action();
+    fail(message);
+  } catch {
+    // Expected.
+  }
+}
+
+async function expectRejection(action: () => Promise<unknown>, message: string): Promise<void> {
+  try {
+    await action();
+    fail(message);
+  } catch {
+    // Expected.
+  }
+}
+
+function u16(bytes: Uint8Array, offset: number): number {
+  return bytes[offset] | (bytes[offset + 1] << 8);
+}
+
+function u32(bytes: Uint8Array, offset: number): number {
+  return (
+    bytes[offset] |
+    (bytes[offset + 1] << 8) |
+    (bytes[offset + 2] << 16) |
+    (bytes[offset + 3] << 24)
+  ) >>> 0;
+}
+
+function setU32(bytes: Uint8Array, offset: number, value: number): void {
+  bytes[offset] = value & 0xff;
+  bytes[offset + 1] = (value >>> 8) & 0xff;
+  bytes[offset + 2] = (value >>> 16) & 0xff;
+  bytes[offset + 3] = (value >>> 24) & 0xff;
+}
+
+function setU16(bytes: Uint8Array, offset: number, value: number): void {
+  bytes[offset] = value & 0xff;
+  bytes[offset + 1] = (value >>> 8) & 0xff;
+}
+
+/** Convert the writer's one-entry stored zip to a conforming bit-3 data-descriptor zip. */
+function withDataDescriptor(zip: Uint8Array, signed: boolean): Uint8Array {
+  const oldEocd = zip.length - 22;
+  const oldCentral = u32(zip, oldEocd + 16);
+  const crc = u32(zip, oldCentral + 16);
+  const compressed = u32(zip, oldCentral + 20);
+  const uncompressed = u32(zip, oldCentral + 24);
+  const descriptorLength = signed ? 16 : 12;
+  const result = new Uint8Array(zip.length + descriptorLength);
+  result.set(zip.subarray(0, oldCentral), 0);
+  let descriptor = oldCentral;
+  if (signed) {
+    setU32(result, descriptor, 0x08074b50);
+    descriptor += 4;
+  }
+  setU32(result, descriptor, crc);
+  setU32(result, descriptor + 4, compressed);
+  setU32(result, descriptor + 8, uncompressed);
+  result.set(zip.subarray(oldCentral), oldCentral + descriptorLength);
+
+  setU16(result, 6, u16(result, 6) | 0x0008);
+  setU32(result, 14, 0);
+  setU32(result, 18, 0);
+  setU32(result, 22, 0);
+  const newCentral = oldCentral + descriptorLength;
+  setU16(result, newCentral + 8, u16(result, newCentral + 8) | 0x0008);
+  setU32(result, result.length - 22 + 16, newCentral);
+  return result;
 }
 
 const project = newProject();
@@ -334,4 +420,263 @@ console.log(
     );
   }
   console.log(`✓ projects saved before any of ${Object.keys(defaults).length} fields still restore`);
+}
+
+// The O Antiphons pack is built in even though it is calendar-surfaced rather than listed like
+// the other devotions. Compose must still reserve its id or an imported bundle could collide.
+{
+  const project = newProject();
+  project.name = "Not the built-in O Antiphons";
+  project.id = "oAntiphons";
+  project.steps = [cross];
+  assert(
+    validateProject(project).some((issue) => issue.message.includes("already used")),
+    "oAntiphons remains a reserved built-in id",
+  );
+  console.log("✓ oAntiphons remains reserved");
+}
+
+// Artwork is retained while ANY saved shape references it, even if that shape is currently
+// inactive. Only the active shape's assets belong in the exported devotion bundle.
+{
+  const image = (uid: string, byte: number) => ({
+    uid,
+    label: `${uid}.jpg`,
+    jpeg: new Uint8Array([byte]),
+  });
+  const step = (uid: string, imageUid: string): EditorStep => ({
+    uid,
+    kind: "custom",
+    title: uid,
+    titleByLanguage: { la: uid, en: uid },
+    bodyByLanguage: { la: uid, en: uid },
+    image: { kind: "upload", uid: imageUid },
+    isScripture: false,
+  });
+  const project = newProject();
+  project.name = "Retained Shapes";
+  project.id = "retainedShapes";
+  project.devotionType = "days";
+  project.steps = [step("flat", "flat-image")];
+  project.variants = [
+    {
+      uid: "form",
+      variantId: "form",
+      variantIdEdited: true,
+      name: "Form",
+      nameByLanguage: {},
+      defaultForLanguages: [],
+      steps: [step("variant", "variant-image")],
+    },
+  ];
+  project.days = [
+    {
+      uid: "day",
+      name: "Day",
+      nameByLanguage: {},
+      steps: [step("day-step", "day-image")],
+    },
+  ];
+  project.images = [
+    image("flat-image", 1),
+    image("variant-image", 2),
+    image("day-image", 3),
+    image("orphan", 4),
+  ];
+
+  const pruned = pruneUnusedImages(project);
+  assert(
+    pruned.images.map(({ uid }) => uid).join(",") ===
+      "flat-image,variant-image,day-image",
+    "image pruning follows references in flat steps, forms, and days",
+  );
+  const packedImages = buildBundleFiles(pruned).filter((file) => file.name.startsWith("images/"));
+  assert(packedImages.length === 1, "only the active shape's artwork is packed");
+  assert(
+    packedImages[0].name === "images/retainedShapes_art_01.jpg" &&
+      packedImages[0].data[0] === 3,
+    "active artwork numbering ignores retained inactive-shape images",
+  );
+
+  const blank = newProject();
+  blank.steps = [{ ...step("blank-step", "unused"), image: undefined }];
+  const firstAttachment = attachUploadedArtwork(
+    blank,
+    "blank-step",
+    "new.jpg",
+    new Uint8Array([7]),
+  );
+  const firstAttachmentUid = firstAttachment.steps[0].image?.kind === "upload"
+    ? firstAttachment.steps[0].image.uid
+    : "";
+  assert(
+    firstAttachment.images.some(({ uid }) => uid === firstAttachmentUid),
+    "a first artwork upload atomically adds its bytes and step reference",
+  );
+
+  const firstBytes = new Uint8Array([8, 9]);
+  const attached = attachUploadedArtwork(pruned, "day-step", "first.jpg", firstBytes);
+  const attachedUid = attached.days[0].steps[0].image?.kind === "upload"
+    ? attached.days[0].steps[0].image.uid
+    : "";
+  const replacementBytes = new Uint8Array([10, 11]);
+  const replaced = attachUploadedArtwork(attached, "day-step", "replacement.jpg", replacementBytes);
+  const replacedUid = replaced.days[0].steps[0].image?.kind === "upload"
+    ? replaced.days[0].steps[0].image.uid
+    : "";
+  assert(attachedUid === "day-image", "an existing upload keeps its uid when first replaced");
+  assert(replacedUid === attachedUid, "replacing artwork keeps the same uid");
+  assert(
+    replaced.images.find(({ uid }) => uid === replacedUid)?.jpeg === replacementBytes,
+    "same-uid replacement swaps the binary object without creating a duplicate image",
+  );
+
+  const beforeAutosave = splitAutosaveProject(attached);
+  const afterAutosave = splitAutosaveProject(replaced);
+  assert(
+    changedAutosaveAssetKeys(afterAutosave.assets, beforeAutosave.assets).includes(
+      `image:${attachedUid}`,
+    ),
+    "autosave rewrites changed bytes even when the media uid is stable",
+  );
+  const joined = joinAutosaveProject(afterAutosave.record, afterAutosave.assets);
+  assert(
+    joined.images.find(({ uid }) => uid === attachedUid)?.jpeg === replacementBytes,
+    "IndexedDB metadata and binary records join without base64",
+  );
+  assert(
+    !JSON.stringify(afterAutosave.record).includes("data:") &&
+      !JSON.stringify(afterAutosave.record).includes("jpeg"),
+    "autosave metadata contains neither data URLs nor inline JPEG bytes",
+  );
+
+  const oldAudio = new Uint8Array([1]);
+  const nextAudio = new Uint8Array([2]);
+  attached.audio = [
+    { uid: "stable-track", language: "en", fileName: "old.opus", bytes: oldAudio, chapters: [] },
+  ];
+  const audioReplaced = replaceAudioTrackMedia(attached, "stable-track", "new.opus", nextAudio);
+  assert(
+    audioReplaced.audio[0].uid === "stable-track" && audioReplaced.audio[0].bytes === nextAudio,
+    "replacing a recording preserves its uid and swaps its binary object",
+  );
+  assert(
+    changedAutosaveAssetKeys(
+      splitAutosaveProject(audioReplaced).assets,
+      splitAutosaveProject(attached).assets,
+    ).includes("audio:stable-track"),
+    "a same-uid recording replacement updates its IndexedDB asset",
+  );
+  console.log("✓ media pruning, active packing, native autosave, and same-uid replacement");
+}
+
+// Reader and writer hardening: malformed paths, duplicate names, bad offsets, declared-size
+// tricks, and modified payloads must fail before the data is accepted. Stored entries also
+// detach from the archive so a tiny retained asset cannot pin a huge source buffer.
+{
+  expectThrow(
+    () => buildZip([{ name: "../outside", data: new Uint8Array() }]),
+    "the zip writer accepted path traversal",
+  );
+  expectThrow(
+    () =>
+      buildZip([
+        { name: "same", data: new Uint8Array([1]) },
+        { name: "same", data: new Uint8Array([2]) },
+      ]),
+    "the zip writer accepted duplicate names",
+  );
+  expectThrow(
+    () => buildZip([{ name: "directory/", data: new Uint8Array() }]),
+    "the zip writer accepted a directory pseudo-file",
+  );
+  expectThrow(
+    () =>
+      buildZip(
+        Array.from({ length: ZIP_LIMITS.entryCount + 1 }, (_, index) => ({
+          name: `entry-${index}`,
+          data: new Uint8Array(),
+        })),
+      ),
+    "the zip writer accepted an entry count requiring a larger archive format",
+  );
+
+  const valid = buildZip([{ name: "safe.txt", data: new Uint8Array([1, 2, 3]) }]);
+  const content = await ZipReader.open(valid).contents("safe.txt");
+  assert(content.buffer !== valid.buffer, "stored content detaches from the full archive buffer");
+
+  for (const signed of [false, true]) {
+    const descriptorZip = withDataDescriptor(valid, signed);
+    const descriptorContent = await ZipReader.open(descriptorZip).contents("safe.txt");
+    assert(
+      descriptorContent.join(",") === "1,2,3",
+      `${signed ? "signed" : "unsigned"} data descriptor remains readable`,
+    );
+    const badDescriptor = descriptorZip.slice();
+    const descriptorOffset = 30 + u16(badDescriptor, 26) + u16(badDescriptor, 28) + 3;
+    badDescriptor[descriptorOffset + (signed ? 4 : 0)] ^= 1;
+    expectThrow(
+      () => ZipReader.open(badDescriptor),
+      `the zip reader accepted a bad ${signed ? "signed" : "unsigned"} data descriptor`,
+    );
+  }
+
+  const changedPayload = valid.slice();
+  const payloadOffset = 30 + u16(changedPayload, 26) + u16(changedPayload, 28);
+  changedPayload[payloadOffset] ^= 0xff;
+  await expectRejection(
+    () => ZipReader.open(changedPayload).contents("safe.txt"),
+    "the zip reader accepted a CRC mismatch",
+  );
+
+  const badOffset = valid.slice();
+  const eocd = badOffset.length - 22;
+  setU32(badOffset, eocd + 16, badOffset.length);
+  expectThrow(() => ZipReader.open(badOffset), "the zip reader accepted an out-of-bounds index");
+
+  const oversized = valid.slice();
+  const centralOffset = u32(oversized, oversized.length - 22 + 16);
+  setU32(oversized, centralOffset + 20, ZIP_LIMITS.entryBytes + 1);
+  setU32(oversized, centralOffset + 24, ZIP_LIMITS.entryBytes + 1);
+  expectThrow(() => ZipReader.open(oversized), "the zip reader accepted an oversized entry");
+
+  const mismatchedName = valid.slice();
+  mismatchedName[30] ^= 1;
+  expectThrow(
+    () => ZipReader.open(mismatchedName),
+    "the zip reader accepted conflicting local and central names",
+  );
+
+  const overlapping = buildZip([
+    { name: "first", data: new Uint8Array([1]) },
+    { name: "second", data: new Uint8Array([2]) },
+  ]);
+  const overlapCentral = u32(overlapping, overlapping.length - 22 + 16);
+  setU32(overlapping, 18, 2);
+  setU32(overlapping, 22, 2);
+  setU32(overlapping, overlapCentral + 20, 2);
+  setU32(overlapping, overlapCentral + 24, 2);
+  expectThrow(() => ZipReader.open(overlapping), "the zip reader accepted overlapping entries");
+
+  const canonicalPackNames = readdirSync("../Shared/dist")
+    .filter((name) => name.endsWith(".prosaryprayer"))
+    .sort();
+  assert(canonicalPackNames.length === 9, "expected all nine canonical devotion packs");
+  for (const packName of canonicalPackNames) {
+    const canonical = ZipReader.open(
+      new Uint8Array(readFileSync(`../Shared/dist/${packName}`)),
+    );
+    assert(canonical.has("manifest.json"), `${packName} has no manifest`);
+    for (const entryName of canonical.names()) await canonical.contents(entryName);
+  }
+
+  const withUnusedImage = buildZip([
+    ...buildBundleFiles(project),
+    { name: "images/unused.jpg", data: new Uint8Array([5, 6, 7]) },
+  ]);
+  const reopenedWithoutBloat = await openBundle(withUnusedImage);
+  assert(reopenedWithoutBloat.images.length === 0, "unused archived artwork is not retained");
+  console.log(
+    `✓ zip CRC, descriptors, overlap, path, duplicate, size, bounds, retention, and all ${canonicalPackNames.length} canonical packs`,
+  );
 }

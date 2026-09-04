@@ -27,7 +27,7 @@ Calendars and their sources:
                          very rite Erez's Mission belongs to), one request per day, taking
                          only the liturgical day title; ferial days arrive as plain date
                          titles ("The fourteenth day of August") and are skipped. CREDIT IS
-                         REQUIRED AND GIVEN — dataset comment, ARCHITECTURE.md, and every
+                         REQUIRED AND GIVEN — dataset comment, ARCHITECTURE.markdown, and every
                          platform's About screen carry "courtesy of Evangelizo.org (Daily
                          Gospel), © Evangelizo.org". The API serves a rolling window only
                          (~3 months ahead; farther dates answer "too far in the future"), so
