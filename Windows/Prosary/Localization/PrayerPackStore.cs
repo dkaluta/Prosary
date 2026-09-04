@@ -761,7 +761,7 @@ public static class PrayerPackStore
         if (input.CanSeek)
         {
             var remainingLength = input.Length - input.Position;
-            if (expectedLength is { } declaredLength && declaredLength != remainingLength)
+            if (expectedLength is { } reportedLength && reportedLength != remainingLength)
             {
                 throw new InstallException(UnreadablePackMessage);
             }
