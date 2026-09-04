@@ -6,6 +6,7 @@ import { BundleLanguages, BundleTags, DownloadLink } from "@/components/BundleCa
 import { PageHeader } from "@/components/PageHeader";
 import { StatusMessage } from "@/components/StatusMessage";
 import { getBundle } from "@/lib/db";
+import { privatePageMetadata, publicPageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-dynamic";
 
@@ -30,12 +31,24 @@ const loadBundle = cache(async (id: string) => {
 export async function generateMetadata({ params }: BundleParams): Promise<Metadata> {
   const { id: raw } = await params;
   const id = decodeBundleId(raw);
-  if (!id) return { title: "Devotion not found" };
-  const { bundle } = await loadBundle(id);
-  return {
-    title: bundle?.name ?? "Community devotion",
-    description: bundle?.description || undefined,
-  };
+  if (!id) return privatePageMetadata({
+    title: "Devotion not found",
+    description: "This Prosary devotion could not be found.",
+  });
+  const { bundle, offline } = await loadBundle(id);
+  if (!bundle && !offline) {
+    return privatePageMetadata({
+      title: "Devotion not found",
+      description: "This Prosary devotion could not be found.",
+    });
+  }
+  const title = bundle?.name ?? "Community devotion";
+  return publicPageMetadata({
+    title,
+    path: `/bundle/${encodeURIComponent(id)}`,
+    description:
+      bundle?.description || `Download ${title}, a community devotion for the native Prosary apps.`,
+  });
 }
 
 export default async function BundlePage({ params }: BundleParams) {

@@ -4,12 +4,15 @@ import { PageHeader } from "@/components/PageHeader";
 import { StatusMessage } from "@/components/StatusMessage";
 import { SubmitForm } from "@/components/SubmitForm";
 import { getCurrentUser } from "@/lib/auth";
+import { publicPageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicPageMetadata({
   title: "Submit a devotion",
-};
+  path: "/submit",
+  description: "Share a portable .prosaryprayer devotion bundle with the Prosary community.",
+});
 
 export default async function SubmitPage() {
   let user: Awaited<ReturnType<typeof getCurrentUser>> = null;

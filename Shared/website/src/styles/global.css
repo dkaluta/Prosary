@@ -21,6 +21,7 @@ body {
   min-height: 100svh;
   margin: 0;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto 1fr auto;
   background: radial-gradient(circle at 8% 0%, color-mix(in srgb, var(--prosary-lime-top) 18%, transparent), transparent 28rem), var(--prosary-background);
   color: var(--prosary-text);
@@ -76,6 +77,7 @@ pre {
 
 code {
   font-size: 0.9em;
+  overflow-wrap: anywhere;
 }
 
 .skip-link {
@@ -595,10 +597,12 @@ code {
 .legal-content {
   min-width: 0;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 18px;
 }
 
 .legal-content section {
+  min-width: 0;
   scroll-margin-block-start: 92px;
   padding: clamp(24px, 5vw, 38px);
   border: var(--prosary-border-width) solid var(--prosary-border);
@@ -817,6 +821,11 @@ code {
 }
 
 @media (max-width: 560px) {
+  html {
+    min-width: 0;
+    scrollbar-gutter: auto;
+  }
+
   .site-nav {
     min-height: 62px;
   }

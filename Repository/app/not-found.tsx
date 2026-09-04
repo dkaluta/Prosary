@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
+import { privatePageMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = privatePageMetadata({
+  title: "Page not found",
+  description: "This page is not in the Prosary community library.",
+});
 
 export default function NotFound() {
   return (

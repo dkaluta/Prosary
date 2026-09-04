@@ -234,6 +234,12 @@ code,
   color: var(--brand-strong);
 }
 
+.top nav a[aria-current="page"] {
+  border-color: var(--brand);
+  background: var(--surface-accent);
+  color: var(--brand-strong);
+}
+
 main {
   width: min(100%, 58rem);
   min-height: calc(100vh - 15rem);
@@ -596,6 +602,32 @@ textarea {
   margin: 0;
 }
 
+.filters :where(input[type="search"], select, .filter-submit) {
+  height: var(--prosary-control-height);
+  min-height: var(--prosary-control-height);
+  border-radius: var(--prosary-radius-control);
+}
+
+.filters select {
+  -webkit-appearance: none;
+  appearance: none;
+  padding-inline-end: calc(var(--prosary-control-padding-inline) + 1.25rem);
+  background-image:
+    linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.15rem) calc(50% - 0.125rem),
+    calc(100% - 0.85rem) calc(50% - 0.125rem);
+  background-repeat: no-repeat;
+  background-size: 0.3rem 0.3rem;
+}
+
+.filters select:dir(rtl) {
+  background-position:
+    0.85rem calc(50% - 0.125rem),
+    1.15rem calc(50% - 0.125rem);
+}
+
 .clear-filters {
   display: inline-flex;
   min-height: var(--prosary-control-height);
@@ -955,6 +987,13 @@ textarea {
     background: Canvas;
   }
 
+  .filters select {
+    -webkit-appearance: auto;
+    appearance: auto;
+    padding-inline-end: var(--prosary-control-padding-inline);
+    background-image: none;
+  }
+
   .page-header::before {
     background: Highlight;
   }
@@ -969,5 +1008,9 @@ textarea {
   .button {
     border-color: ButtonText;
     box-shadow: none;
+  }
+
+  .top nav a[aria-current="page"] {
+    border: 2px solid Highlight;
   }
 }

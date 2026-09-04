@@ -28,7 +28,7 @@ export function PublishReceiver({ username }: { username: string | null }) {
   useEffect(() => {
     setHasOpener(Boolean(window.opener));
     const onMessage = (event: MessageEvent) => {
-      if (!ALLOWED_OPENERS.includes(event.origin)) return;
+      if (!ALLOWED_OPENERS.includes(event.origin) || event.source !== window.opener) return;
       const data = event.data;
       if (data?.type !== "prosary-publish-bundle" || !(data.bytes instanceof ArrayBuffer)) return;
       const manifestTags = Array.isArray(data.tags)

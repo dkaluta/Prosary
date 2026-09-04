@@ -22,7 +22,8 @@ import {
 } from "../src/storage/autosave";
 import { openBundle } from "../src/format/unpack";
 import { validateProject } from "../src/format/validate";
-import { ZIP_LIMITS, ZipReader, buildZip } from "../src/format/zip";
+import { ZIP_LIMITS, ZipReader, buildZip, storedZipByteLength } from "../src/format/zip";
+import { OGG_OPUS_MIME, PORTABLE_FILE_MIME, supportsOggOpus } from "../src/ui/media";
 
 function assert(condition: boolean, message: string): void {
   if (!condition) {
@@ -113,6 +114,20 @@ const project = newProject();
 project.name = "Example Devotion";
 project.id = "exampleDevotion";
 project.languages = ["la", "en"];
+
+assert(PORTABLE_FILE_MIME === "application/octet-stream", "portable downloads must keep custom extensions");
+let probedAudioType = "";
+assert(
+  supportsOggOpus((mimeType) => {
+    probedAudioType = mimeType;
+    return "probably";
+  }) && probedAudioType === OGG_OPUS_MIME,
+  "Ogg Opus preview support probes the wrong media type",
+);
+assert(
+  !supportsOggOpus(() => ""),
+  "an empty canPlayType result was treated as playable",
+);
 
 const cross: EditorStep = {
   uid: newUid(),
@@ -602,6 +617,10 @@ console.log(
   );
 
   const valid = buildZip([{ name: "safe.txt", data: new Uint8Array([1, 2, 3]) }]);
+  assert(
+    storedZipByteLength([{ name: "safe.txt", data: new Uint8Array([1, 2, 3]) }]) === valid.length,
+    "the stored zip size preflight disagrees with the writer",
+  );
   const content = await ZipReader.open(valid).contents("safe.txt");
   assert(content.buffer !== valid.buffer, "stored content detaches from the full archive buffer");
 
@@ -668,6 +687,33 @@ console.log(
     );
     assert(canonical.has("manifest.json"), `${packName} has no manifest`);
     for (const entryName of canonical.names()) await canonical.contents(entryName);
+  }
+
+  const nativeDecompressionStream = Object.getOwnPropertyDescriptor(
+    globalThis,
+    "DecompressionStream",
+  );
+  if (!nativeDecompressionStream) fail("the test runtime has no DecompressionStream to restore");
+  try {
+    Object.defineProperty(globalThis, "DecompressionStream", {
+      value: undefined,
+      configurable: true,
+      writable: true,
+    });
+    const unsupported = ZipReader.open(
+      new Uint8Array(readFileSync("../Shared/dist/angelus.prosaryprayer")),
+    );
+    try {
+      await unsupported.contents("devotion.json");
+      fail("compressed content opened without DecompressionStream");
+    } catch (error) {
+      assert(
+        error instanceof Error && error.message.includes("cannot open compressed prayer bundles"),
+        "unsupported compressed bundles do not explain the browser capability",
+      );
+    }
+  } finally {
+    Object.defineProperty(globalThis, "DecompressionStream", nativeDecompressionStream);
   }
 
   const withUnusedImage = buildZip([

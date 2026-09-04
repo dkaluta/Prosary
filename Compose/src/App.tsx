@@ -2,10 +2,11 @@ import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from "react
 import type { Dispatch, SetStateAction } from "react";
 import type { Project } from "./format/project";
 import { newProject, pruneUnusedImages } from "./format/project";
+import { deserializeProject, serializeProject } from "./format/projectFile";
 import type { WizardScreen } from "./format/validate";
 import { validateProject } from "./format/validate";
 import { BasicsScreen } from "./ui/BasicsScreen";
-import { download, pickFile, readFileBytes } from "./ui/media";
+import { PORTABLE_FILE_MIME, download, pickFile, readFileBytes } from "./ui/media";
 import { clearAutosave, saveAutosave } from "./storage/autosave";
 
 const StepsScreen = lazy(() =>
@@ -69,35 +70,36 @@ export function App({ initialProject }: Props) {
 
   const openFile = () => {
     setOpenError(null);
-    pickFile(".prosaryprayer,.prosarycompose", async (file) => {
-      setFileAction("opening");
-      try {
-        const bytes = await readFileBytes(file);
-        if (bytes[0] === 0x50 && bytes[1] === 0x4b) {
-          const { openBundle } = await import("./format/unpack");
-          setProject(await openBundle(bytes));
-        } else {
-          const { deserializeProject } = await import("./format/projectFile");
-          setProject(deserializeProject(new TextDecoder().decode(bytes)));
+    pickFile(
+      ".prosaryprayer,.prosaryprayer.zip,.prosarycompose,.prosarycompose.json,application/zip,application/json,application/octet-stream",
+      async (file) => {
+        setFileAction("opening");
+        try {
+          const bytes = await readFileBytes(file);
+          if (bytes[0] === 0x50 && bytes[1] === 0x4b) {
+            const { openBundle } = await import("./format/unpack");
+            setProject(await openBundle(bytes));
+          } else {
+            setProject(deserializeProject(new TextDecoder().decode(bytes)));
+          }
+          setScreen("basics");
+        } catch (error) {
+          setOpenError(error instanceof Error ? error.message : "Could not open that file.");
+        } finally {
+          setFileAction("idle");
         }
-        setScreen("basics");
-      } catch (error) {
-        setOpenError(error instanceof Error ? error.message : "Could not open that file.");
-      } finally {
-        setFileAction("idle");
-      }
-    });
+      },
+    );
   };
 
   const saveProject = async () => {
     setOpenError(null);
     setFileAction("saving");
     try {
-      const { serializeProject } = await import("./format/projectFile");
       download(
         `${project.id || "devotion"}.prosarycompose`,
         new TextEncoder().encode(serializeProject(project)),
-        "application/json",
+        PORTABLE_FILE_MIME,
       );
     } catch (error) {
       setOpenError(error instanceof Error ? error.message : "Could not save that project.");

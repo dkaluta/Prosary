@@ -3,6 +3,7 @@ import {
   newProject,
   pruneUnusedImages,
 } from "../format/project";
+import { deserializeProject } from "../format/projectFile";
 
 /** Kept only to migrate autosaves written before binary media moved to IndexedDB. */
 export const LEGACY_AUTOSAVE_KEY = "prosary-compose-autosave";
@@ -200,7 +201,6 @@ async function readLegacyAutosave(): Promise<Project | null> {
   try {
     const saved = localStorage.getItem(LEGACY_AUTOSAVE_KEY);
     if (!saved) return null;
-    const { deserializeProject } = await import("../format/projectFile");
     return deserializeProject(saved);
   } catch {
     return null;

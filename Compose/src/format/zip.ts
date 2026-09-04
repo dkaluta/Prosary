@@ -59,6 +59,15 @@ export interface ZipFile {
   data: Uint8Array;
 }
 
+/** Exact byte length of the stored archive produced by buildZip, without scanning payloads. */
+export function storedZipByteLength(files: ZipFile[]): number {
+  const encoder = new TextEncoder();
+  return files.reduce(
+    (total, file) => total + file.data.length + 76 + encoder.encode(file.name).length * 2,
+    22,
+  );
+}
+
 export const ZIP_LIMITS = {
   entryCount: 4_096,
   centralDirectoryBytes: 16 * 1024 * 1024,
@@ -205,10 +214,23 @@ async function inflateRaw(
   data: Uint8Array,
   expectedSize: number,
 ): Promise<{ bytes: Uint8Array; crc: number }> {
+  if (typeof DecompressionStream === "undefined") {
+    throw new Error(
+      "This browser cannot open compressed prayer bundles. Update your browser, or open a bundle saved without compression.",
+    );
+  }
   const output = new Uint8Array(expectedSize);
-  const stream = new Blob([data as BlobPart])
-    .stream()
-    .pipeThrough(new DecompressionStream("deflate-raw"));
+  let stream: ReadableStream<Uint8Array>;
+  try {
+    stream = new Blob([data as BlobPart])
+      .stream()
+      .pipeThrough(new DecompressionStream("deflate-raw"));
+  } catch (error) {
+    throw new Error(
+      "This browser cannot open compressed prayer bundles. Update your browser, or open a bundle saved without compression.",
+      { cause: error },
+    );
+  }
   const reader = stream.getReader();
   let offset = 0;
   let crc = 0xffffffff;

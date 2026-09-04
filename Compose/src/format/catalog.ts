@@ -17,6 +17,17 @@ export const LANGUAGES = [
 
 export type LanguageCode = (typeof LANGUAGES)[number]["code"];
 
+// The community repository currently validates this subset. Compose keeps the other languages
+// available for direct download/import and explains the publishing boundary on Finish.
+export const REPOSITORY_PUBLISH_LANGUAGE_CODES: readonly LanguageCode[] = [
+  "la",
+  "en",
+  "ar",
+  "he",
+  "ru",
+  "tl",
+];
+
 export function isRtl(code: LanguageCode): boolean {
   return LANGUAGES.find((l) => l.code === code)?.rtl ?? false;
 }

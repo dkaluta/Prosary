@@ -5,7 +5,14 @@ import type { LanguageCode } from "../format/catalog";
 import type { EditorAudioTrack, EditorStep, Project } from "../format/project";
 import { newUid, projectSteps, replaceAudioTrackMedia } from "../format/project";
 import { isOggOpus } from "../format/validate";
-import { MEDIA_LIMITS, formatTime, parseTime, pickFile, readFileBytes } from "./media";
+import {
+  MEDIA_LIMITS,
+  formatTime,
+  parseTime,
+  pickFile,
+  readFileBytes,
+  supportsOggOpus,
+} from "./media";
 import { useObjectUrl } from "./useObjectUrl";
 
 interface Props {
@@ -294,6 +301,18 @@ function ChapterTime({
 }
 
 function OpusPlayer({ bytes, label }: { bytes: Uint8Array; label: string }) {
-  const url = useObjectUrl(bytes, "audio/ogg");
-  return <audio controls preload="metadata" src={url} aria-label={label} />;
+  const canPreview = useMemo(() => {
+    if (typeof document === "undefined") return false;
+    const audio = document.createElement("audio");
+    return supportsOggOpus((mimeType) => audio.canPlayType(mimeType));
+  }, []);
+  const url = useObjectUrl(canPreview ? bytes : null, "audio/ogg");
+  return canPreview ? (
+    <audio controls preload="metadata" src={url} aria-label={label} />
+  ) : (
+    <p className="help" role="note">
+      Audio preview is unavailable in this browser. The recording will still be included in
+      your devotion.
+    </p>
+  );
 }
