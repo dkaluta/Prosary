@@ -47,6 +47,13 @@ public static class PrayerPackStore
         "This file is not a readable .prosaryprayer bundle.";
 
     private static readonly Dictionary<string, Dictionary<string, string>> PrayerOverrides = new();
+    /// <summary>The fixed prayer keys that may participate in the process-wide override layer.
+    /// Deriving this once from the native translation catalog keeps the check AOT-safe and in
+    /// step with <see cref="PrayerKey"/> without reflecting over its constants. Bundle-local
+    /// keys remain available through <see cref="RawContentByBundle"/> only.</summary>
+    private static readonly HashSet<string> SharedPrayerKeys = PrayerTranslations.ByLanguage.Values
+        .SelectMany(static table => table.Keys)
+        .ToHashSet(StringComparer.Ordinal);
     private static readonly Dictionary<string, Dictionary<string, MysteryTextOverride>> MysteryOverrides = new();
     /// <summary>Image key → pack entries that provide it, in load order. Only the tiny entry
     /// locations stay resident: JPEG bytes are streamed from the winning pack when WinUI first
@@ -624,7 +631,11 @@ public static class PrayerPackStore
             var prayers = PrayerOverrides.TryGetValue(language, out var existingPrayers) ? existingPrayers : new Dictionary<string, string>();
             foreach (var (key, text) in rawContent)
             {
-                prayers[ToPascalCase(key)] = text;
+                var sharedKey = ToPascalCase(key);
+                if (SharedPrayerKeys.Contains(sharedKey))
+                {
+                    prayers[sharedKey] = text;
+                }
             }
             PrayerOverrides[language] = prayers;
 
