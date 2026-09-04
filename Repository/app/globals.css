@@ -67,7 +67,7 @@ a:hover {
   outline-offset: var(--prosary-focus-offset);
 }
 
-main[id="main-content"]:focus {
+main[id="main-content"]:focus-visible {
   outline: var(--prosary-focus-width) solid var(--focus);
   outline-offset: calc(var(--prosary-focus-offset) * -1);
 }
@@ -444,7 +444,7 @@ main {
 }
 
 .bundle-card:hover,
-.bundle-card:focus-within {
+.bundle-card:has(:focus-visible) {
   border-color: var(--brand-strong);
   box-shadow: var(--shadow);
 }

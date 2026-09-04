@@ -51,7 +51,7 @@ body {
     max(64px, env(safe-area-inset-bottom)) max(28px, env(safe-area-inset-left));
 }
 
-#editor:focus {
+#editor:focus-visible {
   outline: var(--prosary-focus-width) solid var(--focus);
   outline-offset: calc(var(--prosary-focus-offset) * -1);
 }
