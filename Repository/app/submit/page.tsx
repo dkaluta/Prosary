@@ -21,7 +21,7 @@ export default async function SubmitPage() {
   }
 
   return (
-    <main id="main-content">
+    <main id="main-content" tabIndex={-1}>
       <PageHeader eyebrow="Share with the community" title="Submit a devotion">
         <p>
           Upload a portable .prosaryprayer bundle. The repository validates it and keeps its

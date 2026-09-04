@@ -47,7 +47,7 @@ export default async function AccountPage() {
   }
 
   return (
-    <main id="main-content">
+    <main id="main-content" tabIndex={-1}>
       <PageHeader eyebrow="Private account" title={user ? `Welcome, ${user.username}` : "Your account"}>
         <p>
           Sign in without a password, manage your passkeys, and care for the devotions you

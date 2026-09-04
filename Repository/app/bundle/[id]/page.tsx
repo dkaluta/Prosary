@@ -46,7 +46,7 @@ export default async function BundlePage({ params }: BundleParams) {
   const { bundle, offline } = await loadBundle(id);
   if (offline) {
     return (
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <PageHeader eyebrow="Community devotion" title="Devotion unavailable" />
         <StatusMessage tone="error">
           This devotion cannot be loaded right now — try again shortly.
@@ -61,7 +61,7 @@ export default async function BundlePage({ params }: BundleParams) {
   const authorHref = `/u/${encodeURIComponent(bundle.author)}`;
 
   return (
-    <main id="main-content">
+    <main id="main-content" tabIndex={-1}>
       <PageHeader eyebrow="Community devotion" title={bundle.name}>
         <p>
           Shared by <Link href={authorHref}>@{bundle.author}</Link>. Download the portable

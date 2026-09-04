@@ -18,11 +18,11 @@ const ReviewScreen = lazy(() =>
   import("./ui/ReviewScreen").then((module) => ({ default: module.ReviewScreen })),
 );
 
-const SCREENS: { id: WizardScreen; label: string }[] = [
-  { id: "basics", label: "1 · Basics" },
-  { id: "steps", label: "2 · Prayers" },
-  { id: "audio", label: "3 · Audio" },
-  { id: "review", label: "4 · Finish" },
+const SCREENS: { id: WizardScreen; label: string; summary: string }[] = [
+  { id: "basics", label: "Basics", summary: "Name, languages, and style" },
+  { id: "steps", label: "Prayers", summary: "Text, order, and artwork" },
+  { id: "audio", label: "Audio", summary: "Optional narration" },
+  { id: "review", label: "Finish", summary: "Check, download, and share" },
 ];
 
 interface Props {
@@ -125,12 +125,19 @@ export function App({ initialProject }: Props) {
       </a>
       <header className="top">
         <div className="brand-lockup">
-          <span className="brand-mark" aria-hidden="true">✣</span>
-          <h1>Prosary Compose</h1>
+          <img className="brand-mark" src="/prosary-icon.png" width="36" height="36" alt="" />
+          <div className="brand-copy">
+            <p aria-hidden="true">Prosary</p>
+            <h1><span className="visually-hidden">Prosary </span>Compose</h1>
+          </div>
         </div>
-        <nav className="top-actions" aria-label="Project actions">
+        <nav
+          className="top-actions"
+          aria-label="Project actions"
+          aria-busy={fileAction !== "idle"}
+        >
           <button type="button" className="subtle" onClick={openFile} disabled={fileAction !== "idle"}>
-            {fileAction === "opening" ? "Opening…" : "Open…"}
+            {fileAction === "opening" ? "Opening…" : "Open project…"}
           </button>
           <button type="button" className="subtle" onClick={saveProject} disabled={fileAction !== "idle"}>
             {fileAction === "saving" ? "Saving…" : "Save project"}
@@ -141,89 +148,119 @@ export function App({ initialProject }: Props) {
             onClick={startOver}
             disabled={fileAction !== "idle"}
           >
-            New
+            New devotion
           </button>
         </nav>
       </header>
-      <p className="tagline">
-        Build a prayer devotion for the{" "}
-        <a href="https://prosary.app" target="_blank" rel="noopener noreferrer">
-          Prosary
-        </a>{" "}
-        app — no technical knowledge needed, and nothing leaves your device.
-      </p>
-      <p className={autosaveError ? "autosave-status issue" : "autosave-status"} role="status">
-        {autosaveError
-          ? "Autosave is unavailable in this browser — use Save project to keep a copy."
-          : "Your work autosaves privately on this device."}
-      </p>
+      <section className="intro" aria-label="About Prosary Compose">
+        <div className="intro-copy">
+          <p className="eyebrow">Devotion builder</p>
+          <p className="tagline">
+            Build a prayer devotion for the{" "}
+            <a href="https://prosary.app" target="_blank" rel="noopener noreferrer">
+              Prosary
+            </a>{" "}
+            app — no technical knowledge needed, and nothing leaves your device.
+          </p>
+        </div>
+        <p className={autosaveError ? "autosave-status issue" : "autosave-status"} role="status">
+          <span className="status-mark" aria-hidden="true" />
+          <span>
+            {autosaveError
+              ? "Autosave is unavailable in this browser — use Save project to keep a copy."
+              : "Your work autosaves privately on this device."}
+          </span>
+        </p>
+      </section>
       {openError && (
-        <p className="issue callout" role="alert">
+        <p className="issue callout global-callout" role="alert">
           {openError}
         </p>
       )}
 
-      <main id="editor" tabIndex={-1} aria-labelledby={`${screen}-heading`}>
-        <nav className="stepper" aria-label="Devotion builder steps">
-          {SCREENS.map((item) => (
-            <button
-              type="button"
-              key={item.id}
-              className={item.id === screen ? "active" : ""}
-              aria-current={item.id === screen ? "step" : undefined}
-              onClick={() => setScreen(item.id)}
-            >
-              {item.label}
-              {item.id !== "review" && issueCounts[item.id] > 0 && (
-                <span className="badge" aria-label={`${issueCounts[item.id]} issues`}>
-                  {issueCounts[item.id]}
-                </span>
-              )}
-            </button>
-          ))}
-        </nav>
-        <p className="visually-hidden" role="status">
-          Step {screenIndex + 1} of {SCREENS.length}: {SCREENS[screenIndex].label.slice(4)}
-        </p>
+      <main id="editor" tabIndex={-1} aria-label="Devotion editor">
+        <div className="builder-shell">
+          <nav className="stepper" aria-label="Devotion builder steps">
+            <p className="stepper-heading" aria-hidden="true">Build your devotion</p>
+            <ol>
+              {SCREENS.map((item, index) => {
+                const count = item.id === "review" ? 0 : issueCounts[item.id];
+                const issueLabel = count > 0 ? `, ${count} ${count === 1 ? "issue" : "issues"}` : "";
+                return (
+                  <li key={item.id}>
+                    <button
+                      type="button"
+                      className={item.id === screen ? "active" : ""}
+                      aria-current={item.id === screen ? "step" : undefined}
+                      aria-label={`Step ${index + 1} of ${SCREENS.length}: ${item.label}${issueLabel}`}
+                      onClick={() => setScreen(item.id)}
+                    >
+                      <span className="step-number" aria-hidden="true">{index + 1}</span>
+                      <span className="step-copy" aria-hidden="true">
+                        <span className="step-name">{item.label}</span>
+                        <span className="step-summary">{item.summary}</span>
+                      </span>
+                      {count > 0 && (
+                        <span className="badge" aria-hidden="true">{count}</span>
+                      )}
+                    </button>
+                  </li>
+                );
+              })}
+            </ol>
+          </nav>
 
-        <Suspense
-          fallback={
-            <p className="loading" role="status">
-              Opening this step…
+          <div className="work-area">
+            <p className="visually-hidden" role="status">
+              Step {screenIndex + 1} of {SCREENS.length}: {SCREENS[screenIndex].label}
             </p>
-          }
-        >
-          {screen === "basics" && <BasicsScreen project={project} setProject={setProject} />}
-          {screen === "steps" && <StepsScreen project={project} setProject={setProject} />}
-          {screen === "audio" && <AudioScreen project={project} setProject={setProject} />}
-          {screen === "review" && (
-            <ReviewScreen project={project} issues={issues} goTo={setScreen} />
-          )}
-        </Suspense>
 
-        <nav className="footer-nav" aria-label="Wizard navigation">
-          {screenIndex > 0 ? (
-            <button
-              type="button"
-              className="secondary"
-              onClick={() => setScreen(SCREENS[screenIndex - 1].id)}
+            <Suspense
+              fallback={
+                <p className="loading" role="status">
+                  Opening this step…
+                </p>
+              }
             >
-              ← {SCREENS[screenIndex - 1].label.slice(4)}
-            </button>
-          ) : (
-            <span aria-hidden="true" />
-          )}
-          {screenIndex < SCREENS.length - 1 && (
-            <button
-              type="button"
-              className="primary"
-              onClick={() => setScreen(SCREENS[screenIndex + 1].id)}
-            >
-              {SCREENS[screenIndex + 1].label.slice(4)} →
-            </button>
-          )}
-        </nav>
+              {screen === "basics" && <BasicsScreen project={project} setProject={setProject} />}
+              {screen === "steps" && <StepsScreen project={project} setProject={setProject} />}
+              {screen === "audio" && <AudioScreen project={project} setProject={setProject} />}
+              {screen === "review" && (
+                <ReviewScreen project={project} issues={issues} goTo={setScreen} />
+              )}
+            </Suspense>
+
+            <nav className="footer-nav" aria-label="Wizard navigation">
+              {screenIndex > 0 ? (
+                <button
+                  type="button"
+                  className="secondary"
+                  onClick={() => setScreen(SCREENS[screenIndex - 1].id)}
+                >
+                  <span aria-hidden="true">←</span> {SCREENS[screenIndex - 1].label}
+                </button>
+              ) : (
+                <span aria-hidden="true" />
+              )}
+              {screenIndex < SCREENS.length - 1 && (
+                <button
+                  type="button"
+                  className="primary"
+                  onClick={() => setScreen(SCREENS[screenIndex + 1].id)}
+                >
+                  {SCREENS[screenIndex + 1].label} <span aria-hidden="true">→</span>
+                </button>
+              )}
+            </nav>
+          </div>
+        </div>
       </main>
+      <footer className="site-footer">
+        <p>
+          <strong>Prosary Compose</strong> works entirely in your browser. Your prayer text and
+          media stay on this device unless you choose to download or publish them.
+        </p>
+      </footer>
     </>
   );
 }

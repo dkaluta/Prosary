@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - "Shared/website/**"
+      - "Shared/Branding/**"
+      - "Shared/tools/sync-web-branding.mjs"
       - "LICENSE"
       - ".github/workflows/deploy-pages.yml"
   workflow_dispatch:

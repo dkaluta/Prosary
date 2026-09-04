@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { getCurrentUser } from "@/lib/auth";
+import { RouteAwareLink } from "@/components/RouteAwareLink";
 
 export async function AccountLink() {
   let username: string | null = null;
@@ -10,8 +10,8 @@ export async function AccountLink() {
   }
 
   return (
-    <Link href="/account" aria-label={username ? `Account for ${username}` : undefined}>
+    <RouteAwareLink href="/account" aria-label={username ? `Account for ${username}` : undefined}>
       {username ? `@${username}` : "Account"}
-    </Link>
+    </RouteAwareLink>
   );
 }

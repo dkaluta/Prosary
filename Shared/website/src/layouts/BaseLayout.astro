@@ -10,6 +10,8 @@ interface Props {
 
 const { title, description, heading, currentPath } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImageURL = new URL("/prosary-social.png", Astro.site);
+const isHome = currentPath === "/";
 const links = [
   { href: "/", label: "Home" },
   { href: "/privacy", label: "Privacy" },
@@ -23,26 +25,49 @@ const links = [
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#fffafc" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#171215" media="(prefers-color-scheme: dark)" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="application-name" content="Prosary" />
+    <meta name="apple-mobile-web-app-title" content="Prosary" />
     <meta name="description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Prosary" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={socialImageURL} />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:image:alt" content="Prosary's white rosary cross on a lime field" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageURL} />
+    <meta name="twitter:image:alt" content="Prosary's white rosary cross on a lime field" />
     <link rel="canonical" href={canonicalURL} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <title>{title}</title>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
+
     <header class="site-header">
-      <nav aria-label="Primary">
+      <nav class="site-nav" aria-label="Primary navigation">
         <a
-          class="site-name"
+          class="site-brand"
           href="/"
-          aria-current={currentPath === "/" ? "page" : undefined}>Prosary</a
+          aria-label="Prosary home"
+          aria-current={isHome ? "page" : undefined}
         >
+          <span class="brand-icon" aria-hidden="true">
+            <img src="/prosary-icon.png" width="36" height="36" alt="" />
+          </span>
+          <span>Prosary</span>
+        </a>
+
         <div class="site-links">
           {
             links.slice(1).map((link) => (
@@ -55,31 +80,46 @@ const links = [
       </nav>
     </header>
 
-    <main id="main-content" tabindex="-1">
-      <header class="hero">
-        <p class="eyebrow" aria-hidden="true">A quiet place to pray</p>
+    <main id="main-content" tabindex="-1" class:list={{ "home-page": isHome, "legal-page": !isHome }}>
+      <header class:list={["hero", { "hero-home": isHome }]}>
+        {isHome && (
+          <span class="hero-icon" aria-hidden="true">
+            <img src="/prosary-icon.png" width="68" height="68" alt="" />
+          </span>
+        )}
+        <p class="eyebrow">A quiet place to pray</p>
         <h1>{heading}</h1>
         <slot name="hero" />
       </header>
       <slot />
     </main>
 
-    <footer>
-      <nav aria-label="Footer">
-        <a href="https://github.com/dkaluta/Prosary">Source on GitHub</a>
-        <span aria-hidden="true">·</span>
-        {
-          links.map((link, index) => (
-            <>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="brand-icon" aria-hidden="true">
+            <img src="/prosary-icon.png" width="28" height="28" alt="" />
+          </span>
+          <div>
+            <strong>Prosary</strong>
+            <p>A native Catholic prayer companion.</p>
+          </div>
+        </div>
+
+        <nav aria-label="Footer navigation">
+          <a href="https://compose.prosary.app">Compose</a>
+          <a href="https://prayers.prosary.app">Community prayers</a>
+          <a href="https://github.com/dkaluta/Prosary">Source</a>
+          {
+            links.slice(1).map((link) => (
               <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined}>
                 {link.label}
               </a>
-              {index < links.length - 1 && <span aria-hidden="true">·</span>}
-            </>
-          ))
-        }
-      </nav>
-      <p>&copy; 2026 David Kaluta</p>
+            ))
+          }
+        </nav>
+      </div>
+      <p class="copyright">&copy; 2026 David Kaluta</p>
     </footer>
   </body>
 </html>

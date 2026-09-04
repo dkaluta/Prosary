@@ -7,10 +7,12 @@
     "node": ">=20.0.0 <23.0.0"
   },
   "scripts": {
+    "predev": "node ../Shared/tools/sync-web-branding.mjs repository",
     "dev": "next dev",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
-    "prebuild": "node --experimental-strip-types scripts/embed-assets.ts",
+    "prebuild": "node ../Shared/tools/sync-web-branding.mjs repository && node --experimental-strip-types scripts/embed-assets.ts",
     "build": "next build",
+    "prestart": "node ../Shared/tools/sync-web-branding.mjs repository",
     "start": "next start",
     "predb:migrate": "node --experimental-strip-types scripts/embed-assets.ts",
     "db:migrate": "node --experimental-strip-types scripts/migrate.ts",
