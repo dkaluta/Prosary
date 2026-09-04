@@ -5,7 +5,7 @@ import { StatusMessage } from "@/components/StatusMessage";
 
 export default function ErrorPage({ reset }: { error: Error & { digest?: string }; reset: () => void }) {
   return (
-    <main id="main-content">
+    <main id="main-content" tabIndex={-1}>
       <PageHeader eyebrow="Something went wrong" title="The library needs another moment">
         <p>Your account and devotions have not been changed.</p>
       </PageHeader>

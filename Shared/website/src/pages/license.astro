@@ -6,31 +6,64 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const title = "Prosary — License";
 const description =
-	"All original Prosary material is open source under the BSD 2-Clause License in one public monorepo.";
+  "All original Prosary material is open source under the BSD 2-Clause License in one public monorepo.";
 // npm executes Astro with this package as cwd in development and CI. Resolve from there rather
 // than import.meta.url: Astro relocates page modules into dist/.prerender before rendering.
 const licenseText = await readFile(resolve(process.cwd(), "../../LICENSE"), "utf8");
 ---
 
-<BaseLayout {title} {description} heading="License" currentPath="/license">
-	<Fragment slot="hero">
-		<p class="tagline">
-			The SwiftUI app for iPhone and Mac, the Jetpack Compose app for
-			Android, the WinUI app for Windows, Prosary's web tools, and their
-			shared data, documentation, tools, and assets live in
-			{" "}
-			<a href="https://github.com/dkaluta/Prosary">one open-source monorepo</a>.
-		</p>
-	</Fragment>
+<BaseLayout {title} {description} heading="Open by design" currentPath="/license">
+  <Fragment slot="hero">
+    <p class="tagline">
+      One clear license covers Prosary’s native apps, web tools, shared content, documentation,
+      tools, and original assets.
+    </p>
+  </Fragment>
 
-	<section>
-		<pre>{licenseText.trim()}</pre>
-		<p>
-			The text above is read from the repository's
-			{" "}
-			<a href="https://github.com/dkaluta/Prosary/blob/main/LICENSE"
-				>canonical license file</a
-			>, so this published copy stays in step with the whole project.
-		</p>
-	</section>
+  <div class="legal-shell license-shell">
+    <aside class="page-nav">
+      <nav aria-label="On this page">
+        <p>On this page</p>
+        <ol>
+          <li><a href="#coverage">What it covers</a></li>
+          <li><a href="#license-text">BSD 2-Clause License</a></li>
+        </ol>
+      </nav>
+    </aside>
+
+    <article class="legal-content">
+      <section id="coverage" aria-labelledby="coverage-heading">
+        <p class="section-kicker">One project, one license</p>
+        <h2 id="coverage-heading">What it covers</h2>
+        <p>
+          The SwiftUI app for iPhone, iPad, and Mac, the Jetpack Compose app for Android, the
+          WinUI app for Windows, Prosary’s web tools, and their shared data, documentation, tools,
+          and original assets live in <a href="https://github.com/dkaluta/Prosary">one open-source
+          monorepo</a>.
+        </p>
+        <p>
+          Third-party material keeps its own license and attribution. Everything original to
+          Prosary is covered by the canonical license below.
+        </p>
+      </section>
+
+      <section id="license-text" class="license-card" aria-labelledby="license-heading">
+        <div class="license-heading-row">
+          <div>
+            <p class="section-kicker">Canonical text</p>
+            <h2 id="license-heading">BSD 2-Clause License</h2>
+          </div>
+          <a
+            class="text-link"
+            href="https://github.com/dkaluta/Prosary/blob/main/LICENSE"
+          >View on GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+        <pre aria-label="BSD 2-Clause License text"><code>{licenseText.trim()}</code></pre>
+        <p class="license-note">
+          This published copy is read directly from the repository’s root <code>LICENSE</code>
+          file during the site build, so it stays in step with the whole project.
+        </p>
+      </section>
+    </article>
+  </div>
 </BaseLayout>

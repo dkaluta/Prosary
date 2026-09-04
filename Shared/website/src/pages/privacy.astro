@@ -4,169 +4,173 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const title = "Prosary — Privacy Policy";
 const description =
   "Prosary's privacy policy: no analytics or ads; native apps keep data locally or in private iCloud, while optional web services store only what they need.";
+
+const pageLinks = [
+  { href: "#apps", label: "The apps" },
+  { href: "#notifications", label: "Notifications" },
+  { href: "#permissions", label: "Permissions" },
+  { href: "#compose", label: "Prosary Compose" },
+  { href: "#repository", label: "Prosary Prayers" },
+  { href: "#hosting", label: "Hosting" },
+  { href: "#contact", label: "Contact" },
+];
 ---
 
 <BaseLayout {title} {description} heading="Privacy Policy" currentPath="/privacy">
-	<Fragment slot="hero">
-			<p class="tagline">Last updated: 2026-09-04</p>
-			</Fragment>
+  <Fragment slot="hero">
+    <p class="tagline">Clear language about what Prosary keeps — and what it never collects.</p>
+    <p class="updated-date">Last updated <time datetime="2026-09-04">September 4, 2026</time></p>
+  </Fragment>
 
-		<section>
-			<p>
-				Prosary is a Catholic prayer companion, available for iPhone, Mac,
-				Android, and (in development) Windows, alongside two web services:
-				{" "}
-				<a href="https://compose.prosary.app">Prosary Compose</a> for
-				authoring devotions and{" "}
-				<a href="https://prayers.prosary.app">Prosary Prayers</a>, the
-				community devotion repository. This policy covers all of them.
-			</p>
-		</section>
+  <div class="legal-shell">
+    <aside class="page-nav">
+      <nav aria-label="On this page">
+        <p>On this page</p>
+        <ol>
+          {pageLinks.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+        </ol>
+      </nav>
+    </aside>
 
-		<section>
-			<h2>The apps</h2>
-			<p>
-				The apps have no accounts, no sign-in, no analytics, no crash
-				reporting, and no advertising or tracking SDKs. Your saved prayer
-				configurations and reminder times live in a local database on
-				your device (SwiftData on iPhone/Mac, Room on Android, SQLite on
-				Windows).
-			</p>
-			<ul>
-				<li>
-					<strong>iCloud sync (Apple devices).</strong>{" "}On iPhone and Mac,
-					your saved configurations and any devotion bundles you import sync between
-					your own devices through your personal iCloud account (Apple's
-					CloudKit and iCloud Drive). This data stays inside your private
-					iCloud storage — it is never sent to us, and we cannot read it.
-					Signing out of iCloud keeps everything working locally.
-				</li>
-				<li>
-					<strong>The community repository (the one network feature).</strong>{" "}
-					The Browse and Search tabs can fetch the public devotion catalog
-					from prayers.prosary.app and download bundles you choose to
-					install. These requests carry the technical information every web
-					request carries (such as your IP address), processed transiently
-					by our hosting to serve the request; each download also increments
-					an anonymous per-bundle counter. No account, identifier, or
-					tracking of any kind is attached. If you never open those tabs,
-					the community repository feature makes no network requests.
-				</li>
-			</ul>
-		</section>
+    <article class="legal-content">
+      <section class="legal-intro" aria-label="Policy overview">
+        <p>
+          Prosary is a Catholic prayer companion for iPhone, Mac, Android, and Windows, alongside
+          two web services: <a href="https://compose.prosary.app">Prosary Compose</a> for authoring
+          devotions and <a href="https://prayers.prosary.app">Prosary Prayers</a>, the community
+          devotion repository. This policy covers all of them.
+        </p>
+        <p class="privacy-promise">
+          <strong>The short version:</strong> the apps have no analytics, ads, or tracking. Prayer
+          data stays on your device or in your private iCloud storage unless you choose to publish
+          a devotion to the community repository.
+        </p>
+      </section>
 
-		<section>
-			<h2>Notifications</h2>
-			<p>
-				Prayer reminders you configure are scheduled entirely on your device
-				(via <code>UNUserNotificationCenter</code> on iPhone/Mac,{" "}
-				<code>AlarmManager</code> on Android, or scheduled toasts on
-				Windows) and shown as local notifications. No reminder data ever
-				leaves your device.
-			</p>
-		</section>
+      <section id="apps" aria-labelledby="apps-heading">
+        <h2 id="apps-heading">The apps</h2>
+        <p>
+          The apps have no accounts, no sign-in, no analytics, no crash reporting, and no
+          advertising or tracking SDKs. Your saved prayer configurations and reminder times live
+          in a local database on your device (SwiftData on iPhone and Mac, Room on Android, SQLite
+          on Windows).
+        </p>
+        <ul>
+          <li>
+            <strong>iCloud sync on Apple devices.</strong> On iPhone and Mac, your saved
+            configurations and imported devotion bundles sync between your devices through your
+            personal iCloud account (Apple’s CloudKit and iCloud Drive). This data stays inside
+            your private iCloud storage — it is never sent to us, and we cannot read it. Signing
+            out of iCloud keeps everything working locally.
+          </li>
+          <li>
+            <strong>The community repository.</strong> Browse and Search can fetch the public
+            devotion catalog from prayers.prosary.app and download bundles you choose to install.
+            These requests carry the technical information every web request carries, such as
+            your IP address, which our hosting processes transiently to serve the request. Each
+            download also increments an anonymous per-bundle counter. No account, identifier, or
+            tracking is attached. If you never open those tabs, this feature makes no requests.
+          </li>
+        </ul>
+      </section>
 
-		<section>
-			<h2>Permissions</h2>
-			<ul>
-				<li>
-					<strong>Notifications</strong> — used only to show the prayer
-					reminders you configure.
-				</li>
-				<li>
-					<strong>Internet</strong> (Android lists this explicitly) — used
-					only by the community repository browser described above.
-				</li>
-				<li>
-					<strong>Receive boot completed</strong> (Android only) — used only
-					to re-schedule your existing reminders after your device restarts,
-					since Android clears scheduled alarms on reboot.
-				</li>
-			</ul>
-			<p>No permission is used to collect or transmit personal data.</p>
-		</section>
+      <section id="notifications" aria-labelledby="notifications-heading">
+        <h2 id="notifications-heading">Notifications</h2>
+        <p>
+          Prayer reminders are scheduled entirely on your device through
+          <code>UNUserNotificationCenter</code> on iPhone and Mac, <code>AlarmManager</code> on
+          Android, or scheduled toasts on Windows. No reminder data leaves your device.
+        </p>
+      </section>
 
-		<section>
-			<h2>Prosary Compose (compose.prosary.app)</h2>
-			<p>
-				Compose runs entirely in your browser: the devotions you write, the
-				artwork you attach, and the bundles you build never leave your
-				device. Work-in-progress is autosaved in your browser's IndexedDB
-				storage on your own machine. Compose has no accounts, no analytics,
-				and sets no cookies.
-			</p>
-		</section>
+      <section id="permissions" aria-labelledby="permissions-heading">
+        <h2 id="permissions-heading">Permissions</h2>
+        <ul>
+          <li><strong>Notifications</strong> — only for prayer reminders you configure.</li>
+          <li>
+            <strong>Internet</strong> — listed explicitly on Android and used only by the community
+            repository browser described above.
+          </li>
+          <li>
+            <strong>Receive boot completed</strong> — Android only, used to reschedule your
+            existing reminders after the device restarts.
+          </li>
+        </ul>
+        <p>No permission is used to collect or transmit personal data.</p>
+      </section>
 
-		<section>
-			<h2>Prosary Prayers (prayers.prosary.app)</h2>
-			<p>
-				Browsing and downloading from the repository requires no account.
-				If you create one to publish devotions, we store only what the
-				service needs:
-			</p>
-			<ul>
-				<li>
-					<strong>Username</strong> — public; it names your published
-					bundles (<code>repo.&lt;username&gt;.…</code>).
-				</li>
-				<li>
-					<strong>Passkey public keys</strong> — sign-in uses passkeys;
-					there are no passwords, and biometric data never leaves your
-					device (we receive only the public key your device creates).
-				</li>
-				<li>
-					<strong>Recovery email address</strong> — stored privately and
-					used for exactly one thing: sending account-recovery links (via
-					Brevo, our email processor). It is never displayed, shared, or
-					used for marketing.
-				</li>
-				<li>
-					<strong>Published bundles</strong> — public by design: the
-					devotion, its name, description, tags, and your username are
-					visible to everyone, in the apps and on the site. You can remove
-					your bundles from your account page at any time.
-				</li>
-				<li>
-					<strong>A session cookie</strong> — strictly functional (it keeps
-					you signed in for up to 30 days); there are no tracking or
-					third-party cookies.
-				</li>
-			</ul>
-			<p>
-				Download counts are anonymous aggregates per bundle. Account data
-				and bundles are stored on our hosting providers' infrastructure
-				(Vercel and Neon, EU region). Deleting your account is self-serve:
-				"Delete account" on your account page immediately and permanently
-				removes your passkeys, recovery email, and every bundle you've
-				published.
-			</p>
-		</section>
+      <section id="compose" aria-labelledby="compose-heading">
+        <h2 id="compose-heading">Prosary Compose</h2>
+        <p class="section-domain">compose.prosary.app</p>
+        <p>
+          Compose runs entirely in your browser. The devotions you write, artwork you attach, and
+          bundles you build never leave your device. Work in progress is autosaved in your
+          browser’s IndexedDB storage on your own machine. Compose has no accounts, no analytics,
+          and sets no cookies.
+        </p>
+      </section>
 
-		<section>
-			<h2>Hosting</h2>
-			<p>
-				prosary.app is served by GitHub Pages; compose.prosary.app and
-				prayers.prosary.app are served by Vercel. Like virtually all web
-				hosts, these providers process standard technical request data
-				(such as IP addresses) transiently to deliver the sites and keep
-				them secure. We run no analytics on any of them.
-			</p>
-		</section>
+      <section id="repository" aria-labelledby="repository-heading">
+        <h2 id="repository-heading">Prosary Prayers</h2>
+        <p class="section-domain">prayers.prosary.app</p>
+        <p>
+          Browsing and downloading requires no account. If you create an account to publish
+          devotions, we store only what the service needs:
+        </p>
+        <ul>
+          <li>
+            <strong>Username</strong> — public; it names your published bundles
+            (<code>repo.&lt;username&gt;.…</code>).
+          </li>
+          <li>
+            <strong>Passkey public keys</strong> — used for sign-in. There are no passwords, and
+            biometric data never leaves your device; we receive only the public key it creates.
+          </li>
+          <li>
+            <strong>Recovery email address</strong> — stored privately and used only to send
+            account-recovery links through Brevo, our email processor. It is never displayed,
+            shared, or used for marketing.
+          </li>
+          <li>
+            <strong>Published bundles</strong> — public by design. A devotion, its name,
+            description, tags, and your username are visible in the apps and on the site. You can
+            remove your bundles from your account page at any time.
+          </li>
+          <li>
+            <strong>A session cookie</strong> — strictly functional, keeping you signed in for up
+            to 30 days. There are no tracking or third-party cookies.
+          </li>
+        </ul>
+        <p>
+          Download counts are anonymous aggregates per bundle. Account data and bundles are stored
+          on Vercel and Neon infrastructure in the EU. “Delete account” on your account page
+          immediately and permanently removes your passkeys, recovery email, and every bundle you
+          have published.
+        </p>
+      </section>
 
-		<section>
-			<h2>Changes to this policy</h2>
-			<p>
-				If this policy changes, the "Last updated" date above will change
-				accordingly.
-			</p>
-		</section>
+      <section id="hosting" aria-labelledby="hosting-heading">
+        <h2 id="hosting-heading">Hosting</h2>
+        <p>
+          prosary.app is served by GitHub Pages; compose.prosary.app and prayers.prosary.app are
+          served by Vercel. Like virtually all web hosts, these providers process standard
+          technical request data such as IP addresses transiently to deliver the sites and keep
+          them secure. We run no analytics on any of them.
+        </p>
+      </section>
 
-		<section>
-			<h2>Contact</h2>
-			<p>
-				Questions about this policy can be sent to{" "}
-				<a href="mailto:mail@dkaluta.com">mail@dkaluta.com</a>.
-			</p>
-		</section>
+      <section aria-labelledby="changes-heading">
+        <h2 id="changes-heading">Changes to this policy</h2>
+        <p>If this policy changes, the “Last updated” date above will change accordingly.</p>
+      </section>
 
+      <section id="contact" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">Contact</h2>
+        <p>
+          Questions about this policy can be sent to
+          <a href="mailto:mail@dkaluta.com">mail@dkaluta.com</a>.
+        </p>
+      </section>
+    </article>
+  </div>
 </BaseLayout>

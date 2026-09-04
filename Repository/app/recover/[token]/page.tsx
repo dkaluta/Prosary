@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default async function RecoverPage({ params }: { params: Promise<{ token: string }> }) {
   const { token } = await params;
   return (
-    <main id="main-content">
+    <main id="main-content" tabIndex={-1}>
       <PageHeader eyebrow="Account recovery" title="Return to your account">
         <p>Add a new passkey with the secure, single-use link sent to your recovery email.</p>
       </PageHeader>

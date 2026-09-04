@@ -3,7 +3,7 @@ import { PageHeader } from "@/components/PageHeader";
 
 export default function NotFound() {
   return (
-    <main id="main-content">
+    <main id="main-content" tabIndex={-1}>
       <PageHeader eyebrow="Not found" title="This page is not in the library">
         <p>The devotion or profile may have moved, or the address may be incomplete.</p>
       </PageHeader>

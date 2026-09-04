@@ -7,6 +7,21 @@ and source assets, not runtime code: each port builds from the copies inside its
 tools, fonts, images, and marketing site. A platform change must preserve three-way parity and
 update the shared schema or source asset when it changes a shared shape or resource.
 
+## Brand system and web family
+
+The native apps and the three web surfaces share one visual identity: burgundy `#7A1F3D` as the
+primary light-mode action color, headline burgundy `#4A0E23`, their accessible pale-rose dark-mode
+counterparts, system typography, generous rounded surfaces, and the white rosary cross on a lime
+gradient. `Shared/Branding/` owns the canonical web-ready app icon and its size-specific variants.
+The landing site (`Shared/website`), prayer repository (`Repository`), and browser authoring app
+(`Compose`) run `Shared/tools/sync-web-branding.mjs` before development and production builds, so
+their deployment-local artwork and token copies stay generated rather than becoming three more
+sources of truth. Shared tokens define not only colors but the 46-pixel single-line control
+height, 24-percent scale-relative app-icon mask, control/card/panel radii, border weight, inline
+padding, focus geometry, and interaction timing. Keep favicon, Apple touch icon, wordmark
+treatment, contrast, reduced motion, responsive touch targets, and those component dimensions
+aligned across all three when changing the brand.
+
 ## Domain model
 
 Every platform models a saved, user-configurable prayer session the same way, just in its native

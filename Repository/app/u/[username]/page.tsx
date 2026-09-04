@@ -38,7 +38,7 @@ export default async function ProfilePage({ params }: ProfileParams) {
   }
 
   return (
-    <main id="main-content">
+    <main id="main-content" tabIndex={-1}>
       <PageHeader eyebrow="Community author" title={`@${username}`}>
         <p>
           {offline

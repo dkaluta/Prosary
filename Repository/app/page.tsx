@@ -26,7 +26,7 @@ export default async function Home({
   }
 
   return (
-    <main id="main-content">
+    <main id="main-content" tabIndex={-1}>
       <PageHeader eyebrow="Community library" title="Find a devotion to make your own">
         <p>
           Download a community bundle and import it from{" "}

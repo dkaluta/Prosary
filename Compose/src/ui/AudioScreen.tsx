@@ -174,7 +174,12 @@ function TrackCard({
         <OpusPlayer bytes={track.bytes} label={`Preview ${track.fileName}`} />
       </div>
 
-      <div className="table-scroll" tabIndex={0}>
+      <div
+        className="table-scroll"
+        role="region"
+        aria-label={`Chapters for ${track.fileName}`}
+        tabIndex={0}
+      >
         <table className="chapters">
           <caption className="visually-hidden">Chapters for {track.fileName}</caption>
           <thead>

@@ -19,7 +19,7 @@ export default async function PublishPage() {
   }
 
   return (
-    <main id="main-content">
+    <main id="main-content" tabIndex={-1}>
       <PageHeader eyebrow="Compose handoff" title="Publish your devotion">
         <p>
           Review the bundle from Prosary Compose, sign in if needed, and share it with the
