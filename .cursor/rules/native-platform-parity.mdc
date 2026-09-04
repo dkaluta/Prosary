@@ -1,0 +1,16 @@
+---
+description: Preserve native three-platform feature parity
+alwaysApply: true
+---
+
+# Native platform parity
+
+- Treat SwiftUI on iPhone, iPad, and Mac as the primary behavioral reference.
+- Keep matching features, settings keys, strings, data contracts, and tests in Jetpack Compose
+  with Kotlin and WinUI 3 with C#.
+- Prefer each platform's native UI, persistence, concurrency, media, and accessibility APIs.
+- Keep Windows ViewModels on CommunityToolkit.Mvvm.
+- Add C++ to Windows only for a measured native hotspot. Use modern C++17 or later, deterministic
+  RAII ownership, value types, and narrow C#/WinRT boundaries; do not add it speculatively.
+- State platform-specific verification gaps instead of treating one platform's build as proof for
+  another.

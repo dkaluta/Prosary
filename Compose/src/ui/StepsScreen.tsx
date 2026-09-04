@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { COMMON_PRAYERS, LANGUAGES, commonPrayer, isRtl } from "../format/catalog";
 import type { CommonPrayerKey } from "../format/catalog";
-import type { EditorDay, EditorStep, EditorVariant, Project } from "../format/project";
-import { newUid, slugify } from "../format/project";
+import type {
+  EditorDay,
+  EditorImage,
+  EditorStep,
+  EditorVariant,
+  Project,
+} from "../format/project";
+import { attachUploadedArtwork, newUid, slugify } from "../format/project";
 import { imageToSquareJpeg, pickFile } from "./media";
+import { useObjectUrl } from "./useObjectUrl";
 
 interface Props {
   project: Project;
@@ -16,12 +23,17 @@ export function StepsScreen({ project, setProject }: Props) {
   const hasForms = !isDays && project.variants.length > 0;
   const [openDayUid, setOpenDayUid] = useState<string | null>(null);
   const [openFormUid, setOpenFormUid] = useState<string | null>(null);
+  const [mediaError, setMediaError] = useState<string | null>(null);
   // The open day may have been deleted, and a project that has just become a days project has
   // none chosen: fall back to the first rather than showing an empty editor, which reads as
   // data loss.
   const day = project.days.find((d) => d.uid === openDayUid) ?? project.days[0];
   const form = project.variants.find((f) => f.uid === openFormUid) ?? project.variants[0];
   const steps = isDays ? (day?.steps ?? []) : hasForms ? (form?.steps ?? []) : project.steps;
+  const imagesByUid = useMemo(
+    () => new Map(project.images.map((image) => [image.uid, image] as const)),
+    [project.images],
+  );
 
   /** Step edits land inside the open day or form, and in the flat list otherwise. */
   const editSteps = (edit: (steps: EditorStep[]) => EditorStep[]) =>
@@ -91,13 +103,13 @@ export function StepsScreen({ project, setProject }: Props) {
 
   const uploadArt = (uid: string) =>
     pickFile("image/*", async (file) => {
-      const { jpeg, dataUrl } = await imageToSquareJpeg(file);
-      const imageUid = newUid();
-      setProject((p) => ({
-        ...p,
-        images: [...p.images, { uid: imageUid, label: file.name, jpeg, dataUrl }],
-      }));
-      updateStep(uid, { image: { kind: "upload", uid: imageUid } });
+      setMediaError(null);
+      try {
+        const jpeg = await imageToSquareJpeg(file);
+        setProject((project) => attachUploadedArtwork(project, uid, file.name, jpeg));
+      } catch (error) {
+        setMediaError(error instanceof Error ? error.message : "Could not prepare that image.");
+      }
     });
 
   const startForms = () => {
@@ -220,8 +232,8 @@ export function StepsScreen({ project, setProject }: Props) {
   };
 
   return (
-    <section>
-      <h2>The prayers</h2>
+    <section className="editor-section" aria-labelledby="steps-heading">
+      <h2 id="steps-heading">The prayers</h2>
       <p className="help">
         {isDays
           ? "Each day is its own sequence of steps, prayed one screen at a time. Choose a day below, then build it."
@@ -230,16 +242,21 @@ export function StepsScreen({ project, setProject }: Props) {
         prayers you write yourself, once per language.
       </p>
       {project.languages.length === 0 && (
-        <p className="issue">
+        <p className="issue callout" role="alert">
           The text fields appear once the devotion has languages — choose them on the Basics page
           first.
+        </p>
+      )}
+      {mediaError && (
+        <p className="issue callout" role="alert">
+          {mediaError}
         </p>
       )}
 
       {!isDays && !hasForms && (
         <p className="help">
           Prays two ways — a shorter and a fuller form, or one form per tradition?{" "}
-          <button className="subtle" onClick={startForms}>
+          <button type="button" className="subtle" onClick={startForms}>
             Give this devotion alternate forms…
           </button>
         </p>
@@ -248,8 +265,8 @@ export function StepsScreen({ project, setProject }: Props) {
       {hasForms && (
         <div className="card">
           <header>
-            <span className="title">The forms</span>
-            <button className="subtle" onClick={addForm}>
+            <h3 className="title">The forms</h3>
+            <button type="button" className="subtle" onClick={addForm}>
               + Add a form
             </button>
           </header>
@@ -258,11 +275,13 @@ export function StepsScreen({ project, setProject }: Props) {
             first one unless a language below claims the session. Forms named for liturgical
             traditions (latin, byzantine, syriac…) go in their canonical order.
           </p>
-          <div className="row wrap">
+          <div className="choice-tabs" role="group" aria-label="Choose a form">
             {project.variants.map((f, i) => (
               <button
+                type="button"
                 key={f.uid}
-                className={f.uid === form?.uid ? "tight" : "secondary tight"}
+                className="choice-tab"
+                aria-pressed={f.uid === form?.uid}
                 onClick={() => setOpenFormUid(f.uid)}
               >
                 {f.name || `Form ${i + 1}`}
@@ -275,14 +294,31 @@ export function StepsScreen({ project, setProject }: Props) {
       {hasForms && form && (
         <div className="card">
           <header>
-            <span className="title">{form.name || "Untitled form"}</span>
-            <button className="subtle" onClick={() => moveForm(form.uid, -1)} aria-label="Move form earlier">
+            <h3 className="title">{form.name || "Untitled form"}</h3>
+            <button
+              type="button"
+              className="subtle icon-button"
+              disabled={project.variants.indexOf(form) === 0}
+              onClick={() => moveForm(form.uid, -1)}
+              aria-label="Move form earlier"
+            >
               ↑
             </button>
-            <button className="subtle" onClick={() => moveForm(form.uid, 1)} aria-label="Move form later">
+            <button
+              type="button"
+              className="subtle icon-button"
+              disabled={project.variants.indexOf(form) === project.variants.length - 1}
+              onClick={() => moveForm(form.uid, 1)}
+              aria-label="Move form later"
+            >
               ↓
             </button>
-            <button className="subtle" onClick={() => removeForm(form.uid)} aria-label="Remove form">
+            <button
+              type="button"
+              className="subtle icon-button danger-action"
+              onClick={() => removeForm(form.uid)}
+              aria-label={`Remove ${form.name || "form"}`}
+            >
               ✕
             </button>
           </header>
@@ -354,8 +390,8 @@ export function StepsScreen({ project, setProject }: Props) {
       {isDays && (
         <div className="card">
           <header>
-            <span className="title">The days</span>
-            <button className="subtle" onClick={addDay}>
+            <h3 className="title">The days</h3>
+            <button type="button" className="subtle" onClick={addDay}>
               + Add a day
             </button>
           </header>
@@ -366,11 +402,13 @@ export function StepsScreen({ project, setProject }: Props) {
                 : "Add one day for each prayer in the set."}
             </p>
           ) : (
-            <div className="row wrap">
+            <div className="choice-tabs" role="group" aria-label="Choose a day">
               {project.days.map((d) => (
                 <button
+                  type="button"
                   key={d.uid}
-                  className={d.uid === day?.uid ? "tight" : "secondary tight"}
+                  className="choice-tab"
+                  aria-pressed={d.uid === day?.uid}
                   onClick={() => setOpenDayUid(d.uid)}
                 >
                   {d.name || "Untitled day"}
@@ -384,14 +422,31 @@ export function StepsScreen({ project, setProject }: Props) {
       {isDays && day && (
         <div className="card">
           <header>
-            <span className="title">{day.name || "Untitled day"}</span>
-            <button className="subtle" onClick={() => moveDay(day.uid, -1)} aria-label="Move day earlier">
+            <h3 className="title">{day.name || "Untitled day"}</h3>
+            <button
+              type="button"
+              className="subtle icon-button"
+              disabled={project.days.indexOf(day) === 0}
+              onClick={() => moveDay(day.uid, -1)}
+              aria-label="Move day earlier"
+            >
               ↑
             </button>
-            <button className="subtle" onClick={() => moveDay(day.uid, 1)} aria-label="Move day later">
+            <button
+              type="button"
+              className="subtle icon-button"
+              disabled={project.days.indexOf(day) === project.days.length - 1}
+              onClick={() => moveDay(day.uid, 1)}
+              aria-label="Move day later"
+            >
               ↓
             </button>
-            <button className="subtle" onClick={() => removeDay(day.uid)} aria-label="Remove day">
+            <button
+              type="button"
+              className="subtle icon-button danger-action"
+              onClick={() => removeDay(day.uid)}
+              aria-label={`Remove ${day.name || "day"}`}
+            >
               ✕
             </button>
           </header>
@@ -433,7 +488,11 @@ export function StepsScreen({ project, setProject }: Props) {
           key={step.uid}
           project={project}
           step={step}
+          uploaded={
+            step.image?.kind === "upload" ? imagesByUid.get(step.image.uid) : undefined
+          }
           index={index}
+          count={steps.length}
           onChange={(patch) => updateStep(step.uid, patch)}
           onMove={(delta) => move(step.uid, delta)}
           onRemove={() => remove(step.uid)}
@@ -444,6 +503,7 @@ export function StepsScreen({ project, setProject }: Props) {
       <div className="row" hidden={(isDays && !day) || (hasForms && !form)}>
         <select
           className="tight"
+          aria-label="Add a common prayer"
           value=""
           onChange={(e) => {
             if (e.target.value) addCommon(e.target.value as CommonPrayerKey);
@@ -456,7 +516,7 @@ export function StepsScreen({ project, setProject }: Props) {
             </option>
           ))}
         </select>
-        <button className="secondary tight" onClick={addCustom}>
+        <button type="button" className="secondary tight" onClick={addCustom}>
           + Write your own prayer
         </button>
       </div>
@@ -467,7 +527,9 @@ export function StepsScreen({ project, setProject }: Props) {
 function StepCard({
   project,
   step,
+  uploaded,
   index,
+  count,
   onChange,
   onMove,
   onRemove,
@@ -475,17 +537,14 @@ function StepCard({
 }: {
   project: Project;
   step: EditorStep;
+  uploaded?: EditorImage;
   index: number;
+  count: number;
   onChange: (patch: Partial<EditorStep>) => void;
   onMove: (delta: -1 | 1) => void;
   onRemove: () => void;
   onUploadArt: () => void;
 }) {
-  const stepImage = step.image;
-  const uploaded =
-    stepImage?.kind === "upload"
-      ? project.images.find((image) => image.uid === stepImage.uid)
-      : undefined;
   const label =
     step.kind === "common"
       ? commonPrayer(step.commonKey ?? "")?.label ?? "Common prayer"
@@ -496,16 +555,33 @@ function StepCard({
   return (
     <div className="card">
       <header>
-        <span className="title">
+        <h3 className="title">
           {index + 1}. {label}
-        </span>
-        <button className="subtle" onClick={() => onMove(-1)} aria-label="Move up">
+        </h3>
+        <button
+          type="button"
+          className="subtle icon-button"
+          disabled={index === 0}
+          onClick={() => onMove(-1)}
+          aria-label={`Move ${label} earlier`}
+        >
           ↑
         </button>
-        <button className="subtle" onClick={() => onMove(1)} aria-label="Move down">
+        <button
+          type="button"
+          className="subtle icon-button"
+          disabled={index === count - 1}
+          onClick={() => onMove(1)}
+          aria-label={`Move ${label} later`}
+        >
           ↓
         </button>
-        <button className="subtle" onClick={onRemove} aria-label="Remove step">
+        <button
+          type="button"
+          className="subtle icon-button danger-action"
+          onClick={onRemove}
+          aria-label={`Remove ${label}`}
+        >
           ✕
         </button>
       </header>
@@ -560,6 +636,7 @@ function StepCard({
                   <span>Transliteration (optional — the same prayer in another script, e.g. Hebrew letters for Tagalog)</span>
                   <textarea
                     rows={2}
+                    dir="auto"
                     value={step.transliterationByLanguage?.[code] ?? ""}
                     onChange={(e) =>
                       onChange({
@@ -602,6 +679,7 @@ function StepCard({
             max={99}
             style={{ width: "5em" }}
             value={step.repeat}
+            aria-label="Number of times to pray this step"
             onChange={(e) => onChange({ repeat: parseInt(e.target.value, 10) || 2 })}
           />
         )}
@@ -610,9 +688,16 @@ function StepCard({
       <div className="row">
         {uploaded ? (
           <>
-            <img className="art-thumb tight" src={uploaded.dataUrl} alt="" />
-            <span className="hint">Your artwork (cropped square)</span>
-            <button className="subtle tight" onClick={() => onChange({ image: undefined })}>
+            <ArtworkPreview jpeg={uploaded.jpeg} />
+            <span className="hint">{uploaded.label} · cropped square</span>
+            <button type="button" className="subtle tight" onClick={onUploadArt}>
+              Replace artwork…
+            </button>
+            <button
+              type="button"
+              className="subtle tight danger-action"
+              onClick={() => onChange({ image: undefined })}
+            >
               Remove artwork
             </button>
           </>
@@ -625,12 +710,21 @@ function StepCard({
                   ? "Shown with one of the app's illustrations."
                   : "Shown with a simple cross unless you add artwork."}
             </span>
-            <button className="subtle tight" onClick={onUploadArt}>
+            <button type="button" className="subtle tight" onClick={onUploadArt}>
               Add artwork…
             </button>
           </>
         )}
       </div>
     </div>
+  );
+}
+
+function ArtworkPreview({ jpeg }: { jpeg: Uint8Array }) {
+  const url = useObjectUrl(jpeg, "image/jpeg");
+  return url ? (
+    <img className="art-thumb tight" src={url} alt="" />
+  ) : (
+    <span className="art-thumb art-thumb-loading tight" aria-hidden="true" />
   );
 }

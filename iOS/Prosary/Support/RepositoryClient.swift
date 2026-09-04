@@ -3,7 +3,7 @@
 //  Prosary
 //
 //  Fetches the prayers.prosary.app catalog (the versioned /index.json contract — see
-//  Shared/ARCHITECTURE.md § Content bundles) and downloads bundles through the same-origin
+//  Shared/ARCHITECTURE.markdown § Content bundles) and downloads bundles through the same-origin
 //  /api/download/<id> path, so server-side download counting keeps working and the storage
 //  behind it can change without breaking installed apps.
 //
@@ -29,6 +29,7 @@ struct RepositoryBundle: Decodable, Identifiable, Hashable {
 enum RepositoryClientError: LocalizedError {
   case unsupportedCatalog
   case badResponse
+  case invalidBundle
 
   var errorDescription: String? {
     switch self {
@@ -40,6 +41,10 @@ enum RepositoryClientError: LocalizedError {
       return String(
         localized: "repository.error.badResponse",
         defaultValue: "The repository could not be reached.")
+    case .invalidBundle:
+      return String(
+        localized: "packInstall.error.unreadable",
+        defaultValue: "This file is not a readable .prosaryprayer bundle.")
     }
   }
 }
@@ -69,8 +74,24 @@ enum RepositoryClient {
     guard let url = URL(string: bundle.file, relativeTo: baseURL) else {
       throw RepositoryClientError.badResponse
     }
-    let (data, response) = try await URLSession.shared.data(from: url)
+    // A download task writes to a temporary file instead of accumulating an untrusted response
+    // in RAM. Only after both the advertised and actual file sizes pass the native import limit
+    // do we create the Data value consumed by PrayerPackStore.
+    let (temporaryURL, response) = try await URLSession.shared.download(
+      for: URLRequest(url: url, timeoutInterval: 30))
     guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw RepositoryClientError.badResponse }
+    if response.expectedContentLength > Int64(MinimalZipReader.maximumArchiveBytes) {
+      throw RepositoryClientError.invalidBundle
+    }
+    let values = try temporaryURL.resourceValues(forKeys: [.fileSizeKey])
+    guard let fileSize = values.fileSize,
+          fileSize <= MinimalZipReader.maximumArchiveBytes else {
+      throw RepositoryClientError.invalidBundle
+    }
+    let data = try Data(contentsOf: temporaryURL, options: .mappedIfSafe)
+    guard data.count <= MinimalZipReader.maximumArchiveBytes else {
+      throw RepositoryClientError.invalidBundle
+    }
     return data
   }
 }

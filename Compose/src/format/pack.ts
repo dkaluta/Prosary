@@ -1,11 +1,11 @@
 // Project -> .prosaryprayer bundle files. The output must satisfy both the apps'
 // PrayerPackStore.installPack checks and Shared/tools/validate-devotion.py — the shell packer
-// and this module are two writers of one format, with ARCHITECTURE.md's "Content bundles" as
+// and this module are two writers of one format, with ARCHITECTURE.markdown's "Content bundles" as
 // the spec.
 
 import { COMMON_PRAYERS, PLACEHOLDER_IMAGE_KEY, commonPrayer } from "./catalog";
 import type { EditorStep, Project } from "./project";
-import { slugify } from "./project";
+import { projectSteps, slugify } from "./project";
 import { buildZip, type ZipFile } from "./zip";
 
 /** Bundle-local content key base for the i-th step ("step03"). */
@@ -46,17 +46,23 @@ function chapterTitle(step: EditorStep, index: number): { title?: string; titleK
 /** Every authored step in order, whichever project type it is — days projects number their
  * content keys across the whole devotion so a step's key never shifts when a day is edited. */
 export function authoredSteps(project: Project): EditorStep[] {
-  if (project.devotionType === "days") return project.days.flatMap((day) => day.steps);
-  if (project.variants.length > 0) return project.variants.flatMap((form) => form.steps);
-  return project.steps;
+  return projectSteps(project);
 }
 
 /** One step's devotion.json entry; identical in both project types. */
-function packStep(project: Project, step: EditorStep, index: number) {
+function packStep(
+  project: Project,
+  step: EditorStep,
+  index: number,
+  imageKeysByUid: ReadonlyMap<string, string>,
+) {
   return {
     ...(step.kind === "custom" ? { titleKey: `${stepKeyBase(index)}Title` } : { title: step.title }),
     bodyKey: step.kind === "common" ? step.commonKey : `${stepKeyBase(index)}Body`,
-    imageKey: stepImageKey(project, step),
+    imageKey:
+      step.image?.kind === "upload"
+        ? imageKeysByUid.get(step.image.uid) ?? PLACEHOLDER_IMAGE_KEY
+        : stepImageKey(project, step),
     ...(step.isScripture ? { isScripture: true } : {}),
     ...(step.repeat && step.repeat >= 2 ? { repeat: step.repeat } : {}),
   };
@@ -77,16 +83,31 @@ function jsonBytes(value: unknown): Uint8Array {
 export function buildBundleFiles(project: Project): ZipFile[] {
   const files: ZipFile[] = [];
   const allSteps = authoredSteps(project);
+  const stepIndexes = new Map(allSteps.map((step, index) => [step, index] as const));
+  const activeImageUids = new Set(
+    allSteps.flatMap((step) =>
+      step.image?.kind === "upload" ? [step.image.uid] : [],
+    ),
+  );
+  const activeImages = project.images.filter((image) => activeImageUids.has(image.uid));
+  const imageKeysByUid = new Map(
+    activeImages.map(
+      (image, index) =>
+        [image.uid, `${project.id}_art_${String(index + 1).padStart(2, "0")}`] as const,
+    ),
+  );
   const usedMainKeys = COMMON_PRAYERS.filter(
     (p) => p.main && allSteps.some((s) => s.kind === "common" && s.commonKey === p.key),
   ).map((p) => p.key);
-  const usedImageKeys = [
-    ...new Set(
-      allSteps
-        .map((step) => (step.image?.kind === "upload" ? imageKey(project, step.image.uid) : undefined))
-        .filter((key): key is string => key !== undefined),
-    ),
-  ];
+  const usedImageKeys: string[] = [];
+  const seenImageKeys = new Set<string>();
+  for (const step of allSteps) {
+    const key = step.image?.kind === "upload" ? imageKeysByUid.get(step.image.uid) : undefined;
+    if (key && !seenImageKeys.has(key)) {
+      seenImageKeys.add(key);
+      usedImageKeys.push(key);
+    }
+  }
 
   const nameByLanguage = Object.fromEntries(
     Object.entries(project.nameByLanguage).filter(([, v]) => v?.trim()),
@@ -128,7 +149,9 @@ export function buildBundleFiles(project: Project): ZipFile[] {
             ...(Object.keys(day.nameByLanguage).length
               ? { nameByLanguage: day.nameByLanguage }
               : {}),
-            steps: day.steps.map((step) => packStep(project, step, authoredSteps(project).indexOf(step))),
+            steps: day.steps.map((step) =>
+              packStep(project, step, stepIndexes.get(step) ?? 0, imageKeysByUid),
+            ),
           })),
         }
       : project.variants.length > 0
@@ -146,14 +169,14 @@ export function buildBundleFiles(project: Project): ZipFile[] {
                   ? { defaultForLanguages: form.defaultForLanguages }
                   : {}),
                 steps: form.steps.map((step) =>
-                  packStep(project, step, allSteps.indexOf(step)),
+                  packStep(project, step, stepIndexes.get(step) ?? 0, imageKeysByUid),
                 ),
               };
             }),
           }
         : {
           type: "steps" as const,
-          steps: project.steps.map((step, i) => packStep(project, step, i)),
+          steps: project.steps.map((step, i) => packStep(project, step, i, imageKeysByUid)),
         };
 
   files.push({
@@ -165,7 +188,7 @@ export function buildBundleFiles(project: Project): ZipFile[] {
   for (const language of project.languages) {
     const prayers: Record<string, string> = {};
     const transliterations: Record<string, string> = {};
-    authoredSteps(project).forEach((step, i) => {
+    allSteps.forEach((step, i) => {
       if (step.kind !== "custom") return;
       prayers[`${stepKeyBase(i)}Title`] = step.titleByLanguage[language]?.trim() ?? "";
       prayers[`${stepKeyBase(i)}Body`] = step.bodyByLanguage[language]?.trim() ?? "";
@@ -182,9 +205,9 @@ export function buildBundleFiles(project: Project): ZipFile[] {
     });
   }
 
-  for (const image of project.images) {
-    const key = imageKey(project, image.uid);
-    if (key && usedImageKeys.includes(key)) {
+  for (const image of activeImages) {
+    const key = imageKeysByUid.get(image.uid);
+    if (key && seenImageKeys.has(key)) {
       files.push({ name: `images/${key}.jpg`, data: image.jpeg });
     }
   }

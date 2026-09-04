@@ -3,7 +3,7 @@
 //  Prosary
 //
 //  Loads the bundled .prosaryprayer packs (Rosary, Angelus, and every generic bundle-driven
-//  devotion — see Shared/ARCHITECTURE.md's "Content bundles" section) and merges their content
+//  devotion — see Shared/ARCHITECTURE.markdown's "Content bundles" section) and merges their content
 //  into PrayerTranslations/MysteryTranslations as an override layer. PrayerKey/mystery imageKey
 //  entries are a shared pool across devotions (e.g. "our_father" is used by Rosary and several
 //  bundle devotions alike), so a pack can only ever add to the hardcoded tables, never replace
@@ -167,7 +167,7 @@ private struct PackOptions: Decodable {
 }
 
 /// One narrated recording a bundle declares in its `audio.json` (an optional bundle file, staged
-/// by both packers like options.json — see Shared/ARCHITECTURE.md's "Audio").
+/// by both packers like options.json — see Shared/ARCHITECTURE.markdown's "Audio").
 /// AudioPlaybackController plays these through the prayer flow's transport bar — metadata loads
 /// eagerly here, bytes are served on demand via `PrayerPackStore.audioData` and extracted to a
 /// cache file at load. Files are Ogg Opus (RFC 7845, `.opus`) under the bundle's `audio/` directory;
@@ -229,7 +229,7 @@ struct CustomDevotionDefinition: Decodable {
     /// A multi-day devotion (novenas, the 33-day Montfort consecration): one step list per
     /// day, with optional shared opening/closing prayed every day. The engine builds one day's
     /// sequence per session; per-favorite day progress is a planned follow-up (see
-    /// ARCHITECTURE.md's "Multi-day devotions" section) — until it lands, sessions pray day 1.
+    /// ARCHITECTURE.markdown's "Multi-day devotions" section) — until it lands, sessions pray day 1.
     case days
   }
 
@@ -474,11 +474,42 @@ struct CustomDevotionInfo {
   }
 }
 
-/// Loaded lazily on first access and cached for the process lifetime — pack files are small
-/// (a few KB of JSON; images are read on demand, not pre-extracted) so there's no benefit to
-/// loading eagerly at launch.
+private enum PrayerPackLimits {
+  nonisolated static let controlEntryBytes = 8 * 1024 * 1024
+  nonisolated static let controlTotalBytes = 32 * 1024 * 1024
+  nonisolated static let imageEntryBytes = 64 * 1024 * 1024
+  nonisolated static let audioEntryBytes = 256 * 1024 * 1024
+}
+
+/// Loaded lazily on first access and cached for the process lifetime. Pack metadata and text are
+/// small, but pack artwork is not: image entries stay in their memory-mapped archives and are
+/// inflated only when a view asks for one.
+struct PrayerPackImageResource: Sendable {
+  let cacheKey: String
+  private let archive: MinimalZipReader
+  private let entryName: String
+
+  nonisolated init(cacheKey: String, archive: MinimalZipReader, entryName: String) {
+    self.cacheKey = cacheKey
+    self.archive = archive
+    self.entryName = entryName
+  }
+
+  nonisolated func contents() throws -> Data {
+    try archive.contents(of: entryName, maximumBytes: PrayerPackLimits.imageEntryBytes)
+  }
+}
+
 @MainActor
 enum PrayerPackStore {
+  private struct ImageSource: Equatable {
+    let bundleId: String
+    let entryName: String
+    let revision: UInt64
+
+    var cacheKey: String { "\(revision):\(entryName)" }
+  }
+
   /// Load order — also the display order of generic-devotion cards/rows (Home, Favorites), so
   /// this list is deliberately an ordered array, never a dictionary's unordered keys. The rosary
   /// pack loads first so its shared mystery texts/images are the base other bundles build on.
@@ -489,7 +520,16 @@ enum PrayerPackStore {
 
   private static var prayerOverrides: [String: [PrayerKey: String]] = [:]
   private static var mysteryOverrides: [String: [String: MysteryTextOverride]] = [:]
-  private static var imageDataByKey: [String: Data] = [:]
+  /// Image locations in pack-load order. Keeping the stack preserves the ordinary last-loaded
+  /// override rule and lets removing an imported pack reveal the shipped image underneath.
+  /// Crucially, this index contains no image bytes.
+  private static var imageSourcesByKey: [String: [ImageSource]] = [:]
+  private static var nextImageRevision: UInt64 = 0
+  /// Retained readers hold memory-mapped archive data plus their central-directory indexes.
+  /// The mappings are file-backed/purgeable; individual image payloads are not retained here.
+  private static var archiveByBundle: [String: MinimalZipReader] = [:]
+  /// A diagnostic counter used by focused tests to pin lazy image behavior.
+  private static var imageReadCount = 0
   /// Unfiltered per-bundle content, keyed bundleId -> language -> raw key -> text — unlike
   /// `prayerOverrides`, this retains keys with no matching `PrayerKey` case (e.g.
   /// "trisagionAcclamation"), which is how a generic devotion's `devotion.json` resolves
@@ -500,9 +540,8 @@ enum PrayerPackStore {
   private static var definitionByBundle: [String: CustomDevotionDefinition] = [:]
   private static var optionsByBundle: [String: [CustomDevotionOption]] = [:]
   private static var audioTracksByBundle: [String: [DevotionAudioTrack]] = [:]
-  /// Each loaded bundle's pack file — audio bytes are re-read from here on demand rather than
-  /// held in the load-time cache the way images are (a recording dwarfs every other bundle
-  /// asset). See `audioData`.
+  /// Each loaded bundle's pack file — used for installed-pack export. Audio/image reads use the
+  /// retained memory-mapped archive above so they never make another whole-pack heap copy.
   private static var packUrlByBundle: [String: URL] = [:]
   /// Bundle ids with a devotion.json, in pack-load order.
   private static var orderedCustomIds: [String] = []
@@ -570,8 +609,27 @@ enum PrayerPackStore {
   }
 
   static func imageData(for imageKey: String) -> Data? {
+    guard let resource = imageResource(for: imageKey) else { return nil }
+    recordImageRead()
+    return try? resource.contents()
+  }
+
+  /// A file-backed image entry plus a stable cache revision. Reading its bytes is deliberately a
+  /// separate operation so views can do the ZIP inflate and ImageIO decode away from MainActor.
+  static func imageResource(for imageKey: String) -> PrayerPackImageResource? {
     ensureLoaded()
-    return imageDataByKey[imageKey]
+    guard let source = imageSourcesByKey[imageKey]?.last,
+          let archive = archiveByBundle[source.bundleId] else { return nil }
+    return PrayerPackImageResource(
+      cacheKey: source.cacheKey, archive: archive, entryName: source.entryName)
+  }
+
+  static func recordImageRead() {
+    imageReadCount += 1
+  }
+
+  static var imageReadCountForTesting: Int {
+    imageReadCount
   }
 
   /// The parsed `devotion.json` for a generic (bundle-driven) devotion, e.g. `"trisagion"`.
@@ -596,23 +654,67 @@ enum PrayerPackStore {
   }
 
   /// The narrated recordings a bundle's `audio.json` declares, in authored order. Empty for
-  /// bundles without audio (see Shared/ARCHITECTURE.md's "Audio").
+  /// bundles without audio (see Shared/ARCHITECTURE.markdown's "Audio").
   static func audioTracks(for bundleId: String) -> [DevotionAudioTrack] {
     ensureLoaded()
     return audioTracksByBundle[bundleId] ?? []
   }
 
+  /// Content identity for a declared recording, obtained from the retained ZIP index without
+  /// inflating the recording. Audio caches include it in their filenames so replacing a pack
+  /// under the same bundle/track ids cannot play the previous recording or Apple CAF wrapper.
+  static func audioCacheKey(bundleId: String, file: String) -> String? {
+    ensureLoaded()
+    guard audioTracksByBundle[bundleId]?.contains(where: { $0.file == file }) == true,
+          let archive = archiveByBundle[bundleId] else { return nil }
+    return archive.entryFingerprint(file)
+  }
+
   /// The raw Ogg Opus bytes of one of a bundle's *declared* audio files
   /// (`DevotionAudioTrack.file`), re-read from the pack on demand. Nil for a file no track
-  /// declares. AudioPlaybackController extracts these bytes to a cache file for the OS player
-  /// rather than keep whole recordings in memory.
+  /// declares. Kept as a byte-level compatibility/test seam; AudioPlaybackController uses
+  /// `extractAudioFile` so playback needs no whole-recording extraction buffer.
   static func audioData(bundleId: String, file: String) -> Data? {
     ensureLoaded()
     guard audioTracksByBundle[bundleId]?.contains(where: { $0.file == file }) == true,
-          let url = packUrlByBundle[bundleId],
-          let data = try? Data(contentsOf: url),
-          let zip = try? MinimalZipReader(data: data) else { return nil }
-    return try? zip.contents(of: file)
+          let archive = archiveByBundle[bundleId] else { return nil }
+    return try? archive.contents(of: file, maximumBytes: PrayerPackLimits.audioEntryBytes)
+  }
+
+  /// Atomically extracts one declared recording into the caller's cache directory. Stored Ogg
+  /// entries stream in small chunks from the mapped pack; DEFLATE imports remain bounded by the
+  /// same explicit media cap. A failed read, CRC check, or disk write leaves no playable partial.
+  static func extractAudioFile(bundleId: String, file: String, to destination: URL) -> Bool {
+    ensureLoaded()
+    guard audioTracksByBundle[bundleId]?.contains(where: { $0.file == file }) == true,
+          let archive = archiveByBundle[bundleId] else { return false }
+    let directory = destination.deletingLastPathComponent()
+    let temporary = directory.appendingPathComponent(
+      ".\(destination.lastPathComponent).\(UUID().uuidString).tmp")
+    defer { try? FileManager.default.removeItem(at: temporary) }
+    do {
+      try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+      guard FileManager.default.createFile(atPath: temporary.path, contents: nil) else { return false }
+      let output = try FileHandle(forWritingTo: temporary)
+      do {
+        try archive.writeContents(
+          of: file, to: output, maximumBytes: PrayerPackLimits.audioEntryBytes)
+        try output.synchronize()
+        try output.close()
+      } catch {
+        try? output.close()
+        throw error
+      }
+      try FileManager.default.moveItem(at: temporary, to: destination)
+      return true
+    } catch {
+      // A competing extraction may have won the same content-addressed destination. Its atomic
+      // final file is a valid cache hit; our uniquely named partial is still discarded below.
+      if let size = try? destination.resourceValues(forKeys: [.fileSizeKey]).fileSize, size > 0 {
+        return true
+      }
+      return false
+    }
   }
 
   static func info(for bundleId: String) -> CustomDevotionInfo? {
@@ -674,20 +776,31 @@ enum PrayerPackStore {
   /// installed bundle id.
   @discardableResult
   static func installPack(from data: Data) throws -> String {
+    guard data.count <= MinimalZipReader.maximumArchiveBytes else {
+      throw InstallError.unreadable
+    }
     ensureLoaded()
     let decoder = JSONDecoder()
-    guard let zip = try? MinimalZipReader(data: data),
-          let manifestData = try? zip.contents(of: "manifest.json"),
+    let zip: MinimalZipReader
+    do {
+      zip = try MinimalZipReader(data: data)
+      try validateControlPlane(in: zip)
+    } catch {
+      throw InstallError.unreadable
+    }
+    guard let manifestData = try? controlData("manifest.json", in: zip),
           let manifest = try? decoder.decode(PackManifest.self, from: manifestData) else {
       throw InstallError.unreadable
     }
+    guard isValidBundleId(manifest.id) else { throw InstallError.unreadable }
     guard zip.fileNames().contains("devotion.json"),
-          (try? decoder.decode(CustomDevotionDefinition.self, from: zip.contents(of: "devotion.json"))) != nil,
+          (try? decoder.decode(
+            CustomDevotionDefinition.self, from: controlData("devotion.json", in: zip))) != nil,
           manifest.builtinKind == nil else {
       throw InstallError.notADevotion
     }
     for language in manifest.languages {
-      guard let contentData = try? zip.contents(of: "content/\(language).json"),
+      guard let contentData = try? controlData("content/\(language).json", in: zip),
             (try? decoder.decode(PackContent.self, from: contentData)) != nil else {
         throw InstallError.unreadable
       }
@@ -711,15 +824,31 @@ enum PrayerPackStore {
   static func installPack(fromUserSelected url: URL) throws -> String {
     let accessing = url.startAccessingSecurityScopedResource()
     defer { if accessing { url.stopAccessingSecurityScopedResource() } }
-    return try installPack(from: try Data(contentsOf: url))
+    let resourceValues = try? url.resourceValues(forKeys: [.fileSizeKey])
+    let advertisedSize = resourceValues?.fileSize
+    if let fileSize = advertisedSize,
+       fileSize > MinimalZipReader.maximumArchiveBytes {
+      throw InstallError.unreadable
+    }
+    let input = try FileHandle(forReadingFrom: url)
+    defer { try? input.close() }
+    var data = Data()
+    data.reserveCapacity(min(advertisedSize ?? 0, MinimalZipReader.maximumArchiveBytes))
+    while let chunk = try input.read(upToCount: 64 * 1024), !chunk.isEmpty {
+      guard chunk.count <= MinimalZipReader.maximumArchiveBytes - data.count else {
+        throw InstallError.unreadable
+      }
+      data.append(chunk)
+    }
+    return try installPack(from: data)
   }
 
-  /// Deletes an installed bundle's file and unregisters its devotion. Its merged prayer/image
-  /// content stays in memory until the next launch — harmless, since nothing references it once
-  /// the devotion is gone from `customDevotionIds()`.
+  /// Deletes an installed bundle's file and unregisters its devotion. Shared text overrides keep
+  /// their existing process-lifetime semantics, while bundle-local content, archive mappings,
+  /// and image-source indexes are released immediately.
   static func removeInstalledPack(id: String) {
     ensureLoaded()
-    guard installedIds.contains(id) else { return }
+    guard isValidBundleId(id), installedIds.contains(id) else { return }
     try? FileManager.default.removeItem(
       at: installedPacksDirectory.appendingPathComponent("\(id).prosaryprayer"))
     installedIds.removeAll { $0 == id }
@@ -728,8 +857,14 @@ enum PrayerPackStore {
     infoByBundle[id] = nil
     optionsByBundle[id] = nil
     audioTracksByBundle[id] = nil
+    rawContentByBundle[id] = nil
     transliterationsByBundle[id] = nil
     packUrlByBundle[id] = nil
+    archiveByBundle[id] = nil
+    for key in Array(imageSourcesByKey.keys) {
+      imageSourcesByKey[key]?.removeAll { $0.bundleId == id }
+      if imageSourcesByKey[key]?.isEmpty == true { imageSourcesByKey[key] = nil }
+    }
   }
 
   /// Resolves a `devotion.json` `bodyKey`/`titleKey`: bundle content in the requested code and
@@ -814,12 +949,29 @@ enum PrayerPackStore {
     }
   }
 
+  private static func validateControlPlane(in zip: MinimalZipReader) throws {
+    let runtimeNames = zip.fileNames().filter { name in
+      name == "manifest.json" || name == "devotion.json" || name == "options.json"
+        || name == "audio.json"
+        || (name.hasPrefix("content/") && name.hasSuffix(".json"))
+    }
+    try zip.validateEntrySizes(
+      names: runtimeNames,
+      maximumEntryBytes: PrayerPackLimits.controlEntryBytes,
+      maximumTotalBytes: PrayerPackLimits.controlTotalBytes)
+  }
+
+  private static func controlData(_ name: String, in zip: MinimalZipReader) throws -> Data {
+    try zip.contents(of: name, maximumBytes: PrayerPackLimits.controlEntryBytes)
+  }
+
   private static func load(packAt url: URL) throws {
-    let data = try Data(contentsOf: url)
-    let zip = try MinimalZipReader(data: data)
+    let zip = try MinimalZipReader(contentsOf: url)
+    try validateControlPlane(in: zip)
 
     let decoder = JSONDecoder()
-    let manifest = try decoder.decode(PackManifest.self, from: zip.contents(of: "manifest.json"))
+    let manifest = try decoder.decode(PackManifest.self, from: controlData("manifest.json", in: zip))
+    guard isValidBundleId(manifest.id) else { throw InstallError.unreadable }
 
     infoByBundle[manifest.id] = CustomDevotionInfo(
       displayName: manifest.displayName,
@@ -844,7 +996,7 @@ enum PrayerPackStore {
     }
 
     for language in manifest.languages + overlayLanguages {
-      guard let contentData = try? zip.contents(of: "content/\(language).json") else { continue }
+      guard let contentData = try? controlData("content/\(language).json", in: zip) else { continue }
       let content = try decoder.decode(PackContent.self, from: contentData)
 
       var rawContent = rawContentByBundle[manifest.id]?[language] ?? [:]
@@ -873,7 +1025,8 @@ enum PrayerPackStore {
     }
 
     if zip.fileNames().contains("devotion.json") {
-      let definition = try decoder.decode(CustomDevotionDefinition.self, from: zip.contents(of: "devotion.json"))
+      let definition = try decoder.decode(
+        CustomDevotionDefinition.self, from: controlData("devotion.json", in: zip))
       definitionByBundle[manifest.id] = definition
       if manifest.builtinKind == nil {
         orderedCustomIds.append(manifest.id)
@@ -882,18 +1035,38 @@ enum PrayerPackStore {
 
     if zip.fileNames().contains("options.json") {
       optionsByBundle[manifest.id] =
-        try decoder.decode(PackOptions.self, from: zip.contents(of: "options.json")).options
+        try decoder.decode(PackOptions.self, from: controlData("options.json", in: zip)).options
     }
 
     if zip.fileNames().contains("audio.json") {
       audioTracksByBundle[manifest.id] =
-        try decoder.decode(PackAudio.self, from: zip.contents(of: "audio.json")).tracks
+        try decoder.decode(PackAudio.self, from: controlData("audio.json", in: zip)).tracks
     }
     packUrlByBundle[manifest.id] = url
+    archiveByBundle[manifest.id] = zip
 
-    for name in zip.fileNames() where name.hasPrefix("images/") {
-      let imageKey = String(name.dropFirst("images/".count).dropLast(4))  // strip "images/" and ".jpg"
-      imageDataByKey[imageKey] = try zip.contents(of: name)
+    for name in zip.fileNames()
+      where name.hasPrefix("images/") && name.hasSuffix(".jpg") {
+      let imageKey = String(name.dropFirst("images/".count).dropLast(".jpg".count))
+      nextImageRevision &+= 1
+      imageSourcesByKey[imageKey, default: []].append(ImageSource(
+        bundleId: manifest.id, entryName: name, revision: nextImageRevision))
     }
+  }
+
+  /// Bundle ids become filenames on every platform. Keep the portable format to one conservative
+  /// ASCII component so an imported manifest can never escape or ambiguously name its install
+  /// directory; dotted repository ids remain valid.
+  private static func isValidBundleId(_ id: String) -> Bool {
+    guard let first = id.utf8.first, isASCIIAlphanumeric(first) else { return false }
+    return id.utf8.allSatisfy {
+      isASCIIAlphanumeric($0) || $0 == 0x2E || $0 == 0x5F || $0 == 0x2D
+    }
+  }
+
+  private static func isASCIIAlphanumeric(_ byte: UInt8) -> Bool {
+    (byte >= 0x30 && byte <= 0x39)
+      || (byte >= 0x41 && byte <= 0x5A)
+      || (byte >= 0x61 && byte <= 0x7A)
   }
 }

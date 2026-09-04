@@ -96,7 +96,9 @@ public partial class HomeViewModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(MonthIntentionTitle))]
     [NotifyPropertyChangedFor(nameof(MonthIntentionText))]
     [NotifyPropertyChangedFor(nameof(ReadingsText))]
+    [NotifyPropertyChangedFor(nameof(TodayReadingsTitle))]
     [NotifyPropertyChangedFor(nameof(TodayLanguageButtonText))]
+    [NotifyPropertyChangedFor(nameof(CitationButtonText))]
     [NotifyPropertyChangedFor(nameof(TodayTextAlignment))]
     [NotifyPropertyChangedFor(nameof(TodayContentAlignment))]
     private bool _todayInHebrew = AppSettings.DefaultLanguageCode.StartsWith("he", StringComparison.OrdinalIgnoreCase);
@@ -138,13 +140,15 @@ public partial class HomeViewModel : ObservableObject
 
     public string MonthIntentionText => MonthIntention?.LocalizedText(TodayInHebrew ? "he" : "en") ?? string.Empty;
 
+    public string TodayReadingsTitle => TodayInHebrew ? "המקרא היומי" : "Today’s readings";
+
     public string ReadingsText => ShowsFullCitations
         ? string.Join(Environment.NewLine, TodayReadings.Select(r => r.LocalizedFull(TodayInHebrew ? "he" : "en")))
         : string.Join(", ", TodayReadings.Select(r => r.LocalizedShort(TodayInHebrew ? "he" : "en")));
 
-    public string CitationButtonText => ShowsFullCitations
-        ? Loc.Tr("home_today_compact_citations", "Show shorthand")
-        : Loc.Tr("home_today_full_citations", "View full citations");
+    public string CitationButtonText => TodayInHebrew
+        ? ShowsFullCitations ? "הצג קיצור" : "הצג מראי מקום מלאים"
+        : ShowsFullCitations ? "Show shorthand" : "View full citations";
 
     [RelayCommand]
     private void ToggleTodayLanguage() => TodayInHebrew = !TodayInHebrew;

@@ -40,7 +40,8 @@
                       FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
             <StackPanel Spacing="16" MaxWidth="640" HorizontalAlignment="Center">
                 <Border Height="240" MaxWidth="240" CornerRadius="16" HorizontalAlignment="Center">
-                    <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill" />
+                    <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill"
+                           AutomationProperties.AccessibilityView="Raw" />
                 </Border>
 
                 <StackPanel Spacing="2">

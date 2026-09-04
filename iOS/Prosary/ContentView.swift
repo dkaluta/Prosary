@@ -20,6 +20,7 @@ struct ContentView: View {
   @State private var categoriesPath: [AppRoute] = []
   @State private var searchPath: [AppRoute] = []
   @State private var routeLandingGeneration = 0
+  @State private var pendingLandingRoute: AppRoute?
   private var coordinator = NavigationCoordinator.shared
   @State private var showsBundleImporter = false
   @State private var importError: String?
@@ -30,6 +31,12 @@ struct ContentView: View {
         HomeView(path: $prayPath)
           .appRouteDestinations(path: $prayPath)
       }
+      // An external route replaces this stack wholesale. On macOS, resetting and then
+      // repopulating one long-lived NavigationStack can leave its native Back control and the
+      // bound path disagreeing: Back renders Home while the old route remains hidden in the
+      // binding, so the next card is pushed on top of a ghost destination. A new identity makes
+      // the replacement atomic — one stack owns exactly one path from its first render.
+      .id(routeLandingGeneration)
       .tabItem {
         Label(String(localized: "tabs.pray", defaultValue: "Pray"), systemImage: "hands.and.sparkles")
       }
@@ -103,6 +110,13 @@ struct ContentView: View {
         coordinator.pendingRoute = nil
       }
     }
+    // Menu commands arrive while AppKit is tracking NSMenu rather than during an ordinary
+    // SwiftUI event cycle. Keying a view task to the request reliably resumes after the newly
+    // identified Pray stack has been installed; a nested RunLoop.perform can be stranded when
+    // menu tracking ends.
+    .task(id: routeLandingGeneration) {
+      await completePendingRouteLanding(generation: routeLandingGeneration)
+    }
   }
 
   /// Lands a route that arrived from outside the view hierarchy — the Mac's Prayers menu, an
@@ -112,31 +126,24 @@ struct ContentView: View {
   /// tab left ghosts), and replace the stack rather than append — "pray THIS now" must not
   /// stand on whatever leftovers the last session pushed, or Back walks down through them.
   private func land(_ route: AppRoute) {
-    // Two separate update cycles, both scheduled via RunLoop.main (default mode only — a menu
-    // command fires while the NSMenu's tracking run-loop is still alive). The split is the
-    // load-bearing part: replacing the path at the same depth (one flow already open, one
-    // route arriving) renders as a no-op — instrumentation showed the assignment executing
-    // and the stack still showing the old flow, from the menu and from cold alike. Popping to
-    // root in one cycle and pushing in the next changes the depth both times, and the stack
-    // honors each.
-    // RunLoop.perform takes a nonisolated closure, but RunLoop.main always runs it on the
-    // main thread — assumeIsolated states that, so AppRoute's main-actor Hashable witness
-    // is usable inside without giving up the run-loop scheduling above.
     routeLandingGeneration += 1
-    let generation = routeLandingGeneration
-    RunLoop.main.perform {
-      MainActor.assumeIsolated {
-        guard routeLandingGeneration == generation else { return }
-        selectedTab = .pray
-        prayPath = []
-      }
-      RunLoop.main.perform {
-        MainActor.assumeIsolated {
-          guard routeLandingGeneration == generation else { return }
-          prayPath.push(route)
-        }
-      }
-    }
+    pendingLandingRoute = route
+    selectedTab = .pray
+    prayPath = []
+  }
+
+  private func completePendingRouteLanding(generation: Int) async {
+    guard generation == routeLandingGeneration, let route = pendingLandingRoute else { return }
+
+    // The generation has already given NavigationStack a fresh owner at root. Populate that
+    // owner's entire initial route in a later SwiftUI cycle so native Back and this binding
+    // begin, and remain, in lockstep.
+    await Task.yield()
+    guard !Task.isCancelled, generation == routeLandingGeneration,
+          pendingLandingRoute == route else { return }
+
+    prayPath = [route]
+    pendingLandingRoute = nil
   }
 }
 

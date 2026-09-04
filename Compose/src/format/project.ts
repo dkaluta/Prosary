@@ -1,7 +1,7 @@
 // The editor's working state — what the wizard screens read and write. `pack.ts` turns a
 // Project into .prosaryprayer bundle files; `unpack.ts` does the reverse for editing an
-// existing bundle. Kept JSON-serializable (binary payloads as base64 when saved) so a project
-// can round-trip through localStorage autosave and "Save project" files.
+// existing bundle. Portable project files encode binary payloads as base64; browser autosaves
+// keep the native bytes in IndexedDB so ordinary typing never re-encodes large media.
 
 import type { CommonPrayerKey, LanguageCode } from "./catalog";
 
@@ -37,8 +37,6 @@ export interface EditorImage {
   uid: string;
   label: string;
   jpeg: Uint8Array;
-  /** data: URL of `jpeg`, for previews. */
-  dataUrl: string;
 }
 
 /** A narrated recording (Ogg Opus) with its chapter seek points. */
@@ -118,7 +116,7 @@ export interface Project {
 }
 
 export function newUid(): string {
-  return Math.random().toString(36).slice(2, 10);
+  return globalThis.crypto?.randomUUID?.() ?? Math.random().toString(36).slice(2, 10);
 }
 
 export function newProject(): Project {
@@ -143,6 +141,81 @@ export function newProject(): Project {
   };
 }
 
+/** Every step that belongs to the project's active shape. */
+export function projectSteps(project: Project): EditorStep[] {
+  if (project.devotionType === "days") return project.days.flatMap((day) => day.steps);
+  if (project.variants.length > 0) return project.variants.flatMap((form) => form.steps);
+  return project.steps;
+}
+
+function retainedProjectSteps(project: Project): EditorStep[] {
+  return [
+    ...project.steps,
+    ...project.variants.flatMap((form) => form.steps),
+    ...project.days.flatMap((day) => day.steps),
+  ];
+}
+
+/** Attach a converted upload and its step reference as one state transition. Replacing existing
+ * art keeps its uid, so IndexedDB updates one binary record rather than briefly duplicating it. */
+export function attachUploadedArtwork(
+  project: Project,
+  stepUid: string,
+  label: string,
+  jpeg: Uint8Array,
+): Project {
+  const target = retainedProjectSteps(project).find((step) => step.uid === stepUid);
+  if (!target) return project;
+  const imageUid = target.image?.kind === "upload" ? target.image.uid : newUid();
+  const replaceIn = (steps: EditorStep[]) =>
+    steps.map((step) =>
+      step.uid === stepUid
+        ? { ...step, image: { kind: "upload" as const, uid: imageUid } }
+        : step,
+    );
+  const existingImage = project.images.some((image) => image.uid === imageUid);
+  return {
+    ...project,
+    steps: replaceIn(project.steps),
+    variants: project.variants.map((form) => ({ ...form, steps: replaceIn(form.steps) })),
+    days: project.days.map((day) => ({ ...day, steps: replaceIn(day.steps) })),
+    images: existingImage
+      ? project.images.map((image) =>
+          image.uid === imageUid ? { ...image, label, jpeg } : image,
+        )
+      : [...project.images, { uid: imageUid, label, jpeg }],
+  };
+}
+
+/** Replace a recording's media without changing the stable uid used by IndexedDB. */
+export function replaceAudioTrackMedia(
+  project: Project,
+  trackUid: string,
+  fileName: string,
+  bytes: Uint8Array,
+): Project {
+  if (!project.audio.some((track) => track.uid === trackUid)) return project;
+  return {
+    ...project,
+    audio: project.audio.map((track) =>
+      track.uid === trackUid ? { ...track, fileName, bytes } : track,
+    ),
+  };
+}
+
+/** Drop uploaded image payloads that no retained step references. All three containers matter here:
+ * changing shape intentionally preserves the inactive work so an author can switch back, and
+ * multiple base steps/days/forms may deliberately share one upload. */
+export function pruneUnusedImages(project: Project): Project {
+  if (project.images.length === 0) return project;
+  const referenced = new Set<string>();
+  for (const step of retainedProjectSteps(project)) {
+    if (step.image?.kind === "upload") referenced.add(step.image.uid);
+  }
+  const images = project.images.filter((image) => referenced.has(image.uid));
+  return images.length === project.images.length ? project : { ...project, images };
+}
+
 /** "My Little Devotion" -> "myLittleDevotion" — bundle ids are camelCase like the built-ins'. */
 export function slugify(name: string): string {
   const words = name
@@ -156,56 +229,4 @@ export function slugify(name: string): string {
   return words
     .map((w, i) => (i === 0 ? w.toLowerCase() : w[0].toUpperCase() + w.slice(1).toLowerCase()))
     .join("");
-}
-
-// --- Project file / autosave serialization (binary as base64) ---
-
-function toBase64(bytes: Uint8Array): string {
-  let binary = "";
-  const chunk = 0x8000;
-  for (let i = 0; i < bytes.length; i += chunk) {
-    binary += String.fromCharCode(...bytes.subarray(i, i + chunk));
-  }
-  return btoa(binary);
-}
-
-function fromBase64(base64: string): Uint8Array {
-  const binary = atob(base64);
-  const bytes = new Uint8Array(binary.length);
-  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
-  return bytes;
-}
-
-export function serializeProject(project: Project): string {
-  return JSON.stringify({
-    prosaryCompose: 1,
-    ...project,
-    images: project.images.map((image) => ({ ...image, jpeg: toBase64(image.jpeg) })),
-    audio: project.audio.map((track) => ({ ...track, bytes: toBase64(track.bytes) })),
-  });
-}
-
-export function deserializeProject(json: string): Project {
-  const raw = JSON.parse(json);
-  if (raw?.prosaryCompose !== 1) throw new Error("Not a Prosary Compose project file.");
-  const { prosaryCompose: _, ...rest } = raw;
-  return {
-    // Every field a saved project might predate, defaulted in one go. A project saved before a
-    // feature landed simply has no key for it — and the screens read those keys without asking.
-    // This used to name `iconGlyph` alone, so when multi-day authoring added `days`, every
-    // autosave written before it restored with `days: undefined`, and opening the Prayers screen
-    // threw on `.find` and left a blank page: the bad state sits in the browser, so it followed
-    // the one person who had it and no clean profile could reproduce it. Spreading the real
-    // defaults means the next field costs nothing to remember.
-    ...newProject(),
-    ...rest,
-    images: (rest.images ?? []).map((image: EditorImage & { jpeg: string }) => {
-      const jpeg = fromBase64(image.jpeg);
-      return { ...image, jpeg };
-    }),
-    audio: (rest.audio ?? []).map((track: EditorAudioTrack & { bytes: string }) => ({
-      ...track,
-      bytes: fromBase64(track.bytes),
-    })),
-  };
 }

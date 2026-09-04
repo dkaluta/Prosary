@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 
 /** Maps a bundle manifest's `iconSystemName` (an SF Symbol name, the iOS convention — see
- * Shared/ARCHITECTURE.md's "Content bundles" section) to the nearest Material icon. Small and
+ * Shared/ARCHITECTURE.markdown's "Content bundles" section) to the nearest Material icon. Small and
  * fixed by design: a generic devotion's icon choice is authored once in its manifest.json, so
  * this only needs an entry per icon name actually in use, not a general SF-Symbol-to-Material
  * translator. */

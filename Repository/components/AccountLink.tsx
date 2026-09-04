@@ -1,15 +1,17 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { getCurrentUser } from "@/lib/auth";
 
-export function AccountLink() {
-  const [username, setUsername] = useState<string | null>(null);
-  useEffect(() => {
-    fetch("/api/auth/me")
-      .then((r) => r.json())
-      .then((d) => setUsername(d.username))
-      .catch(() => {});
-  }, []);
-  return <Link href="/account">{username ?? "Account"}</Link>;
+export async function AccountLink() {
+  let username: string | null = null;
+  try {
+    username = (await getCurrentUser())?.username ?? null;
+  } catch {
+    // Navigation remains useful while account storage is unavailable.
+  }
+
+  return (
+    <Link href="/account" aria-label={username ? `Account for ${username}` : undefined}>
+      {username ? `@${username}` : "Account"}
+    </Link>
+  );
 }

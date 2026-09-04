@@ -1,7 +1,7 @@
 // Generates the prayers.prosary.app repository's seed bundle (repo.dkaluta.kyrie) through the
 // same pack code the Compose webapp runs — proving repository bundles are ordinary
 // .prosaryprayer files whose only specialness is the `repo.<username>.<name>` id (see
-// Shared/ARCHITECTURE.md § User-installed bundles). Run via
+// Shared/ARCHITECTURE.markdown § User-installed bundles). Run via
 // `npx vite build --ssr scripts/make-repo-seed.ts --outDir dist-e2e && node dist-e2e/make-repo-seed.js <out>`.
 
 import { writeFileSync } from "node:fs";

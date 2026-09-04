@@ -42,7 +42,7 @@ need to repeat it.
 
 A `Prayer` (`Models/Prayer.swift`) is a saved, user-configurable prayer session, discriminated
 by `PrayerKind`: the Rosary, the Jesus Prayer, and `custom` — every other devotion, driven
-entirely by a `.prosaryprayer` bundle (see `Shared/ARCHITECTURE.md`). New devotions are new
+entirely by a `.prosaryprayer` bundle (see `Shared/ARCHITECTURE.markdown`). New devotions are new
 bundles, not new code.
 
 `Support/PrayerEngine.swift` builds Rosary sessions and every bundle-driven devotion;
@@ -99,9 +99,10 @@ An Astro + TypeScript landing page for `https://prosary.app` lives in
 [`../Shared/website/`](../Shared/website/), auto-deployed to GitHub Pages on push — see its
 [README](../Shared/website/README.markdown)
 for local dev, deployment, and DNS setup. The site links to the TestFlight beta and the Android
-closed test, and hosts the shared privacy policy and license pages for both apps.
+closed test, and hosts the shared privacy policy and repository-wide license pages for all native
+apps and web projects.
 
 ## License
 
-The app's original source code is licensed under the BSD 2-Clause License — see [LICENSE](LICENSE).
-Bundled third-party assets retain their own separate licenses.
+All original Prosary material is licensed under the repository-wide BSD 2-Clause License — see
+[LICENSE](../LICENSE). Third-party material retains its original license.

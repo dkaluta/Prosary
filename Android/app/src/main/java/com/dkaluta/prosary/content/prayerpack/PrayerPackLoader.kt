@@ -1,5 +1,6 @@
 package com.dkaluta.prosary.content.prayerpack
 
+import android.content.res.AssetManager
 import androidx.annotation.StringRes
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.AppSettings
@@ -10,6 +11,7 @@ import com.dkaluta.prosary.content.PrayerKey
 import com.dkaluta.prosary.content.PrayerTranslations
 import java.io.File
 import java.io.InputStream
+import java.io.OutputStream
 import java.util.Locale
 import java.util.zip.ZipInputStream
 import kotlinx.serialization.SerialName
@@ -182,7 +184,7 @@ private data class PackOptions(
 )
 
 /** One narrated recording a bundle declares in its `audio.json` (an optional bundle file, staged
- * by both packers like options.json — see Shared/ARCHITECTURE.md's "Audio").
+ * by both packers like options.json — see Shared/ARCHITECTURE.markdown's "Audio").
  * AudioPlaybackController plays these through the prayer flow's transport bar — metadata loads
  * eagerly here, bytes are served on demand via [PrayerPackStore.audioData] and extracted to a
  * cache file at load. Files are Ogg Opus (RFC 7845, `.opus`) under the bundle's `audio/` directory;
@@ -363,7 +365,7 @@ data class CustomDevotionDefinition(
 
         /** A multi-day devotion (novenas, the 33-day Montfort consecration): one step list per
          * day, with optional shared opening/closing prayed every day. Per-favorite day
-         * progress is a planned follow-up (see ARCHITECTURE.md's "Multi-day devotions") —
+         * progress is a planned follow-up (see ARCHITECTURE.markdown's "Multi-day devotions") —
          * until it lands, sessions pray day 1. */
         @SerialName("days")
         Days,
@@ -482,7 +484,7 @@ data class CustomDevotionInfo(
 }
 
 /** Loads the bundled .prosaryprayer packs (Rosary, and every generic bundle-driven devotion —
- * see Shared/ARCHITECTURE.md's "Content bundles" section) and merges their content into
+ * see Shared/ARCHITECTURE.markdown's "Content bundles" section) and merges their content into
  * PrayerTranslations/MysteryTranslations as an override layer. PrayerKey/mystery imageKey
  * entries are a shared pool across devotions (e.g. "our_father" is used by Rosary and several
  * bundle devotions alike), so a pack can only ever add to the hardcoded tables, never replace
@@ -494,11 +496,92 @@ data class CustomDevotionInfo(
  * decade/bead-structured "rosary" type) and per-step body text are entirely data-driven from
  * here, via [definition]/[resolveBodyText].
  *
- * Uses `java.util.zip` (JDK-builtin, works in plain JVM unit tests) and kotlinx.serialization
- * (org.json's android.jar stubs throw in plain unit tests without Robolectric, which this module
- * doesn't use). */
+ * Uses the platform file APIs plus `java.util.zip` (JDK-builtin, works in plain JVM unit tests)
+ * and kotlinx.serialization (org.json's android.jar stubs throw in plain unit tests without
+ * Robolectric, which this module doesn't use). */
 object PrayerPackStore {
+    private const val MAX_CONTROL_ENTRY_BYTES = 8L * 1024L * 1024L
+    private const val MAX_CONTROL_TOTAL_BYTES = 32L * 1024L * 1024L
+    private const val MAX_IMAGE_ENTRY_BYTES = 64L * 1024L * 1024L
+    private const val MAX_MEDIA_ENTRY_BYTES = 256L * 1024L * 1024L
+    private const val MAX_PACK_ENTRY_COUNT = 4_096
     private val json = Json { ignoreUnknownKeys = true }
+    private val validBundleId = Regex("[A-Za-z0-9][A-Za-z0-9._-]*")
+
+    private data class PackImageSource(
+        val bundleId: String,
+        val entryName: String,
+    )
+
+    private data class LoadedPack(
+        val id: String,
+        val images: Map<String, String>,
+        val source: PackSource,
+    )
+
+    /** The production implementations are central-directory indexed and seek directly to a
+     * member. The stream implementation remains only for plain-JVM fixtures and callers that
+     * genuinely cannot provide a seekable source. */
+    private interface PackSource {
+        fun readControlPlane(): PackArchive
+        fun openEntry(name: String, maxBytes: Long): SeekableZipArchive.EntryReader?
+        fun entryFingerprint(name: String): String?
+    }
+
+    private class IndexedPackSource(
+        private val zip: SeekableZipArchive,
+    ) : PackSource {
+        override fun readControlPlane(): PackArchive {
+            val runtimeNames = zip.entryNames.filter(::isRuntimeJson)
+            return PackArchive(
+                entries = zip.read(
+                    names = runtimeNames,
+                    maxEntryBytes = MAX_CONTROL_ENTRY_BYTES,
+                    maxTotalBytes = MAX_CONTROL_TOTAL_BYTES,
+                ),
+                images = zip.entryNames.mapNotNull { name ->
+                    imageKey(name)?.let { key -> key to name }
+                }.toMap(),
+            )
+        }
+
+        override fun openEntry(name: String, maxBytes: Long): SeekableZipArchive.EntryReader? =
+            zip.openEntry(name, maxBytes)
+
+        override fun entryFingerprint(name: String): String? = zip.entryFingerprint(name)
+    }
+
+    private class StreamingPackSource(
+        private val open: () -> InputStream?,
+    ) : PackSource {
+        override fun readControlPlane(): PackArchive {
+            val stream = open() ?: error("Prayer pack is unavailable")
+            return readPackArchive(stream)
+        }
+
+        override fun openEntry(name: String, maxBytes: Long): SeekableZipArchive.EntryReader? {
+            val stream = open() ?: return null
+            return object : SeekableZipArchive.EntryReader {
+                override fun read(): ByteArray =
+                    readZipEntry(stream, name, maxBytes)
+                        ?: throw java.io.IOException("ZIP entry is missing")
+
+                override fun close() = stream.close()
+            }
+        }
+
+        // This exceptional compatibility source has no persistent central-directory index.
+        // Its caller rewrites the fallback cache entry on every load instead of trusting a key.
+        override fun entryFingerprint(name: String): String? = null
+    }
+
+    /** Immutable winner captured under [imageSourceLock]. Reading revalidates that generation
+     * and acquires its owned descriptor under the same lock, so remove/reinstall cannot redirect
+     * stale offsets to a replacement file. */
+    internal data class ImageRequest(
+        val cacheKey: String,
+        val read: () -> ByteArray?,
+    )
 
     /** Load order — also the display order of generic-devotion cards/rows (Home, Favorites), so
      * this list is deliberately an ordered array, never a map's unordered keys. The rosary pack
@@ -510,7 +593,13 @@ object PrayerPackStore {
 
     private val prayerOverrides = mutableMapOf<String, MutableMap<PrayerKey, String>>()
     private val mysteryOverrides = mutableMapOf<String, MutableMap<String, MysteryTextOverride>>()
-    private val imageDataByKey = mutableMapOf<String, ByteArray>()
+    /** Image payloads are the overwhelming majority of every pack. Keep only their zip-entry
+     * locations here; [imageData] reopens the owning pack for the one image the flow needs.
+     * The UI owns a small decoded-bitmap LRU, so startup never retains every shipped JPEG. */
+    private val imageSourcesByKey = mutableMapOf<String, MutableList<PackImageSource>>()
+    private val imageRevisionByKey = mutableMapOf<String, Long>()
+    private val imageSourceLock = Any()
+    private var nextImageRevision = 0L
     /** Unfiltered per-bundle content, keyed bundleId -> language -> raw key -> text — unlike
      * [prayerOverrides], this retains keys with no matching [PrayerKey] case (e.g.
      * "trisagionAcclamation"), which is how a generic devotion's `devotion.json` resolves
@@ -522,10 +611,9 @@ object PrayerPackStore {
     private val definitionByBundle = mutableMapOf<String, CustomDevotionDefinition>()
     private val optionsByBundle = mutableMapOf<String, List<CustomDevotionOption>>()
     private val audioTracksByBundle = mutableMapOf<String, List<DevotionAudioTrack>>()
-    /** Each loaded bundle's re-openable pack source — audio bytes are re-read from here on
-     * demand rather than held in the load-time cache the way images are (a recording dwarfs
-     * every other bundle asset). See [audioData]. */
-    private val packSourceByBundle = mutableMapOf<String, () -> InputStream?>()
+    /** Each loaded bundle's indexed pack source — image and audio payloads are addressed by
+     * central-directory offset and re-read on demand instead of being retained at startup. */
+    private val packSourceByBundle = mutableMapOf<String, PackSource>()
     /** Bundle ids with a devotion.json, in pack-load order. */
     private val orderedCustomIds = mutableListOf<String>()
     private val infoByBundle = mutableMapOf<String, CustomDevotionInfo>()
@@ -552,7 +640,35 @@ object PrayerPackStore {
     fun mysteryOverride(languageCode: String, imageKey: String): MysteryTextOverride? =
         mysteryOverrides[languageCode]?.get(imageKey)
 
-    fun imageData(imageKey: String): ByteArray? = imageDataByKey[imageKey]
+    fun imageData(imageKey: String): ByteArray? {
+        return imageRequest(imageKey)?.read?.invoke()
+    }
+
+    /** Cheap existence check used before decoding and by parity tests. Unlike [imageData], this
+     * does not reopen or inflate a pack. */
+    internal fun hasImage(imageKey: String): Boolean = synchronized(imageSourceLock) {
+        imageSourcesByKey[imageKey]?.isNotEmpty() == true
+    }
+
+    /** Captures the current last-loaded-wins source and its revision without holding a lock
+     * during zip I/O. [cacheKey] changes whenever that winner changes, so decoded-image caches
+     * cannot serve a stale pre-install or pre-removal bitmap. */
+    internal fun imageRequest(imageKey: String): ImageRequest? = synchronized(imageSourceLock) {
+        val source = imageSourcesByKey[imageKey]?.lastOrNull() ?: return@synchronized null
+        val packSource = packSourceByBundle[source.bundleId] ?: return@synchronized null
+        val revision = imageRevisionByKey.getValue(imageKey)
+        ImageRequest(cacheKey = "$imageKey@$revision") {
+            val reader = runCatching {
+                synchronized(imageSourceLock) {
+                    val winner = imageSourcesByKey[imageKey]?.lastOrNull()
+                    val currentPackSource = packSourceByBundle[source.bundleId]
+                    if (winner != source || currentPackSource !== packSource) null
+                    else packSource.openEntry(source.entryName, MAX_IMAGE_ENTRY_BYTES)
+                }
+            }.getOrNull() ?: return@ImageRequest null
+            runCatching { reader.use { it.read() } }.getOrNull()
+        }
+    }
 
     /** The parsed `devotion.json` for a generic (bundle-driven) devotion, e.g. "trisagion".
      * Null for any bundle without one (Rosary, which stays override-only). */
@@ -568,18 +684,43 @@ object PrayerPackStore {
     fun customDevotionIds(): List<String> = orderedCustomIds.toList()
 
     /** The narrated recordings a bundle's `audio.json` declares, in authored order. Empty for
-     * bundles without audio (see Shared/ARCHITECTURE.md's "Audio"). */
+     * bundles without audio (see Shared/ARCHITECTURE.markdown's "Audio"). */
     fun audioTracks(bundleId: String): List<DevotionAudioTrack> =
         audioTracksByBundle[bundleId].orEmpty()
 
+    /** Content identity for a declared recording, read from the indexed ZIP directory without
+     * inflating it. Null is deliberate for the streaming compatibility path: its caller must
+     * atomically refresh rather than treating a basename as a durable cache hit. */
+    fun audioCacheKey(bundleId: String, file: String): String? = synchronized(imageSourceLock) {
+        if (audioTracksByBundle[bundleId]?.any { it.file == file } != true) return@synchronized null
+        packSourceByBundle[bundleId]?.entryFingerprint(file)
+    }
+
     /** The raw Ogg Opus bytes of one of a bundle's *declared* audio files
      * ([DevotionAudioTrack.file]), re-read from the pack on demand. Null for a file no track
-     * declares. The playback milestone will extract to a cache file for the OS player rather
-     * than keep whole recordings in memory; this byte-level accessor is the seam it builds on. */
+     * declares. Kept as a byte-level compatibility/test seam; playback uses [writeAudioTo] so it
+     * never needs a whole-recording extraction buffer. */
     fun audioData(bundleId: String, file: String): ByteArray? {
         if (audioTracksByBundle[bundleId]?.any { it.file == file } != true) return null
-        val stream = packSourceByBundle[bundleId]?.invoke() ?: return null
-        return readZipEntries(stream)[file]
+        val reader = runCatching {
+            synchronized(imageSourceLock) {
+                packSourceByBundle[bundleId]?.openEntry(file, MAX_MEDIA_ENTRY_BYTES)
+            }
+        }.getOrNull() ?: return null
+        return runCatching { reader.use { it.read() } }.getOrNull()
+    }
+
+    /** Streams a declared recording into a caller-owned staged file. Indexed sources use fixed
+     * buffers for both stored and DEFLATE entries and verify the ZIP CRC before returning; the
+     * non-seekable fixture fallback remains bounded by [MAX_MEDIA_ENTRY_BYTES]. */
+    fun writeAudioTo(bundleId: String, file: String, output: OutputStream): Boolean {
+        if (audioTracksByBundle[bundleId]?.any { it.file == file } != true) return false
+        val reader = runCatching {
+            synchronized(imageSourceLock) {
+                packSourceByBundle[bundleId]?.openEntry(file, MAX_MEDIA_ENTRY_BYTES)
+            }
+        }.getOrNull() ?: return false
+        return runCatching { reader.use { it.copyTo(output) } }.isSuccess
     }
 
     fun info(bundleId: String): CustomDevotionInfo? = infoByBundle[bundleId]
@@ -646,33 +787,54 @@ object PrayerPackStore {
         return key
     }
 
-    /** [openPack] returns a fresh stream for a named pack's bytes (e.g.
-     * `context.assets.open("$it.prosaryprayer")` on-device, or a plain `File(...).inputStream()`
-     * in tests) — return null for a pack that isn't available. Safe to call more than once; only
-     * the first call does any work. */
+    /** Production entry point. `noCompress` makes each built-in pack an uncompressed Android
+     * asset, so `openFd` exposes its bounded region inside the installed APK and the central
+     * directory can be indexed without copying or inflating the outer asset. */
+    fun initialize(assets: AssetManager) {
+        initializeSources { packName ->
+            val assetName = "$packName.prosaryprayer"
+            runCatching {
+                IndexedPackSource(SeekableZipArchive.fromAsset(assets, assetName))
+            }.getOrElse {
+                // Preserve feature completeness on a malformed third-party APK/repack that lost
+                // noCompress. The instrumentation test and release-artifact check keep official
+                // builds on the seekable path; this fallback is deliberately exceptional.
+                StreamingPackSource { runCatching { assets.open(assetName) }.getOrNull() }
+            }
+        }
+    }
+
+    /** Stream fallback for plain-JVM fixtures and genuinely non-seekable callers. Production
+     * Android startup uses [initialize] with an [AssetManager]. [openPack] must return a fresh
+     * stream each time, or null when that fixture is unavailable. */
     fun initialize(openPack: (String) -> InputStream?) {
+        initializeSources { packName -> StreamingPackSource { openPack(packName) } }
+    }
+
+    private fun initializeSources(sourceForPack: (String) -> PackSource) {
         if (didLoad) return
         didLoad = true
 
         for (packName in packNames) {
-            val stream = openPack(packName) ?: continue
-            // openPack is documented re-callable with a fresh stream, which is what lets audio
-            // bytes be re-read on demand instead of cached at load — see [audioData].
-            runCatching { load(stream) }.getOrNull()?.let { id ->
-                packSourceByBundle[id] = { openPack(packName) }
-            }
+            runCatching { load(sourceForPack(packName)) }.getOrNull()?.let(::registerPackSource)
         }
 
         // User-installed bundles load after the built-ins (so shipped content always wins the
         // shared merges) and are skipped on id collision with anything already loaded.
-        val installedFiles = installedPacksDirectory?.listFiles { f -> f.extension == "prosaryprayer" }
+        val installedDir = installedPacksDirectory
+        val installedFiles = installedDir?.listFiles { f -> f.extension == "prosaryprayer" }
             ?.sortedBy { it.name }.orEmpty()
         for (file in installedFiles) {
             val id = file.nameWithoutExtension
+            val expectedFile = installedDir?.let { installedPackTarget(it, id) }
+            if (expectedFile == null || expectedFile != runCatching { file.canonicalFile }.getOrNull()) continue
             if (infoByBundle.containsKey(id)) continue
-            if (runCatching { load(file.inputStream()) }.getOrNull() != null) {
-                installedIdsList.add(id)
-                packSourceByBundle[id] = { file.inputStream() }
+            val pack = runCatching {
+                load(IndexedPackSource(SeekableZipArchive.fromFile(file)), expectedId = id)
+            }.getOrNull()
+            if (pack != null) {
+                installedIdsList.add(pack.id)
+                registerPackSource(pack)
             }
         }
     }
@@ -698,62 +860,170 @@ object PrayerPackStore {
     fun installedPackFile(bundleId: String): java.io.File? {
         if (bundleId !in installedIdsList) return null
         val dir = installedPacksDirectory ?: return null
-        return java.io.File(dir, "$bundleId.prosaryprayer").takeIf { it.exists() }
+        return installedPackTarget(dir, bundleId)?.takeIf { it.exists() }
     }
 
     fun installPack(bytes: ByteArray): String {
-        val entries = runCatching { readZipEntries(bytes.inputStream()) }.getOrNull()
-            ?: throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
-        val manifest = runCatching {
-            json.decodeFromString<PackManifest>(String(entries["manifest.json"]!!, Charsets.UTF_8))
-        }.getOrNull() ?: throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
-        val hasDevotion = runCatching {
-            json.decodeFromString<CustomDevotionDefinition>(String(entries["devotion.json"]!!, Charsets.UTF_8))
-        }.isSuccess
-        if (!hasDevotion || manifest.builtinKind != null) {
-            throw InstallException("This bundle does not contain a devotion.", R.string.pack_error_not_devotion)
-        }
-        for (language in manifest.languages) {
-            runCatching {
-                json.decodeFromString<PackContent>(String(entries["content/$language.json"]!!, Charsets.UTF_8))
-            }.getOrNull() ?: throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
-        }
-        if (infoByBundle.containsKey(manifest.id)) {
-            throw InstallException("A devotion named \"${manifest.id}\" is already installed.", R.string.pack_error_duplicate, manifest.id)
-        }
+        requireInstallByteCount(bytes.size.toLong())
         val dir = installedPacksDirectory
             ?: throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
         dir.mkdirs()
-        val destination = File(dir, "${manifest.id}.prosaryprayer")
-        destination.writeBytes(bytes)
-        load(destination.inputStream())
-        installedIdsList.add(manifest.id)
-        packSourceByBundle[manifest.id] = { destination.inputStream() }
-        return manifest.id
+        val staged = runCatching { File.createTempFile(".prosary-import-", ".tmp", dir) }
+            .getOrNull()
+            ?: throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
+        var destination: File? = null
+        try {
+            staged.outputStream().use { it.write(bytes) }
+            val stagedSource = IndexedPackSource(SeekableZipArchive.fromFile(staged))
+            val entries = stagedSource.readControlPlane().entries
+            val manifest = runCatching {
+                json.decodeFromString<PackManifest>(String(entries["manifest.json"]!!, Charsets.UTF_8))
+            }.getOrNull()
+                ?: throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
+            val hasDevotion = runCatching {
+                json.decodeFromString<CustomDevotionDefinition>(String(entries["devotion.json"]!!, Charsets.UTF_8))
+            }.isSuccess
+            if (!hasDevotion || manifest.builtinKind != null) {
+                throw InstallException("This bundle does not contain a devotion.", R.string.pack_error_not_devotion)
+            }
+            if (!validBundleId.matches(manifest.id)) {
+                throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
+            }
+            for (language in manifest.languages) {
+                runCatching {
+                    json.decodeFromString<PackContent>(String(entries["content/$language.json"]!!, Charsets.UTF_8))
+                }.getOrNull()
+                    ?: throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
+            }
+            // Validate optional and overlay control-plane files before the staged file becomes
+            // durable. Images/audio remain lazy and may fail independently at point of use.
+            entries.filterKeys { it.startsWith("content/") }.values.forEach { contentBytes ->
+                runCatching {
+                    json.decodeFromString<PackContent>(String(contentBytes, Charsets.UTF_8))
+                }.getOrElse {
+                    throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
+                }
+            }
+            entries["options.json"]?.let { optionBytes ->
+                runCatching {
+                    json.decodeFromString<PackOptions>(String(optionBytes, Charsets.UTF_8))
+                }.getOrElse {
+                    throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
+                }
+            }
+            entries["audio.json"]?.let { audioBytes ->
+                runCatching {
+                    json.decodeFromString<PackAudio>(String(audioBytes, Charsets.UTF_8))
+                }.getOrElse {
+                    throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
+                }
+            }
+            if (infoByBundle.containsKey(manifest.id)) {
+                throw InstallException("A devotion named \"${manifest.id}\" is already installed.", R.string.pack_error_duplicate, manifest.id)
+            }
+            val target = installedPackTarget(dir, manifest.id)
+                ?: throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
+            if (target.exists() || !staged.renameTo(target)) {
+                if (target.exists()) {
+                    throw InstallException("A devotion named \"${manifest.id}\" is already installed.", R.string.pack_error_duplicate, manifest.id)
+                }
+                throw InstallException("This file could not be installed.", R.string.pack_error_unreadable)
+            }
+            destination = target
+            val pack = load(
+                IndexedPackSource(SeekableZipArchive.fromFile(target)),
+                expectedId = manifest.id,
+            )
+                ?: throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
+            installedIdsList.add(manifest.id)
+            registerPackSource(pack)
+            return manifest.id
+        } catch (error: InstallException) {
+            destination?.delete()
+            throw error
+        } catch (_: Exception) {
+            destination?.delete()
+            throw InstallException(
+                "This file is not a readable .prosaryprayer bundle.",
+                R.string.pack_error_unreadable,
+            )
+        } finally {
+            staged.delete()
+        }
     }
 
-    /** Deletes an installed bundle's file and unregisters its devotion. Its merged
-     * prayer/image content stays in memory until the next launch — harmless, since nothing
-     * references it once the devotion is gone from [customDevotionIds]. */
+    fun requireInstallByteCount(byteCount: Long) {
+        if (byteCount >= 0 && byteCount > SeekableZipArchive.MAX_ARCHIVE_BYTES) {
+            throw InstallException(
+                "This file is not a readable .prosaryprayer bundle.",
+                R.string.pack_error_unreadable,
+            )
+        }
+    }
+
+    /** Reads at most one complete import budget plus a sentinel byte, so file pickers and HTTP
+     * callers cannot allocate an arbitrarily large response before [installPack] sees it. */
+    fun readInstallBytes(input: InputStream): ByteArray {
+        val output = java.io.ByteArrayOutputStream()
+        val buffer = ByteArray(32 * 1024)
+        var total = 0L
+        while (true) {
+            val count = input.read(buffer)
+            if (count < 0) break
+            if (count == 0) continue
+            total += count
+            if (total > SeekableZipArchive.MAX_ARCHIVE_BYTES) {
+                throw InstallException(
+                    "This file is not a readable .prosaryprayer bundle.",
+                    R.string.pack_error_unreadable,
+                )
+            }
+            output.write(buffer, 0, count)
+        }
+        return output.toByteArray()
+    }
+
+    /** Deletes an installed bundle and unregisters its devotion/media sources. Merged prayer
+     * text overrides stay in memory until the next launch; no remaining devotion references
+     * them, while image winners immediately fall back to the prior source. */
     fun removeInstalledPack(id: String) {
         if (id !in installedIdsList) return
-        installedPacksDirectory?.let { File(it, "$id.prosaryprayer").delete() }
         installedIdsList.remove(id)
         orderedCustomIds.remove(id)
         definitionByBundle.remove(id)
         infoByBundle.remove(id)
         optionsByBundle.remove(id)
         audioTracksByBundle.remove(id)
+        rawContentByBundle.remove(id)
         transliterationsByBundle.remove(id)
-        packSourceByBundle.remove(id)
+        synchronized(imageSourceLock) {
+            packSourceByBundle.remove(id)
+            val iterator = imageSourcesByKey.iterator()
+            while (iterator.hasNext()) {
+                val (imageKey, sources) = iterator.next()
+                val winningSource = sources.lastOrNull()
+                sources.removeAll { it.bundleId == id }
+                if (sources.isEmpty()) iterator.remove()
+                if (winningSource?.bundleId == id) {
+                    imageRevisionByKey[imageKey] = ++nextImageRevision
+                }
+            }
+            // Deletion shares the source lock with request descriptor acquisition. A request
+            // that won the race owns an open descriptor to the old inode; a later one observes
+            // the unregistered source and cannot reopen a replacement at the same pathname.
+            installedPacksDirectory?.let { dir -> installedPackTarget(dir, id)?.delete() }
+        }
     }
 
-    /** Returns the loaded bundle's id (null for a zip with no manifest) so callers can register
-     * a re-openable pack source for it — see [audioData]. */
-    private fun load(stream: InputStream): String? {
-        val entries = readZipEntries(stream)
+    /** Returns the loaded bundle plus its stable indexed source (null for a ZIP with no
+     * manifest) so callers can atomically register image/audio lookups. */
+    private fun load(source: PackSource, expectedId: String? = null): LoadedPack? {
+        val archive = source.readControlPlane()
+        val entries = archive.entries
         val manifestBytes = entries["manifest.json"] ?: return null
         val manifest = json.decodeFromString<PackManifest>(String(manifestBytes, Charsets.UTF_8))
+        if (!validBundleId.matches(manifest.id)) return null
+        if (expectedId != null && manifest.id != expectedId) return null
 
         infoByBundle[manifest.id] = CustomDevotionInfo(
             displayName = manifest.displayName,
@@ -825,12 +1095,21 @@ object PrayerPackStore {
                 json.decodeFromString<PackAudio>(String(audioBytes, Charsets.UTF_8)).tracks
         }
 
-        for ((name, bytes) in entries) {
-            if (name.startsWith("images/")) {
-                imageDataByKey[name.removePrefix("images/").removeSuffix(".jpg")] = bytes
+        return LoadedPack(manifest.id, archive.images, source)
+    }
+
+    /** Adds a pack's lazy image entries and indexed source atomically. A key may have multiple sources:
+     * the last loaded pack wins, and removing it reveals the previous built-in source. */
+    private fun registerPackSource(pack: LoadedPack) {
+        synchronized(imageSourceLock) {
+            packSourceByBundle[pack.id] = pack.source
+            for ((imageKey, entryName) in pack.images) {
+                val sources = imageSourcesByKey.getOrPut(imageKey) { mutableListOf() }
+                sources.removeAll { it.bundleId == pack.id }
+                sources.add(PackImageSource(pack.id, entryName))
+                imageRevisionByKey[imageKey] = ++nextImageRevision
             }
         }
-        return manifest.id
     }
 
     /** Bundle content JSON keys are the camelCase form used across every platform's schema (e.g.
@@ -841,18 +1120,105 @@ object PrayerPackStore {
         return runCatching { PrayerKey.valueOf(pascalCase) }.getOrNull()
     }
 
-    private fun readZipEntries(stream: InputStream): Map<String, ByteArray> {
-        val result = mutableMapOf<String, ByteArray>()
+    /** Maps an imported id to exactly one direct child of the installed-pack directory. The
+     * cross-platform bundle-id contract deliberately allows dotted repository ids while
+     * excluding separators, control characters, empty ids, and `.`/`..`. */
+    private fun installedPackTarget(directory: File, id: String): File? {
+        if (!validBundleId.matches(id)) return null
+        return runCatching {
+            val canonicalDirectory = directory.canonicalFile
+            File(canonicalDirectory, "$id.prosaryprayer").canonicalFile
+                .takeIf { it.parentFile == canonicalDirectory }
+        }.getOrNull()
+    }
+
+    private data class PackArchive(
+        val entries: Map<String, ByteArray>,
+        val images: Map<String, String>,
+    )
+
+    /** Non-seekable fixture fallback. Production Android and installed packs use
+     * [SeekableZipArchive], because even closing a skipped `ZipInputStream` member can inflate it
+     * while advancing to the next header. */
+    private fun readPackArchive(stream: InputStream): PackArchive {
+        val entries = mutableMapOf<String, ByteArray>()
+        val images = mutableMapOf<String, String>()
+        val seenNames = mutableSetOf<String>()
+        var entryCount = 0
+        var controlBytes = 0L
         ZipInputStream(stream).use { zip ->
             var entry = zip.nextEntry
             while (entry != null) {
+                entryCount += 1
+                if (entryCount > MAX_PACK_ENTRY_COUNT) {
+                    throw java.io.IOException("Prayer pack contains too many entries")
+                }
+                if (!seenNames.add(entry.name)) {
+                    throw java.io.IOException("Prayer pack contains duplicate entries")
+                }
                 if (!entry.isDirectory) {
-                    result[entry.name] = zip.readBytes()
+                    val key = imageKey(entry.name)
+                    when {
+                        key != null -> images[key] = entry.name
+                        isRuntimeJson(entry.name) -> {
+                            val bytes = zip.readBytesLimited(MAX_CONTROL_ENTRY_BYTES)
+                            controlBytes += bytes.size
+                            if (controlBytes > MAX_CONTROL_TOTAL_BYTES) {
+                                throw java.io.IOException("Prayer-pack metadata is too large")
+                            }
+                            entries[entry.name] = bytes
+                        }
+                    }
                 }
                 zip.closeEntry()
                 entry = zip.nextEntry
             }
         }
-        return result
+        return PackArchive(entries, images)
+    }
+
+    private fun InputStream.readBytesLimited(limit: Long): ByteArray {
+        val output = java.io.ByteArrayOutputStream()
+        val buffer = ByteArray(32 * 1024)
+        var total = 0L
+        while (true) {
+            val count = read(buffer)
+            if (count < 0) break
+            total += count
+            if (total > limit) throw java.io.IOException("Prayer-pack entry is too large")
+            output.write(buffer, 0, count)
+        }
+        return output.toByteArray()
+    }
+
+    private fun isRuntimeJson(name: String): Boolean =
+        name == "manifest.json" ||
+            name == "devotion.json" ||
+            name == "options.json" ||
+            name == "audio.json" ||
+            (name.startsWith("content/") && name.endsWith(".json"))
+
+    private fun imageKey(name: String): String? {
+        if (!name.startsWith("images/")) return null
+        val filename = name.removePrefix("images/")
+        if ('/' in filename) return null
+        val extension = filename.substringAfterLast('.', missingDelimiterValue = "").lowercase(Locale.ROOT)
+        if (extension !in setOf("jpg", "jpeg", "png", "webp")) return null
+        return filename.substringBeforeLast('.')
+    }
+
+    /** Non-seekable fixture fallback for one payload. */
+    private fun readZipEntry(stream: InputStream, wantedName: String, limit: Long): ByteArray? {
+        ZipInputStream(stream).use { zip ->
+            var entry = zip.nextEntry
+            while (entry != null) {
+                if (!entry.isDirectory && entry.name == wantedName) {
+                    return zip.readBytesLimited(limit)
+                }
+                zip.closeEntry()
+                entry = zip.nextEntry
+            }
+        }
+        return null
     }
 }

@@ -1,5 +1,5 @@
 {
-  "$comment": "Canonical screen/navigation map. Built from iOS's Support/AppRoute.swift + ContentView.swift, Android's ui/ProsaryApp.kt NavHost, and Windows's Navigation/Router.cs usage across Views/*.xaml.cs. Parameter names/types here are the logical contract every platform's own route/query-param/navigation-parameter mechanism should carry, not literal syntax. Keep in sync whenever a screen or its parameters change on any platform — see README.md in this directory.",
+  "$comment": "Canonical screen/navigation map. Built from iOS's Support/AppRoute.swift + ContentView.swift, Android's ui/ProsaryApp.kt NavHost, and Windows's Navigation/Router.cs usage across Views/*.xaml.cs. Parameter names/types here are the logical contract every platform's own route/query-param/navigation-parameter mechanism should carry, not literal syntax. Keep in sync whenever a screen or its parameters change on any platform — see README.markdown in this directory.",
   "rootScreen": "home",
   "screens": {
     "home": {
@@ -108,7 +108,7 @@
           "description": "Set when launched fresh from jesusPrayerSetup (no saved configuration yet)."
         }
       },
-      "navigationNote": "Finish (pop-to-Home) and the back arrow (pop-one-level, back to Setup) are deliberately distinct commands — see ARCHITECTURE.md and JesusPrayerViewModel's class doc.",
+      "navigationNote": "Finish (pop-to-Home) and the back arrow (pop-one-level, back to Setup) are deliberately distinct commands — see ARCHITECTURE.markdown and JesusPrayerViewModel's class doc.",
       "sources": {
         "iOS": "Views/JesusPrayer/JesusPrayerFlowView.swift",
         "android": "ui/jesusprayer/JesusPrayerFlowScreen.kt",

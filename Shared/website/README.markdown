@@ -15,7 +15,8 @@ Run from this `website/` directory:
 
 ## Deployment
 
-Pushes to `main` that touch `website/**` are built and deployed to GitHub Pages automatically by
+Pushes to `main` that touch `Shared/website/**` or the root `LICENSE` are built and deployed to
+GitHub Pages automatically by
 [`.github/workflows/deploy-pages.yml`](../../.github/workflows/deploy-pages.yml). Enable it once via
 repo **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 
@@ -43,7 +44,12 @@ HTTPS" once DNS has propagated (can take up to 24-48 hours).
 
 ## Editing
 
-- `src/pages/index.astro` — the landing page markup/content.
-- `src/styles/global.css` — styling (light/dark via `prefers-color-scheme`).
+- `src/layouts/BaseLayout.astro` — shared metadata, navigation, skip link, and page shell.
+- `src/pages/index.astro` — the landing page content.
+- `src/pages/privacy.astro` — the privacy policy for the native apps and both web tools.
+- `src/pages/license.astro` — the license page; its text is read from the root `LICENSE` at build
+  time rather than duplicated here.
+- `src/styles/global.css` — shared responsive, light/dark, contrast, focus, and reduced-motion
+  styling.
 - The remaining inline TODO in `index.astro` is for real screenshots. The TestFlight badge should
   become an App Store badge when the Apple release leaves testing.

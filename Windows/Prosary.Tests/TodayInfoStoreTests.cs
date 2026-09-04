@@ -228,6 +228,25 @@ public class TodayInfoStoreTests
     }
 
     [Fact]
+    public void HebrewEpistleShorthandPreservesFullSourceCitation()
+    {
+        var corinthians = TodayInfoStore.Readings(new DateOnly(2026, 9, 4)).First();
+        Assert.Equal("הראשונה אל הקורינתים ד׳", corinthians.LocalizedShort("he"));
+        Assert.Equal(
+            "אגרת שאול הראשונה אל הקורינתים ד׳ 1–5",
+            corinthians.LocalizedFull("he"));
+
+        var petrine = new ReadingCitation(
+            "reading",
+            "2 Pet. 2",
+            "2 Peter 2:1–3",
+            ShortByLanguage: new Dictionary<string, string> { ["he"] = "השנייה של כיפא ב׳" },
+            FullByLanguage: new Dictionary<string, string> { ["he"] = "אגרת כיפא השניה ב׳ 1–3" });
+        Assert.Equal("השנייה של כיפא ב׳", petrine.LocalizedShort("he"));
+        Assert.Equal("אגרת כיפא השניה ב׳ 1–3", petrine.LocalizedFull("he"));
+    }
+
+    [Fact]
     public void SwitchingCalendarsAlsoReloadsThatCalendarsReadings()
     {
         var date = new DateOnly(2026, 8, 31);

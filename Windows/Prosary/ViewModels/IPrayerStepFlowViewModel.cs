@@ -19,8 +19,8 @@ public interface IPrayerStepFlowViewModel : System.ComponentModel.INotifyPropert
     bool HasSubtitle { get; }
     string Body { get; }
 
-    /// <summary>Full <c>ms-appx:///Assets/Images/{key}.jpg</c>-style URI, ready to bind directly
-    /// to an <see cref="Microsoft.UI.Xaml.Controls.Image.Source"/>.</summary>
+    /// <summary>A pack-cache <c>file:</c> URI (or the loose <c>ms-appx:</c> placeholder), ready
+    /// to bind directly to an <see cref="Microsoft.UI.Xaml.Controls.Image.Source"/>.</summary>
     string MysteryImageFile { get; }
 
     string ProgressText { get; }

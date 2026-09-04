@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { BundleCard } from "@/components/BundleCard";
+import { PageHeader } from "@/components/PageHeader";
+import { StatusMessage } from "@/components/StatusMessage";
 import { listBundles } from "@/lib/db";
 import { LANGUAGE_NAMES } from "@/lib/languages";
 
 export const dynamic = "force-dynamic";
+export const metadata: Metadata = {
+  title: "Browse",
+};
 
 export default async function Home({
   searchParams,
@@ -19,56 +26,73 @@ export default async function Home({
   }
 
   return (
-    <main>
-      <p className="tagline">
-        Devotions shared by the Prosary community — download a bundle, then import it in the
-        app: <strong>Favorites → Import Devotion Bundle</strong>. Repository devotions show a
-        “Repository” tag in the app.
-      </p>
+    <main id="main-content">
+      <PageHeader eyebrow="Community library" title="Find a devotion to make your own">
+        <p>
+          Download a community bundle and import it from{" "}
+          <strong>Favorites → Import Devotion Bundle</strong>, or find it directly in the
+          Prosary app&apos;s Browse tab.
+        </p>
+      </PageHeader>
 
-      <form className="filters" method="get" action="/">
-        <input type="search" name="q" placeholder="Search devotions…" defaultValue={q ?? ""} aria-label="Search devotions" />
-        <select name="lang" defaultValue={lang ?? ""} aria-label="Filter by language">
-          <option value="">Any language</option>
-          {Object.entries(LANGUAGE_NAMES).map(([code, name]) => (
-            <option key={code} value={code}>
-              {name}
-            </option>
-          ))}
-        </select>
-        <button className="primary" type="submit">
+      <form className="filters card" method="get" action="/" role="search">
+        <label className="field">
+          <span>Search</span>
+          <input
+            type="search"
+            name="q"
+            dir="auto"
+            placeholder="Name, description, or bundle ID"
+            defaultValue={q ?? ""}
+          />
+        </label>
+        <label className="field">
+          <span>Language</span>
+          <select name="lang" defaultValue={lang ?? ""}>
+            <option value="">Any language</option>
+            {Object.entries(LANGUAGE_NAMES).map(([code, name]) => (
+              <option key={code} value={code} lang={code} dir="auto">
+                {name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <button className="button button-primary filter-submit" type="submit">
           Filter
         </button>
+        {(q || lang) && (
+          <Link className="clear-filters" href="/">
+            Clear filters
+          </Link>
+        )}
       </form>
 
       {offline ? (
-        <p className="error">The catalog is unavailable right now — try again shortly.</p>
+        <StatusMessage tone="error">
+          The catalog is unavailable right now — try again shortly.
+        </StatusMessage>
       ) : bundles.length === 0 ? (
-        <p className="hint">Nothing here matches — clear the filters, or be the first to share a devotion.</p>
+        <div className="empty-state">
+          <h2>No matching devotions</h2>
+          <p>Clear the filters, or be the first to share one with the community.</p>
+          <Link className="button button-subtle" href="/submit">
+            Submit a devotion
+          </Link>
+        </div>
       ) : (
-        bundles.map((bundle) => (
-          <article className="card" key={bundle.id}>
-            <h2><Link href={`/bundle/${bundle.id}`}>{bundle.name}</Link></h2>
-            <p className="meta">
-              by <Link href={`/u/${bundle.author}`}>{bundle.author}</Link> · {bundle.languages.map((l) => LANGUAGE_NAMES[l] ?? l).join(", ")} ·{" "}
-              <span className="id">{bundle.id}</span> · {Number(bundle.downloads)} download
-              {Number(bundle.downloads) === 1 ? "" : "s"}
-            </p>
-            {bundle.tags.length > 0 && (
-              <p className="meta">
-                {bundle.tags.map((tag) => (
-                  <span className="tag" key={tag}>
-                    {tag}
-                  </span>
-                ))}
-              </p>
-            )}
-            {bundle.description && <p className="desc">{bundle.description}</p>}
-            <a className="download" href={`/api/download/${bundle.id}`}>
-              Download .prosaryprayer
-            </a>
-          </article>
-        ))
+        <section aria-labelledby="results-heading">
+          <div className="section-heading">
+            <h2 id="results-heading">
+              {bundles.length} devotion{bundles.length === 1 ? "" : "s"}
+            </h2>
+            <p>Newest first</p>
+          </div>
+          <div className="card-list">
+            {bundles.map((bundle) => (
+              <BundleCard bundle={bundle} key={bundle.id} />
+            ))}
+          </div>
+        </section>
       )}
     </main>
   );

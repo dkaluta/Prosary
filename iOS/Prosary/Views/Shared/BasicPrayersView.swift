@@ -22,6 +22,10 @@ struct BasicPrayersView: View {
   /// graveyard of simpler attempts. Reading `.code` in body registers the dependency.
   @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
 
+  /// Kept explicit rather than relying on NavigationLink's internal write: two Mac clicks can
+  /// arrive before this source row disappears, and every other app route is single-top.
+  @Binding var path: [AppRoute]
+
   /// Bumped after a move so the list re-derives from the saved order — the order lives in
   /// BasicPrayersOrder, not in view state, so the flows and every future surface agree on it.
   @State private var orderGeneration = 0
@@ -35,9 +39,15 @@ struct BasicPrayersView: View {
     List {
       ForEach(ordered) { prayer in
         HStack(spacing: 8) {
-          NavigationLink(value: AppRoute.basicPrayer(id: prayer.id)) {
+          Button {
+            path.push(.basicPrayer(id: prayer.id))
+          } label: {
             BasicPrayerRow(prayer: prayer)
+              .frame(maxWidth: .infinity, alignment: .leading)
+              .contentShape(Rectangle())
           }
+          .buttonStyle(.plain)
+          .accessibilityIdentifier("basicPrayer-\(prayer.id)")
           Button {
             BasicPrayerFavorites.toggle(prayer.id)
             orderGeneration += 1
@@ -74,8 +84,7 @@ private struct BasicPrayerRow: View {
     // Re-rendered by the observing parent list; no monitor of its own needed.
     let language = LanguageCatalog.resolve(nil)
     HStack(spacing: 12) {
-      resolvedImage(for: prayer.imageKey)
-        .resizable()
+      PrayerArtworkView(imageKey: prayer.imageKey)
         .aspectRatio(contentMode: .fill)
         .frame(width: 44, height: 44)
         .clipShape(RoundedRectangle(cornerRadius: 8))
@@ -83,19 +92,13 @@ private struct BasicPrayerRow: View {
         bundleId: prayer.bundleId, languageCode: language.code, key: prayer.titleKey)))
         .environment(\.layoutDirection, language.isRightToLeft ? .rightToLeft : .leftToRight)
     }
-    .accessibilityIdentifier("basicPrayer-\(prayer.id)")
   }
+}
 
-  /// Pack image data first, asset catalog second — the same resolution the flow itself uses.
-  private func resolvedImage(for imageKey: String) -> Image {
-    if let data = PrayerPackStore.imageData(for: imageKey) {
-      #if canImport(UIKit)
-      if let uiImage = UIImage(data: data) { return Image(uiImage: uiImage) }
-      #else
-      if let nsImage = NSImage(data: data) { return Image(nsImage: nsImage) }
-      #endif
-    }
-    return Image(imageKey)
+#Preview("Basic Prayers") {
+  NavigationStack {
+    BasicPrayersView(path: .constant([]))
+      .appRouteDestinations(path: .constant([]))
   }
 }
 

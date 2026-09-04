@@ -98,11 +98,19 @@ public sealed partial class SettingsPage : Page
             return;
         }
 
-        var buffer = await Windows.Storage.FileIO.ReadBufferAsync(file);
-        var bytes = new byte[buffer.Length];
-        Windows.Storage.Streams.DataReader.FromBuffer(buffer).ReadBytes(bytes);
+        string? message;
+        try
+        {
+            await using var input = await file.OpenStreamForReadAsync();
+            var bytes = await PrayerPackStore.ReadInstallBytesAsync(input);
+            message = ViewModel.ImportPack(bytes);
+        }
+        catch (PrayerPackStore.InstallException error)
+        {
+            message = error.Message;
+        }
 
-        if (ViewModel.ImportPack(bytes) is { } message)
+        if (message is not null)
         {
             var dialog = new ContentDialog
             {

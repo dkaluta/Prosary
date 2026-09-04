@@ -6,7 +6,7 @@ import type { ErrorInfo, ReactNode } from "react";
  *
  * React unmounts the entire tree when a render throws, so before this existed one bad field in a
  * restored project meant a white page and nothing else — no message, no way back, and the bad
- * state sitting in localStorage waiting to do it again on reload. For an audience the tagline
+ * state sitting in IndexedDB waiting to do it again on reload. For an audience the tagline
  * promises needs "no technical knowledge", that is the worst failure the app can produce.
  *
  * The autosave is both the usual culprit and the only thing that persists, so the escape hatch
@@ -38,21 +38,23 @@ export class ErrorBoundary extends Component<Props, State> {
     if (!error) return this.props.children;
 
     return (
-      <div className="crash">
+      <div className="crash" role="alert">
         <h2>Something went wrong</h2>
         <p>
           Compose ran into a problem and stopped. Your work is saved on this device, so trying
           again is usually enough.
         </p>
         <div className="footer-nav">
-          <button className="primary" onClick={() => this.setState({ error: null })}>
+          <button type="button" className="primary" onClick={() => this.setState({ error: null })}>
             Try again
           </button>
           <button
+            type="button"
             className="secondary"
             onClick={() => {
-              this.props.onReset();
-              this.setState({ error: null });
+              if (window.confirm("Start a new devotion and discard the saved copy on this device?")) {
+                this.props.onReset();
+              }
             }}
           >
             Start a new devotion
@@ -62,7 +64,10 @@ export class ErrorBoundary extends Component<Props, State> {
           If it keeps happening, “Start a new devotion” clears what is stored here — that does
           discard anything unsaved, so use “Save project” first if you can get back to it.
         </p>
-        <pre className="issue">{error.message}</pre>
+        <details className="technical-error">
+          <summary>Technical details</summary>
+          <pre className="issue">{error.message}</pre>
+        </details>
       </div>
     );
   }

@@ -23,7 +23,7 @@
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>0.1.0</ApplicationDisplayVersion>
 
-    <!-- Signing: see keystore/README.md for how to generate the self-signed cert this points at.
+    <!-- Signing: see ../README.markdown#signing for how to generate the self-signed cert this points at.
          Gitignored like the Android upload keystore — never commit the .pfx itself. -->
     <PackageCertificateKeyFile>..\keystore\Prosary_TemporaryKey.pfx</PackageCertificateKeyFile>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
@@ -41,28 +41,22 @@
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 
-  <!-- Bundled prayer typefaces and mystery/prayer illustrations — physical copies committed in
-       this repo under Assets\Fonts and Assets\Images, kept in sync with the canonical originals
-       in the sibling ..\..\Shared\ directory (see ../Shared/README.md) rather than referenced
-       from there directly: this repo needs to build on its own without ..\..\Shared\ existing
-       alongside it (a bare clone of just Windows/ would otherwise fail to restore/build), the
-       same reason iOS/Android each keep their own physical copies too instead of a live
-       cross-repo reference. -->
+  <!-- Bundled prayer typefaces remain loose WinUI resources. Prayer artwork lives only inside
+       the self-contained .prosaryprayer packs below; keeping the same JPEGs loose here as well
+       previously installed ~19 MB twice. cross_placeholder.png is the sole loose prayer raster
+       so a missing/corrupt pack still has a graceful visual fallback. -->
   <ItemGroup>
     <Content Include="Assets\Fonts\*.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Images\*.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Images\*.png">
+    <Content Include="Assets\Images\cross_placeholder.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
-  <!-- .prosaryprayer content bundles (see Shared/ARCHITECTURE.md's "Content bundles" section) —
+  <!-- .prosaryprayer content bundles (see Shared/ARCHITECTURE.markdown's "Content bundles" section) —
        built by Shared/tools/make-prosaryprayer.sh from Shared/content/, physical copies committed
-       here for the same reason as Assets\Fonts\Images above. Copied to the output/install
+       here for the same standalone-build reason as the fonts above. Copied to the output/install
        directory as plain files (read via AppContext.BaseDirectory in App.xaml.cs, not the
        ms-appx:// virtual filesystem scheme, since PrayerPackStore needs a real Stream to read
        the zip archive from). -->

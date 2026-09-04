@@ -1,12 +1,14 @@
 :root {
   --brand-primary: #7a1f3d;
   --brand-headline: #4a0e23;
-  /* Text sitting ON a brand-primary background. Light mode's deep maroon takes white;
-     dark mode's pale rose needs dark text — white-on-rose is ~1.6:1, unreadable. */
   --on-primary: #ffffff;
   --bg: #ffffff;
+  --surface: #faf7f8;
+  --border: #e6dce0;
   --text: #1f1f1f;
-  --text-muted: #6e6e6e;
+  --text-muted: #626262;
+  --content-width: 720px;
+  color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,6 +17,8 @@
     --brand-headline: #ffffff;
     --on-primary: #3a1020;
     --bg: #1f1f1f;
+    --surface: #292427;
+    --border: #493c42;
     --text: #f2f2f2;
     --text-muted: #c8c8c8;
   }
@@ -24,11 +28,8 @@
   box-sizing: border-box;
 }
 
-/* Every link takes the brand color — without this, links outside .hint/footer (the
-   "Author it, share it" section's, for one) fall back to the browser default, and
-   Chrome's dark-blue default is unreadable on the dark background. */
-a {
-  color: var(--brand-primary);
+html {
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -37,25 +38,104 @@ body {
     -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
+  font-size: 1rem;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--brand-primary);
+  text-underline-offset: 0.16em;
+  text-decoration-thickness: 0.08em;
+}
+
+a:hover {
+  text-decoration-thickness: 0.13em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--brand-primary);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 10;
+  inset-block-start: 12px;
+  inset-inline-start: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--brand-primary);
+  color: var(--on-primary);
+  font-weight: 700;
+  transform: translateY(calc(-100% - 20px));
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.site-header {
+  border-block-end: 1px solid var(--border);
+}
+
+.site-header nav {
+  display: flex;
+  width: min(100%, var(--content-width));
+  min-height: 56px;
+  margin: 0 auto;
+  padding: 0 24px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.site-name {
+  color: var(--brand-headline);
+  font-size: 1.05rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.site-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .hero {
-  max-width: 720px;
+  max-width: var(--content-width);
   margin: 0 auto;
-  padding: 96px 24px 64px;
+  padding: clamp(64px, 11vw, 104px) 24px clamp(48px, 7vw, 72px);
   text-align: center;
 }
 
 .hero h1 {
-  font-size: 3rem;
-  margin: 0 0 8px;
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin: 0 0 16px;
   color: var(--brand-headline);
+  text-wrap: balance;
 }
 
-.hero p.tagline {
-  font-size: 1.25rem;
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--brand-primary);
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.tagline {
+  max-width: 650px;
+  margin: 0 auto 32px;
+  font-size: clamp(1.08rem, 3vw, 1.25rem);
+  line-height: 1.55;
   color: var(--text-muted);
-  margin: 0 0 32px;
+  text-wrap: pretty;
 }
 
 .badges {
@@ -66,53 +146,158 @@ body {
 }
 
 .badge {
-  display: inline-block;
-  padding: 12px 24px;
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 22px;
   border-radius: 8px;
   background: var(--brand-primary);
   color: var(--on-primary);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--brand-primary) 18%, transparent);
+}
+
+.badge:hover {
+  filter: brightness(1.08);
 }
 
 .hint {
-  margin: 16px 0 0;
+  margin: 18px 0 0;
   font-size: 0.875rem;
   color: var(--text-muted);
 }
 
-.hint a {
-  color: var(--brand-primary);
+main {
+  display: grid;
+  gap: 0;
 }
 
 section {
-  max-width: 720px;
+  width: min(100%, var(--content-width));
   margin: 0 auto;
-  padding: 32px 24px;
+  padding: clamp(28px, 5vw, 40px) 24px;
+  border-block-start: 1px solid var(--border);
 }
 
 section h2 {
+  margin: 0 0 12px;
   color: var(--brand-headline);
+  font-size: clamp(1.35rem, 4vw, 1.65rem);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+section p,
+section li {
+  text-wrap: pretty;
+}
+
+section p:first-of-type {
+  margin-block-start: 0;
+}
+
+section ul {
+  padding-inline-start: 1.4rem;
+}
+
+section li + li {
+  margin-block-start: 12px;
 }
 
 section pre {
   white-space: pre-wrap;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   color: var(--text-muted);
-  background: color-mix(in srgb, var(--text) 5%, transparent);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 16px;
   overflow-x: auto;
 }
 
 footer {
+  max-width: var(--content-width);
+  margin: 32px auto 0;
+  border-block-start: 1px solid var(--border);
   text-align: center;
-  padding: 32px 24px 64px;
+  padding: 32px 24px 56px;
   color: var(--text-muted);
   font-size: 0.875rem;
 }
 
-footer a {
-  color: var(--brand-primary);
+footer nav {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+footer p {
+  margin: 10px 0 0;
+}
+
+a[aria-current="page"] {
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 520px) {
+  .site-header nav {
+    min-height: 52px;
+  }
+
+  .site-links {
+    gap: 16px;
+  }
+
+  .badges {
+    display: grid;
+  }
+
+  .badge {
+    width: 100%;
+  }
+
+  section pre {
+    margin-inline: -8px;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --border: currentColor;
+  }
+
+  .badge {
+    border: 2px solid currentColor;
+    box-shadow: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

@@ -7,7 +7,7 @@ using Windows.Storage;
 namespace Prosary.Services;
 
 /// <summary>
-/// Plays one bundle audio track (see Shared/ARCHITECTURE.md "Audio"): extracts the Ogg Opus
+/// Plays one bundle audio track (see Shared/ARCHITECTURE.markdown "Audio"): extracts the Ogg Opus
 /// bytes from the pack into the local cache folder (recordings dwarf every other bundle asset,
 /// so they are never held in memory) and plays them with <see cref="MediaPlayer"/> — Media
 /// Foundation demuxes Ogg Opus where the Web Media Extensions codecs are present (preinstalled
@@ -158,20 +158,47 @@ public sealed class AudioPlaybackService : IDisposable
         try
         {
             var dir = Path.Combine(ApplicationData.Current.LocalCacheFolder.Path, "PrayerAudio", bundleId);
-            var path = Path.Combine(dir, Path.GetFileName(track.File));
+            var cacheKey = PrayerPackStore.AudioCacheKey(bundleId, track.File);
+            if (cacheKey is null)
+            {
+                return null;
+            }
+
+            var sourceName = Path.GetFileName(track.File);
+            var sourceStem = Path.GetFileNameWithoutExtension(sourceName);
+            var cacheName = $"{sourceStem}--{cacheKey}{Path.GetExtension(sourceName)}";
+            var path = Path.Combine(dir, cacheName);
             if (new FileInfo(path) is { Exists: true, Length: > 0 })
             {
                 return path;
             }
 
-            var data = PrayerPackStore.AudioData(bundleId, track.File);
-            if (data is null)
+            Directory.CreateDirectory(dir);
+            if (!PrayerPackStore.ExtractAudioFile(bundleId, track.File, path))
             {
                 return null;
             }
 
-            Directory.CreateDirectory(dir);
-            File.WriteAllBytes(path, data);
+            foreach (var cached in Directory.EnumerateFiles(dir))
+            {
+                var name = Path.GetFileName(cached);
+                var stem = Path.GetFileNameWithoutExtension(name);
+                var isLegacy = name == sourceName;
+                var isOlderRevision = stem.StartsWith($"{sourceStem}--", StringComparison.Ordinal)
+                    && stem != Path.GetFileNameWithoutExtension(cacheName);
+                if (!isLegacy && !isOlderRevision) continue;
+                try
+                {
+                    File.Delete(cached);
+                }
+                catch (Exception error) when (error is IOException or UnauthorizedAccessException)
+                {
+                    // A player may still hold the prior revision. It is unreachable as a cache
+                    // hit and LocalCacheFolder remains disposable, so cleanup can wait.
+                    System.Diagnostics.Debug.WriteLine($"[AudioPlaybackService] old cache cleanup failed: {error}");
+                }
+            }
+
             return path;
         }
         catch (Exception ex)

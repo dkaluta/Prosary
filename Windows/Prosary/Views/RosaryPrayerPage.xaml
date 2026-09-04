@@ -117,7 +117,8 @@
             <ScrollViewer Grid.Row="1" FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
                 <StackPanel Spacing="16">
                     <Border Height="260" MaxWidth="260" CornerRadius="16" HorizontalAlignment="Center">
-                        <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill" />
+                        <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill"
+                               AutomationProperties.AccessibilityView="Raw" />
                     </Border>
 
                     <StackPanel Spacing="2">
@@ -161,7 +162,8 @@
             </Grid.ColumnDefinitions>
 
             <Border Grid.Column="0" Width="320" Height="320" CornerRadius="16" VerticalAlignment="Center">
-                <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill" />
+                <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill"
+                       AutomationProperties.AccessibilityView="Raw" />
             </Border>
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6"

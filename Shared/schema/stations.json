@@ -1,8 +1,8 @@
 {
-  "$comment": "Canonical catalog of the Stations of the Cross. The bundle now ships two VARIANTS (devotion.json variants[]): 'traditional' (this file's 14 stations, Liguori meditations in la/en, scriptural meditations in he) and 'scriptural' (the 1991 St. John Paul II scriptural Way of the Cross, keys scriptural01*–scriptural14*, la/en/he). Both close with the Closing Prayer + Anima Christi (a hardcoded main-prayer key). imageKey doubles as the filename stem under Shared/Images/{imageKey}. Source of truth: Shared/content/stationsOfTheCross/. Keep in sync — see README.md in this directory.",
+  "$comment": "Canonical catalog of the Stations of the Cross. The bundle now ships two VARIANTS (devotion.json variants[]): 'traditional' (this file's 14 stations, Liguori meditations in la/en, scriptural meditations in he) and 'scriptural' (the 1991 St. John Paul II scriptural Way of the Cross, keys scriptural01*–scriptural14*, la/en/he). Both close with the Closing Prayer + Anima Christi (a hardcoded main-prayer key). imageKey doubles as the filename stem under Shared/Images/{imageKey}. Source of truth: Shared/content/stationsOfTheCross/. Keep in sync — see README.markdown in this directory.",
   "images": {
     "status": "real",
-    "note": "All 14 stations: Gebhard Fugel (1863-1939), Kreuzweg (1921), St. Antonius, Bad Saulgau — public domain; photographs by Andreas Praefcke, released into the public domain. Shipped inside the bundle; see Shared/Images/CREDITS.md."
+    "note": "All 14 stations: Gebhard Fugel (1863-1939), Kreuzweg (1921), St. Antonius, Bad Saulgau — public domain; photographs by Andreas Praefcke, released into the public domain. Shipped inside the bundle; see Shared/Images/CREDITS.markdown."
   },
   "languages": {
     "populated": [
@@ -94,7 +94,7 @@
     ]
   },
   "scripturalVariant": {
-    "$comment": "The 14 scriptural stations (order, en title, citation, imageKey) — ten scenes reuse shipped images; the four scriptural_* images are new (see Shared/Images/CREDITS.md).",
+    "$comment": "The 14 scriptural stations (order, en title, citation, imageKey) — ten scenes reuse shipped images; the four scriptural_* images are new (see Shared/Images/CREDITS.markdown).",
     "stations": [
       {
         "order": 1,

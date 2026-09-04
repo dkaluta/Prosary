@@ -256,7 +256,7 @@ class PrayerEngine(
                 // Multi-day devotions: shared opening + the day's own steps + shared closing.
                 // dayIndex is clamped, so a finished novena keeps praying its last day; the
                 // per-favorite progress that will drive it is a planned follow-up (see
-                // ARCHITECTURE.md) — until it lands, sessions pray day 1.
+                // ARCHITECTURE.markdown) — until it lands, sessions pray day 1.
                 val days = definition.days.orEmpty()
                 if (days.isEmpty()) return emptyList()
                 val day = days[dayIndex.coerceIn(0, days.size - 1)]

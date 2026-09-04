@@ -1,7 +1,7 @@
 <#
 .SYNOPSIS
 Packs a devotion's authored source directory (Shared/content/<devotion>/) into a
-.prosaryprayer bundle (a zip archive -- see Shared/ARCHITECTURE.md for the format).
+.prosaryprayer bundle (a zip archive -- see Shared/ARCHITECTURE.markdown for the format).
 
 .PARAMETER SourceDir
 Path to a devotion's source directory, e.g. Shared/content/rosary.
@@ -46,6 +46,9 @@ Test-JsonFile $ManifestPath
 $Manifest = Get-Content -Raw -Encoding UTF8 $ManifestPath | ConvertFrom-Json
 
 $DevotionId = $Manifest.id
+if ($DevotionId -notmatch '^[A-Za-z0-9][A-Za-z0-9._-]*$') {
+    Fail "manifest id must match [A-Za-z0-9][A-Za-z0-9._-]*"
+}
 Write-Host "Packing '$DevotionId' from $SourceDir"
 
 if (-not $OutputPath) {

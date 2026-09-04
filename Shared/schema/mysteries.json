@@ -1,5 +1,5 @@
 {
-  "$comment": "Canonical catalog of the 20 Rosary mysteries plus the fixed illustration keys used by steps not tied to a specific mystery. imageKey doubles as the lookup key into MysteryTranslations (title/fruit/description per language) and the filename stem under Shared/Images/{imageKey}.jpg. Source of truth: Windows's Models/MysteryCatalog.cs (this file was built from it); iOS's Mocks/Content/MysteryCatalog.swift and Android's content/MysteryCatalog.kt must carry the exact same set/order. Keep in sync — see README.md in this directory. An alternate eastern-icon artwork set ships as Shared/Images/eastern_{imageKey}.jpg — the same 20 keys behind an eastern_ prefix, selected per favorite by RosaryOptions.mysteryImageStyle and resolved at build time into RosaryStep.imageVariantKey; a display variant only, never part of this catalog.",
+  "$comment": "Canonical catalog of the 20 Rosary mysteries plus the fixed illustration keys used by steps not tied to a specific mystery. imageKey doubles as the lookup key into MysteryTranslations (title/fruit/description per language) and the filename stem under Shared/Images/{imageKey}.jpg. Source of truth: Windows's Models/MysteryCatalog.cs (this file was built from it); iOS's Mocks/Content/MysteryCatalog.swift and Android's content/MysteryCatalog.kt must carry the exact same set/order. Keep in sync — see README.markdown in this directory. An alternate eastern-icon artwork set ships as Shared/Images/eastern_{imageKey}.jpg — the same 20 keys behind an eastern_ prefix, selected per favorite by RosaryOptions.mysteryImageStyle and resolved at build time into RosaryStep.imageVariantKey; a display variant only, never part of this catalog.",
   "mysteryGroups": [
     "joyful",
     "sorrowful",
@@ -156,7 +156,7 @@
     {
       "imageKey": "cross_placeholder",
       "usedFor": "Fallback when no other image key applies",
-      "note": "Not a classical painting like the rest — a small generated placeholder graphic, one per platform (see ARCHITECTURE.md#assets)."
+      "note": "Not a classical painting like the rest — a small generated placeholder graphic, one per platform (see ARCHITECTURE.markdown#assets)."
     }
   ],
   "chronologicalOrderForTwentyMystery": [
@@ -179,7 +179,7 @@
     "newImageKeys": [
       {
         "imageKey": "franciscan_04_adoration_of_the_magi",
-        "note": "Bartolomé Esteban Murillo, The Adoration of the Magi (c. 1655-60), Toledo Museum of Art — public domain, shipped inside the bundle; see Shared/Images/CREDITS.md."
+        "note": "Bartolomé Esteban Murillo, The Adoration of the Magi (c. 1655-60), Toledo Museum of Art — public domain, shipped inside the bundle; see Shared/Images/CREDITS.markdown."
       }
     ]
   }

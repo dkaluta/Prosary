@@ -75,6 +75,22 @@ def check_content_rejects(label: str, mutate, expected: str, language: str = "en
             failures.append(f"{label}: expected {expected!r} in:\n{output}")
 
 
+def check_manifest_rejects(label: str, mutate, expected: str) -> None:
+    """Apply `mutate` to a fixture manifest and require the validator to reject it."""
+    with tempfile.TemporaryDirectory() as tmp:
+        work = Path(tmp) / "bundle"
+        shutil.copytree(FIXTURE, work)
+        path = work / "manifest.json"
+        manifest = json.loads(path.read_text(encoding="utf-8"))
+        mutate(manifest)
+        path.write_text(json.dumps(manifest), encoding="utf-8")
+        code, output = run(work)
+        if code == 0:
+            failures.append(f"{label}: expected rejection, but it validated")
+        elif expected not in output:
+            failures.append(f"{label}: expected {expected!r} in:\n{output}")
+
+
 def hour(devotion: dict, hid: str) -> dict:
     return next(h for h in devotion["hours"] if h["id"] == hid)
 
@@ -91,6 +107,12 @@ def main() -> int:
     for source in sorted(SHARED_CONTENT.iterdir()):
         if (source / "manifest.json").exists():
             check_valid(source, f"shipped: {source.name}")
+
+    check_manifest_rejects(
+        "a path-traversing bundle id",
+        lambda manifest: manifest.update({"id": "../outside"}),
+        "manifest.id",
+    )
 
     # --- A slot must be able to produce a step -------------------------------------------------
     check_rejects(

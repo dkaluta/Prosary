@@ -1,12 +1,14 @@
 {
   "name": "repository",
   "private": true,
+  "type": "module",
   "version": "0.1.0",
   "engines": {
     "node": ">=20.0.0 <23.0.0"
   },
   "scripts": {
     "dev": "next dev",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
     "prebuild": "node --experimental-strip-types scripts/embed-assets.ts",
     "build": "next build",
     "start": "next start",

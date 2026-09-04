@@ -19,7 +19,7 @@ Three native apps, one format, one repo:
 | [`iOS/`](iOS/) | SwiftUI — iPhone, Mac, iPad, Vision Pro. See its [README](iOS/README.markdown). |
 | [`Android/`](Android/) | Jetpack Compose port, feature parity with iOS. |
 | [`Windows/`](Windows/) | WinUI 3 port, feature parity with iOS. |
-| [`Shared/`](Shared/) | The canonical cross-platform ground: the `.prosaryprayer` bundle format and its content ([`ARCHITECTURE.md`](Shared/ARCHITECTURE.md)), schema docs, tools, and the [prosary.app](https://prosary.app) website. |
+| [`Shared/`](Shared/) | The canonical cross-platform ground: the `.prosaryprayer` bundle format and its content ([`ARCHITECTURE.markdown`](Shared/ARCHITECTURE.markdown)), schema docs, tools, and the [prosary.app](https://prosary.app) website. |
 | [`Compose/`](Compose/) | [compose.prosary.app](https://compose.prosary.app) — a fully client-side wizard for authoring `.prosaryprayer` bundles, no technical knowledge needed. |
 | [`Repository/`](Repository/) | [prayers.prosary.app](https://prayers.prosary.app) — the community bundle repository the apps' Browse tab reads. |
 
@@ -31,7 +31,7 @@ Every stepped devotion, including the Rosary, is a `.prosaryprayer` bundle — a
 declaring the steps, per-language content (rites ride as overlay files), options, alternate forms
 with per-rite defaults, multi-day structure, artwork, and narrated audio. Generic devotions need
 no devotion-specific app code; the counter-only Jesus Prayer is the exception and has no bundle.
-[`Shared/ARCHITECTURE.md`](Shared/ARCHITECTURE.md) is the spec, and
+[`Shared/ARCHITECTURE.markdown`](Shared/ARCHITECTURE.markdown) is the spec, and
 `Shared/tools/validate-devotion.py` enforces it.
 
 ## Tooling
@@ -48,15 +48,17 @@ uv run --script Shared/tools/import-scripture.py --check                  # Aram
 uv run --script Shared/tools/fetch-readings.py --sync                    # Daily lectionary citations for the Today card
 uv run --script Shared/tools/bump-version.py --check                      # one version across all three platforms
 uv run --script Shared/tools/reflow-prayers.py --check                    # canonical prayer line breaks
+uv run --script Shared/tools/test-asset-deduplication.py                  # pack parity, no duplicate native artwork
 ```
 
 `make-prosaryprayer.sh` is twinned with `Make-ProsaryPrayer.ps1` for the Windows machine.
 
-CI runs the format suite, the Android and Windows test suites, and the Compose/Repository
-builds on every branch push; iOS tests run on Xcode Cloud.
+CI runs the format suite, the Android and Windows test suites, and all three web builds
+(Compose, Repository, and the Astro site) on every branch push; iOS tests run on Xcode Cloud.
 
 ## License
 
-The apps' original source code is licensed under the BSD 2-Clause License — see
-[`iOS/LICENSE`](iOS/LICENSE). Bundled third-party assets (fonts, artwork, scripture editions)
-retain their own licenses, attributed in each app's About screen.
+All original Prosary material across the native apps, web projects, shared data, documentation,
+tools, and assets is licensed under the BSD 2-Clause License — see
+[`./LICENSE`](./LICENSE). Third-party material (including fonts, artwork, and scripture editions)
+retains its original license and is attributed in each app's About screen.

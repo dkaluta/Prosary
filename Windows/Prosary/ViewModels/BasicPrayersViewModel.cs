@@ -67,9 +67,7 @@ public partial class BasicPrayersViewModel : ObservableObject
     }
 
     internal static string ImageFile(string imageKey) =>
-        PrayerPackStore.ImageFileUri(imageKey) ?? (imageKey == "cross_placeholder"
-            ? "ms-appx:///Assets/Images/cross_placeholder.png"
-            : $"ms-appx:///Assets/Images/{imageKey}.jpg");
+        PrayerPackStore.ImageFileUriOrPlaceholder(imageKey);
 }
 
 /// <summary>One basic prayer as a bounded single-step flow: the same

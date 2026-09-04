@@ -1,0 +1,19 @@
+---
+description: Keep Prosary web surfaces lean, native, accessible, and cohesive
+globs: "{Compose,Repository,Shared/website}/**/*"
+alwaysApply: false
+---
+
+# Web surfaces
+
+- Preserve the existing framework boundary: React/Vite in `Compose`, Next.js App Router in
+  `Repository`, and Astro in `Shared/website`.
+- Prefer semantic HTML and browser-native form, dialog, file, storage, history, and media APIs.
+- Keep Next.js pages as Server Components unless interaction requires a narrow Client Component;
+  pass only the serializable data that client code uses.
+- Avoid duplicated page shells, styles, binary state, and assets. Load or decode large media only
+  when it is needed, and release object URLs and listeners deterministically.
+- Provide responsive layouts, visible focus, clear labels/instructions/status, sufficient contrast,
+  reduced-motion behavior, and useful empty/error states on every page.
+- Measure bundle or artifact changes where practical and run each web app's build plus its safe
+  local tests before committing.

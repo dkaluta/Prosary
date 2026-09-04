@@ -20,12 +20,14 @@ export async function POST(request: Request) {
 
   const challenge = extractChallenge(body.response.response.clientDataJSON);
   if (!challenge) return Response.json({ error: "missing_challenge" }, { status: 400 });
-  const pending = await takeChallenge(challenge, "recovery");
+  const [pending, { rpID, origins }] = await Promise.all([
+    takeChallenge(challenge, "recovery"),
+    getRpInfo(),
+  ]);
   if (!pending || pending.user_id !== live.user_id) {
     return Response.json({ error: "unknown_challenge" }, { status: 400 });
   }
 
-  const { rpID, origins } = await getRpInfo();
   let verification;
   try {
     verification = await verifyRegistrationResponse({

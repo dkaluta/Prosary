@@ -10,9 +10,8 @@ export async function DELETE() {
   const user = await getCurrentUser();
   if (!user) return Response.json({ error: "unauthorized" }, { status: 401 });
 
-  for (const fileUrl of await bundleFileUrlsForUser(user.id)) {
-    await del(fileUrl).catch(() => {});
-  }
+  const fileUrls = await bundleFileUrlsForUser(user.id);
+  await Promise.allSettled(fileUrls.map((fileUrl) => del(fileUrl)));
   await deleteUser(user.id);
   await clearSession();
   return Response.json({ ok: true });

@@ -32,7 +32,7 @@
                                     AutomationProperties.AutomationId="{x:Bind Id}">
                                 <StackPanel Orientation="Horizontal" Spacing="12">
                                     <Border Width="44" Height="44" CornerRadius="8">
-                                        <Image Stretch="UniformToFill">
+                                        <Image Stretch="UniformToFill" AutomationProperties.AccessibilityView="Raw">
                                             <Image.Source><BitmapImage UriSource="{x:Bind ImageFile}" /></Image.Source>
                                         </Image>
                                     </Border>

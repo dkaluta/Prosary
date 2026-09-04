@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "Shared/website/**"
+      - "LICENSE"
       - ".github/workflows/deploy-pages.yml"
   workflow_dispatch:
 

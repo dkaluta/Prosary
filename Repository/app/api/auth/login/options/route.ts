@@ -14,8 +14,11 @@ export async function POST(request: Request) {
   const limited = await rateLimited(request, "login-options", 30, 600);
   if (limited) return limited;
 
-  await pruneExpiredChallenges();
-  const body = (await request.json().catch(() => null)) as { username?: string } | null;
+  const [body, , { rpID }] = await Promise.all([
+    request.json().catch(() => null) as Promise<{ username?: string } | null>,
+    pruneExpiredChallenges(),
+    getRpInfo(),
+  ]);
   const username = normalizeUsername(body?.username ?? "");
   if (!username) return Response.json({ error: "invalid_username" }, { status: 400 });
 
@@ -25,7 +28,6 @@ export async function POST(request: Request) {
     return Response.json({ error: "unknown_user" }, { status: 404 });
   }
 
-  const { rpID } = await getRpInfo();
   const options = await generateAuthenticationOptions({
     rpID,
     userVerification: "preferred",

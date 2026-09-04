@@ -137,6 +137,12 @@ fun HomeScreen(
         mutableStateOf(TodayTranslationLanguage.defaultsToHebrew(defaultLanguageCode))
     }
     var showsFullCitations by remember { mutableStateOf(false) }
+    val todayReadingsTitle = if (todayInHebrew) "המקרא היומי" else "Today’s readings"
+    val citationButtonText = if (todayInHebrew) {
+        if (showsFullCitations) "הצג קיצור" else "הצג מראי מקום מלאים"
+    } else {
+        if (showsFullCitations) "Show shorthand" else "View full citations"
+    }
     var todayMysteryGroup by remember { mutableStateOf<MysteryGroup?>(null) }
     var defaultRosary by remember { mutableStateOf<Prayer?>(null) }
     var defaultJesusPrayer by remember { mutableStateOf<Prayer?>(null) }
@@ -365,39 +371,35 @@ fun HomeScreen(
             // calendar and the Pope's monthly prayer intention. Rows hide when the bundled
             // datasets have no entry (ferial days; dates past the generated years).
             item(key = "today", span = { GridItemSpan(maxLineSpan) }) {
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(10.dp),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clip(RoundedCornerShape(14.dp))
-                        .background(MaterialTheme.colorScheme.surfaceContainerHigh)
-                        .padding(14.dp),
+                CompositionLocalProvider(
+                    LocalLayoutDirection provides if (todayInHebrew) LayoutDirection.Rtl else LayoutDirection.Ltr,
                 ) {
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Icon(Icons.Filled.CalendarMonth, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
-                        CompositionLocalProvider(
-                            LocalLayoutDirection provides if (todayInHebrew) LayoutDirection.Rtl else LayoutDirection.Ltr,
-                        ) {
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(10.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(14.dp))
+                            .background(MaterialTheme.colorScheme.surfaceContainerHigh)
+                            .padding(14.dp),
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Icon(Icons.Filled.CalendarMonth, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
                             Text(
                                 if (todayInHebrew) liturgicalDayInfo.hebrew else liturgicalDayInfo.english,
                                 style = MaterialTheme.typography.titleSmall,
                                 fontWeight = FontWeight.SemiBold,
                                 modifier = Modifier.weight(1f),
                             )
+                            TextButton(onClick = { todayInHebrew = !todayInHebrew }) {
+                                Text(if (todayInHebrew) stringResource(R.string.home_today_show_english) else "עברית")
+                            }
                         }
-                        TextButton(onClick = { todayInHebrew = !todayInHebrew }) {
-                            Text(if (todayInHebrew) stringResource(R.string.home_today_show_english) else "עברית")
-                        }
-                    }
-                    if (todayFeast != null) {
-                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Icon(
-                                Icons.Filled.CalendarMonth, contentDescription = null,
-                                tint = MaterialTheme.colorScheme.primary,
-                            )
-                            CompositionLocalProvider(
-                                LocalLayoutDirection provides if (todayInHebrew) LayoutDirection.Rtl else LayoutDirection.Ltr,
-                            ) {
+                        if (todayFeast != null) {
+                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                Icon(
+                                    Icons.Filled.CalendarMonth, contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.primary,
+                                )
                                 Column(verticalArrangement = Arrangement.spacedBy(2.dp), modifier = Modifier.weight(1f)) {
                                     Text(
                                         todayFeast.localizedTitle(if (todayInHebrew) "he" else "en"),
@@ -414,16 +416,12 @@ fun HomeScreen(
                                 }
                             }
                         }
-                    }
-                    if (monthIntention != null) {
-                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Icon(
-                                Icons.Filled.VolunteerActivism, contentDescription = null,
-                                tint = MaterialTheme.colorScheme.primary,
-                            )
-                            CompositionLocalProvider(
-                                LocalLayoutDirection provides if (todayInHebrew) LayoutDirection.Rtl else LayoutDirection.Ltr,
-                            ) {
+                        if (monthIntention != null) {
+                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                Icon(
+                                    Icons.Filled.VolunteerActivism, contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.primary,
+                                )
                                 Column(verticalArrangement = Arrangement.spacedBy(2.dp), modifier = Modifier.weight(1f)) {
                                     Text(
                                         if (todayInHebrew) "כוונת האפיפיור: ${monthIntention.localizedTitle("he")}" else
@@ -439,15 +437,11 @@ fun HomeScreen(
                                 }
                             }
                         }
-                    }
-                    if (todayReadings.isNotEmpty()) {
-                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Icon(Icons.AutoMirrored.Filled.MenuBook, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
-                            CompositionLocalProvider(
-                                LocalLayoutDirection provides if (todayInHebrew) LayoutDirection.Rtl else LayoutDirection.Ltr,
-                            ) {
+                        if (todayReadings.isNotEmpty()) {
+                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                Icon(Icons.AutoMirrored.Filled.MenuBook, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
                                 Column(verticalArrangement = Arrangement.spacedBy(2.dp), modifier = Modifier.weight(1f)) {
-                                    Text(stringResource(R.string.home_today_readings), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
+                                    Text(todayReadingsTitle, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
                                     if (showsFullCitations) {
                                         todayReadings.forEach { citation ->
                                             Text(
@@ -466,7 +460,7 @@ fun HomeScreen(
                                         )
                                     }
                                     TextButton(onClick = { showsFullCitations = !showsFullCitations }) {
-                                        Text(stringResource(if (showsFullCitations) R.string.home_today_compact_citations else R.string.home_today_full_citations))
+                                        Text(citationButtonText)
                                     }
                                 }
                             }

@@ -32,8 +32,27 @@ struct HomeView: View {
   @State private var showsFullCitations = false
 
   private var todayLanguageCode: String { todayInHebrew ? "he" : "en" }
-  private var todayHorizontalAlignment: HorizontalAlignment { todayInHebrew ? .trailing : .leading }
-  private var todayFrameAlignment: Alignment { todayInHebrew ? .trailing : .leading }
+
+  private var todayReadingsHeading: String {
+    todayInHebrew ? "המקרא היומי" : "Today’s readings"
+  }
+
+  private var todayFullCitationsLabel: String {
+    todayInHebrew ? "הצג מראי מקום מלאים" : "View full citations"
+  }
+
+  private var todayCompactCitationsLabel: String {
+    todayInHebrew ? "הצג קיצור" : "Show shorthand"
+  }
+
+  private var todayCitationToggleLabel: String {
+    showsFullCitations ? todayCompactCitationsLabel : todayFullCitationsLabel
+  }
+
+  private func todayPopeIntentionHeading(_ intention: PopeIntention) -> String {
+    let title = intention.localizedTitle(todayLanguageCode)
+    return todayInHebrew ? "כוונת האפיפיור: \(title)" : "The Pope’s intention: \(title)"
+  }
 
   /// The Today rows can be switched off one by one in Settings (Erez's request) — an off
   /// row simply never loads, and with both off the whole section stays away.
@@ -267,13 +286,14 @@ struct HomeView: View {
   @ViewBuilder
   private var todaySection: some View {
     if liturgicalDayInfo != nil || todayFeast != nil || monthIntention != nil || !todayReadings.isEmpty {
-      VStack(alignment: todayHorizontalAlignment, spacing: 10) {
+      // `leading` is semantic: the layout direction below places it on the right in Hebrew.
+      VStack(alignment: .leading, spacing: 10) {
         if let info = liturgicalDayInfo {
           HStack(alignment: .firstTextBaseline, spacing: 8) {
             Image(systemName: "sun.max").foregroundStyle(Color.brandPrimary)
             Text(HebrewDisplayText.unpointed(todayInHebrew ? info.hebrew : info.english))
               .font(.subheadline.weight(.semibold))
-              .frame(maxWidth: .infinity, alignment: todayFrameAlignment)
+              .frame(maxWidth: .infinity, alignment: .leading)
             Button(todayInHebrew
               ? String(localized: "home.today.showEnglish", defaultValue: "English")
               : String(localized: "home.today.translate", defaultValue: "עברית")) {
@@ -285,7 +305,7 @@ struct HomeView: View {
         if let feast = todayFeast {
           HStack(alignment: .firstTextBaseline, spacing: 8) {
             Image(systemName: "calendar").foregroundStyle(Color.brandPrimary)
-            VStack(alignment: todayHorizontalAlignment, spacing: 2) {
+            VStack(alignment: .leading, spacing: 2) {
               Text(feast.localizedTitle(todayLanguageCode))
                 // Each calendar's own top rank: Roman "Solemnity", 1962 "1st Class",
                 // Byzantine "Great Feast".
@@ -299,12 +319,8 @@ struct HomeView: View {
         if let intention = monthIntention {
           HStack(alignment: .firstTextBaseline, spacing: 8) {
             Image(systemName: "hands.sparkles").foregroundStyle(Color.brandPrimary)
-            VStack(alignment: todayHorizontalAlignment, spacing: 2) {
-              Text(todayInHebrew
-                ? "כוונת האפיפיור: \(intention.localizedTitle("he"))"
-                : String(
-                    localized: "home.today.popesIntention",
-                    defaultValue: "The Pope’s intention: \(intention.localizedTitle("en"))"))
+            VStack(alignment: .leading, spacing: 2) {
+              Text(todayPopeIntentionHeading(intention))
                 .font(.subheadline.weight(.semibold))
               Text(intention.localizedText(todayInHebrew ? "he" : "en"))
                 .font(.caption).foregroundStyle(.secondary)
@@ -314,42 +330,38 @@ struct HomeView: View {
         if !todayReadings.isEmpty {
           HStack(alignment: .firstTextBaseline, spacing: 8) {
             Image(systemName: "book.closed").foregroundStyle(Color.brandPrimary)
-            VStack(alignment: todayHorizontalAlignment, spacing: 3) {
-              Text(String(localized: "home.today.readings", defaultValue: "Today’s readings"))
+            VStack(alignment: .leading, spacing: 3) {
+              Text(todayReadingsHeading)
                 .font(.subheadline.weight(.semibold))
               #if os(macOS)
               DisclosureGroup(isExpanded: $showsFullCitations) {
                 ForEach(Array(todayReadings.enumerated()), id: \.offset) { _, citation in
                   Text(citation.localizedFull(todayLanguageCode))
                     .font(.caption).foregroundStyle(.secondary)
-                    .frame(maxWidth: .infinity, alignment: todayFrameAlignment)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
               } label: {
-                Text(showsFullCitations
-                  ? String(localized: "home.today.compactCitations", defaultValue: "Show shorthand")
-                  : String(localized: "home.today.fullCitations", defaultValue: "View full citations"))
+                Text(todayCitationToggleLabel)
               }
               .font(.caption)
               if !showsFullCitations {
                 Text(todayReadings.map { $0.localizedShort(todayLanguageCode) }.joined(separator: ", "))
                   .font(.caption).foregroundStyle(.secondary)
-                  .frame(maxWidth: .infinity, alignment: todayFrameAlignment)
+                  .frame(maxWidth: .infinity, alignment: .leading)
               }
               #else
               if showsFullCitations {
                 ForEach(Array(todayReadings.enumerated()), id: \.offset) { _, citation in
                   Text(citation.localizedFull(todayLanguageCode))
                     .font(.caption).foregroundStyle(.secondary)
-                    .frame(maxWidth: .infinity, alignment: todayFrameAlignment)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
               } else {
                 Text(todayReadings.map { $0.localizedShort(todayLanguageCode) }.joined(separator: ", "))
                   .font(.caption).foregroundStyle(.secondary)
-                  .frame(maxWidth: .infinity, alignment: todayFrameAlignment)
+                  .frame(maxWidth: .infinity, alignment: .leading)
               }
-              Button(showsFullCitations
-                ? String(localized: "home.today.compactCitations", defaultValue: "Show shorthand")
-                : String(localized: "home.today.fullCitations", defaultValue: "View full citations")) {
+              Button(todayCitationToggleLabel) {
                 showsFullCitations.toggle()
               }
               .font(.caption)
@@ -359,7 +371,7 @@ struct HomeView: View {
         }
       }
       .environment(\.layoutDirection, todayInHebrew ? .rightToLeft : .leftToRight)
-      .frame(maxWidth: .infinity, alignment: todayFrameAlignment)
+      .frame(maxWidth: .infinity, alignment: .leading)
       .padding(14)
       .background(.quaternary.opacity(0.5), in: RoundedRectangle(cornerRadius: 14))
       .accessibilityIdentifier("todaySection")

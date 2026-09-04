@@ -161,7 +161,7 @@ struct AboutView: View {
     "about.otherImage.headOfChrist",
   ]
 
-  /// One classical work per sorrow — full source files and licenses in Shared/Images/CREDITS.md.
+  /// One classical work per sorrow — full source files and licenses in Shared/Images/CREDITS.markdown.
   private let sevenSorrowsAttributions = [
     "about.sevenSorrowsImage.rembrandtSimeon",
     "about.sevenSorrowsImage.murilloFlight",

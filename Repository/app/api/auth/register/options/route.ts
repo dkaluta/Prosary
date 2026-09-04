@@ -19,13 +19,14 @@ export async function POST(request: Request) {
   const limited = await rateLimited(request, "register-options", 10, 3600);
   if (limited) return limited;
 
-  await pruneExpiredChallenges();
-  const body = (await request.json().catch(() => null)) as Body | null;
+  const [body, , { rpID }] = await Promise.all([
+    request.json().catch(() => null) as Promise<Body | null>,
+    pruneExpiredChallenges(),
+    getRpInfo(),
+  ]);
   if (!body || (body.mode !== "signup" && body.mode !== "add")) {
     return Response.json({ error: "invalid_body" }, { status: 400 });
   }
-
-  const { rpID } = await getRpInfo();
 
   if (body.mode === "signup") {
     const username = normalizeUsername(body.username ?? "");
@@ -36,10 +37,14 @@ export async function POST(request: Request) {
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
       return Response.json({ error: "invalid_email" }, { status: 400 });
     }
-    if (await findUserByUsername(username)) {
+    const [existingUsername, existingEmail] = await Promise.all([
+      findUserByUsername(username),
+      findUserByEmail(email),
+    ]);
+    if (existingUsername) {
       return Response.json({ error: "username_taken" }, { status: 409 });
     }
-    if (await findUserByEmail(email)) {
+    if (existingEmail) {
       return Response.json({ error: "email_taken" }, { status: 409 });
     }
 

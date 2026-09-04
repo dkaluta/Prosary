@@ -48,7 +48,7 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     private string _body = string.Empty;
 
     [ObservableProperty]
-    private string _mysteryImageFile = "ms-appx:///Assets/Images/christ_pantocrator.jpg";
+    private string _mysteryImageFile = PrayerPackStore.ImageFileUriOrPlaceholder("christ_pantocrator");
 
     [ObservableProperty]
     private string _progressText = string.Empty;

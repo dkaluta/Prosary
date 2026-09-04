@@ -1,17 +1,27 @@
 // Submission pipeline: validate an uploaded .prosaryprayer against the format's install
-// checks (mirroring the apps' PrayerPackStore.installPack — see Shared/ARCHITECTURE.md
+// checks (mirroring the apps' PrayerPackStore.installPack — see Shared/ARCHITECTURE.markdown
 // § Content bundles) and re-stamp its id into the submitter's namespace,
 // `repo.<username>.<name>`. Compose can't author dotted ids (its id shape forbids them),
 // so authors upload ordinary compose output and the repository claims the namespace here —
 // rebuilding the zip with the same dependency-free writer the webapp packs with.
 
 import { buildZip, ZipReader, type ZipFile } from "./zip.ts";
+import { isSupportedLanguage } from "./languages.ts";
 
-const KNOWN_LANGUAGES = new Set(["la", "en", "ar", "he", "ru", "tl"]);
-const MAX_BUNDLE_BYTES = 8 * 1024 * 1024;
+export const MAX_BUNDLE_BYTES = 8 * 1024 * 1024;
+const REPOSITORY_ZIP_LIMITS = {
+  maxEntryUncompressedBytes: MAX_BUNDLE_BYTES,
+  maxTotalUncompressedBytes: MAX_BUNDLE_BYTES,
+} as const;
 const LOCAL_NAME_SHAPE = /^[a-z][a-zA-Z0-9]*$/;
 
 export class BundleError extends Error {}
+
+export function assertBundleByteLength(byteLength: number): void {
+  if (byteLength > MAX_BUNDLE_BYTES) {
+    throw new BundleError("The bundle is larger than 8 MB.");
+  }
+}
 
 export type ValidatedBundle = {
   id: string;
@@ -37,13 +47,11 @@ function slugify(name: string): string {
 }
 
 export async function validateAndRestamp(bytes: Uint8Array, username: string): Promise<ValidatedBundle> {
-  if (bytes.length > MAX_BUNDLE_BYTES) {
-    throw new BundleError("The bundle is larger than 8 MB.");
-  }
+  assertBundleByteLength(bytes.length);
 
   let zip: ZipReader;
   try {
-    zip = ZipReader.open(bytes);
+    zip = ZipReader.open(bytes, REPOSITORY_ZIP_LIMITS);
   } catch {
     throw new BundleError("This file is not a readable .prosaryprayer bundle.");
   }
@@ -69,9 +77,19 @@ export async function validateAndRestamp(bytes: Uint8Array, username: string): P
   const displayName = typeof manifest.displayName === "string" ? manifest.displayName.trim() : "";
   if (!displayName) throw new BundleError("The bundle has no display name.");
 
-  const languages = Array.isArray(manifest.languages)
-    ? manifest.languages.filter((l): l is string => typeof l === "string" && KNOWN_LANGUAGES.has(l))
-    : [];
+  const declaredLanguages = Array.isArray(manifest.languages) ? manifest.languages : [];
+  const invalidLanguages = declaredLanguages.filter(
+    (language): boolean => typeof language !== "string" || !isSupportedLanguage(language),
+  );
+  if (invalidLanguages.length > 0) {
+    const labels = invalidLanguages.map((language) =>
+      typeof language === "string" ? language : JSON.stringify(language) ?? String(language),
+    );
+    throw new BundleError(
+      `Unsupported prayer language${labels.length === 1 ? "" : "s"}: ${labels.join(", ")}.`,
+    );
+  }
+  const languages = [...new Set(declaredLanguages.filter(isSupportedLanguage))];
   if (languages.length === 0) {
     throw new BundleError("The bundle declares no known prayer languages.");
   }
@@ -109,18 +127,28 @@ export async function validateAndRestamp(bytes: Uint8Array, username: string): P
         .slice(0, 8)
     : [];
 
-  // Re-stamp manifest id/kind and rebuild the zip byte-for-byte otherwise.
-  const restamped = { ...manifest, id, kind: id };
+  // Re-stamp the identity and the exact language set validated above. This prevents catalog
+  // metadata from claiming a filtered subset while the downloadable manifest keeps unsupported,
+  // unvalidated languages.
+  const restamped = { ...manifest, id, kind: id, languages };
   const files: ZipFile[] = [];
-  for (const name of zip.names()) {
-    files.push({
-      name,
-      data:
-        name === "manifest.json"
-          ? new TextEncoder().encode(JSON.stringify(restamped, null, 2) + "\n")
-          : await zip.contents(name),
-    });
+  try {
+    for (const name of zip.names()) {
+      files.push({
+        name,
+        data:
+          name === "manifest.json"
+            ? new TextEncoder().encode(JSON.stringify(restamped, null, 2) + "\n")
+            : await zip.contents(name),
+      });
+    }
+  } catch {
+    throw new BundleError("The bundle contains a corrupt ZIP entry.");
   }
 
-  return { id, displayName, languages, tags: manifestTags, bytes: buildZip(files) };
+  const restampedBytes = buildZip(files);
+  if (restampedBytes.length > MAX_BUNDLE_BYTES) {
+    throw new BundleError("The rebuilt bundle is larger than 8 MB.");
+  }
+  return { id, displayName, languages, tags: manifestTags, bytes: restampedBytes };
 }

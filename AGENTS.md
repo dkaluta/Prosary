@@ -11,10 +11,12 @@ content layer:
 - `Android/` — Kotlin + Jetpack Compose
 - `Windows/` — WinUI 3 / C#
 - `Shared/` — the canonical cross-platform documentation, JSON schema, datasets, tools,
-  fonts, and images. Assets are **physically copied** into each platform's tree — no
-  platform references `Shared/` at build time.
+  fonts, and images. Generated packs, datasets, and fonts are **physically copied** into each
+  platform's tree — no platform references `Shared/` at build time. Prayer artwork is the
+  exception: it lives once inside the copied `.prosaryprayer` packs and must not also be copied
+  into native image catalogs/resource directories.
 
-The deep documentation is `Shared/ARCHITECTURE.md` — read the relevant section before
+The deep documentation is `Shared/ARCHITECTURE.markdown` — read the relevant section before
 touching a subsystem. The marketing site (Astro) lives in `Shared/website/` and has its own
 `AGENTS.md`.
 
@@ -30,6 +32,11 @@ new ones identical on all three platforms.
 
 - Work on feature branches (`feature/<kebab-name>`); `main` is the release baseline and
   receives finished work via merge commits. CI (GitHub Actions) runs on every branch.
+- Name new Markdown documents with the `.markdown` extension. Keep `.md` only when an exact
+  conventional filename is required by tooling (for example `AGENTS.md` or `CLAUDE.md`).
+- The root `LICENSE` covers every first-party part of Prosary: Apple, Android, Windows, web,
+  shared data, documentation, tools, and assets. Link to that canonical file; do not add
+  platform-specific license copies. Third-party material keeps its original license.
 - Pushing `main` triggers the iOS Xcode Cloud pipeline. Android releases via
   `./gradlew publishReleaseBundle` (Play alpha); the Windows MSIX is built manually on a
   Windows machine. Don't push without being asked.
@@ -63,7 +70,10 @@ new ones identical on all three platforms.
   Evangelizo-backed Syriac table and the sourced Hebrew titles merged into
   `feasts-roman.json` cover a rolling ~3-month horizon — regenerate every couple of months.
 - Devotions are data-driven `.prosaryprayer` bundles (`devotion.json` v2 + variants +
-  options). Adding a devotion or a feast calendar is a data drop, not a new screen.
+  options). Adding a devotion or a feast calendar is a data drop, not a new screen. Built-in
+  packs stay byte-identical to `Shared/dist`; run
+  `uv run --script Shared/tools/test-asset-deduplication.py` to check pack parity and ensure
+  packed artwork has not acquired a duplicate native-resource copy.
 
 ## Localization & Hebrew
 

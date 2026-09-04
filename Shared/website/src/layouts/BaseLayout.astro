@@ -1,0 +1,85 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  heading: string;
+  currentPath: "/" | "/privacy" | "/license";
+}
+
+const { title, description, heading, currentPath } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/privacy", label: "Privacy" },
+  { href: "/license", label: "License" },
+] as const;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+      <nav aria-label="Primary">
+        <a
+          class="site-name"
+          href="/"
+          aria-current={currentPath === "/" ? "page" : undefined}>Prosary</a
+        >
+        <div class="site-links">
+          {
+            links.slice(1).map((link) => (
+              <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined}>
+                {link.label}
+              </a>
+            ))
+          }
+        </div>
+      </nav>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      <header class="hero">
+        <p class="eyebrow" aria-hidden="true">A quiet place to pray</p>
+        <h1>{heading}</h1>
+        <slot name="hero" />
+      </header>
+      <slot />
+    </main>
+
+    <footer>
+      <nav aria-label="Footer">
+        <a href="https://github.com/dkaluta/Prosary">Source on GitHub</a>
+        <span aria-hidden="true">·</span>
+        {
+          links.map((link, index) => (
+            <>
+              <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined}>
+                {link.label}
+              </a>
+              {index < links.length - 1 && <span aria-hidden="true">·</span>}
+            </>
+          ))
+        }
+      </nav>
+      <p>&copy; 2026 David Kaluta</p>
+    </footer>
+  </body>
+</html>

@@ -33,7 +33,7 @@ A signed release build additionally needs an upload keystore. See [Signing](#sig
 
 A `Prayer` (`models/Prayer.kt`) is a saved, user-configurable prayer session, discriminated by
 `PrayerKind`: the Rosary, the Jesus Prayer, and `Custom` — every other devotion, driven
-entirely by a `.prosaryprayer` bundle (see `../Shared/ARCHITECTURE.md`). New devotions are new
+entirely by a `.prosaryprayer` bundle (see `../Shared/ARCHITECTURE.markdown`). New devotions are new
 bundles, not new code. `engine/PrayerEngine.kt` builds Rosary sessions and every bundle-driven
 devotion, reading bundles through `content/prayerpack/PrayerPackLoader.kt`; the Jesus Prayer is a
 separate tap counter modeled directly by `JesusPrayerOptions`/`JesusPrayerProgress`.
@@ -76,7 +76,7 @@ account-recovery process to reset the upload key.
 ## Store assets
 
 `store-assets/` holds the Play Store hi-res icon, feature graphic, phone/tablet screenshots, and
-draft listing copy — see `store-assets/listing.md`.
+draft listing copy — see `store-assets/listing.markdown`.
 
 ## Tests
 
@@ -91,6 +91,6 @@ bundles, the calendar, the pack loader, models, and the preset store; instrument
 
 ## License
 
-The app's original source code is licensed under the BSD 2-Clause License — see [LICENSE](LICENSE),
-matching the iOS app's. Bundled third-party assets retain their own separate licenses — see the
-in-app About screen for details.
+All original Prosary material is licensed under the repository-wide BSD 2-Clause License — see
+[LICENSE](../LICENSE). Third-party material retains its original license — see the in-app About
+screen for details.
