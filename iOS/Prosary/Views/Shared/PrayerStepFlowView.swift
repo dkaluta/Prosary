@@ -225,7 +225,7 @@ struct PrayerStepFlowView: View {
       flowActions
       autoAdvanceMenu
     }
-    .buttonStyle(.bordered)
+    .prosarySecondaryButtonStyle()
     .controlSize(.large)
     .frame(minHeight: 44)
     .padding(.horizontal)
