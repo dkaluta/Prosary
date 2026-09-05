@@ -109,6 +109,83 @@ final class TodayInfoStoreTests: XCTestCase {
     XCTAssertNotNil(TodayInfoStore.feast(on: date("2026-09-03")))
   }
 
+  func testEveryCalendarLocalizesItsOwnFeastWithoutChangingItsTitleOrRank() throws {
+    let expected = [
+      ("lpj", "Exaltation of the Holy Cross", "Feast"),
+      ("roman", "Exaltation of the Holy Cross", "Feast"),
+      ("roman1962", "Exaltation of the Holy Cross", "2nd Class"),
+      ("ugcc", "The Exaltation of the Precious and Life-Giving Cross", "Great Feast"),
+      ("syriac", "Exaltation of the Holy Cross—Feast", "Feast"),
+    ]
+    for (calendarId, title, rank) in expected {
+      select(calendarId)
+      let feast = try XCTUnwrap(TodayInfoStore.feast(on: date("2026-09-14")), calendarId)
+      XCTAssertEqual(feast.title, title, calendarId)
+      XCTAssertEqual(feast.rank, rank, calendarId)
+      XCTAssertEqual(feast.localizedTitle("he"), "חג תפארת הצלב", calendarId)
+      XCTAssertEqual(feast.localizedTitle("he-x-gamliel"), "חג תפארת הצלב", calendarId)
+      XCTAssertEqual(feast.localizedTitle("en"), title, calendarId)
+    }
+  }
+
+  func testFeastWithoutATranslationKeepsItsOwnTitle() {
+    let feast = FeastDay(title: "Untranslated feast", titleByLanguage: nil, rank: "Feast")
+    XCTAssertEqual(feast.localizedTitle("he"), "Untranslated feast")
+    XCTAssertEqual(feast.localizedTitle("he-x-gamliel"), "Untranslated feast")
+  }
+
+  func testTeresaOfCalcuttaLocalizesWithoutReplacingAnotherCalendarsDay() throws {
+    for calendarId in ["lpj", "roman"] {
+      select(calendarId)
+      let feast = try XCTUnwrap(TodayInfoStore.feast(on: date("2026-09-05")), calendarId)
+      XCTAssertEqual(feast.title, "Saint Teresa of Calcutta, Virgin", calendarId)
+      XCTAssertEqual(feast.rank, "Optional Memorial", calendarId)
+      XCTAssertEqual(feast.localizedTitle("he"), "תרזה הקדושה מקלקוטה", calendarId)
+      XCTAssertEqual(feast.localizedTitle("he-x-gamliel"), "תרזה הקדושה מקלקוטה", calendarId)
+      XCTAssertEqual(feast.localizedTitle("en"), "Saint Teresa of Calcutta, Virgin", calendarId)
+
+      // September 5 falls on Sunday in 2027; translating a saint must not change precedence.
+      let sunday = TodayInfoStore.feast(on: date("2027-09-05"))
+      XCTAssertEqual(sunday?.title, "23rd Sunday of Ordinary Time", calendarId)
+      XCTAssertEqual(sunday?.rank, "Sunday", calendarId)
+    }
+
+    select("roman1962")
+    let vetus = TodayInfoStore.feast(on: date("2026-09-05"))
+    XCTAssertEqual(vetus?.title, "St. Lawrence Justinian")
+    XCTAssertEqual(vetus?.rank, "3rd Class")
+    for calendarId in ["ugcc", "syriac"] {
+      select(calendarId)
+      XCTAssertNil(TodayInfoStore.feast(on: date("2026-09-05")), calendarId)
+    }
+  }
+
+  func testFeastRanksFollowTodayLanguageWithoutChangingCanonicalValues() {
+    let expected = [
+      ("Solemnity", "מועד"),
+      ("Feast", "חג"),
+      ("Memorial", "זיכרון"),
+      ("Optional Memorial", "זיכרון רשות"),
+      ("Sunday", "יום ראשון"),
+      ("Great Feast", "חג גדול"),
+      ("Holy Week", "השבוע הקדוש"),
+      ("Fast", "צום"),
+      ("1st Class", "דרגה ראשונה"),
+      ("2nd Class", "דרגה שנייה"),
+      ("3rd Class", "דרגה שלישית"),
+    ]
+    for (rank, hebrew) in expected {
+      let feast = FeastDay(title: "Feast", titleByLanguage: nil, rank: rank)
+      XCTAssertEqual(feast.localizedRank("he"), hebrew, rank)
+      XCTAssertEqual(feast.localizedRank("he-x-gamliel"), hebrew, rank)
+      XCTAssertEqual(feast.localizedRank("en"), rank)
+      XCTAssertEqual(feast.localizedRank("fr"), rank)
+      XCTAssertEqual(feast.rank, rank)
+    }
+    let unknown = FeastDay(title: "Feast", titleByLanguage: nil, rank: "Future rank")
+    XCTAssertEqual(unknown.localizedRank("he"), "Future rank")
+  }
+
   func testLocalizedDisplayTitlesDropHebrewPointingOnly() {
     let feast = FeastDay(
       title: "Vocalized feast", titleByLanguage: ["he": "חַג הַבְּשׂוֹרָה"], rank: "Feast")

@@ -939,20 +939,35 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
     the credit is required and carried on every platform's About screen ("Calendar Data"
     section, which also names LitCal and Missale Meum). Plain-date ferial titles are omitted;
     ranks are title-derived ("Sunday" / "Fast" / "Feast", with Pascha as "Great Feast").
-    Evangelizo serves a rolling ~3-month horizon, so the sourced Hebrew Roman titles and the
+    Evangelizo serves a rolling ~3-month horizon, so new Hebrew Roman titles from that feed and the
     `syriac` table end where the API did at generation time and extend on each rerun — regenerate more often
     than yearly.
     Adding a further calendar remains a pure data drop: a registry entry + a dataset file +
     its `readingsFile` + platform copies.
   `Shared/tools/fetch-feasts.py` regenerates every table (litcal + missalemeum + Evangelizo;
   `--sync` copies all of `Shared/data/*.json` into the three platform asset dirs).
+  All five calendars receive sourced Hebrew names from `Shared/tools/hebrew-feast-titles.json`
+  and `hebrew-saint-titles.json`. These catalogs preserve Evangelizo HE wording beyond its rolling
+  window and relay names from the St James Vicariate's bilingual calendar and Hebrew articles,
+  with additional feast names from the Christian Media Center. Every label records its source;
+  exact English identities and reviewed aliases reuse names across years and rites without
+  copying another calendar's dates, ranks, or precedence. Combined observances retain both names,
+  including an original-language component when it has no sourced translation. Existing authored
+  translations are preserved. Run `uv run --script Shared/tools/fetch-feasts.py --localize-only --sync`
+  to apply catalog additions offline without changing the calendar coverage; `--self-test` checks
+  identity matching, preservation, and fallback. New catalogs or sources require matching About
+  credits in all three ports. Mother Teresa's 2026-09-05 memorial, for example, gains its sourced
+  Hebrew name in the two modern Roman calendars, while 2027-09-05 remains the Sunday already in
+  their tables and the other rites retain their own observances.
   `TodayInfoStore` reloads both the feast and reading tables when the selected calendar changes.
   The calendar choice affects the Today feast and its lectionary citations together; seasons,
   mystery assignment, and Marian antiphons still use `LiturgicalCalendarService`'s computed
   Latin-calendar machinery. The Today card always names the weekday and numbered week of the
   liturgical season. Its English/Hebrew display toggle localizes that heading, the Pope's authored
-  intention, any sourced `titleByLanguage.he` feast name, and any sourced Hebrew citation. Missing
-  localized feast names remain in their source language — especially on non-General calendars —
+  intention, any sourced `titleByLanguage.he` feast name, its rank caption, and any sourced Hebrew
+  citation. Rank captions follow the Today switch independently of the app UI language; their
+  canonical rank values still control prominence and calendar logic. Missing
+  localized feast names remain in their source language when no credited Hebrew name is available,
   rather than being invented. Hebrew mode gives the whole Today text/citation stack RTL direction
   and trailing alignment, including the expanded citations.
   The readings row shows compact citations (for example `Gen. 1; Ps. 23; Jn. 3`); a button expands

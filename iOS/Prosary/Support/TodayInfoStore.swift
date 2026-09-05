@@ -27,6 +27,34 @@ struct FeastDay: Decodable, Equatable {
   func localizedTitle(_ language: String) -> String {
     HebrewDisplayText.unpointed(localizedValue(titleByLanguage, language: language) ?? title)
   }
+
+  /// Captions follow the Today translation toggle, independently of the app UI language.
+  /// Roman rank terms follow the Saint James Vicariate's 2025–2026 calendar, pp. 4, 6–7:
+  /// https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf
+  /// Other entries are ordinary UI descriptions; canonical ranks remain unchanged.
+  func localizedRank(_ language: String) -> String {
+    let hebrewFallback: String
+    switch rank {
+    case "Solemnity": hebrewFallback = "מועד"
+    case "Feast": hebrewFallback = "חג"
+    case "Memorial": hebrewFallback = "זיכרון"
+    case "Optional Memorial": hebrewFallback = "זיכרון רשות"
+    case "Sunday": hebrewFallback = "יום ראשון"
+    case "Great Feast": hebrewFallback = "חג גדול"
+    case "Holy Week": hebrewFallback = "השבוע הקדוש"
+    case "Fast": hebrewFallback = "צום"
+    case "1st Class": hebrewFallback = "דרגה ראשונה"
+    case "2nd Class": hebrewFallback = "דרגה שנייה"
+    case "3rd Class": hebrewFallback = "דרגה שלישית"
+    default: return rank
+    }
+    let displayLanguage = (LanguageCatalog.baseLanguage(of: language) ?? language) == "he" ? "he" : "en"
+    let fallback = displayLanguage == "he" ? hebrewFallback : rank
+    guard let path = Bundle.main.path(forResource: displayLanguage, ofType: "lproj"),
+          let bundle = Bundle(path: path) else { return fallback }
+    let key = "home.today.rank.\(rank.lowercased().replacingOccurrences(of: " ", with: "_"))"
+    return bundle.localizedString(forKey: key, value: fallback, table: nil)
+  }
 }
 
 struct PopeIntention: Decodable, Equatable {

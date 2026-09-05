@@ -1,5 +1,5 @@
 {
- "$comment": "Per-day table, West Syriac — Syriac Catholic: liturgical day titles courtesy of Evangelizo.org — Daily Gospel (© Evangelizo.org), publication edition SYE, used with attribution (also on every platform's About screen). Ferial plain-date titles are omitted. Evangelizo serves a rolling ~3-month horizon, so this table ends where the API did at generation time and extends on each rerun of Shared/tools/fetch-feasts.py — regenerate more often than yearly.",
+ "$comment": "Per-day table, West Syriac — Syriac Catholic: liturgical day titles courtesy of Evangelizo.org — Daily Gospel (© Evangelizo.org), publication edition SYE, used with attribution (also on every platform's About screen). Ferial plain-date titles are omitted. Evangelizo serves a rolling ~3-month horizon, so this table ends where the API did at generation time and extends on each rerun of Shared/tools/fetch-feasts.py — regenerate more often than yearly. Hebrew feast and saint names use the credited source catalogs in Shared/tools/hebrew-feast-titles.json and hebrew-saint-titles.json; the calendar's own dates, observances, ranks and original titles are retained.",
  "generated": "2026-08-24",
  "years": [
   2026
@@ -7,7 +7,10 @@
  "days": {
   "2026-01-01": {
    "title": "The Circumcision of the Lord",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג ברית ישוע"
+   }
   },
   "2026-01-04": {
    "title": "Sunday Before Epiphany",
@@ -19,7 +22,10 @@
   },
   "2026-01-06": {
    "title": "Baptism of the Lord",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג הטבילה"
+   }
   },
   "2026-01-07": {
    "title": "Congratulation of John the Baptist",
@@ -27,7 +33,10 @@
   },
   "2026-01-08": {
    "title": "St. Stephen archdeacon & first martyr",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג סטפנוס הקדוש"
+   }
   },
   "2026-01-11": {
    "title": "First Sunday after Epiphany",
@@ -43,7 +52,10 @@
   },
   "2026-01-17": {
    "title": "Feast of St. Anthony the Great, father of all monks",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "אנטוניוס, אב מנזר"
+   }
   },
   "2026-01-18": {
    "title": "Second Sunday after Epiphany",
@@ -51,7 +63,10 @@
   },
   "2026-01-22": {
    "title": "Feast Day of St. Timothy",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "טימותיאוס"
+   }
   },
   "2026-01-25": {
    "title": "Third Sunday after Epiphany",
@@ -231,7 +246,10 @@
   },
   "2026-03-19": {
    "title": "Feast of Saint Joseph",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג יוסף הצדיק"
+   }
   },
   "2026-03-20": {
    "title": "Fifth Friday of the Great Fast",
@@ -255,7 +273,10 @@
   },
   "2026-03-25": {
    "title": "Feast of the Annunciation",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג בשורת המלאך למרים"
+   }
   },
   "2026-03-26": {
    "title": "Sixth Thursday of the Great Fast",
@@ -271,7 +292,10 @@
   },
   "2026-03-29": {
    "title": "Palm Sunday: The Entrance of  Jesus into Jerusalem",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום הראשון של הלולבים"
+   }
   },
   "2026-03-30": {
    "title": "Monday of Passion",
@@ -291,7 +315,10 @@
   },
   "2026-04-03": {
    "title": "Great Friday",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום השישי הגדול"
+   }
   },
   "2026-04-04": {
    "title": "Saturday of Light",
@@ -299,7 +326,10 @@
   },
   "2026-04-05": {
    "title": "Resurrection Sunday (Pascha)",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "יום הפסחא - חג התחייה"
+   }
   },
   "2026-04-06": {
    "title": "Monday of Resurrection (Road to Emmaus) - Remembrance of the Departed",
@@ -335,11 +365,17 @@
   },
   "2026-04-23": {
    "title": "Feast of Saint George the Martyr",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "גאורגיוס, מרטיר"
+   }
   },
   "2026-04-25": {
    "title": "Feast of Saint Mark the Evangelist",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג מרקוס המבשר"
+   }
   },
   "2026-04-26": {
    "title": "Third Sunday after the  Resurrection",
@@ -355,7 +391,10 @@
   },
   "2026-05-08": {
    "title": "Feast of Saint John the Evangelist",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג יוחנן המבשר"
+   }
   },
   "2026-05-10": {
    "title": "Fifth Sunday after the  Resurrection",
@@ -363,7 +402,10 @@
   },
   "2026-05-14": {
    "title": "Feast of the Ascension of our Lord",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג עלייתו של האדון השמיימה"
+   }
   },
   "2026-05-15": {
    "title": "Feast of Our Lady Guardian of Plants",
@@ -379,7 +421,10 @@
   },
   "2026-05-24": {
    "title": "Sunday of Pentecost",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "שבועות"
+   }
   },
   "2026-05-25": {
    "title": "Monday of Pentecost",
@@ -395,7 +440,10 @@
   },
   "2026-06-04": {
    "title": "Feast of Corpus Christi",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג גוף המשיח"
+   }
   },
   "2026-06-07": {
    "title": "Second Sunday after Pentecost",
@@ -407,7 +455,10 @@
   },
   "2026-06-12": {
    "title": "Feast of the Most Sacred Heart of Jesus",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג ליבו הקדוש של ישוע"
+   }
   },
   "2026-06-14": {
    "title": "Third Sunday after Pentecost",
@@ -419,7 +470,10 @@
   },
   "2026-06-18": {
    "title": "Deth of Saint Ephrem",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "אפרים, דיאקון ומורה כנסייה"
+   }
   },
   "2026-06-19": {
    "title": "Feast of Saint Judas the Apostle, Brother of the Lord",
@@ -431,7 +485,10 @@
   },
   "2026-06-24": {
    "title": "Birth of Feast of Saint John the Baptist's",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג הולדתו של יוחנן המטביל"
+   }
   },
   "2026-06-28": {
    "title": "Fifth Sunday after Pentecost",
@@ -439,7 +496,10 @@
   },
   "2026-06-29": {
    "title": "Feast of Saints Peter and Paul the Chefs of the Apostles",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג שמעון כיפא ושאול השליחים"
+   }
   },
   "2026-06-30": {
    "title": "Feast of Saints the Twelve Apostles",
@@ -447,11 +507,17 @@
   },
   "2026-07-01": {
    "title": "Feast of Saints Cosma and Damias the Martyrs",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "קוסמאס ודמיאנוס, מרטירים"
+   }
   },
   "2026-07-03": {
    "title": "Feast of Saint Thomas the Apostle",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג תומא השליח"
+   }
   },
   "2026-07-05": {
    "title": "Sixth Sunday after Pentecost",
@@ -471,7 +537,10 @@
   },
   "2026-07-20": {
    "title": "Feast of Saint Elijah the Prophet",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג אליהו הנביא"
+   }
   },
   "2026-07-21": {
    "title": "Feast of St Simeon Stylites, Confessor",
@@ -479,7 +548,10 @@
   },
   "2026-07-22": {
    "title": "Feast of Saint Mary Magdalene",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג מרים המגדלית הקדושה"
+   }
   },
   "2026-07-26": {
    "title": "Ninth Sunday after Pentecost",
@@ -487,7 +559,10 @@
   },
   "2026-07-29": {
    "title": "Feast of Saint Martha, sister of Lazarus",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "מרתה"
+   }
   },
   "2026-08-01": {
    "title": "Feast of St. Shmouni and her seven sons & their teacher Eleazar",
@@ -499,7 +574,10 @@
   },
   "2026-08-06": {
    "title": "The Feast of the Transfiguration of Our Lord Jesus Christ",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג של ישוע לבוש הדר (חג היפע)"
+   }
   },
   "2026-08-09": {
    "title": "Eleventh Sunday after Pentecost",
@@ -507,7 +585,10 @@
   },
   "2026-08-15": {
    "title": "Assumption of the Mother of God",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג העלאתה של מרים השמיימה"
+   }
   },
   "2026-08-16": {
    "title": "Twelfth Sunday after Pentecost",
@@ -523,7 +604,10 @@
   },
   "2026-08-25": {
    "title": "Feast of Saint Titus the bishop",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "טיטוס"
+   }
   },
   "2026-08-30": {
    "title": "Fourteenth Sunday after Pentecost",
@@ -539,7 +623,10 @@
   },
   "2026-09-08": {
    "title": "Birth of the Blessed Virgin Mary—Feast",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג המולד של מרים העלמה"
+   }
   },
   "2026-09-09": {
    "title": "Feast of Saints Joachim and Anna, parents of the Virgin Mary",
@@ -551,7 +638,10 @@
   },
   "2026-09-14": {
    "title": "Exaltation of the Holy Cross—Feast",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג תפארת הצלב"
+   }
   },
   "2026-09-20": {
    "title": "First Sunday after the Feast of the Cross",
@@ -579,7 +669,10 @@
   },
   "2026-10-06": {
    "title": "Feast of Saint Thomas the Apostle",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג תומא השליח"
+   }
   },
   "2026-10-11": {
    "title": "Fourth Sunday after the Feast of the Cross",
@@ -599,7 +692,10 @@
   },
   "2026-10-23": {
    "title": "Feast of Saint James the Apostle, Brother of the Lord",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יעקב הצדיק"
+   }
   },
   "2026-10-25": {
    "title": "Sixth Sunday after the Feast of the Cross",
@@ -615,7 +711,10 @@
   },
   "2026-11-14": {
    "title": "Feast of Saint Philip the Apostle",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "פיליפוס השליח"
+   }
   },
   "2026-11-15": {
    "title": "Sunday of the Announcement to Zechariah",
@@ -623,11 +722,17 @@
   },
   "2026-11-16": {
    "title": "Feast of Saint Matthew the Apostle",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג מתי השליח והמבשר"
+   }
   },
   "2026-11-21": {
    "title": "Presentation of Mary",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "כניסת מרים לבית המקדש"
+   }
   },
   "2026-11-22": {
    "title": "Sunday of the Announcement to the Theotokos",

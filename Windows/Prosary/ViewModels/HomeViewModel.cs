@@ -93,6 +93,7 @@ public partial class HomeViewModel : ObservableObject
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(TodayDayText))]
     [NotifyPropertyChangedFor(nameof(TodayFeastTitle))]
+    [NotifyPropertyChangedFor(nameof(TodayFeastRank))]
     [NotifyPropertyChangedFor(nameof(MonthIntentionTitle))]
     [NotifyPropertyChangedFor(nameof(MonthIntentionText))]
     [NotifyPropertyChangedFor(nameof(ReadingsText))]
@@ -130,7 +131,7 @@ public partial class HomeViewModel : ObservableObject
 
     public string TodayFeastTitle => TodayFeast?.LocalizedTitle(TodayInHebrew ? "he" : "en") ?? string.Empty;
 
-    public string TodayFeastRank => TodayFeast?.Rank ?? string.Empty;
+    public string TodayFeastRank => TodayFeast?.LocalizedRank(TodayInHebrew ? "he" : "en") ?? string.Empty;
 
     public string MonthIntentionTitle => MonthIntention is { } intention
         ? TodayInHebrew

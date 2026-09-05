@@ -7,10 +7,12 @@
 calendar, listed in Shared/data/calendars.json.
 
     usage: fetch-feasts.py [--years 2026 2027] [--sync] [--cache DIR]
+           fetch-feasts.py --localize-only --sync
            --years  the civil years to bake in (default: the current and next year)
            --sync   also copy every Shared/data/*.json into the three platform asset dirs
            --cache  read litcal-<year>.json / missalemeum-<year>.json from DIR instead of
                     fetching when present (and save fetched payloads there)
+           --localize-only  apply sourced feast/saint names to the existing dates offline
 
 Calendars and their sources:
   feasts.json            Roman — Holy Land: the General Roman Calendar from the litcal API
@@ -33,11 +35,12 @@ Calendars and their sources:
                          (~3 months ahead; farther dates answer "too far in the future"), so
                          this dataset covers as far as the API allows at generation time and
                          extends on each rerun — regenerate more often than yearly.
-  feasts-roman.json      also carries sourced Hebrew titles inline as
-                         titleByLanguage.he. They are relayed from Evangelizo's "HE" edition
-                         (לוח המקראות הרומי), never translated or invented. Because that
-                         edition only names days with proper readings, dates without a sourced
-                         Hebrew title simply fall back to the English General Roman title.
+  All calendars         carry sourced Hebrew feast and saint titles inline as
+                         titleByLanguage.he. Exact identity catalogs preserve names from
+                         Evangelizo HE and Hebrew church publications across calendar years
+                         and explicitly reviewed aliases across rites. They never replace a
+                         calendar's dates, original observances, or ranks. Uncovered identities
+                         retain their source-language title.
   feasts-ugcc.json       Byzantine — Ukrainian Greek Catholic, the diasporic (fully Gregorian)
                          usage prayed in the Holy Land: no licensed machine-readable source
                          exists, so the fixed menologion is CURATED IN THIS SCRIPT
@@ -71,7 +74,6 @@ import datetime as dt
 import json
 import re
 import shutil
-import sys
 import time
 from collections import defaultdict
 from pathlib import Path
@@ -82,6 +84,7 @@ TOOLS = Path(__file__).resolve().parent
 SHARED = TOOLS.parent
 ROOT = SHARED.parent
 DATA = SHARED / "data"
+HEBREW_TITLE_CATALOGS = [TOOLS / "hebrew-feast-titles.json", TOOLS / "hebrew-saint-titles.json"]
 
 PLATFORM_DATA_DIRS = [
     ROOT / "iOS" / "Prosary" / "Data",
@@ -267,8 +270,81 @@ def add_hebrew_titles(days: dict, titles: dict[str, str]) -> dict:
         if entry is None:
             print(f"  (no General Roman entry for sourced Hebrew title on {date}: {title!r})")
             continue
-        entry["titleByLanguage"] = {"he": title}
+        entry["titleByLanguage"] = {**entry.get("titleByLanguage", {}), "he": title}
     return localized
+
+
+def hebrew_title_catalog() -> dict[str, str]:
+    """Exact feast identities and explicitly reviewed aliases, never date-based matches."""
+    result: dict[str, str] = {}
+    for path in HEBREW_TITLE_CATALOGS:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        for title, entry in payload["titles"].items():
+            if not entry.get("he", "").strip() or not entry.get("source", "").strip():
+                raise ValueError(f"{path.name}: missing Hebrew name or source for {title!r}")
+            if title in result and result[title] != entry["he"]:
+                raise ValueError(f"Conflicting Hebrew titles for {title!r}")
+            result[title] = entry["he"]
+    return result
+
+
+def localized_feast_title(title: str, catalog: dict[str, str]) -> str | None:
+    if title in catalog:
+        return catalog[title]
+    # Byzantine fixed feasts can coincide with Holy Week. Translate each actual component;
+    # a sourced name for one feast must never replace or conceal the other observance.
+    if "; " in title:
+        parts = title.split("; ")
+        translated = [localized_feast_title(part, catalog) for part in parts]
+        if any(translated):
+            return "; ".join(localized or original for original, localized in zip(parts, translated))
+    return None
+
+
+def localize_feast_days(days: dict, catalog: dict[str, str]) -> tuple[int, set[str]]:
+    """Enrich titles in place, preserving dates, ranks, original titles and authored languages."""
+    added = 0
+    missing: set[str] = set()
+    for entry in days.values():
+        if entry.get("titleByLanguage", {}).get("he"):
+            continue
+        title = entry["title"]
+        translated = localized_feast_title(title, catalog)
+        if translated:
+            entry.setdefault("titleByLanguage", {})["he"] = translated
+            added += 1
+        else:
+            missing.add(title)
+    return added, missing
+
+
+def localize_existing_datasets() -> None:
+    catalog = hebrew_title_catalog()
+    registry = json.loads((DATA / "calendars.json").read_text(encoding="utf-8"))
+    for name in dict.fromkeys(calendar["file"] for calendar in registry["calendars"]):
+        path = DATA / f"{name}.json"
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        added, missing = localize_feast_days(payload["days"], catalog)
+        credit = (
+            " Hebrew feast and saint names use the credited source catalogs in "
+            "Shared/tools/hebrew-feast-titles.json and hebrew-saint-titles.json; "
+            "the calendar's own dates, observances, ranks and original titles are retained.")
+        if "Hebrew feast and saint names" not in payload["$comment"]:
+            payload["$comment"] += credit
+        path.write_text(json.dumps(payload, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        print(f"localized {path.name}: {added} added; {len(missing)} distinct titles retain their source language")
+
+
+def sync_datasets() -> None:
+    for target in PLATFORM_DATA_DIRS:
+        if not target.is_dir():
+            raise SystemExit(f"error: missing platform data dir {target}")
+        for source in sorted(DATA.glob("*.json")):
+            shutil.copy2(source, target / source.name)
+        stale = target / "feasts-roman-he.json"
+        if stale.exists():
+            stale.unlink()
+        print(f"synced -> {target.relative_to(ROOT)}")
 
 
 def gregorian_easter(year: int) -> dt.date:
@@ -429,7 +505,38 @@ def main() -> int:
     parser.add_argument("--years", type=int, nargs="+", default=None)
     parser.add_argument("--sync", action="store_true", help="copy Shared/data/*.json to the platform asset dirs")
     parser.add_argument("--cache", type=Path, default=None, help="payload cache directory")
+    parser.add_argument("--localize-only", action="store_true", help="apply sourced names offline without changing calendar coverage")
+    parser.add_argument("--self-test", action="store_true", help="check exact-title localization without fetching data")
     args = parser.parse_args()
+    if args.self_test:
+        catalog = {"Feast": "חג", "Other observance": "זכר", "Saint": "קדוש"}
+        days = {
+            "2026-09-05": {"title": "Saint", "rank": "Memorial", "titleByLanguage": {"ar": "existing"}},
+            "2027-09-05": {"title": "Saint", "rank": "Feast"},
+            "2026-09-06": {"title": "Unknown", "rank": "Sunday"},
+            "2026-09-07": {"title": "Feast", "rank": "Feast", "titleByLanguage": {"he": "authored"}},
+        }
+        originals = {date: (row["title"], row["rank"]) for date, row in days.items()}
+        added, missing = localize_feast_days(days, catalog)
+        assert added == 2 and missing == {"Unknown"}
+        assert {date: (row["title"], row["rank"]) for date, row in days.items()} == originals
+        assert days["2026-09-05"]["titleByLanguage"] == {"ar": "existing", "he": "קדוש"}
+        assert days["2027-09-05"]["titleByLanguage"]["he"] == "קדוש"
+        assert days["2026-09-07"]["titleByLanguage"]["he"] == "authored"
+        snapshot = json.dumps(days, ensure_ascii=False)
+        assert localize_feast_days(days, catalog) == (0, {"Unknown"})
+        assert json.dumps(days, ensure_ascii=False) == snapshot
+        assert localized_feast_title("Feast; Other observance", catalog) == "חג; זכר"
+        assert localized_feast_title("Feast; Unknown", catalog) == "חג; Unknown"
+        assert localized_feast_title("Different saint", catalog) is None
+        hebrew_title_catalog()  # Validate every checked-in label has a source and no conflict.
+        print("feast localization self-test passed")
+        return 0
+    if args.localize_only:
+        localize_existing_datasets()
+        if args.sync:
+            sync_datasets()
+        return 0
     years = args.years or [dt.date.today().year, dt.date.today().year + 1]
     if args.cache:
         global CACHE_DIR
@@ -494,17 +601,10 @@ def main() -> int:
         "eparchial/community verification; see the script for the layering rules.",
         years, ugcc)
 
+    localize_existing_datasets()
+
     if args.sync:
-        for target in PLATFORM_DATA_DIRS:
-            if not target.is_dir():
-                print(f"error: missing platform data dir {target}", file=sys.stderr)
-                return 1
-            for source in sorted(DATA.glob("*.json")):
-                shutil.copy2(source, target / source.name)
-            stale = target / "feasts-roman-he.json"
-            if stale.exists():
-                stale.unlink()
-            print(f"synced -> {target.relative_to(ROOT)}")
+        sync_datasets()
     return 0
 
 

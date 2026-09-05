@@ -1,0 +1,558 @@
+{
+  "$comment": "Explicit feast-name aliases for Hebrew UI titles across calendars. Hebrew wording is relayed from credited Hebrew church publications or existing Evangelizo HE titleByLanguage entries. Match the named feast, never a coincident date. Source paths identify the original attestation, not the destination feast date. Roman Epiphany is not used for Byzantine Theophany; Dormition is not replaced by Assumption. Unknown titles retain their source-language name. No prayer text is translated here.",
+  "titles": {
+    "Holy Family of Jesus, Mary and Joseph": {
+      "he": "חג המשפחה הקדושה של ישוע, מרים ויוסף",
+      "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf"
+    },
+    "The Holy Family: Jesus, Mary & Joseph": {
+      "he": "חג המשפחה הקדושה של ישוע, מרים ויוסף",
+      "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf"
+    },
+    "Christmas": {
+      "he": "חג המולד",
+      "source": "https://www.catholic.co.il/?cat=docs&id=8807&lang=he&m=UniversalChurch&view=article"
+    },
+    "The Immaculate Conception of the Blessed Virgin Mary": {
+      "he": "חג ההתעברות ללא רבב של מרים הבתולה המבורכת",
+      "source": "https://www.catholic.co.il/?cat=&id=14525&m=&view=article"
+    },
+    "Immaculate Conception of the Blessed Virgin Mary": {
+      "he": "חג ההתעברות ללא רבב של מרים הבתולה המבורכת",
+      "source": "https://www.catholic.co.il/?cat=&id=14525&m=&view=article"
+    },
+    "The Dormition of the Most Holy Theotokos": {
+      "he": "תרדמת מרים",
+      "source": "https://cmc-terrasanta.org/he/media/news/31237/%D7%9B%D7%A0%D7%A1%D7%99%D7%99%D7%AA-%D7%AA%D7%A8%D7%93%D7%9E%D7%AA-%D7%9E%D7%A8%D7%99%D7%9D-%3A-%D7%9E%D7%A8%D7%99%D7%9D-%D7%94%D7%9E%D7%9B%D7%91%D7%93%D7%AA-%D7%90%D7%AA-%D7%99%D7%A9%D7%95%D7%A2-%D7%91%D7%92%D7%95%D7%A3-%D7%95%D7%91%D7%A0%D7%A4%D7%A9"
+    },
+    "The Entrance of the Most Holy Theotokos into the Temple": {
+      "he": "כניסת מרים לבית המקדש",
+      "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=7"
+    },
+    "Presentation of Mary": {
+      "he": "כניסת מרים לבית המקדש",
+      "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=7"
+    },
+    "Presentation of the Blessed Virgin Mary": {
+      "he": "כניסת מרים לבית המקדש",
+      "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=7"
+    },
+    "The Presentation of the Blessed Virgin Mary": {
+      "he": "כניסת מרים לבית המקדש",
+      "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=7"
+    },
+    "The Circumcision of the Lord": {
+      "he": "חג ברית ישוע",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-01-01"
+    },
+    "The Circumcision of Our Lord": {
+      "he": "חג ברית ישוע",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-01-01"
+    },
+    "The Holy Theophany of Our Lord": {
+      "he": "חג הטבילה",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-01-11",
+      "equivalenceSource": "https://ugcc.ua/en/data/homily-of-his-beatitude-sviatoslav-on-the-feast-of-the-theophany-of-our-lord-2063/"
+    },
+    "The Encounter of Our Lord": {
+      "he": "חג הבאתו של ישוע אל בית המקדש",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-02-02"
+    },
+    "The Annunciation of the Most Holy Theotokos": {
+      "he": "חג בשורת המלאך למרים",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-03-25"
+    },
+    "Feast of the Annunciation": {
+      "he": "חג בשורת המלאך למרים",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-03-25"
+    },
+    "The Nativity of the Holy Prophet John the Baptist": {
+      "he": "חג הולדתו של יוחנן המטביל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-06-24"
+    },
+    "Birth of Feast of Saint John the Baptist's": {
+      "he": "חג הולדתו של יוחנן המטביל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-06-24"
+    },
+    "Holy Apostles Peter and Paul": {
+      "he": "חג שמעון כיפא ושאול השליחים",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-06-29"
+    },
+    "Feast of Saints Peter and Paul the Chefs of the Apostles": {
+      "he": "חג שמעון כיפא ושאול השליחים",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-06-29"
+    },
+    "The Holy Transfiguration of Our Lord": {
+      "he": "חג של ישוע לבוש הדר (חג היפע)",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-08-06"
+    },
+    "The Feast of the Transfiguration of Our Lord Jesus Christ": {
+      "he": "חג של ישוע לבוש הדר (חג היפע)",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-08-06"
+    },
+    "Assumption of the Mother of God": {
+      "he": "חג העלאתה של מרים השמיימה",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-08-15"
+    },
+    "The Beheading of the Holy Prophet John the Baptist": {
+      "he": "זכר ייסוריו של יוחנן המטביל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-08-29"
+    },
+    "The Nativity of the Most Holy Theotokos": {
+      "he": "חג המולד של מרים העלמה",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-09-08"
+    },
+    "Birth of the Blessed Virgin Mary—Feast": {
+      "he": "חג המולד של מרים העלמה",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-09-08"
+    },
+    "The Exaltation of the Precious and Life-Giving Cross": {
+      "he": "חג תפארת הצלב",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-09-14"
+    },
+    "Exaltation of the Holy Cross—Feast": {
+      "he": "חג תפארת הצלב",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-09-14"
+    },
+    "Flowery (Palm) Sunday — the Entrance into Jerusalem": {
+      "he": "יום הראשון של הלולבים",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-03-29"
+    },
+    "Palm Sunday: The Entrance of  Jesus into Jerusalem": {
+      "he": "יום הראשון של הלולבים",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-03-29"
+    },
+    "Great and Holy Thursday": {
+      "he": "יום החמישי הגדול",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-04-02"
+    },
+    "Great and Holy Friday": {
+      "he": "יום השישי הגדול",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-04-03"
+    },
+    "Great Friday": {
+      "he": "יום השישי הגדול",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-04-03"
+    },
+    "Great and Holy Saturday": {
+      "he": "יום השבת הגדול",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-04-04"
+    },
+    "The Resurrection of Our Lord — Holy Pascha": {
+      "he": "יום הפסחא - חג התחייה",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-04-05"
+    },
+    "Resurrection Sunday (Pascha)": {
+      "he": "יום הפסחא - חג התחייה",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-04-05"
+    },
+    "The Ascension of Our Lord": {
+      "he": "חג עלייתו של האדון השמיימה",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-05-14"
+    },
+    "Feast of the Ascension of our Lord": {
+      "he": "חג עלייתו של האדון השמיימה",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-05-14"
+    },
+    "The Descent of the Holy Spirit — Pentecost": {
+      "he": "שבועות",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-05-24"
+    },
+    "Sunday of Pentecost": {
+      "he": "שבועות",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-05-24"
+    },
+    "Sunday of All Saints": {
+      "he": "חג כל הקדושים",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-11-01"
+    },
+    "Feast of Corpus Christi": {
+      "he": "חג גוף המשיח",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-06-04"
+    },
+    "Feast of the Most Sacred Heart of Jesus": {
+      "he": "חג ליבו הקדוש של ישוע",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-06-12"
+    },
+    "Feast of Saint Joseph": {
+      "he": "חג יוסף הצדיק",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-03-19"
+    },
+    "Feast of Saint Mark the Evangelist": {
+      "he": "חג מרקוס המבשר",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-04-25"
+    },
+    "Feast of Saint Thomas the Apostle": {
+      "he": "חג תומא השליח",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-07-03"
+    },
+    "Feast of Saint Mary Magdalene": {
+      "he": "חג מרים המגדלית הקדושה",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-07-22"
+    },
+    "Feast of Saint Matthew the Apostle": {
+      "he": "חג מתי השליח והמבשר",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-09-21"
+    },
+    "Holy Apostle and Evangelist John the Theologian": {
+      "he": "חג יוחנן המבשר",
+      "source": "https://www.catholic.co.il/?cat=&id=6006&m=&view=article"
+    },
+    "Feast of Saint John the Evangelist": {
+      "he": "חג יוחנן המבשר",
+      "source": "https://www.catholic.co.il/?cat=&id=6006&m=&view=article"
+    },
+    "Holy First-Martyr and Archdeacon Stephen": {
+      "he": "חג סטפנוס הקדוש",
+      "source": "https://www.catholic.co.il/?cat=faith&id=6002&lang=he&m=&view=article"
+    },
+    "St. Stephen archdeacon & first martyr": {
+      "he": "חג סטפנוס הקדוש",
+      "source": "https://www.catholic.co.il/?cat=faith&id=6002&lang=he&m=&view=article"
+    },
+    "The Nativity of Our Lord": {
+      "he": "חג המולד",
+      "source": "https://www.catholic.co.il/?cat=docs&id=8807&lang=he&m=UniversalChurch&view=article"
+    },
+    "The Holy Prophet Elijah": {
+      "he": "חג אליהו הנביא",
+      "source": "https://www.cmc-terrasanta.com/he/media/terra-santa-news/23822/javascript%3B"
+    },
+    "Feast of Saint Elijah the Prophet": {
+      "he": "חג אליהו הנביא",
+      "source": "https://www.cmc-terrasanta.com/he/media/terra-santa-news/23822/javascript%3B"
+    },
+    "Mary, Mother of God": {
+      "he": "חג מרים אם האדון; חג ברית ישוע",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-01-01"
+    },
+    "2nd Sunday after Christmas": {
+      "he": "יום א' ה-2 בתקופת חג המולד",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-01-04"
+    },
+    "Epiphany": {
+      "he": "חג התגלות האדון",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-01-06"
+    },
+    "Baptism of the Lord": {
+      "he": "חג הטבילה",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-01-11"
+    },
+    "2nd Sunday of Ordinary Time": {
+      "he": "יום א ה-2 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-01-18"
+    },
+    "3rd Sunday of Ordinary Time": {
+      "he": "יום א ה-3 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-01-25"
+    },
+    "Saints Timothy and Titus, Bishops": {
+      "he": "חג טימותיאוס וטיטוס הקדושים",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-01-26"
+    },
+    "4th Sunday of Ordinary Time": {
+      "he": "יום א ה-4 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-02-01"
+    },
+    "Presentation of the Lord": {
+      "he": "חג הבאתו של ישוע אל בית המקדש",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-02-02"
+    },
+    "5th Sunday of Ordinary Time": {
+      "he": "יום א ה-5 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-02-08"
+    },
+    "6th Sunday of Ordinary Time": {
+      "he": "יום א ה-6 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-02-15"
+    },
+    "Ash Wednesday": {
+      "he": "יום האפר",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-02-18"
+    },
+    "First Sunday of Lent": {
+      "he": "יום א' ה-1 בצום",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-02-22"
+    },
+    "Second Sunday of Lent": {
+      "he": "יום א' ה-2 בצום",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-03-01"
+    },
+    "Third Sunday of Lent": {
+      "he": "יום א' ה-3 בצום",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-03-08"
+    },
+    "Fourth Sunday of Lent": {
+      "he": "יום א' ה-4 בצום",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-03-15"
+    },
+    "Saint Joseph Husband of the Blessed Virgin Mary": {
+      "he": "חג יוסף הצדיק",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-03-19"
+    },
+    "Fifth Sunday of Lent": {
+      "he": "יום א' ה-5 בצום",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-03-22"
+    },
+    "Annunciation of the Lord": {
+      "he": "חג בשורת המלאך למרים",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-03-25"
+    },
+    "Palm Sunday": {
+      "he": "יום הראשון של הלולבים",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-03-29"
+    },
+    "Holy Thursday": {
+      "he": "יום החמישי הגדול",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-04-02"
+    },
+    "Good Friday": {
+      "he": "יום השישי הגדול",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-04-03"
+    },
+    "Easter Vigil": {
+      "he": "יום השבת הגדול - ליל השימורים",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-04-04"
+    },
+    "Easter Sunday": {
+      "he": "יום הפסחא - חג התחייה",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-04-05"
+    },
+    "Second Sunday of Easter or Divine Mercy Sunday": {
+      "he": "יום א ה-2 של פסחא",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-04-12"
+    },
+    "Third Sunday of Easter": {
+      "he": "יום א ה-3 של פסחא",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-04-19"
+    },
+    "Saint Mark the Evangelist": {
+      "he": "חג מרקוס המבשר",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-04-25"
+    },
+    "Fourth Sunday of Easter": {
+      "he": "יום א ה-4 של פסחא",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-04-26"
+    },
+    "Fifth Sunday of Easter": {
+      "he": "יום א ה-5 של פסחא",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-05-03"
+    },
+    "Sixth Sunday of Easter": {
+      "he": "יום א ה-6 של פסחא",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-05-10"
+    },
+    "Ascension": {
+      "he": "חג עלייתו של האדון השמיימה",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-05-14"
+    },
+    "Seventh Sunday of Easter": {
+      "he": "יום א ה-7 של פסחא",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-05-17"
+    },
+    "Pentecost": {
+      "he": "שבועות",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-05-24"
+    },
+    "Holy Trinity Sunday": {
+      "he": "חג רז האלהים",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-05-31"
+    },
+    "Corpus Christi": {
+      "he": "חג גוף המשיח",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-06-04"
+    },
+    "10th Sunday of Ordinary Time": {
+      "he": "יום א ה-10 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-06-07"
+    },
+    "Saint Barnabas the Apostle": {
+      "he": "חג בר-נבא השליח",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-06-11"
+    },
+    "Most Sacred Heart of Jesus": {
+      "he": "חג ליבו הקדוש של ישוע",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-06-12"
+    },
+    "The Immaculate Heart of the Blessed Virgin Mary": {
+      "he": "חג ליבה הטהור של מרים",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-06-13"
+    },
+    "11th Sunday of Ordinary Time": {
+      "he": "יום א ה-11 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-06-14"
+    },
+    "12th Sunday of Ordinary Time": {
+      "he": "יום א ה-12 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-06-21"
+    },
+    "The Nativity of Saint John the Baptist": {
+      "he": "חג הולדתו של יוחנן המטביל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-06-24"
+    },
+    "13th Sunday of Ordinary Time": {
+      "he": "יום א ה-13 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-06-28"
+    },
+    "Saints Peter and Paul, Apostles": {
+      "he": "חג שמעון כיפא ושאול השליחים",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-06-29"
+    },
+    "Saint Thomas the Apostle": {
+      "he": "חג תומא השליח",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-07-03"
+    },
+    "14th Sunday of Ordinary Time": {
+      "he": "יום א ה-14 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-07-05"
+    },
+    "15th Sunday of Ordinary Time": {
+      "he": "יום א ה-15 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-07-12"
+    },
+    "16th Sunday of Ordinary Time": {
+      "he": "יום א ה-16 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-07-19"
+    },
+    "Saint Mary Magdalene": {
+      "he": "חג מרים המגדלית הקדושה",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-07-22"
+    },
+    "Saint James, Apostle": {
+      "he": "חג יעקב השליח",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-07-25"
+    },
+    "17th Sunday of Ordinary Time": {
+      "he": "יום א ה-17 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-07-26"
+    },
+    "Saint Martha": {
+      "he": "חג מרתה ומרים הקדושות",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-07-29"
+    },
+    "18th Sunday of Ordinary Time": {
+      "he": "יום א ה-18 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-08-02"
+    },
+    "The Transfiguration of the Lord": {
+      "he": "חג של ישוע לבוש הדר (חג היפע)",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-08-06"
+    },
+    "19th Sunday of Ordinary Time": {
+      "he": "יום א ה-19 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-08-09"
+    },
+    "Saint Lawrence, Deacon and Martyr": {
+      "he": "חג לורנציוס הדיקן",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-08-10"
+    },
+    "The Assumption of the Blessed Virgin Mary": {
+      "he": "חג העלאתה של מרים השמיימה",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-08-15"
+    },
+    "20th Sunday of Ordinary Time": {
+      "he": "יום א ה-20 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-08-16"
+    },
+    "21st Sunday of Ordinary Time": {
+      "he": "יום א ה-21 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-08-23"
+    },
+    "Saint Bartholomew, Apostle": {
+      "he": "חג בר-תלמי השליח",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-08-24"
+    },
+    "The Beheading of Saint John the Baptist, Martyr": {
+      "he": "זכר ייסוריו של יוחנן המטביל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-08-29"
+    },
+    "22nd Sunday of Ordinary Time": {
+      "he": "יום א ה-22 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-08-30"
+    },
+    "23rd Sunday of Ordinary Time": {
+      "he": "יום א ה-23 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-09-06"
+    },
+    "The Nativity of the Blessed Virgin Mary": {
+      "he": "חג המולד של מרים העלמה",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-09-08"
+    },
+    "24th Sunday of Ordinary Time": {
+      "he": "יום א ה-24 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-09-13"
+    },
+    "Exaltation of the Holy Cross": {
+      "he": "חג תפארת הצלב",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-09-14"
+    },
+    "Our Lady of Sorrows": {
+      "he": "חג מרים של המכאובות",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-09-15"
+    },
+    "25th Sunday of Ordinary Time": {
+      "he": "יום א ה-25 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-09-20"
+    },
+    "Saint Matthew, Apostle and Evangelist": {
+      "he": "חג מתי השליח והמבשר",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-09-21"
+    },
+    "26th Sunday of Ordinary Time": {
+      "he": "יום א ה-26 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-09-27"
+    },
+    "Saints Michael, Gabriel and Raphael, Archangels": {
+      "he": "חג מיכאל, גבריאל ורפאל שרי המלאכים",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-09-29"
+    },
+    "The Holy Guardian Angels": {
+      "he": "חג המלאכים השומרים",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-10-02"
+    },
+    "27th Sunday of Ordinary Time": {
+      "he": "יום א ה-27 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-10-04"
+    },
+    "28th Sunday of Ordinary Time": {
+      "he": "יום א ה-28 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-10-11"
+    },
+    "29th Sunday of Ordinary Time": {
+      "he": "יום א ה-29 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-10-18"
+    },
+    "30th Sunday of Ordinary Time": {
+      "he": "יום א ה-30 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-10-25"
+    },
+    "Saints Simon and Jude, Apostles": {
+      "he": "חג שמעון ויהודה השליחים",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-10-28"
+    },
+    "All Saints": {
+      "he": "חג כל הקדושים",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-11-01"
+    },
+    "The Commemoration of all the Faithful Departed (All Souls' Day)": {
+      "he": "זכר כל הנפטרים",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-11-02"
+    },
+    "32nd Sunday of Ordinary Time": {
+      "he": "יום א ה-32 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-11-08"
+    },
+    "The Dedication of the Lateran Basilica": {
+      "he": "חג חנוכת כנסיית הלטרן",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-11-09"
+    },
+    "33rd Sunday of Ordinary Time": {
+      "he": "יום א ה-33 של הזמן הרגיל",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-11-15"
+    },
+    "Christ the King": {
+      "he": "חג המשיח המלך בן דוד",
+      "source": "https://publication.evangelizo.ws/HE/days/2026-11-22"
+    }
+  }
+}

@@ -108,6 +108,89 @@ class TodayInfoStoreTest {
         assertEquals("Sunday", sunday?.rank)
     }
 
+    @Test
+    fun everyCalendarLocalizesItsOwnFeastWithoutChangingItsTitleOrRank() {
+        val expected = listOf(
+            Triple("lpj", "Exaltation of the Holy Cross", "Feast"),
+            Triple("roman", "Exaltation of the Holy Cross", "Feast"),
+            Triple("roman1962", "Exaltation of the Holy Cross", "2nd Class"),
+            Triple("ugcc", "The Exaltation of the Precious and Life-Giving Cross", "Great Feast"),
+            Triple("syriac", "Exaltation of the Holy Cross—Feast", "Feast"),
+        )
+        for ((calendarId, title, rank) in expected) {
+            AppSettings.feastCalendarId = calendarId
+            val feast = TodayInfoStore.feast(date("2026-09-14"))
+            assertNotNull(calendarId, feast)
+            assertEquals(calendarId, title, feast?.title)
+            assertEquals(calendarId, rank, feast?.rank)
+            assertEquals(calendarId, "חג תפארת הצלב", feast?.localizedTitle("he"))
+            assertEquals(calendarId, "חג תפארת הצלב", feast?.localizedTitle("he-x-gamliel"))
+            assertEquals(calendarId, title, feast?.localizedTitle("en"))
+        }
+    }
+
+    @Test
+    fun feastWithoutATranslationKeepsItsOwnTitle() {
+        val feast = FeastDay(title = "Untranslated feast", rank = "Feast")
+        assertEquals("Untranslated feast", feast.localizedTitle("he"))
+        assertEquals("Untranslated feast", feast.localizedTitle("he-x-gamliel"))
+    }
+
+    @Test
+    fun teresaOfCalcuttaLocalizesWithoutReplacingAnotherCalendarsDay() {
+        for (calendarId in listOf("lpj", "roman")) {
+            AppSettings.feastCalendarId = calendarId
+            val feast = TodayInfoStore.feast(date("2026-09-05"))
+            assertNotNull(calendarId, feast)
+            assertEquals(calendarId, "Saint Teresa of Calcutta, Virgin", feast?.title)
+            assertEquals(calendarId, "Optional Memorial", feast?.rank)
+            assertEquals(calendarId, "תרזה הקדושה מקלקוטה", feast?.localizedTitle("he"))
+            assertEquals(calendarId, "תרזה הקדושה מקלקוטה", feast?.localizedTitle("he-x-gamliel"))
+            assertEquals(calendarId, "Saint Teresa of Calcutta, Virgin", feast?.localizedTitle("en"))
+
+            // September 5 falls on Sunday in 2027; translating a saint must not change precedence.
+            val sunday = TodayInfoStore.feast(date("2027-09-05"))
+            assertEquals(calendarId, "23rd Sunday of Ordinary Time", sunday?.title)
+            assertEquals(calendarId, "Sunday", sunday?.rank)
+        }
+
+        AppSettings.feastCalendarId = "roman1962"
+        val vetus = TodayInfoStore.feast(date("2026-09-05"))
+        assertEquals("St. Lawrence Justinian", vetus?.title)
+        assertEquals("3rd Class", vetus?.rank)
+        for (calendarId in listOf("ugcc", "syriac")) {
+            AppSettings.feastCalendarId = calendarId
+            assertNull(calendarId, TodayInfoStore.feast(date("2026-09-05")))
+        }
+    }
+
+    @Test
+    fun feastRanksFollowTodayLanguageWithoutChangingCanonicalValues() {
+        val expected = listOf(
+            "Solemnity" to "מועד",
+            "Feast" to "חג",
+            "Memorial" to "זיכרון",
+            "Optional Memorial" to "זיכרון רשות",
+            "Sunday" to "יום ראשון",
+            "Great Feast" to "חג גדול",
+            "Holy Week" to "השבוע הקדוש",
+            "Fast" to "צום",
+            "1st Class" to "דרגה ראשונה",
+            "2nd Class" to "דרגה שנייה",
+            "3rd Class" to "דרגה שלישית",
+        )
+        for ((rank, hebrew) in expected) {
+            val feast = FeastDay(title = "Feast", rank = rank)
+            assertEquals(rank, hebrew, feast.localizedRank("he"))
+            assertEquals(rank, hebrew, feast.localizedRank("he-x-gamliel"))
+            assertEquals(rank, feast.localizedRank("en"))
+            assertEquals(rank, feast.localizedRank("fr"))
+            assertEquals(rank, feast.rank)
+        }
+        val unknown = FeastDay(title = "Feast", rank = "Future rank")
+        assertEquals("Future rank", unknown.localizedRank("he"))
+    }
+
     /** The Syriac Catholic table comes from Evangelizo.org's Daily Gospel (credited on the
      * About screen): the Antiochene year names its Sundays from the season's anchor feasts,
      * and Evangelizo's plain-date ferial titles are omitted like ferial days everywhere else. */

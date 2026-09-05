@@ -17,6 +17,34 @@ public sealed record FeastDay(
             ? TitleByLanguage?.GetValueOrDefault(baseLanguage)
             : null)
         ?? Title);
+
+    /// <summary>Follow the Today toggle rather than the app UI language. Roman rank terms
+    /// follow the Saint James Vicariate's 2025–2026 calendar, pp. 4, 6–7:
+    /// https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf
+    /// Other entries are ordinary UI descriptions; canonical ranks remain unchanged.</summary>
+    public string LocalizedRank(string language)
+    {
+        var hebrewFallback = Rank switch
+        {
+            "Solemnity" => "מועד",
+            "Feast" => "חג",
+            "Memorial" => "זיכרון",
+            "Optional Memorial" => "זיכרון רשות",
+            "Sunday" => "יום ראשון",
+            "Great Feast" => "חג גדול",
+            "Holy Week" => "השבוע הקדוש",
+            "Fast" => "צום",
+            "1st Class" => "דרגה ראשונה",
+            "2nd Class" => "דרגה שנייה",
+            "3rd Class" => "דרגה שלישית",
+            _ => null,
+        };
+        if (hebrewFallback is null) return Rank;
+        var displayLanguage = (LanguageCatalog.BaseLanguage(language) ?? language) == "he" ? "he" : "en";
+        var fallback = displayLanguage == "he" ? hebrewFallback : Rank;
+        var key = $"home_today_rank_{Rank.ToLowerInvariant().Replace(' ', '_')}";
+        return Loc.Tr(key, fallback, displayLanguage);
+    }
 }
 
 public sealed record PopeIntention(

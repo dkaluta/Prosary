@@ -311,7 +311,7 @@ struct HomeView: View {
                 // Byzantine "Great Feast".
                 .font(.subheadline.weight(
                   ["Solemnity", "1st Class", "Great Feast"].contains(feast.rank) ? .bold : .semibold))
-              Text(HebrewDisplayText.unpointed(feast.rank))
+              Text(feast.localizedRank(todayLanguageCode))
                 .font(.caption).foregroundStyle(.secondary)
             }
           }

@@ -12,6 +12,7 @@ public static class Loc
 {
     private static ResourceLoader? _loader;
     private static bool _unavailable;
+    private static ResourceManager? _manager;
 
     public static string Tr(string key, string fallback)
     {
@@ -29,6 +30,24 @@ public static class Loc
         catch
         {
             _unavailable = true;
+            return fallback;
+        }
+    }
+
+    /// <summary>Look up a caption in an explicit language without changing the app locale.</summary>
+    public static string Tr(string key, string fallback, string language)
+    {
+        try
+        {
+            _manager ??= new ResourceManager();
+            var context = _manager.CreateResourceContext();
+            context.QualifierValues["Language"] = language;
+            var value = _manager.MainResourceMap.GetSubtree("Resources").GetValue(key, context).ValueAsString;
+            return string.IsNullOrEmpty(value) ? fallback : value;
+        }
+        catch
+        {
+            // Unpackaged unit tests have no PRI; retain the caller's language-specific fallback.
             return fallback;
         }
     }
