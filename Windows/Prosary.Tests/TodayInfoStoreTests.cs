@@ -83,11 +83,11 @@ public class TodayInfoStoreTests
         TodayInfoStore.SelectedCalendarId = "roman";
         var bartholomew = TodayInfoStore.Feast(new DateOnly(2026, 8, 24));
         Assert.Equal("Saint Bartholomew, Apostle", bartholomew?.Title);
-        Assert.Equal("חג בר-תלמי השליח", bartholomew?.LocalizedTitle("he"));
+        Assert.Equal("חג בר־תלמי השליח", bartholomew?.LocalizedTitle("he"));
         Assert.Equal("Feast", bartholomew?.Rank);
         var sunday = TodayInfoStore.Feast(new DateOnly(2026, 8, 30));
         Assert.Equal("22nd Sunday of Ordinary Time", sunday?.Title);
-        Assert.Equal("יום א ה-22 של הזמן הרגיל", sunday?.LocalizedTitle("he"));
+        Assert.Equal("יום א ה־22 של הזמן הרגיל", sunday?.LocalizedTitle("he"));
         Assert.Equal("Sunday", sunday?.Rank);
         Assert.NotNull(TodayInfoStore.Feast(new DateOnly(2026, 9, 3)));
     }
@@ -134,8 +134,8 @@ public class TodayInfoStoreTests
             Assert.NotNull(feast);
             Assert.Equal("Saint Teresa of Calcutta, Virgin", feast.Title);
             Assert.Equal("Optional Memorial", feast.Rank);
-            Assert.Equal("תרזה הקדושה מקלקוטה", feast.LocalizedTitle("he"));
-            Assert.Equal("תרזה הקדושה מקלקוטה", feast.LocalizedTitle("he-x-gamliel"));
+            Assert.Equal("תרזה הקדושה מקלקוטה, בתולה", feast.LocalizedTitle("he"));
+            Assert.Equal("תרזה הקדושה מקלקוטה, בתולה", feast.LocalizedTitle("he-x-gamliel"));
             Assert.Equal("Saint Teresa of Calcutta, Virgin", feast.LocalizedTitle("en"));
 
             // September 5 falls on Sunday in 2027; translating a saint must not change precedence.
@@ -152,6 +152,33 @@ public class TodayInfoStoreTests
         {
             TodayInfoStore.SelectedCalendarId = calendarId;
             Assert.Null(TodayInfoStore.Feast(new DateOnly(2026, 9, 5)));
+        }
+    }
+
+    [Fact]
+    public void SaintTitlesRetainTheirRolesAcrossCalendarAliases()
+    {
+        var expected = new[]
+        {
+            ("roman", "2026-05-26", "Saint Philip Neri, Priest", "Memorial", "פיליפוס נרי, כהן"),
+            ("roman", "2026-10-22", "Saint John Paul II, Pope", "Optional Memorial", "יוחנן פאולוס השני, אפיפיור"),
+            ("roman", "2026-07-15", "Saint Bonaventure, Bishop and Doctor of the Church", "Memorial", "בונבנטורה הקדוש, הגמון ודוקטור הכנסייה"),
+            ("roman1962", "2026-07-14", "St. Bonaventure", "3rd Class", "בונבנטורה הקדוש, הגמון ודוקטור הכנסייה"),
+            ("roman", "2026-07-03", "Saint Thomas the Apostle", "Feast", "תאמא השליח"),
+            ("syriac", "2026-10-06", "Feast of Saint Thomas the Apostle", "Feast", "תאמא השליח"),
+            ("roman1962", "2026-12-21", "St. Thomas", "2nd Class", "תאמא השליח"),
+            ("roman", "2026-01-28", "Saint Thomas Aquinas, Priest and Doctor of the Church", "Memorial", "תומאס אקווינס, כהן ודוקטור הכנסייה"),
+        };
+        foreach (var (calendarId, feastDate, title, rank, hebrew) in expected)
+        {
+            TodayInfoStore.SelectedCalendarId = calendarId;
+            var feast = TodayInfoStore.Feast(DateOnly.ParseExact(feastDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture));
+            Assert.NotNull(feast);
+            Assert.Equal(title, feast.Title);
+            Assert.Equal(rank, feast.Rank);
+            Assert.Equal(hebrew, feast.LocalizedTitle("he"));
+            Assert.Equal(hebrew, feast.LocalizedTitle("he-x-gamliel"));
+            Assert.Equal(title, feast.LocalizedTitle("en"));
         }
     }
 
@@ -307,7 +334,7 @@ public class TodayInfoStoreTests
         Assert.Equal(new[] { "הראשונה אל הקורינתים ב׳", "תהלים קי״ט", "לוקס ד׳" },
             readings.Select(r => r.LocalizedShort("he")));
         Assert.Equal("Luke 4:16–30", readings.Last().Full);
-        Assert.Equal("הבשורה על-פי לוקס ד׳ 16–30", readings.Last().LocalizedFull("he"));
+        Assert.Equal("הבשורה על־פי לוקס ד׳ 16–30", readings.Last().LocalizedFull("he"));
 
         // Rite-specific Hebrew reads the same localized citation map instead of falling back to
         // English or rebuilding punctuation at runtime.
@@ -317,6 +344,8 @@ public class TodayInfoStoreTests
         Assert.StartsWith("Monday · Week ", day.English);
         Assert.EndsWith(" of Ordinary Time", day.English);
         Assert.Contains("בזמן הרגיל", day.Hebrew);
+        Assert.Contains("השבוע ה־", day.Hebrew);
+        Assert.DoesNotContain("ה-", day.Hebrew);
     }
 
     [Fact]
@@ -344,7 +373,7 @@ public class TodayInfoStoreTests
         TodayInfoStore.SelectedCalendarId = "roman1962";
         var vetus = TodayInfoStore.Readings(new DateOnly(2026, 9, 3));
         Assert.Equal("הראשונה אל התסלוניקים ב׳", vetus.First().LocalizedShort("he"));
-        Assert.Equal("הבשורה  על-פי יוחנן כ״א 15–17", vetus.Last().LocalizedFull("he"));
+        Assert.Equal("הבשורה  על־פי יוחנן כ״א 15–17", vetus.Last().LocalizedFull("he"));
 
         TodayInfoStore.SelectedCalendarId = "ugcc";
         var byzantine = TodayInfoStore.Readings(new DateOnly(2026, 9, 3));

@@ -1,5 +1,5 @@
 {
-  "$comment": "Source-authored Hebrew Bible book names for offline citation localization. Evangelizo.org — Daily Gospel (© Evangelizo.org), edition HE; Judith/Tobit: St James Vicariate. Source URLs identify where each title was relayed; no Scripture text is included. Keep full titles verbatim; fetch-readings.py compacts short epistle titles deterministically.",
+  "$comment": "Source-authored Hebrew Bible book names for offline citation localization. Evangelizo.org — Daily Gospel (© Evangelizo.org), edition HE; Judith/Tobit: St James Vicariate. Source URLs identify where each title was relayed; no Scripture text is included. Preserve full title wording with Hebrew joining hyphens normalized to maqaf; fetch-readings.py compacts short epistle titles deterministically.",
   "books": {
     "1 Corinthians": {
       "short": "הראשונה אל הקורינתים",
@@ -148,7 +148,7 @@
     },
     "John": {
       "short": "יוחנן",
-      "full": "הבשורה  על-פי יוחנן",
+      "full": "הבשורה  על־פי יוחנן",
       "source": "https://publication.evangelizo.ws/HE/days/2025-09-15"
     },
     "Judith": {
@@ -163,17 +163,17 @@
     },
     "Luke": {
       "short": "לוקס",
-      "full": "הבשורה על-פי לוקס",
+      "full": "הבשורה על־פי לוקס",
       "source": "https://publication.evangelizo.ws/HE/days/2025-09-16"
     },
     "Mark": {
       "short": "מרקוס",
-      "full": "הבשורה על-פי מרקוס",
+      "full": "הבשורה על־פי מרקוס",
       "source": "https://publication.evangelizo.ws/HE/days/2026-06-01"
     },
     "Matthew": {
       "short": "מתי",
-      "full": "הבשורה על-פי מתי",
+      "full": "הבשורה על־פי מתי",
       "source": "https://publication.evangelizo.ws/HE/days/2026-07-12"
     },
     "Micah": {

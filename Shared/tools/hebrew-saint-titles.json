@@ -1,12 +1,12 @@
 {
-  "$comment": "Hebrew saint names relayed from the Saint James Vicariate's bilingual 2025-2026 liturgical calendar and authored Hebrew articles at catholic.co.il. Exact English aliases identify the same saint across calendar providers; dates and ranks are never inferred from the Hebrew source. Calendar rank prefixes are omitted so a source's memorial does not rename a feast in another rite. Individual names may be excerpted from a sourced joint memorial. English remains the fallback for uncovered identities. Source PDF page numbers are one-based.",
+  "$comment": "Hebrew saint names are sourced from the Saint James Vicariate's bilingual 2025-2026 liturgical calendar and authored Hebrew articles at catholic.co.il. Saint qualifications follow those sources and the explicit English calendar-provider titles. Descriptor terminology is normalized to the user's requested app wording: כהן, בתולה, אפיפיור, דיאקון, מרטיר, שליח, and דוקטור הכנסייה (plural דוקטורי הכנסייה); Religious follows the Vicariate's נזיר/נזירה according to the sourced saint identity. These normalized descriptions are not presented as verbatim PDF quotations. Exact English aliases identify the same saint across calendar providers and retain the same full roles; dates and ranks are never inferred from the Hebrew source. Rank prefixes are omitted so a source's memorial does not rename a feast in another rite. Individual names may be excerpted from a sourced joint memorial. Source links identify the named person, with qualifications also supplied by the canonical English title when absent from the Hebrew heading. English remains the fallback for uncovered identities. Source PDF page numbers are one-based.",
   "titles": {
     "Deth of Saint Ephrem": {
-      "he": "אפרים, דיאקון ומורה כנסייה",
+      "he": "אפרים, דיאקון ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=36"
     },
     "Feast Day of St. Timothy": {
-      "he": "טימותיאוס",
+      "he": "טימותיאוס, הגמון",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=17"
     },
     "Feast of Saint George the Martyr": {
@@ -14,7 +14,7 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=29"
     },
     "Feast of Saint James the Apostle, Brother of the Lord": {
-      "he": "יעקב הצדיק",
+      "he": "יעקב הצדיק, שליח והגמון ירושלים",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=30"
     },
     "Feast of Saint Martha, sister of Lazarus": {
@@ -26,7 +26,7 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=6"
     },
     "Feast of Saint Titus the bishop": {
-      "he": "טיטוס",
+      "he": "טיטוס, הגמון",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=17"
     },
     "Feast of Saints Cosma and Damias the Martyrs": {
@@ -54,15 +54,15 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=16"
     },
     "Saint Albert the Great, Bishop and Doctor of the Church": {
-      "he": "אלברט הגדול, הגמון ומורה כנסייה",
+      "he": "אלברט הגדול, הגמון ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=6"
     },
     "Saint Alphonsus Mary Liguori, Bishop and Doctor of the Church": {
-      "he": "אלפונסו מליגורי, הגמון ומורה כנסייה",
+      "he": "אלפונסו מליגורי, הגמון ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=43"
     },
     "Saint Andrew Dũng-Lạc, Priest, and Companions, Martyrs": {
-      "he": "אנדרו דונג לאק, כהן דת וחבריו, מרטירים",
+      "he": "אנדרו דונג לאק, כהן וחבריו, מרטירים",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=8"
     },
     "Saint Anthony, Abbot": {
@@ -70,11 +70,11 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=15"
     },
     "Saint Augustine, Bishop and Doctor of the Church": {
-      "he": "אוגוסטינוס, הגמון ומורה כנסייה",
+      "he": "אוגוסטינוס, הגמון ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=47"
     },
     "Saint Basil the Great": {
-      "he": "בסיליוס הגדול",
+      "he": "בסיליוס הגדול, הגמון ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=13"
     },
     "Saint Benedict, Abbot": {
@@ -82,11 +82,11 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=40"
     },
     "Saint Bernard, Abbot and Doctor of the Church": {
-      "he": "ברנאר מקלרבו, אב מנזר ומורה כנסייה",
+      "he": "ברנאר מקלרבו, אב מנזר ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=46"
     },
     "Saint Bonaventure, Bishop and Doctor of the Church": {
-      "he": "בונבנטורה הקדוש",
+      "he": "בונבנטורה הקדוש, הגמון ודוקטור הכנסייה",
       "source": "https://www.catholic.co.il/?cat=&id=16634&lang=he&m=&view=article"
     },
     "Saint Boniface, Bishop and Martyr": {
@@ -94,11 +94,11 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=35"
     },
     "Saint Catherine of Alexandria, Virgin and Martyr": {
-      "he": "קתרינה מאלכסנדריה, מרטיר",
+      "he": "קתרינה מאלכסנדריה, בתולה ומרטיר",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=8"
     },
     "Saint Catherine of Siena, Virgin and Doctor of the Church": {
-      "he": "קתרינה מסיינה, בתולה ומורה כנסייה",
+      "he": "קתרינה מסיינה, בתולה ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=30"
     },
     "Saint Cecilia, Virgin and Martyr": {
@@ -118,11 +118,11 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=45"
     },
     "Saint Cyril of Alexandria, Bishop and Doctor of the Church": {
-      "he": "קירילוס האלכסנדרוני, הגמון ומורה כנסייה",
+      "he": "קירילוס האלכסנדרוני, הגמון ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=38"
     },
     "Saint Dominic, Priest": {
-      "he": "דומניקוס, כהן דת",
+      "he": "דומניקוס, כהן",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=44"
     },
     "Saint Elizabeth of Hungary, Religious": {
@@ -130,7 +130,7 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=7"
     },
     "Saint Ephrem, Deacon and Doctor of the Church": {
-      "he": "אפרים, דיאקון ומורה כנסייה",
+      "he": "אפרים, דיאקון ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=36"
     },
     "Saint Faustina Kowalska": {
@@ -138,11 +138,11 @@
       "source": "https://www.catholic.co.il/?cat=docs&id=16684&m=&view=article"
     },
     "Saint Francis Xavier, Priest": {
-      "he": "פרנסיסקוס קסבייר הקדוש",
+      "he": "פרנסיסקוס קסבייר הקדוש, כהן",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=9"
     },
     "Saint Francis de Sales, Bishop and Doctor of the Church": {
-      "he": "פרנציסקוס מסאל, הגמון ומורה כנסייה",
+      "he": "פרנציסקוס מסאל, הגמון ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=16"
     },
     "Saint Francis of Assisi": {
@@ -154,39 +154,39 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=29"
     },
     "Saint Gregory the Great, Pope and Doctor of the Church": {
-      "he": "גרגוריוס הגדול, אפיפיור ומורה כנסייה",
+      "he": "גרגוריוס הגדול, אפיפיור ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=48"
     },
     "Saint Gregory the Theologian": {
-      "he": "גרגוריוס מנזיאנזוס",
+      "he": "גרגוריוס מנזיאנזוס, הגמון ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=13"
     },
     "Saint Ignatius of Loyola, Priest": {
-      "he": "איגנטיוס מלויולה, כהן דת",
+      "he": "איגנטיוס מלויולה, כהן",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=43"
     },
     "Saint Jerome, Priest and Doctor of the Church": {
-      "he": "הירונימוס, כהן דת ומורה כנסייה",
+      "he": "הירונימוס, כהן ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=52"
     },
     "Saint John Bosco, Priest": {
-      "he": "דון בוסקו, כהן דת",
+      "he": "דון בוסקו, כהן",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=17"
     },
     "Saint John Chrysostom": {
-      "he": "יוחנן כריסוסטומוס הקדוש",
+      "he": "יוחנן כריסוסטומוס הקדוש, הגמון ודוקטור הכנסייה",
       "source": "https://www.catholic.co.il/?cat=&id=16634&lang=he&m=&view=article"
     },
     "Saint John Chrysostom, Bishop and Doctor of the Church": {
-      "he": "יוחנן כריסוסטומוס הקדוש",
+      "he": "יוחנן כריסוסטומוס הקדוש, הגמון ודוקטור הכנסייה",
       "source": "https://www.catholic.co.il/?cat=&id=16634&lang=he&m=&view=article"
     },
     "Saint John Damascene, Priest and Doctor of the Church": {
-      "he": "יוחנן מדמשק, כוהן דת ומורה כנסייה",
+      "he": "יוחנן מדמשק, כהן ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=9"
     },
     "Saint John Mary Vianney, Priest": {
-      "he": "יוחנן מרי וויאני, כהן דת",
+      "he": "יוחנן מרי וויאני, כהן",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=44"
     },
     "Saint John Paul II, Pope": {
@@ -194,7 +194,7 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=3"
     },
     "Saint John of the Cross, Priest and Doctor of the Church": {
-      "he": "יוחנן הקדוש של הצלב",
+      "he": "יוחנן הקדוש של הצלב, כהן ודוקטור הכנסייה",
       "source": "https://www.catholic.co.il/?cat=docs&id=16684&m=&view=article"
     },
     "Saint John, Apostle and Evangelist": {
@@ -214,7 +214,7 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=35"
     },
     "Saint Leo the Great, Pope and Doctor of the Church": {
-      "he": "לאו הגדול, אפיפיור, מורה כנסייה",
+      "he": "לאו הגדול, אפיפיור, דוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=6"
     },
     "Saint Lucy of Syracuse, Virgin and Martyr": {
@@ -230,7 +230,7 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=6"
     },
     "Saint Mary of Jesus Crucified Baouardy, Virgin": {
-      "he": "מרים של ישוע הצלוב (מרים בוארדי)",
+      "he": "מרים של ישוע הצלוב (מרים בוארדי), בתולה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=47"
     },
     "Saint Matthias the Apostle": {
@@ -238,7 +238,7 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=32"
     },
     "Saint Maximilian Mary Kolbe, Priest and Martyr": {
-      "he": "מקסימיליאן קולבה, כהן דת ומרטיר",
+      "he": "מקסימיליאן קולבה, כהן ומרטיר",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=45"
     },
     "Saint Monica": {
@@ -246,11 +246,11 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=47"
     },
     "Saint Nicholas the Wonderworker": {
-      "he": "ניקולאוס הקדוש",
+      "he": "ניקולאוס הקדוש, הגמון",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=9"
     },
     "Saint Nicholas, Bishop": {
-      "he": "ניקולאוס הקדוש",
+      "he": "ניקולאוס הקדוש, הגמון",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=9"
     },
     "Saint Paul Miki and Companions, Martyrs": {
@@ -258,27 +258,27 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=18"
     },
     "Saint Paul VI, Pope": {
-      "he": "פאול ה-6, אפיפיור",
+      "he": "פאול ה־6, אפיפיור",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=34"
     },
     "Saint Peter Chrysologus, Bishop and Doctor of the Church": {
-      "he": "פטרוס כריסולוגוס, הגמון ומורה כנסייה",
+      "he": "פטרוס כריסולוגוס, הגמון ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=43"
     },
     "Saint Philip Neri, Priest": {
-      "he": "פיליפוס נרי",
+      "he": "פיליפוס נרי, כהן",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=34"
     },
     "Saint Pius X, Pope": {
-      "he": "פיוס ה-10, אפיפיור",
+      "he": "פיוס ה־10, אפיפיור",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=46"
     },
     "Saint Pius of Pietrelcina, Priest": {
-      "he": "האב פיו, כהן דת",
+      "he": "האב פיו, כהן",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=51"
     },
     "Saint Rita of Cascia, Religious": {
-      "he": "ריטה מקאשה",
+      "he": "ריטה מקאשה, נזירה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=33"
     },
     "Saint Scholastica, Virgin": {
@@ -290,31 +290,31 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=12"
     },
     "Saint Teresa Benedicta of the Cross, Virgin and Martyr": {
-      "he": "תרזה בנדיקטה של הצלב",
+      "he": "תרזה בנדיקטה של הצלב, בתולה ומרטיר",
       "source": "https://www.catholic.co.il/?cat=faith&id=3793&m=Feasts&view=article"
     },
     "Saint Teresa of Calcutta, Virgin": {
-      "he": "תרזה הקדושה מקלקוטה",
+      "he": "תרזה הקדושה מקלקוטה, בתולה",
       "source": "https://www.catholic.co.il/?cat=&id=16659&m=&view=article"
     },
     "Saint Teresa of Jesus, Virgin and Doctor of the Church": {
-      "he": "תרזה מאווילה",
+      "he": "תרזה מאווילה, בתולה ודוקטור הכנסייה",
       "source": "https://catholic.co.il/?cat=news&id=12762&m=ChurchandIsrael&view=article"
     },
     "Saint Thomas Aquinas, Priest and Doctor of the Church": {
-      "he": "תומאס אקווינס, כוהן דת ומורה כנסייה",
+      "he": "תומאס אקווינס, כהן ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=17"
     },
     "Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church": {
-      "he": "תרז לישוע העולל, בתולה ומורה כנסייה",
+      "he": "תרז לישוע העולל, בתולה ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=52"
     },
     "Saint Vincent de Paul, Priest": {
-      "he": "ונסן דה פול, כהן דת",
+      "he": "ונסן דה פול, כהן",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=52"
     },
     "Saints Basil the Great and Gregory Nazianzen, Bishops and Doctors of the Church": {
-      "he": "בסיליוס הגדול וגרגוריוס מנזיאנזוס, הגמונים ומורה כנסייה",
+      "he": "בסיליוס הגדול וגרגוריוס מנזיאנזוס, הגמונים ודוקטורי הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=13"
     },
     "Saints Cornelius, Pope, and Cyprian, Bishop, Martyrs": {
@@ -338,11 +338,11 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=16"
     },
     "St. Albert the Great": {
-      "he": "אלברט הגדול, הגמון ומורה כנסייה",
+      "he": "אלברט הגדול, הגמון ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=6"
     },
     "St. Alphonsus Liguori": {
-      "he": "אלפונסו מליגורי, הגמון ומורה כנסייה",
+      "he": "אלפונסו מליגורי, הגמון ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=43"
     },
     "St. Anthony": {
@@ -350,7 +350,7 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=15"
     },
     "St. Augustine": {
-      "he": "אוגוסטינוס, הגמון ומורה כנסייה",
+      "he": "אוגוסטינוס, הגמון ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=47"
     },
     "St. Barnabas": {
@@ -358,19 +358,19 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=36"
     },
     "St. Bartholomew": {
-      "he": "בר-תלמי השליח",
+      "he": "בר־תלמי השליח",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=47"
     },
     "St. Basil the Great": {
-      "he": "בסיליוס הגדול",
+      "he": "בסיליוס הגדול, הגמון ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=13"
     },
     "St. Bernard of Clairvaux": {
-      "he": "ברנאר מקלרבו, אב מנזר ומורה כנסייה",
+      "he": "ברנאר מקלרבו, אב מנזר ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=46"
     },
     "St. Bonaventure": {
-      "he": "בונבנטורה הקדוש",
+      "he": "בונבנטורה הקדוש, הגמון ודוקטור הכנסייה",
       "source": "https://www.catholic.co.il/?cat=&id=16634&lang=he&m=&view=article"
     },
     "St. Boniface": {
@@ -378,11 +378,11 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=35"
     },
     "St. Catherine of Alexandria": {
-      "he": "קתרינה מאלכסנדריה, מרטיר",
+      "he": "קתרינה מאלכסנדריה, בתולה ומרטיר",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=8"
     },
     "St. Catherine of Siena": {
-      "he": "קתרינה מסיינה, בתולה ומורה כנסייה",
+      "he": "קתרינה מסיינה, בתולה ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=30"
     },
     "St. Cecilia": {
@@ -398,11 +398,11 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=45"
     },
     "St. Cyril of Alexandria": {
-      "he": "קירילוס האלכסנדרוני, הגמון ומורה כנסייה",
+      "he": "קירילוס האלכסנדרוני, הגמון ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=38"
     },
     "St. Dominic": {
-      "he": "דומניקוס, כהן דת",
+      "he": "דומניקוס, כהן",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=44"
     },
     "St. Elizabeth of Hungary": {
@@ -410,15 +410,15 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=7"
     },
     "St. Ephrem of Syria": {
-      "he": "אפרים, דיאקון ומורה כנסייה",
+      "he": "אפרים, דיאקון ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=36"
     },
     "St. Francis Xavier": {
-      "he": "פרנסיסקוס קסבייר הקדוש",
+      "he": "פרנסיסקוס קסבייר הקדוש, כהן",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=9"
     },
     "St. Francis de Sales": {
-      "he": "פרנציסקוס מסאל, הגמון ומורה כנסייה",
+      "he": "פרנציסקוס מסאל, הגמון ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=16"
     },
     "St. Francis of Assisi": {
@@ -426,11 +426,11 @@
       "source": "https://www.catholic.co.il/?cat=&id=16659&m=&view=article"
     },
     "St. Gregory of Nazianzen": {
-      "he": "גרגוריוס מנזיאנזוס",
+      "he": "גרגוריוס מנזיאנזוס, הגמון ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=13"
     },
     "St. Ignatius Loyola": {
-      "he": "איגנטיוס מלויולה, כהן דת",
+      "he": "איגנטיוס מלויולה, כהן",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=43"
     },
     "St. James the Greater": {
@@ -438,23 +438,23 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=42"
     },
     "St. Jerome": {
-      "he": "הירונימוס, כהן דת ומורה כנסייה",
+      "he": "הירונימוס, כהן ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=52"
     },
     "St. John Bosco": {
-      "he": "דון בוסקו, כהן דת",
+      "he": "דון בוסקו, כהן",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=17"
     },
     "St. John Chrysostom": {
-      "he": "יוחנן כריסוסטומוס הקדוש",
+      "he": "יוחנן כריסוסטומוס הקדוש, הגמון ודוקטור הכנסייה",
       "source": "https://www.catholic.co.il/?cat=&id=16634&lang=he&m=&view=article"
     },
     "St. John Mary Vianney": {
-      "he": "יוחנן מרי וויאני, כהן דת",
+      "he": "יוחנן מרי וויאני, כהן",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=44"
     },
     "St. John of the Cross": {
-      "he": "יוחנן הקדוש של הצלב",
+      "he": "יוחנן הקדוש של הצלב, כהן ודוקטור הכנסייה",
       "source": "https://www.catholic.co.il/?cat=docs&id=16684&m=&view=article"
     },
     "St. John the Evangelist": {
@@ -470,8 +470,8 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=30"
     },
     "St. Joseph, Spouse of the Bl. Virgin Mary": {
-      "he": "יוסף הצדיק",
-      "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=24"
+      "he": "יוסף הצדיק, בעלה של מרים",
+      "source": "https://www.catholic.co.il/?cat=faith&id=3473&lang=he&m=Feasts&view=article"
     },
     "St. Justin": {
       "he": "יוסטינוס, מרטיר",
@@ -514,19 +514,19 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=47"
     },
     "St. Nicholas": {
-      "he": "ניקולאוס הקדוש",
+      "he": "ניקולאוס הקדוש, הגמון",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=9"
     },
     "St. Peter Chrysologus": {
-      "he": "פטרוס כריסולוגוס, הגמון ומורה כנסייה",
+      "he": "פטרוס כריסולוגוס, הגמון ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=43"
     },
     "St. Philip Neri": {
-      "he": "פיליפוס נרי",
+      "he": "פיליפוס נרי, כהן",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=34"
     },
     "St. Pius X": {
-      "he": "פיוס ה-10, אפיפיור",
+      "he": "פיוס ה־10, אפיפיור",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=46"
     },
     "St. Polycarp": {
@@ -542,27 +542,28 @@
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=12"
     },
     "St. Teresa of Avila": {
-      "he": "תרזה מאווילה",
+      "he": "תרזה מאווילה, בתולה ודוקטור הכנסייה",
       "source": "https://catholic.co.il/?cat=news&id=12762&m=ChurchandIsrael&view=article"
     },
     "St. Theresa of the Infant Jesus": {
-      "he": "תרז לישוע העולל, בתולה ומורה כנסייה",
+      "he": "תרז לישוע העולל, בתולה ודוקטור הכנסייה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=52"
     },
     "St. Thomas": {
-      "he": "תומאס השליח",
-      "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=39"
+      "he": "תאמא השליח",
+      "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=39",
+      "nameSource": "https://www.vaticannews.va/he/pope/news/2023-04/pope-at-regina-coeli-seek-the-risen-one-in-the-community-heb.html"
     },
     "St. Timothy": {
-      "he": "טימותיאוס",
+      "he": "טימותיאוס, הגמון",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=17"
     },
     "St. Titus": {
-      "he": "טיטוס",
+      "he": "טיטוס, הגמון",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=17"
     },
     "St. Vincent de Paul": {
-      "he": "ונסן דה פול, כהן דת",
+      "he": "ונסן דה פול, כהן",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=52"
     }
   }

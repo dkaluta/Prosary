@@ -101,10 +101,10 @@ final class TodayInfoStoreTests: XCTestCase {
     select("roman")
     let bartholomew = TodayInfoStore.feast(on: date("2026-08-24"))
     XCTAssertEqual(bartholomew?.title, "Saint Bartholomew, Apostle")
-    XCTAssertEqual(bartholomew?.localizedTitle("he"), "חג בר-תלמי השליח")
+    XCTAssertEqual(bartholomew?.localizedTitle("he"), "חג בר־תלמי השליח")
     XCTAssertEqual(bartholomew?.rank, "Feast")
     let sunday = TodayInfoStore.feast(on: date("2026-08-30"))
-    XCTAssertEqual(sunday?.localizedTitle("he"), "יום א ה-22 של הזמן הרגיל")
+    XCTAssertEqual(sunday?.localizedTitle("he"), "יום א ה־22 של הזמן הרגיל")
     XCTAssertEqual(sunday?.rank, "Sunday")
     XCTAssertNotNil(TodayInfoStore.feast(on: date("2026-09-03")))
   }
@@ -140,8 +140,8 @@ final class TodayInfoStoreTests: XCTestCase {
       let feast = try XCTUnwrap(TodayInfoStore.feast(on: date("2026-09-05")), calendarId)
       XCTAssertEqual(feast.title, "Saint Teresa of Calcutta, Virgin", calendarId)
       XCTAssertEqual(feast.rank, "Optional Memorial", calendarId)
-      XCTAssertEqual(feast.localizedTitle("he"), "תרזה הקדושה מקלקוטה", calendarId)
-      XCTAssertEqual(feast.localizedTitle("he-x-gamliel"), "תרזה הקדושה מקלקוטה", calendarId)
+      XCTAssertEqual(feast.localizedTitle("he"), "תרזה הקדושה מקלקוטה, בתולה", calendarId)
+      XCTAssertEqual(feast.localizedTitle("he-x-gamliel"), "תרזה הקדושה מקלקוטה, בתולה", calendarId)
       XCTAssertEqual(feast.localizedTitle("en"), "Saint Teresa of Calcutta, Virgin", calendarId)
 
       // September 5 falls on Sunday in 2027; translating a saint must not change precedence.
@@ -157,6 +157,28 @@ final class TodayInfoStoreTests: XCTestCase {
     for calendarId in ["ugcc", "syriac"] {
       select(calendarId)
       XCTAssertNil(TodayInfoStore.feast(on: date("2026-09-05")), calendarId)
+    }
+  }
+
+  func testSaintTitlesRetainTheirRolesAcrossCalendarAliases() throws {
+    let expected = [
+      ("roman", "2026-05-26", "Saint Philip Neri, Priest", "Memorial", "פיליפוס נרי, כהן"),
+      ("roman", "2026-10-22", "Saint John Paul II, Pope", "Optional Memorial", "יוחנן פאולוס השני, אפיפיור"),
+      ("roman", "2026-07-15", "Saint Bonaventure, Bishop and Doctor of the Church", "Memorial", "בונבנטורה הקדוש, הגמון ודוקטור הכנסייה"),
+      ("roman1962", "2026-07-14", "St. Bonaventure", "3rd Class", "בונבנטורה הקדוש, הגמון ודוקטור הכנסייה"),
+      ("roman", "2026-07-03", "Saint Thomas the Apostle", "Feast", "תאמא השליח"),
+      ("syriac", "2026-10-06", "Feast of Saint Thomas the Apostle", "Feast", "תאמא השליח"),
+      ("roman1962", "2026-12-21", "St. Thomas", "2nd Class", "תאמא השליח"),
+      ("roman", "2026-01-28", "Saint Thomas Aquinas, Priest and Doctor of the Church", "Memorial", "תומאס אקווינס, כהן ודוקטור הכנסייה"),
+    ]
+    for (calendarId, feastDate, title, rank, hebrew) in expected {
+      select(calendarId)
+      let feast = try XCTUnwrap(TodayInfoStore.feast(on: date(feastDate)), title)
+      XCTAssertEqual(feast.title, title)
+      XCTAssertEqual(feast.rank, rank)
+      XCTAssertEqual(feast.localizedTitle("he"), hebrew, title)
+      XCTAssertEqual(feast.localizedTitle("he-x-gamliel"), hebrew, title)
+      XCTAssertEqual(feast.localizedTitle("en"), title)
     }
   }
 
@@ -287,19 +309,21 @@ final class TodayInfoStoreTests: XCTestCase {
     let readings = TodayInfoStore.readings(on: date("2026-08-31"))
     XCTAssertEqual(readings.map(\.short), ["1 Cor. 2", "Ps. 119", "Lk. 4"])
     XCTAssertEqual(readings.last?.full, "Luke 4:16–30")
-    XCTAssertEqual(readings.last?.hebrew, "הבשורה על-פי לוקס ד׳ 16–30")
+    XCTAssertEqual(readings.last?.hebrew, "הבשורה על־פי לוקס ד׳ 16–30")
     XCTAssertEqual(readings.map { $0.localizedShort("he") }, [
       "הראשונה אל הקורינתים ב׳", "תהלים קי״ט", "לוקס ד׳",
     ])
     XCTAssertEqual(readings.map { $0.localizedShort("he-x-gamliel") }, [
       "הראשונה אל הקורינתים ב׳", "תהלים קי״ט", "לוקס ד׳",
     ], "Hebrew prayer-language variants inherit the authored Hebrew citations unchanged")
-    XCTAssertEqual(readings.last?.localizedFull("he-x-gamliel"), "הבשורה על-פי לוקס ד׳ 16–30")
+    XCTAssertEqual(readings.last?.localizedFull("he-x-gamliel"), "הבשורה על־פי לוקס ד׳ 16–30")
 
     let day = TodayInfoStore.liturgicalDayInfo(on: date("2026-08-31"))
     XCTAssertTrue(day.english.hasPrefix("Monday · Week "))
     XCTAssertTrue(day.english.hasSuffix(" of Ordinary Time"))
     XCTAssertTrue(day.hebrew.contains("בזמן הרגיל"))
+    XCTAssertTrue(day.hebrew.contains("השבוע ה־"))
+    XCTAssertFalse(day.hebrew.contains("ה-"))
   }
 
   func testHebrewEpistleShorthandPreservesFullSourceCitation() throws {
@@ -320,7 +344,7 @@ final class TodayInfoStoreTests: XCTestCase {
     select("roman1962")
     let vetus = TodayInfoStore.readings(on: date("2026-09-03"))
     XCTAssertEqual(vetus.first?.localizedShort("he"), "הראשונה אל התסלוניקים ב׳")
-    XCTAssertEqual(vetus.last?.localizedFull("he"), "הבשורה  על-פי יוחנן כ״א 15–17")
+    XCTAssertEqual(vetus.last?.localizedFull("he"), "הבשורה  על־פי יוחנן כ״א 15–17")
 
     select("ugcc")
     let byzantine = TodayInfoStore.readings(on: date("2026-09-03"))

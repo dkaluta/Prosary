@@ -301,21 +301,26 @@ def localized_feast_title(title: str, catalog: dict[str, str]) -> str | None:
     return None
 
 
+def hebrew_title_typography(title: str) -> str:
+    """Join Hebrew compounds/prefixes with maqaf; retain sentence and numeric range dashes."""
+    return re.sub(r"(?<=[\u0590-\u05ff])-(?=[\u0590-\u05ff0-9])", "־", title)
+
+
 def localize_feast_days(days: dict, catalog: dict[str, str]) -> tuple[int, set[str]]:
-    """Enrich titles in place, preserving dates, ranks, original titles and authored languages."""
-    added = 0
+    """Apply catalog edits by identity, retaining other languages and uncatalogued titles."""
+    updated = 0
     missing: set[str] = set()
     for entry in days.values():
-        if entry.get("titleByLanguage", {}).get("he"):
-            continue
         title = entry["title"]
-        translated = localized_feast_title(title, catalog)
+        translated = localized_feast_title(title, catalog) or entry.get("titleByLanguage", {}).get("he")
         if translated:
-            entry.setdefault("titleByLanguage", {})["he"] = translated
-            added += 1
-        else:
+            translated = hebrew_title_typography(translated)
+            if entry.get("titleByLanguage", {}).get("he") != translated:
+                entry.setdefault("titleByLanguage", {})["he"] = translated
+                updated += 1
+        elif not entry.get("titleByLanguage", {}).get("he"):
             missing.add(title)
-    return added, missing
+    return updated, missing
 
 
 def localize_existing_datasets() -> None:
@@ -324,7 +329,7 @@ def localize_existing_datasets() -> None:
     for name in dict.fromkeys(calendar["file"] for calendar in registry["calendars"]):
         path = DATA / f"{name}.json"
         payload = json.loads(path.read_text(encoding="utf-8"))
-        added, missing = localize_feast_days(payload["days"], catalog)
+        updated, missing = localize_feast_days(payload["days"], catalog)
         credit = (
             " Hebrew feast and saint names use the credited source catalogs in "
             "Shared/tools/hebrew-feast-titles.json and hebrew-saint-titles.json; "
@@ -332,7 +337,7 @@ def localize_existing_datasets() -> None:
         if "Hebrew feast and saint names" not in payload["$comment"]:
             payload["$comment"] += credit
         path.write_text(json.dumps(payload, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-        print(f"localized {path.name}: {added} added; {len(missing)} distinct titles retain their source language")
+        print(f"localized {path.name}: {updated} added or updated; {len(missing)} distinct titles retain their source language")
 
 
 def sync_datasets() -> None:
@@ -514,21 +519,27 @@ def main() -> int:
             "2026-09-05": {"title": "Saint", "rank": "Memorial", "titleByLanguage": {"ar": "existing"}},
             "2027-09-05": {"title": "Saint", "rank": "Feast"},
             "2026-09-06": {"title": "Unknown", "rank": "Sunday"},
-            "2026-09-07": {"title": "Feast", "rank": "Feast", "titleByLanguage": {"he": "authored"}},
+            "2026-09-07": {"title": "Feast", "rank": "Feast", "titleByLanguage": {"he": "earlier catalog text"}},
+            "2026-09-08": {"title": "Uncatalogued", "rank": "Feast", "titleByLanguage": {"he": "authored"}},
         }
         originals = {date: (row["title"], row["rank"]) for date, row in days.items()}
         added, missing = localize_feast_days(days, catalog)
-        assert added == 2 and missing == {"Unknown"}
+        assert added == 3 and missing == {"Unknown"}
         assert {date: (row["title"], row["rank"]) for date, row in days.items()} == originals
         assert days["2026-09-05"]["titleByLanguage"] == {"ar": "existing", "he": "קדוש"}
         assert days["2027-09-05"]["titleByLanguage"]["he"] == "קדוש"
-        assert days["2026-09-07"]["titleByLanguage"]["he"] == "authored"
+        assert days["2026-09-07"]["titleByLanguage"]["he"] == "חג"
+        assert days["2026-09-08"]["titleByLanguage"]["he"] == "authored"
         snapshot = json.dumps(days, ensure_ascii=False)
         assert localize_feast_days(days, catalog) == (0, {"Unknown"})
         assert json.dumps(days, ensure_ascii=False) == snapshot
         assert localized_feast_title("Feast; Other observance", catalog) == "חג; זכר"
         assert localized_feast_title("Feast; Unknown", catalog) == "חג; Unknown"
         assert localized_feast_title("Different saint", catalog) is None
+        assert hebrew_title_typography("בר-נבא; ה-22; 1–3; חג — זכר") == "בר־נבא; ה־22; 1–3; חג — זכר"
+        catalog["Saint"] = "קדוש, כהן"
+        assert localize_feast_days(days, catalog) == (2, {"Unknown"})
+        assert days["2026-09-05"]["titleByLanguage"] == {"ar": "existing", "he": "קדוש, כהן"}
         hebrew_title_catalog()  # Validate every checked-in label has a source and no conflict.
         print("feast localization self-test passed")
         return 0
