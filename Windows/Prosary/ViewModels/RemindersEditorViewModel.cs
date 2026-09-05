@@ -37,6 +37,10 @@ public partial class RemindersEditorViewModel : ObservableObject
     [ObservableProperty]
     private string? _presetFooter;
 
+    public string Preset6AmLabel => new TimeOnly(6, 0).ToString("t");
+    public string PresetNoonLabel => new TimeOnly(12, 0).ToString("t");
+    public string Preset6PmLabel => new TimeOnly(18, 0).ToString("t");
+
     public bool HasPresetHours => PresetHours.Count > 0;
 
     public bool Shows6AmPreset => PresetHours.Contains(6);

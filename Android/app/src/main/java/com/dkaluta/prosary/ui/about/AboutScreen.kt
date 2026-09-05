@@ -17,6 +17,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -24,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -37,6 +39,7 @@ import com.dkaluta.prosary.ui.theme.extraColors
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AboutScreen(onBack: () -> Unit) {
+    val uriHandler = LocalUriHandler.current
     // Tints the pinned bar once content scrolls beneath it — without this the bar is
     // invisible and scrolled content clips at a dead band around the floating title.
     val topBarScroll = TopAppBarDefaults.pinnedScrollBehavior()
@@ -165,6 +168,21 @@ fun AboutScreen(onBack: () -> Unit) {
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
+                Text(
+                    stringResource(R.string.about_additional_prayer_sources),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Text(
+                    stringResource(R.string.about_divine_mercy_source),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Text(
+                    stringResource(R.string.about_seven_sorrows_source),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
             }
 
             AboutSection(title = stringResource(R.string.about_scripture_sources)) {
@@ -173,6 +191,22 @@ fun AboutScreen(onBack: () -> Unit) {
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
+                Text(
+                    stringResource(R.string.about_additional_sources),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Text(
+                    stringResource(R.string.about_bible_book_sources),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                TextButton(onClick = { uriHandler.openUri("https://parolaviva.art/opendata") }) {
+                    Text(stringResource(R.string.about_parolaviva_link))
+                }
+                TextButton(onClick = { uriHandler.openUri("https://www.popesprayer.va/pray/") }) {
+                    Text(stringResource(R.string.about_prayer_network_link))
+                }
             }
 
             AboutSection(title = stringResource(R.string.about_calendar_data)) {
@@ -226,5 +260,3 @@ private fun ItalicLeadLine(line: String) {
 
     Text(annotated)
 }
-
-

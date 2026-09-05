@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="common_cancel" xml:space="preserve"><value>Отмена</value></data>
+  <data name="common_save" xml:space="preserve"><value>Сохранить</value></data>
+  <data name="common_done" xml:space="preserve"><value>Готово</value></data>
+  <data name="common_reset" xml:space="preserve"><value>Сбросить</value></data>
+  <data name="common_ok" xml:space="preserve"><value>ОК</value></data>
+  <data name="common_finish" xml:space="preserve"><value>Завершить</value></data>
+  <data name="common_next" xml:space="preserve"><value>Далее</value></data>
+  <data name="common_continue" xml:space="preserve"><value>Продолжить</value></data>
+  <data name="common_restart" xml:space="preserve"><value>Начать заново</value></data>
+  <data name="kind_rosary" xml:space="preserve"><value>Розарий</value></data>
+  <data name="kind_jesus_prayer" xml:space="preserve"><value>Иисусова молитва</value></data>
+  <data name="kind_devotion" xml:space="preserve"><value>Молитвенная практика</value></data>
+  <data name="kind_default_name_rosary" xml:space="preserve"><value>Мой Розарий</value></data>
+  <data name="mystery_group_joyful" xml:space="preserve"><value>Радостные</value></data>
+  <data name="mystery_group_sorrowful" xml:space="preserve"><value>Скорбные</value></data>
+  <data name="mystery_group_glorious" xml:space="preserve"><value>Славные</value></data>
+  <data name="mystery_group_luminous" xml:space="preserve"><value>Светлые</value></data>
+  <data name="mode_todays_mysteries" xml:space="preserve"><value>Сегодняшние тайны</value></data>
+  <data name="mode_specific" xml:space="preserve"><value>Всегда определённая группа</value></data>
+  <data name="mode_fifteen" xml:space="preserve"><value>15 тайн (Радостные, Скорбные, Славные)</value></data>
+  <data name="mode_twenty" xml:space="preserve"><value>20 тайн (все четыре группы)</value></data>
+  <data name="mode_single" xml:space="preserve"><value>Только одна тайна</value></data>
+  <data name="summary_always" xml:space="preserve"><value>Всегда {0}</value></data>
+  <data name="summary_only" xml:space="preserve"><value>Только {0}</value></data>
+  <data name="summary_fifteen" xml:space="preserve"><value>15 тайн</value></data>
+  <data name="summary_twenty" xml:space="preserve"><value>20 тайн</value></data>
+  <data name="eternal_rest_none" xml:space="preserve"><value>Не включать</value></data>
+  <data name="eternal_rest_each_decade" xml:space="preserve"><value>После каждого десятка</value></data>
+  <data name="eternal_rest_at_end" xml:space="preserve"><value>Один раз перед завершением</value></data>
+  <data name="antiphon_none" xml:space="preserve"><value>Нет</value></data>
+  <data name="antiphon_seasonal" xml:space="preserve"><value>Автоматически (по литургическому времени)</value></data>
+  <data name="antiphon_salve_regina" xml:space="preserve"><value>Salve Regina</value></data>
+  <data name="antiphon_alma_redemptoris" xml:space="preserve"><value>Alma Redemptoris Mater</value></data>
+  <data name="antiphon_ave_regina" xml:space="preserve"><value>Ave Regina Caelorum</value></data>
+  <data name="antiphon_regina_caeli" xml:space="preserve"><value>Regina Caeli</value></data>
+  <data name="antiphon_sub_tuum" xml:space="preserve"><value>Sub Tuum Praesidium</value></data>
+  <data name="imageStyle_classic" xml:space="preserve"><value>Классическая живопись</value></data>
+  <data name="imageStyle_eastern" xml:space="preserve"><value>Восточные иконы</value></data>
+  <data name="language_default_parenthesized" xml:space="preserve"><value>По умолчанию ({0})</value></data>
+  <data name="jp_count_times" xml:space="preserve"><value>{0}×</value></data>
+  <data name="jp_times_prefix" xml:space="preserve"><value>× {0}</value></data>
+  <data name="jp_unbounded" xml:space="preserve"><value>Без ограничения</value></data>
+  <data name="jp_custom" xml:space="preserve"><value>Свой вариант</value></data>
+  <data name="jp_favorite_name" xml:space="preserve"><value>Иисусова молитва {0} ({1})</value></data>
+  <data name="jp_error_body" xml:space="preserve"><value>Не удалось загрузить Иисусову молитву. Вернитесь и повторите попытку.</value></data>
+  <data name="home_today" xml:space="preserve"><value>Сегодня: {0}</value></data>
+  <data name="home_pope_intention" xml:space="preserve"><value>Намерение Папы: {0}</value></data>
+  <data name="SetLanguageFallbackOrder.Content" xml:space="preserve"><value>Порядок запасных языков…</value></data>
+  <data name="settings_language_fallback_order_title" xml:space="preserve"><value>Порядок запасных языков</value></data>
+  <data name="settings_language_fallback_order_footer" xml:space="preserve"><value>Если молитва отсутствует, после выбранного языка и его варианта Prosary пробует эти языки сверху вниз.</value></data>
+  <data name="home_today_show_english" xml:space="preserve"><value>English</value></data>
+  <data name="home_today_full_citations" xml:space="preserve"><value>Показать полные ссылки</value></data>
+  <data name="home_today_compact_citations" xml:space="preserve"><value>Показать сокращения</value></data>
+  <data name="HomeTodayReadings.Text" xml:space="preserve"><value>Сегодняшние чтения</value></data>
+  <data name="home_click_to_set_up" xml:space="preserve"><value>Нажмите для настройки</value></data>
+  <data name="home_click_to_pray" xml:space="preserve"><value>Нажмите, чтобы молиться</value></data>
+  <data name="home_order_title" xml:space="preserve"><value>Порядок на главной</value></data>
+  <data name="prayer_order_title" xml:space="preserve"><value>Порядок молитв</value></data>
+  <data name="BasicPrayersEditOrder.Content" xml:space="preserve"><value>Изменить порядок…</value></data>
+  <data name="flow_step_of" xml:space="preserve"><value>{0} из {1}</value></data>
+  <data name="flow_error_header" xml:space="preserve"><value>Произошла ошибка</value></data>
+  <data name="flow_error_body" xml:space="preserve"><value>Не удалось загрузить эту молитву. Вернитесь и повторите попытку.</value></data>
+  <data name="flow_app_setting" xml:space="preserve"><value>Настройка приложения</value></data>
+  <data name="prayer_resume_title" xml:space="preserve"><value>Продолжить с места остановки?</value></data>
+  <data name="prayer_resume_message" xml:space="preserve"><value>Продолжите незавершённую молитву или начните заново.</value></data>
+  <data name="rosary_no_favorites_header" xml:space="preserve"><value>Пока нет избранных Розариев</value></data>
+  <data name="rosary_no_favorites_body" xml:space="preserve"><value>Сначала добавьте Розарий в избранное.</value></data>
+  <data name="rosary_error_body" xml:space="preserve"><value>Не удалось загрузить эту молитву Розария. Вернитесь и повторите попытку.</value></data>
+  <data name="rosary_preset_name" xml:space="preserve"><value>Название набора</value></data>
+  <data name="rosary_save_as_preset" xml:space="preserve"><value>Сохранить настройки</value></data>
+  <data name="browse_all" xml:space="preserve"><value>Все</value></data>
+  <data name="browse_unreachable" xml:space="preserve"><value>Не удалось подключиться к каталогу.</value></data>
+  <data name="browse_download_failed" xml:space="preserve"><value>Не удалось загрузить молитву.</value></data>
+  <data name="favorites_import_error_title" xml:space="preserve"><value>Не удалось импортировать молитву</value></data>
+  <data name="favorites_bundle_file_type" xml:space="preserve"><value>Молитвенный сборник Prosary</value></data>
+  <data name="editor_new_favorite" xml:space="preserve"><value>Новое избранное</value></data>
+  <data name="editor_edit_favorite" xml:space="preserve"><value>Изменить избранное</value></data>
+  <data name="auto_advance_off" xml:space="preserve"><value>Выкл.</value></data>
+  <data name="auto_advance_every" xml:space="preserve"><value>Каждые {0} секунд</value></data>
+  <data name="settings_installed_devotions" xml:space="preserve"><value>Установлено молитв: {0}</value></data>
+  <data name="settings_clear_audio_cache" xml:space="preserve"><value>Очистить кэш аудио</value></data>
+  <data name="settings_clear_audio_cache_size" xml:space="preserve"><value>Очистить кэш аудио ({0})</value></data>
+  <data name="settings_remove_all_title" xml:space="preserve"><value>Удалить все загруженные молитвы?</value></data>
+  <data name="settings_remove_all_message" xml:space="preserve"><value>Молитвы из каталога можно загрузить заново; файлы, импортированные вручную, — нельзя.</value></data>
+  <data name="settings_remove_all_confirm" xml:space="preserve"><value>Удалить всё</value></data>
+  <data name="settings_app_language_system" xml:space="preserve"><value>По умолчанию в системе</value></data>
+  <data name="NavPray.Content" xml:space="preserve"><value>Молиться</value></data>
+  <data name="NavBrowse.Content" xml:space="preserve"><value>Обзор</value></data>
+  <data name="NavCategories.Content" xml:space="preserve"><value>Категории</value></data>
+  <data name="NavSearch.Content" xml:space="preserve"><value>Поиск</value></data>
+  <data name="HomeTitle.Text" xml:space="preserve"><value>Молиться</value></data>
+  <data name="HomeSettingsButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Настройки</value></data>
+  <data name="HomeAboutButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>О приложении</value></data>
+  <data name="HomeMoveToTop.Text" xml:space="preserve"><value>Переместить в начало</value></data>
+  <data name="HomeEditOrder.Text" xml:space="preserve"><value>Изменить порядок…</value></data>
+  <data name="SetTitle.Text" xml:space="preserve"><value>Настройки</value></data>
+  <data name="SetLanguageCombo.Header" xml:space="preserve"><value>Язык молитвы по умолчанию</value></data>
+  <data name="SetPrayingHeader.Text" xml:space="preserve"><value>Молитва</value></data>
+  <data name="SetAutoAdvanceCombo.Header" xml:space="preserve"><value>Автопереход</value></data>
+  <data name="SetResetHomeOrder.Content" xml:space="preserve"><value>Сбросить порядок на главной</value></data>
+  <data name="SetDownloadsHeader.Text" xml:space="preserve"><value>Загрузки</value></data>
+  <data name="SetRemoveAll.Content" xml:space="preserve"><value>Удалить все загруженные молитвы…</value></data>
+  <data name="SetDownloadsFooter.Text" xml:space="preserve"><value>Встроенные молитвы не удаляются. Удаление загруженной молитвы также удаляет её из избранного.</value></data>
+  <data name="SetLinksHeader.Text" xml:space="preserve"><value>Ссылки</value></data>
+  <data name="SetRepoLink.Content" xml:space="preserve"><value>Каталог сообщества</value></data>
+  <data name="SetComposeLink.Content" xml:space="preserve"><value>Создать молитву</value></data>
+  <data name="SetPrivacyLink.Content" xml:space="preserve"><value>Политика конфиденциальности</value></data>
+  <data name="SetAppLanguageCombo.Header" xml:space="preserve"><value>Язык приложения</value></data>
+  <data name="SetAppLanguageFooter.Text" xml:space="preserve"><value>Вступит в силу после перезапуска приложения.</value></data>
+  <data name="SetTodayHeader.Text" xml:space="preserve"><value>Сегодня</value></data>
+  <data name="SetShowTodayFeast.Header" xml:space="preserve"><value>Показывать праздник дня</value></data>
+  <data name="SetShowTodayIntention.Header" xml:space="preserve"><value>Показывать намерение Папы</value></data>
+  <data name="SetFeastCalendar.Header" xml:space="preserve"><value>Литургический календарь</value></data>
+  <data name="SetFeastCalendarHint.Text" xml:space="preserve"><value>Календарь, которому следуют праздники и чтения раздела «Сегодня».</value></data>
+  <data name="FavTitle.Text" xml:space="preserve"><value>Избранное</value></data>
+  <data name="BtnPray.Content" xml:space="preserve"><value>Молиться</value></data>
+  <data name="FavSetDefault.Content" xml:space="preserve"><value>Сделать основным</value></data>
+  <data name="FavRosaryHeader.Text" xml:space="preserve"><value>Розарий</value></data>
+  <data name="FavAddRosary.Content" xml:space="preserve"><value>+ Добавить Розарий</value></data>
+  <data name="FavJesusHeader.Text" xml:space="preserve"><value>Иисусова молитва</value></data>
+  <data name="FavAddJesus.Content" xml:space="preserve"><value>+ Добавить Иисусову молитву</value></data>
+  <data name="FavMoreHeader.Text" xml:space="preserve"><value>Другие молитвы</value></data>
+  <data name="FavRepoBadge.Text" xml:space="preserve"><value>Каталог</value></data>
+  <data name="FavImport.Text" xml:space="preserve"><value>Импортировать молитвенный сборник…</value></data>
+  <data name="FavGetCommunity.Text" xml:space="preserve"><value>Получить молитвы сообщества…</value></data>
+  <data name="FavExportButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Экспортировать для редактирования (compose.prosary.app)</value></data>
+  <data name="FavRemoveImportedButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Удалить импортированную молитву</value></data>
+  <data name="PickerTitle.Text" xml:space="preserve"><value>Святой Розарий</value></data>
+  <data name="PickerDefaultHeader.Text" xml:space="preserve"><value>Основной набор настроек</value></data>
+  <data name="PickerCustomHeader.Text" xml:space="preserve"><value>Свой вариант</value></data>
+  <data name="PickerPrayAny.Text" xml:space="preserve"><value>Любой вариант Розария</value></data>
+  <data name="PickerAnyDetail.Text" xml:space="preserve"><value>Остальные параметры берутся из основного набора. Полная настройка доступна в наборах настроек.</value></data>
+  <data name="PickerSaveAsPreset.Content" xml:space="preserve"><value>Сохранить настройки</value></data>
+  <data name="PickerPresetsHeader.Text" xml:space="preserve"><value>Наборы настроек</value></data>
+  <data name="BrowseTitle.Text" xml:space="preserve"><value>Молитвы сообщества</value></data>
+  <data name="BrowseSearchBox.PlaceholderText" xml:space="preserve"><value>Поиск молитв</value></data>
+  <data name="BrowseInstalled.Text" xml:space="preserve"><value>Установлено</value></data>
+  <data name="BtnInstall.Content" xml:space="preserve"><value>Установить</value></data>
+  <data name="BtnUpdate.Content" xml:space="preserve"><value>Обновить</value></data>
+  <data name="BtnRetry.Content" xml:space="preserve"><value>Повторить</value></data>
+  <data name="SearchTitle.Text" xml:space="preserve"><value>Поиск</value></data>
+  <data name="SearchBox.PlaceholderText" xml:space="preserve"><value>Молитвы, категории, авторы</value></data>
+  <data name="SearchOnDevice.Text" xml:space="preserve"><value>На этом устройстве</value></data>
+  <data name="SearchCommunity.Text" xml:space="preserve"><value>От сообщества</value></data>
+  <data name="CategoriesTitle.Text" xml:space="preserve"><value>Категории</value></data>
+  <data name="JpTitle.Text" xml:space="preserve"><value>Иисусова молитва</value></data>
+  <data name="JpHowMany.Text" xml:space="preserve"><value>Сколько раз?</value></data>
+  <data name="JpRepetitions.Header" xml:space="preserve"><value>Число повторений</value></data>
+  <data name="JpBegin.Content" xml:space="preserve"><value>Начать</value></data>
+  <data name="BtnCancel.Content" xml:space="preserve"><value>Отмена</value></data>
+  <data name="BtnSave.Content" xml:space="preserve"><value>Сохранить</value></data>
+  <data name="EdBack.Text" xml:space="preserve"><value>Назад</value></data>
+  <data name="EdOptionsTitle.Text" xml:space="preserve"><value>Параметры Розария</value></data>
+  <data name="EdSetDefault.Text" xml:space="preserve"><value>Использовать по умолчанию</value></data>
+  <data name="EdLanguageHeader.Text" xml:space="preserve"><value>Язык молитвы</value></data>
+  <data name="EdRosaryOptionsRow.Text" xml:space="preserve"><value>Параметры Розария</value></data>
+  <data name="EdTargetHeader.Text" xml:space="preserve"><value>Цель</value></data>
+  <data name="EdRemindersHeader.Text" xml:space="preserve"><value>Напоминания</value></data>
+  <data name="EdAddReminder.Text" xml:space="preserve"><value>Добавить напоминание</value></data>
+  <data name="EdWhichMysteries.Text" xml:space="preserve"><value>Какие тайны?</value></data>
+  <data name="EdOpeningHeader.Text" xml:space="preserve"><value>Начальные молитвы и молитвы десятков</value></data>
+  <data name="EdApostlesCreed.Text" xml:space="preserve"><value>Апостольский Символ веры</value></data>
+  <data name="EdOpeningPrayers.Text" xml:space="preserve"><value>«Отче наш» и три «Радуйся, Мария» в начале</value></data>
+  <data name="EdFatima.Text" xml:space="preserve"><value>Фатимская молитва после каждого десятка</value></data>
+  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>Фатимская молитва после начальных «Радуйся, Мария»</value></data>
+  <data name="EdDisplayHeader.Text" xml:space="preserve"><value>Отображение</value></data>
+  <data name="EdMysteryArtwork.Header" xml:space="preserve"><value>Изображения тайн</value></data>
+  <data name="EdPresenterMode.Text" xml:space="preserve"><value>Режим ведущего</value></data>
+  <data name="EdPresenterHint.Text" xml:space="preserve"><value>Объединить «Радуйся, Мария» и «Слава Отцу» каждого десятка на одном экране — удобно, когда ведёте общую молитву наизусть.</value></data>
+  <data name="EdClosingHeader.Text" xml:space="preserve"><value>Заключительные молитвы</value></data>
+  <data name="EdClosingIntentions.Text" xml:space="preserve"><value>Заключительные намерения</value></data>
+  <data name="EdStMichael.Text" xml:space="preserve"><value>Молитва святому Михаилу</value></data>
+  <data name="EdFinalSign.Text" xml:space="preserve"><value>Заключительное крестное знамение</value></data>
+  <data name="RemOptionsHeader.Text" xml:space="preserve"><value>Параметры</value></data>
+  <data name="BeadAntiphonLabel.Text" xml:space="preserve"><value>М</value></data>
+  <data name="FlowTransliterationButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Показать транслитерацию</value></data>
+  <data name="AbtTitle.Text" xml:space="preserve"><value>О Prosary</value></data>
+  <data name="AbtTagline.Text" xml:space="preserve"><value>Спутник в молитве Розария и других католических молитвах.</value></data>
+  <data name="AbtTypefacesHeader.Text" xml:space="preserve"><value>Шрифты</value></data>
+  <data name="AbtTypeFrank.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — молитвы на иврите.</value></data>
+  <data name="AbtTypeShofar.Text" xml:space="preserve"><value> — GPL v2 с исключением для встраивания шрифтов — Писание на иврите (проект Culmus, Йорам Гнат).</value></data>
+  <data name="AbtTypeAmiri.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — молитвы на арабском.</value></data>
+  <data name="AbtTypeScheherazade.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — Писание на арабском (SIL).</value></data>
+  <data name="AbtTypeCardo.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — Писание на латыни и английском (Дэвид Дж. Перри).</value></data>
+  <data name="AbtTypeNotoSyriac.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — выбираемые шрифты арамейского с сирийским письмом.</value></data>
+  <data name="AbtTypeOptionalHebrew.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — дополнительные шрифты молитв и Писания на иврите.</value></data>
+  <data name="AbtTypeStam.Text" xml:space="preserve"><value> — GPL v2 с исключением для встраивания шрифтов — дополнительные шрифты Писания на иврите (проект Culmus, Йорам Гнат).</value></data>
+  <data name="AbtTypeFooter.Text" xml:space="preserve"><value>Молитвы латинским письмом используют Cambria, входящую в Windows; шрифт не включён в приложение.</value></data>
+  <data name="AbtMysteryHeader.Text" xml:space="preserve"><value>Иллюстрации тайн</value></data>
+  <data name="AbtMysteryIntro.Text" xml:space="preserve"><value>Все 20 изображений тайн — классические картины в общественном достоянии (художники умерли более 100 лет назад), взятые из Викисклада.</value></data>
+  <data name="AboutEasternIcons.Text" xml:space="preserve"><value>Собрание иллюстраций тайн в восточном стиле используется с разрешения Миссии святого Гамалиила для ивритоязычных католиков Арамейской (Сирийской) католической церкви.</value></data>
+  <data name="AbtOtherHeader.Text" xml:space="preserve"><value>Другие изображения</value></data>
+  <data name="AbtStationsHeader.Text" xml:space="preserve"><value>Иллюстрации Крестного пути</value></data>
+  <data name="AbtStationsFugel.Text" xml:space="preserve"><value>Все 14 стояний: Гебхард Фугель (1863–1939), «Крестный путь» (1921), церковь Святого Антония, Бад-Заульгау — общественное достояние; фотографии Андреаса Прэфке переданы в общественное достояние.</value></data>
+  <data name="AbtStationsScriptural.Text" xml:space="preserve"><value>Библейский вариант святого Иоанна Павла II добавляет: «Поцелуй Иуды» — Джотто (капелла Скровеньи, ок. 1305); «Христос перед первосвященником» — Геррит ван Хонтхорст (ок. 1617), Национальная галерея, Лондон; «Отречение святого Петра» — Рембрандт (1660), Рейксмюсеум; «Удар копьём» — Питер Пауль Рубенс (1620), Королевский музей изящных искусств Антверпена — всё в общественном достоянии. Другие сцены используют иллюстрации, перечисленные на этой странице.</value></data>
+  <data name="AbtViaLucis.Text" xml:space="preserve"><value>Сцены Пути Света: «Ученики у гроба» — Эжен Бюрнан (1898), музей Орсе; «Не прикасайся ко Мне» — Фра Анджелико (Сан-Марко, ок. 1440); «Дорога в Эммаус», явления апостолам, на Тивериадском озере и в Галилее — Дуччо ди Буонинсенья («Маэста», 1308–1311), Сиена; «Ужин в Эммаусе» (1601) и «Неверие святого Фомы» (1601–1602) — Караваджо; «Христос вручает ключи Петру» — Рафаэль (ок. 1515), Королевское собрание; «Молящаяся Дева» — Сассоферрато (1640–1650), Национальная галерея, Лондон — всё в общественном достоянии. Остальные сцены используют иллюстрации славных тайн Розария.</value></data>
+  <data name="AbtCrownHeader.Text" xml:space="preserve"><value>Иллюстрация Францисканского венчика</value></data>
+  <data name="AbtCrownMagi.Text" xml:space="preserve"><value>«Поклонение волхвов»: Бартоломе Эстебан Мурильо (ок. 1655–1660), Художественный музей Толидо — общественное достояние. Остальные шесть радостей используют перечисленные выше иллюстрации тайн Розария.</value></data>
+  <data name="AbtSorrowsHeader.Text" xml:space="preserve"><value>Иллюстрации Семи скорбей</value></data>
+  <data name="AbtMercyHeader.Text" xml:space="preserve"><value>Изображение Божественного Милосердия</value></data>
+  <data name="AbtMercyBody.Text" xml:space="preserve"><value>Евгений Казимировский, «Божественное Милосердие» («Jezu, ufam Tobie», 1934), храм Божественного Милосердия, Вильнюс — первоначальный образ, написанный по указаниям святой Фаустины; общественное достояние.</value></data>
+  <data name="AbtJpHeader.Text" xml:space="preserve"><value>Иллюстрация Иисусовой молитвы</value></data>
+  <data name="AbtJpBody.Text" xml:space="preserve"><value>«Христос Пантократор»: энкаустическая икона VI века, монастырь святой Екатерины, гора Синай — древнейшая сохранившаяся икона Христа Вседержителя, в честь восточной традиции молитвы; общественное достояние.</value></data>
+  <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>Источники Писания</value></data>
+  <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Библейские цитаты взяты из Библии Дуэ — Реймса (английский), Климентинской Вульгаты (латынь), перевода Нового Завета на иврит Франца Делича (источник: kirjasilta.net/ha-berit), а ветхозаветные отрывки на иврите следуют масоретскому тексту; также используются арабская Библия иезуитов (Dar el-Machreq), русский Синодальный перевод (1876) и Ang Dating Biblia (тагалог, 1905).</value></data>
+  <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>Данные календарей</value></data>
+  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Данные календарей и чтений: Общий римский календарь — проект LitCal (litcal.johnromanodorazio.com); календарь и лекционарий 1962 года — Missale Meum (missalemeum.com); сирийско-католический календарь, названия Общего римского календаря на иврите и ссылки на римские и сирийские чтения предоставлены Evangelizo.org — Евангелие дня, © Evangelizo.org; украинский греко-католический календарь составлен в приложении по традиционным источникам, византийские ссылки взяты из общедоступного григорианского календаря литургического года УГКЦ от Royal Doors (royaldoors.net). Названия библейских книг на иврите: Evangelizo HE и Викариат святого Иакова (catholic.co.il). Дополнительные названия праздников и имена святых на иврите: Викариат святого Иакова, Христианский медиацентр (cmc-terrasanta.org) и Vatican News (vaticannews.va).</value></data>
+  <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Предыдущая тайна</value></data>
+  <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Предыдущая тайна</value></data>
+  <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Следующая тайна</value></data>
+  <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Следующая тайна</value></data>
+  <data name="AbtMys01Title.Text" xml:space="preserve"><value>Благовещение</value></data>
+  <data name="AbtCredit01.Text" xml:space="preserve"><value> — Фра Анджелико (ум. 1455)</value></data>
+  <data name="AbtMys02Title.Text" xml:space="preserve"><value>Посещение Елизаветы</value></data>
+  <data name="AbtCredit02.Text" xml:space="preserve"><value> — Мариотто Альбертинелли (ум. 1515)</value></data>
+  <data name="AbtMys03Title.Text" xml:space="preserve"><value>Святая ночь</value></data>
+  <data name="AbtCredit03.Text" xml:space="preserve"><value> — Антонио да Корреджо (ум. 1534)</value></data>
+  <data name="AbtMys04Title.Text" xml:space="preserve"><value>Сретение</value></data>
+  <data name="AbtCredit04.Text" xml:space="preserve"><value> — Андреа Мантенья (ум. 1506)</value></data>
+  <data name="AbtMys05Title.Text" xml:space="preserve"><value>Обретение Христа во храме</value></data>
+  <data name="AbtCredit05.Text" xml:space="preserve"><value> — Симоне Мартини (ум. 1344)</value></data>
+  <data name="AbtMys06Title.Text" xml:space="preserve"><value>Крещение Христа</value></data>
+  <data name="AbtCredit06.Text" xml:space="preserve"><value> — Пьеро делла Франческа (ум. 1492)</value></data>
+  <data name="AbtMys07Title.Text" xml:space="preserve"><value>Брак в Кане</value></data>
+  <data name="AbtCredit07.Text" xml:space="preserve"><value> — Паоло Веронезе (ум. 1588)</value></data>
+  <data name="AbtMys08Title.Text" xml:space="preserve"><value>Нагорная проповедь</value></data>
+  <data name="AbtCredit08.Text" xml:space="preserve"><value> — Козимо Росселли (ум. 1507)</value></data>
+  <data name="AbtMys09Title.Text" xml:space="preserve"><value>Преображение</value></data>
+  <data name="AbtCredit09.Text" xml:space="preserve"><value> — Рафаэль (ум. 1520)</value></data>
+  <data name="AbtMys10Title.Text" xml:space="preserve"><value>Тайная вечеря</value></data>
+  <data name="AbtCredit10.Text" xml:space="preserve"><value> — Леонардо да Винчи (ум. 1519)</value></data>
+  <data name="AbtMys11Title.Text" xml:space="preserve"><value>Моление о чаше</value></data>
+  <data name="AbtMys12Title.Text" xml:space="preserve"><value>Бичевание Христа</value></data>
+  <data name="AbtCredit11.Text" xml:space="preserve"><value> — Караваджо (ум. 1610)</value></data>
+  <data name="AbtMys13Title.Text" xml:space="preserve"><value>Коронование терновым венцом</value></data>
+  <data name="AbtMys14Title.Text" xml:space="preserve"><value>Несение креста</value></data>
+  <data name="AbtCredit12.Text" xml:space="preserve"><value> — Тициан (ум. 1576)</value></data>
+  <data name="AbtMys15Title.Text" xml:space="preserve"><value>Распятый Христос</value></data>
+  <data name="AbtCredit13.Text" xml:space="preserve"><value> — Диего Веласкес (ум. 1660)</value></data>
+  <data name="AbtMys16Title.Text" xml:space="preserve"><value>Воскресение</value></data>
+  <data name="AbtMys17Title.Text" xml:space="preserve"><value>Вознесение Христа</value></data>
+  <data name="AbtCredit14.Text" xml:space="preserve"><value> — Рембрандт (ум. 1669)</value></data>
+  <data name="AbtMys18Title.Text" xml:space="preserve"><value>Пятидесятница</value></data>
+  <data name="AbtCredit15.Text" xml:space="preserve"><value> — Эль Греко (ум. 1614)</value></data>
+  <data name="AbtMys19Title.Text" xml:space="preserve"><value>Взятие Девы Марии на небо</value></data>
+  <data name="AbtMys20Title.Text" xml:space="preserve"><value>Коронование Девы Марии</value></data>
+  <data name="AbtOther01Title.Text" xml:space="preserve"><value>Распятие</value></data>
+  <data name="AbtCredit16.Text" xml:space="preserve"><value> — Чимабуэ (ум. 1302).</value></data>
+  <data name="AbtOther02Title.Text" xml:space="preserve"><value>Малая Мадонна Каупера</value></data>
+  <data name="AbtCredit17.Text" xml:space="preserve"><value> — Рафаэль (ум. 1520).</value></data>
+  <data name="AbtOther03Title.Text" xml:space="preserve"><value>Вера, Надежда и Любовь</value></data>
+  <data name="AbtCredit18.Text" xml:space="preserve"><value> — Рафаэль, пределла алтаря Бальони (ум. 1520).</value></data>
+  <data name="AbtOther04Title.Text" xml:space="preserve"><value>Руки молящегося</value></data>
+  <data name="AbtCredit19.Text" xml:space="preserve"><value> — Альбрехт Дюрер (ум. 1528).</value></data>
+  <data name="AbtOther05Title.Text" xml:space="preserve"><value>Святая Троица</value></data>
+  <data name="AbtCredit20.Text" xml:space="preserve"><value> — Мазаччо (ум. 1428).</value></data>
+  <data name="AbtOther06Title.Text" xml:space="preserve"><value>Сошествие Христа в ад</value></data>
+  <data name="AbtCredit21.Text" xml:space="preserve"><value> — Фра Анджелико (ум. 1455).</value></data>
+  <data name="AbtOther07Title.Text" xml:space="preserve"><value>Михаил</value></data>
+  <data name="AbtCredit22.Text" xml:space="preserve"><value> — Гвидо Рени (ум. 1642).</value></data>
+  <data name="AbtOther08Title.Text" xml:space="preserve"><value>Голова Христа</value></data>
+  <data name="AbtCredit23.Text" xml:space="preserve"><value> — Рембрандт (ум. 1669).</value></data>
+  <data name="AbtSorrow01Title.Text" xml:space="preserve"><value>«Пророчество Симеона»</value></data>
+  <data name="AbtCredit24.Text" xml:space="preserve"><value> — Рембрандт ван Рейн, «Песнь хвалы Симеона» (1631), Маурицхёйс — общественное достояние.</value></data>
+  <data name="AbtSorrow02Title.Text" xml:space="preserve"><value>«Бегство в Египет»</value></data>
+  <data name="AbtCredit25.Text" xml:space="preserve"><value> — Бартоломе Эстебан Мурильо (ок. 1647–1650), Детройтский институт искусств — общественное достояние.</value></data>
+  <data name="AbtSorrow03Title.Text" xml:space="preserve"><value>«Потеря Иисуса во храме»</value></data>
+  <data name="AbtCredit26.Text" xml:space="preserve"><value> — Паоло Веронезе, «Христос среди учителей» (ок. 1560), музей Прадо — общественное достояние.</value></data>
+  <data name="AbtSorrow04Title.Text" xml:space="preserve"><value>«Встреча на Крестном пути»</value></data>
+  <data name="AbtCredit27.Text" xml:space="preserve"><value> — Рафаэль, «Lo Spasimo» (ок. 1514–1516), музей Прадо — общественное достояние.</value></data>
+  <data name="AbtSorrow05Title.Text" xml:space="preserve"><value>«Распятие»</value></data>
+  <data name="AbtCredit28.Text" xml:space="preserve"><value> — Хендрик Тербрюгген, «Распятие с Девой Марией и святым Иоанном» (ок. 1625), Метрополитен-музей — CC0.</value></data>
+  <data name="AbtSorrow06Title.Text" xml:space="preserve"><value>«Снятие с креста»</value></data>
+  <data name="AbtCredit29.Text" xml:space="preserve"><value> — Питер Пауль Рубенс (ок. 1612–1614), собор Антверпенской Богоматери — общественное достояние.</value></data>
+  <data name="AbtSorrow07Title.Text" xml:space="preserve"><value>«Погребение Иисуса»</value></data>
+  <data name="AbtCredit30.Text" xml:space="preserve"><value> — Тициан, «Положение во гроб» (ок. 1520), Лувр — общественное достояние.</value></data>
+  <data name="HomeAddDevotionButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Добавить молитву</value></data>
+  <data name="HomeRemoveFromPray.Text" xml:space="preserve"><value>Убрать из «Молиться»</value></data>
+  <data name="multi_day_day_of" xml:space="preserve"><value>День {0} из {1}</value></data>
+  <data name="multi_day_complete" xml:space="preserve"><value>Завершить</value></data>
+  <data name="multi_day_starts_today" xml:space="preserve"><value>Начало сегодня</value></data>
+  <data name="multi_day_starts_on" xml:space="preserve"><value>Начало: {0}</value></data>
+  <data name="multi_day_missed_title" xml:space="preserve"><value>Вы пропустили день</value></data>
+  <data name="multi_day_missed_body" xml:space="preserve"><value>Помолитесь за пропущенный день, продолжите с сегодняшнего или начните всю молитву заново.</value></data>
+  <data name="multi_day_pray_missed" xml:space="preserve"><value>Помолиться за день {0}</value></data>
+  <data name="multi_day_pray_today" xml:space="preserve"><value>Продолжить с дня {0}</value></data>
+  <data name="multi_day_start_over" xml:space="preserve"><value>Начать заново</value></data>
+  <data name="home_add_to_pray" xml:space="preserve"><value>Добавить в «Молиться»</value></data>
+  <data name="home_remove_from_pray" xml:space="preserve"><value>Убрать из «Молиться»</value></data>
+  <data name="MultiDayMissedBar.Title" xml:space="preserve"><value>Вы пропустили день</value></data>
+  <data name="MultiDayMissedBar.Message" xml:space="preserve"><value>Помолитесь за пропущенный день, продолжите с сегодняшнего или начните всю молитву заново.</value></data>
+  <data name="MultiDayStartOverButton.Content" xml:space="preserve"><value>Начать заново</value></data>
+  <data name="multi_day_reminder_body" xml:space="preserve"><value>Вас ждёт день {0} из {1}.</value></data>
+  <data name="MultiDayNotNowButton.Content" xml:space="preserve"><value>Не сейчас</value></data>
+  <data name="multi_day_completed_title" xml:space="preserve"><value>Молитва завершена. Помолиться {0} дальше?</value></data>
+  <data name="multi_day_pray_next" xml:space="preserve"><value>Молиться: {0}</value></data>
+  <data name="multi_day_not_now" xml:space="preserve"><value>Не сейчас</value></data>
+  <data name="SetRiteCombo.Header" xml:space="preserve"><value>Обряд</value></data>
+  <data name="settings_rite" xml:space="preserve"><value>Обряд</value></data>
+  <data name="settings_aramaic_sign_of_cross" xml:space="preserve"><value>Крестное знамение на арамейском</value></data>
+  <data name="settings_aramaic_sign_of_cross_form_a" xml:space="preserve"><value>Форма A</value></data>
+  <data name="settings_aramaic_sign_of_cross_form_b" xml:space="preserve"><value>Форма B</value></data>
+  <data name="SetTypographyHeader.Text" xml:space="preserve"><value>Шрифты</value></data>
+  <data name="SetSyriacTypeface.Header" xml:space="preserve"><value>Сирийский арамейский</value></data>
+  <data name="SetHebrewPrayerTypeface.Header" xml:space="preserve"><value>Молитвы на иврите</value></data>
+  <data name="SetHebrewScriptureTypeface.Header" xml:space="preserve"><value>Писание на иврите</value></data>
+  <data name="settings_typeface_default" xml:space="preserve"><value>По умолчанию</value></data>
+  <data name="settings_typeface_western_aramaic" xml:space="preserve"><value>Западный арамейский</value></data>
+  <data name="settings_typeface_eastern_aramaic" xml:space="preserve"><value>Восточный арамейский</value></data>
+  <data name="settings_typeface_david_libre" xml:space="preserve"><value>David Libre</value></data>
+  <data name="settings_typeface_sans_serif" xml:space="preserve"><value>Системный без засечек</value></data>
+  <data name="settings_typeface_stam_ashkenaz" xml:space="preserve"><value>Stam Ashkenaz</value></data>
+  <data name="settings_typeface_stam_sefarad" xml:space="preserve"><value>Stam Sefarad</value></data>
+  <data name="settings_typeface_rashi" xml:space="preserve"><value>Раши</value></data>
+  <data name="SetFavoriteBasicPrayersFirst.Header" xml:space="preserve"><value>Показывать избранные основные молитвы первыми</value></data>
+  <data name="SetAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>Крестное знамение на арамейском</value></data>
+  <data name="EdAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>Крестное знамение на арамейском</value></data>
+  <data name="EdRiteCombo.Header" xml:space="preserve"><value>Обряд</value></data>
+  <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>Любой вариант Розария</value></data>
+  <data name="HomeAddRosary.Content" xml:space="preserve"><value>Добавить Розарий</value></data>
+  <data name="HomeAddJesusPrayer.Content" xml:space="preserve"><value>Добавить Иисусову молитву</value></data>
+  <data name="HomeAddToPrayHeader.Text" xml:space="preserve"><value>Добавить в «Молиться»</value></data>
+  <data name="HomeSavedPresets.Text" xml:space="preserve"><value>Сохранённые настройки…</value></data>
+  <data name="HomeEditOrderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Изменить порядок…</value></data>
+  <data name="HomeReminders.Text" xml:space="preserve"><value>Напоминания…</value></data>
+  <data name="PresetEdit.Text" xml:space="preserve"><value>Изменить</value></data>
+  <data name="PresetReminders.Text" xml:space="preserve"><value>Напоминания…</value></data>
+  <data name="PresetSetDefault.Text" xml:space="preserve"><value>Использовать по умолчанию</value></data>
+  <data name="PresetDelete.Text" xml:space="preserve"><value>Удалить</value></data>
+  <data name="SetImportBundle.Content" xml:space="preserve"><value>Импортировать молитвенный сборник…</value></data>
+  <data name="SetExportBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Экспортировать для редактирования</value></data>
+  <data name="SetRemoveBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Удалить</value></data>
+  <data name="PickerEternalRest.Header" xml:space="preserve"><value>За усопших верных</value></data>
+  <data name="PickerAntiphon.Header" xml:space="preserve"><value>Богородичный антифон</value></data>
+  <data name="PickerMysteryArtwork.Header" xml:space="preserve"><value>Изображения тайн</value></data>
+  <data name="PickerApostlesCreed.Text" xml:space="preserve"><value>Апостольский Символ веры</value></data>
+  <data name="PickerOpeningPrayers.Text" xml:space="preserve"><value>«Отче наш» и три «Радуйся, Мария» в начале</value></data>
+  <data name="PickerFatima.Text" xml:space="preserve"><value>Фатимская молитва после каждого десятка</value></data>
+  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>Фатимская молитва после начальных «Радуйся, Мария»</value></data>
+  <data name="PickerPresenterMode.Text" xml:space="preserve"><value>Режим ведущего</value></data>
+  <data name="PickerClosingIntentions.Text" xml:space="preserve"><value>Заключительные намерения</value></data>
+  <data name="PickerStMichael.Text" xml:space="preserve"><value>Молитва святому Михаилу</value></data>
+  <data name="PickerFinalCross.Text" xml:space="preserve"><value>Заключительное крестное знамение</value></data>
+  <data name="AbtPrayerTextsHeader.Text" xml:space="preserve"><value>Тексты молитв</value></data>
+  <!-- The Vicariate line is a provisional attribution of fact, pending the exact
+       wording Fr. Piotr sends; replace it verbatim then, as the Exarchate's was. -->
+  <data name="AbtPrayerTextsBody.Text" xml:space="preserve"><value>Венчик Божиему Милосердию на иврите — собственный текст Латинского патриархата Иерусалима, одобренный патриархом Мишелем Саббахом в 2003 году. Некоторые молитвы на иврите и арамейском используются с разрешения патриаршего экзарха Арамейской (Сирийской) католической общины. Молитвы на иврите — собственные тексты Викариата святого Иакова для ивритоязычных католиков из его молитвенника.</value></data>
+  <data name="BasicPrayersTitle.Text" xml:space="preserve"><value>Основные молитвы</value></data>
+  <data name="home_today_rank_solemnity" xml:space="preserve"><value>Торжество</value></data>
+  <data name="home_today_rank_feast" xml:space="preserve"><value>Праздник</value></data>
+  <data name="home_today_rank_memorial" xml:space="preserve"><value>Память</value></data>
+  <data name="home_today_rank_optional_memorial" xml:space="preserve"><value>Необязательная память</value></data>
+  <data name="home_today_rank_sunday" xml:space="preserve"><value>Воскресенье</value></data>
+  <data name="home_today_rank_great_feast" xml:space="preserve"><value>Великий праздник</value></data>
+  <data name="home_today_rank_holy_week" xml:space="preserve"><value>Страстная неделя</value></data>
+  <data name="home_today_rank_fast" xml:space="preserve"><value>Пост</value></data>
+  <data name="home_today_rank_1st_class" xml:space="preserve"><value>I класс</value></data>
+  <data name="home_today_rank_2nd_class" xml:space="preserve"><value>II класс</value></data>
+  <data name="home_today_rank_3rd_class" xml:space="preserve"><value>III класс</value></data>
+  <data name="today_language_app" xml:space="preserve"><value>Язык приложения</value></data>
+  <data name="HomeTodayLanguage.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Язык раздела «Сегодня»</value></data>
+  <data name="BtnBack.Content" xml:space="preserve"><value>Назад</value></data>
+  <data name="BtnFinish.Content" xml:space="preserve"><value>Завершить</value></data>
+  <data name="PickerMysteries.Header" xml:space="preserve"><value>Тайны</value></data>
+  <data name="PickerSpecificSet.Header" xml:space="preserve"><value>Определённая группа</value></data>
+  <data name="PickerWhichMystery.Header" xml:space="preserve"><value>Какая тайна</value></data>
+  <data name="EditorName.Header" xml:space="preserve"><value>Название</value></data>
+  <data name="EditorName.PlaceholderText" xml:space="preserve"><value>Например, Утренний Розарий</value></data>
+  <data name="AudioPreviousChapter.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Предыдущая глава</value></data>
+  <data name="AudioNextChapter.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Следующая глава</value></data>
+  <data name="AudioPlayPause.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Воспроизвести или приостановить</value></data>
+  <data name="BrowseRefresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Обновить</value></data>
+  <data name="import_unreadable" xml:space="preserve"><value>Этот файл не является читаемым сборником .prosaryprayer.</value></data>
+  <data name="import_empty" xml:space="preserve"><value>Этот сборник не содержит молитвы.</value></data>
+  <data name="import_duplicate" xml:space="preserve"><value>Молитва с названием «{0}» уже установлена.</value></data>
+  <data name="browse_newer_catalog" xml:space="preserve"><value>Каталог использует новый формат. Обновите Prosary, чтобы просмотреть его.</value></data>
+  <data name="reminder_rosary" xml:space="preserve"><value>Время молиться Розарий.</value></data>
+  <data name="reminder_jesus" xml:space="preserve"><value>Время Иисусовой молитвы.</value></data>
+  <data name="reminder_pray" xml:space="preserve"><value>Время молитвы.</value></data>
+  <data name="preset_classic_rosary" xml:space="preserve"><value>Традиционный Розарий</value></data>
+  <data name="prayer_default_name" xml:space="preserve"><value>Моя молитва</value></data>
+  <data name="AbtAdditionalSources.Text" xml:space="preserve"><value>Священное Писание на французском: Крампон (1923), общественное достояние. На итальянском: Антонио Мартини; структурированные данные © Giovanni Novelli, CC BY 4.0 (parolaviva.art). Молитвы на французском и итальянском: Компендиум Катехизиса Ватикана. Намерения Папы: Всемирная молитвенная сеть Папы (2026–2027); перевод на иврит — Prosary. Намерения на русском (2026): перевод t.me/ihsovs, опубликованный приходом Непорочного Зачатия в Челябинске (cc74.wordpress.com/rosary/).</value></data>
+  <data name="AbtBookNameSources.Text" xml:space="preserve"><value>Названия библейских книг: AELF, Dar el-Machreq, русский Синодальный перевод (Азбука веры), Филиппинское библейское общество и ParolaViva.</value></data>
+  <data name="AbtPopeNetworkLink.Content" xml:space="preserve"><value>Всемирная молитвенная сеть Папы</value></data>
+  <data name="AbtParolaVivaLink.Content" xml:space="preserve"><value>ParolaViva — CC BY 4.0</value></data>
+  <data name="category_marian" xml:space="preserve"><value>Богородичные</value></data>
+  <data name="category_daily" xml:space="preserve"><value>Ежедневные</value></data>
+  <data name="category_mercy" xml:space="preserve"><value>Милосердие</value></data>
+  <data name="category_franciscan" xml:space="preserve"><value>Францисканские</value></data>
+  <data name="category_advent" xml:space="preserve"><value>Адвент</value></data>
+  <data name="category_meditative" xml:space="preserve"><value>Созерцательные</value></data>
+  <data name="category_passion" xml:space="preserve"><value>Страсти Христовы</value></data>
+  <data name="category_eastern" xml:space="preserve"><value>Восточные</value></data>
+  <data name="category_short" xml:space="preserve"><value>Краткие</value></data>
+  <data name="category_easter" xml:space="preserve"><value>Пасха</value></data>
+  <data name="category_other" xml:space="preserve"><value>Другие</value></data>
+  <data name="AbtPrayerSources.Text" xml:space="preserve"><value>Дополнительные источники молитв: Vatican News, святилище Фатимы, собор Парижской Богоматери, AELF и Итальянская епископская конференция (CEI).</value></data>
+  <data name="AbtDivineMercySources.Text" xml:space="preserve"><value>Венчик Божьему Милосердию: Конгрегация сестёр Матери Божьего Милосердия.</value></data>
+  <data name="AppDescription" xml:space="preserve"><value>Помощник для молитвы Розария, «Ангел Господень» и Иисусовой молитвы.</value></data>
+  <data name="AbtSevenSorrowsSources.Text" xml:space="preserve"><value>Молитвы Семи скорбей: Notre Dame de Chrétienté и Confraternite.net.</value></data>
+</root>

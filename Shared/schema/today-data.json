@@ -98,7 +98,7 @@
       }
     },
     "ReadingCitation": {
-      "constraints": "Every numeric range uses an en dash. Hebrew short/full values use book + gematria chapter + Arabic verse numbers with no colon.",
+      "constraints": "Every numeric range uses an en dash. Hebrew short/full values use book + gematria chapter + Arabic verse numbers with no colon. Arabic full citations use LRI/PDI around the numeric reference to preserve range order in RTL.",
       "fields": {
         "type": {
           "type": "string",
@@ -137,5 +137,37 @@
       "readings-ugcc": "Royal Doors public UGCC Gregorian calendar (Byzantine)",
       "readings-syriac": "Evangelizo publication edition SYE (Syriac Catholic)"
     }
+  },
+  "languagePreference": {
+    "key": "todayLanguageCode",
+    "type": "string",
+    "default": "",
+    "values": [
+      "",
+      "en",
+      "he",
+      "ar",
+      "ru",
+      "tl",
+      "fr",
+      "it"
+    ],
+    "description": "Empty follows the interface language. Independent of defaultLanguageCode. iw and fil locale aliases normalize to he and tl. Arabic and Hebrew use RTL."
+  },
+  "intentionDataset": {
+    "file": "pope-intentions.json",
+    "years": [
+      2026,
+      2027
+    ],
+    "fields": {
+      "title": "Published English title",
+      "text": "Published English intention",
+      "titleByLanguage": "map<string,string>",
+      "textByLanguage": "map<string,string>",
+      "sourceByLanguage": "map<string,URL> for published editions",
+      "translationCreditByLanguage": "map<string,string> distinguishing authored translations"
+    },
+    "fallback": "Missing language uses published English; missing month hides the row. Hebrew is credited to Prosary, not to an official Vatican Hebrew edition."
   }
 }

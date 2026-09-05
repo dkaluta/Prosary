@@ -45,11 +45,12 @@ final class TodayInfoStoreTests: XCTestCase {
     return formatter.date(from: string)!
   }
 
-  func testTodayTranslationDefaultsFollowHebrewLanguageVariants() {
-    XCTAssertTrue(TodayTranslationLanguage.defaultsToHebrew("he"))
-    XCTAssertTrue(TodayTranslationLanguage.defaultsToHebrew("he-x-gamliel"))
-    XCTAssertFalse(TodayTranslationLanguage.defaultsToHebrew("en"))
-    XCTAssertFalse(TodayTranslationLanguage.defaultsToHebrew("arc"))
+  func testTodayTranslationFollowsUIUntilExplicitlySelected() {
+    XCTAssertEqual(TodayTranslationLanguage.resolve("", appLanguage: "fr-CA"), "fr")
+    XCTAssertEqual(TodayTranslationLanguage.resolve("", appLanguage: "fil-PH"), "tl")
+    XCTAssertEqual(TodayTranslationLanguage.resolve("ar", appLanguage: "he"), "ar")
+    XCTAssertEqual(TodayTranslationLanguage.resolve("he-x-gamliel", appLanguage: "en"), "he")
+    XCTAssertEqual(TodayTranslationLanguage.resolve("unsupported", appLanguage: "ru"), "en")
   }
 
   func testFixedSolemnityResolves() {
@@ -201,7 +202,7 @@ final class TodayInfoStoreTests: XCTestCase {
       XCTAssertEqual(feast.localizedRank("he"), hebrew, rank)
       XCTAssertEqual(feast.localizedRank("he-x-gamliel"), hebrew, rank)
       XCTAssertEqual(feast.localizedRank("en"), rank)
-      XCTAssertEqual(feast.localizedRank("fr"), rank)
+      XCTAssertNotEqual(feast.localizedRank("fr"), rank, rank)
       XCTAssertEqual(feast.rank, rank)
     }
     let unknown = FeastDay(title: "Feast", titleByLanguage: nil, rank: "Future rank")

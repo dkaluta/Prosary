@@ -28,7 +28,7 @@ struct FeastDay: Decodable, Equatable {
     HebrewDisplayText.unpointed(localizedValue(titleByLanguage, language: language) ?? title)
   }
 
-  /// Captions follow the Today translation toggle, independently of the app UI language.
+  /// Captions follow the Today language selection, independently of the app UI language.
   /// Roman rank terms follow the Saint James Vicariate's 2025–2026 calendar, pp. 4, 6–7:
   /// https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf
   /// Other entries are ordinary UI descriptions; canonical ranks remain unchanged.
@@ -48,12 +48,10 @@ struct FeastDay: Decodable, Equatable {
     case "3rd Class": hebrewFallback = "דרגה שלישית"
     default: return rank
     }
-    let displayLanguage = (LanguageCatalog.baseLanguage(of: language) ?? language) == "he" ? "he" : "en"
+    let displayLanguage = UILanguage.resolve(language)
     let fallback = displayLanguage == "he" ? hebrewFallback : rank
-    guard let path = Bundle.main.path(forResource: displayLanguage, ofType: "lproj"),
-          let bundle = Bundle(path: path) else { return fallback }
     let key = "home.today.rank.\(rank.lowercased().replacingOccurrences(of: " ", with: "_"))"
-    return bundle.localizedString(forKey: key, value: fallback, table: nil)
+    return UILanguage.text(key, language: displayLanguage, fallback: fallback)
   }
 }
 
@@ -102,7 +100,7 @@ struct ReadingCitation: Decodable, Equatable {
 
   func localizedFull(_ language: String) -> String {
     localizedValue(fullByLanguage, language: language)
-      ?? ((LanguageCatalog.baseLanguage(of: language) ?? language) == "he" ? legacyHebrew : nil)
+      ?? (UILanguage.normalized(language) == "he" ? legacyHebrew : nil)
       ?? full
   }
 
@@ -116,19 +114,32 @@ struct ReadingCitation: Decodable, Equatable {
 private func localizedValue(
   _ values: [String: String]?, language: String
 ) -> String? {
-  values?[language] ?? LanguageCatalog.baseLanguage(of: language).flatMap { values?[$0] }
+  for code in [language, UILanguage.normalized(language)] {
+    if let value = values?[code], !value.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+      return value
+    }
+  }
+  return nil
 }
 
 struct LiturgicalDayInfo: Equatable {
   let english: String
   let hebrew: String
-}
+  let date: Date
+  let season: String
+  let week: Int
 
-/// The Today card initially follows the app's prayer language, including Hebrew variants.
-/// Its translation button may then override this for the lifetime of the visible Home view.
-enum TodayTranslationLanguage {
-  static func defaultsToHebrew(_ languageCode: String) -> Bool {
-    (LanguageCatalog.baseLanguage(of: languageCode) ?? languageCode) == "he"
+  func localized(_ language: String) -> String {
+    let code = UILanguage.resolve(language)
+    if code == "he" { return hebrew }
+    if code == "en" { return english }
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: code)
+    formatter.dateFormat = "EEEE"
+    let seasonKey = season.lowercased().replacingOccurrences(of: " ", with: "_")
+    let seasonName = UILanguage.text("home.today.season.\(seasonKey)", language: code, fallback: season)
+    let format = UILanguage.text("home.today.week", language: code, fallback: "%@ · Week %lld of %@")
+    return String(format: format, locale: Locale(identifier: code), formatter.string(from: date), week, seasonName)
   }
 }
 
@@ -144,8 +155,7 @@ struct FeastCalendar: Decodable, Equatable, Identifiable {
 
   /// The Settings picker label, resolved by UI language with the plain name as fallback.
   var displayName: String {
-    let uiLanguage = Bundle.main.preferredLocalizations.first.map { String($0.prefix(2)) }
-    return HebrewDisplayText.unpointed(uiLanguage.flatMap { nameByLanguage?[$0] } ?? name)
+    HebrewDisplayText.unpointed(localizedValue(nameByLanguage, language: UILanguage.current) ?? name)
   }
 }
 
@@ -251,7 +261,8 @@ enum TodayInfoStore {
     let heWeekday = weekday(start, locale: "he_IL")
     return LiturgicalDayInfo(
       english: "\(enWeekday) · Week \(season.2) of \(season.0)",
-      hebrew: "\(heWeekday) · השבוע ה־\(season.2) \(season.1)")
+      hebrew: "\(heWeekday) · השבוע ה־\(season.2) \(season.1)",
+      date: start, season: season.0, week: season.2)
   }
 
   private static func week(from origin: Date, to date: Date, calendar: Calendar) -> Int {

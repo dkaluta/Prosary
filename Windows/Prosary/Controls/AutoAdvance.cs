@@ -74,18 +74,17 @@ public sealed class AutoAdvanceTimer : IDisposable
 /// the same rebuild-on-click pattern as the pages' variant flyouts).</summary>
 public static class AutoAdvanceMenu
 {
-    private static readonly (int Seconds, string Label)[] Choices =
-        [(0, "Off"), (3, "Every 3 seconds"), (5, "Every 5 seconds"), (10, "Every 10 seconds"),
-         (15, "Every 15 seconds")];
+    private static readonly int[] Choices = [0, 3, 5, 10, 15];
 
     public static void Populate(MenuFlyout flyout, Action onChanged)
     {
         flyout.Items.Clear();
-        foreach (var (seconds, label) in Choices)
+        foreach (var seconds in Choices)
         {
             var item = new ToggleMenuFlyoutItem
             {
-                Text = label,
+                Text = seconds == 0 ? Localization.Loc.Tr("auto_advance_off", "Off")
+                    : string.Format(Localization.Loc.Tr("auto_advance_every", "Every {0} seconds"), seconds),
                 IsChecked = AppSettings.AutoAdvanceSeconds == seconds,
             };
             item.Click += (_, _) =>

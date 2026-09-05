@@ -34,6 +34,7 @@ import com.dkaluta.prosary.R
 import com.dkaluta.prosary.ui.shared.DevotionDirectory
 import com.dkaluta.prosary.ui.shared.DevotionListing
 import com.dkaluta.prosary.ui.shared.LaunchTarget
+import com.dkaluta.prosary.ui.shared.CategoryLabels
 import com.dkaluta.prosary.typography.HebrewDisplayText
 
 /** "View prayers by category": every launchable devotion grouped by its manifest tags —
@@ -78,7 +79,7 @@ fun CategoriesScreen(onLaunch: (LaunchTarget) -> Unit) {
             for ((tag, listings) in sections) {
                 item(key = "header.$tag") {
                     Text(
-                        HebrewDisplayText.unpoint(tag.replaceFirstChar { it.uppercaseChar() }),
+                        CategoryLabels.label(tag, context),
                         style = MaterialTheme.typography.titleSmall,
                         color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp),

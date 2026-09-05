@@ -41,7 +41,7 @@ public static class Loc
         {
             _manager ??= new ResourceManager();
             var context = _manager.CreateResourceContext();
-            context.QualifierValues["Language"] = language;
+            context.QualifierValues["Language"] = UiLanguageCatalog.ResourceTag(language);
             var value = _manager.MainResourceMap.GetSubtree("Resources").GetValue(key, context).ValueAsString;
             return string.IsNullOrEmpty(value) ? fallback : value;
         }

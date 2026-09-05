@@ -78,7 +78,7 @@
 
                 <Border Style="{StaticResource SectionCardStyle}">
                     <StackPanel Spacing="12">
-                        <TextBox Header="Name" PlaceholderText="e.g. Morning Rosary" Text="{x:Bind ViewModel.Name, Mode=TwoWay}" />
+                        <TextBox x:Uid="EditorName" Header="Name" PlaceholderText="e.g. Morning Rosary" Text="{x:Bind ViewModel.Name, Mode=TwoWay}" />
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -182,7 +182,7 @@
                     <TextBlock x:Uid="EdWhichMysteries" Text="WHICH MYSTERIES?" Style="{StaticResource SectionHeaderStyle}" />
                     <Border Style="{StaticResource SectionCardStyle}">
                         <StackPanel Spacing="12">
-                            <ComboBox HorizontalAlignment="Stretch" Header="Mysteries" ItemsSource="{x:Bind ViewModel.MysterySelectionModeOptions}"
+                            <ComboBox x:Uid="PickerMysteries" HorizontalAlignment="Stretch" Header="Mysteries" ItemsSource="{x:Bind ViewModel.MysterySelectionModeOptions}"
                                       SelectedItem="{x:Bind ViewModel.MysterySelectionMode, Mode=TwoWay}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -190,7 +190,7 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <ComboBox HorizontalAlignment="Stretch" Header="Specific set" ItemsSource="{x:Bind ViewModel.MysteryGroupOptions}"
+                            <ComboBox x:Uid="PickerSpecificSet" HorizontalAlignment="Stretch" Header="Specific set" ItemsSource="{x:Bind ViewModel.MysteryGroupOptions}"
                                       SelectedItem="{x:Bind ViewModel.SpecificMysteryGroup, Mode=TwoWay}"
                                       Visibility="{x:Bind ViewModel.IsSpecificMysteryGroup, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
                                 <ComboBox.ItemTemplate>
@@ -199,7 +199,7 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <ComboBox HorizontalAlignment="Stretch" Header="Which mystery" ItemsSource="{x:Bind ViewModel.MysteryOptions, Mode=OneWay}"
+                            <ComboBox x:Uid="PickerWhichMystery" HorizontalAlignment="Stretch" Header="Which mystery" ItemsSource="{x:Bind ViewModel.MysteryOptions, Mode=OneWay}"
                                       SelectedItem="{x:Bind ViewModel.SelectedMystery, Mode=TwoWay}"
                                       Visibility="{x:Bind ViewModel.IsSingleMystery, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
                                 <ComboBox.ItemTemplate>
@@ -246,7 +246,7 @@
                                 <TextBlock x:Uid="EdFatima" Grid.Column="0" Text="Fatima Prayer after each decade" VerticalAlignment="Center" TextWrapping="Wrap" />
                                 <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeFatimaPrayer, Mode=TwoWay}" />
                             </Grid>
-                            <ComboBox HorizontalAlignment="Stretch" Header="For the faithful departed" ItemsSource="{x:Bind ViewModel.EternalRestPlacementOptions}"
+                            <ComboBox x:Uid="PickerEternalRest" HorizontalAlignment="Stretch" Header="For the faithful departed" ItemsSource="{x:Bind ViewModel.EternalRestPlacementOptions}"
                                       SelectedItem="{x:Bind ViewModel.EternalRestForDeceased, Mode=TwoWay}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>

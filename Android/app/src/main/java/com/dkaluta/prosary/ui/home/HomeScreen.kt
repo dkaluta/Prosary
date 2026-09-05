@@ -53,6 +53,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -133,16 +137,14 @@ fun HomeScreen(
     val liturgicalDayInfo = remember { TodayInfoStore.liturgicalDayInfo() }
     val todayReadings = remember(AppSettings.feastCalendarId) { TodayInfoStore.readings() }
     val defaultLanguageCode = AppSettings.defaultLanguageCode
-    var todayInHebrew by remember(defaultLanguageCode) {
-        mutableStateOf(TodayTranslationLanguage.defaultsToHebrew(defaultLanguageCode))
-    }
+    val context = LocalContext.current
+    val appLanguage = LocalConfiguration.current.locales[0].toLanguageTag()
+    val todayLanguage = TodayTranslationLanguage.resolve(AppSettings.todayLanguageCode, appLanguage)
+    val todayContext = remember(context, todayLanguage) { TodayTranslationLanguage.localizedContext(context, todayLanguage) }
+    var todayLanguageMenuExpanded by remember { mutableStateOf(false) }
     var showsFullCitations by remember { mutableStateOf(false) }
-    val todayReadingsTitle = if (todayInHebrew) "המקרא היומי" else "Today’s readings"
-    val citationButtonText = if (todayInHebrew) {
-        if (showsFullCitations) "הצג קיצור" else "הצג מראי מקום מלאים"
-    } else {
-        if (showsFullCitations) "Show shorthand" else "View full citations"
-    }
+    val todayReadingsTitle = todayContext.getString(R.string.home_today_readings)
+    val citationButtonText = todayContext.getString(if (showsFullCitations) R.string.home_today_compact_citations else R.string.home_today_full_citations)
     var todayMysteryGroup by remember { mutableStateOf<MysteryGroup?>(null) }
     var defaultRosary by remember { mutableStateOf<Prayer?>(null) }
     var defaultJesusPrayer by remember { mutableStateOf<Prayer?>(null) }
@@ -180,7 +182,6 @@ fun HomeScreen(
     val rosaryAccent = todayMysteryGroup?.color ?: MaterialTheme.colorScheme.primary
     val jesusPrayerAccent = if (isDarkTheme) Color(0xFFC62828) else Color(0xFF8B1A1A)
 
-    val context = androidx.compose.ui.platform.LocalContext.current
     val todayLine = todayMysteryGroup?.let { stringResource(R.string.home_today, stringResource(it.displayNameRes)) }
     val rosarySubtitle = buildString {
         todayLine?.let { append(it) }
@@ -372,7 +373,7 @@ fun HomeScreen(
             // datasets have no entry (ferial days; dates past the generated years).
             item(key = "today", span = { GridItemSpan(maxLineSpan) }) {
                 CompositionLocalProvider(
-                    LocalLayoutDirection provides if (todayInHebrew) LayoutDirection.Rtl else LayoutDirection.Ltr,
+                    LocalLayoutDirection provides if (TodayTranslationLanguage.isRightToLeft(todayLanguage)) LayoutDirection.Rtl else LayoutDirection.Ltr,
                 ) {
                     Column(
                         verticalArrangement = Arrangement.spacedBy(10.dp),
@@ -385,13 +386,32 @@ fun HomeScreen(
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             Icon(Icons.Filled.CalendarMonth, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
                             Text(
-                                if (todayInHebrew) liturgicalDayInfo.hebrew else liturgicalDayInfo.english,
+                                liturgicalDayInfo.localized(todayLanguage),
                                 style = MaterialTheme.typography.titleSmall,
                                 fontWeight = FontWeight.SemiBold,
                                 modifier = Modifier.weight(1f),
                             )
-                            TextButton(onClick = { todayInHebrew = !todayInHebrew }) {
-                                Text(if (todayInHebrew) stringResource(R.string.home_today_show_english) else "עברית")
+                            Box {
+                                TextButton(
+                                    onClick = { todayLanguageMenuExpanded = true },
+                                    modifier = Modifier.testTag("todayLanguagePicker").semantics {
+                                        contentDescription = todayContext.getString(R.string.home_today_language)
+                                    },
+                                ) {
+                                    Text(if (todayLanguage == "he") "עברית" else LanguageCatalog.resolve(todayLanguage).nativeName)
+                                }
+                                DropdownMenu(expanded = todayLanguageMenuExpanded, onDismissRequest = { todayLanguageMenuExpanded = false }) {
+                                    DropdownMenuItem(
+                                        text = { Text(todayContext.getString(R.string.home_today_app_language)) },
+                                        onClick = { AppSettings.setTodayLanguageCode(""); todayLanguageMenuExpanded = false },
+                                    )
+                                    TodayTranslationLanguage.supportedCodes.forEach { code ->
+                                        DropdownMenuItem(
+                                            text = { Text(if (code == "he") "עברית" else LanguageCatalog.resolve(code).nativeName) },
+                                            onClick = { AppSettings.setTodayLanguageCode(code); todayLanguageMenuExpanded = false },
+                                        )
+                                    }
+                                }
                             }
                         }
                         if (todayFeast != null) {
@@ -402,14 +422,14 @@ fun HomeScreen(
                                 )
                                 Column(verticalArrangement = Arrangement.spacedBy(2.dp), modifier = Modifier.weight(1f)) {
                                     Text(
-                                        todayFeast.localizedTitle(if (todayInHebrew) "he" else "en"),
+                                        todayFeast.localizedTitle(todayLanguage),
                                         style = MaterialTheme.typography.titleSmall,
                                         // Each calendar's top rank gets the bold: "Solemnity"
                                         // (Roman), "1st Class" (1962), "Great Feast" (Byzantine).
                                         fontWeight = if (todayFeast.rank in setOf("Solemnity", "1st Class", "Great Feast")) FontWeight.Bold else FontWeight.SemiBold,
                                     )
                                     Text(
-                                        todayFeast.localizedRank(if (todayInHebrew) "he" else "en", context),
+                                        todayFeast.localizedRank(todayLanguage, todayContext),
                                         style = MaterialTheme.typography.bodySmall,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     )
@@ -424,13 +444,12 @@ fun HomeScreen(
                                 )
                                 Column(verticalArrangement = Arrangement.spacedBy(2.dp), modifier = Modifier.weight(1f)) {
                                     Text(
-                                        if (todayInHebrew) "כוונת האפיפיור: ${monthIntention.localizedTitle("he")}" else
-                                            stringResource(R.string.home_pope_intention, monthIntention.localizedTitle("en")),
+                                        todayContext.getString(R.string.home_pope_intention, monthIntention.localizedTitle(todayLanguage)),
                                         style = MaterialTheme.typography.titleSmall,
                                         fontWeight = FontWeight.SemiBold,
                                     )
                                     Text(
-                                        monthIntention.localizedText(if (todayInHebrew) "he" else "en"),
+                                        monthIntention.localizedText(todayLanguage),
                                         style = MaterialTheme.typography.bodySmall,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     )
@@ -445,7 +464,7 @@ fun HomeScreen(
                                     if (showsFullCitations) {
                                         todayReadings.forEach { citation ->
                                             Text(
-                                                citation.localizedFull(if (todayInHebrew) "he" else "en"),
+                                                citation.localizedFull(todayLanguage),
                                                 style = MaterialTheme.typography.bodySmall,
                                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                                             )
@@ -453,7 +472,7 @@ fun HomeScreen(
                                     } else {
                                         Text(
                                             todayReadings.joinToString(", ") {
-                                                it.localizedShort(if (todayInHebrew) "he" else "en")
+                                                it.localizedShort(todayLanguage)
                                             },
                                             style = MaterialTheme.typography.bodySmall,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant,

@@ -100,7 +100,7 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Text="6:00 AM" VerticalAlignment="Center" />
+                                    <TextBlock Grid.Column="0" Text="{x:Bind ViewModel.RemindersEditor.Preset6AmLabel}" VerticalAlignment="Center" />
                                     <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.Is6AmEnabled, Mode=OneWay}" Toggled="OnPreset6AmToggled" />
                                 </Grid>
                                 <Grid Visibility="{x:Bind ViewModel.RemindersEditor.ShowsNoonPreset, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
@@ -108,7 +108,7 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Text="12:00 PM" VerticalAlignment="Center" />
+                                    <TextBlock Grid.Column="0" Text="{x:Bind ViewModel.RemindersEditor.PresetNoonLabel}" VerticalAlignment="Center" />
                                     <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.IsNoonEnabled, Mode=OneWay}" Toggled="OnPresetNoonToggled" />
                                 </Grid>
                                 <Grid Visibility="{x:Bind ViewModel.RemindersEditor.Shows6PmPreset, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
@@ -116,7 +116,7 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Text="6:00 PM" VerticalAlignment="Center" />
+                                    <TextBlock Grid.Column="0" Text="{x:Bind ViewModel.RemindersEditor.Preset6PmLabel}" VerticalAlignment="Center" />
                                     <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.Is6PmEnabled, Mode=OneWay}" Toggled="OnPreset6PmToggled" />
                                 </Grid>
                             </StackPanel>

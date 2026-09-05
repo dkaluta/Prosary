@@ -12,10 +12,7 @@ public sealed record FeastDay(
     Dictionary<string, string>? TitleByLanguage = null)
 {
     public string LocalizedTitle(string language) => HebrewDisplayText.WithoutMarks(
-        TitleByLanguage?.GetValueOrDefault(language)
-        ?? (LanguageCatalog.BaseLanguage(language) is { } baseLanguage
-            ? TitleByLanguage?.GetValueOrDefault(baseLanguage)
-            : null)
+        UiLanguageCatalog.Localized(TitleByLanguage, language)
         ?? Title);
 
     /// <summary>Follow the Today toggle rather than the app UI language. Roman rank terms
@@ -40,7 +37,7 @@ public sealed record FeastDay(
             _ => null,
         };
         if (hebrewFallback is null) return Rank;
-        var displayLanguage = (LanguageCatalog.BaseLanguage(language) ?? language) == "he" ? "he" : "en";
+        var displayLanguage = UiLanguageCatalog.Normalize(language);
         var fallback = displayLanguage == "he" ? hebrewFallback : Rank;
         var key = $"home_today_rank_{Rank.ToLowerInvariant().Replace(' ', '_')}";
         return Loc.Tr(key, fallback, displayLanguage);
@@ -54,12 +51,9 @@ public sealed record PopeIntention(
     Dictionary<string, string>? TextByLanguage)
 {
     public string LocalizedTitle(string language) => HebrewDisplayText.WithoutMarks(
-        TitleByLanguage?.GetValueOrDefault(language)
-        ?? (LanguageCatalog.BaseLanguage(language) is { } baseLanguage
-            ? TitleByLanguage?.GetValueOrDefault(baseLanguage)
-            : null)
+        UiLanguageCatalog.Localized(TitleByLanguage, language)
         ?? Title);
-    public string LocalizedText(string language) => TextByLanguage?.GetValueOrDefault(language) ?? Text;
+    public string LocalizedText(string language) => UiLanguageCatalog.Localized(TextByLanguage, language) ?? Text;
 }
 
 public sealed record ReadingCitation(
@@ -77,16 +71,40 @@ public sealed record ReadingCitation(
         Localized(FullByLanguage, language) ?? (IsHebrew(language) ? Hebrew : null) ?? Full;
 
     private static string? Localized(Dictionary<string, string>? values, string language) =>
-        values?.GetValueOrDefault(language)
-        ?? (LanguageCatalog.BaseLanguage(language) is { } baseLanguage
-            ? values?.GetValueOrDefault(baseLanguage)
-            : null);
+        UiLanguageCatalog.Localized(values, language);
 
     private static bool IsHebrew(string language) =>
         (LanguageCatalog.BaseLanguage(language) ?? language).Equals("he", StringComparison.OrdinalIgnoreCase);
 }
 
-public sealed record LiturgicalDayInfo(string English, string Hebrew);
+public sealed record LiturgicalDayInfo(string English, string Hebrew, DateOnly Date, string Season, int Week)
+{
+    public string Localized(string language)
+    {
+        var code = UiLanguageCatalog.Normalize(language);
+        if (code == "he") return Hebrew;
+        if (code == "en") return English;
+        var weekday = Date.ToDateTime(TimeOnly.MinValue).ToString("dddd",
+            System.Globalization.CultureInfo.GetCultureInfo(UiLanguageCatalog.ResourceTag(code)));
+        var season = Season switch
+        {
+            "Lent" => code switch { "ar" => "الزمن الأربعيني", "ru" => "Великого поста", "tl" => "Kuwaresma", "fr" => "Carême", "it" => "Quaresima", _ => Season },
+            "Easter Season" => code switch { "ar" => "الزمن الفصحي", "ru" => "Пасхального времени", "tl" => "Panahon ng Pasko ng Pagkabuhay", "fr" => "temps pascal", "it" => "Tempo di Pasqua", _ => Season },
+            "Advent" => code switch { "ar" => "زمن المجيء", "ru" => "Адвента", "tl" => "Adbiyento", "fr" => "Avent", "it" => "Avvento", _ => Season },
+            "Christmas Season" => code switch { "ar" => "زمن الميلاد", "ru" => "Рождественского времени", "tl" => "Panahon ng Pasko", "fr" => "temps de Noël", "it" => "Tempo di Natale", _ => Season },
+            _ => code switch { "ar" => "الزمن العادي", "ru" => "Рядового времени", "tl" => "Karaniwang Panahon", "fr" => "temps ordinaire", "it" => "Tempo Ordinario", _ => Season },
+        };
+        return code switch
+        {
+            "ar" => $"{weekday} · الأسبوع {Week} من {season}",
+            "ru" => $"{weekday} · {Week}-я неделя {season}",
+            "tl" => $"{weekday} · Ika-{Week} linggo ng {season}",
+            "fr" => $"{weekday} · Semaine {Week} — {season}",
+            "it" => $"{weekday} · Settimana {Week} — {season}",
+            _ => English,
+        };
+    }
+}
 
 /// <summary>
 /// Backs the Pray tab's "Today" section: the day's feast per the selected liturgical
@@ -114,24 +132,8 @@ public static class TodayInfoStore
         /// <summary>The Settings picker label, resolved by UI language with the plain name as
         /// fallback.</summary>
         public string DisplayName => HebrewDisplayText.WithoutMarks(
-            UiLanguage() is { } language && NameByLanguage?.GetValueOrDefault(language) is { } localized
-                ? localized
-                : Name);
+            UiLanguageCatalog.Localized(NameByLanguage, UiLanguageCatalog.Current) ?? Name);
 
-        /// <summary>The app UI language's two-letter code, or null in unpackaged (unit-test)
-        /// contexts where the language machinery isn't up — the plain name serves there.</summary>
-        private static string? UiLanguage()
-        {
-            try
-            {
-                var tag = Windows.Globalization.ApplicationLanguages.Languages.FirstOrDefault();
-                return tag is { Length: >= 2 } ? tag[..2] : null;
-            }
-            catch
-            {
-                return null;
-            }
-        }
     }
 
     private sealed record FeastsFile(Dictionary<string, FeastDay>? Days);
@@ -241,7 +243,7 @@ public static class TodayInfoStore
         var hebrewWeekday = date.ToDateTime(TimeOnly.MinValue).ToString("dddd", System.Globalization.CultureInfo.GetCultureInfo("he-IL"));
         return new LiturgicalDayInfo(
             $"{englishWeekday} · Week {season.Week} of {season.English}",
-            $"{hebrewWeekday} · השבוע ה־{season.Week} {season.Hebrew}");
+            $"{hebrewWeekday} · השבוע ה־{season.Week} {season.Hebrew}", date, season.English, season.Week);
     }
 
     private static int Week(DateOnly origin, DateOnly date) => Math.Max(1, (date.DayNumber - origin.DayNumber) / 7 + 1);

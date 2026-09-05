@@ -4,13 +4,27 @@
       "key": "seventyTwoHailMarys",
       "kind": "toggle",
       "name": "Complete the 72 Hail Marys",
-      "default": true
+      "default": true,
+      "nameByLanguage": {
+        "ar": "إكمال ٧٢ صلاة سلام عليك يا مريم",
+        "ru": "Дополнить до 72 молитв «Радуйся, Мария»",
+        "tl": "Kumpletuhin ang 72 Aba Ginoong Maria",
+        "fr": "Compléter les 72 Je vous salue Marie",
+        "it": "Completa le 72 Ave Maria"
+      }
     },
     {
       "key": "popeIntentions",
       "kind": "toggle",
       "name": "Our Father for the Pope's intentions",
-      "default": true
+      "default": true,
+      "nameByLanguage": {
+        "ar": "أبانا من أجل نيات البابا",
+        "ru": "«Отче наш» в намерениях Папы",
+        "tl": "Ama Namin para sa mga intensiyon ng Santo Papa",
+        "fr": "Notre Père aux intentions du pape",
+        "it": "Padre nostro per le intenzioni del Papa"
+      }
     }
   ]
 }

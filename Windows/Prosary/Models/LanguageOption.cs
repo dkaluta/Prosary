@@ -42,6 +42,8 @@ public static class LanguageCatalog
         new("es", "Español", false),
         new("ru", "Русский", false),
         new("tl", "Tagalog", false),
+        new("fr", "Français", false),
+        new("it", "Italiano", false),
     ];
 
     /// <summary>Picker choices for a bundle's declared languages. The Mission is a sparse
@@ -62,7 +64,13 @@ public static class LanguageCatalog
             var known = All.Select(l => l.Code).ToHashSet();
             var result = AppSettings.LanguageFallbackOrder.Where(known.Contains).Distinct().ToList();
             var defaults = All.Select(l => l.Code).Where(c => c != DefaultCode).Append(DefaultCode);
-            result.AddRange(defaults.Where(c => !result.Contains(c)));
+            var missing = defaults.Where(c => !result.Contains(c)).ToList();
+            // A saved order from before a language was added still keeps its final Latin
+            // safety net last. An explicitly earlier Latin placement stays where the user put it.
+            if (result.LastOrDefault() == DefaultCode)
+                result.InsertRange(result.Count - 1, missing);
+            else
+                result.AddRange(missing);
             return result;
         }
     }

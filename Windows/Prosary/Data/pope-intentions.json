@@ -1,78 +1,714 @@
 {
- "$comment": "The Pope's Worldwide Prayer Network monthly intentions (popesprayer.va; wording cross-checked against usccb.org). Regenerate when the next year's list is published; months outside this table simply hide the row.",
- "generated": "2026-07-27",
- "months": {
-  "2026-01": {
-   "title": "For prayer with the Word of God",
-   "text": "Let us pray that praying with the Word of God be nourishment for our lives and a source of hope in our communities, helping us to build a more fraternal and missionary Church.",
-   "titleByLanguage": {"he": "לתפילה עם דבר האלוהים"},
-   "textByLanguage": {"he": "נתפלל שהתפילה עם דבר האלוהים תהיה מזון לחיינו ומקור תקווה בקהילותינו, ותסייע לנו לבנות כנסייה אחוותית ושליחותית יותר."}
-  },
-  "2026-02": {
-   "title": "For children with incurable diseases",
-   "text": "Let us pray that children suffering from incurable diseases and their families receive the necessary medical care and support, never losing strength and hope.",
-   "titleByLanguage": {"he": "למען ילדים החולים במחלות חשוכות מרפא"},
-   "textByLanguage": {"he": "נתפלל שילדים החולים במחלות חשוכות מרפא ובני משפחותיהם יקבלו את הטיפול הרפואי והתמיכה הנחוצים, ולעולם לא יאבדו את כוחם ואת תקוותם."}
-  },
-  "2026-03": {
-   "title": "For disarmament and peace",
-   "text": "Let us pray that nations move toward effective disarmament, particularly nuclear disarmament, and that world leaders choose the path of dialogue and diplomacy instead of violence.",
-   "titleByLanguage": {"he": "למען פירוק נשק ושלום"},
-   "textByLanguage": {"he": "נתפלל שהאומות יתקדמו לקראת פירוק נשק יעיל, ובייחוד פירוק נשק גרעיני, ושמנהיגי העולם יבחרו בדרך השיח והדיפלומטיה במקום באלימות."}
-  },
-  "2026-04": {
-   "title": "For priests in crisis",
-   "text": "Let us pray for priests going through moments of crisis in their vocation, that they may find the accompaniment they need and that communities may support them with understanding and prayer.",
-   "titleByLanguage": {"he": "למען כוהנים במשבר"},
-   "textByLanguage": {"he": "נתפלל למען כוהנים העוברים תקופות משבר בייעודם, שימצאו את הליווי הדרוש להם ושהקהילות יתמכו בהם בהבנה ובתפילה."}
-  },
-  "2026-05": {
-   "title": "That everyone might have food",
-   "text": "Let us pray that everyone, from large producers to small consumers, be committed to avoid wasting food, and to ensure that everyone has access to quality food.",
-   "titleByLanguage": {"he": "שלכל אדם יהיה מזון"},
-   "textByLanguage": {"he": "נתפלל שכולם, מן היצרנים הגדולים ועד הצרכנים הקטנים, יתחייבו למנוע בזבוז מזון ולהבטיח שלכל אדם תהיה גישה למזון איכותי."}
-  },
-  "2026-06": {
-   "title": "For the values of sports",
-   "text": "Let us pray that sports be an instrument of peace, encounter, and dialogue among cultures and nations, and that they promote values such as respect, solidarity, and personal growth.",
-   "titleByLanguage": {"he": "למען ערכי הספורט"},
-   "textByLanguage": {"he": "נתפלל שהספורט יהיה כלי לשלום, למפגש ולשיח בין תרבויות ואומות, ויקדם ערכים כגון כבוד, סולידריות וצמיחה אישית."}
-  },
-  "2026-07": {
-   "title": "For respect for human life",
-   "text": "Let us pray for the respect and protection of human life in all its stages, recognizing it as a gift from God.",
-   "titleByLanguage": {"he": "למען כבוד לחיי אדם"},
-   "textByLanguage": {"he": "נתפלל לכיבוד חיי האדם ולהגנתם בכל שלביהם, מתוך הכרה בהם כמתנה מאת האלוהים."}
-  },
-  "2026-08": {
-   "title": "For evangelization in the city",
-   "text": "Let us pray that in large cities often marked by anonymity and loneliness we find new ways to proclaim the Gospel, discovering creative paths to build community.",
-   "titleByLanguage": {"he": "למען הבישור בעיר"},
-   "textByLanguage": {"he": "נתפלל שבערים הגדולות, שלעתים קרובות מתאפיינות באלמוניות ובבדידות, נמצא דרכים חדשות לבשר את הבשורה ונגלה נתיבים יצירתיים לבניית קהילה."}
-  },
-  "2026-09": {
-   "title": "For the care of water",
-   "text": "Let us pray for a just and sustainable management of water, a vital resource, so that everyone may have equal access to it.",
-   "titleByLanguage": {"he": "למען השמירה על המים"},
-   "textByLanguage": {"he": "נתפלל לניהול צודק ובר־קיימא של המים, משאב חיוני, כדי שלכל אדם תהיה גישה שווה אליהם."}
-  },
-  "2026-10": {
-   "title": "For mental health ministry",
-   "text": "Let us pray that the mental health ministry be established throughout the Church, helping to overcome the stigma and discrimination of persons with mental illnesses.",
-   "titleByLanguage": {"he": "למען שירות בריאות הנפש"},
-   "textByLanguage": {"he": "נתפלל ששירות למען בריאות הנפש יוקם ברחבי הכנסייה ויסייע להתגבר על הסטיגמה ועל האפליה כלפי אנשים המתמודדים עם מחלות נפש."}
-  },
-  "2026-11": {
-   "title": "For the proper use of wealth",
-   "text": "Let us pray for the proper use of wealth, that not succumbing to the temptation of selfishness, it may always be put at the service of the common good and solidarity of those who have less.",
-   "titleByLanguage": {"he": "למען שימוש ראוי בעושר"},
-   "textByLanguage": {"he": "נתפלל לשימוש ראוי בעושר, כדי שלא ייכנע לפיתוי האנוכיות אלא יעמוד תמיד לשירות טובת הכלל ולסולידריות עם מי שיש להם פחות."}
-  },
-  "2026-12": {
-   "title": "For single-parent families",
-   "text": "Let us pray for families experiencing the absence of a mother or father, that they may find support and accompaniment in the Church, and help and strength in the Faith during difficult times.",
-   "titleByLanguage": {"he": "למען משפחות חד־הוריות"},
-   "textByLanguage": {"he": "נתפלל למען משפחות החוות את היעדרם של אם או אב, שימצאו בכנסייה תמיכה וליווי, ובעתות קושי ימצאו באמונה עזרה וכוח."}
+  "$comment": "2026–2027 intentions published by the Pope's Worldwide Prayer Network. Language source URLs identify published editions; Hebrew is Prosary's translation, not an official Vatican Hebrew edition. Missing languages fall back to the published English. Months outside this table hide the row.",
+  "generated": "2026-09-05",
+  "months": {
+    "2026-01": {
+      "title": "For prayer with the Word of God",
+      "text": "Let us pray that praying with the Word of God be nourishment for our lives and a source of hope in our communities, helping us to build a more fraternal and missionary Church.",
+      "titleByLanguage": {
+        "he": "לתפילה עם דבר האלוהים",
+        "fr": "Pour prier avec la Parole de Dieu.",
+        "it": "Per la preghiera con la Parola di Dio.",
+        "tl": "Para sa Pagdarasal Gamit ang Salita ng Diyos",
+        "ar": "من أجل الصلاة بكلمة اللّٰه",
+        "ru": "За молитву словами Священного Писания"
+      },
+      "textByLanguage": {
+        "he": "נתפלל שהתפילה עם דבר האלוהים תהיה מזון לחיינו ומקור תקווה בקהילותינו, ותסייע לנו לבנות כנסייה אחוותית ושליחותית יותר.",
+        "fr": "Prions pour que la prière, à partir de la Parole de Dieu, nourrisse nos vies et soit une source d’espérance au sein de nos communautés, nous aidant à édifier une Église plus fraternelle et missionnaire.",
+        "it": "Preghiamo affinché la preghiera con la Parola di Dio sia nutrimento nelle nostre vite e fonte di speranza nelle nostre comunità, aiutandoci a costruire una Chiesa più fraterna e missionaria.",
+        "tl": "Ipagdasal natin na maging tunay na pagkaing ikinabubuhay natin ang pagdarasal gamit ang Salita ng Diyos, at maging bukal nawa ito ng pag-asa para sa ating mga komunidad na tumutulong sa ating magbuo ng mas pangkapatiran at misyonereng Simbahan.",
+        "ar": "لنصلّ من أجل أن تكون الصلاة مع كلمة اللّٰه غذاءً لحياتنا ومصدر رجاء في مجتمعاتنا، وتساعدنا على بناء كنيسة أعمق أخوّة وأوسع رسالة.",
+        "ru": "Помолимся о том, чтобы молитва словами Священного Писания насыщала нашу жизнь и становилась источником надежды в наших общинах, помогая нам созидать более братскую и миссионерскую Церковь."
+      },
+      "sourceByLanguage": {
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2025/06/FRA-INTENTIONS-DE-PRIERE-DU-SAINT-PERE-2026-1.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2025/06/ITA-INTENZIONI-DI-PREGHIERA-DEL-SANTO-PADRE-2026-1.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2025/06/TL-MGA-INTENSYONG-PAMPANALANGIN-NG-SANTO-PAPA-2026-1.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2025/06/AR-PRAYER-INTENTIONS-OF-THE-HOLY-FATHER-2026-1.pdf",
+        "ru": "https://cc74.wordpress.com/rosary/"
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention",
+        "ru": "Russian translation: t.me/ihsovs, published by the Immaculate Conception parish, Chelyabinsk"
+      }
+    },
+    "2026-02": {
+      "title": "For children with incurable diseases",
+      "text": "Let us pray that children suffering from incurable diseases and their families receive the necessary medical care and support, never losing strength and hope.",
+      "titleByLanguage": {
+        "he": "למען ילדים החולים במחלות חשוכות מרפא",
+        "fr": "Pour les enfants atteints de maladies incurables.",
+        "it": "Per i bambini con malattie incurabili.",
+        "tl": "Para sa mga Batang May Sakit na Walang Lunas",
+        "ar": "من أجل الأطفال المصابين بأمراض مستعصية",
+        "ru": "За неизлечимо больных детей"
+      },
+      "textByLanguage": {
+        "he": "נתפלל שילדים החולים במחלות חשוכות מרפא ובני משפחותיהם יקבלו את הטיפול הרפואי והתמיכה הנחוצים, ולעולם לא יאבדו את כוחם ואת תקוותם.",
+        "fr": "Prions pour que les enfants atteints de maladies incurables ainsi que leurs familles reçoivent les soins médicaux et le soutien nécessaires, sans jamais perdre force et espérance.",
+        "it": "Preghiamo perché i bambini affetti da malattie incurabili e le loro famiglie possano ricevere l’assistenza medica e il sostegno necessari, senza mai perdere la forza e la speranza.",
+        "tl": "Ipagdasal natin na ang mga batang may sakit na walang lunas, ay makatanggap ng kailangan nilang pag-alagang medical at suporta at nawa’y kailanman ay di mawalan ng lakas at pag-asa.",
+        "ar": "لنصلّ من أجل أن يتلقّى الأطفال الذين يعانون من أمراض مستعصية وعائلاتهم الرعاية الطبيّة والدعم اللازمين، وألّا يفقدوا القوّة والأمل.",
+        "ru": "Помолимся о том, чтобы дети, страдающие неизлечимыми заболеваниями, и их семьи были обеспечены необходимой медицинской помощью и поддержкой, и никогда не теряли сил и надежды."
+      },
+      "sourceByLanguage": {
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2025/06/FRA-INTENTIONS-DE-PRIERE-DU-SAINT-PERE-2026-1.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2025/06/ITA-INTENZIONI-DI-PREGHIERA-DEL-SANTO-PADRE-2026-1.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2025/06/TL-MGA-INTENSYONG-PAMPANALANGIN-NG-SANTO-PAPA-2026-1.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2025/06/AR-PRAYER-INTENTIONS-OF-THE-HOLY-FATHER-2026-1.pdf",
+        "ru": "https://cc74.wordpress.com/rosary/"
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention",
+        "ru": "Russian translation: t.me/ihsovs, published by the Immaculate Conception parish, Chelyabinsk"
+      }
+    },
+    "2026-03": {
+      "title": "For disarmament and peace",
+      "text": "Let us pray that nations move toward effective disarmament, particularly nuclear disarmament, and that world leaders choose the path of dialogue and diplomacy instead of violence.",
+      "titleByLanguage": {
+        "he": "למען פירוק נשק ושלום",
+        "fr": "Pour le désarmement et la paix.",
+        "it": "Per il disarmo e la pace.",
+        "tl": "Para sa Disarmament at Kapayapaan",
+        "ar": "من أجل نزع السلاح والسلام.",
+        "ru": "За разоружение и мир"
+      },
+      "textByLanguage": {
+        "he": "נתפלל שהאומות יתקדמו לקראת פירוק נשק יעיל, ובייחוד פירוק נשק גרעיני, ושמנהיגי העולם יבחרו בדרך השיח והדיפלומטיה במקום באלימות.",
+        "fr": "Prions pour que les nations s’engagent dans un désarmement effectif, en particulier le désarmement nucléaire, et que les dirigeants du monde choisissent le chemin du dialogue et de la diplomatie et non celui de la violence.",
+        "it": "Preghiamo perché le Nazioni procedano a un effettivo disarmo, in particolare al disarmo nucleare, e perché i leader mondiali scelgano la via del dialogo e della diplomazia anziché la violenza.",
+        "tl": "Ipagdasal natin na sumulong na ang mga bansa tungo sa epektibong disarmament, partikular na ang pagwaksi sa mga armas na nuclear, at piliin ng mga pinuno ng mundo ang landas ng diyalogo at diplomasya sa halip na karahasan.",
+        "ar": "لنصلّ من أجل أن تتحرّك الدول نحو نزع السلاح بشكل فعال، وخصوصًا نزع السلاح النوويّ، وأن يختار قادة العالم طريق الحوار والدبلوماسيّة بدلاً من العنف.",
+        "ru": "Помолимся о том, чтобы страны двигались в направлении эффективного разоружения, особенно ядерного, и чтобы мировые лидеры избирали путь диалога и дипломатии вместо насилия."
+      },
+      "sourceByLanguage": {
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2025/06/FRA-INTENTIONS-DE-PRIERE-DU-SAINT-PERE-2026-1.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2025/06/ITA-INTENZIONI-DI-PREGHIERA-DEL-SANTO-PADRE-2026-1.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2025/06/TL-MGA-INTENSYONG-PAMPANALANGIN-NG-SANTO-PAPA-2026-1.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2025/06/AR-PRAYER-INTENTIONS-OF-THE-HOLY-FATHER-2026-1.pdf",
+        "ru": "https://cc74.wordpress.com/rosary/"
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention",
+        "ru": "Russian translation: t.me/ihsovs, published by the Immaculate Conception parish, Chelyabinsk"
+      }
+    },
+    "2026-04": {
+      "title": "For priests in crisis",
+      "text": "Let us pray for priests going through moments of crisis in their vocation, that they may find the accompaniment they need and that communities may support them with understanding and prayer.",
+      "titleByLanguage": {
+        "he": "למען כוהנים במשבר",
+        "fr": "Pour les prêtres en crise.",
+        "it": "Per i sacerdoti in crisi.",
+        "tl": "Para sa Mga Pari na Dumaraan sa Krisis",
+        "ar": "من أجل الكهنة في الأزمات",
+        "ru": "За священников, переживающих кризис"
+      },
+      "textByLanguage": {
+        "he": "נתפלל למען כוהנים העוברים תקופות משבר בייעודם, שימצאו את הליווי הדרוש להם ושהקהילות יתמכו בהם בהבנה ובתפילה.",
+        "fr": "Prions pour les prêtres qui traversent des moments de crise dans leur vocation, afin qu’ils trouvent l’accompagnement nécessaire et que les communautés les soutiennent avec compréhension et prière.",
+        "it": "Preghiamo per i sacerdoti che stanno affrontando momenti di crisi nella loro vocazione: perché trovino l’accompagnamento di cui hanno bisogno e perché le comunità li sostengano con comprensione e preghiera.",
+        "tl": "Ipagdasal natin ang mga pari na dumaranas ng mga sandali ng krisis sa kanilang bokasyon, na tumanggap sila ng kailangang pag-agapay at nawa suportahan, unawain at ipanalangin sila ng mga komunidad.",
+        "ar": "لنصلِّ من أجل الكهنة الذين يمرّون بلحظات أزمة في دعوتهم، كي يجدوا المرافقة التي يحتاجون إليها، وكي تدعمهم المجتمعات بالتفهم والصلاة.",
+        "ru": "Помолимся о том, чтобы священники, переживающие кризисные моменты на пути своего призвания, нашли помощь, в которой они нуждаются, и чтобы общины поддерживали их с пониманием и молитвой."
+      },
+      "sourceByLanguage": {
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2025/06/FRA-INTENTIONS-DE-PRIERE-DU-SAINT-PERE-2026-1.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2025/06/ITA-INTENZIONI-DI-PREGHIERA-DEL-SANTO-PADRE-2026-1.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2025/06/TL-MGA-INTENSYONG-PAMPANALANGIN-NG-SANTO-PAPA-2026-1.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2025/06/AR-PRAYER-INTENTIONS-OF-THE-HOLY-FATHER-2026-1.pdf",
+        "ru": "https://cc74.wordpress.com/rosary/"
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention",
+        "ru": "Russian translation: t.me/ihsovs, published by the Immaculate Conception parish, Chelyabinsk"
+      }
+    },
+    "2026-05": {
+      "title": "That everyone might have food",
+      "text": "Let us pray that everyone, from large producers to small consumers, be committed to avoid wasting food, and to ensure that everyone has access to quality food.",
+      "titleByLanguage": {
+        "he": "שלכל אדם יהיה מזון",
+        "fr": "Pour une alimentation pour tous.",
+        "it": "Per un’alimentazione per tutti.",
+        "tl": "Para May Pagkain ang Lahat",
+        "ar": "أن يحصل الجميع على الطعام",
+        "ru": "За доступную для всех еду"
+      },
+      "textByLanguage": {
+        "he": "נתפלל שכולם, מן היצרנים הגדולים ועד הצרכנים הקטנים, יתחייבו למנוע בזבוז מזון ולהבטיח שלכל אדם תהיה גישה למזון איכותי.",
+        "fr": "Prions pour que chacun, des grands producteurs aux petits consommateurs, s’engage à éviter le gaspillage alimentaire et pour que tous aient accès à une alimentation de qualité.",
+        "it": "Preghiamo affinché ciascuno, dai grandi produttori ai piccoli consumatori, si impegni per evitare gli sprechi di alimenti e perché ogni persona abbia accesso a un'alimentazione di qualità.",
+        "tl": "Ipagdasal natin na ang lahat, mula sa malalaking prodyuser hanggang sa maliliit na mamimili, ay talagang iwasan ang pag-aaksaya ng pagkain, at tiyakin na ang lahat ay magkamit ng pagkaing de-kalidad at masustansiya.",
+        "ar": "لنصلِّ من أجل أن يلتزم الجميع، من كبار المنتجين إلى صغار المستهلكين، بتجنّب إهدار الطعام، وضمان حصول الجميع على طعام جيّد.",
+        "ru": "Помолимся о том, чтобы все, от крупных производителей до мелких потребителей, стремились избегать растраты продуктов питания, для обеспечения каждому доступа к качественной еде."
+      },
+      "sourceByLanguage": {
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2025/06/FRA-INTENTIONS-DE-PRIERE-DU-SAINT-PERE-2026-1.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2025/06/ITA-INTENZIONI-DI-PREGHIERA-DEL-SANTO-PADRE-2026-1.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2025/06/TL-MGA-INTENSYONG-PAMPANALANGIN-NG-SANTO-PAPA-2026-1.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2025/06/AR-PRAYER-INTENTIONS-OF-THE-HOLY-FATHER-2026-1.pdf",
+        "ru": "https://cc74.wordpress.com/rosary/"
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention",
+        "ru": "Russian translation: t.me/ihsovs, published by the Immaculate Conception parish, Chelyabinsk"
+      }
+    },
+    "2026-06": {
+      "title": "For the values of sports",
+      "text": "Let us pray that sports be an instrument of peace, encounter, and dialogue among cultures and nations, and that they promote values such as respect, solidarity, and personal growth.",
+      "titleByLanguage": {
+        "he": "למען ערכי הספורט",
+        "fr": "Pour les valeurs du sport.",
+        "it": "Per i valori dello sport.",
+        "tl": "Para sa Mabubuting Pagpapahalaga sa Sports",
+        "ar": "من أجل قيم الرياضة",
+        "ru": "За ценности спорта"
+      },
+      "textByLanguage": {
+        "he": "נתפלל שהספורט יהיה כלי לשלום, למפגש ולשיח בין תרבויות ואומות, ויקדם ערכים כגון כבוד, סולידריות וצמיחה אישית.",
+        "fr": "Prions pour que le sport soit un instrument de paix, de rencontre et de dialogue entre les cultures et les nations, et que par lui soient promues des valeurs telles que le respect, la solidarité et le dépassement personnel.",
+        "it": "Preghiamo affinché lo sport sia uno strumento di pace, incontro e dialogo tra culture e Nazioni, e perché promuova valori come il rispetto, la solidarietà e il miglioramento personale.",
+        "tl": "Ipagdasal natin na ang sports ay maging instrumento ng kapayapaan, pakikipag kapwa-tao, at pag-dialogo sa pagitan ng mga kultura at bansa, at maitaguyod nito ang mga pagpapahalaga tulad ng paggalang, pakikiisa, at personal na pag-unlad.",
+        "ar": "لنصل من أجل أن تكون الرياضة أداة للسلام واللقاء والحوار بين الثقافات والأمم، وأن تعزّز قيمًا مثل الاحترام والتضامن والنموّ الشخصيّ.",
+        "ru": "Помолимся о том, чтобы спорт был инструментом мира, встречи и диалога между культурами и народами, продвигая такие ценности, как уважение, солидарность и личностный рост."
+      },
+      "sourceByLanguage": {
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2025/06/FRA-INTENTIONS-DE-PRIERE-DU-SAINT-PERE-2026-1.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2025/06/ITA-INTENZIONI-DI-PREGHIERA-DEL-SANTO-PADRE-2026-1.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2025/06/TL-MGA-INTENSYONG-PAMPANALANGIN-NG-SANTO-PAPA-2026-1.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2025/06/AR-PRAYER-INTENTIONS-OF-THE-HOLY-FATHER-2026-1.pdf",
+        "ru": "https://cc74.wordpress.com/rosary/"
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention",
+        "ru": "Russian translation: t.me/ihsovs, published by the Immaculate Conception parish, Chelyabinsk"
+      }
+    },
+    "2026-07": {
+      "title": "For respect for human life",
+      "text": "Let us pray for the respect and protection of human life in all its stages, recognizing it as a gift from God.",
+      "titleByLanguage": {
+        "he": "למען כבוד לחיי אדם",
+        "fr": "Pour le respect de la vie humaine.",
+        "it": "Per il rispetto della vita umana.",
+        "tl": "Para Igalang ang Buhay ng Tao",
+        "ar": "من أجل احترام الحياة البشرية",
+        "ru": "За уважение человеческой жизни"
+      },
+      "textByLanguage": {
+        "he": "נתפלל לכיבוד חיי האדם ולהגנתם בכל שלביהם, מתוך הכרה בהם כמתנה מאת האלוהים.",
+        "fr": "Prions pour le respect et la protection de la vie humaine à toutes ses étapes, en la reconnaissant comme un don de Dieu.",
+        "it": "Preghiamo per il rispetto e la difesa della vita umana in ogni sua tappa, riconoscendola come dono di Dio.",
+        "tl": "Ipagdasal natin na igalang at protektahan ang buhay ng tao sa lahat ng mga yugto nito, na kinikilala ito bilang isang regalo mula sa Diyos.",
+        "ar": "لنصلِّ من أجل احترام الحياة البشريّة وحمايتها في جميع مراحلها، معترفين بأنّها هبة من الله.",
+        "ru": "Помолимся о том, чтобы человеческую жизнь уважали и защищали на всех ее этапах, признавая ее даром Божиим."
+      },
+      "sourceByLanguage": {
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2025/06/FRA-INTENTIONS-DE-PRIERE-DU-SAINT-PERE-2026-1.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2025/06/ITA-INTENZIONI-DI-PREGHIERA-DEL-SANTO-PADRE-2026-1.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2025/06/TL-MGA-INTENSYONG-PAMPANALANGIN-NG-SANTO-PAPA-2026-1.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2025/06/AR-PRAYER-INTENTIONS-OF-THE-HOLY-FATHER-2026-1.pdf",
+        "ru": "https://cc74.wordpress.com/rosary/"
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention",
+        "ru": "Russian translation: t.me/ihsovs, published by the Immaculate Conception parish, Chelyabinsk"
+      }
+    },
+    "2026-08": {
+      "title": "For evangelization in the city",
+      "text": "Let us pray that in large cities often marked by anonymity and loneliness we find new ways to proclaim the Gospel, discovering creative paths to build community.",
+      "titleByLanguage": {
+        "he": "למען הבישור בעיר",
+        "fr": "Pour l’évangélisation des villes.",
+        "it": "Per l’evangelizzazione nelle città.",
+        "tl": "Para sa Ebanghelisasyon sa mga Lungsod.",
+        "ar": "من أجل التبشير في المدن.",
+        "ru": "За евангелизацию в городах"
+      },
+      "textByLanguage": {
+        "he": "נתפלל שבערים הגדולות, שלעתים קרובות מתאפיינות באלמוניות ובבדידות, נמצא דרכים חדשות לבשר את הבשורה ונגלה נתיבים יצירתיים לבניית קהילה.",
+        "fr": "Prions pour que, dans les grandes villes souvent marquées par l’anonymat et la solitude, nous puissions trouver de nouvelles façons de proclamer l’Évangile, en recherchant des moyens créatifs pour construire la communauté.",
+        "it": "Preghiamo perché nelle grandi città, spesso segnate da anonimato e solitudine, riusciamo a trovare nuove forme di annuncio del Vangelo, scoprendo vie creative per costruire comunità.",
+        "tl": "Ipagdasal natin na sa malalaking lungsod na madalas halos hindi nagkakakilala ang mga mamamayan at lubhang malungkot, makahanap nawa tayo ng mga bagong paraan upang ipahayag ang Ebanghelyo, at tuklasin ang mga malikhaing landas upang bumuo ng komunidad.",
+        "ar": "لنصلّ من أجل أن نجد في المدن الكبيرة التي غالبًا ما تتّسم بالوحدة وعدم الكشف عن الهويّة طرقًا جديدة لإعلان الإنجيل، واكتشاف طرق مبتكرة لبناء الجماعة.",
+        "ru": "Помолимся о том, чтобы в больших городах, часто отмеченных анонимностью и одиночеством, мы находили новые способы провозглашать Евангелие, открывая творческие пути построения общины."
+      },
+      "sourceByLanguage": {
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2025/06/FRA-INTENTIONS-DE-PRIERE-DU-SAINT-PERE-2026-1.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2025/06/ITA-INTENZIONI-DI-PREGHIERA-DEL-SANTO-PADRE-2026-1.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2025/06/TL-MGA-INTENSYONG-PAMPANALANGIN-NG-SANTO-PAPA-2026-1.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2025/06/AR-PRAYER-INTENTIONS-OF-THE-HOLY-FATHER-2026-1.pdf",
+        "ru": "https://cc74.wordpress.com/rosary/"
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention",
+        "ru": "Russian translation: t.me/ihsovs, published by the Immaculate Conception parish, Chelyabinsk"
+      }
+    },
+    "2026-09": {
+      "title": "For the care of water",
+      "text": "Let us pray for a just and sustainable management of water, a vital resource, so that everyone may have equal access to it.",
+      "titleByLanguage": {
+        "he": "למען השמירה על המים",
+        "fr": "Pour la protection de l’eau.",
+        "it": "Per la cura dell’acqua.",
+        "tl": "Para sa Pag-iingat sa Tubig",
+        "ar": "من أجل العناية بالمياه.",
+        "ru": "За заботу о воде"
+      },
+      "textByLanguage": {
+        "he": "נתפלל לניהול צודק ובר־קיימא של המים, משאב חיוני, כדי שלכל אדם תהיה גישה שווה אליהם.",
+        "fr": "Prions pour une gestion juste et durable de l’eau, ressource vitale pour nous, afin que tous puissent y accéder de façon équitable.",
+        "it": "Preghiamo per una gestione giusta e sostenibile dell’acqua, risorsa vitale, perché tutti possano accedervi in modo equo.",
+        "tl": "Ipagdasal natin na magkaroon ng makatarungan at napapanatiling (sustainable) pamamahala sa tubig, na napakahalagang pinagkukunan ng ikabubuhay natin, upang ang lahat ay magkaroon ng pantay na access dito.",
+        "ar": "لنصلِّ من أجل إدارة عادلة ومستدامة للمياه، وهي مورد حيوي، حتى يتمكن الجميع من الوصول إليها على قدم المساواة.",
+        "ru": "Помолимся о том, чтобы управление жизненно важными водными ресурсами было справедливым и стабильным, для обеспечения каждому равного доступа к воде."
+      },
+      "sourceByLanguage": {
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2025/06/FRA-INTENTIONS-DE-PRIERE-DU-SAINT-PERE-2026-1.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2025/06/ITA-INTENZIONI-DI-PREGHIERA-DEL-SANTO-PADRE-2026-1.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2025/06/TL-MGA-INTENSYONG-PAMPANALANGIN-NG-SANTO-PAPA-2026-1.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2025/06/AR-PRAYER-INTENTIONS-OF-THE-HOLY-FATHER-2026-1.pdf",
+        "ru": "https://cc74.wordpress.com/rosary/"
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention",
+        "ru": "Russian translation: t.me/ihsovs, published by the Immaculate Conception parish, Chelyabinsk"
+      }
+    },
+    "2026-10": {
+      "title": "For mental health ministry",
+      "text": "Let us pray that the mental health ministry be established throughout the Church, helping to overcome the stigma and discrimination of persons with mental illnesses.",
+      "titleByLanguage": {
+        "he": "למען שירות בריאות הנפש",
+        "fr": "Pour la pastorale de la santé mentale.",
+        "it": "Per la pastorale della salute mentale.",
+        "tl": "Para sa Ministri alangalang sa Kalusugan ng Pag-iisip",
+        "ar": "من أجل خدمة الصحّة النفسيّة.",
+        "ru": "За служение в сфере психического здоровья"
+      },
+      "textByLanguage": {
+        "he": "נתפלל ששירות למען בריאות הנפש יוקם ברחבי הכנסייה ויסייע להתגבר על הסטיגמה ועל האפליה כלפי אנשים המתמודדים עם מחלות נפש.",
+        "fr": "Prions pour que la pastorale de la santé mentale se développe dans toute l’Église et aide à surmonter la stigmatisation et la discrimination à l’égard des personnes atteintes de maladies mentales.",
+        "it": "Preghiamo affinché la pastorale della salute mentale si integri in tutta la Chiesa, aiutando a superare lo stigma e la discriminazione nei confronti delle persone con malattie mentali.",
+        "tl": "Ipagdasal natin na maitatag sa buong Simbahan ang ministeryo para sa kalusugan ng isip, upang tumulong na madaig ang stigma at diskriminasyon laban sa mga taong may mga sakit sa isip.",
+        "ar": "لنصلِّ من أجل إنشاء خدمة الصحّة النفسيّة في جميع أنحاء الكنيسة، ممّا يساعد على التغلّب على وصمة العار والتمييز ضدّ الأشخاص الذين يعانون من أمراض نفسيّة.",
+        "ru": "Помолимся о том, чтобы пастырство в сфере психического здоровья стало неотъемлемой частью служения всей Церкви ради преодоления стигматизации и дискриминации людей с психическими расстройствами."
+      },
+      "sourceByLanguage": {
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2025/06/FRA-INTENTIONS-DE-PRIERE-DU-SAINT-PERE-2026-1.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2025/06/ITA-INTENZIONI-DI-PREGHIERA-DEL-SANTO-PADRE-2026-1.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2025/06/TL-MGA-INTENSYONG-PAMPANALANGIN-NG-SANTO-PAPA-2026-1.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2025/06/AR-PRAYER-INTENTIONS-OF-THE-HOLY-FATHER-2026-1.pdf",
+        "ru": "https://cc74.wordpress.com/rosary/"
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention",
+        "ru": "Russian translation: t.me/ihsovs, published by the Immaculate Conception parish, Chelyabinsk"
+      }
+    },
+    "2026-11": {
+      "title": "For the proper use of wealth",
+      "text": "Let us pray for the proper use of wealth, that not succumbing to the temptation of selfishness, it may always be put at the service of the common good and solidarity of those who have less.",
+      "titleByLanguage": {
+        "he": "למען שימוש ראוי בעושר",
+        "fr": "Pour le bon usage de la richesse.",
+        "it": "Per il buon uso della ricchezza.",
+        "tl": "Para sa Wastong Paggamit ng Kayamanan.",
+        "ar": "من أجل الاستخدام السليم للثروة.",
+        "ru": "За правильное использование богатства"
+      },
+      "textByLanguage": {
+        "he": "נתפלל לשימוש ראוי בעושר, כדי שלא ייכנע לפיתוי האנוכיות אלא יעמוד תמיד לשירות טובת הכלל ולסולידריות עם מי שיש להם פחות.",
+        "fr": "Prions pour un bon usage de la richesse afin que, ne cédant pas à la tentation de l’égoïsme, elle soit toujours au service du bien commun et de la solidarité avec les plus démunis.",
+        "it": "Preghiamo per un buon uso della ricchezza, che non ceda alla tentazione dell’egoismo e si ponga sempre al servizio del bene comune e della solidarietà con chi ha di meno.",
+        "tl": "Ipagdasal natin na gamitin nang wasto ang kayamanan, upang sa di pagsuko sa tuksong maging makasarili, lagi itong ilaan sa paglilingkod sa ikabubuti ng lahat at sa pakikiisa sa mga kapos-palad.",
+        "ar": "لنصلِّ من أجل الاستخدام الصحيح للثروة، حتّى لا نستسلم لإغراء الأنانيّة، ونضعها دائمًا في خدمة الخير العامّ، والتضامن مع من لديهم أقلّ منّا.",
+        "ru": "Помолимся о том, чтобы богатство использовалось правильно, не в угоду искушениям эгоизма, но чтобы оно всегда служило общим интересам и солидарности с теми, кто обделен благами."
+      },
+      "sourceByLanguage": {
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2025/06/FRA-INTENTIONS-DE-PRIERE-DU-SAINT-PERE-2026-1.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2025/06/ITA-INTENZIONI-DI-PREGHIERA-DEL-SANTO-PADRE-2026-1.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2025/06/TL-MGA-INTENSYONG-PAMPANALANGIN-NG-SANTO-PAPA-2026-1.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2025/06/AR-PRAYER-INTENTIONS-OF-THE-HOLY-FATHER-2026-1.pdf",
+        "ru": "https://cc74.wordpress.com/rosary/"
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention",
+        "ru": "Russian translation: t.me/ihsovs, published by the Immaculate Conception parish, Chelyabinsk"
+      }
+    },
+    "2026-12": {
+      "title": "For single-parent families",
+      "text": "Let us pray for families experiencing the absence of a mother or father, that they may find support and accompaniment in the Church, and help and strength in the Faith during difficult times.",
+      "titleByLanguage": {
+        "he": "למען משפחות חד־הוריות",
+        "fr": "Pour les familles monoparentales.",
+        "it": "Per le famiglie monoparentali.",
+        "tl": "Para sa mga Pamilyang Iisa ang Magulang",
+        "ar": "من أجل الأسر ذات العائل الوحيد",
+        "ru": "За семьи с одним родителем"
+      },
+      "textByLanguage": {
+        "he": "נתפלל למען משפחות החוות את היעדרם של אם או אב, שימצאו בכנסייה תמיכה וליווי, ובעתות קושי ימצאו באמונה עזרה וכוח.",
+        "fr": "Prions pour les familles qui vivent l’absence d’une mère ou d’un père, afin qu’elles trouvent dans l’Église un soutien et un accompagnement, et dans la foi une aide et une force, durant les moments difficiles.",
+        "it": "Preghiamo per le famiglie che sperimentano l'assenza di una madre o di un padre, perché trovino nella Chiesa sostegno e accompagnamento, e nella Fede aiuto e forza nei momenti difficili.",
+        "tl": "Ipagdasal natin ang mga pamilyang dumaranas ng pagkawala ng nanay o tatay, na makatanggap sila ng suporta at pag-agapay sa Simbahan at, sa sa mga panahon ng kahirapan, tulungan at palakasin nawa sila ng ating pananampalataya.",
+        "ar": "لنصلِّ من أجل العائلات التي تعاني من غياب الأم أو الأب، كي يجدوا في الكنيسة الدعم والمرافقة والمساعدة والقوّة بالإيمان في الأوقات الصعبة.",
+        "ru": "Помолимся о том, чтобы семьи, лишенные матери или отца, нашли в Церкви поддержку и участие, помощь и укрепление веры для преодоления трудных времен."
+      },
+      "sourceByLanguage": {
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2025/06/FRA-INTENTIONS-DE-PRIERE-DU-SAINT-PERE-2026-1.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2025/06/ITA-INTENZIONI-DI-PREGHIERA-DEL-SANTO-PADRE-2026-1.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2025/06/TL-MGA-INTENSYONG-PAMPANALANGIN-NG-SANTO-PAPA-2026-1.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2025/06/AR-PRAYER-INTENTIONS-OF-THE-HOLY-FATHER-2026-1.pdf",
+        "ru": "https://cc74.wordpress.com/rosary/"
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention",
+        "ru": "Russian translation: t.me/ihsovs, published by the Immaculate Conception parish, Chelyabinsk"
+      }
+    },
+    "2027-01": {
+      "title": "That the power of prayer might be discovered.",
+      "text": "Let us pray that everyone in the Church might discover the power of prayer as a personal encounter with the Lord that transforms our hearts and the world.",
+      "sourceByLanguage": {
+        "en": "https://www.popesprayer.va/wp-content/uploads/2026/01/ENG-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2026/01/FR-INTENTIONS-2027-PAPE-LEON-XIV-P.-Fabre.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2026/01/ITA-INTENZIONI-PAPA-LEON-XIV.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2026/03/TL-2027-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2026/02/AR-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf"
+      },
+      "titleByLanguage": {
+        "fr": "Pour la découverte de la force de la prière.",
+        "it": "Per la scoperta della forza della preghiera.",
+        "tl": "Upang muling matuklasan ang kapangyarihan ng panalangin",
+        "ar": "أن يتمّ اكتشاف قوّة الصلاة.",
+        "he": "לגילוי כוחה של התפילה"
+      },
+      "textByLanguage": {
+        "fr": "Prions pour que dans l’Église, nous découvrions la puissance de la prière, cette rencontre personnelle avec le Seigneur qui transforme notre cœur et le monde.",
+        "it": "Preghiamo affinché tutti noi, nella Chiesa, scopriamo il potere della preghiera come incontro personale con il Signore, che trasforma il nostro cuore e il mondo.",
+        "tl": "Ating ipanalangin na muling matuklasan ng lahat sa Simbahan ang kapangyarihan ng panalangin bilang isang personal na pakikipagtagpo sa Panginoon na bumabago sa ating mga puso at sa daigdig.",
+        "ar": "لنصلِّ من أجل أن يكتشف كلّ فرد في الكنيسة قوّة الصلاة باعتبارها لقاءً شخصيًّا بالربّ يغيّر قلوبنا والعالم.",
+        "he": "נתפלל שכל חברי הכנסייה יגלו את כוחה של התפילה כמפגש אישי עם האדון, המשנה את לבבותינו ואת העולם."
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention"
+      }
+    },
+    "2027-02": {
+      "title": "That those who care for others might receive care.",
+      "text": "Let us pray that those who care for the holistic health of others might receive the support they need, and that with patience, wisdom, and fortitude, they might open avenues of inner healing and hope.",
+      "sourceByLanguage": {
+        "en": "https://www.popesprayer.va/wp-content/uploads/2026/01/ENG-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "fr": "https://www.osservatoreromano.va/fr/news/2026-02/fra-002/intentions-confiees-par-leon-xiv-pour-2027.html",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2026/01/ITA-INTENZIONI-PAPA-LEON-XIV.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2026/03/TL-2027-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2026/02/AR-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf"
+      },
+      "titleByLanguage": {
+        "fr": "Pour le soutien des personnes qui prennent soin des autres.",
+        "it": "Per la cura di chi si prende cura degli altri.",
+        "tl": "Upang ang mga nangangalaga sa iba ay makaranas rin ng pag-aalaga",
+        "ar": "أن يحظى أولئك الذين يرعون الآخرين بالرعاية.",
+        "he": "למען הדואגים לזולת"
+      },
+      "textByLanguage": {
+        "fr": "Prions pour tous ceux qui veillent à la santé des personnes, afin qu’ils reçoivent le soutien nécessaire et puissent ainsi avec patience, sagesse et force, ouvrir des chemins d’espérance et de guérison intérieure.",
+        "it": "Preghiamo per coloro che si prendono cura della salute integrale degli altri: perché ricevano il sostegno necessario e possano, con pazienza, saggezza e forza, aprire cammini di guarigione interiore e di speranza.",
+        "tl": "Ating ipanalangin na ang lahat ng nangangalaga sa pangkabuuhang kalusugan ng iba ay makatanggap rin ng suportang kinakailangan nila, upang taglay ang tiyaga, karunungan at katatagan ay magawa nilang buksan ang mga bagong landas patungo sa paghilom at pag-asa.",
+        "ar": "لنصلّ من أجل أن يحظى أولئك الذين يرعون صحّة الآخرين الشاملة بالدعم الذي يحتاجونه، وأن يفتحوا، بصبر وحكمة وثبات، طرقًا للشفاء الداخليّ والرجاء.",
+        "he": "נתפלל שהדואגים לבריאותם השלמה של אחרים יקבלו את התמיכה הנחוצה להם, ושבסבלנות, בחוכמה ובאומץ יפתחו דרכים לריפוי פנימי ולתקווה."
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention"
+      }
+    },
+    "2027-03": {
+      "title": "That the dignity of human life might be respected.",
+      "text": "Let us pray that in a culture focused on productivity and instant results, we might be capable of discovering and appreciating the unique dignity of each person, both our own and that of others.",
+      "sourceByLanguage": {
+        "en": "https://www.popesprayer.va/wp-content/uploads/2026/01/ENG-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2026/01/FR-INTENTIONS-2027-PAPE-LEON-XIV-P.-Fabre.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2026/01/ITA-INTENZIONI-PAPA-LEON-XIV.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2026/03/TL-2027-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2026/02/AR-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf"
+      },
+      "titleByLanguage": {
+        "fr": "Pour le respect de la dignité de la vie humaine.",
+        "it": "Per il rispetto della dignità della vita umana.",
+        "tl": "Upang igalang ang dangal ng buhay ng tao",
+        "ar": "أن تُحترم كرامة الحياة البشريّة.",
+        "he": "למען כבודם של חיי אדם"
+      },
+      "textByLanguage": {
+        "fr": "Face à une culture centrée sur la productivité et l’immédiateté, prions pour que chacun de nous puisse découvrir et valoriser la dignité de chaque personne.",
+        "it": "Preghiamo affinché, di fronte a una cultura centrata sulla produttività e sull'immediatezza, sappiamo riconoscere e valorizzare la dignità unica di ogni persona: sia la nostra, sia quella degli altri.",
+        "tl": "Ating ipanalangin na sa gitna ng kulturang nakatutok sa produksyon at madaliang resulta, magkaroon tayo ng kakayahang tuklasin at pahalagahan ang natatanging dangal ng bawat isa, kabilang na ang ating dangal at ang dangal ng ating kapwa",
+        "ar": "لنصلِ من أجل أن نتمكّن، في ثقافة تركّز على الإنتاجيّة والنتائج الفوريّة، من اكتشاف وتقدير الكرامة الفريدة لكلّ شخص، سواء كرامتنا نحن أو كرامة الآخرين.",
+        "he": "נתפלל שבתרבות המתמקדת בתפוקה ובתוצאות מיידיות נוכל לגלות ולהעריך את הכבוד הייחודי של כל אדם — את כבודנו שלנו ואת כבודם של האחרים."
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention"
+      }
+    },
+    "2027-04": {
+      "title": "That art might be a gift that humanizes.",
+      "text": "Let us pray that art might be perceived as a true gift that humanizes us, lifts up the spirit, and helps us contemplate God’s beauty in creation.",
+      "sourceByLanguage": {
+        "en": "https://www.popesprayer.va/wp-content/uploads/2026/01/ENG-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2026/01/FR-INTENTIONS-2027-PAPE-LEON-XIV-P.-Fabre.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2026/01/ITA-INTENZIONI-PAPA-LEON-XIV.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2026/03/TL-2027-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2026/02/AR-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf"
+      },
+      "titleByLanguage": {
+        "fr": "Pour l’art, un don qui humanise.",
+        "it": "Per l'arte, dono che umanizza.",
+        "tl": "Upang ang sining ay maging regalo na mas nagpapalalim ng pagpapakatao",
+        "ar": "أن يكون الفنّ هبةً تضفي الطابع الإنسانيّ.",
+        "he": "למען האמנות כמתנה המעמיקה את אנושיותנו"
+      },
+      "textByLanguage": {
+        "fr": "Prions pour que l’art soit accueilli comme un véritable don qui nous humanise, élève notre esprit et nous aide à contempler la beauté de Dieu au sein de la création.",
+        "it": "Preghiamo affinché l'arte sia accolta come un vero dono che ci rende più umani, eleva il nostro spirito e ci aiuta a contemplare la bellezza di Dio nella creazione.",
+        "tl": "Ating ipanalangin upang ang sining ay makilala bilang isang tunay na regalo na mas nagpapalalim ng ating pagkatao, nagpapatayog sa ating diwa, at tumutulong sa ating pagmasdan ang kagandahan ng Diyos sa sangnilikha.",
+        "ar": "لنصلِّ من أجل أن يُنظر إلى الفنّ على أنّه هبة حقيقيّة تُضفي الطابع الإنسانيّ علينا، وترفع المعنويات، وتساعدنا على التأمّل في جمال اللّٰه في الخلق.",
+        "he": "נתפלל שהאמנות תתקבל כמתנה אמיתית המעמיקה את אנושיותנו, מרוממת את רוחנו ומסייעת לנו להתבונן ביופיו של אלוהים בבריאה."
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention"
+      }
+    },
+    "2027-05": {
+      "title": "That there be job opportunities for everyone.",
+      "text": "Let us pray that technological development might open dignified work opportunities, and that intergenerational collaboration might bring a future in which every person can put their talents at the service of the common good.",
+      "sourceByLanguage": {
+        "en": "https://www.popesprayer.va/wp-content/uploads/2026/01/ENG-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2026/01/FR-INTENTIONS-2027-PAPE-LEON-XIV-P.-Fabre.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2026/01/ITA-INTENZIONI-PAPA-LEON-XIV.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2026/03/TL-2027-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2026/02/AR-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf"
+      },
+      "titleByLanguage": {
+        "fr": "Pour des opportunités de travail pour tous.",
+        "it": "Per le opportunità lavorative per tutti.",
+        "tl": "Upang magkaroon ng mga oportunidad sa trabaho para sa lahat",
+        "ar": "أن تكون هناك فرص عمل للجميع.",
+        "he": "למען הזדמנויות תעסוקה לכול"
+      },
+      "textByLanguage": {
+        "fr": "Prions pour que le développement technologique ouvre de nouveaux chemins de travail qui préservent la dignité des personnes et que la collaboration entre les générations renforce un avenir où chacun puisse offrir ses talents au service du bien commun.",
+        "it": "Preghiamo affinché lo sviluppo tecnologico apra cammini di lavoro dignitoso e la collaborazione tra le generazioni renda possibile un futuro in cui ogni persona possa offrire i propri talenti al servizio del bene comune.",
+        "tl": "Ating ipanalangin na ang pag-unlad ng teknolohiya ay magdala ng mararangal na oportunidad sa trabaho at ang pagtutulungan sa pagitan ng mga henerasyon ay maging daan upang mailaan ng bawat isa ang kanilang mga talento para sa ikabubuti ng lahat.",
+        "ar": "لنصلِ من أجل أن يفتح التطوّر التكنولوجيّ فرص عمل كريمة، وأن يؤدّي التعاون بين الأجيال إلى مستقبل يمكن فيه لكلّ شخص أن يضع مواهبه في خدمة الصالح العامّ.",
+        "he": "נתפלל שההתפתחות הטכנולוגית תפתח הזדמנויות לעבודה בכבוד, וששיתוף הפעולה בין הדורות יוביל לעתיד שבו יוכל כל אדם להעמיד את כישרונותיו לשירות טובת הכלל."
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention"
+      }
+    },
+    "2027-06": {
+      "title": "For the good use of artificial intelligence.",
+      "text": "Let us pray that artificial intelligence might always be developed to serve human dignity and that we might know how to use it wisely.",
+      "sourceByLanguage": {
+        "en": "https://www.popesprayer.va/wp-content/uploads/2026/01/ENG-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2026/01/FR-INTENTIONS-2027-PAPE-LEON-XIV-P.-Fabre.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2026/01/ITA-INTENZIONI-PAPA-LEON-XIV.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2026/03/TL-2027-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2026/02/AR-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf"
+      },
+      "titleByLanguage": {
+        "fr": "Pour un bon usage de l’intelligence artificielle.",
+        "it": "Per un buon uso dell'intelligenza artificiale.",
+        "tl": "Para sa wastong paggamit ng artificial intelligence.",
+        "ar": "من أجل الاستخدام الحسن للذكاء الاصطناعيّ.",
+        "he": "למען שימוש נבון בבינה מלאכותית"
+      },
+      "textByLanguage": {
+        "fr": "Prions pour que le développement de l’intelligence artificielle soit toujours au service de la dignité humaine et que nous sachions l’utiliser avec sagesse.",
+        "it": "Preghiamo perché lo sviluppo dell'intelligenza artificiale sia sempre al servizio della dignità umana, e perché sappiamo usarla con saggezza.",
+        "tl": "Ating ipanalangin na ang artificial intelligence ay mapaunlad at maituon sa pagsulong ng dangal pantao at malaman natin kung paano ito gagamitin nang may karunungan.",
+        "ar": "لنصلِ من أجل أن يتمّ تطوير الذكاء الاصطناعيّ دائمًا لخدمة كرامة الإنسان، وأن نعرف كيف نستخدمه بحكمة.",
+        "he": "נתפלל שהבינה המלאכותית תפותח תמיד לשירות כבוד האדם, ושנדע להשתמש בה בחוכמה."
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention"
+      }
+    },
+    "2027-07": {
+      "title": "For grandparents and the elderly.",
+      "text": "Let us pray that members of the Church might always appreciate the treasure of faith and wisdom offered to us by grandparents and the elderly, and be willing to learn from their experience.",
+      "sourceByLanguage": {
+        "en": "https://www.popesprayer.va/wp-content/uploads/2026/01/ENG-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2026/01/FR-INTENTIONS-2027-PAPE-LEON-XIV-P.-Fabre.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2026/01/ITA-INTENZIONI-PAPA-LEON-XIV.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2026/03/TL-2027-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2026/02/AR-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf"
+      },
+      "titleByLanguage": {
+        "fr": "Pour les grands-parents et les personnes âgées.",
+        "it": "Per i nonni e gli anziani.",
+        "tl": "Para sa ating mga lolo’t lola at mga matatanda.",
+        "ar": "من أجل الأجداد وكبار السنّ.",
+        "he": "למען הסבים, הסבתות והקשישים"
+      },
+      "textByLanguage": {
+        "fr": "Prions pour que, dans l’Église, nous sachions valoriser le trésor de foi et de sagesse que nous offrent les grands-parents et les anciens, et que nous apprenions de leur expérience.",
+        "it": "Preghiamo affinché tutti noi, membri della Chiesa, sappiamo valorizzare il tesoro di fede e di saggezza che i nonni e gli anziani ci offrono e siamo disponibili a imparare dalla loro esperienza.",
+        "tl": "Ating ipanalangin na ang mga kasapi ng Simbahan ay laging pahalagahan ang yaman ng pananampalataya at karunungang hatid sa atin ng ating mga lolo’t lola at mga matatanda at maging bukas upang matuto sa kanilang mga karanasan.",
+        "ar": "لنصلِّ من أجل أن يقدّر أعضاء الكنيسة دائمًا كنز الإيمان والحكمة الذي يقدّمه لنا الأجداد وكبار السنّ، وأن يكونوا مستعدّين للتعلّم من خبرتهم.",
+        "he": "נתפלל שחברי הכנסייה יעריכו תמיד את אוצר האמונה והחוכמה שמעניקים לנו הסבים, הסבתות והקשישים, ויהיו נכונים ללמוד מניסיונם."
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention"
+      }
+    },
+    "2027-08": {
+      "title": "For the vocation of young people.",
+      "text": "Let us pray that young people in search of their own vocation might recognize in Jesus Christ a companion on the way to whom they can open their hearts.",
+      "sourceByLanguage": {
+        "en": "https://www.popesprayer.va/wp-content/uploads/2026/01/ENG-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2026/01/FR-INTENTIONS-2027-PAPE-LEON-XIV-P.-Fabre.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2026/01/ITA-INTENZIONI-PAPA-LEON-XIV.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2026/03/TL-2027-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2026/02/AR-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf"
+      },
+      "titleByLanguage": {
+        "fr": "Pour la vocation des jeunes.",
+        "it": "Per la vocazione dei giovani.",
+        "tl": "Para sa bokasyon ng mga kabataan.",
+        "ar": "من أجل دعوة الشباب.",
+        "he": "למען ייעודם של הצעירים"
+      },
+      "textByLanguage": {
+        "fr": "Prions pour que les jeunes, en recherche de leur propre vocation, reconnaissent en Jésus-Christ un compagnon de route, à qui ils peuvent ouvrir leur cœur.",
+        "it": "Preghiamo affinché i giovani, nella ricerca della propria vocazione, riconoscano in Gesù Cristo il compagno di cammino al quale possono aprire il cuore.",
+        "tl": "Ating ipanalangin ang mga kabataan na sa paghahanap nila sa kanilang bokasyon ay makilala nila si Hesus bilang kaagapay sa paglalakbay na maaari nilang pagbuksan ng kanilang puso.",
+        "ar": "لنصلِّ من أجل أن يدرك الشباب الباحثون عن دعوتهم في يسوع المسيح رفيقًا في الطريق يمكنهم أن يفتحوا إليه قلوبهم.",
+        "he": "נתפלל שצעירים המחפשים את ייעודם יכירו בישוע המשיח שותף לדרך, שבפניו יוכלו לפתוח את ליבם."
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention"
+      }
+    },
+    "2027-09": {
+      "title": "For integral ecological conversion.",
+      "text": "Let us pray that we might learn how to live in a new relationship with creation, protecting it with justice, and that, in contemplating creation, we might find the path toward a more harmonious and grateful existence.",
+      "sourceByLanguage": {
+        "en": "https://www.popesprayer.va/wp-content/uploads/2026/01/ENG-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2026/01/FR-INTENTIONS-2027-PAPE-LEON-XIV-P.-Fabre.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2026/01/ITA-INTENZIONI-PAPA-LEON-XIV.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2026/03/TL-2027-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2026/02/AR-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf"
+      },
+      "titleByLanguage": {
+        "fr": "Pour une conversion écologique intégrale.",
+        "it": "Per una conversione ecologica integrale.",
+        "tl": "Para sa pangkabuuhang pagbabagong-loob na makakalikasan.",
+        "ar": "من أجل التحوّل البيئيّ الشامل.",
+        "he": "למען שינוי לב מקיף ביחסנו לבריאה"
+      },
+      "textByLanguage": {
+        "fr": "Prions pour que nous apprenions à vivre une relation nouvelle avec la création, en la protégeant et en trouvant, dans la contemplation de l’œuvre de Dieu, un chemin vers une vie plus harmonieuse et source de gratitude.",
+        "it": "Preghiamo affinché impariamo a vivere un nuovo rapporto con la creazione, proteggendola con giustizia e trovando nella contemplazione del creato il cammino verso una vita più armoniosa e riconoscente.",
+        "tl": "Ating ipanalangin na matutunan nating isabuhay ang isang bagong paraan ng pakikitungo sa kalikasan, pangalagaan ito nang may katarungan, at mahanap natin sa ating pagtunghay sa sangnilikha ang landas tungo sa mas mapagkalinga at mapagpasalamat na pamumuhay.",
+        "ar": "لنصلّي كي نتعلّم كيف نعيش في علاقة جديدة مع الخلق، ونحميّه بالعدل، وكي نجد، في تأمّلنا الخليقة، الطريق نحو حياة أعمق انسجامًا وامتنانًا.",
+        "he": "נתפלל שנלמד לחיות ביחסים חדשים עם הבריאה ולהגן עליה בצדק, ושבהתבוננות בבריאה נמצא את הדרך לחיים של הרמוניה עמוקה יותר ושל הכרת תודה."
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention"
+      }
+    },
+    "2027-10": {
+      "title": "For Christian communities.",
+      "text": "Let us pray that each parish, community, or Christian group might be a center of missionary outreach that forms new disciples at the service of the Gospel.",
+      "sourceByLanguage": {
+        "en": "https://www.popesprayer.va/wp-content/uploads/2026/01/ENG-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2026/01/FR-INTENTIONS-2027-PAPE-LEON-XIV-P.-Fabre.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2026/01/ITA-INTENZIONI-PAPA-LEON-XIV.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2026/03/TL-2027-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2026/02/AR-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf"
+      },
+      "titleByLanguage": {
+        "fr": "Pour les communautés chrétiennes.",
+        "it": "Per le comunità cristiane.",
+        "tl": "Para sa mga pamayanang Kristiyano.",
+        "ar": "من أجل الجماعات المسيحيّة.",
+        "he": "למען הקהילות הנוצריות"
+      },
+      "textByLanguage": {
+        "fr": "Prions pour que chaque paroisse, communauté ou groupe chrétien soit un centre de rayonnement missionnaire formant de nouveaux disciples au service de l’Évangile.",
+        "it": "Preghiamo affinché ogni parrocchia, comunità o gruppo cristiano sia un centro di irradiazione missionaria che formi nuovi discepoli al servizio del Vangelo.",
+        "tl": "Ating ipanalangin upang ang bawat parokya, pamayanan at samahang Kristiyano ay maging isang sentro ng misyonerong paglilingkod na humuhubog ng mga bagong alagad na magsusulong sa Ebanghelyo.",
+        "ar": "لنصلّ من أجل أن تكون كلّ رعيّة أو جماعة أو مجموعة مسيحيّة مركزًا للتبشير يشكّل تلاميذ جدد في خدمة الإنجيل.",
+        "he": "נתפלל שכל קהילה מקומית, עדה או קבוצה נוצרית תהיה מרכז של שליחות ובישור, המצמיח תלמידים חדשים לשירות הבשורה."
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention"
+      }
+    },
+    "2027-11": {
+      "title": "For the integration of migrants.",
+      "text": "Let us pray that, accompanied and comforted by the Holy Family on their own journey of being uprooted, migrants and displaced persons might find communities that welcome them with dignity, solidarity, and true integration.",
+      "sourceByLanguage": {
+        "en": "https://www.popesprayer.va/wp-content/uploads/2026/01/ENG-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2026/01/FR-INTENTIONS-2027-PAPE-LEON-XIV-P.-Fabre.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2026/01/ITA-INTENZIONI-PAPA-LEON-XIV.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2026/03/TL-2027-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2026/02/AR-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf"
+      },
+      "titleByLanguage": {
+        "fr": "Pour l’intégration des migrants.",
+        "it": "Per l'integrazione dei migranti.",
+        "tl": "Para makapasok ang mga migrante sa lipunan.",
+        "ar": "من أجل اندماج المهاجرين.",
+        "he": "למען השתלבותם של המהגרים"
+      },
+      "textByLanguage": {
+        "fr": "Prions pour que les migrants et les personnes déplacées soient accompagnés et consolés par la Sainte Famille, dans leur propre chemin de déracinement ; qu’ils trouvent des communautés qui les accueillent avec dignité et solidarité pour une véritable intégration.",
+        "it": "Preghiamo affinché i migranti e gli sfollati, accompagnati e consolati dalla Sacra Famiglia nel loro cammino di sradicamento, trovino comunità che li accolgano con dignità, solidarietà e autentica integrazione.",
+        "tl": "Ating ipanalangin na sa pagdamay at pagkalinga ng Banal na Pamilya sa kanilang sariling karanasan ng paglalakbay at pagkabunot sa kanilang sariling bayan, matagpuan nawa ng mga migrante at naglalagalag ang mga pamayanang tatanggap sa kanila nang may dignidad, pagdamay at tunay na pagyakap.",
+        "ar": "لنصلِّ من أجل أن يجد المهاجرون والنازحون في رحلة اغترابهم، برفقة العائلة المقدّسة ومواساتها، جماعات تستقبلهم بكرامة واندماج حقيقيّ وتتضامن معها.",
+        "he": "נתפלל שהמהגרים והעקורים, שהמשפחה הקדושה מלווה ומנחמת אותם במסע עקירתם מביתם, ימצאו קהילות המקבלות אותם בכבוד ובסולידריות ומאפשרות להם להשתלב באמת."
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention"
+      }
+    },
+    "2027-12": {
+      "title": "For the Christian vocation of the family.",
+      "text": "Let us pray that Christian families might be living witnesses of the Gospel in society, and that they might learn more and more how to be hearths where faith, hope, and love are cultivated.",
+      "sourceByLanguage": {
+        "en": "https://www.popesprayer.va/wp-content/uploads/2026/01/ENG-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "fr": "https://www.popesprayer.va/wp-content/uploads/2026/01/FR-INTENTIONS-2027-PAPE-LEON-XIV-P.-Fabre.pdf",
+        "it": "https://www.popesprayer.va/wp-content/uploads/2026/01/ITA-INTENZIONI-PAPA-LEON-XIV.pdf",
+        "tl": "https://www.popesprayer.va/wp-content/uploads/2026/03/TL-2027-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf",
+        "ar": "https://www.popesprayer.va/wp-content/uploads/2026/02/AR-POPE-LEO-XIV-PRAYER-INTENTIONS-2027.pdf"
+      },
+      "titleByLanguage": {
+        "fr": "Pour la vocation chrétienne de la famille.",
+        "it": "Per la vocazione cristiana della famiglia.",
+        "tl": "Para sa Kristiyanong bokasyon ng pamilya.",
+        "ar": "من أجل دعوة الأسرة المسيحيّة.",
+        "he": "למען ייעודה הנוצרי של המשפחה"
+      },
+      "textByLanguage": {
+        "fr": "Prions pour que les familles chrétiennes soient des témoins vivants de l’Évangile dans la société, en apprenant toujours davantage à cultiver la foi, l’espérance et l’amour.",
+        "it": "Preghiamo affinché le famiglie cristiane siano testimoni viventi del Vangelo nella società, imparando sempre più a essere dei focolari in cui si alimentano la fede, la speranza e l'amore.",
+        "tl": "Ating ipanalangin na ang mga Kristiyanong pamilya ay maging mga buhay na saksi ng Ebanghelyo sa lipunan at matutunan nila kung paano mas magiging mga punlaan kung saan yumayabong ang pananampalataya, pag-asa at pag-ibig.",
+        "ar": "لنصلّ من أجل أن تكون الأسر المسيحيّة شهادة إنجيل حيّة في المجتمع، وأن تتعلّم أكثر فأكثر كيف تكون بوتقات تُزرع فيها الإيمان، والرجاء، والمحبّة.",
+        "he": "נתפלל שהמשפחות הנוצריות יהיו עדות חיה לבשורה בחברה, ושילמדו יותר ויותר להיות בתים שבהם מטפחים אמונה, תקווה ואהבה."
+      },
+      "translationCreditByLanguage": {
+        "he": "Prosary — Hebrew translation of the published intention"
+      }
+    }
   }
- }
 }

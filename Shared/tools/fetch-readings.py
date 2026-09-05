@@ -100,6 +100,7 @@ for alias, canonical in {
     EVANGELIZO_BOOKS[alias] = EVANGELIZO_BOOKS[canonical]
 
 HEBREW_BOOKS_FILE = Path(__file__).with_name("hebrew-reading-books.json")
+LOCALIZED_BOOKS_FILE = Path(__file__).with_name("reading-books-localized.json")
 
 # Aliases observed in Missale Meum and Royal Doors. Values are the same compact/full pair
 # used by the app. This table is intentionally explicit: fuzzy book-name guessing can turn
@@ -528,8 +529,31 @@ def localize_hebrew_readings(
     return missing
 
 
+def localize_reading_names(days: dict[str, dict], books: dict[str, dict]) -> set[str]:
+    """Localize book metadata while preserving the source's complete numeric reference."""
+    missing: set[str] = set()
+    for row in days.values():
+        for item in row.get("readings", []):
+            match = re.fullmatch(r"(.+?) (\d+:.*)", item.get("full", ""))
+            if not match:
+                continue
+            book, reference = match.groups()
+            if book not in books:
+                missing.add(book)
+                continue
+            chapter = reference.split(":", 1)[0]
+            for language, names in books[book].items():
+                item.setdefault("shortByLanguage", {})[language] = f"{names['short']} {chapter}"
+                # Keep a compound chapter/verse range in source order inside an RTL sentence.
+                # Without an isolate, e.g. Psalm 145's semicolon-separated spans reverse on screen.
+                display_reference = f"\u2066{reference}\u2069" if language == "ar" else reference
+                item.setdefault("fullByLanguage", {})[language] = f"{names['full']} {display_reference}"
+    return missing
+
+
 def localize_existing_datasets() -> None:
     books = json.loads(HEBREW_BOOKS_FILE.read_text(encoding="utf-8"))["books"]
+    localized_books = json.loads(LOCALIZED_BOOKS_FILE.read_text(encoding="utf-8"))["books"]
     for name in ("roman", "roman1962", "ugcc", "syriac"):
         path = DATA / f"readings-{name}.json"
         payload = json.loads(path.read_text(encoding="utf-8"))
@@ -537,12 +561,17 @@ def localize_existing_datasets() -> None:
         missing = localize_hebrew_readings(payload["days"], books, preserve_existing=name == "roman")
         if missing:
             print(f"  warning: {path.name} has no sourced Hebrew book name for: {', '.join(sorted(missing))}")
+        missing_localized = localize_reading_names(payload["days"], localized_books)
+        if missing_localized:
+            raise ValueError(f"{path.name}: missing localized book names: {sorted(missing_localized)}")
         credit = (
             " Hebrew citation book names are relayed from Evangelizo.org — Daily Gospel "
             "(© Evangelizo.org), publication edition HE, with Judith/Tobit names from the "
             "St James Vicariate (catholic.co.il); each calendar's appointed passages are retained.")
         if "Hebrew citation book names" not in payload["$comment"]:
             payload["$comment"] += credit
+        if "reading-books-localized.json" not in payload["$comment"]:
+            payload["$comment"] += " Arabic, Russian, Filipino, French and Italian book metadata sources are recorded in Shared/tools/reading-books-localized.json; source chapter and verse numbering is preserved."
         path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         print(f"localized {path.relative_to(ROOT)} ({len(payload['days'])} dates retained)")
 
@@ -638,6 +667,14 @@ def main() -> None:
         assert legacy == citation("Heb.", "Hebrews", "10:32–39")
         assert EVANGELIZO_BOOKS["Sg"] == ("Wis.", "Wisdom")
         assert EVANGELIZO_BOOKS["Ct"] == ("Song", "Song of Songs")
+        localized_books = json.loads(LOCALIZED_BOOKS_FILE.read_text(encoding="utf-8"))["books"]
+        assert not localize_reading_names(samples, localized_books)
+        for language in ("ar", "ru", "tl", "fr", "it"):
+            assert corinthians["fullByLanguage"][language].rstrip("\u2069").endswith("2:14–3:3; 4:1–2")
+            assert peter["shortByLanguage"][language].endswith(" 1")
+        assert "\u20662:14–3:3; 4:1–2\u2069" in corinthians["fullByLanguage"]["ar"]
+        assert corinthians["full"] == "2 Corinthians 2:14–3:3; 4:1–2"
+        assert localize_reading_names(unknown, localized_books) == {"Unknown"}
         print("citation self-test passed")
         return
 

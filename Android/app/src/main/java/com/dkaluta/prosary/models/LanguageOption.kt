@@ -25,11 +25,17 @@ object LanguageCatalog {
      * fed it straight into a manifest's displayNameByLanguage / nameByLanguage / reminderBody
      * missed the "he" keys and quietly fell back to English for exactly the audience those keys
      * were written for. Normalized here once; the other two legacy codes come along for free. */
-    fun uiLanguageCode(raw: String = java.util.Locale.getDefault().language): String = when (raw) {
-        "iw" -> "he"
-        "in" -> "id"
-        "ji" -> "yi"
-        else -> raw
+    fun uiLanguageCode(raw: String = java.util.Locale.getDefault().language): String {
+        val normalized = raw.replace('_', '-').lowercase(java.util.Locale.ROOT)
+        val base = normalized.substringBefore('-')
+        val canonicalBase = when (base) {
+            "iw" -> "he"
+            "in" -> "id"
+            "ji" -> "yi"
+            "fil" -> "tl"
+            else -> base
+        }
+        return canonicalBase + normalized.removePrefix(base)
     }
 
     /** Sentinel stored in a favorite's `languageCode` meaning "follow the app-level default setting". */
@@ -47,6 +53,8 @@ object LanguageCatalog {
         // written in — the Creed, the Sub Tuum, the Jesus Prayer.
         LanguageOption(code = "el", nativeName = "Ἑλληνικά", isRightToLeft = false),
         LanguageOption(code = "es", nativeName = "Español", isRightToLeft = false),
+        LanguageOption(code = "fr", nativeName = "Français", isRightToLeft = false),
+        LanguageOption(code = "it", nativeName = "Italiano", isRightToLeft = false),
         LanguageOption(code = "ru", nativeName = "Русский", isRightToLeft = false),
         LanguageOption(code = "tl", nativeName = "Tagalog", isRightToLeft = false),
     )
@@ -66,14 +74,22 @@ object LanguageCatalog {
             val known = all.map { it.code }.toSet()
             val stored = AppSettings.languageFallbackOrder.filter { it in known }.distinct()
             val defaults = all.map { it.code }.filter { it != defaultCode } + defaultCode
-            return (stored + defaults.filter { it !in stored }).distinct()
+            val missing = defaults.filter { it !in stored }
+            // A saved order from before a language was added keeps Latin as its final fallback.
+            // Explicit user placement of Latin elsewhere remains intact.
+            return if (stored.lastOrNull() == defaultCode) {
+                stored.dropLast(1) + missing + defaultCode
+            } else {
+                (stored + missing).distinct()
+            }
         }
 
     fun fallbackChain(requested: String?): List<String> = buildList {
         fun append(code: String?) {
-            if (code == null || code in this) return
-            add(code)
-            baseLanguage(code)?.takeIf { it !in this }?.let(::add)
+            val normalized = code?.let(::uiLanguageCode) ?: return
+            if (normalized in this) return
+            add(normalized)
+            baseLanguage(normalized)?.takeIf { it !in this }?.let(::add)
         }
         append(requested?.takeIf { it.isNotEmpty() } ?: AppSettings.defaultLanguageCode)
         fallbackOrder.forEach(::append)
@@ -99,9 +115,9 @@ object LanguageCatalog {
 
     fun resolve(code: String?): LanguageOption {
         if (code == null || code == defaultSentinel) {
-            return option(AppSettings.defaultLanguageCode)
+            return option(uiLanguageCode(AppSettings.defaultLanguageCode))
         }
-        return option(code)
+        return option(uiLanguageCode(code))
     }
 
     /** Resolves a stored code, which may name a rite ("he-x-gamliel") rather than a plain
@@ -114,6 +130,8 @@ object LanguageCatalog {
             val language = all.firstOrNull { it.code == (baseLanguage(rite.code) ?: rite.code) }
             if (language != null) return rite.copy(nativeName = language.nativeName)
         }
-        return all.firstOrNull { it.code == code } ?: all.first { it.code == defaultCode }
+        return all.firstOrNull { it.code == code }
+            ?: code?.let(::baseLanguage)?.let { base -> all.firstOrNull { it.code == base } }
+            ?: all.first { it.code == defaultCode }
     }
 }

@@ -51,7 +51,8 @@ public partial class SearchViewModel : ObservableObject
             DevotionDirectory.All().Where(listing =>
                 query.Length == 0
                 || listing.Title.Contains(query, StringComparison.OrdinalIgnoreCase)
-                || listing.Tags.Any(t => t.Contains(query, StringComparison.OrdinalIgnoreCase))));
+                || listing.Tags.Any(t => t.Contains(query, StringComparison.OrdinalIgnoreCase)
+                    || CategoryLabels.Display(t).Contains(query, StringComparison.OrdinalIgnoreCase))));
 
         var installed = PrayerPackStore.CustomDevotionIds().ToHashSet();
         CommunityMatches = new ObservableCollection<RepositoryRow>(
@@ -59,7 +60,7 @@ public partial class SearchViewModel : ObservableObject
                 .Where(bundle => !installed.Contains(bundle.Id))
                 .Where(bundle =>
                     query.Length == 0
-                    || $"{bundle.Name} {bundle.Author} {bundle.Description} {string.Join(' ', bundle.Tags)}"
+                    || $"{bundle.Name} {bundle.Author} {bundle.Description} {string.Join(' ', bundle.Tags)} {string.Join(' ', bundle.Tags.Select(CategoryLabels.Display))}"
                         .Contains(query, StringComparison.OrdinalIgnoreCase))
                 .Select(bundle => new RepositoryRow { Bundle = bundle }));
         OnPropertyChanged(nameof(HasCommunityMatches));

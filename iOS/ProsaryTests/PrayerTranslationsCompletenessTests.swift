@@ -66,6 +66,18 @@ final class PrayerTranslationsCompletenessTests: XCTestCase {
     }
   }
 
+  func testFrenchAndItalianPrayersResolveFromTheirSourcedPacks() {
+    for language in ["fr", "it"] {
+      for key in PrayerKey.allCases where !notYetUsedByAnyDevotion.contains(key) {
+        let sourced = PrayerPackStore.prayerOverride(languageCode: language, key: key)
+        XCTAssertFalse(sourced?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?? true,
+                       "\(language)/\(key): no sourced pack translation")
+        XCTAssertEqual(PrayerTranslations.get(languageCode: language, key: key), sourced,
+                       "\(language)/\(key): a different language replaced the authored text")
+      }
+    }
+  }
+
   /// The cross mark shows where the sign of the cross is made. It has to be in every language's
   /// Sign of the Cross — a reader who prays in Tagalog needs it as much as one who prays in
   /// Hebrew — and it belongs immediately after the word for "Father", where the gesture begins,

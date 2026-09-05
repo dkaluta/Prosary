@@ -9,7 +9,7 @@ public sealed record Prayer
 {
     public Guid Id { get; init; } = Guid.NewGuid();
 
-    public string Name { get; init; } = "My Prayer";
+    public string Name { get; init; } = Prosary.Localization.Loc.Tr("prayer_default_name", "My Prayer");
 
     public PrayerKind Kind { get; init; } = PrayerKind.Rosary;
 

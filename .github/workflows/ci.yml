@@ -31,6 +31,10 @@ jobs:
         run: uv run --script Shared/tools/test-asset-deduplication.py
       - name: Erez's Aramaic converter and generated packs stay in step
         run: uv run --script Shared/tools/test-import-scripture.py
+      - name: Sourced languages and intentions retain their provenance
+        run: |
+          uv run --script Shared/tools/test-localized-content.py
+          uv run --script Shared/tools/audit-content.py
       - name: Sourced feast names stay canonical across every calendar and port
         run: |
           uv run --script Shared/tools/fetch-feasts.py --self-test

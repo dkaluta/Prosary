@@ -86,7 +86,7 @@
                     <Border Style="{StaticResource SectionCardStyle}">
                         <StackPanel Spacing="12">
                             <TextBlock x:Uid="PickerPrayAny" Text="Pray any Rosary" FontWeight="SemiBold" FontSize="16" />
-                            <ComboBox HorizontalAlignment="Stretch" Header="Mysteries" ItemsSource="{x:Bind ViewModel.SelectionModes}"
+                            <ComboBox x:Uid="PickerMysteries" HorizontalAlignment="Stretch" Header="Mysteries" ItemsSource="{x:Bind ViewModel.SelectionModes}"
                                       SelectedItem="{x:Bind ViewModel.SelectedMode, Mode=TwoWay}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -94,7 +94,7 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <ComboBox HorizontalAlignment="Stretch" Header="Specific set" ItemsSource="{x:Bind ViewModel.Groups}"
+                            <ComboBox x:Uid="PickerSpecificSet" HorizontalAlignment="Stretch" Header="Specific set" ItemsSource="{x:Bind ViewModel.Groups}"
                                       SelectedItem="{x:Bind ViewModel.SelectedGroup, Mode=TwoWay}"
                                       Visibility="{x:Bind ViewModel.ShowsGroupPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
                                 <ComboBox.ItemTemplate>
@@ -103,7 +103,7 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <ComboBox HorizontalAlignment="Stretch" Header="Which mystery (1–5)" ItemsSource="{x:Bind ViewModel.Ordinals}"
+                            <ComboBox x:Uid="PickerWhichMystery" HorizontalAlignment="Stretch" Header="Which mystery" ItemsSource="{x:Bind ViewModel.Ordinals}"
                                       SelectedItem="{x:Bind ViewModel.SelectedOrdinal, Mode=TwoWay}"
                                       Visibility="{x:Bind ViewModel.ShowsOrdinalPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                             <!-- The whole of RosaryOptions, as the Mac's quick setup offers — this

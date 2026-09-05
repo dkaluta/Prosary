@@ -26,6 +26,7 @@ object AppSettings {
     private const val KEY_FEAST_CALENDAR = "feastCalendarId"
     private const val KEY_SHOW_TODAY_FEAST = "showTodayFeast"
     private const val KEY_SHOW_TODAY_INTENTION = "showTodayIntention"
+    private const val KEY_TODAY_LANGUAGE = "todayLanguageCode"
     private const val KEY_SYRIAC_TYPEFACE = "syriacTypeface"
     private const val KEY_HEBREW_PRAYER_TYPEFACE = "hebrewPrayerTypeface"
     private const val KEY_HEBREW_SCRIPTURE_TYPEFACE = "hebrewScriptureTypeface"
@@ -38,6 +39,10 @@ object AppSettings {
 
     private var basicPrayersLanguageState by mutableStateOf(LanguageCatalog.defaultSentinel)
     val basicPrayersLanguageCode: String get() = basicPrayersLanguageState
+
+    /** Empty follows the app interface language, independently of the prayer language. */
+    private var todayLanguageState by mutableStateOf("")
+    val todayLanguageCode: String get() = todayLanguageState
 
     const val ARAMAIC_SIGN_OF_CROSS_FORM_A = "formA"
     const val ARAMAIC_SIGN_OF_CROSS_FORM_B = "formB"
@@ -123,6 +128,7 @@ object AppSettings {
         feastCalendarId = if (storedFeastCalendar == "roman-he") "roman" else storedFeastCalendar
         showTodayFeast = resolved.getBoolean(KEY_SHOW_TODAY_FEAST, true)
         showTodayIntention = resolved.getBoolean(KEY_SHOW_TODAY_INTENTION, true)
+        todayLanguageState = resolved.getString(KEY_TODAY_LANGUAGE, "").orEmpty()
         syriacTypeface = resolved.getString(KEY_SYRIAC_TYPEFACE, TYPEFACE_DEFAULT) ?: TYPEFACE_DEFAULT
         hebrewPrayerTypeface = resolved.getString(KEY_HEBREW_PRAYER_TYPEFACE, TYPEFACE_DEFAULT) ?: TYPEFACE_DEFAULT
         hebrewScriptureTypeface = resolved.getString(KEY_HEBREW_SCRIPTURE_TYPEFACE, TYPEFACE_DEFAULT) ?: TYPEFACE_DEFAULT
@@ -140,6 +146,11 @@ object AppSettings {
     fun setBasicPrayersLanguageCode(code: String) {
         basicPrayersLanguageState = code
         prefs?.edit()?.putString(KEY_BASIC_PRAYERS_LANGUAGE, code)?.apply()
+    }
+
+    fun setTodayLanguageCode(code: String) {
+        todayLanguageState = code
+        prefs?.edit()?.putString(KEY_TODAY_LANGUAGE, code)?.apply()
     }
 
     fun setAramaicSignOfCrossForm(form: String) {

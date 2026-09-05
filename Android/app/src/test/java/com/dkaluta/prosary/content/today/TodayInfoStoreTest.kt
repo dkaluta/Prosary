@@ -35,11 +35,50 @@ class TodayInfoStoreTest {
         SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(string)!!
 
     @Test
-    fun todayTranslationDefaultsFollowHebrewLanguageVariants() {
-        assertTrue(TodayTranslationLanguage.defaultsToHebrew("he"))
-        assertTrue(TodayTranslationLanguage.defaultsToHebrew("he-x-gamliel"))
-        assertFalse(TodayTranslationLanguage.defaultsToHebrew("en"))
-        assertFalse(TodayTranslationLanguage.defaultsToHebrew("arc"))
+    fun todayTranslationDefaultsFollowTheAppInterfaceAndNormalizeAliases() {
+        assertEquals("fr", TodayTranslationLanguage.resolve("", "fr-CA"))
+        assertEquals("tl", TodayTranslationLanguage.resolve("", "fil-PH"))
+        assertEquals("he", TodayTranslationLanguage.resolve("iw", "en"))
+        assertEquals("he", TodayTranslationLanguage.resolve("he-x-gamliel", "en"))
+        assertEquals("ar", TodayTranslationLanguage.resolve("ar", "fr"))
+        assertEquals("en", TodayTranslationLanguage.resolve("unknown", "ar"))
+        assertTrue(TodayTranslationLanguage.isRightToLeft("ar"))
+        assertTrue(TodayTranslationLanguage.isRightToLeft("he"))
+        assertFalse(TodayTranslationLanguage.isRightToLeft("ru"))
+    }
+
+    @Test
+    fun todayLanguagePersistsIndependentlyOfTheDefaultPrayerLanguage() {
+        val originalPrayerLanguage = AppSettings.defaultLanguageCode
+        val originalTodayLanguage = AppSettings.todayLanguageCode
+        try {
+            AppSettings.setTodayLanguageCode("it")
+            AppSettings.setDefaultLanguageCode("he")
+            assertEquals("it", TodayTranslationLanguage.resolve(AppSettings.todayLanguageCode, "fr"))
+            AppSettings.setTodayLanguageCode("")
+            assertEquals("fr", TodayTranslationLanguage.resolve(AppSettings.todayLanguageCode, "fr"))
+        } finally {
+            AppSettings.setDefaultLanguageCode(originalPrayerLanguage)
+            AppSettings.setTodayLanguageCode(originalTodayLanguage)
+        }
+    }
+
+    @Test
+    fun liturgicalDayAndLocalizedDataSupportEveryTodayLanguage() {
+        val day = TodayInfoStore.liturgicalDayInfo(date("2026-08-31"))
+        assertEquals(TodayTranslationLanguage.supportedCodes.toSet(), day.byLanguage.keys)
+        assertTrue(day.localized("ar").contains("الزمن العادي"))
+        assertTrue(day.localized("ru").contains("Рядового времени"))
+        assertTrue(day.localized("fil-PH").contains("Karaniwang Panahon"))
+        assertTrue(day.localized("fr").contains("Temps ordinaire"))
+        assertTrue(day.localized("it").contains("Tempo ordinario"))
+        val citation = ReadingCitation("reading", "English", "English", shortByLanguage = mapOf("tl" to "Filipos"))
+        assertEquals("Filipos", citation.localizedShort("fil-PH"))
+        val legacyCitation = ReadingCitation("reading", "English", "English", hebrew = "יוחנן")
+        assertEquals("יוחנן", legacyCitation.localizedFull("iw-IL"))
+        val title = FeastDay("Fallback", "Feast", mapOf("fr" to "", "tl" to "Kapistahan"))
+        assertEquals("Fallback", title.localizedTitle("fr"))
+        assertEquals("Kapistahan", title.localizedTitle("fil"))
     }
 
     @Test
@@ -360,6 +399,16 @@ class TodayInfoStoreTest {
         assertEquals("יוחנן הקדוש", feast.localizedTitle("he-x-gamliel"))
         assertEquals("שלום", intention.localizedTitle("he"))
         assertEquals("נִתְפַּלֵּל לְשָׁלוֹם.", intention.localizedText("he"))
+    }
+
+    @Test
+    fun arabicFullCitationsPreserveIsolatedVerseOrder() {
+        val sourced = "لوقا \u20664:16–30\u2069"
+        val citation = ReadingCitation("gospel", "Lk. 4", "Luke 4:16–30", fullByLanguage = mapOf("ar" to sourced))
+        assertEquals(sourced, citation.localizedFull("ar-SA"))
+        val bundled = TodayInfoStore.readings(date("2026-08-31")).last().localizedFull("ar")
+        assertTrue("Arabic citation must keep its left-to-right verse span", bundled.contains('\u2066'))
+        assertTrue("Arabic citation must close its verse span", bundled.contains('\u2069'))
     }
 
     @Test

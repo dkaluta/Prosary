@@ -69,7 +69,7 @@ public sealed class SqlitePresetStore : IPresetStore
 
         if (await _connection.Table<PresetEntry>().CountAsync() == 0)
         {
-            await _connection.InsertAsync(new PresetEntry { Name = "Classic Rosary", IsDefault = true, Kind = PrayerKind.Rosary });
+            await _connection.InsertAsync(new PresetEntry { Name = Localization.Loc.Tr("preset_classic_rosary", "Classic Rosary"), IsDefault = true, Kind = PrayerKind.Rosary });
         }
     }
 

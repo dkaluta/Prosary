@@ -102,7 +102,14 @@ public partial class HomeViewModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(CitationButtonText))]
     [NotifyPropertyChangedFor(nameof(TodayTextAlignment))]
     [NotifyPropertyChangedFor(nameof(TodayContentAlignment))]
-    private bool _todayInHebrew = AppSettings.DefaultLanguageCode.StartsWith("he", StringComparison.OrdinalIgnoreCase);
+    [NotifyPropertyChangedFor(nameof(TodayLanguage))]
+    [NotifyPropertyChangedFor(nameof(TodayIsRightToLeft))]
+    private string _todayLanguageCode = AppSettings.TodayLanguageCode;
+
+    partial void OnTodayLanguageCodeChanged(string value) => AppSettings.SetTodayLanguageCode(value);
+
+    public string TodayLanguage => UiLanguageCatalog.ResolveToday(TodayLanguageCode, UiLanguageCatalog.Current);
+    public bool TodayIsRightToLeft => UiLanguageCatalog.IsRightToLeft(TodayLanguage);
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ReadingsText))]
@@ -117,42 +124,34 @@ public partial class HomeViewModel : ObservableObject
 
     public bool ShowsTodayReadings => TodayReadings.Count > 0;
 
-    public string TodayDayText => TodayInHebrew ? TodayDay.Hebrew : TodayDay.English;
+    public string TodayDayText => TodayDay.Localized(TodayLanguage);
 
-    public string TodayLanguageButtonText => TodayInHebrew
-        ? Loc.Tr("home_today_show_english", "English")
-        : "עברית";
+    public string TodayLanguageButtonText => UiLanguageCatalog.All.First(l => l.Code == TodayLanguage).NativeName;
 
-    public TextAlignment TodayTextAlignment => TodayInHebrew ? TextAlignment.Right : TextAlignment.Left;
+    public TextAlignment TodayTextAlignment => TodayIsRightToLeft ? TextAlignment.Right : TextAlignment.Left;
 
-    public HorizontalAlignment TodayContentAlignment => TodayInHebrew
-        ? HorizontalAlignment.Right
-        : HorizontalAlignment.Left;
+    public HorizontalAlignment TodayContentAlignment => TodayIsRightToLeft
+        ? HorizontalAlignment.Right : HorizontalAlignment.Left;
 
-    public string TodayFeastTitle => TodayFeast?.LocalizedTitle(TodayInHebrew ? "he" : "en") ?? string.Empty;
+    public string TodayFeastTitle => TodayFeast?.LocalizedTitle(TodayLanguage) ?? string.Empty;
 
-    public string TodayFeastRank => TodayFeast?.LocalizedRank(TodayInHebrew ? "he" : "en") ?? string.Empty;
+    public string TodayFeastRank => TodayFeast?.LocalizedRank(TodayLanguage) ?? string.Empty;
 
     public string MonthIntentionTitle => MonthIntention is { } intention
-        ? TodayInHebrew
-            ? $"כוונת האפיפיור: {intention.LocalizedTitle("he")}"
-            : string.Format(Loc.Tr("home_pope_intention", "The Pope’s intention: {0}"), intention.LocalizedTitle("en"))
+        ? string.Format(Loc.Tr("home_pope_intention", "The Pope’s intention: {0}", TodayLanguage), intention.LocalizedTitle(TodayLanguage))
         : string.Empty;
 
-    public string MonthIntentionText => MonthIntention?.LocalizedText(TodayInHebrew ? "he" : "en") ?? string.Empty;
+    public string MonthIntentionText => MonthIntention?.LocalizedText(TodayLanguage) ?? string.Empty;
 
-    public string TodayReadingsTitle => TodayInHebrew ? "המקרא היומי" : "Today’s readings";
+    public string TodayReadingsTitle => Loc.Tr("HomeTodayReadings/Text", "Today’s readings", TodayLanguage);
 
     public string ReadingsText => ShowsFullCitations
-        ? string.Join(Environment.NewLine, TodayReadings.Select(r => r.LocalizedFull(TodayInHebrew ? "he" : "en")))
-        : string.Join(", ", TodayReadings.Select(r => r.LocalizedShort(TodayInHebrew ? "he" : "en")));
+        ? string.Join(Environment.NewLine, TodayReadings.Select(r => r.LocalizedFull(TodayLanguage)))
+        : string.Join(", ", TodayReadings.Select(r => r.LocalizedShort(TodayLanguage)));
 
-    public string CitationButtonText => TodayInHebrew
-        ? ShowsFullCitations ? "הצג קיצור" : "הצג מראי מקום מלאים"
-        : ShowsFullCitations ? "Show shorthand" : "View full citations";
-
-    [RelayCommand]
-    private void ToggleTodayLanguage() => TodayInHebrew = !TodayInHebrew;
+    public string CitationButtonText => ShowsFullCitations
+        ? Loc.Tr("home_today_compact_citations", "Show shorthand", TodayLanguage)
+        : Loc.Tr("home_today_full_citations", "View full citations", TodayLanguage);
 
     [RelayCommand]
     private void ToggleCitations() => ShowsFullCitations = !ShowsFullCitations;

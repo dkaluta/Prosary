@@ -17,7 +17,7 @@ public sealed class PresetEntry
     public Guid Id { get; set; } = Guid.NewGuid();
 
     [MaxLength(80), NotNull]
-    public string Name { get; set; } = "My Prayer";
+    public string Name { get; set; } = Prosary.Localization.Loc.Tr("prayer_default_name", "My Prayer");
 
     /// <summary>The primary configuration for its devotion. Default scoping includes
     /// <see cref="CustomDevotionId"/> for generic bundles.</summary>

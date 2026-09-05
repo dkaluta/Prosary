@@ -65,9 +65,9 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   is a deliberate, known divergence, not a bug.
 - **`PrayerReminder`** — `id`, `hour`, `minute`, `isEnabled`. One-off local reminder times, not a
   recurrence rule — see "Reminders" below for why each platform schedules these differently.
-- **`LanguageOption`/`LanguageCatalog`** — ten always-visible prayer-language choices: `la`
+- **`LanguageOption`/`LanguageCatalog`** — twelve always-visible prayer-language choices: `la`
   (default), `en`, `ar`, `he` (Vicariate), `he-x-gamliel` (Mission), `arc`, `el`, `es`, `ru`,
-  and `tl`; `ar`/`he`/`he-x-gamliel`/`arc` are right-to-left. They are independent of the device's
+  `tl`, `fr`, and `it`; `ar`/`he`/`he-x-gamliel`/`arc` are right-to-left. They are independent of the device's
   UI language. A bundle advertises only the subset it fully supplies; exact community codes can
   overlay their base language without pretending to be complete.
 
@@ -266,7 +266,7 @@ title, keeping long titles clear of the buttons. Wider layouts retain native too
 
 Basic Prayers exposes the same language choice in both its list and single-prayer flow. Its
 `basicPrayersLanguageCode` preference is shared between those two surfaces on every port,
-defaults to the empty "App setting" sentinel, and offers all ten prayer languages. Selecting
+defaults to the empty "App setting" sentinel, and offers all twelve prayer languages. Selecting
 a language refreshes the title, text, direction, and script toggle without changing the app's
 default prayer language.
 
@@ -967,22 +967,30 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
   The calendar choice affects the Today feast and its lectionary citations together; seasons,
   mystery assignment, and Marian antiphons still use `LiturgicalCalendarService`'s computed
   Latin-calendar machinery. The Today card always names the weekday and numbered week of the
-  liturgical season. Its English/Hebrew display toggle localizes that heading, the Pope's authored
-  intention, any sourced `titleByLanguage.he` feast name, its rank caption, and any sourced Hebrew
-  citation. Rank captions follow the Today switch independently of the app UI language; their
-  canonical rank values still control prominence and calendar logic. Missing
-  localized feast names remain in their source language when no credited Hebrew name is available,
-  rather than being invented. Hebrew mode gives the whole Today text/citation stack RTL direction
-  and trailing alignment, including the expanded citations.
+  liturgical season. Its language menu persists `todayLanguageCode`: the empty string follows
+  the app interface, or an explicit `en`, `he`, `ar`, `ru`, `tl`, `fr`, or `it` selects the
+  Today language independently of the prayer language. Platform locale aliases such as `iw`
+  and `fil` normalize to the shared `he` and `tl` codes. Weekday, season/week headings, rank,
+  intention and citation captions follow this selection. Arabic and Hebrew set the complete
+  Today stack to RTL, including the expanded citations. Published feast and intention text
+  uses that language when available, with the original source text as fallback. Calendar
+  dates, rank identities and appointed readings never change with the language selection.
   The readings row shows compact citations (for example `Gen. 1; Ps. 23; Jn. 3`); a button expands
   the same entries to their complete chapter-and-verse citations. A missing reading file/date hides
   the row: it must never borrow another rite's readings. Each optional Today
   row still has its own Settings switch (2026-08, Erez's request:
   `showTodayFeast` / `showTodayIntention`, both on by default) — either, both, or neither
   row can show, and a row switched off simply never loads.
-- **`pope-intentions.json`** — the Pope's Worldwide Prayer Network monthly intentions
-  (`months: {"YYYY-MM": {title, text, titleByLanguage, textByLanguage}}`), from popesprayer.va; maintained by
-  hand (no API), with authored Hebrew translations displayed by the Today language toggle.
+- **`pope-intentions.json`** — 2026–2027 monthly intentions from the Pope's Worldwide Prayer
+  Network, including published Arabic, French, Italian and Filipino editions, the parish-published
+  Russian translation for 2026 (credited to t.me/ihsovs), plus Prosary's
+  Hebrew translation. `sourceByLanguage` records published sources and
+  `translationCreditByLanguage` distinguishes authored translations. The Hebrew version is not
+  an official Vatican edition. `Shared/tools/import-pope-intentions.py --source-dir <pdf-cache>
+  --sync` imports the 2026 PDFs and reviewed 2027 snapshots. Arabic and Italian source PDFs
+  with broken character maps have visually reviewed transcriptions; corrections from other
+  official publications are recorded in the source snapshot. Missing languages use English,
+  and months outside the table hide the row.
 - **Reading tables, selected through `readingsFile`** — each date contains ordered citation
   objects (`type`, `short`, `full`, and optional `shortByLanguage`/`fullByLanguage`). Only
   citations ship; Scripture text does not. `readings-roman.json` is the Novus Ordo table from
@@ -1005,3 +1013,45 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
 
 A date/month outside the relevant dataset returns nothing and its row simply hides. Regenerate
 the multi-year feast tables roughly yearly; refresh the rolling Evangelizo-backed data more often.
+
+## Interface languages and new prayer sources
+
+All three interfaces support English, Hebrew, Arabic, Russian, Filipino/Tagalog, French and
+Italian. Native locale identifiers may use `fil` while shared content retains `tl`. The
+interface language follows each platform's app-language mechanism; the prayer and Today
+preferences remain independent. Resource catalogs include accessibility labels, notifications,
+error states, settings, search categories and About credits in all seven languages.
+
+French Scripture passages use Augustin Crampon (1923), public domain, from
+[scrollmapper/bible_databases](https://github.com/scrollmapper/bible_databases).
+Italian passages use Antonio Martini's public-domain translation; the structured chapter data
+is © Giovanni Novelli, [Parola Viva](https://parolaviva.art/opendata), CC BY 4.0. Only the biblical
+text is imported. Source wording and source verse numbering stay together; Crampon Isaiah 9
+uses a reviewed numbering offset from the Vulgate. French and Italian fixed prayers relay the
+[Vatican Compendium](https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_en.html)
+and other per-content credited publications. `fr`/`it` overlays without enough sourced content
+remain partial; bundle language menus advertise declared supported languages only.
+
+Reading-book metadata for all five additional UI languages is recorded with sources in
+`Shared/tools/reading-books-localized.json`. `fetch-readings.py --localize-only --sync` applies
+those names offline while preserving every calendar's chapter and verse references.
+
+French/Italian full prayer choices now include Rosary, Angelus, Franciscan Crown, Divine Mercy,
+Seven Sorrows and Via Lucis. Stations of the Cross has sourced Scripture overlays in both
+languages; traditional meditation variants remain partial. O Antiphons and Trisagion retain
+existing prayer-language coverage. The original Seven Sorrows fourth reflection is an authored
+meditation and its French/Italian rendering is explicitly identified as Prosary's translation.
+Each new prayer file has `$sources`; Scripture provenance remains separately in
+`$scriptureSource` when a file mixes fixed prayers with imported Bible passages.
+
+The legacy Arabic Scripture credit identifies Dar el-Machreq. The earlier blanket claim that
+all editions are public domain was removed: no such status is established here for the modern
+Arabic revision. This pass preserves existing Arabic passages rather than changing editions.
+
+Run `test-localized-content.py`, `test-import-scripture.py`, `audit-content.py`,
+`test-asset-deduplication.py`, and the feast/readings generators' `--self-test` checks after
+regeneration. The content audit exempts UI labels and specific complete unpunctuated source
+chants while rejecting blank bodies and known scraped website material. The Via Lucis English
+and Latin Matthew 28 passage no longer includes its source website's footer or commentary.
+Arabic full reading references isolate their chapter/verse spans left-to-right inside the RTL
+book label, preserving semicolon-separated range order on screen.

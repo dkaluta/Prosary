@@ -43,8 +43,8 @@ public static class PrayerPackStore
     internal const long MaxControlTotalBytes = 32L * 1024 * 1024;
     internal const long MaxImageEntryBytes = 64L * 1024 * 1024;
     internal const long MaxAudioEntryBytes = 256L * 1024 * 1024;
-    private const string UnreadablePackMessage =
-        "This file is not a readable .prosaryprayer bundle.";
+    private static string UnreadablePackMessage =>
+        Loc.Tr("import_unreadable", "This file is not a readable .prosaryprayer bundle.");
 
     private static readonly Dictionary<string, Dictionary<string, string>> PrayerOverrides = new();
     private static readonly Dictionary<string, Dictionary<string, string>> PrayerTransliterations = new();
@@ -221,41 +221,41 @@ public static class PrayerPackStore
             using var probe = new ZipArchive(new MemoryStream(bytes), ZipArchiveMode.Read);
             var entries = ValidateArchive(probe);
             var manifestEntry = entries.GetValueOrDefault("manifest.json")
-                ?? throw new InstallException("This file is not a readable .prosaryprayer bundle.");
+                ?? throw new InstallException(Loc.Tr("import_unreadable", "This file is not a readable .prosaryprayer bundle."));
             manifest = Deserialize<PackManifest>(manifestEntry)
-                ?? throw new InstallException("This file is not a readable .prosaryprayer bundle.");
+                ?? throw new InstallException(Loc.Tr("import_unreadable", "This file is not a readable .prosaryprayer bundle."));
             if (!IsValidBundleId(manifest.Id))
             {
-                throw new InstallException("This file is not a readable .prosaryprayer bundle.");
+                throw new InstallException(Loc.Tr("import_unreadable", "This file is not a readable .prosaryprayer bundle."));
             }
 
             var devotionEntry = entries.GetValueOrDefault("devotion.json");
             if (devotionEntry is null || manifest.BuiltinKind is not null
                 || Deserialize<CustomDevotionDefinition>(devotionEntry) is null)
             {
-                throw new InstallException("This bundle does not contain a devotion.");
+                throw new InstallException(Loc.Tr("import_empty", "This bundle does not contain a devotion."));
             }
 
             foreach (var language in manifest.Languages)
             {
                 var contentEntry = entries.GetValueOrDefault($"content/{language}.json")
-                    ?? throw new InstallException("This file is not a readable .prosaryprayer bundle.");
+                    ?? throw new InstallException(Loc.Tr("import_unreadable", "This file is not a readable .prosaryprayer bundle."));
                 _ = Deserialize<PackContent>(contentEntry)
-                    ?? throw new InstallException("This file is not a readable .prosaryprayer bundle.");
+                    ?? throw new InstallException(Loc.Tr("import_unreadable", "This file is not a readable .prosaryprayer bundle."));
             }
         }
         catch (Exception e) when (e is not InstallException)
         {
-            throw new InstallException("This file is not a readable .prosaryprayer bundle.");
+            throw new InstallException(Loc.Tr("import_unreadable", "This file is not a readable .prosaryprayer bundle."));
         }
 
         if (InfoByBundle.ContainsKey(manifest.Id))
         {
-            throw new InstallException($"A devotion named \"{manifest.Id}\" is already installed.");
+            throw new InstallException(string.Format(Loc.Tr("import_duplicate", "A devotion named \"{0}\" is already installed."), manifest.Id));
         }
 
         var directory = InstalledPacksDirectory
-            ?? throw new InstallException("This file is not a readable .prosaryprayer bundle.");
+            ?? throw new InstallException(Loc.Tr("import_unreadable", "This file is not a readable .prosaryprayer bundle."));
         Directory.CreateDirectory(directory);
         var destination = Path.Combine(directory, $"{manifest.Id}.prosaryprayer");
         File.WriteAllBytes(destination, bytes);
@@ -1572,7 +1572,7 @@ public sealed record CustomDevotionInfo(
     // Categories page groups by.
     IReadOnlyList<string> Tags)
 {
-    private static string UiLanguage => CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+    private static string UiLanguage => UiLanguageCatalog.Current;
 
     /// <summary>The display name in the app's active UI localization (falling back to the
     /// manifest's base <see cref="DisplayName"/>) — preserves e.g. the Hebrew devotion names.</summary>

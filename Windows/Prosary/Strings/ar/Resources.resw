@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="common_cancel" xml:space="preserve"><value>إلغاء</value></data>
+  <data name="common_save" xml:space="preserve"><value>حفظ</value></data>
+  <data name="common_done" xml:space="preserve"><value>تم</value></data>
+  <data name="common_reset" xml:space="preserve"><value>إعادة الضبط</value></data>
+  <data name="common_ok" xml:space="preserve"><value>موافق</value></data>
+  <data name="common_finish" xml:space="preserve"><value>إنهاء</value></data>
+  <data name="common_next" xml:space="preserve"><value>التالي</value></data>
+  <data name="common_continue" xml:space="preserve"><value>متابعة</value></data>
+  <data name="common_restart" xml:space="preserve"><value>إعادة البدء</value></data>
+  <data name="kind_rosary" xml:space="preserve"><value>الوردية</value></data>
+  <data name="kind_jesus_prayer" xml:space="preserve"><value>صلاة يسوع</value></data>
+  <data name="kind_devotion" xml:space="preserve"><value>صلاة تعبّدية</value></data>
+  <data name="kind_default_name_rosary" xml:space="preserve"><value>ورديتي</value></data>
+  <data name="mystery_group_joyful" xml:space="preserve"><value>الفرحة</value></data>
+  <data name="mystery_group_sorrowful" xml:space="preserve"><value>الحزينة</value></data>
+  <data name="mystery_group_glorious" xml:space="preserve"><value>المجيدة</value></data>
+  <data name="mystery_group_luminous" xml:space="preserve"><value>النورانية</value></data>
+  <data name="mode_todays_mysteries" xml:space="preserve"><value>أسرار اليوم</value></data>
+  <data name="mode_specific" xml:space="preserve"><value>مجموعة محددة دائمًا</value></data>
+  <data name="mode_fifteen" xml:space="preserve"><value>الأسرار الخمسة عشر (الفرحة والحزينة والمجيدة)</value></data>
+  <data name="mode_twenty" xml:space="preserve"><value>الأسرار العشرون (المجموعات الأربع)</value></data>
+  <data name="mode_single" xml:space="preserve"><value>سرّ واحد فقط</value></data>
+  <data name="summary_always" xml:space="preserve"><value>دائمًا {0}</value></data>
+  <data name="summary_only" xml:space="preserve"><value>{0} فقط</value></data>
+  <data name="summary_fifteen" xml:space="preserve"><value>الأسرار الخمسة عشر</value></data>
+  <data name="summary_twenty" xml:space="preserve"><value>الأسرار العشرون</value></data>
+  <data name="eternal_rest_none" xml:space="preserve"><value>لا تُدرج</value></data>
+  <data name="eternal_rest_each_decade" xml:space="preserve"><value>بعد كل بيت</value></data>
+  <data name="eternal_rest_at_end" xml:space="preserve"><value>مرة واحدة قرب النهاية</value></data>
+  <data name="antiphon_none" xml:space="preserve"><value>لا شيء</value></data>
+  <data name="antiphon_seasonal" xml:space="preserve"><value>تلقائيًا بحسب الزمن الطقسي</value></data>
+  <data name="antiphon_salve_regina" xml:space="preserve"><value>Salve Regina</value></data>
+  <data name="antiphon_alma_redemptoris" xml:space="preserve"><value>Alma Redemptoris Mater</value></data>
+  <data name="antiphon_ave_regina" xml:space="preserve"><value>Ave Regina Caelorum</value></data>
+  <data name="antiphon_regina_caeli" xml:space="preserve"><value>Regina Caeli</value></data>
+  <data name="antiphon_sub_tuum" xml:space="preserve"><value>Sub Tuum Praesidium</value></data>
+  <data name="imageStyle_classic" xml:space="preserve"><value>لوحات كلاسيكية</value></data>
+  <data name="imageStyle_eastern" xml:space="preserve"><value>أيقونات شرقية</value></data>
+  <data name="language_default_parenthesized" xml:space="preserve"><value>الافتراضية ({0})</value></data>
+  <data name="jp_count_times" xml:space="preserve"><value>{0}×</value></data>
+  <data name="jp_times_prefix" xml:space="preserve"><value>× {0}</value></data>
+  <data name="jp_unbounded" xml:space="preserve"><value>بلا حد</value></data>
+  <data name="jp_custom" xml:space="preserve"><value>مخصص</value></data>
+  <data name="jp_favorite_name" xml:space="preserve"><value>صلاة يسوع {0} ({1})</value></data>
+  <data name="jp_error_body" xml:space="preserve"><value>تعذّر تحميل صلاة يسوع. ارجع وأعد المحاولة.</value></data>
+  <data name="home_today" xml:space="preserve"><value>اليوم: {0}</value></data>
+  <data name="home_pope_intention" xml:space="preserve"><value>نية البابا: {0}</value></data>
+  <data name="SetLanguageFallbackOrder.Content" xml:space="preserve"><value>ترتيب اللغات البديلة…</value></data>
+  <data name="settings_language_fallback_order_title" xml:space="preserve"><value>ترتيب اللغات البديلة</value></data>
+  <data name="settings_language_fallback_order_footer" xml:space="preserve"><value>عندما لا تتوفر صلاة، يجرب Prosary هذه اللغات بالترتيب من الأعلى إلى الأسفل، بعد اللغة المختارة وصيغتها الخاصة.</value></data>
+  <data name="home_today_show_english" xml:space="preserve"><value>English</value></data>
+  <data name="home_today_full_citations" xml:space="preserve"><value>أظهر المراجع الكاملة</value></data>
+  <data name="home_today_compact_citations" xml:space="preserve"><value>أظهر الاختصارات</value></data>
+  <data name="HomeTodayReadings.Text" xml:space="preserve"><value>قراءات اليوم</value></data>
+  <data name="home_click_to_set_up" xml:space="preserve"><value>انقر للإعداد</value></data>
+  <data name="home_click_to_pray" xml:space="preserve"><value>انقر للصلاة</value></data>
+  <data name="home_order_title" xml:space="preserve"><value>ترتيب الصفحة الرئيسية</value></data>
+  <data name="prayer_order_title" xml:space="preserve"><value>ترتيب الصلوات</value></data>
+  <data name="BasicPrayersEditOrder.Content" xml:space="preserve"><value>عدّل الترتيب…</value></data>
+  <data name="flow_step_of" xml:space="preserve"><value>{0} من {1}</value></data>
+  <data name="flow_error_header" xml:space="preserve"><value>حدث خطأ</value></data>
+  <data name="flow_error_body" xml:space="preserve"><value>تعذّر تحميل هذه الصلاة. ارجع وأعد المحاولة.</value></data>
+  <data name="flow_app_setting" xml:space="preserve"><value>إعداد التطبيق</value></data>
+  <data name="prayer_resume_title" xml:space="preserve"><value>هل تتابع من حيث توقفت؟</value></data>
+  <data name="prayer_resume_message" xml:space="preserve"><value>تابع هذه الصلاة غير المكتملة أو ابدأ من جديد.</value></data>
+  <data name="rosary_no_favorites_header" xml:space="preserve"><value>لا توجد ورديات مفضلة بعد</value></data>
+  <data name="rosary_no_favorites_body" xml:space="preserve"><value>أضف وردية إلى المفضلة أولًا.</value></data>
+  <data name="rosary_error_body" xml:space="preserve"><value>تعذّر تحميل جلسة الوردية هذه. ارجع وأعد المحاولة.</value></data>
+  <data name="rosary_preset_name" xml:space="preserve"><value>اسم الإعداد</value></data>
+  <data name="rosary_save_as_preset" xml:space="preserve"><value>احفظ كإعداد</value></data>
+  <data name="browse_all" xml:space="preserve"><value>الكل</value></data>
+  <data name="browse_unreachable" xml:space="preserve"><value>تعذّر الاتصال بالمستودع.</value></data>
+  <data name="browse_download_failed" xml:space="preserve"><value>تعذّر تنزيل الصلاة.</value></data>
+  <data name="favorites_import_error_title" xml:space="preserve"><value>تعذّر استيراد الصلاة</value></data>
+  <data name="favorites_bundle_file_type" xml:space="preserve"><value>حزمة صلاة Prosary</value></data>
+  <data name="editor_new_favorite" xml:space="preserve"><value>مفضلة جديدة</value></data>
+  <data name="editor_edit_favorite" xml:space="preserve"><value>عدّل المفضلة</value></data>
+  <data name="auto_advance_off" xml:space="preserve"><value>متوقف</value></data>
+  <data name="auto_advance_every" xml:space="preserve"><value>كل {0} ثانية</value></data>
+  <data name="settings_installed_devotions" xml:space="preserve"><value>الصلوات المثبّتة: {0}</value></data>
+  <data name="settings_clear_audio_cache" xml:space="preserve"><value>امسح ذاكرة الصوت المؤقتة</value></data>
+  <data name="settings_clear_audio_cache_size" xml:space="preserve"><value>امسح ذاكرة الصوت المؤقتة ({0})</value></data>
+  <data name="settings_remove_all_title" xml:space="preserve"><value>هل تريد إزالة كل الصلوات المُنزّلة؟</value></data>
+  <data name="settings_remove_all_message" xml:space="preserve"><value>يمكن تنزيل صلوات المستودع مجددًا، لكن الملفات المستوردة يدويًا لا يمكن استعادتها منه.</value></data>
+  <data name="settings_remove_all_confirm" xml:space="preserve"><value>إزالة الكل</value></data>
+  <data name="settings_app_language_system" xml:space="preserve"><value>إعداد النظام الافتراضي</value></data>
+  <data name="NavPray.Content" xml:space="preserve"><value>صلّ</value></data>
+  <data name="NavBrowse.Content" xml:space="preserve"><value>تصفّح</value></data>
+  <data name="NavCategories.Content" xml:space="preserve"><value>الفئات</value></data>
+  <data name="NavSearch.Content" xml:space="preserve"><value>بحث</value></data>
+  <data name="HomeTitle.Text" xml:space="preserve"><value>صلّ</value></data>
+  <data name="HomeSettingsButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>الإعدادات</value></data>
+  <data name="HomeAboutButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>حول التطبيق</value></data>
+  <data name="HomeMoveToTop.Text" xml:space="preserve"><value>انقل إلى الأعلى</value></data>
+  <data name="HomeEditOrder.Text" xml:space="preserve"><value>عدّل الترتيب…</value></data>
+  <data name="SetTitle.Text" xml:space="preserve"><value>الإعدادات</value></data>
+  <data name="SetLanguageCombo.Header" xml:space="preserve"><value>لغة الصلاة الافتراضية</value></data>
+  <data name="SetPrayingHeader.Text" xml:space="preserve"><value>الصلاة</value></data>
+  <data name="SetAutoAdvanceCombo.Header" xml:space="preserve"><value>الانتقال التلقائي</value></data>
+  <data name="SetResetHomeOrder.Content" xml:space="preserve"><value>أعد ضبط ترتيب الصفحة الرئيسية</value></data>
+  <data name="SetDownloadsHeader.Text" xml:space="preserve"><value>التنزيلات</value></data>
+  <data name="SetRemoveAll.Content" xml:space="preserve"><value>أزل كل الصلوات المُنزّلة…</value></data>
+  <data name="SetDownloadsFooter.Text" xml:space="preserve"><value>لا تُحذف الصلوات المضمّنة أبدًا. إزالة صلاة مُنزّلة تزيلها أيضًا من المفضلة.</value></data>
+  <data name="SetLinksHeader.Text" xml:space="preserve"><value>الروابط</value></data>
+  <data name="SetRepoLink.Content" xml:space="preserve"><value>مستودع المجتمع</value></data>
+  <data name="SetComposeLink.Content" xml:space="preserve"><value>أنشئ صلاة تعبّدية</value></data>
+  <data name="SetPrivacyLink.Content" xml:space="preserve"><value>سياسة الخصوصية</value></data>
+  <data name="SetAppLanguageCombo.Header" xml:space="preserve"><value>لغة التطبيق</value></data>
+  <data name="SetAppLanguageFooter.Text" xml:space="preserve"><value>يسري بعد إعادة تشغيل التطبيق.</value></data>
+  <data name="SetTodayHeader.Text" xml:space="preserve"><value>اليوم</value></data>
+  <data name="SetShowTodayFeast.Header" xml:space="preserve"><value>أظهر عيد اليوم</value></data>
+  <data name="SetShowTodayIntention.Header" xml:space="preserve"><value>أظهر نية البابا</value></data>
+  <data name="SetFeastCalendar.Header" xml:space="preserve"><value>التقويم الطقسي</value></data>
+  <data name="SetFeastCalendarHint.Text" xml:space="preserve"><value>التقويم الذي تتبعه أعياد قسم «اليوم» وقراءاته.</value></data>
+  <data name="FavTitle.Text" xml:space="preserve"><value>المفضلة</value></data>
+  <data name="BtnPray.Content" xml:space="preserve"><value>صلّ</value></data>
+  <data name="FavSetDefault.Content" xml:space="preserve"><value>اجعلها الافتراضية</value></data>
+  <data name="FavRosaryHeader.Text" xml:space="preserve"><value>الوردية</value></data>
+  <data name="FavAddRosary.Content" xml:space="preserve"><value>+ أضف وردية</value></data>
+  <data name="FavJesusHeader.Text" xml:space="preserve"><value>صلاة يسوع</value></data>
+  <data name="FavAddJesus.Content" xml:space="preserve"><value>+ أضف صلاة يسوع</value></data>
+  <data name="FavMoreHeader.Text" xml:space="preserve"><value>المزيد من الصلوات</value></data>
+  <data name="FavRepoBadge.Text" xml:space="preserve"><value>المستودع</value></data>
+  <data name="FavImport.Text" xml:space="preserve"><value>استورد حزمة صلاة…</value></data>
+  <data name="FavGetCommunity.Text" xml:space="preserve"><value>احصل على صلوات المجتمع…</value></data>
+  <data name="FavExportButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>صدّر للتعديل (compose.prosary.app)</value></data>
+  <data name="FavRemoveImportedButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>أزل الصلاة المستوردة</value></data>
+  <data name="PickerTitle.Text" xml:space="preserve"><value>الوردية المقدسة</value></data>
+  <data name="PickerDefaultHeader.Text" xml:space="preserve"><value>الإعداد الافتراضي</value></data>
+  <data name="PickerCustomHeader.Text" xml:space="preserve"><value>مخصص</value></data>
+  <data name="PickerPrayAny.Text" xml:space="preserve"><value>صلّ أي وردية</value></data>
+  <data name="PickerAnyDetail.Text" xml:space="preserve"><value>تتبع بقية الخيارات إعدادك الافتراضي. يمكنك تخصيصها بالكامل في الإعدادات المحفوظة.</value></data>
+  <data name="PickerSaveAsPreset.Content" xml:space="preserve"><value>احفظ كإعداد</value></data>
+  <data name="PickerPresetsHeader.Text" xml:space="preserve"><value>الإعدادات المحفوظة</value></data>
+  <data name="BrowseTitle.Text" xml:space="preserve"><value>صلوات المجتمع</value></data>
+  <data name="BrowseSearchBox.PlaceholderText" xml:space="preserve"><value>ابحث عن صلوات</value></data>
+  <data name="BrowseInstalled.Text" xml:space="preserve"><value>مثبّتة</value></data>
+  <data name="BtnInstall.Content" xml:space="preserve"><value>تثبيت</value></data>
+  <data name="BtnUpdate.Content" xml:space="preserve"><value>تحديث</value></data>
+  <data name="BtnRetry.Content" xml:space="preserve"><value>أعد المحاولة</value></data>
+  <data name="SearchTitle.Text" xml:space="preserve"><value>بحث</value></data>
+  <data name="SearchBox.PlaceholderText" xml:space="preserve"><value>صلوات وفئات ومؤلفون</value></data>
+  <data name="SearchOnDevice.Text" xml:space="preserve"><value>على هذا الجهاز</value></data>
+  <data name="SearchCommunity.Text" xml:space="preserve"><value>من المجتمع</value></data>
+  <data name="CategoriesTitle.Text" xml:space="preserve"><value>الفئات</value></data>
+  <data name="JpTitle.Text" xml:space="preserve"><value>صلاة يسوع</value></data>
+  <data name="JpHowMany.Text" xml:space="preserve"><value>كم مرة؟</value></data>
+  <data name="JpRepetitions.Header" xml:space="preserve"><value>عدد التكرارات</value></data>
+  <data name="JpBegin.Content" xml:space="preserve"><value>ابدأ</value></data>
+  <data name="BtnCancel.Content" xml:space="preserve"><value>إلغاء</value></data>
+  <data name="BtnSave.Content" xml:space="preserve"><value>حفظ</value></data>
+  <data name="EdBack.Text" xml:space="preserve"><value>رجوع</value></data>
+  <data name="EdOptionsTitle.Text" xml:space="preserve"><value>خيارات الوردية</value></data>
+  <data name="EdSetDefault.Text" xml:space="preserve"><value>اجعلها الافتراضية</value></data>
+  <data name="EdLanguageHeader.Text" xml:space="preserve"><value>لغة الصلاة</value></data>
+  <data name="EdRosaryOptionsRow.Text" xml:space="preserve"><value>خيارات الوردية</value></data>
+  <data name="EdTargetHeader.Text" xml:space="preserve"><value>الهدف</value></data>
+  <data name="EdRemindersHeader.Text" xml:space="preserve"><value>التذكيرات</value></data>
+  <data name="EdAddReminder.Text" xml:space="preserve"><value>أضف تذكيرًا</value></data>
+  <data name="EdWhichMysteries.Text" xml:space="preserve"><value>أي أسرار؟</value></data>
+  <data name="EdOpeningHeader.Text" xml:space="preserve"><value>صلوات الافتتاح والأبيات</value></data>
+  <data name="EdApostlesCreed.Text" xml:space="preserve"><value>قانون إيمان الرسل</value></data>
+  <data name="EdOpeningPrayers.Text" xml:space="preserve"><value>أبانا وثلاثة سلامات مريمية في البداية</value></data>
+  <data name="EdFatima.Text" xml:space="preserve"><value>صلاة فاطمة بعد كل بيت</value></data>
+  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>صلاة فاطمة بعد السلامات المريمية الافتتاحية</value></data>
+  <data name="EdDisplayHeader.Text" xml:space="preserve"><value>العرض</value></data>
+  <data name="EdMysteryArtwork.Header" xml:space="preserve"><value>صور الأسرار</value></data>
+  <data name="EdPresenterMode.Text" xml:space="preserve"><value>وضع قائد الصلاة</value></data>
+  <data name="EdPresenterHint.Text" xml:space="preserve"><value>اجمع السلامات المريمية والمجد من كل بيت في شاشة واحدة، لتسهيل قيادة صلاة جماعية عن ظهر قلب.</value></data>
+  <data name="EdClosingHeader.Text" xml:space="preserve"><value>الصلوات الختامية</value></data>
+  <data name="EdClosingIntentions.Text" xml:space="preserve"><value>النيات الختامية</value></data>
+  <data name="EdStMichael.Text" xml:space="preserve"><value>صلاة القديس ميخائيل</value></data>
+  <data name="EdFinalSign.Text" xml:space="preserve"><value>إشارة الصليب الختامية</value></data>
+  <data name="RemOptionsHeader.Text" xml:space="preserve"><value>الخيارات</value></data>
+  <data name="BeadAntiphonLabel.Text" xml:space="preserve"><value>م</value></data>
+  <data name="FlowTransliterationButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>أظهر النقل الصوتي</value></data>
+  <data name="AbtTitle.Text" xml:space="preserve"><value>حول Prosary</value></data>
+  <data name="AbtTagline.Text" xml:space="preserve"><value>رفيق لصلاة الوردية وغيرها من الصلوات الكاثوليكية.</value></data>
+  <data name="AbtTypefacesHeader.Text" xml:space="preserve"><value>الخطوط</value></data>
+  <data name="AbtTypeFrank.Text" xml:space="preserve"><value> — رخصة SIL Open Font License 1.1 — الصلوات العبرية.</value></data>
+  <data name="AbtTypeShofar.Text" xml:space="preserve"><value> — رخصة GPL v2 مع استثناء تضمين الخطوط — الكتاب المقدس بالعبرية (مشروع Culmus، يورام غنات).</value></data>
+  <data name="AbtTypeAmiri.Text" xml:space="preserve"><value> — رخصة SIL Open Font License 1.1 — الصلوات العربية.</value></data>
+  <data name="AbtTypeScheherazade.Text" xml:space="preserve"><value> — رخصة SIL Open Font License 1.1 — الكتاب المقدس بالعربية (SIL).</value></data>
+  <data name="AbtTypeCardo.Text" xml:space="preserve"><value> — رخصة SIL Open Font License 1.1 — الكتاب المقدس باللاتينية والإنجليزية (ديفيد ج. بيري).</value></data>
+  <data name="AbtTypeNotoSyriac.Text" xml:space="preserve"><value> — رخصة SIL Open Font License 1.1 — خطوط اختيارية للآرامية بالكتابة السريانية.</value></data>
+  <data name="AbtTypeOptionalHebrew.Text" xml:space="preserve"><value> — رخصة SIL Open Font License 1.1 — خطوط اختيارية للصلوات والكتاب المقدس بالعبرية.</value></data>
+  <data name="AbtTypeStam.Text" xml:space="preserve"><value> — رخصة GPL v2 مع استثناء تضمين الخطوط — خطوط اختيارية للكتاب المقدس بالعبرية (مشروع Culmus، يورام غنات).</value></data>
+  <data name="AbtTypeFooter.Text" xml:space="preserve"><value>تستخدم الصلوات المكتوبة بالحروف اللاتينية خط Cambria المرفق مع Windows، وهو غير مضمّن في التطبيق.</value></data>
+  <data name="AbtMysteryHeader.Text" xml:space="preserve"><value>صور الأسرار</value></data>
+  <data name="AbtMysteryIntro.Text" xml:space="preserve"><value>صور الأسرار العشرين كلها لوحات كلاسيكية ضمن الملكية العامة (توفي فنانوها منذ أكثر من 100 عام)، ومصدرها ويكيميديا كومنز.</value></data>
+  <data name="AboutEasternIcons.Text" xml:space="preserve"><value>تُستخدم مجموعة صور الأسرار بالأسلوب الشرقي بموافقة إرسالية القديس غملائيل للكاثوليك الناطقين بالعبرية في الكنيسة الكاثوليكية الآرامية (السريانية).</value></data>
+  <data name="AbtOtherHeader.Text" xml:space="preserve"><value>صور أخرى</value></data>
+  <data name="AbtStationsHeader.Text" xml:space="preserve"><value>صور مراحل درب الصليب</value></data>
+  <data name="AbtStationsFugel.Text" xml:space="preserve"><value>المراحل الأربع عشرة: غيبهارد فوغل (1863–1939)، Kreuzweg (1921)، كنيسة القديس أنطونيوس، باد زاولغاو — ملكية عامة؛ الصور الفوتوغرافية لأندرياس برايفكه، أتاحها للملكية العامة.</value></data>
+  <data name="AbtStationsScriptural.Text" xml:space="preserve"><value>تضيف الصيغة الكتابية (القديس يوحنا بولس الثاني): قبلة يهوذا — جوتو (كنيسة سكروفيني، نحو 1305)؛ المسيح أمام رئيس الكهنة — خيريت فان هونتهورست (نحو 1617)، المعرض الوطني، لندن؛ إنكار القديس بطرس — رامبرانت (1660)، متحف ريكز؛ الطعن بالحربة — بيتر بول روبنز (1620)، المتحف الملكي للفنون الجميلة في أنتويرب — جميعها ملكية عامة. تستخدم بقية المشاهد صورًا مدرجة في مواضع أخرى من هذه الصفحة.</value></data>
+  <data name="AbtViaLucis.Text" xml:space="preserve"><value>مشاهد درب النور: التلاميذ عند القبر — أوجين بورنان (1898)، متحف أورسي؛ لا تلمسيني — فرا أنجيليكو (سان ماركو، نحو 1440)؛ الطريق إلى عمّاوس، والظهورات للرسل، وعند بحيرة طبرية، وفي الجليل — دوتشّو دي بونينسينيا (Maestà، 1308–1311)، سيينا؛ العشاء في عمّاوس (1601) وشك القديس توما (1601–1602) — كارافاجيو؛ تكليف المسيح لبطرس — رافائيل (نحو 1515)، المجموعة الملكية؛ العذراء في الصلاة — ساسوفيرّاتو (1640–1650)، المعرض الوطني، لندن — جميعها ملكية عامة. تستخدم بقية المشاهد صور أسرار المجد من الوردية.</value></data>
+  <data name="AbtCrownHeader.Text" xml:space="preserve"><value>صورة الإكليل الفرنسيسكاني</value></data>
+  <data name="AbtCrownMagi.Text" xml:space="preserve"><value>سجود المجوس: بارتولومي إستيبان موريو (نحو 1655–1660)، متحف توليدو للفنون — ملكية عامة. الأفراح الستة الأخرى تستخدم صور أسرار الوردية المذكورة أعلاه.</value></data>
+  <data name="AbtSorrowsHeader.Text" xml:space="preserve"><value>صور الأحزان السبعة</value></data>
+  <data name="AbtMercyHeader.Text" xml:space="preserve"><value>صورة الرحمة الإلهية</value></data>
+  <data name="AbtMercyBody.Text" xml:space="preserve"><value>يوجينيوش كازيميروفسكي، الرحمة الإلهية («Jezu, ufam Tobie»، 1934)، مزار الرحمة الإلهية، فيلنيوس — الصورة الأصلية المرسومة بإرشاد القديسة فوستينا؛ ملكية عامة.</value></data>
+  <data name="AbtJpHeader.Text" xml:space="preserve"><value>صورة صلاة يسوع</value></data>
+  <data name="AbtJpBody.Text" xml:space="preserve"><value>المسيح ضابط الكل: أيقونة مرسومة بالشمع (القرن السادس)، دير القديسة كاترينا، جبل سيناء — أقدم أيقونة باقية للمسيح ضابط الكل، تكريمًا للتقليد الشرقي للصلاة؛ ملكية عامة.</value></data>
+  <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>مصادر الكتاب المقدس</value></data>
+  <data name="AbtScriptureBody.Text" xml:space="preserve"><value>تستخدم الاقتباسات الكتابية ترجمة دواي–ريمس (الإنجليزية)، والفولغاتا الكليمنتية (اللاتينية)، وترجمة فرانتس دليتش للعهد الجديد بالعبرية (من kirjasilta.net/ha-berit)، مع نصوص العهد القديم العبرية وفق النص الماسوري، والكتاب المقدس اليسوعي بالعربية (Dar el-Machreq)، والترجمة السينودسية الروسية (1876)، وAng Dating Biblia (التاغالوغ، 1905).</value></data>
+  <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>بيانات التقويم</value></data>
+  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>بيانات التقويم والقراءات: التقويم الروماني العام من مشروع LitCal‏ (litcal.johnromanodorazio.com)؛ تقويم 1962 وكتاب قراءاته من Missale Meum‏ (missalemeum.com)؛ التقويم السرياني الكاثوليكي، والعناوين العبرية الموثقة للتقويم الروماني العام، ومراجع القراءات الرومانية والسريانية، بإذن من Evangelizo.org — إنجيل اليوم، © Evangelizo.org؛ جُمِع التقويم الأوكراني الكاثوليكي في التطبيق من المصادر التقليدية، مع المراجع البيزنطية من تقويم السنة الطقسية الأوكرانية الكاثوليكية العام (الغريغوري) لدى Royal Doors‏ (royaldoors.net). أسماء أسفار الكتاب المقدس بالعبرية: Evangelizo HE ونيابة القديس يعقوب (catholic.co.il). أسماء إضافية للأعياد والقديسين بالعبرية: نيابة القديس يعقوب، والمركز المسيحي للإعلام (cmc-terrasanta.org)، وأخبار الفاتيكان (vaticannews.va).</value></data>
+  <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>السرّ السابق</value></data>
+  <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>السرّ السابق</value></data>
+  <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>السرّ التالي</value></data>
+  <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>السرّ التالي</value></data>
+  <data name="AbtMys01Title.Text" xml:space="preserve"><value>البشارة</value></data>
+  <data name="AbtCredit01.Text" xml:space="preserve"><value> — فرا أنجيليكو (توفي 1455)</value></data>
+  <data name="AbtMys02Title.Text" xml:space="preserve"><value>الزيارة</value></data>
+  <data name="AbtCredit02.Text" xml:space="preserve"><value> — ماريوتو ألبرتينيللي (توفي 1515)</value></data>
+  <data name="AbtMys03Title.Text" xml:space="preserve"><value>الليلة المقدسة</value></data>
+  <data name="AbtCredit03.Text" xml:space="preserve"><value> — أنطونيو دا كوريجو (توفي 1534)</value></data>
+  <data name="AbtMys04Title.Text" xml:space="preserve"><value>التقدمة في الهيكل</value></data>
+  <data name="AbtCredit04.Text" xml:space="preserve"><value> — أندريا مانتينيا (توفي 1506)</value></data>
+  <data name="AbtMys05Title.Text" xml:space="preserve"><value>العثور على المسيح في الهيكل</value></data>
+  <data name="AbtCredit05.Text" xml:space="preserve"><value> — سيموني مارتيني (توفي 1344)</value></data>
+  <data name="AbtMys06Title.Text" xml:space="preserve"><value>معمودية المسيح</value></data>
+  <data name="AbtCredit06.Text" xml:space="preserve"><value> — بييرو ديلا فرانشيسكا (توفي 1492)</value></data>
+  <data name="AbtMys07Title.Text" xml:space="preserve"><value>عرس قانا</value></data>
+  <data name="AbtCredit07.Text" xml:space="preserve"><value> — باولو فيرونيزي (توفي 1588)</value></data>
+  <data name="AbtMys08Title.Text" xml:space="preserve"><value>العظة على الجبل</value></data>
+  <data name="AbtCredit08.Text" xml:space="preserve"><value> — كوزيمو روسيلي (توفي 1507)</value></data>
+  <data name="AbtMys09Title.Text" xml:space="preserve"><value>التجلّي</value></data>
+  <data name="AbtCredit09.Text" xml:space="preserve"><value> — رافائيل (توفي 1520)</value></data>
+  <data name="AbtMys10Title.Text" xml:space="preserve"><value>العشاء الأخير</value></data>
+  <data name="AbtCredit10.Text" xml:space="preserve"><value> — ليوناردو دا فينشي (توفي 1519)</value></data>
+  <data name="AbtMys11Title.Text" xml:space="preserve"><value>النزاع في بستان الزيتون</value></data>
+  <data name="AbtMys12Title.Text" xml:space="preserve"><value>جلد المسيح</value></data>
+  <data name="AbtCredit11.Text" xml:space="preserve"><value> — كارافاجيو (توفي 1610)</value></data>
+  <data name="AbtMys13Title.Text" xml:space="preserve"><value>التكليل بالشوك</value></data>
+  <data name="AbtMys14Title.Text" xml:space="preserve"><value>المسيح حاملًا الصليب</value></data>
+  <data name="AbtCredit12.Text" xml:space="preserve"><value> — تيتيان (توفي 1576)</value></data>
+  <data name="AbtMys15Title.Text" xml:space="preserve"><value>المسيح مصلوبًا</value></data>
+  <data name="AbtCredit13.Text" xml:space="preserve"><value> — دييغو فيلاثكيث (توفي 1660)</value></data>
+  <data name="AbtMys16Title.Text" xml:space="preserve"><value>القيامة</value></data>
+  <data name="AbtMys17Title.Text" xml:space="preserve"><value>صعود المسيح</value></data>
+  <data name="AbtCredit14.Text" xml:space="preserve"><value> — رامبرانت (توفي 1669)</value></data>
+  <data name="AbtMys18Title.Text" xml:space="preserve"><value>العنصرة</value></data>
+  <data name="AbtCredit15.Text" xml:space="preserve"><value> — إل غريكو (توفي 1614)</value></data>
+  <data name="AbtMys19Title.Text" xml:space="preserve"><value>انتقال العذراء</value></data>
+  <data name="AbtMys20Title.Text" xml:space="preserve"><value>تتويج العذراء</value></data>
+  <data name="AbtOther01Title.Text" xml:space="preserve"><value>المصلوب</value></data>
+  <data name="AbtCredit16.Text" xml:space="preserve"><value> — تشيمابويه (توفي 1302).</value></data>
+  <data name="AbtOther02Title.Text" xml:space="preserve"><value>مادونا كاوبر الصغيرة</value></data>
+  <data name="AbtCredit17.Text" xml:space="preserve"><value> — رافائيل (توفي 1520).</value></data>
+  <data name="AbtOther03Title.Text" xml:space="preserve"><value>الإيمان والرجاء والمحبة</value></data>
+  <data name="AbtCredit18.Text" xml:space="preserve"><value> — رافائيل، بريدلا مذبح باليوني (توفي 1520).</value></data>
+  <data name="AbtOther04Title.Text" xml:space="preserve"><value>يدان في الصلاة</value></data>
+  <data name="AbtCredit19.Text" xml:space="preserve"><value> — ألبريشت دورر (توفي 1528).</value></data>
+  <data name="AbtOther05Title.Text" xml:space="preserve"><value>الثالوث الأقدس</value></data>
+  <data name="AbtCredit20.Text" xml:space="preserve"><value> — مازاتشو (توفي 1428).</value></data>
+  <data name="AbtOther06Title.Text" xml:space="preserve"><value>المسيح في الجحيم</value></data>
+  <data name="AbtCredit21.Text" xml:space="preserve"><value> — فرا أنجيليكو (توفي 1455).</value></data>
+  <data name="AbtOther07Title.Text" xml:space="preserve"><value>ميخائيل</value></data>
+  <data name="AbtCredit22.Text" xml:space="preserve"><value> — غويدو ريني (توفي 1642).</value></data>
+  <data name="AbtOther08Title.Text" xml:space="preserve"><value>رأس المسيح</value></data>
+  <data name="AbtCredit23.Text" xml:space="preserve"><value> — رامبرانت (توفي 1669).</value></data>
+  <data name="AbtSorrow01Title.Text" xml:space="preserve"><value>نبوءة سمعان</value></data>
+  <data name="AbtCredit24.Text" xml:space="preserve"><value> — رامبرانت فان راين، نشيد تسبيح سمعان (1631)، ماورتشهاوس — ملكية عامة.</value></data>
+  <data name="AbtSorrow02Title.Text" xml:space="preserve"><value>الهرب إلى مصر</value></data>
+  <data name="AbtCredit25.Text" xml:space="preserve"><value> — بارتولومي إستيبان موريو (نحو 1647–1650)، معهد ديترويت للفنون — ملكية عامة.</value></data>
+  <data name="AbtSorrow03Title.Text" xml:space="preserve"><value>فقدان يسوع في الهيكل</value></data>
+  <data name="AbtCredit26.Text" xml:space="preserve"><value> — باولو فيرونيزي، المسيح بين العلماء (نحو 1560)، متحف برادو — ملكية عامة.</value></data>
+  <data name="AbtSorrow04Title.Text" xml:space="preserve"><value>اللقاء في طريق الصليب</value></data>
+  <data name="AbtCredit27.Text" xml:space="preserve"><value> — رافائيل، Lo Spasimo (نحو 1514–1516)، متحف برادو — ملكية عامة.</value></data>
+  <data name="AbtSorrow05Title.Text" xml:space="preserve"><value>الصلب</value></data>
+  <data name="AbtCredit28.Text" xml:space="preserve"><value> — هندريك تر بروغن، الصلب مع العذراء والقديس يوحنا (نحو 1625)، متحف متروبوليتان للفنون — CC0.</value></data>
+  <data name="AbtSorrow06Title.Text" xml:space="preserve"><value>الإنزال عن الصليب</value></data>
+  <data name="AbtCredit29.Text" xml:space="preserve"><value> — بيتر بول روبنز (نحو 1612–1614)، كاتدرائية السيدة العذراء، أنتويرب — ملكية عامة.</value></data>
+  <data name="AbtSorrow07Title.Text" xml:space="preserve"><value>دفن يسوع</value></data>
+  <data name="AbtCredit30.Text" xml:space="preserve"><value> — تيتيان، دفن المسيح (نحو 1520)، متحف اللوفر — ملكية عامة.</value></data>
+  <data name="HomeAddDevotionButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>أضف صلاة</value></data>
+  <data name="HomeRemoveFromPray.Text" xml:space="preserve"><value>أزل من «صلّ»</value></data>
+  <data name="multi_day_day_of" xml:space="preserve"><value>اليوم {0} من {1}</value></data>
+  <data name="multi_day_complete" xml:space="preserve"><value>إكمال</value></data>
+  <data name="multi_day_starts_today" xml:space="preserve"><value>تبدأ اليوم</value></data>
+  <data name="multi_day_starts_on" xml:space="preserve"><value>تبدأ {0}</value></data>
+  <data name="multi_day_missed_title" xml:space="preserve"><value>فاتك يوم</value></data>
+  <data name="multi_day_missed_body" xml:space="preserve"><value>صلّ اليوم الذي فاتك، أو تابع مع اليوم الحالي، أو ابدأ الصلاة كلها من جديد.</value></data>
+  <data name="multi_day_pray_missed" xml:space="preserve"><value>صلّ اليوم {0}</value></data>
+  <data name="multi_day_pray_today" xml:space="preserve"><value>تابع مع اليوم {0}</value></data>
+  <data name="multi_day_start_over" xml:space="preserve"><value>ابدأ من جديد</value></data>
+  <data name="home_add_to_pray" xml:space="preserve"><value>أضف إلى «صلّ»</value></data>
+  <data name="home_remove_from_pray" xml:space="preserve"><value>أزل من «صلّ»</value></data>
+  <data name="MultiDayMissedBar.Title" xml:space="preserve"><value>فاتك يوم</value></data>
+  <data name="MultiDayMissedBar.Message" xml:space="preserve"><value>صلّ اليوم الذي فاتك، أو تابع مع اليوم الحالي، أو ابدأ الصلاة كلها من جديد.</value></data>
+  <data name="MultiDayStartOverButton.Content" xml:space="preserve"><value>ابدأ من جديد</value></data>
+  <data name="multi_day_reminder_body" xml:space="preserve"><value>اليوم {0} من {1} بانتظارك.</value></data>
+  <data name="MultiDayNotNowButton.Content" xml:space="preserve"><value>ليس الآن</value></data>
+  <data name="multi_day_completed_title" xml:space="preserve"><value>اكتملت الصلاة. هل تصلّي {0} بعد ذلك؟</value></data>
+  <data name="multi_day_pray_next" xml:space="preserve"><value>صلّ {0}</value></data>
+  <data name="multi_day_not_now" xml:space="preserve"><value>ليس الآن</value></data>
+  <data name="SetRiteCombo.Header" xml:space="preserve"><value>الطقس</value></data>
+  <data name="settings_rite" xml:space="preserve"><value>الطقس</value></data>
+  <data name="settings_aramaic_sign_of_cross" xml:space="preserve"><value>إشارة الصليب بالآرامية</value></data>
+  <data name="settings_aramaic_sign_of_cross_form_a" xml:space="preserve"><value>الصيغة أ</value></data>
+  <data name="settings_aramaic_sign_of_cross_form_b" xml:space="preserve"><value>الصيغة ب</value></data>
+  <data name="SetTypographyHeader.Text" xml:space="preserve"><value>الخطوط</value></data>
+  <data name="SetSyriacTypeface.Header" xml:space="preserve"><value>الآرامية السريانية</value></data>
+  <data name="SetHebrewPrayerTypeface.Header" xml:space="preserve"><value>الصلوات العبرية</value></data>
+  <data name="SetHebrewScriptureTypeface.Header" xml:space="preserve"><value>الكتاب المقدس بالعبرية</value></data>
+  <data name="settings_typeface_default" xml:space="preserve"><value>الافتراضي</value></data>
+  <data name="settings_typeface_western_aramaic" xml:space="preserve"><value>الآرامية الغربية</value></data>
+  <data name="settings_typeface_eastern_aramaic" xml:space="preserve"><value>الآرامية الشرقية</value></data>
+  <data name="settings_typeface_david_libre" xml:space="preserve"><value>David Libre</value></data>
+  <data name="settings_typeface_sans_serif" xml:space="preserve"><value>خط النظام بلا زوائد</value></data>
+  <data name="settings_typeface_stam_ashkenaz" xml:space="preserve"><value>Stam Ashkenaz</value></data>
+  <data name="settings_typeface_stam_sefarad" xml:space="preserve"><value>Stam Sefarad</value></data>
+  <data name="settings_typeface_rashi" xml:space="preserve"><value>راشي</value></data>
+  <data name="SetFavoriteBasicPrayersFirst.Header" xml:space="preserve"><value>انقل الصلوات الأساسية المفضلة إلى الأعلى</value></data>
+  <data name="SetAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>إشارة الصليب بالآرامية</value></data>
+  <data name="EdAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>إشارة الصليب بالآرامية</value></data>
+  <data name="EdRiteCombo.Header" xml:space="preserve"><value>الطقس</value></data>
+  <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>صلّ أي وردية</value></data>
+  <data name="HomeAddRosary.Content" xml:space="preserve"><value>أضف وردية</value></data>
+  <data name="HomeAddJesusPrayer.Content" xml:space="preserve"><value>أضف صلاة يسوع</value></data>
+  <data name="HomeAddToPrayHeader.Text" xml:space="preserve"><value>أضف إلى «صلّ»</value></data>
+  <data name="HomeSavedPresets.Text" xml:space="preserve"><value>الإعدادات المحفوظة…</value></data>
+  <data name="HomeEditOrderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>عدّل الترتيب…</value></data>
+  <data name="HomeReminders.Text" xml:space="preserve"><value>التذكيرات…</value></data>
+  <data name="PresetEdit.Text" xml:space="preserve"><value>تعديل</value></data>
+  <data name="PresetReminders.Text" xml:space="preserve"><value>التذكيرات…</value></data>
+  <data name="PresetSetDefault.Text" xml:space="preserve"><value>اجعلها الافتراضية</value></data>
+  <data name="PresetDelete.Text" xml:space="preserve"><value>حذف</value></data>
+  <data name="SetImportBundle.Content" xml:space="preserve"><value>استورد حزمة صلاة…</value></data>
+  <data name="SetExportBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>صدّر للتعديل</value></data>
+  <data name="SetRemoveBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>إزالة</value></data>
+  <data name="PickerEternalRest.Header" xml:space="preserve"><value>من أجل المؤمنين الراقدين</value></data>
+  <data name="PickerAntiphon.Header" xml:space="preserve"><value>الأنتيفونة المريمية</value></data>
+  <data name="PickerMysteryArtwork.Header" xml:space="preserve"><value>صور الأسرار</value></data>
+  <data name="PickerApostlesCreed.Text" xml:space="preserve"><value>قانون إيمان الرسل</value></data>
+  <data name="PickerOpeningPrayers.Text" xml:space="preserve"><value>أبانا وثلاثة سلامات مريمية في البداية</value></data>
+  <data name="PickerFatima.Text" xml:space="preserve"><value>صلاة فاطمة بعد كل بيت</value></data>
+  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>صلاة فاطمة بعد السلامات المريمية الافتتاحية</value></data>
+  <data name="PickerPresenterMode.Text" xml:space="preserve"><value>وضع قائد الصلاة</value></data>
+  <data name="PickerClosingIntentions.Text" xml:space="preserve"><value>النيات الختامية</value></data>
+  <data name="PickerStMichael.Text" xml:space="preserve"><value>صلاة القديس ميخائيل</value></data>
+  <data name="PickerFinalCross.Text" xml:space="preserve"><value>إشارة الصليب الختامية</value></data>
+  <data name="AbtPrayerTextsHeader.Text" xml:space="preserve"><value>نصوص الصلوات</value></data>
+  <!-- The Vicariate line is a provisional attribution of fact, pending the exact
+       wording Fr. Piotr sends; replace it verbatim then, as the Exarchate's was. -->
+  <data name="AbtPrayerTextsBody.Text" xml:space="preserve"><value>نص مسبحة الرحمة الإلهية بالعبرية هو نص البطريركية اللاتينية في القدس، الذي وافق عليه البطريرك ميشيل صباح عام 2003. تُستخدم بعض الصلوات بالعبرية والآرامية بإذن من النائب البطريركي للجماعة الكاثوليكية الآرامية (السريانية). الصلوات العبرية هي نصوص نيابة القديس يعقوب للكاثوليك الناطقين بالعبرية، مأخوذة من كتاب صلواتها.</value></data>
+  <data name="BasicPrayersTitle.Text" xml:space="preserve"><value>الصلوات الأساسية</value></data>
+  <data name="home_today_rank_solemnity" xml:space="preserve"><value>احتفال</value></data>
+  <data name="home_today_rank_feast" xml:space="preserve"><value>عيد</value></data>
+  <data name="home_today_rank_memorial" xml:space="preserve"><value>تذكار</value></data>
+  <data name="home_today_rank_optional_memorial" xml:space="preserve"><value>تذكار اختياري</value></data>
+  <data name="home_today_rank_sunday" xml:space="preserve"><value>الأحد</value></data>
+  <data name="home_today_rank_great_feast" xml:space="preserve"><value>عيد كبير</value></data>
+  <data name="home_today_rank_holy_week" xml:space="preserve"><value>الأسبوع المقدس</value></data>
+  <data name="home_today_rank_fast" xml:space="preserve"><value>صوم</value></data>
+  <data name="home_today_rank_1st_class" xml:space="preserve"><value>الدرجة الأولى</value></data>
+  <data name="home_today_rank_2nd_class" xml:space="preserve"><value>الدرجة الثانية</value></data>
+  <data name="home_today_rank_3rd_class" xml:space="preserve"><value>الدرجة الثالثة</value></data>
+  <data name="today_language_app" xml:space="preserve"><value>لغة التطبيق</value></data>
+  <data name="HomeTodayLanguage.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>لغة قسم «اليوم»</value></data>
+  <data name="BtnBack.Content" xml:space="preserve"><value>رجوع</value></data>
+  <data name="BtnFinish.Content" xml:space="preserve"><value>إنهاء</value></data>
+  <data name="PickerMysteries.Header" xml:space="preserve"><value>الأسرار</value></data>
+  <data name="PickerSpecificSet.Header" xml:space="preserve"><value>مجموعة محددة</value></data>
+  <data name="PickerWhichMystery.Header" xml:space="preserve"><value>أي سرّ</value></data>
+  <data name="EditorName.Header" xml:space="preserve"><value>الاسم</value></data>
+  <data name="EditorName.PlaceholderText" xml:space="preserve"><value>مثلًا: وردية الصباح</value></data>
+  <data name="AudioPreviousChapter.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>الفصل السابق</value></data>
+  <data name="AudioNextChapter.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>الفصل التالي</value></data>
+  <data name="AudioPlayPause.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>تشغيل أو إيقاف مؤقت</value></data>
+  <data name="BrowseRefresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>تحديث</value></data>
+  <data name="import_unreadable" xml:space="preserve"><value>هذا الملف ليس حزمة .prosaryprayer قابلة للقراءة.</value></data>
+  <data name="import_empty" xml:space="preserve"><value>هذه الحزمة لا تحتوي على صلاة.</value></data>
+  <data name="import_duplicate" xml:space="preserve"><value>صلاة باسم "{0}" مثبّتة بالفعل.</value></data>
+  <data name="browse_newer_catalog" xml:space="preserve"><value>يستخدم المستودع تنسيقًا أحدث للفهرس. حدّث Prosary لتصفحه.</value></data>
+  <data name="reminder_rosary" xml:space="preserve"><value>حان وقت صلاة المسبحة.</value></data>
+  <data name="reminder_jesus" xml:space="preserve"><value>حان وقت صلاة يسوع.</value></data>
+  <data name="reminder_pray" xml:space="preserve"><value>حان وقت الصلاة.</value></data>
+  <data name="preset_classic_rosary" xml:space="preserve"><value>المسبحة التقليدية</value></data>
+  <data name="prayer_default_name" xml:space="preserve"><value>صلاتي</value></data>
+  <data name="AbtAdditionalSources.Text" xml:space="preserve"><value>الكتاب المقدس بالفرنسية: كرامبون (1923)، ملك عام. الكتاب المقدس بالإيطالية: أنطونيو مارتيني؛ البيانات المنظّمة © Giovanni Novelli، بترخيص CC BY 4.0 ‏(parolaviva.art). الصلوات بالفرنسية والإيطالية: موجز التعليم المسيحي للفاتيكان. نيات البابا: شبكة صلاة البابا العالمية (2026–2027)؛ الترجمة العبرية من Prosary. النيات بالروسية (2026): ترجمة t.me/ihsovs، نشرتها رعية الحبل بلا دنس في تشيليابينسك (cc74.wordpress.com/rosary/).</value></data>
+  <data name="AbtBookNameSources.Text" xml:space="preserve"><value>أسماء أسفار الكتاب المقدس: AELF، دار المشرق، الترجمة السينودسية الروسية (Azbyka)، جمعية الكتاب المقدس الفلبينية وParolaViva.</value></data>
+  <data name="AbtPopeNetworkLink.Content" xml:space="preserve"><value>شبكة صلاة البابا العالمية</value></data>
+  <data name="AbtParolaVivaLink.Content" xml:space="preserve"><value>ParolaViva — CC BY 4.0</value></data>
+  <data name="category_marian" xml:space="preserve"><value>مريميّة</value></data>
+  <data name="category_daily" xml:space="preserve"><value>يوميّة</value></data>
+  <data name="category_mercy" xml:space="preserve"><value>الرحمة</value></data>
+  <data name="category_franciscan" xml:space="preserve"><value>فرنسيسكانيّة</value></data>
+  <data name="category_advent" xml:space="preserve"><value>زمن المجيء</value></data>
+  <data name="category_meditative" xml:space="preserve"><value>تأمليّة</value></data>
+  <data name="category_passion" xml:space="preserve"><value>آلام المسيح</value></data>
+  <data name="category_eastern" xml:space="preserve"><value>شرقيّة</value></data>
+  <data name="category_short" xml:space="preserve"><value>قصيرة</value></data>
+  <data name="category_easter" xml:space="preserve"><value>الفصح</value></data>
+  <data name="category_other" xml:space="preserve"><value>أخرى</value></data>
+  <data name="AbtPrayerSources.Text" xml:space="preserve"><value>مصادر إضافية للصلوات: أخبار الفاتيكان، ومزار فاطمة، وكاتدرائية نوتردام في باريس، وAELF، ومجلس الأساقفة الإيطالي (CEI).</value></data>
+  <data name="AbtDivineMercySources.Text" xml:space="preserve"><value>مسبحة الرحمة الإلهية: رهبانية راهبات سيدة الرحمة.</value></data>
+  <data name="AppDescription" xml:space="preserve"><value>رفيق لصلاة الوردية والتبشير الملائكي وصلاة يسوع.</value></data>
+  <data name="AbtSevenSorrowsSources.Text" xml:space="preserve"><value>صلوات الأحزان السبعة: Notre Dame de Chrétienté وConfraternite.net.</value></data>
+</root>

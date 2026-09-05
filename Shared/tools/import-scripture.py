@@ -32,6 +32,7 @@ import html
 import io
 import json
 import re
+import subprocess
 import sys
 import urllib.parse
 import urllib.request
@@ -61,6 +62,30 @@ BOOKS = {
 # which case `second_script` names the transform and the result rides in "transliterations" —
 # which is exactly what the prayer flow's script toggle reads.
 LANGUAGES = {
+    "fr": {
+        "sources": {testament: (
+            "https://raw.githubusercontent.com/scrollmapper/bible_databases/master/formats/json/FreCrampon.json",
+            "scrollmapper", "Bible Augustin Crampon (1923), public domain; scrollmapper/bible_databases")
+            for testament in ("ot", "nt")},
+        "primary_script": None, "second_script": None,
+        "books": {"Matthew": ("Matthieu",), "Mark": ("Marc",), "Luke": ("Luc",),
+                  "John": ("Jean",), "Acts": ("Actes",), "Revelation": ("Apocalypse",),
+                  "Isaiah": ("Isaïe",)},
+        "edition": ("Crampon 1923",),
+    },
+    "it": {
+        "sources": {testament: (
+            "https://parolaviva.art/api/v1/bibbia/{book}/{chapter}.json",
+            "martini", "Bibbia Martini (1769–1781), public domain; Parola Viva data by Giovanni Novelli, CC-BY 4.0")
+            for testament in ("ot", "nt")},
+        "primary_script": None, "second_script": None,
+        "books": {"Matthew": ("Matteo",), "Mark": ("Marco",), "Luke": ("Luca",),
+                  "John": ("Giovanni",), "Acts": ("Atti",), "Revelation": ("Apocalisse",),
+                  "Isaiah": ("Isaia",)},
+        "file_names": {"Matthew": "mt", "Mark": "mc", "Luke": "lc", "John": "gv",
+                       "Acts": "at", "Revelation": "ap", "Isaiah": "is"},
+        "edition": ("Martini",),
+    },
     "arc": {
         "sources": {
             "nt": ("https://raw.githubusercontent.com/ETCBC/syrnt/master/plain/0.1/{book}.txt",
@@ -165,6 +190,7 @@ SOURCE_GAPS = {
 }
 
 VERSIFICATION = {
+    "fr": {("Isaiah", 9): (2, -1)},  # Crampon follows Hebrew numbering here.
     "arc": {("Isaiah", 9): (2, -1)},  # (from this Vulgate verse onward, shift by this much)
     "el": {("Isaiah", 9): (2, -1)},
     "es": {},
@@ -186,7 +212,8 @@ def fetch(language: str, testament: str, book: str, binary: bool = False):
     stem = spec.get("file_names", {}).get(book, book)
     CACHE.mkdir(exist_ok=True)
     # A whole-testament archive is fetched once, not once per book.
-    cached = CACHE / (f"{language}-{testament}-archive" if layout == "vplzip"
+    cached = CACHE / (f"{language}-bible.json" if layout == "scrollmapper" else
+                      f"{language}-{testament}-archive" if layout == "vplzip"
                       else f"{language}-{testament}-{stem}".replace("/", "_"))
     if not cached.exists():
         url = url_template.format(book=urllib.parse.quote(stem, safe=""))
@@ -204,6 +231,12 @@ def verses(language: str, testament: str, book: str) -> dict:
     layout = LANGUAGES[language]["sources"][testament][1]
     if layout == "wikisource":
         return _verses_wikisource(language, testament, book)
+    if layout == "scrollmapper":
+        source_name = "Revelation of John" if book == "Revelation" else book
+        source = next(row for row in json.loads(fetch(language, testament, book))["books"]
+                      if row["name"] == source_name)
+        return {(chapter["chapter"], verse["verse"]): verse["text"].strip()
+                for chapter in source["chapters"] for verse in chapter["verses"]}
     if layout == "vplzip":
         stem = LANGUAGES[language].get("file_names", {}).get(book, book)
         table = {}
@@ -383,7 +416,23 @@ def source_reference(language: str, book: str, spans: list, where: str) -> str |
 
 
 def passage(language: str, book: str, testament: str, spans: list, where: str) -> str | None:
-    table = verses(language, testament, book)
+    if LANGUAGES[language]["sources"][testament][1] == "martini":
+        table = {}
+        spec = LANGUAGES[language]
+        for chapter in sorted({span[0] for span in spans}):
+            CACHE.mkdir(exist_ok=True)
+            stem = spec["file_names"][book]
+            cached = CACHE / f"it-martini-{stem}-{chapter}.json"
+            if not cached.exists():
+                url = spec["sources"][testament][0].format(book=stem, chapter=chapter)
+                subprocess.run(["curl", "-L", "--fail", "--silent", "--show-error", url,
+                                "-o", str(cached)], check=True)
+            source = json.loads(cached.read_text())
+            if source["c"] != chapter:
+                raise ValueError(f"{where}: Martini returned the wrong chapter")
+            table.update({(chapter, verse["n"]): verse["t"].strip() for verse in source["v"]})
+    else:
+        table = verses(language, testament, book)
     out = []
     for chapter, first, last in spans:
         for cited in range(first, last + 1):
@@ -520,6 +569,8 @@ def build(language: str, bundle: Path) -> dict | None:
 
 
 NOTES = {
+    "fr": "Scripture: Bible Augustin Crampon (1923), public domain; transcribed by scrollmapper/bible_databases. Imported passages retain this edition's wording and numbering. Other prayers have separately credited published sources.",
+    "it": "Scripture: Bibbia di Antonio Martini (1769–1781), public domain. Structured data by Giovanni Novelli, Parola Viva (https://parolaviva.art/opendata), CC BY 4.0. Imported passages retain this edition's wording and numbering. Other prayers have separately credited published sources.",
     "arc": ("Scripture entries imported from the Peshitta by Shared/tools/import-scripture.py — "
             "re-run it rather than editing them by hand. Their Hebrew square script is converted "
             "with Erez's script rules; the source text in Syriac letters is beside it for the "
@@ -541,7 +592,11 @@ def render(language: str, built: dict, existing: dict) -> dict:
     """Merge into whatever content/<lang>.json already holds — a hand-authored prayer must never
     be clobbered by a scripture import."""
     out = json.loads(json.dumps(existing)) if existing else {}
-    out["$comment"] = NOTES[language]
+    if language in ("fr", "it"):
+        # Published fixed-prayer provenance may share the file with imported Scripture.
+        out["$scriptureSource"] = NOTES[language]
+    else:
+        out["$comment"] = NOTES[language]
     out["$scriptureImport"] = {
         "prayerKeys": sorted(built["prayers"]),
         "mysteryKeys": sorted(built["mysteries"]),

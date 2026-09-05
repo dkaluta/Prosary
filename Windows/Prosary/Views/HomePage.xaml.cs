@@ -22,6 +22,20 @@ public sealed partial class HomePage : Page
         await ViewModel.LoadAsync();
     }
 
+    private void OnTodayLanguageMenuOpening(object sender, object e)
+    {
+        if (sender is not MenuFlyout menu) return;
+        menu.Items.Clear();
+        var choices = new[] { (Code: string.Empty, Name: Loc.Tr("today_language_app", "App language")) }
+            .Concat(UiLanguageCatalog.All.Select(language => (Code: language.Code, Name: language.NativeName)));
+        foreach (var (code, name) in choices)
+        {
+            var item = new ToggleMenuFlyoutItem { Text = name, IsChecked = ViewModel.TodayLanguageCode == code };
+            item.Click += (_, _) => ViewModel.TodayLanguageCode = code;
+            menu.Items.Add(item);
+        }
+    }
+
     /// <summary>The approved reorder pattern (not jiggle): a ListView with built-in
     /// drag-reorder inside a dialog; Done persists the new sequence, Reset returns to
     /// directory order at next launch.</summary>

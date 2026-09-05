@@ -1,5 +1,7 @@
 package com.dkaluta.prosary.ui.search
 
+import com.dkaluta.prosary.ui.shared.CategoryLabels
+
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -64,13 +66,13 @@ fun SearchScreen(onLaunch: (LaunchTarget) -> Unit) {
     @Suppress("UNUSED_EXPRESSION") generation
     val localMatches = DevotionDirectory.all(context).filter { listing ->
         query.isBlank() || listing.title.contains(query, ignoreCase = true) ||
-            listing.tags.any { it.contains(query, ignoreCase = true) }
+            listing.tags.any { it.contains(query, ignoreCase = true) || CategoryLabels.label(it, context).contains(query, ignoreCase = true) }
     }
     val installed = PrayerPackStore.customDevotionIds().toSet()
     val communityMatches = repoBundles.filter { bundle ->
         bundle.id !in installed && (
             query.isBlank() ||
-                "${bundle.name} ${bundle.author} ${bundle.description} ${bundle.tags.joinToString(" ")}"
+                "${bundle.name} ${bundle.author} ${bundle.description} ${bundle.tags.joinToString(" ")} ${bundle.tags.joinToString(" ") { CategoryLabels.label(it, context) }}"
                     .contains(query, ignoreCase = true)
             )
     }
@@ -139,7 +141,7 @@ fun SearchScreen(onLaunch: (LaunchTarget) -> Unit) {
                                     style = MaterialTheme.typography.bodyLarge,
                                 )
                                 Text(
-                                    "${bundle.author} · ${bundle.tags.joinToString(" · ")}",
+                                    "${bundle.author} · ${bundle.tags.joinToString(" · ") { CategoryLabels.label(it, context) }}",
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 )

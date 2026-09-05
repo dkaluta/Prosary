@@ -1,5 +1,5 @@
 {
- "$comment": "Per-day table, Byzantine — Ukrainian Greek Catholic, the diasporic (fully Gregorian) usage: CURATED in Shared/tools/fetch-feasts.py (no licensed machine-readable source exists — fixed menologion authored there, movable Paschal cycle computed from the Gregorian Pascha). Ranks: Great Feast / Feast / Sunday / Holy Week / Fast. Awaiting eparchial/community verification; see the script for the layering rules. Hebrew feast and saint names use the credited source catalogs in Shared/tools/hebrew-feast-titles.json and hebrew-saint-titles.json; the calendar's own dates, observances, ranks and original titles are retained.",
+ "$comment": "Per-day table, Byzantine — Ukrainian Greek Catholic, the diasporic (fully Gregorian) usage: CURATED in Shared/tools/fetch-feasts.py (no licensed machine-readable source exists — fixed menologion authored there, movable Paschal cycle computed from the Gregorian Pascha). Ranks: Great Feast / Feast / Sunday / Holy Week / Fast. Awaiting eparchial/community verification; see the script for the layering rules. Hebrew feast and saint names use the credited source catalogs in Shared/tools/hebrew-feast-titles.json and hebrew-saint-titles.json; the calendar's own dates, observances, ranks and original titles are retained. French and Italian feast names are sourced from LitCal (Apache-2.0), joined by stable event identity with reviewed exact aliases in Shared/tools/feast-titles-localized.json; no calendar dates or ranks are changed.",
  "generated": "2026-08-24",
  "years": [
   2026,
@@ -411,7 +411,9 @@
    "title": "Saint John Chrysostom",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "יוחנן כריסוסטומוס הקדוש, הגמון ודוקטור הכנסייה"
+    "he": "יוחנן כריסוסטומוס הקדוש, הגמון ודוקטור הכנסייה",
+    "fr": "Saint Jean Chrysostome, évêque et docteur de l'Église",
+    "it": "San Giovanni Crisostomo, vescovo e dottore"
    }
   },
   "2026-11-15": {
@@ -860,7 +862,9 @@
    "title": "Saint John Chrysostom",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "יוחנן כריסוסטומוס הקדוש, הגמון ודוקטור הכנסייה"
+    "he": "יוחנן כריסוסטומוס הקדוש, הגמון ודוקטור הכנסייה",
+    "fr": "Saint Jean Chrysostome, évêque et docteur de l'Église",
+    "it": "San Giovanni Crisostomo, vescovo e dottore"
    }
   },
   "2027-11-14": {

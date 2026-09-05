@@ -22,7 +22,7 @@ struct AboutView: View {
             .foregroundStyle(.secondary)
         }
 
-        section("Typefaces") {
+        section(String(localized: "about.section.typefaces", defaultValue: "Typefaces")) {
           Text("about.typefaces.frankRuhlLibre")
           Text("about.typefaces.shofar")
           Text("about.typefaces.amiri")
@@ -37,7 +37,7 @@ struct AboutView: View {
             .padding(.top, 4)
         }
 
-        section("Mystery Illustrations") {
+        section(String(localized: "about.section.mysteries", defaultValue: "Mystery Illustrations")) {
           Text("about.mysteryImages.intro")
             .font(.footnote)
             .foregroundStyle(.secondary)
@@ -50,13 +50,13 @@ struct AboutView: View {
             .padding(.top, 4)
         }
 
-        section("Other Images") {
+        section(String(localized: "about.section.other", defaultValue: "Other Images")) {
           ForEach(otherImageAttributions, id: \.self) { key in
             Text(LocalizedStringKey(key))
           }
         }
 
-        section("Stations of the Cross Illustrations") {
+        section(String(localized: "about.section.stations", defaultValue: "Stations of the Cross Illustrations")) {
           Text(String(
             localized: "about.stationImages.fugelCycle",
             defaultValue: "All 14 stations: Gebhard Fugel (1863\u{2013}1939), Kreuzweg (1921), St. Antonius, Bad Saulgau \u{2014} public domain; photographs by Andreas Praefcke, released into the public domain."))
@@ -68,46 +68,63 @@ struct AboutView: View {
             defaultValue: "The Via Lucis scenes: The Disciples at the Tomb \u{2014} Eug\u{00E8}ne Burnand (1898), Mus\u{00E9}e d'Orsay; Noli me tangere \u{2014} Fra Angelico (San Marco, c. 1440); The Road to Emmaus, the appearances to the apostles, at Lake Tiberias, and in Galilee \u{2014} Duccio di Buoninsegna (Maest\u{00E0}, 1308\u{2013}1311), Siena; Supper at Emmaus (1601) and The Incredulity of Saint Thomas (1601\u{2013}1602) \u{2014} Caravaggio; Christ's Charge to Peter \u{2014} Raphael (c. 1515), Royal Collection; The Virgin in Prayer \u{2014} Sassoferrato (1640\u{2013}1650), National Gallery, London \u{2014} all public domain. Its other scenes reuse the Rosary's glorious-mystery illustrations."))
         }
 
-        section("Franciscan Crown Illustration") {
+        section(String(localized: "about.section.crown", defaultValue: "Franciscan Crown Illustration")) {
           Text(String(
             localized: "about.franciscanCrownImage.magiMurillo",
             defaultValue: "The Adoration of the Magi: Bartolom\u{00E9} Esteban Murillo (c. 1655\u{2013}60), Toledo Museum of Art \u{2014} public domain. The other six Joys reuse the Rosary mystery illustrations above."))
         }
 
-        section("Seven Sorrows Illustrations") {
+        section(String(localized: "about.section.sorrows", defaultValue: "Seven Sorrows Illustrations")) {
           ForEach(sevenSorrowsAttributions, id: \.self) { key in
             Text(LocalizedStringKey(key))
           }
         }
 
-        section("Divine Mercy Illustration") {
+        section(String(localized: "about.section.divineMercy", defaultValue: "Divine Mercy Illustration")) {
           Text(String(
             localized: "about.divineMercyImage.kazimirowski",
             defaultValue: "Eugeniusz Kazimirowski, Divine Mercy (\u{201C}Jezu, ufam Tobie\u{201D}, 1934), Divine Mercy Sanctuary, Vilnius \u{2014} the original image painted under St. Faustina\u{2019}s direction; public domain."))
         }
 
-        section("Jesus Prayer Illustration") {
+        section(String(localized: "about.section.jesusPrayer", defaultValue: "Jesus Prayer Illustration")) {
           Text(String(
             localized: "about.jesusPrayerImage.pantocrator",
             defaultValue: "Christ Pantocrator: encaustic icon (6th century), Saint Catherine\u{2019}s Monastery, Mount Sinai \u{2014} the oldest surviving icon of Christ Pantocrator, honoring the prayer\u{2019}s Eastern tradition; public domain."))
         }
 
-        section("Prayer Texts") {
+        section(String(localized: "about.section.prayerTexts", defaultValue: "Prayer Texts")) {
           Text("about.prayerTexts")
             .font(.footnote)
             .foregroundStyle(.secondary)
+          Text("about.additionalPrayerSources")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+          Text("about.divineMercyPrayerSources")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+          Text("about.sevenSorrowsPrayerSources")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
         }
 
-        section("Scripture Sources") {
+        section(String(localized: "about.section.scripture", defaultValue: "Scripture Sources")) {
           Text("about.scriptureSources")
             .font(.footnote)
             .foregroundStyle(.secondary)
+          Text("about.additionalSources")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+          Link("about.parolaVivaLink", destination: URL(string: "https://parolaviva.art/opendata")!)
         }
 
-        section("Calendar Data") {
+        section(String(localized: "about.section.calendar", defaultValue: "Calendar Data")) {
           Text("about.calendarData")
             .font(.footnote)
             .foregroundStyle(.secondary)
+          Text("about.readingBookSources")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+          Link("about.popeNetworkLink", destination: URL(string: "https://www.popesprayer.va/pray/")!)
         }
       }
       .padding(24)

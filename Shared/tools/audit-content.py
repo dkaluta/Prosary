@@ -30,6 +30,15 @@ SWIFT = {
     "ru": "PrayerTranslations+Russian.swift", "tl": "PrayerTranslations+Tagalog.swift",
 }
 TERMINATORS = tuple(".!?)*\u05f4\u201d\"'\u2026\u05c3\u061f\u06d4]")
+# These complete source-supplied chants intentionally have no terminal punctuation.
+# Keep the exemption scoped to their bundle, recension and key; ordinary prose still fails.
+UNPUNCTUATED_CHANTS = {
+    ("trisagion", language, key)
+    for language in ("arc", "he-x-gamliel")
+    for key in ("trisagionAcclamation", "trisagionShortAcclamation", "trisagionKyrie")
+}
+# The French Vatican Compendium prints this complete hymn without a final punctuation mark.
+UNPUNCTUATED_CHANTS.add(("rosary", "fr", "salveRegina"))
 
 
 def load_hardcoded(lang):
@@ -69,12 +78,20 @@ def main():
         bundle = path.split(os.sep)[-3]
         lang = os.path.basename(path)[:-5]
         data = json.load(open(path, encoding="utf-8"))
+        for contaminant in ("side_ads(", "sc_project", "TOP OF PAGE", "<script", "javascript:"):
+            if contaminant.casefold() in json.dumps(data, ensure_ascii=False).casefold():
+                problems.append((bundle, lang, "content", f"scraped website contamination: {contaminant}"))
         for key, text in data.get("prayers", {}).items():
-            if key.endswith("Title") or key.endswith("Label"):
+            if not isinstance(text, str) or not text.strip():
+                problems.append((bundle, lang, key, "empty prayer value"))
+                continue
+            if (key.endswith(("Title", "Label", "Subtitle"))
+                    or re.fullmatch(r"stationOrdinal\d+", key)
+                    or key in ("decadeOrdinalNoun", "decadeOrdinalFormat", "repetitionCounterConnector")):
                 if text != text.strip():
                     problems.append((bundle, lang, key, "whitespace-padded title"))
                 continue
-            if not terminal_ok(text):
+            if not terminal_ok(text) and (bundle, lang, key) not in UNPUNCTUATED_CHANTS:
                 problems.append((bundle, lang, key, f"suspicious ending: {text[-40:]!r}"))
             expected = hard.get(lang, {}).get(key)
             if expected is not None and expected != text:

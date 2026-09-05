@@ -75,7 +75,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Back" Command="{x:Bind ViewModel.BackCommand, Mode=OneWay}"
+            <Button x:Uid="BtnBack" Grid.Column="0" Content="Back" Command="{x:Bind ViewModel.BackCommand, Mode=OneWay}"
                     IsEnabled="{x:Bind ViewModel.CanGoBack, Mode=OneWay}" Background="Transparent" />
             <Button Grid.Column="2" Content="{x:Bind ViewModel.NextButtonText, Mode=OneWay}"
                     Command="{x:Bind ViewModel.NextCommand, Mode=OneWay}" Style="{StaticResource AccentButtonStyle}" MinWidth="120"

@@ -29,7 +29,7 @@ struct SearchTabView: View {
     guard !query.isEmpty else { return listings }
     return listings.filter {
       $0.title.localizedCaseInsensitiveContains(query)
-        || $0.tags.contains { $0.localizedCaseInsensitiveContains(query) }
+        || $0.tags.contains { $0.localizedCaseInsensitiveContains(query) || UILanguage.tag($0).localizedCaseInsensitiveContains(query) }
     }
   }
 
@@ -39,7 +39,7 @@ struct SearchTabView: View {
     return repoBundles.filter { bundle in
       guard !installed.contains(bundle.id) else { return false }
       guard !query.isEmpty else { return true }
-      return "\(bundle.name) \(bundle.author) \(bundle.description) \(bundle.tags.joined(separator: " "))"
+      return "\(bundle.name) \(bundle.author) \(bundle.description) \(bundle.tags.joined(separator: " ")) \(bundle.tags.map { UILanguage.tag($0) }.joined(separator: " "))"
         .localizedCaseInsensitiveContains(query)
     }
   }
@@ -82,7 +82,7 @@ struct SearchTabView: View {
               VStack(alignment: .leading, spacing: 2) {
                 Text(HebrewDisplayText.unpointed(bundle.name))
                 Text(verbatim: HebrewDisplayText.unpointed(
-                  "\(bundle.author) · \(bundle.tags.joined(separator: " · "))"))
+                  "\(bundle.author) · \(bundle.tags.map { UILanguage.tag($0) }.joined(separator: " · "))"))
                   .font(.caption)
                   .foregroundStyle(.secondary)
               }

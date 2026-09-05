@@ -57,7 +57,7 @@ public partial class RepositoryRow : ObservableObject
         }
     }
 
-    public string TagsLine => string.Join(" · ", Bundle.Tags);
+    public string TagsLine => string.Join(" · ", Bundle.Tags.Select(CategoryLabels.Display));
 
     public bool HasTags => Bundle.Tags.Count > 0;
 
@@ -140,7 +140,7 @@ public partial class RepositoryBrowserViewModel : ObservableObject
         catch (Exception ex)
         {
             LoadError = ex is RepositoryClient.UnsupportedCatalogException
-                ? ex.Message
+                ? Loc.Tr("browse_newer_catalog", "The repository uses a newer catalog format — update Prosary to browse it.")
                 : Loc.Tr("browse_unreachable", "The repository could not be reached.");
             System.Diagnostics.Debug.WriteLine($"[RepositoryBrowser] {ex}");
         }
@@ -154,7 +154,7 @@ public partial class RepositoryBrowserViewModel : ObservableObject
         Filtered = new ObservableCollection<RepositoryRow>(_all.Where(row =>
             (SelectedTag == AllTag || row.Bundle.Tags.Contains(SelectedTag)) &&
             (query.Length == 0 ||
-             $"{row.Bundle.Name} {row.Bundle.Author} {row.Bundle.Description} {row.Bundle.Id}"
+             $"{row.Title} {row.Bundle.Name} {row.Bundle.Author} {row.Bundle.Description} {row.Bundle.Id} {row.TagsLine}"
                  .Contains(query, StringComparison.OrdinalIgnoreCase))));
     }
 

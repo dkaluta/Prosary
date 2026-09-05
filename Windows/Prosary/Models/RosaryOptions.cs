@@ -66,6 +66,6 @@ public sealed record RosaryOptions
     private string SingleMysteryTitle()
     {
         var chosen = MysteryCatalog.ForGroup(SpecificMysteryGroup).FirstOrDefault(m => m.Order == SpecificMysteryOrder);
-        return chosen is null ? SpecificMysteryGroup.ToString() : MysteryTranslations.Get("en", chosen.ImageKey).Title;
+        return chosen is null ? SpecificMysteryGroup.UiName() : MysteryTranslations.Get(UiLanguageCatalog.Current, chosen.ImageKey).Title;
     }
 }

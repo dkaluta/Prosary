@@ -204,11 +204,11 @@ public sealed class WindowsReminderScheduler : IReminderScheduler
     // before an app update keeps its old body until re-armed (next launch's RescheduleAll).
     private static string NotificationBody(Prayer prayer) => prayer.Kind switch
     {
-        PrayerKind.Rosary => "Time to pray the Rosary.",
-        PrayerKind.JesusPrayer => "Time for the Jesus Prayer.",
+        PrayerKind.Rosary => Localization.Loc.Tr("reminder_rosary", "Time to pray the Rosary."),
+        PrayerKind.JesusPrayer => Localization.Loc.Tr("reminder_jesus", "Time for the Jesus Prayer."),
         PrayerKind.Custom => prayer.CustomDevotionId is { } bundleId
-            ? Localization.PrayerPackStore.Info(bundleId)?.LocalizedReminderBody ?? "Time to pray."
-            : "Time to pray.",
+            ? Localization.PrayerPackStore.Info(bundleId)?.LocalizedReminderBody ?? Localization.Loc.Tr("reminder_pray", "Time to pray.")
+            : Localization.Loc.Tr("reminder_pray", "Time to pray."),
         _ => throw new ArgumentOutOfRangeException(nameof(prayer))
     };
 }

@@ -57,7 +57,7 @@ struct Prayer: Identifiable, Hashable, Codable {
   /// Display string for list rows — shows "Default (Latina)" for sentinel, plain name otherwise.
   var languageDisplayName: String {
     languageCode == LanguageCatalog.defaultSentinel
-      ? "Default (\(LanguageCatalog.resolve(languageCode).nativeName))"
+      ? String(localized: "prayer.language.default", defaultValue: "Default (\(LanguageCatalog.resolve(languageCode).nativeName))")
       : LanguageCatalog.resolve(languageCode).nativeName
   }
 }

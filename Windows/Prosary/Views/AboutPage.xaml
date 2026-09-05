@@ -145,8 +145,22 @@
 
                 <StackPanel Spacing="8">
                     <TextBlock x:Uid="AbtScriptureHeader" Text="Scripture Sources" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
-                    <TextBlock x:Uid="AbtScriptureBody" Text="Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) with Hebrew Old Testament passages following the Masoretic text, the Jesuit Arabic Bible (Beirut, 1880, revised 1988), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905) — all public domain."
+                    <TextBlock x:Uid="AbtScriptureBody" Text="Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) with Hebrew Old Testament passages following the Masoretic text, the Jesuit Arabic Bible (Dar el-Machreq), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905)."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    <TextBlock x:Uid="AbtAdditionalSources" Text="French Scripture: Crampon (1923), public domain. Italian Scripture: Antonio Martini; structured data © Giovanni Novelli, CC BY 4.0 (parolaviva.art). French and Italian prayers: Vatican Compendium. Pope’s intentions: Pope’s Worldwide Prayer Network (2026–2027); Hebrew translation by Prosary."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                    <TextBlock x:Uid="AbtPrayerSources" Text="Additional prayer sources: Vatican News, the Sanctuary of Fatima, Notre-Dame de Paris, AELF and the Italian Episcopal Conference (CEI)."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                    <TextBlock x:Uid="AbtDivineMercySources" Text="Divine Mercy Chaplet: Congregation of the Sisters of Our Lady of Mercy."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                    <TextBlock x:Uid="AbtSevenSorrowsSources" Text="Seven Sorrows prayers: Notre Dame de Chrétienté and Confraternite.net."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                    <TextBlock x:Uid="AbtBookNameSources" Text="Bible book names: AELF, Dar el-Machreq, Russian Synodal Bible (Azbyka), Philippine Bible Society and ParolaViva."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                    <HyperlinkButton x:Uid="AbtParolaVivaLink" Content="ParolaViva — CC BY 4.0"
+                                     NavigateUri="https://parolaviva.art/opendata" />
+                    <HyperlinkButton x:Uid="AbtPopeNetworkLink" Content="Pope’s Worldwide Prayer Network"
+                                     NavigateUri="https://www.popesprayer.va/pray/" />
                 </StackPanel>
 
                 <StackPanel Spacing="8">
