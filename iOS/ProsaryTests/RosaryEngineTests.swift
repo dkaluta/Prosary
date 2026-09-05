@@ -64,6 +64,27 @@ final class RosaryEngineTests: XCTestCase {
 
   // MARK: - Step count
 
+  @MainActor
+  func testAramaicReadingAidsSurviveEveryDecadeAndPresenterMode() throws {
+    let steps = makeEngine().buildSteps(for: prayer(language: "arc"))
+    for (key, expectedCount) in [("paterNoster", 5), ("aveMaria", 50), ("gloriaPatri", 5)] {
+      let body = PrayerPackStore.resolveBodyText(bundleId: "rosary", languageCode: "arc", key: key)
+      let readingAid = try XCTUnwrap(PrayerPackStore.transliteration(
+        bundleId: "rosary", languageCode: "arc", key: key))
+      let beads = steps.filter { $0.decadeIndex != nil && $0.body == body }
+      XCTAssertEqual(beads.count, expectedCount, key)
+      XCTAssertTrue(beads.allSatisfy { $0.transliteratedBody == readingAid }, key)
+    }
+
+    let presenter = makeEngine().buildSteps(for: prayer(presenterMode: true, language: "arc"))
+    let combined = presenter.filter { $0.hailMaryIndexInDecade != nil }
+    let readingAid = try ["aveMaria", "gloriaPatri"].map {
+      try XCTUnwrap(PrayerPackStore.transliteration(bundleId: "rosary", languageCode: "arc", key: $0))
+    }.joined(separator: "\n\n")
+    XCTAssertEqual(combined.count, 5)
+    XCTAssertTrue(combined.allSatisfy { $0.transliteratedBody == readingAid })
+  }
+
   func testFiveDecadeStepCountDefaultConfig() {
     let engine = makeEngine()
     let steps = engine.buildSteps(for: prayer())

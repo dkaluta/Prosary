@@ -387,6 +387,8 @@ class PrayerEngine(
             val fruitLabel = PrayerTranslations.get(languageCode, PrayerKey.FructusMysteriiLabel)
             val majorBody = resolve(decades.majorStep.bodyKey)
             val minorBody = resolve(decades.minorStep.bodyKey)
+            val majorTransliteration = PrayerPackStore.transliteration(bundleId, languageCode, decades.majorStep.bodyKey)
+            val minorTransliteration = PrayerPackStore.transliteration(bundleId, languageCode, decades.minorStep.bodyKey)
             val decadeCount = decades.entries?.size ?: decades.count ?: 0
 
             for (d in 0 until decadeCount) {
@@ -421,6 +423,7 @@ class PrayerEngine(
                 steps.add(
                     RosaryStep(
                         title = fixedTitle(decades.majorStep), subtitle = decadeSubtitle, body = majorBody,
+                        transliteratedBody = majorTransliteration,
                         decadeIndex = d, imageOverrideKey = decades.majorStep.imageKey ?: imageKey,
                     ),
                 )
@@ -430,6 +433,7 @@ class PrayerEngine(
                         RosaryStep(
                             title = "${fixedTitle(decades.minorStep)} ${counter(h, decades.minorCount, languageCode)}",
                             subtitle = decadeSubtitle, body = minorBody,
+                            transliteratedBody = minorTransliteration,
                             decadeIndex = d, hailMaryIndexInDecade = h, imageOverrideKey = imageKey,
                         ),
                     )
@@ -473,6 +477,8 @@ class PrayerEngine(
         val fruitLabel = PrayerTranslations.get(languageCode, PrayerKey.FructusMysteriiLabel)
         val majorBody = resolve(decades.majorStep.bodyKey)
         val minorBody = resolve(decades.minorStep.bodyKey)
+        val majorTransliteration = PrayerPackStore.transliteration(bundleId, languageCode, decades.majorStep.bodyKey)
+        val minorTransliteration = PrayerPackStore.transliteration(bundleId, languageCode, decades.minorStep.bodyKey)
         val presenterOn = optionValues["presenterMode"] == "true"
         val showGroupName = groups.size > 1
 
@@ -510,16 +516,22 @@ class PrayerEngine(
                 steps.add(
                     RosaryStep(
                         title = fixedTitle(decades.majorStep), subtitle = decadeSubtitle, body = majorBody,
+                        transliteratedBody = majorTransliteration,
                         decadeIndex = decadeIndex, imageOverrideKey = decades.majorStep.imageKey,
                     ),
                 )
 
                 if (presenterOn && presenter != null) {
+                    val transliterations = presenter.bodyKeys.map {
+                        PrayerPackStore.transliteration(bundleId, languageCode, it)
+                    }
                     steps.add(
                         RosaryStep(
                             title = presenter.combinedTitleKey?.let { resolve(it) } ?: presenter.combinedTitle.orEmpty(),
                             subtitle = decadeSubtitle,
                             body = presenter.bodyKeys.joinToString("\n\n") { resolve(it) },
+                            transliteratedBody = transliterations.takeIf { it.all { text -> text != null } }
+                                ?.filterNotNull()?.joinToString("\n\n"),
                             mystery = mystery, decadeIndex = decadeIndex, hailMaryIndexInDecade = decades.minorCount,
                             imageVariantKey = variantKey(mystery),
                         ),
@@ -530,6 +542,7 @@ class PrayerEngine(
                             RosaryStep(
                                 title = "${fixedTitle(decades.minorStep)} ${counter(h, decades.minorCount, languageCode)}",
                                 subtitle = decadeSubtitle, body = minorBody,
+                                transliteratedBody = minorTransliteration,
                                 mystery = mystery, decadeIndex = decadeIndex, hailMaryIndexInDecade = h,
                                 imageVariantKey = variantKey(mystery),
                             ),
@@ -564,6 +577,7 @@ class PrayerEngine(
         val body = entry.bodyKey?.let { PrayerPackStore.resolveBodyText(bundleId, languageCode, it) }.orEmpty()
         RosaryStep(
             title = title, subtitle = decadeSubtitle, body = body,
+            transliteratedBody = entry.bodyKey?.let { PrayerPackStore.transliteration(bundleId, languageCode, it) },
             decadeIndex = decadeIndex, imageOverrideKey = entry.imageKey,
         )
     }

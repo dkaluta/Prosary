@@ -47,6 +47,11 @@ public static class PrayerPackStore
         "This file is not a readable .prosaryprayer bundle.";
 
     private static readonly Dictionary<string, Dictionary<string, string>> PrayerOverrides = new();
+    private static readonly Dictionary<string, Dictionary<string, string>> PrayerTransliterations = new();
+    private static readonly HashSet<string> SharedPrayerTitleKeys = new(StringComparer.Ordinal)
+    {
+        "signumCrucisTitle", "symbolumApostolorumTitle", "paterNosterTitle", "aveMariaTitle", "gloriaPatriTitle",
+    };
     /// <summary>The fixed prayer keys that may participate in the process-wide override layer.
     /// Deriving this once from the native translation catalog keeps the check AOT-safe and in
     /// step with <see cref="PrayerKey"/> without reflecting over its constants. Bundle-local
@@ -364,16 +369,18 @@ public static class PrayerPackStore
         return TryCopyPackEntry(new PackEntryLocation(bundleId, file), path, MaxAudioEntryBytes);
     }
 
-    /// <summary>Resolves a <c>devotion.json</c> <c>bodyKey</c>/<c>titleKey</c>: bundle content in
-    /// the requested code and its base language first; then the shared prayer table for shared
-    /// keys; then bundle content through the user's language precedence; finally the raw key.</summary>
-    /// <summary>The v0.7 reading aid: this key's text transliterated into another script, if
-    /// the bundle's language file carries one. No fallback chain — a transliteration belongs
-    /// to exactly the language it transliterates.</summary>
+    /// <summary>Follows the body's exact source. A missing aid there stops resolution, so a
+    /// fallback or later override cannot pair text with another version's reading aid.</summary>
     public static string? Transliteration(string bundleId, string? languageCode, string key)
     {
-        if (key == "signumCrucis" && languageCode is not null
-            && (LanguageCatalog.BaseLanguage(languageCode) ?? languageCode) == "arc"
+        var chain = LanguageCatalog.FallbackChain(languageCode);
+        var requested = chain.FirstOrDefault() ?? LanguageCatalog.DefaultCode;
+        string? LocalReadingAid(string sourceBundle, string code, string sourceKey) =>
+            TransliterationsByBundle.GetValueOrDefault(sourceBundle)?.GetValueOrDefault(code)?.GetValueOrDefault(sourceKey);
+        bool HasLocalText(string sourceBundle, string code) =>
+            RawContentByBundle.GetValueOrDefault(sourceBundle)?.GetValueOrDefault(code)?.ContainsKey(key) == true;
+        if (key == "signumCrucis"
+            && (LanguageCatalog.BaseLanguage(requested) ?? requested) == "arc"
             && AppSettings.UsesSystemWideAramaicSignOfCrossForm
             && AppSettings.AramaicSignOfCrossForm == AppSettings.AramaicSignOfCrossFormB
             && TransliterationsByBundle.TryGetValue("rosary", out var rosaryLanguages)
@@ -382,19 +389,50 @@ public static class PrayerPackStore
         {
             return formBText;
         }
-        return languageCode is not null
-            && TransliterationsByBundle.TryGetValue(bundleId, out var byLanguage)
-            && byLanguage.TryGetValue(languageCode, out var map)
-            && map.TryGetValue(key, out var text)
-            ? text
-            : null;
+        var requestedCodes = new[] { requested, LanguageCatalog.BaseLanguage(requested) }
+            .Where(code => code is not null).Cast<string>().Distinct().ToList();
+        foreach (var code in requestedCodes)
+        {
+            if (HasLocalText(bundleId, code)) return LocalReadingAid(bundleId, code, key);
+        }
+        if (SharedPrayerTitleKeys.Contains(key))
+        {
+            foreach (var code in requestedCodes)
+            {
+                if (HasLocalText("rosary", code)) return LocalReadingAid("rosary", code, key);
+            }
+        }
+        var sharedKey = key == "signumCrucisFormB" ? PrayerKey.SignumCrucis : ToPascalCase(key);
+        if (SharedPrayerKeys.Contains(sharedKey))
+        {
+            foreach (var code in chain)
+            {
+                if (PrayerOverride(code, sharedKey) is not null)
+                {
+                    if (sharedKey == PrayerKey.SignumCrucis && code == "arc"
+                        && AppSettings.UsesSystemWideAramaicSignOfCrossForm
+                        && AppSettings.AramaicSignOfCrossForm == AppSettings.AramaicSignOfCrossFormB)
+                        return LocalReadingAid("rosary", "arc", "signumCrucisFormB");
+                    return PrayerTransliterations.GetValueOrDefault(code)?.GetValueOrDefault(sharedKey);
+                }
+                if (PrayerTranslations.ByLanguage.GetValueOrDefault(code)?.ContainsKey(sharedKey) == true) return null;
+            }
+            return null;
+        }
+        foreach (var code in chain.Where(code => !requestedCodes.Contains(code)))
+        {
+            if (HasLocalText(bundleId, code)) return LocalReadingAid(bundleId, code, key);
+        }
+        return null;
     }
 
     public static string ResolveBodyText(string bundleId, string? languageCode, string key)
     {
-        if (languageCode == "he-x-gamliel" && key == "paterNosterTitle") return "תפילת האדון";
-        if (key == "signumCrucis" && languageCode is not null
-            && (LanguageCatalog.BaseLanguage(languageCode) ?? languageCode) == "arc"
+        var chain = LanguageCatalog.FallbackChain(languageCode);
+        var requested = chain.FirstOrDefault() ?? LanguageCatalog.DefaultCode;
+        if (requested == "he-x-gamliel" && key == "paterNosterTitle") return "תפילת האדון";
+        if (key == "signumCrucis"
+            && (LanguageCatalog.BaseLanguage(requested) ?? requested) == "arc"
             && AppSettings.UsesSystemWideAramaicSignOfCrossForm
             && AppSettings.AramaicSignOfCrossForm == AppSettings.AramaicSignOfCrossFormB
             && RawContentByBundle.TryGetValue("rosary", out var rosaryLanguages)
@@ -405,13 +443,19 @@ public static class PrayerPackStore
         }
         if (RawContentByBundle.TryGetValue(bundleId, out var byLanguage))
         {
-            var chain = LanguageCatalog.FallbackChain(languageCode);
-            var requested = chain.FirstOrDefault() ?? LanguageCatalog.DefaultCode;
             var requestedCodes = new[] { requested, LanguageCatalog.BaseLanguage(requested) }
                 .Where(code => code is not null).Cast<string>().Distinct().ToList();
             foreach (var code in requestedCodes)
             {
                 if (byLanguage.TryGetValue(code, out var content) && content.TryGetValue(key, out var text)) return text;
+            }
+            if (SharedPrayerTitleKeys.Contains(key))
+            {
+                foreach (var code in requestedCodes)
+                {
+                    if (RawContentByBundle.GetValueOrDefault("rosary")?.GetValueOrDefault(code)?.GetValueOrDefault(key) is { } title)
+                        return title;
+                }
             }
 
             if (key == "signumCrucisFormB")
@@ -635,6 +679,15 @@ public static class PrayerPackStore
                 if (SharedPrayerKeys.Contains(sharedKey))
                 {
                     prayers[sharedKey] = text;
+                    if (!PrayerTransliterations.TryGetValue(language, out var readingAids))
+                    {
+                        readingAids = new Dictionary<string, string>();
+                        PrayerTransliterations[language] = readingAids;
+                    }
+                    if (content.Transliterations?.GetValueOrDefault(key) is { } readingAid)
+                        readingAids[sharedKey] = readingAid;
+                    else
+                        readingAids.Remove(sharedKey);
                 }
             }
             PrayerOverrides[language] = prayers;

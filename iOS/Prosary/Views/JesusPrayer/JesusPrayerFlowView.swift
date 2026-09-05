@@ -65,21 +65,9 @@ struct JesusPrayerFlowView: View {
       canGoBack: progress.canGoBack,
       onBack: back,
       onNext: next,
-      centralActionLabel: String(localized: "jesusPrayerFlow.pray", defaultValue: "Pray")
+      centralActionLabel: String(localized: "jesusPrayerFlow.pray", defaultValue: "Pray"),
+      flowActions: AnyView(flowActions)
     )
-    .toolbar {
-      if case .unbounded = effectiveTarget {
-        ToolbarItem(placement: .confirmationAction) {
-          Button("prayerFlow.finish") { finish() }
-        }
-      }
-      ToolbarItem(placement: .secondaryAction) {
-        Button { toggleFavorite() } label: {
-          Image(systemName: matchingFavoriteId != nil ? "star.fill" : "star")
-        }
-        .accessibilityLabel(matchingFavoriteId != nil ? "prayerFlow.removeFromFavorites" : "prayerFlow.addToFavorites")
-      }
-    }
     .alert(
       String(localized: "prayerFlow.continue.title", defaultValue: "Continue this prayer?"),
       isPresented: .init(
@@ -102,6 +90,17 @@ struct JesusPrayerFlowView: View {
       guard hasLoaded, pendingContinuation == nil, !didFinish else { return }
       persistProgress()
     }
+  }
+
+  @ViewBuilder
+  private var flowActions: some View {
+    if case .unbounded = effectiveTarget {
+      Button("prayerFlow.finish") { finish() }
+    }
+    Button { toggleFavorite() } label: {
+      Image(systemName: matchingFavoriteId != nil ? "star.fill" : "star")
+    }
+    .accessibilityLabel(matchingFavoriteId != nil ? "prayerFlow.removeFromFavorites" : "prayerFlow.addToFavorites")
   }
 
   private func load() async {

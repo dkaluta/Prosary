@@ -247,6 +247,28 @@ public class TodayInfoStoreTests
     }
 
     [Fact]
+    public void OtherCalendarsLocalizeTheirOwnAppointedReadingsInHebrew()
+    {
+        TodayInfoStore.SelectedCalendarId = "roman1962";
+        var vetus = TodayInfoStore.Readings(new DateOnly(2026, 9, 3));
+        Assert.Equal("הראשונה אל התסלוניקים ב׳", vetus.First().LocalizedShort("he"));
+        Assert.Equal("הבשורה  על-פי יוחנן כ״א 15–17", vetus.Last().LocalizedFull("he"));
+
+        TodayInfoStore.SelectedCalendarId = "ugcc";
+        var byzantine = TodayInfoStore.Readings(new DateOnly(2026, 9, 3));
+        Assert.Equal("אל הגלטים ג׳", byzantine.First().LocalizedShort("he"));
+        Assert.Equal("אגרת שאול אל הגלטים ג׳ 23–ד׳ 5", byzantine.First().LocalizedFull("he"));
+        Assert.Equal("השנייה של כיפא א׳", TodayInfoStore.Readings(new DateOnly(2026, 8, 6)).First().LocalizedShort("he"));
+
+        TodayInfoStore.SelectedCalendarId = "syriac";
+        var syriac = TodayInfoStore.Readings(new DateOnly(2026, 9, 3));
+        Assert.Equal("אל הפיליפים א׳", syriac.First().LocalizedShort("he-x-gamliel"));
+        Assert.Equal("אגרת שאול אל הפיליפים א׳ 12–21", syriac.First().LocalizedFull("he"));
+        Assert.Equal("השנייה אל טימותיאוס ב׳", TodayInfoStore.Readings(new DateOnly(2026, 8, 8)).First().LocalizedShort("he"));
+        Assert.Empty(TodayInfoStore.Readings(new DateOnly(2026, 8, 1)));
+    }
+
+    [Fact]
     public void SwitchingCalendarsAlsoReloadsThatCalendarsReadings()
     {
         var date = new DateOnly(2026, 8, 31);

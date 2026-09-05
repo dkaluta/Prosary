@@ -1,3 +1,5 @@
+using Prosary.Localization;
+
 namespace Prosary.Models;
 
 /// <summary>
@@ -29,4 +31,15 @@ public static class BasicPrayerCatalog
     ];
 
     public static BasicPrayer? Prayer(string id) => All.FirstOrDefault(p => p.Id == id);
+
+    public static RosaryStep Step(BasicPrayer prayer, string? languageCode = null)
+    {
+        var language = LanguageCatalog.Resolve(languageCode);
+        return new RosaryStep(
+            Title: PrayerPackStore.ResolveDisplayText(prayer.BundleId, language.Code, prayer.TitleKey),
+            Subtitle: null,
+            Body: PrayerPackStore.ResolveBodyText(prayer.BundleId, language.Code, prayer.BodyKey),
+            TransliteratedBody: PrayerPackStore.Transliteration(prayer.BundleId, language.Code, prayer.BodyKey),
+            ImageOverrideKey: prayer.ImageKey);
+    }
 }

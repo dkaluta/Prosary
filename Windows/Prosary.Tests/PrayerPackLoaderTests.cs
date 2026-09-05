@@ -31,6 +31,19 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Fact]
+    public void SharedAramaicPrayersKeepTheirHeadingsAndMatchingReadingAid()
+    {
+        Assert.Equal("שוּבחָא לַאבָא", PrayerPackStore.ResolveBodyText("oAntiphons", "arc", "gloriaPatriTitle"));
+        Assert.Equal(PrayerPackStore.ResolveBodyText("trisagion", "arc", "gloriaPatri"),
+            PrayerPackStore.ResolveBodyText("oAntiphons", "arc", "gloriaPatri"));
+        var readingAid = PrayerPackStore.Transliteration("oAntiphons", "arc", "gloriaPatri");
+        Assert.NotNull(readingAid);
+        Assert.Equal(PrayerPackStore.Transliteration("trisagion", "arc", "gloriaPatri"), readingAid);
+        Assert.NotEqual(PrayerPackStore.Transliteration("rosary", "arc", "gloriaPatri"), readingAid);
+        Assert.Null(PrayerPackStore.Transliteration("oAntiphons", "en", "gloriaPatri"));
+    }
+
+    [Fact]
     public void RosaryPackProvidedKeyOverridesEnglishText()
     {
         var text = PrayerTranslations.Get("en", PrayerKey.OratioFatimae);

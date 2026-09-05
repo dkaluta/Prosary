@@ -101,7 +101,8 @@ struct CustomDevotionFlowView: View {
         AudioPlaybackBar(controller: audio, seasonColor: seasonColor,
                          chapterTitles: resolvedChapterTitles)
       ) : nil,
-      audioIsPlaying: audio.isPlaying
+      audioIsPlaying: audio.isPlaying,
+      flowActions: AnyView(flowActions)
     )
     // The recording's chapters drive the text while it plays: entering a chapter that carries
     // a stepIndex hint turns the page. Hints are advisory (the built sequence is option- and
@@ -119,93 +120,6 @@ struct CustomDevotionFlowView: View {
     .onDisappear {
       if hasLoaded, pendingContinuation == nil, !didFinish { persistProgress() }
       audio.stop()
-    }
-    .toolbar {
-      // Language switcher — the app-level prayer-language setting was the only way to change
-      // a generic devotion's language, and testers didn't find it (they assumed the devotion
-      // shipped fewer languages than it does). Mirrors the variant menu: rebuilds the session
-      // in place and persists the choice to the matching favorite when one exists.
-      if let languages = PrayerPackStore.info(for: devotionId)?.languages,
-         languages.count > 1 || languages.contains("he") {
-        ToolbarItem(placement: .primaryAction) {
-          Menu {
-            languageButton(
-              raw: LanguageCatalog.defaultSentinel,
-              name: String(localized: "prayerFlow.language.appDefault", defaultValue: "App setting"))
-            Divider()
-            // Hebrew Vicariate and Mission are independent prayer-language choices. A bundle
-            // that advertises base Hebrew therefore offers both; the Mission's sparse overlay
-            // falls back to Vicariate Hebrew one prayer at a time.
-            ForEach(LanguageCatalog.availableOptions(for: languages)) { option in
-              languageButton(raw: option.code, name: option.nativeName)
-            }
-          } label: {
-            Image(systemName: "globe")
-          }
-          .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer language"))
-          .accessibilityIdentifier("languageMenu")
-        }
-      }
-      // Day picker — multi-day ("days"-type) devotions only: jump to any day; finishing a
-      // session advances the favorite to the next one automatically.
-      if let days = PrayerPackStore.definition(for: devotionId)?.days, days.count > 1 {
-        ToolbarItem(placement: .primaryAction) {
-          Menu {
-            ForEach(Array(days.enumerated()), id: \.offset) { index, day in
-              Button {
-                switchDay(to: index)
-              } label: {
-                let label = HebrewDisplayText.unpointed(
-                  day.period.map { "\($0) — \(day.localizedName)" } ?? day.localizedName)
-                if index == dayIndex {
-                  Label(label, systemImage: "checkmark")
-                } else {
-                  Text(label)
-                }
-              }
-            }
-          } label: {
-            Image(systemName: "calendar")
-          }
-          .accessibilityLabel(String(localized: "prayerFlow.day", defaultValue: "Day"))
-          .accessibilityIdentifier("dayMenu")
-        }
-      }
-      // Variant switcher — only for bundles declaring alternate step-sets (e.g. the Stations'
-      // traditional vs. scriptural forms). Switching rebuilds the session from step 0 and
-      // persists the choice to the matching favorite when one exists.
-      if let definition = PrayerPackStore.definition(for: devotionId),
-         let variants = definition.variants, variants.count > 1 {
-        // "No explicit choice" resolves per the prayer language (a rite can declare a form its
-        // own), so both the checkmark and the persistence baseline use the effective default.
-        let defaultVariantId =
-          definition.effectiveVariantId(nil, languageCode: languageCode) ?? variants[0].id
-        ToolbarItem(placement: .primaryAction) {
-          Menu {
-            ForEach(variants, id: \.id) { variant in
-              Button {
-                switchVariant(to: variant.id, defaultVariantId: defaultVariantId)
-              } label: {
-                if variant.id == (variantId ?? defaultVariantId) {
-                  Label(variant.localizedName, systemImage: "checkmark")
-                } else {
-                  Text(variant.localizedName)
-                }
-              }
-            }
-          } label: {
-            Image(systemName: "text.book.closed")
-          }
-          .accessibilityIdentifier("variantMenu")
-        }
-      }
-      ToolbarItem(placement: .primaryAction) {
-        Button { toggleFavorite() } label: {
-          Image(systemName: isPinned ? "star.fill" : "star")
-        }
-        .accessibilityLabel(isPinned ? "prayerFlow.removeFromFavorites" : "prayerFlow.addToFavorites")
-        .accessibilityIdentifier("pinDevotionButton")
-      }
     }
     .confirmationDialog(
       completionSuggestion.map {
@@ -270,6 +184,87 @@ struct CustomDevotionFlowView: View {
                   defaultValue: "You have an unfinished prayer. Continue where you left off or begin again?"))
     }
     .task { await load() }
+  }
+
+  @ViewBuilder
+  private var flowActions: some View {
+    // Language switcher — the app-level prayer-language setting was the only way to change
+    // a generic devotion's language, and testers didn't find it (they assumed the devotion
+    // shipped fewer languages than it does). Mirrors the variant menu: rebuilds the session
+    // in place and persists the choice to the matching favorite when one exists.
+    if let languages = PrayerPackStore.info(for: devotionId)?.languages,
+       languages.count > 1 || languages.contains("he") {
+      Menu {
+        languageButton(
+          raw: LanguageCatalog.defaultSentinel,
+          name: String(localized: "prayerFlow.language.appDefault", defaultValue: "App setting"))
+        Divider()
+        // Hebrew Vicariate and Mission are independent prayer-language choices. A bundle
+        // that advertises base Hebrew therefore offers both; the Mission's sparse overlay
+        // falls back to Vicariate Hebrew one prayer at a time.
+        ForEach(LanguageCatalog.availableOptions(for: languages)) { option in
+          languageButton(raw: option.code, name: option.nativeName)
+        }
+      } label: {
+        Image(systemName: "globe")
+      }
+      .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer language"))
+      .accessibilityIdentifier("languageMenu")
+    }
+    // Day picker — multi-day ("days"-type) devotions only: jump to any day; finishing a
+    // session advances the favorite to the next one automatically.
+    if let days = PrayerPackStore.definition(for: devotionId)?.days, days.count > 1 {
+      Menu {
+        ForEach(Array(days.enumerated()), id: \.offset) { index, day in
+          Button {
+            switchDay(to: index)
+          } label: {
+            let label = HebrewDisplayText.unpointed(
+              day.period.map { "\($0) — \(day.localizedName)" } ?? day.localizedName)
+            if index == dayIndex {
+              Label(label, systemImage: "checkmark")
+            } else {
+              Text(label)
+            }
+          }
+        }
+      } label: {
+        Image(systemName: "calendar")
+      }
+      .accessibilityLabel(String(localized: "prayerFlow.day", defaultValue: "Day"))
+      .accessibilityIdentifier("dayMenu")
+    }
+    // Variant switcher — only for bundles declaring alternate step-sets (e.g. the Stations'
+    // traditional vs. scriptural forms). Switching rebuilds the session from step 0 and
+    // persists the choice to the matching favorite when one exists.
+    if let definition = PrayerPackStore.definition(for: devotionId),
+       let variants = definition.variants, variants.count > 1 {
+      // "No explicit choice" resolves per the prayer language (a rite can declare a form its
+      // own), so both the checkmark and the persistence baseline use the effective default.
+      let defaultVariantId =
+        definition.effectiveVariantId(nil, languageCode: languageCode) ?? variants[0].id
+      Menu {
+        ForEach(variants, id: \.id) { variant in
+          Button {
+            switchVariant(to: variant.id, defaultVariantId: defaultVariantId)
+          } label: {
+            if variant.id == (variantId ?? defaultVariantId) {
+              Label(variant.localizedName, systemImage: "checkmark")
+            } else {
+              Text(variant.localizedName)
+            }
+          }
+        }
+      } label: {
+        Image(systemName: "text.book.closed")
+      }
+      .accessibilityIdentifier("variantMenu")
+    }
+    Button { toggleFavorite() } label: {
+      Image(systemName: isPinned ? "star.fill" : "star")
+    }
+    .accessibilityLabel(isPinned ? "prayerFlow.removeFromFavorites" : "prayerFlow.addToFavorites")
+    .accessibilityIdentifier("pinDevotionButton")
   }
 
   private func load() async {

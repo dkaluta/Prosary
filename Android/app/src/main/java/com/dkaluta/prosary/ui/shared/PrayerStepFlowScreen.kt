@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.LruCache
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -20,6 +21,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -45,6 +47,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
@@ -67,6 +70,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.foundation.text.selection.SelectionContainer
@@ -190,47 +194,76 @@ fun PrayerStepFlowScreen(
             }
         }
 
+        val flowActions: @Composable () -> Unit = {
+            topBarActions()
+            IconButton(onClick = { autoAdvanceMenuExpanded = true }) {
+                Icon(
+                    Icons.Filled.Timer,
+                    contentDescription = stringResource(R.string.settings_auto_advance),
+                    tint = if (autoAdvanceSeconds > 0) MaterialTheme.colorScheme.primary else LocalContentColor.current,
+                )
+            }
+            DropdownMenu(
+                expanded = autoAdvanceMenuExpanded,
+                onDismissRequest = { autoAdvanceMenuExpanded = false },
+            ) {
+                for (seconds in listOf(0, 3, 5, 10, 15)) {
+                    val label = if (seconds == 0) stringResource(R.string.auto_advance_off) else stringResource(R.string.auto_advance_every, seconds)
+                    DropdownMenuItem(
+                        text = { Text(label) },
+                        leadingIcon = if (autoAdvanceSeconds == seconds) {
+                            { Icon(Icons.Filled.Check, contentDescription = null) }
+                        } else {
+                            null
+                        },
+                        onClick = {
+                            autoAdvanceMenuExpanded = false
+                            autoAdvanceSeconds = seconds
+                            AppSettings.setAutoAdvanceSeconds(seconds)
+                        },
+                    )
+                }
+            }
+        }
+
         Scaffold(
             topBar = {
-                TopAppBar(
-                    title = { Text(HebrewDisplayText.unpoint(title)) },
-                    navigationIcon = {
-                        IconButton(onClick = onNavigateUp) {
-                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.common_back))
-                        }
-                    },
-                    actions = {
-                        topBarActions()
-                        IconButton(onClick = { autoAdvanceMenuExpanded = true }) {
-                            Icon(
-                                Icons.Filled.Timer,
-                                contentDescription = stringResource(R.string.settings_auto_advance),
-                                tint = if (autoAdvanceSeconds > 0) MaterialTheme.colorScheme.primary else LocalContentColor.current,
+                if (maxWidth < 600.dp) {
+                    Column(modifier = Modifier.background(MaterialTheme.colorScheme.surface)) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth()
+                                .windowInsetsPadding(TopAppBarDefaults.windowInsets),
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            IconButton(onClick = onNavigateUp) {
+                                Icon(Icons.AutoMirrored.Filled.ArrowBack,
+                                    contentDescription = stringResource(R.string.common_back))
+                            }
+                            Text(
+                                HebrewDisplayText.unpoint(title),
+                                style = MaterialTheme.typography.titleLarge,
+                                modifier = Modifier.weight(1f).padding(vertical = 12.dp)
+                                    .padding(end = 16.dp).testTag("prayerFlowTitle"),
                             )
                         }
-                        DropdownMenu(
-                            expanded = autoAdvanceMenuExpanded,
-                            onDismissRequest = { autoAdvanceMenuExpanded = false },
-                        ) {
-                            for (seconds in listOf(0, 3, 5, 10, 15)) {
-                                val label = if (seconds == 0) stringResource(R.string.auto_advance_off) else stringResource(R.string.auto_advance_every, seconds)
-                                DropdownMenuItem(
-                                    text = { Text(label) },
-                                    leadingIcon = if (autoAdvanceSeconds == seconds) {
-                                        { Icon(Icons.Filled.Check, contentDescription = null) }
-                                    } else {
-                                        null
-                                    },
-                                    onClick = {
-                                        autoAdvanceMenuExpanded = false
-                                        autoAdvanceSeconds = seconds
-                                        AppSettings.setAutoAdvanceSeconds(seconds)
-                                    },
-                                )
+                        Row(
+                            modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())
+                                .padding(horizontal = 12.dp).testTag("prayerFlowActions"),
+                            horizontalArrangement = Arrangement.End,
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) { flowActions() }
+                    }
+                } else {
+                    TopAppBar(
+                        title = { Text(HebrewDisplayText.unpoint(title)) },
+                        navigationIcon = {
+                            IconButton(onClick = onNavigateUp) {
+                                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.common_back))
                             }
-                        }
-                    },
-                )
+                        },
+                        actions = { flowActions() },
+                    )
+                }
             },
         ) { paddingValues ->
             Column(modifier = Modifier.padding(paddingValues).fillMaxSize()) {

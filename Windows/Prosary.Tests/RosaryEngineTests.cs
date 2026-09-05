@@ -28,6 +28,32 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
     };
 
     [Fact]
+    public void AramaicReadingAidsSurviveEveryDecadeAndPresenterMode()
+    {
+        var steps = _engine.BuildSteps(SpecificRosary(languageCode: "arc"));
+        foreach (var (key, expectedCount) in new[] { ("paterNoster", 5), ("aveMaria", 50), ("gloriaPatri", 5) })
+        {
+            var body = PrayerPackStore.ResolveBodyText("rosary", "arc", key);
+            var readingAid = PrayerPackStore.Transliteration("rosary", "arc", key);
+            Assert.NotNull(readingAid);
+            var beads = steps.Where(step => step.DecadeIndex is not null && step.Body == body).ToList();
+            Assert.Equal(expectedCount, beads.Count);
+            Assert.All(beads, step => Assert.Equal(readingAid, step.TransliteratedBody));
+        }
+        var presenter = _engine.BuildSteps(SpecificRosary(new RosaryOptions
+        {
+            MysterySelectionMode = MysterySelectionMode.Specific,
+            SpecificMysteryGroup = MysteryGroup.Joyful,
+            PresenterMode = true,
+        }, "arc"));
+        var combined = presenter.Where(step => step.HailMaryIndexInDecade is not null).ToList();
+        var combinedAid = string.Join("\n\n", new[] { "aveMaria", "gloriaPatri" }.Select(key =>
+            PrayerPackStore.Transliteration("rosary", "arc", key)));
+        Assert.Equal(5, combined.Count);
+        Assert.All(combined, step => Assert.Equal(combinedAid, step.TransliteratedBody));
+    }
+
+    [Fact]
     public void BuildSteps_SpecificGroup_HasFiveDecades()
     {
         var steps = _engine.BuildSteps(SpecificRosary());

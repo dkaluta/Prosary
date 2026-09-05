@@ -68,42 +68,9 @@ struct RosaryFlowView: View {
                            hasRoomForSingleMinorColumn: hasRoomForSingleMinorColumn)
             .frame(width: beadColumnAreaWidth(hasRoomForSingleMinorColumn: hasRoomForSingleMinorColumn))
         )
-      }
+      },
+      flowActions: AnyView(flowActions)
     )
-    .toolbar {
-      ToolbarItemGroup(placement: .primaryAction) {
-        Button { jump(to: previousMysteryIndex) } label: {
-          Image(systemName: "backward.end.fill")
-        }
-        .disabled(previousMysteryIndex == nil)
-        .accessibilityLabel(String(localized: "rosaryFlow.previousMystery", defaultValue: "Previous mystery"))
-        .accessibilityIdentifier("previousMysteryButton")
-
-        Button { jump(to: nextMysteryIndex) } label: {
-          Image(systemName: "forward.end.fill")
-        }
-        .disabled(nextMysteryIndex == nil)
-        .accessibilityLabel(String(localized: "rosaryFlow.nextMystery", defaultValue: "Next mystery"))
-        .accessibilityIdentifier("nextMysteryButton")
-
-        if let languages = PrayerPackStore.info(for: "rosary")?.languages,
-           languages.count > 1 || languages.contains("he") {
-          Menu {
-            languageButton(
-              raw: LanguageCatalog.defaultSentinel,
-              name: String(localized: "prayerFlow.language.appDefault", defaultValue: "App setting"))
-            Divider()
-            ForEach(LanguageCatalog.availableOptions(for: languages)) { option in
-              languageButton(raw: option.code, name: option.nativeName)
-            }
-          } label: {
-            Image(systemName: "globe")
-          }
-          .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer language"))
-          .accessibilityIdentifier("languageMenu")
-        }
-      }
-    }
     .alert(
       String(localized: "prayerFlow.continue.title", defaultValue: "Continue this prayer?"),
       isPresented: .init(
@@ -125,6 +92,40 @@ struct RosaryFlowView: View {
     .onDisappear {
       guard hasLoaded, pendingContinuation == nil, !didFinish else { return }
       persistProgress()
+    }
+  }
+
+  @ViewBuilder
+  private var flowActions: some View {
+    Button { jump(to: previousMysteryIndex) } label: {
+      Image(systemName: "backward.end.fill")
+    }
+    .disabled(previousMysteryIndex == nil)
+    .accessibilityLabel(String(localized: "rosaryFlow.previousMystery", defaultValue: "Previous mystery"))
+    .accessibilityIdentifier("previousMysteryButton")
+
+    Button { jump(to: nextMysteryIndex) } label: {
+      Image(systemName: "forward.end.fill")
+    }
+    .disabled(nextMysteryIndex == nil)
+    .accessibilityLabel(String(localized: "rosaryFlow.nextMystery", defaultValue: "Next mystery"))
+    .accessibilityIdentifier("nextMysteryButton")
+
+    if let languages = PrayerPackStore.info(for: "rosary")?.languages,
+       languages.count > 1 || languages.contains("he") {
+      Menu {
+        languageButton(
+          raw: LanguageCatalog.defaultSentinel,
+          name: String(localized: "prayerFlow.language.appDefault", defaultValue: "App setting"))
+        Divider()
+        ForEach(LanguageCatalog.availableOptions(for: languages)) { option in
+          languageButton(raw: option.code, name: option.nativeName)
+        }
+      } label: {
+        Image(systemName: "globe")
+      }
+      .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer language"))
+      .accessibilityIdentifier("languageMenu")
     }
   }
 

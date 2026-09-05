@@ -339,6 +339,10 @@ struct PrayerEngine {
       let fruitLabel = PrayerTranslations.get(languageCode: languageCode, key: .fructusMysteriiLabel)
       let majorBody = resolve(decades.majorStep.bodyKey)
       let minorBody = resolve(decades.minorStep.bodyKey)
+      let majorTransliteration = PrayerPackStore.transliteration(
+        bundleId: bundleId, languageCode: languageCode, key: decades.majorStep.bodyKey)
+      let minorTransliteration = PrayerPackStore.transliteration(
+        bundleId: bundleId, languageCode: languageCode, key: decades.minorStep.bodyKey)
       let decadeCount = decades.entries?.count ?? decades.count ?? 0
 
       for d in 0..<decadeCount {
@@ -377,12 +381,14 @@ struct PrayerEngine {
 
         steps.append(RosaryStep(
           title: fixedTitle(decades.majorStep), subtitle: decadeSubtitle, body: majorBody,
+          transliteratedBody: majorTransliteration,
           decadeIndex: d, imageOverrideKey: decades.majorStep.imageKey ?? imageKey))
 
         for h in 1...decades.minorCount {
           steps.append(RosaryStep(
             title: "\(fixedTitle(decades.minorStep)) \(counter(h, of: decades.minorCount, languageCode: languageCode))",
             subtitle: decadeSubtitle, body: minorBody,
+            transliteratedBody: minorTransliteration,
             decadeIndex: d, hailMaryIndexInDecade: h, imageOverrideKey: imageKey))
         }
 
@@ -420,6 +426,10 @@ struct PrayerEngine {
     let fruitLabel = PrayerTranslations.get(languageCode: languageCode, key: .fructusMysteriiLabel)
     let majorBody = resolve(decades.majorStep.bodyKey)
     let minorBody = resolve(decades.minorStep.bodyKey)
+    let majorTransliteration = PrayerPackStore.transliteration(
+      bundleId: bundleId, languageCode: languageCode, key: decades.majorStep.bodyKey)
+    let minorTransliteration = PrayerPackStore.transliteration(
+      bundleId: bundleId, languageCode: languageCode, key: decades.minorStep.bodyKey)
     let presenterOn = optionValues["presenterMode"] == "true"
     let showGroupName = groups.count > 1
     // The alternate-artwork seam: an eastern-style favorite stamps every Mystery-carrying step
@@ -461,20 +471,28 @@ struct PrayerEngine {
           imageVariantKey: variantKey(mystery)))
         steps.append(RosaryStep(
           title: fixedTitle(decades.majorStep), subtitle: decadeSubtitle, body: majorBody,
+          transliteratedBody: majorTransliteration,
           decadeIndex: decadeIndex, imageOverrideKey: decades.majorStep.imageKey))
 
         if presenterOn, let presenter = decades.presenter {
+          let transliterations = presenter.bodyKeys.map {
+            PrayerPackStore.transliteration(bundleId: bundleId, languageCode: languageCode, key: $0)
+          }
           steps.append(RosaryStep(
             title: presenter.combinedTitleKey.map(resolve) ?? presenter.combinedTitle ?? "", subtitle: decadeSubtitle,
             body: presenter.bodyKeys.map(resolve).joined(separator: "\n\n"),
-            mystery: mystery, decadeIndex: decadeIndex, hailMaryIndexInDecade: decades.minorCount,
+            mystery: mystery,
+            transliteratedBody: transliterations.allSatisfy { $0 != nil }
+              ? transliterations.compactMap { $0 }.joined(separator: "\n\n") : nil,
+            decadeIndex: decadeIndex, hailMaryIndexInDecade: decades.minorCount,
             imageVariantKey: variantKey(mystery)))
         } else {
           for h in 1...decades.minorCount {
             steps.append(RosaryStep(
               title: "\(fixedTitle(decades.minorStep)) \(counter(h, of: decades.minorCount, languageCode: languageCode))",
               subtitle: decadeSubtitle, body: minorBody,
-              mystery: mystery, decadeIndex: decadeIndex, hailMaryIndexInDecade: h,
+              mystery: mystery, transliteratedBody: minorTransliteration,
+              decadeIndex: decadeIndex, hailMaryIndexInDecade: h,
               imageVariantKey: variantKey(mystery)))
           }
         }
@@ -507,6 +525,9 @@ struct PrayerEngine {
       } ?? ""
       return RosaryStep(
         title: title, subtitle: decadeSubtitle, body: body,
+        transliteratedBody: entry.bodyKey.flatMap {
+          PrayerPackStore.transliteration(bundleId: bundleId, languageCode: languageCode, key: $0)
+        },
         decadeIndex: decadeIndex, imageOverrideKey: entry.imageKey)
     }
   }

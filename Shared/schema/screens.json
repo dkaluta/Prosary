@@ -45,7 +45,7 @@
       }
     },
     "rosaryFlow": {
-      "purpose": "The Rosary prayer flow — season bar, progress, bead track, mystery image/text, Back/Next footer, previous/next-mystery jump controls, and an in-prayer language menu that keeps the same mystery/bead. An unfinished run offers Continue or Restart when this same preset is reopened on the same local day; continuing restores both position and language.",
+      "purpose": "The Rosary prayer flow — season bar, progress, bead track, mystery image/text, Back/Next footer, previous/next-mystery jump controls, and an in-prayer language menu that keeps the same mystery/bead. On narrow phones, flow controls sit below the title so their buttons cannot squeeze it. An unfinished run offers Continue or Restart when this same preset is reopened on the same local day; continuing restores both position and language.",
       "parameters": {
         "prayerId": {
           "type": "uuid?",
@@ -179,7 +179,7 @@
       }
     },
     "basicPrayers": {
-      "purpose": "The basic prayers on their own, outside any devotion: Sign of the Cross, Our Father, Hail Mary, Glory Be, the Creed (the shared tables' Apostles', which the Mission of St. Gamaliel's overlay replaces with the Nicene), and the Trisagion's Holy God — a fixed BasicPrayerCatalog naming keys, never text, so each row and prayer resolves through the same language and fallback chains as the flows. Rows are selectable for copying, reorderable through BasicPrayersOrder, and individually favoritable; favoriteBasicPrayersFirst optionally groups starred prayers at the top without discarding the user's order. Reached from a fixed, non-pinnable row below the Pray cards. Each prayer opens as a single bounded step in the shared flow chrome with Finish as its only action.",
+      "purpose": "The basic prayers on their own, outside any devotion: Sign of the Cross, Our Father, Hail Mary, Glory Be, the Creed (the shared tables' Apostles', which the Mission of St. Gamaliel's overlay replaces with the Nicene), and the Trisagion's Holy God — a fixed BasicPrayerCatalog naming keys, never text, so each row and prayer resolves through the same language and fallback chains as the flows. Rows are selectable for copying, reorderable through BasicPrayersOrder, and individually favoritable; favoriteBasicPrayersFirst optionally groups starred prayers at the top without discarding the user's order. Reached from a fixed, non-pinnable row below the Pray cards. Each prayer opens as a single bounded step in the shared flow chrome with Finish as its only footer action. The list and flow both offer all prayer languages plus App setting; their shared basicPrayersLanguageCode preference defaults to the empty sentinel and keeps the selected language independent of the app default. Changing language refreshes titles, bodies, RTL, and available script toggles immediately.",
       "parameters": {
         "prayerId": "BasicPrayerCatalog id (\"hailMary\") — the single-prayer flow only."
       },

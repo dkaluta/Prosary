@@ -2,6 +2,9 @@ package com.dkaluta.prosary.models
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 
 /**
  * App-wide preferences that aren't tied to any single [Prayer] — the default prayer language
@@ -9,13 +12,14 @@ import android.content.SharedPreferences
  * prayer flows' auto-advance interval.
  *
  * [LanguageCatalog.resolve] is called from many non-Composable sites (engines, stores) that have
- * no [Context] of their own, so this holds the resolved value in a plain `var` initialized once
- * from SharedPreferences at app start (see MainActivity) rather than requiring every call site to
- * carry a Context.
+ * no [Context] of their own, so this keeps values initialized from SharedPreferences at app
+ * start (see MainActivity). Language values also expose Compose state so an open prayer and
+ * its list update immediately after a picker change.
  */
 object AppSettings {
     private const val PREFS_NAME = "prosary_settings"
     private const val KEY_DEFAULT_LANGUAGE = "defaultLanguageCode"
+    private const val KEY_BASIC_PRAYERS_LANGUAGE = "basicPrayersLanguageCode"
     private const val KEY_ARAMAIC_SIGN_OF_CROSS_FORM = "aramaicSignOfCrossForm"
     private const val KEY_AUTO_ADVANCE = "autoAdvanceSeconds"
     private const val KEY_HAPTICS = "hapticsOnAdvance"
@@ -29,8 +33,11 @@ object AppSettings {
     private const val KEY_FAVORITE_BASIC_PRAYERS_FIRST = "favoriteBasicPrayersFirst"
     private const val KEY_LANGUAGE_FALLBACK_ORDER = "languageFallbackOrder"
 
-    var defaultLanguageCode: String = LanguageCatalog.defaultCode
-        private set
+    private var defaultLanguageState by mutableStateOf(LanguageCatalog.defaultCode)
+    val defaultLanguageCode: String get() = defaultLanguageState
+
+    private var basicPrayersLanguageState by mutableStateOf(LanguageCatalog.defaultSentinel)
+    val basicPrayersLanguageCode: String get() = basicPrayersLanguageState
 
     const val ARAMAIC_SIGN_OF_CROSS_FORM_A = "formA"
     const val ARAMAIC_SIGN_OF_CROSS_FORM_B = "formB"
@@ -102,8 +109,10 @@ object AppSettings {
     fun init(context: Context) {
         val resolved = context.applicationContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         prefs = resolved
-        defaultLanguageCode = resolved.getString(KEY_DEFAULT_LANGUAGE, LanguageCatalog.defaultCode)
+        defaultLanguageState = resolved.getString(KEY_DEFAULT_LANGUAGE, LanguageCatalog.defaultCode)
             ?: LanguageCatalog.defaultCode
+        basicPrayersLanguageState = resolved.getString(KEY_BASIC_PRAYERS_LANGUAGE, LanguageCatalog.defaultSentinel)
+            ?: LanguageCatalog.defaultSentinel
         aramaicSignOfCrossForm = resolved
             .getString(KEY_ARAMAIC_SIGN_OF_CROSS_FORM, ARAMAIC_SIGN_OF_CROSS_FORM_A)
             .takeIf { it == ARAMAIC_SIGN_OF_CROSS_FORM_B }
@@ -124,8 +133,13 @@ object AppSettings {
     }
 
     fun setDefaultLanguageCode(code: String) {
-        defaultLanguageCode = code
+        defaultLanguageState = code
         prefs?.edit()?.putString(KEY_DEFAULT_LANGUAGE, code)?.apply()
+    }
+
+    fun setBasicPrayersLanguageCode(code: String) {
+        basicPrayersLanguageState = code
+        prefs?.edit()?.putString(KEY_BASIC_PRAYERS_LANGUAGE, code)?.apply()
     }
 
     fun setAramaicSignOfCrossForm(form: String) {

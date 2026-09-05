@@ -45,6 +45,9 @@ struct PrayerStepFlowView: View {
   /// True while that recording is actually playing: the timer auto-advance stands down, since
   /// the audio's chapters are driving the steps and two advance drivers would fight.
   var audioIsPlaying: Bool = false
+  /// Session-specific controls share the title's adaptive placement with auto-advance.
+  /// Compact iOS windows place them below the navigation title; wider windows use the toolbar.
+  var flowActions: AnyView? = nil
 
   @Environment(\.horizontalSizeClass) private var horizontalSizeClass
   @Environment(\.verticalSizeClass) private var verticalSizeClass
@@ -77,6 +80,14 @@ struct PrayerStepFlowView: View {
   /// included, from growing taller than the screen.
   private var isCompactHeight: Bool { verticalSizeClass == .compact }
 
+  private var showsCompactHeader: Bool {
+    #if os(iOS)
+    horizontalSizeClass == .compact
+    #else
+    false
+    #endif
+  }
+
   /// Matches the pre-load "no step yet" instant to "last step" so the footer doesn't flash a
   /// "Next" label a moment before content briefly reads "Finish" (imperceptible in practice,
   /// since loading is a near-instant in-memory lookup) — mirrors RosaryFlowView's original
@@ -89,6 +100,10 @@ struct PrayerStepFlowView: View {
 
   var body: some View {
     VStack(spacing: 0) {
+      if showsCompactHeader {
+        compactHeader
+      }
+
       Rectangle()
         .fill(seasonColor)
         .frame(height: 6)
@@ -151,26 +166,26 @@ struct PrayerStepFlowView: View {
         .padding(isCompactHeight ? 8 : 16)
       }
     }
-    .navigationTitle(HebrewDisplayText.unpointed(navigationTitle))
+    .navigationTitle(showsCompactHeader ? "" : HebrewDisplayText.unpointed(navigationTitle))
     #if os(iOS)
     .navigationBarTitleDisplayMode(.inline)
     #endif
     .toolbar {
-      ToolbarItem(placement: .primaryAction) {
-        Menu {
-          Picker(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-advance"),
-                 selection: $autoAdvanceSeconds) {
-            Text(String(localized: "prayerFlow.autoAdvance.off", defaultValue: "Off")).tag(0)
-            ForEach(Self.autoAdvanceChoices, id: \.self) { seconds in
-              Text(String(localized: "prayerFlow.autoAdvance.everySeconds",
-                          defaultValue: "Every \(seconds) seconds")).tag(seconds)
-            }
-          }
-        } label: {
-          Image(systemName: autoAdvanceSeconds > 0 ? "timer.circle.fill" : "timer")
+      if showsCompactHeader {
+        ToolbarItem(placement: .principal) {
+          Text(HebrewDisplayText.unpointed(navigationTitle))
+            .font(.headline)
+            .multilineTextAlignment(.center)
+            .lineLimit(2)
+            .fixedSize(horizontal: false, vertical: true)
+            .accessibilityAddTraits(.isHeader)
+            .accessibilityIdentifier("prayerFlowTitle")
         }
-        .accessibilityLabel(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-advance"))
-        .accessibilityIdentifier("autoAdvanceMenu")
+      } else {
+        ToolbarItemGroup(placement: .primaryAction) {
+          flowActions
+          autoAdvanceMenu
+        }
       }
     }
     // Restarts whenever the step, the interval, or the loaded state changes — so tapping
@@ -186,6 +201,51 @@ struct PrayerStepFlowView: View {
       guard !Task.isCancelled else { return }
       onNext()
     }
+  }
+
+  private var compactHeader: some View {
+    // The natural-width row centers when it fits this view's actual available width. Larger
+    // controls or Dynamic Type fall through to scrolling without compressing any tap target.
+    ViewThatFits(in: .horizontal) {
+      compactActions
+        .fixedSize(horizontal: true, vertical: false)
+      ScrollView(.horizontal) {
+        compactActions
+      }
+      .scrollIndicators(.hidden)
+      .fixedSize(horizontal: false, vertical: true)
+    }
+    .frame(maxWidth: .infinity)
+    .padding(.top, isCompactHeight ? 0 : 4)
+    .padding(.bottom, isCompactHeight ? 4 : 8)
+  }
+
+  private var compactActions: some View {
+    HStack(spacing: 12) {
+      flowActions
+      autoAdvanceMenu
+    }
+    .buttonStyle(.bordered)
+    .controlSize(.large)
+    .frame(minHeight: 44)
+    .padding(.horizontal)
+  }
+
+  private var autoAdvanceMenu: some View {
+    Menu {
+      Picker(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-advance"),
+             selection: $autoAdvanceSeconds) {
+        Text(String(localized: "prayerFlow.autoAdvance.off", defaultValue: "Off")).tag(0)
+        ForEach(Self.autoAdvanceChoices, id: \.self) { seconds in
+          Text(String(localized: "prayerFlow.autoAdvance.everySeconds",
+                      defaultValue: "Every \(seconds) seconds")).tag(seconds)
+        }
+      }
+    } label: {
+      Image(systemName: autoAdvanceSeconds > 0 ? "timer.circle.fill" : "timer")
+    }
+    .accessibilityLabel(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-advance"))
+    .accessibilityIdentifier("autoAdvanceMenu")
   }
 
   @ViewBuilder

@@ -15,6 +15,8 @@ Only Scripture *citations* are retained, never the Scripture text. The generated
 
 Use ``--sync`` to copy the four tables into every native port. Existing dates are retained,
 so the rolling Evangelizo horizon grows rather than erasing previously fetched days.
+``--localize-only --sync`` adds sourced Hebrew book names to existing citations offline,
+keeping each calendar's appointed books, dates, chapter numbers, and verse ranges.
 """
 
 from __future__ import annotations
@@ -62,7 +64,8 @@ EVANGELIZO_BOOKS = {
     "Est": ("Esth.", "Esther"), "1_M": ("1 Macc.", "1 Maccabees"),
     "2_M": ("2 Macc.", "2 Maccabees"), "Jb": ("Job", "Job"),
     "Ps": ("Ps.", "Psalm"), "Pr": ("Prov.", "Proverbs"),
-    "Qo": ("Eccl.", "Ecclesiastes"), "Sg": ("Song", "Song of Songs"),
+    "Qo": ("Eccl.", "Ecclesiastes"), "Ct": ("Song", "Song of Songs"),
+    "Sg": ("Wis.", "Wisdom"),
     "Ws": ("Wis.", "Wisdom"), "Si": ("Sir.", "Sirach"),
     "Is": ("Isa.", "Isaiah"), "Jr": ("Jer.", "Jeremiah"),
     "Lm": ("Lam.", "Lamentations"), "Ba": ("Bar.", "Baruch"),
@@ -89,6 +92,14 @@ EVANGELIZO_BOOKS = {
     "3_Jn": ("3 Jn.", "3 John"), "Jude": ("Jude", "Jude"),
     "Rv": ("Rev.", "Revelation"), "Ap": ("Rev.", "Revelation"),
 }
+
+# Alternate codes observed in Evangelizo's publication feed (French book abbreviations).
+for alias, canonical in {
+        "1_R": "1_K", "2_R": "2_K", "Ez": "Ezk", "Ha": "Hab",
+        "He": "Heb", "Jc": "Jas", "So": "Zp"}.items():
+    EVANGELIZO_BOOKS[alias] = EVANGELIZO_BOOKS[canonical]
+
+HEBREW_BOOKS_FILE = Path(__file__).with_name("hebrew-reading-books.json")
 
 # Aliases observed in Missale Meum and Royal Doors. Values are the same compact/full pair
 # used by the app. This table is intentionally explicit: fuzzy book-name guessing can turn
@@ -455,6 +466,7 @@ def normalized_existing_days(path: Path, legacy: Path | None = None) -> dict[str
     days = json.loads(source.read_text(encoding="utf-8")).get("days", {})
     for row in days.values():
         for item in row.get("readings", []):
+            normalize_existing_book(item)
             hebrew = item.pop("hebrew", None)
             if hebrew:
                 item.setdefault("fullByLanguage", {})["he"] = hebrew
@@ -469,6 +481,78 @@ def normalized_existing_days(path: Path, legacy: Path | None = None) -> dict[str
             if short_hebrew:
                 item.setdefault("shortByLanguage", {})["he"] = hebrew_short_citation(short_hebrew)
     return days
+
+
+def normalize_existing_book(item: dict) -> None:
+    """Repair previously unrecognized source codes without changing the appointed passage."""
+    full = item.get("full", "")
+    for code, (short_book, full_book) in EVANGELIZO_BOOKS.items():
+        prefix = f"{code.replace('_', ' ')} "
+        if full.startswith(prefix):
+            item.update(citation(short_book, full_book, full[len(prefix):], item.get("type")))
+            return
+    # The old Sg mapping called Wisdom "Song of Songs". Its sourced Hebrew title makes
+    # that legacy case unambiguous; never rename an actual Song of Songs citation.
+    hebrew = (item.get("fullByLanguage") or {}).get("he", "")
+    if full.startswith("Song of Songs ") and hebrew.startswith("החכמה "):
+        item.update(citation("Wis.", "Wisdom", full.removeprefix("Song of Songs "), item.get("type")))
+
+
+def localize_hebrew_readings(
+        days: dict[str, dict], books: dict[str, dict], *, preserve_existing: bool = True) -> set[str]:
+    """Attach sourced names to each entry's own reference; no date or rite substitution."""
+    missing: set[str] = set()
+    for row in days.values():
+        for item in row.get("readings", []):
+            match = re.fullmatch(r"(.+?) (\d+:.*)", item.get("full", ""))
+            if not match:
+                continue
+            book, reference = match.groups()
+            names = books.get(book)
+            if names is None:
+                missing.add(book)
+                continue
+            chapter = reference.split(":", 1)[0]
+            for key, value in (
+                    ("shortByLanguage", hebrew_short_citation(f"{names['short']} {chapter}")),
+                    ("fullByLanguage", f"{names['full']} {hebrew_reference(reference)}")):
+                localized = item.setdefault(key, {})
+                if not preserve_existing or not localized.get("he"):
+                    localized["he"] = value
+    return missing
+
+
+def localize_existing_datasets() -> None:
+    books = json.loads(HEBREW_BOOKS_FILE.read_text(encoding="utf-8"))["books"]
+    for name in ("roman", "roman1962", "ugcc", "syriac"):
+        path = DATA / f"readings-{name}.json"
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        payload["days"] = normalized_existing_days(path)
+        missing = localize_hebrew_readings(payload["days"], books, preserve_existing=name == "roman")
+        if missing:
+            print(f"  warning: {path.name} has no sourced Hebrew book name for: {', '.join(sorted(missing))}")
+        credit = (
+            " Hebrew citation book names are relayed from Evangelizo.org — Daily Gospel "
+            "(© Evangelizo.org), publication edition HE, with Judith/Tobit names from the "
+            "St James Vicariate (catholic.co.il); each calendar's appointed passages are retained.")
+        if "Hebrew citation book names" not in payload["$comment"]:
+            payload["$comment"] += credit
+        path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        print(f"localized {path.relative_to(ROOT)} ({len(payload['days'])} dates retained)")
+
+
+def sync_datasets() -> None:
+    outputs = [DATA / f"readings-{source}.json"
+               for source in ("roman", "roman1962", "ugcc", "syriac")]
+    for target in TARGETS:
+        target.mkdir(parents=True, exist_ok=True)
+        for source in outputs:
+            shutil.copy2(source, target / source.name)
+        shutil.copy2(DATA / "calendars.json", target / "calendars.json")
+        stale = target / "readings.json"
+        if stale.exists():
+            stale.unlink()
+        print(f"synced -> {target.relative_to(ROOT)}")
 
 
 def existing_dates(name: str, *, legacy: str | None = None) -> set[str]:
@@ -504,6 +588,9 @@ def main() -> None:
         help="re-fetch dates already present; by default only missing dates hit the network")
     parser.add_argument("--sync", action="store_true")
     parser.add_argument(
+        "--localize-only", action="store_true",
+        help="localize existing citation tables offline without fetching or changing date coverage")
+    parser.add_argument(
         "--self-test", action="store_true",
         help="run citation-format/parser assertions without fetching data")
     args = parser.parse_args()
@@ -521,7 +608,36 @@ def main() -> None:
         assert hebrew_short_citation("אגרת כיפא השניה 2") == "השנייה של כיפא ב׳"
         assert hebrew_short_citation("אגרת שאול אל הרומים 8") == "אל הרומים ח׳"
         assert hebrew_short_citation("השניה ליוחנן 1") == "השנייה של יוחנן א׳"
+        books = json.loads(HEBREW_BOOKS_FILE.read_text(encoding="utf-8"))["books"]
+        samples = {"2026-08-06": {"readings": [
+            citation("2 Pet.", "2 Peter", "1:10–19"),
+            citation("2 Cor.", "2 Corinthians", "2:14–3:3; 4:1–2"),
+        ]}}
+        assert not localize_hebrew_readings(samples, books)
+        peter, corinthians = samples["2026-08-06"]["readings"]
+        assert peter["shortByLanguage"]["he"] == "השנייה של כיפא א׳"
+        assert peter["fullByLanguage"]["he"] == "אגרת כיפא השניה א׳ 10–19"
+        assert corinthians["full"] == "2 Corinthians 2:14–3:3; 4:1–2"
+        assert corinthians["fullByLanguage"]["he"] == \
+            "אגרת שאול השניה אל הקורינתים ב׳ 14–ג׳ 3; ד׳ 1–2"
+        snapshot = json.dumps(samples, ensure_ascii=False)
+        localize_hebrew_readings(samples, books)
+        assert json.dumps(samples, ensure_ascii=False) == snapshot
+        unknown = {"2026-08-06": {"readings": [citation("Unknown", "Unknown", "1:2")]}}
+        assert localize_hebrew_readings(unknown, books) == {"Unknown"}
+        assert "fullByLanguage" not in unknown["2026-08-06"]["readings"][0]
+        legacy = citation("He", "He", "10:32–39")
+        normalize_existing_book(legacy)
+        assert legacy == citation("Heb.", "Hebrews", "10:32–39")
+        assert EVANGELIZO_BOOKS["Sg"] == ("Wis.", "Wisdom")
+        assert EVANGELIZO_BOOKS["Ct"] == ("Song", "Song of Songs")
         print("citation self-test passed")
+        return
+
+    if args.localize_only:
+        localize_existing_datasets()
+        if args.sync:
+            sync_datasets()
         return
 
     today = dt.date.today()
@@ -590,23 +706,15 @@ def main() -> None:
             "not included.",
             rows["syriac"])
 
+    localize_existing_datasets()
+
     obsolete = DATA / "readings.json"
     if obsolete.exists():
         obsolete.unlink()
         print(f"removed obsolete {obsolete.relative_to(ROOT)}")
 
     if args.sync:
-        outputs = [DATA / f"readings-{source}.json"
-                   for source in ("roman", "roman1962", "ugcc", "syriac")]
-        for target in TARGETS:
-            target.mkdir(parents=True, exist_ok=True)
-            for source in outputs:
-                shutil.copy2(source, target / source.name)
-            shutil.copy2(DATA / "calendars.json", target / "calendars.json")
-            stale = target / "readings.json"
-            if stale.exists():
-                stale.unlink()
-            print(f"synced -> {target.relative_to(ROOT)}")
+        sync_datasets()
 
 
 if __name__ == "__main__":

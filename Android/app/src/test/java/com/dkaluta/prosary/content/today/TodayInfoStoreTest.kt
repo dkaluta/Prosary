@@ -254,6 +254,27 @@ class TodayInfoStoreTest {
     }
 
     @Test
+    fun otherCalendarsLocalizeTheirOwnAppointedReadingsInHebrew() {
+        AppSettings.feastCalendarId = "roman1962"
+        val vetus = TodayInfoStore.readings(date("2026-09-03"))
+        assertEquals("הראשונה אל התסלוניקים ב׳", vetus.first().localizedShort("he"))
+        assertEquals("הבשורה  על-פי יוחנן כ״א 15–17", vetus.last().localizedFull("he"))
+
+        AppSettings.feastCalendarId = "ugcc"
+        val byzantine = TodayInfoStore.readings(date("2026-09-03"))
+        assertEquals("אל הגלטים ג׳", byzantine.first().localizedShort("he"))
+        assertEquals("אגרת שאול אל הגלטים ג׳ 23–ד׳ 5", byzantine.first().localizedFull("he"))
+        assertEquals("השנייה של כיפא א׳", TodayInfoStore.readings(date("2026-08-06")).first().localizedShort("he"))
+
+        AppSettings.feastCalendarId = "syriac"
+        val syriac = TodayInfoStore.readings(date("2026-09-03"))
+        assertEquals("אל הפיליפים א׳", syriac.first().localizedShort("he-x-gamliel"))
+        assertEquals("אגרת שאול אל הפיליפים א׳ 12–21", syriac.first().localizedFull("he"))
+        assertEquals("השנייה אל טימותיאוס ב׳", TodayInfoStore.readings(date("2026-08-08")).first().localizedShort("he"))
+        assertTrue(TodayInfoStore.readings(date("2026-08-01")).isEmpty())
+    }
+
+    @Test
     fun switchingCalendarSwitchesReadingsWithoutLeakingThePreviousTable() {
         val target = date("2026-08-31")
         assertEquals(listOf("1 Cor. 2", "Ps. 119", "Lk. 4"), TodayInfoStore.readings(target).map { it.short })

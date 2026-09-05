@@ -41,6 +41,63 @@ final class AppShellUITests: XCTestCase {
     XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 5))
   }
 
+  #if !os(macOS)
+  @MainActor
+  func testRosaryTitleHasItsOwnLineAbovePhoneControls() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-resetStore", "-AppleLanguages", "(en)", "-AppleInterfaceStyle", "Dark",
+                           "-defaultLanguageCode", "he"]
+    app.launch()
+    XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10))
+    app.buttons["rosaryCard"].tap()
+    let preset = app.buttons["prayDefaultPreset"].firstMatch
+    XCTAssertTrue(preset.waitForExistence(timeout: 10))
+    preset.tap()
+    let title = app.staticTexts["prayerFlowTitle"]
+    XCTAssertTrue(title.waitForExistence(timeout: 10))
+    XCTAssertEqual(title.label, "Praying the Rosary")
+    let language = app.buttons["languageMenu"]
+    XCTAssertTrue(language.isHittable)
+    XCTAssertGreaterThanOrEqual(language.frame.minY, title.frame.maxY)
+    XCTAssertTrue(app.buttons["autoAdvanceMenu"].isHittable)
+    XCTAssertTrue(app.buttons["nextMysteryButton"].isHittable)
+    let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    attachment.name = "rosary-phone-title-and-controls"
+    attachment.lifetime = .keepAlways
+    add(attachment)
+  }
+
+  @MainActor
+  func testBasicPrayerLanguagePickerUpdatesFlowAndList() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-resetStore", "-AppleLanguages", "(en)", "-defaultLanguageCode", "en"]
+    app.launch()
+    let basic = app.buttons["basicPrayersRow"]
+    XCTAssertTrue(basic.waitForExistence(timeout: 10))
+    for _ in 0..<4 where !basic.isHittable { app.swipeUp() }
+    basic.tap()
+    app.buttons["languageMenu"].tap()
+    app.buttons["basicPrayerLanguage-arc"].tap()
+    let ourFather = app.buttons["basicPrayer-ourFather"]
+    XCTAssertTrue(ourFather.waitForExistence(timeout: 5))
+    XCTAssertTrue(ourFather.label.contains("צלותא מרניתא"))
+    ourFather.tap()
+    XCTAssertTrue(app.buttons["transliterationToggle"].waitForExistence(timeout: 5))
+    app.buttons["transliterationToggle"].tap()
+    let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    attachment.name = "basic-prayer-aramaic-script-toggle"
+    attachment.lifetime = .keepAlways
+    add(attachment)
+    app.buttons["languageMenu"].tap()
+    app.buttons["basicPrayerLanguage-default"].tap()
+    XCTAssertEqual(app.staticTexts["prayerFlowTitle"].label, "Our Father")
+    XCTAssertFalse(app.buttons["transliterationToggle"].exists)
+    app.buttons["prayerFlowNextButton"].tap()
+    XCTAssertTrue(ourFather.waitForExistence(timeout: 5))
+    XCTAssertTrue(ourFather.label.contains("Our Father"))
+  }
+  #endif
+
   #if os(macOS)
   @MainActor
   func testDoubleClickingRosaryCardNeedsOnlyOneBackClick() throws {

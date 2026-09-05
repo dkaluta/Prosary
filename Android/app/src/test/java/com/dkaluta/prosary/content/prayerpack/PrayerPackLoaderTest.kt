@@ -39,6 +39,18 @@ class PrayerPackLoaderTest {
     }
 
     @Test
+    fun sharedAramaicPrayersKeepTheirHeadingsAndMatchingReadingAid() {
+        assertEquals("שוּבחָא לַאבָא", PrayerPackStore.resolveBodyText("oAntiphons", "arc", "gloriaPatriTitle"))
+        assertEquals(PrayerPackStore.resolveBodyText("trisagion", "arc", "gloriaPatri"),
+            PrayerPackStore.resolveBodyText("oAntiphons", "arc", "gloriaPatri"))
+        val readingAid = PrayerPackStore.transliteration("oAntiphons", "arc", "gloriaPatri")
+        assertNotNull(readingAid)
+        assertEquals(PrayerPackStore.transliteration("trisagion", "arc", "gloriaPatri"), readingAid)
+        assertFalse(readingAid == PrayerPackStore.transliteration("rosary", "arc", "gloriaPatri"))
+        assertNull(PrayerPackStore.transliteration("oAntiphons", "en", "gloriaPatri"))
+    }
+
+    @Test
     fun rosaryPackProvidedKeyOverridesEnglishText() {
         val text = PrayerTranslations.get("en", PrayerKey.OratioFatimae)
         assertEquals(

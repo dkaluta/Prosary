@@ -381,6 +381,8 @@ public sealed class PrayerEngine
             var fruitLabel = PrayerTranslations.Get(languageCode, PrayerKey.FructusMysteriiLabel);
             var majorBody = Resolve(decades.MajorStep.BodyKey);
             var minorBody = Resolve(decades.MinorStep.BodyKey);
+            var majorTransliteration = PrayerPackStore.Transliteration(bundleId, languageCode, decades.MajorStep.BodyKey);
+            var minorTransliteration = PrayerPackStore.Transliteration(bundleId, languageCode, decades.MinorStep.BodyKey);
             var decadeCount = decades.Entries?.Count ?? decades.Count ?? 0;
 
             for (var d = 0; d < decadeCount; d++)
@@ -413,12 +415,14 @@ public sealed class PrayerEngine
                 }
 
                 steps.Add(new RosaryStep(FixedTitle(decades.MajorStep), decadeSubtitle, majorBody,
+                    TransliteratedBody: majorTransliteration,
                     DecadeIndex: d, ImageOverrideKey: decades.MajorStep.ImageKey ?? imageKey));
 
                 for (var h = 1; h <= decades.MinorCount; h++)
                 {
                     steps.Add(new RosaryStep(
                         $"{FixedTitle(decades.MinorStep)} {Counter(h, decades.MinorCount, languageCode)}", decadeSubtitle, minorBody,
+                        TransliteratedBody: minorTransliteration,
                         DecadeIndex: d, HailMaryIndexInDecade: h, ImageOverrideKey: imageKey));
                 }
 
@@ -459,6 +463,8 @@ public sealed class PrayerEngine
         var fruitLabel = PrayerTranslations.Get(languageCode, PrayerKey.FructusMysteriiLabel);
         var majorBody = Resolve(decades.MajorStep.BodyKey);
         var minorBody = Resolve(decades.MinorStep.BodyKey);
+        var majorTransliteration = PrayerPackStore.Transliteration(bundleId, languageCode, decades.MajorStep.BodyKey);
+        var minorTransliteration = PrayerPackStore.Transliteration(bundleId, languageCode, decades.MinorStep.BodyKey);
         var presenterOn = optionValues?.GetValueOrDefault("presenterMode") == "true";
         var showGroupName = groups.Count > 1;
 
@@ -488,13 +494,18 @@ public sealed class PrayerEngine
                     mystery, IsScripture: true, TransliteratedBody: transliteratedBody,
                     DecadeIndex: decadeIndex) { ImageVariantKey = VariantKey(mystery) });
                 steps.Add(new RosaryStep(FixedTitle(decades.MajorStep), decadeSubtitle, majorBody,
+                    TransliteratedBody: majorTransliteration,
                     DecadeIndex: decadeIndex, ImageOverrideKey: decades.MajorStep.ImageKey));
 
                 if (presenterOn && decades.Presenter is { } presenter)
                 {
+                    var transliterations = presenter.BodyKeys.Select(key =>
+                        PrayerPackStore.Transliteration(bundleId, languageCode, key)).ToList();
                     steps.Add(new RosaryStep(presenter.CombinedTitleKey is { } ck ? Resolve(ck) : presenter.CombinedTitle ?? string.Empty, decadeSubtitle,
                         string.Join("\n\n", presenter.BodyKeys.Select(Resolve)),
-                        mystery, DecadeIndex: decadeIndex, HailMaryIndexInDecade: decades.MinorCount) { ImageVariantKey = VariantKey(mystery) });
+                        mystery, TransliteratedBody: transliterations.All(text => text is not null)
+                            ? string.Join("\n\n", transliterations) : null,
+                        DecadeIndex: decadeIndex, HailMaryIndexInDecade: decades.MinorCount) { ImageVariantKey = VariantKey(mystery) });
                 }
                 else
                 {
@@ -502,7 +513,8 @@ public sealed class PrayerEngine
                     {
                         steps.Add(new RosaryStep(
                             $"{FixedTitle(decades.MinorStep)} {Counter(h, decades.MinorCount, languageCode)}", decadeSubtitle, minorBody,
-                            mystery, DecadeIndex: decadeIndex, HailMaryIndexInDecade: h) { ImageVariantKey = VariantKey(mystery) });
+                            mystery, TransliteratedBody: minorTransliteration,
+                            DecadeIndex: decadeIndex, HailMaryIndexInDecade: h) { ImageVariantKey = VariantKey(mystery) });
                     }
                 }
 
@@ -538,6 +550,8 @@ public sealed class PrayerEngine
                 ? PrayerPackStore.ResolveBodyText(bundleId, languageCode, bodyKey)
                 : string.Empty;
             steps.Add(new RosaryStep(title, decadeSubtitle, body,
+                TransliteratedBody: entry.BodyKey is { } transliterationKey
+                    ? PrayerPackStore.Transliteration(bundleId, languageCode, transliterationKey) : null,
                 DecadeIndex: decadeIndex, ImageOverrideKey: entry.ImageKey));
         }
 

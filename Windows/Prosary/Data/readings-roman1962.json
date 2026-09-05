@@ -1,5 +1,5 @@
 {
-  "$comment": "Roman 1962 (Vetus Ordo) appointed Epistle/Gospel citations from Missale Meum's public v5 proper API (MIT); Scripture text is not included.",
+  "$comment": "Roman 1962 (Vetus Ordo) appointed Epistle/Gospel citations from Missale Meum's public v5 proper API (MIT); Scripture text is not included. Hebrew citation book names are relayed from Evangelizo.org — Daily Gospel (© Evangelizo.org), publication edition HE, with Judith/Tobit names from the St James Vicariate (catholic.co.il); each calendar's appointed passages are retained.",
   "generated": "2026-09-03",
   "days": {
     "2026-08-03": {
@@ -7,12 +7,24 @@
         {
           "type": "reading",
           "short": "1 Cor. 12",
-          "full": "1 Corinthians 12:2–11"
+          "full": "1 Corinthians 12:2–11",
+          "shortByLanguage": {
+            "he": "הראשונה אל הקורינתים י״ב"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול הראשונה אל הקורינתים י״ב 2–11"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 18",
-          "full": "Luke 18:9–14"
+          "full": "Luke 18:9–14",
+          "shortByLanguage": {
+            "he": "לוקס י״ח"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ח 9–14"
+          }
         }
       ]
     },
@@ -21,12 +33,24 @@
         {
           "type": "reading",
           "short": "2 Tim. 4",
-          "full": "2 Timothy 4:1–8"
+          "full": "2 Timothy 4:1–8",
+          "shortByLanguage": {
+            "he": "השנייה אל טימותיאוס ד׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול השניה אל טימותיאוס ד׳ 1–8"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 12",
-          "full": "Luke 12:35–40"
+          "full": "Luke 12:35–40",
+          "shortByLanguage": {
+            "he": "לוקס י״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ב 35–40"
+          }
         }
       ]
     },
@@ -35,12 +59,24 @@
         {
           "type": "reading",
           "short": "Sir. 24",
-          "full": "Sirach 24:14–16"
+          "full": "Sirach 24:14–16",
+          "shortByLanguage": {
+            "he": "שיראך כ״ד"
+          },
+          "fullByLanguage": {
+            "he": "שיראך כ״ד 14–16"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 11",
-          "full": "Luke 11:27–28"
+          "full": "Luke 11:27–28",
+          "shortByLanguage": {
+            "he": "לוקס י״א"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״א 27–28"
+          }
         }
       ]
     },
@@ -49,12 +85,24 @@
         {
           "type": "reading",
           "short": "2 Pet. 1",
-          "full": "2 Peter 1:16–19"
+          "full": "2 Peter 1:16–19",
+          "shortByLanguage": {
+            "he": "השנייה של כיפא א׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת כיפא השניה א׳ 16–19"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 17",
-          "full": "Matthew 17:1–9"
+          "full": "Matthew 17:1–9",
+          "shortByLanguage": {
+            "he": "מתי י״ז"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״ז 1–9"
+          }
         }
       ]
     },
@@ -63,7 +111,13 @@
         {
           "type": "gospel",
           "short": "Mt. 6",
-          "full": "Matthew 6:24–33"
+          "full": "Matthew 6:24–33",
+          "shortByLanguage": {
+            "he": "מתי ו׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ו׳ 24–33"
+          }
         }
       ]
     },
@@ -72,7 +126,13 @@
         {
           "type": "gospel",
           "short": "Lk. 12",
-          "full": "Luke 12:35–40"
+          "full": "Luke 12:35–40",
+          "shortByLanguage": {
+            "he": "לוקס י״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ב 35–40"
+          }
         }
       ]
     },
@@ -81,12 +141,24 @@
         {
           "type": "reading",
           "short": "1 Cor. 15",
-          "full": "1 Corinthians 15:1–10"
+          "full": "1 Corinthians 15:1–10",
+          "shortByLanguage": {
+            "he": "הראשונה אל הקורינתים ט״ו"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול הראשונה אל הקורינתים ט״ו 1–10"
+          }
         },
         {
           "type": "gospel",
           "short": "Mk. 7",
-          "full": "Mark 7:31–37"
+          "full": "Mark 7:31–37",
+          "shortByLanguage": {
+            "he": "מרקוס ז׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מרקוס ז׳ 31–37"
+          }
         }
       ]
     },
@@ -95,12 +167,24 @@
         {
           "type": "reading",
           "short": "2 Cor. 9",
-          "full": "2 Corinthians 9:6–10"
+          "full": "2 Corinthians 9:6–10",
+          "shortByLanguage": {
+            "he": "השנייה אל הקורינתים ט׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול השניה אל הקורינתים ט׳ 6–10"
+          }
         },
         {
           "type": "gospel",
           "short": "Jn. 12",
-          "full": "John 12:24–26"
+          "full": "John 12:24–26",
+          "shortByLanguage": {
+            "he": "יוחנן י״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה  על-פי יוחנן י״ב 24–26"
+          }
         }
       ]
     },
@@ -109,12 +193,24 @@
         {
           "type": "reading",
           "short": "1 Cor. 15",
-          "full": "1 Corinthians 15:1–10"
+          "full": "1 Corinthians 15:1–10",
+          "shortByLanguage": {
+            "he": "הראשונה אל הקורינתים ט״ו"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול הראשונה אל הקורינתים ט״ו 1–10"
+          }
         },
         {
           "type": "gospel",
           "short": "Mk. 7",
-          "full": "Mark 7:31–37"
+          "full": "Mark 7:31–37",
+          "shortByLanguage": {
+            "he": "מרקוס ז׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מרקוס ז׳ 31–37"
+          }
         }
       ]
     },
@@ -123,12 +219,24 @@
         {
           "type": "reading",
           "short": "2 Cor. 10",
-          "full": "2 Corinthians 10:17–18"
+          "full": "2 Corinthians 10:17–18",
+          "shortByLanguage": {
+            "he": "השנייה אל הקורינתים י׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול השניה אל הקורינתים י׳ 17–18"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 25",
-          "full": "Matthew 25:1–13"
+          "full": "Matthew 25:1–13",
+          "shortByLanguage": {
+            "he": "מתי כ״ה"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי כ״ה 1–13"
+          }
         }
       ]
     },
@@ -137,12 +245,24 @@
         {
           "type": "reading",
           "short": "1 Cor. 15",
-          "full": "1 Corinthians 15:1–10"
+          "full": "1 Corinthians 15:1–10",
+          "shortByLanguage": {
+            "he": "הראשונה אל הקורינתים ט״ו"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול הראשונה אל הקורינתים ט״ו 1–10"
+          }
         },
         {
           "type": "gospel",
           "short": "Mk. 7",
-          "full": "Mark 7:31–37"
+          "full": "Mark 7:31–37",
+          "shortByLanguage": {
+            "he": "מרקוס ז׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מרקוס ז׳ 31–37"
+          }
         }
       ]
     },
@@ -151,7 +271,13 @@
         {
           "type": "gospel",
           "short": "Lk. 11",
-          "full": "Luke 11:27–28"
+          "full": "Luke 11:27–28",
+          "shortByLanguage": {
+            "he": "לוקס י״א"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״א 27–28"
+          }
         }
       ]
     },
@@ -160,12 +286,24 @@
         {
           "type": "reading",
           "short": "Jdt. 13",
-          "full": "Judith 13:22–25"
+          "full": "Judith 13:22–25",
+          "shortByLanguage": {
+            "he": "יהודית י״ג"
+          },
+          "fullByLanguage": {
+            "he": "יהודית י״ג 22–25"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 1",
-          "full": "Luke 1:41–50"
+          "full": "Luke 1:41–50",
+          "shortByLanguage": {
+            "he": "לוקס א׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס א׳ 41–50"
+          }
         }
       ]
     },
@@ -174,12 +312,24 @@
         {
           "type": "reading",
           "short": "2 Cor. 3",
-          "full": "2 Corinthians 3:4–9"
+          "full": "2 Corinthians 3:4–9",
+          "shortByLanguage": {
+            "he": "השנייה אל הקורינתים ג׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול השניה אל הקורינתים ג׳ 4–9"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 10",
-          "full": "Luke 10:23–37"
+          "full": "Luke 10:23–37",
+          "shortByLanguage": {
+            "he": "לוקס י׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י׳ 23–37"
+          }
         }
       ]
     },
@@ -188,7 +338,13 @@
         {
           "type": "gospel",
           "short": "Lk. 12",
-          "full": "Luke 12:35–40"
+          "full": "Luke 12:35–40",
+          "shortByLanguage": {
+            "he": "לוקס י״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ב 35–40"
+          }
         }
       ]
     },
@@ -197,12 +353,24 @@
         {
           "type": "reading",
           "short": "2 Cor. 3",
-          "full": "2 Corinthians 3:4–9"
+          "full": "2 Corinthians 3:4–9",
+          "shortByLanguage": {
+            "he": "השנייה אל הקורינתים ג׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול השניה אל הקורינתים ג׳ 4–9"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 10",
-          "full": "Luke 10:23–37"
+          "full": "Luke 10:23–37",
+          "shortByLanguage": {
+            "he": "לוקס י׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י׳ 23–37"
+          }
         }
       ]
     },
@@ -211,7 +379,13 @@
         {
           "type": "gospel",
           "short": "Lk. 12",
-          "full": "Luke 12:35–40"
+          "full": "Luke 12:35–40",
+          "shortByLanguage": {
+            "he": "לוקס י״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ב 35–40"
+          }
         }
       ]
     },
@@ -220,12 +394,24 @@
         {
           "type": "reading",
           "short": "Sir. 39",
-          "full": "Sirach 39:6–14"
+          "full": "Sirach 39:6–14",
+          "shortByLanguage": {
+            "he": "שיראך ל״ט"
+          },
+          "fullByLanguage": {
+            "he": "שיראך ל״ט 6–14"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 5",
-          "full": "Matthew 5:13–19"
+          "full": "Matthew 5:13–19",
+          "shortByLanguage": {
+            "he": "מתי ה׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ה׳ 13–19"
+          }
         }
       ]
     },
@@ -234,12 +420,24 @@
         {
           "type": "reading",
           "short": "Prov. 31",
-          "full": "Proverbs 31:10–31"
+          "full": "Proverbs 31:10–31",
+          "shortByLanguage": {
+            "he": "משלי ל״א"
+          },
+          "fullByLanguage": {
+            "he": "משלי ל״א 10–31"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 13",
-          "full": "Matthew 13:44–52"
+          "full": "Matthew 13:44–52",
+          "shortByLanguage": {
+            "he": "מתי י״ג"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״ג 44–52"
+          }
         }
       ]
     },
@@ -248,7 +446,13 @@
         {
           "type": "gospel",
           "short": "Jn. 19",
-          "full": "John 19:25–27"
+          "full": "John 19:25–27",
+          "shortByLanguage": {
+            "he": "יוחנן י״ט"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה  על-פי יוחנן י״ט 25–27"
+          }
         }
       ]
     },
@@ -257,12 +461,24 @@
         {
           "type": "reading",
           "short": "Gal. 3",
-          "full": "Galatians 3:16–22"
+          "full": "Galatians 3:16–22",
+          "shortByLanguage": {
+            "he": "אל הגלטים ג׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הגלטים ג׳ 16–22"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 17",
-          "full": "Luke 17:11–19"
+          "full": "Luke 17:11–19",
+          "shortByLanguage": {
+            "he": "לוקס י״ז"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ז 11–19"
+          }
         }
       ]
     },
@@ -271,12 +487,24 @@
         {
           "type": "reading",
           "short": "1 Cor. 12",
-          "full": "1 Corinthians 12:27–31"
+          "full": "1 Corinthians 12:27–31",
+          "shortByLanguage": {
+            "he": "הראשונה אל הקורינתים י״ב"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול הראשונה אל הקורינתים י״ב 27–31"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 6",
-          "full": "Luke 6:12–19"
+          "full": "Luke 6:12–19",
+          "shortByLanguage": {
+            "he": "לוקס ו׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס ו׳ 12–19"
+          }
         }
       ]
     },
@@ -285,12 +513,24 @@
         {
           "type": "reading",
           "short": "Wis. 10",
-          "full": "Wisdom 10:10–14"
+          "full": "Wisdom 10:10–14",
+          "shortByLanguage": {
+            "he": "החכמה י׳"
+          },
+          "fullByLanguage": {
+            "he": "החכמה י׳ 10–14"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 19",
-          "full": "Luke 19:12–26"
+          "full": "Luke 19:12–26",
+          "shortByLanguage": {
+            "he": "לוקס י״ט"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ט 12–26"
+          }
         }
       ]
     },
@@ -299,12 +539,24 @@
         {
           "type": "reading",
           "short": "Gal. 3",
-          "full": "Galatians 3:16–22"
+          "full": "Galatians 3:16–22",
+          "shortByLanguage": {
+            "he": "אל הגלטים ג׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הגלטים ג׳ 16–22"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 17",
-          "full": "Luke 17:11–19"
+          "full": "Luke 17:11–19",
+          "shortByLanguage": {
+            "he": "לוקס י״ז"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ז 11–19"
+          }
         }
       ]
     },
@@ -313,12 +565,24 @@
         {
           "type": "reading",
           "short": "Wis. 10",
-          "full": "Wisdom 10:10–14"
+          "full": "Wisdom 10:10–14",
+          "shortByLanguage": {
+            "he": "החכמה י׳"
+          },
+          "fullByLanguage": {
+            "he": "החכמה י׳ 10–14"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 18",
-          "full": "Matthew 18:1–5"
+          "full": "Matthew 18:1–5",
+          "shortByLanguage": {
+            "he": "מתי י״ח"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״ח 1–5"
+          }
         }
       ]
     },
@@ -327,12 +591,24 @@
         {
           "type": "reading",
           "short": "2 Tim. 4",
-          "full": "2 Timothy 4:1–8"
+          "full": "2 Timothy 4:1–8",
+          "shortByLanguage": {
+            "he": "השנייה אל טימותיאוס ד׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול השניה אל טימותיאוס ד׳ 1–8"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 5",
-          "full": "Matthew 5:13–19"
+          "full": "Matthew 5:13–19",
+          "shortByLanguage": {
+            "he": "מתי ה׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ה׳ 13–19"
+          }
         }
       ]
     },
@@ -341,12 +617,24 @@
         {
           "type": "reading",
           "short": "Jer. 1",
-          "full": "Jeremiah 1:17–19"
+          "full": "Jeremiah 1:17–19",
+          "shortByLanguage": {
+            "he": "ירמיה א׳"
+          },
+          "fullByLanguage": {
+            "he": "ירמיה א׳ 17–19"
+          }
         },
         {
           "type": "gospel",
           "short": "Mk. 6",
-          "full": "Mark 6:17–29"
+          "full": "Mark 6:17–29",
+          "shortByLanguage": {
+            "he": "מרקוס ו׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מרקוס ו׳ 17–29"
+          }
         }
       ]
     },
@@ -355,12 +643,24 @@
         {
           "type": "reading",
           "short": "Gal. 5",
-          "full": "Galatians 5:16–24"
+          "full": "Galatians 5:16–24",
+          "shortByLanguage": {
+            "he": "אל הגלטים ה׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הגלטים ה׳ 16–24"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 6",
-          "full": "Matthew 6:24–33"
+          "full": "Matthew 6:24–33",
+          "shortByLanguage": {
+            "he": "מתי ו׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ו׳ 24–33"
+          }
         }
       ]
     },
@@ -369,7 +669,13 @@
         {
           "type": "gospel",
           "short": "Lk. 12",
-          "full": "Luke 12:35–40"
+          "full": "Luke 12:35–40",
+          "shortByLanguage": {
+            "he": "לוקס י״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ב 35–40"
+          }
         }
       ]
     },
@@ -378,12 +684,24 @@
         {
           "type": "reading",
           "short": "Gal. 5",
-          "full": "Galatians 5:16–24"
+          "full": "Galatians 5:16–24",
+          "shortByLanguage": {
+            "he": "אל הגלטים ה׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הגלטים ה׳ 16–24"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 6",
-          "full": "Matthew 6:24–33"
+          "full": "Matthew 6:24–33",
+          "shortByLanguage": {
+            "he": "מתי ו׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ו׳ 24–33"
+          }
         }
       ]
     },
@@ -392,7 +710,13 @@
         {
           "type": "gospel",
           "short": "Lk. 19",
-          "full": "Luke 19:12–26"
+          "full": "Luke 19:12–26",
+          "shortByLanguage": {
+            "he": "לוקס י״ט"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ט 12–26"
+          }
         }
       ]
     },
@@ -401,12 +725,24 @@
         {
           "type": "reading",
           "short": "1 Thess. 2",
-          "full": "1 Thessalonians 2:2–8"
+          "full": "1 Thessalonians 2:2–8",
+          "shortByLanguage": {
+            "he": "הראשונה אל התסלוניקים ב׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול הראשונה אל התסלונוקים ב׳ 2–8"
+          }
         },
         {
           "type": "gospel",
           "short": "Jn. 21",
-          "full": "John 21:15–17"
+          "full": "John 21:15–17",
+          "shortByLanguage": {
+            "he": "יוחנן כ״א"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה  על-פי יוחנן כ״א 15–17"
+          }
         }
       ]
     },
@@ -415,12 +751,24 @@
         {
           "type": "reading",
           "short": "Gal. 5",
-          "full": "Galatians 5:16–24"
+          "full": "Galatians 5:16–24",
+          "shortByLanguage": {
+            "he": "אל הגלטים ה׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הגלטים ה׳ 16–24"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 6",
-          "full": "Matthew 6:24–33"
+          "full": "Matthew 6:24–33",
+          "shortByLanguage": {
+            "he": "מתי ו׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ו׳ 24–33"
+          }
         }
       ]
     },
@@ -429,7 +777,13 @@
         {
           "type": "gospel",
           "short": "Mt. 25",
-          "full": "Matthew 25:14–23"
+          "full": "Matthew 25:14–23",
+          "shortByLanguage": {
+            "he": "מתי כ״ה"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי כ״ה 14–23"
+          }
         }
       ]
     },
@@ -438,12 +792,24 @@
         {
           "type": "reading",
           "short": "Gal. 5",
-          "full": "Galatians 5:25–26"
+          "full": "Galatians 5:25–26",
+          "shortByLanguage": {
+            "he": "אל הגלטים ה׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הגלטים ה׳ 25–26"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 7",
-          "full": "Luke 7:11–16"
+          "full": "Luke 7:11–16",
+          "shortByLanguage": {
+            "he": "לוקס ז׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס ז׳ 11–16"
+          }
         }
       ]
     },
@@ -452,12 +818,24 @@
         {
           "type": "reading",
           "short": "Gal. 5",
-          "full": "Galatians 5:25–26"
+          "full": "Galatians 5:25–26",
+          "shortByLanguage": {
+            "he": "אל הגלטים ה׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הגלטים ה׳ 25–26"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 7",
-          "full": "Luke 7:11–16"
+          "full": "Luke 7:11–16",
+          "shortByLanguage": {
+            "he": "לוקס ז׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס ז׳ 11–16"
+          }
         }
       ]
     },
@@ -466,12 +844,24 @@
         {
           "type": "reading",
           "short": "Prov. 8",
-          "full": "Proverbs 8:22–35"
+          "full": "Proverbs 8:22–35",
+          "shortByLanguage": {
+            "he": "משלי ח׳"
+          },
+          "fullByLanguage": {
+            "he": "משלי ח׳ 22–35"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 1",
-          "full": "Matthew 1:1–16"
+          "full": "Matthew 1:1–16",
+          "shortByLanguage": {
+            "he": "מתי א׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי א׳ 1–16"
+          }
         }
       ]
     },
@@ -480,12 +870,24 @@
         {
           "type": "reading",
           "short": "Gal. 5",
-          "full": "Galatians 5:25–26"
+          "full": "Galatians 5:25–26",
+          "shortByLanguage": {
+            "he": "אל הגלטים ה׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הגלטים ה׳ 25–26"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 7",
-          "full": "Luke 7:11–16"
+          "full": "Luke 7:11–16",
+          "shortByLanguage": {
+            "he": "לוקס ז׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס ז׳ 11–16"
+          }
         }
       ]
     },
@@ -494,12 +896,24 @@
         {
           "type": "reading",
           "short": "1 Cor. 4",
-          "full": "1 Corinthians 4:9–14"
+          "full": "1 Corinthians 4:9–14",
+          "shortByLanguage": {
+            "he": "הראשונה אל הקורינתים ד׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול הראשונה אל הקורינתים ד׳ 9–14"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 12",
-          "full": "Luke 12:32–34"
+          "full": "Luke 12:32–34",
+          "shortByLanguage": {
+            "he": "לוקס י״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ב 32–34"
+          }
         }
       ]
     },
@@ -508,12 +922,24 @@
         {
           "type": "reading",
           "short": "Gal. 5",
-          "full": "Galatians 5:25–26"
+          "full": "Galatians 5:25–26",
+          "shortByLanguage": {
+            "he": "אל הגלטים ה׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הגלטים ה׳ 25–26"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 7",
-          "full": "Luke 7:11–16"
+          "full": "Luke 7:11–16",
+          "shortByLanguage": {
+            "he": "לוקס ז׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס ז׳ 11–16"
+          }
         }
       ]
     },
@@ -522,7 +948,13 @@
         {
           "type": "gospel",
           "short": "Lk. 1",
-          "full": "Luke 1:26–38"
+          "full": "Luke 1:26–38",
+          "shortByLanguage": {
+            "he": "לוקס א׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס א׳ 26–38"
+          }
         }
       ]
     },
@@ -531,12 +963,24 @@
         {
           "type": "reading",
           "short": "Eph. 3",
-          "full": "Ephesians 3:13–21"
+          "full": "Ephesians 3:13–21",
+          "shortByLanguage": {
+            "he": "אל האפסים ג׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל האפסים ג׳ 13–21"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 14",
-          "full": "Luke 14:1–11"
+          "full": "Luke 14:1–11",
+          "shortByLanguage": {
+            "he": "לוקס י״ד"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ד 1–11"
+          }
         }
       ]
     },
@@ -545,12 +989,24 @@
         {
           "type": "reading",
           "short": "Phil. 2",
-          "full": "Philippians 2:5–11"
+          "full": "Philippians 2:5–11",
+          "shortByLanguage": {
+            "he": "אל הפיליפים ב׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הפיליפים ב׳ 5–11"
+          }
         },
         {
           "type": "gospel",
           "short": "Jn. 12",
-          "full": "John 12:31–36"
+          "full": "John 12:31–36",
+          "shortByLanguage": {
+            "he": "יוחנן י״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה  על-פי יוחנן י״ב 31–36"
+          }
         }
       ]
     },
@@ -559,12 +1015,24 @@
         {
           "type": "reading",
           "short": "Jdt. 13",
-          "full": "Judith 13:22"
+          "full": "Judith 13:22",
+          "shortByLanguage": {
+            "he": "יהודית י״ג"
+          },
+          "fullByLanguage": {
+            "he": "יהודית י״ג 22"
+          }
         },
         {
           "type": "gospel",
           "short": "Jn. 19",
-          "full": "John 19:25–27"
+          "full": "John 19:25–27",
+          "shortByLanguage": {
+            "he": "יוחנן י״ט"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה  על-פי יוחנן י״ט 25–27"
+          }
         }
       ]
     },
@@ -573,12 +1041,24 @@
         {
           "type": "reading",
           "short": "Wis. 3",
-          "full": "Wisdom 3:1–8"
+          "full": "Wisdom 3:1–8",
+          "shortByLanguage": {
+            "he": "החכמה ג׳"
+          },
+          "fullByLanguage": {
+            "he": "החכמה ג׳ 1–8"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 21",
-          "full": "Luke 21:9–19"
+          "full": "Luke 21:9–19",
+          "shortByLanguage": {
+            "he": "לוקס כ״א"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס כ״א 9–19"
+          }
         }
       ]
     },
@@ -587,12 +1067,24 @@
         {
           "type": "reading",
           "short": "Eph. 3",
-          "full": "Ephesians 3:13–21"
+          "full": "Ephesians 3:13–21",
+          "shortByLanguage": {
+            "he": "אל האפסים ג׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל האפסים ג׳ 13–21"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 14",
-          "full": "Luke 14:1–11"
+          "full": "Luke 14:1–11",
+          "shortByLanguage": {
+            "he": "לוקס י״ד"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ד 1–11"
+          }
         }
       ]
     },
@@ -601,12 +1093,24 @@
         {
           "type": "reading",
           "short": "1 Cor. 13",
-          "full": "1 Corinthians 13:1–8"
+          "full": "1 Corinthians 13:1–8",
+          "shortByLanguage": {
+            "he": "הראשונה אל הקורינתים י״ג"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול הראשונה אל הקורינתים י״ג 1–8"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 22",
-          "full": "Matthew 22:1–14"
+          "full": "Matthew 22:1–14",
+          "shortByLanguage": {
+            "he": "מתי כ״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי כ״ב 1–14"
+          }
         }
       ]
     },
@@ -615,12 +1119,24 @@
         {
           "type": "reading",
           "short": "Heb. 10",
-          "full": "Hebrews 10:32–38"
+          "full": "Hebrews 10:32–38",
+          "shortByLanguage": {
+            "he": "אל העברים י׳"
+          },
+          "fullByLanguage": {
+            "he": "האגרת אל העברים י׳ 32–38"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 24",
-          "full": "Matthew 24:3–13"
+          "full": "Matthew 24:3–13",
+          "shortByLanguage": {
+            "he": "מתי כ״ד"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי כ״ד 3–13"
+          }
         }
       ]
     },
@@ -629,12 +1145,24 @@
         {
           "type": "reading",
           "short": "Eph. 4",
-          "full": "Ephesians 4:1–6"
+          "full": "Ephesians 4:1–6",
+          "shortByLanguage": {
+            "he": "אל האפסים ד׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל האפסים ד׳ 1–6"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 22",
-          "full": "Matthew 22:34–46"
+          "full": "Matthew 22:34–46",
+          "shortByLanguage": {
+            "he": "מתי כ״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי כ״ב 34–46"
+          }
         }
       ]
     },
@@ -643,12 +1171,24 @@
         {
           "type": "reading",
           "short": "Ezek. 1",
-          "full": "Ezekiel 1:10–14"
+          "full": "Ezekiel 1:10–14",
+          "shortByLanguage": {
+            "he": "יחזקאל א׳"
+          },
+          "fullByLanguage": {
+            "he": "יחזקאל א׳ 10–14"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 9",
-          "full": "Matthew 9:9–13"
+          "full": "Matthew 9:9–13",
+          "shortByLanguage": {
+            "he": "מתי ט׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ט׳ 9–13"
+          }
         }
       ]
     },
@@ -657,7 +1197,13 @@
         {
           "type": "gospel",
           "short": "Mt. 25",
-          "full": "Matthew 25:14–23"
+          "full": "Matthew 25:14–23",
+          "shortByLanguage": {
+            "he": "מתי כ״ה"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי כ״ה 14–23"
+          }
         }
       ]
     },
@@ -666,12 +1212,24 @@
         {
           "type": "reading",
           "short": "Amos 9",
-          "full": "Amos 9:13–15"
+          "full": "Amos 9:13–15",
+          "shortByLanguage": {
+            "he": "עמוס ט׳"
+          },
+          "fullByLanguage": {
+            "he": "עמוס ט׳ 13–15"
+          }
         },
         {
           "type": "gospel",
           "short": "Mk. 9",
-          "full": "Mark 9:16–28"
+          "full": "Mark 9:16–28",
+          "shortByLanguage": {
+            "he": "מרקוס ט׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מרקוס ט׳ 16–28"
+          }
         }
       ]
     },
@@ -680,12 +1238,24 @@
         {
           "type": "reading",
           "short": "Eph. 4",
-          "full": "Ephesians 4:1–6"
+          "full": "Ephesians 4:1–6",
+          "shortByLanguage": {
+            "he": "אל האפסים ד׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל האפסים ד׳ 1–6"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 22",
-          "full": "Matthew 22:34–46"
+          "full": "Matthew 22:34–46",
+          "shortByLanguage": {
+            "he": "מתי כ״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי כ״ב 34–46"
+          }
         }
       ]
     },
@@ -694,7 +1264,13 @@
         {
           "type": "gospel",
           "short": "Lk. 7",
-          "full": "Luke 7:36–50"
+          "full": "Luke 7:36–50",
+          "shortByLanguage": {
+            "he": "לוקס ז׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס ז׳ 36–50"
+          }
         }
       ]
     },
@@ -703,27 +1279,57 @@
         {
           "type": "reading",
           "short": "Lev. 23",
-          "full": "Leviticus 23:26–32"
+          "full": "Leviticus 23:26–32",
+          "shortByLanguage": {
+            "he": "ויקרא כ״ג"
+          },
+          "fullByLanguage": {
+            "he": "ויקרא כ״ג 26–32"
+          }
         },
         {
           "type": "reading",
           "short": "Lev. 23",
-          "full": "Leviticus 23:39–43"
+          "full": "Leviticus 23:39–43",
+          "shortByLanguage": {
+            "he": "ויקרא כ״ג"
+          },
+          "fullByLanguage": {
+            "he": "ויקרא כ״ג 39–43"
+          }
         },
         {
           "type": "reading",
           "short": "Dan. 3",
-          "full": "Daniel 3:49–51"
+          "full": "Daniel 3:49–51",
+          "shortByLanguage": {
+            "he": "דניאל ג׳"
+          },
+          "fullByLanguage": {
+            "he": "דניאל ג׳ 49–51"
+          }
         },
         {
           "type": "reading",
           "short": "Heb. 9",
-          "full": "Hebrews 9:2–12"
+          "full": "Hebrews 9:2–12",
+          "shortByLanguage": {
+            "he": "אל העברים ט׳"
+          },
+          "fullByLanguage": {
+            "he": "האגרת אל העברים ט׳ 2–12"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 13",
-          "full": "Luke 13:6–17"
+          "full": "Luke 13:6–17",
+          "shortByLanguage": {
+            "he": "לוקס י״ג"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ג 6–17"
+          }
         }
       ]
     },
@@ -732,12 +1338,24 @@
         {
           "type": "reading",
           "short": "1 Cor. 1",
-          "full": "1 Corinthians 1:4–8"
+          "full": "1 Corinthians 1:4–8",
+          "shortByLanguage": {
+            "he": "הראשונה אל הקורינתים א׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול הראשונה אל הקורינתים א׳ 4–8"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 9",
-          "full": "Matthew 9:1–8"
+          "full": "Matthew 9:1–8",
+          "shortByLanguage": {
+            "he": "מתי ט׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ט׳ 1–8"
+          }
         }
       ]
     },
@@ -746,12 +1364,24 @@
         {
           "type": "reading",
           "short": "Wis. 10",
-          "full": "Wisdom 10:10–14"
+          "full": "Wisdom 10:10–14",
+          "shortByLanguage": {
+            "he": "החכמה י׳"
+          },
+          "fullByLanguage": {
+            "he": "החכמה י׳ 10–14"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 10",
-          "full": "Matthew 10:34–42"
+          "full": "Matthew 10:34–42",
+          "shortByLanguage": {
+            "he": "מתי י׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י׳ 34–42"
+          }
         }
       ]
     },
@@ -760,12 +1390,24 @@
         {
           "type": "reading",
           "short": "Rev. 1",
-          "full": "Revelation 1:1–5"
+          "full": "Revelation 1:1–5",
+          "shortByLanguage": {
+            "he": "ההתגלות א׳"
+          },
+          "fullByLanguage": {
+            "he": "ההתגלות א׳ 1–5"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 18",
-          "full": "Matthew 18:1–10"
+          "full": "Matthew 18:1–10",
+          "shortByLanguage": {
+            "he": "מתי י״ח"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״ח 1–10"
+          }
         }
       ]
     },
@@ -774,12 +1416,24 @@
         {
           "type": "reading",
           "short": "2 Tim. 4",
-          "full": "2 Timothy 4:1–8"
+          "full": "2 Timothy 4:1–8",
+          "shortByLanguage": {
+            "he": "השנייה אל טימותיאוס ד׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול השניה אל טימותיאוס ד׳ 1–8"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 5",
-          "full": "Matthew 5:13–19"
+          "full": "Matthew 5:13–19",
+          "shortByLanguage": {
+            "he": "מתי ה׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ה׳ 13–19"
+          }
         }
       ]
     },
@@ -788,12 +1442,24 @@
         {
           "type": "reading",
           "short": "1 Cor. 1",
-          "full": "1 Corinthians 1:4–8"
+          "full": "1 Corinthians 1:4–8",
+          "shortByLanguage": {
+            "he": "הראשונה אל הקורינתים א׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול הראשונה אל הקורינתים א׳ 4–8"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 9",
-          "full": "Matthew 9:1–8"
+          "full": "Matthew 9:1–8",
+          "shortByLanguage": {
+            "he": "מתי ט׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ט׳ 1–8"
+          }
         }
       ]
     },
@@ -802,12 +1468,24 @@
         {
           "type": "reading",
           "short": "Exod. 23",
-          "full": "Exodus 23:20–23"
+          "full": "Exodus 23:20–23",
+          "shortByLanguage": {
+            "he": "שמות כ״ג"
+          },
+          "fullByLanguage": {
+            "he": "שמות כ״ג 20–23"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 18",
-          "full": "Matthew 18:1–10"
+          "full": "Matthew 18:1–10",
+          "shortByLanguage": {
+            "he": "מתי י״ח"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״ח 1–10"
+          }
         }
       ]
     },
@@ -816,12 +1494,24 @@
         {
           "type": "reading",
           "short": "Isa. 66",
-          "full": "Isaiah 66:12–14"
+          "full": "Isaiah 66:12–14",
+          "shortByLanguage": {
+            "he": "ישעיה ס״ו"
+          },
+          "fullByLanguage": {
+            "he": "ישעיה ס״ו 12–14"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 18",
-          "full": "Matthew 18:1–4"
+          "full": "Matthew 18:1–4",
+          "shortByLanguage": {
+            "he": "מתי י״ח"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״ח 1–4"
+          }
         }
       ]
     },
@@ -830,12 +1520,24 @@
         {
           "type": "reading",
           "short": "Eph. 4",
-          "full": "Ephesians 4:23–28"
+          "full": "Ephesians 4:23–28",
+          "shortByLanguage": {
+            "he": "אל האפסים ד׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל האפסים ד׳ 23–28"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 22",
-          "full": "Matthew 22:1–14"
+          "full": "Matthew 22:1–14",
+          "shortByLanguage": {
+            "he": "מתי כ״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי כ״ב 1–14"
+          }
         }
       ]
     },
@@ -844,12 +1546,24 @@
         {
           "type": "reading",
           "short": "Eph. 4",
-          "full": "Ephesians 4:23–28"
+          "full": "Ephesians 4:23–28",
+          "shortByLanguage": {
+            "he": "אל האפסים ד׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל האפסים ד׳ 23–28"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 22",
-          "full": "Matthew 22:1–14"
+          "full": "Matthew 22:1–14",
+          "shortByLanguage": {
+            "he": "מתי כ״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי כ״ב 1–14"
+          }
         }
       ]
     },
@@ -858,7 +1572,13 @@
         {
           "type": "gospel",
           "short": "Lk. 12",
-          "full": "Luke 12:35–40"
+          "full": "Luke 12:35–40",
+          "shortByLanguage": {
+            "he": "לוקס י״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ב 35–40"
+          }
         }
       ]
     },
@@ -867,12 +1587,24 @@
         {
           "type": "reading",
           "short": "Prov. 8",
-          "full": "Proverbs 8:22–24, 32–35"
+          "full": "Proverbs 8:22–24, 32–35",
+          "shortByLanguage": {
+            "he": "משלי ח׳"
+          },
+          "fullByLanguage": {
+            "he": "משלי ח׳ 22–24, 32–35"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 1",
-          "full": "Luke 1:26–38"
+          "full": "Luke 1:26–38",
+          "shortByLanguage": {
+            "he": "לוקס א׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס א׳ 26–38"
+          }
         }
       ]
     },
@@ -881,12 +1613,24 @@
         {
           "type": "reading",
           "short": "1 Tim. 5",
-          "full": "1 Timothy 5:3–10"
+          "full": "1 Timothy 5:3–10",
+          "shortByLanguage": {
+            "he": "הראשונה אל טימותיאוס ה׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול הראשונה אל טימותיאוס ה׳ 3–10"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 13",
-          "full": "Matthew 13:44–52"
+          "full": "Matthew 13:44–52",
+          "shortByLanguage": {
+            "he": "מתי י״ג"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״ג 44–52"
+          }
         }
       ]
     },
@@ -895,12 +1639,24 @@
         {
           "type": "reading",
           "short": "2 Cor. 4",
-          "full": "2 Corinthians 4:1–6"
+          "full": "2 Corinthians 4:1–6",
+          "shortByLanguage": {
+            "he": "השנייה אל הקורינתים ד׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול השניה אל הקורינתים ד׳ 1–6"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 10",
-          "full": "Luke 10:1–9"
+          "full": "Luke 10:1–9",
+          "shortByLanguage": {
+            "he": "לוקס י׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י׳ 1–9"
+          }
         }
       ]
     },
@@ -909,12 +1665,24 @@
         {
           "type": "reading",
           "short": "Sir. 45",
-          "full": "Sirach 45:1–6"
+          "full": "Sirach 45:1–6",
+          "shortByLanguage": {
+            "he": "שיראך מ״ה"
+          },
+          "fullByLanguage": {
+            "he": "שיראך מ״ה 1–6"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 19",
-          "full": "Matthew 19:27–29"
+          "full": "Matthew 19:27–29",
+          "shortByLanguage": {
+            "he": "מתי י״ט"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״ט 27–29"
+          }
         }
       ]
     },
@@ -923,12 +1691,24 @@
         {
           "type": "reading",
           "short": "Eph. 5",
-          "full": "Ephesians 5:15–21"
+          "full": "Ephesians 5:15–21",
+          "shortByLanguage": {
+            "he": "אל האפסים ה׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל האפסים ה׳ 15–21"
+          }
         },
         {
           "type": "gospel",
           "short": "Jn. 4",
-          "full": "John 4:46–53"
+          "full": "John 4:46–53",
+          "shortByLanguage": {
+            "he": "יוחנן ד׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה  על-פי יוחנן ד׳ 46–53"
+          }
         }
       ]
     },
@@ -937,12 +1717,24 @@
         {
           "type": "reading",
           "short": "Eph. 5",
-          "full": "Ephesians 5:15–21"
+          "full": "Ephesians 5:15–21",
+          "shortByLanguage": {
+            "he": "אל האפסים ה׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל האפסים ה׳ 15–21"
+          }
         },
         {
           "type": "gospel",
           "short": "Jn. 4",
-          "full": "John 4:46–53"
+          "full": "John 4:46–53",
+          "shortByLanguage": {
+            "he": "יוחנן ד׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה  על-פי יוחנן ד׳ 46–53"
+          }
         }
       ]
     },
@@ -951,7 +1743,13 @@
         {
           "type": "gospel",
           "short": "Lk. 12",
-          "full": "Luke 12:35–40"
+          "full": "Luke 12:35–40",
+          "shortByLanguage": {
+            "he": "לוקס י״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ב 35–40"
+          }
         }
       ]
     },
@@ -960,12 +1758,24 @@
         {
           "type": "reading",
           "short": "1 Pet. 5",
-          "full": "1 Peter 5:1–4"
+          "full": "1 Peter 5:1–4",
+          "shortByLanguage": {
+            "he": "הראשונה של כיפא ה׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת כיפא הראשונה ה׳ 1–4"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 16",
-          "full": "Matthew 16:13–19"
+          "full": "Matthew 16:13–19",
+          "shortByLanguage": {
+            "he": "מתי ט״ז"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ט״ז 13–19"
+          }
         }
       ]
     },
@@ -974,12 +1784,24 @@
         {
           "type": "reading",
           "short": "2 Cor. 10",
-          "full": "2 Corinthians 10:17–18"
+          "full": "2 Corinthians 10:17–18",
+          "shortByLanguage": {
+            "he": "השנייה אל הקורינתים י׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול השניה אל הקורינתים י׳ 17–18"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 25",
-          "full": "Matthew 25:1–13"
+          "full": "Matthew 25:1–13",
+          "shortByLanguage": {
+            "he": "מתי כ״ה"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי כ״ה 1–13"
+          }
         }
       ]
     },
@@ -988,12 +1810,24 @@
         {
           "type": "reading",
           "short": "Prov. 31",
-          "full": "Proverbs 31:10–31"
+          "full": "Proverbs 31:10–31",
+          "shortByLanguage": {
+            "he": "משלי ל״א"
+          },
+          "fullByLanguage": {
+            "he": "משלי ל״א 10–31"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 13",
-          "full": "Matthew 13:44–52"
+          "full": "Matthew 13:44–52",
+          "shortByLanguage": {
+            "he": "מתי י״ג"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״ג 44–52"
+          }
         }
       ]
     },
@@ -1002,12 +1836,24 @@
         {
           "type": "reading",
           "short": "Eph. 3",
-          "full": "Ephesians 3:8–9, 14–19"
+          "full": "Ephesians 3:8–9, 14–19",
+          "shortByLanguage": {
+            "he": "אל האפסים ג׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל האפסים ג׳ 8–9, 14–19"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 11",
-          "full": "Matthew 11:25–30"
+          "full": "Matthew 11:25–30",
+          "shortByLanguage": {
+            "he": "מתי י״א"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״א 25–30"
+          }
         }
       ]
     },
@@ -1016,12 +1862,24 @@
         {
           "type": "reading",
           "short": "Eph. 6",
-          "full": "Ephesians 6:10–17"
+          "full": "Ephesians 6:10–17",
+          "shortByLanguage": {
+            "he": "אל האפסים ו׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל האפסים ו׳ 10–17"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 18",
-          "full": "Matthew 18:23–35"
+          "full": "Matthew 18:23–35",
+          "shortByLanguage": {
+            "he": "מתי י״ח"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״ח 23–35"
+          }
         }
       ]
     },
@@ -1030,12 +1888,24 @@
         {
           "type": "reading",
           "short": "Phil. 3",
-          "full": "Philippians 3:7–12"
+          "full": "Philippians 3:7–12",
+          "shortByLanguage": {
+            "he": "אל הפיליפים ג׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הפיליפים ג׳ 7–12"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 12",
-          "full": "Luke 12:32–34"
+          "full": "Luke 12:32–34",
+          "shortByLanguage": {
+            "he": "לוקס י״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ב 32–34"
+          }
         }
       ]
     },
@@ -1044,12 +1914,24 @@
         {
           "type": "reading",
           "short": "Jas. 2",
-          "full": "James 2:12–17"
+          "full": "James 2:12–17",
+          "shortByLanguage": {
+            "he": "יעקב ב׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת יעקב ב׳ 12–17"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 12",
-          "full": "Luke 12:35–40"
+          "full": "Luke 12:35–40",
+          "shortByLanguage": {
+            "he": "לוקס י״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ב 35–40"
+          }
         }
       ]
     },
@@ -1058,12 +1940,24 @@
         {
           "type": "reading",
           "short": "Eph. 6",
-          "full": "Ephesians 6:10–17"
+          "full": "Ephesians 6:10–17",
+          "shortByLanguage": {
+            "he": "אל האפסים ו׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל האפסים ו׳ 10–17"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 18",
-          "full": "Matthew 18:23–35"
+          "full": "Matthew 18:23–35",
+          "shortByLanguage": {
+            "he": "מתי י״ח"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״ח 23–35"
+          }
         }
       ]
     },
@@ -1072,12 +1966,24 @@
         {
           "type": "reading",
           "short": "Eph. 6",
-          "full": "Ephesians 6:10–17"
+          "full": "Ephesians 6:10–17",
+          "shortByLanguage": {
+            "he": "אל האפסים ו׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל האפסים ו׳ 10–17"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 18",
-          "full": "Matthew 18:23–35"
+          "full": "Matthew 18:23–35",
+          "shortByLanguage": {
+            "he": "מתי י״ח"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״ח 23–35"
+          }
         }
       ]
     },
@@ -1086,12 +1992,24 @@
         {
           "type": "reading",
           "short": "Heb. 7",
-          "full": "Hebrews 7:23–27"
+          "full": "Hebrews 7:23–27",
+          "shortByLanguage": {
+            "he": "אל העברים ז׳"
+          },
+          "fullByLanguage": {
+            "he": "האגרת אל העברים ז׳ 23–27"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 24",
-          "full": "Matthew 24:42–47"
+          "full": "Matthew 24:42–47",
+          "shortByLanguage": {
+            "he": "מתי כ״ד"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי כ״ד 42–47"
+          }
         }
       ]
     },
@@ -1100,12 +2018,24 @@
         {
           "type": "reading",
           "short": "Tob. 12",
-          "full": "Tobit 12:7–15"
+          "full": "Tobit 12:7–15",
+          "shortByLanguage": {
+            "he": "טוביה י״ב"
+          },
+          "fullByLanguage": {
+            "he": "טוביה י״ב 7–15"
+          }
         },
         {
           "type": "gospel",
           "short": "Jn. 5",
-          "full": "John 5:1–4"
+          "full": "John 5:1–4",
+          "shortByLanguage": {
+            "he": "יוחנן ה׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה  על-פי יוחנן ה׳ 1–4"
+          }
         }
       ]
     },
@@ -1114,12 +2044,24 @@
         {
           "type": "reading",
           "short": "Col. 1",
-          "full": "Colossians 1:12–20"
+          "full": "Colossians 1:12–20",
+          "shortByLanguage": {
+            "he": "אל הקולוסים א׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הקולוסים א׳ 12–20"
+          }
         },
         {
           "type": "gospel",
           "short": "Jn. 18",
-          "full": "John 18:33–37"
+          "full": "John 18:33–37",
+          "shortByLanguage": {
+            "he": "יוחנן י״ח"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה  על-פי יוחנן י״ח 33–37"
+          }
         }
       ]
     },
@@ -1128,12 +2070,24 @@
         {
           "type": "reading",
           "short": "Phil. 1",
-          "full": "Philippians 1:6–11"
+          "full": "Philippians 1:6–11",
+          "shortByLanguage": {
+            "he": "אל הפיליפים א׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הפיליפים א׳ 6–11"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 22",
-          "full": "Matthew 22:15–21"
+          "full": "Matthew 22:15–21",
+          "shortByLanguage": {
+            "he": "מתי כ״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי כ״ב 15–21"
+          }
         }
       ]
     },
@@ -1142,12 +2096,24 @@
         {
           "type": "reading",
           "short": "Phil. 1",
-          "full": "Philippians 1:6–11"
+          "full": "Philippians 1:6–11",
+          "shortByLanguage": {
+            "he": "אל הפיליפים א׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הפיליפים א׳ 6–11"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 22",
-          "full": "Matthew 22:15–21"
+          "full": "Matthew 22:15–21",
+          "shortByLanguage": {
+            "he": "מתי כ״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי כ״ב 15–21"
+          }
         }
       ]
     },
@@ -1156,12 +2122,24 @@
         {
           "type": "reading",
           "short": "Eph. 4",
-          "full": "Ephesians 4:7–13"
+          "full": "Ephesians 4:7–13",
+          "shortByLanguage": {
+            "he": "אל האפסים ד׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל האפסים ד׳ 7–13"
+          }
         },
         {
           "type": "gospel",
           "short": "Jn. 15",
-          "full": "John 15:17–25"
+          "full": "John 15:17–25",
+          "shortByLanguage": {
+            "he": "יוחנן ט״ו"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה  על-פי יוחנן ט״ו 17–25"
+          }
         }
       ]
     },
@@ -1170,12 +2148,24 @@
         {
           "type": "reading",
           "short": "Phil. 1",
-          "full": "Philippians 1:6–11"
+          "full": "Philippians 1:6–11",
+          "shortByLanguage": {
+            "he": "אל הפיליפים א׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הפיליפים א׳ 6–11"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 22",
-          "full": "Matthew 22:15–21"
+          "full": "Matthew 22:15–21",
+          "shortByLanguage": {
+            "he": "מתי כ״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי כ״ב 15–21"
+          }
         }
       ]
     },
@@ -1184,12 +2174,24 @@
         {
           "type": "reading",
           "short": "Phil. 1",
-          "full": "Philippians 1:6–11"
+          "full": "Philippians 1:6–11",
+          "shortByLanguage": {
+            "he": "אל הפיליפים א׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הפיליפים א׳ 6–11"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 22",
-          "full": "Matthew 22:15–21"
+          "full": "Matthew 22:15–21",
+          "shortByLanguage": {
+            "he": "מתי כ״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי כ״ב 15–21"
+          }
         }
       ]
     },
@@ -1198,12 +2200,24 @@
         {
           "type": "reading",
           "short": "Sir. 24",
-          "full": "Sirach 24:14–16"
+          "full": "Sirach 24:14–16",
+          "shortByLanguage": {
+            "he": "שיראך כ״ד"
+          },
+          "fullByLanguage": {
+            "he": "שיראך כ״ד 14–16"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 11",
-          "full": "Luke 11:27–28"
+          "full": "Luke 11:27–28",
+          "shortByLanguage": {
+            "he": "לוקס י״א"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״א 27–28"
+          }
         }
       ]
     },
@@ -1212,7 +2226,13 @@
         {
           "type": "gospel",
           "short": "Mt. 5",
-          "full": "Matthew 5:1–12"
+          "full": "Matthew 5:1–12",
+          "shortByLanguage": {
+            "he": "מתי ה׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ה׳ 1–12"
+          }
         }
       ]
     },
@@ -1221,22 +2241,46 @@
         {
           "type": "reading",
           "short": "1 Cor. 15",
-          "full": "1 Corinthians 15:51–57"
+          "full": "1 Corinthians 15:51–57",
+          "shortByLanguage": {
+            "he": "הראשונה אל הקורינתים ט״ו"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול הראשונה אל הקורינתים ט״ו 51–57"
+          }
         },
         {
           "type": "gospel",
           "short": "Jn. 5",
-          "full": "John 5:25–29"
+          "full": "John 5:25–29",
+          "shortByLanguage": {
+            "he": "יוחנן ה׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה  על-פי יוחנן ה׳ 25–29"
+          }
         },
         {
           "type": "gospel",
           "short": "Jn. 6",
-          "full": "John 6:37–40"
+          "full": "John 6:37–40",
+          "shortByLanguage": {
+            "he": "יוחנן ו׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה  על-פי יוחנן ו׳ 37–40"
+          }
         },
         {
           "type": "gospel",
           "short": "Jn. 6",
-          "full": "John 6:51–55"
+          "full": "John 6:51–55",
+          "shortByLanguage": {
+            "he": "יוחנן ו׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה  על-פי יוחנן ו׳ 51–55"
+          }
         }
       ]
     },
@@ -1245,12 +2289,24 @@
         {
           "type": "reading",
           "short": "Phil. 3",
-          "full": "Philippians 3:17–21"
+          "full": "Philippians 3:17–21",
+          "shortByLanguage": {
+            "he": "אל הפיליפים ג׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הפיליפים ג׳ 17–21"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 9",
-          "full": "Matthew 9:18–26"
+          "full": "Matthew 9:18–26",
+          "shortByLanguage": {
+            "he": "מתי ט׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ט׳ 18–26"
+          }
         }
       ]
     },
@@ -1259,7 +2315,13 @@
         {
           "type": "gospel",
           "short": "Mt. 25",
-          "full": "Matthew 25:14–23"
+          "full": "Matthew 25:14–23",
+          "shortByLanguage": {
+            "he": "מתי כ״ה"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי כ״ה 14–23"
+          }
         }
       ]
     },
@@ -1268,12 +2330,24 @@
         {
           "type": "reading",
           "short": "Phil. 3",
-          "full": "Philippians 3:17–21"
+          "full": "Philippians 3:17–21",
+          "shortByLanguage": {
+            "he": "אל הפיליפים ג׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הפיליפים ג׳ 17–21"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 9",
-          "full": "Matthew 9:18–26"
+          "full": "Matthew 9:18–26",
+          "shortByLanguage": {
+            "he": "מתי ט׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ט׳ 18–26"
+          }
         }
       ]
     },
@@ -1282,12 +2356,24 @@
         {
           "type": "reading",
           "short": "Phil. 3",
-          "full": "Philippians 3:17–21"
+          "full": "Philippians 3:17–21",
+          "shortByLanguage": {
+            "he": "אל הפיליפים ג׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הפיליפים ג׳ 17–21"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 9",
-          "full": "Matthew 9:18–26"
+          "full": "Matthew 9:18–26",
+          "shortByLanguage": {
+            "he": "מתי ט׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ט׳ 18–26"
+          }
         }
       ]
     },
@@ -1296,12 +2382,24 @@
         {
           "type": "reading",
           "short": "Sir. 24",
-          "full": "Sirach 24:14–16"
+          "full": "Sirach 24:14–16",
+          "shortByLanguage": {
+            "he": "שיראך כ״ד"
+          },
+          "fullByLanguage": {
+            "he": "שיראך כ״ד 14–16"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 11",
-          "full": "Luke 11:27–28"
+          "full": "Luke 11:27–28",
+          "shortByLanguage": {
+            "he": "לוקס י״א"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״א 27–28"
+          }
         }
       ]
     },
@@ -1310,12 +2408,24 @@
         {
           "type": "reading",
           "short": "Col. 3",
-          "full": "Colossians 3:12–17"
+          "full": "Colossians 3:12–17",
+          "shortByLanguage": {
+            "he": "אל הקולוסים ג׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הקולוסים ג׳ 12–17"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 13",
-          "full": "Matthew 13:24–30"
+          "full": "Matthew 13:24–30",
+          "shortByLanguage": {
+            "he": "מתי י״ג"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״ג 24–30"
+          }
         }
       ]
     },
@@ -1324,12 +2434,24 @@
         {
           "type": "reading",
           "short": "Rev. 21",
-          "full": "Revelation 21:2–5"
+          "full": "Revelation 21:2–5",
+          "shortByLanguage": {
+            "he": "ההתגלות כ״א"
+          },
+          "fullByLanguage": {
+            "he": "ההתגלות כ״א 2–5"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 19",
-          "full": "Luke 19:1–10"
+          "full": "Luke 19:1–10",
+          "shortByLanguage": {
+            "he": "לוקס י״ט"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ט 1–10"
+          }
         }
       ]
     },
@@ -1338,7 +2460,13 @@
         {
           "type": "gospel",
           "short": "Lk. 12",
-          "full": "Luke 12:35–40"
+          "full": "Luke 12:35–40",
+          "shortByLanguage": {
+            "he": "לוקס י״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ב 35–40"
+          }
         }
       ]
     },
@@ -1347,7 +2475,13 @@
         {
           "type": "gospel",
           "short": "Lk. 11",
-          "full": "Luke 11:33–36"
+          "full": "Luke 11:33–36",
+          "shortByLanguage": {
+            "he": "לוקס י״א"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״א 33–36"
+          }
         }
       ]
     },
@@ -1356,12 +2490,24 @@
         {
           "type": "reading",
           "short": "1 Pet. 5",
-          "full": "1 Peter 5:1–4"
+          "full": "1 Peter 5:1–4",
+          "shortByLanguage": {
+            "he": "הראשונה של כיפא ה׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת כיפא הראשונה ה׳ 1–4"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 16",
-          "full": "Matthew 16:13–19"
+          "full": "Matthew 16:13–19",
+          "shortByLanguage": {
+            "he": "מתי ט״ז"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ט״ז 13–19"
+          }
         }
       ]
     },
@@ -1370,12 +2516,24 @@
         {
           "type": "reading",
           "short": "Col. 3",
-          "full": "Colossians 3:12–17"
+          "full": "Colossians 3:12–17",
+          "shortByLanguage": {
+            "he": "אל הקולוסים ג׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הקולוסים ג׳ 12–17"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 13",
-          "full": "Matthew 13:24–30"
+          "full": "Matthew 13:24–30",
+          "shortByLanguage": {
+            "he": "מתי י״ג"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״ג 24–30"
+          }
         }
       ]
     },
@@ -1384,12 +2542,24 @@
         {
           "type": "reading",
           "short": "Heb. 5",
-          "full": "Hebrews 5:1–6"
+          "full": "Hebrews 5:1–6",
+          "shortByLanguage": {
+            "he": "אל העברים ה׳"
+          },
+          "fullByLanguage": {
+            "he": "האגרת אל העברים ה׳ 1–6"
+          }
         },
         {
           "type": "gospel",
           "short": "Jn. 10",
-          "full": "John 10:11–16"
+          "full": "John 10:11–16",
+          "shortByLanguage": {
+            "he": "יוחנן י׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה  על-פי יוחנן י׳ 11–16"
+          }
         }
       ]
     },
@@ -1398,12 +2568,24 @@
         {
           "type": "reading",
           "short": "1 Thess. 1",
-          "full": "1 Thessalonians 1:2–10"
+          "full": "1 Thessalonians 1:2–10",
+          "shortByLanguage": {
+            "he": "הראשונה אל התסלוניקים א׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול הראשונה אל התסלונוקים א׳ 2–10"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 13",
-          "full": "Matthew 13:31–35"
+          "full": "Matthew 13:31–35",
+          "shortByLanguage": {
+            "he": "מתי י״ג"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״ג 31–35"
+          }
         }
       ]
     },
@@ -1412,12 +2594,24 @@
         {
           "type": "reading",
           "short": "2 Cor. 10",
-          "full": "2 Corinthians 10:17–18"
+          "full": "2 Corinthians 10:17–18",
+          "shortByLanguage": {
+            "he": "השנייה אל הקורינתים י׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול השניה אל הקורינתים י׳ 17–18"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 25",
-          "full": "Matthew 25:1–13"
+          "full": "Matthew 25:1–13",
+          "shortByLanguage": {
+            "he": "מתי כ״ה"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי כ״ה 1–13"
+          }
         }
       ]
     },
@@ -1426,7 +2620,13 @@
         {
           "type": "gospel",
           "short": "Mk. 11",
-          "full": "Mark 11:22–24"
+          "full": "Mark 11:22–24",
+          "shortByLanguage": {
+            "he": "מרקוס י״א"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מרקוס י״א 22–24"
+          }
         }
       ]
     },
@@ -1435,12 +2635,24 @@
         {
           "type": "reading",
           "short": "Rev. 21",
-          "full": "Revelation 21:2–5"
+          "full": "Revelation 21:2–5",
+          "shortByLanguage": {
+            "he": "ההתגלות כ״א"
+          },
+          "fullByLanguage": {
+            "he": "ההתגלות כ״א 2–5"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 19",
-          "full": "Luke 19:1–10"
+          "full": "Luke 19:1–10",
+          "shortByLanguage": {
+            "he": "לוקס י״ט"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ט 1–10"
+          }
         }
       ]
     },
@@ -1449,12 +2661,24 @@
         {
           "type": "reading",
           "short": "Prov. 31",
-          "full": "Proverbs 31:10–31"
+          "full": "Proverbs 31:10–31",
+          "shortByLanguage": {
+            "he": "משלי ל״א"
+          },
+          "fullByLanguage": {
+            "he": "משלי ל״א 10–31"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 13",
-          "full": "Matthew 13:44–52"
+          "full": "Matthew 13:44–52",
+          "shortByLanguage": {
+            "he": "מתי י״ג"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״ג 44–52"
+          }
         }
       ]
     },
@@ -1463,12 +2687,24 @@
         {
           "type": "reading",
           "short": "1 Cor. 4",
-          "full": "1 Corinthians 4:9–14"
+          "full": "1 Corinthians 4:9–14",
+          "shortByLanguage": {
+            "he": "הראשונה אל הקורינתים ד׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול הראשונה אל הקורינתים ד׳ 9–14"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 12",
-          "full": "Luke 12:32–34"
+          "full": "Luke 12:32–34",
+          "shortByLanguage": {
+            "he": "לוקס י״ב"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״ב 32–34"
+          }
         }
       ]
     },
@@ -1477,12 +2713,24 @@
         {
           "type": "reading",
           "short": "Sir. 24",
-          "full": "Sirach 24:14–16"
+          "full": "Sirach 24:14–16",
+          "shortByLanguage": {
+            "he": "שיראך כ״ד"
+          },
+          "fullByLanguage": {
+            "he": "שיראך כ״ד 14–16"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 11",
-          "full": "Luke 11:27–28"
+          "full": "Luke 11:27–28",
+          "shortByLanguage": {
+            "he": "לוקס י״א"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״א 27–28"
+          }
         }
       ]
     },
@@ -1491,12 +2739,24 @@
         {
           "type": "reading",
           "short": "Col. 1",
-          "full": "Colossians 1:9–14"
+          "full": "Colossians 1:9–14",
+          "shortByLanguage": {
+            "he": "אל הקולוסים א׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הקולוסים א׳ 9–14"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 24",
-          "full": "Matthew 24:15–35"
+          "full": "Matthew 24:15–35",
+          "shortByLanguage": {
+            "he": "מתי כ״ד"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי כ״ד 15–35"
+          }
         }
       ]
     },
@@ -1505,12 +2765,24 @@
         {
           "type": "reading",
           "short": "Phil. 3",
-          "full": "Philippians 3:17–21"
+          "full": "Philippians 3:17–21",
+          "shortByLanguage": {
+            "he": "אל הפיליפים ג׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הפיליפים ג׳ 17–21"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 16",
-          "full": "Matthew 16:13–19"
+          "full": "Matthew 16:13–19",
+          "shortByLanguage": {
+            "he": "מתי ט״ז"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ט״ז 13–19"
+          }
         }
       ]
     },
@@ -1519,12 +2791,24 @@
         {
           "type": "reading",
           "short": "2 Tim. 4",
-          "full": "2 Timothy 4:1–8"
+          "full": "2 Timothy 4:1–8",
+          "shortByLanguage": {
+            "he": "השנייה אל טימותיאוס ד׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול השניה אל טימותיאוס ד׳ 1–8"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 5",
-          "full": "Matthew 5:13–19"
+          "full": "Matthew 5:13–19",
+          "shortByLanguage": {
+            "he": "מתי ה׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ה׳ 13–19"
+          }
         }
       ]
     },
@@ -1533,7 +2817,13 @@
         {
           "type": "gospel",
           "short": "Mt. 25",
-          "full": "Matthew 25:1–13"
+          "full": "Matthew 25:1–13",
+          "shortByLanguage": {
+            "he": "מתי כ״ה"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי כ״ה 1–13"
+          }
         }
       ]
     },
@@ -1542,12 +2832,24 @@
         {
           "type": "reading",
           "short": "Sir. 45",
-          "full": "Sirach 45:1–6"
+          "full": "Sirach 45:1–6",
+          "shortByLanguage": {
+            "he": "שיראך מ״ה"
+          },
+          "fullByLanguage": {
+            "he": "שיראך מ״ה 1–6"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 19",
-          "full": "Matthew 19:27–29"
+          "full": "Matthew 19:27–29",
+          "shortByLanguage": {
+            "he": "מתי י״ט"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״ט 27–29"
+          }
         }
       ]
     },
@@ -1556,12 +2858,24 @@
         {
           "type": "reading",
           "short": "Col. 1",
-          "full": "Colossians 1:9–14"
+          "full": "Colossians 1:9–14",
+          "shortByLanguage": {
+            "he": "אל הקולוסים א׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הקולוסים א׳ 9–14"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 24",
-          "full": "Matthew 24:15–35"
+          "full": "Matthew 24:15–35",
+          "shortByLanguage": {
+            "he": "מתי כ״ד"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי כ״ד 15–35"
+          }
         }
       ]
     },
@@ -1570,12 +2884,24 @@
         {
           "type": "reading",
           "short": "Sir. 24",
-          "full": "Sirach 24:14–16"
+          "full": "Sirach 24:14–16",
+          "shortByLanguage": {
+            "he": "שיראך כ״ד"
+          },
+          "fullByLanguage": {
+            "he": "שיראך כ״ד 14–16"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 11",
-          "full": "Luke 11:27–28"
+          "full": "Luke 11:27–28",
+          "shortByLanguage": {
+            "he": "לוקס י״א"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס י״א 27–28"
+          }
         }
       ]
     },
@@ -1584,12 +2910,24 @@
         {
           "type": "reading",
           "short": "Rom. 13",
-          "full": "Romans 13:11–14"
+          "full": "Romans 13:11–14",
+          "shortByLanguage": {
+            "he": "אל הרומים י״ג"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הרומים י״ג 11–14"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 21",
-          "full": "Luke 21:25–33"
+          "full": "Luke 21:25–33",
+          "shortByLanguage": {
+            "he": "לוקס כ״א"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס כ״א 25–33"
+          }
         }
       ]
     },
@@ -1598,12 +2936,24 @@
         {
           "type": "reading",
           "short": "Rom. 10",
-          "full": "Romans 10:10–18"
+          "full": "Romans 10:10–18",
+          "shortByLanguage": {
+            "he": "אל הרומים י׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הרומים י׳ 10–18"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 4",
-          "full": "Matthew 4:18–22"
+          "full": "Matthew 4:18–22",
+          "shortByLanguage": {
+            "he": "מתי ד׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ד׳ 18–22"
+          }
         }
       ]
     },
@@ -1612,12 +2962,24 @@
         {
           "type": "reading",
           "short": "Rom. 13",
-          "full": "Romans 13:11–14"
+          "full": "Romans 13:11–14",
+          "shortByLanguage": {
+            "he": "אל הרומים י״ג"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הרומים י״ג 11–14"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 21",
-          "full": "Luke 21:25–33"
+          "full": "Luke 21:25–33",
+          "shortByLanguage": {
+            "he": "לוקס כ״א"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס כ״א 25–33"
+          }
         }
       ]
     },
@@ -1626,7 +2988,13 @@
         {
           "type": "gospel",
           "short": "Mt. 13",
-          "full": "Matthew 13:44–52"
+          "full": "Matthew 13:44–52",
+          "shortByLanguage": {
+            "he": "מתי י״ג"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״ג 44–52"
+          }
         }
       ]
     },
@@ -1635,12 +3003,24 @@
         {
           "type": "reading",
           "short": "Rom. 10",
-          "full": "Romans 10:10–18"
+          "full": "Romans 10:10–18",
+          "shortByLanguage": {
+            "he": "אל הרומים י׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הרומים י׳ 10–18"
+          }
         },
         {
           "type": "gospel",
           "short": "Mk. 16",
-          "full": "Mark 16:15–18"
+          "full": "Mark 16:15–18",
+          "shortByLanguage": {
+            "he": "מרקוס ט״ז"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מרקוס ט״ז 15–18"
+          }
         }
       ]
     },
@@ -1649,12 +3029,24 @@
         {
           "type": "reading",
           "short": "2 Tim. 4",
-          "full": "2 Timothy 4:1–8"
+          "full": "2 Timothy 4:1–8",
+          "shortByLanguage": {
+            "he": "השנייה אל טימותיאוס ד׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול השניה אל טימותיאוס ד׳ 1–8"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 5",
-          "full": "Matthew 5:13–19"
+          "full": "Matthew 5:13–19",
+          "shortByLanguage": {
+            "he": "מתי ה׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ה׳ 13–19"
+          }
         }
       ]
     },
@@ -1663,12 +3055,24 @@
         {
           "type": "reading",
           "short": "Rom. 13",
-          "full": "Romans 13:11–14"
+          "full": "Romans 13:11–14",
+          "shortByLanguage": {
+            "he": "אל הרומים י״ג"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הרומים י״ג 11–14"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 21",
-          "full": "Luke 21:25–33"
+          "full": "Luke 21:25–33",
+          "shortByLanguage": {
+            "he": "לוקס כ״א"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס כ״א 25–33"
+          }
         }
       ]
     },
@@ -1677,12 +3081,24 @@
         {
           "type": "reading",
           "short": "Rom. 15",
-          "full": "Romans 15:4–13"
+          "full": "Romans 15:4–13",
+          "shortByLanguage": {
+            "he": "אל הרומים ט״ו"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הרומים ט״ו 4–13"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 11",
-          "full": "Matthew 11:2–10"
+          "full": "Matthew 11:2–10",
+          "shortByLanguage": {
+            "he": "מתי י״א"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״א 2–10"
+          }
         }
       ]
     },
@@ -1691,12 +3107,24 @@
         {
           "type": "reading",
           "short": "2 Tim. 4",
-          "full": "2 Timothy 4:1–8"
+          "full": "2 Timothy 4:1–8",
+          "shortByLanguage": {
+            "he": "השנייה אל טימותיאוס ד׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול השניה אל טימותיאוס ד׳ 1–8"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 5",
-          "full": "Matthew 5:13–19"
+          "full": "Matthew 5:13–19",
+          "shortByLanguage": {
+            "he": "מתי ה׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ה׳ 13–19"
+          }
         }
       ]
     },
@@ -1705,12 +3133,24 @@
         {
           "type": "reading",
           "short": "Prov. 8",
-          "full": "Proverbs 8:22–35"
+          "full": "Proverbs 8:22–35",
+          "shortByLanguage": {
+            "he": "משלי ח׳"
+          },
+          "fullByLanguage": {
+            "he": "משלי ח׳ 22–35"
+          }
         },
         {
           "type": "gospel",
           "short": "Lk. 1",
-          "full": "Luke 1:26–28"
+          "full": "Luke 1:26–28",
+          "shortByLanguage": {
+            "he": "לוקס א׳"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי לוקס א׳ 26–28"
+          }
         }
       ]
     },
@@ -1719,12 +3159,24 @@
         {
           "type": "reading",
           "short": "Rom. 15",
-          "full": "Romans 15:4–13"
+          "full": "Romans 15:4–13",
+          "shortByLanguage": {
+            "he": "אל הרומים ט״ו"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הרומים ט״ו 4–13"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 11",
-          "full": "Matthew 11:2–10"
+          "full": "Matthew 11:2–10",
+          "shortByLanguage": {
+            "he": "מתי י״א"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״א 2–10"
+          }
         }
       ]
     },
@@ -1733,12 +3185,24 @@
         {
           "type": "reading",
           "short": "Rom. 15",
-          "full": "Romans 15:4–13"
+          "full": "Romans 15:4–13",
+          "shortByLanguage": {
+            "he": "אל הרומים ט״ו"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הרומים ט״ו 4–13"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 11",
-          "full": "Matthew 11:2–10"
+          "full": "Matthew 11:2–10",
+          "shortByLanguage": {
+            "he": "מתי י״א"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״א 2–10"
+          }
         }
       ]
     },
@@ -1747,12 +3211,24 @@
         {
           "type": "reading",
           "short": "1 Pet. 5",
-          "full": "1 Peter 5:1–4"
+          "full": "1 Peter 5:1–4",
+          "shortByLanguage": {
+            "he": "הראשונה של כיפא ה׳"
+          },
+          "fullByLanguage": {
+            "he": "אגרת כיפא הראשונה ה׳ 1–4"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 16",
-          "full": "Matthew 16:13–19"
+          "full": "Matthew 16:13–19",
+          "shortByLanguage": {
+            "he": "מתי ט״ז"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי ט״ז 13–19"
+          }
         }
       ]
     },
@@ -1761,12 +3237,24 @@
         {
           "type": "reading",
           "short": "Rom. 15",
-          "full": "Romans 15:4–13"
+          "full": "Romans 15:4–13",
+          "shortByLanguage": {
+            "he": "אל הרומים ט״ו"
+          },
+          "fullByLanguage": {
+            "he": "אגרת שאול אל הרומים ט״ו 4–13"
+          }
         },
         {
           "type": "gospel",
           "short": "Mt. 11",
-          "full": "Matthew 11:2–10"
+          "full": "Matthew 11:2–10",
+          "shortByLanguage": {
+            "he": "מתי י״א"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על-פי מתי י״א 2–10"
+          }
         }
       ]
     }
