@@ -12,12 +12,24 @@
     <ScrollViewer Padding="16">
         <StackPanel Spacing="4" MaxWidth="640" HorizontalAlignment="Stretch">
             <Grid Margin="0,0,0,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
                 <TextBlock x:Uid="BasicPrayersTitle" Text="Basic Prayers" Style="{StaticResource SubHeadlineTextStyle}" VerticalAlignment="Center" />
+                <Button x:Name="LanguageMenuButton" Grid.Column="1" Background="Transparent" Padding="8">
+                    <FontIcon Glyph="&#xE774;" />
+                    <Button.Flyout>
+                        <MenuFlyout x:Name="LanguageFlyout" />
+                    </Button.Flyout>
+                </Button>
                 <!-- Reorderable per Erez (2026-08-08) — the approved Home reorder-dialog pattern. -->
-                <Button x:Uid="BasicPrayersEditOrder" Content="Edit order…" HorizontalAlignment="Right"
+                <Button Grid.Column="2" x:Uid="BasicPrayersEditOrder" Content="Edit order…" HorizontalAlignment="Right"
                         Click="OnEditOrder" />
             </Grid>
-            <ItemsControl ItemsSource="{x:Bind ViewModel.Rows, Mode=OneWay}">
+            <ItemsControl ItemsSource="{x:Bind ViewModel.Rows, Mode=OneWay}"
+                          FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate x:DataType="vm:BasicPrayerRow">
                         <Grid ColumnSpacing="8">

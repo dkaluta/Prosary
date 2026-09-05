@@ -27,9 +27,19 @@ public partial class BasicPrayersViewModel : ObservableObject
     [ObservableProperty]
     private bool _isRightToLeft;
 
+    public string CurrentLanguageRaw => AppSettings.BasicPrayersLanguageCode;
+
+    public IReadOnlyList<LanguageOption> Languages => LanguageCatalog.All;
+
+    public void SelectLanguage(string code)
+    {
+        AppSettings.SetBasicPrayersLanguageCode(code);
+        Load();
+    }
+
     public void Load()
     {
-        var language = LanguageCatalog.Resolve(null);
+        var language = LanguageCatalog.Resolve(CurrentLanguageRaw);
         IsRightToLeft = language.IsRightToLeft;
         // Reorderable per Erez (2026-08-08): the HomeOrder pattern — persisted ids first,
         // catalog order for the rest.
@@ -75,6 +85,8 @@ public partial class BasicPrayersViewModel : ObservableObject
 /// "Finish" as its only footer action.</summary>
 public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowViewModel
 {
+    private string? _prayerId;
+
     [ObservableProperty]
     private string _header = string.Empty;
 
@@ -96,6 +108,30 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     [ObservableProperty]
     private double _bodyFontSize = 18;
 
+    [ObservableProperty]
+    private bool _hasTransliteration;
+
+    [ObservableProperty]
+    private bool _showsTransliteration;
+
+    public string CurrentLanguageRaw => AppSettings.BasicPrayersLanguageCode;
+
+    public IReadOnlyList<LanguageOption> Languages => LanguageCatalog.All;
+
+    public void SelectLanguage(string code)
+    {
+        AppSettings.SetBasicPrayersLanguageCode(code);
+        ShowsTransliteration = false;
+        RenderPrayer();
+    }
+
+    [RelayCommand]
+    private void ToggleTransliteration()
+    {
+        ShowsTransliteration = !ShowsTransliteration;
+        RenderPrayer();
+    }
+
     public string? Subtitle => null;
 
     public bool HasSubtitle => false;
@@ -112,15 +148,29 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
 
     public void Load(string prayerId)
     {
-        if (BasicPrayerCatalog.Prayer(prayerId) is not { } prayer) return;
-        var language = LanguageCatalog.Resolve(null);
-        Header = PrayerPackStore.ResolveDisplayText(prayer.BundleId, language.Code, prayer.TitleKey);
-        Body = PrayerPackStore.ResolveBodyText(prayer.BundleId, language.Code, prayer.BodyKey);
+        _prayerId = prayerId;
+        ShowsTransliteration = false;
+        RenderPrayer();
+    }
+
+    private void RenderPrayer()
+    {
+        if (_prayerId is null || BasicPrayerCatalog.Prayer(_prayerId) is not { } prayer) return;
+        var language = LanguageCatalog.Resolve(CurrentLanguageRaw);
+        var step = BasicPrayerCatalog.Step(prayer, language.Code);
+        Header = step.Title;
+        HasTransliteration = step.TransliteratedBody is not null;
+        Body = ShowsTransliteration && step.TransliteratedBody is { } transliterated
+            ? transliterated
+            : step.Body;
         MysteryImageFile = BasicPrayersViewModel.ImageFile(prayer.ImageKey);
         ProgressText = string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), 1, 1);
         IsRightToLeft = language.IsRightToLeft;
-        BodyFontFamily = PrayerTypography.ResolveBodyFontFamily(language.Code, isScripture: false);
-        BodyFontSize = PrayerTypography.ResolveBodyFontSize(language.Code, isScripture: false);
+        var bodyScript = ShowsTransliteration && step.TransliteratedBody is { } shown
+            ? PrayerTypography.ScriptOf(shown)
+            : (PrayerTypography.Script?)null;
+        BodyFontFamily = PrayerTypography.ResolveBodyFontFamily(language.Code, isScripture: false, script: bodyScript);
+        BodyFontSize = PrayerTypography.ResolveBodyFontSize(language.Code, isScripture: false, script: bodyScript);
     }
 
     [RelayCommand]

@@ -6,6 +6,7 @@ import com.dkaluta.prosary.content.prayerpack.CustomDevotionDefinition
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.MarianAntiphonOption
 import com.dkaluta.prosary.models.AppSettings
+import com.dkaluta.prosary.models.BasicPrayerCatalog
 import com.dkaluta.prosary.models.MysteryGroup
 import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.Prayer
@@ -67,6 +68,21 @@ class CustomDevotionEngineTest {
     )
 
     // MARK: Trisagion (flat)
+
+    @Test
+    fun basicPrayerLanguageOverrideKeepsTheAppDefaultAndScriptPair() {
+        val saved = AppSettings.defaultLanguageCode
+        try {
+            AppSettings.setDefaultLanguageCode("en")
+            val selected = BasicPrayerCatalog.step(BasicPrayerCatalog.prayer("ourFather")!!, "arc")
+            assertEquals("צלותא מרניתא", selected.title)
+            assertNotNull(selected.transliteratedBody)
+            assertEquals("en", AppSettings.defaultLanguageCode)
+            assertEquals("Holy God", BasicPrayerCatalog.step(BasicPrayerCatalog.prayer("holyGod")!!, "").title)
+        } finally {
+            AppSettings.setDefaultLanguageCode(saved)
+        }
+    }
 
     @Test
     fun trisagionProducesTheSixStepSequence() {

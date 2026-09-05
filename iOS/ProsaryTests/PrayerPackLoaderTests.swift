@@ -13,6 +13,23 @@ import XCTest
 
 @MainActor
 final class PrayerPackLoaderTests: XCTestCase {
+  func testSharedAramaicPrayersKeepTheirHeadingsAndMatchingReadingAid() throws {
+    XCTAssertEqual(PrayerPackStore.resolveBodyText(
+      bundleId: "oAntiphons", languageCode: "arc", key: "gloriaPatriTitle"), "שוּבחָא לַאבָא")
+    XCTAssertEqual(PrayerPackStore.resolveBodyText(
+      bundleId: "oAntiphons", languageCode: "arc", key: "gloriaPatri"),
+      PrayerPackStore.resolveBodyText(bundleId: "trisagion", languageCode: "arc", key: "gloriaPatri"))
+    let readingAid = try XCTUnwrap(PrayerPackStore.transliteration(
+      bundleId: "oAntiphons", languageCode: "arc", key: "gloriaPatri"))
+    XCTAssertEqual(readingAid, PrayerPackStore.transliteration(
+      bundleId: "trisagion", languageCode: "arc", key: "gloriaPatri"))
+    XCTAssertNotEqual(readingAid, PrayerPackStore.transliteration(
+      bundleId: "rosary", languageCode: "arc", key: "gloriaPatri"),
+      "the two sourced editions have different line divisions and must keep their own reading aids")
+    XCTAssertNil(PrayerPackStore.transliteration(
+      bundleId: "oAntiphons", languageCode: "en", key: "gloriaPatri"))
+  }
+
   func testBundledPacksExist() {
     for pack in ["rosary", "angelus", "stationsOfTheCross", "franciscanCrown", "sevenSorrows",
                  "divineMercyChaplet", "trisagion", "oAntiphons"] {
@@ -126,6 +143,14 @@ final class PrayerPackLoaderTests: XCTestCase {
     XCTAssertEqual(
       announcement.transliteratedBody,
       "\(syriacDescription)\n\n\(fruitLabel): Inherited fruit")
+    let beads = PrayerEngine().buildSteps(for: Prayer(
+      kind: .custom, languageCode: "arc", customDevotionId: id)).filter { !$0.isScripture }
+    XCTAssertEqual(beads.count, 2)
+    for (bead, key) in zip(beads, ["paterNoster", "aveMaria"]) {
+      XCTAssertEqual(bead.transliteratedBody, PrayerPackStore.transliteration(
+        bundleId: "rosary", languageCode: "arc", key: key))
+      XCTAssertNotNil(bead.transliteratedBody)
+    }
   }
 
   /// A devotion converted to a bundle resolves entirely bundle-locally — its keys no longer

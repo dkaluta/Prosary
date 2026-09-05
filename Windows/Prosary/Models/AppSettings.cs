@@ -14,6 +14,7 @@ namespace Prosary.Models;
 public static class AppSettings
 {
     private const string KeyDefaultLanguage = "defaultLanguageCode";
+    private const string KeyBasicPrayersLanguage = "basicPrayersLanguageCode";
     private const string KeyAramaicSignOfCrossForm = "aramaicSignOfCrossForm";
     private const string KeyFeastCalendar = "feastCalendarId";
     private const string KeyAutoAdvance = "autoAdvanceSeconds";
@@ -27,6 +28,7 @@ public static class AppSettings
     private const string KeyLanguageFallbackOrder = "languageFallbackOrder";
 
     private static string? _defaultLanguageCode;
+    private static string? _basicPrayersLanguageCode;
     private static string? _aramaicSignOfCrossForm;
     private static string? _feastCalendarId;
     private static int? _autoAdvanceSeconds;
@@ -57,6 +59,17 @@ public static class AppSettings
     {
         DefaultLanguageCode = code;
         WriteLocalSetting(KeyDefaultLanguage, code);
+    }
+
+    /// <summary>The basic-prayers list and flow share their own language selection. Empty
+    /// follows the app-wide default without replacing it.</summary>
+    public static string BasicPrayersLanguageCode => _basicPrayersLanguageCode ??=
+        ReadLocalSetting(KeyBasicPrayersLanguage) as string ?? LanguageCatalog.DefaultSentinel;
+
+    public static void SetBasicPrayersLanguageCode(string code)
+    {
+        _basicPrayersLanguageCode = code;
+        WriteLocalSetting(KeyBasicPrayersLanguage, code);
     }
 
     public const string AramaicSignOfCrossFormA = "formA";

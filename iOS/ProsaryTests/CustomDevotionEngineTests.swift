@@ -122,6 +122,13 @@ final class CustomDevotionEngineTests: XCTestCase {
                    ["signOfCross", "ourFather", "hailMary", "gloryBe", "creed", "holyGod"])
 
     UserDefaults.standard.set("en", forKey: "defaultLanguageCode")
+    let selected = BasicPrayerCatalog.step(
+      for: BasicPrayerCatalog.prayer(id: "ourFather")!, languageCode: "arc")
+    XCTAssertEqual(selected.title, "צלותא מרניתא")
+    XCTAssertNotNil(selected.transliteratedBody)
+    XCTAssertEqual(UserDefaults.standard.string(forKey: "defaultLanguageCode"), "en")
+    XCTAssertEqual(BasicPrayerCatalog.step(
+      for: BasicPrayerCatalog.prayer(id: "holyGod")!, languageCode: "").title, "Holy God")
     let english = BasicPrayerCatalog.step(for: BasicPrayerCatalog.prayer(id: "holyGod")!)
     XCTAssertEqual(english.title, "Holy God")
     XCTAssertTrue(english.body.contains("Holy Immortal One"))

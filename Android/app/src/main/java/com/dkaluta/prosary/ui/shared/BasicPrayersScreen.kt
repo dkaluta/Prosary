@@ -53,7 +53,9 @@ import androidx.compose.runtime.CompositionLocalProvider
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
-    val language = remember { LanguageCatalog.resolve(null) }
+    val chosenLanguage = AppSettings.basicPrayersLanguageCode
+    val language = LanguageCatalog.resolve(chosenLanguage)
+    var languageMenuExpanded by remember { mutableStateOf(false) }
     val context = LocalContext.current
     // The order lives in BasicPrayersOrder, not in view state; the generation bump just makes
     // this composition re-derive after the editor saves (the HomeOrder pattern, Erez
@@ -73,6 +75,12 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
                     }
                 },
                 actions = {
+                    PrayerLanguagePicker(
+                        chosenLanguage = chosenLanguage,
+                        expanded = languageMenuExpanded,
+                        onExpandedChange = { languageMenuExpanded = it },
+                        onSelect = AppSettings::setBasicPrayersLanguageCode,
+                    )
                     IconButton(onClick = { showsOrderEditor = true }) {
                         Icon(Icons.Filled.SwapVert, contentDescription = stringResource(R.string.prayer_order_title))
                     }
@@ -150,8 +158,10 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
 @Composable
 fun BasicPrayerFlowScreen(prayerId: String, onNavigateUp: () -> Unit) {
     val prayer = BasicPrayerCatalog.prayer(prayerId) ?: run { onNavigateUp(); return }
-    val language = remember { LanguageCatalog.resolve(null) }
-    val step = remember(prayerId) { BasicPrayerCatalog.step(prayer) }
+    val chosenLanguage = AppSettings.basicPrayersLanguageCode
+    val language = LanguageCatalog.resolve(chosenLanguage)
+    var languageMenuExpanded by remember { mutableStateOf(false) }
+    val step = remember(prayerId, language.code) { BasicPrayerCatalog.step(prayer, language.code) }
     PrayerStepFlowScreen(
         title = step.title,
         step = step,
@@ -164,5 +174,13 @@ fun BasicPrayerFlowScreen(prayerId: String, onNavigateUp: () -> Unit) {
         onBack = {},
         onNext = onNavigateUp,
         onNavigateUp = onNavigateUp,
+        topBarActions = {
+            PrayerLanguagePicker(
+                chosenLanguage = chosenLanguage,
+                expanded = languageMenuExpanded,
+                onExpandedChange = { languageMenuExpanded = it },
+                onSelect = AppSettings::setBasicPrayersLanguageCode,
+            )
+        },
     )
 }

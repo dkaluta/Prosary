@@ -29,6 +29,8 @@ struct BasicPrayer: Identifiable {
 }
 
 enum BasicPrayerCatalog {
+  static let languageDefaultsKey = "basicPrayersLanguageCode"
+
   static let all: [BasicPrayer] = [
     BasicPrayer(id: "signOfCross", bundleId: "rosary",
                 titleKey: "signumCrucisTitle", bodyKey: "signumCrucis", imageKey: "crucifix"),
@@ -53,12 +55,12 @@ enum BasicPrayerCatalog {
     all.first { $0.id == id }
   }
 
-  /// The prayer as one step, in the resolved app-default prayer language — the same
+  /// The prayer as one step, in the selected or app-default prayer language — the same
   /// `RosaryStep` the flows render, so typography, RTL, the ✠ mark and the transliteration
   /// toggle all come along without any new machinery.
   @MainActor
-  static func step(for prayer: BasicPrayer) -> RosaryStep {
-    let language = LanguageCatalog.resolve(nil).code
+  static func step(for prayer: BasicPrayer, languageCode: String? = nil) -> RosaryStep {
+    let language = LanguageCatalog.resolve(languageCode).code
     return RosaryStep(
       title: PrayerPackStore.resolveBodyText(
         bundleId: prayer.bundleId, languageCode: language, key: prayer.titleKey),

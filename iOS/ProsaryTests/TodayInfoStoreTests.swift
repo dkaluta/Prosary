@@ -239,6 +239,30 @@ final class TodayInfoStoreTests: XCTestCase {
     XCTAssertEqual(petrine.localizedFull("he"), "אגרת כיפא השניה ב׳ 1–3")
   }
 
+  func testOtherCalendarsLocalizeTheirOwnAppointedReadingsInHebrew() {
+    select("roman1962")
+    let vetus = TodayInfoStore.readings(on: date("2026-09-03"))
+    XCTAssertEqual(vetus.first?.localizedShort("he"), "הראשונה אל התסלוניקים ב׳")
+    XCTAssertEqual(vetus.last?.localizedFull("he"), "הבשורה  על-פי יוחנן כ״א 15–17")
+
+    select("ugcc")
+    let byzantine = TodayInfoStore.readings(on: date("2026-09-03"))
+    XCTAssertEqual(byzantine.first?.localizedShort("he"), "אל הגלטים ג׳")
+    XCTAssertEqual(byzantine.first?.localizedFull("he"), "אגרת שאול אל הגלטים ג׳ 23–ד׳ 5")
+    XCTAssertEqual(
+      TodayInfoStore.readings(on: date("2026-08-06")).first?.localizedShort("he"),
+      "השנייה של כיפא א׳")
+
+    select("syriac")
+    let syriac = TodayInfoStore.readings(on: date("2026-09-03"))
+    XCTAssertEqual(syriac.first?.localizedShort("he-x-gamliel"), "אל הפיליפים א׳")
+    XCTAssertEqual(syriac.first?.localizedFull("he"), "אגרת שאול אל הפיליפים א׳ 12–21")
+    XCTAssertEqual(
+      TodayInfoStore.readings(on: date("2026-08-08")).first?.localizedShort("he"),
+      "השנייה אל טימותיאוס ב׳")
+    XCTAssertTrue(TodayInfoStore.readings(on: date("2026-08-01")).isEmpty)
+  }
+
   func testReadingsFollowTheSelectedCalendarAndClearBetweenFiles() {
     select("roman")
     XCTAssertEqual(

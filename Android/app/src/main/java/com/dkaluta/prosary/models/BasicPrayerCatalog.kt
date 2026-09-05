@@ -44,11 +44,11 @@ object BasicPrayerCatalog {
             PrayerPackStore.resolveBodyText(prayer.bundleId, languageCode, prayer.titleKey),
         )
 
-    /** The prayer as one [RosaryStep], in the resolved app-default prayer language — the same
+    /** The prayer as one [RosaryStep], in the selected or app-default prayer language — the same
      * step the flows render, so typography, RTL, the ✠ mark and the transliteration toggle all
      * come along without any new machinery. */
-    fun step(prayer: BasicPrayer): RosaryStep {
-        val language = LanguageCatalog.resolve(null).code
+    fun step(prayer: BasicPrayer, languageCode: String? = null): RosaryStep {
+        val language = LanguageCatalog.resolve(languageCode).code
         return RosaryStep(
             title = title(prayer, language),
             body = PrayerPackStore.resolveBodyText(prayer.bundleId, language, prayer.bodyKey),

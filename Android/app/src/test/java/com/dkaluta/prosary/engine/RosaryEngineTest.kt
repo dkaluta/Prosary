@@ -91,6 +91,26 @@ class RosaryEngineTest {
     // MARK: - Step count
 
     @Test
+    fun aramaicReadingAidsSurviveEveryDecadeAndPresenterMode() {
+        val steps = engine().buildSteps(prayer(language = "arc"))
+        for ((key, expectedCount) in listOf("paterNoster" to 5, "aveMaria" to 50, "gloriaPatri" to 5)) {
+            val body = PrayerPackStore.resolveBodyText("rosary", "arc", key)
+            val readingAid = PrayerPackStore.transliteration("rosary", "arc", key)
+            assertNotNull(key, readingAid)
+            val beads = steps.filter { it.decadeIndex != null && it.body == body }
+            assertEquals(key, expectedCount, beads.size)
+            assertTrue(key, beads.all { it.transliteratedBody == readingAid })
+        }
+        val combined = engine().buildSteps(prayer(presenterMode = true, language = "arc"))
+            .filter { it.hailMaryIndexInDecade != null }
+        val readingAid = listOf("aveMaria", "gloriaPatri").joinToString("\n\n") {
+            requireNotNull(PrayerPackStore.transliteration("rosary", "arc", it))
+        }
+        assertEquals(5, combined.size)
+        assertTrue(combined.all { it.transliteratedBody == readingAid })
+    }
+
+    @Test
     fun fiveDecadeStepCountDefaultConfig() {
         val steps = engine().buildSteps(prayer())
         // 1 sign of cross + 1 creed + 1 OurFather + 3 HailMarys + 1 GloryBe = 7 opening

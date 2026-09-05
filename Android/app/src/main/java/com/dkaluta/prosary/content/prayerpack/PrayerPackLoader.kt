@@ -592,6 +592,10 @@ object PrayerPackStore {
     )
 
     private val prayerOverrides = mutableMapOf<String, MutableMap<PrayerKey, String>>()
+    private val prayerTransliterations = mutableMapOf<String, MutableMap<PrayerKey, String>>()
+    private val sharedPrayerTitleKeys = setOf(
+        "signumCrucisTitle", "symbolumApostolorumTitle", "paterNosterTitle", "aveMariaTitle", "gloriaPatriTitle",
+    )
     private val mysteryOverrides = mutableMapOf<String, MutableMap<String, MysteryTextOverride>>()
     /** Image payloads are the overwhelming majority of every pack. Keep only their zip-entry
      * locations here; [imageData] reopens the owning pack for the one image the flow needs.
@@ -739,40 +743,76 @@ object PrayerPackStore {
         return available.first()
     }
 
-    /** Resolves a `devotion.json` `bodyKey`/`titleKey`: bundle content in the requested code and
-     * its base language first; then the shared prayer table for shared keys; then bundle content
-     * through the user's language precedence; finally the raw key. */
-    /** The v0.7 reading aid: this key's text transliterated into another script, if the
-     * bundle's language file carries one. No fallback chain — a transliteration belongs to
-     * exactly the language it transliterates. */
+    /** Follows the body's exact source. A missing reading aid there stops resolution, so a
+     * fallback or later override can never pair text with another version's reading aid. */
     fun transliteration(bundleId: String, languageCode: String?, key: String): String? {
+        val chain = LanguageCatalog.fallbackChain(languageCode)
+        val requested = chain.first()
         if (
-            key == "signumCrucis" && languageCode != null &&
-            (LanguageCatalog.baseLanguage(languageCode) ?: languageCode) == "arc" &&
+            key == "signumCrucis" &&
+            (LanguageCatalog.baseLanguage(requested) ?: requested) == "arc" &&
             AppSettings.usesSystemWideAramaicSignOfCrossForm &&
             AppSettings.aramaicSignOfCrossForm == AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B
         ) {
             return transliterationsByBundle["rosary"]?.get("arc")?.get("signumCrucisFormB")
         }
-        return languageCode?.let { transliterationsByBundle[bundleId]?.get(it)?.get(key) }
+        val requestedCodes = listOfNotNull(requested, LanguageCatalog.baseLanguage(requested)).distinct()
+        for (code in requestedCodes) {
+            if (rawContentByBundle[bundleId]?.get(code)?.containsKey(key) == true) {
+                return transliterationsByBundle[bundleId]?.get(code)?.get(key)
+            }
+        }
+        val prayerKey = if (key == "signumCrucisFormB") PrayerKey.SignumCrucis else keyToPrayerKey(key)
+        if (key in sharedPrayerTitleKeys) {
+            for (code in requestedCodes) {
+                if (rawContentByBundle["rosary"]?.get(code)?.containsKey(key) == true) {
+                    return transliterationsByBundle["rosary"]?.get(code)?.get(key)
+                }
+            }
+        }
+        if (prayerKey != null) {
+            for (code in chain) {
+                if (prayerOverride(code, prayerKey) != null) {
+                    if (prayerKey == PrayerKey.SignumCrucis && code == "arc" &&
+                        AppSettings.usesSystemWideAramaicSignOfCrossForm &&
+                        AppSettings.aramaicSignOfCrossForm == AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B
+                    ) return transliterationsByBundle["rosary"]?.get("arc")?.get("signumCrucisFormB")
+                    return prayerTransliterations[code]?.get(prayerKey)
+                }
+                if (PrayerTranslations.byLanguage[code]?.containsKey(prayerKey) == true) return null
+            }
+            return null
+        }
+        for (code in chain.filterNot { it in requestedCodes }) {
+            if (rawContentByBundle[bundleId]?.get(code)?.containsKey(key) == true) {
+                return transliterationsByBundle[bundleId]?.get(code)?.get(key)
+            }
+        }
+        return null
     }
 
     fun resolveBodyText(bundleId: String, languageCode: String?, key: String): String {
-        if (languageCode == "he-x-gamliel" && key == "paterNosterTitle") return "תפילת האדון"
+        val chain = LanguageCatalog.fallbackChain(languageCode)
+        val requested = chain.first()
+        if (requested == "he-x-gamliel" && key == "paterNosterTitle") return "תפילת האדון"
         if (
-            key == "signumCrucis" && languageCode != null &&
-            (LanguageCatalog.baseLanguage(languageCode) ?: languageCode) == "arc" &&
+            key == "signumCrucis" &&
+            (LanguageCatalog.baseLanguage(requested) ?: requested) == "arc" &&
             AppSettings.usesSystemWideAramaicSignOfCrossForm &&
             AppSettings.aramaicSignOfCrossForm == AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B
         ) {
             rawContentByBundle["rosary"]?.get("arc")?.get("signumCrucisFormB")?.let { return it }
         }
-        val chain = LanguageCatalog.fallbackChain(languageCode)
         val requestedCodes = chain.take(1) + chain.drop(1).takeWhile {
             it == LanguageCatalog.baseLanguage(chain.first())
         }
         for (code in requestedCodes.distinct()) {
             rawContentByBundle[bundleId]?.get(code)?.get(key)?.let { return it }
+        }
+        if (key in sharedPrayerTitleKeys) {
+            for (code in requestedCodes.distinct()) {
+                rawContentByBundle["rosary"]?.get(code)?.get(key)?.let { return it }
+            }
         }
         if (key == "signumCrucisFormB") {
             return PrayerTranslations.get(languageCode, PrayerKey.SignumCrucis)
@@ -1061,6 +1101,9 @@ object PrayerPackStore {
             for ((key, text) in content.prayers) {
                 val prayerKey = keyToPrayerKey(key) ?: continue
                 prayers[prayerKey] = text
+                val readingAids = prayerTransliterations.getOrPut(language) { mutableMapOf() }
+                val readingAid = content.transliterations[key]
+                if (readingAid != null) readingAids[prayerKey] = readingAid else readingAids.remove(prayerKey)
             }
 
             // Mysteries merge whenever a bundle ships any — `hasCatalog` strictly means "has a

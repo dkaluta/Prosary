@@ -17,10 +17,11 @@ import AppKit
 #endif
 
 struct BasicPrayersView: View {
-  /// Names here follow the default prayer language; the monitor is the one mechanism
+  /// App-setting mode follows the default prayer language; the monitor is the mechanism
   /// that survives the Mac's Settings menu — see PrayerLanguageMonitor's header for the
   /// graveyard of simpler attempts. Reading `.code` in body registers the dependency.
   @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
+  @AppStorage(BasicPrayerCatalog.languageDefaultsKey) private var chosenLanguage = LanguageCatalog.defaultSentinel
 
   /// Kept explicit rather than relying on NavigationLink's internal write: two Mac clicks can
   /// arrive before this source row disappears, and every other app route is single-top.
@@ -35,6 +36,7 @@ struct BasicPrayersView: View {
     let _ = prayerLanguage.code  // dependency registration — see the property's comment
     let _ = orderGeneration
     let _ = favoritesFirst
+    let language = LanguageCatalog.resolve(chosenLanguage)
     let ordered = BasicPrayerFavorites.apply(BasicPrayersOrder.apply(BasicPrayerCatalog.all))
     List {
       ForEach(ordered) { prayer in
@@ -42,7 +44,7 @@ struct BasicPrayersView: View {
           Button {
             path.push(.basicPrayer(id: prayer.id))
           } label: {
-            BasicPrayerRow(prayer: prayer)
+            BasicPrayerRow(prayer: prayer, language: language)
               .frame(maxWidth: .infinity, alignment: .leading)
               .contentShape(Rectangle())
           }
@@ -71,18 +73,21 @@ struct BasicPrayersView: View {
       }
     }
     .navigationTitle(String(localized: "basicPrayers.title", defaultValue: "Basic Prayers"))
-    #if os(iOS)
-    .toolbar { EditButton() }
-    #endif
+    .toolbar {
+      BasicPrayersLanguageMenu(chosenLanguage: $chosenLanguage)
+      #if os(iOS)
+      EditButton()
+      #endif
+    }
   }
 }
 
 private struct BasicPrayerRow: View {
   let prayer: BasicPrayer
+  let language: LanguageOption
 
   var body: some View {
     // Re-rendered by the observing parent list; no monitor of its own needed.
-    let language = LanguageCatalog.resolve(nil)
     HStack(spacing: 12) {
       PrayerArtworkView(imageKey: prayer.imageKey)
         .aspectRatio(contentMode: .fill)
@@ -113,13 +118,16 @@ struct BasicPrayerFlowView: View {
   /// A basic prayer is a reference page, not a session — it re-derives live. See
   /// PrayerLanguageMonitor for why nothing simpler works.
   @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
+  @AppStorage(BasicPrayerCatalog.languageDefaultsKey) private var chosenLanguage = LanguageCatalog.defaultSentinel
 
   @State private var seasonColor = Color.clear
 
   var body: some View {
     let _ = prayerLanguage.code
-    let language = LanguageCatalog.resolve(nil)
-    let step = BasicPrayerCatalog.prayer(id: prayerId).map { BasicPrayerCatalog.step(for: $0) }
+    let language = LanguageCatalog.resolve(chosenLanguage)
+    let step = BasicPrayerCatalog.prayer(id: prayerId).map {
+      BasicPrayerCatalog.step(for: $0, languageCode: language.code)
+    }
     PrayerStepFlowView(
       navigationTitle: step?.title ?? "",
       step: step,
@@ -130,9 +138,40 @@ struct BasicPrayerFlowView: View {
       languageCode: language.code,
       canGoBack: false,
       onBack: {},
-      onNext: { dismiss() })
+      onNext: { dismiss() },
+      flowActions: AnyView(BasicPrayersLanguageMenu(chosenLanguage: $chosenLanguage)))
     .onAppear {
       seasonColor = services.calendar.seasonColorToday()
     }
+  }
+}
+
+private struct BasicPrayersLanguageMenu: View {
+  @Binding var chosenLanguage: String
+
+  var body: some View {
+    Menu {
+      languageButton(code: LanguageCatalog.defaultSentinel,
+                     name: String(localized: "prayerFlow.language.appDefault", defaultValue: "App setting"))
+      Divider()
+      ForEach(LanguageCatalog.all) { option in
+        languageButton(code: option.code, name: option.nativeName)
+      }
+    } label: {
+      Image(systemName: "globe")
+    }
+    .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer language"))
+    .accessibilityIdentifier("languageMenu")
+  }
+
+  private func languageButton(code: String, name: String) -> some View {
+    Button { chosenLanguage = code } label: {
+      if chosenLanguage == code {
+        Label(name, systemImage: "checkmark")
+      } else {
+        Text(name)
+      }
+    }
+    .accessibilityIdentifier("basicPrayerLanguage-\(code.isEmpty ? "default" : code)")
   }
 }

@@ -245,6 +245,9 @@ Every linear flow shares one presentation chrome per platform (iOS `PrayerStepFl
 `PrayerStepFlowScreen`, Windows `PrayerStepFlowControl` plus the bespoke Rosary/generic pages
 that mirror it). Two toolbar affordances belong to the flows themselves:
 
+On narrow phones the prayer-flow controls sit in a horizontally scrollable row below the
+title, keeping long titles clear of the buttons. Wider layouts retain native toolbar controls.
+
 - **Auto-advance** (all flows) — hands-free praying, from tester feedback: Off / every 3 / 5 /
   10 / 15 seconds, one app-wide setting (`autoAdvanceSeconds` in UserDefaults / SharedPreferences /
   LocalSettings — the `defaultLanguageCode` convention). The countdown restarts on every step
@@ -260,6 +263,12 @@ that mirror it). Two toolbar affordances belong to the flows themselves:
   `languageCode` (sentinel = follow the app setting). The Rosary offers the same in-prayer switch;
   changing it keeps the current mystery and bead and records the chosen language in any unfinished
   run bookmark.
+
+Basic Prayers exposes the same language choice in both its list and single-prayer flow. Its
+`basicPrayersLanguageCode` preference is shared between those two surfaces on every port,
+defaults to the empty "App setting" sentinel, and offers all ten prayer languages. Selecting
+a language refreshes the title, text, direction, and script toggle without changing the app's
+default prayer language.
 
 An interrupted Rosary, generic devotion, or Jesus Prayer stores a small device-local bookmark and
 offers **Continue** or **Restart** the next time that same prayer is opened. A bookmark contains the
@@ -821,6 +830,10 @@ of its own — its entire step sequence and per-step text are data-driven from i
   into the built step (`RosaryStep.transliteratedBody`), and the prayer flow shows a toggle
   beside the text whenever the current step has one. Compose authors it per custom step and
   language.
+  Reading aids follow the exact source selected for the body, including shared prayer text
+  and language fallback. Replacing shared text replaces or clears its reading aid alongside it;
+  a missing aid never borrows one from a different text. Decade prayers and combined presenter
+  steps preserve these pairs, including the repeated Our Father, Hail Mary, and Glory Be.
   Peshitta imports keep the extracted ETCBC Syriac passage unchanged by script conversion and
   generate the Hebrew-square projection with Erez's deterministic converter
   (`Shared/tools/aramaic_script_converter.py`): contextual Hebrew finals, mapped vowel signs,
@@ -843,6 +856,9 @@ of its own — its entire step sequence and per-step text are data-driven from i
   importantly, its Scripture description stops at its own edition while its title/fruit can keep
   falling back. Each platform's engine tests pin both that partial merge and the Peshitta's
   Hebrew-square/Syriac pair.
+  The five main-prayer heading keys also reuse the Rosary bundle's requested/base-language
+  titles before falling back to another language, so a devotion can reuse an Aramaic Glory Be
+  with its sourced Aramaic heading.
   On Windows, `PrayerKey` is a set of string constants
   rather than a validating enum and every content key also merges into one global PascalCased
   override table, but `ResolveBodyText` follows the same per-bundle-raw-first chain.
@@ -961,6 +977,10 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
   calendar. `readings-syriac.json` comes from Evangelizo's SYE edition. `Shared/tools/
   fetch-readings.py` refreshes any/all sources incrementally and `--sync` copies all four files
   plus the registry into the native apps while removing the retired global `readings.json`.
+  Hebrew citation display also covers the other three lectionaries: the generator uses the
+  credited book names in `Shared/tools/hebrew-reading-books.json`, retaining each calendar's
+  dates, chapters, verses, and reading order. `--localize-only --sync` refreshes those localized
+  maps offline without fetching or substituting another rite's readings.
 
 A date/month outside the relevant dataset returns nothing and its row simply hides. Regenerate
 the multi-year feast tables roughly yearly; refresh the rolling Evangelizo-backed data more often.

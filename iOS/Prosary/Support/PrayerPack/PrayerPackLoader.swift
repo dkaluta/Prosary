@@ -519,6 +519,11 @@ enum PrayerPackStore {
   ]
 
   private static var prayerOverrides: [String: [PrayerKey: String]] = [:]
+  /// Reading aids merge with their exact shared prayer text, including removal on replacement.
+  private static var prayerTransliterations: [String: [PrayerKey: String]] = [:]
+  private static let sharedPrayerTitleKeys: Set<String> = [
+    "signumCrucisTitle", "symbolumApostolorumTitle", "paterNosterTitle", "aveMariaTitle", "gloriaPatriTitle",
+  ]
   private static var mysteryOverrides: [String: [String: MysteryTextOverride]] = [:]
   /// Image locations in pack-load order. Keeping the stack preserves the ordinary last-loaded
   /// override rule and lets removing an imported pack reveal the shipped image underneath.
@@ -867,40 +872,72 @@ enum PrayerPackStore {
     }
   }
 
-  /// Resolves a `devotion.json` `bodyKey`/`titleKey`: bundle content in the requested code and
-  /// its base language first; then the shared prayer table for shared keys; then bundle content
-  /// through the user's language precedence; finally the raw key.
-  /// The v0.7 reading aid: this key's text transliterated into another script, if the
-  /// bundle's language file carries one. No fallback chain — a transliteration belongs to
-  /// exactly the language it transliterates.
+  /// Follows the body's source through local, shared and fallback text. A missing reading aid
+  /// at the selected source stops resolution; another language's aid cannot replace it.
   static func transliteration(bundleId: String, languageCode: String?, key: String) -> String? {
     ensureLoaded()
-    guard let languageCode else { return nil }
+    let chain = LanguageCatalog.fallbackChain(for: languageCode)
+    let requested = chain.first ?? LanguageCatalog.defaultCode
     if key == PrayerKey.signumCrucis.rawValue,
-       (LanguageCatalog.baseLanguage(of: languageCode) ?? languageCode) == "arc",
+       (LanguageCatalog.baseLanguage(of: requested) ?? requested) == "arc",
        AramaicSignOfCrossForm.isSystemWideActive,
        AramaicSignOfCrossForm.current == AramaicSignOfCrossForm.formB {
       return transliterationsByBundle["rosary"]?["arc"]?["signumCrucisFormB"]
     }
-    return transliterationsByBundle[bundleId]?[languageCode]?[key]
+    let requestedCodes = [requested, LanguageCatalog.baseLanguage(of: requested)].compactMap { $0 }
+    for code in requestedCodes where rawContentByBundle[bundleId]?[code]?[key] != nil {
+      return transliterationsByBundle[bundleId]?[code]?[key]
+    }
+    if sharedPrayerTitleKeys.contains(key) {
+      for code in requestedCodes where rawContentByBundle["rosary"]?[code]?[key] != nil {
+        return transliterationsByBundle["rosary"]?[code]?[key]
+      }
+    }
+    let prayerKey = key == "signumCrucisFormB" ? PrayerKey.signumCrucis : PrayerKey(rawValue: key)
+    if let prayerKey {
+      for code in chain {
+        if prayerOverride(languageCode: code, key: prayerKey) != nil {
+          if prayerKey == .signumCrucis, code == "arc",
+             AramaicSignOfCrossForm.isSystemWideActive,
+             AramaicSignOfCrossForm.current == AramaicSignOfCrossForm.formB {
+            return transliterationsByBundle["rosary"]?["arc"]?["signumCrucisFormB"]
+          }
+          return prayerTransliterations[code]?[prayerKey]
+        }
+        if PrayerTranslations.byLanguage[code]?[prayerKey] != nil { return nil }
+      }
+      return nil
+    }
+    for code in chain where !requestedCodes.contains(code) {
+      if rawContentByBundle[bundleId]?[code]?[key] != nil {
+        return transliterationsByBundle[bundleId]?[code]?[key]
+      }
+    }
+    return nil
   }
 
   static func resolveBodyText(bundleId: String, languageCode: String?, key: String) -> String {
     ensureLoaded()
-    if languageCode == "he-x-gamliel", key == "paterNosterTitle" { return "תפילת האדון" }
+    let chain = LanguageCatalog.fallbackChain(for: languageCode)
+    let requested = chain.first ?? LanguageCatalog.defaultCode
+    if requested == "he-x-gamliel", key == "paterNosterTitle" { return "תפילת האדון" }
     if key == PrayerKey.signumCrucis.rawValue,
-       let languageCode,
-       (LanguageCatalog.baseLanguage(of: languageCode) ?? languageCode) == "arc",
+       (LanguageCatalog.baseLanguage(of: requested) ?? requested) == "arc",
        AramaicSignOfCrossForm.isSystemWideActive,
        AramaicSignOfCrossForm.current == AramaicSignOfCrossForm.formB,
        let text = rawContentByBundle["rosary"]?["arc"]?["signumCrucisFormB"] {
       return text
     }
-    let chain = LanguageCatalog.fallbackChain(for: languageCode)
-    let requested = chain.first ?? LanguageCatalog.defaultCode
     let requestedCodes = [requested, LanguageCatalog.baseLanguage(of: requested)].compactMap { $0 }
     for code in requestedCodes {
       if let text = rawContentByBundle[bundleId]?[code]?[key] { return text }
+    }
+    // These headings name the same shared main prayers in every devotion. Reuse the sourced
+    // Rosary heading before falling back to a different language in this bundle.
+    if sharedPrayerTitleKeys.contains(key) {
+      for code in requestedCodes {
+        if let text = rawContentByBundle["rosary"]?[code]?[key] { return text }
+      }
     }
     if key == "signumCrucisFormB" {
       return PrayerTranslations.get(languageCode: languageCode, key: .signumCrucis)
@@ -1005,6 +1042,7 @@ enum PrayerPackStore {
         rawContent[key] = text
         guard let prayerKey = PrayerKey(rawValue: key) else { continue }
         prayers[prayerKey] = text
+        prayerTransliterations[language, default: [:]][prayerKey] = content.transliterations?[key]
       }
       rawContentByBundle[manifest.id, default: [:]][language] = rawContent
       if let transliterations = content.transliterations, !transliterations.isEmpty {

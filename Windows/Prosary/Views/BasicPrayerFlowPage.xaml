@@ -18,12 +18,27 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Click="OnNavigateUp" Background="Transparent" Padding="8">
                 <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
             </Button>
             <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.Header, Mode=OneWay}" VerticalAlignment="Center"
-                       HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
+                       HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}"
+                       FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}" />
+            <Button Grid.Column="2" Background="Transparent" Padding="8"
+                    Visibility="{x:Bind ViewModel.HasTransliteration, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                    Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
+                    x:Uid="FlowTransliterationButton" ToolTipService.ToolTip="Show transliteration">
+                <FontIcon Glyph="&#xE8C1;" FontSize="14" />
+            </Button>
+            <Button x:Name="LanguageMenuButton" Grid.Column="3" Background="Transparent" Padding="8">
+                <FontIcon Glyph="&#xE774;" />
+                <Button.Flyout>
+                    <MenuFlyout x:Name="LanguageFlyout" />
+                </Button.Flyout>
+            </Button>
         </Grid>
 
         <controls:PrayerStepFlowControl Grid.Row="1" ViewModel="{x:Bind ViewModel}" />
