@@ -949,11 +949,15 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
   All five calendars receive sourced Hebrew names from `Shared/tools/hebrew-feast-titles.json`
   and `hebrew-saint-titles.json`. These catalogs preserve Evangelizo HE wording beyond its rolling
   window and relay names from the St James Vicariate's bilingual calendar and Hebrew articles,
-  with additional feast names from the Christian Media Center. Every label records its source;
+  with additional feast names from the Christian Media Center. Thomas the Apostle uses the
+  user-preferred `תאמא השליח`, also attested by Vatican News in Hebrew. Every label records its source;
   exact English identities and reviewed aliases reuse names across years and rites without
-  copying another calendar's dates, ranks, or precedence. Combined observances retain both names,
+  copying another calendar's dates, ranks, or precedence. Saint labels retain their applicable
+  descriptors, such as priest, virgin, pope, bishop, martyr, or Doctor of the Church, from the
+  source identity. Combined observances retain both names,
   including an original-language component when it has no sourced translation. Existing authored
-  translations are preserved. Run `uv run --script Shared/tools/fetch-feasts.py --localize-only --sync`
+  translations without a catalog match are preserved; editing a catalog refreshes its matching
+  Hebrew labels, including previously generated labels. Run `uv run --script Shared/tools/fetch-feasts.py --localize-only --sync`
   to apply catalog additions offline without changing the calendar coverage; `--self-test` checks
   identity matching, preservation, and fallback. New catalogs or sources require matching About
   credits in all three ports. Mother Teresa's 2026-09-05 memorial, for example, gains its sourced
@@ -986,7 +990,9 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
   the per-language maps. Hebrew short epistle names are deterministic compact forms of those
   sourced titles (`הראשונה אל הקורינתים`, `השנייה של כיפא`, `אל הרומים`): the
   generator removes redundant “epistle”/author wording, standardizes the compact ordinal phrase,
-  and does not translate or alter the complete citation. `readings-roman1962.json` is the Vetus
+  and does not translate or alter the complete citation's wording. Hebrew word joins and
+  numeric prefixes use maqaf (`־`), while verse ranges keep en dashes (`–`).
+  `readings-roman1962.json` is the Vetus
   Ordo table from Missale Meum's
   public proper API. `readings-ugcc.json` comes from Royal Doors' published UGCC Gregorian
   calendar. `readings-syriac.json` comes from Evangelizo's SYE edition. `Shared/tools/

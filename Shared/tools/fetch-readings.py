@@ -230,11 +230,17 @@ def hebrew_numeral(value: int) -> str:
 
 def hebrew_reference(reference: str) -> str:
     """Use gematria for every chapter and a space before Arabic-numeral verses."""
+    reference = hebrew_maqaf(reference)
     return re.sub(
         r"(?<!\d)(\d+):",
         lambda match: f"{hebrew_numeral(int(match.group(1)))} ",
         reference,
     )
+
+
+def hebrew_maqaf(text: str) -> str:
+    """Normalize Hebrew joining hyphens without altering verse-range en dashes."""
+    return re.sub(r"(?<=[\u0590-\u05ff])-(?=[\u0590-\u05ff0-9])", "־", text)
 
 
 def hebrew_short_book_title(title: str) -> str:
@@ -243,9 +249,9 @@ def hebrew_short_book_title(title: str) -> str:
     Evangelizo's ``short_title`` is not consistently short: depending on the book/date it
     may repeat ``אגרת`` and the author's name, or it may already use a compact form.
     Today only needs the distinctive recipient/ordinal while the complete, source-authored
-    title remains untouched in ``fullByLanguage``.
+    wording is preserved in ``fullByLanguage``, with Hebrew joining hyphens normalized to maqaf.
     """
-    source_title = title.strip()
+    source_title = hebrew_maqaf(title.strip())
     title = re.sub(r"\s+", " ", source_title).replace("השניה", "השנייה")
 
     # Pauline titles retain the sourced recipient and, for numbered letters, the ordinal.
@@ -387,7 +393,7 @@ def evangelizo_day(day: dt.date, edition: str) -> tuple[str, dict] | None:
         if edition == "HE":
             book = source.get("book") or {}
             short_hebrew = (book.get("short_title") or book.get("full_title") or "").strip()
-            full_hebrew = (book.get("full_title") or book.get("short_title") or "").strip()
+            full_hebrew = hebrew_maqaf((book.get("full_title") or book.get("short_title") or "").strip())
             if short_hebrew:
                 chapter = re.search(r"\d+", reference)
                 item["shortByLanguage"] = {
@@ -602,6 +608,7 @@ def main() -> None:
         assert hebrew_numeral(16) == "ט״ז"
         assert hebrew_numeral(119) == "קי״ט"
         assert hebrew_reference("1:1–2:2; 15:3–16") == "א׳ 1–ב׳ 2; ט״ו 3–16"
+        assert hebrew_reference("הבשורה על-פי לוקס 1:1–4") == "הבשורה על־פי לוקס א׳ 1–4"
         assert hebrew_short_citation("יוחנן 3") == "יוחנן ג׳"
         assert hebrew_short_citation("אגרת שאול הראשונה אל הקורינתים 4") == \
             "הראשונה אל הקורינתים ד׳"

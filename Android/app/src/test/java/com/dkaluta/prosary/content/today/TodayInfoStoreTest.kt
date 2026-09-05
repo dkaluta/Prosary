@@ -100,11 +100,11 @@ class TodayInfoStoreTest {
         assertEquals("roman", TodayInfoStore.selectedCalendarId)
         val bartholomew = TodayInfoStore.feast(date("2026-08-24"))
         assertEquals("Saint Bartholomew, Apostle", bartholomew?.title)
-        assertEquals("חג בר-תלמי השליח", bartholomew?.localizedTitle("he"))
+        assertEquals("חג בר־תלמי השליח", bartholomew?.localizedTitle("he"))
         assertEquals("Feast", bartholomew?.rank)
         val sunday = TodayInfoStore.feast(date("2026-08-30"))
         assertEquals("22nd Sunday of Ordinary Time", sunday?.title)
-        assertEquals("יום א ה-22 של הזמן הרגיל", sunday?.localizedTitle("he"))
+        assertEquals("יום א ה־22 של הזמן הרגיל", sunday?.localizedTitle("he"))
         assertEquals("Sunday", sunday?.rank)
     }
 
@@ -144,8 +144,8 @@ class TodayInfoStoreTest {
             assertNotNull(calendarId, feast)
             assertEquals(calendarId, "Saint Teresa of Calcutta, Virgin", feast?.title)
             assertEquals(calendarId, "Optional Memorial", feast?.rank)
-            assertEquals(calendarId, "תרזה הקדושה מקלקוטה", feast?.localizedTitle("he"))
-            assertEquals(calendarId, "תרזה הקדושה מקלקוטה", feast?.localizedTitle("he-x-gamliel"))
+            assertEquals(calendarId, "תרזה הקדושה מקלקוטה, בתולה", feast?.localizedTitle("he"))
+            assertEquals(calendarId, "תרזה הקדושה מקלקוטה, בתולה", feast?.localizedTitle("he-x-gamliel"))
             assertEquals(calendarId, "Saint Teresa of Calcutta, Virgin", feast?.localizedTitle("en"))
 
             // September 5 falls on Sunday in 2027; translating a saint must not change precedence.
@@ -161,6 +161,30 @@ class TodayInfoStoreTest {
         for (calendarId in listOf("ugcc", "syriac")) {
             AppSettings.feastCalendarId = calendarId
             assertNull(calendarId, TodayInfoStore.feast(date("2026-09-05")))
+        }
+    }
+
+    @Test
+    fun saintTitlesRetainTheirRolesAcrossCalendarAliases() {
+        val expected = listOf(
+            listOf("roman", "2026-05-26", "Saint Philip Neri, Priest", "Memorial", "פיליפוס נרי, כהן"),
+            listOf("roman", "2026-10-22", "Saint John Paul II, Pope", "Optional Memorial", "יוחנן פאולוס השני, אפיפיור"),
+            listOf("roman", "2026-07-15", "Saint Bonaventure, Bishop and Doctor of the Church", "Memorial", "בונבנטורה הקדוש, הגמון ודוקטור הכנסייה"),
+            listOf("roman1962", "2026-07-14", "St. Bonaventure", "3rd Class", "בונבנטורה הקדוש, הגמון ודוקטור הכנסייה"),
+            listOf("roman", "2026-07-03", "Saint Thomas the Apostle", "Feast", "תאמא השליח"),
+            listOf("syriac", "2026-10-06", "Feast of Saint Thomas the Apostle", "Feast", "תאמא השליח"),
+            listOf("roman1962", "2026-12-21", "St. Thomas", "2nd Class", "תאמא השליח"),
+            listOf("roman", "2026-01-28", "Saint Thomas Aquinas, Priest and Doctor of the Church", "Memorial", "תומאס אקווינס, כהן ודוקטור הכנסייה"),
+        )
+        for ((calendarId, feastDate, title, rank, hebrew) in expected) {
+            AppSettings.feastCalendarId = calendarId
+            val feast = TodayInfoStore.feast(date(feastDate))
+            assertNotNull(title, feast)
+            assertEquals(title, feast?.title)
+            assertEquals(rank, feast?.rank)
+            assertEquals(title, hebrew, feast?.localizedTitle("he"))
+            assertEquals(title, hebrew, feast?.localizedTitle("he-x-gamliel"))
+            assertEquals(title, feast?.localizedTitle("en"))
         }
     }
 
@@ -287,14 +311,16 @@ class TodayInfoStoreTest {
         assertEquals(listOf("1 Cor. 2", "Ps. 119", "Lk. 4"), readings.map { it.short })
         assertEquals("Luke 4:16–30", readings.last().full)
         assertEquals("לוקס ד׳", readings.last().localizedShort("he"))
-        assertEquals("הבשורה על-פי לוקס ד׳ 16–30", readings.last().localizedFull("he"))
+        assertEquals("הבשורה על־פי לוקס ד׳ 16–30", readings.last().localizedFull("he"))
         assertEquals("לוקס ד׳", readings.last().localizedShort("he-x-gamliel"))
-        assertEquals("הבשורה על-פי לוקס ד׳ 16–30", readings.last().localizedFull("he-x-gamliel"))
+        assertEquals("הבשורה על־פי לוקס ד׳ 16–30", readings.last().localizedFull("he-x-gamliel"))
 
         val day = TodayInfoStore.liturgicalDayInfo(date("2026-08-31"))
         assertTrue(day.english.startsWith("Monday · Week "))
         assertTrue(day.english.endsWith(" of Ordinary Time"))
         assertTrue(day.hebrew.contains("בזמן הרגיל"))
+        assertTrue(day.hebrew.contains("השבוע ה־"))
+        assertFalse(day.hebrew.contains("ה-"))
     }
 
     @Test
@@ -341,7 +367,7 @@ class TodayInfoStoreTest {
         AppSettings.feastCalendarId = "roman1962"
         val vetus = TodayInfoStore.readings(date("2026-09-03"))
         assertEquals("הראשונה אל התסלוניקים ב׳", vetus.first().localizedShort("he"))
-        assertEquals("הבשורה  על-פי יוחנן כ״א 15–17", vetus.last().localizedFull("he"))
+        assertEquals("הבשורה  על־פי יוחנן כ״א 15–17", vetus.last().localizedFull("he"))
 
         AppSettings.feastCalendarId = "ugcc"
         val byzantine = TodayInfoStore.readings(date("2026-09-03"))

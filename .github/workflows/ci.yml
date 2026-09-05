@@ -35,6 +35,8 @@ jobs:
         run: |
           uv run --script Shared/tools/fetch-feasts.py --self-test
           uv run --script Shared/tools/fetch-feasts.py --localize-only --sync
+          uv run --script Shared/tools/fetch-readings.py --self-test
+          uv run --script Shared/tools/fetch-readings.py --localize-only --sync
           git diff --exit-code -- Shared/data iOS/Prosary/Data Android/app/src/main/assets/data Windows/Prosary/Data
 
   android:
