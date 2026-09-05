@@ -208,7 +208,7 @@
   <data name="AbtJpHeader.Text" xml:space="preserve"><value>Jesus Prayer Illustration</value></data>
   <data name="AbtJpBody.Text" xml:space="preserve"><value>Christ Pantocrator: encaustic icon (6th century), Saint Catherine’s Monastery, Mount Sinai — the oldest surviving icon of Christ Pantocrator, honoring the prayer’s Eastern tradition; public domain.</value></data>
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>Scripture Sources</value></data>
-  <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) with Hebrew Old Testament passages following the Masoretic text, the Jesuit Arabic Bible (Beirut, 1880, revised 1988), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905) — all public domain.</value></data>
+  <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) with Hebrew Old Testament passages following the Masoretic text, the Jesuit Arabic Bible (Dar el-Machreq), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905).</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>Calendar Data</value></data>
   <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Calendar and readings data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar and lectionary via Missale Meum (missalemeum.com); the Syriac Catholic calendar, sourced Hebrew General Roman titles, and Roman/Syriac lectionary citations courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic calendar compiled in-app from the traditional sources, with Byzantine citations from Royal Doors’ public UGCC Liturgical Year (Gregorian) calendar (royaldoors.net). Hebrew Bible book names: Evangelizo HE and the St James Vicariate (catholic.co.il). Additional Hebrew feast and saint names: the St James Vicariate, the Christian Media Center (cmc-terrasanta.org), and Vatican News (vaticannews.va).</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Previous mystery</value></data>
@@ -363,4 +363,45 @@
   <data name="home_today_rank_1st_class" xml:space="preserve"><value>1st Class</value></data>
   <data name="home_today_rank_2nd_class" xml:space="preserve"><value>2nd Class</value></data>
   <data name="home_today_rank_3rd_class" xml:space="preserve"><value>3rd Class</value></data>
+  <data name="today_language_app" xml:space="preserve"><value>App language</value></data>
+  <data name="HomeTodayLanguage.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Today language</value></data>
+  <data name="BtnBack.Content" xml:space="preserve"><value>Back</value></data>
+  <data name="BtnFinish.Content" xml:space="preserve"><value>Finish</value></data>
+  <data name="PickerMysteries.Header" xml:space="preserve"><value>Mysteries</value></data>
+  <data name="PickerSpecificSet.Header" xml:space="preserve"><value>Specific set</value></data>
+  <data name="PickerWhichMystery.Header" xml:space="preserve"><value>Which mystery</value></data>
+  <data name="EditorName.Header" xml:space="preserve"><value>Name</value></data>
+  <data name="EditorName.PlaceholderText" xml:space="preserve"><value>e.g. Morning Rosary</value></data>
+  <data name="AudioPreviousChapter.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Previous chapter</value></data>
+  <data name="AudioNextChapter.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Next chapter</value></data>
+  <data name="AudioPlayPause.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Play or pause</value></data>
+  <data name="BrowseRefresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Refresh</value></data>
+  <data name="import_unreadable" xml:space="preserve"><value>This file is not a readable .prosaryprayer bundle.</value></data>
+  <data name="import_empty" xml:space="preserve"><value>This bundle does not contain a devotion.</value></data>
+  <data name="import_duplicate" xml:space="preserve"><value>A devotion named "{0}" is already installed.</value></data>
+  <data name="browse_newer_catalog" xml:space="preserve"><value>The repository uses a newer catalog format — update Prosary to browse it.</value></data>
+  <data name="reminder_rosary" xml:space="preserve"><value>Time to pray the Rosary.</value></data>
+  <data name="reminder_jesus" xml:space="preserve"><value>Time for the Jesus Prayer.</value></data>
+  <data name="reminder_pray" xml:space="preserve"><value>Time to pray.</value></data>
+  <data name="preset_classic_rosary" xml:space="preserve"><value>Classic Rosary</value></data>
+  <data name="prayer_default_name" xml:space="preserve"><value>My Prayer</value></data>
+  <data name="AbtAdditionalSources.Text" xml:space="preserve"><value>French Scripture: Crampon (1923), public domain. Italian Scripture: Antonio Martini; structured data © Giovanni Novelli, CC BY 4.0 (parolaviva.art). French and Italian prayers: Vatican Compendium. Pope’s intentions: Pope’s Worldwide Prayer Network (2026–2027); Hebrew translation by Prosary. Russian intentions (2026): translation by t.me/ihsovs, published by the Immaculate Conception parish in Chelyabinsk (cc74.wordpress.com/rosary/).</value></data>
+  <data name="AbtBookNameSources.Text" xml:space="preserve"><value>Bible book names: AELF, Dar el-Machreq, Russian Synodal Bible (Azbyka), Philippine Bible Society and ParolaViva.</value></data>
+  <data name="AbtPopeNetworkLink.Content" xml:space="preserve"><value>Pope’s Worldwide Prayer Network</value></data>
+  <data name="AbtParolaVivaLink.Content" xml:space="preserve"><value>ParolaViva — CC BY 4.0</value></data>
+  <data name="category_marian" xml:space="preserve"><value>Marian</value></data>
+  <data name="category_daily" xml:space="preserve"><value>Daily</value></data>
+  <data name="category_mercy" xml:space="preserve"><value>Mercy</value></data>
+  <data name="category_franciscan" xml:space="preserve"><value>Franciscan</value></data>
+  <data name="category_advent" xml:space="preserve"><value>Advent</value></data>
+  <data name="category_meditative" xml:space="preserve"><value>Meditative</value></data>
+  <data name="category_passion" xml:space="preserve"><value>Passion</value></data>
+  <data name="category_eastern" xml:space="preserve"><value>Eastern</value></data>
+  <data name="category_short" xml:space="preserve"><value>Short</value></data>
+  <data name="category_easter" xml:space="preserve"><value>Easter</value></data>
+  <data name="category_other" xml:space="preserve"><value>Other</value></data>
+  <data name="AbtPrayerSources.Text" xml:space="preserve"><value>Additional prayer sources: Vatican News, the Sanctuary of Fatima, Notre-Dame de Paris, AELF and the Italian Episcopal Conference (CEI).</value></data>
+  <data name="AbtDivineMercySources.Text" xml:space="preserve"><value>Divine Mercy Chaplet: Congregation of the Sisters of Our Lady of Mercy.</value></data>
+  <data name="AppDescription" xml:space="preserve"><value>A companion for praying the Rosary, the Angelus, and the Jesus Prayer.</value></data>
+  <data name="AbtSevenSorrowsSources.Text" xml:space="preserve"><value>Seven Sorrows prayers: Notre Dame de Chrétienté and Confraternite.net.</value></data>
 </root>

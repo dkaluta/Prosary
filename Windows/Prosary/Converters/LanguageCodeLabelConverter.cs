@@ -14,7 +14,7 @@ public sealed class LanguageCodeLabelConverter : IValueConverter
         var code = value as string;
         if (code == LanguageCatalog.DefaultSentinel)
         {
-            return $"Default — {LanguageCatalog.Resolve(LanguageCatalog.DefaultSentinel).NativeName}";
+            return string.Format(Prosary.Localization.Loc.Tr("language_default_parenthesized", "Default ({0})"), LanguageCatalog.Resolve(LanguageCatalog.DefaultSentinel).NativeName);
         }
 
         return LanguageCatalog.Resolve(code).NativeName;

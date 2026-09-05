@@ -1,5 +1,5 @@
 {
- "$comment": "Per-day table, West Syriac — Syriac Catholic: liturgical day titles courtesy of Evangelizo.org — Daily Gospel (© Evangelizo.org), publication edition SYE, used with attribution (also on every platform's About screen). Ferial plain-date titles are omitted. Evangelizo serves a rolling ~3-month horizon, so this table ends where the API did at generation time and extends on each rerun of Shared/tools/fetch-feasts.py — regenerate more often than yearly. Hebrew feast and saint names use the credited source catalogs in Shared/tools/hebrew-feast-titles.json and hebrew-saint-titles.json; the calendar's own dates, observances, ranks and original titles are retained.",
+ "$comment": "Per-day table, West Syriac — Syriac Catholic: liturgical day titles courtesy of Evangelizo.org — Daily Gospel (© Evangelizo.org), publication edition SYE, used with attribution (also on every platform's About screen). Ferial plain-date titles are omitted. Evangelizo serves a rolling ~3-month horizon, so this table ends where the API did at generation time and extends on each rerun of Shared/tools/fetch-feasts.py — regenerate more often than yearly. Hebrew feast and saint names use the credited source catalogs in Shared/tools/hebrew-feast-titles.json and hebrew-saint-titles.json; the calendar's own dates, observances, ranks and original titles are retained. French and Italian feast names are sourced from LitCal (Apache-2.0), joined by stable event identity with reviewed exact aliases in Shared/tools/feast-titles-localized.json; no calendar dates or ranks are changed.",
  "generated": "2026-08-24",
  "years": [
   2026
@@ -24,7 +24,9 @@
    "title": "Baptism of the Lord",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "חג הטבילה"
+    "he": "חג הטבילה",
+    "fr": "Baptême du Seigneur",
+    "it": "Battesimo del Signore"
    }
   },
   "2026-01-07": {

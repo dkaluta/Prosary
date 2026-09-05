@@ -27,22 +27,21 @@ struct HomeView: View {
   @State private var monthIntention: PopeIntention? = nil
   @State private var liturgicalDayInfo: LiturgicalDayInfo? = nil
   @State private var todayReadings: [ReadingCitation] = []
-  @State private var todayInHebrew = TodayTranslationLanguage.defaultsToHebrew(
-    LanguageCatalog.resolve(nil).code)
+  @AppStorage("todayLanguageCode") private var selectedTodayLanguage = ""
   @State private var showsFullCitations = false
 
-  private var todayLanguageCode: String { todayInHebrew ? "he" : "en" }
+  private var todayLanguageCode: String { TodayTranslationLanguage.resolve(selectedTodayLanguage) }
 
   private var todayReadingsHeading: String {
-    todayInHebrew ? "המקרא היומי" : "Today’s readings"
+    UILanguage.text("home.today.readings", language: todayLanguageCode, fallback: "Today’s readings")
   }
 
   private var todayFullCitationsLabel: String {
-    todayInHebrew ? "הצג מראי מקום מלאים" : "View full citations"
+    UILanguage.text("home.today.fullCitations", language: todayLanguageCode, fallback: "View full citations")
   }
 
   private var todayCompactCitationsLabel: String {
-    todayInHebrew ? "הצג קיצור" : "Show shorthand"
+    UILanguage.text("home.today.compactCitations", language: todayLanguageCode, fallback: "Show shorthand")
   }
 
   private var todayCitationToggleLabel: String {
@@ -51,7 +50,7 @@ struct HomeView: View {
 
   private func todayPopeIntentionHeading(_ intention: PopeIntention) -> String {
     let title = intention.localizedTitle(todayLanguageCode)
-    return todayInHebrew ? "כוונת האפיפיור: \(title)" : "The Pope’s intention: \(title)"
+    return String(format: UILanguage.text("home.today.popesIntention", language: todayLanguageCode, fallback: "The Pope’s intention: %@"), locale: Locale(identifier: todayLanguageCode), title)
   }
 
   /// The Today rows can be switched off one by one in Settings (Erez's request) — an off
@@ -249,9 +248,6 @@ struct HomeView: View {
     #endif
     .task { await load() }
     .onAppear { Task { await load() } }
-    .onChange(of: prayerLanguage.code) { _, languageCode in
-      todayInHebrew = TodayTranslationLanguage.defaultsToHebrew(languageCode)
-    }
   }
 
   // MARK: - Pieces
@@ -291,15 +287,24 @@ struct HomeView: View {
         if let info = liturgicalDayInfo {
           HStack(alignment: .firstTextBaseline, spacing: 8) {
             Image(systemName: "sun.max").foregroundStyle(Color.brandPrimary)
-            Text(HebrewDisplayText.unpointed(todayInHebrew ? info.hebrew : info.english))
+            Text(HebrewDisplayText.unpointed(info.localized(todayLanguageCode)))
               .font(.subheadline.weight(.semibold))
               .frame(maxWidth: .infinity, alignment: .leading)
-            Button(todayInHebrew
-              ? String(localized: "home.today.showEnglish", defaultValue: "English")
-              : String(localized: "home.today.translate", defaultValue: "עברית")) {
-              todayInHebrew.toggle()
+            Menu {
+              Picker(UILanguage.text("home.today.language", language: todayLanguageCode, fallback: "Today language"),
+                     selection: $selectedTodayLanguage) {
+                Text(UILanguage.text("home.today.appLanguage", language: todayLanguageCode, fallback: "App language"))
+                  .tag("")
+                ForEach(UILanguage.all) { language in
+                  Text(language.nativeName).tag(language.code)
+                }
+              }
+            } label: {
+              Label(UILanguage.all.first { $0.code == todayLanguageCode }?.nativeName ?? "English",
+                    systemImage: "globe")
+                .font(.caption)
             }
-            .font(.caption)
+            .accessibilityIdentifier("todayLanguagePicker")
           }
         }
         if let feast = todayFeast {
@@ -322,7 +327,7 @@ struct HomeView: View {
             VStack(alignment: .leading, spacing: 2) {
               Text(todayPopeIntentionHeading(intention))
                 .font(.subheadline.weight(.semibold))
-              Text(intention.localizedText(todayInHebrew ? "he" : "en"))
+              Text(intention.localizedText(todayLanguageCode))
                 .font(.caption).foregroundStyle(.secondary)
             }
           }
@@ -370,7 +375,7 @@ struct HomeView: View {
           }
         }
       }
-      .environment(\.layoutDirection, todayInHebrew ? .rightToLeft : .leftToRight)
+      .environment(\.layoutDirection, UILanguage.isRightToLeft(todayLanguageCode) ? .rightToLeft : .leftToRight)
       .frame(maxWidth: .infinity, alignment: .leading)
       .padding(14)
       .background(.quaternary.opacity(0.5), in: RoundedRectangle(cornerRadius: 14))

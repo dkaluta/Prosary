@@ -44,14 +44,11 @@ data class FeastDay(
             "3rd Class" -> R.string.home_today_rank_3rd_class to "דרגה שלישית"
             else -> return rank
         }
-        val displayLanguage = if ((LanguageCatalog.baseLanguage(language) ?: language) == "he") "he" else "en"
+        val displayLanguage = TodayTranslationLanguage.resolve(language)
         val fallback = if (displayLanguage == "he") hebrewFallback else rank
         if (context == null) return fallback
         return runCatching {
-            val configuration = Configuration(context.resources.configuration).apply {
-                setLocale(Locale.forLanguageTag(displayLanguage))
-            }
-            context.createConfigurationContext(configuration).getString(resourceId)
+            TodayTranslationLanguage.localizedContext(context, displayLanguage).getString(resourceId)
         }.getOrDefault(fallback)
     }
 }
@@ -80,24 +77,49 @@ data class ReadingCitation(
 ) {
     fun localizedShort(language: String): String = shortByLanguage.localized(language) ?: short
 
-    fun localizedFull(language: String): String =
-        fullByLanguage.localized(language)
-            ?: if ((LanguageCatalog.baseLanguage(language) ?: language) == "he") hebrew ?: full else full
+    fun localizedFull(language: String): String {
+        val normalized = LanguageCatalog.uiLanguageCode(language)
+        return fullByLanguage.localized(normalized)
+            ?: if ((LanguageCatalog.baseLanguage(normalized) ?: normalized) == "he") hebrew ?: full else full
+    }
 }
 
 /** A prayer-language variant first uses its own authored text, then its base language's text.
  * This keeps the Hebrew Mission variant on sourced Hebrew feast titles and citations without
  * duplicating those maps under `he-x-gamliel`. */
-private fun Map<String, String>?.localized(language: String): String? =
-    this?.get(language) ?: LanguageCatalog.baseLanguage(language)?.let { this?.get(it) }
+private fun Map<String, String>?.localized(language: String): String? {
+    val normalized = LanguageCatalog.uiLanguageCode(language)
+    return this?.get(normalized)?.takeIf { it.isNotBlank() }
+        ?: LanguageCatalog.baseLanguage(normalized)?.let { this?.get(it)?.takeIf(String::isNotBlank) }
+}
 
-data class LiturgicalDayInfo(val english: String, val hebrew: String)
+data class LiturgicalDayInfo(val byLanguage: Map<String, String>) {
+    val english: String get() = byLanguage.getValue("en")
+    val hebrew: String get() = byLanguage.getValue("he")
+    fun localized(language: String): String = byLanguage[TodayTranslationLanguage.resolve(language)] ?: english
+}
 
-/** The Today card initially follows the app's prayer language, including Hebrew variants. Its
- * translation button may then override this for the lifetime of the current Home screen. */
+/** Today follows the app interface language until the reader selects a persistent override.
+ * Its language is deliberately independent of the default prayer language. */
 object TodayTranslationLanguage {
-    fun defaultsToHebrew(languageCode: String): Boolean =
-        (LanguageCatalog.baseLanguage(languageCode) ?: languageCode) == "he"
+    val supportedCodes = listOf("en", "he", "ar", "ru", "tl", "fr", "it")
+
+    fun resolve(stored: String, appLanguage: String = LanguageCatalog.uiLanguageCode()): String {
+        val normalized = LanguageCatalog.uiLanguageCode(stored.ifBlank { appLanguage })
+        return (LanguageCatalog.baseLanguage(normalized) ?: normalized).takeIf { it in supportedCodes } ?: "en"
+    }
+
+    fun isRightToLeft(code: String): Boolean = resolve(code) in setOf("he", "ar")
+
+    fun localizedContext(context: Context, code: String): Context {
+        // Filipino is Android's per-app locale; prayer/data dictionaries use canonical tl.
+        val locale = Locale.forLanguageTag(if (resolve(code) == "tl") "fil" else resolve(code))
+        val configuration = Configuration(context.resources.configuration).apply {
+            setLocale(locale)
+            setLayoutDirection(locale)
+        }
+        return context.createConfigurationContext(configuration)
+    }
 }
 
 /** One entry of calendars.json — a switchable feast calendar. */
@@ -116,7 +138,7 @@ data class FeastCalendar(
      * BCP 47's "he". */
     val displayName: String
         get() {
-            val uiLanguage = Locale.getDefault().language.let { if (it == "iw") "he" else it }
+            val uiLanguage = LanguageCatalog.uiLanguageCode()
             return HebrewDisplayText.unpoint(nameByLanguage?.get(uiLanguage) ?: name)
         }
 }
@@ -217,10 +239,30 @@ object TodayInfoStore {
         }
         val englishWeekday = java.time.format.DateTimeFormatter.ofPattern("EEEE", Locale.US).format(day)
         val hebrewWeekday = java.time.format.DateTimeFormatter.ofPattern("EEEE", Locale("he", "IL")).format(day)
-        return LiturgicalDayInfo(
-            "$englishWeekday · Week ${season.third} of ${season.first}",
-            "$hebrewWeekday · השבוע ה־${season.third} ${season.second}",
+        val seasonIndex = listOf("Lent", "Easter Season", "Advent", "Christmas Season", "Ordinary Time").indexOf(season.first)
+        val seasonNames = mapOf(
+            "ar" to listOf("الصوم الكبير", "زمن الفصح", "زمن المجيء", "زمن الميلاد", "الزمن العادي"),
+            "ru" to listOf("Великого поста", "Пасхального времени", "Адвента", "Рождественского времени", "Рядового времени"),
+            "tl" to listOf("Kuwaresma", "Panahon ng Pasko ng Pagkabuhay", "Adbiyento", "Panahon ng Pasko", "Karaniwang Panahon"),
+            "fr" to listOf("Carême", "Temps pascal", "Avent", "Temps de Noël", "Temps ordinaire"),
+            "it" to listOf("Quaresima", "Tempo di Pasqua", "Avvento", "Tempo di Natale", "Tempo ordinario"),
         )
+        val translations = mutableMapOf(
+            "en" to "$englishWeekday · Week ${season.third} of ${season.first}",
+            "he" to "$hebrewWeekday · השבוע ה־${season.third} ${season.second}",
+        )
+        for ((language, names) in seasonNames) {
+            val weekday = java.time.format.DateTimeFormatter.ofPattern("EEEE", Locale.forLanguageTag(if (language == "tl") "fil" else language)).format(day)
+            val name = names[seasonIndex]
+            translations[language] = when (language) {
+                "ar" -> "$weekday · الأسبوع ${season.third} من $name"
+                "ru" -> "$weekday · ${season.third}-я неделя $name"
+                "tl" -> "$weekday · Ika-${season.third} linggo ng $name"
+                "fr" -> "$weekday · Semaine ${season.third} · $name"
+                else -> "$weekday · Settimana ${season.third} · $name"
+            }
+        }
+        return LiturgicalDayInfo(translations)
     }
 
     private fun week(origin: java.time.LocalDate, day: java.time.LocalDate) =

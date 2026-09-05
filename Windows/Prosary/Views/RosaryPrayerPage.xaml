@@ -241,7 +241,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Back" Command="{x:Bind ViewModel.BackCommand}"
+            <Button x:Uid="BtnBack" Grid.Column="0" Content="Back" Command="{x:Bind ViewModel.BackCommand}"
                     IsEnabled="{x:Bind ViewModel.CanGoBack, Mode=OneWay}" Background="Transparent" />
             <Button x:Uid="RosaryPreviousMystery" Grid.Column="1" Content="⏮"
                     Command="{x:Bind ViewModel.GoToPreviousMysteryCommand}"

@@ -51,6 +51,7 @@
             <conv:JesusPrayerSetupOptionLabelConverter x:Key="SetupOptionLabel" />
             <conv:EnumDisplayNameConverter x:Key="EnumDisplayName" />
             <conv:LanguageCodeLabelConverter x:Key="LanguageCodeLabel" />
+            <conv:CategoryLabelConverter x:Key="CategoryLabel" />
             <conv:JesusPrayerTargetLabelConverter x:Key="JesusPrayerTargetLabel" />
             <conv:MysteryTitleConverter x:Key="MysteryTitle" />
 

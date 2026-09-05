@@ -125,7 +125,7 @@ struct RepositoryBrowserView: View {
           HStack(spacing: 8) {
             tagChip(nil, label: String(localized: "repository.allTags", defaultValue: "All"))
             ForEach(allTags, id: \.self) { tag in
-              tagChip(tag, label: tag)
+              tagChip(tag, label: UILanguage.tag(tag))
             }
           }
         }
@@ -209,7 +209,7 @@ struct RepositoryBrowserView: View {
           .foregroundStyle(.secondary)
       }
       if !bundle.tags.isEmpty {
-        Text(bundle.tags.joined(separator: " · "))
+        Text(bundle.tags.map { UILanguage.tag($0) }.joined(separator: " · "))
           .font(.caption2)
           .foregroundStyle(Color.brandPrimary)
       }

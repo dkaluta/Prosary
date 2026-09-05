@@ -1,5 +1,7 @@
 package com.dkaluta.prosary.ui.favorites
 
+import com.dkaluta.prosary.ui.shared.CategoryLabels
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -101,7 +103,7 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
     val filtered = bundles.filter { bundle ->
         (selectedTag == null || selectedTag in bundle.tags) &&
             (searchText.isBlank() ||
-                "${bundle.name} ${bundle.author} ${bundle.description} ${bundle.id}"
+                "${bundle.name} ${bundle.author} ${bundle.description} ${bundle.id} ${bundle.tags.joinToString(" ")} ${bundle.tags.joinToString(" ") { CategoryLabels.label(it, context) }}"
                     .contains(searchText, ignoreCase = true))
     }
 
@@ -173,7 +175,7 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
                                 FilterChip(
                                     selected = selectedTag == tag,
                                     onClick = { selectedTag = tag },
-                                    label = { Text(tag) },
+                                    label = { Text(CategoryLabels.label(tag, context)) },
                                 )
                             }
                         }
@@ -250,7 +252,7 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
                             }
                             if (bundle.tags.isNotEmpty()) {
                                 Text(
-                                    bundle.tags.joinToString(" · "),
+                                    bundle.tags.joinToString(" · ") { CategoryLabels.label(it, context) },
                                     style = MaterialTheme.typography.labelSmall,
                                     color = MaterialTheme.colorScheme.primary,
                                 )

@@ -1,0 +1,401 @@
+<resources>
+    <string name="app_name">"Prosary"</string>
+
+    <!-- Shared -->
+    <string name="common_back">"Bumalik"</string>
+    <string name="common_cancel">"Kanselahin"</string>
+    <string name="common_save">"I-save"</string>
+    <string name="common_done">"Tapos"</string>
+    <string name="common_move_up">"Ilipat pataas"</string>
+    <string name="common_move_down">"Ilipat pababa"</string>
+    <string name="common_reset">"I-reset"</string>
+    <string name="common_ok">"OK"</string>
+    <string name="common_retry">"Subukan muli"</string>
+    <string name="common_pray">"Magdasal"</string>
+    <string name="common_next">"Susunod"</string>
+    <string name="common_finish">"Tapusin"</string>
+    <string name="common_install">"I-install"</string>
+    <string name="common_update">"I-update"</string>
+    <string name="common_installed">"Naka-install"</string>
+    <string name="common_settings">"Mga Setting"</string>
+    <string name="common_about">"Tungkol dito"</string>
+
+    <!-- Bottom tabs -->
+    <string name="tab_pray">"Magdasal"</string>
+    <string name="tab_browse">"Tumingin"</string>
+    <string name="tab_categories">"Mga Kategorya"</string>
+    <string name="tab_search">"Maghanap"</string>
+
+    <!-- Home -->
+    <string name="home_today">"Ngayon: %1$s"</string>
+    <string name="home_pope_intention">"Intensiyon ng Papa: %1$s"</string>
+    <string name="home_tap_to_set_up">"Pindutin upang itakda"</string>
+    <string name="home_tap_to_pray">"Pindutin upang magdasal"</string>
+    <string name="home_my_favorites">"Mga Paborito Ko"</string>
+    <string name="home_move_to_top">"Ilipat sa itaas"</string>
+    <string name="home_edit_order">"I-edit ang pagkakasunod-sunod…"</string>
+    <string name="home_remove_from_pray">"Alisin sa Magdasal"</string>
+    <string name="home_add_to_pray">"Idagdag sa Magdasal"</string>
+    <string name="home_saved_presets">"Mga naka-save na ayos…"</string>
+    <string name="home_add_devotion">"Magdagdag ng debosyon"</string>
+    <string name="multi_day_day_of">"Araw %1$d sa %2$d"</string>
+    <string name="multi_day_complete">"Tapos na"</string>
+    <string name="multi_day_starts_today">"Magsisimula ngayon"</string>
+    <string name="multi_day_starts_on">"Magsisimula sa %1$s"</string>
+    <string name="multi_day_missed_title">"May nalaktawan kang araw"</string>
+    <string name="multi_day_pray_missed">"Dasalin ang araw %1$d"</string>
+    <string name="multi_day_pray_today">"Magpatuloy sa araw %1$d"</string>
+    <string name="multi_day_start_over">"Simulan muli"</string>
+    <string name="home_order_title">"Pagkakasunod-sunod sa Home"</string>
+    <string name="home_order_reorder">"Baguhin ang ayos ng %1$s"</string>
+
+    <!-- Settings -->
+    <string name="settings_default_prayer_language">"Paunang Piniling Wika ng Panalangin"</string>
+    <string name="settings_language_fallback_order">"Pagkakasunod-sunod ng pamalit na wika…"</string>
+    <string name="settings_language_fallback_order_title">"Pagkakasunod-sunod ng pamalit na wika"</string>
+    <string name="settings_language_fallback_order_footer">"Kapag kulang ang isang panalangin, sinusubukan ng Prosary ang mga wikang ito mula sa itaas pababa pagkatapos ng napiling wika at ng sarili nitong baryasyon."</string>
+    <string name="settings_praying">"Pagdarasal"</string>
+    <string name="prayer_order_title">"Pagkakasunod-sunod ng panalangin"</string>
+    <string name="basic_prayers_title">"Mga Pangunahing Panalangin"</string>
+    <string name="settings_haptics_on_advance">"Mag-vibrate sa paglipat ng hakbang"</string>
+    <string name="settings_auto_advance">"Awtomatikong paglipat"</string>
+    <string name="auto_advance_off">"Naka-off"</string>
+    <string name="auto_advance_every">"Tuwing %1$d segundo"</string>
+    <string name="settings_reset_home_order">"I-reset ang Pagkakasunod-sunod sa Home"</string>
+    <string name="settings_today_header">"Ngayon"</string>
+    <string name="settings_show_today_feast">"Ipakita ang kapistahan ngayon"</string>
+    <string name="settings_show_today_intention">"Ipakita ang intensiyon ng Papa"</string>
+    <string name="settings_feast_calendar">"Kalendaryong liturhiko"</string>
+    <string name="settings_feast_calendar_hint">"Kalendaryo ng mga kapistahan at pagbasa na ipinapakita sa seksiyong Ngayon."</string>
+    <string name="settings_downloads">"Mga Na-download"</string>
+    <string name="settings_installed_devotions">"Mga naka-install na debosyon: %1$d"</string>
+    <string name="settings_clear_audio_cache">"Burahin ang Cache ng Audio"</string>
+    <string name="settings_clear_audio_cache_size">"Burahin ang Cache ng Audio (%1$s)"</string>
+    <string name="settings_remove_all">"Alisin ang Lahat ng Na-download na Debosyon…"</string>
+    <string name="settings_downloads_footer">"Hindi inaalis ang mga kasamang debosyon. Kapag inalis ang na-download na debosyon, aalisin din ang paborito nito."</string>
+    <string name="settings_links">"Mga Link"</string>
+    <string name="settings_repository_site">"Imbakan ng komunidad"</string>
+    <string name="settings_compose_site">"Bumuo ng debosyon"</string>
+    <string name="settings_privacy_policy">"Patakaran sa privacy"</string>
+    <string name="settings_remove_all_title">"Alisin ang lahat ng na-download na debosyon?"</string>
+    <string name="settings_remove_all_message">"Maaaring i-download muli ang mga debosyon mula sa imbakan; hindi ang mga file na mano-manong in-import."</string>
+    <string name="settings_remove_all_confirm">"Alisin Lahat"</string>
+
+    <!-- Prayer kinds (models/PrayerKind.kt) -->
+    <string name="kind_rosary">"Rosaryo"</string>
+    <string name="kind_jesus_prayer">"Panalangin kay Hesus"</string>
+    <string name="kind_devotion">"Debosyon"</string>
+    <string name="kind_default_name_rosary">"Aking Rosaryo"</string>
+
+    <!-- Mystery groups and selection modes -->
+    <string name="mystery_group_joyful">"Tuwa"</string>
+    <string name="mystery_group_sorrowful">"Hapis"</string>
+    <string name="mystery_group_glorious">"Luwalhati"</string>
+    <string name="mystery_group_luminous">"Liwanag"</string>
+    <string name="mode_todays_mysteries">"Mga Misteryo Ngayon"</string>
+    <string name="mode_specific">"Laging Isang Tiyak na Pangkat"</string>
+    <string name="mode_fifteen">"Ang 15 Misteryo (Tuwa, Hapis, Luwalhati)"</string>
+    <string name="mode_twenty">"Ang 20 Misteryo (Lahat ng Apat na Pangkat)"</string>
+    <string name="mode_single">"Isang Misteryo Lamang"</string>
+    <string name="summary_always">"Laging %1$s"</string>
+    <string name="summary_only">"%1$s lamang"</string>
+    <string name="summary_fifteen">"Ang 15 Misteryo"</string>
+    <string name="summary_twenty">"Ang 20 Misteryo"</string>
+
+    <!-- Eternal Rest placement -->
+    <string name="eternal_rest_none">"Huwag Isama"</string>
+    <string name="eternal_rest_each_decade">"Pagkatapos ng Bawat Dekada"</string>
+    <string name="eternal_rest_at_end">"Minsan, Malapit sa Katapusan"</string>
+
+    <!-- Marian antiphon controls; named prayers use the selected prayer language at runtime. -->
+    <string name="antiphon_none">"Wala"</string>
+    <string name="antiphon_seasonal">"Awtomatiko (Ayon sa Panahon)"</string>
+    <string name="antiphon_salve_regina">"Salve Regina"</string>
+    <string name="antiphon_alma_redemptoris">"Alma Redemptoris Mater"</string>
+    <string name="antiphon_ave_regina">"Ave Regina Caelorum"</string>
+    <string name="antiphon_regina_caeli">"Regina Caeli"</string>
+    <string name="antiphon_sub_tuum">"Sub Tuum Praesidium"</string>
+
+    <!-- Mystery artwork styles -->
+    <string name="image_style_classic">"Mga klasikong pinta"</string>
+    <string name="image_style_eastern">"Mga ikonong Silanganin"</string>
+
+    <!-- Language display -->
+    <string name="language_default_parenthesized">"Paunang pinili (%1$s)"</string>
+    <string name="language_default_dash">"Paunang pinili — %1$s"</string>
+
+    <!-- Rosary preset picker -->
+    <string name="rosary_title">"Ang Santo Rosaryo"</string>
+    <string name="rosary_manage">"Pamahalaan"</string>
+    <string name="rosary_default_preset">"Paunang Piniling Ayos"</string>
+    <string name="rosary_custom">"Sariling ayos"</string>
+    <string name="rosary_pray_any">"Magdasal ng anumang Rosaryo"</string>
+    <string name="rosary_options">"Mga Opsyon ng Rosaryo"</string>
+    <string name="rosary_save_as_preset">"I-save ang Ayos"</string>
+    <string name="rosary_presets">"Mga naka-save na ayos"</string>
+    <string name="rosary_preset_name">"Pangalan ng ayos"</string>
+    <string name="rosary_praying">"Pagdarasal ng Rosaryo"</string>
+
+    <!-- Rosary options editor -->
+    <string name="ro_which_mysteries">"Aling mga misteryo?"</string>
+    <string name="ro_mysteries">"Mga Misteryo"</string>
+    <string name="ro_specific_set">"Tiyak na pangkat"</string>
+    <string name="ro_which_mystery">"Aling misteryo"</string>
+    <string name="ro_opening_section">"Mga Pambungad na Panalangin at Panalangin ng Dekada"</string>
+    <string name="ro_apostles_creed">"Sumasampalataya ng mga Apostol"</string>
+    <string name="ro_opening_prayers">"Pambungad na Ama Namin at 3 Aba Ginoong Maria"</string>
+    <string name="ro_opening_fatima">"Panalangin ng Fatima pagkatapos ng 3 pambungad na Aba Ginoong Maria"</string>
+    <string name="ro_fatima">"Panalangin ng Fatima pagkatapos ng bawat dekada"</string>
+    <string name="ro_faithful_departed">"Para sa mga yumaong sumasampalataya"</string>
+    <string name="ro_display_section">"Pagpapakita"</string>
+    <string name="ro_mystery_artwork">"Mga larawan ng misteryo"</string>
+    <string name="ro_presenter_mode">"Paraan ng Pangunguna"</string>
+    <string name="ro_presenter_hint">"Pagsamahin sa iisang screen ang mga Aba Ginoong Maria at Luwalhati ng bawat dekada — kapaki-pakinabang kapag nangunguna sa sama-samang pagdarasal mula sa memorya."</string>
+    <string name="ro_closing_section">"Mga Pangwakas na Panalangin"</string>
+    <string name="ro_marian_antiphon">"Antipona kay Maria"</string>
+    <string name="ro_closing_intentions">"Mga Pangwakas na Intensiyon"</string>
+    <string name="ro_st_michael">"Panalangin kay San Miguel"</string>
+    <string name="ro_final_sign">"Pangwakas na Tanda ng Krus"</string>
+
+    <!-- Favorites -->
+    <string name="favorites_title">"Mga Paborito"</string>
+    <string name="favorites_add_kind">"Idagdag ang %1$s"</string>
+    <string name="favorites_more_devotions">"Iba Pang Debosyon"</string>
+    <string name="favorites_repository_badge">"Imbakan"</string>
+    <string name="favorites_import">"Mag-import ng Pakete ng Debosyon…"</string>
+    <string name="favorites_get_community">"Kumuha ng mga Debosyon ng Komunidad…"</string>
+    <string name="favorites_import_error_title">"Hindi Ma-import ang Debosyon"</string>
+    <string name="favorites_set_default">"Itakdang Paunang Pinili"</string>
+    <string name="favorites_edit_desc">"I-edit ang %1$s"</string>
+    <string name="favorites_delete_desc">"Burahin ang %1$s"</string>
+    <string name="favorites_add_favorite_desc">"Idagdag ang %1$s sa Mga Paborito"</string>
+    <string name="favorites_remove_favorite_desc">"Alisin ang %1$s sa Mga Paborito"</string>
+    <string name="favorites_add_to_favorites">"Idagdag sa Mga Paborito"</string>
+    <string name="favorites_remove_from_favorites">"Alisin sa Mga Paborito"</string>
+    <string name="favorites_reminders_desc">"I-edit ang mga paalala ng %1$s"</string>
+    <string name="favorites_export_desc">"I-export ang %1$s para i-edit"</string>
+    <string name="favorites_remove_imported_desc">"Alisin ang in-import na debosyong %1$s"</string>
+
+    <!-- Favorite editor -->
+    <string name="editor_new_favorite">"Bagong Paborito"</string>
+    <string name="editor_edit_favorite">"I-edit ang Paborito"</string>
+    <string name="editor_name">"Pangalan"</string>
+    <string name="editor_name_hint">"hal. Rosaryo sa Umaga"</string>
+    <string name="editor_set_default_for">"Itakdang paunang pinili para sa %1$s"</string>
+    <string name="editor_prayer_language">"Wika ng Panalangin"</string>
+    <string name="editor_language">"Wika"</string>
+    <string name="editor_target">"Bilang"</string>
+    <string name="editor_options">"Mga Opsyon"</string>
+
+    <!-- Reminders -->
+    <string name="reminders_title">"Mga Paalala"</string>
+    <string name="reminders_add">"Magdagdag ng Paalala"</string>
+    <string name="reminders_delete_desc">"Burahin ang paalala"</string>
+
+    <!-- Jesus Prayer -->
+    <string name="jp_title">"Ang Panalangin kay Hesus"</string>
+    <string name="jp_how_many">"Ilang ulit?"</string>
+    <string name="jp_repetitions">"Bilang ng pag-uulit"</string>
+    <string name="jp_begin">"Magsimula"</string>
+    <string name="jp_unbounded">"Walang hangganan"</string>
+    <string name="jp_custom">"Sariling ayos"</string>
+    <string name="jp_count_times">"%1$d×"</string>
+    <string name="jp_times_prefix">"× %1$d"</string>
+    <string name="jp_favorite_name">"Panalangin kay Hesus %1$s (%2$s)"</string>
+
+    <!-- Prayer step flow -->
+    <string name="flow_back">"Bumalik"</string>
+    <string name="flow_step_of">"%1$d sa %2$d"</string>
+    <string name="flow_show_transliteration">"Ipakita ang transliterasyon"</string>
+    <string name="flow_prayer_language">"Wika ng panalangin"</string>
+    <string name="flow_app_setting">"Setting ng app"</string>
+    <string name="flow_day">"Araw"</string>
+    <string name="flow_choose_form">"Pumili ng anyo"</string>
+    <string name="flow_resume_title">"Ipagpatuloy ang panalanging ito?"</string>
+    <string name="flow_resume_message">"Huminto ka sa hakbang %1$d sa %2$d."</string>
+    <string name="flow_resume_unbounded_message">"Huminto ka sa pag-uulit %1$d."</string>
+    <string name="flow_continue">"Magpatuloy"</string>
+    <string name="flow_restart">"Magsimula muli"</string>
+    <string name="flow_previous_mystery">"Nakaraang misteryo"</string>
+    <string name="flow_next_mystery">"Susunod na misteryo"</string>
+
+    <!-- Audio playback -->
+    <string name="audio_previous_chapter">"Nakaraang kabanata"</string>
+    <string name="audio_next_chapter">"Susunod na kabanata"</string>
+    <string name="audio_play">"I-play"</string>
+    <string name="audio_pause">"I-pause"</string>
+
+    <!-- Rosary bead accessibility -->
+    <string name="bead_opening_cross">"Pambungad na tanda ng krus"</string>
+    <string name="bead_closing_cross">"Pangwakas na tanda ng krus"</string>
+    <string name="bead_marian_antiphon">"Antipona kay Maria"</string>
+    <string name="bead_opening_prayers">"Mga pambungad na panalangin"</string>
+    <string name="bead_closing_prayers">"Mga pangwakas na panalangin"</string>
+    <string name="bead_decade_of">"Dekada %1$d sa %2$d"</string>
+    <string name="bead_hail_mary_of">"Aba Ginoong Maria %1$d sa %2$d"</string>
+    <string name="bead_antiphon_letter">"M"</string>
+    <string name="bead_progress">"Pag-usad ng Rosaryo. %1$s"</string>
+
+    <!-- Repository browser -->
+    <string name="browse_title">"Mga Debosyon ng Komunidad"</string>
+    <string name="browse_search_label">"Maghanap ng mga debosyon"</string>
+    <string name="browse_all">"Lahat"</string>
+    <string name="browse_unreachable">"Hindi maabot ang imbakan."</string>
+    <string name="browse_install_error_title">"Hindi Ma-install ang Debosyon"</string>
+    <string name="browse_install_error_generic">"Hindi ma-install ang debosyon."</string>
+    <string name="browse_no_match">"Walang tumugmang debosyon."</string>
+    <string name="browse_unsupported_catalog">"Gumagamit ang imbakan ng mas bagong anyo ng katalogo — i-update ang Prosary upang matingnan ito."</string>
+    <string name="pack_error_unreadable">"Hindi nababasang pakete ng .prosaryprayer ang file na ito."</string>
+    <string name="pack_error_not_devotion">"Walang debosyon sa paketeng ito."</string>
+    <string name="pack_error_duplicate">"Naka-install na ang debosyong “%1$s”."</string>
+
+    <!-- Search -->
+    <string name="search_hint">"Mga debosyon, kategorya, may-akda"</string>
+    <string name="search_on_device">"Sa device na ito"</string>
+    <string name="search_no_device_match">"Walang tumugma sa device na ito."</string>
+    <string name="search_from_community">"Mula sa komunidad"</string>
+
+    <!-- About -->
+    <string name="about_title">"Tungkol sa Prosary"</string>
+    <string name="about_tagline">"Kasama sa pagdarasal ng Rosaryo at iba pang debosyong Katoliko."</string>
+    <string name="about_typefaces">"Mga Tipo ng Titik"</string>
+    <string name="about_typeface_frank_ruhl">" — SIL Open Font License 1.1 — mga panalangin sa Hebreo."</string>
+    <string name="about_typeface_shofar">" — GPL v2 na may eksepsiyon para sa pag-embed ng font — Banal na Kasulatan sa Hebreo (Culmus Project, Yoram Gnat)."</string>
+    <string name="about_typeface_amiri">" — SIL Open Font License 1.1 — mga panalangin sa Arabe."</string>
+    <string name="about_typeface_scheherazade">" — SIL Open Font License 1.1 — Banal na Kasulatan sa Arabe (SIL)."</string>
+    <string name="about_typeface_cardo">" — SIL Open Font License 1.1 — Banal na Kasulatan sa Latin/Ingles (David J. Perry)."</string>
+    <string name="about_typeface_noto_syriac">", Kanluran at Silangan — SIL Open Font License 1.1 — mga mapipiling tipo ng titik para sa Aramaikong nasa titik Siriako."</string>
+    <string name="about_typeface_optional_hebrew">" — SIL Open Font License 1.1 — mga opsyonal na tipo ng titik para sa panalangin at Banal na Kasulatan sa Hebreo; ginagamit ng Roboto ang Noto Sans Hebrew bilang pamalit sa Android."</string>
+    <string name="about_typeface_stam">" — GPL v2 na may eksepsiyon para sa pag-embed ng font — mga opsyonal na tipo ng titik para sa Banal na Kasulatan sa Hebreo (Culmus Project, Yoram Gnat)."</string>
+    <string name="about_typefaces_footer">"Ginagamit ng mga panalanging nasa titik Latin ang serif ng sistema — hindi ito kasama sa app."</string>
+    <string name="about_mystery_illustrations">"Mga Larawan ng mga Misteryo"</string>
+    <string name="about_mystery_intro">"Ang lahat ng 20 larawan ng mga misteryo ay mga klasikong pinta sa pampublikong dominyo (mahigit 100 taon nang yumao ang pintor), mula sa Wikimedia Commons."</string>
+    <string-array name="about_mystery_attributions">
+        <item>"*Ang Pagbabalita ng Anghel* — Fra Angelico (yumao noong 1455)"</item>
+        <item>"*Ang Pagdalaw* — Mariotto Albertinelli (yumao noong 1515)"</item>
+        <item>"*Ang Banal na Gabi* — Antonio da Correggio (yumao noong 1534)"</item>
+        <item>"*Ang Paghahandog sa Templo* — Andrea Mantegna (yumao noong 1506)"</item>
+        <item>"*Si Kristo na Natagpuan sa Templo* — Simone Martini (yumao noong 1344)"</item>
+        <item>"*Ang Pagbibinyag kay Kristo* — Piero della Francesca (yumao noong 1492)"</item>
+        <item>"*Ang Kasalan sa Cana* — Paolo Veronese (yumao noong 1588)"</item>
+        <item>"*Ang Pangaral sa Bundok* — Cosimo Rosselli (yumao noong 1507)"</item>
+        <item>"*Ang Pagbabagong-anyo* — Raphael (yumao noong 1520)"</item>
+        <item>"*Ang Huling Hapunan* — Leonardo da Vinci (yumao noong 1519)"</item>
+        <item>"*Ang Pananalangin sa Halamanan* — Andrea Mantegna (yumao noong 1506)"</item>
+        <item>"*Ang Paghahampas kay Kristo* — Caravaggio (yumao noong 1610)"</item>
+        <item>"*Ang Pagpuputong ng Koronang Tinik* — Caravaggio (yumao noong 1610)"</item>
+        <item>"*Si Kristo na Nagpapasan ng Krus* — Titian (yumao noong 1576)"</item>
+        <item>"*Si Kristong Ipinako sa Krus* — Diego Velázquez (yumao noong 1660)"</item>
+        <item>"*Ang Muling Pagkabuhay* — Piero della Francesca (yumao noong 1492)"</item>
+        <item>"*Ang Pag-akyat ni Kristo sa Langit* — Rembrandt (yumao noong 1669)"</item>
+        <item>"*Ang Pentekostes* — El Greco (yumao noong 1614)"</item>
+        <item>"*Ang Pag-aakyat sa Mahal na Birhen* — Titian (yumao noong 1576)"</item>
+        <item>"*Ang Pagpuputong ng Korona sa Mahal na Birhen* — Diego Velázquez (yumao noong 1660)"</item>
+    </string-array>
+    <string name="about_eastern_icons">"Ang koleksiyon ng mga larawang Silanganin ng mga Misteryo ay ginagamit nang may pahintulot ng Misyon ni San Gamaliel para sa mga Katolikong Hebreo sa Simbahang Katolikong Aramaiko (Siriako)."</string>
+    <string name="about_other_images">"Iba Pang Larawan"</string>
+    <string-array name="about_other_image_attributions">
+        <item>"*Krusipiho* — Cimabue (yumao noong 1302)."</item>
+        <item>"*Ang Munting Madonna ni Cowper* — Raphael (yumao noong 1520)."</item>
+        <item>"*Pananampalataya, Pag-asa, at Pag-ibig* — Raphael, predella ng altar ng Baglioni (yumao noong 1520)."</item>
+        <item>"*Mga Kamay na Nagdarasal* — Albrecht Dürer (yumao noong 1528)."</item>
+        <item>"*Santísima Trinidad* — Masaccio (yumao noong 1428)."</item>
+        <item>"*Si Kristo sa Limbo* — Fra Angelico (yumao noong 1455)."</item>
+        <item>"*Michael* — Guido Reni (yumao noong 1642)."</item>
+        <item>"*Ulo ni Kristo* — Rembrandt (yumao noong 1669)."</item>
+    </string-array>
+    <string name="about_stations_illustrations">"Mga Larawan ng Daan ng Krus"</string>
+    <string name="about_stations_fugel">"Lahat ng 14 na estasyon: Gebhard Fugel (1863–1939), Kreuzweg (1921), St. Antonius, Bad Saulgau — pampublikong dominyo; mga larawan ni Andreas Praefcke, inilabas sa pampublikong dominyo."</string>
+    <string name="about_stations_scriptural">"Idinadagdag ng anyong batay sa Kasulatan (San Juan Pablo II): Ang Halik ni Hudas — Giotto (Scrovegni Chapel, bandang 1305); Si Kristo sa Harap ng Punong Pari — Gerrit van Honthorst (bandang 1617), National Gallery, London; Ang Pagtatwa ni San Pedro — Rembrandt (1660), Rijksmuseum; Le Coup de Lance — Peter Paul Rubens (1620), Royal Museum of Fine Arts Antwerp — pawang nasa pampublikong dominyo. Ginagamit muli ng ibang tagpo nito ang mga larawang nakalista sa ibang bahagi ng pahinang ito."</string>
+    <string name="about_stations_via_lucis">"Mga tagpo ng Via Lucis: Ang mga Alagad sa Libingan — Eugène Burnand (1898), Musée d\'Orsay; Noli me tangere — Fra Angelico (San Marco, bandang 1440); Ang Daan Patungong Emaus, mga pagpapakita sa mga apostol, sa Lawa ng Tiberias, at sa Galilea — Duccio di Buoninsegna (Maestà, 1308–1311), Siena; Hapunan sa Emaus (1601) at Ang Pag-aalinlangan ni Santo Tomas (1601–1602) — Caravaggio; Ang Tagubilin ni Kristo kay Pedro — Raphael (bandang 1515), Royal Collection; Ang Birheng Nagdarasal — Sassoferrato (1640–1650), National Gallery, London — pawang nasa pampublikong dominyo. Ginagamit muli ng ibang tagpo nito ang mga larawan ng mga misteryo sa Luwalhati ng Rosaryo."</string>
+    <string name="about_crown_illustration">"Larawan ng Koronang Pransiskano"</string>
+    <string name="about_crown_magi">"Ang Pagsamba ng mga Pantas: Bartolomé Esteban Murillo (bandang 1655–60), Toledo Museum of Art — pampublikong dominyo. Ginagamit muli ng iba pang anim na Tuwa ang mga larawan ng mga misteryo ng Rosaryo sa itaas."</string>
+    <string name="about_sorrows_illustrations">"Mga Larawan ng Pitong Hapis"</string>
+    <string-array name="about_sorrows_attributions">
+        <item>"*Ang Hula ni Simeon* — Rembrandt van Rijn, Awit ng Papuri ni Simeon (1631), Mauritshuis — pampublikong dominyo."</item>
+        <item>"*Ang Pagtakas Patungong Ehipto* — Bartolomé Esteban Murillo (bandang 1647–50), Detroit Institute of Arts — pampublikong dominyo."</item>
+        <item>"*Ang Pagkawala ni Hesus sa Templo* — Paolo Veronese, Si Kristo sa Gitna ng mga Guro (bandang 1560), Museo del Prado — pampublikong dominyo."</item>
+        <item>"*Ang Pagkikita sa Daan ng Krus* — Raphael, Lo Spasimo (bandang 1514–16), Museo del Prado — pampublikong dominyo."</item>
+        <item>"*Ang Pagpapako sa Krus* — Hendrick ter Brugghen, Ang Pagpapako sa Krus kasama ang Mahal na Birhen at San Juan (bandang 1625), Metropolitan Museum of Art — CC0."</item>
+        <item>"*Ang Pagbaba mula sa Krus* — Peter Paul Rubens (bandang 1612–14), Katedral ng Mahal na Birhen, Antwerp — pampublikong dominyo."</item>
+        <item>"*Ang Paglilibing kay Hesus* — Titian, Ang Paglilibing kay Kristo (bandang 1520), Musée du Louvre — pampublikong dominyo."</item>
+    </string-array>
+    <string name="about_mercy_illustration">"Larawan ng Banal na Awa"</string>
+    <string name="about_mercy_kazimirowski">"Eugeniusz Kazimirowski, Banal na Awa (“Jezu, ufam Tobie”, 1934), Dambana ng Banal na Awa, Vilnius — ang orihinal na larawang ipininta sa paggabay ni Santa Faustina; pampublikong dominyo."</string>
+    <string name="about_jesus_prayer_illustration">"Larawan ng Panalangin kay Hesus"</string>
+    <string name="about_jesus_pantocrator">"Kristong Pantokrator: ikono na ipininta sa mainit na pagkit (ika-6 na siglo), Monasteryo ni Santa Catalina, Bundok Sinai — ang pinakamatandang nabubuhay na ikono ni Kristong Pantokrator, bilang paggalang sa tradisyong Silanganin ng panalangin; pampublikong dominyo."</string>
+    <string name="about_scripture_sources">"Mga Sanggunian ng Banal na Kasulatan"</string>
+    <string name="about_scripture_text">"Ang mga sipi ng Banal na Kasulatan ay mula sa Bibliyang Douay-Rheims (Ingles), Clementine Vulgate (Latin), salin ni Franz Delitzsch ng Bagong Tipan sa Hebreo (mula sa kirjasilta.net/ha-berit) at mga talata sa Lumang Tipan sa Hebreo na sumusunod sa tekstong Masoretiko, Bibliyang Arabe ng mga Heswita (Dar el-Machreq), Bibliyang Sinodal sa Ruso (1876), at Ang Dating Biblia (Tagalog, 1905)."</string>
+    <string name="about_calendar_data">"Datos ng Kalendaryo"</string>
+    <string name="about_calendar_data_body">"Datos ng kalendaryo at mga pagbasa: ang Pangkalahatang Kalendaryong Romano mula sa proyektong LitCal (litcal.johnromanodorazio.com); ang kalendaryo at leksiyonaryo ng 1962 mula sa Missale Meum (missalemeum.com); ang kalendaryong Katolikong Siriako, mga pamagat sa Hebreo ng Pangkalahatang Kalendaryong Romano, at mga sanggunian ng leksiyonaryong Romano/Siriako sa kagandahang-loob ng Evangelizo.org — Daily Gospel, © Evangelizo.org; ang kalendaryong Katolikong Griyego ng Ukraine na binuo sa app mula sa tradisyonal na mga sanggunian, na may mga sangguniang Bisantino mula sa pampublikong kalendaryo ng Taong Liturhiko ng UGCC (Gregorian) ng Royal Doors (royaldoors.net). Mga pangalan ng aklat ng Bibliya sa Hebreo: Evangelizo HE at ang Bikaryato ni Santiago (catholic.co.il). Karagdagang pangalan ng mga kapistahan at santo sa Hebreo: ang Bikaryato ni Santiago, Christian Media Center (cmc-terrasanta.org), at Vatican News (vaticannews.va)."</string>
+    <string name="multi_day_reminder_body">"Naghihintay ang araw %1$d sa %2$d."</string>
+    <string name="multi_day_completed_title">"Natapos na ito. Dasalin naman ang %1$s?"</string>
+    <string name="multi_day_pray_next">"Dasalin ang %1$s"</string>
+    <string name="multi_day_not_now">"Huwag muna"</string>
+    <string name="settings_rite">"Rito"</string>
+    <string name="settings_aramaic_sign_of_cross">"Tanda ng Krus sa Aramaiko"</string>
+    <string name="settings_aramaic_sign_of_cross_form_a">"Anyo A"</string>
+    <string name="settings_aramaic_sign_of_cross_form_b">"Anyo B"</string>
+    <string name="settings_typography_header">"Tipograpiya"</string>
+    <string name="settings_syriac_typeface">"Aramaikong Siriako"</string>
+    <string name="settings_hebrew_prayer_typeface">"Mga panalangin sa Hebreo"</string>
+    <string name="settings_hebrew_scripture_typeface">"Banal na Kasulatan sa Hebreo"</string>
+    <string name="settings_typeface_default">"Paunang pinili"</string>
+    <string name="settings_typeface_western_aramaic">"Kanlurang Aramaiko"</string>
+    <string name="settings_typeface_eastern_aramaic">"Silangang Aramaiko"</string>
+    <string name="settings_typeface_david_libre">"David Libre"</string>
+    <string name="settings_typeface_sans_serif">"Roboto (pamalit: Noto)"</string>
+    <string name="settings_typeface_stam_ashkenaz">"Stam Ashkenaz"</string>
+    <string name="settings_typeface_stam_sefarad">"Stam Sefarad"</string>
+    <string name="settings_typeface_rashi">"Rashi"</string>
+    <string name="settings_favorite_basic_prayers_first">"Ilipat sa itaas ang mga paboritong pangunahing panalangin"</string>
+    <string name="basic_prayers_favorite">"Idagdag sa mga paborito"</string>
+    <string name="basic_prayers_unfavorite">"Alisin sa mga paborito"</string>
+    <string name="home_today_show_english">"English"</string>
+    <string name="home_today_language">"Wika ng Ngayon"</string>
+    <string name="home_today_app_language">"Wika ng app"</string>
+    <string name="home_today_readings">"Mga pagbasa ngayon"</string>
+    <string name="home_today_full_citations">"Tingnan ang buong mga sanggunian"</string>
+    <string name="home_today_compact_citations">"Ipakita ang pinaikling sanggunian"</string>
+    <string name="home_pray_any_rosary">"Magdasal ng anumang Rosaryo"</string>
+    <string name="home_add_rosary">"Magdagdag ng Rosaryo"</string>
+    <string name="home_add_jesus_prayer">"Idagdag ang Panalangin kay Hesus"</string>
+    <string name="favorites_edit">"I-edit"</string>
+    <string name="favorites_reminders">"Mga Paalala…"</string>
+    <string name="favorites_delete">"Burahin"</string>
+    <string name="favorites_export">"I-export para i-edit"</string>
+    <string name="favorites_remove_installed">"Alisin ang debosyon"</string>
+    <string name="about_prayer_texts">"Mga Teksto ng Panalangin"</string>
+    <!-- The Vicariate line is a provisional attribution of fact, pending the exact
+         wording Fr. Piotr sends; replace it verbatim then, as the Exarchate's was. -->
+    <string name="about_prayer_texts_body">"Ang teksto sa Hebreo ng Koronilya ng Banal na Awa ay sa Latin Patriarchate of Jerusalem, na pinagtibay ni Patriarka Michel Sabbah noong 2003. Ang ilan sa mga panalangin sa Hebreo at Aramaiko ay ginagamit nang may pahintulot ng Patriarchal Exarch ng pamayanang Katolikong Aramaiko (Siriako). Ang mga panalangin sa Hebreo ay sariling mga teksto ng Bikaryato ni Santiago para sa mga Katolikong Nagsasalita ng Hebreo, mula sa kanilang aklat-dasalan."</string>
+    <string name="home_today_rank_solemnity">"Dakilang Kapistahang Panliturhiya"</string>
+    <string name="home_today_rank_feast">"Kapistahan"</string>
+    <string name="home_today_rank_memorial">"Paggunita"</string>
+    <string name="home_today_rank_optional_memorial">"Opsyonal na Paggunita"</string>
+    <string name="home_today_rank_sunday">"Linggo"</string>
+    <string name="home_today_rank_great_feast">"Dakilang Kapistahan"</string>
+    <string name="home_today_rank_holy_week">"Mahal na Araw"</string>
+    <string name="home_today_rank_fast">"Pag-aayuno"</string>
+    <string name="home_today_rank_1st_class">"Unang Klase"</string>
+    <string name="home_today_rank_2nd_class">"Ikalawang Klase"</string>
+    <string name="home_today_rank_3rd_class">"Ikatlong Klase"</string>
+    <string name="category_marian">Mariano</string>
+    <string name="category_daily">Pang-araw-araw</string>
+    <string name="category_mercy">Awa</string>
+    <string name="category_franciscan">Pransiskano</string>
+    <string name="category_advent">Adbiyento</string>
+    <string name="category_meditative">Pagninilay</string>
+    <string name="category_passion">Pagpapakasakit</string>
+    <string name="category_eastern">Silanganin</string>
+    <string name="category_short">Maiikli</string>
+    <string name="category_easter">Pasko ng Pagkabuhay</string>
+    <string name="category_other">Iba pa</string>
+    <string name="about_additional_sources">Banal na Kasulatan sa Pranses: Crampon (1923), pampublikong dominyo. Sa Italyano: Antonio Martini; nakabalangkas na datos © Giovanni Novelli, CC BY 4.0 (parolaviva.art). Mga panalangin sa Pranses at Italyano: Kompendyum ng Vaticano. Mga intensiyon ng Papa: Pandaigdigang Samahan ng Panalangin ng Papa (2026–2027); salin sa Hebreo ng Prosary. Mga intensiyon sa Ruso (2026): salin ng t.me/ihsovs, inilathala ng Parokya ng Kalinis-linisang Paglilihi sa Chelyabinsk (cc74.wordpress.com/rosary/).</string>
+    <string name="about_bible_book_sources">Mga pangalan ng aklat ng Bibliya: AELF, Dar el-Machreq, Bibliyang Sinodal sa Ruso (Azbyka), Philippine Bible Society at ParolaViva.</string>
+    <string name="about_prayer_network_link">Pandaigdigang Samahan ng Panalangin ng Papa</string>
+    <string name="about_parolaviva_link">ParolaViva — CC BY 4.0</string>
+    <string name="about_additional_prayer_sources">Iba pang pinagmulan ng mga panalangin: Vatican News, Dambana ng Fatima, Notre-Dame de Paris, AELF at Kapulungan ng mga Obispong Italyano (CEI).</string>
+    <string name="about_divine_mercy_source">Koronilya ng Banal na Awa: Kongregasyon ng mga Madre ng Mahal na Birhen ng Awa.</string>
+    <string name="about_seven_sorrows_source">Mga panalangin ng Pitong Hapis: Notre Dame de Chrétienté at Confraternite.net.</string>
+</resources>

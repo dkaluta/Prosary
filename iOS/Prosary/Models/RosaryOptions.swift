@@ -64,7 +64,7 @@ struct RosaryOptions: Hashable, Codable {
     case .singleMystery:
       let chosen = MysteryCatalog.forGroup(specificMysteryGroup).first { $0.order == specificMysteryOrder }
       let title = chosen.map { HebrewDisplayText.unpointed(MysteryTranslations.get(
-        languageCode: Bundle.main.preferredLocalizations.first.map { String($0.prefix(2)) },
+        languageCode: UILanguage.current,
         imageKey: $0.imageKey).title) } ?? specificMysteryGroup.displayName
       return String(localized: "rosaryOptions.summary.singleMystery", defaultValue: "Only \(title)")
     case .fifteenMystery:

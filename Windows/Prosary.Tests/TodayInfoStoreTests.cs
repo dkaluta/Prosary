@@ -205,7 +205,6 @@ public class TodayInfoStoreTests
             Assert.Equal(hebrew, feast.LocalizedRank("he"));
             Assert.Equal(hebrew, feast.LocalizedRank("he-x-gamliel"));
             Assert.Equal(rank, feast.LocalizedRank("en"));
-            Assert.Equal(rank, feast.LocalizedRank("fr"));
             Assert.Equal(rank, feast.Rank);
         }
         var unknown = new FeastDay("Feast", "Future rank");

@@ -77,13 +77,18 @@ new ones identical on all three platforms.
 
 ## Localization & Hebrew
 
-- Every user-facing string ships in English **and** Hebrew on all three platforms:
+- Every user-facing string ships in English, Hebrew, Arabic, Russian, Filipino/Tagalog,
+  French, and Italian on all three platforms:
   - iOS: `iOS/Prosary/Localizable.xcstrings` (`en` + `he`; dotted keys with English
-    `defaultValue` in code)
+    `defaultValue` in code; all seven locales; Xcode compiles Tagalog into `fil.lproj`)
   - Android: `values/strings.xml` + `values-iw/strings.xml` (same key at the same position
-    in both files)
+    in every locale file; `values-ar`, `values-ru`, `values-tl`/`values-b+fil`, `values-fr`,
+    and `values-it`)
   - Windows: `Strings/en-US/` + `Strings/he/` `Resources.resw` (XAML `x:Uid`, C#
-    `Loc.Tr(key, englishFallback)`)
+    `Loc.Tr(key, englishFallback)`; also `ar`, `ru`, `fil`, `fr`, `it` resource folders)
+- Shared prayer/Today data keeps `tl`; normalize platform `fil` and Hebrew `iw` aliases.
+  `todayLanguageCode` is independent of the prayer language; empty means follow the interface.
+  Apply genuine RTL to the Today stack for both Arabic and Hebrew.
 - Hebrew liturgical texts are transcribed from the St James Vicariate's printed prayer
   book. **Never machine-translate or invent liturgical Hebrew** — relay it from the print
   or from a credited source, or leave it out.

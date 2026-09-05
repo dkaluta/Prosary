@@ -55,7 +55,7 @@ struct RosaryOptionsSections: View {
             ForEach(MysteryCatalog.forGroup(rosary.specificMysteryGroup)) { mystery in
               // The mystery is named in the UI language, like the group row above it.
               Text(HebrewDisplayText.unpointed(MysteryTranslations.get(
-                languageCode: Bundle.main.preferredLocalizations.first.map { String($0.prefix(2)) },
+                languageCode: UILanguage.current,
                 imageKey: mystery.imageKey).title)).tag(mystery.order)
             }
           }

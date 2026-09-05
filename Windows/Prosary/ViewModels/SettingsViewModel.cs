@@ -174,6 +174,11 @@ public partial class SettingsViewModel : ObservableObject
         new(string.Empty, Loc.Tr("settings_app_language_system", "System default")),
         new("en-US", "English"),
         new("he", "עברית"),
+        new("ar", "العربية"),
+        new("ru", "Русский"),
+        new("fil", "Tagalog"),
+        new("fr", "Français"),
+        new("it", "Italiano"),
     ];
 
     public IReadOnlyList<AppLanguageOption> AppLanguageOptions => AllAppLanguages;

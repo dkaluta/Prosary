@@ -1,0 +1,401 @@
+<resources>
+    <string name="app_name">"Prosary"</string>
+
+    <!-- Shared -->
+    <string name="common_back">"Retour"</string>
+    <string name="common_cancel">"Annuler"</string>
+    <string name="common_save">"Enregistrer"</string>
+    <string name="common_done">"Terminé"</string>
+    <string name="common_move_up">"Monter"</string>
+    <string name="common_move_down">"Descendre"</string>
+    <string name="common_reset">"Réinitialiser"</string>
+    <string name="common_ok">"OK"</string>
+    <string name="common_retry">"Réessayer"</string>
+    <string name="common_pray">"Prier"</string>
+    <string name="common_next">"Suivant"</string>
+    <string name="common_finish">"Terminer"</string>
+    <string name="common_install">"Installer"</string>
+    <string name="common_update">"Mettre à jour"</string>
+    <string name="common_installed">"Installé"</string>
+    <string name="common_settings">"Réglages"</string>
+    <string name="common_about">"À propos"</string>
+
+    <!-- Bottom tabs -->
+    <string name="tab_pray">"Prier"</string>
+    <string name="tab_browse">"Parcourir"</string>
+    <string name="tab_categories">"Catégories"</string>
+    <string name="tab_search">"Rechercher"</string>
+
+    <!-- Home -->
+    <string name="home_today">"Aujourd’hui : %1$s"</string>
+    <string name="home_pope_intention">"L’intention du pape : %1$s"</string>
+    <string name="home_tap_to_set_up">"Toucher pour configurer"</string>
+    <string name="home_tap_to_pray">"Toucher pour prier"</string>
+    <string name="home_my_favorites">"Mes favoris"</string>
+    <string name="home_move_to_top">"Placer en tête"</string>
+    <string name="home_edit_order">"Modifier l’ordre…"</string>
+    <string name="home_remove_from_pray">"Retirer de Prier"</string>
+    <string name="home_add_to_pray">"Ajouter à Prier"</string>
+    <string name="home_saved_presets">"Configurations enregistrées…"</string>
+    <string name="home_add_devotion">"Ajouter une dévotion"</string>
+    <string name="multi_day_day_of">"Jour %1$d sur %2$d"</string>
+    <string name="multi_day_complete">"Terminé"</string>
+    <string name="multi_day_starts_today">"Commence aujourd’hui"</string>
+    <string name="multi_day_starts_on">"Commence le %1$s"</string>
+    <string name="multi_day_missed_title">"Vous avez manqué un jour"</string>
+    <string name="multi_day_pray_missed">"Prier le jour %1$d"</string>
+    <string name="multi_day_pray_today">"Continuer avec le jour %1$d"</string>
+    <string name="multi_day_start_over">"Recommencer"</string>
+    <string name="home_order_title">"Ordre de l’accueil"</string>
+    <string name="home_order_reorder">"Réorganiser %1$s"</string>
+
+    <!-- Settings -->
+    <string name="settings_default_prayer_language">"Langue de prière par défaut"</string>
+    <string name="settings_language_fallback_order">"Ordre des langues de remplacement…"</string>
+    <string name="settings_language_fallback_order_title">"Ordre des langues de remplacement"</string>
+    <string name="settings_language_fallback_order_footer">"Lorsqu’une prière manque, Prosary essaie ces langues de haut en bas, après la langue choisie et sa variante."</string>
+    <string name="settings_praying">"Prière"</string>
+    <string name="prayer_order_title">"Ordre des prières"</string>
+    <string name="basic_prayers_title">"Prières usuelles"</string>
+    <string name="settings_haptics_on_advance">"Vibrer au changement d’étape"</string>
+    <string name="settings_auto_advance">"Avance automatique"</string>
+    <string name="auto_advance_off">"Désactivé"</string>
+    <string name="auto_advance_every">"Toutes les %1$d secondes"</string>
+    <string name="settings_reset_home_order">"Réinitialiser l’ordre de l’accueil"</string>
+    <string name="settings_today_header">"Aujourd’hui"</string>
+    <string name="settings_show_today_feast">"Afficher la fête du jour"</string>
+    <string name="settings_show_today_intention">"Afficher l’intention du pape"</string>
+    <string name="settings_feast_calendar">"Calendrier liturgique"</string>
+    <string name="settings_feast_calendar_hint">"Le calendrier dont les fêtes et les lectures apparaissent dans la section Aujourd’hui."</string>
+    <string name="settings_downloads">"Téléchargements"</string>
+    <string name="settings_installed_devotions">"Dévotions installées : %1$d"</string>
+    <string name="settings_clear_audio_cache">"Vider le cache audio"</string>
+    <string name="settings_clear_audio_cache_size">"Vider le cache audio (%1$s)"</string>
+    <string name="settings_remove_all">"Supprimer toutes les dévotions téléchargées…"</string>
+    <string name="settings_downloads_footer">"Les dévotions intégrées ne sont jamais supprimées. Supprimer une dévotion téléchargée supprime aussi son favori."</string>
+    <string name="settings_links">"Liens"</string>
+    <string name="settings_repository_site">"Répertoire communautaire"</string>
+    <string name="settings_compose_site">"Composer une dévotion"</string>
+    <string name="settings_privacy_policy">"Politique de confidentialité"</string>
+    <string name="settings_remove_all_title">"Supprimer toutes les dévotions téléchargées ?"</string>
+    <string name="settings_remove_all_message">"Les dévotions du répertoire peuvent être téléchargées à nouveau ; les fichiers importés manuellement ne le peuvent pas."</string>
+    <string name="settings_remove_all_confirm">"Tout supprimer"</string>
+
+    <!-- Prayer kinds (models/PrayerKind.kt) -->
+    <string name="kind_rosary">"Rosaire"</string>
+    <string name="kind_jesus_prayer">"Prière de Jésus"</string>
+    <string name="kind_devotion">"Dévotion"</string>
+    <string name="kind_default_name_rosary">"Mon rosaire"</string>
+
+    <!-- Mystery groups and selection modes -->
+    <string name="mystery_group_joyful">"Joyeux"</string>
+    <string name="mystery_group_sorrowful">"Douloureux"</string>
+    <string name="mystery_group_glorious">"Glorieux"</string>
+    <string name="mystery_group_luminous">"Lumineux"</string>
+    <string name="mode_todays_mysteries">"Mystères du jour"</string>
+    <string name="mode_specific">"Toujours une série précise"</string>
+    <string name="mode_fifteen">"Les 15 mystères (joyeux, douloureux, glorieux)"</string>
+    <string name="mode_twenty">"Les 20 mystères (les quatre séries)"</string>
+    <string name="mode_single">"Un seul mystère"</string>
+    <string name="summary_always">"Toujours %1$s"</string>
+    <string name="summary_only">"Seulement %1$s"</string>
+    <string name="summary_fifteen">"Les 15 mystères"</string>
+    <string name="summary_twenty">"Les 20 mystères"</string>
+
+    <!-- Eternal Rest placement -->
+    <string name="eternal_rest_none">"Ne pas inclure"</string>
+    <string name="eternal_rest_each_decade">"Après chaque dizaine"</string>
+    <string name="eternal_rest_at_end">"Une fois, vers la fin"</string>
+
+    <!-- Marian antiphon controls; named prayers use the selected prayer language at runtime. -->
+    <string name="antiphon_none">"Aucun"</string>
+    <string name="antiphon_seasonal">"Automatique (selon le temps liturgique)"</string>
+    <string name="antiphon_salve_regina">"Salve Regina"</string>
+    <string name="antiphon_alma_redemptoris">"Alma Redemptoris Mater"</string>
+    <string name="antiphon_ave_regina">"Ave Regina Caelorum"</string>
+    <string name="antiphon_regina_caeli">"Regina Caeli"</string>
+    <string name="antiphon_sub_tuum">"Sub Tuum Praesidium"</string>
+
+    <!-- Mystery artwork styles -->
+    <string name="image_style_classic">"Peintures classiques"</string>
+    <string name="image_style_eastern">"Icônes orientales"</string>
+
+    <!-- Language display -->
+    <string name="language_default_parenthesized">"Par défaut (%1$s)"</string>
+    <string name="language_default_dash">"Par défaut — %1$s"</string>
+
+    <!-- Rosary preset picker -->
+    <string name="rosary_title">"Le saint Rosaire"</string>
+    <string name="rosary_manage">"Gérer"</string>
+    <string name="rosary_default_preset">"Configuration par défaut"</string>
+    <string name="rosary_custom">"Personnalisé"</string>
+    <string name="rosary_pray_any">"Prier un rosaire au choix"</string>
+    <string name="rosary_options">"Options du rosaire"</string>
+    <string name="rosary_save_as_preset">"Enregistrer la configuration"</string>
+    <string name="rosary_presets">"Configurations"</string>
+    <string name="rosary_preset_name">"Nom de la configuration"</string>
+    <string name="rosary_praying">"Prière du rosaire"</string>
+
+    <!-- Rosary options editor -->
+    <string name="ro_which_mysteries">"Quels mystères ?"</string>
+    <string name="ro_mysteries">"Mystères"</string>
+    <string name="ro_specific_set">"Série précise"</string>
+    <string name="ro_which_mystery">"Quel mystère"</string>
+    <string name="ro_opening_section">"Prières initiales et des dizaines"</string>
+    <string name="ro_apostles_creed">"Symbole des Apôtres"</string>
+    <string name="ro_opening_prayers">"Notre Père initial et 3 Je vous salue Marie"</string>
+    <string name="ro_opening_fatima">"Prière de Fatima après les 3 Je vous salue Marie initiaux"</string>
+    <string name="ro_fatima">"Prière de Fatima après chaque dizaine"</string>
+    <string name="ro_faithful_departed">"Pour les fidèles défunts"</string>
+    <string name="ro_display_section">"Affichage"</string>
+    <string name="ro_mystery_artwork">"Illustrations des mystères"</string>
+    <string name="ro_presenter_mode">"Mode animateur"</string>
+    <string name="ro_presenter_hint">"Réunit les Je vous salue Marie et le Gloire au Père de chaque dizaine sur un seul écran — utile pour guider un groupe à voix haute, de mémoire."</string>
+    <string name="ro_closing_section">"Prières finales"</string>
+    <string name="ro_marian_antiphon">"Antienne mariale"</string>
+    <string name="ro_closing_intentions">"Intentions finales"</string>
+    <string name="ro_st_michael">"Prière à saint Michel"</string>
+    <string name="ro_final_sign">"Signe de croix final"</string>
+
+    <!-- Favorites -->
+    <string name="favorites_title">"Favoris"</string>
+    <string name="favorites_add_kind">"Ajouter %1$s"</string>
+    <string name="favorites_more_devotions">"Autres dévotions"</string>
+    <string name="favorites_repository_badge">"Répertoire"</string>
+    <string name="favorites_import">"Importer un recueil de dévotion…"</string>
+    <string name="favorites_get_community">"Obtenir des dévotions communautaires…"</string>
+    <string name="favorites_import_error_title">"Impossible d’importer la dévotion"</string>
+    <string name="favorites_set_default">"Définir par défaut"</string>
+    <string name="favorites_edit_desc">"Modifier %1$s"</string>
+    <string name="favorites_delete_desc">"Supprimer %1$s"</string>
+    <string name="favorites_add_favorite_desc">"Ajouter %1$s aux favoris"</string>
+    <string name="favorites_remove_favorite_desc">"Retirer %1$s des favoris"</string>
+    <string name="favorites_add_to_favorites">"Ajouter aux favoris"</string>
+    <string name="favorites_remove_from_favorites">"Retirer des favoris"</string>
+    <string name="favorites_reminders_desc">"Modifier les rappels de %1$s"</string>
+    <string name="favorites_export_desc">"Exporter %1$s pour modification"</string>
+    <string name="favorites_remove_imported_desc">"Supprimer la dévotion importée %1$s"</string>
+
+    <!-- Favorite editor -->
+    <string name="editor_new_favorite">"Nouveau favori"</string>
+    <string name="editor_edit_favorite">"Modifier le favori"</string>
+    <string name="editor_name">"Nom"</string>
+    <string name="editor_name_hint">"p. ex. Rosaire du matin"</string>
+    <string name="editor_set_default_for">"Définir par défaut pour %1$s"</string>
+    <string name="editor_prayer_language">"Langue de prière"</string>
+    <string name="editor_language">"Langue"</string>
+    <string name="editor_target">"Objectif"</string>
+    <string name="editor_options">"Options"</string>
+
+    <!-- Reminders -->
+    <string name="reminders_title">"Rappels"</string>
+    <string name="reminders_add">"Ajouter un rappel"</string>
+    <string name="reminders_delete_desc">"Supprimer le rappel"</string>
+
+    <!-- Jesus Prayer -->
+    <string name="jp_title">"La prière de Jésus"</string>
+    <string name="jp_how_many">"Combien de fois ?"</string>
+    <string name="jp_repetitions">"Nombre de répétitions"</string>
+    <string name="jp_begin">"Commencer"</string>
+    <string name="jp_unbounded">"Sans limite"</string>
+    <string name="jp_custom">"Personnalisé"</string>
+    <string name="jp_count_times">"%1$d×"</string>
+    <string name="jp_times_prefix">"× %1$d"</string>
+    <string name="jp_favorite_name">"Prière de Jésus %1$s (%2$s)"</string>
+
+    <!-- Prayer step flow -->
+    <string name="flow_back">"Retour"</string>
+    <string name="flow_step_of">"%1$d sur %2$d"</string>
+    <string name="flow_show_transliteration">"Afficher la translittération"</string>
+    <string name="flow_prayer_language">"Langue de prière"</string>
+    <string name="flow_app_setting">"Réglage de l’app"</string>
+    <string name="flow_day">"Jour"</string>
+    <string name="flow_choose_form">"Choisir la forme"</string>
+    <string name="flow_resume_title">"Continuer cette prière ?"</string>
+    <string name="flow_resume_message">"Vous vous êtes arrêté à l’étape %1$d sur %2$d."</string>
+    <string name="flow_resume_unbounded_message">"Vous vous êtes arrêté à la répétition %1$d."</string>
+    <string name="flow_continue">"Continuer"</string>
+    <string name="flow_restart">"Recommencer"</string>
+    <string name="flow_previous_mystery">"Mystère précédent"</string>
+    <string name="flow_next_mystery">"Mystère suivant"</string>
+
+    <!-- Audio playback -->
+    <string name="audio_previous_chapter">"Chapitre précédent"</string>
+    <string name="audio_next_chapter">"Chapitre suivant"</string>
+    <string name="audio_play">"Lire"</string>
+    <string name="audio_pause">"Pause"</string>
+
+    <!-- Rosary bead accessibility -->
+    <string name="bead_opening_cross">"Signe de croix initial"</string>
+    <string name="bead_closing_cross">"Signe de croix final"</string>
+    <string name="bead_marian_antiphon">"Antienne mariale"</string>
+    <string name="bead_opening_prayers">"Prières initiales"</string>
+    <string name="bead_closing_prayers">"Prières finales"</string>
+    <string name="bead_decade_of">"Dizaine %1$d sur %2$d"</string>
+    <string name="bead_hail_mary_of">"Je vous salue Marie %1$d sur %2$d"</string>
+    <string name="bead_antiphon_letter">"M"</string>
+    <string name="bead_progress">"Progression du rosaire. %1$s"</string>
+
+    <!-- Repository browser -->
+    <string name="browse_title">"Dévotions communautaires"</string>
+    <string name="browse_search_label">"Rechercher des dévotions"</string>
+    <string name="browse_all">"Toutes"</string>
+    <string name="browse_unreachable">"Impossible de joindre le répertoire."</string>
+    <string name="browse_install_error_title">"Impossible d’installer la dévotion"</string>
+    <string name="browse_install_error_generic">"La dévotion n’a pas pu être installée."</string>
+    <string name="browse_no_match">"Aucune dévotion ne correspond."</string>
+    <string name="browse_unsupported_catalog">"Le répertoire utilise un format de catalogue plus récent — mettez Prosary à jour pour le parcourir."</string>
+    <string name="pack_error_unreadable">"Ce fichier n’est pas un recueil .prosaryprayer lisible."</string>
+    <string name="pack_error_not_devotion">"Ce recueil ne contient pas de dévotion."</string>
+    <string name="pack_error_duplicate">"Une dévotion nommée « %1$s » est déjà installée."</string>
+
+    <!-- Search -->
+    <string name="search_hint">"Dévotions, catégories, auteurs"</string>
+    <string name="search_on_device">"Sur cet appareil"</string>
+    <string name="search_no_device_match">"Aucun résultat sur cet appareil."</string>
+    <string name="search_from_community">"De la communauté"</string>
+
+    <!-- About -->
+    <string name="about_title">"À propos de Prosary"</string>
+    <string name="about_tagline">"Un compagnon pour prier le rosaire et d’autres dévotions catholiques."</string>
+    <string name="about_typefaces">"Polices de caractères"</string>
+    <string name="about_typeface_frank_ruhl">" — SIL Open Font License 1.1 — prières en hébreu."</string>
+    <string name="about_typeface_shofar">" — GPL v2 avec exception d’incorporation des polices — Écriture en hébreu (projet Culmus, Yoram Gnat)."</string>
+    <string name="about_typeface_amiri">" — SIL Open Font License 1.1 — prières en arabe."</string>
+    <string name="about_typeface_scheherazade">" — SIL Open Font License 1.1 — Écriture en arabe (SIL)."</string>
+    <string name="about_typeface_cardo">" — SIL Open Font License 1.1 — Écriture en latin et en anglais (David J. Perry)."</string>
+    <string name="about_typeface_noto_syriac">", occidental et oriental — SIL Open Font License 1.1 — polices au choix pour l’araméen en écriture syriaque."</string>
+    <string name="about_typeface_optional_hebrew">" — SIL Open Font License 1.1 — polices facultatives pour les prières et l’Écriture en hébreu ; Roboto utilise Noto Sans Hebrew comme police de remplacement sur Android."</string>
+    <string name="about_typeface_stam">" — GPL v2 avec exception d’incorporation des polices — polices facultatives pour l’Écriture en hébreu (projet Culmus, Yoram Gnat)."</string>
+    <string name="about_typefaces_footer">"Les prières en alphabet latin utilisent la police système à empattements de la plateforme, qui n’est pas fournie avec l’app."</string>
+    <string name="about_mystery_illustrations">"Illustrations des mystères"</string>
+    <string name="about_mystery_intro">"Les 20 illustrations des mystères sont des peintures classiques du domaine public (artiste décédé depuis plus de 100 ans), provenant de Wikimedia Commons."</string>
+    <string-array name="about_mystery_attributions">
+        <item>"*L’Annonciation* — Fra Angelico († 1455)"</item>
+        <item>"*La Visitation* — Mariotto Albertinelli († 1515)"</item>
+        <item>"*La Sainte Nuit* — Le Corrège († 1534)"</item>
+        <item>"*La Présentation au Temple* — Andrea Mantegna († 1506)"</item>
+        <item>"*Le Christ retrouvé au Temple* — Simone Martini († 1344)"</item>
+        <item>"*Le Baptême du Christ* — Piero della Francesca († 1492)"</item>
+        <item>"*Les Noces de Cana* — Paul Véronèse († 1588)"</item>
+        <item>"*Le Sermon sur la montagne* — Cosimo Rosselli († 1507)"</item>
+        <item>"*La Transfiguration* — Raphaël († 1520)"</item>
+        <item>"*La Cène* — Léonard de Vinci († 1519)"</item>
+        <item>"*L’Agonie au jardin* — Andrea Mantegna († 1506)"</item>
+        <item>"*La Flagellation du Christ* — Le Caravage († 1610)"</item>
+        <item>"*Le Couronnement d’épines* — Le Caravage († 1610)"</item>
+        <item>"*Le Christ portant sa croix* — Le Titien († 1576)"</item>
+        <item>"*Le Christ crucifié* — Diego Velázquez († 1660)"</item>
+        <item>"*La Résurrection* — Piero della Francesca († 1492)"</item>
+        <item>"*L’Ascension du Christ* — Rembrandt († 1669)"</item>
+        <item>"*La Pentecôte* — Le Greco († 1614)"</item>
+        <item>"*L’Assomption de la Vierge* — Le Titien († 1576)"</item>
+        <item>"*Le Couronnement de la Vierge* — Diego Velázquez († 1660)"</item>
+    </string-array>
+    <string name="about_eastern_icons">"La collection d’illustrations des mystères de style oriental est utilisée avec l’autorisation de la Mission de saint Gamaliel pour les catholiques hébréophones de l’Église catholique araméenne (syriaque)."</string>
+    <string name="about_other_images">"Autres images"</string>
+    <string-array name="about_other_image_attributions">
+        <item>"*Crucifix* — Cimabue († 1302)."</item>
+        <item>"*La Petite Madone Cowper* — Raphaël († 1520)."</item>
+        <item>"*La Foi, l’Espérance et la Charité* — Raphaël, prédelle du retable Baglioni († 1520)."</item>
+        <item>"*Mains en prière* — Albrecht Dürer († 1528)."</item>
+        <item>"*La Sainte Trinité* — Masaccio († 1428)."</item>
+        <item>"*Le Christ aux limbes* — Fra Angelico († 1455)."</item>
+        <item>"*Saint Michel* — Guido Reni († 1642)."</item>
+        <item>"*Tête du Christ* — Rembrandt († 1669)."</item>
+    </string-array>
+    <string name="about_stations_illustrations">"Illustrations du chemin de croix"</string>
+    <string name="about_stations_fugel">"Les 14 stations : Gebhard Fugel (1863–1939), Kreuzweg (1921), église Saint-Antoine, Bad Saulgau — domaine public ; photographies d’Andreas Praefcke, placées dans le domaine public."</string>
+    <string name="about_stations_scriptural">"La forme biblique (saint Jean-Paul II) ajoute : Le Baiser de Judas — Giotto (chapelle des Scrovegni, vers 1305) ; Le Christ devant le grand prêtre — Gerrit van Honthorst (vers 1617), National Gallery, Londres ; Le Reniement de saint Pierre — Rembrandt (1660), Rijksmuseum ; Le Coup de Lance — Pierre Paul Rubens (1620), Musée royal des Beaux-Arts d’Anvers — tous dans le domaine public. Les autres scènes réutilisent des illustrations citées ailleurs sur cette page."</string>
+    <string name="about_stations_via_lucis">"Les scènes de la Via Lucis : Les Disciples au tombeau — Eugène Burnand (1898), musée d’Orsay ; Noli me tangere — Fra Angelico (San Marco, vers 1440) ; Le Chemin d’Emmaüs, les apparitions aux apôtres, au lac de Tibériade et en Galilée — Duccio di Buoninsegna (Maestà, 1308–1311), Sienne ; Le Souper à Emmaüs (1601) et L’Incrédulité de saint Thomas (1601–1602) — Caravage ; La Mission de saint Pierre — Raphaël (vers 1515), Royal Collection ; La Vierge en prière — Sassoferrato (1640–1650), National Gallery, Londres — tous dans le domaine public. Les autres scènes réutilisent les illustrations des mystères glorieux du rosaire."</string>
+    <string name="about_crown_illustration">"Illustration de la couronne franciscaine"</string>
+    <string name="about_crown_magi">"L’Adoration des Mages : Bartolomé Esteban Murillo (vers 1655–1660), Toledo Museum of Art — domaine public. Les six autres joies réutilisent les illustrations des mystères du rosaire ci-dessus."</string>
+    <string name="about_sorrows_illustrations">"Illustrations des sept douleurs"</string>
+    <string-array name="about_sorrows_attributions">
+        <item>"*La Prophétie de Syméon* — Rembrandt van Rijn, Le Cantique de Syméon (1631), Mauritshuis — domaine public."</item>
+        <item>"*La Fuite en Égypte* — Bartolomé Esteban Murillo (vers 1647–1650), Detroit Institute of Arts — domaine public."</item>
+        <item>"*La Perte de Jésus au Temple* — Paul Véronèse, Le Christ parmi les docteurs (vers 1560), musée du Prado — domaine public."</item>
+        <item>"*La Rencontre sur le chemin de croix* — Raphaël, Lo Spasimo (vers 1514–1516), musée du Prado — domaine public."</item>
+        <item>"*La Crucifixion* — Hendrick ter Brugghen, La Crucifixion avec la Vierge et saint Jean (vers 1625), Metropolitan Museum of Art — CC0."</item>
+        <item>"*La Descente de croix* — Pierre Paul Rubens (vers 1612–1614), cathédrale Notre-Dame d’Anvers — domaine public."</item>
+        <item>"*La Mise au tombeau de Jésus* — Le Titien, La Mise au tombeau du Christ (vers 1520), musée du Louvre — domaine public."</item>
+    </string-array>
+    <string name="about_mercy_illustration">"Illustration de la Divine Miséricorde"</string>
+    <string name="about_mercy_kazimirowski">"Eugeniusz Kazimirowski, La Divine Miséricorde (« Jezu, ufam Tobie », 1934), sanctuaire de la Divine Miséricorde, Vilnius — image originale peinte sous la direction de sainte Faustine ; domaine public."</string>
+    <string name="about_jesus_prayer_illustration">"Illustration de la prière de Jésus"</string>
+    <string name="about_jesus_pantocrator">"Christ Pantocrator : icône à l’encaustique (VIe siècle), monastère Sainte-Catherine, mont Sinaï — la plus ancienne icône conservée du Christ Pantocrator, en hommage à la tradition orientale de cette prière ; domaine public."</string>
+    <string name="about_scripture_sources">"Sources bibliques"</string>
+    <string name="about_scripture_text">"Les citations bibliques proviennent de la Bible Douay-Rheims (anglais), de la Vulgate clémentine (latin), de la traduction hébraïque du Nouveau Testament de Franz Delitzsch (kirjasilta.net/ha-berit), les passages hébreux de l’Ancien Testament suivant le texte massorétique, de la Bible arabe des jésuites (Dar el-Machreq), de la Bible synodale russe (1876) et d’Ang Dating Biblia (tagalog, 1905)."</string>
+    <string name="about_calendar_data">"Données du calendrier"</string>
+    <string name="about_calendar_data_body">"Données du calendrier et des lectures : calendrier romain général via le projet LitCal (litcal.johnromanodorazio.com) ; calendrier et lectionnaire de 1962 via Missale Meum (missalemeum.com) ; calendrier catholique syriaque, titres hébreux sourcés du calendrier romain général et références des lectionnaires romain et syriaque fournis par Evangelizo.org — L’Évangile au Quotidien, © Evangelizo.org ; calendrier gréco-catholique ukrainien compilé dans l’app à partir des sources traditionnelles, avec les références byzantines du calendrier public de l’année liturgique UGCC (grégorien) de Royal Doors (royaldoors.net). Noms hébreux des livres bibliques : Evangelizo HE et Vicariat Saint-Jacques (catholic.co.il). Autres noms hébreux de fêtes et de saints : Vicariat Saint-Jacques, Christian Media Center (cmc-terrasanta.org) et Vatican News (vaticannews.va)."</string>
+    <string name="multi_day_reminder_body">"Le jour %1$d sur %2$d vous attend."</string>
+    <string name="multi_day_completed_title">"C’est terminé. Prier %1$s ensuite ?"</string>
+    <string name="multi_day_pray_next">"Prier %1$s"</string>
+    <string name="multi_day_not_now">"Pas maintenant"</string>
+    <string name="settings_rite">"Rite"</string>
+    <string name="settings_aramaic_sign_of_cross">"Signe de croix en araméen"</string>
+    <string name="settings_aramaic_sign_of_cross_form_a">"Forme A"</string>
+    <string name="settings_aramaic_sign_of_cross_form_b">"Forme B"</string>
+    <string name="settings_typography_header">"Typographie"</string>
+    <string name="settings_syriac_typeface">"Araméen syriaque"</string>
+    <string name="settings_hebrew_prayer_typeface">"Prières en hébreu"</string>
+    <string name="settings_hebrew_scripture_typeface">"Écriture en hébreu"</string>
+    <string name="settings_typeface_default">"Par défaut"</string>
+    <string name="settings_typeface_western_aramaic">"Araméen occidental"</string>
+    <string name="settings_typeface_eastern_aramaic">"Araméen oriental"</string>
+    <string name="settings_typeface_david_libre">"David Libre"</string>
+    <string name="settings_typeface_sans_serif">"Roboto (remplacement Noto)"</string>
+    <string name="settings_typeface_stam_ashkenaz">"Stam Ashkenaz"</string>
+    <string name="settings_typeface_stam_sefarad">"Stam Sefarad"</string>
+    <string name="settings_typeface_rashi">"Rashi"</string>
+    <string name="settings_favorite_basic_prayers_first">"Placer les prières usuelles favorites en tête"</string>
+    <string name="basic_prayers_favorite">"Ajouter aux favoris"</string>
+    <string name="basic_prayers_unfavorite">"Retirer des favoris"</string>
+    <string name="home_today_show_english">"English"</string>
+    <string name="home_today_language">"Langue d’Aujourd’hui"</string>
+    <string name="home_today_app_language">"Langue de l’app"</string>
+    <string name="home_today_readings">"Lectures du jour"</string>
+    <string name="home_today_full_citations">"Afficher les références complètes"</string>
+    <string name="home_today_compact_citations">"Afficher les références abrégées"</string>
+    <string name="home_pray_any_rosary">"Prier un rosaire au choix"</string>
+    <string name="home_add_rosary">"Ajouter un rosaire"</string>
+    <string name="home_add_jesus_prayer">"Ajouter la prière de Jésus"</string>
+    <string name="favorites_edit">"Modifier"</string>
+    <string name="favorites_reminders">"Rappels…"</string>
+    <string name="favorites_delete">"Supprimer"</string>
+    <string name="favorites_export">"Exporter pour modification"</string>
+    <string name="favorites_remove_installed">"Supprimer la dévotion"</string>
+    <string name="about_prayer_texts">"Textes des prières"</string>
+    <!-- The Vicariate line is a provisional attribution of fact, pending the exact
+         wording Fr. Piotr sends; replace it verbatim then, as the Exarchate's was. -->
+    <string name="about_prayer_texts_body">"Le chapelet de la Divine Miséricorde en hébreu est le texte propre du Patriarcat latin de Jérusalem, approuvé par le patriarche Michel Sabbah en 2003. Certaines prières en hébreu et en araméen sont utilisées avec l’autorisation de l’exarque patriarcal de la communauté catholique araméenne (syriaque). Les prières en hébreu sont les textes du Vicariat Saint-Jacques pour les catholiques de langue hébraïque, tirés de leur livre de prières."</string>
+    <string name="home_today_rank_solemnity">"Solennité"</string>
+    <string name="home_today_rank_feast">"Fête"</string>
+    <string name="home_today_rank_memorial">"Mémoire"</string>
+    <string name="home_today_rank_optional_memorial">"Mémoire facultative"</string>
+    <string name="home_today_rank_sunday">"Dimanche"</string>
+    <string name="home_today_rank_great_feast">"Grande fête"</string>
+    <string name="home_today_rank_holy_week">"Semaine sainte"</string>
+    <string name="home_today_rank_fast">"Jeûne"</string>
+    <string name="home_today_rank_1st_class">"1re classe"</string>
+    <string name="home_today_rank_2nd_class">"2e classe"</string>
+    <string name="home_today_rank_3rd_class">"3e classe"</string>
+    <string name="category_marian">Mariales</string>
+    <string name="category_daily">Quotidiennes</string>
+    <string name="category_mercy">Miséricorde</string>
+    <string name="category_franciscan">Franciscaines</string>
+    <string name="category_advent">Avent</string>
+    <string name="category_meditative">Méditatives</string>
+    <string name="category_passion">Passion</string>
+    <string name="category_eastern">Orientales</string>
+    <string name="category_short">Courtes</string>
+    <string name="category_easter">Pâques</string>
+    <string name="category_other">Autres</string>
+    <string name="about_additional_sources">Écriture en français : Crampon (1923), domaine public. Écriture en italien : Antonio Martini ; données structurées © Giovanni Novelli, CC BY 4.0 (parolaviva.art). Prières en français et en italien : Compendium du Vatican. Intentions du Pape : Réseau mondial de prière du Pape (2026–2027) ; traduction hébraïque par Prosary. Intentions en russe (2026) : traduction de t.me/ihsovs, publiée par la paroisse de l’Immaculée Conception de Tcheliabinsk (cc74.wordpress.com/rosary/).</string>
+    <string name="about_bible_book_sources">Noms des livres bibliques : AELF, Dar el-Machreq, Bible synodale russe (Azbyka), Société biblique philippine et ParolaViva.</string>
+    <string name="about_prayer_network_link">Réseau mondial de prière du Pape</string>
+    <string name="about_parolaviva_link">ParolaViva — CC BY 4.0</string>
+    <string name="about_additional_prayer_sources">Autres sources des prières : Vatican News, sanctuaire de Fatima, Notre-Dame de Paris, AELF et Conférence épiscopale italienne (CEI).</string>
+    <string name="about_divine_mercy_source">Chapelet à la Miséricorde Divine : Congrégation des Sœurs de Notre-Dame de la Miséricorde.</string>
+    <string name="about_seven_sorrows_source">Prières des sept douleurs : Notre Dame de Chrétienté et Confraternite.net.</string>
+</resources>

@@ -29,7 +29,7 @@
 
             <!-- The footer's Next button never turns into "Finish" for an unbounded session (see
                  JesusPrayerProgress.IsLastRep) — this is the only way to end that session. -->
-            <Button Grid.Column="2" Content="Finish" Command="{x:Bind ViewModel.FinishCommand, Mode=OneWay}"
+            <Button x:Uid="BtnFinish" Grid.Column="2" Content="Finish" Command="{x:Bind ViewModel.FinishCommand, Mode=OneWay}"
                     Visibility="{x:Bind ViewModel.IsUnbounded, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
 
             <Button Grid.Column="3" Background="Transparent" Padding="8">

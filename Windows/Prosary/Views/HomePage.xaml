@@ -82,7 +82,7 @@
                  entry (ferial days; dates past the generated years). -->
             <Border Style="{StaticResource SectionCardStyle}"
                     Visibility="{x:Bind ViewModel.ShowsTodaySection, Converter={StaticResource BoolToVisibility}}"
-                    FlowDirection="{x:Bind ViewModel.TodayInHebrew, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
+                    FlowDirection="{x:Bind ViewModel.TodayIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
                 <StackPanel Spacing="10">
                     <Grid ColumnSpacing="8">
                         <Grid.ColumnDefinitions>
@@ -93,8 +93,12 @@
                         <FontIcon Grid.Column="0" Glyph="&#xE787;" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Center" />
                         <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.TodayDayText, Mode=OneWay}" FontWeight="SemiBold" TextWrapping="Wrap" VerticalAlignment="Center"
                                    TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
-                        <HyperlinkButton Grid.Column="2" Content="{x:Bind ViewModel.TodayLanguageButtonText, Mode=OneWay}"
-                                         Command="{x:Bind ViewModel.ToggleTodayLanguageCommand}" />
+                        <DropDownButton x:Uid="HomeTodayLanguage" Grid.Column="2" Content="{x:Bind ViewModel.TodayLanguageButtonText, Mode=OneWay}"
+                                        AutomationProperties.Name="Today language">
+                            <DropDownButton.Flyout>
+                                <MenuFlyout Opening="OnTodayLanguageMenuOpening" />
+                            </DropDownButton.Flyout>
+                        </DropDownButton>
                     </Grid>
                     <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayFeast, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
                         <Grid.ColumnDefinitions>

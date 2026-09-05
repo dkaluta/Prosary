@@ -20,6 +20,7 @@ public static class AppSettings
     private const string KeyAutoAdvance = "autoAdvanceSeconds";
     private const string KeyShowTodayFeast = "showTodayFeast";
     private const string KeyShowTodayIntention = "showTodayIntention";
+    private const string KeyTodayLanguage = "todayLanguageCode";
     private const string KeySyriacTypeface = "syriacTypeface";
     private const string KeyHebrewPrayerTypeface = "hebrewPrayerTypeface";
     private const string KeyHebrewScriptureTypeface = "hebrewScriptureTypeface";
@@ -34,6 +35,7 @@ public static class AppSettings
     private static int? _autoAdvanceSeconds;
     private static bool? _showTodayFeast;
     private static bool? _showTodayIntention;
+    private static string? _todayLanguageCode;
     private static string? _syriacTypeface;
     private static string? _hebrewPrayerTypeface;
     private static string? _hebrewScriptureTypeface;
@@ -260,6 +262,16 @@ public static class AppSettings
     {
         ShowTodayIntention = shows;
         WriteLocalSetting(KeyShowTodayIntention, shows);
+    }
+
+    /// <summary>Empty follows the interface language; prayer-language changes never alter Today.</summary>
+    public static string TodayLanguageCode => _todayLanguageCode ??=
+        ReadLocalSetting(KeyTodayLanguage) as string ?? string.Empty;
+
+    public static void SetTodayLanguageCode(string code)
+    {
+        _todayLanguageCode = code;
+        WriteLocalSetting(KeyTodayLanguage, code);
     }
 
     /// <summary>Seconds between automatic step advances in the prayer flows; 0 = off.</summary>

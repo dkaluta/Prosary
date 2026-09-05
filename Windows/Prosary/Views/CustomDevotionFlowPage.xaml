@@ -292,19 +292,19 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Background="Transparent" BorderThickness="0"
+                <Button x:Uid="AudioPreviousChapter" Grid.Column="0" Background="Transparent" BorderThickness="0"
                         Command="{x:Bind ViewModel.AudioPreviousChapterCommand}"
                         IsEnabled="{x:Bind ViewModel.CanSkipAudioChapter, Mode=OneWay}"
                         AutomationProperties.Name="Previous chapter" VerticalAlignment="Center">
                     <FontIcon Glyph="&#xE892;" FontSize="14" />
                 </Button>
-                <Button Grid.Column="1" Background="Transparent" BorderThickness="0"
+                <Button x:Uid="AudioPlayPause" Grid.Column="1" Background="Transparent" BorderThickness="0"
                         Command="{x:Bind ViewModel.AudioPlayPauseCommand}"
                         AutomationProperties.Name="Play or pause" VerticalAlignment="Center">
                     <FontIcon Glyph="{x:Bind PlayPauseGlyph(ViewModel.IsAudioPlaying), Mode=OneWay}" FontSize="22"
                               Foreground="{x:Bind ViewModel.SeasonColor, Mode=OneWay, Converter={StaticResource ColorToBrush}}" />
                 </Button>
-                <Button Grid.Column="2" Background="Transparent" BorderThickness="0"
+                <Button x:Uid="AudioNextChapter" Grid.Column="2" Background="Transparent" BorderThickness="0"
                         Command="{x:Bind ViewModel.AudioNextChapterCommand}"
                         IsEnabled="{x:Bind ViewModel.CanSkipAudioChapter, Mode=OneWay}"
                         AutomationProperties.Name="Next chapter" VerticalAlignment="Center">
@@ -336,7 +336,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Back" Command="{x:Bind ViewModel.BackCommand}"
+            <Button x:Uid="BtnBack" Grid.Column="0" Content="Back" Command="{x:Bind ViewModel.BackCommand}"
                     IsEnabled="{x:Bind ViewModel.CanGoBack, Mode=OneWay}" Background="Transparent" />
             <Button Grid.Column="2" Content="{x:Bind ViewModel.NextButtonText, Mode=OneWay}"
                     Command="{x:Bind ViewModel.NextCommand}" Style="{StaticResource AccentButtonStyle}" MinWidth="120" />

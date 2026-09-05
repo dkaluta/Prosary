@@ -67,6 +67,8 @@ enum LanguageCatalog {
     LanguageOption(code: "es", nativeName: "Español", isRightToLeft: false),
     LanguageOption(code: "ru", nativeName: "Русский", isRightToLeft: false),
     LanguageOption(code: "tl", nativeName: "Tagalog", isRightToLeft: false),
+    LanguageOption(code: "fr", nativeName: "Français", isRightToLeft: false),
+    LanguageOption(code: "it", nativeName: "Italiano", isRightToLeft: false),
   ]
 
   /// Picker choices for a bundle's declared languages. The Mission is a sparse overlay rather
@@ -82,8 +84,15 @@ enum LanguageCatalog {
   static var fallbackOrder: [String] {
     let known = Set(all.map(\.code))
     let stored = UserDefaults.standard.stringArray(forKey: fallbackOrderKey) ?? []
-    let sanitized = stored.filter { known.contains($0) }
-    return (sanitized + defaultFallbackOrder.filter { !sanitized.contains($0) }).unique()
+    var sanitized = stored.filter { known.contains($0) }.unique()
+    let added = defaultFallbackOrder.filter { !sanitized.contains($0) }
+    // A saved order from an older version usually ends in Latin. New languages belong just
+    // before that terminal fallback; otherwise existing users never reach their new texts.
+    if sanitized.last == defaultCode {
+      sanitized.insert(contentsOf: added, at: sanitized.count - 1)
+      return sanitized
+    }
+    return sanitized + added
   }
 
   static var defaultFallbackOrder: [String] {

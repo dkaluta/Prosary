@@ -159,12 +159,12 @@ struct JesusPrayerFlowView: View {
         let targetLabel: String
         switch effectiveTarget {
         case .count(let n): targetLabel = "× \(n)"
-        case .unbounded:    targetLabel = "Unbounded"
+        case .unbounded:    targetLabel = String(localized: "jesusPrayerOptions.unbounded", defaultValue: "Unbounded")
         }
         let all = (try? await services.presetStore.all()) ?? []
         let isFirst = !all.contains { $0.kind == .jesusPrayer }
         let newFavorite = Prayer(
-          name: "Jesus Prayer \(targetLabel) (\(langName))",
+          name: String(localized: "jesusPrayer.favoriteName", defaultValue: "Jesus Prayer \(targetLabel) (\(langName))"),
           kind: .jesusPrayer,
           isDefault: isFirst,
           languageCode: resolved,

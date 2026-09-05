@@ -118,10 +118,8 @@ struct CustomDevotionOption: Decodable {
     let nameByLanguage: [String: String]?
 
     var localizedName: String {
-      guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else {
-        return HebrewDisplayText.unpointed(name)
-      }
-      return HebrewDisplayText.unpointed(nameByLanguage?[String(uiLanguage)] ?? name)
+      let uiLanguage = UILanguage.current
+      return HebrewDisplayText.unpointed(nameByLanguage?[uiLanguage] ?? name)
     }
   }
 
@@ -136,10 +134,8 @@ struct CustomDevotionOption: Decodable {
   let cases: [Case]?
 
   var localizedName: String {
-    guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else {
-      return HebrewDisplayText.unpointed(name)
-    }
-    return HebrewDisplayText.unpointed(nameByLanguage?[String(uiLanguage)] ?? name)
+    let uiLanguage = UILanguage.current
+    return HebrewDisplayText.unpointed(nameByLanguage?[uiLanguage] ?? name)
   }
 
   private enum CodingKeys: String, CodingKey {
@@ -202,10 +198,8 @@ struct DevotionAudioTrack: Decodable {
   let chapters: [Chapter]
 
   var localizedName: String? {
-    guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else {
-      return name.map(HebrewDisplayText.unpointed)
-    }
-    return (nameByLanguage?[String(uiLanguage)] ?? name).map(HebrewDisplayText.unpointed)
+    let uiLanguage = UILanguage.current
+    return (nameByLanguage?[uiLanguage] ?? name).map(HebrewDisplayText.unpointed)
   }
 }
 
@@ -245,10 +239,8 @@ struct CustomDevotionDefinition: Decodable {
     let steps: [CustomDevotionStep]
 
     var localizedName: String {
-      guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else {
-        return HebrewDisplayText.unpointed(name)
-      }
-      return HebrewDisplayText.unpointed(nameByLanguage?[String(uiLanguage)] ?? name)
+      let uiLanguage = UILanguage.current
+      return HebrewDisplayText.unpointed(nameByLanguage?[uiLanguage] ?? name)
     }
   }
 
@@ -341,10 +333,8 @@ struct CustomDevotionDefinition: Decodable {
     let hasClosingCross: Bool?
 
     var localizedName: String {
-      guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else {
-        return HebrewDisplayText.unpointed(name)
-      }
-      return HebrewDisplayText.unpointed(nameByLanguage?[String(uiLanguage)] ?? name)
+      let uiLanguage = UILanguage.current
+      return HebrewDisplayText.unpointed(nameByLanguage?[uiLanguage] ?? name)
     }
   }
 
@@ -442,7 +432,7 @@ struct CustomDevotionInfo {
   /// the prayed language (the Trisagion reads טריסאגיון over Hebrew steps, and in the Mission of
   /// St. Gamaliel's rite קדישת, the Aramaic word the Syriac churches sing it under). The prayer
   /// language is tried by its exact resolved code — rites included, which a UI-language lookup
-  /// could never see (`preferredLocalizations` truncates to two characters) — then by its base,
+  /// could never select — then by its base,
   /// so a rite whose bundle only names the base language still reads that language's name.
   var localizedDisplayName: String {
     let prayerCode = LanguageCatalog.resolve(nil).code
@@ -453,24 +443,18 @@ struct CustomDevotionInfo {
        let name = displayNameByLanguage[base] {
       return HebrewDisplayText.unpointed(name)
     }
-    guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else {
-      return HebrewDisplayText.unpointed(displayName)
-    }
-    return HebrewDisplayText.unpointed(displayNameByLanguage[String(uiLanguage)] ?? displayName)
+    let uiLanguage = UILanguage.current
+    return HebrewDisplayText.unpointed(displayNameByLanguage[uiLanguage] ?? displayName)
   }
 
   var localizedReminderBody: String? {
-    guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else {
-      return reminderBody["en"]
-    }
-    return reminderBody[String(uiLanguage)] ?? reminderBody["en"]
+    let uiLanguage = UILanguage.current
+    return reminderBody[uiLanguage] ?? reminderBody["en"]
   }
 
   var localizedReminderPresetFooter: String? {
-    guard let uiLanguage = Bundle.main.preferredLocalizations.first?.prefix(2) else {
-      return reminderPresetFooter["en"]
-    }
-    return reminderPresetFooter[String(uiLanguage)] ?? reminderPresetFooter["en"]
+    let uiLanguage = UILanguage.current
+    return reminderPresetFooter[uiLanguage] ?? reminderPresetFooter["en"]
   }
 }
 

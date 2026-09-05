@@ -41,6 +41,9 @@ Calendars and their sources:
                          and explicitly reviewed aliases across rites. They never replace a
                          calendar's dates, original observances, or ranks. Uncovered identities
                          retain their source-language title.
+                         French and Italian names are joined from LitCal's matching stable
+                         event_key identities in feast-titles-localized.json. Reviewed exact
+                         aliases extend those names to the same observances in other calendars.
   feasts-ugcc.json       Byzantine — Ukrainian Greek Catholic, the diasporic (fully Gregorian)
                          usage prayed in the Holy Land: no licensed machine-readable source
                          exists, so the fixed menologion is CURATED IN THIS SCRIPT
@@ -61,7 +64,7 @@ date outside a table simply hides the Today row. pope-intentions.json is maintai
 from popesprayer.va (monthly prose, no API) and is untouched here.
 
 The per-day shape every platform's TodayInfoStore decodes is
-{"title": …, "rank": …, "titleByLanguage"?: {"he": …}}; the
+{"title": …, "rank": …, "titleByLanguage"?: {"he": …, "fr": …, "it": …}}; the
 Pray screens bold the title when the rank is "Solemnity" or "1st Class". Sundays of the
 season carry rank "Sunday". Never rename ranks casually: validate-devotion.py's hours-type
 rank vocabulary camelCases the default calendar's set.
@@ -85,6 +88,7 @@ SHARED = TOOLS.parent
 ROOT = SHARED.parent
 DATA = SHARED / "data"
 HEBREW_TITLE_CATALOGS = [TOOLS / "hebrew-feast-titles.json", TOOLS / "hebrew-saint-titles.json"]
+LOCALIZED_TITLE_CATALOG = TOOLS / "feast-titles-localized.json"
 
 PLATFORM_DATA_DIRS = [
     ROOT / "iOS" / "Prosary" / "Data",
@@ -323,21 +327,67 @@ def localize_feast_days(days: dict, catalog: dict[str, str]) -> tuple[int, set[s
     return updated, missing
 
 
+def sourced_title_catalogs(payload: dict | None = None) -> dict[str, dict[str, str]]:
+    """Index reviewed event identities by exact source title, never by calendar date.
+
+    Every localized name retains its publication source. Conflicting aliases fail closed;
+    an abbreviated saint name cannot silently attach to two different observances.
+    """
+    if payload is None:
+        payload = json.loads(LOCALIZED_TITLE_CATALOG.read_text(encoding="utf-8"))
+    catalogs: dict[str, dict[str, str]] = {}
+    for event_key, event in payload["events"].items():
+        if not event_key or not event.get("englishTitles"):
+            raise ValueError("Localized feast identity lacks an event key or English source title")
+        aliases = event["englishTitles"] + event.get("reviewedEnglishAliases", [])
+        for language, title in event["titleByLanguage"].items():
+            if not title.strip() or not event.get("sources", {}).get(language):
+                raise ValueError(f"{event_key}/{language}: missing localized name or source")
+            catalog = catalogs.setdefault(language, {})
+            for alias in aliases:
+                if not alias.strip():
+                    raise ValueError(f"{event_key}: empty identity alias")
+                if alias in catalog and catalog[alias] != title:
+                    raise ValueError(f"{language}: conflicting feast identity for {alias!r}")
+                catalog[alias] = title
+    return catalogs
+
+
+def add_sourced_feast_titles(days: dict, catalogs: dict[str, dict[str, str]]) -> dict[str, int]:
+    """Fill translated display names while retaining all canonical calendar properties."""
+    updates = {language: 0 for language in catalogs}
+    for entry in days.values():
+        for language, catalog in catalogs.items():
+            translated = localized_feast_title(entry["title"], catalog)
+            if translated and entry.get("titleByLanguage", {}).get(language) != translated:
+                entry.setdefault("titleByLanguage", {})[language] = translated
+                updates[language] += 1
+    return updates
+
+
 def localize_existing_datasets() -> None:
     catalog = hebrew_title_catalog()
+    sourced_catalogs = sourced_title_catalogs()
     registry = json.loads((DATA / "calendars.json").read_text(encoding="utf-8"))
     for name in dict.fromkeys(calendar["file"] for calendar in registry["calendars"]):
         path = DATA / f"{name}.json"
         payload = json.loads(path.read_text(encoding="utf-8"))
         updated, missing = localize_feast_days(payload["days"], catalog)
+        sourced_updates = add_sourced_feast_titles(payload["days"], sourced_catalogs)
         credit = (
             " Hebrew feast and saint names use the credited source catalogs in "
             "Shared/tools/hebrew-feast-titles.json and hebrew-saint-titles.json; "
             "the calendar's own dates, observances, ranks and original titles are retained.")
         if "Hebrew feast and saint names" not in payload["$comment"]:
             payload["$comment"] += credit
+        if "French and Italian feast names" not in payload["$comment"]:
+            payload["$comment"] += (
+                " French and Italian feast names are sourced from LitCal (Apache-2.0), "
+                "joined by stable event identity with reviewed exact aliases in "
+                "Shared/tools/feast-titles-localized.json; no calendar dates or ranks are changed.")
         path.write_text(json.dumps(payload, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
         print(f"localized {path.name}: {updated} added or updated; {len(missing)} distinct titles retain their source language")
+        print(f"  sourced language updates: {sourced_updates}")
 
 
 def sync_datasets() -> None:
@@ -541,6 +591,34 @@ def main() -> int:
         assert localize_feast_days(days, catalog) == (2, {"Unknown"})
         assert days["2026-09-05"]["titleByLanguage"] == {"ar": "existing", "he": "קדוש, כהן"}
         hebrew_title_catalog()  # Validate every checked-in label has a source and no conflict.
+        fixture = {"events": {"SaintIdentity": {
+            "englishTitles": ["Saint"], "reviewedEnglishAliases": ["St."],
+            "titleByLanguage": {"fr": "Saint français", "it": "Santo italiano"},
+            "sources": {"fr": ["https://example.org/fr"], "it": ["https://example.org/it"]},
+        }}}
+        sourced = sourced_title_catalogs(fixture)
+        assert add_sourced_feast_titles(days, sourced) == {"fr": 2, "it": 2}
+        assert {date: (row["title"], row["rank"]) for date, row in days.items()} == originals
+        assert days["2026-09-05"]["titleByLanguage"]["ar"] == "existing"
+        assert days["2026-09-05"]["titleByLanguage"]["he"] == "קדוש, כהן"
+        assert "titleByLanguage" not in days["2026-09-06"]
+        assert add_sourced_feast_titles(days, sourced) == {"fr": 0, "it": 0}
+        assert localized_feast_title("St.", sourced["fr"]) == "Saint français"
+        assert localized_feast_title("Saint; Unknown", sourced["it"]) == "Santo italiano; Unknown"
+        assert localized_feast_title("Different Saint", sourced["fr"]) is None
+        fixture["events"]["ConflictingIdentity"] = {
+            "englishTitles": ["St."], "titleByLanguage": {"fr": "Other saint"},
+            "sources": {"fr": ["https://example.org/other"]},
+        }
+        try:
+            sourced_title_catalogs(fixture)
+        except ValueError as error:
+            assert "conflicting feast identity" in str(error)
+        else:
+            raise AssertionError("Conflicting localized feast aliases must be rejected")
+        sourced_real = sourced_title_catalogs()
+        assert sourced_real["fr"]["Saint Teresa of Calcutta, Virgin"] == "Sainte Teresa de Calcutta, vierge"
+        assert sourced_real["it"]["St. Bonaventure"] == "San Bonaventura, vescovo e dottore"
         print("feast localization self-test passed")
         return 0
     if args.localize_only:

@@ -4,13 +4,27 @@
       "key": "invitatory",
       "kind": "toggle",
       "name": "Opening versicle (O God, come to my assistance)",
-      "default": false
+      "default": false,
+      "nameByLanguage": {
+        "ar": "آية الافتتاح (اللهم بادر إلى معونتي)",
+        "ru": "Вступительный стих («Боже, приди мне на помощь»)",
+        "tl": "Pambungad na bersikulo (O Diyos, halina’t ako’y tulungan)",
+        "fr": "Verset initial (Ô Dieu, viens à mon aide)",
+        "it": "Versetto iniziale (O Dio, vieni a salvarmi)"
+      }
     },
     {
       "key": "apostlesCreed",
       "kind": "toggle",
       "name": "Apostles' Creed",
-      "default": true
+      "default": true,
+      "nameByLanguage": {
+        "ar": "قانون إيمان الرسل",
+        "ru": "Апостольский Символ веры",
+        "tl": "Sumasampalataya ng mga Apostol",
+        "fr": "Symbole des Apôtres",
+        "it": "Simbolo degli Apostoli"
+      }
     },
     {
       "key": "aramaicSignOfCrossForm",
@@ -20,37 +34,86 @@
       "cases": [
         {
           "id": "formA",
-          "name": "Form A"
+          "name": "Form A",
+          "nameByLanguage": {
+            "ar": "الصيغة أ",
+            "ru": "Форма A",
+            "tl": "Anyo A",
+            "fr": "Forme A",
+            "it": "Forma A"
+          }
         },
         {
           "id": "formB",
-          "name": "Form B"
+          "name": "Form B",
+          "nameByLanguage": {
+            "ar": "الصيغة ب",
+            "ru": "Форма B",
+            "tl": "Anyo B",
+            "fr": "Forme B",
+            "it": "Forma B"
+          }
         }
-      ]
+      ],
+      "nameByLanguage": {
+        "ar": "إشارة الصليب بالآرامية",
+        "ru": "Крестное знамение на арамейском",
+        "tl": "Tanda ng Krus sa Aramaiko",
+        "fr": "Signe de croix en araméen",
+        "it": "Segno della croce in aramaico"
+      }
     },
     {
       "key": "openingPrayers",
       "kind": "toggle",
       "name": "Opening prayers (Our Father, three Hail Marys, Glory Be)",
-      "default": true
+      "default": true,
+      "nameByLanguage": {
+        "ar": "صلوات الافتتاح (أبانا، ثلاث مرات السلام عليك يا مريم، المجد للآب)",
+        "ru": "Начальные молитвы («Отче наш», три «Радуйся, Мария», «Слава Отцу»)",
+        "tl": "Mga pambungad na panalangin (Ama Namin, tatlong Aba Ginoong Maria, Luwalhati)",
+        "fr": "Prières initiales (Notre Père, trois Je vous salue Marie, Gloire au Père)",
+        "it": "Preghiere iniziali (Padre nostro, tre Ave Maria, Gloria al Padre)"
+      }
     },
     {
       "key": "openingFatimaPrayer",
       "kind": "toggle",
       "name": "Fatima Prayer after Faith, Hope, and Charity",
-      "default": false
+      "default": false,
+      "nameByLanguage": {
+        "ar": "صلاة فاطيما بعد الإيمان والرجاء والمحبة",
+        "ru": "Фатимская молитва после молитв о вере, надежде и любви",
+        "tl": "Panalangin ng Fatima pagkatapos ng Pananampalataya, Pag-asa, at Pag-ibig",
+        "fr": "Prière de Fatima après les prières pour la foi, l’espérance et la charité",
+        "it": "Preghiera di Fatima dopo le preghiere per la fede, la speranza e la carità"
+      }
     },
     {
       "key": "presenterMode",
       "kind": "toggle",
       "name": "Presenter mode",
-      "default": false
+      "default": false,
+      "nameByLanguage": {
+        "ar": "وضع قائد الصلاة",
+        "ru": "Режим ведущего",
+        "tl": "Paraan ng pangunguna",
+        "fr": "Mode animateur",
+        "it": "Modalità guida"
+      }
     },
     {
       "key": "fatimaPrayer",
       "kind": "toggle",
       "name": "Fatima Prayer",
-      "default": true
+      "default": true,
+      "nameByLanguage": {
+        "ar": "صلاة فاطيما",
+        "ru": "Фатимская молитва",
+        "tl": "Panalangin ng Fatima",
+        "fr": "Prière de Fatima",
+        "it": "Preghiera di Fatima"
+      }
     },
     {
       "key": "eternalRest",
@@ -60,17 +123,45 @@
       "cases": [
         {
           "id": "none",
-          "name": "None"
+          "name": "None",
+          "nameByLanguage": {
+            "ar": "لا شيء",
+            "ru": "Нет",
+            "tl": "Wala",
+            "fr": "Aucun",
+            "it": "Nessuna"
+          }
         },
         {
           "id": "afterEachDecade",
-          "name": "After each decade"
+          "name": "After each decade",
+          "nameByLanguage": {
+            "ar": "بعد كل بيت",
+            "ru": "После каждого десятка",
+            "tl": "Pagkatapos ng Bawat Dekada",
+            "fr": "Après chaque dizaine",
+            "it": "Dopo ogni decina"
+          }
         },
         {
           "id": "atEndOnly",
-          "name": "At the end"
+          "name": "At the end",
+          "nameByLanguage": {
+            "ar": "في الختام",
+            "ru": "В конце",
+            "tl": "Sa pagtatapos",
+            "fr": "À la fin",
+            "it": "Alla fine"
+          }
         }
-      ]
+      ],
+      "nameByLanguage": {
+        "ar": "الراحة الأبدية للمؤمنين الراقدين",
+        "ru": "«Вечный покой» об усопших верных",
+        "tl": "Walang Hanggang Kapahingahan para sa mga yumao",
+        "fr": "Repos éternel pour les fidèles défunts",
+        "it": "Eterno riposo per i fedeli defunti"
+      }
     },
     {
       "key": "antiphon",
@@ -80,45 +171,115 @@
       "cases": [
         {
           "id": "seasonal",
-          "name": "Seasonal"
+          "name": "Seasonal",
+          "nameByLanguage": {
+            "ar": "بحسب الزمن الليتورجي",
+            "ru": "По литургическому времени",
+            "tl": "Ayon sa panahong liturhiko",
+            "fr": "Selon le temps liturgique",
+            "it": "Secondo il tempo liturgico"
+          }
         },
         {
           "id": "salveRegina",
-          "name": "Salve Regina"
+          "name": "Salve Regina",
+          "nameByLanguage": {
+            "ar": "Salve Regina",
+            "ru": "Salve Regina",
+            "tl": "Salve Regina",
+            "fr": "Salve Regina",
+            "it": "Salve Regina"
+          }
         },
         {
           "id": "almaRedemptorisMater",
-          "name": "Alma Redemptoris Mater"
+          "name": "Alma Redemptoris Mater",
+          "nameByLanguage": {
+            "ar": "Alma Redemptoris Mater",
+            "ru": "Alma Redemptoris Mater",
+            "tl": "Alma Redemptoris Mater",
+            "fr": "Alma Redemptoris Mater",
+            "it": "Alma Redemptoris Mater"
+          }
         },
         {
           "id": "aveReginaCaelorum",
-          "name": "Ave Regina Caelorum"
+          "name": "Ave Regina Caelorum",
+          "nameByLanguage": {
+            "ar": "Ave Regina Caelorum",
+            "ru": "Ave Regina Caelorum",
+            "tl": "Ave Regina Caelorum",
+            "fr": "Ave Regina Caelorum",
+            "it": "Ave Regina Caelorum"
+          }
         },
         {
           "id": "reginaCaeli",
-          "name": "Regina Caeli"
+          "name": "Regina Caeli",
+          "nameByLanguage": {
+            "ar": "Regina Caeli",
+            "ru": "Regina Caeli",
+            "tl": "Regina Caeli",
+            "fr": "Regina Caeli",
+            "it": "Regina Caeli"
+          }
         },
         {
           "id": "subTuumPraesidium",
-          "name": "Sub Tuum Praesidium"
+          "name": "Sub Tuum Praesidium",
+          "nameByLanguage": {
+            "ar": "Sub Tuum Praesidium",
+            "ru": "Sub Tuum Praesidium",
+            "tl": "Sub Tuum Praesidium",
+            "fr": "Sub Tuum Praesidium",
+            "it": "Sub Tuum Praesidium"
+          }
         },
         {
           "id": "none",
-          "name": "None"
+          "name": "None",
+          "nameByLanguage": {
+            "ar": "لا شيء",
+            "ru": "Нет",
+            "tl": "Wala",
+            "fr": "Aucun",
+            "it": "Nessuna"
+          }
         }
-      ]
+      ],
+      "nameByLanguage": {
+        "ar": "الأنتيفونة المريمية",
+        "ru": "Богородичный антифон",
+        "tl": "Antipona kay Maria",
+        "fr": "Antienne mariale",
+        "it": "Antifona mariana"
+      }
     },
     {
       "key": "closingIntentions",
       "kind": "toggle",
       "name": "Closing intentions (for the Pope, the local bishop, and the faithful departed)",
-      "default": false
+      "default": false,
+      "nameByLanguage": {
+        "ar": "النيات الختامية (من أجل البابا والأسقف المحلي والمؤمنين الراقدين)",
+        "ru": "Заключительные намерения (о Папе, местном епископе и усопших верных)",
+        "tl": "Mga pangwakas na intensiyon (para sa Santo Papa, lokal na obispo, at mga yumao)",
+        "fr": "Intentions finales (pour le pape, l’évêque du lieu et les fidèles défunts)",
+        "it": "Intenzioni finali (per il Papa, il vescovo locale e i fedeli defunti)"
+      }
     },
     {
       "key": "stMichael",
       "kind": "toggle",
       "name": "St. Michael prayer",
-      "default": false
+      "default": false,
+      "nameByLanguage": {
+        "ar": "صلاة القديس ميخائيل",
+        "ru": "Молитва святому Михаилу",
+        "tl": "Panalangin kay San Miguel",
+        "fr": "Prière à saint Michel",
+        "it": "Preghiera a san Michele"
+      }
     },
     {
       "key": "imageStyle",
@@ -128,19 +289,47 @@
       "cases": [
         {
           "id": "classic",
-          "name": "Classical paintings"
+          "name": "Classical paintings",
+          "nameByLanguage": {
+            "ar": "لوحات كلاسيكية",
+            "ru": "Классическая живопись",
+            "tl": "Mga klasikong pinta",
+            "fr": "Peintures classiques",
+            "it": "Dipinti classici"
+          }
         },
         {
           "id": "eastern",
-          "name": "Eastern icons"
+          "name": "Eastern icons",
+          "nameByLanguage": {
+            "ar": "أيقونات شرقية",
+            "ru": "Восточные иконы",
+            "tl": "Mga ikonong Silanganin",
+            "fr": "Icônes orientales",
+            "it": "Icone orientali"
+          }
         }
-      ]
+      ],
+      "nameByLanguage": {
+        "ar": "صور الأسرار",
+        "ru": "Изображения тайн",
+        "tl": "Mga larawan ng misteryo",
+        "fr": "Illustrations des mystères",
+        "it": "Immagini dei misteri"
+      }
     },
     {
       "key": "finalSignOfCross",
       "kind": "toggle",
       "name": "Final Sign of the Cross",
-      "default": true
+      "default": true,
+      "nameByLanguage": {
+        "ar": "إشارة الصليب الختامية",
+        "ru": "Заключительное крестное знамение",
+        "tl": "Pangwakas na Tanda ng Krus",
+        "fr": "Signe de croix final",
+        "it": "Segno della croce finale"
+      }
     }
   ]
 }

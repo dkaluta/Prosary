@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Prosary.Services;
+using Prosary.Localization;
 
 namespace Prosary.ViewModels;
 
@@ -31,7 +32,7 @@ public partial class CategoriesViewModel : ObservableObject
         }
         Sections = new ObservableCollection<CategorySection>(
             byTag.Select(pair => new CategorySection(
-                char.ToUpperInvariant(pair.Key[0]) + pair.Key[1..], pair.Value)));
+                CategoryLabels.Display(pair.Key), pair.Value)).OrderBy(section => section.Title));
     }
 
     [RelayCommand]

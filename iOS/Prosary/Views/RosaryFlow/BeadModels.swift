@@ -216,23 +216,23 @@ struct BeadLayout {
   /// with this label instead of dozens of unlabeled circles.
   var accessibilityDescription: String {
     if let closingCross, closingCross.state == .current {
-      return "Closing sign of the cross"
+      return String(localized: "beadTrack.closingCross", defaultValue: "Closing sign of the cross")
     }
     if let antiphon, antiphon.state == .current {
-      return "Marian antiphon"
+      return String(localized: "favoriteEditor.marianAntiphon", defaultValue: "Marian antiphon")
     }
 
     let decadeBeads = groupColumns.flatMap(\.beads)
     if let currentDecade = decadeBeads.firstIndex(where: { $0.state == .current }) {
-      var description = "Decade \(currentDecade + 1) of \(decadeBeads.count)"
+      var description = String(localized: "beadTrack.decade", defaultValue: "Decade \(currentDecade + 1) of \(decadeBeads.count)")
       if showBottomBeads, let currentHailMary = bottomBeads.firstIndex(where: { $0.state == .current }) {
-        description += ", Hail Mary \(currentHailMary + 1) of \(bottomBeads.count)"
+        description += ", " + String(localized: "beadTrack.hailMary", defaultValue: "Hail Mary \(currentHailMary + 1) of \(bottomBeads.count)")
       }
       return description
     }
 
     if let openingCross, openingCross.state == .current {
-      return "Opening sign of the cross"
+      return String(localized: "beadTrack.openingCross", defaultValue: "Opening sign of the cross")
     }
 
     // Not on a decade, the opening cross, the antiphon, or the closing cross — one of the
@@ -240,9 +240,9 @@ struct BeadLayout {
     // Sorrows' extra closing Hail Marys and closing prayer) if every decade bead already reads
     // completed, otherwise the pre-decade opening prayers.
     if !decadeBeads.isEmpty && decadeBeads.allSatisfy({ $0.state == .completed }) {
-      return "Closing prayers"
+      return String(localized: "favoriteEditor.closingPrayers", defaultValue: "Closing prayers")
     }
 
-    return "Opening prayers"
+    return String(localized: "beadTrack.openingPrayers", defaultValue: "Opening prayers")
   }
 }

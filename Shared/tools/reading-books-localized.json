@@ -1,0 +1,1649 @@
+{
+  "$comment": "Sourced Bible book-name metadata for Today citations in Arabic, Russian, Tagalog, French and Italian. Each map addresses the same canonical English book identity; only the displayed name changes. The original lectionary, dates, reading order and chapter/verse ranges remain authoritative. Sources and editorial shortening are recorded per language.",
+  "sources": {
+    "ar": {
+      "name": "Dar el-Machreq — Arabic Catholic Bible",
+      "urls": [
+        "https://arabiccatholicbible.com/project/sir/"
+      ],
+      "note": "Bible book names relayed from the publisher navigation index. Display names omit descriptive prefixes and vowel marks; short labels are editorial abbreviations. No Scripture text is copied."
+    },
+    "ru": {
+      "name": "Russian Synodal Bible — Azbyka Bible index",
+      "urls": [
+        "https://azbyka.ru/biblia/"
+      ],
+      "note": "Names relay the Synodal index with stress marks omitted and numbered letters made explicit. English 1/2 Samuel and 1/2 Kings correspond to Synodal 1/2/3/4 Царств; Ezra corresponds to 1 Ездры. Underlying citations and chapter/verse numbers are unchanged. Short labels are editorial abbreviations. No Scripture text is copied."
+    },
+    "tl": {
+      "name": "Philippine Bible Society — Magandang Balita Biblia (with Deuterocanon), Bible Gateway",
+      "urls": [
+        "https://www.biblegateway.com/versions/Magandang-Balita-Biblia-Deuterocanon-MBBTAG-DC/",
+        "https://www.biblegateway.com/passage/?search=Ecclesiastico+50&version=MBBTAG-DC"
+      ],
+      "note": "Names relay the publisher-supplied book index, with Sirach identified by its published descriptive title. Short labels are editorial abbreviations. No Scripture text from this copyrighted edition is copied."
+    },
+    "fr": {
+      "name": "AELF — Bible index",
+      "urls": [
+        "https://www.aelf.org/bible"
+      ],
+      "note": "Conventional book names relay the episcopal liturgical index, omitting long descriptive prefixes. Short labels are editorial abbreviations. No Scripture or liturgical text is copied. Habacuc uses the conventional spelling instead of the index typo Habaquc."
+    },
+    "it": {
+      "name": "ParolaViva — Italian Bible index",
+      "urls": [
+        "https://parolaviva.art/api/v1/bibbia/indice.json"
+      ],
+      "note": "Short and full labels are the source index m and n fields. The index is shared by the hosted Italian editions, including Antonio Martini. No Scripture text is copied. The source ASCII apostrophe in Giosue' is normalized to the Italian accent in Giosuè."
+    }
+  },
+  "books": {
+    "1 Chronicles": {
+      "ar": {
+        "short": "1 أخ",
+        "full": "الأخبار الأول"
+      },
+      "ru": {
+        "short": "1 Пар",
+        "full": "1 Паралипоменон"
+      },
+      "tl": {
+        "short": "1 Cro",
+        "full": "1 Cronica"
+      },
+      "fr": {
+        "short": "1 Ch",
+        "full": "1 Chroniques"
+      },
+      "it": {
+        "short": "1Cr",
+        "full": "1 Cronache"
+      }
+    },
+    "1 Corinthians": {
+      "ar": {
+        "short": "1 قور",
+        "full": "قورنتس الأولى"
+      },
+      "ru": {
+        "short": "1 Кор",
+        "full": "1 Коринфянам"
+      },
+      "tl": {
+        "short": "1 Cor",
+        "full": "1 Corinto"
+      },
+      "fr": {
+        "short": "1 Co",
+        "full": "1 Corinthiens"
+      },
+      "it": {
+        "short": "1Cor",
+        "full": "1 Lettera ai Corinzi"
+      }
+    },
+    "1 John": {
+      "ar": {
+        "short": "1 يو",
+        "full": "يوحنا الأولى"
+      },
+      "ru": {
+        "short": "1 Ин",
+        "full": "1 Иоанна"
+      },
+      "tl": {
+        "short": "1 Jn",
+        "full": "1 Juan"
+      },
+      "fr": {
+        "short": "1 Jn",
+        "full": "1 Jean"
+      },
+      "it": {
+        "short": "1Gv",
+        "full": "1 Lettera di Giovanni"
+      }
+    },
+    "1 Kings": {
+      "ar": {
+        "short": "1 مل",
+        "full": "الملوك الأول"
+      },
+      "ru": {
+        "short": "3 Цар",
+        "full": "3 Царств"
+      },
+      "tl": {
+        "short": "1 Ha",
+        "full": "1 Mga Hari"
+      },
+      "fr": {
+        "short": "1 R",
+        "full": "1 Rois"
+      },
+      "it": {
+        "short": "1Re",
+        "full": "1 Re"
+      }
+    },
+    "1 Maccabees": {
+      "ar": {
+        "short": "1 مك",
+        "full": "المكابيين الأول"
+      },
+      "ru": {
+        "short": "1 Мак",
+        "full": "1 Маккавейская"
+      },
+      "tl": {
+        "short": "1 Mac",
+        "full": "1 Macabeo"
+      },
+      "fr": {
+        "short": "1 M",
+        "full": "Premier livre des Martyrs d'Israël"
+      },
+      "it": {
+        "short": "1Mac",
+        "full": "1 Maccabei"
+      }
+    },
+    "1 Peter": {
+      "ar": {
+        "short": "1 بط",
+        "full": "بطرس الأولى"
+      },
+      "ru": {
+        "short": "1 Пет",
+        "full": "1 Петра"
+      },
+      "tl": {
+        "short": "1 Ped",
+        "full": "1 Pedro"
+      },
+      "fr": {
+        "short": "1 P",
+        "full": "1 Pierre"
+      },
+      "it": {
+        "short": "1Pt",
+        "full": "1 Lettera di Pietro"
+      }
+    },
+    "1 Samuel": {
+      "ar": {
+        "short": "1 صم",
+        "full": "صموئيل الأول"
+      },
+      "ru": {
+        "short": "1 Цар",
+        "full": "1 Царств"
+      },
+      "tl": {
+        "short": "1 Sam",
+        "full": "1 Samuel"
+      },
+      "fr": {
+        "short": "1 S",
+        "full": "1 Samuel"
+      },
+      "it": {
+        "short": "1Sam",
+        "full": "1 Samuele"
+      }
+    },
+    "1 Thessalonians": {
+      "ar": {
+        "short": "1 تس",
+        "full": "تسالونيقي الأولى"
+      },
+      "ru": {
+        "short": "1 Фес",
+        "full": "1 Фессалоникийцам"
+      },
+      "tl": {
+        "short": "1 Tes",
+        "full": "1 Tesalonica"
+      },
+      "fr": {
+        "short": "1 Th",
+        "full": "1 Thessaloniciens"
+      },
+      "it": {
+        "short": "1Ts",
+        "full": "1 Lettera ai Tessalonicesi"
+      }
+    },
+    "1 Timothy": {
+      "ar": {
+        "short": "1 طيم",
+        "full": "طيموتاوس الأولى"
+      },
+      "ru": {
+        "short": "1 Тим",
+        "full": "1 Тимофею"
+      },
+      "tl": {
+        "short": "1 Tim",
+        "full": "1 Timoteo"
+      },
+      "fr": {
+        "short": "1 Tm",
+        "full": "1 Timothée"
+      },
+      "it": {
+        "short": "1Tm",
+        "full": "1 Lettera a Timoteo"
+      }
+    },
+    "2 Chronicles": {
+      "ar": {
+        "short": "2 أخ",
+        "full": "الأخبار الثاني"
+      },
+      "ru": {
+        "short": "2 Пар",
+        "full": "2 Паралипоменон"
+      },
+      "tl": {
+        "short": "2 Cro",
+        "full": "2 Cronica"
+      },
+      "fr": {
+        "short": "2 Ch",
+        "full": "2 Chroniques"
+      },
+      "it": {
+        "short": "2Cr",
+        "full": "2 Cronache"
+      }
+    },
+    "2 Corinthians": {
+      "ar": {
+        "short": "2 قور",
+        "full": "قورنتس الثانية"
+      },
+      "ru": {
+        "short": "2 Кор",
+        "full": "2 Коринфянам"
+      },
+      "tl": {
+        "short": "2 Cor",
+        "full": "2 Corinto"
+      },
+      "fr": {
+        "short": "2 Co",
+        "full": "2 Corinthiens"
+      },
+      "it": {
+        "short": "2Cor",
+        "full": "2 Lettera ai Corinzi"
+      }
+    },
+    "2 John": {
+      "ar": {
+        "short": "2 يو",
+        "full": "يوحنا الثانية"
+      },
+      "ru": {
+        "short": "2 Ин",
+        "full": "2 Иоанна"
+      },
+      "tl": {
+        "short": "2 Jn",
+        "full": "2 Juan"
+      },
+      "fr": {
+        "short": "2 Jn",
+        "full": "2 Jean"
+      },
+      "it": {
+        "short": "2Gv",
+        "full": "2 Lettera di Giovanni"
+      }
+    },
+    "2 Kings": {
+      "ar": {
+        "short": "2 مل",
+        "full": "الملوك الثاني"
+      },
+      "ru": {
+        "short": "4 Цар",
+        "full": "4 Царств"
+      },
+      "tl": {
+        "short": "2 Ha",
+        "full": "2 Mga Hari"
+      },
+      "fr": {
+        "short": "2 R",
+        "full": "2 Rois"
+      },
+      "it": {
+        "short": "2Re",
+        "full": "2 Re"
+      }
+    },
+    "2 Maccabees": {
+      "ar": {
+        "short": "2 مك",
+        "full": "المكابيين الثاني"
+      },
+      "ru": {
+        "short": "2 Мак",
+        "full": "2 Маккавейская"
+      },
+      "tl": {
+        "short": "2 Mac",
+        "full": "2 Macabeo"
+      },
+      "fr": {
+        "short": "2 M",
+        "full": "Deuxième livre des Martyrs d'Israël"
+      },
+      "it": {
+        "short": "2Mac",
+        "full": "2 Maccabei"
+      }
+    },
+    "2 Peter": {
+      "ar": {
+        "short": "2 بط",
+        "full": "بطرس الثانية"
+      },
+      "ru": {
+        "short": "2 Пет",
+        "full": "2 Петра"
+      },
+      "tl": {
+        "short": "2 Ped",
+        "full": "2 Pedro"
+      },
+      "fr": {
+        "short": "2 P",
+        "full": "2 Pierre"
+      },
+      "it": {
+        "short": "2Pt",
+        "full": "2 Lettera di Pietro"
+      }
+    },
+    "2 Samuel": {
+      "ar": {
+        "short": "2 صم",
+        "full": "صموئيل الثاني"
+      },
+      "ru": {
+        "short": "2 Цар",
+        "full": "2 Царств"
+      },
+      "tl": {
+        "short": "2 Sam",
+        "full": "2 Samuel"
+      },
+      "fr": {
+        "short": "2 S",
+        "full": "2 Samuel"
+      },
+      "it": {
+        "short": "2Sam",
+        "full": "2 Samuele"
+      }
+    },
+    "2 Thessalonians": {
+      "ar": {
+        "short": "2 تس",
+        "full": "تسالونيقي الثانية"
+      },
+      "ru": {
+        "short": "2 Фес",
+        "full": "2 Фессалоникийцам"
+      },
+      "tl": {
+        "short": "2 Tes",
+        "full": "2 Tesalonica"
+      },
+      "fr": {
+        "short": "2 Th",
+        "full": "2 Thessaloniciens"
+      },
+      "it": {
+        "short": "2Ts",
+        "full": "2 Lettera ai Tessalonicesi"
+      }
+    },
+    "2 Timothy": {
+      "ar": {
+        "short": "2 طيم",
+        "full": "طيموتاوس الثانية"
+      },
+      "ru": {
+        "short": "2 Тим",
+        "full": "2 Тимофею"
+      },
+      "tl": {
+        "short": "2 Tim",
+        "full": "2 Timoteo"
+      },
+      "fr": {
+        "short": "2 Tm",
+        "full": "2 Timothée"
+      },
+      "it": {
+        "short": "2Tm",
+        "full": "2 Lettera a Timoteo"
+      }
+    },
+    "3 John": {
+      "ar": {
+        "short": "3 يو",
+        "full": "يوحنا الثالثة"
+      },
+      "ru": {
+        "short": "3 Ин",
+        "full": "3 Иоанна"
+      },
+      "tl": {
+        "short": "3 Jn",
+        "full": "3 Juan"
+      },
+      "fr": {
+        "short": "3 Jn",
+        "full": "3 Jean"
+      },
+      "it": {
+        "short": "3Gv",
+        "full": "3 Lettera di Giovanni"
+      }
+    },
+    "Acts": {
+      "ar": {
+        "short": "أع",
+        "full": "أعمال الرسل"
+      },
+      "ru": {
+        "short": "Деян",
+        "full": "Деяния святых Апостолов"
+      },
+      "tl": {
+        "short": "Gawa",
+        "full": "Mga Gawa"
+      },
+      "fr": {
+        "short": "Ac",
+        "full": "Actes des Apôtres"
+      },
+      "it": {
+        "short": "At",
+        "full": "Atti degli Apostoli"
+      }
+    },
+    "Amos": {
+      "ar": {
+        "short": "عا",
+        "full": "عاموس"
+      },
+      "ru": {
+        "short": "Ам",
+        "full": "Амоса"
+      },
+      "tl": {
+        "short": "Am",
+        "full": "Amos"
+      },
+      "fr": {
+        "short": "Am",
+        "full": "Amos"
+      },
+      "it": {
+        "short": "Am",
+        "full": "Amos"
+      }
+    },
+    "Baruch": {
+      "ar": {
+        "short": "با",
+        "full": "باروك"
+      },
+      "ru": {
+        "short": "Вар",
+        "full": "Варуха"
+      },
+      "tl": {
+        "short": "Bar",
+        "full": "Baruc"
+      },
+      "fr": {
+        "short": "Ba",
+        "full": "Baruch"
+      },
+      "it": {
+        "short": "Bar",
+        "full": "Baruc"
+      }
+    },
+    "Colossians": {
+      "ar": {
+        "short": "قول",
+        "full": "قولسي"
+      },
+      "ru": {
+        "short": "Кол",
+        "full": "Колоссянам"
+      },
+      "tl": {
+        "short": "Col",
+        "full": "Colosas"
+      },
+      "fr": {
+        "short": "Col",
+        "full": "Colossiens"
+      },
+      "it": {
+        "short": "Col",
+        "full": "Lettera ai Colossesi"
+      }
+    },
+    "Daniel": {
+      "ar": {
+        "short": "دا",
+        "full": "دانيال"
+      },
+      "ru": {
+        "short": "Дан",
+        "full": "Даниила"
+      },
+      "tl": {
+        "short": "Dan",
+        "full": "Daniel"
+      },
+      "fr": {
+        "short": "Dn",
+        "full": "Daniel"
+      },
+      "it": {
+        "short": "Dn",
+        "full": "Daniele"
+      }
+    },
+    "Deuteronomy": {
+      "ar": {
+        "short": "تث",
+        "full": "تثنية الاشتراع"
+      },
+      "ru": {
+        "short": "Втор",
+        "full": "Второзаконие"
+      },
+      "tl": {
+        "short": "Deut",
+        "full": "Deuteronomio"
+      },
+      "fr": {
+        "short": "Dt",
+        "full": "Deutéronome"
+      },
+      "it": {
+        "short": "Dt",
+        "full": "Deuteronomio"
+      }
+    },
+    "Ecclesiastes": {
+      "ar": {
+        "short": "جا",
+        "full": "الجامعة"
+      },
+      "ru": {
+        "short": "Еккл",
+        "full": "Екклезиаста"
+      },
+      "tl": {
+        "short": "Mang",
+        "full": "Mangangaral"
+      },
+      "fr": {
+        "short": "Qo",
+        "full": "Ecclésiaste"
+      },
+      "it": {
+        "short": "Qo",
+        "full": "Ecclesiaste (Qoelet)"
+      }
+    },
+    "Ephesians": {
+      "ar": {
+        "short": "أف",
+        "full": "أفسس"
+      },
+      "ru": {
+        "short": "Еф",
+        "full": "Ефесянам"
+      },
+      "tl": {
+        "short": "Ef",
+        "full": "Efeso"
+      },
+      "fr": {
+        "short": "Ep",
+        "full": "Éphésiens"
+      },
+      "it": {
+        "short": "Ef",
+        "full": "Lettera agli Efesini"
+      }
+    },
+    "Esther": {
+      "ar": {
+        "short": "أس",
+        "full": "أستير"
+      },
+      "ru": {
+        "short": "Есф",
+        "full": "Есфирь"
+      },
+      "tl": {
+        "short": "Est",
+        "full": "Ester"
+      },
+      "fr": {
+        "short": "Est",
+        "full": "Esther"
+      },
+      "it": {
+        "short": "Est",
+        "full": "Ester"
+      }
+    },
+    "Exodus": {
+      "ar": {
+        "short": "خر",
+        "full": "الخروج"
+      },
+      "ru": {
+        "short": "Исх",
+        "full": "Исход"
+      },
+      "tl": {
+        "short": "Ex",
+        "full": "Exodo"
+      },
+      "fr": {
+        "short": "Ex",
+        "full": "Exode"
+      },
+      "it": {
+        "short": "Es",
+        "full": "Esodo"
+      }
+    },
+    "Ezekiel": {
+      "ar": {
+        "short": "حز",
+        "full": "حزقيال"
+      },
+      "ru": {
+        "short": "Иез",
+        "full": "Иезекииля"
+      },
+      "tl": {
+        "short": "Eze",
+        "full": "Ezekiel"
+      },
+      "fr": {
+        "short": "Ez",
+        "full": "Ézékiel"
+      },
+      "it": {
+        "short": "Ez",
+        "full": "Ezechiele"
+      }
+    },
+    "Ezra": {
+      "ar": {
+        "short": "عز",
+        "full": "عزرا"
+      },
+      "ru": {
+        "short": "1 Езд",
+        "full": "1 Ездры"
+      },
+      "tl": {
+        "short": "Ezr",
+        "full": "Ezra"
+      },
+      "fr": {
+        "short": "Esd",
+        "full": "Esdras"
+      },
+      "it": {
+        "short": "Esd",
+        "full": "Esdra"
+      }
+    },
+    "Galatians": {
+      "ar": {
+        "short": "غل",
+        "full": "غلاطية"
+      },
+      "ru": {
+        "short": "Гал",
+        "full": "Галатам"
+      },
+      "tl": {
+        "short": "Gal",
+        "full": "Galacia"
+      },
+      "fr": {
+        "short": "Ga",
+        "full": "Galates"
+      },
+      "it": {
+        "short": "Gal",
+        "full": "Lettera ai Galati"
+      }
+    },
+    "Genesis": {
+      "ar": {
+        "short": "تك",
+        "full": "التكوين"
+      },
+      "ru": {
+        "short": "Быт",
+        "full": "Бытие"
+      },
+      "tl": {
+        "short": "Gen",
+        "full": "Genesis"
+      },
+      "fr": {
+        "short": "Gn",
+        "full": "Genèse"
+      },
+      "it": {
+        "short": "Gen",
+        "full": "Genesi"
+      }
+    },
+    "Habakkuk": {
+      "ar": {
+        "short": "حب",
+        "full": "حبقوق"
+      },
+      "ru": {
+        "short": "Авв",
+        "full": "Аввакума"
+      },
+      "tl": {
+        "short": "Hab",
+        "full": "Habakuk"
+      },
+      "fr": {
+        "short": "Ha",
+        "full": "Habacuc"
+      },
+      "it": {
+        "short": "Ab",
+        "full": "Abacuc"
+      }
+    },
+    "Haggai": {
+      "ar": {
+        "short": "حج",
+        "full": "حجاي"
+      },
+      "ru": {
+        "short": "Агг",
+        "full": "Аггея"
+      },
+      "tl": {
+        "short": "Hag",
+        "full": "Hagai"
+      },
+      "fr": {
+        "short": "Ag",
+        "full": "Aggée"
+      },
+      "it": {
+        "short": "Ag",
+        "full": "Aggeo"
+      }
+    },
+    "Hebrews": {
+      "ar": {
+        "short": "عب",
+        "full": "العبرانيين"
+      },
+      "ru": {
+        "short": "Евр",
+        "full": "Евреям"
+      },
+      "tl": {
+        "short": "Heb",
+        "full": "Mga Hebreo"
+      },
+      "fr": {
+        "short": "He",
+        "full": "Hébreux"
+      },
+      "it": {
+        "short": "Eb",
+        "full": "Lettera agli Ebrei"
+      }
+    },
+    "Hosea": {
+      "ar": {
+        "short": "هو",
+        "full": "هوشع"
+      },
+      "ru": {
+        "short": "Ос",
+        "full": "Осии"
+      },
+      "tl": {
+        "short": "Os",
+        "full": "Hosea"
+      },
+      "fr": {
+        "short": "Os",
+        "full": "Osée"
+      },
+      "it": {
+        "short": "Os",
+        "full": "Osea"
+      }
+    },
+    "Isaiah": {
+      "ar": {
+        "short": "أش",
+        "full": "أشعيا"
+      },
+      "ru": {
+        "short": "Ис",
+        "full": "Исаии"
+      },
+      "tl": {
+        "short": "Isa",
+        "full": "Isaias"
+      },
+      "fr": {
+        "short": "Is",
+        "full": "Isaïe"
+      },
+      "it": {
+        "short": "Is",
+        "full": "Isaia"
+      }
+    },
+    "James": {
+      "ar": {
+        "short": "يع",
+        "full": "يعقوب"
+      },
+      "ru": {
+        "short": "Иак",
+        "full": "Иакова"
+      },
+      "tl": {
+        "short": "Sant",
+        "full": "Santiago"
+      },
+      "fr": {
+        "short": "Jc",
+        "full": "Jacques"
+      },
+      "it": {
+        "short": "Gc",
+        "full": "Lettera di Giacomo"
+      }
+    },
+    "Jeremiah": {
+      "ar": {
+        "short": "إر",
+        "full": "إرميا"
+      },
+      "ru": {
+        "short": "Иер",
+        "full": "Иеремии"
+      },
+      "tl": {
+        "short": "Jer",
+        "full": "Jeremias"
+      },
+      "fr": {
+        "short": "Jr",
+        "full": "Jérémie"
+      },
+      "it": {
+        "short": "Ger",
+        "full": "Geremia"
+      }
+    },
+    "Job": {
+      "ar": {
+        "short": "أي",
+        "full": "أيوب"
+      },
+      "ru": {
+        "short": "Иов",
+        "full": "Иова"
+      },
+      "tl": {
+        "short": "Job",
+        "full": "Job"
+      },
+      "fr": {
+        "short": "Jb",
+        "full": "Job"
+      },
+      "it": {
+        "short": "Gb",
+        "full": "Giobbe"
+      }
+    },
+    "Joel": {
+      "ar": {
+        "short": "يؤ",
+        "full": "يوئيل"
+      },
+      "ru": {
+        "short": "Иоил",
+        "full": "Иоиля"
+      },
+      "tl": {
+        "short": "Jl",
+        "full": "Joel"
+      },
+      "fr": {
+        "short": "Jl",
+        "full": "Joël"
+      },
+      "it": {
+        "short": "Gl",
+        "full": "Gioele"
+      }
+    },
+    "John": {
+      "ar": {
+        "short": "يو",
+        "full": "يوحنا"
+      },
+      "ru": {
+        "short": "Ин",
+        "full": "От Иоанна"
+      },
+      "tl": {
+        "short": "Jn",
+        "full": "Juan"
+      },
+      "fr": {
+        "short": "Jn",
+        "full": "Jean"
+      },
+      "it": {
+        "short": "Gv",
+        "full": "Vangelo secondo Giovanni"
+      }
+    },
+    "Jonah": {
+      "ar": {
+        "short": "يون",
+        "full": "يونان"
+      },
+      "ru": {
+        "short": "Ион",
+        "full": "Ионы"
+      },
+      "tl": {
+        "short": "Jon",
+        "full": "Jonas"
+      },
+      "fr": {
+        "short": "Jon",
+        "full": "Jonas"
+      },
+      "it": {
+        "short": "Gio",
+        "full": "Giona"
+      }
+    },
+    "Joshua": {
+      "ar": {
+        "short": "يش",
+        "full": "يشوع"
+      },
+      "ru": {
+        "short": "Нав",
+        "full": "Иисуса Навина"
+      },
+      "tl": {
+        "short": "Jos",
+        "full": "Josue"
+      },
+      "fr": {
+        "short": "Jos",
+        "full": "Josué"
+      },
+      "it": {
+        "short": "Gs",
+        "full": "Giosuè"
+      }
+    },
+    "Jude": {
+      "ar": {
+        "short": "يهوذا",
+        "full": "يهوذا"
+      },
+      "ru": {
+        "short": "Иуд",
+        "full": "Иуды"
+      },
+      "tl": {
+        "short": "Jud",
+        "full": "Judas"
+      },
+      "fr": {
+        "short": "Jude",
+        "full": "Jude"
+      },
+      "it": {
+        "short": "Gd",
+        "full": "Lettera di Giuda"
+      }
+    },
+    "Judges": {
+      "ar": {
+        "short": "قض",
+        "full": "القضاة"
+      },
+      "ru": {
+        "short": "Суд",
+        "full": "Судей Израилевых"
+      },
+      "tl": {
+        "short": "Huk",
+        "full": "Mga Hukom"
+      },
+      "fr": {
+        "short": "Jg",
+        "full": "Juges"
+      },
+      "it": {
+        "short": "Gdc",
+        "full": "Giudici"
+      }
+    },
+    "Judith": {
+      "ar": {
+        "short": "يهو",
+        "full": "يهوديت"
+      },
+      "ru": {
+        "short": "Иудиф",
+        "full": "Иудифь"
+      },
+      "tl": {
+        "short": "Jdt",
+        "full": "Judith"
+      },
+      "fr": {
+        "short": "Jdt",
+        "full": "Judith"
+      },
+      "it": {
+        "short": "Gdt",
+        "full": "Giuditta"
+      }
+    },
+    "Lamentations": {
+      "ar": {
+        "short": "مرا",
+        "full": "المراثي"
+      },
+      "ru": {
+        "short": "Плач",
+        "full": "Плач Иеремии"
+      },
+      "tl": {
+        "short": "Pan",
+        "full": "Panaghoy"
+      },
+      "fr": {
+        "short": "Lm",
+        "full": "Lamentations de Jérémie"
+      },
+      "it": {
+        "short": "Lam",
+        "full": "Lamentazioni"
+      }
+    },
+    "Leviticus": {
+      "ar": {
+        "short": "أح",
+        "full": "الأحبار"
+      },
+      "ru": {
+        "short": "Лев",
+        "full": "Левит"
+      },
+      "tl": {
+        "short": "Lev",
+        "full": "Levitico"
+      },
+      "fr": {
+        "short": "Lv",
+        "full": "Lévitique"
+      },
+      "it": {
+        "short": "Lv",
+        "full": "Levitico"
+      }
+    },
+    "Luke": {
+      "ar": {
+        "short": "لو",
+        "full": "لوقا"
+      },
+      "ru": {
+        "short": "Лк",
+        "full": "От Луки"
+      },
+      "tl": {
+        "short": "Lc",
+        "full": "Lucas"
+      },
+      "fr": {
+        "short": "Lc",
+        "full": "Luc"
+      },
+      "it": {
+        "short": "Lc",
+        "full": "Vangelo secondo Luca"
+      }
+    },
+    "Malachi": {
+      "ar": {
+        "short": "مل",
+        "full": "ملاخي"
+      },
+      "ru": {
+        "short": "Мал",
+        "full": "Малахии"
+      },
+      "tl": {
+        "short": "Mal",
+        "full": "Malakias"
+      },
+      "fr": {
+        "short": "Ml",
+        "full": "Malachie"
+      },
+      "it": {
+        "short": "Ml",
+        "full": "Malachia"
+      }
+    },
+    "Mark": {
+      "ar": {
+        "short": "مر",
+        "full": "مرقس"
+      },
+      "ru": {
+        "short": "Мк",
+        "full": "От Марка"
+      },
+      "tl": {
+        "short": "Mc",
+        "full": "Marcos"
+      },
+      "fr": {
+        "short": "Mc",
+        "full": "Marc"
+      },
+      "it": {
+        "short": "Mc",
+        "full": "Vangelo secondo Marco"
+      }
+    },
+    "Matthew": {
+      "ar": {
+        "short": "مت",
+        "full": "متى"
+      },
+      "ru": {
+        "short": "Мф",
+        "full": "От Матфея"
+      },
+      "tl": {
+        "short": "Mt",
+        "full": "Mateo"
+      },
+      "fr": {
+        "short": "Mt",
+        "full": "Matthieu"
+      },
+      "it": {
+        "short": "Mt",
+        "full": "Vangelo secondo Matteo"
+      }
+    },
+    "Micah": {
+      "ar": {
+        "short": "مي",
+        "full": "ميخا"
+      },
+      "ru": {
+        "short": "Мих",
+        "full": "Михея"
+      },
+      "tl": {
+        "short": "Mik",
+        "full": "Mikas"
+      },
+      "fr": {
+        "short": "Mi",
+        "full": "Michée"
+      },
+      "it": {
+        "short": "Mi",
+        "full": "Michea"
+      }
+    },
+    "Nahum": {
+      "ar": {
+        "short": "نح",
+        "full": "نحوم"
+      },
+      "ru": {
+        "short": "Наум",
+        "full": "Наума"
+      },
+      "tl": {
+        "short": "Nah",
+        "full": "Nahum"
+      },
+      "fr": {
+        "short": "Na",
+        "full": "Nahum"
+      },
+      "it": {
+        "short": "Na",
+        "full": "Naum"
+      }
+    },
+    "Nehemiah": {
+      "ar": {
+        "short": "نحـم",
+        "full": "نحميا"
+      },
+      "ru": {
+        "short": "Неем",
+        "full": "Неемии"
+      },
+      "tl": {
+        "short": "Neh",
+        "full": "Nehemias"
+      },
+      "fr": {
+        "short": "Ne",
+        "full": "Néhémie"
+      },
+      "it": {
+        "short": "Ne",
+        "full": "Neemia"
+      }
+    },
+    "Numbers": {
+      "ar": {
+        "short": "عد",
+        "full": "العدد"
+      },
+      "ru": {
+        "short": "Чис",
+        "full": "Числа"
+      },
+      "tl": {
+        "short": "Bil",
+        "full": "Mga Bilang"
+      },
+      "fr": {
+        "short": "Nb",
+        "full": "Nombres"
+      },
+      "it": {
+        "short": "Nm",
+        "full": "Numeri"
+      }
+    },
+    "Obadiah": {
+      "ar": {
+        "short": "عو",
+        "full": "عوبديا"
+      },
+      "ru": {
+        "short": "Авд",
+        "full": "Авдия"
+      },
+      "tl": {
+        "short": "Ob",
+        "full": "Obadias"
+      },
+      "fr": {
+        "short": "Ab",
+        "full": "Abdias"
+      },
+      "it": {
+        "short": "Abd",
+        "full": "Abdia"
+      }
+    },
+    "Philemon": {
+      "ar": {
+        "short": "فلم",
+        "full": "فيلمون"
+      },
+      "ru": {
+        "short": "Флм",
+        "full": "Филимону"
+      },
+      "tl": {
+        "short": "Flm",
+        "full": "Filemon"
+      },
+      "fr": {
+        "short": "Phm",
+        "full": "Philémon"
+      },
+      "it": {
+        "short": "Fm",
+        "full": "Lettera a Filemone"
+      }
+    },
+    "Philippians": {
+      "ar": {
+        "short": "فل",
+        "full": "فيلبي"
+      },
+      "ru": {
+        "short": "Флп",
+        "full": "Филиппийцам"
+      },
+      "tl": {
+        "short": "Fil",
+        "full": "Filipos"
+      },
+      "fr": {
+        "short": "Ph",
+        "full": "Philippiens"
+      },
+      "it": {
+        "short": "Fil",
+        "full": "Lettera ai Filippesi"
+      }
+    },
+    "Proverbs": {
+      "ar": {
+        "short": "أم",
+        "full": "الأمثال"
+      },
+      "ru": {
+        "short": "Притч",
+        "full": "Притчей Соломоновых"
+      },
+      "tl": {
+        "short": "Kaw",
+        "full": "Mga Kawikaan"
+      },
+      "fr": {
+        "short": "Pr",
+        "full": "Proverbes"
+      },
+      "it": {
+        "short": "Pr",
+        "full": "Proverbi"
+      }
+    },
+    "Psalm": {
+      "ar": {
+        "short": "مز",
+        "full": "المزامير"
+      },
+      "ru": {
+        "short": "Пс",
+        "full": "Псалтирь"
+      },
+      "tl": {
+        "short": "Aw",
+        "full": "Mga Awit"
+      },
+      "fr": {
+        "short": "Ps",
+        "full": "Psaumes"
+      },
+      "it": {
+        "short": "Sal",
+        "full": "Salmi"
+      }
+    },
+    "Revelation": {
+      "ar": {
+        "short": "رؤ",
+        "full": "رؤيا يوحنا"
+      },
+      "ru": {
+        "short": "Откр",
+        "full": "Откровение Иоанна Богослова"
+      },
+      "tl": {
+        "short": "Pah",
+        "full": "Pahayag"
+      },
+      "fr": {
+        "short": "Ap",
+        "full": "Apocalypse"
+      },
+      "it": {
+        "short": "Ap",
+        "full": "Apocalisse"
+      }
+    },
+    "Romans": {
+      "ar": {
+        "short": "رو",
+        "full": "رومة"
+      },
+      "ru": {
+        "short": "Рим",
+        "full": "Римлянам"
+      },
+      "tl": {
+        "short": "Rom",
+        "full": "Roma"
+      },
+      "fr": {
+        "short": "Rm",
+        "full": "Romains"
+      },
+      "it": {
+        "short": "Rm",
+        "full": "Lettera ai Romani"
+      }
+    },
+    "Ruth": {
+      "ar": {
+        "short": "را",
+        "full": "راعوت"
+      },
+      "ru": {
+        "short": "Руф",
+        "full": "Руфь"
+      },
+      "tl": {
+        "short": "Rt",
+        "full": "Ruth"
+      },
+      "fr": {
+        "short": "Rt",
+        "full": "Ruth"
+      },
+      "it": {
+        "short": "Rt",
+        "full": "Rut"
+      }
+    },
+    "Sirach": {
+      "ar": {
+        "short": "سي",
+        "full": "يشوع بن سيراخ"
+      },
+      "ru": {
+        "short": "Сир",
+        "full": "Премудрости Иисуса, сына Сирахова"
+      },
+      "tl": {
+        "short": "Sir",
+        "full": "Karunungan ni Jesus na Anak ni Sirac"
+      },
+      "fr": {
+        "short": "Si",
+        "full": "Ben Sira le Sage"
+      },
+      "it": {
+        "short": "Sir",
+        "full": "Siracide (Ecclesiastico)"
+      }
+    },
+    "Song of Songs": {
+      "ar": {
+        "short": "نش",
+        "full": "نشيد الأناشيد"
+      },
+      "ru": {
+        "short": "Песн",
+        "full": "Песни Песней Соломона"
+      },
+      "tl": {
+        "short": "Awit",
+        "full": "Awit ni Solomon"
+      },
+      "fr": {
+        "short": "Ct",
+        "full": "Cantique des cantiques"
+      },
+      "it": {
+        "short": "Ct",
+        "full": "Cantico dei Cantici"
+      }
+    },
+    "Titus": {
+      "ar": {
+        "short": "طيط",
+        "full": "طيطس"
+      },
+      "ru": {
+        "short": "Тит",
+        "full": "Титу"
+      },
+      "tl": {
+        "short": "Tit",
+        "full": "Tito"
+      },
+      "fr": {
+        "short": "Tt",
+        "full": "Tite"
+      },
+      "it": {
+        "short": "Tt",
+        "full": "Lettera a Tito"
+      }
+    },
+    "Tobit": {
+      "ar": {
+        "short": "طو",
+        "full": "طوبيا"
+      },
+      "ru": {
+        "short": "Тов",
+        "full": "Товит"
+      },
+      "tl": {
+        "short": "Tob",
+        "full": "Tobit"
+      },
+      "fr": {
+        "short": "Tb",
+        "full": "Tobie"
+      },
+      "it": {
+        "short": "Tb",
+        "full": "Tobia"
+      }
+    },
+    "Wisdom": {
+      "ar": {
+        "short": "حك",
+        "full": "الحكمة"
+      },
+      "ru": {
+        "short": "Прем",
+        "full": "Премудрости Соломона"
+      },
+      "tl": {
+        "short": "Kar",
+        "full": "Karunungan ni Solomon"
+      },
+      "fr": {
+        "short": "Sg",
+        "full": "Sagesse"
+      },
+      "it": {
+        "short": "Sap",
+        "full": "Sapienza"
+      }
+    },
+    "Zechariah": {
+      "ar": {
+        "short": "زك",
+        "full": "زكريا"
+      },
+      "ru": {
+        "short": "Зах",
+        "full": "Захарии"
+      },
+      "tl": {
+        "short": "Zac",
+        "full": "Zacarias"
+      },
+      "fr": {
+        "short": "Za",
+        "full": "Zacharie"
+      },
+      "it": {
+        "short": "Zc",
+        "full": "Zaccaria"
+      }
+    },
+    "Zephaniah": {
+      "ar": {
+        "short": "صف",
+        "full": "صفنيا"
+      },
+      "ru": {
+        "short": "Соф",
+        "full": "Софонии"
+      },
+      "tl": {
+        "short": "Zef",
+        "full": "Zefanias"
+      },
+      "fr": {
+        "short": "So",
+        "full": "Sophonie"
+      },
+      "it": {
+        "short": "Sof",
+        "full": "Sofonia"
+      }
+    }
+  }
+}

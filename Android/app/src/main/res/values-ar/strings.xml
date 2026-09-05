@@ -1,0 +1,401 @@
+<resources>
+    <string name="app_name">"Prosary"</string>
+
+    <!-- Shared -->
+    <string name="common_back">"رجوع"</string>
+    <string name="common_cancel">"إلغاء"</string>
+    <string name="common_save">"حفظ"</string>
+    <string name="common_done">"تم"</string>
+    <string name="common_move_up">"انقل إلى أعلى"</string>
+    <string name="common_move_down">"انقل إلى أسفل"</string>
+    <string name="common_reset">"إعادة الضبط"</string>
+    <string name="common_ok">"موافق"</string>
+    <string name="common_retry">"أعد المحاولة"</string>
+    <string name="common_pray">"صلّ"</string>
+    <string name="common_next">"التالي"</string>
+    <string name="common_finish">"إنهاء"</string>
+    <string name="common_install">"تثبيت"</string>
+    <string name="common_update">"تحديث"</string>
+    <string name="common_installed">"مثبّتة"</string>
+    <string name="common_settings">"الإعدادات"</string>
+    <string name="common_about">"حول التطبيق"</string>
+
+    <!-- Bottom tabs -->
+    <string name="tab_pray">"صلّ"</string>
+    <string name="tab_browse">"تصفّح"</string>
+    <string name="tab_categories">"الفئات"</string>
+    <string name="tab_search">"بحث"</string>
+
+    <!-- Home -->
+    <string name="home_today">"اليوم: %1$s"</string>
+    <string name="home_pope_intention">"نية البابا: %1$s"</string>
+    <string name="home_tap_to_set_up">"اضغط للإعداد"</string>
+    <string name="home_tap_to_pray">"اضغط للصلاة"</string>
+    <string name="home_my_favorites">"مفضلتي"</string>
+    <string name="home_move_to_top">"انقل إلى الأعلى"</string>
+    <string name="home_edit_order">"عدّل الترتيب…"</string>
+    <string name="home_remove_from_pray">"أزل من «صلّ»"</string>
+    <string name="home_add_to_pray">"أضف إلى «صلّ»"</string>
+    <string name="home_saved_presets">"الإعدادات المحفوظة…"</string>
+    <string name="home_add_devotion">"أضف صلاة تعبّدية"</string>
+    <string name="multi_day_day_of">"اليوم %1$d من %2$d"</string>
+    <string name="multi_day_complete">"إكمال"</string>
+    <string name="multi_day_starts_today">"تبدأ اليوم"</string>
+    <string name="multi_day_starts_on">"تبدأ %1$s"</string>
+    <string name="multi_day_missed_title">"فاتك يوم"</string>
+    <string name="multi_day_pray_missed">"صلّ اليوم %1$d"</string>
+    <string name="multi_day_pray_today">"تابع مع اليوم %1$d"</string>
+    <string name="multi_day_start_over">"ابدأ من جديد"</string>
+    <string name="home_order_title">"ترتيب الصفحة الرئيسية"</string>
+    <string name="home_order_reorder">"أعد ترتيب %1$s"</string>
+
+    <!-- Settings -->
+    <string name="settings_default_prayer_language">"لغة الصلاة الافتراضية"</string>
+    <string name="settings_language_fallback_order">"ترتيب اللغات البديلة…"</string>
+    <string name="settings_language_fallback_order_title">"ترتيب اللغات البديلة"</string>
+    <string name="settings_language_fallback_order_footer">"عندما لا تتوفر صلاة، يجرب Prosary هذه اللغات بالترتيب من الأعلى إلى الأسفل، بعد اللغة المختارة وصيغتها الخاصة."</string>
+    <string name="settings_praying">"الصلاة"</string>
+    <string name="prayer_order_title">"ترتيب الصلوات"</string>
+    <string name="basic_prayers_title">"الصلوات الأساسية"</string>
+    <string name="settings_haptics_on_advance">"اهتزاز عند تغيير الخطوة"</string>
+    <string name="settings_auto_advance">"الانتقال التلقائي"</string>
+    <string name="auto_advance_off">"متوقف"</string>
+    <string name="auto_advance_every">"كل %1$d ثانية"</string>
+    <string name="settings_reset_home_order">"أعد ضبط ترتيب الصفحة الرئيسية"</string>
+    <string name="settings_today_header">"اليوم"</string>
+    <string name="settings_show_today_feast">"أظهر عيد اليوم"</string>
+    <string name="settings_show_today_intention">"أظهر نية البابا"</string>
+    <string name="settings_feast_calendar">"التقويم الطقسي"</string>
+    <string name="settings_feast_calendar_hint">"التقويم الذي يعرض قسم «اليوم» أعياده وقراءاته."</string>
+    <string name="settings_downloads">"التنزيلات"</string>
+    <string name="settings_installed_devotions">"الصلوات المثبّتة: %1$d"</string>
+    <string name="settings_clear_audio_cache">"امسح ذاكرة الصوت المؤقتة"</string>
+    <string name="settings_clear_audio_cache_size">"امسح ذاكرة الصوت المؤقتة (%1$s)"</string>
+    <string name="settings_remove_all">"أزل كل الصلوات المُنزّلة…"</string>
+    <string name="settings_downloads_footer">"لا تُحذف الصلوات المضمّنة أبدًا. إزالة صلاة مُنزّلة تزيلها أيضًا من المفضلة."</string>
+    <string name="settings_links">"الروابط"</string>
+    <string name="settings_repository_site">"مستودع المجتمع"</string>
+    <string name="settings_compose_site">"أنشئ صلاة تعبّدية"</string>
+    <string name="settings_privacy_policy">"سياسة الخصوصية"</string>
+    <string name="settings_remove_all_title">"هل تريد إزالة كل الصلوات المُنزّلة؟"</string>
+    <string name="settings_remove_all_message">"يمكن تنزيل صلوات المستودع مجددًا، لكن الملفات المستوردة يدويًا لا يمكن استعادتها منه."</string>
+    <string name="settings_remove_all_confirm">"إزالة الكل"</string>
+
+    <!-- Prayer kinds (models/PrayerKind.kt) -->
+    <string name="kind_rosary">"الوردية"</string>
+    <string name="kind_jesus_prayer">"صلاة يسوع"</string>
+    <string name="kind_devotion">"صلاة تعبّدية"</string>
+    <string name="kind_default_name_rosary">"ورديتي"</string>
+
+    <!-- Mystery groups and selection modes -->
+    <string name="mystery_group_joyful">"الفرحة"</string>
+    <string name="mystery_group_sorrowful">"الحزينة"</string>
+    <string name="mystery_group_glorious">"المجيدة"</string>
+    <string name="mystery_group_luminous">"النورانية"</string>
+    <string name="mode_todays_mysteries">"أسرار اليوم"</string>
+    <string name="mode_specific">"مجموعة محددة دائمًا"</string>
+    <string name="mode_fifteen">"الأسرار الخمسة عشر (الفرحة والحزينة والمجيدة)"</string>
+    <string name="mode_twenty">"الأسرار العشرون (المجموعات الأربع)"</string>
+    <string name="mode_single">"سرّ واحد فقط"</string>
+    <string name="summary_always">"دائمًا %1$s"</string>
+    <string name="summary_only">"%1$s فقط"</string>
+    <string name="summary_fifteen">"الأسرار الخمسة عشر"</string>
+    <string name="summary_twenty">"الأسرار العشرون"</string>
+
+    <!-- Eternal Rest placement -->
+    <string name="eternal_rest_none">"لا تُدرج"</string>
+    <string name="eternal_rest_each_decade">"بعد كل بيت"</string>
+    <string name="eternal_rest_at_end">"مرة واحدة قرب النهاية"</string>
+
+    <!-- Marian antiphon controls; named prayers use the selected prayer language at runtime. -->
+    <string name="antiphon_none">"لا شيء"</string>
+    <string name="antiphon_seasonal">"تلقائيًا بحسب الزمن الطقسي"</string>
+    <string name="antiphon_salve_regina">"Salve Regina"</string>
+    <string name="antiphon_alma_redemptoris">"Alma Redemptoris Mater"</string>
+    <string name="antiphon_ave_regina">"Ave Regina Caelorum"</string>
+    <string name="antiphon_regina_caeli">"Regina Caeli"</string>
+    <string name="antiphon_sub_tuum">"Sub Tuum Praesidium"</string>
+
+    <!-- Mystery artwork styles -->
+    <string name="image_style_classic">"لوحات كلاسيكية"</string>
+    <string name="image_style_eastern">"أيقونات شرقية"</string>
+
+    <!-- Language display -->
+    <string name="language_default_parenthesized">"الافتراضية (%1$s)"</string>
+    <string name="language_default_dash">"الافتراضية — %1$s"</string>
+
+    <!-- Rosary preset picker -->
+    <string name="rosary_title">"الوردية المقدسة"</string>
+    <string name="rosary_manage">"إدارة"</string>
+    <string name="rosary_default_preset">"الإعداد الافتراضي"</string>
+    <string name="rosary_custom">"مخصص"</string>
+    <string name="rosary_pray_any">"صلّ أي وردية"</string>
+    <string name="rosary_options">"خيارات الوردية"</string>
+    <string name="rosary_save_as_preset">"احفظ كإعداد"</string>
+    <string name="rosary_presets">"الإعدادات المحفوظة"</string>
+    <string name="rosary_preset_name">"اسم الإعداد"</string>
+    <string name="rosary_praying">"صلاة الوردية"</string>
+
+    <!-- Rosary options editor -->
+    <string name="ro_which_mysteries">"أي أسرار؟"</string>
+    <string name="ro_mysteries">"الأسرار"</string>
+    <string name="ro_specific_set">"مجموعة محددة"</string>
+    <string name="ro_which_mystery">"أي سرّ"</string>
+    <string name="ro_opening_section">"صلوات الافتتاح والأبيات"</string>
+    <string name="ro_apostles_creed">"قانون إيمان الرسل"</string>
+    <string name="ro_opening_prayers">"أبانا وثلاثة سلامات مريمية في البداية"</string>
+    <string name="ro_opening_fatima">"صلاة فاطمة بعد السلامات المريمية الثلاثة في البداية"</string>
+    <string name="ro_fatima">"صلاة فاطمة بعد كل بيت"</string>
+    <string name="ro_faithful_departed">"من أجل المؤمنين الراقدين"</string>
+    <string name="ro_display_section">"العرض"</string>
+    <string name="ro_mystery_artwork">"صور الأسرار"</string>
+    <string name="ro_presenter_mode">"وضع قائد الصلاة"</string>
+    <string name="ro_presenter_hint">"اجمع السلامات المريمية والمجد من كل بيت في شاشة واحدة، لتسهيل قيادة صلاة جماعية عن ظهر قلب."</string>
+    <string name="ro_closing_section">"الصلوات الختامية"</string>
+    <string name="ro_marian_antiphon">"الأنتيفونة المريمية"</string>
+    <string name="ro_closing_intentions">"النيات الختامية"</string>
+    <string name="ro_st_michael">"صلاة القديس ميخائيل"</string>
+    <string name="ro_final_sign">"إشارة الصليب الختامية"</string>
+
+    <!-- Favorites -->
+    <string name="favorites_title">"المفضلة"</string>
+    <string name="favorites_add_kind">"أضف %1$s"</string>
+    <string name="favorites_more_devotions">"المزيد من الصلوات"</string>
+    <string name="favorites_repository_badge">"المستودع"</string>
+    <string name="favorites_import">"استورد حزمة صلاة…"</string>
+    <string name="favorites_get_community">"احصل على صلوات المجتمع…"</string>
+    <string name="favorites_import_error_title">"تعذّر استيراد الصلاة"</string>
+    <string name="favorites_set_default">"اجعلها الافتراضية"</string>
+    <string name="favorites_edit_desc">"عدّل %1$s"</string>
+    <string name="favorites_delete_desc">"احذف %1$s"</string>
+    <string name="favorites_add_favorite_desc">"أضف %1$s إلى المفضلة"</string>
+    <string name="favorites_remove_favorite_desc">"أزل %1$s من المفضلة"</string>
+    <string name="favorites_add_to_favorites">"أضف إلى المفضلة"</string>
+    <string name="favorites_remove_from_favorites">"أزل من المفضلة"</string>
+    <string name="favorites_reminders_desc">"عدّل تذكيرات %1$s"</string>
+    <string name="favorites_export_desc">"صدّر %1$s للتعديل"</string>
+    <string name="favorites_remove_imported_desc">"أزل الصلاة المستوردة %1$s"</string>
+
+    <!-- Favorite editor -->
+    <string name="editor_new_favorite">"مفضلة جديدة"</string>
+    <string name="editor_edit_favorite">"عدّل المفضلة"</string>
+    <string name="editor_name">"الاسم"</string>
+    <string name="editor_name_hint">"مثلًا: وردية الصباح"</string>
+    <string name="editor_set_default_for">"اجعلها الافتراضية لـ %1$s"</string>
+    <string name="editor_prayer_language">"لغة الصلاة"</string>
+    <string name="editor_language">"اللغة"</string>
+    <string name="editor_target">"الهدف"</string>
+    <string name="editor_options">"الخيارات"</string>
+
+    <!-- Reminders -->
+    <string name="reminders_title">"التذكيرات"</string>
+    <string name="reminders_add">"أضف تذكيرًا"</string>
+    <string name="reminders_delete_desc">"احذف التذكير"</string>
+
+    <!-- Jesus Prayer -->
+    <string name="jp_title">"صلاة يسوع"</string>
+    <string name="jp_how_many">"كم مرة؟"</string>
+    <string name="jp_repetitions">"عدد التكرارات"</string>
+    <string name="jp_begin">"ابدأ"</string>
+    <string name="jp_unbounded">"بلا حد"</string>
+    <string name="jp_custom">"مخصص"</string>
+    <string name="jp_count_times">"%1$d×"</string>
+    <string name="jp_times_prefix">"× %1$d"</string>
+    <string name="jp_favorite_name">"صلاة يسوع %1$s (%2$s)"</string>
+
+    <!-- Prayer step flow -->
+    <string name="flow_back">"رجوع"</string>
+    <string name="flow_step_of">"%1$d من %2$d"</string>
+    <string name="flow_show_transliteration">"أظهر النقل الصوتي"</string>
+    <string name="flow_prayer_language">"لغة الصلاة"</string>
+    <string name="flow_app_setting">"إعداد التطبيق"</string>
+    <string name="flow_day">"اليوم"</string>
+    <string name="flow_choose_form">"اختر الصيغة"</string>
+    <string name="flow_resume_title">"هل تتابع هذه الصلاة؟"</string>
+    <string name="flow_resume_message">"توقفت عند الخطوة %1$d من %2$d."</string>
+    <string name="flow_resume_unbounded_message">"توقفت عند التكرار %1$d."</string>
+    <string name="flow_continue">"متابعة"</string>
+    <string name="flow_restart">"إعادة البدء"</string>
+    <string name="flow_previous_mystery">"السرّ السابق"</string>
+    <string name="flow_next_mystery">"السرّ التالي"</string>
+
+    <!-- Audio playback -->
+    <string name="audio_previous_chapter">"الفصل السابق"</string>
+    <string name="audio_next_chapter">"الفصل التالي"</string>
+    <string name="audio_play">"تشغيل"</string>
+    <string name="audio_pause">"إيقاف مؤقت"</string>
+
+    <!-- Rosary bead accessibility -->
+    <string name="bead_opening_cross">"إشارة الصليب الافتتاحية"</string>
+    <string name="bead_closing_cross">"إشارة الصليب الختامية"</string>
+    <string name="bead_marian_antiphon">"الأنتيفونة المريمية"</string>
+    <string name="bead_opening_prayers">"الصلوات الافتتاحية"</string>
+    <string name="bead_closing_prayers">"الصلوات الختامية"</string>
+    <string name="bead_decade_of">"البيت %1$d من %2$d"</string>
+    <string name="bead_hail_mary_of">"السلام الملائكي %1$d من %2$d"</string>
+    <string name="bead_antiphon_letter">"م"</string>
+    <string name="bead_progress">"تقدّم الوردية. %1$s"</string>
+
+    <!-- Repository browser -->
+    <string name="browse_title">"صلوات المجتمع"</string>
+    <string name="browse_search_label">"ابحث عن صلوات"</string>
+    <string name="browse_all">"الكل"</string>
+    <string name="browse_unreachable">"تعذّر الاتصال بالمستودع."</string>
+    <string name="browse_install_error_title">"تعذّر تثبيت الصلاة"</string>
+    <string name="browse_install_error_generic">"تعذّر تثبيت الصلاة."</string>
+    <string name="browse_no_match">"لا توجد صلوات مطابقة."</string>
+    <string name="browse_unsupported_catalog">"يستخدم المستودع تنسيقًا أحدث للفهرس. حدّث Prosary لتصفحه."</string>
+    <string name="pack_error_unreadable">"هذا الملف ليس حزمة .prosaryprayer قابلة للقراءة."</string>
+    <string name="pack_error_not_devotion">"هذه الحزمة لا تحتوي على صلاة."</string>
+    <string name="pack_error_duplicate">"صلاة باسم \"%1$s\" مثبّتة بالفعل."</string>
+
+    <!-- Search -->
+    <string name="search_hint">"صلوات وفئات ومؤلفون"</string>
+    <string name="search_on_device">"على هذا الجهاز"</string>
+    <string name="search_no_device_match">"لا توجد نتائج مطابقة على هذا الجهاز."</string>
+    <string name="search_from_community">"من المجتمع"</string>
+
+    <!-- About -->
+    <string name="about_title">"حول Prosary"</string>
+    <string name="about_tagline">"رفيق لصلاة الوردية وغيرها من الصلوات الكاثوليكية."</string>
+    <string name="about_typefaces">"الخطوط"</string>
+    <string name="about_typeface_frank_ruhl">" — رخصة SIL Open Font License 1.1 — الصلوات العبرية."</string>
+    <string name="about_typeface_shofar">" — رخصة GPL v2 مع استثناء تضمين الخطوط — الكتاب المقدس بالعبرية (مشروع Culmus، يورام غنات)."</string>
+    <string name="about_typeface_amiri">" — رخصة SIL Open Font License 1.1 — الصلوات العربية."</string>
+    <string name="about_typeface_scheherazade">" — رخصة SIL Open Font License 1.1 — الكتاب المقدس بالعربية (SIL)."</string>
+    <string name="about_typeface_cardo">" — رخصة SIL Open Font License 1.1 — الكتاب المقدس باللاتينية والإنجليزية (ديفيد ج. بيري)."</string>
+    <string name="about_typeface_noto_syriac">"، الغربي والشرقي — رخصة SIL Open Font License 1.1 — خطوط اختيارية للآرامية بالكتابة السريانية."</string>
+    <string name="about_typeface_optional_hebrew">" — رخصة SIL Open Font License 1.1 — خطوط اختيارية للصلوات والكتاب المقدس بالعبرية؛ يستخدم Roboto خط Noto Sans Hebrew بديلًا على Android."</string>
+    <string name="about_typeface_stam">" — رخصة GPL v2 مع استثناء تضمين الخطوط — خطوط اختيارية للكتاب المقدس بالعبرية (مشروع Culmus، يورام غنات)."</string>
+    <string name="about_typefaces_footer">"تستخدم الصلوات المكتوبة بالحروف اللاتينية خط النظام المذيّل، وهو غير مضمّن في التطبيق."</string>
+    <string name="about_mystery_illustrations">"صور الأسرار"</string>
+    <string name="about_mystery_intro">"صور الأسرار العشرين كلها لوحات كلاسيكية ضمن الملكية العامة (توفي فنانوها منذ أكثر من 100 عام)، ومصدرها ويكيميديا كومنز."</string>
+    <string-array name="about_mystery_attributions">
+        <item>"*البشارة* — فرا أنجيليكو (توفي 1455)"</item>
+        <item>"*الزيارة* — ماريوتو ألبرتينيللي (توفي 1515)"</item>
+        <item>"*الليلة المقدسة* — أنطونيو دا كوريجو (توفي 1534)"</item>
+        <item>"*التقدمة في الهيكل* — أندريا مانتينيا (توفي 1506)"</item>
+        <item>"*العثور على المسيح في الهيكل* — سيموني مارتيني (توفي 1344)"</item>
+        <item>"*معمودية المسيح* — بييرو ديلا فرانشيسكا (توفي 1492)"</item>
+        <item>"*عرس قانا* — باولو فيرونيزي (توفي 1588)"</item>
+        <item>"*العظة على الجبل* — كوزيمو روسيلي (توفي 1507)"</item>
+        <item>"*التجلّي* — رافائيل (توفي 1520)"</item>
+        <item>"*العشاء الأخير* — ليوناردو دا فينشي (توفي 1519)"</item>
+        <item>"*النزاع في بستان الزيتون* — أندريا مانتينيا (توفي 1506)"</item>
+        <item>"*جلد المسيح* — كارافاجيو (توفي 1610)"</item>
+        <item>"*التكليل بالشوك* — كارافاجيو (توفي 1610)"</item>
+        <item>"*المسيح حاملًا الصليب* — تيتيان (توفي 1576)"</item>
+        <item>"*المسيح مصلوبًا* — دييغو فيلاثكيث (توفي 1660)"</item>
+        <item>"*القيامة* — بييرو ديلا فرانشيسكا (توفي 1492)"</item>
+        <item>"*صعود المسيح* — رامبرانت (توفي 1669)"</item>
+        <item>"*العنصرة* — إل غريكو (توفي 1614)"</item>
+        <item>"*انتقال العذراء* — تيتيان (توفي 1576)"</item>
+        <item>"*تتويج العذراء* — دييغو فيلاثكيث (توفي 1660)"</item>
+    </string-array>
+    <string name="about_eastern_icons">"تُستخدم مجموعة صور الأسرار بالأسلوب الشرقي بموافقة إرسالية القديس غملائيل للكاثوليك الناطقين بالعبرية في الكنيسة الكاثوليكية الآرامية (السريانية)."</string>
+    <string name="about_other_images">"صور أخرى"</string>
+    <string-array name="about_other_image_attributions">
+        <item>"*المصلوب* — تشيمابويه (توفي 1302)."</item>
+        <item>"*مادونا كاوبر الصغيرة* — رافائيل (توفي 1520)."</item>
+        <item>"*الإيمان والرجاء والمحبة* — رافائيل، بريدلا مذبح باليوني (توفي 1520)."</item>
+        <item>"*يدان في الصلاة* — ألبريشت دورر (توفي 1528)."</item>
+        <item>"*الثالوث الأقدس* — مازاتشو (توفي 1428)."</item>
+        <item>"*المسيح في الجحيم* — فرا أنجيليكو (توفي 1455)."</item>
+        <item>"*ميخائيل* — غويدو ريني (توفي 1642)."</item>
+        <item>"*رأس المسيح* — رامبرانت (توفي 1669)."</item>
+    </string-array>
+    <string name="about_stations_illustrations">"صور مراحل درب الصليب"</string>
+    <string name="about_stations_fugel">"المراحل الأربع عشرة: غيبهارد فوغل (1863–1939)، Kreuzweg (1921)، كنيسة القديس أنطونيوس، باد زاولغاو — ملكية عامة؛ الصور الفوتوغرافية لأندرياس برايفكه، أتاحها للملكية العامة."</string>
+    <string name="about_stations_scriptural">"تضيف الصيغة الكتابية (القديس يوحنا بولس الثاني): قبلة يهوذا — جوتو (كنيسة سكروفيني، نحو 1305)؛ المسيح أمام رئيس الكهنة — خيريت فان هونتهورست (نحو 1617)، المعرض الوطني، لندن؛ إنكار القديس بطرس — رامبرانت (1660)، متحف ريكز؛ الطعن بالحربة — بيتر بول روبنز (1620)، المتحف الملكي للفنون الجميلة في أنتويرب — جميعها ملكية عامة. تستخدم بقية المشاهد صورًا مدرجة في مواضع أخرى من هذه الصفحة."</string>
+    <string name="about_stations_via_lucis">"مشاهد درب النور: التلاميذ عند القبر — أوجين بورنان (1898)، متحف أورسي؛ لا تلمسيني — فرا أنجيليكو (سان ماركو، نحو 1440)؛ الطريق إلى عمّاوس، والظهورات للرسل، وعند بحيرة طبرية، وفي الجليل — دوتشّو دي بونينسينيا (Maestà، 1308–1311)، سيينا؛ العشاء في عمّاوس (1601) وشك القديس توما (1601–1602) — كارافاجيو؛ تكليف المسيح لبطرس — رافائيل (نحو 1515)، المجموعة الملكية؛ العذراء في الصلاة — ساسوفيرّاتو (1640–1650)، المعرض الوطني، لندن — جميعها ملكية عامة. تستخدم بقية المشاهد صور أسرار المجد من الوردية."</string>
+    <string name="about_crown_illustration">"صورة الإكليل الفرنسيسكاني"</string>
+    <string name="about_crown_magi">"سجود المجوس: بارتولومي إستيبان موريو (نحو 1655–1660)، متحف توليدو للفنون — ملكية عامة. الأفراح الستة الأخرى تستخدم صور أسرار الوردية المذكورة أعلاه."</string>
+    <string name="about_sorrows_illustrations">"صور الأحزان السبعة"</string>
+    <string-array name="about_sorrows_attributions">
+        <item>"*نبوءة سمعان* — رامبرانت فان راين، نشيد تسبيح سمعان (1631)، ماورتشهاوس — ملكية عامة."</item>
+        <item>"*الهرب إلى مصر* — بارتولومي إستيبان موريو (نحو 1647–1650)، معهد ديترويت للفنون — ملكية عامة."</item>
+        <item>"*فقدان يسوع في الهيكل* — باولو فيرونيزي، المسيح بين العلماء (نحو 1560)، متحف برادو — ملكية عامة."</item>
+        <item>"*اللقاء في طريق الصليب* — رافائيل، Lo Spasimo (نحو 1514–1516)، متحف برادو — ملكية عامة."</item>
+        <item>"*الصلب* — هندريك تر بروغن، الصلب مع العذراء والقديس يوحنا (نحو 1625)، متحف متروبوليتان للفنون — CC0."</item>
+        <item>"*الإنزال عن الصليب* — بيتر بول روبنز (نحو 1612–1614)، كاتدرائية السيدة العذراء، أنتويرب — ملكية عامة."</item>
+        <item>"*دفن يسوع* — تيتيان، دفن المسيح (نحو 1520)، متحف اللوفر — ملكية عامة."</item>
+    </string-array>
+    <string name="about_mercy_illustration">"صورة الرحمة الإلهية"</string>
+    <string name="about_mercy_kazimirowski">"يوجينيوش كازيميروفسكي، الرحمة الإلهية («Jezu, ufam Tobie»، 1934)، مزار الرحمة الإلهية، فيلنيوس — الصورة الأصلية المرسومة بإرشاد القديسة فوستينا؛ ملكية عامة."</string>
+    <string name="about_jesus_prayer_illustration">"صورة صلاة يسوع"</string>
+    <string name="about_jesus_pantocrator">"المسيح ضابط الكل: أيقونة مرسومة بالشمع (القرن السادس)، دير القديسة كاترينا، جبل سيناء — أقدم أيقونة باقية للمسيح ضابط الكل، تكريمًا للتقليد الشرقي للصلاة؛ ملكية عامة."</string>
+    <string name="about_scripture_sources">"مصادر الكتاب المقدس"</string>
+    <string name="about_scripture_text">"تستخدم الاقتباسات الكتابية ترجمة دواي–ريمس (الإنجليزية)، والفولغاتا الكليمنتية (اللاتينية)، وترجمة فرانتس دليتش للعهد الجديد بالعبرية (من kirjasilta.net/ha-berit)، مع نصوص العهد القديم العبرية وفق النص الماسوري، والكتاب المقدس اليسوعي بالعربية (دار المشرق)، والترجمة السينودسية الروسية (1876)، وAng Dating Biblia (التاغالوغ، 1905)."</string>
+    <string name="about_calendar_data">"بيانات التقويم"</string>
+    <string name="about_calendar_data_body">"بيانات التقويم والقراءات: التقويم الروماني العام من مشروع LitCal‏ (litcal.johnromanodorazio.com)؛ تقويم 1962 وكتاب قراءاته من Missale Meum‏ (missalemeum.com)؛ التقويم السرياني الكاثوليكي، والعناوين العبرية الموثقة للتقويم الروماني العام، ومراجع القراءات الرومانية والسريانية، بإذن من Evangelizo.org — إنجيل اليوم، © Evangelizo.org؛ جُمِع التقويم الأوكراني الكاثوليكي في التطبيق من المصادر التقليدية، مع المراجع البيزنطية من تقويم السنة الطقسية الأوكرانية الكاثوليكية العام (الغريغوري) لدى Royal Doors‏ (royaldoors.net). أسماء أسفار الكتاب المقدس بالعبرية: Evangelizo HE ونيابة القديس يعقوب (catholic.co.il). أسماء إضافية للأعياد والقديسين بالعبرية: نيابة القديس يعقوب، والمركز المسيحي للإعلام (cmc-terrasanta.org)، وأخبار الفاتيكان (vaticannews.va)."</string>
+    <string name="multi_day_reminder_body">"اليوم %1$d من %2$d بانتظارك."</string>
+    <string name="multi_day_completed_title">"اكتملت الصلاة. هل تصلّي %1$s بعد ذلك؟"</string>
+    <string name="multi_day_pray_next">"صلّ %1$s"</string>
+    <string name="multi_day_not_now">"ليس الآن"</string>
+    <string name="settings_rite">"الطقس"</string>
+    <string name="settings_aramaic_sign_of_cross">"إشارة الصليب بالآرامية"</string>
+    <string name="settings_aramaic_sign_of_cross_form_a">"الصيغة أ"</string>
+    <string name="settings_aramaic_sign_of_cross_form_b">"الصيغة ب"</string>
+    <string name="settings_typography_header">"الخطوط"</string>
+    <string name="settings_syriac_typeface">"الآرامية السريانية"</string>
+    <string name="settings_hebrew_prayer_typeface">"الصلوات العبرية"</string>
+    <string name="settings_hebrew_scripture_typeface">"الكتاب المقدس بالعبرية"</string>
+    <string name="settings_typeface_default">"الافتراضي"</string>
+    <string name="settings_typeface_western_aramaic">"الآرامية الغربية"</string>
+    <string name="settings_typeface_eastern_aramaic">"الآرامية الشرقية"</string>
+    <string name="settings_typeface_david_libre">"David Libre"</string>
+    <string name="settings_typeface_sans_serif">"Roboto (البديل Noto)"</string>
+    <string name="settings_typeface_stam_ashkenaz">"Stam Ashkenaz"</string>
+    <string name="settings_typeface_stam_sefarad">"Stam Sefarad"</string>
+    <string name="settings_typeface_rashi">"راشي"</string>
+    <string name="settings_favorite_basic_prayers_first">"انقل الصلوات الأساسية المفضلة إلى الأعلى"</string>
+    <string name="basic_prayers_favorite">"أضف إلى المفضلة"</string>
+    <string name="basic_prayers_unfavorite">"أزل من المفضلة"</string>
+    <string name="home_today_show_english">"English"</string>
+    <string name="home_today_language">"لغة قسم «اليوم»"</string>
+    <string name="home_today_app_language">"لغة التطبيق"</string>
+    <string name="home_today_readings">"قراءات اليوم"</string>
+    <string name="home_today_full_citations">"أظهر المراجع الكاملة"</string>
+    <string name="home_today_compact_citations">"أظهر الاختصارات"</string>
+    <string name="home_pray_any_rosary">"صلّ أي وردية"</string>
+    <string name="home_add_rosary">"أضف وردية"</string>
+    <string name="home_add_jesus_prayer">"أضف صلاة يسوع"</string>
+    <string name="favorites_edit">"تعديل"</string>
+    <string name="favorites_reminders">"التذكيرات…"</string>
+    <string name="favorites_delete">"حذف"</string>
+    <string name="favorites_export">"صدّر للتعديل"</string>
+    <string name="favorites_remove_installed">"أزل الصلاة"</string>
+    <string name="about_prayer_texts">"نصوص الصلوات"</string>
+    <!-- The Vicariate line is a provisional attribution of fact, pending the exact
+         wording Fr. Piotr sends; replace it verbatim then, as the Exarchate's was. -->
+    <string name="about_prayer_texts_body">"نص مسبحة الرحمة الإلهية بالعبرية هو نص البطريركية اللاتينية في القدس، الذي وافق عليه البطريرك ميشيل صباح عام 2003. تُستخدم بعض الصلوات بالعبرية والآرامية بإذن من النائب البطريركي للجماعة الكاثوليكية الآرامية (السريانية). الصلوات العبرية هي نصوص نيابة القديس يعقوب للكاثوليك الناطقين بالعبرية، مأخوذة من كتاب صلواتها."</string>
+    <string name="home_today_rank_solemnity">"احتفال"</string>
+    <string name="home_today_rank_feast">"عيد"</string>
+    <string name="home_today_rank_memorial">"تذكار"</string>
+    <string name="home_today_rank_optional_memorial">"تذكار اختياري"</string>
+    <string name="home_today_rank_sunday">"الأحد"</string>
+    <string name="home_today_rank_great_feast">"عيد كبير"</string>
+    <string name="home_today_rank_holy_week">"الأسبوع المقدس"</string>
+    <string name="home_today_rank_fast">"صوم"</string>
+    <string name="home_today_rank_1st_class">"الدرجة الأولى"</string>
+    <string name="home_today_rank_2nd_class">"الدرجة الثانية"</string>
+    <string name="home_today_rank_3rd_class">"الدرجة الثالثة"</string>
+    <string name="category_marian">مريميّة</string>
+    <string name="category_daily">يوميّة</string>
+    <string name="category_mercy">الرحمة</string>
+    <string name="category_franciscan">فرنسيسكانيّة</string>
+    <string name="category_advent">زمن المجيء</string>
+    <string name="category_meditative">تأمليّة</string>
+    <string name="category_passion">آلام المسيح</string>
+    <string name="category_eastern">شرقيّة</string>
+    <string name="category_short">قصيرة</string>
+    <string name="category_easter">الفصح</string>
+    <string name="category_other">أخرى</string>
+    <string name="about_additional_sources">الكتاب المقدس بالفرنسية: كرامبون (1923)، ملك عام. الكتاب المقدس بالإيطالية: أنطونيو مارتيني؛ البيانات المنظّمة © Giovanni Novelli، بترخيص CC BY 4.0 ‏(parolaviva.art). الصلوات بالفرنسية والإيطالية: موجز التعليم المسيحي للفاتيكان. نيات البابا: شبكة صلاة البابا العالمية (2026–2027)؛ الترجمة العبرية من Prosary. النيات بالروسية (2026): ترجمة t.me/ihsovs، نشرتها رعية الحبل بلا دنس في تشيليابينسك (cc74.wordpress.com/rosary/).</string>
+    <string name="about_bible_book_sources">أسماء أسفار الكتاب المقدس: AELF، دار المشرق، الترجمة السينودسية الروسية (Azbyka)، جمعية الكتاب المقدس الفلبينية وParolaViva.</string>
+    <string name="about_prayer_network_link">شبكة صلاة البابا العالمية</string>
+    <string name="about_parolaviva_link">ParolaViva — CC BY 4.0</string>
+    <string name="about_additional_prayer_sources">مصادر إضافية للصلوات: أخبار الفاتيكان، ومزار فاطمة، وكاتدرائية نوتردام في باريس، وAELF، ومجلس الأساقفة الإيطالي (CEI).</string>
+    <string name="about_divine_mercy_source">مسبحة الرحمة الإلهية: رهبانية راهبات سيدة الرحمة.</string>
+    <string name="about_seven_sorrows_source">صلوات الأحزان السبعة: Notre Dame de Chrétienté وConfraternite.net.</string>
+</resources>

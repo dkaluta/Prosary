@@ -5,7 +5,12 @@
       "id": "traditional",
       "name": "Traditional",
       "nameByLanguage": {
-        "he": "מָסָרְתִּי"
+        "he": "מָסָרְתִּי",
+        "ar": "تقليدي",
+        "ru": "Традиционный",
+        "tl": "Tradisyonal",
+        "fr": "Traditionnel",
+        "it": "Tradizionale"
       },
       "steps": [
         {
@@ -20,7 +25,6 @@
         },
         {
           "titleKey": "station01Title",
-          "subtitle": "1st Station",
           "bodyKey": "station01Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_01_condemned_to_death",
@@ -29,11 +33,11 @@
             "he": true,
             "ru": true,
             "tl": true
-          }
+          },
+          "subtitleKey": "stationOrdinal01"
         },
         {
           "titleKey": "station02Title",
-          "subtitle": "2nd Station",
           "bodyKey": "station02Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_02_carries_his_cross",
@@ -42,11 +46,11 @@
             "he": true,
             "ru": true,
             "tl": true
-          }
+          },
+          "subtitleKey": "stationOrdinal02"
         },
         {
           "titleKey": "station03Title",
-          "subtitle": "3rd Station",
           "bodyKey": "station03Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_03_falls_first_time",
@@ -55,11 +59,11 @@
             "he": true,
             "ru": true,
             "tl": true
-          }
+          },
+          "subtitleKey": "stationOrdinal03"
         },
         {
           "titleKey": "station04Title",
-          "subtitle": "4th Station",
           "bodyKey": "station04Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_04_meets_his_mother",
@@ -68,11 +72,11 @@
             "he": true,
             "ru": true,
             "tl": true
-          }
+          },
+          "subtitleKey": "stationOrdinal04"
         },
         {
           "titleKey": "station05Title",
-          "subtitle": "5th Station",
           "bodyKey": "station05Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_05_simon_of_cyrene",
@@ -81,11 +85,11 @@
             "he": true,
             "ru": true,
             "tl": true
-          }
+          },
+          "subtitleKey": "stationOrdinal05"
         },
         {
           "titleKey": "station06Title",
-          "subtitle": "6th Station",
           "bodyKey": "station06Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_06_veronica",
@@ -94,11 +98,11 @@
             "he": true,
             "ru": true,
             "tl": true
-          }
+          },
+          "subtitleKey": "stationOrdinal06"
         },
         {
           "titleKey": "station07Title",
-          "subtitle": "7th Station",
           "bodyKey": "station07Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_07_falls_second_time",
@@ -107,11 +111,11 @@
             "he": true,
             "ru": true,
             "tl": true
-          }
+          },
+          "subtitleKey": "stationOrdinal07"
         },
         {
           "titleKey": "station08Title",
-          "subtitle": "8th Station",
           "bodyKey": "station08Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_08_women_of_jerusalem",
@@ -120,11 +124,11 @@
             "he": true,
             "ru": true,
             "tl": true
-          }
+          },
+          "subtitleKey": "stationOrdinal08"
         },
         {
           "titleKey": "station09Title",
-          "subtitle": "9th Station",
           "bodyKey": "station09Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_09_falls_third_time",
@@ -133,11 +137,11 @@
             "he": true,
             "ru": true,
             "tl": true
-          }
+          },
+          "subtitleKey": "stationOrdinal09"
         },
         {
           "titleKey": "station10Title",
-          "subtitle": "10th Station",
           "bodyKey": "station10Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_10_stripped_of_garments",
@@ -146,11 +150,11 @@
             "he": true,
             "ru": true,
             "tl": true
-          }
+          },
+          "subtitleKey": "stationOrdinal10"
         },
         {
           "titleKey": "station11Title",
-          "subtitle": "11th Station",
           "bodyKey": "station11Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_11_nailed_to_the_cross",
@@ -159,11 +163,11 @@
             "he": true,
             "ru": true,
             "tl": true
-          }
+          },
+          "subtitleKey": "stationOrdinal11"
         },
         {
           "titleKey": "station12Title",
-          "subtitle": "12th Station",
           "bodyKey": "station12Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_12_dies_on_the_cross",
@@ -172,11 +176,11 @@
             "he": true,
             "ru": true,
             "tl": true
-          }
+          },
+          "subtitleKey": "stationOrdinal12"
         },
         {
           "titleKey": "station13Title",
-          "subtitle": "13th Station",
           "bodyKey": "station13Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_13_taken_down_from_the_cross",
@@ -185,11 +189,11 @@
             "he": true,
             "ru": true,
             "tl": true
-          }
+          },
+          "subtitleKey": "stationOrdinal13"
         },
         {
           "titleKey": "station14Title",
-          "subtitle": "14th Station",
           "bodyKey": "station14Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_14_laid_in_the_tomb",
@@ -198,7 +202,8 @@
             "he": true,
             "ru": true,
             "tl": true
-          }
+          },
+          "subtitleKey": "stationOrdinal14"
         },
         {
           "titleKey": "stationsClosingPrayerTitle",
@@ -216,7 +221,12 @@
       "id": "scriptural",
       "name": "Scriptural (St. John Paul II)",
       "nameByLanguage": {
-        "he": "מִקְרָאִי (יוֹחָנָן פַּאוּלוּס הַשֵּׁנִי)"
+        "he": "מִקְרָאִי (יוֹחָנָן פַּאוּלוּס הַשֵּׁנִי)",
+        "ar": "كتابي (القديس يوحنا بولس الثاني)",
+        "ru": "Библейский (св. Иоанн Павел II)",
+        "tl": "Batay sa Kasulatan (San Juan Pablo II)",
+        "fr": "Biblique (saint Jean-Paul II)",
+        "it": "Biblica (san Giovanni Paolo II)"
       },
       "steps": [
         {
@@ -231,115 +241,115 @@
         },
         {
           "titleKey": "scriptural01Title",
-          "subtitle": "1st Station",
           "bodyKey": "scriptural01Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "sorrowful_01_agony_in_the_garden",
-          "isScripture": true
+          "isScripture": true,
+          "subtitleKey": "stationOrdinal01"
         },
         {
           "titleKey": "scriptural02Title",
-          "subtitle": "2nd Station",
           "bodyKey": "scriptural02Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "scriptural_02_kiss_of_judas",
-          "isScripture": true
+          "isScripture": true,
+          "subtitleKey": "stationOrdinal02"
         },
         {
           "titleKey": "scriptural03Title",
-          "subtitle": "3rd Station",
           "bodyKey": "scriptural03Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "scriptural_03_before_the_sanhedrin",
-          "isScripture": true
+          "isScripture": true,
+          "subtitleKey": "stationOrdinal03"
         },
         {
           "titleKey": "scriptural04Title",
-          "subtitle": "4th Station",
           "bodyKey": "scriptural04Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "scriptural_04_denial_of_peter",
-          "isScripture": true
+          "isScripture": true,
+          "subtitleKey": "stationOrdinal04"
         },
         {
           "titleKey": "scriptural05Title",
-          "subtitle": "5th Station",
           "bodyKey": "scriptural05Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_01_condemned_to_death",
-          "isScripture": true
+          "isScripture": true,
+          "subtitleKey": "stationOrdinal05"
         },
         {
           "titleKey": "scriptural06Title",
-          "subtitle": "6th Station",
           "bodyKey": "scriptural06Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "sorrowful_03_crowning_with_thorns",
-          "isScripture": true
+          "isScripture": true,
+          "subtitleKey": "stationOrdinal06"
         },
         {
           "titleKey": "scriptural07Title",
-          "subtitle": "7th Station",
           "bodyKey": "scriptural07Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_02_carries_his_cross",
-          "isScripture": true
+          "isScripture": true,
+          "subtitleKey": "stationOrdinal07"
         },
         {
           "titleKey": "scriptural08Title",
-          "subtitle": "8th Station",
           "bodyKey": "scriptural08Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_05_simon_of_cyrene",
-          "isScripture": true
+          "isScripture": true,
+          "subtitleKey": "stationOrdinal08"
         },
         {
           "titleKey": "scriptural09Title",
-          "subtitle": "9th Station",
           "bodyKey": "scriptural09Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_08_women_of_jerusalem",
-          "isScripture": true
+          "isScripture": true,
+          "subtitleKey": "stationOrdinal09"
         },
         {
           "titleKey": "scriptural10Title",
-          "subtitle": "10th Station",
           "bodyKey": "scriptural10Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_11_nailed_to_the_cross",
-          "isScripture": true
+          "isScripture": true,
+          "subtitleKey": "stationOrdinal10"
         },
         {
           "titleKey": "scriptural11Title",
-          "subtitle": "11th Station",
           "bodyKey": "scriptural11Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "scriptural_11_the_good_thief",
-          "isScripture": true
+          "isScripture": true,
+          "subtitleKey": "stationOrdinal11"
         },
         {
           "titleKey": "scriptural12Title",
-          "subtitle": "12th Station",
           "bodyKey": "scriptural12Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "seven_sorrows_05_crucifixion",
-          "isScripture": true
+          "isScripture": true,
+          "subtitleKey": "stationOrdinal12"
         },
         {
           "titleKey": "scriptural13Title",
-          "subtitle": "13th Station",
           "bodyKey": "scriptural13Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_12_dies_on_the_cross",
-          "isScripture": true
+          "isScripture": true,
+          "subtitleKey": "stationOrdinal13"
         },
         {
           "titleKey": "scriptural14Title",
-          "subtitle": "14th Station",
           "bodyKey": "scriptural14Body",
           "acclamationKey": "stationsAcclamation",
           "imageKey": "station_14_laid_in_the_tomb",
-          "isScripture": true
+          "isScripture": true,
+          "subtitleKey": "stationOrdinal14"
         },
         {
           "titleKey": "stationsClosingPrayerTitle",

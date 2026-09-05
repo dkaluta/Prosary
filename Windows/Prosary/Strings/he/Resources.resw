@@ -208,7 +208,7 @@
   <data name="AbtJpHeader.Text" xml:space="preserve"><value>איור תפילת ישוע</value></data>
   <data name="AbtJpBody.Text" xml:space="preserve"><value>המשיח כל־יכול: איקונת אנקאוסטיקה (המאה ה־6), מנזר הק׳ קתרינה, הר סיני — איקונת “המשיח הכל־יכול” העתיקה ביותר ששרדה, לכבוד מסורתה המזרחית של התפילה; רשות הציבור.</value></data>
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>מקורות כתבי הקודש</value></data>
-  <data name="AbtScriptureBody.Text" xml:space="preserve"><value>ציטוטי המקרא לקוחים מביבליית דואיי־רימס (אנגלית), הוולגאטה הקלמנטית (לטינית), תרגום דליטש לברית החדשה (מתוך kirjasilta.net/ha-berit) עם קטעי התנ״ך על פי נוסח המסורה, תרגום הישועים לביבליה לערבית (ביירות, 1880, נערך 1988), הביבליה הסינודלית ברוסית (1876) ו־Ang Dating Biblia (טאגאלוג, 1905) — כולם בנחלת הכלל.</value></data>
+  <data name="AbtScriptureBody.Text" xml:space="preserve"><value>ציטוטי המקרא לקוחים מביבליית דואיי־רימס (אנגלית), הוולגאטה הקלמנטית (לטינית), תרגום דליטש לברית החדשה (מתוך kirjasilta.net/ha-berit) עם קטעי התנ״ך על פי נוסח המסורה, תרגום הישועים לביבליה לערבית (Dar el-Machreq), הביבליה הסינודלית ברוסית (1876) ו־Ang Dating Biblia (טאגאלוג, 1905).</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>נתוני לוחות</value></data>
   <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>נתוני לוחות ומקראות: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 ומקראותיו מ־Missale Meum‏ (missalemeum.com); הלוח הסורי־קתולי, שמות עבריים ללוח הרומי הכללי ומראי המקום הרומיים והסוריים באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; הלוח האוקראיני־קתולי נערך באפליקציה מן המקורות המסורתיים, ומראי המקום הביזנטיים לקוחים מלוח השנה הליטורגית האוקראינית־קתולית (גרגוריאני) הציבורי של Royal Doors‏ (royaldoors.net). שמות ספרי המקרא בעברית: Evangelizo HE ונציגות יעקב הצדיק (catholic.co.il). שמות נוספים של חגים וקדושים בעברית: נציגות יעקב הצדיק, המרכז הנוצרי לתקשורת (cmc-terrasanta.org) וחדשות הוותיקן (vaticannews.va).</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>הרז הקודם</value></data>
@@ -361,4 +361,45 @@
   <data name="home_today_rank_1st_class" xml:space="preserve"><value>דרגה ראשונה</value></data>
   <data name="home_today_rank_2nd_class" xml:space="preserve"><value>דרגה שנייה</value></data>
   <data name="home_today_rank_3rd_class" xml:space="preserve"><value>דרגה שלישית</value></data>
+  <data name="today_language_app" xml:space="preserve"><value>שפת היישום</value></data>
+  <data name="HomeTodayLanguage.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>שפת היום</value></data>
+  <data name="BtnBack.Content" xml:space="preserve"><value>חזרה</value></data>
+  <data name="BtnFinish.Content" xml:space="preserve"><value>סיום</value></data>
+  <data name="PickerMysteries.Header" xml:space="preserve"><value>רזים</value></data>
+  <data name="PickerSpecificSet.Header" xml:space="preserve"><value>סדרה מסוימת</value></data>
+  <data name="PickerWhichMystery.Header" xml:space="preserve"><value>איזה רז</value></data>
+  <data name="EditorName.Header" xml:space="preserve"><value>שם</value></data>
+  <data name="EditorName.PlaceholderText" xml:space="preserve"><value>למשל, מחרוזת בוקר</value></data>
+  <data name="AudioPreviousChapter.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>הפרק הקודם</value></data>
+  <data name="AudioNextChapter.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>הפרק הבא</value></data>
+  <data name="AudioPlayPause.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>נגינה או השהיה</value></data>
+  <data name="BrowseRefresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>רענון</value></data>
+  <data name="import_unreadable" xml:space="preserve"><value>לא ניתן לקרוא את הקובץ כחבילת ‎.prosaryprayer.</value></data>
+  <data name="import_empty" xml:space="preserve"><value>החבילה אינה מכילה תפילה.</value></data>
+  <data name="import_duplicate" xml:space="preserve"><value>תפילה בשם "{0}" כבר מותקנת.</value></data>
+  <data name="browse_newer_catalog" xml:space="preserve"><value>המאגר משתמש בתבנית קטלוג חדשה יותר — יש לעדכן את Prosary כדי לעיין בו.</value></data>
+  <data name="reminder_rosary" xml:space="preserve"><value>הגיע הזמן להתפלל את המחרוזת.</value></data>
+  <data name="reminder_jesus" xml:space="preserve"><value>הגיע הזמן לתפילת ישוע.</value></data>
+  <data name="reminder_pray" xml:space="preserve"><value>הגיע הזמן להתפלל.</value></data>
+  <data name="preset_classic_rosary" xml:space="preserve"><value>מחרוזת קלאסית</value></data>
+  <data name="prayer_default_name" xml:space="preserve"><value>התפילה שלי</value></data>
+  <data name="AbtAdditionalSources.Text" xml:space="preserve"><value>כתבי הקודש בצרפתית: קראמפון (1923), נחלת הכלל. כתבי הקודש באיטלקית: אנטוניו מרטיני; נתונים מובנים © Giovanni Novelli, ברישיון CC BY 4.0 ‏(parolaviva.art). תפילות בצרפתית ובאיטלקית: תמצית הקטכיזם של הוותיקן. כוונות האפיפיור: רשת התפילה העולמית של האפיפיור (2026–2027); תרגום לעברית מאת Prosary. כוונות ברוסית (2026): תרגום מאת t.me/ihsovs, שפורסם באתר קהילת העיבור ללא חטא בצ׳ליאבינסק (cc74.wordpress.com/rosary/).</value></data>
+  <data name="AbtBookNameSources.Text" xml:space="preserve"><value>שמות ספרי המקרא: AELF, דאר אל־משרק, התרגום הסינודלי הרוסי (Azbyka), החברה לכתבי הקודש בפיליפינים ו־ParolaViva.</value></data>
+  <data name="AbtPopeNetworkLink.Content" xml:space="preserve"><value>רשת התפילה העולמית של האפיפיור</value></data>
+  <data name="AbtParolaVivaLink.Content" xml:space="preserve"><value>ParolaViva — CC BY 4.0</value></data>
+  <data name="category_marian" xml:space="preserve"><value>מרים</value></data>
+  <data name="category_daily" xml:space="preserve"><value>יום־יום</value></data>
+  <data name="category_mercy" xml:space="preserve"><value>רחמים</value></data>
+  <data name="category_franciscan" xml:space="preserve"><value>פרנציסקני</value></data>
+  <data name="category_advent" xml:space="preserve"><value>זמן הציפייה</value></data>
+  <data name="category_meditative" xml:space="preserve"><value>הגות</value></data>
+  <data name="category_passion" xml:space="preserve"><value>ייסורי המשיח</value></data>
+  <data name="category_eastern" xml:space="preserve"><value>מזרחי</value></data>
+  <data name="category_short" xml:space="preserve"><value>קצר</value></data>
+  <data name="category_easter" xml:space="preserve"><value>פסחא</value></data>
+  <data name="category_other" xml:space="preserve"><value>אחר</value></data>
+  <data name="AbtPrayerSources.Text" xml:space="preserve"><value>מקורות נוספים לתפילות: חדשות הוותיקן, מקדש פטימה, קתדרלת נוטרדאם בפריז, AELF וועידת ההגמונים האיטלקית (CEI).</value></data>
+  <data name="AbtDivineMercySources.Text" xml:space="preserve"><value>מחרוזת הרחמים: קהילת האחיות של גבירתנו של הרחמים.</value></data>
+  <data name="AppDescription" xml:space="preserve"><value>מלווה לתפילת מחרוזת התפילה, תפילת מלאך ה׳ ותפילת ישוע.</value></data>
+  <data name="AbtSevenSorrowsSources.Text" xml:space="preserve"><value>תפילות שבעת המכאובים: Notre Dame de Chrétienté ו־Confraternite.net.</value></data>
 </root>

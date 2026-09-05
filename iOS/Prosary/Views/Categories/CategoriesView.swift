@@ -38,7 +38,7 @@ struct CategoriesView: View {
     let _ = prayerLanguage.code  // dependency registration — see the property's comment
     List {
       ForEach(sections, id: \.tag) { section in
-        Section(section.tag.capitalized) {
+        Section(UILanguage.tag(section.tag)) {
           ForEach(section.listings) { listing in
             Button {
               path.push(listing.route)

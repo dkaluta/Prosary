@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="common_cancel" xml:space="preserve"><value>Annulla</value></data>
+  <data name="common_save" xml:space="preserve"><value>Salva</value></data>
+  <data name="common_done" xml:space="preserve"><value>Fine</value></data>
+  <data name="common_reset" xml:space="preserve"><value>Reimposta</value></data>
+  <data name="common_ok" xml:space="preserve"><value>OK</value></data>
+  <data name="common_finish" xml:space="preserve"><value>Concludi</value></data>
+  <data name="common_next" xml:space="preserve"><value>Avanti</value></data>
+  <data name="common_continue" xml:space="preserve"><value>Continua</value></data>
+  <data name="common_restart" xml:space="preserve"><value>Ricomincia</value></data>
+  <data name="kind_rosary" xml:space="preserve"><value>Rosario</value></data>
+  <data name="kind_jesus_prayer" xml:space="preserve"><value>Preghiera di Gesù</value></data>
+  <data name="kind_devotion" xml:space="preserve"><value>Devozione</value></data>
+  <data name="kind_default_name_rosary" xml:space="preserve"><value>Il mio Rosario</value></data>
+  <data name="mystery_group_joyful" xml:space="preserve"><value>Gaudiosi</value></data>
+  <data name="mystery_group_sorrowful" xml:space="preserve"><value>Dolorosi</value></data>
+  <data name="mystery_group_glorious" xml:space="preserve"><value>Gloriosi</value></data>
+  <data name="mystery_group_luminous" xml:space="preserve"><value>Luminosi</value></data>
+  <data name="mode_todays_mysteries" xml:space="preserve"><value>Misteri del giorno</value></data>
+  <data name="mode_specific" xml:space="preserve"><value>Sempre una serie specifica</value></data>
+  <data name="mode_fifteen" xml:space="preserve"><value>I 15 misteri (gaudiosi, dolorosi, gloriosi)</value></data>
+  <data name="mode_twenty" xml:space="preserve"><value>I 20 misteri (tutte e quattro le serie)</value></data>
+  <data name="mode_single" xml:space="preserve"><value>Un solo mistero</value></data>
+  <data name="summary_always" xml:space="preserve"><value>Sempre {0}</value></data>
+  <data name="summary_only" xml:space="preserve"><value>Solo {0}</value></data>
+  <data name="summary_fifteen" xml:space="preserve"><value>I 15 misteri</value></data>
+  <data name="summary_twenty" xml:space="preserve"><value>I 20 misteri</value></data>
+  <data name="eternal_rest_none" xml:space="preserve"><value>Non includere</value></data>
+  <data name="eternal_rest_each_decade" xml:space="preserve"><value>Dopo ogni decina</value></data>
+  <data name="eternal_rest_at_end" xml:space="preserve"><value>Una volta, verso la fine</value></data>
+  <data name="antiphon_none" xml:space="preserve"><value>Nessuna</value></data>
+  <data name="antiphon_seasonal" xml:space="preserve"><value>Automatica (secondo il tempo liturgico)</value></data>
+  <data name="antiphon_salve_regina" xml:space="preserve"><value>Salve Regina</value></data>
+  <data name="antiphon_alma_redemptoris" xml:space="preserve"><value>Alma Redemptoris Mater</value></data>
+  <data name="antiphon_ave_regina" xml:space="preserve"><value>Ave Regina Caelorum</value></data>
+  <data name="antiphon_regina_caeli" xml:space="preserve"><value>Regina Caeli</value></data>
+  <data name="antiphon_sub_tuum" xml:space="preserve"><value>Sub Tuum Praesidium</value></data>
+  <data name="imageStyle_classic" xml:space="preserve"><value>Dipinti classici</value></data>
+  <data name="imageStyle_eastern" xml:space="preserve"><value>Icone orientali</value></data>
+  <data name="language_default_parenthesized" xml:space="preserve"><value>Predefinita ({0})</value></data>
+  <data name="jp_count_times" xml:space="preserve"><value>{0}×</value></data>
+  <data name="jp_times_prefix" xml:space="preserve"><value>× {0}</value></data>
+  <data name="jp_unbounded" xml:space="preserve"><value>Senza limite</value></data>
+  <data name="jp_custom" xml:space="preserve"><value>Personalizzata</value></data>
+  <data name="jp_favorite_name" xml:space="preserve"><value>Preghiera di Gesù {0} ({1})</value></data>
+  <data name="jp_error_body" xml:space="preserve"><value>Impossibile caricare la preghiera di Gesù. Torna indietro e riprova.</value></data>
+  <data name="home_today" xml:space="preserve"><value>Oggi: {0}</value></data>
+  <data name="home_pope_intention" xml:space="preserve"><value>L’intenzione del Papa: {0}</value></data>
+  <data name="SetLanguageFallbackOrder.Content" xml:space="preserve"><value>Ordine delle lingue alternative…</value></data>
+  <data name="settings_language_fallback_order_title" xml:space="preserve"><value>Ordine delle lingue alternative</value></data>
+  <data name="settings_language_fallback_order_footer" xml:space="preserve"><value>Se una preghiera manca, Prosary prova queste lingue dall’alto verso il basso, dopo la lingua scelta e la sua variante.</value></data>
+  <data name="home_today_show_english" xml:space="preserve"><value>English</value></data>
+  <data name="home_today_full_citations" xml:space="preserve"><value>Mostra i riferimenti completi</value></data>
+  <data name="home_today_compact_citations" xml:space="preserve"><value>Mostra le abbreviazioni</value></data>
+  <data name="HomeTodayReadings.Text" xml:space="preserve"><value>Letture del giorno</value></data>
+  <data name="home_click_to_set_up" xml:space="preserve"><value>Fai clic per configurare</value></data>
+  <data name="home_click_to_pray" xml:space="preserve"><value>Fai clic per pregare</value></data>
+  <data name="home_order_title" xml:space="preserve"><value>Ordine della schermata iniziale</value></data>
+  <data name="prayer_order_title" xml:space="preserve"><value>Ordine delle preghiere</value></data>
+  <data name="BasicPrayersEditOrder.Content" xml:space="preserve"><value>Modifica ordine…</value></data>
+  <data name="flow_step_of" xml:space="preserve"><value>{0} di {1}</value></data>
+  <data name="flow_error_header" xml:space="preserve"><value>Si è verificato un errore</value></data>
+  <data name="flow_error_body" xml:space="preserve"><value>Impossibile caricare questa devozione. Torna indietro e riprova.</value></data>
+  <data name="flow_app_setting" xml:space="preserve"><value>Impostazione dell’app</value></data>
+  <data name="prayer_resume_title" xml:space="preserve"><value>Riprendere da dove eri rimasto?</value></data>
+  <data name="prayer_resume_message" xml:space="preserve"><value>Continua questa preghiera non conclusa o ricomincia dall’inizio.</value></data>
+  <data name="rosary_no_favorites_header" xml:space="preserve"><value>Nessun Rosario tra i preferiti</value></data>
+  <data name="rosary_no_favorites_body" xml:space="preserve"><value>Aggiungi prima un Rosario ai preferiti.</value></data>
+  <data name="rosary_error_body" xml:space="preserve"><value>Impossibile caricare questa sessione del Rosario. Torna indietro e riprova.</value></data>
+  <data name="rosary_preset_name" xml:space="preserve"><value>Nome della configurazione</value></data>
+  <data name="rosary_save_as_preset" xml:space="preserve"><value>Salva configurazione</value></data>
+  <data name="browse_all" xml:space="preserve"><value>Tutte</value></data>
+  <data name="browse_unreachable" xml:space="preserve"><value>Impossibile raggiungere la raccolta.</value></data>
+  <data name="browse_download_failed" xml:space="preserve"><value>Non è stato possibile scaricare la devozione.</value></data>
+  <data name="favorites_import_error_title" xml:space="preserve"><value>Impossibile importare la devozione</value></data>
+  <data name="favorites_bundle_file_type" xml:space="preserve"><value>Pacchetto di devozione Prosary</value></data>
+  <data name="editor_new_favorite" xml:space="preserve"><value>Nuovo preferito</value></data>
+  <data name="editor_edit_favorite" xml:space="preserve"><value>Modifica preferito</value></data>
+  <data name="auto_advance_off" xml:space="preserve"><value>Disattivato</value></data>
+  <data name="auto_advance_every" xml:space="preserve"><value>Ogni {0} secondi</value></data>
+  <data name="settings_installed_devotions" xml:space="preserve"><value>Devozioni installate: {0}</value></data>
+  <data name="settings_clear_audio_cache" xml:space="preserve"><value>Svuota la cache audio</value></data>
+  <data name="settings_clear_audio_cache_size" xml:space="preserve"><value>Svuota la cache audio ({0})</value></data>
+  <data name="settings_remove_all_title" xml:space="preserve"><value>Rimuovere tutte le devozioni scaricate?</value></data>
+  <data name="settings_remove_all_message" xml:space="preserve"><value>Le devozioni della raccolta possono essere scaricate di nuovo; i file importati manualmente no.</value></data>
+  <data name="settings_remove_all_confirm" xml:space="preserve"><value>Rimuovi tutto</value></data>
+  <data name="settings_app_language_system" xml:space="preserve"><value>Predefinita di sistema</value></data>
+  <data name="NavPray.Content" xml:space="preserve"><value>Prega</value></data>
+  <data name="NavBrowse.Content" xml:space="preserve"><value>Esplora</value></data>
+  <data name="NavCategories.Content" xml:space="preserve"><value>Categorie</value></data>
+  <data name="NavSearch.Content" xml:space="preserve"><value>Cerca</value></data>
+  <data name="HomeTitle.Text" xml:space="preserve"><value>Prega</value></data>
+  <data name="HomeSettingsButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Impostazioni</value></data>
+  <data name="HomeAboutButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Informazioni</value></data>
+  <data name="HomeMoveToTop.Text" xml:space="preserve"><value>Sposta in cima</value></data>
+  <data name="HomeEditOrder.Text" xml:space="preserve"><value>Modifica ordine…</value></data>
+  <data name="SetTitle.Text" xml:space="preserve"><value>Impostazioni</value></data>
+  <data name="SetLanguageCombo.Header" xml:space="preserve"><value>Lingua predefinita delle preghiere</value></data>
+  <data name="SetPrayingHeader.Text" xml:space="preserve"><value>Preghiera</value></data>
+  <data name="SetAutoAdvanceCombo.Header" xml:space="preserve"><value>Avanzamento automatico</value></data>
+  <data name="SetResetHomeOrder.Content" xml:space="preserve"><value>Reimposta l’ordine iniziale</value></data>
+  <data name="SetDownloadsHeader.Text" xml:space="preserve"><value>Download</value></data>
+  <data name="SetRemoveAll.Content" xml:space="preserve"><value>Rimuovi tutte le devozioni scaricate…</value></data>
+  <data name="SetDownloadsFooter.Text" xml:space="preserve"><value>Le devozioni integrate non vengono mai rimosse. Rimuovendo una devozione scaricata si elimina anche il relativo preferito.</value></data>
+  <data name="SetLinksHeader.Text" xml:space="preserve"><value>Collegamenti</value></data>
+  <data name="SetRepoLink.Content" xml:space="preserve"><value>Raccolta della comunità</value></data>
+  <data name="SetComposeLink.Content" xml:space="preserve"><value>Componi una devozione</value></data>
+  <data name="SetPrivacyLink.Content" xml:space="preserve"><value>Informativa sulla privacy</value></data>
+  <data name="SetAppLanguageCombo.Header" xml:space="preserve"><value>Lingua dell’app</value></data>
+  <data name="SetAppLanguageFooter.Text" xml:space="preserve"><value>Ha effetto dopo il riavvio dell’app.</value></data>
+  <data name="SetTodayHeader.Text" xml:space="preserve"><value>Oggi</value></data>
+  <data name="SetShowTodayFeast.Header" xml:space="preserve"><value>Mostra la festa del giorno</value></data>
+  <data name="SetShowTodayIntention.Header" xml:space="preserve"><value>Mostra l’intenzione del Papa</value></data>
+  <data name="SetFeastCalendar.Header" xml:space="preserve"><value>Calendario liturgico</value></data>
+  <data name="SetFeastCalendarHint.Text" xml:space="preserve"><value>Il calendario seguito dalle feste e dalle letture della sezione Oggi.</value></data>
+  <data name="FavTitle.Text" xml:space="preserve"><value>Preferiti</value></data>
+  <data name="BtnPray.Content" xml:space="preserve"><value>Prega</value></data>
+  <data name="FavSetDefault.Content" xml:space="preserve"><value>Imposta come predefinita</value></data>
+  <data name="FavRosaryHeader.Text" xml:space="preserve"><value>Rosario</value></data>
+  <data name="FavAddRosary.Content" xml:space="preserve"><value>+ Aggiungi un Rosario</value></data>
+  <data name="FavJesusHeader.Text" xml:space="preserve"><value>Preghiera di Gesù</value></data>
+  <data name="FavAddJesus.Content" xml:space="preserve"><value>+ Aggiungi la preghiera di Gesù</value></data>
+  <data name="FavMoreHeader.Text" xml:space="preserve"><value>Altre devozioni</value></data>
+  <data name="FavRepoBadge.Text" xml:space="preserve"><value>Raccolta</value></data>
+  <data name="FavImport.Text" xml:space="preserve"><value>Importa un pacchetto di devozione…</value></data>
+  <data name="FavGetCommunity.Text" xml:space="preserve"><value>Scarica devozioni della comunità…</value></data>
+  <data name="FavExportButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Esporta per modificare (compose.prosary.app)</value></data>
+  <data name="FavRemoveImportedButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Rimuovi la devozione importata</value></data>
+  <data name="PickerTitle.Text" xml:space="preserve"><value>Il Santo Rosario</value></data>
+  <data name="PickerDefaultHeader.Text" xml:space="preserve"><value>Configurazione predefinita</value></data>
+  <data name="PickerCustomHeader.Text" xml:space="preserve"><value>Personalizzata</value></data>
+  <data name="PickerPrayAny.Text" xml:space="preserve"><value>Prega un Rosario a scelta</value></data>
+  <data name="PickerAnyDetail.Text" xml:space="preserve"><value>Tutte le altre opzioni seguono la configurazione predefinita; la personalizzazione completa è disponibile nelle configurazioni.</value></data>
+  <data name="PickerSaveAsPreset.Content" xml:space="preserve"><value>Salva configurazione</value></data>
+  <data name="PickerPresetsHeader.Text" xml:space="preserve"><value>Configurazioni</value></data>
+  <data name="BrowseTitle.Text" xml:space="preserve"><value>Devozioni della comunità</value></data>
+  <data name="BrowseSearchBox.PlaceholderText" xml:space="preserve"><value>Cerca devozioni</value></data>
+  <data name="BrowseInstalled.Text" xml:space="preserve"><value>Installata</value></data>
+  <data name="BtnInstall.Content" xml:space="preserve"><value>Installa</value></data>
+  <data name="BtnUpdate.Content" xml:space="preserve"><value>Aggiorna</value></data>
+  <data name="BtnRetry.Content" xml:space="preserve"><value>Riprova</value></data>
+  <data name="SearchTitle.Text" xml:space="preserve"><value>Cerca</value></data>
+  <data name="SearchBox.PlaceholderText" xml:space="preserve"><value>Devozioni, categorie, autori</value></data>
+  <data name="SearchOnDevice.Text" xml:space="preserve"><value>Su questo dispositivo</value></data>
+  <data name="SearchCommunity.Text" xml:space="preserve"><value>Dalla comunità</value></data>
+  <data name="CategoriesTitle.Text" xml:space="preserve"><value>Categorie</value></data>
+  <data name="JpTitle.Text" xml:space="preserve"><value>La preghiera di Gesù</value></data>
+  <data name="JpHowMany.Text" xml:space="preserve"><value>Quante volte?</value></data>
+  <data name="JpRepetitions.Header" xml:space="preserve"><value>Numero di ripetizioni</value></data>
+  <data name="JpBegin.Content" xml:space="preserve"><value>Inizia</value></data>
+  <data name="BtnCancel.Content" xml:space="preserve"><value>Annulla</value></data>
+  <data name="BtnSave.Content" xml:space="preserve"><value>Salva</value></data>
+  <data name="EdBack.Text" xml:space="preserve"><value>Indietro</value></data>
+  <data name="EdOptionsTitle.Text" xml:space="preserve"><value>Opzioni del Rosario</value></data>
+  <data name="EdSetDefault.Text" xml:space="preserve"><value>Imposta come predefinita</value></data>
+  <data name="EdLanguageHeader.Text" xml:space="preserve"><value>Lingua della preghiera</value></data>
+  <data name="EdRosaryOptionsRow.Text" xml:space="preserve"><value>Opzioni del Rosario</value></data>
+  <data name="EdTargetHeader.Text" xml:space="preserve"><value>Obiettivo</value></data>
+  <data name="EdRemindersHeader.Text" xml:space="preserve"><value>Promemoria</value></data>
+  <data name="EdAddReminder.Text" xml:space="preserve"><value>Aggiungi promemoria</value></data>
+  <data name="EdWhichMysteries.Text" xml:space="preserve"><value>Quali misteri?</value></data>
+  <data name="EdOpeningHeader.Text" xml:space="preserve"><value>Preghiere iniziali e delle decine</value></data>
+  <data name="EdApostlesCreed.Text" xml:space="preserve"><value>Simbolo degli Apostoli</value></data>
+  <data name="EdOpeningPrayers.Text" xml:space="preserve"><value>Padre nostro iniziale e 3 Ave Maria</value></data>
+  <data name="EdFatima.Text" xml:space="preserve"><value>Preghiera di Fatima dopo ogni decina</value></data>
+  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>Preghiera di Fatima dopo le Ave Maria iniziali</value></data>
+  <data name="EdDisplayHeader.Text" xml:space="preserve"><value>Visualizzazione</value></data>
+  <data name="EdMysteryArtwork.Header" xml:space="preserve"><value>Immagini dei misteri</value></data>
+  <data name="EdPresenterMode.Text" xml:space="preserve"><value>Modalità guida</value></data>
+  <data name="EdPresenterHint.Text" xml:space="preserve"><value>Riunisce le Ave Maria e il Gloria al Padre di ogni decina in un’unica schermata: utile per guidare un gruppo recitando a memoria.</value></data>
+  <data name="EdClosingHeader.Text" xml:space="preserve"><value>Preghiere finali</value></data>
+  <data name="EdClosingIntentions.Text" xml:space="preserve"><value>Intenzioni finali</value></data>
+  <data name="EdStMichael.Text" xml:space="preserve"><value>Preghiera a san Michele</value></data>
+  <data name="EdFinalSign.Text" xml:space="preserve"><value>Segno della croce finale</value></data>
+  <data name="RemOptionsHeader.Text" xml:space="preserve"><value>Opzioni</value></data>
+  <data name="BeadAntiphonLabel.Text" xml:space="preserve"><value>M</value></data>
+  <data name="FlowTransliterationButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Mostra la traslitterazione</value></data>
+  <data name="AbtTitle.Text" xml:space="preserve"><value>Informazioni su Prosary</value></data>
+  <data name="AbtTagline.Text" xml:space="preserve"><value>Un compagno per recitare il Rosario e altre devozioni cattoliche.</value></data>
+  <data name="AbtTypefacesHeader.Text" xml:space="preserve"><value>Caratteri tipografici</value></data>
+  <data name="AbtTypeFrank.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — preghiere in ebraico.</value></data>
+  <data name="AbtTypeShofar.Text" xml:space="preserve"><value> — GPL v2 con eccezione per l’incorporamento dei caratteri — Sacra Scrittura in ebraico (progetto Culmus, Yoram Gnat).</value></data>
+  <data name="AbtTypeAmiri.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — preghiere in arabo.</value></data>
+  <data name="AbtTypeScheherazade.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — Sacra Scrittura in arabo (SIL).</value></data>
+  <data name="AbtTypeCardo.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — Sacra Scrittura in latino e inglese (David J. Perry).</value></data>
+  <data name="AbtTypeNotoSyriac.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — caratteri selezionabili per l’aramaico in scrittura siriaca.</value></data>
+  <data name="AbtTypeOptionalHebrew.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — caratteri facoltativi per le preghiere e la Sacra Scrittura in ebraico.</value></data>
+  <data name="AbtTypeStam.Text" xml:space="preserve"><value> — GPL v2 con eccezione per l’incorporamento dei caratteri — caratteri facoltativi per la Sacra Scrittura in ebraico (progetto Culmus, Yoram Gnat).</value></data>
+  <data name="AbtTypeFooter.Text" xml:space="preserve"><value>Le preghiere in alfabeto latino usano Cambria, inclusa in Windows e non nell’app.</value></data>
+  <data name="AbtMysteryHeader.Text" xml:space="preserve"><value>Illustrazioni dei misteri</value></data>
+  <data name="AbtMysteryIntro.Text" xml:space="preserve"><value>Le 20 immagini dei misteri sono dipinti classici di pubblico dominio (artista deceduto da oltre 100 anni), tratti da Wikimedia Commons.</value></data>
+  <data name="AboutEasternIcons.Text" xml:space="preserve"><value>La raccolta di illustrazioni dei misteri in stile orientale è utilizzata con l’autorizzazione della Missione di san Gamaliele per i cattolici di lingua ebraica della Chiesa cattolica aramaica (siriaca).</value></data>
+  <data name="AbtOtherHeader.Text" xml:space="preserve"><value>Altre immagini</value></data>
+  <data name="AbtStationsHeader.Text" xml:space="preserve"><value>Illustrazioni della Via Crucis</value></data>
+  <data name="AbtStationsFugel.Text" xml:space="preserve"><value>Tutte le 14 stazioni: Gebhard Fugel (1863–1939), Kreuzweg (1921), chiesa di Sant’Antonio, Bad Saulgau — pubblico dominio; fotografie di Andreas Praefcke, rilasciate nel pubblico dominio.</value></data>
+  <data name="AbtStationsScriptural.Text" xml:space="preserve"><value>La forma biblica (san Giovanni Paolo II) aggiunge: Il bacio di Giuda — Giotto (Cappella degli Scrovegni, circa 1305); Cristo davanti al sommo sacerdote — Gerrit van Honthorst (circa 1617), National Gallery, Londra; Il rinnegamento di san Pietro — Rembrandt (1660), Rijksmuseum; Il colpo di lancia — Peter Paul Rubens (1620), Museo reale di belle arti di Anversa — tutte opere di pubblico dominio. Le altre scene riutilizzano illustrazioni elencate altrove in questa pagina.</value></data>
+  <data name="AbtViaLucis.Text" xml:space="preserve"><value>Le scene della Via Lucis: I discepoli al sepolcro — Eugène Burnand (1898), Musée d’Orsay; Noli me tangere — Beato Angelico (San Marco, circa 1440); La via di Emmaus, le apparizioni agli apostoli, al lago di Tiberiade e in Galilea — Duccio di Buoninsegna (Maestà, 1308–1311), Siena; Cena in Emmaus (1601) e Incredulità di san Tommaso (1601–1602) — Caravaggio; La consegna delle chiavi a Pietro — Raffaello (circa 1515), Royal Collection; La Vergine in preghiera — Sassoferrato (1640–1650), National Gallery, Londra — tutte opere di pubblico dominio. Le altre scene riutilizzano le illustrazioni dei misteri gloriosi del Rosario.</value></data>
+  <data name="AbtCrownHeader.Text" xml:space="preserve"><value>Illustrazione della Corona francescana</value></data>
+  <data name="AbtCrownMagi.Text" xml:space="preserve"><value>L’Adorazione dei Magi: Bartolomé Esteban Murillo (circa 1655–1660), Toledo Museum of Art — pubblico dominio. Le altre sei gioie riutilizzano le illustrazioni dei misteri del Rosario riportate sopra.</value></data>
+  <data name="AbtSorrowsHeader.Text" xml:space="preserve"><value>Illustrazioni dei sette dolori</value></data>
+  <data name="AbtMercyHeader.Text" xml:space="preserve"><value>Illustrazione della Divina Misericordia</value></data>
+  <data name="AbtMercyBody.Text" xml:space="preserve"><value>Eugeniusz Kazimirowski, Divina Misericordia («Jezu, ufam Tobie», 1934), Santuario della Divina Misericordia, Vilnius — l’immagine originale dipinta sotto la guida di santa Faustina; pubblico dominio.</value></data>
+  <data name="AbtJpHeader.Text" xml:space="preserve"><value>Illustrazione della preghiera di Gesù</value></data>
+  <data name="AbtJpBody.Text" xml:space="preserve"><value>Cristo Pantocratore: icona a encausto (VI secolo), monastero di Santa Caterina, monte Sinai — la più antica icona superstite del Cristo Pantocratore, in omaggio alla tradizione orientale della preghiera; pubblico dominio.</value></data>
+  <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>Fonti bibliche</value></data>
+  <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Le citazioni bibliche provengono dalla Bibbia Douay-Rheims (inglese), dalla Vulgata Clementina (latino), dalla traduzione ebraica del Nuovo Testamento di Franz Delitzsch (kirjasilta.net/ha-berit), con i brani ebraici dell’Antico Testamento tratti dal testo masoretico, dalla Bibbia araba dei gesuiti (Dar el-Machreq), dalla Bibbia sinodale russa (1876) e da Ang Dating Biblia (tagalog, 1905).</value></data>
+  <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>Dati del calendario</value></data>
+  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Dati del calendario e delle letture: Calendario romano generale tramite il progetto LitCal (litcal.johnromanodorazio.com); calendario e lezionario del 1962 tramite Missale Meum (missalemeum.com); calendario cattolico siriaco, titoli ebraici documentati del Calendario romano generale e riferimenti dei lezionari romano e siriaco per gentile concessione di Evangelizo.org — Vangelo del Giorno, © Evangelizo.org; calendario greco-cattolico ucraino compilato nell’app da fonti tradizionali, con riferimenti bizantini dal calendario pubblico dell’anno liturgico UGCC (gregoriano) di Royal Doors (royaldoors.net). Nomi ebraici dei libri biblici: Evangelizo HE e Vicariato di San Giacomo (catholic.co.il). Altri nomi ebraici di feste e santi: Vicariato di San Giacomo, Christian Media Center (cmc-terrasanta.org) e Vatican News (vaticannews.va).</value></data>
+  <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Mistero precedente</value></data>
+  <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Mistero precedente</value></data>
+  <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Mistero successivo</value></data>
+  <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Mistero successivo</value></data>
+  <data name="AbtMys01Title.Text" xml:space="preserve"><value>L’Annunciazione</value></data>
+  <data name="AbtCredit01.Text" xml:space="preserve"><value> — Beato Angelico (m. 1455)</value></data>
+  <data name="AbtMys02Title.Text" xml:space="preserve"><value>La Visitazione</value></data>
+  <data name="AbtCredit02.Text" xml:space="preserve"><value> — Mariotto Albertinelli (m. 1515)</value></data>
+  <data name="AbtMys03Title.Text" xml:space="preserve"><value>La Notte Santa</value></data>
+  <data name="AbtCredit03.Text" xml:space="preserve"><value> — Antonio da Correggio (m. 1534)</value></data>
+  <data name="AbtMys04Title.Text" xml:space="preserve"><value>La Presentazione al Tempio</value></data>
+  <data name="AbtCredit04.Text" xml:space="preserve"><value> — Andrea Mantegna (m. 1506)</value></data>
+  <data name="AbtMys05Title.Text" xml:space="preserve"><value>Il ritrovamento di Gesù nel Tempio</value></data>
+  <data name="AbtCredit05.Text" xml:space="preserve"><value> — Simone Martini (m. 1344)</value></data>
+  <data name="AbtMys06Title.Text" xml:space="preserve"><value>Il Battesimo di Cristo</value></data>
+  <data name="AbtCredit06.Text" xml:space="preserve"><value> — Piero della Francesca (m. 1492)</value></data>
+  <data name="AbtMys07Title.Text" xml:space="preserve"><value>Le nozze di Cana</value></data>
+  <data name="AbtCredit07.Text" xml:space="preserve"><value> — Paolo Veronese (m. 1588)</value></data>
+  <data name="AbtMys08Title.Text" xml:space="preserve"><value>Il Discorso della montagna</value></data>
+  <data name="AbtCredit08.Text" xml:space="preserve"><value> — Cosimo Rosselli (m. 1507)</value></data>
+  <data name="AbtMys09Title.Text" xml:space="preserve"><value>La Trasfigurazione</value></data>
+  <data name="AbtCredit09.Text" xml:space="preserve"><value> — Raffaello (m. 1520)</value></data>
+  <data name="AbtMys10Title.Text" xml:space="preserve"><value>L’Ultima Cena</value></data>
+  <data name="AbtCredit10.Text" xml:space="preserve"><value> — Leonardo da Vinci (m. 1519)</value></data>
+  <data name="AbtMys11Title.Text" xml:space="preserve"><value>L’agonia nell’orto</value></data>
+  <data name="AbtMys12Title.Text" xml:space="preserve"><value>La Flagellazione di Cristo</value></data>
+  <data name="AbtCredit11.Text" xml:space="preserve"><value> — Caravaggio (m. 1610)</value></data>
+  <data name="AbtMys13Title.Text" xml:space="preserve"><value>L’Incoronazione di spine</value></data>
+  <data name="AbtMys14Title.Text" xml:space="preserve"><value>Cristo portacroce</value></data>
+  <data name="AbtCredit12.Text" xml:space="preserve"><value> — Tiziano (m. 1576)</value></data>
+  <data name="AbtMys15Title.Text" xml:space="preserve"><value>Cristo crocifisso</value></data>
+  <data name="AbtCredit13.Text" xml:space="preserve"><value> — Diego Velázquez (m. 1660)</value></data>
+  <data name="AbtMys16Title.Text" xml:space="preserve"><value>La Risurrezione</value></data>
+  <data name="AbtMys17Title.Text" xml:space="preserve"><value>L’Ascensione di Cristo</value></data>
+  <data name="AbtCredit14.Text" xml:space="preserve"><value> — Rembrandt (m. 1669)</value></data>
+  <data name="AbtMys18Title.Text" xml:space="preserve"><value>La Pentecoste</value></data>
+  <data name="AbtCredit15.Text" xml:space="preserve"><value> — El Greco (m. 1614)</value></data>
+  <data name="AbtMys19Title.Text" xml:space="preserve"><value>L’Assunzione della Vergine</value></data>
+  <data name="AbtMys20Title.Text" xml:space="preserve"><value>L’Incoronazione della Vergine</value></data>
+  <data name="AbtOther01Title.Text" xml:space="preserve"><value>Crocifisso</value></data>
+  <data name="AbtCredit16.Text" xml:space="preserve"><value> — Cimabue (m. 1302).</value></data>
+  <data name="AbtOther02Title.Text" xml:space="preserve"><value>La Piccola Madonna Cowper</value></data>
+  <data name="AbtCredit17.Text" xml:space="preserve"><value> — Raffaello (m. 1520).</value></data>
+  <data name="AbtOther03Title.Text" xml:space="preserve"><value>Fede, Speranza e Carità</value></data>
+  <data name="AbtCredit18.Text" xml:space="preserve"><value> — Raffaello, predella della Pala Baglioni (m. 1520).</value></data>
+  <data name="AbtOther04Title.Text" xml:space="preserve"><value>Mani in preghiera</value></data>
+  <data name="AbtCredit19.Text" xml:space="preserve"><value> — Albrecht Dürer (m. 1528).</value></data>
+  <data name="AbtOther05Title.Text" xml:space="preserve"><value>La Santissima Trinità</value></data>
+  <data name="AbtCredit20.Text" xml:space="preserve"><value> — Masaccio (m. 1428).</value></data>
+  <data name="AbtOther06Title.Text" xml:space="preserve"><value>Cristo al limbo</value></data>
+  <data name="AbtCredit21.Text" xml:space="preserve"><value> — Beato Angelico (m. 1455).</value></data>
+  <data name="AbtOther07Title.Text" xml:space="preserve"><value>San Michele</value></data>
+  <data name="AbtCredit22.Text" xml:space="preserve"><value> — Guido Reni (m. 1642).</value></data>
+  <data name="AbtOther08Title.Text" xml:space="preserve"><value>Testa di Cristo</value></data>
+  <data name="AbtCredit23.Text" xml:space="preserve"><value> — Rembrandt (m. 1669).</value></data>
+  <data name="AbtSorrow01Title.Text" xml:space="preserve"><value>La profezia di Simeone</value></data>
+  <data name="AbtCredit24.Text" xml:space="preserve"><value> — Rembrandt van Rijn, Il cantico di Simeone (1631), Mauritshuis — pubblico dominio.</value></data>
+  <data name="AbtSorrow02Title.Text" xml:space="preserve"><value>La fuga in Egitto</value></data>
+  <data name="AbtCredit25.Text" xml:space="preserve"><value> — Bartolomé Esteban Murillo (circa 1647–1650), Detroit Institute of Arts — pubblico dominio.</value></data>
+  <data name="AbtSorrow03Title.Text" xml:space="preserve"><value>Lo smarrimento di Gesù nel Tempio</value></data>
+  <data name="AbtCredit26.Text" xml:space="preserve"><value> — Paolo Veronese, Cristo tra i dottori (circa 1560), Museo del Prado — pubblico dominio.</value></data>
+  <data name="AbtSorrow04Title.Text" xml:space="preserve"><value>L’incontro sulla via del Calvario</value></data>
+  <data name="AbtCredit27.Text" xml:space="preserve"><value> — Raffaello, Lo Spasimo (circa 1514–1516), Museo del Prado — pubblico dominio.</value></data>
+  <data name="AbtSorrow05Title.Text" xml:space="preserve"><value>La Crocifissione</value></data>
+  <data name="AbtCredit28.Text" xml:space="preserve"><value> — Hendrick ter Brugghen, La Crocifissione con la Vergine e san Giovanni (circa 1625), Metropolitan Museum of Art — CC0.</value></data>
+  <data name="AbtSorrow06Title.Text" xml:space="preserve"><value>La Deposizione dalla croce</value></data>
+  <data name="AbtCredit29.Text" xml:space="preserve"><value> — Peter Paul Rubens (circa 1612–1614), Cattedrale di Nostra Signora, Anversa — pubblico dominio.</value></data>
+  <data name="AbtSorrow07Title.Text" xml:space="preserve"><value>La sepoltura di Gesù</value></data>
+  <data name="AbtCredit30.Text" xml:space="preserve"><value> — Tiziano, Deposizione di Cristo nel sepolcro (circa 1520), Musée du Louvre — pubblico dominio.</value></data>
+  <data name="HomeAddDevotionButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Aggiungi una preghiera</value></data>
+  <data name="HomeRemoveFromPray.Text" xml:space="preserve"><value>Rimuovi da Prega</value></data>
+  <data name="multi_day_day_of" xml:space="preserve"><value>Giorno {0} di {1}</value></data>
+  <data name="multi_day_complete" xml:space="preserve"><value>Completata</value></data>
+  <data name="multi_day_starts_today" xml:space="preserve"><value>Inizia oggi</value></data>
+  <data name="multi_day_starts_on" xml:space="preserve"><value>Inizia il {0}</value></data>
+  <data name="multi_day_missed_title" xml:space="preserve"><value>Hai saltato un giorno</value></data>
+  <data name="multi_day_missed_body" xml:space="preserve"><value>Prega il giorno saltato, prosegui con oggi o ricomincia l’intera devozione.</value></data>
+  <data name="multi_day_pray_missed" xml:space="preserve"><value>Prega il giorno {0}</value></data>
+  <data name="multi_day_pray_today" xml:space="preserve"><value>Continua con il giorno {0}</value></data>
+  <data name="multi_day_start_over" xml:space="preserve"><value>Ricomincia</value></data>
+  <data name="home_add_to_pray" xml:space="preserve"><value>Aggiungi a Prega</value></data>
+  <data name="home_remove_from_pray" xml:space="preserve"><value>Rimuovi da Prega</value></data>
+  <data name="MultiDayMissedBar.Title" xml:space="preserve"><value>Hai saltato un giorno</value></data>
+  <data name="MultiDayMissedBar.Message" xml:space="preserve"><value>Prega il giorno saltato, prosegui con oggi o ricomincia l’intera devozione.</value></data>
+  <data name="MultiDayStartOverButton.Content" xml:space="preserve"><value>Ricomincia</value></data>
+  <data name="multi_day_reminder_body" xml:space="preserve"><value>Ti attende il giorno {0} di {1}.</value></data>
+  <data name="MultiDayNotNowButton.Content" xml:space="preserve"><value>Non ora</value></data>
+  <data name="multi_day_completed_title" xml:space="preserve"><value>Hai concluso. Vuoi pregare {0} ora?</value></data>
+  <data name="multi_day_pray_next" xml:space="preserve"><value>Prega {0}</value></data>
+  <data name="multi_day_not_now" xml:space="preserve"><value>Non ora</value></data>
+  <data name="SetRiteCombo.Header" xml:space="preserve"><value>Rito</value></data>
+  <data name="settings_rite" xml:space="preserve"><value>Rito</value></data>
+  <data name="settings_aramaic_sign_of_cross" xml:space="preserve"><value>Segno della croce in aramaico</value></data>
+  <data name="settings_aramaic_sign_of_cross_form_a" xml:space="preserve"><value>Forma A</value></data>
+  <data name="settings_aramaic_sign_of_cross_form_b" xml:space="preserve"><value>Forma B</value></data>
+  <data name="SetTypographyHeader.Text" xml:space="preserve"><value>Tipografia</value></data>
+  <data name="SetSyriacTypeface.Header" xml:space="preserve"><value>Aramaico siriaco</value></data>
+  <data name="SetHebrewPrayerTypeface.Header" xml:space="preserve"><value>Preghiere in ebraico</value></data>
+  <data name="SetHebrewScriptureTypeface.Header" xml:space="preserve"><value>Sacra Scrittura in ebraico</value></data>
+  <data name="settings_typeface_default" xml:space="preserve"><value>Predefinita</value></data>
+  <data name="settings_typeface_western_aramaic" xml:space="preserve"><value>Aramaico occidentale</value></data>
+  <data name="settings_typeface_eastern_aramaic" xml:space="preserve"><value>Aramaico orientale</value></data>
+  <data name="settings_typeface_david_libre" xml:space="preserve"><value>David Libre</value></data>
+  <data name="settings_typeface_sans_serif" xml:space="preserve"><value>Carattere di sistema senza grazie</value></data>
+  <data name="settings_typeface_stam_ashkenaz" xml:space="preserve"><value>Stam Ashkenaz</value></data>
+  <data name="settings_typeface_stam_sefarad" xml:space="preserve"><value>Stam Sefarad</value></data>
+  <data name="settings_typeface_rashi" xml:space="preserve"><value>Rashi</value></data>
+  <data name="SetFavoriteBasicPrayersFirst.Header" xml:space="preserve"><value>Sposta in cima le preghiere principali preferite</value></data>
+  <data name="SetAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>Segno della croce in aramaico</value></data>
+  <data name="EdAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>Segno della croce in aramaico</value></data>
+  <data name="EdRiteCombo.Header" xml:space="preserve"><value>Rito</value></data>
+  <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>Prega un Rosario a scelta</value></data>
+  <data name="HomeAddRosary.Content" xml:space="preserve"><value>Aggiungi un Rosario</value></data>
+  <data name="HomeAddJesusPrayer.Content" xml:space="preserve"><value>Aggiungi la preghiera di Gesù</value></data>
+  <data name="HomeAddToPrayHeader.Text" xml:space="preserve"><value>Aggiungi a Prega</value></data>
+  <data name="HomeSavedPresets.Text" xml:space="preserve"><value>Configurazioni salvate…</value></data>
+  <data name="HomeEditOrderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Modifica ordine…</value></data>
+  <data name="HomeReminders.Text" xml:space="preserve"><value>Promemoria…</value></data>
+  <data name="PresetEdit.Text" xml:space="preserve"><value>Modifica</value></data>
+  <data name="PresetReminders.Text" xml:space="preserve"><value>Promemoria…</value></data>
+  <data name="PresetSetDefault.Text" xml:space="preserve"><value>Imposta come predefinita</value></data>
+  <data name="PresetDelete.Text" xml:space="preserve"><value>Elimina</value></data>
+  <data name="SetImportBundle.Content" xml:space="preserve"><value>Importa un pacchetto di devozione…</value></data>
+  <data name="SetExportBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Esporta per modificare</value></data>
+  <data name="SetRemoveBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Rimuovi</value></data>
+  <data name="PickerEternalRest.Header" xml:space="preserve"><value>Per i fedeli defunti</value></data>
+  <data name="PickerAntiphon.Header" xml:space="preserve"><value>Antifona mariana</value></data>
+  <data name="PickerMysteryArtwork.Header" xml:space="preserve"><value>Immagini dei misteri</value></data>
+  <data name="PickerApostlesCreed.Text" xml:space="preserve"><value>Simbolo degli Apostoli</value></data>
+  <data name="PickerOpeningPrayers.Text" xml:space="preserve"><value>Padre nostro iniziale e 3 Ave Maria</value></data>
+  <data name="PickerFatima.Text" xml:space="preserve"><value>Preghiera di Fatima dopo ogni decina</value></data>
+  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>Preghiera di Fatima dopo le Ave Maria iniziali</value></data>
+  <data name="PickerPresenterMode.Text" xml:space="preserve"><value>Modalità guida</value></data>
+  <data name="PickerClosingIntentions.Text" xml:space="preserve"><value>Intenzioni finali</value></data>
+  <data name="PickerStMichael.Text" xml:space="preserve"><value>Preghiera a san Michele</value></data>
+  <data name="PickerFinalCross.Text" xml:space="preserve"><value>Segno della croce finale</value></data>
+  <data name="AbtPrayerTextsHeader.Text" xml:space="preserve"><value>Testi delle preghiere</value></data>
+  <!-- The Vicariate line is a provisional attribution of fact, pending the exact
+       wording Fr. Piotr sends; replace it verbatim then, as the Exarchate's was. -->
+  <data name="AbtPrayerTextsBody.Text" xml:space="preserve"><value>La Coroncina della Divina Misericordia in ebraico è il testo proprio del Patriarcato latino di Gerusalemme, approvato dal patriarca Michel Sabbah nel 2003. Alcune preghiere in ebraico e aramaico sono utilizzate con il permesso dell’esarca patriarcale della comunità cattolica aramaica (siriaca). Le preghiere in ebraico sono i testi propri del Vicariato di San Giacomo per i cattolici di lingua ebraica, tratti dal loro libro di preghiere.</value></data>
+  <data name="BasicPrayersTitle.Text" xml:space="preserve"><value>Preghiere principali</value></data>
+  <data name="home_today_rank_solemnity" xml:space="preserve"><value>Solennità</value></data>
+  <data name="home_today_rank_feast" xml:space="preserve"><value>Festa</value></data>
+  <data name="home_today_rank_memorial" xml:space="preserve"><value>Memoria</value></data>
+  <data name="home_today_rank_optional_memorial" xml:space="preserve"><value>Memoria facoltativa</value></data>
+  <data name="home_today_rank_sunday" xml:space="preserve"><value>Domenica</value></data>
+  <data name="home_today_rank_great_feast" xml:space="preserve"><value>Grande festa</value></data>
+  <data name="home_today_rank_holy_week" xml:space="preserve"><value>Settimana Santa</value></data>
+  <data name="home_today_rank_fast" xml:space="preserve"><value>Digiuno</value></data>
+  <data name="home_today_rank_1st_class" xml:space="preserve"><value>I classe</value></data>
+  <data name="home_today_rank_2nd_class" xml:space="preserve"><value>II classe</value></data>
+  <data name="home_today_rank_3rd_class" xml:space="preserve"><value>III classe</value></data>
+  <data name="today_language_app" xml:space="preserve"><value>Lingua dell’app</value></data>
+  <data name="HomeTodayLanguage.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Lingua di Oggi</value></data>
+  <data name="BtnBack.Content" xml:space="preserve"><value>Indietro</value></data>
+  <data name="BtnFinish.Content" xml:space="preserve"><value>Concludi</value></data>
+  <data name="PickerMysteries.Header" xml:space="preserve"><value>Misteri</value></data>
+  <data name="PickerSpecificSet.Header" xml:space="preserve"><value>Serie specifica</value></data>
+  <data name="PickerWhichMystery.Header" xml:space="preserve"><value>Quale mistero</value></data>
+  <data name="EditorName.Header" xml:space="preserve"><value>Nome</value></data>
+  <data name="EditorName.PlaceholderText" xml:space="preserve"><value>ad es. Rosario del mattino</value></data>
+  <data name="AudioPreviousChapter.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Capitolo precedente</value></data>
+  <data name="AudioNextChapter.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Capitolo successivo</value></data>
+  <data name="AudioPlayPause.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Riproduci o metti in pausa</value></data>
+  <data name="BrowseRefresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Aggiorna</value></data>
+  <data name="import_unreadable" xml:space="preserve"><value>Questo file non è un pacchetto .prosaryprayer leggibile.</value></data>
+  <data name="import_empty" xml:space="preserve"><value>Questo pacchetto non contiene una devozione.</value></data>
+  <data name="import_duplicate" xml:space="preserve"><value>È già installata una devozione chiamata «{0}».</value></data>
+  <data name="browse_newer_catalog" xml:space="preserve"><value>La raccolta utilizza un formato di catalogo più recente: aggiorna Prosary per consultarla.</value></data>
+  <data name="reminder_rosary" xml:space="preserve"><value>È il momento di pregare il Rosario.</value></data>
+  <data name="reminder_jesus" xml:space="preserve"><value>È il momento della preghiera di Gesù.</value></data>
+  <data name="reminder_pray" xml:space="preserve"><value>È il momento di pregare.</value></data>
+  <data name="preset_classic_rosary" xml:space="preserve"><value>Rosario tradizionale</value></data>
+  <data name="prayer_default_name" xml:space="preserve"><value>La mia preghiera</value></data>
+  <data name="AbtAdditionalSources.Text" xml:space="preserve"><value>Sacra Scrittura in francese: Crampon (1923), pubblico dominio. In italiano: Antonio Martini; dati strutturati © Giovanni Novelli, CC BY 4.0 (parolaviva.art). Preghiere in francese e italiano: Compendio del Vaticano. Intenzioni del Papa: Rete Mondiale di Preghiera del Papa (2026–2027); traduzione ebraica di Prosary. Intenzioni in russo (2026): traduzione di t.me/ihsovs, pubblicata dalla parrocchia dell’Immacolata Concezione di Čeljabinsk (cc74.wordpress.com/rosary/).</value></data>
+  <data name="AbtBookNameSources.Text" xml:space="preserve"><value>Nomi dei libri biblici: AELF, Dar el-Machreq, Bibbia sinodale russa (Azbyka), Società Biblica delle Filippine e ParolaViva.</value></data>
+  <data name="AbtPopeNetworkLink.Content" xml:space="preserve"><value>Rete Mondiale di Preghiera del Papa</value></data>
+  <data name="AbtParolaVivaLink.Content" xml:space="preserve"><value>ParolaViva — CC BY 4.0</value></data>
+  <data name="category_marian" xml:space="preserve"><value>Mariane</value></data>
+  <data name="category_daily" xml:space="preserve"><value>Quotidiane</value></data>
+  <data name="category_mercy" xml:space="preserve"><value>Misericordia</value></data>
+  <data name="category_franciscan" xml:space="preserve"><value>Francescane</value></data>
+  <data name="category_advent" xml:space="preserve"><value>Avvento</value></data>
+  <data name="category_meditative" xml:space="preserve"><value>Meditative</value></data>
+  <data name="category_passion" xml:space="preserve"><value>Passione</value></data>
+  <data name="category_eastern" xml:space="preserve"><value>Orientali</value></data>
+  <data name="category_short" xml:space="preserve"><value>Brevi</value></data>
+  <data name="category_easter" xml:space="preserve"><value>Pasqua</value></data>
+  <data name="category_other" xml:space="preserve"><value>Altre</value></data>
+  <data name="AbtPrayerSources.Text" xml:space="preserve"><value>Altre fonti delle preghiere: Vatican News, Santuario di Fatima, Notre-Dame de Paris, AELF e Conferenza Episcopale Italiana (CEI).</value></data>
+  <data name="AbtDivineMercySources.Text" xml:space="preserve"><value>Coroncina alla Divina Misericordia: Congregazione delle Suore della Beata Vergine Maria della Misericordia.</value></data>
+  <data name="AppDescription" xml:space="preserve"><value>Un compagno per pregare il Rosario, l’Angelus e la preghiera di Gesù.</value></data>
+  <data name="AbtSevenSorrowsSources.Text" xml:space="preserve"><value>Preghiere dei sette dolori: Notre Dame de Chrétienté e Confraternite.net.</value></data>
+</root>
