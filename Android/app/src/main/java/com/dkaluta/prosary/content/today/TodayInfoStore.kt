@@ -1,5 +1,8 @@
 package com.dkaluta.prosary.content.today
 
+import android.content.Context
+import android.content.res.Configuration
+import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.typography.HebrewDisplayText
@@ -21,6 +24,36 @@ data class FeastDay(
 ) {
     fun localizedTitle(language: String): String =
         HebrewDisplayText.unpoint(titleByLanguage.localized(language) ?: title)
+
+    /** Follow the Today toggle rather than the app UI language. Roman rank terms follow the
+     * Saint James Vicariate's 2025–2026 calendar, pp. 4, 6–7:
+     * https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf
+     * Other entries are ordinary UI descriptions; canonical ranks remain unchanged. */
+    fun localizedRank(language: String, context: Context? = null): String {
+        val (resourceId, hebrewFallback) = when (rank) {
+            "Solemnity" -> R.string.home_today_rank_solemnity to "מועד"
+            "Feast" -> R.string.home_today_rank_feast to "חג"
+            "Memorial" -> R.string.home_today_rank_memorial to "זיכרון"
+            "Optional Memorial" -> R.string.home_today_rank_optional_memorial to "זיכרון רשות"
+            "Sunday" -> R.string.home_today_rank_sunday to "יום ראשון"
+            "Great Feast" -> R.string.home_today_rank_great_feast to "חג גדול"
+            "Holy Week" -> R.string.home_today_rank_holy_week to "השבוע הקדוש"
+            "Fast" -> R.string.home_today_rank_fast to "צום"
+            "1st Class" -> R.string.home_today_rank_1st_class to "דרגה ראשונה"
+            "2nd Class" -> R.string.home_today_rank_2nd_class to "דרגה שנייה"
+            "3rd Class" -> R.string.home_today_rank_3rd_class to "דרגה שלישית"
+            else -> return rank
+        }
+        val displayLanguage = if ((LanguageCatalog.baseLanguage(language) ?: language) == "he") "he" else "en"
+        val fallback = if (displayLanguage == "he") hebrewFallback else rank
+        if (context == null) return fallback
+        return runCatching {
+            val configuration = Configuration(context.resources.configuration).apply {
+                setLocale(Locale.forLanguageTag(displayLanguage))
+            }
+            context.createConfigurationContext(configuration).getString(resourceId)
+        }.getOrDefault(fallback)
+    }
 }
 
 @Serializable

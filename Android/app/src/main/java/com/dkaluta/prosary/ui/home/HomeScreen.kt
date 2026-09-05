@@ -409,7 +409,7 @@ fun HomeScreen(
                                         fontWeight = if (todayFeast.rank in setOf("Solemnity", "1st Class", "Great Feast")) FontWeight.Bold else FontWeight.SemiBold,
                                     )
                                     Text(
-                                        todayFeast.rank,
+                                        todayFeast.localizedRank(if (todayInHebrew) "he" else "en", context),
                                         style = MaterialTheme.typography.bodySmall,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     )

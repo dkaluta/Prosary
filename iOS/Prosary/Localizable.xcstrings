@@ -33,13 +33,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Calendar and readings data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar and lectionary via Missale Meum (missalemeum.com); the Syriac Catholic calendar, sourced Hebrew General Roman titles, and Roman/Syriac lectionary citations courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic calendar compiled in-app from the traditional sources, with Byzantine citations from Royal Doors’ public UGCC Liturgical Year (Gregorian) calendar (royaldoors.net). Hebrew Bible book names: Evangelizo HE and the St James Vicariate (catholic.co.il)."
+            "value" : "Calendar and readings data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar and lectionary via Missale Meum (missalemeum.com); the Syriac Catholic calendar, sourced Hebrew General Roman titles, and Roman/Syriac lectionary citations courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic calendar compiled in-app from the traditional sources, with Byzantine citations from Royal Doors’ public UGCC Liturgical Year (Gregorian) calendar (royaldoors.net). Hebrew Bible book names: Evangelizo HE and the St James Vicariate (catholic.co.il). Additional Hebrew feast and saint names: the St James Vicariate and the Christian Media Center (cmc-terrasanta.org)."
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "נתוני לוחות ומקראות: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 ומקראותיו מ־Missale Meum‏ (missalemeum.com); הלוח הסורי־קתולי, שמות עבריים ללוח הרומי הכללי ומראי המקום הרומיים והסוריים באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; הלוח האוקראיני־קתולי נערך באפליקציה מן המקורות המסורתיים, ומראי המקום הביזנטיים לקוחים מלוח השנה הליטורגית האוקראינית־קתולית (גרגוריאני) הציבורי של Royal Doors‏ (royaldoors.net). שמות ספרי המקרא בעברית: Evangelizo HE ונציגות יעקב הצדיק (catholic.co.il)."
+            "value" : "נתוני לוחות ומקראות: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 ומקראותיו מ־Missale Meum‏ (missalemeum.com); הלוח הסורי־קתולי, שמות עבריים ללוח הרומי הכללי ומראי המקום הרומיים והסוריים באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; הלוח האוקראיני־קתולי נערך באפליקציה מן המקורות המסורתיים, ומראי המקום הביזנטיים לקוחים מלוח השנה הליטורגית האוקראינית־קתולית (גרגוריאני) הציבורי של Royal Doors‏ (royaldoors.net). שמות ספרי המקרא בעברית: Evangelizo HE ונציגות יעקב הצדיק (catholic.co.il). שמות נוספים של חגים וקדושים בעברית: נציגות יעקב הצדיק והמרכז הנוצרי לתקשורת (cmc-terrasanta.org)."
           }
         }
       }
@@ -2746,6 +2746,193 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "המקרא היומי"
+          }
+        }
+      }
+    },
+    "home.today.rank.solemnity" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solemnity"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "מועד"
+          }
+        }
+      }
+    },
+    "home.today.rank.feast" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feast"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "חג"
+          }
+        }
+      }
+    },
+    "home.today.rank.memorial" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Memorial"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "זיכרון"
+          }
+        }
+      }
+    },
+    "home.today.rank.optional_memorial" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optional Memorial"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "זיכרון רשות"
+          }
+        }
+      }
+    },
+    "home.today.rank.sunday" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunday"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "יום ראשון"
+          }
+        }
+      }
+    },
+    "home.today.rank.great_feast" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Great Feast"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "חג גדול"
+          }
+        }
+      }
+    },
+    "home.today.rank.holy_week" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Holy Week"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "השבוע הקדוש"
+          }
+        }
+      }
+    },
+    "home.today.rank.fast" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fast"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "צום"
+          }
+        }
+      }
+    },
+    "home.today.rank.1st_class" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1st Class"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "דרגה ראשונה"
+          }
+        }
+      }
+    },
+    "home.today.rank.2nd_class" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2nd Class"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "דרגה שנייה"
+          }
+        }
+      }
+    },
+    "home.today.rank.3rd_class" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3rd Class"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "דרגה שלישית"
           }
         }
       }

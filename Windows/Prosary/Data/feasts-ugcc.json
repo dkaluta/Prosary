@@ -1,5 +1,5 @@
 {
- "$comment": "Per-day table, Byzantine — Ukrainian Greek Catholic, the diasporic (fully Gregorian) usage: CURATED in Shared/tools/fetch-feasts.py (no licensed machine-readable source exists — fixed menologion authored there, movable Paschal cycle computed from the Gregorian Pascha). Ranks: Great Feast / Feast / Sunday / Holy Week / Fast. Awaiting eparchial/community verification; see the script for the layering rules.",
+ "$comment": "Per-day table, Byzantine — Ukrainian Greek Catholic, the diasporic (fully Gregorian) usage: CURATED in Shared/tools/fetch-feasts.py (no licensed machine-readable source exists — fixed menologion authored there, movable Paschal cycle computed from the Gregorian Pascha). Ranks: Great Feast / Feast / Sunday / Holy Week / Fast. Awaiting eparchial/community verification; see the script for the layering rules. Hebrew feast and saint names use the credited source catalogs in Shared/tools/hebrew-feast-titles.json and hebrew-saint-titles.json; the calendar's own dates, observances, ranks and original titles are retained.",
  "generated": "2026-08-24",
  "years": [
   2026,
@@ -8,7 +8,10 @@
  "days": {
   "2026-01-01": {
    "title": "The Circumcision of Our Lord; Saint Basil the Great",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג ברית ישוע; בסיליוס הגדול"
+   }
   },
   "2026-01-04": {
    "title": "Sunday before Theophany",
@@ -16,7 +19,10 @@
   },
   "2026-01-06": {
    "title": "The Holy Theophany of Our Lord",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג הטבילה"
+   }
   },
   "2026-01-07": {
    "title": "Synaxis of the Holy Prophet and Forerunner John the Baptist",
@@ -48,7 +54,10 @@
   },
   "2026-02-02": {
    "title": "The Encounter of Our Lord",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג הבאתו של ישוע אל בית המקדש"
+   }
   },
   "2026-02-08": {
    "title": "Meatfare Sunday — of the Last Judgment",
@@ -88,7 +97,10 @@
   },
   "2026-03-25": {
    "title": "The Annunciation of the Most Holy Theotokos",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג בשורת המלאך למרים"
+   }
   },
   "2026-03-28": {
    "title": "Lazarus Saturday",
@@ -96,7 +108,10 @@
   },
   "2026-03-29": {
    "title": "Flowery (Palm) Sunday — the Entrance into Jerusalem",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "יום הראשון של הלולבים"
+   }
   },
   "2026-03-30": {
    "title": "Great and Holy Monday",
@@ -112,19 +127,31 @@
   },
   "2026-04-02": {
    "title": "Great and Holy Thursday",
-   "rank": "Holy Week"
+   "rank": "Holy Week",
+   "titleByLanguage": {
+    "he": "יום החמישי הגדול"
+   }
   },
   "2026-04-03": {
    "title": "Great and Holy Friday",
-   "rank": "Holy Week"
+   "rank": "Holy Week",
+   "titleByLanguage": {
+    "he": "יום השישי הגדול"
+   }
   },
   "2026-04-04": {
    "title": "Great and Holy Saturday",
-   "rank": "Holy Week"
+   "rank": "Holy Week",
+   "titleByLanguage": {
+    "he": "יום השבת הגדול"
+   }
   },
   "2026-04-05": {
    "title": "The Resurrection of Our Lord — Holy Pascha",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "יום הפסחא - חג התחייה"
+   }
   },
   "2026-04-06": {
    "title": "Bright Monday",
@@ -144,7 +171,10 @@
   },
   "2026-04-23": {
    "title": "Holy Great-Martyr George",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "גאורגיוס, מרטיר"
+   }
   },
   "2026-04-26": {
    "title": "Sunday of the Paralytic",
@@ -160,7 +190,10 @@
   },
   "2026-05-08": {
    "title": "Holy Apostle and Evangelist John the Theologian",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג יוחנן המבשר"
+   }
   },
   "2026-05-10": {
    "title": "Sunday of the Man Born Blind",
@@ -168,7 +201,10 @@
   },
   "2026-05-14": {
    "title": "The Ascension of Our Lord",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג עלייתו של האדון השמיימה"
+   }
   },
   "2026-05-17": {
    "title": "Sunday of the Fathers of the First Council of Nicaea",
@@ -180,7 +216,10 @@
   },
   "2026-05-24": {
    "title": "The Descent of the Holy Spirit — Pentecost",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "שבועות"
+   }
   },
   "2026-05-25": {
    "title": "Monday of the Holy Spirit",
@@ -188,7 +227,10 @@
   },
   "2026-05-31": {
    "title": "Sunday of All Saints",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "חג כל הקדושים"
+   }
   },
   "2026-06-07": {
    "title": "2nd Sunday after Pentecost",
@@ -204,7 +246,10 @@
   },
   "2026-06-24": {
    "title": "The Nativity of the Holy Prophet John the Baptist",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג הולדתו של יוחנן המטביל"
+   }
   },
   "2026-06-27": {
    "title": "The Blessed New Martyrs of the Ukrainian Catholic Church",
@@ -216,7 +261,10 @@
   },
   "2026-06-29": {
    "title": "Holy Apostles Peter and Paul",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג שמעון כיפא ושאול השליחים"
+   }
   },
   "2026-07-05": {
    "title": "6th Sunday after Pentecost",
@@ -240,7 +288,10 @@
   },
   "2026-07-20": {
    "title": "The Holy Prophet Elijah",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג אליהו הנביא"
+   }
   },
   "2026-07-26": {
    "title": "9th Sunday after Pentecost",
@@ -252,7 +303,10 @@
   },
   "2026-08-06": {
    "title": "The Holy Transfiguration of Our Lord",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג של ישוע לבוש הדר (חג היפע)"
+   }
   },
   "2026-08-09": {
    "title": "11th Sunday after Pentecost",
@@ -260,7 +314,10 @@
   },
   "2026-08-15": {
    "title": "The Dormition of the Most Holy Theotokos",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "תרדמת מרים"
+   }
   },
   "2026-08-16": {
    "title": "12th Sunday after Pentecost",
@@ -272,7 +329,10 @@
   },
   "2026-08-29": {
    "title": "The Beheading of the Holy Prophet John the Baptist",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "זכר ייסוריו של יוחנן המטביל"
+   }
   },
   "2026-08-30": {
    "title": "14th Sunday after Pentecost",
@@ -284,7 +344,10 @@
   },
   "2026-09-08": {
    "title": "The Nativity of the Most Holy Theotokos",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג המולד של מרים העלמה"
+   }
   },
   "2026-09-13": {
    "title": "16th Sunday after Pentecost",
@@ -292,7 +355,10 @@
   },
   "2026-09-14": {
    "title": "The Exaltation of the Precious and Life-Giving Cross",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג תפארת הצלב"
+   }
   },
   "2026-09-20": {
    "title": "17th Sunday after Pentecost",
@@ -336,11 +402,17 @@
   },
   "2026-11-12": {
    "title": "Holy Priest-Martyr Josaphat, Archbishop of Polotsk",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יוזפט, הגמון ומרטיר"
+   }
   },
   "2026-11-13": {
    "title": "Saint John Chrysostom",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יוחנן כריסוסטומוס הקדוש"
+   }
   },
   "2026-11-15": {
    "title": "25th Sunday after Pentecost",
@@ -348,7 +420,10 @@
   },
   "2026-11-21": {
    "title": "The Entrance of the Most Holy Theotokos into the Temple",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "כניסת מרים לבית המקדש"
+   }
   },
   "2026-11-22": {
    "title": "26th Sunday after Pentecost",
@@ -364,7 +439,10 @@
   },
   "2026-12-06": {
    "title": "Saint Nicholas the Wonderworker",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "ניקולאוס הקדוש"
+   }
   },
   "2026-12-09": {
    "title": "The Conception of the Most Holy Theotokos by Saint Anna",
@@ -380,7 +458,10 @@
   },
   "2026-12-25": {
    "title": "The Nativity of Our Lord",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג המולד"
+   }
   },
   "2026-12-26": {
    "title": "Synaxis of the Most Holy Theotokos",
@@ -392,7 +473,10 @@
   },
   "2027-01-01": {
    "title": "The Circumcision of Our Lord; Saint Basil the Great",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג ברית ישוע; בסיליוס הגדול"
+   }
   },
   "2027-01-03": {
    "title": "Sunday before Theophany",
@@ -400,7 +484,10 @@
   },
   "2027-01-06": {
    "title": "The Holy Theophany of Our Lord",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג הטבילה"
+   }
   },
   "2027-01-07": {
    "title": "Synaxis of the Holy Prophet and Forerunner John the Baptist",
@@ -420,7 +507,10 @@
   },
   "2027-01-25": {
    "title": "Saint Gregory the Theologian",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "גרגוריוס מנזיאנזוס"
+   }
   },
   "2027-01-30": {
    "title": "The Three Holy Hierarchs",
@@ -432,7 +522,10 @@
   },
   "2027-02-02": {
    "title": "The Encounter of Our Lord",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג הבאתו של ישוע אל בית המקדש"
+   }
   },
   "2027-02-07": {
    "title": "Cheesefare Sunday — of Forgiveness",
@@ -472,7 +565,10 @@
   },
   "2027-03-21": {
    "title": "Flowery (Palm) Sunday — the Entrance into Jerusalem",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "יום הראשון של הלולבים"
+   }
   },
   "2027-03-22": {
    "title": "Great and Holy Monday",
@@ -488,19 +584,31 @@
   },
   "2027-03-25": {
    "title": "The Annunciation of the Most Holy Theotokos; Great and Holy Thursday",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג בשורת המלאך למרים; יום החמישי הגדול"
+   }
   },
   "2027-03-26": {
    "title": "Great and Holy Friday",
-   "rank": "Holy Week"
+   "rank": "Holy Week",
+   "titleByLanguage": {
+    "he": "יום השישי הגדול"
+   }
   },
   "2027-03-27": {
    "title": "Great and Holy Saturday",
-   "rank": "Holy Week"
+   "rank": "Holy Week",
+   "titleByLanguage": {
+    "he": "יום השבת הגדול"
+   }
   },
   "2027-03-28": {
    "title": "The Resurrection of Our Lord — Holy Pascha",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "יום הפסחא - חג התחייה"
+   }
   },
   "2027-03-29": {
    "title": "Bright Monday",
@@ -528,7 +636,10 @@
   },
   "2027-04-23": {
    "title": "Holy Great-Martyr George",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "גאורגיוס, מרטיר"
+   }
   },
   "2027-04-25": {
    "title": "Sunday of the Samaritan Woman",
@@ -540,11 +651,17 @@
   },
   "2027-05-06": {
    "title": "The Ascension of Our Lord",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג עלייתו של האדון השמיימה"
+   }
   },
   "2027-05-08": {
    "title": "Holy Apostle and Evangelist John the Theologian",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג יוחנן המבשר"
+   }
   },
   "2027-05-09": {
    "title": "Sunday of the Fathers of the First Council of Nicaea",
@@ -552,7 +669,10 @@
   },
   "2027-05-16": {
    "title": "The Descent of the Holy Spirit — Pentecost",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "שבועות"
+   }
   },
   "2027-05-17": {
    "title": "Monday of the Holy Spirit",
@@ -564,7 +684,10 @@
   },
   "2027-05-23": {
    "title": "Sunday of All Saints",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "חג כל הקדושים"
+   }
   },
   "2027-05-30": {
    "title": "2nd Sunday after Pentecost",
@@ -584,7 +707,10 @@
   },
   "2027-06-24": {
    "title": "The Nativity of the Holy Prophet John the Baptist",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג הולדתו של יוחנן המטביל"
+   }
   },
   "2027-06-27": {
    "title": "The Blessed New Martyrs of the Ukrainian Catholic Church",
@@ -592,7 +718,10 @@
   },
   "2027-06-29": {
    "title": "Holy Apostles Peter and Paul",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג שמעון כיפא ושאול השליחים"
+   }
   },
   "2027-07-04": {
    "title": "7th Sunday after Pentecost",
@@ -612,7 +741,10 @@
   },
   "2027-07-20": {
    "title": "The Holy Prophet Elijah",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג אליהו הנביא"
+   }
   },
   "2027-07-25": {
    "title": "10th Sunday after Pentecost",
@@ -624,7 +756,10 @@
   },
   "2027-08-06": {
    "title": "The Holy Transfiguration of Our Lord",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג של ישוע לבוש הדר (חג היפע)"
+   }
   },
   "2027-08-08": {
    "title": "12th Sunday after Pentecost",
@@ -632,7 +767,10 @@
   },
   "2027-08-15": {
    "title": "The Dormition of the Most Holy Theotokos",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "תרדמת מרים"
+   }
   },
   "2027-08-22": {
    "title": "14th Sunday after Pentecost",
@@ -640,7 +778,10 @@
   },
   "2027-08-29": {
    "title": "The Beheading of the Holy Prophet John the Baptist",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "זכר ייסוריו של יוחנן המטביל"
+   }
   },
   "2027-09-05": {
    "title": "16th Sunday after Pentecost",
@@ -648,7 +789,10 @@
   },
   "2027-09-08": {
    "title": "The Nativity of the Most Holy Theotokos",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג המולד של מרים העלמה"
+   }
   },
   "2027-09-12": {
    "title": "17th Sunday after Pentecost",
@@ -656,7 +800,10 @@
   },
   "2027-09-14": {
    "title": "The Exaltation of the Precious and Life-Giving Cross",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג תפארת הצלב"
+   }
   },
   "2027-09-19": {
    "title": "18th Sunday after Pentecost",
@@ -704,11 +851,17 @@
   },
   "2027-11-12": {
    "title": "Holy Priest-Martyr Josaphat, Archbishop of Polotsk",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יוזפט, הגמון ומרטיר"
+   }
   },
   "2027-11-13": {
    "title": "Saint John Chrysostom",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יוחנן כריסוסטומוס הקדוש"
+   }
   },
   "2027-11-14": {
    "title": "26th Sunday after Pentecost",
@@ -716,7 +869,10 @@
   },
   "2027-11-21": {
    "title": "The Entrance of the Most Holy Theotokos into the Temple",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "כניסת מרים לבית המקדש"
+   }
   },
   "2027-11-28": {
    "title": "28th Sunday after Pentecost",
@@ -732,7 +888,10 @@
   },
   "2027-12-06": {
    "title": "Saint Nicholas the Wonderworker",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "ניקולאוס הקדוש"
+   }
   },
   "2027-12-09": {
    "title": "The Conception of the Most Holy Theotokos by Saint Anna",
@@ -748,7 +907,10 @@
   },
   "2027-12-25": {
    "title": "The Nativity of Our Lord",
-   "rank": "Great Feast"
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג המולד"
+   }
   },
   "2027-12-26": {
    "title": "Sunday after the Nativity",
@@ -756,7 +918,10 @@
   },
   "2027-12-27": {
    "title": "Holy First-Martyr and Archdeacon Stephen",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג סטפנוס הקדוש"
+   }
   }
  }
 }

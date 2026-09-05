@@ -89,8 +89,100 @@ public class TodayInfoStoreTests
         Assert.Equal("22nd Sunday of Ordinary Time", sunday?.Title);
         Assert.Equal("יום א ה-22 של הזמן הרגיל", sunday?.LocalizedTitle("he"));
         Assert.Equal("Sunday", sunday?.Rank);
-        var gregory = TodayInfoStore.Feast(new DateOnly(2026, 9, 3));
-        Assert.Equal(gregory?.Title, gregory?.LocalizedTitle("he"));
+        Assert.NotNull(TodayInfoStore.Feast(new DateOnly(2026, 9, 3)));
+    }
+
+    [Fact]
+    public void EveryCalendarLocalizesItsOwnFeastWithoutChangingItsTitleOrRank()
+    {
+        var expected = new[]
+        {
+            ("lpj", "Exaltation of the Holy Cross", "Feast"),
+            ("roman", "Exaltation of the Holy Cross", "Feast"),
+            ("roman1962", "Exaltation of the Holy Cross", "2nd Class"),
+            ("ugcc", "The Exaltation of the Precious and Life-Giving Cross", "Great Feast"),
+            ("syriac", "Exaltation of the Holy Cross—Feast", "Feast"),
+        };
+        foreach (var (calendarId, title, rank) in expected)
+        {
+            TodayInfoStore.SelectedCalendarId = calendarId;
+            var feast = TodayInfoStore.Feast(new DateOnly(2026, 9, 14));
+            Assert.NotNull(feast);
+            Assert.Equal(title, feast.Title);
+            Assert.Equal(rank, feast.Rank);
+            Assert.Equal("חג תפארת הצלב", feast.LocalizedTitle("he"));
+            Assert.Equal("חג תפארת הצלב", feast.LocalizedTitle("he-x-gamliel"));
+            Assert.Equal(title, feast.LocalizedTitle("en"));
+        }
+    }
+
+    [Fact]
+    public void FeastWithoutATranslationKeepsItsOwnTitle()
+    {
+        var feast = new FeastDay("Untranslated feast", "Feast");
+        Assert.Equal("Untranslated feast", feast.LocalizedTitle("he"));
+        Assert.Equal("Untranslated feast", feast.LocalizedTitle("he-x-gamliel"));
+    }
+
+    [Fact]
+    public void TeresaOfCalcuttaLocalizesWithoutReplacingAnotherCalendarsDay()
+    {
+        foreach (var calendarId in new[] { "lpj", "roman" })
+        {
+            TodayInfoStore.SelectedCalendarId = calendarId;
+            var feast = TodayInfoStore.Feast(new DateOnly(2026, 9, 5));
+            Assert.NotNull(feast);
+            Assert.Equal("Saint Teresa of Calcutta, Virgin", feast.Title);
+            Assert.Equal("Optional Memorial", feast.Rank);
+            Assert.Equal("תרזה הקדושה מקלקוטה", feast.LocalizedTitle("he"));
+            Assert.Equal("תרזה הקדושה מקלקוטה", feast.LocalizedTitle("he-x-gamliel"));
+            Assert.Equal("Saint Teresa of Calcutta, Virgin", feast.LocalizedTitle("en"));
+
+            // September 5 falls on Sunday in 2027; translating a saint must not change precedence.
+            var sunday = TodayInfoStore.Feast(new DateOnly(2027, 9, 5));
+            Assert.Equal("23rd Sunday of Ordinary Time", sunday?.Title);
+            Assert.Equal("Sunday", sunday?.Rank);
+        }
+
+        TodayInfoStore.SelectedCalendarId = "roman1962";
+        var vetus = TodayInfoStore.Feast(new DateOnly(2026, 9, 5));
+        Assert.Equal("St. Lawrence Justinian", vetus?.Title);
+        Assert.Equal("3rd Class", vetus?.Rank);
+        foreach (var calendarId in new[] { "ugcc", "syriac" })
+        {
+            TodayInfoStore.SelectedCalendarId = calendarId;
+            Assert.Null(TodayInfoStore.Feast(new DateOnly(2026, 9, 5)));
+        }
+    }
+
+    [Fact]
+    public void FeastRanksFollowTodayLanguageWithoutChangingCanonicalValues()
+    {
+        var expected = new[]
+        {
+            ("Solemnity", "מועד"),
+            ("Feast", "חג"),
+            ("Memorial", "זיכרון"),
+            ("Optional Memorial", "זיכרון רשות"),
+            ("Sunday", "יום ראשון"),
+            ("Great Feast", "חג גדול"),
+            ("Holy Week", "השבוע הקדוש"),
+            ("Fast", "צום"),
+            ("1st Class", "דרגה ראשונה"),
+            ("2nd Class", "דרגה שנייה"),
+            ("3rd Class", "דרגה שלישית"),
+        };
+        foreach (var (rank, hebrew) in expected)
+        {
+            var feast = new FeastDay("Feast", rank);
+            Assert.Equal(hebrew, feast.LocalizedRank("he"));
+            Assert.Equal(hebrew, feast.LocalizedRank("he-x-gamliel"));
+            Assert.Equal(rank, feast.LocalizedRank("en"));
+            Assert.Equal(rank, feast.LocalizedRank("fr"));
+            Assert.Equal(rank, feast.Rank);
+        }
+        var unknown = new FeastDay("Feast", "Future rank");
+        Assert.Equal("Future rank", unknown.LocalizedRank("he"));
     }
 
     [Fact]

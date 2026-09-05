@@ -63,12 +63,13 @@
           "type": "string"
         },
         "rank": {
-          "type": "string"
+          "type": "string",
+          "description": "Canonical rank used by calendar logic and title prominence. Localize its display caption using the Today language without changing this value."
         },
         "titleByLanguage": {
           "type": "map<string, string>",
           "default": {},
-          "description": "Sourced/authored localizations only. If the requested language is missing, display title; never machine-translate a feast."
+          "description": "Sourced/authored localizations only. Shared feast/saint catalogs apply exact identities and reviewed aliases across all calendars without changing dates, original titles, or ranks. If the requested language is missing, display title; never machine-translate a feast."
         }
       }
     }
