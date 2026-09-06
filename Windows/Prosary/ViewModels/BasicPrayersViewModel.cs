@@ -100,7 +100,7 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     private string _progressText = string.Empty;
 
     [ObservableProperty]
-    private string _progressFontFamily = Microsoft.UI.Xaml.Media.FontFamily.XamlAutoFontFamily.Source;
+    private string _progressFontFamily = PrayerTypography.NativeUiFontFamily;
 
     private string? _initializedScriptLanguage;
     private string? _aramaicSessionScript;
@@ -187,7 +187,7 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
         MysteryImageFile = BasicPrayersViewModel.ImageFile(prayer.ImageKey);
         var aramaicProgress = PrayerTranslations.AramaicProgress(1, 1, language.Code, usesSyriacScript);
         ProgressText = aramaicProgress ?? string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), 1, 1);
-        ProgressFontFamily = aramaicProgress is null ? Microsoft.UI.Xaml.Media.FontFamily.XamlAutoFontFamily.Source
+        ProgressFontFamily = aramaicProgress is null ? PrayerTypography.NativeUiFontFamily
             : PrayerTypography.ResolveBodyFontFamily(language.Code, false, PrayerTypography.ScriptOf(ProgressText));
         IsRightToLeft = language.IsRightToLeft;
         var bodyScript = PrayerTypography.ScriptOf(Body);

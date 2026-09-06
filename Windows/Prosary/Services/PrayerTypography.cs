@@ -16,6 +16,12 @@ namespace Prosary.Services;
 /// </summary>
 public static class PrayerTypography
 {
+    /// <summary>WinUI's native, language-aware UI font token. Keep this as plain binding data:
+    /// resolving FontFamily.XamlAutoFontFamily here would activate XAML while constructing or
+    /// loading a ViewModel, before a UI thread necessarily exists. The TextBlock resolves the
+    /// token on its own UI thread, retaining the platform's native font selection.</summary>
+    public const string NativeUiFontFamily = "XamlAutoFontFamily";
+
     // Scripture quotations (the mystery-announcement step) get a dedicated typeface distinct
     // from ordinary prayer text, uniformly across platforms — Cardo (Latin) and Scheherazade New
     // (Arabic) were both designed for classical/Biblical typesetting, the same reasoning behind

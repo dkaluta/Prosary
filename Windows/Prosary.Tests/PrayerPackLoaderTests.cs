@@ -692,7 +692,7 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
     public void CustomDevotionIdsAreTheGenericDevotionsInLoadOrder()
     {
         Assert.Equal(
-            ["angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows", "divineMercyChaplet", "trisagion", "oAntiphons"],
+            ["angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows", "divineMercyChaplet", "trisagion", "oAntiphons", "litanyOfLoreto"],
             PrayerPackStore.CustomDevotionIds());
         Assert.NotNull(PrayerPackStore.Definition("rosary"));
     }

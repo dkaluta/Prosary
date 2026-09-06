@@ -130,6 +130,35 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Fact]
+    public void BasicPrayerProgressReturnsToNativeUiFontAfterAramaic()
+    {
+        var previousLanguage = AppSettings.BasicPrayersLanguageCode;
+        var previousScript = AppSettings.AramaicDefaultScript;
+        try
+        {
+            AppSettings.SetBasicPrayersLanguageCode("arc");
+            AppSettings.SetAramaicDefaultScript("Syrc");
+            var viewModel = new BasicPrayerViewModel();
+            viewModel.Load("ourFather");
+            Assert.Equal(PrayerTypography.Script.Syriac, PrayerTypography.ScriptOf(viewModel.Body));
+            Assert.Contains("Noto Sans Syriac", viewModel.ProgressFontFamily);
+
+            viewModel.SelectLanguage("en");
+            Assert.Equal(PrayerTypography.Script.Latin, PrayerTypography.ScriptOf(viewModel.Body));
+            Assert.Equal("XamlAutoFontFamily", viewModel.ProgressFontFamily);
+            Assert.NotEmpty(viewModel.ProgressText);
+
+            viewModel.SelectLanguage("arc");
+            Assert.Contains("Noto Sans Syriac", viewModel.ProgressFontFamily);
+        }
+        finally
+        {
+            AppSettings.SetBasicPrayersLanguageCode(previousLanguage);
+            AppSettings.SetAramaicDefaultScript(previousScript);
+        }
+    }
+
+    [Fact]
     public void ResumeRequiresAnUnfinishedMatchingPosition()
     {
         var today = new DateOnly(2026, 9, 3);

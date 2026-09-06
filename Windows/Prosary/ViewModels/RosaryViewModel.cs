@@ -60,7 +60,7 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     private string _progressText = string.Empty;
 
     [ObservableProperty]
-    private string _progressFontFamily = Microsoft.UI.Xaml.Media.FontFamily.XamlAutoFontFamily.Source;
+    private string _progressFontFamily = PrayerTypography.NativeUiFontFamily;
 
     private string? _initializedScriptLanguage;
     private string? _aramaicSessionScript;
@@ -351,7 +351,7 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         MysteryImageKey = step.ImageVariantKey ?? step.Mystery?.ImageKey ?? step.ImageOverrideKey ?? "cross_placeholder";
         var aramaicProgress = PrayerTranslations.AramaicProgress(_index + 1, _steps.Count, _languageCode, usesSyriacScript);
         ProgressText = aramaicProgress ?? string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), _index + 1, _steps.Count);
-        ProgressFontFamily = aramaicProgress is null ? Microsoft.UI.Xaml.Media.FontFamily.XamlAutoFontFamily.Source
+        ProgressFontFamily = aramaicProgress is null ? PrayerTypography.NativeUiFontFamily
             : PrayerTypography.ResolveBodyFontFamily(_languageCode, false, PrayerTypography.ScriptOf(ProgressText));
         Progress = (_index + 1) / (double)_steps.Count;
         CanGoBack = _index > 0;

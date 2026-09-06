@@ -392,7 +392,11 @@ public class TodayInfoStoreTests
         Assert.Equal("אל הפיליפים א׳", syriac.First().LocalizedShort("he-x-gamliel"));
         Assert.Equal("אגרת שאול אל הפיליפים א׳ 12–21", syriac.First().LocalizedFull("he"));
         Assert.Equal("השנייה אל טימותיאוס ב׳", TodayInfoStore.Readings(new DateOnly(2026, 8, 8)).First().LocalizedShort("he"));
-        Assert.Empty(TodayInfoStore.Readings(new DateOnly(2026, 8, 1)));
+        var syriacAugustFirst = TodayInfoStore.Readings(new DateOnly(2026, 8, 1));
+        Assert.Equal(new[] { "Hebrews 11:32–40", "Matthew 10:24–33" },
+            syriacAugustFirst.Select(r => r.Full));
+        Assert.Equal(new[] { "אל העברים י״א", "מתי י׳" },
+            syriacAugustFirst.Select(r => r.LocalizedShort("he")));
     }
 
     [Fact]
@@ -417,10 +421,16 @@ public class TodayInfoStoreTests
         Assert.Equal("1 Cor. 2", TodayInfoStore.Readings(date).First().Short);
     }
 
-    [Fact]
-    public void ReadingsOutsideASelectedCalendarsCoverageAreEmpty()
+    [Theory]
+    [InlineData("lpj")]
+    [InlineData("roman")]
+    [InlineData("roman1962")]
+    [InlineData("ugcc")]
+    [InlineData("syriac")]
+    [InlineData("maronite")]
+    public void ReadingsOutsideASelectedCalendarsCoverageAreEmpty(string calendarId)
     {
-        TodayInfoStore.SelectedCalendarId = "syriac";
+        TodayInfoStore.SelectedCalendarId = calendarId;
         Assert.Empty(TodayInfoStore.Readings(new DateOnly(2031, 1, 1)));
     }
 

@@ -54,7 +54,7 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     private string _progressText = string.Empty;
 
     [ObservableProperty]
-    private string _progressFontFamily = Microsoft.UI.Xaml.Media.FontFamily.XamlAutoFontFamily.Source;
+    private string _progressFontFamily = PrayerTypography.NativeUiFontFamily;
 
     [ObservableProperty]
     private bool _hasTransliteration;
@@ -213,7 +213,7 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
             ? PrayerTranslations.AramaicProgress(RepetitionState.CurrentIndex + 1, count, _languageCode, usesSyriacScript)
                 ?? string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), RepetitionState.CurrentIndex + 1, count)
             : $"{RepetitionState.CurrentIndex + 1}";
-        ProgressFontFamily = _languageCode != "arc" ? Microsoft.UI.Xaml.Media.FontFamily.XamlAutoFontFamily.Source
+        ProgressFontFamily = _languageCode != "arc" ? PrayerTypography.NativeUiFontFamily
             : PrayerTypography.ResolveBodyFontFamily(_languageCode, false, PrayerTypography.ScriptOf(ProgressText));
         Progress = RepetitionState.ProgressFraction;
         var bodyScript = PrayerTypography.ScriptOf(Body);
