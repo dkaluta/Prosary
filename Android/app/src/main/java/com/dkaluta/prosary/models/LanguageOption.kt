@@ -13,12 +13,14 @@ data class LanguageOption(
 /** Languages available for prayer text. Latin is the default — it's the neutral fallback every
  * lookup falls back to if a translation is missing in the chosen language. */
 object LanguageCatalog {
-    /** "he-x-gamliel" → "he": community variants overlay their base language — resolve
-     * chains try the exact code first, then this. Null when the code has no subtag. */
+    /** Base spelling for interface metadata and typography; prayer traditions have their
+     * own positions in [fallbackChain] instead of inheriting each other's priority. */
     fun baseLanguage(code: String): String? =
         code.indexOf('-').takeIf { it > 0 }?.let { code.substring(0, it) }
 
     const val defaultCode = "la"
+    /** Content-only probe. Saved settings and picker options continue to use `he`. */
+    const val hebrewVicariateContentCode = "he-x-vicariate"
 
     /** The UI language as the content layer spells it. Android's Locale still reports Hebrew by
      * its pre-1989 legacy code — getLanguage() returns "iw", never "he" — so every lookup that
@@ -92,14 +94,36 @@ object LanguageCatalog {
 
     fun fallbackChain(requested: String?): List<String> = buildList {
         fun append(code: String?) {
-            val normalized = code?.let(::uiLanguageCode) ?: return
+            val normalized = code?.let(::uiLanguageCode)
+                ?.let { if (it == hebrewVicariateContentCode) "he" else it } ?: return
             if (normalized in this) return
             add(normalized)
-            baseLanguage(normalized)?.takeIf { it !in this }?.let(::add)
+            if (normalized != "he-x-gamliel") {
+                baseLanguage(normalized)?.takeIf { it !in this }?.let(::add)
+            }
         }
         append(requested?.takeIf { it.isNotEmpty() } ?: AppSettings.defaultLanguageCode)
         fallbackOrder.forEach(::append)
         append(defaultCode)
+    }
+
+    /** Generic Hebrew can serve either tradition at its first, highest-priority slot.
+     * Specific Vicariate wording is considered only at the saved `he` slot. */
+    fun contentFallbackChain(requested: String?): List<String> = buildList {
+        for (code in fallbackChain(requested)) {
+            val probes = when (code) {
+                "he" -> listOf(hebrewVicariateContentCode, "he")
+                "he-x-gamliel" -> listOf(code, "he")
+                else -> listOf(code)
+            }
+            probes.filterNot { it in this }.forEach(::add)
+        }
+    }
+
+    fun selectionForContentProbe(probe: String, requested: String?): String = when (probe) {
+        hebrewVicariateContentCode -> "he"
+        "he" -> fallbackChain(requested).firstOrNull { it == "he" || it == "he-x-gamliel" } ?: "he"
+        else -> probe
     }
 
     /** Separate traditions retain the source-specific codes used by existing saved prayers. */

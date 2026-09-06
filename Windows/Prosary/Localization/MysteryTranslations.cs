@@ -35,7 +35,7 @@ public static partial class MysteryTranslations
         string? description = null;
         string? transliteratedDescription = null;
 
-        foreach (var code in Prosary.Models.LanguageCatalog.FallbackChain(languageCode))
+        foreach (var code in Prosary.Models.LanguageCatalog.ContentFallbackChain(languageCode))
         {
             var packOverride = PrayerPackStore.MysteryOverride(code, imageKey);
             if (packOverride is not null)

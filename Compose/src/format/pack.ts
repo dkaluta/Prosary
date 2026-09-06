@@ -188,12 +188,17 @@ export function buildBundleFiles(project: Project): ZipFile[] {
   for (const language of project.languages) {
     const prayers: Record<string, string> = {};
     const transliterations: Record<string, string> = {};
+    const prayerTraditionByKey: Record<string, "vicariate"> = {};
     allSteps.forEach((step, i) => {
       if (step.kind !== "custom") return;
       prayers[`${stepKeyBase(i)}Title`] = step.titleByLanguage[language]?.trim() ?? "";
       prayers[`${stepKeyBase(i)}Body`] = step.bodyByLanguage[language]?.trim() ?? "";
       const transliteration = step.transliterationByLanguage?.[language]?.trim();
       if (transliteration) transliterations[`${stepKeyBase(i)}Body`] = transliteration;
+      if (language === "he") {
+        if (step.hebrewTitleTradition) prayerTraditionByKey[`${stepKeyBase(i)}Title`] = step.hebrewTitleTradition;
+        if (step.hebrewBodyTradition) prayerTraditionByKey[`${stepKeyBase(i)}Body`] = step.hebrewBodyTradition;
+      }
     });
     files.push({
       name: `content/${language}.json`,
@@ -201,6 +206,7 @@ export function buildBundleFiles(project: Project): ZipFile[] {
         prayers,
         mysteries: {},
         ...(Object.keys(transliterations).length > 0 ? { transliterations } : {}),
+        ...(Object.keys(prayerTraditionByKey).length > 0 ? { $prayerTraditionByKey: prayerTraditionByKey } : {}),
       }),
     });
   }

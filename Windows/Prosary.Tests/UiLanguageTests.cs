@@ -10,7 +10,7 @@ namespace Prosary.Tests;
 public class UiLanguageTests
 {
     [Fact]
-    public void HebrewHasOneLanguageChoiceAndPreservesASeparateTraditionAndFallbackOrder()
+    public void HebrewHasOneLanguageChoiceAndPreservesASeparateTradition()
     {
         Assert.Single(LanguageCatalog.PickerOptions.Where(language => language.Code.StartsWith("he")));
         Assert.Equal("עברית", LanguageCatalog.Resolve("he-x-gamliel").NativeName);
@@ -19,11 +19,34 @@ public class UiLanguageTests
         Assert.Equal("he-x-gamliel", LanguageCatalog.SelectingLanguage("he", "he-x-gamliel"));
         Assert.Equal("", LanguageCatalog.SelectingLanguage("", "he-x-gamliel"));
         Assert.Equal("en", LanguageCatalog.SelectingLanguage("en", "he-x-gamliel"));
+    }
+
+    [Theory]
+    [InlineData("he-x-gamliel", "he")]
+    [InlineData("he", "he-x-gamliel")]
+    public void FallbackEditorRoundTripsHebrewTraditionsWithAramaicBetweenThem(string first, string second)
+    {
         var previous = AppSettings.LanguageFallbackOrder.ToArray();
         try
         {
-            AppSettings.SetLanguageFallbackOrder(["en", "he-x-gamliel", "he", "la"]);
-            Assert.Equal(new[] { "he-x-gamliel", "he", "en", "la" }, LanguageCatalog.ExpandFallbackOrder(["he", "en", "la"]));
+            AppSettings.SetLanguageFallbackOrder([]);
+            var rows = LanguageCatalog.FallbackOptions;
+            Assert.Equal(LanguageCatalog.All.Count, rows.Count);
+            Assert.NotEqual(rows.Single(row => row.Code == "he").NativeName,
+                rows.Single(row => row.Code == "he-x-gamliel").NativeName);
+            foreach (var tradition in LanguageCatalog.Rites("he"))
+                Assert.EndsWith(tradition.NativeName, rows.Single(row => row.Code == tradition.Code).NativeName);
+
+            var leadingCodes = new[] { first, "arc", second };
+            var editedRows = leadingCodes.Select(code => rows.Single(row => row.Code == code))
+                .Concat(rows.Where(row => !leadingCodes.Contains(row.Code))).ToArray();
+            var savedCodes = editedRows.Select(row => row.Code).ToArray();
+            AppSettings.SetLanguageFallbackOrder(savedCodes);
+
+            Assert.Equal(savedCodes, AppSettings.LanguageFallbackOrder);
+            Assert.Equal(savedCodes, LanguageCatalog.FallbackOptions.Select(row => row.Code));
+            Assert.Equal(leadingCodes, LanguageCatalog.FallbackOptions.Take(3).Select(row => row.Code));
+            Assert.Single(LanguageCatalog.PickerOptions, row => row.Code.StartsWith("he"));
         }
         finally { AppSettings.SetLanguageFallbackOrder(previous); }
     }

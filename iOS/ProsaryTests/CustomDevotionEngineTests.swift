@@ -686,9 +686,15 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertTrue(PrayerEngine.evaluateCondition("invitatory", values: values))
   }
 
-  /// The Mission of St. Gamaliel's wording overlays plain Hebrew key by key — their Creed is the
-  /// Nicene one, and anything they have not sent still reads in the app's Hebrew.
+  /// The Mission's exact prayers win; the Vicariate supplies missing prayers when it is
+  /// explicitly the next preference. Shared Hebrew mystery Scripture belongs to either use.
   func testGamalielVariantOverlaysHebrew() {
+    let original = UserDefaults.standard.object(forKey: LanguageCatalog.fallbackOrderKey)
+    defer {
+      if let original { UserDefaults.standard.set(original, forKey: LanguageCatalog.fallbackOrderKey) }
+      else { LanguageCatalog.resetFallbackOrder() }
+    }
+    LanguageCatalog.setFallbackOrder(["he", "arc", "en", "la"])
     let variant = steps("rosary", language: "he-x-gamliel", customOptions: ["apostlesCreed": "true"])
     XCTAssertTrue(variant[1].body.contains("אָנוּ מַאֲמִינִים"), "the Creed is the Nicene one")
     XCTAssertEqual(variant[1].title, "מאמינים של ניקאה")
@@ -705,7 +711,7 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertTrue(variant.contains { $0.title == "השבח לאב" })
     XCTAssertTrue(hebrew.contains { $0.title == "כבוד לאב" })
 
-    // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
+    // Not sent by the Mission: the Fatima prayer uses the explicitly preferred Vicariate.
     let fatima = { (list: [RosaryStep]) in list.first { $0.title.contains("הו ישוע") }?.body }
     XCTAssertEqual(fatima(variant), fatima(hebrew))
 
@@ -740,7 +746,7 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertTrue(resolved.isRightToLeft)
   }
 
-  func testLanguageFallbackOrderKeepsBaseFirstAndLatinLast() {
+  func testLanguageFallbackOrderKeepsTraditionsInSavedOrderAndLatinLast() {
     let key = LanguageCatalog.fallbackOrderKey
     let original = UserDefaults.standard.array(forKey: key)
     defer {
@@ -749,7 +755,7 @@ final class CustomDevotionEngineTests: XCTestCase {
     }
     LanguageCatalog.setFallbackOrder(["ru", "en", "ar", "he", "he-x-gamliel", "arc", "el", "es", "tl", "la"])
     let chain = LanguageCatalog.fallbackChain(for: "he-x-gamliel")
-    XCTAssertEqual(Array(chain.prefix(4)), ["he-x-gamliel", "he", "ru", "en"])
+    XCTAssertEqual(Array(chain.prefix(4)), ["he-x-gamliel", "ru", "en", "ar"])
     XCTAssertEqual(chain.last, "la")
   }
 

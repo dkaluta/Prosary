@@ -23,6 +23,9 @@ export interface EditorStep {
   /** Custom steps only, optional (v0.7): the prayer transliterated into another script, per
    * language — a reading aid for praying along in a script one can't read. */
   transliterationByLanguage?: PerLanguage;
+  /** Source provenance retained through import/export; plain repository Hebrew stays generic. */
+  hebrewTitleTradition?: "vicariate";
+  hebrewBodyTradition?: "vicariate";
   /** Artwork: the author's own upload, or one of the app's shared illustrations. Absent =
    * the step's default (the common prayer's traditional image, or the cross placeholder). */
   image?: { kind: "upload"; uid: string } | { kind: "shared"; key: string };

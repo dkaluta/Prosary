@@ -84,6 +84,12 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   `ar`/`he`/`he-x-gamliel`/`arc` are right-to-left, independently of the device's UI language.
   A bundle advertises only the subset it fully supplies; exact community codes can overlay
   their base language without pretending to be complete.
+  Apple's system Settings page uses `Settings.bundle` only for a note directing people to
+  Prosary's in-app Settings for prayer language, calendars and appearance. It has no custom
+  preference controls; Apple manages the system permissions and interface-language controls.
+  The note is localized in all seven interface languages. Removing the old duplicate language
+  picker does not migrate or reset `defaultLanguageCode`; the app reads the same saved value
+  and registers its own Latin fallback. The bundled settings test checks the translated note.
 
 
 > **Running the Apple test suites:** pass `-parallel-testing-enabled NO`. Both targets share
@@ -553,17 +559,33 @@ A bundle's `manifest.languages` declares the languages the validator holds to co
 Picker choices normally follow that list, with Hebrew presented once and its Vicariate (`he`)
 and Mission (`he-x-gamliel`) traditions selected separately. Any `content/<code>.json` whose
 code is not in the manifest is an **overlay**:
-the loaders read it, and `resolveBodyText` tries the exact code first, then its base language
-(`he-x-gamliel` → `he`), then the user's language precedence. A community use can therefore
+the loaders read it, and `resolveBodyText` tries the requested wording and then the user's
+language precedence, with generic language content beside the first matching tradition. A community use can therefore
 ship its own wording for selected prayers and headings without pretending to translate the
 whole devotion; the packer needs no extra manifest field because it already copies every
 content file it finds.
-The fallback-order editor likewise groups Hebrew once while preserving the existing relative
-order of both raw Hebrew codes when saving. Newly available languages are inserted before an
-existing terminal Latin fallback, retaining the user's other ordering.
+The fallback-order editor lists Mission Hebrew and Vicariate Hebrew separately. Their stored
+codes remain `he-x-gamliel` and `he`, so an order such as Mission → Aramaic → Vicariate survives
+save/reopen. Newly available languages are inserted before an existing terminal Latin fallback,
+retaining the user's other ordering.
+
+Generic Hebrew, including unmarked `content/he.json` from repository packs, shares the higher
+Hebrew priority: it is tried immediately after the first Hebrew tradition, exactly once. Thus
+Mission → Aramaic → Vicariate probes Mission wording → generic Hebrew → Aramaic → Vicariate
+wording. A prayer with no Mission or generic Hebrew text reaches Aramaic before Vicariate.
+`$prayerTraditionByKey: {"prayerKey": "vicariate"}` inside `content/he.json` marks specific
+Vicariate wording; unmarked keys and Hebrew mystery/Scripture fields stay generic. The loader
+separates marked text and its matching reading aid into an internal `he-x-vicariate` bucket
+before merging overrides. That code is never saved or shown in language pickers. Existing
+built-in prayer wording is annotated without rewriting it; generic headings, counters and
+Scripture stay unmarked. Native Hebrew fixed prayers are Vicariate-specific except the shared
+`decadeOrdinalFormat`, `repetitionCounterConnector` and `fructusMysteriiLabel` vocabulary.
+Compose retains title/body provenance independently when importing, saving a project and
+repacking it, even though the generated prayer keys change. It emits the same per-key metadata
+so editing a sourced Vicariate prayer cannot silently turn it into generic repository Hebrew.
 
 Loaded overlays merge into the same `PrayerTranslations` lookup used by built-in text, so
-`he-x-gamliel` sits beside `he` and falls back through base Hebrew and the configured precedence.
+Mission, generic Hebrew and Vicariate wording each retain their own place in the configured precedence.
 The Mission of St. Gamaliel's Hebrew is the first user of both halves; in that language the
 Nicene Creed occupies the Apostles' Creed key, which is how the Mission's Rosary uses its own
 Creed without creating a second prayer-flow shape. Its Our Father deliberately displays the
@@ -901,17 +923,16 @@ of its own — its entire step sequence and per-step text are data-driven from i
   The current source is unpointed, so the importer never invents points. `$scriptureImport`
   records exactly which fields are generated, and the offline `test-import-scripture.py` checks
   the converter, every generated passage, and byte parity of all four packed copies.
-- **`bodyKey`/`titleKey` resolution** (`resolveBodyText`, per bundle): (1) bundle content for the
-  exact requested code and then its base language; (2) the shared `PrayerTranslations` lookup
-  for shared keys such as `gloriaPatri`; (3) bundle content in the user's app-wide
-  `languageFallbackOrder` (whose initial order ends in Latin but is fully reorderable); (4) the
-  raw key string. The shared
-  prayer and mystery tables use the same requested → base → user-order chain; mystery title,
-  fruit, and description walk it independently. This keeps
+- **`bodyKey`/`titleKey` resolution** (`resolveBodyText`, per bundle): walk the requested wording
+  and the user's `languageFallbackOrder`, with generic Hebrew beside the higher Hebrew tradition
+  as described above. At each probe try bundle-local text, the Rosary's shared prayer heading,
+  then the shared override/native `PrayerTranslations` entry. Only after exhausting the chain
+  show the raw key. The shared prayer and mystery tables use the same content probes; mystery
+  title, fruit, and description walk them independently. This keeps
   an available English Glory Be in English instead of replacing it with an unrelated bundle
-  translation, while bundle-only keys still obey the chosen precedence. `he-x-gamliel` reads
-  plain `he` for anything the Mission has not supplied, in the pack overrides and the hardcoded
-  tables alike. A rite may now stop at different languages for different mystery fields — most
+  translation, while bundle-only keys still obey the chosen precedence. Missing Mission wording
+  can use generic Hebrew at that priority, but never silently promotes Vicariate wording above
+  intervening languages. A rite may stop at different languages for different mystery fields — most
   importantly, its Scripture description stops at its own edition while its title/fruit can keep
   falling back. Each platform's engine tests pin both that partial merge and the Peshitta's
   Hebrew-square/Syriac pair.

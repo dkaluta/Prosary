@@ -13,6 +13,156 @@ import XCTest
 
 @MainActor
 final class PrayerPackLoaderTests: XCTestCase {
+  func testRepositoryHebrewKeepsGenericAndSpecificTextInTheSavedFallbackPositions() throws {
+    let savedOrder = UserDefaults.standard.object(forKey: LanguageCatalog.fallbackOrderKey)
+    let savedDirectory = PrayerPackStore.installedPacksDirectory
+    let directory = FileManager.default.temporaryDirectory.appendingPathComponent("hebrew-fallback-\(UUID().uuidString)", isDirectory: true)
+    defer {
+      if let savedOrder { UserDefaults.standard.set(savedOrder, forKey: LanguageCatalog.fallbackOrderKey) }
+      else { LanguageCatalog.resetFallbackOrder() }
+      PrayerPackStore.installedPacksDirectory = savedDirectory
+      try? FileManager.default.removeItem(at: directory)
+    }
+    try PrayerPackStore.preservingSharedTextForTesting {
+      PrayerPackStore.installedPacksDirectory = directory
+      LanguageCatalog.setFallbackOrder(["he-x-gamliel", "arc", "he", "en", "la"])
+      let id = "repo.fallback.\(UUID().uuidString)"
+      let globalID = "repo.shared.\(UUID().uuidString)"
+      let mysteryID = "\(id).mystery"
+      func json(_ value: Any) throws -> Data { try JSONSerialization.data(withJSONObject: value) }
+      let manifest: [String: Any] = ["schemaVersion": 1, "id": id, "kind": id,
+        "displayName": "Fallback fixture", "languages": ["he", "arc", "en"], "hasCatalog": false, "images": []]
+      let hebrew: [String: Any] = [
+        "prayers": ["specific": "Vicariate body", "interleaved": "Vicariate later", "vicariateOnly": "Vicariate only",
+                    "generic": "Shared Hebrew body", "genericNoAid": "Shared Hebrew without aid",
+                    "sanctusMichael": "Local shared Hebrew fixed prayer"],
+        "$prayerTraditionByKey": ["specific": "vicariate", "interleaved": "vicariate", "vicariateOnly": "vicariate"],
+        "transliterations": ["specific": "Vicariate aid", "interleaved": "Later Vicariate aid", "vicariateOnly": "Vicariate-only aid",
+                             "generic": "Shared Hebrew aid", "sanctusMichael": "Local shared Hebrew fixed aid"],
+        "mysteries": [mysteryID: ["title": "Shared title", "fruit": "Shared fruit", "description": "Shared Scripture", "transliteratedDescription": "Shared Scripture aid"]],
+      ]
+      let mission: [String: Any] = ["prayers": ["specific": "Mission body"], "transliterations": ["specific": "Mission aid"],
+        "mysteries": [mysteryID: ["title": "Mission title"]]]
+      let aramaic: [String: Any] = ["prayers": ["specific": "Aramaic body", "interleaved": "Aramaic before Vicariate",
+          "generic": "Later Aramaic body", "genericNoAid": "Later Aramaic with aid"],
+        "transliterations": ["specific": "Aramaic aid", "interleaved": "Aramaic first aid", "genericNoAid": "Do not borrow this aid"],
+        "mysteries": [mysteryID: ["description": "Later Aramaic Scripture", "transliteratedDescription": "Later Scripture aid"]]]
+      let devotion = Data(#"{"type":"steps","steps":[{"title":"Fixture","bodyKey":"sanctusMichael"}]}"#.utf8)
+      try PrayerPackStore.installPack(from: Self.storedZip([
+        ("manifest.json", try json(manifest)), ("content/he.json", try json(hebrew)),
+        ("content/he-x-gamliel.json", try json(mission)), ("content/arc.json", try json(aramaic)),
+        ("content/en.json", try json(["prayers": ["fallback": "English"], "mysteries": [:]])),
+        ("devotion.json", devotion),
+      ]))
+      defer { PrayerPackStore.removeInstalledPack(id: id) }
+      // A later repository replaces the shared pool, but cannot replace another pack's
+      // own text or attach its different reading aid to that local text.
+      var globalManifest = manifest
+      globalManifest["id"] = globalID
+      globalManifest["kind"] = globalID
+      globalManifest["languages"] = ["he"]
+      try PrayerPackStore.installPack(from: Self.storedZip([
+        ("manifest.json", try json(globalManifest)),
+        ("devotion.json", devotion),
+        ("content/he.json", try json(["prayers": ["sanctusMichael": "Global shared Hebrew fixed prayer"],
+          "transliterations": ["sanctusMichael": "Global shared Hebrew fixed aid"], "mysteries": [:]])),
+      ]))
+      defer { PrayerPackStore.removeInstalledPack(id: globalID) }
+
+      @MainActor func body(_ key: String) -> String { PrayerPackStore.resolveBodyText(bundleId: id, languageCode: "he-x-gamliel", key: key) }
+      @MainActor func aid(_ key: String) -> String? { PrayerPackStore.transliteration(bundleId: id, languageCode: "he-x-gamliel", key: key) }
+      XCTAssertEqual(body("specific"), "Mission body")
+      XCTAssertEqual(aid("specific"), "Mission aid")
+      XCTAssertEqual(body("generic"), "Shared Hebrew body")
+      XCTAssertEqual(aid("generic"), "Shared Hebrew aid")
+      XCTAssertEqual(body("interleaved"), "Aramaic before Vicariate")
+      XCTAssertEqual(aid("interleaved"), "Aramaic first aid")
+      XCTAssertEqual(body("vicariateOnly"), "Vicariate only")
+      XCTAssertEqual(aid("vicariateOnly"), "Vicariate-only aid")
+      XCTAssertEqual(body("genericNoAid"), "Shared Hebrew without aid")
+      XCTAssertNil(aid("genericNoAid"))
+      XCTAssertEqual(body("sanctusMichael"), "Local shared Hebrew fixed prayer")
+      XCTAssertEqual(aid("sanctusMichael"), "Local shared Hebrew fixed aid")
+      XCTAssertEqual(PrayerTranslations.get(languageCode: "he-x-gamliel", key: .sanctusMichael), "Global shared Hebrew fixed prayer")
+
+      let mystery = MysteryTranslations.get(languageCode: "he-x-gamliel", imageKey: mysteryID)
+      XCTAssertEqual(mystery.title, "Mission title")
+      XCTAssertEqual(mystery.fruit, "Shared fruit")
+      XCTAssertEqual(mystery.description, "Shared Scripture")
+      XCTAssertEqual(mystery.transliteratedDescription, "Shared Scripture aid")
+
+      LanguageCatalog.setFallbackOrder(["he", "arc", "he-x-gamliel", "en", "la"])
+      XCTAssertEqual(PrayerPackStore.resolveBodyText(bundleId: id, languageCode: "he", key: "specific"), "Vicariate body")
+      XCTAssertEqual(PrayerPackStore.transliteration(bundleId: id, languageCode: "he", key: "specific"), "Vicariate aid")
+    }
+  }
+
+  func testEffectiveLanguageDistinguishesGenericHebrewFromOnlyVicariateContent() throws {
+    let savedOrder = UserDefaults.standard.object(forKey: LanguageCatalog.fallbackOrderKey)
+    let savedDirectory = PrayerPackStore.installedPacksDirectory
+    let directory = FileManager.default.temporaryDirectory.appendingPathComponent("hebrew-effective-\(UUID().uuidString)", isDirectory: true)
+    PrayerPackStore.installedPacksDirectory = directory
+    defer {
+      if let savedOrder { UserDefaults.standard.set(savedOrder, forKey: LanguageCatalog.fallbackOrderKey) }
+      else { LanguageCatalog.resetFallbackOrder() }
+      PrayerPackStore.installedPacksDirectory = savedDirectory
+      try? FileManager.default.removeItem(at: directory)
+    }
+    LanguageCatalog.setFallbackOrder(["he-x-gamliel", "arc", "he", "en", "la"])
+    for specific in [false, true] {
+      let id = "repo.effective.\(UUID().uuidString)"
+      let manifest = """
+        {"schemaVersion":1,"id":"\(id)","kind":"\(id)","displayName":"Effective language fixture",
+         "languages":["he","arc"],"hasCatalog":false,"images":[]}
+        """
+      var hebrew: [String: Any] = ["prayers": ["example": "Hebrew body"], "mysteries": [:]]
+      if specific { hebrew["$prayerTraditionByKey"] = ["example": "vicariate"] }
+      try PrayerPackStore.installPack(from: Self.storedZip([
+        ("manifest.json", Data(manifest.utf8)),
+        ("content/he.json", try JSONSerialization.data(withJSONObject: hebrew)),
+        ("content/arc.json", Data(#"{"prayers":{"example":"Aramaic body"},"mysteries":{}}"#.utf8)),
+        ("devotion.json", Data(#"{"type":"steps","steps":[{"title":"Fixture","bodyKey":"example"}]}"#.utf8)),
+      ]))
+      defer { PrayerPackStore.removeInstalledPack(id: id) }
+      XCTAssertEqual(PrayerPackStore.effectiveLanguage(for: id, chosen: "he-x-gamliel"), specific ? "arc" : "he-x-gamliel")
+      XCTAssertEqual(PrayerPackStore.effectiveLanguage(for: id, chosen: "he"), "he")
+      XCTAssertNotEqual(PrayerPackStore.effectiveLanguage(for: id, chosen: "he"), LanguageCatalog.vicariateContentCode)
+    }
+  }
+
+  func testEffectiveLanguageUsesGenericHebrewForAMissionOnlyManifest() throws {
+    let savedOrder = UserDefaults.standard.object(forKey: LanguageCatalog.fallbackOrderKey)
+    let savedDirectory = PrayerPackStore.installedPacksDirectory
+    let directory = FileManager.default.temporaryDirectory.appendingPathComponent("mission-generic-\(UUID().uuidString)", isDirectory: true)
+    PrayerPackStore.installedPacksDirectory = directory
+    defer {
+      if let savedOrder { UserDefaults.standard.set(savedOrder, forKey: LanguageCatalog.fallbackOrderKey) }
+      else { LanguageCatalog.resetFallbackOrder() }
+      PrayerPackStore.installedPacksDirectory = savedDirectory
+      try? FileManager.default.removeItem(at: directory)
+    }
+    LanguageCatalog.setFallbackOrder(["he-x-gamliel", "arc", "he", "en", "la"])
+    let id = "repo.mission.\(UUID().uuidString)"
+    let manifest = """
+      {"schemaVersion":1,"id":"\(id)","kind":"\(id)","displayName":"Mission fixture",
+       "languages":["he-x-gamliel"],"hasCatalog":false,"images":[]}
+      """
+    try PrayerPackStore.installPack(from: Self.storedZip([
+      ("manifest.json", Data(manifest.utf8)),
+      ("content/he-x-gamliel.json", Data(#"{"prayers":{},"mysteries":{}}"#.utf8)),
+      ("content/he.json", Data(#"{"prayers":{"example":"Shared Hebrew body"},"mysteries":{}}"#.utf8)),
+      ("content/el.json", Data(#"{"prayers":{"example":"Unadvertised Greek overlay"},"mysteries":{}}"#.utf8)),
+      ("devotion.json", Data(#"{"type":"steps","steps":[{"title":"Fixture","bodyKey":"example"}]}"#.utf8)),
+    ]))
+    defer { PrayerPackStore.removeInstalledPack(id: id) }
+    XCTAssertEqual(PrayerPackStore.effectiveLanguage(for: id, chosen: "he-x-gamliel"), "he-x-gamliel")
+    XCTAssertEqual(PrayerPackStore.effectiveLanguage(for: id, chosen: "el"), "he-x-gamliel",
+                   "Unrelated unadvertised overlays must remain ineligible")
+    XCTAssertEqual(PrayerPackStore.effectiveLanguage(for: id, chosen: "he"), "he",
+                   "Actual shared Hebrew is available at either Hebrew tradition's position")
+    XCTAssertEqual(PrayerPackStore.resolveBodyText(bundleId: id, languageCode: "he-x-gamliel", key: "example"), "Shared Hebrew body")
+  }
+
   func testSharedAramaicPrayersKeepTheirHeadingsAndMatchingReadingAid() throws {
     XCTAssertEqual(PrayerPackStore.resolveBodyText(
       bundleId: "oAntiphons", languageCode: "arc", key: "gloriaPatriTitle"), "שוּבחָא לַאבָא")

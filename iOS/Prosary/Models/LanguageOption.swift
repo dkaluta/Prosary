@@ -41,6 +41,8 @@ struct LanguageOption: Identifiable, Hashable, Codable {
 /// lookup falls back to if a translation is missing in the chosen language.
 enum LanguageCatalog {
   static let fallbackOrderKey = "languageFallbackOrder"
+  /// Content-only bucket; stored preferences still use `he` for the Vicariate tradition.
+  static let vicariateContentCode = "he-x-vicariate"
   /// "he-x-gamliel" → "he": regional/community variants overlay their base language — the
   /// resolve chains try the exact code first, then this.
   static func baseLanguage(of code: String) -> String? {
@@ -95,11 +97,19 @@ enum LanguageCatalog {
     return languages.filter { available.contains($0.code) }
   }
 
-  static var fallbackLanguageOrder: [String] { fallbackOrder.map(pickerLanguageCode).unique() }
+  /// Unlike the language picker, fallback rows represent exact text choices. Keeping the
+  /// Hebrew traditions separate lets another language sit between them in a saved order.
+  static var fallbackLanguageOrder: [String] { fallbackOrder }
 
   static func setFallbackLanguageOrder(_ languages: [String]) {
-    let hebrewOrder = fallbackOrder.filter { pickerLanguageCode($0) == "he" }
-    setFallbackOrder(languages.flatMap { $0 == "he" ? hebrewOrder : [$0] })
+    setFallbackOrder(languages)
+  }
+
+  static func fallbackDisplayName(_ code: String) -> String {
+    if code == "he" || code == "he-x-gamliel" {
+      return "\(resolve("he").nativeName) — \(traditionName(code))"
+    }
+    return all.first(where: { $0.code == code })?.nativeName ?? code
   }
 
   static var fallbackOrder: [String] {
@@ -133,7 +143,9 @@ enum LanguageCatalog {
     func append(_ code: String?) {
       guard let code, !result.contains(code) else { return }
       result.append(code)
-      if let base = baseLanguage(of: code), !result.contains(base) { result.append(base) }
+      if code != "he-x-gamliel", let base = baseLanguage(of: code), !result.contains(base) {
+        result.append(base)
+      }
     }
     let effectiveRequested = requested.flatMap { $0.isEmpty ? nil : $0 }
       ?? UserDefaults.standard.string(forKey: "defaultLanguageCode")
@@ -142,6 +154,35 @@ enum LanguageCatalog {
     fallbackOrder.forEach { append($0) }
     append(defaultCode)
     return result
+  }
+
+  /// Shared Hebrew belongs to the first Hebrew position, while each tradition's specific
+  /// wording keeps its exact position relative to the other fallback languages.
+  static func contentFallbackChain(for requested: String?) -> [String] {
+    var result: [String] = []
+    func append(_ code: String) {
+      if !result.contains(code) { result.append(code) }
+    }
+    for code in fallbackChain(for: requested) {
+      if code == "he" {
+        append(vicariateContentCode)
+        append("he")
+      } else if code == "he-x-gamliel" {
+        append(code)
+        append("he")
+      } else {
+        append(code)
+      }
+    }
+    return result
+  }
+
+  static func selection(forContentCode code: String, requested: String?) -> String {
+    if code == vicariateContentCode { return "he" }
+    if code == "he" {
+      return fallbackChain(for: requested).first { $0 == "he" || $0 == "he-x-gamliel" } ?? "he"
+    }
+    return code
   }
 
   /// Legacy grouping metadata for the two Hebrew community uses. Pickers expose them beside one

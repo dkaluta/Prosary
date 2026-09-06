@@ -61,17 +61,30 @@ public static partial class PrayerTranslations
 
     public static string Get(string? languageCode, string key)
     {
-        foreach (var code in Prosary.Models.LanguageCatalog.FallbackChain(languageCode))
+        foreach (var code in Prosary.Models.LanguageCatalog.ContentFallbackChain(languageCode))
         {
             var packOverride = PrayerPackStore.PrayerOverride(code, key);
             if (packOverride is not null) return packOverride;
-            if (ByLanguage.TryGetValue(code, out var table) && table.TryGetValue(key, out var text)) return text;
+            if (NativeTextAtProbe(code, key) is { } text) return text;
         }
 
         // Pack-provided Latin before the hardcoded Latin table — some texts (the converted
         // devotions' bundle-local keys) live only in their bundles.
         return PrayerPackStore.PrayerOverride("la", key)
             ?? (Latin.TryGetValue(key, out var latinText) ? latinText : key);
+    }
+
+    private static bool IsGenericHebrewKey(string key) => key is
+        PrayerKey.DecadeOrdinalFormat or PrayerKey.RepetitionCounterConnector or PrayerKey.FructusMysteriiLabel;
+
+    /// <summary>The printed Vicariate prayers keep their own content bucket; editorial Hebrew
+    /// vocabulary remains shared. ByLanguage retains its public catalog/completeness shape.</summary>
+    internal static string? NativeTextAtProbe(string code, string key)
+    {
+        if (code == Models.LanguageCatalog.VicariateContentCode)
+            return !IsGenericHebrewKey(key) ? Hebrew.GetValueOrDefault(key) : null;
+        if (code == "he" && !IsGenericHebrewKey(key)) return null;
+        return ByLanguage.GetValueOrDefault(code)?.GetValueOrDefault(key);
     }
 
     /// <summary>A title/label lookup for presentation chrome. The canonical table stays fully

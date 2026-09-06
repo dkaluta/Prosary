@@ -4,6 +4,28 @@ import XCTest
 
 @MainActor
 final class UILanguageTests: XCTestCase {
+  func testSystemSettingsDirectsToTheAppInEveryInterfaceLanguage() throws {
+    let settingsURL = try XCTUnwrap(Bundle.main.url(forResource: "Settings", withExtension: "bundle"))
+    let data = try Data(contentsOf: settingsURL.appendingPathComponent("Root.plist"))
+    let root = try XCTUnwrap(PropertyListSerialization.propertyList(from: data, format: nil) as? [String: Any])
+    let specifiers = try XCTUnwrap(root["PreferenceSpecifiers"] as? [[String: Any]])
+    // System Settings must not grow another independently maintained prayer-language list.
+    XCTAssertTrue(specifiers.allSatisfy { $0["Type"] as? String == "PSGroupSpecifier" && $0["Key"] == nil })
+    let note = try XCTUnwrap(specifiers.first?["FooterText"] as? String)
+    XCTAssertFalse(note.isEmpty)
+    XCTAssertEqual(root["StringsTable"] as? String, "Root")
+    for language in UILanguage.all.map(\.code) {
+      let resource = UILanguage.resourceLanguage(language)
+      let localizedData = try Data(contentsOf: settingsURL.appendingPathComponent("\(resource).lproj/Root.strings"))
+      let localized = try XCTUnwrap(PropertyListSerialization.propertyList(from: localizedData, format: nil) as? [String: String])
+      let text = try XCTUnwrap(localized[note], language)
+      XCTAssertFalse(text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, language)
+      XCTAssertTrue(text.contains("Prosary"), language)
+      if language == "en" { XCTAssertEqual(text, note) }
+      else { XCTAssertNotEqual(text, note, language) }
+    }
+  }
+
   func testLocaleAliasesAndRegionalCodesResolveWithoutLosingTagalog() {
     for (input, expected) in ["fil-PH": "tl", "tl_PH": "tl", "iw-IL": "he",
                               "he-x-gamliel": "he", "ar-SA": "ar", "ru-RU": "ru",

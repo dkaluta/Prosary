@@ -1,8 +1,8 @@
 namespace Prosary.Localization;
 
 // The Mission of St. Gamaliel's own wording ("he-x-gamliel"), as sent by Erez — a community
-// variant, not a correction: it overlays plain Hebrew key by key, so anything the Mission has
-// not sent still prays in the wording the rest of the app uses. Mirrors iOS's
+// variant, not a correction: missing keys follow the configured fallback order, with generic
+// Hebrew shared at the first Hebrew position and Vicariate wording kept separate. Mirrors iOS's
 // PrayerTranslations+HebrewGamaliel.swift.
 public static partial class PrayerTranslations
 {

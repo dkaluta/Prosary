@@ -261,7 +261,8 @@ private struct LanguageFallbackOrderView: View {
     List {
       Section {
         ForEach(order, id: \.self) { code in
-          Text(LanguageCatalog.all.first(where: { $0.code == code })?.nativeName ?? code)
+          Text(LanguageCatalog.fallbackDisplayName(code))
+            .accessibilityIdentifier("languageFallbackOrder.\(code)")
         }
         .onMove { from, to in
           order.move(fromOffsets: from, toOffset: to)
@@ -269,7 +270,7 @@ private struct LanguageFallbackOrderView: View {
         }
       } footer: {
         Text(String(localized: "settings.languageFallbackOrder.footer",
-                    defaultValue: "When a prayer is missing, Prosary tries these languages from top to bottom after the chosen language and its own variation."))
+                    defaultValue: "When text is missing, Prosary follows this order after the chosen language. Shared Hebrew, including repository prayers, uses the higher of the two Hebrew positions."))
       }
     }
     .accessibilityIdentifier("languageFallbackOrderList")

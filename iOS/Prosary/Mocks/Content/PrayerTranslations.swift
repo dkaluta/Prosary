@@ -45,12 +45,24 @@ enum PrayerTranslations {
 
   @MainActor
   static func get(languageCode: String?, key: PrayerKey) -> String {
-    for code in LanguageCatalog.fallbackChain(for: languageCode) {
-      if let override = PrayerPackStore.prayerOverride(languageCode: code, key: key) { return override }
-      if let text = byLanguage[code]?[key] { return text }
-    }
+    PrayerPackStore.resolveSharedPrayer(languageCode: languageCode, key: key)
+      ?? latin[key] ?? key.rawValue
+  }
 
-    return latin[key] ?? key.rawValue
+  /// Editorial vocabulary is shared Hebrew. Every other native Hebrew entry is the
+  /// Vicariate's sourced prayer wording or its liturgical incipit/response.
+  static let genericHebrewKeys: Set<PrayerKey> = [
+    .decadeOrdinalFormat, .repetitionCounterConnector, .fructusMysteriiLabel,
+  ]
+
+  static func nativeText(contentCode: String, key: PrayerKey) -> String? {
+    if contentCode == LanguageCatalog.vicariateContentCode {
+      return genericHebrewKeys.contains(key) ? nil : hebrew[key]
+    }
+    if contentCode == "he" {
+      return genericHebrewKeys.contains(key) ? hebrew[key] : nil
+    }
+    return byLanguage[contentCode]?[key]
   }
 
   static let byLanguage: [String: [PrayerKey: String]] = [

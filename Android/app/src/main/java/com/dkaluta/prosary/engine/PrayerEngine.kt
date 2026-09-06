@@ -388,7 +388,7 @@ class PrayerEngine(
                 ),
             )
         } else {
-            val fruitLabel = PrayerTranslations.get(languageCode, PrayerKey.FructusMysteriiLabel)
+            val fruitLabel = PrayerPackStore.resolveBodyText(bundleId, languageCode, "fructusMysteriiLabel")
             val alternateFruitLabel = PrayerPackStore.transliteration(bundleId, languageCode, "fructusMysteriiLabel") ?: fruitLabel
             val majorBody = resolve(decades.majorStep.bodyKey)
             val minorBody = resolve(decades.minorStep.bodyKey)
@@ -479,7 +479,7 @@ class PrayerEngine(
             if (rosary.mysteryImageStyle == MysteryImageStyle.Eastern) "eastern_${mystery.imageKey}" else null
 
         val groups = resolveMysteryGroups(rosary)
-        val fruitLabel = PrayerTranslations.get(languageCode, PrayerKey.FructusMysteriiLabel)
+        val fruitLabel = resolve("fructusMysteriiLabel")
         val alternateFruitLabel = PrayerPackStore.transliteration(bundleId, languageCode, "fructusMysteriiLabel") ?: fruitLabel
         val majorBody = resolve(decades.majorStep.bodyKey)
         val minorBody = resolve(decades.minorStep.bodyKey)

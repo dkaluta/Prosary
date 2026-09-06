@@ -11,7 +11,7 @@ import com.dkaluta.prosary.typography.HebrewDisplayText
  * actual per-language tables. */
 object MysteryTranslations {
     fun get(languageCode: String?, imageKey: String): MysteryText = resolve(
-        chain = com.dkaluta.prosary.models.LanguageCatalog.fallbackChain(languageCode),
+        chain = com.dkaluta.prosary.models.LanguageCatalog.contentFallbackChain(languageCode),
         imageKey = imageKey,
         overrideAt = PrayerPackStore::mysteryOverride,
         completeAt = { code, key -> byLanguage[code]?.get(key) },

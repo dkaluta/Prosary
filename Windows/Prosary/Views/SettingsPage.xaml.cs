@@ -42,8 +42,7 @@ public sealed partial class SettingsPage : Page
 
     private async void OnEditLanguageFallbackOrder(object sender, RoutedEventArgs e)
     {
-        var rows = new ObservableCollection<LanguageOption>(
-            LanguageCatalog.PublicFallbackOrder.Select(code => LanguageCatalog.PickerOptions.First(l => l.Code == code)));
+        var rows = new ObservableCollection<LanguageOption>(LanguageCatalog.FallbackOptions);
         var list = new ListView
         {
             ItemsSource = rows,
@@ -59,7 +58,7 @@ public sealed partial class SettingsPage : Page
         panel.Children.Add(new TextBlock
         {
             Text = Loc.Tr("settings_language_fallback_order_footer",
-                "When a prayer is missing, Prosary tries these languages from top to bottom after the chosen language and its own variation."),
+                "When text is missing, Prosary follows this order after the chosen language. Shared Hebrew, including repository prayers, uses the higher of the two Hebrew positions."),
             TextWrapping = TextWrapping.Wrap,
         });
         panel.Children.Add(list);
@@ -76,7 +75,7 @@ public sealed partial class SettingsPage : Page
         var result = await dialog.ShowAsync();
         if (result == ContentDialogResult.Primary)
         {
-            AppSettings.SetLanguageFallbackOrder(LanguageCatalog.ExpandFallbackOrder(rows.Select(r => r.Code)));
+            AppSettings.SetLanguageFallbackOrder(rows.Select(r => r.Code));
         }
         else if (result == ContentDialogResult.Secondary)
         {

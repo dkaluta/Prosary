@@ -193,13 +193,15 @@ object AppSettings {
     }
 
     fun setDefaultLanguageCode(code: String) {
-        defaultLanguageState = code
-        prefs?.edit()?.putString(KEY_DEFAULT_LANGUAGE, code)?.apply()
+        val selection = if (code == LanguageCatalog.hebrewVicariateContentCode) "he" else code
+        defaultLanguageState = selection
+        prefs?.edit()?.putString(KEY_DEFAULT_LANGUAGE, selection)?.apply()
     }
 
     fun setBasicPrayersLanguageCode(code: String) {
-        basicPrayersLanguageState = code
-        prefs?.edit()?.putString(KEY_BASIC_PRAYERS_LANGUAGE, code)?.apply()
+        val selection = if (code == LanguageCatalog.hebrewVicariateContentCode) "he" else code
+        basicPrayersLanguageState = selection
+        prefs?.edit()?.putString(KEY_BASIC_PRAYERS_LANGUAGE, selection)?.apply()
     }
 
     fun setTodayLanguageCode(code: String) {
@@ -262,8 +264,9 @@ object AppSettings {
     }
 
     fun setLanguageFallbackOrder(value: List<String>) {
-        languageFallbackOrder = value
-        prefs?.edit()?.putString(KEY_LANGUAGE_FALLBACK_ORDER, value.joinToString("\n"))?.apply()
+        val selections = value.filterNot { it == LanguageCatalog.hebrewVicariateContentCode }
+        languageFallbackOrder = selections
+        prefs?.edit()?.putString(KEY_LANGUAGE_FALLBACK_ORDER, selections.joinToString("\n"))?.apply()
     }
 
     fun setAutoAdvanceSeconds(seconds: Int) {

@@ -2,8 +2,8 @@ package com.dkaluta.prosary.content
 
 /**
  * The Mission of St. Gamaliel's own wording ("he-x-gamliel"), as sent by Erez — a community
- * variant, not a correction: it overlays plain Hebrew key by key, so anything the Mission has
- * not sent still prays in the wording the rest of the app uses. Mirrors iOS's
+ * variant, not a correction: it keeps its own priority slot. Missing keys use generic Hebrew
+ * where available, then continue through the configured language order. Mirrors iOS's
  * PrayerTranslations+HebrewGamaliel.swift.
  */
 val prayerTranslationsHebrewGamaliel: Map<PrayerKey, String> = mapOf(
