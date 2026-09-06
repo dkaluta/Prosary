@@ -285,5 +285,5 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
 }
 
 private fun languageNames(codes: List<String>): String =
-    codes.mapNotNull { code -> LanguageCatalog.all.firstOrNull { it.code == code }?.nativeName }
+    codes.map(LanguageCatalog::pickerLanguageCode).distinct().mapNotNull { code -> LanguageCatalog.publicOptions.firstOrNull { it.code == code }?.nativeName }
         .joinToString(", ")

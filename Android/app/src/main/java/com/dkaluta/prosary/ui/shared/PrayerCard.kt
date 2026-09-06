@@ -44,6 +44,7 @@ fun PrayerCard(
     onClick: () -> Unit,
     onLongClick: (() -> Unit)? = null,
     modifier: Modifier = Modifier,
+    interfaceTitle: String? = null,
 ) {
     Row(
         modifier = modifier
@@ -77,7 +78,11 @@ fun PrayerCard(
 
             Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
                 Text(HebrewDisplayText.unpoint(title), style = MaterialTheme.typography.titleMedium)
-                if (subtitle.isNotEmpty()) {
+                if (!interfaceTitle.isNullOrBlank()) {
+                    Text(HebrewDisplayText.unpoint(interfaceTitle), style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+                if (subtitle.isNotEmpty() && subtitle != title && subtitle != interfaceTitle) {
                     Text(
                         HebrewDisplayText.unpoint(subtitle),
                         style = MaterialTheme.typography.bodyMedium,

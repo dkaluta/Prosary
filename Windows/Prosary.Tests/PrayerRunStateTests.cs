@@ -1,4 +1,5 @@
 using Prosary.Models;
+using Prosary.Localization;
 using Prosary.Persistence;
 using Prosary.Services;
 using Prosary.ViewModels;
@@ -8,6 +9,122 @@ namespace Prosary.Tests;
 
 public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
 {
+    [Fact]
+    public void ClosingIntentionIdentityTracksEffectiveChoicesAndKeepsLegacyMeaning()
+    {
+        var legacy = new RosaryOptions { IncludeClosingIntentions = true };
+        Assert.Equal(PrayerRunSignatures.Rosary(legacy), PrayerRunSignatures.Rosary(legacy with
+        {
+            IncludeClosingPopeIntention = true,
+            IncludeClosingBishopIntention = true,
+            IncludeClosingDepartedIntention = true,
+        }));
+        Assert.NotEqual(PrayerRunSignatures.Rosary(legacy), PrayerRunSignatures.Rosary(legacy with { IncludeClosingPopeIntention = false }));
+        Assert.NotEqual(PrayerRunSignatures.Rosary(legacy), PrayerRunSignatures.Rosary(legacy with { IncludeClosingBishopIntention = false }));
+        Assert.NotEqual(PrayerRunSignatures.Rosary(legacy), PrayerRunSignatures.Rosary(legacy with { IncludeClosingDepartedIntention = false }));
+        Assert.EndsWith("|closing-v2:1,0,1", PrayerRunSignatures.Rosary(legacy with { IncludeClosingBishopIntention = false }));
+        Assert.DoesNotContain("closing-v2", PrayerRunSignatures.Rosary(new RosaryOptions()));
+    }
+
+    [Fact]
+    public void RosaryLitanyContinuationPreservesTheSelectedLanguageAndUsesItsClosingCollect()
+    {
+        var destination = RosaryViewModel.LitanyContinuation("he-x-gamliel");
+        Assert.Null(destination.PrayerId);
+        Assert.Equal("litanyOfLoreto", destination.BundleId);
+        Assert.Equal("he-x-gamliel", destination.LanguageCode);
+        Assert.Equal("afterRosary", destination.VariantId);
+    }
+
+    [Fact]
+    public async Task ContinuationChoicesOverrideASavedDevotionWithoutChangingItsFavorite()
+    {
+        var favorite = new Prayer
+        {
+            Kind = PrayerKind.Custom, CustomDevotionId = "trisagion",
+            LanguageCode = "en", VariantId = "ordinary",
+        };
+        var presets = new MemoryPresetStore(favorite);
+        var calendar = new LiturgicalCalendarService();
+        var viewModel = new CustomDevotionViewModel(presets, new PrayerEngine(calendar), calendar,
+            new SilentReminders(), new LocalPrayerRunStore(() => null, _ => { }));
+        await viewModel.LoadAsync(null, "trisagion", "arc", "syriac");
+        Assert.Equal("arc", viewModel.CurrentLanguageRaw);
+        Assert.Equal("syriac", viewModel.CurrentVariantId);
+        Assert.Null(viewModel.MatchingFavoriteId);
+        Assert.NotEmpty(viewModel.Body);
+        await viewModel.SelectLanguageAsync("he");
+        Assert.Equal(favorite, await presets.GetAsync(favorite.Id));
+    }
+
+    [Fact]
+    public async Task AnExplicitContinuationLanguageDoesNotResumeAnotherLanguagesBookmark()
+    {
+        var presets = new MemoryPresetStore();
+        var calendar = new LiturgicalCalendarService();
+        string? json = null;
+        var runs = new LocalPrayerRunStore(() => json, value => json = value);
+        CustomDevotionViewModel NewFlow() => new(presets, new PrayerEngine(calendar), calendar,
+            new SilentReminders(), runs);
+        var old = NewFlow();
+        await old.LoadAsync(null, "trisagion", "arc", "syriac");
+        old.NextCommand.Execute(null);
+        Assert.NotNull(runs.Get(PrayerRunKeys.Custom("trisagion", "syriac", 0)));
+        var incoming = NewFlow();
+        await incoming.LoadAsync(null, "trisagion", "he", "syriac");
+        Assert.Equal("he", incoming.CurrentLanguageRaw);
+        Assert.False(incoming.HasSavedContinuation);
+    }
+
+    [Fact]
+    public async Task RosaryCompletionOffersTheLitanyOnlyAfterTheFinalStepAndClearsTheRun()
+    {
+        var prayer = new Prayer { LanguageCode = "en", Rosary = new RosaryOptions { MysterySelectionMode = MysterySelectionMode.SingleMystery } };
+        var presets = new MemoryPresetStore(prayer);
+        string? json = null;
+        var runs = new LocalPrayerRunStore(() => json, value => json = value);
+        var calendar = new LiturgicalCalendarService();
+        var viewModel = new RosaryViewModel(presets, new PrayerEngine(calendar), calendar, runs);
+        var offers = 0;
+        viewModel.OfferLitany = () => { offers++; return Task.FromResult(false); };
+        await viewModel.LoadAsync(prayer.Id);
+        for (var i = 0; !viewModel.IsLastStep && i < 100; i++) await viewModel.NextCommand.ExecuteAsync(null);
+        Assert.True(viewModel.IsLastStep);
+        Assert.Equal(0, offers);
+        Assert.NotNull(runs.Get(PrayerRunKeys.Rosary(prayer.Id)));
+        await viewModel.NextCommand.ExecuteAsync(null);
+        Assert.Equal(1, offers);
+        Assert.Null(runs.Get(PrayerRunKeys.Rosary(prayer.Id)));
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task LitanyEntryContextChoosesItsOnlyClosingPrayerEvenWithAnOppositeSavedVariant(bool afterRosary)
+    {
+        var favorite = new Prayer
+        {
+            Kind = PrayerKind.Custom, CustomDevotionId = "litanyOfLoreto", LanguageCode = "en",
+            VariantId = afterRosary ? "standard" : "afterRosary",
+        };
+        var presets = new MemoryPresetStore(favorite);
+        var calendar = new LiturgicalCalendarService();
+        var viewModel = new CustomDevotionViewModel(presets, new PrayerEngine(calendar), calendar,
+            new SilentReminders(), new LocalPrayerRunStore(() => null, _ => { }));
+        await viewModel.LoadAsync(favorite.Id, "litanyOfLoreto",
+            afterRosary ? "en" : null, afterRosary ? "afterRosary" : null);
+        var expectedVariant = afterRosary ? "afterRosary" : "standard";
+        Assert.Equal(expectedVariant, viewModel.CurrentVariantId);
+        Assert.False(viewModel.ShowsVariantMenu);
+        await viewModel.SelectVariantAsync(afterRosary ? "standard" : "afterRosary");
+        Assert.Equal(expectedVariant, viewModel.CurrentVariantId);
+        for (var i = 0; !viewModel.IsLastStep && i < 100; i++) viewModel.NextCommand.Execute(null);
+        Assert.True(viewModel.IsLastStep);
+        Assert.Equal(PrayerPackStore.ResolveBodyText("litanyOfLoreto", "en",
+            afterRosary ? "collectAfterRosary" : "collectStandard"), viewModel.Body);
+        Assert.Equal(favorite, await presets.GetAsync(favorite.Id));
+    }
+
     public PrayerRunStateTests(PrayerPackLoaderFixture _)
     {
     }
@@ -147,24 +264,26 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
 
         await viewModel.LoadAsync(prayer.Id);
         viewModel.GoToNextMysteryCommand.Execute(null);
-        var mysteryProgress = viewModel.ProgressText;
+        var mysteryProgress = viewModel.Progress;
 
         await viewModel.SelectLanguageAsync("arc");
 
-        Assert.Equal(mysteryProgress, viewModel.ProgressText);
+        Assert.Equal(mysteryProgress, viewModel.Progress);
+        Assert.Contains("מֶן", viewModel.ProgressText);
         Assert.Contains("— לוקא א׳ 26–38 (פשיטתא)", viewModel.Body);
         Assert.True(viewModel.HasTransliteration);
         Assert.Equal("arc", runs.Get(PrayerRunKeys.Rosary(prayer.Id))?.LanguageCode);
 
         viewModel.ToggleTransliterationCommand.Execute(null);
         Assert.Contains("— ܠܘܩܐ 1:26–38 (ܦܫܝܛܬܐ)", viewModel.Body);
+        Assert.Contains("ܡܶܢ", viewModel.ProgressText);
 
         var reopened = new RosaryViewModel(
             presets, new PrayerEngine(calendar), calendar, runs);
         await reopened.LoadAsync(prayer.Id);
         Assert.True(reopened.HasSavedContinuation);
         reopened.ContinueSavedRun();
-        Assert.Equal(mysteryProgress, reopened.ProgressText);
+        Assert.Equal(mysteryProgress, reopened.Progress);
         Assert.Contains("— לוקא א׳ 26–38 (פשיטתא)", reopened.Body);
     }
 
@@ -225,5 +344,14 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
             _prayers.RemoveAll(existing => existing.Id == prayer.Id);
             return Task.CompletedTask;
         }
+    }
+
+    private sealed class SilentReminders : IReminderScheduler
+    {
+        public Task<bool> RequestPermissionAsync() => Task.FromResult(true);
+        public void Schedule(Prayer prayer) { }
+        public void RemoveAll(Prayer prayer) { }
+        public void RescheduleAll(IEnumerable<Prayer> prayers) { }
+        public void RefreshSeries(string devotionId) { }
     }
 }

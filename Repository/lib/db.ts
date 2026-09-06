@@ -206,7 +206,7 @@ export async function listBundles(filter: { q?: string; language?: string }): Pr
     FROM bundles b JOIN users u ON u.id = b.user_id
     WHERE TRUE
       ${q ? s`AND (b.name ILIKE ${"%" + q + "%"} OR b.description ILIKE ${"%" + q + "%"} OR b.id ILIKE ${"%" + q + "%"})` : s``}
-      ${language ? s`AND ${language} = ANY(b.languages)` : s``}
+      ${language ? s`AND (${language} = ANY(b.languages) OR (${language} = 'he' AND 'he-x-gamliel' = ANY(b.languages)))` : s``}
     ORDER BY b.created_at DESC`;
 }
 

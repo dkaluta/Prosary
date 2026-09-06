@@ -136,7 +136,7 @@ enum PrayerRunKey {
 /// everything here can change the generated sequence or its visual identity.
 enum PrayerRunSignature {
   static func rosary(_ options: RosaryOptions) -> String {
-    [
+    var fields = [
       "rosary",
       options.mysterySelectionMode.rawValue,
       options.specificMysteryGroup.rawValue,
@@ -153,7 +153,15 @@ enum PrayerRunSignature {
       options.aramaicSignOfCrossForm,
       flag(options.presenterMode),
       options.mysteryImageStyle.rawValue,
-    ].joined(separator: "|")
+    ]
+    let closing = [options.effectiveClosingPopeIntention, options.effectiveClosingBishopIntention,
+                   options.effectiveClosingDepartedIntention]
+    // Each intention now opens on its own page. Old bookmarks with closing prayers must not
+    // silently resume at a shifted page; ordinary no-closing runs keep their original identity.
+    if closing.contains(true) || closing.contains(where: { $0 != options.includeClosingIntentions }) {
+      fields.append("closing-v2:\(closing.map(flag).joined(separator: ","))")
+    }
+    return fields.joined(separator: "|")
   }
 
   static func custom(

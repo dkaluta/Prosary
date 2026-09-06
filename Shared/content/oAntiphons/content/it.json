@@ -1,0 +1,54 @@
+{
+  "$comment": "The seven O Antiphons follow the Italian Liturgy of the Hours published by the Conferenza Episcopale Italiana. The 19 December text retains the breviary's O Radice di Iesse rather than the O Germoglio di Iesse variant in the 2025 musical booklet. Antiphon headings are their incipits; other headings are app metadata. Scripture passages are maintained separately by Shared/tools/import-scripture.py.",
+  "$sources": {
+    "oSapientiaBody": "https://www.chiesacattolica.it/la-liturgia-delle-ore/?data-liturgia=20251217&ora=vespri",
+    "oAdonaiBody": "https://www.chiesacattolica.it/la-liturgia-delle-ore/?data-liturgia=20251218&ora=vespri",
+    "oRadixIesseBody": "CEI, Liturgia delle Ore I, 19 December, Vespri, p. 336: https://liturgico.chiesacattolica.it/wp-content/uploads/sites/8/2017/09/21/Liturgia-delle-Ore-I-ULN-web.pdf#page=336",
+    "oClavisDavidBody": "https://www.chiesacattolica.it/la-liturgia-delle-ore/?data-liturgia=20251221",
+    "oOriensBody": "CEI, Liturgia delle Ore I, 21 December, Vespri, p. 352: https://liturgico.chiesacattolica.it/wp-content/uploads/sites/8/2017/09/21/Liturgia-delle-Ore-I-ULN-web.pdf#page=352",
+    "oRexGentiumBody": "https://www.chiesacattolica.it/la-liturgia-delle-ore/?data-liturgia=20251222&ora=vespri",
+    "oEmmanuelBody": "https://www.chiesacattolica.it/la-liturgia-delle-ore/?data-liturgia=20251223&ora=vespri"
+  },
+  "prayers": {
+    "oAntiphonLectioTitle": "Lettura",
+    "gloriaPatriTitle": "Gloria al Padre",
+    "magnificatTitle": "Magnificat",
+    "oSapientiaTitle": "O Sapienza",
+    "oSapientiaBody": "O Sapienza,\nche esci dalla bocca dell’Altissimo,\nti estendi ai confini del mondo\ne tutto disponi con soavità e con forza:\nvieni, insegnaci la via della saggezza.",
+    "oAdonaiTitle": "O Signore",
+    "oAdonaiBody": "O Signore, guida della casa d’Israele,\nche sei apparso a Mosè nel fuoco del roveto\ne sul monte Sinai gli hai dato la legge:\nvieni a liberarci con braccio potente.",
+    "oRadixIesseTitle": "O Radice di Iesse",
+    "oRadixIesseBody": "O Radice di Iesse,\nche ti innalzi come segno per i popoli,\ntacciono davanti a te i re della terra,\ne le nazioni t’invocano:\nvieni a liberarci, non tardare.",
+    "oClavisDavidTitle": "O Chiave di Davide",
+    "oClavisDavidBody": "O Chiave di Davide,\nscettro della casa d’Israele,\nche apri, e nessuno può chiudere,\nchiudi, e nessuno può aprire:\nvieni, libera l’uomo prigioniero,\nche giace nelle tenebre e nell’ombra di morte.",
+    "oOriensTitle": "O Astro che sorgi",
+    "oOriensBody": "O Astro che sorgi,\nsplendore della luce eterna,\nsole di giustizia:\nvieni, illumina chi giace nelle tenebre\ne nell’ombra di morte.",
+    "oRexGentiumTitle": "O Re delle genti",
+    "oRexGentiumBody": "O Re delle genti,\natteso da tutte le nazioni,\npietra angolare che riunisci i popoli in uno,\nvieni, e salva l’uomo che hai formato dalla terra.",
+    "oEmmanuelTitle": "O Emmanuele",
+    "oEmmanuelBody": "O Emmanuele, nostro re e legislatore,\nsperanza e salvezza dei popoli:\nvieni a salvarci, o Signore nostro Dio.",
+    "magnificatBody": "E Maria disse: l'anima mia esalta la grandezza del Signore: Ed esulta il mio spirito in Dio mio salvatore. Perché ha rivolto lo sguardo alla bassezza della sua serva: conciossiachè ecco che da questo punto beata mi chiameranno tutte le età. Perché grandi cose ha fatte a me colui, che è potente, e di cui santo è il nome. E la misericordia di lui di generazione in generazione sopra coloro, che lo temono. Fece opere di potenza col suo braccio: dissipò i superbi coi pensieri del loro cuore. Ha deposto dal trono i potenti, e ha esaltato i piccoli. Ha ricolmati di beni i famelici, e voti ha rimandati i ricchi. Accolse Israele suo servo, ricordandosi della sua misericordia: Conforme parlò ai padri nostri, ad Abramo, e ai suoi discendenti per tutti i secoli.\n\n— Luca 1:46–55 (Martini)",
+    "oSapientiaLectio": "E sopra di lui riposerà lo spirito del Signore, spirito di sapienza, e d'intelligenza, spirito di consiglio, e di fortezza, spirito di scienza, e di pietà, E riempierallo lo spirito del timor del Signore. Ei non giudicherà secondo quello, che cogli occhi si vede, né secondo quello, che cogli orecchi si ode condannerà;\n\n— Isaia 11:2–3 (Martini)",
+    "oAdonaiLectio": "Ma giudicherà con giustizia i poveri e prenderà giustamente la difesa degli umili della terra: e colla verga della sua bocca percuoterà la terra; e col fiato delle sue labbra darà morte all'empio. E il cingolo de' suoi lombi sarà la giustizia; e la fede cintura de' suoi fianchi.\n\n— Isaia 11:4–5 (Martini)",
+    "oRadixIesseLectio": "In quel giorno il germe della radice di Jesse, il quale è posto qual segno alle nazioni, lui le nazioni invocheranno, e il sepolcro di lui sarà glorioso.\n\n— Isaia 11:10 (Martini)",
+    "oClavisDavidLectio": "E porrò sull'omero di lui la chiave della casa di David, e aprirà, né altri potrà chiudere, e chiuderà, né altri potrà aprire.\n\n— Isaia 22:22 (Martini)",
+    "oOriensLectio": "Il popolo, che camminava tralle tenebre, vide una gran luce: la luce si levò per quegli, che abitavano nella oscura region di morte.\n\n— Isaia 9:2 (Martini)",
+    "oRexGentiumLectio": "Per questo dice così il Signore Dio: Ecco, che io pongo ne' fondamenti di Sion una pietra, pietra eletta, angolare, preziosa, saldissimo fondamento: chi crede, non abbia fretta.\n\n— Isaia 28:16 (Martini)",
+    "oEmmanuelLectio": "Per questo il Signore darà egli stesso a voi un segno: Ecco, che una Vergine concepirà, e partorirà un figliuolo, e il nome di lui sarà detto Emmanuel.\n\n— Isaia 7:14 (Martini)"
+  },
+  "mysteries": {},
+  "$scriptureSource": "Scripture: Bibbia di Antonio Martini (1769–1781), public domain. Structured data by Giovanni Novelli, Parola Viva (https://parolaviva.art/opendata), CC BY 4.0. Imported passages retain this edition's wording and numbering. Isaiah 28:16 joins the upstream split word fonda mento to fondamento, verified in the Martini print, p. 673 (https://www.e-rara.ch/download/pdf/14913584.pdf#page=76). Other prayers have separately credited published sources.",
+  "$scriptureImport": {
+    "prayerKeys": [
+      "magnificatBody",
+      "oAdonaiLectio",
+      "oClavisDavidLectio",
+      "oEmmanuelLectio",
+      "oOriensLectio",
+      "oRadixIesseLectio",
+      "oRexGentiumLectio",
+      "oSapientiaLectio"
+    ],
+    "mysteryKeys": []
+  }
+}

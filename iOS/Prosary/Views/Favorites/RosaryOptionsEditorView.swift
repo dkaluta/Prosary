@@ -94,7 +94,12 @@ struct RosaryOptionsSections: View {
             Text(option.displayName(languageCode: languageCode)).tag(option)
           }
         }
-        Toggle("favoriteEditor.closingIntentions", isOn: $rosary.includeClosingIntentions)
+        Toggle("favoriteEditor.closingPopeIntention", isOn: Binding(
+          get: { rosary.effectiveClosingPopeIntention }, set: { rosary.includeClosingPopeIntention = $0 }))
+        Toggle("favoriteEditor.closingBishopIntention", isOn: Binding(
+          get: { rosary.effectiveClosingBishopIntention }, set: { rosary.includeClosingBishopIntention = $0 }))
+        Toggle("favoriteEditor.closingDepartedIntention", isOn: Binding(
+          get: { rosary.effectiveClosingDepartedIntention }, set: { rosary.includeClosingDepartedIntention = $0 }))
         Toggle("favoriteEditor.stMichaelPrayer", isOn: $rosary.includeStMichaelPrayer)
         Toggle("favoriteEditor.finalSignOfCross", isOn: $rosary.includeFinalSignOfCross)
       }

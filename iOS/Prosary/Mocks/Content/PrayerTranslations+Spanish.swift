@@ -2,16 +2,7 @@
 //  PrayerTranslations+Spanish.swift
 //  Prosary
 //
-//  Sourced, not composed: every prayer below is the text in the appendix of the Holy See's own
-//  Spanish Compendium of the Catechism ("Oraciones comunes"), which prints each one beside its
-//  Latin twin — so the wording was checked against the Latin this app already ships rather than
-//  against memory. Line breaks follow the Compendium's own layout.
-//  <https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_sp.html>
-//
-//  Deliberately absent, falling back to Latin per key: the Apostles' Creed, the Fatima Prayer,
-//  the St. Michael prayer, Alma Redemptoris Mater, Ave Regina Caelorum and the Jesus Prayer.
-//  The Compendium's appendix does not carry them, and a prayer a community actually recites is
-//  not something to reconstruct — the same rule the Greek table follows.
+//  The native base table relays the Vatican Compendium appendix. Sourced additions, including the Apostles’ Creed from the Compendium profession of faith, are in Shared/content/rosary/content/es.json and merge at load time.
 //
 //  Scripture in Spanish comes from Félix Torres Amat's 1836 Bible, translated from the Vulgate,
 //  which is why no versification map is needed — see Shared/tools/import-scripture.py.

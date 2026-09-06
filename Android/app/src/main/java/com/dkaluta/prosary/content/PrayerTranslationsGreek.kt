@@ -1,14 +1,6 @@
 package com.dkaluta.prosary.content
 
-/** Liturgical Greek, polytonic. Deliberately partial: the keys here are prayers whose *original*
- * language is Greek (the Creed as the Council wrote it, the Sub Tuum on Rylands Papyrus 470, the
- * Jesus Prayer, the doxology) or plain UI labels. The Latin-tradition prayers — Salve Regina, Alma
- * Redemptoris Mater, Ave Regina Caelorum, Regina Caeli, the Fatima Prayer, the St. Michael prayer,
- * Eternal Rest, Anima Christi, both collects — are absent on purpose. Greek renderings exist in
- * Greek Catholic use, but searching Greek Wikisource and the Catholic Church in Greece turned up
- * none this app can cite, and PrayerTranslations falls back to Latin per key. An invented
- * translation of a prayer a community actually recites is worse than the honest fallback.
- * Generated from the Swift table by a one-off port so the three platforms cannot drift. */
+/** The native base table retains the original Greek prayers and UI labels. Published Greek Catholic additions are credited per key in Shared/content/rosary/content/el.json and merge at load time; remaining gaps use the configured fallback. */
 val prayerTranslationsGreek: Map<PrayerKey, String> = mapOf(
     PrayerKey.SignumCrucis to
         "Εἰς τὸ ὄνομα τοῦ Πατρὸς ✠ καὶ τοῦ Υἱοῦ καὶ τοῦ Ἁγίου Πνεύματος. Ἀμήν.",

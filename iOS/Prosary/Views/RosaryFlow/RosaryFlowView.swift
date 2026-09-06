@@ -7,6 +7,7 @@ import SwiftUI
 
 struct RosaryFlowView: View {
   let prayer: Prayer
+  let onPrayLitany: ((String) -> Void)?
 
   @Environment(\.appServices) private var services
   @Environment(\.dismiss) private var dismiss
@@ -19,11 +20,13 @@ struct RosaryFlowView: View {
   @State private var pendingContinuation: PrayerRunProgress?
   @State private var hasLoaded = false
   @State private var didFinish = false
+  @State private var showsLitanyOffer = false
 
   private let progressStore = PrayerRunProgressStore()
 
-  init(prayer: Prayer) {
+  init(prayer: Prayer, onPrayLitany: ((String) -> Void)? = nil) {
     self.prayer = prayer
+    self.onPrayLitany = onPrayLitany
     _sessionPrayer = State(initialValue: prayer)
   }
 
@@ -71,6 +74,17 @@ struct RosaryFlowView: View {
       },
       flowActions: AnyView(flowActions)
     )
+    .alert(String(localized: "rosaryFlow.litanyPrompt", defaultValue: "Continue with the Litany of the Blessed Virgin Mary?"), isPresented: $showsLitanyOffer) {
+      Button(String(localized: "rosaryFlow.prayLitany", defaultValue: "Pray the Litany")) {
+        complete()
+        onPrayLitany?(sessionPrayer.resolvedLanguageCode)
+      }
+      .accessibilityIdentifier("prayLitanyButton")
+      Button(String(localized: "prayerFlow.finish", defaultValue: "Finish"), role: .cancel) {
+        complete()
+        dismiss()
+      }
+    }
     .alert(
       String(localized: "prayerFlow.continue.title", defaultValue: "Continue this prayer?"),
       isPresented: .init(
@@ -99,6 +113,7 @@ struct RosaryFlowView: View {
   private var flowActions: some View {
     Button { jump(to: previousMysteryIndex) } label: {
       Image(systemName: "backward.end.fill")
+        .flipsForRightToLeftLayoutDirection(true)
     }
     .disabled(previousMysteryIndex == nil)
     .accessibilityLabel(String(localized: "rosaryFlow.previousMystery", defaultValue: "Previous mystery"))
@@ -106,6 +121,7 @@ struct RosaryFlowView: View {
 
     Button { jump(to: nextMysteryIndex) } label: {
       Image(systemName: "forward.end.fill")
+        .flipsForRightToLeftLayoutDirection(true)
     }
     .disabled(nextMysteryIndex == nil)
     .accessibilityLabel(String(localized: "rosaryFlow.nextMystery", defaultValue: "Next mystery"))
@@ -114,13 +130,8 @@ struct RosaryFlowView: View {
     if let languages = PrayerPackStore.info(for: "rosary")?.languages,
        languages.count > 1 || languages.contains("he") {
       Menu {
-        languageButton(
-          raw: LanguageCatalog.defaultSentinel,
-          name: String(localized: "prayerFlow.language.appDefault", defaultValue: "App setting"))
-        Divider()
-        ForEach(LanguageCatalog.availableOptions(for: languages)) { option in
-          languageButton(raw: option.code, name: option.nativeName)
-        }
+        PrayerLanguageMenuContent(code: sessionPrayer.languageCode,
+                                 options: LanguageCatalog.availableOptions(for: languages)) { switchLanguage(to: $0) }
       } label: {
         Image(systemName: "globe")
       }
@@ -154,9 +165,12 @@ struct RosaryFlowView: View {
 
   private func next() {
     if currentIndex >= steps.count - 1 {
-      didFinish = true
-      progressStore.clear(runKey: PrayerRunKey.rosary(prayer))
-      dismiss()
+      if onPrayLitany != nil, PrayerPackStore.info(for: "litanyOfLoreto") != nil {
+        showsLitanyOffer = true
+      } else {
+        complete()
+        dismiss()
+      }
       return
     }
     currentIndex += 1
@@ -169,21 +183,15 @@ struct RosaryFlowView: View {
     persistProgress()
   }
 
+  private func complete() {
+    didFinish = true
+    progressStore.clear(runKey: PrayerRunKey.rosary(prayer))
+  }
+
   private func jump(to index: Int?) {
     guard let index, steps.indices.contains(index) else { return }
     currentIndex = index
     persistProgress()
-  }
-
-  @ViewBuilder
-  private func languageButton(raw: String, name: String) -> some View {
-    Button { switchLanguage(to: raw) } label: {
-      if raw == sessionPrayer.languageCode {
-        Label(name, systemImage: "checkmark")
-      } else {
-        Text(name)
-      }
-    }
   }
 
   /// Rebuild only the text, retaining the exact mystery/bead index. The preset remembers the

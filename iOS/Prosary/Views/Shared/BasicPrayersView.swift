@@ -22,6 +22,7 @@ struct BasicPrayersView: View {
   /// graveyard of simpler attempts. Reading `.code` in body registers the dependency.
   @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
   @AppStorage(BasicPrayerCatalog.languageDefaultsKey) private var chosenLanguage = LanguageCatalog.defaultSentinel
+  private var showsPrayerNameInPrayerLanguage: Bool { prayerLanguage.showsPrayerNameInPrayerLanguage }
 
   /// Kept explicit rather than relying on NavigationLink's internal write: two Mac clicks can
   /// arrive before this source row disappears, and every other app route is single-top.
@@ -30,21 +31,21 @@ struct BasicPrayersView: View {
   /// Bumped after a move so the list re-derives from the saved order — the order lives in
   /// BasicPrayersOrder, not in view state, so the flows and every future surface agree on it.
   @State private var orderGeneration = 0
-  @AppStorage(BasicPrayerFavorites.moveToTopKey) private var favoritesFirst = false
 
   var body: some View {
     let _ = prayerLanguage.code  // dependency registration — see the property's comment
     let _ = orderGeneration
-    let _ = favoritesFirst
+    let _ = CloudPreferencesGeneration.shared.value
     let language = LanguageCatalog.resolve(chosenLanguage)
-    let ordered = BasicPrayerFavorites.apply(BasicPrayersOrder.apply(BasicPrayerCatalog.all))
+    let ordered = BasicPrayersOrder.apply(BasicPrayerCatalog.all)
     List {
       ForEach(ordered) { prayer in
         HStack(spacing: 8) {
           Button {
             path.push(.basicPrayer(id: prayer.id))
           } label: {
-            BasicPrayerRow(prayer: prayer, language: language)
+            BasicPrayerRow(prayer: prayer, language: language,
+                           showPrayerLanguage: showsPrayerNameInPrayerLanguage)
               .frame(maxWidth: .infinity, alignment: .leading)
               .contentShape(Rectangle())
           }
@@ -54,13 +55,14 @@ struct BasicPrayersView: View {
             BasicPrayerFavorites.toggle(prayer.id)
             orderGeneration += 1
           } label: {
-            Image(systemName: BasicPrayerFavorites.contains(prayer.id) ? "star.fill" : "star")
-              .foregroundStyle(BasicPrayerFavorites.contains(prayer.id) ? .yellow : .secondary)
+            Image(systemName: BasicPrayerFavorites.contains(prayer.id) ? "pin.fill" : "pin")
+              .foregroundStyle(BasicPrayerFavorites.contains(prayer.id) ? Color.accentColor : .secondary)
           }
           .buttonStyle(.plain)
           .accessibilityLabel(BasicPrayerFavorites.contains(prayer.id)
-            ? String(localized: "basicPrayers.unfavorite", defaultValue: "Remove from favorites")
-            : String(localized: "basicPrayers.favorite", defaultValue: "Add to favorites"))
+            ? String(localized: "basicPrayers.unpin", defaultValue: "Unpin from home")
+            : String(localized: "basicPrayers.pin", defaultValue: "Pin to home"))
+          .accessibilityIdentifier("basicPrayerPin-\(prayer.id)")
         }
       }
       // Reorderable per Erez (2026-08-08): drag on macOS, Edit mode on iOS. The same
@@ -85,6 +87,7 @@ struct BasicPrayersView: View {
 private struct BasicPrayerRow: View {
   let prayer: BasicPrayer
   let language: LanguageOption
+  let showPrayerLanguage: Bool
 
   var body: some View {
     // Re-rendered by the observing parent list; no monitor of its own needed.
@@ -93,9 +96,17 @@ private struct BasicPrayerRow: View {
         .aspectRatio(contentMode: .fill)
         .frame(width: 44, height: 44)
         .clipShape(RoundedRectangle(cornerRadius: 8))
-      Text(HebrewDisplayText.unpointed(PrayerPackStore.resolveBodyText(
-        bundleId: prayer.bundleId, languageCode: language.code, key: prayer.titleKey)))
-        .environment(\.layoutDirection, language.isRightToLeft ? .rightToLeft : .leftToRight)
+      let name = PrayerNamePresentation.basicPrayer(prayer, languageCode: language.code,
+                                                    showPrayerLanguage: showPrayerLanguage)
+      VStack(alignment: .leading, spacing: 3) {
+        Text(name.title)
+          .environment(\.layoutDirection, showPrayerLanguage
+            ? (language.isRightToLeft ? .rightToLeft : .leftToRight)
+            : (UILanguage.isRightToLeft(UILanguage.current) ? .rightToLeft : .leftToRight))
+        if let translation = name.translation {
+          Text(translation).font(.subheadline).foregroundStyle(.secondary)
+        }
+      }
     }
   }
 }
@@ -151,12 +162,7 @@ private struct BasicPrayersLanguageMenu: View {
 
   var body: some View {
     Menu {
-      languageButton(code: LanguageCatalog.defaultSentinel,
-                     name: String(localized: "prayerFlow.language.appDefault", defaultValue: "App setting"))
-      Divider()
-      ForEach(LanguageCatalog.all) { option in
-        languageButton(code: option.code, name: option.nativeName)
-      }
+      PrayerLanguageMenuContent(code: chosenLanguage, identifierPrefix: "basicPrayerLanguage") { chosenLanguage = $0 }
     } label: {
       Image(systemName: "globe")
     }
@@ -164,14 +170,4 @@ private struct BasicPrayersLanguageMenu: View {
     .accessibilityIdentifier("languageMenu")
   }
 
-  private func languageButton(code: String, name: String) -> some View {
-    Button { chosenLanguage = code } label: {
-      if chosenLanguage == code {
-        Label(name, systemImage: "checkmark")
-      } else {
-        Text(name)
-      }
-    }
-    .accessibilityIdentifier("basicPrayerLanguage-\(code.isEmpty ? "default" : code)")
-  }
 }

@@ -13,7 +13,10 @@ namespace Prosary.Models;
 /// <param name="ImageKey">The prayer's traditional illustration — the same override keys the
 /// devotions use.</param>
 public sealed record BasicPrayer(
-    string Id, string BundleId, string TitleKey, string BodyKey, string ImageKey);
+    string Id, string BundleId, string TitleKey, string BodyKey, string ImageKey)
+{
+    public string HomeCardId => $"basic:{Id}";
+}
 
 public static class BasicPrayerCatalog
 {

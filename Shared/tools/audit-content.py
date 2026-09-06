@@ -29,7 +29,7 @@ SWIFT = {
     "ar": "PrayerTranslations+Arabic.swift", "he": "PrayerTranslations+Hebrew.swift",
     "ru": "PrayerTranslations+Russian.swift", "tl": "PrayerTranslations+Tagalog.swift",
 }
-TERMINATORS = tuple(".!?)*\u05f4\u201d\"'\u2026\u05c3\u061f\u06d4]")
+TERMINATORS = tuple(".!?)*\u05f4\u201d\"'\u2026\u05c3\u061f\u06d4\u0700]")
 # These complete source-supplied chants intentionally have no terminal punctuation.
 # Keep the exemption scoped to their bundle, recension and key; ordinary prose still fails.
 UNPUNCTUATED_CHANTS = {
@@ -39,6 +39,19 @@ UNPUNCTUATED_CHANTS = {
 }
 # The French Vatican Compendium prints this complete hymn without a final punctuation mark.
 UNPUNCTUATED_CHANTS.add(("rosary", "fr", "salveRegina"))
+# Erez's complete Hebrew Litany responses end in the source's colon.
+UNPUNCTUATED_CHANTS.update(
+    ("litanyOfLoreto", "he", f"step{number:02}Body") for number in range(1, 15)
+)
+
+
+def website_contaminants(data):
+    text = json.dumps(data, ensure_ascii=False).casefold()
+    # Navigation in the Delitzsch source is pointed too. Strip Hebrew marks for detection,
+    # never for rendering or storage of the actual Scripture text.
+    text = re.sub(r"[\u0591-\u05bd\u05bf\u05c1\u05c2\u05c4\u05c5\u05c7]", "", text)
+    return [value for value in ("side_ads(", "sc_project", "top of page", "<script",
+                               "javascript:", "פרק הבא, הבשורה הקדושה") if value in text]
 
 
 def load_hardcoded(lang):
@@ -78,9 +91,8 @@ def main():
         bundle = path.split(os.sep)[-3]
         lang = os.path.basename(path)[:-5]
         data = json.load(open(path, encoding="utf-8"))
-        for contaminant in ("side_ads(", "sc_project", "TOP OF PAGE", "<script", "javascript:"):
-            if contaminant.casefold() in json.dumps(data, ensure_ascii=False).casefold():
-                problems.append((bundle, lang, "content", f"scraped website contamination: {contaminant}"))
+        for contaminant in website_contaminants(data):
+            problems.append((bundle, lang, "content", f"scraped website contamination: {contaminant}"))
         for key, text in data.get("prayers", {}).items():
             if not isinstance(text, str) or not text.strip():
                 problems.append((bundle, lang, key, "empty prayer value"))

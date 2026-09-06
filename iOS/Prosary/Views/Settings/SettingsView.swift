@@ -15,9 +15,11 @@ struct SettingsView: View {
   @AppStorage("autoAdvanceSeconds") private var autoAdvanceSeconds = 0
   @AppStorage("hapticsOnAdvance") private var hapticsOnAdvance = false
   @AppStorage(PrayerTypography.syriacTypefaceKey) private var syriacTypeface = PrayerTypography.TypefaceValue.default
+  @AppStorage(PrayerTranslations.aramaicDefaultScriptKey) private var aramaicDefaultScript = "Hebr"
   @AppStorage(PrayerTypography.hebrewPrayerTypefaceKey) private var hebrewPrayerTypeface = PrayerTypography.TypefaceValue.default
   @AppStorage(PrayerTypography.hebrewScriptureTypefaceKey) private var hebrewScriptureTypeface = PrayerTypography.TypefaceValue.default
-  @AppStorage(BasicPrayerFavorites.moveToTopKey) private var favoriteBasicPrayersFirst = false
+  @AppStorage(PrayerTypography.latinPrayerTypefaceKey) private var latinPrayerTypeface = PrayerTypography.TypefaceValue.default
+  @AppStorage(PrayerTypography.cyrillicPrayerTypefaceKey) private var cyrillicPrayerTypeface = PrayerTypography.TypefaceValue.default
 
   @State private var installedCount = PrayerPackStore.installedBundleIds().count
   @State private var confirmsRemoveAll = false
@@ -26,8 +28,11 @@ struct SettingsView: View {
   @State private var showsLanguageFallbackOrder = false
 
   @AppStorage(TodayInfoStore.calendarDefaultsKey) private var feastCalendarId = ""
+  @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var easternPaschaStyle = "julian"
   @AppStorage("showTodayFeast") private var showsTodayFeast = true
   @AppStorage("showTodayIntention") private var showsTodayIntention = true
+  @AppStorage("showTodayTorahPortion") private var showsTodayTorahPortion = false
+  @AppStorage(PrayerNamePresentation.defaultsKey) private var showsPrayerNameInPrayerLanguage = false
 
   /// Reads through the store so an unset/unknown stored id shows as the registry default.
   private var feastCalendarBinding: Binding<String> {
@@ -39,12 +44,14 @@ struct SettingsView: View {
   var body: some View {
     Form {
       Section(String(localized: "settings.prayerLanguageHeader", defaultValue: "Prayer Language")) {
-        Picker(String(localized: "settings.defaultLanguage", defaultValue: "Default language"),
-               selection: $languageCode) {
-          ForEach(LanguageCatalog.all) { lang in
-            Text(lang.nativeName).tag(lang.code)
-          }
-        }
+        PrayerLanguagePicker(label: String(localized: "settings.defaultLanguage", defaultValue: "Default language"), code: $languageCode)
+        Toggle(String(localized: "settings.showPrayerNameInPrayerLanguage",
+                      defaultValue: "Show prayer names in the prayer language"),
+               isOn: $showsPrayerNameInPrayerLanguage)
+          .accessibilityIdentifier("showPrayerNameInPrayerLanguageToggle")
+        Text(String(localized: "settings.prayerNameLanguageFooter",
+                    defaultValue: "Show the interface-language name underneath when it differs."))
+          .font(.caption).foregroundStyle(.secondary)
 
         Button(String(localized: "settings.languageFallbackOrder", defaultValue: "Language fallback order…")) {
           showsLanguageFallbackOrder = true
@@ -87,33 +94,48 @@ struct SettingsView: View {
         }
         .disabled(!homeOrderIsCustom)
 
-        Toggle(String(localized: "settings.favoriteBasicPrayersFirst",
-                      defaultValue: "Move favorite basic prayers to top"),
-               isOn: $favoriteBasicPrayersFirst)
       }
 
       Section(String(localized: "settings.typographyHeader", defaultValue: "Typography")) {
-        Picker(String(localized: "settings.syriacTypeface", defaultValue: "Syriac Aramaic"),
+        Picker(String(localized: "settings.aramaicDefaultScript", defaultValue: "Default Aramaic script"),
+               selection: $aramaicDefaultScript) {
+          Text(String(localized: "settings.script.hebrew", defaultValue: "Hebrew script")).tag("Hebr")
+          Text(String(localized: "settings.script.syriac", defaultValue: "Syriac script")).tag("Syrc")
+        }
+        .accessibilityIdentifier("aramaicDefaultScriptPicker")
+        Picker(String(localized: "settings.syriacTypeface", defaultValue: "Aramaic font"),
                selection: $syriacTypeface) {
           Text(String(localized: "settings.typeface.default", defaultValue: "Default")).tag(PrayerTypography.TypefaceValue.default)
           Text(String(localized: "settings.typeface.westernAramaic", defaultValue: "Western Aramaic")).tag(PrayerTypography.TypefaceValue.western)
           Text(String(localized: "settings.typeface.easternAramaic", defaultValue: "Eastern Aramaic")).tag(PrayerTypography.TypefaceValue.eastern)
         }
 
-        Picker(String(localized: "settings.hebrewPrayerTypeface", defaultValue: "Hebrew prayers"),
+        Picker(String(localized: "settings.hebrewPrayerTypeface", defaultValue: "Hebrew font"),
                selection: $hebrewPrayerTypeface) {
-          Text(String(localized: "settings.typeface.default", defaultValue: "Default")).tag(PrayerTypography.TypefaceValue.default)
+          Text(String(localized: "settings.typeface.frankRuhlLibre", defaultValue: "Frank Ruhl Libre")).tag(PrayerTypography.TypefaceValue.default)
           Text(String(localized: "settings.typeface.davidLibre", defaultValue: "David Libre")).tag(PrayerTypography.TypefaceValue.davidLibre)
-          Text(String(localized: "settings.typeface.sansSerif", defaultValue: "System sans-serif")).tag(PrayerTypography.TypefaceValue.sansSerif)
+          Text(String(localized: "settings.typeface.sansSerif", defaultValue: "System sans serif")).tag(PrayerTypography.TypefaceValue.sansSerif)
         }
 
-        Picker(String(localized: "settings.hebrewScriptureTypeface", defaultValue: "Hebrew Scripture"),
+        Picker(String(localized: "settings.hebrewScriptureTypeface", defaultValue: "Hebrew Scripture font"),
                selection: $hebrewScriptureTypeface) {
           Text(String(localized: "settings.typeface.default", defaultValue: "Default")).tag(PrayerTypography.TypefaceValue.default)
           Text(String(localized: "settings.typeface.stamAshkenaz", defaultValue: "Stam Ashkenaz")).tag(PrayerTypography.TypefaceValue.stamAshkenaz)
           Text(String(localized: "settings.typeface.stamSefarad", defaultValue: "Stam Sefarad")).tag(PrayerTypography.TypefaceValue.stamSefarad)
           Text(String(localized: "settings.typeface.rashi", defaultValue: "Rashi")).tag(PrayerTypography.TypefaceValue.rashi)
         }
+
+        Picker(String(localized: "settings.latinPrayerTypeface", defaultValue: "Latin-script prayers"), selection: $latinPrayerTypeface) {
+          Text(String(localized: "settings.typeface.systemSerif", defaultValue: "System serif")).tag(PrayerTypography.TypefaceValue.default)
+          Text(String(localized: "settings.typeface.sansSerif", defaultValue: "System sans serif")).tag(PrayerTypography.TypefaceValue.sansSerif)
+        }
+        .accessibilityIdentifier("latinPrayerTypefacePicker")
+
+        Picker(String(localized: "settings.cyrillicPrayerTypeface", defaultValue: "Cyrillic prayers"), selection: $cyrillicPrayerTypeface) {
+          Text(String(localized: "settings.typeface.systemSerif", defaultValue: "System serif")).tag(PrayerTypography.TypefaceValue.default)
+          Text(String(localized: "settings.typeface.sansSerif", defaultValue: "System sans serif")).tag(PrayerTypography.TypefaceValue.sansSerif)
+        }
+        .accessibilityIdentifier("cyrillicPrayerTypefacePicker")
       }
 
       // The Home "Today" section (Erez's requests): which of its rows show at all, and which
@@ -126,6 +148,14 @@ struct SettingsView: View {
         Toggle(String(localized: "settings.showTodayIntention",
                       defaultValue: "Show the Pope's intention"),
                isOn: $showsTodayIntention)
+        Toggle(String(localized: "settings.showTodayTorahPortion", defaultValue: "Show the weekly Torah portion"),
+               isOn: $showsTodayTorahPortion)
+          .accessibilityIdentifier("showTodayTorahPortionToggle")
+        if showsTodayTorahPortion {
+          Text(String(localized: "settings.torahPortionFooter",
+                      defaultValue: "The upcoming Sabbath’s Torah reading, following the Eretz Israel schedule."))
+            .font(.caption).foregroundStyle(.secondary)
+        }
         let calendars = TodayInfoStore.calendars
         if calendars.count > 1 {
           Picker(String(localized: "settings.feastCalendar", defaultValue: "Liturgical calendar"),
@@ -135,6 +165,17 @@ struct SettingsView: View {
             }
           }
           .accessibilityIdentifier("feastCalendarPicker")
+        }
+        if TodayInfoStore.selectedCalendarId == "ugcc" {
+          Picker(String(localized: "settings.easternPaschaStyle", defaultValue: "Byzantine Easter date"),
+                 selection: Binding(get: { TodayInfoStore.selectedPaschaStyle }, set: { easternPaschaStyle = $0 })) {
+            Text(String(localized: "settings.easternPaschaStyle.julian", defaultValue: "Julian Easter")).tag("julian")
+            Text(String(localized: "settings.easternPaschaStyle.gregorian", defaultValue: "Gregorian Easter")).tag("gregorian")
+          }
+          .accessibilityIdentifier("easternPaschaStylePicker")
+          Text(String(localized: "settings.easternPaschaStyleFooter",
+                      defaultValue: "Changes the Byzantine movable feasts and their appointed readings together. Fixed feasts keep their Gregorian dates."))
+            .font(.caption).foregroundStyle(.secondary)
         }
       } header: {
         Text(String(localized: "settings.todayHeader", defaultValue: "Today"))
@@ -214,7 +255,7 @@ struct SettingsView: View {
 
 private struct LanguageFallbackOrderView: View {
   @Environment(\.dismiss) private var dismiss
-  @State private var order = LanguageCatalog.fallbackOrder
+  @State private var order = LanguageCatalog.fallbackLanguageOrder
 
   var body: some View {
     List {
@@ -224,7 +265,7 @@ private struct LanguageFallbackOrderView: View {
         }
         .onMove { from, to in
           order.move(fromOffsets: from, toOffset: to)
-          LanguageCatalog.setFallbackOrder(order)
+          LanguageCatalog.setFallbackLanguageOrder(order)
         }
       } footer: {
         Text(String(localized: "settings.languageFallbackOrder.footer",
@@ -246,7 +287,7 @@ private struct LanguageFallbackOrderView: View {
       ToolbarItem(placement: .cancellationAction) {
         Button(String(localized: "settings.languageFallbackOrder.reset", defaultValue: "Reset")) {
           LanguageCatalog.resetFallbackOrder()
-          order = LanguageCatalog.fallbackOrder
+          order = LanguageCatalog.fallbackLanguageOrder
           dismiss()
         }
         .accessibilityIdentifier("languageFallbackOrderResetButton")

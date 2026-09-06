@@ -32,6 +32,46 @@ public sealed class SqlitePresetStoreTests : IDisposable
         }
     }
 
+    [Fact]
+    public async Task OldCombinedClosingChoiceMigratesToNullableIndependentChoices()
+    {
+        var oldPath = Path.Combine(Path.GetTempPath(), $"prosary_legacy_{Guid.NewGuid():N}.db3");
+        var id = Guid.NewGuid();
+        using (var legacy = new SQLite.SQLiteConnection(oldPath))
+        {
+            legacy.Execute("CREATE TABLE PresetEntry (Id varchar PRIMARY KEY, Name varchar NOT NULL, IncludeClosingIntentions integer)");
+            legacy.Execute("INSERT INTO PresetEntry (Id, Name, IncludeClosingIntentions) VALUES (?, ?, ?)", id, "Legacy Rosary", 1);
+        }
+        var migrated = new SqlitePresetStore(oldPath);
+        try
+        {
+            var loaded = (await migrated.GetAsync(id))!;
+            Assert.NotNull(loaded);
+            Assert.True(loaded.Rosary.IncludeClosingIntentions);
+            Assert.Null(loaded.Rosary.IncludeClosingPopeIntention);
+            Assert.Null(loaded.Rosary.IncludeClosingBishopIntention);
+            Assert.Null(loaded.Rosary.IncludeClosingDepartedIntention);
+            Assert.True(loaded.Rosary.EffectiveClosingPopeIntention);
+            Assert.True(loaded.Rosary.EffectiveClosingBishopIntention);
+            Assert.True(loaded.Rosary.EffectiveClosingDepartedIntention);
+            await migrated.SaveAsync(loaded with { Rosary = loaded.Rosary with
+            {
+                IncludeClosingPopeIntention = false,
+                IncludeClosingDepartedIntention = true,
+            }});
+            var saved = (await migrated.GetAsync(id))!.Rosary;
+            Assert.False(saved.IncludeClosingPopeIntention);
+            Assert.Null(saved.IncludeClosingBishopIntention);
+            Assert.True(saved.IncludeClosingDepartedIntention);
+            Assert.True(saved.EffectiveClosingBishopIntention);
+        }
+        finally
+        {
+            await migrated.CloseAsync();
+            File.Delete(oldPath);
+        }
+    }
+
     /// <summary>The generic-devotion fields must survive a real save/load through the SQLite
     /// row's JSON columns (the domain dictionary has no column of its own).</summary>
     [Fact]

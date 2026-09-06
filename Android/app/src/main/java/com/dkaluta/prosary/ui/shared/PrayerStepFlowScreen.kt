@@ -53,6 +53,8 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import android.view.HapticFeedbackConstants
 import androidx.compose.runtime.LaunchedEffect
+import com.dkaluta.prosary.content.PrayerTranslations
+import com.dkaluta.prosary.models.LanguageCatalog
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -139,6 +141,23 @@ fun PrayerStepFlowScreen(
     // A reading-aid choice belongs to this prayer run. Keep it through step changes and layout
     // recompositions, but discard it when this flow leaves composition.
     var showsTransliteration by rememberSaveable { mutableStateOf(false) }
+    var initializedScriptLanguage by rememberSaveable { mutableStateOf<String?>(null) }
+    var aramaicSessionScript by rememberSaveable { mutableStateOf<String?>(null) }
+    val scriptLanguage = LanguageCatalog.fallbackChain(languageCode).firstOrNull()
+    LaunchedEffect(scriptLanguage, step == null) {
+        if (step != null && initializedScriptLanguage != scriptLanguage) {
+            initializedScriptLanguage = scriptLanguage
+            aramaicSessionScript = if (scriptLanguage == "arc") AppSettings.aramaicDefaultScript else null
+        }
+    }
+    val usesAlternateText = if (step != null && aramaicSessionScript != null) {
+        PrayerTranslations.initialTransliteration(languageCode, step.body, step.transliteratedBody,
+            aramaicSessionScript!!) ?: showsTransliteration
+    } else showsTransliteration
+    val toggleTransliteration = {
+        if (aramaicSessionScript != null) aramaicSessionScript = if (aramaicSessionScript == "Syrc") "Hebr" else "Syrc"
+        else showsTransliteration = !showsTransliteration
+    }
 
     // A gentle tap when the step changes — tester-requested (Erez), off by default, app-wide
     // like autoAdvanceSeconds. Keyed to the step change rather than the button, so Back and a
@@ -269,7 +288,9 @@ fun PrayerStepFlowScreen(
             Column(modifier = Modifier.padding(paddingValues).fillMaxSize()) {
                 Box(modifier = Modifier.fillMaxWidth().height(6.dp).background(seasonColor))
 
-                ProgressHeader(step = step, currentIndex = currentIndex, totalSteps = totalSteps, isCompactHeight = isCompactHeight)
+                ProgressHeader(step = step, currentIndex = currentIndex, totalSteps = totalSteps,
+                    isCompactHeight = isCompactHeight, languageCode = languageCode, showsTransliteration = usesAlternateText,
+                    aramaicSessionScript = aramaicSessionScript)
 
                 if (step != null) {
                     BoxWithConstraints(modifier = Modifier.weight(1f).fillMaxWidth()) {
@@ -283,8 +304,8 @@ fun PrayerStepFlowScreen(
                                 isRightToLeft = isRightToLeft,
                                 availableHeight = maxHeight,
                                 accessory = accessory,
-                                showsTransliteration = showsTransliteration,
-                                onToggleTransliteration = { showsTransliteration = !showsTransliteration },
+                                showsTransliteration = usesAlternateText,
+                                onToggleTransliteration = toggleTransliteration,
                                 centralActionLabel = centralActionLabel,
                                 onCentralAction = onNext,
                             )
@@ -294,8 +315,8 @@ fun PrayerStepFlowScreen(
                                 languageCode = languageCode,
                                 isRightToLeft = isRightToLeft,
                                 accessory = accessory,
-                                showsTransliteration = showsTransliteration,
-                                onToggleTransliteration = { showsTransliteration = !showsTransliteration },
+                                showsTransliteration = usesAlternateText,
+                                onToggleTransliteration = toggleTransliteration,
                                 centralActionLabel = centralActionLabel,
                                 onCentralAction = onNext,
                             )
@@ -319,26 +340,28 @@ fun PrayerStepFlowScreen(
                 // competes with the thing the screen exists for, and "undo one repetition"
                 // isn't worth a permanent control (the top bar still leaves the session).
                 if (centralActionLabel == null) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth().padding(
-                            horizontal = 24.dp,
-                            vertical = if (isCompactHeight) 8.dp else 16.dp,
-                        ),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        OutlinedButton(
-                            onClick = onBack,
-                            enabled = canGoBack,
-                            contentPadding = if (isCompactHeight) compactButtonPadding else ButtonDefaults.ContentPadding,
+                    InterfaceNavigation {
+                        Row(
+                            modifier = Modifier.fillMaxWidth().padding(
+                                horizontal = 24.dp,
+                                vertical = if (isCompactHeight) 8.dp else 16.dp,
+                            ),
+                            verticalAlignment = Alignment.CenterVertically,
                         ) {
-                            Text(stringResource(R.string.flow_back))
-                        }
-                        Spacer(modifier = Modifier.weight(1f))
-                        Button(
-                            onClick = onNext,
-                            contentPadding = if (isCompactHeight) compactButtonPadding else ButtonDefaults.ContentPadding,
-                        ) {
-                            Text(if (isLastStep) stringResource(R.string.common_finish) else stringResource(R.string.common_next))
+                            OutlinedButton(
+                                onClick = onBack,
+                                enabled = canGoBack,
+                                contentPadding = if (isCompactHeight) compactButtonPadding else ButtonDefaults.ContentPadding,
+                            ) {
+                                Text(stringResource(R.string.flow_back))
+                            }
+                            Spacer(modifier = Modifier.weight(1f))
+                            Button(
+                                onClick = onNext,
+                                contentPadding = if (isCompactHeight) compactButtonPadding else ButtonDefaults.ContentPadding,
+                            ) {
+                                Text(if (isLastStep) stringResource(R.string.common_finish) else stringResource(R.string.common_next))
+                            }
                         }
                     }
                 }
@@ -348,7 +371,8 @@ fun PrayerStepFlowScreen(
 }
 
 @Composable
-private fun ProgressHeader(step: RosaryStep?, currentIndex: Int, totalSteps: Int?, isCompactHeight: Boolean) {
+private fun ProgressHeader(step: RosaryStep?, currentIndex: Int, totalSteps: Int?, isCompactHeight: Boolean,
+                           languageCode: String?, showsTransliteration: Boolean, aramaicSessionScript: String?) {
     Column(
         verticalArrangement = Arrangement.spacedBy(4.dp),
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
@@ -358,9 +382,15 @@ private fun ProgressHeader(step: RosaryStep?, currentIndex: Int, totalSteps: Int
             step == null -> LinearProgressIndicator(progress = { 0f }, modifier = Modifier.fillMaxWidth())
             totalSteps != null && totalSteps > 0 -> {
                 LinearProgressIndicator(progress = { (currentIndex + 1).toFloat() / totalSteps }, modifier = Modifier.fillMaxWidth())
+                val visibleBody = if (showsTransliteration) step.transliteratedBody ?: step.body else step.body
+                val aramaic = PrayerTranslations.aramaicProgress(currentIndex + 1, totalSteps, languageCode,
+                    aramaicSessionScript?.let { it == "Syrc" }
+                        ?: (PrayerTypography.scriptOf(visibleBody) == PrayerTypography.Script.Syriac))
                 Text(
-                    stringResource(R.string.flow_step_of, currentIndex + 1, totalSteps),
-                    style = MaterialTheme.typography.bodySmall,
+                    aramaic ?: stringResource(R.string.flow_step_of, currentIndex + 1, totalSteps),
+                    style = MaterialTheme.typography.bodySmall.copy(fontFamily = aramaic?.let {
+                        PrayerTypography.styleForText(it, isScripture = false).fontFamily
+                    }),
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
@@ -577,7 +607,8 @@ private fun TextBlock(
         }
 
         Text(
-            HebrewDisplayText.unpoint(step.title),
+            PrayerTranslations.flowTitle(step.title, languageCode,
+                PrayerTypography.scriptOf(if (showsTransliteration) step.transliteratedBody ?: step.body else step.body) == PrayerTypography.Script.Syriac),
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.extraColors.headline,
@@ -589,7 +620,7 @@ private fun TextBlock(
             // regular prayer typeface even when the body below is scripture.
             Text(
                 acclamation.parseBoldMarkdown(),
-                style = PrayerTypography.style(languageCode = languageCode, isScripture = false),
+                style = PrayerTypography.styleForText(acclamation, isScripture = false),
             )
         }
 
@@ -611,14 +642,9 @@ private fun TextBlock(
             SelectionContainer {
                 Text(
                     (if (showsTransliteration) step.transliteratedBody!! else step.body).parseBoldMarkdown(),
-                    style = PrayerTypography.style(
-                        languageCode = languageCode,
+                    style = PrayerTypography.styleForText(
+                        text = if (showsTransliteration) step.transliteratedBody!! else step.body,
                         isScripture = step.isScripture,
-                        script = if (showsTransliteration) {
-                            PrayerTypography.scriptOf(step.transliteratedBody!!)
-                        } else {
-                            null
-                        },
                     ),
                 )
             }
@@ -626,7 +652,7 @@ private fun TextBlock(
             SelectionContainer {
                 Text(
                     step.body.parseBoldMarkdown(),
-                    style = PrayerTypography.style(languageCode = languageCode, isScripture = step.isScripture),
+                    style = PrayerTypography.styleForText(step.body, isScripture = step.isScripture),
                 )
             }
         }

@@ -20,9 +20,10 @@ templates, SQL migrations, HMAC-cookie sessions, request-derived WebAuthn RP inf
   Compose's zip module — keep them in sync). The file lands in **Vercel Blob**
   (`bundles/<uuid>/<id>.prosaryprayer`, public); metadata lands in **Postgres (Neon)**. Resubmitting
   the same devotion updates it; ids are guarded against cross-user takeover.
-  The repository currently accepts `la`, `en`, `ar`, `he`, `ru`, and `tl`; the apps and Compose
-  also understand `he-x-gamliel`, `arc`, `el`, and `es`, but repository publication for those
-  four has not landed yet. A manifest that mixes accepted and unsupported languages is rejected
+  The repository accepts the same twelve languages as the apps and Compose: `la`, `en`, `ar`,
+  `he`, `he-x-gamliel`, `arc`, `el`, `es`, `ru`, `tl`, `fr`, and `it`.
+  Every declared language must have its own content file. A manifest that mixes accepted and
+  unknown languages is rejected
   as a whole so catalog metadata never claims only a partially validated subset.
 - **Catalog**: `/` (search + language filter), `GET /api/bundles`, and the versioned
   **`/index.json`** contract (`{prosaryRepository: 1, bundles: [...]}`) the apps' Browse tab

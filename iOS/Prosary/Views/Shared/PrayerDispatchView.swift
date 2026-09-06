@@ -21,7 +21,10 @@ struct PrayerDispatchView: View {
       if let prayer {
         switch prayer.kind {
         case .rosary:
-          RosaryFlowView(prayer: prayer)
+          RosaryFlowView(prayer: prayer) { languageCode in
+            path.removeLast()
+            RunLoop.main.perform { path.push(.custom(devotionId: "litanyOfLoreto", languageCode: languageCode, variantId: "afterRosary")) }
+          }
         case .jesusPrayer:
           JesusPrayerFlowView(path: $path, prayer: prayer)
         case .custom:

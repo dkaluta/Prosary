@@ -61,6 +61,10 @@ data class PresetEntity(
     val marianAntiphon: String = MarianAntiphonOption.Seasonal.name,
     // Defaults to false for existing rows. Added in DB version 7 (see MIGRATION_6_7).
     val includeClosingIntentions: Boolean = false,
+    // Nullable overrides preserve the old combined choice on migration (version 10).
+    val includeClosingPopeIntention: Boolean? = null,
+    val includeClosingBishopIntention: Boolean? = null,
+    val includeClosingDepartedIntention: Boolean? = null,
     val includeStMichaelPrayer: Boolean = false,
     val includeFinalSignOfCross: Boolean = true,
     // Added in DB version 8 (see MIGRATION_7_8).
@@ -117,6 +121,9 @@ data class PresetEntity(
                     .getOrDefault(EternalRestPlacement.None),
                 marianAntiphon = runCatching { MarianAntiphonOption.valueOf(marianAntiphon) }
                     .getOrDefault(MarianAntiphonOption.Seasonal),
+                includeClosingPopeIntention = includeClosingPopeIntention,
+                includeClosingBishopIntention = includeClosingBishopIntention,
+                includeClosingDepartedIntention = includeClosingDepartedIntention,
                 includeClosingIntentions = includeClosingIntentions,
                 includeStMichaelPrayer = includeStMichaelPrayer,
                 includeFinalSignOfCross = includeFinalSignOfCross,
@@ -155,6 +162,9 @@ data class PresetEntity(
                 includeFatimaPrayers = prayer.rosary.includeFatimaPrayer,
                 eternalRestForDeceased = prayer.rosary.eternalRestForDeceased.name,
                 marianAntiphon = prayer.rosary.marianAntiphon.name,
+                includeClosingPopeIntention = prayer.rosary.includeClosingPopeIntention,
+                includeClosingBishopIntention = prayer.rosary.includeClosingBishopIntention,
+                includeClosingDepartedIntention = prayer.rosary.includeClosingDepartedIntention,
                 includeClosingIntentions = prayer.rosary.includeClosingIntentions,
                 includeStMichaelPrayer = prayer.rosary.includeStMichaelPrayer,
                 includeFinalSignOfCross = prayer.rosary.includeFinalSignOfCross,

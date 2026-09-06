@@ -27,6 +27,34 @@ import org.junit.Test
 /** Tests that [PrayerEngine] builds the expected step sequences for a range of
  * [RosaryOptions] configurations — mirrors iOS's RosaryEngineTests. */
 class RosaryEngineTest {
+    @Test
+    fun aramaicCountersFollowTheDisplayedScript() {
+        val opening = engine().buildSteps(prayer(language = "arc")).filter { it.imageOverrideKey?.startsWith("virtue_") == true }
+        assertEquals(3, opening.size)
+        assertTrue(opening[0].title.endsWith("(1 מן 3)"))
+        assertTrue(PrayerTranslations.flowTitle(opening[0].title, "arc", true).endsWith("(1 ܡܶܢ 3)"))
+        assertEquals("1 מֶן 75", PrayerTranslations.aramaicProgress(1, 75, "arc", false))
+        assertEquals("1 ܡܶܢ 75", PrayerTranslations.aramaicProgress(1, 75, "arc", true))
+        assertEquals(null, PrayerTranslations.aramaicProgress(1, 75, "en", true))
+    }
+
+    @Test
+    fun aramaicScriptPreferenceFindsTheRequestedWritingSystem() {
+        for (script in listOf("Hebr", "Syrc")) {
+            assertEquals(script == "Syrc", PrayerTranslations.initialTransliteration("arc", "שלם", "ܫܠܡ", script))
+            assertEquals(script == "Hebr", PrayerTranslations.initialTransliteration("arc", "ܫܠܡ", "שלם", script))
+        }
+        assertEquals(false, PrayerTranslations.initialTransliteration("arc", "שלם", null, "Syrc"))
+        assertEquals(null, PrayerTranslations.initialTransliteration("he", "שלום", "Shalom", "Syrc"))
+        val saved = AppSettings.aramaicDefaultScript
+        try {
+            AppSettings.setAramaicDefaultScript("Syrc")
+            assertEquals("Syrc", AppSettings.aramaicDefaultScript)
+            AppSettings.setAramaicDefaultScript("invalid")
+            assertEquals("Hebr", AppSettings.aramaicDefaultScript)
+        } finally { AppSettings.setAramaicDefaultScript(saved) }
+    }
+
     companion object {
         @BeforeClass
         @JvmStatic
@@ -89,6 +117,19 @@ class RosaryEngineTest {
     )
 
     // MARK: - Step count
+
+    @Test
+    fun aramaicMainPrayerHeadingsUseTheSourcedAramaicTitles() {
+        val steps = engine().buildSteps(prayer(language = "arc"))
+        for (bodyKey in listOf("signumCrucis", "symbolumApostolorum", "paterNoster", "aveMaria", "gloriaPatri")) {
+            val body = PrayerPackStore.resolveBodyText("rosary", "arc", bodyKey)
+            val expected = com.dkaluta.prosary.typography.HebrewDisplayText.unpoint(PrayerPackStore.resolveBodyText("rosary", "arc", "${bodyKey}Title"))
+            val step = steps.firstOrNull { it.body == body }
+            assertNotNull(bodyKey, step)
+            assertTrue("$bodyKey heading should be sourced Aramaic", step!!.title.startsWith(expected))
+            assertFalse(expected.any { it in 'A'..'Z' || it in 'a'..'z' })
+        }
+    }
 
     @Test
     fun aramaicReadingAidsSurviveEveryDecadeAndPresenterMode() {
@@ -200,11 +241,11 @@ class RosaryEngineTest {
                 aramaicSignOfCrossForm = AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_A,
             ))
             assertEquals(
-                "בשמָא דַאבָא ודַברָא ודרוּחָא קַדִישָא, חַד אַלָהָא שַרִירָא. אַמִין.",
+                "בשמָא דַאבָא ✠ ודַברָא ודרוּחָא קַדִישָא, חַד אַלָהָא שַרִירָא. אַמִין.",
                 formA.first().body,
             )
             assertEquals(
-                "ܒܫܡܳܐ ܕܰܐܒܳܐ ܘܕܰܒܪܳܐ ܘܕܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ، ܚܰܕ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܐܰܡܺܝܢ.",
+                "ܒܫܡܳܐ ܕܰܐܒܳܐ ✠ ܘܕܰܒܪܳܐ ܘܕܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ، ܚܰܕ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܐܰܡܺܝܢ.",
                 formA.first().transliteratedBody,
             )
             assertEquals(formA.first().body, formA.last().body)
@@ -214,11 +255,11 @@ class RosaryEngineTest {
                 aramaicSignOfCrossForm = AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B,
             ))
             assertEquals(
-                "בשֶם אַבָא ובַרָא ורוּחָא קַדִישָא، חַד אַלָהָא שַרִירָא. אַמִין.",
+                "בשֶם אַבָא ✠ ובַרָא ורוּחָא קַדִישָא، חַד אַלָהָא שַרִירָא. אַמִין.",
                 formB.first().body,
             )
             assertEquals(
-                "ܒܫܶܡ ܐܰܒܳܐ ܘܒܰܪܳܐ ܘܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ، ܚܰܕ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܐܰܡܺܝܢ.",
+                "ܒܫܶܡ ܐܰܒܳܐ ✠ ܘܒܰܪܳܐ ܘܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ، ܚܰܕ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܐܰܡܺܝܢ.",
                 formB.first().transliteratedBody,
             )
 
@@ -258,11 +299,11 @@ class RosaryEngineTest {
     // MARK: - Closing intentions
 
     @Test
-    fun closingIntentionsAddTenSteps() {
+    fun closingIntentionsAddThirteenSteps() {
         val without = engine().buildSteps(prayer(closingIntentions = false)).size
         val with = engine().buildSteps(prayer(closingIntentions = true)).size
-        // 3 intentions x (Our Father + Hail Mary + Glory Be) + the requiescant versicle = 10
-        assertEquals(without + 10, with)
+        // 3 intentions x (introduction + Our Father + Hail Mary + Glory Be), then Requiescant.
+        assertEquals(without + 13, with)
     }
 
     @Test
@@ -270,11 +311,11 @@ class RosaryEngineTest {
         val steps = engine().buildSteps(prayer(closingIntentions = true).copy(languageCode = "la"))
         val antiphonIndex = steps.indexOfFirst { it.isAntiphon }
         assertTrue(antiphonIndex >= 0)
-        val intentions = steps.subList(antiphonIndex + 1, antiphonIndex + 11)
-        assertEquals("Pater Noster", intentions.first().title)
+        val intentions = steps.subList(antiphonIndex + 1, antiphonIndex + 14)
+        assertEquals("Pater Noster", intentions[1].title)
         assertEquals(
             "Pro intentionibus Summi Pontificis et necessitatibus Ecclesiae et patriae.",
-            intentions.first().subtitle,
+            intentions.first().body,
         )
         assertEquals("Requiescant in pace.\n**Amen.**", intentions.last().body)
     }
@@ -282,10 +323,26 @@ class RosaryEngineTest {
     @Test
     fun closingIntentionsPrayThePatriarchInHebrewAndTheExarchInTheGamlielRite() {
         val vicariate = engine().buildSteps(prayer(closingIntentions = true).copy(languageCode = "he"))
-        assertTrue(vicariate.any { it.subtitle?.contains("הפטריארך") == true })
+        assertTrue(vicariate.any { com.dkaluta.prosary.typography.HebrewDisplayText.unpoint(it.body).contains("הפטריארך") })
         val gamliel = engine().buildSteps(prayer(closingIntentions = true).copy(languageCode = "he-x-gamliel"))
-        assertTrue(gamliel.any { it.subtitle?.contains("ההגמון") == true })
-        assertFalse(gamliel.any { it.subtitle?.contains("הפטריארך") == true })
+        assertTrue(gamliel.any { com.dkaluta.prosary.typography.HebrewDisplayText.unpoint(it.body).contains("ההגמון") })
+        assertFalse(gamliel.any { com.dkaluta.prosary.typography.HebrewDisplayText.unpoint(it.body).contains("הפטריארך") })
+    }
+
+    @Test
+    fun closingIntentionGroupsCanBeEnabledSeparatelyAndOverrideLegacyChoice() {
+        val baseline = prayer(closingIntentions = false)
+        val count = engine().buildSteps(baseline).size
+        for ((options, added) in listOf(
+            baseline.rosary.copy(includeClosingPopeIntention = true) to 4,
+            baseline.rosary.copy(includeClosingBishopIntention = true) to 4,
+            baseline.rosary.copy(includeClosingDepartedIntention = true) to 5,
+            baseline.rosary.copy(includeClosingIntentions = true, includeClosingBishopIntention = false) to 9,
+        )) {
+            assertEquals(count + added, engine().buildSteps(baseline.copy(rosary = options)).size)
+        }
+        val popeOnly = engine().buildSteps(baseline.copy(rosary = baseline.rosary.copy(includeClosingPopeIntention = true)))
+        assertFalse(popeOnly.any { it.body.contains("Requiescant in pace") })
     }
 
     // MARK: - Mystery artwork
@@ -478,7 +535,8 @@ class RosaryEngineTest {
         assertTrue(announcement.body.startsWith(resolved.description))
         assertTrue(announcement.body.endsWith(fruitLine))
         assertTrue(announcement.transliteratedBody?.startsWith(resolved.transliteratedDescription!!) == true)
-        assertTrue(announcement.transliteratedBody?.endsWith(fruitLine) == true)
+        val alternateFruitLine = "${PrayerPackStore.transliteration("rosary", "arc", "fructusMysteriiLabel")}: ${resolved.fruit}"
+        assertTrue(announcement.transliteratedBody?.endsWith(alternateFruitLine) == true)
     }
 
     // MARK: - Presenter Mode

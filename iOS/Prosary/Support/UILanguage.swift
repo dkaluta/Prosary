@@ -57,11 +57,3 @@ enum UILanguage {
     text("category.\(identifier)", language: language, fallback: identifier.capitalized)
   }
 }
-
-enum TodayTranslationLanguage {
-  static let defaultsKey = "todayLanguageCode"
-  /// The empty preference follows the app UI, never the independent prayer preference.
-  static func resolve(_ stored: String, appLanguage: String = UILanguage.current) -> String {
-    stored.isEmpty ? UILanguage.resolve(appLanguage) : UILanguage.resolve(stored)
-  }
-}

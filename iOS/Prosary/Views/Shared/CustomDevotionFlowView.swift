@@ -14,6 +14,9 @@ struct CustomDevotionFlowView: View {
   /// If provided (launched with an existing saved configuration), used directly instead of
   /// re-querying the store.
   var prayer: Prayer? = nil
+  /// Explicit continuation choices are session-only; an existing favorite remains unchanged.
+  var initialLanguageCode: String? = nil
+  var initialVariantId: String? = nil
 
   @Environment(\.appServices) private var services
   @Environment(\.dismiss) private var dismiss
@@ -195,16 +198,8 @@ struct CustomDevotionFlowView: View {
     if let languages = PrayerPackStore.info(for: devotionId)?.languages,
        languages.count > 1 || languages.contains("he") {
       Menu {
-        languageButton(
-          raw: LanguageCatalog.defaultSentinel,
-          name: String(localized: "prayerFlow.language.appDefault", defaultValue: "App setting"))
-        Divider()
-        // Hebrew Vicariate and Mission are independent prayer-language choices. A bundle
-        // that advertises base Hebrew therefore offers both; the Mission's sparse overlay
-        // falls back to Vicariate Hebrew one prayer at a time.
-        ForEach(LanguageCatalog.availableOptions(for: languages)) { option in
-          languageButton(raw: option.code, name: option.nativeName)
-        }
+        PrayerLanguageMenuContent(code: chosenLanguage,
+                                 options: LanguageCatalog.availableOptions(for: languages)) { switchLanguage(to: $0) }
       } label: {
         Image(systemName: "globe")
       }
@@ -237,7 +232,8 @@ struct CustomDevotionFlowView: View {
     // Variant switcher — only for bundles declaring alternate step-sets (e.g. the Stations'
     // traditional vs. scriptural forms). Switching rebuilds the session from step 0 and
     // persists the choice to the matching favorite when one exists.
-    if let definition = PrayerPackStore.definition(for: devotionId),
+    if CustomDevotionLaunch.allowsVariantChoice(devotionId),
+       let definition = PrayerPackStore.definition(for: devotionId),
        let variants = definition.variants, variants.count > 1 {
       // "No explicit choice" resolves per the prayer language (a rite can declare a form its
       // own), so both the checkmark and the persistence baseline use the effective default.
@@ -272,13 +268,14 @@ struct CustomDevotionFlowView: View {
 
     let all = (try? await services.presetStore.all()) ?? []
     let favorite = prayer ?? all.first { $0.kind == .custom && $0.customDevotionId == devotionId }
-    matchingFavoriteId = favorite?.id
+    matchingFavoriteId = initialLanguageCode == nil && initialVariantId == nil ? favorite?.id : nil
     isPinned = FavoriteDevotions.contains(devotionId, defaultingTo: await impliedPinnedIds())
-    chosenLanguage = favorite?.languageCode ?? LanguageCatalog.defaultSentinel
+    chosenLanguage = initialLanguageCode ?? favorite?.languageCode ?? LanguageCatalog.defaultSentinel
     customOptions = favorite?.customOptions ?? [:]
     languageCode = PrayerPackStore.effectiveLanguage(for: devotionId, chosen: chosenLanguage)
 
-    variantId = favorite?.variantId
+    variantId = CustomDevotionLaunch.variantId(
+      devotionId: devotionId, incoming: initialVariantId, saved: favorite?.variantId)
     dayIndex = favorite?.dayIndex ?? 0
 
     // A series decides its own day: today's if it is unprayed, the same day again if it was
@@ -311,7 +308,7 @@ struct CustomDevotionFlowView: View {
 
     if let progress = progressStore.progress(for: runKey) {
       let savedSteps = builtSteps(languageChoice: progress.languageCode)
-      if progress.canResume(
+      if (initialLanguageCode == nil || progress.languageCode == chosenLanguage), progress.canResume(
         stepCount: savedSteps.count,
         expectedConfigurationSignature: configurationSignature(forLanguageChoice: progress.languageCode)
       ) {
@@ -395,19 +392,6 @@ struct CustomDevotionFlowView: View {
       kind: .custom, languageCode: languageChoice ?? chosenLanguage,
       customDevotionId: devotionId, variantId: variantId, dayIndex: dayIndex,
       customOptions: customOptions))
-  }
-
-  @ViewBuilder
-  private func languageButton(raw: String, name: String, isChosen: Bool? = nil) -> some View {
-    Button {
-      switchLanguage(to: raw)
-    } label: {
-      if isChosen ?? (raw == chosenLanguage) {
-        Label(name, systemImage: "checkmark")
-      } else {
-        Text(name)
-      }
-    }
   }
 
   /// Rebuilds the session in the chosen language. The current position is retained when the

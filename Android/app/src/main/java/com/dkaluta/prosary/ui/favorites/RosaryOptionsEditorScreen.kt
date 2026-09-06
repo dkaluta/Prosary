@@ -172,8 +172,14 @@ fun RosaryOptionsEditorScreen(
                     onSelect = { onRosaryChange(rosary.copy(marianAntiphon = it)) },
                     modifier = Modifier.fillMaxWidth(),
                 )
-                SwitchRow(stringResource(R.string.ro_closing_intentions), rosary.includeClosingIntentions) {
-                    onRosaryChange(rosary.copy(includeClosingIntentions = it))
+                SwitchRow(stringResource(R.string.ro_closing_pope_intention), rosary.effectiveClosingPopeIntention) {
+                    onRosaryChange(rosary.copy(includeClosingPopeIntention = it))
+                }
+                SwitchRow(stringResource(R.string.ro_closing_bishop_intention), rosary.effectiveClosingBishopIntention) {
+                    onRosaryChange(rosary.copy(includeClosingBishopIntention = it))
+                }
+                SwitchRow(stringResource(R.string.ro_closing_departed_intention), rosary.effectiveClosingDepartedIntention) {
+                    onRosaryChange(rosary.copy(includeClosingDepartedIntention = it))
                 }
                 SwitchRow(stringResource(R.string.ro_st_michael), rosary.includeStMichaelPrayer) {
                     onRosaryChange(rosary.copy(includeStMichaelPrayer = it))

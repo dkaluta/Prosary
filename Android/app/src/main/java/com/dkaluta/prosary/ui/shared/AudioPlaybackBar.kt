@@ -24,6 +24,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -52,6 +54,7 @@ fun AudioPlaybackBar(
 ) {
     val chapterCount = controller.track?.chapters?.size ?: 0
 
+    val iconScale = PrayerNavigation.iconScale(LocalLayoutDirection.current)
     Surface(
         shape = RoundedCornerShape(12.dp),
         color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
@@ -63,7 +66,7 @@ fun AudioPlaybackBar(
             modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
         ) {
             IconButton(onClick = { controller.previousChapter() }, enabled = chapterCount > 1) {
-                Icon(Icons.Filled.SkipPrevious, contentDescription = stringResource(R.string.audio_previous_chapter))
+                Icon(Icons.Filled.SkipPrevious, modifier = Modifier.graphicsLayer { scaleX = iconScale }, contentDescription = stringResource(R.string.audio_previous_chapter))
             }
             IconButton(onClick = { controller.playPause() }) {
                 Icon(
@@ -74,7 +77,7 @@ fun AudioPlaybackBar(
                 )
             }
             IconButton(onClick = { controller.nextChapter() }, enabled = chapterCount > 1) {
-                Icon(Icons.Filled.SkipNext, contentDescription = stringResource(R.string.audio_next_chapter))
+                Icon(Icons.Filled.SkipNext, modifier = Modifier.graphicsLayer { scaleX = iconScale }, contentDescription = stringResource(R.string.audio_next_chapter))
             }
 
             Column(modifier = Modifier.weight(1f)) {

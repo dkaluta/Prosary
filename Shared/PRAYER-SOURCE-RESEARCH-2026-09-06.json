@@ -1,0 +1,213 @@
+{
+  "researchedAt": "2026-09-06",
+  "scope": "Bounded primary-source audit of missing Aramaic/Classical Syriac and Greek common-prayer bodies. Prayer texts live in canonical content; source access and unresolved cases are distinguished here.",
+  "aramaic": {
+    "researchedAt": "2026-09-06",
+    "targetLanguage": "arc",
+    "targetDialect": "Classical Syriac; app currently uses Erez's West Syriac texts in Hebrew square letters and Syriac script",
+    "policy": "Do not reconstruct missing liturgical text or silently substitute Modern Chaldean/Surath. Publication evidence without a visible prayer body is not a verified translation.",
+    "verifiedReadyTexts": [
+      {
+        "prayerKey": "subTuumPraesidium",
+        "title": "Sub tuum praesidium / Under the cover of your mercy",
+        "sourceTitle": "Melkite Syriac Hymns to the Mother of God (9th to 11th centuries): Manuscripts, Language and Imagery",
+        "author": "Natalia Smelova",
+        "year": 2011,
+        "publisher": "Ashgate; final published version deposited by the University of Manchester",
+        "url": "https://pure.manchester.ac.uk/ws/portalfiles/portal/51221029/Melkite_Syriac_Hymns_to_the_Mother_of_Go.pdf",
+        "printedPage": 124,
+        "pdfPageOneBased": 9,
+        "dialect": "Medieval Melkite Classical Syriac; not a modern Maronite edition",
+        "editionWitnesses": "BL Add. 17133, BL Add. 14710, Sinai syr. 208, Sinai syr. 210, Sinai syr. 123, St Petersburg Syr. new ser. 11",
+        "textStatus": "Root independently checked the page crop and added faithful Syriac transcription plus Hebrew-square projection to canonical content on 2026-09-06.",
+        "counterpartNotes": "Same ancient Marian supplication, with a line offering supplication and servants/suffering phrasing. Do not alter it to mirror the later Latin wording. Source prints no vowel points.",
+        "rightsNotes": "Underlying medieval liturgical text is public domain; 2011 editorial discussion and English translation remain copyrighted. Credit the edition, do not copy its modern commentary/translation into app.",
+        "canonicalFile": "Shared/content/rosary/content/arc.json"
+      }
+    ],
+    "publishedButPrayerBodyUnavailable": [
+      {
+        "title": "A Brief Catechism of Saint Robert Bellarmine and Catholic Devotions",
+        "author": "Samir Georges / Beith Souryoye Morounoye",
+        "year": 2019,
+        "pages": 324,
+        "languages": [
+          "English",
+          "Arabic",
+          "Syriac (Aramaic)"
+        ],
+        "dialect": "Publisher identifies Antiochan Syriac Maronite tradition; exact relevant Syriac pages unseen",
+        "publisherUrl": "https://www.beith-morounoye.org/Publication/index1.html",
+        "previewUrl": "https://www.beith-morounoye.org/Publication/preview/CatechismAndDevotions%20preview.pdf",
+        "bookUrl": "https://www.lulu.com/shop/samir-georges/a-brief-catechism-of-saint-robert-bellarmine-and-catholic-devotions/paperback/product-1kkn52ey.html",
+        "previewPages": 27,
+        "tocPrintedPageLocators": {
+          "oratioFatimae": 72,
+          "salveRegina": 81,
+          "sanctusMichael": 83,
+          "O Sovereign Queen of Angels": 84,
+          "litanyOfLoreto": 86,
+          "angelus": 93,
+          "Prayer for the Souls in Purgatory": 225
+        },
+        "accessLimitation": "Free preview shows table of contents but omits these actual prayer pages. Do not treat TOC as text verification or assume Souls in Purgatory is exactly requiemAeternam.",
+        "rightsNotes": "2019 listing says all rights reserved. No purchase or permission request made."
+      }
+    ],
+    "relatedPrimarySources": [
+      {
+        "url": "https://www.beith-morounoye.org/prayers/index2.html",
+        "pdfUrl": "https://www.beith-morounoye.org/Publication/preview/Rosary-Sorrowful-Mysteries.pdf",
+        "title": "Syriac Maronite Sorrowful Mysteries",
+        "publisher": "Beith Souryoye Morounoye",
+        "year": 2017,
+        "dialect": "Classical West Syriac, Maronite",
+        "verifiedCoverage": "Scanned 20-page Maronite madrosho Rosary office: Our Father, Hail Mary, Glory Be and mystery hymns.",
+        "limitation": "No Fatima prayer. O Jesus fount of compassion on p18 is a different supplication, not app's Jesus Prayer."
+      },
+      {
+        "url": "https://thecmsindia.org/encyclopedia-of-syriac-chants/k/kuriyelaison-litany",
+        "title": "Quryelaison (Litany), EC-0042",
+        "publisher": "Christian Musicological Society of India / Fr Joseph J. Palackal CMI",
+        "dialect": "Classical East Syriac in Syro-Malabar Catholic usage",
+        "textCredit": "Joseph Thekkadath Puthenkudy; English transliteration by Fr Emmanuel Thelly CMI",
+        "limitation": "Explicitly selected musically relevant sections only, not complete Loreto litany. Cannot populate full litany from this page.",
+        "rightsNotes": "Site article requests permission for reuse; underlying traditional text distinguished from modern editorial material."
+      },
+      {
+        "url": "https://hudra.day/articles/qambel-maran-cd",
+        "author": "Binu George",
+        "date": "2026-06-08",
+        "dialect": "Classical East Syriac in Syro-Malabar usage",
+        "limitation": "Index identifies Latin-translated Salve Regina and Litany recordings, but relevant sections say text to be added."
+      },
+      {
+        "url": "https://ktobesuryoye.nl/shimo/prayers.html",
+        "title": "Shimo prayers",
+        "dialect": "Classical West Syriac",
+        "limitation": "Authentic Syriac prayers visible, but no exact counterpart of the requested Roman common prayers or singular Jesus Prayer verified."
+      }
+    ],
+    "secondaryCandidatesNotApprovedForShipping": [
+      {
+        "key": "Jesus Prayer",
+        "url": "https://scetis.com/en/scripta/oratio",
+        "text": "ܡܪܝ ܝܫܘܥ ܡܫܝܚܐ.\nܒܪܗ ܕܐܠܗ.\nܪܚܡ ܥܠܝ ܚܛܝܐ.",
+        "dialectAssessment": "Classical Syriac-form singular prayer, with unpointed ܕܐܠܗ spelling as published; do not silently correct it.",
+        "limitation": "Exact singular counterpart visible, but site gives no named ecclesial edition/translator. Could not establish authority. Root may have prior provenance for this source, but current repository search found none."
+      },
+      {
+        "key": "Jesus Prayer",
+        "url": "https://praylingo.com/jesus-prayer/aramaic/",
+        "limitation": "Plural us sinners rather than app's singular me; uncredited language-learning website and questionable wording. Do not use."
+      },
+      {
+        "key": "Jesus Prayer",
+        "url": "https://aramaicherald.blogspot.com/2013/10/the-jesus-prayer.html",
+        "limitation": "Private blog; malformed/reversed Syriac words and incomplete transliteration. Do not use."
+      },
+      {
+        "key": "oratioFatimae",
+        "url": "https://wp.panoussi.net/holy-rosary-in-aramaic/",
+        "dialectAssessment": "Modern Chaldean / Northeastern Neo-Aramaic forms despite a nearby old-Aramaic heading",
+        "limitation": "Latin transliteration only; family blog, no credited ecclesial source. Forms deeyee and besh zowdah are not current app's Classical Syriac."
+      },
+      {
+        "url": "https://chaldeanchurch.org/prayers/prayers-in-aramaic/",
+        "publisher": "Chaldean Catholic Diocese of St Thomas Apostle USA",
+        "dialect": "Modern Aramaic (Surath/Chaldean), explicitly identified by site",
+        "limitation": "Official source but wrong dialect and only Sign of Cross, Our Father, Hail Mary, Glory Be. No Fatima body."
+      },
+      {
+        "key": "salveRegina",
+        "url": "https://thecmsindia.org/encyclopedia-of-syriac-chants/s/slam-lek-maryam-huthamma",
+        "limitation": "This Shlam lek Maryam is a Qurbana huthamma, not Salve Regina. Similar incipit caused misleading search results; reject exact counterpart."
+      }
+    ],
+    "unresolvedPrayerBodies": [
+      "oratioFatimae",
+      "salveRegina",
+      "sanctusMichael",
+      "reginaCaeli",
+      "almaRedemptorisMater",
+      "aveReginaCaelorum",
+      "requiemAeternam",
+      "Angelus all four sections",
+      "Jesus Prayer",
+      "complete Loreto litany"
+    ],
+    "conclusion": "Published Syriac Catholic sources exist for several gaps, but full source bodies could not be verified from free previews in this bounded search. This is not evidence that translations do not exist. Obtain relevant pages of Samir Georges 2019 book or a credited Erez/Church source before filling these bodies."
+  },
+  "greek": {
+    "language": "el",
+    "researchedAt": "2026-09-06",
+    "sources": {
+      "oratioFatimae": "https://www.ivegreece.gr/wp-content/uploads/2019/09/Holy_Rosary_booklet.pdf",
+      "salveRegina": "https://www.ivegreece.gr/wp-content/uploads/2019/09/Holy_Rosary_booklet.pdf",
+      "animaChristi": "https://www.ivegreece.gr/2022/07/psychi-tou-christou-mia-prosefchi-pou-oloi-prepei-na-tin-lene-kai-na-tin-dialogizontai-sychna/",
+      "requiemAeternam": "https://www.vatican.va/news_services/liturgy/libretti/2010/messale-cipro2010.pdf",
+      "aveReginaCaelorum": "https://sannicolo.gr/wp-content/uploads/2020/03/%CE%91%CF%80%CF%8C%CE%B4%CE%B5%CE%B9%CF%80%CE%BD%CE%BF.pdf",
+      "reginaCaeli": "https://books.google.com/books?id=DY_8v-ZEfCYC&pg=PA119",
+      "collectaPaschale": "https://books.google.com/books?id=DY_8v-ZEfCYC&pg=PA121",
+      "almaRedemptorisMater": "https://books.google.com/books?id=DY_8v-ZEfCYC&pg=PA125"
+    },
+    "credits": {
+      "oratioFatimae": "Institute of the Incarnate Word (IVE), Greece; Holy Rosary booklet 2019, PDF page 1 right column; visually checked",
+      "salveRegina": "Institute of the Incarnate Word (IVE), Greece; Holy Rosary booklet 2019, PDF page 1 right column through page 2 left column; visually checked",
+      "animaChristi": "Greek translation from Latin by Fr F. Bravo IVE (π. Φ. Μπράβο Ε.Λ.), published July 14/15 2022 by IVE Greece",
+      "requiemAeternam": "Office for the Liturgical Celebrations of the Supreme Pontiff, Benedict XVI Cyprus visit, 2010, printed/PDF p117; visually verified",
+      "aveReginaCaelorum": "Catholic parish St Nicholas, Chora Tinos (sannicolo.gr), Compline booklet, March 2020 upload, printed/PDF page 6; visually verified. Published Greek metrical liturgical form, headed Θεοτοκίο.",
+      "reginaCaeli": "Officium Parvum Graece et Latine ad usum Congregationis B. Mariae Virginis, Avignon: Typis Francisci Seguin, 1823; historical published Greek Catholic prayer form, scanned Jesuit library copy (Bibliothèque S.J., Les Fontaines, Chantilly), Google Books. Visually verified against scan; typographic στ ligatures expanded and line-end hyphenation joined. Printed p119; antiphon proper only, matching existing app counterpart.",
+      "collectaPaschale": "Officium Parvum Graece et Latine ad usum Congregationis B. Mariae Virginis, Avignon: Typis Francisci Seguin, 1823; historical published Greek Catholic prayer form, scanned Jesuit library copy (Bibliothèque S.J., Les Fontaines, Chantilly), Google Books. Visually verified against scan; typographic στ ligatures expanded and line-end hyphenation joined. Printed p121, matched with Latin p120. ληψώμεθα verified in enlarged scan.",
+      "almaRedemptorisMater": "Officium Parvum Graece et Latine ad usum Congregationis B. Mariae Virginis, Avignon: Typis Francisci Seguin, 1823; historical published Greek Catholic prayer form, scanned Jesuit library copy (Bibliothèque S.J., Les Fontaines, Chantilly), Google Books. Visually verified against scan; typographic στ ligatures expanded and line-end hyphenation joined. Printed p125; historical metrical Greek translation. The unusual οὐρανιώνων and Ἰεμένῳ are printed forms, retained."
+    },
+    "notes": "Modern Greek prayer forms preserved as published; historical forms preserved polytonic as published. Existing collectaStandard and imported mysteries untouched. Only prayer sense-line breaks, expanded historical typographic στ ligatures, joined line-end hyphenation, normalized spacing/apostrophes, and final punctuation applied.",
+    "unresolvedPrayerBodies": [
+      "sanctusMichael"
+    ],
+    "verifiedSourceNotCopied": [
+      {
+        "prayerKey": "sanctusMichael",
+        "sourceTitle": "São Miguel Arcanjo, defendei-nos — Greek version",
+        "publisher": "Instituto Padre Pio / Father Paulo Ricardo, Christo Nihil Praeponere",
+        "url": "https://padrepauloricardo.org/oracoes/sao-miguel-arcanjo-defendei-nos",
+        "dialect": "Published polytonic Greek translation of the Leonine prayer",
+        "incipit": "Ἅγιε Μιχαὴλ ἀρχάγγελε, φύλαξον ἡμᾶς ἐν τῷ πολέμῳ",
+        "textStatus": "Complete Greek prayer publicly visible alongside Latin/Portuguese; underlying Greek translator/edition is not identified in the public portion. Commentary and notes require subscriber access and were not accessed.",
+        "orthographicNotes": [
+          "Printed αυτοῦ lacks breathing; standard αὐτοῦ.",
+          "Printed ὀυρανίου places breathing on the wrong member of diphthong; standard οὐρανίου.",
+          "Printed κοσμῷ has misplaced accent; standard κόσμῳ."
+        ],
+        "reuseStatus": "Not copied into canonical content: site Terms of Use sections 5.5 and 5.9 expressly reserve reproduction and reuse; historical/public-domain provenance of this Greek translation is unverified.",
+        "termsUrl": "https://padrepauloricardo.org/termos-de-uso"
+      }
+    ],
+    "additionalSourceLimitations": [
+      {
+        "url": "https://icen.gr/%CE%B2%CE%B9%CE%B2%CE%BB%CE%AF%CE%B1-%CF%83%CE%B5-%CE%B7%CE%BB%CE%B5%CE%BA%CF%84%CF%81%CE%BF%CE%BD%CE%B9%CE%BA%CE%AE-%CE%BC%CE%BF%CF%81%CF%86%CE%AE-icen/",
+        "limitation": "Official electronic-book page is password-protected; no restricted content accessed."
+      },
+      {
+        "url": "https://books.cen.gr/shop/%CF%83%CF%85%CE%BD%CE%BF%CF%88%CE%B7-%CE%BA%CE%B1%CF%84%CE%AE%CF%87%CE%B7%CF%83%CE%B7-%CF%84%CE%B7%CF%82-%CE%BA%CE%B1%CE%B8%CE%BF%CE%BB%CE%B9%CE%BA%CE%AE%CF%82-%CE%B5%CE%BA%CE%BA%CE%BB%CE%B7%CF%83/",
+        "limitation": "Greek Compendium of the Catechism is published; only unofficial mirror exposed the complete modern Regina Caeli/collect. Used independently verified historical primary scan instead."
+      }
+    ],
+    "modernTranslationCreditNote": "Anima Christi is explicitly a 2022 Greek translation by Fr F. Bravo IVE, not itself a medieval Greek text. Source authorship is recorded; reuse license/permission was not established in this source-verification task.",
+    "canonicalFile": "Shared/content/rosary/content/el.json",
+    "implementedPrayerKeys": [
+      "oratioFatimae",
+      "salveRegina",
+      "animaChristi",
+      "requiemAeternam",
+      "aveReginaCaelorum",
+      "reginaCaeli",
+      "collectaPaschale",
+      "almaRedemptorisMater"
+    ],
+    "preservedExistingContent": [
+      "collectaStandard",
+      "20 Greek imported mystery scripture entries and import provenance"
+    ]
+  }
+}

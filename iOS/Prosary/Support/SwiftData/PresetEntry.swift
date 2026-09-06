@@ -52,6 +52,9 @@ final class PresetEntry {
   var marianAntiphon: MarianAntiphonOption = MarianAntiphonOption.seasonal
   // Default false handles existing rows.
   var includeClosingIntentions: Bool = false
+  var includeClosingPopeIntention: Bool? = nil
+  var includeClosingBishopIntention: Bool? = nil
+  var includeClosingDepartedIntention: Bool? = nil
   var includeStMichaelPrayer: Bool = false
   var includeFinalSignOfCross: Bool = true
   // Raw String for safe lightweight migration of existing SwiftData rows.
@@ -92,6 +95,9 @@ final class PresetEntry {
     eternalRestForDeceased = prayer.rosary.eternalRestForDeceased
     marianAntiphon = prayer.rosary.marianAntiphon
     includeClosingIntentions = prayer.rosary.includeClosingIntentions
+    includeClosingPopeIntention = prayer.rosary.includeClosingPopeIntention
+    includeClosingBishopIntention = prayer.rosary.includeClosingBishopIntention
+    includeClosingDepartedIntention = prayer.rosary.includeClosingDepartedIntention
     includeStMichaelPrayer = prayer.rosary.includeStMichaelPrayer
     includeFinalSignOfCross = prayer.rosary.includeFinalSignOfCross
     aramaicSignOfCrossForm = prayer.rosary.aramaicSignOfCrossForm
@@ -128,6 +134,9 @@ final class PresetEntry {
     eternalRestForDeceased = prayer.rosary.eternalRestForDeceased
     marianAntiphon = prayer.rosary.marianAntiphon
     includeClosingIntentions = prayer.rosary.includeClosingIntentions
+    includeClosingPopeIntention = prayer.rosary.includeClosingPopeIntention
+    includeClosingBishopIntention = prayer.rosary.includeClosingBishopIntention
+    includeClosingDepartedIntention = prayer.rosary.includeClosingDepartedIntention
     includeStMichaelPrayer = prayer.rosary.includeStMichaelPrayer
     includeFinalSignOfCross = prayer.rosary.includeFinalSignOfCross
     aramaicSignOfCrossForm = prayer.rosary.aramaicSignOfCrossForm
@@ -179,6 +188,9 @@ final class PresetEntry {
         eternalRestForDeceased: eternalRestForDeceased,
         marianAntiphon: marianAntiphon,
         includeClosingIntentions: includeClosingIntentions,
+        includeClosingPopeIntention: includeClosingPopeIntention,
+        includeClosingBishopIntention: includeClosingBishopIntention,
+        includeClosingDepartedIntention: includeClosingDepartedIntention,
         includeStMichaelPrayer: includeStMichaelPrayer,
         includeFinalSignOfCross: includeFinalSignOfCross,
         aramaicSignOfCrossForm: aramaicSignOfCrossForm,

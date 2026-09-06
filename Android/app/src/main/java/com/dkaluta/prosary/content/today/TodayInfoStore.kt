@@ -84,6 +84,19 @@ data class ReadingCitation(
     }
 }
 
+@Serializable
+data class TorahPortion(
+    val saturday: String,
+    val title: String,
+    val titleByLanguage: Map<String, String>? = null,
+    val isHoliday: Boolean = false,
+    val readings: List<ReadingCitation> = emptyList(),
+    val sourceUrl: String = "https://www.hebcal.com",
+) {
+    fun localizedTitle(language: String): String =
+        HebrewDisplayText.unpoint(titleByLanguage.localized(language) ?: title)
+}
+
 /** A prayer-language variant first uses its own authored text, then its base language's text.
  * This keeps the Hebrew Mission variant on sourced Hebrew feast titles and citations without
  * duplicating those maps under `he-x-gamliel`. */
@@ -99,13 +112,12 @@ data class LiturgicalDayInfo(val byLanguage: Map<String, String>) {
     fun localized(language: String): String = byLanguage[TodayTranslationLanguage.resolve(language)] ?: english
 }
 
-/** Today follows the app interface language until the reader selects a persistent override.
- * Its language is deliberately independent of the default prayer language. */
+/** Today follows the app interface language, independently of the prayer language. */
 object TodayTranslationLanguage {
     val supportedCodes = listOf("en", "he", "ar", "ru", "tl", "fr", "it")
 
-    fun resolve(stored: String, appLanguage: String = LanguageCatalog.uiLanguageCode()): String {
-        val normalized = LanguageCatalog.uiLanguageCode(stored.ifBlank { appLanguage })
+    fun resolve(appLanguage: String = LanguageCatalog.uiLanguageCode()): String {
+        val normalized = LanguageCatalog.uiLanguageCode(appLanguage)
         return (LanguageCatalog.baseLanguage(normalized) ?: normalized).takeIf { it in supportedCodes } ?: "en"
     }
 
@@ -156,6 +168,9 @@ private data class ReadingDay(val readings: List<ReadingCitation> = emptyList())
 private data class ReadingsFile(val days: Map<String, ReadingDay> = emptyMap())
 
 @Serializable
+private data class TorahPortionsFile(val days: Map<String, TorahPortion> = emptyMap())
+
+@Serializable
 private data class CalendarsFile(
     val default: String,
     val calendars: List<FeastCalendar> = emptyList(),
@@ -180,6 +195,8 @@ object TodayInfoStore {
     private var feastsByDay: Map<String, FeastDay> = emptyMap()
     private var intentionsByMonth: Map<String, PopeIntention> = emptyMap()
     private var readingsByDay: Map<String, ReadingDay> = emptyMap()
+    private var torahByDay: Map<String, TorahPortion> = emptyMap()
+    private var didLoadTorah = false
     private var registry: CalendarsFile? = null
     private var loadedCalendarId: String? = null
     private var loadedReadingsCalendarId: String? = null
@@ -213,10 +230,39 @@ object TodayInfoStore {
         return readingsByDay[key(date, "yyyy-MM-dd")]?.readings.orEmpty()
     }
 
-    fun liturgicalDayInfo(date: Date = Date()): LiturgicalDayInfo {
+    /** Israel's weekly cycle, mapped to the upcoming Saturday (including Saturday itself).
+     * The optional dataset is opened only when the row is requested. */
+    fun torahPortion(date: Date = Date()): TorahPortion? {
+        if (!didLoadTorah) {
+            didLoadTorah = true
+            torahByDay = decode<TorahPortionsFile>("torah-portions")?.days.orEmpty()
+        }
+        return torahByDay[key(date, "yyyy-MM-dd")]
+    }
+
+    fun shouldShowLiturgicalDay(date: Date = Date()): Boolean =
+        java.util.Calendar.getInstance().apply { time = date }.get(java.util.Calendar.DAY_OF_WEEK) != java.util.Calendar.SUNDAY
+
+    fun liturgicalDayInfo(date: Date = Date(), calendarId: String = selectedCalendarId): LiturgicalDayInfo {
         val cal = java.util.Calendar.getInstance().apply { time = date }
         val year = cal.get(java.util.Calendar.YEAR)
         val day = java.time.LocalDate.of(year, cal.get(java.util.Calendar.MONTH) + 1, cal.get(java.util.Calendar.DAY_OF_MONTH))
+        if (calendarId !in setOf("lpj", "roman", "roman-he")) {
+            return LiturgicalDayInfo(TodayTranslationLanguage.supportedCodes.associateWith { language ->
+                val locale = Locale.forLanguageTag(if (language == "tl") "fil" else language)
+                val month = java.time.format.DateTimeFormatter.ofPattern("MMMM", locale).format(day)
+                val number = day.dayOfMonth
+                when (language) {
+                    "he" -> "יום $number בחודש $month"
+                    "ar" -> "اليوم $number من $month"
+                    "ru" -> day.format(java.time.format.DateTimeFormatter.ofPattern("d MMMM", locale))
+                    "tl" -> "Ika-$number ng $month"
+                    "fr" -> "Jour $number de $month"
+                    "it" -> "Giorno $number di $month"
+                    else -> "Day $number of $month"
+                }
+            })
+        }
         val easter = easterSunday(year)
         val ash = easter.minusDays(46)
         val pentecost = easter.plusDays(49)
@@ -303,6 +349,8 @@ object TodayInfoStore {
         feastsByDay = emptyMap()
         intentionsByMonth = emptyMap()
         readingsByDay = emptyMap()
+        torahByDay = emptyMap()
+        didLoadTorah = false
         registry = null
         loadedCalendarId = null
         loadedReadingsCalendarId = null
@@ -314,9 +362,11 @@ object TodayInfoStore {
      * registry itself is missing). */
     private fun ensureFeastsLoaded() {
         val selected = selectedCalendarId
-        if (selected == loadedCalendarId) return
-        loadedCalendarId = selected
-        val file = registry?.calendars?.firstOrNull { it.id == selected }?.file ?: "feasts"
+        val selectionKey = if (selected == "ugcc") "$selected:${AppSettings.easternPaschaStyle}" else selected
+        if (selectionKey == loadedCalendarId) return
+        loadedCalendarId = selectionKey
+        val file = if (selected == "ugcc" && AppSettings.easternPaschaStyle == "gregorian") "feasts-ugcc-gregorian"
+            else registry?.calendars?.firstOrNull { it.id == selected }?.file ?: "feasts"
         feastsByDay = decode<FeastsFile>(file)?.days ?: emptyMap()
     }
 
@@ -326,9 +376,11 @@ object TodayInfoStore {
      * Roman readings into a Byzantine, Vetus Ordo, or Syriac selection. */
     private fun ensureReadingsLoaded() {
         val selected = selectedCalendarId
-        if (selected == loadedReadingsCalendarId) return
-        loadedReadingsCalendarId = selected
-        val file = registry?.calendars?.firstOrNull { it.id == selected }?.readingsFile
+        val selectionKey = if (selected == "ugcc") "$selected:${AppSettings.easternPaschaStyle}" else selected
+        if (selectionKey == loadedReadingsCalendarId) return
+        loadedReadingsCalendarId = selectionKey
+        val file = if (selected == "ugcc" && AppSettings.easternPaschaStyle == "gregorian") "readings-ugcc-gregorian"
+            else registry?.calendars?.firstOrNull { it.id == selected }?.readingsFile
         readingsByDay = file?.let { decode<ReadingsFile>(it)?.days }.orEmpty()
     }
 

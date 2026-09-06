@@ -43,7 +43,7 @@ public sealed partial class SettingsPage : Page
     private async void OnEditLanguageFallbackOrder(object sender, RoutedEventArgs e)
     {
         var rows = new ObservableCollection<LanguageOption>(
-            LanguageCatalog.FallbackOrder.Select(code => LanguageCatalog.All.First(l => l.Code == code)));
+            LanguageCatalog.PublicFallbackOrder.Select(code => LanguageCatalog.PickerOptions.First(l => l.Code == code)));
         var list = new ListView
         {
             ItemsSource = rows,
@@ -76,7 +76,7 @@ public sealed partial class SettingsPage : Page
         var result = await dialog.ShowAsync();
         if (result == ContentDialogResult.Primary)
         {
-            AppSettings.SetLanguageFallbackOrder(rows.Select(r => r.Code));
+            AppSettings.SetLanguageFallbackOrder(LanguageCatalog.ExpandFallbackOrder(rows.Select(r => r.Code)));
         }
         else if (result == ContentDialogResult.Secondary)
         {

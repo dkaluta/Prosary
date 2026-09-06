@@ -1,0 +1,2675 @@
+{
+  "method": "Exact selected-language coverage before user fallback. Native fixed prayers and shared bundle overrides merge; local keys resolve in their own pack. Shared mystery fields merge across packs. Hebrew traditions are one language, with he-x-gamliel inheriting he. Absent languages are expansion work, not broken manifest promises. Counts are key/language pairs, not unique prayers or editorial approval.",
+  "languages": [
+    "la",
+    "en",
+    "he",
+    "ar",
+    "ru",
+    "tl",
+    "fr",
+    "it",
+    "es",
+    "el",
+    "arc"
+  ],
+  "canonical_files": 107,
+  "pack_count": 10,
+  "status_counts": {
+    "advertised": 85,
+    "absent_language": 11,
+    "partial_overlay": 14
+  },
+  "fixed_prayers": {
+    "la": {
+      "missing_prayer_bodies": [],
+      "missing_headings_or_labels": [],
+      "missing_inactive_fixed_bodies": [
+        "doxologiaMinor"
+      ],
+      "native_keys": 32,
+      "resolved_fixed_keys": 32
+    },
+    "en": {
+      "missing_prayer_bodies": [],
+      "missing_headings_or_labels": [],
+      "missing_inactive_fixed_bodies": [
+        "doxologiaMinor"
+      ],
+      "native_keys": 32,
+      "resolved_fixed_keys": 32
+    },
+    "he": {
+      "missing_prayer_bodies": [],
+      "missing_headings_or_labels": [],
+      "missing_inactive_fixed_bodies": [],
+      "native_keys": 33,
+      "resolved_fixed_keys": 33
+    },
+    "ar": {
+      "missing_prayer_bodies": [],
+      "missing_headings_or_labels": [],
+      "missing_inactive_fixed_bodies": [
+        "doxologiaMinor"
+      ],
+      "native_keys": 32,
+      "resolved_fixed_keys": 32
+    },
+    "ru": {
+      "missing_prayer_bodies": [],
+      "missing_headings_or_labels": [],
+      "missing_inactive_fixed_bodies": [
+        "doxologiaMinor"
+      ],
+      "native_keys": 32,
+      "resolved_fixed_keys": 32
+    },
+    "tl": {
+      "missing_prayer_bodies": [],
+      "missing_headings_or_labels": [],
+      "missing_inactive_fixed_bodies": [
+        "doxologiaMinor"
+      ],
+      "native_keys": 32,
+      "resolved_fixed_keys": 32
+    },
+    "fr": {
+      "missing_prayer_bodies": [],
+      "missing_headings_or_labels": [],
+      "missing_inactive_fixed_bodies": [
+        "doxologiaMinor"
+      ],
+      "native_keys": 0,
+      "resolved_fixed_keys": 32
+    },
+    "it": {
+      "missing_prayer_bodies": [],
+      "missing_headings_or_labels": [],
+      "missing_inactive_fixed_bodies": [
+        "doxologiaMinor"
+      ],
+      "native_keys": 0,
+      "resolved_fixed_keys": 32
+    },
+    "es": {
+      "missing_prayer_bodies": [],
+      "missing_headings_or_labels": [],
+      "missing_inactive_fixed_bodies": [
+        "doxologiaMinor"
+      ],
+      "native_keys": 24,
+      "resolved_fixed_keys": 32
+    },
+    "el": {
+      "missing_prayer_bodies": [
+        "sanctusMichael"
+      ],
+      "missing_headings_or_labels": [],
+      "missing_inactive_fixed_bodies": [],
+      "native_keys": 19,
+      "resolved_fixed_keys": 32
+    },
+    "arc": {
+      "missing_prayer_bodies": [
+        "almaRedemptorisMater",
+        "animaChristi",
+        "aveReginaCaelorum",
+        "collectaPaschale",
+        "collectaStandard",
+        "oratioFatimae",
+        "oratioIesu",
+        "reginaCaeli",
+        "requiemAeternam",
+        "responsiumPaschale",
+        "responsiumStandard",
+        "salveRegina",
+        "sanctusMichael",
+        "versiculumPaschale",
+        "versiculumStandard"
+      ],
+      "missing_headings_or_labels": [
+        "almaRedemptorisMaterTitle",
+        "aveMariaProCaritate",
+        "aveMariaProFide",
+        "aveMariaProSpe",
+        "aveReginaCaelorumTitle",
+        "decadeOrdinalFormat",
+        "reginaCaeliTitle",
+        "salveReginaTitle"
+      ],
+      "missing_inactive_fixed_bodies": [
+        "doxologiaMinor"
+      ],
+      "native_keys": 0,
+      "resolved_fixed_keys": 9
+    }
+  },
+  "packs": {
+    "angelus": {
+      "la": {
+        "status": "advertised",
+        "source_file": "Shared/content/angelus/content/la.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "en": {
+        "status": "advertised",
+        "source_file": "Shared/content/angelus/content/en.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "he": {
+        "status": "advertised",
+        "source_file": "Shared/content/angelus/content/he.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "ar": {
+        "status": "advertised",
+        "source_file": "Shared/content/angelus/content/ar.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "ru": {
+        "status": "advertised",
+        "source_file": "Shared/content/angelus/content/ru.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "tl": {
+        "status": "advertised",
+        "source_file": "Shared/content/angelus/content/tl.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "fr": {
+        "status": "advertised",
+        "source_file": "Shared/content/angelus/content/fr.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "it": {
+        "status": "advertised",
+        "source_file": "Shared/content/angelus/content/it.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "es": {
+        "status": "advertised",
+        "source_file": "Shared/content/angelus/content/es.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "el": {
+        "status": "absent_language",
+        "source_file": "Shared/content/angelus/content/el.json",
+        "missing": {
+          "heading_or_label": [
+            "angelusAnnunciationTitle",
+            "angelusCollectTitle",
+            "angelusFiatTitle",
+            "angelusIncarnationTitle",
+            "aveMariaTitle"
+          ],
+          "prayer_body": [
+            "angelusAnnunciationBody",
+            "angelusCollectBody",
+            "angelusFiatBody",
+            "angelusIncarnationBody",
+            "reginaCaeliBody"
+          ]
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "arc": {
+        "status": "absent_language",
+        "source_file": "Shared/content/angelus/content/arc.json",
+        "missing": {
+          "heading_or_label": [
+            "angelusAnnunciationTitle",
+            "angelusCollectTitle",
+            "angelusFiatTitle",
+            "angelusIncarnationTitle",
+            "aveMariaTitle",
+            "reginaCaeliTitle"
+          ],
+          "prayer_body": [
+            "angelusAnnunciationBody",
+            "angelusCollectBody",
+            "angelusFiatBody",
+            "angelusIncarnationBody",
+            "reginaCaeliBody"
+          ]
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      }
+    },
+    "divineMercyChaplet": {
+      "la": {
+        "status": "advertised",
+        "source_file": "Shared/content/divineMercyChaplet/content/la.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "en": {
+        "status": "advertised",
+        "source_file": "Shared/content/divineMercyChaplet/content/en.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "he": {
+        "status": "advertised",
+        "source_file": "Shared/content/divineMercyChaplet/content/he.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "ar": {
+        "status": "advertised",
+        "source_file": "Shared/content/divineMercyChaplet/content/ar.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "ru": {
+        "status": "advertised",
+        "source_file": "Shared/content/divineMercyChaplet/content/ru.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "tl": {
+        "status": "advertised",
+        "source_file": "Shared/content/divineMercyChaplet/content/tl.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "fr": {
+        "status": "advertised",
+        "source_file": "Shared/content/divineMercyChaplet/content/fr.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "it": {
+        "status": "advertised",
+        "source_file": "Shared/content/divineMercyChaplet/content/it.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "es": {
+        "status": "advertised",
+        "source_file": "Shared/content/divineMercyChaplet/content/es.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "el": {
+        "status": "absent_language",
+        "source_file": "Shared/content/divineMercyChaplet/content/el.json",
+        "missing": {
+          "heading_or_label": [
+            "aveMariaTitle",
+            "decadeOrdinalNoun",
+            "divineMercyClosingAcclamationTitle",
+            "divineMercyOfferingTitle",
+            "divineMercyPetitionTitle",
+            "paterNosterTitle",
+            "signumCrucisTitle",
+            "symbolumApostolorumTitle"
+          ],
+          "prayer_body": [
+            "divineMercyClosingAcclamation",
+            "divineMercyOffering",
+            "divineMercyPetition"
+          ]
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "arc": {
+        "status": "absent_language",
+        "source_file": "Shared/content/divineMercyChaplet/content/arc.json",
+        "missing": {
+          "heading_or_label": [
+            "aveMariaTitle",
+            "decadeOrdinalFormat",
+            "decadeOrdinalNoun",
+            "divineMercyClosingAcclamationTitle",
+            "divineMercyOfferingTitle",
+            "divineMercyPetitionTitle",
+            "paterNosterTitle",
+            "signumCrucisTitle",
+            "symbolumApostolorumTitle"
+          ],
+          "prayer_body": [
+            "divineMercyClosingAcclamation",
+            "divineMercyOffering",
+            "divineMercyPetition"
+          ]
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      }
+    },
+    "franciscanCrown": {
+      "la": {
+        "status": "advertised",
+        "source_file": "Shared/content/franciscanCrown/content/la.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "en": {
+        "status": "advertised",
+        "source_file": "Shared/content/franciscanCrown/content/en.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "he": {
+        "status": "advertised",
+        "source_file": "Shared/content/franciscanCrown/content/he.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "ar": {
+        "status": "advertised",
+        "source_file": "Shared/content/franciscanCrown/content/ar.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "ru": {
+        "status": "advertised",
+        "source_file": "Shared/content/franciscanCrown/content/ru.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "tl": {
+        "status": "advertised",
+        "source_file": "Shared/content/franciscanCrown/content/tl.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "fr": {
+        "status": "advertised",
+        "source_file": "Shared/content/franciscanCrown/content/fr.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "it": {
+        "status": "advertised",
+        "source_file": "Shared/content/franciscanCrown/content/it.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "es": {
+        "status": "advertised",
+        "source_file": "Shared/content/franciscanCrown/content/es.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "el": {
+        "status": "advertised",
+        "source_file": "Shared/content/franciscanCrown/content/el.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "arc": {
+        "status": "absent_language",
+        "source_file": "Shared/content/franciscanCrown/content/arc.json",
+        "missing": {
+          "heading_or_label": [
+            "almaRedemptorisMaterTitle",
+            "aveMariaTitle",
+            "aveReginaCaelorumTitle",
+            "crownPopeSubtitle",
+            "crownYearsSubtitle",
+            "decadeOrdinalFormat",
+            "decadeOrdinalNoun",
+            "paterNosterTitle",
+            "reginaCaeliTitle",
+            "salveReginaTitle",
+            "signumCrucisTitle"
+          ],
+          "prayer_body": [
+            "almaRedemptorisMater",
+            "aveReginaCaelorum",
+            "collectaPaschale",
+            "collectaStandard",
+            "reginaCaeli",
+            "responsiumPaschale",
+            "responsiumStandard",
+            "salveRegina",
+            "versiculumPaschale",
+            "versiculumStandard"
+          ]
+        },
+        "missing_mysteries": {
+          "title": [
+            "franciscan_04_adoration_of_the_magi",
+            "glorious_01_resurrection",
+            "glorious_05_coronation",
+            "joyful_01_annunciation",
+            "joyful_02_visitation",
+            "joyful_03_nativity",
+            "joyful_05_finding_in_the_temple"
+          ],
+          "fruit": [
+            "franciscan_04_adoration_of_the_magi",
+            "glorious_01_resurrection",
+            "glorious_05_coronation",
+            "joyful_01_annunciation",
+            "joyful_02_visitation",
+            "joyful_03_nativity",
+            "joyful_05_finding_in_the_temple"
+          ],
+          "description": [
+            "franciscan_04_adoration_of_the_magi"
+          ],
+          "scripture_descriptions": [
+            "franciscan_04_adoration_of_the_magi"
+          ],
+          "meditation_descriptions": []
+        }
+      }
+    },
+    "litanyOfLoreto": {
+      "la": {
+        "status": "advertised",
+        "source_file": "Shared/content/litanyOfLoreto/content/la.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "en": {
+        "status": "advertised",
+        "source_file": "Shared/content/litanyOfLoreto/content/en.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "he": {
+        "status": "advertised",
+        "source_file": "Shared/content/litanyOfLoreto/content/he.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "ar": {
+        "status": "advertised",
+        "source_file": "Shared/content/litanyOfLoreto/content/ar.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "ru": {
+        "status": "advertised",
+        "source_file": "Shared/content/litanyOfLoreto/content/ru.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "tl": {
+        "status": "advertised",
+        "source_file": "Shared/content/litanyOfLoreto/content/tl.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "fr": {
+        "status": "advertised",
+        "source_file": "Shared/content/litanyOfLoreto/content/fr.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "it": {
+        "status": "advertised",
+        "source_file": "Shared/content/litanyOfLoreto/content/it.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "es": {
+        "status": "advertised",
+        "source_file": "Shared/content/litanyOfLoreto/content/es.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "el": {
+        "status": "advertised",
+        "source_file": "Shared/content/litanyOfLoreto/content/el.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "arc": {
+        "status": "absent_language",
+        "source_file": "Shared/content/litanyOfLoreto/content/arc.json",
+        "missing": {
+          "heading_or_label": [
+            "collectTitle",
+            "step01Title",
+            "step02Title",
+            "step03Title",
+            "step04Title",
+            "step05Title",
+            "step06Title",
+            "step07Title",
+            "step08Title",
+            "step09Title",
+            "step10Title",
+            "step11Title",
+            "step12Title",
+            "step13Title",
+            "step14Title",
+            "step15Title"
+          ],
+          "prayer_body": [
+            "collectAfterRosary",
+            "collectStandard",
+            "step01Body",
+            "step02Body",
+            "step03Body",
+            "step04Body",
+            "step05Body",
+            "step06Body",
+            "step07Body",
+            "step08Body",
+            "step09Body",
+            "step10Body",
+            "step11Body",
+            "step12Body",
+            "step13Body",
+            "step14Body",
+            "step15Body"
+          ]
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      }
+    },
+    "oAntiphons": {
+      "la": {
+        "status": "advertised",
+        "source_file": "Shared/content/oAntiphons/content/la.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "en": {
+        "status": "advertised",
+        "source_file": "Shared/content/oAntiphons/content/en.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "he": {
+        "status": "absent_language",
+        "source_file": "Shared/content/oAntiphons/content/he.json",
+        "missing": {
+          "heading_or_label": [
+            "gloriaPatriTitle",
+            "magnificatTitle",
+            "oAdonaiTitle",
+            "oAntiphonLectioTitle",
+            "oClavisDavidTitle",
+            "oEmmanuelTitle",
+            "oOriensTitle",
+            "oRadixIesseTitle",
+            "oRexGentiumTitle",
+            "oSapientiaTitle"
+          ],
+          "prayer_body": [
+            "oAdonaiBody",
+            "oClavisDavidBody",
+            "oEmmanuelBody",
+            "oOriensBody",
+            "oRadixIesseBody",
+            "oRexGentiumBody",
+            "oSapientiaBody"
+          ],
+          "scripture_body": [
+            "magnificatBody",
+            "oAdonaiLectio",
+            "oClavisDavidLectio",
+            "oEmmanuelLectio",
+            "oOriensLectio",
+            "oRadixIesseLectio",
+            "oRexGentiumLectio",
+            "oSapientiaLectio"
+          ]
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "ar": {
+        "status": "absent_language",
+        "source_file": "Shared/content/oAntiphons/content/ar.json",
+        "missing": {
+          "heading_or_label": [
+            "gloriaPatriTitle",
+            "magnificatTitle",
+            "oAdonaiTitle",
+            "oAntiphonLectioTitle",
+            "oClavisDavidTitle",
+            "oEmmanuelTitle",
+            "oOriensTitle",
+            "oRadixIesseTitle",
+            "oRexGentiumTitle",
+            "oSapientiaTitle"
+          ],
+          "prayer_body": [
+            "oAdonaiBody",
+            "oClavisDavidBody",
+            "oEmmanuelBody",
+            "oOriensBody",
+            "oRadixIesseBody",
+            "oRexGentiumBody",
+            "oSapientiaBody"
+          ],
+          "scripture_body": [
+            "magnificatBody",
+            "oAdonaiLectio",
+            "oClavisDavidLectio",
+            "oEmmanuelLectio",
+            "oOriensLectio",
+            "oRadixIesseLectio",
+            "oRexGentiumLectio",
+            "oSapientiaLectio"
+          ]
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "ru": {
+        "status": "absent_language",
+        "source_file": "Shared/content/oAntiphons/content/ru.json",
+        "missing": {
+          "heading_or_label": [
+            "gloriaPatriTitle",
+            "magnificatTitle",
+            "oAdonaiTitle",
+            "oAntiphonLectioTitle",
+            "oClavisDavidTitle",
+            "oEmmanuelTitle",
+            "oOriensTitle",
+            "oRadixIesseTitle",
+            "oRexGentiumTitle",
+            "oSapientiaTitle"
+          ],
+          "prayer_body": [
+            "oAdonaiBody",
+            "oClavisDavidBody",
+            "oEmmanuelBody",
+            "oOriensBody",
+            "oRadixIesseBody",
+            "oRexGentiumBody",
+            "oSapientiaBody"
+          ],
+          "scripture_body": [
+            "magnificatBody",
+            "oAdonaiLectio",
+            "oClavisDavidLectio",
+            "oEmmanuelLectio",
+            "oOriensLectio",
+            "oRadixIesseLectio",
+            "oRexGentiumLectio",
+            "oSapientiaLectio"
+          ]
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "tl": {
+        "status": "absent_language",
+        "source_file": "Shared/content/oAntiphons/content/tl.json",
+        "missing": {
+          "heading_or_label": [
+            "gloriaPatriTitle",
+            "magnificatTitle",
+            "oAdonaiTitle",
+            "oAntiphonLectioTitle",
+            "oClavisDavidTitle",
+            "oEmmanuelTitle",
+            "oOriensTitle",
+            "oRadixIesseTitle",
+            "oRexGentiumTitle",
+            "oSapientiaTitle"
+          ],
+          "prayer_body": [
+            "oAdonaiBody",
+            "oClavisDavidBody",
+            "oEmmanuelBody",
+            "oOriensBody",
+            "oRadixIesseBody",
+            "oRexGentiumBody",
+            "oSapientiaBody"
+          ],
+          "scripture_body": [
+            "magnificatBody",
+            "oAdonaiLectio",
+            "oClavisDavidLectio",
+            "oEmmanuelLectio",
+            "oOriensLectio",
+            "oRadixIesseLectio",
+            "oRexGentiumLectio",
+            "oSapientiaLectio"
+          ]
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "fr": {
+        "status": "advertised",
+        "source_file": "Shared/content/oAntiphons/content/fr.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "it": {
+        "status": "advertised",
+        "source_file": "Shared/content/oAntiphons/content/it.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "es": {
+        "status": "partial_overlay",
+        "source_file": "Shared/content/oAntiphons/content/es.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [],
+          "scripture_body": [
+            "oAdonaiLectio",
+            "oClavisDavidLectio",
+            "oEmmanuelLectio",
+            "oOriensLectio",
+            "oRadixIesseLectio",
+            "oRexGentiumLectio",
+            "oSapientiaLectio"
+          ]
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "el": {
+        "status": "partial_overlay",
+        "source_file": "Shared/content/oAntiphons/content/el.json",
+        "missing": {
+          "heading_or_label": [
+            "gloriaPatriTitle",
+            "magnificatTitle",
+            "oAdonaiTitle",
+            "oAntiphonLectioTitle",
+            "oClavisDavidTitle",
+            "oEmmanuelTitle",
+            "oOriensTitle",
+            "oRadixIesseTitle",
+            "oRexGentiumTitle",
+            "oSapientiaTitle"
+          ],
+          "prayer_body": [
+            "oAdonaiBody",
+            "oClavisDavidBody",
+            "oEmmanuelBody",
+            "oOriensBody",
+            "oRadixIesseBody",
+            "oRexGentiumBody",
+            "oSapientiaBody"
+          ],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "arc": {
+        "status": "partial_overlay",
+        "source_file": "Shared/content/oAntiphons/content/arc.json",
+        "missing": {
+          "heading_or_label": [
+            "gloriaPatriTitle",
+            "magnificatTitle",
+            "oAdonaiTitle",
+            "oAntiphonLectioTitle",
+            "oClavisDavidTitle",
+            "oEmmanuelTitle",
+            "oOriensTitle",
+            "oRadixIesseTitle",
+            "oRexGentiumTitle",
+            "oSapientiaTitle"
+          ],
+          "prayer_body": [
+            "oAdonaiBody",
+            "oClavisDavidBody",
+            "oEmmanuelBody",
+            "oOriensBody",
+            "oRadixIesseBody",
+            "oRexGentiumBody",
+            "oSapientiaBody"
+          ],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      }
+    },
+    "rosary": {
+      "la": {
+        "status": "advertised",
+        "source_file": "Shared/content/rosary/content/la.json",
+        "missing": {
+          "heading_or_label": [
+            "animaChristiTitle"
+          ],
+          "prayer_body": [],
+          "supplemental_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "en": {
+        "status": "advertised",
+        "source_file": "Shared/content/rosary/content/en.json",
+        "missing": {
+          "heading_or_label": [
+            "animaChristiTitle"
+          ],
+          "prayer_body": [],
+          "supplemental_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "he": {
+        "status": "advertised",
+        "source_file": "Shared/content/rosary/content/he.json",
+        "missing": {
+          "heading_or_label": [
+            "animaChristiTitle"
+          ],
+          "prayer_body": [],
+          "supplemental_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "ar": {
+        "status": "advertised",
+        "source_file": "Shared/content/rosary/content/ar.json",
+        "missing": {
+          "heading_or_label": [
+            "animaChristiTitle"
+          ],
+          "prayer_body": [],
+          "supplemental_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "ru": {
+        "status": "advertised",
+        "source_file": "Shared/content/rosary/content/ru.json",
+        "missing": {
+          "heading_or_label": [
+            "animaChristiTitle"
+          ],
+          "prayer_body": [],
+          "supplemental_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "tl": {
+        "status": "advertised",
+        "source_file": "Shared/content/rosary/content/tl.json",
+        "missing": {
+          "heading_or_label": [
+            "animaChristiTitle"
+          ],
+          "prayer_body": [],
+          "supplemental_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "fr": {
+        "status": "advertised",
+        "source_file": "Shared/content/rosary/content/fr.json",
+        "missing": {
+          "heading_or_label": [
+            "animaChristiTitle"
+          ],
+          "prayer_body": [],
+          "supplemental_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "it": {
+        "status": "advertised",
+        "source_file": "Shared/content/rosary/content/it.json",
+        "missing": {
+          "heading_or_label": [
+            "animaChristiTitle"
+          ],
+          "prayer_body": [],
+          "supplemental_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "es": {
+        "status": "advertised",
+        "source_file": "Shared/content/rosary/content/es.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [],
+          "supplemental_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "el": {
+        "status": "partial_overlay",
+        "source_file": "Shared/content/rosary/content/el.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [
+            "intentioAnimarum",
+            "intentioOrdinarii",
+            "intentioPontificis",
+            "invitatoryBody",
+            "invitatoryBodyLent",
+            "requiescantInPace",
+            "sanctusMichael"
+          ],
+          "supplemental_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "arc": {
+        "status": "advertised",
+        "source_file": "Shared/content/rosary/content/arc.json",
+        "missing": {
+          "heading_or_label": [
+            "almaRedemptorisMaterTitle",
+            "animaChristiTitle",
+            "aveMariaProCaritate",
+            "aveMariaProFide",
+            "aveMariaProSpe",
+            "aveReginaCaelorumTitle",
+            "closingBishopIntentionTitle",
+            "closingDepartedIntentionTitle",
+            "closingPopeIntentionTitle",
+            "decadeOrdinalFormat",
+            "decadeOrdinalNoun",
+            "invitatoryTitle",
+            "oratioFatimaeTitle",
+            "presenterCombinedTitle",
+            "reginaCaeliTitle",
+            "requiemAeternamTitle",
+            "salveReginaTitle",
+            "sanctusMichaelTitle"
+          ],
+          "prayer_body": [
+            "almaRedemptorisMater",
+            "aveReginaCaelorum",
+            "collectaPaschale",
+            "collectaStandard",
+            "intentioAnimarum",
+            "intentioOrdinarii",
+            "intentioPontificis",
+            "invitatoryBody",
+            "invitatoryBodyLent",
+            "oratioFatimae",
+            "reginaCaeli",
+            "requiemAeternam",
+            "requiescantInPace",
+            "responsiumPaschale",
+            "responsiumStandard",
+            "salveRegina",
+            "sanctusMichael",
+            "versiculumPaschale",
+            "versiculumStandard"
+          ],
+          "supplemental_body": [
+            "animaChristi",
+            "oratioIesu"
+          ]
+        },
+        "missing_mysteries": {
+          "title": [
+            "glorious_01_resurrection",
+            "glorious_02_ascension",
+            "glorious_03_descent_of_the_holy_spirit",
+            "glorious_04_assumption",
+            "glorious_05_coronation",
+            "joyful_01_annunciation",
+            "joyful_02_visitation",
+            "joyful_03_nativity",
+            "joyful_04_presentation",
+            "joyful_05_finding_in_the_temple",
+            "luminous_01_baptism",
+            "luminous_02_wedding_at_cana",
+            "luminous_03_proclamation_of_the_kingdom",
+            "luminous_04_transfiguration",
+            "luminous_05_institution_of_the_eucharist",
+            "sorrowful_01_agony_in_the_garden",
+            "sorrowful_02_scourging_at_the_pillar",
+            "sorrowful_03_crowning_with_thorns",
+            "sorrowful_04_carrying_of_the_cross",
+            "sorrowful_05_crucifixion"
+          ],
+          "fruit": [
+            "glorious_01_resurrection",
+            "glorious_02_ascension",
+            "glorious_03_descent_of_the_holy_spirit",
+            "glorious_04_assumption",
+            "glorious_05_coronation",
+            "joyful_01_annunciation",
+            "joyful_02_visitation",
+            "joyful_03_nativity",
+            "joyful_04_presentation",
+            "joyful_05_finding_in_the_temple",
+            "luminous_01_baptism",
+            "luminous_02_wedding_at_cana",
+            "luminous_03_proclamation_of_the_kingdom",
+            "luminous_04_transfiguration",
+            "luminous_05_institution_of_the_eucharist",
+            "sorrowful_01_agony_in_the_garden",
+            "sorrowful_02_scourging_at_the_pillar",
+            "sorrowful_03_crowning_with_thorns",
+            "sorrowful_04_carrying_of_the_cross",
+            "sorrowful_05_crucifixion"
+          ],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      }
+    },
+    "sevenSorrows": {
+      "la": {
+        "status": "advertised",
+        "source_file": "Shared/content/sevenSorrows/content/la.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "en": {
+        "status": "advertised",
+        "source_file": "Shared/content/sevenSorrows/content/en.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "he": {
+        "status": "advertised",
+        "source_file": "Shared/content/sevenSorrows/content/he.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "ar": {
+        "status": "advertised",
+        "source_file": "Shared/content/sevenSorrows/content/ar.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "ru": {
+        "status": "advertised",
+        "source_file": "Shared/content/sevenSorrows/content/ru.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "tl": {
+        "status": "advertised",
+        "source_file": "Shared/content/sevenSorrows/content/tl.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "fr": {
+        "status": "advertised",
+        "source_file": "Shared/content/sevenSorrows/content/fr.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "it": {
+        "status": "advertised",
+        "source_file": "Shared/content/sevenSorrows/content/it.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "es": {
+        "status": "partial_overlay",
+        "source_file": "Shared/content/sevenSorrows/content/es.json",
+        "missing": {
+          "heading_or_label": [
+            "aveMariaTitle",
+            "decadeOrdinalNoun",
+            "paterNosterTitle",
+            "sevenSorrowsClosingTitle",
+            "sevenSorrowsTearsSubtitle",
+            "signumCrucisTitle"
+          ],
+          "prayer_body": [
+            "sevenSorrowsClosingBody"
+          ]
+        },
+        "missing_mysteries": {
+          "title": [
+            "seven_sorrows_01_prophecy_of_simeon",
+            "seven_sorrows_02_flight_into_egypt",
+            "seven_sorrows_03_loss_of_jesus_in_the_temple",
+            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross",
+            "seven_sorrows_05_crucifixion",
+            "seven_sorrows_06_descent_from_the_cross",
+            "seven_sorrows_07_burial_of_jesus"
+          ],
+          "fruit": [
+            "seven_sorrows_01_prophecy_of_simeon",
+            "seven_sorrows_02_flight_into_egypt",
+            "seven_sorrows_03_loss_of_jesus_in_the_temple",
+            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross",
+            "seven_sorrows_05_crucifixion",
+            "seven_sorrows_06_descent_from_the_cross",
+            "seven_sorrows_07_burial_of_jesus"
+          ],
+          "description": [
+            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross"
+          ],
+          "scripture_descriptions": [],
+          "meditation_descriptions": [
+            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross"
+          ]
+        }
+      },
+      "el": {
+        "status": "partial_overlay",
+        "source_file": "Shared/content/sevenSorrows/content/el.json",
+        "missing": {
+          "heading_or_label": [
+            "aveMariaTitle",
+            "decadeOrdinalNoun",
+            "paterNosterTitle",
+            "sevenSorrowsClosingTitle",
+            "sevenSorrowsTearsSubtitle",
+            "signumCrucisTitle"
+          ],
+          "prayer_body": [
+            "sevenSorrowsClosingBody"
+          ]
+        },
+        "missing_mysteries": {
+          "title": [
+            "seven_sorrows_01_prophecy_of_simeon",
+            "seven_sorrows_02_flight_into_egypt",
+            "seven_sorrows_03_loss_of_jesus_in_the_temple",
+            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross",
+            "seven_sorrows_05_crucifixion",
+            "seven_sorrows_06_descent_from_the_cross",
+            "seven_sorrows_07_burial_of_jesus"
+          ],
+          "fruit": [
+            "seven_sorrows_01_prophecy_of_simeon",
+            "seven_sorrows_02_flight_into_egypt",
+            "seven_sorrows_03_loss_of_jesus_in_the_temple",
+            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross",
+            "seven_sorrows_05_crucifixion",
+            "seven_sorrows_06_descent_from_the_cross",
+            "seven_sorrows_07_burial_of_jesus"
+          ],
+          "description": [
+            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross"
+          ],
+          "scripture_descriptions": [],
+          "meditation_descriptions": [
+            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross"
+          ]
+        }
+      },
+      "arc": {
+        "status": "absent_language",
+        "source_file": "Shared/content/sevenSorrows/content/arc.json",
+        "missing": {
+          "heading_or_label": [
+            "aveMariaTitle",
+            "decadeOrdinalFormat",
+            "decadeOrdinalNoun",
+            "paterNosterTitle",
+            "sevenSorrowsClosingTitle",
+            "sevenSorrowsTearsSubtitle",
+            "signumCrucisTitle"
+          ],
+          "prayer_body": [
+            "sevenSorrowsClosingBody"
+          ]
+        },
+        "missing_mysteries": {
+          "title": [
+            "seven_sorrows_01_prophecy_of_simeon",
+            "seven_sorrows_02_flight_into_egypt",
+            "seven_sorrows_03_loss_of_jesus_in_the_temple",
+            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross",
+            "seven_sorrows_05_crucifixion",
+            "seven_sorrows_06_descent_from_the_cross",
+            "seven_sorrows_07_burial_of_jesus"
+          ],
+          "fruit": [
+            "seven_sorrows_01_prophecy_of_simeon",
+            "seven_sorrows_02_flight_into_egypt",
+            "seven_sorrows_03_loss_of_jesus_in_the_temple",
+            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross",
+            "seven_sorrows_05_crucifixion",
+            "seven_sorrows_06_descent_from_the_cross",
+            "seven_sorrows_07_burial_of_jesus"
+          ],
+          "description": [
+            "seven_sorrows_01_prophecy_of_simeon",
+            "seven_sorrows_02_flight_into_egypt",
+            "seven_sorrows_03_loss_of_jesus_in_the_temple",
+            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross",
+            "seven_sorrows_05_crucifixion",
+            "seven_sorrows_06_descent_from_the_cross",
+            "seven_sorrows_07_burial_of_jesus"
+          ],
+          "scripture_descriptions": [
+            "seven_sorrows_01_prophecy_of_simeon",
+            "seven_sorrows_02_flight_into_egypt",
+            "seven_sorrows_03_loss_of_jesus_in_the_temple",
+            "seven_sorrows_05_crucifixion",
+            "seven_sorrows_06_descent_from_the_cross",
+            "seven_sorrows_07_burial_of_jesus"
+          ],
+          "meditation_descriptions": [
+            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross"
+          ]
+        }
+      }
+    },
+    "stationsOfTheCross": {
+      "la": {
+        "status": "advertised",
+        "source_file": "Shared/content/stationsOfTheCross/content/la.json",
+        "missing": {
+          "heading_or_label": [],
+          "meditation_body": [],
+          "prayer_body": [],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "en": {
+        "status": "advertised",
+        "source_file": "Shared/content/stationsOfTheCross/content/en.json",
+        "missing": {
+          "heading_or_label": [],
+          "meditation_body": [],
+          "prayer_body": [],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "he": {
+        "status": "advertised",
+        "source_file": "Shared/content/stationsOfTheCross/content/he.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "ar": {
+        "status": "advertised",
+        "source_file": "Shared/content/stationsOfTheCross/content/ar.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [],
+          "scripture_body": [
+            "station06Body"
+          ]
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "ru": {
+        "status": "advertised",
+        "source_file": "Shared/content/stationsOfTheCross/content/ru.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "tl": {
+        "status": "advertised",
+        "source_file": "Shared/content/stationsOfTheCross/content/tl.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [],
+          "scripture_body": [
+            "station06Body"
+          ]
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "fr": {
+        "status": "partial_overlay",
+        "source_file": "Shared/content/stationsOfTheCross/content/fr.json",
+        "missing": {
+          "heading_or_label": [],
+          "meditation_body": [],
+          "prayer_body": [
+            "stationsClosingPrayer"
+          ],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "it": {
+        "status": "partial_overlay",
+        "source_file": "Shared/content/stationsOfTheCross/content/it.json",
+        "missing": {
+          "heading_or_label": [],
+          "meditation_body": [],
+          "prayer_body": [
+            "stationsClosingPrayer"
+          ],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "es": {
+        "status": "partial_overlay",
+        "source_file": "Shared/content/stationsOfTheCross/content/es.json",
+        "missing": {
+          "heading_or_label": [
+            "animaChristiTitle",
+            "scriptural01Title",
+            "scriptural02Title",
+            "scriptural03Title",
+            "scriptural04Title",
+            "scriptural05Title",
+            "scriptural06Title",
+            "scriptural07Title",
+            "scriptural08Title",
+            "scriptural09Title",
+            "scriptural10Title",
+            "scriptural11Title",
+            "scriptural12Title",
+            "scriptural13Title",
+            "scriptural14Title",
+            "signumCrucisTitle",
+            "station01Title",
+            "station02Title",
+            "station03Title",
+            "station04Title",
+            "station05Title",
+            "station06Title",
+            "station07Title",
+            "station08Title",
+            "station09Title",
+            "station10Title",
+            "station11Title",
+            "station12Title",
+            "station13Title",
+            "station14Title",
+            "stationsClosingPrayerTitle",
+            "stationsOpeningPrayerTitle"
+          ],
+          "meditation_body": [
+            "station01Body",
+            "station02Body",
+            "station03Body",
+            "station04Body",
+            "station05Body",
+            "station06Body",
+            "station07Body",
+            "station08Body",
+            "station09Body",
+            "station10Body",
+            "station11Body",
+            "station12Body",
+            "station13Body",
+            "station14Body"
+          ],
+          "prayer_body": [
+            "stationsAcclamation",
+            "stationsClosingPrayer",
+            "stationsOpeningPrayer"
+          ],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "el": {
+        "status": "partial_overlay",
+        "source_file": "Shared/content/stationsOfTheCross/content/el.json",
+        "missing": {
+          "heading_or_label": [
+            "animaChristiTitle",
+            "scriptural01Title",
+            "scriptural02Title",
+            "scriptural03Title",
+            "scriptural04Title",
+            "scriptural05Title",
+            "scriptural06Title",
+            "scriptural07Title",
+            "scriptural08Title",
+            "scriptural09Title",
+            "scriptural10Title",
+            "scriptural11Title",
+            "scriptural12Title",
+            "scriptural13Title",
+            "scriptural14Title",
+            "signumCrucisTitle",
+            "station01Title",
+            "station02Title",
+            "station03Title",
+            "station04Title",
+            "station05Title",
+            "station06Title",
+            "station07Title",
+            "station08Title",
+            "station09Title",
+            "station10Title",
+            "station11Title",
+            "station12Title",
+            "station13Title",
+            "station14Title",
+            "stationsClosingPrayerTitle",
+            "stationsOpeningPrayerTitle"
+          ],
+          "meditation_body": [
+            "station01Body",
+            "station02Body",
+            "station03Body",
+            "station04Body",
+            "station05Body",
+            "station06Body",
+            "station07Body",
+            "station08Body",
+            "station09Body",
+            "station10Body",
+            "station11Body",
+            "station12Body",
+            "station13Body",
+            "station14Body"
+          ],
+          "prayer_body": [
+            "stationsAcclamation",
+            "stationsClosingPrayer",
+            "stationsOpeningPrayer"
+          ],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "arc": {
+        "status": "partial_overlay",
+        "source_file": "Shared/content/stationsOfTheCross/content/arc.json",
+        "missing": {
+          "heading_or_label": [
+            "animaChristiTitle",
+            "scriptural01Title",
+            "scriptural02Title",
+            "scriptural03Title",
+            "scriptural04Title",
+            "scriptural05Title",
+            "scriptural06Title",
+            "scriptural07Title",
+            "scriptural08Title",
+            "scriptural09Title",
+            "scriptural10Title",
+            "scriptural11Title",
+            "scriptural12Title",
+            "scriptural13Title",
+            "scriptural14Title",
+            "signumCrucisTitle",
+            "station01Title",
+            "station02Title",
+            "station03Title",
+            "station04Title",
+            "station05Title",
+            "station06Title",
+            "station07Title",
+            "station08Title",
+            "station09Title",
+            "station10Title",
+            "station11Title",
+            "station12Title",
+            "station13Title",
+            "station14Title",
+            "stationsClosingPrayerTitle",
+            "stationsOpeningPrayerTitle"
+          ],
+          "meditation_body": [
+            "station01Body",
+            "station02Body",
+            "station03Body",
+            "station04Body",
+            "station05Body",
+            "station06Body",
+            "station07Body",
+            "station08Body",
+            "station09Body",
+            "station10Body",
+            "station11Body",
+            "station12Body",
+            "station13Body",
+            "station14Body"
+          ],
+          "prayer_body": [
+            "animaChristi",
+            "stationsAcclamation",
+            "stationsClosingPrayer",
+            "stationsOpeningPrayer"
+          ],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      }
+    },
+    "trisagion": {
+      "la": {
+        "status": "advertised",
+        "source_file": "Shared/content/trisagion/content/la.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "en": {
+        "status": "advertised",
+        "source_file": "Shared/content/trisagion/content/en.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "he": {
+        "status": "advertised",
+        "source_file": "Shared/content/trisagion/content/he.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "ar": {
+        "status": "advertised",
+        "source_file": "Shared/content/trisagion/content/ar.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "ru": {
+        "status": "advertised",
+        "source_file": "Shared/content/trisagion/content/ru.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "tl": {
+        "status": "advertised",
+        "source_file": "Shared/content/trisagion/content/tl.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "fr": {
+        "status": "advertised",
+        "source_file": "Shared/content/trisagion/content/fr.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "it": {
+        "status": "advertised",
+        "source_file": "Shared/content/trisagion/content/it.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "es": {
+        "status": "advertised",
+        "source_file": "Shared/content/trisagion/content/es.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "el": {
+        "status": "advertised",
+        "source_file": "Shared/content/trisagion/content/el.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "arc": {
+        "status": "advertised",
+        "source_file": "Shared/content/trisagion/content/arc.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      }
+    },
+    "viaLucis": {
+      "la": {
+        "status": "advertised",
+        "source_file": "Shared/content/viaLucis/content/la.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "en": {
+        "status": "advertised",
+        "source_file": "Shared/content/viaLucis/content/en.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "he": {
+        "status": "advertised",
+        "source_file": "Shared/content/viaLucis/content/he.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "ar": {
+        "status": "advertised",
+        "source_file": "Shared/content/viaLucis/content/ar.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "ru": {
+        "status": "advertised",
+        "source_file": "Shared/content/viaLucis/content/ru.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "tl": {
+        "status": "advertised",
+        "source_file": "Shared/content/viaLucis/content/tl.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "fr": {
+        "status": "advertised",
+        "source_file": "Shared/content/viaLucis/content/fr.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "it": {
+        "status": "advertised",
+        "source_file": "Shared/content/viaLucis/content/it.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "es": {
+        "status": "partial_overlay",
+        "source_file": "Shared/content/viaLucis/content/es.json",
+        "missing": {
+          "heading_or_label": [
+            "signumCrucisTitle",
+            "viaLucis01Title",
+            "viaLucis02Title",
+            "viaLucis03Title",
+            "viaLucis04Title",
+            "viaLucis05Title",
+            "viaLucis06Title",
+            "viaLucis07Title",
+            "viaLucis08Title",
+            "viaLucis09Title",
+            "viaLucis10Title",
+            "viaLucis11Title",
+            "viaLucis12Title",
+            "viaLucis13Title",
+            "viaLucis14Title",
+            "viaLucisClosingTitle"
+          ],
+          "prayer_body": [
+            "viaLucisAcclamation",
+            "viaLucisClosingBody"
+          ],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "el": {
+        "status": "partial_overlay",
+        "source_file": "Shared/content/viaLucis/content/el.json",
+        "missing": {
+          "heading_or_label": [
+            "signumCrucisTitle",
+            "viaLucis01Title",
+            "viaLucis02Title",
+            "viaLucis03Title",
+            "viaLucis04Title",
+            "viaLucis05Title",
+            "viaLucis06Title",
+            "viaLucis07Title",
+            "viaLucis08Title",
+            "viaLucis09Title",
+            "viaLucis10Title",
+            "viaLucis11Title",
+            "viaLucis12Title",
+            "viaLucis13Title",
+            "viaLucis14Title",
+            "viaLucisClosingTitle"
+          ],
+          "prayer_body": [
+            "viaLucisAcclamation",
+            "viaLucisClosingBody"
+          ],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "arc": {
+        "status": "partial_overlay",
+        "source_file": "Shared/content/viaLucis/content/arc.json",
+        "missing": {
+          "heading_or_label": [
+            "signumCrucisTitle",
+            "viaLucis01Title",
+            "viaLucis02Title",
+            "viaLucis03Title",
+            "viaLucis04Title",
+            "viaLucis05Title",
+            "viaLucis06Title",
+            "viaLucis07Title",
+            "viaLucis08Title",
+            "viaLucis09Title",
+            "viaLucis10Title",
+            "viaLucis11Title",
+            "viaLucis12Title",
+            "viaLucis13Title",
+            "viaLucis14Title",
+            "viaLucisClosingTitle"
+          ],
+          "prayer_body": [
+            "viaLucisAcclamation",
+            "viaLucisClosingBody"
+          ],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      }
+    }
+  },
+  "native_table_key_parity": [
+    {
+      "language": "la",
+      "iOS_keys": 32,
+      "Android_keys": 32,
+      "Windows_keys": 32,
+      "Android_vs_iOS": [],
+      "Windows_vs_iOS": []
+    },
+    {
+      "language": "en",
+      "iOS_keys": 32,
+      "Android_keys": 32,
+      "Windows_keys": 32,
+      "Android_vs_iOS": [],
+      "Windows_vs_iOS": []
+    },
+    {
+      "language": "he",
+      "iOS_keys": 33,
+      "Android_keys": 33,
+      "Windows_keys": 33,
+      "Android_vs_iOS": [],
+      "Windows_vs_iOS": []
+    },
+    {
+      "language": "ar",
+      "iOS_keys": 32,
+      "Android_keys": 32,
+      "Windows_keys": 32,
+      "Android_vs_iOS": [],
+      "Windows_vs_iOS": []
+    },
+    {
+      "language": "ru",
+      "iOS_keys": 32,
+      "Android_keys": 32,
+      "Windows_keys": 32,
+      "Android_vs_iOS": [],
+      "Windows_vs_iOS": []
+    },
+    {
+      "language": "tl",
+      "iOS_keys": 32,
+      "Android_keys": 32,
+      "Windows_keys": 32,
+      "Android_vs_iOS": [],
+      "Windows_vs_iOS": []
+    },
+    {
+      "language": "es",
+      "iOS_keys": 24,
+      "Android_keys": 24,
+      "Windows_keys": 24,
+      "Android_vs_iOS": [],
+      "Windows_vs_iOS": []
+    },
+    {
+      "language": "el",
+      "iOS_keys": 19,
+      "Android_keys": 19,
+      "Windows_keys": 19,
+      "Android_vs_iOS": [],
+      "Windows_vs_iOS": []
+    },
+    {
+      "language": "he-x-gamliel",
+      "iOS_keys": 8,
+      "Android_keys": 8,
+      "Windows_keys": 8,
+      "Android_vs_iOS": [],
+      "Windows_vs_iOS": []
+    }
+  ],
+  "native_mystery_counts": {
+    "la": 20,
+    "en": 20,
+    "he": 20,
+    "ar": 20,
+    "ru": 20,
+    "tl": 20
+  },
+  "inactive_fixed_note": "doxologiaMinor is reserved for future use and excluded from active body-gap counts."
+}

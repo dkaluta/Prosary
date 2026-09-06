@@ -10,10 +10,13 @@ Only Scripture *citations* are retained, never the Scripture text. The generated
 * ``readings-roman.json`` — Novus Ordo, Evangelizo HE; sourced Hebrew full book names are
   retained in ``fullByLanguage.he`` and compacted deterministically for ``shortByLanguage.he``.
 * ``readings-roman1962.json`` — Vetus Ordo, Missale Meum's public v5 proper API.
-* ``readings-ugcc.json`` — Byzantine/UGCC Gregorian usage, Royal Doors' published calendar.
+* ``readings-ugcc.json`` — UGCC Ukraine, Gregorian fixed feasts and Julian Pascha;
+  imported from the official 2026 calendar's reviewed citation snapshot.
+* ``readings-ugcc-gregorian.json`` — fully Gregorian usage, Royal Doors' calendar.
 * ``readings-syriac.json`` — Syriac Catholic, Evangelizo SYE.
+* ``readings-maronite.json`` — Maronite, Evangelizo MAE.
 
-Use ``--sync`` to copy the four tables into every native port. Existing dates are retained,
+Use ``--sync`` to copy the tables into every native port. Existing feed dates are retained,
 so the rolling Evangelizo horizon grows rather than erasing previously fetched days.
 ``--localize-only --sync`` adds sourced Hebrew book names to existing citations offline,
 keeping each calendar's appointed books, dates, chapter numbers, and verse ranges.
@@ -96,7 +99,7 @@ EVANGELIZO_BOOKS = {
 # Alternate codes observed in Evangelizo's publication feed (French book abbreviations).
 for alias, canonical in {
         "1_R": "1_K", "2_R": "2_K", "Ez": "Ezk", "Ha": "Hab",
-        "He": "Heb", "Jc": "Jas", "So": "Zp"}.items():
+        "He": "Heb", "Jc": "Jas", "So": "Zp", "Za": "Zc"}.items():
     EVANGELIZO_BOOKS[alias] = EVANGELIZO_BOOKS[canonical]
 
 HEBREW_BOOKS_FILE = Path(__file__).with_name("hebrew-reading-books.json")
@@ -197,7 +200,7 @@ GENERIC_CITATION = re.compile(
     rf"(?<![\w])(?P<book>{_BOOK_PATTERN})\s+(?P<reference>{_REFERENCE})",
     re.IGNORECASE,
 )
-CONTINUATION = re.compile(rf"^\s*(?P<reference>{_VERSE}(?:,\s*{_VERSE})*)\s*[.]?\s*$")
+CONTINUATION = re.compile(rf"^\s*(?P<reference>(?:\d+:)?{_VERSE}(?:,\s*(?:\d+:)?{_VERSE})*)\s*[.]?\s*$")
 GOSPEL_BOOKS = {"Matthew", "Mark", "Luke", "John"}
 
 
@@ -362,7 +365,7 @@ def generic_citations(text: str) -> list[dict]:
     for segment in text.replace("*", "").split(";"):
         matches = list(GENERIC_CITATION.finditer(segment))
         if not matches:
-            continuation = CONTINUATION.match(segment)
+            continuation = CONTINUATION.fullmatch(segment.strip().splitlines()[0] if segment.strip() else "")
             if continuation and found:
                 suffix = continuation.group("reference").replace("-", "–")
                 found[-1]["full"] += f"; {suffix}"
@@ -390,7 +393,11 @@ def evangelizo_day(day: dt.date, edition: str) -> tuple[str, dict] | None:
         short_book, full_book = EVANGELIZO_BOOKS.get(
             book_code, (book_code.replace("_", " "), book_code.replace("_", " ")))
         reference = normalized_evangelizo_reference(raw_reference)
-        item = citation(short_book, full_book, reference, source.get("type") or "reading")
+        # MAE assigns the Roman slot label 'psalm' to its second reading even when
+        # that reading is an epistle. Eastern reading types follow the cited book.
+        # Keep Roman source labels, including responsorial canticles outside Psalms.
+        kind = type_for_book(full_book) if edition in {"MAE", "SYE"} else source.get("type")
+        item = citation(short_book, full_book, reference, kind)
         if edition == "HE":
             book = source.get("book") or {}
             short_hebrew = (book.get("short_title") or book.get("full_title") or "").strip()
@@ -421,7 +428,11 @@ def missale_meum_day(day: dt.date) -> tuple[str, dict] | None:
                 continue
             body = section.get("body") or []
             english = body[0][0] if body and body[0] else ""
-            extracted = generic_citations(english)
+            # Missale Meum marks the complete appointed citation with stars. Its subsequent
+            # Scripture prose can contain incidental references. Parse that citation alone,
+            # retaining semicolon-separated chapters (Gal 5:25-26; 6:1-10, for example).
+            appointed = re.search(r"\*([^*]+)\*", english)
+            extracted = generic_citations(appointed.group(1) if appointed else english)
             if extracted:
                 # A lesson's first starred reference is the appointed citation. Limiting each
                 # section prevents incidental cross-references in the supplied Scripture text.
@@ -554,10 +565,16 @@ def localize_reading_names(days: dict[str, dict], books: dict[str, dict]) -> set
 def localize_existing_datasets() -> None:
     books = json.loads(HEBREW_BOOKS_FILE.read_text(encoding="utf-8"))["books"]
     localized_books = json.loads(LOCALIZED_BOOKS_FILE.read_text(encoding="utf-8"))["books"]
-    for name in ("roman", "roman1962", "ugcc", "syriac"):
-        path = DATA / f"readings-{name}.json"
+    for path in sorted(DATA.glob("readings-*.json")):
+        name = path.stem.removeprefix("readings-")
         payload = json.loads(path.read_text(encoding="utf-8"))
         payload["days"] = normalized_existing_days(path)
+        if name in {"maronite", "syriac"}:
+            for row in payload["days"].values():
+                for item in row.get("readings", []):
+                    book = re.match(r"(.+?) \d+:", item["full"])
+                    if book:
+                        item["type"] = type_for_book(book[1])
         missing = localize_hebrew_readings(payload["days"], books, preserve_existing=name == "roman")
         if missing:
             print(f"  warning: {path.name} has no sourced Hebrew book name for: {', '.join(sorted(missing))}")
@@ -577,8 +594,7 @@ def localize_existing_datasets() -> None:
 
 
 def sync_datasets() -> None:
-    outputs = [DATA / f"readings-{source}.json"
-               for source in ("roman", "roman1962", "ugcc", "syriac")]
+    outputs = sorted(DATA.glob("readings-*.json"))
     for target in TARGETS:
         target.mkdir(parents=True, exist_ok=True)
         for source in outputs:
@@ -615,8 +631,8 @@ def main() -> None:
     parser.add_argument("--days-ahead", type=int, default=100)
     parser.add_argument(
         "--sources", nargs="+",
-        choices=("roman", "roman1962", "ugcc", "syriac"),
-        default=("roman", "roman1962", "ugcc", "syriac"),
+        choices=("roman", "roman1962", "ugcc", "ugcc-gregorian", "syriac", "maronite"),
+        default=("roman", "roman1962", "ugcc", "ugcc-gregorian", "syriac", "maronite"),
         help="refresh only these tables (all by default)")
     parser.add_argument(
         "--refresh-existing", action="store_true",
@@ -631,6 +647,10 @@ def main() -> None:
     args = parser.parse_args()
 
     if args.self_test:
+        assert generic_citations("Gal 5:25-26; 6:1-10")[0]["full"] == "Galatians 5:25–26; 6:1–10"
+        assert [item["full"] for item in generic_citations("2 Corinthians 4:6-15; Matthew 22:35-46")] == [
+            "2 Corinthians 4:6–15", "Matthew 22:35–46"]
+        assert generic_citations("John 19:6-11; 13-20; 25-28; 30-35")[0]["full"] == "John 19:6–11; 13–20; 25–28; 30–35"
         assert hebrew_numeral(1) == "א׳"
         assert hebrew_numeral(3) == "ג׳"
         assert hebrew_numeral(15) == "ט״ו"
@@ -667,6 +687,10 @@ def main() -> None:
         assert legacy == citation("Heb.", "Hebrews", "10:32–39")
         assert EVANGELIZO_BOOKS["Sg"] == ("Wis.", "Wisdom")
         assert EVANGELIZO_BOOKS["Ct"] == ("Song", "Song of Songs")
+        assert EVANGELIZO_BOOKS["Za"] == ("Zech.", "Zechariah")
+        assert type_for_book("Romans") == "reading"
+        assert type_for_book("Psalm") == "psalm"
+        assert type_for_book("Luke") == "gospel"
         localized_books = json.loads(LOCALIZED_BOOKS_FILE.read_text(encoding="utf-8"))["books"]
         assert not localize_reading_names(samples, localized_books)
         for language in ("ar", "ru", "tl", "fr", "it"):
@@ -687,14 +711,14 @@ def main() -> None:
     today = dt.date.today()
     days = [today + dt.timedelta(days=offset)
             for offset in range(-args.days_back, args.days_ahead + 1)]
-    rows: dict[str, dict[str, dict]] = {"roman": {}, "syriac": {}, "roman1962": {}}
+    rows: dict[str, dict[str, dict]] = {"roman": {}, "syriac": {}, "roman1962": {}, "maronite": {}}
     selected = set(args.sources)
 
     # Evangelizo asks clients not to burst the publication service. Fetch its two editions
     # serially and pause between missing dates; the one-second cadence stays below the
     # observed rate limit. Stable existing citations are skipped unless explicitly refreshed.
     for source, edition, legacy in (
-            ("roman", "HE", "readings.json"), ("syriac", "SYE", None)):
+            ("roman", "HE", "readings.json"), ("syriac", "SYE", None), ("maronite", "MAE", None)):
         if source not in selected:
             continue
         present = set() if args.refresh_existing else existing_dates(f"readings-{source}")
@@ -719,8 +743,8 @@ def main() -> None:
                     date, row = result
                     rows["roman1962"][date] = row
 
-    rows["ugcc"] = (royal_doors_days({day.isoformat() for day in days})
-                    if "ugcc" in selected else {})
+    rows["ugcc-gregorian"] = (royal_doors_days({day.isoformat() for day in days})
+                              if "ugcc-gregorian" in selected else {})
 
     if "roman" in selected:
         write_dataset(
@@ -737,11 +761,18 @@ def main() -> None:
             "Meum's public v5 proper API (MIT); Scripture text is not included.",
             rows["roman1962"])
     if "ugcc" in selected:
-        write_dataset(
-            "readings-ugcc",
-            "Byzantine Ukrainian Greek Catholic citations from Royal Doors' published "
-            "UGCC Liturgical Year (Gregorian) calendar; Scripture text is not included.",
-            rows["ugcc"])
+        # Replace the old usage in full; never retain dates from the previous Gregorian
+        # source outside the verified official-year snapshot.
+        snapshot = json.loads((Path(__file__).with_name("ugcc-readings-2026.json")).read_text())
+        payload = {"$comment": snapshot["$comment"], "generated": dt.date.today().isoformat(),
+                   "source": snapshot["source"], "calendarUsage": snapshot["calendarUsage"],
+                   "days": {date: {"readings": row["readings"], "sourceUrl": snapshot["source"]}
+                            for date, row in snapshot["days"].items() if row["readings"]}}
+        (DATA / "readings-ugcc.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
+    if "ugcc-gregorian" in selected:
+        write_dataset("readings-ugcc-gregorian",
+                      "Ukrainian Greek Catholic Gregorian Pascha usage: appointed citations from Royal Doors' published Gregorian calendar; Scripture text is not included.",
+                      rows["ugcc-gregorian"])
     if "syriac" in selected:
         write_dataset(
             "readings-syriac",
@@ -749,6 +780,8 @@ def main() -> None:
             "Daily Gospel (© Evangelizo.org), publication edition SYE; Scripture text is "
             "not included.",
             rows["syriac"])
+    if "maronite" in selected:
+        write_dataset("readings-maronite", "Maronite daily lectionary citations courtesy of Evangelizo.org — Daily Gospel (© Evangelizo.org), publication edition MAE. Scripture text is not included.", rows["maronite"])
 
     localize_existing_datasets()
 

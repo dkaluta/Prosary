@@ -34,29 +34,14 @@ public sealed partial class BasicPrayerFlowPage : Page
         }
     }
 
-    private void BuildLanguageFlyout()
-    {
-        LanguageFlyout.Items.Clear();
-        var choices = new List<(string Raw, string Name)>
+    private void BuildLanguageFlyout() =>
+        Prosary.Controls.PrayerLanguageMenu.Populate(LanguageFlyout, ViewModel.Languages,
+            ViewModel.CurrentLanguageRaw, raw =>
         {
-            (LanguageCatalog.DefaultSentinel, Loc.Tr("flow_app_setting", "App setting")),
-        };
-        choices.AddRange(ViewModel.Languages.Select(language => (language.Code, language.NativeName)));
-        foreach (var (raw, name) in choices)
-        {
-            var item = new ToggleMenuFlyoutItem
-            {
-                Text = name,
-                IsChecked = ViewModel.CurrentLanguageRaw == raw,
-            };
-            item.Click += (_, _) =>
-            {
-                ViewModel.SelectLanguage(raw);
-                BuildLanguageFlyout();
-            };
-            LanguageFlyout.Items.Add(item);
-        }
-    }
+            ViewModel.SelectLanguage(raw);
+            BuildLanguageFlyout();
+            return Task.CompletedTask;
+        });
 
     private void OnNavigateUp(object sender, RoutedEventArgs e) => Router.GoBack();
 }

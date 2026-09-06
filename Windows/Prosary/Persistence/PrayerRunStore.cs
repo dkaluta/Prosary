@@ -126,25 +126,33 @@ public sealed class LocalPrayerRunStore : IPrayerRunStore
 
 public static class PrayerRunSignatures
 {
-    public static string Rosary(Models.RosaryOptions options) => string.Join("|",
-    [
-        "rosary",
-        ((int)options.MysterySelectionMode).ToString(),
-        ((int)options.SpecificMysteryGroup).ToString(),
-        options.SpecificMysteryOrder.ToString(),
-        Flag(options.IncludeApostlesCreed),
-        Flag(options.IncludeOpeningPrayers),
-        Flag(options.IncludeOpeningFatimaPrayer),
-        Flag(options.IncludeFatimaPrayer),
-        ((int)options.EternalRestForDeceased).ToString(),
-        ((int)options.MarianAntiphon).ToString(),
-        Flag(options.IncludeClosingIntentions),
-        Flag(options.IncludeStMichaelPrayer),
-        Flag(options.IncludeFinalSignOfCross),
-        options.AramaicSignOfCrossForm,
-        Flag(options.PresenterMode),
-        ((int)options.MysteryImageStyle).ToString(),
-    ]);
+    public static string Rosary(Models.RosaryOptions options)
+    {
+        var original = string.Join("|",
+        new[]
+        {
+            "rosary",
+            ((int)options.MysterySelectionMode).ToString(),
+            ((int)options.SpecificMysteryGroup).ToString(),
+            options.SpecificMysteryOrder.ToString(),
+            Flag(options.IncludeApostlesCreed),
+            Flag(options.IncludeOpeningPrayers),
+            Flag(options.IncludeOpeningFatimaPrayer),
+            Flag(options.IncludeFatimaPrayer),
+            ((int)options.EternalRestForDeceased).ToString(),
+            ((int)options.MarianAntiphon).ToString(),
+            Flag(options.IncludeClosingIntentions),
+            Flag(options.IncludeStMichaelPrayer),
+            Flag(options.IncludeFinalSignOfCross),
+            options.AramaicSignOfCrossForm,
+            Flag(options.PresenterMode),
+            ((int)options.MysteryImageStyle).ToString(),
+        });
+        var choices = new[] { options.EffectiveClosingPopeIntention, options.EffectiveClosingBishopIntention, options.EffectiveClosingDepartedIntention };
+        return choices.Any(value => value || value != options.IncludeClosingIntentions)
+            ? original + "|closing-v2:" + string.Join(",", choices.Select(Flag))
+            : original;
+    }
 
     public static string Custom(
         string bundleId,

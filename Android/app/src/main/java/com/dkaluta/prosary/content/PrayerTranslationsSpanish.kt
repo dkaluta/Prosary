@@ -1,11 +1,6 @@
 package com.dkaluta.prosary.content
 
-/** Sourced, not composed: every prayer here is the text in the appendix of the Holy See's own
- * Spanish Compendium of the Catechism ("Oraciones comunes"), which prints each one beside its Latin
- * twin — so the wording was checked against the Latin this app already ships rather than against
- * memory. Deliberately absent, falling back to Latin per key: the Apostles' Creed, the Fatima
- * Prayer, the St. Michael prayer, Alma Redemptoris Mater, Ave Regina Caelorum and the Jesus Prayer,
- * none of which the appendix carries. Generated from the Swift table so the three cannot drift. */
+/** The native base table relays the Vatican Compendium appendix. Sourced additions, including the Apostles’ Creed from the Compendium profession of faith, are in Shared/content/rosary/content/es.json and merge at load time. */
 val prayerTranslationsSpanish: Map<PrayerKey, String> = mapOf(
     PrayerKey.SignumCrucis to
         "En el nombre del Padre ✠ y del Hijo y del Espíritu Santo. Amén.",

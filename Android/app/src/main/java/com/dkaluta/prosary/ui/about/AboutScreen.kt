@@ -183,6 +183,11 @@ fun AboutScreen(onBack: () -> Unit) {
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
+                Text(
+                    stringResource(R.string.about_litany_source),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
             }
 
             AboutSection(title = stringResource(R.string.about_scripture_sources)) {
@@ -215,6 +220,12 @@ fun AboutScreen(onBack: () -> Unit) {
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
+                Text(stringResource(R.string.about_torah_data), style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant)
+                TextButton(onClick = { uriHandler.openUri("https://www.hebcal.com") }) { Text("Hebcal.com") }
+                TextButton(onClick = { uriHandler.openUri("https://creativecommons.org/licenses/by/4.0/") }) {
+                    Text(stringResource(R.string.about_torah_license))
+                }
             }
         }
     }

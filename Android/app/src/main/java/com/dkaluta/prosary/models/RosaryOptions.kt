@@ -25,6 +25,10 @@ data class RosaryOptions(
     /** Three closing intentions (for the Pope, the local bishop, and the faithful departed),
      * each an Our Father + Hail Mary + Glory Be, closed by the "Requiescant in pace" versicle. */
     var includeClosingIntentions: Boolean = false,
+    /** Null preserves the historical all-intentions choice in saved prayers. */
+    var includeClosingPopeIntention: Boolean? = null,
+    var includeClosingBishopIntention: Boolean? = null,
+    var includeClosingDepartedIntention: Boolean? = null,
     var includeStMichaelPrayer: Boolean = false,
     var includeFinalSignOfCross: Boolean = true,
     /** Per-Rosary Aramaic form, ignored when Aramaic is the app-wide default language. */
@@ -36,6 +40,10 @@ data class RosaryOptions(
     /** Which artwork set illustrates the mysteries during a session — see [MysteryImageStyle]. */
     var mysteryImageStyle: MysteryImageStyle = MysteryImageStyle.Classic,
 ) {
+    val effectiveClosingPopeIntention: Boolean get() = includeClosingPopeIntention ?: includeClosingIntentions
+    val effectiveClosingBishopIntention: Boolean get() = includeClosingBishopIntention ?: includeClosingIntentions
+    val effectiveClosingDepartedIntention: Boolean get() = includeClosingDepartedIntention ?: includeClosingIntentions
+
     fun mysterySelectionSummary(context: Context): String = when (mysterySelectionMode) {
         MysterySelectionMode.Specific ->
             context.getString(R.string.summary_always, context.getString(specificMysteryGroup.displayNameRes))

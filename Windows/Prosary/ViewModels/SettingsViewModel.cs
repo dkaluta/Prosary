@@ -18,6 +18,7 @@ public sealed record AppLanguageOption(string Tag, string Label);
 /// <summary>One sourced Aramaic Sign of the Cross form.</summary>
 public sealed record AramaicSignOfCrossOption(string Value, string Label);
 public sealed record TypefaceOption(string Value, string Label);
+public sealed record EasternPaschaOption(string Value, string Label);
 
 /// <summary>
 /// App-wide preferences (v0.7: populated beyond the single language picker — auto-advance,
@@ -35,15 +36,29 @@ public sealed record InstalledDevotionRow(string BundleId, string Title);
 public partial class SettingsViewModel : ObservableObject
 {
     [ObservableProperty]
-    private LanguageOption _selectedLanguage = LanguageCatalog.All.FirstOrDefault(
-        l => l.Code == AppSettings.DefaultLanguageCode)
+    private LanguageOption _selectedLanguage = LanguageCatalog.PickerOptions.FirstOrDefault(
+        l => l.Code == LanguageCatalog.PickerLanguageCode(AppSettings.DefaultLanguageCode))
         ?? LanguageCatalog.Resolve(AppSettings.DefaultLanguageCode);
 
-    public IReadOnlyList<LanguageOption> LanguageOptions => LanguageCatalog.All;
+    public IReadOnlyList<LanguageOption> LanguageOptions => LanguageCatalog.PickerOptions;
+
+    public SettingsViewModel()
+    {
+        RefreshRites();
+        SelectedEasternPascha = CurrentEasternPascha;
+    }
+
+    private void RefreshRites()
+    {
+        RiteOptions = LanguageCatalog.Rites(AppSettings.DefaultLanguageCode);
+        SelectedRite = RiteOptions.FirstOrDefault(rite => rite.Code == AppSettings.DefaultLanguageCode);
+        OnPropertyChanged(nameof(ShowsRitePicker));
+    }
 
     partial void OnSelectedLanguageChanged(LanguageOption value)
     {
-        AppSettings.SetDefaultLanguageCode(value.Code);
+        AppSettings.SetDefaultLanguageCode(LanguageCatalog.SelectingLanguage(value.Code, AppSettings.DefaultLanguageCode));
+        RefreshRites();
         OnPropertyChanged(nameof(ShowsAramaicSignOfCrossPicker));
         // The installed rows' titles were snapshotted at load; the names follow the prayer
         // language, so a language change on this very page must re-derive them (2026-08-08).
@@ -59,7 +74,7 @@ public partial class SettingsViewModel : ObservableObject
     [ObservableProperty]
     private LanguageOption? _selectedRite;
 
-    public bool ShowsRitePicker => false;
+    public bool ShowsRitePicker => SelectedLanguage.Code == "he";
 
     partial void OnSelectedRiteChanged(LanguageOption? value)
     {
@@ -97,6 +112,19 @@ public partial class SettingsViewModel : ObservableObject
     private static TypefaceOption Option(string value, string key, string fallback) =>
         new(value, Loc.Tr(key, fallback));
 
+    public IReadOnlyList<TypefaceOption> AramaicScriptOptions { get; } =
+    [
+        Option("Hebr", "settings_script_hebrew", "Hebrew script"),
+        Option("Syrc", "settings_script_syriac", "Syriac script"),
+    ];
+
+    [ObservableProperty]
+    private TypefaceOption _selectedAramaicScript = AppSettings.AramaicDefaultScript == "Syrc"
+        ? Option("Syrc", "settings_script_syriac", "Syriac script")
+        : Option("Hebr", "settings_script_hebrew", "Hebrew script");
+
+    partial void OnSelectedAramaicScriptChanged(TypefaceOption value) => AppSettings.SetAramaicDefaultScript(value.Value);
+
     private static TypefaceOption TypefaceOptionFor(string value) => value switch
     {
         AppSettings.TypefaceWestern => Option(value, "settings_typeface_western_aramaic", "Western Aramaic"),
@@ -123,13 +151,15 @@ public partial class SettingsViewModel : ObservableObject
 
     public IReadOnlyList<TypefaceOption> HebrewPrayerTypefaceOptions { get; } =
     [
-        Option(AppSettings.TypefaceDefault, "settings_typeface_default", "Default"),
+        Option(AppSettings.TypefaceDefault, "settings_typeface_frank_ruhl_libre", "Frank Ruhl Libre"),
         Option(AppSettings.TypefaceDavidLibre, "settings_typeface_david_libre", "David Libre"),
         Option(AppSettings.TypefaceSansSerif, "settings_typeface_sans_serif", "System sans-serif"),
     ];
 
     [ObservableProperty]
-    private TypefaceOption _selectedHebrewPrayerTypeface = TypefaceOptionFor(AppSettings.HebrewPrayerTypeface);
+    private TypefaceOption _selectedHebrewPrayerTypeface = AppSettings.HebrewPrayerTypeface == AppSettings.TypefaceDefault
+        ? Option(AppSettings.TypefaceDefault, "settings_typeface_frank_ruhl_libre", "Frank Ruhl Libre")
+        : TypefaceOptionFor(AppSettings.HebrewPrayerTypeface);
 
     partial void OnSelectedHebrewPrayerTypefaceChanged(TypefaceOption value) => AppSettings.SetHebrewPrayerTypeface(value.Value);
 
@@ -146,10 +176,25 @@ public partial class SettingsViewModel : ObservableObject
 
     partial void OnSelectedHebrewScriptureTypefaceChanged(TypefaceOption value) => AppSettings.SetHebrewScriptureTypeface(value.Value);
 
-    [ObservableProperty]
-    private bool _favoriteBasicPrayersFirst = AppSettings.FavoriteBasicPrayersFirst;
+    public IReadOnlyList<TypefaceOption> SystemPrayerTypefaceOptions { get; } =
+    [
+        Option(AppSettings.TypefaceDefault, "settings_typeface_serif", "System serif"),
+        Option(AppSettings.TypefaceSansSerif, "settings_typeface_sans_serif", "System sans serif"),
+    ];
 
-    partial void OnFavoriteBasicPrayersFirstChanged(bool value) => AppSettings.SetFavoriteBasicPrayersFirst(value);
+    private static TypefaceOption SystemTypefaceOptionFor(string value) => value == AppSettings.TypefaceSansSerif
+        ? Option(value, "settings_typeface_sans_serif", "System sans serif")
+        : Option(AppSettings.TypefaceDefault, "settings_typeface_serif", "System serif");
+
+    [ObservableProperty]
+    private TypefaceOption _selectedLatinPrayerTypeface = SystemTypefaceOptionFor(AppSettings.LatinPrayerTypeface);
+
+    partial void OnSelectedLatinPrayerTypefaceChanged(TypefaceOption value) => AppSettings.SetLatinPrayerTypeface(value.Value);
+
+    [ObservableProperty]
+    private TypefaceOption _selectedCyrillicPrayerTypeface = SystemTypefaceOptionFor(AppSettings.CyrillicPrayerTypeface);
+
+    partial void OnSelectedCyrillicPrayerTypefaceChanged(TypefaceOption value) => AppSettings.SetCyrillicPrayerTypeface(value.Value);
 
     // The same app-wide setting the flow toolbars offer — surfaced here so it's discoverable
     // outside a session. Static so the selection's field initializer can consult it.
@@ -225,11 +270,22 @@ public partial class SettingsViewModel : ObservableObject
 
     partial void OnShowTodayIntentionChanged(bool value) => AppSettings.SetShowTodayIntention(value);
 
+    [ObservableProperty]
+    private bool _showTodayTorahPortion = AppSettings.ShowTodayTorahPortion;
+
+    partial void OnShowTodayTorahPortionChanged(bool value) => AppSettings.SetShowTodayTorahPortion(value);
+
+    [ObservableProperty]
+    private bool _showPrayerNameInPrayerLanguage = AppSettings.ShowPrayerNameInPrayerLanguage;
+
+    partial void OnShowPrayerNameInPrayerLanguageChanged(bool value) => AppSettings.SetShowPrayerNameInPrayerLanguage(value);
+
     public IReadOnlyList<TodayInfoStore.FeastCalendar> FeastCalendarOptions => TodayInfoStore.Calendars;
 
     public bool ShowsFeastCalendarPicker => FeastCalendarOptions.Count > 1;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowsEasternPaschaPicker))]
     private TodayInfoStore.FeastCalendar? _selectedFeastCalendar =
         TodayInfoStore.Calendars.FirstOrDefault(c => c.Id == TodayInfoStore.ResolvedCalendarId);
 
@@ -240,6 +296,24 @@ public partial class SettingsViewModel : ObservableObject
             AppSettings.SetFeastCalendarId(value.Id);
             TodayInfoStore.SelectedCalendarId = value.Id;
         }
+    }
+
+    public bool ShowsEasternPaschaPicker => SelectedFeastCalendar?.Id == "ugcc";
+
+    public IReadOnlyList<EasternPaschaOption> EasternPaschaOptions { get; } =
+    [
+        new("julian", Loc.Tr("settings_pascha_julian", "Julian Pascha (Ukraine)")),
+        new("gregorian", Loc.Tr("settings_pascha_gregorian", "Gregorian Pascha")),
+    ];
+
+    [ObservableProperty]
+    private EasternPaschaOption? _selectedEasternPascha;
+
+    public EasternPaschaOption CurrentEasternPascha => EasternPaschaOptions.First(option => option.Value == AppSettings.EasternPaschaStyle);
+
+    partial void OnSelectedEasternPaschaChanged(EasternPaschaOption? value)
+    {
+        if (value is not null) AppSettings.SetEasternPaschaStyle(value.Value);
     }
 
     [ObservableProperty]

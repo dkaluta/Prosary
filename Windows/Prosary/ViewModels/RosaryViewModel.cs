@@ -60,6 +60,12 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     private string _progressText = string.Empty;
 
     [ObservableProperty]
+    private string _progressFontFamily = Microsoft.UI.Xaml.Media.FontFamily.XamlAutoFontFamily.Source;
+
+    private string? _initializedScriptLanguage;
+    private string? _aramaicSessionScript;
+
+    [ObservableProperty]
     private double? _progress;
 
     [ObservableProperty]
@@ -97,7 +103,9 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     [RelayCommand]
     private void ToggleTransliteration()
     {
-        ShowsTransliteration = !ShowsTransliteration;
+        if (_aramaicSessionScript is not null)
+            _aramaicSessionScript = _aramaicSessionScript == "Syrc" ? "Hebr" : "Syrc";
+        else ShowsTransliteration = !ShowsTransliteration;
         RenderCurrentStep();
     }
 
@@ -315,6 +323,8 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         OnPropertyChanged(nameof(BottomBeadsColumn2));
     }
 
+    public void RefreshTypography() => RenderCurrentStep();
+
     private void RenderCurrentStep()
     {
         if (_steps.Count == 0)
@@ -323,14 +333,26 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         }
 
         var step = _steps[_index];
-        Header = HebrewDisplayText.WithoutMarks(step.Title);
+        if (_initializedScriptLanguage != _languageCode)
+        {
+            _initializedScriptLanguage = _languageCode;
+            _aramaicSessionScript = _languageCode == "arc" ? AppSettings.AramaicDefaultScript : null;
+        }
+        if (_aramaicSessionScript is not null)
+            ShowsTransliteration = PrayerTranslations.InitialTransliteration(_languageCode, step.Body, step.TransliteratedBody, _aramaicSessionScript) ?? false;
         Subtitle = HebrewDisplayText.WithoutMarksOrNull(step.Subtitle);
         HasTransliteration = step.TransliteratedBody is not null;
         Body = ShowsTransliteration && step.TransliteratedBody is { } transliterated
             ? transliterated
             : step.Body;
+        var usesSyriacScript = _aramaicSessionScript is not null ? _aramaicSessionScript == "Syrc"
+            : PrayerTypography.ScriptOf(Body) == PrayerTypography.Script.Syriac;
+        Header = PrayerTranslations.FlowTitle(step.Title, _languageCode, usesSyriacScript);
         MysteryImageKey = step.ImageVariantKey ?? step.Mystery?.ImageKey ?? step.ImageOverrideKey ?? "cross_placeholder";
-        ProgressText = string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), _index + 1, _steps.Count);
+        var aramaicProgress = PrayerTranslations.AramaicProgress(_index + 1, _steps.Count, _languageCode, usesSyriacScript);
+        ProgressText = aramaicProgress ?? string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), _index + 1, _steps.Count);
+        ProgressFontFamily = aramaicProgress is null ? Microsoft.UI.Xaml.Media.FontFamily.XamlAutoFontFamily.Source
+            : PrayerTypography.ResolveBodyFontFamily(_languageCode, false, PrayerTypography.ScriptOf(ProgressText));
         Progress = (_index + 1) / (double)_steps.Count;
         CanGoBack = _index > 0;
         CanGoToPreviousMystery = MysteryStepNavigation.Previous(_steps, _index) is not null;
@@ -339,9 +361,8 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
 
         // The alternate can be a different script from the prayer language (notably Syriac
         // beside Hebrew-square Aramaic), so choose the face from the body actually on screen.
-        var bodyScript = ShowsTransliteration && step.TransliteratedBody is { } shown
-            ? PrayerTypography.ScriptOf(shown)
-            : (PrayerTypography.Script?)null;
+        var bodyScript = PrayerTypography.ScriptOf(Body);
+        IsRightToLeft = PrayerTypography.IsRightToLeft(bodyScript);
         BodyFontFamily = PrayerTypography.ResolveBodyFontFamily(_languageCode, step.IsScripture, bodyScript);
         BodyFontSize = PrayerTypography.ResolveBodyFontSize(_languageCode, step.IsScripture, bodyScript);
 
@@ -361,13 +382,22 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         ShowBottomBeads = layout.ShowBottomBeads;
     }
 
+    public Func<Task<bool>>? OfferLitany { get; set; }
+    IRelayCommand IPrayerStepFlowViewModel.NextCommand => NextCommand;
+
+    internal static CustomDevotionFlowParams LitanyContinuation(string languageCode) =>
+        new(null, "litanyOfLoreto", languageCode, "afterRosary");
+
     [RelayCommand]
-    private void Next()
+    private async Task Next()
     {
         if (IsLastStep)
         {
             ClearProgress();
+            var prayLitany = PrayerPackStore.Definition("litanyOfLoreto") is not null
+                && OfferLitany is not null && await OfferLitany();
             Router.GoBack();
+            if (prayLitany) Router.Navigate<Views.CustomDevotionFlowPage>(LitanyContinuation(_languageCode));
             return;
         }
 

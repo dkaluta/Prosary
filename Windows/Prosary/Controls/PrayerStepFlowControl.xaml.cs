@@ -1,3 +1,6 @@
+using Prosary.Services;
+using Prosary.Localization;
+using Prosary.Models;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Prosary.ViewModels;
@@ -36,5 +39,15 @@ public sealed partial class PrayerStepFlowControl : UserControl
     public PrayerStepFlowControl()
     {
         InitializeComponent();
+        Loaded += (_, _) => { AppSettings.TypographyChanged += OnTypographyChanged; OnTypographyChanged(); };
+        Unloaded += (_, _) => AppSettings.TypographyChanged -= OnTypographyChanged;
     }
+    private void OnTypographyChanged() => ViewModel?.RefreshTypography();
+
+    // UI navigation stays independent of the displayed prayer's writing system.
+    public FlowDirection NavigationFlowDirection => UiLanguageCatalog.IsRightToLeft(UiLanguageCatalog.Current)
+        ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+    public string PreviousNavigationGlyph => PrayerNavigation.PreviousGlyph(NavigationFlowDirection == FlowDirection.RightToLeft);
+    public string NextNavigationGlyph => PrayerNavigation.NextGlyph(NavigationFlowDirection == FlowDirection.RightToLeft);
+
 }

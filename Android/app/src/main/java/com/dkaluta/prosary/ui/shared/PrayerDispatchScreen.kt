@@ -20,7 +20,7 @@ import com.dkaluta.prosary.ui.rosaryflow.RosaryFlowScreen
 /** Resolves a [Prayer] by id from the store, forwards to the appropriate flow screen based on
  * [Prayer.kind]. Used when navigating to a saved favorite via the `prayer/{id}` route. */
 @Composable
-fun PrayerDispatchScreen(prayerId: String, onBack: () -> Unit) {
+fun PrayerDispatchScreen(prayerId: String, onBack: () -> Unit, onOpenDevotion: (String, String?, String?) -> Unit) {
     val services = LocalAppServices.current
     var prayer by remember { mutableStateOf<Prayer?>(null) }
 
@@ -37,7 +37,7 @@ fun PrayerDispatchScreen(prayerId: String, onBack: () -> Unit) {
     }
 
     when (resolved.kind) {
-        PrayerKind.Rosary -> RosaryFlowScreen(prayer = resolved, onBack = onBack)
+        PrayerKind.Rosary -> RosaryFlowScreen(prayer = resolved, onBack = onBack, onOpenDevotion = onOpenDevotion)
         // Launched directly from Home (one nav level), unlike the Setup-picker path — Finish
         // just pops back once, same as Rosary.
         PrayerKind.JesusPrayer -> JesusPrayerFlowScreen(prayer = resolved, onNavigateUp = onBack, onFinish = onBack)

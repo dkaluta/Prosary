@@ -24,6 +24,10 @@ import { openBundle } from "../src/format/unpack";
 import { validateProject } from "../src/format/validate";
 import { ZIP_LIMITS, ZipReader, buildZip, storedZipByteLength } from "../src/format/zip";
 import { OGG_OPUS_MIME, PORTABLE_FILE_MIME, supportsOggOpus } from "../src/ui/media";
+import { AUTHORING_LANGUAGES, LANGUAGES, REPOSITORY_PUBLISH_LANGUAGE_CODES } from "../src/format/catalog";
+import { publicationIssues } from "../src/format/publishing";
+import { SUPPORTED_LANGUAGES } from "../../Repository/lib/languages";
+import { validateAndRestamp } from "../../Repository/lib/bundles";
 
 function assert(condition: boolean, message: string): void {
   if (!condition) {
@@ -187,6 +191,76 @@ if (issues.length > 0) fail("expected a clean project", issues);
 const bundle = buildBundle(project);
 mkdirSync("dist-e2e", { recursive: true });
 writeFileSync("dist-e2e/exampleDevotion.prosaryprayer", bundle);
+
+// A real sourced Aramaic prayer, in pointed Hebrew with its pointed Syriac alternate script,
+// follows the exact authoring, popup-clone, repository validation and reopening path. No upload
+// is performed: this exercises the production modules without authentication or storage.
+{
+  assert(
+    JSON.stringify([...REPOSITORY_PUBLISH_LANGUAGE_CODES].sort()) === JSON.stringify([...SUPPORTED_LANGUAGES].sort()),
+    "Compose publication readiness and repository language policy have drifted",
+  );
+  assert(LANGUAGES.length === 12, "Compose must recognize all twelve native content codes");
+  assert(AUTHORING_LANGUAGES.filter((language) => language.code.startsWith("he")).length === 1,
+    "new custom prayers must offer Hebrew as one language");
+  const source = JSON.parse(readFileSync("../Shared/content/trisagion/content/arc.json", "utf8"));
+  const aramaic = newProject();
+  aramaic.name = "Aramaic Holy God";
+  aramaic.id = "aramaicHolyGod";
+  aramaic.languages = ["arc"];
+  aramaic.steps = [{
+    uid: newUid(), kind: "custom", title: "",
+    titleByLanguage: { arc: source.prayers.trisagionAcclamationTitle },
+    bodyByLanguage: { arc: source.prayers.trisagionAcclamation },
+    transliterationByLanguage: { arc: source.transliterations.trisagionAcclamation },
+    isScripture: false,
+  }];
+  const aramaicFiles = buildBundleFiles(aramaic);
+  assert(validateProject(aramaic).length === 0, "a complete Aramaic project must validate");
+  assert(publicationIssues(aramaic, aramaicFiles).length === 0, "Finish must enable Publish for Aramaic");
+  const aramaicBundle = buildBundle(aramaic);
+  writeFileSync("dist-e2e/aramaicHolyGod.prosaryprayer", aramaicBundle);
+  writeFileSync("dist-e2e/aramaicHolyGod.prosarycompose", serializeProject(aramaic));
+  for (let handshake = 0; handshake < 2; handshake++) {
+    const transferred = structuredClone({ bytes: aramaicBundle.buffer });
+    const published = await validateAndRestamp(new Uint8Array(transferred.bytes), "pilgrim");
+    assert(published.id === "repo.pilgrim.aramaicHolyGod", "repository identity was not applied");
+    assert(JSON.stringify(published.languages) === '["arc"]', "Aramaic disappeared from repository metadata");
+    const zip = ZipReader.open(published.bytes);
+    for (const originalFile of aramaicFiles.filter((file) => file.name !== "manifest.json")) {
+      const restampedFile = await zip.contents(originalFile.name);
+      assert(
+        restampedFile.length === originalFile.data.length && restampedFile.every((byte, index) => byte === originalFile.data[index]),
+        `repository restamping changed the author's ${originalFile.name}`,
+      );
+    }
+    const reopenedAramaic = await openBundle(published.bytes);
+    assert(reopenedAramaic.steps[0].bodyByLanguage.arc === source.prayers.trisagionAcclamation,
+      "pointed Hebrew-script Aramaic changed during publishing");
+    assert(reopenedAramaic.steps[0].transliterationByLanguage?.arc === source.transliterations.trisagionAcclamation,
+      "pointed Syriac changed during publishing");
+  }
+  assert(aramaicBundle.byteLength > 0, "popup transfer detached the bundle needed after sign-in");
+  const legacyHebrew = {
+    ...aramaic, languages: ["he", "he-x-gamliel"],
+    steps: [{ ...aramaic.steps[0],
+      titleByLanguage: { he: "Hebrew fixture", "he-x-gamliel": "Legacy rite fixture" },
+      bodyByLanguage: { he: "First authored text.", "he-x-gamliel": "Separate authored text." },
+      transliterationByLanguage: {},
+    }],
+  } as typeof aramaic;
+  const reopenedLegacy = await openBundle(buildBundle(legacyHebrew));
+  assert(JSON.stringify(reopenedLegacy.languages) === '["he","he-x-gamliel"]',
+    "legacy Hebrew content maps must not be silently merged");
+  assert(reopenedLegacy.steps[0].bodyByLanguage.he === "First authored text." &&
+    reopenedLegacy.steps[0].bodyByLanguage["he-x-gamliel"] === "Separate authored text.",
+    "legacy Hebrew content must survive reopening independently");
+  const unsupported = { ...aramaic, languages: ["zz"] } as unknown as typeof aramaic;
+  assert(publicationIssues(unsupported, aramaicFiles).length > 0, "unknown languages must not enable publishing");
+  assert(publicationIssues(aramaic, [...aramaicFiles, { name: "images/large.jpg", data: new Uint8Array(8 * 1024 * 1024) }]).length > 0,
+    "adding language support must not bypass the upload limit");
+  console.log("✓ Aramaic can publish and retains pointed Hebrew and Syriac across popup reloads and repository restamping; all twelve language policies agree");
+}
 
 // The transliteration must land in la's content file, keyed like its body — and only there.
 {
@@ -680,7 +754,7 @@ console.log(
   const canonicalPackNames = readdirSync("../Shared/dist")
     .filter((name) => name.endsWith(".prosaryprayer"))
     .sort();
-  assert(canonicalPackNames.length === 9, "expected all nine canonical devotion packs");
+  assert(canonicalPackNames.length === 10, "expected all ten canonical devotion packs");
   for (const packName of canonicalPackNames) {
     const canonical = ZipReader.open(
       new Uint8Array(readFileSync(`../Shared/dist/${packName}`)),

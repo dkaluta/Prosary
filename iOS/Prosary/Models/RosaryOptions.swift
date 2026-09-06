@@ -39,6 +39,14 @@ struct RosaryOptions: Hashable, Codable {
   /// intentions, and for the holy souls in purgatory — each unfolding into an Our Father,
   /// Hail Mary, and Glory Be. From the Mission of St. Gamaliel's prayer book.
   var includeClosingIntentions: Bool = false
+  // Nil preserves the former all-or-none choice on existing saved configurations.
+  var includeClosingPopeIntention: Bool? = nil
+  var includeClosingBishopIntention: Bool? = nil
+  var includeClosingDepartedIntention: Bool? = nil
+
+  var effectiveClosingPopeIntention: Bool { includeClosingPopeIntention ?? includeClosingIntentions }
+  var effectiveClosingBishopIntention: Bool { includeClosingBishopIntention ?? includeClosingIntentions }
+  var effectiveClosingDepartedIntention: Bool { includeClosingDepartedIntention ?? includeClosingIntentions }
 
   var includeStMichaelPrayer: Bool = false
 

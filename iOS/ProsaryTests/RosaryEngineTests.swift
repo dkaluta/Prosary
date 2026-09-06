@@ -132,6 +132,7 @@ final class RosaryEngineTests: XCTestCase {
     XCTAssertEqual(steps.count, 80)
   }
 
+  @MainActor
   func testOpeningVirtueHailMarysCarryLocalizedThreePartCounters() {
     let english = makeEngine().buildSteps(for: prayer(language: "en"))
       .filter { $0.imageOverrideKey?.hasPrefix("virtue_") == true }
@@ -147,6 +148,25 @@ final class RosaryEngineTests: XCTestCase {
     XCTAssertTrue(hebrew.allSatisfy { $0.subtitle == $0.subtitle.map(HebrewDisplayText.unpointed) })
     XCTAssertTrue(hebrew.first?.body.contains("שִׂמְחִי מִרְיָם") == true,
                   "display-only title stripping must not alter the pointed prayer body")
+
+    let aramaic = makeEngine().buildSteps(for: prayer(language: "arc"))
+      .filter { $0.imageOverrideKey?.hasPrefix("virtue_") == true }
+    XCTAssertEqual(aramaic.count, 3)
+    XCTAssertTrue(aramaic[0].title.hasSuffix("(1 מן 3)"))
+    XCTAssertTrue(PrayerTranslations.flowTitle(aramaic[0].title, languageCode: "arc", sourceScript: true).hasSuffix("(1 ܡܶܢ 3)"))
+    XCTAssertEqual(PrayerTranslations.aramaicProgress(1, total: 75, languageCode: "arc", sourceScript: false), "1 מֶן 75")
+    XCTAssertEqual(PrayerTranslations.aramaicProgress(1, total: 75, languageCode: "arc", sourceScript: true), "1 ܡܶܢ 75")
+    XCTAssertNil(PrayerTranslations.aramaicProgress(1, total: 75, languageCode: "en", sourceScript: true))
+  }
+
+  @MainActor
+  func testAramaicScriptPreferenceFindsTheRequestedWritingSystem() {
+    for script in ["Hebr", "Syrc"] {
+      XCTAssertEqual(PrayerTranslations.initialTransliteration(languageCode: "arc", body: "שלם", alternate: "ܫܠܡ", script: script), script == "Syrc")
+      XCTAssertEqual(PrayerTranslations.initialTransliteration(languageCode: "arc", body: "ܫܠܡ", alternate: "שלם", script: script), script == "Hebr")
+    }
+    XCTAssertEqual(PrayerTranslations.initialTransliteration(languageCode: "arc", body: "שלם", alternate: nil, script: "Syrc"), false)
+    XCTAssertNil(PrayerTranslations.initialTransliteration(languageCode: "he", body: "שלום", alternate: "Shalom", script: "Syrc"))
   }
 
   func testOpeningFatimaPrayerRequiresTheOpeningPrayers() {
@@ -180,17 +200,17 @@ final class RosaryEngineTests: XCTestCase {
     let formA = makeEngine().buildSteps(for: prayer(
       language: "arc", aramaicSignOfCrossForm: AramaicSignOfCrossForm.formA))
     XCTAssertEqual(formA.first?.body,
-                   "בשמָא דַאבָא ודַברָא ודרוּחָא קַדִישָא, חַד אַלָהָא שַרִירָא. אַמִין.")
+                   "בשמָא דַאבָא ✠ ודַברָא ודרוּחָא קַדִישָא, חַד אַלָהָא שַרִירָא. אַמִין.")
     XCTAssertEqual(formA.first?.transliteratedBody,
-                   "ܒܫܡܳܐ ܕܰܐܒܳܐ ܘܕܰܒܪܳܐ ܘܕܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ، ܚܰܕ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܐܰܡܺܝܢ.")
+                   "ܒܫܡܳܐ ܕܰܐܒܳܐ ✠ ܘܕܰܒܪܳܐ ܘܕܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ، ܚܰܕ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܐܰܡܺܝܢ.")
     XCTAssertEqual(formA.last?.body, formA.first?.body)
 
     let formB = makeEngine().buildSteps(for: prayer(
       language: "arc", aramaicSignOfCrossForm: AramaicSignOfCrossForm.formB))
     XCTAssertEqual(formB.first?.body,
-                   "בשֶם אַבָא ובַרָא ורוּחָא קַדִישָא، חַד אַלָהָא שַרִירָא. אַמִין.")
+                   "בשֶם אַבָא ✠ ובַרָא ורוּחָא קַדִישָא، חַד אַלָהָא שַרִירָא. אַמִין.")
     XCTAssertEqual(formB.first?.transliteratedBody,
-                   "ܒܫܶܡ ܐܰܒܳܐ ܘܒܰܪܳܐ ܘܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ، ܚܰܕ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܐܰܡܺܝܢ.")
+                   "ܒܫܶܡ ܐܰܒܳܐ ✠ ܘܒܰܪܳܐ ܘܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ، ܚܰܕ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܐܰܡܺܝܢ.")
 
     defaults.set("arc", forKey: "defaultLanguageCode")
     let systemWide = makeEngine().buildSteps(for: prayer(
@@ -222,12 +242,12 @@ final class RosaryEngineTests: XCTestCase {
 
   // MARK: - Closing intentions
 
-  func testClosingIntentionsAddTenSteps() {
+  func testClosingIntentionsAddThirteenStepsIncludingSeparateIntroductions() {
     let engine = makeEngine()
     let without = engine.buildSteps(for: prayer(closingIntentions: false)).count
     let with_ = engine.buildSteps(for: prayer(closingIntentions: true)).count
-    // 3 intentions x (Our Father + Hail Mary + Glory Be) + the requiescant versicle = 10
-    XCTAssertEqual(with_, without + 10)
+    // Three introductions + nine prayers + the departed versicle.
+    XCTAssertEqual(with_, without + 13)
   }
 
   func testClosingIntentionsFollowTheAntiphonDirectly() {
@@ -238,11 +258,12 @@ final class RosaryEngineTests: XCTestCase {
     guard let antiphonIndex = steps.firstIndex(where: { $0.isAntiphon }) else {
       return XCTFail("no antiphon step")
     }
-    let intentions = Array(steps[(antiphonIndex + 1)...(antiphonIndex + 10)])
-    XCTAssertEqual(intentions.first?.title, "Pater Noster")
+    let intentions = Array(steps[(antiphonIndex + 1)...(antiphonIndex + 13)])
+    XCTAssertEqual(intentions[1].title, "Pater Noster")
     XCTAssertEqual(
-      intentions.first?.subtitle,
+      intentions.first?.body,
       "Pro intentionibus Summi Pontificis et necessitatibus Ecclesiae et patriae.")
+    XCTAssertTrue(intentions.allSatisfy { $0.subtitle == nil })
     XCTAssertEqual(intentions.last?.body, "Requiescant in pace.\n**Amen.**")
   }
 
@@ -251,11 +272,25 @@ final class RosaryEngineTests: XCTestCase {
     var p = prayer(closingIntentions: true)
     p.languageCode = "he"
     let vicariate = engine.buildSteps(for: p)
-    XCTAssertTrue(vicariate.contains { $0.subtitle?.contains("הפטריארך") == true })
+    XCTAssertTrue(vicariate.contains { HebrewDisplayText.unpointed($0.body).contains("הפטריארך") })
     p.languageCode = "he-x-gamliel"
     let gamliel = engine.buildSteps(for: p)
-    XCTAssertTrue(gamliel.contains { $0.subtitle?.contains("ההגמון") == true })
-    XCTAssertFalse(gamliel.contains { $0.subtitle?.contains("הפטריארך") == true })
+    XCTAssertTrue(gamliel.contains { HebrewDisplayText.unpointed($0.body).contains("ההגמון") })
+    XCTAssertFalse(gamliel.contains { HebrewDisplayText.unpointed($0.body).contains("הפטריארך") })
+  }
+
+  func testClosingIntentionGroupsCanBeEnabledIndependently() {
+    let engine = makeEngine()
+    var p = prayer()
+    let baseline = engine.buildSteps(for: p).count
+    p.rosary.includeClosingPopeIntention = true
+    XCTAssertEqual(engine.buildSteps(for: p).count, baseline + 4)
+    p.rosary.includeClosingPopeIntention = false
+    p.rosary.includeClosingBishopIntention = true
+    XCTAssertEqual(engine.buildSteps(for: p).count, baseline + 4)
+    p.rosary.includeClosingBishopIntention = false
+    p.rosary.includeClosingDepartedIntention = true
+    XCTAssertEqual(engine.buildSteps(for: p).count, baseline + 5)
   }
 
   // MARK: - Mystery artwork
@@ -373,12 +408,13 @@ final class RosaryEngineTests: XCTestCase {
       group: .luminous, mode: .singleMystery, order: 2, language: "arc"))
     let announcement = try XCTUnwrap(steps.first { $0.mystery?.imageKey == imageKey && $0.isScripture })
     let fruitLabel = PrayerTranslations.get(languageCode: "arc", key: .fructusMysteriiLabel)
+    let alternateFruitLabel = try XCTUnwrap(PrayerPackStore.transliteration(bundleId: "rosary", languageCode: "arc", key: "fructusMysteriiLabel"))
     XCTAssertEqual(
       announcement.body,
       "\(resolved.description)\n\n\(fruitLabel): \(resolved.fruit)")
     XCTAssertEqual(
       announcement.transliteratedBody,
-      "\(try XCTUnwrap(resolved.transliteratedDescription))\n\n\(fruitLabel): \(resolved.fruit)")
+      "\(try XCTUnwrap(resolved.transliteratedDescription))\n\n\(alternateFruitLabel): \(resolved.fruit)")
   }
 
   func testLatinBodyContainsLatinText() {

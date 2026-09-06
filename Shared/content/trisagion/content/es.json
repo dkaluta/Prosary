@@ -1,0 +1,17 @@
+{
+  "prayers": {
+    "trisagionAcclamation": "Santo Dios, Santo Fuerte, Santo Inmortal.\nTen misericordia de nosotros.",
+    "trisagionShortAcclamation": "Santo Inmortal.\nTen misericordia de nosotros.",
+    "gloriaPatriTitle": "Gloria al Padre",
+    "trisagionAcclamationTitle": "Santo Dios",
+    "trisagionKyrieTitle": "Señor, ten piedad",
+    "trisagionKyrie": "Señor, ten piedad.\nCristo, ten piedad.\nSeñor, ten piedad."
+  },
+  "$sources": {
+    "trisagionAcclamation": "https://www.clerus.org/clerus/dati/2004-05/31-15/trinid.html",
+    "trisagionShortAcclamation": "Final invocation and response of the same published acclamation.",
+    "trisagionKyrie": "https://www.vatican.va/special/rosary/documents/litanie-lauretane_sp.html"
+  },
+  "$comment": "The acclamation follows the credited published prayer; the short acclamation repeats its final invocation in the existing Byzantine sequence. Kyrie is the threefold response already used by this bundle. Headings are the prayer incipits; Glory Be continues to resolve from the shared prayer table. Punctuation and line breaks are normalized for the app. Spanish preserves the Congregation for the Clergy library’s invocation and response wording; V/R role prefixes are omitted like the other standalone Trisagion texts.",
+  "mysteries": {}
+}

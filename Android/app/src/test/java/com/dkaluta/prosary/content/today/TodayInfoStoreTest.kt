@@ -24,6 +24,7 @@ class TodayInfoStoreTest {
     @Before
     fun resetCalendarSelection() {
         AppSettings.feastCalendarId = ""
+        AppSettings.easternPaschaStyle = "julian"
         TodayInfoStore.resetForTesting()
         TodayInfoStore.initialize { name ->
             val file = File("src/main/assets/data/$name.json")
@@ -35,28 +36,31 @@ class TodayInfoStoreTest {
         SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(string)!!
 
     @Test
-    fun todayTranslationDefaultsFollowTheAppInterfaceAndNormalizeAliases() {
-        assertEquals("fr", TodayTranslationLanguage.resolve("", "fr-CA"))
-        assertEquals("tl", TodayTranslationLanguage.resolve("", "fil-PH"))
-        assertEquals("he", TodayTranslationLanguage.resolve("iw", "en"))
-        assertEquals("he", TodayTranslationLanguage.resolve("he-x-gamliel", "en"))
-        assertEquals("ar", TodayTranslationLanguage.resolve("ar", "fr"))
-        assertEquals("en", TodayTranslationLanguage.resolve("unknown", "ar"))
+    fun todayTranslationFollowsTheInterfaceAndNormalizesAliases() {
+        assertEquals("fr", TodayTranslationLanguage.resolve("fr-CA"))
+        assertEquals("tl", TodayTranslationLanguage.resolve("fil-PH"))
+        assertEquals("he", TodayTranslationLanguage.resolve("iw"))
+        assertEquals("he", TodayTranslationLanguage.resolve("he-x-gamliel"))
+        assertEquals("ar", TodayTranslationLanguage.resolve("ar"))
+        assertEquals("en", TodayTranslationLanguage.resolve("unknown"))
         assertTrue(TodayTranslationLanguage.isRightToLeft("ar"))
         assertTrue(TodayTranslationLanguage.isRightToLeft("he"))
         assertFalse(TodayTranslationLanguage.isRightToLeft("ru"))
     }
 
     @Test
-    fun todayLanguagePersistsIndependentlyOfTheDefaultPrayerLanguage() {
+    fun staleTodayOverrideAndPrayerLanguageCannotReplaceTheInterface() {
         val originalPrayerLanguage = AppSettings.defaultLanguageCode
         val originalTodayLanguage = AppSettings.todayLanguageCode
         try {
             AppSettings.setTodayLanguageCode("it")
             AppSettings.setDefaultLanguageCode("he")
-            assertEquals("it", TodayTranslationLanguage.resolve(AppSettings.todayLanguageCode, "fr"))
-            AppSettings.setTodayLanguageCode("")
-            assertEquals("fr", TodayTranslationLanguage.resolve(AppSettings.todayLanguageCode, "fr"))
+            assertEquals("fr", TodayTranslationLanguage.resolve("fr"))
+            // Pin the real Home rendering path, not just a detached language helper.
+            val home = File("src/main/java/com/dkaluta/prosary/ui/home/HomeScreen.kt").readText()
+            assertTrue(home.contains("TodayTranslationLanguage.resolve(appLanguage)"))
+            assertFalse(home.contains("AppSettings.todayLanguageCode"))
+            assertFalse(home.contains("todayLanguagePicker"))
         } finally {
             AppSettings.setDefaultLanguageCode(originalPrayerLanguage)
             AppSettings.setTodayLanguageCode(originalTodayLanguage)
@@ -125,7 +129,7 @@ class TodayInfoStoreTest {
     @Test
     fun calendarRegistryListsTheShippedCalendarsInPickerOrder() {
         assertEquals(
-            listOf("lpj", "roman", "roman1962", "ugcc", "syriac"),
+            listOf("lpj", "roman", "roman1962", "ugcc", "syriac", "maronite"),
             TodayInfoStore.calendars.map { it.id },
         )
         assertEquals("lpj", TodayInfoStore.selectedCalendarId)
@@ -293,23 +297,30 @@ class TodayInfoStoreTest {
         assertEquals("1st Class", vetus?.rank)
 
         AppSettings.feastCalendarId = "ugcc"
-        assertEquals("22nd Sunday after Pentecost", TodayInfoStore.feast(date("2026-10-25"))?.title)
+        assertEquals("21st Sunday after Pentecost", TodayInfoStore.feast(date("2026-10-25"))?.title)
     }
 
-    /** The UGCC dataset is the diasporic (fully Gregorian) usage prayed in the Holy Land:
-     * Pascha falls with the Gregorian computus (April 5, 2026 — the same day as the Roman
-     * Easter), and a fixed Great Feast landing in Holy Week is joined, never displaced — in
-     * 2027 the Annunciation falls on Great and Holy Thursday. */
+    /** Ukraine's current fixed calendar keeps Julian Pascha by default. Communities using
+     * Gregorian Pascha can explicitly choose its separate calendar and lectionary tables. */
     @Test
-    fun ukrainianCalendarPraysTheGregorianPascha() {
+    fun ukrainianCalendarDefaultsToJulianPaschaAndSupportsGregorianChoice() {
         AppSettings.feastCalendarId = "ugcc"
-        val pascha = TodayInfoStore.feast(date("2026-04-05"))
+        val pascha = TodayInfoStore.feast(date("2026-04-12"))
         assertEquals("The Resurrection of Our Lord — Holy Pascha", pascha?.title)
         assertEquals("Great Feast", pascha?.rank)
+        assertEquals("Flowery (Palm) Sunday — the Entrance into Jerusalem", TodayInfoStore.feast(date("2026-04-05"))?.title)
+        assertEquals("שבועות", TodayInfoStore.feast(date("2026-05-31"))?.localizedTitle("he"))
+        assertEquals("14th Sunday after Pentecost", TodayInfoStore.feast(date("2026-09-06"))?.title)
+        assertEquals(listOf("2 Corinthians 1:21–2:4", "Matthew 22:1–14"), TodayInfoStore.readings(date("2026-09-06")).map { it.full })
         assertEquals(
             "The Protection of the Most Holy Theotokos (Pokrov)",
             TodayInfoStore.feast(date("2026-10-01"))?.title,
         )
+        assertEquals("The Annunciation of the Most Holy Theotokos", TodayInfoStore.feast(date("2027-03-25"))?.title)
+        AppSettings.easternPaschaStyle = "gregorian"
+        assertEquals("The Resurrection of Our Lord — Holy Pascha", TodayInfoStore.feast(date("2026-04-05"))?.title)
+        assertEquals("15th Sunday after Pentecost", TodayInfoStore.feast(date("2026-09-06"))?.title)
+        assertEquals(listOf("2 Corinthians 4:6–15", "Matthew 22:35–46"), TodayInfoStore.readings(date("2026-09-06")).map { it.full })
         assertEquals(
             "The Annunciation of the Most Holy Theotokos; Great and Holy Thursday",
             TodayInfoStore.feast(date("2027-03-25"))?.title,
@@ -419,6 +430,10 @@ class TodayInfoStoreTest {
         assertEquals("הבשורה  על־פי יוחנן כ״א 15–17", vetus.last().localizedFull("he"))
 
         AppSettings.feastCalendarId = "ugcc"
+        val sunday = TodayInfoStore.readings(date("2026-09-06"))
+        assertEquals("השנייה אל הקורינתים א׳", sunday.first().localizedShort("he"))
+        assertEquals("הבשורה על־פי מתי כ״ב 1–14", sunday.last().localizedFull("he"))
+        AppSettings.easternPaschaStyle = "gregorian"
         val byzantine = TodayInfoStore.readings(date("2026-09-03"))
         assertEquals("אל הגלטים ג׳", byzantine.first().localizedShort("he"))
         assertEquals("אגרת שאול אל הגלטים ג׳ 23–ד׳ 5", byzantine.first().localizedFull("he"))
@@ -429,7 +444,7 @@ class TodayInfoStoreTest {
         assertEquals("אל הפיליפים א׳", syriac.first().localizedShort("he-x-gamliel"))
         assertEquals("אגרת שאול אל הפיליפים א׳ 12–21", syriac.first().localizedFull("he"))
         assertEquals("השנייה אל טימותיאוס ב׳", TodayInfoStore.readings(date("2026-08-08")).first().localizedShort("he"))
-        assertTrue(TodayInfoStore.readings(date("2026-08-01")).isEmpty())
+        assertEquals(listOf("Hebrews 11:32–40", "Matthew 10:24–33"), TodayInfoStore.readings(date("2026-08-01")).map { it.full })
     }
 
     @Test
@@ -441,6 +456,8 @@ class TodayInfoStoreTest {
         assertEquals(listOf("Lk. 12"), TodayInfoStore.readings(target).map { it.short })
 
         AppSettings.feastCalendarId = "ugcc"
+        assertEquals(listOf("2 Cor. 12", "Mk. 4", "Heb. 9", "Lk. 10"), TodayInfoStore.readings(target).map { it.short })
+        AppSettings.easternPaschaStyle = "gregorian"
         assertEquals(listOf("Heb. 9", "Lk. 10"), TodayInfoStore.readings(target).map { it.short })
 
         AppSettings.feastCalendarId = "syriac"
@@ -473,5 +490,87 @@ class TodayInfoStoreTest {
     @Test
     fun monthOutsideThePublishedListHasNoIntention() {
         assertNull(TodayInfoStore.intention(date("2031-05-01")))
+    }
+
+    @Test
+    fun torahPortionUsesUpcomingSaturdayInclusiveAndIsraelsCycle() {
+        val nasso = TodayInfoStore.torahPortion(date("2026-05-23"))!!
+        assertEquals("2026-05-23", nasso.saturday)
+        assertTrue(nasso.title.contains("Nasso"))
+        assertFalse(nasso.isHoliday)
+        assertTrue(nasso.readings.isNotEmpty())
+        assertEquals(TodayTranslationLanguage.supportedCodes.toSet(), nasso.titleByLanguage?.keys)
+        val next = TodayInfoStore.torahPortion(date("2026-05-24"))!!
+        assertEquals("2026-05-30", next.saturday)
+        assertTrue(next.title != nasso.title)
+        assertEquals("פרשת נשא", nasso.localizedTitle("iw-IL"))
+        assertNull(TodayInfoStore.torahPortion(date("2031-05-01")))
+    }
+
+    @Test
+    fun torahFestivalReplacesWeeklyPortionWithoutReplacingChristianReadings() {
+        val target = date("2026-04-04")
+        val christian = TodayInfoStore.readings(target)
+        val torah = TodayInfoStore.torahPortion(target)!!
+        assertTrue(torah.isHoliday)
+        assertTrue(torah.readings.isNotEmpty())
+        assertEquals(christian, TodayInfoStore.readings(target))
+        AppSettings.feastCalendarId = "ugcc"
+        assertEquals(torah, TodayInfoStore.torahPortion(target))
+    }
+
+    @Test
+    fun torahMissingFileIsLazyAndHidesCleanly() {
+        TodayInfoStore.resetForTesting()
+        val opened = mutableListOf<String>()
+        TodayInfoStore.initialize { name -> opened.add(name); null }
+        assertFalse(opened.contains("torah-portions"))
+        assertNull(TodayInfoStore.torahPortion(date("2026-05-23")))
+        assertNull(TodayInfoStore.torahPortion(date("2026-05-24")))
+        assertEquals(1, opened.count { it == "torah-portions" })
+    }
+
+    @Test
+    fun easternPaschaChoiceReloadsBothTablesAndDoesNotLeakToOtherRites() {
+        TodayInfoStore.resetForTesting()
+        val files = mapOf(
+            "calendars" to """{"default":"ugcc","calendars":[{"id":"ugcc","file":"feasts-ugcc","readingsFile":"readings-ugcc","name":"Byzantine"},{"id":"syriac","file":"feasts-syriac","readingsFile":"readings-syriac","name":"Syriac"}]}""",
+            "feasts-ugcc" to """{"days":{"2026-04-05":{"title":"Palm Sunday","rank":"Great Feast"}}}""",
+            "feasts-ugcc-gregorian" to """{"days":{"2026-04-05":{"title":"Pascha","rank":"Great Feast"}}}""",
+            "readings-ugcc" to """{"days":{"2026-04-05":{"readings":[{"type":"gospel","short":"Jn. 12","full":"John 12:1–18"}]}}}""",
+            "readings-ugcc-gregorian" to """{"days":{"2026-04-05":{"readings":[{"type":"gospel","short":"Jn. 1","full":"John 1:1–17"}]}}}""",
+        )
+        TodayInfoStore.initialize { name -> files[name]?.byteInputStream() }
+        val target = date("2026-04-05")
+        assertEquals("Palm Sunday", TodayInfoStore.feast(target)?.title)
+        assertEquals("Jn. 12", TodayInfoStore.readings(target).single().short)
+        AppSettings.easternPaschaStyle = "gregorian"
+        assertEquals("Pascha", TodayInfoStore.feast(target)?.title)
+        assertEquals("Jn. 1", TodayInfoStore.readings(target).single().short)
+        AppSettings.easternPaschaStyle = "invalid"
+        assertEquals("julian", AppSettings.easternPaschaStyle)
+        assertEquals("Palm Sunday", TodayInfoStore.feast(target)?.title)
+        assertEquals("Jn. 12", TodayInfoStore.readings(target).single().short)
+        AppSettings.feastCalendarId = "syriac"
+        AppSettings.easternPaschaStyle = "gregorian"
+        assertNull(TodayInfoStore.feast(target))
+        assertTrue(TodayInfoStore.readings(target).isEmpty())
+    }
+
+    @Test
+    fun maroniteCalendarKeepsItsOwnSundayAndReadings() {
+        AppSettings.feastCalendarId = "maronite"
+        val sunday = date("2026-09-06")
+        val feast = TodayInfoStore.feast(sunday)!!
+        assertEquals("Sixteenth Sunday of Pentecost: Parable of the Pharisee and the Tax Collector", feast.title)
+        assertTrue(feast.localizedTitle("he").contains("שבועות"))
+        for (language in TodayTranslationLanguage.supportedCodes) {
+            assertFalse(feast.localizedTitle(language).isBlank())
+        }
+        assertEquals(listOf("Amos 5:21–24", "Romans 8:18–27", "Luke 18:9–14"), TodayInfoStore.readings(sunday).map { it.full })
+        assertEquals("Holy Week", TodayInfoStore.feast(date("2026-04-02"))?.rank)
+        assertNull(TodayInfoStore.feast(date("2026-01-12")))
+        assertTrue(TodayInfoStore.readings(date("2026-01-12")).isNotEmpty())
+        assertTrue(TodayInfoStore.readings(date("2031-09-06")).isEmpty())
     }
 }

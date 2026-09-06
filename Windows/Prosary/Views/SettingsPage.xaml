@@ -36,7 +36,7 @@
                         HorizontalAlignment="Stretch" Click="OnEditLanguageFallbackOrder" />
 
                 <!-- Whose use of that language — shown only where there is more than one. -->
-                <ComboBox x:Uid="SetRiteCombo" Header="Rite" HorizontalAlignment="Stretch"
+                <ComboBox x:Uid="SetRiteCombo" Header="Prayer tradition" HorizontalAlignment="Stretch"
                           Visibility="{x:Bind ViewModel.ShowsRitePicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                           ItemsSource="{x:Bind ViewModel.RiteOptions, Mode=OneWay}" DisplayMemberPath="NativeName"
                           SelectedItem="{x:Bind ViewModel.SelectedRite, Mode=TwoWay}" />
@@ -63,19 +63,32 @@
 
                 <Button x:Uid="SetResetHomeOrder" Content="Reset Home Order" HorizontalAlignment="Stretch"
                         Command="{x:Bind ViewModel.ResetHomeOrderCommand}" />
-                <ToggleSwitch x:Uid="SetFavoriteBasicPrayersFirst" Header="Move favorite basic prayers to top"
-                              IsOn="{x:Bind ViewModel.FavoriteBasicPrayersFirst, Mode=TwoWay}" />
 
                 <TextBlock x:Uid="SetTypographyHeader" Text="Typography" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
-                <ComboBox x:Uid="SetSyriacTypeface" Header="Syriac Aramaic" HorizontalAlignment="Stretch"
+                <ComboBox x:Uid="SetAramaicDefaultScript" Header="Default Aramaic script" HorizontalAlignment="Stretch"
+                          ItemsSource="{x:Bind ViewModel.AramaicScriptOptions}" DisplayMemberPath="Label"
+                          SelectedItem="{x:Bind ViewModel.SelectedAramaicScript, Mode=TwoWay}" />
+                <ComboBox x:Uid="SetSyriacTypeface" Header="Aramaic font" HorizontalAlignment="Stretch"
                           ItemsSource="{x:Bind ViewModel.SyriacTypefaceOptions}" DisplayMemberPath="Label"
                           SelectedItem="{x:Bind ViewModel.SelectedSyriacTypeface, Mode=TwoWay}" />
-                <ComboBox x:Uid="SetHebrewPrayerTypeface" Header="Hebrew prayers" HorizontalAlignment="Stretch"
+                <ComboBox x:Uid="SetHebrewPrayerTypeface" Header="Hebrew font" HorizontalAlignment="Stretch"
                           ItemsSource="{x:Bind ViewModel.HebrewPrayerTypefaceOptions}" DisplayMemberPath="Label"
                           SelectedItem="{x:Bind ViewModel.SelectedHebrewPrayerTypeface, Mode=TwoWay}" />
-                <ComboBox x:Uid="SetHebrewScriptureTypeface" Header="Hebrew Scripture" HorizontalAlignment="Stretch"
+                <ComboBox x:Uid="SetHebrewScriptureTypeface" Header="Hebrew Scripture font" HorizontalAlignment="Stretch"
                           ItemsSource="{x:Bind ViewModel.HebrewScriptureTypefaceOptions}" DisplayMemberPath="Label"
                           SelectedItem="{x:Bind ViewModel.SelectedHebrewScriptureTypeface, Mode=TwoWay}" />
+                <ComboBox x:Uid="SetLatinPrayerTypeface" Header="Latin-script prayers" HorizontalAlignment="Stretch"
+                          ItemsSource="{x:Bind ViewModel.SystemPrayerTypefaceOptions}" DisplayMemberPath="Label"
+                          SelectedItem="{x:Bind ViewModel.SelectedLatinPrayerTypeface, Mode=TwoWay}" />
+                <ComboBox x:Uid="SetCyrillicPrayerTypeface" Header="Cyrillic prayers" HorizontalAlignment="Stretch"
+                          ItemsSource="{x:Bind ViewModel.SystemPrayerTypefaceOptions}" DisplayMemberPath="Label"
+                          SelectedItem="{x:Bind ViewModel.SelectedCyrillicPrayerTypeface, Mode=TwoWay}" />
+
+                <ToggleSwitch x:Uid="SetPrayerNameLanguage" Header="Show prayer names in the prayer language"
+                              IsOn="{x:Bind ViewModel.ShowPrayerNameInPrayerLanguage, Mode=TwoWay}"
+                              AutomationProperties.AutomationId="showPrayerNameInPrayerLanguage" />
+                <TextBlock x:Uid="SetPrayerNameLanguageHint" Text="Also show the interface-language name when it differs."
+                           TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
 
                 <!-- The Home "Today" section: which of its rows show at all, and which
                      calendar's feasts the feast row prays. The calendar choices come from the
@@ -88,6 +101,12 @@
                               IsOn="{x:Bind ViewModel.ShowTodayFeast, Mode=TwoWay}" />
                 <ToggleSwitch x:Uid="SetShowTodayIntention" Header="Show the Pope's intention"
                               IsOn="{x:Bind ViewModel.ShowTodayIntention, Mode=TwoWay}" />
+                <ToggleSwitch x:Uid="SetShowTodayTorahPortion" Header="Show the weekly Torah portion"
+                              IsOn="{x:Bind ViewModel.ShowTodayTorahPortion, Mode=TwoWay}"
+                              AutomationProperties.AutomationId="showTodayTorahPortion" />
+                <TextBlock x:Uid="SetTorahPortionHint" Text="The coming Sabbath’s reading in Eretz Israel, including festival readings."
+                           Visibility="{x:Bind ViewModel.ShowTodayTorahPortion, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                           TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
 
                 <ComboBox x:Uid="SetFeastCalendar" Header="Liturgical calendar" HorizontalAlignment="Stretch"
                           Visibility="{x:Bind ViewModel.ShowsFeastCalendarPicker, Converter={StaticResource BoolToVisibility}}"
@@ -103,6 +122,11 @@
                            Visibility="{x:Bind ViewModel.ShowsFeastCalendarPicker, Converter={StaticResource BoolToVisibility}}"
                            TextWrapping="Wrap" Style="{StaticResource CaptionTextBlockStyle}"
                            Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                <ComboBox x:Uid="SetEasternPascha" Header="Byzantine Easter calculation" HorizontalAlignment="Stretch"
+                          Visibility="{x:Bind ViewModel.ShowsEasternPaschaPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                          ItemsSource="{x:Bind ViewModel.EasternPaschaOptions}" DisplayMemberPath="Label"
+                          SelectedItem="{x:Bind ViewModel.SelectedEasternPascha, Mode=TwoWay}"
+                          AutomationProperties.AutomationId="easternPaschaStyle" />
 
                 <TextBlock x:Uid="SetDownloadsHeader" Text="Downloads" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
 

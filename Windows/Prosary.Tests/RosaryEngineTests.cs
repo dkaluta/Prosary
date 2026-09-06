@@ -164,10 +164,10 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
                 AramaicSignOfCrossForm = AppSettings.AramaicSignOfCrossFormA,
             }, "arc"));
             Assert.Equal(
-                "בשמָא דַאבָא ודַברָא ודרוּחָא קַדִישָא, חַד אַלָהָא שַרִירָא. אַמִין.",
+                "בשמָא דַאבָא ✠ ודַברָא ודרוּחָא קַדִישָא, חַד אַלָהָא שַרִירָא. אַמִין.",
                 formA[0].Body);
             Assert.Equal(
-                "ܒܫܡܳܐ ܕܰܐܒܳܐ ܘܕܰܒܪܳܐ ܘܕܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ، ܚܰܕ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܐܰܡܺܝܢ.",
+                "ܒܫܡܳܐ ܕܰܐܒܳܐ ✠ ܘܕܰܒܪܳܐ ܘܕܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ، ܚܰܕ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܐܰܡܺܝܢ.",
                 formA[0].TransliteratedBody);
             Assert.Equal(formA[0].Body, formA[^1].Body);
 
@@ -178,10 +178,10 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
                 AramaicSignOfCrossForm = AppSettings.AramaicSignOfCrossFormB,
             }, "arc"));
             Assert.Equal(
-                "בשֶם אַבָא ובַרָא ורוּחָא קַדִישָא، חַד אַלָהָא שַרִירָא. אַמִין.",
+                "בשֶם אַבָא ✠ ובַרָא ורוּחָא קַדִישָא، חַד אַלָהָא שַרִירָא. אַמִין.",
                 formB[0].Body);
             Assert.Equal(
-                "ܒܫܶܡ ܐܰܒܳܐ ܘܒܰܪܳܐ ܘܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ، ܚܰܕ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܐܰܡܺܝܢ.",
+                "ܒܫܶܡ ܐܰܒܳܐ ✠ ܘܒܰܪܳܐ ܘܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ، ܚܰܕ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܐܰܡܺܝܢ.",
                 formB[0].TransliteratedBody);
 
             AppSettings.SetDefaultLanguageCode("arc");
@@ -395,8 +395,33 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Equal("Hail Mary & Glory Be", decadeZeroSteps[2].Title);
     }
 
+    [Theory]
+    [InlineData(false, false, false, 0)]
+    [InlineData(true, false, false, 4)]
+    [InlineData(false, true, false, 4)]
+    [InlineData(false, false, true, 5)]
+    [InlineData(true, true, false, 8)]
+    [InlineData(true, false, true, 9)]
+    [InlineData(false, true, true, 9)]
+    [InlineData(true, true, true, 13)]
+    public void ClosingGroupsHaveIndependentIntroductionsAndPrayers(bool pope, bool bishop, bool departed, int added)
+    {
+        var baseline = new RosaryOptions { MysterySelectionMode = MysterySelectionMode.Specific };
+        var original = _engine.BuildSteps(SpecificRosary(baseline));
+        var changed = _engine.BuildSteps(SpecificRosary(baseline with
+        {
+            IncludeClosingPopeIntention = pope,
+            IncludeClosingBishopIntention = bishop,
+            IncludeClosingDepartedIntention = departed,
+        }));
+        Assert.Equal(original.Count + added, changed.Count);
+        Assert.Equal(pope ? 1 : 0, changed.Count(step => step.Title == "Closing prayers for the Pope"));
+        Assert.Equal(bishop ? 1 : 0, changed.Count(step => step.Title == "Closing prayers for the bishop"));
+        Assert.Equal(departed ? 1 : 0, changed.Count(step => step.Title == "Closing prayers for the faithful departed"));
+    }
+
     [Fact]
-    public void BuildSteps_ClosingIntentions_AddTenSteps()
+    public void BuildSteps_ClosingIntentions_AddThirteenSteps()
     {
         var withoutIntentions = _engine.BuildSteps(SpecificRosary(new RosaryOptions
         {
@@ -411,8 +436,9 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
             IncludeClosingIntentions = true,
         }));
 
-        // 3 intentions × Our Father/Hail Mary/Glory Be + "Requiescant in pace".
-        Assert.Equal(withoutIntentions.Count + 10, withIntentions.Count);
+        // Each intention has one introduction, then Our Father/Hail Mary/Glory Be;
+        // the departed group also ends with "Requiescant in pace".
+        Assert.Equal(withoutIntentions.Count + 13, withIntentions.Count);
     }
 
     [Fact]
@@ -433,16 +459,18 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
 
         var antiphonIndex = steps.FindIndex(s => s.IsAntiphon);
         Assert.True(antiphonIndex >= 0);
-        Assert.Equal("Pater Noster", steps[antiphonIndex + 1].Title);
+        Assert.Equal("Pro intentionibus Summi Pontificis", steps[antiphonIndex + 1].Title);
         Assert.Equal(
             "Pro intentionibus Summi Pontificis et necessitatibus Ecclesiae et patriae.",
-            steps[antiphonIndex + 1].Subtitle);
-        Assert.Equal("Requiescant in pace.\n**Amen.**", steps[antiphonIndex + 10].Body);
+            steps[antiphonIndex + 1].Body);
+        Assert.Equal("Pater Noster", steps[antiphonIndex + 2].Title);
+        Assert.Null(steps[antiphonIndex + 2].Subtitle);
+        Assert.Equal("Requiescant in pace.\n**Amen.**", steps[antiphonIndex + 13].Body);
     }
 
     /// <summary>The local ordinary the second intention prays for is the Patriarch in the
     /// Vicariate's Hebrew and the Exarch in the Mission's rite — the he-x-gamliel overlay swaps
-    /// that one subtitle and only that one.</summary>
+    /// that introduction's body while preserving its vowel points.</summary>
     [Fact]
     public void BuildSteps_ClosingIntentions_PatriarchInHebrewExarchInGamlielRite()
     {
@@ -459,11 +487,11 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
         };
 
         var hebrew = _engine.BuildSteps(RosaryIn("he"));
-        Assert.Contains(hebrew, s => s.Subtitle?.Contains("הפטריארך") == true);
+        Assert.Contains(hebrew, s => HebrewDisplayText.WithoutMarks(s.Body).Contains("הפטריארך"));
 
         var gamliel = _engine.BuildSteps(RosaryIn("he-x-gamliel"));
-        Assert.Contains(gamliel, s => s.Subtitle?.Contains("ההגמון") == true);
-        Assert.DoesNotContain(gamliel, s => s.Subtitle?.Contains("הפטריארך") == true);
+        Assert.Contains(gamliel, s => HebrewDisplayText.WithoutMarks(s.Body).Contains("ההגמון"));
+        Assert.DoesNotContain(gamliel, s => HebrewDisplayText.WithoutMarks(s.Body).Contains("הפטריארך"));
     }
 
     [Fact]
@@ -548,6 +576,35 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
             ["שמחי מרים (1 מתוך 3)", "שמחי מרים (2 מתוך 3)", "שמחי מרים (3 מתוך 3)"],
             opening.Select(step => step.Title));
         Assert.All(opening, step => Assert.Contains('\u05B0', step.Body));
+        var aramaic = _engine.BuildSteps(SpecificRosary(languageCode: "arc"))
+            .Where(step => step.ImageOverrideKey?.StartsWith("virtue_") == true).ToList();
+        Assert.Equal(3, aramaic.Count);
+        Assert.EndsWith("(1 מן 3)", aramaic[0].Title);
+        Assert.EndsWith("(1 ܡܶܢ 3)", PrayerTranslations.FlowTitle(aramaic[0].Title, "arc", true));
+        Assert.Equal("1 מֶן 75", PrayerTranslations.AramaicProgress(1, 75, "arc", false));
+        Assert.Equal("1 ܡܶܢ 75", PrayerTranslations.AramaicProgress(1, 75, "arc", true));
+        Assert.Null(PrayerTranslations.AramaicProgress(1, 75, "en", true));
+    }
+
+    [Fact]
+    public void AramaicScriptPreferenceFindsTheRequestedWritingSystem()
+    {
+        foreach (var script in new[] { "Hebr", "Syrc" })
+        {
+            Assert.Equal(script == "Syrc", PrayerTranslations.InitialTransliteration("arc", "שלם", "ܫܠܡ", script));
+            Assert.Equal(script == "Hebr", PrayerTranslations.InitialTransliteration("arc", "ܫܠܡ", "שלם", script));
+        }
+        Assert.False(PrayerTranslations.InitialTransliteration("arc", "שלם", null, "Syrc"));
+        Assert.Null(PrayerTranslations.InitialTransliteration("he", "שלום", "Shalom", "Syrc"));
+        var saved = AppSettings.AramaicDefaultScript;
+        try
+        {
+            AppSettings.SetAramaicDefaultScript("Syrc");
+            Assert.Equal("Syrc", AppSettings.AramaicDefaultScript);
+            AppSettings.SetAramaicDefaultScript("invalid");
+            Assert.Equal("Hebr", AppSettings.AramaicDefaultScript);
+        }
+        finally { AppSettings.SetAramaicDefaultScript(saved); }
     }
 
     /// <summary>The Aramaic Rosary's bundle deliberately contributes only the Peshitta
@@ -583,11 +640,8 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
             Assert.NotNull(announcement.TransliteratedBody);
             Assert.StartsWith(aramaic.TransliteratedDescription!, announcement.TransliteratedBody!);
 
-            // Both script renderings append exactly the same independently-resolved fruit
-            // label/fruit; a transliteration can never acquire a suffix from another source.
-            Assert.Equal(
-                announcement.Body[aramaic.Description.Length..],
-                announcement.TransliteratedBody![aramaic.TransliteratedDescription!.Length..]);
+            Assert.EndsWith($"\n\n{PrayerTranslations.Get("arc", PrayerKey.FructusMysteriiLabel)}: {aramaic.Fruit}", announcement.Body);
+            Assert.EndsWith($"\n\n{PrayerPackStore.Transliteration("rosary", "arc", "fructusMysteriiLabel")}: {aramaic.Fruit}", announcement.TransliteratedBody!);
         }
         finally
         {

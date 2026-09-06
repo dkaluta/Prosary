@@ -89,7 +89,7 @@
 
         <StackPanel Grid.Row="2" Spacing="8">
             <ProgressBar Minimum="0" Maximum="1" Value="{x:Bind ViewModel.Progress, Mode=OneWay, Converter={StaticResource NullableDoubleToValue}}" />
-            <TextBlock Text="{x:Bind ViewModel.ProgressText, Mode=OneWay}" HorizontalAlignment="Center" Style="{StaticResource MutedCaptionTextStyle}" />
+            <TextBlock FontFamily="{x:Bind ViewModel.ProgressFontFamily, Mode=OneWay}" Text="{x:Bind ViewModel.ProgressText, Mode=OneWay}" HorizontalAlignment="Center" Style="{StaticResource MutedCaptionTextStyle}" />
         </StackPanel>
 
         <!-- Narrow layout: major beads wrap into rows of 5 above a single minor-beads row, above a
@@ -233,7 +233,7 @@
             </ScrollViewer>
         </Grid>
 
-        <Grid Grid.Row="4">
+        <Grid Grid.Row="4" FlowDirection="{x:Bind NavigationFlowDirection}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
@@ -243,12 +243,12 @@
             </Grid.ColumnDefinitions>
             <Button x:Uid="BtnBack" Grid.Column="0" Content="Back" Command="{x:Bind ViewModel.BackCommand}"
                     IsEnabled="{x:Bind ViewModel.CanGoBack, Mode=OneWay}" Background="Transparent" />
-            <Button x:Uid="RosaryPreviousMystery" Grid.Column="1" Content="⏮"
+            <Button x:Uid="RosaryPreviousMystery" Grid.Column="1" Content="{x:Bind PreviousNavigationGlyph}"
                     Command="{x:Bind ViewModel.GoToPreviousMysteryCommand}"
                     IsEnabled="{x:Bind ViewModel.CanGoToPreviousMystery, Mode=OneWay}"
                     Background="Transparent" Padding="12,8" ToolTipService.ToolTip="Previous mystery"
                     AutomationProperties.Name="Previous mystery" />
-            <Button x:Uid="RosaryNextMystery" Grid.Column="3" Content="⏭"
+            <Button x:Uid="RosaryNextMystery" Grid.Column="3" Content="{x:Bind NextNavigationGlyph}"
                     Command="{x:Bind ViewModel.GoToNextMysteryCommand}"
                     IsEnabled="{x:Bind ViewModel.CanGoToNextMystery, Mode=OneWay}"
                     Background="Transparent" Padding="12,8" ToolTipService.ToolTip="Next mystery"

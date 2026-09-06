@@ -19,16 +19,28 @@ namespace Prosary.ViewModels;
 public partial class DevotionCardModel : ObservableObject
 {
     public required string Id { get; init; }
-    public required string Title { get; init; }
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(DisplaySubtitle))]
+    private string _title = string.Empty;
     public required string IconGlyph { get; init; }
     public required ICommand Command { get; init; }
 
     /// <summary>Whether this devotion has saved presets worth a menu item — the Rosary does,
     /// the rest are configured in their own flow. Mirrors iOS's DevotionRow.presetsRoute.</summary>
     public bool HasSavedPresets { get; init; }
+    public bool CanHaveReminders => !Id.StartsWith("basic:", StringComparison.Ordinal);
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(DisplaySubtitle))]
     private string _subtitle = string.Empty;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(DisplaySubtitle))]
+    private string _interfaceSubtitle = string.Empty;
+
+    public string DisplaySubtitle => string.Join(Environment.NewLine,
+        new[] { InterfaceSubtitle, Subtitle }.Where(text => !string.IsNullOrWhiteSpace(text)
+            && !string.Equals(text.Trim(), Title.Trim(), StringComparison.Ordinal)).Distinct());
 
     [ObservableProperty]
     private Color _accentColor = Color.FromArgb(0xFF, 0x80, 0x80, 0x80);
@@ -83,7 +95,52 @@ public partial class HomeViewModel : ObservableObject
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(TodayDayText))]
+    [NotifyPropertyChangedFor(nameof(ShowsTodayDay))]
     private LiturgicalDayInfo _todayDay = TodayInfoStore.LiturgicalDay(DateOnly.FromDateTime(DateTime.Today));
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsSelectedDateToday))]
+    [NotifyPropertyChangedFor(nameof(SelectedDateText))]
+    [NotifyPropertyChangedFor(nameof(SelectedDateAccessibilityLabel))]
+    [NotifyCanExecuteChangedFor(nameof(YesterdayCommand))]
+    [NotifyCanExecuteChangedFor(nameof(TomorrowCommand))]
+    private DateTimeOffset? _selectedTodayDate = new DateTimeOffset(DateTime.Today);
+
+    public DateTimeOffset MinimumTodayDate => new(new DateTime(1900, 1, 1));
+    public DateTimeOffset MaximumTodayDate => new(new DateTime(2100, 12, 31));
+    public DateOnly SelectedDate => DateOnly.FromDateTime((SelectedTodayDate ?? new DateTimeOffset(DateTime.Today)).Date);
+    public bool IsSelectedDateToday => SelectedDate == DateOnly.FromDateTime(DateTime.Today);
+    public bool CanSelectYesterday => SelectedDate > DateOnly.FromDateTime(MinimumTodayDate.Date);
+    public bool CanSelectTomorrow => SelectedDate < DateOnly.FromDateTime(MaximumTodayDate.Date);
+
+    public string SelectedDateText
+    {
+        get
+        {
+            var culture = (System.Globalization.CultureInfo)System.Globalization.CultureInfo
+                .GetCultureInfo(UiLanguageCatalog.ResourceTag(TodayLanguage)).Clone();
+            culture.DateTimeFormat.Calendar = new System.Globalization.GregorianCalendar();
+            return SelectedDate.ToString("d MMMM yyyy", culture);
+        }
+    }
+
+    public string SelectedDateAccessibilityLabel => string.Format(
+        Loc.Tr("home_today_choose_date", "Choose a date: {0}", TodayLanguage), SelectedDateText);
+
+    partial void OnSelectedTodayDateChanged(DateTimeOffset? value)
+    {
+        ShowsFullCitations = false;
+        RefreshToday();
+    }
+
+    [RelayCommand(CanExecute = nameof(CanSelectYesterday))]
+    private void Yesterday() => SelectedTodayDate = new DateTimeOffset(SelectedDate.AddDays(-1).ToDateTime(TimeOnly.MinValue));
+
+    [RelayCommand(CanExecute = nameof(CanSelectTomorrow))]
+    private void Tomorrow() => SelectedTodayDate = new DateTimeOffset(SelectedDate.AddDays(1).ToDateTime(TimeOnly.MinValue));
+
+    [RelayCommand]
+    private void SelectToday() => SelectedTodayDate = new DateTimeOffset(DateTime.Today);
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ShowsTodayReadings))]
@@ -91,24 +148,20 @@ public partial class HomeViewModel : ObservableObject
     private IReadOnlyList<ReadingCitation> _todayReadings = [];
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(TodayDayText))]
-    [NotifyPropertyChangedFor(nameof(TodayFeastTitle))]
-    [NotifyPropertyChangedFor(nameof(TodayFeastRank))]
-    [NotifyPropertyChangedFor(nameof(MonthIntentionTitle))]
-    [NotifyPropertyChangedFor(nameof(MonthIntentionText))]
-    [NotifyPropertyChangedFor(nameof(ReadingsText))]
-    [NotifyPropertyChangedFor(nameof(TodayReadingsTitle))]
-    [NotifyPropertyChangedFor(nameof(TodayLanguageButtonText))]
-    [NotifyPropertyChangedFor(nameof(CitationButtonText))]
-    [NotifyPropertyChangedFor(nameof(TodayTextAlignment))]
-    [NotifyPropertyChangedFor(nameof(TodayContentAlignment))]
-    [NotifyPropertyChangedFor(nameof(TodayLanguage))]
-    [NotifyPropertyChangedFor(nameof(TodayIsRightToLeft))]
-    private string _todayLanguageCode = AppSettings.TodayLanguageCode;
+    [NotifyPropertyChangedFor(nameof(ShowsTodayTorahPortion))]
+    [NotifyPropertyChangedFor(nameof(TorahPortionHeading))]
+    [NotifyPropertyChangedFor(nameof(TorahPortionTitle))]
+    [NotifyPropertyChangedFor(nameof(TorahPortionReadings))]
+    private TorahPortion? _todayTorahPortion;
 
-    partial void OnTodayLanguageCodeChanged(string value) => AppSettings.SetTodayLanguageCode(value);
+    public bool ShowsTodayTorahPortion => TodayTorahPortion is not null;
+    public string TorahPortionHeading => TodayTorahPortion?.IsHoliday == true
+        ? Loc.Tr("home_today_torah_festival", "Festival Torah reading", TodayLanguage)
+        : Loc.Tr("home_today_torah_portion", "Weekly Torah portion", TodayLanguage);
+    public string TorahPortionTitle => TodayTorahPortion?.LocalizedTitle(TodayLanguage) ?? "";
+    public string TorahPortionReadings => TodayTorahPortion?.LocalizedReadings(TodayLanguage) ?? "";
 
-    public string TodayLanguage => UiLanguageCatalog.ResolveToday(TodayLanguageCode, UiLanguageCatalog.Current);
+    public string TodayLanguage => UiLanguageCatalog.Current;
     public bool TodayIsRightToLeft => UiLanguageCatalog.IsRightToLeft(TodayLanguage);
 
     [ObservableProperty]
@@ -124,9 +177,9 @@ public partial class HomeViewModel : ObservableObject
 
     public bool ShowsTodayReadings => TodayReadings.Count > 0;
 
-    public string TodayDayText => TodayDay.Localized(TodayLanguage);
+    public bool ShowsTodayDay => TodayDay.IsVisible;
 
-    public string TodayLanguageButtonText => UiLanguageCatalog.All.First(l => l.Code == TodayLanguage).NativeName;
+    public string TodayDayText => TodayDay.Localized(TodayLanguage);
 
     public TextAlignment TodayTextAlignment => TodayIsRightToLeft ? TextAlignment.Right : TextAlignment.Left;
 
@@ -222,6 +275,20 @@ public partial class HomeViewModel : ObservableObject
     {
         var implied = ImpliedPinnedIds();
         var pinned = _allCards.Where(card => FavoriteDevotions.Contains(DevotionIdOf(card), implied)).ToList();
+        var language = LanguageCatalog.Resolve(AppSettings.BasicPrayersLanguageCode);
+        foreach (var prayer in BasicPrayersOrder.Apply(BasicPrayerCatalog.All)
+                     .Where(prayer => AppSettings.FavoriteBasicPrayerIds.Contains(prayer.Id)))
+        {
+            var name = PrayerCardName.ForBasicPrayer(prayer, language.Code);
+            pinned.Add(new DevotionCardModel
+            {
+                Id = prayer.HomeCardId,
+                Title = name.Title,
+                InterfaceSubtitle = name.InterfaceSubtitle,
+                IconGlyph = "\uE8F1",
+                Command = new RelayCommand(() => Router.Navigate<BasicPrayerFlowPage>(prayer.Id)),
+            });
+        }
 
         DevotionCards.Clear();
         foreach (var card in HomeOrder.Apply(pinned, c => c.Id))
@@ -248,7 +315,12 @@ public partial class HomeViewModel : ObservableObject
     [RelayCommand]
     private void UnpinCard(DevotionCardModel card)
     {
-        FavoriteDevotions.Toggle(DevotionIdOf(card), ImpliedPinnedIds());
+        if (card.Id.StartsWith("basic:", StringComparison.Ordinal))
+        {
+            var prayerId = card.Id["basic:".Length..];
+            if (AppSettings.FavoriteBasicPrayerIds.Contains(prayerId)) AppSettings.ToggleFavoriteBasicPrayer(prayerId);
+        }
+        else FavoriteDevotions.Toggle(DevotionIdOf(card), ImpliedPinnedIds());
         RebuildPinnedCards();
     }
 
@@ -311,7 +383,7 @@ public partial class HomeViewModel : ObservableObject
     /// the page is rebuilt on navigation anyway).</summary>
     internal static Color CustomAccent(CustomDevotionInfo info)
     {
-        var isDark = Application.Current.RequestedTheme == ApplicationTheme.Dark;
+        var isDark = Application.Current?.RequestedTheme == ApplicationTheme.Dark;
         var hex = isDark ? info.AccentColorDarkHex ?? info.AccentColorHex : info.AccentColorHex;
         return ColorForHex(hex) ?? PrayerKind.Custom.AccentColor();
     }
@@ -350,6 +422,9 @@ public partial class HomeViewModel : ObservableObject
         _defaultJesusPrayer = all.FirstOrDefault(p => p.Kind == PrayerKind.JesusPrayer && p.IsDefault)
             ?? all.FirstOrDefault(p => p.Kind == PrayerKind.JesusPrayer);
 
+        ApplyName(Card("rosary"), PrayerCardName.ForKind(PrayerKind.Rosary, _defaultRosary?.LanguageCode));
+        ApplyName(Card("jesusPrayer"), PrayerCardName.ForKind(PrayerKind.JesusPrayer, _defaultJesusPrayer?.LanguageCode));
+
         var rosaryParts = new List<string> { string.Format(Loc.Tr("home_today", "Today: {0}"), todayGroup.UiName()) };
         if (_defaultRosary is { } rosary)
         {
@@ -369,6 +444,7 @@ public partial class HomeViewModel : ObservableObject
             var match = all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId && p.IsDefault)
                 ?? all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId);
             _defaultCustomDevotions[bundleId] = match;
+            ApplyName(_customCardsByBundleId[bundleId], PrayerCardName.ForBundle(bundleId, match?.LanguageCode));
             _customCardsByBundleId[bundleId].Subtitle = MultiDayStatus.Subtitle(bundleId)
                 ?? (match is { } favorite ? HebrewDisplayText.WithoutMarks(favorite.Name) : null)
                 ?? Loc.Tr("home_click_to_pray", "Click to pray");
@@ -379,14 +455,21 @@ public partial class HomeViewModel : ObservableObject
 
     private void RefreshToday()
     {
-        var today = DateOnly.FromDateTime(DateTime.Today);
+        var today = SelectedDate;
         TodayFeast = AppSettings.ShowTodayFeast ? TodayInfoStore.Feast(today) : null;
         MonthIntention = AppSettings.ShowTodayIntention ? TodayInfoStore.Intention(today) : null;
         TodayDay = TodayInfoStore.LiturgicalDay(today);
         TodayReadings = TodayInfoStore.Readings(today);
+        TodayTorahPortion = AppSettings.ShowTodayTorahPortion ? TodayInfoStore.WeeklyTorahPortion(today) : null;
     }
 
     private DevotionCardModel Card(string id) => _allCards.First(c => c.Id == id);
+
+    private static void ApplyName(DevotionCardModel card, PrayerCardName name)
+    {
+        card.Title = name.Title;
+        card.InterfaceSubtitle = name.InterfaceSubtitle;
+    }
 
     private void OpenCustomDevotion(string bundleId)
     {

@@ -8,6 +8,11 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
+import androidx.compose.material.icons.filled.AccountBalance
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.dkaluta.prosary.R
@@ -25,10 +30,11 @@ fun PrayerLanguagePicker(
     onExpandedChange: (Boolean) -> Unit,
     onSelect: (String) -> Unit,
 ) {
-    val options = if (devotionId == null) LanguageCatalog.all else {
+    val options = if (devotionId == null) LanguageCatalog.publicOptions else {
         val bundleLanguages = PrayerPackStore.info(devotionId)?.languages.orEmpty()
-        if (bundleLanguages.size <= 1 && "he" !in bundleLanguages) return
-        LanguageCatalog.availableOptions(bundleLanguages)
+        val available = LanguageCatalog.availableOptions(bundleLanguages)
+        if (available.size <= 1 && available.none { it.code == "he" }) return
+        available
     }
 
     IconButton(onClick = { onExpandedChange(true) }) {
@@ -46,18 +52,36 @@ fun PrayerLanguagePicker(
         for (choice in choices) {
             DropdownMenuItem(
                 text = { Text(choice.label) },
-                leadingIcon = if (chosenLanguage == choice.code) {
+                leadingIcon = if (LanguageCatalog.pickerLanguageCode(chosenLanguage) == choice.code) {
                     { Icon(Icons.Filled.Check, contentDescription = null) }
                 } else {
                     null
                 },
                 onClick = {
                     onExpandedChange(false)
-                    onSelect(choice.code)
+                    onSelect(LanguageCatalog.selectingLanguage(choice.code, chosenLanguage))
                 },
             )
         }
     }
+    if (LanguageCatalog.pickerLanguageCode(LanguageCatalog.resolve(chosenLanguage).code) == "he") {
+        var traditionExpanded by remember { mutableStateOf(false) }
+        IconButton(onClick = { traditionExpanded = true }) {
+            Icon(Icons.Filled.AccountBalance, contentDescription = stringResource(R.string.prayer_tradition))
+        }
+        DropdownMenu(expanded = traditionExpanded, onDismissRequest = { traditionExpanded = false }) {
+            for (code in listOf("he", "he-x-gamliel")) {
+                DropdownMenuItem(
+                    text = { Text(stringResource(if (code == "he") R.string.prayer_tradition_vicariate else R.string.prayer_tradition_mission)) },
+                    leadingIcon = if (LanguageCatalog.resolve(chosenLanguage).code == code) {
+                        { Icon(Icons.Filled.Check, contentDescription = null) }
+                    } else null,
+                    onClick = { traditionExpanded = false; onSelect(code) },
+                )
+            }
+        }
+    }
+
 }
 
 private data class LanguageChoice(val code: String, val label: String)

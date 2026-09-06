@@ -10,6 +10,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct HomeView: View {
   /// Names here follow the default prayer language; the monitor is the one mechanism
@@ -20,6 +21,7 @@ struct HomeView: View {
   @Binding var path: [AppRoute]
 
   @Environment(\.appServices) private var services
+  @Environment(\.scenePhase) private var scenePhase
 
   @State private var prayers: [Prayer] = []
   @State private var todayMysteryGroup: MysteryGroup? = nil
@@ -27,13 +29,19 @@ struct HomeView: View {
   @State private var monthIntention: PopeIntention? = nil
   @State private var liturgicalDayInfo: LiturgicalDayInfo? = nil
   @State private var todayReadings: [ReadingCitation] = []
-  @AppStorage("todayLanguageCode") private var selectedTodayLanguage = ""
+  @State private var todayTorahPortion: TorahPortion?
+  @State private var selectedDate = Calendar(identifier: .gregorian).startOfDay(for: Date())
+  @State private var followsToday = true
+  @State private var showsTodayDatePicker = false
   @State private var showsFullCitations = false
 
-  private var todayLanguageCode: String { TodayTranslationLanguage.resolve(selectedTodayLanguage) }
+  private var todayLanguageCode: String { UILanguage.current }
 
   private var todayReadingsHeading: String {
-    UILanguage.text("home.today.readings", language: todayLanguageCode, fallback: "Today’s readings")
+    if Calendar(identifier: .gregorian).isDateInToday(selectedDate) {
+      return UILanguage.text("home.today.readings", language: todayLanguageCode, fallback: "Today’s readings")
+    }
+    return UILanguage.text("home.today.selectedReadings", language: todayLanguageCode, fallback: "Readings")
   }
 
   private var todayFullCitationsLabel: String {
@@ -57,6 +65,11 @@ struct HomeView: View {
   /// row simply never loads, and with both off the whole section stays away.
   @AppStorage("showTodayFeast") private var showsTodayFeast = true
   @AppStorage("showTodayIntention") private var showsTodayIntention = true
+  @AppStorage("showTodayTorahPortion") private var showsTodayTorahPortion = false
+  private var showsPrayerNameInPrayerLanguage: Bool { prayerLanguage.showsPrayerNameInPrayerLanguage }
+  @AppStorage(TodayInfoStore.calendarDefaultsKey) private var feastCalendarId = ""
+  @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var easternPaschaStyle = "julian"
+  @AppStorage(BasicPrayerCatalog.languageDefaultsKey) private var basicPrayerLanguageCode = LanguageCatalog.defaultSentinel
 
   @State private var editorPrayer: Prayer?
   @State private var isNew = false
@@ -77,7 +90,18 @@ struct HomeView: View {
     // Re-derive when iCloud delivers a pin or an order from another device.
     _ = CloudPreferencesGeneration.shared.value
     let implied = impliedPinnedIds
-    let rows = allDevotions.filter { FavoriteDevotions.contains($0.id, defaultingTo: implied) }
+    var rows = allDevotions.filter { FavoriteDevotions.contains($0.id, defaultingTo: implied) }
+    let language = LanguageCatalog.resolve(basicPrayerLanguageCode)
+    for prayer in BasicPrayersOrder.apply(BasicPrayerCatalog.all) where BasicPrayerFavorites.contains(prayer.id) {
+      let name = PrayerNamePresentation.basicPrayer(prayer, languageCode: language.code,
+                                                    showPrayerLanguage: showsPrayerNameInPrayerLanguage)
+      rows.append(DevotionRow(
+        id: BasicPrayerFavorites.homeRowID(prayer.id),
+        title: name.title, translatedTitle: name.translation,
+        systemImage: "text.book.closed", iconGlyph: nil, accent: .brandPrimary,
+        subtitle: String(localized: "basicPrayers.title", defaultValue: "Basic Prayers"), presetsRoute: nil,
+        prayAction: { path.push(.basicPrayer(id: prayer.id)) }))
+    }
     return HomeOrder.apply(rows) { $0.id }
   }
 
@@ -97,7 +121,7 @@ struct HomeView: View {
   private var allDevotions: [DevotionRow] {
     var rows: [DevotionRow] = [
       DevotionRow(
-        id: "rosary", title: PrayerKind.rosary.displayName,
+        id: "rosary", title: rosaryName.title, translatedTitle: rosaryName.translation,
         systemImage: PrayerKind.rosary.systemImage, iconGlyph: nil,
         accent: todayMysteryGroup?.color ?? .brandPrimary,
         // The whole row leads to the presets screen, so no separate disclosure button: the
@@ -114,7 +138,8 @@ struct HomeView: View {
         accent = info.accentColorHex.map { Color(hex: $0) } ?? .brandPrimary
       }
       rows.append(DevotionRow(
-        id: bundleId, title: info.localizedDisplayName,
+        id: bundleId, title: nameForBundle(info, bundleId: bundleId).title,
+        translatedTitle: nameForBundle(info, bundleId: bundleId).translation,
         systemImage: info.iconSystemName ?? PrayerKind.custom.systemImage,
         iconGlyph: info.iconGlyph, accent: accent,
         // A tracked series says where you are, or when it begins — that is the whole reason a
@@ -126,11 +151,26 @@ struct HomeView: View {
         prayAction: { prayCustom(bundleId) }))
     }
     rows.append(DevotionRow(
-      id: "jesusPrayer", title: PrayerKind.jesusPrayer.displayName,
+      id: "jesusPrayer", title: jesusPrayerName.title, translatedTitle: jesusPrayerName.translation,
       systemImage: PrayerKind.jesusPrayer.systemImage, iconGlyph: nil,
       accent: jesusPrayerAccent, subtitle: jesusPrayerSubtitle,
       presetsRoute: nil, prayAction: { prayJesusPrayer() }))
     return rows
+  }
+
+  private var rosaryName: PrayerNamePresentation {
+    PrayerKind.rosary.namePresentation(prayerCode: LanguageCatalog.resolve(defaultRosary?.languageCode).code,
+                                      showPrayerLanguage: showsPrayerNameInPrayerLanguage)
+  }
+
+  private var jesusPrayerName: PrayerNamePresentation {
+    PrayerKind.jesusPrayer.namePresentation(prayerCode: LanguageCatalog.resolve(defaultJesusPrayer?.languageCode).code,
+                                           showPrayerLanguage: showsPrayerNameInPrayerLanguage)
+  }
+
+  private func nameForBundle(_ info: CustomDevotionInfo, bundleId: String) -> PrayerNamePresentation {
+    info.namePresentation(prayerCode: LanguageCatalog.resolve(savedPreset(forBundle: bundleId)?.languageCode).code,
+                          showPrayerLanguage: showsPrayerNameInPrayerLanguage)
   }
 
   private var defaultRosary: Prayer? {
@@ -171,6 +211,7 @@ struct HomeView: View {
     let _ = prayerLanguage.code  // dependency registration — see the property's comment
     ScrollView {
       VStack(spacing: 16) {
+        todayDateNavigation
         todaySection
 
         if pinnedDevotions.isEmpty {
@@ -185,6 +226,7 @@ struct HomeView: View {
                 systemImage: row.systemImage,
                 iconGlyph: row.iconGlyph,
                 title: row.title,
+                translatedTitle: row.translatedTitle,
                 subtitle: row.subtitle,
                 accentColor: row.accent,
                 // One tap prays the default; the disclosure is the way into the presets, so
@@ -248,9 +290,103 @@ struct HomeView: View {
     #endif
     .task { await load() }
     .onAppear { Task { await load() } }
+    .onChange(of: selectedDate) { _, _ in showsFullCitations = false; loadToday() }
+    .onChange(of: feastCalendarId) { _, _ in showsFullCitations = false; loadToday() }
+    .onChange(of: easternPaschaStyle) { _, _ in showsFullCitations = false; loadToday() }
+    .onChange(of: showsTodayFeast) { _, _ in loadToday() }
+    .onChange(of: showsTodayIntention) { _, _ in loadToday() }
+    .onChange(of: showsTodayTorahPortion) { _, _ in loadToday() }
+    // macOS Settings is another scene; deliver after the native menu has left its tracking
+    // loop, the same timing the prayer-name monitor uses.
+    .onReceive(NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)
+      .receive(on: RunLoop.main)) { _ in loadToday() }
+    .onChange(of: scenePhase) { _, phase in
+      if phase == .active {
+        if followsToday { selectedDate = Calendar(identifier: .gregorian).startOfDay(for: Date()) }
+        loadToday()
+      }
+    }
+    .onReceive(NotificationCenter.default.publisher(for: .NSCalendarDayChanged)) { _ in
+      if followsToday { selectedDate = Calendar(identifier: .gregorian).startOfDay(for: Date()) }
+      loadToday()
+    }
   }
 
   // MARK: - Pieces
+
+  private var todayDateBinding: Binding<Date> {
+    Binding(get: { selectedDate }, set: { date in
+      selectedDate = Calendar(identifier: .gregorian).startOfDay(for: date)
+      followsToday = Calendar(identifier: .gregorian).isDateInToday(date)
+      showsTodayDatePicker = false
+    })
+  }
+
+  private var selectedDateLabel: String {
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: todayLanguageCode)
+    formatter.calendar = Calendar(identifier: .gregorian)
+    formatter.setLocalizedDateFormatFromTemplate("yMMMd")
+    return formatter.string(from: selectedDate)
+  }
+
+  private var todayDateNavigation: some View {
+    HStack(spacing: 12) {
+      Button {
+        todayDateBinding.wrappedValue = TodayInfoStore.dateByMoving(-1, from: selectedDate)
+      } label: {
+        Image(systemName: "chevron.backward")
+      }
+      .accessibilityLabel(String(localized: "home.today.previousDay", defaultValue: "Previous day"))
+      .accessibilityIdentifier("todayYesterdayButton")
+      Button {
+        showsTodayDatePicker = true
+      } label: {
+        Text(selectedDateLabel)
+          .font(.subheadline.weight(.semibold))
+          .frame(maxWidth: .infinity)
+      }
+      .accessibilityHint(String(localized: "home.today.chooseDate", defaultValue: "Choose a date"))
+      .accessibilityIdentifier("todayDateButton")
+      .popover(isPresented: $showsTodayDatePicker, attachmentAnchor: .rect(.bounds), arrowEdge: .top) {
+        todayDatePopover
+          #if os(iOS)
+          .presentationCompactAdaptation(.popover)
+          #endif
+      }
+      Button {
+        todayDateBinding.wrappedValue = TodayInfoStore.dateByMoving(1, from: selectedDate)
+      } label: {
+        Image(systemName: "chevron.forward")
+      }
+      .accessibilityLabel(String(localized: "home.today.nextDay", defaultValue: "Next day"))
+      .accessibilityIdentifier("todayTomorrowButton")
+    }
+    .prosarySecondaryButtonStyle()
+    .controlSize(.large)
+    .frame(maxWidth: 480)
+    .accessibilityElement(children: .contain)
+    .accessibilityIdentifier("todayDateNavigation")
+  }
+
+  private var todayDatePopover: some View {
+    VStack(alignment: .leading, spacing: 8) {
+      Button(String(localized: "home.today.today", defaultValue: "Today")) {
+        todayDateBinding.wrappedValue = Date()
+      }
+      .prosarySecondaryButtonStyle()
+      .disabled(Calendar(identifier: .gregorian).isDateInToday(selectedDate))
+      .accessibilityIdentifier("todayResetButton")
+      DatePicker(String(localized: "home.today.chooseDate", defaultValue: "Choose a date"),
+                 selection: todayDateBinding, displayedComponents: .date)
+        .datePickerStyle(.graphical)
+        .labelsHidden()
+        .environment(\.calendar, Calendar(identifier: .gregorian))
+        .accessibilityIdentifier("todayDatePicker")
+    }
+    .padding(12)
+    .frame(width: 320)
+  }
 
   /// The basic prayers on their own (Erez, 2026-08-07) — a fixed quiet row below the cards, not
   /// a pinnable card: it is a reference shelf, not a devotion, so it neither reorders nor
@@ -281,7 +417,7 @@ struct HomeView: View {
   /// (ferial days; dates past the generated years).
   @ViewBuilder
   private var todaySection: some View {
-    if liturgicalDayInfo != nil || todayFeast != nil || monthIntention != nil || !todayReadings.isEmpty {
+    if liturgicalDayInfo != nil || todayFeast != nil || monthIntention != nil || !todayReadings.isEmpty || todayTorahPortion != nil {
       // `leading` is semantic: the layout direction below places it on the right in Hebrew.
       VStack(alignment: .leading, spacing: 10) {
         if let info = liturgicalDayInfo {
@@ -290,22 +426,8 @@ struct HomeView: View {
             Text(HebrewDisplayText.unpointed(info.localized(todayLanguageCode)))
               .font(.subheadline.weight(.semibold))
               .frame(maxWidth: .infinity, alignment: .leading)
-            Menu {
-              Picker(UILanguage.text("home.today.language", language: todayLanguageCode, fallback: "Today language"),
-                     selection: $selectedTodayLanguage) {
-                Text(UILanguage.text("home.today.appLanguage", language: todayLanguageCode, fallback: "App language"))
-                  .tag("")
-                ForEach(UILanguage.all) { language in
-                  Text(language.nativeName).tag(language.code)
-                }
-              }
-            } label: {
-              Label(UILanguage.all.first { $0.code == todayLanguageCode }?.nativeName ?? "English",
-                    systemImage: "globe")
-                .font(.caption)
-            }
-            .accessibilityIdentifier("todayLanguagePicker")
           }
+          .accessibilityIdentifier("todayDayHeading")
         }
         if let feast = todayFeast {
           HStack(alignment: .firstTextBaseline, spacing: 8) {
@@ -374,11 +496,30 @@ struct HomeView: View {
             }
           }
         }
+        if let portion = todayTorahPortion {
+          HStack(alignment: .firstTextBaseline, spacing: 8) {
+            Image(systemName: "book").foregroundStyle(Color.brandPrimary)
+            VStack(alignment: .leading, spacing: 3) {
+              Text(portion.isHoliday
+                ? String(localized: "home.today.festivalTorahReading", defaultValue: "Festival Torah reading")
+                : String(localized: "home.today.torahPortion", defaultValue: "Weekly Torah portion"))
+                .font(.subheadline.weight(.semibold))
+              Text(portion.localizedTitle(todayLanguageCode))
+                .font(.subheadline)
+              ForEach(Array(portion.readings.enumerated()), id: \.offset) { _, reading in
+                Text(reading.localizedFull(todayLanguageCode))
+                  .font(.caption).foregroundStyle(.secondary)
+              }
+            }
+          }
+          .accessibilityIdentifier("todayTorahPortion")
+        }
       }
       .environment(\.layoutDirection, UILanguage.isRightToLeft(todayLanguageCode) ? .rightToLeft : .leftToRight)
       .frame(maxWidth: .infinity, alignment: .leading)
       .padding(14)
       .background(.quaternary.opacity(0.5), in: RoundedRectangle(cornerRadius: 14))
+      .accessibilityElement(children: .contain)
       .accessibilityIdentifier("todaySection")
     }
   }
@@ -436,10 +577,18 @@ struct HomeView: View {
     // Unpinning is not deletion: the presets underneath stay exactly where they are, which is
     // the whole reason pinning is stored separately from them.
     Button {
-      FavoriteDevotions.toggle(row.id, defaultingTo: impliedPinnedIds)
+      if let prayerId = BasicPrayerFavorites.prayerID(homeRowID: row.id) {
+        BasicPrayerFavorites.toggle(prayerId)
+      } else {
+        FavoriteDevotions.toggle(row.id, defaultingTo: impliedPinnedIds)
+      }
       orderGeneration += 1
     } label: {
-      Label(String(localized: "home.unpin", defaultValue: "Remove from Pray"), systemImage: "star.slash")
+      if BasicPrayerFavorites.prayerID(homeRowID: row.id) != nil {
+        Label(String(localized: "basicPrayers.unpin", defaultValue: "Unpin from home"), systemImage: "pin.slash")
+      } else {
+        Label(String(localized: "home.unpin", defaultValue: "Remove from Pray"), systemImage: "star.slash")
+      }
     }
   }
 
@@ -516,12 +665,21 @@ struct HomeView: View {
 
   private func load() async {
     todayMysteryGroup = services.calendar.mysteryGroupToday()
-    todayFeast = showsTodayFeast ? TodayInfoStore.feast() : nil
-    monthIntention = showsTodayIntention ? TodayInfoStore.intention() : nil
-    liturgicalDayInfo = TodayInfoStore.liturgicalDayInfo()
-    todayReadings = TodayInfoStore.readings()
+    loadToday()
     prayers = (try? await services.presetStore.all()) ?? []
-    HomeOrder.dropOrderIfUnrelated(to: allDevotions.map(\.id))
+    HomeOrder.dropOrderIfUnrelated(to: allDevotions.map(\.id) + BasicPrayerCatalog.all.map { BasicPrayerFavorites.homeRowID($0.id) })
+  }
+
+  private func loadToday() {
+    let defaults = UserDefaults.standard
+    todayFeast = (defaults.object(forKey: "showTodayFeast") as? Bool ?? true)
+      ? TodayInfoStore.feast(on: selectedDate) : nil
+    monthIntention = (defaults.object(forKey: "showTodayIntention") as? Bool ?? true)
+      ? TodayInfoStore.intention(for: selectedDate) : nil
+    liturgicalDayInfo = TodayInfoStore.displayDayInfo(on: selectedDate)
+    todayReadings = TodayInfoStore.readings(on: selectedDate)
+    todayTorahPortion = defaults.bool(forKey: "showTodayTorahPortion")
+      ? TodayInfoStore.torahPortion(on: selectedDate) : nil
   }
 
   private func prayJesusPrayer() {
@@ -620,6 +778,7 @@ private struct HomeOrderEditor: View {
 private struct DevotionRow: Identifiable {
   let id: String
   let title: String
+  var translatedTitle: String? = nil
   let systemImage: String
   let iconGlyph: String?
   let accent: Color

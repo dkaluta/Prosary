@@ -32,10 +32,10 @@ public static class LanguageCatalog
         new("la", "Latina", false),
         new("en", "English", false),
         new("ar", "العربية", true),
-        new("he", "עברית — נוסח הנציגות", true),
-        new("he-x-gamliel", "עברית — נוסח השליחות", true),
+        new("he", "עברית", true),
+        new("he-x-gamliel", "עברית", true),
         // Aramaic in Hebrew script — the Aramaic-rite communities' liturgical language.
-        new("arc", "ארמית", true),
+        new("arc", "ܐܪܡܐܝܬ / ארמית", true),
         // Greek: the language a great deal of the app's own Scripture and prayer was first
         // written in — the Creed, the Sub Tuum, the Jesus Prayer.
         new("el", "Ἑλληνικά", false),
@@ -46,15 +46,28 @@ public static class LanguageCatalog
         new("it", "Italiano", false),
     ];
 
-    /// <summary>Picker choices for a bundle's declared languages. The Mission is a sparse
-    /// overlay rather than a manifest language of its own, so every bundle offering Hebrew
-    /// exposes both sourced Hebrew uses as adjacent, independent choices.</summary>
+    public static readonly IReadOnlyList<LanguageOption> PickerOptions =
+        All.Where(language => language.Code != "he-x-gamliel").ToList();
+
+    public static string PickerLanguageCode(string raw) => raw == "he-x-gamliel" ? "he" : raw;
+
+    public static string SelectingLanguage(string next, string current) =>
+        next == "he" && PickerLanguageCode(current) == "he" ? current : next;
+
+    public static IReadOnlyList<string> PublicFallbackOrder =>
+        FallbackOrder.Select(PickerLanguageCode).Distinct().ToList();
+
+    public static IReadOnlyList<string> ExpandFallbackOrder(IEnumerable<string> publicOrder) =>
+        publicOrder.SelectMany(code => code == "he"
+            ? FallbackOrder.Where(raw => PickerLanguageCode(raw) == "he")
+            : [code]).Distinct().ToList();
+
+    /// <summary>One Hebrew language choice; the separately selected tradition keeps its
+    /// historical raw content code, including for existing bundles and favorites.</summary>
     public static IReadOnlyList<LanguageOption> AvailableOptions(IEnumerable<string> declaredCodes)
     {
-        var available = declaredCodes
-            .SelectMany(code => code == "he" ? new[] { "he", "he-x-gamliel" } : new[] { code })
-            .ToHashSet();
-        return All.Where(language => available.Contains(language.Code)).ToList();
+        var available = declaredCodes.Select(PickerLanguageCode).ToHashSet();
+        return PickerOptions.Where(language => available.Contains(language.Code)).ToList();
     }
 
     public static IReadOnlyList<string> FallbackOrder
@@ -90,17 +103,16 @@ public static class LanguageCatalog
         return result;
     }
 
-    /// <summary>Legacy grouping metadata for the two Hebrew community uses. Pickers expose them
-    /// beside one another as independent prayer languages; the relationship remains useful when
-    /// resolving older stored codes and documenting the base-language fallback.</summary>
-    public static readonly IReadOnlyDictionary<string, IReadOnlyList<LanguageOption>> RitesByLanguage =
+    /// <summary>The Hebrew prayer traditions appear separately from the single language choice.
+    /// Their historical content codes remain unchanged for stored choices and fallback.</summary>
+    public static IReadOnlyDictionary<string, IReadOnlyList<LanguageOption>> RitesByLanguage =>
         new Dictionary<string, IReadOnlyList<LanguageOption>>
         {
             ["he"] =
             [
-                new("he", "נוסח הנציגות", true),
+                new("he", Localization.Loc.Tr("prayer_tradition_vicariate", "Saint James Vicariate"), true),
                 // The Mission of St. Gamaliel's wording, sent by Erez 2026-08-05.
-                new("he-x-gamliel", "נוסח השליחות", true),
+                new("he-x-gamliel", Localization.Loc.Tr("prayer_tradition_mission", "Mission of St. Gamaliel"), true),
             ],
         };
 

@@ -19,6 +19,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.CalendarMonth
@@ -27,6 +28,9 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.VolunteerActivism
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDialog
+import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.material3.Icon
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -39,6 +43,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.Lifecycle
@@ -55,8 +60,6 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -67,7 +70,9 @@ import com.dkaluta.prosary.content.prayerpack.CustomDevotionInfo
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.content.today.TodayInfoStore
 import com.dkaluta.prosary.content.today.TodayTranslationLanguage
+import com.dkaluta.prosary.content.today.TodayDateSelection
 import com.dkaluta.prosary.models.AppSettings
+import com.dkaluta.prosary.models.BasicPrayerCatalog
 import com.dkaluta.prosary.models.FavoriteDevotions
 import com.dkaluta.prosary.models.HomeOrder
 import com.dkaluta.prosary.models.LanguageCatalog
@@ -75,6 +80,12 @@ import com.dkaluta.prosary.models.MultiDayStatus
 import com.dkaluta.prosary.models.MysteryGroup
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
+import com.dkaluta.prosary.models.PrayerCardTitle
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
+import java.util.Locale
+import kotlinx.coroutines.delay
 import com.dkaluta.prosary.services.LocalAppServices
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -108,6 +119,8 @@ private data class DevotionCard(
     val subtitle: String,
     val testTag: String,
     val onClick: () -> Unit,
+    val basicPrayerId: String? = null,
+    val interfaceTitle: String? = null,
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -122,26 +135,51 @@ fun HomeScreen(
     onOpenJesusPrayerSetup: () -> Unit,
     onOpenCustomDevotion: (String) -> Unit,
     onOpenBasicPrayers: () -> Unit,
+    onOpenBasicPrayer: (String) -> Unit,
 ) {
     val services = LocalAppServices.current
     val isDarkTheme = isSystemInDarkTheme()
 
+    // A null selection follows the current day, including midnight and returning to the app.
+    // An explicit date stays where the reader put it until Today is tapped.
+    var currentDate by remember { mutableStateOf(LocalDate.now()) }
+    var selectedEpochDay by rememberSaveable { mutableStateOf<Long?>(null) }
+    val selectedDate = (selectedEpochDay?.let(LocalDate::ofEpochDay) ?: currentDate)
+        .coerceIn(TodayDateSelection.earliest, TodayDateSelection.latest)
+    // Rebuild the instant in the current zone on resume; an explicitly selected civil date
+    // must stay that date even after the device changes time zone.
+    val lookupDate = TodayDateSelection.lookupDate(selectedDate)
+    var showsDatePicker by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) {
+        while (true) {
+            currentDate = LocalDate.now()
+            delay(30_000)
+        }
+    }
+
     // Keyed on the Settings choices so returning from Settings re-resolves under the new
     // calendar (or drops a row its toggle switched off).
-    val todayFeast = remember(AppSettings.feastCalendarId, AppSettings.showTodayFeast) {
-        if (AppSettings.showTodayFeast) TodayInfoStore.feast() else null
+    val todayFeast = remember(lookupDate, AppSettings.feastCalendarId, AppSettings.easternPaschaStyle, AppSettings.showTodayFeast) {
+        if (AppSettings.showTodayFeast) TodayInfoStore.feast(lookupDate) else null
     }
-    val monthIntention = remember(AppSettings.showTodayIntention) {
-        if (AppSettings.showTodayIntention) TodayInfoStore.intention() else null
+    val monthIntention = remember(lookupDate, AppSettings.showTodayIntention) {
+        if (AppSettings.showTodayIntention) TodayInfoStore.intention(lookupDate) else null
     }
-    val liturgicalDayInfo = remember { TodayInfoStore.liturgicalDayInfo() }
-    val todayReadings = remember(AppSettings.feastCalendarId) { TodayInfoStore.readings() }
+    val liturgicalDayInfo = remember(lookupDate, AppSettings.feastCalendarId) {
+        if (TodayInfoStore.shouldShowLiturgicalDay(lookupDate)) TodayInfoStore.liturgicalDayInfo(lookupDate) else null
+    }
+    val todayReadings = remember(lookupDate, AppSettings.feastCalendarId, AppSettings.easternPaschaStyle) { TodayInfoStore.readings(lookupDate) }
+    val torahPortion = remember(lookupDate, AppSettings.showTodayTorahPortion) {
+        if (AppSettings.showTodayTorahPortion) TodayInfoStore.torahPortion(lookupDate) else null
+    }
     val defaultLanguageCode = AppSettings.defaultLanguageCode
     val context = LocalContext.current
     val appLanguage = LocalConfiguration.current.locales[0].toLanguageTag()
-    val todayLanguage = TodayTranslationLanguage.resolve(AppSettings.todayLanguageCode, appLanguage)
+    val todayLanguage = TodayTranslationLanguage.resolve(appLanguage)
     val todayContext = remember(context, todayLanguage) { TodayTranslationLanguage.localizedContext(context, todayLanguage) }
-    var todayLanguageMenuExpanded by remember { mutableStateOf(false) }
+    val dateLabel = remember(selectedDate, appLanguage) {
+        selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).withLocale(Locale.forLanguageTag(appLanguage)))
+    }
     var showsFullCitations by remember { mutableStateOf(false) }
     val todayReadingsTitle = todayContext.getString(R.string.home_today_readings)
     val citationButtonText = todayContext.getString(if (showsFullCitations) R.string.home_today_compact_citations else R.string.home_today_full_citations)
@@ -158,7 +196,10 @@ fun HomeScreen(
     val lifecycleOwner = LocalLifecycleOwner.current
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
-            if (event == Lifecycle.Event.ON_RESUME) refreshGeneration++
+            if (event == Lifecycle.Event.ON_RESUME) {
+                currentDate = LocalDate.now()
+                refreshGeneration++
+            }
         }
         lifecycleOwner.lifecycle.addObserver(observer)
         onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
@@ -211,7 +252,8 @@ fun HomeScreen(
                 id = PrayerKind.Rosary.name,
                 devotionId = "rosary",
                 icon = Icons.Filled.Circle,
-                title = PrayerKind.Rosary.displayName(context),
+                title = PrayerKind.Rosary.cardTitle(context, LanguageCatalog.resolve(defaultRosary?.languageCode).code).primary,
+                interfaceTitle = PrayerKind.Rosary.cardTitle(context, LanguageCatalog.resolve(defaultRosary?.languageCode).code).interfaceSubtitle,
                 accentColor = rosaryAccent,
                 subtitle = rosarySubtitle,
                 testTag = "rosaryCard",
@@ -225,13 +267,15 @@ fun HomeScreen(
 
         for (bundleId in PrayerPackStore.customDevotionIds()) {
             val info = PrayerPackStore.info(bundleId) ?: continue
+            val cardTitle = info.cardTitle(LanguageCatalog.resolve(defaultCustomDevotions[bundleId]?.languageCode).code, appLanguage)
             add(
                 DevotionCard(
                     id = "custom.$bundleId",
                     devotionId = bundleId,
                     icon = iconForSystemName(info.iconSystemName),
                     iconGlyph = info.iconGlyph,
-                    title = info.localizedDisplayName,
+                    title = cardTitle.primary,
+                    interfaceTitle = cardTitle.interfaceSubtitle,
                     accentColor = customAccent(info),
                     subtitle = MultiDayStatus.subtitle(context, bundleId)
                         ?: defaultCustomDevotions[bundleId]?.name
@@ -250,7 +294,8 @@ fun HomeScreen(
                 id = PrayerKind.JesusPrayer.name,
                 devotionId = "jesusPrayer",
                 icon = Icons.Filled.Favorite,
-                title = PrayerKind.JesusPrayer.displayName(context),
+                title = PrayerKind.JesusPrayer.cardTitle(context, LanguageCatalog.resolve(defaultJesusPrayer?.languageCode).code).primary,
+                interfaceTitle = PrayerKind.JesusPrayer.cardTitle(context, LanguageCatalog.resolve(defaultJesusPrayer?.languageCode).code).interfaceSubtitle,
                 accentColor = jesusPrayerAccent,
                 subtitle = jesusPrayerSubtitle,
                 testTag = "jesusPrayerCard",
@@ -271,8 +316,22 @@ fun HomeScreen(
         addAll(defaultCustomDevotions.keys)
         if (defaultJesusPrayer != null) add("jesusPrayer")
     }
-    val pinnedCards = remember(devotionCards, pinGeneration, impliedPinned) {
-        devotionCards.filter { FavoriteDevotions.contains(context, it.devotionId, impliedPinned) }
+    val pinnedBasicCards = BasicPrayerCatalog.all.filter { it.id in AppSettings.favoriteBasicPrayerIds }.map { prayer ->
+        val cardTitle = PrayerCardTitle.resolve(
+            BasicPrayerCatalog.title(prayer, todayLanguage),
+            BasicPrayerCatalog.title(prayer, LanguageCatalog.resolve(AppSettings.basicPrayersLanguageCode).code),
+        )
+        DevotionCard(
+            id = "basic:${prayer.id}", devotionId = "basic:${prayer.id}",
+            icon = Icons.AutoMirrored.Filled.MenuBook,
+            title = cardTitle.primary, interfaceTitle = cardTitle.interfaceSubtitle,
+            accentColor = fallbackAccent, subtitle = stringResource(R.string.basic_prayers_title),
+            testTag = "basicPrayerCard:${prayer.id}", onClick = { onOpenBasicPrayer(prayer.id) },
+            basicPrayerId = prayer.id,
+        )
+    }
+    val pinnedCards = remember(devotionCards, pinnedBasicCards, pinGeneration, impliedPinned) {
+        devotionCards.filter { FavoriteDevotions.contains(context, it.devotionId, impliedPinned) } + pinnedBasicCards
     }
     val unpinnedCards = devotionCards.filter { card -> pinnedCards.none { it.id == card.id } }
 
@@ -297,6 +356,39 @@ fun HomeScreen(
     // invisible and scrolled content clips at a dead band around the floating title.
 
     val topBarScroll = TopAppBarDefaults.pinnedScrollBehavior()
+
+    if (showsDatePicker) {
+        val datePickerState = rememberDatePickerState(
+            initialSelectedDateMillis = TodayDateSelection.pickerMillis(selectedDate),
+            yearRange = TodayDateSelection.earliest.year..TodayDateSelection.latest.year,
+        )
+        DatePickerDialog(
+            onDismissRequest = { showsDatePicker = false },
+            confirmButton = {
+                TextButton(
+                    enabled = datePickerState.selectedDateMillis != null,
+                    onClick = {
+                        datePickerState.selectedDateMillis?.let {
+                            selectedEpochDay = TodayDateSelection.fromPickerMillis(it).toEpochDay()
+                        }
+                        showsDatePicker = false
+                    },
+                ) { Text(stringResource(R.string.common_ok)) }
+            },
+            dismissButton = { TextButton(onClick = { showsDatePicker = false }) { Text(stringResource(R.string.common_cancel)) } },
+        ) {
+            DatePicker(
+                state = datePickerState,
+                modifier = Modifier.testTag("todayDatePicker"),
+                title = {
+                    TextButton(
+                        onClick = { currentDate = LocalDate.now(); selectedEpochDay = null; showsDatePicker = false },
+                        modifier = Modifier.padding(horizontal = 12.dp).testTag("todayReset"),
+                    ) { Text(stringResource(R.string.home_today_reset)) }
+                },
+            )
+        }
+    }
 
     Scaffold(
 
@@ -368,9 +460,31 @@ fun HomeScreen(
                 .padding(paddingValues)
                 .fillMaxSize(),
         ) {
+            item(key = "todayNavigation", span = { GridItemSpan(maxLineSpan) }) {
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                    IconButton(
+                        onClick = { selectedEpochDay = selectedDate.minusDays(1).toEpochDay() },
+                        enabled = selectedDate > TodayDateSelection.earliest,
+                        modifier = Modifier.testTag("todayYesterday"),
+                    ) {
+                        Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = stringResource(R.string.home_today_yesterday))
+                    }
+                    TextButton(onClick = { showsDatePicker = true }, modifier = Modifier.weight(1f).testTag("todayChooseDate")) {
+                        Text(dateLabel, textAlign = TextAlign.Center)
+                    }
+                    IconButton(
+                        onClick = { selectedEpochDay = selectedDate.plusDays(1).toEpochDay() },
+                        enabled = selectedDate < TodayDateSelection.latest,
+                        modifier = Modifier.testTag("todayTomorrow"),
+                    ) {
+                        Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = stringResource(R.string.home_today_tomorrow))
+                    }
+                }
+            }
             // "Today" — the day's feast per the Holy Land (Latin Patriarchate of Jerusalem)
             // calendar and the Pope's monthly prayer intention. Rows hide when the bundled
             // datasets have no entry (ferial days; dates past the generated years).
+            if (liturgicalDayInfo != null || todayFeast != null || monthIntention != null || todayReadings.isNotEmpty() || torahPortion != null)
             item(key = "today", span = { GridItemSpan(maxLineSpan) }) {
                 CompositionLocalProvider(
                     LocalLayoutDirection provides if (TodayTranslationLanguage.isRightToLeft(todayLanguage)) LayoutDirection.Rtl else LayoutDirection.Ltr,
@@ -383,7 +497,7 @@ fun HomeScreen(
                             .background(MaterialTheme.colorScheme.surfaceContainerHigh)
                             .padding(14.dp),
                     ) {
-                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        if (liturgicalDayInfo != null) Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.testTag("todayLiturgicalDay")) {
                             Icon(Icons.Filled.CalendarMonth, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
                             Text(
                                 liturgicalDayInfo.localized(todayLanguage),
@@ -391,28 +505,7 @@ fun HomeScreen(
                                 fontWeight = FontWeight.SemiBold,
                                 modifier = Modifier.weight(1f),
                             )
-                            Box {
-                                TextButton(
-                                    onClick = { todayLanguageMenuExpanded = true },
-                                    modifier = Modifier.testTag("todayLanguagePicker").semantics {
-                                        contentDescription = todayContext.getString(R.string.home_today_language)
-                                    },
-                                ) {
-                                    Text(if (todayLanguage == "he") "עברית" else LanguageCatalog.resolve(todayLanguage).nativeName)
-                                }
-                                DropdownMenu(expanded = todayLanguageMenuExpanded, onDismissRequest = { todayLanguageMenuExpanded = false }) {
-                                    DropdownMenuItem(
-                                        text = { Text(todayContext.getString(R.string.home_today_app_language)) },
-                                        onClick = { AppSettings.setTodayLanguageCode(""); todayLanguageMenuExpanded = false },
-                                    )
-                                    TodayTranslationLanguage.supportedCodes.forEach { code ->
-                                        DropdownMenuItem(
-                                            text = { Text(if (code == "he") "עברית" else LanguageCatalog.resolve(code).nativeName) },
-                                            onClick = { AppSettings.setTodayLanguageCode(code); todayLanguageMenuExpanded = false },
-                                        )
-                                    }
-                                }
-                            }
+
                         }
                         if (todayFeast != null) {
                             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -484,6 +577,22 @@ fun HomeScreen(
                                 }
                             }
                         }
+                        if (torahPortion != null) {
+                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.testTag("todayTorahPortion")) {
+                                Icon(Icons.AutoMirrored.Filled.MenuBook, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                                Column(verticalArrangement = Arrangement.spacedBy(2.dp), modifier = Modifier.weight(1f)) {
+                                    Text(
+                                        todayContext.getString(if (torahPortion.isHoliday) R.string.home_today_torah_festival else R.string.home_today_torah),
+                                        style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold,
+                                    )
+                                    Text(torahPortion.localizedTitle(todayLanguage), style = MaterialTheme.typography.bodyMedium)
+                                    torahPortion.readings.forEach { citation ->
+                                        Text(citation.localizedFull(todayLanguage), style = MaterialTheme.typography.bodySmall,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -496,6 +605,7 @@ fun HomeScreen(
                         iconGlyph = card.iconGlyph,
                         title = card.title,
                         subtitle = card.subtitle,
+                        interfaceTitle = card.interfaceTitle,
                         accentColor = card.accentColor,
                         onClick = card.onClick,
                         onLongClick = { cardMenu = true },
@@ -521,7 +631,8 @@ fun HomeScreen(
                             text = { Text(stringResource(R.string.home_remove_from_pray)) },
                             onClick = {
                                 cardMenu = false
-                                FavoriteDevotions.toggle(context, card.devotionId, impliedPinned)
+                                if (card.basicPrayerId != null) AppSettings.toggleFavoriteBasicPrayer(card.basicPrayerId)
+                                else FavoriteDevotions.toggle(context, card.devotionId, impliedPinned)
                                 pinGeneration++
                             },
                         )

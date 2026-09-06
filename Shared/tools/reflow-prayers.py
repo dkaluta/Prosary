@@ -76,12 +76,19 @@ LANGUAGE_FILES = {
 # other languages' fixed prayers. Keep those repetitions on the same lines as the native tables.
 ROSARY_CONTENT = ROOT / "Shared/content/rosary/content"
 
-# The Mission's Lord's Prayer adds a doxology, so it has one honest extra sense-line. All other
-# configured prayers follow the Vicariate Hebrew line count exactly.
+# The Mission's Lord's Prayer adds a doxology, so it has one honest extra sense-line.
+# Erez's shorter Aramaic Glory Be has two sense-lines: the Trinitarian invocation and the
+# complete "from eternity ... forever" response. Do not split that response to force the
+# Vicariate Hebrew line count onto a different wording.
 LINE_COUNT_EXCEPTIONS = {
+    # Smelova's published medieval Melkite text has seven source lines in both scripts.
+    ("arc", "subTuumPraesidium"): 7,
+    ("arc-Syrc", "subTuumPraesidium"): 7,
     ("he-x-gamliel", "paterNoster"): 9,
     ("arc", "paterNoster"): 9,
     ("arc-Syrc", "paterNoster"): 9,
+    ("arc", "gloriaPatri"): 2,
+    ("arc-Syrc", "gloriaPatri"): 2,
 }
 
 errors: list[str] = []

@@ -8,6 +8,7 @@ namespace Prosary.Views;
 
 public sealed partial class HomePage : Page
 {
+    private bool _updatingTodayCalendar;
     public HomeViewModel ViewModel { get; }
 
     public HomePage()
@@ -22,18 +23,32 @@ public sealed partial class HomePage : Page
         await ViewModel.LoadAsync();
     }
 
-    private void OnTodayLanguageMenuOpening(object sender, object e)
+    private void OnTodayDateFlyoutOpened(object sender, object e)
     {
-        if (sender is not MenuFlyout menu) return;
-        menu.Items.Clear();
-        var choices = new[] { (Code: string.Empty, Name: Loc.Tr("today_language_app", "App language")) }
-            .Concat(UiLanguageCatalog.All.Select(language => (Code: language.Code, Name: language.NativeName)));
-        foreach (var (code, name) in choices)
+        _updatingTodayCalendar = true;
+        try
         {
-            var item = new ToggleMenuFlyoutItem { Text = name, IsChecked = ViewModel.TodayLanguageCode == code };
-            item.Click += (_, _) => ViewModel.TodayLanguageCode = code;
-            menu.Items.Add(item);
+            var selected = new DateTimeOffset(ViewModel.SelectedDate.ToDateTime(TimeOnly.MinValue));
+            TodayCalendar.SelectedDates.Clear();
+            TodayCalendar.SelectedDates.Add(selected);
+            TodayCalendar.SetDisplayDate(selected);
         }
+        finally { _updatingTodayCalendar = false; }
+    }
+
+    private void OnTodayCalendarDateChanged(CalendarView sender, CalendarViewSelectedDatesChangedEventArgs args)
+    {
+        if (_updatingTodayCalendar) return;
+        if (args.AddedDates.Count > 0) ViewModel.SelectedTodayDate = args.AddedDates[0];
+        // Clicking the already selected day also accepts it; every popup opens with a
+        // fresh selection so CalendarView's native deselection cannot leave a blank date.
+        TodayDateFlyout.Hide();
+    }
+
+    private void OnSelectToday(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        ViewModel.SelectTodayCommand.Execute(null);
+        TodayDateFlyout.Hide();
     }
 
     /// <summary>The approved reorder pattern (not jiggle): a ListView with built-in

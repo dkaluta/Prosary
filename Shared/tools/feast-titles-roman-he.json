@@ -1,0 +1,354 @@
+{
+  "$comment": "Hebrew calendar display metadata for remaining modern Roman identities. Names listed in sourceByTitle are relayed from the Saint James Vicariate's bilingual 2025-2026 calendar; rank prefixes are omitted and weekday abbreviations are expanded, while Advent numbering follows the destination General Roman calendar, not the Vicariate's extended Great Advent. Other names are Prosary editorial proper-name transliterations of the unchanged LitCal English identities and established Hebrew descriptors (כהן, הגמון, דוקטור הכנסייה, מרטיר, etc.). They are not claimed as attested Hebrew church wording or an official translation. No liturgical prayer text is translated. Dates, ranks, original titles and calendar precedence remain unchanged.",
+  "sourceCorrections": {
+    "Saint Jerome Emiliani, Priest": {
+      "note": "The upstream English identity remains an exact lookup key, but the editorial Hebrew display name omits its mistaken priest descriptor. Jerome Emiliani was a lay founder.",
+      "source": "https://www.vatican.va/content/benedict-xvi/en/messages/pont-messages/2011/documents/hf_ben-xvi_mes_20110720_moscone.html"
+    }
+  },
+  "sourceByTitle": {
+    "Blessed Virgin Mary, Mother of the Church": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "Dedication of the Basilica of the Holy Sepulchre": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "First Sunday of Advent": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "Fourth Sunday of Advent": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "Friday of the Octave of Easter": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "Monday of Holy Week": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "Monday of the Octave of Easter": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "Our Lady of Fatima": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "Our Lady of Guadalupe": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "Our Lady of Lourdes": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "Our Lady of Mount Carmel": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "Our Lady, Queen of Palestine and of the Holy Land": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "Saturday of the Octave of Easter": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "Second Sunday of Advent": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "The Dedication of the Basilicas of Saints Peter and Paul, Apostles": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "The Most Holy Name of Jesus": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "The Queenship of the Blessed Virgin Mary": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "Third Sunday of Advent (Gaudete)": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "Thursday of the Octave of Easter": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "Tuesday of Holy Week": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "Tuesday of the Octave of Easter": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "Wednesday of Holy Week": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf",
+    "Wednesday of the Octave of Easter": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf"
+  },
+  "titles": {
+    "31st Sunday of Ordinary Time": {
+      "he": "יום ראשון ה־31 של הזמן הרגיל"
+    },
+    "9th Sunday of Ordinary Time": {
+      "he": "יום ראשון ה־9 של הזמן הרגיל"
+    },
+    "Blessed Virgin Mary of Loreto": {
+      "he": "מרים הבתולה המבורכת מלורטו"
+    },
+    "Blessed Virgin Mary, Mother of the Church": {
+      "he": "מרים אם הכנסייה"
+    },
+    "Dedication of the Basilica of the Holy Sepulchre": {
+      "he": "חנוכת כנסיית התחייה"
+    },
+    "First Sunday of Advent": {
+      "he": "יום ראשון הראשון של הצפייה"
+    },
+    "Fourth Sunday of Advent": {
+      "he": "יום ראשון הרביעי של הצפייה"
+    },
+    "Friday of the Octave of Easter": {
+      "he": "יום שישי בשמינייה של פסחא"
+    },
+    "Monday of Holy Week": {
+      "he": "יום שני בשבוע הגדול"
+    },
+    "Monday of the Octave of Easter": {
+      "he": "יום שני בשמינייה של פסחא"
+    },
+    "Our Lady of Fatima": {
+      "he": "גברתנו מפטימה"
+    },
+    "Our Lady of Guadalupe": {
+      "he": "גברתנו מגוודלופה"
+    },
+    "Our Lady of Lourdes": {
+      "he": "מרים, גברתנו מלורד"
+    },
+    "Our Lady of Mount Carmel": {
+      "he": "מרים מהר כרמל"
+    },
+    "Our Lady of the Rosary": {
+      "he": "מרים של המחרוזת"
+    },
+    "Our Lady, Queen of Palestine and of the Holy Land": {
+      "he": "מרים הקדושה, מלכת הארץ"
+    },
+    "Saint Aloysius Gonzaga, Religious": {
+      "he": "אלויסיוס גונזגה, נזיר"
+    },
+    "Saint Ambrose, Bishop and Doctor of the Church": {
+      "he": "אמברוסיוס, הגמון ודוקטור הכנסייה"
+    },
+    "Saint Andrew Kim Tae-gŏn, Priest, and Paul Chŏng Ha-sang, and Companions, Martyrs": {
+      "he": "אנדרו קים טה־גון, כהן, ופאול צ'ונג הא־סאנג וחבריהם, מרטירים"
+    },
+    "Saint Andrew, Apostle": {
+      "he": "אנדראס, שליח"
+    },
+    "Saint Angela Merici, Virgin": {
+      "he": "אנג'לה מריצ'י, בתולה"
+    },
+    "Saint Anselm, Bishop and Doctor of the Church": {
+      "he": "אנסלם, הגמון ודוקטור הכנסייה"
+    },
+    "Saint Anthony Mary Claret, Bishop": {
+      "he": "אנטוני מרי קלארט, הגמון"
+    },
+    "Saint Anthony Zaccaria, Priest": {
+      "he": "אנטוני זקריה, כהן"
+    },
+    "Saint Apollinaris, Bishop and Martyr": {
+      "he": "אפולינריס, הגמון ומרטיר"
+    },
+    "Saint Athanasius, Bishop and Doctor of the Church": {
+      "he": "אתנסיוס, הגמון ודוקטור הכנסייה"
+    },
+    "Saint Augustine Zhao Rong, Priest, and Companions, Martyrs": {
+      "he": "אוגוסטינוס ג'או רונג, כהן, וחבריו, מרטירים"
+    },
+    "Saint Augustine of Canterbury, Bishop": {
+      "he": "אוגוסטינוס מקנטרברי, הגמון"
+    },
+    "Saint Bede the Venerable, Priest and Doctor of the Church": {
+      "he": "בדה הנכבד, כהן ודוקטור הכנסייה"
+    },
+    "Saint Bernardine of Siena, Priest": {
+      "he": "ברנרדינו מסיינה, כהן"
+    },
+    "Saint Blase, Bishop and Martyr": {
+      "he": "בלסיוס, הגמון ומרטיר"
+    },
+    "Saint Bridget, Religious": {
+      "he": "בריגיטה, נזירה"
+    },
+    "Saint Bruno, Priest": {
+      "he": "ברונו, כהן"
+    },
+    "Saint Callistus I, Pope and Martyr": {
+      "he": "קליקסטוס הראשון, אפיפיור ומרטיר"
+    },
+    "Saint Camillus de Lellis, Priest": {
+      "he": "קמילו דה לליס, כהן"
+    },
+    "Saint Christopher Magallanes, Priest, and Companions, Martyrs": {
+      "he": "כריסטובל מגליאנס, כהן, וחבריו, מרטירים"
+    },
+    "Saint Clement I, Pope and Martyr": {
+      "he": "קלמנס הראשון, אפיפיור ומרטיר"
+    },
+    "Saint Damasus I, Pope": {
+      "he": "דמסוס הראשון, אפיפיור"
+    },
+    "Saint Denis, Bishop, and Companions, Martyrs": {
+      "he": "דני, הגמון, וחבריו, מרטירים"
+    },
+    "Saint Elizabeth of Portugal": {
+      "he": "אליזבט מפורטוגל"
+    },
+    "Saint Eusebius of Vercelli, Bishop": {
+      "he": "אוסביוס מוורצ'לי, הגמון"
+    },
+    "Saint Fabian, Pope and Martyr": {
+      "he": "פביאנוס, אפיפיור ומרטיר"
+    },
+    "Saint Fidelis of Sigmaringen, Priest and Martyr": {
+      "he": "פידליס מזיגמרינגן, כהן ומרטיר"
+    },
+    "Saint Gregory of Narek, Abbot and Doctor of the Church": {
+      "he": "גרגוריוס מנארק, אב מנזר ודוקטור הכנסייה"
+    },
+    "Saint Hedwig, Religious": {
+      "he": "הדוויג, נזירה"
+    },
+    "Saint Henry": {
+      "he": "היינריך"
+    },
+    "Saint Hilary, Bishop and Doctor of the Church": {
+      "he": "הילריוס, הגמון ודוקטור הכנסייה"
+    },
+    "Saint Ignatius of Antioch, Bishop and Martyr": {
+      "he": "איגנטיוס מאנטיוכיה, הגמון ומרטיר"
+    },
+    "Saint Irenaeus, Bishop and Martyr and Doctor of the Church": {
+      "he": "אירנאוס, הגמון, מרטיר ודוקטור הכנסייה"
+    },
+    "Saint Jane Frances de Chantal, Religious": {
+      "he": "ז'אן פרנסואז דה שנטל, נזירה"
+    },
+    "Saint Januarius, Bishop and Martyr": {
+      "he": "ינואריוס, הגמון ומרטיר"
+    },
+    "Saint Jerome Emiliani, Priest": {
+      "he": "הירונימוס אמיליאני"
+    },
+    "Saint John Baptist de la Salle, Priest": {
+      "he": "יוחנן בטיסט דה לה סאל, כהן"
+    },
+    "Saint John Eudes, Priest": {
+      "he": "יוחנן אוד, כהן"
+    },
+    "Saint John I, Pope and Martyr": {
+      "he": "יוחנן הראשון, אפיפיור ומרטיר"
+    },
+    "Saint John XXIII, Pope": {
+      "he": "יוחנן העשרים ושלושה, אפיפיור"
+    },
+    "Saint John of Avila, Priest and Doctor of the Church": {
+      "he": "יוחנן מאווילה, כהן ודוקטור הכנסייה"
+    },
+    "Saint John of Capestrano, Priest": {
+      "he": "יוחנן מקפיסטרנו, כהן"
+    },
+    "Saint Juan Diego Cuauhtlatoatzin": {
+      "he": "חואן דייגו קואוטלטואצין"
+    },
+    "Saint Lawrence of Brindisi, Priest and Doctor of the Church": {
+      "he": "לאורנטיוס מברינדיזי, כהן ודוקטור הכנסייה"
+    },
+    "Saint Louis": {
+      "he": "לואי"
+    },
+    "Saint Luke, Evangelist": {
+      "he": "לוקס, מבשר"
+    },
+    "Saint Margaret of Scotland": {
+      "he": "מרגרט מסקוטלנד"
+    },
+    "Saint Maria Goretti, Virgin and Martyr": {
+      "he": "מריה גורטי, בתולה ומרטירית"
+    },
+    "Saint Martin I, Pope and Martyr": {
+      "he": "מרטין הראשון, אפיפיור ומרטיר"
+    },
+    "Saint Norbert, Bishop": {
+      "he": "נורברט, הגמון"
+    },
+    "Saint Paulinus of Nola, Bishop": {
+      "he": "פאולינוס מנולה, הגמון"
+    },
+    "Saint Peter Chanel, Priest and Martyr": {
+      "he": "פטרוס שנל, כהן ומרטיר"
+    },
+    "Saint Peter Claver, Priest": {
+      "he": "פטרוס קלבר, כהן"
+    },
+    "Saint Peter Damian, Bishop and Doctor of the Church": {
+      "he": "פטרוס דמיאני, הגמון ודוקטור הכנסייה"
+    },
+    "Saint Pius V, Pope": {
+      "he": "פיוס החמישי, אפיפיור"
+    },
+    "Saint Raymond of Penyafort, Priest": {
+      "he": "ריימונד מפניאפורט, כהן"
+    },
+    "Saint Robert Bellarmine, Bishop and Doctor of the Church": {
+      "he": "רוברטו בלרמינו, הגמון ודוקטור הכנסייה"
+    },
+    "Saint Romuald, Abbot": {
+      "he": "רומואלד, אב מנזר"
+    },
+    "Saint Rose of Lima, virgin": {
+      "he": "רוזה מלימה, בתולה"
+    },
+    "Saint Sharbel Makhluf, Hermit": {
+      "he": "שרבל מח'לוף, מתבודד"
+    },
+    "Saint Sixtus II, Pope, and Companions, Martyrs": {
+      "he": "סיקסטוס השני, אפיפיור, וחבריו, מרטירים"
+    },
+    "Saint Stephen of Hungary": {
+      "he": "סטפנוס מהונגריה"
+    },
+    "Saint Vincent, Deacon and Martyr": {
+      "he": "וינצנטיוס, דיאקון ומרטיר"
+    },
+    "Saint Wenceslaus, Martyr": {
+      "he": "ונצסלאוס, מרטיר"
+    },
+    "Saints Joachim and Anne, Parents of the Blessed Virgin Mary": {
+      "he": "יהויקים וחנה, הורי מרים הבתולה המבורכת"
+    },
+    "Saints John de Brébeuf and Isaac Jogues, Priests, and Companions, Martyrs": {
+      "he": "יוחנן דה ברבף ויצחק ז'וג, כוהנים, וחבריהם, מרטירים"
+    },
+    "Saints Marcellinus and Peter, Martyrs": {
+      "he": "מרצלינוס ופטרוס, מרטירים"
+    },
+    "Saints Nereus and Achilleus, Martyrs": {
+      "he": "נראוס ואכילאוס, מרטירים"
+    },
+    "Saints Philip and James, Apostles": {
+      "he": "פיליפוס ויעקב, שליחים"
+    },
+    "Saints Pontian, Pope, and Hippolytus, Priest, Martyrs": {
+      "he": "פונטיאנוס, אפיפיור, והיפוליטוס, כהן, מרטירים"
+    },
+    "Saturday Memorial of the Blessed Virgin Mary": {
+      "he": "זיכרון מרים הבתולה המבורכת בשבת"
+    },
+    "Saturday of the Octave of Easter": {
+      "he": "יום שבת בשמינייה של פסחא"
+    },
+    "Second Sunday of Advent": {
+      "he": "יום ראשון השני של הצפייה"
+    },
+    "The Chair of Saint Peter the Apostle": {
+      "he": "כס השליח כיפא"
+    },
+    "The Conversion of Saint Paul the Apostle": {
+      "he": "תשובת שאול השליח"
+    },
+    "The Dedication of the Basilica of Saint Mary Major": {
+      "he": "חנוכת בזיליקת מרים הקדושה הגדולה"
+    },
+    "The Dedication of the Basilicas of Saints Peter and Paul, Apostles": {
+      "he": "חנוכת כנסיית שמעון כיפא ושאול השליחים ברומא"
+    },
+    "The First Martyrs of the Holy Roman Church": {
+      "he": "המרטירים הראשונים של הכנסייה הרומית הקדושה"
+    },
+    "The Holy Innocents, Martyrs": {
+      "he": "העוללים הקדושים, מרטירים"
+    },
+    "The Holy Name of the Blessed Virgin Mary": {
+      "he": "שמה הקדוש של מרים הבתולה המבורכת"
+    },
+    "The Most Holy Name of Jesus": {
+      "he": "שם ישוע"
+    },
+    "The Queenship of the Blessed Virgin Mary": {
+      "he": "מרים מלכת השמיים"
+    },
+    "The Seven Holy Founders of the Servite Order": {
+      "he": "שבעת המייסדים הקדושים של מסדר הסרוויטים"
+    },
+    "Third Sunday of Advent (Gaudete)": {
+      "he": "יום ראשון השלישי של הצפייה (גאודטה)"
+    },
+    "Thursday of the Octave of Easter": {
+      "he": "יום חמישי בשמינייה של פסחא"
+    },
+    "Tuesday of Holy Week": {
+      "he": "יום שלישי בשבוע הגדול"
+    },
+    "Tuesday of the Octave of Easter": {
+      "he": "יום שלישי בשמינייה של פסחא"
+    },
+    "Visitation of the Blessed Virgin Mary": {
+      "he": "ביקור מרים הבתולה המבורכת אצל אלישבע"
+    },
+    "Wednesday of Holy Week": {
+      "he": "יום רביעי בשבוע הגדול"
+    },
+    "Wednesday of the Octave of Easter": {
+      "he": "יום רביעי בשמינייה של פסחא"
+    }
+  }
+}

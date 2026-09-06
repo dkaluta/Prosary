@@ -1,3 +1,4 @@
+using Prosary.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -28,6 +29,8 @@ public sealed partial class CustomDevotionFlowPage : Page
     {
         ViewModel = App.Services.GetRequiredService<CustomDevotionViewModel>();
         InitializeComponent();
+        Loaded += (_, _) => { AppSettings.TypographyChanged += OnTypographyChanged; OnTypographyChanged(); };
+        Unloaded += (_, _) => AppSettings.TypographyChanged -= OnTypographyChanged;
         SizeChanged += OnSizeChanged;
         ActualThemeChanged += OnActualThemeChanged;
     }
@@ -38,7 +41,7 @@ public sealed partial class CustomDevotionFlowPage : Page
         ViewModel.HasDarkTheme = ActualTheme == ElementTheme.Dark;
         if (e.Parameter is CustomDevotionFlowParams p)
         {
-            await ViewModel.LoadAsync(p.PrayerId, p.BundleId);
+            await ViewModel.LoadAsync(p.PrayerId, p.BundleId, p.LanguageCode, p.VariantId);
             if (ViewModel.HasSavedContinuation)
             {
                 await ShowResumeDialogAsync();
@@ -135,31 +138,13 @@ public sealed partial class CustomDevotionFlowPage : Page
 
     // Same MenuFlyout-has-no-ItemsSource pattern as the variant flyout: "App setting" first,
     // then the bundle's languages by native name, checkmark refreshed on every switch.
-    private void BuildLanguageFlyout()
-    {
-        LanguageFlyout.Items.Clear();
-        var choices = new List<(string Raw, string Name)> { (LanguageCatalog.DefaultSentinel, Loc.Tr("flow_app_setting", "App setting")) };
-        choices.AddRange(ViewModel.Languages.Select(l => (l.Code, l.NativeName)));
-        var chosen = ViewModel.CurrentLanguageRaw;
-        foreach (var (raw, name) in choices)
+    private void BuildLanguageFlyout() =>
+        Prosary.Controls.PrayerLanguageMenu.Populate(LanguageFlyout, ViewModel.Languages,
+            ViewModel.CurrentLanguageRaw, async raw =>
         {
-            var isChecked = raw == LanguageCatalog.DefaultSentinel
-                ? chosen == LanguageCatalog.DefaultSentinel
-                : chosen == raw;
-            var item = new ToggleMenuFlyoutItem
-            {
-                Text = name,
-                IsChecked = isChecked,
-            };
-            var picked = raw;
-            item.Click += async (_, _) =>
-            {
-                await ViewModel.SelectLanguageAsync(picked);
-                BuildLanguageFlyout();
-            };
-            LanguageFlyout.Items.Add(item);
-        }
-    }
+            await ViewModel.SelectLanguageAsync(raw);
+            BuildLanguageFlyout();
+        });
 
     private void OnActualThemeChanged(FrameworkElement sender, object args)
         => ViewModel.HasDarkTheme = ActualTheme == ElementTheme.Dark;
@@ -177,4 +162,12 @@ public sealed partial class CustomDevotionFlowPage : Page
     {
         ViewModel.HasRoomForSingleMinorColumn = e.NewSize.Height >= WideMinorColumnHeightThreshold;
     }
+    private void OnTypographyChanged() => ViewModel.RefreshTypography();
+
+    // UI navigation stays independent of the displayed prayer's writing system.
+    public FlowDirection NavigationFlowDirection => UiLanguageCatalog.IsRightToLeft(UiLanguageCatalog.Current)
+        ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+    public string PreviousNavigationGlyph => PrayerNavigation.PreviousGlyph(NavigationFlowDirection == FlowDirection.RightToLeft);
+    public string NextNavigationGlyph => PrayerNavigation.NextGlyph(NavigationFlowDirection == FlowDirection.RightToLeft);
+
 }

@@ -1,0 +1,1525 @@
+{
+  "$comment": "Prosary editorial calendar display metadata for observances specific to the 1962 missal. Proper names are transliterated or given conventional vernacular forms; these are not new prayer texts or official liturgical translations. Exact attested Hebrew names in the credited source catalogs take precedence.",
+  "titles": {
+    "St. Andrew Avellino": {
+      "he": "אנדראס אוולינו הקדוש",
+      "ar": "القديس أندراوس أفيلينو",
+      "ru": "Святой Андрей Авеллино",
+      "tl": "San Andres Avellino",
+      "fr": "Saint André Avellin",
+      "it": "San Andrea Avellino"
+    },
+    "St. Andrew Corsini": {
+      "he": "אנדראס קורסיני הקדוש",
+      "ar": "القديس أندراوس كورسيني",
+      "ru": "Святой Андрей Корсини",
+      "tl": "San Andres Corsini",
+      "fr": "Saint André Corsini",
+      "it": "San Andrea Corsini"
+    },
+    "St. Anthony of Padua": {
+      "he": "אנטוניוס מפדובה הקדוש",
+      "ar": "القديس أنطونيوس البادواني",
+      "ru": "Святой Антоний Падуанский",
+      "tl": "San Antonio de Padua",
+      "fr": "Saint Antoine de Padoue",
+      "it": "San Antonio di Padova"
+    },
+    "St. Antoninus": {
+      "he": "אנטונינוס הקדוש",
+      "ar": "القديس أنطونينوس",
+      "ru": "Святой Антонин",
+      "tl": "San Antonino",
+      "fr": "Saint Antonin",
+      "it": "San Antonino"
+    },
+    "St. Basil the Great": {
+      "he": "בסיליוס הגדול הקדוש",
+      "ar": "القديس باسيليوس الكبير",
+      "ru": "Святой Василий Великий",
+      "tl": "San Basilio Magno",
+      "fr": "Saint Basile le Grand",
+      "it": "San Basilio Magno"
+    },
+    "St. Cajetan": {
+      "he": "קיאטנוס הקדוש",
+      "ar": "القديس كايتانوس",
+      "ru": "Святой Каэтан",
+      "tl": "San Cayetano",
+      "fr": "Saint Gaétan",
+      "it": "San Gaetano"
+    },
+    "St. Edward": {
+      "he": "אדוארד הקדוש",
+      "ar": "القديس إدوارد",
+      "ru": "Святой Эдуард",
+      "tl": "San Eduardo",
+      "fr": "Saint Édouard",
+      "it": "San Edoardo"
+    },
+    "St. Felix of Valois": {
+      "he": "פליקס מוואלואה הקדוש",
+      "ar": "القديس فيليكس دي فالوا",
+      "ru": "Святой Феликс Валуа",
+      "tl": "San Felix de Valois",
+      "fr": "Saint Félix de Valois",
+      "it": "San Felice di Valois"
+    },
+    "St. Francis Borgia": {
+      "he": "פרנציסקוס בורגיה הקדוש",
+      "ar": "القديس فرنسيس بورجيا",
+      "ru": "Святой Франциск Борджиа",
+      "tl": "San Francisco de Borja",
+      "fr": "Saint François de Borgia",
+      "it": "San Francesco Borgia"
+    },
+    "St. Gertrude the Great": {
+      "he": "גרטרוד הגדולה הקדושה",
+      "ar": "القديسة جرترود العظيمة",
+      "ru": "Святая Гертруда Великая",
+      "tl": "Santa Gertrudis Magna",
+      "fr": "Sainte Gertrude la Grande",
+      "it": "Santa Gertrude la Grande"
+    },
+    "St. Gregory Barbarigo": {
+      "he": "גרגוריוס ברבריגו הקדוש",
+      "ar": "القديس غريغوريوس برباريغو",
+      "ru": "Святой Григорий Барбариго",
+      "tl": "San Gregorio Barbarigo",
+      "fr": "Saint Grégoire Barbarigo",
+      "it": "San Gregorio Barbarigo"
+    },
+    "St. Gregory VII": {
+      "he": "גרגוריוס השביעי הקדוש",
+      "ar": "القديس غريغوريوس السابع",
+      "ru": "Святой Григорий VII",
+      "tl": "San Gregorio VII",
+      "fr": "Saint Grégoire VII",
+      "it": "San Gregorio VII"
+    },
+    "St. Gregory the Wonderworker": {
+      "he": "גרגוריוס עושה הנפלאות הקדוש",
+      "ar": "القديس غريغوريوس العجائبي",
+      "ru": "Святой Григорий Чудотворец",
+      "tl": "San Gregorio na Tagagawa ng Himala",
+      "fr": "Saint Grégoire le Thaumaturge",
+      "it": "San Gregorio Taumaturgo"
+    },
+    "St. Hermenegild": {
+      "he": "הרמנגילד הקדוש",
+      "ar": "القديس هرمنغيلد",
+      "ru": "Святой Герменегильд",
+      "tl": "San Hermenegildo",
+      "fr": "Saint Hermenegild",
+      "it": "San Ermenegildo"
+    },
+    "St. Hyacinth": {
+      "he": "היאצינתוס הקדוש",
+      "ar": "القديس هياكينتوس",
+      "ru": "Святой Гиацинт",
+      "tl": "San Jacinto",
+      "fr": "Saint Hyacinthe",
+      "it": "San Giacinto"
+    },
+    "St. John Cantius": {
+      "he": "יוחנן קנטיוס הקדוש",
+      "ar": "القديس يوحنا كانتي",
+      "ru": "Святой Иоанн Кентский",
+      "tl": "San Juan de Kenty",
+      "fr": "Saint Jean de Kenty",
+      "it": "San Giovanni da Kęty"
+    },
+    "St. John Gualbert": {
+      "he": "יוחנן גואלברט הקדוש",
+      "ar": "القديس يوحنا غوالبرتو",
+      "ru": "Святой Иоанн Гвальберт",
+      "tl": "San Juan Gualberto",
+      "fr": "Saint Jean Gualbert",
+      "it": "San Giovanni Gualberto"
+    },
+    "St. John Leonardi": {
+      "he": "יוחנן לאונרדי הקדוש",
+      "ar": "القديس يوحنا ليوناردي",
+      "ru": "Святой Иоанн Леонарди",
+      "tl": "San Juan Leonardi",
+      "fr": "Saint Jean Leonardi",
+      "it": "San Giovanni Leonardi"
+    },
+    "St. John of Matha": {
+      "he": "יוחנן ממאתה הקדוש",
+      "ar": "القديس يوحنا دي ماثا",
+      "ru": "Святой Иоанн де Мата",
+      "tl": "San Juan de Mata",
+      "fr": "Saint Jean de Matha",
+      "it": "San Giovanni de Matha"
+    },
+    "St. John of San Fecundo": {
+      "he": "יוחנן מסהגון הקדוש",
+      "ar": "القديس يوحنا دي ساهاغون",
+      "ru": "Святой Иоанн Саагунский",
+      "tl": "San Juan de Sahagún",
+      "fr": "Saint Jean de Saint-Facond",
+      "it": "San Giovanni da San Facondo"
+    },
+    "St. Joseph Calasance": {
+      "he": "יוסף קלסנציוס הקדוש",
+      "ar": "القديس يوسف كالاسانز",
+      "ru": "Святой Иосиф Каласанс",
+      "tl": "San Jose de Calasanz",
+      "fr": "Saint Joseph de Calasanz",
+      "it": "San Giuseppe Calasanzio"
+    },
+    "St. Joseph of Cupertino": {
+      "he": "יוסף מקופרטינו הקדוש",
+      "ar": "القديس يوسف الكوبرتيني",
+      "ru": "Святой Иосиф Копертинский",
+      "tl": "San Jose de Cupertino",
+      "fr": "Saint Joseph de Cupertino",
+      "it": "San Giuseppe da Copertino"
+    },
+    "St. Julia of Falconieri": {
+      "he": "יוליאנה פלקוניירי הקדושה",
+      "ar": "القديسة يوليانا فالكونييري",
+      "ru": "Святая Юлиана Фальконьери",
+      "tl": "Santa Juliana Falconieri",
+      "fr": "Sainte Julienne Falconieri",
+      "it": "Santa Giuliana Falconieri"
+    },
+    "St. Lawrence Justinian": {
+      "he": "לורנציוס יוסטיניאנוס הקדוש",
+      "ar": "القديس لورنس جوستينياني",
+      "ru": "Святой Лаврентий Юстиниан",
+      "tl": "San Lorenzo Justiniano",
+      "fr": "Saint Laurent Justinien",
+      "it": "San Lorenzo Giustiniani"
+    },
+    "St. Linus": {
+      "he": "לינוס הקדוש",
+      "ar": "القديس لينوس",
+      "ru": "Святой Лин",
+      "tl": "San Lino",
+      "fr": "Saint Lin",
+      "it": "San Lino"
+    },
+    "St. Marcellus I": {
+      "he": "מרקלוס הראשון הקדוש",
+      "ar": "القديس مرسيلوس الأول",
+      "ru": "Святой Марцелл I",
+      "tl": "San Marcelo I",
+      "fr": "Saint Marcel Ier",
+      "it": "San Marcello I"
+    },
+    "St. Margaret Mary Alacoque": {
+      "he": "מרגריטה מרים אלקוק הקדושה",
+      "ar": "القديسة مرغريتا مريم ألاكوك",
+      "ru": "Святая Маргарита Мария Алакок",
+      "tl": "Santa Margarita Maria Alacoque",
+      "fr": "Sainte Marguerite-Marie Alacoque",
+      "it": "Santa Margherita Maria Alacoque"
+    },
+    "St. Martina": {
+      "he": "מרטינה הקדושה",
+      "ar": "القديسة مرتينا",
+      "ru": "Святая Мартина",
+      "tl": "Santa Martina",
+      "fr": "Sainte Martine",
+      "it": "Santa Martina"
+    },
+    "St. Mary Magdalene de Pazzi": {
+      "he": "מרים המגדלית דה פאצי הקדושה",
+      "ar": "القديسة مريم المجدلية دي باتسي",
+      "ru": "Святая Мария Магдалина де Пацци",
+      "tl": "Santa Maria Magdalena de Pazzi",
+      "fr": "Sainte Marie-Madeleine de Pazzi",
+      "it": "Santa Maria Maddalena de’ Pazzi"
+    },
+    "St. Nicholas of Tolentino": {
+      "he": "ניקולאוס מטולנטינו הקדוש",
+      "ar": "القديس نيقولا دي تولنتينو",
+      "ru": "Святой Николай Толентинский",
+      "tl": "San Nicolas de Tolentino",
+      "fr": "Saint Nicolas de Tolentino",
+      "it": "San Nicola da Tolentino"
+    },
+    "St. Paul of the Cross": {
+      "he": "פאולוס של הצלב הקדוש",
+      "ar": "القديس بولس الصليب",
+      "ru": "Святой Павел Креста",
+      "tl": "San Pablo de la Cruz",
+      "fr": "Saint Paul de la Croix",
+      "it": "San Paolo della Croce"
+    },
+    "St. Paul, the First Hermit": {
+      "he": "פאולוס, המתבודד הראשון הקדוש",
+      "ar": "القديس بولس أول النساك",
+      "ru": "Святой Павел Первый Отшельник",
+      "tl": "San Pablo, ang Unang Ermitanyo",
+      "fr": "Saint Paul, premier ermite",
+      "it": "San Paolo, primo eremita"
+    },
+    "St. Peter Canisius": {
+      "he": "פטרוס קניזיוס הקדוש",
+      "ar": "القديس بطرس كانيسيوس",
+      "ru": "Святой Пётр Канизий",
+      "tl": "San Pedro Canisio",
+      "fr": "Saint Pierre Canisius",
+      "it": "San Pietro Canisio"
+    },
+    "St. Peter Celestine": {
+      "he": "פטרוס קלסטינוס הקדוש",
+      "ar": "القديس بطرس سيلستينوس",
+      "ru": "Святой Пётр Целестин",
+      "tl": "San Pedro Celestino",
+      "fr": "Saint Pierre Célestin",
+      "it": "San Pietro Celestino"
+    },
+    "St. Peter Nolasco": {
+      "he": "פטרוס נולסקו הקדוש",
+      "ar": "القديس بطرس نولاسكو",
+      "ru": "Святой Пётр Ноласко",
+      "tl": "San Pedro Nolasco",
+      "fr": "Saint Pierre Nolasque",
+      "it": "San Pietro Nolasco"
+    },
+    "St. Peter of Alcantara": {
+      "he": "פטרוס מאלקנטרה הקדוש",
+      "ar": "القديس بطرس الألكنتاري",
+      "ru": "Святой Пётр Алькантарский",
+      "tl": "San Pedro de Alcantara",
+      "fr": "Saint Pierre d’Alcantara",
+      "it": "San Pietro d’Alcantara"
+    },
+    "St. Peter of Verona": {
+      "he": "פטרוס מוורונה הקדוש",
+      "ar": "القديس بطرس الفيروني",
+      "ru": "Святой Пётр Веронский",
+      "tl": "San Pedro de Verona",
+      "fr": "Saint Pierre de Vérone",
+      "it": "San Pietro da Verona"
+    },
+    "St. Philip Benizi": {
+      "he": "פיליפוס בניצי הקדוש",
+      "ar": "القديس فيليبس بينيتسي",
+      "ru": "Святой Филипп Беници",
+      "tl": "San Felipe Benizi",
+      "fr": "Saint Philippe Benizi",
+      "it": "San Filippo Benizi"
+    },
+    "St. Polycarp": {
+      "he": "פוליקרפוס הקדוש",
+      "ar": "القديس بوليكربوس",
+      "ru": "Святой Поликарп",
+      "tl": "San Policarpo",
+      "fr": "Saint Polycarpe",
+      "it": "San Policarpo"
+    },
+    "St. Raphael the Archangel": {
+      "he": "רפאל המלאך הראשי הקדוש",
+      "ar": "القديس رافائيل رئيس الملائكة",
+      "ru": "Святой Рафаил Архангел",
+      "tl": "San Rafael Arkanghel",
+      "fr": "Saint Raphaël Archange",
+      "it": "San Raffaele Arcangelo"
+    },
+    "St. Raymond Nonnatus": {
+      "he": "ריימונד נונאטוס הקדוש",
+      "ar": "القديس ريموند نوناتوس",
+      "ru": "Святой Раймунд Ноннат",
+      "tl": "San Raimundo Nonato",
+      "fr": "Saint Raymond Nonnat",
+      "it": "San Raimondo Nonnato"
+    },
+    "St. Stanislaus": {
+      "he": "סטניסלאוס הקדוש",
+      "ar": "القديس ستانيسلاوس",
+      "ru": "Святой Станислав",
+      "tl": "San Estanislao",
+      "fr": "Saint Stanislas",
+      "it": "San Stanislao"
+    },
+    "St. Sylvester": {
+      "he": "סילבסטר הקדוש",
+      "ar": "القديس سيلفستر",
+      "ru": "Святой Сильвестр",
+      "tl": "San Silvestre",
+      "fr": "Saint Sylvestre",
+      "it": "San Silvestro"
+    },
+    "St. Thomas of Villanova": {
+      "he": "תומאס מווילנובה הקדוש",
+      "ar": "القديس توما دي فيلانوفا",
+      "ru": "Святой Фома Вильяновский",
+      "tl": "San Tomas de Villanueva",
+      "fr": "Saint Thomas de Villeneuve",
+      "it": "San Tommaso da Villanova"
+    },
+    "St. Timothy": {
+      "he": "טימותיאוס הקדוש",
+      "ar": "القديس تيموثاوس",
+      "ru": "Святой Тимофей",
+      "tl": "San Timoteo",
+      "fr": "Saint Timothée",
+      "it": "San Timoteo"
+    },
+    "St. Titus": {
+      "he": "טיטוס הקדוש",
+      "ar": "القديس تيطس",
+      "ru": "Святой Тит",
+      "tl": "San Tito",
+      "fr": "Saint Tite",
+      "it": "San Tito"
+    },
+    "St. Venantius": {
+      "he": "וננטיוס הקדוש",
+      "ar": "القديس فينانسيوس",
+      "ru": "Святой Венанций",
+      "tl": "San Venancio",
+      "fr": "Saint Venance",
+      "it": "San Venanzio"
+    },
+    "St. Vivian": {
+      "he": "ביביאנה הקדושה",
+      "ar": "القديسة بيبيانا",
+      "ru": "Святая Вивиана",
+      "tl": "Santa Bibiana",
+      "fr": "Sainte Bibiane",
+      "it": "Santa Bibiana"
+    },
+    "St. William": {
+      "he": "וילהלם הקדוש",
+      "ar": "القديس غولييلمو",
+      "ru": "Святой Вильгельм",
+      "tl": "San Guillermo",
+      "fr": "Saint Guillaume",
+      "it": "San Guglielmo"
+    },
+    "Dedication of St. Michael the Archangel": {
+      "he": "חנוכת כנסיית מיכאל המלאך הראשי",
+      "ar": "تكريس كنيسة القديس ميخائيل رئيس الملائكة",
+      "ru": "Освящение храма святого Михаила Архангела",
+      "tl": "Pagtatalaga ng Simbahan ni San Miguel Arkanghel",
+      "fr": "Dédicace de saint Michel Archange",
+      "it": "Dedicazione di san Michele Arcangelo"
+    },
+    "Maternity of the Blessed Virgin Mary": {
+      "he": "אימהותה של מרים הבתולה המבורכת",
+      "ar": "أمومة مريم العذراء المباركة",
+      "ru": "Материнство Пресвятой Девы Марии",
+      "tl": "Pagiging Ina ng Mahal na Birheng Maria",
+      "fr": "Maternité de la bienheureuse Vierge Marie",
+      "it": "Maternità della Beata Vergine Maria"
+    },
+    "Purification of the Blessed Virgin Mary": {
+      "he": "טהרת מרים הבתולה המבורכת",
+      "ar": "تطهير مريم العذراء المباركة",
+      "ru": "Очищение Пресвятой Девы Марии",
+      "tl": "Paglilinis ng Mahal na Birheng Maria",
+      "fr": "Purification de la bienheureuse Vierge Marie",
+      "it": "Purificazione della Beata Vergine Maria"
+    },
+    "In Commemoratione Sancti Pauli Apostoli": {
+      "he": "זיכרון פאולוס השליח",
+      "ar": "تذكار القديس بولس الرسول",
+      "ru": "Воспоминание святого апостола Павла",
+      "tl": "Paggunita kay San Pablo Apostol",
+      "fr": "Commémoraison de saint Paul Apôtre",
+      "it": "Commemorazione di san Paolo Apostolo"
+    },
+    "Octave Day of Christmas": {
+      "he": "היום השמיני לחג המולד",
+      "ar": "اليوم الثامن لعيد الميلاد",
+      "ru": "Октава Рождества",
+      "tl": "Ikawalong Araw ng Pasko",
+      "fr": "Octave de Noël",
+      "it": "Ottava di Natale"
+    },
+    "The Precious Blood of Our Lord Jesus Christ": {
+      "he": "דמו היקר של אדוננו ישוע המשיח",
+      "ar": "دم ربنا يسوع المسيح الثمين",
+      "ru": "Драгоценнейшая Кровь Господа нашего Иисуса Христа",
+      "tl": "Kabanal-banalang Dugo ng Panginoong Hesukristo",
+      "fr": "Précieux Sang de Notre Seigneur Jésus-Christ",
+      "it": "Preziosissimo Sangue di Nostro Signore Gesù Cristo"
+    },
+    "St. Anne, Mother of the Blessed Virgin": {
+      "he": "חנה הקדושה, אם הבתולה המבורכת",
+      "ar": "القديسة حنة أم العذراء المباركة",
+      "ru": "Святая Анна, мать Пресвятой Девы",
+      "tl": "Santa Ana, Ina ng Mahal na Birhen",
+      "fr": "Sainte Anne, mère de la bienheureuse Vierge",
+      "it": "Sant’Anna, madre della Beata Vergine"
+    },
+    "St. Joachim, Father of the Blessed Virgin": {
+      "he": "יהויקים הקדוש, אבי הבתולה המבורכת",
+      "ar": "القديس يواكيم أبو العذراء المباركة",
+      "ru": "Святой Иоаким, отец Пресвятой Девы",
+      "tl": "San Joaquin, Ama ng Mahal na Birhen",
+      "fr": "Saint Joachim, père de la bienheureuse Vierge",
+      "it": "San Gioacchino, padre della Beata Vergine"
+    },
+    "St. Januarius & Companions": {
+      "he": "ינואריוס הקדוש וחבריו",
+      "ar": "القديس يانواريوس ورفاقه",
+      "ru": "Святой Януарий и сподвижники",
+      "tl": "San Jenaro at mga Kasama",
+      "fr": "Saint Janvier et ses compagnons",
+      "it": "San Gennaro e compagni"
+    },
+    "Seven Holy Brothers and Sts. Rufina & Secunda": {
+      "he": "שבעת האחים הקדושים ורופינה וסקונדה הקדושות",
+      "ar": "الإخوة السبعة القديسون والقديستان روفينا وسيكوندا",
+      "ru": "Семь святых братьев и святые Руфина и Секунда",
+      "tl": "Pitong Banal na Magkakapatid at Santa Rufina at Santa Segunda",
+      "fr": "Sept frères saints et saintes Rufine et Seconde",
+      "it": "Sette santi fratelli e sante Rufina e Seconda"
+    },
+    "Sts. Cletus & Marcellinus": {
+      "he": "קלטוס ומרקלינוס הקדושים",
+      "ar": "القديسان كليتوس ومرسيلينوس",
+      "ru": "Святые Клет и Марцеллин",
+      "tl": "San Cleto at San Marcelino",
+      "fr": "Saints Clet et Marcellin",
+      "it": "Santi Cleto e Marcellino"
+    },
+    "Sts. Fabian & Sebastian": {
+      "he": "פביאנוס וסבסטיאנוס הקדושים",
+      "ar": "القديسان فابيانوس وسبستيانوس",
+      "ru": "Святые Фабиан и Севастиан",
+      "tl": "San Fabian at San Sebastian",
+      "fr": "Saints Fabien et Sébastien",
+      "it": "Santi Fabiano e Sebastiano"
+    },
+    "Sts. John & Paul": {
+      "he": "יוחנן ופאולוס הקדושים",
+      "ar": "القديسان يوحنا وبولس",
+      "ru": "Святые Иоанн и Павел",
+      "tl": "San Juan at San Pablo",
+      "fr": "Saints Jean et Paul",
+      "it": "Santi Giovanni e Paolo"
+    },
+    "Sts. Nazarius & Celsus, St. Victor I & St. Innocent I": {
+      "he": "נזריוס וקלסוס הקדושים, ויקטור הראשון ואינוקנטיוס הראשון הקדושים",
+      "ar": "القديسان نازاريوس وسيلسوس والقديسان فيكتور الأول وإينوشنسيوس الأول",
+      "ru": "Святые Назарий и Кельсий, Виктор I и Иннокентий I",
+      "tl": "San Nazario at San Celso, San Victor I at San Inocencio I",
+      "fr": "Saints Nazaire et Celse, saint Victor Ier et saint Innocent Ier",
+      "it": "Santi Nazario e Celso, san Vittore I e sant’Innocenzo I"
+    },
+    "Sts. Nereus, Achilleus, Domitilla, & Pancras": {
+      "he": "נראוס, אכילאוס, דומיטילה ופנקרציוס הקדושים",
+      "ar": "القديسون نيريوس وأخيليوس ودوميتيلا وبنكراتيوس",
+      "ru": "Святые Нерей, Ахиллей, Домитилла и Панкратий",
+      "tl": "San Nereo, San Aquileo, Santa Domitila at San Pancracio",
+      "fr": "Saints Nérée, Achillée, Domitille et Pancrace",
+      "it": "Santi Nereo, Achilleo, Domitilla e Pancrazio"
+    },
+    "Sts. Soter & Caius": {
+      "he": "סוטר וקאיוס הקדושים",
+      "ar": "القديسان سوتير وكايوس",
+      "ru": "Святые Сотер и Кай",
+      "tl": "San Sotero at San Cayo",
+      "fr": "Saints Soter et Caïus",
+      "it": "Santi Sotero e Caio"
+    },
+    "Sts. Vincent & Anastasius": {
+      "he": "וינסנטיוס ואנסטסיוס הקדושים",
+      "ar": "القديسان منصور وأناستاسيوس",
+      "ru": "Святые Викентий и Анастасий",
+      "tl": "San Vicente at San Anastasio",
+      "fr": "Saints Vincent et Anastase",
+      "it": "Santi Vincenzo e Anastasio"
+    },
+    "II Sunday after Epiphany": {
+      "he": "יום ראשון ה־2 אחרי חג ההתגלות",
+      "ar": "الأحد 2 بعد عيد الظهور الإلهي",
+      "ru": "2-е воскресенье после Богоявления",
+      "tl": "Ika-2 Linggo pagkatapos ng Epipanya",
+      "fr": "2e dimanche après l’Épiphanie",
+      "it": "2ª domenica dopo Epifania"
+    },
+    "III Sunday after Epiphany": {
+      "he": "יום ראשון ה־3 אחרי חג ההתגלות",
+      "ar": "الأحد 3 بعد عيد الظهور الإلهي",
+      "ru": "3-е воскресенье после Богоявления",
+      "tl": "Ika-3 Linggo pagkatapos ng Epipanya",
+      "fr": "3e dimanche après l’Épiphanie",
+      "it": "3ª domenica dopo Epifania"
+    },
+    "Feria V after Ash Wednesday": {
+      "he": "יום חמישי אחרי יום האפר",
+      "ar": "الخميس بعد أربعاء الرماد",
+      "ru": "Четверг после Пепельной среды",
+      "tl": "Huwebes pagkatapos ng Miyerkules ng Abo",
+      "fr": "Jeudi après le mercredi des Cendres",
+      "it": "Giovedì dopo il Mercoledì delle Ceneri"
+    },
+    "Feria VI after Ash Wednesday": {
+      "he": "יום שישי אחרי יום האפר",
+      "ar": "الجمعة بعد أربعاء الرماد",
+      "ru": "Пятница после Пепельной среды",
+      "tl": "Biyernes pagkatapos ng Miyerkules ng Abo",
+      "fr": "Vendredi après le mercredi des Cendres",
+      "it": "Venerdì dopo il Mercoledì delle Ceneri"
+    },
+    "Saturday after Ash Wednesday": {
+      "he": "שבת אחרי יום האפר",
+      "ar": "السبت بعد أربعاء الرماد",
+      "ru": "Суббота после Пепельной среды",
+      "tl": "Sabado pagkatapos ng Miyerkules ng Abo",
+      "fr": "Samedi après le mercredi des Cendres",
+      "it": "Sabato dopo il Mercoledì delle Ceneri"
+    },
+    "I Sunday of Lent": {
+      "he": "יום ראשון ה־1 של צום הארבעים",
+      "ar": "الأحد 1 من الصوم الكبير",
+      "ru": "1-е воскресенье Великого поста",
+      "tl": "Ika-1 Linggo ng Kuwaresma",
+      "fr": "1er dimanche de Carême",
+      "it": "1ª domenica di Quaresima"
+    },
+    "Feria II after the I Sunday of Lent": {
+      "he": "יום שני בשבוע ה־1 של צום הארבעים",
+      "ar": "الاثنين من الأسبوع 1 من الصوم الكبير",
+      "ru": "Понедельник 1-й недели Великого поста",
+      "tl": "Lunes ng Ika-1 Linggo ng Kuwaresma",
+      "fr": "Lundi de la 1e semaine de Carême",
+      "it": "Lunedì della 1ª settimana di Quaresima"
+    },
+    "Ember Wednesday of Lent": {
+      "he": "יום רביעי של ארבעת מועדי הצום — צום הארבעים",
+      "ar": "الأربعاء من أيام الصوم الفصلية — الصوم الكبير",
+      "ru": "Среда четверовременного поста — Великого поста",
+      "tl": "Miyerkules ng Kuwaresma de Temporas — Kuwaresma",
+      "fr": "Mercredi des Quatre-Temps — Carême",
+      "it": "Mercoledì delle Quattro Tempora — Quaresima"
+    },
+    "Feria V after the I Sunday of Lent": {
+      "he": "יום חמישי בשבוע ה־1 של צום הארבעים",
+      "ar": "الخميس من الأسبوع 1 من الصوم الكبير",
+      "ru": "Четверг 1-й недели Великого поста",
+      "tl": "Huwebes ng Ika-1 Linggo ng Kuwaresma",
+      "fr": "Jeudi de la 1e semaine de Carême",
+      "it": "Giovedì della 1ª settimana di Quaresima"
+    },
+    "Ember Friday of Lent": {
+      "he": "יום שישי של ארבעת מועדי הצום — צום הארבעים",
+      "ar": "الجمعة من أيام الصوم الفصلية — الصوم الكبير",
+      "ru": "Пятница четверовременного поста — Великого поста",
+      "tl": "Biyernes ng Kuwaresma de Temporas — Kuwaresma",
+      "fr": "Vendredi des Quatre-Temps — Carême",
+      "it": "Venerdì delle Quattro Tempora — Quaresima"
+    },
+    "Ember Saturday of Lent": {
+      "he": "שבת של ארבעת מועדי הצום — צום הארבעים",
+      "ar": "السبت من أيام الصوم الفصلية — الصوم الكبير",
+      "ru": "Суббота четверовременного поста — Великого поста",
+      "tl": "Sabado ng Kuwaresma de Temporas — Kuwaresma",
+      "fr": "Samedi des Quatre-Temps — Carême",
+      "it": "Sabato delle Quattro Tempora — Quaresima"
+    },
+    "II Sunday of Lent": {
+      "he": "יום ראשון ה־2 של צום הארבעים",
+      "ar": "الأحد 2 من الصوم الكبير",
+      "ru": "2-е воскресенье Великого поста",
+      "tl": "Ika-2 Linggo ng Kuwaresma",
+      "fr": "2e dimanche de Carême",
+      "it": "2ª domenica di Quaresima"
+    },
+    "Feria II after the II Sunday of Lent": {
+      "he": "יום שני בשבוע ה־2 של צום הארבעים",
+      "ar": "الاثنين من الأسبوع 2 من الصوم الكبير",
+      "ru": "Понедельник 2-й недели Великого поста",
+      "tl": "Lunes ng Ika-2 Linggo ng Kuwaresma",
+      "fr": "Lundi de la 2e semaine de Carême",
+      "it": "Lunedì della 2ª settimana di Quaresima"
+    },
+    "Feria III after the II Sunday of Lent": {
+      "he": "יום שלישי בשבוע ה־2 של צום הארבעים",
+      "ar": "الثلاثاء من الأسبوع 2 من الصوم الكبير",
+      "ru": "Вторник 2-й недели Великого поста",
+      "tl": "Martes ng Ika-2 Linggo ng Kuwaresma",
+      "fr": "Mardi de la 2e semaine de Carême",
+      "it": "Martedì della 2ª settimana di Quaresima"
+    },
+    "Feria IV after the II Sunday of Lent": {
+      "he": "יום רביעי בשבוע ה־2 של צום הארבעים",
+      "ar": "الأربعاء من الأسبوع 2 من الصوم الكبير",
+      "ru": "Среда 2-й недели Великого поста",
+      "tl": "Miyerkules ng Ika-2 Linggo ng Kuwaresma",
+      "fr": "Mercredi de la 2e semaine de Carême",
+      "it": "Mercoledì della 2ª settimana di Quaresima"
+    },
+    "Feria V after the II Sunday of Lent": {
+      "he": "יום חמישי בשבוע ה־2 של צום הארבעים",
+      "ar": "الخميس من الأسبوع 2 من الصوم الكبير",
+      "ru": "Четверг 2-й недели Великого поста",
+      "tl": "Huwebes ng Ika-2 Linggo ng Kuwaresma",
+      "fr": "Jeudi de la 2e semaine de Carême",
+      "it": "Giovedì della 2ª settimana di Quaresima"
+    },
+    "Feria VI after the II Sunday of Lent": {
+      "he": "יום שישי בשבוע ה־2 של צום הארבעים",
+      "ar": "الجمعة من الأسبوع 2 من الصوم الكبير",
+      "ru": "Пятница 2-й недели Великого поста",
+      "tl": "Biyernes ng Ika-2 Linggo ng Kuwaresma",
+      "fr": "Vendredi de la 2e semaine de Carême",
+      "it": "Venerdì della 2ª settimana di Quaresima"
+    },
+    "Saturday after the II Sunday of Lent": {
+      "he": "שבת בשבוע ה־2 של צום הארבעים",
+      "ar": "السبت من الأسبوع 2 من الصوم الكبير",
+      "ru": "Суббота 2-й недели Великого поста",
+      "tl": "Sabado ng Ika-2 Linggo ng Kuwaresma",
+      "fr": "Samedi de la 2e semaine de Carême",
+      "it": "Sabato della 2ª settimana di Quaresima"
+    },
+    "III Sunday of Lent": {
+      "he": "יום ראשון ה־3 של צום הארבעים",
+      "ar": "الأحد 3 من الصوم الكبير",
+      "ru": "3-е воскресенье Великого поста",
+      "tl": "Ika-3 Linggo ng Kuwaresma",
+      "fr": "3e dimanche de Carême",
+      "it": "3ª domenica di Quaresima"
+    },
+    "Feria II after the III Sunday of Lent": {
+      "he": "יום שני בשבוע ה־3 של צום הארבעים",
+      "ar": "الاثنين من الأسبوع 3 من الصوم الكبير",
+      "ru": "Понедельник 3-й недели Великого поста",
+      "tl": "Lunes ng Ika-3 Linggo ng Kuwaresma",
+      "fr": "Lundi de la 3e semaine de Carême",
+      "it": "Lunedì della 3ª settimana di Quaresima"
+    },
+    "Feria III after the III Sunday of Lent": {
+      "he": "יום שלישי בשבוע ה־3 של צום הארבעים",
+      "ar": "الثلاثاء من الأسبوع 3 من الصوم الكبير",
+      "ru": "Вторник 3-й недели Великого поста",
+      "tl": "Martes ng Ika-3 Linggo ng Kuwaresma",
+      "fr": "Mardi de la 3e semaine de Carême",
+      "it": "Martedì della 3ª settimana di Quaresima"
+    },
+    "Feria IV after the III Sunday of Lent": {
+      "he": "יום רביעי בשבוע ה־3 של צום הארבעים",
+      "ar": "الأربعاء من الأسبوع 3 من الصوم الكبير",
+      "ru": "Среда 3-й недели Великого поста",
+      "tl": "Miyerkules ng Ika-3 Linggo ng Kuwaresma",
+      "fr": "Mercredi de la 3e semaine de Carême",
+      "it": "Mercoledì della 3ª settimana di Quaresima"
+    },
+    "Feria V after the III Sunday of Lent": {
+      "he": "יום חמישי בשבוע ה־3 של צום הארבעים",
+      "ar": "الخميس من الأسبوع 3 من الصوم الكبير",
+      "ru": "Четверг 3-й недели Великого поста",
+      "tl": "Huwebes ng Ika-3 Linggo ng Kuwaresma",
+      "fr": "Jeudi de la 3e semaine de Carême",
+      "it": "Giovedì della 3ª settimana di Quaresima"
+    },
+    "Feria VI after the III Sunday of Lent": {
+      "he": "יום שישי בשבוע ה־3 של צום הארבעים",
+      "ar": "الجمعة من الأسبوع 3 من الصوم الكبير",
+      "ru": "Пятница 3-й недели Великого поста",
+      "tl": "Biyernes ng Ika-3 Linggo ng Kuwaresma",
+      "fr": "Vendredi de la 3e semaine de Carême",
+      "it": "Venerdì della 3ª settimana di Quaresima"
+    },
+    "Saturday after the III Sunday of Lent": {
+      "he": "שבת בשבוע ה־3 של צום הארבעים",
+      "ar": "السبت من الأسبوع 3 من الصوم الكبير",
+      "ru": "Суббота 3-й недели Великого поста",
+      "tl": "Sabado ng Ika-3 Linggo ng Kuwaresma",
+      "fr": "Samedi de la 3e semaine de Carême",
+      "it": "Sabato della 3ª settimana di Quaresima"
+    },
+    "IV Sunday of Lent": {
+      "he": "יום ראשון ה־4 של צום הארבעים",
+      "ar": "الأحد 4 من الصوم الكبير",
+      "ru": "4-е воскресенье Великого поста",
+      "tl": "Ika-4 Linggo ng Kuwaresma",
+      "fr": "4e dimanche de Carême",
+      "it": "4ª domenica di Quaresima"
+    },
+    "Feria II after the IV Sunday of Lent": {
+      "he": "יום שני בשבוע ה־4 של צום הארבעים",
+      "ar": "الاثنين من الأسبوع 4 من الصوم الكبير",
+      "ru": "Понедельник 4-й недели Великого поста",
+      "tl": "Lunes ng Ika-4 Linggo ng Kuwaresma",
+      "fr": "Lundi de la 4e semaine de Carême",
+      "it": "Lunedì della 4ª settimana di Quaresima"
+    },
+    "Feria III after the IV Sunday of Lent": {
+      "he": "יום שלישי בשבוע ה־4 של צום הארבעים",
+      "ar": "الثلاثاء من الأسبوع 4 من الصوم الكبير",
+      "ru": "Вторник 4-й недели Великого поста",
+      "tl": "Martes ng Ika-4 Linggo ng Kuwaresma",
+      "fr": "Mardi de la 4e semaine de Carême",
+      "it": "Martedì della 4ª settimana di Quaresima"
+    },
+    "Feria IV after the IV Sunday of Lent": {
+      "he": "יום רביעי בשבוע ה־4 של צום הארבעים",
+      "ar": "الأربعاء من الأسبوع 4 من الصوم الكبير",
+      "ru": "Среда 4-й недели Великого поста",
+      "tl": "Miyerkules ng Ika-4 Linggo ng Kuwaresma",
+      "fr": "Mercredi de la 4e semaine de Carême",
+      "it": "Mercoledì della 4ª settimana di Quaresima"
+    },
+    "Feria VI after the IV Sunday of Lent": {
+      "he": "יום שישי בשבוע ה־4 של צום הארבעים",
+      "ar": "الجمعة من الأسبوع 4 من الصوم الكبير",
+      "ru": "Пятница 4-й недели Великого поста",
+      "tl": "Biyernes ng Ika-4 Linggo ng Kuwaresma",
+      "fr": "Vendredi de la 4e semaine de Carême",
+      "it": "Venerdì della 4ª settimana di Quaresima"
+    },
+    "Saturday after the IV Sunday of Lent": {
+      "he": "שבת בשבוע ה־4 של צום הארבעים",
+      "ar": "السبت من الأسبوع 4 من الصوم الكبير",
+      "ru": "Суббота 4-й недели Великого поста",
+      "tl": "Sabado ng Ika-4 Linggo ng Kuwaresma",
+      "fr": "Samedi de la 4e semaine de Carême",
+      "it": "Sabato della 4ª settimana di Quaresima"
+    },
+    "Feria II of Passion Week": {
+      "he": "יום שני של שבוע הייסורים",
+      "ar": "الاثنين من أسبوع الآلام",
+      "ru": "Понедельник недели Страстей",
+      "tl": "Lunes ng Linggo ng Pagpapakasakit",
+      "fr": "Lundi de la semaine de la Passion",
+      "it": "Lunedì della settimana di Passione"
+    },
+    "Feria III of Passion Week": {
+      "he": "יום שלישי של שבוע הייסורים",
+      "ar": "الثلاثاء من أسبوع الآلام",
+      "ru": "Вторник недели Страстей",
+      "tl": "Martes ng Linggo ng Pagpapakasakit",
+      "fr": "Mardi de la semaine de la Passion",
+      "it": "Martedì della settimana di Passione"
+    },
+    "Feria V of Passion Week": {
+      "he": "יום חמישי של שבוע הייסורים",
+      "ar": "الخميس من أسبوع الآلام",
+      "ru": "Четверг недели Страстей",
+      "tl": "Huwebes ng Linggo ng Pagpapakasakit",
+      "fr": "Jeudi de la semaine de la Passion",
+      "it": "Giovedì della settimana di Passione"
+    },
+    "Feria VI of Passion Week": {
+      "he": "יום שישי של שבוע הייסורים",
+      "ar": "الجمعة من أسبوع الآلام",
+      "ru": "Пятница недели Страстей",
+      "tl": "Biyernes ng Linggo ng Pagpapakasakit",
+      "fr": "Vendredi de la semaine de la Passion",
+      "it": "Venerdì della settimana di Passione"
+    },
+    "Saturday of Passion Week": {
+      "he": "שבת של שבוע הייסורים",
+      "ar": "السبت من أسبوع الآلام",
+      "ru": "Суббота недели Страстей",
+      "tl": "Sabado ng Linggo ng Pagpapakasakit",
+      "fr": "Samedi de la semaine de la Passion",
+      "it": "Sabato della settimana di Passione"
+    },
+    "Feria II of Holy Week": {
+      "he": "יום שני של השבוע הקדוש",
+      "ar": "الاثنين من الأسبوع المقدس",
+      "ru": "Понедельник Страстной недели",
+      "tl": "Lunes ng Mahal na Araw",
+      "fr": "Lundi de la semaine sainte",
+      "it": "Lunedì della settimana santa"
+    },
+    "Feria III of Holy Week": {
+      "he": "יום שלישי של השבוע הקדוש",
+      "ar": "الثلاثاء من الأسبوع المقدس",
+      "ru": "Вторник Страстной недели",
+      "tl": "Martes ng Mahal na Araw",
+      "fr": "Mardi de la semaine sainte",
+      "it": "Martedì della settimana santa"
+    },
+    "Feria IV of Holy Week": {
+      "he": "יום רביעי של השבוע הקדוש",
+      "ar": "الأربعاء من الأسبوع المقدس",
+      "ru": "Среда Страстной недели",
+      "tl": "Miyerkules ng Mahal na Araw",
+      "fr": "Mercredi de la semaine sainte",
+      "it": "Mercoledì della settimana santa"
+    },
+    "Monday in the Octave of Easter": {
+      "he": "יום שני באוקטבה של חג הפסחא",
+      "ar": "الاثنين في ثمانية الفصح",
+      "ru": "Понедельник в октаве Пасхи",
+      "tl": "Lunes sa Oktaba ng Pasko ng Pagkabuhay",
+      "fr": "Lundi dans l’octave de Pâques",
+      "it": "Lunedì nell’ottava di Pasqua"
+    },
+    "Tuesday in the Octave of Easter": {
+      "he": "יום שלישי באוקטבה של חג הפסחא",
+      "ar": "الثلاثاء في ثمانية الفصح",
+      "ru": "Вторник в октаве Пасхи",
+      "tl": "Martes sa Oktaba ng Pasko ng Pagkabuhay",
+      "fr": "Mardi dans l’octave de Pâques",
+      "it": "Martedì nell’ottava di Pasqua"
+    },
+    "Wednesday in the Octave of Easter": {
+      "he": "יום רביעי באוקטבה של חג הפסחא",
+      "ar": "الأربعاء في ثمانية الفصح",
+      "ru": "Среда в октаве Пасхи",
+      "tl": "Miyerkules sa Oktaba ng Pasko ng Pagkabuhay",
+      "fr": "Mercredi dans l’octave de Pâques",
+      "it": "Mercoledì nell’ottava di Pasqua"
+    },
+    "Thursday in the Octave of Easter": {
+      "he": "יום חמישי באוקטבה של חג הפסחא",
+      "ar": "الخميس في ثمانية الفصح",
+      "ru": "Четверг в октаве Пасхи",
+      "tl": "Huwebes sa Oktaba ng Pasko ng Pagkabuhay",
+      "fr": "Jeudi dans l’octave de Pâques",
+      "it": "Giovedì nell’ottava di Pasqua"
+    },
+    "Friday in the Octave of Easter": {
+      "he": "יום שישי באוקטבה של חג הפסחא",
+      "ar": "الجمعة في ثمانية الفصح",
+      "ru": "Пятница в октаве Пасхи",
+      "tl": "Biyernes sa Oktaba ng Pasko ng Pagkabuhay",
+      "fr": "Vendredi dans l’octave de Pâques",
+      "it": "Venerdì nell’ottava di Pasqua"
+    },
+    "Saturday in the Octave of Easter": {
+      "he": "שבת באוקטבה של חג הפסחא",
+      "ar": "السبت في ثمانية الفصح",
+      "ru": "Суббота в октаве Пасхи",
+      "tl": "Sabado sa Oktaba ng Pasko ng Pagkabuhay",
+      "fr": "Samedi dans l’octave de Pâques",
+      "it": "Sabato nell’ottava di Pasqua"
+    },
+    "II Sunday after Easter": {
+      "he": "יום ראשון ה־2 אחרי חג הפסחא",
+      "ar": "الأحد 2 بعد الفصح",
+      "ru": "2-е воскресенье после Пасхи",
+      "tl": "Ika-2 Linggo pagkatapos ng Pasko ng Pagkabuhay",
+      "fr": "2e dimanche après Pâques",
+      "it": "2ª domenica dopo Pasqua"
+    },
+    "III Sunday after Easter": {
+      "he": "יום ראשון ה־3 אחרי חג הפסחא",
+      "ar": "الأحد 3 بعد الفصح",
+      "ru": "3-е воскресенье после Пасхи",
+      "tl": "Ika-3 Linggo pagkatapos ng Pasko ng Pagkabuhay",
+      "fr": "3e dimanche après Pâques",
+      "it": "3ª domenica dopo Pasqua"
+    },
+    "IV Sunday after Easter": {
+      "he": "יום ראשון ה־4 אחרי חג הפסחא",
+      "ar": "الأحد 4 بعد الفصح",
+      "ru": "4-е воскресенье после Пасхи",
+      "tl": "Ika-4 Linggo pagkatapos ng Pasko ng Pagkabuhay",
+      "fr": "4e dimanche après Pâques",
+      "it": "4ª domenica dopo Pasqua"
+    },
+    "V Sunday after Easter": {
+      "he": "יום ראשון ה־5 אחרי חג הפסחא",
+      "ar": "الأحد 5 بعد الفصح",
+      "ru": "5-е воскресенье после Пасхи",
+      "tl": "Ika-5 Linggo pagkatapos ng Pasko ng Pagkabuhay",
+      "fr": "5e dimanche après Pâques",
+      "it": "5ª domenica dopo Pasqua"
+    },
+    "Saturday after the Ascension": {
+      "he": "שבת אחרי חג העלייה השמימה",
+      "ar": "السبت بعد عيد الصعود",
+      "ru": "Суббота после Вознесения",
+      "tl": "Sabado pagkatapos ng Pag-akyat sa Langit",
+      "fr": "Samedi après l’Ascension",
+      "it": "Sabato dopo Ascensione"
+    },
+    "Monday after Pentecost": {
+      "he": "יום שני אחרי שבועות",
+      "ar": "الاثنين بعد العنصرة",
+      "ru": "Понедельник после Пятидесятницы",
+      "tl": "Lunes pagkatapos ng Pentekostes",
+      "fr": "Lundi après la Pentecôte",
+      "it": "Lunedì dopo Pentecoste"
+    },
+    "Tuesday after Pentecost": {
+      "he": "יום שלישי אחרי שבועות",
+      "ar": "الثلاثاء بعد العنصرة",
+      "ru": "Вторник после Пятидесятницы",
+      "tl": "Martes pagkatapos ng Pentekostes",
+      "fr": "Mardi après la Pentecôte",
+      "it": "Martedì dopo Pentecoste"
+    },
+    "Ember Wednesday of Pentecost": {
+      "he": "יום רביעי של ארבעת מועדי הצום — שבועות",
+      "ar": "الأربعاء من أيام الصوم الفصلية — العنصرة",
+      "ru": "Среда четверовременного поста — Пятидесятницы",
+      "tl": "Miyerkules ng Kuwaresma de Temporas — Pentekostes",
+      "fr": "Mercredi des Quatre-Temps — la Pentecôte",
+      "it": "Mercoledì delle Quattro Tempora — Pentecoste"
+    },
+    "Thursday after Pentecost": {
+      "he": "יום חמישי אחרי שבועות",
+      "ar": "الخميس بعد العنصرة",
+      "ru": "Четверг после Пятидесятницы",
+      "tl": "Huwebes pagkatapos ng Pentekostes",
+      "fr": "Jeudi après la Pentecôte",
+      "it": "Giovedì dopo Pentecoste"
+    },
+    "Ember Friday of Pentecost": {
+      "he": "יום שישי של ארבעת מועדי הצום — שבועות",
+      "ar": "الجمعة من أيام الصوم الفصلية — العنصرة",
+      "ru": "Пятница четверовременного поста — Пятидесятницы",
+      "tl": "Biyernes ng Kuwaresma de Temporas — Pentekostes",
+      "fr": "Vendredi des Quatre-Temps — la Pentecôte",
+      "it": "Venerdì delle Quattro Tempora — Pentecoste"
+    },
+    "Ember Saturday of Pentecost": {
+      "he": "שבת של ארבעת מועדי הצום — שבועות",
+      "ar": "السبت من أيام الصوم الفصلية — العنصرة",
+      "ru": "Суббота четверовременного поста — Пятидесятницы",
+      "tl": "Sabado ng Kuwaresma de Temporas — Pentekostes",
+      "fr": "Samedi des Quatre-Temps — la Pentecôte",
+      "it": "Sabato delle Quattro Tempora — Pentecoste"
+    },
+    "II Sunday after Pentecost": {
+      "he": "יום ראשון ה־2 אחרי שבועות",
+      "ar": "الأحد 2 بعد العنصرة",
+      "ru": "2-е воскресенье после Пятидесятницы",
+      "tl": "Ika-2 Linggo pagkatapos ng Pentekostes",
+      "fr": "2e dimanche après la Pentecôte",
+      "it": "2ª domenica dopo Pentecoste"
+    },
+    "III Sunday after Pentecost": {
+      "he": "יום ראשון ה־3 אחרי שבועות",
+      "ar": "الأحد 3 بعد العنصرة",
+      "ru": "3-е воскресенье после Пятидесятницы",
+      "tl": "Ika-3 Linggo pagkatapos ng Pentekostes",
+      "fr": "3e dimanche après la Pentecôte",
+      "it": "3ª domenica dopo Pentecoste"
+    },
+    "IV Sunday after Pentecost": {
+      "he": "יום ראשון ה־4 אחרי שבועות",
+      "ar": "الأحد 4 بعد العنصرة",
+      "ru": "4-е воскресенье после Пятидесятницы",
+      "tl": "Ika-4 Linggo pagkatapos ng Pentekostes",
+      "fr": "4e dimanche après la Pentecôte",
+      "it": "4ª domenica dopo Pentecoste"
+    },
+    "V Sunday after Pentecost": {
+      "he": "יום ראשון ה־5 אחרי שבועות",
+      "ar": "الأحد 5 بعد العنصرة",
+      "ru": "5-е воскресенье после Пятидесятницы",
+      "tl": "Ika-5 Linggo pagkatapos ng Pentekostes",
+      "fr": "5e dimanche après la Pentecôte",
+      "it": "5ª domenica dopo Pentecoste"
+    },
+    "VI Sunday after Pentecost": {
+      "he": "יום ראשון ה־6 אחרי שבועות",
+      "ar": "الأحد 6 بعد العنصرة",
+      "ru": "6-е воскресенье после Пятидесятницы",
+      "tl": "Ika-6 Linggo pagkatapos ng Pentekostes",
+      "fr": "6e dimanche après la Pentecôte",
+      "it": "6ª domenica dopo Pentecoste"
+    },
+    "VII Sunday after Pentecost": {
+      "he": "יום ראשון ה־7 אחרי שבועות",
+      "ar": "الأحد 7 بعد العنصرة",
+      "ru": "7-е воскресенье после Пятидесятницы",
+      "tl": "Ika-7 Linggo pagkatapos ng Pentekostes",
+      "fr": "7e dimanche après la Pentecôte",
+      "it": "7ª domenica dopo Pentecoste"
+    },
+    "VIII Sunday after Pentecost": {
+      "he": "יום ראשון ה־8 אחרי שבועות",
+      "ar": "الأحد 8 بعد العنصرة",
+      "ru": "8-е воскресенье после Пятидесятницы",
+      "tl": "Ika-8 Linggo pagkatapos ng Pentekostes",
+      "fr": "8e dimanche après la Pentecôte",
+      "it": "8ª domenica dopo Pentecoste"
+    },
+    "IX Sunday after Pentecost": {
+      "he": "יום ראשון ה־9 אחרי שבועות",
+      "ar": "الأحد 9 بعد العنصرة",
+      "ru": "9-е воскресенье после Пятидесятницы",
+      "tl": "Ika-9 Linggo pagkatapos ng Pentekostes",
+      "fr": "9e dimanche après la Pentecôte",
+      "it": "9ª domenica dopo Pentecoste"
+    },
+    "X Sunday after Pentecost": {
+      "he": "יום ראשון ה־10 אחרי שבועות",
+      "ar": "الأحد 10 بعد العنصرة",
+      "ru": "10-е воскресенье после Пятидесятницы",
+      "tl": "Ika-10 Linggo pagkatapos ng Pentekostes",
+      "fr": "10e dimanche après la Pentecôte",
+      "it": "10ª domenica dopo Pentecoste"
+    },
+    "XI Sunday after Pentecost": {
+      "he": "יום ראשון ה־11 אחרי שבועות",
+      "ar": "الأحد 11 بعد العنصرة",
+      "ru": "11-е воскресенье после Пятидесятницы",
+      "tl": "Ika-11 Linggo pagkatapos ng Pentekostes",
+      "fr": "11e dimanche après la Pentecôte",
+      "it": "11ª domenica dopo Pentecoste"
+    },
+    "XII Sunday after Pentecost": {
+      "he": "יום ראשון ה־12 אחרי שבועות",
+      "ar": "الأحد 12 بعد العنصرة",
+      "ru": "12-е воскресенье после Пятидесятницы",
+      "tl": "Ika-12 Linggo pagkatapos ng Pentekostes",
+      "fr": "12e dimanche après la Pentecôte",
+      "it": "12ª domenica dopo Pentecoste"
+    },
+    "XIII Sunday after Pentecost": {
+      "he": "יום ראשון ה־13 אחרי שבועות",
+      "ar": "الأحد 13 بعد العنصرة",
+      "ru": "13-е воскресенье после Пятидесятницы",
+      "tl": "Ika-13 Linggo pagkatapos ng Pentekostes",
+      "fr": "13e dimanche après la Pentecôte",
+      "it": "13ª domenica dopo Pentecoste"
+    },
+    "XIV Sunday after Pentecost": {
+      "he": "יום ראשון ה־14 אחרי שבועות",
+      "ar": "الأحد 14 بعد العنصرة",
+      "ru": "14-е воскресенье после Пятидесятницы",
+      "tl": "Ika-14 Linggo pagkatapos ng Pentekostes",
+      "fr": "14e dimanche après la Pentecôte",
+      "it": "14ª domenica dopo Pentecoste"
+    },
+    "XV Sunday after Pentecost": {
+      "he": "יום ראשון ה־15 אחרי שבועות",
+      "ar": "الأحد 15 بعد العنصرة",
+      "ru": "15-е воскресенье после Пятидесятницы",
+      "tl": "Ika-15 Linggo pagkatapos ng Pentekostes",
+      "fr": "15e dimanche après la Pentecôte",
+      "it": "15ª domenica dopo Pentecoste"
+    },
+    "XVI Sunday after Pentecost": {
+      "he": "יום ראשון ה־16 אחרי שבועות",
+      "ar": "الأحد 16 بعد العنصرة",
+      "ru": "16-е воскресенье после Пятидесятницы",
+      "tl": "Ika-16 Linggo pagkatapos ng Pentekostes",
+      "fr": "16e dimanche après la Pentecôte",
+      "it": "16ª domenica dopo Pentecoste"
+    },
+    "XVII Sunday after Pentecost": {
+      "he": "יום ראשון ה־17 אחרי שבועות",
+      "ar": "الأحد 17 بعد العنصرة",
+      "ru": "17-е воскресенье после Пятидесятницы",
+      "tl": "Ika-17 Linggo pagkatapos ng Pentekostes",
+      "fr": "17e dimanche après la Pentecôte",
+      "it": "17ª domenica dopo Pentecoste"
+    },
+    "Ember Wednesday of September": {
+      "he": "יום רביעי של ארבעת מועדי הצום — ספטמבר",
+      "ar": "الأربعاء من أيام الصوم الفصلية — سبتمبر",
+      "ru": "Среда четверовременного поста — сентября",
+      "tl": "Miyerkules ng Kuwaresma de Temporas — Setyembre",
+      "fr": "Mercredi des Quatre-Temps — septembre",
+      "it": "Mercoledì delle Quattro Tempora — settembre"
+    },
+    "Ember Friday of September": {
+      "he": "יום שישי של ארבעת מועדי הצום — ספטמבר",
+      "ar": "الجمعة من أيام الصوم الفصلية — سبتمبر",
+      "ru": "Пятница четверовременного поста — сентября",
+      "tl": "Biyernes ng Kuwaresma de Temporas — Setyembre",
+      "fr": "Vendredi des Quatre-Temps — septembre",
+      "it": "Venerdì delle Quattro Tempora — settembre"
+    },
+    "Ember Saturday of September": {
+      "he": "שבת של ארבעת מועדי הצום — ספטמבר",
+      "ar": "السبت من أيام الصوم الفصلية — سبتمبر",
+      "ru": "Суббота четверовременного поста — сентября",
+      "tl": "Sabado ng Kuwaresma de Temporas — Setyembre",
+      "fr": "Samedi des Quatre-Temps — septembre",
+      "it": "Sabato delle Quattro Tempora — settembre"
+    },
+    "XVIII Sunday after Pentecost": {
+      "he": "יום ראשון ה־18 אחרי שבועות",
+      "ar": "الأحد 18 بعد العنصرة",
+      "ru": "18-е воскресенье после Пятидесятницы",
+      "tl": "Ika-18 Linggo pagkatapos ng Pentekostes",
+      "fr": "18e dimanche après la Pentecôte",
+      "it": "18ª domenica dopo Pentecoste"
+    },
+    "XIX Sunday after Pentecost": {
+      "he": "יום ראשון ה־19 אחרי שבועות",
+      "ar": "الأحد 19 بعد العنصرة",
+      "ru": "19-е воскресенье после Пятидесятницы",
+      "tl": "Ika-19 Linggo pagkatapos ng Pentekostes",
+      "fr": "19e dimanche après la Pentecôte",
+      "it": "19ª domenica dopo Pentecoste"
+    },
+    "XX Sunday after Pentecost": {
+      "he": "יום ראשון ה־20 אחרי שבועות",
+      "ar": "الأحد 20 بعد العنصرة",
+      "ru": "20-е воскресенье после Пятидесятницы",
+      "tl": "Ika-20 Linggo pagkatapos ng Pentekostes",
+      "fr": "20e dimanche après la Pentecôte",
+      "it": "20ª domenica dopo Pentecoste"
+    },
+    "XXI Sunday after Pentecost": {
+      "he": "יום ראשון ה־21 אחרי שבועות",
+      "ar": "الأحد 21 بعد العنصرة",
+      "ru": "21-е воскресенье после Пятидесятницы",
+      "tl": "Ika-21 Linggo pagkatapos ng Pentekostes",
+      "fr": "21e dimanche après la Pentecôte",
+      "it": "21ª domenica dopo Pentecoste"
+    },
+    "V Sunday after Epiphany": {
+      "he": "יום ראשון ה־5 אחרי חג ההתגלות",
+      "ar": "الأحد 5 بعد عيد الظهور الإلهي",
+      "ru": "5-е воскресенье после Богоявления",
+      "tl": "Ika-5 Linggo pagkatapos ng Epipanya",
+      "fr": "5e dimanche après l’Épiphanie",
+      "it": "5ª domenica dopo Epifania"
+    },
+    "VI Sunday after Epiphany": {
+      "he": "יום ראשון ה־6 אחרי חג ההתגלות",
+      "ar": "الأحد 6 بعد عيد الظهور الإلهي",
+      "ru": "6-е воскресенье после Богоявления",
+      "tl": "Ika-6 Linggo pagkatapos ng Epipanya",
+      "fr": "6e dimanche après l’Épiphanie",
+      "it": "6ª domenica dopo Epifania"
+    },
+    "XXIV Sunday after Pentecost": {
+      "he": "יום ראשון ה־24 אחרי שבועות",
+      "ar": "الأحد 24 بعد العنصرة",
+      "ru": "24-е воскресенье после Пятидесятницы",
+      "tl": "Ika-24 Linggo pagkatapos ng Pentekostes",
+      "fr": "24e dimanche après la Pentecôte",
+      "it": "24ª domenica dopo Pentecoste"
+    },
+    "I Sunday of Advent": {
+      "he": "יום ראשון ה־1 של הציפייה",
+      "ar": "الأحد 1 من زمن المجيء",
+      "ru": "1-е воскресенье Адвента",
+      "tl": "Ika-1 Linggo ng Adbiyento",
+      "fr": "1er dimanche de l’Avent",
+      "it": "1ª domenica di Avvento"
+    },
+    "Feria III after I Sunday of Advent": {
+      "he": "יום שלישי בשבוע ה־1 של הציפייה",
+      "ar": "الثلاثاء من الأسبوع 1 من زمن المجيء",
+      "ru": "Вторник 1-й недели Адвента",
+      "tl": "Martes ng Ika-1 Linggo ng Adbiyento",
+      "fr": "Mardi de la 1e semaine de l’Avent",
+      "it": "Martedì della 1ª settimana di Avvento"
+    },
+    "Sabbato after I Sunday of Advent": {
+      "he": "שבת בשבוע ה־1 של הציפייה",
+      "ar": "السبت من الأسبوع 1 من زمن المجيء",
+      "ru": "Суббота 1-й недели Адвента",
+      "tl": "Sabado ng Ika-1 Linggo ng Adbiyento",
+      "fr": "Samedi de la 1e semaine de l’Avent",
+      "it": "Sabato della 1ª settimana di Avvento"
+    },
+    "II Sunday of Advent": {
+      "he": "יום ראשון ה־2 של הציפייה",
+      "ar": "الأحد 2 من زمن المجيء",
+      "ru": "2-е воскресенье Адвента",
+      "tl": "Ika-2 Linggo ng Adbiyento",
+      "fr": "2e dimanche de l’Avent",
+      "it": "2ª domenica di Avvento"
+    },
+    "Feria IV after II Sunday of Advent": {
+      "he": "יום רביעי בשבוע ה־2 של הציפייה",
+      "ar": "الأربعاء من الأسبوع 2 من زمن المجيء",
+      "ru": "Среда 2-й недели Адвента",
+      "tl": "Miyerkules ng Ika-2 Linggo ng Adbiyento",
+      "fr": "Mercredi de la 2e semaine de l’Avent",
+      "it": "Mercoledì della 2ª settimana di Avvento"
+    },
+    "Feria V after II Sunday of Advent": {
+      "he": "יום חמישי בשבוע ה־2 של הציפייה",
+      "ar": "الخميس من الأسبوع 2 من زمن المجيء",
+      "ru": "Четверг 2-й недели Адвента",
+      "tl": "Huwebes ng Ika-2 Linggo ng Adbiyento",
+      "fr": "Jeudi de la 2e semaine de l’Avent",
+      "it": "Giovedì della 2ª settimana di Avvento"
+    },
+    "Sabbato after II Sunday of Advent": {
+      "he": "שבת בשבוע ה־2 של הציפייה",
+      "ar": "السبت من الأسبوع 2 من زمن المجيء",
+      "ru": "Суббота 2-й недели Адвента",
+      "tl": "Sabado ng Ika-2 Linggo ng Adbiyento",
+      "fr": "Samedi de la 2e semaine de l’Avent",
+      "it": "Sabato della 2ª settimana di Avvento"
+    },
+    "III Sunday of Advent": {
+      "he": "יום ראשון ה־3 של הציפייה",
+      "ar": "الأحد 3 من زمن المجيء",
+      "ru": "3-е воскресенье Адвента",
+      "tl": "Ika-3 Linggo ng Adbiyento",
+      "fr": "3e dimanche de l’Avent",
+      "it": "3ª domenica di Avvento"
+    },
+    "Feria II after III Sunday of Advent": {
+      "he": "יום שני בשבוע ה־3 של הציפייה",
+      "ar": "الاثنين من الأسبوع 3 من زمن المجيء",
+      "ru": "Понедельник 3-й недели Адвента",
+      "tl": "Lunes ng Ika-3 Linggo ng Adbiyento",
+      "fr": "Lundi de la 3e semaine de l’Avent",
+      "it": "Lunedì della 3ª settimana di Avvento"
+    },
+    "Feria III after III Sunday of Advent": {
+      "he": "יום שלישי בשבוע ה־3 של הציפייה",
+      "ar": "الثلاثاء من الأسبوع 3 من زمن المجيء",
+      "ru": "Вторник 3-й недели Адвента",
+      "tl": "Martes ng Ika-3 Linggo ng Adbiyento",
+      "fr": "Mardi de la 3e semaine de l’Avent",
+      "it": "Martedì della 3ª settimana di Avvento"
+    },
+    "Ember Wednesday of Advent": {
+      "he": "יום רביעי של ארבעת מועדי הצום — הציפייה",
+      "ar": "الأربعاء من أيام الصوم الفصلية — زمن المجيء",
+      "ru": "Среда четверовременного поста — Адвента",
+      "tl": "Miyerkules ng Kuwaresma de Temporas — Adbiyento",
+      "fr": "Mercredi des Quatre-Temps — l’Avent",
+      "it": "Mercoledì delle Quattro Tempora — Avvento"
+    },
+    "Feria V after III Sunday of Advent": {
+      "he": "יום חמישי בשבוע ה־3 של הציפייה",
+      "ar": "الخميس من الأسبوع 3 من زمن المجيء",
+      "ru": "Четверг 3-й недели Адвента",
+      "tl": "Huwebes ng Ika-3 Linggo ng Adbiyento",
+      "fr": "Jeudi de la 3e semaine de l’Avent",
+      "it": "Giovedì della 3ª settimana di Avvento"
+    },
+    "Ember Friday of Advent": {
+      "he": "יום שישי של ארבעת מועדי הצום — הציפייה",
+      "ar": "الجمعة من أيام الصوم الفصلية — زمن المجيء",
+      "ru": "Пятница четверовременного поста — Адвента",
+      "tl": "Biyernes ng Kuwaresma de Temporas — Adbiyento",
+      "fr": "Vendredi des Quatre-Temps — l’Avent",
+      "it": "Venerdì delle Quattro Tempora — Avvento"
+    },
+    "Ember Saturday of Advent": {
+      "he": "שבת של ארבעת מועדי הצום — הציפייה",
+      "ar": "السبت من أيام الصوم الفصلية — زمن المجيء",
+      "ru": "Суббота четверовременного поста — Адвента",
+      "tl": "Sabado ng Kuwaresma de Temporas — Adbiyento",
+      "fr": "Samedi des Quatre-Temps — l’Avent",
+      "it": "Sabato delle Quattro Tempora — Avvento"
+    },
+    "IV Sunday of Advent": {
+      "he": "יום ראשון ה־4 של הציפייה",
+      "ar": "الأحد 4 من زمن المجيء",
+      "ru": "4-е воскресенье Адвента",
+      "tl": "Ika-4 Linggo ng Adbiyento",
+      "fr": "4e dimanche de l’Avent",
+      "it": "4ª domenica di Avvento"
+    },
+    "Feria III after IV Sunday of Advent": {
+      "he": "יום שלישי בשבוע ה־4 של הציפייה",
+      "ar": "الثلاثاء من الأسبوع 4 من زمن المجيء",
+      "ru": "Вторник 4-й недели Адвента",
+      "tl": "Martes ng Ika-4 Linggo ng Adbiyento",
+      "fr": "Mardi de la 4e semaine de l’Avent",
+      "it": "Martedì della 4ª settimana di Avvento"
+    },
+    "Feria IV after IV Sunday of Advent": {
+      "he": "יום רביעי בשבוע ה־4 של הציפייה",
+      "ar": "الأربعاء من الأسبوع 4 من زمن المجيء",
+      "ru": "Среда 4-й недели Адвента",
+      "tl": "Miyerkules ng Ika-4 Linggo ng Adbiyento",
+      "fr": "Mercredi de la 4e semaine de l’Avent",
+      "it": "Mercoledì della 4ª settimana di Avvento"
+    },
+    "Sunday in the Octave of Christmas": {
+      "he": "יום ראשון באוקטבה של חג המולד",
+      "ar": "الأحد في ثمانية عيد الميلاد",
+      "ru": "Воскресенье в октаве Рождества",
+      "tl": "Linggo sa Oktaba ng Pasko",
+      "fr": "Dimanche dans l’octave de Noël",
+      "it": "Domenica nell’ottava di Natale"
+    },
+    "Feria III after the I Sunday of Lent": {
+      "he": "יום שלישי בשבוע ה־1 של צום הארבעים",
+      "ar": "الثلاثاء من الأسبوع 1 من الصوم الكبير",
+      "ru": "Вторник 1-й недели Великого поста",
+      "tl": "Martes ng Ika-1 Linggo ng Kuwaresma",
+      "fr": "Mardi de la 1e semaine de Carême",
+      "it": "Martedì della 1ª settimana di Quaresima"
+    },
+    "Feria V after the IV Sunday of Lent": {
+      "he": "יום חמישי בשבוע ה־4 של צום הארבעים",
+      "ar": "الخميس من الأسبوع 4 من الصوم الكبير",
+      "ru": "Четверг 4-й недели Великого поста",
+      "tl": "Huwebes ng Ika-4 Linggo ng Kuwaresma",
+      "fr": "Jeudi de la 4e semaine de Carême",
+      "it": "Giovedì della 4ª settimana di Quaresima"
+    },
+    "Feria IV of Passion Week": {
+      "he": "יום רביעי של שבוע הייסורים",
+      "ar": "الأربعاء من أسبوع الآلام",
+      "ru": "Среда недели Страстей",
+      "tl": "Miyerkules ng Linggo ng Pagpapakasakit",
+      "fr": "Mercredi de la semaine de la Passion",
+      "it": "Mercoledì della settimana di Passione"
+    },
+    "XXII Sunday after Pentecost": {
+      "he": "יום ראשון ה־22 אחרי שבועות",
+      "ar": "الأحد 22 بعد العنصرة",
+      "ru": "22-е воскресенье после Пятидесятницы",
+      "tl": "Ika-22 Linggo pagkatapos ng Pentekostes",
+      "fr": "22e dimanche après la Pentecôte",
+      "it": "22ª domenica dopo Pentecoste"
+    },
+    "XXIII Sunday after Pentecost": {
+      "he": "יום ראשון ה־23 אחרי שבועות",
+      "ar": "الأحد 23 بعد العنصرة",
+      "ru": "23-е воскресенье после Пятидесятницы",
+      "tl": "Ika-23 Linggo pagkatapos ng Pentekostes",
+      "fr": "23e dimanche après la Pentecôte",
+      "it": "23ª domenica dopo Pentecoste"
+    },
+    "Feria II after I Sunday of Advent": {
+      "he": "יום שני בשבוע ה־1 של הציפייה",
+      "ar": "الاثنين من الأسبوع 1 من زمن المجيء",
+      "ru": "Понедельник 1-й недели Адвента",
+      "tl": "Lunes ng Ika-1 Linggo ng Adbiyento",
+      "fr": "Lundi de la 1e semaine de l’Avent",
+      "it": "Lunedì della 1ª settimana di Avvento"
+    },
+    "Feria IV after I Sunday of Advent": {
+      "he": "יום רביעי בשבוע ה־1 של הציפייה",
+      "ar": "الأربعاء من الأسبوع 1 من زمن المجيء",
+      "ru": "Среда 1-й недели Адвента",
+      "tl": "Miyerkules ng Ika-1 Linggo ng Adbiyento",
+      "fr": "Mercredi de la 1e semaine de l’Avent",
+      "it": "Mercoledì della 1ª settimana di Avvento"
+    },
+    "Feria VI after II Sunday of Advent": {
+      "he": "יום שישי בשבוע ה־2 של הציפייה",
+      "ar": "الجمعة من الأسبوع 2 من زمن المجيء",
+      "ru": "Пятница 2-й недели Адвента",
+      "tl": "Biyernes ng Ika-2 Linggo ng Adbiyento",
+      "fr": "Vendredi de la 2e semaine de l’Avent",
+      "it": "Venerdì della 2ª settimana di Avvento"
+    },
+    "Feria II after IV Sunday of Advent": {
+      "he": "יום שני בשבוע ה־4 של הציפייה",
+      "ar": "الاثنين من الأسبوع 4 من زمن المجيء",
+      "ru": "Понедельник 4-й недели Адвента",
+      "tl": "Lunes ng Ika-4 Linggo ng Adbiyento",
+      "fr": "Lundi de la 4e semaine de l’Avent",
+      "it": "Lunedì della 4ª settimana di Avvento"
+    },
+    "Feria V after IV Sunday of Advent": {
+      "he": "יום חמישי בשבוע ה־4 של הציפייה",
+      "ar": "الخميس من الأسبوع 4 من زمن المجيء",
+      "ru": "Четверг 4-й недели Адвента",
+      "tl": "Huwebes ng Ika-4 Linggo ng Adbiyento",
+      "fr": "Jeudi de la 4e semaine de l’Avent",
+      "it": "Giovedì della 4ª settimana di Avvento"
+    },
+    "Septuagesima Sunday": {
+      "he": "יום ראשון של ספטואגסימה",
+      "ar": "أحد السبعين",
+      "ru": "Воскресенье Семидесятницы",
+      "tl": "Linggo ng Septuagesima",
+      "fr": "Dimanche de la Septuagésime",
+      "it": "Domenica di Settuagesima"
+    },
+    "Sexagesima Sunday": {
+      "he": "יום ראשון של סקסגסימה",
+      "ar": "أحد الستين",
+      "ru": "Воскресенье Шестидесятницы",
+      "tl": "Linggo ng Sexagesima",
+      "fr": "Dimanche de la Sexagésime",
+      "it": "Domenica di Sessagesima"
+    },
+    "Quinquagesima Sunday": {
+      "he": "יום ראשון של קווינקוואגסימה",
+      "ar": "أحد الخمسين",
+      "ru": "Воскресенье Пятидесятницы перед Великим постом",
+      "tl": "Linggo ng Quinquagesima",
+      "fr": "Dimanche de la Quinquagésime",
+      "it": "Domenica di Quinquagesima"
+    },
+    "Passion Sunday": {
+      "he": "יום ראשון של הייסורים",
+      "ar": "أحد الآلام",
+      "ru": "Воскресенье Страстей",
+      "tl": "Linggo ng Pagpapakasakit",
+      "fr": "Dimanche de la Passion",
+      "it": "Domenica di Passione"
+    },
+    "Low Sunday": {
+      "he": "יום ראשון אחרי חג הפסחא",
+      "ar": "الأحد الأول بعد الفصح",
+      "ru": "Первое воскресенье после Пасхи",
+      "tl": "Unang Linggo pagkatapos ng Pasko ng Pagkabuhay",
+      "fr": "Dimanche in albis",
+      "it": "Domenica in albis"
+    },
+    "Feria in the Octave of Christmas": {
+      "he": "יום באוקטבה של חג המולד",
+      "ar": "يوم من ثمانية عيد الميلاد",
+      "ru": "Будний день в октаве Рождества",
+      "tl": "Karaniwang Araw sa Oktaba ng Pasko",
+      "fr": "Férie dans l’octave de Noël",
+      "it": "Feria nell’ottava di Natale"
+    },
+    "Seven Sorrows of the Blessed Virgin Mary": {
+      "he": "שבעת מכאוביה של מרים הבתולה המבורכת",
+      "ar": "أحزان مريم العذراء المباركة السبعة",
+      "ru": "Семь скорбей Пресвятой Девы Марии",
+      "tl": "Pitong Hapis ng Mahal na Birheng Maria",
+      "fr": "Sept Douleurs de la bienheureuse Vierge Marie",
+      "it": "Sette Dolori della Beata Vergine Maria"
+    },
+    "Trinity Sunday": {
+      "he": "יום ראשון של רז אלהים אחד: האב והבן ורוח הקודש",
+      "ar": "أحد الثالوث الأقدس",
+      "ru": "Воскресенье Пресвятой Троицы",
+      "tl": "Linggo ng Santisima Trinidad",
+      "fr": "Dimanche de la Sainte Trinité",
+      "it": "Domenica della Santissima Trinità"
+    },
+    "Vigil of the Ascension": {
+      "he": "ערב — חג עלייתו של האדון השמיימה",
+      "ar": "عشية — صعود الرب",
+      "ru": "Канун — Вознесение Господне",
+      "tl": "Bisperas — Pag-akyat ng Panginoon sa Langit",
+      "fr": "Vigile — Ascension du Seigeur",
+      "it": "Vigilia — Ascensione"
+    },
+    "Vigil of the Nativity of St. John the Baptist": {
+      "he": "ערב — חג הולדתו של יוחנן המטביל",
+      "ar": "عشية — ميلاد القديس يوحنا المعمدان",
+      "ru": "Канун — Рождество святого Иоанна Крестителя",
+      "tl": "Bisperas — Pagsilang ni San Juan Bautista",
+      "fr": "Vigile — La Nativité de Saint Jean-Baptiste",
+      "it": "Vigilia — Natività di San Giovanni Battista"
+    },
+    "Vigil of the Assumption": {
+      "he": "ערב — חג העלאתה של מרים השמיימה",
+      "ar": "عشية — انتقال الطوباوية مريم العذراء بالنفس والجسد إلى السماء",
+      "ru": "Канун — Взятие Пресвятой Девы Марии на небо",
+      "tl": "Bisperas — Pag-aakyat sa Mahal na Birheng Maria sa Langit",
+      "fr": "Vigile — Assomption de la Bienheureuse Vierge Marie",
+      "it": "Vigilia — Assunzione della Beata Vergine Maria"
+    },
+    "Vigil of Christmas": {
+      "he": "ערב — חג המולד",
+      "ar": "عشية — ميلاد الرب",
+      "ru": "Канун — Рождество Христово",
+      "tl": "Bisperas — Pasko ng Pagsilang ng Panginoon",
+      "fr": "Vigile — Nativité du Seigneur",
+      "it": "Vigilia — Natale"
+    },
+    "Vigil of Sts. Peter & Paul": {
+      "he": "ערב — חג שמעון כיפא ושאול השליחים",
+      "ar": "عشية — القديسان بطرس وبولس، الرسولان",
+      "ru": "Канун — Святые Пётр и Павел, апостолы",
+      "tl": "Bisperas — San Pedro at San Pablo, mga Apostol",
+      "fr": "Vigile — Saints Pierre et Paul, Apôtres",
+      "it": "Vigilia — Santi Pietro e Paolo, Apostoli"
+    },
+    "Vigil of St. Lawrence": {
+      "he": "ערב — חג לורנציוס, דיאקון ומרטיר",
+      "ar": "عشية — القديس لورنس، شماس وشهيد",
+      "ru": "Канун — Святой Лаврентий, диакон и мученик",
+      "tl": "Bisperas — San Lorenzo, Diyakono at Martir",
+      "fr": "Vigile — Saint Laurent, diacre et martyr",
+      "it": "Vigilia — San Lorenzo, diacono e martire"
+    }
+  }
+}

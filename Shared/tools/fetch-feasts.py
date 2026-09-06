@@ -44,20 +44,14 @@ Calendars and their sources:
                          French and Italian names are joined from LitCal's matching stable
                          event_key identities in feast-titles-localized.json. Reviewed exact
                          aliases extend those names to the same observances in other calendars.
-  feasts-ugcc.json       Byzantine — Ukrainian Greek Catholic, the diasporic (fully Gregorian)
-                         usage prayed in the Holy Land: no licensed machine-readable source
-                         exists, so the fixed menologion is CURATED IN THIS SCRIPT
-                         (UGCC_MENOLOGION — the Twelve Great Feasts and the major
-                         commemorations of every Byzantine wall calendar, plus the UGCC's own:
-                         Josaphat, Volodymyr, Olha, the Blessed New Martyrs) and the movable
-                         Paschal cycle is computed from the Gregorian Pascha. Ranks: "Great
-                         Feast" (bolded like "Solemnity"), "Feast", "Sunday", "Holy Week",
-                         "Fast". Every Sunday gets a name — the Triodion/Pentecostarion
-                         Sundays their own, the rest numbered after Pentecost with the
-                         pre-Nativity/Theophany specials. A fixed Great Feast falling on a
-                         movable-cycle day is joined into one title (the Annunciation in Holy
-                         Week — 2027 is such a year). Curated data wants eparchial
-                         verification; corrections are one table edit away.
+  feasts-ugcc.json       Byzantine — UGCC new-style fixed feasts with Julian Pascha.
+                         The curated menologion and named movable cycles are baked per year.
+  feasts-ugcc-gregorian.json uses the same fixed feasts with Gregorian Pascha. The registry
+                         selects matching feast and reading files for each choice.
+  feasts-maronite.json   Evangelizo MAE, generated with fetch-maronite.py, distinct from SYE.
+  All titles            sourced labels take precedence over credited editorial metadata in
+                         feast-titles-*.json. All seven interface locales are covered without
+                         copying dates, ranks, or readings across rites.
 
 Movable feasts are baked in per year at generation time — no computus ships in the app. A
 date outside a table simply hides the Today row. pope-intentions.json is maintained by hand
@@ -89,6 +83,8 @@ ROOT = SHARED.parent
 DATA = SHARED / "data"
 HEBREW_TITLE_CATALOGS = [TOOLS / "hebrew-feast-titles.json", TOOLS / "hebrew-saint-titles.json"]
 LOCALIZED_TITLE_CATALOG = TOOLS / "feast-titles-localized.json"
+DISPLAY_TITLE_CATALOGS = [TOOLS / f"feast-titles-{name}.json" for name in
+                          ("roman", "roman-he", "ugcc", "syriac", "maronite", "extra")]
 
 PLATFORM_DATA_DIRS = [
     ROOT / "iOS" / "Prosary" / "Data",
@@ -164,6 +160,7 @@ UGCC_MENOLOGION = {
 # The movable Paschal cycle as offsets in days from Pascha. Sundays carry rank "Sunday" except
 # Palm Sunday (one of the Twelve Great Feasts); Holy Week days rank "Holy Week".
 UGCC_PASCHAL_CYCLE = [
+    (-77, "Sunday of Zacchaeus", "Sunday"),
     (-70, "Sunday of the Publican and the Pharisee", "Sunday"),
     (-63, "Sunday of the Prodigal Son", "Sunday"),
     (-56, "Meatfare Sunday — of the Last Judgment", "Sunday"),
@@ -366,14 +363,42 @@ def add_sourced_feast_titles(days: dict, catalogs: dict[str, dict[str, str]]) ->
 
 
 def localize_existing_datasets() -> None:
-    catalog = hebrew_title_catalog()
+    display_catalogs: dict[str, dict[str, str]] = {}
+    for path in DISPLAY_TITLE_CATALOGS:
+        if path.exists():
+            for title, translations in json.loads(path.read_text(encoding="utf-8"))["titles"].items():
+                for language, value in translations.items():
+                    if language in {"he", "ar", "ru", "tl", "fr", "it"}:
+                        if not value.strip():
+                            raise ValueError(f"Empty display translation: {path.name}/{title}/{language}")
+                        display_catalogs.setdefault(language, {})[title] = value
+    catalog = display_catalogs.pop("he", {}) | hebrew_title_catalog()
     sourced_catalogs = sourced_title_catalogs()
+    for language, values in sourced_catalogs.items():
+        display_catalogs[language] = display_catalogs.get(language, {}) | values
+    # Aliases are reviewed named identities, never fuzzy matching or same-date matching.
+    # Fill only missing values so exact published labels retain precedence.
+    aliases_path = TOOLS / "feast-title-aliases.json"
+    if aliases_path.exists():
+        aliases = json.loads(aliases_path.read_text(encoding="utf-8"))["aliases"]
+        for values in [catalog, *display_catalogs.values()]:
+            for _ in range(len(aliases)):
+                changed = False
+                for alias, identity in aliases.items():
+                    if alias not in values and identity in values:
+                        values[alias] = values[identity]
+                        changed = True
+                if not changed:
+                    break
     registry = json.loads((DATA / "calendars.json").read_text(encoding="utf-8"))
-    for name in dict.fromkeys(calendar["file"] for calendar in registry["calendars"]):
+    names = [calendar["file"] for calendar in registry["calendars"]]
+    names += [variant["file"] for calendar in registry["calendars"]
+              for variant in calendar.get("paschaVariants", {}).values()]
+    for name in dict.fromkeys(names):
         path = DATA / f"{name}.json"
         payload = json.loads(path.read_text(encoding="utf-8"))
         updated, missing = localize_feast_days(payload["days"], catalog)
-        sourced_updates = add_sourced_feast_titles(payload["days"], sourced_catalogs)
+        sourced_updates = add_sourced_feast_titles(payload["days"], display_catalogs)
         credit = (
             " Hebrew feast and saint names use the credited source catalogs in "
             "Shared/tools/hebrew-feast-titles.json and hebrew-saint-titles.json; "
@@ -385,6 +410,8 @@ def localize_existing_datasets() -> None:
                 " French and Italian feast names are sourced from LitCal (Apache-2.0), "
                 "joined by stable event identity with reviewed exact aliases in "
                 "Shared/tools/feast-titles-localized.json; no calendar dates or ranks are changed.")
+        if "Editorial display labels" not in payload["$comment"]:
+            payload["$comment"] += " Editorial display labels in all interface languages are supplied by Prosary's feast-titles catalogs where a published translation is unavailable; they are calendar metadata, not official liturgical prayer translations. Published exact-title translations take precedence."
         path.write_text(json.dumps(payload, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
         print(f"localized {path.name}: {updated} added or updated; {len(missing)} distinct titles retain their source language")
         print(f"  sourced language updates: {sourced_updates}")
@@ -422,16 +449,26 @@ def _ordinal(n: int) -> str:
     return f"{n}{suffix}"
 
 
-def ugcc_days(year: int) -> dict:
-    """One entry per feast/named day of the UGCC's diasporic (fully Gregorian) calendar.
+def julian_easter(year: int) -> dt.date:
+    """Julian Pascha as a civil Gregorian date; century offsets are calculated, not fixed."""
+    a, b, c = year % 4, year % 7, year % 19
+    d = (19 * c + 15) % 30
+    e = (2 * a + 4 * b - d + 34) % 7
+    month, day = (d + e + 114) // 31, (d + e + 114) % 31 + 1
+    return dt.date(year, month, day) + dt.timedelta(days=year // 100 - year // 400 - 2)
+
+
+def ugcc_days(year: int, pascha_style: str = "julian") -> dict:
+    """UGCC new-style fixed dates; Julian Pascha by default, Gregorian by explicit choice.
 
     Layered lowest to highest: numbered Sundays after Pentecost (counted from the previous
     year's Pentecost before this year's) → fixed Feasts → the pre-Nativity/Theophany special
     Sundays → fixed Great Feasts → the movable Paschal cycle, which joins rather than
     replaces a fixed Great Feast it lands on (the Annunciation in Holy Week).
     """
-    pascha = gregorian_easter(year)
-    pentecost_previous = gregorian_easter(year - 1) + dt.timedelta(days=49)
+    computus = gregorian_easter if pascha_style == "gregorian" else julian_easter
+    pascha = computus(year)
+    pentecost_previous = computus(year - 1) + dt.timedelta(days=49)
     pentecost = pascha + dt.timedelta(days=49)
     days: dict[str, dict] = {}
 
@@ -452,8 +489,12 @@ def ugcc_days(year: int) -> dict:
     # Feasts — a Great Feast outranks a special Sunday, which outranks a plain fixed feast.
     for month_day, (title, code) in UGCC_MENOLOGION.items():
         if code == "F":
-            put(dt.date.fromisoformat(f"{year}-{month_day}"), title, UGCC_RANKS[code])
+            date = dt.date.fromisoformat(f"{year}-{month_day}")
+            if days.get(date.isoformat(), {}).get("rank") != "Sunday":
+                put(date, title, UGCC_RANKS[code])
     specials = [
+        ((9, 7), (9, 13), "Sunday before the Exaltation of the Cross"),
+        ((9, 15), (9, 21), "Sunday after the Exaltation of the Cross"),
         ((12, 11), (12, 17), "Sunday of the Holy Forefathers"),
         ((12, 18), (12, 24), "Sunday before the Nativity — of the Holy Fathers"),
         ((12, 26), (12, 31), "Sunday after the Nativity"),
@@ -481,6 +522,25 @@ def ugcc_days(year: int) -> dict:
             put(date, f"{existing['title']}; {title}", "Great Feast")
         else:
             put(date, title, rank)
+
+    # Saints do not erase the Sunday cycle. Join their fixed commemoration after the
+    # movable/special Sunday has been resolved (Zacchaeus + Gregory on 25 Jan 2026).
+    for month_day, (title, code) in UGCC_MENOLOGION.items():
+        key = f"{year}-{month_day}"
+        existing = days.get(key)
+        if code == "F" and existing and existing["rank"] == "Sunday":
+            existing["title"] += f"; {title}"
+
+    # These fixed-season Sunday commemorations accompany the numbered Sunday.
+    # Both are explicit in the official 2026 calendar (July 19 and October 11).
+    for month, first, last, title in [
+        (7, 13, 19, "Sunday of the Fathers of the Six Ecumenical Councils"),
+        (10, 11, 17, "Sunday of the Fathers of the Seventh Ecumenical Council"),
+    ]:
+        for day_number in range(first, last + 1):
+            date = dt.date(year, month, day_number)
+            if date.weekday() == 6:
+                days[date.isoformat()]["title"] += f"; {title}"
 
     return dict(sorted(days.items()))
 
@@ -562,8 +622,14 @@ def main() -> int:
     parser.add_argument("--cache", type=Path, default=None, help="payload cache directory")
     parser.add_argument("--localize-only", action="store_true", help="apply sourced names offline without changing calendar coverage")
     parser.add_argument("--self-test", action="store_true", help="check exact-title localization without fetching data")
+    parser.add_argument("--ugcc-only", action="store_true", help="regenerate both Byzantine Pascha styles offline")
     args = parser.parse_args()
     if args.self_test:
+        assert julian_easter(2026) == dt.date(2026, 4, 12)
+        assert julian_easter(2027) == dt.date(2027, 5, 2)
+        assert ugcc_days(2026)["2026-09-06"]["title"] == "14th Sunday after Pentecost"
+        assert ugcc_days(2026, "gregorian")["2026-09-06"]["title"] == "15th Sunday after Pentecost"
+        assert ugcc_days(2026)["2026-05-31"]["title"] == "The Descent of the Holy Spirit — Pentecost"
         catalog = {"Feast": "חג", "Other observance": "זכר", "Saint": "קדוש"}
         days = {
             "2026-09-05": {"title": "Saint", "rank": "Memorial", "titleByLanguage": {"ar": "existing"}},
@@ -627,6 +693,12 @@ def main() -> int:
             sync_datasets()
         return 0
     years = args.years or [dt.date.today().year, dt.date.today().year + 1]
+    if args.ugcc_only:
+        write_ugcc_datasets(years)
+        localize_existing_datasets()
+        if args.sync:
+            sync_datasets()
+        return 0
     if args.cache:
         global CACHE_DIR
         CACHE_DIR = args.cache
@@ -681,20 +753,22 @@ def main() -> int:
     if obsolete.exists():
         obsolete.unlink()
         print(f"removed obsolete {obsolete.relative_to(ROOT)}")
-    write_dataset(
-        DATA / "feasts-ugcc.json",
-        "Per-day table, Byzantine — Ukrainian Greek Catholic, the diasporic (fully Gregorian) "
-        "usage: CURATED in Shared/tools/fetch-feasts.py (no licensed machine-readable source "
-        "exists — fixed menologion authored there, movable Paschal cycle computed from the "
-        "Gregorian Pascha). Ranks: Great Feast / Feast / Sunday / Holy Week / Fast. Awaiting "
-        "eparchial/community verification; see the script for the layering rules.",
-        years, ugcc)
+    write_ugcc_datasets(years)
 
     localize_existing_datasets()
 
     if args.sync:
         sync_datasets()
     return 0
+
+
+def write_ugcc_datasets(years: list[int]) -> None:
+    for style, suffix in (("julian", ""), ("gregorian", "-gregorian")):
+        days = {}
+        for year in years:
+            days.update(ugcc_days(year, style))
+        write_dataset(DATA / f"feasts-ugcc{suffix}.json",
+                      f"Byzantine Ukrainian Greek Catholic calendar: new-style fixed feasts with {style.title()} Pascha. Fixed menologion and movable cycle curated in Shared/tools/fetch-feasts.py. Default Julian Pascha follows the UGCC in Ukraine; Gregorian Pascha is an explicit alternate usage. The corresponding reading table must use the same Pascha style. Research and source links in Shared/calendar-research.markdown.", years, days)
 
 
 if __name__ == "__main__":

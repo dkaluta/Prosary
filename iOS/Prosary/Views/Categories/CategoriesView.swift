@@ -13,6 +13,7 @@ struct CategoriesView: View {
   /// that survives the Mac's Settings menu — see PrayerLanguageMonitor's header for the
   /// graveyard of simpler attempts. Reading `.code` in body registers the dependency.
   @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
+  @AppStorage(PrayerNamePresentation.defaultsKey) private var showsPrayerNameInPrayerLanguage = false
 
   @Binding var path: [AppRoute]
   /// Bumped on every appearance so a devotion installed in another tab shows up here without
@@ -36,6 +37,7 @@ struct CategoriesView: View {
 
   var body: some View {
     let _ = prayerLanguage.code  // dependency registration — see the property's comment
+    let _ = showsPrayerNameInPrayerLanguage
     List {
       ForEach(sections, id: \.tag) { section in
         Section(UILanguage.tag(section.tag)) {
@@ -44,8 +46,12 @@ struct CategoriesView: View {
               path.push(listing.route)
             } label: {
               Label {
-                Text(HebrewDisplayText.unpointed(listing.title))
-                  .foregroundStyle(.primary)
+                VStack(alignment: .leading, spacing: 3) {
+                  Text(HebrewDisplayText.unpointed(listing.title)).foregroundStyle(.primary)
+                  if let translation = listing.translatedTitle {
+                    Text(translation).font(.subheadline).foregroundStyle(.secondary)
+                  }
+                }
               } icon: {
                 if let glyph = listing.iconGlyph {
                   Text(glyph).foregroundStyle(listing.accentColor)

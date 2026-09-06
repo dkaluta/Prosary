@@ -458,23 +458,26 @@ data class CustomDevotionInfo(
      * Categories tab groups by. */
     val tags: List<String> = emptyList(),
 ) {
-    /** The display name in the device's UI language (falling back to the manifest's base
-     * [displayName]) — preserves e.g. the Hebrew devotion names that used to live in
-     * strings.xml. */
-    /** The devotion's name, resolved the way its headings are: the prayer language first
-     * (exact resolved code, rites included, then its base), then the UI language, then the
-     * manifest's base displayName — a devotion's name is part of the prayer. */
+    /** Interface metadata follows the interface language. Prayer-language card names are an
+     * explicit display preference; they must not leak into Settings, reminders, or editors. */
     val localizedDisplayName: String
-        get() {
-            val prayerCode = LanguageCatalog.resolve(null).code
-            displayNameByLanguage[prayerCode]?.let { return HebrewDisplayText.unpoint(it) }
-            LanguageCatalog.baseLanguage(prayerCode)?.let { base ->
-                displayNameByLanguage[base]?.let { return HebrewDisplayText.unpoint(it) }
-            }
-            return HebrewDisplayText.unpoint(
-                displayNameByLanguage[LanguageCatalog.uiLanguageCode()] ?: displayName,
-            )
-        }
+        get() = displayNameIn(LanguageCatalog.uiLanguageCode())
+
+    fun displayNameIn(languageCode: String): String {
+        val code = LanguageCatalog.uiLanguageCode(languageCode)
+        return HebrewDisplayText.unpoint(
+            displayNameByLanguage[code]?.takeIf(String::isNotBlank)
+                ?: LanguageCatalog.baseLanguage(code)?.let { displayNameByLanguage[it]?.takeIf(String::isNotBlank) }
+                ?: displayName,
+        )
+    }
+
+    fun cardTitle(
+        prayerLanguage: String = LanguageCatalog.resolve(null).code,
+        interfaceLanguage: String = LanguageCatalog.uiLanguageCode(),
+    ) = com.dkaluta.prosary.models.PrayerCardTitle.resolve(
+        displayNameIn(interfaceLanguage), displayNameIn(prayerLanguage),
+    )
 
     val localizedReminderBody: String?
         get() = reminderBody[LanguageCatalog.uiLanguageCode()] ?: reminderBody["en"]
@@ -588,7 +591,7 @@ object PrayerPackStore {
      * loads first so its shared mystery texts/images are the base other bundles build on. */
     private val packNames = listOf(
         "rosary", "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
-        "divineMercyChaplet", "trisagion", "oAntiphons",
+        "divineMercyChaplet", "trisagion", "oAntiphons", "litanyOfLoreto",
     )
 
     private val prayerOverrides = mutableMapOf<String, MutableMap<PrayerKey, String>>()

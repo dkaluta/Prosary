@@ -18,14 +18,22 @@ final class TodayInfoStoreTests: XCTestCase {
   // selection explicitly and the original value is restored afterwards — the store reloads
   // live on selection change, so no reset hook is needed.
   private var originalCalendarId: String?
+  private var originalPaschaStyle: String?
 
   override func setUp() {
     super.setUp()
     originalCalendarId = UserDefaults.standard.string(forKey: TodayInfoStore.calendarDefaultsKey)
+    originalPaschaStyle = UserDefaults.standard.string(forKey: TodayInfoStore.paschaStyleDefaultsKey)
     UserDefaults.standard.removeObject(forKey: TodayInfoStore.calendarDefaultsKey)
+    UserDefaults.standard.removeObject(forKey: TodayInfoStore.paschaStyleDefaultsKey)
   }
 
   override func tearDown() {
+    if let originalPaschaStyle {
+      UserDefaults.standard.set(originalPaschaStyle, forKey: TodayInfoStore.paschaStyleDefaultsKey)
+    } else {
+      UserDefaults.standard.removeObject(forKey: TodayInfoStore.paschaStyleDefaultsKey)
+    }
     if let originalCalendarId {
       UserDefaults.standard.set(originalCalendarId, forKey: TodayInfoStore.calendarDefaultsKey)
     } else {
@@ -45,12 +53,73 @@ final class TodayInfoStoreTests: XCTestCase {
     return formatter.date(from: string)!
   }
 
-  func testTodayTranslationFollowsUIUntilExplicitlySelected() {
-    XCTAssertEqual(TodayTranslationLanguage.resolve("", appLanguage: "fr-CA"), "fr")
-    XCTAssertEqual(TodayTranslationLanguage.resolve("", appLanguage: "fil-PH"), "tl")
-    XCTAssertEqual(TodayTranslationLanguage.resolve("ar", appLanguage: "he"), "ar")
-    XCTAssertEqual(TodayTranslationLanguage.resolve("he-x-gamliel", appLanguage: "en"), "he")
-    XCTAssertEqual(TodayTranslationLanguage.resolve("unsupported", appLanguage: "ru"), "en")
+  func testSundaySuppressesOnlyTheSupplementalDayHeadingInEveryCalendar() {
+    for calendarId in TodayInfoStore.calendars.map(\.id) {
+      select(calendarId)
+      XCTAssertNil(TodayInfoStore.displayDayInfo(on: date("2026-09-06")), calendarId)
+      XCTAssertNotNil(TodayInfoStore.feast(on: date("2026-09-06")), calendarId)
+    }
+  }
+
+  func testOtherRitesUseCivilDayHeadingWithoutLatinSeasons() throws {
+    for calendarId in ["roman1962", "ugcc", "syriac"] {
+      let day = try XCTUnwrap(TodayInfoStore.displayDayInfo(on: date("2026-09-07"), calendarId: calendarId))
+      XCTAssertEqual(day.localized("en"), "Day 7 of September", calendarId)
+      let hebrew = day.localized("he").replacingOccurrences(of: "\u{2068}", with: "")
+        .replacingOccurrences(of: "\u{2069}", with: "")
+      XCTAssertEqual(hebrew, "יום 7 בחודש ספטמבר", calendarId)
+      XCTAssertEqual(day.season, "")
+      for language in UILanguage.all where language.code != "en" {
+        XCTAssertNotEqual(day.localized(language.code), day.localized("en"), language.code)
+      }
+    }
+    for calendarId in ["roman", "lpj"] {
+      let day = try XCTUnwrap(TodayInfoStore.displayDayInfo(on: date("2026-09-07"), calendarId: calendarId))
+      XCTAssertTrue(day.localized("en").contains("Ordinary Time"), calendarId)
+    }
+  }
+
+  func testDateNavigationCrossesMonthYearAndLeapDayBoundaries() {
+    XCTAssertEqual(TodayInfoStore.dateByMoving(1, from: date("2026-12-31")), date("2027-01-01"))
+    XCTAssertEqual(TodayInfoStore.dateByMoving(-1, from: date("2027-01-01")), date("2026-12-31"))
+    XCTAssertEqual(TodayInfoStore.dateByMoving(1, from: date("2028-02-28")), date("2028-02-29"))
+    XCTAssertEqual(TodayInfoStore.dateByMoving(1, from: date("2028-02-29")), date("2028-03-01"))
+  }
+
+  func testTorahReadingContractPreservesFestivalStatusAndLocalizedCitations() throws {
+    let portion = try JSONDecoder().decode(TorahPortion.self, from: Data(#"{"saturday":"2026-09-12","title":"Rosh Hashana","titleByLanguage":{"he":"ראש השנה"},"isHoliday":true,"readings":[{"type":"torah","short":"Gen. 21","full":"Genesis 21:1–34","fullByLanguage":{"he":"בראשית כ״א 1–34"}}],"sourceUrl":"https://www.hebcal.com"}"#.utf8))
+    XCTAssertTrue(portion.isHoliday)
+    XCTAssertEqual(portion.localizedTitle("iw"), "ראש השנה")
+    XCTAssertEqual(portion.readings.first?.localizedFull("he"), "בראשית כ״א 1–34")
+    XCTAssertEqual(portion.saturday, "2026-09-12")
+    XCTAssertNil(TodayInfoStore.torahPortion(on: date("2031-01-01")))
+  }
+
+  func testBundledTorahScheduleUsesTheUpcomingIsraelSabbathAndFestivalReplacement() throws {
+    let friday = try XCTUnwrap(TodayInfoStore.torahPortion(on: date("2026-05-22")))
+    let sabbath = try XCTUnwrap(TodayInfoStore.torahPortion(on: date("2026-05-23")))
+    XCTAssertEqual(friday, sabbath)
+    XCTAssertEqual(sabbath.saturday, "2026-05-23")
+    XCTAssertFalse(sabbath.isHoliday, "Israel reads the weekly portion while the diaspora keeps a second festival day")
+    XCTAssertTrue(sabbath.localizedTitle("he").contains("נשא"))
+    XCTAssertFalse(sabbath.readings.isEmpty)
+    let festival = try XCTUnwrap(TodayInfoStore.torahPortion(on: date("2026-09-12")))
+    XCTAssertTrue(festival.isHoliday)
+    XCTAssertTrue(festival.localizedTitle("he").contains("ראש השנה"))
+    XCTAssertNotEqual(TodayInfoStore.torahPortion(on: date("2026-05-24"))?.saturday, sabbath.saturday)
+  }
+
+  func testOldTodayLanguageOverrideCannotChangeInterfaceLanguage() {
+    let original = UserDefaults.standard.object(forKey: "todayLanguageCode")
+    defer {
+      if let original { UserDefaults.standard.set(original, forKey: "todayLanguageCode") }
+      else { UserDefaults.standard.removeObject(forKey: "todayLanguageCode") }
+    }
+    let interfaceLanguage = UILanguage.current
+    for oldOverride in ["ar", "he", "fr", "unsupported"] {
+      UserDefaults.standard.set(oldOverride, forKey: "todayLanguageCode")
+      XCTAssertEqual(UILanguage.current, interfaceLanguage)
+    }
   }
 
   func testFixedSolemnityResolves() {
@@ -92,7 +161,7 @@ final class TodayInfoStoreTests: XCTestCase {
   func testCalendarRegistryListsTheShippedCalendarsInPickerOrder() {
     XCTAssertEqual(
       TodayInfoStore.calendars.map(\.id),
-      ["lpj", "roman", "roman1962", "ugcc", "syriac"])
+      ["lpj", "roman", "roman1962", "ugcc", "syriac", "maronite"])
     XCTAssertEqual(TodayInfoStore.selectedCalendarId, "lpj")
   }
 
@@ -262,16 +331,14 @@ final class TodayInfoStoreTests: XCTestCase {
 
     select("ugcc")
     XCTAssertEqual(
-      TodayInfoStore.feast(on: date("2026-10-25"))?.title, "22nd Sunday after Pentecost")
+      TodayInfoStore.feast(on: date("2026-10-25"))?.title, "21st Sunday after Pentecost")
   }
 
-  /// The UGCC dataset is the diasporic (fully Gregorian) usage prayed in the Holy Land:
-  /// Pascha falls with the Gregorian computus (April 5, 2026 — the same day as the Roman
-  /// Easter), and a fixed Great Feast landing in Holy Week is joined, never displaced —
-  /// in 2027 the Annunciation falls on Great and Holy Thursday.
-  func testUkrainianCalendarPraysTheGregorianPascha() {
+  /// The default matches the UGCC's revised fixed calendar with Julian Pascha; Gregorian
+  /// Pascha is an explicit alternative whose feast and reading files change together.
+  func testUkrainianCalendarDefaultsToJulianPaschaWithGregorianFixedFeasts() {
     select("ugcc")
-    let pascha = TodayInfoStore.feast(on: date("2026-04-05"))
+    let pascha = TodayInfoStore.feast(on: date("2026-04-12"))
     XCTAssertEqual(pascha?.title, "The Resurrection of Our Lord — Holy Pascha")
     XCTAssertEqual(pascha?.rank, "Great Feast")
     XCTAssertEqual(
@@ -279,7 +346,29 @@ final class TodayInfoStoreTests: XCTestCase {
       "The Protection of the Most Holy Theotokos (Pokrov)")
     XCTAssertEqual(
       TodayInfoStore.feast(on: date("2027-03-25"))?.title,
-      "The Annunciation of the Most Holy Theotokos; Great and Holy Thursday")
+      "The Annunciation of the Most Holy Theotokos")
+  }
+
+  func testChangingPaschaStyleReloadsFeastsAndReadingsWithoutChangingCalendar() {
+    select("ugcc")
+    XCTAssertEqual(TodayInfoStore.selectedPaschaStyle, "julian")
+    XCTAssertEqual(TodayInfoStore.feast(on: date("2026-09-06"))?.title, "14th Sunday after Pentecost")
+    XCTAssertEqual(TodayInfoStore.readings(on: date("2026-09-06")).map(\.full),
+                   ["2 Corinthians 1:21–2:4", "Matthew 22:1–14"])
+    UserDefaults.standard.set("gregorian", forKey: TodayInfoStore.paschaStyleDefaultsKey)
+    XCTAssertEqual(TodayInfoStore.selectedCalendarId, "ugcc")
+    XCTAssertEqual(TodayInfoStore.feast(on: date("2026-04-05"))?.title, "The Resurrection of Our Lord — Holy Pascha")
+    XCTAssertEqual(TodayInfoStore.readings(on: date("2026-09-06")).map(\.full),
+                   ["2 Corinthians 4:6–15", "Matthew 22:35–46"])
+    UserDefaults.standard.set("future-style", forKey: TodayInfoStore.paschaStyleDefaultsKey)
+    XCTAssertEqual(TodayInfoStore.selectedPaschaStyle, "julian")
+    XCTAssertEqual(TodayInfoStore.feast(on: date("2026-09-06"))?.title, "14th Sunday after Pentecost")
+    XCTAssertEqual(TodayInfoStore.readings(on: date("2026-09-06")).map(\.full),
+                   ["2 Corinthians 1:21–2:4", "Matthew 22:1–14"])
+    select("roman")
+    let roman = TodayInfoStore.readings(on: date("2026-09-06"))
+    UserDefaults.standard.set("gregorian", forKey: TodayInfoStore.paschaStyleDefaultsKey)
+    XCTAssertEqual(TodayInfoStore.readings(on: date("2026-09-06")), roman)
   }
 
   func testUnknownCalendarIdFallsBackToTheDefault() {
@@ -348,9 +437,9 @@ final class TodayInfoStoreTests: XCTestCase {
     XCTAssertEqual(vetus.last?.localizedFull("he"), "הבשורה  על־פי יוחנן כ״א 15–17")
 
     select("ugcc")
-    let byzantine = TodayInfoStore.readings(on: date("2026-09-03"))
-    XCTAssertEqual(byzantine.first?.localizedShort("he"), "אל הגלטים ג׳")
-    XCTAssertEqual(byzantine.first?.localizedFull("he"), "אגרת שאול אל הגלטים ג׳ 23–ד׳ 5")
+    let byzantine = TodayInfoStore.readings(on: date("2026-09-06"))
+    XCTAssertEqual(byzantine.first?.localizedShort("he"), "השנייה אל הקורינתים א׳")
+    XCTAssertEqual(byzantine.first?.localizedFull("he"), "אגרת שאול השניה אל הקורינתים א׳ 21–ב׳ 4")
     XCTAssertEqual(
       TodayInfoStore.readings(on: date("2026-08-06")).first?.localizedShort("he"),
       "השנייה של כיפא א׳")
@@ -362,7 +451,7 @@ final class TodayInfoStoreTests: XCTestCase {
     XCTAssertEqual(
       TodayInfoStore.readings(on: date("2026-08-08")).first?.localizedShort("he"),
       "השנייה אל טימותיאוס ב׳")
-    XCTAssertTrue(TodayInfoStore.readings(on: date("2026-08-01")).isEmpty)
+    XCTAssertTrue(TodayInfoStore.readings(on: date("2031-08-01")).isEmpty)
   }
 
   func testReadingsFollowTheSelectedCalendarAndClearBetweenFiles() {
@@ -378,17 +467,20 @@ final class TodayInfoStoreTests: XCTestCase {
 
     select("ugcc")
     XCTAssertEqual(
-      TodayInfoStore.readings(on: date("2026-09-03")).map(\.short),
-      ["Gal. 3", "Mk. 6"])
+      TodayInfoStore.readings(on: date("2026-09-06")).map(\.short),
+      ["2 Cor. 1", "Mt. 22"])
 
     select("syriac")
     XCTAssertEqual(
       TodayInfoStore.readings(on: date("2026-09-03")).map(\.short),
       ["Phil. 1", "Lk. 21"])
 
-    // Syriac's current rolling table has no August 1 entry. It must be empty, not the Roman
-    // values loaded at the start of this test.
-    XCTAssertTrue(TodayInfoStore.readings(on: date("2026-08-01")).isEmpty)
+    select("maronite")
+    XCTAssertEqual(TodayInfoStore.readings(on: date("2026-09-06")).map(\.full),
+                   ["Amos 5:21–24", "Romans 8:18–27", "Luke 18:9–14"])
+    select("syriac")
+    // A date outside the generated range must be empty, never the previous rite's readings.
+    XCTAssertTrue(TodayInfoStore.readings(on: date("2031-08-01")).isEmpty)
   }
 
   func testMonthOutsideThePublishedListHasNoIntention() {

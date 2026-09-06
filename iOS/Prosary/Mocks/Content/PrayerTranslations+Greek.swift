@@ -2,14 +2,7 @@
 //  PrayerTranslations+Greek.swift
 //  Prosary
 //
-//  Liturgical Greek, polytonic. Deliberately partial: the keys below are prayers whose *original*
-//  language is Greek (the Creed as the Council wrote it, the Sub Tuum on Rylands Papyrus 470, the
-//  Jesus Prayer, the doxology) or plain UI labels. The Latin-tradition prayers — Salve Regina,
-//  Alma Redemptoris Mater, Ave Regina Caelorum, Regina Caeli, the Fatima Prayer, the St. Michael
-//  prayer, Eternal Rest, Anima Christi, both collects — are absent on purpose: Greek renderings
-//  exist in Greek Catholic use, but not ones this app can cite, and `PrayerTranslations.get`
-//  falls back to Latin per key. Adding an invented translation of a prayer a community actually
-//  recites is worse than the honest Latin fallback. See Shared/ARCHITECTURE.markdown.
+//  The native base table retains the original Greek prayers and UI labels. Published Greek Catholic additions are credited per key in Shared/content/rosary/content/el.json and merge at load time; remaining gaps use the configured fallback.
 //
 //  Scripture in Greek follows Brenton's Septuagint for the Old Testament and Robinson-Pierpont's
 //  Byzantine Majority text for the New, both public domain. The Patriarchal 1904 edition was the

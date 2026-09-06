@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -56,7 +57,8 @@ fun CategoriesScreen(onLaunch: (LaunchTarget) -> Unit) {
         onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
     }
 
-    val sections = remember(generation) {
+    val sections = remember(generation, com.dkaluta.prosary.models.AppSettings.showPrayerNameInPrayerLanguage,
+        com.dkaluta.prosary.models.AppSettings.defaultLanguageCode, context.resources.configuration.locales[0]) {
         val byTag = mutableMapOf<String, MutableList<DevotionListing>>()
         for (listing in DevotionDirectory.all(context)) {
             if (listing.tags.isEmpty()) byTag.getOrPut("other") { mutableListOf() }.add(listing)
@@ -115,7 +117,12 @@ private fun androidx.compose.foundation.lazy.LazyListScope.items_(
                         tint = listing.accentColor ?: MaterialTheme.colorScheme.primary,
                     )
                 }
-                Text(HebrewDisplayText.unpoint(listing.title), style = MaterialTheme.typography.bodyLarge)
+                Column(Modifier.weight(1f)) {
+                    Text(HebrewDisplayText.unpoint(listing.title), style = MaterialTheme.typography.bodyLarge)
+                    listing.interfaceTitle?.let {
+                        Text(it, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                }
             }
         }
     }

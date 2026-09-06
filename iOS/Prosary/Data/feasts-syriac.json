@@ -1,5 +1,5 @@
 {
- "$comment": "Per-day table, West Syriac — Syriac Catholic: liturgical day titles courtesy of Evangelizo.org — Daily Gospel (© Evangelizo.org), publication edition SYE, used with attribution (also on every platform's About screen). Ferial plain-date titles are omitted. Evangelizo serves a rolling ~3-month horizon, so this table ends where the API did at generation time and extends on each rerun of Shared/tools/fetch-feasts.py — regenerate more often than yearly. Hebrew feast and saint names use the credited source catalogs in Shared/tools/hebrew-feast-titles.json and hebrew-saint-titles.json; the calendar's own dates, observances, ranks and original titles are retained. French and Italian feast names are sourced from LitCal (Apache-2.0), joined by stable event identity with reviewed exact aliases in Shared/tools/feast-titles-localized.json; no calendar dates or ranks are changed.",
+ "$comment": "Per-day table, West Syriac — Syriac Catholic: liturgical day titles courtesy of Evangelizo.org — Daily Gospel (© Evangelizo.org), publication edition SYE, used with attribution (also on every platform's About screen). Ferial plain-date titles are omitted. Evangelizo serves a rolling ~3-month horizon, so this table ends where the API did at generation time and extends on each rerun of Shared/tools/fetch-feasts.py — regenerate more often than yearly. Hebrew feast and saint names use the credited source catalogs in Shared/tools/hebrew-feast-titles.json and hebrew-saint-titles.json; the calendar's own dates, observances, ranks and original titles are retained. French and Italian feast names are sourced from LitCal (Apache-2.0), joined by stable event identity with reviewed exact aliases in Shared/tools/feast-titles-localized.json; no calendar dates or ranks are changed. Editorial display labels in all interface languages are supplied by Prosary's feast-titles catalogs where a published translation is unavailable; they are calendar metadata, not official liturgical prayer translations. Published exact-title translations take precedence.",
  "generated": "2026-08-24",
  "years": [
   2026
@@ -9,16 +9,37 @@
    "title": "The Circumcision of the Lord",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "חג ברית ישוע"
+    "he": "חג ברית ישוע",
+    "ar": "ختان الرب",
+    "ru": "Обрезание Господне",
+    "tl": "Pagtutuli sa Panginoon",
+    "fr": "Circoncision du Seigneur",
+    "it": "Circoncisione del Signore"
    }
   },
   "2026-01-04": {
    "title": "Sunday Before Epiphany",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון לפני ההתגלות",
+    "ar": "الأحد قبل الظهور الإلهي",
+    "ru": "Воскресенье перед Богоявлением",
+    "tl": "Linggo bago ang Pagpapakita ng Panginoon",
+    "fr": "Dimanche avant l’Épiphanie",
+    "it": "Domenica prima dell’Epifania"
+   }
   },
   "2026-01-05": {
    "title": "Vigil of Epiphany",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "ערב ההתגלות",
+    "ar": "عشية الظهور الإلهي",
+    "ru": "Навечерие Богоявления",
+    "tl": "Bisperas ng Pagpapakita ng Panginoon",
+    "fr": "Vigile de l’Épiphanie",
+    "it": "Vigilia dell’Epifania"
+   }
   },
   "2026-01-06": {
    "title": "Baptism of the Lord",
@@ -26,723 +47,1859 @@
    "titleByLanguage": {
     "he": "חג הטבילה",
     "fr": "Baptême du Seigneur",
-    "it": "Battesimo del Signore"
+    "it": "Battesimo del Signore",
+    "ar": "معمودية الرب",
+    "ru": "Крещение Господне",
+    "tl": "Pagbibinyag sa Panginoon"
    }
   },
   "2026-01-07": {
    "title": "Congratulation of John the Baptist",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "ברכה ליוחנן המטביל",
+    "ar": "تهنئة يوحنا المعمدان",
+    "ru": "Прославление Иоанна Крестителя",
+    "tl": "Pagpupugay kay San Juan Bautista",
+    "fr": "Félicitation de Jean Baptiste",
+    "it": "Congratulazione a Giovanni Battista"
+   }
   },
   "2026-01-08": {
    "title": "St. Stephen archdeacon & first martyr",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "חג סטפנוס הקדוש, דיאקון והמרטיר הראשון"
+    "he": "חג סטפנוס הקדוש, דיאקון והמרטיר הראשון",
+    "ar": "القديس إسطفانوس رئيس الشمامسة وأول الشهداء",
+    "ru": "Святой Стефан, архидиакон и первомученик",
+    "tl": "San Esteban, punong diyakono at unang martir",
+    "fr": "Saint Étienne, archidiacre et premier martyr",
+    "it": "Santo Stefano, arcidiacono e primo martire"
    }
   },
   "2026-01-11": {
    "title": "First Sunday after Epiphany",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־1 אחרי חג ההתגלות",
+    "ar": "الأحد 1 بعد الدنح",
+    "ru": "1-е воскресенье после Богоявления",
+    "tl": "Ika-1 Linggo pagkatapos ng Epipanya",
+    "fr": "Premier dimanche après l’Épiphanie",
+    "it": "1ª domenica dopo l’Epifania"
+   }
   },
   "2026-01-15": {
    "title": "Our Lady of the Fields",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "גבירתנו של השדות",
+    "ar": "سيدة الحقول",
+    "ru": "Богоматерь полей",
+    "tl": "Mahal na Birhen ng mga Bukirin",
+    "fr": "Notre-Dame des champs",
+    "it": "Nostra Signora dei campi"
+   }
   },
   "2026-01-16": {
    "title": "Feast of St. Peter's Chains",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג כבלי כיפא הקדוש",
+    "ar": "عيد سلاسل القديس بطرس",
+    "ru": "Праздник вериг святого Петра",
+    "tl": "Kapistahan ng mga Tanikala ni San Pedro",
+    "fr": "Fête des chaînes de saint Pierre",
+    "it": "Festa delle catene di san Pietro"
+   }
   },
   "2026-01-17": {
    "title": "Feast of St. Anthony the Great, father of all monks",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "אנטוניוס, אב מנזר"
+    "he": "אנטוניוס, אב מנזר",
+    "ar": "عيد القديس أنطونيوس الكبير أبي الرهبان",
+    "ru": "Праздник святого Антония Великого, отца всех монахов",
+    "tl": "Kapistahan ni San Antonio Abad, ama ng lahat ng monghe",
+    "fr": "Fête de saint Antoine le Grand, père de tous les moines",
+    "it": "Festa di sant’Antonio il Grande, padre di tutti i monaci"
    }
   },
   "2026-01-18": {
    "title": "Second Sunday after Epiphany",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־2 אחרי חג ההתגלות",
+    "ar": "الأحد 2 بعد الدنح",
+    "ru": "2-е воскресенье после Богоявления",
+    "tl": "Ika-2 Linggo pagkatapos ng Epipanya",
+    "fr": "2e dimanche après l’Épiphanie",
+    "it": "2ª domenica dopo l’Epifania"
+   }
   },
   "2026-01-22": {
    "title": "Feast Day of St. Timothy",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "טימותיאוס, הגמון"
+    "he": "טימותיאוס, הגמון",
+    "ar": "عيد القديس تيموثاوس",
+    "ru": "Праздник святого Тимофея",
+    "tl": "Kapistahan ni San Timoteo",
+    "fr": "Fête de saint Timothée",
+    "it": "Festa di san Timoteo"
    }
   },
   "2026-01-25": {
    "title": "Third Sunday after Epiphany",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־3 אחרי חג ההתגלות",
+    "ar": "الأحد 3 بعد الدنح",
+    "ru": "3-е воскресенье после Богоявления",
+    "tl": "Ika-3 Linggo pagkatapos ng Epipanya",
+    "fr": "3e dimanche après l’Épiphanie",
+    "it": "3ª domenica dopo l’Epifania"
+   }
   },
   "2026-01-26": {
    "title": "Monday of the Rogation of the Ninevites",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום שני של תחינת אנשי נינוה",
+    "ar": "اثنين صوم نينوى",
+    "ru": "Понедельник моления ниневитян",
+    "tl": "Lunes ng Panalangin ng mga Taga-Ninive",
+    "fr": "Lundi des supplications des Ninivites",
+    "it": "Lunedì delle suppliche dei Niniviti"
+   }
   },
   "2026-01-27": {
    "title": "Tuesday of the Rogation of the Ninevites",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום שלישי של תחינת אנשי נינוה",
+    "ar": "ثلاثاء صوم نينوى",
+    "ru": "Вторник моления ниневитян",
+    "tl": "Martes ng Panalangin ng mga Taga-Ninive",
+    "fr": "Mardi des supplications des Ninivites",
+    "it": "Martedì delle suppliche dei Niniviti"
+   }
   },
   "2026-01-28": {
    "title": "Wedensday of the Rogation of the Ninevites",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום רביעי של תחינת אנשי נינוה",
+    "ar": "أربعاء صوم نينوى",
+    "ru": "Среда моления ниневитян",
+    "tl": "Miyerkules ng Panalangin ng mga Taga-Ninive",
+    "fr": "Mercredi des supplications des Ninivites",
+    "it": "Mercoledì delle suppliche dei Niniviti"
+   }
   },
   "2026-01-29": {
    "title": "Thursday after the Rogation of the Ninevites",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום חמישי אחרי תחינת אנשי נינוה",
+    "ar": "الخميس بعد صوم نينوى",
+    "ru": "Четверг после моления ниневитян",
+    "tl": "Huwebes pagkatapos ng Panalangin ng mga Taga-Ninive",
+    "fr": "Jeudi après les supplications des Ninivites",
+    "it": "Giovedì dopo le suppliche dei Niniviti"
+   }
   },
   "2026-01-30": {
    "title": "Friday of  Deceased Priests",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום שישי לזכר הכוהנים שנפטרו",
+    "ar": "جمعة الكهنة المتوفين",
+    "ru": "Пятница усопших священников",
+    "tl": "Biyernes ng mga Yumaong Pari",
+    "fr": "Vendredi des prêtres défunts",
+    "it": "Venerdì dei sacerdoti defunti"
+   }
   },
   "2026-02-01": {
    "title": "Sunday of Deceased Priests",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון לזכר הכוהנים שנפטרו",
+    "ar": "أحد الكهنة المتوفين",
+    "ru": "Воскресенье усопших священников",
+    "tl": "Linggo ng mga Yumaong Pari",
+    "fr": "Dimanche des prêtres défunts",
+    "it": "Domenica dei sacerdoti defunti"
+   }
   },
   "2026-02-03": {
    "title": "Feast of St. Simon the Elder",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג שמעון הזקן הקדוש",
+    "ar": "عيد القديس سمعان الشيخ",
+    "ru": "Праздник святого Симеона Старца",
+    "tl": "Kapistahan ni San Simeon na Matanda",
+    "fr": "Fête de saint Siméon l’Ancien",
+    "it": "Festa di san Simeone il Vecchio"
+   }
   },
   "2026-02-06": {
    "title": "Friday of  Deceased Faithful",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום שישי לזכר המאמינים שנפטרו",
+    "ar": "جمعة الموتى المؤمنين",
+    "ru": "Пятница усопших верных",
+    "tl": "Biyernes ng mga Yumaong Mananampalataya",
+    "fr": "Vendredi des fidèles défunts",
+    "it": "Venerdì dei fedeli defunti"
+   }
   },
   "2026-02-08": {
    "title": "Sunday of Deceased",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון לזכר הנפטרים",
+    "ar": "أحد الموتى",
+    "ru": "Воскресенье усопших",
+    "tl": "Linggo ng mga Yumao",
+    "fr": "Dimanche des défunts",
+    "it": "Domenica dei defunti"
+   }
   },
   "2026-02-09": {
    "title": "Feast of St. Maron",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג מרון הקדוש",
+    "ar": "عيد القديس مارون",
+    "ru": "Праздник святого Марона",
+    "tl": "Kapistahan ni San Maron",
+    "fr": "Fête de saint Maron",
+    "it": "Festa di san Marone"
+   }
   },
   "2026-02-13": {
    "title": "Sunday of Deceased Faithful",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון לזכר המאמינים שנפטרו",
+    "ar": "أحد الموتى المؤمنين",
+    "ru": "Воскресенье усопших верных",
+    "tl": "Linggo ng mga Yumaong Mananampalataya",
+    "fr": "Dimanche des fidèles défunts",
+    "it": "Domenica dei fedeli defunti"
+   }
   },
   "2026-02-15": {
    "title": "First Sunday of the Great Fast: Cana Sunday",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־1 של הצום הגדול: יום ראשון של קנה",
+    "ar": "الأحد الـ1 من الصوم الكبير: أحد قانا",
+    "ru": "1-е воскресенье Великого поста: Канское воскресенье",
+    "tl": "Ika-1 Linggo ng Dakilang Pag-aayuno: Linggo ng Cana",
+    "fr": "1er dimanche du Grand Carême : dimanche de Cana",
+    "it": "1ª domenica della Grande Quaresima: domenica di Cana"
+   }
   },
   "2026-02-16": {
    "title": "First Monday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום שני בשבוע ה־1 של הצום הגדול",
+    "ar": "الاثنين من الأسبوع 1 للصوم الكبير",
+    "ru": "Понедельник 1-й недели Великого поста",
+    "tl": "Lunes ng ika-1 linggo ng Dakilang Pag-aayuno",
+    "fr": "Lundi de la 1re semaine du Grand Carême",
+    "it": "Lunedì della 1ª settimana della Grande Quaresima"
+   }
   },
   "2026-02-17": {
    "title": "First Tuesday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום שלישי בשבוע ה־1 של הצום הגדול",
+    "ar": "الثلاثاء من الأسبوع 1 للصوم الكبير",
+    "ru": "Вторник 1-й недели Великого поста",
+    "tl": "Martes ng ika-1 linggo ng Dakilang Pag-aayuno",
+    "fr": "Mardi de la 1re semaine du Grand Carême",
+    "it": "Martedì della 1ª settimana della Grande Quaresima"
+   }
   },
   "2026-02-18": {
    "title": "First Wednesday of the Great",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום רביעי בשבוע ה־1 של הצום הגדול",
+    "ar": "الأربعاء من الأسبوع 1 للصوم الكبير",
+    "ru": "Среда 1-й недели Великого поста",
+    "tl": "Miyerkules ng ika-1 linggo ng Dakilang Pag-aayuno",
+    "fr": "Mercredi de la 1re semaine du Grand Carême",
+    "it": "Mercoledì della 1ª settimana della Grande Quaresima"
+   }
   },
   "2026-02-19": {
    "title": "First Thursday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום חמישי בשבוע ה־1 של הצום הגדול",
+    "ar": "الخميس من الأسبوع 1 للصوم الكبير",
+    "ru": "Четверг 1-й недели Великого поста",
+    "tl": "Huwebes ng ika-1 linggo ng Dakilang Pag-aayuno",
+    "fr": "Jeudi de la 1re semaine du Grand Carême",
+    "it": "Giovedì della 1ª settimana della Grande Quaresima"
+   }
   },
   "2026-02-20": {
    "title": "First Friday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום שישי בשבוע ה־1 של הצום הגדול",
+    "ar": "الجمعة من الأسبوع 1 للصوم الكبير",
+    "ru": "Пятница 1-й недели Великого поста",
+    "tl": "Biyernes ng ika-1 linggo ng Dakilang Pag-aayuno",
+    "fr": "Vendredi de la 1re semaine du Grand Carême",
+    "it": "Venerdì della 1ª settimana della Grande Quaresima"
+   }
   },
   "2026-02-21": {
    "title": "First Saturday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "שבת בשבוע ה־1 של הצום הגדול",
+    "ar": "السبت من الأسبوع 1 للصوم الكبير",
+    "ru": "Суббота 1-й недели Великого поста",
+    "tl": "Sabado ng ika-1 linggo ng Dakilang Pag-aayuno",
+    "fr": "Samedi de la 1re semaine du Grand Carême",
+    "it": "Sabato della 1ª settimana della Grande Quaresima"
+   }
   },
   "2026-02-22": {
    "title": "Second Sunday of the Great Fast: Sunday of the Leper",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־2 של הצום הגדול: יום ראשון של המצורע",
+    "ar": "الأحد الـ2 من الصوم الكبير: أحد الأبرص",
+    "ru": "2-е воскресенье Великого поста: воскресенье прокажённого",
+    "tl": "Ika-2 Linggo ng Dakilang Pag-aayuno: Linggo ng Ketongin",
+    "fr": "2e dimanche du Grand Carême : dimanche du lépreux",
+    "it": "2ª domenica della Grande Quaresima: domenica del lebbroso"
+   }
   },
   "2026-02-23": {
    "title": "Second Monday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום שני בשבוע ה־2 של הצום הגדול",
+    "ar": "الاثنين من الأسبوع 2 للصوم الكبير",
+    "ru": "Понедельник 2-й недели Великого поста",
+    "tl": "Lunes ng ika-2 linggo ng Dakilang Pag-aayuno",
+    "fr": "Lundi de la 2e semaine du Grand Carême",
+    "it": "Lunedì della 2ª settimana della Grande Quaresima"
+   }
   },
   "2026-02-24": {
    "title": "Second Tuesday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום שלישי בשבוע ה־2 של הצום הגדול",
+    "ar": "الثلاثاء من الأسبوع 2 للصوم الكبير",
+    "ru": "Вторник 2-й недели Великого поста",
+    "tl": "Martes ng ika-2 linggo ng Dakilang Pag-aayuno",
+    "fr": "Mardi de la 2e semaine du Grand Carême",
+    "it": "Martedì della 2ª settimana della Grande Quaresima"
+   }
   },
   "2026-02-25": {
    "title": "Second Wednesday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום רביעי בשבוע ה־2 של הצום הגדול",
+    "ar": "الأربعاء من الأسبوع 2 للصوم الكبير",
+    "ru": "Среда 2-й недели Великого поста",
+    "tl": "Miyerkules ng ika-2 linggo ng Dakilang Pag-aayuno",
+    "fr": "Mercredi de la 2e semaine du Grand Carême",
+    "it": "Mercoledì della 2ª settimana della Grande Quaresima"
+   }
   },
   "2026-02-26": {
    "title": "Second Thursday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום חמישי בשבוע ה־2 של הצום הגדול",
+    "ar": "الخميس من الأسبوع 2 للصوم الكبير",
+    "ru": "Четверг 2-й недели Великого поста",
+    "tl": "Huwebes ng ika-2 linggo ng Dakilang Pag-aayuno",
+    "fr": "Jeudi de la 2e semaine du Grand Carême",
+    "it": "Giovedì della 2ª settimana della Grande Quaresima"
+   }
   },
   "2026-02-27": {
    "title": "Second Friday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום שישי בשבוע ה־2 של הצום הגדול",
+    "ar": "الجمعة من الأسبوع 2 للصوم الكبير",
+    "ru": "Пятница 2-й недели Великого поста",
+    "tl": "Biyernes ng ika-2 linggo ng Dakilang Pag-aayuno",
+    "fr": "Vendredi de la 2e semaine du Grand Carême",
+    "it": "Venerdì della 2ª settimana della Grande Quaresima"
+   }
   },
   "2026-02-28": {
    "title": "Second Saturday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "שבת בשבוע ה־2 של הצום הגדול",
+    "ar": "السبت من الأسبوع 2 للصوم الكبير",
+    "ru": "Суббота 2-й недели Великого поста",
+    "tl": "Sabado ng ika-2 linggo ng Dakilang Pag-aayuno",
+    "fr": "Samedi de la 2e semaine du Grand Carême",
+    "it": "Sabato della 2ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-01": {
    "title": "Third Sunday of the Great Fast: Sunday of the Paralytic",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־3 של הצום הגדול: יום ראשון של המשותק",
+    "ar": "الأحد الـ3 من الصوم الكبير: أحد المخلع",
+    "ru": "3-е воскресенье Великого поста: воскресенье расслабленного",
+    "tl": "Ika-3 Linggo ng Dakilang Pag-aayuno: Linggo ng Paralitiko",
+    "fr": "3e dimanche du Grand Carême : dimanche du paralytique",
+    "it": "3ª domenica della Grande Quaresima: domenica del paralitico"
+   }
   },
   "2026-03-02": {
    "title": "Third Monday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום שני בשבוע ה־3 של הצום הגדול",
+    "ar": "الاثنين من الأسبوع 3 للصوم الكبير",
+    "ru": "Понедельник 3-й недели Великого поста",
+    "tl": "Lunes ng ika-3 linggo ng Dakilang Pag-aayuno",
+    "fr": "Lundi de la 3e semaine du Grand Carême",
+    "it": "Lunedì della 3ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-03": {
    "title": "Third Tuesday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום שלישי בשבוע ה־3 של הצום הגדול",
+    "ar": "الثلاثاء من الأسبوع 3 للصوم الكبير",
+    "ru": "Вторник 3-й недели Великого поста",
+    "tl": "Martes ng ika-3 linggo ng Dakilang Pag-aayuno",
+    "fr": "Mardi de la 3e semaine du Grand Carême",
+    "it": "Martedì della 3ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-04": {
    "title": "Third Wednesday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום רביעי בשבוע ה־3 של הצום הגדול",
+    "ar": "الأربعاء من الأسبوع 3 للصوم الكبير",
+    "ru": "Среда 3-й недели Великого поста",
+    "tl": "Miyerkules ng ika-3 linggo ng Dakilang Pag-aayuno",
+    "fr": "Mercredi de la 3e semaine du Grand Carême",
+    "it": "Mercoledì della 3ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-05": {
    "title": "Third Thursday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום חמישי בשבוע ה־3 של הצום הגדול",
+    "ar": "الخميس من الأسبوع 3 للصوم الكبير",
+    "ru": "Четверг 3-й недели Великого поста",
+    "tl": "Huwebes ng ika-3 linggo ng Dakilang Pag-aayuno",
+    "fr": "Jeudi de la 3e semaine du Grand Carême",
+    "it": "Giovedì della 3ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-06": {
    "title": "Third Friday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום שישי בשבוע ה־3 של הצום הגדול",
+    "ar": "الجمعة من الأسبوع 3 للصوم الكبير",
+    "ru": "Пятница 3-й недели Великого поста",
+    "tl": "Biyernes ng ika-3 linggo ng Dakilang Pag-aayuno",
+    "fr": "Vendredi de la 3e semaine du Grand Carême",
+    "it": "Venerdì della 3ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-07": {
    "title": "Third Saturday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "שבת בשבוע ה־3 של הצום הגדול",
+    "ar": "السبت من الأسبوع 3 للصوم الكبير",
+    "ru": "Суббота 3-й недели Великого поста",
+    "tl": "Sabado ng ika-3 linggo ng Dakilang Pag-aayuno",
+    "fr": "Samedi de la 3e semaine du Grand Carême",
+    "it": "Sabato della 3ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-08": {
    "title": "Fourth Sunday of the Great Fast: Sunday of the Centurion",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־4 של הצום הגדול: יום ראשון של שר המאה",
+    "ar": "الأحد الـ4 من الصوم الكبير: أحد قائد المئة",
+    "ru": "4-е воскресенье Великого поста: воскресенье сотника",
+    "tl": "Ika-4 Linggo ng Dakilang Pag-aayuno: Linggo ng Senturyon",
+    "fr": "4e dimanche du Grand Carême : dimanche du centurion",
+    "it": "4ª domenica della Grande Quaresima: domenica del centurione"
+   }
   },
   "2026-03-09": {
    "title": "Fourth Monday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום שני בשבוע ה־4 של הצום הגדול",
+    "ar": "الاثنين من الأسبوع 4 للصوم الكبير",
+    "ru": "Понедельник 4-й недели Великого поста",
+    "tl": "Lunes ng ika-4 linggo ng Dakilang Pag-aayuno",
+    "fr": "Lundi de la 4e semaine du Grand Carême",
+    "it": "Lunedì della 4ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-10": {
    "title": "Fourth Tuesday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום שלישי בשבוע ה־4 של הצום הגדול",
+    "ar": "الثلاثاء من الأسبوع 4 للصوم الكبير",
+    "ru": "Вторник 4-й недели Великого поста",
+    "tl": "Martes ng ika-4 linggo ng Dakilang Pag-aayuno",
+    "fr": "Mardi de la 4e semaine du Grand Carême",
+    "it": "Martedì della 4ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-11": {
    "title": "Fourth Wednesday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום רביעי בשבוע ה־4 של הצום הגדול",
+    "ar": "الأربعاء من الأسبوع 4 للصوم الكبير",
+    "ru": "Среда 4-й недели Великого поста",
+    "tl": "Miyerkules ng ika-4 linggo ng Dakilang Pag-aayuno",
+    "fr": "Mercredi de la 4e semaine du Grand Carême",
+    "it": "Mercoledì della 4ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-12": {
    "title": "Fourth Thursday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום חמישי בשבוע ה־4 של הצום הגדול",
+    "ar": "الخميس من الأسبوع 4 للصوم الكبير",
+    "ru": "Четверг 4-й недели Великого поста",
+    "tl": "Huwebes ng ika-4 linggo ng Dakilang Pag-aayuno",
+    "fr": "Jeudi de la 4e semaine du Grand Carême",
+    "it": "Giovedì della 4ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-13": {
    "title": "Fourth Friday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום שישי בשבוע ה־4 של הצום הגדול",
+    "ar": "الجمعة من الأسبوع 4 للصوم الكبير",
+    "ru": "Пятница 4-й недели Великого поста",
+    "tl": "Biyernes ng ika-4 linggo ng Dakilang Pag-aayuno",
+    "fr": "Vendredi de la 4e semaine du Grand Carême",
+    "it": "Venerdì della 4ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-14": {
    "title": "Fourth Saturday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "שבת בשבוע ה־4 של הצום הגדול",
+    "ar": "السبت من الأسبوع 4 للصوم الكبير",
+    "ru": "Суббота 4-й недели Великого поста",
+    "tl": "Sabado ng ika-4 linggo ng Dakilang Pag-aayuno",
+    "fr": "Samedi de la 4e semaine du Grand Carême",
+    "it": "Sabato della 4ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-15": {
    "title": "Fifith Sunday of the Great Fast: Sunday of the raiding of  Jairus' Daughter",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־5 של הצום הגדול: יום ראשון של הקמת בת יאיר",
+    "ar": "الأحد الـ5 من الصوم الكبير: أحد إقامة ابنة يائير",
+    "ru": "5-е воскресенье Великого поста: воскресенье воскрешения дочери Иаира",
+    "tl": "Ika-5 Linggo ng Dakilang Pag-aayuno: Linggo ng Muling Pagbuhay sa Anak na Babae ni Jairo",
+    "fr": "5e dimanche du Grand Carême : dimanche de la résurrection de la fille de Jaïre",
+    "it": "5ª domenica della Grande Quaresima: domenica della risurrezione della figlia di Giairo"
+   }
   },
   "2026-03-16": {
    "title": "Fifth Monday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום שני בשבוע ה־5 של הצום הגדול",
+    "ar": "الاثنين من الأسبوع 5 للصوم الكبير",
+    "ru": "Понедельник 5-й недели Великого поста",
+    "tl": "Lunes ng ika-5 linggo ng Dakilang Pag-aayuno",
+    "fr": "Lundi de la 5e semaine du Grand Carême",
+    "it": "Lunedì della 5ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-17": {
    "title": "Fifth Tuesday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום שלישי בשבוע ה־5 של הצום הגדול",
+    "ar": "الثلاثاء من الأسبوع 5 للصوم الكبير",
+    "ru": "Вторник 5-й недели Великого поста",
+    "tl": "Martes ng ika-5 linggo ng Dakilang Pag-aayuno",
+    "fr": "Mardi de la 5e semaine du Grand Carême",
+    "it": "Martedì della 5ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-18": {
    "title": "Fifth Wednesday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום רביעי בשבוע ה־5 של הצום הגדול",
+    "ar": "الأربعاء من الأسبوع 5 للصوم الكبير",
+    "ru": "Среда 5-й недели Великого поста",
+    "tl": "Miyerkules ng ika-5 linggo ng Dakilang Pag-aayuno",
+    "fr": "Mercredi de la 5e semaine du Grand Carême",
+    "it": "Mercoledì della 5ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-19": {
    "title": "Feast of Saint Joseph",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "חג יוסף הצדיק, בעלה של מרים"
+    "he": "חג יוסף הצדיק, בעלה של מרים",
+    "ar": "عيد القديس يوسف",
+    "ru": "Праздник святого Иосифа",
+    "tl": "Kapistahan ni San Jose",
+    "fr": "Fête de saint Joseph",
+    "it": "Festa di san Giuseppe"
    }
   },
   "2026-03-20": {
    "title": "Fifth Friday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום שישי בשבוע ה־5 של הצום הגדול",
+    "ar": "الجمعة من الأسبوع 5 للصوم الكبير",
+    "ru": "Пятница 5-й недели Великого поста",
+    "tl": "Biyernes ng ika-5 linggo ng Dakilang Pag-aayuno",
+    "fr": "Vendredi de la 5e semaine du Grand Carême",
+    "it": "Venerdì della 5ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-21": {
    "title": "Fifth Saturday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "שבת בשבוע ה־5 של הצום הגדול",
+    "ar": "السبت من الأسبوع 5 للصوم الكبير",
+    "ru": "Суббота 5-й недели Великого поста",
+    "tl": "Sabado ng ika-5 linggo ng Dakilang Pag-aayuno",
+    "fr": "Samedi de la 5e semaine du Grand Carême",
+    "it": "Sabato della 5ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-22": {
    "title": "Sixth Sunday of the Great Fast: Sunday of the Blind",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־6 של הצום הגדול: יום ראשון של העיוור",
+    "ar": "الأحد الـ6 من الصوم الكبير: أحد الأعمى",
+    "ru": "6-е воскресенье Великого поста: воскресенье слепого",
+    "tl": "Ika-6 Linggo ng Dakilang Pag-aayuno: Linggo ng Bulag",
+    "fr": "6e dimanche du Grand Carême : dimanche de l’aveugle",
+    "it": "6ª domenica della Grande Quaresima: domenica del cieco"
+   }
   },
   "2026-03-23": {
    "title": "Sixth Monday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום שני בשבוע ה־6 של הצום הגדול",
+    "ar": "الاثنين من الأسبوع 6 للصوم الكبير",
+    "ru": "Понедельник 6-й недели Великого поста",
+    "tl": "Lunes ng ika-6 linggo ng Dakilang Pag-aayuno",
+    "fr": "Lundi de la 6e semaine du Grand Carême",
+    "it": "Lunedì della 6ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-24": {
    "title": "Sixth Tuesday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום שלישי בשבוע ה־6 של הצום הגדול",
+    "ar": "الثلاثاء من الأسبوع 6 للصوم الكبير",
+    "ru": "Вторник 6-й недели Великого поста",
+    "tl": "Martes ng ika-6 linggo ng Dakilang Pag-aayuno",
+    "fr": "Mardi de la 6e semaine du Grand Carême",
+    "it": "Martedì della 6ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-25": {
    "title": "Feast of the Annunciation",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "חג בשורת המלאך למרים"
+    "he": "חג בשורת המלאך למרים",
+    "ar": "عيد البشارة",
+    "ru": "Праздник Благовещения",
+    "tl": "Kapistahan ng Pagpapahayag ng Magandang Balita kay Maria",
+    "fr": "Fête de l’Annonciation",
+    "it": "Festa dell’Annunciazione"
    }
   },
   "2026-03-26": {
    "title": "Sixth Thursday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום חמישי בשבוע ה־6 של הצום הגדול",
+    "ar": "الخميس من الأسبوع 6 للصوم الكبير",
+    "ru": "Четверг 6-й недели Великого поста",
+    "tl": "Huwebes ng ika-6 linggo ng Dakilang Pag-aayuno",
+    "fr": "Jeudi de la 6e semaine du Grand Carême",
+    "it": "Giovedì della 6ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-27": {
    "title": "Sixth Friday of the Great Fast",
-   "rank": "Fast"
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "יום שישי בשבוע ה־6 של הצום הגדול",
+    "ar": "الجمعة من الأسبوع 6 للصوم الكبير",
+    "ru": "Пятница 6-й недели Великого поста",
+    "tl": "Biyernes ng ika-6 linggo ng Dakilang Pag-aayuno",
+    "fr": "Vendredi de la 6e semaine du Grand Carême",
+    "it": "Venerdì della 6ª settimana della Grande Quaresima"
+   }
   },
   "2026-03-28": {
    "title": "Saturday of Lazarus",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "שבת אלעזר",
+    "ar": "سبت لعازر",
+    "ru": "Лазарева суббота",
+    "tl": "Sabado ni Lazaro",
+    "fr": "Samedi de Lazare",
+    "it": "Sabato di Lazzaro"
+   }
   },
   "2026-03-29": {
    "title": "Palm Sunday: The Entrance of  Jesus into Jerusalem",
    "rank": "Sunday",
    "titleByLanguage": {
-    "he": "יום הראשון של הלולבים"
+    "he": "יום הראשון של הלולבים",
+    "ar": "أحد الشعانين: دخول يسوع إلى أورشليم",
+    "ru": "Вербное воскресенье: вход Иисуса в Иерусалим",
+    "tl": "Linggo ng Palaspas: Pagpasok ni Hesus sa Jerusalem",
+    "fr": "Dimanche des Rameaux : entrée de Jésus à Jérusalem",
+    "it": "Domenica delle Palme: ingresso di Gesù a Gerusalemme"
    }
   },
   "2026-03-30": {
    "title": "Monday of Passion",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום שני של ייסורי האדון",
+    "ar": "اثنين الآلام",
+    "ru": "Понедельник Страстной седмицы",
+    "tl": "Lunes ng Pagpapakasakit",
+    "fr": "Lundi de la Passion",
+    "it": "Lunedì della Passione"
+   }
   },
   "2026-03-31": {
    "title": "Tuesday of Passion",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום שלישי של ייסורי האדון",
+    "ar": "ثلاثاء الآلام",
+    "ru": "Вторник Страстной седмицы",
+    "tl": "Martes ng Pagpapakasakit",
+    "fr": "Mardi de la Passion",
+    "it": "Martedì della Passione"
+   }
   },
   "2026-04-01": {
    "title": "Wednesday of Passion",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום רביעי של ייסורי האדון",
+    "ar": "أربعاء الآلام",
+    "ru": "Среда Страстной седмицы",
+    "tl": "Miyerkules ng Pagpapakasakit",
+    "fr": "Mercredi de la Passion",
+    "it": "Mercoledì della Passione"
+   }
   },
   "2026-04-02": {
    "title": "Thursday of Mysteries",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום חמישי של הרזים",
+    "ar": "خميس الأسرار",
+    "ru": "Четверг Таинств",
+    "tl": "Huwebes ng mga Misteryo",
+    "fr": "Jeudi des Mystères",
+    "it": "Giovedì dei Misteri"
+   }
   },
   "2026-04-03": {
    "title": "Great Friday",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "יום השישי הגדול"
+    "he": "יום השישי הגדול",
+    "ar": "الجمعة العظيمة",
+    "ru": "Великая пятница",
+    "tl": "Biyernes Santo",
+    "fr": "Grand Vendredi",
+    "it": "Grande Venerdì"
    }
   },
   "2026-04-04": {
    "title": "Saturday of Light",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "שבת האור",
+    "ar": "سبت النور",
+    "ru": "Суббота света",
+    "tl": "Sabado ng Liwanag",
+    "fr": "Samedi de la lumière",
+    "it": "Sabato della luce"
+   }
   },
   "2026-04-05": {
    "title": "Resurrection Sunday (Pascha)",
    "rank": "Great Feast",
    "titleByLanguage": {
-    "he": "יום הפסחא - חג התחייה"
+    "he": "יום הפסחא - חג התחייה",
+    "ar": "أحد القيامة (الفصح)",
+    "ru": "Воскресенье Воскресения Христова (Пасха)",
+    "tl": "Linggo ng Muling Pagkabuhay (Pasko ng Pagkabuhay)",
+    "fr": "Dimanche de la Résurrection (Pâques)",
+    "it": "Domenica della Risurrezione (Pasqua)"
    }
   },
   "2026-04-06": {
    "title": "Monday of Resurrection (Road to Emmaus) - Remembrance of the Departed",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום שני של התחייה (הדרך לעמאוס) — זכר הנפטרים",
+    "ar": "اثنين القيامة (الطريق إلى عمّاوس) — تذكار الموتى",
+    "ru": "Понедельник Воскресения (путь в Эммаус) — поминовение усопших",
+    "tl": "Lunes ng Muling Pagkabuhay (Daan patungong Emaus) — Pag-alaala sa mga Yumao",
+    "fr": "Lundi de la Résurrection (chemin d’Emmaüs) — mémoire des défunts",
+    "it": "Lunedì della Risurrezione (cammino di Emmaus) — commemorazione dei defunti"
+   }
   },
   "2026-04-07": {
    "title": "Tuesday of Resurrection",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום שלישי של התחייה",
+    "ar": "ثلاثاء القيامة",
+    "ru": "Вторник Воскресения",
+    "tl": "Martes ng Muling Pagkabuhay",
+    "fr": "Mardi de la Résurrection",
+    "it": "Martedì della Risurrezione"
+   }
   },
   "2026-04-08": {
    "title": "Wednesday of Resurrection",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום רביעי של התחייה",
+    "ar": "أربعاء القيامة",
+    "ru": "Среда Воскресения",
+    "tl": "Miyerkules ng Muling Pagkabuhay",
+    "fr": "Mercredi de la Résurrection",
+    "it": "Mercoledì della Risurrezione"
+   }
   },
   "2026-04-09": {
    "title": "Thursday of Resurrection",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום חמישי של התחייה",
+    "ar": "خميس القيامة",
+    "ru": "Четверг Воскресения",
+    "tl": "Huwebes ng Muling Pagkabuhay",
+    "fr": "Jeudi de la Résurrection",
+    "it": "Giovedì della Risurrezione"
+   }
   },
   "2026-04-10": {
    "title": "Friday of Confessors",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום שישי של המוודים",
+    "ar": "جمعة المعترفين",
+    "ru": "Пятница исповедников",
+    "tl": "Biyernes ng mga Tagapagpahayag ng Pananampalataya",
+    "fr": "Vendredi des confesseurs",
+    "it": "Venerdì dei confessori"
+   }
   },
   "2026-04-11": {
    "title": "Saturday of Rest",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "שבת המנוחה",
+    "ar": "سبت الراحة",
+    "ru": "Суббота покоя",
+    "tl": "Sabado ng Pamamahinga",
+    "fr": "Samedi du repos",
+    "it": "Sabato del riposo"
+   }
   },
   "2026-04-12": {
    "title": "New Sunday",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון החדש",
+    "ar": "الأحد الجديد",
+    "ru": "Новое воскресенье",
+    "tl": "Bagong Linggo",
+    "fr": "Dimanche nouveau",
+    "it": "Domenica nuova"
+   }
   },
   "2026-04-19": {
    "title": "Second Sunday after the  Resurrection",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־2 אחרי התחייה",
+    "ar": "الأحد الـ2 بعد القيامة",
+    "ru": "2-е воскресенье после Воскресения",
+    "tl": "Ika-2 Linggo pagkatapos ng Muling Pagkabuhay",
+    "fr": "2e dimanche après la Résurrection",
+    "it": "2ª domenica dopo la Risurrezione"
+   }
   },
   "2026-04-23": {
    "title": "Feast of Saint George the Martyr",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "גאורגיוס, מרטיר"
+    "he": "גאורגיוס, מרטיר",
+    "ar": "عيد القديس جرجس الشهيد",
+    "ru": "Праздник святого Георгия, мученика",
+    "tl": "Kapistahan ni San Jorge na Martir",
+    "fr": "Fête de saint Georges, martyr",
+    "it": "Festa di san Giorgio, martire"
    }
   },
   "2026-04-25": {
    "title": "Feast of Saint Mark the Evangelist",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "חג מרקוס המבשר"
+    "he": "חג מרקוס המבשר",
+    "ar": "عيد القديس مرقس الإنجيلي",
+    "ru": "Праздник святого Марка, евангелиста",
+    "tl": "Kapistahan ni San Marcos na Ebanghelista",
+    "fr": "Fête de saint Marc, évangéliste",
+    "it": "Festa di san Marco, evangelista"
    }
   },
   "2026-04-26": {
    "title": "Third Sunday after the  Resurrection",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־3 אחרי התחייה",
+    "ar": "الأحد الـ3 بعد القيامة",
+    "ru": "3-е воскресенье после Воскресения",
+    "tl": "Ika-3 Linggo pagkatapos ng Muling Pagkabuhay",
+    "fr": "3e dimanche après la Résurrection",
+    "it": "3ª domenica dopo la Risurrezione"
+   }
   },
   "2026-05-03": {
    "title": "Fourth Sunday after the  Resurrection",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־4 אחרי התחייה",
+    "ar": "الأحد الـ4 بعد القيامة",
+    "ru": "4-е воскресенье после Воскресения",
+    "tl": "Ika-4 Linggo pagkatapos ng Muling Pagkabuhay",
+    "fr": "4e dimanche après la Résurrection",
+    "it": "4ª domenica dopo la Risurrezione"
+   }
   },
   "2026-05-07": {
    "title": "Finding of the Cross",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "מציאת הצלב",
+    "ar": "العثور على الصليب",
+    "ru": "Обретение Креста",
+    "tl": "Pagkatagpo sa Krus",
+    "fr": "Découverte de la Croix",
+    "it": "Ritrovamento della Croce"
+   }
   },
   "2026-05-08": {
    "title": "Feast of Saint John the Evangelist",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "חג יוחנן השליח והמבשר"
+    "he": "חג יוחנן השליח והמבשר",
+    "ar": "عيد القديس يوحنا الإنجيلي",
+    "ru": "Праздник святого Иоанна, евангелиста",
+    "tl": "Kapistahan ni San Juan na Ebanghelista",
+    "fr": "Fête de saint Jean, évangéliste",
+    "it": "Festa di san Giovanni, evangelista"
    }
   },
   "2026-05-10": {
    "title": "Fifth Sunday after the  Resurrection",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־5 אחרי התחייה",
+    "ar": "الأحد الـ5 بعد القيامة",
+    "ru": "5-е воскресенье после Воскресения",
+    "tl": "Ika-5 Linggo pagkatapos ng Muling Pagkabuhay",
+    "fr": "5e dimanche après la Résurrection",
+    "it": "5ª domenica dopo la Risurrezione"
+   }
   },
   "2026-05-14": {
    "title": "Feast of the Ascension of our Lord",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "חג עלייתו של האדון השמיימה"
+    "he": "חג עלייתו של האדון השמיימה",
+    "ar": "عيد صعود ربنا",
+    "ru": "Праздник Вознесения Господня",
+    "tl": "Kapistahan ng Pag-akyat ng Panginoon sa Langit",
+    "fr": "Fête de l’Ascension du Seigneur",
+    "it": "Festa dell’Ascensione del Signore"
    }
   },
   "2026-05-15": {
    "title": "Feast of Our Lady Guardian of Plants",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג גבירתנו שומרת הצמחים",
+    "ar": "عيد سيدة الزروع",
+    "ru": "Праздник Богоматери, хранительницы посевов",
+    "tl": "Kapistahan ng Mahal na Birhen, Tagapangalaga ng mga Pananim",
+    "fr": "Fête de Notre-Dame, gardienne des cultures",
+    "it": "Festa di Nostra Signora, custode delle colture"
+   }
   },
   "2026-05-17": {
    "title": "Sunday after the Ascension of our Lord",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון אחרי עליית האדון השמיימה",
+    "ar": "الأحد بعد صعود ربنا",
+    "ru": "Воскресенье после Вознесения Господня",
+    "tl": "Linggo pagkatapos ng Pag-akyat ng Panginoon sa Langit",
+    "fr": "Dimanche après l’Ascension du Seigneur",
+    "it": "Domenica dopo l’Ascensione del Signore"
+   }
   },
   "2026-05-20": {
    "title": "Feast of The Four Evangelists",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג ארבעת המבשרים",
+    "ar": "عيد الإنجيليين الأربعة",
+    "ru": "Праздник четырёх евангелистов",
+    "tl": "Kapistahan ng Apat na Ebanghelista",
+    "fr": "Fête des quatre évangélistes",
+    "it": "Festa dei quattro evangelisti"
+   }
   },
   "2026-05-24": {
    "title": "Sunday of Pentecost",
    "rank": "Sunday",
    "titleByLanguage": {
-    "he": "שבועות"
+    "he": "שבועות",
+    "ar": "أحد العنصرة",
+    "ru": "Воскресенье Пятидесятницы",
+    "tl": "Linggo ng Pentekostes",
+    "fr": "Dimanche de Pentecôte",
+    "it": "Domenica di Pentecoste"
    }
   },
   "2026-05-25": {
    "title": "Monday of Pentecost",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום שני של שבועות",
+    "ar": "اثنين العنصرة",
+    "ru": "Понедельник Пятидесятницы",
+    "tl": "Lunes ng Pentekostes",
+    "fr": "Lundi de Pentecôte",
+    "it": "Lunedì di Pentecoste"
+   }
   },
   "2026-05-29": {
    "title": "Friday of Gold",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום שישי של הזהב",
+    "ar": "جمعة الذهب",
+    "ru": "Золотая пятница",
+    "tl": "Ginintuang Biyernes",
+    "fr": "Vendredi d’or",
+    "it": "Venerdì d’oro"
+   }
   },
   "2026-05-31": {
    "title": "First Sunday after Pentecost",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־1 אחרי שבועות",
+    "ar": "الأحد الـ1 بعد العنصرة",
+    "ru": "1-е воскресенье после Пятидесятницы",
+    "tl": "Ika-1 Linggo pagkatapos ng Pentekostes",
+    "fr": "1er dimanche après la Pentecôte",
+    "it": "1ª domenica dopo Pentecoste"
+   }
   },
   "2026-06-04": {
    "title": "Feast of Corpus Christi",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "חג גוף המשיח"
+    "he": "חג גוף המשיח",
+    "ar": "عيد جسد المسيح",
+    "ru": "Праздник Тела Христова",
+    "tl": "Kapistahan ng Katawan ni Kristo",
+    "fr": "Fête du Corps du Christ",
+    "it": "Festa del Corpo di Cristo"
    }
   },
   "2026-06-07": {
    "title": "Second Sunday after Pentecost",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־2 אחרי שבועות",
+    "ar": "الأحد الـ2 بعد العنصرة",
+    "ru": "2-е воскресенье после Пятидесятницы",
+    "tl": "Ika-2 Linggo pagkatapos ng Pentekostes",
+    "fr": "2e dimanche après la Pentecôte",
+    "it": "2ª domenica dopo Pentecoste"
+   }
   },
   "2026-06-11": {
    "title": "Feast of Saints Barnabas and Bartholomew, the Apostles",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג ברנבא ובר־תלמי הקדושים, שליחים",
+    "ar": "عيد القديسين برنابا وبرتلماوس الرسولين",
+    "ru": "Праздник святых Варнавы и Варфоломея, апостолов",
+    "tl": "Kapistahan nina San Bernabe at San Bartolome na mga Apostol",
+    "fr": "Fête des saints Barnabé et Barthélemy, apôtres",
+    "it": "Festa dei santi Barnaba e Bartolomeo, apostoli"
+   }
   },
   "2026-06-12": {
    "title": "Feast of the Most Sacred Heart of Jesus",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "חג ליבו הקדוש של ישוע"
+    "he": "חג ליבו הקדוש של ישוע",
+    "ar": "عيد قلب يسوع الأقدس",
+    "ru": "Праздник Пресвятого Сердца Иисуса",
+    "tl": "Kapistahan ng Kabanal-banalang Puso ni Hesus",
+    "fr": "Fête du Sacré-Cœur de Jésus",
+    "it": "Festa del Sacratissimo Cuore di Gesù"
    }
   },
   "2026-06-14": {
    "title": "Third Sunday after Pentecost",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־3 אחרי שבועות",
+    "ar": "الأحد الـ3 بعد العنصرة",
+    "ru": "3-е воскресенье после Пятидесятницы",
+    "tl": "Ika-3 Linggo pagkatapos ng Pentekostes",
+    "fr": "3e dimanche après la Pentecôte",
+    "it": "3ª domenica dopo Pentecoste"
+   }
   },
   "2026-06-15": {
    "title": "The first church Dedication to Mary as Mother of God",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חנוכת הכנסייה הראשונה למרים כאם האלוהים",
+    "ar": "تكريس أول كنيسة لمريم والدة الإله",
+    "ru": "Освящение первой церкви в честь Марии как Богородицы",
+    "tl": "Pagtatalaga ng unang simbahan kay Maria bilang Ina ng Diyos",
+    "fr": "Dédicace de la première église à Marie, Mère de Dieu",
+    "it": "Dedicazione della prima chiesa a Maria, Madre di Dio"
+   }
   },
   "2026-06-18": {
    "title": "Deth of Saint Ephrem",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "אפרים, דיאקון ודוקטור הכנסייה"
+    "he": "אפרים, דיאקון ודוקטור הכנסייה",
+    "ar": "وفاة القديس أفرام",
+    "ru": "Преставление святого Ефрема",
+    "tl": "Pagpanaw ni San Efren",
+    "fr": "Mort de saint Éphrem",
+    "it": "Morte di sant’Efrem"
    }
   },
   "2026-06-19": {
    "title": "Feast of Saint Judas the Apostle, Brother of the Lord",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג יהודה הקדוש, שליח ואחי האדון",
+    "ar": "عيد القديس يهوذا الرسول أخي الرب",
+    "ru": "Праздник святого Иуды, апостола, брата Господня",
+    "tl": "Kapistahan ni San Judas na Apostol, kapatid ng Panginoon",
+    "fr": "Fête de saint Jude, apôtre, frère du Seigneur",
+    "it": "Festa di san Giuda, apostolo, fratello del Signore"
+   }
   },
   "2026-06-21": {
    "title": "Fourth Sunday after Pentecost",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־4 אחרי שבועות",
+    "ar": "الأحد الـ4 بعد العنصرة",
+    "ru": "4-е воскресенье после Пятидесятницы",
+    "tl": "Ika-4 Linggo pagkatapos ng Pentekostes",
+    "fr": "4e dimanche après la Pentecôte",
+    "it": "4ª domenica dopo Pentecoste"
+   }
   },
   "2026-06-24": {
    "title": "Birth of Feast of Saint John the Baptist's",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "חג הולדתו של יוחנן המטביל"
+    "he": "חג הולדתו של יוחנן המטביל",
+    "ar": "ميلاد القديس يوحنا المعمدان",
+    "ru": "Рождество святого Иоанна Крестителя",
+    "tl": "Kapanganakan ni San Juan Bautista",
+    "fr": "Nativité de saint Jean Baptiste",
+    "it": "Natività di san Giovanni Battista"
    }
   },
   "2026-06-28": {
    "title": "Fifth Sunday after Pentecost",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־5 אחרי שבועות",
+    "ar": "الأحد الـ5 بعد العنصرة",
+    "ru": "5-е воскресенье после Пятидесятницы",
+    "tl": "Ika-5 Linggo pagkatapos ng Pentekostes",
+    "fr": "5e dimanche après la Pentecôte",
+    "it": "5ª domenica dopo Pentecoste"
+   }
   },
   "2026-06-29": {
    "title": "Feast of Saints Peter and Paul the Chefs of the Apostles",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "חג שמעון כיפא ושאול השליחים"
+    "he": "חג שמעון כיפא ושאול השליחים",
+    "ar": "عيد القديسين بطرس وبولس هامتي الرسل",
+    "ru": "Праздник святых Петра и Павла, первоверховных апостолов",
+    "tl": "Kapistahan nina San Pedro at San Pablo, mga pinuno ng mga Apostol",
+    "fr": "Fête des saints Pierre et Paul, chefs des apôtres",
+    "it": "Festa dei santi Pietro e Paolo, capi degli apostoli"
    }
   },
   "2026-06-30": {
    "title": "Feast of Saints the Twelve Apostles",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג שנים עשר השליחים הקדושים",
+    "ar": "عيد الرسل الاثني عشر القديسين",
+    "ru": "Праздник двенадцати святых апостолов",
+    "tl": "Kapistahan ng Labindalawang Banal na Apostol",
+    "fr": "Fête des douze saints apôtres",
+    "it": "Festa dei dodici santi apostoli"
+   }
   },
   "2026-07-01": {
    "title": "Feast of Saints Cosma and Damias the Martyrs",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "קוסמאס ודמיאנוס, מרטירים"
+    "he": "קוסמאס ודמיאנוס, מרטירים",
+    "ar": "عيد القديسين قزما ودميان الشهيدين",
+    "ru": "Праздник святых Космы и Дамиана, мучеников",
+    "tl": "Kapistahan nina San Cosme at San Damian na mga Martir",
+    "fr": "Fête des saints Côme et Damien, martyrs",
+    "it": "Festa dei santi Cosma e Damiano, martiri"
    }
   },
   "2026-07-03": {
    "title": "Feast of Saint Thomas the Apostle",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "תאמא השליח"
+    "he": "תאמא השליח",
+    "ar": "عيد القديس توما الرسول",
+    "ru": "Праздник святого Фомы, апостола",
+    "tl": "Kapistahan ni Santo Tomas na Apostol",
+    "fr": "Fête de saint Thomas, apôtre",
+    "it": "Festa di san Tommaso, apostolo"
    }
   },
   "2026-07-05": {
    "title": "Sixth Sunday after Pentecost",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־6 אחרי שבועות",
+    "ar": "الأحد الـ6 بعد العنصرة",
+    "ru": "6-е воскресенье после Пятидесятницы",
+    "tl": "Ika-6 Linggo pagkatapos ng Pentekostes",
+    "fr": "6e dimanche après la Pentecôte",
+    "it": "6ª domenica dopo Pentecoste"
+   }
   },
   "2026-07-12": {
    "title": "Seventh Sunday after Pentecost",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־7 אחרי שבועות",
+    "ar": "الأحد الـ7 بعد العنصرة",
+    "ru": "7-е воскресенье после Пятидесятницы",
+    "tl": "Ika-7 Linggo pagkatapos ng Pentekostes",
+    "fr": "7e dimanche après la Pentecôte",
+    "it": "7ª domenica dopo Pentecoste"
+   }
   },
   "2026-07-15": {
    "title": "Feast of Saint Cyriacus and Julitta",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג קיריאקוס ויוליטה הקדושים",
+    "ar": "عيد القديسين قرياقوس ويوليطا",
+    "ru": "Праздник святых Кирика и Иулитты",
+    "tl": "Kapistahan nina San Quirico at Santa Julita",
+    "fr": "Fête des saints Cyr et Julitte",
+    "it": "Festa dei santi Quirico e Giulitta"
+   }
   },
   "2026-07-19": {
    "title": "Eighth Sunday after Pentecost",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־8 אחרי שבועות",
+    "ar": "الأحد الـ8 بعد العنصرة",
+    "ru": "8-е воскресенье после Пятидесятницы",
+    "tl": "Ika-8 Linggo pagkatapos ng Pentekostes",
+    "fr": "8e dimanche après la Pentecôte",
+    "it": "8ª domenica dopo Pentecoste"
+   }
   },
   "2026-07-20": {
    "title": "Feast of Saint Elijah the Prophet",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "חג אליהו הנביא"
+    "he": "חג אליהו הנביא",
+    "ar": "عيد القديس إيليا النبي",
+    "ru": "Праздник святого пророка Илии",
+    "tl": "Kapistahan ni San Elias na Propeta",
+    "fr": "Fête de saint Élie, prophète",
+    "it": "Festa di sant’Elia, profeta"
    }
   },
   "2026-07-21": {
    "title": "Feast of St Simeon Stylites, Confessor",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג שמעון הקדוש איש העמוד, מוודה",
+    "ar": "عيد القديس سمعان العمودي المعترف",
+    "ru": "Праздник святого Симеона Столпника, исповедника",
+    "tl": "Kapistahan ni San Simeon Estilita na Tagapagpahayag ng Pananampalataya",
+    "fr": "Fête de saint Siméon le Stylite, confesseur",
+    "it": "Festa di san Simeone Stilita, confessore"
+   }
   },
   "2026-07-22": {
    "title": "Feast of Saint Mary Magdalene",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "חג מרים המגדלית הקדושה"
+    "he": "חג מרים המגדלית הקדושה",
+    "ar": "عيد القديسة مريم المجدلية",
+    "ru": "Праздник святой Марии Магдалины",
+    "tl": "Kapistahan ni Santa Maria Magdalena",
+    "fr": "Fête de sainte Marie Madeleine",
+    "it": "Festa di santa Maria Maddalena"
    }
   },
   "2026-07-26": {
    "title": "Ninth Sunday after Pentecost",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־9 אחרי שבועות",
+    "ar": "الأحد الـ9 بعد العنصرة",
+    "ru": "9-е воскресенье после Пятидесятницы",
+    "tl": "Ika-9 Linggo pagkatapos ng Pentekostes",
+    "fr": "9e dimanche après la Pentecôte",
+    "it": "9ª domenica dopo Pentecoste"
+   }
   },
   "2026-07-29": {
    "title": "Feast of Saint Martha, sister of Lazarus",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "מרתה"
+    "he": "מרתה",
+    "ar": "عيد القديسة مرتا أخت لعازر",
+    "ru": "Праздник святой Марфы, сестры Лазаря",
+    "tl": "Kapistahan ni Santa Marta, kapatid ni Lazaro",
+    "fr": "Fête de sainte Marthe, sœur de Lazare",
+    "it": "Festa di santa Marta, sorella di Lazzaro"
    }
   },
   "2026-08-01": {
    "title": "Feast of St. Shmouni and her seven sons & their teacher Eleazar",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג שמוני הקדושה ושבעת בניה ומורם אלעזר",
+    "ar": "عيد القديسة شموني وأبنائها السبعة ومعلمهم ألعازار",
+    "ru": "Праздник святой Шмуни, её семи сыновей и их учителя Елеазара",
+    "tl": "Kapistahan ni Santa Shmouni, ng kanyang pitong anak, at ng kanilang gurong si Eleazar",
+    "fr": "Fête de sainte Shmouni, de ses sept fils et de leur maître Éléazar",
+    "it": "Festa di santa Shmouni, dei suoi sette figli e del loro maestro Eleazaro"
+   }
   },
   "2026-08-02": {
    "title": "Tenth Sunday after Pentecost",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־10 אחרי שבועות",
+    "ar": "الأحد الـ10 بعد العنصرة",
+    "ru": "10-е воскресенье после Пятидесятницы",
+    "tl": "Ika-10 Linggo pagkatapos ng Pentekostes",
+    "fr": "10e dimanche après la Pentecôte",
+    "it": "10ª domenica dopo Pentecoste"
+   }
   },
   "2026-08-06": {
    "title": "The Feast of the Transfiguration of Our Lord Jesus Christ",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "חג של ישוע לבוש הדר (חג היפע)"
+    "he": "חג של ישוע לבוש הדר (חג היפע)",
+    "ar": "عيد تجلي ربنا يسوع المسيح",
+    "ru": "Праздник Преображения Господа нашего Иисуса Христа",
+    "tl": "Kapistahan ng Pagbabagong-anyo ng Ating Panginoong Hesukristo",
+    "fr": "Fête de la Transfiguration de notre Seigneur Jésus-Christ",
+    "it": "Festa della Trasfigurazione del Signore nostro Gesù Cristo"
    }
   },
   "2026-08-09": {
    "title": "Eleventh Sunday after Pentecost",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־11 אחרי שבועות",
+    "ar": "الأحد الـ11 بعد العنصرة",
+    "ru": "11-е воскресенье после Пятидесятницы",
+    "tl": "Ika-11 Linggo pagkatapos ng Pentekostes",
+    "fr": "11e dimanche après la Pentecôte",
+    "it": "11ª domenica dopo Pentecoste"
+   }
   },
   "2026-08-15": {
    "title": "Assumption of the Mother of God",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "חג העלאתה של מרים השמיימה"
+    "he": "חג העלאתה של מרים השמיימה",
+    "ar": "انتقال والدة الإله إلى السماء",
+    "ru": "Взятие Богородицы на небо",
+    "tl": "Pag-aakyat sa Langit sa Ina ng Diyos",
+    "fr": "Assomption de la Mère de Dieu",
+    "it": "Assunzione della Madre di Dio"
    }
   },
   "2026-08-16": {
    "title": "Twelfth Sunday after Pentecost",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־12 אחרי שבועות",
+    "ar": "الأحد الـ12 بعد العنصرة",
+    "ru": "12-е воскресенье после Пятидесятницы",
+    "tl": "Ika-12 Linggo pagkatapos ng Pentekostes",
+    "fr": "12e dimanche après la Pentecôte",
+    "it": "12ª domenica dopo Pentecoste"
+   }
   },
   "2026-08-20": {
    "title": "Feast of Saint Levi the Apostle",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג לוי הקדוש, שליח",
+    "ar": "عيد القديس لاوي الرسول",
+    "ru": "Праздник святого Левия, апостола",
+    "tl": "Kapistahan ni San Levi na Apostol",
+    "fr": "Fête de saint Lévi, apôtre",
+    "it": "Festa di san Levi, apostolo"
+   }
   },
   "2026-08-23": {
    "title": "Thirteenth Sunday after Pentecost",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־13 אחרי שבועות",
+    "ar": "الأحد الـ13 بعد العنصرة",
+    "ru": "13-е воскресенье после Пятидесятницы",
+    "tl": "Ika-13 Linggo pagkatapos ng Pentekostes",
+    "fr": "13e dimanche après la Pentecôte",
+    "it": "13ª domenica dopo Pentecoste"
+   }
   },
   "2026-08-25": {
    "title": "Feast of Saint Titus the bishop",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "טיטוס, הגמון"
+    "he": "טיטוס, הגמון",
+    "ar": "عيد القديس تيطس الأسقف",
+    "ru": "Праздник святого Тита, епископа",
+    "tl": "Kapistahan ni San Tito na Obispo",
+    "fr": "Fête de saint Tite, évêque",
+    "it": "Festa di san Tito, vescovo"
    }
   },
   "2026-08-30": {
    "title": "Fourteenth Sunday after Pentecost",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־14 אחרי שבועות",
+    "ar": "الأحد الـ14 بعد العنصرة",
+    "ru": "14-е воскресенье после Пятидесятницы",
+    "tl": "Ika-14 Linggo pagkatapos ng Pentekostes",
+    "fr": "14e dimanche après la Pentecôte",
+    "it": "14ª domenica dopo Pentecoste"
+   }
   },
   "2026-09-02": {
    "title": "Feast of St. Simeon Stylites",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג שמעון הקדוש איש העמוד",
+    "ar": "عيد القديس سمعان العمودي",
+    "ru": "Праздник святого Симеона Столпника",
+    "tl": "Kapistahan ni San Simeon Estilita",
+    "fr": "Fête de saint Siméon le Stylite",
+    "it": "Festa di san Simeone Stilita"
+   }
   },
   "2026-09-06": {
    "title": "Fifteenth Sunday after Pentecost",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־15 אחרי שבועות",
+    "ar": "الأحد الـ15 بعد العنصرة",
+    "ru": "15-е воскресенье после Пятидесятницы",
+    "tl": "Ika-15 Linggo pagkatapos ng Pentekostes",
+    "fr": "15e dimanche après la Pentecôte",
+    "it": "15ª domenica dopo Pentecoste"
+   }
   },
   "2026-09-08": {
    "title": "Birth of the Blessed Virgin Mary—Feast",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "חג המולד של מרים העלמה"
+    "he": "חג המולד של מרים העלמה",
+    "ar": "ميلاد القديسة مريم العذراء",
+    "ru": "Рождество Пресвятой Девы Марии",
+    "tl": "Kapanganakan ng Mahal na Birheng Maria",
+    "fr": "Nativité de la bienheureuse Vierge Marie",
+    "it": "Natività della Beata Vergine Maria"
    }
   },
   "2026-09-09": {
    "title": "Feast of Saints Joachim and Anna, parents of the Virgin Mary",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג יהויקים וחנה הקדושים, הורי מרים הבתולה",
+    "ar": "عيد القديسين يواكيم وحنة والدي العذراء مريم",
+    "ru": "Праздник святых Иоакима и Анны, родителей Девы Марии",
+    "tl": "Kapistahan nina San Joaquin at Santa Ana, mga magulang ng Birheng Maria",
+    "fr": "Fête des saints Joachim et Anne, parents de la Vierge Marie",
+    "it": "Festa dei santi Gioacchino e Anna, genitori della Vergine Maria"
+   }
   },
   "2026-09-13": {
    "title": "Sixteenth Sunday after Pentecost",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־16 אחרי שבועות",
+    "ar": "الأحد الـ16 بعد العنصرة",
+    "ru": "16-е воскресенье после Пятидесятницы",
+    "tl": "Ika-16 Linggo pagkatapos ng Pentekostes",
+    "fr": "16e dimanche après la Pentecôte",
+    "it": "16ª domenica dopo Pentecoste"
+   }
   },
   "2026-09-14": {
    "title": "Exaltation of the Holy Cross—Feast",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "חג תפארת הצלב"
+    "he": "חג תפארת הצלב",
+    "ar": "عيد ارتفاع الصليب المقدس",
+    "ru": "Воздвижение Святого Креста",
+    "tl": "Pagtatampok sa Banal na Krus",
+    "fr": "Exaltation de la Sainte Croix",
+    "it": "Esaltazione della Santa Croce"
    }
   },
   "2026-09-20": {
    "title": "First Sunday after the Feast of the Cross",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־1 אחרי חג הצלב",
+    "ar": "الأحد الـ1 بعد عيد الصليب",
+    "ru": "1-е воскресенье после праздника Креста",
+    "tl": "Ika-1 Linggo pagkatapos ng Kapistahan ng Krus",
+    "fr": "1er dimanche après la fête de la Croix",
+    "it": "1ª domenica dopo la festa della Croce"
+   }
   },
   "2026-09-23": {
    "title": "Feast of the Annunciation of the Conception by John the Baptist",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג הבשורה על התעברות יוחנן המטביל",
+    "ar": "عيد البشارة بالحبل بيوحنا المعمدان",
+    "ru": "Праздник благовещения о зачатии Иоанна Крестителя",
+    "tl": "Kapistahan ng Pagbabalita ng Paglilihi kay San Juan Bautista",
+    "fr": "Fête de l’annonce de la conception de Jean Baptiste",
+    "it": "Festa dell’annuncio del concepimento di Giovanni Battista"
+   }
   },
   "2026-09-24": {
    "title": "Feast of Saint Thecla (Takla) the Martyr",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג תקלא הקדושה, מרטירית",
+    "ar": "عيد القديسة تقلا الشهيدة",
+    "ru": "Праздник святой Феклы, мученицы",
+    "tl": "Kapistahan ni Santa Tecla na Martir",
+    "fr": "Fête de sainte Thècle, martyre",
+    "it": "Festa di santa Tecla, martire"
+   }
   },
   "2026-09-27": {
    "title": "Second Sunday after the Feast of the Cross",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־2 אחרי חג הצלב",
+    "ar": "الأحد الـ2 بعد عيد الصليب",
+    "ru": "2-е воскресенье после праздника Креста",
+    "tl": "Ika-2 Linggo pagkatapos ng Kapistahan ng Krus",
+    "fr": "2e dimanche après la fête de la Croix",
+    "it": "2ª domenica dopo la festa della Croce"
+   }
   },
   "2026-10-01": {
    "title": "Feast of Saint Hanania the Apostle",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג חנניה הקדוש, שליח",
+    "ar": "عيد القديس حنانيا الرسول",
+    "ru": "Праздник святого Анании, апостола",
+    "tl": "Kapistahan ni San Ananias na Apostol",
+    "fr": "Fête de saint Ananie, apôtre",
+    "it": "Festa di sant’Anania, apostolo"
+   }
   },
   "2026-10-04": {
    "title": "Third Sunday after the Feast of the Cross",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־3 אחרי חג הצלב",
+    "ar": "الأحد الـ3 بعد عيد الصليب",
+    "ru": "3-е воскресенье после праздника Креста",
+    "tl": "Ika-3 Linggo pagkatapos ng Kapistahan ng Krus",
+    "fr": "3e dimanche après la fête de la Croix",
+    "it": "3ª domenica dopo la festa della Croce"
+   }
   },
   "2026-10-06": {
    "title": "Feast of Saint Thomas the Apostle",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "תאמא השליח"
+    "he": "תאמא השליח",
+    "ar": "عيد القديس توما الرسول",
+    "ru": "Праздник святого Фомы, апостола",
+    "tl": "Kapistahan ni Santo Tomas na Apostol",
+    "fr": "Fête de saint Thomas, apôtre",
+    "it": "Festa di san Tommaso, apostolo"
    }
   },
   "2026-10-11": {
    "title": "Fourth Sunday after the Feast of the Cross",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־4 אחרי חג הצלב",
+    "ar": "الأحد الـ4 بعد عيد الصليب",
+    "ru": "4-е воскресенье после праздника Креста",
+    "tl": "Ika-4 Linggo pagkatapos ng Kapistahan ng Krus",
+    "fr": "4e dimanche après la fête de la Croix",
+    "it": "4ª domenica dopo la festa della Croce"
+   }
   },
   "2026-10-15": {
    "title": "Feast of Saints Isaiah of Aleppo and Asia",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג ישעיהו מחלב ואסיא הקדושים",
+    "ar": "عيد القديسين إشعيا الحلبي وآسيا",
+    "ru": "Праздник святых Исаии Алеппского и Асии",
+    "tl": "Kapistahan nina San Isaias ng Aleppo at San Asia",
+    "fr": "Fête des saints Isaïe d’Alep et Asia",
+    "it": "Festa dei santi Isaia di Aleppo e Asia"
+   }
   },
   "2026-10-16": {
    "title": "Feast of Saint Longinus the Martyr",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג לונגינוס הקדוש, מרטיר",
+    "ar": "عيد القديس لونجينوس الشهيد",
+    "ru": "Праздник святого Лонгина, мученика",
+    "tl": "Kapistahan ni San Longino na Martir",
+    "fr": "Fête de saint Longin, martyr",
+    "it": "Festa di san Longino, martire"
+   }
   },
   "2026-10-18": {
    "title": "Fifth Sunday after the Feast of the Cross",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־5 אחרי חג הצלב",
+    "ar": "الأحد الـ5 بعد عيد الصليب",
+    "ru": "5-е воскресенье после праздника Креста",
+    "tl": "Ika-5 Linggo pagkatapos ng Kapistahan ng Krus",
+    "fr": "5e dimanche après la fête de la Croix",
+    "it": "5ª domenica dopo la festa della Croce"
+   }
   },
   "2026-10-23": {
    "title": "Feast of Saint James the Apostle, Brother of the Lord",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "יעקב הצדיק, שליח והגמון ירושלים"
+    "he": "יעקב הצדיק, שליח והגמון ירושלים",
+    "ar": "عيد القديس يعقوب الرسول أخي الرب",
+    "ru": "Праздник святого Иакова, апостола, брата Господня",
+    "tl": "Kapistahan ni Santiago na Apostol, kapatid ng Panginoon",
+    "fr": "Fête de saint Jacques, apôtre, frère du Seigneur",
+    "it": "Festa di san Giacomo, apostolo, fratello del Signore"
    }
   },
   "2026-10-25": {
    "title": "Sixth Sunday after the Feast of the Cross",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־6 אחרי חג הצלב",
+    "ar": "الأحد الـ6 بعد عيد الصليب",
+    "ru": "6-е воскресенье после праздника Креста",
+    "tl": "Ika-6 Linggo pagkatapos ng Kapistahan ng Krus",
+    "fr": "6e dimanche après la fête de la Croix",
+    "it": "6ª domenica dopo la festa della Croce"
+   }
   },
   "2026-11-01": {
    "title": "Consecration of the Church Sunday",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של קידוש הכנסייה",
+    "ar": "أحد تقديس الكنيسة",
+    "ru": "Воскресенье освящения Церкви",
+    "tl": "Linggo ng Pagtatalaga ng Simbahan",
+    "fr": "Dimanche de la consécration de l’Église",
+    "it": "Domenica della consacrazione della Chiesa"
+   }
   },
   "2026-11-08": {
    "title": "Dedication of the Church Sunday",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של חנוכת הכנסייה",
+    "ar": "أحد تجديد الكنيسة",
+    "ru": "Воскресенье обновления Церкви",
+    "tl": "Linggo ng Pagpapanibago ng Simbahan",
+    "fr": "Dimanche de la dédicace de l’Église",
+    "it": "Domenica della dedicazione della Chiesa"
+   }
   },
   "2026-11-14": {
    "title": "Feast of Saint Philip the Apostle",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "פיליפוס השליח"
+    "he": "פיליפוס השליח",
+    "ar": "عيد القديس فيلبس الرسول",
+    "ru": "Праздник святого Филиппа, апостола",
+    "tl": "Kapistahan ni San Felipe na Apostol",
+    "fr": "Fête de saint Philippe, apôtre",
+    "it": "Festa di san Filippo, apostolo"
    }
   },
   "2026-11-15": {
    "title": "Sunday of the Announcement to Zechariah",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של הבשורה לזכריה",
+    "ar": "أحد البشارة لزكريا",
+    "ru": "Воскресенье благовещения Захарии",
+    "tl": "Linggo ng Pagbabalita kay Zacarias",
+    "fr": "Dimanche de l’annonce à Zacharie",
+    "it": "Domenica dell’annuncio a Zaccaria"
+   }
   },
   "2026-11-16": {
    "title": "Feast of Saint Matthew the Apostle",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "חג מתי השליח והמבשר"
+    "he": "חג מתי השליח והמבשר",
+    "ar": "عيد القديس متى الرسول",
+    "ru": "Праздник святого Матфея, апостола",
+    "tl": "Kapistahan ni San Mateo na Apostol",
+    "fr": "Fête de saint Matthieu, apôtre",
+    "it": "Festa di san Matteo, apostolo"
    }
   },
   "2026-11-21": {
    "title": "Presentation of Mary",
    "rank": "Feast",
    "titleByLanguage": {
-    "he": "כניסת מרים לבית המקדש"
+    "he": "כניסת מרים לבית המקדש",
+    "ar": "دخول مريم إلى الهيكل",
+    "ru": "Введение Марии во храм",
+    "tl": "Pagdadala kay Maria sa Templo",
+    "fr": "Présentation de Marie au Temple",
+    "it": "Presentazione di Maria al Tempio"
    }
   },
   "2026-11-22": {
    "title": "Sunday of the Announcement to the Theotokos",
-   "rank": "Sunday"
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של הבשורה לאם האלוהים",
+    "ar": "أحد البشارة لوالدة الإله",
+    "ru": "Воскресенье благовещения Богородице",
+    "tl": "Linggo ng Pagbabalita sa Ina ng Diyos",
+    "fr": "Dimanche de l’annonce à la Mère de Dieu",
+    "it": "Domenica dell’annuncio alla Madre di Dio"
+   }
   },
   "2026-11-24": {
    "title": "Feast of Saint  Clement I, Pope of Rome, the Martyr",
-   "rank": "Feast"
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג קלמנס הראשון הקדוש, אפיפיור רומא ומרטיר",
+    "ar": "عيد القديس إقليمس الأول بابا روما الشهيد",
+    "ru": "Праздник святого Климента I, папы Римского, мученика",
+    "tl": "Kapistahan ni San Clemente I, Papa ng Roma at martir",
+    "fr": "Fête de saint Clément Ier, pape de Rome et martyr",
+    "it": "Festa di san Clemente I, papa di Roma e martire"
+   }
   }
  }
 }

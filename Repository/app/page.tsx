@@ -49,7 +49,7 @@ export default async function Home({
           <span>Language</span>
           <select name="lang" defaultValue={lang ?? ""}>
             <option value="">Any language</option>
-            {Object.entries(LANGUAGE_NAMES).map(([code, name]) => (
+            {Object.entries(LANGUAGE_NAMES).filter(([code]) => code !== "he-x-gamliel").map(([code, name]) => (
               <option key={code} value={code} lang={code} dir="auto">
                 {name}
               </option>

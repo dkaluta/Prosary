@@ -9,6 +9,25 @@ namespace Prosary.Tests;
 
 public class UiLanguageTests
 {
+    [Fact]
+    public void HebrewHasOneLanguageChoiceAndPreservesASeparateTraditionAndFallbackOrder()
+    {
+        Assert.Single(LanguageCatalog.PickerOptions.Where(language => language.Code.StartsWith("he")));
+        Assert.Equal("עברית", LanguageCatalog.Resolve("he-x-gamliel").NativeName);
+        Assert.Equal("ܐܪܡܐܝܬ / ארמית", LanguageCatalog.Resolve("arc").NativeName);
+        Assert.Equal("he", LanguageCatalog.PickerLanguageCode("he-x-gamliel"));
+        Assert.Equal("he-x-gamliel", LanguageCatalog.SelectingLanguage("he", "he-x-gamliel"));
+        Assert.Equal("", LanguageCatalog.SelectingLanguage("", "he-x-gamliel"));
+        Assert.Equal("en", LanguageCatalog.SelectingLanguage("en", "he-x-gamliel"));
+        var previous = AppSettings.LanguageFallbackOrder.ToArray();
+        try
+        {
+            AppSettings.SetLanguageFallbackOrder(["en", "he-x-gamliel", "he", "la"]);
+            Assert.Equal(new[] { "he-x-gamliel", "he", "en", "la" }, LanguageCatalog.ExpandFallbackOrder(["he", "en", "la"]));
+        }
+        finally { AppSettings.SetLanguageFallbackOrder(previous); }
+    }
+
     [Theory]
     [InlineData("fil-PH", "tl", false)]
     [InlineData("tl-PH", "tl", false)]
@@ -27,7 +46,7 @@ public class UiLanguageTests
     }
 
     [Fact]
-    public void TodayFollowsTheInterfaceUnlessItHasItsOwnSavedLanguage()
+    public void TodayFollowsTheInterfaceAndIgnoresTheRetiredOverride()
     {
         var previousPrayerLanguage = AppSettings.DefaultLanguageCode;
         var previousTodayLanguage = AppSettings.TodayLanguageCode;
@@ -38,7 +57,7 @@ public class UiLanguageTests
             Assert.Equal("fr", UiLanguageCatalog.ResolveToday(AppSettings.TodayLanguageCode, "fr-FR"));
             AppSettings.SetTodayLanguageCode("ar");
             AppSettings.SetDefaultLanguageCode("it");
-            Assert.Equal("ar", UiLanguageCatalog.ResolveToday(AppSettings.TodayLanguageCode, "fr-FR"));
+            Assert.Equal("fr", UiLanguageCatalog.ResolveToday(AppSettings.TodayLanguageCode, "fr-FR"));
             Assert.Equal("it", AppSettings.DefaultLanguageCode);
         }
         finally
@@ -57,10 +76,16 @@ public class UiLanguageTests
     [InlineData("it", "Tempo Ordinario")]
     public void TodayLocalizesTheWeekAndSeasonInEachAddedLanguage(string language, string season)
     {
-        var day = TodayInfoStore.LiturgicalDay(new DateOnly(2026, 8, 31));
-        Assert.Contains(season, day.Localized(language));
-        Assert.DoesNotContain("Monday", day.Localized(language));
-        Assert.DoesNotContain("Week", day.Localized(language));
+        var previous = TodayInfoStore.SelectedCalendarId;
+        try
+        {
+            TodayInfoStore.SelectedCalendarId = "roman";
+            var day = TodayInfoStore.LiturgicalDay(new DateOnly(2026, 8, 31));
+            Assert.Contains(season, day.Localized(language));
+            Assert.DoesNotContain("Monday", day.Localized(language));
+            Assert.DoesNotContain("Week", day.Localized(language));
+        }
+        finally { TodayInfoStore.SelectedCalendarId = previous; }
     }
 
     [Fact]

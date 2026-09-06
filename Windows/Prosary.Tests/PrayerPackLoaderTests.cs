@@ -39,7 +39,8 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
         var readingAid = PrayerPackStore.Transliteration("oAntiphons", "arc", "gloriaPatri");
         Assert.NotNull(readingAid);
         Assert.Equal(PrayerPackStore.Transliteration("trisagion", "arc", "gloriaPatri"), readingAid);
-        Assert.NotEqual(PrayerPackStore.Transliteration("rosary", "arc", "gloriaPatri"), readingAid);
+        // Rosary and Trisagion now share the corrected Gloria text and line breaks.
+        Assert.Equal(PrayerPackStore.Transliteration("rosary", "arc", "gloriaPatri"), readingAid);
         Assert.Null(PrayerPackStore.Transliteration("oAntiphons", "en", "gloriaPatri"));
     }
 

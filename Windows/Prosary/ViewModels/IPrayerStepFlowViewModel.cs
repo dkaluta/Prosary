@@ -24,6 +24,7 @@ public interface IPrayerStepFlowViewModel : System.ComponentModel.INotifyPropert
     string MysteryImageFile { get; }
 
     string ProgressText { get; }
+    string ProgressFontFamily { get; }
 
     /// <summary>0–1 fraction for a bounded flow; null for an open-ended one (unbounded Jesus
     /// Prayer), which hides the progress bar and shows only <see cref="ProgressText"/>'s running
@@ -32,6 +33,7 @@ public interface IPrayerStepFlowViewModel : System.ComponentModel.INotifyPropert
 
     bool IsRightToLeft { get; }
     Color SeasonColor { get; }
+    void RefreshTypography();
     string BodyFontFamily { get; }
     double BodyFontSize { get; }
     bool CanGoBack { get; }

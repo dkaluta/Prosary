@@ -191,7 +191,7 @@
   <data name="AbtTypeNotoSyriac.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — selectable Syriac-script Aramaic faces.</value></data>
   <data name="AbtTypeOptionalHebrew.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — optional Hebrew prayer and Scripture faces.</value></data>
   <data name="AbtTypeStam.Text" xml:space="preserve"><value> — GPL v2 with font-embedding exception — optional Hebrew Scripture faces (Culmus Project, Yoram Gnat).</value></data>
-  <data name="AbtTypeFooter.Text" xml:space="preserve"><value>Latin-script prayers use Cambria, which ships with Windows — not bundled with the app.</value></data>
+  <data name="AbtTypeFooter.Text" xml:space="preserve"><value>Prayer typography can use the platform’s system serif or sans-serif design.</value></data>
   <data name="AbtMysteryHeader.Text" xml:space="preserve"><value>Mystery Illustrations</value></data>
   <data name="AbtMysteryIntro.Text" xml:space="preserve"><value>All 20 mystery images are classical paintings in the public domain (artist deceased over 100 years), sourced from Wikimedia Commons.</value></data>
   <data name="AboutEasternIcons.Text" xml:space="preserve"><value>The collection of illustrations of the Mysteries in the Eastern style is used with approval from the Mission of St. Gamaliel for Hebrew Catholics in the Aramaic (Syriac) Catholic Church.</value></data>
@@ -210,7 +210,7 @@
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>Scripture Sources</value></data>
   <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) with Hebrew Old Testament passages following the Masoretic text, the Jesuit Arabic Bible (Dar el-Machreq), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905).</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>Calendar Data</value></data>
-  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Calendar and readings data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar and lectionary via Missale Meum (missalemeum.com); the Syriac Catholic calendar, sourced Hebrew General Roman titles, and Roman/Syriac lectionary citations courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic calendar compiled in-app from the traditional sources, with Byzantine citations from Royal Doors’ public UGCC Liturgical Year (Gregorian) calendar (royaldoors.net). Hebrew Bible book names: Evangelizo HE and the St James Vicariate (catholic.co.il). Additional Hebrew feast and saint names: the St James Vicariate, the Christian Media Center (cmc-terrasanta.org), and Vatican News (vaticannews.va).</value></data>
+  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Calendar and readings data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar and lectionary via Missale Meum (missalemeum.com); the Syriac Catholic calendar, sourced Hebrew General Roman titles, and Roman/Syriac lectionary citations courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic Church and its Patriarchal Liturgical Commission (ugcc.ua) provide the Ukraine calendar and readings with Julian Pascha; Royal Doors (royaldoors.net) provides the Gregorian Pascha readings. Hebrew Bible book names: Evangelizo HE and the St James Vicariate (catholic.co.il). Additional Hebrew feast and saint names: the St James Vicariate, the Christian Media Center (cmc-terrasanta.org), and Vatican News (vaticannews.va).</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Previous mystery</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Previous mystery</value></data>
   <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Next mystery</value></data>
@@ -301,27 +301,27 @@
   <data name="multi_day_completed_title" xml:space="preserve"><value>That completes it. Pray {0} next?</value></data>
   <data name="multi_day_pray_next" xml:space="preserve"><value>Pray {0}</value></data>
   <data name="multi_day_not_now" xml:space="preserve"><value>Not now</value></data>
-  <data name="SetRiteCombo.Header" xml:space="preserve"><value>Rite</value></data>
+  <data name="SetRiteCombo.Header" xml:space="preserve"><value>Prayer tradition</value></data>
   <data name="settings_rite" xml:space="preserve"><value>Rite</value></data>
   <data name="settings_aramaic_sign_of_cross" xml:space="preserve"><value>Aramaic Sign of the Cross</value></data>
   <data name="settings_aramaic_sign_of_cross_form_a" xml:space="preserve"><value>Form A</value></data>
   <data name="settings_aramaic_sign_of_cross_form_b" xml:space="preserve"><value>Form B</value></data>
   <data name="SetTypographyHeader.Text" xml:space="preserve"><value>Typography</value></data>
-  <data name="SetSyriacTypeface.Header" xml:space="preserve"><value>Syriac Aramaic</value></data>
-  <data name="SetHebrewPrayerTypeface.Header" xml:space="preserve"><value>Hebrew prayers</value></data>
-  <data name="SetHebrewScriptureTypeface.Header" xml:space="preserve"><value>Hebrew Scripture</value></data>
+  <data name="SetSyriacTypeface.Header" xml:space="preserve"><value>Aramaic font</value></data>
+  <data name="SetHebrewPrayerTypeface.Header" xml:space="preserve"><value>Hebrew font</value></data>
+  <data name="SetHebrewScriptureTypeface.Header" xml:space="preserve"><value>Hebrew Scripture font</value></data>
   <data name="settings_typeface_default" xml:space="preserve"><value>Default</value></data>
   <data name="settings_typeface_western_aramaic" xml:space="preserve"><value>Western Aramaic</value></data>
   <data name="settings_typeface_eastern_aramaic" xml:space="preserve"><value>Eastern Aramaic</value></data>
   <data name="settings_typeface_david_libre" xml:space="preserve"><value>David Libre</value></data>
-  <data name="settings_typeface_sans_serif" xml:space="preserve"><value>System sans-serif</value></data>
+  <data name="settings_typeface_sans_serif" xml:space="preserve"><value>System sans serif</value></data>
   <data name="settings_typeface_stam_ashkenaz" xml:space="preserve"><value>Stam Ashkenaz</value></data>
   <data name="settings_typeface_stam_sefarad" xml:space="preserve"><value>Stam Sefarad</value></data>
   <data name="settings_typeface_rashi" xml:space="preserve"><value>Rashi</value></data>
   <data name="SetFavoriteBasicPrayersFirst.Header" xml:space="preserve"><value>Move favorite basic prayers to top</value></data>
   <data name="SetAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>Aramaic Sign of the Cross</value></data>
   <data name="EdAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>Aramaic Sign of the Cross</value></data>
-  <data name="EdRiteCombo.Header" xml:space="preserve"><value>Rite</value></data>
+  <data name="EdRiteCombo.Header" xml:space="preserve"><value>Prayer tradition</value></data>
   <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>Pray any Rosary</value></data>
   <data name="HomeAddRosary.Content" xml:space="preserve"><value>Add Rosary</value></data>
   <data name="HomeAddJesusPrayer.Content" xml:space="preserve"><value>Add Jesus Prayer</value></data>
@@ -400,8 +400,41 @@
   <data name="category_short" xml:space="preserve"><value>Short</value></data>
   <data name="category_easter" xml:space="preserve"><value>Easter</value></data>
   <data name="category_other" xml:space="preserve"><value>Other</value></data>
-  <data name="AbtPrayerSources.Text" xml:space="preserve"><value>Additional prayer sources: Vatican News, the Sanctuary of Fatima, Notre-Dame de Paris, AELF and the Italian Episcopal Conference (CEI).</value></data>
+  <data name="AbtPrayerSources.Text" xml:space="preserve"><value>Additional prayer sources: Vatican News, the Sanctuary of Fatima, Notre-Dame de Paris, AELF and the Italian Episcopal Conference (CEI). Also: Basilica of Guadalupe; GOARCH Digital Chant Stand; IVE Greece (Greek Anima Christi translated by Fr F. Bravo IVE); St Nicholas Catholic Parish, Tinos; Carmelite Iberian Province; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), for the medieval Syriac Under Your Protection. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888).</value></data>
   <data name="AbtDivineMercySources.Text" xml:space="preserve"><value>Divine Mercy Chaplet: Congregation of the Sisters of Our Lady of Mercy.</value></data>
   <data name="AppDescription" xml:space="preserve"><value>A companion for praying the Rosary, the Angelus, and the Jesus Prayer.</value></data>
   <data name="AbtSevenSorrowsSources.Text" xml:space="preserve"><value>Seven Sorrows prayers: Notre Dame de Chrétienté and Confraternite.net.</value></data>
+  <data name="settings_typeface_frank_ruhl_libre" xml:space="preserve"><value>Frank Ruhl Libre</value></data>
+  <data name="SetLatinPrayerTypeface.Header" xml:space="preserve"><value>Latin-script prayers</value></data>
+  <data name="SetCyrillicPrayerTypeface.Header" xml:space="preserve"><value>Cyrillic prayers</value></data>
+  <data name="settings_typeface_serif" xml:space="preserve"><value>System serif</value></data>
+  <data name="prayer_tradition" xml:space="preserve"><value>Prayer tradition</value></data>
+  <data name="prayer_tradition_vicariate" xml:space="preserve"><value>Saint James Vicariate</value></data>
+  <data name="prayer_tradition_mission" xml:space="preserve"><value>Mission of St. Gamaliel</value></data>
+  <data name="basic_pin" xml:space="preserve"><value>Pin to home</value></data>
+  <data name="basic_unpin" xml:space="preserve"><value>Unpin from home</value></data>
+  <data name="rosary_pray_litany" xml:space="preserve"><value>Pray the Litany</value></data>
+  <data name="rosary_litany_prompt" xml:space="preserve"><value>Continue with the Litany of the Blessed Virgin Mary?</value></data>
+  <data name="EdClosingPopeIntention.Text" xml:space="preserve"><value>Closing prayers for the Pope</value></data>
+  <data name="EdClosingBishopIntention.Text" xml:space="preserve"><value>Closing prayers for the bishop</value></data>
+  <data name="EdClosingDepartedIntention.Text" xml:space="preserve"><value>Closing prayers for the faithful departed</value></data>
+  <data name="AbtLitanySources.Text" xml:space="preserve"><value>The Litany of Loreto uses published Catholic prayer texts. The Hebrew wording is Erez’s contribution through the Mission of St. Gamaliel. The Greek and Tagalog standalone closing prayers are Prosary translations of the Latin original; they are not published liturgical translations.</value></data>
+  <data name="SetAramaicDefaultScript.Header" xml:space="preserve"><value>Default Aramaic script</value></data>
+  <data name="settings_script_hebrew" xml:space="preserve"><value>Hebrew script</value></data>
+  <data name="settings_script_syriac" xml:space="preserve"><value>Syriac script</value></data>
+  <data name="HomeResetToday.Content" xml:space="preserve"><value>Today</value></data>
+  <data name="SetPrayerNameLanguage.Header" xml:space="preserve"><value>Show prayer names in the prayer language</value></data>
+  <data name="SetPrayerNameLanguageHint.Text" xml:space="preserve"><value>Also show the interface-language name when it differs.</value></data>
+  <data name="SetShowTodayTorahPortion.Header" xml:space="preserve"><value>Show the weekly Torah portion</value></data>
+  <data name="SetTorahPortionHint.Text" xml:space="preserve"><value>The coming Sabbath’s reading in Eretz Israel, including festival readings.</value></data>
+  <data name="home_today_torah_portion" xml:space="preserve"><value>Weekly Torah portion</value></data>
+  <data name="home_today_torah_festival" xml:space="preserve"><value>Festival Torah reading</value></data>
+  <data name="AbtTorahData.Text" xml:space="preserve"><value>Weekly Torah portions and festival readings for Eretz Israel: Hebcal.com (CC BY 4.0), with adapted names and citations.</value></data>
+  <data name="SetEasternPascha.Header" xml:space="preserve"><value>Byzantine Easter calculation</value></data>
+  <data name="settings_pascha_julian" xml:space="preserve"><value>Julian Pascha (Ukraine)</value></data>
+  <data name="settings_pascha_gregorian" xml:space="preserve"><value>Gregorian Pascha</value></data>
+  <data name="HomePreviousDay.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Previous day</value></data>
+  <data name="HomeNextDay.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Next day</value></data>
+  <data name="home_today_choose_date" xml:space="preserve"><value>Choose a date: {0}</value></data>
+  <data name="AbtHebrewBookIndex.Text" xml:space="preserve"><value>Additional Hebrew Bible book names: Mechon Mamre’s Hebrew Bible index. Names only; no Scripture text.</value></data>
 </root>

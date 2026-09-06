@@ -75,6 +75,8 @@
                                             </Grid.ColumnDefinitions>
                                             <StackPanel Grid.Column="0" Spacing="2">
                                                 <TextBlock Text="{x:Bind Title, Mode=OneWay}" FontWeight="SemiBold" FontSize="16" />
+                                                <TextBlock Text="{x:Bind InterfaceSubtitle, Mode=OneWay}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap"
+                                                           Visibility="{x:Bind HasInterfaceSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                                                 <TextBlock Text="{x:Bind Subtitle}" Style="{StaticResource MutedCaptionTextStyle}" />
                                             </StackPanel>
                                             <Grid Grid.Column="1" VerticalAlignment="Center">

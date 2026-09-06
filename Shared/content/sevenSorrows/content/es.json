@@ -1,0 +1,36 @@
+{
+  "$comment": "Partial Scripture overlay only: six Seven Sorrows passages follow the credited published Bible edition. The fourth sorrow is a non-Scripture meditation and is intentionally not invented here. Titles, spiritual fruits, and devotion-specific prayers still require their own translations; this overlay does not advertise a complete language.",
+  "prayers": {},
+  "mysteries": {
+    "seven_sorrows_01_prophecy_of_simeon": {
+      "description": "Simeon bendijo á entrambos, y dijo á María su madre: Mira, este niño que ves, está destinado para ruina, y para resurreccion de muchos en Israél; y para ser el blanco de la contradiccion de los hombres: lo que será para tí misma una espada que traspasará tu alma, á fin de que sean descubiertos los pensamientos ocultos en los corazones de muchos.\n\n— San Lucas 2:34–35 (Torres Amat)"
+    },
+    "seven_sorrows_02_flight_into_egypt": {
+      "description": "Despues que ellos partieron, un ángel del Señor apareció en sueños á Joseph diciéndole: Levántate, toma al niño y á su madre, y huye á Egypto, y estáte allí hasta que yo te avise. Porque Heródes ha de buscar al niño para matarle. Levantándose Joseph tomó al niño y á su madre de noche; y se retiró á Egypto,\n\n— San Mateo 2:13–14 (Torres Amat)"
+    },
+    "seven_sorrows_03_loss_of_jesus_in_the_temple": {
+      "description": "acabados aquellos dias, cuando ya se volvian, se quedó el niño Jesus en Jerusalem, sin que sus padres lo advirtiesen. Antes bien persuadidos de que venia con alguno de los de su comitiva, anduvieron la jornada entera buscándole entre los parientes y conocidos. Mas como no le hallasen, retornaron á Jerusalem, en busca suya.\n\n— San Lucas 2:43–45 (Torres Amat)"
+    },
+    "seven_sorrows_05_crucifixion": {
+      "description": "Estaban al mismo tiempo junto á la cruz de Jesus su madre, y la hermana ó parienta de su madre, María muger de Cleophás, y Maria Magdalena. Habiendo mirado pues Jesus á su madre, y al discípulo que él amaba, el cual estaba alli, dice á su madre: Muger, ahí tienes á tu hijo. Despues dice al discípulo: Ahí tienes a tu madre. Y desde aquel punto encargóse de ella el discípulo, y la tuvo consigo en su casa.\n\n— San Juan 19:25–27 (Torres Amat)"
+    },
+    "seven_sorrows_06_descent_from_the_cross": {
+      "description": "Despues de esto Joseph natural de Arimathea, (que era discípulo de Jesus, bien que oculto por miedo de los judíos) pidió licencia á Pilato para recoger el cuerpo de Jesus; y Pilato se lo permitió. Con eso vino, y se llevó el cuerpo de Jesus. Vino tambien Nicodemo, aquel mismo que en otra ocasion habia ido de noche á encontrar á Jesus, trayendo consigo una confeccion de myrrha, y de aloe, cosa de cien libras. Tomaron pues el cuerpo de Jesus, y bañado en las especies aromáticas, le amortajaron con lienzos, segun la costumbre de sepultar de los judíos.\n\n— San Juan 19:38–40 (Torres Amat)"
+    },
+    "seven_sorrows_07_burial_of_jesus": {
+      "description": "Habia en el lugar, donde fue crucificado, un huerto, y en el huerto un sepulcro nuevo, donde hasta entónces ninguno habia sido sepultado. Como era la víspera del sábado de los judíos, y este sepulcro estaba cerca, pusieron allí á Jesus.\n\n— San Juan 19:41–42 (Torres Amat)"
+    }
+  },
+  "$scriptureSource": "Scripture imported from Félix Torres Amat's Spanish Bible (1836) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Torres Amat translated the Vulgate, so its chapter-and-verse is the same one these devotions cite and no versification map is needed. Spelling and accentuation are the 1836 printing's own. Old Testament readings are absent: only the New Testament volumes of it have been transcribed from the scans.",
+  "$scriptureImport": {
+    "prayerKeys": [],
+    "mysteryKeys": [
+      "seven_sorrows_01_prophecy_of_simeon",
+      "seven_sorrows_02_flight_into_egypt",
+      "seven_sorrows_03_loss_of_jesus_in_the_temple",
+      "seven_sorrows_05_crucifixion",
+      "seven_sorrows_06_descent_from_the_cross",
+      "seven_sorrows_07_burial_of_jesus"
+    ]
+  }
+}

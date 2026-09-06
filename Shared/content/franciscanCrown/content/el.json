@@ -1,0 +1,29 @@
+{
+  "$comment": "The common prayers and six Rosary mysteries resolve from the separately sourced shared prayer tables and Rosary content. The Adoration of the Magi Scripture is imported from the credited Bible edition. Its title and fruit, the Crown-specific labels, display name, and reminder are Prosary translations of app metadata, not newly composed liturgical prayers.",
+  "$sources": {
+    "commonPrayers": "Shared/content/rosary/content/el.json and the native prayer tables; retain their individual published source credits.",
+    "metadata": "Prosary translations of prayer titles, spiritual-fruit labels, and interface descriptions."
+  },
+  "prayers": {
+    "aveMariaTitle": "Χαίρε Μαρία",
+    "paterNosterTitle": "Πάτερ ημών",
+    "signumCrucisTitle": "Σημείο του Σταυρού",
+    "decadeOrdinalNoun": "Χαρά",
+    "crownYearsSubtitle": "Για τα χρόνια της ζωής της Παναγίας",
+    "crownPopeSubtitle": "Για τις προθέσεις του Αγίου Πατέρα"
+  },
+  "mysteries": {
+    "franciscan_04_adoration_of_the_magi": {
+      "title": "Η προσκύνηση των Μάγων",
+      "fruit": "Γενναιοδωρία",
+      "description": "Οἱ δὲ ἀκούσαντες τοῦ βασιλέως ἐπορεύθησαν· καὶ ἰδού, ὁ ἀστήρ, ὃν εἶδον ἐν τῇ ἀνατολῇ, προῆγεν αὐτούς, ἕως ἐλθὼν ἔστη ἐπάνω οὗ ἦν τὸ παιδίον. Ἰδόντες δὲ τὸν ἀστέρα, ἐχάρησαν χαρὰν μεγάλην σφόδρα. Καὶ ἐλθόντες εἰς τὴν οἰκίαν, εἶδον τὸ παιδίον μετὰ Μαρίας τῆς μητρὸς αὐτοῦ, καὶ πεσόντες προσεκύνησαν αὐτῷ, καὶ ἀνοίξαντες τοὺς θησαυροὺς αὐτῶν προσήνεγκαν αὐτῷ δῶρα, χρυσὸν καὶ λίβανον καὶ σμύρναν.\n\n— Ματθαῖος 2:9–11 (Βυζαντινὸν κείμενον)"
+    }
+  },
+  "$scriptureSource": "Scripture imported from the Byzantine Majority Text (Robinson-Pierpont, public domain) and Brenton's Septuagint (eBible.org grcbrent, public domain) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Polytonic, as the sources have it; each citation names its own edition.",
+  "$scriptureImport": {
+    "prayerKeys": [],
+    "mysteryKeys": [
+      "franciscan_04_adoration_of_the_magi"
+    ]
+  }
+}

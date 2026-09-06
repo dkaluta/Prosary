@@ -34,13 +34,19 @@ jobs:
       - name: Sourced languages and intentions retain their provenance
         run: |
           uv run --script Shared/tools/test-localized-content.py
+          uv run --script Shared/tools/test-litany-content.py
           uv run --script Shared/tools/audit-content.py
+          uv run --script Shared/tools/audit-prayer-coverage.py --markdown
       - name: Sourced feast names stay canonical across every calendar and port
         run: |
           uv run --script Shared/tools/fetch-feasts.py --self-test
           uv run --script Shared/tools/fetch-feasts.py --localize-only --sync
           uv run --script Shared/tools/fetch-readings.py --self-test
           uv run --script Shared/tools/fetch-readings.py --localize-only --sync
+          uv run --script Shared/tools/import-ugcc-calendar.py --self-test
+          uv run --script Shared/tools/fetch-maronite.py --self-test
+          uv run --script Shared/tools/fetch-torah-portions.py --self-test
+          uv run --script Shared/tools/test-today-data.py
           git diff --exit-code -- Shared/data iOS/Prosary/Data Android/app/src/main/assets/data Windows/Prosary/Data
 
   android:
@@ -100,6 +106,8 @@ jobs:
           uv run --script ../Shared/tools/validate-devotion.py dist-e2e/extracted-forms
           uv run python -c "import zipfile; zipfile.ZipFile('dist-e2e/novena.prosaryprayer').extractall('dist-e2e/extracted-days')"
           uv run --script ../Shared/tools/validate-devotion.py dist-e2e/extracted-days
+          uv run python -c "import zipfile; zipfile.ZipFile('dist-e2e/aramaicHolyGod.prosaryprayer').extractall('dist-e2e/extracted-aramaic')"
+          uv run --script ../Shared/tools/validate-devotion.py dist-e2e/extracted-aramaic
 
   repository:
     name: Repository (next build)

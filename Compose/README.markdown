@@ -13,8 +13,8 @@ large media as base64; old localStorage autosaves migrate automatically after th
 native save. Portable "Save project" files (`.prosarycompose`, JSON) still carry their media so
 they can be moved between devices. Downloads use a generic binary media type so Safari, Chrome,
 and Firefox keep Prosary's custom filename extensions; the file picker also accepts the legacy
-`.json` and `.zip` suffixes a browser may have appended. Nothing an author writes ever leaves
-their device.
+`.json` and `.zip` suffixes a browser may have appended. An author's work stays on their
+device until they choose to share or publish it.
 
 Image and audio previews use short-lived object URLs that are revoked as screens and files change.
 Bundle imports reject unsafe paths, duplicate entries, unsupported/encrypted or Zip64 archives,
@@ -57,19 +57,21 @@ defaults do the rest (`npm run build`, output `dist`). Production deploys track 
 - The UI uses semantic browser controls, visible keyboard focus, 44-pixel targets, named status
   and error regions, a skip link, native file/color/time/audio controls, RTL-aware fields, forced
   colors, reduced-motion behavior, and responsive layouts from phone widths upward.
-- The language picker mirrors the apps' nine-language `LanguageCatalog`: Latin, English,
-  Arabic, Hebrew, Classical Syriac/Aramaic, Greek, Spanish, Russian, and Tagalog. A bundle still
+- The language picker offers Latin, English, Arabic, Hebrew, Classical Syriac/Aramaic, Greek,
+  Spanish, Russian, Tagalog, French, and Italian. Hebrew is one language for custom prayers;
+  the historical `he-x-gamliel` content code remains readable and publishable so importing an
+  existing bundle preserves its separate Hebrew content maps. A bundle still
   declares only the languages for which its author supplies complete content.
 - The wizard authors the `steps` devotion type — flat or with **alternate forms** (the
   format's variants, per-rite `defaultForLanguages` included) — and the multi-day `days`
   type. Bead-structured ("rosary") devotions, option-gated steps, seasonal step swaps, and
   recordings-tied-to-forms remain future work — `unpack.ts` declines such bundles with a
   plain-language message rather than silently flattening them.
-- The community repository currently accepts the six languages with complete coverage across
-  the original built-in bundles (`la`, `en`, `ar`, `he`, `ru`, `tl`). Compose can author
-  `arc`, `el`, and `es` bundles for direct import, but publishing those through
-  prayers.prosary.app is not supported yet. Finish checks that language boundary and the
-  repository's 8 MB upload limit before enabling Publish; Download remains available.
+- The community repository accepts all twelve prayer languages. Finish checks the same language
+  catalog and the repository's 8 MB upload limit before enabling Publish. The end-to-end suite
+  compares both catalogs and carries a sourced Aramaic prayer, including its pointed Hebrew and
+  Syriac text, through bundle creation, the popup's repeated structured clone, repository
+  validation/restamping, and reopening without changing the author's content.
 - `scripts/e2e.ts` (`npm run e2e`) authors projects through the same modules the browser
   uses, packs, reopens, and demands a byte-stable round trip; CI then validates the emitted
   bundles with the canonical `validate-devotion.py` — two writers, one format.

@@ -37,6 +37,14 @@ public sealed record RosaryOptions
     /// departed) prayed after the Marian antiphon.</summary>
     public bool IncludeClosingIntentions { get; init; } = false;
 
+    // Null preserves the former combined setting in existing presets.
+    public bool? IncludeClosingPopeIntention { get; init; }
+    public bool? IncludeClosingBishopIntention { get; init; }
+    public bool? IncludeClosingDepartedIntention { get; init; }
+    public bool EffectiveClosingPopeIntention => IncludeClosingPopeIntention ?? IncludeClosingIntentions;
+    public bool EffectiveClosingBishopIntention => IncludeClosingBishopIntention ?? IncludeClosingIntentions;
+    public bool EffectiveClosingDepartedIntention => IncludeClosingDepartedIntention ?? IncludeClosingIntentions;
+
     public bool IncludeStMichaelPrayer { get; init; } = false;
 
     public bool IncludeFinalSignOfCross { get; init; } = true;

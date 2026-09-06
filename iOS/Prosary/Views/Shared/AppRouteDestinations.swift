@@ -30,11 +30,14 @@ private struct AppRouteDestinations: ViewModifier {
         case .jesusPrayer(let target):
           JesusPrayerFlowView(path: $path, target: target)
             .tabBarHiddenWhilePraying()
-        case .custom(let devotionId):
-          CustomDevotionFlowView(devotionId: devotionId)
+        case .custom(let devotionId, let languageCode, let variantId):
+          CustomDevotionFlowView(devotionId: devotionId, initialLanguageCode: languageCode, initialVariantId: variantId)
             .tabBarHiddenWhilePraying()
         case .rosaryQuickPray(let prayer):
-          RosaryFlowView(prayer: prayer)
+          RosaryFlowView(prayer: prayer) { languageCode in
+            path.removeLast()
+            RunLoop.main.perform { path.push(.custom(devotionId: "litanyOfLoreto", languageCode: languageCode, variantId: "afterRosary")) }
+          }
             .tabBarHiddenWhilePraying()
         case .basicPrayers:
           BasicPrayersView(path: $path)

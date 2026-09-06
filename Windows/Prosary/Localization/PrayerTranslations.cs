@@ -6,6 +6,33 @@ namespace Prosary.Localization;
 /// </summary>
 public static partial class PrayerTranslations
 {
+    public static bool? InitialTransliteration(string? languageCode, string body, string? alternate, string? script = null)
+    {
+        if (Models.LanguageCatalog.FallbackChain(languageCode).FirstOrDefault() != "arc") return null;
+        var desired = (script ?? Models.AppSettings.AramaicDefaultScript) == "Syrc"
+            ? Services.PrayerTypography.Script.Syriac : Services.PrayerTypography.Script.Hebrew;
+        if (Services.PrayerTypography.ScriptOf(body) == desired || alternate is null) return false;
+        return Services.PrayerTypography.ScriptOf(alternate) == desired;
+    }
+
+    public static string? AramaicProgress(int index, int total, string? languageCode, bool sourceScript)
+    {
+        if (Models.LanguageCatalog.FallbackChain(languageCode).FirstOrDefault() != "arc") return null;
+        var connector = sourceScript ? PrayerPackStore.Transliteration("rosary", "arc", "repetitionCounterConnector") : null;
+        return $"{index} {connector ?? Get("arc", PrayerKey.RepetitionCounterConnector)} {total}";
+    }
+
+    public static string FlowTitle(string title, string? languageCode, bool sourceScript)
+    {
+        var unpointed = HebrewDisplayText.WithoutMarks(title);
+        if (!sourceScript || Models.LanguageCatalog.FallbackChain(languageCode).FirstOrDefault() != "arc") return unpointed;
+        var connector = PrayerPackStore.Transliteration("rosary", "arc", "repetitionCounterConnector");
+        if (connector is null) return unpointed;
+        var original = HebrewDisplayText.WithoutMarks(Get("arc", PrayerKey.RepetitionCounterConnector));
+        var pattern = @"(\(\d+) " + System.Text.RegularExpressions.Regex.Escape(original) + @" (\d+\))$";
+        return System.Text.RegularExpressions.Regex.Replace(unpointed, pattern, "$1 " + connector + " $2");
+    }
+
     // internal (not private) so Prosary.Tests can verify per-language completeness directly —
     // see PrayerTranslationsCompletenessTests.cs. Relies on the [InternalsVisibleTo] declared in
     // Properties/AssemblyInfo.cs.
