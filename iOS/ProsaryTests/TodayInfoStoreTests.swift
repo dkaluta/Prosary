@@ -464,6 +464,10 @@ final class TodayInfoStoreTests: XCTestCase {
     XCTAssertEqual(
       TodayInfoStore.readings(on: date("2026-09-03")).map(\.short),
       ["1 Thess. 2", "Jn. 21"])
+    XCTAssertEqual(
+      TodayInfoStore.readings(on: date("2026-08-31")).map(\.full),
+      ["Sirach 31:8–11", "Luke 12:35–40"],
+      "The Vetus Ordo proper retains its Old Testament reading before the Gospel")
 
     select("ugcc")
     XCTAssertEqual(

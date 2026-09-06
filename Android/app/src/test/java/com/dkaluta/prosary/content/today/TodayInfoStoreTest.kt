@@ -453,7 +453,7 @@ class TodayInfoStoreTest {
         assertEquals(listOf("1 Cor. 2", "Ps. 119", "Lk. 4"), TodayInfoStore.readings(target).map { it.short })
 
         AppSettings.feastCalendarId = "roman1962"
-        assertEquals(listOf("Lk. 12"), TodayInfoStore.readings(target).map { it.short })
+        assertEquals(listOf("Sir. 31", "Lk. 12"), TodayInfoStore.readings(target).map { it.short })
 
         AppSettings.feastCalendarId = "ugcc"
         assertEquals(listOf("2 Cor. 12", "Mk. 4", "Heb. 9", "Lk. 10"), TodayInfoStore.readings(target).map { it.short })

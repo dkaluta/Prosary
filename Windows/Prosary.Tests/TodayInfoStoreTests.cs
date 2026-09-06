@@ -408,7 +408,7 @@ public class TodayInfoStoreTests
         Assert.Equal(new[] { "1 Cor. 2", "Ps. 119", "Lk. 4" }, TodayInfoStore.Readings(date).Select(r => r.Short));
 
         TodayInfoStore.SelectedCalendarId = "roman1962";
-        Assert.Equal(new[] { "Lk. 12" }, TodayInfoStore.Readings(date).Select(r => r.Short));
+        Assert.Equal(new[] { "Sir. 31", "Lk. 12" }, TodayInfoStore.Readings(date).Select(r => r.Short));
 
         TodayInfoStore.SelectedCalendarId = "ugcc";
         Assert.Equal(new[] { "2 Cor. 12", "Mk. 4", "Heb. 9", "Lk. 10" }, TodayInfoStore.Readings(date).Select(r => r.Short));
