@@ -67,6 +67,12 @@ def main():
         for date in ['2026-11-08', '2026-12-06', '2027-01-17', '2027-07-11', '2027-08-29']:
             assert 'Sunday' in read(name)['days'][date]['title'], (name, date)
     assert full('readings-roman1962', '2026-09-06') == ['Galatians 5:25–26; 6:1–10', 'Luke 7:11–16']
+    vetus = read('readings-roman1962')['days']
+    assert sum(date.startswith('2026-') for date in vetus) == 365
+    assert all(any(r['type'] == 'gospel' for r in day['readings']) for day in vetus.values())
+    for date, count in [('2026-04-03', 3), ('2026-04-04', 6), ('2026-05-30', 7),
+                        ('2026-11-02', 6), ('2026-12-25', 6)]:
+        assert len(vetus[date]['readings']) == count, (date, vetus[date])
     assert full('readings-syriac', '2026-09-06') == ['1 Thessalonians 2:13–20; 3:1–5', 'Luke 11:33–41']
     assert full('readings-maronite', '2026-09-06') == ['Amos 5:21–24', 'Romans 8:18–27', 'Luke 18:9–14']
     assert [r['type'] for r in read('readings-maronite')['days']['2026-09-06']['readings']] == ['reading', 'reading', 'gospel']

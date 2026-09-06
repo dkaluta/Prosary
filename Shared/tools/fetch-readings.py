@@ -117,7 +117,7 @@ def aliases(short: str, full: str, *names: str) -> None:
 
 
 aliases("Gen.", "Genesis", "Genesis", "Gen")
-aliases("Exod.", "Exodus", "Exodus", "Exod", "Ex")
+aliases("Exod.", "Exodus", "Exodus", "Exod", "Exo", "Ex")
 aliases("Lev.", "Leviticus", "Leviticus", "Lev")
 aliases("Num.", "Numbers", "Numbers", "Num")
 aliases("Deut.", "Deuteronomy", "Deuteronomy", "Deut")
@@ -126,46 +126,46 @@ aliases("Judg.", "Judges", "Judges", "Judg")
 aliases("Ruth", "Ruth", "Ruth")
 aliases("1 Sam.", "1 Samuel", "1 Samuel", "1 Sam")
 aliases("2 Sam.", "2 Samuel", "2 Samuel", "2 Sam")
-aliases("1 Kgs.", "1 Kings", "1 Kings", "1 Kgs")
-aliases("2 Kgs.", "2 Kings", "2 Kings", "2 Kgs")
+aliases("1 Kgs.", "1 Kings", "1 Kings", "1 Kgs", "3 Kings", "3 Kgs")
+aliases("2 Kgs.", "2 Kings", "2 Kings", "2 Kgs", "4 Kings", "4 Kgs")
 aliases("1 Chr.", "1 Chronicles", "1 Chronicles", "1 Chr")
 aliases("2 Chr.", "2 Chronicles", "2 Chronicles", "2 Chr")
 aliases("Ezra", "Ezra", "Ezra")
-aliases("Neh.", "Nehemiah", "Nehemiah", "Neh")
+aliases("Neh.", "Nehemiah", "Nehemiah", "Neh", "2 Esd")
 aliases("Tob.", "Tobit", "Tobit", "Tob")
 aliases("Jdt.", "Judith", "Judith", "Jdt")
 aliases("Esth.", "Esther", "Esther", "Esth")
 aliases("1 Macc.", "1 Maccabees", "1 Maccabees", "1 Macc")
-aliases("2 Macc.", "2 Maccabees", "2 Maccabees", "2 Macc")
+aliases("2 Macc.", "2 Maccabees", "2 Maccabees", "2 Macc", "2 Mach")
 aliases("Job", "Job", "Job")
 aliases("Ps.", "Psalm", "Psalm", "Psalms", "Ps")
 aliases("Prov.", "Proverbs", "Proverbs", "Prov")
 aliases("Eccl.", "Ecclesiastes", "Ecclesiastes", "Eccles", "Eccl")
-aliases("Song", "Song of Songs", "Song of Songs", "Canticle of Canticles", "Cant")
+aliases("Song", "Song of Songs", "Song of Songs", "Song", "Canticle of Canticles", "Cant")
 aliases("Wis.", "Wisdom", "Wisdom", "Wis")
-aliases("Sir.", "Sirach", "Sirach", "Ecclesiasticus", "Ecclus")
+aliases("Sir.", "Sirach", "Sirach", "Sir", "Ecclesiasticus", "Ecclus", "Eccli")
 aliases("Isa.", "Isaiah", "Isaiah", "Isaias", "Isa")
 aliases("Jer.", "Jeremiah", "Jeremiah", "Jer")
 aliases("Lam.", "Lamentations", "Lamentations", "Lam")
 aliases("Bar.", "Baruch", "Baruch", "Bar")
-aliases("Ezek.", "Ezekiel", "Ezekiel", "Ezechiel", "Ezek")
+aliases("Ezek.", "Ezekiel", "Ezekiel", "Ezechiel", "Ezech", "Ezek")
 aliases("Dan.", "Daniel", "Daniel", "Dan")
-aliases("Hos.", "Hosea", "Hosea", "Hos")
+aliases("Hos.", "Hosea", "Hosea", "Hos", "Osee")
 aliases("Joel", "Joel", "Joel")
 aliases("Amos", "Amos", "Amos")
 aliases("Obad.", "Obadiah", "Obadiah", "Obad")
-aliases("Jon.", "Jonah", "Jonah", "Jon")
-aliases("Mic.", "Micah", "Micah", "Mic")
+aliases("Jon.", "Jonah", "Jonah", "Jonas", "Jon")
+aliases("Mic.", "Micah", "Micah", "Mic", "Mich")
 aliases("Nah.", "Nahum", "Nahum", "Nah")
 aliases("Hab.", "Habakkuk", "Habakkuk", "Hab")
 aliases("Zeph.", "Zephaniah", "Zephaniah", "Zeph")
 aliases("Hag.", "Haggai", "Haggai", "Hag")
-aliases("Zech.", "Zechariah", "Zechariah", "Zech")
+aliases("Zech.", "Zechariah", "Zechariah", "Zech", "Zach")
 aliases("Mal.", "Malachi", "Malachi", "Mal")
 aliases("Mt.", "Matthew", "Matthew", "Matt", "Mt")
 aliases("Mk.", "Mark", "Mark", "Mk")
-aliases("Lk.", "Luke", "Luke", "Lk")
-aliases("Jn.", "John", "John", "Jn", "Joannes")
+aliases("Lk.", "Luke", "Luke", "Luc", "Lk")
+aliases("Jn.", "John", "John", "Jn", "Joannes", "Joann")
 aliases("Acts", "Acts", "Acts")
 aliases("Rom.", "Romans", "Romans", "Rom")
 aliases("1 Cor.", "1 Corinthians", "1 Corinthians", "1 Cor")
@@ -188,7 +188,7 @@ aliases("1 Jn.", "1 John", "1 John", "1 Jn")
 aliases("2 Jn.", "2 John", "2 John", "2 Jn")
 aliases("3 Jn.", "3 John", "3 John", "3 Jn")
 aliases("Jude", "Jude", "Jude")
-aliases("Rev.", "Revelation", "Revelation", "Apocalypse", "Rev")
+aliases("Rev.", "Revelation", "Revelation", "Apocalypse", "Apoc", "Rev")
 
 _BOOK_PATTERN = "|".join(
     re.escape(name).replace(r"\ ", r"\s+") + r"\.?"
@@ -414,33 +414,94 @@ def evangelizo_day(day: dt.date, edition: str) -> tuple[str, dict] | None:
     return (day.isoformat(), {"readings": readings}) if readings else None
 
 
+def missale_meum_citations(block: str) -> list[dict]:
+    """Read a complete starred reference, never incidental citations inside a rubric.
+
+    The source uses both ``John 20. 19-31`` and ``Mark 14:32-72; 15, 1-46``.
+    Only the separator immediately after a chapter becomes a colon: commas joining
+    verses and semicolon continuations within the same chapter stay intact.
+    """
+    normalized: list[str] = []
+    for segment in block.strip().rstrip("; ").split(";"):
+        segment = re.sub(r"\s+", " ", segment).strip().rstrip(".")
+        book = re.match(rf"(?P<book>{_BOOK_PATTERN}),?\s+(?P<reference>.+)$",
+                        segment, re.IGNORECASE)
+        reference = book["reference"] if book else segment
+        reference = re.sub(r"^(\d+)\s*[.,]\s*(?=\d)", r"\1:", reference)
+        reference = re.sub(r"\s*:\s*", ":", reference)
+        # Requiring the entire block prevents a rubric with an incidental reference
+        # (or an unrecognized book/continuation) from becoming a partial reading.
+        if book:
+            if not re.fullmatch(_REFERENCE, reference, re.IGNORECASE):
+                return []
+            normalized.append(f"{book['book']} {reference}")
+        elif normalized and CONTINUATION.fullmatch(reference):
+            normalized.append(reference)
+        else:
+            return []
+    return generic_citations("; ".join(normalized))
+
+
+def missale_meum_section_readings(section: dict) -> list[dict]:
+    identifier = str(section.get("id") or "").casefold()
+    label = str(section.get("label") or "").casefold()
+    if not any(word in identifier or word in label for word in (
+            "lectio", "lesson", "epistle", "prophe", "evangel", "gospel", "passio")):
+        return []
+    english = "\n".join(row[0] for row in section.get("body") or []
+                        if row and isinstance(row[0], str))
+    blocks = re.findall(r"\*([^*]+)\*", english)
+    readings: list[dict] = []
+    if identifier in {"lectiones", "de lectionibus"}:
+        # Good Friday and the Paschal Vigil group several lessons and their chants
+        # in one section. Only references after explicit lesson headings are lessons.
+        awaiting_lesson = False
+        for block in blocks:
+            if re.fullmatch(r"(?:first|second|third|fourth|\d+)\s+(?:lesson|reading)",
+                            block.strip(), re.IGNORECASE):
+                if awaiting_lesson:
+                    raise ValueError(f"Missale Meum: missing lesson in {section['id']}")
+                awaiting_lesson = True
+            elif awaiting_lesson:
+                if block.strip().casefold() in {"responsorium", "canticle", "hymnus"}:
+                    raise ValueError(f"Missale Meum: missing lesson before chant in {section['id']}")
+                extracted = missale_meum_citations(block)
+                if extracted:
+                    readings.extend(extracted)
+                    awaiting_lesson = False
+        if awaiting_lesson:
+            raise ValueError(f"Missale Meum: missing final lesson in {section['id']}")
+    else:
+        # Rubrics can precede the appointed reference. Following references may be
+        # chants (Daniel's canticle on Ember Saturdays, for example), so stop at the
+        # first complete citation block, retaining all its books/chapter continuations.
+        for block in blocks:
+            readings = missale_meum_citations(block)
+            if readings:
+                break
+    if not readings:
+        raise ValueError(f"Missale Meum: no appointed citation in {section.get('id')}")
+    if any(word in identifier or word in label for word in ("evangel", "gospel", "passio")):
+        for item in readings:
+            item["type"] = "gospel"
+    return readings
+
+
+def missale_meum_readings(payload: list[dict]) -> list[dict]:
+    readings: list[dict] = []
+    for proper in payload:
+        for section in proper.get("sections") or []:
+            for item in missale_meum_section_readings(section):
+                if item["full"] not in {prior["full"] for prior in readings}:
+                    readings.append(item)
+    return readings
+
+
 def missale_meum_day(day: dt.date) -> tuple[str, dict] | None:
     payload = request(MISSALE_MEUM_URL.format(date=day.isoformat()))
     if not payload:
         return None
-    readings: list[dict] = []
-    for proper in payload:
-        for section in proper.get("sections") or []:
-            identifier = str(section.get("id") or "").casefold()
-            label = str(section.get("label") or "").casefold()
-            if not any(word in identifier or word in label
-                       for word in ("lectio", "lesson", "epistle", "prophe", "evangel", "gospel")):
-                continue
-            body = section.get("body") or []
-            english = body[0][0] if body and body[0] else ""
-            # Missale Meum marks the complete appointed citation with stars. Its subsequent
-            # Scripture prose can contain incidental references. Parse that citation alone,
-            # retaining semicolon-separated chapters (Gal 5:25-26; 6:1-10, for example).
-            appointed = re.search(r"\*([^*]+)\*", english)
-            extracted = generic_citations(appointed.group(1) if appointed else english)
-            if extracted:
-                # A lesson's first starred reference is the appointed citation. Limiting each
-                # section prevents incidental cross-references in the supplied Scripture text.
-                item = extracted[0]
-                if "evangel" in identifier or "gospel" in label:
-                    item["type"] = "gospel"
-                if item["full"] not in {prior["full"] for prior in readings}:
-                    readings.append(item)
+    readings = missale_meum_readings(payload)
     return (day.isoformat(), {"readings": readings}) if readings else None
 
 
@@ -647,6 +708,25 @@ def main() -> None:
     args = parser.parse_args()
 
     if args.self_test:
+        fixture = json.loads(Path(__file__).with_name("missale-meum-reading-fixtures.json").read_text())
+        for example in fixture["days"]:
+            result = missale_meum_readings(example["payload"])
+            assert [item["full"] for item in result] == example["expected"], example["date"]
+            assert all(item["type"] == type_for_book(re.match(r"(.+?) \d+:", item["full"])[1])
+                       for item in result)
+        assert not missale_meum_citations("The lesson follows John 3:16 in this rubric.")
+        assert not missale_meum_citations("John 3:16; an unrecognized continuation")
+        assert missale_meum_citations("John 20. 19-31")[0]["full"] == "John 20:19–31"
+        assert missale_meum_citations("Mark 14:32-72; 15, 1-46")[0]["full"] == \
+            "Mark 14:32–72; 15:1–46"
+        for source, expected in (
+                ("Esther 13:8-11; 15-17.", "Esther 13:8–11; 15–17"),
+                ("Num 20:1, 3; 6-13.", "Numbers 20:1, 3; 6–13"),
+                ("Joel 2:23-24; 26-27", "Joel 2:23–24; 26–27"),
+                ("Lev. 23:9-11; 15-17, 21.", "Leviticus 23:9–11; 15–17, 21"),
+                ("Deut. 26:1-3; 7-11", "Deuteronomy 26:1–3; 7–11"),
+                ("Dan 13:1-9, 15-17, 19-30, 33-62", "Daniel 13:1–9, 15–17, 19–30, 33–62")):
+            assert missale_meum_citations(source)[0]["full"] == expected
         assert generic_citations("Gal 5:25-26; 6:1-10")[0]["full"] == "Galatians 5:25–26; 6:1–10"
         assert [item["full"] for item in generic_citations("2 Corinthians 4:6-15; Matthew 22:35-46")] == [
             "2 Corinthians 4:6–15", "Matthew 22:35–46"]
@@ -757,8 +837,11 @@ def main() -> None:
     if "roman1962" in selected:
         write_dataset(
             "readings-roman1962",
-            "Roman 1962 (Vetus Ordo) appointed Epistle/Gospel citations from Missale "
-            "Meum's public v5 proper API (MIT); Scripture text is not included.",
+            "Roman 1962 (Vetus Ordo) appointed lesson, Epistle, Passion and Gospel "
+            "citations from Missale Meum's public v5 proper API (MIT), including Holy "
+            "Week and Ember Day lessons. Responsorial/canticle chants and Scripture "
+            "text are not included. Historical Vulgate book aliases are normalized "
+            "to the corresponding modern book names; source chapter and verse numbering is retained.",
             rows["roman1962"])
     if "ugcc" in selected:
         # Replace the old usage in full; never retain dates from the previous Gregorian

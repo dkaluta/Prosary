@@ -1007,8 +1007,9 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
     offered without a separately verified lectionary for it.
     Adding a further calendar remains a pure data drop: a registry entry + a dataset file +
     its `readingsFile` + platform copies.
-  `Shared/tools/fetch-feasts.py` regenerates every table (litcal + missalemeum + Evangelizo;
-  `--sync` copies all of `Shared/data/*.json` into the three platform asset dirs).
+  `Shared/tools/fetch-feasts.py` regenerates Roman, Byzantine and Syriac tables;
+  `fetch-maronite.py` refreshes the distinct Maronite edition. Their `--sync` mode copies
+  all of `Shared/data/*.json` into the three platform asset dirs.
   All six calendars and both Byzantine variants receive sourced Hebrew names from `Shared/tools/hebrew-feast-titles.json`
   and `hebrew-saint-titles.json`. These catalogs preserve Evangelizo HE wording beyond its rolling
   window and relay names from the St James Vicariate's bilingual calendar and Hebrew articles,
@@ -1076,8 +1077,10 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
   numeric prefixes use maqaf (`־`), while verse ranges keep en dashes (`–`).
   `readings-roman1962.json` is the Vetus
   Ordo table from Missale Meum's
-  public proper API. Its complete first starred reference is parsed, including continuations
-  across chapter boundaries (for example Galatians 5:25–26; 6:1–10).
+  public proper API. Appointed lesson, Passion and Gospel references retain every chapter
+  continuation, including Galatians 5:25–26; 6:1–10. Historical book aliases and punctuation
+  are normalized explicitly. Grouped Holy Week lessons are retained; rubrics and interspersed
+  chant references are excluded. Multiple Mass propers remain in source order.
   `readings-ugcc.json` comes from the UGCC Patriarchal Liturgical Commission's official
   2026 calendar via `import-ugcc-calendar.py` and its checked-in reference-only snapshot.
   The importer distinguishes appointed Liturgy readings from Matins and water-blessing

@@ -1,5 +1,5 @@
 {
-  "$comment": "Source-authored Hebrew Bible book names for offline citation localization. Evangelizo.org — Daily Gospel (© Evangelizo.org), edition HE; Judith/Tobit: St James Vicariate. Source URLs identify where each title was relayed; no Scripture text is included. Preserve full title wording with Hebrew joining hyphens normalized to maqaf; fetch-readings.py compacts short epistle titles deterministically. Additional Old Testament book labels needed by the Maronite lectionary (2 Kings, Joel, Jonah, Ruth, Song of Songs, Zechariah) relay the Mechon Mamre Hebrew Bible index; no Scripture text is included.",
+  "$comment": "Source-authored Hebrew Bible book names for offline citation localization. Evangelizo.org — Daily Gospel (© Evangelizo.org), edition HE; Judith/Tobit: St James Vicariate. Source URLs identify where each title was relayed; no Scripture text is included. Preserve full title wording with Hebrew joining hyphens normalized to maqaf; fetch-readings.py compacts short epistle titles deterministically. Additional Old Testament book labels needed by the Eastern and Vetus Ordo lectionaries relay the Mechon Mamre Hebrew Bible index; no Scripture text is included.",
   "books": {
     "1 Corinthians": {
       "short": "הראשונה אל הקורינתים",
@@ -45,6 +45,11 @@
       "short": "מלכים ב",
       "full": "מלכים ב",
       "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
+    },
+    "2 Maccabees": {
+      "short": "המכבים ב",
+      "full": "המכבים ב",
+      "source": "https://publication.evangelizo.ws/HE/days/2025-11-18"
     },
     "2 Peter": {
       "short": "השניה לכיפא",
@@ -136,6 +141,11 @@
       "full": "האגרת אל העברים",
       "source": "https://publication.evangelizo.ws/HE/days/2025-09-15"
     },
+    "Hosea": {
+      "short": "הושע",
+      "full": "הושע",
+      "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
+    },
     "Isaiah": {
       "short": "ישעיה",
       "full": "ישעיה",
@@ -220,6 +230,11 @@
       "short": "נחום",
       "full": "נחום",
       "source": "https://publication.evangelizo.ws/HE/days/2026-08-07"
+    },
+    "Nehemiah": {
+      "short": "נחמיה",
+      "full": "נחמיה",
+      "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
     },
     "Numbers": {
       "short": "במדבר",

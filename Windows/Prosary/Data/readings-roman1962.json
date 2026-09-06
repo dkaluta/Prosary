@@ -1,5 +1,5 @@
 {
-  "$comment": "Roman 1962 (Vetus Ordo) appointed Epistle/Gospel citations from Missale Meum's public v5 proper API (MIT); Scripture text is not included. Hebrew citation book names are relayed from Evangelizo.org — Daily Gospel (© Evangelizo.org), publication edition HE, with Judith/Tobit names from the St James Vicariate (catholic.co.il); each calendar's appointed passages are retained. Arabic, Russian, Filipino, French and Italian book metadata sources are recorded in Shared/tools/reading-books-localized.json; source chapter and verse numbering is preserved.",
+  "$comment": "Roman 1962 (Vetus Ordo) appointed lesson, Epistle, Passion and Gospel citations from Missale Meum's public v5 proper API (MIT), including Holy Week and Ember Day lessons. Responsorial/canticle chants and Scripture text are not included. Historical Vulgate book aliases are normalized to the corresponding modern book names; source chapter and verse numbering is retained. Hebrew citation book names are relayed from Evangelizo.org — Daily Gospel (© Evangelizo.org), publication edition HE, with Judith/Tobit names from the St James Vicariate (catholic.co.il); each calendar's appointed passages are retained. Arabic, Russian, Filipino, French and Italian book metadata sources are recorded in Shared/tools/reading-books-localized.json; source chapter and verse numbering is preserved.",
   "generated": "2026-09-06",
   "days": {
     "2026-01-01": {
@@ -925,6 +925,27 @@
     "2026-01-21": {
       "readings": [
         {
+          "type": "reading",
+          "short": "Sir. 51",
+          "full": "Sirach 51:1–8; 51:12",
+          "shortByLanguage": {
+            "he": "שיראך נ״א",
+            "ar": "سي 51",
+            "ru": "Сир 51",
+            "tl": "Sir 51",
+            "fr": "Si 51",
+            "it": "Sir 51"
+          },
+          "fullByLanguage": {
+            "he": "שיראך נ״א 1–8; נ״א 12",
+            "ar": "يشوع بن سيراخ ⁦51:1–8; 51:12⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 51:1–8; 51:12",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 51:1–8; 51:12",
+            "fr": "Ben Sira le Sage 51:1–8; 51:12",
+            "it": "Siracide (Ecclesiastico) 51:1–8; 51:12"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Mt. 25",
           "full": "Matthew 25:1–13",
@@ -995,6 +1016,27 @@
     },
     "2026-01-23": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Sir. 31",
+          "full": "Sirach 31:8–11",
+          "shortByLanguage": {
+            "he": "שיראך ל״א",
+            "ar": "سي 31",
+            "ru": "Сир 31",
+            "tl": "Sir 31",
+            "fr": "Si 31",
+            "it": "Sir 31"
+          },
+          "fullByLanguage": {
+            "he": "שיראך ל״א 8–11",
+            "ar": "يشوع بن سيراخ ⁦31:8–11⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 31:8–11",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 31:8–11",
+            "fr": "Ben Sira le Sage 31:8–11",
+            "it": "Siracide (Ecclesiastico) 31:8–11"
+          }
+        },
         {
           "type": "gospel",
           "short": "Lk. 12",
@@ -1297,6 +1339,27 @@
     "2026-01-30": {
       "readings": [
         {
+          "type": "reading",
+          "short": "Sir. 51",
+          "full": "Sirach 51:1–8; 51:12",
+          "shortByLanguage": {
+            "he": "שיראך נ״א",
+            "ar": "سي 51",
+            "ru": "Сир 51",
+            "tl": "Sir 51",
+            "fr": "Si 51",
+            "it": "Sir 51"
+          },
+          "fullByLanguage": {
+            "he": "שיראך נ״א 1–8; נ״א 12",
+            "ar": "يشوع بن سيراخ ⁦51:1–8; 51:12⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 51:1–8; 51:12",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 51:1–8; 51:12",
+            "fr": "Ben Sira le Sage 51:1–8; 51:12",
+            "it": "Siracide (Ecclesiastico) 51:1–8; 51:12"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Mt. 25",
           "full": "Matthew 25:1–13",
@@ -1418,20 +1481,20 @@
           "short": "Mal. 3",
           "full": "Malachi 3:1–4",
           "shortByLanguage": {
+            "he": "מלאכי ג׳",
             "ar": "مل 3",
             "ru": "Мал 3",
             "tl": "Mal 3",
             "fr": "Ml 3",
-            "it": "Ml 3",
-            "he": "מלאכי ג׳"
+            "it": "Ml 3"
           },
           "fullByLanguage": {
+            "he": "מלאכי ג׳ 1–4",
             "ar": "ملاخي ⁦3:1–4⁩",
             "ru": "Малахии 3:1–4",
             "tl": "Malakias 3:1–4",
             "fr": "Malachie 3:1–4",
-            "it": "Malachia 3:1–4",
-            "he": "מלאכי ג׳ 1–4"
+            "it": "Malachia 3:1–4"
           }
         },
         {
@@ -1506,6 +1569,27 @@
     "2026-02-04": {
       "readings": [
         {
+          "type": "reading",
+          "short": "Sir. 44",
+          "full": "Sirach 44:16–27; 45:3–20",
+          "shortByLanguage": {
+            "he": "שיראך מ״ד",
+            "ar": "سي 44",
+            "ru": "Сир 44",
+            "tl": "Sir 44",
+            "fr": "Si 44",
+            "it": "Sir 44"
+          },
+          "fullByLanguage": {
+            "he": "שיראך מ״ד 16–27; מ״ה 3–20",
+            "ar": "يشوع بن سيراخ ⁦44:16–27; 45:3–20⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 44:16–27; 45:3–20",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 44:16–27; 45:3–20",
+            "fr": "Ben Sira le Sage 44:16–27; 45:3–20",
+            "it": "Siracide (Ecclesiastico) 44:16–27; 45:3–20"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Mt. 25",
           "full": "Matthew 25:14–23",
@@ -1576,6 +1660,27 @@
     },
     "2026-02-06": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Sir. 44",
+          "full": "Sirach 44:16–27; 45:3–20",
+          "shortByLanguage": {
+            "he": "שיראך מ״ד",
+            "ar": "سي 44",
+            "ru": "Сир 44",
+            "tl": "Sir 44",
+            "fr": "Si 44",
+            "it": "Sir 44"
+          },
+          "fullByLanguage": {
+            "he": "שיראך מ״ד 16–27; מ״ה 3–20",
+            "ar": "يشوع بن سيراخ ⁦44:16–27; 45:3–20⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 44:16–27; 45:3–20",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 44:16–27; 45:3–20",
+            "fr": "Ben Sira le Sage 44:16–27; 45:3–20",
+            "it": "Siracide (Ecclesiastico) 44:16–27; 45:3–20"
+          }
+        },
         {
           "type": "gospel",
           "short": "Lk. 10",
@@ -1785,6 +1890,27 @@
     },
     "2026-02-11": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Rev. 11",
+          "full": "Revelation 11:19; 12:1, 10",
+          "shortByLanguage": {
+            "he": "ההתגלות י״א",
+            "ar": "رؤ 11",
+            "ru": "Откр 11",
+            "tl": "Pah 11",
+            "fr": "Ap 11",
+            "it": "Ap 11"
+          },
+          "fullByLanguage": {
+            "he": "ההתגלות י״א 19; י״ב 1, 10",
+            "ar": "رؤيا يوحنا ⁦11:19; 12:1, 10⁩",
+            "ru": "Откровение Иоанна Богослова 11:19; 12:1, 10",
+            "tl": "Pahayag 11:19; 12:1, 10",
+            "fr": "Apocalypse 11:19; 12:1, 10",
+            "it": "Apocalisse 11:19; 12:1, 10"
+          }
+        },
         {
           "type": "gospel",
           "short": "Lk. 1",
@@ -2091,20 +2217,20 @@
           "short": "Joel 2",
           "full": "Joel 2:12–19",
           "shortByLanguage": {
+            "he": "יואל ב׳",
             "ar": "يؤ 2",
             "ru": "Иоил 2",
             "tl": "Jl 2",
             "fr": "Jl 2",
-            "it": "Gl 2",
-            "he": "יואל ב׳"
+            "it": "Gl 2"
           },
           "fullByLanguage": {
+            "he": "יואל ב׳ 12–19",
             "ar": "يوئيل ⁦2:12–19⁩",
             "ru": "Иоиля 2:12–19",
             "tl": "Joel 2:12–19",
             "fr": "Joël 2:12–19",
-            "it": "Gioele 2:12–19",
-            "he": "יואל ב׳ 12–19"
+            "it": "Gioele 2:12–19"
           }
         },
         {
@@ -2317,6 +2443,27 @@
     "2026-02-23": {
       "readings": [
         {
+          "type": "reading",
+          "short": "Ezek. 34",
+          "full": "Ezekiel 34:11–16",
+          "shortByLanguage": {
+            "he": "יחזקאל ל״ד",
+            "ar": "حز 34",
+            "ru": "Иез 34",
+            "tl": "Eze 34",
+            "fr": "Ez 34",
+            "it": "Ez 34"
+          },
+          "fullByLanguage": {
+            "he": "יחזקאל ל״ד 11–16",
+            "ar": "حزقيال ⁦34:11–16⁩",
+            "ru": "Иезекииля 34:11–16",
+            "tl": "Ezekiel 34:11–16",
+            "fr": "Ézékiel 34:11–16",
+            "it": "Ezechiele 34:11–16"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Mt. 25",
           "full": "Matthew 25:31–46",
@@ -2409,6 +2556,27 @@
           }
         },
         {
+          "type": "reading",
+          "short": "1 Kgs. 19",
+          "full": "1 Kings 19:3–8",
+          "shortByLanguage": {
+            "he": "מלכים א י״ט",
+            "ar": "1 مل 19",
+            "ru": "3 Цар 19",
+            "tl": "1 Ha 19",
+            "fr": "1 R 19",
+            "it": "1Re 19"
+          },
+          "fullByLanguage": {
+            "he": "מלכים א י״ט 3–8",
+            "ar": "الملوك الأول ⁦19:3–8⁩",
+            "ru": "3 Царств 19:3–8",
+            "tl": "1 Mga Hari 19:3–8",
+            "fr": "1 Rois 19:3–8",
+            "it": "1 Re 19:3–8"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Mt. 12",
           "full": "Matthew 12:38–50",
@@ -2434,6 +2602,27 @@
     "2026-02-26": {
       "readings": [
         {
+          "type": "reading",
+          "short": "Ezek. 18",
+          "full": "Ezekiel 18:1–9",
+          "shortByLanguage": {
+            "he": "יחזקאל י״ח",
+            "ar": "حز 18",
+            "ru": "Иез 18",
+            "tl": "Eze 18",
+            "fr": "Ez 18",
+            "it": "Ez 18"
+          },
+          "fullByLanguage": {
+            "he": "יחזקאל י״ח 1–9",
+            "ar": "حزقيال ⁦18:1–9⁩",
+            "ru": "Иезекииля 18:1–9",
+            "tl": "Ezekiel 18:1–9",
+            "fr": "Ézékiel 18:1–9",
+            "it": "Ezechiele 18:1–9"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Mt. 15",
           "full": "Matthew 15:21–28",
@@ -2458,6 +2647,27 @@
     },
     "2026-02-27": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Ezek. 18",
+          "full": "Ezekiel 18:20–28",
+          "shortByLanguage": {
+            "he": "יחזקאל י״ח",
+            "ar": "حز 18",
+            "ru": "Иез 18",
+            "tl": "Eze 18",
+            "fr": "Ez 18",
+            "it": "Ez 18"
+          },
+          "fullByLanguage": {
+            "he": "יחזקאל י״ח 20–28",
+            "ar": "حزقيال ⁦18:20–28⁩",
+            "ru": "Иезекииля 18:20–28",
+            "tl": "Ezekiel 18:20–28",
+            "fr": "Ézékiel 18:20–28",
+            "it": "Ezechiele 18:20–28"
+          }
+        },
         {
           "type": "gospel",
           "short": "Jn. 5",
@@ -2523,6 +2733,27 @@
             "tl": "Deuteronomio 11:22–25",
             "fr": "Deutéronome 11:22–25",
             "it": "Deuteronomio 11:22–25"
+          }
+        },
+        {
+          "type": "reading",
+          "short": "2 Macc. 1",
+          "full": "2 Maccabees 1:23–27",
+          "shortByLanguage": {
+            "he": "המכבים ב א׳",
+            "ar": "2 مك 1",
+            "ru": "2 Мак 1",
+            "tl": "2 Mac 1",
+            "fr": "2 M 1",
+            "it": "2Mac 1"
+          },
+          "fullByLanguage": {
+            "he": "המכבים ב א׳ 23–27",
+            "ar": "المكابيين الثاني ⁦1:23–27⁩",
+            "ru": "2 Маккавейская 1:23–27",
+            "tl": "2 Macabeo 1:23–27",
+            "fr": "Deuxième livre des Martyrs d'Israël 1:23–27",
+            "it": "2 Maccabei 1:23–27"
           }
         },
         {
@@ -2706,6 +2937,27 @@
     "2026-03-03": {
       "readings": [
         {
+          "type": "reading",
+          "short": "1 Kgs. 17",
+          "full": "1 Kings 17:8–16",
+          "shortByLanguage": {
+            "he": "מלכים א י״ז",
+            "ar": "1 مل 17",
+            "ru": "3 Цар 17",
+            "tl": "1 Ha 17",
+            "fr": "1 R 17",
+            "it": "1Re 17"
+          },
+          "fullByLanguage": {
+            "he": "מלכים א י״ז 8–16",
+            "ar": "الملوك الأول ⁦17:8–16⁩",
+            "ru": "3 Царств 17:8–16",
+            "tl": "1 Mga Hari 17:8–16",
+            "fr": "1 Rois 17:8–16",
+            "it": "1 Re 17:8–16"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Mt. 23",
           "full": "Matthew 23:1–12",
@@ -2735,20 +2987,20 @@
           "short": "Esth. 13",
           "full": "Esther 13:8–11; 15–17",
           "shortByLanguage": {
+            "he": "אסתר י״ג",
             "ar": "أس 13",
             "ru": "Есф 13",
             "tl": "Est 13",
             "fr": "Est 13",
-            "it": "Est 13",
-            "he": "אסתר י״ג"
+            "it": "Est 13"
           },
           "fullByLanguage": {
+            "he": "אסתר י״ג 8–11; 15–17",
             "ar": "أستير ⁦13:8–11; 15–17⁩",
             "ru": "Есфирь 13:8–11; 15–17",
             "tl": "Ester 13:8–11; 15–17",
             "fr": "Esther 13:8–11; 15–17",
-            "it": "Ester 13:8–11; 15–17",
-            "he": "אסתר י״ג 8–11; 15–17"
+            "it": "Ester 13:8–11; 15–17"
           }
         },
         {
@@ -2961,6 +3213,27 @@
     "2026-03-09": {
       "readings": [
         {
+          "type": "reading",
+          "short": "2 Kgs. 5",
+          "full": "2 Kings 5:1–15",
+          "shortByLanguage": {
+            "he": "מלכים ב ה׳",
+            "ar": "2 مل 5",
+            "ru": "4 Цар 5",
+            "tl": "2 Ha 5",
+            "fr": "2 R 5",
+            "it": "2Re 5"
+          },
+          "fullByLanguage": {
+            "he": "מלכים ב ה׳ 1–15",
+            "ar": "الملوك الثاني ⁦5:1–15⁩",
+            "ru": "4 Царств 5:1–15",
+            "tl": "2 Mga Hari 5:1–15",
+            "fr": "2 Rois 5:1–15",
+            "it": "2 Re 5:1–15"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Lk. 4",
           "full": "Luke 4:23–30",
@@ -2985,6 +3258,27 @@
     },
     "2026-03-10": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "2 Kgs. 4",
+          "full": "2 Kings 4:1–7",
+          "shortByLanguage": {
+            "he": "מלכים ב ד׳",
+            "ar": "2 مل 4",
+            "ru": "4 Цар 4",
+            "tl": "2 Ha 4",
+            "fr": "2 R 4",
+            "it": "2Re 4"
+          },
+          "fullByLanguage": {
+            "he": "מלכים ב ד׳ 1–7",
+            "ar": "الملوك الثاني ⁦4:1–7⁩",
+            "ru": "4 Царств 4:1–7",
+            "tl": "2 Mga Hari 4:1–7",
+            "fr": "2 Rois 4:1–7",
+            "it": "2 Re 4:1–7"
+          }
+        },
         {
           "type": "gospel",
           "short": "Mt. 18",
@@ -3241,6 +3535,27 @@
     "2026-03-16": {
       "readings": [
         {
+          "type": "reading",
+          "short": "1 Kgs. 3",
+          "full": "1 Kings 3:16–28",
+          "shortByLanguage": {
+            "he": "מלכים א ג׳",
+            "ar": "1 مل 3",
+            "ru": "3 Цар 3",
+            "tl": "1 Ha 3",
+            "fr": "1 R 3",
+            "it": "1Re 3"
+          },
+          "fullByLanguage": {
+            "he": "מלכים א ג׳ 16–28",
+            "ar": "الملوك الأول ⁦3:16–28⁩",
+            "ru": "3 Царств 3:16–28",
+            "tl": "1 Mga Hari 3:16–28",
+            "fr": "1 Rois 3:16–28",
+            "it": "1 Re 3:16–28"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Jn. 2",
           "full": "John 2:13–25",
@@ -3311,6 +3626,27 @@
     },
     "2026-03-18": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Ezek. 36",
+          "full": "Ezekiel 36:23–28",
+          "shortByLanguage": {
+            "he": "יחזקאל ל״ו",
+            "ar": "حز 36",
+            "ru": "Иез 36",
+            "tl": "Eze 36",
+            "fr": "Ez 36",
+            "it": "Ez 36"
+          },
+          "fullByLanguage": {
+            "he": "יחזקאל ל״ו 23–28",
+            "ar": "حزقيال ⁦36:23–28⁩",
+            "ru": "Иезекииля 36:23–28",
+            "tl": "Ezekiel 36:23–28",
+            "fr": "Ézékiel 36:23–28",
+            "it": "Ezechiele 36:23–28"
+          }
+        },
         {
           "type": "reading",
           "short": "Isa. 1",
@@ -3403,6 +3739,27 @@
     },
     "2026-03-20": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "1 Kgs. 17",
+          "full": "1 Kings 17:17–24",
+          "shortByLanguage": {
+            "he": "מלכים א י״ז",
+            "ar": "1 مل 17",
+            "ru": "3 Цар 17",
+            "tl": "1 Ha 17",
+            "fr": "1 R 17",
+            "it": "1Re 17"
+          },
+          "fullByLanguage": {
+            "he": "מלכים א י״ז 17–24",
+            "ar": "الملوك الأول ⁦17:17–24⁩",
+            "ru": "3 Царств 17:17–24",
+            "tl": "1 Mga Hari 17:17–24",
+            "fr": "1 Rois 17:17–24",
+            "it": "1 Re 17:17–24"
+          }
+        },
         {
           "type": "gospel",
           "short": "Jn. 11",
@@ -3520,6 +3877,27 @@
     },
     "2026-03-23": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Jon. 3",
+          "full": "Jonah 3:1–10",
+          "shortByLanguage": {
+            "he": "יונה ג׳",
+            "ar": "يون 3",
+            "ru": "Ион 3",
+            "tl": "Jon 3",
+            "fr": "Jon 3",
+            "it": "Gio 3"
+          },
+          "fullByLanguage": {
+            "he": "יונה ג׳ 1–10",
+            "ar": "يونان ⁦3:1–10⁩",
+            "ru": "Ионы 3:1–10",
+            "tl": "Jonas 3:1–10",
+            "fr": "Jonas 3:1–10",
+            "it": "Giona 3:1–10"
+          }
+        },
         {
           "type": "gospel",
           "short": "Jn. 7",
@@ -3776,6 +4154,27 @@
     "2026-03-29": {
       "readings": [
         {
+          "type": "gospel",
+          "short": "Mt. 21",
+          "full": "Matthew 21:1–9",
+          "shortByLanguage": {
+            "he": "מתי כ״א",
+            "ar": "مت 21",
+            "ru": "Мф 21",
+            "tl": "Mt 21",
+            "fr": "Mt 21",
+            "it": "Mt 21"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על־פי מתי כ״א 1–9",
+            "ar": "متى ⁦21:1–9⁩",
+            "ru": "От Матфея 21:1–9",
+            "tl": "Mateo 21:1–9",
+            "fr": "Matthieu 21:1–9",
+            "it": "Vangelo secondo Matteo 21:1–9"
+          }
+        },
+        {
           "type": "reading",
           "short": "Phil. 2",
           "full": "Philippians 2:5–11",
@@ -3891,7 +4290,7 @@
         {
           "type": "gospel",
           "short": "Mk. 14",
-          "full": "Mark 14:32–72; 15, 1–46",
+          "full": "Mark 14:32–72; 15:1–46",
           "shortByLanguage": {
             "he": "מרקוס י״ד",
             "ar": "مر 14",
@@ -3901,12 +4300,12 @@
             "it": "Mc 14"
           },
           "fullByLanguage": {
-            "he": "הבשורה על־פי מרקוס י״ד 32–72; 15, 1–46",
-            "ar": "مرقس ⁦14:32–72; 15, 1–46⁩",
-            "ru": "От Марка 14:32–72; 15, 1–46",
-            "tl": "Marcos 14:32–72; 15, 1–46",
-            "fr": "Marc 14:32–72; 15, 1–46",
-            "it": "Vangelo secondo Marco 14:32–72; 15, 1–46"
+            "he": "הבשורה על־פי מרקוס י״ד 32–72; ט״ו 1–46",
+            "ar": "مرقس ⁦14:32–72; 15:1–46⁩",
+            "ru": "От Марка 14:32–72; 15:1–46",
+            "tl": "Marcos 14:32–72; 15:1–46",
+            "fr": "Marc 14:32–72; 15:1–46",
+            "it": "Vangelo secondo Marco 14:32–72; 15:1–46"
           }
         }
       ]
@@ -3954,6 +4353,27 @@
             "fr": "Isaïe 53:1–12",
             "it": "Isaia 53:1–12"
           }
+        },
+        {
+          "type": "gospel",
+          "short": "Lk. 22",
+          "full": "Luke 22:39–71; 23:1–53",
+          "shortByLanguage": {
+            "he": "לוקס כ״ב",
+            "ar": "لو 22",
+            "ru": "Лк 22",
+            "tl": "Lc 22",
+            "fr": "Lc 22",
+            "it": "Lc 22"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על־פי לוקס כ״ב 39–71; כ״ג 1–53",
+            "ar": "لوقا ⁦22:39–71; 23:1–53⁩",
+            "ru": "От Луки 22:39–71; 23:1–53",
+            "tl": "Lucas 22:39–71; 23:1–53",
+            "fr": "Luc 22:39–71; 23:1–53",
+            "it": "Vangelo secondo Luca 22:39–71; 23:1–53"
+          }
         }
       ]
     },
@@ -3979,11 +4399,183 @@
             "fr": "1 Corinthiens 11:20–32",
             "it": "1 Lettera ai Corinzi 11:20–32"
           }
+        },
+        {
+          "type": "gospel",
+          "short": "Jn. 13",
+          "full": "John 13:1–15",
+          "shortByLanguage": {
+            "he": "יוחנן י״ג",
+            "ar": "يو 13",
+            "ru": "Ин 13",
+            "tl": "Jn 13",
+            "fr": "Jn 13",
+            "it": "Gv 13"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה  על־פי יוחנן י״ג 1–15",
+            "ar": "يوحنا ⁦13:1–15⁩",
+            "ru": "От Иоанна 13:1–15",
+            "tl": "Juan 13:1–15",
+            "fr": "Jean 13:1–15",
+            "it": "Vangelo secondo Giovanni 13:1–15"
+          }
+        }
+      ]
+    },
+    "2026-04-03": {
+      "readings": [
+        {
+          "type": "reading",
+          "short": "Hos. 6",
+          "full": "Hosea 6:1–6",
+          "shortByLanguage": {
+            "he": "הושע ו׳",
+            "ar": "هو 6",
+            "ru": "Ос 6",
+            "tl": "Os 6",
+            "fr": "Os 6",
+            "it": "Os 6"
+          },
+          "fullByLanguage": {
+            "he": "הושע ו׳ 1–6",
+            "ar": "هوشع ⁦6:1–6⁩",
+            "ru": "Осии 6:1–6",
+            "tl": "Hosea 6:1–6",
+            "fr": "Osée 6:1–6",
+            "it": "Osea 6:1–6"
+          }
+        },
+        {
+          "type": "reading",
+          "short": "Exod. 12",
+          "full": "Exodus 12:1–11",
+          "shortByLanguage": {
+            "he": "שמות י״ב",
+            "ar": "خر 12",
+            "ru": "Исх 12",
+            "tl": "Ex 12",
+            "fr": "Ex 12",
+            "it": "Es 12"
+          },
+          "fullByLanguage": {
+            "he": "שמות י״ב 1–11",
+            "ar": "الخروج ⁦12:1–11⁩",
+            "ru": "Исход 12:1–11",
+            "tl": "Exodo 12:1–11",
+            "fr": "Exode 12:1–11",
+            "it": "Esodo 12:1–11"
+          }
+        },
+        {
+          "type": "gospel",
+          "short": "Jn. 18",
+          "full": "John 18:1–40; 19:1–42",
+          "shortByLanguage": {
+            "he": "יוחנן י״ח",
+            "ar": "يو 18",
+            "ru": "Ин 18",
+            "tl": "Jn 18",
+            "fr": "Jn 18",
+            "it": "Gv 18"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה  על־פי יוחנן י״ח 1–40; י״ט 1–42",
+            "ar": "يوحنا ⁦18:1–40; 19:1–42⁩",
+            "ru": "От Иоанна 18:1–40; 19:1–42",
+            "tl": "Juan 18:1–40; 19:1–42",
+            "fr": "Jean 18:1–40; 19:1–42",
+            "it": "Vangelo secondo Giovanni 18:1–40; 19:1–42"
+          }
         }
       ]
     },
     "2026-04-04": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Gen. 1",
+          "full": "Genesis 1:1–31; 2:1–2",
+          "shortByLanguage": {
+            "he": "בראשית א׳",
+            "ar": "تك 1",
+            "ru": "Быт 1",
+            "tl": "Gen 1",
+            "fr": "Gn 1",
+            "it": "Gen 1"
+          },
+          "fullByLanguage": {
+            "he": "בראשית א׳ 1–31; ב׳ 1–2",
+            "ar": "التكوين ⁦1:1–31; 2:1–2⁩",
+            "ru": "Бытие 1:1–31; 2:1–2",
+            "tl": "Genesis 1:1–31; 2:1–2",
+            "fr": "Genèse 1:1–31; 2:1–2",
+            "it": "Genesi 1:1–31; 2:1–2"
+          }
+        },
+        {
+          "type": "reading",
+          "short": "Exod. 14",
+          "full": "Exodus 14:24–31; 15:1",
+          "shortByLanguage": {
+            "he": "שמות י״ד",
+            "ar": "خر 14",
+            "ru": "Исх 14",
+            "tl": "Ex 14",
+            "fr": "Ex 14",
+            "it": "Es 14"
+          },
+          "fullByLanguage": {
+            "he": "שמות י״ד 24–31; ט״ו 1",
+            "ar": "الخروج ⁦14:24–31; 15:1⁩",
+            "ru": "Исход 14:24–31; 15:1",
+            "tl": "Exodo 14:24–31; 15:1",
+            "fr": "Exode 14:24–31; 15:1",
+            "it": "Esodo 14:24–31; 15:1"
+          }
+        },
+        {
+          "type": "reading",
+          "short": "Isa. 4",
+          "full": "Isaiah 4:2–6",
+          "shortByLanguage": {
+            "he": "ישעיה ד׳",
+            "ar": "أش 4",
+            "ru": "Ис 4",
+            "tl": "Isa 4",
+            "fr": "Is 4",
+            "it": "Is 4"
+          },
+          "fullByLanguage": {
+            "he": "ישעיה ד׳ 2–6",
+            "ar": "أشعيا ⁦4:2–6⁩",
+            "ru": "Исаии 4:2–6",
+            "tl": "Isaias 4:2–6",
+            "fr": "Isaïe 4:2–6",
+            "it": "Isaia 4:2–6"
+          }
+        },
+        {
+          "type": "reading",
+          "short": "Deut. 31",
+          "full": "Deuteronomy 31:22–30",
+          "shortByLanguage": {
+            "he": "דברים ל״א",
+            "ar": "تث 31",
+            "ru": "Втор 31",
+            "tl": "Deut 31",
+            "fr": "Dt 31",
+            "it": "Dt 31"
+          },
+          "fullByLanguage": {
+            "he": "דברים ל״א 22–30",
+            "ar": "تثنية الاشتراع ⁦31:22–30⁩",
+            "ru": "Второзаконие 31:22–30",
+            "tl": "Deuteronomio 31:22–30",
+            "fr": "Deutéronome 31:22–30",
+            "it": "Deuteronomio 31:22–30"
+          }
+        },
         {
           "type": "reading",
           "short": "Col. 3",
@@ -4003,6 +4595,27 @@
             "tl": "Colosas 3:1–4",
             "fr": "Colossiens 3:1–4",
             "it": "Lettera ai Colossesi 3:1–4"
+          }
+        },
+        {
+          "type": "gospel",
+          "short": "Mt. 28",
+          "full": "Matthew 28:1–7",
+          "shortByLanguage": {
+            "he": "מתי כ״ח",
+            "ar": "مت 28",
+            "ru": "Мф 28",
+            "tl": "Mt 28",
+            "fr": "Mt 28",
+            "it": "Mt 28"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה על־פי מתי כ״ח 1–7",
+            "ar": "متى ⁦28:1–7⁩",
+            "ru": "От Матфея 28:1–7",
+            "tl": "Mateo 28:1–7",
+            "fr": "Matthieu 28:1–7",
+            "it": "Vangelo secondo Matteo 28:1–7"
           }
         }
       ]
@@ -4351,6 +4964,27 @@
             "fr": "1 Jean 5:4–10",
             "it": "1 Lettera di Giovanni 5:4–10"
           }
+        },
+        {
+          "type": "gospel",
+          "short": "Jn. 20",
+          "full": "John 20:19–31",
+          "shortByLanguage": {
+            "he": "יוחנן כ׳",
+            "ar": "يو 20",
+            "ru": "Ин 20",
+            "tl": "Jn 20",
+            "fr": "Jn 20",
+            "it": "Gv 20"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה  על־פי יוחנן כ׳ 19–31",
+            "ar": "يوحنا ⁦20:19–31⁩",
+            "ru": "От Иоанна 20:19–31",
+            "tl": "Juan 20:19–31",
+            "fr": "Jean 20:19–31",
+            "it": "Vangelo secondo Giovanni 20:19–31"
+          }
         }
       ]
     },
@@ -4468,6 +5102,27 @@
             "fr": "1 Jean 5:4–10",
             "it": "1 Lettera di Giovanni 5:4–10"
           }
+        },
+        {
+          "type": "gospel",
+          "short": "Jn. 20",
+          "full": "John 20:19–31",
+          "shortByLanguage": {
+            "he": "יוחנן כ׳",
+            "ar": "يو 20",
+            "ru": "Ин 20",
+            "tl": "Jn 20",
+            "fr": "Jn 20",
+            "it": "Gv 20"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה  על־פי יוחנן כ׳ 19–31",
+            "ar": "يوحنا ⁦20:19–31⁩",
+            "ru": "От Иоанна 20:19–31",
+            "tl": "Juan 20:19–31",
+            "fr": "Jean 20:19–31",
+            "it": "Vangelo secondo Giovanni 20:19–31"
+          }
         }
       ]
     },
@@ -4493,6 +5148,27 @@
             "fr": "1 Jean 5:4–10",
             "it": "1 Lettera di Giovanni 5:4–10"
           }
+        },
+        {
+          "type": "gospel",
+          "short": "Jn. 20",
+          "full": "John 20:19–31",
+          "shortByLanguage": {
+            "he": "יוחנן כ׳",
+            "ar": "يو 20",
+            "ru": "Ин 20",
+            "tl": "Jn 20",
+            "fr": "Jn 20",
+            "it": "Gv 20"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה  על־פי יוחנן כ׳ 19–31",
+            "ar": "يوحنا ⁦20:19–31⁩",
+            "ru": "От Иоанна 20:19–31",
+            "tl": "Juan 20:19–31",
+            "fr": "Jean 20:19–31",
+            "it": "Vangelo secondo Giovanni 20:19–31"
+          }
         }
       ]
     },
@@ -4517,6 +5193,27 @@
             "tl": "1 Juan 5:4–10",
             "fr": "1 Jean 5:4–10",
             "it": "1 Lettera di Giovanni 5:4–10"
+          }
+        },
+        {
+          "type": "gospel",
+          "short": "Jn. 20",
+          "full": "John 20:19–31",
+          "shortByLanguage": {
+            "he": "יוחנן כ׳",
+            "ar": "يو 20",
+            "ru": "Ин 20",
+            "tl": "Jn 20",
+            "fr": "Jn 20",
+            "it": "Gv 20"
+          },
+          "fullByLanguage": {
+            "he": "הבשורה  על־פי יוחנן כ׳ 19–31",
+            "ar": "يوحنا ⁦20:19–31⁩",
+            "ru": "От Иоанна 20:19–31",
+            "tl": "Juan 20:19–31",
+            "fr": "Jean 20:19–31",
+            "it": "Vangelo secondo Giovanni 20:19–31"
           }
         }
       ]
@@ -5766,6 +6463,27 @@
     "2026-05-15": {
       "readings": [
         {
+          "type": "reading",
+          "short": "Sir. 31",
+          "full": "Sirach 31:8–11",
+          "shortByLanguage": {
+            "he": "שיראך ל״א",
+            "ar": "سي 31",
+            "ru": "Сир 31",
+            "tl": "Sir 31",
+            "fr": "Si 31",
+            "it": "Sir 31"
+          },
+          "fullByLanguage": {
+            "he": "שיראך ל״א 8–11",
+            "ar": "يشوع بن سيراخ ⁦31:8–11⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 31:8–11",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 31:8–11",
+            "fr": "Ben Sira le Sage 31:8–11",
+            "it": "Siracide (Ecclesiastico) 31:8–11"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Mt. 18",
           "full": "Matthew 18:1–5",
@@ -5974,6 +6692,27 @@
     },
     "2026-05-20": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Sir. 31",
+          "full": "Sirach 31:8–11",
+          "shortByLanguage": {
+            "he": "שיראך ל״א",
+            "ar": "سي 31",
+            "ru": "Сир 31",
+            "tl": "Sir 31",
+            "fr": "Si 31",
+            "it": "Sir 31"
+          },
+          "fullByLanguage": {
+            "he": "שיראך ל״א 8–11",
+            "ar": "يشوع بن سيراخ ⁦31:8–11⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 31:8–11",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 31:8–11",
+            "fr": "Ben Sira le Sage 31:8–11",
+            "it": "Siracide (Ecclesiastico) 31:8–11"
+          }
+        },
         {
           "type": "gospel",
           "short": "Mt. 19",
@@ -6393,20 +7132,20 @@
           "short": "Joel 2",
           "full": "Joel 2:23–24; 26–27",
           "shortByLanguage": {
+            "he": "יואל ב׳",
             "ar": "يؤ 2",
             "ru": "Иоил 2",
             "tl": "Jl 2",
             "fr": "Jl 2",
-            "it": "Gl 2",
-            "he": "יואל ב׳"
+            "it": "Gl 2"
           },
           "fullByLanguage": {
+            "he": "יואל ב׳ 23–24; 26–27",
             "ar": "يوئيل ⁦2:23–24; 26–27⁩",
             "ru": "Иоиля 2:23–24; 26–27",
             "tl": "Joel 2:23–24; 26–27",
             "fr": "Joël 2:23–24; 26–27",
-            "it": "Gioele 2:23–24; 26–27",
-            "he": "יואל ב׳ 23–24; 26–27"
+            "it": "Gioele 2:23–24; 26–27"
           }
         },
         {
@@ -6439,20 +7178,20 @@
           "short": "Joel 2",
           "full": "Joel 2:28–32",
           "shortByLanguage": {
+            "he": "יואל ב׳",
             "ar": "يؤ 2",
             "ru": "Иоил 2",
             "tl": "Jl 2",
             "fr": "Jl 2",
-            "it": "Gl 2",
-            "he": "יואל ב׳"
+            "it": "Gl 2"
           },
           "fullByLanguage": {
+            "he": "יואל ב׳ 28–32",
             "ar": "يوئيل ⁦2:28–32⁩",
             "ru": "Иоиля 2:28–32",
             "tl": "Joel 2:28–32",
             "fr": "Joël 2:28–32",
-            "it": "Gioele 2:28–32",
-            "he": "יואל ב׳ 28–32"
+            "it": "Gioele 2:28–32"
           }
         },
         {
@@ -6861,6 +7600,27 @@
     },
     "2026-06-06": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Sir. 44",
+          "full": "Sirach 44:16–27; 45:3–20",
+          "shortByLanguage": {
+            "he": "שיראך מ״ד",
+            "ar": "سي 44",
+            "ru": "Сир 44",
+            "tl": "Sir 44",
+            "fr": "Si 44",
+            "it": "Sir 44"
+          },
+          "fullByLanguage": {
+            "he": "שיראך מ״ד 16–27; מ״ה 3–20",
+            "ar": "يشوع بن سيراخ ⁦44:16–27; 45:3–20⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 44:16–27; 45:3–20",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 44:16–27; 45:3–20",
+            "fr": "Ben Sira le Sage 44:16–27; 45:3–20",
+            "it": "Siracide (Ecclesiastico) 44:16–27; 45:3–20"
+          }
+        },
         {
           "type": "gospel",
           "short": "Mt. 25",
@@ -7347,6 +8107,27 @@
     "2026-06-17": {
       "readings": [
         {
+          "type": "reading",
+          "short": "Sir. 44",
+          "full": "Sirach 44:16–27; 45:3–20",
+          "shortByLanguage": {
+            "he": "שיראך מ״ד",
+            "ar": "سي 44",
+            "ru": "Сир 44",
+            "tl": "Sir 44",
+            "fr": "Si 44",
+            "it": "Sir 44"
+          },
+          "fullByLanguage": {
+            "he": "שיראך מ״ד 16–27; מ״ה 3–20",
+            "ar": "يشوع بن سيراخ ⁦44:16–27; 45:3–20⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 44:16–27; 45:3–20",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 44:16–27; 45:3–20",
+            "fr": "Ben Sira le Sage 44:16–27; 45:3–20",
+            "it": "Siracide (Ecclesiastico) 44:16–27; 45:3–20"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Mt. 25",
           "full": "Matthew 25:14–23",
@@ -7740,6 +8521,27 @@
     "2026-06-26": {
       "readings": [
         {
+          "type": "reading",
+          "short": "Sir. 44",
+          "full": "Sirach 44:10–15",
+          "shortByLanguage": {
+            "he": "שיראך מ״ד",
+            "ar": "سي 44",
+            "ru": "Сир 44",
+            "tl": "Sir 44",
+            "fr": "Si 44",
+            "it": "Sir 44"
+          },
+          "fullByLanguage": {
+            "he": "שיראך מ״ד 10–15",
+            "ar": "يشوع بن سيراخ ⁦44:10–15⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 44:10–15",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 44:10–15",
+            "fr": "Ben Sira le Sage 44:10–15",
+            "it": "Siracide (Ecclesiastico) 44:10–15"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Lk. 12",
           "full": "Luke 12:1–8",
@@ -7994,6 +8796,27 @@
     },
     "2026-07-02": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Song 2",
+          "full": "Song of Songs 2:8–14",
+          "shortByLanguage": {
+            "he": "שיר השירים ב׳",
+            "ar": "نش 2",
+            "ru": "Песн 2",
+            "tl": "Awit 2",
+            "fr": "Ct 2",
+            "it": "Ct 2"
+          },
+          "fullByLanguage": {
+            "he": "שיר השירים ב׳ 8–14",
+            "ar": "نشيد الأناشيد ⁦2:8–14⁩",
+            "ru": "Песни Песней Соломона 2:8–14",
+            "tl": "Awit ni Solomon 2:8–14",
+            "fr": "Cantique des cantiques 2:8–14",
+            "it": "Cantico dei Cantici 2:8–14"
+          }
+        },
         {
           "type": "gospel",
           "short": "Lk. 1",
@@ -8572,6 +9395,27 @@
     "2026-07-15": {
       "readings": [
         {
+          "type": "reading",
+          "short": "Sir. 31",
+          "full": "Sirach 31:8–11",
+          "shortByLanguage": {
+            "he": "שיראך ל״א",
+            "ar": "سي 31",
+            "ru": "Сир 31",
+            "tl": "Sir 31",
+            "fr": "Si 31",
+            "it": "Sir 31"
+          },
+          "fullByLanguage": {
+            "he": "שיראך ל״א 8–11",
+            "ar": "يشوع بن سيراخ ⁦31:8–11⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 31:8–11",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 31:8–11",
+            "fr": "Ben Sira le Sage 31:8–11",
+            "it": "Siracide (Ecclesiastico) 31:8–11"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Lk. 12",
           "full": "Luke 12:35–40",
@@ -8872,6 +9716,27 @@
     },
     "2026-07-22": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Song 3",
+          "full": "Song of Songs 3:2–5; 8:6–7",
+          "shortByLanguage": {
+            "he": "שיר השירים ג׳",
+            "ar": "نش 3",
+            "ru": "Песн 3",
+            "tl": "Awit 3",
+            "fr": "Ct 3",
+            "it": "Ct 3"
+          },
+          "fullByLanguage": {
+            "he": "שיר השירים ג׳ 2–5; ח׳ 6–7",
+            "ar": "نشيد الأناشيد ⁦3:2–5; 8:6–7⁩",
+            "ru": "Песни Песней Соломона 3:2–5; 8:6–7",
+            "tl": "Awit ni Solomon 3:2–5; 8:6–7",
+            "fr": "Cantique des cantiques 3:2–5; 8:6–7",
+            "it": "Cantico dei Cantici 3:2–5; 8:6–7"
+          }
+        },
         {
           "type": "gospel",
           "short": "Lk. 7",
@@ -9588,6 +10453,27 @@
     "2026-08-07": {
       "readings": [
         {
+          "type": "reading",
+          "short": "Sir. 31",
+          "full": "Sirach 31:8–11",
+          "shortByLanguage": {
+            "he": "שיראך ל״א",
+            "ar": "سي 31",
+            "ru": "Сир 31",
+            "tl": "Sir 31",
+            "fr": "Si 31",
+            "it": "Sir 31"
+          },
+          "fullByLanguage": {
+            "he": "שיראך ל״א 8–11",
+            "ar": "يشوع بن سيراخ ⁦31:8–11⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 31:8–11",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 31:8–11",
+            "fr": "Ben Sira le Sage 31:8–11",
+            "it": "Siracide (Ecclesiastico) 31:8–11"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Mt. 6",
           "full": "Matthew 6:24–33",
@@ -9612,6 +10498,27 @@
     },
     "2026-08-08": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Sir. 31",
+          "full": "Sirach 31:8–11",
+          "shortByLanguage": {
+            "he": "שיראך ל״א",
+            "ar": "سي 31",
+            "ru": "Сир 31",
+            "tl": "Sir 31",
+            "fr": "Si 31",
+            "it": "Sir 31"
+          },
+          "fullByLanguage": {
+            "he": "שיראך ל״א 8–11",
+            "ar": "يشوع بن سيراخ ⁦31:8–11⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 31:8–11",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 31:8–11",
+            "fr": "Ben Sira le Sage 31:8–11",
+            "it": "Siracide (Ecclesiastico) 31:8–11"
+          }
+        },
         {
           "type": "gospel",
           "short": "Lk. 12",
@@ -9868,6 +10775,27 @@
     "2026-08-14": {
       "readings": [
         {
+          "type": "reading",
+          "short": "Sir. 24",
+          "full": "Sirach 24:23–31",
+          "shortByLanguage": {
+            "he": "שיראך כ״ד",
+            "ar": "سي 24",
+            "ru": "Сир 24",
+            "tl": "Sir 24",
+            "fr": "Si 24",
+            "it": "Sir 24"
+          },
+          "fullByLanguage": {
+            "he": "שיראך כ״ד 23–31",
+            "ar": "يشوع بن سيراخ ⁦24:23–31⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 24:23–31",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 24:23–31",
+            "fr": "Ben Sira le Sage 24:23–31",
+            "it": "Siracide (Ecclesiastico) 24:23–31"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Lk. 11",
           "full": "Luke 11:27–28",
@@ -9985,6 +10913,27 @@
     "2026-08-17": {
       "readings": [
         {
+          "type": "reading",
+          "short": "Sir. 31",
+          "full": "Sirach 31:8–11",
+          "shortByLanguage": {
+            "he": "שיראך ל״א",
+            "ar": "سي 31",
+            "ru": "Сир 31",
+            "tl": "Sir 31",
+            "fr": "Si 31",
+            "it": "Sir 31"
+          },
+          "fullByLanguage": {
+            "he": "שיראך ל״א 8–11",
+            "ar": "يشوع بن سيراخ ⁦31:8–11⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 31:8–11",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 31:8–11",
+            "fr": "Ben Sira le Sage 31:8–11",
+            "it": "Siracide (Ecclesiastico) 31:8–11"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Lk. 12",
           "full": "Luke 12:35–40",
@@ -10055,6 +11004,27 @@
     },
     "2026-08-19": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Sir. 31",
+          "full": "Sirach 31:8–11",
+          "shortByLanguage": {
+            "he": "שיראך ל״א",
+            "ar": "سي 31",
+            "ru": "Сир 31",
+            "tl": "Sir 31",
+            "fr": "Si 31",
+            "it": "Sir 31"
+          },
+          "fullByLanguage": {
+            "he": "שיראך ל״א 8–11",
+            "ar": "يشوع بن سيراخ ⁦31:8–11⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 31:8–11",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 31:8–11",
+            "fr": "Ben Sira le Sage 31:8–11",
+            "it": "Siracide (Ecclesiastico) 31:8–11"
+          }
+        },
         {
           "type": "gospel",
           "short": "Lk. 12",
@@ -10172,6 +11142,27 @@
     },
     "2026-08-22": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Sir. 24",
+          "full": "Sirach 24:23–31",
+          "shortByLanguage": {
+            "he": "שיראך כ״ד",
+            "ar": "سي 24",
+            "ru": "Сир 24",
+            "tl": "Sir 24",
+            "fr": "Si 24",
+            "it": "Sir 24"
+          },
+          "fullByLanguage": {
+            "he": "שיראך כ״ד 23–31",
+            "ar": "يشوع بن سيراخ ⁦24:23–31⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 24:23–31",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 24:23–31",
+            "fr": "Ben Sira le Sage 24:23–31",
+            "it": "Siracide (Ecclesiastico) 24:23–31"
+          }
+        },
         {
           "type": "gospel",
           "short": "Jn. 19",
@@ -10566,6 +11557,27 @@
     "2026-08-31": {
       "readings": [
         {
+          "type": "reading",
+          "short": "Sir. 31",
+          "full": "Sirach 31:8–11",
+          "shortByLanguage": {
+            "he": "שיראך ל״א",
+            "ar": "سي 31",
+            "ru": "Сир 31",
+            "tl": "Sir 31",
+            "fr": "Si 31",
+            "it": "Sir 31"
+          },
+          "fullByLanguage": {
+            "he": "שיראך ל״א 8–11",
+            "ar": "يشوع بن سيراخ ⁦31:8–11⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 31:8–11",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 31:8–11",
+            "fr": "Ben Sira le Sage 31:8–11",
+            "it": "Siracide (Ecclesiastico) 31:8–11"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Lk. 12",
           "full": "Luke 12:35–40",
@@ -10636,6 +11648,27 @@
     },
     "2026-09-02": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Sir. 31",
+          "full": "Sirach 31:8–11",
+          "shortByLanguage": {
+            "he": "שיראך ל״א",
+            "ar": "سي 31",
+            "ru": "Сир 31",
+            "tl": "Sir 31",
+            "fr": "Si 31",
+            "it": "Sir 31"
+          },
+          "fullByLanguage": {
+            "he": "שיראך ל״א 8–11",
+            "ar": "يشوع بن سيراخ ⁦31:8–11⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 31:8–11",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 31:8–11",
+            "fr": "Ben Sira le Sage 31:8–11",
+            "it": "Siracide (Ecclesiastico) 31:8–11"
+          }
+        },
         {
           "type": "gospel",
           "short": "Lk. 19",
@@ -10753,6 +11786,27 @@
     },
     "2026-09-05": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Sir. 44",
+          "full": "Sirach 44:16–27; 45:3–20",
+          "shortByLanguage": {
+            "he": "שיראך מ״ד",
+            "ar": "سي 44",
+            "ru": "Сир 44",
+            "tl": "Sir 44",
+            "fr": "Si 44",
+            "it": "Sir 44"
+          },
+          "fullByLanguage": {
+            "he": "שיראך מ״ד 16–27; מ״ה 3–20",
+            "ar": "يشوع بن سيراخ ⁦44:16–27; 45:3–20⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 44:16–27; 45:3–20",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 44:16–27; 45:3–20",
+            "fr": "Ben Sira le Sage 44:16–27; 45:3–20",
+            "it": "Siracide (Ecclesiastico) 44:16–27; 45:3–20"
+          }
+        },
         {
           "type": "gospel",
           "short": "Mt. 25",
@@ -11054,6 +12108,27 @@
     },
     "2026-09-12": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Sir. 24",
+          "full": "Sirach 24:23–31",
+          "shortByLanguage": {
+            "he": "שיראך כ״ד",
+            "ar": "سي 24",
+            "ru": "Сир 24",
+            "tl": "Sir 24",
+            "fr": "Si 24",
+            "it": "Sir 24"
+          },
+          "fullByLanguage": {
+            "he": "שיראך כ״ד 23–31",
+            "ar": "يشوع بن سيراخ ⁦24:23–31⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 24:23–31",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 24:23–31",
+            "fr": "Ben Sira le Sage 24:23–31",
+            "it": "Siracide (Ecclesiastico) 24:23–31"
+          }
+        },
         {
           "type": "gospel",
           "short": "Lk. 1",
@@ -11494,6 +12569,27 @@
     "2026-09-22": {
       "readings": [
         {
+          "type": "reading",
+          "short": "Sir. 44",
+          "full": "Sirach 44:16–27; 45:3–20",
+          "shortByLanguage": {
+            "he": "שיראך מ״ד",
+            "ar": "سي 44",
+            "ru": "Сир 44",
+            "tl": "Sir 44",
+            "fr": "Si 44",
+            "it": "Sir 44"
+          },
+          "fullByLanguage": {
+            "he": "שיראך מ״ד 16–27; מ״ה 3–20",
+            "ar": "يشوع بن سيراخ ⁦44:16–27; 45:3–20⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 44:16–27; 45:3–20",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 44:16–27; 45:3–20",
+            "fr": "Ben Sira le Sage 44:16–27; 45:3–20",
+            "it": "Siracide (Ecclesiastico) 44:16–27; 45:3–20"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Mt. 25",
           "full": "Matthew 25:14–23",
@@ -11537,6 +12633,27 @@
             "tl": "Amos 9:13–15",
             "fr": "Amos 9:13–15",
             "it": "Amos 9:13–15"
+          }
+        },
+        {
+          "type": "reading",
+          "short": "Neh. 8",
+          "full": "Nehemiah 8:1–10",
+          "shortByLanguage": {
+            "he": "נחמיה ח׳",
+            "ar": "نحـم 8",
+            "ru": "Неем 8",
+            "tl": "Neh 8",
+            "fr": "Ne 8",
+            "it": "Ne 8"
+          },
+          "fullByLanguage": {
+            "he": "נחמיה ח׳ 1–10",
+            "ar": "نحميا ⁦8:1–10⁩",
+            "ru": "Неемии 8:1–10",
+            "tl": "Nehemias 8:1–10",
+            "fr": "Néhémie 8:1–10",
+            "it": "Neemia 8:1–10"
           }
         },
         {
@@ -11611,6 +12728,27 @@
     "2026-09-25": {
       "readings": [
         {
+          "type": "reading",
+          "short": "Hos. 14",
+          "full": "Hosea 14:2–10",
+          "shortByLanguage": {
+            "he": "הושע י״ד",
+            "ar": "هو 14",
+            "ru": "Ос 14",
+            "tl": "Os 14",
+            "fr": "Os 14",
+            "it": "Os 14"
+          },
+          "fullByLanguage": {
+            "he": "הושע י״ד 2–10",
+            "ar": "هوشع ⁦14:2–10⁩",
+            "ru": "Осии 14:2–10",
+            "tl": "Hosea 14:2–10",
+            "fr": "Osée 14:2–10",
+            "it": "Osea 14:2–10"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Lk. 7",
           "full": "Luke 7:36–50",
@@ -11675,6 +12813,48 @@
             "tl": "Levitico 23:39–43",
             "fr": "Lévitique 23:39–43",
             "it": "Levitico 23:39–43"
+          }
+        },
+        {
+          "type": "reading",
+          "short": "Mic. 7",
+          "full": "Micah 7:14, 16, 18–20",
+          "shortByLanguage": {
+            "he": "מיכה ז׳",
+            "ar": "مي 7",
+            "ru": "Мих 7",
+            "tl": "Mik 7",
+            "fr": "Mi 7",
+            "it": "Mi 7"
+          },
+          "fullByLanguage": {
+            "he": "מיכה ז׳ 14, 16, 18–20",
+            "ar": "ميخا ⁦7:14, 16, 18–20⁩",
+            "ru": "Михея 7:14, 16, 18–20",
+            "tl": "Mikas 7:14, 16, 18–20",
+            "fr": "Michée 7:14, 16, 18–20",
+            "it": "Michea 7:14, 16, 18–20"
+          }
+        },
+        {
+          "type": "reading",
+          "short": "Zech. 8",
+          "full": "Zechariah 8:14–19",
+          "shortByLanguage": {
+            "he": "זכריה ח׳",
+            "ar": "زك 8",
+            "ru": "Зах 8",
+            "tl": "Zac 8",
+            "fr": "Za 8",
+            "it": "Zc 8"
+          },
+          "fullByLanguage": {
+            "he": "זכריה ח׳ 14–19",
+            "ar": "زكريا ⁦8:14–19⁩",
+            "ru": "Захарии 8:14–19",
+            "tl": "Zacarias 8:14–19",
+            "fr": "Zacharie 8:14–19",
+            "it": "Zaccaria 8:14–19"
           }
         },
         {
@@ -12159,6 +13339,27 @@
     "2026-10-06": {
       "readings": [
         {
+          "type": "reading",
+          "short": "Sir. 31",
+          "full": "Sirach 31:8–11",
+          "shortByLanguage": {
+            "he": "שיראך ל״א",
+            "ar": "سي 31",
+            "ru": "Сир 31",
+            "tl": "Sir 31",
+            "fr": "Si 31",
+            "it": "Sir 31"
+          },
+          "fullByLanguage": {
+            "he": "שיראך ל״א 8–11",
+            "ar": "يشوع بن سيراخ ⁦31:8–11⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 31:8–11",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 31:8–11",
+            "fr": "Ben Sira le Sage 31:8–11",
+            "it": "Siracide (Ecclesiastico) 31:8–11"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Lk. 12",
           "full": "Luke 12:35–40",
@@ -12459,6 +13660,27 @@
     },
     "2026-10-13": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Sir. 31",
+          "full": "Sirach 31:8–11",
+          "shortByLanguage": {
+            "he": "שיראך ל״א",
+            "ar": "سي 31",
+            "ru": "Сир 31",
+            "tl": "Sir 31",
+            "fr": "Si 31",
+            "it": "Sir 31"
+          },
+          "fullByLanguage": {
+            "he": "שיראך ל״א 8–11",
+            "ar": "يشوع بن سيراخ ⁦31:8–11⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 31:8–11",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 31:8–11",
+            "fr": "Ben Sira le Sage 31:8–11",
+            "it": "Siracide (Ecclesiastico) 31:8–11"
+          }
+        },
         {
           "type": "gospel",
           "short": "Lk. 12",
@@ -13313,6 +14535,27 @@
     "2026-11-01": {
       "readings": [
         {
+          "type": "reading",
+          "short": "Rev. 7",
+          "full": "Revelation 7:2–12",
+          "shortByLanguage": {
+            "he": "ההתגלות ז׳",
+            "ar": "رؤ 7",
+            "ru": "Откр 7",
+            "tl": "Pah 7",
+            "fr": "Ap 7",
+            "it": "Ap 7"
+          },
+          "fullByLanguage": {
+            "he": "ההתגלות ז׳ 2–12",
+            "ar": "رؤيا يوحنا ⁦7:2–12⁩",
+            "ru": "Откровение Иоанна Богослова 7:2–12",
+            "tl": "Pahayag 7:2–12",
+            "fr": "Apocalypse 7:2–12",
+            "it": "Apocalisse 7:2–12"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Mt. 5",
           "full": "Matthew 5:1–12",
@@ -13380,6 +14623,27 @@
           }
         },
         {
+          "type": "reading",
+          "short": "2 Macc. 12",
+          "full": "2 Maccabees 12:43–46",
+          "shortByLanguage": {
+            "he": "המכבים ב י״ב",
+            "ar": "2 مك 12",
+            "ru": "2 Мак 12",
+            "tl": "2 Mac 12",
+            "fr": "2 M 12",
+            "it": "2Mac 12"
+          },
+          "fullByLanguage": {
+            "he": "המכבים ב י״ב 43–46",
+            "ar": "المكابيين الثاني ⁦12:43–46⁩",
+            "ru": "2 Маккавейская 12:43–46",
+            "tl": "2 Macabeo 12:43–46",
+            "fr": "Deuxième livre des Martyrs d'Israël 12:43–46",
+            "it": "2 Maccabei 12:43–46"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Jn. 6",
           "full": "John 6:37–40",
@@ -13398,6 +14662,27 @@
             "tl": "Juan 6:37–40",
             "fr": "Jean 6:37–40",
             "it": "Vangelo secondo Giovanni 6:37–40"
+          }
+        },
+        {
+          "type": "reading",
+          "short": "Rev. 14",
+          "full": "Revelation 14:13",
+          "shortByLanguage": {
+            "he": "ההתגלות י״ד",
+            "ar": "رؤ 14",
+            "ru": "Откр 14",
+            "tl": "Pah 14",
+            "fr": "Ap 14",
+            "it": "Ap 14"
+          },
+          "fullByLanguage": {
+            "he": "ההתגלות י״ד 13",
+            "ar": "رؤيا يوحنا ⁦14:13⁩",
+            "ru": "Откровение Иоанна Богослова 14:13",
+            "tl": "Pahayag 14:13",
+            "fr": "Apocalypse 14:13",
+            "it": "Apocalisse 14:13"
           }
         },
         {
@@ -13471,6 +14756,27 @@
     },
     "2026-11-04": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Sir. 44",
+          "full": "Sirach 44:16–27; 45:3–20",
+          "shortByLanguage": {
+            "he": "שיראך מ״ד",
+            "ar": "سي 44",
+            "ru": "Сир 44",
+            "tl": "Sir 44",
+            "fr": "Si 44",
+            "it": "Sir 44"
+          },
+          "fullByLanguage": {
+            "he": "שיראך מ״ד 16–27; מ״ה 3–20",
+            "ar": "يشوع بن سيراخ ⁦44:16–27; 45:3–20⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 44:16–27; 45:3–20",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 44:16–27; 45:3–20",
+            "fr": "Ben Sira le Sage 44:16–27; 45:3–20",
+            "it": "Siracide (Ecclesiastico) 44:16–27; 45:3–20"
+          }
+        },
         {
           "type": "gospel",
           "short": "Mt. 25",
@@ -13727,6 +15033,27 @@
     "2026-11-10": {
       "readings": [
         {
+          "type": "reading",
+          "short": "Sir. 31",
+          "full": "Sirach 31:8–11",
+          "shortByLanguage": {
+            "he": "שיראך ל״א",
+            "ar": "سي 31",
+            "ru": "Сир 31",
+            "tl": "Sir 31",
+            "fr": "Si 31",
+            "it": "Sir 31"
+          },
+          "fullByLanguage": {
+            "he": "שיראך ל״א 8–11",
+            "ar": "يشوع بن سيراخ ⁦31:8–11⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 31:8–11",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 31:8–11",
+            "fr": "Ben Sira le Sage 31:8–11",
+            "it": "Siracide (Ecclesiastico) 31:8–11"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Lk. 12",
           "full": "Luke 12:35–40",
@@ -13751,6 +15078,27 @@
     },
     "2026-11-11": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Sir. 44",
+          "full": "Sirach 44:16–27; 45:3–20",
+          "shortByLanguage": {
+            "he": "שיראך מ״ד",
+            "ar": "سي 44",
+            "ru": "Сир 44",
+            "tl": "Sir 44",
+            "fr": "Si 44",
+            "it": "Sir 44"
+          },
+          "fullByLanguage": {
+            "he": "שיראך מ״ד 16–27; מ״ה 3–20",
+            "ar": "يشوع بن سيراخ ⁦44:16–27; 45:3–20⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 44:16–27; 45:3–20",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 44:16–27; 45:3–20",
+            "fr": "Ben Sira le Sage 44:16–27; 45:3–20",
+            "it": "Siracide (Ecclesiastico) 44:16–27; 45:3–20"
+          }
+        },
         {
           "type": "gospel",
           "short": "Lk. 11",
@@ -14006,6 +15354,27 @@
     },
     "2026-11-17": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Sir. 44",
+          "full": "Sirach 44:16–27; 45:3–20",
+          "shortByLanguage": {
+            "he": "שיראך מ״ד",
+            "ar": "سي 44",
+            "ru": "Сир 44",
+            "tl": "Sir 44",
+            "fr": "Si 44",
+            "it": "Sir 44"
+          },
+          "fullByLanguage": {
+            "he": "שיראך מ״ד 16–27; מ״ה 3–20",
+            "ar": "يشوع بن سيراخ ⁦44:16–27; 45:3–20⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 44:16–27; 45:3–20",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 44:16–27; 45:3–20",
+            "fr": "Ben Sira le Sage 44:16–27; 45:3–20",
+            "it": "Siracide (Ecclesiastico) 44:16–27; 45:3–20"
+          }
+        },
         {
           "type": "gospel",
           "short": "Mk. 11",
@@ -14354,6 +15723,27 @@
     "2026-11-25": {
       "readings": [
         {
+          "type": "reading",
+          "short": "Sir. 51",
+          "full": "Sirach 51:1–8; 51:12",
+          "shortByLanguage": {
+            "he": "שיראך נ״א",
+            "ar": "سي 51",
+            "ru": "Сир 51",
+            "tl": "Sir 51",
+            "fr": "Si 51",
+            "it": "Sir 51"
+          },
+          "fullByLanguage": {
+            "he": "שיראך נ״א 1–8; נ״א 12",
+            "ar": "يشوع بن سيراخ ⁦51:1–8; 51:12⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 51:1–8; 51:12",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 51:1–8; 51:12",
+            "fr": "Ben Sira le Sage 51:1–8; 51:12",
+            "it": "Siracide (Ecclesiastico) 51:1–8; 51:12"
+          }
+        },
+        {
           "type": "gospel",
           "short": "Mt. 25",
           "full": "Matthew 25:1–13",
@@ -14654,6 +16044,27 @@
     },
     "2026-12-02": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Sir. 51",
+          "full": "Sirach 51:13–17",
+          "shortByLanguage": {
+            "he": "שיראך נ״א",
+            "ar": "سي 51",
+            "ru": "Сир 51",
+            "tl": "Sir 51",
+            "fr": "Si 51",
+            "it": "Sir 51"
+          },
+          "fullByLanguage": {
+            "he": "שיראך נ״א 13–17",
+            "ar": "يشوع بن سيراخ ⁦51:13–17⁩",
+            "ru": "Премудрости Иисуса, сына Сирахова 51:13–17",
+            "tl": "Karunungan ni Jesus na Anak ni Sirac 51:13–17",
+            "fr": "Ben Sira le Sage 51:13–17",
+            "it": "Siracide (Ecclesiastico) 51:13–17"
+          }
+        },
         {
           "type": "gospel",
           "short": "Mt. 13",
@@ -16039,6 +17450,27 @@
     },
     "2026-12-28": {
       "readings": [
+        {
+          "type": "reading",
+          "short": "Rev. 14",
+          "full": "Revelation 14:1–5",
+          "shortByLanguage": {
+            "he": "ההתגלות י״ד",
+            "ar": "رؤ 14",
+            "ru": "Откр 14",
+            "tl": "Pah 14",
+            "fr": "Ap 14",
+            "it": "Ap 14"
+          },
+          "fullByLanguage": {
+            "he": "ההתגלות י״ד 1–5",
+            "ar": "رؤيا يوحنا ⁦14:1–5⁩",
+            "ru": "Откровение Иоанна Богослова 14:1–5",
+            "tl": "Pahayag 14:1–5",
+            "fr": "Apocalypse 14:1–5",
+            "it": "Apocalisse 14:1–5"
+          }
+        },
         {
           "type": "gospel",
           "short": "Mt. 2",

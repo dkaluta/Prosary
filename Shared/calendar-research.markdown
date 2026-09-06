@@ -39,8 +39,11 @@ with only an appointed Gospel are not filled with invented epistles. Regression 
 cover cross-chapter ranges, disjoint verses, Latin/Cyrillic Roman numerals, named services,
 and each corrected source omission. No Scripture or prayer text is copied.
 
-Missale Meum's first starred reference is kept in full before its Scripture body. This repairs
-previously truncated semicolon continuations into the next chapter. Maronite's feed assigns a
+Missale Meum's appointed reference blocks are kept in full before their Scripture bodies.
+This repairs truncated chapter continuations, historical book aliases, and dotted/comma
+chapter separators. Rubrics before Gospel references are skipped. Grouped Good Friday and
+Paschal Vigil lessons, Passion sections, Ember lessons, and the three Masses on All Souls
+and Christmas are retained, while interspersed chant references are excluded. Maronite's feed assigns a
 Roman-style “psalm” slot to some epistles; Eastern citation types are derived from their books,
 so Romans 8 is a reading, not a psalm. All reference ranges and source ordering are retained.
 
@@ -75,7 +78,7 @@ the native picker has data. Modern Roman and 1962 feasts, and both Byzantine fea
 cover 2026–2027. The Maronite source currently stops at 31 October 2026 (304 reading days);
 its named observances end at the last Sunday in that range. Syriac readings currently reach
 8 December 2026, with feast coverage ending 24 November. The official UGCC and Gregorian
-Byzantine readings cover 2026; the 1962 table contains 364 source days. Modern Roman readings
+Byzantine readings cover 2026; the 1962 table contains all 365 source days and 770 appointed citations. Modern Roman readings
 currently span 31 July–5 December 2026. Missing entries are not synthesized.
 
 Refresh `fetch-feasts.py` and `fetch-readings.py` periodically with `--sync`. Maronite's wrapper
