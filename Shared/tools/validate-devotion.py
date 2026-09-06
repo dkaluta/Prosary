@@ -148,6 +148,22 @@ def load_json(path: Path):
 MYSTERY_OVERRIDE_FIELDS = {"title", "fruit", "description", "transliteratedDescription"}
 
 
+def validate_prayer_traditions(path: Path, content: dict) -> None:
+    """Keep plain repository Hebrew generic; explicitly mark sourced Vicariate prayer keys."""
+    traditions = content.get("$prayerTraditionByKey", {})
+    label = f"content/{path.name}: $prayerTraditionByKey"
+    if not isinstance(traditions, dict):
+        err(f"{label} must be a map of prayer key to tradition")
+        return
+    if traditions and path.stem != "he":
+        err(f"{label} is only supported in content/he.json")
+    for key, tradition in traditions.items():
+        if key not in content.get("prayers", {}):
+            err(f"{label}: {key!r} must name this file's own prayer key")
+        if tradition != "vicariate":
+            err(f"{label}: {key!r} has unsupported tradition {tradition!r}; expected 'vicariate'")
+
+
 def validate_mystery_overrides(path: Path, content: dict) -> None:
     """Mystery language entries may override any subset of the presentation fields.
 
@@ -955,6 +971,7 @@ def main() -> int:
     # partial, but their mystery objects still have the same field-wise contract.
     for content_path in sorted((src / "content").glob("*.json")):
         overlay = load_json(content_path)
+        validate_prayer_traditions(content_path, overlay)
         validate_mystery_overrides(content_path, overlay)
         validate_citation_style(content_path, overlay)
 

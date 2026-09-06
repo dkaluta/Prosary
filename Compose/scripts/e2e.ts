@@ -262,6 +262,32 @@ writeFileSync("dist-e2e/exampleDevotion.prosaryprayer", bundle);
   console.log("✓ Aramaic can publish and retains pointed Hebrew and Syriac across popup reloads and repository restamping; all twelve language policies agree");
 }
 
+// Imported specific wording must never silently become generic Hebrew when it is repacked.
+{
+  const hebrew = newProject();
+  hebrew.name = "Hebrew provenance fixture";
+  hebrew.languages = ["he"];
+  const specific: EditorStep = {
+    uid: newUid(), kind: "custom", title: "Specific", isScripture: false,
+    titleByLanguage: { he: "Specific title fixture" },
+    bodyByLanguage: { he: "Specific body fixture" },
+    transliterationByLanguage: { he: "Matching reading aid fixture" },
+    hebrewBodyTradition: "vicariate",
+  };
+  hebrew.steps = [specific, {
+    ...specific, uid: newUid(), hebrewBodyTradition: undefined,
+    bodyByLanguage: { he: "Generic body fixture" },
+  }];
+  const reopened = await openBundle(buildBundle(hebrew));
+  assert(reopened.steps[0].hebrewBodyTradition === "vicariate", "Vicariate body provenance lost on import");
+  assert(reopened.steps[0].hebrewTitleTradition === undefined, "Generic title acquired a tradition");
+  assert(reopened.steps[1].hebrewBodyTradition === undefined, "Generic repository Hebrew acquired a tradition");
+  const original = buildBundleFiles(hebrew).find(file => file.name === "content/he.json")!;
+  const repacked = buildBundleFiles(reopened).find(file => file.name === original.name)!;
+  assert(new TextDecoder().decode(original.data) === new TextDecoder().decode(repacked.data),
+    "Hebrew body/title provenance and paired reading aid changed during round-trip");
+}
+
 // The transliteration must land in la's content file, keyed like its body — and only there.
 {
   const laFile = buildBundleFiles(project).find((f) => f.name === "content/la.json");

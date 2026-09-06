@@ -643,44 +643,49 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         }
     }
 
-    /// <summary>The Mission of St. Gamaliel's wording overlays plain Hebrew key by key — their
-    /// Creed is the Nicene one, and anything they have not sent still reads in the app's
-    /// Hebrew.</summary>
+    /// <summary>Mission-specific wording stays distinct. A separately configured Vicariate
+    /// fallback supplies missing prayers; generic Hebrew mystery text participates earlier.</summary>
     [Fact]
-    public void GamalielVariantOverlaysHebrew()
+    public void MissionTextsKeepTheirIdentityWithAnExplicitVicariateFallback()
     {
-        var variant = BuildSteps("rosary", "he-x-gamliel", customOptions: new() { ["apostlesCreed"] = "true" });
-        Assert.Contains("אָנוּ מַאֲמִינִים", variant[1].Body);
-        Assert.Equal("מאמינים של ניקאה", variant[1].Title);
-        Assert.Contains(variant, step => step.Body.Contains("שָׁלוֹם לָךְ מִרְיָם"));
+        var previous = AppSettings.LanguageFallbackOrder.ToArray();
+        try
+        {
+            AppSettings.SetLanguageFallbackOrder(["he-x-gamliel", "he", "en", "la"]);
+            var variant = BuildSteps("rosary", "he-x-gamliel", customOptions: new() { ["apostlesCreed"] = "true" });
+            Assert.Contains("אָנוּ מַאֲמִינִים", variant[1].Body);
+            Assert.Equal("מאמינים של ניקאה", variant[1].Title);
+            Assert.Contains(variant, step => step.Body.Contains("שָׁלוֹם לָךְ מִרְיָם"));
 
-        // Headings belong to the rite that uses them: the Mission's in the Mission's rite, the
-        // app's own in plain Hebrew.
-        var hebrew = BuildSteps("rosary", "he", customOptions: new() { ["apostlesCreed"] = "true" });
-        Assert.Equal("אות הצלב", variant[0].Title);
-        Assert.Equal("סימן הצלב", hebrew[0].Title);
-        Assert.Equal("אני מאמין", hebrew[1].Title);
-        Assert.Contains(variant, s => s.Title.StartsWith("שלום לך מרים", StringComparison.Ordinal));
-        Assert.Contains(hebrew, s => s.Title.StartsWith("שמחי מרים", StringComparison.Ordinal));
-        Assert.Contains(variant, s => s.Title == "השבח לאב");
-        Assert.Contains(hebrew, s => s.Title == "כבוד לאב");
+            // Headings belong to the rite that uses them: the Mission's in the Mission's rite, the
+            // app's own in plain Hebrew.
+            var hebrew = BuildSteps("rosary", "he", customOptions: new() { ["apostlesCreed"] = "true" });
+            Assert.Equal("אות הצלב", variant[0].Title);
+            Assert.Equal("סימן הצלב", hebrew[0].Title);
+            Assert.Equal("אני מאמין", hebrew[1].Title);
+            Assert.Contains(variant, s => s.Title.StartsWith("שלום לך מרים", StringComparison.Ordinal));
+            Assert.Contains(hebrew, s => s.Title.StartsWith("שמחי מרים", StringComparison.Ordinal));
+            Assert.Contains(variant, s => s.Title == "השבח לאב");
+            Assert.Contains(hebrew, s => s.Title == "כבוד לאב");
 
-        // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
-        static string? Fatima(IReadOnlyList<RosaryStep> steps) =>
-            steps.FirstOrDefault(s => s.Title.Contains("הו ישוע"))?.Body;
-        Assert.Equal(Fatima(hebrew), Fatima(variant));
+            // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
+            static string? Fatima(IReadOnlyList<RosaryStep> steps) =>
+                steps.FirstOrDefault(s => s.Title.Contains("הו ישוע"))?.Body;
+            Assert.Equal(Fatima(hebrew), Fatima(variant));
 
-        // The mysteries are announced in Hebrew too. The Mission ships no mystery texts of its
-        // own, and the announcement is the one step whose body is quoted Scripture — before the
-        // base language step in MysteryTranslations.Get it fell past plain Hebrew all the way to
-        // Latin, so the rite prayed its Rosary in Hebrew but heard every mystery announced in
-        // Latin.
-        static RosaryStep? Announcement(IReadOnlyList<RosaryStep> steps) =>
-            steps.FirstOrDefault(s => s.Mystery is not null);
-        Assert.NotNull(Announcement(variant));
-        Assert.Equal(Announcement(hebrew)?.Title, Announcement(variant)?.Title);
-        Assert.Equal(Announcement(hebrew)?.Body, Announcement(variant)?.Body);
-        Assert.NotEqual(Announcement(BuildSteps("rosary", "la"))?.Body, Announcement(variant)?.Body);
+            // The mysteries are announced in Hebrew too. The Mission ships no mystery texts of its
+            // own, and the announcement is the one step whose body is quoted Scripture — before the
+            // base language step in MysteryTranslations.Get it fell past plain Hebrew all the way to
+            // Latin, so the rite prayed its Rosary in Hebrew but heard every mystery announced in
+            // Latin.
+            static RosaryStep? Announcement(IReadOnlyList<RosaryStep> steps) =>
+                steps.FirstOrDefault(s => s.Mystery is not null);
+            Assert.NotNull(Announcement(variant));
+            Assert.Equal(Announcement(hebrew)?.Title, Announcement(variant)?.Title);
+            Assert.Equal(Announcement(hebrew)?.Body, Announcement(variant)?.Body);
+            Assert.NotEqual(Announcement(BuildSteps("rosary", "la"))?.Body, Announcement(variant)?.Body);
+        }
+        finally { AppSettings.SetLanguageFallbackOrder(previous); }
     }
 
     /// <summary>One Hebrew language choice exposes two separately preserved prayer traditions.</summary>
@@ -703,14 +708,16 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Fact]
-    public void LanguageFallbackOrderKeepsBaseFirstAndLatinLast()
+    public void LanguageFallbackOrderKeepsHebrewTraditionsIndependentAndLatinLast()
     {
         var original = AppSettings.LanguageFallbackOrder.ToArray();
         try
         {
             AppSettings.SetLanguageFallbackOrder(["ru", "en", "ar", "he", "he-x-gamliel", "arc", "el", "es", "tl", "la"]);
             var chain = LanguageCatalog.FallbackChain("he-x-gamliel");
-            Assert.Equal(new[] { "he-x-gamliel", "he", "ru", "en" }, chain.Take(4));
+            Assert.Equal(new[] { "he-x-gamliel", "ru", "en", "ar", "he" }, chain.Take(5));
+            Assert.Equal(new[] { "he-x-gamliel", "he", "ru", "en", "ar", "he-x-vicariate" },
+                LanguageCatalog.ContentFallbackChain("he-x-gamliel").Take(6));
             Assert.Equal("la", chain.Last());
         }
         finally

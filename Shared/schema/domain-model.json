@@ -1,6 +1,15 @@
 {
   "$comment": "Canonical shape of Prosary's domain model, independent of any one platform's language. Field names here are the camelCase form; each platform's own idiom (Swift camelCase, Kotlin camelCase, C# PascalCase) maps 1:1. See ../ARCHITECTURE.markdown for the prose version and per-file source locations. Keep this file in sync whenever a field is added, removed, renamed, or its default changes on any platform — see README.markdown in this directory.",
   "types": {
+    "PrayerPackContent": {
+      "description": "One content/<language>.json file inside a prayer pack. Unmarked Hebrew content is generic, including repository packs. Per-key provenance separates shared Hebrew from tradition-specific wording without changing saved prayer language codes.",
+      "fields": {
+        "prayers": { "type": "map<string, string>", "description": "Prayer keys and display text." },
+        "mysteries": { "type": "map<string, MysteryTextOverride>?", "description": "Partial mystery fields; Hebrew Scripture and shared metadata remain generic." },
+        "transliterations": { "type": "map<string, string>?", "description": "Reading aids attached to this file's own prayer keys; use the same winning tradition and source as the body." },
+        "$prayerTraditionByKey": { "type": "map<string, string>?", "description": "Only in content/he.json: map explicitly Vicariate prayer keys to vicariate. Keys must exist in prayers. Unmarked keys remain generic Hebrew. Load marked text and its reading aid into the internal he-x-vicariate content bucket. This internal probe is never a saved preference or a language-picker choice." }
+      }
+    },
     "Prayer": {
       "description": "A saved, user-configurable prayer session. Older source identifiers call this a favorite; current UI calls it a saved configuration or preset.",
       "fields": {
@@ -350,7 +359,7 @@
       "fields": {
         "code": {
           "type": "string",
-          "description": "Prayer-language identifier used as the key into the content layer's translation dictionaries; values include ISO 639-1 codes, ISO 639-2 `arc`, and private-use community variants such as `he-x-gamliel`. Missing content resolves exact code → base code → the user's `languageFallbackOrder`; Latin starts last but can be reordered."
+          "description": "Prayer-language identifier used as the key into the content layer's translation dictionaries; values include ISO 639-1 codes, ISO 639-2 `arc`, and private-use community variants such as `he-x-gamliel`. Requested wording precedes languageFallbackOrder. Generic Hebrew is tried once beside the higher Hebrew tradition; Mission never automatically promotes Vicariate over intervening languages. Other language variants keep base-language fallback. Latin starts last but can be reordered."
         },
         "nativeName": {
           "type": "string"
@@ -455,7 +464,7 @@
         },
         "bodyKey": {
           "type": "string?",
-          "description": "Resolved from bundle content in the exact requested code and its base, then the shared PrayerTranslations table for a shared key, then bundle content through the user's languageFallbackOrder and finally the raw key — see ARCHITECTURE.markdown."
+          "description": "For each requested/fallback content probe, try bundle-local text, the Rosary's shared prayer heading, then global override/native shared prayer text. Generic Hebrew shares the higher Hebrew tradition position; specifically annotated Vicariate wording follows its own position. Text and reading aid retain the same winning source. Exhaustion returns the raw key — see ARCHITECTURE.markdown."
         },
         "acclamationKey": {
           "type": "string?",
@@ -721,6 +730,10 @@
           "deprecated": true,
           "description": "Legacy setting ignored; its sorting control is removed. BasicPrayersOrder is the sole basic-list order."
         },
+        "languageFallbackOrder": {
+          "type": "string[]",
+          "description": "Ordered exact prayer preferences. Mission (he-x-gamliel) and Vicariate (he) are independently sortable; generic Hebrew is derived at the higher Hebrew position and has no separate saved slot. Unknown or duplicate entries are ignored at lookup, missing languages are appended before a previously terminal Latin fallback, and the internal he-x-vicariate content probe is never exposed or saved."
+        },
         "todayLanguageCode": {
           "type": "string",
           "deprecated": true,
@@ -813,7 +826,7 @@
     }
   },
   "languages": {
-    "$ref": "LanguageCatalog stores la (default), en, ar, he, he-x-gamliel, arc, el, es, ru, tl, fr, it. Public choices collapse he-x-gamliel into Hebrew (עברית); a separate Prayer tradition selects Saint James Vicariate (he) or Mission of St. Gamaliel (he-x-gamliel). Aramaic is labeled ܐܪܡܐܝܬ / ארמית. ar/he/he-x-gamliel/arc are RTL. Exact overlays resolve through base language then languageFallbackOrder. The fallback picker groups Hebrew while preserving the relative stored order of its two raw codes. New available languages are inserted before a previously terminal Latin fallback."
+    "$ref": "LanguageCatalog stores la (default), en, ar, he, he-x-gamliel, arc, el, es, ru, tl, fr, it. Ordinary public choices show one Hebrew (עברית) with a separate Saint James Vicariate (stored he) / Mission of St. Gamaliel (he-x-gamliel) tradition. The fallback editor exposes both Hebrew traditions independently, preserving interleaving such as Mission, Aramaic, Vicariate. Generic shared/repository Hebrew uses the higher Hebrew slot, immediately after that tradition; internal content-only he-x-vicariate distinguishes marked Vicariate text and is never persisted or selectable. Aramaic is labeled ܐܪܡܐܝܬ / ארמית. ar/he/he-x-gamliel/arc are RTL. Other variants retain base fallback. New languages are inserted before a previously terminal Latin fallback."
   },
   "persistence": {
     "perDevotionDefaultScoping": "save()/delete() clear or promote isDefault scoped to (Prayer.kind, Prayer.customDevotionId), never across devotions — two generic devotions must not steal each other's default slot. Legacy rows with retired per-devotion kinds resolve through the same identity (iOS PresetEntry.resolvedKind / Android PresetEntity.resolvedKind / Windows's SQL migration). See ARCHITECTURE.markdown#persistence."

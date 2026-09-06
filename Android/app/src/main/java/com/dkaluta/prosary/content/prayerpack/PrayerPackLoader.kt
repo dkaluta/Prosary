@@ -48,6 +48,8 @@ private data class PackContent(
     val mysteries: Map<String, MysteryTextOverride> = emptyMap(),
     /** Optional reading aid (v0.7): prayer key → the same text in another script. */
     val transliterations: Map<String, String> = emptyMap(),
+    /** Optional provenance of specific Hebrew prayer keys; unmarked Hebrew stays generic. */
+    @SerialName("\$prayerTraditionByKey") val prayerTraditionByKey: Map<String, String> = emptyMap(),
 )
 
 /** A bundle can contribute one sourced field without restating a mystery's other metadata.
@@ -612,6 +614,8 @@ object PrayerPackStore {
      * "trisagionAcclamation"), which is how a generic devotion's `devotion.json` resolves
      * bundle-local body text. See [resolveBodyText]. */
     private val rawContentByBundle = mutableMapOf<String, MutableMap<String, Map<String, String>>>()
+    /** Actual nonempty prayer/mystery buckets, distinct from advertised picker languages. */
+    private val contentLanguagesByBundle = mutableMapOf<String, MutableSet<String>>()
 
     /** bundleId → language → prayer key → transliterated text (v0.7 reading aid). */
     private val transliterationsByBundle = mutableMapOf<String, MutableMap<String, Map<String, String>>>()
@@ -732,103 +736,71 @@ object PrayerPackStore {
 
     fun info(bundleId: String): CustomDevotionInfo? = infoByBundle[bundleId]
 
-    /** The language a session actually prays a bundle in: the chosen (or app-default) language
-     * when the bundle ships it, else the bundle's own first (manifest-order) language — never a
-     * language the bundle lacks, which would degrade bundle-local text into fallback chains or
-     * raw keys. */
+    /** Advertised languages remain eligible; Hebrew's two traditions also require actual
+     * content in their specific/generic bucket. An undeclared Greek overlay cannot promote
+     * Greek into a whole session, while Mission overlays still serve a declared Hebrew pack. */
     fun effectiveLanguage(bundleId: String, chosen: String?): String {
         val resolved = LanguageCatalog.resolve(chosen ?: LanguageCatalog.defaultSentinel).code
         val available = info(bundleId)?.languages.orEmpty()
         if (available.isEmpty()) return resolved
-        for (code in LanguageCatalog.fallbackChain(resolved)) {
-            if (code in available) return if (code == LanguageCatalog.baseLanguage(resolved)) resolved else code
+        val buckets = contentLanguagesByBundle[bundleId].orEmpty()
+        for (probe in LanguageCatalog.contentFallbackChain(resolved)) {
+            val eligible = when (probe) {
+                LanguageCatalog.hebrewVicariateContentCode -> "he" in available && probe in buckets
+                "he-x-gamliel" -> ("he" in available || probe in available) && probe in buckets
+                "he" -> ("he" in available || "he-x-gamliel" in available) && probe in buckets
+                else -> probe in available
+            }
+            if (eligible) return LanguageCatalog.selectionForContentProbe(probe, resolved)
         }
         return available.first()
     }
 
-    /** Follows the body's exact source. A missing reading aid there stops resolution, so a
-     * fallback or later override can never pair text with another version's reading aid. */
-    fun transliteration(bundleId: String, languageCode: String?, key: String): String? {
-        val chain = LanguageCatalog.fallbackChain(languageCode)
-        val requested = chain.first()
-        if (
-            key == "signumCrucis" &&
-            (LanguageCatalog.baseLanguage(requested) ?: requested) == "arc" &&
-            AppSettings.usesSystemWideAramaicSignOfCrossForm &&
-            AppSettings.aramaicSignOfCrossForm == AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B
-        ) {
-            return transliterationsByBundle["rosary"]?.get("arc")?.get("signumCrucisFormB")
+    private data class ResolvedPrayerContent(val text: String, val readingAid: String?)
+
+    private fun localPrayerContent(bundleId: String, probe: String, key: String): ResolvedPrayerContent? =
+        rawContentByBundle[bundleId]?.get(probe)?.get(key)?.let { text ->
+            ResolvedPrayerContent(text, transliterationsByBundle[bundleId]?.get(probe)?.get(key))
         }
-        val requestedCodes = listOfNotNull(requested, LanguageCatalog.baseLanguage(requested)).distinct()
-        for (code in requestedCodes) {
-            if (rawContentByBundle[bundleId]?.get(code)?.containsKey(key) == true) {
-                return transliterationsByBundle[bundleId]?.get(code)?.get(key)
-            }
-        }
+
+    /** Resolve text and its reading aid together, with the same precedence at every probe:
+     * bundle-local content, the Rosary's shared headings, then shared overrides/native text. */
+    private fun resolvePrayerContent(bundleId: String, languageCode: String?, key: String): ResolvedPrayerContent? {
         val prayerKey = if (key == "signumCrucisFormB") PrayerKey.SignumCrucis else keyToPrayerKey(key)
-        if (key in sharedPrayerTitleKeys) {
-            for (code in requestedCodes) {
-                if (rawContentByBundle["rosary"]?.get(code)?.containsKey(key) == true) {
-                    return transliterationsByBundle["rosary"]?.get(code)?.get(key)
-                }
+        for (probe in LanguageCatalog.contentFallbackChain(languageCode)) {
+            // The explicit system-wide Aramaic form changes the formula at the Aramaic
+            // probe only; it cannot jump ahead of a higher-priority language.
+            val usesFormB = probe == "arc" && prayerKey == PrayerKey.SignumCrucis &&
+                AppSettings.usesSystemWideAramaicSignOfCrossForm &&
+                AppSettings.aramaicSignOfCrossForm == AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B
+            if (usesFormB) {
+                localPrayerContent("rosary", probe, "signumCrucisFormB")?.let { return it }
             }
-        }
-        if (prayerKey != null) {
-            for (code in chain) {
-                if (prayerOverride(code, prayerKey) != null) {
-                    if (prayerKey == PrayerKey.SignumCrucis && code == "arc" &&
-                        AppSettings.usesSystemWideAramaicSignOfCrossForm &&
-                        AppSettings.aramaicSignOfCrossForm == AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B
-                    ) return transliterationsByBundle["rosary"]?.get("arc")?.get("signumCrucisFormB")
-                    return prayerTransliterations[code]?.get(prayerKey)
-                }
-                if (PrayerTranslations.byLanguage[code]?.containsKey(prayerKey) == true) return null
+            localPrayerContent(bundleId, probe, key)?.let { return it }
+            if (key in sharedPrayerTitleKeys) {
+                localPrayerContent("rosary", probe, key)?.let { return it }
             }
-            return null
-        }
-        for (code in chain.filterNot { it in requestedCodes }) {
-            if (rawContentByBundle[bundleId]?.get(code)?.containsKey(key) == true) {
-                return transliterationsByBundle[bundleId]?.get(code)?.get(key)
+            if (probe == "he-x-gamliel" && key == "paterNosterTitle") {
+                return ResolvedPrayerContent("תפילת האדון", null)
+            }
+            if (prayerKey != null) {
+                prayerOverride(probe, prayerKey)?.let { text ->
+                    return ResolvedPrayerContent(text, prayerTransliterations[probe]?.get(prayerKey))
+                }
+                PrayerTranslations.byLanguage[probe]?.get(prayerKey)?.let { text ->
+                    return ResolvedPrayerContent(text, null)
+                }
             }
         }
         return null
     }
 
-    fun resolveBodyText(bundleId: String, languageCode: String?, key: String): String {
-        val chain = LanguageCatalog.fallbackChain(languageCode)
-        val requested = chain.first()
-        if (requested == "he-x-gamliel" && key == "paterNosterTitle") return "תפילת האדון"
-        if (
-            key == "signumCrucis" &&
-            (LanguageCatalog.baseLanguage(requested) ?: requested) == "arc" &&
-            AppSettings.usesSystemWideAramaicSignOfCrossForm &&
-            AppSettings.aramaicSignOfCrossForm == AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_B
-        ) {
-            rawContentByBundle["rosary"]?.get("arc")?.get("signumCrucisFormB")?.let { return it }
-        }
-        val requestedCodes = chain.take(1) + chain.drop(1).takeWhile {
-            it == LanguageCatalog.baseLanguage(chain.first())
-        }
-        for (code in requestedCodes.distinct()) {
-            rawContentByBundle[bundleId]?.get(code)?.get(key)?.let { return it }
-        }
-        if (key in sharedPrayerTitleKeys) {
-            for (code in requestedCodes.distinct()) {
-                rawContentByBundle["rosary"]?.get(code)?.get(key)?.let { return it }
-            }
-        }
-        if (key == "signumCrucisFormB") {
-            return PrayerTranslations.get(languageCode, PrayerKey.SignumCrucis)
-        }
-        val prayerKey = keyToPrayerKey(key)
-        if (prayerKey != null) {
-            return PrayerTranslations.get(languageCode, prayerKey)
-        }
-        for (code in chain.drop(requestedCodes.size)) {
-            rawContentByBundle[bundleId]?.get(code)?.get(key)?.let { return it }
-        }
-        return key
-    }
+    /** A missing aid at the selected source remains missing; never borrow another wording's aid. */
+    fun transliteration(bundleId: String, languageCode: String?, key: String): String? =
+        resolvePrayerContent(bundleId, languageCode, key)?.readingAid
+
+    fun resolveBodyText(bundleId: String, languageCode: String?, key: String): String =
+        resolvePrayerContent(bundleId, languageCode, key)?.text ?: key
 
     /** Production entry point. `noCompress` makes each built-in pack an uncompressed Android
      * asset, so `openFd` exposes its bounded region inside the installed APK and the central
@@ -852,6 +824,30 @@ object PrayerPackStore {
      * stream each time, or null when that fixture is unavailable. */
     fun initialize(openPack: (String) -> InputStream?) {
         initializeSources { packName -> StreamingPackSource { openPack(packName) } }
+    }
+
+    /** Isolate synthetic source/provenance fixtures from the process-wide built-in catalog. */
+    internal fun resetForTesting() {
+        didLoad = false
+        installedPacksDirectory = null
+        prayerOverrides.clear()
+        prayerTransliterations.clear()
+        mysteryOverrides.clear()
+        rawContentByBundle.clear()
+        contentLanguagesByBundle.clear()
+        transliterationsByBundle.clear()
+        definitionByBundle.clear()
+        optionsByBundle.clear()
+        audioTracksByBundle.clear()
+        infoByBundle.clear()
+        orderedCustomIds.clear()
+        installedIdsList.clear()
+        synchronized(imageSourceLock) {
+            imageSourcesByKey.clear()
+            imageRevisionByKey.clear()
+            packSourceByBundle.clear()
+            nextImageRevision = 0L
+        }
     }
 
     private fun initializeSources(sourceForPack: (String) -> PackSource) {
@@ -1038,6 +1034,7 @@ object PrayerPackStore {
         optionsByBundle.remove(id)
         audioTracksByBundle.remove(id)
         rawContentByBundle.remove(id)
+        contentLanguagesByBundle.remove(id)
         transliterationsByBundle.remove(id)
         synchronized(imageSourceLock) {
             packSourceByBundle.remove(id)
@@ -1095,19 +1092,28 @@ object PrayerPackStore {
             val content = json.decodeFromString<PackContent>(String(contentBytes, Charsets.UTF_8))
 
             val bundleRawContent = rawContentByBundle.getOrPut(manifest.id) { mutableMapOf() }
-            bundleRawContent[language] = content.prayers
-            if (content.transliterations.isNotEmpty()) {
-                transliterationsByBundle.getOrPut(manifest.id) { mutableMapOf() }[language] = content.transliterations
+            val bucketLanguages = contentLanguagesByBundle.getOrPut(manifest.id) { mutableSetOf() }
+            val prayersByProbe = content.prayers.entries.groupBy { (key, _) ->
+                if (language == "he" && content.prayerTraditionByKey[key] == "vicariate") {
+                    LanguageCatalog.hebrewVicariateContentCode
+                } else language
             }
-
-            val prayers = prayerOverrides.getOrPut(language) { mutableMapOf() }
-            for ((key, text) in content.prayers) {
-                val prayerKey = keyToPrayerKey(key) ?: continue
-                prayers[prayerKey] = text
-                val readingAids = prayerTransliterations.getOrPut(language) { mutableMapOf() }
-                val readingAid = content.transliterations[key]
-                if (readingAid != null) readingAids[prayerKey] = readingAid else readingAids.remove(prayerKey)
+            for ((probe, entriesForProbe) in prayersByProbe) {
+                val localPrayers = entriesForProbe.associate { it.key to it.value }
+                bundleRawContent[probe] = localPrayers
+                bucketLanguages.add(probe)
+                val localAids = content.transliterations.filterKeys { it in localPrayers }
+                transliterationsByBundle.getOrPut(manifest.id) { mutableMapOf() }[probe] = localAids
+                val prayers = prayerOverrides.getOrPut(probe) { mutableMapOf() }
+                val readingAids = prayerTransliterations.getOrPut(probe) { mutableMapOf() }
+                for ((key, text) in localPrayers) {
+                    val prayerKey = keyToPrayerKey(key) ?: continue
+                    prayers[prayerKey] = text
+                    val readingAid = localAids[key]
+                    if (readingAid != null) readingAids[prayerKey] = readingAid else readingAids.remove(prayerKey)
+                }
             }
+            if (content.mysteries.isNotEmpty()) bucketLanguages.add(language)
 
             // Mysteries merge whenever a bundle ships any — `hasCatalog` strictly means "has a
             // catalog.json authoring file" (the Rosary), not "may contribute mystery text":

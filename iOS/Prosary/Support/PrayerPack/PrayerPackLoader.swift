@@ -45,6 +45,12 @@ private struct PackContent: Decodable {
   let mysteries: [String: MysteryTextOverride]
   /// Optional reading aid (v0.7): prayer key → the same text in another script.
   let transliterations: [String: String]?
+  let prayerTraditionByKey: [String: String]?
+
+  enum CodingKeys: String, CodingKey {
+    case prayers, mysteries, transliterations
+    case prayerTraditionByKey = "$prayerTraditionByKey"
+  }
 }
 
 /// One entry in a generic devotion's `devotion.json` — a step of the flat "steps" type, an
@@ -528,6 +534,9 @@ enum PrayerPackStore {
   /// "trisagionAcclamation"), which is how a generic devotion's `devotion.json` resolves
   /// bundle-local body text. See `resolveBodyText`.
   private static var rawContentByBundle: [String: [String: [String: String]]] = [:]
+  /// Actual prayer/mystery buckets, distinct from manifest language promises and including
+  /// content-only tradition codes. Used when choosing a compatible session language.
+  private static var contentCodesByBundle: [String: Set<String>] = [:]
   /// bundleId → language → prayer key → transliterated text (v0.7 reading aid).
   private static var transliterationsByBundle: [String: [String: [String: String]]] = [:]
   private static var definitionByBundle: [String: CustomDevotionDefinition] = [:]
@@ -715,18 +724,21 @@ enum PrayerPackStore {
     return infoByBundle[bundleId]
   }
 
-  /// The language a session actually prays a bundle in: the chosen (or app-default) language
-  /// when the bundle ships it, else the bundle's own first (manifest-order) language — never a
-  /// language the bundle lacks, which would degrade bundle-local text into fallback chains or
-  /// raw keys.
+  /// Select a declared language using the actual content buckets. Sparse overlays keep their
+  /// existing eligibility rules; the internal Vicariate code never becomes a saved choice.
   static func effectiveLanguage(for bundleId: String, chosen rawChoice: String?) -> String {
     let resolved = LanguageCatalog.resolve(rawChoice ?? LanguageCatalog.defaultSentinel).code
     let available = info(for: bundleId)?.languages ?? []
     if available.isEmpty { return resolved }
-    for code in LanguageCatalog.fallbackChain(for: resolved) {
-      if available.contains(code) {
-        return code == LanguageCatalog.baseLanguage(of: resolved) ? resolved : code
-      }
+    for code in LanguageCatalog.contentFallbackChain(for: resolved) {
+      let declaration = code == LanguageCatalog.vicariateContentCode ? "he" : code
+      let eligible = available.contains(declaration)
+        || (code == "he-x-gamliel" && available.contains("he"))
+        || (code == "he" && available.contains("he-x-gamliel"))
+      let isHebrew = code == "he" || code == "he-x-gamliel" || code == LanguageCatalog.vicariateContentCode
+      guard eligible, !isHebrew || contentCodesByBundle[bundleId]?.contains(code) == true else { continue }
+      let selection = LanguageCatalog.selection(forContentCode: code, requested: resolved)
+      return code == LanguageCatalog.baseLanguage(of: resolved) && code != "he" ? resolved : selection
     }
     return available[0]
   }
@@ -851,6 +863,7 @@ enum PrayerPackStore {
     optionsByBundle[id] = nil
     audioTracksByBundle[id] = nil
     rawContentByBundle[id] = nil
+    contentCodesByBundle[id] = nil
     transliterationsByBundle[id] = nil
     packUrlByBundle[id] = nil
     archiveByBundle[id] = nil
@@ -860,83 +873,80 @@ enum PrayerPackStore {
     }
   }
 
-  /// Follows the body's source through local, shared and fallback text. A missing reading aid
-  /// at the selected source stops resolution; another language's aid cannot replace it.
+  private struct ResolvedText {
+    let text: String
+    let transliteration: String?
+  }
+
+  /// Body and reading aid share one resolution path. An absent aid at the winning source
+  /// stays absent instead of borrowing one from another language or prayer tradition.
   static func transliteration(bundleId: String, languageCode: String?, key: String) -> String? {
-    ensureLoaded()
-    let chain = LanguageCatalog.fallbackChain(for: languageCode)
-    let requested = chain.first ?? LanguageCatalog.defaultCode
-    if key == PrayerKey.signumCrucis.rawValue,
-       (LanguageCatalog.baseLanguage(of: requested) ?? requested) == "arc",
-       AramaicSignOfCrossForm.isSystemWideActive,
-       AramaicSignOfCrossForm.current == AramaicSignOfCrossForm.formB {
-      return transliterationsByBundle["rosary"]?["arc"]?["signumCrucisFormB"]
-    }
-    let requestedCodes = [requested, LanguageCatalog.baseLanguage(of: requested)].compactMap { $0 }
-    for code in requestedCodes where rawContentByBundle[bundleId]?[code]?[key] != nil {
-      return transliterationsByBundle[bundleId]?[code]?[key]
-    }
-    if sharedPrayerTitleKeys.contains(key) {
-      for code in requestedCodes where rawContentByBundle["rosary"]?[code]?[key] != nil {
-        return transliterationsByBundle["rosary"]?[code]?[key]
-      }
-    }
-    let prayerKey = key == "signumCrucisFormB" ? PrayerKey.signumCrucis : PrayerKey(rawValue: key)
-    if let prayerKey {
-      for code in chain {
-        if prayerOverride(languageCode: code, key: prayerKey) != nil {
-          if prayerKey == .signumCrucis, code == "arc",
-             AramaicSignOfCrossForm.isSystemWideActive,
-             AramaicSignOfCrossForm.current == AramaicSignOfCrossForm.formB {
-            return transliterationsByBundle["rosary"]?["arc"]?["signumCrucisFormB"]
-          }
-          return prayerTransliterations[code]?[prayerKey]
-        }
-        if PrayerTranslations.byLanguage[code]?[prayerKey] != nil { return nil }
-      }
-      return nil
-    }
-    for code in chain where !requestedCodes.contains(code) {
-      if rawContentByBundle[bundleId]?[code]?[key] != nil {
-        return transliterationsByBundle[bundleId]?[code]?[key]
-      }
-    }
-    return nil
+    resolvedText(bundleId: bundleId, languageCode: languageCode, key: key)?.transliteration
   }
 
   static func resolveBodyText(bundleId: String, languageCode: String?, key: String) -> String {
+    resolvedText(bundleId: bundleId, languageCode: languageCode, key: key)?.text ?? key
+  }
+
+  static func resolveSharedPrayer(languageCode: String?, key: PrayerKey) -> String? {
+    resolvedText(bundleId: nil, languageCode: languageCode, key: key.rawValue)?.text
+  }
+
+  #if DEBUG
+  /// Imported shared overrides intentionally survive removal for the process lifetime. Tests
+  /// that exercise conflicting repository wording must restore the prior pool afterward.
+  static func preservingSharedTextForTesting(_ operation: () throws -> Void) rethrows {
     ensureLoaded()
-    let chain = LanguageCatalog.fallbackChain(for: languageCode)
-    let requested = chain.first ?? LanguageCatalog.defaultCode
-    if requested == "he-x-gamliel", key == "paterNosterTitle" { return "תפילת האדון" }
-    if key == PrayerKey.signumCrucis.rawValue,
-       (LanguageCatalog.baseLanguage(of: requested) ?? requested) == "arc",
-       AramaicSignOfCrossForm.isSystemWideActive,
-       AramaicSignOfCrossForm.current == AramaicSignOfCrossForm.formB,
-       let text = rawContentByBundle["rosary"]?["arc"]?["signumCrucisFormB"] {
-      return text
+    let prayers = prayerOverrides
+    let aids = prayerTransliterations
+    let mysteries = mysteryOverrides
+    defer {
+      prayerOverrides = prayers
+      prayerTransliterations = aids
+      mysteryOverrides = mysteries
     }
-    let requestedCodes = [requested, LanguageCatalog.baseLanguage(of: requested)].compactMap { $0 }
-    for code in requestedCodes {
-      if let text = rawContentByBundle[bundleId]?[code]?[key] { return text }
-    }
-    // These headings name the same shared main prayers in every devotion. Reuse the sourced
-    // Rosary heading before falling back to a different language in this bundle.
-    if sharedPrayerTitleKeys.contains(key) {
-      for code in requestedCodes {
-        if let text = rawContentByBundle["rosary"]?[code]?[key] { return text }
+    try operation()
+  }
+  #endif
+
+  private static func localText(bundleId: String, contentCode: String, key: String) -> ResolvedText? {
+    guard let text = rawContentByBundle[bundleId]?[contentCode]?[key] else { return nil }
+    return ResolvedText(text: text, transliteration: transliterationsByBundle[bundleId]?[contentCode]?[key])
+  }
+
+  /// Each probe exhausts bundle-local, shared-heading and fixed-prayer sources before moving
+  /// on. A later native Vicariate prayer must not outrank earlier generic Hebrew pack text.
+  private static func resolvedText(bundleId: String?, languageCode: String?, key: String) -> ResolvedText? {
+    ensureLoaded()
+    let prayerKey = key == "signumCrucisFormB" ? PrayerKey.signumCrucis : PrayerKey(rawValue: key)
+    for code in LanguageCatalog.contentFallbackChain(for: languageCode) {
+      if key == PrayerKey.signumCrucis.rawValue, code == "arc",
+         AramaicSignOfCrossForm.isSystemWideActive,
+         AramaicSignOfCrossForm.current == AramaicSignOfCrossForm.formB,
+         let form = localText(bundleId: "rosary", contentCode: code, key: "signumCrucisFormB") {
+        return form
+      }
+      if let bundleId, let local = localText(bundleId: bundleId, contentCode: code, key: key) {
+        return local
+      }
+      if sharedPrayerTitleKeys.contains(key),
+         let shared = localText(bundleId: "rosary", contentCode: code, key: key) {
+        return shared
+      }
+      guard let prayerKey else { continue }
+      if let text = prayerOverride(languageCode: code, key: prayerKey) {
+        let alternate = prayerKey == .signumCrucis && code == "arc"
+          && AramaicSignOfCrossForm.isSystemWideActive
+          && AramaicSignOfCrossForm.current == AramaicSignOfCrossForm.formB
+          ? transliterationsByBundle["rosary"]?["arc"]?["signumCrucisFormB"]
+          : prayerTransliterations[code]?[prayerKey]
+        return ResolvedText(text: text, transliteration: alternate)
+      }
+      if let text = PrayerTranslations.nativeText(contentCode: code, key: prayerKey) {
+        return ResolvedText(text: text, transliteration: nil)
       }
     }
-    if key == "signumCrucisFormB" {
-      return PrayerTranslations.get(languageCode: languageCode, key: .signumCrucis)
-    }
-    if let prayerKey = PrayerKey(rawValue: key) {
-      return PrayerTranslations.get(languageCode: languageCode, key: prayerKey)
-    }
-    for code in chain where !requestedCodes.contains(code) {
-      if let text = rawContentByBundle[bundleId]?[code]?[key] { return text }
-    }
-    return key
+    return nil
   }
 
   private static func ensureLoaded() {
@@ -1024,25 +1034,23 @@ enum PrayerPackStore {
       guard let contentData = try? controlData("content/\(language).json", in: zip) else { continue }
       let content = try decoder.decode(PackContent.self, from: contentData)
 
-      var rawContent = rawContentByBundle[manifest.id]?[language] ?? [:]
-      var prayers = prayerOverrides[language] ?? [:]
       for (key, text) in content.prayers {
-        rawContent[key] = text
+        let code = language == "he" && content.prayerTraditionByKey?[key] == "vicariate"
+          ? LanguageCatalog.vicariateContentCode : language
+        contentCodesByBundle[manifest.id, default: []].insert(code)
+        rawContentByBundle[manifest.id, default: [:]][code, default: [:]][key] = text
+        transliterationsByBundle[manifest.id, default: [:]][code, default: [:]][key] = content.transliterations?[key]
         guard let prayerKey = PrayerKey(rawValue: key) else { continue }
-        prayers[prayerKey] = text
-        prayerTransliterations[language, default: [:]][prayerKey] = content.transliterations?[key]
+        prayerOverrides[code, default: [:]][prayerKey] = text
+        prayerTransliterations[code, default: [:]][prayerKey] = content.transliterations?[key]
       }
-      rawContentByBundle[manifest.id, default: [:]][language] = rawContent
-      if let transliterations = content.transliterations, !transliterations.isEmpty {
-        transliterationsByBundle[manifest.id, default: [:]][language] = transliterations
-      }
-      prayerOverrides[language] = prayers
 
       // Mysteries merge whenever a bundle ships any — `hasCatalog` strictly means "has a
       // catalog.json authoring file" (the Rosary), not "may contribute mystery text": generic
       // rosary-type devotions (Seven Sorrows, Franciscan Crown) ship their per-decade texts in
       // the mysteries map without any catalog.json.
       guard !content.mysteries.isEmpty else { continue }
+      contentCodesByBundle[manifest.id, default: []].insert(language)
       var mysteries = mysteryOverrides[language] ?? [:]
       for (key, text) in content.mysteries {
         mysteries[key] = mysteries[key]?.merging(text) ?? text

@@ -13,8 +13,8 @@ public sealed record LanguageOption(string Code, string NativeName, bool IsRight
 /// every lookup falls back to if a translation is missing in the chosen language.</summary>
 public static class LanguageCatalog
 {
-    /// <summary>"he-x-gamliel" → "he": community variants overlay their base language — the
-    /// resolve chains try the exact code first, then this. Null when there is no subtag.</summary>
+    /// <summary>Extract a language for picker/typography purposes. Content resolution treats
+    /// Mission and Vicariate Hebrew as independently ordered traditions.</summary>
     public static string? BaseLanguage(string code)
     {
         var dash = code.IndexOf('-');
@@ -22,6 +22,8 @@ public static class LanguageCatalog
     }
 
     public const string DefaultCode = "la";
+    /// <summary>Internal content bucket only; stored Vicariate selections remain "he".</summary>
+    public const string VicariateContentCode = "he-x-vicariate";
 
     /// <summary>Sentinel stored in a favorite's LanguageCode meaning "follow the app-level default
     /// setting" (see <see cref="AppSettings.DefaultLanguageCode"/>).</summary>
@@ -54,13 +56,16 @@ public static class LanguageCatalog
     public static string SelectingLanguage(string next, string current) =>
         next == "he" && PickerLanguageCode(current) == "he" ? current : next;
 
-    public static IReadOnlyList<string> PublicFallbackOrder =>
-        FallbackOrder.Select(PickerLanguageCode).Distinct().ToList();
-
-    public static IReadOnlyList<string> ExpandFallbackOrder(IEnumerable<string> publicOrder) =>
-        publicOrder.SelectMany(code => code == "he"
-            ? FallbackOrder.Where(raw => PickerLanguageCode(raw) == "he")
-            : [code]).Distinct().ToList();
+    /// <summary>Every stored fallback code has its own row. Unlike an ordinary language
+    /// picker, this editor includes each Hebrew tradition so another language can sit between
+    /// them. The existing localized tradition names distinguish their otherwise identical names.</summary>
+    public static IReadOnlyList<LanguageOption> FallbackOptions => FallbackOrder.Select(code =>
+    {
+        var language = All.First(option => option.Code == code);
+        var tradition = Rites(code).FirstOrDefault(option => option.Code == code);
+        return tradition is null ? language
+            : language with { NativeName = $"{language.NativeName} — {tradition.NativeName}" };
+    }).ToList();
 
     /// <summary>One Hebrew language choice; the separately selected tradition keeps its
     /// historical raw content code, including for existing bundles and favorites.</summary>
@@ -95,11 +100,26 @@ public static class LanguageCatalog
         {
             if (string.IsNullOrEmpty(code) || result.Contains(code)) return;
             result.Add(code);
-            if (BaseLanguage(code) is { } baseCode && !result.Contains(baseCode)) result.Add(baseCode);
+            if (code != "he-x-gamliel" && BaseLanguage(code) is { } baseCode && !result.Contains(baseCode))
+                result.Add(baseCode);
         }
         Append(string.IsNullOrEmpty(requested) ? AppSettings.DefaultLanguageCode : requested);
         foreach (var code in FallbackOrder) Append(code);
         Append(DefaultCode);
+        return result;
+    }
+
+    /// <summary>Keep tradition order while generic Hebrew content participates once, at the
+    /// first Hebrew tradition encountered. A Mission miss never jumps ahead to the Vicariate.</summary>
+    public static IReadOnlyList<string> ContentFallbackChain(string? requested)
+    {
+        var result = new List<string>();
+        void Append(string code) { if (!result.Contains(code)) result.Add(code); }
+        foreach (var code in FallbackChain(requested))
+        {
+            Append(code == "he" ? VicariateContentCode : code);
+            if (code is "he" or "he-x-gamliel") Append("he");
+        }
         return result;
     }
 

@@ -118,14 +118,17 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
 
   const contentByLanguage = new Map<LanguageCode, Record<string, string>>();
   const transliterationsByLanguage = new Map<LanguageCode, Record<string, string>>();
+  let hebrewTraditions: Record<string, string> = {};
   for (const language of project.languages) {
     if (!zip.has(`content/${language}.json`)) continue;
     const content = (await zip.json(`content/${language}.json`)) as {
       prayers?: Record<string, string>;
       transliterations?: Record<string, string>;
+      $prayerTraditionByKey?: Record<string, string>;
     };
     contentByLanguage.set(language, content.prayers ?? {});
     transliterationsByLanguage.set(language, content.transliterations ?? {});
+    if (language === "he") hebrewTraditions = content.$prayerTraditionByKey ?? {};
   }
   const perLanguage = (key: string | undefined): PerLanguage => {
     const result: PerLanguage = {};
@@ -195,6 +198,8 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
       titleByLanguage: perLanguage(raw.titleKey),
       bodyByLanguage: common ? {} : perLanguage(raw.bodyKey),
       transliterationByLanguage: common ? {} : perLanguageTransliteration(raw.bodyKey),
+      hebrewTitleTradition: raw.titleKey && hebrewTraditions[raw.titleKey] === "vicariate" ? "vicariate" : undefined,
+      hebrewBodyTradition: !common && raw.bodyKey && hebrewTraditions[raw.bodyKey] === "vicariate" ? "vicariate" : undefined,
       image,
       isScripture: raw.isScripture === true,
       repeat: raw.repeat,

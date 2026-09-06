@@ -20,8 +20,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.dkaluta.prosary.R
-import com.dkaluta.prosary.content.PrayerKey
-import com.dkaluta.prosary.content.PrayerTranslations
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.JesusPrayerOptions
 import com.dkaluta.prosary.models.JesusPrayerProgress
@@ -134,7 +132,7 @@ fun JesusPrayerFlowScreen(
     val currentStep = if (hasLoaded) {
         RosaryStep(
             title = stringResource(R.string.kind_jesus_prayer),
-            body = PrayerTranslations.get(languageCode, PrayerKey.OratioIesu),
+            body = PrayerPackStore.resolveBodyText("rosary", languageCode, "oratioIesu"),
             transliteratedBody = PrayerPackStore.transliteration("rosary", languageCode, "oratioIesu"),
             imageOverrideKey = "christ_pantocrator",
         )

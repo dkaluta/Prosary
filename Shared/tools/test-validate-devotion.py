@@ -65,7 +65,8 @@ def check_content_rejects(label: str, mutate, expected: str, language: str = "en
         work = Path(tmp) / "bundle"
         shutil.copytree(FIXTURE, work)
         path = work / "content" / f"{language}.json"
-        content = json.loads(path.read_text(encoding="utf-8"))
+        source = path if path.exists() else work / "content" / "en.json"
+        content = json.loads(source.read_text(encoding="utf-8"))
         mutate(content)
         path.write_text(json.dumps(content, ensure_ascii=False), encoding="utf-8")
         code, output = run(work)
@@ -214,6 +215,34 @@ def main() -> int:
         "unresolved key 'collectNoSuchThing'")
 
     # --- Content overlays: partial mystery fields and citation punctuation --------------------
+    check_content_rejects(
+        "a tradition annotation outside Hebrew",
+        lambda c: c.update({"$prayerTraditionByKey": {"magnificat": "vicariate"}}),
+        "only supported in content/he.json",
+    )
+    check_content_rejects(
+        "a tradition annotation with no prayer",
+        lambda c: c.update({"$prayerTraditionByKey": {"absent": "vicariate"}}),
+        "must name this file's own prayer key", language="he",
+    )
+    check_content_rejects(
+        "an unsupported Hebrew tradition annotation",
+        lambda c: c.update({"$prayerTraditionByKey": {"magnificat": "unknown"}}),
+        "unsupported tradition", language="he",
+    )
+    check_content_rejects(
+        "a malformed Hebrew tradition annotation",
+        lambda c: c.update({"$prayerTraditionByKey": ["magnificat"]}),
+        "must be a map", language="he",
+    )
+    with tempfile.TemporaryDirectory() as tmp:
+        work = Path(tmp) / "bundle"
+        shutil.copytree(FIXTURE, work)
+        content = json.loads((work / "content/en.json").read_text())
+        content["$prayerTraditionByKey"] = {"magnificat": "vicariate"}
+        (work / "content/he.json").write_text(json.dumps(content, ensure_ascii=False))
+        check_valid(work, "explicit Vicariate key beside generic Hebrew keys")
+
     check_content_rejects(
         "a citation range written with a hyphen",
         lambda c: c["prayers"].update(

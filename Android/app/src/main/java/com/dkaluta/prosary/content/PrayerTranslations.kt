@@ -34,7 +34,7 @@ object PrayerTranslations {
     }
 
     fun get(languageCode: String?, key: PrayerKey): String {
-        for (code in com.dkaluta.prosary.models.LanguageCatalog.fallbackChain(languageCode)) {
+        for (code in LanguageCatalog.contentFallbackChain(languageCode)) {
             PrayerPackStore.prayerOverride(code, key)?.let { return it }
             byLanguage[code]?.get(key)?.let { return it }
         }
@@ -42,12 +42,17 @@ object PrayerTranslations {
         return prayerTranslationsLatin[key] ?: key.name
     }
 
+    private val genericHebrewKeys = setOf(
+        PrayerKey.DecadeOrdinalFormat, PrayerKey.RepetitionCounterConnector, PrayerKey.FructusMysteriiLabel,
+    )
+
     val byLanguage: Map<String, Map<PrayerKey, String>> = mapOf(
         "la" to prayerTranslationsLatin,
         "en" to prayerTranslationsEnglish,
         "ar" to prayerTranslationsArabic,
-        "he" to prayerTranslationsHebrew,
-        // The Mission of St. Gamaliel's wording, overlaying plain Hebrew key by key.
+        "he" to prayerTranslationsHebrew.filterKeys { it in genericHebrewKeys },
+        LanguageCatalog.hebrewVicariateContentCode to prayerTranslationsHebrew.filterKeys { it !in genericHebrewKeys },
+        // The Mission wording has its own slot in the user's fallback order.
         "he-x-gamliel" to prayerTranslationsHebrewGamaliel,
         "el" to prayerTranslationsGreek,
         "es" to prayerTranslationsSpanish,

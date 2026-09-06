@@ -549,8 +549,11 @@ fun SettingsScreen(onBack: () -> Unit) {
     if (showsLanguageFallbackOrder) {
         OrderEditor(
             titles = languageFallbackOrder.map { code ->
-                code to if (code == "he-x-gamliel") context.getString(R.string.prayer_tradition_mission)
-                else (LanguageCatalog.all.firstOrNull { it.code == code }?.nativeName ?: code)
+                code to when (code) {
+                    "he" -> "עברית — ${context.getString(R.string.prayer_tradition_vicariate)}"
+                    "he-x-gamliel" -> "עברית — ${context.getString(R.string.prayer_tradition_mission)}"
+                    else -> LanguageCatalog.all.firstOrNull { it.code == code }?.nativeName ?: code
+                }
             },
             dialogTitle = stringResource(R.string.settings_language_fallback_order_title),
             footer = stringResource(R.string.settings_language_fallback_order_footer),

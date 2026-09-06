@@ -14,7 +14,7 @@ import Foundation
 enum MysteryTranslations {
   @MainActor
   static func get(languageCode: String?, imageKey: String) -> MysteryText {
-    let chain = LanguageCatalog.fallbackChain(for: languageCode)
+    let chain = LanguageCatalog.contentFallbackChain(for: languageCode)
 
     func resolvedField(_ overrideValue: (MysteryTextOverride) -> String?,
                        _ builtInValue: (MysteryText) -> String) -> String? {

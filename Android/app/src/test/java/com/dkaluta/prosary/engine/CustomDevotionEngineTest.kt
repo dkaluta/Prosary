@@ -721,8 +721,8 @@ class CustomDevotionEngineTest {
         }
     }
 
-    /** The Mission of St. Gamaliel's wording overlays plain Hebrew key by key — their Creed is
-     * the Nicene one, and anything they have not sent still reads in the app's Hebrew. */
+    /** The Mission keeps its sourced prayers; generic Hebrew mysteries stay at its slot,
+     * while missing specific prayers continue through the configured language order. */
     @Test
     fun gamalielVariantOverlaysHebrew() {
         val variant = steps("rosary", language = "he-x-gamliel", customOptions = mapOf("apostlesCreed" to "true"))
@@ -741,9 +741,11 @@ class CustomDevotionEngineTest {
         assertTrue(variant.any { it.title == "השבח לאב" })
         assertTrue(hebrew.any { it.title == "כבוד לאב" })
 
-        // Not sent by the Mission: the Fatima prayer still reads in the app's Hebrew.
-        fun fatima(list: List<RosaryStep>) = list.firstOrNull { it.title.contains("הו ישוע") }?.body
-        assertEquals(fatima(hebrew), fatima(variant))
+        // The Mission has no Fatima wording. The default precedence places English before
+        // the Vicariate, so this specific prayer follows that order rather than jumping to it.
+        val fallbackFatima = PrayerPackStore.resolveBodyText("rosary", "en", "oratioFatimae")
+        assertTrue(variant.any { it.body == fallbackFatima })
+        assertNotEquals(PrayerPackStore.resolveBodyText("rosary", "he", "oratioFatimae"), fallbackFatima)
 
         // The mysteries are announced in Hebrew too. The Mission ships no mystery texts of its
         // own, and the announcement is the one step whose body is quoted Scripture — before the
@@ -783,12 +785,12 @@ class CustomDevotionEngineTest {
     }
 
     @Test
-    fun languageFallbackOrderKeepsBaseFirstAndLatinLast() {
+    fun languageFallbackOrderKeepsHebrewTraditionsInTheirOwnSlotsAndLatinLast() {
         val original = AppSettings.languageFallbackOrder
         try {
             AppSettings.setLanguageFallbackOrder(listOf("ru", "en", "ar", "he", "he-x-gamliel", "arc", "el", "es", "tl", "la"))
             val chain = LanguageCatalog.fallbackChain("he-x-gamliel")
-            assertEquals(listOf("he-x-gamliel", "he", "ru", "en"), chain.take(4))
+            assertEquals(listOf("he-x-gamliel", "ru", "en", "ar", "he"), chain.take(5))
             assertEquals("la", chain.last())
         } finally {
             AppSettings.setLanguageFallbackOrder(original)

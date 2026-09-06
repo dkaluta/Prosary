@@ -69,6 +69,8 @@ class PrayerTranslationsCompletenessTest {
             if (key in notYetUsedByAnyDevotion) continue
             for (language in allLanguages) {
                 val text = PrayerTranslations.byLanguage[language]?.get(key)
+                    ?: if (language == "he") PrayerTranslations.byLanguage[
+                        com.dkaluta.prosary.models.LanguageCatalog.hebrewVicariateContentCode]?.get(key) else null
                 assertNotNull("$key missing a $language translation", text)
                 assertFalse("$key has an empty $language translation", text.isNullOrEmpty())
             }
