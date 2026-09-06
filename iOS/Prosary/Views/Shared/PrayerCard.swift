@@ -15,6 +15,7 @@ struct PrayerCard: View {
   /// icon (v0.7). Nil for the fixed icon set.
   var iconGlyph: String? = nil
   let title: String
+  var translatedTitle: String? = nil
   let subtitle: String
   let accentColor: Color
   /// Shown as a chevron the caller can tap separately — a row whose devotion has presets prays
@@ -46,6 +47,12 @@ struct PrayerCard: View {
             Text(HebrewDisplayText.unpointed(title))
               .font(.headline)
               .foregroundStyle(.primary)
+            if let translatedTitle {
+              Text(HebrewDisplayText.unpointed(translatedTitle))
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+            }
             if !subtitle.isEmpty {
               Text(HebrewDisplayText.unpointed(subtitle))
                 .font(.subheadline)

@@ -25,8 +25,8 @@ enum FontRegistration {
     static let notoRashiHebrew = "NotoRashiHebrew-Regular"
     static let stamAshkenaz = "StamAshkenazCLM"
     static let stamSefarad = "StamSefaradCLM"
-    /// Only ever used for a Syriac transliteration — no language ships its own text
-    /// in Syriac letters. Variable font; its Regular instance is what registers.
+    /// Syriac-script prayer bodies and transliterations. Variable font; its Regular
+    /// instance is what registers.
     static let notoSansSyriac = "NotoSansSyriac-Regular"
     static let notoSansSyriacWestern = "NotoSansSyriacWestern-Regular"
     static let notoSansSyriacEastern = "NotoSansSyriacEastern-Regular"

@@ -91,6 +91,9 @@ struct PrayerEngine {
       "eternalRest": rosary.eternalRestForDeceased.rawValue,
       "antiphon": rosary.marianAntiphon.rawValue,
       "closingIntentions": rosary.includeClosingIntentions ? "true" : "false",
+      "closingPopeIntention": rosary.effectiveClosingPopeIntention ? "true" : "false",
+      "closingBishopIntention": rosary.effectiveClosingBishopIntention ? "true" : "false",
+      "closingDepartedIntention": rosary.effectiveClosingDepartedIntention ? "true" : "false",
       "stMichael": rosary.includeStMichaelPrayer ? "true" : "false",
       "finalSignOfCross": rosary.includeFinalSignOfCross ? "true" : "false",
       "imageStyle": rosary.mysteryImageStyle.rawValue,
@@ -337,6 +340,8 @@ struct PrayerEngine {
         rosary: rosaryOptions ?? RosaryOptions()))
     } else {
       let fruitLabel = PrayerTranslations.get(languageCode: languageCode, key: .fructusMysteriiLabel)
+      let alternateFruitLabel = PrayerPackStore.transliteration(bundleId: bundleId,
+        languageCode: languageCode, key: PrayerKey.fructusMysteriiLabel.rawValue) ?? fruitLabel
       let majorBody = resolve(decades.majorStep.bodyKey)
       let minorBody = resolve(decades.minorStep.bodyKey)
       let majorTransliteration = PrayerPackStore.transliteration(
@@ -369,7 +374,7 @@ struct PrayerEngine {
           if !mysteryText.fruit.isEmpty {
             body += "\n\n\(fruitLabel): \(mysteryText.fruit)"
             transliteratedBody = transliteratedBody.map {
-              "\($0)\n\n\(fruitLabel): \(mysteryText.fruit)"
+              "\($0)\n\n\(alternateFruitLabel): \(mysteryText.fruit)"
             }
           }
           steps.append(RosaryStep(
@@ -424,6 +429,8 @@ struct PrayerEngine {
 
     let groups = resolveMysteryGroups(rosary: rosary)
     let fruitLabel = PrayerTranslations.get(languageCode: languageCode, key: .fructusMysteriiLabel)
+    let alternateFruitLabel = PrayerPackStore.transliteration(bundleId: bundleId,
+      languageCode: languageCode, key: PrayerKey.fructusMysteriiLabel.rawValue) ?? fruitLabel
     let majorBody = resolve(decades.majorStep.bodyKey)
     let minorBody = resolve(decades.minorStep.bodyKey)
     let majorTransliteration = PrayerPackStore.transliteration(
@@ -460,7 +467,7 @@ struct PrayerEngine {
         if !mysteryText.fruit.isEmpty {
           body += "\n\n\(fruitLabel): \(mysteryText.fruit)"
           transliteratedBody = transliteratedBody.map {
-            "\($0)\n\n\(fruitLabel): \(mysteryText.fruit)"
+            "\($0)\n\n\(alternateFruitLabel): \(mysteryText.fruit)"
           }
         }
 

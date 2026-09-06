@@ -41,13 +41,20 @@ enum class PrayerKind {
             Custom -> emptyMap()
         }
 
-    fun displayName(context: android.content.Context): String {
-        val prayerCode = LanguageCatalog.resolve(null).code
-        namesByPrayerLanguage[prayerCode]?.let { return it }
-        LanguageCatalog.baseLanguage(prayerCode)?.let { base ->
-            namesByPrayerLanguage[base]?.let { return it }
-        }
-        return context.getString(displayNameRes)
+    fun displayName(context: android.content.Context): String = context.getString(displayNameRes)
+
+    fun cardTitle(context: android.content.Context, prayerLanguage: String = LanguageCatalog.resolve(null).code): PrayerCardTitle {
+        val prayerCode = LanguageCatalog.uiLanguageCode(prayerLanguage)
+        val base = LanguageCatalog.baseLanguage(prayerCode) ?: prayerCode
+        val prayerName = if (this == Rosary) {
+            com.dkaluta.prosary.content.prayerpack.PrayerPackStore.info("rosary")?.displayNameIn(prayerCode)
+        } else null
+        val translatedContext = com.dkaluta.prosary.content.today.TodayTranslationLanguage.localizedContext(context, base)
+        return PrayerCardTitle.resolve(
+            displayName(context),
+            prayerName ?: namesByPrayerLanguage[prayerCode] ?: namesByPrayerLanguage[base]
+                ?: translatedContext.getString(displayNameRes),
+        )
     }
 
     /** Default name suggested when the user creates a new favorite of this kind. */

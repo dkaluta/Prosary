@@ -1,3 +1,4 @@
+using Prosary.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -32,6 +33,20 @@ public sealed partial class RosaryPrayerPage : Page
     {
         ViewModel = App.Services.GetRequiredService<RosaryViewModel>();
         InitializeComponent();
+        ViewModel.OfferLitany = async () =>
+        {
+            var dialog = new ContentDialog
+            {
+                XamlRoot = XamlRoot,
+                Title = Loc.Tr("rosary_litany_prompt", "Continue with the Litany of the Blessed Virgin Mary?"),
+                PrimaryButtonText = Loc.Tr("rosary_pray_litany", "Pray the Litany"),
+                CloseButtonText = Loc.Tr("common_finish", "Finish"),
+                DefaultButton = ContentDialogButton.Close,
+            };
+            return await dialog.ShowAsync() == ContentDialogResult.Primary;
+        };
+        Loaded += (_, _) => { AppSettings.TypographyChanged += OnTypographyChanged; OnTypographyChanged(); };
+        Unloaded += (_, _) => AppSettings.TypographyChanged -= OnTypographyChanged;
         SizeChanged += OnSizeChanged;
         ActualThemeChanged += OnActualThemeChanged;
     }
@@ -94,30 +109,13 @@ public sealed partial class RosaryPrayerPage : Page
         }
     }
 
-    private void BuildLanguageFlyout()
-    {
-        LanguageFlyout.Items.Clear();
-        var choices = new List<(string Raw, string Name)>
+    private void BuildLanguageFlyout() =>
+        Prosary.Controls.PrayerLanguageMenu.Populate(LanguageFlyout, ViewModel.Languages,
+            ViewModel.CurrentLanguageRaw, async raw =>
         {
-            (LanguageCatalog.DefaultSentinel, Loc.Tr("flow_app_setting", "App setting")),
-        };
-        choices.AddRange(ViewModel.Languages.Select(language => (language.Code, language.NativeName)));
-        foreach (var (raw, name) in choices)
-        {
-            var item = new ToggleMenuFlyoutItem
-            {
-                Text = name,
-                IsChecked = ViewModel.CurrentLanguageRaw == raw,
-            };
-            var picked = raw;
-            item.Click += async (_, _) =>
-            {
-                await ViewModel.SelectLanguageAsync(picked);
-                BuildLanguageFlyout();
-            };
-            LanguageFlyout.Items.Add(item);
-        }
-    }
+            await ViewModel.SelectLanguageAsync(raw);
+            BuildLanguageFlyout();
+        });
 
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
     {
@@ -135,4 +133,12 @@ public sealed partial class RosaryPrayerPage : Page
     {
         ViewModel.HasRoomForSingleMinorColumn = e.NewSize.Height >= WideMinorColumnHeightThreshold;
     }
+    private void OnTypographyChanged() => ViewModel.RefreshTypography();
+
+    // UI navigation stays independent of the displayed prayer's writing system.
+    public FlowDirection NavigationFlowDirection => UiLanguageCatalog.IsRightToLeft(UiLanguageCatalog.Current)
+        ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+    public string PreviousNavigationGlyph => PrayerNavigation.PreviousGlyph(NavigationFlowDirection == FlowDirection.RightToLeft);
+    public string NextNavigationGlyph => PrayerNavigation.NextGlyph(NavigationFlowDirection == FlowDirection.RightToLeft);
+
 }

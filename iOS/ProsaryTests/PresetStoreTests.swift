@@ -44,6 +44,22 @@ final class PresetStoreTests: XCTestCase {
 
   // MARK: - all()
 
+  func testPresetEntryKeepsIndependentClosingIntentionsAndLegacyDefaults() {
+    var prayer = Prayer(rosary: RosaryOptions(includeClosingIntentions: true))
+    let oldRow = PresetEntry(prayer: prayer)
+    XCTAssertNil(oldRow.toPrayer().rosary.includeClosingPopeIntention)
+    XCTAssertTrue(oldRow.toPrayer().rosary.effectiveClosingPopeIntention)
+    prayer.rosary.includeClosingPopeIntention = false
+    prayer.rosary.includeClosingBishopIntention = true
+    prayer.rosary.includeClosingDepartedIntention = false
+    oldRow.update(from: prayer)
+    let saved = oldRow.toPrayer().rosary
+    XCTAssertFalse(saved.effectiveClosingPopeIntention)
+    XCTAssertTrue(saved.effectiveClosingBishopIntention)
+    XCTAssertFalse(saved.effectiveClosingDepartedIntention)
+    XCTAssertEqual(PresetEntry(prayer: prayer).toPrayer().rosary, saved)
+  }
+
   func testAllReturnsSortedByName() async throws {
     let store = makeStore([
       Prayer(name: "Zebra", kind: .rosary),

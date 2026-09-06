@@ -85,7 +85,7 @@ private object Routes {
     const val JesusPrayerFlow = "jesusPrayer/{target}"
     // Launches a generic (bundle-driven) devotion with no existing favorite — devotionId is the
     // bundle id, e.g. "trisagion". See PrayerKind.Custom.
-    const val Custom = "custom/{devotionId}"
+    const val Custom = "custom/{devotionId}?variantId={variantId}&languageCode={languageCode}"
     // The basic prayers on their own (Erez, 2026-08-07) — the list, and one prayer as a
     // single-step flow. The id is a BasicPrayerCatalog id, not a bundle id.
     const val BasicPrayers = "basicPrayers"
@@ -101,7 +101,13 @@ private object Routes {
     }
     fun remindersOnlyEditor(prayerId: String) = "favorites/reminders/$prayerId"
     fun jesusPrayerFlow(target: String) = "jesusPrayer/$target"
-    fun custom(devotionId: String) = "custom/$devotionId"
+    fun custom(devotionId: String, variantId: String? = null, languageCode: String? = null): String {
+        val parameters = buildList {
+            variantId?.let { add("variantId=${android.net.Uri.encode(it)}") }
+            languageCode?.let { add("languageCode=${android.net.Uri.encode(it)}") }
+        }
+        return "custom/$devotionId" + if (parameters.isEmpty()) "" else "?${parameters.joinToString("&")}"
+    }
     fun basicPrayer(prayerId: String) = "basicPrayers/$prayerId"
 }
 
@@ -236,17 +242,24 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
                 onOpenJesusPrayerSetup = { navController.navigateSingleTop(Routes.JesusPrayerSetup) },
                 onOpenCustomDevotion = { devotionId -> navController.navigateSingleTop(Routes.custom(devotionId)) },
                 onOpenBasicPrayers = { navController.navigateSingleTop(Routes.BasicPrayers) },
+                onOpenBasicPrayer = { id -> navController.navigateSingleTop(Routes.basicPrayer(id)) },
             )
         }
 
         composable(
             route = Routes.Custom,
-            arguments = listOf(navArgument("devotionId") { type = NavType.StringType }),
+            arguments = listOf(
+                navArgument("devotionId") { type = NavType.StringType },
+                navArgument("variantId") { type = NavType.StringType; nullable = true; defaultValue = null },
+                navArgument("languageCode") { type = NavType.StringType; nullable = true; defaultValue = null },
+            ),
         ) { backStackEntry ->
             val devotionId = backStackEntry.arguments?.getString("devotionId")
             if (devotionId != null) {
                 CustomDevotionFlowScreen(
                     devotionId = devotionId,
+                    initialVariantId = backStackEntry.arguments?.getString("variantId"),
+                    initialLanguageCode = backStackEntry.arguments?.getString("languageCode"),
                     onBack = { navController.popBackStack() },
                     onOpenDevotion = { suggested ->
                         navController.popBackStack()
@@ -285,7 +298,11 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
         composable(Routes.RosaryQuickPray) {
             val prayer = AdHocRosaryHolder.prayer
             if (prayer != null) {
-                RosaryFlowScreen(prayer = prayer, onBack = { navController.popBackStack() })
+                RosaryFlowScreen(prayer = prayer, onBack = { navController.popBackStack() },
+                    onOpenDevotion = { id, variant, language ->
+                        navController.popBackStack()
+                        navController.navigateSingleTop(Routes.custom(id, variant, language))
+                    })
             }
         }
 
@@ -352,7 +369,11 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
         ) { backStackEntry ->
             val id = backStackEntry.arguments?.getString("id")
             if (id != null) {
-                PrayerDispatchScreen(prayerId = id, onBack = { navController.popBackStack() })
+                PrayerDispatchScreen(prayerId = id, onBack = { navController.popBackStack() },
+                    onOpenDevotion = { devotionId, variant, language ->
+                        navController.popBackStack()
+                        navController.navigateSingleTop(Routes.custom(devotionId, variant, language))
+                    })
             }
         }
     }

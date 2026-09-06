@@ -1,0 +1,171 @@
+{
+  "prayers": {
+    "symbolumApostolorum": "Creo en Dios, Padre Todopoderoso, Creador del cielo y de la tierra.\nCreo en Jesucristo, su único Hijo, Nuestro Señor,\nque fue concebido por obra y gracia del Espíritu Santo, nació de Santa María Virgen,\npadeció bajo el poder de Poncio Pilato, fue crucificado, muerto y sepultado,\ndescendió a los infiernos, al tercer día resucitó de entre los muertos,\nsubió a los cielos y está sentado a la derecha de Dios, Padre todopoderoso.\nDesde allí ha de venir a juzgar a vivos y muertos.\nCreo en el Espíritu Santo, la santa Iglesia católica, la comunión de los santos,\nel perdón de los pecados, la resurrección de la carne y la vida eterna. Amén.",
+    "oratioFatimae": "¡Oh Jesús mío, perdónanos, líbranos del fuego del infierno, lleva al cielo a todas las almas especialmente a las más necesitadas!",
+    "oratioIesu": "¡Jesús, Cristo, Hijo de Dios, Señor, ten piedad de nosotros, pecadores!",
+    "sanctusMichael": "San Miguel Arcángel, defiéndenos en la lucha.\nSé nuestro amparo contra la perversidad y asechanzas del demonio.\nQue Dios manifieste sobre él su poder, es nuestra humilde súplica.\nY tú, oh Príncipe de la Milicia Celestial, con el poder que Dios te ha conferido,\narroja al infierno a Satanás, y a los demás espíritus malignos que vagan por el mundo\npara la perdición de las almas. Amén.",
+    "almaRedemptorisMater": "Madre del Redentor, virgen fecunda,\npuerta del cielo siempre abierta,\nestrella del mar,\nven a librar al pueblo que tropieza\ny se quiere levantar.\nAnte la admiración de cielo y tierra,\nengendraste a tu Santo creador,\ny permaneces siempre virgen.\nRecibe el saludo del ángel Gabriel,\ny ten piedad de nosotros, pecadores.",
+    "aveReginaCaelorum": "Salve, Reina de los cielos\ny Señora de los ángeles;\nsalve raíz, salve puerta,\nque dio paso a nuestra luz.\nAlégrate, virgen gloriosa,\nentre todas la más bella;\nsalve, agraciada doncella,\nruega a Cristo por nosotros.",
+    "almaRedemptorisMaterTitle": "Madre del Redentor",
+    "aveReginaCaelorumTitle": "Salve, Reina de los cielos",
+    "oratioFatimaeTitle": "Oración de Fátima",
+    "symbolumApostolorumTitle": "Símbolo de los Apóstoles",
+    "sanctusMichaelTitle": "San Miguel Arcángel",
+    "signumCrucisTitle": "Señal de la cruz",
+    "paterNosterTitle": "Padre nuestro",
+    "aveMariaTitle": "Ave María",
+    "gloriaPatriTitle": "Gloria al Padre",
+    "requiemAeternamTitle": "Por los fieles difuntos",
+    "decadeOrdinalNoun": "Misterio",
+    "presenterCombinedTitle": "Ave María y Gloria",
+    "invitatoryTitle": "Dios mío, ven en mi auxilio",
+    "invitatoryBody": "Dios mío, ven en mi auxilio.\n**Señor, date prisa en socorrerme.**\n\nGloria al Padre, y al Hijo, y al Espíritu Santo.\nComo era en el principio, ahora y siempre,\npor los siglos de los siglos. Amén. Aleluya.",
+    "invitatoryBodyLent": "Dios mío, ven en mi auxilio.\n**Señor, date prisa en socorrerme.**\n\nGloria al Padre, y al Hijo, y al Espíritu Santo.\nComo era en el principio, ahora y siempre,\npor los siglos de los siglos. Amén.",
+    "requiescantInPace": "Descansen en paz.\n**Amén.**",
+    "intentioPontificis": "Por las intenciones del Santo Padre y las necesidades de la Iglesia y de la nación.",
+    "intentioOrdinarii": "Por el obispo de esta diócesis y sus intenciones.",
+    "intentioAnimarum": "Por las santas almas del purgatorio.",
+    "closingPopeIntentionTitle": "Oraciones finales por el Papa",
+    "closingBishopIntentionTitle": "Oraciones finales por el obispo",
+    "closingDepartedIntentionTitle": "Oraciones finales por los fieles difuntos",
+    "animaChristiTitle": "Alma de Cristo"
+  },
+  "$comment": "Published Spanish fixed prayers fill the former per-key Latin fallbacks. Creed: Vatican Compendium profession of faith (not only its appendix); Fatima: Sanctuary of Fatima; Jesus Prayer: Pope Francis audience, 21 April 2021; Saint Michael: Vatican News; Marian antiphons: Basilica of Guadalupe. Source wrapping and capitalization are normalized; Ave Regina's printed 'entre todas las más bella' has its extra plural s removed. The invitatory follows the published Liturgy of the Hours. Descriptive headings and intention introductions are Prosary translations of the app's existing metadata. Mystery names and fruits are Prosary descriptive translations; Scripture is imported separately from Torres Amat.",
+  "$sources": {
+    "symbolumApostolorum": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_sp.html",
+    "oratioFatimae": "https://www.fatima.pt/es/pages/oraciones-de-fatima",
+    "oratioIesu": "https://www.vatican.va/content/francesco/es/audiences/2021/documents/papa-francesco_20210421_udienza-generale.html",
+    "sanctusMichael": "https://www.vaticannews.va/es/oraciones/san-miguel-arcangel.html",
+    "almaRedemptorisMater": "https://virgendeguadalupe.org.mx/oraciones/",
+    "aveReginaCaelorum": "https://virgendeguadalupe.org.mx/oraciones/",
+    "invitatoryBody": "https://www.liturgiadelashoras.com.ar/completas"
+  },
+  "mysteries": {
+    "joyful_01_annunciation": {
+      "title": "La Anunciación",
+      "fruit": "Humildad",
+      "description": "Estando ya Elisabeth en su sexto mes, envió Dios al ángel Gabriel á Nazareth, ciudad de Galilea, á una virgen desposada con cierto varon de la casa de David, llamado Joseph, y el nombre de la virgen era María. Y habiendo entrado el ángel á donde ella estaba, le dijo: Dios te salve ¡oh llena de gracia! el Señor es contigo: bendita tú eres entre todas las mugeres. Al oir tales palabras la virgen se turbo, y púsose á considerar que significaría una tal salutacion. Mas el ángel le dijo: ¡Oh Maria! no temas, porque has hallado gracia en los ojos de Dios. Sábete que has de concebir en tu seno, y parirás un hijo, á quien pondrás por nombre Jesus. Este será grande, y será llamado Hijo del Altísimo, al cual el Señor Dios dará el trono de su padre David; y reinará en la casa de Jacob eternamente, y su reino no tendrá fin. Pero Maria dijo al ángel: ¿Cómo ha de ser eso? pues yo no conozco ni jamás conoceré varon alguno. El ángel en respuesta le dijo: El Espíritu santo descenderá sobre ti, y la virtud del Altísimo te cubrirá con su sombra, ó fecundará. Por cuya causa el fruto santo que de tí nacerá, será llamado Hijo de Dios. Y ahí tienes á tu parienta Elisabeth, que en su vejez ha concebido tambien un hijo; y la que se llamaba estéril, hoy cuenta ya el sexto mes: porque para Dios nada es imposible. Entónces dijo Maria: He aquí la esclava del Señor, hágase en mi segun tu palabra. Y en seguida el ángel desapareciendo se retiró de su presencia.\n\n— San Lucas 1:26–38 (Torres Amat)"
+    },
+    "joyful_02_visitation": {
+      "title": "La Visitación",
+      "fruit": "Amor al prójimo",
+      "description": "Por aquellos dias partió María, y se fue apresuradamente a las montañas de Judea á una ciudad de la tribu de Judá; y habiendo entrado enla casa de Zachârías, saludó á Elisabeth. Lo mismo fue oir Elisabeth la salutacion de María que la criatura, ó el niño Juan, dió saltos de placer en su vientre; y Elisabeth se sintió llena del Espíritu santo; y exclamando en alta voz, dijo á María: Bendita tú eres entre todas las mugeres, y bendito es el fruto de tu vientre. Y ¿de dónde á mi tanto bien que venga la madre de mi Señor á visitarme? Pues lo mismo fue penetrar la voz de tu salutacion en mis oidos, que dar saltos de júbilo la criatura en mi vientre. ¡Oh bienaventurada tú que has creido! porque se cumplirán sin falta las cosas que se te han dicho de parte del Señor.\n\n— San Lucas 1:39–45 (Torres Amat)"
+    },
+    "joyful_03_nativity": {
+      "title": "El Nacimiento de Jesús",
+      "fruit": "Pobreza de espíritu",
+      "description": "Y sucedió que hallándose allí, le llegó la hora del parto. Y parió á su hijo primogénito, y envolvióle en pañales, y recostóle en un pesebre; porque no hubo lugar para ellos en el meson.\n\n— San Lucas 2:6–7 (Torres Amat)"
+    },
+    "joyful_04_presentation": {
+      "title": "La Presentación en el Templo",
+      "fruit": "Obediencia",
+      "description": "Cumplido asimismo el tiempo de la purificacion de la madre, segun la ley de Moysés, llevaron al niño á Jerusalem, para presentarle al Señor, como está escrito en la Ley del Señor: Todo varon que nazca el primero, será consagrado al Señor: y para presentar la ofrenda de un par de tórtolas, ó dos palominos, como está tambien ordenado en la Ley del Señor.\n\n— San Lucas 2:22–24 (Torres Amat)"
+    },
+    "joyful_05_finding_in_the_temple": {
+      "title": "El Niño Jesús perdido y hallado en el Templo",
+      "fruit": "Piedad",
+      "description": "Y al cabo de tres dias de haberle perdido, le hallaron en el Templo, sentado en medio de los doctores, que ora los escuchaba, ora les preguntaba. Y cuantos le oian, quedaban pasmados de su sabiduría y de sus respuestas. Al verle pues sus padres, quedaron maravillados. Y su madre le dijo: Hijo, ¿por qué te has portado así con nosotros? Mira cómo tu padre, y yo llenos de afliccion te hemos andado buscando. Y él les respondió: ¿Cómo es que me buscábais? ¿No sabíais que yo debo emplearme en las cosas que miran al servicio de mi Padre?\n\n— San Lucas 2:46–49 (Torres Amat)"
+    },
+    "sorrowful_01_agony_in_the_garden": {
+      "title": "La Oración en el Huerto",
+      "fruit": "Dolor por los pecados",
+      "description": "Y apartándose de ellos como la distancia de un tiro de piedra, hincadas las rodillas, hacia oracion, diciendo: Padre mio, si es de tu agrado, aleja de mi este cáliz: no obstante, no se haga mi voluntad, sino la tuya. En esto se le apareció un ángel del cielo, confortándole. Y entrando en agonía, oraba con mayor intension. Y vínole un sudor como de gotas de sangre que chorreaba hasta el suelo.\n\n— San Lucas 22:41–44 (Torres Amat)"
+    },
+    "sorrowful_02_scourging_at_the_pillar": {
+      "title": "La Flagelación",
+      "fruit": "Pureza",
+      "description": "Tomó entónces Pilato á Jesus, y mandó azotarle.\n\n— San Juan 19:1 (Torres Amat)"
+    },
+    "sorrowful_03_crowning_with_thorns": {
+      "title": "La Coronación de Espinas",
+      "fruit": "Fortaleza moral",
+      "description": "Y los soldados formaron una corona de espinas entretejidas, y se la pusieron sobre la cabeza; y le vistieron una ropa ó manto de púrpura. Y se arrimaban á él, y decian: Salve, ¡oh rey de los judíos! y dábanle de bofetadas.\n\n— San Juan 19:2–3 (Torres Amat)"
+    },
+    "sorrowful_04_carrying_of_the_cross": {
+      "title": "Jesús con la Cruz a Cuestas",
+      "fruit": "Paciencia",
+      "description": "Y llevando él mismo á cuestas su cruz, fue caminando ácia el sitio llamado el Calvario ú Osario, y en hebreo Gólgotha;\n\n— San Juan 19:17 (Torres Amat)"
+    },
+    "sorrowful_05_crucifixion": {
+      "title": "La Crucifixión",
+      "fruit": "Salvación",
+      "description": "Era ya casi la hora de sexta ó el medio dia, y las tinieblas cubrieron toda la tierra hasta la hora de nona. El sol se oscureció y el velo del Templo se rasgó por medio. Entonces Jesus clamando con una voz muy grande, dijo: Padre mio, en tus manos encomiendo mi espíritu. Y diciendo esto, espiró.\n\n— San Lucas 23:44–46 (Torres Amat)"
+    },
+    "glorious_01_resurrection": {
+      "title": "La Resurrección",
+      "fruit": "Fe",
+      "description": "Mas el ángel, dirigiéndose á las mugeres, les dijo: Vosotras no teneis que temer; que bien sé que venís en busca de Jesus, que fue crucificado: ya no está aquí, porque ha resucitado, segun predijo. Venid, y mirad el lugar donde estaba sepultado el Señor.\n\n— San Mateo 28:5–6 (Torres Amat)"
+    },
+    "glorious_02_ascension": {
+      "title": "La Ascensión",
+      "fruit": "Esperanza",
+      "description": "Dicho esto, se fue elevando á vista de ellos por los aires, hasta que una nube le encubrió á sus ojos. Y estando atentos á mirar cómo iba subiéndose al cielo, hé aquí que aparecieron cerca de ellos dos personages con vestiduras blancas, los cuales les dijeron: Varones de Galilea, ¿por qué estais ahí parados mirando al cielo? Este Jesus, que separándose de vosotros se ha subido al cielo, vendrá de la misma suerte que le acabais de ver subir allá.\n\n— Hechos 1:9–11 (Torres Amat)"
+    },
+    "glorious_03_descent_of_the_holy_spirit": {
+      "title": "La Venida del Espíritu Santo",
+      "fruit": "Sabiduría y amor de Dios",
+      "description": "cuando de repente sobrevino del cielo un ruido, como de viento impetuoso que soplaba, y llenó toda la casa donde estaban. Al mismo tiempo vieron aparecer unas como lenguas de fuego, que se repartieron y se asentaron sobre cada uno de ellos: entonces fueron llenados todos del Espíritu santo, y comenzaron á hablar en diversas lenguas las palabras que el Espíritu santo ponia en su boca.\n\n— Hechos 2:2–4 (Torres Amat)"
+    },
+    "glorious_04_assumption": {
+      "title": "La Asunción de María",
+      "fruit": "La gracia de una buena muerte",
+      "description": "En esto, apareció un gran prodigio en el cielo: Una muger vestida del sol, y la luna debajo de sus pies, y en su cabeza una corona de doce estrellas:\n\n— Apocalipsis 12:1 (Torres Amat)"
+    },
+    "glorious_05_coronation": {
+      "title": "La Coronación de María",
+      "fruit": "Confianza en la intercesión de María",
+      "description": "En esto, apareció un gran prodigio en el cielo: Una muger vestida del sol, y la luna debajo de sus pies, y en su cabeza una corona de doce estrellas:\n\n— Apocalipsis 12:1 (Torres Amat)"
+    },
+    "luminous_01_baptism": {
+      "title": "El Bautismo de Jesús",
+      "fruit": "Apertura al Espíritu Santo",
+      "description": "Bautizado pues Jesus, al instante que salió del agua, se le abrieron los cielos, y vió bajar al Espíritu de Dios á manera de paloma, y posar sobre él. Y oyóse una voz del cielo que decia: Este es mi querido Hijo, en quien tengo puesta toda mi complacencia.\n\n— San Mateo 3:16–17 (Torres Amat)"
+    },
+    "luminous_02_wedding_at_cana": {
+      "title": "Las Bodas de Caná",
+      "fruit": "A Jesús por María",
+      "description": "Díjoles Jesus: Llenad de agua aquellas hydrias. Y llenáronlas hasta arriba. Díceles despues Jesus: Sacad ahora en algun vaso, y llevadle al maestresala. Hiciéronlo así. Apenas probó el maestresala el agua convertida en vino, como él no sabia de dónde era, bien que lo sabian los sirvientes que la habian sacado; llamó al esposo, y le dijo: Todos sirven al principio el vino mejor; y cuando los convidados han bebido ya á satisfaccion, sacan el mas flojo: tú al contrario has reservado el buen vino para lo último. Así en Caná de Galilea hizo Jesus el primero de sus milagros, con que manifestó su gloria, y sus discípulos creyeron mas en él.\n\n— San Juan 2:7–11 (Torres Amat)"
+    },
+    "luminous_03_proclamation_of_the_kingdom": {
+      "title": "El Anuncio del Reino de Dios",
+      "fruit": "Arrepentimiento y confianza en Dios",
+      "description": "Pero despues que Juan fue puesto en la cárcel, vino Jesus a la alta Galilea, predicando el Evangelio del reino de Dios, y diciendo: Se ha cumplido ya el tiempo, y el reino de Dios está cerca: haced penitencia, y creed al Evangelio.\n\n— San Marcos 1:14–15 (Torres Amat)"
+    },
+    "luminous_04_transfiguration": {
+      "title": "La Transfiguración",
+      "fruit": "Deseo de santidad",
+      "description": "Seis dias despues tomó Jesus consigo á Pedro, y á Santiago, y a Juan su hermano, y subiendo con ellos solos á un alto monte, se trasfiguró en su presencia. De modo que su rostro se puso resplandeciente como el sol, y sus vestidos blancos como la nieve. Todavía estaba Pedro hablando, cuando una nube resplandeciente vino á cubrirlos. Y al mismo instante resonó desde la nube una voz que decia: Este es mi querido Hijo, en quien tengo todas mis complacencias: á el habeis de escuchar.\n\n— San Mateo 17:1–2, 5 (Torres Amat)"
+    },
+    "luminous_05_institution_of_the_eucharist": {
+      "title": "La Institución de la Eucaristía",
+      "fruit": "Adoración y amor a la Eucaristía",
+      "description": "Mientras estaban cenando, tomó Jesus el pan, y le bendijo y partió, y diósele á sus discípulos, diciendo: Tomad, y comed: este es mi cuerpo. Y tomando el cáliz dió gracias (le bendijo), y diósele, diciendo: Bebed todos de él. Porque esta es mi sangre que será el sello del nuevo Testamento, la cual será derramada por muchos para remision de los pecados.\n\n— San Mateo 26:26–28 (Torres Amat)"
+    }
+  },
+  "$scriptureImport": {
+    "prayerKeys": [],
+    "mysteryKeys": [
+      "glorious_01_resurrection",
+      "glorious_02_ascension",
+      "glorious_03_descent_of_the_holy_spirit",
+      "glorious_04_assumption",
+      "glorious_05_coronation",
+      "joyful_01_annunciation",
+      "joyful_02_visitation",
+      "joyful_03_nativity",
+      "joyful_04_presentation",
+      "joyful_05_finding_in_the_temple",
+      "luminous_01_baptism",
+      "luminous_02_wedding_at_cana",
+      "luminous_03_proclamation_of_the_kingdom",
+      "luminous_04_transfiguration",
+      "luminous_05_institution_of_the_eucharist",
+      "sorrowful_01_agony_in_the_garden",
+      "sorrowful_02_scourging_at_the_pillar",
+      "sorrowful_03_crowning_with_thorns",
+      "sorrowful_04_carrying_of_the_cross",
+      "sorrowful_05_crucifixion"
+    ]
+  },
+  "$scriptureSource": "Scripture imported from Félix Torres Amat's Spanish Bible (1836) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Torres Amat translated the Vulgate, so its chapter-and-verse is the same one these devotions cite and no versification map is needed. Spelling and accentuation are the 1836 printing's own. Old Testament readings are absent: only the New Testament volumes of it have been transcribed from the scans."
+}

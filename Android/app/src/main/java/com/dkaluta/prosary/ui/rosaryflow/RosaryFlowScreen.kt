@@ -6,6 +6,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.SkipNext
 import androidx.compose.material.icons.filled.SkipPrevious
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -17,6 +21,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalLayoutDirection
+import com.dkaluta.prosary.ui.shared.InterfaceNavigation
+import com.dkaluta.prosary.ui.shared.PrayerNavigation
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -39,7 +48,7 @@ import kotlinx.coroutines.launch
  * this screen no longer needs its own "resolve id, fall back to default" logic. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit) {
+fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit, onOpenDevotion: (String, String?, String?) -> Unit) {
     val services = LocalAppServices.current
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
@@ -54,6 +63,7 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit) {
     var languageMenuExpanded by remember(prayer.id) { mutableStateOf(false) }
     var pendingResume by remember(prayer.id) { mutableStateOf<PrayerRunProgress?>(null) }
     var runReady by remember(prayer.id) { mutableStateOf(false) }
+    var showsLitanyOffer by remember(prayer.id) { mutableStateOf(false) }
 
     LaunchedEffect(prayer.id, configurationSignature) {
         val saved = PrayerRunProgressStore.progress(context, runKey)
@@ -148,7 +158,23 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit) {
 
     fun finish() {
         PrayerRunProgressStore.clear(context, runKey)
-        onBack()
+        runReady = false
+        if (PrayerPackStore.definition("litanyOfLoreto") != null) showsLitanyOffer = true else onBack()
+    }
+
+    if (showsLitanyOffer) {
+        AlertDialog(
+            onDismissRequest = { showsLitanyOffer = false; onBack() },
+            title = { Text(stringResource(R.string.common_done)) },
+            text = { Text(stringResource(R.string.rosary_litany_offer)) },
+            confirmButton = { TextButton(onClick = {
+                showsLitanyOffer = false
+                onOpenDevotion("litanyOfLoreto", "afterRosary", languageCode)
+            }) { Text(stringResource(R.string.rosary_pray_litany)) } },
+            dismissButton = { TextButton(onClick = { showsLitanyOffer = false; onBack() }) {
+                Text(stringResource(R.string.common_finish))
+            } },
+        )
     }
 
     BackHandler(onBack = ::leave)
@@ -174,24 +200,29 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit) {
                     isWide = isWide,
                     hasRoomForSingleMinorColumn = hasRoomForSingleMinorColumn,
                 )
-                Row {
-                    IconButton(
-                        onClick = { previousMystery?.let { currentIndex = it } },
-                        enabled = previousMystery != null,
-                    ) {
-                        Icon(
-                            Icons.Filled.SkipPrevious,
-                            contentDescription = stringResource(R.string.flow_previous_mystery),
-                        )
-                    }
-                    IconButton(
-                        onClick = { nextMystery?.let { currentIndex = it } },
-                        enabled = nextMystery != null,
-                    ) {
-                        Icon(
-                            Icons.Filled.SkipNext,
-                            contentDescription = stringResource(R.string.flow_next_mystery),
-                        )
+                InterfaceNavigation {
+                    val iconScale = PrayerNavigation.iconScale(LocalLayoutDirection.current)
+                    Row {
+                        IconButton(
+                            onClick = { previousMystery?.let { currentIndex = it } },
+                            enabled = previousMystery != null,
+                        ) {
+                            Icon(
+                                Icons.Filled.SkipPrevious,
+                                modifier = Modifier.graphicsLayer { scaleX = iconScale },
+                                contentDescription = stringResource(R.string.flow_previous_mystery),
+                            )
+                        }
+                        IconButton(
+                            onClick = { nextMystery?.let { currentIndex = it } },
+                            enabled = nextMystery != null,
+                        ) {
+                            Icon(
+                                Icons.Filled.SkipNext,
+                                modifier = Modifier.graphicsLayer { scaleX = iconScale },
+                                contentDescription = stringResource(R.string.flow_next_mystery),
+                            )
+                        }
                     }
                 }
             }

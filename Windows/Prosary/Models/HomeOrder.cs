@@ -48,8 +48,10 @@ public static class HomeOrder
 
     /// <summary>Stable: unknown ids keep their relative (directory) order after the ordered.</summary>
     public static List<T> Apply<T>(IEnumerable<T> cards, Func<T, string> id)
+        => Apply(cards, id, Saved());
+
+    internal static List<T> Apply<T>(IEnumerable<T> cards, Func<T, string> id, IReadOnlyList<string> order)
     {
-        var order = Saved();
         var list = cards.ToList();
         if (order.Count == 0)
         {

@@ -12,6 +12,7 @@ import SwiftUI
 struct DevotionListing: Identifiable {
   let id: String
   let title: String
+  var translatedTitle: String? = nil
   let systemImage: String
   /// One grapheme (letter or emoji) drawn instead of `systemImage` when the author chose
   /// their own icon in Compose (v0.7, Gamaliel item 6).
@@ -31,6 +32,7 @@ enum DevotionDirectory {
     listings.append(DevotionListing(
       id: "rosary",
       title: PrayerKind.rosary.displayName,
+      translatedTitle: PrayerKind.rosary.namePresentation().translation,
       systemImage: PrayerKind.rosary.systemImage,
       accentColor: .brandPrimary,
       tags: PrayerPackStore.info(for: "rosary")?.tags ?? ["marian"],
@@ -47,6 +49,7 @@ enum DevotionDirectory {
       listings.append(DevotionListing(
         id: bundleId,
         title: info.localizedDisplayName,
+        translatedTitle: info.namePresentation().translation,
         systemImage: info.iconSystemName ?? PrayerKind.custom.systemImage,
         iconGlyph: info.iconGlyph,
         accentColor: accent,
@@ -57,6 +60,7 @@ enum DevotionDirectory {
     listings.append(DevotionListing(
       id: "jesusPrayer",
       title: PrayerKind.jesusPrayer.displayName,
+      translatedTitle: PrayerKind.jesusPrayer.namePresentation().translation,
       systemImage: PrayerKind.jesusPrayer.systemImage,
       accentColor: .adaptive(light: "#8B1A1A", dark: "#C62828"),
       tags: ["eastern", "meditative"],

@@ -51,6 +51,7 @@ public partial class SearchViewModel : ObservableObject
             DevotionDirectory.All().Where(listing =>
                 query.Length == 0
                 || listing.Title.Contains(query, StringComparison.OrdinalIgnoreCase)
+                || listing.InterfaceSubtitle.Contains(query, StringComparison.OrdinalIgnoreCase)
                 || listing.Tags.Any(t => t.Contains(query, StringComparison.OrdinalIgnoreCase)
                     || CategoryLabels.Display(t).Contains(query, StringComparison.OrdinalIgnoreCase))));
 

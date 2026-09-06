@@ -56,11 +56,11 @@ enum LanguageCatalog {
     LanguageOption(code: "la", nativeName: "Latina", isRightToLeft: false),
     LanguageOption(code: "en", nativeName: "English", isRightToLeft: false),
     LanguageOption(code: "ar", nativeName: "العربية", isRightToLeft: true),
-    LanguageOption(code: "he", nativeName: "עברית — נוסח הנציגות", isRightToLeft: true),
+    LanguageOption(code: "he", nativeName: "עברית", isRightToLeft: true),
     LanguageOption(code: "he-x-gamliel", nativeName: "עברית — נוסח השליחות", isRightToLeft: true),
     // Aramaic in Hebrew script — the Aramaic-rite Hebrew Catholic communities' liturgical
     // language (requested by the Mission of St. Gamaliel for v0.7).
-    LanguageOption(code: "arc", nativeName: "ארמית", isRightToLeft: true),
+    LanguageOption(code: "arc", nativeName: "ܐܪܡܐܝܬ / ארמית", isRightToLeft: true),
     // Greek: the language a great deal of the app's own Scripture and prayer was first
     // written in — the Creed, the Sub Tuum, the Jesus Prayer.
     LanguageOption(code: "el", nativeName: "Ἑλληνικά", isRightToLeft: false),
@@ -71,14 +71,35 @@ enum LanguageCatalog {
     LanguageOption(code: "it", nativeName: "Italiano", isRightToLeft: false),
   ]
 
-  /// Picker choices for a bundle's declared languages. The Mission is a sparse overlay rather
-  /// than a manifest language of its own, so every bundle offering Hebrew must expose both
-  /// sourced Hebrew uses as adjacent, independent choices.
+  /// Public language choices separate Hebrew's prayer tradition from its language. The raw
+  /// content codes above remain intact for stored presets, bookmarks, and fallback resolution.
+  static var languages: [LanguageOption] { all.filter { $0.code != "he-x-gamliel" } }
+
+  static func pickerLanguageCode(_ raw: String) -> String {
+    raw == "he-x-gamliel" ? "he" : raw
+  }
+
+  static func selectingLanguage(_ language: String, current: String) -> String {
+    language == "he" && pickerLanguageCode(current) == "he" ? current : language
+  }
+
+  static func traditionName(_ raw: String) -> String {
+    raw == "he-x-gamliel"
+      ? String(localized: "prayerLanguage.tradition.mission", defaultValue: "Mission of St. Gamaliel")
+      : String(localized: "prayerLanguage.tradition.vicariate", defaultValue: "Saint James Vicariate")
+  }
+
+  /// Picker choices for a bundle's declared languages; a Hebrew overlay also offers Hebrew.
   static func availableOptions(for declaredCodes: [String]) -> [LanguageOption] {
-    let available = Set(declaredCodes.flatMap { code in
-      code == "he" ? ["he", "he-x-gamliel"] : [code]
-    })
-    return all.filter { available.contains($0.code) }
+    let available = Set(declaredCodes.map(pickerLanguageCode))
+    return languages.filter { available.contains($0.code) }
+  }
+
+  static var fallbackLanguageOrder: [String] { fallbackOrder.map(pickerLanguageCode).unique() }
+
+  static func setFallbackLanguageOrder(_ languages: [String]) {
+    let hebrewOrder = fallbackOrder.filter { pickerLanguageCode($0) == "he" }
+    setFallbackOrder(languages.flatMap { $0 == "he" ? hebrewOrder : [$0] })
   }
 
   static var fallbackOrder: [String] {

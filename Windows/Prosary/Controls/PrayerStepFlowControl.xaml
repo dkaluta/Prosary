@@ -33,7 +33,7 @@
             <ProgressBar Minimum="0" Maximum="1"
                          Value="{x:Bind ViewModel.Progress, Mode=OneWay, Converter={StaticResource NullableDoubleToValue}}"
                          Visibility="{x:Bind ViewModel.Progress, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
-            <TextBlock Text="{x:Bind ViewModel.ProgressText, Mode=OneWay}" HorizontalAlignment="Center" Style="{StaticResource MutedCaptionTextStyle}" />
+            <TextBlock FontFamily="{x:Bind ViewModel.ProgressFontFamily, Mode=OneWay}" Text="{x:Bind ViewModel.ProgressText, Mode=OneWay}" HorizontalAlignment="Center" Style="{StaticResource MutedCaptionTextStyle}" />
         </StackPanel>
 
         <ScrollViewer Grid.Row="2" Padding="20"
@@ -68,7 +68,7 @@
         <!-- A counter flow's only action is its central button: a lone Back beside it competes
              with the thing the screen exists for, and "undo one repetition" isn't worth a
              permanent control (the header's back arrow still leaves the session). -->
-        <Grid Grid.Row="3" Padding="20"
+        <Grid Grid.Row="3" Padding="20" FlowDirection="{x:Bind NavigationFlowDirection}"
               Visibility="{x:Bind CollapsedWhenSet(CentralActionLabel), Mode=OneWay}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />

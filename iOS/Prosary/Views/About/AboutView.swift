@@ -105,6 +105,9 @@ struct AboutView: View {
           Text("about.sevenSorrowsPrayerSources")
             .font(.footnote)
             .foregroundStyle(.secondary)
+          Text("about.litanyPrayerSources")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
         }
 
         section(String(localized: "about.section.scripture", defaultValue: "Scripture Sources")) {
@@ -124,7 +127,16 @@ struct AboutView: View {
           Text("about.readingBookSources")
             .font(.footnote)
             .foregroundStyle(.secondary)
+          Text(String(localized: "about.hebrewReadingBookSources",
+                      defaultValue: "Hebrew Bible book labels: Evangelizo HE, the St James Vicariate, and Mechon Mamre (mechon-mamre.org)."))
+            .font(.footnote).foregroundStyle(.secondary)
+          Link("Mechon Mamre", destination: URL(string: "https://www.mechon-mamre.org/i/t/tmp3.htm")!)
           Link("about.popeNetworkLink", destination: URL(string: "https://www.popesprayer.va/pray/")!)
+          Text(String(localized: "about.torahData",
+                      defaultValue: "Torah reading schedules: Hebcal.com, CC BY 4.0. Names and citations adapted; no Scripture text is included."))
+            .font(.footnote).foregroundStyle(.secondary)
+          Link("Hebcal.com", destination: URL(string: "https://www.hebcal.com")!)
+          Link("CC BY 4.0", destination: URL(string: "https://creativecommons.org/licenses/by/4.0/")!)
         }
       }
       .padding(24)

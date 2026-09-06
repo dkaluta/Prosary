@@ -3,7 +3,7 @@
   "rootScreen": "home",
   "screens": {
     "home": {
-      "purpose": "The Pray tab: a Today section that always shows the weekday and numbered week of the liturgical season, with a saved language menu (follow app, English, Hebrew, Arabic, Russian, Filipino/Tagalog, French, Italian); optional independently-switchable rows show the chosen calendar's feast and the Pope's monthly intention. The readings row loads that same selected calendar's lectionary table, shows shorthand citations, and can expand them to full citations; a missing date never falls back across rites. Arabic and Hebrew modes make the whole Today text stack RTL. All seven languages use localized captions and sourced title/citation/intentions text where available. Below it is one card per pinned devotion in the user's HomeOrder. The base directory is Rosary, every discovered generic bundle in pack-load order, then Jesus Prayer; saved configurations imply a pin on migration, while FavoriteDevotions lets a user pin/unpin without deleting any saved Prayer. The Rosary card opens its presets surface; generic and Jesus Prayer cards launch the saved default or an unsaved flow/setup when none exists. A fixed Basic Prayers row sits below the cards. Toolbar actions add Rosary/Jesus configurations, restore unpinned devotions, edit order, and open Settings/About where the platform exposes them in-app.",
+      "purpose": "The Pray tab: a Today section with previous/next arrows around a date button opening a native calendar and an in-popup Today action. All rows follow the selected date; the supplemental day heading hides on Sundays, uses the liturgical season for modern Roman calendars, and uses the civil day/month for other rites, in the native app/interface language (English, Hebrew, Arabic, Russian, Filipino/Tagalog, French, Italian), ignoring the old todayLanguageCode override; optional independently-switchable rows show the chosen calendar's feast and the Pope's monthly intention. The readings row loads that same selected calendar's lectionary table, shows shorthand citations, and can expand them to full citations; a missing date never falls back across rites. Arabic and Hebrew modes make the whole Today text stack RTL. All seven languages use localized captions, complete feast display metadata and sourced citations. An optional Eretz Israel Torah row shows the coming Saturday, including festival replacements. Below it is one card per pinned devotion in the user's HomeOrder. The base directory is Rosary, every discovered generic bundle in pack-load order, then Jesus Prayer; saved configurations imply a pin on migration, while FavoriteDevotions lets a user pin/unpin without deleting any saved Prayer. The Rosary card opens its presets surface; generic and Jesus Prayer cards launch the saved default or an unsaved flow/setup when none exists. A fixed Basic Prayers row sits below the cards. Toolbar actions add Rosary/Jesus configurations, restore unpinned devotions, edit order, and open Settings/About where the platform exposes them in-app. Pinned basic prayers join this same HomeOrder under basic:<prayerId>, retaining historical favoriteBasicPrayerIds. They open the corresponding one-step prayer directly in basicPrayersLanguageCode and support the same reorder/unpin actions.",
       "parameters": {},
       "sources": {
         "iOS": "Views/Home/HomeView.swift",
@@ -12,7 +12,7 @@
       }
     },
     "favoriteEditor": {
-      "purpose": "Create or edit a named Rosary or Jesus Prayer configuration: name, default flag, prayer language (including the separate Hebrew Vicariate and Mission choices), kind-specific options, and reminders. An explicitly-Aramaic Rosary also offers its own Sign of the Cross form only when the app default is not Aramaic. Generic bundle devotions use remindersOnlyEditor instead.",
+      "purpose": "Create or edit a named Rosary or Jesus Prayer configuration: name, default flag, prayer language (one Hebrew choice plus a separate Vicariate/Mission Prayer tradition control, preserving he/he-x-gamliel), kind-specific options, and reminders. An explicitly-Aramaic Rosary also offers its own Sign of the Cross form only when the app default is not Aramaic. Generic bundle devotions use remindersOnlyEditor instead.",
       "parameters": {
         "prayerId": {
           "type": "uuid?",
@@ -45,7 +45,7 @@
       }
     },
     "rosaryFlow": {
-      "purpose": "The Rosary prayer flow — season bar, progress, bead track, mystery image/text, Back/Next footer, previous/next-mystery jump controls, and an in-prayer language menu that keeps the same mystery/bead. On narrow phones, flow controls sit below the title so their buttons cannot squeeze it. An unfinished run offers Continue or Restart when this same preset is reopened on the same local day; continuing restores both position and language.",
+      "purpose": "The Rosary prayer flow — season bar, progress, bead track, mystery image/text, Back/Next footer, previous/next-mystery jump controls, and an in-prayer language menu that keeps the same mystery/bead. On narrow phones, flow controls sit below the title so their buttons cannot squeeze it. An unfinished run offers Continue or Restart when this same preset is reopened on the same local day; continuing restores both position and language. Button ordering and previous/next section icons follow the interface layout direction, independently of the prayer text direction. At completion, offer Pray the Litany or Finish; choosing the Litany replaces the Rosary flow with customDevotionFlow(litanyOfLoreto, resolved Rosary language, afterRosary). This is an explicit choice and leaves saved Litany settings unchanged.",
       "parameters": {
         "prayerId": {
           "type": "uuid?",
@@ -64,7 +64,7 @@
       }
     },
     "customDevotionFlow": {
-      "purpose": "The single flow for every generic (bundle-driven) devotion (PrayerKind.custom), including Angelus, Stations of the Cross, Via Lucis, Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet, Trisagion, and the O Antiphons. Steps/title/season color are entirely data-driven from devotion.json/manifest.json. Rosary-type bundles render the shared bead track; steps-type bundles use a plain progress bar; days-type bundles add a day menu and tracked progression. The flow can pin/unpin the devotion, choose language and alternate form, edit schema-driven options through the saved row, and show an audio transport when audio.json has a matching language/form track. Chapter hints drive step syncing, manual Back/Next re-aligns audio, and auto-advance stands down during playback. An unfinished run offers Continue or Restart and restores its saved position/language; completion clears it. Adding a generic devotion needs no new screen, only a bundle.",
+      "purpose": "The single flow for every generic (bundle-driven) devotion (PrayerKind.custom), including Angelus, Stations of the Cross, Via Lucis, Franciscan Crown, Seven Sorrows, Divine Mercy Chaplet, Trisagion, the O Antiphons, and the Litany of Loreto. Steps/title/season color are entirely data-driven from devotion.json/manifest.json. Rosary-type bundles render the shared bead track; steps-type bundles use a plain progress bar; days-type bundles add a day menu and tracked progression. The flow can pin/unpin the devotion, choose language and alternate form, edit schema-driven options through the saved row, and show an audio transport when audio.json has a matching language/form track. Chapter hints drive step syncing, manual Back/Next re-aligns audio, and auto-advance stands down during playback. An unfinished run offers Continue or Restart and restores its saved position/language; completion clears it. Adding a generic devotion needs no new screen, only a bundle. Litany of Loreto ending is fixed by entry context: every standalone entry, including saved favorites, forces standard; a Rosary continuation forces afterRosary. No manual variant menu appears for this built-in devotion. The canonical variants each contain exactly their own final collect. Explicit continuation language/variant are session-only; a bookmark in a different language cannot replace an explicit incoming language.",
       "parameters": {
         "devotionId": {
           "type": "string",
@@ -73,12 +73,22 @@
         "prayerId": {
           "type": "uuid?",
           "description": "Launched from a saved configuration. Null when launched from Pray/Categories/Search with no saved row for this devotionId; the flow then uses the app language and bundle defaults. Saved generic rows may carry language, variant, custom options, day progress, and reminders."
+        },
+        "languageCode": {
+          "type": "string?",
+          "default": null,
+          "description": "Optional explicit session language; Rosary-to-Litany continuation carries the resolved Rosary text code. Overrides the saved configuration without rewriting it."
+        },
+        "variantId": {
+          "type": "string?",
+          "default": null,
+          "description": "Optional explicit session form; Rosary continuation uses afterRosary. Standalone Litany forces standard even when its saved favorite contains a different form. Other devotions retain their saved/default form behavior."
         }
       },
       "reachedVia": {
-        "iOS": "The generic prayer(id) route -> PrayerDispatchView resolves the Prayer and picks CustomDevotionFlowView by kind (reading devotionId from Prayer.customDevotionId); a fresh launch without a saved configuration uses AppRoute.custom(devotionId:) instead.",
-        "android": "The generic prayer/{id} route -> PrayerDispatchScreen, same dispatch-by-kind pattern; a fresh launch uses the custom/{devotionId} route.",
-        "windows": "Routed to directly by name (CustomDevotionFlowPage) via CustomDevotionFlowParams(prayerId, bundleId) — Pray/Categories/Search already know the bundle id at the call site, so Windows skips the generic-dispatcher indirection, same as rosaryFlow."
+        "iOS": "The generic prayer(id) route -> PrayerDispatchView resolves the Prayer and picks CustomDevotionFlowView by kind (reading devotionId from Prayer.customDevotionId); a fresh launch without a saved configuration uses AppRoute.custom(devotionId:) instead. AppRoute.custom also carries optional languageCode and variantId for a continuation.",
+        "android": "The generic prayer/{id} route -> PrayerDispatchScreen, same dispatch-by-kind pattern; a fresh launch uses the custom/{devotionId} route. Optional languageCode and variantId query parameters carry continuation choices.",
+        "windows": "Routed to directly by name (CustomDevotionFlowPage) via CustomDevotionFlowParams(prayerId, bundleId) — Pray/Categories/Search already know the bundle id at the call site, so Windows skips the generic-dispatcher indirection, same as rosaryFlow. CustomDevotionFlowParams also carries optional LanguageCode and VariantId."
       },
       "sources": {
         "iOS": "Views/Shared/CustomDevotionFlowView.swift + Views/Shared/PrayerStepFlowView.swift + Views/RosaryFlow/BeadProgressView.swift (rosary-type accessory)",
@@ -125,7 +135,7 @@
       }
     },
     "settings": {
-      "purpose": "App-wide preferences: default prayer language (with the Hebrew Vicariate and Mission always listed separately), language fallback precedence edited with the same drag/reorder and reset interaction as Home Order, the system-wide Aramaic Sign of the Cross form, Syriac/Hebrew prayer and Scripture typefaces, auto-advance, phone haptics (iOS/Android), favorite-basic-prayers-first, Pray ordering reset, independent Today-row switches and a feast/reading calendar selection, installed-bundle import/export/removal where supported, audio-cache cleanup, and links to the repository, composer, and privacy policy.",
+      "purpose": "App-wide preferences: default prayer language (one Hebrew choice with a separate Vicariate/Mission Prayer tradition), language fallback precedence edited with the same drag/reorder and reset interaction as Home Order, the system-wide Aramaic Sign of the Cross form, the default Hebrew or Syriac script for Aramaic prayers, Aramaic/Hebrew prayer and Hebrew Scripture typefaces plus independent Latin-script/Cyrillic prayer System serif and System sans serif choices, auto-advance, phone haptics (iOS/Android), Pray ordering reset, independent Today-row switches and a feast/reading calendar selection, installed-bundle import/export/removal where supported, audio-cache cleanup, and links to the repository, composer, and privacy policy. Today options include the Eretz Israel Torah portion (off by default) and a UGCC Julian/Gregorian Easter choice that changes both feasts and readings. A separate option shows prayer-language card names with interface-language subtitles (off by default).",
       "parameters": {},
       "sources": {
         "iOS": "Views/Settings/SettingsView.swift (macOS Settings scene, Cmd+,; iPhone/iPad sheet from Pray)",
@@ -179,7 +189,7 @@
       }
     },
     "basicPrayers": {
-      "purpose": "The basic prayers on their own, outside any devotion: Sign of the Cross, Our Father, Hail Mary, Glory Be, the Creed (the shared tables' Apostles', which the Mission of St. Gamaliel's overlay replaces with the Nicene), and the Trisagion's Holy God — a fixed BasicPrayerCatalog naming keys, never text, so each row and prayer resolves through the same language and fallback chains as the flows. Rows are selectable for copying, reorderable through BasicPrayersOrder, and individually favoritable; favoriteBasicPrayersFirst optionally groups starred prayers at the top without discarding the user's order. Reached from a fixed, non-pinnable row below the Pray cards. Each prayer opens as a single bounded step in the shared flow chrome with Finish as its only footer action. The list and flow both offer all prayer languages plus App setting; their shared basicPrayersLanguageCode preference defaults to the empty sentinel and keeps the selected language independent of the app default. Changing language refreshes titles, bodies, RTL, and available script toggles immediately.",
+      "purpose": "The basic prayers on their own, outside any devotion: Sign of the Cross, Our Father, Hail Mary, Glory Be, the Creed (the shared tables' Apostles', which the Mission of St. Gamaliel's overlay replaces with the Nicene), and the Trisagion's Holy God — a fixed BasicPrayerCatalog naming keys, never text, so each row and prayer resolves through the same language and fallback chains as the flows. Rows are selectable for copying, reorderable through BasicPrayersOrder, and individually pinnable to Home using the historical favoriteBasicPrayerIds preference. Each pinned prayer uses basic:<prayerId> in HomeOrder; the old favorites-first sorting switch is removed and ignored. Reached from a fixed, non-pinnable row below the Pray cards. Each prayer opens as a single bounded step in the shared flow chrome with Finish as its only footer action. The list and flow both offer all prayer languages plus App setting; their shared basicPrayersLanguageCode preference defaults to the empty sentinel and keeps the selected language independent of the app default. Changing language refreshes titles, bodies, RTL, and available script toggles immediately. Hebrew appears once, with Vicariate/Mission selected separately. The native Aramaic label is ܐܪܡܐܝܬ / ארמית. Pins refresh Home immediately and opening a pin uses the same selected language/tradition as the Basic Prayers list.",
       "parameters": {
         "prayerId": "BasicPrayerCatalog id (\"hailMary\") — the single-prayer flow only."
       },

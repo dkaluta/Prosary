@@ -54,8 +54,45 @@ with tempfile.TemporaryDirectory() as directory:
 scripture.CACHE = old_cache
 assert scripture.source_reference("fr", "Isaiah", [(9, 2, 2)], "fixture") == "9:1"
 assert scripture.source_reference("it", "Isaiah", [(9, 2, 2)], "fixture") == "9:2"
-merged = scripture.render("fr", {"prayers": {}, "mysteries": {}, "transliterations": {}}, {"$comment": "Published prayer source", "$sources": ["https://example.test/source"]})
-assert merged["$comment"] == "Published prayer source" and merged["$sources"]
+for language in ("fr", "it", "es", "el", "arc"):
+    merged = scripture.render(language, {"prayers": {}, "mysteries": {}, "transliterations": {}}, {"$comment": "Published prayer source", "$sources": ["https://example.test/source"]})
+    assert merged["$comment"] == "Published prayer source" and merged["$sources"], language
+    assert merged["$scriptureSource"] == scripture.NOTES[language], language
+legacy = scripture.render("arc", {"prayers": {}, "mysteries": {}, "transliterations": {}}, {"$comment": scripture.NOTES["arc"]})
+assert "$comment" not in legacy and legacy["$scriptureSource"] == scripture.NOTES["arc"]
+
+# A known PrayerKey can still fall back to a different language. Check actual selected-
+# language content for the newly completed flows, including every optional variant.
+coverage_spec = importlib.util.spec_from_file_location("coverage", TOOLS / "audit-prayer-coverage.py")
+coverage = importlib.util.module_from_spec(coverage_spec)
+coverage_spec.loader.exec_module(coverage)
+report = coverage.inventory()
+for bundle, languages in {
+    "rosary": ("es",),
+    "angelus": ("es",),
+    "divineMercyChaplet": ("es",),
+    "franciscanCrown": ("es", "el"),
+    "oAntiphons": ("fr", "it"),
+    "trisagion": ("fr", "it", "es", "el"),
+}.items():
+    for language in languages:
+        row = report["packs"][bundle][language]
+        assert row["status"] == "advertised", (bundle, language)
+        assert not any(row["missing"].values()), (bundle, language, row["missing"])
+        assert not any(row["missing_mysteries"].values()), (bundle, language, row["missing_mysteries"])
+assert not report["fixed_prayers"]["es"]["missing_prayer_bodies"]
+for language in ("fr", "it"):
+    stations = json.loads((ROOT / f"Shared/content/stationsOfTheCross/content/{language}.json").read_text())
+    sourced = {"stationsOpeningPrayer"} | {f"station{number:02}Body" for number in range(1, 15)}
+    assert all(stations["prayers"].get(key, "").strip() for key in sourced), language
+    assert all(stations["$sources"].get(key, "").startswith("https://") for key in sourced), language
+
+# The published medieval Syriac prayer must retain its paired square-script projection.
+arc = json.loads((ROOT / "Shared/content/rosary/content/arc.json").read_text())
+assert arc["prayers"]["subTuumPraesidium"] == scripture.to_hebrew(arc["transliterations"]["subTuumPraesidium"])
+assert "Smelova" in arc["$comment"]
+assert arc["prayers"]["repetitionCounterConnector"] == "מֶן"
+assert arc["transliterations"]["repetitionCounterConnector"] == "ܡܶܢ"
 
 for target in ("iOS/Prosary/Data", "Android/app/src/main/assets/data", "Windows/Prosary/Data"):
     for source in (ROOT / "Shared/data").glob("*.json"):

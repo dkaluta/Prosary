@@ -1,0 +1,17 @@
+{
+  "prayers": {
+    "trisagionAcclamation": "Santo Dio, Santo Forte, Santo Immortale: abbi pietà di noi.",
+    "trisagionShortAcclamation": "Santo Immortale: abbi pietà di noi.",
+    "gloriaPatriTitle": "Gloria al Padre",
+    "trisagionAcclamationTitle": "Santo Dio",
+    "trisagionKyrieTitle": "Signore, pietà",
+    "trisagionKyrie": "Signore, pietà.\nCristo, pietà.\nSignore, pietà."
+  },
+  "$sources": {
+    "trisagionAcclamation": "https://www.vatican.va/content/john-paul-ii/it/speeches/1981/april/documents/hf_jp-ii_spe_19810417_via-crucis.html",
+    "trisagionShortAcclamation": "Final invocation of the same published acclamation.",
+    "trisagionKyrie": "https://www.vatican.va/special/rosary/documents/litanie-lauretane_it.html"
+  },
+  "$comment": "The acclamation follows the credited published prayer; the short acclamation repeats its final invocation in the existing Byzantine sequence. Kyrie is the threefold response already used by this bundle. Headings are the prayer incipits; Glory Be continues to resolve from the shared prayer table. Punctuation and line breaks are normalized for the app.",
+  "mysteries": {}
+}

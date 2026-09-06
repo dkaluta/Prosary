@@ -1,5 +1,5 @@
 {
-  "$comment": "Source-authored Hebrew Bible book names for offline citation localization. Evangelizo.org — Daily Gospel (© Evangelizo.org), edition HE; Judith/Tobit: St James Vicariate. Source URLs identify where each title was relayed; no Scripture text is included. Preserve full title wording with Hebrew joining hyphens normalized to maqaf; fetch-readings.py compacts short epistle titles deterministically.",
+  "$comment": "Source-authored Hebrew Bible book names for offline citation localization. Evangelizo.org — Daily Gospel (© Evangelizo.org), edition HE; Judith/Tobit: St James Vicariate. Source URLs identify where each title was relayed; no Scripture text is included. Preserve full title wording with Hebrew joining hyphens normalized to maqaf; fetch-readings.py compacts short epistle titles deterministically. Additional Old Testament book labels needed by the Eastern and Vetus Ordo lectionaries relay the Mechon Mamre Hebrew Bible index; no Scripture text is included.",
   "books": {
     "1 Corinthians": {
       "short": "הראשונה אל הקורינתים",
@@ -40,6 +40,16 @@
       "short": "השנייה של יוחנן",
       "full": "אגרת יוחנן השניה",
       "source": "https://publication.evangelizo.ws/HE/days/2026-11-13"
+    },
+    "2 Kings": {
+      "short": "מלכים ב",
+      "full": "מלכים ב",
+      "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
+    },
+    "2 Maccabees": {
+      "short": "המכבים ב",
+      "full": "המכבים ב",
+      "source": "https://publication.evangelizo.ws/HE/days/2025-11-18"
     },
     "2 Peter": {
       "short": "השניה לכיפא",
@@ -96,6 +106,11 @@
       "full": "אגרת שאול אל האפסים",
       "source": "https://publication.evangelizo.ws/HE/days/2026-09-21"
     },
+    "Esther": {
+      "short": "אסתר",
+      "full": "אסתר",
+      "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
+    },
     "Exodus": {
       "short": "שמות",
       "full": "שמות",
@@ -126,6 +141,11 @@
       "full": "האגרת אל העברים",
       "source": "https://publication.evangelizo.ws/HE/days/2025-09-15"
     },
+    "Hosea": {
+      "short": "הושע",
+      "full": "הושע",
+      "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
+    },
     "Isaiah": {
       "short": "ישעיה",
       "full": "ישעיה",
@@ -146,10 +166,30 @@
       "full": "איוב",
       "source": "https://publication.evangelizo.ws/HE/days/2026-09-28"
     },
+    "Joel": {
+      "short": "יואל",
+      "full": "יואל",
+      "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
+    },
     "John": {
       "short": "יוחנן",
       "full": "הבשורה  על־פי יוחנן",
       "source": "https://publication.evangelizo.ws/HE/days/2025-09-15"
+    },
+    "Jonah": {
+      "short": "יונה",
+      "full": "יונה",
+      "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
+    },
+    "Joshua": {
+      "short": "יהושוע",
+      "full": "יהושוע",
+      "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
+    },
+    "Jude": {
+      "short": "יהודה",
+      "full": "יהודה",
+      "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=34"
     },
     "Judith": {
       "short": "יהודית",
@@ -165,6 +205,11 @@
       "short": "לוקס",
       "full": "הבשורה על־פי לוקס",
       "source": "https://publication.evangelizo.ws/HE/days/2025-09-16"
+    },
+    "Malachi": {
+      "short": "מלאכי",
+      "full": "מלאכי",
+      "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
     },
     "Mark": {
       "short": "מרקוס",
@@ -185,6 +230,11 @@
       "short": "נחום",
       "full": "נחום",
       "source": "https://publication.evangelizo.ws/HE/days/2026-08-07"
+    },
+    "Nehemiah": {
+      "short": "נחמיה",
+      "full": "נחמיה",
+      "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
     },
     "Numbers": {
       "short": "במדבר",
@@ -221,10 +271,20 @@
       "full": "אגרת שאול אל הרומים",
       "source": "https://publication.evangelizo.ws/HE/days/2026-07-12"
     },
+    "Ruth": {
+      "short": "רות",
+      "full": "רות",
+      "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
+    },
     "Sirach": {
       "short": "שיראך",
       "full": "שיראך",
       "source": "https://publication.evangelizo.ws/HE/days/2026-09-13"
+    },
+    "Song of Songs": {
+      "short": "שיר השירים",
+      "full": "שיר השירים",
+      "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
     },
     "Titus": {
       "short": "אל טיטוס",
@@ -240,6 +300,11 @@
       "short": "החכמה",
       "full": "החכמה",
       "source": "https://publication.evangelizo.ws/HE/days/2026-11-02"
+    },
+    "Zechariah": {
+      "short": "זכריה",
+      "full": "זכריה",
+      "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
     },
     "Zephaniah": {
       "short": "צפניה",

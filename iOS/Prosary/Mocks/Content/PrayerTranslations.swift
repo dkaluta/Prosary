@@ -10,6 +10,39 @@
 import Foundation
 
 enum PrayerTranslations {
+  /// Aramaic's two writing systems share one prayer language and one saved preference.
+  static let aramaicDefaultScriptKey = "aramaicDefaultScript"
+
+  @MainActor
+  static func initialTransliteration(languageCode: String?, body: String, alternate: String?,
+                                     script: String? = nil) -> Bool? {
+    guard LanguageCatalog.fallbackChain(for: languageCode).first == "arc" else { return nil }
+    let desired: PrayerTypography.Script = (script ?? UserDefaults.standard.string(forKey: aramaicDefaultScriptKey)) == "Syrc"
+      ? .syriac : .hebrew
+    guard PrayerTypography.script(of: body) != desired, let alternate else { return false }
+    return PrayerTypography.script(of: alternate) == desired
+  }
+
+  @MainActor
+  static func aramaicProgress(_ index: Int, total: Int, languageCode: String?, sourceScript: Bool) -> String? {
+    guard LanguageCatalog.fallbackChain(for: languageCode).first == "arc" else { return nil }
+    let connector = sourceScript
+      ? PrayerPackStore.transliteration(bundleId: "rosary", languageCode: "arc", key: PrayerKey.repetitionCounterConnector.rawValue)
+      : nil
+    return "\(index) \(connector ?? get(languageCode: "arc", key: .repetitionCounterConnector)) \(total)"
+  }
+
+  @MainActor
+  static func flowTitle(_ title: String, languageCode: String?, sourceScript: Bool) -> String {
+    let title = HebrewDisplayText.unpointed(title)
+    guard sourceScript, LanguageCatalog.fallbackChain(for: languageCode).first == "arc",
+          let connector = PrayerPackStore.transliteration(bundleId: "rosary", languageCode: "arc", key: PrayerKey.repetitionCounterConnector.rawValue)
+    else { return title }
+    let original = HebrewDisplayText.unpointed(get(languageCode: "arc", key: .repetitionCounterConnector))
+    let pattern = #"(\(\d+) "# + NSRegularExpression.escapedPattern(for: original) + #" (\d+\))$"#
+    return title.replacingOccurrences(of: pattern, with: "$1 \(connector) $2", options: .regularExpression)
+  }
+
   @MainActor
   static func get(languageCode: String?, key: PrayerKey) -> String {
     for code in LanguageCatalog.fallbackChain(for: languageCode) {

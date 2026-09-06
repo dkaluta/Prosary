@@ -51,7 +51,7 @@
                                     <ItemsControl ItemsSource="{x:Bind ViewModel.UnpinnedCards, Mode=OneWay}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate x:DataType="vm:DevotionCardModel">
-                                                <HyperlinkButton Content="{x:Bind Title}" HorizontalAlignment="Stretch"
+                                                <HyperlinkButton Content="{x:Bind Title, Mode=OneWay}" HorizontalAlignment="Stretch"
                                                                  Command="{Binding ElementName=Root, Path=ViewModel.PinCardCommand}"
                                                                  CommandParameter="{Binding}" />
                                             </DataTemplate>
@@ -77,6 +77,37 @@
                 </Button>
             </Grid>
 
+            <Grid ColumnSpacing="8" FlowDirection="{x:Bind ViewModel.TodayIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button x:Uid="HomePreviousDay" Grid.Column="0" Width="44" Height="44" Background="Transparent"
+                        Command="{x:Bind ViewModel.YesterdayCommand}" AutomationProperties.AutomationId="todayYesterday">
+                    <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
+                </Button>
+                <Button Grid.Column="1" Content="{x:Bind ViewModel.SelectedDateText, Mode=OneWay}"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="Transparent"
+                        AutomationProperties.AutomationId="todayDatePicker"
+                        AutomationProperties.Name="{x:Bind ViewModel.SelectedDateAccessibilityLabel, Mode=OneWay}">
+                    <Button.Flyout>
+                        <Flyout x:Name="TodayDateFlyout" Opened="OnTodayDateFlyoutOpened">
+                            <StackPanel Spacing="8">
+                                <Button x:Uid="HomeResetToday" Content="Today" HorizontalAlignment="Stretch"
+                                        Click="OnSelectToday" AutomationProperties.AutomationId="todayReset" />
+                                <CalendarView x:Name="TodayCalendar" SelectionMode="Single" CalendarIdentifier="GregorianCalendar"
+                                              MinDate="{x:Bind ViewModel.MinimumTodayDate}" MaxDate="{x:Bind ViewModel.MaximumTodayDate}"
+                                              SelectedDatesChanged="OnTodayCalendarDateChanged"
+                                              AutomationProperties.AutomationId="todayCalendar" />
+                            </StackPanel>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <Button x:Uid="HomeNextDay" Grid.Column="2" Width="44" Height="44" Background="Transparent"
+                        Command="{x:Bind ViewModel.TomorrowCommand}" AutomationProperties.AutomationId="todayTomorrow">
+                    <FontIcon Glyph="&#xE72A;" MirroredWhenRightToLeft="True" />
+                </Button>
+            </Grid>
+
             <!-- "Today" — the day's feast and readings from the selected calendar, plus the
                  Pope's monthly prayer intention. Rows hide when the bundled datasets have no
                  entry (ferial days; dates past the generated years). -->
@@ -84,7 +115,8 @@
                     Visibility="{x:Bind ViewModel.ShowsTodaySection, Converter={StaticResource BoolToVisibility}}"
                     FlowDirection="{x:Bind ViewModel.TodayIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
                 <StackPanel Spacing="10">
-                    <Grid ColumnSpacing="8">
+                    <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayDay, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                          AutomationProperties.AutomationId="todayDay">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
@@ -93,12 +125,7 @@
                         <FontIcon Grid.Column="0" Glyph="&#xE787;" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Center" />
                         <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.TodayDayText, Mode=OneWay}" FontWeight="SemiBold" TextWrapping="Wrap" VerticalAlignment="Center"
                                    TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
-                        <DropDownButton x:Uid="HomeTodayLanguage" Grid.Column="2" Content="{x:Bind ViewModel.TodayLanguageButtonText, Mode=OneWay}"
-                                        AutomationProperties.Name="Today language">
-                            <DropDownButton.Flyout>
-                                <MenuFlyout Opening="OnTodayLanguageMenuOpening" />
-                            </DropDownButton.Flyout>
-                        </DropDownButton>
+
                     </Grid>
                     <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayFeast, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
                         <Grid.ColumnDefinitions>
@@ -142,6 +169,19 @@
                                              HorizontalAlignment="{x:Bind ViewModel.TodayContentAlignment, Mode=OneWay}" Padding="0,4" />
                         </StackPanel>
                     </Grid>
+                    <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayTorahPortion, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                          AutomationProperties.AutomationId="todayTorahPortion">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                        <FontIcon Grid.Column="0" Glyph="&#xE8A9;" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Top" />
+                        <StackPanel Grid.Column="1" Spacing="2">
+                            <TextBlock Text="{x:Bind ViewModel.TorahPortionHeading, Mode=OneWay}" FontWeight="SemiBold" TextWrapping="Wrap"
+                                       TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
+                            <TextBlock Text="{x:Bind ViewModel.TorahPortionTitle, Mode=OneWay}" TextWrapping="Wrap"
+                                       TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
+                            <TextBlock Text="{x:Bind ViewModel.TorahPortionReadings, Mode=OneWay}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap"
+                                       TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
+                        </StackPanel>
+                    </Grid>
                 </StackPanel>
             </Border>
 
@@ -153,14 +193,15 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate x:DataType="vm:DevotionCardModel">
-                        <controls:PrayerCard Title="{x:Bind Title}"
-                                              Subtitle="{x:Bind Subtitle, Mode=OneWay}"
+                        <controls:PrayerCard Title="{x:Bind Title, Mode=OneWay}"
+                                              Subtitle="{x:Bind DisplaySubtitle, Mode=OneWay}"
                                               AccentColor="{x:Bind AccentColor, Mode=OneWay}"
                                               IconGlyph="{x:Bind IconGlyph}"
                                               Command="{x:Bind Command}">
                             <controls:PrayerCard.ContextFlyout>
                                 <MenuFlyout>
                                     <MenuFlyoutItem x:Uid="HomeReminders" Text="Reminders…"
+                                                    Visibility="{x:Bind CanHaveReminders, Converter={StaticResource BoolToVisibility}}"
                                                     Command="{Binding ElementName=Root, Path=ViewModel.OpenRemindersCommand}"
                                                     CommandParameter="{Binding}" />
                                     <MenuFlyoutItem x:Uid="HomeMoveToTop" Text="Move to top"

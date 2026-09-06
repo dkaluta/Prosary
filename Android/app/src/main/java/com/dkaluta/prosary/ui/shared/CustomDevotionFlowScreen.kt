@@ -35,6 +35,7 @@ import com.dkaluta.prosary.content.audio.AudioPlaybackController
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.FavoriteDevotions
 import com.dkaluta.prosary.models.CustomDevotionLanguageSwitch
+import com.dkaluta.prosary.models.DevotionEntryContext
 import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.MultiDayRun
 import com.dkaluta.prosary.models.MultiDayRuns
@@ -71,6 +72,9 @@ import kotlinx.coroutines.launch
 fun CustomDevotionFlowScreen(
     devotionId: String,
     prayer: Prayer? = null,
+    /** Explicit handoffs (Rosary → Litany) retain the just-prayed language and closing form. */
+    initialVariantId: String? = null,
+    initialLanguageCode: String? = null,
     onBack: () -> Unit,
     /** Opens another devotion in place of this one — how a finished series hands over to the
      * one its bundle suggests. Null (previews, tests) just closes the flow. */
@@ -86,11 +90,12 @@ fun CustomDevotionFlowScreen(
     var languageCode by remember { mutableStateOf<String?>(null) }
     var matchingFavoriteId by remember { mutableStateOf(prayer?.id) }
     var displayName by remember { mutableStateOf(devotionId) }
-    var variantId by remember { mutableStateOf(prayer?.variantId) }
+    val variantFollowsEntry = DevotionEntryContext.locksVariant(devotionId)
+    var variantId by remember { mutableStateOf(DevotionEntryContext.initialVariant(devotionId, initialVariantId, prayer?.variantId)) }
     var variantMenuExpanded by remember { mutableStateOf(false) }
     /** The favorite's raw language choice: an explicit code, or the sentinel ("follow the
      * app-level default setting"). [languageCode] is always the resolved code. */
-    var chosenLanguage by remember { mutableStateOf(prayer?.languageCode ?: LanguageCatalog.defaultSentinel) }
+    var chosenLanguage by remember { mutableStateOf(initialLanguageCode ?: prayer?.languageCode ?: LanguageCatalog.defaultSentinel) }
     /** The favorite's bundle option overrides. Keep them in the session model so both the
      * generated flow and its continuation signature follow the configuration being prayed. */
     var customOptions by remember(prayer?.id, devotionId) {
@@ -172,14 +177,14 @@ fun CustomDevotionFlowScreen(
 
         // The favorite (when one exists) carries the language and variant to pray in, so it
         // loads before the first build rather than after it.
-        if (matchingFavoriteId == null && prayer == null) {
+        if (matchingFavoriteId == null && prayer == null && initialVariantId == null && initialLanguageCode == null) {
             val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
             val favorite = all.firstOrNull { it.kind == PrayerKind.Custom && it.customDevotionId == devotionId }
             matchingFavoriteId = favorite?.id
             if (favorite != null) {
                 chosenLanguage = favorite.languageCode
                 customOptions = favorite.customOptions
-                if (variantId == null && favorite.variantId != null) {
+                if (!variantFollowsEntry && variantId == null && favorite.variantId != null) {
                     variantId = favorite.variantId
                 }
                 dayIndex = favorite.dayIndex ?: 0
@@ -237,7 +242,7 @@ fun CustomDevotionFlowScreen(
         val candidateSteps = build(candidateLanguage)
         val validRun = if (checkedRunKey != candidateRunKey) {
             savedRun?.takeIf {
-                it.canResume(
+                (initialLanguageCode == null || it.languageCode == configuredLanguage) && it.canResume(
                     candidateSteps.size,
                     expectedConfigurationSignature = signature,
                 )
@@ -250,6 +255,7 @@ fun CustomDevotionFlowScreen(
         val sessionLanguage = validRun?.languageCode ?: configuredLanguage
         chosenLanguage = sessionLanguage
         languageCode = PrayerPackStore.effectiveLanguage(devotionId, sessionLanguage)
+        displayName = PrayerPackStore.info(devotionId)?.displayNameIn(languageCode ?: sessionLanguage) ?: devotionId
         isRightToLeft = LanguageCatalog.resolve(languageCode ?: LanguageCatalog.defaultCode).isRightToLeft
         val built = if (sessionLanguage == candidateLanguage) candidateSteps else build(sessionLanguage)
         steps = built
@@ -524,6 +530,7 @@ fun CustomDevotionFlowScreen(
                         ?.effectiveVariantId(variantId, nextLanguageCode)
                     chosenLanguage = raw
                     languageCode = nextLanguageCode
+                    displayName = PrayerPackStore.info(devotionId)?.displayNameIn(nextLanguageCode) ?: devotionId
                     isRightToLeft = LanguageCatalog.resolve(languageCode ?: LanguageCatalog.defaultCode).isRightToLeft
                     val position = currentIndex
                     steps = services.engine.buildSteps(
@@ -590,7 +597,7 @@ fun CustomDevotionFlowScreen(
             // matching favorite when one exists.
             val flowDefinition = PrayerPackStore.definition(devotionId)
             val variants = flowDefinition?.variants
-            if (variants != null && variants.size > 1) {
+            if (!variantFollowsEntry && variants != null && variants.size > 1) {
                 // "No explicit choice" resolves per the prayer language (a rite can declare a
                 // form its own), so both the checkmark and the persistence baseline use the
                 // effective default.

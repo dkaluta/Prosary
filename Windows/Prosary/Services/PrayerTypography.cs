@@ -1,3 +1,4 @@
+using System.Globalization;
 using Prosary.Models;
 
 namespace Prosary.Services;
@@ -15,6 +16,12 @@ namespace Prosary.Services;
 /// </summary>
 public static class PrayerTypography
 {
+    /// <summary>WinUI's native, language-aware UI font token. Keep this as plain binding data:
+    /// resolving FontFamily.XamlAutoFontFamily here would activate XAML while constructing or
+    /// loading a ViewModel, before a UI thread necessarily exists. The TextBlock resolves the
+    /// token on its own UI thread, retaining the platform's native font selection.</summary>
+    public const string NativeUiFontFamily = "XamlAutoFontFamily";
+
     // Scripture quotations (the mystery-announcement step) get a dedicated typeface distinct
     // from ordinary prayer text, uniformly across platforms — Cardo (Latin) and Scheherazade New
     // (Arabic) were both designed for classical/Biblical typesetting, the same reasoning behind
@@ -33,43 +40,58 @@ public static class PrayerTypography
     /// letters for Aramaic). So rather than have the format declare it and risk the declaration
     /// drifting from the text, it is read off the characters, which cannot disagree with
     /// themselves.</summary>
-    public enum Script { Hebrew, Arabic, Syriac, Latin }
+    public enum Script { Hebrew, Arabic, Syriac, Cyrillic, Greek, Latin }
 
     /// <summary>The script most of a text's letters belong to. Counted rather than sampled: a
     /// citation line ("— ܡܬܝ 28:1–7") mixes digits and punctuation into every body.</summary>
     public static Script ScriptOf(string text)
     {
-        int hebrew = 0, arabic = 0, syriac = 0, latin = 0;
+        int hebrew = 0, arabic = 0, syriac = 0, cyrillic = 0, greek = 0, latin = 0;
         foreach (var ch in text ?? string.Empty)
         {
+            if (!char.IsLetter(ch)) continue;
             int c = ch;
-            if (c is >= 0x0590 and <= 0x05FF) hebrew++;
-            else if (c is (>= 0x0600 and <= 0x06FF) or (>= 0x0750 and <= 0x077F)) arabic++;
+            if (c is (>= 0x0590 and <= 0x05FF) or (>= 0xFB1D and <= 0xFB4F)) hebrew++;
+            else if (c is (>= 0x0600 and <= 0x06FF) or (>= 0x0750 and <= 0x077F)
+                     or (>= 0x0870 and <= 0x08FF) or (>= 0xFB50 and <= 0xFDFF)
+                     or (>= 0xFE70 and <= 0xFEFF)) arabic++;
             else if (c is (>= 0x0700 and <= 0x074F) or (>= 0x0860 and <= 0x086F)) syriac++;
+            else if (c is (>= 0x0400 and <= 0x052F) or (>= 0x1C80 and <= 0x1C8F)
+                     or (>= 0x2DE0 and <= 0x2DFF) or (>= 0xA640 and <= 0xA69F)) cyrillic++;
+            else if (c is (>= 0x0370 and <= 0x03FF) or (>= 0x1F00 and <= 0x1FFF)) greek++;
             else if (c is (>= 0x0041 and <= 0x005A) or (>= 0x0061 and <= 0x007A)
-                     or (>= 0x0370 and <= 0x03FF) or (>= 0x1F00 and <= 0x1FFF)) latin++;
+                     or (>= 0x00C0 and <= 0x024F) or (>= 0x1E00 and <= 0x1EFF)) latin++;
         }
         var best = Script.Latin;
         var top = 0;
         foreach (var (count, script) in new[] { (hebrew, Script.Hebrew), (arabic, Script.Arabic),
-                                                (syriac, Script.Syriac), (latin, Script.Latin) })
+                                                (syriac, Script.Syriac), (cyrillic, Script.Cyrillic),
+                                                (greek, Script.Greek), (latin, Script.Latin) })
         {
             if (count > top) { top = count; best = script; }
         }
         return best;
     }
 
-    /// <summary>Only ever reached through a transliteration: no language ships its own text in
-    /// Syriac letters, because "arc" is Aramaic in Hebrew script. Without a face covering the
-    /// block the toggle would draw a line of tofu, which is worse than not offering it.</summary>
+    /// <summary>Syriac covers both ordinary imported text and reading aids.</summary>
     public const string SyriacFontFamily = "/Assets/Fonts/NotoSansSyriac-Variable.ttf#Noto Sans Syriac";
     private const string SyriacWesternFontFamily = "/Assets/Fonts/NotoSansSyriacWestern-Variable.ttf#Noto Sans Syriac Western";
     private const string SyriacEasternFontFamily = "/Assets/Fonts/NotoSansSyriacEastern-Variable.ttf#Noto Sans Syriac Eastern";
 
-    /// <summary><paramref name="script"/> overrides what the language would imply — pass it when
-    /// rendering a transliteration.</summary>
-    public static string ResolveBodyFontFamily(string? languageCode, bool isScripture, Script? script) =>
-        script switch
+    public static bool IsRightToLeft(Script script) => script is Script.Hebrew or Script.Arabic or Script.Syriac;
+
+    private static Script LanguageScript(string? code) =>
+        (code is null ? null : LanguageCatalog.BaseLanguage(code) ?? code) switch
+        {
+            "he" or "arc" => Script.Hebrew,
+            "ar" => Script.Arabic,
+            "ru" => Script.Cyrillic,
+            "el" => Script.Greek,
+            _ => Script.Latin,
+        };
+
+    public static string ResolveBodyFontFamily(string? languageCode, bool isScripture, Script? script = null) =>
+        (script ?? LanguageScript(languageCode)) switch
         {
             Script.Syriac => AppSettings.SyriacTypeface switch
             {
@@ -77,32 +99,29 @@ public static class PrayerTypography
                 AppSettings.TypefaceEastern => SyriacEasternFontFamily,
                 _ => SyriacFontFamily,
             },
-            _ => ResolveBodyFontFamily(languageCode, isScripture),
+            Script.Hebrew => isScripture
+                ? AppSettings.HebrewScriptureTypeface switch
+                {
+                    AppSettings.TypefaceStamAshkenaz => "/Assets/Fonts/StamAshkenazCLM.ttf#Stam Ashkenaz CLM",
+                    AppSettings.TypefaceStamSefarad => "/Assets/Fonts/StamSefaradCLM.ttf#Stam Sefarad CLM",
+                    AppSettings.TypefaceRashi => "/Assets/Fonts/NotoRashiHebrew-Variable.ttf#Noto Rashi Hebrew",
+                    _ => "/Assets/Fonts/ShofarRegular.ttf#Shofar",
+                }
+                : AppSettings.HebrewPrayerTypeface switch
+                {
+                    AppSettings.TypefaceDavidLibre => "/Assets/Fonts/DavidLibre-Regular.ttf#David Libre",
+                    AppSettings.TypefaceSansSerif => "Segoe UI",
+                    _ => "/Assets/Fonts/FrankRuhlLibre-Variable.ttf#Frank Ruhl Libre",
+                },
+            Script.Arabic => isScripture
+                ? "/Assets/Fonts/ScheherazadeNew-Regular.ttf#Scheherazade New"
+                : "/Assets/Fonts/Amiri-Regular.ttf#Amiri",
+            Script.Cyrillic when isScripture => "Cambria",
+            Script.Cyrillic => AppSettings.CyrillicPrayerTypeface == AppSettings.TypefaceSansSerif ? "Segoe UI" : "Cambria",
+            Script.Latin or Script.Greek when isScripture => "/Assets/Fonts/Cardo-Regular.ttf#Cardo",
+            Script.Greek => "Cambria",
+            _ => AppSettings.LatinPrayerTypeface == AppSettings.TypefaceSansSerif ? "Segoe UI" : "Cambria",
         };
-
-    public static string ResolveBodyFontFamily(string? languageCode, bool isScripture) => (languageCode is not null ? Prosary.Models.LanguageCatalog.BaseLanguage(languageCode) ?? languageCode : languageCode) switch
-    {
-        "he" or "arc" => isScripture
-            ? AppSettings.HebrewScriptureTypeface switch
-            {
-                AppSettings.TypefaceStamAshkenaz => "/Assets/Fonts/StamAshkenazCLM.ttf#Stam Ashkenaz CLM",
-                AppSettings.TypefaceStamSefarad => "/Assets/Fonts/StamSefaradCLM.ttf#Stam Sefarad CLM",
-                AppSettings.TypefaceRashi => "/Assets/Fonts/NotoRashiHebrew-Variable.ttf#Noto Rashi Hebrew",
-                _ => "/Assets/Fonts/ShofarRegular.ttf#Shofar",
-            }
-            : AppSettings.HebrewPrayerTypeface switch
-            {
-                AppSettings.TypefaceDavidLibre => "/Assets/Fonts/DavidLibre-Regular.ttf#David Libre",
-                AppSettings.TypefaceSansSerif => "Segoe UI",
-                _ => "/Assets/Fonts/FrankRuhlLibre-Variable.ttf#Frank Ruhl Libre",
-            },
-        "ar" => isScripture
-            ? "/Assets/Fonts/ScheherazadeNew-Regular.ttf#Scheherazade New"
-            : "/Assets/Fonts/Amiri-Regular.ttf#Amiri",
-        "la" or "en" when isScripture => "/Assets/Fonts/Cardo-Regular.ttf#Cardo",
-        // Cambria ships with Windows by default — no embedding needed.
-        _ => "Cambria",
-    };
 
     // Matches iOS/Android's own per-language/content-type point sizes exactly (16/21 Hebrew
     // Scripture/prayer, 16/18 Arabic Scripture/prayer, 19/17 Latin+English Scripture/prayer) —
@@ -116,14 +135,13 @@ public static class PrayerTypography
     // noticeably smaller than this app's own button/caption text — the opposite problem. Android's
     // own PrayerTypography.kt uses these exact numbers with no correction at all and never needed
     // one, which is the closer precedent for a platform with no special desktop-only type ramp.
-    public static double ResolveBodyFontSize(string? languageCode, bool isScripture, Script? script) =>
-        script == Script.Syriac ? 19 : ResolveBodyFontSize(languageCode, isScripture);
-
-    public static double ResolveBodyFontSize(string? languageCode, bool isScripture) => (languageCode is not null ? Prosary.Models.LanguageCatalog.BaseLanguage(languageCode) ?? languageCode : languageCode) switch
-    {
-        "he" or "arc" => isScripture ? 16 : 21,
-        "ar" => isScripture ? 16 : 18,
-        "la" or "en" => isScripture ? 19 : 17,
-        _ => 17
-    };
+    public static double ResolveBodyFontSize(string? languageCode, bool isScripture, Script? script = null) =>
+        (script ?? LanguageScript(languageCode)) switch
+        {
+            Script.Syriac => 19,
+            Script.Hebrew => isScripture ? 16 : 21,
+            Script.Arabic => isScripture ? 16 : 18,
+            Script.Latin or Script.Greek => isScripture ? 19 : 17,
+            _ => 17,
+        };
 }

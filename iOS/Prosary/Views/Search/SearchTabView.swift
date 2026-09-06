@@ -14,6 +14,7 @@ struct SearchTabView: View {
   /// that survives the Mac's Settings menu — see PrayerLanguageMonitor's header for the
   /// graveyard of simpler attempts. Reading `.code` in body registers the dependency.
   @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
+  @AppStorage(PrayerNamePresentation.defaultsKey) private var showsPrayerNameInPrayerLanguage = false
 
   @Binding var path: [AppRoute]
 
@@ -29,6 +30,7 @@ struct SearchTabView: View {
     guard !query.isEmpty else { return listings }
     return listings.filter {
       $0.title.localizedCaseInsensitiveContains(query)
+        || ($0.translatedTitle?.localizedCaseInsensitiveContains(query) ?? false)
         || $0.tags.contains { $0.localizedCaseInsensitiveContains(query) || UILanguage.tag($0).localizedCaseInsensitiveContains(query) }
     }
   }
@@ -46,6 +48,7 @@ struct SearchTabView: View {
 
   var body: some View {
     let _ = prayerLanguage.code  // dependency registration — see the property's comment
+    let _ = showsPrayerNameInPrayerLanguage
     List {
       Section(String(localized: "search.onDevice", defaultValue: "On This Device")) {
         ForEach(localMatches) { listing in
@@ -53,7 +56,12 @@ struct SearchTabView: View {
             path.push(listing.route)
           } label: {
             Label {
-              Text(HebrewDisplayText.unpointed(listing.title)).foregroundStyle(.primary)
+              VStack(alignment: .leading, spacing: 3) {
+                Text(HebrewDisplayText.unpointed(listing.title)).foregroundStyle(.primary)
+                if let translation = listing.translatedTitle {
+                  Text(translation).font(.subheadline).foregroundStyle(.secondary)
+                }
+              }
             } icon: {
               if let glyph = listing.iconGlyph {
                 Text(glyph).foregroundStyle(listing.accentColor)

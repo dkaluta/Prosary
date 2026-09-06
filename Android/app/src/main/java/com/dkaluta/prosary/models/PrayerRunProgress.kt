@@ -53,7 +53,16 @@ object PrayerRunSignatures {
         options.aramaicSignOfCrossForm,
         options.presenterMode.flag,
         options.mysteryImageStyle.stableValue,
-    ).joinToString("|")
+    ).joinToString("|") + closingIntentionsSuffix(options)
+
+    private fun closingIntentionsSuffix(options: RosaryOptions): String {
+        val effective = listOf(options.effectiveClosingPopeIntention,
+            options.effectiveClosingBishopIntention, options.effectiveClosingDepartedIntention)
+        // New intention introductions shift existing closing sequences. No-closing runs keep
+        // their identity; enabled or changed closing runs must not resume at an old index.
+        return if (effective.none { it } && !options.includeClosingIntentions) ""
+        else "|closing-v2:" + effective.joinToString(",") { it.flag }
+    }
 
     fun custom(
         devotionId: String,

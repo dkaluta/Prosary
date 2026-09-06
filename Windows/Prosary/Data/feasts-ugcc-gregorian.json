@@ -1,0 +1,2266 @@
+{
+ "$comment": "Byzantine Ukrainian Greek Catholic calendar: new-style fixed feasts with Gregorian Pascha. Fixed menologion and movable cycle curated in Shared/tools/fetch-feasts.py. Default Julian Pascha follows the UGCC in Ukraine; Gregorian Pascha is an explicit alternate usage. The corresponding reading table must use the same Pascha style. Research and source links in Shared/calendar-research.markdown. Hebrew feast and saint names use the credited source catalogs in Shared/tools/hebrew-feast-titles.json and hebrew-saint-titles.json; the calendar's own dates, observances, ranks and original titles are retained. French and Italian feast names are sourced from LitCal (Apache-2.0), joined by stable event identity with reviewed exact aliases in Shared/tools/feast-titles-localized.json; no calendar dates or ranks are changed. Editorial display labels in all interface languages are supplied by Prosary's feast-titles catalogs where a published translation is unavailable; they are calendar metadata, not official liturgical prayer translations. Published exact-title translations take precedence.",
+ "generated": "2026-09-06",
+ "years": [
+  2026,
+  2027
+ ],
+ "days": {
+  "2026-01-01": {
+   "title": "The Circumcision of Our Lord; Saint Basil the Great",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג ברית ישוע; בסיליוס הגדול, הגמון ודוקטור הכנסייה",
+    "ar": "ختان ربنا؛ القديس باسيليوس الكبير",
+    "ru": "Обрезание Господне; святой Василий Великий",
+    "tl": "Ang Pagtutuli sa Ating Panginoon; San Basilio Magno",
+    "fr": "La Circoncision de Notre Seigneur ; saint Basile le Grand",
+    "it": "La Circoncisione di Nostro Signore; san Basilio Magno"
+   }
+  },
+  "2026-01-04": {
+   "title": "Sunday before Theophany",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון שלפני חג הטבילה",
+    "ar": "الأحد قبل الظهور الإلهي",
+    "ru": "Воскресенье перед Богоявлением",
+    "tl": "Linggo bago ang Teofanya",
+    "fr": "Dimanche avant la Théophanie",
+    "it": "Domenica prima della Teofania"
+   }
+  },
+  "2026-01-06": {
+   "title": "The Holy Theophany of Our Lord",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג הטבילה",
+    "ar": "الظهور الإلهي المقدس لربنا",
+    "ru": "Святое Богоявление Господне",
+    "tl": "Ang Banal na Teofanya ng Ating Panginoon",
+    "fr": "La Sainte Théophanie de Notre Seigneur",
+    "it": "La Santa Teofania di Nostro Signore"
+   }
+  },
+  "2026-01-07": {
+   "title": "Synaxis of the Holy Prophet and Forerunner John the Baptist",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "כינוס יוחנן המטביל, הנביא הקדוש ומבשר האדון",
+    "ar": "جامع النبي القديس السابق يوحنا المعمدان",
+    "ru": "Собор святого пророка и Предтечи Иоанна Крестителя",
+    "tl": "Pagtitipon para kay San Juan Bautista, Banal na Propeta at Tagapaghanda",
+    "fr": "Synaxe du saint prophète et Précurseur Jean-Baptiste",
+    "it": "Sinassi del santo profeta e Precursore Giovanni Battista"
+   }
+  },
+  "2026-01-11": {
+   "title": "Sunday after Theophany",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון שאחרי חג הטבילה",
+    "ar": "الأحد بعد الظهور الإلهي",
+    "ru": "Воскресенье после Богоявления",
+    "tl": "Linggo pagkatapos ng Teofanya",
+    "fr": "Dimanche après la Théophanie",
+    "it": "Domenica dopo la Teofania"
+   }
+  },
+  "2026-01-17": {
+   "title": "Venerable Anthony the Great",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "אנטוניוס הגדול הנכבד",
+    "ar": "البار أنطونيوس الكبير",
+    "ru": "Преподобный Антоний Великий",
+    "tl": "San Antonio Abad na Kagalang-galang",
+    "fr": "Vénérable Antoine le Grand",
+    "it": "Venerabile Antonio il Grande"
+   }
+  },
+  "2026-01-18": {
+   "title": "Sunday of Zacchaeus",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של זכי",
+    "ar": "أحد زكا",
+    "ru": "Воскресенье о Закхее",
+    "tl": "Linggo ni Zaqueo",
+    "fr": "Dimanche de Zachée",
+    "it": "Domenica di Zaccheo"
+   }
+  },
+  "2026-01-25": {
+   "title": "Sunday of the Publican and the Pharisee; Saint Gregory the Theologian",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של המוכס והפרוש; גרגוריוס מנזיאנזוס, הגמון ודוקטור הכנסייה",
+    "ar": "أحد الفريسي والعشار; القديس غريغوريوس اللاهوتي",
+    "ru": "Воскресенье о мытаре и фарисее; Святой Григорий Богослов",
+    "tl": "Linggo ng Publikano at Pariseo; San Gregorio na Teologo",
+    "fr": "Dimanche du Publicain et du Pharisien; Saint Grégoire le Théologien",
+    "it": "Domenica del Pubblicano e del Fariseo; San Gregorio il Teologo"
+   }
+  },
+  "2026-01-30": {
+   "title": "The Three Holy Hierarchs",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "שלושת ההגמונים הקדושים",
+    "ar": "الأقمار الثلاثة القديسون",
+    "ru": "Три святителя",
+    "tl": "Ang Tatlong Banal na Obispo",
+    "fr": "Les trois saints Hiérarques",
+    "it": "I tre santi Gerarchi"
+   }
+  },
+  "2026-02-01": {
+   "title": "Sunday of the Prodigal Son",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של הבן האובד",
+    "ar": "أحد الابن الشاطر",
+    "ru": "Воскресенье о блудном сыне",
+    "tl": "Linggo ng Alibughang Anak",
+    "fr": "Dimanche du Fils prodigue",
+    "it": "Domenica del Figlio prodigo"
+   }
+  },
+  "2026-02-02": {
+   "title": "The Encounter of Our Lord",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג הבאתו של ישוע אל בית המקדש",
+    "ar": "لقاء ربنا",
+    "ru": "Сретение Господне",
+    "tl": "Ang Pagtatagpo sa Ating Panginoon sa Templo",
+    "fr": "La Sainte Rencontre de Notre Seigneur",
+    "it": "L’Incontro di Nostro Signore"
+   }
+  },
+  "2026-02-08": {
+   "title": "Meatfare Sunday — of the Last Judgment",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של הפרידה מן הבשר — יום הדין האחרון",
+    "ar": "أحد مرفع اللحم — الدينونة الأخيرة",
+    "ru": "Мясопустное воскресенье — о Страшном суде",
+    "tl": "Linggo ng Pamamaalam sa Karne — ng Huling Paghuhukom",
+    "fr": "Dimanche de l’Apocréo — du Jugement dernier",
+    "it": "Domenica di Carnevale — del Giudizio finale"
+   }
+  },
+  "2026-02-15": {
+   "title": "Cheesefare Sunday — of Forgiveness",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של הפרידה מן הגבינה — יום הסליחה",
+    "ar": "أحد مرفع الجبن — الغفران",
+    "ru": "Сыропустное воскресенье — Прощёное воскресенье",
+    "tl": "Linggo ng Pamamaalam sa Keso — ng Pagpapatawad",
+    "fr": "Dimanche de la tyrophagie — du Pardon",
+    "it": "Domenica dei latticini — del Perdono"
+   }
+  },
+  "2026-02-16": {
+   "title": "First Day of the Great Fast",
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "היום הראשון של הצום הגדול",
+    "ar": "اليوم الأول من الصوم الكبير",
+    "ru": "Первый день Великого поста",
+    "tl": "Unang Araw ng Dakilang Kuwaresma",
+    "fr": "Premier jour du Grand Carême",
+    "it": "Primo giorno della Grande Quaresima"
+   }
+  },
+  "2026-02-22": {
+   "title": "First Sunday of the Great Fast — of Orthodoxy",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון הראשון של הצום הגדול — של האורתודוקסיה",
+    "ar": "الأحد الأول من الصوم الكبير — الأرثوذكسية",
+    "ru": "Первое воскресенье Великого поста — Торжество Православия",
+    "tl": "Unang Linggo ng Dakilang Kuwaresma — ng Ortodoksiya",
+    "fr": "Premier dimanche du Grand Carême — de l’Orthodoxie",
+    "it": "Prima domenica della Grande Quaresima — dell’Ortodossia"
+   }
+  },
+  "2026-03-01": {
+   "title": "Second Sunday of the Great Fast — Saint Gregory Palamas",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון השני של הצום הגדול — גרגוריוס פלמאס הקדוש",
+    "ar": "الأحد الثاني من الصوم الكبير — القديس غريغوريوس بالاماس",
+    "ru": "Второе воскресенье Великого поста — святителя Григория Паламы",
+    "tl": "Ikalawang Linggo ng Dakilang Kuwaresma — San Gregorio Palamas",
+    "fr": "Deuxième dimanche du Grand Carême — saint Grégoire Palamas",
+    "it": "Seconda domenica della Grande Quaresima — san Gregorio Palamas"
+   }
+  },
+  "2026-03-08": {
+   "title": "Third Sunday of the Great Fast — Veneration of the Cross",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון השלישי של הצום הגדול — כיבוד הצלב",
+    "ar": "الأحد الثالث من الصوم الكبير — السجود للصليب",
+    "ru": "Третье воскресенье Великого поста — Крестопоклонное",
+    "tl": "Ikatlong Linggo ng Dakilang Kuwaresma — Pagpupugay sa Krus",
+    "fr": "Troisième dimanche du Grand Carême — Vénération de la Croix",
+    "it": "Terza domenica della Grande Quaresima — Venerazione della Croce"
+   }
+  },
+  "2026-03-09": {
+   "title": "The Holy Forty Martyrs of Sebaste",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "ארבעים המרטירים הקדושים מסבסטיה",
+    "ar": "الشهداء الأربعون القديسون في سبسطية",
+    "ru": "Святые сорок мучеников Севастийских",
+    "tl": "Ang Apatnapung Banal na Martir ng Sebaste",
+    "fr": "Les quarante saints martyrs de Sébaste",
+    "it": "I quaranta santi martiri di Sebaste"
+   }
+  },
+  "2026-03-15": {
+   "title": "Fourth Sunday of the Great Fast — Saint John Climacus",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון הרביעי של הצום הגדול — יוחנן קלימקוס הקדוש",
+    "ar": "الأحد الرابع من الصوم الكبير — القديس يوحنا السلمي",
+    "ru": "Четвёртое воскресенье Великого поста — преподобного Иоанна Лествичника",
+    "tl": "Ikaapat na Linggo ng Dakilang Kuwaresma — San Juan Climaco",
+    "fr": "Quatrième dimanche du Grand Carême — saint Jean Climaque",
+    "it": "Quarta domenica della Grande Quaresima — san Giovanni Climaco"
+   }
+  },
+  "2026-03-22": {
+   "title": "Fifth Sunday of the Great Fast — Saint Mary of Egypt",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון החמישי של הצום הגדול — מרים המצרית הקדושה",
+    "ar": "الأحد الخامس من الصوم الكبير — القديسة مريم المصرية",
+    "ru": "Пятое воскресенье Великого поста — преподобной Марии Египетской",
+    "tl": "Ikalimang Linggo ng Dakilang Kuwaresma — Santa Maria ng Ehipto",
+    "fr": "Cinquième dimanche du Grand Carême — sainte Marie l’Égyptienne",
+    "it": "Quinta domenica della Grande Quaresima — santa Maria Egiziaca"
+   }
+  },
+  "2026-03-25": {
+   "title": "The Annunciation of the Most Holy Theotokos",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג בשורת המלאך למרים",
+    "ar": "بشارة والدة الإله الفائقة القداسة",
+    "ru": "Благовещение Пресвятой Богородицы",
+    "tl": "Ang Pagpapahayag sa Kabanal-banalang Ina ng Diyos",
+    "fr": "L’Annonciation à la Très Sainte Mère de Dieu",
+    "it": "L’Annunciazione alla Santissima Madre di Dio"
+   }
+  },
+  "2026-03-28": {
+   "title": "Lazarus Saturday",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "שבת אלעזר",
+    "ar": "سبت لعازر",
+    "ru": "Лазарева суббота",
+    "tl": "Sabado ni Lazaro",
+    "fr": "Samedi de Lazare",
+    "it": "Sabato di Lazzaro"
+   }
+  },
+  "2026-03-29": {
+   "title": "Flowery (Palm) Sunday — the Entrance into Jerusalem",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "יום הראשון של הלולבים",
+    "ar": "أحد الشعانين — الدخول إلى أورشليم",
+    "ru": "Вербное воскресенье — Вход Господень в Иерусалим",
+    "tl": "Linggo ng Palaspas — ang Pagpasok sa Jerusalem",
+    "fr": "Dimanche des Rameaux — l’Entrée à Jérusalem",
+    "it": "Domenica delle Palme — l’Ingresso a Gerusalemme"
+   }
+  },
+  "2026-03-30": {
+   "title": "Great and Holy Monday",
+   "rank": "Holy Week",
+   "titleByLanguage": {
+    "he": "יום שני הגדול והקדוש",
+    "ar": "الاثنين العظيم المقدس",
+    "ru": "Великий и Святой понедельник",
+    "tl": "Dakila at Banal na Lunes",
+    "fr": "Grand et Saint Lundi",
+    "it": "Grande e Santo Lunedì"
+   }
+  },
+  "2026-03-31": {
+   "title": "Great and Holy Tuesday",
+   "rank": "Holy Week",
+   "titleByLanguage": {
+    "he": "יום שלישי הגדול והקדוש",
+    "ar": "الثلاثاء العظيم المقدس",
+    "ru": "Великий и Святой вторник",
+    "tl": "Dakila at Banal na Martes",
+    "fr": "Grand et Saint Mardi",
+    "it": "Grande e Santo Martedì"
+   }
+  },
+  "2026-04-01": {
+   "title": "Great and Holy Wednesday",
+   "rank": "Holy Week",
+   "titleByLanguage": {
+    "he": "יום רביעי הגדול והקדוש",
+    "ar": "الأربعاء العظيم المقدس",
+    "ru": "Великая и Святая среда",
+    "tl": "Dakila at Banal na Miyerkules",
+    "fr": "Grand et Saint Mercredi",
+    "it": "Grande e Santo Mercoledì"
+   }
+  },
+  "2026-04-02": {
+   "title": "Great and Holy Thursday",
+   "rank": "Holy Week",
+   "titleByLanguage": {
+    "he": "יום החמישי הגדול",
+    "ar": "الخميس العظيم المقدس",
+    "ru": "Великий и Святой четверг",
+    "tl": "Dakila at Banal na Huwebes",
+    "fr": "Grand et Saint Jeudi",
+    "it": "Grande e Santo Giovedì"
+   }
+  },
+  "2026-04-03": {
+   "title": "Great and Holy Friday",
+   "rank": "Holy Week",
+   "titleByLanguage": {
+    "he": "יום השישי הגדול",
+    "ar": "الجمعة العظيم المقدس",
+    "ru": "Великая и Святая пятница",
+    "tl": "Dakila at Banal na Biyernes",
+    "fr": "Grand et Saint Vendredi",
+    "it": "Grande e Santo Venerdì"
+   }
+  },
+  "2026-04-04": {
+   "title": "Great and Holy Saturday",
+   "rank": "Holy Week",
+   "titleByLanguage": {
+    "he": "יום השבת הגדול",
+    "ar": "السبت العظيم المقدس",
+    "ru": "Великая и Святая суббота",
+    "tl": "Dakila at Banal na Sabado",
+    "fr": "Grand et Saint Samedi",
+    "it": "Grande e Santo Sabato"
+   }
+  },
+  "2026-04-05": {
+   "title": "The Resurrection of Our Lord — Holy Pascha",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "יום הפסחא - חג התחייה",
+    "ar": "قيامة ربنا — الفصح المقدس",
+    "ru": "Воскресение Господне — Святая Пасха",
+    "tl": "Ang Muling Pagkabuhay ng Ating Panginoon — Banal na Paskuwa",
+    "fr": "La Résurrection de Notre Seigneur — Sainte Pâque",
+    "it": "La Risurrezione di Nostro Signore — Santa Pasqua"
+   }
+  },
+  "2026-04-06": {
+   "title": "Bright Monday",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום שני של שבוע האור",
+    "ar": "اثنين التجديدات",
+    "ru": "Светлый понедельник",
+    "tl": "Lunes ng Linggo ng Liwanag",
+    "fr": "Lundi lumineux",
+    "it": "Lunedì luminoso"
+   }
+  },
+  "2026-04-07": {
+   "title": "Bright Tuesday",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום שלישי של שבוע האור",
+    "ar": "ثلاثاء التجديدات",
+    "ru": "Светлый вторник",
+    "tl": "Martes ng Linggo ng Liwanag",
+    "fr": "Mardi lumineux",
+    "it": "Martedì luminoso"
+   }
+  },
+  "2026-04-12": {
+   "title": "Thomas Sunday",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של תאמא",
+    "ar": "أحد توما",
+    "ru": "Фомино воскресенье",
+    "tl": "Linggo ni Santo Tomas",
+    "fr": "Dimanche de Thomas",
+    "it": "Domenica di Tommaso"
+   }
+  },
+  "2026-04-19": {
+   "title": "Sunday of the Myrrh-Bearing Women",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של הנשים נושאות המור",
+    "ar": "أحد حاملات الطيب",
+    "ru": "Воскресенье святых жён-мироносиц",
+    "tl": "Linggo ng mga Babaeng May Dalang Mira",
+    "fr": "Dimanche des femmes Myrophores",
+    "it": "Domenica delle donne Mirofore"
+   }
+  },
+  "2026-04-23": {
+   "title": "Holy Great-Martyr George",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "גאורגיוס, מרטיר",
+    "ar": "القديس جاورجيوس العظيم في الشهداء",
+    "ru": "Святой великомученик Георгий",
+    "tl": "San Jorge, Dakilang Martir",
+    "fr": "Saint grand martyr Georges",
+    "it": "Santo grande martire Giorgio"
+   }
+  },
+  "2026-04-26": {
+   "title": "Sunday of the Paralytic",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של המשותק",
+    "ar": "أحد المخلّع",
+    "ru": "Воскресенье о расслабленном",
+    "tl": "Linggo ng Paralitiko",
+    "fr": "Dimanche du Paralytique",
+    "it": "Domenica del Paralitico"
+   }
+  },
+  "2026-04-29": {
+   "title": "Mid-Pentecost",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "אמצע התקופה שבין הפסחא לשבועות",
+    "ar": "عيد منتصف الخمسين",
+    "ru": "Преполовение Пятидесятницы",
+    "tl": "Kalagitnaan ng Panahon ng Pentecostes",
+    "fr": "Mi-Pentecôte",
+    "it": "Mezza Pentecoste"
+   }
+  },
+  "2026-05-03": {
+   "title": "Sunday of the Samaritan Woman",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של האישה השומרונית",
+    "ar": "أحد السامرية",
+    "ru": "Воскресенье о самарянке",
+    "tl": "Linggo ng Babaeng Samaritana",
+    "fr": "Dimanche de la Samaritaine",
+    "it": "Domenica della Samaritana"
+   }
+  },
+  "2026-05-08": {
+   "title": "Holy Apostle and Evangelist John the Theologian",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג יוחנן השליח והמבשר",
+    "ar": "القديس يوحنا الرسول والإنجيلي اللاهوتي",
+    "ru": "Святой апостол и евангелист Иоанн Богослов",
+    "tl": "San Juan na Apostol, Ebanghelista at Teologo",
+    "fr": "Saint apôtre et évangéliste Jean le Théologien",
+    "it": "Santo apostolo ed evangelista Giovanni il Teologo"
+   }
+  },
+  "2026-05-10": {
+   "title": "Sunday of the Man Born Blind",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של העיוור מלידה",
+    "ar": "أحد المولود أعمى",
+    "ru": "Воскресенье о слепорождённом",
+    "tl": "Linggo ng Lalaking Ipinanganak na Bulag",
+    "fr": "Dimanche de l’Aveugle-né",
+    "it": "Domenica del Cieco nato"
+   }
+  },
+  "2026-05-14": {
+   "title": "The Ascension of Our Lord",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג עלייתו של האדון השמיימה",
+    "ar": "صعود ربنا",
+    "ru": "Вознесение Господне",
+    "tl": "Ang Pag-akyat sa Langit ng Ating Panginoon",
+    "fr": "L’Ascension de Notre Seigneur",
+    "it": "L’Ascensione di Nostro Signore"
+   }
+  },
+  "2026-05-17": {
+   "title": "Sunday of the Fathers of the First Council of Nicaea",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של אבות ועידת ניקיאה הראשונה",
+    "ar": "أحد آباء مجمع نيقية الأول",
+    "ru": "Воскресенье святых отцов Первого Никейского собора",
+    "tl": "Linggo ng mga Ama ng Unang Konsilyo ng Nicea",
+    "fr": "Dimanche des Pères du premier concile de Nicée",
+    "it": "Domenica dei Padri del primo concilio di Nicea"
+   }
+  },
+  "2026-05-21": {
+   "title": "Holy Equal-to-the-Apostles Constantine and Helena",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "קונסטנטינוס והלנה הקדושים, שווי השליחים",
+    "ar": "القديسان المعادلان للرسل قسطنطين وهيلانة",
+    "ru": "Святые равноапостольные Константин и Елена",
+    "tl": "Sina San Constantino at Santa Elena, Kapantay ng mga Apostol",
+    "fr": "Saints Constantin et Hélène, égaux aux apôtres",
+    "it": "Santi Costantino ed Elena, pari agli apostoli"
+   }
+  },
+  "2026-05-24": {
+   "title": "The Descent of the Holy Spirit — Pentecost",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "שבועות",
+    "ar": "حلول الروح القدس — العنصرة",
+    "ru": "Сошествие Святого Духа — Пятидесятница",
+    "tl": "Ang Pagbaba ng Espiritu Santo — Pentecostes",
+    "fr": "La Descente du Saint-Esprit — Pentecôte",
+    "it": "La Discesa dello Spirito Santo — Pentecoste"
+   }
+  },
+  "2026-05-25": {
+   "title": "Monday of the Holy Spirit",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום שני של רוח הקודש",
+    "ar": "اثنين الروح القدس",
+    "ru": "Понедельник Святого Духа",
+    "tl": "Lunes ng Espiritu Santo",
+    "fr": "Lundi du Saint-Esprit",
+    "it": "Lunedì dello Spirito Santo"
+   }
+  },
+  "2026-05-31": {
+   "title": "Sunday of All Saints",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "חג כל הקדושים",
+    "ar": "أحد جميع القديسين",
+    "ru": "Воскресенье Всех святых",
+    "tl": "Linggo ng Lahat ng mga Banal",
+    "fr": "Dimanche de tous les saints",
+    "it": "Domenica di tutti i santi"
+   }
+  },
+  "2026-06-07": {
+   "title": "2nd Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־2 אחרי שבועות",
+    "ar": "الأحد 2 بعد العنصرة",
+    "ru": "2-е воскресенье после Пятидесятницы",
+    "tl": "Ika-2 Linggo pagkatapos ng Pentecostes",
+    "fr": "2e dimanche après la Pentecôte",
+    "it": "2ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-06-14": {
+   "title": "3rd Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־3 אחרי שבועות",
+    "ar": "الأحد 3 بعد العنصرة",
+    "ru": "3-е воскресенье после Пятидесятницы",
+    "tl": "Ika-3 Linggo pagkatapos ng Pentecostes",
+    "fr": "3e dimanche après la Pentecôte",
+    "it": "3ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-06-21": {
+   "title": "4th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־4 אחרי שבועות",
+    "ar": "الأحد 4 بعد العنصرة",
+    "ru": "4-е воскресенье после Пятидесятницы",
+    "tl": "Ika-4 Linggo pagkatapos ng Pentecostes",
+    "fr": "4e dimanche après la Pentecôte",
+    "it": "4ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-06-24": {
+   "title": "The Nativity of the Holy Prophet John the Baptist",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג הולדתו של יוחנן המטביל",
+    "ar": "ميلاد النبي القديس يوحنا المعمدان",
+    "ru": "Рождество святого пророка Иоанна Крестителя",
+    "tl": "Ang Pagsilang ni San Juan Bautista na Banal na Propeta",
+    "fr": "La Nativité du saint prophète Jean-Baptiste",
+    "it": "La Natività del santo profeta Giovanni Battista"
+   }
+  },
+  "2026-06-27": {
+   "title": "The Blessed New Martyrs of the Ukrainian Catholic Church",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "המרטירים החדשים המבורכים של הכנסייה הקתולית האוקראינית",
+    "ar": "الشهداء الجدد الطوباويون للكنيسة الكاثوليكية الأوكرانية",
+    "ru": "Блаженные новомученики Украинской Католической Церкви",
+    "tl": "Ang mga Beato at Bagong Martir ng Simbahang Katolikong Ukranyano",
+    "fr": "Les bienheureux nouveaux martyrs de l’Église catholique ukrainienne",
+    "it": "I beati nuovi martiri della Chiesa cattolica ucraina"
+   }
+  },
+  "2026-06-28": {
+   "title": "5th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־5 אחרי שבועות",
+    "ar": "الأحد 5 بعد العنصرة",
+    "ru": "5-е воскресенье после Пятидесятницы",
+    "tl": "Ika-5 Linggo pagkatapos ng Pentecostes",
+    "fr": "5e dimanche après la Pentecôte",
+    "it": "5ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-06-29": {
+   "title": "Holy Apostles Peter and Paul",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג שמעון כיפא ושאול השליחים",
+    "ar": "القديسان الرسولان بطرس وبولس",
+    "ru": "Святые апостолы Пётр и Павел",
+    "tl": "Mga Banal na Apostol San Pedro at San Pablo",
+    "fr": "Saints apôtres Pierre et Paul",
+    "it": "Santi apostoli Pietro e Paolo"
+   }
+  },
+  "2026-07-05": {
+   "title": "6th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־6 אחרי שבועות",
+    "ar": "الأحد 6 بعد العنصرة",
+    "ru": "6-е воскресенье после Пятидесятницы",
+    "tl": "Ika-6 Linggo pagkatapos ng Pentecostes",
+    "fr": "6e dimanche après la Pentecôte",
+    "it": "6ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-07-11": {
+   "title": "Holy Equal-to-the-Apostles Olha, Princess of Kyiv",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "אולגה נסיכת קייב הקדושה, שוות השליחים",
+    "ar": "القديسة أولها أميرة كييف المعادلة للرسل",
+    "ru": "Святая равноапостольная Ольга, княгиня Киевская",
+    "tl": "Santa Olha, Prinsesa ng Kyiv, Kapantay ng mga Apostol",
+    "fr": "Sainte Olha, princesse de Kyiv, égale aux apôtres",
+    "it": "Santa Olha, principessa di Kyiv, pari agli apostoli"
+   }
+  },
+  "2026-07-12": {
+   "title": "7th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־7 אחרי שבועות",
+    "ar": "الأحد 7 بعد العنصرة",
+    "ru": "7-е воскресенье после Пятидесятницы",
+    "tl": "Ika-7 Linggo pagkatapos ng Pentecostes",
+    "fr": "7e dimanche après la Pentecôte",
+    "it": "7ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-07-15": {
+   "title": "Holy Equal-to-the-Apostles Great Prince Volodymyr",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "ולדימיר הנסיך הגדול הקדוש, שווה השליחים",
+    "ar": "القديس الأمير الكبير فولوديمير المعادل للرسل",
+    "ru": "Святой равноапостольный великий князь Владимир",
+    "tl": "San Volodymyr na Dakilang Prinsipe, Kapantay ng mga Apostol",
+    "fr": "Saint grand-prince Volodymyr, égal aux apôtres",
+    "it": "Santo gran principe Volodymyr, pari agli apostoli"
+   }
+  },
+  "2026-07-19": {
+   "title": "8th Sunday after Pentecost; Sunday of the Fathers of the Six Ecumenical Councils",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־8 אחרי שבועות; יום ראשון של אבות שש הוועידות האקומניות",
+    "ar": "الأحد 8 بعد العنصرة; أحد آباء المجامع المسكونية الستة",
+    "ru": "8-е воскресенье после Пятидесятницы; Воскресенье святых отцов шести Вселенских соборов",
+    "tl": "Ika-8 Linggo pagkatapos ng Pentecostes; Linggo ng mga Ama ng Anim na Konsilyong Ekumeniko",
+    "fr": "8e dimanche après la Pentecôte; Dimanche des Pères des six conciles œcuméniques",
+    "it": "8ª domenica dopo Pentecoste; Domenica dei Padri dei sei concili ecumenici"
+   }
+  },
+  "2026-07-20": {
+   "title": "The Holy Prophet Elijah",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג אליהו הנביא",
+    "ar": "النبي القديس إيليا",
+    "ru": "Святой пророк Илия",
+    "tl": "Ang Banal na Propeta Elias",
+    "fr": "Le saint prophète Élie",
+    "it": "Il santo profeta Elia"
+   }
+  },
+  "2026-07-26": {
+   "title": "9th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־9 אחרי שבועות",
+    "ar": "الأحد 9 بعد العنصرة",
+    "ru": "9-е воскресенье после Пятидесятницы",
+    "tl": "Ika-9 Linggo pagkatapos ng Pentecostes",
+    "fr": "9e dimanche après la Pentecôte",
+    "it": "9ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-08-02": {
+   "title": "10th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־10 אחרי שבועות",
+    "ar": "الأحد 10 بعد العنصرة",
+    "ru": "10-е воскресенье после Пятидесятницы",
+    "tl": "Ika-10 Linggo pagkatapos ng Pentecostes",
+    "fr": "10e dimanche après la Pentecôte",
+    "it": "10ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-08-06": {
+   "title": "The Holy Transfiguration of Our Lord",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג של ישוע לבוש הדר (חג היפע)",
+    "ar": "التجلي المقدس لربنا",
+    "ru": "Святое Преображение Господне",
+    "tl": "Ang Banal na Pagbabagong-anyo ng Ating Panginoon",
+    "fr": "La Sainte Transfiguration de Notre Seigneur",
+    "it": "La Santa Trasfigurazione di Nostro Signore"
+   }
+  },
+  "2026-08-09": {
+   "title": "11th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־11 אחרי שבועות",
+    "ar": "الأحد 11 بعد العنصرة",
+    "ru": "11-е воскресенье после Пятидесятницы",
+    "tl": "Ika-11 Linggo pagkatapos ng Pentecostes",
+    "fr": "11e dimanche après la Pentecôte",
+    "it": "11ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-08-15": {
+   "title": "The Dormition of the Most Holy Theotokos",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "תרדמת מרים",
+    "ar": "رقاد والدة الإله الفائقة القداسة",
+    "ru": "Успение Пресвятой Богородицы",
+    "tl": "Ang Pagpanaw ng Kabanal-banalang Ina ng Diyos",
+    "fr": "La Dormition de la Très Sainte Mère de Dieu",
+    "it": "La Dormizione della Santissima Madre di Dio"
+   }
+  },
+  "2026-08-16": {
+   "title": "12th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־12 אחרי שבועות",
+    "ar": "الأحد 12 بعد العنصرة",
+    "ru": "12-е воскресенье после Пятидесятницы",
+    "tl": "Ika-12 Linggo pagkatapos ng Pentecostes",
+    "fr": "12e dimanche après la Pentecôte",
+    "it": "12ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-08-23": {
+   "title": "13th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־13 אחרי שבועות",
+    "ar": "الأحد 13 بعد العنصرة",
+    "ru": "13-е воскресенье после Пятидесятницы",
+    "tl": "Ika-13 Linggo pagkatapos ng Pentecostes",
+    "fr": "13e dimanche après la Pentecôte",
+    "it": "13ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-08-29": {
+   "title": "The Beheading of the Holy Prophet John the Baptist",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "זכר ייסוריו של יוחנן המטביל",
+    "ar": "قطع رأس النبي القديس يوحنا المعمدان",
+    "ru": "Усекновение главы святого пророка Иоанна Крестителя",
+    "tl": "Ang Pagpugot kay San Juan Bautista na Banal na Propeta",
+    "fr": "La Décollation du saint prophète Jean-Baptiste",
+    "it": "La Decollazione del santo profeta Giovanni Battista"
+   }
+  },
+  "2026-08-30": {
+   "title": "14th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־14 אחרי שבועות",
+    "ar": "الأحد 14 بعد العنصرة",
+    "ru": "14-е воскресенье после Пятидесятницы",
+    "tl": "Ika-14 Linggo pagkatapos ng Pentecostes",
+    "fr": "14e dimanche après la Pentecôte",
+    "it": "14ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-09-06": {
+   "title": "15th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־15 אחרי שבועות",
+    "ar": "الأحد 15 بعد العنصرة",
+    "ru": "15-е воскресенье после Пятидесятницы",
+    "tl": "Ika-15 Linggo pagkatapos ng Pentecostes",
+    "fr": "15e dimanche après la Pentecôte",
+    "it": "15ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-09-08": {
+   "title": "The Nativity of the Most Holy Theotokos",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג המולד של מרים העלמה",
+    "ar": "ميلاد والدة الإله الفائقة القداسة",
+    "ru": "Рождество Пресвятой Богородицы",
+    "tl": "Ang Pagsilang ng Kabanal-banalang Ina ng Diyos",
+    "fr": "La Nativité de la Très Sainte Mère de Dieu",
+    "it": "La Natività della Santissima Madre di Dio"
+   }
+  },
+  "2026-09-13": {
+   "title": "Sunday before the Exaltation of the Cross",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון שלפני רוממות הצלב",
+    "ar": "الأحد قبل رفع الصليب",
+    "ru": "Воскресенье перед Воздвижением Креста",
+    "tl": "Linggo bago ang Pagtataas ng Krus",
+    "fr": "Dimanche avant l’Exaltation de la Croix",
+    "it": "Domenica prima dell’Esaltazione della Croce"
+   }
+  },
+  "2026-09-14": {
+   "title": "The Exaltation of the Precious and Life-Giving Cross",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג תפארת הצלב",
+    "ar": "رفع الصليب الكريم المحيي",
+    "ru": "Воздвижение Честного и Животворящего Креста",
+    "tl": "Ang Pagtataas ng Mahal at Nagbibigay-buhay na Krus",
+    "fr": "L’Exaltation de la précieuse et vivifiante Croix",
+    "it": "L’Esaltazione della preziosa e vivificante Croce"
+   }
+  },
+  "2026-09-20": {
+   "title": "Sunday after the Exaltation of the Cross",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון שאחרי רוממות הצלב",
+    "ar": "الأحد بعد رفع الصليب",
+    "ru": "Воскресенье после Воздвижения Креста",
+    "tl": "Linggo pagkatapos ng Pagtataas ng Krus",
+    "fr": "Dimanche après l’Exaltation de la Croix",
+    "it": "Domenica dopo l’Esaltazione della Croce"
+   }
+  },
+  "2026-09-27": {
+   "title": "18th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־18 אחרי שבועות",
+    "ar": "الأحد 18 بعد العنصرة",
+    "ru": "18-е воскресенье после Пятидесятницы",
+    "tl": "Ika-18 Linggo pagkatapos ng Pentecostes",
+    "fr": "18e dimanche après la Pentecôte",
+    "it": "18ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-10-01": {
+   "title": "The Protection of the Most Holy Theotokos (Pokrov)",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חסות יולדת האלוהים הקדושה ביותר (פוקרוב)",
+    "ar": "حماية والدة الإله الفائقة القداسة (بوكروف)",
+    "ru": "Покров Пресвятой Богородицы",
+    "tl": "Ang Pagkupkop ng Kabanal-banalang Ina ng Diyos (Pokrov)",
+    "fr": "La Protection de la Très Sainte Mère de Dieu (Pokrov)",
+    "it": "La Protezione della Santissima Madre di Dio (Pokrov)"
+   }
+  },
+  "2026-10-04": {
+   "title": "19th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־19 אחרי שבועות",
+    "ar": "الأحد 19 بعد العنصرة",
+    "ru": "19-е воскресенье после Пятидесятницы",
+    "tl": "Ika-19 Linggo pagkatapos ng Pentecostes",
+    "fr": "19e dimanche après la Pentecôte",
+    "it": "19ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-10-11": {
+   "title": "20th Sunday after Pentecost; Sunday of the Fathers of the Seventh Ecumenical Council",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־20 אחרי שבועות; יום ראשון של אבות הוועידה האקומנית השביעית",
+    "ar": "الأحد 20 بعد العنصرة; أحد آباء المجمع المسكوني السابع",
+    "ru": "20-е воскресенье после Пятидесятницы; Воскресенье святых отцов Седьмого Вселенского собора",
+    "tl": "Ika-20 Linggo pagkatapos ng Pentecostes; Linggo ng mga Ama ng Ikapitong Konsilyong Ekumeniko",
+    "fr": "20e dimanche après la Pentecôte; Dimanche des Pères du septième concile œcuménique",
+    "it": "20ª domenica dopo Pentecoste; Domenica dei Padri del settimo concilio ecumenico"
+   }
+  },
+  "2026-10-18": {
+   "title": "21st Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־21 אחרי שבועות",
+    "ar": "الأحد 21 بعد العنصرة",
+    "ru": "21-е воскресенье после Пятидесятницы",
+    "tl": "Ika-21 Linggo pagkatapos ng Pentecostes",
+    "fr": "21e dimanche après la Pentecôte",
+    "it": "21ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-10-25": {
+   "title": "22nd Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־22 אחרי שבועות",
+    "ar": "الأحد 22 بعد العنصرة",
+    "ru": "22-е воскресенье после Пятидесятницы",
+    "tl": "Ika-22 Linggo pagkatapos ng Pentecostes",
+    "fr": "22e dimanche après la Pentecôte",
+    "it": "22ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-10-26": {
+   "title": "Holy Great-Martyr Demetrius",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "דמטריוס הקדוש, המרטיר הגדול",
+    "ar": "القديس ديمتريوس العظيم في الشهداء",
+    "ru": "Святой великомученик Димитрий",
+    "tl": "San Demetrio, Dakilang Martir",
+    "fr": "Saint grand martyr Démétrios",
+    "it": "Santo grande martire Demetrio"
+   }
+  },
+  "2026-11-01": {
+   "title": "23rd Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־23 אחרי שבועות",
+    "ar": "الأحد 23 بعد العنصرة",
+    "ru": "23-е воскресенье после Пятидесятницы",
+    "tl": "Ika-23 Linggo pagkatapos ng Pentecostes",
+    "fr": "23e dimanche après la Pentecôte",
+    "it": "23ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-11-08": {
+   "title": "24th Sunday after Pentecost; Synaxis of the Archangel Michael and the Other Bodiless Powers",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־24 אחרי שבועות; כינוס מיכאל רב המלאכים ושאר הכוחות חסרי הגוף",
+    "ar": "الأحد 24 بعد العنصرة; جامع رئيس الملائكة ميخائيل وسائر القوات العديمة الأجساد",
+    "ru": "24-е воскресенье после Пятидесятницы; Собор Архистратига Михаила и прочих Небесных Сил бесплотных",
+    "tl": "Ika-24 Linggo pagkatapos ng Pentecostes; Pagtitipon para kay San Miguel Arkanghel at sa Iba Pang Kapangyarihang Walang Katawan",
+    "fr": "24e dimanche après la Pentecôte; Synaxe de l’archange Michel et des autres puissances incorporelles",
+    "it": "24ª domenica dopo Pentecoste; Sinassi dell’arcangelo Michele e delle altre potenze incorporee"
+   }
+  },
+  "2026-11-12": {
+   "title": "Holy Priest-Martyr Josaphat, Archbishop of Polotsk",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יוזפט, הגמון ומרטיר",
+    "ar": "القديس يوسافات الكاهن الشهيد، رئيس أساقفة بولوتسك",
+    "ru": "Святой священномученик Иосафат, архиепископ Полоцкий",
+    "tl": "San Josafat, Paring Martir, Arsobispo ng Polotsk",
+    "fr": "Saint Josaphat, prêtre martyr, archevêque de Polotsk",
+    "it": "San Giosafat, sacerdote martire, arcivescovo di Polotsk"
+   }
+  },
+  "2026-11-13": {
+   "title": "Saint John Chrysostom",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יוחנן כריסוסטומוס הקדוש, הגמון ודוקטור הכנסייה",
+    "ar": "القديس يوحنا الذهبي الفم",
+    "ru": "Святой Иоанн Златоуст",
+    "tl": "San Juan Crisostomo",
+    "fr": "Saint Jean Chrysostome, évêque et docteur de l'Église",
+    "it": "San Giovanni Crisostomo, vescovo e dottore"
+   }
+  },
+  "2026-11-15": {
+   "title": "25th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־25 אחרי שבועות",
+    "ar": "الأحد 25 بعد العنصرة",
+    "ru": "25-е воскресенье после Пятидесятницы",
+    "tl": "Ika-25 Linggo pagkatapos ng Pentecostes",
+    "fr": "25e dimanche après la Pentecôte",
+    "it": "25ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-11-21": {
+   "title": "The Entrance of the Most Holy Theotokos into the Temple",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "כניסת מרים לבית המקדש",
+    "ar": "دخول والدة الإله الفائقة القداسة إلى الهيكل",
+    "ru": "Введение во храм Пресвятой Богородицы",
+    "tl": "Ang Pagpasok sa Templo ng Kabanal-banalang Ina ng Diyos",
+    "fr": "L’Entrée au Temple de la Très Sainte Mère de Dieu",
+    "it": "L’Ingresso al Tempio della Santissima Madre di Dio"
+   }
+  },
+  "2026-11-22": {
+   "title": "26th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־26 אחרי שבועות",
+    "ar": "الأحد 26 بعد العنصرة",
+    "ru": "26-е воскресенье после Пятидесятницы",
+    "tl": "Ika-26 Linggo pagkatapos ng Pentecostes",
+    "fr": "26e dimanche après la Pentecôte",
+    "it": "26ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-11-29": {
+   "title": "27th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־27 אחרי שבועות",
+    "ar": "الأحد 27 بعد العنصرة",
+    "ru": "27-е воскресенье после Пятидесятницы",
+    "tl": "Ika-27 Linggo pagkatapos ng Pentecostes",
+    "fr": "27e dimanche après la Pentecôte",
+    "it": "27ª domenica dopo Pentecoste"
+   }
+  },
+  "2026-11-30": {
+   "title": "Holy Apostle Andrew the First-Called",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "אנדראוס השליח הקדוש, הנקרא ראשון",
+    "ar": "القديس أندراوس الرسول المدعو أولًا",
+    "ru": "Святой апостол Андрей Первозванный",
+    "tl": "San Andres na Apostol, ang Unang Tinawag",
+    "fr": "Saint apôtre André, le Premier-Appelé",
+    "it": "Santo apostolo Andrea, il Primo Chiamato"
+   }
+  },
+  "2026-12-06": {
+   "title": "28th Sunday after Pentecost; Saint Nicholas the Wonderworker",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־28 אחרי שבועות; ניקולאוס הקדוש, הגמון",
+    "ar": "الأحد 28 بعد العنصرة; القديس نيقولاوس العجائبي",
+    "ru": "28-е воскресенье после Пятидесятницы; Святой Николай Чудотворец",
+    "tl": "Ika-28 Linggo pagkatapos ng Pentecostes; San Nicolas na Mapaghimala",
+    "fr": "28e dimanche après la Pentecôte; Saint Nicolas le Thaumaturge",
+    "it": "28ª domenica dopo Pentecoste; San Nicola il Taumaturgo"
+   }
+  },
+  "2026-12-09": {
+   "title": "The Conception of the Most Holy Theotokos by Saint Anna",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "התעברות חנה הקדושה ביולדת האלוהים הקדושה ביותר",
+    "ar": "حبل القديسة حنة بوالدة الإله الفائقة القداسة",
+    "ru": "Зачатие Пресвятой Богородицы святой Анной",
+    "tl": "Ang Paglilihi ni Santa Ana sa Kabanal-banalang Ina ng Diyos",
+    "fr": "La Conception de la Très Sainte Mère de Dieu par sainte Anne",
+    "it": "Il Concepimento della Santissima Madre di Dio da parte di sant’Anna"
+   }
+  },
+  "2026-12-13": {
+   "title": "Sunday of the Holy Forefathers",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של האבות הקדמונים הקדושים",
+    "ar": "أحد الأجداد القديسين",
+    "ru": "Воскресенье святых праотцев",
+    "tl": "Linggo ng mga Banal na Ninuno",
+    "fr": "Dimanche des saints Ancêtres",
+    "it": "Domenica dei santi Progenitori"
+   }
+  },
+  "2026-12-20": {
+   "title": "Sunday before the Nativity — of the Holy Fathers",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון שלפני חג המולד — של האבות הקדושים",
+    "ar": "الأحد قبل الميلاد — الآباء القديسين",
+    "ru": "Воскресенье перед Рождеством Христовым — святых отцов",
+    "tl": "Linggo bago ang Pasko ng Pagsilang — ng mga Banal na Ama",
+    "fr": "Dimanche avant la Nativité — des saints Pères",
+    "it": "Domenica prima della Natività — dei santi Padri"
+   }
+  },
+  "2026-12-25": {
+   "title": "The Nativity of Our Lord",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג המולד",
+    "ar": "ميلاد ربنا",
+    "ru": "Рождество Господне",
+    "tl": "Ang Pagsilang ng Ating Panginoon",
+    "fr": "La Nativité de Notre Seigneur",
+    "it": "La Natività di Nostro Signore"
+   }
+  },
+  "2026-12-26": {
+   "title": "Synaxis of the Most Holy Theotokos",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "כינוס יולדת האלוהים הקדושה ביותר",
+    "ar": "جامع والدة الإله الفائقة القداسة",
+    "ru": "Собор Пресвятой Богородицы",
+    "tl": "Pagtitipon para sa Kabanal-banalang Ina ng Diyos",
+    "fr": "Synaxe de la Très Sainte Mère de Dieu",
+    "it": "Sinassi della Santissima Madre di Dio"
+   }
+  },
+  "2026-12-27": {
+   "title": "Sunday after the Nativity; Holy First-Martyr and Archdeacon Stephen",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון שאחרי חג המולד; חג סטפנוס הקדוש, דיאקון והמרטיר הראשון",
+    "ar": "الأحد بعد الميلاد; القديس استفانوس أول الشهداء ورئيس الشمامسة",
+    "ru": "Воскресенье после Рождества Христова; Святой первомученик и архидиакон Стефан",
+    "tl": "Linggo pagkatapos ng Pasko ng Pagsilang; San Esteban, Unang Martir at Arkidiyakono",
+    "fr": "Dimanche après la Nativité; Saint Étienne, premier martyr et archidiacre",
+    "it": "Domenica dopo la Natività; Santo Stefano, primo martire e arcidiacono"
+   }
+  },
+  "2027-01-01": {
+   "title": "The Circumcision of Our Lord; Saint Basil the Great",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג ברית ישוע; בסיליוס הגדול, הגמון ודוקטור הכנסייה",
+    "ar": "ختان ربنا؛ القديس باسيليوس الكبير",
+    "ru": "Обрезание Господне; святой Василий Великий",
+    "tl": "Ang Pagtutuli sa Ating Panginoon; San Basilio Magno",
+    "fr": "La Circoncision de Notre Seigneur ; saint Basile le Grand",
+    "it": "La Circoncisione di Nostro Signore; san Basilio Magno"
+   }
+  },
+  "2027-01-03": {
+   "title": "Sunday before Theophany",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון שלפני חג הטבילה",
+    "ar": "الأحد قبل الظهور الإلهي",
+    "ru": "Воскресенье перед Богоявлением",
+    "tl": "Linggo bago ang Teofanya",
+    "fr": "Dimanche avant la Théophanie",
+    "it": "Domenica prima della Teofania"
+   }
+  },
+  "2027-01-06": {
+   "title": "The Holy Theophany of Our Lord",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג הטבילה",
+    "ar": "الظهور الإلهي المقدس لربنا",
+    "ru": "Святое Богоявление Господне",
+    "tl": "Ang Banal na Teofanya ng Ating Panginoon",
+    "fr": "La Sainte Théophanie de Notre Seigneur",
+    "it": "La Santa Teofania di Nostro Signore"
+   }
+  },
+  "2027-01-07": {
+   "title": "Synaxis of the Holy Prophet and Forerunner John the Baptist",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "כינוס יוחנן המטביל, הנביא הקדוש ומבשר האדון",
+    "ar": "جامع النبي القديس السابق يوحنا المعمدان",
+    "ru": "Собор святого пророка и Предтечи Иоанна Крестителя",
+    "tl": "Pagtitipon para kay San Juan Bautista, Banal na Propeta at Tagapaghanda",
+    "fr": "Synaxe du saint prophète et Précurseur Jean-Baptiste",
+    "it": "Sinassi del santo profeta e Precursore Giovanni Battista"
+   }
+  },
+  "2027-01-10": {
+   "title": "Sunday of Zacchaeus",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של זכי",
+    "ar": "أحد زكا",
+    "ru": "Воскресенье о Закхее",
+    "tl": "Linggo ni Zaqueo",
+    "fr": "Dimanche de Zachée",
+    "it": "Domenica di Zaccheo"
+   }
+  },
+  "2027-01-17": {
+   "title": "Sunday of the Publican and the Pharisee; Venerable Anthony the Great",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של המוכס והפרוש; אנטוניוס הגדול הנכבד",
+    "ar": "أحد الفريسي والعشار; البار أنطونيوس الكبير",
+    "ru": "Воскресенье о мытаре и фарисее; Преподобный Антоний Великий",
+    "tl": "Linggo ng Publikano at Pariseo; San Antonio Abad na Kagalang-galang",
+    "fr": "Dimanche du Publicain et du Pharisien; Vénérable Antoine le Grand",
+    "it": "Domenica del Pubblicano e del Fariseo; Venerabile Antonio il Grande"
+   }
+  },
+  "2027-01-24": {
+   "title": "Sunday of the Prodigal Son",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של הבן האובד",
+    "ar": "أحد الابن الشاطر",
+    "ru": "Воскресенье о блудном сыне",
+    "tl": "Linggo ng Alibughang Anak",
+    "fr": "Dimanche du Fils prodigue",
+    "it": "Domenica del Figlio prodigo"
+   }
+  },
+  "2027-01-25": {
+   "title": "Saint Gregory the Theologian",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "גרגוריוס מנזיאנזוס, הגמון ודוקטור הכנסייה",
+    "ar": "القديس غريغوريوس اللاهوتي",
+    "ru": "Святой Григорий Богослов",
+    "tl": "San Gregorio na Teologo",
+    "fr": "Saint Grégoire le Théologien",
+    "it": "San Gregorio il Teologo"
+   }
+  },
+  "2027-01-30": {
+   "title": "The Three Holy Hierarchs",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "שלושת ההגמונים הקדושים",
+    "ar": "الأقمار الثلاثة القديسون",
+    "ru": "Три святителя",
+    "tl": "Ang Tatlong Banal na Obispo",
+    "fr": "Les trois saints Hiérarques",
+    "it": "I tre santi Gerarchi"
+   }
+  },
+  "2027-01-31": {
+   "title": "Meatfare Sunday — of the Last Judgment",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של הפרידה מן הבשר — יום הדין האחרון",
+    "ar": "أحد مرفع اللحم — الدينونة الأخيرة",
+    "ru": "Мясопустное воскресенье — о Страшном суде",
+    "tl": "Linggo ng Pamamaalam sa Karne — ng Huling Paghuhukom",
+    "fr": "Dimanche de l’Apocréo — du Jugement dernier",
+    "it": "Domenica di Carnevale — del Giudizio finale"
+   }
+  },
+  "2027-02-02": {
+   "title": "The Encounter of Our Lord",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג הבאתו של ישוע אל בית המקדש",
+    "ar": "لقاء ربنا",
+    "ru": "Сретение Господне",
+    "tl": "Ang Pagtatagpo sa Ating Panginoon sa Templo",
+    "fr": "La Sainte Rencontre de Notre Seigneur",
+    "it": "L’Incontro di Nostro Signore"
+   }
+  },
+  "2027-02-07": {
+   "title": "Cheesefare Sunday — of Forgiveness",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של הפרידה מן הגבינה — יום הסליחה",
+    "ar": "أحد مرفع الجبن — الغفران",
+    "ru": "Сыропустное воскресенье — Прощёное воскресенье",
+    "tl": "Linggo ng Pamamaalam sa Keso — ng Pagpapatawad",
+    "fr": "Dimanche de la tyrophagie — du Pardon",
+    "it": "Domenica dei latticini — del Perdono"
+   }
+  },
+  "2027-02-08": {
+   "title": "First Day of the Great Fast",
+   "rank": "Fast",
+   "titleByLanguage": {
+    "he": "היום הראשון של הצום הגדול",
+    "ar": "اليوم الأول من الصوم الكبير",
+    "ru": "Первый день Великого поста",
+    "tl": "Unang Araw ng Dakilang Kuwaresma",
+    "fr": "Premier jour du Grand Carême",
+    "it": "Primo giorno della Grande Quaresima"
+   }
+  },
+  "2027-02-14": {
+   "title": "First Sunday of the Great Fast — of Orthodoxy",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון הראשון של הצום הגדול — של האורתודוקסיה",
+    "ar": "الأحد الأول من الصوم الكبير — الأرثوذكسية",
+    "ru": "Первое воскресенье Великого поста — Торжество Православия",
+    "tl": "Unang Linggo ng Dakilang Kuwaresma — ng Ortodoksiya",
+    "fr": "Premier dimanche du Grand Carême — de l’Orthodoxie",
+    "it": "Prima domenica della Grande Quaresima — dell’Ortodossia"
+   }
+  },
+  "2027-02-21": {
+   "title": "Second Sunday of the Great Fast — Saint Gregory Palamas",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון השני של הצום הגדול — גרגוריוס פלמאס הקדוש",
+    "ar": "الأحد الثاني من الصوم الكبير — القديس غريغوريوس بالاماس",
+    "ru": "Второе воскресенье Великого поста — святителя Григория Паламы",
+    "tl": "Ikalawang Linggo ng Dakilang Kuwaresma — San Gregorio Palamas",
+    "fr": "Deuxième dimanche du Grand Carême — saint Grégoire Palamas",
+    "it": "Seconda domenica della Grande Quaresima — san Gregorio Palamas"
+   }
+  },
+  "2027-02-28": {
+   "title": "Third Sunday of the Great Fast — Veneration of the Cross",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון השלישי של הצום הגדול — כיבוד הצלב",
+    "ar": "الأحد الثالث من الصوم الكبير — السجود للصليب",
+    "ru": "Третье воскресенье Великого поста — Крестопоклонное",
+    "tl": "Ikatlong Linggo ng Dakilang Kuwaresma — Pagpupugay sa Krus",
+    "fr": "Troisième dimanche du Grand Carême — Vénération de la Croix",
+    "it": "Terza domenica della Grande Quaresima — Venerazione della Croce"
+   }
+  },
+  "2027-03-07": {
+   "title": "Fourth Sunday of the Great Fast — Saint John Climacus",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון הרביעי של הצום הגדול — יוחנן קלימקוס הקדוש",
+    "ar": "الأحد الرابع من الصوم الكبير — القديس يوحنا السلمي",
+    "ru": "Четвёртое воскресенье Великого поста — преподобного Иоанна Лествичника",
+    "tl": "Ikaapat na Linggo ng Dakilang Kuwaresma — San Juan Climaco",
+    "fr": "Quatrième dimanche du Grand Carême — saint Jean Climaque",
+    "it": "Quarta domenica della Grande Quaresima — san Giovanni Climaco"
+   }
+  },
+  "2027-03-09": {
+   "title": "The Holy Forty Martyrs of Sebaste",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "ארבעים המרטירים הקדושים מסבסטיה",
+    "ar": "الشهداء الأربعون القديسون في سبسطية",
+    "ru": "Святые сорок мучеников Севастийских",
+    "tl": "Ang Apatnapung Banal na Martir ng Sebaste",
+    "fr": "Les quarante saints martyrs de Sébaste",
+    "it": "I quaranta santi martiri di Sebaste"
+   }
+  },
+  "2027-03-14": {
+   "title": "Fifth Sunday of the Great Fast — Saint Mary of Egypt",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון החמישי של הצום הגדול — מרים המצרית הקדושה",
+    "ar": "الأحد الخامس من الصوم الكبير — القديسة مريم المصرية",
+    "ru": "Пятое воскресенье Великого поста — преподобной Марии Египетской",
+    "tl": "Ikalimang Linggo ng Dakilang Kuwaresma — Santa Maria ng Ehipto",
+    "fr": "Cinquième dimanche du Grand Carême — sainte Marie l’Égyptienne",
+    "it": "Quinta domenica della Grande Quaresima — santa Maria Egiziaca"
+   }
+  },
+  "2027-03-20": {
+   "title": "Lazarus Saturday",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "שבת אלעזר",
+    "ar": "سبت لعازر",
+    "ru": "Лазарева суббота",
+    "tl": "Sabado ni Lazaro",
+    "fr": "Samedi de Lazare",
+    "it": "Sabato di Lazzaro"
+   }
+  },
+  "2027-03-21": {
+   "title": "Flowery (Palm) Sunday — the Entrance into Jerusalem",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "יום הראשון של הלולבים",
+    "ar": "أحد الشعانين — الدخول إلى أورشليم",
+    "ru": "Вербное воскресенье — Вход Господень в Иерусалим",
+    "tl": "Linggo ng Palaspas — ang Pagpasok sa Jerusalem",
+    "fr": "Dimanche des Rameaux — l’Entrée à Jérusalem",
+    "it": "Domenica delle Palme — l’Ingresso a Gerusalemme"
+   }
+  },
+  "2027-03-22": {
+   "title": "Great and Holy Monday",
+   "rank": "Holy Week",
+   "titleByLanguage": {
+    "he": "יום שני הגדול והקדוש",
+    "ar": "الاثنين العظيم المقدس",
+    "ru": "Великий и Святой понедельник",
+    "tl": "Dakila at Banal na Lunes",
+    "fr": "Grand et Saint Lundi",
+    "it": "Grande e Santo Lunedì"
+   }
+  },
+  "2027-03-23": {
+   "title": "Great and Holy Tuesday",
+   "rank": "Holy Week",
+   "titleByLanguage": {
+    "he": "יום שלישי הגדול והקדוש",
+    "ar": "الثلاثاء العظيم المقدس",
+    "ru": "Великий и Святой вторник",
+    "tl": "Dakila at Banal na Martes",
+    "fr": "Grand et Saint Mardi",
+    "it": "Grande e Santo Martedì"
+   }
+  },
+  "2027-03-24": {
+   "title": "Great and Holy Wednesday",
+   "rank": "Holy Week",
+   "titleByLanguage": {
+    "he": "יום רביעי הגדול והקדוש",
+    "ar": "الأربعاء العظيم المقدس",
+    "ru": "Великая и Святая среда",
+    "tl": "Dakila at Banal na Miyerkules",
+    "fr": "Grand et Saint Mercredi",
+    "it": "Grande e Santo Mercoledì"
+   }
+  },
+  "2027-03-25": {
+   "title": "The Annunciation of the Most Holy Theotokos; Great and Holy Thursday",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג בשורת המלאך למרים; יום החמישי הגדול",
+    "ar": "بشارة والدة الإله الفائقة القداسة; الخميس العظيم المقدس",
+    "ru": "Благовещение Пресвятой Богородицы; Великий и Святой четверг",
+    "tl": "Ang Pagpapahayag sa Kabanal-banalang Ina ng Diyos; Dakila at Banal na Huwebes",
+    "fr": "L’Annonciation à la Très Sainte Mère de Dieu; Grand et Saint Jeudi",
+    "it": "L’Annunciazione alla Santissima Madre di Dio; Grande e Santo Giovedì"
+   }
+  },
+  "2027-03-26": {
+   "title": "Great and Holy Friday",
+   "rank": "Holy Week",
+   "titleByLanguage": {
+    "he": "יום השישי הגדול",
+    "ar": "الجمعة العظيم المقدس",
+    "ru": "Великая и Святая пятница",
+    "tl": "Dakila at Banal na Biyernes",
+    "fr": "Grand et Saint Vendredi",
+    "it": "Grande e Santo Venerdì"
+   }
+  },
+  "2027-03-27": {
+   "title": "Great and Holy Saturday",
+   "rank": "Holy Week",
+   "titleByLanguage": {
+    "he": "יום השבת הגדול",
+    "ar": "السبت العظيم المقدس",
+    "ru": "Великая и Святая суббота",
+    "tl": "Dakila at Banal na Sabado",
+    "fr": "Grand et Saint Samedi",
+    "it": "Grande e Santo Sabato"
+   }
+  },
+  "2027-03-28": {
+   "title": "The Resurrection of Our Lord — Holy Pascha",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "יום הפסחא - חג התחייה",
+    "ar": "قيامة ربنا — الفصح المقدس",
+    "ru": "Воскресение Господне — Святая Пасха",
+    "tl": "Ang Muling Pagkabuhay ng Ating Panginoon — Banal na Paskuwa",
+    "fr": "La Résurrection de Notre Seigneur — Sainte Pâque",
+    "it": "La Risurrezione di Nostro Signore — Santa Pasqua"
+   }
+  },
+  "2027-03-29": {
+   "title": "Bright Monday",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום שני של שבוע האור",
+    "ar": "اثنين التجديدات",
+    "ru": "Светлый понедельник",
+    "tl": "Lunes ng Linggo ng Liwanag",
+    "fr": "Lundi lumineux",
+    "it": "Lunedì luminoso"
+   }
+  },
+  "2027-03-30": {
+   "title": "Bright Tuesday",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום שלישי של שבוע האור",
+    "ar": "ثلاثاء التجديدات",
+    "ru": "Светлый вторник",
+    "tl": "Martes ng Linggo ng Liwanag",
+    "fr": "Mardi lumineux",
+    "it": "Martedì luminoso"
+   }
+  },
+  "2027-04-04": {
+   "title": "Thomas Sunday",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של תאמא",
+    "ar": "أحد توما",
+    "ru": "Фомино воскресенье",
+    "tl": "Linggo ni Santo Tomas",
+    "fr": "Dimanche de Thomas",
+    "it": "Domenica di Tommaso"
+   }
+  },
+  "2027-04-11": {
+   "title": "Sunday of the Myrrh-Bearing Women",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של הנשים נושאות המור",
+    "ar": "أحد حاملات الطيب",
+    "ru": "Воскресенье святых жён-мироносиц",
+    "tl": "Linggo ng mga Babaeng May Dalang Mira",
+    "fr": "Dimanche des femmes Myrophores",
+    "it": "Domenica delle donne Mirofore"
+   }
+  },
+  "2027-04-18": {
+   "title": "Sunday of the Paralytic",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של המשותק",
+    "ar": "أحد المخلّع",
+    "ru": "Воскресенье о расслабленном",
+    "tl": "Linggo ng Paralitiko",
+    "fr": "Dimanche du Paralytique",
+    "it": "Domenica del Paralitico"
+   }
+  },
+  "2027-04-21": {
+   "title": "Mid-Pentecost",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "אמצע התקופה שבין הפסחא לשבועות",
+    "ar": "عيد منتصف الخمسين",
+    "ru": "Преполовение Пятидесятницы",
+    "tl": "Kalagitnaan ng Panahon ng Pentecostes",
+    "fr": "Mi-Pentecôte",
+    "it": "Mezza Pentecoste"
+   }
+  },
+  "2027-04-23": {
+   "title": "Holy Great-Martyr George",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "גאורגיוס, מרטיר",
+    "ar": "القديس جاورجيوس العظيم في الشهداء",
+    "ru": "Святой великомученик Георгий",
+    "tl": "San Jorge, Dakilang Martir",
+    "fr": "Saint grand martyr Georges",
+    "it": "Santo grande martire Giorgio"
+   }
+  },
+  "2027-04-25": {
+   "title": "Sunday of the Samaritan Woman",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של האישה השומרונית",
+    "ar": "أحد السامرية",
+    "ru": "Воскресенье о самарянке",
+    "tl": "Linggo ng Babaeng Samaritana",
+    "fr": "Dimanche de la Samaritaine",
+    "it": "Domenica della Samaritana"
+   }
+  },
+  "2027-05-02": {
+   "title": "Sunday of the Man Born Blind",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של העיוור מלידה",
+    "ar": "أحد المولود أعمى",
+    "ru": "Воскресенье о слепорождённом",
+    "tl": "Linggo ng Lalaking Ipinanganak na Bulag",
+    "fr": "Dimanche de l’Aveugle-né",
+    "it": "Domenica del Cieco nato"
+   }
+  },
+  "2027-05-06": {
+   "title": "The Ascension of Our Lord",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג עלייתו של האדון השמיימה",
+    "ar": "صعود ربنا",
+    "ru": "Вознесение Господне",
+    "tl": "Ang Pag-akyat sa Langit ng Ating Panginoon",
+    "fr": "L’Ascension de Notre Seigneur",
+    "it": "L’Ascensione di Nostro Signore"
+   }
+  },
+  "2027-05-08": {
+   "title": "Holy Apostle and Evangelist John the Theologian",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג יוחנן השליח והמבשר",
+    "ar": "القديس يوحنا الرسول والإنجيلي اللاهوتي",
+    "ru": "Святой апостол и евангелист Иоанн Богослов",
+    "tl": "San Juan na Apostol, Ebanghelista at Teologo",
+    "fr": "Saint apôtre et évangéliste Jean le Théologien",
+    "it": "Santo apostolo ed evangelista Giovanni il Teologo"
+   }
+  },
+  "2027-05-09": {
+   "title": "Sunday of the Fathers of the First Council of Nicaea",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של אבות ועידת ניקיאה הראשונה",
+    "ar": "أحد آباء مجمع نيقية الأول",
+    "ru": "Воскресенье святых отцов Первого Никейского собора",
+    "tl": "Linggo ng mga Ama ng Unang Konsilyo ng Nicea",
+    "fr": "Dimanche des Pères du premier concile de Nicée",
+    "it": "Domenica dei Padri del primo concilio di Nicea"
+   }
+  },
+  "2027-05-16": {
+   "title": "The Descent of the Holy Spirit — Pentecost",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "שבועות",
+    "ar": "حلول الروح القدس — العنصرة",
+    "ru": "Сошествие Святого Духа — Пятидесятница",
+    "tl": "Ang Pagbaba ng Espiritu Santo — Pentecostes",
+    "fr": "La Descente du Saint-Esprit — Pentecôte",
+    "it": "La Discesa dello Spirito Santo — Pentecoste"
+   }
+  },
+  "2027-05-17": {
+   "title": "Monday of the Holy Spirit",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יום שני של רוח הקודש",
+    "ar": "اثنين الروح القدس",
+    "ru": "Понедельник Святого Духа",
+    "tl": "Lunes ng Espiritu Santo",
+    "fr": "Lundi du Saint-Esprit",
+    "it": "Lunedì dello Spirito Santo"
+   }
+  },
+  "2027-05-21": {
+   "title": "Holy Equal-to-the-Apostles Constantine and Helena",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "קונסטנטינוס והלנה הקדושים, שווי השליחים",
+    "ar": "القديسان المعادلان للرسل قسطنطين وهيلانة",
+    "ru": "Святые равноапостольные Константин и Елена",
+    "tl": "Sina San Constantino at Santa Elena, Kapantay ng mga Apostol",
+    "fr": "Saints Constantin et Hélène, égaux aux apôtres",
+    "it": "Santi Costantino ed Elena, pari agli apostoli"
+   }
+  },
+  "2027-05-23": {
+   "title": "Sunday of All Saints",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "חג כל הקדושים",
+    "ar": "أحد جميع القديسين",
+    "ru": "Воскресенье Всех святых",
+    "tl": "Linggo ng Lahat ng mga Banal",
+    "fr": "Dimanche de tous les saints",
+    "it": "Domenica di tutti i santi"
+   }
+  },
+  "2027-05-30": {
+   "title": "2nd Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־2 אחרי שבועות",
+    "ar": "الأحد 2 بعد العنصرة",
+    "ru": "2-е воскресенье после Пятидесятницы",
+    "tl": "Ika-2 Linggo pagkatapos ng Pentecostes",
+    "fr": "2e dimanche après la Pentecôte",
+    "it": "2ª domenica dopo Pentecoste"
+   }
+  },
+  "2027-06-06": {
+   "title": "3rd Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־3 אחרי שבועות",
+    "ar": "الأحد 3 بعد العنصرة",
+    "ru": "3-е воскресенье после Пятидесятницы",
+    "tl": "Ika-3 Linggo pagkatapos ng Pentecostes",
+    "fr": "3e dimanche après la Pentecôte",
+    "it": "3ª domenica dopo Pentecoste"
+   }
+  },
+  "2027-06-13": {
+   "title": "4th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־4 אחרי שבועות",
+    "ar": "الأحد 4 بعد العنصرة",
+    "ru": "4-е воскресенье после Пятидесятницы",
+    "tl": "Ika-4 Linggo pagkatapos ng Pentecostes",
+    "fr": "4e dimanche après la Pentecôte",
+    "it": "4ª domenica dopo Pentecoste"
+   }
+  },
+  "2027-06-20": {
+   "title": "5th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־5 אחרי שבועות",
+    "ar": "الأحد 5 بعد العنصرة",
+    "ru": "5-е воскресенье после Пятидесятницы",
+    "tl": "Ika-5 Linggo pagkatapos ng Pentecostes",
+    "fr": "5e dimanche après la Pentecôte",
+    "it": "5ª domenica dopo Pentecoste"
+   }
+  },
+  "2027-06-24": {
+   "title": "The Nativity of the Holy Prophet John the Baptist",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג הולדתו של יוחנן המטביל",
+    "ar": "ميلاد النبي القديس يوحنا المعمدان",
+    "ru": "Рождество святого пророка Иоанна Крестителя",
+    "tl": "Ang Pagsilang ni San Juan Bautista na Banal na Propeta",
+    "fr": "La Nativité du saint prophète Jean-Baptiste",
+    "it": "La Natività del santo profeta Giovanni Battista"
+   }
+  },
+  "2027-06-27": {
+   "title": "6th Sunday after Pentecost; The Blessed New Martyrs of the Ukrainian Catholic Church",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־6 אחרי שבועות; המרטירים החדשים המבורכים של הכנסייה הקתולית האוקראינית",
+    "ar": "الأحد 6 بعد العنصرة; الشهداء الجدد الطوباويون للكنيسة الكاثوليكية الأوكرانية",
+    "ru": "6-е воскресенье после Пятидесятницы; Блаженные новомученики Украинской Католической Церкви",
+    "tl": "Ika-6 Linggo pagkatapos ng Pentecostes; Ang mga Beato at Bagong Martir ng Simbahang Katolikong Ukranyano",
+    "fr": "6e dimanche après la Pentecôte; Les bienheureux nouveaux martyrs de l’Église catholique ukrainienne",
+    "it": "6ª domenica dopo Pentecoste; I beati nuovi martiri della Chiesa cattolica ucraina"
+   }
+  },
+  "2027-06-29": {
+   "title": "Holy Apostles Peter and Paul",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג שמעון כיפא ושאול השליחים",
+    "ar": "القديسان الرسولان بطرس وبولس",
+    "ru": "Святые апостолы Пётр и Павел",
+    "tl": "Mga Banal na Apostol San Pedro at San Pablo",
+    "fr": "Saints apôtres Pierre et Paul",
+    "it": "Santi apostoli Pietro e Paolo"
+   }
+  },
+  "2027-07-04": {
+   "title": "7th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־7 אחרי שבועות",
+    "ar": "الأحد 7 بعد العنصرة",
+    "ru": "7-е воскресенье после Пятидесятницы",
+    "tl": "Ika-7 Linggo pagkatapos ng Pentecostes",
+    "fr": "7e dimanche après la Pentecôte",
+    "it": "7ª domenica dopo Pentecoste"
+   }
+  },
+  "2027-07-11": {
+   "title": "8th Sunday after Pentecost; Holy Equal-to-the-Apostles Olha, Princess of Kyiv",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־8 אחרי שבועות; אולגה נסיכת קייב הקדושה, שוות השליחים",
+    "ar": "الأحد 8 بعد العنصرة; القديسة أولها أميرة كييف المعادلة للرسل",
+    "ru": "8-е воскресенье после Пятидесятницы; Святая равноапостольная Ольга, княгиня Киевская",
+    "tl": "Ika-8 Linggo pagkatapos ng Pentecostes; Santa Olha, Prinsesa ng Kyiv, Kapantay ng mga Apostol",
+    "fr": "8e dimanche après la Pentecôte; Sainte Olha, princesse de Kyiv, égale aux apôtres",
+    "it": "8ª domenica dopo Pentecoste; Santa Olha, principessa di Kyiv, pari agli apostoli"
+   }
+  },
+  "2027-07-15": {
+   "title": "Holy Equal-to-the-Apostles Great Prince Volodymyr",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "ולדימיר הנסיך הגדול הקדוש, שווה השליחים",
+    "ar": "القديس الأمير الكبير فولوديمير المعادل للرسل",
+    "ru": "Святой равноапостольный великий князь Владимир",
+    "tl": "San Volodymyr na Dakilang Prinsipe, Kapantay ng mga Apostol",
+    "fr": "Saint grand-prince Volodymyr, égal aux apôtres",
+    "it": "Santo gran principe Volodymyr, pari agli apostoli"
+   }
+  },
+  "2027-07-18": {
+   "title": "9th Sunday after Pentecost; Sunday of the Fathers of the Six Ecumenical Councils",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־9 אחרי שבועות; יום ראשון של אבות שש הוועידות האקומניות",
+    "ar": "الأحد 9 بعد العنصرة; أحد آباء المجامع المسكونية الستة",
+    "ru": "9-е воскресенье после Пятидесятницы; Воскресенье святых отцов шести Вселенских соборов",
+    "tl": "Ika-9 Linggo pagkatapos ng Pentecostes; Linggo ng mga Ama ng Anim na Konsilyong Ekumeniko",
+    "fr": "9e dimanche après la Pentecôte; Dimanche des Pères des six conciles œcuméniques",
+    "it": "9ª domenica dopo Pentecoste; Domenica dei Padri dei sei concili ecumenici"
+   }
+  },
+  "2027-07-20": {
+   "title": "The Holy Prophet Elijah",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג אליהו הנביא",
+    "ar": "النبي القديس إيليا",
+    "ru": "Святой пророк Илия",
+    "tl": "Ang Banal na Propeta Elias",
+    "fr": "Le saint prophète Élie",
+    "it": "Il santo profeta Elia"
+   }
+  },
+  "2027-07-25": {
+   "title": "10th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־10 אחרי שבועות",
+    "ar": "الأحد 10 بعد العنصرة",
+    "ru": "10-е воскресенье после Пятидесятницы",
+    "tl": "Ika-10 Linggo pagkatapos ng Pentecostes",
+    "fr": "10e dimanche après la Pentecôte",
+    "it": "10ª domenica dopo Pentecoste"
+   }
+  },
+  "2027-08-01": {
+   "title": "11th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־11 אחרי שבועות",
+    "ar": "الأحد 11 بعد العنصرة",
+    "ru": "11-е воскресенье после Пятидесятницы",
+    "tl": "Ika-11 Linggo pagkatapos ng Pentecostes",
+    "fr": "11e dimanche après la Pentecôte",
+    "it": "11ª domenica dopo Pentecoste"
+   }
+  },
+  "2027-08-06": {
+   "title": "The Holy Transfiguration of Our Lord",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג של ישוע לבוש הדר (חג היפע)",
+    "ar": "التجلي المقدس لربنا",
+    "ru": "Святое Преображение Господне",
+    "tl": "Ang Banal na Pagbabagong-anyo ng Ating Panginoon",
+    "fr": "La Sainte Transfiguration de Notre Seigneur",
+    "it": "La Santa Trasfigurazione di Nostro Signore"
+   }
+  },
+  "2027-08-08": {
+   "title": "12th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־12 אחרי שבועות",
+    "ar": "الأحد 12 بعد العنصرة",
+    "ru": "12-е воскресенье после Пятидесятницы",
+    "tl": "Ika-12 Linggo pagkatapos ng Pentecostes",
+    "fr": "12e dimanche après la Pentecôte",
+    "it": "12ª domenica dopo Pentecoste"
+   }
+  },
+  "2027-08-15": {
+   "title": "The Dormition of the Most Holy Theotokos",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "תרדמת מרים",
+    "ar": "رقاد والدة الإله الفائقة القداسة",
+    "ru": "Успение Пресвятой Богородицы",
+    "tl": "Ang Pagpanaw ng Kabanal-banalang Ina ng Diyos",
+    "fr": "La Dormition de la Très Sainte Mère de Dieu",
+    "it": "La Dormizione della Santissima Madre di Dio"
+   }
+  },
+  "2027-08-22": {
+   "title": "14th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־14 אחרי שבועות",
+    "ar": "الأحد 14 بعد العنصرة",
+    "ru": "14-е воскресенье после Пятидесятницы",
+    "tl": "Ika-14 Linggo pagkatapos ng Pentecostes",
+    "fr": "14e dimanche après la Pentecôte",
+    "it": "14ª domenica dopo Pentecoste"
+   }
+  },
+  "2027-08-29": {
+   "title": "15th Sunday after Pentecost; The Beheading of the Holy Prophet John the Baptist",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־15 אחרי שבועות; זכר ייסוריו של יוחנן המטביל",
+    "ar": "الأحد 15 بعد العنصرة; قطع رأس النبي القديس يوحنا المعمدان",
+    "ru": "15-е воскресенье после Пятидесятницы; Усекновение главы святого пророка Иоанна Крестителя",
+    "tl": "Ika-15 Linggo pagkatapos ng Pentecostes; Ang Pagpugot kay San Juan Bautista na Banal na Propeta",
+    "fr": "15e dimanche après la Pentecôte; La Décollation du saint prophète Jean-Baptiste",
+    "it": "15ª domenica dopo Pentecoste; La Decollazione del santo profeta Giovanni Battista"
+   }
+  },
+  "2027-09-05": {
+   "title": "16th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־16 אחרי שבועות",
+    "ar": "الأحد 16 بعد العنصرة",
+    "ru": "16-е воскресенье после Пятидесятницы",
+    "tl": "Ika-16 Linggo pagkatapos ng Pentecostes",
+    "fr": "16e dimanche après la Pentecôte",
+    "it": "16ª domenica dopo Pentecoste"
+   }
+  },
+  "2027-09-08": {
+   "title": "The Nativity of the Most Holy Theotokos",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג המולד של מרים העלמה",
+    "ar": "ميلاد والدة الإله الفائقة القداسة",
+    "ru": "Рождество Пресвятой Богородицы",
+    "tl": "Ang Pagsilang ng Kabanal-banalang Ina ng Diyos",
+    "fr": "La Nativité de la Très Sainte Mère de Dieu",
+    "it": "La Natività della Santissima Madre di Dio"
+   }
+  },
+  "2027-09-12": {
+   "title": "Sunday before the Exaltation of the Cross",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון שלפני רוממות הצלב",
+    "ar": "الأحد قبل رفع الصليب",
+    "ru": "Воскресенье перед Воздвижением Креста",
+    "tl": "Linggo bago ang Pagtataas ng Krus",
+    "fr": "Dimanche avant l’Exaltation de la Croix",
+    "it": "Domenica prima dell’Esaltazione della Croce"
+   }
+  },
+  "2027-09-14": {
+   "title": "The Exaltation of the Precious and Life-Giving Cross",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג תפארת הצלב",
+    "ar": "رفع الصليب الكريم المحيي",
+    "ru": "Воздвижение Честного и Животворящего Креста",
+    "tl": "Ang Pagtataas ng Mahal at Nagbibigay-buhay na Krus",
+    "fr": "L’Exaltation de la précieuse et vivifiante Croix",
+    "it": "L’Esaltazione della preziosa e vivificante Croce"
+   }
+  },
+  "2027-09-19": {
+   "title": "Sunday after the Exaltation of the Cross",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון שאחרי רוממות הצלב",
+    "ar": "الأحد بعد رفع الصليب",
+    "ru": "Воскресенье после Воздвижения Креста",
+    "tl": "Linggo pagkatapos ng Pagtataas ng Krus",
+    "fr": "Dimanche après l’Exaltation de la Croix",
+    "it": "Domenica dopo l’Esaltazione della Croce"
+   }
+  },
+  "2027-09-26": {
+   "title": "19th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־19 אחרי שבועות",
+    "ar": "الأحد 19 بعد العنصرة",
+    "ru": "19-е воскресенье после Пятидесятницы",
+    "tl": "Ika-19 Linggo pagkatapos ng Pentecostes",
+    "fr": "19e dimanche après la Pentecôte",
+    "it": "19ª domenica dopo Pentecoste"
+   }
+  },
+  "2027-10-01": {
+   "title": "The Protection of the Most Holy Theotokos (Pokrov)",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חסות יולדת האלוהים הקדושה ביותר (פוקרוב)",
+    "ar": "حماية والدة الإله الفائقة القداسة (بوكروف)",
+    "ru": "Покров Пресвятой Богородицы",
+    "tl": "Ang Pagkupkop ng Kabanal-banalang Ina ng Diyos (Pokrov)",
+    "fr": "La Protection de la Très Sainte Mère de Dieu (Pokrov)",
+    "it": "La Protezione della Santissima Madre di Dio (Pokrov)"
+   }
+  },
+  "2027-10-03": {
+   "title": "20th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־20 אחרי שבועות",
+    "ar": "الأحد 20 بعد العنصرة",
+    "ru": "20-е воскресенье после Пятидесятницы",
+    "tl": "Ika-20 Linggo pagkatapos ng Pentecostes",
+    "fr": "20e dimanche après la Pentecôte",
+    "it": "20ª domenica dopo Pentecoste"
+   }
+  },
+  "2027-10-10": {
+   "title": "21st Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־21 אחרי שבועות",
+    "ar": "الأحد 21 بعد العنصرة",
+    "ru": "21-е воскресенье после Пятидесятницы",
+    "tl": "Ika-21 Linggo pagkatapos ng Pentecostes",
+    "fr": "21e dimanche après la Pentecôte",
+    "it": "21ª domenica dopo Pentecoste"
+   }
+  },
+  "2027-10-17": {
+   "title": "22nd Sunday after Pentecost; Sunday of the Fathers of the Seventh Ecumenical Council",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־22 אחרי שבועות; יום ראשון של אבות הוועידה האקומנית השביעית",
+    "ar": "الأحد 22 بعد العنصرة; أحد آباء المجمع المسكوني السابع",
+    "ru": "22-е воскресенье после Пятидесятницы; Воскресенье святых отцов Седьмого Вселенского собора",
+    "tl": "Ika-22 Linggo pagkatapos ng Pentecostes; Linggo ng mga Ama ng Ikapitong Konsilyong Ekumeniko",
+    "fr": "22e dimanche après la Pentecôte; Dimanche des Pères du septième concile œcuménique",
+    "it": "22ª domenica dopo Pentecoste; Domenica dei Padri del settimo concilio ecumenico"
+   }
+  },
+  "2027-10-24": {
+   "title": "23rd Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־23 אחרי שבועות",
+    "ar": "الأحد 23 بعد العنصرة",
+    "ru": "23-е воскресенье после Пятидесятницы",
+    "tl": "Ika-23 Linggo pagkatapos ng Pentecostes",
+    "fr": "23e dimanche après la Pentecôte",
+    "it": "23ª domenica dopo Pentecoste"
+   }
+  },
+  "2027-10-26": {
+   "title": "Holy Great-Martyr Demetrius",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "דמטריוס הקדוש, המרטיר הגדול",
+    "ar": "القديس ديمتريوس العظيم في الشهداء",
+    "ru": "Святой великомученик Димитрий",
+    "tl": "San Demetrio, Dakilang Martir",
+    "fr": "Saint grand martyr Démétrios",
+    "it": "Santo grande martire Demetrio"
+   }
+  },
+  "2027-10-31": {
+   "title": "24th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־24 אחרי שבועות",
+    "ar": "الأحد 24 بعد العنصرة",
+    "ru": "24-е воскресенье после Пятидесятницы",
+    "tl": "Ika-24 Linggo pagkatapos ng Pentecostes",
+    "fr": "24e dimanche après la Pentecôte",
+    "it": "24ª domenica dopo Pentecoste"
+   }
+  },
+  "2027-11-07": {
+   "title": "25th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־25 אחרי שבועות",
+    "ar": "الأحد 25 بعد العنصرة",
+    "ru": "25-е воскресенье после Пятидесятницы",
+    "tl": "Ika-25 Linggo pagkatapos ng Pentecostes",
+    "fr": "25e dimanche après la Pentecôte",
+    "it": "25ª domenica dopo Pentecoste"
+   }
+  },
+  "2027-11-08": {
+   "title": "Synaxis of the Archangel Michael and the Other Bodiless Powers",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "כינוס מיכאל רב המלאכים ושאר הכוחות חסרי הגוף",
+    "ar": "جامع رئيس الملائكة ميخائيل وسائر القوات العديمة الأجساد",
+    "ru": "Собор Архистратига Михаила и прочих Небесных Сил бесплотных",
+    "tl": "Pagtitipon para kay San Miguel Arkanghel at sa Iba Pang Kapangyarihang Walang Katawan",
+    "fr": "Synaxe de l’archange Michel et des autres puissances incorporelles",
+    "it": "Sinassi dell’arcangelo Michele e delle altre potenze incorporee"
+   }
+  },
+  "2027-11-12": {
+   "title": "Holy Priest-Martyr Josaphat, Archbishop of Polotsk",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יוזפט, הגמון ומרטיר",
+    "ar": "القديس يوسافات الكاهن الشهيد، رئيس أساقفة بولوتسك",
+    "ru": "Святой священномученик Иосафат, архиепископ Полоцкий",
+    "tl": "San Josafat, Paring Martir, Arsobispo ng Polotsk",
+    "fr": "Saint Josaphat, prêtre martyr, archevêque de Polotsk",
+    "it": "San Giosafat, sacerdote martire, arcivescovo di Polotsk"
+   }
+  },
+  "2027-11-13": {
+   "title": "Saint John Chrysostom",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "יוחנן כריסוסטומוס הקדוש, הגמון ודוקטור הכנסייה",
+    "ar": "القديس يوحنا الذهبي الفم",
+    "ru": "Святой Иоанн Златоуст",
+    "tl": "San Juan Crisostomo",
+    "fr": "Saint Jean Chrysostome, évêque et docteur de l'Église",
+    "it": "San Giovanni Crisostomo, vescovo e dottore"
+   }
+  },
+  "2027-11-14": {
+   "title": "26th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־26 אחרי שבועות",
+    "ar": "الأحد 26 بعد العنصرة",
+    "ru": "26-е воскресенье после Пятидесятницы",
+    "tl": "Ika-26 Linggo pagkatapos ng Pentecostes",
+    "fr": "26e dimanche après la Pentecôte",
+    "it": "26ª domenica dopo Pentecoste"
+   }
+  },
+  "2027-11-21": {
+   "title": "The Entrance of the Most Holy Theotokos into the Temple",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "כניסת מרים לבית המקדש",
+    "ar": "دخول والدة الإله الفائقة القداسة إلى الهيكل",
+    "ru": "Введение во храм Пресвятой Богородицы",
+    "tl": "Ang Pagpasok sa Templo ng Kabanal-banalang Ina ng Diyos",
+    "fr": "L’Entrée au Temple de la Très Sainte Mère de Dieu",
+    "it": "L’Ingresso al Tempio della Santissima Madre di Dio"
+   }
+  },
+  "2027-11-28": {
+   "title": "28th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־28 אחרי שבועות",
+    "ar": "الأحد 28 بعد العنصرة",
+    "ru": "28-е воскресенье после Пятидесятницы",
+    "tl": "Ika-28 Linggo pagkatapos ng Pentecostes",
+    "fr": "28e dimanche après la Pentecôte",
+    "it": "28ª domenica dopo Pentecoste"
+   }
+  },
+  "2027-11-30": {
+   "title": "Holy Apostle Andrew the First-Called",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "אנדראוס השליח הקדוש, הנקרא ראשון",
+    "ar": "القديس أندراوس الرسول المدعو أولًا",
+    "ru": "Святой апостол Андрей Первозванный",
+    "tl": "San Andres na Apostol, ang Unang Tinawag",
+    "fr": "Saint apôtre André, le Premier-Appelé",
+    "it": "Santo apostolo Andrea, il Primo Chiamato"
+   }
+  },
+  "2027-12-05": {
+   "title": "29th Sunday after Pentecost",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון ה־29 אחרי שבועות",
+    "ar": "الأحد 29 بعد العنصرة",
+    "ru": "29-е воскресенье после Пятидесятницы",
+    "tl": "Ika-29 Linggo pagkatapos ng Pentecostes",
+    "fr": "29e dimanche après la Pentecôte",
+    "it": "29ª domenica dopo Pentecoste"
+   }
+  },
+  "2027-12-06": {
+   "title": "Saint Nicholas the Wonderworker",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "ניקולאוס הקדוש, הגמון",
+    "ar": "القديس نيقولاوس العجائبي",
+    "ru": "Святой Николай Чудотворец",
+    "tl": "San Nicolas na Mapaghimala",
+    "fr": "Saint Nicolas le Thaumaturge",
+    "it": "San Nicola il Taumaturgo"
+   }
+  },
+  "2027-12-09": {
+   "title": "The Conception of the Most Holy Theotokos by Saint Anna",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "התעברות חנה הקדושה ביולדת האלוהים הקדושה ביותר",
+    "ar": "حبل القديسة حنة بوالدة الإله الفائقة القداسة",
+    "ru": "Зачатие Пресвятой Богородицы святой Анной",
+    "tl": "Ang Paglilihi ni Santa Ana sa Kabanal-banalang Ina ng Diyos",
+    "fr": "La Conception de la Très Sainte Mère de Dieu par sainte Anne",
+    "it": "Il Concepimento della Santissima Madre di Dio da parte di sant’Anna"
+   }
+  },
+  "2027-12-12": {
+   "title": "Sunday of the Holy Forefathers",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון של האבות הקדמונים הקדושים",
+    "ar": "أحد الأجداد القديسين",
+    "ru": "Воскресенье святых праотцев",
+    "tl": "Linggo ng mga Banal na Ninuno",
+    "fr": "Dimanche des saints Ancêtres",
+    "it": "Domenica dei santi Progenitori"
+   }
+  },
+  "2027-12-19": {
+   "title": "Sunday before the Nativity — of the Holy Fathers",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון שלפני חג המולד — של האבות הקדושים",
+    "ar": "الأحد قبل الميلاد — الآباء القديسين",
+    "ru": "Воскресенье перед Рождеством Христовым — святых отцов",
+    "tl": "Linggo bago ang Pasko ng Pagsilang — ng mga Banal na Ama",
+    "fr": "Dimanche avant la Nativité — des saints Pères",
+    "it": "Domenica prima della Natività — dei santi Padri"
+   }
+  },
+  "2027-12-25": {
+   "title": "The Nativity of Our Lord",
+   "rank": "Great Feast",
+   "titleByLanguage": {
+    "he": "חג המולד",
+    "ar": "ميلاد ربنا",
+    "ru": "Рождество Господне",
+    "tl": "Ang Pagsilang ng Ating Panginoon",
+    "fr": "La Nativité de Notre Seigneur",
+    "it": "La Natività di Nostro Signore"
+   }
+  },
+  "2027-12-26": {
+   "title": "Sunday after the Nativity; Synaxis of the Most Holy Theotokos",
+   "rank": "Sunday",
+   "titleByLanguage": {
+    "he": "יום ראשון שאחרי חג המולד; כינוס יולדת האלוהים הקדושה ביותר",
+    "ar": "الأحد بعد الميلاد; جامع والدة الإله الفائقة القداسة",
+    "ru": "Воскресенье после Рождества Христова; Собор Пресвятой Богородицы",
+    "tl": "Linggo pagkatapos ng Pasko ng Pagsilang; Pagtitipon para sa Kabanal-banalang Ina ng Diyos",
+    "fr": "Dimanche après la Nativité; Synaxe de la Très Sainte Mère de Dieu",
+    "it": "Domenica dopo la Natività; Sinassi della Santissima Madre di Dio"
+   }
+  },
+  "2027-12-27": {
+   "title": "Holy First-Martyr and Archdeacon Stephen",
+   "rank": "Feast",
+   "titleByLanguage": {
+    "he": "חג סטפנוס הקדוש, דיאקון והמרטיר הראשון",
+    "ar": "القديس استفانوس أول الشهداء ورئيس الشمامسة",
+    "ru": "Святой первомученик и архидиакон Стефан",
+    "tl": "San Esteban, Unang Martir at Arkidiyakono",
+    "fr": "Saint Étienne, premier martyr et archidiacre",
+    "it": "Santo Stefano, primo martire e arcidiacono"
+   }
+  }
+ }
+}

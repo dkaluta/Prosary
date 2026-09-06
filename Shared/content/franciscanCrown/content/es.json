@@ -1,0 +1,29 @@
+{
+  "$comment": "The common prayers and six Rosary mysteries resolve from the separately sourced shared prayer tables and Rosary content. The Adoration of the Magi Scripture is imported from the credited Bible edition. Its title and fruit, the Crown-specific labels, display name, and reminder are Prosary translations of app metadata, not newly composed liturgical prayers.",
+  "$sources": {
+    "commonPrayers": "Shared/content/rosary/content/es.json and the native prayer tables; retain their individual published source credits.",
+    "metadata": "Prosary translations of prayer titles, spiritual-fruit labels, and interface descriptions."
+  },
+  "prayers": {
+    "aveMariaTitle": "Ave María",
+    "paterNosterTitle": "Padre nuestro",
+    "signumCrucisTitle": "Señal de la cruz",
+    "decadeOrdinalNoun": "Gozo",
+    "crownYearsSubtitle": "Por los años de la vida de Nuestra Señora",
+    "crownPopeSubtitle": "Por las intenciones del Santo Padre"
+  },
+  "mysteries": {
+    "franciscan_04_adoration_of_the_magi": {
+      "title": "La Adoración de los Magos",
+      "fruit": "Generosidad",
+      "description": "Luego que oyeron esto al rey, partieron; y hé aqui que la estrella, que habian visto en Oriente, iba delante de ellos, hasta que llegando sobre el sitio en que estaba el niño, se paró. A la vista de la estrella se regocijaron por extremo. Y entrando en la casa, hallaron al niño con María su madre, y postrándose le adoraron, y abiertos sus cofres, le ofrecieron presentes de oro, incienso y myrrha.\n\n— San Mateo 2:9–11 (Torres Amat)"
+    }
+  },
+  "$scriptureSource": "Scripture imported from Félix Torres Amat's Spanish Bible (1836) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Torres Amat translated the Vulgate, so its chapter-and-verse is the same one these devotions cite and no versification map is needed. Spelling and accentuation are the 1836 printing's own. Old Testament readings are absent: only the New Testament volumes of it have been transcribed from the scans.",
+  "$scriptureImport": {
+    "prayerKeys": [],
+    "mysteryKeys": [
+      "franciscan_04_adoration_of_the_magi"
+    ]
+  }
+}

@@ -50,15 +50,15 @@ public partial class FavoriteEditorViewModel : ObservableObject
 
     public string BaseLanguageCode
     {
-        get => LanguageCode;
-        set => LanguageCode = value;
+        get => LanguageCatalog.PickerLanguageCode(LanguageCode);
+        set => LanguageCode = LanguageCatalog.SelectingLanguage(value, LanguageCode);
     }
 
     /// <summary>The rites of the chosen language — empty (and hidden) when there is only one way
     /// to pray it. A rite that lacks a prayer reads it in the language's own wording.</summary>
     public IReadOnlyList<LanguageOption> RiteOptions => LanguageCatalog.Rites(LanguageCode);
 
-    public bool ShowsRitePicker => false;
+    public bool ShowsRitePicker => BaseLanguageCode == "he";
 
     public LanguageOption? SelectedRite
     {
@@ -105,6 +105,15 @@ public partial class FavoriteEditorViewModel : ObservableObject
 
     [ObservableProperty]
     private bool _includeClosingIntentions;
+
+    [ObservableProperty]
+    private bool _includeClosingPopeIntention;
+
+    [ObservableProperty]
+    private bool _includeClosingBishopIntention;
+
+    [ObservableProperty]
+    private bool _includeClosingDepartedIntention;
 
     [ObservableProperty]
     private bool _includeStMichaelPrayer;
@@ -166,7 +175,7 @@ public partial class FavoriteEditorViewModel : ObservableObject
     // ComboBox ItemsSource lists — each entry displayed via a Converters/*LabelConverter or
     // *DisplayName() extension rather than the raw enum/code value.
     public IReadOnlyList<string> LanguageCodeOptions { get; } =
-        [LanguageCatalog.DefaultSentinel, .. LanguageCatalog.All.Select(l => l.Code)];
+        [LanguageCatalog.DefaultSentinel, .. LanguageCatalog.PickerOptions.Select(l => l.Code)];
 
     public IReadOnlyList<MysterySelectionMode> MysterySelectionModeOptions { get; } = Enum.GetValues<MysterySelectionMode>();
     public IReadOnlyList<MysteryGroup> MysteryGroupOptions { get; } = Enum.GetValues<MysteryGroup>();
@@ -239,6 +248,9 @@ public partial class FavoriteEditorViewModel : ObservableObject
         EternalRestForDeceased = prayer.Rosary.EternalRestForDeceased;
         MarianAntiphon = prayer.Rosary.MarianAntiphon;
         IncludeClosingIntentions = prayer.Rosary.IncludeClosingIntentions;
+        IncludeClosingPopeIntention = prayer.Rosary.EffectiveClosingPopeIntention;
+        IncludeClosingBishopIntention = prayer.Rosary.EffectiveClosingBishopIntention;
+        IncludeClosingDepartedIntention = prayer.Rosary.EffectiveClosingDepartedIntention;
         IncludeStMichaelPrayer = prayer.Rosary.IncludeStMichaelPrayer;
         IncludeFinalSignOfCross = prayer.Rosary.IncludeFinalSignOfCross;
         AramaicSignOfCrossForm = prayer.Rosary.AramaicSignOfCrossForm;
@@ -267,6 +279,9 @@ public partial class FavoriteEditorViewModel : ObservableObject
             EternalRestForDeceased = EternalRestForDeceased,
             MarianAntiphon = MarianAntiphon,
             IncludeClosingIntentions = IncludeClosingIntentions,
+            IncludeClosingPopeIntention = IncludeClosingPopeIntention,
+            IncludeClosingBishopIntention = IncludeClosingBishopIntention,
+            IncludeClosingDepartedIntention = IncludeClosingDepartedIntention,
             IncludeStMichaelPrayer = IncludeStMichaelPrayer,
             IncludeFinalSignOfCross = IncludeFinalSignOfCross,
             AramaicSignOfCrossForm = AramaicSignOfCrossForm,

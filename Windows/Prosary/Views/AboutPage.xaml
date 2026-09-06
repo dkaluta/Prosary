@@ -48,7 +48,7 @@
                         <LineBreak /><Run Text="David Libre, Noto Sans Hebrew &amp; Noto Rashi Hebrew" FontWeight="Bold" /><Run x:Uid="AbtTypeOptionalHebrew" Text=" — SIL Open Font License 1.1 — optional Hebrew prayer and Scripture faces." />
                         <LineBreak /><Run Text="Stam Ashkenaz &amp; Stam Sefarad" FontWeight="Bold" /><Run x:Uid="AbtTypeStam" Text=" — GPL v2 with font-embedding exception — optional Hebrew Scripture faces (Culmus Project, Yoram Gnat)." />
                     </TextBlock>
-                    <TextBlock x:Uid="AbtTypeFooter" Text="Latin-script prayers use Cambria, which ships with Windows — not bundled with the app."
+                    <TextBlock x:Uid="AbtTypeFooter" Text="Prayer typography can use the platform’s system serif or sans-serif design."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
                 </StackPanel>
 
@@ -141,6 +141,8 @@
                     <TextBlock x:Uid="AbtPrayerTextsHeader" Text="Prayer Texts" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
                     <TextBlock x:Uid="AbtPrayerTextsBody" Text="The Divine Mercy Chaplet in Hebrew is the Latin Patriarchate of Jerusalem’s own text, approved by Patriarch Michel Sabbah in 2003. The Hebrew prayers are the Saint James Vicariate for Hebrew Speaking Catholics’ own texts, from their prayer book. Some of the prayers in Hebrew and Aramaic are used with the permission of the Patriarchal Exarch of the Aramaic (Syriac) Catholic community."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    <TextBlock x:Uid="AbtLitanySources" Text="The Litany of Loreto uses published Catholic prayer texts. The Hebrew wording is Erez’s contribution through the Mission of St. Gamaliel. The Greek and Tagalog standalone closing prayers are Prosary translations of the Latin original; they are not published liturgical translations."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
                 </StackPanel>
 
                 <StackPanel Spacing="8">
@@ -149,7 +151,7 @@
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
                     <TextBlock x:Uid="AbtAdditionalSources" Text="French Scripture: Crampon (1923), public domain. Italian Scripture: Antonio Martini; structured data © Giovanni Novelli, CC BY 4.0 (parolaviva.art). French and Italian prayers: Vatican Compendium. Pope’s intentions: Pope’s Worldwide Prayer Network (2026–2027); Hebrew translation by Prosary."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
-                    <TextBlock x:Uid="AbtPrayerSources" Text="Additional prayer sources: Vatican News, the Sanctuary of Fatima, Notre-Dame de Paris, AELF and the Italian Episcopal Conference (CEI)."
+                    <TextBlock x:Uid="AbtPrayerSources" Text="Additional prayer sources: Vatican News, the Sanctuary of Fatima, Notre-Dame de Paris, AELF and the Italian Episcopal Conference (CEI). Also: Basilica of Guadalupe; GOARCH Digital Chant Stand; IVE Greece (Greek Anima Christi translated by Fr F. Bravo IVE); St Nicholas Catholic Parish, Tinos; Carmelite Iberian Province; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), for the medieval Syriac Under Your Protection. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888)."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
                     <TextBlock x:Uid="AbtDivineMercySources" Text="Divine Mercy Chaplet: Congregation of the Sisters of Our Lady of Mercy."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
@@ -165,8 +167,16 @@
 
                 <StackPanel Spacing="8">
                     <TextBlock x:Uid="AbtCalendarDataHeader" Text="Calendar Data" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
-                    <TextBlock x:Uid="AbtCalendarDataBody" Text="Calendar and readings data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar and readings via Missale Meum (missalemeum.com); the Syriac Catholic calendar and readings, and General Roman Hebrew titles and citations, courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; Byzantine citations from Royal Doors (royaldoors.net), with the Ukrainian Greek Catholic calendar compiled from traditional sources."
+                    <TextBlock x:Uid="AbtTorahData" Text="Weekly Torah portions and festival readings for Eretz Israel: Hebcal.com (CC BY 4.0), with adapted names and citations."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                    <HyperlinkButton Content="Hebcal.com" NavigateUri="https://www.hebcal.com" />
+                    <HyperlinkButton Content="CC BY 4.0" NavigateUri="https://creativecommons.org/licenses/by/4.0/" />
+                    <TextBlock x:Uid="AbtCalendarDataBody" Text="Calendar and readings data: LitCal; Missale Meum; Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic Church and its Patriarchal Liturgical Commission for Julian Pascha; Royal Doors for Gregorian Pascha."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    <HyperlinkButton Content="ugcc.ua" NavigateUri="https://ugcc.ua/data/tserkovnyy-kalendar-ugkts-na-2026-rik-8059/" />
+                    <TextBlock x:Uid="AbtHebrewBookIndex" Text="Additional Hebrew Bible book names: Mechon Mamre’s Hebrew Bible index. Names only; no Scripture text."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                    <HyperlinkButton Content="Mechon Mamre" NavigateUri="https://www.mechon-mamre.org/i/t/tmp3.htm" />
                 </StackPanel>
 
             </StackPanel>

@@ -50,6 +50,7 @@ struct JesusPrayerFlowView: View {
     return RosaryStep(
       title: PrayerKind.jesusPrayer.displayName, subtitle: nil,
       body: PrayerTranslations.get(languageCode: languageCode, key: .oratioIesu),
+      transliteratedBody: PrayerPackStore.transliteration(bundleId: "rosary", languageCode: languageCode, key: PrayerKey.oratioIesu.rawValue),
       imageOverrideKey: "christ_pantocrator")
   }
 

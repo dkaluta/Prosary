@@ -1,0 +1,58 @@
+{
+  "fr": {
+    "language": "fr",
+    "status": "15 verified public-domain texts; independent closing unresolved",
+    "source": {
+      "title": "Mater dolorosa. Les douleurs de la Sainte Vierge. Méditations, réflexions, prières",
+      "author": "Saint Alphonse de Liguori (1696–1787)",
+      "publisher": "Société de Saint-Augustin, Desclée, de Brouwer et Cie, Lille",
+      "publicationYear": 1888,
+      "section": "Exercice du Chemin de la Croix",
+      "pages": "81–82 (opening), 84–97 (fourteen stations)",
+      "url": "https://books.google.com/books?id=5eeM0AEACAAJ&pg=PA81",
+      "rights": "Historical French translation published 1888; public-domain book. No modern translation, editorial article, artwork or scan copied into content.",
+      "verification": "All opening and 14 station pages visually checked against scan. OCR word joins, drop capitals and line hyphenation corrected; small caps rendered in normal capitalization. The missing period after péchés in station VI is restored as punctuation only; no words added.",
+      "sequence": "Matches existing traditional fourteen-station order. Prayers stop before repeated Pater/Ave/Gloria, acclamation and concluding response rubrics, which are not part of these meditation body extracts."
+    },
+    "remainingGaps": [
+      {
+        "key": "stationsClosingPrayer",
+        "reason": "This edition finishes after station XIV with a rubric to return to the altar and pray five Pater/Ave/Gloria; there is no independent closing prayer."
+      }
+    ]
+  },
+  "it": {
+    "language": "it",
+    "status": "15 traditional original-language texts verified from published reprints; independent closing unresolved",
+    "source": {
+      "title": "Via Crucis con Sant’Alfonso de Liguori",
+      "author": "Sant’Alfonso Maria de’ Liguori (1696–1787)",
+      "work": "Esercizio della Via Crucis (1761)",
+      "url": "https://cooperatores-veritatis.org/wp-content/uploads/2023/03/via-crucis-con-sant-alfonso-de-liguori.pdf",
+      "pages": "2 (opening); 2–9 (fourteen stations)",
+      "rights": "Public-domain original Italian Liguori prayer wording. Only the historical prayers are extracted. Modern introductory material, Stabat Mater translations and concluding collect translation are not reused.",
+      "corroboratingSources": [
+        {
+          "url": "https://www.editorialeilgiglio.it/download/fraternit%C3%A0_cattolica/Via_Crucis.pdf",
+          "note": "Original Italian Liguori prayers; substantially matching text. This booklet omits the prayer paragraph in station VIII and has typos in IX/X, so it is not the sole transcription source."
+        },
+        {
+          "url": "https://www.oratoriosantambrogiombc.it/2026/03/20/via-crucis-di-s-alfonso-maria-de-liguori/",
+          "note": "Parish publication of the full fourteen Liguori stations in mildly modernized Italian; confirms station VIII prayer and traditional sequence."
+        },
+        {
+          "url": "https://www.intratext.com/IXT/ITASA0000/_P2XZ.HTM",
+          "note": "Redemptorist bibliographic introduction dates original Esercizio della Via Crucis to Naples, Paci, 1761."
+        }
+      ],
+      "verification": "Original Italian wording preserved, including historical spellings/elisions. Corrected only obvious typographic issues: lascio to lasciò, cosi to così, v ’amo space; removed print line wrapping. No translation generated. All eight prayer pages visually checked. Station VI delle ferite corrected to dalle ferite from the parallel Editoriale il Giglio and parish reprints. Introductory and hymn translation errors in the PDF were excluded, not propagated.",
+      "sequence": "Matches existing traditional fourteen-station order. Each body includes the meditation and prayer; repeated acclamation, Pater/Ave/Gloria and hymn are excluded from the body extract."
+    },
+    "remainingGaps": [
+      {
+        "key": "stationsClosingPrayer",
+        "reason": "Original Liguori stations end with station XIV; the selected reprint adds a modern Italian collect translation whose wording is unreliable (concedi più propiziatorio), so it is intentionally not reused."
+      }
+    ]
+  }
+}

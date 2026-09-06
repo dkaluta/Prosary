@@ -31,7 +31,7 @@ public static class PrayerPackStore
     private static readonly string[] PackNames =
     [
         "rosary", "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
-        "divineMercyChaplet", "trisagion", "oAntiphons",
+        "divineMercyChaplet", "trisagion", "oAntiphons", "litanyOfLoreto",
     ];
 
     // Imported packs are untrusted. These ceilings are intentionally far above every shipped
@@ -1574,24 +1574,19 @@ public sealed record CustomDevotionInfo(
 {
     private static string UiLanguage => UiLanguageCatalog.Current;
 
-    /// <summary>The display name in the app's active UI localization (falling back to the
-    /// manifest's base <see cref="DisplayName"/>) — preserves e.g. the Hebrew devotion names.</summary>
-    /// <summary>The devotion's name, resolved the way its headings are: the prayer language
-    /// first (exact resolved code, rites included, then its base), then the UI language, then
-    /// the manifest's base DisplayName — a devotion's name is part of the prayer.</summary>
-    public string LocalizedDisplayName
+    /// <summary>Names in interface chrome follow the interface. Cards opt in separately to
+    /// displaying their prayer-language name through PrayerCardName.</summary>
+    public string LocalizedDisplayName => DisplayNameInLanguage(UiLanguage);
+
+    public string DisplayNameInLanguage(string language)
     {
-        get
-        {
-            var prayerCode = Prosary.Models.LanguageCatalog.Resolve(null).Code;
-            if (DisplayNameByLanguage.TryGetValue(prayerCode, out var prayerName))
-                return HebrewDisplayText.WithoutMarks(prayerName);
-            if (Prosary.Models.LanguageCatalog.BaseLanguage(prayerCode) is { } baseCode &&
-                DisplayNameByLanguage.TryGetValue(baseCode, out var baseName))
-                return HebrewDisplayText.WithoutMarks(baseName);
-            return HebrewDisplayText.WithoutMarks(
-                DisplayNameByLanguage.TryGetValue(UiLanguage, out var name) ? name : DisplayName);
-        }
+        if (DisplayNameByLanguage.TryGetValue(language, out var exact))
+            return HebrewDisplayText.WithoutMarks(exact);
+        if (Prosary.Models.LanguageCatalog.BaseLanguage(language) is { } baseCode &&
+            DisplayNameByLanguage.TryGetValue(baseCode, out var byBase))
+            return HebrewDisplayText.WithoutMarks(byBase);
+        return HebrewDisplayText.WithoutMarks(
+            DisplayNameByLanguage.TryGetValue(UiLanguage, out var name) ? name : DisplayName);
     }
 
     public string? LocalizedReminderBody =>

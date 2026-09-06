@@ -256,16 +256,51 @@
       }
     },
     {
-      "key": "closingIntentions",
+      "key": "closingPopeIntention",
       "kind": "toggle",
-      "name": "Closing intentions (for the Pope, the local bishop, and the faithful departed)",
+      "name": "Closing prayers for the Pope",
       "default": false,
       "nameByLanguage": {
-        "ar": "النيات الختامية (من أجل البابا والأسقف المحلي والمؤمنين الراقدين)",
-        "ru": "Заключительные намерения (о Папе, местном епископе и усопших верных)",
-        "tl": "Mga pangwakas na intensiyon (para sa Santo Papa, lokal na obispo, at mga yumao)",
-        "fr": "Intentions finales (pour le pape, l’évêque du lieu et les fidèles défunts)",
-        "it": "Intenzioni finali (per il Papa, il vescovo locale e i fedeli defunti)"
+        "en": "Closing prayers for the Pope",
+        "he": "תפילות סיום למען האפיפיור",
+        "ar": "صلوات الختام من أجل البابا",
+        "ru": "Заключительные молитвы за Папу",
+        "tl": "Pangwakas na mga panalangin para sa Papa",
+        "fr": "Prières finales pour le pape",
+        "it": "Preghiere finali per il Papa",
+        "la": "Pro intentionibus Summi Pontificis"
+      }
+    },
+    {
+      "key": "closingBishopIntention",
+      "kind": "toggle",
+      "name": "Closing prayers for the bishop",
+      "default": false,
+      "nameByLanguage": {
+        "en": "Closing prayers for the bishop",
+        "he": "תפילות סיום למען ההגמון",
+        "ar": "صلوات الختام من أجل الأسقف",
+        "ru": "Заключительные молитвы за епископа",
+        "tl": "Pangwakas na mga panalangin para sa obispo",
+        "fr": "Prières finales pour l’évêque",
+        "it": "Preghiere finali per il vescovo",
+        "la": "Pro Ordinario loci"
+      }
+    },
+    {
+      "key": "closingDepartedIntention",
+      "kind": "toggle",
+      "name": "Closing prayers for the faithful departed",
+      "default": false,
+      "nameByLanguage": {
+        "en": "Closing prayers for the faithful departed",
+        "he": "תפילות סיום למען המאמינים הנפטרים",
+        "ar": "صلوات الختام من أجل المؤمنين الراقدين",
+        "ru": "Заключительные молитвы за усопших верных",
+        "tl": "Pangwakas na mga panalangin para sa mga yumaong mananampalataya",
+        "fr": "Prières finales pour les fidèles défunts",
+        "it": "Preghiere finali per i fedeli defunti",
+        "la": "Pro animabus in purgatorio"
       }
     },
     {

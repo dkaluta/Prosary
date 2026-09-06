@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Fragment } from "react";
 import type { BundleRow } from "@/lib/db";
-import { languageName } from "@/lib/languages";
+import { displayLanguageCodes, languageName } from "@/lib/languages";
 
 export function BundleTags({ tags }: { tags: string[] }) {
   if (tags.length === 0) return null;
@@ -20,7 +20,7 @@ export function BundleTags({ tags }: { tags: string[] }) {
 export function BundleLanguages({ codes }: { codes: string[] }) {
   return (
     <>
-      {codes.map((code, index) => (
+      {displayLanguageCodes(codes).map((code, index) => (
         <Fragment key={`${code}-${index}`}>
           {index > 0 ? ", " : null}
           <span lang={code} dir="auto">

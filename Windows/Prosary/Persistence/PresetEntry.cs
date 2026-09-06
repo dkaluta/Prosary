@@ -63,6 +63,11 @@ public sealed class PresetEntry
     /// <summary>Defaults to false for existing rows.</summary>
     public bool IncludeClosingIntentions { get; set; }
 
+    // sqlite-net adds nullable columns to old databases without inventing an explicit choice.
+    public bool? IncludeClosingPopeIntention { get; set; }
+    public bool? IncludeClosingBishopIntention { get; set; }
+    public bool? IncludeClosingDepartedIntention { get; set; }
+
     public bool IncludeStMichaelPrayer { get; set; }
     public bool IncludeFinalSignOfCross { get; set; } = true;
 
@@ -108,6 +113,9 @@ public sealed class PresetEntry
             EternalRestForDeceased = EternalRestForDeceased,
             MarianAntiphon = MarianAntiphon,
             IncludeClosingIntentions = IncludeClosingIntentions,
+            IncludeClosingPopeIntention = IncludeClosingPopeIntention,
+            IncludeClosingBishopIntention = IncludeClosingBishopIntention,
+            IncludeClosingDepartedIntention = IncludeClosingDepartedIntention,
             IncludeStMichaelPrayer = IncludeStMichaelPrayer,
             IncludeFinalSignOfCross = IncludeFinalSignOfCross,
             AramaicSignOfCrossForm = AramaicSignOfCrossForm,
@@ -144,6 +152,9 @@ public sealed class PresetEntry
         EternalRestForDeceased = prayer.Rosary.EternalRestForDeceased,
         MarianAntiphon = prayer.Rosary.MarianAntiphon,
         IncludeClosingIntentions = prayer.Rosary.IncludeClosingIntentions,
+        IncludeClosingPopeIntention = prayer.Rosary.IncludeClosingPopeIntention,
+        IncludeClosingBishopIntention = prayer.Rosary.IncludeClosingBishopIntention,
+        IncludeClosingDepartedIntention = prayer.Rosary.IncludeClosingDepartedIntention,
         IncludeStMichaelPrayer = prayer.Rosary.IncludeStMichaelPrayer,
         IncludeFinalSignOfCross = prayer.Rosary.IncludeFinalSignOfCross,
         AramaicSignOfCrossForm = prayer.Rosary.AramaicSignOfCrossForm,

@@ -1,5 +1,5 @@
 import type { Dispatch, SetStateAction } from "react";
-import { ICONS, LANGUAGES, isRtl } from "../format/catalog";
+import { AUTHORING_LANGUAGES, ICONS, LANGUAGES, isRtl } from "../format/catalog";
 import type { LanguageCode } from "../format/catalog";
 import { newUid } from "../format/project";
 import type { Project } from "../format/project";
@@ -61,7 +61,7 @@ export function BasicsScreen({ project, setProject }: Props) {
         <fieldset>
           <legend>Languages</legend>
           <div className="choices">
-            {LANGUAGES.map((language) => (
+            {AUTHORING_LANGUAGES.map((language) => (
               <label key={language.code}>
                 <input
                   type="checkbox"

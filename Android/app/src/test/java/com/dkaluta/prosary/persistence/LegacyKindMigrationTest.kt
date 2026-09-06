@@ -20,6 +20,24 @@ class LegacyKindMigrationTest {
         )
 
     @Test
+    fun closingIntentionColumnsPreserveNullInheritanceAndExplicitOptOut() {
+        val old = legacyEntity("Rosary").copy(includeClosingIntentions = true).toPrayer().rosary
+        assertEquals(null, old.includeClosingPopeIntention)
+        assertEquals(true, old.effectiveClosingPopeIntention)
+        assertEquals(true, old.effectiveClosingBishopIntention)
+        assertEquals(true, old.effectiveClosingDepartedIntention)
+        val split = legacyEntity("Rosary").copy(
+            includeClosingIntentions = true,
+            includeClosingPopeIntention = false,
+            includeClosingBishopIntention = true,
+            includeClosingDepartedIntention = false,
+        ).toPrayer().rosary
+        assertEquals(false, split.effectiveClosingPopeIntention)
+        assertEquals(true, split.effectiveClosingBishopIntention)
+        assertEquals(false, split.effectiveClosingDepartedIntention)
+    }
+
+    @Test
     fun everyLegacyKindMapsToItsBundleId() {
         val legacyKinds = mapOf(
             "Angelus" to "angelus",

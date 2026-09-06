@@ -68,12 +68,7 @@ public static class BasicPrayersOrder
     public static List<BasicPrayer> ApplyFavorites(IEnumerable<BasicPrayer> prayers)
     {
         var list = prayers.ToList();
-        if (!AppSettings.FavoriteBasicPrayersFirst) return list;
-        var favorites = AppSettings.FavoriteBasicPrayerIds;
-        return list.Select((prayer, index) => (prayer, index))
-            .OrderByDescending(x => favorites.Contains(x.prayer.Id))
-            .ThenBy(x => x.index)
-            .Select(x => x.prayer)
-            .ToList();
+        // Retained for old callers: favorite ids now pin to Home and never sort this list.
+        return list;
     }
 }

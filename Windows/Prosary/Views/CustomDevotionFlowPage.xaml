@@ -107,7 +107,7 @@
 
         <StackPanel Grid.Row="2" Spacing="8">
             <ProgressBar Minimum="0" Maximum="1" Value="{x:Bind ViewModel.Progress, Mode=OneWay, Converter={StaticResource NullableDoubleToValue}}" />
-            <TextBlock Text="{x:Bind ViewModel.ProgressText, Mode=OneWay}" HorizontalAlignment="Center" Style="{StaticResource MutedCaptionTextStyle}" />
+            <TextBlock FontFamily="{x:Bind ViewModel.ProgressFontFamily, Mode=OneWay}" Text="{x:Bind ViewModel.ProgressText, Mode=OneWay}" HorizontalAlignment="Center" Style="{StaticResource MutedCaptionTextStyle}" />
 
             <!-- The parting suggestion a finished series makes, when its bundle names a
                  devotion this device actually has. -->
@@ -285,7 +285,7 @@
         <Border Grid.Row="4" CornerRadius="12" Padding="8,4"
                 Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
                 Visibility="{x:Bind ViewModel.HasAudio, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-            <Grid ColumnSpacing="4">
+            <Grid ColumnSpacing="4" FlowDirection="{x:Bind NavigationFlowDirection}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
@@ -296,7 +296,7 @@
                         Command="{x:Bind ViewModel.AudioPreviousChapterCommand}"
                         IsEnabled="{x:Bind ViewModel.CanSkipAudioChapter, Mode=OneWay}"
                         AutomationProperties.Name="Previous chapter" VerticalAlignment="Center">
-                    <FontIcon Glyph="&#xE892;" FontSize="14" />
+                    <FontIcon Glyph="&#xE892;" FontSize="14" MirroredWhenRightToLeft="True" />
                 </Button>
                 <Button x:Uid="AudioPlayPause" Grid.Column="1" Background="Transparent" BorderThickness="0"
                         Command="{x:Bind ViewModel.AudioPlayPauseCommand}"
@@ -308,7 +308,7 @@
                         Command="{x:Bind ViewModel.AudioNextChapterCommand}"
                         IsEnabled="{x:Bind ViewModel.CanSkipAudioChapter, Mode=OneWay}"
                         AutomationProperties.Name="Next chapter" VerticalAlignment="Center">
-                    <FontIcon Glyph="&#xE893;" FontSize="14" />
+                    <FontIcon Glyph="&#xE893;" FontSize="14" MirroredWhenRightToLeft="True" />
                 </Button>
                 <StackPanel Grid.Column="3" VerticalAlignment="Center">
                     <TextBlock Text="{x:Bind ViewModel.AudioChapterTitle, Mode=OneWay}"
@@ -330,7 +330,7 @@
             </Grid>
         </Border>
 
-        <Grid Grid.Row="5">
+        <Grid Grid.Row="5" FlowDirection="{x:Bind NavigationFlowDirection}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />

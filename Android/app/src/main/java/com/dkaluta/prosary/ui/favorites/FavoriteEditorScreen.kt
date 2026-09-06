@@ -165,12 +165,12 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
 
             FormSection(title = stringResource(R.string.editor_prayer_language)) {
                 val defaultName = LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).nativeName
-                val languageOptions = listOf(LanguageCatalog.defaultSentinel) + LanguageCatalog.all.map { it.code }
+                val languageOptions = listOf(LanguageCatalog.defaultSentinel) + LanguageCatalog.publicOptions.map { it.code }
                 val storedCode = prayer.languageCode
                 OptionPickerField(
                     label = stringResource(R.string.editor_language),
                     options = languageOptions,
-                    selected = storedCode,
+                    selected = LanguageCatalog.pickerLanguageCode(storedCode),
                     optionLabel = { code ->
                         if (code == LanguageCatalog.defaultSentinel) {
                             context.getString(R.string.language_default_dash, defaultName)
@@ -178,9 +178,19 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
                             LanguageCatalog.resolve(code).nativeName
                         }
                     },
-                    onSelect = { code -> prayer = prayer.copy(languageCode = code) },
+                    onSelect = { code -> prayer = prayer.copy(languageCode = LanguageCatalog.selectingLanguage(code, storedCode)) },
                     modifier = Modifier.fillMaxWidth(),
                 )
+
+                if (LanguageCatalog.pickerLanguageCode(prayer.resolvedLanguageCode) == "he") {
+                    OptionPickerField(
+                        label = stringResource(R.string.prayer_tradition),
+                        options = listOf("he", "he-x-gamliel"),
+                        selected = prayer.resolvedLanguageCode,
+                        optionLabel = { context.getString(if (it == "he") R.string.prayer_tradition_vicariate else R.string.prayer_tradition_mission) },
+                        onSelect = { prayer = prayer.copy(languageCode = it) },
+                    )
+                }
 
                 val appDefaultBase = LanguageCatalog.baseLanguage(AppSettings.defaultLanguageCode)
                     ?: AppSettings.defaultLanguageCode

@@ -108,6 +108,19 @@ struct ReadingCitation: Decodable, Equatable {
   var hebrew: String { localizedFull("he") }
 }
 
+struct TorahPortion: Decodable, Equatable {
+  let saturday: String
+  let title: String
+  let titleByLanguage: [String: String]?
+  let isHoliday: Bool
+  let readings: [ReadingCitation]
+  let sourceUrl: String
+
+  func localizedTitle(_ language: String) -> String {
+    HebrewDisplayText.unpointed(localizedValue(titleByLanguage, language: language) ?? title)
+  }
+}
+
 /// Language variants inherit display metadata from their base language. This intentionally
 /// returns the authored value unchanged: unlike headings, Scripture citations and intention
 /// prose must not be normalized a second time at runtime.
@@ -128,9 +141,20 @@ struct LiturgicalDayInfo: Equatable {
   let date: Date
   let season: String
   let week: Int
+  var usesCivilDate = false
 
   func localized(_ language: String) -> String {
     let code = UILanguage.resolve(language)
+    if usesCivilDate {
+      let formatter = DateFormatter()
+      formatter.locale = Locale(identifier: code)
+      formatter.calendar = Calendar(identifier: .gregorian)
+      formatter.dateFormat = "MMMM"
+      let day = Calendar(identifier: .gregorian).component(.day, from: date)
+      return String(format: UILanguage.text("home.today.civilDay", language: code,
+                                            fallback: "Day %lld of %@"),
+                    locale: Locale(identifier: code), day, formatter.string(from: date))
+    }
     if code == "he" { return hebrew }
     if code == "en" { return english }
     let formatter = DateFormatter()
@@ -162,6 +186,11 @@ struct FeastCalendar: Decodable, Equatable, Identifiable {
 @MainActor
 enum TodayInfoStore {
   static let calendarDefaultsKey = "feastCalendarId"
+  static let paschaStyleDefaultsKey = "easternPaschaStyle"
+
+  static var selectedPaschaStyle: String {
+    UserDefaults.standard.string(forKey: paschaStyleDefaultsKey) == "gregorian" ? "gregorian" : "julian"
+  }
 
   private struct FeastsFile: Decodable {
     let days: [String: FeastDay]
@@ -173,6 +202,7 @@ enum TodayInfoStore {
 
   private struct ReadingDay: Decodable { let readings: [ReadingCitation] }
   private struct ReadingsFile: Decodable { let days: [String: ReadingDay] }
+  private struct TorahPortionsFile: Decodable { let days: [String: TorahPortion] }
 
   private struct CalendarsFile: Decodable {
     let `default`: String
@@ -182,6 +212,7 @@ enum TodayInfoStore {
   private static var feastsByDay: [String: FeastDay] = [:]
   private static var intentionsByMonth: [String: PopeIntention] = [:]
   private static var readingsByDay: [String: ReadingDay] = [:]
+  private static var torahPortionsByDay: [String: TorahPortion]?
   private static var registry: CalendarsFile?
   private static var loadedCalendarId: String?
   private static var loadedReadingsCalendarId: String?
@@ -222,6 +253,30 @@ enum TodayInfoStore {
   static func readings(on date: Date = Date()) -> [ReadingCitation] {
     ensureReadingsLoaded()
     return readingsByDay[key(for: date, format: "yyyy-MM-dd")]?.readings ?? []
+  }
+
+  static func torahPortion(on date: Date = Date()) -> TorahPortion? {
+    if torahPortionsByDay == nil {
+      torahPortionsByDay = decode(TorahPortionsFile.self, resource: "torah-portions")?.days ?? [:]
+    }
+    return torahPortionsByDay?[key(for: date, format: "yyyy-MM-dd")]
+  }
+
+  /// Only modern Roman calendars use the computed Latin season heading. Other rites retain
+  /// their own sourced feast/Sunday names and show a neutral civil date on weekdays.
+  static func displayDayInfo(on date: Date = Date(), calendarId: String? = nil) -> LiturgicalDayInfo? {
+    let calendar = Calendar(identifier: .gregorian)
+    guard calendar.component(.weekday, from: date) != 1 else { return nil }
+    if ["lpj", "roman"].contains(calendarId ?? selectedCalendarId) {
+      return liturgicalDayInfo(on: date)
+    }
+    return LiturgicalDayInfo(english: "", hebrew: "", date: calendar.startOfDay(for: date),
+                             season: "", week: 0, usesCivilDate: true)
+  }
+
+  static func dateByMoving(_ days: Int, from date: Date) -> Date {
+    let calendar = Calendar(identifier: .gregorian)
+    return calendar.date(byAdding: .day, value: days, to: date) ?? date
   }
 
   static func liturgicalDayInfo(on date: Date = Date()) -> LiturgicalDayInfo {
@@ -279,6 +334,7 @@ enum TodayInfoStore {
   private static func key(for date: Date, format: String) -> String {
     let formatter = DateFormatter()
     formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.calendar = Calendar(identifier: .gregorian)
     formatter.dateFormat = format
     return formatter.string(from: date)
   }
@@ -296,9 +352,12 @@ enum TodayInfoStore {
 
   private static func ensureFeastsLoaded() {
     let selected = selectedCalendarId
-    guard selected != loadedCalendarId else { return }
-    loadedCalendarId = selected
-    let file = registry?.calendars.first { $0.id == selected }?.file ?? "feasts"
+    let variant = selected == "ugcc" && selectedPaschaStyle == "gregorian"
+    let cacheId = variant ? "ugcc-gregorian" : selected
+    guard cacheId != loadedCalendarId else { return }
+    loadedCalendarId = cacheId
+    let file = variant ? "feasts-ugcc-gregorian"
+      : registry?.calendars.first { $0.id == selected }?.file ?? "feasts"
     feastsByDay = decode(FeastsFile.self, resource: file)?.days ?? [:]
   }
 
@@ -311,13 +370,16 @@ enum TodayInfoStore {
 
   private static func ensureReadingsLoaded() {
     let selected = selectedCalendarId
-    guard selected != loadedReadingsCalendarId else { return }
-    loadedReadingsCalendarId = selected
+    let variant = selected == "ugcc" && selectedPaschaStyle == "gregorian"
+    let cacheId = variant ? "ugcc-gregorian" : selected
+    guard cacheId != loadedReadingsCalendarId else { return }
+    loadedReadingsCalendarId = cacheId
 
     // Clearing before the decode is intentional. A missing/corrupt optional data file must
     // make this calendar's readings row disappear, never retain the last calendar's readings.
     readingsByDay = [:]
-    guard let file = registry?.calendars.first(where: { $0.id == selected })?.readingsFile else {
+    guard let file = variant ? "readings-ugcc-gregorian"
+      : registry?.calendars.first(where: { $0.id == selected })?.readingsFile else {
       return
     }
     readingsByDay = decode(ReadingsFile.self, resource: file)?.days ?? [:]

@@ -16,15 +16,19 @@ public partial class RepositoryRow : ObservableObject
     [NotifyPropertyChangedFor(nameof(IsInstallable))]
     [NotifyPropertyChangedFor(nameof(ShowsInstalledLabel))]
     [NotifyPropertyChangedFor(nameof(Title))]
+    [NotifyPropertyChangedFor(nameof(InterfaceSubtitle))]
+    [NotifyPropertyChangedFor(nameof(HasInterfaceSubtitle))]
     private bool _isInstalled;
 
     /// <summary>The repository listing is English-only, but once a bundle is installed its own
     /// manifest is on disk — so an installed row reads like the Home card it just became
     /// (Erez: his bundles' Hebrew names). Re-derived per page load, and the page reloads on
     /// every navigation, so a language change in Settings shows on the way back.</summary>
-    public string Title => HebrewDisplayText.WithoutMarks(IsInstalled
-        ? PrayerPackStore.Info(Bundle.Id)?.LocalizedDisplayName ?? Bundle.Name
-        : Bundle.Name);
+    private PrayerCardName CardName => IsInstalled && PrayerPackStore.Info(Bundle.Id) is not null
+        ? PrayerCardName.ForBundle(Bundle.Id) : new(Bundle.Name, "");
+    public string Title => CardName.Title;
+    public string InterfaceSubtitle => CardName.InterfaceSubtitle;
+    public bool HasInterfaceSubtitle => InterfaceSubtitle.Length > 0;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsInstallable))]
@@ -52,6 +56,7 @@ public partial class RepositoryRow : ObservableObject
         {
             var names = Bundle.Languages
                 .Select(code => LanguageCatalog.All.FirstOrDefault(l => l.Code == code)?.NativeName)
+                .Distinct()
                 .Where(n => n is not null);
             return $"{Bundle.Author} · {string.Join(", ", names)}";
         }

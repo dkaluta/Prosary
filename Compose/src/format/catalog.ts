@@ -1,32 +1,34 @@
 // Fixed catalogs mirrored from the apps — see Shared/ARCHITECTURE.markdown ("Content bundles") and
 // Shared/tools/validate-devotion.py. These must track the apps, not the other way round.
 
-/** The 9 prayer languages every platform ships (LanguageCatalog). */
+/** Native prayer-content codes, including the historical Hebrew rite code. */
 export const LANGUAGES = [
   { code: "la", name: "Latin", rtl: false },
   { code: "en", name: "English", rtl: false },
   { code: "ar", name: "Arabic", rtl: true },
   { code: "he", name: "Hebrew", rtl: true },
+  { code: "he-x-gamliel", name: "Hebrew — St. Gamaliel", rtl: true },
+  // The same Classical Aramaic can be authored in Hebrew or Syriac script.
+  { code: "arc", name: "ܐܪܡܐܝܬ / ארמית", rtl: true },
   { code: "el", name: "Greek", rtl: false },
   { code: "es", name: "Spanish", rtl: false },
   { code: "ru", name: "Russian", rtl: false },
   { code: "tl", name: "Tagalog", rtl: false },
-  // Aramaic in Hebrew script — the Aramaic-rite communities' liturgical language.
-  { code: "arc", name: "ארמית (Aramaic)", rtl: true },
+  { code: "fr", name: "French", rtl: false },
+  { code: "it", name: "Italian", rtl: false },
 ] as const;
 
 export type LanguageCode = (typeof LANGUAGES)[number]["code"];
 
-// The community repository currently validates this subset. Compose keeps the other languages
-// available for direct download/import and explains the publishing boundary on Finish.
-export const REPOSITORY_PUBLISH_LANGUAGE_CODES: readonly LanguageCode[] = [
-  "la",
-  "en",
-  "ar",
-  "he",
-  "ru",
-  "tl",
-];
+// Hebrew is one language for newly authored custom prayers. Keep the historical rite code
+// in LANGUAGES so opening an older bundle preserves both content maps without conflating them.
+export const AUTHORING_LANGUAGES = LANGUAGES.filter((language) => language.code !== "he-x-gamliel");
+
+// Publishing accepts every language the authoring app and native readers support.
+// The end-to-end suite checks this list against the repository's server-side policy.
+export const REPOSITORY_PUBLISH_LANGUAGE_CODES: readonly LanguageCode[] = LANGUAGES.map(
+  (language) => language.code,
+);
 
 export function isRtl(code: LanguageCode): boolean {
   return LANGUAGES.find((l) => l.code === code)?.rtl ?? false;

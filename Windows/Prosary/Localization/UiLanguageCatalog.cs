@@ -44,7 +44,7 @@ public static class UiLanguageCatalog
     }
 
     public static string ResolveToday(string? stored, string appLanguage) =>
-        Normalize(string.IsNullOrWhiteSpace(stored) ? appLanguage : stored);
+        Normalize(appLanguage);
 
     public static bool IsRightToLeft(string language) => Normalize(language) is "he" or "ar";
 

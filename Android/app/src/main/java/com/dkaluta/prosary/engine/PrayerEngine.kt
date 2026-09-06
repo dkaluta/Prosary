@@ -116,6 +116,9 @@ class PrayerEngine(
         "fatimaPrayer" to rosary.includeFatimaPrayer.toString(),
         "eternalRest" to rosary.eternalRestForDeceased.name.replaceFirstChar { it.lowercaseChar() },
         "antiphon" to rosary.marianAntiphon.name.replaceFirstChar { it.lowercaseChar() },
+        "closingPopeIntention" to rosary.effectiveClosingPopeIntention.toString(),
+        "closingBishopIntention" to rosary.effectiveClosingBishopIntention.toString(),
+        "closingDepartedIntention" to rosary.effectiveClosingDepartedIntention.toString(),
         "closingIntentions" to rosary.includeClosingIntentions.toString(),
         "stMichael" to rosary.includeStMichaelPrayer.toString(),
         "finalSignOfCross" to rosary.includeFinalSignOfCross.toString(),
@@ -192,20 +195,21 @@ class PrayerEngine(
         return "($index $connector $total)"
     }
 
-    /** Primary and alternate-script mystery readings share exactly the same resolved fruit
-     * line. The transliteration is emitted only when it belongs to the description chosen by
+    /** Primary and alternate-script readings keep their independently resolved fruit text,
+     * with a label in the matching script. The alternate is emitted only for the description chosen by
      * [MysteryTranslations], never synthesized from another fallback source. */
     private fun mysteryAnnouncementBodies(
         mysteryText: MysteryText,
         fruitLabel: String,
+        alternateFruitLabel: String,
     ): Pair<String, String?> {
-        fun appendFruit(description: String): String = if (mysteryText.fruit.isEmpty()) {
+        fun appendFruit(description: String, label: String): String = if (mysteryText.fruit.isEmpty()) {
             description
         } else {
-            "$description\n\n$fruitLabel: ${mysteryText.fruit}"
+            "$description\n\n$label: ${mysteryText.fruit}"
         }
-        return appendFruit(mysteryText.description) to
-            mysteryText.transliteratedDescription?.let(::appendFruit)
+        return appendFruit(mysteryText.description, fruitLabel) to
+            mysteryText.transliteratedDescription?.let { appendFruit(it, alternateFruitLabel) }
     }
 
     // MARK: Custom (bundle-driven) devotions
@@ -385,6 +389,7 @@ class PrayerEngine(
             )
         } else {
             val fruitLabel = PrayerTranslations.get(languageCode, PrayerKey.FructusMysteriiLabel)
+            val alternateFruitLabel = PrayerPackStore.transliteration(bundleId, languageCode, "fructusMysteriiLabel") ?: fruitLabel
             val majorBody = resolve(decades.majorStep.bodyKey)
             val minorBody = resolve(decades.minorStep.bodyKey)
             val majorTransliteration = PrayerPackStore.transliteration(bundleId, languageCode, decades.majorStep.bodyKey)
@@ -408,7 +413,7 @@ class PrayerEngine(
 
                 if (decades.announceMystery && entry != null) {
                     val mysteryText = MysteryTranslations.get(languageCode, entry.imageKey)
-                    val (body, transliteratedBody) = mysteryAnnouncementBodies(mysteryText, fruitLabel)
+                    val (body, transliteratedBody) = mysteryAnnouncementBodies(mysteryText, fruitLabel, alternateFruitLabel)
                     steps.add(
                         RosaryStep(
                             title = mysteryText.title, subtitle = ordinalLabel, body = body,
@@ -475,6 +480,7 @@ class PrayerEngine(
 
         val groups = resolveMysteryGroups(rosary)
         val fruitLabel = PrayerTranslations.get(languageCode, PrayerKey.FructusMysteriiLabel)
+        val alternateFruitLabel = PrayerPackStore.transliteration(bundleId, languageCode, "fructusMysteriiLabel") ?: fruitLabel
         val majorBody = resolve(decades.majorStep.bodyKey)
         val minorBody = resolve(decades.minorStep.bodyKey)
         val majorTransliteration = PrayerPackStore.transliteration(bundleId, languageCode, decades.majorStep.bodyKey)
@@ -502,7 +508,7 @@ class PrayerEngine(
                 val decadeSubtitle = "$ordinalLabel — ${mysteryText.title}"
                 val presenter = decades.presenter
                 val (announcementBody, transliteratedAnnouncementBody) =
-                    mysteryAnnouncementBodies(mysteryText, fruitLabel)
+                    mysteryAnnouncementBodies(mysteryText, fruitLabel, alternateFruitLabel)
 
                 steps.add(
                     RosaryStep(

@@ -26,6 +26,7 @@ data class DevotionListing(
      * carries its tags here. */
     val tags: List<String>,
     val target: LaunchTarget,
+    val interfaceTitle: String? = null,
 )
 
 /** One flat catalog of every launchable devotion — the Rosary, each loaded bundle, the Jesus
@@ -36,7 +37,8 @@ object DevotionDirectory {
         add(
             DevotionListing(
                 id = "rosary",
-                title = context.getString(PrayerKind.Rosary.displayNameRes),
+                title = PrayerKind.Rosary.cardTitle(context).primary,
+                interfaceTitle = PrayerKind.Rosary.cardTitle(context).interfaceSubtitle,
                 icon = iconForSystemName("rosary"),
                 accentColor = null,
                 tags = PrayerPackStore.info("rosary")?.tags ?: listOf("marian"),
@@ -48,7 +50,8 @@ object DevotionDirectory {
             add(
                 DevotionListing(
                     id = bundleId,
-                    title = info.localizedDisplayName,
+                    title = info.cardTitle(interfaceLanguage = context.resources.configuration.locales[0].toLanguageTag()).primary,
+                    interfaceTitle = info.cardTitle(interfaceLanguage = context.resources.configuration.locales[0].toLanguageTag()).interfaceSubtitle,
                     icon = iconForSystemName(info.iconSystemName),
                     iconGlyph = info.iconGlyph,
                     accentColor = colorForHex(info.accentColorHex),
@@ -60,7 +63,8 @@ object DevotionDirectory {
         add(
             DevotionListing(
                 id = "jesusPrayer",
-                title = context.getString(PrayerKind.JesusPrayer.displayNameRes),
+                title = PrayerKind.JesusPrayer.cardTitle(context).primary,
+                interfaceTitle = PrayerKind.JesusPrayer.cardTitle(context).interfaceSubtitle,
                 icon = iconForSystemName("jesusPrayer"),
                 accentColor = null,
                 tags = listOf("eastern", "meditative"),

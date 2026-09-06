@@ -89,6 +89,9 @@ public sealed class PrayerEngine
         ["eternalRest"] = CamelCase(rosary.EternalRestForDeceased.ToString()),
         ["antiphon"] = CamelCase(rosary.MarianAntiphon.ToString()),
         ["closingIntentions"] = rosary.IncludeClosingIntentions ? "true" : "false",
+        ["closingPopeIntention"] = rosary.EffectiveClosingPopeIntention ? "true" : "false",
+        ["closingBishopIntention"] = rosary.EffectiveClosingBishopIntention ? "true" : "false",
+        ["closingDepartedIntention"] = rosary.EffectiveClosingDepartedIntention ? "true" : "false",
         ["stMichael"] = rosary.IncludeStMichaelPrayer ? "true" : "false",
         ["finalSignOfCross"] = rosary.IncludeFinalSignOfCross ? "true" : "false",
         ["imageStyle"] = CamelCase(rosary.MysteryImageStyle.ToString()),
@@ -162,18 +165,19 @@ public sealed class PrayerEngine
         $"({index} {PrayerTranslations.Get(languageCode, PrayerKey.RepetitionCounterConnector)} {total})";
 
     /// <summary>Builds the primary and alternate-script announcement bodies from one resolved
-    /// mystery. The spiritual fruit is shared verbatim between scripts because it resolved
-    /// independently from the Scripture source; only the description itself is transliterated.</summary>
+    /// mystery. The spiritual fruit resolves independently; its label follows the reading's script.</summary>
     private static (string Body, string? TransliteratedBody) MysteryBodies(
-        MysteryText mysteryText, string fruitLabel)
+        MysteryText mysteryText, string fruitLabel, string alternateFruitLabel)
     {
         var fruit = string.IsNullOrEmpty(mysteryText.Fruit)
             ? string.Empty
             : $"\n\n{fruitLabel}: {mysteryText.Fruit}";
+        var alternateFruit = string.IsNullOrEmpty(mysteryText.Fruit)
+            ? string.Empty : $"\n\n{alternateFruitLabel}: {mysteryText.Fruit}";
         return (
             mysteryText.Description + fruit,
             mysteryText.TransliteratedDescription is { } transliterated
-                ? transliterated + fruit
+                ? transliterated + alternateFruit
                 : null);
     }
 
@@ -379,6 +383,7 @@ public sealed class PrayerEngine
         else
         {
             var fruitLabel = PrayerTranslations.Get(languageCode, PrayerKey.FructusMysteriiLabel);
+            var alternateFruitLabel = PrayerPackStore.Transliteration(bundleId, languageCode, "fructusMysteriiLabel") ?? fruitLabel;
             var majorBody = Resolve(decades.MajorStep.BodyKey);
             var minorBody = Resolve(decades.MinorStep.BodyKey);
             var majorTransliteration = PrayerPackStore.Transliteration(bundleId, languageCode, decades.MajorStep.BodyKey);
@@ -406,7 +411,7 @@ public sealed class PrayerEngine
                 if (decades.AnnounceMystery && entry is not null)
                 {
                     var mysteryText = MysteryTranslations.Get(languageCode, entry.ImageKey);
-                    var (body, transliteratedBody) = MysteryBodies(mysteryText, fruitLabel);
+                    var (body, transliteratedBody) = MysteryBodies(mysteryText, fruitLabel, alternateFruitLabel);
 
                     steps.Add(new RosaryStep(mysteryText.Title, ordinalLabel, body,
                         IsScripture: entry.IsScripture ?? true, TransliteratedBody: transliteratedBody,
@@ -461,6 +466,7 @@ public sealed class PrayerEngine
 
         var groups = ResolveMysteryGroups(rosary, todaysGroup);
         var fruitLabel = PrayerTranslations.Get(languageCode, PrayerKey.FructusMysteriiLabel);
+        var alternateFruitLabel = PrayerPackStore.Transliteration(bundleId, languageCode, "fructusMysteriiLabel") ?? fruitLabel;
         var majorBody = Resolve(decades.MajorStep.BodyKey);
         var minorBody = Resolve(decades.MinorStep.BodyKey);
         var majorTransliteration = PrayerPackStore.Transliteration(bundleId, languageCode, decades.MajorStep.BodyKey);
@@ -481,7 +487,7 @@ public sealed class PrayerEngine
             {
                 var mystery = mysteries[d];
                 var mysteryText = MysteryTranslations.Get(languageCode, mystery.ImageKey);
-                var (announcementBody, transliteratedBody) = MysteryBodies(mysteryText, fruitLabel);
+                var (announcementBody, transliteratedBody) = MysteryBodies(mysteryText, fruitLabel, alternateFruitLabel);
                 var ordinalLabel = showGroupName
                     // The group prefix is still English — MysteryGroup has no
                     // per-prayer-language name yet.

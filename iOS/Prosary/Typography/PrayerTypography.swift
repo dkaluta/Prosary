@@ -13,6 +13,7 @@
 //
 
 import SwiftUI
+import Combine
 
 /// Display headings in Hebrew are deliberately unpointed even when their canonical source text
 /// is vocalized. Keep this at the presentation boundary: prayer bodies and Scripture retain every
@@ -36,6 +37,26 @@ enum PrayerTypography {
   static let syriacTypefaceKey = "syriacTypeface"
   static let hebrewPrayerTypefaceKey = "hebrewPrayerTypeface"
   static let hebrewScriptureTypefaceKey = "hebrewScriptureTypeface"
+  static let latinPrayerTypefaceKey = "latinPrayerTypeface"
+  static let cyrillicPrayerTypefaceKey = "cyrillicPrayerTypeface"
+
+  struct Typefaces: Equatable {
+    var syriac = TypefaceValue.default
+    var hebrewPrayer = TypefaceValue.default
+    var hebrewScripture = TypefaceValue.default
+    var latinPrayer = TypefaceValue.default
+    var cyrillicPrayer = TypefaceValue.default
+
+    static var current: Self {
+      let defaults = UserDefaults.standard
+      return Self(
+        syriac: defaults.string(forKey: syriacTypefaceKey) ?? TypefaceValue.default,
+        hebrewPrayer: defaults.string(forKey: hebrewPrayerTypefaceKey) ?? TypefaceValue.default,
+        hebrewScripture: defaults.string(forKey: hebrewScriptureTypefaceKey) ?? TypefaceValue.default,
+        latinPrayer: defaults.string(forKey: latinPrayerTypefaceKey) ?? TypefaceValue.default,
+        cyrillicPrayer: defaults.string(forKey: cyrillicPrayerTypefaceKey) ?? TypefaceValue.default)
+    }
+  }
 
   enum TypefaceValue {
     static let `default` = "default"
@@ -60,67 +81,78 @@ enum PrayerTypography {
 
   /// The writing system a run of text is actually in.
   ///
-  /// Nearly always this follows from the language, and `font(languageCode:isScripture:)` derives
-  /// it that way. The exception is a transliteration, which is *by definition* in a different
-  /// script from its own language's — and the bundle format deliberately leaves which script to
-  /// the author (Hebrew letters for Tagalog, Syriac letters for Aramaic). So rather than have
-  /// the format declare it and risk the declaration drifting from the text, it is read off the
-  /// characters, which cannot disagree with themselves.
-  enum Script {
-    case hebrew, arabic, syriac, latin
+  /// Imported prayers and transliterations may use a different script from their language's
+  /// built-in texts. Render their actual letters; language is only a fallback for empty text.
+  enum Script: Equatable {
+    case hebrew, arabic, syriac, latin, cyrillic, greek
   }
 
   /// The script the majority of a text's letters belong to. Counted rather than sampled: a
   /// citation line ("— ܡܬܝ 28:1–7") mixes digits and punctuation into every body.
   static func script(of text: String) -> Script {
-    var hebrew = 0, arabic = 0, syriac = 0, latin = 0
+    detectedScript(of: text) ?? .latin
+  }
+
+  private static func detectedScript(of text: String) -> Script? {
+    var hebrew = 0, arabic = 0, syriac = 0, latin = 0, cyrillic = 0, greek = 0
     for scalar in text.unicodeScalars {
+      guard CharacterSet.letters.contains(scalar) else { continue }
       switch scalar.value {
-      case 0x0590...0x05FF: hebrew += 1
-      case 0x0600...0x06FF, 0x0750...0x077F: arabic += 1
+      case 0x0590...0x05FF, 0xFB1D...0xFB4F: hebrew += 1
+      case 0x0600...0x06FF, 0x0750...0x077F, 0x0870...0x089F, 0x08A0...0x08FF,
+           0xFB50...0xFDFF, 0xFE70...0xFEFF: arabic += 1
       case 0x0700...0x074F, 0x0860...0x086F: syriac += 1
-      case 0x0041...0x005A, 0x0061...0x007A, 0x0370...0x03FF, 0x1F00...0x1FFF: latin += 1
+      case 0x0400...0x052F, 0x1C80...0x1C8F, 0x2DE0...0x2DFF, 0xA640...0xA69F: cyrillic += 1
+      case 0x0370...0x03FF, 0x1F00...0x1FFF: greek += 1
+      case 0x0041...0x005A, 0x0061...0x007A, 0x00C0...0x024F, 0x1E00...0x1EFF: latin += 1
       default: break
       }
     }
-    let counts = [(hebrew, Script.hebrew), (arabic, .arabic), (syriac, .syriac), (latin, .latin)]
-    return counts.max(by: { $0.0 < $1.0 })?.1 ?? .latin
+    let counts = [(hebrew, Script.hebrew), (arabic, .arabic), (syriac, .syriac),
+                  (latin, .latin), (cyrillic, .cyrillic), (greek, .greek)]
+    guard let winner = counts.max(by: { $0.0 < $1.0 }), winner.0 > 0 else { return nil }
+    return winner.1
   }
 
-  /// `script` overrides what the language would imply — pass it when rendering a transliteration.
-  static func font(languageCode: String?, isScripture: Bool, script: Script? = nil) -> Font {
+  static func resolvedScript(text: String?, languageCode: String?) -> Script {
+    if let text, let detected = detectedScript(of: text) { return detected }
     // Variants key on their base script: "he-x-gamliel" typesets exactly like "he".
     let baseCode = languageCode.map { code in
       LanguageCatalog.baseLanguage(of: code) ?? code
     }
-    let resolved: Script = script ?? {
-      switch baseCode {
-      case "he", "arc": return .hebrew  // Aramaic ships in Hebrew square script
-      case "ar": return .arabic
-      default: return .latin
-      }
-    }()
+    switch baseCode {
+    case "he", "arc": return .hebrew  // Built-in Aramaic uses Hebrew square script.
+    case "ar": return .arabic
+    case "ru": return .cyrillic
+    case "el": return .greek
+    default: return .latin
+    }
+  }
+
+  static func font(languageCode: String?, isScripture: Bool, text: String? = nil,
+                   script: Script? = nil, typefaces: Typefaces = .current, pointSize: CGFloat? = nil) -> Font {
+    let resolved = script ?? resolvedScript(text: text, languageCode: languageCode)
 
     switch resolved {
     case .hebrew:
       if isScripture {
-        let name = switch UserDefaults.standard.string(forKey: hebrewScriptureTypefaceKey) {
+        let name = switch typefaces.hebrewScripture {
         case TypefaceValue.stamAshkenaz: FontRegistration.PostScriptName.stamAshkenaz
         case TypefaceValue.stamSefarad: FontRegistration.PostScriptName.stamSefarad
         case TypefaceValue.rashi: FontRegistration.PostScriptName.notoRashiHebrew
         default: FontRegistration.PostScriptName.shofar
         }
-        return .custom(name, size: 16 * scale, relativeTo: .body)
+        return .custom(name, size: (pointSize ?? 16) * scale, relativeTo: .body)
       }
-      let prayerTypeface = UserDefaults.standard.string(forKey: hebrewPrayerTypefaceKey)
+      let prayerTypeface = typefaces.hebrewPrayer
       if prayerTypeface == TypefaceValue.sansSerif {
-        return .system(size: 21 * scale, weight: .regular, design: .default)
+        return .system(size: (pointSize ?? 21) * scale, weight: .regular, design: .default)
       }
       let name = switch prayerTypeface {
       case TypefaceValue.davidLibre: FontRegistration.PostScriptName.davidLibre
       default: FontRegistration.PostScriptName.frankRuhlLibre
       }
-      return .custom(name, size: 21 * scale, relativeTo: .body)
+      return .custom(name, size: (pointSize ?? 21) * scale, relativeTo: .body)
 
     case .arabic:
       return isScripture
@@ -128,21 +160,38 @@ enum PrayerTypography {
         : .custom(FontRegistration.PostScriptName.amiri, size: 18 * scale, relativeTo: .body)
 
     case .syriac:
-      // Only ever reached through a transliteration: no language's own text is in Syriac
-      // letters, because "arc" ships Aramaic in Hebrew script. Without a face that covers the
-      // block the toggle would draw a line of tofu, which is worse than not offering it.
-      let name = switch UserDefaults.standard.string(forKey: syriacTypefaceKey) {
+      // Custom Aramaic bodies and Syriac transliterations share the chosen Syriac face.
+      let name = switch typefaces.syriac {
       case TypefaceValue.western: FontRegistration.PostScriptName.notoSansSyriacWestern
       case TypefaceValue.eastern: FontRegistration.PostScriptName.notoSansSyriacEastern
       default: FontRegistration.PostScriptName.notoSansSyriac
       }
-      return .custom(name, size: 19 * scale, relativeTo: .body)
+      return .custom(name, size: (pointSize ?? 19) * scale, relativeTo: .body)
 
-    case .latin: // "la", "en", and any other Latin- or Greek-script language
+    case .latin, .cyrillic, .greek:
+      let choice = resolved == .cyrillic ? typefaces.cyrillicPrayer
+        : resolved == .latin ? typefaces.latinPrayer : TypefaceValue.default
       return isScripture
         ? .custom(FontRegistration.PostScriptName.cardo, size: 19 * scale, relativeTo: .body)
-        : .system(.body, design: .serif)
+        : .system(.body, design: choice == TypefaceValue.sansSerif ? .default : .serif)
     }
+  }
+}
+
+/// Deliver settings changes after native picker menus close, as PrayerLanguageMonitor does.
+/// AppStorage alone does not reliably refresh a prayer open in another Mac scene.
+@MainActor
+final class PrayerTypographyMonitor: ObservableObject {
+  static let shared = PrayerTypographyMonitor()
+  @Published private(set) var typefaces = PrayerTypography.Typefaces.current
+  private var cancellable: AnyCancellable?
+
+  private init() {
+    cancellable = NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)
+      .receive(on: RunLoop.main)
+      .map { _ in PrayerTypography.Typefaces.current }
+      .removeDuplicates()
+      .sink { [weak self] value in self?.typefaces = value }
   }
 }
 

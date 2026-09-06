@@ -191,7 +191,7 @@
   <data name="AbtTypeNotoSyriac.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — выбираемые шрифты арамейского с сирийским письмом.</value></data>
   <data name="AbtTypeOptionalHebrew.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — дополнительные шрифты молитв и Писания на иврите.</value></data>
   <data name="AbtTypeStam.Text" xml:space="preserve"><value> — GPL v2 с исключением для встраивания шрифтов — дополнительные шрифты Писания на иврите (проект Culmus, Йорам Гнат).</value></data>
-  <data name="AbtTypeFooter.Text" xml:space="preserve"><value>Молитвы латинским письмом используют Cambria, входящую в Windows; шрифт не включён в приложение.</value></data>
+  <data name="AbtTypeFooter.Text" xml:space="preserve"><value>Для молитв можно использовать системный шрифт с засечками или без засечек.</value></data>
   <data name="AbtMysteryHeader.Text" xml:space="preserve"><value>Иллюстрации тайн</value></data>
   <data name="AbtMysteryIntro.Text" xml:space="preserve"><value>Все 20 изображений тайн — классические картины в общественном достоянии (художники умерли более 100 лет назад), взятые из Викисклада.</value></data>
   <data name="AboutEasternIcons.Text" xml:space="preserve"><value>Собрание иллюстраций тайн в восточном стиле используется с разрешения Миссии святого Гамалиила для ивритоязычных католиков Арамейской (Сирийской) католической церкви.</value></data>
@@ -210,7 +210,7 @@
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>Источники Писания</value></data>
   <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Библейские цитаты взяты из Библии Дуэ — Реймса (английский), Климентинской Вульгаты (латынь), перевода Нового Завета на иврит Франца Делича (источник: kirjasilta.net/ha-berit), а ветхозаветные отрывки на иврите следуют масоретскому тексту; также используются арабская Библия иезуитов (Dar el-Machreq), русский Синодальный перевод (1876) и Ang Dating Biblia (тагалог, 1905).</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>Данные календарей</value></data>
-  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Данные календарей и чтений: Общий римский календарь — проект LitCal (litcal.johnromanodorazio.com); календарь и лекционарий 1962 года — Missale Meum (missalemeum.com); сирийско-католический календарь, названия Общего римского календаря на иврите и ссылки на римские и сирийские чтения предоставлены Evangelizo.org — Евангелие дня, © Evangelizo.org; украинский греко-католический календарь составлен в приложении по традиционным источникам, византийские ссылки взяты из общедоступного григорианского календаря литургического года УГКЦ от Royal Doors (royaldoors.net). Названия библейских книг на иврите: Evangelizo HE и Викариат святого Иакова (catholic.co.il). Дополнительные названия праздников и имена святых на иврите: Викариат святого Иакова, Христианский медиацентр (cmc-terrasanta.org) и Vatican News (vaticannews.va).</value></data>
+  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Данные календарей и чтений: Общий римский календарь — проект LitCal (litcal.johnromanodorazio.com); календарь и лекционарий 1962 года — Missale Meum (missalemeum.com); сирийско-католический календарь, названия Общего римского календаря на иврите и ссылки на римские и сирийские чтения предоставлены Evangelizo.org — Евангелие дня, © Evangelizo.org; украинский греко-католический календарь и чтения с юлианской Пасхой предоставлены Украинской греко-католической церковью и её Патриаршей литургической комиссией (ugcc.ua); чтения с григорианской Пасхой предоставлены Royal Doors (royaldoors.net). Названия библейских книг на иврите: Evangelizo HE и Викариат святого Иакова (catholic.co.il). Дополнительные названия праздников и имена святых на иврите: Викариат святого Иакова, Христианский медиацентр (cmc-terrasanta.org) и Vatican News (vaticannews.va).</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Предыдущая тайна</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Предыдущая тайна</value></data>
   <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Следующая тайна</value></data>
@@ -301,27 +301,27 @@
   <data name="multi_day_completed_title" xml:space="preserve"><value>Молитва завершена. Помолиться {0} дальше?</value></data>
   <data name="multi_day_pray_next" xml:space="preserve"><value>Молиться: {0}</value></data>
   <data name="multi_day_not_now" xml:space="preserve"><value>Не сейчас</value></data>
-  <data name="SetRiteCombo.Header" xml:space="preserve"><value>Обряд</value></data>
+  <data name="SetRiteCombo.Header" xml:space="preserve"><value>Молитвенная традиция</value></data>
   <data name="settings_rite" xml:space="preserve"><value>Обряд</value></data>
   <data name="settings_aramaic_sign_of_cross" xml:space="preserve"><value>Крестное знамение на арамейском</value></data>
   <data name="settings_aramaic_sign_of_cross_form_a" xml:space="preserve"><value>Форма A</value></data>
   <data name="settings_aramaic_sign_of_cross_form_b" xml:space="preserve"><value>Форма B</value></data>
   <data name="SetTypographyHeader.Text" xml:space="preserve"><value>Шрифты</value></data>
-  <data name="SetSyriacTypeface.Header" xml:space="preserve"><value>Сирийский арамейский</value></data>
-  <data name="SetHebrewPrayerTypeface.Header" xml:space="preserve"><value>Молитвы на иврите</value></data>
-  <data name="SetHebrewScriptureTypeface.Header" xml:space="preserve"><value>Писание на иврите</value></data>
+  <data name="SetSyriacTypeface.Header" xml:space="preserve"><value>Шрифт арамейского текста</value></data>
+  <data name="SetHebrewPrayerTypeface.Header" xml:space="preserve"><value>Шрифт иврита</value></data>
+  <data name="SetHebrewScriptureTypeface.Header" xml:space="preserve"><value>Шрифт Писания на иврите</value></data>
   <data name="settings_typeface_default" xml:space="preserve"><value>По умолчанию</value></data>
   <data name="settings_typeface_western_aramaic" xml:space="preserve"><value>Западный арамейский</value></data>
   <data name="settings_typeface_eastern_aramaic" xml:space="preserve"><value>Восточный арамейский</value></data>
   <data name="settings_typeface_david_libre" xml:space="preserve"><value>David Libre</value></data>
-  <data name="settings_typeface_sans_serif" xml:space="preserve"><value>Системный без засечек</value></data>
+  <data name="settings_typeface_sans_serif" xml:space="preserve"><value>Системный шрифт без засечек</value></data>
   <data name="settings_typeface_stam_ashkenaz" xml:space="preserve"><value>Stam Ashkenaz</value></data>
   <data name="settings_typeface_stam_sefarad" xml:space="preserve"><value>Stam Sefarad</value></data>
   <data name="settings_typeface_rashi" xml:space="preserve"><value>Раши</value></data>
   <data name="SetFavoriteBasicPrayersFirst.Header" xml:space="preserve"><value>Показывать избранные основные молитвы первыми</value></data>
   <data name="SetAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>Крестное знамение на арамейском</value></data>
   <data name="EdAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>Крестное знамение на арамейском</value></data>
-  <data name="EdRiteCombo.Header" xml:space="preserve"><value>Обряд</value></data>
+  <data name="EdRiteCombo.Header" xml:space="preserve"><value>Молитвенная традиция</value></data>
   <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>Любой вариант Розария</value></data>
   <data name="HomeAddRosary.Content" xml:space="preserve"><value>Добавить Розарий</value></data>
   <data name="HomeAddJesusPrayer.Content" xml:space="preserve"><value>Добавить Иисусову молитву</value></data>
@@ -400,8 +400,41 @@
   <data name="category_short" xml:space="preserve"><value>Краткие</value></data>
   <data name="category_easter" xml:space="preserve"><value>Пасха</value></data>
   <data name="category_other" xml:space="preserve"><value>Другие</value></data>
-  <data name="AbtPrayerSources.Text" xml:space="preserve"><value>Дополнительные источники молитв: Vatican News, святилище Фатимы, собор Парижской Богоматери, AELF и Итальянская епископская конференция (CEI).</value></data>
+  <data name="AbtPrayerSources.Text" xml:space="preserve"><value>Дополнительные источники молитв: Vatican News, святилище Фатимы, собор Парижской Богоматери, AELF и Итальянская епископская конференция (CEI). Также: базилика Гваделупской Богоматери; GOARCH Digital Chant Stand; IVE в Греции (греческий перевод Anima Christi — о. F. Bravo IVE); католический приход св. Николая на Тиносе; Иберийская провинция кармелитов; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), для средневекового сирийского текста «Под Твою защиту». Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888).</value></data>
   <data name="AbtDivineMercySources.Text" xml:space="preserve"><value>Венчик Божьему Милосердию: Конгрегация сестёр Матери Божьего Милосердия.</value></data>
   <data name="AppDescription" xml:space="preserve"><value>Помощник для молитвы Розария, «Ангел Господень» и Иисусовой молитвы.</value></data>
   <data name="AbtSevenSorrowsSources.Text" xml:space="preserve"><value>Молитвы Семи скорбей: Notre Dame de Chrétienté и Confraternite.net.</value></data>
+  <data name="settings_typeface_frank_ruhl_libre" xml:space="preserve"><value>Frank Ruhl Libre</value></data>
+  <data name="SetLatinPrayerTypeface.Header" xml:space="preserve"><value>Молитвы латиницей</value></data>
+  <data name="SetCyrillicPrayerTypeface.Header" xml:space="preserve"><value>Молитвы кириллицей</value></data>
+  <data name="settings_typeface_serif" xml:space="preserve"><value>Системный шрифт с засечками</value></data>
+  <data name="prayer_tradition" xml:space="preserve"><value>Молитвенная традиция</value></data>
+  <data name="prayer_tradition_vicariate" xml:space="preserve"><value>Викариат святого Иакова</value></data>
+  <data name="prayer_tradition_mission" xml:space="preserve"><value>Миссия святого Гамалиила</value></data>
+  <data name="basic_pin" xml:space="preserve"><value>Закрепить на главном экране</value></data>
+  <data name="basic_unpin" xml:space="preserve"><value>Открепить от главного экрана</value></data>
+  <data name="rosary_pray_litany" xml:space="preserve"><value>Молиться литанию</value></data>
+  <data name="rosary_litany_prompt" xml:space="preserve"><value>Продолжить литанией Пресвятой Деве Марии?</value></data>
+  <data name="EdClosingPopeIntention.Text" xml:space="preserve"><value>Заключительные молитвы за Папу</value></data>
+  <data name="EdClosingBishopIntention.Text" xml:space="preserve"><value>Заключительные молитвы за епископа</value></data>
+  <data name="EdClosingDepartedIntention.Text" xml:space="preserve"><value>Заключительные молитвы за усопших верных</value></data>
+  <data name="AbtLitanySources.Text" xml:space="preserve"><value>Лоретанская литания использует опубликованные католические молитвенные тексты. Еврейский текст предоставил Эрез через Миссию святого Гамалиила. Заключительные молитвы отдельной литании на греческом и тагальском — переводы Prosary с латинского оригинала, а не опубликованные литургические переводы.</value></data>
+  <data name="SetAramaicDefaultScript.Header" xml:space="preserve"><value>Письменность арамейского по умолчанию</value></data>
+  <data name="settings_script_hebrew" xml:space="preserve"><value>Еврейское письмо</value></data>
+  <data name="settings_script_syriac" xml:space="preserve"><value>Сирийское письмо</value></data>
+  <data name="HomeResetToday.Content" xml:space="preserve"><value>Сегодня</value></data>
+  <data name="SetPrayerNameLanguage.Header" xml:space="preserve"><value>Показывать названия молитв на языке молитвы</value></data>
+  <data name="SetPrayerNameLanguageHint.Text" xml:space="preserve"><value>Если название на языке интерфейса отличается, оно также отображается.</value></data>
+  <data name="SetShowTodayTorahPortion.Header" xml:space="preserve"><value>Показывать недельную главу Торы</value></data>
+  <data name="SetTorahPortionHint.Text" xml:space="preserve"><value>Чтение на ближайшую субботу по обычаю Земли Израиля, включая праздничные чтения.</value></data>
+  <data name="home_today_torah_portion" xml:space="preserve"><value>Недельная глава Торы</value></data>
+  <data name="home_today_torah_festival" xml:space="preserve"><value>Праздничное чтение Торы</value></data>
+  <data name="AbtTorahData.Text" xml:space="preserve"><value>Недельные главы Торы и праздничные чтения по обычаю Земли Израиля: Hebcal.com (CC BY 4.0), с адаптированными названиями и ссылками.</value></data>
+  <data name="SetEasternPascha.Header" xml:space="preserve"><value>Вычисление византийской Пасхи</value></data>
+  <data name="settings_pascha_julian" xml:space="preserve"><value>Юлианская Пасха (Украина)</value></data>
+  <data name="settings_pascha_gregorian" xml:space="preserve"><value>Григорианская Пасха</value></data>
+  <data name="HomePreviousDay.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Предыдущий день</value></data>
+  <data name="HomeNextDay.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Следующий день</value></data>
+  <data name="home_today_choose_date" xml:space="preserve"><value>Выбрать дату: {0}</value></data>
+  <data name="AbtHebrewBookIndex.Text" xml:space="preserve"><value>Дополнительные названия книг Библии на иврите: указатель еврейской Библии Mechon Mamre. Только названия, без библейского текста.</value></data>
 </root>

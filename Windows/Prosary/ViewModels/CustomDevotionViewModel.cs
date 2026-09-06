@@ -84,6 +84,12 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     private string _progressText = string.Empty;
 
     [ObservableProperty]
+    private string _progressFontFamily = PrayerTypography.NativeUiFontFamily;
+
+    private string? _initializedScriptLanguage;
+    private string? _aramaicSessionScript;
+
+    [ObservableProperty]
     private double? _progress;
 
     [ObservableProperty]
@@ -190,7 +196,9 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     [RelayCommand]
     private void ToggleTransliteration()
     {
-        ShowsTransliteration = !ShowsTransliteration;
+        if (_aramaicSessionScript is not null)
+            _aramaicSessionScript = _aramaicSessionScript == "Syrc" ? "Hebr" : "Syrc";
+        else ShowsTransliteration = !ShowsTransliteration;
         RenderCurrentStep();
     }
 
@@ -238,7 +246,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     /// forms); empty for single-form devotions. The page builds its variant flyout from this.</summary>
     public IReadOnlyList<CustomDevotionDefinition.Variant> Variants { get; private set; } = [];
 
-    public bool ShowsVariantMenu => Variants.Count > 1;
+    public bool ShowsVariantMenu => _bundleId != "litanyOfLoreto" && Variants.Count > 1;
 
     /// <summary>Multi-day devotions: every authored day; empty for single-session types. The
     /// page builds its day flyout from this.</summary>
@@ -295,7 +303,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     /// does.</summary>
     public IReadOnlyList<LanguageOption> Languages { get; private set; } = [];
 
-    public bool ShowsLanguageMenu => Languages.Count > 1;
+    public bool ShowsLanguageMenu => Languages.Count > 1 || Languages.Any(language => language.Code == "he");
 
     /// <summary>What the flyout's checkmark matches: an explicit code, or the sentinel for
     /// "App setting".</summary>
@@ -363,6 +371,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     /// choice to the matching favorite when one exists.</summary>
     public async Task SelectVariantAsync(string variantId)
     {
+        if (_bundleId == "litanyOfLoreto") return;
         var previousRunKey = _runKey;
         ClearProgress();
         _variantId = variantId == DefaultVariantId ? null : variantId;
@@ -410,7 +419,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         _runStore = runStore;
     }
 
-    public async Task LoadAsync(Guid? prayerId, string bundleId)
+    public async Task LoadAsync(Guid? prayerId, string bundleId, string? initialLanguageCode = null, string? initialVariantId = null)
     {
         try
         {
@@ -430,8 +439,12 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
                 ? all.FirstOrDefault(p => p.Id == requestedId && p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId)
                 : null;
             favorite ??= all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId);
+            // A Rosary continuation is its own session; never replace a saved Litany's choices.
+            if (initialLanguageCode is not null || initialVariantId is not null) favorite = null;
             MatchingFavoriteId = favorite?.Id;
-            _variantId = favorite?.VariantId;
+            _variantId = bundleId == "litanyOfLoreto"
+                ? initialVariantId == "afterRosary" ? "afterRosary" : "standard"
+                : initialVariantId ?? favorite?.VariantId;
             _customOptions = favorite?.CustomOptions is { } options
                 ? new Dictionary<string, string>(options)
                 : new Dictionary<string, string>();
@@ -444,11 +457,11 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             // both of which are only known now (_languageCode itself is resolved further down).
             _hasClosingCross = definition?
                 .ResolvedRosary(definition.EffectiveVariantId(
-                    _variantId, PrayerPackStore.EffectiveLanguage(bundleId, favorite?.LanguageCode)))
+                    _variantId, PrayerPackStore.EffectiveLanguage(bundleId, initialLanguageCode ?? favorite?.LanguageCode)))
                 .HasClosingCross ?? false;
 
             // The favorite carries the language to pray in (sentinel = the app default).
-            _chosenLanguage = favorite?.LanguageCode ?? LanguageCatalog.DefaultSentinel;
+            _chosenLanguage = initialLanguageCode ?? favorite?.LanguageCode ?? LanguageCatalog.DefaultSentinel;
             CurrentDayIndex = favorite?.DayIndex ?? 0;
             IsPinned = FavoriteDevotions.Contains(bundleId, ImpliedPinnedIds(all));
 
@@ -486,9 +499,8 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             }
             _languageCode = PrayerPackStore.EffectiveLanguage(bundleId, _chosenLanguage);
             IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
-            // Hebrew Vicariate and Mission are independent prayer-language choices. A bundle
-            // advertising base Hebrew offers both; the Mission's sparse overlay falls back to
-            // Vicariate Hebrew one prayer at a time.
+            // Hebrew appears once; its separate tradition choice retains the sparse Mission
+            // overlay and falls back to Vicariate Hebrew one prayer at a time.
             Languages = LanguageCatalog.AvailableOptions(PrayerPackStore.Info(bundleId)?.Languages ?? []);
             OnPropertyChanged(nameof(ShowsLanguageMenu));
             OnPropertyChanged(nameof(CurrentLanguageRaw));
@@ -511,7 +523,8 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             PickAudioTrack();
 
             var saved = _runStore.Get(_runKey);
-            _pendingContinuation = saved?.CanResume(
+            var matchesIncomingLanguage = initialLanguageCode is null || saved?.LanguageCode == _chosenLanguage;
+            _pendingContinuation = matchesIncomingLanguage && saved?.CanResume(
                 _runSignature,
                 _steps.Count,
                 sameLocalDayOnly: false,
@@ -612,6 +625,8 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         OnPropertyChanged(nameof(BottomBeadsColumn2));
     }
 
+    public void RefreshTypography() => RenderCurrentStep();
+
     private void RenderCurrentStep()
     {
         if (_steps.Count == 0)
@@ -620,16 +635,28 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         }
 
         var step = _steps[_index];
-        Header = HebrewDisplayText.WithoutMarks(step.Title);
+        if (_initializedScriptLanguage != _languageCode)
+        {
+            _initializedScriptLanguage = _languageCode;
+            _aramaicSessionScript = _languageCode == "arc" ? AppSettings.AramaicDefaultScript : null;
+        }
+        if (_aramaicSessionScript is not null)
+            ShowsTransliteration = PrayerTranslations.InitialTransliteration(_languageCode, step.Body, step.TransliteratedBody, _aramaicSessionScript) ?? false;
         Subtitle = HebrewDisplayText.WithoutMarksOrNull(step.Subtitle);
         HasTransliteration = step.TransliteratedBody is not null;
         Body = ShowsTransliteration && step.TransliteratedBody is { } transliterated
             ? transliterated
             : step.Body;
+        var usesSyriacScript = _aramaicSessionScript is not null ? _aramaicSessionScript == "Syrc"
+            : PrayerTypography.ScriptOf(Body) == PrayerTypography.Script.Syriac;
+        Header = PrayerTranslations.FlowTitle(step.Title, _languageCode, usesSyriacScript);
         Acclamation = step.Acclamation ?? string.Empty;
         HasAcclamation = step.Acclamation is not null;
         MysteryImageKey = step.ImageVariantKey ?? step.Mystery?.ImageKey ?? step.ImageOverrideKey ?? "cross_placeholder";
-        ProgressText = string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), _index + 1, _steps.Count);
+        var aramaicProgress = PrayerTranslations.AramaicProgress(_index + 1, _steps.Count, _languageCode, usesSyriacScript);
+        ProgressText = aramaicProgress ?? string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), _index + 1, _steps.Count);
+        ProgressFontFamily = aramaicProgress is null ? PrayerTypography.NativeUiFontFamily
+            : PrayerTypography.ResolveBodyFontFamily(_languageCode, false, PrayerTypography.ScriptOf(ProgressText));
         Progress = (_index + 1) / (double)_steps.Count;
         CanGoBack = _index > 0;
         IsLastStep = _index == _steps.Count - 1;
@@ -637,11 +664,10 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         // A transliteration is in a different script from its language's own, so the face has to
         // follow the text rather than the language — otherwise Syriac letters are drawn with a
         // Hebrew face that has no glyphs for them, and the toggle shows a row of tofu.
-        var bodyScript = ShowsTransliteration && step.TransliteratedBody is { } shown
-            ? PrayerTypography.ScriptOf(shown)
-            : (PrayerTypography.Script?)null;
+        var bodyScript = PrayerTypography.ScriptOf(Body);
+        IsRightToLeft = PrayerTypography.IsRightToLeft(bodyScript);
         BodyFontFamily = PrayerTypography.ResolveBodyFontFamily(_languageCode, step.IsScripture, bodyScript);
-        AcclamationFontFamily = PrayerTypography.ResolveBodyFontFamily(_languageCode, isScripture: false);
+        AcclamationFontFamily = PrayerTypography.ResolveBodyFontFamily(_languageCode, isScripture: false, PrayerTypography.ScriptOf(Acclamation));
         BodyFontSize = PrayerTypography.ResolveBodyFontSize(_languageCode, step.IsScripture, bodyScript);
 
         RebuildBeads();

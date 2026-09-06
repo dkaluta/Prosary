@@ -2,7 +2,7 @@
 # /// script
 # requires-python = ">=3.11"
 # ///
-"""Offline regression tests for Erez's script converter and the generated Aramaic packs.
+"""Offline regression tests for Scripture import, script conversion, and Aramaic packs.
 
 This deliberately does not invoke import-scripture.py's network-backed source fetch. Golden
 examples pin the conversion rules independently, every committed Peshitta passage is compared
@@ -119,11 +119,87 @@ def test_citations_and_versification() -> None:
         failures.append("Hebrew Peshitta citation contains a colon")
 
 
+def test_spanish_nested_footnotes() -> None:
+    markup = '''<h2>CAPÍTULO PRIMERO.</h2>
+    <p><span id="1:48">48</span> Porque ha puesto los ojos en la bajeza de su esclava
+    <sup class="reference"><a href="#cite_note-5"><span>&#91;</span>5<span>&#93;</span></a></sup>:
+    por tanto ya desde ahora me llamarán bienaventurada todas las generaciones.</p>
+    <p><span id="1:49">49</span> Porque ha hecho en mí cosas grandes aquel que es
+    <i>todopoderoso</i>, cuyo nombre es santo;</p>
+    <ol class="references"><li>5 Nota editorial que no forma parte del versículo.</li></ol>'''
+    verses = IMPORTER._parse_wikisource_verses(markup)
+    expect("Spanish footnote does not truncate Luke 1:48", verses.get((1, 48)),
+           "Porque ha puesto los ojos en la bajeza de su esclava: por tanto ya desde ahora me llamarán bienaventurada todas las generaciones.")
+    expect("Spanish italic text survives without footnote appendix", verses.get((1, 49)),
+           "Porque ha hecho en mí cosas grandes aquel que es todopoderoso, cuyo nombre es santo;")
+    expect("footnote number is not a verse", set(verses), {(1, 48), (1, 49)})
+
+
+def test_spanish_chapter_boundaries() -> None:
+    # Fragments from the cached Torres Amat/Wikisource markup. John 21 was once
+    # incorrectly declared unavailable because its heading has an extra I.
+    markup = '''<h2>CAPÍTULO XX.</h2>
+    <p><span title="20:29" id="20:29">29</span> bienaventurados aquellos que sin haber<i>me</i> visto, han creido.</p>
+    <p><span title="20:31" id="20:31">31</span> para que creyendo, tengais vida <i>eterna</i> en <i>virtud de su nombre</i>.</p>
+    <div><span>CAPÍITULO XXI.</span></div>
+    <div><i>Aparécese Jesus á sus discípulos, estando ellos pescando.</i></div>
+    <p><span title="21:1" id="21:1">1</span> Despues de esto Jesus se apareció otra vez á los discípulos.</p>
+    <p><span title="21:15" id="21:15">15</span> Acabada la comida, dice Jesus á Simon Pedro.</p>
+    <p><span title="21:25" id="21:25">25</span> Muchas otras cosas hay que hizo Jesus.</p>
+    <div>FIN DEL EVANGELIO.</div>
+    <nav>1 Índice 2 Siguiente libro</nav>
+    <div class="reflist"><ol><li>159 Nota editorial.</li></ol></div>'''
+    verses = IMPORTER._parse_wikisource_verses(markup)
+    expect("inline italics preserve Spanish word", verses.get((20, 29)),
+           "bienaventurados aquellos que sin haberme visto, han creido.")
+    expect("misspelled heading does not pollute previous chapter", verses.get((20, 31)),
+           "para que creyendo, tengais vida eterna en virtud de su nombre.")
+    expect("Spanish John 21 fishing appears", verses.get((21, 1)),
+           "Despues de esto Jesus se apareció otra vez á los discípulos.")
+    expect("Spanish John 21 Peter appears", verses.get((21, 15)),
+           "Acabada la comida, dice Jesus á Simon Pedro.")
+    expect("book footer is not Scripture", verses.get((21, 25)),
+           "Muchas otras cosas hay que hizo Jesus.")
+    expect("navigation and notes do not become verses", set(verses),
+           {(20, 29), (20, 31), (21, 1), (21, 15), (21, 25)})
+    expect("Spanish John 21 is not a source gap",
+           IMPORTER.SOURCE_GAPS.get("es", {}).get(("John", 21)), None)
+
+    numbered = '''<h2>CAPÍTULO VIII.</h2>
+    <div><i>Referencias: Matt. 3. Marc. 1, 8.</i></div>
+    <p><span title="8:28" id="8:28">28</span>No me atormentes.</p>
+    <p><span title="8:29" id="8:29">29</span>. Y es que Jesus mandaba al espíritu inmundo que saliese de aquel hombre.</p>
+    <p><span title="8:30" id="8:30">30</span> Jesus le preguntó.</p>
+    <div class="noprint">999 Navigation</div>'''
+    verses = IMPORTER._parse_wikisource_verses(numbered)
+    expect("period after verse number is accepted", verses.get((8, 29)),
+           "Y es que Jesus mandaba al espíritu inmundo que saliese de aquel hombre.")
+    expect("period-numbered verse does not join previous one", verses.get((8, 28)),
+           "No me atormentes.")
+    expect("navigation does not attach to final verse", verses.get((8, 30)), "Jesus le preguntó.")
+    expect("dotted summary references are not verses", set(verses), {(8, 28), (8, 29), (8, 30)})
+
+
+def test_sourced_martini_whitespace() -> None:
+    source = "pietra eletta, angolare, preziosa, saldissimo fonda mento: chi crede, non abbia fretta."
+    corrected = "pietra eletta, angolare, preziosa, saldissimo fondamento: chi crede, non abbia fretta."
+    expect("Martini Isaiah split word follows printed verse",
+           IMPORTER.normalize_source_text("it", "Isaiah", 28, 16, source), corrected)
+    expect("corrected upstream text stays unchanged",
+           IMPORTER.normalize_source_text("it", "Isaiah", 28, 16, corrected), corrected)
+    expect("no broad spelling or whitespace correction",
+           IMPORTER.normalize_source_text("it", "Isaiah", 28, 17, source), source)
+    expect("source correction is language-specific",
+           IMPORTER.normalize_source_text("es", "Isaiah", 28, 16, source), source)
+    if IMPORTER.MARTINI_ISAIAH_PRINT not in IMPORTER.NOTES["it"]:
+        failures.append("Martini whitespace correction lacks its printed source credit")
+
+
 def test_committed_peshitta() -> None:
     passage_count = 0
     for arc_path in sorted(CONTENT.glob("*/content/arc.json")):
         content = json.loads(arc_path.read_text(encoding="utf-8"))
-        if "Peshitta" not in content.get("$comment", ""):
+        if "Peshitta" not in content.get("$comment", "") + content.get("$scriptureSource", ""):
             continue
 
         prayers = content.get("prayers", {})
@@ -235,6 +311,9 @@ def test_pack_parity() -> None:
 def main() -> int:
     test_converter()
     test_citations_and_versification()
+    test_spanish_nested_footnotes()
+    test_spanish_chapter_boundaries()
+    test_sourced_martini_whitespace()
     test_committed_peshitta()
     test_all_citation_style()
     test_pack_parity()

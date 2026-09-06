@@ -1,0 +1,17 @@
+{
+  "prayers": {
+    "trisagionAcclamation": "Dieu saint, Dieu fort, Dieu saint et immortel, aie pitié de nous !",
+    "trisagionShortAcclamation": "Dieu saint et immortel, aie pitié de nous !",
+    "gloriaPatriTitle": "Gloire au Père",
+    "trisagionAcclamationTitle": "Dieu saint",
+    "trisagionKyrieTitle": "Seigneur, prends pitié",
+    "trisagionKyrie": "Seigneur, prends pitié.\nÔ Christ, prends pitié.\nSeigneur, prends pitié."
+  },
+  "$sources": {
+    "trisagionAcclamation": "https://www.vatican.va/content/paul-vi/fr/speeches/1964/documents/hf_p-vi_spe_19640104_santo-sepolcro.html",
+    "trisagionShortAcclamation": "Final invocation of the same published acclamation.",
+    "trisagionKyrie": "https://www.vatican.va/special/rosary/documents/litanie-lauretane_fr.html"
+  },
+  "$comment": "The acclamation follows the credited published prayer; the short acclamation repeats its final invocation in the existing Byzantine sequence. Kyrie is the threefold response already used by this bundle. Headings are the prayer incipits; Glory Be continues to resolve from the shared prayer table. Punctuation and line breaks are normalized for the app. French retains the Holy See’s published 1964 form, including Dieu saint et immortel.",
+  "mysteries": {}
+}

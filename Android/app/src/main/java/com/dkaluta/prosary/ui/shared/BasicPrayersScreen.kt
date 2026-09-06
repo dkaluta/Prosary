@@ -3,6 +3,7 @@ package com.dkaluta.prosary.ui.shared
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -11,9 +12,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.PushPin
 import androidx.compose.material.icons.filled.SwapVert
-import androidx.compose.material.icons.outlined.StarOutline
+import androidx.compose.material.icons.outlined.PushPin
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -36,6 +37,7 @@ import com.dkaluta.prosary.models.BasicPrayerCatalog
 import com.dkaluta.prosary.models.BasicPrayersOrder
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.LanguageCatalog
+import com.dkaluta.prosary.models.PrayerCardTitle
 import com.dkaluta.prosary.ui.home.HomeOrderEditor
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -57,13 +59,14 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
     val language = LanguageCatalog.resolve(chosenLanguage)
     var languageMenuExpanded by remember { mutableStateOf(false) }
     val context = LocalContext.current
+    val interfaceLanguage = com.dkaluta.prosary.content.today.TodayTranslationLanguage.resolve(context.resources.configuration.locales[0].toLanguageTag())
     // The order lives in BasicPrayersOrder, not in view state; the generation bump just makes
     // this composition re-derive after the editor saves (the HomeOrder pattern, Erez
     // 2026-08-08).
     var orderGeneration by remember { mutableIntStateOf(0) }
     var showsOrderEditor by remember { mutableStateOf(false) }
     val ordered = remember(orderGeneration) {
-        BasicPrayersOrder.applyFavorites(BasicPrayersOrder.apply(context, BasicPrayerCatalog.all))
+        BasicPrayersOrder.apply(context, BasicPrayerCatalog.all)
     }
     Scaffold(
         topBar = {
@@ -93,6 +96,7 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
             verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
             items(ordered, key = { it.id }) { prayer ->
+                val cardTitle = PrayerCardTitle.resolve(BasicPrayerCatalog.title(prayer, interfaceLanguage), BasicPrayerCatalog.title(prayer, language.code))
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -109,13 +113,15 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
                     )
                     CompositionLocalProvider(
                         LocalLayoutDirection provides
-                            if (language.isRightToLeft) LayoutDirection.Rtl else LayoutDirection.Ltr,
+                            if (AppSettings.showPrayerNameInPrayerLanguage && language.isRightToLeft ||
+                                !AppSettings.showPrayerNameInPrayerLanguage && interfaceLanguage in setOf("he", "ar")) LayoutDirection.Rtl else LayoutDirection.Ltr,
                     ) {
-                        Text(
-                            BasicPrayerCatalog.title(prayer, language.code),
-                            style = MaterialTheme.typography.titleMedium,
-                            modifier = Modifier.weight(1f),
-                        )
+                        Column(Modifier.weight(1f)) {
+                            Text(cardTitle.primary, style = MaterialTheme.typography.titleMedium)
+                            cardTitle.interfaceSubtitle?.let {
+                                Text(it, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            }
+                        }
                     }
                     IconButton(onClick = {
                         AppSettings.toggleFavoriteBasicPrayer(prayer.id)
@@ -123,10 +129,10 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
                     }) {
                         val isFavorite = prayer.id in AppSettings.favoriteBasicPrayerIds
                         Icon(
-                            if (isFavorite) Icons.Filled.Star else Icons.Outlined.StarOutline,
+                            if (isFavorite) Icons.Filled.PushPin else Icons.Outlined.PushPin,
                             contentDescription = stringResource(
-                                if (isFavorite) R.string.basic_prayers_unfavorite
-                                else R.string.basic_prayers_favorite,
+                                if (isFavorite) R.string.basic_prayers_unpin
+                                else R.string.basic_prayers_pin,
                             ),
                         )
                     }
@@ -139,7 +145,7 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
         // language, so the dialog reads exactly like the list behind it.
         HomeOrderEditor(
             titles = BasicPrayersOrder.apply(context, BasicPrayerCatalog.all).map {
-                it.id to BasicPrayerCatalog.title(it, language.code)
+                it.id to PrayerCardTitle.resolve(BasicPrayerCatalog.title(it, interfaceLanguage), BasicPrayerCatalog.title(it, language.code)).primary
             },
             onMove = { ids ->
                 BasicPrayersOrder.save(context, ids)

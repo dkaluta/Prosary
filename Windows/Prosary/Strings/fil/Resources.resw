@@ -191,7 +191,7 @@
   <data name="AbtTypeNotoSyriac.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — mga mapipiling tipo ng titik para sa Aramaikong nasa titik Siriako.</value></data>
   <data name="AbtTypeOptionalHebrew.Text" xml:space="preserve"><value> — SIL Open Font License 1.1 — mga opsyonal na tipo ng titik para sa panalangin at Banal na Kasulatan sa Hebreo.</value></data>
   <data name="AbtTypeStam.Text" xml:space="preserve"><value> — GPL v2 na may eksepsiyon para sa pag-embed ng font — mga opsyonal na tipo ng titik para sa Banal na Kasulatan sa Hebreo (Culmus Project, Yoram Gnat).</value></data>
-  <data name="AbtTypeFooter.Text" xml:space="preserve"><value>Ginagamit ng mga panalanging nasa titik Latin ang Cambria na kasama sa Windows — hindi ito kasama sa app.</value></data>
+  <data name="AbtTypeFooter.Text" xml:space="preserve"><value>Maaaring gamitin sa mga panalangin ang sistemang font na serif o sans serif.</value></data>
   <data name="AbtMysteryHeader.Text" xml:space="preserve"><value>Mga Larawan ng mga Misteryo</value></data>
   <data name="AbtMysteryIntro.Text" xml:space="preserve"><value>Ang lahat ng 20 larawan ng mga misteryo ay mga klasikong pinta sa pampublikong dominyo (mahigit 100 taon nang yumao ang pintor), mula sa Wikimedia Commons.</value></data>
   <data name="AboutEasternIcons.Text" xml:space="preserve"><value>Ang koleksiyon ng mga larawang Silanganin ng mga Misteryo ay ginagamit nang may pahintulot ng Misyon ni San Gamaliel para sa mga Katolikong Hebreo sa Simbahang Katolikong Aramaiko (Siriako).</value></data>
@@ -210,7 +210,7 @@
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>Mga Sanggunian ng Banal na Kasulatan</value></data>
   <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Ang mga sipi ng Banal na Kasulatan ay mula sa Bibliyang Douay-Rheims (Ingles), Clementine Vulgate (Latin), salin ni Franz Delitzsch ng Bagong Tipan sa Hebreo (mula sa kirjasilta.net/ha-berit) at mga talata sa Lumang Tipan sa Hebreo na sumusunod sa tekstong Masoretiko, Bibliyang Arabe ng mga Heswita (Dar el-Machreq), Bibliyang Sinodal sa Ruso (1876), at Ang Dating Biblia (Tagalog, 1905).</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>Datos ng Kalendaryo</value></data>
-  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Datos ng kalendaryo at mga pagbasa: ang Pangkalahatang Kalendaryong Romano mula sa proyektong LitCal (litcal.johnromanodorazio.com); ang kalendaryo at leksiyonaryo ng 1962 mula sa Missale Meum (missalemeum.com); ang kalendaryong Katolikong Siriako, mga pamagat sa Hebreo ng Pangkalahatang Kalendaryong Romano, at mga sanggunian ng leksiyonaryong Romano/Siriako sa kagandahang-loob ng Evangelizo.org — Daily Gospel, © Evangelizo.org; ang kalendaryong Katolikong Griyego ng Ukraine na binuo sa app mula sa tradisyonal na mga sanggunian, na may mga sangguniang Bisantino mula sa pampublikong kalendaryo ng Taong Liturhiko ng UGCC (Gregorian) ng Royal Doors (royaldoors.net). Mga pangalan ng aklat ng Bibliya sa Hebreo: Evangelizo HE at ang Bikaryato ni Santiago (catholic.co.il). Karagdagang pangalan ng mga kapistahan at santo sa Hebreo: ang Bikaryato ni Santiago, Christian Media Center (cmc-terrasanta.org), at Vatican News (vaticannews.va).</value></data>
+  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Datos ng kalendaryo at mga pagbasa: ang Pangkalahatang Kalendaryong Romano mula sa proyektong LitCal (litcal.johnromanodorazio.com); ang kalendaryo at leksiyonaryo ng 1962 mula sa Missale Meum (missalemeum.com); ang kalendaryong Katolikong Siriako, mga pamagat sa Hebreo ng Pangkalahatang Kalendaryong Romano, at mga sanggunian ng leksiyonaryong Romano/Siriako sa kagandahang-loob ng Evangelizo.org — Daily Gospel, © Evangelizo.org; ang kalendaryo at mga pagbasa ng Simbahang Katolikong Griyego ng Ukraine na may Paskong Julian ay mula sa Simbahan at sa Komisyong Liturhiko ng Patriyarka (ugcc.ua); ang mga pagbasa na may Paskong Gregorian ay mula sa Royal Doors (royaldoors.net). Mga pangalan ng aklat ng Bibliya sa Hebreo: Evangelizo HE at ang Bikaryato ni Santiago (catholic.co.il). Karagdagang pangalan ng mga kapistahan at santo sa Hebreo: ang Bikaryato ni Santiago, Christian Media Center (cmc-terrasanta.org), at Vatican News (vaticannews.va).</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Nakaraang misteryo</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Nakaraang misteryo</value></data>
   <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Susunod na misteryo</value></data>
@@ -301,27 +301,27 @@
   <data name="multi_day_completed_title" xml:space="preserve"><value>Natapos na ito. Dasalin naman ang {0}?</value></data>
   <data name="multi_day_pray_next" xml:space="preserve"><value>Dasalin ang {0}</value></data>
   <data name="multi_day_not_now" xml:space="preserve"><value>Huwag muna</value></data>
-  <data name="SetRiteCombo.Header" xml:space="preserve"><value>Rito</value></data>
+  <data name="SetRiteCombo.Header" xml:space="preserve"><value>Tradisyon ng panalangin</value></data>
   <data name="settings_rite" xml:space="preserve"><value>Rito</value></data>
   <data name="settings_aramaic_sign_of_cross" xml:space="preserve"><value>Tanda ng Krus sa Aramaiko</value></data>
   <data name="settings_aramaic_sign_of_cross_form_a" xml:space="preserve"><value>Anyo A</value></data>
   <data name="settings_aramaic_sign_of_cross_form_b" xml:space="preserve"><value>Anyo B</value></data>
   <data name="SetTypographyHeader.Text" xml:space="preserve"><value>Tipograpiya</value></data>
-  <data name="SetSyriacTypeface.Header" xml:space="preserve"><value>Aramaikong Siriako</value></data>
-  <data name="SetHebrewPrayerTypeface.Header" xml:space="preserve"><value>Mga panalangin sa Hebreo</value></data>
-  <data name="SetHebrewScriptureTypeface.Header" xml:space="preserve"><value>Banal na Kasulatan sa Hebreo</value></data>
+  <data name="SetSyriacTypeface.Header" xml:space="preserve"><value>Font ng Aramaiko</value></data>
+  <data name="SetHebrewPrayerTypeface.Header" xml:space="preserve"><value>Font ng Hebreo</value></data>
+  <data name="SetHebrewScriptureTypeface.Header" xml:space="preserve"><value>Font ng Kasulatan sa Hebreo</value></data>
   <data name="settings_typeface_default" xml:space="preserve"><value>Paunang pinili</value></data>
   <data name="settings_typeface_western_aramaic" xml:space="preserve"><value>Kanlurang Aramaiko</value></data>
   <data name="settings_typeface_eastern_aramaic" xml:space="preserve"><value>Silangang Aramaiko</value></data>
   <data name="settings_typeface_david_libre" xml:space="preserve"><value>David Libre</value></data>
-  <data name="settings_typeface_sans_serif" xml:space="preserve"><value>Sans-serif ng sistema</value></data>
+  <data name="settings_typeface_sans_serif" xml:space="preserve"><value>Sans serif ng sistema</value></data>
   <data name="settings_typeface_stam_ashkenaz" xml:space="preserve"><value>Stam Ashkenaz</value></data>
   <data name="settings_typeface_stam_sefarad" xml:space="preserve"><value>Stam Sefarad</value></data>
   <data name="settings_typeface_rashi" xml:space="preserve"><value>Rashi</value></data>
   <data name="SetFavoriteBasicPrayersFirst.Header" xml:space="preserve"><value>Ilipat sa itaas ang mga paboritong pangunahing panalangin</value></data>
   <data name="SetAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>Tanda ng Krus sa Aramaiko</value></data>
   <data name="EdAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>Tanda ng Krus sa Aramaiko</value></data>
-  <data name="EdRiteCombo.Header" xml:space="preserve"><value>Rito</value></data>
+  <data name="EdRiteCombo.Header" xml:space="preserve"><value>Tradisyon ng panalangin</value></data>
   <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>Magdasal ng anumang Rosaryo</value></data>
   <data name="HomeAddRosary.Content" xml:space="preserve"><value>Magdagdag ng Rosaryo</value></data>
   <data name="HomeAddJesusPrayer.Content" xml:space="preserve"><value>Idagdag ang Panalangin kay Hesus</value></data>
@@ -400,8 +400,41 @@
   <data name="category_short" xml:space="preserve"><value>Maiikli</value></data>
   <data name="category_easter" xml:space="preserve"><value>Pasko ng Pagkabuhay</value></data>
   <data name="category_other" xml:space="preserve"><value>Iba pa</value></data>
-  <data name="AbtPrayerSources.Text" xml:space="preserve"><value>Iba pang pinagmulan ng mga panalangin: Vatican News, Dambana ng Fatima, Notre-Dame de Paris, AELF at Kapulungan ng mga Obispong Italyano (CEI).</value></data>
+  <data name="AbtPrayerSources.Text" xml:space="preserve"><value>Iba pang pinagmulan ng mga panalangin: Vatican News, Dambana ng Fatima, Notre-Dame de Paris, AELF at Kapulungan ng mga Obispong Italyano (CEI). Gayundin: Basilika ng Guadalupe; GOARCH Digital Chant Stand; IVE Greece (salin sa Griyego ng Anima Christi ni Padre F. Bravo IVE); Parokyang Katoliko ni San Nicolas sa Tinos; Lalawigang Iberiko ng mga Carmelite; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), para sa sinaunang tekstong Siryako ng Sa Ilalim ng Iyong Pagtangkilik. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888).</value></data>
   <data name="AbtDivineMercySources.Text" xml:space="preserve"><value>Koronilya ng Banal na Awa: Kongregasyon ng mga Madre ng Mahal na Birhen ng Awa.</value></data>
   <data name="AppDescription" xml:space="preserve"><value>Kasama sa pagdarasal ng Rosaryo, Angelus, at Panalangin kay Hesus.</value></data>
   <data name="AbtSevenSorrowsSources.Text" xml:space="preserve"><value>Mga panalangin ng Pitong Hapis: Notre Dame de Chrétienté at Confraternite.net.</value></data>
+  <data name="settings_typeface_frank_ruhl_libre" xml:space="preserve"><value>Frank Ruhl Libre</value></data>
+  <data name="SetLatinPrayerTypeface.Header" xml:space="preserve"><value>Mga panalangin sa sulat Latin</value></data>
+  <data name="SetCyrillicPrayerTypeface.Header" xml:space="preserve"><value>Mga panalangin sa sulat Cyrillic</value></data>
+  <data name="settings_typeface_serif" xml:space="preserve"><value>Serif ng sistema</value></data>
+  <data name="prayer_tradition" xml:space="preserve"><value>Tradisyon ng panalangin</value></data>
+  <data name="prayer_tradition_vicariate" xml:space="preserve"><value>Bikariya ni San Santiago</value></data>
+  <data name="prayer_tradition_mission" xml:space="preserve"><value>Misyon ni San Gamaliel</value></data>
+  <data name="basic_pin" xml:space="preserve"><value>I-pin sa home</value></data>
+  <data name="basic_unpin" xml:space="preserve"><value>Alisin ang pin sa home</value></data>
+  <data name="rosary_pray_litany" xml:space="preserve"><value>Dasalin ang litanya</value></data>
+  <data name="rosary_litany_prompt" xml:space="preserve"><value>Magpatuloy sa Litanya ng Mahal na Birheng Maria?</value></data>
+  <data name="EdClosingPopeIntention.Text" xml:space="preserve"><value>Pangwakas na mga panalangin para sa Papa</value></data>
+  <data name="EdClosingBishopIntention.Text" xml:space="preserve"><value>Pangwakas na mga panalangin para sa obispo</value></data>
+  <data name="EdClosingDepartedIntention.Text" xml:space="preserve"><value>Pangwakas na mga panalangin para sa mga yumaong mananampalataya</value></data>
+  <data name="AbtLitanySources.Text" xml:space="preserve"><value>Gumagamit ang Litanya sa Mahal na Birheng Maria ng mga nailathalang tekstong panalanging Katoliko. Ambag ni Erez sa pamamagitan ng Misyon ni San Gamaliel ang tekstong Hebreo. Mga salin ng Prosary mula sa orihinal na Latin ang mga pangwakas na panalangin sa Griyego at Tagalog para sa hiwalay na pagdarasal ng litanya; hindi mga nailathalang saling liturhiko ang mga ito.</value></data>
+  <data name="SetAramaicDefaultScript.Header" xml:space="preserve"><value>Default na sulat ng Aramaic</value></data>
+  <data name="settings_script_hebrew" xml:space="preserve"><value>Sulat Hebreo</value></data>
+  <data name="settings_script_syriac" xml:space="preserve"><value>Sulat Syriac</value></data>
+  <data name="HomeResetToday.Content" xml:space="preserve"><value>Ngayon</value></data>
+  <data name="SetPrayerNameLanguage.Header" xml:space="preserve"><value>Ipakita ang mga pangalan ng panalangin sa wika ng panalangin</value></data>
+  <data name="SetPrayerNameLanguageHint.Text" xml:space="preserve"><value>Ipakita rin ang pangalan sa wika ng interface kung naiiba ito.</value></data>
+  <data name="SetShowTodayTorahPortion.Header" xml:space="preserve"><value>Ipakita ang lingguhang pagbasa sa Torah</value></data>
+  <data name="SetTorahPortionHint.Text" xml:space="preserve"><value>Ang pagbasa sa darating na Sabbath sa Eretz Israel, kasama ang mga pagbasa sa kapistahan.</value></data>
+  <data name="home_today_torah_portion" xml:space="preserve"><value>Lingguhang pagbasa sa Torah</value></data>
+  <data name="home_today_torah_festival" xml:space="preserve"><value>Pagbasa sa Torah sa kapistahan</value></data>
+  <data name="AbtTorahData.Text" xml:space="preserve"><value>Mga lingguhang pagbasa sa Torah at pagbasa sa kapistahan para sa Eretz Israel: Hebcal.com (CC BY 4.0), na may inangkop na mga pangalan at sanggunian.</value></data>
+  <data name="SetEasternPascha.Header" xml:space="preserve"><value>Pagkuwenta ng Paskong Bisantino</value></data>
+  <data name="settings_pascha_julian" xml:space="preserve"><value>Paskong Julian (Ukraine)</value></data>
+  <data name="settings_pascha_gregorian" xml:space="preserve"><value>Paskong Gregorian</value></data>
+  <data name="HomePreviousDay.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Nakaraang araw</value></data>
+  <data name="HomeNextDay.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Susunod na araw</value></data>
+  <data name="home_today_choose_date" xml:space="preserve"><value>Pumili ng petsa: {0}</value></data>
+  <data name="AbtHebrewBookIndex.Text" xml:space="preserve"><value>Karagdagang pangalan ng mga aklat ng Bibliya sa Hebreo: talaan ng Bibliyang Hebreo ng Mechon Mamre. Mga pangalan lamang; walang teksto ng Kasulatan.</value></data>
 </root>

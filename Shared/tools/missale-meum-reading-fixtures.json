@@ -1,0 +1,1001 @@
+{
+  "$comment": "Reference-only source fixtures from Missale Meum public v5 proper API (MIT), retrieved 2026-09-06. Source Scripture prose is omitted; starred references and short lesson/chant headings are preserved verbatim, and other starred rubric blocks are replaced by [rubric omitted]. Expectations retain complete source passages, excluding responsorial/canticle chants. Historic Vulgate 3/4 Kings and 2 Esdras aliases name modern 1/2 Kings and Nehemiah.",
+  "days": [
+    {
+      "date": "2026-01-21",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-01-21",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Sir 51:1-8; 51:12*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*Matt 25:1-13.*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "Sirach 51:1–8; 51:12",
+        "Matthew 25:1–13"
+      ]
+    },
+    {
+      "date": "2026-02-11",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-02-11",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Apoc 11:19; 12:1, 10*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*Luke 1:26-31.*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "Revelation 11:19; 12:1, 10",
+        "Luke 1:26–31"
+      ]
+    },
+    {
+      "date": "2026-02-25",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-02-25",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "LectioL1",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Ex. 24:12-18*"
+                ]
+              ]
+            },
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*3 Kgs. 19:3-8*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*Matt 12:38-50*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "Exodus 24:12–18",
+        "1 Kings 19:3–8",
+        "Matthew 12:38–50"
+      ]
+    },
+    {
+      "date": "2026-02-28",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-02-28",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "LectioL1",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Deut. 26:12-19*"
+                ]
+              ]
+            },
+            {
+              "id": "LectioL2",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Deut. 11:22-25*"
+                ]
+              ]
+            },
+            {
+              "id": "LectioL3",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*2 Mach. 1:23-27*"
+                ]
+              ]
+            },
+            {
+              "id": "LectioL4",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Ecclus. 36:1-10*"
+                ]
+              ]
+            },
+            {
+              "id": "LectioL5",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Dan 3:49-51*\n*Hymnus*\n*Dan 3:52-59*"
+                ]
+              ]
+            },
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*1 Thess. 5:14-23*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*Matt 17:1-9*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "Deuteronomy 26:12–19",
+        "Deuteronomy 11:22–25",
+        "2 Maccabees 1:23–27",
+        "Sirach 36:1–10",
+        "Daniel 3:49–51",
+        "1 Thessalonians 5:14–23",
+        "Matthew 17:1–9"
+      ]
+    },
+    {
+      "date": "2026-03-09",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-03-09",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*4 Kings, 5:1-15*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*Luke 4:23-30*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "2 Kings 5:1–15",
+        "Luke 4:23–30"
+      ]
+    },
+    {
+      "date": "2026-03-18",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-03-18",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "LectioL1",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Ezech 36:23-28*"
+                ]
+              ]
+            },
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Isa. 1:16-19*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*John 9:1-38*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "Ezekiel 36:23–28",
+        "Isaiah 1:16–19",
+        "John 9:1–38"
+      ]
+    },
+    {
+      "date": "2026-03-23",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-03-23",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Jonas 3:1-10*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*John 7:32-39*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "Jonah 3:1–10",
+        "John 7:32–39"
+      ]
+    },
+    {
+      "date": "2026-03-29",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-03-29",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "De lectione Evangelica",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*[rubric omitted]*\n*[rubric omitted]*\n*Matt 21:1-9*"
+                ]
+              ]
+            },
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Phil 2:5-11*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*Matt. 26:36-75; 27:1-60.*\n*[rubric omitted]*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "Matthew 21:1–9",
+        "Philippians 2:5–11",
+        "Matthew 26:36–75; 27:1–60"
+      ]
+    },
+    {
+      "date": "2026-03-31",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-03-31",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Jer 11:18-20*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*Mark 14:32-72; 15, 1-46*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "Jeremiah 11:18–20",
+        "Mark 14:32–72; 15:1–46"
+      ]
+    },
+    {
+      "date": "2026-04-01",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-04-01",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "LectioL1",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Isa 63:1-7*"
+                ]
+              ]
+            },
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Isa 53:1-12*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*Luc 22:39-71; 23:1-53*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "Isaiah 63:1–7",
+        "Isaiah 53:1–12",
+        "Luke 22:39–71; 23:1–53"
+      ]
+    },
+    {
+      "date": "2026-04-02",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-04-02",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*1 Cor 11:20-32.*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*Joann 13:1-15*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "1 Corinthians 11:20–32",
+        "John 13:1–15"
+      ]
+    },
+    {
+      "date": "2026-04-03",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-04-03",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "Lectiones",
+              "label": "Part one: Readings from Scripture",
+              "body": [
+                [
+                  "*[rubric omitted]*\n*[rubric omitted]*\n*First Lesson*\n*Osee 6:1-6*\n*Responsorium*\n*Hab 3,2-3*\n*[rubric omitted]*\n*Collect*\n*[rubric omitted]*\n*Second Lesson*\n*Exod 12:1-11*\n*Responsorium*\n*Ps 139:2-10, 14*"
+                ]
+              ]
+            },
+            {
+              "id": "Passio",
+              "label": "Passion",
+              "body": [
+                [
+                  "*[rubric omitted]*\n*John 18. 1-40; 19. 1-42*\n*[rubric omitted]*\n*[rubric omitted]*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "Hosea 6:1–6",
+        "Exodus 12:1–11",
+        "John 18:1–40; 19:1–42"
+      ]
+    },
+    {
+      "date": "2026-04-04",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-04-04",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "De lectionibus",
+              "label": "The Readings",
+              "body": [
+                [
+                  "*[rubric omitted]*\n*1 Reading*\n*Gen. 1:1-31; 2:1-2*\n*[rubric omitted]*\n*2 Reading*\n*Exo. 14:24-31; 15:1*\n*Canticle*\n*Exod 15:1-2*\n*3 Reading*\n*Isa 4:2-6*\n*Canticle*\n*Isa 5:1-2*\n*4 Reading*\n*Deut. 31:22-30*\n*Canticle*\n*Deut 32:1-4*"
+                ]
+              ]
+            },
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Col 3:1-4*\n*[rubric omitted]*\n*[rubric omitted]*\n*Ps 117, 1*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*[rubric omitted]*\n*Matt 28:1-7*\n*[rubric omitted]*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "Genesis 1:1–31; 2:1–2",
+        "Exodus 14:24–31; 15:1",
+        "Isaiah 4:2–6",
+        "Deuteronomy 31:22–30",
+        "Colossians 3:1–4",
+        "Matthew 28:1–7"
+      ]
+    },
+    {
+      "date": "2026-04-12",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-04-12",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*1 John 5:4-10*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*John 20. 19-31*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "1 John 5:4–10",
+        "John 20:19–31"
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-04-14",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*1 Cor 1:18-25; 1:30;*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*Luke 12:2-8*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "1 Corinthians 1:18–25; 1:30",
+        "Luke 12:2–8"
+      ]
+    },
+    {
+      "date": "2026-06-26",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-06-26",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Eccli 44:10-15*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*Luke 12:1-8*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "Sirach 44:10–15",
+        "Luke 12:1–8"
+      ]
+    },
+    {
+      "date": "2026-07-02",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-07-02",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Song 2:8-14*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*Luke 1:39-47*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "Song of Songs 2:8–14",
+        "Luke 1:39–47"
+      ]
+    },
+    {
+      "date": "2026-07-22",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-07-22",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Song 3:2-5; 8:6-7*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*Luke 7:36-50*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "Song of Songs 3:2–5; 8:6–7",
+        "Luke 7:36–50"
+      ]
+    },
+    {
+      "date": "2026-09-23",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-09-23",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "LectioL1",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Amos 9:13-15*"
+                ]
+              ]
+            },
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*2 Esd. 8:1-10*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*Mark 9:16-28*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "Amos 9:13–15",
+        "Nehemiah 8:1–10",
+        "Mark 9:16–28"
+      ]
+    },
+    {
+      "date": "2026-09-25",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-09-25",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Osee 14:2-10*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*Luke 7:36-50*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "Hosea 14:2–10",
+        "Luke 7:36–50"
+      ]
+    },
+    {
+      "date": "2026-09-26",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-09-26",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "LectioL1",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Lev 23:26-32*"
+                ]
+              ]
+            },
+            {
+              "id": "LectioL2",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Lev 23:39-43*"
+                ]
+              ]
+            },
+            {
+              "id": "LectioL3",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Mich. 7:14, 16, 18-20.*"
+                ]
+              ]
+            },
+            {
+              "id": "LectioL4",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Zach. 8:14-19*"
+                ]
+              ]
+            },
+            {
+              "id": "LectioL5",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Dan 3:49-51*\n*Hymnus*\n*Dan 3:52-59*"
+                ]
+              ]
+            },
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Heb 9:2-12*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*Luke 13:6-17*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "Leviticus 23:26–32",
+        "Leviticus 23:39–43",
+        "Micah 7:14, 16, 18–20",
+        "Zechariah 8:14–19",
+        "Daniel 3:49–51",
+        "Hebrews 9:2–12",
+        "Luke 13:6–17"
+      ]
+    },
+    {
+      "date": "2026-11-02",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-11-02",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*1 Cor. 15:51-57*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*John 5:25-29*"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sections": [
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*2 Mach. 12:43-46*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*John 6:37-40*"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sections": [
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Apoc 14:13*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*John 6:51-55*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "1 Corinthians 15:51–57",
+        "John 5:25–29",
+        "2 Maccabees 12:43–46",
+        "John 6:37–40",
+        "Revelation 14:13",
+        "John 6:51–55"
+      ]
+    },
+    {
+      "date": "2026-12-25",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-12-25",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Titus 2:11-15*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*Luke 2:1-14*"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sections": [
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Titus 3:4-7*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*Luke 2:15-20*"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sections": [
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Heb 1:1-12*"
+                ]
+              ]
+            },
+            {
+              "id": "Evangelium",
+              "label": "Gospel",
+              "body": [
+                [
+                  "*John 1:1-14*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "Titus 2:11–15",
+        "Luke 2:1–14",
+        "Titus 3:4–7",
+        "Luke 2:15–20",
+        "Hebrews 1:1–12",
+        "John 1:1–14"
+      ]
+    }
+  ]
+}

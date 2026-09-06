@@ -28,26 +28,9 @@ public enum PrayerKind
 
 public static class PrayerKindExtensions
 {
-    /// <summary>The built-in kinds' names in each prayer language — the same map a bundle
-    /// carries in its manifest's displayNameByLanguage, kept here because the Rosary and the
-    /// Jesus Prayer have no manifest to carry it. Resolution mirrors LocalizedDisplayName
-    /// exactly: the prayer language (exact code, rites included, then its base), then the UI
-    /// string.</summary>
-    private static readonly Dictionary<PrayerKind, Dictionary<string, string>> NamesByPrayerLanguage = new()
-    {
-        [PrayerKind.Rosary] = new() { ["he"] = "מחרוזת" },
-        [PrayerKind.JesusPrayer] = new() { ["he"] = "תפילת ישוע" },
-    };
-
+    /// <summary>Interface chrome stays in the interface language. Card names use PrayerCardName.</summary>
     public static string DisplayName(this PrayerKind kind)
     {
-        var prayerCode = LanguageCatalog.Resolve(null).Code;
-        if (NamesByPrayerLanguage.TryGetValue(kind, out var names))
-        {
-            if (names.TryGetValue(prayerCode, out var exact)) return exact;
-            if (LanguageCatalog.BaseLanguage(prayerCode) is { } baseCode &&
-                names.TryGetValue(baseCode, out var byBase)) return byBase;
-        }
         return kind switch
         {
             PrayerKind.Rosary => Loc.Tr("kind_rosary", "Rosary"),

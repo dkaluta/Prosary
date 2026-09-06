@@ -83,6 +83,15 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
     private bool _includeClosingIntentions;
 
     [ObservableProperty]
+    private bool _includeClosingPopeIntention;
+
+    [ObservableProperty]
+    private bool _includeClosingBishopIntention;
+
+    [ObservableProperty]
+    private bool _includeClosingDepartedIntention;
+
+    [ObservableProperty]
     private bool _includeStMichaelPrayer;
 
     [ObservableProperty]
@@ -128,6 +137,9 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
             PresenterMode = preset.Rosary.PresenterMode;
             MarianAntiphon = preset.Rosary.MarianAntiphon;
             IncludeClosingIntentions = preset.Rosary.IncludeClosingIntentions;
+            IncludeClosingPopeIntention = preset.Rosary.EffectiveClosingPopeIntention;
+            IncludeClosingBishopIntention = preset.Rosary.EffectiveClosingBishopIntention;
+            IncludeClosingDepartedIntention = preset.Rosary.EffectiveClosingDepartedIntention;
             IncludeStMichaelPrayer = preset.Rosary.IncludeStMichaelPrayer;
             IncludeFinalSignOfCross = preset.Rosary.IncludeFinalSignOfCross;
             MysteryImageStyle = preset.Rosary.MysteryImageStyle;
@@ -155,6 +167,9 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
                 PresenterMode = PresenterMode,
                 MarianAntiphon = MarianAntiphon,
                 IncludeClosingIntentions = IncludeClosingIntentions,
+                IncludeClosingPopeIntention = IncludeClosingPopeIntention,
+                IncludeClosingBishopIntention = IncludeClosingBishopIntention,
+                IncludeClosingDepartedIntention = IncludeClosingDepartedIntention,
                 IncludeStMichaelPrayer = IncludeStMichaelPrayer,
                 IncludeFinalSignOfCross = IncludeFinalSignOfCross,
                 MysteryImageStyle = MysteryImageStyle,

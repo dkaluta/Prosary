@@ -1,13 +1,40 @@
 {
-  "$comment": "Scripture imported from Félix Torres Amat's Spanish Bible (1836) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Torres Amat translated the Vulgate, so its chapter-and-verse is the same one these devotions cite and no versification map is needed. Spelling and accentuation are the 1836 printing's own. Old Testament readings are absent: only the New Testament volumes of it have been transcribed from the scans.",
   "prayers": {
-    "magnificatBody": "Entónces María dijo: Mi alma glorifica al Señor; y mi espíritu está trasportado de gozo en el Dios salvador mio. Porque ha puesto los ojos en la bajeza de su esclava [ Porque ha hecho en mí cosas grandes aquel que es todopoderoso , cuyo nombre es santo; y cuya misericordia se derrama de generacion en generacion sobre los que le temen. Hizo alarde del poder de su brazo: deshizo las miras del corazon de los soberbios. Derribó del solio á los poderosos, y ensalzó á los humildes. Colmó de bienes á los hambrientos, y á los ricos los despidió sin nada. Acordándose de su misericordia, acogió á Israél su siervo; segun la promesa que hizo á nuestros padres, á Abraham y á su descendencia por los siglos de los siglos.\n\n— San Lucas 1:46–55 (Torres Amat)"
+    "oAntiphonLectioTitle": "Lectura",
+    "gloriaPatriTitle": "Gloria al Padre",
+    "magnificatTitle": "Magníficat",
+    "oSapientiaTitle": "Oh Sabiduría",
+    "oSapientiaBody": "Oh Sabiduría, que brotaste de los labios del Altísimo, abarcando del uno al otro confín y ordenándolo todo con firmeza y suavidad, ¡ven y muéstranos el camino de la salvación!",
+    "oAdonaiTitle": "Oh Adonai",
+    "oAdonaiBody": "Oh Adonai, Pastor de la casa de Israel, que te apareciste a Moisés en la zarza ardiente y en el Sinaí le diste tu ley, ¡ven a librarnos con el poder de tu brazo!",
+    "oRadixIesseTitle": "Oh Renuevo del tronco de Jesé",
+    "oRadixIesseBody": "Oh Renuevo del tronco de Jesé, que te alzas como un signo para los pueblos, ante quien los reyes enmudecen y cuyo auxilio imploran las naciones, ¡ven a librarnos, no tardes más!",
+    "oClavisDavidTitle": "Oh Llave de David",
+    "oClavisDavidBody": "Oh Llave de David y Cetro de la casa de Israel, que abres y nadie puede cerrar, cierras y nadie puede abrir, ¡ven y libra los cautivos que viven en tinieblas y en sombra de muerte!",
+    "oOriensTitle": "Oh Sol que naces de lo alto",
+    "oOriensBody": "Oh Sol que naces de lo alto, Resplandor de la Luz Eterna, Sol de justicia, ¡ven ahora a iluminar a los que viven en tinieblas y en sombra de muerte!",
+    "oRexGentiumTitle": "Oh Rey de las naciones",
+    "oRexGentiumBody": "Oh Rey de las naciones y Deseado de los pueblos, Piedra angular de la Iglesia, que haces de dos pueblos uno solo, ¡ven y salva al hombre que formaste del barro de la tierra!",
+    "oEmmanuelTitle": "Oh Emmanuel",
+    "oEmmanuelBody": "Oh Emmanuel, Rey y Legislador nuestro, esperanza de las naciones y salvador de los pueblos, ¡ven a salvarnos, Señor Dios nuestro!",
+    "magnificatBody": "Entónces María dijo: Mi alma glorifica al Señor; y mi espíritu está trasportado de gozo en el Dios salvador mio. Porque ha puesto los ojos en la bajeza de su esclava: por tanto ya desde ahora me llamarán bienaventurada todas las generaciones. Porque ha hecho en mí cosas grandes aquel que es todopoderoso, cuyo nombre es santo; y cuya misericordia se derrama de generacion en generacion sobre los que le temen. Hizo alarde del poder de su brazo: deshizo las miras del corazon de los soberbios. Derribó del solio á los poderosos, y ensalzó á los humildes. Colmó de bienes á los hambrientos, y á los ricos los despidió sin nada. Acordándose de su misericordia, acogió á Israél su siervo; segun la promesa que hizo á nuestros padres, á Abraham y á su descendencia por los siglos de los siglos.\n\n— San Lucas 1:46–55 (Torres Amat)"
   },
   "mysteries": {},
+  "$sources": {
+    "oSapientiaBody": "https://www.carmelitas.es/orar/antifonas-de-la-o",
+    "oAdonaiBody": "https://www.carmelitas.es/orar/antifonas-de-la-o",
+    "oRadixIesseBody": "https://www.carmelitas.es/orar/antifonas-de-la-o",
+    "oClavisDavidBody": "https://www.carmelitas.es/orar/antifonas-de-la-o",
+    "oOriensBody": "https://www.carmelitas.es/orar/antifonas-de-la-o",
+    "oRexGentiumBody": "https://www.carmelitas.es/orar/antifonas-de-la-o",
+    "oEmmanuelBody": "https://www.carmelitas.es/orar/antifonas-de-la-o",
+    "note": "The seven O Antiphons follow the published Spanish text of the Provincia Carmelita San Juan de la Cruz (17 December 2019). Their headings are the prayer incipits; other headings are app metadata. Scripture remains maintained by the importer."
+  },
   "$scriptureImport": {
     "prayerKeys": [
       "magnificatBody"
     ],
     "mysteryKeys": []
-  }
+  },
+  "$scriptureSource": "Scripture imported from Félix Torres Amat's Spanish Bible (1836) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Torres Amat translated the Vulgate, so its chapter-and-verse is the same one these devotions cite and no versification map is needed. Spelling and accentuation are the 1836 printing's own. Old Testament readings are absent: only the New Testament volumes of it have been transcribed from the scans."
 }

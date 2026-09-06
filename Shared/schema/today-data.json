@@ -32,6 +32,18 @@
           "type": "map<string, string>",
           "default": {},
           "description": "Authored localized picker labels."
+        },
+        "paschaVariants": {
+          "type": "map<julian | gregorian, {file: string, readingsFile: string}>?",
+          "description": "Optional matched feast and reading tables. The easternPaschaStyle preference selects both together; absent/unknown values use defaultPaschaStyle."
+        },
+        "defaultPaschaStyle": {
+          "type": "string?",
+          "default": "julian"
+        },
+        "liturgicalYearStart": {
+          "type": "MM-DD?",
+          "description": "Calendar metadata; UGCC uses September 1."
         }
       }
     },
@@ -40,12 +52,13 @@
       "roman",
       "roman1962",
       "ugcc",
-      "syriac"
+      "syriac",
+      "maronite"
     ],
     "legacyMigration": "Persisted roman-he maps to roman; roman-he is not a selectable calendar and has no dataset."
   },
   "feastDataset": {
-    "files": "feasts*.json named by CalendarDefinition.file",
+    "files": "Feast files named by CalendarDefinition.file and each paschaVariants entry",
     "fields": {
       "generated": {
         "type": "YYYY-MM-DD"
@@ -69,7 +82,7 @@
         "titleByLanguage": {
           "type": "map<string, string>",
           "default": {},
-          "description": "Sourced/authored localizations only. Shared feast/saint catalogs apply exact identities and reviewed aliases across all calendars without changing dates, original titles, or ranks. If the requested language is missing, display title; never machine-translate a feast."
+          "description": "All six non-English interface locales are populated for shipped dates. Sourced identities take precedence over credited editorial display metadata; reviewed aliases never change dates, ranks or observances. Hebrew Pentecost uses שבועות. Future unsupported labels fall back to the source title."
         }
       }
     }
@@ -79,7 +92,9 @@
       "readings-roman.json",
       "readings-roman1962.json",
       "readings-ugcc.json",
-      "readings-syriac.json"
+      "readings-syriac.json",
+      "readings-ugcc-gregorian.json",
+      "readings-maronite.json"
     ],
     "fields": {
       "generated": {
@@ -134,16 +149,15 @@
     "sources": {
       "readings-roman": "Evangelizo publication edition HE (Novus Ordo; includes sourced Hebrew citation maps)",
       "readings-roman1962": "Missale Meum public proper API (Vetus Ordo)",
-      "readings-ugcc": "Royal Doors public UGCC Gregorian calendar (Byzantine)",
-      "readings-syriac": "Evangelizo publication edition SYE (Syriac Catholic)"
+      "readings-ugcc": "UGCC Patriarchal Liturgical Commission official 2026 calendar; Ukraine new-style fixed feasts and Julian Pascha",
+      "readings-syriac": "Evangelizo publication edition SYE (Syriac Catholic)",
+      "readings-ugcc-gregorian": "Royal Doors public UGCC fully Gregorian calendar",
+      "readings-maronite": "Evangelizo publication edition MAE (Maronite)"
     }
   },
   "languagePreference": {
-    "key": "todayLanguageCode",
-    "type": "string",
-    "default": "",
+    "source": "native interface language",
     "values": [
-      "",
       "en",
       "he",
       "ar",
@@ -152,7 +166,7 @@
       "fr",
       "it"
     ],
-    "description": "Empty follows the interface language. Independent of defaultLanguageCode. iw and fil locale aliases normalize to he and tl. Arabic and Hebrew use RTL."
+    "description": "Today always follows the app/interface language, independently of defaultLanguageCode. There is no Today language picker. Previously persisted todayLanguageCode is ignored. iw and fil normalize to he and tl; Arabic and Hebrew apply RTL to the complete Today stack, including expanded citations."
   },
   "intentionDataset": {
     "file": "pope-intentions.json",
@@ -169,5 +183,34 @@
       "translationCreditByLanguage": "map<string,string> distinguishing authored translations"
     },
     "fallback": "Missing language uses published English; missing month hides the row. Hebrew is credited to Prosary, not to an official Vatican Hebrew edition."
+  },
+  "torahDataset": {
+    "file": "torah-portions.json",
+    "source": "Hebcal.com, CC BY 4.0, Eretz Israel only (i=on)",
+    "fields": {
+      "generated": "YYYY-MM-DD",
+      "startDate": "YYYY-MM-DD",
+      "endDate": "YYYY-MM-DD",
+      "region": "IL",
+      "days": "map<YYYY-MM-DD, TorahPortion>"
+    },
+    "TorahPortion": {
+      "fields": {
+        "saturday": "YYYY-MM-DD",
+        "title": "Source proper-name title",
+        "titleByLanguage": "map<string,string>",
+        "isHoliday": "boolean",
+        "readings": "ReadingCitation[]",
+        "sourceUrl": "URL"
+      }
+    },
+    "selection": "The selected civil day maps to the next Saturday, including Saturday itself. A holiday Torah service replaces the weekly portion; diaspora schedules are never requested. Only books of the Torah are included, without haftarah or festival megillot.",
+    "language": "Source Hebrew, French and Russian proper names where supplied by Hebcal; source transliterations for remaining locales, with localized interface captions and citation book names."
+  },
+  "dateNavigation": {
+    "state": "Local civil selected date, initially today; independent of prayer progress and prayer-day computation.",
+    "controls": "Previous day arrow, centered formatted-date button, next day arrow. Date button opens a native calendar with a Today action inside its popup.",
+    "supplementalDayRow": "Hidden on every Sunday. On weekdays, lpj/roman use the modern Roman seasonal day; roman1962 and all Eastern calendars show the localized civil day and month, never Ordinary Time.",
+    "bounds": "Respect each native picker’s supported civil-date range; Android uses 1900–2100. Missing date or month data hides only its corresponding row."
   }
 }

@@ -425,17 +425,21 @@ struct CustomDevotionInfo {
   /// tab groups by.
   let tags: [String]
 
-  /// The devotion's name, resolved the way its headings are: the prayer language first, then
-  /// the UI language, then the manifest's base `displayName`.
-  ///
-  /// A devotion's name is part of the prayer — the same principle that moved step headings into
-  /// the prayed language (the Trisagion reads טריסאגיון over Hebrew steps, and in the Mission of
-  /// St. Gamaliel's rite קדישת, the Aramaic word the Syriac churches sing it under). The prayer
-  /// language is tried by its exact resolved code — rites included, which a UI-language lookup
-  /// could never select — then by its base,
-  /// so a rite whose bundle only names the base language still reads that language's name.
+  /// The interface name by default; the explicit bilingual-name preference uses the exact
+  /// prayer variant, then its base language. Prayer body headings remain in the prayed language.
   var localizedDisplayName: String {
-    let prayerCode = LanguageCatalog.resolve(nil).code
+    namePresentation().title
+  }
+
+  func namePresentation(prayerCode: String = LanguageCatalog.resolve(nil).code,
+                        showPrayerLanguage: Bool = UserDefaults.standard.bool(forKey: PrayerNamePresentation.defaultsKey)) -> PrayerNamePresentation {
+    let interfaceName = displayNameByLanguage[UILanguage.current] ?? displayName
+    return PrayerNamePresentation(interfaceTitle: interfaceName,
+                                  prayerTitle: displayName(for: prayerCode),
+                                  showPrayerLanguage: showPrayerLanguage)
+  }
+
+  private func displayName(for prayerCode: String) -> String {
     if let name = displayNameByLanguage[prayerCode] {
       return HebrewDisplayText.unpointed(name)
     }
@@ -499,7 +503,7 @@ enum PrayerPackStore {
   /// pack loads first so its shared mystery texts/images are the base other bundles build on.
   private static let packNames = [
     "rosary", "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
-    "divineMercyChaplet", "trisagion", "oAntiphons",
+    "divineMercyChaplet", "trisagion", "oAntiphons", "litanyOfLoreto",
   ]
 
   private static var prayerOverrides: [String: [PrayerKey: String]] = [:]

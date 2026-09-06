@@ -28,7 +28,6 @@ prayer flow's script toggle.
 from __future__ import annotations
 
 import csv
-import html
 import io
 import json
 import re
@@ -37,6 +36,7 @@ import sys
 import urllib.parse
 import urllib.request
 import zipfile
+from html.parser import HTMLParser
 from pathlib import Path
 
 from aramaic_script_converter import SYRIAC_TO_HEBREW, to_hebrew, to_syriac_letters
@@ -153,10 +153,6 @@ LANGUAGES = {
         "edition": ("Βυζαντινὸν κείμενον",),
         # A book's edition line follows the testament it comes from, not the language.
         "edition_by_testament": {"ot": ("Ἑβδομήκοντα",)},
-        # Isaiah would need a Septuagint. Every machine-readable accented LXX found so far puts a
-        # ShareAlike or NonCommercial claim on the digitisation even where the edition beneath it
-        # is public domain by age, so the seven Isaiah readings wait for a source rather than
-        # being filled from a licence the app cannot ship under.
         "file_names": {"Matthew": "MAT", "Mark": "MAR", "Luke": "LUK", "John": "JOH",
                        "Acts": "ACT", "Revelation": "REV", "Isaiah": "ISA"},
     },
@@ -182,11 +178,14 @@ LANGUAGES = {
 # Passages a language's source genuinely does not contain, each with the reason. Declared rather
 # than tolerated: a verse missing from the table is otherwise indistinguishable from a parser
 # that has quietly stopped reading, and that is exactly the failure worth keeping loud.
-SOURCE_GAPS = {
-    # Wikisource's Torres Amat transcribes John through chapter 20 only — the scan's last
-    # chapter has not been proofread, so the Via Lucis' two Johannine appearances have no
-    # Spanish text yet. Remove this the day chapter 21 appears.
-    "es": {("John", 21): "Wikisource has transcribed John only through chapter 20"},
+SOURCE_GAPS: dict[str, dict[tuple[str, int], str]] = {}
+
+# A source-backed whitespace correction, not modernization of Martini's wording.
+# ParolaViva's Isaiah 28:16 JSON splits "fonda mento". The Martini print has
+# "fondamento": printed p. 673 / PDF p. 76, right column, verse 16.
+MARTINI_ISAIAH_PRINT = "https://www.e-rara.ch/download/pdf/14913584.pdf#page=76"
+SOURCE_TEXT_CORRECTIONS = {
+    ("it", "Isaiah", 28, 16): ("saldissimo fonda mento", "saldissimo fondamento"),
 }
 
 VERSIFICATION = {
@@ -323,37 +322,109 @@ def _chapter_number(label: str) -> int | None:
     return _roman(label)
 
 
-def _verses_wikisource(language: str, testament: str, book: str) -> dict:
-    """A transcribed scan, read through the MediaWiki parser.
+class _WikisourceText(HTMLParser):
+    """Keep Scripture text while removing nested annotation markup as a unit.
 
-    The book is one page transcluding a hundred-odd scan pages, so the rendered HTML is the only
-    practical form. Chapters head as "CAPÍTULO PRIMERO." or "CAPÍTULO XIV.", verses run inline as
-    a number followed by their text. Each chapter opens with an unnumbered summary paragraph
-    whose own digits would otherwise read as verses, which is why only the first sighting of a
-    (chapter, verse) is kept — the summary precedes verse 1, so a real verse always wins.
+    A citation marker is several nested elements (``[`` / a number / ``]``). Stripping
+    tags first made that number look like a new verse and silently lost the remaining
+    sentence, for example Luke 1:48 in the Magnificat.
     """
-    raw = json.loads(fetch(language, testament, book))
-    if "error" in raw:
-        err(f"{book}: Wikisource says {raw['error'].get('info')}")
-        return {}
-    text = raw["parse"]["text"]["*"]
-    text = re.sub(r"<[^>]+>", "\n", text)
-    text = html.unescape(text)
-    text = re.sub(r"\[\d+\]", "", text)      # footnote markers
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.parts: list[str] = []
+        self.skipped: list[str] = []
+        self.verse_spans: list[bool] = []
+
+    # Inline markup can split a single printed word (John 20:29 has haber<i>me</i>).
+    # Only structural tags and numbered verse spans introduce whitespace.
+    BLOCK_TAGS = {"address", "article", "aside", "blockquote", "br", "dd", "div", "dl", "dt",
+                  "figcaption", "figure", "footer", "h1", "h2", "h3", "h4", "h5", "h6",
+                  "header", "hr", "li", "main", "nav", "ol", "p", "section", "table", "td",
+                  "th", "tr", "ul"}
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        classes = set(attrs.get("class", "").split())
+        void = tag in {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
+        if self.skipped:
+            if not void:
+                self.skipped.append(tag)
+            return
+        if tag in {"style", "script", "nav"} or classes & {
+            "reference", "references", "reflist", "mw-editsection", "navbox", "noprint", "pagenum"
+        }:
+            if not void:
+                self.skipped.append(tag)
+            return
+        is_verse = bool(re.fullmatch(r"\d+:\d+", attrs.get("id", "")))
+        if tag == "span":
+            self.verse_spans.append(is_verse)
+        if tag in self.BLOCK_TAGS or is_verse:
+            self.parts.append("\n")
+
+    def handle_endtag(self, tag):
+        if self.skipped:
+            if tag in self.skipped:
+                while self.skipped.pop() != tag:
+                    pass
+            return
+        if tag == "span" and self.verse_spans and self.verse_spans.pop():
+            self.parts.append("\x1f")  # Boundary after the printed verse number.
+        elif tag in self.BLOCK_TAGS:
+            self.parts.append("\n")
+
+    def handle_data(self, data):
+        if not self.skipped:
+            self.parts.append(data)
+
+
+def _parse_wikisource_verses(markup: str) -> dict:
+    parser = _WikisourceText()
+    parser.feed(markup)
+    text = "".join(parser.parts)
+    # The source occasionally prints no following space, or a period (Luke 8:29).
+    # Restrict normalization to actual numbered spans: accepting every dotted number
+    # would mistake chapter cross-references in the introduction for verse numbers.
+    text = re.sub(r"\x1f\s*\.?\s*", " ", text)
+    text = re.sub(r"\[\s*\d+\s*\]", "", text)
     text = re.sub(r"[ \t]+", " ", text)
+    # Printed end-of-book captions are metadata, not part of the final verse.
+    text = re.split(r"\n\s*FIN DE(?:L| LOS)\b", text, maxsplit=1)[0]
 
     table: dict = {}
-    parts = re.split(r"CAPÍTULO\s+([A-ZÁÉÍÓÚÑ]+|[IVXLCDM]+)\s*\.", text)
+    # The source's John 21 heading is misspelled CAPÍITULO. It is still a complete
+    # chapter, independently identified by its 21:1–21:25 verse-span attributes.
+    parts = re.split(r"CAP[IÍ]I?TULO\s+([A-ZÁÉÍÓÚÑ]+|[IVXLCDM]+)\s*\.", text)
     for i in range(1, len(parts) - 1, 2):
         chapter = _chapter_number(parts[i])
         if chapter is None:
             continue
         body = re.sub(r"\s*\n\s*", " ", parts[i + 1])
+        # Removing an annotation can leave a space before its punctuation.
+        body = re.sub(r" +([,:;.?!])", r"\1", body)
         for m in re.finditer(r"(?:^|\s)—?\s*(\d{1,3})\s+(.+?)(?=\s—?\s*\d{1,3}\s|$)", body):
             key = (chapter, int(m.group(1)))
             if key not in table:
                 table[key] = m.group(2).strip()
     return table
+
+
+def _verses_wikisource(language: str, testament: str, book: str) -> dict:
+    """A transcribed scan, read through the MediaWiki parser.
+
+    The book is one page transcluding a hundred-odd scan pages, so the rendered HTML is the only
+    practical form. Chapters head as "CAPÍTULO PRIMERO." or "CAPÍTULO XIV.", verses run inline as
+    a number followed by their text. Each chapter opens with an unnumbered summary paragraph.
+    Nested reference markers and end-of-book captions are removed before
+    interpreting the remaining printed verse numbers; duplicate verse keys retain their first
+    occurrence. The chapter-name parser also accepts the source's misspelled John 21 heading.
+    """
+    raw = json.loads(fetch(language, testament, book))
+    if "error" in raw:
+        err(f"{book}: Wikisource says {raw['error'].get('info')}")
+        return {}
+    return _parse_wikisource_verses(raw["parse"]["text"]["*"])
 
 
 def parse_reference(reference: str) -> list:
@@ -415,6 +486,11 @@ def source_reference(language: str, book: str, spans: list, where: str) -> str |
     return ", ".join(rendered)
 
 
+def normalize_source_text(language: str, book: str, chapter: int, verse: int, text: str) -> str:
+    correction = SOURCE_TEXT_CORRECTIONS.get((language, book, chapter, verse))
+    return text.replace(*correction) if correction else text
+
+
 def passage(language: str, book: str, testament: str, spans: list, where: str) -> str | None:
     if LANGUAGES[language]["sources"][testament][1] == "martini":
         table = {}
@@ -447,7 +523,7 @@ def passage(language: str, book: str, testament: str, spans: list, where: str) -
                 else:
                     err(f"{where}: {book} {chapter}:{number} is not in the source")
                 return None
-            out.append(text)
+            out.append(normalize_source_text(language, book, chapter, number, text))
     return " ".join(out)
 
 
@@ -570,7 +646,7 @@ def build(language: str, bundle: Path) -> dict | None:
 
 NOTES = {
     "fr": "Scripture: Bible Augustin Crampon (1923), public domain; transcribed by scrollmapper/bible_databases. Imported passages retain this edition's wording and numbering. Other prayers have separately credited published sources.",
-    "it": "Scripture: Bibbia di Antonio Martini (1769–1781), public domain. Structured data by Giovanni Novelli, Parola Viva (https://parolaviva.art/opendata), CC BY 4.0. Imported passages retain this edition's wording and numbering. Other prayers have separately credited published sources.",
+    "it": "Scripture: Bibbia di Antonio Martini (1769–1781), public domain. Structured data by Giovanni Novelli, Parola Viva (https://parolaviva.art/opendata), CC BY 4.0. Imported passages retain this edition's wording and numbering. Isaiah 28:16 joins the upstream split word fonda mento to fondamento, verified in the Martini print, p. 673 (" + MARTINI_ISAIAH_PRINT + "). Other prayers have separately credited published sources.",
     "arc": ("Scripture entries imported from the Peshitta by Shared/tools/import-scripture.py — "
             "re-run it rather than editing them by hand. Their Hebrew square script is converted "
             "with Erez's script rules; the source text in Syriac letters is beside it for the "
@@ -582,9 +658,9 @@ NOTES = {
            "1836 printing's own. Old Testament readings are absent: only the New Testament "
            "volumes of it have been transcribed from the scans."),
     "el": ("Scripture imported from the Byzantine Majority Text (Robinson-Pierpont, public domain) "
-           "by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. "
-           "Polytonic, as the source has it. Old Testament readings are absent pending a "
-           "Septuagint whose digitisation the app can ship under."),
+           "and Brenton's Septuagint (eBible.org grcbrent, public domain) by "
+           "Shared/tools/import-scripture.py — re-run it rather than editing these by hand. "
+           "Polytonic, as the sources have it; each citation names its own edition."),
 }
 
 
@@ -592,11 +668,18 @@ def render(language: str, built: dict, existing: dict) -> dict:
     """Merge into whatever content/<lang>.json already holds — a hand-authored prayer must never
     be clobbered by a scripture import."""
     out = json.loads(json.dumps(existing)) if existing else {}
-    if language in ("fr", "it"):
-        # Published fixed-prayer provenance may share the file with imported Scripture.
-        out["$scriptureSource"] = NOTES[language]
-    else:
-        out["$comment"] = NOTES[language]
+    # Earlier imports stored generated notes in $comment. Migrate exact known values
+    # only; arbitrary authored prayer/source comments must never be overwritten.
+    legacy_greek_note = (
+        "Scripture imported from the Byzantine Majority Text (Robinson-Pierpont, public domain) "
+        "by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. "
+        "Polytonic, as the source has it. Old Testament readings are absent pending a "
+        "Septuagint whose digitisation the app can ship under.")
+    if out.get("$comment") in {*NOTES.values(), legacy_greek_note}:
+        out.pop("$comment")
+    # Any language can mix authored prayers with imported Scripture. Keep its prayer,
+    # dialect, and transcription notes intact; generation owns only this source field.
+    out["$scriptureSource"] = NOTES[language]
     out["$scriptureImport"] = {
         "prayerKeys": sorted(built["prayers"]),
         "mysteryKeys": sorted(built["mysteries"]),

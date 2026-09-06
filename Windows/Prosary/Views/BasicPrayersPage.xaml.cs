@@ -30,29 +30,14 @@ public sealed partial class BasicPrayersPage : Page
         BuildLanguageFlyout();
     }
 
-    private void BuildLanguageFlyout()
-    {
-        LanguageFlyout.Items.Clear();
-        var choices = new List<(string Raw, string Name)>
+    private void BuildLanguageFlyout() =>
+        Prosary.Controls.PrayerLanguageMenu.Populate(LanguageFlyout, ViewModel.Languages,
+            ViewModel.CurrentLanguageRaw, raw =>
         {
-            (LanguageCatalog.DefaultSentinel, Loc.Tr("flow_app_setting", "App setting")),
-        };
-        choices.AddRange(ViewModel.Languages.Select(language => (language.Code, language.NativeName)));
-        foreach (var (raw, name) in choices)
-        {
-            var item = new ToggleMenuFlyoutItem
-            {
-                Text = name,
-                IsChecked = ViewModel.CurrentLanguageRaw == raw,
-            };
-            item.Click += (_, _) =>
-            {
-                ViewModel.SelectLanguage(raw);
-                BuildLanguageFlyout();
-            };
-            LanguageFlyout.Items.Add(item);
-        }
-    }
+            ViewModel.SelectLanguage(raw);
+            BuildLanguageFlyout();
+            return Task.CompletedTask;
+        });
 
     /// <summary>The approved reorder pattern (not jiggle), the same dialog HomePage uses: a
     /// ListView with built-in drag-reorder; Done persists the new sequence, Reset returns to

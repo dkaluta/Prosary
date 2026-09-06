@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { LANGUAGES, REPOSITORY_PUBLISH_LANGUAGE_CODES } from "../format/catalog";
+import { LANGUAGES } from "../format/catalog";
 import { authoredSteps, buildBundle, buildBundleFiles } from "../format/pack";
 import type { Project } from "../format/project";
 import type { Issue, WizardScreen } from "../format/validate";
-import { storedZipByteLength } from "../format/zip";
+import { publicationIssues } from "../format/publishing";
 import { PORTABLE_FILE_MIME, download } from "./media";
 
 /** Where "Publish" hands the bundle over (see the repository's /publish receiver): the popup
@@ -12,8 +12,6 @@ import { PORTABLE_FILE_MIME, download } from "./media";
 const REPO_ORIGIN = new URL(
   import.meta.env.VITE_REPO_ORIGIN ?? "https://prayers.prosary.app",
 ).origin;
-const REPOSITORY_MAX_BUNDLE_BYTES = 8 * 1024 * 1024;
-const REPOSITORY_LANGUAGE_SET = new Set(REPOSITORY_PUBLISH_LANGUAGE_CODES);
 
 interface Props {
   project: Project;
@@ -43,28 +41,10 @@ export function ReviewScreen({ project, issues, goTo }: Props) {
   const stepCount = authoredSteps(project).length;
 
   const bundleFiles = useMemo(() => (ready ? buildBundleFiles(project) : null), [project, ready]);
-  const publishIssues = useMemo(() => {
-    if (!bundleFiles) return [];
-    const messages: string[] = [];
-    const unsupportedLanguages = project.languages.filter(
-      (code) => !REPOSITORY_LANGUAGE_SET.has(code),
-    );
-    if (unsupportedLanguages.length > 0) {
-      const names = unsupportedLanguages.map(
-        (code) => LANGUAGES.find((language) => language.code === code)?.name ?? code,
-      );
-      messages.push(
-        `${names.join(", ")} ${names.length === 1 ? "is" : "are"} available for downloaded bundles, but not community publishing yet.`,
-      );
-    }
-    const byteLength = storedZipByteLength(bundleFiles);
-    if (byteLength > REPOSITORY_MAX_BUNDLE_BYTES) {
-      messages.push(
-        `The community repository accepts bundles up to 8 MB; this one is about ${(byteLength / (1024 * 1024)).toFixed(1)} MB.`,
-      );
-    }
-    return messages;
-  }, [bundleFiles, project.languages]);
+  const publishIssues = useMemo(
+    () => bundleFiles ? publicationIssues(project, bundleFiles) : [],
+    [bundleFiles, project],
+  );
   const publishReady = ready && publishIssues.length === 0;
 
   /** Opens the repository's /publish receiver and hands the built bundle over. The receiver

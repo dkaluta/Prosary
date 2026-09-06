@@ -23,9 +23,9 @@ final class PrayerPackLoaderTests: XCTestCase {
       bundleId: "oAntiphons", languageCode: "arc", key: "gloriaPatri"))
     XCTAssertEqual(readingAid, PrayerPackStore.transliteration(
       bundleId: "trisagion", languageCode: "arc", key: "gloriaPatri"))
-    XCTAssertNotEqual(readingAid, PrayerPackStore.transliteration(
+    XCTAssertEqual(readingAid, PrayerPackStore.transliteration(
       bundleId: "rosary", languageCode: "arc", key: "gloriaPatri"),
-      "the two sourced editions have different line divisions and must keep their own reading aids")
+      "the Aramaic Glory Be now keeps the same two complete sense-lines in both devotions")
     XCTAssertNil(PrayerPackStore.transliteration(
       bundleId: "oAntiphons", languageCode: "en", key: "gloriaPatri"))
   }
@@ -138,11 +138,12 @@ final class PrayerPackLoaderTests: XCTestCase {
     let announcement = try XCTUnwrap(PrayerEngine().buildSteps(for: Prayer(
       kind: .custom, languageCode: "arc", customDevotionId: id)).first)
     let fruitLabel = PrayerTranslations.get(languageCode: "arc", key: .fructusMysteriiLabel)
+    let alternateFruitLabel = try XCTUnwrap(PrayerPackStore.transliteration(bundleId: id, languageCode: "arc", key: "fructusMysteriiLabel"))
     XCTAssertEqual(announcement.title, "The Inherited Mystery")
     XCTAssertEqual(announcement.body, "\(aramaicDescription)\n\n\(fruitLabel): Inherited fruit")
     XCTAssertEqual(
       announcement.transliteratedBody,
-      "\(syriacDescription)\n\n\(fruitLabel): Inherited fruit")
+      "\(syriacDescription)\n\n\(alternateFruitLabel): Inherited fruit")
     let beads = PrayerEngine().buildSteps(for: Prayer(
       kind: .custom, languageCode: "arc", customDevotionId: id)).filter { !$0.isScripture }
     XCTAssertEqual(beads.count, 2)
@@ -649,7 +650,11 @@ final class PrayerPackLoaderTests: XCTestCase {
   /// טריסאגיון; a language the manifest does not name falls back to the UI-language behavior.
   func testDisplayNameFollowsThePrayerLanguage() {
     let saved = UserDefaults.standard.string(forKey: "defaultLanguageCode")
+    let savedPreference = UserDefaults.standard.object(forKey: PrayerNamePresentation.defaultsKey)
+    UserDefaults.standard.set(true, forKey: PrayerNamePresentation.defaultsKey)
     defer {
+      if let savedPreference { UserDefaults.standard.set(savedPreference, forKey: PrayerNamePresentation.defaultsKey) }
+      else { UserDefaults.standard.removeObject(forKey: PrayerNamePresentation.defaultsKey) }
       if let saved { UserDefaults.standard.set(saved, forKey: "defaultLanguageCode") }
       else { UserDefaults.standard.removeObject(forKey: "defaultLanguageCode") }
     }

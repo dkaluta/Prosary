@@ -21,18 +21,15 @@ object PrayerTypography {
     private val frankRuhlLibre = FontFamily(Font(R.font.frank_ruhl_libre_regular))
     private val shofar = FontFamily(Font(R.font.shofar_regular))
     private val davidLibre = FontFamily(Font(R.font.david_libre_regular))
-    private val robotoWithNotoHebrewFallback = FontFamily(
-        Font(R.font.roboto_regular),
-        Font(R.font.noto_sans_hebrew_regular),
-    )
+    private val roboto = FontFamily(Font(R.font.roboto_regular))
+    private val notoSansHebrew = FontFamily(Font(R.font.noto_sans_hebrew_regular))
     private val notoRashiHebrew = FontFamily(Font(R.font.noto_rashi_hebrew_regular))
     private val stamAshkenaz = FontFamily(Font(R.font.stam_ashkenaz_clm))
     private val stamSefarad = FontFamily(Font(R.font.stam_sefarad_clm))
     private val amiri = FontFamily(Font(R.font.amiri_regular))
     private val scheherazadeNew = FontFamily(Font(R.font.scheherazade_new_regular))
 
-    /** Only ever reached through a transliteration: no language ships its own text in Syriac
-     * letters, because "arc" is Aramaic in Hebrew script. */
+    /** Covers Syriac bodies in imported prayers as well as reading aids. */
     private val notoSansSyriac = FontFamily(Font(R.font.noto_sans_syriac_regular))
     private val notoSansSyriacWestern = FontFamily(Font(R.font.noto_sans_syriac_western_regular))
     private val notoSansSyriacEastern = FontFamily(Font(R.font.noto_sans_syriac_eastern_regular))
@@ -44,25 +41,31 @@ object PrayerTypography {
      * deliberately leaves which script to the author (Hebrew letters for Tagalog, Syriac letters
      * for Aramaic). So rather than have the format declare it and risk the declaration drifting
      * from the text, it is read off the characters, which cannot disagree with themselves. */
-    enum class Script { Hebrew, Arabic, Syriac, Latin }
+    enum class Script { Hebrew, Arabic, Syriac, Cyrillic, Greek, Latin }
 
     /** The script most of a text's letters belong to. Counted rather than sampled: a citation
      * line ("— ܡܬܝ 28:1–7") mixes digits and punctuation into every body. */
     fun scriptOf(text: String): Script {
-        var hebrew = 0; var arabic = 0; var syriac = 0; var latin = 0
+        val counts = mutableMapOf<Script, Int>()
         for (ch in text) {
-            when (ch.code) {
-                in 0x0590..0x05FF -> hebrew++
-                in 0x0600..0x06FF, in 0x0750..0x077F -> arabic++
-                in 0x0700..0x074F, in 0x0860..0x086F -> syriac++
-                in 0x0041..0x005A, in 0x0061..0x007A, in 0x0370..0x03FF, in 0x1F00..0x1FFF -> latin++
+            // Combining marks, punctuation and verse numbers must not outweigh letters.
+            if (!ch.isLetter()) continue
+            val script = when (Character.UnicodeScript.of(ch.code)) {
+                Character.UnicodeScript.HEBREW -> Script.Hebrew
+                Character.UnicodeScript.ARABIC -> Script.Arabic
+                Character.UnicodeScript.SYRIAC -> Script.Syriac
+                Character.UnicodeScript.CYRILLIC -> Script.Cyrillic
+                Character.UnicodeScript.GREEK -> Script.Greek
+                else -> Script.Latin
             }
+            counts[script] = (counts[script] ?: 0) + 1
         }
-        return listOf(
-            hebrew to Script.Hebrew, arabic to Script.Arabic,
-            syriac to Script.Syriac, latin to Script.Latin,
-        ).maxByOrNull { it.first }?.second ?: Script.Latin
+        return counts.maxByOrNull { it.value }?.key ?: Script.Latin
     }
+
+    /** Resolve every displayed body from its letters, including ordinary imported prayers. */
+    fun styleForText(text: String, isScripture: Boolean): TextStyle =
+        style(languageCode = null, isScripture = isScripture, script = scriptOf(text))
 
     /** [script] overrides what the language would imply — pass it for a transliteration. */
     // Variants key on their base script: "he-x-gamliel" typesets exactly like "he".
@@ -70,6 +73,8 @@ object PrayerTypography {
         when (script ?: when (languageCode?.let { com.dkaluta.prosary.models.LanguageCatalog.baseLanguage(it) ?: it }) {
             "he", "arc" -> Script.Hebrew
             "ar" -> Script.Arabic
+            "ru" -> Script.Cyrillic
+            "el" -> Script.Greek
             else -> Script.Latin
         }) {
         // includeFontPadding is forced back ON for the marked scripts. Compose's modern default
@@ -92,7 +97,8 @@ object PrayerTypography {
         } else {
             val family = when (AppSettings.hebrewPrayerTypeface) {
                 AppSettings.TYPEFACE_DAVID_LIBRE -> davidLibre
-                AppSettings.TYPEFACE_SANS_SERIF -> robotoWithNotoHebrewFallback
+                AppSettings.TYPEFACE_SANS_SERIF -> FontFamily.SansSerif
+                AppSettings.TYPEFACE_BUNDLED_SANS_SERIF -> notoSansHebrew
                 else -> frankRuhlLibre
             }
             TextStyle(
@@ -125,10 +131,34 @@ object PrayerTypography {
             lineHeight = 27.sp,
         )
 
-        Script.Latin -> if (isScripture) {
+        Script.Cyrillic -> if (isScripture) {
+            TextStyle(fontFamily = cardo, fontSize = 19.sp, lineHeight = 27.sp)
+        } else TextStyle(
+            fontFamily = when (AppSettings.cyrillicPrayerTypeface) {
+                AppSettings.TYPEFACE_SANS_SERIF -> FontFamily.SansSerif
+                AppSettings.TYPEFACE_BUNDLED_SANS_SERIF -> roboto
+                else -> FontFamily.Serif
+            },
+            fontSize = 17.sp, lineHeight = 24.sp,
+        )
+
+        Script.Greek -> if (isScripture) {
             TextStyle(fontFamily = cardo, fontSize = 19.sp, lineHeight = 27.sp)
         } else {
             TextStyle(fontFamily = FontFamily.Serif, fontSize = 17.sp, lineHeight = 24.sp)
+        }
+
+        Script.Latin -> if (isScripture) {
+            TextStyle(fontFamily = cardo, fontSize = 19.sp, lineHeight = 27.sp)
+        } else {
+            TextStyle(
+                fontFamily = when (AppSettings.latinPrayerTypeface) {
+                AppSettings.TYPEFACE_SANS_SERIF -> FontFamily.SansSerif
+                AppSettings.TYPEFACE_BUNDLED_SANS_SERIF -> roboto
+                else -> FontFamily.Serif
+            },
+                fontSize = 17.sp, lineHeight = 24.sp,
+            )
         }
     }
 }

@@ -17,12 +17,18 @@ public static class AppSettings
     private const string KeyBasicPrayersLanguage = "basicPrayersLanguageCode";
     private const string KeyAramaicSignOfCrossForm = "aramaicSignOfCrossForm";
     private const string KeyFeastCalendar = "feastCalendarId";
+    private const string KeyEasternPaschaStyle = "easternPaschaStyle";
     private const string KeyAutoAdvance = "autoAdvanceSeconds";
     private const string KeyShowTodayFeast = "showTodayFeast";
     private const string KeyShowTodayIntention = "showTodayIntention";
+    private const string KeyShowTodayTorahPortion = "showTodayTorahPortion";
+    private const string KeyShowPrayerNameInPrayerLanguage = "showPrayerNameInPrayerLanguage";
     private const string KeyTodayLanguage = "todayLanguageCode";
     private const string KeySyriacTypeface = "syriacTypeface";
+    private const string KeyAramaicDefaultScript = "aramaicDefaultScript";
     private const string KeyHebrewPrayerTypeface = "hebrewPrayerTypeface";
+    private const string KeyLatinPrayerTypeface = "latinPrayerTypeface";
+    private const string KeyCyrillicPrayerTypeface = "cyrillicPrayerTypeface";
     private const string KeyHebrewScriptureTypeface = "hebrewScriptureTypeface";
     private const string KeyFavoriteBasicPrayers = "favoriteBasicPrayerIds";
     private const string KeyFavoriteBasicPrayersFirst = "favoriteBasicPrayersFirst";
@@ -32,12 +38,18 @@ public static class AppSettings
     private static string? _basicPrayersLanguageCode;
     private static string? _aramaicSignOfCrossForm;
     private static string? _feastCalendarId;
+    private static string? _easternPaschaStyle;
     private static int? _autoAdvanceSeconds;
     private static bool? _showTodayFeast;
     private static bool? _showTodayIntention;
+    private static bool? _showTodayTorahPortion;
+    private static bool? _showPrayerNameInPrayerLanguage;
     private static string? _todayLanguageCode;
     private static string? _syriacTypeface;
+    private static string? _aramaicDefaultScript;
     private static string? _hebrewPrayerTypeface;
+    private static string? _latinPrayerTypeface;
+    private static string? _cyrillicPrayerTypeface;
     private static string? _hebrewScriptureTypeface;
     private static HashSet<string>? _favoriteBasicPrayerIds;
     private static bool? _favoriteBasicPrayersFirst;
@@ -115,6 +127,17 @@ public static class AppSettings
     public static bool UsesSystemWideAramaicSignOfCrossForm =>
         (LanguageCatalog.BaseLanguage(DefaultLanguageCode) ?? DefaultLanguageCode) == "arc";
 
+    public static event Action? TypographyChanged;
+
+    public static string AramaicDefaultScript => _aramaicDefaultScript ??=
+        ReadLocalSetting(KeyAramaicDefaultScript) as string == "Syrc" ? "Syrc" : "Hebr";
+
+    public static void SetAramaicDefaultScript(string value)
+    {
+        _aramaicDefaultScript = value == "Syrc" ? "Syrc" : "Hebr";
+        WriteLocalSetting(KeyAramaicDefaultScript, _aramaicDefaultScript);
+    }
+
     public static string SyriacTypeface => _syriacTypeface ??=
         ReadLocalSetting(KeySyriacTypeface) as string ?? TypefaceDefault;
     public static string HebrewPrayerTypeface => _hebrewPrayerTypeface ??=
@@ -122,22 +145,45 @@ public static class AppSettings
     public static string HebrewScriptureTypeface => _hebrewScriptureTypeface ??=
         ReadLocalSetting(KeyHebrewScriptureTypeface) as string ?? TypefaceDefault;
 
+    public static string LatinPrayerTypeface => _latinPrayerTypeface ??=
+        ReadLocalSetting(KeyLatinPrayerTypeface) as string ?? TypefaceDefault;
+
+    public static void SetLatinPrayerTypeface(string value)
+    {
+        _latinPrayerTypeface = value;
+        WriteLocalSetting(KeyLatinPrayerTypeface, value);
+        TypographyChanged?.Invoke();
+    }
+
+    public static string CyrillicPrayerTypeface => _cyrillicPrayerTypeface ??=
+        ReadLocalSetting(KeyCyrillicPrayerTypeface) as string ?? TypefaceDefault;
+
+    public static void SetCyrillicPrayerTypeface(string value)
+    {
+        _cyrillicPrayerTypeface = value;
+        WriteLocalSetting(KeyCyrillicPrayerTypeface, value);
+        TypographyChanged?.Invoke();
+    }
+
     public static void SetSyriacTypeface(string value)
     {
         _syriacTypeface = value;
         WriteLocalSetting(KeySyriacTypeface, value);
+        TypographyChanged?.Invoke();
     }
 
     public static void SetHebrewPrayerTypeface(string value)
     {
         _hebrewPrayerTypeface = value;
         WriteLocalSetting(KeyHebrewPrayerTypeface, value);
+        TypographyChanged?.Invoke();
     }
 
     public static void SetHebrewScriptureTypeface(string value)
     {
         _hebrewScriptureTypeface = value;
         WriteLocalSetting(KeyHebrewScriptureTypeface, value);
+        TypographyChanged?.Invoke();
     }
 
     public static IReadOnlySet<string> FavoriteBasicPrayerIds => _favoriteBasicPrayerIds ??=
@@ -262,6 +308,33 @@ public static class AppSettings
     {
         ShowTodayIntention = shows;
         WriteLocalSetting(KeyShowTodayIntention, shows);
+    }
+
+    public static bool ShowTodayTorahPortion => _showTodayTorahPortion ??=
+        ReadLocalSetting(KeyShowTodayTorahPortion) as bool? ?? false;
+
+    public static string EasternPaschaStyle => _easternPaschaStyle ??=
+        (ReadLocalSetting(KeyEasternPaschaStyle) as string == "gregorian" ? "gregorian" : "julian");
+
+    public static void SetEasternPaschaStyle(string value)
+    {
+        _easternPaschaStyle = value == "gregorian" ? "gregorian" : "julian";
+        WriteLocalSetting(KeyEasternPaschaStyle, _easternPaschaStyle);
+    }
+
+    public static void SetShowTodayTorahPortion(bool value)
+    {
+        _showTodayTorahPortion = value;
+        WriteLocalSetting(KeyShowTodayTorahPortion, value);
+    }
+
+    public static bool ShowPrayerNameInPrayerLanguage => _showPrayerNameInPrayerLanguage ??=
+        ReadLocalSetting(KeyShowPrayerNameInPrayerLanguage) as bool? ?? false;
+
+    public static void SetShowPrayerNameInPrayerLanguage(bool value)
+    {
+        _showPrayerNameInPrayerLanguage = value;
+        WriteLocalSetting(KeyShowPrayerNameInPrayerLanguage, value);
     }
 
     /// <summary>Empty follows the interface language; prayer-language changes never alter Today.</summary>

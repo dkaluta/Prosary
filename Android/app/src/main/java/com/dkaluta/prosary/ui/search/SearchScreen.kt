@@ -66,6 +66,7 @@ fun SearchScreen(onLaunch: (LaunchTarget) -> Unit) {
     @Suppress("UNUSED_EXPRESSION") generation
     val localMatches = DevotionDirectory.all(context).filter { listing ->
         query.isBlank() || listing.title.contains(query, ignoreCase = true) ||
+            listing.interfaceTitle?.contains(query, ignoreCase = true) == true ||
             listing.tags.any { it.contains(query, ignoreCase = true) || CategoryLabels.label(it, context).contains(query, ignoreCase = true) }
     }
     val installed = PrayerPackStore.customDevotionIds().toSet()
@@ -116,10 +117,12 @@ fun SearchScreen(onLaunch: (LaunchTarget) -> Unit) {
                         } else {
                             Icon(listing.icon, contentDescription = null, tint = listing.accentColor ?: MaterialTheme.colorScheme.primary)
                         }
-                        Text(
-                            HebrewDisplayText.unpoint(listing.title),
-                            style = MaterialTheme.typography.bodyLarge,
-                        )
+                        Column(Modifier.weight(1f)) {
+                            Text(HebrewDisplayText.unpoint(listing.title), style = MaterialTheme.typography.bodyLarge)
+                            listing.interfaceTitle?.let {
+                                Text(it, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            }
+                        }
                     }
                 }
             }

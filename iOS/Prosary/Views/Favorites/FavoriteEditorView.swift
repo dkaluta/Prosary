@@ -26,13 +26,11 @@ struct FavoriteEditorView: View {
       }
 
       Section {
-        Picker("favoriteEditor.language", selection: $prayer.languageCode) {
-          let defaultName = LanguageCatalog.resolve(appDefaultCode).nativeName
-          Text(String(localized: "favoriteEditor.defaultLanguageOption", defaultValue: "Default — \(defaultName)")).tag(LanguageCatalog.defaultSentinel)
-          ForEach(LanguageCatalog.all) { language in
-            Text(language.nativeName).tag(language.code)
-          }
-        }
+        let defaultName = LanguageCatalog.resolve(LanguageCatalog.pickerLanguageCode(appDefaultCode)).nativeName
+        PrayerLanguagePicker(
+          label: String(localized: "favoriteEditor.language", defaultValue: "Language"),
+          code: $prayer.languageCode,
+          defaultLabel: String(localized: "favoriteEditor.defaultLanguageOption", defaultValue: "Default — \(defaultName)"))
 
         let prayerBase = prayer.languageCode == LanguageCatalog.defaultSentinel
           ? prayer.languageCode

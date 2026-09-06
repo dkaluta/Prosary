@@ -24,11 +24,8 @@ enum PrayerKind: String, CaseIterable, Codable, Hashable {
   /// since a single `PrayerKind` value can't carry per-bundle data.
   case custom
 
-  /// The built-in kinds' names in each prayer language — the same map a bundle carries in its
-  /// manifest's displayNameByLanguage, kept here because the Rosary and the Jesus Prayer have
-  /// no manifest to carry it. Without this, the devotion-name-follows-prayer-language rule
-  /// (2026-08-08) applied to every card except these two, and a Hebrew prayer list read
-  /// מחרוזת ,המלאך ,טריסאגיון … Rosary.
+  /// The Jesus Prayer has no pack manifest; its other interface translations are provided
+  /// by the string catalog. The Rosary obtains its prayer names from its bundled manifest.
   private var namesByPrayerLanguage: [String: String] {
     switch self {
     case .rosary:      return ["he": "מחרוזת"]
@@ -38,12 +35,23 @@ enum PrayerKind: String, CaseIterable, Codable, Hashable {
   }
 
   var displayName: String {
-    // Prayer language first (exact code, rites included, then its base), then the UI
-    // localization — mirroring CustomDevotionInfo.localizedDisplayName exactly.
-    let prayerCode = LanguageCatalog.resolve(nil).code
-    if let name = namesByPrayerLanguage[prayerCode] { return name }
-    if let base = LanguageCatalog.baseLanguage(of: prayerCode),
-       let name = namesByPrayerLanguage[base] { return name }
+    namePresentation().title
+  }
+
+  func namePresentation(prayerCode: String = LanguageCatalog.resolve(nil).code,
+                        showPrayerLanguage: Bool = UserDefaults.standard.bool(forKey: PrayerNamePresentation.defaultsKey)) -> PrayerNamePresentation {
+    let prayerName: String
+    if self == .rosary, let info = PrayerPackStore.info(for: "rosary") {
+      return info.namePresentation(prayerCode: prayerCode, showPrayerLanguage: showPrayerLanguage)
+    }
+    prayerName = namesByPrayerLanguage[prayerCode]
+      ?? LanguageCatalog.baseLanguage(of: prayerCode).flatMap { namesByPrayerLanguage[$0] }
+      ?? UILanguage.text("prayerKind.\(rawValue)", language: prayerCode, fallback: interfaceDisplayName)
+    return PrayerNamePresentation(interfaceTitle: interfaceDisplayName, prayerTitle: prayerName,
+                                  showPrayerLanguage: showPrayerLanguage)
+  }
+
+  private var interfaceDisplayName: String {
     switch self {
     case .rosary:      return String(localized: "prayerKind.rosary", defaultValue: "Rosary")
     case .jesusPrayer: return String(localized: "prayerKind.jesusPrayer", defaultValue: "Jesus Prayer")

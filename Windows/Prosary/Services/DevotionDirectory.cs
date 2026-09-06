@@ -24,8 +24,10 @@ public sealed record DevotionListing(
     // carries its tags here.
     IReadOnlyList<string> Tags,
     LaunchTargetKind Target,
-    string? BundleId = null)
+    string? BundleId = null,
+    string InterfaceSubtitle = "")
 {
+    public bool HasInterfaceSubtitle => !string.IsNullOrWhiteSpace(InterfaceSubtitle);
     public void Launch()
     {
         switch (Target)
@@ -47,32 +49,35 @@ public static class DevotionDirectory
 {
     public static IReadOnlyList<DevotionListing> All()
     {
+        var rosaryName = PrayerCardName.ForKind(PrayerKind.Rosary);
         var listings = new List<DevotionListing>
         {
             new(
                 "rosary",
-                PrayerKind.Rosary.DisplayName(),
+                rosaryName.Title,
                 "\uEA3A", // CircleRing — HomePage's Rosary glyph
                 PrayerPackStore.Info("rosary")?.Tags ?? ["marian"],
-                LaunchTargetKind.Rosary),
+                LaunchTargetKind.Rosary, InterfaceSubtitle: rosaryName.InterfaceSubtitle),
         };
         foreach (var bundleId in PrayerPackStore.CustomDevotionIds())
         {
             if (PrayerPackStore.Info(bundleId) is not { } info) continue;
+            var name = PrayerCardName.ForBundle(bundleId);
             listings.Add(new DevotionListing(
                 bundleId,
-                info.LocalizedDisplayName,
+                name.Title,
                 info.IconGlyph ?? HomeViewModel.GlyphForSystemName(info.IconSystemName),
                 info.Tags,
                 LaunchTargetKind.Custom,
-                bundleId));
+                bundleId, name.InterfaceSubtitle));
         }
+        var jesusName = PrayerCardName.ForKind(PrayerKind.JesusPrayer);
         listings.Add(new DevotionListing(
             "jesusPrayer",
-            PrayerKind.JesusPrayer.DisplayName(),
+            jesusName.Title,
             "\uEB52", // HeartFill — HomePage's Jesus Prayer glyph
             ["eastern", "meditative"],
-            LaunchTargetKind.JesusPrayer));
+            LaunchTargetKind.JesusPrayer, InterfaceSubtitle: jesusName.InterfaceSubtitle));
         return listings;
     }
 }

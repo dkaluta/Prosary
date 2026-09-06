@@ -1,5 +1,5 @@
 {
- "$comment": "Registry of the Home 'Today' row's switchable liturgical calendars. 'file' and 'readingsFile' are Shared/data JSON basenames copied into every app. The selected calendar controls both the feast and its own lectionary citations; a missing date/file shows no row and must never fall back to another rite. 'nameByLanguage' localizes picker labels. 'default' is the Latin Patriarchate overlay used when the setting is unset or unknown. Order here is picker order. All feast tables carry sourced Hebrew feast and saint names inline as titleByLanguage.he where credited names are available. Shared exact-identity catalogs reuse names across years and rites while preserving each calendar's observances, dates, and ranks. This replaces the former roman-he pseudo-calendar; persisted roman-he settings are migrated by the apps to roman. LPJ and General Roman share the Novus Ordo readings table. Syriac and Roman readings come from Evangelizo.org — Daily Gospel (© Evangelizo.org); 1962 readings from Missale Meum; Byzantine readings from Royal Doors' public UGCC Gregorian calendar. See ARCHITECTURE.markdown for coverage and attribution.",
+ "$comment": "Offline Today calendar registry. Each rite selects its own feast and reading tables; absent dates never borrow another rite. The ugcc calendar defaults to Ukrainian new-style fixed feasts and Julian Pascha, with a separate fully Gregorian usage controlled by easternPaschaStyle. Maronite uses Evangelizo MAE; Syriac Catholic uses SYE. Sources and calendar rules are documented in Shared/calendar-research.markdown.",
  "default": "lpj",
  "calendars": [
   {
@@ -56,7 +56,19 @@
     "tl": "Bizantino — Simbahang Griyegong Katoliko ng Ukraine",
     "fr": "Byzantin — Église gréco-catholique ukrainienne",
     "it": "Bizantino — Chiesa greco-cattolica ucraina"
-   }
+   },
+   "paschaVariants": {
+    "julian": {
+     "file": "feasts-ugcc",
+     "readingsFile": "readings-ugcc"
+    },
+    "gregorian": {
+     "file": "feasts-ugcc-gregorian",
+     "readingsFile": "readings-ugcc-gregorian"
+    }
+   },
+   "defaultPaschaStyle": "julian",
+   "liturgicalYearStart": "09-01"
   },
   {
    "id": "syriac",
@@ -70,6 +82,20 @@
     "tl": "Kanlurang Aramaiko — Katolikong Siryako",
     "fr": "Araméen occidental — Église syriaque catholique",
     "it": "Aramaico occidentale — Chiesa siriaco-cattolica"
+   }
+  },
+  {
+   "id": "maronite",
+   "file": "feasts-maronite",
+   "readingsFile": "readings-maronite",
+   "name": "Maronite",
+   "nameByLanguage": {
+    "he": "מרוני",
+    "ar": "ماروني",
+    "ru": "Маронитский",
+    "tl": "Maronita",
+    "fr": "Maronite",
+    "it": "Maronita"
    }
   }
  ]

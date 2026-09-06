@@ -61,10 +61,43 @@ struct PrayerStepFlowView: View {
   /// timer advance feel the same as Next; a Mac quietly does nothing with it.
   @AppStorage("hapticsOnAdvance") private var hapticsOnAdvance = false
 
+  @ObservedObject private var typography = PrayerTypographyMonitor.shared
+
+  private var typefaces: PrayerTypography.Typefaces { typography.typefaces }
+
   /// The v0.7 reading aid: swap the body for its transliteration when the step carries one.
   /// Deliberately sticky across steps — someone praying along in an unfamiliar script wants
   /// it on for the whole session, not per page.
   @State private var showsTransliteration = false
+  @State private var initializedScriptLanguage: String?
+  @State private var aramaicSessionScript: String?
+
+  private var usesAlternateText: Bool {
+    guard let script = aramaicSessionScript, let step else { return showsTransliteration }
+    return PrayerTranslations.initialTransliteration(languageCode: languageCode, body: step.body,
+      alternate: step.transliteratedBody, script: script) ?? showsTransliteration
+  }
+
+  private var usesSyriacScript: Bool {
+    if let script = aramaicSessionScript { return script == "Syrc" }
+    guard let step else { return false }
+    return PrayerTypography.script(of: showsTransliteration ? step.transliteratedBody ?? step.body : step.body) == .syriac
+  }
+
+  private func toggleTransliteration() {
+    if let script = aramaicSessionScript {
+      aramaicSessionScript = script == "Syrc" ? "Hebr" : "Syrc"
+    } else { showsTransliteration.toggle() }
+  }
+
+  private func applyDefaultScript() {
+    let language = LanguageCatalog.fallbackChain(for: languageCode).first
+    guard step != nil, initializedScriptLanguage != language else { return }
+    initializedScriptLanguage = language
+    aramaicSessionScript = language == "arc"
+      ? (UserDefaults.standard.string(forKey: PrayerTranslations.aramaicDefaultScriptKey) == "Syrc" ? "Syrc" : "Hebr")
+      : nil
+  }
 
   private static let autoAdvanceChoices = [3, 5, 10, 15]
 
@@ -167,6 +200,9 @@ struct PrayerStepFlowView: View {
       }
     }
     .navigationTitle(showsCompactHeader ? "" : HebrewDisplayText.unpointed(navigationTitle))
+    .onAppear { applyDefaultScript() }
+    .onChange(of: languageCode) { _, _ in applyDefaultScript() }
+    .onChange(of: step == nil) { _, _ in applyDefaultScript() }
     #if os(iOS)
     .navigationBarTitleDisplayMode(.inline)
     #endif
@@ -255,8 +291,12 @@ struct PrayerStepFlowView: View {
     } else if let totalSteps, totalSteps > 0 {
       VStack(spacing: 4) {
         ProgressView(value: Double(currentIndex + 1) / Double(totalSteps))
-        Text(String(localized: "prayerFlow.progressCount", defaultValue: "\(currentIndex + 1) of \(totalSteps)"))
-          .font(.caption)
+        let aramaic = PrayerTranslations.aramaicProgress(currentIndex + 1, total: totalSteps,
+          languageCode: languageCode, sourceScript: usesSyriacScript)
+        Text(aramaic ?? String(localized: "prayerFlow.progressCount", defaultValue: "\(currentIndex + 1) of \(totalSteps)"))
+          .accessibilityIdentifier("prayerProgressText")
+          .font(aramaic.map { PrayerTypography.font(languageCode: languageCode, isScripture: false,
+              text: $0, typefaces: typefaces, pointSize: 13) } ?? .caption)
           .foregroundStyle(.secondary)
       }
     } else {
@@ -366,7 +406,7 @@ struct PrayerStepFlowView: View {
           .multilineTextAlignment(.center)
       }
 
-      Text(HebrewDisplayText.unpointed(step.title))
+      Text(PrayerTranslations.flowTitle(step.title, languageCode: languageCode, sourceScript: usesSyriacScript))
         .font(.title2.weight(.semibold))
         .foregroundStyle(Color.brandHeadline)
         .multilineTextAlignment(.center)
@@ -375,7 +415,8 @@ struct PrayerStepFlowView: View {
         // The versicle/response is a prayer, not part of the reading — it keeps the regular
         // prayer typeface even when the body below is scripture.
         Text(bodyAttributedString(acclamation))
-          .font(PrayerTypography.font(languageCode: languageCode, isScripture: false))
+          .font(PrayerTypography.font(languageCode: languageCode, isScripture: false,
+                                      text: acclamation, typefaces: typefaces))
           .lineSpacing(4)
       }
 
@@ -385,27 +426,29 @@ struct PrayerStepFlowView: View {
         HStack {
           Spacer()
           Button {
-            showsTransliteration.toggle()
+            toggleTransliteration()
           } label: {
-            Image(systemName: showsTransliteration ? "character.book.closed.fill" : "character.book.closed")
+            Image(systemName: usesAlternateText ? "character.book.closed.fill" : "character.book.closed")
           }
           .buttonStyle(.borderless)
           .accessibilityLabel(String(localized: "prayerFlow.transliteration",
                                      defaultValue: "Show transliteration"))
           .accessibilityIdentifier("transliterationToggle")
         }
-        // A transliteration is in a different script from its language's own, so the face has
-        // to follow the text rather than the language — otherwise Syriac letters are drawn with
-        // a Hebrew face that has no glyphs for them, and the toggle shows a row of tofu.
-        Text(bodyAttributedString(showsTransliteration ? transliteration : step.body))
+        // Both original bodies and transliterations follow their actual script; imported
+        // Aramaic prayers can use Syriac letters even though built-in Aramaic uses Hebrew.
+        Text(bodyAttributedString(usesAlternateText ? transliteration : step.body))
           .font(PrayerTypography.font(
             languageCode: languageCode, isScripture: step.isScripture,
-            script: showsTransliteration ? PrayerTypography.script(of: transliteration) : nil))
+            text: usesAlternateText ? transliteration : step.body, typefaces: typefaces))
+          .accessibilityIdentifier("prayerBodyText")
           .lineSpacing(4)
           .textSelection(.enabled)
       } else {
         Text(bodyAttributedString(step.body))
-          .font(PrayerTypography.font(languageCode: languageCode, isScripture: step.isScripture))
+          .font(PrayerTypography.font(languageCode: languageCode, isScripture: step.isScripture,
+                                      text: step.body, typefaces: typefaces))
+          .accessibilityIdentifier("prayerBodyText")
           .lineSpacing(4)
           .textSelection(.enabled)
       }

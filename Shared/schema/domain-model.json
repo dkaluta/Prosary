@@ -24,7 +24,7 @@
         "languageCode": {
           "type": "string",
           "default": "",
-          "description": "Prayer-language identifier (normally an ISO 639 code, optionally with a private-use community subtag), or the empty-string sentinel meaning \"follow the app-level default language setting\" (see AppSettings.defaultLanguageCode). Hebrew Vicariate (`he`) and Hebrew Mission (`he-x-gamliel`) are always separate picker choices."
+          "description": "Prayer-language identifier or the empty sentinel meaning follow defaultLanguageCode. Public pickers show one Hebrew language (עברית) and a separate Vicariate/Mission prayer tradition. Storage preserves the exact sourced content codes he / he-x-gamliel, including existing presets and bookmarks; no text-code migration is needed."
         },
         "rosary": {
           "type": "RosaryOptions",
@@ -125,7 +125,23 @@
         "includeClosingIntentions": {
           "type": "boolean",
           "default": false,
-          "description": "The customary intercessions immediately after the Marian antiphon, each answered with an Our Father, Hail Mary, and Glory Be: for the Pope's intentions and the needs of the Church and the nation; for the local ordinary and his intentions (the Latin Patriarch in the vicariate's Hebrew, the exarch in the Mission of St. Gamaliel's overlay); and for the holy souls in purgatory, closed by \"May they rest in peace. Amen.\" From the Mission of St. Gamaliel's prayer book (2026-08); ten bundle-driven closing steps gated on the rosary bundle's closingIntentions option."
+          "description": "Legacy all-intentions setting retained for saved configurations. Each nullable closing override resolves as override ?? includeClosingIntentions. The editor exposes the three individual choices, never this compatibility field.",
+          "deprecated": true
+        },
+        "includeClosingPopeIntention": {
+          "type": "boolean?",
+          "default": null,
+          "description": "Independent closing prayers for the Pope and the needs of the Church and nation; effective value is this override ?? includeClosingIntentions. Gates bundle option closingPopeIntention. The intention text occupies its own introduction step, followed by Our Father, Hail Mary, Glory Be (4 steps). Never repeat the intention as a prayer subtitle. Persist nullable raw Booleans, including in SwiftData."
+        },
+        "includeClosingBishopIntention": {
+          "type": "boolean?",
+          "default": null,
+          "description": "Independent closing prayers for the local ordinary and his intentions; effective value is this override ?? includeClosingIntentions. Gates bundle option closingBishopIntention. The intention text occupies its own introduction step, followed by Our Father, Hail Mary, Glory Be (4 steps). Never repeat the intention as a prayer subtitle. Persist nullable raw Booleans, including in SwiftData."
+        },
+        "includeClosingDepartedIntention": {
+          "type": "boolean?",
+          "default": null,
+          "description": "Independent closing prayers for the faithful departed; effective value is this override ?? includeClosingIntentions. Gates bundle option closingDepartedIntention. The intention text occupies its own introduction step, followed by Our Father, Hail Mary, Glory Be, and the May they rest in peace versicle/response (5 steps). Never repeat the intention as a prayer subtitle. Persist nullable raw Booleans, including in SwiftData."
         },
         "includeStMichaelPrayer": {
           "type": "boolean",
@@ -286,7 +302,7 @@
         },
         "configurationSignature": {
           "type": "string",
-          "description": "Stable signature of the options that determine the run's sequence. A mismatch discards the checkpoint instead of applying an old index to changed content."
+          "description": "Stable signature of the sequence-producing options. Mismatch discards the checkpoint. Rosary retains its legacy signature fields and appends |closing-v2:<pope>,<bishop>,<departed>, using comma-separated 1/0 effective flags, when any closing group is enabled or any effective flag differs from includeClosingIntentions. This invalidates positions shifted by the new introduction steps while preserving ordinary all-disabled bookmarks."
         },
         "stepIndex": {
           "type": "int",
@@ -681,10 +697,123 @@
           "description": "choice only, >= 2: [{id, name, nameByLanguage?}]."
         }
       }
+    },
+    "AppSettings": {
+      "description": "Relevant shared preference keys, stored verbatim in UserDefaults, Android prosary_settings SharedPreferences, and Windows LocalSettings. Interface language follows native platform settings; prayer language is independent.",
+      "fields": {
+        "defaultLanguageCode": {
+          "type": "string",
+          "default": "la",
+          "description": "Exact default prayer text code; Hebrew language and prayer-tradition controls jointly select he or he-x-gamliel."
+        },
+        "basicPrayersLanguageCode": {
+          "type": "string",
+          "default": "",
+          "description": "Basic list, basic-prayer flow and Home pins share this selection; empty follows defaultLanguageCode."
+        },
+        "favoriteBasicPrayerIds": {
+          "type": "string[]",
+          "default": [],
+          "description": "Historical basic favorites are now Home pins. Keep the original key and IDs; each contributes basic:<prayerId> to HomeOrder. Pin/unpin never alters the drag order of the Basic Prayers list."
+        },
+        "favoriteBasicPrayersFirst": {
+          "type": "boolean",
+          "deprecated": true,
+          "description": "Legacy setting ignored; its sorting control is removed. BasicPrayersOrder is the sole basic-list order."
+        },
+        "todayLanguageCode": {
+          "type": "string",
+          "deprecated": true,
+          "description": "Legacy override ignored. Today always uses the interface language and has no language selector."
+        },
+        "aramaicDefaultScript": {
+          "type": "string",
+          "default": "Hebr",
+          "values": [
+            "Hebr",
+            "Syrc"
+          ],
+          "description": "Initial script for Aramaic prayer sessions: Hebrew letters or Syriac letters. The in-prayer reading-aid switch remains a session override; other languages keep their normal reading-aid behavior."
+        },
+        "syriacTypeface": {
+          "type": "string",
+          "default": "default",
+          "values": [
+            "default",
+            "western",
+            "eastern"
+          ],
+          "description": "Noto Sans Syriac / Western / Eastern, selected by visible Syriac letters in either original custom text or a reading aid."
+        },
+        "hebrewPrayerTypeface": {
+          "type": "string",
+          "default": "default",
+          "values": [
+            "default",
+            "davidLibre",
+            "sansSerif"
+          ],
+          "description": "Frank Ruhl Libre (Hebrew label פרנק ריהל), David Libre, System sans serif. Applies to Hebrew letters, including built-in Hebrew-square Aramaic. Android additionally accepts bundledSansSerif for its distinct bundled Noto face."
+        },
+        "hebrewScriptureTypeface": {
+          "type": "string",
+          "default": "default",
+          "values": [
+            "default",
+            "stamAshkenaz",
+            "stamSefarad",
+            "rashi"
+          ],
+          "description": "Shofar, Stam Ashkenaz, Stam Sefarad, Noto Rashi Hebrew; independent from ordinary prayer text."
+        },
+        "latinPrayerTypeface": {
+          "type": "string",
+          "default": "default",
+          "values": [
+            "default",
+            "sansSerif"
+          ],
+          "description": "System serif / System sans serif for ordinary Latin-script prayers; Scripture keeps its dedicated font. Android may additionally offer bundledSansSerif (Roboto / Noto) when the bundled face is distinct or already selected."
+        },
+        "cyrillicPrayerTypeface": {
+          "type": "string",
+          "default": "default",
+          "values": [
+            "default",
+            "sansSerif"
+          ],
+          "description": "System serif / System sans serif for ordinary Cyrillic prayers, independent from Latin-script prayers; Scripture keeps its existing font. Android may additionally offer bundledSansSerif (Roboto / Noto) when distinct or already selected."
+        },
+        "showTodayTorahPortion": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show the Eretz Israel Torah portion for the selected date, or its Saturday holiday reading."
+        },
+        "showPrayerNameInPrayerLanguage": {
+          "type": "boolean",
+          "default": false,
+          "description": "Display prayer-language names as card/list primary titles and the interface-language name as a distinct subtitle. Off uses interface-language titles. Prayer text language is unchanged."
+        },
+        "easternPaschaStyle": {
+          "type": "string",
+          "default": "julian",
+          "values": [
+            "julian",
+            "gregorian"
+          ],
+          "description": "UGCC only: selects matching feast and reading tables for Julian or Gregorian Pascha; unknown values normalize to julian. Fixed feasts retain the new style in both choices."
+        }
+      },
+      "rendering": "Body, acclamation and currently visible reading-aid text choose typography by dominant actual letters, ignoring combining marks, punctuation and numbers. Syriac custom bodies therefore obey syriacTypeface. Hebrew-square Aramaic keeps Hebrew choices; Greek is independent of the Latin-script preference. Setting changes invalidate open prayer renderings immediately, including other Mac scenes.",
+      "hebrewTypographyLabels": {
+        "syriacTypeface": "גופן הארמית",
+        "hebrewPrayerTypeface": "גופן העברית",
+        "hebrewScriptureTypeface": "גופן כתבי הקודש בעברית"
+      }
     }
   },
   "languages": {
-    "$ref": "See LanguageCatalog.all in ARCHITECTURE.markdown — la (default), en, ar (RTL), he (RTL, Vicariate), he-x-gamliel (RTL, Mission), arc (RTL), el, es, ru, tl. he-x-gamliel overlays he when its own prayer is absent; all missing content then follows languageFallbackOrder (initially ending in Latin)."
+    "$ref": "LanguageCatalog stores la (default), en, ar, he, he-x-gamliel, arc, el, es, ru, tl, fr, it. Public choices collapse he-x-gamliel into Hebrew (עברית); a separate Prayer tradition selects Saint James Vicariate (he) or Mission of St. Gamaliel (he-x-gamliel). Aramaic is labeled ܐܪܡܐܝܬ / ארמית. ar/he/he-x-gamliel/arc are RTL. Exact overlays resolve through base language then languageFallbackOrder. The fallback picker groups Hebrew while preserving the relative stored order of its two raw codes. New available languages are inserted before a previously terminal Latin fallback."
   },
   "persistence": {
     "perDevotionDefaultScoping": "save()/delete() clear or promote isDefault scoped to (Prayer.kind, Prayer.customDevotionId), never across devotions — two generic devotions must not steal each other's default slot. Legacy rows with retired per-devotion kinds resolve through the same identity (iOS PresetEntry.resolvedKind / Android PresetEntity.resolvedKind / Windows's SQL migration). See ARCHITECTURE.markdown#persistence."

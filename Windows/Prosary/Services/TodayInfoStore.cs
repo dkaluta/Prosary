@@ -77,11 +77,24 @@ public sealed record ReadingCitation(
         (LanguageCatalog.BaseLanguage(language) ?? language).Equals("he", StringComparison.OrdinalIgnoreCase);
 }
 
-public sealed record LiturgicalDayInfo(string English, string Hebrew, DateOnly Date, string Season, int Week)
+public sealed record TorahPortion(
+    string Saturday, string Title, Dictionary<string, string>? TitleByLanguage,
+    bool IsHoliday, List<ReadingCitation>? Readings, string? SourceUrl)
 {
+    public string LocalizedTitle(string language) => HebrewDisplayText.WithoutMarks(
+        UiLanguageCatalog.Localized(TitleByLanguage, language) ?? Title);
+    public string LocalizedReadings(string language) => string.Join("; ",
+        (Readings ?? []).Select(reading => reading.LocalizedFull(language)));
+}
+
+public sealed record LiturgicalDayInfo(string English, string Hebrew, DateOnly Date, string Season, int Week, bool UsesRomanSeason = true)
+{
+    public bool IsVisible => Date.DayOfWeek != DayOfWeek.Sunday;
+
     public string Localized(string language)
     {
         var code = UiLanguageCatalog.Normalize(language);
+        if (!UsesRomanSeason) return CalendarDateLabel(Date, code);
         if (code == "he") return Hebrew;
         if (code == "en") return English;
         var weekday = Date.ToDateTime(TimeOnly.MinValue).ToString("dddd",
@@ -103,6 +116,25 @@ public sealed record LiturgicalDayInfo(string English, string Hebrew, DateOnly D
             "it" => $"{weekday} · Settimana {Week} — {season}",
             _ => English,
         };
+    }
+
+    /// <summary>A civil date only; another rite never inherits the modern Roman season.</summary>
+    public static string CalendarDateLabel(DateOnly date, string language)
+    {
+        var code = UiLanguageCatalog.Normalize(language);
+        var culture = (System.Globalization.CultureInfo)System.Globalization.CultureInfo
+            .GetCultureInfo(UiLanguageCatalog.ResourceTag(code)).Clone();
+        culture.DateTimeFormat.Calendar = new System.Globalization.GregorianCalendar();
+        var month = code == "ru" ? culture.DateTimeFormat.MonthGenitiveNames[date.Month - 1]
+            : date.ToDateTime(TimeOnly.MinValue).ToString("MMMM", culture);
+        var template = code switch
+        {
+            "he" => "יום {0} בחודש {1}", "ar" => "اليوم {0} من شهر {1}",
+            "ru" => "День {0} месяца {1}", "tl" => "Araw {0} ng {1}",
+            "fr" => "Jour {0} de {1}", "it" => "Giorno {0} di {1}",
+            _ => "Day {0} of {1}",
+        };
+        return string.Format(culture, template, date.Day, month);
     }
 }
 
@@ -146,6 +178,8 @@ public static class TodayInfoStore
 
     private sealed record CalendarsFile(string? Default, List<FeastCalendar>? Calendars);
 
+    private sealed record TorahPortionsFile(Dictionary<string, TorahPortion>? Days);
+
     private static readonly JsonSerializerOptions JsonOptions = new() { PropertyNameCaseInsensitive = true };
 
     private static Dictionary<string, FeastDay> _feastsByDay = new();
@@ -154,6 +188,8 @@ public static class TodayInfoStore
     private static CalendarsFile? _registry;
     private static bool _didLoadRegistry;
     private static bool _didLoadIntentions;
+    private static bool _didLoadTorahPortions;
+    private static Dictionary<string, TorahPortion> _torahPortionsByDay = new();
     private static string? _loadedCalendarId;
     private static string? _loadedReadingsCalendarId;
 
@@ -201,23 +237,25 @@ public static class TodayInfoStore
     public static FeastDay? Feast(DateOnly date)
     {
         EnsureFeastsLoaded();
-        return _feastsByDay.GetValueOrDefault(date.ToString("yyyy-MM-dd"));
+        return _feastsByDay.GetValueOrDefault(date.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture));
     }
 
     public static PopeIntention? Intention(DateOnly date)
     {
         EnsureIntentionsLoaded();
-        return _intentionsByMonth.GetValueOrDefault(date.ToString("yyyy-MM"));
+        return _intentionsByMonth.GetValueOrDefault(date.ToString("yyyy-MM", System.Globalization.CultureInfo.InvariantCulture));
     }
 
     public static IReadOnlyList<ReadingCitation> Readings(DateOnly date)
     {
         EnsureReadingsLoaded();
-        return _readingsByDay.GetValueOrDefault(date.ToString("yyyy-MM-dd"))?.Readings ?? [];
+        return _readingsByDay.GetValueOrDefault(date.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture))?.Readings ?? [];
     }
 
     public static LiturgicalDayInfo LiturgicalDay(DateOnly date)
     {
+        if (ResolvedCalendarId is not ("lpj" or "roman"))
+            return new LiturgicalDayInfo(CalendarDateLabel(date, "en"), CalendarDateLabel(date, "he"), date, "", 0, false);
         var year = date.Year;
         var easter = ComputeEasterSunday(year);
         var ashWednesday = easter.AddDays(-46);
@@ -245,6 +283,20 @@ public static class TodayInfoStore
             $"{englishWeekday} · Week {season.Week} of {season.English}",
             $"{hebrewWeekday} · השבוע ה־{season.Week} {season.Hebrew}", date, season.English, season.Week);
     }
+
+    /// <summary>The selected civil day's upcoming Sabbath, following the Eretz Israel cycle.
+    /// Festival readings remain festival readings; there is no borrowing from a later week.</summary>
+    public static TorahPortion? WeeklyTorahPortion(DateOnly date)
+    {
+        if (!_didLoadTorahPortions)
+        {
+            _didLoadTorahPortions = true;
+            _torahPortionsByDay = LoadFile<TorahPortionsFile>("torah-portions")?.Days ?? new();
+        }
+        return _torahPortionsByDay.GetValueOrDefault(date.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture));
+    }
+
+    private static string CalendarDateLabel(DateOnly date, string language) => LiturgicalDayInfo.CalendarDateLabel(date, language);
 
     private static int Week(DateOnly origin, DateOnly date) => Math.Max(1, (date.DayNumber - origin.DayNumber) / 7 + 1);
 
@@ -277,10 +329,12 @@ public static class TodayInfoStore
     private static void EnsureFeastsLoaded()
     {
         var selected = ResolvedCalendarId;
-        if (selected == _loadedCalendarId) return;
-        _loadedCalendarId = selected;
+        var cacheKey = CalendarDataKey;
+        if (cacheKey == _loadedCalendarId) return;
+        _loadedCalendarId = cacheKey;
 
-        var file = Calendars.FirstOrDefault(c => c.Id == selected)?.File ?? "feasts";
+        var file = selected == "ugcc" && AppSettings.EasternPaschaStyle == "gregorian"
+            ? "feasts-ugcc-gregorian" : Calendars.FirstOrDefault(c => c.Id == selected)?.File ?? "feasts";
         _feastsByDay = LoadFile<FeastsFile>(file)?.Days ?? new Dictionary<string, FeastDay>();
     }
 
@@ -295,17 +349,22 @@ public static class TodayInfoStore
     private static void EnsureReadingsLoaded()
     {
         var selected = ResolvedCalendarId;
-        if (selected == _loadedReadingsCalendarId) return;
-        _loadedReadingsCalendarId = selected;
+        var cacheKey = CalendarDataKey;
+        if (cacheKey == _loadedReadingsCalendarId) return;
+        _loadedReadingsCalendarId = cacheKey;
 
         // A missing/unknown readings file is deliberately empty. Falling back to the Roman
         // lectionary here would silently show the wrong rite after the user chose Byzantine,
         // Syriac, or the 1962 calendar.
-        var file = Calendars.FirstOrDefault(c => c.Id == selected)?.ReadingsFile;
+        var file = selected == "ugcc" && AppSettings.EasternPaschaStyle == "gregorian"
+            ? "readings-ugcc-gregorian" : Calendars.FirstOrDefault(c => c.Id == selected)?.ReadingsFile;
         _readingsByDay = string.IsNullOrWhiteSpace(file)
             ? new Dictionary<string, ReadingDay>()
             : LoadFile<ReadingsFile>(file)?.Days ?? new Dictionary<string, ReadingDay>();
     }
+
+    private static string CalendarDataKey => ResolvedCalendarId == "ugcc"
+        ? $"ugcc:{AppSettings.EasternPaschaStyle}" : ResolvedCalendarId;
 
     private static T? LoadFile<T>(string name) where T : class
     {

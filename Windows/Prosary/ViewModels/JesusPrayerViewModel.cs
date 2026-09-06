@@ -54,6 +54,27 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     private string _progressText = string.Empty;
 
     [ObservableProperty]
+    private string _progressFontFamily = PrayerTypography.NativeUiFontFamily;
+
+    [ObservableProperty]
+    private bool _hasTransliteration;
+
+    [ObservableProperty]
+    private bool _showsTransliteration;
+
+    private string? _initializedScriptLanguage;
+    private string? _aramaicSessionScript;
+
+    [RelayCommand]
+    private void ToggleTransliteration()
+    {
+        if (_aramaicSessionScript is not null)
+            _aramaicSessionScript = _aramaicSessionScript == "Syrc" ? "Hebr" : "Syrc";
+        else ShowsTransliteration = !ShowsTransliteration;
+        RenderCurrentStep();
+    }
+
+    [ObservableProperty]
     private double? _progress;
 
     [ObservableProperty]
@@ -166,6 +187,8 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
 
     partial void OnMatchingFavoriteIdChanged(Guid? value) => OnPropertyChanged(nameof(IsFavorited));
 
+    public void RefreshTypography() => RenderCurrentStep();
+
     private void RenderCurrentStep()
     {
         if (!_hasLoaded)
@@ -173,13 +196,30 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
             return;
         }
 
-        Body = PrayerTranslations.Get(_languageCode, PrayerKey.OratioIesu);
+        var original = PrayerTranslations.Get(_languageCode, PrayerKey.OratioIesu);
+        var alternate = PrayerPackStore.Transliteration("rosary", _languageCode, "oratioIesu");
+        HasTransliteration = alternate is not null;
+        if (_initializedScriptLanguage != _languageCode)
+        {
+            _initializedScriptLanguage = _languageCode;
+            _aramaicSessionScript = _languageCode == "arc" ? AppSettings.AramaicDefaultScript : null;
+        }
+        if (_aramaicSessionScript is not null)
+            ShowsTransliteration = PrayerTranslations.InitialTransliteration(_languageCode, original, alternate, _aramaicSessionScript) ?? false;
+        Body = ShowsTransliteration ? alternate ?? original : original;
+        var usesSyriacScript = _aramaicSessionScript is not null ? _aramaicSessionScript == "Syrc"
+            : PrayerTypography.ScriptOf(Body) == PrayerTypography.Script.Syriac;
         ProgressText = RepetitionState.TargetCount is { } count
-            ? string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), RepetitionState.CurrentIndex + 1, count)
+            ? PrayerTranslations.AramaicProgress(RepetitionState.CurrentIndex + 1, count, _languageCode, usesSyriacScript)
+                ?? string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), RepetitionState.CurrentIndex + 1, count)
             : $"{RepetitionState.CurrentIndex + 1}";
+        ProgressFontFamily = _languageCode != "arc" ? PrayerTypography.NativeUiFontFamily
+            : PrayerTypography.ResolveBodyFontFamily(_languageCode, false, PrayerTypography.ScriptOf(ProgressText));
         Progress = RepetitionState.ProgressFraction;
-        BodyFontFamily = PrayerTypography.ResolveBodyFontFamily(_languageCode, isScripture: false);
-        BodyFontSize = PrayerTypography.ResolveBodyFontSize(_languageCode, isScripture: false);
+        var bodyScript = PrayerTypography.ScriptOf(Body);
+        IsRightToLeft = PrayerTypography.IsRightToLeft(bodyScript);
+        BodyFontFamily = PrayerTypography.ResolveBodyFontFamily(_languageCode, isScripture: false, bodyScript);
+        BodyFontSize = PrayerTypography.ResolveBodyFontSize(_languageCode, isScripture: false, bodyScript);
     }
 
     public void ContinueSavedRun()

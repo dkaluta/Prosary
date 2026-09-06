@@ -15,7 +15,7 @@ enum AppRoute: Hashable {
   case jesusPrayer(target: JesusPrayerTarget)
   /// Launches a generic (bundle-driven) devotion with no existing favorite — `devotionId` is the
   /// bundle id, e.g. `"angelus"`. See `PrayerKind.custom`.
-  case custom(devotionId: String)
+  case custom(devotionId: String, languageCode: String? = nil, variantId: String? = nil)
   /// An ad-hoc, unsaved Rosary session configured in the picker's quick-setup sheet.
   case rosaryQuickPray(prayer: Prayer)
   /// The basic prayers on their own (Erez, 2026-08-07) — the list, and one prayer as a

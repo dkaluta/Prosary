@@ -33,7 +33,11 @@
                                     CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" Spacing="12">
                                     <FontIcon Glyph="{x:Bind IconGlyph}" Foreground="{StaticResource BrandPrimaryBrush}" />
-                                    <TextBlock Text="{x:Bind Title}" FontSize="15" />
+                                    <StackPanel Spacing="2">
+                                        <TextBlock Text="{x:Bind Title}" FontSize="15" TextWrapping="Wrap" />
+                                        <TextBlock Text="{x:Bind InterfaceSubtitle}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap"
+                                                   Visibility="{x:Bind HasInterfaceSubtitle, Converter={StaticResource BoolToVisibility}}" />
+                                    </StackPanel>
                                 </StackPanel>
                             </Button>
                         </DataTemplate>

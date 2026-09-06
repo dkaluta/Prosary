@@ -52,6 +52,10 @@ struct AppServices {
       // so a "clean slate" has to clear them too or a run inherits the previous one's Pray tab.
       FavoriteDevotions.reset()
       HomeOrder.reset()
+      CloudSyncedList.remove(BasicPrayerFavorites.idsKey)
+      BasicPrayersOrder.reset()
+      UserDefaults.standard.removeObject(forKey: BasicPrayerCatalog.languageDefaultsKey)
+      UserDefaults.standard.removeObject(forKey: PrayerRunProgressStore.defaultsKey)
       MultiDayRuns.reset()
     }
     return AppServices(

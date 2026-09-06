@@ -9,12 +9,11 @@ using Windows.UI;
 
 namespace Prosary.ViewModels;
 
-/// <summary>One row of the basic-prayers list — the title resolved in the prayer language
-/// through the same chains the flows use, so the list itself reads in the rite being
-/// prayed.</summary>
-public sealed record BasicPrayerRow(string Id, string Title, string ImageFile, bool IsFavorite)
+/// <summary>One basic-prayer card with an optional, distinct interface-language subtitle.</summary>
+public sealed record BasicPrayerRow(string Id, string Title, string ImageFile, bool IsPinned, string InterfaceSubtitle = "")
 {
-    public string FavoriteGlyph => IsFavorite ? "★" : "☆";
+    public bool HasInterfaceSubtitle => !string.IsNullOrWhiteSpace(InterfaceSubtitle);
+    public string PinActionLabel => IsPinned ? Loc.Tr("basic_unpin", "Unpin from home") : Loc.Tr("basic_pin", "Pin to home");
 }
 
 /// <summary>The basic prayers on their own, outside any devotion (Erez, 2026-08-07). Mirrors
@@ -29,7 +28,7 @@ public partial class BasicPrayersViewModel : ObservableObject
 
     public string CurrentLanguageRaw => AppSettings.BasicPrayersLanguageCode;
 
-    public IReadOnlyList<LanguageOption> Languages => LanguageCatalog.All;
+    public IReadOnlyList<LanguageOption> Languages => LanguageCatalog.PickerOptions;
 
     public void SelectLanguage(string code)
     {
@@ -40,15 +39,16 @@ public partial class BasicPrayersViewModel : ObservableObject
     public void Load()
     {
         var language = LanguageCatalog.Resolve(CurrentLanguageRaw);
-        IsRightToLeft = language.IsRightToLeft;
+        IsRightToLeft = UiLanguageCatalog.IsRightToLeft(UiLanguageCatalog.Current);
         // Reorderable per Erez (2026-08-08): the HomeOrder pattern — persisted ids first,
         // catalog order for the rest.
-        Rows = BasicPrayersOrder.ApplyFavorites(BasicPrayersOrder.Apply(BasicPrayerCatalog.All))
-            .Select(p => new BasicPrayerRow(
-                p.Id,
-                PrayerPackStore.ResolveDisplayText(p.BundleId, language.Code, p.TitleKey),
-                ImageFile(p.ImageKey),
-                AppSettings.FavoriteBasicPrayerIds.Contains(p.Id)))
+        Rows = BasicPrayersOrder.Apply(BasicPrayerCatalog.All)
+            .Select(p =>
+            {
+                var name = PrayerCardName.ForBasicPrayer(p, language.Code);
+                return new BasicPrayerRow(p.Id, name.Title, ImageFile(p.ImageKey),
+                    AppSettings.FavoriteBasicPrayerIds.Contains(p.Id), name.InterfaceSubtitle);
+            })
             .ToList();
     }
 
@@ -70,7 +70,7 @@ public partial class BasicPrayersViewModel : ObservableObject
     private void Open(BasicPrayerRow row) => Router.Navigate<Views.BasicPrayerFlowPage>(row.Id);
 
     [RelayCommand]
-    private void ToggleFavorite(BasicPrayerRow row)
+    private void TogglePin(BasicPrayerRow row)
     {
         AppSettings.ToggleFavoriteBasicPrayer(row.Id);
         Load();
@@ -100,6 +100,12 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     private string _progressText = string.Empty;
 
     [ObservableProperty]
+    private string _progressFontFamily = PrayerTypography.NativeUiFontFamily;
+
+    private string? _initializedScriptLanguage;
+    private string? _aramaicSessionScript;
+
+    [ObservableProperty]
     private bool _isRightToLeft;
 
     [ObservableProperty]
@@ -116,19 +122,22 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
 
     public string CurrentLanguageRaw => AppSettings.BasicPrayersLanguageCode;
 
-    public IReadOnlyList<LanguageOption> Languages => LanguageCatalog.All;
+    public IReadOnlyList<LanguageOption> Languages => LanguageCatalog.PickerOptions;
 
     public void SelectLanguage(string code)
     {
         AppSettings.SetBasicPrayersLanguageCode(code);
         ShowsTransliteration = false;
+        _initializedScriptLanguage = null;
         RenderPrayer();
     }
 
     [RelayCommand]
     private void ToggleTransliteration()
     {
-        ShowsTransliteration = !ShowsTransliteration;
+        if (_aramaicSessionScript is not null)
+            _aramaicSessionScript = _aramaicSessionScript == "Syrc" ? "Hebr" : "Syrc";
+        else ShowsTransliteration = !ShowsTransliteration;
         RenderPrayer();
     }
 
@@ -150,25 +159,39 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     {
         _prayerId = prayerId;
         ShowsTransliteration = false;
+        _initializedScriptLanguage = null;
         RenderPrayer();
     }
+
+    public void RefreshTypography() => RenderPrayer();
 
     private void RenderPrayer()
     {
         if (_prayerId is null || BasicPrayerCatalog.Prayer(_prayerId) is not { } prayer) return;
         var language = LanguageCatalog.Resolve(CurrentLanguageRaw);
         var step = BasicPrayerCatalog.Step(prayer, language.Code);
-        Header = step.Title;
+        if (_initializedScriptLanguage != language.Code)
+        {
+            _initializedScriptLanguage = language.Code;
+            _aramaicSessionScript = language.Code == "arc" ? AppSettings.AramaicDefaultScript : null;
+        }
+        if (_aramaicSessionScript is not null)
+            ShowsTransliteration = PrayerTranslations.InitialTransliteration(language.Code, step.Body, step.TransliteratedBody, _aramaicSessionScript) ?? false;
         HasTransliteration = step.TransliteratedBody is not null;
         Body = ShowsTransliteration && step.TransliteratedBody is { } transliterated
             ? transliterated
             : step.Body;
+        var usesSyriacScript = _aramaicSessionScript is not null ? _aramaicSessionScript == "Syrc"
+            : PrayerTypography.ScriptOf(Body) == PrayerTypography.Script.Syriac;
+        Header = PrayerTranslations.FlowTitle(step.Title, language.Code, usesSyriacScript);
         MysteryImageFile = BasicPrayersViewModel.ImageFile(prayer.ImageKey);
-        ProgressText = string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), 1, 1);
+        var aramaicProgress = PrayerTranslations.AramaicProgress(1, 1, language.Code, usesSyriacScript);
+        ProgressText = aramaicProgress ?? string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), 1, 1);
+        ProgressFontFamily = aramaicProgress is null ? PrayerTypography.NativeUiFontFamily
+            : PrayerTypography.ResolveBodyFontFamily(language.Code, false, PrayerTypography.ScriptOf(ProgressText));
         IsRightToLeft = language.IsRightToLeft;
-        var bodyScript = ShowsTransliteration && step.TransliteratedBody is { } shown
-            ? PrayerTypography.ScriptOf(shown)
-            : (PrayerTypography.Script?)null;
+        var bodyScript = PrayerTypography.ScriptOf(Body);
+        IsRightToLeft = PrayerTypography.IsRightToLeft(bodyScript);
         BodyFontFamily = PrayerTypography.ResolveBodyFontFamily(language.Code, isScripture: false, script: bodyScript);
         BodyFontSize = PrayerTypography.ResolveBodyFontSize(language.Code, isScripture: false, script: bodyScript);
     }

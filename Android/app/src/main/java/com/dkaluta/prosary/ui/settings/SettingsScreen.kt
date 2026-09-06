@@ -38,6 +38,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalConfiguration
+import com.dkaluta.prosary.typography.SystemSansFontProbe
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
@@ -67,10 +69,13 @@ fun SettingsScreen(onBack: () -> Unit) {
     var aramaicSignOfCrossForm by remember { mutableStateOf(AppSettings.aramaicSignOfCrossForm) }
     var autoAdvanceSeconds by remember { mutableIntStateOf(AppSettings.autoAdvanceSeconds) }
     var hapticsOnAdvance by remember { mutableStateOf(AppSettings.hapticsOnAdvance) }
-    var syriacTypeface by remember { mutableStateOf(AppSettings.syriacTypeface) }
-    var hebrewPrayerTypeface by remember { mutableStateOf(AppSettings.hebrewPrayerTypeface) }
-    var hebrewScriptureTypeface by remember { mutableStateOf(AppSettings.hebrewScriptureTypeface) }
-    var favoriteBasicPrayersFirst by remember { mutableStateOf(AppSettings.favoriteBasicPrayersFirst) }
+    val typographyConfiguration = LocalConfiguration.current
+    val systemSansMatches = remember(typographyConfiguration) {
+        SystemSansFontProbe.SampleScript.entries.associateWith { SystemSansFontProbe.usesBundledSans(it) }
+    }
+    val syriacTypeface = AppSettings.syriacTypeface
+    val hebrewPrayerTypeface = AppSettings.hebrewPrayerTypeface
+    val hebrewScriptureTypeface = AppSettings.hebrewScriptureTypeface
     var showTodayFeast by remember { mutableStateOf(AppSettings.showTodayFeast) }
     var showTodayIntention by remember { mutableStateOf(AppSettings.showTodayIntention) }
     var homeOrderIsCustom by remember { mutableStateOf(HomeOrder.saved(context).isNotEmpty()) }
@@ -145,15 +150,25 @@ fun SettingsScreen(onBack: () -> Unit) {
         ) {
             OptionPickerField(
                 label = stringResource(R.string.settings_default_prayer_language),
-                options = LanguageCatalog.all,
-                selected = LanguageCatalog.all.firstOrNull { it.code == defaultLanguageCode }
+                options = LanguageCatalog.publicOptions,
+                selected = LanguageCatalog.publicOptions.firstOrNull { it.code == LanguageCatalog.pickerLanguageCode(defaultLanguageCode) }
                     ?: LanguageCatalog.resolve(defaultLanguageCode),
                 optionLabel = { it.nativeName },
                 onSelect = {
-                    defaultLanguageCode = it.code
-                    AppSettings.setDefaultLanguageCode(it.code)
+                    defaultLanguageCode = LanguageCatalog.selectingLanguage(it.code, defaultLanguageCode)
+                    AppSettings.setDefaultLanguageCode(defaultLanguageCode)
                 },
             )
+
+            if (LanguageCatalog.pickerLanguageCode(defaultLanguageCode) == "he") {
+                OptionPickerField(
+                    label = stringResource(R.string.prayer_tradition),
+                    options = listOf("he", "he-x-gamliel"),
+                    selected = defaultLanguageCode,
+                    optionLabel = { context.getString(if (it == "he") R.string.prayer_tradition_vicariate else R.string.prayer_tradition_mission) },
+                    onSelect = { defaultLanguageCode = it; AppSettings.setDefaultLanguageCode(it) },
+                )
+            }
 
             OutlinedButton(
                 onClick = {
@@ -162,6 +177,15 @@ fun SettingsScreen(onBack: () -> Unit) {
                 },
                 modifier = Modifier.fillMaxWidth(),
             ) { Text(stringResource(R.string.settings_language_fallback_order)) }
+
+            Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                Column(Modifier.weight(1f)) {
+                    Text(stringResource(R.string.settings_prayer_names_in_prayer_language))
+                    Text(stringResource(R.string.settings_prayer_names_in_prayer_language_hint), style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+                Switch(checked = AppSettings.showPrayerNameInPrayerLanguage, onCheckedChange = { AppSettings.showPrayerNameInPrayerLanguage = it })
+            }
 
             if ((LanguageCatalog.baseLanguage(defaultLanguageCode) ?: defaultLanguageCode) == "arc") {
                 OptionPickerField(
@@ -230,18 +254,15 @@ fun SettingsScreen(onBack: () -> Unit) {
                 modifier = Modifier.fillMaxWidth(),
             ) { Text(stringResource(R.string.settings_reset_home_order)) }
 
-            Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                Text(stringResource(R.string.settings_favorite_basic_prayers_first), modifier = Modifier.weight(1f))
-                Switch(
-                    checked = favoriteBasicPrayersFirst,
-                    onCheckedChange = {
-                        favoriteBasicPrayersFirst = it
-                        AppSettings.setFavoriteBasicPrayersFirst(it)
-                    },
-                )
-            }
-
             SectionHeader(stringResource(R.string.settings_typography_header))
+
+            OptionPickerField(
+                label = stringResource(R.string.settings_aramaic_default_script),
+                options = listOf("Hebr", "Syrc"),
+                selected = AppSettings.aramaicDefaultScript,
+                optionLabel = { context.getString(if (it == "Syrc") R.string.settings_script_syriac else R.string.settings_script_hebrew) },
+                onSelect = { AppSettings.setAramaicDefaultScript(it) },
+            )
 
             OptionPickerField(
                 label = stringResource(R.string.settings_syriac_typeface),
@@ -254,21 +275,27 @@ fun SettingsScreen(onBack: () -> Unit) {
                         else -> R.string.settings_typeface_default
                     })
                 },
-                onSelect = { syriacTypeface = it; AppSettings.setSyriacTypeface(it) },
+                onSelect = { AppSettings.setSyriacTypeface(it) },
             )
 
             OptionPickerField(
                 label = stringResource(R.string.settings_hebrew_prayer_typeface),
-                options = listOf(AppSettings.TYPEFACE_DEFAULT, AppSettings.TYPEFACE_DAVID_LIBRE, AppSettings.TYPEFACE_SANS_SERIF),
+                options = buildList {
+                    add(AppSettings.TYPEFACE_DEFAULT)
+                    add(AppSettings.TYPEFACE_DAVID_LIBRE)
+                    if (SystemSansFontProbe.shouldOfferBundledFont(systemSansMatches[SystemSansFontProbe.SampleScript.HEBREW], hebrewPrayerTypeface == AppSettings.TYPEFACE_BUNDLED_SANS_SERIF)) add(AppSettings.TYPEFACE_BUNDLED_SANS_SERIF)
+                    add(AppSettings.TYPEFACE_SANS_SERIF)
+                },
                 selected = hebrewPrayerTypeface,
                 optionLabel = {
                     context.getString(when (it) {
                         AppSettings.TYPEFACE_DAVID_LIBRE -> R.string.settings_typeface_david_libre
                         AppSettings.TYPEFACE_SANS_SERIF -> R.string.settings_typeface_sans_serif
-                        else -> R.string.settings_typeface_default
+                        AppSettings.TYPEFACE_BUNDLED_SANS_SERIF -> R.string.settings_typeface_roboto_noto
+                        else -> R.string.settings_typeface_frank_ruhl_libre
                     })
                 },
-                onSelect = { hebrewPrayerTypeface = it; AppSettings.setHebrewPrayerTypeface(it) },
+                onSelect = { AppSettings.setHebrewPrayerTypeface(it) },
             )
 
             OptionPickerField(
@@ -283,7 +310,39 @@ fun SettingsScreen(onBack: () -> Unit) {
                         else -> R.string.settings_typeface_default
                     })
                 },
-                onSelect = { hebrewScriptureTypeface = it; AppSettings.setHebrewScriptureTypeface(it) },
+                onSelect = { AppSettings.setHebrewScriptureTypeface(it) },
+            )
+
+            OptionPickerField(
+                label = stringResource(R.string.settings_latin_prayer_typeface),
+                options = buildList {
+                    add(AppSettings.TYPEFACE_DEFAULT)
+                    if (SystemSansFontProbe.shouldOfferBundledFont(systemSansMatches[SystemSansFontProbe.SampleScript.LATIN], AppSettings.latinPrayerTypeface == AppSettings.TYPEFACE_BUNDLED_SANS_SERIF)) add(AppSettings.TYPEFACE_BUNDLED_SANS_SERIF)
+                    add(AppSettings.TYPEFACE_SANS_SERIF)
+                },
+                selected = AppSettings.latinPrayerTypeface,
+                optionLabel = { context.getString(when (it) {
+                    AppSettings.TYPEFACE_SANS_SERIF -> R.string.settings_typeface_sans_serif
+                    AppSettings.TYPEFACE_BUNDLED_SANS_SERIF -> R.string.settings_typeface_roboto
+                    else -> R.string.settings_typeface_serif
+                }) },
+                onSelect = { AppSettings.setLatinPrayerTypeface(it) },
+            )
+
+            OptionPickerField(
+                label = stringResource(R.string.settings_cyrillic_prayer_typeface),
+                options = buildList {
+                    add(AppSettings.TYPEFACE_DEFAULT)
+                    if (SystemSansFontProbe.shouldOfferBundledFont(systemSansMatches[SystemSansFontProbe.SampleScript.CYRILLIC], AppSettings.cyrillicPrayerTypeface == AppSettings.TYPEFACE_BUNDLED_SANS_SERIF)) add(AppSettings.TYPEFACE_BUNDLED_SANS_SERIF)
+                    add(AppSettings.TYPEFACE_SANS_SERIF)
+                },
+                selected = AppSettings.cyrillicPrayerTypeface,
+                optionLabel = { context.getString(when (it) {
+                    AppSettings.TYPEFACE_SANS_SERIF -> R.string.settings_typeface_sans_serif
+                    AppSettings.TYPEFACE_BUNDLED_SANS_SERIF -> R.string.settings_typeface_roboto
+                    else -> R.string.settings_typeface_serif
+                }) },
+                onSelect = { AppSettings.setCyrillicPrayerTypeface(it) },
             )
 
             // The Home "Today" section (Erez's requests): which of its rows show at all, and
@@ -293,6 +352,15 @@ fun SettingsScreen(onBack: () -> Unit) {
             // calendar. Reads through the store so an unset/unknown stored id shows as the
             // registry default.
             SectionHeader(stringResource(R.string.settings_today_header))
+
+            Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                Column(Modifier.weight(1f)) {
+                    Text(stringResource(R.string.settings_show_today_torah))
+                    Text(stringResource(R.string.settings_show_today_torah_hint), style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+                Switch(checked = AppSettings.showTodayTorahPortion, onCheckedChange = { AppSettings.showTodayTorahPortion = it })
+            }
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -341,6 +409,15 @@ fun SettingsScreen(onBack: () -> Unit) {
                         AppSettings.feastCalendarId = it.id
                     },
                 )
+                if (feastCalendarId == "ugcc") {
+                    OptionPickerField(
+                        label = stringResource(R.string.settings_eastern_pascha),
+                        options = listOf("julian", "gregorian"),
+                        selected = AppSettings.easternPaschaStyle,
+                        optionLabel = { context.getString(if (it == "gregorian") R.string.settings_pascha_gregorian else R.string.settings_pascha_julian) },
+                        onSelect = { AppSettings.easternPaschaStyle = it },
+                    )
+                }
                 Text(
                     stringResource(R.string.settings_feast_calendar_hint),
                     style = MaterialTheme.typography.bodySmall,
@@ -472,7 +549,8 @@ fun SettingsScreen(onBack: () -> Unit) {
     if (showsLanguageFallbackOrder) {
         OrderEditor(
             titles = languageFallbackOrder.map { code ->
-                code to (LanguageCatalog.all.firstOrNull { it.code == code }?.nativeName ?: code)
+                code to if (code == "he-x-gamliel") context.getString(R.string.prayer_tradition_mission)
+                else (LanguageCatalog.all.firstOrNull { it.code == code }?.nativeName ?: code)
             },
             dialogTitle = stringResource(R.string.settings_language_fallback_order_title),
             footer = stringResource(R.string.settings_language_fallback_order_footer),

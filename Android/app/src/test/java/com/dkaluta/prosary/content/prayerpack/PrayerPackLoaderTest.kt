@@ -46,7 +46,8 @@ class PrayerPackLoaderTest {
         val readingAid = PrayerPackStore.transliteration("oAntiphons", "arc", "gloriaPatri")
         assertNotNull(readingAid)
         assertEquals(PrayerPackStore.transliteration("trisagion", "arc", "gloriaPatri"), readingAid)
-        assertFalse(readingAid == PrayerPackStore.transliteration("rosary", "arc", "gloriaPatri"))
+        // Rosary and Trisagion now share the corrected Gloria text and line breaks.
+        assertEquals(PrayerPackStore.transliteration("rosary", "arc", "gloriaPatri"), readingAid)
         assertNull(PrayerPackStore.transliteration("oAntiphons", "en", "gloriaPatri"))
     }
 
@@ -596,7 +597,7 @@ class PrayerPackLoaderTest {
     fun bundledPacksExist() {
         for (pack in listOf(
             "rosary", "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
-            "divineMercyChaplet", "trisagion", "oAntiphons",
+            "divineMercyChaplet", "trisagion", "oAntiphons", "litanyOfLoreto",
         )) {
             assertTrue("missing $pack.prosaryprayer", File("src/main/assets/$pack.prosaryprayer").exists())
         }
@@ -611,7 +612,7 @@ class PrayerPackLoaderTest {
         assertEquals(
             listOf(
                 "angelus", "stationsOfTheCross", "viaLucis", "franciscanCrown", "sevenSorrows",
-                "divineMercyChaplet", "trisagion", "oAntiphons",
+                "divineMercyChaplet", "trisagion", "oAntiphons", "litanyOfLoreto",
             ),
             PrayerPackStore.customDevotionIds(),
         )
@@ -638,27 +639,29 @@ class PrayerPackLoaderTest {
         assertEquals("en", LanguageCatalog.uiLanguageCode("en"))
     }
 
-    /** A devotion's name follows the prayer language, rites included — Erez's ask: with his
-     * rite as the default prayer language, the Trisagion card reads קדישת; plain Hebrew reads
-     * טריסאגיון; a rite falls to its base when the bundle only names the base language. */
+    /** Interface metadata cannot be replaced by a prayer preference. Bilingual card names
+     * retain exact rite names and their base fallback only after explicitly enabling them. */
     @Test
-    fun displayNameFollowsThePrayerLanguage() {
+    fun displayNameFollowsInterfaceAndBilingualCardsAreExplicit() {
         val saved = AppSettings.defaultLanguageCode
+        val savedToggle = AppSettings.showPrayerNameInPrayerLanguage
         try {
             AppSettings.setDefaultLanguageCode("he-x-gamliel")
-            assertEquals("קדישת", PrayerPackStore.info("trisagion")?.localizedDisplayName)
-            assertEquals(
-                PrayerPackStore.info("divineMercyChaplet")?.displayNameByLanguage?.get("he"),
-                PrayerPackStore.info("divineMercyChaplet")?.localizedDisplayName,
-            )
-
-            AppSettings.setDefaultLanguageCode("he")
-            assertEquals("טריסאגיון", PrayerPackStore.info("trisagion")?.localizedDisplayName)
-
-            AppSettings.setDefaultLanguageCode("la")
-            assertEquals("Trisagion", PrayerPackStore.info("trisagion")?.localizedDisplayName)
+            val info = PrayerPackStore.info("trisagion")!!
+            AppSettings.showPrayerNameInPrayerLanguage = false
+            assertEquals("Trisagion", info.cardTitle(interfaceLanguage = "en").primary)
+            assertNull(info.cardTitle(interfaceLanguage = "en").interfaceSubtitle)
+            AppSettings.showPrayerNameInPrayerLanguage = true
+            assertEquals("קדישת", info.cardTitle(interfaceLanguage = "en").primary)
+            assertEquals("Trisagion", info.cardTitle(interfaceLanguage = "en").interfaceSubtitle)
+            assertEquals("טריסאגיון", info.cardTitle("he", "en").primary)
+            assertNull(info.cardTitle("he", "he").interfaceSubtitle)
+            assertEquals(info.displayNameIn(LanguageCatalog.uiLanguageCode()), info.localizedDisplayName)
+            assertEquals(PrayerPackStore.info("divineMercyChaplet")?.displayNameByLanguage?.get("he"),
+                PrayerPackStore.info("divineMercyChaplet")?.displayNameIn("he-x-gamliel"))
         } finally {
             AppSettings.setDefaultLanguageCode(saved)
+            AppSettings.showPrayerNameInPrayerLanguage = savedToggle
         }
     }
 

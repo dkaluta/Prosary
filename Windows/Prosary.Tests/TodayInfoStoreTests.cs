@@ -19,6 +19,7 @@ public class TodayInfoStoreTests
     public TodayInfoStoreTests()
     {
         TodayInfoStore.SelectedCalendarId = null;
+        AppSettings.SetEasternPaschaStyle("julian");
     }
 
     [Fact]
@@ -68,7 +69,7 @@ public class TodayInfoStoreTests
     public void CalendarRegistryListsTheShippedCalendarsInPickerOrder()
     {
         Assert.Equal(
-            new[] { "lpj", "roman", "roman1962", "ugcc", "syriac" },
+            new[] { "lpj", "roman", "roman1962", "ugcc", "syriac", "maronite" },
             TodayInfoStore.Calendars.Select(c => c.Id));
         Assert.Equal("lpj", TodayInfoStore.ResolvedCalendarId);
         Assert.All(TodayInfoStore.Calendars, calendar => Assert.False(string.IsNullOrWhiteSpace(calendar.ReadingsFile)));
@@ -272,27 +273,28 @@ public class TodayInfoStoreTests
 
         TodayInfoStore.SelectedCalendarId = "ugcc";
         Assert.Equal(
-            "22nd Sunday after Pentecost",
+            "21st Sunday after Pentecost",
             TodayInfoStore.Feast(new DateOnly(2026, 10, 25))?.Title);
     }
 
-    /// <summary>The UGCC dataset is the diasporic (fully Gregorian) usage prayed in the Holy
-    /// Land: Pascha falls with the Gregorian computus (April 5, 2026 — the same day as the
-    /// Roman Easter), and a fixed Great Feast landing in Holy Week is joined, never
-    /// displaced — in 2027 the Annunciation falls on Great and Holy Thursday.</summary>
+    /// <summary>The explicit Gregorian choice retains the diaspora calendar; the default
+    /// Ukrainian choice follows Julian Pascha while retaining Gregorian fixed dates.</summary>
     [Fact]
     public void UkrainianCalendarPraysTheGregorianPascha()
     {
         TodayInfoStore.SelectedCalendarId = "ugcc";
-        var pascha = TodayInfoStore.Feast(new DateOnly(2026, 4, 5));
-        Assert.Equal("The Resurrection of Our Lord — Holy Pascha", pascha?.Title);
-        Assert.Equal("Great Feast", pascha?.Rank);
-        Assert.Equal(
-            "The Protection of the Most Holy Theotokos (Pokrov)",
-            TodayInfoStore.Feast(new DateOnly(2026, 10, 1))?.Title);
-        Assert.Equal(
-            "The Annunciation of the Most Holy Theotokos; Great and Holy Thursday",
-            TodayInfoStore.Feast(new DateOnly(2027, 3, 25))?.Title);
+        AppSettings.SetEasternPaschaStyle("gregorian");
+        try
+        {
+            var pascha = TodayInfoStore.Feast(new DateOnly(2026, 4, 5));
+            Assert.Equal("The Resurrection of Our Lord — Holy Pascha", pascha?.Title);
+            Assert.Equal("Great Feast", pascha?.Rank);
+            Assert.Equal("The Protection of the Most Holy Theotokos (Pokrov)",
+                TodayInfoStore.Feast(new DateOnly(2026, 10, 1))?.Title);
+            Assert.Equal("The Annunciation of the Most Holy Theotokos; Great and Holy Thursday",
+                TodayInfoStore.Feast(new DateOnly(2027, 3, 25))?.Title);
+        }
+        finally { AppSettings.SetEasternPaschaStyle("julian"); }
     }
 
     [Fact]
@@ -375,17 +377,26 @@ public class TodayInfoStoreTests
         Assert.Equal("הבשורה  על־פי יוחנן כ״א 15–17", vetus.Last().LocalizedFull("he"));
 
         TodayInfoStore.SelectedCalendarId = "ugcc";
-        var byzantine = TodayInfoStore.Readings(new DateOnly(2026, 9, 3));
-        Assert.Equal("אל הגלטים ג׳", byzantine.First().LocalizedShort("he"));
-        Assert.Equal("אגרת שאול אל הגלטים ג׳ 23–ד׳ 5", byzantine.First().LocalizedFull("he"));
-        Assert.Equal("השנייה של כיפא א׳", TodayInfoStore.Readings(new DateOnly(2026, 8, 6)).First().LocalizedShort("he"));
+        AppSettings.SetEasternPaschaStyle("gregorian");
+        try
+        {
+            var byzantine = TodayInfoStore.Readings(new DateOnly(2026, 9, 3));
+            Assert.Equal("אל הגלטים ג׳", byzantine.First().LocalizedShort("he"));
+            Assert.Equal("אגרת שאול אל הגלטים ג׳ 23–ד׳ 5", byzantine.First().LocalizedFull("he"));
+            Assert.Equal("השנייה של כיפא א׳", TodayInfoStore.Readings(new DateOnly(2026, 8, 6)).First().LocalizedShort("he"));
+        }
+        finally { AppSettings.SetEasternPaschaStyle("julian"); }
 
         TodayInfoStore.SelectedCalendarId = "syriac";
         var syriac = TodayInfoStore.Readings(new DateOnly(2026, 9, 3));
         Assert.Equal("אל הפיליפים א׳", syriac.First().LocalizedShort("he-x-gamliel"));
         Assert.Equal("אגרת שאול אל הפיליפים א׳ 12–21", syriac.First().LocalizedFull("he"));
         Assert.Equal("השנייה אל טימותיאוס ב׳", TodayInfoStore.Readings(new DateOnly(2026, 8, 8)).First().LocalizedShort("he"));
-        Assert.Empty(TodayInfoStore.Readings(new DateOnly(2026, 8, 1)));
+        var syriacAugustFirst = TodayInfoStore.Readings(new DateOnly(2026, 8, 1));
+        Assert.Equal(new[] { "Hebrews 11:32–40", "Matthew 10:24–33" },
+            syriacAugustFirst.Select(r => r.Full));
+        Assert.Equal(new[] { "אל העברים י״א", "מתי י׳" },
+            syriacAugustFirst.Select(r => r.LocalizedShort("he")));
     }
 
     [Fact]
@@ -397,10 +408,10 @@ public class TodayInfoStoreTests
         Assert.Equal(new[] { "1 Cor. 2", "Ps. 119", "Lk. 4" }, TodayInfoStore.Readings(date).Select(r => r.Short));
 
         TodayInfoStore.SelectedCalendarId = "roman1962";
-        Assert.Equal(new[] { "Lk. 12" }, TodayInfoStore.Readings(date).Select(r => r.Short));
+        Assert.Equal(new[] { "Sir. 31", "Lk. 12" }, TodayInfoStore.Readings(date).Select(r => r.Short));
 
         TodayInfoStore.SelectedCalendarId = "ugcc";
-        Assert.Equal(new[] { "Heb. 9", "Lk. 10" }, TodayInfoStore.Readings(date).Select(r => r.Short));
+        Assert.Equal(new[] { "2 Cor. 12", "Mk. 4", "Heb. 9", "Lk. 10" }, TodayInfoStore.Readings(date).Select(r => r.Short));
 
         TodayInfoStore.SelectedCalendarId = "syriac";
         Assert.Equal(new[] { "Rom. 7", "Lk. 17" }, TodayInfoStore.Readings(date).Select(r => r.Short));
@@ -410,10 +421,16 @@ public class TodayInfoStoreTests
         Assert.Equal("1 Cor. 2", TodayInfoStore.Readings(date).First().Short);
     }
 
-    [Fact]
-    public void ReadingsOutsideASelectedCalendarsCoverageAreEmpty()
+    [Theory]
+    [InlineData("lpj")]
+    [InlineData("roman")]
+    [InlineData("roman1962")]
+    [InlineData("ugcc")]
+    [InlineData("syriac")]
+    [InlineData("maronite")]
+    public void ReadingsOutsideASelectedCalendarsCoverageAreEmpty(string calendarId)
     {
-        TodayInfoStore.SelectedCalendarId = "syriac";
+        TodayInfoStore.SelectedCalendarId = calendarId;
         Assert.Empty(TodayInfoStore.Readings(new DateOnly(2031, 1, 1)));
     }
 
