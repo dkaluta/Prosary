@@ -44,6 +44,20 @@ object BasicPrayerCatalog {
             PrayerPackStore.resolveBodyText(prayer.bundleId, languageCode, prayer.titleKey),
         )
 
+    /** A basic prayer's heading identifies the selected language/tradition. The card option
+     * adds its distinct interface name without replacing the prayer's own title. */
+    fun cardTitle(
+        prayer: BasicPrayer,
+        languageCode: String,
+        interfaceLanguage: String,
+        showInterfaceSubtitle: Boolean = AppSettings.showPrayerNameInPrayerLanguage,
+    ): PrayerCardTitle {
+        val prayerTitle = title(prayer, LanguageCatalog.resolve(languageCode).code)
+        val interfaceTitle = title(prayer, interfaceLanguage)
+        return PrayerCardTitle(prayerTitle,
+            interfaceTitle.takeIf { showInterfaceSubtitle && it != prayerTitle })
+    }
+
     /** The prayer as one [RosaryStep], in the selected or app-default prayer language — the same
      * step the flows render, so typography, RTL, the ✠ mark and the transliteration toggle all
      * come along without any new machinery. */

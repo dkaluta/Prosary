@@ -1,0 +1,443 @@
+<resources>
+    <string name="app_name">"Prosary"</string>
+
+    <!-- Shared -->
+    <string name="common_back">"Назад"</string>
+    <string name="common_cancel">"Скасувати"</string>
+    <string name="common_save">"Зберегти"</string>
+    <string name="common_done">"Готово"</string>
+    <string name="common_move_up">"Перемістити вгору"</string>
+    <string name="common_move_down">"Перемістити вниз"</string>
+    <string name="common_reset">"Скинути"</string>
+    <string name="common_ok">"Гаразд"</string>
+    <string name="common_retry">"Спробувати знову"</string>
+    <string name="common_pray">"Молитися"</string>
+    <string name="common_next">"Далі"</string>
+    <string name="common_finish">"Завершити"</string>
+    <string name="common_install">"Встановити"</string>
+    <string name="common_update">"Оновити"</string>
+    <string name="common_installed">"Встановлено"</string>
+    <string name="common_settings">"Налаштування"</string>
+    <string name="common_about">"Про програму"</string>
+
+    <!-- Bottom tabs -->
+    <string name="tab_pray">"Молитва"</string>
+    <string name="tab_browse">"Огляд"</string>
+    <string name="tab_categories">"Категорії"</string>
+    <string name="tab_search">"Пошук"</string>
+
+    <!-- Home -->
+    <string name="home_today">"Сьогодні: %1$s"</string>
+    <string name="home_pope_intention">"Намірення Папи: %1$s"</string>
+    <string name="home_tap_to_set_up">"Торкніться, щоб налаштувати"</string>
+    <string name="home_tap_to_pray">"Торкніться, щоб молитися"</string>
+    <string name="home_my_favorites">"Моє обране"</string>
+    <string name="home_move_to_top">"Перемістити на початок"</string>
+    <string name="home_edit_order">"Змінити порядок…"</string>
+    <string name="home_remove_from_pray">"Вилучити з «Молитва»"</string>
+    <string name="home_add_to_pray">"Додати до «Молитва»"</string>
+    <string name="home_saved_presets">"Збережені налаштування…"</string>
+    <string name="home_add_devotion">"Додати молитовну практику"</string>
+    <string name="multi_day_day_of">"День %1$d із %2$d"</string>
+    <string name="multi_day_complete">"Завершено"</string>
+    <string name="multi_day_starts_today">"Початок сьогодні"</string>
+    <string name="multi_day_starts_on">"Початок %1$s"</string>
+    <string name="multi_day_missed_title">"Ви пропустили день"</string>
+    <string name="multi_day_pray_missed">"Молитися день %1$d"</string>
+    <string name="multi_day_pray_today">"Продовжити з дня %1$d"</string>
+    <string name="multi_day_start_over">"Почати спочатку"</string>
+    <string name="home_order_title">"Порядок на головному екрані"</string>
+    <string name="home_order_reorder">"Змінити місце %1$s"</string>
+
+    <!-- Settings -->
+    <string name="settings_default_prayer_language">"Мова молитви за замовчуванням"</string>
+    <string name="settings_jaffa_wording">"Формулювання громади Яффи"</string>
+    <string name="settings_jaffa_wording_hint">"Використовувати בְּרוּכַת הַחֶסֶד замість מְלֵאַת הַחֶסֶד у молитвах Вікаріату."</string>
+    <string name="settings_language_fallback_order">"Порядок резервних мов…"</string>
+    <string name="settings_language_fallback_order_title">"Порядок резервних мов"</string>
+    <string name="settings_language_fallback_order_footer">"Якщо тексту немає вибраною мовою, Prosary перевіряє інші мови в цьому порядку. Спільні тексти івритом, зокрема молитви з каталогу, займають вищу з двох позицій івриту."</string>
+    <string name="settings_praying">"Молитва"</string>
+    <string name="prayer_order_title">"Порядок молитов"</string>
+    <string name="basic_prayers_title">"Основні молитви"</string>
+    <string name="settings_haptics_on_advance">"Вібрація під час переходу"</string>
+    <string name="settings_auto_advance">"Автоматичний перехід"</string>
+    <string name="auto_advance_off">"Вимкнено"</string>
+    <string name="auto_advance_every">"Кожні %1$d секунд"</string>
+    <string name="settings_reset_home_order">"Скинути порядок головного екрана"</string>
+    <string name="settings_today_header">"Сьогодні"</string>
+    <string name="settings_show_today_feast">"Показувати свято дня"</string>
+    <string name="settings_show_today_intention">"Показувати намірення Папи"</string>
+    <string name="settings_feast_calendar">"Літургійний календар"</string>
+    <string name="settings_feast_calendar_hint">"Календар, за яким розділ «Сьогодні» показує свята й читання."</string>
+    <string name="settings_downloads">"Завантаження"</string>
+    <string name="settings_installed_devotions">"Установлені молитовні практики: %1$d"</string>
+    <string name="settings_clear_audio_cache">"Очистити кеш аудіо"</string>
+    <string name="settings_clear_audio_cache_size">"Очистити кеш аудіо (%1$s)"</string>
+    <string name="settings_remove_all">"Видалити всі завантажені молитви…"</string>
+    <string name="settings_downloads_footer">"Вбудовані молитви не видаляються. Видалення завантаженої молитви також вилучає її з обраного."</string>
+    <string name="settings_links">"Посилання"</string>
+    <string name="settings_repository_site">"Каталог спільноти"</string>
+    <string name="settings_compose_site">"Створити молитву"</string>
+    <string name="settings_privacy_policy">"Політика конфіденційності"</string>
+    <string name="settings_remove_all_title">"Видалити всі завантажені молитви?"</string>
+    <string name="settings_remove_all_message">"Молитви з каталогу можна завантажити знову; вручну імпортовані файли — ні."</string>
+    <string name="settings_remove_all_confirm">"Видалити все"</string>
+
+    <!-- Prayer kinds (models/PrayerKind.kt) -->
+    <string name="kind_rosary">"Розарій"</string>
+    <string name="kind_jesus_prayer">"Ісусова молитва"</string>
+    <string name="kind_devotion">"Молитва"</string>
+    <string name="kind_default_name_rosary">"Мій Розарій"</string>
+
+    <!-- Mystery groups and selection modes -->
+    <string name="mystery_group_joyful">"Радісні"</string>
+    <string name="mystery_group_sorrowful">"Скорботні"</string>
+    <string name="mystery_group_glorious">"Славні"</string>
+    <string name="mystery_group_luminous">"Світлі"</string>
+    <string name="mode_todays_mysteries">"Сьогоднішні таємниці"</string>
+    <string name="mode_specific">"Завжди вибраний цикл"</string>
+    <string name="mode_fifteen">"15 таємниць (радісні, скорботні, славні)"</string>
+    <string name="mode_twenty">"20 таємниць (усі чотири цикли)"</string>
+    <string name="mode_single">"Лише одна таємниця"</string>
+    <string name="summary_always">"Завжди %1$s"</string>
+    <string name="summary_only">"Лише %1$s"</string>
+    <string name="summary_fifteen">"15 таємниць"</string>
+    <string name="summary_twenty">"20 таємниць"</string>
+
+    <!-- Eternal Rest placement -->
+    <string name="eternal_rest_none">"Не додавати"</string>
+    <string name="eternal_rest_each_decade">"Після кожного десятка"</string>
+    <string name="eternal_rest_at_end">"Один раз наприкінці"</string>
+
+    <!-- Marian antiphon controls; named prayers use the selected prayer language at runtime. -->
+    <string name="antiphon_none">"Немає"</string>
+    <string name="antiphon_seasonal">"Автоматично (за літургійним періодом)"</string>
+    <string name="antiphon_salve_regina">"Salve Regina"</string>
+    <string name="antiphon_alma_redemptoris">"Alma Redemptoris Mater"</string>
+    <string name="antiphon_ave_regina">"Ave Regina Caelorum"</string>
+    <string name="antiphon_regina_caeli">"Regina Caeli"</string>
+    <string name="antiphon_sub_tuum">"Sub Tuum Praesidium"</string>
+
+    <!-- Mystery artwork styles -->
+    <string name="image_style_classic">"Класичні картини"</string>
+    <string name="image_style_eastern">"Східні ікони"</string>
+
+    <!-- Language display -->
+    <string name="language_default_parenthesized">"Стандартна (%1$s)"</string>
+    <string name="language_default_dash">"Стандартна — %1$s"</string>
+
+    <!-- Rosary preset picker -->
+    <string name="rosary_title">"Святий Розарій"</string>
+    <string name="rosary_manage">"Керувати"</string>
+    <string name="rosary_default_preset">"Стандартний набір налаштувань"</string>
+    <string name="rosary_custom">"Власні налаштування"</string>
+    <string name="rosary_pray_any">"Молитися будь-який Розарій"</string>
+    <string name="rosary_options">"Параметри Розарію"</string>
+    <string name="rosary_save_as_preset">"Зберегти налаштування"</string>
+    <string name="rosary_presets">"Набори налаштувань"</string>
+    <string name="rosary_preset_name">"Назва набору налаштувань"</string>
+    <string name="rosary_praying">"Молитва Розарію"</string>
+
+    <!-- Rosary options editor -->
+    <string name="ro_which_mysteries">"Які таємниці?"</string>
+    <string name="ro_mysteries">"Таємниці"</string>
+    <string name="ro_specific_set">"Вибраний цикл"</string>
+    <string name="ro_which_mystery">"Яка таємниця"</string>
+    <string name="ro_opening_section">"Початкові молитви та молитви десятків"</string>
+    <string name="ro_apostles_creed">"Апостольський символ віри"</string>
+    <string name="ro_opening_prayers">"Початкові «Отче наш» і три «Радуйся, Маріє»"</string>
+    <string name="ro_opening_fatima">"Фатімська молитва після трьох початкових «Радуйся, Маріє»"</string>
+    <string name="ro_fatima">"Фатімська молитва після кожного десятка"</string>
+    <string name="ro_faithful_departed">"За померлих вірних"</string>
+    <string name="ro_display_section">"Відображення"</string>
+    <string name="ro_mystery_artwork">"Ілюстрації таємниць"</string>
+    <string name="ro_presenter_mode">"Режим ведучого"</string>
+    <string name="ro_presenter_hint">"Показувати «Радуйся, Маріє» та «Слава Отцю» кожного десятка на одному екрані — зручно для ведення спільної молитви напам’ять."</string>
+    <string name="ro_closing_section">"Завершальні молитви"</string>
+    <string name="ro_marian_antiphon">"Марійний антифон"</string>
+    <string name="ro_closing_intentions">"Завершальні намірення"</string>
+    <string name="ro_st_michael">"Молитва до святого Михаїла"</string>
+    <string name="ro_final_sign">"Завершальне хресне знамення"</string>
+
+    <!-- Favorites -->
+    <string name="favorites_title">"Обране"</string>
+    <string name="favorites_add_kind">"Додати %1$s"</string>
+    <string name="favorites_more_devotions">"Інші молитви"</string>
+    <string name="favorites_repository_badge">"Репозиторій"</string>
+    <string name="favorites_import">"Імпортувати молитовний пакунок…"</string>
+    <string name="favorites_get_community">"Отримати молитовні практики спільноти…"</string>
+    <string name="favorites_import_error_title">"Не вдалося імпортувати молитву"</string>
+    <string name="favorites_set_default">"Зробити стандартним"</string>
+    <string name="favorites_edit_desc">"Змінити %1$s"</string>
+    <string name="favorites_delete_desc">"Видалити %1$s"</string>
+    <string name="favorites_add_favorite_desc">"Додати %1$s до обраного"</string>
+    <string name="favorites_remove_favorite_desc">"Вилучити %1$s з обраного"</string>
+    <string name="favorites_add_to_favorites">"Додати до обраного"</string>
+    <string name="favorites_remove_from_favorites">"Вилучити з обраного"</string>
+    <string name="favorites_reminders_desc">"Змінити нагадування для %1$s"</string>
+    <string name="favorites_export_desc">"Експортувати %1$s для редагування"</string>
+    <string name="favorites_remove_imported_desc">"Видалити імпортовану молитовну практику %1$s"</string>
+
+    <!-- Favorite editor -->
+    <string name="editor_new_favorite">"Нове обране"</string>
+    <string name="editor_edit_favorite">"Змінити обране"</string>
+    <string name="editor_name">"Назва"</string>
+    <string name="editor_name_hint">"напр., Ранковий Розарій"</string>
+    <string name="editor_set_default_for">"Зробити стандартним для %1$s"</string>
+    <string name="editor_prayer_language">"Мова молитви"</string>
+    <string name="editor_language">"Мова"</string>
+    <string name="editor_target">"Мета"</string>
+    <string name="editor_options">"Параметри"</string>
+
+    <!-- Reminders -->
+    <string name="reminders_title">"Нагадування"</string>
+    <string name="reminders_add">"Додати нагадування"</string>
+    <string name="reminders_delete_desc">"Видалити нагадування"</string>
+
+    <!-- Jesus Prayer -->
+    <string name="jp_title">"Ісусова молитва"</string>
+    <string name="jp_how_many">"Скільки разів?"</string>
+    <string name="jp_repetitions">"Кількість повторень"</string>
+    <string name="jp_begin">"Почати"</string>
+    <string name="jp_unbounded">"Без обмежень"</string>
+    <string name="jp_custom">"Власна кількість"</string>
+    <string name="jp_count_times">"%1$d×"</string>
+    <string name="jp_times_prefix">"× %1$d"</string>
+    <string name="jp_favorite_name">"Ісусова молитва %1$s (%2$s)"</string>
+
+    <!-- Prayer step flow -->
+    <string name="flow_back">"Назад"</string>
+    <string name="flow_step_of">"%1$d із %2$d"</string>
+    <string name="flow_show_transliteration">"Показати транслітерацію"</string>
+    <string name="flow_prayer_language">"Мова молитви"</string>
+    <string name="flow_app_setting">"Як у налаштуваннях"</string>
+    <string name="flow_day">"День"</string>
+    <string name="flow_choose_form">"Вибрати форму"</string>
+    <string name="flow_resume_title">"Продовжити цю молитву?"</string>
+    <string name="flow_resume_message">"Ви зупинилися на кроці %1$d із %2$d."</string>
+    <string name="flow_resume_unbounded_message">"Ви зупинилися на повторенні %1$d."</string>
+    <string name="flow_continue">"Продовжити"</string>
+    <string name="flow_restart">"Почати заново"</string>
+    <string name="flow_previous_mystery">"Попередня таємниця"</string>
+    <string name="flow_next_mystery">"Наступна таємниця"</string>
+
+    <!-- Audio playback -->
+    <string name="audio_previous_chapter">"Попередній розділ"</string>
+    <string name="audio_next_chapter">"Наступний розділ"</string>
+    <string name="audio_play">"Відтворити"</string>
+    <string name="audio_pause">"Призупинити"</string>
+
+    <!-- Rosary bead accessibility -->
+    <string name="bead_opening_cross">"Початкове хресне знамення"</string>
+    <string name="bead_closing_cross">"Завершальне хресне знамення"</string>
+    <string name="bead_marian_antiphon">"Марійний антифон"</string>
+    <string name="bead_opening_prayers">"Початкові молитви"</string>
+    <string name="bead_closing_prayers">"Завершальні молитви"</string>
+    <string name="bead_decade_of">"Десяток %1$d із %2$d"</string>
+    <string name="bead_hail_mary_of">"«Радуйся, Маріє» %1$d із %2$d"</string>
+    <string name="bead_antiphon_letter">"М"</string>
+    <string name="bead_progress">"Перебіг Розарію. %1$s"</string>
+
+    <!-- Repository browser -->
+    <string name="browse_title">"Молитви спільноти"</string>
+    <string name="browse_search_label">"Пошук молитовних практик"</string>
+    <string name="browse_all">"Усі"</string>
+    <string name="browse_unreachable">"Не вдалося з’єднатися з каталогом."</string>
+    <string name="browse_install_error_title">"Не вдалося встановити молитву"</string>
+    <string name="browse_install_error_generic">"Не вдалося встановити молитовну практику."</string>
+    <string name="browse_no_match">"Відповідних молитов немає."</string>
+    <string name="browse_unsupported_catalog">"Каталог використовує новіший формат — оновіть Prosary, щоб переглянути його."</string>
+    <string name="pack_error_unreadable">"Не вдалося прочитати цей файл як пакунок .prosaryprayer."</string>
+    <string name="pack_error_not_devotion">"Цей пакунок не містить молитви."</string>
+    <string name="pack_error_duplicate">"Молитву з назвою «%1$s» вже встановлено."</string>
+
+    <!-- Search -->
+    <string name="search_hint">"Молитви, категорії, автори"</string>
+    <string name="search_on_device">"На цьому пристрої"</string>
+    <string name="search_no_device_match">"На цьому пристрої нічого не знайдено."</string>
+    <string name="search_from_community">"Від спільноти"</string>
+
+    <!-- About -->
+    <string name="about_title">"Про Prosary"</string>
+    <string name="about_tagline">"Помічник у молитві Розарію та інших католицьких молитвах."</string>
+    <string name="about_typefaces">"Шрифти"</string>
+    <string name="about_typeface_frank_ruhl">" — SIL Open Font License 1.1 — молитви івритом."</string>
+    <string name="about_typeface_shofar">" — GPL v2 із винятком для вбудовування шрифтів — Святе Письмо івритом (Culmus Project, Йорам Ґнат)."</string>
+    <string name="about_typeface_amiri">" — SIL Open Font License 1.1 — молитви арабською."</string>
+    <string name="about_typeface_scheherazade">" — SIL Open Font License 1.1 — Святе Письмо арабською (SIL)."</string>
+    <string name="about_typeface_cardo">" — SIL Open Font License 1.1 — Святе Письмо латиною й англійською (Девід Дж. Перрі)."</string>
+    <string name="about_typeface_noto_syriac">", західний і східний — SIL Open Font License 1.1 — шрифти для арамейської мови сирійським письмом на вибір."</string>
+    <string name="about_typeface_optional_hebrew">" — SIL Open Font License 1.1 — додаткові шрифти для молитов і Святого Письма івритом; на Android Roboto використовує Noto Sans Hebrew як резервний шрифт."</string>
+    <string name="about_typeface_stam">" — GPL v2 із винятком для вбудовування шрифтів — додаткові шрифти для Святого Письма івритом (Culmus Project, Йорам Ґнат)."</string>
+    <string name="about_typefaces_footer">"Для молитов можна використовувати системний шрифт із зарубками або без них."</string>
+    <string name="about_mystery_illustrations">"Ілюстрації таємниць"</string>
+    <string name="about_mystery_intro">"Усі 20 ілюстрацій таємниць — класичні картини із суспільного надбання (художники померли понад 100 років тому), отримані з Вікісховища."</string>
+    <string-array name="about_mystery_attributions">
+        <item>"*Благовіщення* — Фра Анджеліко (пом. 1455)"</item>
+        <item>"*Відвідини Єлизавети* — Маріотто Альбертінеллі (пом. 1515)"</item>
+        <item>"*Свята ніч* — Антоніо да Корреджо (пом. 1534)"</item>
+        <item>"*Стрітення в храмі* — Андреа Мантенья (пом. 1506)"</item>
+        <item>"*Знайдення Христа в храмі* — Сімоне Мартіні (пом. 1344)"</item>
+        <item>"*Хрещення Христа* — П’єро делла Франческа (пом. 1492)"</item>
+        <item>"*Весілля в Кані* — Паоло Веронезе (пом. 1588)"</item>
+        <item>"*Нагірна проповідь* — Козімо Росселлі (пом. 1507)"</item>
+        <item>"*Преображення* — Рафаель (пом. 1520)"</item>
+        <item>"*Тайна вечеря* — Леонардо да Вінчі (пом. 1519)"</item>
+        <item>"*Моління про чашу* — Андреа Мантенья (пом. 1506)"</item>
+        <item>"*Бичування Христа* — Караваджо (пом. 1610)"</item>
+        <item>"*Коронування терновим вінцем* — Караваджо (пом. 1610)"</item>
+        <item>"*Христос несе хрест* — Тиціан (пом. 1576)"</item>
+        <item>"*Розп’ятий Христос* — Дієго Веласкес (пом. 1660)"</item>
+        <item>"*Воскресіння* — П’єро делла Франческа (пом. 1492)"</item>
+        <item>"*Вознесіння Христа* — Рембрандт (пом. 1669)"</item>
+        <item>"*П’ятдесятниця* — Ель Греко (пом. 1614)"</item>
+        <item>"*Внебовзяття Діви Марії* — Тиціан (пом. 1576)"</item>
+        <item>"*Коронування Діви Марії* — Дієго Веласкес (пом. 1660)"</item>
+    </string-array>
+    <string name="about_eastern_icons">"Добірка ілюстрацій таємниць у східному стилі використовується з дозволу Місії святого Гамаліїла для єврейських католиків Арамейської (Сирійської) Католицької Церкви."</string>
+    <string name="about_other_images">"Інші зображення"</string>
+    <string-array name="about_other_image_attributions">
+        <item>"*Розп’яття* — Чімабуе (пом. 1302)."</item>
+        <item>"*Мала Мадонна Каупера* — Рафаель (пом. 1520)."</item>
+        <item>"*Віра, надія і любов* — Рафаель, пределла вівтаря Бальйоні (пом. 1520)."</item>
+        <item>"*Руки в молитві* — Альбрехт Дюрер (пом. 1528)."</item>
+        <item>"*Пресвята Трійця* — Мазаччо (пом. 1428)."</item>
+        <item>"*Христос у лімбі* — Фра Анджеліко (пом. 1455)."</item>
+        <item>"*Михаїл* — Гвідо Рені (пом. 1642)."</item>
+        <item>"*Голова Христа* — Рембрандт (пом. 1669)."</item>
+    </string-array>
+    <string name="about_stations_illustrations">"Ілюстрації Хресної дороги"</string>
+    <string name="about_stations_fugel">"Усі 14 стоянь: Ґебгард Фуґель (1863–1939), Хресна дорога (1921), церква святого Антонія, Бад-Заульгау — суспільне надбання; фотографії Андреаса Префке передано до суспільного надбання."</string>
+    <string name="about_stations_scriptural">"Біблійна форма (святого Йоана Павла II) додає: Поцілунок Юди — Джотто (капела Скровеньї, бл. 1305); Христос перед первосвященником — Герріт ван Гонтгорст (бл. 1617), Національна галерея, Лондон; Зречення святого Петра — Рембрандт (1660), Рейксмузеум; Удар списом — Пітер Пауль Рубенс (1620), Королівський музей витончених мистецтв Антверпена — усе із суспільного надбання. Для інших сцен використано ілюстрації, зазначені в інших частинах цієї сторінки."</string>
+    <string name="about_stations_via_lucis">"Сцени Дороги світла: Учні біля гробу — Ежен Бюрнан (1898), музей Орсе; Не торкайся мене — Фра Анджеліко (Сан-Марко, бл. 1440); Дорога до Емауса, явлення апостолам, біля Тиверіадського озера та в Галілеї — Дуччо ді Буонінсенья (Маеста, 1308–1311), Сієна; Вечеря в Емаусі (1601) та Невірство святого Томи (1601–1602) — Караваджо; Доручення Христа Петрові — Рафаель (бл. 1515), Королівська колекція; Діва Марія в молитві — Сассоферрато (1640–1650), Національна галерея, Лондон — усе із суспільного надбання. Для інших сцен використано ілюстрації славних таємниць Розарію."</string>
+    <string name="about_crown_illustration">"Ілюстрація Францисканської корони"</string>
+    <string name="about_crown_magi">"Поклоніння волхвів: Бартоломе Естебан Мурільйо (бл. 1655–1660), Художній музей Толідо — суспільне надбання. Для інших шести радостей використано наведені вище ілюстрації таємниць Розарію."</string>
+    <string name="about_sorrows_illustrations">"Ілюстрації Семи скорбот"</string>
+    <string-array name="about_sorrows_attributions">
+        <item>"*Пророцтво Симеона* — Рембрандт ван Рейн, «Хвалебна пісня Симеона» (1631), Мауріцгейс — суспільне надбання."</item>
+        <item>"*Втеча до Єгипту* — Бартоломе Естебан Мурільйо (бл. 1647–1650), Детройтський інститут мистецтв — суспільне надбання."</item>
+        <item>"*Загублення Ісуса в храмі* — Паоло Веронезе, «Христос серед учителів» (бл. 1560), музей Прадо — суспільне надбання."</item>
+        <item>"*Зустріч на Хресній дорозі* — Рафаель, «Lo Spasimo» (бл. 1514–1516), музей Прадо — суспільне надбання."</item>
+        <item>"*Розп’яття* — Гендрік тер Брюгген, «Розп’яття з Дівою Марією та святим Йоаном» (бл. 1625), Метрополітен-музей — CC0."</item>
+        <item>"*Зняття з хреста* — Пітер Пауль Рубенс (бл. 1612–1614), собор Антверпенської Богоматері — суспільне надбання."</item>
+        <item>"*Поховання Ісуса* — Тіціан, «Покладення Христа до гробу» (бл. 1520), Лувр — суспільне надбання."</item>
+    </string-array>
+    <string name="about_mercy_illustration">"Ілюстрація Божого Милосердя"</string>
+    <string name="about_mercy_kazimirowski">"Еугеніуш Казіміровський, Боже Милосердя («Jezu, ufam Tobie», 1934), санктуарій Божого Милосердя, Вільнюс — оригінальний образ, написаний під керівництвом святої Фаустини; суспільне надбання."</string>
+    <string name="about_jesus_prayer_illustration">"Ілюстрація Ісусової молитви"</string>
+    <string name="about_jesus_pantocrator">"Христос Пантократор: енкаустична ікона (VI століття), монастир святої Катерини, гора Синай — найдавніша збережена ікона Христа Пантократора, що вшановує східну традицію молитви; суспільне надбання."</string>
+    <string name="about_scripture_sources">"Джерела Святого Письма"</string>
+    <string name="about_scripture_text">"Цитати зі Святого Письма взято з Біблії Дуе—Реймса (англійська), Климентинської Вульгати (латина), перекладу Нового Завіту івритом Франца Деліча (джерело: kirjasilta.net/ha-berit), а старозавітні уривки івритом відповідають масоретському тексту. Також використано єзуїтську арабську Біблію (Dar el-Machreq), російський Синодальний переклад (1876) та Ang Dating Biblia (тагалог, 1905)."</string>
+    <string name="about_calendar_data">"Дані календарів"</string>
+    <string name="about_calendar_data_body">"Дані календарів і читань: Загальний римський календар — LitCal (litcal.johnromanodorazio.com); календар і лекціонарій 1962 року — Missale Meum (missalemeum.com). Сирійський католицький і маронітський календарі, римські назви івритом із джерел, а також римські, сирійські й маронітські біблійні посилання: Evangelizo.org — Daily Gospel, © Evangelizo.org. Візантійські нерухомі свята подано за новим календарем; читання з юліанською Пасхою відповідають офіційному календарю Української Греко-Католицької Церкви (ugcc.ua), а варіант із григоріанською Пасхою — Royal Doors (royaldoors.net). Назви біблійних книг івритом: Evangelizo HE, Вікаріат святого Якова (catholic.co.il) і Mechon Mamre (mechon-mamre.org). Додаткові назви свят та імена святих івритом: Вікаріат святого Якова, Christian Media Center (cmc-terrasanta.org) і Vatican News (vaticannews.va)."</string>
+    <string name="multi_day_reminder_body">"На вас чекає день %1$d із %2$d."</string>
+    <string name="multi_day_completed_title">"Завершено. Далі молитися %1$s?"</string>
+    <string name="multi_day_pray_next">"Молитися %1$s"</string>
+    <string name="multi_day_not_now">"Не зараз"</string>
+    <string name="settings_rite">"Обряд"</string>
+    <string name="settings_aramaic_sign_of_cross">"Хресне знамення арамейською"</string>
+    <string name="settings_aramaic_sign_of_cross_form_a">"Форма A"</string>
+    <string name="settings_aramaic_sign_of_cross_form_b">"Форма B"</string>
+    <string name="settings_typography_header">"Шрифти"</string>
+    <string name="settings_syriac_typeface">"Шрифт для арамейської"</string>
+    <string name="settings_hebrew_prayer_typeface">"Шрифт для івриту"</string>
+    <string name="settings_hebrew_scripture_typeface">"Шрифт Святого Письма івритом"</string>
+    <string name="settings_typeface_default">"Стандартний"</string>
+    <string name="settings_typeface_western_aramaic">"Західноарамейський"</string>
+    <string name="settings_typeface_eastern_aramaic">"Східноарамейський"</string>
+    <string name="settings_typeface_david_libre">"David Libre"</string>
+    <string name="settings_typeface_sans_serif">"Системний без зарубок"</string>
+    <string name="settings_typeface_stam_ashkenaz">"Stam Ashkenaz"</string>
+    <string name="settings_typeface_stam_sefarad">"Stam Sefarad"</string>
+    <string name="settings_typeface_rashi">"Раші"</string>
+    <string name="home_today_show_english">"Англійська"</string>
+    <string name="home_today_language">"Мова розділу «Сьогодні»"</string>
+    <string name="home_today_app_language">"Мова застосунку"</string>
+    <string name="home_today_readings">"Сьогоднішні читання"</string>
+    <string name="home_today_full_citations">"Показати повні посилання"</string>
+    <string name="home_today_compact_citations">"Показати скорочені посилання"</string>
+    <string name="home_pray_any_rosary">"Молитися будь-який Розарій"</string>
+    <string name="home_add_rosary">"Додати Розарій"</string>
+    <string name="home_add_jesus_prayer">"Додати Ісусову молитву"</string>
+    <string name="favorites_edit">"Змінити"</string>
+    <string name="favorites_reminders">"Нагадування…"</string>
+    <string name="favorites_delete">"Видалити"</string>
+    <string name="favorites_export">"Експортувати для редагування"</string>
+    <string name="favorites_remove_installed">"Видалити молитовну практику"</string>
+    <string name="about_prayer_texts">"Тексти молитов"</string>
+    <!-- The Vicariate line is a provisional attribution of fact, pending the exact
+         wording Fr. Piotr sends; replace it verbatim then, as the Exarchate's was. -->
+    <string name="about_prayer_texts_body">"Коронка до Божого Милосердя івритом — текст Латинського патріархату Єрусалима, затверджений патріархом Мішелем Саббахом у 2003 році. Частина молитов івритом та арамейською використовується з дозволу патріаршого екзарха Арамейської (Сирійської) Католицької громади. Молитви івритом — власні тексти Вікаріату святого Якова для івритомовних католиків із його молитовника."</string>
+    <string name="home_today_rank_solemnity">"Урочистість"</string>
+    <string name="home_today_rank_feast">"Свято"</string>
+    <string name="home_today_rank_memorial">"Спомин"</string>
+    <string name="home_today_rank_optional_memorial">"Довільний спомин"</string>
+    <string name="home_today_rank_sunday">"Неділя"</string>
+    <string name="home_today_rank_great_feast">"Велике свято"</string>
+    <string name="home_today_rank_holy_week">"Страсний тиждень"</string>
+    <string name="home_today_rank_fast">"Піст"</string>
+    <string name="home_today_rank_1st_class">"I клас"</string>
+    <string name="home_today_rank_2nd_class">"II клас"</string>
+    <string name="home_today_rank_3rd_class">"III клас"</string>
+    <string name="category_marian">"Марійні"</string>
+    <string name="category_daily">"Щоденні"</string>
+    <string name="category_mercy">"Милосердя"</string>
+    <string name="category_franciscan">"Францисканські"</string>
+    <string name="category_advent">"Адвент"</string>
+    <string name="category_meditative">"Розважальні"</string>
+    <string name="category_passion">"Страсті"</string>
+    <string name="category_eastern">"Східні"</string>
+    <string name="category_short">"Короткі"</string>
+    <string name="category_easter">"Великодні"</string>
+    <string name="category_other">"Інші"</string>
+    <string name="about_additional_sources">"Святе Письмо французькою: Крампон (1923), суспільне надбання. Святе Письмо італійською: Антоніо Мартіні; структуровані дані © Giovanni Novelli, CC BY 4.0 (parolaviva.art). Молитви французькою та італійською: Ватиканський компендіум. Намірення Папи: Всесвітня мережа молитви Папи (2026–2027); переклад івритом — Prosary. Намірення російською (2026): переклад t.me/ihsovs, опублікований парафією Непорочного Зачаття в Челябінську (cc74.wordpress.com/rosary/). Намірення українською: редакційний переклад Prosary з опублікованих англійських текстів."</string>
+    <string name="about_peshitta_sources">"Новий Завіт Пешітти (BFBS, 1905): Digital Syriac Corpus; сирійська транскрипція — George A. Kiraz, TEI-видання © James E. Walters, CC BY 4.0. Перетворення на єврейське письмо за правилами Ереза; добір віршів і форматування тексту — Prosary."</string>
+    <string name="about_peshitta_source_link">"Digital Syriac Corpus"</string>
+    <string name="about_peshitta_license_link">"CC BY 4.0"</string>
+    <string name="about_peshitta_isaiah_sources">"Ісая: наданий користувачем XML-текст Пешітти з оголосовками з Internet Archive. Походження видання та умови його розповсюдження залишаються невстановленими. Перетворення на єврейське письмо за правилами Ереза; добір віршів і форматування тексту — Prosary."</string>
+    <string name="about_peshitta_isaiah_source_link">"Internet Archive"</string>
+    <string name="about_bible_book_sources">"Назви біблійних книг: AELF, Dar el-Machreq, російський Синодальний переклад (Азбука), Біблійне товариство Філіппін та ParolaViva."</string>
+    <string name="about_prayer_network_link">"Всесвітня мережа молитви Папи"</string>
+    <string name="about_parolaviva_link">"ParolaViva — CC BY 4.0"</string>
+    <string name="about_additional_prayer_sources">"Додаткові джерела молитов: Vatican News, санктуарій у Фатімі, Собор Паризької Богоматері, AELF та Італійська єпископська конференція (CEI). Також: базиліка Гваделупської Богоматері; GOARCH Digital Chant Stand; IVE Greece (грецький переклад Anima Christi — о. F. Bravo IVE); католицька парафія святого Миколая, Тінос; Іберійська провінція кармелітів; Наталія Смелова, Melkite Syriac Hymns to the Mother of God (2011), для середньовічної сирійської молитви «Під Твою милість». Officium Parvum Graece et Latine (Авіньйон: F. Seguin, 1823), с. 119, 121, 125. Альфонс Марія де Лігуорі: Esercizio della Via Crucis (1761); Mater dolorosa (1888)."</string>
+    <string name="about_divine_mercy_source">"Коронка до Божого Милосердя: Згромадження сестер Матері Божої Милосердя."</string>
+    <string name="about_seven_sorrows_source">"Молитви Семи скорбот: Notre Dame de Chrétienté та Confraternite.net."</string>
+    <string name="settings_typeface_frank_ruhl_libre">"Frank Ruhl Libre"</string>
+    <string name="settings_latin_prayer_typeface">"Молитви латинським письмом"</string>
+    <string name="settings_cyrillic_prayer_typeface">"Молитви кирилицею"</string>
+    <string name="settings_typeface_serif">"Системний із зарубками"</string>
+    <string name="settings_typeface_roboto">"Roboto"</string>
+    <string name="settings_typeface_roboto_noto">"Roboto / Noto"</string>
+    <string name="prayer_tradition">"Молитовна традиція"</string>
+    <string name="prayer_tradition_vicariate">"Вікаріат святого Якова"</string>
+    <string name="prayer_tradition_mission">"Місія святого Гамаліїла"</string>
+    <string name="basic_prayers_pin">"Закріпити в «Молитва»"</string>
+    <string name="basic_prayers_unpin">"Відкріпити з розділу «Молитва»"</string>
+    <string name="ro_closing_pope_intention">"Завершальні молитви за Папу"</string>
+    <string name="ro_closing_bishop_intention">"Завершальні молитви за єпископа"</string>
+    <string name="ro_closing_departed_intention">"Завершальні молитви за померлих вірних"</string>
+    <string name="rosary_pray_litany">"Молитися літанію"</string>
+    <string name="rosary_litany_offer">"Продовжити Літанією до Пресвятої Діви Марії?"</string>
+    <string name="about_litany_source">"Лоретанська літанія використовує опубліковані католицькі молитовні тексти. Формулювання івритом надав Ерез через Місію святого Гамаліїла. Завершальні молитви окремої літанії грецькою та тагалогом — переклади Prosary з латинського оригіналу, а не опубліковані літургійні переклади."</string>
+    <string name="settings_aramaic_default_script">"Стандартне арамейське письмо"</string>
+    <string name="settings_script_hebrew">"Єврейське письмо"</string>
+    <string name="settings_script_syriac">"Сирійське письмо"</string>
+    <string name="home_today_choose_date">"Вибрати дату"</string>
+    <string name="home_today_yesterday">"Учора"</string>
+    <string name="home_today_reset">"Сьогодні"</string>
+    <string name="home_today_tomorrow">"Завтра"</string>
+    <string name="home_today_torah">"Тижневий розділ Тори"</string>
+    <string name="home_today_torah_festival">"Святкове читання Тори"</string>
+    <string name="settings_show_today_torah">"Показувати тижневий розділ Тори"</string>
+    <string name="settings_show_today_torah_hint">"За циклом читань Ерец-Ісраель на найближчу суботу."</string>
+    <string name="settings_prayer_names_in_prayer_language">"Назви молитов мовою молитви"</string>
+    <string name="settings_prayer_names_in_prayer_language_hint">"Показувати переклад мовою інтерфейсу під назвою, якщо він відрізняється."</string>
+    <string name="about_torah_data">"Назви розділів Тори та біблійні посилання адаптовано з Hebcal.com (CC BY 4.0). Текст Святого Письма не включено."</string>
+    <string name="about_torah_license">"Creative Commons Із Зазначенням Авторства 4.0"</string>
+    <string name="settings_eastern_pascha">"Візантійська Пасха"</string>
+    <string name="settings_pascha_julian">"Юліанська пасхалія"</string>
+    <string name="settings_pascha_gregorian">"Григоріанська пасхалія"</string>
+    <string name="about_ukrainian_sources">"Молитви українською: Римсько-Католицька Церква в Україні, молитовник «Щоденно з Богом». Використано із зазначенням джерела відповідно до правил повторного використання видавця. Святе Письмо: Біблія Куліша, Нечуя-Левицького та Пулюя (1905), суспільне надбання; eBible.org ukr1871. Історичний правопис біблійного тексту збережено."</string>
+    <string name="about_ukrainian_prayerbook_link">"Український молитовник"</string>
+    <string name="about_ukrainian_bible_link">"Українська Біблія (1905)"</string>
+</resources>

@@ -5,8 +5,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.filled.StarBorder
+import androidx.compose.material.icons.filled.PushPin
+import androidx.compose.material.icons.outlined.PushPin
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
@@ -42,6 +42,7 @@ import com.dkaluta.prosary.models.MultiDayRuns
 import com.dkaluta.prosary.models.MultiDayStatus
 import com.dkaluta.prosary.reminders.ReminderScheduler
 import com.dkaluta.prosary.models.Prayer
+import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.models.PrayerRunKeys
 import com.dkaluta.prosary.models.PrayerRunProgress
@@ -275,6 +276,18 @@ fun CustomDevotionFlowScreen(
         )
         resetAudioOnNextRebuild = false
         if (pendingResume != null) currentIndex = 0
+    }
+
+    LaunchedEffect(AppSettings.useJaffaHailMaryWording) {
+        if (steps.isNotEmpty()) {
+            val position = currentIndex
+            steps = services.engine.buildSteps(Prayer(
+                kind = PrayerKind.Custom, languageCode = chosenLanguage,
+                customDevotionId = devotionId, variantId = variantId,
+                dayIndex = dayIndex, customOptions = customOptions,
+            ))
+            currentIndex = position.coerceIn(0, (steps.size - 1).coerceAtLeast(0))
+        }
     }
 
     val currentRunKey = PrayerRunKeys.custom(devotionId, variantId, dayIndex)
@@ -658,7 +671,7 @@ fun CustomDevotionFlowScreen(
                 }
             }, modifier = Modifier.testTag("pinDevotionButton")) {
                 Icon(
-                    if (isPinned) Icons.Filled.Star else Icons.Filled.StarBorder,
+                    if (isPinned) Icons.Filled.PushPin else Icons.Outlined.PushPin,
                     contentDescription = if (isPinned) stringResource(R.string.home_remove_from_pray) else stringResource(R.string.home_add_to_pray),
                 )
             }
@@ -667,7 +680,7 @@ fun CustomDevotionFlowScreen(
 }
 
 /** A devotion counts as pinned by default when it already has a saved configuration — the same
- * fallback the Pray tab uses, so the star agrees with what that tab shows. */
+ * fallback the Pray tab uses, so the pin agrees with what that tab shows. */
 private suspend fun impliedPinnedIds(services: AppServices): List<String> =
     runCatching { services.presetStore.all() }.getOrDefault(emptyList()).mapNotNull { prayer ->
         when (prayer.kind) {

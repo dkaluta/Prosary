@@ -6,6 +6,7 @@
     "he",
     "ar",
     "ru",
+    "uk",
     "tl",
     "fr",
     "it",
@@ -13,10 +14,10 @@
     "el",
     "arc"
   ],
-  "canonical_files": 107,
+  "canonical_files": 117,
   "pack_count": 10,
   "status_counts": {
-    "advertised": 85,
+    "advertised": 95,
     "absent_language": 11,
     "partial_overlay": 14
   },
@@ -63,6 +64,19 @@
       ],
       "native_keys": 32,
       "resolved_fixed_keys": 32
+    },
+    "uk": {
+      "missing_prayer_bodies": [
+        "almaRedemptorisMater",
+        "aveReginaCaelorum",
+        "collectaStandard"
+      ],
+      "missing_headings_or_labels": [],
+      "missing_inactive_fixed_bodies": [
+        "doxologiaMinor"
+      ],
+      "native_keys": 0,
+      "resolved_fixed_keys": 29
     },
     "tl": {
       "missing_prayer_bodies": [],
@@ -209,6 +223,21 @@
       "ru": {
         "status": "advertised",
         "source_file": "Shared/content/angelus/content/ru.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "uk": {
+        "status": "advertised",
+        "source_file": "Shared/content/angelus/content/uk.json",
         "missing": {
           "heading_or_label": [],
           "prayer_body": []
@@ -413,6 +442,21 @@
           "meditation_descriptions": []
         }
       },
+      "uk": {
+        "status": "advertised",
+        "source_file": "Shared/content/divineMercyChaplet/content/uk.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
       "tl": {
         "status": "advertised",
         "source_file": "Shared/content/divineMercyChaplet/content/tl.json",
@@ -598,6 +642,25 @@
         "missing": {
           "heading_or_label": [],
           "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "uk": {
+        "status": "advertised",
+        "source_file": "Shared/content/franciscanCrown/content/uk.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [
+            "almaRedemptorisMater",
+            "aveReginaCaelorum",
+            "collectaStandard"
+          ]
         },
         "missing_mysteries": {
           "title": [],
@@ -808,6 +871,23 @@
         "missing": {
           "heading_or_label": [],
           "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "uk": {
+        "status": "advertised",
+        "source_file": "Shared/content/litanyOfLoreto/content/uk.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [
+            "collectAfterRosary"
+          ]
         },
         "missing_mysteries": {
           "title": [],
@@ -1108,6 +1188,22 @@
           "meditation_descriptions": []
         }
       },
+      "uk": {
+        "status": "advertised",
+        "source_file": "Shared/content/oAntiphons/content/uk.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
       "tl": {
         "status": "absent_language",
         "source_file": "Shared/content/oAntiphons/content/tl.json",
@@ -1360,6 +1456,26 @@
             "animaChristiTitle"
           ],
           "prayer_body": [],
+          "supplemental_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "uk": {
+        "status": "advertised",
+        "source_file": "Shared/content/rosary/content/uk.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [
+            "almaRedemptorisMater",
+            "aveReginaCaelorum",
+            "collectaStandard"
+          ],
           "supplemental_body": []
         },
         "missing_mysteries": {
@@ -1641,6 +1757,21 @@
           "meditation_descriptions": []
         }
       },
+      "uk": {
+        "status": "advertised",
+        "source_file": "Shared/content/sevenSorrows/content/uk.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
       "tl": {
         "status": "advertised",
         "source_file": "Shared/content/sevenSorrows/content/tl.json",
@@ -1908,6 +2039,41 @@
         "missing": {
           "heading_or_label": [],
           "prayer_body": [],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "uk": {
+        "status": "advertised",
+        "source_file": "Shared/content/stationsOfTheCross/content/uk.json",
+        "missing": {
+          "heading_or_label": [],
+          "meditation_body": [
+            "station01Body",
+            "station02Body",
+            "station03Body",
+            "station04Body",
+            "station05Body",
+            "station06Body",
+            "station07Body",
+            "station08Body",
+            "station09Body",
+            "station10Body",
+            "station11Body",
+            "station12Body",
+            "station13Body",
+            "station14Body"
+          ],
+          "prayer_body": [
+            "stationsClosingPrayer",
+            "stationsOpeningPrayer"
+          ],
           "scripture_body": []
         },
         "missing_mysteries": {
@@ -2259,6 +2425,21 @@
           "meditation_descriptions": []
         }
       },
+      "uk": {
+        "status": "advertised",
+        "source_file": "Shared/content/trisagion/content/uk.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
       "tl": {
         "status": "advertised",
         "source_file": "Shared/content/trisagion/content/tl.json",
@@ -2421,6 +2602,24 @@
         "missing": {
           "heading_or_label": [],
           "prayer_body": [],
+          "scripture_body": []
+        },
+        "missing_mysteries": {
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
+        }
+      },
+      "uk": {
+        "status": "advertised",
+        "source_file": "Shared/content/viaLucis/content/uk.json",
+        "missing": {
+          "heading_or_label": [],
+          "prayer_body": [
+            "viaLucisAcclamation"
+          ],
           "scripture_body": []
         },
         "missing_mysteries": {

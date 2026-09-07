@@ -585,7 +585,7 @@ struct HomeView: View {
       orderGeneration += 1
     } label: {
       if BasicPrayerFavorites.prayerID(homeRowID: row.id) != nil {
-        Label(String(localized: "basicPrayers.unpin", defaultValue: "Unpin from home"), systemImage: "pin.slash")
+        Label(String(localized: "basicPrayers.unpin", defaultValue: "Remove from Pray"), systemImage: "pin.slash")
       } else {
         Label(String(localized: "home.unpin", defaultValue: "Remove from Pray"), systemImage: "star.slash")
       }

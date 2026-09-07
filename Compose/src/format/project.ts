@@ -228,8 +228,16 @@ export function slugify(name: string): string {
     .trim()
     .split(/\s+/)
     .filter(Boolean);
-  if (words.length === 0) return "";
-  return words
+  if (!name.trim()) return "";
+  const latin = words
     .map((w, i) => (i === 0 ? w.toLowerCase() : w[0].toUpperCase() + w.slice(1).toLowerCase()))
     .join("");
+  if (/^[a-z][a-zA-Z0-9]*$/.test(latin)) return latin;
+  // Native filenames need ASCII identifiers; the visible name keeps its original script.
+  // Match Repository's fallback so publishing without an authored id stays deterministic.
+  let hash = BigInt("0xcbf29ce484222325");
+  for (const byte of new TextEncoder().encode(name.trim().normalize("NFC"))) {
+    hash = BigInt.asUintN(64, (hash ^ BigInt(byte)) * BigInt("0x100000001b3"));
+  }
+  return `prayer${hash.toString(16).padStart(16, "0")}`;
 }

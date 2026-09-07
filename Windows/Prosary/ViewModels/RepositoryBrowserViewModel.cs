@@ -55,9 +55,8 @@ public partial class RepositoryRow : ObservableObject
         get
         {
             var names = Bundle.Languages
-                .Select(code => LanguageCatalog.All.FirstOrDefault(l => l.Code == code)?.NativeName)
-                .Distinct()
-                .Where(n => n is not null);
+                .Select(LanguageCatalog.ContentLanguageName)
+                .Distinct();
             return $"{Bundle.Author} · {string.Join(", ", names)}";
         }
     }

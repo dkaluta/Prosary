@@ -734,6 +734,11 @@
           "type": "string[]",
           "description": "Ordered exact prayer preferences. Mission (he-x-gamliel) and Vicariate (he) are independently sortable; generic Hebrew is derived at the higher Hebrew position and has no separate saved slot. Unknown or duplicate entries are ignored at lookup, missing languages are appended before a previously terminal Latin fallback, and the internal he-x-vicariate content probe is never exposed or saved."
         },
+        "useJaffaHailMaryWording": {
+          "type": "boolean",
+          "default": false,
+          "description": "After resolving a Vicariate-sourced prayer (internal he-x-vicariate), replace מְלֵאַת הַחֶסֶד with בְּרוּכַת הַחֶסֶד, preserving unpointed style for an exact unpointed phrase. Applies to native and explicitly marked bundle text, including fallback; never changes Mission, generic Hebrew or Scripture. Source text remains intact. Omit the original reading aid only when the body changes, since no matching Jaffa aid was supplied. The always-available in-app toggle refreshes open prayer text without resetting progress. See Shared/content/rosary/SOURCES.markdown for the user-reported pastoral source."
+        },
         "todayLanguageCode": {
           "type": "string",
           "deprecated": true,
@@ -826,7 +831,7 @@
     }
   },
   "languages": {
-    "$ref": "LanguageCatalog stores la (default), en, ar, he, he-x-gamliel, arc, el, es, ru, tl, fr, it. Ordinary public choices show one Hebrew (עברית) with a separate Saint James Vicariate (stored he) / Mission of St. Gamaliel (he-x-gamliel) tradition. The fallback editor exposes both Hebrew traditions independently, preserving interleaving such as Mission, Aramaic, Vicariate. Generic shared/repository Hebrew uses the higher Hebrew slot, immediately after that tradition; internal content-only he-x-vicariate distinguishes marked Vicariate text and is never persisted or selectable. Aramaic is labeled ܐܪܡܐܝܬ / ארמית. ar/he/he-x-gamliel/arc are RTL. Other variants retain base fallback. New languages are inserted before a previously terminal Latin fallback."
+    "$ref": "LanguageCatalog stores la (default), en, ar, he, he-x-gamliel, arc, el, es, ru, uk, tl, fr, it. Ordinary public choices show one Hebrew (עברית) with a separate Saint James Vicariate (stored he) / Mission of St. Gamaliel (he-x-gamliel) tradition. The fallback editor exposes both Hebrew traditions independently, preserving interleaving such as Mission, Aramaic, Vicariate. Generic shared/repository Hebrew uses the higher Hebrew slot, immediately after that tradition; internal content-only he-x-vicariate distinguishes marked Vicariate text and is never persisted or selectable. Aramaic is labeled ܐܪܡܐܝܬ / ארמית. ar/he/he-x-gamliel/arc are RTL. Other variants retain base fallback. New languages are inserted before a previously terminal Latin fallback."
   },
   "persistence": {
     "perDevotionDefaultScoping": "save()/delete() clear or promote isDefault scoped to (Prayer.kind, Prayer.customDevotionId), never across devotions — two generic devotions must not steal each other's default slot. Legacy rows with retired per-devotion kinds resolve through the same identity (iOS PresetEntry.resolvedKind / Android PresetEntity.resolvedKind / Windows's SQL migration). See ARCHITECTURE.markdown#persistence."

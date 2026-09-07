@@ -2,10 +2,25 @@ package com.dkaluta.prosary.ui.shared
 
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontWeight
+import com.dkaluta.prosary.typography.PrayerTypography
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class BoldMarkdownTest {
+    @Test
+    fun holyGodGesturesKeepTheirPositionAndScriptThroughBodyRendering() {
+        val openings = mapOf(
+            "קַדּישַת ✠▼▲ אַלָהָא" to PrayerTypography.Script.Hebrew,
+            "ܩܰܕ݁ܝܫܰܬ݂ ✠▼▲ ܐܰܠܳܗܳܐ" to PrayerTypography.Script.Syriac,
+        )
+        openings.forEach { (body, script) ->
+            assertEquals(body, body.parseBoldMarkdown().text)
+            assertEquals(body, "**$body**".parseBoldMarkdown().text)
+            // The gestures must not redirect the body to a Latin typeface.
+            assertEquals(script, PrayerTypography.scriptOf(body.parseBoldMarkdown().text))
+        }
+    }
+
     @Test
     fun plainTextHasNoSpans() {
         val result = "Hail Mary, full of grace.".parseBoldMarkdown()

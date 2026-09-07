@@ -11,6 +11,92 @@ public class HebrewFallbackTests : IClassFixture<PrayerPackLoaderFixture>
 {
     public HebrewFallbackTests(PrayerPackLoaderFixture _) { }
 
+    [Fact]
+    public void JaffaWordingChangesOnlyResolvedVicariateTextAndRestoresTheOriginal()
+    {
+        var previous = AppSettings.UseJaffaHailMaryWording;
+        try
+        {
+            AppSettings.SetUseJaffaHailMaryWording(false);
+            var original = PrayerTranslations.Get("he", PrayerKey.AveMaria);
+            var native = PrayerTranslations.NativeTextAtProbe(LanguageCatalog.VicariateContentCode, PrayerKey.AveMaria);
+            var mission = PrayerTranslations.Get("he-x-gamliel", PrayerKey.AveMaria);
+            Assert.Contains("מְלֵאַת הַחֶסֶד", original);
+
+            AppSettings.SetUseJaffaHailMaryWording(true);
+            var expected = original.Replace("מְלֵאַת הַחֶסֶד", "בְּרוּכַת הַחֶסֶד");
+            Assert.Equal(expected, PrayerTranslations.Get("he", PrayerKey.AveMaria));
+            Assert.Equal(expected, PrayerPackStore.ResolveBodyText("missing_bundle", "he", "aveMaria"));
+            Assert.Equal(mission, PrayerTranslations.Get("he-x-gamliel", PrayerKey.AveMaria));
+            Assert.Equal(native, PrayerTranslations.NativeTextAtProbe(LanguageCatalog.VicariateContentCode, PrayerKey.AveMaria));
+
+            AppSettings.SetUseJaffaHailMaryWording(false);
+            Assert.Equal(original, PrayerTranslations.Get("he", PrayerKey.AveMaria));
+            Assert.Equal(original, PrayerPackStore.ResolveBodyText("missing_bundle", "he", "aveMaria"));
+        }
+        finally { AppSettings.SetUseJaffaHailMaryWording(previous); }
+    }
+
+    [Theory]
+    [InlineData("מְלֵאַת הַחֶסֶד", "בְּרוּכַת הַחֶסֶד")]
+    [InlineData("מלאת החסד", "ברוכת החסד")]
+    public void JaffaWordingFollowsMarkedFallbackContentAndSuppressesOnlyMismatchedAids(
+        string originalPhrase, string replacementPhrase)
+    {
+        using var fixture = new ImportedPack(new Dictionary<string, object>
+        {
+            ["he"] = new Dictionary<string, object>
+            {
+                ["prayers"] = new { genericBody = $"Before {originalPhrase}. After {originalPhrase}.", noChange = "unaltered Vicariate body" },
+                ["transliterations"] = new { genericBody = "original matching aid", noChange = "unaltered matching aid" },
+                ["$prayerTraditionByKey"] = new { genericBody = "vicariate", noChange = "vicariate" },
+            },
+            ["arc"] = new { prayers = new { anotherBody = "Aramaic" } },
+        });
+        fixture.SetOrder("he-x-gamliel", "arc", "he");
+        AppSettings.SetUseJaffaHailMaryWording(false);
+        var original = PrayerPackStore.ResolveBodyText(fixture.Id, "he-x-gamliel", "genericBody");
+        Assert.Equal("original matching aid", PrayerPackStore.Transliteration(fixture.Id, "he-x-gamliel", "genericBody"));
+
+        AppSettings.SetUseJaffaHailMaryWording(true);
+        Assert.Equal($"Before {replacementPhrase}. After {replacementPhrase}.",
+            PrayerPackStore.ResolveBodyText(fixture.Id, "he-x-gamliel", "genericBody"));
+        Assert.Null(PrayerPackStore.Transliteration(fixture.Id, "he-x-gamliel", "genericBody"));
+        Assert.Equal("unaltered Vicariate body", PrayerPackStore.ResolveBodyText(fixture.Id, "he-x-gamliel", "noChange"));
+        Assert.Equal("unaltered matching aid", PrayerPackStore.Transliteration(fixture.Id, "he-x-gamliel", "noChange"));
+
+        AppSettings.SetUseJaffaHailMaryWording(false);
+        Assert.Equal(original, PrayerPackStore.ResolveBodyText(fixture.Id, "he-x-gamliel", "genericBody"));
+        Assert.Equal("original matching aid", PrayerPackStore.Transliteration(fixture.Id, "he-x-gamliel", "genericBody"));
+    }
+
+    [Theory]
+    [InlineData("he")]
+    [InlineData("he-x-gamliel")]
+    public void JaffaWordingLeavesGenericRepositoryAndMissionTextAndScriptureUntouched(string contentLanguage)
+    {
+        const string original = "מְלֵאַת הַחֶסֶד / מלאת החסד";
+        using var fixture = new ImportedPack(new Dictionary<string, object>
+        {
+            [contentLanguage] = new
+            {
+                prayers = new { genericBody = original },
+                transliterations = new { genericBody = "unchanged reading aid" },
+                mysteries = new Dictionary<string, object>
+                {
+                    ["jaffa_immunity_fixture"] = new { description = original, transliteratedDescription = "unchanged Scripture aid" },
+                },
+            },
+        });
+        fixture.SetOrder("he", "he-x-gamliel", "arc");
+        AppSettings.SetUseJaffaHailMaryWording(true);
+        Assert.Equal(original, PrayerPackStore.ResolveBodyText(fixture.Id, "he", "genericBody"));
+        Assert.Equal("unchanged reading aid", PrayerPackStore.Transliteration(fixture.Id, "he", "genericBody"));
+        var mystery = MysteryTranslations.Get("he", "jaffa_immunity_fixture");
+        Assert.Equal(original, mystery.Description);
+        Assert.Equal("unchanged Scripture aid", mystery.TransliteratedDescription);
+    }
+
     [Theory]
     [InlineData("he-x-gamliel", "he", "arc body", "arc aid")]
     [InlineData("he", "he-x-gamliel", "Vicariate body", "Vicariate aid")]
@@ -170,6 +256,7 @@ public class HebrewFallbackTests : IClassFixture<PrayerPackLoaderFixture>
         private readonly string _directory = Path.Combine(Path.GetTempPath(), "prosary-fallback-" + Guid.NewGuid().ToString("N"));
         private readonly string? _previousDirectory = PrayerPackStore.InstalledPacksDirectory;
         private readonly string[] _previousOrder = AppSettings.LanguageFallbackOrder.ToArray();
+        private readonly bool _previousJaffaWording = AppSettings.UseJaffaHailMaryWording;
         private readonly Action _restorePrayers = Snapshot<string>("PrayerOverrides");
         private readonly Action _restoreAids = Snapshot<string>("PrayerTransliterations");
         private readonly Action _restoreMysteries = Snapshot<MysteryTextOverride>("MysteryOverrides");
@@ -202,6 +289,7 @@ public class HebrewFallbackTests : IClassFixture<PrayerPackLoaderFixture>
             _restoreMysteries();
             PrayerPackStore.InstalledPacksDirectory = _previousDirectory;
             AppSettings.SetLanguageFallbackOrder(_previousOrder);
+            AppSettings.SetUseJaffaHailMaryWording(_previousJaffaWording);
             if (Directory.Exists(_directory)) Directory.Delete(_directory, recursive: true);
         }
 

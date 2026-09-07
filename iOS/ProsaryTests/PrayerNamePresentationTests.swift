@@ -29,14 +29,58 @@ final class PrayerNamePresentationTests: XCTestCase {
     XCTAssertEqual(bilingual.translation, interfaceTitle == "קדישת" ? nil : HebrewDisplayText.unpointed(interfaceTitle))
   }
 
-  func testBasicPrayerShelfAndFlowHaveIndependentNameLanguages() throws {
+  func testBasicPrayerShelfAndFlowKeepTheChosenPrayerLanguage() throws {
     let prayer = try XCTUnwrap(BasicPrayerCatalog.all.first { $0.bodyKey == "paterNoster" })
     let normal = PrayerNamePresentation.basicPrayer(prayer, languageCode: "arc", showPrayerLanguage: false)
-    XCTAssertEqual(normal.title, HebrewDisplayText.unpointed(PrayerPackStore.resolveBodyText(
-      bundleId: prayer.bundleId, languageCode: UILanguage.current, key: prayer.titleKey)))
+    XCTAssertEqual(normal.title, "צלותא מרניתא")
+    XCTAssertNil(normal.translation)
     let bilingual = PrayerNamePresentation.basicPrayer(prayer, languageCode: "arc", showPrayerLanguage: true)
     XCTAssertEqual(bilingual.title, "צלותא מרניתא")
-    XCTAssertEqual(bilingual.translation, normal.title == bilingual.title ? nil : normal.title)
+    let interfaceTitle = HebrewDisplayText.unpointed(PrayerPackStore.resolveBodyText(
+      bundleId: prayer.bundleId, languageCode: UILanguage.current, key: prayer.titleKey))
+    XCTAssertEqual(bilingual.translation, interfaceTitle == bilingual.title ? nil : interfaceTitle)
     XCTAssertEqual(BasicPrayerCatalog.step(for: prayer, languageCode: "arc").title, "צלותא מרניתא")
+  }
+
+  func testBasicPrayerNamesCoverEveryPrayerLanguageWithAnOptionalInterfaceSubtitle() throws {
+    let ourFatherTitles = [
+      "la": "Pater Noster", "en": "Our Father", "he": "אבינו שבשמים",
+      "he-x-gamliel": "תפילת האדון", "arc": "צלותא מרניתא", "ar": "الأبانا",
+      "el": "Πάτερ ημών", "es": "Padre nuestro", "ru": "Отче наш",
+      "tl": "Ama Namin", "fr": "Notre Père", "it": "Padre nostro",
+      "uk": "Отче наш",
+    ]
+    XCTAssertEqual(Set(ourFatherTitles.keys), Set(LanguageCatalog.all.map(\.code)))
+    for (language, expectedOurFather) in ourFatherTitles {
+      for prayer in BasicPrayerCatalog.all {
+        let title = HebrewDisplayText.unpointed(BasicPrayerCatalog.step(for: prayer, languageCode: language).title)
+        for enabled in [false, true] {
+          let name = PrayerNamePresentation.basicPrayer(prayer, languageCode: language,
+            interfaceLanguage: "he", showPrayerLanguage: enabled)
+          XCTAssertEqual(name.title, title, "\(prayer.id), \(language), \(enabled)")
+          let interfaceTitle = HebrewDisplayText.unpointed(BasicPrayerCatalog.step(for: prayer, languageCode: "he").title)
+          XCTAssertEqual(name.translation, enabled && title != interfaceTitle ? interfaceTitle : nil)
+          if prayer.id == "ourFather" { XCTAssertEqual(name.title, expectedOurFather, language) }
+        }
+      }
+    }
+  }
+
+  func testBasicPrayerNamesFollowDefaultChangesAndPreserveAnExplicitOverride() throws {
+    let saved = UserDefaults.standard.object(forKey: "defaultLanguageCode")
+    defer {
+      if let saved { UserDefaults.standard.set(saved, forKey: "defaultLanguageCode") }
+      else { UserDefaults.standard.removeObject(forKey: "defaultLanguageCode") }
+    }
+    let prayer = try XCTUnwrap(BasicPrayerCatalog.prayer(id: "ourFather"))
+    for (language, title) in [("he-x-gamliel", "תפילת האדון"), ("arc", "צלותא מרניתא")] {
+      UserDefaults.standard.set(language, forKey: "defaultLanguageCode")
+      let following = PrayerNamePresentation.basicPrayer(prayer, languageCode: "",
+        interfaceLanguage: "he", showPrayerLanguage: false)
+      XCTAssertEqual(following.title, title)
+      XCTAssertEqual(PrayerNamePresentation.basicPrayer(prayer, languageCode: "en",
+        interfaceLanguage: "he", showPrayerLanguage: false).title, "Our Father")
+      XCTAssertEqual(LanguageCatalog.resolve("").code, language)
+    }
   }
 }

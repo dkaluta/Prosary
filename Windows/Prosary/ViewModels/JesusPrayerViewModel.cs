@@ -188,6 +188,7 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     partial void OnMatchingFavoriteIdChanged(Guid? value) => OnPropertyChanged(nameof(IsFavorited));
 
     public void RefreshTypography() => RenderCurrentStep();
+    public void RefreshPrayerWording() => RenderCurrentStep();
 
     private void RenderCurrentStep()
     {

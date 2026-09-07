@@ -114,7 +114,7 @@ data class LiturgicalDayInfo(val byLanguage: Map<String, String>) {
 
 /** Today follows the app interface language, independently of the prayer language. */
 object TodayTranslationLanguage {
-    val supportedCodes = listOf("en", "he", "ar", "ru", "tl", "fr", "it")
+    val supportedCodes = listOf("en", "he", "ar", "ru", "uk", "tl", "fr", "it")
 
     fun resolve(appLanguage: String = LanguageCatalog.uiLanguageCode()): String {
         val normalized = LanguageCatalog.uiLanguageCode(appLanguage)
@@ -255,7 +255,7 @@ object TodayInfoStore {
                 when (language) {
                     "he" -> "יום $number בחודש $month"
                     "ar" -> "اليوم $number من $month"
-                    "ru" -> day.format(java.time.format.DateTimeFormatter.ofPattern("d MMMM", locale))
+                    "ru", "uk" -> day.format(java.time.format.DateTimeFormatter.ofPattern("d MMMM", locale))
                     "tl" -> "Ika-$number ng $month"
                     "fr" -> "Jour $number de $month"
                     "it" -> "Giorno $number di $month"
@@ -289,6 +289,7 @@ object TodayInfoStore {
         val seasonNames = mapOf(
             "ar" to listOf("الصوم الكبير", "زمن الفصح", "زمن المجيء", "زمن الميلاد", "الزمن العادي"),
             "ru" to listOf("Великого поста", "Пасхального времени", "Адвента", "Рождественского времени", "Рядового времени"),
+            "uk" to listOf("Великого посту", "Великоднього часу", "Адвенту", "Різдвяного часу", "Звичайного періоду"),
             "tl" to listOf("Kuwaresma", "Panahon ng Pasko ng Pagkabuhay", "Adbiyento", "Panahon ng Pasko", "Karaniwang Panahon"),
             "fr" to listOf("Carême", "Temps pascal", "Avent", "Temps de Noël", "Temps ordinaire"),
             "it" to listOf("Quaresima", "Tempo di Pasqua", "Avvento", "Tempo di Natale", "Tempo ordinario"),
@@ -303,6 +304,7 @@ object TodayInfoStore {
             translations[language] = when (language) {
                 "ar" -> "$weekday · الأسبوع ${season.third} من $name"
                 "ru" -> "$weekday · ${season.third}-я неделя $name"
+                "uk" -> "$weekday · ${season.third}-й тиждень $name"
                 "tl" -> "$weekday · Ika-${season.third} linggo ng $name"
                 "fr" -> "$weekday · Semaine ${season.third} · $name"
                 else -> "$weekday · Settimana ${season.third} · $name"

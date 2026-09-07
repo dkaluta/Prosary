@@ -226,7 +226,7 @@ private suspend fun toggleJesusPrayerFavorite(
     }
 
     val resolved = languageCode ?: LanguageCatalog.defaultCode
-    val langName = LanguageCatalog.all.firstOrNull { it.code == resolved }?.nativeName ?: resolved
+    val langName = LanguageCatalog.pickerLanguageName(resolved)
     val targetLabel = when (target) {
         is JesusPrayerTarget.Count -> context.getString(R.string.jp_times_prefix, target.value)
         JesusPrayerTarget.Unbounded -> context.getString(R.string.jp_unbounded)

@@ -1,0 +1,35 @@
+{
+  "prayers": {
+    "aveMariaTitle": "Радуйся, Маріє",
+    "paterNosterTitle": "Отче наш",
+    "signumCrucisTitle": "Знак хреста",
+    "decadeOrdinalNoun": "Радість",
+    "crownYearsSubtitle": "За роки життя Богородиці",
+    "crownPopeSubtitle": "У намірах Святішого Отця"
+  },
+  "mysteries": {
+    "franciscan_04_adoration_of_the_magi": {
+      "title": "Поклоніння волхвів",
+      "fruit": "Щедрість",
+      "description": "Вони ж, вислухавши царя, вийшли; коли се зоря, що бачили на сходї, йде поперед них, поки прийшла та й стала зверху, де було хлопятко. Побачивши ж вони зорю, зрадїли вельми великою радостю. І, ввійшовши в господу, знайшли хлопятко з Мариєю, матїрю його, й, припавши, поклонились йому; й, відкривши скарби свої, піднесли йому дари: золото, ладан і миро.\n\n— Матей 2:9–11 (Куліш, Нечуй-Левицький, Пулюй, 1905)"
+    }
+  },
+  "$comment": "Prayer bodies are relayed from the official Roman Catholic Church in Ukraine prayerbook, Щоденно з Богом. Reuse is permitted with a link to https://rkc.org.ua/. Paragraph breaks, response emphasis and Prosary gesture cues are presentation changes; source wording is retained. Titles, intentions, fruits and non-Scripture narrative summaries are Prosary translations of canonical editorial metadata. Scripture is separately imported and credited.",
+  "$sources": {},
+  "$scriptureSource": "Scripture: Bible of Panteleimon Kulish, Ivan Nechui-Levytsky and Ivan Puluj (1905), eBible.org ukr1871 (https://ebible.org/find/details.php?id=ukr1871), public domain. Imported by Shared/tools/import-scripture.py; the published historical Ukrainian spelling and verse numbering are retained. This is distinct from the modern Ukrainian Catholic prayer texts, separately credited to the Roman Catholic Church in Ukraine prayerbook (https://rkc.org.ua/duhovnist/molytovnyk/).",
+  "$scriptureImport": {
+    "prayerKeys": [],
+    "mysteryKeys": [
+      "franciscan_04_adoration_of_the_magi"
+    ]
+  },
+  "$coverage": {
+    "status": "partial",
+    "fallbackPrayerKeys": [
+      "almaRedemptorisMater",
+      "aveReginaCaelorum",
+      "collectaStandard"
+    ],
+    "sourceReview": "Shared/content/UKRAINIAN-SOURCES.markdown"
+  }
+}

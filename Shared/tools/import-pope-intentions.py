@@ -3,13 +3,13 @@
 # requires-python = ">=3.11"
 # dependencies = ["pypdf"]
 # ///
-"""Import the published 2026–2027 intentions and the credited Hebrew translation.
+"""Import the published 2026–2027 intentions and credited Hebrew/Ukrainian translations.
 
 Download the official PDFs into --source-dir or use --fetch. French, Italian and
 Filipino have extractable text; Arabic uses the reviewed transcription beside this
 script because the publisher's PDF has a broken character map. The reviewed 2027
-snapshot records each official source. Hebrew is explicitly credited to Prosary,
-not presented as a published Vatican edition. --sync copies the result.
+snapshot records each official source. Hebrew and Ukrainian are explicitly credited to
+Prosary, not presented as published Vatican editions. --sync copies the result.
 """
 import argparse
 import json
@@ -56,6 +56,28 @@ def extract_intentions(path, language):
             raise ValueError(f"{language}/{index + 1}: incomplete source extraction")
         result[f"2026-{index+1:02d}"] = {"title": title, "text": body}
     return result
+
+
+def merge_ukrainian(payload, snapshot):
+    """Keep authored Ukrainian text separate from the published editions it translates."""
+    expected = {f"{year}-{month:02d}" for year in (2026, 2027) for month in range(1, 13)}
+    if set(snapshot["months"]) != expected:
+        raise ValueError("Ukrainian intentions must contain exactly the 24 months of 2026–2027")
+    credit = snapshot["credit"]
+    if not credit.strip():
+        raise ValueError("Ukrainian editorial translation must retain its credit")
+    for month, values in snapshot["months"].items():
+        row = payload["months"][month]
+        source = snapshot["sourceByYear"][month[:4]]
+        if not source.startswith("https://"):
+            raise ValueError(f"{month}/uk: missing published English source")
+        for field in ("title", "text"):
+            value = values[field]
+            if not value.strip() or "\ufffd" in value:
+                raise ValueError(f"{month}/uk: incomplete {field}")
+            row.setdefault(field + "ByLanguage", {})["uk"] = value
+        row.setdefault("sourceByLanguage", {})["uk"] = source
+        row.setdefault("translationCreditByLanguage", {})["uk"] = credit
 
 
 def main():
@@ -112,13 +134,15 @@ def main():
             row.setdefault(field + "ByLanguage", {})["he"] = hebrew["months"][month][field]
     for row in payload["months"].values():
         row.setdefault("translationCreditByLanguage", {})["he"] = "Prosary — Hebrew translation of the published intention"
-    payload["$comment"] = "2026–2027 intentions published by the Pope's Worldwide Prayer Network. Language source URLs identify published editions; Hebrew is Prosary's translation, not an official Vatican Hebrew edition. Missing languages fall back to the published English. Months outside this table hide the row."
-    payload["generated"] = "2026-09-05"
+    ukrainian = json.loads(Path(__file__).with_name("pope-intentions-uk.json").read_text())
+    merge_ukrainian(payload, ukrainian)
+    payload["$comment"] = "2026–2027 intentions published by the Pope's Worldwide Prayer Network. Language source URLs identify published editions or the original translated source; translationCreditByLanguage distinguishes editorial translations. Hebrew and Ukrainian are Prosary translations, not official Vatican editions. Missing languages fall back to the published English. Months outside this table hide the row."
+    payload["generated"] = "2026-09-07"
     DATA.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
     if args.sync:
         for target in ("iOS/Prosary/Data", "Android/app/src/main/assets/data", "Windows/Prosary/Data"):
             shutil.copy2(DATA, ROOT / target / DATA.name)
-    print("Imported 2026–2027 published intentions and credited Hebrew translations.")
+    print("Imported 2026–2027 published intentions and credited Hebrew and Ukrainian translations.")
 
 
 if __name__ == "__main__":

@@ -16,6 +16,13 @@ and Firefox keep Prosary's custom filename extensions; the file picker also acce
 `.json` and `.zip` suffixes a browser may have appended. An author's work stays on their
 device until they choose to share or publish it.
 
+An open production editor checks for a newer deployment on returning to the tab and every five
+minutes. Its update notice saves the current draft to IndexedDB before an explicit reload; if
+the save fails, it keeps the editor open and offers a portable project save. The HTML entry is
+revalidated and the deployment marker is never cached, so old publishing restrictions do not
+silently persist in long-lived tabs. The first release adding this notice still needs one
+ordinary reload in tabs that predate it.
+
 Image and audio previews use short-lived object URLs that are revoked as screens and files change.
 Bundle imports reject unsafe paths, duplicate entries, unsupported/encrypted or Zip64 archives,
 oversized indexes and payloads, inconsistent local/central headers, overlapping ranges, invalid
@@ -58,7 +65,7 @@ defaults do the rest (`npm run build`, output `dist`). Production deploys track 
   and error regions, a skip link, native file/color/time/audio controls, RTL-aware fields, forced
   colors, reduced-motion behavior, and responsive layouts from phone widths upward.
 - The language picker offers Latin, English, Arabic, Hebrew, Classical Syriac/Aramaic, Greek,
-  Spanish, Russian, Tagalog, French, and Italian. Hebrew is one language for custom prayers;
+  Spanish, Russian, Ukrainian, Tagalog, French, and Italian. Hebrew is one language for custom prayers;
   the historical `he-x-gamliel` content code remains readable and publishable so importing an
   existing bundle preserves its separate Hebrew content maps. A bundle still
   declares only the languages for which its author supplies complete content.
@@ -67,7 +74,15 @@ defaults do the rest (`npm run build`, output `dist`). Production deploys track 
   type. Bead-structured ("rosary") devotions, option-gated steps, seasonal step swaps, and
   recordings-tied-to-forms remain future work — `unpack.ts` declines such bundles with a
   plain-language message rather than silently flattening them.
-- The community repository accepts all twelve prayer languages. Finish checks the same language
+- Import checks also protect subtitles, acclamations, language-specific Scripture flags,
+  day periods, and other content the editor cannot retain. Fully translated bundled overrides
+  of common prayers remain custom text when imported; sparse overrides are declined because
+  converting them would change the app's language fallback. This editor covers a subset of the
+  native format; a bundle the app can pray is not necessarily editable in Compose.
+- Names in Ukrainian, Hebrew, Aramaic, and other scripts keep their original display text.
+  When a name cannot form a Latin identifier, Compose and the repository derive the same
+  stable identifier from it. Existing valid identifiers remain unchanged.
+- The community repository accepts all thirteen content language codes, including Ukrainian. Finish checks the same language
   catalog and the repository's 8 MB upload limit before enabling Publish. The end-to-end suite
   compares both catalogs and carries a sourced Aramaic prayer, including its pointed Hebrew and
   Syriac text, through bundle creation, the popup's repeated structured clone, repository

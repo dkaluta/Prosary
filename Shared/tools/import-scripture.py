@@ -12,22 +12,25 @@ not from anyone's memory.
 
 Two alphabets, one text. The Hebrew-square projection uses the deterministic Syriac-to-Hebrew
 converter Erez supplied: the corresponding letters, Hebrew final forms, five vowel signs,
-qushshaya/dagesh, and the Syriac waw patterns all follow his rules. The current ETCBC source is
-unpointed, so final forms are the only rule that changes these Peshitta passages today; no points
-are invented. Unsupported Syriac marks are removed from the Hebrew projection, while the extracted
+qushshaya/dagesh, and the Syriac waw patterns all follow his rules. The BFBS New Testament source
+retains its published Western vowel signs; no points are invented. Unsupported Syriac marks are
+removed from the Hebrew projection, while the extracted
 Syriac passage is left unchanged by conversion in the same file's "transliterations" map for the
 prayer flow's script toggle.
 
-    sources   ETCBC/syrnt      Peshitta New Testament   MIT     (Dirk Roorda / ETCBC, VU Amsterdam)
-              ETCBC/peshitta   Peshitta Old Testament   MIT     (Dirk Roorda / ETCBC, VU Amsterdam)
+    sources   BFBS 1905       Peshitta New Testament   public-domain base, Digital Syriac Corpus CC BY 4.0
+              supplied XML     Peshitta Isaiah          edition and rights unidentified
 
     usage: import-scripture.py [bundle ...]   default: every bundle with Latin citations
            import-scripture.py --check        re-derive and diff, writing nothing
+           import-scripture.py --language arc import one language only
 """
 
 from __future__ import annotations
 
+import argparse
 import csv
+import hashlib
 import io
 import json
 import re
@@ -36,6 +39,7 @@ import sys
 import urllib.parse
 import urllib.request
 import zipfile
+import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -44,6 +48,17 @@ from aramaic_script_converter import SYRIAC_TO_HEBREW, to_hebrew, to_syriac_lett
 TOOLS = Path(__file__).resolve().parent
 CONTENT = TOOLS.parent / "content"
 CACHE = TOOLS / ".scripture-cache"
+
+# User-supplied pointed Isaiah, accepted after the user reported Erez's review. The combined
+# file's reused BFBS metadata does not establish its OT edition or license. Limit extraction to
+# the nine reviewed verses; a future passage requires a separate source review.
+SUPPLIED_PESHITTA_URL = (
+    "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/"
+    "Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20"
+    "%28---Original---%20With%20most%20Apocrypha%29.xml.txt")
+SUPPLIED_PESHITTA_SHA256 = "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88"
+REVIEWED_ISAIAH_VERSES = frozenset({(7, 14), (9, 2), (11, 2), (11, 3), (11, 4),
+                                     (11, 5), (11, 10), (22, 22), (28, 16)})
 
 # Which book each Latin abbreviation in the bundles names. "ot"/"nt" only picks the source file;
 # nothing else depends on the testament.
@@ -62,6 +77,21 @@ BOOKS = {
 # which case `second_script` names the transform and the result rides in "transliterations" —
 # which is exactly what the prayer flow's script toggle reads.
 LANGUAGES = {
+    "uk": {
+        "sources": {testament: (
+            "https://ebible.org/Scriptures/ukr1871_vpl.zip", "vplzip",
+            "Біблія Куліша, Нечуя-Левицького та Пулюя (1905), public domain; eBible.org ukr1871")
+            for testament in ("ot", "nt")},
+        "primary_script": None, "second_script": None,
+        "books": {"Matthew": ("Матей",), "Mark": ("Марко",), "Luke": ("Лука",),
+                  "John": ("Йоан",), "Acts": ("Діяння",), "Revelation": ("Одкровення",),
+                  "Isaiah": ("Ісая",)},
+        "edition": ("Куліш, Нечуй-Левицький, Пулюй, 1905",),
+        "file_names": {"Matthew": "MAT", "Mark": "MAR", "Luke": "LUK", "John": "JOH",
+                       "Acts": "ACT", "Revelation": "REV", "Isaiah": "ISA"},
+        # Pin the actual verse text rather than ZIP timestamps, which eBible rebuilds regularly.
+        "vpl_sha256": "1d2230822492a230c04fbea34f1b5ede7073a9d19c23a461d9738c87b85c2ec1",
+    },
     "fr": {
         "sources": {testament: (
             "https://raw.githubusercontent.com/scrollmapper/bible_databases/master/formats/json/FreCrampon.json",
@@ -88,13 +118,16 @@ LANGUAGES = {
     },
     "arc": {
         "sources": {
-            "nt": ("https://raw.githubusercontent.com/ETCBC/syrnt/master/plain/0.1/{book}.txt",
-                   "plain", "Peshitta New Testament (ETCBC/syrnt, MIT)"),
-            "ot": ("https://raw.githubusercontent.com/ETCBC/peshitta/master/plain/0.2/{book}.txt",
-                   "plain", "Peshitta Old Testament (ETCBC/peshitta, MIT)"),
+            "nt": ("https://raw.githubusercontent.com/srophe/syriac-corpus/"
+                   "833adc148cc356a6c70c16f81b22df9188df717a/data/tei/{book}.xml",
+                   "peshitta-tei", "Peshitta New Testament, BFBS 1905; Digital Syriac Corpus, CC BY 4.0"),
+            "ot": (SUPPLIED_PESHITTA_URL, "peshitta-supplied-xml",
+                   "Peshitta Isaiah, user-supplied Internet Archive XML; edition and rights unidentified"),
         },
         # The bundle ships Hebrew letters, per the catalogue's promise that "arc" is Aramaic in
         # Hebrew script; the Syriac original goes to transliterations.
+        "file_names": {"Matthew": "100", "Mark": "119", "Luke": "120", "John": "121",
+                       "Acts": "122", "Revelation": "145"},
         "primary_script": "hebrew",
         "second_script": "syriac",
         "books": {"Matthew": ("ܡܬܝ", "מתי"), "Mark": ("ܡܪܩܘܣ", "מרקוס"),
@@ -162,12 +195,13 @@ LANGUAGES = {
 # and citation parsing so its behavior stays network-free, independently testable, and reusable
 # for future pointed sources without ever rewriting the original Syriac track.
 
-# The bundles cite the Vulgate's chapter-and-verse. The Peshitta and the Septuagint both follow
-# the Hebrew numbering, which parts company with the Vulgate's in a handful of well-known places
+# The bundles cite the Vulgate's chapter-and-verse. Some source editions follow Hebrew numbering,
+# which parts company with the Vulgate's in a handful of well-known places
 # — and where it does, importing the cited number verbatim silently fetches the *wrong verse*.
 # Isaiah 9 is the one this app actually touches: Hebrew 8:23 is the Vulgate's 9:1, so every
-# Vulgate verse from 9:2 on sits one earlier in both sources. O Oriens cites Is. 9:2, "the people
-# that walked in darkness", and without this it imported 9:3, "thou hast multiplied the nation".
+# Vulgate verse from 9:2 on sits one earlier in Crampon and Brenton. O Oriens cites Is. 9:2,
+# "the people that walked in darkness". The supplied pointed Peshitta XML also calls this 9:2;
+# it must not inherit the previous ETCBC edition's 9:1 mapping.
 # Verified against both sources and pinned by a self-check below; extend it per book/chapter as
 # more of the Old Testament arrives, and never by guessing.
 # Keyed by language/rite because the divergence belongs to the *source*. Both the verse lookup and
@@ -189,8 +223,9 @@ SOURCE_TEXT_CORRECTIONS = {
 }
 
 VERSIFICATION = {
+    "uk": {},  # This edition numbers the people walking in darkness as Isaiah 9:2.
     "fr": {("Isaiah", 9): (2, -1)},  # Crampon follows Hebrew numbering here.
-    "arc": {("Isaiah", 9): (2, -1)},  # (from this Vulgate verse onward, shift by this much)
+    "arc": {},  # The supplied Isaiah XML follows the input numbering for all reviewed verses.
     "el": {("Isaiah", 9): (2, -1)},
     "es": {},
 }
@@ -210,8 +245,27 @@ def fetch(language: str, testament: str, book: str, binary: bool = False):
     url_template, layout, _credit = spec["sources"][testament]
     stem = spec.get("file_names", {}).get(book, book)
     CACHE.mkdir(exist_ok=True)
+    if layout == "peshitta-supplied-xml":
+        if book != "Isaiah":
+            raise ValueError("The supplied Peshitta XML is reviewed only for Isaiah")
+        cached = CACHE / f"arc-supplied-{SUPPLIED_PESHITTA_SHA256}.xml"
+        if cached.exists():
+            raw = cached.read_bytes()
+        else:
+            print(f"  fetching {url_template}", file=sys.stderr)
+            request = urllib.request.Request(url_template, headers={
+                "User-Agent": "Prosary-import-scripture/1.0 (+https://prosary.app)"})
+            with urllib.request.urlopen(request, timeout=120) as response:
+                raw = response.read()
+        # Check cached data too: neither a changed remote file nor an edited cache may silently
+        # replace the exact source that was reviewed. Do not cache a failed response.
+        verify_supplied_peshitta_hash(raw)
+        if not cached.exists():
+            cached.write_bytes(raw)
+        return raw if binary else raw.decode("utf-8-sig")
     # A whole-testament archive is fetched once, not once per book.
-    cached = CACHE / (f"{language}-bible.json" if layout == "scrollmapper" else
+    cached = CACHE / (f"arc-corpus-833adc1-{stem}.xml" if layout == "peshitta-tei" else
+                      f"{language}-bible.json" if layout == "scrollmapper" else
                       f"{language}-{testament}-archive" if layout == "vplzip"
                       else f"{language}-{testament}-{stem}".replace("/", "_"))
     if not cached.exists():
@@ -228,6 +282,10 @@ def fetch(language: str, testament: str, book: str, binary: bool = False):
 def verses(language: str, testament: str, book: str) -> dict:
     """(chapter, verse) -> text, in whatever layout this language's source uses."""
     layout = LANGUAGES[language]["sources"][testament][1]
+    if layout == "peshitta-tei":
+        return parse_pointed_peshitta(fetch(language, testament, book), book)
+    if layout == "peshitta-supplied-xml":
+        return parse_supplied_peshitta_isaiah(fetch(language, testament, book), book)
     if layout == "wikisource":
         return _verses_wikisource(language, testament, book)
     if layout == "scrollmapper":
@@ -242,7 +300,11 @@ def verses(language: str, testament: str, book: str) -> dict:
         raw = fetch(language, testament, book, binary=True)
         with zipfile.ZipFile(io.BytesIO(raw)) as archive:
             name = next(n for n in archive.namelist() if n.endswith("_vpl.txt"))
-            for line in archive.read(name).decode("utf-8").splitlines():
+            verse_text = archive.read(name)
+            expected_hash = LANGUAGES[language].get("vpl_sha256")
+            if expected_hash and hashlib.sha256(verse_text).hexdigest() != expected_hash:
+                raise ValueError(f"The {language} Bible verse text changed; review the source before updating its hash")
+            for line in verse_text.decode("utf-8").splitlines():
                 match = re.match(rf"^{re.escape(stem)}\s+(\d+):(\d+)\s+(.*)$", line)
                 if match:
                     table[(int(match.group(1)), int(match.group(2)))] = match.group(3).strip()
@@ -491,8 +553,72 @@ def normalize_source_text(language: str, book: str, chapter: int, verse: int, te
     return text.replace(*correction) if correction else text
 
 
+def parse_pointed_peshitta(markup: str, book: str, chapters: set[int] | None = None) -> dict:
+    """Read numbered TEI verses only, preserving the edition's letters and vowel marks."""
+    root = ET.fromstring(markup)
+    ns = {"t": "http://www.tei-c.org/ns/1.0"}
+    source_id = root.find("t:teiHeader/t:fileDesc/t:publicationStmt/t:idno[@type='URI']", ns)
+    expected_id = "https://syriaccorpus.org/" + LANGUAGES["arc"]["file_names"][book]
+    if source_id is None or (source_id.text or "").strip() != expected_id:
+        raise ValueError(f"Peshitta source is not {book}")
+    table = {}
+    for chapter in root.findall("t:text/t:body/t:div[@type='chapter']", ns):
+        if chapters is not None and int(chapter.attrib["n"]) not in chapters:
+            continue
+        for verse in chapter.findall("t:ab[@type='verse']", ns):
+            key = (int(chapter.attrib["n"]), int(verse.attrib["n"]))
+            if key in table:
+                raise ValueError(f"Peshitta returned duplicate verse {book} {key}")
+            # XML indentation is formatting; inline markup must not split a word. None of the
+            # Bible verse elements contain editorial notes; reject one if a future source does.
+            if verse.find(".//t:note", ns) is not None:
+                raise ValueError(f"Peshitta {book} {key} contains an unhandled editorial note")
+            text = " ".join("".join(verse.itertext()).split())
+            if not re.search(r"[\u0730\u0733\u0736\u073a\u073d]", text):
+                raise ValueError(f"Peshitta {book} {key} is missing its Western vowel signs")
+            table[key] = text
+    if not table:
+        raise ValueError(f"Peshitta source contains no verses for {book}")
+    return table
+
+
+def verify_supplied_peshitta_hash(raw: bytes) -> None:
+    if hashlib.sha256(raw).hexdigest() != SUPPLIED_PESHITTA_SHA256:
+        raise ValueError("The supplied Peshitta XML does not match the reviewed SHA-256")
+
+
+def parse_supplied_peshitta_isaiah(markup: str, book: str = "Isaiah") -> dict:
+    """Extract only the nine accepted Isaiah verses, retaining the supplied text's marks."""
+    root = ET.fromstring(markup)
+    books = root.findall("BIBLEBOOK[@bnumber='23']")
+    if (book != "Isaiah" or root.tag != "XMLBIBLE" or len(books) != 1
+            or books[0].get("bname") != "Isaiah"):
+        raise ValueError("The supplied Peshitta source is not Isaiah")
+    table = {}
+    for chapter in books[0].findall("CHAPTER"):
+        for verse in chapter.findall("VERS"):
+            key = (int(chapter.attrib["cnumber"]), int(verse.attrib["vnumber"]))
+            if key not in REVIEWED_ISAIAH_VERSES:
+                continue
+            if key in table:
+                raise ValueError(f"Supplied Peshitta returned duplicate Isaiah verse {key}")
+            if len(verse):
+                raise ValueError(f"Supplied Peshitta Isaiah {key} contains unhandled inline markup")
+            text = " ".join((verse.text or "").split())
+            if not re.search(r"[\u0730\u0733\u0736\u073a\u073d]", text):
+                raise ValueError(f"Supplied Peshitta Isaiah {key} is missing its Western vowel signs")
+            table[key] = text
+    if table.keys() != REVIEWED_ISAIAH_VERSES:
+        raise ValueError("The supplied Peshitta source is missing reviewed Isaiah verses")
+    return table
+
+
 def passage(language: str, book: str, testament: str, spans: list, where: str) -> str | None:
-    if LANGUAGES[language]["sources"][testament][1] == "martini":
+    layout = LANGUAGES[language]["sources"][testament][1]
+    if layout == "peshitta-tei":
+        table = parse_pointed_peshitta(fetch(language, testament, book), book,
+                                       {span[0] for span in spans})
+    elif layout == "martini":
         table = {}
         spec = LANGUAGES[language]
         for chapter in sorted({span[0] for span in spans}):
@@ -645,12 +771,23 @@ def build(language: str, bundle: Path) -> dict | None:
 
 
 NOTES = {
+    "uk": "Scripture: Bible of Panteleimon Kulish, Ivan Nechui-Levytsky and Ivan Puluj (1905), eBible.org ukr1871 (https://ebible.org/find/details.php?id=ukr1871), public domain. Imported by Shared/tools/import-scripture.py; the published historical Ukrainian spelling and verse numbering are retained. This is distinct from the modern Ukrainian Catholic prayer texts, separately credited to the Roman Catholic Church in Ukraine prayerbook (https://rkc.org.ua/duhovnist/molytovnyk/).",
     "fr": "Scripture: Bible Augustin Crampon (1923), public domain; transcribed by scrollmapper/bible_databases. Imported passages retain this edition's wording and numbering. Other prayers have separately credited published sources.",
     "it": "Scripture: Bibbia di Antonio Martini (1769–1781), public domain. Structured data by Giovanni Novelli, Parola Viva (https://parolaviva.art/opendata), CC BY 4.0. Imported passages retain this edition's wording and numbering. Isaiah 28:16 joins the upstream split word fonda mento to fondamento, verified in the Martini print, p. 673 (" + MARTINI_ISAIAH_PRINT + "). Other prayers have separately credited published sources.",
     "arc": ("Scripture entries imported from the Peshitta by Shared/tools/import-scripture.py — "
             "re-run it rather than editing them by hand. Their Hebrew square script is converted "
             "with Erez's script rules; the source text in Syriac letters is beside it for the "
-            "flow's script toggle. Unpointed, as the source has it."),
+            "flow's script toggle. New Testament: BFBS 1905, with Western "
+            "vowel signs, Digital Syriac Corpus (https://syriaccorpus.org/), "
+            "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); "
+            "Syriac transcription by George A. Kiraz, TEI edition by James E. Walters. "
+            "Hebrew projection and whitespace normalization by Prosary. "
+            "Isaiah: nine pointed verses from user-supplied Internet Archive XML "
+            "(https://archive.org/details/peshitta-complete-bible-otnt), SHA-256 "
+            + SUPPLIED_PESHITTA_SHA256 + "; the user reported Erez's review of the verses. "
+            "The underlying Isaiah edition and redistribution terms remain unidentified; "
+            "the New Testament source's BFBS attribution and CC BY license do not apply to it. "
+            "See Shared/content/PESHITTA-SOURCES.markdown."),
     "es": ("Scripture imported from Félix Torres Amat's Spanish Bible (1836) by "
            "Shared/tools/import-scripture.py — re-run it rather than editing these by hand. "
            "Torres Amat translated the Vulgate, so its chapter-and-verse is the same one these "
@@ -701,8 +838,12 @@ def render(language: str, built: dict, existing: dict) -> dict:
 
 
 def main() -> int:
-    arguments = [a for a in sys.argv[1:] if not a.startswith("--")]
-    check = "--check" in sys.argv[1:]
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("bundles", nargs="*")
+    parser.add_argument("--check", action="store_true")
+    parser.add_argument("--language", choices=LANGUAGES)
+    options = parser.parse_args()
+    arguments, check = options.bundles, options.check
 
     # Contextual Hebrew finals must still reverse to the same Syriac letter sequence. The original
     # Syriac itself never depends on this reverse map; it is stored byte-for-byte beside the
@@ -716,18 +857,21 @@ def main() -> int:
         if to_syriac_letters(to_hebrew(word)) != word:
             err(f"round trip failed for {word!r}")
 
-    # Isaiah 9 is where the Vulgate's numbering and the sources' part company, and a silent
-    # off-by-one there is indistinguishable from a correct import by eye. Pin both sources to the
-    # verse the Vulgate calls 9:2 — "the people that walked in darkness".
+    # Isaiah 9 is where edition numbering can diverge. Pin both sources to the verse the Vulgate
+    # calls 9:2 — "the people that walked in darkness" (supplied Peshitta 9:2, Brenton 9:1).
     if not arguments:
         for language, marker in (("arc", "ܥܡܐ"), ("el", "λαὸς")):
+            if options.language is not None and options.language != language:
+                continue
             try:
                 number = source_verse(language, "Isaiah", 9, 2, "versification self-check")
                 text = verses(language, "ot", "Isaiah").get((9, number), "")
             except Exception as exc:  # noqa: BLE001 - a source being unreachable is not a failure
                 print(f"  skipped {language} versification check: {exc}", file=sys.stderr)
                 continue
-            if marker not in text:
+            comparison = (re.sub(r"[\u0300-\u036f\u0730-\u074a]", "", text)
+                          if language == "arc" else text)
+            if marker not in comparison:
                 err(f"versification self-check failed for {language}: Isaiah 9:2 should be "
                     f"'the people that walked in darkness', got {text[:60]!r}")
 
@@ -735,7 +879,7 @@ def main() -> int:
                else sorted(p for p in CONTENT.iterdir() if (p / "manifest.json").exists()))
 
     changed = 0
-    for language in LANGUAGES:
+    for language in ([options.language] if options.language else LANGUAGES):
         for bundle in bundles:
             target = bundle / "content" / f"{language}.json"
             manifest_path = bundle / "manifest.json"

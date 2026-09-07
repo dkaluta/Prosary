@@ -37,15 +37,24 @@ object AppSettings {
     private const val KEY_HEBREW_SANS_MIGRATED = "hebrewSansTypefaceMigrated"
     private const val KEY_LATIN_PRAYER_TYPEFACE = "latinPrayerTypeface"
     private const val KEY_CYRILLIC_PRAYER_TYPEFACE = "cyrillicPrayerTypeface"
-    private const val KEY_FAVORITE_BASIC_PRAYERS = "favoriteBasicPrayerIds"
     private const val KEY_FAVORITE_BASIC_PRAYERS_FIRST = "favoriteBasicPrayersFirst"
     private const val KEY_LANGUAGE_FALLBACK_ORDER = "languageFallbackOrder"
+    private const val KEY_JAFFA_HAIL_MARY_WORDING = "useJaffaHailMaryWording"
 
     private var defaultLanguageState by mutableStateOf(LanguageCatalog.defaultCode)
     val defaultLanguageCode: String get() = defaultLanguageState
 
     private var basicPrayersLanguageState by mutableStateOf(LanguageCatalog.defaultSentinel)
     val basicPrayersLanguageCode: String get() = basicPrayersLanguageState
+
+    private var jaffaHailMaryWordingState by mutableStateOf(false)
+    /** Local Vicariate wording preference, also available when Hebrew is a fallback. */
+    var useJaffaHailMaryWording: Boolean
+        get() = jaffaHailMaryWordingState
+        set(value) {
+            jaffaHailMaryWordingState = value
+            prefs?.edit()?.putBoolean(KEY_JAFFA_HAIL_MARY_WORDING, value)?.apply()
+        }
 
     /** Legacy override retained for storage compatibility; Today now ignores it. */
     private var todayLanguageState by mutableStateOf("")
@@ -80,9 +89,10 @@ object AppSettings {
     val latinPrayerTypeface: String get() = latinPrayerTypefaceState
     private var cyrillicPrayerTypefaceState by mutableStateOf(TYPEFACE_DEFAULT)
     val cyrillicPrayerTypeface: String get() = cyrillicPrayerTypefaceState
-    private var pinnedBasicPrayerIdsState by mutableStateOf<Set<String>>(emptySet())
-    /** Historical favorites are now Home pins; retain the persisted key and selections. */
-    val favoriteBasicPrayerIds: Set<String> get() = pinnedBasicPrayerIdsState
+    private val basicPrayerPins = BasicPrayerPins()
+    val pinnedBasicPrayerIds: Set<String> get() = basicPrayerPins.ids
+    /** Compatibility alias for historical basic-prayer selections, now pins on Pray. */
+    val favoriteBasicPrayerIds: Set<String> get() = pinnedBasicPrayerIds
     var favoriteBasicPrayersFirst: Boolean = false
         private set
     var languageFallbackOrder: List<String> = emptyList()
@@ -160,6 +170,7 @@ object AppSettings {
             ?: LanguageCatalog.defaultCode
         basicPrayersLanguageState = resolved.getString(KEY_BASIC_PRAYERS_LANGUAGE, LanguageCatalog.defaultSentinel)
             ?: LanguageCatalog.defaultSentinel
+        jaffaHailMaryWordingState = resolved.getBoolean(KEY_JAFFA_HAIL_MARY_WORDING, false)
         aramaicSignOfCrossForm = resolved
             .getString(KEY_ARAMAIC_SIGN_OF_CROSS_FORM, ARAMAIC_SIGN_OF_CROSS_FORM_A)
             .takeIf { it == ARAMAIC_SIGN_OF_CROSS_FORM_B }
@@ -186,7 +197,7 @@ object AppSettings {
         hebrewScriptureTypefaceState = resolved.getString(KEY_HEBREW_SCRIPTURE_TYPEFACE, TYPEFACE_DEFAULT) ?: TYPEFACE_DEFAULT
         cyrillicPrayerTypefaceState = resolved.getString(KEY_CYRILLIC_PRAYER_TYPEFACE, TYPEFACE_DEFAULT) ?: TYPEFACE_DEFAULT
         latinPrayerTypefaceState = resolved.getString(KEY_LATIN_PRAYER_TYPEFACE, TYPEFACE_DEFAULT) ?: TYPEFACE_DEFAULT
-        pinnedBasicPrayerIdsState = resolved.getStringSet(KEY_FAVORITE_BASIC_PRAYERS, emptySet()).orEmpty()
+        basicPrayerPins.initialize(resolved)
         favoriteBasicPrayersFirst = resolved.getBoolean(KEY_FAVORITE_BASIC_PRAYERS_FIRST, false)
         languageFallbackOrder = resolved.getString(KEY_LANGUAGE_FALLBACK_ORDER, "")
             .orEmpty().split('\n').filter { it.isNotEmpty() }
@@ -251,12 +262,11 @@ object AppSettings {
         prefs?.edit()?.putString(KEY_HEBREW_SCRIPTURE_TYPEFACE, value)?.apply()
     }
 
-    fun toggleFavoriteBasicPrayer(id: String) {
-        pinnedBasicPrayerIdsState = favoriteBasicPrayerIds.toMutableSet().also {
-            if (!it.add(id)) it.remove(id)
-        }
-        prefs?.edit()?.putStringSet(KEY_FAVORITE_BASIC_PRAYERS, favoriteBasicPrayerIds)?.apply()
-    }
+    fun setBasicPrayerPinned(id: String, pinned: Boolean) = basicPrayerPins.setPinned(id, pinned)
+
+    fun toggleBasicPrayerPin(id: String) = basicPrayerPins.toggle(id)
+
+    fun toggleFavoriteBasicPrayer(id: String) = toggleBasicPrayerPin(id)
 
     fun setFavoriteBasicPrayersFirst(value: Boolean) {
         favoriteBasicPrayersFirst = value

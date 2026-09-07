@@ -11,6 +11,7 @@ import SwiftUI
 
 struct SettingsView: View {
   @AppStorage("defaultLanguageCode") private var languageCode = LanguageCatalog.defaultCode
+  @AppStorage(JaffaHailMaryWording.defaultsKey) private var usesJaffaHailMaryWording = false
   @AppStorage(AramaicSignOfCrossForm.defaultsKey) private var aramaicSignOfCrossForm = AramaicSignOfCrossForm.formA
   @AppStorage("autoAdvanceSeconds") private var autoAdvanceSeconds = 0
   @AppStorage("hapticsOnAdvance") private var hapticsOnAdvance = false
@@ -45,6 +46,12 @@ struct SettingsView: View {
     Form {
       Section(String(localized: "settings.prayerLanguageHeader", defaultValue: "Prayer Language")) {
         PrayerLanguagePicker(label: String(localized: "settings.defaultLanguage", defaultValue: "Default language"), code: $languageCode)
+        Toggle(String(localized: "settings.jaffaWording", defaultValue: "Jaffa wording"),
+               isOn: $usesJaffaHailMaryWording)
+          .accessibilityIdentifier("useJaffaHailMaryWording")
+        Text(String(localized: "settings.jaffaWording.footer",
+                    defaultValue: "Use בְּרוּכַת הַחֶסֶד instead of מְלֵאַת הַחֶסֶד in Vicariate prayers."))
+          .font(.caption).foregroundStyle(.secondary)
         Toggle(String(localized: "settings.showPrayerNameInPrayerLanguage",
                       defaultValue: "Show prayer names in the prayer language"),
                isOn: $showsPrayerNameInPrayerLanguage)

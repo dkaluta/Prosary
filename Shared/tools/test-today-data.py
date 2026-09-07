@@ -11,7 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / 'Shared/data'
 TARGETS = [ROOT / 'iOS/Prosary/Data', ROOT / 'Android/app/src/main/assets/data', ROOT / 'Windows/Prosary/Data']
-LANGUAGES = {'he', 'ar', 'ru', 'tl', 'fr', 'it'}
+LANGUAGES = {'he', 'ar', 'ru', 'tl', 'fr', 'it', 'uk'}
 
 
 def read(name):
@@ -60,6 +60,7 @@ def main():
     assert full('readings-ugcc', '2026-09-06') == ['2 Corinthians 1:21–2:4', 'Matthew 22:1–14']
     assert full('readings-ugcc-gregorian', '2026-09-06') == ['2 Corinthians 4:6–15', 'Matthew 22:35–46']
     assert read('feasts-ugcc')['days']['2026-09-06']['title'] == '14th Sunday after Pentecost'
+    assert read('readings-ugcc')['days']['2026-09-06']['readings'][0]['fullByLanguage']['uk'] == '2 Корінтян 1:21–2:4'
     assert read('feasts-ugcc-gregorian')['days']['2026-09-06']['title'] == '15th Sunday after Pentecost'
     assert read('feasts-ugcc')['days']['2026-01-25']['title'] == 'Sunday of Zacchaeus; Saint Gregory the Theologian'
     assert read('feasts-ugcc-gregorian')['days']['2026-01-18']['title'] == 'Sunday of Zacchaeus'
@@ -82,6 +83,7 @@ def main():
     torah = read('torah-portions')
     assert torah['region'] == 'IL'
     for date, portion in torah['days'].items():
+        translations(portion['titleByLanguage'], f'Torah title/{date}')
         chosen, saturday = dt.date.fromisoformat(date), dt.date.fromisoformat(portion['saturday'])
         assert saturday.weekday() == 5 and 0 <= (saturday - chosen).days <= 6
         for item in portion['readings']:

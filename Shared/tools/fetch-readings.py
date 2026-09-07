@@ -649,7 +649,7 @@ def localize_existing_datasets() -> None:
         if "Hebrew citation book names" not in payload["$comment"]:
             payload["$comment"] += credit
         if "reading-books-localized.json" not in payload["$comment"]:
-            payload["$comment"] += " Arabic, Russian, Filipino, French and Italian book metadata sources are recorded in Shared/tools/reading-books-localized.json; source chapter and verse numbering is preserved."
+            payload["$comment"] += " Arabic, Russian, Filipino, French, Italian and Ukrainian book metadata sources are recorded in Shared/tools/reading-books-localized.json; source chapter and verse numbering is preserved."
         path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         print(f"localized {path.relative_to(ROOT)} ({len(payload['days'])} dates retained)")
 
@@ -773,7 +773,7 @@ def main() -> None:
         assert type_for_book("Luke") == "gospel"
         localized_books = json.loads(LOCALIZED_BOOKS_FILE.read_text(encoding="utf-8"))["books"]
         assert not localize_reading_names(samples, localized_books)
-        for language in ("ar", "ru", "tl", "fr", "it"):
+        for language in ("ar", "ru", "tl", "fr", "it", "uk"):
             assert corinthians["fullByLanguage"][language].rstrip("\u2069").endswith("2:14–3:3; 4:1–2")
             assert peter["shortByLanguage"][language].endswith(" 1")
         assert "\u20662:14–3:3; 4:1–2\u2069" in corinthians["fullByLanguage"]["ar"]

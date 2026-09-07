@@ -117,12 +117,24 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Equal(4, aramaic.Count);
         Assert.Equal("קדישת אלהא", aramaic[0].Title);
         Assert.Equal(
-            "קַדּישַת אַלָהָא\nקַדִישַת חַילתָּנָא\nקַדִישַת לָא מִיותָּא אֶתַרחַמעלִין",
+            "קַדּישַת ✠▼▲ אַלָהָא\nקַדִישַת חַילתָּנָא\nקַדִישַת לָא מִיותָּא אֶתַרחַמעלִין",
             aramaic[0].Body);
         Assert.Equal(
-            "ܩܰܕ݁ܝܫܰܬ݂ ܐܰܠܳܗܳܐ\nܩܰܕܺܝܫܰܬ݂ ܚܰܝܠܬ݁ܳܢܳܐ\nܩܰܕܺܝܫܰܬ݂ ܠܳܐ ܡܺܝܘܬ݁ܳܐ ܐܶܬܰܪܚܰܡܥܠܺܝܢ",
+            "ܩܰܕ݁ܝܫܰܬ݂ ✠▼▲ ܐܰܠܳܗܳܐ\nܩܰܕܺܝܫܰܬ݂ ܚܰܝܠܬ݁ܳܢܳܐ\nܩܰܕܺܝܫܰܬ݂ ܠܳܐ ܡܺܝܘܬ݁ܳܐ ܐܶܬܰܪܚܰܡܥܠܺܝܢ",
             aramaic[0].TransliteratedBody);
-        Assert.Equal("קוריאליסונ\nקוריאליסונ\nקוריאליסונ", aramaic[3].Body);
+        Assert.Equal("קוריאליסון", aramaic[3].Title);
+        // User-confirmed opening gestures (2026-09-07) survive every repetition in both
+        // scripts; the short form still contains only the unmarked final line.
+        var byzantine = BuildSteps("trisagion", "arc", variantId: "byzantine");
+        foreach (var step in aramaic.Take(3).Concat(new[] { 0, 1, 2, 5 }.Select(i => byzantine[i])))
+        {
+            Assert.Equal(aramaic[0].Body, step.Body);
+            Assert.Equal(aramaic[0].TransliteratedBody, step.TransliteratedBody);
+        }
+        Assert.Equal(aramaic[0].Body.Split('\n').Last(), byzantine[4].Body);
+        Assert.Equal(aramaic[0].TransliteratedBody!.Split('\n').Last(), byzantine[4].TransliteratedBody);
+        Assert.Equal("קוריאליסון\nקוריאליסון\nקוריאליסון", aramaic[3].Body);
+        Assert.Equal("ܩܘܪܝܐܠܝܣܘܢ\nܩܘܪܝܐܠܝܣܘܢ\nܩܘܪܝܐܠܝܣܘܢ", aramaic[3].TransliteratedBody);
         // Erez supplied the Mission's doxology in both scripts on 2026-08-26. Pin every mark and
         // vowel so the Hebrew-square-script Aramaic and its pointed Syriac rendering cannot drift.
         var glory = BuildSteps("trisagion", "arc", variantId: "byzantine")[3];

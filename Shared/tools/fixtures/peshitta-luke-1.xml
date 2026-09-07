@@ -1,0 +1,139 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title xml:lang="en" level="a" ref="http://syriaca.org/work/74">Gospel of Luke -
+                        <foreign xml:lang="syr">ܐܘܢܓܠܝܘܢ ܩܕܝܫܐ ܟܪܘܙܘܬܐ ܕܠܘܩܐ</foreign></title>
+                <title xml:lang="en" level="s" ref="http://syriaca.org/work/71">The Four Gospels
+                    (Peshitta Version)</title>
+                <title xml:lang="en" level="s" ref="http://syriaca.org/work/70">The Peshitta New
+                    Testament</title>
+                <title level="s">Digital Syriac Corpus</title>
+                <author>Luke the Evangelist</author>
+                
+                <sponsor>University of Oxford</sponsor>
+                <sponsor>Brigham Young University</sponsor>
+                <sponsor>Vanderbilt University</sponsor>
+                <sponsor>Initiative for Digital Humanities, Media, and Culture at Texas A&amp;M
+                    University</sponsor>
+                <funder />
+                <principal>Kristian S. Heal</principal>
+                <principal>David G.K. Taylor</principal>
+                <editor role="editor-in-chief" ref="http://syriaca.org/person.xml#dtaylor">David
+                    G.K. Taylor, University of Oxford</editor>
+                <editor role="editor" ref="http://syriaca.org/person.xml#abutts">Aaron Butts, The
+                    Catholic University of America</editor>
+                <editor role="editor" ref="http://syriaca.org/person.xml#kheal">Kristian S. Heal,
+                    Brigham Young University</editor>
+                <editor role="editor" ref="http://syriaca.org/person.xml#gkiraz">George A. Kiraz,
+                    Beth Mardutho: The Syriac Institute</editor>
+                <editor role="editor" ref="http://syriaca.org/person.xml#dmichelson">David A.
+                    Michelson, Vanderbilt University</editor>
+                <editor role="editor" ref="http://syriaca.org/person.xml#dschwartz">Daniel L.
+                    Schwartz, Texas A&amp;M University</editor>
+                <editor role="editor" ref="http://syriaca.org/person.xml#jwalters">James E. Walters,
+                    Rochester College</editor>
+                <respStmt>
+                    <resp>TEI XML encoding by</resp>
+                    <name type="person" ref="http://syriaca.org/person.xml#jwalters">James E.
+                        Walters</name>
+                </respStmt>
+                <respStmt>
+                    <resp>Based on the work of</resp>
+                    <name type="person" />
+                </respStmt>
+                <respStmt>
+                    <resp>Edited by</resp>
+                    <name type="person" />
+                </respStmt>
+                <respStmt>
+                    <resp>Syriac text transcribed by</resp>
+                     <name type="person" ref="http://syriaca.org/person.xml#gkiraz">George A. Kiraz</name>
+                </respStmt>
+            </titleStmt>
+            <editionStmt>
+                <edition n="0.1" />
+                <respStmt>
+                    <resp>based upon</resp>
+                    <name><ptr target="#sourceDesc1" /></name>
+                </respStmt>
+            </editionStmt>
+            <publicationStmt>
+                <distributor>
+                    <placeName>Jean and Alexander Heard Library System, Vanderbilt University,
+                        Nashville, Tennessee, USA</placeName>
+                </distributor>
+                <authority>Digital Syriac Corpus</authority>
+                <idno type="URI">https://syriaccorpus.org/120</idno>
+                <availability>
+                    <p />
+                    <licence target="http://creativecommons.org/licenses/by/4.0/">
+                        <p>Creative Commons — Attribution 4.0 International — CC BY 4.0</p>
+                        <p>https://creativecommons.org/licenses/by/4.0/</p>
+                    </licence>
+                    <ab><note>This electronic edition is designed for open access reuse. The Syriac base text is in the public domain. The TEI XML edition is copyrighted by James E. Walters and is released under a Creative Commons Attribution 4.0 International Public License (CC BY 4.0).</note></ab><ab><note>The HTML page is copyrighted by Vanderbilt University and released under a under a Creative Commons Attribution 4.0 International Public License (CC-BY 4.0, https://creativecommons.org/licenses/by/4.0/). Attribution for reuse should follow the suggested citation and also credit the copyright holder of the TEI XML edition.</note></ab>
+
+                </availability>
+                <date calendar="Gregorian" />
+            </publicationStmt>
+            <sourceDesc xml:id="sourceDesc1">
+                <biblStruct>
+                    <monogr>
+                        <editor><forename>G. H.</forename><surname>Gwilliam</surname></editor>
+                        <editor><forename>J.</forename><surname>Pinkerton</surname></editor>
+                        <editor><forename>John</forename><surname>Gwynn</surname></editor>
+                        <title level="m">The New Testament in Syriac [<foreign xml:lang="syr">ܕܝܬܝܩܐ ܚܕܬܐ ܕܡܪܢ ܝܫܘܥ
+                            ܡܫܝܚܐ</foreign>]</title>
+                        <idno type="URI">http://syriaca.org/bibl/2491</idno>
+                        <idno type="zotero">1049</idno>
+                        <idno type="URI">http://zotero.org/groups/392292/items/N4KFR4M9</idno>
+                        <ref target="https://archive.org/details/newtestamentinsy00lond" />
+                        <imprint>
+                            <pubPlace>London</pubPlace>
+                            <publisher>British and Foreign Bible Society</publisher>
+                            <date>1905</date>
+                        </imprint>
+                    </monogr>
+                </biblStruct>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <editorialDecl>
+                <p>Digital Syriac Corpus is collaboration of University of Oxford, Brigham Young University, Vanderbilt University, and the Center of Digital Humanities Research (CoDHR) at Texas A&amp;M University. </p>
+                
+            </editorialDecl>
+        </encodingDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="syr">Unvocalized Syriac of any variety or period</language>
+            </langUsage>
+            <creation>
+                 <origDate type="translation" from="0350" to="0450">Late 4th/early 5th century CE
+                 <note>Translated from Greek into Syriac</note></origDate>
+             </creation>
+        </profileDesc>
+        <revisionDesc status="UncorrectedTranscription">
+<change when="2018-05-01" who="http://syriaca.org/person.xml#jwalters">Edited source information, status, and type of text</change>
+            <change when="2017-07-05" who="http://syriaca.org/person.xml#jwalters">Edited text
+                structure</change>
+            <change when="2017-04-24" who="http://syriaca.org/person.xml#jwalters">Created:
+                file</change>
+        </revisionDesc>
+    </teiHeader>
+    <text type="PrintTranscription">
+        <body>
+
+            <div type="chapter" n="1" xml:lang="syr">
+                <head xml:lang="en">Chapter 1</head>
+                <milestone unit="SyrChapter" n="1" />
+                <ab type="verse" n="26">ܒ݁ܝܰܪܚܳܐ ܕ݁ܶܝܢ ܕ݁ܶܫܬ݁ܳܐ ܆ ܐܶܫܬ݁ܠܰܚ ܓ݁ܰܒ݂ܪܺܝܐܝܶܠ ܡܰܠܰܐܟ݂ܳܐ
+                    ܡܶܢ ܠܘܳܬ݂ ܐܰܠܳܗܳܐ ܠܰܓ݂ܠܺܝܠܳܐ ܇ ܠܰܡܕ݂ܺܝܢ̱ܬ݁ܳܐ ܕ݁ܰܫܡܳܗ ܢܳܨܪܰܬ݂ .</ab>
+                <ab type="verse" n="27">ܠܘܳܬ݂ ܒ݁ܬ݂ܽܘܠܬ݁ܳܐ ܕ݁ܰܡܟ݂ܺܝܪܳܐ ܠܓ݂ܰܒ݂ܪܳܐ ܕ݁ܰܫܡܶܗ ܝܰܘܣܶܦ݂ .
+                    ܡܶܢ ܒ݁ܰܝܬ݁ܶܗ ܕ݁ܕ݂ܰܘܺܝܕ݂ . ܘܰܫܡܳܗ ܠܰܒ݂ܬ݂ܽܘܠܬ݁ܳܐ ܂ ܡܰܪܝܰܡ .</ab>
+                <ab type="verse" n="28">ܘܥܰܠ ܠܘܳܬ݂ܳܗ ܡܰܠܰܐܟ݂ܳܐ ܂ ܘܶܐܡܰܪ ܠܳܗ . ܫܠܳܡ ܠܶܟ݂ܝ ܡܰܠܝܰܬ݂
+                    ܛܰܝܒ݁ܽܘܬ݂ܳܐ ܅ ܡܳܪܰܢ ܥܰܡܶܟ݂ܝ ܁ ܒ݁ܪܺܝܟ݂ܰܬ݂ ܒ݁ܢܶܫܶܐ̈ .</ab>
+                <milestone unit="SyrChapter" n="2" />
+                </div>
+            </body>
+    </text>
+</TEI>

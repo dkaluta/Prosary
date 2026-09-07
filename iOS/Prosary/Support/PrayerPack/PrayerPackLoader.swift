@@ -876,6 +876,12 @@ enum PrayerPackStore {
   private struct ResolvedText {
     let text: String
     let transliteration: String?
+
+    func applyingWording(contentCode: String) -> Self {
+      let adjusted = JaffaHailMaryWording.applying(to: text, contentCode: contentCode)
+      // No corresponding reading aid for the Jaffa wording has been supplied.
+      return adjusted == text ? self : Self(text: adjusted, transliteration: nil)
+    }
   }
 
   /// Body and reading aid share one resolution path. An absent aid at the winning source
@@ -924,14 +930,14 @@ enum PrayerPackStore {
          AramaicSignOfCrossForm.isSystemWideActive,
          AramaicSignOfCrossForm.current == AramaicSignOfCrossForm.formB,
          let form = localText(bundleId: "rosary", contentCode: code, key: "signumCrucisFormB") {
-        return form
+        return form.applyingWording(contentCode: code)
       }
       if let bundleId, let local = localText(bundleId: bundleId, contentCode: code, key: key) {
-        return local
+        return local.applyingWording(contentCode: code)
       }
       if sharedPrayerTitleKeys.contains(key),
          let shared = localText(bundleId: "rosary", contentCode: code, key: key) {
-        return shared
+        return shared.applyingWording(contentCode: code)
       }
       guard let prayerKey else { continue }
       if let text = prayerOverride(languageCode: code, key: prayerKey) {
@@ -940,10 +946,10 @@ enum PrayerPackStore {
           && AramaicSignOfCrossForm.current == AramaicSignOfCrossForm.formB
           ? transliterationsByBundle["rosary"]?["arc"]?["signumCrucisFormB"]
           : prayerTransliterations[code]?[prayerKey]
-        return ResolvedText(text: text, transliteration: alternate)
+        return ResolvedText(text: text, transliteration: alternate).applyingWording(contentCode: code)
       }
       if let text = PrayerTranslations.nativeText(contentCode: code, key: prayerKey) {
-        return ResolvedText(text: text, transliteration: nil)
+        return ResolvedText(text: text, transliteration: nil).applyingWording(contentCode: code)
       }
     }
     return nil

@@ -16,6 +16,7 @@ public static class AppSettings
     private const string KeyDefaultLanguage = "defaultLanguageCode";
     private const string KeyBasicPrayersLanguage = "basicPrayersLanguageCode";
     private const string KeyAramaicSignOfCrossForm = "aramaicSignOfCrossForm";
+    private const string KeyUseJaffaHailMaryWording = "useJaffaHailMaryWording";
     private const string KeyFeastCalendar = "feastCalendarId";
     private const string KeyEasternPaschaStyle = "easternPaschaStyle";
     private const string KeyAutoAdvance = "autoAdvanceSeconds";
@@ -37,6 +38,7 @@ public static class AppSettings
     private static string? _defaultLanguageCode;
     private static string? _basicPrayersLanguageCode;
     private static string? _aramaicSignOfCrossForm;
+    private static bool? _useJaffaHailMaryWording;
     private static string? _feastCalendarId;
     private static string? _easternPaschaStyle;
     private static int? _autoAdvanceSeconds;
@@ -84,6 +86,19 @@ public static class AppSettings
     {
         _basicPrayersLanguageCode = code;
         WriteLocalSetting(KeyBasicPrayersLanguage, code);
+    }
+
+    public static bool UseJaffaHailMaryWording => _useJaffaHailMaryWording ??=
+        ReadLocalSetting(KeyUseJaffaHailMaryWording) as bool? ?? false;
+
+    public static event Action? PrayerWordingChanged;
+
+    public static void SetUseJaffaHailMaryWording(bool value)
+    {
+        if (UseJaffaHailMaryWording == value) return;
+        _useJaffaHailMaryWording = value;
+        WriteLocalSetting(KeyUseJaffaHailMaryWording, value);
+        PrayerWordingChanged?.Invoke();
     }
 
     public const string AramaicSignOfCrossFormA = "formA";

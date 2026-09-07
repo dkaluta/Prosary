@@ -29,6 +29,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
@@ -37,7 +40,6 @@ import com.dkaluta.prosary.models.BasicPrayerCatalog
 import com.dkaluta.prosary.models.BasicPrayersOrder
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.LanguageCatalog
-import com.dkaluta.prosary.models.PrayerCardTitle
 import com.dkaluta.prosary.ui.home.HomeOrderEditor
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -92,11 +94,11 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
         },
     ) { padding ->
         LazyColumn(
-            modifier = Modifier.padding(padding),
+            modifier = Modifier.padding(padding).testTag("basicPrayersList"),
             verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
             items(ordered, key = { it.id }) { prayer ->
-                val cardTitle = PrayerCardTitle.resolve(BasicPrayerCatalog.title(prayer, interfaceLanguage), BasicPrayerCatalog.title(prayer, language.code))
+                val cardTitle = BasicPrayerCatalog.cardTitle(prayer, language.code, interfaceLanguage)
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -113,29 +115,19 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
                     )
                     CompositionLocalProvider(
                         LocalLayoutDirection provides
-                            if (AppSettings.showPrayerNameInPrayerLanguage && language.isRightToLeft ||
-                                !AppSettings.showPrayerNameInPrayerLanguage && interfaceLanguage in setOf("he", "ar")) LayoutDirection.Rtl else LayoutDirection.Ltr,
+                            if (language.isRightToLeft) LayoutDirection.Rtl else LayoutDirection.Ltr,
                     ) {
                         Column(Modifier.weight(1f)) {
                             Text(cardTitle.primary, style = MaterialTheme.typography.titleMedium)
                             cardTitle.interfaceSubtitle?.let {
-                                Text(it, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                CompositionLocalProvider(LocalLayoutDirection provides
+                                    if (interfaceLanguage in setOf("he", "ar")) LayoutDirection.Rtl else LayoutDirection.Ltr) {
+                                    Text(it, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                }
                             }
                         }
                     }
-                    IconButton(onClick = {
-                        AppSettings.toggleFavoriteBasicPrayer(prayer.id)
-                        orderGeneration++
-                    }) {
-                        val isFavorite = prayer.id in AppSettings.favoriteBasicPrayerIds
-                        Icon(
-                            if (isFavorite) Icons.Filled.PushPin else Icons.Outlined.PushPin,
-                            contentDescription = stringResource(
-                                if (isFavorite) R.string.basic_prayers_unpin
-                                else R.string.basic_prayers_pin,
-                            ),
-                        )
-                    }
+                    BasicPrayerPinButton(prayer.id)
                 }
             }
         }
@@ -145,7 +137,7 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
         // language, so the dialog reads exactly like the list behind it.
         HomeOrderEditor(
             titles = BasicPrayersOrder.apply(context, BasicPrayerCatalog.all).map {
-                it.id to PrayerCardTitle.resolve(BasicPrayerCatalog.title(it, interfaceLanguage), BasicPrayerCatalog.title(it, language.code)).primary
+                it.id to BasicPrayerCatalog.cardTitle(it, language.code, interfaceLanguage).primary
             },
             onMove = { ids ->
                 BasicPrayersOrder.save(context, ids)
@@ -167,7 +159,9 @@ fun BasicPrayerFlowScreen(prayerId: String, onNavigateUp: () -> Unit) {
     val chosenLanguage = AppSettings.basicPrayersLanguageCode
     val language = LanguageCatalog.resolve(chosenLanguage)
     var languageMenuExpanded by remember { mutableStateOf(false) }
-    val step = remember(prayerId, language.code) { BasicPrayerCatalog.step(prayer, language.code) }
+    val step = remember(prayerId, language.code, AppSettings.useJaffaHailMaryWording) {
+        BasicPrayerCatalog.step(prayer, language.code)
+    }
     PrayerStepFlowScreen(
         title = step.title,
         step = step,
@@ -181,6 +175,7 @@ fun BasicPrayerFlowScreen(prayerId: String, onNavigateUp: () -> Unit) {
         onNext = onNavigateUp,
         onNavigateUp = onNavigateUp,
         topBarActions = {
+            BasicPrayerPinButton(prayer.id)
             PrayerLanguagePicker(
                 chosenLanguage = chosenLanguage,
                 expanded = languageMenuExpanded,
@@ -189,4 +184,19 @@ fun BasicPrayerFlowScreen(prayerId: String, onNavigateUp: () -> Unit) {
             )
         },
     )
+}
+
+/** Both the directory and the open prayer update the same observable Pray pin. */
+@Composable
+private fun BasicPrayerPinButton(prayerId: String) {
+    val isPinned = prayerId in AppSettings.pinnedBasicPrayerIds
+    IconButton(
+        onClick = { AppSettings.toggleBasicPrayerPin(prayerId) },
+        modifier = Modifier.testTag("basicPrayerPin:$prayerId").semantics { selected = isPinned },
+    ) {
+        Icon(
+            if (isPinned) Icons.Filled.PushPin else Icons.Outlined.PushPin,
+            contentDescription = stringResource(if (isPinned) R.string.basic_prayers_unpin else R.string.basic_prayers_pin),
+        )
+    }
 }

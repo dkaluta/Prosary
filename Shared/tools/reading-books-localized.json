@@ -1,5 +1,5 @@
 {
-  "$comment": "Sourced Bible book-name metadata for Today citations in Arabic, Russian, Tagalog, French and Italian. Each map addresses the same canonical English book identity; only the displayed name changes. The original lectionary, dates, reading order and chapter/verse ranges remain authoritative. Sources and editorial shortening are recorded per language.",
+  "$comment": "Sourced Bible book-name metadata for Today citations in Arabic, Russian, Tagalog, French, Italian and Ukrainian. Each map addresses the same canonical English book identity; only the displayed name changes. The original lectionary, dates, reading order and chapter/verse ranges remain authoritative. Sources and editorial shortening are recorded per language.",
   "sources": {
     "ar": {
       "name": "Dar el-Machreq — Arabic Catholic Bible",
@@ -36,6 +36,13 @@
         "https://parolaviva.art/api/v1/bibbia/indice.json"
       ],
       "note": "Short and full labels are the source index m and n fields. The index is shared by the hosted Italian editions, including Antonio Martini. No Scripture text is copied. The source ASCII apostrophe in Giosue' is normalized to the Italian accent in Giosuè."
+    },
+    "uk": {
+      "name": "Ukrainian Greek Catholic Church — Bible book index (Ivan Khomenko translation)",
+      "urls": [
+        "https://ugcc.ua/library/bible/"
+      ],
+      "note": "Full book names relay the UGCC index, with numbered books written using Arabic numerals. Short labels are editorial abbreviations. No Scripture text is copied; source chapter and verse numbers remain unchanged."
     }
   },
   "books": {
@@ -59,6 +66,10 @@
       "it": {
         "short": "1Cr",
         "full": "1 Cronache"
+      },
+      "uk": {
+        "short": "1 Хр",
+        "full": "1 Хронік"
       }
     },
     "1 Corinthians": {
@@ -81,6 +92,10 @@
       "it": {
         "short": "1Cor",
         "full": "1 Lettera ai Corinzi"
+      },
+      "uk": {
+        "short": "1 Кор",
+        "full": "1 Корінтян"
       }
     },
     "1 John": {
@@ -103,6 +118,10 @@
       "it": {
         "short": "1Gv",
         "full": "1 Lettera di Giovanni"
+      },
+      "uk": {
+        "short": "1 Ів",
+        "full": "1 Івана"
       }
     },
     "1 Kings": {
@@ -125,6 +144,10 @@
       "it": {
         "short": "1Re",
         "full": "1 Re"
+      },
+      "uk": {
+        "short": "1 Цар",
+        "full": "1 Царів"
       }
     },
     "1 Maccabees": {
@@ -147,6 +170,10 @@
       "it": {
         "short": "1Mac",
         "full": "1 Maccabei"
+      },
+      "uk": {
+        "short": "1 Мак",
+        "full": "1 Макавеїв"
       }
     },
     "1 Peter": {
@@ -169,6 +196,10 @@
       "it": {
         "short": "1Pt",
         "full": "1 Lettera di Pietro"
+      },
+      "uk": {
+        "short": "1 Пт",
+        "full": "1 Петра"
       }
     },
     "1 Samuel": {
@@ -191,6 +222,10 @@
       "it": {
         "short": "1Sam",
         "full": "1 Samuele"
+      },
+      "uk": {
+        "short": "1 Сам",
+        "full": "1 Самуїла"
       }
     },
     "1 Thessalonians": {
@@ -213,6 +248,10 @@
       "it": {
         "short": "1Ts",
         "full": "1 Lettera ai Tessalonicesi"
+      },
+      "uk": {
+        "short": "1 Сол",
+        "full": "1 Солунян"
       }
     },
     "1 Timothy": {
@@ -235,6 +274,10 @@
       "it": {
         "short": "1Tm",
         "full": "1 Lettera a Timoteo"
+      },
+      "uk": {
+        "short": "1 Тим",
+        "full": "1 Тимотея"
       }
     },
     "2 Chronicles": {
@@ -257,6 +300,10 @@
       "it": {
         "short": "2Cr",
         "full": "2 Cronache"
+      },
+      "uk": {
+        "short": "2 Хр",
+        "full": "2 Хронік"
       }
     },
     "2 Corinthians": {
@@ -279,6 +326,10 @@
       "it": {
         "short": "2Cor",
         "full": "2 Lettera ai Corinzi"
+      },
+      "uk": {
+        "short": "2 Кор",
+        "full": "2 Корінтян"
       }
     },
     "2 John": {
@@ -301,6 +352,10 @@
       "it": {
         "short": "2Gv",
         "full": "2 Lettera di Giovanni"
+      },
+      "uk": {
+        "short": "2 Ів",
+        "full": "2 Івана"
       }
     },
     "2 Kings": {
@@ -323,6 +378,10 @@
       "it": {
         "short": "2Re",
         "full": "2 Re"
+      },
+      "uk": {
+        "short": "2 Цар",
+        "full": "2 Царів"
       }
     },
     "2 Maccabees": {
@@ -345,6 +404,10 @@
       "it": {
         "short": "2Mac",
         "full": "2 Maccabei"
+      },
+      "uk": {
+        "short": "2 Мак",
+        "full": "2 Макавеїв"
       }
     },
     "2 Peter": {
@@ -367,6 +430,10 @@
       "it": {
         "short": "2Pt",
         "full": "2 Lettera di Pietro"
+      },
+      "uk": {
+        "short": "2 Пт",
+        "full": "2 Петра"
       }
     },
     "2 Samuel": {
@@ -389,6 +456,10 @@
       "it": {
         "short": "2Sam",
         "full": "2 Samuele"
+      },
+      "uk": {
+        "short": "2 Сам",
+        "full": "2 Самуїла"
       }
     },
     "2 Thessalonians": {
@@ -411,6 +482,10 @@
       "it": {
         "short": "2Ts",
         "full": "2 Lettera ai Tessalonicesi"
+      },
+      "uk": {
+        "short": "2 Сол",
+        "full": "2 Солунян"
       }
     },
     "2 Timothy": {
@@ -433,6 +508,10 @@
       "it": {
         "short": "2Tm",
         "full": "2 Lettera a Timoteo"
+      },
+      "uk": {
+        "short": "2 Тим",
+        "full": "2 Тимотея"
       }
     },
     "3 John": {
@@ -455,6 +534,10 @@
       "it": {
         "short": "3Gv",
         "full": "3 Lettera di Giovanni"
+      },
+      "uk": {
+        "short": "3 Ів",
+        "full": "3 Івана"
       }
     },
     "Acts": {
@@ -477,6 +560,10 @@
       "it": {
         "short": "At",
         "full": "Atti degli Apostoli"
+      },
+      "uk": {
+        "short": "Діян",
+        "full": "Діяння Апостолів"
       }
     },
     "Amos": {
@@ -499,6 +586,10 @@
       "it": {
         "short": "Am",
         "full": "Amos"
+      },
+      "uk": {
+        "short": "Ам",
+        "full": "Амос"
       }
     },
     "Baruch": {
@@ -521,6 +612,10 @@
       "it": {
         "short": "Bar",
         "full": "Baruc"
+      },
+      "uk": {
+        "short": "Вар",
+        "full": "Варух"
       }
     },
     "Colossians": {
@@ -543,6 +638,10 @@
       "it": {
         "short": "Col",
         "full": "Lettera ai Colossesi"
+      },
+      "uk": {
+        "short": "Кол",
+        "full": "Колосян"
       }
     },
     "Daniel": {
@@ -565,6 +664,10 @@
       "it": {
         "short": "Dn",
         "full": "Daniele"
+      },
+      "uk": {
+        "short": "Дан",
+        "full": "Даниїл"
       }
     },
     "Deuteronomy": {
@@ -587,6 +690,10 @@
       "it": {
         "short": "Dt",
         "full": "Deuteronomio"
+      },
+      "uk": {
+        "short": "Втор",
+        "full": "Второзаконня"
       }
     },
     "Ecclesiastes": {
@@ -609,6 +716,10 @@
       "it": {
         "short": "Qo",
         "full": "Ecclesiaste (Qoelet)"
+      },
+      "uk": {
+        "short": "Проп",
+        "full": "Проповідник"
       }
     },
     "Ephesians": {
@@ -631,6 +742,10 @@
       "it": {
         "short": "Ef",
         "full": "Lettera agli Efesini"
+      },
+      "uk": {
+        "short": "Еф",
+        "full": "Ефесян"
       }
     },
     "Esther": {
@@ -653,6 +768,10 @@
       "it": {
         "short": "Est",
         "full": "Ester"
+      },
+      "uk": {
+        "short": "Ест",
+        "full": "Естери"
       }
     },
     "Exodus": {
@@ -675,6 +794,10 @@
       "it": {
         "short": "Es",
         "full": "Esodo"
+      },
+      "uk": {
+        "short": "Вих",
+        "full": "Вихід"
       }
     },
     "Ezekiel": {
@@ -697,6 +820,10 @@
       "it": {
         "short": "Ez",
         "full": "Ezechiele"
+      },
+      "uk": {
+        "short": "Єз",
+        "full": "Єзекиїл"
       }
     },
     "Ezra": {
@@ -719,6 +846,10 @@
       "it": {
         "short": "Esd",
         "full": "Esdra"
+      },
+      "uk": {
+        "short": "Езр",
+        "full": "Езри"
       }
     },
     "Galatians": {
@@ -741,6 +872,10 @@
       "it": {
         "short": "Gal",
         "full": "Lettera ai Galati"
+      },
+      "uk": {
+        "short": "Гал",
+        "full": "Галатів"
       }
     },
     "Genesis": {
@@ -763,6 +898,10 @@
       "it": {
         "short": "Gen",
         "full": "Genesi"
+      },
+      "uk": {
+        "short": "Бут",
+        "full": "Буття"
       }
     },
     "Habakkuk": {
@@ -785,6 +924,10 @@
       "it": {
         "short": "Ab",
         "full": "Abacuc"
+      },
+      "uk": {
+        "short": "Ав",
+        "full": "Авакум"
       }
     },
     "Haggai": {
@@ -807,6 +950,10 @@
       "it": {
         "short": "Ag",
         "full": "Aggeo"
+      },
+      "uk": {
+        "short": "Аг",
+        "full": "Аггей"
       }
     },
     "Hebrews": {
@@ -829,6 +976,10 @@
       "it": {
         "short": "Eb",
         "full": "Lettera agli Ebrei"
+      },
+      "uk": {
+        "short": "Євр",
+        "full": "Євреїв"
       }
     },
     "Hosea": {
@@ -851,6 +1002,10 @@
       "it": {
         "short": "Os",
         "full": "Osea"
+      },
+      "uk": {
+        "short": "Ос",
+        "full": "Осій"
       }
     },
     "Isaiah": {
@@ -873,6 +1028,10 @@
       "it": {
         "short": "Is",
         "full": "Isaia"
+      },
+      "uk": {
+        "short": "Іс",
+        "full": "Ісая"
       }
     },
     "James": {
@@ -895,6 +1054,10 @@
       "it": {
         "short": "Gc",
         "full": "Lettera di Giacomo"
+      },
+      "uk": {
+        "short": "Як",
+        "full": "Якова"
       }
     },
     "Jeremiah": {
@@ -917,6 +1080,10 @@
       "it": {
         "short": "Ger",
         "full": "Geremia"
+      },
+      "uk": {
+        "short": "Єр",
+        "full": "Єремія"
       }
     },
     "Job": {
@@ -939,6 +1106,10 @@
       "it": {
         "short": "Gb",
         "full": "Giobbe"
+      },
+      "uk": {
+        "short": "Йов",
+        "full": "Йова"
       }
     },
     "Joel": {
@@ -961,6 +1132,10 @@
       "it": {
         "short": "Gl",
         "full": "Gioele"
+      },
+      "uk": {
+        "short": "Йоіл",
+        "full": "Йоіл"
       }
     },
     "John": {
@@ -983,6 +1158,10 @@
       "it": {
         "short": "Gv",
         "full": "Vangelo secondo Giovanni"
+      },
+      "uk": {
+        "short": "Ів",
+        "full": "Іван"
       }
     },
     "Jonah": {
@@ -1005,6 +1184,10 @@
       "it": {
         "short": "Gio",
         "full": "Giona"
+      },
+      "uk": {
+        "short": "Йона",
+        "full": "Йона"
       }
     },
     "Joshua": {
@@ -1027,6 +1210,10 @@
       "it": {
         "short": "Gs",
         "full": "Giosuè"
+      },
+      "uk": {
+        "short": "Нав",
+        "full": "Ісуса Навина"
       }
     },
     "Jude": {
@@ -1049,6 +1236,10 @@
       "it": {
         "short": "Gd",
         "full": "Lettera di Giuda"
+      },
+      "uk": {
+        "short": "Юд",
+        "full": "Юди"
       }
     },
     "Judges": {
@@ -1071,6 +1262,10 @@
       "it": {
         "short": "Gdc",
         "full": "Giudici"
+      },
+      "uk": {
+        "short": "Суд",
+        "full": "Суддів"
       }
     },
     "Judith": {
@@ -1093,6 +1288,10 @@
       "it": {
         "short": "Gdt",
         "full": "Giuditta"
+      },
+      "uk": {
+        "short": "Юдт",
+        "full": "Юдити"
       }
     },
     "Lamentations": {
@@ -1115,6 +1314,10 @@
       "it": {
         "short": "Lam",
         "full": "Lamentazioni"
+      },
+      "uk": {
+        "short": "Плач",
+        "full": "Плач Єремії"
       }
     },
     "Leviticus": {
@@ -1137,6 +1340,10 @@
       "it": {
         "short": "Lv",
         "full": "Levitico"
+      },
+      "uk": {
+        "short": "Лев",
+        "full": "Левіт"
       }
     },
     "Luke": {
@@ -1159,6 +1366,10 @@
       "it": {
         "short": "Lc",
         "full": "Vangelo secondo Luca"
+      },
+      "uk": {
+        "short": "Лк",
+        "full": "Лука"
       }
     },
     "Malachi": {
@@ -1181,6 +1392,10 @@
       "it": {
         "short": "Ml",
         "full": "Malachia"
+      },
+      "uk": {
+        "short": "Мал",
+        "full": "Малахія"
       }
     },
     "Mark": {
@@ -1203,6 +1418,10 @@
       "it": {
         "short": "Mc",
         "full": "Vangelo secondo Marco"
+      },
+      "uk": {
+        "short": "Мк",
+        "full": "Марко"
       }
     },
     "Matthew": {
@@ -1225,6 +1444,10 @@
       "it": {
         "short": "Mt",
         "full": "Vangelo secondo Matteo"
+      },
+      "uk": {
+        "short": "Мт",
+        "full": "Матей"
       }
     },
     "Micah": {
@@ -1247,6 +1470,10 @@
       "it": {
         "short": "Mi",
         "full": "Michea"
+      },
+      "uk": {
+        "short": "Міх",
+        "full": "Міхей"
       }
     },
     "Nahum": {
@@ -1269,6 +1496,10 @@
       "it": {
         "short": "Na",
         "full": "Naum"
+      },
+      "uk": {
+        "short": "Наум",
+        "full": "Наум"
       }
     },
     "Nehemiah": {
@@ -1291,6 +1522,10 @@
       "it": {
         "short": "Ne",
         "full": "Neemia"
+      },
+      "uk": {
+        "short": "Неєм",
+        "full": "Неємії"
       }
     },
     "Numbers": {
@@ -1313,6 +1548,10 @@
       "it": {
         "short": "Nm",
         "full": "Numeri"
+      },
+      "uk": {
+        "short": "Чис",
+        "full": "Числа"
       }
     },
     "Obadiah": {
@@ -1335,6 +1574,10 @@
       "it": {
         "short": "Abd",
         "full": "Abdia"
+      },
+      "uk": {
+        "short": "Авд",
+        "full": "Авдій"
       }
     },
     "Philemon": {
@@ -1357,6 +1600,10 @@
       "it": {
         "short": "Fm",
         "full": "Lettera a Filemone"
+      },
+      "uk": {
+        "short": "Флм",
+        "full": "Филимона"
       }
     },
     "Philippians": {
@@ -1379,6 +1626,10 @@
       "it": {
         "short": "Fil",
         "full": "Lettera ai Filippesi"
+      },
+      "uk": {
+        "short": "Флп",
+        "full": "Филип’ян"
       }
     },
     "Proverbs": {
@@ -1401,6 +1652,10 @@
       "it": {
         "short": "Pr",
         "full": "Proverbi"
+      },
+      "uk": {
+        "short": "Прип",
+        "full": "Приповідок"
       }
     },
     "Psalm": {
@@ -1423,6 +1678,10 @@
       "it": {
         "short": "Sal",
         "full": "Salmi"
+      },
+      "uk": {
+        "short": "Пс",
+        "full": "Псалмів"
       }
     },
     "Revelation": {
@@ -1445,6 +1704,10 @@
       "it": {
         "short": "Ap",
         "full": "Apocalisse"
+      },
+      "uk": {
+        "short": "Одкр",
+        "full": "Одкровення"
       }
     },
     "Romans": {
@@ -1467,6 +1730,10 @@
       "it": {
         "short": "Rm",
         "full": "Lettera ai Romani"
+      },
+      "uk": {
+        "short": "Рим",
+        "full": "Римлян"
       }
     },
     "Ruth": {
@@ -1489,6 +1756,10 @@
       "it": {
         "short": "Rt",
         "full": "Rut"
+      },
+      "uk": {
+        "short": "Рут",
+        "full": "Рути"
       }
     },
     "Sirach": {
@@ -1511,6 +1782,10 @@
       "it": {
         "short": "Sir",
         "full": "Siracide (Ecclesiastico)"
+      },
+      "uk": {
+        "short": "Сир",
+        "full": "Сирах"
       }
     },
     "Song of Songs": {
@@ -1533,6 +1808,10 @@
       "it": {
         "short": "Ct",
         "full": "Cantico dei Cantici"
+      },
+      "uk": {
+        "short": "Пісн",
+        "full": "Пісня Пісень"
       }
     },
     "Titus": {
@@ -1555,6 +1834,10 @@
       "it": {
         "short": "Tt",
         "full": "Lettera a Tito"
+      },
+      "uk": {
+        "short": "Тит",
+        "full": "Тита"
       }
     },
     "Tobit": {
@@ -1577,6 +1860,10 @@
       "it": {
         "short": "Tb",
         "full": "Tobia"
+      },
+      "uk": {
+        "short": "Тов",
+        "full": "Товита"
       }
     },
     "Wisdom": {
@@ -1599,6 +1886,10 @@
       "it": {
         "short": "Sap",
         "full": "Sapienza"
+      },
+      "uk": {
+        "short": "Муд",
+        "full": "Мудрости"
       }
     },
     "Zechariah": {
@@ -1621,6 +1912,10 @@
       "it": {
         "short": "Zc",
         "full": "Zaccaria"
+      },
+      "uk": {
+        "short": "Зах",
+        "full": "Захарій"
       }
     },
     "Zephaniah": {
@@ -1643,6 +1938,10 @@
       "it": {
         "short": "Sof",
         "full": "Sofonia"
+      },
+      "uk": {
+        "short": "Соф",
+        "full": "Софонія"
       }
     }
   }

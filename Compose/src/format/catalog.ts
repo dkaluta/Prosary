@@ -13,6 +13,7 @@ export const LANGUAGES = [
   { code: "el", name: "Greek", rtl: false },
   { code: "es", name: "Spanish", rtl: false },
   { code: "ru", name: "Russian", rtl: false },
+  { code: "uk", name: "Українська", rtl: false },
   { code: "tl", name: "Tagalog", rtl: false },
   { code: "fr", name: "French", rtl: false },
   { code: "it", name: "Italian", rtl: false },
@@ -90,6 +91,7 @@ export const RESERVED_IDS = [
   "franciscanCrown",
   "sevenSorrows",
   "divineMercyChaplet",
+  "litanyOfLoreto",
   "trisagion",
   "jesusPrayer",
 ];

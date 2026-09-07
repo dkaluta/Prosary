@@ -41,30 +41,113 @@ final class AppShellUITests: XCTestCase {
     XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 5))
   }
 
+  @MainActor
+  func testUkrainianInterfaceLocalizesNavigationTodayAndSettings() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-AppleLanguages", "(uk)", "-AppleLocale", "uk_UA",
+                           "-defaultLanguageCode", "uk", "-basicPrayersLanguageCode", "",
+                           "-showPrayerNameInPrayerLanguage", "NO"]
+    app.launch()
+    XCTAssertTrue(app.tabBars.buttons["Молитва"].waitForExistence(timeout: 10))
+    XCTAssertTrue(app.tabBars.buttons["Категорії"].exists)
+    XCTAssertTrue(app.tabBars.buttons["Пошук"].exists)
+    XCTAssertEqual(app.buttons["todayYesterdayButton"].label, "Попередній день")
+    XCTAssertEqual(app.buttons["todayTomorrowButton"].label, "Наступний день")
+    let home = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    home.name = "ukrainian-pray-and-today"
+    home.lifetime = .keepAlways
+    add(home)
+    app.buttons["settingsButton"].tap()
+    XCTAssertTrue(app.navigationBars["Налаштування"].waitForExistence(timeout: 5))
+    XCTAssertTrue(app.switches["useJaffaHailMaryWording"].label.contains("Формулювання громади Яффи"))
+    let settings = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    settings.name = "ukrainian-settings"
+    settings.lifetime = .keepAlways
+    add(settings)
+    app.buttons["Готово"].tap()
+    app.buttons["basicPrayersRow"].tap()
+    let ourFather = app.buttons["basicPrayer-ourFather"]
+    XCTAssertTrue(ourFather.waitForExistence(timeout: 5))
+    XCTAssertTrue(ourFather.label.contains("Отче наш"))
+    ourFather.tap()
+    XCTAssertEqual(app.staticTexts["prayerFlowTitle"].label, "Отче наш")
+    XCTAssertTrue(app.staticTexts["prayerBodyText"].label.contains("нехай святиться Ім’я Твоє"))
+    let prayer = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    prayer.name = "ukrainian-sourced-basic-prayer"
+    prayer.lifetime = .keepAlways
+    add(prayer)
+    app.terminate()
+  }
+
   #if !os(macOS)
   @MainActor
-  func testBasicPrayerNamesOfferBilingualDisplayWithoutChangingPrayerLanguage() throws {
-    for enabled in [false, true] {
-      let app = XCUIApplication()
-      app.launchArguments = ["-AppleLanguages", "(en)", "-defaultLanguageCode", "arc",
-                             "-basicPrayersLanguageCode", "arc", "-aramaicDefaultScript", "Hebr",
-                             "-showPrayerNameInPrayerLanguage", enabled ? "YES" : "NO"]
+  func testJaffaWordingToggleIsAvailableToFallbackUsersAndRestoresThePrayer() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-resetStore", "-AppleLanguages", "(en)", "-defaultLanguageCode", "arc",
+                           "-basicPrayersLanguageCode", "he", "-autoAdvanceSeconds", "0"]
+    for enabled in [false, true, false] {
       app.launch()
-      XCTAssertTrue(app.buttons["basicPrayersRow"].waitForExistence(timeout: 10))
-      app.buttons["basicPrayersRow"].tap()
-      let prayer = app.buttons["basicPrayer-ourFather"]
-      XCTAssertTrue(prayer.waitForExistence(timeout: 5))
-      XCTAssertTrue(prayer.label.contains("Our Father"))
-      XCTAssertEqual(prayer.label.contains("צלותא מרניתא"), enabled)
-      let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
-      attachment.name = enabled ? "basic-prayer-bilingual-names" : "basic-prayer-interface-names"
-      attachment.lifetime = .keepAlways
-      add(attachment)
-      prayer.tap()
-      let heading = app.staticTexts["prayerFlowTitle"]
-      XCTAssertTrue(heading.waitForExistence(timeout: 5))
-      XCTAssertEqual(heading.label, "צלותא מרניתא", "The shelf preference does not change the prayed title")
+      XCTAssertTrue(app.buttons["settingsButton"].waitForExistence(timeout: 10))
+      app.buttons["settingsButton"].tap()
+      let toggle = app.switches["useJaffaHailMaryWording"]
+      XCTAssertTrue(toggle.waitForExistence(timeout: 5), "The option is available even with Aramaic selected")
+      let expectedValue = enabled ? "1" : "0"
+      if (toggle.value as? String) != expectedValue {
+        // SwiftUI exposes the whole labelled row as the switch's accessibility frame.
+        // The English interface places the native switch at its trailing edge.
+        toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5)).tap()
+      }
+      let changed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", expectedValue),
+                                              object: toggle)
+      XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 5), .completed)
+      app.buttons["Done"].tap()
+      let basic = app.buttons["basicPrayersRow"]
+      XCTAssertTrue(basic.waitForExistence(timeout: 5))
+      for _ in 0..<4 where !basic.isHittable { app.swipeUp() }
+      basic.tap()
+      let hailMary = app.buttons["basicPrayer-hailMary"]
+      XCTAssertTrue(hailMary.waitForExistence(timeout: 5))
+      hailMary.tap()
+      let body = app.staticTexts["prayerBodyText"]
+      XCTAssertTrue(body.waitForExistence(timeout: 5))
+      XCTAssertTrue(body.label.contains(enabled ? "בְּרוּכַת הַחֶסֶד" : "מְלֵאַת הַחֶסֶד"))
+      XCTAssertFalse(body.label.contains(enabled ? "מְלֵאַת הַחֶסֶד" : "בְּרוּכַת הַחֶסֶד"))
+      if enabled {
+        let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        attachment.name = "jaffa-hail-mary-wording"
+        attachment.lifetime = .keepAlways
+        add(attachment)
+      }
       app.terminate()
+      app.launchArguments.removeAll { $0 == "-resetStore" }
+    }
+  }
+
+  @MainActor
+  func testBasicPrayerNamesOfferBilingualDisplayWithoutChangingPrayerLanguage() throws {
+    for (language, expectedTitle) in [("arc", "צלותא מרניתא"), ("he-x-gamliel", "תפילת האדון")] {
+      for enabled in [false, true] {
+        let app = XCUIApplication()
+        app.launchArguments = ["-AppleLanguages", "(en)", "-defaultLanguageCode", language,
+                               "-basicPrayersLanguageCode", "", "-aramaicDefaultScript", "Hebr",
+                               "-showPrayerNameInPrayerLanguage", enabled ? "YES" : "NO"]
+        app.launch()
+        XCTAssertTrue(app.buttons["basicPrayersRow"].waitForExistence(timeout: 10))
+        app.buttons["basicPrayersRow"].tap()
+        let prayer = app.buttons["basicPrayer-ourFather"]
+        XCTAssertTrue(prayer.waitForExistence(timeout: 5))
+        XCTAssertTrue(prayer.label.contains(expectedTitle))
+        XCTAssertEqual(prayer.label.contains("Our Father"), enabled)
+        let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        attachment.name = "basic-prayer-\(language)-\(enabled ? "bilingual" : "prayer")-names"
+        attachment.lifetime = .keepAlways
+        add(attachment)
+        prayer.tap()
+        let heading = app.staticTexts["prayerFlowTitle"]
+        XCTAssertTrue(heading.waitForExistence(timeout: 5))
+        XCTAssertEqual(heading.label, expectedTitle, "The shelf preference does not change the prayed title")
+        app.terminate()
+      }
     }
   }
 
@@ -234,7 +317,8 @@ final class AppShellUITests: XCTestCase {
   @MainActor
   func testBasicPrayerTraditionAndHomePinStayConnected() throws {
     let app = XCUIApplication()
-    app.launchArguments = ["-resetStore", "-AppleLanguages", "(en)", "-defaultLanguageCode", "en"]
+    app.launchArguments = ["-resetStore", "-AppleLanguages", "(en)", "-defaultLanguageCode", "en",
+                           "-showPrayerNameInPrayerLanguage", "YES"]
     app.launch()
     let basic = app.buttons["basicPrayersRow"]
     XCTAssertTrue(basic.waitForExistence(timeout: 10))
@@ -248,9 +332,10 @@ final class AppShellUITests: XCTestCase {
     app.buttons["prayerTradition-he-x-gamliel"].tap()
     XCTAssertTrue(app.buttons["basicPrayer-holyGod"].label.contains("קדישת"))
     let pin = app.buttons["basicPrayerPin-holyGod"]
-    XCTAssertEqual(pin.label, "Pin to home")
+    if pin.label == "Remove from Pray" { pin.tap() }
+    XCTAssertEqual(pin.label, "Pin to Pray")
     pin.tap()
-    XCTAssertEqual(pin.label, "Unpin from home")
+    XCTAssertEqual(pin.label, "Remove from Pray")
     app.navigationBars.buttons.element(boundBy: 0).tap()
     let pinned = app.buttons["basic:holyGodCard"]
     XCTAssertTrue(pinned.waitForExistence(timeout: 5))
@@ -259,11 +344,13 @@ final class AppShellUITests: XCTestCase {
     XCTAssertTrue(app.staticTexts["prayerFlowTitle"].waitForExistence(timeout: 5))
     XCTAssertEqual(app.staticTexts["prayerFlowTitle"].label, "קדישת")
     app.buttons["prayerFlowNextButton"].tap()
+    pinned.press(forDuration: 1)
+    app.buttons["Remove from Pray"].tap()
+    XCTAssertFalse(app.buttons["basic:holyGodCard"].exists)
     for _ in 0..<4 where !basic.isHittable { app.swipeUp() }
     basic.tap()
-    app.buttons["basicPrayerPin-holyGod"].tap()
-    app.navigationBars.buttons.element(boundBy: 0).tap()
-    XCTAssertFalse(app.buttons["basic:holyGodCard"].exists)
+    XCTAssertTrue(app.buttons["basicPrayer-holyGod"].exists)
+    XCTAssertEqual(app.buttons["basicPrayerPin-holyGod"].label, "Pin to Pray")
   }
 
   @MainActor

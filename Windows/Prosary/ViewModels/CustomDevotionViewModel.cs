@@ -627,6 +627,22 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
 
     public void RefreshTypography() => RenderCurrentStep();
 
+    public void RefreshPrayerWording()
+    {
+        if (_steps.Count == 0) return;
+        _steps = _engine.BuildSteps(new Prayer
+        {
+            Kind = PrayerKind.Custom,
+            LanguageCode = _chosenLanguage,
+            CustomDevotionId = _bundleId,
+            VariantId = _variantId,
+            DayIndex = CurrentDayIndex,
+            CustomOptions = new Dictionary<string, string>(_customOptions),
+        });
+        _index = Math.Clamp(_index, 0, Math.Max(_steps.Count - 1, 0));
+        RenderCurrentStep();
+    }
+
     private void RenderCurrentStep()
     {
         if (_steps.Count == 0)

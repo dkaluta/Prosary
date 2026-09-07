@@ -38,6 +38,7 @@ class TodayInfoStoreTest {
     @Test
     fun todayTranslationFollowsTheInterfaceAndNormalizesAliases() {
         assertEquals("fr", TodayTranslationLanguage.resolve("fr-CA"))
+        assertEquals("uk", TodayTranslationLanguage.resolve("uk-UA"))
         assertEquals("tl", TodayTranslationLanguage.resolve("fil-PH"))
         assertEquals("he", TodayTranslationLanguage.resolve("iw"))
         assertEquals("he", TodayTranslationLanguage.resolve("he-x-gamliel"))
@@ -46,6 +47,7 @@ class TodayInfoStoreTest {
         assertTrue(TodayTranslationLanguage.isRightToLeft("ar"))
         assertTrue(TodayTranslationLanguage.isRightToLeft("he"))
         assertFalse(TodayTranslationLanguage.isRightToLeft("ru"))
+        assertFalse(TodayTranslationLanguage.isRightToLeft("uk-UA"))
     }
 
     @Test
@@ -73,6 +75,7 @@ class TodayInfoStoreTest {
         assertEquals(TodayTranslationLanguage.supportedCodes.toSet(), day.byLanguage.keys)
         assertTrue(day.localized("ar").contains("الزمن العادي"))
         assertTrue(day.localized("ru").contains("Рядового времени"))
+        assertTrue(day.localized("uk-UA").contains("тиждень Звичайного періоду"))
         assertTrue(day.localized("fil-PH").contains("Karaniwang Panahon"))
         assertTrue(day.localized("fr").contains("Temps ordinaire"))
         assertTrue(day.localized("it").contains("Tempo ordinario"))
@@ -83,6 +86,24 @@ class TodayInfoStoreTest {
         val title = FeastDay("Fallback", "Feast", mapOf("fr" to "", "tl" to "Kapistahan"))
         assertEquals("Fallback", title.localizedTitle("fr"))
         assertEquals("Kapistahan", title.localizedTitle("fil"))
+    }
+
+    @Test
+    fun ukrainianLiturgicalDayUsesItsOwnSeasonAndCalendarWording() {
+        val seasons = mapOf(
+            "2026-03-02" to "Великого посту",
+            "2026-04-06" to "Великоднього часу",
+            "2026-11-30" to "Адвенту",
+            "2026-12-28" to "Різдвяного часу",
+            "2026-08-31" to "Звичайного періоду",
+        )
+        seasons.forEach { (day, season) ->
+            val text = TodayInfoStore.liturgicalDayInfo(date(day), "roman").localized("uk-UA")
+            assertTrue(text, text.endsWith("тиждень $season"))
+        }
+        for (calendar in listOf("roman1962", "ugcc", "syriac", "maronite")) {
+            assertEquals("31 серпня", TodayInfoStore.liturgicalDayInfo(date("2026-08-31"), calendar).localized("uk"))
+        }
     }
 
     @Test
@@ -505,6 +526,33 @@ class TodayInfoStoreTest {
         assertTrue(next.title != nasso.title)
         assertEquals("פרשת נשא", nasso.localizedTitle("iw-IL"))
         assertNull(TodayInfoStore.torahPortion(date("2031-05-01")))
+    }
+
+    @Test
+    fun torahFestivalYearsUseAnnoMundiOutsideHebrewAndGematriaInHebrew() {
+        val cases = listOf(
+            Triple("2026-09-07", "2026-09-12", 5787 to "ה׳תשפ״ז"),
+            Triple("2027-09-26", "2027-10-02", 5788 to "ה׳תשפ״ח"),
+        )
+        for ((selected, saturday, year) in cases) {
+            val portion = TodayInfoStore.torahPortion(date(selected))!!
+            assertTrue(portion.isHoliday)
+            assertEquals(saturday, portion.saturday)
+            assertEquals("Rosh Hashana AM ${year.first}", portion.title)
+            for (language in listOf("he", "he-IL", "iw", "iw-IL")) {
+                assertEquals(language, "ראש השנה ${year.second}", portion.localizedTitle(language))
+            }
+            val names = mapOf(
+                "en" to "Rosh Hashana", "en-US" to "Rosh Hashana",
+                "ar" to "Rosh Hashana", "ru" to "Рош-А-Шана",
+                "uk" to "Рош-А-Шана", "uk-UA" to "Рош-А-Шана",
+                "tl" to "Rosh Hashana", "fil" to "Rosh Hashana", "fil-PH" to "Rosh Hashana",
+                "fr" to "Roch Hachanah", "fr-CA" to "Roch Hachanah", "it" to "Rosh Hashana",
+            )
+            for ((language, name) in names) {
+                assertEquals(language, "$name AM ${year.first}", portion.localizedTitle(language))
+            }
+        }
     }
 
     @Test

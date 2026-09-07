@@ -51,6 +51,8 @@
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">"Язык молитвы по умолчанию"</string>
+    <string name="settings_jaffa_wording">"Формулировка общины Яффо"</string>
+    <string name="settings_jaffa_wording_hint">"Использовать בְּרוּכַת הַחֶסֶד вместо מְלֵאַת הַחֶסֶד в молитвах Викариата."</string>
     <string name="settings_language_fallback_order">"Порядок запасных языков…"</string>
     <string name="settings_language_fallback_order_title">"Порядок запасных языков"</string>
     <string name="settings_language_fallback_order_footer">Если текста нет на выбранном языке, Prosary следует этому порядку. Общие для обеих традиций тексты на иврите, включая молитвы из репозитория, используют более высокую из двух позиций иврита.</string>
@@ -348,9 +350,6 @@
     <string name="settings_typeface_stam_ashkenaz">"Stam Ashkenaz"</string>
     <string name="settings_typeface_stam_sefarad">"Stam Sefarad"</string>
     <string name="settings_typeface_rashi">"Раши"</string>
-    <string name="settings_favorite_basic_prayers_first">"Показывать избранные основные молитвы первыми"</string>
-    <string name="basic_prayers_favorite">"Добавить в избранное"</string>
-    <string name="basic_prayers_unfavorite">"Удалить из избранного"</string>
     <string name="home_today_show_english">"English"</string>
     <string name="home_today_language">"Язык раздела «Сегодня»"</string>
     <string name="home_today_app_language">"Язык приложения"</string>
@@ -391,7 +390,12 @@
     <string name="category_short">Краткие</string>
     <string name="category_easter">Пасха</string>
     <string name="category_other">Другие</string>
-    <string name="about_additional_sources">Священное Писание на французском: Крампон (1923), общественное достояние. На итальянском: Антонио Мартини; структурированные данные © Giovanni Novelli, CC BY 4.0 (parolaviva.art). Молитвы на французском и итальянском: Компендиум Катехизиса Ватикана. Намерения Папы: Всемирная молитвенная сеть Папы (2026–2027); перевод на иврит — Prosary. Намерения на русском (2026): перевод t.me/ihsovs, опубликованный приходом Непорочного Зачатия в Челябинске (cc74.wordpress.com/rosary/).</string>
+    <string name="about_additional_sources">Священное Писание на французском: Крампон (1923), общественное достояние. На итальянском: Антонио Мартини; структурированные данные © Giovanni Novelli, CC BY 4.0 (parolaviva.art). Молитвы на французском и итальянском: Компендиум Катехизиса Ватикана. Намерения Папы: Всемирная молитвенная сеть Папы (2026–2027); перевод на иврит — Prosary. Намерения на русском (2026): перевод t.me/ihsovs, опубликованный приходом Непорочного Зачатия в Челябинске (cc74.wordpress.com/rosary/). Украинские намерения: редакционный перевод Prosary опубликованного английского текста.</string>
+    <string name="about_peshitta_sources">Новый Завет Пешитты (BFBS, 1905): Digital Syriac Corpus; сирийский текст оцифрован George A. Kiraz, издание TEI © James E. Walters, CC BY 4.0. Передача еврейским письмом по правилам Эреза; выбор стихов и форматирование текста — Prosary.</string>
+    <string name="about_peshitta_source_link">Digital Syriac Corpus</string>
+    <string name="about_peshitta_license_link">CC BY 4.0</string>
+    <string name="about_peshitta_isaiah_sources">Исаия: предоставленный пользователем XML Пешитты с огласовками из Internet Archive. Исходное издание и условия распространения пока не установлены. Передача еврейским письмом по правилам Эреза; выбор стихов и форматирование текста — Prosary.</string>
+    <string name="about_peshitta_isaiah_source_link">Internet Archive</string>
     <string name="about_bible_book_sources">Названия библейских книг: AELF, Dar el-Machreq, русский Синодальный перевод (Азбука веры), Филиппинское библейское общество и ParolaViva.</string>
     <string name="about_prayer_network_link">Всемирная молитвенная сеть Папы</string>
     <string name="about_parolaviva_link">ParolaViva — CC BY 4.0</string>
@@ -407,8 +411,8 @@
     <string name="prayer_tradition">"Молитвенная традиция"</string>
     <string name="prayer_tradition_vicariate">"Викариат святого Иакова"</string>
     <string name="prayer_tradition_mission">"Миссия святого Гамалиила"</string>
-    <string name="basic_prayers_pin">"Закрепить на главном экране"</string>
-    <string name="basic_prayers_unpin">"Открепить от главного экрана"</string>
+    <string name="basic_prayers_pin">"Закрепить в «Молиться»"</string>
+    <string name="basic_prayers_unpin">"Открепить от «Молиться»"</string>
     <string name="ro_closing_pope_intention">"Заключительные молитвы за Папу"</string>
     <string name="ro_closing_bishop_intention">"Заключительные молитвы за епископа"</string>
     <string name="ro_closing_departed_intention">"Заключительные молитвы за усопших верных"</string>
@@ -433,4 +437,7 @@
     <string name="settings_eastern_pascha">Византийская Пасха</string>
     <string name="settings_pascha_julian">Пасха по юлианскому календарю</string>
     <string name="settings_pascha_gregorian">Пасха по григорианскому календарю</string>
+    <string name="about_ukrainian_sources">"Молитвы на украинском: Римско-католическая церковь в Украине, молитвенник «Щоденно з Богом». Используются с указанием источника согласно правилам повторного использования издателя. Священное Писание: перевод Кулиша, Нечуя-Левицкого и Пулюя (1905), общественное достояние; eBible.org ukr1871. Историческое написание библейского текста сохранено."</string>
+    <string name="about_ukrainian_prayerbook_link">"Молитвенник на украинском"</string>
+    <string name="about_ukrainian_bible_link">"Библия на украинском (1905)"</string>
 </resources>

@@ -130,6 +130,56 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Fact]
+    public async Task JaffaPreferenceRefreshesOpenFlowsWithoutMovingTheirPrayerPosition()
+    {
+        var previousLanguage = AppSettings.BasicPrayersLanguageCode;
+        var previousWording = AppSettings.UseJaffaHailMaryWording;
+        var calendar = new LiturgicalCalendarService();
+        var prayer = new Prayer { LanguageCode = "he", Rosary = new RosaryOptions { MysterySelectionMode = MysterySelectionMode.SingleMystery } };
+        var presets = new MemoryPresetStore(prayer);
+        var runs = new LocalPrayerRunStore(() => null, _ => { });
+        var rosary = new RosaryViewModel(presets, new PrayerEngine(calendar), calendar, runs);
+        var custom = new CustomDevotionViewModel(presets, new PrayerEngine(calendar), calendar, new SilentReminders(), runs);
+        var basic = new BasicPrayerViewModel();
+        void Refresh()
+        {
+            rosary.RefreshPrayerWording();
+            custom.RefreshPrayerWording();
+            basic.RefreshPrayerWording();
+        }
+        try
+        {
+            AppSettings.SetUseJaffaHailMaryWording(false);
+            AppSettings.SetBasicPrayersLanguageCode("he");
+            await rosary.LoadAsync(prayer.Id);
+            await custom.LoadAsync(null, "angelus", "he");
+            basic.Load("hailMary");
+            for (var i = 0; !rosary.Body.Contains("מְלֵאַת הַחֶסֶד") && i < 20; i++)
+                await rosary.NextCommand.ExecuteAsync(null);
+            for (var i = 0; !custom.Body.Contains("מְלֵאַת הַחֶסֶד") && i < 20; i++)
+                custom.NextCommand.Execute(null);
+            IPrayerStepFlowViewModel[] flows = [rosary, custom, basic];
+            var originals = flows.Select(flow => flow.Body).ToArray();
+            var positions = flows.Select(flow => flow.ProgressText).ToArray();
+            Assert.All(originals, body => Assert.Contains("מְלֵאַת הַחֶסֶד", body));
+
+            AppSettings.PrayerWordingChanged += Refresh;
+            AppSettings.SetUseJaffaHailMaryWording(true);
+            Assert.All(flows, flow => Assert.Contains("בְּרוּכַת הַחֶסֶד", flow.Body));
+            Assert.Equal(positions, flows.Select(flow => flow.ProgressText));
+            AppSettings.SetUseJaffaHailMaryWording(false);
+            Assert.Equal(originals, flows.Select(flow => flow.Body));
+            Assert.Equal(positions, flows.Select(flow => flow.ProgressText));
+        }
+        finally
+        {
+            AppSettings.PrayerWordingChanged -= Refresh;
+            AppSettings.SetBasicPrayersLanguageCode(previousLanguage);
+            AppSettings.SetUseJaffaHailMaryWording(previousWording);
+        }
+    }
+
+    [Fact]
     public void BasicPrayerProgressReturnsToNativeUiFontAfterAramaic()
     {
         var previousLanguage = AppSettings.BasicPrayersLanguageCode;

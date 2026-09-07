@@ -385,7 +385,12 @@
   <data name="reminder_pray" xml:space="preserve"><value>Время молитвы.</value></data>
   <data name="preset_classic_rosary" xml:space="preserve"><value>Традиционный Розарий</value></data>
   <data name="prayer_default_name" xml:space="preserve"><value>Моя молитва</value></data>
-  <data name="AbtAdditionalSources.Text" xml:space="preserve"><value>Священное Писание на французском: Крампон (1923), общественное достояние. На итальянском: Антонио Мартини; структурированные данные © Giovanni Novelli, CC BY 4.0 (parolaviva.art). Молитвы на французском и итальянском: Компендиум Катехизиса Ватикана. Намерения Папы: Всемирная молитвенная сеть Папы (2026–2027); перевод на иврит — Prosary. Намерения на русском (2026): перевод t.me/ihsovs, опубликованный приходом Непорочного Зачатия в Челябинске (cc74.wordpress.com/rosary/).</value></data>
+  <data name="AbtAdditionalSources.Text" xml:space="preserve"><value>Священное Писание на французском: Крампон (1923), общественное достояние. На итальянском: Антонио Мартини; структурированные данные © Giovanni Novelli, CC BY 4.0 (parolaviva.art). Молитвы на французском и итальянском: Компендиум Катехизиса Ватикана. Намерения Папы: Всемирная молитвенная сеть Папы (2026–2027); переводы на иврит и украинский — Prosary. Намерения на русском (2026): перевод t.me/ihsovs, опубликованный приходом Непорочного Зачатия в Челябинске (cc74.wordpress.com/rosary/).</value></data>
+  <data name="AbtPeshittaSources.Text" xml:space="preserve"><value>Новый Завет Пешитты (BFBS, 1905): Digital Syriac Corpus; сирийский текст оцифрован George A. Kiraz, издание TEI © James E. Walters, CC BY 4.0. Передача еврейским письмом по правилам Эреза; выбор стихов и форматирование текста — Prosary.</value></data>
+  <data name="AbtPeshittaSourceLink.Content" xml:space="preserve"><value>Digital Syriac Corpus</value></data>
+  <data name="AbtPeshittaLicenseLink.Content" xml:space="preserve"><value>CC BY 4.0</value></data>
+  <data name="AbtPeshittaIsaiahSources.Text" xml:space="preserve"><value>Исаия: предоставленный пользователем XML Пешитты с огласовками из Internet Archive. Исходное издание и условия распространения пока не установлены. Передача еврейским письмом по правилам Эреза; выбор стихов и форматирование текста — Prosary.</value></data>
+  <data name="AbtPeshittaIsaiahSourceLink.Content" xml:space="preserve"><value>Internet Archive</value></data>
   <data name="AbtBookNameSources.Text" xml:space="preserve"><value>Названия библейских книг: AELF, Dar el-Machreq, русский Синодальный перевод (Азбука веры), Филиппинское библейское общество и ParolaViva.</value></data>
   <data name="AbtPopeNetworkLink.Content" xml:space="preserve"><value>Всемирная молитвенная сеть Папы</value></data>
   <data name="AbtParolaVivaLink.Content" xml:space="preserve"><value>ParolaViva — CC BY 4.0</value></data>
@@ -411,8 +416,8 @@
   <data name="prayer_tradition" xml:space="preserve"><value>Молитвенная традиция</value></data>
   <data name="prayer_tradition_vicariate" xml:space="preserve"><value>Викариат святого Иакова</value></data>
   <data name="prayer_tradition_mission" xml:space="preserve"><value>Миссия святого Гамалиила</value></data>
-  <data name="basic_pin" xml:space="preserve"><value>Закрепить на главном экране</value></data>
-  <data name="basic_unpin" xml:space="preserve"><value>Открепить от главного экрана</value></data>
+  <data name="basic_pin" xml:space="preserve"><value>Закрепить в «Молиться»</value></data>
+  <data name="basic_unpin" xml:space="preserve"><value>Убрать из «Молиться»</value></data>
   <data name="rosary_pray_litany" xml:space="preserve"><value>Молиться литанию</value></data>
   <data name="rosary_litany_prompt" xml:space="preserve"><value>Продолжить литанией Пресвятой Деве Марии?</value></data>
   <data name="EdClosingPopeIntention.Text" xml:space="preserve"><value>Заключительные молитвы за Папу</value></data>
@@ -437,4 +442,9 @@
   <data name="HomeNextDay.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Следующий день</value></data>
   <data name="home_today_choose_date" xml:space="preserve"><value>Выбрать дату: {0}</value></data>
   <data name="AbtHebrewBookIndex.Text" xml:space="preserve"><value>Дополнительные названия книг Библии на иврите: указатель еврейской Библии Mechon Mamre. Только названия, без библейского текста.</value></data>
+  <data name="SetJaffaWording.Header" xml:space="preserve"><value>Формулировка общины Яффо</value></data>
+  <data name="SetJaffaWordingFooter.Text" xml:space="preserve"><value>Использовать בְּרוּכַת הַחֶסֶד вместо מְלֵאַת הַחֶסֶד в молитвах викариата.</value></data>
+  <data name="AbtUkrainianPrayerSources.Text" xml:space="preserve"><value>Молитвы на украинском: Римско-католическая церковь в Украине, молитвенник «Щоденно з Богом». Используются с указанием источника согласно правилам повторного использования издателя. Священное Писание: перевод Кулиша, Нечуя-Левицкого и Пулюя (1905), общественное достояние; eBible.org ukr1871. Историческое написание библейского текста сохранено.</value></data>
+  <data name="AbtUkrainianPrayerbookLink.Content" xml:space="preserve"><value>Молитвенник на украинском</value></data>
+  <data name="AbtUkrainianScriptureLink.Content" xml:space="preserve"><value>Библия на украинском (1905)</value></data>
 </root>

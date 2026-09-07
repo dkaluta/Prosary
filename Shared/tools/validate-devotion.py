@@ -966,7 +966,7 @@ def main() -> int:
     allowlist_path = src / "validation-allowlist.json"
     allowlist = load_json(allowlist_path).get("missingKeys", {}) if allowlist_path.exists() else {}
 
-    # Validate every authored language overlay, not only the complete languages advertised in
+    # Validate every authored language overlay, not only the languages advertised in
     # manifest.json. Scripture import overlays (Aramaic/Greek/Spanish today) are intentionally
     # partial, but their mystery objects still have the same field-wise contract.
     for content_path in sorted((src / "content").glob("*.json")):

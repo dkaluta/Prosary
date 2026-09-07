@@ -77,6 +77,41 @@ final class PrayerLanguageControlsTests: XCTestCase {
     XCTAssertNil(BasicPrayerFavorites.prayerID(homeRowID: "rosary"))
   }
 
+  func testRepositoryLanguageNamesKeepGenericHebrewSeparateFromTraditions() {
+    XCTAssertEqual(LanguageCatalog.contentLanguageName("he"), "עברית")
+    XCTAssertEqual(LanguageCatalog.contentLanguageName("iw"), "עברית")
+    XCTAssertEqual(LanguageCatalog.contentLanguageName("he-x-gamliel"),
+                   "עברית — \(LanguageCatalog.traditionName("he-x-gamliel"))")
+    XCTAssertNotEqual(LanguageCatalog.contentLanguageName("he"), LanguageCatalog.fallbackDisplayName("he"))
+    XCTAssertEqual(LanguageCatalog.contentLanguageName("fil"), LanguageCatalog.contentLanguageName("tl"))
+    XCTAssertEqual(LanguageCatalog.contentLanguageNames(["he", "iw", "he-x-gamliel"]),
+                   ["עברית", "עברית — \(LanguageCatalog.traditionName("he-x-gamliel"))"])
+  }
+
+  func testExistingBasicPrayerSelectionsPinImmediatelyWithoutSortingTheDirectory() {
+    let oldIds = CloudSyncedList.read(BasicPrayerFavorites.idsKey)
+    let oldSort = UserDefaults.standard.object(forKey: BasicPrayerFavorites.moveToTopKey)
+    defer {
+      if let oldIds { CloudSyncedList.write(oldIds, forKey: BasicPrayerFavorites.idsKey) }
+      else { CloudSyncedList.remove(BasicPrayerFavorites.idsKey) }
+      if let oldSort { UserDefaults.standard.set(oldSort, forKey: BasicPrayerFavorites.moveToTopKey) }
+      else { UserDefaults.standard.removeObject(forKey: BasicPrayerFavorites.moveToTopKey) }
+      CloudPreferencesGeneration.shared.bump()
+    }
+    CloudSyncedList.write(["holyGod"], forKey: "favoriteBasicPrayerIds")
+    UserDefaults.standard.set(true, forKey: BasicPrayerFavorites.moveToTopKey)
+    XCTAssertTrue(BasicPrayerFavorites.contains("holyGod"), "Legacy stars are already Pray pins")
+    XCTAssertEqual(BasicPrayerFavorites.apply(BasicPrayerCatalog.all).map(\.id), BasicPrayerCatalog.all.map(\.id))
+    let generation = CloudPreferencesGeneration.shared.value
+    BasicPrayerFavorites.toggle("ourFather")
+    XCTAssertTrue(BasicPrayerFavorites.contains("ourFather"))
+    XCTAssertGreaterThan(CloudPreferencesGeneration.shared.value, generation, "An existing Pray window refreshes")
+    BasicPrayerFavorites.toggle("holyGod")
+    XCTAssertFalse(BasicPrayerFavorites.contains("holyGod"))
+    XCTAssertTrue(BasicPrayerFavorites.contains("ourFather"), "Removing one pin retains the others")
+    XCTAssertNotNil(BasicPrayerCatalog.prayer(id: "holyGod"), "Removing a pin never removes the prayer")
+  }
+
   func testClosingRunSignatureInvalidatesShiftedStepsButPreservesOrdinaryRuns() {
     var options = RosaryOptions()
     let baseline = PrayerRunSignature.rosary(options)

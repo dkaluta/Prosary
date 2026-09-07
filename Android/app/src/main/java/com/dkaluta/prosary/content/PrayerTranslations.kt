@@ -35,8 +35,8 @@ object PrayerTranslations {
 
     fun get(languageCode: String?, key: PrayerKey): String {
         for (code in LanguageCatalog.contentFallbackChain(languageCode)) {
-            PrayerPackStore.prayerOverride(code, key)?.let { return it }
-            byLanguage[code]?.get(key)?.let { return it }
+            PrayerPackStore.prayerOverride(code, key)?.let { return JaffaPrayerWording.apply(code, it) }
+            byLanguage[code]?.get(key)?.let { return JaffaPrayerWording.apply(code, it) }
         }
 
         return prayerTranslationsLatin[key] ?: key.name

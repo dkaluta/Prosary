@@ -51,6 +51,8 @@
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">"Langue de prière par défaut"</string>
+    <string name="settings_jaffa_wording">"Formulation de Jaffa"</string>
+    <string name="settings_jaffa_wording_hint">"Utiliser בְּרוּכַת הַחֶסֶד à la place de מְלֵאַת הַחֶסֶד dans les prières du Vicariat."</string>
     <string name="settings_language_fallback_order">"Ordre des langues de remplacement…"</string>
     <string name="settings_language_fallback_order_title">"Ordre des langues de remplacement"</string>
     <string name="settings_language_fallback_order_footer">Si le texte manque dans la langue choisie, Prosary suit cet ordre. Les textes hébreux communs aux deux traditions, y compris les prières du dépôt, utilisent la plus haute des deux positions de l’hébreu.</string>
@@ -348,9 +350,6 @@
     <string name="settings_typeface_stam_ashkenaz">"Stam Ashkenaz"</string>
     <string name="settings_typeface_stam_sefarad">"Stam Sefarad"</string>
     <string name="settings_typeface_rashi">"Rashi"</string>
-    <string name="settings_favorite_basic_prayers_first">"Placer les prières usuelles favorites en tête"</string>
-    <string name="basic_prayers_favorite">"Ajouter aux favoris"</string>
-    <string name="basic_prayers_unfavorite">"Retirer des favoris"</string>
     <string name="home_today_show_english">"English"</string>
     <string name="home_today_language">"Langue d’Aujourd’hui"</string>
     <string name="home_today_app_language">"Langue de l’app"</string>
@@ -391,7 +390,12 @@
     <string name="category_short">Courtes</string>
     <string name="category_easter">Pâques</string>
     <string name="category_other">Autres</string>
-    <string name="about_additional_sources">Écriture en français : Crampon (1923), domaine public. Écriture en italien : Antonio Martini ; données structurées © Giovanni Novelli, CC BY 4.0 (parolaviva.art). Prières en français et en italien : Compendium du Vatican. Intentions du Pape : Réseau mondial de prière du Pape (2026–2027) ; traduction hébraïque par Prosary. Intentions en russe (2026) : traduction de t.me/ihsovs, publiée par la paroisse de l’Immaculée Conception de Tcheliabinsk (cc74.wordpress.com/rosary/).</string>
+    <string name="about_additional_sources">Écriture en français : Crampon (1923), domaine public. Écriture en italien : Antonio Martini ; données structurées © Giovanni Novelli, CC BY 4.0 (parolaviva.art). Prières en français et en italien : Compendium du Vatican. Intentions du Pape : Réseau mondial de prière du Pape (2026–2027) ; traduction hébraïque par Prosary. Intentions en russe (2026) : traduction de t.me/ihsovs, publiée par la paroisse de l’Immaculée Conception de Tcheliabinsk (cc74.wordpress.com/rosary/). Intentions en ukrainien : traductions éditoriales par Prosary du texte anglais publié.</string>
+    <string name="about_peshitta_sources">Nouveau Testament de la Peshitta (BFBS, 1905) : Digital Syriac Corpus ; transcription syriaque par George A. Kiraz, édition TEI © James E. Walters, CC BY 4.0. Conversion en caractères hébreux selon les règles d’Erez ; sélection des versets et mise en forme du texte par Prosary.</string>
+    <string name="about_peshitta_source_link">Digital Syriac Corpus</string>
+    <string name="about_peshitta_license_link">CC BY 4.0</string>
+    <string name="about_peshitta_isaiah_sources">Isaïe : XML vocalisé de la Peshitta provenant d’Internet Archive et fourni par un utilisateur. L’édition d’origine et les conditions de redistribution restent indéterminées. Conversion en caractères hébreux selon les règles d’Erez ; sélection des versets et mise en forme du texte par Prosary.</string>
+    <string name="about_peshitta_isaiah_source_link">Internet Archive</string>
     <string name="about_bible_book_sources">Noms des livres bibliques : AELF, Dar el-Machreq, Bible synodale russe (Azbyka), Société biblique philippine et ParolaViva.</string>
     <string name="about_prayer_network_link">Réseau mondial de prière du Pape</string>
     <string name="about_parolaviva_link">ParolaViva — CC BY 4.0</string>
@@ -407,8 +411,8 @@
     <string name="prayer_tradition">"Tradition de prière"</string>
     <string name="prayer_tradition_vicariate">"Vicariat Saint-Jacques"</string>
     <string name="prayer_tradition_mission">"Mission Saint-Gamaliel"</string>
-    <string name="basic_prayers_pin">"Épingler à l’accueil"</string>
-    <string name="basic_prayers_unpin">"Désépingler de l’accueil"</string>
+    <string name="basic_prayers_pin">"Épingler dans Prier"</string>
+    <string name="basic_prayers_unpin">"Désépingler de Prier"</string>
     <string name="ro_closing_pope_intention">"Prières finales pour le pape"</string>
     <string name="ro_closing_bishop_intention">"Prières finales pour l’évêque"</string>
     <string name="ro_closing_departed_intention">"Prières finales pour les fidèles défunts"</string>
@@ -433,4 +437,7 @@
     <string name="settings_eastern_pascha">Pâques byzantines</string>
     <string name="settings_pascha_julian">Pâques selon le calendrier julien</string>
     <string name="settings_pascha_gregorian">Pâques selon le calendrier grégorien</string>
+    <string name="about_ukrainian_sources">"Prières en ukrainien : Église catholique romaine en Ukraine, livre de prières Щоденно з Богом. Utilisation avec attribution conformément à la politique de réutilisation de l’éditeur. Écriture : Bible de Kulish, Nechui-Levytsky et Puluj (1905), domaine public ; eBible.org ukr1871. L’orthographe historique du texte biblique est conservée."</string>
+    <string name="about_ukrainian_prayerbook_link">"Livre de prières en ukrainien"</string>
+    <string name="about_ukrainian_bible_link">"Bible en ukrainien (1905)"</string>
 </resources>

@@ -101,16 +101,17 @@ public sealed record LiturgicalDayInfo(string English, string Hebrew, DateOnly D
             System.Globalization.CultureInfo.GetCultureInfo(UiLanguageCatalog.ResourceTag(code)));
         var season = Season switch
         {
-            "Lent" => code switch { "ar" => "الزمن الأربعيني", "ru" => "Великого поста", "tl" => "Kuwaresma", "fr" => "Carême", "it" => "Quaresima", _ => Season },
-            "Easter Season" => code switch { "ar" => "الزمن الفصحي", "ru" => "Пасхального времени", "tl" => "Panahon ng Pasko ng Pagkabuhay", "fr" => "temps pascal", "it" => "Tempo di Pasqua", _ => Season },
-            "Advent" => code switch { "ar" => "زمن المجيء", "ru" => "Адвента", "tl" => "Adbiyento", "fr" => "Avent", "it" => "Avvento", _ => Season },
-            "Christmas Season" => code switch { "ar" => "زمن الميلاد", "ru" => "Рождественского времени", "tl" => "Panahon ng Pasko", "fr" => "temps de Noël", "it" => "Tempo di Natale", _ => Season },
-            _ => code switch { "ar" => "الزمن العادي", "ru" => "Рядового времени", "tl" => "Karaniwang Panahon", "fr" => "temps ordinaire", "it" => "Tempo Ordinario", _ => Season },
+            "Lent" => code switch { "ar" => "الزمن الأربعيني", "ru" => "Великого поста", "uk" => "Великого посту", "tl" => "Kuwaresma", "fr" => "Carême", "it" => "Quaresima", _ => Season },
+            "Easter Season" => code switch { "ar" => "الزمن الفصحي", "ru" => "Пасхального времени", "uk" => "Великоднього періоду", "tl" => "Panahon ng Pasko ng Pagkabuhay", "fr" => "temps pascal", "it" => "Tempo di Pasqua", _ => Season },
+            "Advent" => code switch { "ar" => "زمن المجيء", "ru" => "Адвента", "uk" => "Адвенту", "tl" => "Adbiyento", "fr" => "Avent", "it" => "Avvento", _ => Season },
+            "Christmas Season" => code switch { "ar" => "زمن الميلاد", "ru" => "Рождественского времени", "uk" => "Різдвяного періоду", "tl" => "Panahon ng Pasko", "fr" => "temps de Noël", "it" => "Tempo di Natale", _ => Season },
+            _ => code switch { "ar" => "الزمن العادي", "ru" => "Рядового времени", "uk" => "Звичайного періоду", "tl" => "Karaniwang Panahon", "fr" => "temps ordinaire", "it" => "Tempo Ordinario", _ => Season },
         };
         return code switch
         {
             "ar" => $"{weekday} · الأسبوع {Week} من {season}",
             "ru" => $"{weekday} · {Week}-я неделя {season}",
+            "uk" => $"{weekday} · {Week}-й тиждень {season}",
             "tl" => $"{weekday} · Ika-{Week} linggo ng {season}",
             "fr" => $"{weekday} · Semaine {Week} — {season}",
             "it" => $"{weekday} · Settimana {Week} — {season}",
@@ -125,12 +126,13 @@ public sealed record LiturgicalDayInfo(string English, string Hebrew, DateOnly D
         var culture = (System.Globalization.CultureInfo)System.Globalization.CultureInfo
             .GetCultureInfo(UiLanguageCatalog.ResourceTag(code)).Clone();
         culture.DateTimeFormat.Calendar = new System.Globalization.GregorianCalendar();
-        var month = code == "ru" ? culture.DateTimeFormat.MonthGenitiveNames[date.Month - 1]
+        var month = code is "ru" or "uk" ? culture.DateTimeFormat.MonthGenitiveNames[date.Month - 1]
             : date.ToDateTime(TimeOnly.MinValue).ToString("MMMM", culture);
         var template = code switch
         {
             "he" => "יום {0} בחודש {1}", "ar" => "اليوم {0} من شهر {1}",
             "ru" => "День {0} месяца {1}", "tl" => "Araw {0} ng {1}",
+            "uk" => "День {0} місяця {1}",
             "fr" => "Jour {0} de {1}", "it" => "Giorno {0} di {1}",
             _ => "Day {0} of {1}",
         };

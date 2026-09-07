@@ -23,7 +23,7 @@ def presentation_normalized_hebrew(text):
 
 
 class LitanyContentTests(unittest.TestCase):
-    def test_each_supported_language_has_both_complete_exclusive_forms(self):
+    def test_supported_forms_preserve_their_own_collect_and_documented_source_gap(self):
         manifest = read(BUNDLE / 'manifest.json')
         variants = read(BUNDLE / 'devotion.json')['variants']
         self.assertEqual(['standard', 'afterRosary'], [v['id'] for v in variants])
@@ -35,12 +35,22 @@ class LitanyContentTests(unittest.TestCase):
                 content = read(BUNDLE / f'content/{language}.json')
                 text = content['prayers']
                 self.assertTrue(content.get('$sources'))
-                self.assertNotEqual(text['collectStandard'], text['collectAfterRosary'])
+                # Ukrainian has the published ordinary collect; its separately documented
+                # after-Rosary collect follows the native fallback order until sourced.
+                # Every previously complete language must remain complete.
+                gaps = {'collectAfterRosary'} if language == 'uk' else set()
+                required = {step['bodyKey'] for variant in variants for step in variant['steps']}
+                self.assertEqual(gaps, required - text.keys())
+                if gaps:
+                    self.assertEqual(gaps, set(content['$coverage']['fallbackPrayerKeys']))
+                else:
+                    self.assertNotEqual(text['collectStandard'], text['collectAfterRosary'])
                 for variant in variants:
                     self.assertEqual(1, sum(s['bodyKey'].startswith('collect') for s in variant['steps']))
                     for step in variant['steps']:
                         self.assertTrue(text[step['titleKey']].strip())
-                        self.assertTrue(text[step['bodyKey']].strip())
+                        if step['bodyKey'] not in gaps:
+                            self.assertTrue(text[step['bodyKey']].strip())
 
     def test_erez_words_and_two_collects_are_preserved(self):
         original = read(BUNDLE / 'sources/erez-he.json')['prayers']

@@ -13,7 +13,11 @@ namespace Prosary.ViewModels;
 public sealed record BasicPrayerRow(string Id, string Title, string ImageFile, bool IsPinned, string InterfaceSubtitle = "")
 {
     public bool HasInterfaceSubtitle => !string.IsNullOrWhiteSpace(InterfaceSubtitle);
-    public string PinActionLabel => IsPinned ? Loc.Tr("basic_unpin", "Unpin from home") : Loc.Tr("basic_pin", "Pin to home");
+    public bool IsTitleRightToLeft => PrayerTypography.IsRightToLeft(PrayerTypography.ScriptOf(Title));
+    public bool IsInterfaceSubtitleRightToLeft => PrayerTypography.IsRightToLeft(PrayerTypography.ScriptOf(InterfaceSubtitle));
+    public string PinActionLabel => IsPinned ? Loc.Tr("basic_unpin", "Remove from Pray") : Loc.Tr("basic_pin", "Pin to Pray");
+    public string PinGlyph => IsPinned ? "\uE77A" : "\uE718";
+    public string PinAutomationId => $"basicPrayerPin-{Id}";
 }
 
 /// <summary>The basic prayers on their own, outside any devotion (Erez, 2026-08-07). Mirrors
@@ -164,6 +168,7 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     }
 
     public void RefreshTypography() => RenderPrayer();
+    public void RefreshPrayerWording() => RenderPrayer();
 
     private void RenderPrayer()
     {

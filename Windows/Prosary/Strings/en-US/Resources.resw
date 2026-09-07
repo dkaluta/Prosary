@@ -385,7 +385,12 @@
   <data name="reminder_pray" xml:space="preserve"><value>Time to pray.</value></data>
   <data name="preset_classic_rosary" xml:space="preserve"><value>Classic Rosary</value></data>
   <data name="prayer_default_name" xml:space="preserve"><value>My Prayer</value></data>
-  <data name="AbtAdditionalSources.Text" xml:space="preserve"><value>French Scripture: Crampon (1923), public domain. Italian Scripture: Antonio Martini; structured data © Giovanni Novelli, CC BY 4.0 (parolaviva.art). French and Italian prayers: Vatican Compendium. Pope’s intentions: Pope’s Worldwide Prayer Network (2026–2027); Hebrew translation by Prosary. Russian intentions (2026): translation by t.me/ihsovs, published by the Immaculate Conception parish in Chelyabinsk (cc74.wordpress.com/rosary/).</value></data>
+  <data name="AbtAdditionalSources.Text" xml:space="preserve"><value>French Scripture: Crampon (1923), public domain. Italian Scripture: Antonio Martini; structured data © Giovanni Novelli, CC BY 4.0 (parolaviva.art). French and Italian prayers: Vatican Compendium. Pope’s intentions: Pope’s Worldwide Prayer Network (2026–2027); Hebrew and Ukrainian translations by Prosary. Russian intentions (2026): translation by t.me/ihsovs, published by the Immaculate Conception parish in Chelyabinsk (cc74.wordpress.com/rosary/).</value></data>
+  <data name="AbtPeshittaSources.Text" xml:space="preserve"><value>Peshitta New Testament (BFBS, 1905): Digital Syriac Corpus; Syriac transcription by George A. Kiraz, TEI edition © James E. Walters, CC BY 4.0. Hebrew script conversion using Erez’s rules; verse selection and text formatting by Prosary.</value></data>
+  <data name="AbtPeshittaSourceLink.Content" xml:space="preserve"><value>Digital Syriac Corpus</value></data>
+  <data name="AbtPeshittaLicenseLink.Content" xml:space="preserve"><value>CC BY 4.0</value></data>
+  <data name="AbtPeshittaIsaiahSources.Text" xml:space="preserve"><value>Isaiah: user-supplied pointed Peshitta XML from Internet Archive. The underlying edition and redistribution terms remain unidentified. Hebrew script conversion using Erez’s rules; verse selection and text formatting by Prosary.</value></data>
+  <data name="AbtPeshittaIsaiahSourceLink.Content" xml:space="preserve"><value>Internet Archive</value></data>
   <data name="AbtBookNameSources.Text" xml:space="preserve"><value>Bible book names: AELF, Dar el-Machreq, Russian Synodal Bible (Azbyka), Philippine Bible Society and ParolaViva.</value></data>
   <data name="AbtPopeNetworkLink.Content" xml:space="preserve"><value>Pope’s Worldwide Prayer Network</value></data>
   <data name="AbtParolaVivaLink.Content" xml:space="preserve"><value>ParolaViva — CC BY 4.0</value></data>
@@ -411,8 +416,8 @@
   <data name="prayer_tradition" xml:space="preserve"><value>Prayer tradition</value></data>
   <data name="prayer_tradition_vicariate" xml:space="preserve"><value>Saint James Vicariate</value></data>
   <data name="prayer_tradition_mission" xml:space="preserve"><value>Mission of St. Gamaliel</value></data>
-  <data name="basic_pin" xml:space="preserve"><value>Pin to home</value></data>
-  <data name="basic_unpin" xml:space="preserve"><value>Unpin from home</value></data>
+  <data name="basic_pin" xml:space="preserve"><value>Pin to Pray</value></data>
+  <data name="basic_unpin" xml:space="preserve"><value>Remove from Pray</value></data>
   <data name="rosary_pray_litany" xml:space="preserve"><value>Pray the Litany</value></data>
   <data name="rosary_litany_prompt" xml:space="preserve"><value>Continue with the Litany of the Blessed Virgin Mary?</value></data>
   <data name="EdClosingPopeIntention.Text" xml:space="preserve"><value>Closing prayers for the Pope</value></data>
@@ -437,4 +442,9 @@
   <data name="HomeNextDay.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Next day</value></data>
   <data name="home_today_choose_date" xml:space="preserve"><value>Choose a date: {0}</value></data>
   <data name="AbtHebrewBookIndex.Text" xml:space="preserve"><value>Additional Hebrew Bible book names: Mechon Mamre’s Hebrew Bible index. Names only; no Scripture text.</value></data>
+  <data name="SetJaffaWording.Header" xml:space="preserve"><value>Jaffa wording</value></data>
+  <data name="SetJaffaWordingFooter.Text" xml:space="preserve"><value>Use בְּרוּכַת הַחֶסֶד instead of מְלֵאַת הַחֶסֶד in Vicariate prayers.</value></data>
+  <data name="AbtUkrainianPrayerSources.Text" xml:space="preserve"><value>Ukrainian prayers: Roman Catholic Church in Ukraine, Щоденно з Богом prayerbook. Used with attribution under the publisher’s reuse policy. Scripture: Kulish, Nechui-Levytsky and Puluj Bible (1905), public domain; eBible.org ukr1871. Historical Scripture spelling is retained.</value></data>
+  <data name="AbtUkrainianPrayerbookLink.Content" xml:space="preserve"><value>Ukrainian prayerbook</value></data>
+  <data name="AbtUkrainianScriptureLink.Content" xml:space="preserve"><value>Ukrainian Bible (1905)</value></data>
 </root>

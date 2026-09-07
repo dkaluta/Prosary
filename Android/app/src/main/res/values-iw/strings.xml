@@ -56,6 +56,8 @@
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">שפת תפילה כברירת מחדל</string>
+    <string name="settings_jaffa_wording">"נוסח יפו"</string>
+    <string name="settings_jaffa_wording_hint">"בתפילות הנציגות, החליפו את מְלֵאַת הַחֶסֶד ב־בְּרוּכַת הַחֶסֶד."</string>
     <string name="settings_language_fallback_order">סדר עדיפות לשפות…</string>
     <string name="settings_language_fallback_order_title">סדר עדיפות לשפות</string>
     <string name="settings_language_fallback_order_footer">כשחסר טקסט בשפת התפילה שנבחרה, Prosary מחפש לפי הסדר הזה. עברית משותפת לשני הנוסחים, כולל תפילות מהמאגר, מקבלת את העדיפות של הנוסח העברי הגבוה יותר ברשימה.</string>
@@ -353,9 +355,6 @@
     <string name="settings_typeface_stam_ashkenaz">סת״ם אשכנזי</string>
     <string name="settings_typeface_stam_sefarad">סת״ם ספרדי</string>
     <string name="settings_typeface_rashi">רש״י</string>
-    <string name="settings_favorite_basic_prayers_first">העבר תפילות בסיסיות מועדפות לראש הרשימה</string>
-    <string name="basic_prayers_favorite">הוסף למועדפים</string>
-    <string name="basic_prayers_unfavorite">הסר מהמועדפים</string>
     <string name="home_today_show_english">English</string>
     <string name="home_today_language">שפת היום</string>
     <string name="home_today_app_language">שפת היישום</string>
@@ -394,7 +393,12 @@
     <string name="category_short">קצר</string>
     <string name="category_easter">פסחא</string>
     <string name="category_other">אחר</string>
-    <string name="about_additional_sources">כתבי הקודש בצרפתית: קראמפון (1923), נחלת הכלל. כתבי הקודש באיטלקית: אנטוניו מרטיני; נתונים מובנים © Giovanni Novelli, ברישיון CC BY 4.0 ‏(parolaviva.art). תפילות בצרפתית ובאיטלקית: תמצית הקטכיזם של הוותיקן. כוונות האפיפיור: רשת התפילה העולמית של האפיפיור (2026–2027); תרגום לעברית מאת Prosary. כוונות ברוסית (2026): תרגום מאת t.me/ihsovs, שפורסם באתר קהילת העיבור ללא חטא בצ׳ליאבינסק (cc74.wordpress.com/rosary/).</string>
+    <string name="about_additional_sources">כתבי הקודש בצרפתית: קראמפון (1923), נחלת הכלל. כתבי הקודש באיטלקית: אנטוניו מרטיני; נתונים מובנים © Giovanni Novelli, ברישיון CC BY 4.0 ‏(parolaviva.art). תפילות בצרפתית ובאיטלקית: תמצית הקטכיזם של הוותיקן. כוונות האפיפיור: רשת התפילה העולמית של האפיפיור (2026–2027); תרגום לעברית מאת Prosary. כוונות ברוסית (2026): תרגום מאת t.me/ihsovs, שפורסם באתר קהילת העיבור ללא חטא בצ׳ליאבינסק (cc74.wordpress.com/rosary/). כוונות התפילה באוקראינית: תרגומים של Prosary מהנוסח האנגלי שפורסם.</string>
+    <string name="about_peshitta_sources">הברית החדשה בפשיטתא (BFBS, 1905): Digital Syriac Corpus; תעתיק הטקסט הסורי מאת George A. Kiraz, מהדורת TEI © James E. Walters, ברישיון CC BY 4.0. המרה לכתב עברי לפי הכללים של ארז; בחירת הפסוקים ועיצוב הטקסט בידי Prosary.</string>
+    <string name="about_peshitta_source_link">Digital Syriac Corpus</string>
+    <string name="about_peshitta_license_link">CC BY 4.0</string>
+    <string name="about_peshitta_isaiah_sources">ישעיהו: קובץ XML מנוקד של הפשיטתא מ־Internet Archive, שסיפק משתמש. המהדורה המקורית ותנאי ההפצה מחדש עדיין אינם ידועים. המרה לכתב עברי לפי הכללים של ארז; בחירת הפסוקים ועיצוב הטקסט בידי Prosary.</string>
+    <string name="about_peshitta_isaiah_source_link">Internet Archive</string>
     <string name="about_bible_book_sources">שמות ספרי המקרא: AELF, דאר אל־משרק, התרגום הסינודלי הרוסי (Azbyka), החברה לכתבי הקודש בפיליפינים ו־ParolaViva.</string>
     <string name="about_prayer_network_link">רשת התפילה העולמית של האפיפיור</string>
     <string name="about_parolaviva_link">ParolaViva — CC BY 4.0</string>
@@ -410,8 +414,8 @@
     <string name="prayer_tradition">"נוסח התפילה"</string>
     <string name="prayer_tradition_vicariate">"נוסח הנציגות"</string>
     <string name="prayer_tradition_mission">"נוסח השליחות"</string>
-    <string name="basic_prayers_pin">"הצמד לדף הבית"</string>
-    <string name="basic_prayers_unpin">"בטל הצמדה לדף הבית"</string>
+    <string name="basic_prayers_pin">"הצמד ל״תפילה״"</string>
+    <string name="basic_prayers_unpin">"הסר הצמדה מ״תפילה״"</string>
     <string name="ro_closing_pope_intention">"תפילות סיום למען האפיפיור"</string>
     <string name="ro_closing_bishop_intention">"תפילות סיום למען ההגמון"</string>
     <string name="ro_closing_departed_intention">"תפילות סיום למען המאמינים הנפטרים"</string>
@@ -436,4 +440,7 @@
     <string name="settings_eastern_pascha">הפסחא הביזנטית</string>
     <string name="settings_pascha_julian">פסחא לפי הלוח היוליאני</string>
     <string name="settings_pascha_gregorian">פסחא לפי הלוח הגרגוריאני</string>
+    <string name="about_ukrainian_sources">"תפילות באוקראינית: הכנסייה הקתולית הרומית באוקראינה, סידור התפילות Щоденно з Богом. השימוש נעשה עם ציון המקור בהתאם למדיניות השימוש החוזר של המוציא לאור. כתבי הקודש: תרגום קוליש, נצ׳וי־לויצקי ופוליוי (1905), נחלת הכלל; eBible.org ukr1871. הכתיב ההיסטורי של כתבי הקודש נשמר."</string>
+    <string name="about_ukrainian_prayerbook_link">"סידור תפילות באוקראינית"</string>
+    <string name="about_ukrainian_bible_link">"כתבי הקודש באוקראינית (1905)"</string>
 </resources>

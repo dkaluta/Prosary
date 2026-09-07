@@ -32,12 +32,4 @@ object BasicPrayersOrder {
         ).map { it.value }
     }
 
-    fun applyFavorites(prayers: List<BasicPrayer>): List<BasicPrayer> {
-        if (!AppSettings.favoriteBasicPrayersFirst) return prayers
-        val favorites = AppSettings.favoriteBasicPrayerIds
-        return prayers.withIndex().sortedWith(
-            compareByDescending<IndexedValue<BasicPrayer>> { it.value.id in favorites }
-                .thenBy { it.index },
-        ).map { it.value }
-    }
 }

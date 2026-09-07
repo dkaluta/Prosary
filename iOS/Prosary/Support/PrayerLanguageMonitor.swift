@@ -28,13 +28,16 @@ final class PrayerLanguageMonitor: ObservableObject {
   /// view's body is what registers the dependency — see the header for why nothing less works.
   @Published private(set) var code: String
   @Published private(set) var showsPrayerNameInPrayerLanguage: Bool
+  @Published private(set) var usesJaffaHailMaryWording: Bool
 
   private struct NameSettings: Equatable {
     let code: String
     let showsPrayerName: Bool
+    let usesJaffaWording: Bool
     init() {
       code = LanguageCatalog.resolve(nil).code
       showsPrayerName = UserDefaults.standard.bool(forKey: PrayerNamePresentation.defaultsKey)
+      usesJaffaWording = JaffaHailMaryWording.isEnabled
     }
   }
 
@@ -43,6 +46,7 @@ final class PrayerLanguageMonitor: ObservableObject {
   private init() {
     code = LanguageCatalog.resolve(nil).code
     showsPrayerNameInPrayerLanguage = UserDefaults.standard.bool(forKey: PrayerNamePresentation.defaultsKey)
+    usesJaffaHailMaryWording = JaffaHailMaryWording.isEnabled
     cancellable = NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)
       .receive(on: RunLoop.main)
       .map { _ in NameSettings() }
@@ -50,6 +54,7 @@ final class PrayerLanguageMonitor: ObservableObject {
       .sink { [weak self] resolved in
         self?.code = resolved.code
         self?.showsPrayerNameInPrayerLanguage = resolved.showsPrayerName
+        self?.usesJaffaHailMaryWording = resolved.usesJaffaWording
       }
   }
 }

@@ -11,6 +11,7 @@ export const LANGUAGE_NAMES = {
   el: "Ελληνικά",
   es: "Español",
   ru: "Русский",
+  uk: "Українська",
   tl: "Tagalog",
   fr: "Français",
   it: "Italiano",

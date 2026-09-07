@@ -109,6 +109,31 @@ final class TodayInfoStoreTests: XCTestCase {
     XCTAssertNotEqual(TodayInfoStore.torahPortion(on: date("2026-05-24"))?.saturday, sabbath.saturday)
   }
 
+  func testBundledTorahFestivalYearsUseAMExceptForHebrewGematria() throws {
+    for (selectedDate, saturday, year, hebrewYear) in [
+      ("2026-09-07", "2026-09-12", 5787, "ה׳תשפ״ז"),
+      ("2027-09-27", "2027-10-02", 5788, "ה׳תשפ״ח"),
+    ] {
+      let portion = try XCTUnwrap(TodayInfoStore.torahPortion(on: date(selectedDate)))
+      XCTAssertEqual(portion.saturday, saturday)
+      XCTAssertTrue(portion.isHoliday)
+      let titles = [
+        "en": "Rosh Hashana AM \(year)",
+        "he": "ראש השנה \(hebrewYear)",
+        "ar": "Rosh Hashana AM \(year)",
+        "ru": "Рош-А-Шана AM \(year)",
+        "tl": "Rosh Hashana AM \(year)",
+        "fr": "Roch Hachanah AM \(year)",
+        "it": "Rosh Hashana AM \(year)",
+      ]
+      for (language, expected) in titles {
+        XCTAssertEqual(portion.localizedTitle(language), expected, "\(selectedDate), \(language)")
+      }
+      XCTAssertEqual(portion.localizedTitle("iw"), titles["he"])
+      XCTAssertEqual(portion.localizedTitle("fil"), titles["tl"])
+    }
+  }
+
   func testOldTodayLanguageOverrideCannotChangeInterfaceLanguage() {
     let original = UserDefaults.standard.object(forKey: "todayLanguageCode")
     defer {

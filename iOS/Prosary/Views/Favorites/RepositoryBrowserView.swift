@@ -218,8 +218,7 @@ struct RepositoryBrowserView: View {
   }
 
   private func languageNames(_ codes: [String]) -> String {
-    codes
-      .compactMap { code in LanguageCatalog.all.first { $0.code == code }?.nativeName }
+    LanguageCatalog.contentLanguageNames(codes)
       .joined(separator: ", ")
   }
 

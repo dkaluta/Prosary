@@ -149,8 +149,24 @@
                     <TextBlock x:Uid="AbtScriptureHeader" Text="Scripture Sources" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
                     <TextBlock x:Uid="AbtScriptureBody" Text="Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) with Hebrew Old Testament passages following the Masoretic text, the Jesuit Arabic Bible (Dar el-Machreq), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905)."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
-                    <TextBlock x:Uid="AbtAdditionalSources" Text="French Scripture: Crampon (1923), public domain. Italian Scripture: Antonio Martini; structured data © Giovanni Novelli, CC BY 4.0 (parolaviva.art). French and Italian prayers: Vatican Compendium. Pope’s intentions: Pope’s Worldwide Prayer Network (2026–2027); Hebrew translation by Prosary."
+                    <TextBlock x:Uid="AbtAdditionalSources" Text="French Scripture: Crampon (1923), public domain. Italian Scripture: Antonio Martini; structured data © Giovanni Novelli, CC BY 4.0 (parolaviva.art). French and Italian prayers: Vatican Compendium. Pope’s intentions: Pope’s Worldwide Prayer Network (2026–2027); Hebrew and Ukrainian translations by Prosary."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                    <TextBlock x:Uid="AbtUkrainianPrayerSources" Text="Ukrainian prayers: Roman Catholic Church in Ukraine, Щоденно з Богом prayerbook. Used with attribution under the publisher’s reuse policy. Scripture: Kulish, Nechui-Levytsky and Puluj Bible (1905), public domain; eBible.org ukr1871. Historical Scripture spelling is retained."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                    <HyperlinkButton x:Uid="AbtUkrainianPrayerbookLink" Content="Ukrainian prayerbook"
+                                     NavigateUri="https://rkc.org.ua/duhovnist/molytovnyk/" />
+                    <HyperlinkButton x:Uid="AbtUkrainianScriptureLink" Content="Ukrainian Bible (1905)"
+                                     NavigateUri="https://ebible.org/find/details.php?id=ukr1871" />
+                    <TextBlock x:Uid="AbtPeshittaSources" Text="Peshitta New Testament (BFBS, 1905): Digital Syriac Corpus; Syriac transcription by George A. Kiraz, TEI edition © James E. Walters, CC BY 4.0. Hebrew script conversion using Erez’s rules; verse selection and text formatting by Prosary."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                    <HyperlinkButton x:Uid="AbtPeshittaSourceLink" Content="Digital Syriac Corpus"
+                                     NavigateUri="https://syriaccorpus.org/" />
+                    <HyperlinkButton x:Uid="AbtPeshittaLicenseLink" Content="CC BY 4.0"
+                                     NavigateUri="https://creativecommons.org/licenses/by/4.0/" />
+                    <TextBlock x:Uid="AbtPeshittaIsaiahSources" Text="Isaiah: user-supplied pointed Peshitta XML from Internet Archive. The underlying edition and redistribution terms remain unidentified. Hebrew script conversion using Erez’s rules; verse selection and text formatting by Prosary."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                    <HyperlinkButton x:Uid="AbtPeshittaIsaiahSourceLink" Content="Internet Archive"
+                                     NavigateUri="https://archive.org/details/peshitta-complete-bible-otnt" />
                     <TextBlock x:Uid="AbtPrayerSources" Text="Additional prayer sources: Vatican News, the Sanctuary of Fatima, Notre-Dame de Paris, AELF and the Italian Episcopal Conference (CEI). Also: Basilica of Guadalupe; GOARCH Digital Chant Stand; IVE Greece (Greek Anima Christi translated by Fr F. Bravo IVE); St Nicholas Catholic Parish, Tinos; Carmelite Iberian Province; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), for the medieval Syriac Under Your Protection. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888)."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
                     <TextBlock x:Uid="AbtDivineMercySources" Text="Divine Mercy Chaplet: Congregation of the Sisters of Our Lady of Mercy."

@@ -48,6 +48,13 @@
                           DisplayMemberPath="Label"
                           SelectedItem="{x:Bind ViewModel.SelectedAramaicSignOfCross, Mode=TwoWay}" />
 
+                <ToggleSwitch x:Uid="SetJaffaWording" Header="Jaffa wording"
+                              IsOn="{x:Bind ViewModel.UseJaffaHailMaryWording, Mode=TwoWay}"
+                              AutomationProperties.AutomationId="useJaffaHailMaryWording" />
+                <TextBlock x:Uid="SetJaffaWordingFooter"
+                           Text="Use בְּרוּכַת הַחֶסֶד instead of מְלֵאַת הַחֶסֶד in Vicariate prayers."
+                           TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+
                 <ComboBox x:Uid="SetAppLanguageCombo" Header="App language" HorizontalAlignment="Stretch"
                           ItemsSource="{x:Bind ViewModel.AppLanguageOptions}" DisplayMemberPath="Label"
                           SelectedItem="{x:Bind ViewModel.SelectedAppLanguage, Mode=TwoWay}" />

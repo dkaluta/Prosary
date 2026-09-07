@@ -164,7 +164,7 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
             }
 
             FormSection(title = stringResource(R.string.editor_prayer_language)) {
-                val defaultName = LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).nativeName
+                val defaultName = LanguageCatalog.pickerLanguageName(LanguageCatalog.resolve(LanguageCatalog.defaultSentinel).code)
                 val languageOptions = listOf(LanguageCatalog.defaultSentinel) + LanguageCatalog.publicOptions.map { it.code }
                 val storedCode = prayer.languageCode
                 OptionPickerField(
@@ -175,7 +175,7 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
                         if (code == LanguageCatalog.defaultSentinel) {
                             context.getString(R.string.language_default_dash, defaultName)
                         } else {
-                            LanguageCatalog.resolve(code).nativeName
+                            LanguageCatalog.pickerLanguageName(code)
                         }
                     },
                     onSelect = { code -> prayer = prayer.copy(languageCode = LanguageCatalog.selectingLanguage(code, storedCode)) },

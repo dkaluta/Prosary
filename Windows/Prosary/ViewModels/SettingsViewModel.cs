@@ -42,6 +42,11 @@ public partial class SettingsViewModel : ObservableObject
 
     public IReadOnlyList<LanguageOption> LanguageOptions => LanguageCatalog.PickerOptions;
 
+    [ObservableProperty]
+    private bool _useJaffaHailMaryWording = AppSettings.UseJaffaHailMaryWording;
+
+    partial void OnUseJaffaHailMaryWordingChanged(bool value) => AppSettings.SetUseJaffaHailMaryWording(value);
+
     public SettingsViewModel()
     {
         RefreshRites();

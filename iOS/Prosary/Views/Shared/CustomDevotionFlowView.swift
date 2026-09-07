@@ -20,6 +20,7 @@ struct CustomDevotionFlowView: View {
 
   @Environment(\.appServices) private var services
   @Environment(\.dismiss) private var dismiss
+  @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
 
   @State private var steps: [RosaryStep] = []
   @State private var currentIndex = 0
@@ -123,6 +124,11 @@ struct CustomDevotionFlowView: View {
     .onDisappear {
       if hasLoaded, pendingContinuation == nil, !didFinish { persistProgress() }
       audio.stop()
+    }
+    .onChange(of: prayerLanguage.usesJaffaHailMaryWording) { _, _ in
+      guard hasLoaded, !didFinish else { return }
+      steps = builtSteps()
+      currentIndex = min(currentIndex, max(steps.count - 1, 0))
     }
     .confirmationDialog(
       completionSuggestion.map {

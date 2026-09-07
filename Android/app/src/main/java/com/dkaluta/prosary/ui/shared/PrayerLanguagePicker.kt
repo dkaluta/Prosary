@@ -20,8 +20,8 @@ import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.LanguageCatalog
 
 /** The language menu shared by Basic Prayers, the Rosary and data-driven devotions. Keeping the
- * choices here keeps their app-setting sentinel consistent. Bundle flows expand sourced Hebrew
- * into the Vicariate and Mission uses; Basic Prayers offers the whole language catalog. */
+ * choices here keeps their app-setting sentinel consistent. Hebrew is a public language choice;
+ * its traditions have their own separate control. Basic Prayers offers the whole catalog. */
 @Composable
 fun PrayerLanguagePicker(
     devotionId: String? = null,
@@ -47,7 +47,7 @@ fun PrayerLanguagePicker(
                 label = stringResource(R.string.flow_app_setting),
             ),
         ) + options.map {
-            LanguageChoice(code = it.code, label = it.nativeName)
+            LanguageChoice(code = it.code, label = LanguageCatalog.pickerLanguageName(it.code))
         }
         for (choice in choices) {
             DropdownMenuItem(

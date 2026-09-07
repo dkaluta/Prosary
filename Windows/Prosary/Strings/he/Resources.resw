@@ -383,7 +383,12 @@
   <data name="reminder_pray" xml:space="preserve"><value>הגיע הזמן להתפלל.</value></data>
   <data name="preset_classic_rosary" xml:space="preserve"><value>מחרוזת קלאסית</value></data>
   <data name="prayer_default_name" xml:space="preserve"><value>התפילה שלי</value></data>
-  <data name="AbtAdditionalSources.Text" xml:space="preserve"><value>כתבי הקודש בצרפתית: קראמפון (1923), נחלת הכלל. כתבי הקודש באיטלקית: אנטוניו מרטיני; נתונים מובנים © Giovanni Novelli, ברישיון CC BY 4.0 ‏(parolaviva.art). תפילות בצרפתית ובאיטלקית: תמצית הקטכיזם של הוותיקן. כוונות האפיפיור: רשת התפילה העולמית של האפיפיור (2026–2027); תרגום לעברית מאת Prosary. כוונות ברוסית (2026): תרגום מאת t.me/ihsovs, שפורסם באתר קהילת העיבור ללא חטא בצ׳ליאבינסק (cc74.wordpress.com/rosary/).</value></data>
+  <data name="AbtAdditionalSources.Text" xml:space="preserve"><value>כתבי הקודש בצרפתית: קראמפון (1923), נחלת הכלל. כתבי הקודש באיטלקית: אנטוניו מרטיני; נתונים מובנים © Giovanni Novelli, ברישיון CC BY 4.0 ‏(parolaviva.art). תפילות בצרפתית ובאיטלקית: תמצית הקטכיזם של הוותיקן. כוונות האפיפיור: רשת התפילה העולמית של האפיפיור (2026–2027); תרגומים לעברית ולאוקראינית מאת Prosary. כוונות ברוסית (2026): תרגום מאת t.me/ihsovs, שפורסם באתר קהילת העיבור ללא חטא בצ׳ליאבינסק (cc74.wordpress.com/rosary/).</value></data>
+  <data name="AbtPeshittaSources.Text" xml:space="preserve"><value>הברית החדשה בפשיטתא (BFBS, 1905): Digital Syriac Corpus; תעתיק הטקסט הסורי מאת George A. Kiraz, מהדורת TEI © James E. Walters, ברישיון CC BY 4.0. המרה לכתב עברי לפי הכללים של ארז; בחירת הפסוקים ועיצוב הטקסט בידי Prosary.</value></data>
+  <data name="AbtPeshittaSourceLink.Content" xml:space="preserve"><value>Digital Syriac Corpus</value></data>
+  <data name="AbtPeshittaLicenseLink.Content" xml:space="preserve"><value>CC BY 4.0</value></data>
+  <data name="AbtPeshittaIsaiahSources.Text" xml:space="preserve"><value>ישעיהו: קובץ XML מנוקד של הפשיטתא מ־Internet Archive, שסיפק משתמש. המהדורה המקורית ותנאי ההפצה מחדש עדיין אינם ידועים. המרה לכתב עברי לפי הכללים של ארז; בחירת הפסוקים ועיצוב הטקסט בידי Prosary.</value></data>
+  <data name="AbtPeshittaIsaiahSourceLink.Content" xml:space="preserve"><value>Internet Archive</value></data>
   <data name="AbtBookNameSources.Text" xml:space="preserve"><value>שמות ספרי המקרא: AELF, דאר אל־משרק, התרגום הסינודלי הרוסי (Azbyka), החברה לכתבי הקודש בפיליפינים ו־ParolaViva.</value></data>
   <data name="AbtPopeNetworkLink.Content" xml:space="preserve"><value>רשת התפילה העולמית של האפיפיור</value></data>
   <data name="AbtParolaVivaLink.Content" xml:space="preserve"><value>ParolaViva — CC BY 4.0</value></data>
@@ -409,8 +414,8 @@
   <data name="prayer_tradition" xml:space="preserve"><value>נוסח התפילה</value></data>
   <data name="prayer_tradition_vicariate" xml:space="preserve"><value>נוסח הנציגות</value></data>
   <data name="prayer_tradition_mission" xml:space="preserve"><value>נוסח השליחות</value></data>
-  <data name="basic_pin" xml:space="preserve"><value>הצמד לדף הבית</value></data>
-  <data name="basic_unpin" xml:space="preserve"><value>בטל הצמדה לדף הבית</value></data>
+  <data name="basic_pin" xml:space="preserve"><value>הצמד ל“תפילה”</value></data>
+  <data name="basic_unpin" xml:space="preserve"><value>הסר מ“תפילה”</value></data>
   <data name="rosary_pray_litany" xml:space="preserve"><value>התפלל את הליטניה</value></data>
   <data name="rosary_litany_prompt" xml:space="preserve"><value>להמשיך עם הליטניה לכבוד הבתולה מרים?</value></data>
   <data name="EdClosingPopeIntention.Text" xml:space="preserve"><value>תפילות סיום למען האפיפיור</value></data>
@@ -435,4 +440,9 @@
   <data name="HomeNextDay.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>היום הבא</value></data>
   <data name="home_today_choose_date" xml:space="preserve"><value>בחירת תאריך: {0}</value></data>
   <data name="AbtHebrewBookIndex.Text" xml:space="preserve"><value>שמות נוספים של ספרי המקרא בעברית: מפתח התנ״ך של מכון ממרא. שמות בלבד, ללא טקסט מקראי.</value></data>
+  <data name="SetJaffaWording.Header" xml:space="preserve"><value>נוסח יפו</value></data>
+  <data name="SetJaffaWordingFooter.Text" xml:space="preserve"><value>שימוש בביטוי בְּרוּכַת הַחֶסֶד במקום מְלֵאַת הַחֶסֶד בתפילות בנוסח הנציגות.</value></data>
+  <data name="AbtUkrainianPrayerSources.Text" xml:space="preserve"><value>תפילות באוקראינית: הכנסייה הקתולית הרומית באוקראינה, סידור התפילות Щоденно з Богом. השימוש נעשה עם ציון המקור בהתאם למדיניות השימוש החוזר של המוציא לאור. כתבי הקודש: תרגום קוליש, נצ׳וי־לויצקי ופוליוי (1905), נחלת הכלל; eBible.org ukr1871. הכתיב ההיסטורי של כתבי הקודש נשמר.</value></data>
+  <data name="AbtUkrainianPrayerbookLink.Content" xml:space="preserve"><value>סידור תפילות באוקראינית</value></data>
+  <data name="AbtUkrainianScriptureLink.Content" xml:space="preserve"><value>כתבי הקודש באוקראינית (1905)</value></data>
 </root>

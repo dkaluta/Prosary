@@ -32,6 +32,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.LanguageCatalog
+import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerRunKeys
 import com.dkaluta.prosary.models.PrayerRunProgress
@@ -94,6 +95,14 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit, onOpenDevotion: (String
             PrayerRunProgressStore.clear(context, runKey)
         }
         runReady = pendingResume == null
+    }
+
+    LaunchedEffect(AppSettings.useJaffaHailMaryWording) {
+        if (steps.isNotEmpty()) {
+            val position = currentIndex
+            steps = services.engine.buildSteps(prayer.copy(languageCode = chosenLanguage))
+            currentIndex = position.coerceIn(0, (steps.size - 1).coerceAtLeast(0))
+        }
     }
 
     // Step zero has nothing useful to resume; every later page is written immediately so the
