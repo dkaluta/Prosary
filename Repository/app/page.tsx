@@ -28,9 +28,10 @@ export default async function Home({
     <main id="main-content" tabIndex={-1}>
       <PageHeader eyebrow="Community library" title="Find a devotion to make your own">
         <p>
-          Download a community bundle and import it from{" "}
-          <strong>Favorites → Import Devotion Bundle</strong>, or find it directly in the
-          Prosary app&apos;s Browse tab.
+          Find community devotions in Prosary&apos;s <strong>Browse</strong> tab. To import a downloaded
+          file on iPhone, iPad, or Mac, open <strong>Browse</strong> and choose the import button.
+          On Android or Windows, open{" "}
+          <strong>Pray → Settings → Downloads → Import Devotion Bundle</strong>.
         </p>
       </PageHeader>
 
