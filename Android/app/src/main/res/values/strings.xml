@@ -51,6 +51,8 @@
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">Default Prayer Language</string>
+    <string name="settings_jaffa_wording">"Jaffa wording"</string>
+    <string name="settings_jaffa_wording_hint">"Use בְּרוּכַת הַחֶסֶד instead of מְלֵאַת הַחֶסֶד in Vicariate prayers."</string>
     <string name="settings_language_fallback_order">Language fallback order…</string>
     <string name="settings_language_fallback_order_title">Language fallback order</string>
     <string name="settings_language_fallback_order_footer">When text is missing, Prosary follows this order after the chosen language. Shared Hebrew, including repository prayers, uses the higher of the two Hebrew positions.</string>
@@ -348,9 +350,6 @@
     <string name="settings_typeface_stam_ashkenaz">Stam Ashkenaz</string>
     <string name="settings_typeface_stam_sefarad">Stam Sefarad</string>
     <string name="settings_typeface_rashi">Rashi</string>
-    <string name="settings_favorite_basic_prayers_first">Move favorite basic prayers to top</string>
-    <string name="basic_prayers_favorite">Add to favorites</string>
-    <string name="basic_prayers_unfavorite">Remove from favorites</string>
     <string name="home_today_show_english">English</string>
     <string name="home_today_language">Today language</string>
     <string name="home_today_app_language">App language</string>
@@ -391,7 +390,12 @@
     <string name="category_short">Short</string>
     <string name="category_easter">Easter</string>
     <string name="category_other">Other</string>
-    <string name="about_additional_sources">French Scripture: Crampon (1923), public domain. Italian Scripture: Antonio Martini; structured data © Giovanni Novelli, CC BY 4.0 (parolaviva.art). French and Italian prayers: Vatican Compendium. Pope’s intentions: Pope’s Worldwide Prayer Network (2026–2027); Hebrew translation by Prosary. Russian intentions (2026): translation by t.me/ihsovs, published by the Immaculate Conception parish in Chelyabinsk (cc74.wordpress.com/rosary/).</string>
+    <string name="about_additional_sources">French Scripture: Crampon (1923), public domain. Italian Scripture: Antonio Martini; structured data © Giovanni Novelli, CC BY 4.0 (parolaviva.art). French and Italian prayers: Vatican Compendium. Pope’s intentions: Pope’s Worldwide Prayer Network (2026–2027); Hebrew translation by Prosary. Russian intentions (2026): translation by t.me/ihsovs, published by the Immaculate Conception parish in Chelyabinsk (cc74.wordpress.com/rosary/). Ukrainian intentions: Prosary editorial translations of the published English.</string>
+    <string name="about_peshitta_sources">Peshitta New Testament (BFBS, 1905): Digital Syriac Corpus; Syriac transcription by George A. Kiraz, TEI edition © James E. Walters, CC BY 4.0. Hebrew script conversion using Erez’s rules; verse selection and text formatting by Prosary.</string>
+    <string name="about_peshitta_source_link">Digital Syriac Corpus</string>
+    <string name="about_peshitta_license_link">CC BY 4.0</string>
+    <string name="about_peshitta_isaiah_sources">Isaiah: user-supplied pointed Peshitta XML from Internet Archive. The underlying edition and redistribution terms remain unidentified. Hebrew script conversion using Erez’s rules; verse selection and text formatting by Prosary.</string>
+    <string name="about_peshitta_isaiah_source_link">Internet Archive</string>
     <string name="about_bible_book_sources">Bible book names: AELF, Dar el-Machreq, Russian Synodal Bible (Azbyka), Philippine Bible Society and ParolaViva.</string>
     <string name="about_prayer_network_link">Pope’s Worldwide Prayer Network</string>
     <string name="about_parolaviva_link">ParolaViva — CC BY 4.0</string>
@@ -407,8 +411,8 @@
     <string name="prayer_tradition">"Prayer tradition"</string>
     <string name="prayer_tradition_vicariate">"Saint James Vicariate"</string>
     <string name="prayer_tradition_mission">"Mission of St. Gamaliel"</string>
-    <string name="basic_prayers_pin">"Pin to home"</string>
-    <string name="basic_prayers_unpin">"Unpin from home"</string>
+    <string name="basic_prayers_pin">"Pin to Pray"</string>
+    <string name="basic_prayers_unpin">"Unpin from Pray"</string>
     <string name="ro_closing_pope_intention">"Closing prayers for the Pope"</string>
     <string name="ro_closing_bishop_intention">"Closing prayers for the bishop"</string>
     <string name="ro_closing_departed_intention">"Closing prayers for the faithful departed"</string>
@@ -433,4 +437,7 @@
     <string name="settings_eastern_pascha">Byzantine Easter</string>
     <string name="settings_pascha_julian">Julian Easter</string>
     <string name="settings_pascha_gregorian">Gregorian Easter</string>
+    <string name="about_ukrainian_sources">"Ukrainian prayers: Roman Catholic Church in Ukraine, Щоденно з Богом prayerbook. Used with attribution under the publisher’s reuse policy. Scripture: Kulish, Nechui-Levytsky and Puluj Bible (1905), public domain; eBible.org ukr1871. Historical Scripture spelling is retained."</string>
+    <string name="about_ukrainian_prayerbook_link">"Ukrainian prayerbook"</string>
+    <string name="about_ukrainian_bible_link">"Ukrainian Bible (1905)"</string>
 </resources>

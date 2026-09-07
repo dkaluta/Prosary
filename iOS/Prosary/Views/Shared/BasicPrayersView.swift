@@ -40,6 +40,10 @@ struct BasicPrayersView: View {
     let ordered = BasicPrayersOrder.apply(BasicPrayerCatalog.all)
     List {
       ForEach(ordered) { prayer in
+        let isPinned = BasicPrayerFavorites.contains(prayer.id)
+        let pinAction = isPinned
+          ? String(localized: "basicPrayers.unpin", defaultValue: "Remove from Pray")
+          : String(localized: "basicPrayers.pin", defaultValue: "Pin to Pray")
         HStack(spacing: 8) {
           Button {
             path.push(.basicPrayer(id: prayer.id))
@@ -55,13 +59,14 @@ struct BasicPrayersView: View {
             BasicPrayerFavorites.toggle(prayer.id)
             orderGeneration += 1
           } label: {
-            Image(systemName: BasicPrayerFavorites.contains(prayer.id) ? "pin.fill" : "pin")
-              .foregroundStyle(BasicPrayerFavorites.contains(prayer.id) ? Color.accentColor : .secondary)
+            Image(systemName: isPinned ? "pin.fill" : "pin")
+              .foregroundStyle(isPinned ? Color.accentColor : .secondary)
+              .frame(minWidth: 44, minHeight: 44)
+              .contentShape(Rectangle())
           }
           .buttonStyle(.plain)
-          .accessibilityLabel(BasicPrayerFavorites.contains(prayer.id)
-            ? String(localized: "basicPrayers.unpin", defaultValue: "Unpin from home")
-            : String(localized: "basicPrayers.pin", defaultValue: "Pin to home"))
+          .accessibilityLabel(pinAction)
+          .help(pinAction)
           .accessibilityIdentifier("basicPrayerPin-\(prayer.id)")
         }
       }
@@ -100,9 +105,7 @@ private struct BasicPrayerRow: View {
                                                     showPrayerLanguage: showPrayerLanguage)
       VStack(alignment: .leading, spacing: 3) {
         Text(name.title)
-          .environment(\.layoutDirection, showPrayerLanguage
-            ? (language.isRightToLeft ? .rightToLeft : .leftToRight)
-            : (UILanguage.isRightToLeft(UILanguage.current) ? .rightToLeft : .leftToRight))
+          .environment(\.layoutDirection, language.isRightToLeft ? .rightToLeft : .leftToRight)
         if let translation = name.translation {
           Text(translation).font(.subheadline).foregroundStyle(.secondary)
         }

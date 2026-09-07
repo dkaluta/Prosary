@@ -94,10 +94,22 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertEqual(aramaic.count, 4)
     XCTAssertEqual(aramaic[0].title, "קדישת אלהא")
     XCTAssertEqual(aramaic[0].body,
-                   "קַדּישַת אַלָהָא\nקַדִישַת חַילתָּנָא\nקַדִישַת לָא מִיותָּא אֶתַרחַמעלִין")
+                   "קַדּישַת ✠▼▲ אַלָהָא\nקַדִישַת חַילתָּנָא\nקַדִישַת לָא מִיותָּא אֶתַרחַמעלִין")
     XCTAssertEqual(aramaic[0].transliteratedBody,
-                   "ܩܰܕ݁ܝܫܰܬ݂ ܐܰܠܳܗܳܐ\nܩܰܕܺܝܫܰܬ݂ ܚܰܝܠܬ݁ܳܢܳܐ\nܩܰܕܺܝܫܰܬ݂ ܠܳܐ ܡܺܝܘܬ݁ܳܐ ܐܶܬܰܪܚܰܡܥܠܺܝܢ")
-    XCTAssertEqual(aramaic[3].body, "קוריאליסונ\nקוריאליסונ\nקוריאליסונ")
+                   "ܩܰܕ݁ܝܫܰܬ݂ ✠▼▲ ܐܰܠܳܗܳܐ\nܩܰܕܺܝܫܰܬ݂ ܚܰܝܠܬ݁ܳܢܳܐ\nܩܰܕܺܝܫܰܬ݂ ܠܳܐ ܡܺܝܘܬ݁ܳܐ ܐܶܬܰܪܚܰܡܥܠܺܝܢ")
+    XCTAssertEqual(aramaic[3].title, "קוריאליסון")
+    // User-confirmed opening gestures (2026-09-07) survive every repetition in both scripts;
+    // the short form still contains only the unmarked final line.
+    let byzantine = steps("trisagion", language: "arc", variantId: "byzantine")
+    for step in Array(aramaic.prefix(3)) + [0, 1, 2, 5].map({ byzantine[$0] }) {
+      XCTAssertEqual(step.body, aramaic[0].body)
+      XCTAssertEqual(step.transliteratedBody, aramaic[0].transliteratedBody)
+    }
+    XCTAssertEqual(byzantine[4].body, aramaic[0].body.components(separatedBy: "\n").last)
+    XCTAssertEqual(byzantine[4].transliteratedBody,
+                   aramaic[0].transliteratedBody?.components(separatedBy: "\n").last)
+    XCTAssertEqual(aramaic[3].body, "קוריאליסון\nקוריאליסון\nקוריאליסון")
+    XCTAssertEqual(aramaic[3].transliteratedBody, "ܩܘܪܝܐܠܝܣܘܢ\nܩܘܪܝܐܠܝܣܘܢ\nܩܘܪܝܐܠܝܣܘܢ")
     // Erez supplied the Mission's doxology in both scripts on 2026-08-26. Pin every mark and
     // vowel so the Hebrew-square-script Aramaic and its pointed Syriac rendering cannot drift.
     let glory = steps("trisagion", language: "arc", variantId: "byzantine")[3]

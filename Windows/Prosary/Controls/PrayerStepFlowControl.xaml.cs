@@ -39,10 +39,20 @@ public sealed partial class PrayerStepFlowControl : UserControl
     public PrayerStepFlowControl()
     {
         InitializeComponent();
-        Loaded += (_, _) => { AppSettings.TypographyChanged += OnTypographyChanged; OnTypographyChanged(); };
-        Unloaded += (_, _) => AppSettings.TypographyChanged -= OnTypographyChanged;
+        Loaded += (_, _) =>
+        {
+            AppSettings.TypographyChanged += OnTypographyChanged;
+            AppSettings.PrayerWordingChanged += OnPrayerWordingChanged;
+            OnPrayerWordingChanged();
+        };
+        Unloaded += (_, _) =>
+        {
+            AppSettings.TypographyChanged -= OnTypographyChanged;
+            AppSettings.PrayerWordingChanged -= OnPrayerWordingChanged;
+        };
     }
     private void OnTypographyChanged() => ViewModel?.RefreshTypography();
+    private void OnPrayerWordingChanged() => ViewModel?.RefreshPrayerWording();
 
     // UI navigation stays independent of the displayed prayer's writing system.
     public FlowDirection NavigationFlowDirection => UiLanguageCatalog.IsRightToLeft(UiLanguageCatalog.Current)

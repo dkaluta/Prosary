@@ -82,7 +82,7 @@
         "titleByLanguage": {
           "type": "map<string, string>",
           "default": {},
-          "description": "All six non-English interface locales are populated for shipped dates. Sourced identities take precedence over credited editorial display metadata; reviewed aliases never change dates, ranks or observances. Hebrew Pentecost uses שבועות. Future unsupported labels fall back to the source title."
+          "description": "All seven non-English interface locales (Hebrew, Arabic, Russian, Filipino, French, Italian and Ukrainian) are populated for shipped dates. Sourced identities take precedence over credited editorial display metadata; reviewed aliases never change dates, ranks or observances. Hebrew Pentecost uses שבועות. Future unsupported labels fall back to the source title."
         }
       }
     }
@@ -164,7 +164,8 @@
       "ru",
       "tl",
       "fr",
-      "it"
+      "it",
+      "uk"
     ],
     "description": "Today always follows the app/interface language, independently of defaultLanguageCode. There is no Today language picker. Previously persisted todayLanguageCode is ignored. iw and fil normalize to he and tl; Arabic and Hebrew apply RTL to the complete Today stack, including expanded citations."
   },
@@ -179,10 +180,10 @@
       "text": "Published English intention",
       "titleByLanguage": "map<string,string>",
       "textByLanguage": "map<string,string>",
-      "sourceByLanguage": "map<string,URL> for published editions",
+      "sourceByLanguage": "map<string,URL> for the published edition or source translated; interpret with translationCreditByLanguage",
       "translationCreditByLanguage": "map<string,string> distinguishing authored translations"
     },
-    "fallback": "Missing language uses published English; missing month hides the row. Hebrew is credited to Prosary, not to an official Vatican Hebrew edition."
+    "fallback": "Missing language uses published English; missing month hides the row. Hebrew and Ukrainian translations are credited to Prosary, not presented as official Vatican editions."
   },
   "torahDataset": {
     "file": "torah-portions.json",
@@ -205,7 +206,7 @@
       }
     },
     "selection": "The selected civil day maps to the next Saturday, including Saturday itself. A holiday Torah service replaces the weekly portion; diaspora schedules are never requested. Only books of the Torah are included, without haftarah or festival megillot.",
-    "language": "Source Hebrew, French and Russian proper names where supplied by Hebcal; source transliterations for remaining locales, with localized interface captions and citation book names."
+    "language": "Source Hebrew, French, Russian and Ukrainian proper names where supplied by Hebcal; source transliterations for remaining locales, with localized interface captions and citation book names."
   },
   "dateNavigation": {
     "state": "Local civil selected date, initially today; independent of prayer progress and prayer-day computation.",

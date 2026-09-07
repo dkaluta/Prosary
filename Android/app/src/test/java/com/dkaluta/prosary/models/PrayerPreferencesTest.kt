@@ -17,24 +17,49 @@ class PrayerPreferencesTest {
     }
 
     @Test fun oldBasicFavoritesAreHomePinsWithoutChangingManualListOrder() {
-        val old = AppSettings.favoriteBasicPrayerIds
+        val old = AppSettings.pinnedBasicPrayerIds
         val id = BasicPrayerCatalog.all.first().id
-        val livePins = derivedStateOf { BasicPrayerCatalog.all.filter { it.id in AppSettings.favoriteBasicPrayerIds } }
+        val livePins = derivedStateOf { BasicPrayerCatalog.all.filter { it.id in AppSettings.pinnedBasicPrayerIds } }
         try {
-            if (id !in AppSettings.favoriteBasicPrayerIds) AppSettings.toggleFavoriteBasicPrayer(id)
+            AppSettings.setBasicPrayerPinned(id, true)
             assertTrue(livePins.value.any { it.id == id })
-            AppSettings.toggleFavoriteBasicPrayer(id)
+            AppSettings.setBasicPrayerPinned(id, false)
             assertFalse(livePins.value.any { it.id == id })
             val home = File("src/main/java/com/dkaluta/prosary/ui/home/HomeScreen.kt").readText()
-            assertTrue(home.contains("BasicPrayerCatalog.all.filter { it.id in AppSettings.favoriteBasicPrayerIds }"))
+            assertTrue(home.contains("BasicPrayerCatalog.all.filter { it.id in AppSettings.pinnedBasicPrayerIds }"))
             assertTrue(home.contains("onOpenBasicPrayer(prayer.id)"))
             assertTrue(home.contains("basic:"))
             val list = File("src/main/java/com/dkaluta/prosary/ui/shared/BasicPrayersScreen.kt").readText()
             assertFalse(list.contains("applyFavorites"))
             assertTrue(list.contains("R.string.basic_prayers_pin"))
         } finally {
-            if ((id in AppSettings.favoriteBasicPrayerIds) != (id in old)) AppSettings.toggleFavoriteBasicPrayer(id)
+            AppSettings.setBasicPrayerPinned(id, id in old)
         }
+    }
+
+    @Test fun publicDownloadedLanguageNamesDoNotAssignAHebrewTradition() {
+        for (code in listOf("he", "iw", "he-IL", "iw_IL", "he-x-vicariate")) {
+            assertEquals(code, "עברית", LanguageCatalog.publicLanguageName(code))
+        }
+        assertEquals("עברית, עברית — נוסח השליחות, Tagalog, Français", LanguageCatalog.publicLanguageNames(
+            listOf("he", "he-x-gamliel", "iw", "fil", "tl", "fr-FR")))
+        assertEquals("de", LanguageCatalog.publicLanguageName("de-DE"))
+        assertEquals("עברית", Prayer(languageCode = "he-x-gamliel").languageNativeName)
+        assertEquals(listOf("he", "he-x-gamliel"), LanguageCatalog.rites("he").map { it.code })
+        assertNotEquals(LanguageCatalog.rites("he")[0].nativeName, LanguageCatalog.rites("he")[1].nativeName)
+    }
+
+    @Test fun explicitMissionDownloadKeepsItsLocalizedIdentityWhilePickerStaysOneHebrew() {
+        for (label in listOf("Mission of St. Gamaliel", "נוסח השליחות", "إرسالية القديس غمالائيل",
+            "Миссия святого Гамалиила", "Misyon ni San Gamaliel", "Mission Saint-Gamaliel", "Missione di San Gamaliele")) {
+            assertEquals("עברית — $label", LanguageCatalog.publicLanguageName("he-x-gamliel", label))
+            assertEquals("עברית, עברית — $label", LanguageCatalog.publicLanguageNames(
+                listOf("he", "iw", "he-x-gamliel", "iw-x-gamliel"), label))
+            assertEquals("עברית — $label, עברית", LanguageCatalog.publicLanguageNames(
+                listOf("he-x-gamliel", "he", "iw"), label))
+        }
+        assertEquals("עברית", LanguageCatalog.pickerLanguageName("he-x-gamliel"))
+        assertEquals(listOf("he"), LanguageCatalog.availableOptions(listOf("he", "he-x-gamliel")).map { it.code })
     }
 
     @Test fun rosaryLitanyHandoffRetainsTheLanguageAndExplicitClosingForm() {

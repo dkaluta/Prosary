@@ -316,11 +316,8 @@ fun HomeScreen(
         addAll(defaultCustomDevotions.keys)
         if (defaultJesusPrayer != null) add("jesusPrayer")
     }
-    val pinnedBasicCards = BasicPrayerCatalog.all.filter { it.id in AppSettings.favoriteBasicPrayerIds }.map { prayer ->
-        val cardTitle = PrayerCardTitle.resolve(
-            BasicPrayerCatalog.title(prayer, todayLanguage),
-            BasicPrayerCatalog.title(prayer, LanguageCatalog.resolve(AppSettings.basicPrayersLanguageCode).code),
-        )
+    val pinnedBasicCards = BasicPrayerCatalog.all.filter { it.id in AppSettings.pinnedBasicPrayerIds }.map { prayer ->
+        val cardTitle = BasicPrayerCatalog.cardTitle(prayer, AppSettings.basicPrayersLanguageCode, todayLanguage)
         DevotionCard(
             id = "basic:${prayer.id}", devotionId = "basic:${prayer.id}",
             icon = Icons.AutoMirrored.Filled.MenuBook,
@@ -458,7 +455,8 @@ fun HomeScreen(
             verticalArrangement = Arrangement.spacedBy(12.dp),
             modifier = Modifier
                 .padding(paddingValues)
-                .fillMaxSize(),
+                .fillMaxSize()
+                .testTag("prayCards"),
         ) {
             item(key = "todayNavigation", span = { GridItemSpan(maxLineSpan) }) {
                 Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
@@ -631,7 +629,7 @@ fun HomeScreen(
                             text = { Text(stringResource(R.string.home_remove_from_pray)) },
                             onClick = {
                                 cardMenu = false
-                                if (card.basicPrayerId != null) AppSettings.toggleFavoriteBasicPrayer(card.basicPrayerId)
+                                if (card.basicPrayerId != null) AppSettings.setBasicPrayerPinned(card.basicPrayerId, false)
                                 else FavoriteDevotions.toggle(context, card.devotionId, impliedPinned)
                                 pinGeneration++
                             },

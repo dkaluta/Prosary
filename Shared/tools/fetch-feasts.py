@@ -368,7 +368,7 @@ def localize_existing_datasets() -> None:
         if path.exists():
             for title, translations in json.loads(path.read_text(encoding="utf-8"))["titles"].items():
                 for language, value in translations.items():
-                    if language in {"he", "ar", "ru", "tl", "fr", "it"}:
+                    if language in {"he", "ar", "ru", "tl", "fr", "it", "uk"}:
                         if not value.strip():
                             raise ValueError(f"Empty display translation: {path.name}/{title}/{language}")
                         display_catalogs.setdefault(language, {})[title] = value

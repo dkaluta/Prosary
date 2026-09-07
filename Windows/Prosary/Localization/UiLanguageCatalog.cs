@@ -11,6 +11,7 @@ public static class UiLanguageCatalog
     [
         new("en", "English", false), new("he", "עברית", true),
         new("ar", "العربية", true), new("ru", "Русский", false),
+        new("uk", "Українська", false),
         new("tl", "Tagalog", false), new("fr", "Français", false),
         new("it", "Italiano", false),
     ];

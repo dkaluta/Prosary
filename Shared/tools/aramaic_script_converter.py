@@ -17,6 +17,8 @@ Scripture importer stores that source unchanged beside the Hebrew-square project
 
 from __future__ import annotations
 
+import unicodedata
+
 
 # Classical Syriac -> Hebrew square script.  The base alphabets correspond letter-for-letter;
 # Hebrew final forms are applied contextually by ``to_hebrew`` rather than encoded here.
@@ -119,9 +121,31 @@ def _is_word_char(ch: str | None) -> bool:
     )
 
 
+def _resolve_marked_rish(text: str) -> str:
+    """Resolve the modern rish+seyame form in the projection, never in stored source text.
+
+    Unicode 17.0, section 9.3.1: rish and seyame share two dots above; bare U+0716 remains
+    ambiguous between dalath and rish. The supplied Isaiah encodes that marked form as
+    U+0716 followed by an attached U+0308. Resolve it before the optional mark removal;
+    do not guess when its own combining-mark cluster has no seyame.
+    https://www.unicode.org/versions/Unicode17.0.0/core-spec/chapter-9/
+    """
+    resolved: list[str] = []
+    for index, char in enumerate(text):
+        if char == "ܖ":
+            end = index + 1
+            while end < len(text) and unicodedata.category(text[end]).startswith("M"):
+                end += 1
+            if "̈" not in text[index + 1:end]:
+                raise ValueError("ambiguous Syriac U+0716 without attached seyame; cannot choose dalath or rish")
+            char = "ܪ"
+        resolved.append(char)
+    return "".join(resolved)
+
+
 def _filtered_chars(text: str, *, keep_plural_dots: bool) -> list[str]:
     filtered: list[str] = []
-    for ch in text:
+    for ch in _resolve_marked_rish(text):
         if ch == "̈":
             if keep_plural_dots:
                 filtered.append(ch)

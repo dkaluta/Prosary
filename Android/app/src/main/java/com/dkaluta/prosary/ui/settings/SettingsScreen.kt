@@ -37,6 +37,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalConfiguration
 import com.dkaluta.prosary.typography.SystemSansFontProbe
@@ -153,7 +154,7 @@ fun SettingsScreen(onBack: () -> Unit) {
                 options = LanguageCatalog.publicOptions,
                 selected = LanguageCatalog.publicOptions.firstOrNull { it.code == LanguageCatalog.pickerLanguageCode(defaultLanguageCode) }
                     ?: LanguageCatalog.resolve(defaultLanguageCode),
-                optionLabel = { it.nativeName },
+                optionLabel = { LanguageCatalog.pickerLanguageName(it.code) },
                 onSelect = {
                     defaultLanguageCode = LanguageCatalog.selectingLanguage(it.code, defaultLanguageCode)
                     AppSettings.setDefaultLanguageCode(defaultLanguageCode)
@@ -167,6 +168,19 @@ fun SettingsScreen(onBack: () -> Unit) {
                     selected = defaultLanguageCode,
                     optionLabel = { context.getString(if (it == "he") R.string.prayer_tradition_vicariate else R.string.prayer_tradition_mission) },
                     onSelect = { defaultLanguageCode = it; AppSettings.setDefaultLanguageCode(it) },
+                )
+            }
+
+            Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                Column(Modifier.weight(1f)) {
+                    Text(stringResource(R.string.settings_jaffa_wording))
+                    Text(stringResource(R.string.settings_jaffa_wording_hint), style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+                Switch(
+                    checked = AppSettings.useJaffaHailMaryWording,
+                    onCheckedChange = { AppSettings.useJaffaHailMaryWording = it },
+                    modifier = Modifier.testTag("useJaffaHailMaryWording"),
                 )
             }
 

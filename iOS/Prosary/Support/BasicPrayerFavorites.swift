@@ -26,12 +26,7 @@ enum BasicPrayerFavorites {
   }
 
   static func apply(_ prayers: [BasicPrayer]) -> [BasicPrayer] {
-    guard UserDefaults.standard.bool(forKey: moveToTopKey) else { return prayers }
-    let favorites = ids
-    return prayers.enumerated().sorted { lhs, rhs in
-      let left = favorites.contains(lhs.element.id)
-      let right = favorites.contains(rhs.element.id)
-      return left == right ? lhs.offset < rhs.offset : left && !right
-    }.map(\.element)
+    // Historical callers keep their manual list order; the old setting no longer sorts pins.
+    prayers
   }
 }

@@ -6,6 +6,26 @@ namespace Prosary.Tests;
 
 public class PrayerTypographyTests
 {
+    [Fact]
+    public void UkrainianUsesTheCyrillicTypefaceBeforeTextIsAvailable()
+    {
+        var latin = AppSettings.LatinPrayerTypeface;
+        var cyrillic = AppSettings.CyrillicPrayerTypeface;
+        try
+        {
+            AppSettings.SetLatinPrayerTypeface(AppSettings.TypefaceSansSerif);
+            AppSettings.SetCyrillicPrayerTypeface(AppSettings.TypefaceDefault);
+            Assert.Equal("Cambria", PrayerTypography.ResolveBodyFontFamily("uk", false));
+            AppSettings.SetCyrillicPrayerTypeface(AppSettings.TypefaceSansSerif);
+            Assert.Equal("Segoe UI", PrayerTypography.ResolveBodyFontFamily("uk", false));
+        }
+        finally
+        {
+            AppSettings.SetLatinPrayerTypeface(latin);
+            AppSettings.SetCyrillicPrayerTypeface(cyrillic);
+        }
+    }
+
     [Theory]
     [InlineData("ܐܒܘܢ ܕܒܫܡܝܐ — 123", PrayerTypography.Script.Syriac)]
     [InlineData("אבון דבשמיא", PrayerTypography.Script.Hebrew)]

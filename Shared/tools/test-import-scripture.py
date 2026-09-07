@@ -14,6 +14,7 @@ across both scripts, and every generated bundle is checked against all three pla
 from __future__ import annotations
 
 import json
+import hashlib
 import importlib.util
 import re
 import sys
@@ -49,12 +50,12 @@ def expect(label: str, actual, wanted) -> None:
         failures.append(f"{label}: expected {wanted!r}, got {actual!r}")
 
 
-def expect_value_error(label: str, source: str) -> None:
+def expect_value_error(label: str, source: str, *, keep_plural_dots: bool = False) -> None:
     try:
-        to_hebrew(source)
+        to_hebrew(source, keep_plural_dots=keep_plural_dots)
     except ValueError:
         return
-    failures.append(f"{label}: expected mixed-script input to raise ValueError")
+    failures.append(f"{label}: expected invalid source input to raise ValueError")
 
 
 def scripture_body(text: str) -> str:
@@ -66,6 +67,11 @@ def test_converter() -> None:
     cases = {
         "alphabet": ("ܐܒܓܕܗܘܙܚܛܝܟܠܡܢܣܥܦܨܩܪܫܬ", "אבגדהוזחטיכלמנסעפצקרשת"),
         "final letters": ("ܟ ܡ ܢ ܦ ܨ", "ך ם ן ף ץ"),
+        "Kyrie final nun": ("ܩܘܪܝܐܠܝܣܘܢ", "קוריאליסון"),
+        "Isaiah marked dotless rish": ("ܠܖ̈ܰܫܺܝܥܶܐ", "לרַשִיעֶא"),
+        "rish seyame after vowel": ("ܖܰ̈", "רַ"),
+        "rish seyame at word end": ("ܡܠܖ̈", "מלר"),
+        "ordinary dalath and rish stay distinct": ("ܕܰ ܪܰ", "דַ רַ"),
         "medial letters": ("ܟܐ ܡܐ ܢܐ ܦܐ ܨܐ", "כא מא נא פא צא"),
         "vowels": ("ܒܰ ܒܳ ܒܶ ܒܺ ܒܽ", "בַ בָ בֶ בִ בֻ"),
         "qushshaya and rukkakha": ("ܒ݁ ܒ݂", "בּ ב"),
@@ -86,6 +92,15 @@ def test_converter() -> None:
         expect(label, to_hebrew(source), wanted)
 
     expect("seyame retained on request", to_hebrew("ܡ̈ܠܟܐ", keep_plural_dots=True), "מ̈לכא")
+    marked_source = "ܠܖ̈ܰܫܺܝܥܶܐ"
+    expect("marked rish retains requested seyame", to_hebrew(marked_source, keep_plural_dots=True), "לרַ̈שִיעֶא")
+    expect("original marked Syriac stays unchanged", marked_source, "ܠܖ̈ܰܫܺܝܥܶܐ")
+    expect("classical alphabet remains 22 letters", len(SYRIAC_TO_HEBREW), 22)
+    expect("Hebrew resh still reverses to regular Syriac rish", to_syriac_letters("ר"), "ܪ")
+    for ambiguous in ("ܖ", "ܖܰ", "ܖ̇", "ܖ ̈", "ܖܐ̈", "ܖ\n̈"):
+        for keep_dots in (False, True):
+            expect_value_error(f"ambiguous dotless letter {ambiguous!r}; keep dots={keep_dots}",
+                               ambiguous, keep_plural_dots=keep_dots)
 
     for removed in EREZ_CHARS_TO_REMOVE | HEBREW_MARKS_ALWAYS_REMOVE:
         expect(f"removed U+{ord(removed):04X}", to_hebrew(f"ܐ{removed}ܒ"), "אב")
@@ -108,13 +123,13 @@ def test_citations_and_versification() -> None:
            IMPORTER.hebrew_reference("3:16-17"), "ג׳ 16–17")
 
     spans = IMPORTER.parse_reference("9:2")
-    expect("Peshitta citation follows Peshitta numbering",
-           IMPORTER.source_reference("arc", "Isaiah", spans, "offline test"), "9:1")
+    expect("supplied pointed Peshitta citation follows its own numbering",
+           IMPORTER.source_reference("arc", "Isaiah", spans, "offline test"), "9:2")
     expect("Vulgate-derived Spanish numbering is unchanged",
            IMPORTER.source_reference("es", "Isaiah", spans, "offline test"), "9:2")
 
-    hebrew_line = IMPORTER.citation_line("arc", "Isaiah", "ot", "9:1", second=False)
-    expect("Hebrew Peshitta citation", hebrew_line, "\n\n— אשעיא ט׳ 1 (פשיטתא)")
+    hebrew_line = IMPORTER.citation_line("arc", "Isaiah", "ot", "9:2", second=False)
+    expect("Hebrew Peshitta citation", hebrew_line, "\n\n— אשעיא ט׳ 2 (פשיטתא)")
     if ":" in hebrew_line:
         failures.append("Hebrew Peshitta citation contains a colon")
 
@@ -249,6 +264,107 @@ def test_committed_peshitta() -> None:
     expect("committed Peshitta passage count", passage_count, 56)
 
 
+def test_pointed_peshitta() -> None:
+    # Source excerpt retains the Corpus edition's header and license. Chapter headings and
+    # Syriac chapter milestones are metadata, not prayer text.
+    markup = (TOOLS / "fixtures/peshitta-luke-1.xml").read_text(encoding="utf-8")
+    verses = IMPORTER.parse_pointed_peshitta(markup, "Luke", {1})
+    expect("pointed Luke verse selection", set(verses), {(1, 26), (1, 27), (1, 28)})
+    if not verses[(1, 26)].startswith("ܒ݁ܝܰܪܚܳܐ ܕ݁ܶܝܢ"):
+        failures.append("Luke 1:26 lost its source vowel signs")
+    if not to_hebrew(verses[(1, 26)]).startswith("בּיַרחָא דֶּין"):
+        failures.append("Luke 1:26 did not transfer source vowels through Erez's rules")
+    for label, invalid, book in (
+        ("wrong book", markup, "Matthew"),
+        ("missing vowels", re.sub(r"[\u0730-\u074a]", "", markup), "Luke"),
+        ("duplicate verse", markup.replace('type="verse" n="27"', 'type="verse" n="26"'), "Luke"),
+        ("editorial note", markup.replace('type="verse" n="27">', 'type="verse" n="27"><note>editor</note>'), "Luke"),
+    ):
+        try:
+            IMPORTER.parse_pointed_peshitta(invalid, book, {1})
+            failures.append(f"pointed Peshitta accepted {label}")
+        except ValueError:
+            pass
+
+    pointed_count = 0
+    for path in CONTENT.glob("*/content/arc.json"):
+        content = json.loads(path.read_text(encoding="utf-8"))
+        imported = content.get("$scriptureImport", {})
+        pairs = [(content["prayers"][key], content["transliterations"][key])
+                 for key in imported.get("prayerKeys", []) if not key.startswith("o")]
+        pairs += [(content["mysteries"][key]["description"],
+                   content["mysteries"][key]["transliteratedDescription"])
+                  for key in imported.get("mysteryKeys", [])]
+        for hebrew, syriac in pairs:
+            pointed_count += 1
+            if not re.search(r"[\u05b0-\u05bb]", scripture_body(hebrew)):
+                failures.append(f"{path}: New Testament Hebrew projection lost its vowels")
+            if not re.search(r"[\u0730-\u073f]", scripture_body(syriac)):
+                failures.append(f"{path}: New Testament Syriac source lost its vowels")
+    expect("vocalized New Testament passage count", pointed_count, 49)
+
+
+def test_supplied_pointed_isaiah() -> None:
+    raw = (TOOLS / "fixtures/peshitta-isaiah-supplied.xml").read_bytes()
+    expect("reviewed nine-verse Isaiah fixture hash", hashlib.sha256(raw).hexdigest(),
+           "7e5db9260727fd72b882f785e1fc64b654e22c61b44cb351dc43f98dba352cc6")
+    markup = raw.decode("utf-8")
+    table = IMPORTER.parse_supplied_peshitta_isaiah(markup)
+    expect("reviewed Isaiah selection", set(table),
+           {(7, 14), (9, 2), (11, 2), (11, 3), (11, 4), (11, 5), (11, 10), (22, 22), (28, 16)})
+    # The full XML hash must be checked before parsing a downloaded or cached source; an excerpt
+    # is useful offline but must never pass as the reviewed complete download.
+    try:
+        IMPORTER.verify_supplied_peshitta_hash(raw)
+        failures.append("Isaiah fixture was accepted as the hash-pinned full download")
+    except ValueError:
+        pass
+    for label, invalid, book in (
+        ("wrong book", markup, "Luke"),
+        ("wrong source book", markup.replace('bname="Isaiah"', 'bname="Jeremiah"'), "Isaiah"),
+        ("missing vowels", re.sub(r"[\u0730-\u074a]", "", markup), "Isaiah"),
+        ("duplicate verse", markup.replace('<VERS vnumber="3">', '<VERS vnumber="2">'), "Isaiah"),
+        ("missing reviewed verse", markup.replace('<VERS vnumber="14">', '<VERS vnumber="15">'), "Isaiah"),
+        ("inline note", markup.replace('<VERS vnumber="14">', '<VERS vnumber="14"><NOTE>note</NOTE>'), "Isaiah"),
+    ):
+        try:
+            IMPORTER.parse_supplied_peshitta_isaiah(invalid, book)
+            failures.append(f"supplied pointed Isaiah accepted {label}")
+        except ValueError:
+            pass
+
+    # Pin the supplied edition's accepted wording; do not graft its points onto ETCBC consonants.
+    consonants = lambda value: re.sub(r"[^\u0710-\u072f]", "", value)
+    if "ܕܝܕܥܬܐ" not in consonants(table[(11, 2)]) or "ܕܐܝܕܥܬܐ" in consonants(table[(11, 2)]):
+        failures.append("Isaiah 11:2 no longer follows the supplied wording")
+    if "ܗܟܢܐ" in consonants(table[(28, 16)]):
+        failures.append("Isaiah 28:16 regained a word absent from the supplied edition")
+    if not table[(9, 2)].startswith("ܥܰܡܳܐ"):
+        failures.append("Isaiah 9:2 no longer selects the darkness/light verse")
+    if "לרַשִיעֶא" not in to_hebrew(table[(11, 4)]):
+        failures.append("Isaiah 11:4 lost the marked rish conversion")
+
+    readings = {
+        "oEmmanuelLectio": ("7:14", [(7, 14)]),
+        "oOriensLectio": ("9:2", [(9, 2)]),
+        "oSapientiaLectio": ("11:2–3", [(11, 2), (11, 3)]),
+        "oAdonaiLectio": ("11:4–5", [(11, 4), (11, 5)]),
+        "oRadixIesseLectio": ("11:10", [(11, 10)]),
+        "oClavisDavidLectio": ("22:22", [(22, 22)]),
+        "oRexGentiumLectio": ("28:16", [(28, 16)]),
+    }
+    content = json.loads((CONTENT / "oAntiphons/content/arc.json").read_text(encoding="utf-8"))
+    for key, (reference, verses) in readings.items():
+        source = " ".join(table[verse] for verse in verses)
+        expect(f"{key}: exact supplied Syriac passage and citation", content["transliterations"][key],
+               source + IMPORTER.citation_line("arc", "Isaiah", "ot", reference, second=True))
+        expect(f"{key}: supplied points through Erez conversion", content["prayers"][key],
+               to_hebrew(source, keep_plural_dots=False)
+               + IMPORTER.citation_line("arc", "Isaiah", "ot", reference, second=False))
+        if not re.search(r"[\u05b0-\u05bb]", scripture_body(content["prayers"][key])):
+            failures.append(f"{key}: Isaiah Hebrew projection is not vocalized")
+
+
 def all_strings(value):
     if isinstance(value, str):
         yield value
@@ -258,6 +374,51 @@ def all_strings(value):
     elif isinstance(value, list):
         for nested in value:
             yield from all_strings(nested)
+
+
+def test_aramaic_prayer_finals() -> None:
+    """Final forms change the Hebrew spelling, never the supplied Syriac prayer."""
+    content = json.loads((CONTENT / "trisagion/content/arc.json").read_text(encoding="utf-8"))
+    source_line = "ܩܘܪܝܐܠܝܣܘܢ"
+    hebrew_line = "קוריאליסון"
+    for key, repetitions in (("trisagionKyrieTitle", 1), ("trisagionKyrie", 3)):
+        source = "\n".join([source_line] * repetitions)
+        hebrew = "\n".join([hebrew_line] * repetitions)
+        expect(f"{key}: original Syriac preserved", content["transliterations"][key], source)
+        expect(f"{key}: Hebrew final nun", content["prayers"][key], hebrew)
+        expect(f"{key}: source conversion", to_hebrew(content["transliterations"][key]), hebrew)
+
+    words = re.compile(r"[א-ת][א-ת\u0591-\u05bd\u05bf-\u05c5\u05c7]*")
+    marks = re.compile(r"[\u0591-\u05bd\u05bf-\u05c5\u05c7]")
+    for path in sorted(CONTENT.glob("*/content/arc.json")):
+        content = json.loads(path.read_text(encoding="utf-8"))
+        for text in all_strings([content.get("prayers", {}), content.get("mysteries", {})]):
+            # Chapter numerals such as כ׳ belong to the citation, not to an Aramaic word.
+            for word in words.findall(scripture_body(text)):
+                if marks.sub("", word)[-1] in "כמנפצ":
+                    failures.append(f"{path.relative_to(ROOT)}: non-final word ending {word!r}")
+
+
+def test_aramaic_holy_god_gestures() -> None:
+    """The 2026-09-07 user-confirmed opening is paired in both scripts, without other edits."""
+    content = json.loads((CONTENT / "trisagion/content/arc.json").read_text(encoding="utf-8"))
+    originals = {
+        "prayers": "קַדּישַת אַלָהָא\nקַדִישַת חַילתָּנָא\nקַדִישַת לָא מִיותָּא אֶתַרחַמעלִין",
+        "transliterations": "ܩܰܕ݁ܝܫܰܬ݂ ܐܰܠܳܗܳܐ\nܩܰܕܺܝܫܰܬ݂ ܚܰܝܠܬ݁ܳܢܳܐ\nܩܰܕܺܝܫܰܬ݂ ܠܳܐ ܡܺܝܘܬ݁ܳܐ ܐܶܬܰܪܚܰܡܥܠܺܝܢ",
+    }
+    for section, original in originals.items():
+        body = content[section]["trisagionAcclamation"]
+        expect(f"Holy God {section}: gestures after first Qadishat", body,
+               original.replace(" ", " ✠▼▲ ", 1))
+        expect(f"Holy God {section}: title remains a title",
+               content[section]["trisagionAcclamationTitle"], original.splitlines()[0])
+        expect(f"Holy God {section}: short form has no invented gestures",
+               content[section]["trisagionShortAcclamation"], original.splitlines()[-1])
+
+    source = content["transliterations"]["trisagionAcclamation"].splitlines()[0]
+    for keep_plural_dots in (False, True):
+        expect(f"Holy God converter preserves gestures (seyame={keep_plural_dots})",
+               to_hebrew(source, keep_plural_dots=keep_plural_dots), "קַדּישַת ✠▼▲ אַלָהָא")
 
 
 def test_all_citation_style() -> None:
@@ -315,6 +476,10 @@ def main() -> int:
     test_spanish_chapter_boundaries()
     test_sourced_martini_whitespace()
     test_committed_peshitta()
+    test_pointed_peshitta()
+    test_supplied_pointed_isaiah()
+    test_aramaic_prayer_finals()
+    test_aramaic_holy_god_gestures()
     test_all_citation_style()
     test_pack_parity()
 

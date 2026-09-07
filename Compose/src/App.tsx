@@ -8,6 +8,8 @@ import { validateProject } from "./format/validate";
 import { BasicsScreen } from "./ui/BasicsScreen";
 import { PORTABLE_FILE_MIME, download, pickFile, readFileBytes } from "./ui/media";
 import { clearAutosave, saveAutosave } from "./storage/autosave";
+import { saveBeforeReload } from "./storage/deployment";
+import { useDeploymentUpdate } from "./ui/useDeploymentUpdate";
 
 const StepsScreen = lazy(() =>
   import("./ui/StepsScreen").then((module) => ({ default: module.StepsScreen })),
@@ -35,7 +37,8 @@ export function App({ initialProject }: Props) {
   const [screen, setScreen] = useState<WizardScreen>("basics");
   const [openError, setOpenError] = useState<string | null>(null);
   const [autosaveError, setAutosaveError] = useState(false);
-  const [fileAction, setFileAction] = useState<"idle" | "opening" | "saving">("idle");
+  const [fileAction, setFileAction] = useState<"idle" | "opening" | "saving" | "updating">("idle");
+  const updateAvailable = useDeploymentUpdate();
 
   // Keep media state normalized at the boundary shared by every screen. Screen-specific edits
   // cannot accidentally leave detached uploads in memory or in the next autosave.
@@ -118,6 +121,17 @@ export function App({ initialProject }: Props) {
     }
   };
 
+  const reloadLatest = async () => {
+    setOpenError(null);
+    setFileAction("updating");
+    try {
+      await saveBeforeReload(() => saveAutosave(project), () => window.location.reload());
+    } catch {
+      setOpenError("Your draft could not be saved. Use Save project to keep a copy before reloading Compose.");
+      setFileAction("idle");
+    }
+  };
+
   const screenIndex = SCREENS.findIndex((s) => s.id === screen);
 
   return (
@@ -174,13 +188,21 @@ export function App({ initialProject }: Props) {
           </span>
         </p>
       </section>
+      {updateAvailable && (
+        <section className="callout global-callout" aria-label="Compose update">
+          <p role="status">A newer Compose is available, including the latest publishing options. Your draft will be saved before reloading.</p>
+          <button type="button" className="secondary" disabled={fileAction !== "idle"} onClick={reloadLatest}>
+            {fileAction === "updating" ? "Saving your draft…" : "Save draft and reload"}
+          </button>
+        </section>
+      )}
       {openError && (
         <p className="issue callout global-callout" role="alert">
           {openError}
         </p>
       )}
 
-      <main id="editor" tabIndex={-1} aria-label="Devotion editor">
+      <main id="editor" tabIndex={-1} aria-label="Devotion editor" inert={fileAction === "updating"}>
         <div className="builder-shell">
           <nav className="stepper" aria-label="Devotion builder steps">
             <p className="stepper-heading" aria-hidden="true">Build your devotion</p>

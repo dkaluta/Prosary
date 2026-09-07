@@ -202,6 +202,36 @@ fun AboutScreen(onBack: () -> Unit) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 Text(
+                    stringResource(R.string.about_ukrainian_sources),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                TextButton(onClick = { uriHandler.openUri("https://rkc.org.ua/duhovnist/molytovnyk/") }) {
+                    Text(stringResource(R.string.about_ukrainian_prayerbook_link))
+                }
+                TextButton(onClick = { uriHandler.openUri("https://ebible.org/find/details.php?id=ukr1871") }) {
+                    Text(stringResource(R.string.about_ukrainian_bible_link))
+                }
+                Text(
+                    stringResource(R.string.about_peshitta_sources),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                TextButton(onClick = { uriHandler.openUri("https://syriaccorpus.org/") }) {
+                    Text(stringResource(R.string.about_peshitta_source_link))
+                }
+                TextButton(onClick = { uriHandler.openUri("https://creativecommons.org/licenses/by/4.0/") }) {
+                    Text(stringResource(R.string.about_peshitta_license_link))
+                }
+                Text(
+                    stringResource(R.string.about_peshitta_isaiah_sources),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                TextButton(onClick = { uriHandler.openUri("https://archive.org/details/peshitta-complete-bible-otnt") }) {
+                    Text(stringResource(R.string.about_peshitta_isaiah_source_link))
+                }
+                Text(
                     stringResource(R.string.about_bible_book_sources),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,

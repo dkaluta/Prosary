@@ -99,6 +99,13 @@ struct AboutView: View {
           Text("about.additionalPrayerSources")
             .font(.footnote)
             .foregroundStyle(.secondary)
+          Text("about.ukrainianPrayerSources")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+          Link(String(localized: "about.ukrainianPrayerbookLink", defaultValue: "Ukrainian prayerbook"),
+               destination: URL(string: "https://rkc.org.ua/duhovnist/molytovnyk/")!)
+          Link(String(localized: "about.ukrainianScriptureLink", defaultValue: "Ukrainian Bible (1905)"),
+               destination: URL(string: "https://ebible.org/find/details.php?id=ukr1871")!)
           Text("about.divineMercyPrayerSources")
             .font(.footnote)
             .foregroundStyle(.secondary)
@@ -117,6 +124,15 @@ struct AboutView: View {
           Text("about.additionalSources")
             .font(.footnote)
             .foregroundStyle(.secondary)
+          Text("about.peshittaSources")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+          Link("about.peshittaSourceLink", destination: URL(string: "https://syriaccorpus.org/")!)
+          Link("about.peshittaLicenseLink", destination: URL(string: "https://creativecommons.org/licenses/by/4.0/")!)
+          Text("about.peshittaIsaiahSources")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+          Link("about.peshittaIsaiahSourceLink", destination: URL(string: "https://archive.org/details/peshitta-complete-bible-otnt")!)
           Link("about.parolaVivaLink", destination: URL(string: "https://parolaviva.art/opendata")!)
         }
 

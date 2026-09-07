@@ -51,6 +51,8 @@
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">"لغة الصلاة الافتراضية"</string>
+    <string name="settings_jaffa_wording">"صيغة يافا"</string>
+    <string name="settings_jaffa_wording_hint">"استخدم בְּרוּכַת הַחֶסֶד بدلاً من מְלֵאַת הַחֶסֶד في صلوات النيابة."</string>
     <string name="settings_language_fallback_order">"ترتيب اللغات البديلة…"</string>
     <string name="settings_language_fallback_order_title">"ترتيب اللغات البديلة"</string>
     <string name="settings_language_fallback_order_footer">عند غياب النص باللغة المختارة، يتبع Prosary هذا الترتيب. تستخدم النصوص العبرية المشتركة بين التقليدين، بما فيها صلوات المستودع، الموضع الأعلى بين الموضعين العبريين.</string>
@@ -348,9 +350,6 @@
     <string name="settings_typeface_stam_ashkenaz">"Stam Ashkenaz"</string>
     <string name="settings_typeface_stam_sefarad">"Stam Sefarad"</string>
     <string name="settings_typeface_rashi">"راشي"</string>
-    <string name="settings_favorite_basic_prayers_first">"انقل الصلوات الأساسية المفضلة إلى الأعلى"</string>
-    <string name="basic_prayers_favorite">"أضف إلى المفضلة"</string>
-    <string name="basic_prayers_unfavorite">"أزل من المفضلة"</string>
     <string name="home_today_show_english">"English"</string>
     <string name="home_today_language">"لغة قسم «اليوم»"</string>
     <string name="home_today_app_language">"لغة التطبيق"</string>
@@ -391,7 +390,12 @@
     <string name="category_short">قصيرة</string>
     <string name="category_easter">الفصح</string>
     <string name="category_other">أخرى</string>
-    <string name="about_additional_sources">الكتاب المقدس بالفرنسية: كرامبون (1923)، ملك عام. الكتاب المقدس بالإيطالية: أنطونيو مارتيني؛ البيانات المنظّمة © Giovanni Novelli، بترخيص CC BY 4.0 ‏(parolaviva.art). الصلوات بالفرنسية والإيطالية: موجز التعليم المسيحي للفاتيكان. نيات البابا: شبكة صلاة البابا العالمية (2026–2027)؛ الترجمة العبرية من Prosary. النيات بالروسية (2026): ترجمة t.me/ihsovs، نشرتها رعية الحبل بلا دنس في تشيليابينسك (cc74.wordpress.com/rosary/).</string>
+    <string name="about_additional_sources">الكتاب المقدس بالفرنسية: كرامبون (1923)، ملك عام. الكتاب المقدس بالإيطالية: أنطونيو مارتيني؛ البيانات المنظّمة © Giovanni Novelli، بترخيص CC BY 4.0 ‏(parolaviva.art). الصلوات بالفرنسية والإيطالية: موجز التعليم المسيحي للفاتيكان. نيات البابا: شبكة صلاة البابا العالمية (2026–2027)؛ الترجمة العبرية من Prosary. النيات بالروسية (2026): ترجمة t.me/ihsovs، نشرتها رعية الحبل بلا دنس في تشيليابينسك (cc74.wordpress.com/rosary/). نوايا الصلاة بالأوكرانية: ترجمات تحريرية من Prosary للنصوص الإنجليزية المنشورة.</string>
+    <string name="about_peshitta_sources">العهد الجديد بالبشيطتا (BFBS، 1905): Digital Syriac Corpus؛ تفريغ النص السرياني بواسطة George A. Kiraz، طبعة TEI © James E. Walters، بترخيص CC BY 4.0. التحويل إلى الحروف العبرية وفق قواعد إيريز؛ اختيار الآيات وتنسيق النص بواسطة Prosary.</string>
+    <string name="about_peshitta_source_link">Digital Syriac Corpus</string>
+    <string name="about_peshitta_license_link">CC BY 4.0</string>
+    <string name="about_peshitta_isaiah_sources">إشعياء: ملف XML مشكول للبشيطتا من Internet Archive، قدّمه أحد المستخدمين. لم تُحدَّد بعد الطبعة الأصلية وشروط إعادة التوزيع. التحويل إلى الحروف العبرية وفق قواعد إيريز؛ اختيار الآيات وتنسيق النص بواسطة Prosary.</string>
+    <string name="about_peshitta_isaiah_source_link">Internet Archive</string>
     <string name="about_bible_book_sources">أسماء أسفار الكتاب المقدس: AELF، دار المشرق، الترجمة السينودسية الروسية (Azbyka)، جمعية الكتاب المقدس الفلبينية وParolaViva.</string>
     <string name="about_prayer_network_link">شبكة صلاة البابا العالمية</string>
     <string name="about_parolaviva_link">ParolaViva — CC BY 4.0</string>
@@ -407,8 +411,8 @@
     <string name="prayer_tradition">"تقليد الصلاة"</string>
     <string name="prayer_tradition_vicariate">"نيابة القديس يعقوب"</string>
     <string name="prayer_tradition_mission">"إرسالية القديس غمالائيل"</string>
-    <string name="basic_prayers_pin">"ثبّت في الصفحة الرئيسية"</string>
-    <string name="basic_prayers_unpin">"ألغِ التثبيت من الصفحة الرئيسية"</string>
+    <string name="basic_prayers_pin">"ثبّت في «صلّ»"</string>
+    <string name="basic_prayers_unpin">"أزل التثبيت من «صلّ»"</string>
     <string name="ro_closing_pope_intention">"صلوات الختام من أجل البابا"</string>
     <string name="ro_closing_bishop_intention">"صلوات الختام من أجل الأسقف"</string>
     <string name="ro_closing_departed_intention">"صلوات الختام من أجل المؤمنين الراقدين"</string>
@@ -433,4 +437,7 @@
     <string name="settings_eastern_pascha">الفصح البيزنطي</string>
     <string name="settings_pascha_julian">الفصح حسب التقويم اليولياني</string>
     <string name="settings_pascha_gregorian">الفصح حسب التقويم الغريغوري</string>
+    <string name="about_ukrainian_sources">"الصلوات بالأوكرانية: الكنيسة الكاثوليكية الرومانية في أوكرانيا، كتاب الصلاة Щоденно з Богом. تُستخدم مع ذكر المصدر وفق سياسة الناشر لإعادة الاستخدام. الكتاب المقدس: ترجمة كوليش ونيتشوي-ليفيتسكي وبوليوي (1905)، ملك عام؛ eBible.org ukr1871. حُفظ الإملاء التاريخي للنص الكتابي."</string>
+    <string name="about_ukrainian_prayerbook_link">"كتاب الصلاة بالأوكرانية"</string>
+    <string name="about_ukrainian_bible_link">"الكتاب المقدس بالأوكرانية (1905)"</string>
 </resources>

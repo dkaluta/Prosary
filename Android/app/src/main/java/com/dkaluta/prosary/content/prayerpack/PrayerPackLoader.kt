@@ -9,6 +9,7 @@ import com.dkaluta.prosary.typography.HebrewDisplayText
 
 import com.dkaluta.prosary.content.PrayerKey
 import com.dkaluta.prosary.content.PrayerTranslations
+import com.dkaluta.prosary.content.JaffaPrayerWording
 import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
@@ -758,9 +759,15 @@ object PrayerPackStore {
 
     private data class ResolvedPrayerContent(val text: String, val readingAid: String?)
 
+    private fun ResolvedPrayerContent.forProbe(probe: String): ResolvedPrayerContent {
+        val displayed = JaffaPrayerWording.apply(probe, text)
+        // No sourced reading aid was supplied for the substituted wording.
+        return if (displayed == text) this else ResolvedPrayerContent(displayed, null)
+    }
+
     private fun localPrayerContent(bundleId: String, probe: String, key: String): ResolvedPrayerContent? =
         rawContentByBundle[bundleId]?.get(probe)?.get(key)?.let { text ->
-            ResolvedPrayerContent(text, transliterationsByBundle[bundleId]?.get(probe)?.get(key))
+            ResolvedPrayerContent(text, transliterationsByBundle[bundleId]?.get(probe)?.get(key)).forProbe(probe)
         }
 
     /** Resolve text and its reading aid together, with the same precedence at every probe:
@@ -785,10 +792,10 @@ object PrayerPackStore {
             }
             if (prayerKey != null) {
                 prayerOverride(probe, prayerKey)?.let { text ->
-                    return ResolvedPrayerContent(text, prayerTransliterations[probe]?.get(prayerKey))
+                    return ResolvedPrayerContent(text, prayerTransliterations[probe]?.get(prayerKey)).forProbe(probe)
                 }
                 PrayerTranslations.byLanguage[probe]?.get(prayerKey)?.let { text ->
-                    return ResolvedPrayerContent(text, null)
+                    return ResolvedPrayerContent(text, null).forProbe(probe)
                 }
             }
         }

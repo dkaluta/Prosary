@@ -29,8 +29,17 @@ public sealed partial class CustomDevotionFlowPage : Page
     {
         ViewModel = App.Services.GetRequiredService<CustomDevotionViewModel>();
         InitializeComponent();
-        Loaded += (_, _) => { AppSettings.TypographyChanged += OnTypographyChanged; OnTypographyChanged(); };
-        Unloaded += (_, _) => AppSettings.TypographyChanged -= OnTypographyChanged;
+        Loaded += (_, _) =>
+        {
+            AppSettings.TypographyChanged += OnTypographyChanged;
+            AppSettings.PrayerWordingChanged += OnPrayerWordingChanged;
+            OnPrayerWordingChanged();
+        };
+        Unloaded += (_, _) =>
+        {
+            AppSettings.TypographyChanged -= OnTypographyChanged;
+            AppSettings.PrayerWordingChanged -= OnPrayerWordingChanged;
+        };
         SizeChanged += OnSizeChanged;
         ActualThemeChanged += OnActualThemeChanged;
     }
@@ -163,6 +172,7 @@ public sealed partial class CustomDevotionFlowPage : Page
         ViewModel.HasRoomForSingleMinorColumn = e.NewSize.Height >= WideMinorColumnHeightThreshold;
     }
     private void OnTypographyChanged() => ViewModel.RefreshTypography();
+    private void OnPrayerWordingChanged() => ViewModel.RefreshPrayerWording();
 
     // UI navigation stays independent of the displayed prayer's writing system.
     public FlowDirection NavigationFlowDirection => UiLanguageCatalog.IsRightToLeft(UiLanguageCatalog.Current)

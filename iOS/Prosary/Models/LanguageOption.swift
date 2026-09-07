@@ -68,6 +68,7 @@ enum LanguageCatalog {
     LanguageOption(code: "el", nativeName: "Ἑλληνικά", isRightToLeft: false),
     LanguageOption(code: "es", nativeName: "Español", isRightToLeft: false),
     LanguageOption(code: "ru", nativeName: "Русский", isRightToLeft: false),
+    LanguageOption(code: "uk", nativeName: "Українська", isRightToLeft: false),
     LanguageOption(code: "tl", nativeName: "Tagalog", isRightToLeft: false),
     LanguageOption(code: "fr", nativeName: "Français", isRightToLeft: false),
     LanguageOption(code: "it", nativeName: "Italiano", isRightToLeft: false),
@@ -82,7 +83,11 @@ enum LanguageCatalog {
   }
 
   static func selectingLanguage(_ language: String, current: String) -> String {
-    language == "he" && pickerLanguageCode(current) == "he" ? current : language
+    guard language == "he" else { return language }
+    // An existing explicit Hebrew tradition survives reopening the language picker. When
+    // entering Hebrew from another language (or App setting), use its higher saved priority.
+    if current == "he" || current == "he-x-gamliel" { return current }
+    return fallbackOrder.first { $0 == "he" || $0 == "he-x-gamliel" } ?? "he"
   }
 
   static func traditionName(_ raw: String) -> String {
@@ -110,6 +115,18 @@ enum LanguageCatalog {
       return "\(resolve("he").nativeName) — \(traditionName(code))"
     }
     return all.first(where: { $0.code == code })?.nativeName ?? code
+  }
+
+  /// Repository metadata describes the authored content, not the user's prayer tradition.
+  /// Generic Hebrew must never acquire the Vicariate label from a selection preference.
+  static func contentLanguageName(_ code: String) -> String {
+    let normalized = code == "iw" ? "he" : code == "fil" ? "tl" : code
+    if normalized == "he-x-gamliel" { return fallbackDisplayName(normalized) }
+    return all.first(where: { $0.code == normalized })?.nativeName ?? code
+  }
+
+  static func contentLanguageNames(_ codes: [String]) -> [String] {
+    codes.map(contentLanguageName).unique()
   }
 
   static var fallbackOrder: [String] {

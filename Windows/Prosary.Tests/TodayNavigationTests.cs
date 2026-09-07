@@ -112,6 +112,26 @@ public class TodayNavigationTests
     }
 
     [Fact]
+    public void TorahFestivalYearsUseAnnoMundiOrHebrewGematria()
+    {
+        foreach (var (date, year, hebrewYear) in new[]
+        {
+            (new DateOnly(2026, 9, 7), 5787, "ה׳תשפ״ז"),
+            (new DateOnly(2027, 9, 27), 5788, "ה׳תשפ״ח"),
+        })
+        {
+            var portion = TodayInfoStore.WeeklyTorahPortion(date)!;
+            Assert.Equal($"Rosh Hashana AM {year}", portion.Title);
+            foreach (var language in new[] { "he", "iw", "he-IL" })
+                Assert.Equal($"ראש השנה {hebrewYear}", portion.LocalizedTitle(language));
+            foreach (var language in new[] { "en", "ar", "ru", "tl", "fil", "fr", "it" })
+                Assert.EndsWith($" AM {year}", portion.LocalizedTitle(language));
+            Assert.Equal($"Roch Hachanah AM {year}", portion.LocalizedTitle("fr"));
+            Assert.Equal($"Рош-А-Шана AM {year}", portion.LocalizedTitle("ru"));
+        }
+    }
+
+    [Fact]
     public void ChangingEasternPaschaReloadsFeastAndReadingsWithoutChangingCalendar()
     {
         var oldCalendar = TodayInfoStore.SelectedCalendarId;

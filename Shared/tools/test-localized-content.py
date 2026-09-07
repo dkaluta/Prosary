@@ -94,6 +94,30 @@ assert "Smelova" in arc["$comment"]
 assert arc["prayers"]["repetitionCounterConnector"] == "מֶן"
 assert arc["transliterations"]["repetitionCounterConnector"] == "ܡܶܢ"
 
+# Keep the user-supplied Jaffa phrases identical across the native resolution helpers.
+# Runtime suites cover source selection; this check guards transcription/provenance drift.
+jaffa = json.loads((TOOLS / "vicariate-wording.json").read_text())
+assert jaffa["source"]["type"] == "user-reported pastoral confirmation"
+assert jaffa["source"]["pastor"] == "Fr. Apolinary Tadeusz Szwed, OFM"
+settings = json.loads((ROOT / "Shared/schema/domain-model.json").read_text())
+assert settings["types"]["AppSettings"]["fields"][jaffa["settingKey"]]["default"] == jaffa["default"]
+for helper in (
+    "iOS/Prosary/Support/JaffaHailMaryWording.swift",
+    "Android/app/src/main/java/com/dkaluta/prosary/content/JaffaPrayerWording.kt",
+    "Windows/Prosary/Localization/VicariatePrayerWording.cs",
+):
+    text = (ROOT / helper).read_text()
+    for phrase in jaffa["replacements"]:
+        assert all(value in text for value in phrase.values()), (helper, phrase)
+for native in (
+    "iOS/Prosary/Mocks/Content/PrayerTranslations+Hebrew.swift",
+    "Android/app/src/main/java/com/dkaluta/prosary/content/PrayerTranslationsHebrew.kt",
+    "Windows/Prosary/Localization/PrayerTranslations.Hebrew.cs",
+):
+    text = (ROOT / native).read_text()
+    assert jaffa["replacements"][0]["original"] in text, native
+    assert jaffa["replacements"][0]["jaffa"] not in text, native
+
 for target in ("iOS/Prosary/Data", "Android/app/src/main/assets/data", "Windows/Prosary/Data"):
     for source in (ROOT / "Shared/data").glob("*.json"):
         assert source.read_bytes() == (ROOT / target / source.name).read_bytes(), (target, source.name)

@@ -123,7 +123,7 @@ enum PrayerTypography {
     switch baseCode {
     case "he", "arc": return .hebrew  // Built-in Aramaic uses Hebrew square script.
     case "ar": return .arabic
-    case "ru": return .cyrillic
+    case "ru", "uk": return .cyrillic
     case "el": return .greek
     default: return .latin
     }

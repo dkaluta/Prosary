@@ -25,7 +25,7 @@ from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parents[2]
-LANGUAGES = ("la", "en", "he", "ar", "ru", "tl", "fr", "it", "es", "el", "arc")
+LANGUAGES = ("la", "en", "he", "ar", "ru", "uk", "tl", "fr", "it", "es", "el", "arc")
 TABLES = {
     "la": "Latin", "en": "English", "he": "Hebrew", "ar": "Arabic",
     "ru": "Russian", "tl": "Tagalog", "es": "Spanish", "el": "Greek",

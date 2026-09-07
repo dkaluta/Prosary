@@ -73,7 +73,7 @@ object PrayerTypography {
         when (script ?: when (languageCode?.let { com.dkaluta.prosary.models.LanguageCatalog.baseLanguage(it) ?: it }) {
             "he", "arc" -> Script.Hebrew
             "ar" -> Script.Arabic
-            "ru" -> Script.Cyrillic
+            "ru", "uk" -> Script.Cyrillic
             "el" -> Script.Greek
             else -> Script.Latin
         }) {

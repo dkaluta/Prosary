@@ -34,6 +34,7 @@ public interface IPrayerStepFlowViewModel : System.ComponentModel.INotifyPropert
     bool IsRightToLeft { get; }
     Color SeasonColor { get; }
     void RefreshTypography();
+    void RefreshPrayerWording();
     string BodyFontFamily { get; }
     double BodyFontSize { get; }
     bool CanGoBack { get; }

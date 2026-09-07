@@ -11,6 +11,14 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class PrayerTypographyTest {
+    @Test fun ukrainianUsesTheCyrillicTypefaceBeforeTextIsAvailable() {
+        AppSettings.setLatinPrayerTypeface(AppSettings.TYPEFACE_SANS_SERIF)
+        AppSettings.setCyrillicPrayerTypeface(AppSettings.TYPEFACE_DEFAULT)
+        assertEquals(FontFamily.Serif, PrayerTypography.style("uk", false).fontFamily)
+        AppSettings.setCyrillicPrayerTypeface(AppSettings.TYPEFACE_SANS_SERIF)
+        assertEquals(FontFamily.SansSerif, PrayerTypography.style("uk", false).fontFamily)
+    }
+
     @After fun reset() {
         AppSettings.setSyriacTypeface(AppSettings.TYPEFACE_DEFAULT)
         AppSettings.setHebrewPrayerTypeface(AppSettings.TYPEFACE_DEFAULT)

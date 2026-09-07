@@ -381,7 +381,16 @@ public static class PrayerPackStore
         return TryCopyPackEntry(new PackEntryLocation(bundleId, file), path, MaxAudioEntryBytes);
     }
 
-    private sealed record ResolvedPrayerContent(string Text, string? ReadingAid);
+    private sealed record ResolvedPrayerContent(string Text, string? ReadingAid)
+    {
+        public static ResolvedPrayerContent FromSource(string text, string? readingAid, string probe)
+        {
+            var displayed = VicariatePrayerWording.Apply(text, probe);
+            // No sourced Jaffa reading aid is supplied. Never pair changed wording with the
+            // original aid, while retaining aids for unaffected prayers from the same source.
+            return new(displayed, displayed == text ? readingAid : null);
+        }
+    }
 
     /// <summary>Resolve a body and its reading aid together. At each ordered content probe,
     /// local wording wins, then the shared Rosary heading, then shared overrides/native text.
@@ -394,7 +403,7 @@ public static class PrayerPackStore
                     ?.GetValueOrDefault(sourceKey) is not { } text) return null;
             var aid = TransliterationsByBundle.GetValueOrDefault(sourceBundle)?.GetValueOrDefault(probe)
                 ?.GetValueOrDefault(sourceKey);
-            return new ResolvedPrayerContent(text, aid);
+            return ResolvedPrayerContent.FromSource(text, aid, probe);
         }
 
         var sharedKey = key == "signumCrucisFormB" ? PrayerKey.SignumCrucis : ToPascalCase(key);
@@ -418,11 +427,11 @@ public static class PrayerPackStore
                     && AppSettings.AramaicSignOfCrossForm == AppSettings.AramaicSignOfCrossFormB
                     && Local("rosary", probe, "signumCrucisFormB") is { } sharedFormB)
                     return sharedFormB;
-                return new ResolvedPrayerContent(shared,
-                    PrayerTransliterations.GetValueOrDefault(probe)?.GetValueOrDefault(sharedKey));
+                return ResolvedPrayerContent.FromSource(shared,
+                    PrayerTransliterations.GetValueOrDefault(probe)?.GetValueOrDefault(sharedKey), probe);
             }
             if (PrayerTranslations.NativeTextAtProbe(probe, sharedKey) is { } native)
-                return new ResolvedPrayerContent(native, null);
+                return ResolvedPrayerContent.FromSource(native, null, probe);
         }
         return null;
     }

@@ -43,6 +43,7 @@ public static class LanguageCatalog
         new("el", "Ἑλληνικά", false),
         new("es", "Español", false),
         new("ru", "Русский", false),
+        new("uk", "Українська", false),
         new("tl", "Tagalog", false),
         new("fr", "Français", false),
         new("it", "Italiano", false),
@@ -53,8 +54,14 @@ public static class LanguageCatalog
 
     public static string PickerLanguageCode(string raw) => raw == "he-x-gamliel" ? "he" : raw;
 
-    public static string SelectingLanguage(string next, string current) =>
-        next == "he" && PickerLanguageCode(current) == "he" ? current : next;
+    public static string SelectingLanguage(string next, string current)
+    {
+        if (next != "he") return next;
+        // Keep an explicit tradition while staying in Hebrew. Entering from another
+        // language (or App setting) starts with the higher saved Hebrew priority.
+        if (current is "he" or "he-x-gamliel") return current;
+        return FallbackOrder.FirstOrDefault(code => code is "he" or "he-x-gamliel") ?? "he";
+    }
 
     /// <summary>Every stored fallback code has its own row. Unlike an ordinary language
     /// picker, this editor includes each Hebrew tradition so another language can sit between
@@ -73,6 +80,17 @@ public static class LanguageCatalog
     {
         var available = declaredCodes.Select(PickerLanguageCode).ToHashSet();
         return PickerOptions.Where(language => available.Contains(language.Code)).ToList();
+    }
+
+    /// <summary>Repository metadata names the authored content language; generic Hebrew is
+    /// not a Vicariate claim. An explicitly advertised Mission overlay retains its tradition.</summary>
+    public static string ContentLanguageName(string code)
+    {
+        var normalized = code switch { "iw" => "he", "fil" => "tl", _ => code };
+        var name = All.FirstOrDefault(language => language.Code == normalized)?.NativeName ?? code;
+        return normalized == "he-x-gamliel"
+            ? $"{name} — {Rites(normalized).First(rite => rite.Code == normalized).NativeName}"
+            : name;
     }
 
     public static IReadOnlyList<string> FallbackOrder

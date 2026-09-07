@@ -71,12 +71,16 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   is a deliberate, known divergence, not a bug.
 - **`PrayerReminder`** — `id`, `hour`, `minute`, `isEnabled`. One-off local reminder times, not a
   recurrence rule — see "Reminders" below for why each platform schedules these differently.
-- **`LanguageOption`/`LanguageCatalog`** — twelve stored prayer-text codes: `la` (default), `en`,
-  `ar`, `he` (Vicariate), `he-x-gamliel` (Mission), `arc`, `el`, `es`, `ru`, `tl`, `fr`, and `it`.
-  Public pickers show eleven languages: Hebrew appears once as `עברית`, with a separate
+- **`LanguageOption`/`LanguageCatalog`** — thirteen stored prayer-text codes: `la` (default), `en`,
+  `ar`, `he` (Vicariate), `he-x-gamliel` (Mission), `arc`, `el`, `es`, `ru`, `uk`, `tl`, `fr`, and `it`.
+  Public pickers show twelve languages: Hebrew appears once as `עברית`, with a separate
   **Prayer tradition** control for Saint James Vicariate / Mission of St. Gamaliel. These controls
   jointly select the existing `he` / `he-x-gamliel` code, preserving presets, bookmarks and sparse
-  overlays without migrating content identities. Aramaic's native label is `ܐܪܡܐܝܬ / ארמית`.
+  overlays without migrating content identities. Selecting Hebrew from another language or
+  App setting starts with the higher Hebrew tradition in the saved language fallback order.
+  Reopening Hebrew preserves its explicit current tradition; leaving and selecting Hebrew
+  again consults the priority anew. This picker behavior does not change content fallback.
+  Aramaic's native label is `ܐܪܡܐܝܬ / ארמית`.
   `aramaicDefaultScript` chooses Hebrew letters (`Hebr`, the initial default) or Syriac
   letters (`Syrc`) when entering an Aramaic prayer. The in-prayer script switch can override
   that choice for the session. Aramaic progress counters and the fruit-of-the-mystery label
@@ -87,7 +91,7 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   Apple's system Settings page uses `Settings.bundle` only for a note directing people to
   Prosary's in-app Settings for prayer language, calendars and appearance. It has no custom
   preference controls; Apple manages the system permissions and interface-language controls.
-  The note is localized in all seven interface languages. Removing the old duplicate language
+  The note is localized in all eight interface languages. Removing the old duplicate language
   picker does not migrate or reset `defaultLanguageCode`; the app reads the same saved value
   and registers its own Latin fallback. The bundled settings test checks the translated note.
 
@@ -291,7 +295,7 @@ supported, with its existing older-system and visionOS styling.
 
 Basic Prayers exposes the same language choice in both its list and single-prayer flow. Its
 `basicPrayersLanguageCode` preference is shared between those two surfaces on every port,
-defaults to the empty "App setting" sentinel, and offers all eleven public prayer languages plus
+defaults to the empty "App setting" sentinel, and offers all twelve public prayer languages plus
 the separate Hebrew tradition. Selecting
 a language refreshes the title, text, direction, and script toggle without changing the app's
 default prayer language.
@@ -371,6 +375,8 @@ and opens the corresponding single-prayer flow directly in `basicPrayersLanguage
 Basic Prayers directory row remains below the cards. Pin changes refresh the Home list immediately,
 including an already-open Mac window. `BasicPrayersOrder` remains the list's drag order; the old
 `favoriteBasicPrayersFirst` preference is ignored and its Settings toggle removed.
+The directory and single-prayer flow both offer “Pin to Pray” / “Remove from Pray”, with native
+pin icons. Removing a pin keeps the prayer available in the directory.
 
 The Rosary is the one devotion with a dedicated presets surface: its Pray row opens the default
 preset, an ad-hoc "Pray any Rosary" setup, and the remaining named presets, with full editors and
@@ -583,6 +589,19 @@ Scripture stay unmarked. Native Hebrew fixed prayers are Vicariate-specific exce
 Compose retains title/body provenance independently when importing, saving a project and
 repacking it, even though the generated prayer keys change. It emits the same per-key metadata
 so editing a sourced Vicariate prayer cannot silently turn it into generic repository Hebrew.
+
+The app-wide `useJaffaHailMaryWording` Boolean (default `false`) offers the Jaffa congregation's
+**בְּרוּכַת הַחֶסֶד** in place of **מְלֵאַת הַחֶסֶד**. Its in-app Settings toggle is always
+available beside prayer-language preferences, including when another language is selected
+and Vicariate may be reached through fallback. Apply the exact substitution only after the
+winning source is known to be `he-x-vicariate`, in both native and marked bundle text. Preserve
+unpointed style for an exact unpointed phrase. Never alter Mission text, unmarked repository
+Hebrew, mystery Scripture, the stored source tables, or the language priority order. Resolve
+the preference at lookup time and refresh open prayers without resetting session progress.
+If a body changes, omit its old reading aid; no corresponding Jaffa aid was supplied.
+Unchanged bodies retain their paired aids. The supplied pastoral attribution and exact
+wording are documented in [the Rosary source notes](content/rosary/SOURCES.markdown) and
+[`tools/vicariate-wording.json`](tools/vicariate-wording.json).
 
 Loaded overlays merge into the same `PrayerTranslations` lookup used by built-in text, so
 Mission, generic Hebrew and Vicariate wording each retain their own place in the configured precedence.
@@ -903,6 +922,9 @@ of its own — its entire step sequence and per-step text are data-driven from i
   prayers.prosary.app), and the actual POST /api/bundles — so no CORS or cross-site cookies
   exist. The receiver re-announces readiness on every mount and Compose answers every
   announcement, which makes the handshake survive the sign-in reload for free.
+  All declared authoring languages, including `arc`, are accepted by the current publishing
+  policy. Compose detects new deployments and offers a durable draft save before reloading;
+  stale editor tabs must not retain obsolete language restrictions indefinitely.
 - **Transliterations** (v0.7) — a language file may carry an optional
   `"transliterations": {key: text}` map: a parallel rendering of that language's own prayer
   text in another script, for praying along in a language one can't read (a Hebrew
@@ -915,12 +937,19 @@ of its own — its entire step sequence and per-step text are data-driven from i
   and language fallback. Replacing shared text replaces or clears its reading aid alongside it;
   a missing aid never borrows one from a different text. Decade prayers and combined presenter
   steps preserve these pairs, including the repeated Our Father, Hail Mary, and Glory Be.
-  Peshitta imports keep the extracted ETCBC Syriac passage unchanged by script conversion and
+  Peshitta imports keep the extracted Syriac passage unchanged by script conversion and
   generate the Hebrew-square projection with Erez's deterministic converter
   (`Shared/tools/aramaic_script_converter.py`): contextual Hebrew finals, mapped vowel signs,
   qushshaya/dagesh, and the Syriac waw rules. Prayer bodies use the ordinary `transliterations`
   map; mystery Scripture uses `transliteratedDescription` beside its partial mystery override.
-  The current source is unpointed, so the importer never invents points. `$scriptureImport`
+  The New Testament uses the pointed BFBS 1905 edition from Digital Syriac Corpus (CC BY 4.0),
+  with its source vowel signs transferred through Erez's rules. The seven Isaiah passages use
+  nine user-supplied pointed verses from hash-pinned Internet Archive XML, accepted after the
+  user reported Erez's review. That OT source's edition and redistribution terms remain
+  unidentified; the NT attribution and license do not apply to it. Its darkness/light verse is
+  numbered 9:2, and the importer explicitly limits this source to the nine reviewed verses.
+  The importer never invents points;
+  see `content/PESHITTA-SOURCES.markdown` for editions, attribution, and remaining source limits. `$scriptureImport`
   records exactly which fields are generated, and the offline `test-import-scripture.py` checks
   the converter, every generated passage, and byte parity of all four packed copies.
 - **`bodyKey`/`titleKey` resolution** (`resolveBodyText`, per bundle): walk the requested wording
@@ -1038,7 +1067,7 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
   user-preferred `תאמא השליח`, also attested by Vatican News in Hebrew. Every label records its source;
   exact English identities and reviewed aliases reuse names across years and rites without
   copying another calendar's dates, ranks, or precedence. Credited `feast-titles-*.json`
-  catalogs supply the remaining display metadata in all seven interface languages; they do
+  catalogs supply the remaining display metadata in all eight interface languages; they do
   not claim to be official liturgical translations or prayer texts. Sourced titles override
   editorial labels. Compound observances retain each component. Hebrew Pentecost is
   `שבועות`, including numbered Sundays after Pentecost. The alias list is explicit and
@@ -1074,15 +1103,19 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
   Hebcal.com (CC BY 4.0). Always Eretz Israel (`i=on`); there is no diaspora option.
   Each selected day maps to the coming Saturday, including Saturday itself. Festival Torah
   readings replace a weekly portion where appropriate. Only the five books of Moses are
-  included; haftarah and festival megillot are excluded. Source Hebrew/French/Russian proper
+  included; haftarah and festival megillot are excluded. Source Hebrew/French/Russian/Ukrainian proper
   names and source transliterations combine with localized captions and citation book names.
+  Hebrew-calendar years in festival titles use `AM 5787` in non-Hebrew languages and full
+  gematria, including thousands (`ה׳תשפ״ז`), in Hebrew. The generator identifies the year
+  from Hebcal's Hebrew-date metadata; festival day numbers and civil navigation dates keep
+  their existing format. The formatted titles ship identically to all three ports.
   Generate with `fetch-torah-portions.py --sync`; `--offline` reuses the downloaded cache.
 - **`pope-intentions.json`** — 2026–2027 monthly intentions from the Pope's Worldwide Prayer
   Network, including published Arabic, French, Italian and Filipino editions, the parish-published
   Russian translation for 2026 (credited to t.me/ihsovs), plus Prosary's
-  Hebrew translation. `sourceByLanguage` records published sources and
-  `translationCreditByLanguage` distinguishes authored translations. The Hebrew version is not
-  an official Vatican edition. `Shared/tools/import-pope-intentions.py --source-dir <pdf-cache>
+  Hebrew and Ukrainian translations. `sourceByLanguage` records sources and
+  `translationCreditByLanguage` distinguishes authored translations. These two versions are not
+  official Vatican editions. `Shared/tools/import-pope-intentions.py --source-dir <pdf-cache>
   --sync` imports the 2026 PDFs and reviewed 2027 snapshots. Arabic and Italian source PDFs
   with broken character maps have visually reviewed transcriptions; corrections from other
   official publications are recorded in the source snapshot. Missing languages use English,
@@ -1122,16 +1155,18 @@ See [calendar research and coverage](calendar-research.markdown) for source rule
 
 Prayer cards and lists use interface-language titles by default. The shared
 `showPrayerNameInPrayerLanguage` preference (default false) makes the actual prayer-language
-name primary and adds the distinct interface-language name as a subtitle. It does not change
-prayer text or its selected language, and ordinary descriptions/progress remain visible.
+name primary and adds the distinct interface-language name as a subtitle. Basic Prayers always
+use their selected prayer-language and Hebrew-tradition title as primary; this setting only
+adds the distinct interface-language subtitle there. It does not change prayer text or its
+selected language, and ordinary descriptions/progress remain visible.
 
 ## Interface languages and new prayer sources
 
-All three interfaces support English, Hebrew, Arabic, Russian, Filipino/Tagalog, French and
-Italian. Native locale identifiers may use `fil` while shared content retains `tl`. The
+All three interfaces support English, Hebrew, Arabic, Russian, Filipino/Tagalog, French,
+Italian and Ukrainian. Native locale identifiers may use `fil` while shared content retains `tl`. The
 interface language follows each platform's app-language mechanism, and Today follows it; prayer
 language preferences remain independent. Resource catalogs include accessibility labels, notifications,
-error states, settings, search categories and About credits in all seven languages.
+error states, settings, search categories and About credits in all eight languages.
 
 French Scripture passages use Augustin Crampon (1923), public domain, from
 [scrollmapper/bible_databases](https://github.com/scrollmapper/bible_databases).
@@ -1143,7 +1178,7 @@ uses a reviewed numbering offset from the Vulgate. French and Italian fixed pray
 and other per-content credited publications. `fr`/`it` overlays without enough sourced content
 remain partial; bundle language menus advertise declared supported languages only.
 
-Reading-book metadata for all five additional UI languages is recorded with sources in
+Reading-book metadata for all six additional UI languages is recorded with sources in
 `Shared/tools/reading-books-localized.json`. `fetch-readings.py --localize-only --sync` applies
 those names offline while preserving every calendar's chapter and verse references.
 
@@ -1163,7 +1198,7 @@ inline markup, and recognize the misspelled John 21 chapter heading. Source-spec
 such as the printed Martini Isaiah 28:16 word join are recorded with their exact edition and verse.
 
 `Shared/tools/audit-prayer-coverage.py` inventories actual selected-language text across all
-eleven public prayer languages, before any fallback. `PRAYER-LANGUAGE-COVERAGE.json` records
+twelve public prayer languages, before any fallback. `PRAYER-LANGUAGE-COVERAGE.json` records
 every missing key; its Markdown companion summarizes complete, partial and absent pack-language
 pairs. This coverage check complements structural validation and source research: a resolved
 known `PrayerKey` alone does not establish a translation, and text presence is not an editorial
@@ -1174,10 +1209,21 @@ The legacy Arabic Scripture credit identifies Dar el-Machreq. The earlier blanke
 all editions are public domain was removed: no such status is established here for the modern
 Arabic revision. This pass preserves existing Arabic passages rather than changing editions.
 
-Run `test-localized-content.py`, `test-import-scripture.py`, `audit-content.py`,
+Ukrainian overlays use the RKC Ukraine *Щоденно з Богом* prayerbook with its required link
+attribution, and all 63 Scripture passages use the public-domain Kulish / Nechui-Levytsky /
+Puluj edition (1905). Historical Scripture spelling is retained. The exact 21 remaining
+fallback bodies and the source permission distinctions are recorded in
+`content/UKRAINIAN-SOURCES.markdown`; `test-ukrainian-content.py` pins source excerpts,
+complete headings and the explicit gap inventory without counting fallback as translation.
+
+Run `test-localized-content.py`, `test-import-scripture.py`, `test-ukrainian-content.py`, `audit-aramaic-finals.py`, `audit-content.py`,
 `test-asset-deduplication.py`, and the feast/readings generators' `--self-test` checks after
 regeneration. The content audit exempts UI labels and specific complete unpunctuated source
 chants while rejecting blank bodies and known scraped website material. The Via Lucis English
 and Latin Matthew 28 passage no longer includes its source website's footer or commentary.
 Arabic full reading references isolate their chapter/verse spans left-to-right inside the RTL
 book label, preserving semicolon-separated range order on screen.
+The Aramaic final-letter audit covers every non-metadata field in Aramaic content, language-keyed
+bundle labels, and prayer reflow fixtures. It keeps Unicode combining marks within words and
+exempts citation gematria; Hebrew-script words in citations are still checked. CI runs it after
+the script-conversion and pack-parity checks.

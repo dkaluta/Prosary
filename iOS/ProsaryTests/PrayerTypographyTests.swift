@@ -67,6 +67,17 @@ final class PrayerTypographyTests: XCTestCase {
     XCTAssertEqual(PrayerTypography.font(languageCode: "el", isScripture: false, text: "Κύριε ἐλέησον", typefaces: fonts), .system(.body, design: .serif))
   }
 
+  func testUkrainianUsesTheCyrillicPreferenceWhenNoLettersIdentifyTheScript() {
+    var fonts = PrayerTypography.Typefaces()
+    fonts.latinPrayer = "sansSerif"
+    XCTAssertEqual(PrayerTypography.resolvedScript(text: "1 — 2", languageCode: "uk"), .cyrillic)
+    XCTAssertEqual(PrayerTypography.font(languageCode: "uk", isScripture: false, typefaces: fonts),
+                   .system(.body, design: .serif))
+    fonts.cyrillicPrayer = "sansSerif"
+    XCTAssertEqual(PrayerTypography.font(languageCode: "uk", isScripture: false, typefaces: fonts),
+                   .system(.body, design: .default))
+  }
+
   func testDominantLettersIgnoreMarksNumbersAndFormatting() {
     XCTAssertEqual(PrayerTypography.script(of: "**ܐܒܘܢ ܕܒܫܡܝܐ** — 12345:67–89"), .syriac)
     XCTAssertEqual(PrayerTypography.script(of: "Отче наш, ѿче нашъ — Jn 3:16"), .cyrillic)

@@ -221,7 +221,7 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
                                         style = MaterialTheme.typography.titleMedium,
                                     )
                                     Text(
-                                        "${bundle.author} · ${languageNames(bundle.languages)}",
+                                        "${bundle.author} · ${LanguageCatalog.publicLanguageNames(bundle.languages, stringResource(R.string.prayer_tradition_mission))}",
                                         style = MaterialTheme.typography.bodySmall,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     )
@@ -283,7 +283,3 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
         )
     }
 }
-
-private fun languageNames(codes: List<String>): String =
-    codes.map(LanguageCatalog::pickerLanguageCode).distinct().mapNotNull { code -> LanguageCatalog.publicOptions.firstOrNull { it.code == code }?.nativeName }
-        .joinToString(", ")

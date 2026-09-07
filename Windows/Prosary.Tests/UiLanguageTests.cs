@@ -60,6 +60,7 @@ public class UiLanguageTests
     [InlineData("ru-RU", "ru", false)]
     [InlineData("fr-CA", "fr", false)]
     [InlineData("it-IT", "it", false)]
+    [InlineData("uk-UA", "uk", false)]
     [InlineData("de", "en", false)]
     public void SupportedTagsResolveTheirSharedContentCodeAndDirection(string tag, string expected, bool rtl)
     {
@@ -130,10 +131,10 @@ public class UiLanguageTests
     }
 
     [Fact]
-    public void AllSevenInterfacesShipTheSameNonemptyResourcesAndFormattingArguments()
+    public void AllInterfacesShipTheSameNonemptyResourcesAndFormattingArguments()
     {
         var english = Resources("en-US");
-        foreach (var language in new[] { "he", "ar", "ru", "fil", "fr", "it" })
+        foreach (var language in new[] { "he", "ar", "ru", "fil", "fr", "it", "uk" })
         {
             var localized = Resources(language);
             Assert.Equal(english.Keys.Order(), localized.Keys.Order());
@@ -147,6 +148,18 @@ public class UiLanguageTests
             Assert.NotEqual(english["home_today_rank_solemnity"], localized["home_today_rank_solemnity"]);
             Assert.NotEqual(english["BtnBack.Content"], localized["BtnBack.Content"]);
         }
+    }
+
+    [Fact]
+    public void UkrainianUsesItsOwnLocalizedResources()
+    {
+        var ukrainian = Resources("uk");
+        Assert.Equal("uk", UiLanguageCatalog.Normalize("uk-UA"));
+        Assert.Equal("Налаштування", ukrainian["SetTitle.Text"]);
+        Assert.Equal("Основні молитви", ukrainian["BasicPrayersTitle.Text"]);
+        Assert.Equal("Молитва", ukrainian["NavPray.Content"]);
+        Assert.Equal("День {0} із {1}", ukrainian["multi_day_day_of"]);
+        Assert.NotEqual(Resources("ru")["SetTitle.Text"], ukrainian["SetTitle.Text"]);
     }
 
     [Fact]

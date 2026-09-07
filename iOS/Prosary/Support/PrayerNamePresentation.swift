@@ -14,14 +14,22 @@ struct PrayerNamePresentation: Equatable {
     translation = showPrayerLanguage && prayerTitle != interfaceTitle ? interfaceTitle : nil
   }
 
+  private init(title: String, translation: String?) {
+    self.title = title
+    self.translation = translation
+  }
+
+  /// Basic prayers name the exact prayer/tradition being opened. The shelf preference only
+  /// adds an interface-language subtitle; it must not replace that prayer's own heading.
   @MainActor
   static func basicPrayer(_ prayer: BasicPrayer, languageCode: String,
+                          interfaceLanguage: String = UILanguage.current,
                           showPrayerLanguage: Bool) -> Self {
-    Self(
-      interfaceTitle: PrayerPackStore.resolveBodyText(
-        bundleId: prayer.bundleId, languageCode: UILanguage.current, key: prayer.titleKey),
-      prayerTitle: PrayerPackStore.resolveBodyText(
-        bundleId: prayer.bundleId, languageCode: languageCode, key: prayer.titleKey),
-      showPrayerLanguage: showPrayerLanguage)
+    let interfaceTitle = HebrewDisplayText.unpointed(PrayerPackStore.resolveBodyText(
+      bundleId: prayer.bundleId, languageCode: interfaceLanguage, key: prayer.titleKey))
+    let prayerTitle = HebrewDisplayText.unpointed(PrayerPackStore.resolveBodyText(
+      bundleId: prayer.bundleId, languageCode: languageCode, key: prayer.titleKey))
+    return Self(title: prayerTitle,
+                translation: showPrayerLanguage && interfaceTitle != prayerTitle ? interfaceTitle : nil)
   }
 }

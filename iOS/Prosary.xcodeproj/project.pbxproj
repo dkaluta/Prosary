@@ -198,6 +198,7 @@
 				tl,
 				fr,
 				it,
+				uk,
 			);
 			mainGroup = 4285F7D3300F4F6B0000CE89;
 			minimizedProjectReferenceProxies = 1;
@@ -399,7 +400,7 @@
 				CODE_SIGN_ENTITLEMENTS = Prosary/Prosary.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1102;
+				CURRENT_PROJECT_VERSION = 1103;
 				DEVELOPMENT_TEAM = 3W55472NF6;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -409,13 +410,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
-				"INFOPLIST_KEY_UIDesignRequiresCompatibility[sdk=macosx*]" = NO;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIBackgroundModes[sdk=iphoneos*]" = "remote-notification";
 				"INFOPLIST_KEY_UIBackgroundModes[sdk=iphonesimulator*]" = "remote-notification";
+				"INFOPLIST_KEY_UIDesignRequiresCompatibility[sdk=macosx*]" = NO;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
@@ -426,7 +427,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.11.2;
+				MARKETING_VERSION = 0.11.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dkaluta.prosary;
 				PRODUCT_NAME = Prosary;
 				REGISTER_APP_GROUPS = YES;
@@ -451,7 +452,7 @@
 				CODE_SIGN_ENTITLEMENTS = Prosary/Prosary.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1102;
+				CURRENT_PROJECT_VERSION = 1103;
 				DEVELOPMENT_TEAM = 3W55472NF6;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -461,13 +462,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
-				"INFOPLIST_KEY_UIDesignRequiresCompatibility[sdk=macosx*]" = NO;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIBackgroundModes[sdk=iphoneos*]" = "remote-notification";
 				"INFOPLIST_KEY_UIBackgroundModes[sdk=iphonesimulator*]" = "remote-notification";
+				"INFOPLIST_KEY_UIDesignRequiresCompatibility[sdk=macosx*]" = NO;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
@@ -478,7 +479,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.11.2;
+				MARKETING_VERSION = 0.11.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dkaluta.prosary;
 				PRODUCT_NAME = Prosary;
 				REGISTER_APP_GROUPS = YES;

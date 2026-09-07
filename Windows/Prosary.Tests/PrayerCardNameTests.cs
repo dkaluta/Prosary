@@ -17,21 +17,34 @@ public class PrayerCardNameTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Equal(new PrayerCardName("Rosary", ""), PrayerCardName.Resolve("Rosary", "Rosary", true));
     }
 
-    [Fact]
-    public void BasicCardPreferenceDoesNotChangeThePrayerBody()
+    [Theory]
+    [InlineData("he", "אבינו שבשמים")]
+    [InlineData("he-x-gamliel", "תפילת האדון")]
+    [InlineData("arc", "צלותא מרניתא")]
+    [InlineData("uk", "Отче наш")]
+    [InlineData("en", "Our Father")]
+    public void BasicCardPreferenceOnlyAddsInterfaceSubtitleAndKeepsTheSelectedPrayer(
+        string language, string expectedTitle)
     {
         var old = AppSettings.ShowPrayerNameInPrayerLanguage;
         try
         {
             var prayer = BasicPrayerCatalog.Prayer("ourFather")!;
-            var body = BasicPrayerCatalog.Step(prayer, "he").Body;
-            AppSettings.SetShowPrayerNameInPrayerLanguage(false);
-            var interfaceName = PrayerPackStore.ResolveDisplayText(prayer.BundleId, UiLanguageCatalog.Current, prayer.TitleKey);
-            Assert.Equal(interfaceName, PrayerCardName.ForBasicPrayer(prayer, "he").Title);
-            AppSettings.SetShowPrayerNameInPrayerLanguage(true);
-            Assert.Equal(PrayerPackStore.ResolveDisplayText(prayer.BundleId, "he", prayer.TitleKey),
-                PrayerCardName.ForBasicPrayer(prayer, "he").Title);
-            Assert.Equal(body, BasicPrayerCatalog.Step(prayer, "he").Body);
+            var original = BasicPrayerCatalog.Step(prayer, language);
+            Assert.False(string.IsNullOrWhiteSpace(original.Body));
+            foreach (var enabled in new[] { false, true, false })
+            {
+                AppSettings.SetShowPrayerNameInPrayerLanguage(enabled);
+                // The selected prayer/tradition stays primary even with the option off.
+                // An explicit interface language keeps this independent of the test host.
+                var name = PrayerCardName.ForBasicPrayer(prayer, language, "en");
+                Assert.Equal(expectedTitle, name.Title);
+                Assert.Equal(enabled && expectedTitle != "Our Father" ? "Our Father" : "", name.InterfaceSubtitle);
+                var current = BasicPrayerCatalog.Step(prayer, language);
+                Assert.Equal(expectedTitle, current.Title);
+                Assert.Equal(original.Body, current.Body);
+                Assert.Equal(original.TransliteratedBody, current.TransliteratedBody);
+            }
         }
         finally { AppSettings.SetShowPrayerNameInPrayerLanguage(old); }
     }

@@ -11,6 +11,7 @@ struct RosaryFlowView: View {
 
   @Environment(\.appServices) private var services
   @Environment(\.dismiss) private var dismiss
+  @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
 
   @State private var steps: [RosaryStep] = []
   @State private var currentIndex = 0
@@ -103,6 +104,11 @@ struct RosaryFlowView: View {
                   defaultValue: "You have an unfinished prayer. Continue where you left off or begin again?"))
     }
     .task { await load() }
+    .onChange(of: prayerLanguage.usesJaffaHailMaryWording) { _, _ in
+      guard hasLoaded, !didFinish else { return }
+      steps = services.engine.buildSteps(for: sessionPrayer)
+      currentIndex = min(currentIndex, max(steps.count - 1, 0))
+    }
     .onDisappear {
       guard hasLoaded, pendingContinuation == nil, !didFinish else { return }
       persistProgress()

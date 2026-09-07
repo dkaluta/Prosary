@@ -29,7 +29,7 @@ final class UILanguageTests: XCTestCase {
   func testLocaleAliasesAndRegionalCodesResolveWithoutLosingTagalog() {
     for (input, expected) in ["fil-PH": "tl", "tl_PH": "tl", "iw-IL": "he",
                               "he-x-gamliel": "he", "ar-SA": "ar", "ru-RU": "ru",
-                              "fr_CA": "fr", "it-IT": "it", "en-GB": "en"] {
+                              "fr_CA": "fr", "it-IT": "it", "en-GB": "en", "uk-UA": "uk", "uk_UA": "uk"] {
       XCTAssertEqual(UILanguage.resolve(input), expected)
     }
     XCTAssertEqual(UILanguage.resolve("la"), "en")
@@ -37,6 +37,8 @@ final class UILanguageTests: XCTestCase {
     XCTAssertTrue(UILanguage.isRightToLeft("ar-SA"))
     XCTAssertTrue(UILanguage.isRightToLeft("iw-IL"))
     XCTAssertFalse(UILanguage.isRightToLeft("fil-PH"))
+    XCTAssertFalse(UILanguage.isRightToLeft("uk-UA"))
+    XCTAssertEqual(UILanguage.resourceLanguage("uk-UA"), "uk")
     XCTAssertEqual(LanguageCatalog.resolve("fr").nativeName, "Français")
     XCTAssertEqual(LanguageCatalog.resolve("it").nativeName, "Italiano")
   }
@@ -45,7 +47,7 @@ final class UILanguageTests: XCTestCase {
     let date = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2026, month: 9, day: 5))!
     let day = TodayInfoStore.liturgicalDayInfo(on: date)
     let expected = ["ar": "الزمن العادي", "ru": "Рядовое время", "tl": "Karaniwang Panahon",
-                    "fr": "Temps ordinaire", "it": "Tempo Ordinario"]
+                    "fr": "Temps ordinaire", "it": "Tempo Ordinario", "uk": "Звичайний період"]
     for (language, season) in expected {
       let heading = day.localized(language)
       XCTAssertTrue(heading.localizedCaseInsensitiveContains(season), "\(language): \(heading)")
@@ -74,7 +76,7 @@ final class UILanguageTests: XCTestCase {
     XCTAssertEqual(citation.localizedFull("ar-SA"), "يوحنا \u{2066}3:16-18\u{2069}")
   }
 
-  func testEveryUIStringHasSevenNonemptyTranslationsAndCompatibleArguments() throws {
+  func testEveryUIStringHasAllInterfaceTranslationsAndCompatibleArguments() throws {
     // Validate the source catalog as well as the compiled bundles. A fallback to English can
     // otherwise make a missing language look successful in a runtime-only test.
     let project = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
@@ -97,6 +99,23 @@ final class UILanguageTests: XCTestCase {
         XCTAssertEqual(argumentTypes(value), argumentTypes(english), "\(key)/\(language)")
         XCTAssertNotNil(Bundle.main.path(forResource: UILanguage.resourceLanguage(language), ofType: "lproj"), language)
       }
+    }
+  }
+
+  func testUkrainianLoadsItsOwnInterfaceResourcesWithoutRussianOrEnglishFallback() throws {
+    XCTAssertEqual(UILanguage.all.first { $0.code == "uk" }?.nativeName, "Українська")
+    for (key, expected) in [
+      "settings.title": "Налаштування",
+      "tabs.pray": "Молитва",
+      "basicPrayers.title": "Основні молитви",
+      "home.today.today": "Сьогодні",
+      "home.today.torahPortion": "Тижневий розділ Тори",
+      "prayerFlow.language": "Мова молитви",
+    ] {
+      let ukrainian = UILanguage.text(key, language: "uk-UA", fallback: "missing")
+      XCTAssertEqual(ukrainian, expected, key)
+      XCTAssertNotEqual(ukrainian, UILanguage.text(key, language: "ru", fallback: "missing"), key)
+      XCTAssertNotEqual(ukrainian, UILanguage.text(key, language: "en", fallback: "missing"), key)
     }
   }
 }

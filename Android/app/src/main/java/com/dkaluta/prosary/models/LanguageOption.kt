@@ -58,6 +58,7 @@ object LanguageCatalog {
         LanguageOption(code = "fr", nativeName = "Français", isRightToLeft = false),
         LanguageOption(code = "it", nativeName = "Italiano", isRightToLeft = false),
         LanguageOption(code = "ru", nativeName = "Русский", isRightToLeft = false),
+        LanguageOption(code = "uk", nativeName = "Українська", isRightToLeft = false),
         LanguageOption(code = "tl", nativeName = "Tagalog", isRightToLeft = false),
     )
 
@@ -69,8 +70,29 @@ object LanguageCatalog {
         return baseLanguage(normalized) ?: normalized
     }
 
-    fun selectingLanguage(next: String, current: String): String =
-        if (next == "he" && pickerLanguageCode(current) == "he") current else next
+    /** Pickers show Hebrew once, with its tradition in a separate control. */
+    fun pickerLanguageName(raw: String): String {
+        val code = pickerLanguageCode(raw)
+        return publicOptions.firstOrNull { it.code == code }?.nativeName ?: code
+    }
+
+    /** Download metadata must not infer Vicariate from generic Hebrew. An explicitly authored
+     * Mission edition retains its identity; callers supply the localized tradition label. */
+    fun publicLanguageName(raw: String, missionLabel: String = rites("he").first { it.code == "he-x-gamliel" }.nativeName): String {
+        val name = pickerLanguageName(raw)
+        return if (uiLanguageCode(raw) == "he-x-gamliel") "$name — $missionLabel" else name
+    }
+
+    fun publicLanguageNames(codes: List<String>, missionLabel: String = rites("he").first { it.code == "he-x-gamliel" }.nativeName): String =
+        codes.map { publicLanguageName(it, missionLabel) }.distinct().joinToString(", ")
+
+    fun selectingLanguage(next: String, current: String): String {
+        if (next != "he") return next
+        // Preserve an explicit tradition while remaining in Hebrew. Entering Hebrew from
+        // another language (or App setting) starts with the higher saved Hebrew priority.
+        if (current == "he" || current == "he-x-gamliel") return current
+        return fallbackOrder.firstOrNull { it == "he" || it == "he-x-gamliel" } ?: "he"
+    }
 
     fun availableOptions(declaredCodes: List<String>): List<LanguageOption> {
         val available = declaredCodes.map(::pickerLanguageCode).toSet()

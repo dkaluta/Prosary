@@ -14,17 +14,22 @@ templates, SQL migrations, HMAC-cookie sessions, request-derived WebAuthn RP inf
   collected once and used **only for recovery** — a 30-minute single-use link that registers a
   new passkey (`/recover/[token]`). No passwords anywhere.
 - **Submissions** (`POST /api/bundles`, signed-in): upload ordinary Compose output; the server
-  validates it like the apps' `installPack` (readable zip, manifest + devotion parse, content
-  per declared language, no `builtinKind`) and **re-stamps the manifest id** to
+  checks readable ZIP contents and native JSON shapes for the manifest, devotion, every content
+  overlay, and optional options/audio files, then **re-stamps the manifest id** to
   `repo.<username>.<name>` by rebuilding the zip (`lib/bundles.ts` + `lib/zip.ts`, a copy of
   Compose's zip module — keep them in sync). The file lands in **Vercel Blob**
   (`bundles/<uuid>/<id>.prosaryprayer`, public); metadata lands in **Postgres (Neon)**. Resubmitting
   the same devotion updates it; ids are guarded against cross-user takeover.
-  The repository accepts the same twelve languages as the apps and Compose: `la`, `en`, `ar`,
-  `he`, `he-x-gamliel`, `arc`, `el`, `es`, `ru`, `tl`, `fr`, and `it`.
+  The repository accepts the same thirteen content language codes as the apps and Compose: `la`, `en`, `ar`,
+  `he`, `he-x-gamliel`, `arc`, `el`, `es`, `ru`, `uk`, `tl`, `fr`, and `it`.
   Every declared language must have its own content file. A manifest that mixes accepted and
   unknown languages is rejected
   as a whole so catalog metadata never claims only a partially validated subset.
+  Supported native structures include steps, alternate forms, multi-day devotions, and
+  Rosaries, including structures Compose cannot yet edit. Built-in replacements and unsupported
+  devotion types are rejected. Native shape checks preserve extra metadata and all non-manifest
+  bytes; they do not establish prayer-reference coverage, source authenticity, option-expression
+  correctness, or playable media. Canonical authoring validation remains a separate check.
 - **Catalog**: `/` (search + language filter), `GET /api/bundles`, and the versioned
   **`/index.json`** contract (`{prosaryRepository: 1, bundles: [...]}`) the apps' Browse tab
   reads. Downloads go through `/api/download/<id>` (counts, then redirects to the blob).

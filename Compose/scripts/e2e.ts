@@ -13,6 +13,7 @@ import {
   newUid,
   pruneUnusedImages,
   replaceAudioTrackMedia,
+  slugify,
 } from "../src/format/project";
 import { deserializeProject, serializeProject } from "../src/format/projectFile";
 import {
@@ -28,6 +29,8 @@ import { AUTHORING_LANGUAGES, LANGUAGES, REPOSITORY_PUBLISH_LANGUAGE_CODES } fro
 import { publicationIssues } from "../src/format/publishing";
 import { SUPPORTED_LANGUAGES } from "../../Repository/lib/languages";
 import { validateAndRestamp } from "../../Repository/lib/bundles";
+import { hasNewDeployment, saveBeforeReload } from "../src/storage/deployment";
+import { testImportCompatibility } from "./importCompatibilityTests";
 
 function assert(condition: boolean, message: string): void {
   if (!condition) {
@@ -39,6 +42,22 @@ function assert(condition: boolean, message: string): void {
 function fail(message: string, ...detail: unknown[]): never {
   console.error("e2e FAILED:", message, ...detail);
   process.exit(1);
+}
+
+await testImportCompatibility();
+
+// An older open editor must offer the new publishing rules without losing an unsaved draft.
+{
+  assert(hasNewDeployment("/assets/index-old.js", { entry: "assets/index-new.js" }), "a new deployment must be detected");
+  for (const payload of [null, {}, { entry: "assets/index-old.js" }, { entry: "https://other.example/new.js" }]) {
+    assert(!hasNewDeployment("/assets/index-old.js", payload), "invalid or identical deployments must not prompt a reload");
+  }
+  const events: string[] = [];
+  await saveBeforeReload(async () => { events.push("saved"); }, () => events.push("reloaded"));
+  assert(events.join(",") === "saved,reloaded", "the durable draft save must precede reloading");
+  await expectRejection(() => saveBeforeReload(async () => { throw new Error("Storage quota"); }, () => events.push("unsafe reload")),
+    "a failed draft save must reject updating");
+  assert(!events.includes("unsafe reload"), "a failed draft save must leave the editor open");
 }
 
 function expectThrow(action: () => unknown, message: string): void {
@@ -200,7 +219,7 @@ writeFileSync("dist-e2e/exampleDevotion.prosaryprayer", bundle);
     JSON.stringify([...REPOSITORY_PUBLISH_LANGUAGE_CODES].sort()) === JSON.stringify([...SUPPORTED_LANGUAGES].sort()),
     "Compose publication readiness and repository language policy have drifted",
   );
-  assert(LANGUAGES.length === 12, "Compose must recognize all twelve native content codes");
+  assert(LANGUAGES.length === 13, "Compose must recognize all thirteen native content codes");
   assert(AUTHORING_LANGUAGES.filter((language) => language.code.startsWith("he")).length === 1,
     "new custom prayers must offer Hebrew as one language");
   const source = JSON.parse(readFileSync("../Shared/content/trisagion/content/arc.json", "utf8"));
@@ -259,7 +278,56 @@ writeFileSync("dist-e2e/exampleDevotion.prosaryprayer", bundle);
   assert(publicationIssues(unsupported, aramaicFiles).length > 0, "unknown languages must not enable publishing");
   assert(publicationIssues(aramaic, [...aramaicFiles, { name: "images/large.jpg", data: new Uint8Array(8 * 1024 * 1024) }]).length > 0,
     "adding language support must not bypass the upload limit");
-  console.log("✓ Aramaic can publish and retains pointed Hebrew and Syriac across popup reloads and repository restamping; all twelve language policies agree");
+  console.log("✓ Aramaic can publish and retains pointed Hebrew and Syriac across popup reloads and repository restamping; all thirteen language policies agree");
+}
+
+// Ukrainian takes the same authoring and community-publishing path as existing languages.
+{
+  const source = JSON.parse(readFileSync("../Shared/content/trisagion/content/uk.json", "utf8"));
+  const project = newProject();
+  project.name = "Святий Боже";
+  project.id = slugify(project.name);
+  project.languages = ["uk"];
+  project.steps = [{
+    uid: newUid(), kind: "custom", title: "", isScripture: false,
+    titleByLanguage: { uk: source.prayers.trisagionAcclamationTitle },
+    bodyByLanguage: { uk: source.prayers.trisagionAcclamation },
+  }];
+  assert(validateProject(project).length === 0, "a complete Ukrainian prayer must validate");
+  assert(publicationIssues(project, buildBundleFiles(project)).length === 0, "Ukrainian must enable Publish");
+  const published = await validateAndRestamp(buildBundle(project), "pilgrim");
+  assert(JSON.stringify(published.languages) === '["uk"]', "Ukrainian must survive repository restamping");
+  const reopened = await openBundle(published.bytes);
+  assert(reopened.steps[0].titleByLanguage.uk === source.prayers.trisagionAcclamationTitle,
+    "Ukrainian prayer title changed while publishing");
+  assert(reopened.steps[0].bodyByLanguage.uk === source.prayers.trisagionAcclamation,
+    "Ukrainian prayer text changed while publishing");
+  writeFileSync("dist-e2e/ukrainianHolyGod.prosaryprayer", published.bytes);
+  console.log("✓ Ukrainian can be authored, published and reopened without fallback or text changes");
+}
+
+// The name field generates a portable identifier without requiring an English name. The
+// repository uses the same fallback for an otherwise valid bundle with no authored id.
+{
+  assert(slugify("My Little Devotion") === "myLittleDevotion", "existing Latin identifiers changed");
+  assert(slugify("  ") === "", "an empty name must remain invalid");
+  const names = ["Святий Боже", "Отче наш", "תפילה", "ܩܕܝܫܐ", "صلاة", "祈り", "123"];
+  assert(new Set(names.map(slugify)).size === names.length, "different prayer names collided");
+  for (const name of names) {
+    const id = slugify(name);
+    assert(/^[a-z][a-zA-Z0-9]*$/.test(id), `no portable automatic identifier for ${name}`);
+    assert(id === slugify(` ${name.normalize("NFD")} `), "canonically equivalent names changed identity");
+    const files = [
+      { name: "manifest.json", data: new TextEncoder().encode(JSON.stringify({ displayName: name, languages: ["uk"], hasCatalog: false })) },
+      { name: "devotion.json", data: new TextEncoder().encode(JSON.stringify({ type: "steps", steps: [] })) },
+      { name: "content/uk.json", data: new TextEncoder().encode(JSON.stringify({ prayers: {}, mysteries: {} })) },
+    ];
+    const published = await validateAndRestamp(buildZip(files), "pilgrim");
+    assert(published.id === `repo.pilgrim.${id}`, "Compose and the repository disagree on the same name");
+    const republished = await validateAndRestamp(published.bytes, "pilgrim");
+    assert(republished.id === published.id, "republishing changed an existing identifier");
+  }
+  console.log("✓ Prayer names in every script receive stable portable identifiers");
 }
 
 // Imported specific wording must never silently become generic Hebrew when it is repacked.
@@ -537,18 +605,19 @@ console.log(
   console.log(`✓ projects saved before any of ${Object.keys(defaults).length} fields still restore`);
 }
 
-// The O Antiphons pack is built in even though it is calendar-surfaced rather than listed like
-// the other devotions. Compose must still reserve its id or an imported bundle could collide.
+// Check the actual native content inventory so a newly bundled devotion cannot silently
+// acquire a colliding authoring identifier in Compose.
 {
-  const project = newProject();
-  project.name = "Not the built-in O Antiphons";
-  project.id = "oAntiphons";
-  project.steps = [cross];
-  assert(
-    validateProject(project).some((issue) => issue.message.includes("already used")),
-    "oAntiphons remains a reserved built-in id",
-  );
-  console.log("✓ oAntiphons remains reserved");
+  for (const name of readdirSync("../Shared/content", { withFileTypes: true }).filter((entry) => entry.isDirectory())) {
+    const manifest = JSON.parse(readFileSync(`../Shared/content/${name.name}/manifest.json`, "utf8"));
+    const project = newProject();
+    project.name = "Authoring collision check";
+    project.id = manifest.id;
+    project.steps = [cross];
+    assert(validateProject(project).some((issue) => issue.message.includes("already used")),
+      `${manifest.id} is shipped by the app and must remain reserved`);
+  }
+  console.log("✓ Every shipped native devotion has its identifier reserved in Compose");
 }
 
 // Artwork is retained while ANY saved shape references it, even if that shape is currently

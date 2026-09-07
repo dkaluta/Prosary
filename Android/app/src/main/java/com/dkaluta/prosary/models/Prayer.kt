@@ -44,16 +44,16 @@ data class Prayer(
 ) {
     val isNotDefault: Boolean get() = !isDefault
     val resolvedLanguageCode: String get() = LanguageCatalog.resolve(languageCode).code
-    val languageNativeName: String get() = LanguageCatalog.resolve(languageCode).nativeName
+    val languageNativeName: String get() = LanguageCatalog.pickerLanguageName(resolvedLanguageCode)
 
     /** Display string for list rows — shows "Default (Latina)" for the sentinel, plain name otherwise. */
     fun languageDisplayName(context: Context): String =
         if (languageCode == LanguageCatalog.defaultSentinel) {
             context.getString(
                 com.dkaluta.prosary.R.string.language_default_parenthesized,
-                LanguageCatalog.resolve(languageCode).nativeName,
+                languageNativeName,
             )
         } else {
-            LanguageCatalog.resolve(languageCode).nativeName
+            languageNativeName
         }
 }

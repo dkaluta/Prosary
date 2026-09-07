@@ -34,10 +34,14 @@ public sealed record PrayerCardName(string Title, string InterfaceSubtitle)
         return Resolve(interfaceName, prayerName, AppSettings.ShowPrayerNameInPrayerLanguage);
     }
 
-    public static PrayerCardName ForBasicPrayer(BasicPrayer prayer, string? prayerLanguage)
+    // Basic prayers retain the chosen prayer/tradition heading even when the optional
+    // interface subtitle is off. The directory and Pray pins share this policy.
+    public static PrayerCardName ForBasicPrayer(BasicPrayer prayer, string? prayerLanguage,
+        string? interfaceLanguage = null)
     {
-        var interfaceName = PrayerPackStore.ResolveDisplayText(prayer.BundleId, UiLanguageCatalog.Current, prayer.TitleKey);
+        var interfaceName = PrayerPackStore.ResolveDisplayText(prayer.BundleId, interfaceLanguage ?? UiLanguageCatalog.Current, prayer.TitleKey);
         var prayerName = PrayerPackStore.ResolveDisplayText(prayer.BundleId, LanguageCatalog.Resolve(prayerLanguage).Code, prayer.TitleKey);
-        return Resolve(interfaceName, prayerName, AppSettings.ShowPrayerNameInPrayerLanguage);
+        return new(prayerName, AppSettings.ShowPrayerNameInPrayerLanguage && prayerName != interfaceName
+            ? interfaceName : string.Empty);
     }
 }

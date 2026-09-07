@@ -32,13 +32,14 @@ function bundleWithLanguages(languages: unknown[]): Uint8Array {
         id: "eveningPrayer",
         kind: "eveningPrayer",
         displayName: "Evening Prayer",
+        hasCatalog: false,
         languages,
         tags: [" Evening ", "community"],
       }),
     },
     { name: "devotion.json", data: json({ type: "steps", steps: [] }) },
     ...[...new Set(languages.filter((language): language is string => typeof language === "string"))]
-      .map((language) => ({ name: `content/${language}.json`, data: json({ prayers: {} }) })),
+      .map((language) => ({ name: `content/${language}.json`, data: json({ prayers: {}, mysteries: {} }) })),
   ]);
 }
 
@@ -75,8 +76,8 @@ test("a mixed supported and unsupported manifest is rejected instead of partiall
   );
 });
 
-test("all twelve native prayer languages can be published without narrowing the catalog", async () => {
-  const languages = ["la", "en", "ar", "he", "he-x-gamliel", "arc", "el", "es", "ru", "tl", "fr", "it"];
+test("all thirteen native prayer languages can be published without narrowing the catalog", async () => {
+  const languages = ["la", "en", "ar", "he", "he-x-gamliel", "arc", "el", "es", "ru", "uk", "tl", "fr", "it"];
   assert.deepEqual([...SUPPORTED_LANGUAGES].sort(), [...languages].sort());
   for (const language of languages) {
     const result = await validateAndRestamp(bundleWithLanguages([language]), "pilgrim");

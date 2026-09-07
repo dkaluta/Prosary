@@ -85,7 +85,7 @@ public static class PrayerTypography
         {
             "he" or "arc" => Script.Hebrew,
             "ar" => Script.Arabic,
-            "ru" => Script.Cyrillic,
+            "ru" or "uk" => Script.Cyrillic,
             "el" => Script.Greek,
             _ => Script.Latin,
         };

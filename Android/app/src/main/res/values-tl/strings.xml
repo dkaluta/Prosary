@@ -51,6 +51,8 @@
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">"Paunang Piniling Wika ng Panalangin"</string>
+    <string name="settings_jaffa_wording">"Bersiyon ng Jaffa"</string>
+    <string name="settings_jaffa_wording_hint">"Gamitin ang בְּרוּכַת הַחֶסֶד sa halip na מְלֵאַת הַחֶסֶד sa mga panalangin ng Bikaryato."</string>
     <string name="settings_language_fallback_order">"Pagkakasunod-sunod ng pamalit na wika…"</string>
     <string name="settings_language_fallback_order_title">"Pagkakasunod-sunod ng pamalit na wika"</string>
     <string name="settings_language_fallback_order_footer">Kapag wala ang teksto sa piniling wika, sinusunod ng Prosary ang ayos na ito. Ang tekstong Hebreo na pareho sa dalawang tradisyon, kasama ang mga panalangin mula sa repositoryo, ay gumagamit ng mas mataas sa dalawang puwesto ng Hebreo.</string>
@@ -348,9 +350,6 @@
     <string name="settings_typeface_stam_ashkenaz">"Stam Ashkenaz"</string>
     <string name="settings_typeface_stam_sefarad">"Stam Sefarad"</string>
     <string name="settings_typeface_rashi">"Rashi"</string>
-    <string name="settings_favorite_basic_prayers_first">"Ilipat sa itaas ang mga paboritong pangunahing panalangin"</string>
-    <string name="basic_prayers_favorite">"Idagdag sa mga paborito"</string>
-    <string name="basic_prayers_unfavorite">"Alisin sa mga paborito"</string>
     <string name="home_today_show_english">"English"</string>
     <string name="home_today_language">"Wika ng Ngayon"</string>
     <string name="home_today_app_language">"Wika ng app"</string>
@@ -391,7 +390,12 @@
     <string name="category_short">Maiikli</string>
     <string name="category_easter">Pasko ng Pagkabuhay</string>
     <string name="category_other">Iba pa</string>
-    <string name="about_additional_sources">Banal na Kasulatan sa Pranses: Crampon (1923), pampublikong dominyo. Sa Italyano: Antonio Martini; nakabalangkas na datos © Giovanni Novelli, CC BY 4.0 (parolaviva.art). Mga panalangin sa Pranses at Italyano: Kompendyum ng Vaticano. Mga intensiyon ng Papa: Pandaigdigang Samahan ng Panalangin ng Papa (2026–2027); salin sa Hebreo ng Prosary. Mga intensiyon sa Ruso (2026): salin ng t.me/ihsovs, inilathala ng Parokya ng Kalinis-linisang Paglilihi sa Chelyabinsk (cc74.wordpress.com/rosary/).</string>
+    <string name="about_additional_sources">Banal na Kasulatan sa Pranses: Crampon (1923), pampublikong dominyo. Sa Italyano: Antonio Martini; nakabalangkas na datos © Giovanni Novelli, CC BY 4.0 (parolaviva.art). Mga panalangin sa Pranses at Italyano: Kompendyum ng Vaticano. Mga intensiyon ng Papa: Pandaigdigang Samahan ng Panalangin ng Papa (2026–2027); salin sa Hebreo ng Prosary. Mga intensiyon sa Ruso (2026): salin ng t.me/ihsovs, inilathala ng Parokya ng Kalinis-linisang Paglilihi sa Chelyabinsk (cc74.wordpress.com/rosary/). Mga intensyon sa Ukrainian: saling pang-editoryal ng Prosary mula sa inilathalang Ingles.</string>
+    <string name="about_peshitta_sources">Bagong Tipan ng Peshitta (BFBS, 1905): Digital Syriac Corpus; pagkopya ng tekstong Syriac ni George A. Kiraz, edisyong TEI © James E. Walters, CC BY 4.0. Paglilipat sa sulat Hebreo ayon sa mga tuntunin ni Erez; pagpili ng mga talata at pag-aayos ng teksto ng Prosary.</string>
+    <string name="about_peshitta_source_link">Digital Syriac Corpus</string>
+    <string name="about_peshitta_license_link">CC BY 4.0</string>
+    <string name="about_peshitta_isaiah_sources">Isaias: XML ng Peshitta na may mga tandang patinig mula sa Internet Archive, na ibinigay ng isang gumagamit. Hindi pa natutukoy ang pinagmulang edisyon at mga tuntunin sa muling pamamahagi. Paglilipat sa sulat Hebreo ayon sa mga tuntunin ni Erez; pagpili ng mga talata at pag-aayos ng teksto ng Prosary.</string>
+    <string name="about_peshitta_isaiah_source_link">Internet Archive</string>
     <string name="about_bible_book_sources">Mga pangalan ng aklat ng Bibliya: AELF, Dar el-Machreq, Bibliyang Sinodal sa Ruso (Azbyka), Philippine Bible Society at ParolaViva.</string>
     <string name="about_prayer_network_link">Pandaigdigang Samahan ng Panalangin ng Papa</string>
     <string name="about_parolaviva_link">ParolaViva — CC BY 4.0</string>
@@ -407,8 +411,8 @@
     <string name="prayer_tradition">"Tradisyon ng panalangin"</string>
     <string name="prayer_tradition_vicariate">"Bikariya ni San Santiago"</string>
     <string name="prayer_tradition_mission">"Misyon ni San Gamaliel"</string>
-    <string name="basic_prayers_pin">"I-pin sa home"</string>
-    <string name="basic_prayers_unpin">"Alisin ang pin sa home"</string>
+    <string name="basic_prayers_pin">"I-pin sa Magdasal"</string>
+    <string name="basic_prayers_unpin">"Alisin ang pin sa Magdasal"</string>
     <string name="ro_closing_pope_intention">"Pangwakas na mga panalangin para sa Papa"</string>
     <string name="ro_closing_bishop_intention">"Pangwakas na mga panalangin para sa obispo"</string>
     <string name="ro_closing_departed_intention">"Pangwakas na mga panalangin para sa mga yumaong mananampalataya"</string>
@@ -433,4 +437,7 @@
     <string name="settings_eastern_pascha">Paskuwa ng Ritung Bisantino</string>
     <string name="settings_pascha_julian">Paskuwa ayon sa kalendaryong Juliano</string>
     <string name="settings_pascha_gregorian">Paskuwa ayon sa kalendaryong Gregoriano</string>
+    <string name="about_ukrainian_sources">"Mga panalangin sa Ukrainian: Simbahang Romano Katoliko sa Ukraine, aklat-dasalan na Щоденно з Богом. Ginagamit nang may pagkilala sa pinagmulan ayon sa patakaran ng tagapaglathala sa muling paggamit. Kasulatan: Bibliya nina Kulish, Nechui-Levytsky at Puluj (1905), pampublikong dominyo; eBible.org ukr1871. Pinanatili ang makasaysayang baybay ng Kasulatan."</string>
+    <string name="about_ukrainian_prayerbook_link">"Aklat-dasalan sa Ukrainian"</string>
+    <string name="about_ukrainian_bible_link">"Bibliya sa Ukrainian (1905)"</string>
 </resources>

@@ -10,6 +10,7 @@ enum UILanguage {
     LanguageOption(code: "tl", nativeName: "Tagalog", isRightToLeft: false),
     LanguageOption(code: "fr", nativeName: "Français", isRightToLeft: false),
     LanguageOption(code: "it", nativeName: "Italiano", isRightToLeft: false),
+    LanguageOption(code: "uk", nativeName: "Українська", isRightToLeft: false),
   ]
 
   static func normalized(_ identifier: String) -> String {

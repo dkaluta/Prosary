@@ -64,8 +64,8 @@ public static partial class PrayerTranslations
         foreach (var code in Prosary.Models.LanguageCatalog.ContentFallbackChain(languageCode))
         {
             var packOverride = PrayerPackStore.PrayerOverride(code, key);
-            if (packOverride is not null) return packOverride;
-            if (NativeTextAtProbe(code, key) is { } text) return text;
+            if (packOverride is not null) return VicariatePrayerWording.Apply(packOverride, code);
+            if (NativeTextAtProbe(code, key) is { } text) return VicariatePrayerWording.Apply(text, code);
         }
 
         // Pack-provided Latin before the hardcoded Latin table — some texts (the converted

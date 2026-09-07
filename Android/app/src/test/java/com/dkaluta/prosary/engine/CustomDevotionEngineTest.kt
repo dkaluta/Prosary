@@ -613,14 +613,25 @@ class CustomDevotionEngineTest {
         assertEquals(4, aramaic.size)
         assertEquals("קדישת אלהא", aramaic[0].title)
         assertEquals(
-            "קַדּישַת אַלָהָא\nקַדִישַת חַילתָּנָא\nקַדִישַת לָא מִיותָּא אֶתַרחַמעלִין",
+            "קַדּישַת ✠▼▲ אַלָהָא\nקַדִישַת חַילתָּנָא\nקַדִישַת לָא מִיותָּא אֶתַרחַמעלִין",
             aramaic[0].body,
         )
         assertEquals(
-            "ܩܰܕ݁ܝܫܰܬ݂ ܐܰܠܳܗܳܐ\nܩܰܕܺܝܫܰܬ݂ ܚܰܝܠܬ݁ܳܢܳܐ\nܩܰܕܺܝܫܰܬ݂ ܠܳܐ ܡܺܝܘܬ݁ܳܐ ܐܶܬܰܪܚܰܡܥܠܺܝܢ",
+            "ܩܰܕ݁ܝܫܰܬ݂ ✠▼▲ ܐܰܠܳܗܳܐ\nܩܰܕܺܝܫܰܬ݂ ܚܰܝܠܬ݁ܳܢܳܐ\nܩܰܕܺܝܫܰܬ݂ ܠܳܐ ܡܺܝܘܬ݁ܳܐ ܐܶܬܰܪܚܰܡܥܠܺܝܢ",
             aramaic[0].transliteratedBody,
         )
-        assertEquals("קוריאליסונ\nקוריאליסונ\nקוריאליסונ", aramaic[3].body)
+        assertEquals("קוריאליסון", aramaic[3].title)
+        // The user confirmed these opening gestures on 2026-09-07: every full repetition
+        // keeps both scripts paired, while the short form retains only the final line.
+        val byzantine = steps("trisagion", language = "arc", variantId = "byzantine")
+        (aramaic.take(3) + listOf(0, 1, 2, 5).map { byzantine[it] }).forEach {
+            assertEquals(aramaic[0].body, it.body)
+            assertEquals(aramaic[0].transliteratedBody, it.transliteratedBody)
+        }
+        assertEquals(aramaic[0].body.lines().last(), byzantine[4].body)
+        assertEquals(aramaic[0].transliteratedBody!!.lines().last(), byzantine[4].transliteratedBody)
+        assertEquals("קוריאליסון\nקוריאליסון\nקוריאליסון", aramaic[3].body)
+        assertEquals("ܩܘܪܝܐܠܝܣܘܢ\nܩܘܪܝܐܠܝܣܘܢ\nܩܘܪܝܐܠܝܣܘܢ", aramaic[3].transliteratedBody)
         // Erez supplied the Mission's doxology in both scripts on 2026-08-26. Pin every mark and
         // vowel so the Hebrew-square-script Aramaic and its pointed Syriac rendering cannot drift.
         val glory = steps("trisagion", language = "arc", variantId = "byzantine")[3]

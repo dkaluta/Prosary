@@ -325,6 +325,14 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
 
     public void RefreshTypography() => RenderCurrentStep();
 
+    public void RefreshPrayerWording()
+    {
+        if (_activePrayer is null) return;
+        _steps = _engine.BuildSteps(_activePrayer);
+        _index = Math.Clamp(_index, 0, Math.Max(_steps.Count - 1, 0));
+        RenderCurrentStep();
+    }
+
     private void RenderCurrentStep()
     {
         if (_steps.Count == 0)

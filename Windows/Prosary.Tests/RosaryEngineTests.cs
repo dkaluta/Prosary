@@ -628,10 +628,10 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
             Assert.Equal(english.Fruit, aramaic.Fruit);
             Assert.EndsWith("— לוּקָס א׳ 26–38 (דליטש)", hebrew.Description);
             Assert.DoesNotContain("לוּקָס א׳:", hebrew.Description);
-            Assert.StartsWith("בירחא דין דשתא", aramaic.Description);
+            Assert.StartsWith("בּיַרחָא דֶּין דֶּשתָּא", aramaic.Description);
             Assert.EndsWith("— לוקא א׳ 26–38 (פשיטתא)", aramaic.Description);
             Assert.DoesNotContain("לוקא א׳:", aramaic.Description);
-            Assert.StartsWith("ܒܝܪܚܐ ܕܝܢ ܕܫܬܐ", aramaic.TransliteratedDescription);
+            Assert.StartsWith("ܒ݁ܝܰܪܚܳܐ ܕ݁ܶܝܢ ܕ݁ܶܫܬ݁ܳܐ", aramaic.TransliteratedDescription);
 
             var announcement = _engine.BuildSteps(SpecificRosary(languageCode: "arc"))
                 .First(step => step.Mystery?.ImageKey == key);
