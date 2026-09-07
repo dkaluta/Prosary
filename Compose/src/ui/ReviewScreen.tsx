@@ -233,9 +233,10 @@ export function ReviewScreen({ project, issues, goTo }: Props) {
         </div>
         {downloaded && (
           <p className="help">
-            To pray it: open Prosary on your phone or computer, go to <strong>Favorites</strong>, and
-            choose <strong>Import Devotion Bundle</strong>. Share the file with anyone — it works the
-            same for them.
+            To pray it, import the file in Prosary. On iPhone, iPad, or Mac, open <strong>Browse</strong>{" "}
+            and choose the import button. On Android or Windows, open{" "}
+            <strong>Pray → Settings → Downloads → Import Devotion Bundle</strong>.
+            {" "}You can share the same file with others.
           </p>
         )}
       </div>
