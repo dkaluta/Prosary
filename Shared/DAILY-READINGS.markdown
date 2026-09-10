@@ -175,8 +175,9 @@ does not accidentally treat edition metadata or Bible text as a calendar dataset
 The final vocalized Hebrew corpus passed all 26 shared validation checks, including 32
 reading tests, schema validation, source provenance and byte-identical native data copies.
 Apple passed 467 tests (465 XCTest and two Swift Testing tests). Android passed 364 unit
-tests and three reader UI checks on an Android 16 tablet. Windows passed 17 portable checks;
-native Windows CI remains pending. These results supersede the earlier snapshots below.
+tests and three reader UI checks on an Android 16 tablet. Windows passed 17 portable checks
+and all 455 native CI tests. All six GitHub CI jobs passed for release code commit `24cc973`.
+These results supersede the earlier snapshots below.
 The signed Mac 0.12.0 app was also verified live: all three September 10 readings open in
 the Hebrew 1901 edition, with readable pointed first-reading and Gospel text and retained
 Masoretic accents in the Psalm. The generic iOS Simulator compatibility build also passed.
