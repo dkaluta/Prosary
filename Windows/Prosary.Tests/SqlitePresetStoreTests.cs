@@ -33,7 +33,7 @@ public sealed class SqlitePresetStoreTests : IDisposable
     }
 
     [Fact]
-    public async Task OldCombinedClosingChoiceMigratesToNullableIndependentChoices()
+    public async Task OldCombinedClosingChoicePreservesNullableCompatibilityFields()
     {
         var oldPath = Path.Combine(Path.GetTempPath(), $"prosary_legacy_{Guid.NewGuid():N}.db3");
         var id = Guid.NewGuid();
@@ -63,7 +63,10 @@ public sealed class SqlitePresetStoreTests : IDisposable
             Assert.False(saved.IncludeClosingPopeIntention);
             Assert.Null(saved.IncludeClosingBishopIntention);
             Assert.True(saved.IncludeClosingDepartedIntention);
+            Assert.True(saved.EffectiveClosingIntentions);
+            Assert.True(saved.EffectiveClosingPopeIntention);
             Assert.True(saved.EffectiveClosingBishopIntention);
+            Assert.True(saved.EffectiveClosingDepartedIntention);
         }
         finally
         {
@@ -117,6 +120,32 @@ public sealed class SqlitePresetStoreTests : IDisposable
         var rosaryDefaults = all.Where(p => p.Kind == PrayerKind.Rosary && p.IsDefault).ToList();
         Assert.Single(rosaryDefaults);
         Assert.Equal("Classic Rosary", rosaryDefaults[0].Name);
+    }
+
+    [Fact]
+    public async Task DeletingTheFinalSavedPrayerStaysEmptyAfterReopening()
+    {
+        var seeded = Assert.Single(await _store.GetAllAsync());
+        await _store.DeleteAsync(seeded);
+        await _store.CloseAsync();
+        var reopened = new SqlitePresetStore(_dbPath);
+        try { Assert.Empty(await reopened.GetAllAsync()); }
+        finally { await reopened.CloseAsync(); }
+    }
+
+    [Fact]
+    public async Task ExistingEmptyLegacyTableDoesNotGainAnUnrequestedSeed()
+    {
+        var oldPath = Path.Combine(Path.GetTempPath(), $"prosary_empty_legacy_{Guid.NewGuid():N}.db3");
+        using (var legacy = new SQLite.SQLiteConnection(oldPath))
+            legacy.Execute("CREATE TABLE PresetEntry (Id varchar PRIMARY KEY, Name varchar NOT NULL)");
+        var migrated = new SqlitePresetStore(oldPath);
+        try { Assert.Empty(await migrated.GetAllAsync()); }
+        finally
+        {
+            await migrated.CloseAsync();
+            File.Delete(oldPath);
+        }
     }
 
     [Fact]
@@ -185,6 +214,75 @@ public sealed class SqlitePresetStoreTests : IDisposable
     {
         var defaultJesusPrayer = await _store.GetDefaultAsync(PrayerKind.JesusPrayer);
         Assert.Null(defaultJesusPrayer);
+    }
+
+    [Fact]
+    public async Task UpdateIfPresentAsync_DeletedDefaultCannotReturnOrDemoteItsReplacement()
+    {
+        var deleted = new Prayer { Name = "Deleted", Kind = PrayerKind.Custom, CustomDevotionId = "angelus", IsDefault = true };
+        var survivor = deleted with { Id = Guid.NewGuid(), Name = "Survivor", IsDefault = false };
+        var unrelated = deleted with { Id = Guid.NewGuid(), CustomDevotionId = "trisagion" };
+        await _store.SaveAsync(deleted);
+        await _store.SaveAsync(survivor);
+        await _store.SaveAsync(unrelated);
+        await _store.DeleteAsync(deleted);
+
+        Assert.False(await _store.UpdateIfPresentAsync(deleted with { Name = "Stale edit" }));
+
+        Assert.Null(await _store.GetAsync(deleted.Id));
+        Assert.True((await _store.GetAsync(survivor.Id))!.IsDefault);
+        Assert.True((await _store.GetAsync(unrelated.Id))!.IsDefault);
+    }
+
+    [Fact]
+    public async Task UpdateIfPresentAsync_ExistingDefaultChangesOnlyItsOwnDevotion()
+    {
+        var oldDefault = new Prayer { Name = "Old", Kind = PrayerKind.Custom, CustomDevotionId = "angelus", IsDefault = true };
+        var target = oldDefault with { Id = Guid.NewGuid(), Name = "Target", IsDefault = false };
+        var unrelated = oldDefault with { Id = Guid.NewGuid(), CustomDevotionId = "trisagion" };
+        await _store.SaveAsync(oldDefault);
+        await _store.SaveAsync(target);
+        await _store.SaveAsync(unrelated);
+
+        Assert.True(await _store.UpdateIfPresentAsync(target with { IsDefault = true, LanguageCode = "he" }));
+
+        Assert.False((await _store.GetAsync(oldDefault.Id))!.IsDefault);
+        Assert.True((await _store.GetAsync(target.Id))!.IsDefault);
+        Assert.Equal("he", (await _store.GetAsync(target.Id))!.LanguageCode);
+        Assert.True((await _store.GetAsync(unrelated.Id))!.IsDefault);
+    }
+
+    [Fact]
+    public async Task UpdateIfPresentAsync_FailedUpdateRollsBackSiblingDefaultChanges()
+    {
+        var previous = new Prayer { Kind = PrayerKind.JesusPrayer, IsDefault = true };
+        var target = previous with { Id = Guid.NewGuid(), Name = "Original", IsDefault = false };
+        await _store.SaveAsync(previous);
+        await _store.SaveAsync(target);
+        using (var connection = new SQLite.SQLiteConnection(_dbPath))
+            connection.Execute("CREATE TRIGGER reject_edit BEFORE UPDATE ON PresetEntry WHEN NEW.Name = 'Rejected edit' BEGIN SELECT RAISE(ABORT, 'Synthetic write failure'); END");
+
+        await Assert.ThrowsAsync<SQLite.SQLiteException>(() => _store.UpdateIfPresentAsync(target with { Name = "Rejected edit", IsDefault = true }));
+
+        Assert.True((await _store.GetAsync(previous.Id))!.IsDefault);
+        Assert.False((await _store.GetAsync(target.Id))!.IsDefault);
+        Assert.Equal("Original", (await _store.GetAsync(target.Id))!.Name);
+    }
+
+    [Fact]
+    public async Task DeleteAsync_FailedPromotionRollsBackTheDeletion()
+    {
+        var previous = new Prayer { Kind = PrayerKind.JesusPrayer, IsDefault = true };
+        var survivor = previous with { Id = Guid.NewGuid(), IsDefault = false };
+        await _store.SaveAsync(previous);
+        await _store.SaveAsync(survivor);
+        using (var connection = new SQLite.SQLiteConnection(_dbPath))
+            connection.Execute("CREATE TRIGGER reject_promotion BEFORE UPDATE OF IsDefault ON PresetEntry WHEN OLD.IsDefault = 0 AND NEW.IsDefault = 1 BEGIN SELECT RAISE(ABORT, 'Synthetic promotion failure'); END");
+
+        await Assert.ThrowsAsync<SQLite.SQLiteException>(() => _store.DeleteAsync(previous));
+
+        Assert.True((await _store.GetAsync(previous.Id))!.IsDefault);
+        Assert.False((await _store.GetAsync(survivor.Id))!.IsDefault);
     }
 
     [Fact]

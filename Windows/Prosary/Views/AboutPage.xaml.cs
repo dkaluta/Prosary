@@ -10,5 +10,5 @@ public sealed partial class AboutPage : Page
         InitializeComponent();
     }
 
-    private void OnNavigateUp(object sender, Microsoft.UI.Xaml.RoutedEventArgs e) => Router.GoBack();
+    private void OnNavigateUp(object sender, Microsoft.UI.Xaml.RoutedEventArgs e) => Router.For(this).GoBack();
 }

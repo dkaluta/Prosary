@@ -18,19 +18,27 @@ public sealed partial class JesusPrayerFlowPage : Page
     public JesusPrayerFlowPage()
     {
         ViewModel = App.Services.GetRequiredService<JesusPrayerViewModel>();
+        ViewModel.Navigation = Router.For(this);
         InitializeComponent();
+        Unloaded += (_, _) => { _autoAdvance?.Dispose(); _autoAdvance = null; };
+        ViewModel.ConfirmDelete = plan => PrayerRemovalDialogs.ConfirmDeleteAsync(XamlRoot, plan);
+        ViewModel.ShowRemovalError = message => PrayerRemovalDialogs.ShowErrorAsync(XamlRoot, message);
     }
 
     protected override async void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
+        if (!await Router.WaitUntilLoadedAsync(this)) return;
         var parameters = e.Parameter as JesusPrayerFlowParams ?? new JesusPrayerFlowParams(null, null);
-        await ViewModel.LoadAsync(parameters.PrayerId, parameters.Target);
+        await ViewModel.LoadAsync(ViewModel.Navigation.SavedPrayerID ?? parameters.PrayerId, parameters.Target);
+        if (ViewModel.Navigation.OwnerWindow is null) return;
         if (ViewModel.HasSavedContinuation)
         {
-            await ShowResumeDialogAsync();
+            if (e.NavigationMode == NavigationMode.Back) ViewModel.ContinueSavedRun();
+                else await ShowResumeDialogAsync();
         }
 
+        if (ViewModel.Navigation.OwnerWindow is null) return;
         AutoAdvanceMenu.Populate(AutoAdvanceFlyout, () => _autoAdvance?.Restart());
         _autoAdvance?.Dispose();
         _autoAdvance = new AutoAdvanceTimer(ViewModel);
@@ -47,7 +55,9 @@ public sealed partial class JesusPrayerFlowPage : Page
             SecondaryButtonText = Loc.Tr("common_restart", "Restart"),
             DefaultButton = ContentDialogButton.Primary,
         };
-        if (await dialog.ShowAsync() == ContentDialogResult.Primary)
+        var result = await dialog.ShowAsync();
+        if (ViewModel.Navigation.OwnerWindow is null) return;
+        if (result == ContentDialogResult.Primary)
         {
             ViewModel.ContinueSavedRun();
         }
@@ -68,5 +78,5 @@ public sealed partial class JesusPrayerFlowPage : Page
     // Flow); when launched from a saved favorite (one nav level) it lands wherever that came
     // from — either way this is a single pop, distinct from ViewModel.FinishCommand's
     // pop-to-root (see JesusPrayerViewModel's class doc).
-    private void OnNavigateUp(object sender, Microsoft.UI.Xaml.RoutedEventArgs e) => Router.GoBack();
+    private void OnNavigateUp(object sender, Microsoft.UI.Xaml.RoutedEventArgs e) => Router.For(this).GoBack();
 }

@@ -25,11 +25,15 @@ final class JesusPrayerFlowUITests: XCTestCase {
     continueAfterFailure = false
   }
 
-  /// The Jesus Prayer has no saved session on a clean store, so Categories is its way in.
+  /// The Jesus Prayer has no saved session on a clean store, so Search is its way in.
   private func openJesusPrayer(_ app: XCUIApplication) {
-    app.tabBars.buttons["Categories"].tap()
-    // A devotion listed under two tags appears twice, so the query has to take the first.
-    let row = app.buttons["category.jesusPrayer"].firstMatch
+    app.tabBars.buttons["Search"].tap()
+    let searchField = app.searchFields.firstMatch
+    XCTAssertTrue(searchField.waitForExistence(timeout: 5))
+    searchField.tap()
+    searchField.typeText("Jesus Prayer")
+    // The unfiltered local list includes this devotion without a saved copy.
+    let row = app.buttons["search.local.jesusPrayer"].firstMatch
     XCTAssertTrue(row.waitForExistence(timeout: 10))
     row.tap()
   }
@@ -108,7 +112,7 @@ final class JesusPrayerFlowUITests: XCTestCase {
     XCTAssertTrue(finishButton.exists)
     finishButton.tap()
 
-    XCTAssertTrue(app.buttons["category.jesusPrayer"].firstMatch.waitForExistence(timeout: 5))
+    XCTAssertTrue(app.buttons["search.local.jesusPrayer"].firstMatch.waitForExistence(timeout: 5))
   }
 
   @MainActor

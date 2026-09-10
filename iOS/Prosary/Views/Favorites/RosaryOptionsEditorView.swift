@@ -16,6 +16,12 @@ struct RosaryOptionsEditorView: View {
   var languageCode = LanguageCatalog.resolve(nil).code
 
   var body: some View {
+    #if os(macOS)
+    MacPrayerEditorForm {
+      RosaryOptionsSections(rosary: $rosary, languageCode: languageCode)
+    }
+    .navigationTitle("favoriteEditor.rosaryOptionsTitle")
+    #else
     Form {
       RosaryOptionsSections(rosary: $rosary, languageCode: languageCode)
     }
@@ -23,6 +29,7 @@ struct RosaryOptionsEditorView: View {
     .navigationTitle("favoriteEditor.rosaryOptionsTitle")
     #if os(iOS)
     .navigationBarTitleDisplayMode(.inline)
+    #endif
     #endif
   }
 }
@@ -81,7 +88,11 @@ struct RosaryOptionsSections: View {
             Text(style.displayName).tag(style)
           }
         }
+        #if os(macOS)
+        Toggle(String(localized: "presenter.combineRepetitions", defaultValue: "Combine Repeated Prayers"), isOn: $rosary.presenterMode)
+        #else
         Toggle("favoriteEditor.presenterMode", isOn: $rosary.presenterMode)
+        #endif
       } header: {
         Text("favoriteEditor.presenterModeHeader")
       } footer: {
@@ -94,16 +105,16 @@ struct RosaryOptionsSections: View {
             Text(option.displayName(languageCode: languageCode)).tag(option)
           }
         }
-        Toggle("favoriteEditor.closingPopeIntention", isOn: Binding(
-          get: { rosary.effectiveClosingPopeIntention }, set: { rosary.includeClosingPopeIntention = $0 }))
-        Toggle("favoriteEditor.closingBishopIntention", isOn: Binding(
-          get: { rosary.effectiveClosingBishopIntention }, set: { rosary.includeClosingBishopIntention = $0 }))
-        Toggle("favoriteEditor.closingDepartedIntention", isOn: Binding(
-          get: { rosary.effectiveClosingDepartedIntention }, set: { rosary.includeClosingDepartedIntention = $0 }))
+        Toggle("favoriteEditor.closingIntentions", isOn: $rosary.effectiveClosingIntentions)
         Toggle("favoriteEditor.stMichaelPrayer", isOn: $rosary.includeStMichaelPrayer)
         Toggle("favoriteEditor.finalSignOfCross", isOn: $rosary.includeFinalSignOfCross)
       }
     }
+    #if os(macOS)
+    .toggleStyle(.checkbox)
+    .pickerStyle(.menu)
+    .controlSize(.regular)
+    #endif
   }
 }
 

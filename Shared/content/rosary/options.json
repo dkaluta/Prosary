@@ -85,15 +85,17 @@
     {
       "key": "openingFatimaPrayer",
       "kind": "toggle",
-      "name": "Fatima Prayer after Faith, Hope, and Charity",
+      "name": "Fatima Prayer after the opening Glory Be",
       "default": false,
       "nameByLanguage": {
-        "ar": "صلاة فاطيما بعد الإيمان والرجاء والمحبة",
-        "ru": "Фатимская молитва после молитв о вере, надежде и любви",
-        "tl": "Panalangin ng Fatima pagkatapos ng Pananampalataya, Pag-asa, at Pag-ibig",
-        "fr": "Prière de Fatima après les prières pour la foi, l’espérance et la charité",
-        "it": "Preghiera di Fatima dopo le preghiere per la fede, la speranza e la carità",
-        "uk": "Фатімська молитва після молитов за віру, надію і любов"
+        "en": "Fatima Prayer after the opening Glory Be",
+        "he": "תפילת פאטימה אחרי תפילת “כבוד לאב” הפותחת",
+        "ar": "صلاة فاطمة بعد صلاة «المجد للآب» الافتتاحية",
+        "ru": "Фатимская молитва после начальной молитвы «Слава Отцу»",
+        "tl": "Panalangin ng Fatima pagkatapos ng pambungad na Luwalhati sa Ama",
+        "fr": "Prière de Fatima après le Gloire au Père initial",
+        "it": "Preghiera di Fatima dopo il Gloria al Padre iniziale",
+        "uk": "Фатімська молитва після початкової молитви «Слава Отцю»"
       }
     },
     {
@@ -277,54 +279,19 @@
       }
     },
     {
-      "key": "closingPopeIntention",
+      "key": "closingIntentions",
       "kind": "toggle",
-      "name": "Closing prayers for the Pope",
+      "name": "Closing Intentions",
       "default": false,
       "nameByLanguage": {
-        "en": "Closing prayers for the Pope",
-        "he": "תפילות סיום למען האפיפיור",
-        "ar": "صلوات الختام من أجل البابا",
-        "ru": "Заключительные молитвы за Папу",
-        "tl": "Pangwakas na mga panalangin para sa Papa",
-        "fr": "Prières finales pour le pape",
-        "it": "Preghiere finali per il Papa",
-        "la": "Pro intentionibus Summi Pontificis",
-        "uk": "Заключні молитви за Папу"
-      }
-    },
-    {
-      "key": "closingBishopIntention",
-      "kind": "toggle",
-      "name": "Closing prayers for the bishop",
-      "default": false,
-      "nameByLanguage": {
-        "en": "Closing prayers for the bishop",
-        "he": "תפילות סיום למען ההגמון",
-        "ar": "صلوات الختام من أجل الأسقف",
-        "ru": "Заключительные молитвы за епископа",
-        "tl": "Pangwakas na mga panalangin para sa obispo",
-        "fr": "Prières finales pour l’évêque",
-        "it": "Preghiere finali per il vescovo",
-        "la": "Pro Ordinario loci",
-        "uk": "Заключні молитви за єпископа"
-      }
-    },
-    {
-      "key": "closingDepartedIntention",
-      "kind": "toggle",
-      "name": "Closing prayers for the faithful departed",
-      "default": false,
-      "nameByLanguage": {
-        "en": "Closing prayers for the faithful departed",
-        "he": "תפילות סיום למען המאמינים הנפטרים",
-        "ar": "صلوات الختام من أجل المؤمنين الراقدين",
-        "ru": "Заключительные молитвы за усопших верных",
-        "tl": "Pangwakas na mga panalangin para sa mga yumaong mananampalataya",
-        "fr": "Prières finales pour les fidèles défunts",
-        "it": "Preghiere finali per i fedeli defunti",
-        "la": "Pro animabus in purgatorio",
-        "uk": "Заключні молитви за померлих вірних"
+        "ar": "النيات الختامية",
+        "en": "Closing Intentions",
+        "tl": "Mga Pangwakas na Intensiyon",
+        "fr": "Intentions finales",
+        "he": "כוונות הסיום",
+        "it": "Intenzioni finali",
+        "ru": "Заключительные намерения",
+        "uk": "Завершальні намірення"
       }
     },
     {

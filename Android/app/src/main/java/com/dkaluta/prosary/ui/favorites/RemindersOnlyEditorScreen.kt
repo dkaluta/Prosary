@@ -19,21 +19,20 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.CustomDevotionOption
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
+import com.dkaluta.prosary.models.RosaryOptions
 import com.dkaluta.prosary.reminders.ReminderScheduler
 import com.dkaluta.prosary.ui.presets.OptionPickerField
 import com.dkaluta.prosary.services.LocalAppServices
@@ -50,18 +49,25 @@ fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
 
-    var prayer by remember { mutableStateOf<Prayer?>(null) }
-    var originalPrayer by remember { mutableStateOf<Prayer?>(null) }
+    val draft: PrayerEditorState = viewModel(key = "remindersEditor:$prayerId")
 
     val notificationPermissionLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {}
 
-    LaunchedEffect(prayerId) {
+    LaunchedEffect(draft, prayerId) {
+        if (draft.initialized) return@LaunchedEffect
         val loaded = runCatching { services.presetStore.get(prayerId) }.getOrNull()
-        prayer = loaded
-        originalPrayer = loaded
+        val normalized = loaded?.let { saved ->
+            val bundleId = saved.customDevotionId
+            if (saved.kind == PrayerKind.Custom && bundleId != null) {
+                saved.copy(customOptions = RosaryOptions.normalizedCustomOptions(
+                    bundleId, saved.customOptions,
+                ))
+            } else saved
+        }
+        draft.initialize(loaded, normalized)
     }
 
-    val current = prayer ?: return
+    val current = draft.prayer ?: return
 
     // For .Custom, current.kind.displayName is only a generic fallback (a single PrayerKind
     // case can't carry per-bundle text) — read the real name and reminder presets from the
@@ -83,7 +89,7 @@ fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
                 notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
             }
             services.presetStore.save(toSave)
-            originalPrayer?.let { ReminderScheduler.cancelAll(context, it) }
+            draft.originalPrayer?.let { ReminderScheduler.cancelAll(context, it) }
             ReminderScheduler.schedule(context, toSave)
             onDone()
         }
@@ -115,20 +121,34 @@ fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(16.dp),
         ) {
-            val options = current.customDevotionId?.let { PrayerPackStore.options(it) }.orEmpty()
-            if (options.isNotEmpty()) {
+            val declaredOptions = current.customDevotionId?.let { PrayerPackStore.options(it) }.orEmpty()
+            val isRosary = current.kind == PrayerKind.Custom && current.customDevotionId == "rosary"
+            val options = if (isRosary) {
+                declaredOptions.filterNot { it.key in RosaryOptions.legacyClosingIntentionKeys }
+            } else declaredOptions
+            val needsCombinedClosingOption = isRosary &&
+                declaredOptions.any { it.key in RosaryOptions.legacyClosingIntentionKeys } &&
+                options.none { it.key == "closingIntentions" }
+            val editableValues = if (isRosary) {
+                RosaryOptions.normalizedCustomOptions("rosary", current.customOptions)
+            } else current.customOptions
+            fun setOption(key: String, value: String) {
+                draft.prayer = current.copy(customOptions = editableValues + (key to value))
+            }
+            if (options.isNotEmpty() || needsCombinedClosingOption) {
                 FormSection(title = stringResource(R.string.editor_options)) {
                     for (option in options) {
                         // Rows read through to the option's declared default so they show the
                         // effective value even before the user has ever touched them; changes
                         // store an explicit override.
-                        val value = current.customOptions[option.key] ?: option.defaultValue
+                        val value = editableValues[option.key] ?: option.defaultValue
                         fun set(newValue: String) {
-                            prayer = current.copy(customOptions = current.customOptions + (option.key to newValue))
+                            setOption(option.key, newValue)
                         }
                         when (option.kind) {
                             CustomDevotionOption.Kind.Toggle ->
-                                SwitchRow(option.localizedName, value == "true") {
+                                SwitchRow(option.localizedName, value == "true",
+                                    switchModifier = Modifier.testTag("customOption:${option.key}")) {
                                     set(if (it) "true" else "false")
                                 }
                             CustomDevotionOption.Kind.Choice ->
@@ -144,13 +164,18 @@ fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
                                 )
                         }
                     }
+                    if (needsCombinedClosingOption) {
+                        SwitchRow(stringResource(R.string.ro_closing_intentions), editableValues["closingIntentions"] == "true") {
+                            setOption("closingIntentions", it.toString())
+                        }
+                    }
                 }
             }
             RemindersSection(
                 reminders = current.reminders,
                 presetHours = info?.reminderPresetHours.orEmpty(),
                 presetFooter = info?.localizedReminderPresetFooter,
-            ) { prayer = current.copy(reminders = it) }
+            ) { draft.prayer = current.copy(reminders = it) }
         }
     }
 }

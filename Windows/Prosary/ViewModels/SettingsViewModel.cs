@@ -25,7 +25,7 @@ public sealed record EasternPaschaOption(string Value, string Label);
 /// Home order reset, and downloads management, mirroring iOS's <c>SettingsView</c> and
 /// Android's <c>SettingsScreen.kt</c> per port parity). The remove-all confirmation dialog
 /// lives in the page's code-behind (dialogs need a XamlRoot); it calls
-/// <see cref="RemoveAllInstalledPacks"/> here.
+/// the unused-download cleanup here.
 /// </summary>
 /// <summary>One downloaded or hand-imported devotion, listed under Settings → Downloads with the
 /// two actions the retired Favorites screen used to carry: a copy out for editing at
@@ -35,6 +35,12 @@ public sealed record InstalledDevotionRow(string BundleId, string Title);
 
 public partial class SettingsViewModel : ObservableObject
 {
+    public WindowNavigation Navigation { get; set; } = WindowNavigation.Detached;
+
+    private readonly PrayerRemovalService? _removal;
+    public Func<InstalledDevotionRow, Task<bool>>? ConfirmRemoveDownload { get; set; }
+    public Func<string, Task>? ShowRemovalError { get; set; }
+
     [ObservableProperty]
     private LanguageOption _selectedLanguage = LanguageCatalog.PickerOptions.FirstOrDefault(
         l => l.Code == LanguageCatalog.PickerLanguageCode(AppSettings.DefaultLanguageCode))
@@ -47,8 +53,9 @@ public partial class SettingsViewModel : ObservableObject
 
     partial void OnUseJaffaHailMaryWordingChanged(bool value) => AppSettings.SetUseJaffaHailMaryWording(value);
 
-    public SettingsViewModel()
+    public SettingsViewModel(PrayerRemovalService? removal = null)
     {
+        _removal = removal;
         RefreshRites();
         SelectedEasternPascha = CurrentEasternPascha;
     }
@@ -383,11 +390,20 @@ public partial class SettingsViewModel : ObservableObject
     [RelayCommand(CanExecute = nameof(CanRemoveAllDownloads))]
     private async Task RequestRemoveAllDownloads()
     {
-        if (ConfirmRemoveAll is null || !await ConfirmRemoveAll())
+        if (_removal is null) return;
+        try
         {
-            return;
+            if ((await _removal.UnusedDownloadIdsAsync()).Count == 0)
+                throw new PrayerRemovalException(Loc.Tr("prayerRemoval_downloadInUse",
+                    "Delete the saved copies of this prayer before removing its download."), false);
+            if (ConfirmRemoveAll is null || !await ConfirmRemoveAll()) return;
+            await _removal.RemoveUnusedDownloadsAsync();
         }
-        RemoveAllInstalledPacks();
+        catch (Exception error)
+        {
+            if (ShowRemovalError is not null) await ShowRemovalError(PrayerRemovalService.ErrorMessage(error));
+        }
+        finally { RefreshInstalledDevotions(); }
     }
 
     public ObservableCollection<InstalledDevotionRow> InstalledDevotions { get; } = [];
@@ -428,26 +444,29 @@ public partial class SettingsViewModel : ObservableObject
     public static string? InstalledPackPath(string bundleId) => PrayerPackStore.InstalledPackPath(bundleId);
 
     [RelayCommand]
-    private void RemoveInstalled(InstalledDevotionRow row)
+    private async Task RemoveInstalledAsync(InstalledDevotionRow row)
     {
-        PrayerPackStore.RemoveInstalledPack(row.BundleId);
-        RefreshInstalledDevotions();
-    }
-
-    public void RemoveAllInstalledPacks()
-    {
-        foreach (var bundleId in PrayerPackStore.InstalledBundleIds().ToList())
+        if (_removal is null) return;
+        try
         {
-            PrayerPackStore.RemoveInstalledPack(bundleId);
+            if (await _removal.HasSavedCopiesAsync(row.BundleId))
+                throw new PrayerRemovalException(Loc.Tr("prayerRemoval_downloadInUse",
+                    "Delete the saved copies of this prayer before removing its download."), false);
+            if (ConfirmRemoveDownload is null || !await ConfirmRemoveDownload(row)) return;
+            await _removal.RemoveDownloadAsync(row.BundleId);
         }
-        InstalledCount = PrayerPackStore.InstalledBundleIds().Count;
+        catch (Exception error)
+        {
+            if (ShowRemovalError is not null) await ShowRemovalError(PrayerRemovalService.ErrorMessage(error));
+        }
+        finally { RefreshInstalledDevotions(); }
     }
 
     [RelayCommand]
     private async Task OpenLink(string url) => await Windows.System.Launcher.LaunchUriAsync(new Uri(url));
 
     [RelayCommand]
-    private void Back() => Router.GoBack();
+    private void Back() => Navigation.GoBack();
 
     private static string AudioCacheRoot() => Path.Combine(ApplicationData.Current.LocalCacheFolder.Path, "PrayerAudio");
 

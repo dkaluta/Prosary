@@ -120,5 +120,21 @@ public static class MultiDayRuns
         Save(all);
     }
 
+    /// <summary>Saving a transient desktop session transfers only its own series dates.</summary>
+    public static void Move(string sourceId, string destinationId)
+    {
+        if (sourceId == destinationId) return;
+        var runs = All();
+        if (runs.ContainsKey(destinationId) || !runs.Remove(sourceId, out var run)) return;
+        runs[destinationId] = run with { DevotionId = destinationId };
+        Save(runs);
+    }
+
+    public static void Remove(string devotionId)
+    {
+        var runs = All();
+        if (runs.Remove(devotionId)) Save(runs);
+    }
+
     public static void Reset() => ApplicationData.Current.LocalSettings.Values.Remove(Key);
 }

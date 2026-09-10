@@ -14,6 +14,15 @@ import com.dkaluta.prosary.R
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.Dp
+
+/** Reserve the wider two-column minor track for the whole session and the pair of 48dp
+ * mystery controls. Announcements must not switch layouts when their minor beads are hidden. */
+fun beadWideWidth(layout: BeadLayout): Dp {
+    val major = maxOf(1, layout.groupColumns.size) * 26 - 6
+    val minor = if (layout.showBottomBeads || layout.groupColumns.isNotEmpty()) 6 + 9 + 6 + 46 else 0
+    return maxOf(96, major + minor).dp
+}
 
 /** The single gap used everywhere in the major/minor bead tracks, so cross-to-decade,
  * decade-to-decade, and decade-to-antiphon gaps all read as one consistent rhythm. */

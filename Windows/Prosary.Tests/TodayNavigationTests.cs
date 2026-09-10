@@ -75,8 +75,19 @@ public class TodayNavigationTests
             Assert.Equal(TodayInfoStore.Intention(vm.SelectedDate), vm.MonthIntention);
             Assert.Equal(TodayInfoStore.Readings(vm.SelectedDate), vm.TodayReadings);
             Assert.Equal(TodayInfoStore.WeeklyTorahPortion(vm.SelectedDate), vm.TodayTorahPortion);
+            Assert.NotEmpty(vm.TodayReadings);
+            Assert.Equal(string.Join(Environment.NewLine,
+                vm.TodayReadings.Select(reading => reading.LocalizedFull(vm.TodayLanguage))), vm.ReadingsText);
+            Assert.NotEqual(string.Join(", ",
+                vm.TodayReadings.Select(reading => reading.LocalizedShort(vm.TodayLanguage))), vm.ReadingsText);
+            Assert.NotNull(vm.TodayTorahPortion);
+            Assert.Equal(string.Join(Environment.NewLine,
+                vm.TodayTorahPortion.Readings!.Select(reading => reading.LocalizedFull(vm.TodayLanguage))),
+                vm.TorahPortionReadings);
             vm.YesterdayCommand.Execute(null);
             Assert.Equal(new DateOnly(2026, 12, 31), vm.SelectedDate);
+            Assert.Equal(string.Join(Environment.NewLine,
+                vm.TodayReadings.Select(reading => reading.LocalizedFull(vm.TodayLanguage))), vm.ReadingsText);
             vm.SelectTodayCommand.Execute(null);
             Assert.True(vm.IsSelectedDateToday);
             vm.SelectedTodayDate = vm.MinimumTodayDate;
@@ -188,6 +199,7 @@ public class TodayNavigationTests
         public Task<Prayer?> GetDefaultAsync(PrayerKind kind) => Task.FromResult<Prayer?>(null);
         public Task<Prayer?> GetAsync(Guid id) => Task.FromResult<Prayer?>(null);
         public Task SaveAsync(Prayer prayer) => Task.CompletedTask;
+        public Task<bool> UpdateIfPresentAsync(Prayer prayer) => Task.FromResult(false);
         public Task DeleteAsync(Prayer prayer) => Task.CompletedTask;
     }
 }

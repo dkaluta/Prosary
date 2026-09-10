@@ -8,6 +8,7 @@ using Prosary.Localization;
 using Prosary.Models;
 using Prosary.Navigation;
 using Prosary.ViewModels;
+using System.ComponentModel;
 
 namespace Prosary.Views;
 
@@ -15,24 +16,20 @@ namespace Prosary.Views;
 /// back to the default Rosary favorite (see <see cref="RosaryViewModel.LoadAsync"/>).</summary>
 public sealed partial class RosaryPrayerPage : Page
 {
-    // Desktop windows at/above this width get the wide three-column layout (image, major/minor
-    // bead columns, prayer text side by side); narrower windows keep the single-column layout
-    // with horizontal bead rows. Matches irosary's RosaryPrayerPage.xaml.cs breakpoint.
-    private const double WideLayoutBreakpoint = 860;
-
-    // A single 10-tall minor-beads column needs roughly 254pt of height (matching iOS's own
-    // comment in PrayerStepFlowView.swift) — below that, the wide layout's minor beads split into
-    // two 5-tall columns instead. Matches iOS's hasRoomForSingleMinorColumn threshold exactly.
-    private const double WideMinorColumnHeightThreshold = 300;
-
     public RosaryViewModel ViewModel { get; }
 
     private AutoAdvanceTimer? _autoAdvance;
+    private readonly PrayerFlowReader _reader;
+    private (bool, string, string)? _lastPrayerWording;
 
     public RosaryPrayerPage()
     {
         ViewModel = App.Services.GetRequiredService<RosaryViewModel>();
+        ViewModel.Navigation = Router.For(this);
         InitializeComponent();
+        _reader = new PrayerFlowReader(NarrowReader, NarrowBody);
+        _reader.Register(WideReader, WideBody);
+        ViewModel.PropertyChanged += OnFlowPropertyChanged;
         ViewModel.OfferLitany = async () =>
         {
             var dialog = new ContentDialog
@@ -50,19 +47,22 @@ public sealed partial class RosaryPrayerPage : Page
             AppSettings.TypographyChanged += OnTypographyChanged;
             AppSettings.PrayerWordingChanged += OnPrayerWordingChanged;
             OnPrayerWordingChanged();
+            OnTypographyChanged();
         };
         Unloaded += (_, _) =>
         {
+            _autoAdvance?.Dispose();
+            _autoAdvance = null;
             AppSettings.TypographyChanged -= OnTypographyChanged;
             AppSettings.PrayerWordingChanged -= OnPrayerWordingChanged;
         };
-        SizeChanged += OnSizeChanged;
         ActualThemeChanged += OnActualThemeChanged;
     }
 
     protected override async void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
+        if (!await Router.WaitUntilLoadedAsync(this)) return;
         ViewModel.HasDarkTheme = ActualTheme == ElementTheme.Dark;
         if (e.Parameter is Prosary.Models.Prayer adHoc)
         {
@@ -74,12 +74,15 @@ public sealed partial class RosaryPrayerPage : Page
             await ViewModel.LoadAsync(e.Parameter as Guid?);
         }
 
+        if (ViewModel.Navigation.OwnerWindow is null) return;
         if (ViewModel.HasSavedContinuation)
         {
-            await ShowResumeDialogAsync();
+            if (e.NavigationMode == NavigationMode.Back) ViewModel.ContinueSavedRun();
+                else await ShowResumeDialogAsync();
         }
         BuildLanguageFlyout();
 
+        if (ViewModel.Navigation.OwnerWindow is null) return;
         AutoAdvanceMenu.Populate(AutoAdvanceFlyout, () => _autoAdvance?.Restart());
         _autoAdvance?.Dispose();
         _autoAdvance = new AutoAdvanceTimer(ViewModel);
@@ -95,7 +98,7 @@ public sealed partial class RosaryPrayerPage : Page
     private void OnActualThemeChanged(FrameworkElement sender, object args)
         => ViewModel.HasDarkTheme = ActualTheme == ElementTheme.Dark;
 
-    private void OnNavigateUp(object sender, RoutedEventArgs e) => Router.GoBack();
+    private void OnNavigateUp(object sender, RoutedEventArgs e) => Router.For(this).GoBack();
 
     private async Task ShowResumeDialogAsync()
     {
@@ -108,7 +111,9 @@ public sealed partial class RosaryPrayerPage : Page
             SecondaryButtonText = Loc.Tr("common_restart", "Restart"),
             DefaultButton = ContentDialogButton.Primary,
         };
-        if (await dialog.ShowAsync() == ContentDialogResult.Primary)
+        var result = await dialog.ShowAsync();
+        if (ViewModel.Navigation.OwnerWindow is null) return;
+        if (result == ContentDialogResult.Primary)
         {
             ViewModel.ContinueSavedRun();
         }
@@ -126,24 +131,32 @@ public sealed partial class RosaryPrayerPage : Page
             BuildLanguageFlyout();
         });
 
-    private void OnSizeChanged(object sender, SizeChangedEventArgs e)
+    private void FlowContent_SizeChanged(object sender, SizeChangedEventArgs e) => UpdateFlowLayout();
+
+    private void OnFlowPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        var isWide = ActualWidth >= WideLayoutBreakpoint;
-        WideLayout.Visibility = isWide ? Visibility.Visible : Visibility.Collapsed;
-        NarrowLayout.Visibility = isWide ? Visibility.Collapsed : Visibility.Visible;
+        if (e.PropertyName is nameof(ViewModel.Body) or nameof(ViewModel.Progress)) _reader.Reset();
+        if (e.PropertyName is nameof(ViewModel.GroupColumns) or nameof(ViewModel.BottomBeads)) UpdateFlowLayout();
     }
 
-    // WideLayout's own height reflects the actual available vertical space for the wide layout
-    // (it fills Grid.Row="3", the page's remaining height after the back-button header/season
-    // bar/progress header/footer) — measuring the beads column's own rendered height instead
-    // would be circular, since that size is itself a consequence of which minor-beads layout
-    // gets chosen.
-    private void WideLayout_SizeChanged(object sender, SizeChangedEventArgs e)
+    private void UpdateFlowLayout()
     {
-        ViewModel.HasRoomForSingleMinorColumn = e.NewSize.Height >= WideMinorColumnHeightThreshold;
+        var layout = PrayerFlowLayout.Resolve(FlowContent.ActualWidth, FlowContent.ActualHeight,
+            ViewModel.GroupColumns.Count, true, ViewModel.BottomBeads.Count > 0);
+        ViewModel.HasRoomForSingleMinorColumn = layout.HasRoomForSingleMinorColumn;
+        WideArtwork.Width = WideArtwork.Height = layout.ImageSide;
+        WideLayout.Visibility = layout.IsWide ? Visibility.Visible : Visibility.Collapsed;
+        NarrowLayout.Visibility = layout.IsWide ? Visibility.Collapsed : Visibility.Visible;
+        _reader?.UseSurface(layout.IsWide ? WideReader : NarrowReader, layout.IsWide ? WideBody : NarrowBody);
     }
     private void OnTypographyChanged() => ViewModel.RefreshTypography();
-    private void OnPrayerWordingChanged() => ViewModel.RefreshPrayerWording();
+    private void OnPrayerWordingChanged()
+    {
+        var wording = (AppSettings.UseJaffaHailMaryWording, AppSettings.AramaicSignOfCrossForm, AppSettings.DefaultLanguageCode);
+        if (_lastPrayerWording == wording) return;
+        _lastPrayerWording = wording;
+        ViewModel.RefreshPrayerWording();
+    }
 
     // UI navigation stays independent of the displayed prayer's writing system.
     public FlowDirection NavigationFlowDirection => UiLanguageCatalog.IsRightToLeft(UiLanguageCatalog.Current)

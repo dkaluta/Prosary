@@ -1,3 +1,4 @@
+using Prosary.Navigation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 using Prosary.ViewModels;
@@ -11,6 +12,7 @@ public sealed partial class JesusPrayerSetupPage : Page
     public JesusPrayerSetupPage()
     {
         ViewModel = App.Services.GetRequiredService<JesusPrayerSetupViewModel>();
+        ViewModel.Navigation = Router.For(this);
         InitializeComponent();
     }
 }

@@ -86,9 +86,9 @@
   <data name="settings_installed_devotions" xml:space="preserve"><value>Установлено молитв: {0}</value></data>
   <data name="settings_clear_audio_cache" xml:space="preserve"><value>Очистить кэш аудио</value></data>
   <data name="settings_clear_audio_cache_size" xml:space="preserve"><value>Очистить кэш аудио ({0})</value></data>
-  <data name="settings_remove_all_title" xml:space="preserve"><value>Удалить все загруженные молитвы?</value></data>
-  <data name="settings_remove_all_message" xml:space="preserve"><value>Молитвы из каталога можно загрузить заново; файлы, импортированные вручную, — нельзя.</value></data>
-  <data name="settings_remove_all_confirm" xml:space="preserve"><value>Удалить всё</value></data>
+  <data name="settings_remove_all_title" xml:space="preserve"><value>Удалить неиспользуемые загрузки?</value></data>
+  <data name="settings_remove_all_message" xml:space="preserve"><value>Будут удалены загруженные молитвы без сохранённых копий. Сохранённые и встроенные молитвы останутся.</value></data>
+  <data name="settings_remove_all_confirm" xml:space="preserve"><value>Удалить неиспользуемые</value></data>
   <data name="settings_app_language_system" xml:space="preserve"><value>По умолчанию в системе</value></data>
   <data name="NavPray.Content" xml:space="preserve"><value>Молиться</value></data>
   <data name="NavBrowse.Content" xml:space="preserve"><value>Обзор</value></data>
@@ -105,8 +105,8 @@
   <data name="SetAutoAdvanceCombo.Header" xml:space="preserve"><value>Автопереход</value></data>
   <data name="SetResetHomeOrder.Content" xml:space="preserve"><value>Сбросить порядок на главной</value></data>
   <data name="SetDownloadsHeader.Text" xml:space="preserve"><value>Загрузки</value></data>
-  <data name="SetRemoveAll.Content" xml:space="preserve"><value>Удалить все загруженные молитвы…</value></data>
-  <data name="SetDownloadsFooter.Text" xml:space="preserve"><value>Встроенные молитвы не удаляются. Удаление загруженной молитвы также удаляет её из избранного.</value></data>
+  <data name="SetRemoveAll.Content" xml:space="preserve"><value>Удалить неиспользуемые загрузки…</value></data>
+  <data name="SetDownloadsFooter.Text" xml:space="preserve"><value>Здесь можно удалить только загрузки без сохранённых копий. Удаление последней сохранённой копии также удаляет её загрузку. Встроенные молитвы сохраняются.</value></data>
   <data name="SetLinksHeader.Text" xml:space="preserve"><value>Ссылки</value></data>
   <data name="SetRepoLink.Content" xml:space="preserve"><value>Каталог сообщества</value></data>
   <data name="SetComposeLink.Content" xml:space="preserve"><value>Создать молитву</value></data>
@@ -168,7 +168,7 @@
   <data name="EdApostlesCreed.Text" xml:space="preserve"><value>Апостольский Символ веры</value></data>
   <data name="EdOpeningPrayers.Text" xml:space="preserve"><value>«Отче наш» и три «Радуйся, Мария» в начале</value></data>
   <data name="EdFatima.Text" xml:space="preserve"><value>Фатимская молитва после каждого десятка</value></data>
-  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>Фатимская молитва после начальных «Радуйся, Мария»</value></data>
+  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>Фатимская молитва после начальной молитвы «Слава Отцу»</value></data>
   <data name="EdDisplayHeader.Text" xml:space="preserve"><value>Отображение</value></data>
   <data name="EdMysteryArtwork.Header" xml:space="preserve"><value>Изображения тайн</value></data>
   <data name="EdPresenterMode.Text" xml:space="preserve"><value>Режим ведущего</value></data>
@@ -208,7 +208,7 @@
   <data name="AbtJpHeader.Text" xml:space="preserve"><value>Иллюстрация Иисусовой молитвы</value></data>
   <data name="AbtJpBody.Text" xml:space="preserve"><value>«Христос Пантократор»: энкаустическая икона VI века, монастырь святой Екатерины, гора Синай — древнейшая сохранившаяся икона Христа Вседержителя, в честь восточной традиции молитвы; общественное достояние.</value></data>
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>Источники Писания</value></data>
-  <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Библейские цитаты взяты из Библии Дуэ — Реймса (английский), Климентинской Вульгаты (латынь), перевода Нового Завета на иврит Франца Делича (источник: kirjasilta.net/ha-berit), а ветхозаветные отрывки на иврите следуют масоретскому тексту; также используются арабская Библия иезуитов (Dar el-Machreq), русский Синодальный перевод (1876) и Ang Dating Biblia (тагалог, 1905).</value></data>
+  <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Библейские цитаты взяты из Библии Дуэ — Реймса (английский), Климентинской Вульгаты (латынь), перевода Нового Завета на иврит Франца Делича (источник: kirjasilta.net/ha-berit; delitz.fr/12, 1901), а ветхозаветные отрывки на иврите следуют масоретскому тексту; также используются старый арабский иезуитский перевод Библии (1897), русский Синодальный перевод (1876) и Ang Dating Biblia (тагалог, 1905).</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>Данные календарей</value></data>
   <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Данные календарей и чтений: Общий римский календарь — проект LitCal (litcal.johnromanodorazio.com); календарь и лекционарий 1962 года — Missale Meum (missalemeum.com); сирийско-католический календарь, названия Общего римского календаря на иврите и ссылки на римские и сирийские чтения предоставлены Evangelizo.org — Евангелие дня, © Evangelizo.org; украинский греко-католический календарь и чтения с юлианской Пасхой предоставлены Украинской греко-католической церковью и её Патриаршей литургической комиссией (ugcc.ua); чтения с григорианской Пасхой предоставлены Royal Doors (royaldoors.net). Названия библейских книг на иврите: Evangelizo HE и Викариат святого Иакова (catholic.co.il). Дополнительные названия праздников и имена святых на иврите: Викариат святого Иакова, Христианский медиацентр (cmc-terrasanta.org) и Vatican News (vaticannews.va).</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Предыдущая тайна</value></data>
@@ -322,27 +322,27 @@
   <data name="SetAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>Крестное знамение на арамейском</value></data>
   <data name="EdAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>Крестное знамение на арамейском</value></data>
   <data name="EdRiteCombo.Header" xml:space="preserve"><value>Молитвенная традиция</value></data>
-  <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>Любой вариант Розария</value></data>
-  <data name="HomeAddRosary.Content" xml:space="preserve"><value>Добавить Розарий</value></data>
-  <data name="HomeAddJesusPrayer.Content" xml:space="preserve"><value>Добавить Иисусову молитву</value></data>
+  <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>Любой вариант Розария…</value></data>
+  <data name="HomeAddRosary.Content" xml:space="preserve"><value>Добавить Розарий…</value></data>
+  <data name="HomeAddJesusPrayer.Content" xml:space="preserve"><value>Добавить Иисусову молитву…</value></data>
   <data name="HomeAddToPrayHeader.Text" xml:space="preserve"><value>Добавить в «Молиться»</value></data>
-  <data name="HomeSavedPresets.Text" xml:space="preserve"><value>Сохранённые настройки…</value></data>
+  <data name="HomeSavedPresets.Text" xml:space="preserve"><value>Сохранённые настройки</value></data>
   <data name="HomeEditOrderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Изменить порядок…</value></data>
   <data name="HomeReminders.Text" xml:space="preserve"><value>Напоминания…</value></data>
-  <data name="PresetEdit.Text" xml:space="preserve"><value>Изменить</value></data>
+  <data name="PresetEdit.Text" xml:space="preserve"><value>Изменить…</value></data>
   <data name="PresetReminders.Text" xml:space="preserve"><value>Напоминания…</value></data>
   <data name="PresetSetDefault.Text" xml:space="preserve"><value>Использовать по умолчанию</value></data>
   <data name="PresetDelete.Text" xml:space="preserve"><value>Удалить</value></data>
   <data name="SetImportBundle.Content" xml:space="preserve"><value>Импортировать молитвенный сборник…</value></data>
   <data name="SetExportBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Экспортировать для редактирования</value></data>
-  <data name="SetRemoveBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Удалить</value></data>
+  <data name="SetRemoveBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Удалить загрузку…</value></data>
   <data name="PickerEternalRest.Header" xml:space="preserve"><value>За усопших верных</value></data>
   <data name="PickerAntiphon.Header" xml:space="preserve"><value>Богородичный антифон</value></data>
   <data name="PickerMysteryArtwork.Header" xml:space="preserve"><value>Изображения тайн</value></data>
   <data name="PickerApostlesCreed.Text" xml:space="preserve"><value>Апостольский Символ веры</value></data>
   <data name="PickerOpeningPrayers.Text" xml:space="preserve"><value>«Отче наш» и три «Радуйся, Мария» в начале</value></data>
   <data name="PickerFatima.Text" xml:space="preserve"><value>Фатимская молитва после каждого десятка</value></data>
-  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>Фатимская молитва после начальных «Радуйся, Мария»</value></data>
+  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>Фатимская молитва после начальной молитвы «Слава Отцу»</value></data>
   <data name="PickerPresenterMode.Text" xml:space="preserve"><value>Режим ведущего</value></data>
   <data name="PickerClosingIntentions.Text" xml:space="preserve"><value>Заключительные намерения</value></data>
   <data name="PickerStMichael.Text" xml:space="preserve"><value>Молитва святому Михаилу</value></data>
@@ -442,9 +442,88 @@
   <data name="HomeNextDay.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Следующий день</value></data>
   <data name="home_today_choose_date" xml:space="preserve"><value>Выбрать дату: {0}</value></data>
   <data name="AbtHebrewBookIndex.Text" xml:space="preserve"><value>Дополнительные названия книг Библии на иврите: указатель еврейской Библии Mechon Mamre. Только названия, без библейского текста.</value></data>
-  <data name="SetJaffaWording.Header" xml:space="preserve"><value>Формулировка общины Яффо</value></data>
+  <data name="SetJaffaWording.Header" xml:space="preserve"><value>Альтернативный текст «Радуйся, Мария»</value></data>
   <data name="SetJaffaWordingFooter.Text" xml:space="preserve"><value>Использовать בְּרוּכַת הַחֶסֶד вместо מְלֵאַת הַחֶסֶד в молитвах викариата.</value></data>
   <data name="AbtUkrainianPrayerSources.Text" xml:space="preserve"><value>Молитвы на украинском: Римско-католическая церковь в Украине, молитвенник «Щоденно з Богом». Используются с указанием источника согласно правилам повторного использования издателя. Священное Писание: перевод Кулиша, Нечуя-Левицкого и Пулюя (1905), общественное достояние; eBible.org ukr1871. Историческое написание библейского текста сохранено.</value></data>
   <data name="AbtUkrainianPrayerbookLink.Content" xml:space="preserve"><value>Молитвенник на украинском</value></data>
   <data name="AbtUkrainianScriptureLink.Content" xml:space="preserve"><value>Библия на украинском (1905)</value></data>
+  <!-- Window and menu commands -->
+  <data name="CommandsOpenInNewWindow" xml:space="preserve"><value>Открыть в новом окне</value></data>
+  <data name="CommandsNavigation" xml:space="preserve"><value>Переход</value></data>
+  <data name="CommandsBack" xml:space="preserve"><value>Назад</value></data>
+  <data name="CommandsHelp" xml:space="preserve"><value>Справка Prosary</value></data>
+  <data name="CommandsNewWindow" xml:space="preserve"><value>Новое окно</value></data>
+  <data name="FavoriteEditorSaveFailed" xml:space="preserve"><value>Не удалось сохранить избранное</value></data>
+  <data name="flow_show_original_text" xml:space="preserve"><value>Показать исходный текст</value></data>
+  <data name="RosaryAnyRosaryAction" xml:space="preserve"><value>Любой вариант Розария…</value></data>
+  <data name="RosarySaveAsPresetAction" xml:space="preserve"><value>Сохранить настройки…</value></data>
+  <data name="FavoriteEditorReminderTime" xml:space="preserve"><value>Время напоминания</value></data>
+  <data name="FavoriteEditorRemoveReminder" xml:space="preserve"><value>Удалить напоминание</value></data>
+  <data name="AboutVersion" xml:space="preserve"><value>Версия {0} ({1})</value></data>
+  <data name="CommandsRecentlyPrayed" xml:space="preserve"><value>Недавние молитвы</value></data>
+  <data name="HomeDeleteSavedPrayer.Text" xml:space="preserve"><value>Удалить сохранённую молитву…</value></data>
+  <data name="prayerRemoval_deleteTitle" xml:space="preserve"><value>Удалить сохранённую молитву?</value></data>
+  <data name="prayerRemoval_deleteMessage" xml:space="preserve"><value>Сохранённая молитва и её напоминания будут удалены. Другие сохранённые копии и встроенные молитвы останутся доступны.</value></data>
+  <data name="prayerRemoval_deleteDownloadedMessage" xml:space="preserve"><value>Это последняя сохранённая копия. При её удалении с этого устройства также будет удалён загруженный пакет молитвы и отменены её напоминания.</value></data>
+  <data name="prayerRemoval_deleteConfirm" xml:space="preserve"><value>Удалить</value></data>
+  <data name="prayerRemoval_removeDownloadTitle" xml:space="preserve"><value>Удалить загрузку?</value></data>
+  <data name="prayerRemoval_removeDownloadMessage" xml:space="preserve"><value>Загруженная молитва будет удалена с этого устройства. Её можно импортировать или загрузить снова.</value></data>
+  <data name="prayerRemoval_removeConfirm" xml:space="preserve"><value>Удалить</value></data>
+  <data name="prayerRemoval_failedTitle" xml:space="preserve"><value>Не удалось удалить молитву</value></data>
+  <data name="prayerRemoval_failedMessage" xml:space="preserve"><value>Не удалось удалить некоторые элементы. Повторите попытку.</value></data>
+  <data name="prayerRemoval_deleteFailed" xml:space="preserve"><value>Не удалось удалить молитву. Повторите попытку.</value></data>
+  <data name="prayerRemoval_cleanupFailed" xml:space="preserve"><value>Молитва удалена, но её загрузку удалить не удалось. Повторите попытку в разделе «Загрузки».</value></data>
+  <data name="prayerRemoval_remindersFailed" xml:space="preserve"><value>Молитва удалена, но её напоминания отменить не удалось.</value></data>
+  <data name="prayerRemoval_downloadInUse" xml:space="preserve"><value>Удалите сохранённые копии этой молитвы перед удалением её загрузки.</value></data>
+  <data name="prayerRemoval_prayerRemoved" xml:space="preserve"><value>Эта сохранённая молитва удалена.</value></data>
+
+  <!-- Native desktop library and prayer windows -->
+  <data name="desktop_library" xml:space="preserve"><value>Библиотека</value></data>
+  <data name="desktop_today" xml:space="preserve"><value>Сегодня</value></data>
+  <data name="desktop_gallery" xml:space="preserve"><value>Галерея</value></data>
+  <data name="desktop_community" xml:space="preserve"><value>Сообщество</value></data>
+  <data name="desktop_menu_file" xml:space="preserve"><value>Файл</value></data>
+  <data name="desktop_menu_view" xml:space="preserve"><value>Вид</value></data>
+  <data name="desktop_menu_prayer" xml:space="preserve"><value>Молитва</value></data>
+  <data name="desktop_menu_help" xml:space="preserve"><value>Справка</value></data>
+  <data name="desktop_show_library" xml:space="preserve"><value>Показать библиотеку</value></data>
+  <data name="desktop_close_window" xml:space="preserve"><value>Закрыть окно</value></data>
+  <data name="desktop_import" xml:space="preserve"><value>Импортировать пакеты молитв…</value></data>
+  <data name="desktop_full_screen" xml:space="preserve"><value>Полный экран</value></data>
+  <data name="desktop_prayer_settings" xml:space="preserve"><value>Настройки молитвы…</value></data>
+  <data name="desktop_previous_step" xml:space="preserve"><value>Предыдущий шаг</value></data>
+  <data name="desktop_next_step" xml:space="preserve"><value>Следующий шаг</value></data>
+  <data name="desktop_saved_prayer_missing" xml:space="preserve"><value>Эта сохранённая молитва больше недоступна.</value></data>
+  <data name="desktop_import_failed" xml:space="preserve"><value>Не удалось импортировать пакет молитв</value></data>
+  <data name="desktop_open" xml:space="preserve"><value>Открыть</value></data>
+  <data name="desktop_duplicate" xml:space="preserve"><value>Создать копию</value></data>
+  <data name="desktop_delete" xml:space="preserve"><value>Удалить сохранённую молитву…</value></data>
+  <data name="desktop_rename" xml:space="preserve"><value>Переименовать…</value></data>
+  <data name="desktop_search_library" xml:space="preserve"><value>Поиск молитв</value></data>
+  <data name="desktop_library_empty" xml:space="preserve"><value>Ваша библиотека молитв</value></data>
+  <data name="desktop_library_empty_detail" xml:space="preserve"><value>Добавьте молитву из галереи или импортируйте пакет молитв, чтобы начать.</value></data>
+  <data name="desktop_no_matches" xml:space="preserve"><value>Подходящих молитв нет</value></data>
+  <data name="desktop_no_matches_detail" xml:space="preserve"><value>Попробуйте другой поиск.</value></data>
+  <data name="desktop_add_to_library" xml:space="preserve"><value>Добавить в библиотеку</value></data>
+  <data name="desktop_added" xml:space="preserve"><value>Добавлено в библиотеку</value></data>
+  <data name="desktop_library_load_failed" xml:space="preserve"><value>Не удалось загрузить библиотеку</value></data>
+  <data name="desktop_library_save_failed" xml:space="preserve"><value>Не удалось сохранить молитву</value></data>
+  <data name="desktop_copy_name" xml:space="preserve"><value>{0} — копия</value></data>
+  <data name="desktop_rename_title" xml:space="preserve"><value>Переименовать молитву</value></data>
+  <data name="desktop_gallery_detail" xml:space="preserve"><value>Выберите молитву, чтобы добавить сохранённую копию в библиотеку.</value></data>
+  <data name="desktop_search_gallery" xml:space="preserve"><value>Поиск в галерее</value></data>
+  <data name="desktop_list_view" xml:space="preserve"><value>Список</value></data>
+  <data name="desktop_grid_view" xml:space="preserve"><value>Сетка</value></data>
+  <data name="desktop_name" xml:space="preserve"><value>Название</value></data>
+  <data name="search_category" xml:space="preserve"><value>Категория</value></data>
+  <data name="search_all_categories" xml:space="preserve"><value>Все категории</value></data>
+  <data name="search_no_matches" xml:space="preserve"><value>Нет молитв, соответствующих этому поиску и категории.</value></data>
+  <data name="readings_bible_passage" xml:space="preserve"><value>Отрывок из Библии</value></data>
+  <data name="readings_edition" xml:space="preserve"><value>Издание Библии</value></data>
+  <data name="readings_edition_automatic" xml:space="preserve"><value>Язык интерфейса</value></data>
+  <data name="readings_edition_unavailable" xml:space="preserve"><value>Для этого языка нет доступного издания.</value></data>
+  <data name="readings_text_unavailable" xml:space="preserve"><value>Этот отрывок недоступен в выбранном издании Библии.</value></data>
+  <data name="readings_text_notice" xml:space="preserve"><value>Библейский текст указанного отрывка. Формулировки могут отличаться от чтения на Мессе.</value></data>
+  <data name="readings_whole_verses_notice" xml:space="preserve"><value>Если чтение содержит только часть стиха, стих показан целиком.</value></data>
+  <data name="readings_source" xml:space="preserve"><value>Источник и издание</value></data>
 </root>

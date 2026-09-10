@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using Prosary.Models;
 using Prosary.Navigation;
 using Prosary.Persistence;
+using Prosary.Services;
 using Prosary.Views;
 
 namespace Prosary.ViewModels;
@@ -18,7 +19,12 @@ namespace Prosary.ViewModels;
 /// </summary>
 public partial class RosaryPresetPickerViewModel : ObservableObject
 {
+    public WindowNavigation Navigation { get; set; } = WindowNavigation.Detached;
+
     private readonly IPresetStore _presets;
+    private readonly PrayerRemovalService? _removal;
+    public Func<PrayerRemovalPlan, Task<bool>>? ConfirmDelete { get; set; }
+    public Func<string, Task>? ShowRemovalError { get; set; }
     private Prayer? _adHocPrayerForNavigation;
 
     [ObservableProperty]
@@ -83,15 +89,6 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
     private bool _includeClosingIntentions;
 
     [ObservableProperty]
-    private bool _includeClosingPopeIntention;
-
-    [ObservableProperty]
-    private bool _includeClosingBishopIntention;
-
-    [ObservableProperty]
-    private bool _includeClosingDepartedIntention;
-
-    [ObservableProperty]
     private bool _includeStMichaelPrayer;
 
     [ObservableProperty]
@@ -105,9 +102,10 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
 
     public bool ShowsOrdinalPicker => SelectedMode is MysterySelectionMode.SingleMystery;
 
-    public RosaryPresetPickerViewModel(IPresetStore presets)
+    public RosaryPresetPickerViewModel(IPresetStore presets, PrayerRemovalService? removal = null)
     {
         _presets = presets;
+        _removal = removal;
     }
 
     public async Task LoadAsync()
@@ -136,10 +134,7 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
             EternalRestForDeceased = preset.Rosary.EternalRestForDeceased;
             PresenterMode = preset.Rosary.PresenterMode;
             MarianAntiphon = preset.Rosary.MarianAntiphon;
-            IncludeClosingIntentions = preset.Rosary.IncludeClosingIntentions;
-            IncludeClosingPopeIntention = preset.Rosary.EffectiveClosingPopeIntention;
-            IncludeClosingBishopIntention = preset.Rosary.EffectiveClosingBishopIntention;
-            IncludeClosingDepartedIntention = preset.Rosary.EffectiveClosingDepartedIntention;
+            IncludeClosingIntentions = preset.Rosary.EffectiveClosingIntentions;
             IncludeStMichaelPrayer = preset.Rosary.IncludeStMichaelPrayer;
             IncludeFinalSignOfCross = preset.Rosary.IncludeFinalSignOfCross;
             MysteryImageStyle = preset.Rosary.MysteryImageStyle;
@@ -167,9 +162,9 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
                 PresenterMode = PresenterMode,
                 MarianAntiphon = MarianAntiphon,
                 IncludeClosingIntentions = IncludeClosingIntentions,
-                IncludeClosingPopeIntention = IncludeClosingPopeIntention,
-                IncludeClosingBishopIntention = IncludeClosingBishopIntention,
-                IncludeClosingDepartedIntention = IncludeClosingDepartedIntention,
+                IncludeClosingPopeIntention = null,
+                IncludeClosingBishopIntention = null,
+                IncludeClosingDepartedIntention = null,
                 IncludeStMichaelPrayer = IncludeStMichaelPrayer,
                 IncludeFinalSignOfCross = IncludeFinalSignOfCross,
                 MysteryImageStyle = MysteryImageStyle,
@@ -181,10 +176,10 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
         _adHocPrayerForNavigation ??= AdHocPrayer();
 
     [RelayCommand]
-    private void PrayPreset(Prayer preset) => Router.Navigate<RosaryPrayerPage>(preset.Id);
+    private void PrayPreset(Prayer preset) => Navigation.Navigate<RosaryPrayerPage>(preset.Id);
 
     [RelayCommand]
-    private void PrayAdHoc() => Router.Navigate<RosaryPrayerPage>(AdHocPrayerForNavigation());
+    private void PrayAdHoc() => Navigation.Navigate<RosaryPrayerPage>(AdHocPrayerForNavigation());
 
     /// <summary>Keeps the quick-setup selection as a new preset — never stealing the default
     /// slot unless it's the first preset.</summary>
@@ -201,27 +196,18 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
 
     [RelayCommand]
     private void EditPreset(Prayer preset) =>
-        Router.Navigate<FavoriteEditorPage>(new FavoriteEditorParams(preset.Id));
+        Navigation.Navigate<FavoriteEditorPage>(new FavoriteEditorParams(preset.Id));
 
     [RelayCommand]
     private void EditReminders(Prayer preset) =>
-        Router.Navigate<RemindersOnlyEditorPage>(preset.Id);
+        Navigation.Navigate<RemindersOnlyEditorPage>(preset.Id);
 
     [RelayCommand]
     private async Task MakeDefaultAsync(Prayer preset)
     {
-        foreach (var other in await _presets.GetAllAsync())
+        if (await _presets.GetAsync(preset.Id) is { } current)
         {
-            if (other.Kind != PrayerKind.Rosary)
-            {
-                continue;
-            }
-
-            var shouldBeDefault = other.Id == preset.Id;
-            if (other.IsDefault != shouldBeDefault)
-            {
-                await _presets.SaveAsync(other with { IsDefault = shouldBeDefault });
-            }
+            await _presets.UpdateIfPresentAsync(current with { IsDefault = true });
         }
 
         await LoadAsync();
@@ -230,10 +216,23 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
     [RelayCommand]
     private async Task DeletePresetAsync(Prayer preset)
     {
-        await _presets.DeleteAsync(preset);
-        await LoadAsync();
+        if (_removal is null) return;
+        string? message = null;
+        try
+        {
+            var plan = await _removal.PlanAsync(preset.Id);
+            if (plan is null || ConfirmDelete is null || !await ConfirmDelete(plan)) return;
+            await _removal.DeleteAsync(preset.Id);
+        }
+        catch (Exception error)
+        {
+            message = PrayerRemovalService.ErrorMessage(error);
+        }
+        try { await LoadAsync(); }
+        catch (Exception error) { message ??= PrayerRemovalService.ErrorMessage(error); }
+        if (message is not null && ShowRemovalError is not null) await ShowRemovalError(message);
     }
 
     [RelayCommand]
-    private void Back() => Router.GoBack();
+    private void Back() => Navigation.GoBack();
 }

@@ -45,11 +45,13 @@
                     x:Uid="FlowTransliterationButton" ToolTipService.ToolTip="Show transliteration">
                 <FontIcon Glyph="&#xE8C1;" FontSize="14" />
             </Button>
-            <Button Grid.Column="5" Command="{x:Bind ViewModel.ToggleFavoriteCommand, Mode=OneWay}" Background="Transparent" Padding="8">
+            <Button Grid.Column="5" Command="{x:Bind ViewModel.ToggleFavoriteCommand, Mode=OneWay}" Background="Transparent" Padding="8"
+                    ToolTipService.ToolTip="{x:Bind ViewModel.FavoriteActionLabel, Mode=OneWay}"
+                    AutomationProperties.Name="{x:Bind ViewModel.FavoriteActionLabel, Mode=OneWay}">
                 <Grid>
-                    <FontIcon Glyph="&#xE735;" Foreground="{StaticResource BrandPrimaryBrush}"
+                    <FontIcon Glyph="&#xE74D;"
                               Visibility="{x:Bind ViewModel.IsFavorited, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                    <FontIcon Glyph="&#xE734;"
+                    <FontIcon Glyph="&#xE74E;"
                               Visibility="{x:Bind ViewModel.IsFavorited, Mode=OneWay, Converter={StaticResource InverseBoolToVisibility}}" />
                 </Grid>
             </Button>

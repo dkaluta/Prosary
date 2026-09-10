@@ -64,14 +64,24 @@ struct PrayerRunProgressStore {
 
   private let defaults: UserDefaults
   private let defaultsKey: String
+  private let namespace: String?
 
-  init(defaults: UserDefaults = .standard, defaultsKey: String = Self.defaultsKey) {
+  init(defaults: UserDefaults = .standard, defaultsKey: String = Self.defaultsKey, namespace: String? = nil) {
     self.defaults = defaults
     self.defaultsKey = defaultsKey
+    self.namespace = namespace
   }
 
   func progress(for runKey: String) -> PrayerRunProgress? {
-    all()[runKey]
+    var runs = all()
+    let key = storageKey(runKey)
+    if let ownProgress = runs[key] { return ownProgress }
+    // Existing installs and newly opened windows resume the most recently saved session.
+    // Claim a copy once; later sibling-window saves must not move this window's bookmark.
+    guard namespace != nil, let latestProgress = runs[runKey] else { return nil }
+    runs[key] = latestProgress
+    save(runs)
+    return latestProgress
   }
 
   func save(
@@ -87,18 +97,33 @@ struct PrayerRunProgressStore {
       return
     }
     var runs = all()
-    runs[runKey] = PrayerRunProgress(
+    let progress = PrayerRunProgress(
       configurationSignature: configurationSignature,
       stepIndex: stepIndex,
       languageCode: languageCode,
       savedLocalDate: PrayerRunProgress.localDateString(for: today, calendar: calendar))
+    runs[storageKey(runKey)] = progress
+    // Retain a shared continuation for an explicitly closed window, whose scene namespace
+    // won't return when the person later chooses File → New Window.
+    if namespace != nil { runs[runKey] = progress }
     save(runs)
   }
 
   func clear(runKey: String) {
     var runs = all()
-    runs.removeValue(forKey: runKey)
+    let removedProgress = runs.removeValue(forKey: storageKey(runKey))
+    // Finishing an older window must not erase the continuation most recently saved by a
+    // sibling. The shared copy belongs to this window only while its checkpoint still matches.
+    if namespace != nil, let removedProgress, runs[runKey] == removedProgress {
+      runs.removeValue(forKey: runKey)
+    }
     save(runs)
+  }
+
+  /// A restored Mac scene retains this namespace; sibling windows never share a bookmark.
+  /// Mobile keeps the existing prayer-identity keys.
+  private func storageKey(_ runKey: String) -> String {
+    namespace.map { "window:\($0):\(runKey)" } ?? runKey
   }
 
   private func all() -> [String: PrayerRunProgress] {
@@ -147,19 +172,19 @@ enum PrayerRunSignature {
       flag(options.includeFatimaPrayer),
       options.eternalRestForDeceased.rawValue,
       options.marianAntiphon.rawValue,
-      flag(options.includeClosingIntentions),
+      flag(options.effectiveClosingIntentions),
       flag(options.includeStMichaelPrayer),
       flag(options.includeFinalSignOfCross),
       options.aramaicSignOfCrossForm,
       flag(options.presenterMode),
       options.mysteryImageStyle.rawValue,
     ]
-    let closing = [options.effectiveClosingPopeIntention, options.effectiveClosingBishopIntention,
-                   options.effectiveClosingDepartedIntention]
-    // Each intention now opens on its own page. Old bookmarks with closing prayers must not
-    // silently resume at a shifted page; ordinary no-closing runs keep their original identity.
-    if closing.contains(true) || closing.contains(where: { $0 != options.includeClosingIntentions }) {
-      fields.append("closing-v2:\(closing.map(flag).joined(separator: ","))")
+    // Preserve whole-group bookmarks; former partial groups now have a different sequence.
+    if options.effectiveClosingIntentions {
+      fields.append("closing-v2:1,1,1")
+    }
+    if options.includeOpeningPrayers && options.includeOpeningFatimaPrayer {
+      fields.append("opening-fatima-v2")
     }
     return fields.joined(separator: "|")
   }
@@ -170,8 +195,16 @@ enum PrayerRunSignature {
     dayIndex: Int,
     options: [String: String]
   ) -> String {
+    let options = RosaryOptions.normalizedCustomOptions(options, bundleId: devotionId)
     let optionText = options.keys.sorted().map { "\($0)=\(options[$0] ?? "")" }.joined(separator: "|")
-    return "custom|\(devotionId)|\(effectiveVariantId ?? "")|\(dayIndex)|\(optionText)"
+    var signature = "custom|\(devotionId)|\(effectiveVariantId ?? "")|\(dayIndex)|\(optionText)"
+    if devotionId == "rosary", options["closingIntentions"] == "true" {
+      signature += "|closing-v2:1,1,1"
+    }
+    if devotionId == "rosary", options["openingPrayers"] != "false", options["openingFatimaPrayer"] == "true" {
+      signature += "|opening-fatima-v2"
+    }
+    return signature
   }
 
   static func jesus(_ target: JesusPrayerTarget) -> String {

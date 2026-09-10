@@ -27,8 +27,11 @@ namespace Prosary.ViewModels;
 /// </summary>
 public partial class FavoriteEditorViewModel : ObservableObject
 {
+    public WindowNavigation Navigation { get; set; } = WindowNavigation.Detached;
+
     private readonly IPresetStore _presets;
     private readonly IReminderScheduler _scheduler;
+    public Func<string, Task>? ShowSaveError { get; set; }
 
     private Guid _id;
     private Prayer? _originalPrayer;
@@ -105,15 +108,6 @@ public partial class FavoriteEditorViewModel : ObservableObject
 
     [ObservableProperty]
     private bool _includeClosingIntentions;
-
-    [ObservableProperty]
-    private bool _includeClosingPopeIntention;
-
-    [ObservableProperty]
-    private bool _includeClosingBishopIntention;
-
-    [ObservableProperty]
-    private bool _includeClosingDepartedIntention;
 
     [ObservableProperty]
     private bool _includeStMichaelPrayer;
@@ -213,7 +207,16 @@ public partial class FavoriteEditorViewModel : ObservableObject
         Prayer prayer;
         if (prayerId is { } id)
         {
-            prayer = await _presets.GetAsync(id) ?? new Prayer { Kind = newFavoriteKind };
+            var existing = await _presets.GetAsync(id);
+            if (existing is null)
+            {
+                _id = id;
+                _originalPrayer = null;
+                if (ShowSaveError is { } showError)
+                    await showError(Loc.Tr("prayerRemoval_prayerRemoved", "This saved prayer has been deleted."));
+                return;
+            }
+            prayer = existing;
         }
         else
         {
@@ -247,10 +250,7 @@ public partial class FavoriteEditorViewModel : ObservableObject
         IncludeFatimaPrayer = prayer.Rosary.IncludeFatimaPrayer;
         EternalRestForDeceased = prayer.Rosary.EternalRestForDeceased;
         MarianAntiphon = prayer.Rosary.MarianAntiphon;
-        IncludeClosingIntentions = prayer.Rosary.IncludeClosingIntentions;
-        IncludeClosingPopeIntention = prayer.Rosary.EffectiveClosingPopeIntention;
-        IncludeClosingBishopIntention = prayer.Rosary.EffectiveClosingBishopIntention;
-        IncludeClosingDepartedIntention = prayer.Rosary.EffectiveClosingDepartedIntention;
+        IncludeClosingIntentions = prayer.Rosary.EffectiveClosingIntentions;
         IncludeStMichaelPrayer = prayer.Rosary.IncludeStMichaelPrayer;
         IncludeFinalSignOfCross = prayer.Rosary.IncludeFinalSignOfCross;
         AramaicSignOfCrossForm = prayer.Rosary.AramaicSignOfCrossForm;
@@ -279,9 +279,9 @@ public partial class FavoriteEditorViewModel : ObservableObject
             EternalRestForDeceased = EternalRestForDeceased,
             MarianAntiphon = MarianAntiphon,
             IncludeClosingIntentions = IncludeClosingIntentions,
-            IncludeClosingPopeIntention = IncludeClosingPopeIntention,
-            IncludeClosingBishopIntention = IncludeClosingBishopIntention,
-            IncludeClosingDepartedIntention = IncludeClosingDepartedIntention,
+            IncludeClosingPopeIntention = null,
+            IncludeClosingBishopIntention = null,
+            IncludeClosingDepartedIntention = null,
             IncludeStMichaelPrayer = IncludeStMichaelPrayer,
             IncludeFinalSignOfCross = IncludeFinalSignOfCross,
             AramaicSignOfCrossForm = AramaicSignOfCrossForm,
@@ -348,7 +348,16 @@ public partial class FavoriteEditorViewModel : ObservableObject
     private async Task SaveAsync()
     {
         var toSave = BuildPrayer();
-        await _presets.SaveAsync(toSave);
+        if (IsNew)
+        {
+            await _presets.SaveAsync(toSave);
+        }
+        else if (!await _presets.UpdateIfPresentAsync(toSave))
+        {
+            if (ShowSaveError is { } showError)
+                await showError(Loc.Tr("prayerRemoval_prayerRemoved", "This saved prayer has been deleted."));
+            return;
+        }
 
         // Cancel the original's reminders (by their old ids) before scheduling the new set —
         // Schedule() only knows how to (re)build toasts for reminder ids present in toSave, so a
@@ -359,9 +368,9 @@ public partial class FavoriteEditorViewModel : ObservableObject
         }
         _scheduler.Schedule(toSave);
 
-        Router.GoBack();
+        Navigation.GoBack();
     }
 
     [RelayCommand]
-    private void Cancel() => Router.GoBack();
+    private void Cancel() => Navigation.GoBack();
 }

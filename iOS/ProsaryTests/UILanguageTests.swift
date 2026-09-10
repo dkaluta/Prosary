@@ -93,7 +93,10 @@ final class UILanguageTests: XCTestCase {
       let localizations = try XCTUnwrap(entry["localizations"] as? [String: [String: Any]], key)
       let english = try XCTUnwrap((localizations["en"]?["stringUnit"] as? [String: String])?["value"], key)
       for language in UILanguage.all.map(\.code) {
-        let unit = try XCTUnwrap(localizations[language]?["stringUnit"] as? [String: String], "\(key)/\(language)")
+        // Xcode can canonicalize the catalog's Tagalog identifier to fil as well as
+        // its compiled resource folder. Require a real translation under either alias.
+        let localization = localizations[language] ?? localizations[UILanguage.resourceLanguage(language)]
+        let unit = try XCTUnwrap(localization?["stringUnit"] as? [String: String], "\(key)/\(language)")
         let value = try XCTUnwrap(unit["value"], "\(key)/\(language)")
         XCTAssertFalse(value.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, "\(key)/\(language)")
         XCTAssertEqual(argumentTypes(value), argumentTypes(english), "\(key)/\(language)")

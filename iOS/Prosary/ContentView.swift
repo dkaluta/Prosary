@@ -1,130 +1,249 @@
-//
-//  ContentView.swift
-//  Prosary
-//
-//  The app's tab shell: Pray (Home), Browse (the prayers.prosary.app catalog), Categories
-//  (devotions grouped by manifest tags), and Search (local + community). Bottom tabs on
-//  iPhone; on iOS 18/macOS 15 the sidebarAdaptable style turns them into a sidebar on
-//  iPad/Mac, matching the "bottom on phone, side on computer" design.
-//
-
+// Native Mac sidebar, with independent navigation in every window; tabs on other Apple devices.
 import SwiftUI
 import UniformTypeIdentifiers
 
 struct ContentView: View {
-  private enum Tab: Hashable { case pray, browse, categories, search }
-
-  @State private var selectedTab: Tab = .pray
-  @State private var prayPath: [AppRoute] = []
+  @State private var selectedTab: AppSection = .pray
+  @State private var prayPath: [AppRoute]
   @State private var browsePath: [AppRoute] = []
-  @State private var categoriesPath: [AppRoute] = []
+  @State private var readingsPath: [AppRoute] = []
   @State private var searchPath: [AppRoute] = []
   @State private var routeLandingGeneration = 0
   @State private var pendingLandingRoute: AppRoute?
+  @State private var windowID = UUID()
+  @SceneStorage("macWindowStateID") private var storedWindowID = UUID().uuidString
+  @State private var sidebarVisibility: NavigationSplitViewVisibility
   private var coordinator = NavigationCoordinator.shared
+  @Environment(\.scenePhase) private var scenePhase
   @State private var showsBundleImporter = false
   @State private var importError: String?
+  @State private var isBundleDropTarget = false
+  @State private var hasAttachedSheet = false
+  #if os(macOS)
+  @Environment(\.openWindow) private var openWindow
+  #endif
+
+  init(initialRoute: AppRoute? = nil, startsWithSidebarHidden: Bool = false) {
+    _prayPath = State(initialValue: initialRoute.map { [$0] } ?? [])
+    _sidebarVisibility = State(initialValue: startsWithSidebarHidden ? .detailOnly : .all)
+  }
 
   var body: some View {
+    shell
+      #if os(macOS)
+      .environment(\.prayerProgressNamespace, storedWindowID)
+      #endif
+      .environment(\.windowNavigation, navigationActions)
+      .focusedSceneValue(\.windowNavigation, hasAttachedSheet ? nil : navigationActions)
+      .onChange(of: coordinator.pendingRoute) { _, _ in consumePendingRoute() }
+      .fileImporter(isPresented: $showsBundleImporter, allowedContentTypes: [.prosaryPrayer, .zip]) { result in
+        switch result {
+        case .success(let url): importBundle(url)
+        case .failure(let error): importError = error.localizedDescription
+        }
+      }
+      .onOpenURL { url in
+        if let link = ProsaryWidgetLink(url: url) {
+          openWidgetLink(link)
+          return
+        }
+        guard url.isFileURL, url.pathExtension.lowercased() == "prosaryprayer" else { return }
+        importBundle(url)
+      }
+      #if os(macOS)
+      .dropDestination(for: URL.self) { urls, _ in
+        let bundles = urls.filter { $0.isFileURL && $0.pathExtension.lowercased() == "prosaryprayer" }
+        guard !bundles.isEmpty else { return false }
+        bundles.forEach(importBundle)
+        return true
+      } isTargeted: { isBundleDropTarget = $0 }
+      .overlay {
+        if isBundleDropTarget {
+          RoundedRectangle(cornerRadius: 8).stroke(.tint, lineWidth: 3)
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
+        }
+      }
+      #endif
+      .alert(
+        String(localized: "favorites.importFailed", defaultValue: "Could Not Import Devotion"),
+        isPresented: .init(get: { importError != nil }, set: { if !$0 { importError = nil } })
+      ) {
+        Button(String(localized: "common.ok", defaultValue: "OK")) {}
+          .keyboardShortcut(.defaultAction)
+      } message: {
+        Text(importError ?? "")
+      }
+      #if os(macOS)
+      .background {
+        MacWindowFocusReader(
+          onActivate: activateWindow,
+          onClose: { coordinator.closeWindow(windowID) },
+          onSheetChange: { hasAttachedSheet = $0 }
+        )
+          .frame(width: 0, height: 0)
+      }
+      .onChange(of: hasAttachedSheet) { _, presented in
+        if !presented { consumePendingRoute() }
+      }
+      .task {
+        let windowOpener = openWindow
+        MacPrayerWindowActions.install { route in
+          windowOpener(id: "prayer", value: PrayerWindowRequest(route: route))
+        }
+        await RecentPrayers.shared.refresh()
+      }
+      .task(id: activePath.wrappedValue.last) {
+        if let route = activePath.wrappedValue.last { await RecentPrayers.shared.record(route) }
+      }
+      .onReceive(NotificationCenter.default.publisher(for: .prayerLibraryDidChange)) { _ in
+        Task<Void, Never> { await RecentPrayers.shared.refresh() }
+      }
+      #else
+      .task { activateWindow() }
+      .onChange(of: scenePhase) { _, phase in
+        if phase == .active { activateWindow() }
+      }
+      #endif
+      // Menu tracking has to end and the fresh stack has to exist before populating it.
+      .task(id: routeLandingGeneration) {
+        await completePendingRouteLanding(generation: routeLandingGeneration)
+      }
+  }
+
+  @ViewBuilder
+  private var shell: some View {
+    #if os(macOS)
+    NavigationSplitView(columnVisibility: $sidebarVisibility) {
+      List(selection: Binding<AppSection?>(get: { selectedTab }, set: { if let section = $0 { selectedTab = section } })) {
+        ForEach(AppSection.allCases, id: \.self) { section in
+          Label(section.title, systemImage: section.systemImage)
+            .tag(section)
+            .accessibilityIdentifier("sidebar.\(section.rawValue)")
+        }
+      }
+      .listStyle(.sidebar)
+      .navigationSplitViewColumnWidth(min: 170, ideal: 200, max: 260)
+    } detail: {
+      sectionView(selectedTab)
+        .frame(minWidth: 360)
+    }
+    #else
     TabView(selection: $selectedTab) {
+      ForEach(AppSection.allCases, id: \.self) { section in
+        sectionView(section)
+          .tabItem { Label(section.title, systemImage: section.systemImage) }
+          .tag(section)
+      }
+    }
+    .adaptiveTabViewStyle()
+    #endif
+  }
+
+  @ViewBuilder
+  private func sectionView(_ section: AppSection) -> some View {
+    switch section {
+    case .pray:
       NavigationStack(path: $prayPath) {
         HomeView(path: $prayPath)
           .appRouteDestinations(path: $prayPath)
       }
-      // An external route replaces this stack wholesale. On macOS, resetting and then
-      // repopulating one long-lived NavigationStack can leave its native Back control and the
-      // bound path disagreeing: Back renders Home while the old route remains hidden in the
-      // binding, so the next card is pushed on top of a ghost destination. A new identity makes
-      // the replacement atomic — one stack owns exactly one path from its first render.
+      // A replaced stack needs a new identity so AppKit's Back control and the path agree.
       .id(routeLandingGeneration)
-      .tabItem {
-        Label(String(localized: "tabs.pray", defaultValue: "Pray"), systemImage: "hands.and.sparkles")
-      }
-      .tag(Tab.pray)
-
+    case .browse:
       NavigationStack(path: $browsePath) {
         RepositoryBrowserView(presentedAsSheet: false)
           .appRouteDestinations(path: $browsePath)
       }
-      .tabItem {
-        Label(String(localized: "tabs.browse", defaultValue: "Browse"), systemImage: "globe")
+    case .readings:
+      NavigationStack(path: $readingsPath) {
+        #if os(macOS)
+        MacTodayView()
+          .appRouteDestinations(path: $readingsPath)
+        #else
+        ReadingsView()
+          .appRouteDestinations(path: $readingsPath)
+        #endif
       }
-      .tag(Tab.browse)
-
-      NavigationStack(path: $categoriesPath) {
-        CategoriesView(path: $categoriesPath)
-          .appRouteDestinations(path: $categoriesPath)
-      }
-      .tabItem {
-        Label(String(localized: "tabs.categories", defaultValue: "Categories"), systemImage: "square.grid.2x2")
-      }
-      .tag(Tab.categories)
-
+    case .search:
       NavigationStack(path: $searchPath) {
         SearchTabView(path: $searchPath)
           .appRouteDestinations(path: $searchPath)
       }
-      .tabItem {
-        Label(String(localized: "tabs.search", defaultValue: "Search"), systemImage: "magnifyingglass")
-      }
-      .tag(Tab.search)
-    }
-    .adaptiveTabViewStyle()
-    .onChange(of: coordinator.pendingRoute) { _, newValue in
-      guard let newValue else { return }
-      land(newValue)
-      coordinator.pendingRoute = nil
-    }
-    // File → Import Devotion Bundle… (menu commands run outside the view hierarchy, so the
-    // importer is presented here at the root). Installed devotions are then discoverable in
-    // Browse, Categories, and Search and may be pinned to Pray.
-    .onChange(of: coordinator.pendingBundleImport) { _, newValue in
-      guard newValue else { return }
-      coordinator.pendingBundleImport = false
-      showsBundleImporter = true
-    }
-    .fileImporter(
-      isPresented: $showsBundleImporter,
-      allowedContentTypes: [UTType(filenameExtension: "prosaryprayer") ?? .zip, .zip]
-    ) { result in
-      guard case .success(let url) = result else { return }
-      do {
-        // Installed devotions are found through Categories/Search/Browse and become saved
-        // sessions only when starred, so there is nowhere to push to — stay put.
-        try PrayerPackStore.installPack(fromUserSelected: url)
-      } catch {
-        importError = error.localizedDescription
-      }
-    }
-    .alert(
-      String(localized: "favorites.importFailed", defaultValue: "Could Not Import Devotion"),
-      isPresented: .init(get: { importError != nil }, set: { if !$0 { importError = nil } })
-    ) {
-      Button("favoriteEditor.cancel", role: .cancel) {}
-    } message: {
-      Text(importError ?? "")
-    }
-    .task {
-      if let pending = coordinator.pendingRoute {
-        land(pending)
-        coordinator.pendingRoute = nil
-      }
-    }
-    // Menu commands arrive while AppKit is tracking NSMenu rather than during an ordinary
-    // SwiftUI event cycle. Keying a view task to the request reliably resumes after the newly
-    // identified Pray stack has been installed; a nested RunLoop.perform can be stranded when
-    // menu tracking ends.
-    .task(id: routeLandingGeneration) {
-      await completePendingRouteLanding(generation: routeLandingGeneration)
     }
   }
 
-  /// Lands a route that arrived from outside the view hierarchy — the Mac's Prayers menu, an
-  /// App Intent, or a finished devotion's suggestedNext handover. Two rules, both learned from
-  /// the Back button dropping people into sessions they never opened (2026-08-08): bring the
-  /// Pray tab forward (the route lands on prayPath, so navigating it invisibly under another
-  /// tab left ghosts), and replace the stack rather than append — "pray THIS now" must not
-  /// stand on whatever leftovers the last session pushed, or Back walks down through them.
+  private var activePath: Binding<[AppRoute]> {
+    switch selectedTab {
+    case .pray: $prayPath
+    case .browse: $browsePath
+    case .readings: $readingsPath
+    case .search: $searchPath
+    }
+  }
+
+  private var navigationActions: WindowNavigationActions {
+    WindowNavigationActions(
+      selectedSection: selectedTab,
+      canGoBack: !activePath.wrappedValue.isEmpty,
+      currentRoute: activePath.wrappedValue.last,
+      selectSection: { selectedTab = $0 },
+      goBack: {
+        if !activePath.wrappedValue.isEmpty { activePath.wrappedValue.removeLast() }
+      },
+      openRoute: land,
+      importBundle: { showsBundleImporter = true }
+    )
+  }
+
+  private func activateWindow() {
+    coordinator.activateWindow(windowID)
+    consumePendingRoute()
+  }
+
+  private func openWidgetLink(_ link: ProsaryWidgetLink) {
+    switch link {
+    case .today, .library:
+      routeLandingGeneration += 1
+      pendingLandingRoute = nil
+      selectedTab = .pray
+      prayPath = []
+      // A fresh HomeView starts at the actual local day, even after date browsing.
+    case .prayer(let id): land(.prayer(id: id))
+    case .rosary:
+      Task {
+        let saved = try? await AppServices.shared.presetStore.defaultPreset(kind: .rosary)
+        land(.rosaryQuickPray(prayer: ProsaryWidgetLink.rosaryPrayer(from: saved)))
+      }
+    }
+  }
+
+  private func consumePendingRoute() {
+    guard !hasAttachedSheet else { return }
+    if let route = coordinator.takePendingRoute(for: windowID) { land(route) }
+  }
+
+  private func importBundle(_ url: URL) {
+    do {
+      #if os(macOS)
+      _ = try PrayerPackStore.installPack(fromUserSelected: url)
+      // Legacy restored windows also send imported packs to the Mac Gallery, preserving
+      // this window's current prayer and any attached editor.
+      openWindow(id: "main")
+      DispatchQueue.main.async {
+        NotificationCenter.default.post(name: .macShowGallery, object: nil)
+      }
+      #else
+      let devotionID = try PrayerPackStore.installPack(fromUserSelected: url)
+      // Open what was imported so a successful Finder/File action has an immediate result.
+      land(.custom(devotionId: devotionID))
+      #endif
+    } catch {
+      importError = error.localizedDescription
+    }
+  }
+
+  /// An external request starts one clean stack in this window, never in a sibling window.
   private func land(_ route: AppRoute) {
     routeLandingGeneration += 1
     pendingLandingRoute = route
@@ -134,22 +253,15 @@ struct ContentView: View {
 
   private func completePendingRouteLanding(generation: Int) async {
     guard generation == routeLandingGeneration, let route = pendingLandingRoute else { return }
-
-    // The generation has already given NavigationStack a fresh owner at root. Populate that
-    // owner's entire initial route in a later SwiftUI cycle so native Back and this binding
-    // begin, and remain, in lockstep.
     await Task.yield()
     guard !Task.isCancelled, generation == routeLandingGeneration,
           pendingLandingRoute == route else { return }
-
     prayPath = [route]
     pendingLandingRoute = nil
   }
 }
 
 private extension View {
-  /// Sidebar on iPad/Mac where the OS supports it (iOS 18 / macOS 15); the classic bottom
-  /// tab bar / tab control everywhere else — the deployment targets are iOS 17 / macOS 14.
   @ViewBuilder
   func adaptiveTabViewStyle() -> some View {
     if #available(iOS 18.0, macOS 15.0, visionOS 2.0, *) {
@@ -160,6 +272,4 @@ private extension View {
   }
 }
 
-#Preview {
-  ContentView()
-}
+#Preview { ContentView() }

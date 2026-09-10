@@ -1,3 +1,4 @@
+using Prosary.Navigation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Controls;
@@ -17,6 +18,7 @@ public sealed partial class BasicPrayersPage : Page
     public BasicPrayersPage()
     {
         ViewModel = App.Services.GetRequiredService<BasicPrayersViewModel>();
+        ViewModel.Navigation = Router.For(this);
         InitializeComponent();
         var languageLabel = Loc.Tr("EdLanguageHeader/Text", "Prayer language");
         AutomationProperties.SetName(LanguageMenuButton, languageLabel);

@@ -65,16 +65,16 @@
       "if": "openingPrayers"
     },
     {
-      "titleKey": "oratioFatimaeTitle",
-      "bodyKey": "oratioFatimae",
-      "imageKey": "jesus_portrait",
-      "if": "openingPrayers & openingFatimaPrayer"
-    },
-    {
       "titleKey": "gloriaPatriTitle",
       "bodyKey": "gloriaPatri",
       "imageKey": "glory_be",
       "if": "openingPrayers"
+    },
+    {
+      "titleKey": "oratioFatimaeTitle",
+      "bodyKey": "oratioFatimae",
+      "imageKey": "jesus_portrait",
+      "if": "openingPrayers & openingFatimaPrayer"
     }
   ],
   "decades": {
@@ -128,79 +128,79 @@
       "titleKey": "closingPopeIntentionTitle",
       "bodyKey": "intentioPontificis",
       "imageKey": "our_father",
-      "if": "closingPopeIntention"
+      "if": "closingIntentions"
     },
     {
       "titleKey": "paterNosterTitle",
       "bodyKey": "paterNoster",
       "imageKey": "our_father",
-      "if": "closingPopeIntention"
+      "if": "closingIntentions"
     },
     {
       "titleKey": "aveMariaTitle",
       "bodyKey": "aveMaria",
       "imageKey": "madonna_and_child",
-      "if": "closingPopeIntention"
+      "if": "closingIntentions"
     },
     {
       "titleKey": "gloriaPatriTitle",
       "bodyKey": "gloriaPatri",
       "imageKey": "glory_be",
-      "if": "closingPopeIntention"
+      "if": "closingIntentions"
     },
     {
       "titleKey": "closingBishopIntentionTitle",
       "bodyKey": "intentioOrdinarii",
       "imageKey": "our_father",
-      "if": "closingBishopIntention"
+      "if": "closingIntentions"
     },
     {
       "titleKey": "paterNosterTitle",
       "bodyKey": "paterNoster",
       "imageKey": "our_father",
-      "if": "closingBishopIntention"
+      "if": "closingIntentions"
     },
     {
       "titleKey": "aveMariaTitle",
       "bodyKey": "aveMaria",
       "imageKey": "madonna_and_child",
-      "if": "closingBishopIntention"
+      "if": "closingIntentions"
     },
     {
       "titleKey": "gloriaPatriTitle",
       "bodyKey": "gloriaPatri",
       "imageKey": "glory_be",
-      "if": "closingBishopIntention"
+      "if": "closingIntentions"
     },
     {
       "titleKey": "closingDepartedIntentionTitle",
       "bodyKey": "intentioAnimarum",
       "imageKey": "our_father",
-      "if": "closingDepartedIntention"
+      "if": "closingIntentions"
     },
     {
       "titleKey": "paterNosterTitle",
       "bodyKey": "paterNoster",
       "imageKey": "our_father",
-      "if": "closingDepartedIntention"
+      "if": "closingIntentions"
     },
     {
       "titleKey": "aveMariaTitle",
       "bodyKey": "aveMaria",
       "imageKey": "madonna_and_child",
-      "if": "closingDepartedIntention"
+      "if": "closingIntentions"
     },
     {
       "titleKey": "gloriaPatriTitle",
       "bodyKey": "gloriaPatri",
       "imageKey": "glory_be",
-      "if": "closingDepartedIntention"
+      "if": "closingIntentions"
     },
     {
       "titleKey": "requiemAeternamTitle",
       "bodyKey": "requiescantInPace",
       "imageKey": "eternal_rest",
-      "if": "closingDepartedIntention"
+      "if": "closingIntentions"
     },
     {
       "titleKey": "sanctusMichaelTitle",

@@ -21,6 +21,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
@@ -41,8 +42,8 @@ import com.dkaluta.prosary.ui.presets.OptionPickerField
  * editor much longer than every other kind's, for options most sessions never touch. Edits
  * [rosary] via [onRosaryChange] directly; the parent screen's own Save button persists it, this
  * screen has no save/cancel of its own. A plain composable-level screen swap (not a NavHost
- * destination) since [rosary] lives in the parent's local `remember` state, not a shared
- * ViewModel — see FavoriteEditorScreen's own state-ownership comment. */
+ * destination) since [rosary] lives in the parent's navigation-entry draft; folding while
+ * this submenu is open preserves both the draft and the visible submenu. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RosaryOptionsEditorScreen(
@@ -122,7 +123,8 @@ fun RosaryOptionsEditorScreen(
             }
 
             FormSection(title = stringResource(R.string.ro_opening_section)) {
-                SwitchRow(stringResource(R.string.ro_apostles_creed), rosary.includeApostlesCreed) {
+                SwitchRow(stringResource(R.string.ro_apostles_creed), rosary.includeApostlesCreed,
+                    switchModifier = Modifier.testTag("rosaryOption:apostlesCreed")) {
                     onRosaryChange(rosary.copy(includeApostlesCreed = it))
                 }
                 SwitchRow(stringResource(R.string.ro_opening_prayers), rosary.includeOpeningPrayers) {
@@ -172,14 +174,8 @@ fun RosaryOptionsEditorScreen(
                     onSelect = { onRosaryChange(rosary.copy(marianAntiphon = it)) },
                     modifier = Modifier.fillMaxWidth(),
                 )
-                SwitchRow(stringResource(R.string.ro_closing_pope_intention), rosary.effectiveClosingPopeIntention) {
-                    onRosaryChange(rosary.copy(includeClosingPopeIntention = it))
-                }
-                SwitchRow(stringResource(R.string.ro_closing_bishop_intention), rosary.effectiveClosingBishopIntention) {
-                    onRosaryChange(rosary.copy(includeClosingBishopIntention = it))
-                }
-                SwitchRow(stringResource(R.string.ro_closing_departed_intention), rosary.effectiveClosingDepartedIntention) {
-                    onRosaryChange(rosary.copy(includeClosingDepartedIntention = it))
+                SwitchRow(stringResource(R.string.ro_closing_intentions), rosary.effectiveClosingIntentions) {
+                    onRosaryChange(rosary.withClosingIntentions(it))
                 }
                 SwitchRow(stringResource(R.string.ro_st_michael), rosary.includeStMichaelPrayer) {
                     onRosaryChange(rosary.copy(includeStMichaelPrayer = it))

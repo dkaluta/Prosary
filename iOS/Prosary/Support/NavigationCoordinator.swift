@@ -3,11 +3,12 @@
 //  Prosary
 //
 //  App Intents (AppIntents/) run outside the view hierarchy and have no NavigationPath to push
-//  onto directly. An intent instead sets `pendingRoute`; ContentView observes this shared
-//  instance and appends it to its own path, then clears it.
+//  onto directly. Only the active window may take an intent's pending route. Menus and
+//  in-view handoffs use WindowNavigationActions instead of broadcasting through this object.
 //
 
 import Observation
+import Foundation
 
 @Observable
 final class NavigationCoordinator {
@@ -15,10 +16,17 @@ final class NavigationCoordinator {
 
   var pendingRoute: AppRoute?
 
-  /// Set by the menu bar's File → Import Devotion Bundle… (menu commands run outside the view
-  /// hierarchy, like intents) — ContentView observes it, presents the file importer, and
-  /// clears it.
-  var pendingBundleImport = false
+  private(set) var activeWindowID: UUID?
 
-  private init() {}
+  func activateWindow(_ id: UUID) { activeWindowID = id }
+
+  func closeWindow(_ id: UUID) {
+    if activeWindowID == id { activeWindowID = nil }
+  }
+
+  func takePendingRoute(for windowID: UUID) -> AppRoute? {
+    guard activeWindowID == windowID else { return nil }
+    defer { pendingRoute = nil }
+    return pendingRoute
+  }
 }

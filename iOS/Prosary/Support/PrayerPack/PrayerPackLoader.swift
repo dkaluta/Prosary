@@ -16,6 +16,23 @@
 
 import Foundation
 
+/// Resolve test locations before asking for any real installed-pack or cache directory.
+/// Fixture tests may still override PrayerPackStore.installedPacksDirectory explicitly.
+struct PrayerPackStoragePolicy {
+  let isTesting: Bool
+  let testRoot: URL
+
+  var allowsUbiquity: Bool { !isTesting }
+
+  func installedDirectory(production: () -> URL) -> URL {
+    isTesting ? testRoot.appendingPathComponent("PrayerPacks", isDirectory: true) : production()
+  }
+
+  func audioDirectory(production: () -> URL?) -> URL? {
+    isTesting ? testRoot.appendingPathComponent("PrayerAudio", isDirectory: true) : production()
+  }
+}
+
 private struct PackManifest: Decodable {
   let id: String
   /// Set ("rosary") when this bundle's devotion.json backs a dedicated PrayerKind rather than
@@ -147,6 +164,41 @@ struct CustomDevotionOption: Decodable {
   private enum CodingKeys: String, CodingKey {
     case key, kind, name, nameByLanguage, cases
     case defaultValue = "default"
+  }
+
+  init(key: String, kind: Kind, name: String, nameByLanguage: [String: String]? = nil,
+       defaultValue: String, cases: [Case]? = nil) {
+    self.key = key
+    self.kind = kind
+    self.name = name
+    self.nameByLanguage = nameByLanguage
+    self.defaultValue = defaultValue
+    self.cases = cases
+  }
+
+  /// Installed Rosary packs can predate the combined closing-intentions setting.
+  /// Normalize the editor rows without rewriting their authored options or other packs.
+  static func normalizedForEditing(_ options: [Self], bundleId: String) -> [Self] {
+    guard bundleId == "rosary" else { return options }
+    let legacyKeys = Set(RosaryOptions.legacyClosingOptionKeys)
+    let legacy = options.filter { legacyKeys.contains($0.key) }
+    guard !legacy.isEmpty else { return options }
+    var hasCombined = options.contains { $0.key == "closingIntentions" }
+    var result: [Self] = []
+    for option in options {
+      guard legacyKeys.contains(option.key) else {
+        result.append(option)
+        continue
+      }
+      if !hasCombined {
+        result.append(Self(key: "closingIntentions", kind: .toggle,
+          name: UILanguage.text("favoriteEditor.closingIntentions", language: UILanguage.current,
+                                fallback: "Closing Intentions"),
+          defaultValue: legacy.contains { $0.defaultValue == "true" } ? "true" : "false"))
+        hasCombined = true
+      }
+    }
+    return result
   }
 
   init(from decoder: Decoder) throws {
@@ -556,11 +608,25 @@ enum PrayerPackStore {
   /// built-in packs on every load, so installs survive restarts. Overridable for tests.
   /// When iCloud Drive is available this is re-pointed at the ubiquity container before the
   /// first scan — see `adoptUbiquityDirectoryIfAvailable`.
-  static var installedPacksDirectory: URL = FileManager.default
-    .urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-    .appendingPathComponent("PrayerPacks", isDirectory: true)
+  private static let storagePolicy = PrayerPackStoragePolicy(
+    isTesting: ProsaryRuntimeEnvironment.isTesting,
+    testRoot: FileManager.default.temporaryDirectory
+      .appendingPathComponent("Prosary.TestPacks.\(ProcessInfo.processInfo.processIdentifier).\(UUID().uuidString)", isDirectory: true))
+  static var installedPacksDirectory: URL = storagePolicy.installedDirectory {
+    FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+      .appendingPathComponent("PrayerPacks", isDirectory: true)
+  }
 
   private static var didAdoptUbiquity = false
+
+  /// Device-local exclusions keep iCloud Drive from immediately downloading an evicted pack
+  /// again. They never remove the source on another device and are not cloud preferences.
+  static let removedDownloadsKey = "removedDownloadedPrayerIDs"
+  static var downloadRemovalDefaults = ProsaryRuntimeEnvironment.defaults
+
+  private static var removedDownloadIDs: Set<String> {
+    Set(downloadRemovalDefaults.stringArray(forKey: removedDownloadsKey) ?? [])
+  }
 
   /// Groundwork for installed-pack sync: when the user's iCloud Drive is available, installed
   /// packs live in the app's ubiquity container (`Documents/PrayerPacks`) so manual imports
@@ -572,7 +638,7 @@ enum PrayerPackStore {
   /// wrapping and live NSMetadataQuery updates (mid-session appearance); those land with a
   /// visible sync UI.
   private static func adoptUbiquityDirectoryIfAvailable() {
-    guard !didAdoptUbiquity else { return }
+    guard storagePolicy.allowsUbiquity, !didAdoptUbiquity else { return }
     didAdoptUbiquity = true
     // First call after launch can do daemon I/O; subsequent launches are fast. Acceptable next
     // to the pack-zip reads this same lazy load already does.
@@ -818,7 +884,9 @@ enum PrayerPackStore {
     let destination = installedPacksDirectory.appendingPathComponent("\(manifest.id).prosaryprayer")
     try data.write(to: destination, options: .atomic)
     try load(packAt: destination)
+    downloadRemovalDefaults.set(removedDownloadIDs.subtracting([manifest.id]).sorted(), forKey: removedDownloadsKey)
     installedIds.append(manifest.id)
+    NotificationCenter.default.post(name: .prayerLibraryDidChange, object: nil)
     return manifest.id
   }
 
@@ -856,6 +924,34 @@ enum PrayerPackStore {
     guard isValidBundleId(id), installedIds.contains(id) else { return }
     try? FileManager.default.removeItem(
       at: installedPacksDirectory.appendingPathComponent("\(id).prosaryprayer"))
+    unregisterInstalledPack(id: id)
+  }
+
+  /// User-facing removal is local to this device. A cloud source is evicted, not deleted.
+  /// Report filesystem failures before changing registration so callers can offer a retry.
+  static func removeInstalledPackFromDevice(id: String) throws {
+    ensureLoaded()
+    guard isValidBundleId(id), installedIds.contains(id) else { return }
+    let url = installedPacksDirectory.appendingPathComponent("\(id).prosaryprayer")
+    if let audioRoot = storagePolicy.audioDirectory(production: {
+      FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first?
+        .appendingPathComponent("PrayerAudio", isDirectory: true)
+    }) {
+      let audio = audioRoot.appendingPathComponent(id, isDirectory: true)
+      if FileManager.default.fileExists(atPath: audio.path) { try FileManager.default.removeItem(at: audio) }
+    }
+    if FileManager.default.fileExists(atPath: url.path) {
+      if storagePolicy.allowsUbiquity, try url.resourceValues(forKeys: [.isUbiquitousItemKey]).isUbiquitousItem == true {
+        try FileManager.default.evictUbiquitousItem(at: url)
+      } else {
+        try FileManager.default.removeItem(at: url)
+      }
+    }
+    downloadRemovalDefaults.set(removedDownloadIDs.union([id]).sorted(), forKey: removedDownloadsKey)
+    unregisterInstalledPack(id: id)
+  }
+
+  private static func unregisterInstalledPack(id: String) {
     installedIds.removeAll { $0 == id }
     orderedCustomIds.removeAll { $0 == id }
     definitionByBundle[id] = nil
@@ -871,6 +967,7 @@ enum PrayerPackStore {
       imageSourcesByKey[key]?.removeAll { $0.bundleId == id }
       if imageSourcesByKey[key]?.isEmpty == true { imageSourcesByKey[key] = nil }
     }
+    NotificationCenter.default.post(name: .prayerLibraryDidChange, object: nil)
   }
 
   private struct ResolvedText {
@@ -912,6 +1009,13 @@ enum PrayerPackStore {
       mysteryOverrides = mysteries
     }
     try operation()
+  }
+
+  /// Exercise the launch scan against an isolated installed directory without resetting the
+  /// shipped content or adopting the test directory into the user's iCloud container.
+  static func scanInstalledPacksForTesting() {
+    ensureLoaded()
+    loadInstalledPacks()
   }
   #endif
 
@@ -971,11 +1075,17 @@ enum PrayerPackStore {
     // User-installed bundles load after the built-ins (so shipped content always wins the
     // shared merges) and are skipped on id collision with anything already loaded.
     adoptUbiquityDirectoryIfAvailable()
+    loadInstalledPacks()
+  }
+
+  private static func loadInstalledPacks() {
     let directoryContents = (try? FileManager.default.contentsOfDirectory(
       at: installedPacksDirectory, includingPropertiesForKeys: nil)) ?? []
     // Undownloaded iCloud placeholders can't load this launch — start their download so a
     // pack imported on another device appears on a later one.
-    for placeholder in directoryContents where placeholder.lastPathComponent.hasSuffix(".prosaryprayer.icloud") {
+    for placeholder in directoryContents where storagePolicy.allowsUbiquity && placeholder.lastPathComponent.hasSuffix(".prosaryprayer.icloud") {
+      let id = String(placeholder.lastPathComponent.dropFirst().dropLast(".prosaryprayer.icloud".count))
+      guard !removedDownloadIDs.contains(id) else { continue }
       try? FileManager.default.startDownloadingUbiquitousItem(at: placeholder)
     }
     let installedFiles = directoryContents
@@ -983,8 +1093,8 @@ enum PrayerPackStore {
       .sorted { $0.lastPathComponent < $1.lastPathComponent }
     for url in installedFiles {
       let id = url.deletingPathExtension().lastPathComponent
-      guard infoByBundle[id] == nil else { continue }
-      if (try? load(packAt: url)) != nil {
+      guard !removedDownloadIDs.contains(id), infoByBundle[id] == nil else { continue }
+      if (try? load(packAt: url, expectedBundleID: id)) != nil {
         installedIds.append(id)
       }
     }
@@ -1006,13 +1116,16 @@ enum PrayerPackStore {
     try zip.contents(of: name, maximumBytes: PrayerPackLimits.controlEntryBytes)
   }
 
-  private static func load(packAt url: URL) throws {
+  private static func load(packAt url: URL, expectedBundleID: String? = nil) throws {
     let zip = try MinimalZipReader(contentsOf: url)
     try validateControlPlane(in: zip)
 
     let decoder = JSONDecoder()
     let manifest = try decoder.decode(PackManifest.self, from: controlData("manifest.json", in: zip))
     guard isValidBundleId(manifest.id) else { throw InstallError.unreadable }
+    // Exclusions, collision checks and removal paths all use this installed filename. Reject
+    // renamed/conflict copies before they can register a different id or overwrite a built-in.
+    if let expectedBundleID, manifest.id != expectedBundleID { throw InstallError.unreadable }
 
     infoByBundle[manifest.id] = CustomDevotionInfo(
       displayName: manifest.displayName,

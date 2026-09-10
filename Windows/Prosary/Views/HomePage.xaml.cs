@@ -1,3 +1,4 @@
+using Prosary.Navigation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
@@ -14,7 +15,10 @@ public sealed partial class HomePage : Page
     public HomePage()
     {
         ViewModel = App.Services.GetRequiredService<HomeViewModel>();
+        ViewModel.Navigation = Router.For(this);
         InitializeComponent();
+        ViewModel.ConfirmDelete = plan => PrayerRemovalDialogs.ConfirmDeleteAsync(XamlRoot, plan);
+        ViewModel.ShowRemovalError = message => PrayerRemovalDialogs.ShowErrorAsync(XamlRoot, message);
     }
 
     protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -55,7 +59,7 @@ public sealed partial class HomePage : Page
     /// drag-reorder inside a dialog; Done persists the new sequence, Reset returns to
     /// directory order at next launch.</summary>
     private void OnOpenBasicPrayers(object sender, Microsoft.UI.Xaml.RoutedEventArgs e) =>
-        Prosary.Navigation.Router.Navigate<BasicPrayersPage>();
+        Prosary.Navigation.Router.For(this).Navigate<BasicPrayersPage>();
 
     private async void OnEditOrder(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {

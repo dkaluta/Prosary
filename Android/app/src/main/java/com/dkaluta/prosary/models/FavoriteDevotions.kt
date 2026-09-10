@@ -40,4 +40,11 @@ object FavoriteDevotions {
     fun reset(context: Context) {
         context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit().remove(KEY).apply()
     }
+
+    /** A removed download must not regain an old explicit pin when imported again. */
+    fun forget(context: Context, devotionId: String) {
+        val current = stored(context) ?: return
+        context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit()
+            .putString(KEY, current.filterNot { it == devotionId }.joinToString("\n")).apply()
+    }
 }

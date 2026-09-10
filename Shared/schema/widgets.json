@@ -1,0 +1,141 @@
+{
+  "$comment": "Widget surface and handoff contract for the user-requested iOS, Android, and macOS implementations. This descriptive schema follows the other Shared/schema files; it is not a JSON Schema validator or a new cross-platform Prayer storage format.",
+  "platforms": ["iOS", "Android", "macOS"],
+  "windows": "Native Windows widgets are outside this feature's requested scope; existing Prayer and Today data contracts remain unchanged.",
+  "documentation": "../WIDGETS.markdown",
+  "availability": {
+    "iOS": { "minimumVersion": "17.0", "families": ["systemSmall", "systemMedium", "systemLarge", "accessoryRectangular"] },
+    "macOS": { "minimumVersion": "14.0", "families": ["systemSmall", "systemMedium", "systemLarge"] },
+    "Android": {
+      "technology": "AppWidgetProvider and RemoteViews",
+      "defaultCells": "3x2",
+      "todayMinimumDp": "180x150",
+      "savedPrayerMinimumDp": "180x150",
+      "resize": "Launcher-supported horizontal and vertical resizing"
+    }
+  },
+  "surfaces": {
+    "today": {
+      "displayName": "Today",
+      "date": "Current local civil date, independent of any Today date selected in the app.",
+      "content": ["feast", "appointed reading citations", "enabled intention", "enabled Torah portion"],
+      "actions": ["Open Today", "Open today's Rosary"],
+      "appleCompactAction": "systemSmall and accessoryRectangular open Today; the Rosary shortcut appears in medium and large layouts.",
+      "configuration": "Uses the app's calendar, Pascha style, interface language, and optional-row settings."
+    },
+    "savedPrayer": {
+      "displayName": "Saved Prayer",
+      "selection": "One existing Prayer.id per widget instance, selected through native widget configuration.",
+      "supportedKinds": ["rosary", "jesusPrayer", "custom"],
+      "content": ["Saved prayer name", "Validated unfinished position when available"],
+      "action": "Open the selected saved UUID through normal prayer navigation and existing continuation behavior.",
+      "missingSelection": "Prompt to choose a saved prayer. Do not silently substitute another saved configuration.",
+      "identity": "A rename keeps the UUID. A duplicate has a new UUID. Launch re-reads the current saved record."
+    }
+  },
+  "todaySettings": {
+    "feastCalendarId": {
+      "source": "Existing app setting and calendar registry",
+      "default": "Registry default",
+      "behavior": "Select matching feast and lectionary datasets; never borrow readings from another rite."
+    },
+    "easternPaschaStyle": { "default": "julian", "values": ["julian", "gregorian"] },
+    "showTodayFeast": { "default": true },
+    "showTodayIntention": { "default": true },
+    "showTodayTorahPortion": { "default": false },
+    "language": {
+      "source": "Current interface language",
+      "independentOf": ["defaultLanguageCode", "Prayer.languageCode"],
+      "legacyTodayLanguageCode": "Ignored, matching current Today behavior.",
+      "supportedCodes": ["en", "he", "ar", "ru", "tl", "fr", "it", "uk"],
+      "aliases": { "fil": "tl", "iw": "he" },
+      "rightToLeftCodes": ["ar", "he"],
+      "sourceFallback": "Use the dataset's original source value when the selected-language value is absent."
+    },
+    "headings": "Where displayed, hide the supplementary heading on Sunday. Use season/week only for modern Roman lpj/roman; other rites use the civil date."
+  },
+  "progress": {
+    "source": "Existing PrayerRunProgress, prayer engine, JesusPrayerTarget, and MultiDayRun; no widget-owned prayer progress.",
+    "stepIndex": { "type": "integer", "meaning": "Zero-based current step or repetition" },
+    "displayPosition": "stepIndex + 1",
+    "boundedTotal": "Actual rebuilt engine step count, or the saved Jesus Prayer count target.",
+    "unboundedTotal": null,
+    "validation": {
+      "bounds": "stepIndex > 0 && stepIndex < rebuiltStepCount",
+      "signature": "Must equal the signature for the selected saved configuration and current sequence.",
+      "rosary": "Also require savedLocalDate equal to the current local civil date.",
+      "custom": "Use normalized options, resolved run day, launch variant and bookmark language; the signature includes the effective language-owned variant.",
+      "appleSeriesExpiry": "A projected multi-day series checkpoint is valid only for the projection's local date; re-resolve the pending day in the app after midnight.",
+      "missingPack": "Do not display a sequence position when its required content cannot be rebuilt.",
+      "onInvalid": "Display the saved prayer without a continuation position; do not alter stored progress while rendering."
+    },
+    "ownership": {
+      "rosary": "Saved Prayer UUID",
+      "savedJesusPrayer": "Saved Prayer UUID",
+      "phoneCustomDevotion": "Existing bundle/variant/day identity, validated against each selected saved configuration.",
+      "macCustomDevotion": "PrayerCopyProgressIdentity.devotionID: saved UUID plus bundle ID.",
+      "macWindows": "Widget reads the shared latest checkpoint; existing prayer windows retain their independent namespaces."
+    },
+    "multiDay": {
+      "start": "Day index 0",
+      "resume": "Pending day from MultiDayRun.resumption",
+      "choose": "Resolve the missed day for the app's existing missed/next-day choice. Android omits checkpoint presentation while that choice is required.",
+      "complete": "Final day index",
+      "prayedToday": "Use last recorded prayed day",
+      "otherProgression": "Retain the flow's normal selected-day behavior"
+    },
+    "launch": "Offer the existing Continue/Restart behavior and any missed-day choice. Widget interaction never increments progress or marks a day complete."
+  },
+  "appleSnapshot": {
+    "source": "iOS/WidgetShared/ProsaryWidgetSnapshot.swift",
+    "type": "ProsaryWidgetSnapshot",
+    "storage": "JSON-encoded Codable Data in App Group UserDefaults",
+    "appGroupIdentifier": "group.com.dkaluta.prosary",
+    "storageKey": "prosaryWidgetSnapshot.v1",
+    "widgetKinds": { "today": "ProsaryTodayWidget", "savedPrayer": "ProsarySavedPrayerWidget" },
+    "fields": {
+      "today": "WidgetTodaySettings",
+      "prayers": "WidgetSavedPrayer[]",
+      "updatedAt": "Foundation Date, using the native Codable date strategy"
+    },
+    "WidgetTodaySettings": {
+      "calendarID": { "type": "string", "default": "lpj", "source": "feastCalendarId" },
+      "easternPaschaStyle": { "type": "string", "default": "julian" },
+      "languageCode": { "type": "string", "source": "Current interface language" },
+      "showFeast": { "type": "boolean", "default": true, "source": "showTodayFeast" },
+      "showIntention": { "type": "boolean", "default": true, "source": "showTodayIntention" },
+      "showTorah": { "type": "boolean", "default": false, "source": "showTodayTorahPortion" }
+    },
+    "WidgetSavedPrayer": {
+      "id": "UUID",
+      "name": "String",
+      "kind": "String",
+      "stepIndex": "Optional Int; only validated unfinished position",
+      "stepCount": "Optional Int; null for unbounded repetition target",
+      "progressLocalDate": "Optional yyyy-MM-dd local civil date: original bookmark date for Rosary, projection date for day-dependent custom series",
+      "progressExpiresAtMidnight": "Bool, default false; true for day-dependent custom series"
+    },
+    "databaseBoundary": "Extension never opens, migrates, copies, or synchronizes the host SwiftData database.",
+    "signing": "Containing app and WidgetKit extension both require the App Groups capability and profiles granting the same group. The host embeds the extension."
+  },
+  "android": {
+    "storage": "Widget instance selection is local; render content from existing app settings, saved-prayer store, prayer engine, checkpoints, and offline Today provider.",
+    "removal": "Delete only that widget instance's configuration, never its saved Prayer or checkpoint.",
+    "configuration": "Initial configuration Activity selects any saved prayer; existing widgets support reconfiguration."
+  },
+  "refresh": {
+    "changes": ["Relevant app settings", "Saved prayer library", "Prayer progress", "Local civil date", "Time zone"],
+    "midnight": "Calculate next calendar-day start in the local time zone; do not add a fixed 24-hour duration.",
+    "schedule": "The operating system controls actual rendering time. Launch always resolves current app data.",
+    "apple": "Publish the current day plus seven future local-day entries; request reload after next local midnight.",
+    "android": "Hourly OS update, inexact next-midnight alarm, date/time/zone/locale/boot/package-update events, coalesced app changes and app stop."
+  },
+  "dataBoundary": {
+    "offline": true,
+    "newPrayerFields": false,
+    "newSwiftDataColumns": false,
+    "authoredContentChanges": false,
+    "artworkDuplication": false,
+    "attribution": "Preserve the app's existing Calendar Data credits for every displayed source."
+  }
+}

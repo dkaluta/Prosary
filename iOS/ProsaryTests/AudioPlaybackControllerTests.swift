@@ -158,4 +158,40 @@ final class AudioPlaybackControllerTests: XCTestCase {
     // Different narrations, different lengths — proves the swap actually reloaded.
     XCTAssertNotEqual(controller.duration, latinDuration)
   }
+
+  func testCopiedPrayersKeepIndependentPlaybackPositions() throws {
+    let track = try XCTUnwrap(PrayerPackStore.audioTracks(for: bundleId).first { $0.language == "la" })
+    let originalID = UUID().uuidString
+    let copyID = UUID().uuidString
+    let defaults = UserDefaults.standard
+    let legacyKey = AudioPlaybackController.positionKey(bundleId: bundleId, trackID: track.id)
+    let legacyPosition = defaults.object(forKey: legacyKey)
+    let scopedKeys = [originalID, copyID].map {
+      AudioPlaybackController.positionKey(bundleId: bundleId, trackID: track.id, namespace: $0)
+    }
+    defer {
+      scopedKeys.forEach { defaults.removeObject(forKey: $0) }
+      if let legacyPosition { defaults.set(legacyPosition, forKey: legacyKey) }
+      else { defaults.removeObject(forKey: legacyKey) }
+    }
+    defaults.set(18.0, forKey: legacyKey)
+
+    let original = AudioPlaybackController()
+    original.load(bundleId: bundleId, track: track, positionNamespace: originalID)
+    XCTAssertFalse(original.didRestorePosition, "a named copy must not claim the legacy recording position")
+    original.seek(to: 15)
+    original.stop()
+
+    let copy = AudioPlaybackController()
+    copy.load(bundleId: bundleId, track: track, positionNamespace: copyID)
+    XCTAssertFalse(copy.didRestorePosition)
+    XCTAssertEqual(copy.currentTime, 0)
+    copy.stop()
+
+    original.load(bundleId: bundleId, track: track, positionNamespace: originalID)
+    XCTAssertTrue(original.didRestorePosition)
+    XCTAssertEqual(original.currentTime, 15, accuracy: 0.6)
+    original.stop()
+    XCTAssertEqual(defaults.double(forKey: legacyKey), 18)
+  }
 }

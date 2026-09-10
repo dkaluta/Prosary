@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "$comment": "Bounded reviews of an exact calendar citation against pinned Bible sources. These whole-verse envelopes do not assert exact liturgical subverse cuts or authorize other citations, calendars, or source payloads. Repeated occurrences of the exact citation in the reviewed calendar reuse its review.",
+  "appointments": {
+    "daily|Psalm 139:1–3; 139:13–14ab; 139:23–24": {
+      "contexts": ["roman"],
+      "sourceSystem": "org",
+      "includesWholeVerses": true,
+      "reviewedOn": "2026-09-10",
+      "reviewedEditionIds": [
+        "douay-rheims-1899",
+        "masoretic-delitzsch",
+        "synodal-1876",
+        "ang-dating-biblia-1905",
+        "crampon-1923",
+        "kulish-1905"
+      ],
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-10",
+        "appointmentPayloadSha256": "470f5c4566e506d2ac9a77e28effcddd8a9f3f7313fc264322c009fb36ba5877",
+        "sourceReadingCode": "Ps 139,1-3#Ps 139,13-14ab#Ps 139,23-24",
+        "corroboratingURL": "https://bible.usccb.org/bible/readings/091026.cfm",
+        "numberingReview": "The Evangelizo HE verse labels and inspected Hebrew text match Masoretic Psalm 139. Its 14a and 14b entries each repeat the same complete verse; they are evidence for the citation, not text imported into Prosary. The USCCB appointment independently identifies Psalm 139 with the same whole-verse envelope, while marking the opening as 1b. No lectionary wording or refrain is copied.",
+        "douayRheimsBoundaryReview": "The pinned DRA Psalm 138:2 contains sitting and rising; 138:3 contains the distant thoughts and the searched path; 138:4 contains the remainder of Masoretic 139:3 about all ways, followed by the opening of Masoretic 139:4. Therefore the complete-verse envelope must include DRA 138:1-4, not merely 138:1-3. DRA 138:13-14 and 138:23-24 cover the remaining appointment, retaining full verse 14. This explicit envelope takes precedence over the SIL table's nominal chapter-level 138-to-139 identity for this citation only.",
+        "otherEditionBoundaryReview": "The pinned Masoretic, Synodal, Ang Dating Biblia, Crampon and Kulish passages retain the requested clauses in whole verses 1, 2, 3, 13, 14, 23 and 24. Synodal labels this Psalm 138; the other four label it Psalm 139. All six reviewed source chapters have complete numbered inventories of 24 nonempty verses. Martini has no imported Psalms; the reviewed Arabic selection has no relevant passage. Those two editions are excluded."
+      },
+      "sourcePins": {
+        "engDRA": "96282bfa7c89a74680cea66fe873aafa5e7cd446407f0ff2531a723e19eee2c2",
+        "hbo": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "russyn": "40b3e2c17769439b4743f94c0cf7ec18c02dbc68a6967c5bf096874fbee6a872",
+        "TagAngBiblia": "d171f5d70731e21343d005af77596a1f876cfa39d2ce7517224c0d005e7f69d4",
+        "FreCrampon": "c954a81dfbc0c9b874ef7b069eb0473e36150b721515dd503b17b4972075d628",
+        "ukr1871": "1d2230822492a230c04fbea34f1b5ede7073a9d19c23a461d9738c87b85c2ec1"
+      },
+      "editionReferences": {
+        "douay-rheims-1899": [["PSA",138,1],["PSA",138,2],["PSA",138,3],["PSA",138,4],["PSA",138,13],["PSA",138,14],["PSA",138,23],["PSA",138,24]],
+        "masoretic-delitzsch": [["PSA",139,1],["PSA",139,2],["PSA",139,3],["PSA",139,13],["PSA",139,14],["PSA",139,23],["PSA",139,24]],
+        "synodal-1876": [["PSA",138,1],["PSA",138,2],["PSA",138,3],["PSA",138,13],["PSA",138,14],["PSA",138,23],["PSA",138,24]],
+        "ang-dating-biblia-1905": [["PSA",139,1],["PSA",139,2],["PSA",139,3],["PSA",139,13],["PSA",139,14],["PSA",139,23],["PSA",139,24]],
+        "crampon-1923": [["PSA",139,1],["PSA",139,2],["PSA",139,3],["PSA",139,13],["PSA",139,14],["PSA",139,23],["PSA",139,24]],
+        "kulish-1905": [["PSA",139,1],["PSA",139,2],["PSA",139,3],["PSA",139,13],["PSA",139,14],["PSA",139,23],["PSA",139,24]]
+      }
+    }
+  }
+}

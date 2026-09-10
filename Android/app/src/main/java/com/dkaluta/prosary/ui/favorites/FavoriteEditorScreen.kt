@@ -34,8 +34,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -43,6 +43,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.JesusPrayerOptions
@@ -69,19 +70,14 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
     val scope = rememberCoroutineScope()
     val isNew = prayerId == null
 
-    var prayer by remember { mutableStateOf(Prayer(kind = newFavoriteKind)) }
-    var loaded by remember { mutableStateOf(false) }
-    var showingRosaryOptions by remember { mutableStateOf(false) }
-    // The prayer as originally loaded, reminders untouched by in-editor edits — needed so save()
-    // can cancel alarms for reminders the user removed (schedule() only knows how to reconstruct
-    // PendingIntents for reminder ids still present in the *new* list, so a deleted reminder's
-    // alarm would otherwise never be cancelled).
-    var originalPrayer by remember { mutableStateOf<Prayer?>(null) }
+    val draft: PrayerEditorState = viewModel(key = "favoriteEditor:$prayerId:$newFavoriteKind")
+    var showingRosaryOptions by rememberSaveable(prayerId, newFavoriteKind) { mutableStateOf(false) }
 
     val notificationPermissionLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {}
 
-    LaunchedEffect(prayerId) {
-        prayer = if (prayerId != null) {
+    LaunchedEffect(draft, prayerId, newFavoriteKind) {
+        if (draft.initialized) return@LaunchedEffect
+        val loaded = if (prayerId != null) {
             runCatching { services.presetStore.get(prayerId) }.getOrNull() ?: Prayer(kind = newFavoriteKind)
         } else {
             val existing = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
@@ -91,16 +87,15 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
                 isDefault = existing.none { it.kind == newFavoriteKind },
             )
         }
-        originalPrayer = prayer
-        loaded = true
+        draft.initialize(loaded)
     }
 
-    if (!loaded) return
+    val prayer = draft.prayer ?: return
 
     if (showingRosaryOptions) {
         RosaryOptionsEditorScreen(
             rosary = prayer.rosary,
-            onRosaryChange = { prayer = prayer.copy(rosary = it) },
+            onRosaryChange = { draft.prayer = prayer.copy(rosary = it) },
             onBack = { showingRosaryOptions = false },
             languageCode = LanguageCatalog.resolve(prayer.languageCode).code,
         )
@@ -118,7 +113,7 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
                 notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
             }
             services.presetStore.save(toSave)
-            originalPrayer?.let { ReminderScheduler.cancelAll(context, it) }
+            draft.originalPrayer?.let { ReminderScheduler.cancelAll(context, it) }
             ReminderScheduler.schedule(context, toSave)
             onDone()
         }
@@ -153,13 +148,13 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
             FormSection(title = null) {
                 OutlinedTextField(
                     value = prayer.name,
-                    onValueChange = { prayer = prayer.copy(name = it) },
+                    onValueChange = { draft.prayer = prayer.copy(name = it) },
                     label = { Text(stringResource(R.string.editor_name)) },
                     placeholder = { Text(stringResource(R.string.editor_name_hint)) },
                     modifier = Modifier.fillMaxWidth(),
                 )
                 SwitchRow(stringResource(R.string.editor_set_default_for, stringResource(prayer.kind.displayNameRes)), prayer.isDefault) {
-                    prayer = prayer.copy(isDefault = it)
+                    draft.prayer = prayer.copy(isDefault = it)
                 }
             }
 
@@ -178,7 +173,7 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
                             LanguageCatalog.pickerLanguageName(code)
                         }
                     },
-                    onSelect = { code -> prayer = prayer.copy(languageCode = LanguageCatalog.selectingLanguage(code, storedCode)) },
+                    onSelect = { code -> draft.prayer = prayer.copy(languageCode = LanguageCatalog.selectingLanguage(code, storedCode)) },
                     modifier = Modifier.fillMaxWidth(),
                 )
 
@@ -188,7 +183,7 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
                         options = listOf("he", "he-x-gamliel"),
                         selected = prayer.resolvedLanguageCode,
                         optionLabel = { context.getString(if (it == "he") R.string.prayer_tradition_vicariate else R.string.prayer_tradition_mission) },
-                        onSelect = { prayer = prayer.copy(languageCode = it) },
+                        onSelect = { draft.prayer = prayer.copy(languageCode = it) },
                     )
                 }
 
@@ -215,7 +210,7 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
                             )
                         },
                         onSelect = {
-                            prayer = prayer.copy(rosary = prayer.rosary.copy(aramaicSignOfCrossForm = it))
+                            draft.prayer = prayer.copy(rosary = prayer.rosary.copy(aramaicSignOfCrossForm = it))
                         },
                         modifier = Modifier.fillMaxWidth(),
                     )
@@ -253,7 +248,7 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
                         options.forEachIndexed { index, (target, label) ->
                             SegmentedButton(
                                 selected = prayer.jesusPrayer.target == target,
-                                onClick = { prayer = prayer.copy(jesusPrayer = JesusPrayerOptions(target = target)) },
+                                onClick = { draft.prayer = prayer.copy(jesusPrayer = JesusPrayerOptions(target = target)) },
                                 shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size),
                             ) {
                                 Text(label)
@@ -263,7 +258,7 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
                 }
             }
 
-            RemindersSection(reminders = prayer.reminders) { prayer = prayer.copy(reminders = it) }
+            RemindersSection(reminders = prayer.reminders) { draft.prayer = prayer.copy(reminders = it) }
         }
     }
 }
@@ -289,9 +284,9 @@ internal fun FormSection(title: String?, content: @Composable ColumnScope.() -> 
 }
 
 @Composable
-internal fun SwitchRow(label: String, checked: Boolean, onCheckedChange: (Boolean) -> Unit) {
+internal fun SwitchRow(label: String, checked: Boolean, switchModifier: Modifier = Modifier, onCheckedChange: (Boolean) -> Unit) {
     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
         Text(label, modifier = Modifier.weight(1f))
-        Switch(checked = checked, onCheckedChange = onCheckedChange)
+        Switch(checked = checked, onCheckedChange = onCheckedChange, modifier = switchModifier)
     }
 }

@@ -24,6 +24,21 @@
     <string name="tab_pray">"Prega"</string>
     <string name="tab_browse">"Esplora"</string>
     <string name="tab_categories">"Categorie"</string>
+    <string name="tab_readings">Letture</string>
+    <string name="search_all_categories">Tutte le categorie</string>
+    <string name="readings_empty">Nessuna lettura disponibile per questa data nel calendario selezionato.</string>
+    <string name="readings_type_reading">Lettura</string>
+    <string name="readings_type_psalm">Salmo</string>
+    <string name="readings_type_gospel">Vangelo</string>
+    <string name="readings_edition">Edizione della Bibbia</string>
+    <string name="readings_follow_interface">Segui la lingua dell’app</string>
+    <string name="readings_bible_passage">Passo biblico</string>
+    <string name="readings_show_text">Leggi il passo</string>
+    <string name="readings_hide_text">Nascondi il passo</string>
+    <string name="readings_unavailable">Questo passo non è disponibile nell’edizione della Bibbia selezionata.</string>
+    <string name="readings_whole_verses_notice">I versetti sono mostrati per intero quando la lettura ne cita solo una parte.</string>
+    <string name="readings_source">Fonte</string>
+    <string name="readings_choose_edition">Scegli un’edizione</string>
     <string name="tab_search">"Cerca"</string>
 
     <!-- Home -->
@@ -51,9 +66,9 @@
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">"Lingua predefinita delle preghiere"</string>
-    <string name="settings_jaffa_wording">"Formula di Giaffa"</string>
+    <string name="settings_jaffa_wording">"Formula alternativa dell’Ave Maria"</string>
     <string name="settings_jaffa_wording_hint">"Usa בְּרוּכַת הַחֶסֶד al posto di מְלֵאַת הַחֶסֶד nelle preghiere del Vicariato."</string>
-    <string name="settings_language_fallback_order">"Ordine delle lingue alternative…"</string>
+    <string name="settings_language_fallback_order">"Ordine delle lingue alternative…"…</string>
     <string name="settings_language_fallback_order_title">"Ordine delle lingue alternative"</string>
     <string name="settings_language_fallback_order_footer">Se il testo manca nella lingua scelta, Prosary segue questo ordine. I testi ebraici comuni alle due tradizioni, incluse le preghiere del repository, usano la più alta delle due posizioni dell’ebraico.</string>
     <string name="settings_praying">"Preghiera"</string>
@@ -73,15 +88,15 @@
     <string name="settings_installed_devotions">"Devozioni installate: %1$d"</string>
     <string name="settings_clear_audio_cache">"Svuota la cache audio"</string>
     <string name="settings_clear_audio_cache_size">"Svuota la cache audio (%1$s)"</string>
-    <string name="settings_remove_all">"Rimuovi tutte le devozioni scaricate…"</string>
-    <string name="settings_downloads_footer">"Le devozioni integrate non vengono mai rimosse. Rimuovendo una devozione scaricata si elimina anche il relativo preferito."</string>
+    <string name="settings_remove_all">"Rimuovi i download inutilizzati…"</string>
+    <string name="settings_downloads_footer">"Le preghiere integrate e i download con copie salvate vengono conservati. La rimozione di un download inutilizzato cancella anche i relativi file audio nella cache."</string>
     <string name="settings_links">"Collegamenti"</string>
     <string name="settings_repository_site">"Raccolta della comunità"</string>
     <string name="settings_compose_site">"Componi una devozione"</string>
     <string name="settings_privacy_policy">"Informativa sulla privacy"</string>
-    <string name="settings_remove_all_title">"Rimuovere tutte le devozioni scaricate?"</string>
-    <string name="settings_remove_all_message">"Le devozioni della raccolta possono essere scaricate di nuovo; i file importati manualmente no."</string>
-    <string name="settings_remove_all_confirm">"Rimuovi tutto"</string>
+    <string name="settings_remove_all_title">"Rimuovere i download inutilizzati?"</string>
+    <string name="settings_remove_all_message">"Rimuovere le preghiere scaricate senza copie salvate? Le preghiere salvate e i relativi download verranno conservati."</string>
+    <string name="settings_remove_all_confirm">"Rimuovi"</string>
 
     <!-- Prayer kinds (models/PrayerKind.kt) -->
     <string name="kind_rosary">"Rosario"</string>
@@ -146,7 +161,7 @@
     <string name="ro_opening_section">"Preghiere iniziali e delle decine"</string>
     <string name="ro_apostles_creed">"Simbolo degli Apostoli"</string>
     <string name="ro_opening_prayers">"Padre nostro iniziale e 3 Ave Maria"</string>
-    <string name="ro_opening_fatima">"Preghiera di Fatima dopo le 3 Ave Maria iniziali"</string>
+    <string name="ro_opening_fatima">"Preghiera di Fatima dopo il Gloria al Padre iniziale"</string>
     <string name="ro_fatima">"Preghiera di Fatima dopo ogni decina"</string>
     <string name="ro_faithful_departed">"Per i fedeli defunti"</string>
     <string name="ro_display_section">"Visualizzazione"</string>
@@ -161,20 +176,20 @@
 
     <!-- Favorites -->
     <string name="favorites_title">"Preferiti"</string>
-    <string name="favorites_add_kind">"Aggiungi %1$s"</string>
+    <string name="favorites_add_kind">"Aggiungi %1$s…"</string>
     <string name="favorites_more_devotions">"Altre devozioni"</string>
     <string name="favorites_repository_badge">"Raccolta"</string>
     <string name="favorites_import">"Importa un pacchetto di devozione…"</string>
     <string name="favorites_get_community">"Scarica devozioni della comunità…"</string>
     <string name="favorites_import_error_title">"Impossibile importare la devozione"</string>
     <string name="favorites_set_default">"Imposta come predefinita"</string>
-    <string name="favorites_edit_desc">"Modifica %1$s"</string>
+    <string name="favorites_edit_desc">"Modifica %1$s…"</string>
     <string name="favorites_delete_desc">"Elimina %1$s"</string>
     <string name="favorites_add_favorite_desc">"Aggiungi %1$s ai preferiti"</string>
     <string name="favorites_remove_favorite_desc">"Rimuovi %1$s dai preferiti"</string>
     <string name="favorites_add_to_favorites">"Aggiungi ai preferiti"</string>
     <string name="favorites_remove_from_favorites">"Rimuovi dai preferiti"</string>
-    <string name="favorites_reminders_desc">"Modifica i promemoria di %1$s"</string>
+    <string name="favorites_reminders_desc">"Modifica i promemoria di %1$s…"</string>
     <string name="favorites_export_desc">"Esporta %1$s per modificarla"</string>
     <string name="favorites_remove_imported_desc">"Rimuovi la devozione importata %1$s"</string>
 
@@ -327,7 +342,7 @@
     <string name="about_jesus_prayer_illustration">"Illustrazione della preghiera di Gesù"</string>
     <string name="about_jesus_pantocrator">"Cristo Pantocratore: icona a encausto (VI secolo), monastero di Santa Caterina, monte Sinai — la più antica icona superstite del Cristo Pantocratore, in omaggio alla tradizione orientale della preghiera; pubblico dominio."</string>
     <string name="about_scripture_sources">"Fonti bibliche"</string>
-    <string name="about_scripture_text">"Le citazioni bibliche provengono dalla Bibbia Douay-Rheims (inglese), dalla Vulgata Clementina (latino), dalla traduzione ebraica del Nuovo Testamento di Franz Delitzsch (kirjasilta.net/ha-berit), con i brani ebraici dell’Antico Testamento tratti dal testo masoretico, dalla Bibbia araba dei gesuiti (Dar el-Machreq), dalla Bibbia sinodale russa (1876) e da Ang Dating Biblia (tagalog, 1905)."</string>
+    <string name="about_scripture_text">"Le citazioni bibliche provengono dalla Bibbia Douay-Rheims (inglese), dalla Vulgata Clementina (latino), dalla traduzione ebraica del Nuovo Testamento di Franz Delitzsch (kirjasilta.net/ha-berit; delitz.fr/12, 1901), con i brani ebraici dell’Antico Testamento tratti dal testo masoretico, dall’antica Bibbia araba dei gesuiti (1897), dalla Bibbia sinodale russa (1876) e da Ang Dating Biblia (tagalog, 1905)."</string>
     <string name="about_calendar_data">"Dati del calendario"</string>
     <string name="about_calendar_data_body">Calendari e letture: calendario romano generale da LitCal (litcal.johnromanodorazio.com); calendario e lezionario del 1962 da Missale Meum (missalemeum.com). Calendari siro-cattolico e maronita, titoli ebraici romani documentati e riferimenti delle letture romane, siriache e maronite: Evangelizo.org — Daily Gospel, © Evangelizo.org. Le feste bizantine fisse seguono il nuovo calendario; le letture con Pasqua giuliana seguono il calendario ufficiale della Chiesa greco-cattolica ucraina (ugcc.ua), mentre l’opzione della Pasqua gregoriana segue Royal Doors (royaldoors.net). Nomi ebraici dei libri biblici: Evangelizo HE, Vicariato di San Giacomo (catholic.co.il) e Mechon Mamre (mechon-mamre.org). Altri nomi ebraici di feste e santi: Vicariato di San Giacomo, Christian Media Center (cmc-terrasanta.org) e Vatican News (vaticannews.va).</string>
     <string name="multi_day_reminder_body">"Ti attende il giorno %1$d di %2$d."</string>
@@ -356,10 +371,10 @@
     <string name="home_today_readings">"Letture del giorno"</string>
     <string name="home_today_full_citations">"Mostra i riferimenti completi"</string>
     <string name="home_today_compact_citations">"Mostra le abbreviazioni"</string>
-    <string name="home_pray_any_rosary">"Prega un Rosario a scelta"</string>
-    <string name="home_add_rosary">"Aggiungi un Rosario"</string>
-    <string name="home_add_jesus_prayer">"Aggiungi la preghiera di Gesù"</string>
-    <string name="favorites_edit">"Modifica"</string>
+    <string name="home_pray_any_rosary">"Prega un Rosario a scelta"…</string>
+    <string name="home_add_rosary">"Aggiungi un Rosario"…</string>
+    <string name="home_add_jesus_prayer">"Aggiungi la preghiera di Gesù…"</string>
+    <string name="favorites_edit">"Modifica…"</string>
     <string name="favorites_reminders">"Promemoria…"</string>
     <string name="favorites_delete">"Elimina"</string>
     <string name="favorites_export">"Esporta per modificare"</string>
@@ -440,4 +455,46 @@
     <string name="about_ukrainian_sources">"Preghiere in ucraino: Chiesa cattolica romana in Ucraina, libro di preghiere Щоденно з Богом. Utilizzate con attribuzione secondo la politica di riutilizzo dell’editore. Sacra Scrittura: Bibbia di Kulish, Nechui-Levytsky e Puluj (1905), pubblico dominio; eBible.org ukr1871. L’ortografia storica del testo biblico è conservata."</string>
     <string name="about_ukrainian_prayerbook_link">"Libro di preghiere in ucraino"</string>
     <string name="about_ukrainian_bible_link">"Bibbia in ucraino (1905)"</string>
+    <!-- Window and menu commands -->
+    <string name="commands_open_in_new_window">Apri in una nuova finestra</string>
+    <string name="commands_navigation">Vai</string>
+    <string name="commands_back">Indietro</string>
+    <string name="commands_help">Aiuto Prosary</string>
+    <string name="commands_new_window">Nuova finestra</string>
+    <string name="favorite_editor_save_failed">Impossibile salvare il preferito</string>
+    <string name="flow_show_original_text">Mostra il testo originale</string>
+    <string name="home_pray_any_rosary_action">Prega un Rosario a scelta…</string>
+    <string name="rosary_save_as_preset_action">Salva configurazione…</string>
+    <string name="reminder_time">Ora del promemoria</string>
+    <string name="reminders_remove">Rimuovi promemoria</string>
+    <string name="about_version">Versione %1$s (%2$s)</string>
+    <string name="commands_recently_prayed">Preghiere recenti</string>
+    <string name="prayer_delete_action">"Elimina la preghiera salvata…"</string>
+    <string name="prayer_delete_title">"Eliminare la preghiera salvata?"</string>
+    <string name="prayer_delete_message">"Eliminare «%1$s» e i suoi promemoria? Le altre preghiere salvate verranno conservate."</string>
+    <string name="prayer_delete_download_message">"Eliminare «%1$s» e i suoi promemoria? Questa è l’ultima copia salvata, quindi anche la preghiera scaricata verrà rimossa da questo dispositivo."</string>
+    <string name="download_remove_action">"Rimuovi il download…"</string>
+    <string name="download_remove_title">"Rimuovere il download?"</string>
+    <string name="download_remove_message">"Rimuovere «%1$s» da questo dispositivo? Potrai importarla o scaricarla di nuovo."</string>
+    <string name="download_in_use">"Elimina le copie salvate di questa preghiera prima di rimuoverne il download."</string>
+    <string name="prayer_removal_error_title">"Impossibile rimuovere la preghiera"</string>
+    <string name="prayer_removal_error">"Impossibile rimuovere questa preghiera. Riprova."</string>
+    <string name="prayer_removal_partial">"La preghiera salvata è stata eliminata, ma non è stato possibile rimuovere completamente i suoi promemoria o il download."</string>
+    <string name="download_removal_partial">"Il download è stato rimosso, ma non è stato possibile eliminare alcuni file audio nella cache."</string>
+
+    <!-- Home-screen widgets -->
+    <string name="widget_today_name">Oggi</string>
+    <string name="widget_today_description">La festa e le letture del giorno, con accesso al Rosario. Ingrandisci per vedere di più.</string>
+    <string name="widget_today_preview">La preghiera della Chiesa oggi</string>
+    <string name="widget_saved_name">Preghiera salvata</string>
+    <string name="widget_saved_description">Scegli una preghiera salvata e riprendi la preghiera non ancora terminata.</string>
+    <string name="widget_pray_rosary">Prega il Rosario di oggi</string>
+    <string name="widget_choose_prayer">Scegli una preghiera</string>
+    <string name="widget_saved_missing">Scegli una preghiera salvata per questo widget.</string>
+    <string name="widget_saved_empty">Salva una preghiera in Prosary, poi aggiungi questo widget.</string>
+    <string name="widget_load_failed">Impossibile caricare le preghiere. Riprova.</string>
+    <string name="widget_ready">Pronti a pregare</string>
+    <string name="widget_pray">Prega</string>
+    <string name="widget_progress">Passo %1$d di %2$d</string>
+    <string name="widget_progress_unbounded">Passo %1$d</string>
 </resources>

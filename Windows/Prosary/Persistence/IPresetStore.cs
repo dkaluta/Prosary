@@ -17,6 +17,10 @@ public interface IPresetStore
     /// every other favorite of the <em>same kind</em> only.</summary>
     Task SaveAsync(Prayer prayer);
 
+    /// <summary>Updates an existing row and its default slot atomically. Returns false without
+    /// changing any row when this saved copy has already been deleted; never inserts.</summary>
+    Task<bool> UpdateIfPresentAsync(Prayer prayer);
+
     /// <summary>Deletes, promoting another same-kind favorite to default if the deleted one was
     /// the default and any remain.</summary>
     Task DeleteAsync(Prayer prayer);

@@ -10,6 +10,13 @@ import AppIntents
 struct ProsaryShortcuts: AppShortcutsProvider {
   static var appShortcuts: [AppShortcut] {
     AppShortcut(
+      intent: OpenPrayerIntent(),
+      phrases: ["Open a prayer in \(.applicationName)"],
+      shortTitle: LocalizedStringResource("appIntents.openPrayer.title", defaultValue: "Open Prayer"),
+      systemImageName: "book"
+    )
+
+    AppShortcut(
       intent: PrayRosaryIntent(),
       phrases: [
         "Pray the Rosary in \(.applicationName)",

@@ -4,6 +4,8 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Upsert
+import androidx.room.Update
+import androidx.room.Transaction
 
 @Dao
 interface PresetDao {
@@ -19,6 +21,20 @@ interface PresetDao {
     @Upsert
     suspend fun upsert(entity: PresetEntity)
 
+    @Update
+    suspend fun update(entity: PresetEntity): Int
+
     @Delete
     suspend fun delete(entity: PresetEntity)
+
+    @Transaction
+    suspend fun deleteAndPromote(id: String) {
+        val entity = getById(id) ?: return
+        delete(entity)
+        if (entity.isDefault) {
+            getAll().firstOrNull { it.resolvedKind == entity.resolvedKind }?.let {
+                upsert(it.copy(isDefault = true))
+            }
+        }
+    }
 }

@@ -5,6 +5,9 @@ import com.dkaluta.prosary.content.PrayerKey
 import com.dkaluta.prosary.content.PrayerTranslations
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.LanguageCatalog
+import com.dkaluta.prosary.models.Prayer
+import com.dkaluta.prosary.models.PrayerKind
+import com.dkaluta.prosary.engine.PrayerEngine
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.zip.ZipEntry
@@ -61,7 +64,7 @@ class HebrewPrayerPriorityTest {
         if (marked) put("\$prayerTraditionByKey", buildJsonObject { put(key, "vicariate") })
     }.toString()
 
-    private fun pack(id: String, languages: List<String>, contents: Map<String, String>): ByteArray {
+    private fun pack(id: String, languages: List<String>, contents: Map<String, String>, bodyKey: String = "oratioFatimae"): ByteArray {
         val bytes = ByteArrayOutputStream()
         ZipOutputStream(bytes).use { zip ->
             fun add(name: String, text: String) {
@@ -71,7 +74,7 @@ class HebrewPrayerPriorityTest {
                 put("schemaVersion", 1); put("id", id); put("kind", id); put("displayName", id)
                 put("languages", JsonArray(languages.map(::JsonPrimitive))); put("hasCatalog", false)
             }.toString())
-            add("devotion.json", """{"type":"steps","steps":[{"title":"Fixture","bodyKey":"oratioFatimae"}]}""")
+            add("devotion.json", """{"type":"steps","steps":[{"title":"Fixture","bodyKey":"$bodyKey"}]}""")
             contents.forEach { (language, text) -> add("content/$language.json", text) }
         }
         return bytes.toByteArray()
@@ -82,17 +85,67 @@ class HebrewPrayerPriorityTest {
         shared: Map<String, String> = emptyMap(),
         laterShared: Map<String, String> = emptyMap(),
         declared: List<String> = listOf("he", "arc", "en"),
+        bodyKey: String = "oratioFatimae",
     ) {
         PrayerPackStore.resetForTesting()
         val packs = mapOf(
             "rosary" to pack("rosary", shared.keys.toList(), shared),
-            "angelus" to pack(target, declared, local),
+            "angelus" to pack(target, declared, local, bodyKey),
             "stationsOfTheCross" to pack("laterFixture", laterShared.keys.toList(), laterShared),
         )
         PrayerPackStore.initialize { packs[it]?.inputStream() }
     }
 
     private fun body(key: String = "oratioFatimae") = PrayerPackStore.resolveBodyText(target, "fr", key)
+
+    @Test fun savedLanguageLabelFollowsHebrewOnlyPlaybackWithoutRewritingRequestedChoice() {
+        AppSettings.setDefaultLanguageCode("la")
+        order("he", mission)
+        load(
+            mapOf("he" to """{"prayers":{"genericBody":"Hebrew-only fixture"}}"""),
+            declared = listOf("he"),
+            bodyKey = "genericBody",
+        )
+        for (raw in listOf(LanguageCatalog.defaultSentinel, "fr")) {
+            val prayer = Prayer(kind = PrayerKind.Custom, customDevotionId = target, languageCode = raw)
+            assertEquals(if (raw.isEmpty()) "la" else "fr", prayer.resolvedLanguageCode)
+            assertEquals("he", prayer.effectiveLanguageCode)
+            assertEquals("עברית", prayer.languageNativeName)
+            assertEquals("Hebrew-only fixture", PrayerEngine().buildSteps(prayer).single().body)
+            assertEquals(raw, prayer.languageCode)
+        }
+    }
+
+    @Test fun savedLanguageLabelReevaluatesTheCurrentBundleFallbackOrder() {
+        AppSettings.setDefaultLanguageCode("la")
+        load(mapOf("he" to content("Hebrew fixture"), "fr" to content("French fixture")), declared = listOf("he", "fr"))
+        val prayer = Prayer(kind = PrayerKind.Custom, customDevotionId = target)
+        order("fr", "he", mission)
+        assertEquals("fr", prayer.effectiveLanguageCode)
+        assertEquals("Français", prayer.languageNativeName)
+        order("he", "fr", mission)
+        assertEquals("he", prayer.effectiveLanguageCode)
+        assertEquals("עברית", prayer.languageNativeName)
+        assertEquals(LanguageCatalog.defaultSentinel, prayer.languageCode)
+    }
+
+    @Test fun unknownDeclaredBundleLanguageIsNotMislabeledAsLatin() {
+        load(mapOf("zz" to content("Unknown-language fixture")), declared = listOf("zz"))
+        val prayer = Prayer(kind = PrayerKind.Custom, customDevotionId = target, languageCode = "en")
+        assertEquals("en", prayer.resolvedLanguageCode)
+        assertEquals("zz", prayer.effectiveLanguageCode)
+        assertEquals("zz", prayer.languageNativeName)
+    }
+
+    @Test fun ordinaryPrayerKindsAndMissingCustomIdsKeepRequestedResolution() {
+        AppSettings.setDefaultLanguageCode("uk")
+        for (kind in PrayerKind.entries) {
+            val prayer = Prayer(kind = kind)
+            assertEquals("uk", prayer.resolvedLanguageCode)
+            assertEquals("uk", prayer.effectiveLanguageCode)
+            assertEquals("Українська", prayer.languageNativeName)
+        }
+    }
     private fun aid(key: String = "oratioFatimae") = PrayerPackStore.transliteration(target, "fr", key)
 
     @Test fun rawPriorityAndContentProbesKeepBothTraditionSlots() {

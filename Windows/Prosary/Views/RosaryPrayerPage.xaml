@@ -10,7 +10,7 @@
 
     <!-- Bespoke layout (not using Controls/PrayerStepFlowControl — see that control's own doc
          comment for why): season bar, progress header, then two mutually-exclusive layouts
-         toggled by RosaryPrayerPage.xaml.cs based on window width (see WideLayoutBreakpoint).
+         toggled by RosaryPrayerPage.xaml.cs based on measured content and accessory sizes.
          Bead track structure (BeadTemplate, group-column wide layout, narrow/wide minor-bead
          column split) is ported to match iOS's BeadDotView.swift/BeadProgressView.swift and
          Android's BeadDotView.kt/BeadProgressView.kt exactly — see ViewModels/BeadLayout.cs. -->
@@ -94,143 +94,141 @@
 
         <!-- Narrow layout: major beads wrap into rows of 5 above a single minor-beads row, above a
              vertically-scrolling image/text column — matches BeadProgressView's `!isWide` branch. -->
-        <Grid x:Name="NarrowLayout" Grid.Row="3" RowSpacing="16">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid x:Name="FlowContent" Grid.Row="3" SizeChanged="FlowContent_SizeChanged">
+            <Grid x:Name="NarrowLayout" RowSpacing="16">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="0" Spacing="6">
-                <ItemsControl ItemsSource="{x:Bind ViewModel.TopBeadRows, Mode=OneWay}" ItemsPanel="{StaticResource VerticalBeadPanelTemplate}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <ItemsControl ItemsSource="{Binding}" ItemTemplate="{StaticResource BeadTemplate}"
-                                          ItemsPanel="{StaticResource HorizontalBeadPanelTemplate}" />
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-                <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeads, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
-                              ItemsPanel="{StaticResource HorizontalBeadPanelTemplate}"
-                              Visibility="{x:Bind ViewModel.ShowBottomBeads, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-            </StackPanel>
-
-            <ScrollViewer Grid.Row="1" FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
-                <StackPanel Spacing="16">
-                    <Border Height="260" MaxWidth="260" CornerRadius="16" HorizontalAlignment="Center">
-                        <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill"
-                               AutomationProperties.AccessibilityView="Raw" />
-                    </Border>
-
-                    <StackPanel Spacing="2">
-                        <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
-                                   Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                                   Style="{StaticResource MutedSubtitleTextStyle}" />
-                        <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
-                    </StackPanel>
-
-                    <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"
-                            Visibility="{x:Bind ViewModel.HasTransliteration, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                            Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
-                            x:Uid="FlowTransliterationButton" ToolTipService.ToolTip="Show transliteration">
-                        <FontIcon Glyph="&#xE8C1;" FontSize="14" />
-                    </Button>
-                    <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
-                               FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
-                               FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
-                               TextWrapping="Wrap" TextAlignment="Center" IsTextSelectionEnabled="True" />
-                </StackPanel>
-            </ScrollViewer>
-        </Grid>
-
-        <!-- Wide layout: image, major-beads column (opening cross / one column per mystery group
-             side by side / antiphon / closing cross) beside the minor-beads column(s), prayer text
-             — matches BeadProgressView's `isWide` branch (HStack[VStack[cross,groupGrid,antiphon,
-             closing], Divider, minorColumn]) exactly, including its single-vs-split-column minor
-             beads fallback based on measured height (see WideBeadsColumn_SizeChanged). -->
-        <Grid x:Name="WideLayout" Grid.Row="3" ColumnSpacing="24" Visibility="Collapsed" SizeChanged="WideLayout_SizeChanged">
-            <Grid.ColumnDefinitions>
-                <!-- Auto, not *, so this column stays exactly as wide as the fixed-320 image
-                     below regardless of window width — matches iOS's wide layout, where the image
-                     is a fixed-size HStack member (imageSide, PrayerStepFlowView.swift) rather
-                     than one that grows/shrinks with the window; only the text column (the last
-                     one, still *) is meant to absorb any extra width. A * column here left a
-                     growing/shrinking band of empty space around the still-320-wide image instead
-                     of a consistently-sized pane. -->
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" MinWidth="300" />
-            </Grid.ColumnDefinitions>
-
-            <Border Grid.Column="0" Width="320" Height="320" CornerRadius="16" VerticalAlignment="Center">
-                <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill"
-                       AutomationProperties.AccessibilityView="Raw" />
-            </Border>
-
-            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6"
-                        VerticalAlignment="Center" HorizontalAlignment="Center">
-                <StackPanel Orientation="Vertical" Spacing="6" HorizontalAlignment="Center">
-                    <ContentControl Content="{x:Bind ViewModel.OpeningCross, Mode=OneWay}" ContentTemplate="{StaticResource BeadTemplate}"
-                                     Visibility="{x:Bind ViewModel.OpeningCross, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
-
-                    <!-- One column per mystery group in the session, side by side. -->
-                    <ItemsControl ItemsSource="{x:Bind ViewModel.GroupColumns, Mode=OneWay}" ItemsPanel="{StaticResource HorizontalBeadPanelTemplate}">
+                <StackPanel Grid.Row="0" Spacing="6">
+                    <ItemsControl ItemsSource="{x:Bind ViewModel.TopBeadRows, Mode=OneWay}" ItemsPanel="{StaticResource VerticalBeadPanelTemplate}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <ItemsControl ItemsSource="{Binding Beads}" ItemTemplate="{StaticResource BeadTemplate}"
-                                              ItemsPanel="{StaticResource VerticalBeadPanelTemplate}" />
+                                <ItemsControl ItemsSource="{Binding}" ItemTemplate="{StaticResource BeadTemplate}"
+                                              ItemsPanel="{StaticResource HorizontalBeadPanelTemplate}" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-
-                    <ContentControl Content="{x:Bind ViewModel.AntiphonBead, Mode=OneWay}" ContentTemplate="{StaticResource BeadTemplate}"
-                                     Visibility="{x:Bind ViewModel.AntiphonBead, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
-                    <ContentControl Content="{x:Bind ViewModel.ClosingCross, Mode=OneWay}" ContentTemplate="{StaticResource BeadTemplate}"
-                                     Visibility="{x:Bind ViewModel.ClosingCross, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center"
-                            Visibility="{x:Bind ViewModel.ShowBottomBeads, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                    <Rectangle Width="1" Fill="{ThemeResource TextFillColorSecondaryBrush}" Margin="4,0" VerticalAlignment="Stretch" />
-
-                    <!-- Single 10-tall column when there's room... -->
                     <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeads, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
-                                  ItemsPanel="{StaticResource VerticalBeadPanelTemplate}"
-                                  Visibility="{x:Bind ViewModel.HasRoomForSingleMinorColumn, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                                  ItemsPanel="{StaticResource HorizontalBeadPanelTemplate}"
+                                  Visibility="{x:Bind ViewModel.ShowBottomBeads, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                </StackPanel>
 
-                    <!-- ...otherwise two 5-tall columns (half the height) — an iPhone-landscape-style
-                         short window has no Windows equivalent device, but a Mac/iPad window resized
-                         short does, and a desktop window resized short is exactly that same case. -->
-                    <StackPanel Orientation="Horizontal" Spacing="6"
-                                Visibility="{x:Bind ViewModel.HasRoomForSingleMinorColumn, Mode=OneWay, Converter={StaticResource InverseBoolToVisibility}}">
-                        <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeadsColumn1, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
-                                      ItemsPanel="{StaticResource VerticalBeadPanelTemplate}" />
-                        <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeadsColumn2, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
-                                      ItemsPanel="{StaticResource VerticalBeadPanelTemplate}" />
+                <ScrollViewer x:Name="NarrowReader" Grid.Row="1" FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
+                    <StackPanel Spacing="16">
+                        <Border Height="260" MaxWidth="260" CornerRadius="16" HorizontalAlignment="Center">
+                            <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill"
+                                   AutomationProperties.AccessibilityView="Raw" />
+                        </Border>
+
+                        <StackPanel Spacing="2">
+                            <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
+                                       Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                       Style="{StaticResource MutedSubtitleTextStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
+                        </StackPanel>
+
+                        <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"
+                                Visibility="{x:Bind ViewModel.HasTransliteration, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
+                                x:Uid="FlowTransliterationButton" ToolTipService.ToolTip="Show transliteration">
+                            <FontIcon Glyph="&#xE8C1;" FontSize="14" />
+                        </Button>
+                        <TextBlock x:Name="NarrowBody" controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
+                                   FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
+                                   FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
+                                   TextWrapping="Wrap" TextAlignment="Center" IsTextSelectionEnabled="True" />
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+
+            <!-- Wide layout: image, major-beads column (opening cross / one column per mystery group
+                 side by side / antiphon / closing cross) beside the minor-beads column(s), prayer text
+                 — matches BeadProgressView's `isWide` branch (HStack[VStack[cross,groupGrid,antiphon,
+                 closing], Divider, minorColumn]) exactly, including its single-vs-split-column minor
+                 beads fallback based on measured height (see FlowContent_SizeChanged). -->
+            <Grid x:Name="WideLayout" ColumnSpacing="24" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <!-- The artwork is at most 320px and also fits the content row's height;
+                         only the text column absorbs extra width. PrayerFlowLayout budgets all
+                         three columns before this layout becomes visible. -->
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" MinWidth="300" />
+                </Grid.ColumnDefinitions>
+
+                <Border x:Name="WideArtwork" Grid.Column="0" Width="320" Height="320" CornerRadius="16" VerticalAlignment="Center">
+                    <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill"
+                           AutomationProperties.AccessibilityView="Raw" />
+                </Border>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6"
+                            VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Vertical" Spacing="6" HorizontalAlignment="Center">
+                        <ContentControl Content="{x:Bind ViewModel.OpeningCross, Mode=OneWay}" ContentTemplate="{StaticResource BeadTemplate}"
+                                         Visibility="{x:Bind ViewModel.OpeningCross, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
+
+                        <!-- One column per mystery group in the session, side by side. -->
+                        <ItemsControl ItemsSource="{x:Bind ViewModel.GroupColumns, Mode=OneWay}" ItemsPanel="{StaticResource HorizontalBeadPanelTemplate}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding Beads}" ItemTemplate="{StaticResource BeadTemplate}"
+                                                  ItemsPanel="{StaticResource VerticalBeadPanelTemplate}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <ContentControl Content="{x:Bind ViewModel.AntiphonBead, Mode=OneWay}" ContentTemplate="{StaticResource BeadTemplate}"
+                                         Visibility="{x:Bind ViewModel.AntiphonBead, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
+                        <ContentControl Content="{x:Bind ViewModel.ClosingCross, Mode=OneWay}" ContentTemplate="{StaticResource BeadTemplate}"
+                                         Visibility="{x:Bind ViewModel.ClosingCross, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center"
+                                Visibility="{x:Bind ViewModel.ShowBottomBeads, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                        <Rectangle Width="1" Fill="{ThemeResource TextFillColorSecondaryBrush}" Margin="4,0" VerticalAlignment="Stretch" />
+
+                        <!-- Single 10-tall column when there's room... -->
+                        <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeads, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
+                                      ItemsPanel="{StaticResource VerticalBeadPanelTemplate}"
+                                      Visibility="{x:Bind ViewModel.HasRoomForSingleMinorColumn, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+
+                        <!-- ...otherwise two 5-tall columns (half the height) — an iPhone-landscape-style
+                             short window has no Windows equivalent device, but a Mac/iPad window resized
+                             short does, and a desktop window resized short is exactly that same case. -->
+                        <StackPanel Orientation="Horizontal" Spacing="6"
+                                    Visibility="{x:Bind ViewModel.HasRoomForSingleMinorColumn, Mode=OneWay, Converter={StaticResource InverseBoolToVisibility}}">
+                            <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeadsColumn1, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
+                                          ItemsPanel="{StaticResource VerticalBeadPanelTemplate}" />
+                            <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeadsColumn2, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
+                                          ItemsPanel="{StaticResource VerticalBeadPanelTemplate}" />
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
-            </StackPanel>
 
-            <ScrollViewer Grid.Column="2" FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
-                <StackPanel Spacing="16" VerticalAlignment="Center">
-                    <StackPanel Spacing="2">
-                        <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
-                                   Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                                   Style="{StaticResource MutedSubtitleTextStyle}" />
-                        <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
+                <ScrollViewer x:Name="WideReader" Grid.Column="2" FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
+                    <StackPanel Spacing="16" VerticalAlignment="Center">
+                        <StackPanel Spacing="2">
+                            <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
+                                       Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                       Style="{StaticResource MutedSubtitleTextStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
+                        </StackPanel>
+
+                        <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"
+                                Visibility="{x:Bind ViewModel.HasTransliteration, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
+                                x:Uid="FlowTransliterationButton" ToolTipService.ToolTip="Show transliteration">
+                            <FontIcon Glyph="&#xE8C1;" FontSize="14" />
+                        </Button>
+                        <TextBlock x:Name="WideBody" controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
+                                   FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
+                                   FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
+                                   TextWrapping="Wrap" TextAlignment="Center" IsTextSelectionEnabled="True" />
                     </StackPanel>
-
-                    <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"
-                            Visibility="{x:Bind ViewModel.HasTransliteration, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                            Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
-                            x:Uid="FlowTransliterationButton" ToolTipService.ToolTip="Show transliteration">
-                        <FontIcon Glyph="&#xE8C1;" FontSize="14" />
-                    </Button>
-                    <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
-                               FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
-                               FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
-                               TextWrapping="Wrap" TextAlignment="Center" IsTextSelectionEnabled="True" />
-                </StackPanel>
-            </ScrollViewer>
+                </ScrollViewer>
+            </Grid>
         </Grid>
 
         <Grid Grid.Row="4" FlowDirection="{x:Bind NavigationFlowDirection}">

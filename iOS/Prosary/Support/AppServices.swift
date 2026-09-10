@@ -21,49 +21,67 @@ struct AppServices {
   var engine: PrayerEngine
   var calendar: LiturgicalCalendarProviding
 
-  static let modelContainer: ModelContainer = {
+  private static let persistence: (container: ModelContainer, error: Error?) = {
+    if ProsaryRuntimeEnvironment.isTesting { return (isolatedContainer(), nil) }
     // .automatic picks the CloudKit container declared in Prosary.entitlements
     // (iCloud.com.dkaluta.prosary) and syncs through the user's private database — saved
     // favorites (including reminders) follow them across every device signed into the same
     // iCloud account, the same way Reminders/Notes sync. Falls back to a local-only store (still
     // fully functional, just not synced) if iCloud is unavailable — signed out, disabled for this
     // app in Settings, or offline — rather than crashing the app on launch.
-    let cloudKitConfiguration = ModelConfiguration(cloudKitDatabase: .automatic)
-    if let container = try? ModelContainer(for: PresetEntry.self, configurations: cloudKitConfiguration) {
-      return container
-    }
-
-    let localOnlyConfiguration = ModelConfiguration(cloudKitDatabase: .none)
     do {
-      return try ModelContainer(for: PresetEntry.self, configurations: localOnlyConfiguration)
+      #if os(macOS)
+      let url = try MacPrayerStoreLocation.prepare()
+      let cloudKitConfiguration = ModelConfiguration(url: url, cloudKitDatabase: .automatic)
+      let localOnlyConfiguration = ModelConfiguration(url: url, cloudKitDatabase: .none)
+      #else
+      let cloudKitConfiguration = ModelConfiguration(cloudKitDatabase: .automatic)
+      let localOnlyConfiguration = ModelConfiguration(cloudKitDatabase: .none)
+      #endif
+      if let container = try? ModelContainer(for: PresetEntry.self, configurations: cloudKitConfiguration) {
+        return (container, nil)
+      }
+      return (try ModelContainer(for: PresetEntry.self, configurations: localOnlyConfiguration), nil)
     } catch {
-      fatalError("Failed to create ModelContainer: \(error)")
+      // This container only hosts the error screen. The service below rejects all data
+      // access, so a failed library never becomes a silently empty, writable replacement.
+      return (isolatedContainer(), error)
     }
   }()
 
+  static var modelContainer: ModelContainer { persistence.container }
+  static var persistenceError: Error? { persistence.error }
+
+  private static func isolatedContainer() -> ModelContainer {
+    try! ModelContainer(for: PresetEntry.self,
+      configurations: ModelConfiguration(isStoredInMemoryOnly: true, cloudKitDatabase: .none))
+  }
+
   static let shared: AppServices = {
     let calendar = StubLiturgicalCalendar()
-    let context = ModelContext(modelContainer)
-    // Allow UI tests to start with a clean store so test-run order doesn't matter.
-    if CommandLine.arguments.contains("-resetStore") {
-      try? context.delete(model: PresetEntry.self)
-      try? context.save()
-      // Pins and their order outlive the store — they are iCloud preferences, not records —
-      // so a "clean slate" has to clear them too or a run inherits the previous one's Pray tab.
-      FavoriteDevotions.reset()
-      HomeOrder.reset()
-      CloudSyncedList.remove(BasicPrayerFavorites.idsKey)
-      BasicPrayersOrder.reset()
-      UserDefaults.standard.removeObject(forKey: BasicPrayerCatalog.languageDefaultsKey)
-      UserDefaults.standard.removeObject(forKey: PrayerRunProgressStore.defaultsKey)
-      MultiDayRuns.reset()
+    // Legacy -resetStore is now an isolated-test flag; never delete the person's library
+    // or iCloud preferences from an app launch argument.
+    let store: PresetStore = if let error = persistenceError {
+      UnavailablePresetStore(error: error)
+    } else {
+      SwiftDataPresetStore(context: ModelContext(modelContainer), defaults: ProsaryRuntimeEnvironment.defaults)
     }
     return AppServices(
-      presetStore: SwiftDataPresetStore(context: context),
+      presetStore: store,
       engine: PrayerEngine(calendar: calendar),
       calendar: calendar
     )
   }()
+}
+
+struct UnavailablePresetStore: PresetStore {
+  let error: Error
+  func all() async throws -> [Prayer] { throw error }
+  func get(id: Prayer.ID) async throws -> Prayer? { throw error }
+  func defaultPreset(kind: PrayerKind) async throws -> Prayer? { throw error }
+  func save(_ prayer: Prayer) async throws { throw error }
+  func updateIfPresent(_ prayer: Prayer) async throws -> Bool { throw error }
+  func delete(_ prayer: Prayer) async throws { throw error }
 }
 
 private struct AppServicesKey: EnvironmentKey {

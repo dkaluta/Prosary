@@ -53,6 +53,13 @@ class MockPresetStore(initialFavorites: List<Prayer>? = null) : PresetStore {
         }
     }
 
+    override suspend fun updateIfPresent(prayer: Prayer): Boolean {
+        val index = favorites.indexOfFirst { it.id == prayer.id }
+        if (index < 0) return false
+        favorites[index] = prayer
+        return true
+    }
+
     companion object {
         private val sampleFavorites: List<Prayer> = listOf(
             Prayer(

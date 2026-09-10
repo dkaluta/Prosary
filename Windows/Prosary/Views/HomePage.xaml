@@ -164,9 +164,6 @@
                                        TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
                             <TextBlock Text="{x:Bind ViewModel.ReadingsText, Mode=OneWay}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap"
                                        TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
-                            <HyperlinkButton Content="{x:Bind ViewModel.CitationButtonText, Mode=OneWay}"
-                                             Command="{x:Bind ViewModel.ToggleCitationsCommand}"
-                                             HorizontalAlignment="{x:Bind ViewModel.TodayContentAlignment, Mode=OneWay}" Padding="0,4" />
                         </StackPanel>
                     </Grid>
                     <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayTorahPortion, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
@@ -210,6 +207,10 @@
                                     <MenuFlyoutItem x:Uid="HomeEditOrder" Text="Edit order…" Click="OnEditOrder" />
                                     <MenuFlyoutItem x:Uid="HomeRemoveFromPray" Text="Remove from Pray"
                                                     Command="{Binding ElementName=Root, Path=ViewModel.UnpinCardCommand}"
+                                                    CommandParameter="{Binding}" />
+                                    <MenuFlyoutItem x:Uid="HomeDeleteSavedPrayer" Text="Delete Saved Prayer…"
+                                                    Visibility="{x:Bind CanDeleteSavedPrayer, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                                    Command="{Binding ElementName=Root, Path=ViewModel.DeleteSavedPrayerCommand}"
                                                     CommandParameter="{Binding}" />
                                 </MenuFlyout>
                             </controls:PrayerCard.ContextFlyout>

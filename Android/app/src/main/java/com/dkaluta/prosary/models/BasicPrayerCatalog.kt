@@ -7,7 +7,7 @@ import com.dkaluta.prosary.typography.HebrewDisplayText
 /**
  * The handful of prayers worth praying on their own, outside any devotion — tester-requested
  * (Erez, 2026-08-07): the Sign of the Cross, the Our Father, the Hail Mary, the Glory Be, and
- * the Trisagion's Holy God. Nothing here carries text: each entry names the same keys the
+ * the Trisagion's Holy God, and the four seasonal Marian antiphons. Nothing here carries text: each entry names the same keys the
  * devotions already resolve, so a basic prayer reads in the prayer language with every chain the
  * flows use — rites included. Mirrors iOS's BasicPrayerCatalog.swift.
  */
@@ -35,6 +35,10 @@ object BasicPrayerCatalog {
             "holyGod", "trisagion", "trisagionAcclamationTitle", "trisagionAcclamation",
             "jesus_portrait",
         ),
+        BasicPrayer("salveRegina", "rosary", "salveReginaTitle", "salveRegina", "madonna_and_child"),
+        BasicPrayer("almaRedemptorisMater", "rosary", "almaRedemptorisMaterTitle", "almaRedemptorisMater", "madonna_and_child"),
+        BasicPrayer("aveReginaCaelorum", "rosary", "aveReginaCaelorumTitle", "aveReginaCaelorum", "madonna_and_child"),
+        BasicPrayer("reginaCaeli", "rosary", "reginaCaeliTitle", "reginaCaeli", "madonna_and_child"),
     )
 
     fun prayer(id: String): BasicPrayer? = all.firstOrNull { it.id == id }

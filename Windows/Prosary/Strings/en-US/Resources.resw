@@ -40,8 +40,8 @@
   <data name="antiphon_ave_regina" xml:space="preserve"><value>Ave Regina Caelorum</value></data>
   <data name="antiphon_regina_caeli" xml:space="preserve"><value>Regina Caeli</value></data>
   <data name="antiphon_sub_tuum" xml:space="preserve"><value>Sub Tuum Praesidium</value></data>
-  <data name="imageStyle_classic" xml:space="preserve"><value>Classical paintings</value></data>
-  <data name="imageStyle_eastern" xml:space="preserve"><value>Eastern icons</value></data>
+  <data name="imageStyle_classic" xml:space="preserve"><value>Classical Paintings</value></data>
+  <data name="imageStyle_eastern" xml:space="preserve"><value>Eastern Icons</value></data>
   <data name="language_default_parenthesized" xml:space="preserve"><value>Default ({0})</value></data>
   <data name="jp_count_times" xml:space="preserve"><value>{0}×</value></data>
   <data name="jp_times_prefix" xml:space="preserve"><value>× {0}</value></data>
@@ -51,12 +51,12 @@
   <data name="jp_error_body" xml:space="preserve"><value>The Jesus Prayer couldn't be loaded. Please go back and try again.</value></data>
   <data name="home_today" xml:space="preserve"><value>Today: {0}</value></data>
   <data name="home_pope_intention" xml:space="preserve"><value>The Pope’s intention: {0}</value></data>
-  <data name="SetLanguageFallbackOrder.Content" xml:space="preserve"><value>Language fallback order…</value></data>
-  <data name="settings_language_fallback_order_title" xml:space="preserve"><value>Language fallback order</value></data>
+  <data name="SetLanguageFallbackOrder.Content" xml:space="preserve"><value>Language Fallback Order…</value></data>
+  <data name="settings_language_fallback_order_title" xml:space="preserve"><value>Language Fallback Order</value></data>
   <data name="settings_language_fallback_order_footer" xml:space="preserve"><value>When text is missing, Prosary follows this order after the chosen language. Shared Hebrew, including repository prayers, uses the higher of the two Hebrew positions.</value></data>
   <data name="home_today_show_english" xml:space="preserve"><value>English</value></data>
-  <data name="home_today_full_citations" xml:space="preserve"><value>View full citations</value></data>
-  <data name="home_today_compact_citations" xml:space="preserve"><value>Show shorthand</value></data>
+  <data name="home_today_full_citations" xml:space="preserve"><value>View Full Citations</value></data>
+  <data name="home_today_compact_citations" xml:space="preserve"><value>Show Shorthand</value></data>
   <data name="HomeTodayReadings.Text" xml:space="preserve"><value>Today’s readings</value></data>
   <data name="home_click_to_set_up" xml:space="preserve"><value>Click to set up</value></data>
   <data name="home_click_to_pray" xml:space="preserve"><value>Click to pray</value></data>
@@ -66,7 +66,7 @@
   <data name="flow_step_of" xml:space="preserve"><value>{0} of {1}</value></data>
   <data name="flow_error_header" xml:space="preserve"><value>Something went wrong</value></data>
   <data name="flow_error_body" xml:space="preserve"><value>This devotion couldn't be loaded. Please go back and try again.</value></data>
-  <data name="flow_app_setting" xml:space="preserve"><value>App setting</value></data>
+  <data name="flow_app_setting" xml:space="preserve"><value>App Setting</value></data>
   <data name="prayer_resume_title" xml:space="preserve"><value>Continue where you left off?</value></data>
   <data name="prayer_resume_message" xml:space="preserve"><value>Continue this unfinished prayer, or restart from the beginning.</value></data>
   <data name="rosary_no_favorites_header" xml:space="preserve"><value>No Rosary favorites yet</value></data>
@@ -82,13 +82,13 @@
   <data name="editor_new_favorite" xml:space="preserve"><value>New Favorite</value></data>
   <data name="editor_edit_favorite" xml:space="preserve"><value>Edit Favorite</value></data>
   <data name="auto_advance_off" xml:space="preserve"><value>Off</value></data>
-  <data name="auto_advance_every" xml:space="preserve"><value>Every {0} seconds</value></data>
+  <data name="auto_advance_every" xml:space="preserve"><value>Every {0} Seconds</value></data>
   <data name="settings_installed_devotions" xml:space="preserve"><value>Installed devotions: {0}</value></data>
   <data name="settings_clear_audio_cache" xml:space="preserve"><value>Clear Audio Cache</value></data>
   <data name="settings_clear_audio_cache_size" xml:space="preserve"><value>Clear Audio Cache ({0})</value></data>
-  <data name="settings_remove_all_title" xml:space="preserve"><value>Remove all downloaded devotions?</value></data>
-  <data name="settings_remove_all_message" xml:space="preserve"><value>Devotions from the repository can be downloaded again; hand-imported files cannot.</value></data>
-  <data name="settings_remove_all_confirm" xml:space="preserve"><value>Remove All</value></data>
+  <data name="settings_remove_all_title" xml:space="preserve"><value>Remove Unused Downloads?</value></data>
+  <data name="settings_remove_all_message" xml:space="preserve"><value>This removes downloaded prayers that have no saved copies. Saved prayers and built-in prayers are kept.</value></data>
+  <data name="settings_remove_all_confirm" xml:space="preserve"><value>Remove Unused</value></data>
   <data name="settings_app_language_system" xml:space="preserve"><value>System default</value></data>
   <data name="NavPray.Content" xml:space="preserve"><value>Pray</value></data>
   <data name="NavBrowse.Content" xml:space="preserve"><value>Browse</value></data>
@@ -102,15 +102,15 @@
   <data name="SetTitle.Text" xml:space="preserve"><value>Settings</value></data>
   <data name="SetLanguageCombo.Header" xml:space="preserve"><value>Default Prayer Language</value></data>
   <data name="SetPrayingHeader.Text" xml:space="preserve"><value>Praying</value></data>
-  <data name="SetAutoAdvanceCombo.Header" xml:space="preserve"><value>Auto-advance</value></data>
+  <data name="SetAutoAdvanceCombo.Header" xml:space="preserve"><value>Auto-Advance</value></data>
   <data name="SetResetHomeOrder.Content" xml:space="preserve"><value>Reset Home Order</value></data>
   <data name="SetDownloadsHeader.Text" xml:space="preserve"><value>Downloads</value></data>
-  <data name="SetRemoveAll.Content" xml:space="preserve"><value>Remove All Downloaded Devotions…</value></data>
-  <data name="SetDownloadsFooter.Text" xml:space="preserve"><value>Built-in devotions are never removed. Removing a downloaded devotion also removes its favorite.</value></data>
+  <data name="SetRemoveAll.Content" xml:space="preserve"><value>Remove Unused Downloads…</value></data>
+  <data name="SetDownloadsFooter.Text" xml:space="preserve"><value>Only downloads without saved copies can be removed here. Deleting the last saved copy also removes its download. Built-in prayers are kept.</value></data>
   <data name="SetLinksHeader.Text" xml:space="preserve"><value>Links</value></data>
-  <data name="SetRepoLink.Content" xml:space="preserve"><value>Community repository</value></data>
-  <data name="SetComposeLink.Content" xml:space="preserve"><value>Compose a devotion</value></data>
-  <data name="SetPrivacyLink.Content" xml:space="preserve"><value>Privacy policy</value></data>
+  <data name="SetRepoLink.Content" xml:space="preserve"><value>Community Repository</value></data>
+  <data name="SetComposeLink.Content" xml:space="preserve"><value>Compose a Devotion</value></data>
+  <data name="SetPrivacyLink.Content" xml:space="preserve"><value>Privacy Policy</value></data>
   <data name="SetAppLanguageCombo.Header" xml:space="preserve"><value>App language</value></data>
   <data name="SetAppLanguageFooter.Text" xml:space="preserve"><value>Takes effect after the app restarts.</value></data>
   <data name="SetTodayHeader.Text" xml:space="preserve"><value>Today</value></data>
@@ -134,7 +134,7 @@
   <data name="PickerTitle.Text" xml:space="preserve"><value>The Holy Rosary</value></data>
   <data name="PickerDefaultHeader.Text" xml:space="preserve"><value>DEFAULT PRESET</value></data>
   <data name="PickerCustomHeader.Text" xml:space="preserve"><value>CUSTOM</value></data>
-  <data name="PickerPrayAny.Text" xml:space="preserve"><value>Pray any Rosary</value></data>
+  <data name="PickerPrayAny.Text" xml:space="preserve"><value>Pray Any Rosary</value></data>
   <data name="PickerAnyDetail.Text" xml:space="preserve"><value>Every other option follows your default preset — full customization lives in presets.</value></data>
   <data name="PickerSaveAsPreset.Content" xml:space="preserve"><value>Save as Preset</value></data>
   <data name="PickerPresetsHeader.Text" xml:space="preserve"><value>PRESETS</value></data>
@@ -158,7 +158,7 @@
   <data name="EdBack.Text" xml:space="preserve"><value>Back</value></data>
   <data name="EdOptionsTitle.Text" xml:space="preserve"><value>Rosary Options</value></data>
   <data name="EdSetDefault.Text" xml:space="preserve"><value>Set as default</value></data>
-  <data name="EdLanguageHeader.Text" xml:space="preserve"><value>PRAYER LANGUAGE</value></data>
+  <data name="EdLanguageHeader.Text" xml:space="preserve"><value>Prayer Language</value></data>
   <data name="EdRosaryOptionsRow.Text" xml:space="preserve"><value>Rosary Options</value></data>
   <data name="EdTargetHeader.Text" xml:space="preserve"><value>TARGET</value></data>
   <data name="EdRemindersHeader.Text" xml:space="preserve"><value>REMINDERS</value></data>
@@ -168,7 +168,7 @@
   <data name="EdApostlesCreed.Text" xml:space="preserve"><value>Apostles' Creed</value></data>
   <data name="EdOpeningPrayers.Text" xml:space="preserve"><value>Opening Our Father &amp; 3 Hail Marys</value></data>
   <data name="EdFatima.Text" xml:space="preserve"><value>Fatima Prayer after each decade</value></data>
-  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>Fatima Prayer after the opening Hail Marys</value></data>
+  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>Fatima Prayer after the opening Glory Be</value></data>
   <data name="EdDisplayHeader.Text" xml:space="preserve"><value>DISPLAY</value></data>
   <data name="EdMysteryArtwork.Header" xml:space="preserve"><value>Mystery artwork</value></data>
   <data name="EdPresenterMode.Text" xml:space="preserve"><value>Presenter Mode</value></data>
@@ -179,7 +179,7 @@
   <data name="EdFinalSign.Text" xml:space="preserve"><value>Final Sign of the Cross</value></data>
   <data name="RemOptionsHeader.Text" xml:space="preserve"><value>OPTIONS</value></data>
   <data name="BeadAntiphonLabel.Text" xml:space="preserve"><value>M</value></data>
-  <data name="FlowTransliterationButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Show transliteration</value></data>
+  <data name="FlowTransliterationButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Show Transliteration</value></data>
   <data name="AbtTitle.Text" xml:space="preserve"><value>About Prosary</value></data>
   <data name="AbtTagline.Text" xml:space="preserve"><value>A companion for praying the Rosary and other Catholic devotions.</value></data>
   <data name="AbtTypefacesHeader.Text" xml:space="preserve"><value>Typefaces</value></data>
@@ -208,13 +208,13 @@
   <data name="AbtJpHeader.Text" xml:space="preserve"><value>Jesus Prayer Illustration</value></data>
   <data name="AbtJpBody.Text" xml:space="preserve"><value>Christ Pantocrator: encaustic icon (6th century), Saint Catherine’s Monastery, Mount Sinai — the oldest surviving icon of Christ Pantocrator, honoring the prayer’s Eastern tradition; public domain.</value></data>
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>Scripture Sources</value></data>
-  <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) with Hebrew Old Testament passages following the Masoretic text, the Jesuit Arabic Bible (Dar el-Machreq), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905).</value></data>
+  <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit; delitz.fr/12, 1901) with Hebrew Old Testament passages following the Masoretic text, the Old Jesuit Arabic Bible (1897), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905).</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>Calendar Data</value></data>
   <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Calendar and readings data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar and lectionary via Missale Meum (missalemeum.com); the Syriac Catholic calendar, sourced Hebrew General Roman titles, and Roman/Syriac lectionary citations courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic Church and its Patriarchal Liturgical Commission (ugcc.ua) provide the Ukraine calendar and readings with Julian Pascha; Royal Doors (royaldoors.net) provides the Gregorian Pascha readings. Hebrew Bible book names: Evangelizo HE and the St James Vicariate (catholic.co.il). Additional Hebrew feast and saint names: the St James Vicariate, the Christian Media Center (cmc-terrasanta.org), and Vatican News (vaticannews.va).</value></data>
-  <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Previous mystery</value></data>
-  <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Previous mystery</value></data>
-  <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Next mystery</value></data>
-  <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Next mystery</value></data>
+  <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Previous Mystery</value></data>
+  <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Previous Mystery</value></data>
+  <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Next Mystery</value></data>
+  <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Next Mystery</value></data>
   <data name="AbtMys01Title.Text" xml:space="preserve"><value>The Annunciation</value></data>
   <data name="AbtCredit01.Text" xml:space="preserve"><value> — Fra Angelico (d. 1455)</value></data>
   <data name="AbtMys02Title.Text" xml:space="preserve"><value>The Visitation</value></data>
@@ -280,7 +280,7 @@
   <data name="AbtCredit29.Text" xml:space="preserve"><value> — Peter Paul Rubens (c. 1612–14), Cathedral of Our Lady, Antwerp — public domain.</value></data>
   <data name="AbtSorrow07Title.Text" xml:space="preserve"><value>The Burial of Jesus</value></data>
   <data name="AbtCredit30.Text" xml:space="preserve"><value> — Titian, The Entombment of Christ (c. 1520), Musée du Louvre — public domain.</value></data>
-  <data name="HomeAddDevotionButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Add a prayer</value></data>
+  <data name="HomeAddDevotionButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Add a Prayer</value></data>
   <data name="HomeRemoveFromPray.Text" xml:space="preserve"><value>Remove from Pray</value></data>
   <data name="multi_day_day_of" xml:space="preserve"><value>Day {0} of {1}</value></data>
   <data name="multi_day_complete" xml:space="preserve"><value>Complete</value></data>
@@ -288,20 +288,20 @@
   <data name="multi_day_starts_on" xml:space="preserve"><value>Starts {0}</value></data>
   <data name="multi_day_missed_title" xml:space="preserve"><value>You missed a day</value></data>
   <data name="multi_day_missed_body" xml:space="preserve"><value>Pray the day you missed, stay with today, or start the whole devotion over.</value></data>
-  <data name="multi_day_pray_missed" xml:space="preserve"><value>Pray day {0}</value></data>
-  <data name="multi_day_pray_today" xml:space="preserve"><value>Continue with day {0}</value></data>
-  <data name="multi_day_start_over" xml:space="preserve"><value>Start over</value></data>
+  <data name="multi_day_pray_missed" xml:space="preserve"><value>Pray Day {0}</value></data>
+  <data name="multi_day_pray_today" xml:space="preserve"><value>Continue with Day {0}</value></data>
+  <data name="multi_day_start_over" xml:space="preserve"><value>Start Over</value></data>
   <data name="home_add_to_pray" xml:space="preserve"><value>Add to Pray</value></data>
   <data name="home_remove_from_pray" xml:space="preserve"><value>Remove from Pray</value></data>
   <data name="MultiDayMissedBar.Title" xml:space="preserve"><value>You missed a day</value></data>
   <data name="MultiDayMissedBar.Message" xml:space="preserve"><value>Pray the day you missed, stay with today, or start the whole devotion over.</value></data>
-  <data name="MultiDayStartOverButton.Content" xml:space="preserve"><value>Start over</value></data>
+  <data name="MultiDayStartOverButton.Content" xml:space="preserve"><value>Start Over</value></data>
   <data name="multi_day_reminder_body" xml:space="preserve"><value>Day {0} of {1} awaits.</value></data>
-  <data name="MultiDayNotNowButton.Content" xml:space="preserve"><value>Not now</value></data>
+  <data name="MultiDayNotNowButton.Content" xml:space="preserve"><value>Not Now</value></data>
   <data name="multi_day_completed_title" xml:space="preserve"><value>That completes it. Pray {0} next?</value></data>
   <data name="multi_day_pray_next" xml:space="preserve"><value>Pray {0}</value></data>
-  <data name="multi_day_not_now" xml:space="preserve"><value>Not now</value></data>
-  <data name="SetRiteCombo.Header" xml:space="preserve"><value>Prayer tradition</value></data>
+  <data name="multi_day_not_now" xml:space="preserve"><value>Not Now</value></data>
+  <data name="SetRiteCombo.Header" xml:space="preserve"><value>Prayer Tradition</value></data>
   <data name="settings_rite" xml:space="preserve"><value>Rite</value></data>
   <data name="settings_aramaic_sign_of_cross" xml:space="preserve"><value>Aramaic Sign of the Cross</value></data>
   <data name="settings_aramaic_sign_of_cross_form_a" xml:space="preserve"><value>Form A</value></data>
@@ -314,35 +314,35 @@
   <data name="settings_typeface_western_aramaic" xml:space="preserve"><value>Western Aramaic</value></data>
   <data name="settings_typeface_eastern_aramaic" xml:space="preserve"><value>Eastern Aramaic</value></data>
   <data name="settings_typeface_david_libre" xml:space="preserve"><value>David Libre</value></data>
-  <data name="settings_typeface_sans_serif" xml:space="preserve"><value>System sans serif</value></data>
+  <data name="settings_typeface_sans_serif" xml:space="preserve"><value>System Sans Serif</value></data>
   <data name="settings_typeface_stam_ashkenaz" xml:space="preserve"><value>Stam Ashkenaz</value></data>
   <data name="settings_typeface_stam_sefarad" xml:space="preserve"><value>Stam Sefarad</value></data>
   <data name="settings_typeface_rashi" xml:space="preserve"><value>Rashi</value></data>
   <data name="SetFavoriteBasicPrayersFirst.Header" xml:space="preserve"><value>Move favorite basic prayers to top</value></data>
   <data name="SetAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>Aramaic Sign of the Cross</value></data>
   <data name="EdAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>Aramaic Sign of the Cross</value></data>
-  <data name="EdRiteCombo.Header" xml:space="preserve"><value>Prayer tradition</value></data>
-  <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>Pray any Rosary</value></data>
-  <data name="HomeAddRosary.Content" xml:space="preserve"><value>Add Rosary</value></data>
-  <data name="HomeAddJesusPrayer.Content" xml:space="preserve"><value>Add Jesus Prayer</value></data>
+  <data name="EdRiteCombo.Header" xml:space="preserve"><value>Prayer Tradition</value></data>
+  <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>Pray Any Rosary…</value></data>
+  <data name="HomeAddRosary.Content" xml:space="preserve"><value>Add Rosary…</value></data>
+  <data name="HomeAddJesusPrayer.Content" xml:space="preserve"><value>Add Jesus Prayer…</value></data>
   <data name="HomeAddToPrayHeader.Text" xml:space="preserve"><value>Add to Pray</value></data>
-  <data name="HomeSavedPresets.Text" xml:space="preserve"><value>Saved presets…</value></data>
+  <data name="HomeSavedPresets.Text" xml:space="preserve"><value>Saved Presets</value></data>
   <data name="HomeEditOrderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Edit order…</value></data>
   <data name="HomeReminders.Text" xml:space="preserve"><value>Reminders…</value></data>
-  <data name="PresetEdit.Text" xml:space="preserve"><value>Edit</value></data>
+  <data name="PresetEdit.Text" xml:space="preserve"><value>Edit…</value></data>
   <data name="PresetReminders.Text" xml:space="preserve"><value>Reminders…</value></data>
   <data name="PresetSetDefault.Text" xml:space="preserve"><value>Set as default</value></data>
   <data name="PresetDelete.Text" xml:space="preserve"><value>Delete</value></data>
   <data name="SetImportBundle.Content" xml:space="preserve"><value>Import Devotion Bundle…</value></data>
   <data name="SetExportBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Export for editing</value></data>
-  <data name="SetRemoveBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Remove</value></data>
+  <data name="SetRemoveBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Remove Download…</value></data>
   <data name="PickerEternalRest.Header" xml:space="preserve"><value>For the faithful departed</value></data>
   <data name="PickerAntiphon.Header" xml:space="preserve"><value>Marian antiphon</value></data>
   <data name="PickerMysteryArtwork.Header" xml:space="preserve"><value>Mystery artwork</value></data>
   <data name="PickerApostlesCreed.Text" xml:space="preserve"><value>Apostles' Creed</value></data>
   <data name="PickerOpeningPrayers.Text" xml:space="preserve"><value>Opening Our Father &amp; 3 Hail Marys</value></data>
   <data name="PickerFatima.Text" xml:space="preserve"><value>Fatima Prayer after each decade</value></data>
-  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>Fatima Prayer after the opening Hail Marys</value></data>
+  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>Fatima Prayer after the opening Glory Be</value></data>
   <data name="PickerPresenterMode.Text" xml:space="preserve"><value>Presenter mode</value></data>
   <data name="PickerClosingIntentions.Text" xml:space="preserve"><value>Closing Intentions</value></data>
   <data name="PickerStMichael.Text" xml:space="preserve"><value>St. Michael prayer</value></data>
@@ -372,8 +372,8 @@
   <data name="PickerWhichMystery.Header" xml:space="preserve"><value>Which mystery</value></data>
   <data name="EditorName.Header" xml:space="preserve"><value>Name</value></data>
   <data name="EditorName.PlaceholderText" xml:space="preserve"><value>e.g. Morning Rosary</value></data>
-  <data name="AudioPreviousChapter.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Previous chapter</value></data>
-  <data name="AudioNextChapter.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Next chapter</value></data>
+  <data name="AudioPreviousChapter.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Previous Chapter</value></data>
+  <data name="AudioNextChapter.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Next Chapter</value></data>
   <data name="AudioPlayPause.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Play or pause</value></data>
   <data name="BrowseRefresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Refresh</value></data>
   <data name="import_unreadable" xml:space="preserve"><value>This file is not a readable .prosaryprayer bundle.</value></data>
@@ -412,8 +412,8 @@
   <data name="settings_typeface_frank_ruhl_libre" xml:space="preserve"><value>Frank Ruhl Libre</value></data>
   <data name="SetLatinPrayerTypeface.Header" xml:space="preserve"><value>Latin-script prayers</value></data>
   <data name="SetCyrillicPrayerTypeface.Header" xml:space="preserve"><value>Cyrillic prayers</value></data>
-  <data name="settings_typeface_serif" xml:space="preserve"><value>System serif</value></data>
-  <data name="prayer_tradition" xml:space="preserve"><value>Prayer tradition</value></data>
+  <data name="settings_typeface_serif" xml:space="preserve"><value>System Serif</value></data>
+  <data name="prayer_tradition" xml:space="preserve"><value>Prayer Tradition</value></data>
   <data name="prayer_tradition_vicariate" xml:space="preserve"><value>Saint James Vicariate</value></data>
   <data name="prayer_tradition_mission" xml:space="preserve"><value>Mission of St. Gamaliel</value></data>
   <data name="basic_pin" xml:space="preserve"><value>Pin to Pray</value></data>
@@ -425,8 +425,8 @@
   <data name="EdClosingDepartedIntention.Text" xml:space="preserve"><value>Closing prayers for the faithful departed</value></data>
   <data name="AbtLitanySources.Text" xml:space="preserve"><value>The Litany of Loreto uses published Catholic prayer texts. The Hebrew wording is Erez’s contribution through the Mission of St. Gamaliel. The Greek and Tagalog standalone closing prayers are Prosary translations of the Latin original; they are not published liturgical translations.</value></data>
   <data name="SetAramaicDefaultScript.Header" xml:space="preserve"><value>Default Aramaic script</value></data>
-  <data name="settings_script_hebrew" xml:space="preserve"><value>Hebrew script</value></data>
-  <data name="settings_script_syriac" xml:space="preserve"><value>Syriac script</value></data>
+  <data name="settings_script_hebrew" xml:space="preserve"><value>Hebrew Script</value></data>
+  <data name="settings_script_syriac" xml:space="preserve"><value>Syriac Script</value></data>
   <data name="HomeResetToday.Content" xml:space="preserve"><value>Today</value></data>
   <data name="SetPrayerNameLanguage.Header" xml:space="preserve"><value>Show prayer names in the prayer language</value></data>
   <data name="SetPrayerNameLanguageHint.Text" xml:space="preserve"><value>Also show the interface-language name when it differs.</value></data>
@@ -438,13 +438,92 @@
   <data name="SetEasternPascha.Header" xml:space="preserve"><value>Byzantine Easter calculation</value></data>
   <data name="settings_pascha_julian" xml:space="preserve"><value>Julian Pascha (Ukraine)</value></data>
   <data name="settings_pascha_gregorian" xml:space="preserve"><value>Gregorian Pascha</value></data>
-  <data name="HomePreviousDay.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Previous day</value></data>
-  <data name="HomeNextDay.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Next day</value></data>
+  <data name="HomePreviousDay.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Previous Day</value></data>
+  <data name="HomeNextDay.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Next Day</value></data>
   <data name="home_today_choose_date" xml:space="preserve"><value>Choose a date: {0}</value></data>
   <data name="AbtHebrewBookIndex.Text" xml:space="preserve"><value>Additional Hebrew Bible book names: Mechon Mamre’s Hebrew Bible index. Names only; no Scripture text.</value></data>
-  <data name="SetJaffaWording.Header" xml:space="preserve"><value>Jaffa wording</value></data>
+  <data name="SetJaffaWording.Header" xml:space="preserve"><value>Alternative Hail Mary wording</value></data>
   <data name="SetJaffaWordingFooter.Text" xml:space="preserve"><value>Use בְּרוּכַת הַחֶסֶד instead of מְלֵאַת הַחֶסֶד in Vicariate prayers.</value></data>
   <data name="AbtUkrainianPrayerSources.Text" xml:space="preserve"><value>Ukrainian prayers: Roman Catholic Church in Ukraine, Щоденно з Богом prayerbook. Used with attribution under the publisher’s reuse policy. Scripture: Kulish, Nechui-Levytsky and Puluj Bible (1905), public domain; eBible.org ukr1871. Historical Scripture spelling is retained.</value></data>
   <data name="AbtUkrainianPrayerbookLink.Content" xml:space="preserve"><value>Ukrainian prayerbook</value></data>
   <data name="AbtUkrainianScriptureLink.Content" xml:space="preserve"><value>Ukrainian Bible (1905)</value></data>
+  <!-- Window and menu commands -->
+  <data name="CommandsOpenInNewWindow" xml:space="preserve"><value>Open in New Window</value></data>
+  <data name="CommandsNavigation" xml:space="preserve"><value>Go</value></data>
+  <data name="CommandsBack" xml:space="preserve"><value>Back</value></data>
+  <data name="CommandsHelp" xml:space="preserve"><value>Prosary Help</value></data>
+  <data name="CommandsNewWindow" xml:space="preserve"><value>New Window</value></data>
+  <data name="FavoriteEditorSaveFailed" xml:space="preserve"><value>Could Not Save Favorite</value></data>
+  <data name="flow_show_original_text" xml:space="preserve"><value>Show Original Text</value></data>
+  <data name="RosaryAnyRosaryAction" xml:space="preserve"><value>Pray Any Rosary…</value></data>
+  <data name="RosarySaveAsPresetAction" xml:space="preserve"><value>Save as Preset…</value></data>
+  <data name="FavoriteEditorReminderTime" xml:space="preserve"><value>Reminder Time</value></data>
+  <data name="FavoriteEditorRemoveReminder" xml:space="preserve"><value>Remove Reminder</value></data>
+  <data name="AboutVersion" xml:space="preserve"><value>Version {0} ({1})</value></data>
+  <data name="CommandsRecentlyPrayed" xml:space="preserve"><value>Recently Prayed</value></data>
+  <data name="HomeDeleteSavedPrayer.Text" xml:space="preserve"><value>Delete Saved Prayer…</value></data>
+  <data name="prayerRemoval_deleteTitle" xml:space="preserve"><value>Delete Saved Prayer?</value></data>
+  <data name="prayerRemoval_deleteMessage" xml:space="preserve"><value>This deletes the saved prayer and its reminders. Other saved copies and built-in prayers remain available.</value></data>
+  <data name="prayerRemoval_deleteDownloadedMessage" xml:space="preserve"><value>This is the last saved copy. Deleting it also removes its downloaded prayer pack from this device and cancels its reminders.</value></data>
+  <data name="prayerRemoval_deleteConfirm" xml:space="preserve"><value>Delete</value></data>
+  <data name="prayerRemoval_removeDownloadTitle" xml:space="preserve"><value>Remove Download?</value></data>
+  <data name="prayerRemoval_removeDownloadMessage" xml:space="preserve"><value>This removes the downloaded prayer from this device. You can import or download it again.</value></data>
+  <data name="prayerRemoval_removeConfirm" xml:space="preserve"><value>Remove</value></data>
+  <data name="prayerRemoval_failedTitle" xml:space="preserve"><value>Could Not Remove Prayer</value></data>
+  <data name="prayerRemoval_failedMessage" xml:space="preserve"><value>Some items could not be removed. Please try again.</value></data>
+  <data name="prayerRemoval_deleteFailed" xml:space="preserve"><value>The prayer could not be deleted. Please try again.</value></data>
+  <data name="prayerRemoval_cleanupFailed" xml:space="preserve"><value>The prayer was deleted, but its download could not be removed. Try again in Downloads.</value></data>
+  <data name="prayerRemoval_remindersFailed" xml:space="preserve"><value>The prayer was deleted, but its reminders could not be canceled.</value></data>
+  <data name="prayerRemoval_downloadInUse" xml:space="preserve"><value>Delete the saved copies of this prayer before removing its download.</value></data>
+  <data name="prayerRemoval_prayerRemoved" xml:space="preserve"><value>This saved prayer has been deleted.</value></data>
+
+  <!-- Native desktop library and prayer windows -->
+  <data name="desktop_library" xml:space="preserve"><value>Library</value></data>
+  <data name="desktop_today" xml:space="preserve"><value>Today</value></data>
+  <data name="desktop_gallery" xml:space="preserve"><value>Gallery</value></data>
+  <data name="desktop_community" xml:space="preserve"><value>Community</value></data>
+  <data name="desktop_menu_file" xml:space="preserve"><value>File</value></data>
+  <data name="desktop_menu_view" xml:space="preserve"><value>View</value></data>
+  <data name="desktop_menu_prayer" xml:space="preserve"><value>Prayer</value></data>
+  <data name="desktop_menu_help" xml:space="preserve"><value>Help</value></data>
+  <data name="desktop_show_library" xml:space="preserve"><value>Show Library</value></data>
+  <data name="desktop_close_window" xml:space="preserve"><value>Close Window</value></data>
+  <data name="desktop_import" xml:space="preserve"><value>Import Prayer Packs…</value></data>
+  <data name="desktop_full_screen" xml:space="preserve"><value>Full Screen</value></data>
+  <data name="desktop_prayer_settings" xml:space="preserve"><value>Prayer Settings…</value></data>
+  <data name="desktop_previous_step" xml:space="preserve"><value>Previous Step</value></data>
+  <data name="desktop_next_step" xml:space="preserve"><value>Next Step</value></data>
+  <data name="desktop_saved_prayer_missing" xml:space="preserve"><value>This saved prayer is no longer available.</value></data>
+  <data name="desktop_import_failed" xml:space="preserve"><value>Could Not Import Prayer Pack</value></data>
+  <data name="desktop_open" xml:space="preserve"><value>Open</value></data>
+  <data name="desktop_duplicate" xml:space="preserve"><value>Duplicate</value></data>
+  <data name="desktop_delete" xml:space="preserve"><value>Delete Saved Prayer…</value></data>
+  <data name="desktop_rename" xml:space="preserve"><value>Rename…</value></data>
+  <data name="desktop_search_library" xml:space="preserve"><value>Search Prayers</value></data>
+  <data name="desktop_library_empty" xml:space="preserve"><value>Your Prayer Library</value></data>
+  <data name="desktop_library_empty_detail" xml:space="preserve"><value>Add a prayer from the gallery or import a prayer pack to begin.</value></data>
+  <data name="desktop_no_matches" xml:space="preserve"><value>No Matching Prayers</value></data>
+  <data name="desktop_no_matches_detail" xml:space="preserve"><value>Try another search.</value></data>
+  <data name="desktop_add_to_library" xml:space="preserve"><value>Add to Library</value></data>
+  <data name="desktop_added" xml:space="preserve"><value>Added to Library</value></data>
+  <data name="desktop_library_load_failed" xml:space="preserve"><value>Could Not Load the Library</value></data>
+  <data name="desktop_library_save_failed" xml:space="preserve"><value>Could Not Save Prayer</value></data>
+  <data name="desktop_copy_name" xml:space="preserve"><value>{0} copy</value></data>
+  <data name="desktop_rename_title" xml:space="preserve"><value>Rename Prayer</value></data>
+  <data name="desktop_gallery_detail" xml:space="preserve"><value>Choose a prayer to add a saved copy to your library.</value></data>
+  <data name="desktop_search_gallery" xml:space="preserve"><value>Search the Gallery</value></data>
+  <data name="desktop_list_view" xml:space="preserve"><value>List View</value></data>
+  <data name="desktop_grid_view" xml:space="preserve"><value>Grid View</value></data>
+  <data name="desktop_name" xml:space="preserve"><value>Name</value></data>
+  <data name="search_category" xml:space="preserve"><value>Category</value></data>
+  <data name="search_all_categories" xml:space="preserve"><value>All Categories</value></data>
+  <data name="search_no_matches" xml:space="preserve"><value>No prayers match this search and category.</value></data>
+  <data name="readings_bible_passage" xml:space="preserve"><value>Bible Passage</value></data>
+  <data name="readings_edition" xml:space="preserve"><value>Bible Edition</value></data>
+  <data name="readings_edition_automatic" xml:space="preserve"><value>Follow Interface Language</value></data>
+  <data name="readings_edition_unavailable" xml:space="preserve"><value>No edition is available for this language.</value></data>
+  <data name="readings_text_unavailable" xml:space="preserve"><value>This passage is not available in the selected Bible edition.</value></data>
+  <data name="readings_text_notice" xml:space="preserve"><value>Bible text for the cited passage. The wording may differ from the Mass reading.</value></data>
+  <data name="readings_whole_verses_notice" xml:space="preserve"><value>Full verses are shown where the reading cites only part of a verse.</value></data>
+  <data name="readings_source" xml:space="preserve"><value>Source and Edition</value></data>
 </root>

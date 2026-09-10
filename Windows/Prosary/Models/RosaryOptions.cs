@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Text.Json;
 using Prosary.Localization;
 
 namespace Prosary.Models;
@@ -22,8 +23,8 @@ public sealed record RosaryOptions
     /// <summary>The opening Our Father + 3 Hail Marys (for faith, hope, and charity) + Glory Be.</summary>
     public bool IncludeOpeningPrayers { get; init; } = true;
 
-    /// <summary>Optionally adds the Fatima Prayer immediately after the three opening Hail
-    /// Marys for faith, hope, and charity. Independent of the per-decade Fatima Prayer.</summary>
+    /// <summary>Optionally adds the Fatima Prayer after the opening Glory Be, before the
+    /// first mystery. Requires opening prayers; independent of the per-decade Fatima Prayer.</summary>
     public bool IncludeOpeningFatimaPrayer { get; init; } = false;
 
     /// <summary>The Fatima Prayer ("O my Jesus...") recited after the Glory Be of each decade.</summary>
@@ -37,13 +38,17 @@ public sealed record RosaryOptions
     /// departed) prayed after the Marian antiphon.</summary>
     public bool IncludeClosingIntentions { get; init; } = false;
 
-    // Null preserves the former combined setting in existing presets.
+    // Retained for saved-data compatibility. Any former selection enables the whole group.
     public bool? IncludeClosingPopeIntention { get; init; }
     public bool? IncludeClosingBishopIntention { get; init; }
     public bool? IncludeClosingDepartedIntention { get; init; }
-    public bool EffectiveClosingPopeIntention => IncludeClosingPopeIntention ?? IncludeClosingIntentions;
-    public bool EffectiveClosingBishopIntention => IncludeClosingBishopIntention ?? IncludeClosingIntentions;
-    public bool EffectiveClosingDepartedIntention => IncludeClosingDepartedIntention ?? IncludeClosingIntentions;
+    public bool EffectiveClosingIntentions =>
+        (IncludeClosingPopeIntention ?? IncludeClosingIntentions)
+        || (IncludeClosingBishopIntention ?? IncludeClosingIntentions)
+        || (IncludeClosingDepartedIntention ?? IncludeClosingIntentions);
+    public bool EffectiveClosingPopeIntention => EffectiveClosingIntentions;
+    public bool EffectiveClosingBishopIntention => EffectiveClosingIntentions;
+    public bool EffectiveClosingDepartedIntention => EffectiveClosingIntentions;
 
     public bool IncludeStMichaelPrayer { get; init; } = false;
 
@@ -75,5 +80,61 @@ public sealed record RosaryOptions
     {
         var chosen = MysteryCatalog.ForGroup(SpecificMysteryGroup).FirstOrDefault(m => m.Order == SpecificMysteryOrder);
         return chosen is null ? SpecificMysteryGroup.UiName() : MysteryTranslations.Get(UiLanguageCatalog.Current, chosen.ImageKey).Title;
+    }
+}
+
+/// <summary>Compatibility for Rosaries saved through the generic devotion editor. Other
+/// bundles own their option names; only the built-in Rosary merges the former closing groups.</summary>
+internal static class RosaryCustomOptions
+{
+    internal static readonly string[] LegacyClosingKeys =
+        ["closingPopeIntention", "closingBishopIntention", "closingDepartedIntention"];
+
+    internal static Dictionary<string, string> Normalize(
+        string? bundleId, IReadOnlyDictionary<string, string>? options)
+    {
+        var result = options is null ? new Dictionary<string, string>() : new Dictionary<string, string>(options);
+        if (bundleId != "rosary" || !LegacyClosingKeys.Any(result.ContainsKey)) return result;
+
+        var baseline = Boolean(result, "closingIntentions", false);
+        var enabled = LegacyClosingKeys.Any(key => Boolean(result, key, baseline));
+        foreach (var key in LegacyClosingKeys) result.Remove(key);
+        result["closingIntentions"] = enabled ? "true" : "false";
+        return result;
+    }
+
+    internal static bool Boolean(IReadOnlyDictionary<string, string> options, string key, bool fallback) =>
+        options.GetValueOrDefault(key) switch
+        {
+            "true" => true,
+            "false" => false,
+            _ => fallback,
+        };
+
+    internal static IReadOnlyList<CustomDevotionOption> EditorOptions(
+        string bundleId, IReadOnlyList<CustomDevotionOption> options)
+    {
+        if (bundleId != "rosary" || !options.Any(option => LegacyClosingKeys.Contains(option.Key)))
+            return options;
+
+        var hasCombined = options.Any(option => option.Key == "closingIntentions");
+        var result = new List<CustomDevotionOption>();
+        foreach (var option in options)
+        {
+            if (!LegacyClosingKeys.Contains(option.Key))
+            {
+                result.Add(option);
+                continue;
+            }
+
+            // Preserve the first former group's position in older installed packs, while a
+            // current pack retains its authored combined control and label.
+            if (hasCombined) continue;
+            result.Add(new CustomDevotionOption("closingIntentions", CustomDevotionOption.OptionKind.Toggle,
+                Loc.Tr("EdClosingIntentions/Text", "Closing Intentions"),
+                Default: JsonSerializer.SerializeToElement(false)));
+            hasCombined = true;
+        }
+        return result;
     }
 }

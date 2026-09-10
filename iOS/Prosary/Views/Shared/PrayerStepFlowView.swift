@@ -35,6 +35,8 @@ struct PrayerStepFlowView: View {
   /// isWide/hasRoomForSingleMinorColumn flags this view already resolved for its own layout, so
   /// a caller's accessory sizes itself consistently without re-deriving them.
   var accessory: ((_ isWide: Bool, _ hasRoomForSingleMinorColumn: Bool) -> AnyView)?
+  /// The accessory's actual wide width, for this session and available vertical space.
+  var accessoryWidth: ((_ hasRoomForSingleMinorColumn: Bool) -> CGFloat)? = nil
   /// When set ("Pray" — the Jesus Prayer), a large round button below the text becomes the
   /// flow's one big tap target and replaces the footer's Next entirely — for a counter flow,
   /// advancing is the only action, so it deserves more than a corner button.
@@ -51,13 +53,32 @@ struct PrayerStepFlowView: View {
 
   @Environment(\.horizontalSizeClass) private var horizontalSizeClass
   @Environment(\.verticalSizeClass) private var verticalSizeClass
+  @Environment(\.prayerWindowIsModal) private var windowIsModal
+  #if os(macOS)
+  @Environment(\.macPrayerPresentation) private var presentation
+  #endif
 
-  /// Seconds between automatic advances (hands-free praying); 0 = off. One app-wide setting
-  /// shared by every flow, so a choice made in the Rosary carries into the Stations.
-  @AppStorage("autoAdvanceSeconds") private var autoAdvanceSeconds = 0
+  private var isPresenting: Bool {
+    #if os(macOS)
+    presentation?.isPresenting == true
+    #else
+    false
+    #endif
+  }
+
+  /// Seconds between automatic advances; 0 = off. Saved Mac copies supply their remembered
+  /// pace, while mobile and unsaved sessions continue using the app-wide preference.
+  @AppStorage("autoAdvanceSeconds") private var globalAutoAdvanceSeconds = 0
+  @Environment(\.prayerAutoAdvanceSeconds) private var prayerAutoAdvanceSeconds
+
+  private var autoAdvanceBinding: Binding<Int> {
+    prayerAutoAdvanceSeconds ?? $globalAutoAdvanceSeconds
+  }
+
+  private var autoAdvanceSeconds: Int { autoAdvanceBinding.wrappedValue }
 
   /// A gentle tap when the step changes — tester-requested (Erez), off by default, app-wide
-  /// like autoAdvanceSeconds. Keyed to the step change rather than the button, so Back and a
+  /// Keyed to the step change rather than the button, so Back and a
   /// timer advance feel the same as Next; a Mac quietly does nothing with it.
   @AppStorage("hapticsOnAdvance") private var hapticsOnAdvance = false
 
@@ -71,6 +92,7 @@ struct PrayerStepFlowView: View {
   @State private var showsTransliteration = false
   @State private var initializedScriptLanguage: String?
   @State private var aramaicSessionScript: String?
+  @State private var readingPosition = PrayerReadingPosition()
 
   private var usesAlternateText: Bool {
     guard let script = aramaicSessionScript, let step else { return showsTransliteration }
@@ -101,17 +123,18 @@ struct PrayerStepFlowView: View {
 
   private static let autoAdvanceChoices = [3, 5, 10, 15]
 
-  /// Regular width (Mac, a wide iPad window, Vision) gets the taller three-column layout; so
-  /// does a compact-*height* window, which is how even a non-Max iPhone reports itself in
-  /// landscape (its width stays `.compact`) — that's a short, wide screen the single scrolling
-  /// column would waste, so it gets the same wide layout as Mac. A narrow split-screen iPad
-  /// (compact width, regular height) is the one case that keeps the single column.
-  private var isWide: Bool { horizontalSizeClass == .regular || verticalSizeClass == .compact }
-
   /// An iPhone in landscape is wide *and* short — unlike Mac/iPad, which are wide with plenty
   /// of vertical room — so it needs smaller everything to keep the whole wide layout, footer
   /// included, from growing taller than the screen.
   private var isCompactHeight: Bool { verticalSizeClass == .compact }
+
+  private var footerControlSize: ControlSize {
+    #if os(macOS)
+    .regular
+    #else
+    isCompactHeight ? .regular : .large
+    #endif
+  }
 
   private var showsCompactHeader: Bool {
     #if os(iOS)
@@ -131,7 +154,7 @@ struct PrayerStepFlowView: View {
     return currentIndex >= totalSteps - 1
   }
 
-  var body: some View {
+  private var regularContent: some View {
     VStack(spacing: 0) {
       if showsCompactHeader {
         compactHeader
@@ -146,13 +169,14 @@ struct PrayerStepFlowView: View {
         .padding(.top, isCompactHeight ? 6 : 12)
 
       if let step {
-        // Measured, not size-classed: a visionOS window resizes freely while its size class
-        // stays .regular, so the wide three-column layout used to squeeze until text clipped
-        // (and a narrow Mac window had the same failure). A regular-height window needs 860pt
-        // to preserve the prayer column's minimum width; compact landscape can switch at 700pt.
+        // Folding, split views, and desktop windows all use this column's available space.
+        // Include every mystery group when budgeting the bead track, and let artwork yield
+        // width before reducing the readable prayer column.
         GeometryReader { geo in
-          if isWide && geo.size.width >= (isCompactHeight ? 700 : 860) {
-            wideContent(step: step, availableHeight: geo.size.height)
+          let layout = PrayerFlowLayout(available: geo.size, compactHeight: isCompactHeight,
+            accessoryWidth: accessoryWidth?(geo.size.height >= 300))
+          if layout.isWide {
+            wideContent(step: step, layout: layout)
           } else {
             narrowContent(step: step, available: geo.size)
           }
@@ -190,14 +214,30 @@ struct PrayerStepFlowView: View {
           Button(isLastStep ? "prayerFlow.finish" : "prayerFlow.next") { onNext() }
             .prosaryProminentButtonStyle()
             .tint(seasonColor)
+            .disabled(step == nil)
             .accessibilityIdentifier("prayerFlowNextButton")
             #if os(macOS)
-            .keyboardShortcut(.space, modifiers: [])
+            .keyboardShortcut(.defaultAction)
             #endif
         }
-        .controlSize(isCompactHeight ? .regular : .large)
+        .controlSize(footerControlSize)
         .padding(isCompactHeight ? 8 : 16)
       }
+    }
+  }
+
+  var body: some View {
+    Group {
+      #if os(macOS)
+      if let presentation, presentation.isPresenting {
+        MacPrayerPresenterView(step: presenterStep, title: navigationTitle, currentIndex: currentIndex,
+          totalSteps: totalSteps, languageCode: languageCode, canGoBack: canGoBack,
+          textSize: presentation.textSize, onBack: onBack, onNext: onNext, onExit: presentation.exit,
+          primaryActionLabel: isLastStep ? nil : centralActionLabel)
+      } else { regularContent }
+      #else
+      regularContent
+      #endif
     }
     .navigationTitle(showsCompactHeader ? "" : HebrewDisplayText.unpointed(navigationTitle))
     .onAppear { applyDefaultScript() }
@@ -207,6 +247,7 @@ struct PrayerStepFlowView: View {
     .navigationBarTitleDisplayMode(.inline)
     #endif
     .toolbar {
+      if !isPresenting {
       if showsCompactHeader {
         ToolbarItem(placement: .principal) {
           Text(HebrewDisplayText.unpointed(navigationTitle))
@@ -223,6 +264,7 @@ struct PrayerStepFlowView: View {
           autoAdvanceMenu
         }
       }
+      }
     }
     // Restarts whenever the step, the interval, or the loaded state changes — so tapping
     // Back/Next resets the countdown, and turning the setting off cancels it. Never fires on
@@ -231,13 +273,21 @@ struct PrayerStepFlowView: View {
     .sensoryFeedback(.impact(weight: .light), trigger: currentIndex) { _, _ in
       hapticsOnAdvance && step != nil
     }
-    .task(id: "\(autoAdvanceSeconds)-\(currentIndex)-\(step != nil)-\(audioIsPlaying)") {
-      guard autoAdvanceSeconds > 0, step != nil, !isLastStep, !audioIsPlaying else { return }
+    .task(id: "\(autoAdvanceSeconds)-\(currentIndex)-\(step != nil)-\(audioIsPlaying)-\(windowIsModal)") {
+      guard autoAdvanceSeconds > 0, step != nil, !isLastStep, !audioIsPlaying, !windowIsModal else { return }
       try? await Task.sleep(for: .seconds(autoAdvanceSeconds))
       guard !Task.isCancelled else { return }
       onNext()
     }
   }
+
+  #if os(macOS)
+  private var presenterStep: RosaryStep? {
+    guard var displayed = step else { return nil }
+    if usesAlternateText, let alternate = displayed.transliteratedBody { displayed.body = alternate }
+    return displayed
+  }
+  #endif
 
   private var compactHeader: some View {
     // The natural-width row centers when it fits this view's actual available width. Larger
@@ -262,6 +312,9 @@ struct PrayerStepFlowView: View {
       autoAdvanceMenu
     }
     .prosarySecondaryButtonStyle()
+    #if !os(macOS)
+    .labelStyle(.iconOnly)
+    #endif
     .controlSize(.large)
     .frame(minHeight: 44)
     .padding(.horizontal)
@@ -269,18 +322,23 @@ struct PrayerStepFlowView: View {
 
   private var autoAdvanceMenu: some View {
     Menu {
-      Picker(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-advance"),
-             selection: $autoAdvanceSeconds) {
+      Picker(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance"),
+             selection: autoAdvanceBinding) {
         Text(String(localized: "prayerFlow.autoAdvance.off", defaultValue: "Off")).tag(0)
         ForEach(Self.autoAdvanceChoices, id: \.self) { seconds in
           Text(String(localized: "prayerFlow.autoAdvance.everySeconds",
-                      defaultValue: "Every \(seconds) seconds")).tag(seconds)
+                      defaultValue: "Every \(seconds) Seconds")).tag(seconds)
         }
       }
     } label: {
-      Image(systemName: autoAdvanceSeconds > 0 ? "timer.circle.fill" : "timer")
+      Label(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance"),
+            systemImage: autoAdvanceSeconds > 0 ? "timer.circle.fill" : "timer")
     }
-    .accessibilityLabel(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-advance"))
+    #if !os(macOS)
+    .labelStyle(.iconOnly)
+    #endif
+    .accessibilityLabel(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance"))
+    .help(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance"))
     .accessibilityIdentifier("autoAdvanceMenu")
   }
 
@@ -340,24 +398,14 @@ struct PrayerStepFlowView: View {
   private static let narrowContentPadding: CGFloat = 16
 
   @ViewBuilder
-  private func wideContent(step: RosaryStep, availableHeight: CGFloat) -> some View {
-    // A landscape iPhone is wide but short (compact height), unlike Mac/iPad which have
-    // vertical room to spare — everything here shrinks in that case so the footer's Back/Next
-    // buttons aren't pushed below the bottom edge.
-    let imageSide: CGFloat = isCompactHeight ? 190 : 320
-
-    // A single 10-tall minor-beads column needs roughly 254pt of height; below that —
-    // an iPhone in landscape, a narrow-tall iPad split, or a Mac window resized short —
-    // the two-column split fits in less than half that, so it takes over instead.
-    let hasRoomForSingleMinorColumn = availableHeight >= 300
-
-    HStack(alignment: .center, spacing: isCompactHeight ? 16 : 24) {
+  private func wideContent(step: RosaryStep, layout: PrayerFlowLayout) -> some View {
+    HStack(alignment: .center, spacing: layout.spacing) {
       mysteryImage(step: step)
-        .frame(width: imageSide, height: imageSide)
+        .frame(width: layout.wideImageSide, height: layout.wideImageSide)
         .clipShape(RoundedRectangle(cornerRadius: 16))
 
       if let accessory {
-        accessory(true, hasRoomForSingleMinorColumn)
+        accessory(true, layout.hasRoomForSingleMinorColumn)
       }
 
       // Not a ScrollView — the bead track is compact enough now (two-column minor beads,
@@ -370,13 +418,13 @@ struct PrayerStepFlowView: View {
           // Mac) a short prayer floated level with the title while the art sat centred half a
           // screen below it. Filling the viewport centres the prayer beside the art; anything
           // longer than the viewport still scrolls.
-          .frame(minHeight: availableHeight - (isCompactHeight ? 8 : 16), alignment: .center)
+          .frame(minHeight: max(0, layout.available.height - layout.topPadding), alignment: .center)
       }
-      .frame(minWidth: 320, maxWidth: .infinity)
+      .frame(minWidth: layout.minimumTextWidth, maxWidth: .infinity)
     }
-    .padding(.leading, isCompactHeight ? 16 : 40)
-    .padding(.trailing, isCompactHeight ? 12 : 28)
-    .padding(.top, isCompactHeight ? 8 : 16)
+    .padding(.leading, layout.leadingPadding)
+    .padding(.trailing, layout.trailingPadding)
+    .padding(.top, layout.topPadding)
     // Full screen on a Mac is ~1700pt: without a ceiling the three columns drift to opposite
     // edges — art in one corner, prayer in the other, nothing to read as one page. Capped and
     // centred, a wider window gives the prayer more room until it has enough, then stops.
@@ -431,8 +479,8 @@ struct PrayerStepFlowView: View {
             Image(systemName: usesAlternateText ? "character.book.closed.fill" : "character.book.closed")
           }
           .buttonStyle(.borderless)
-          .accessibilityLabel(String(localized: "prayerFlow.transliteration",
-                                     defaultValue: "Show transliteration"))
+          .accessibilityLabel(transliterationActionLabel)
+          .help(transliterationActionLabel)
           .accessibilityIdentifier("transliterationToggle")
         }
         // Both original bodies and transliterations follow their actual script; imported
@@ -454,6 +502,15 @@ struct PrayerStepFlowView: View {
       }
 
       if let centralActionLabel {
+        #if os(macOS)
+        Button(centralActionLabel, action: onNext)
+          .prosaryProminentButtonStyle()
+          .tint(seasonColor)
+          .controlSize(.large)
+          .keyboardShortcut(.defaultAction)
+          .padding(.top, 12)
+          .accessibilityIdentifier("centralActionButton")
+        #else
         Button(action: onNext) {
           Text(centralActionLabel)
             .font(.title3.weight(.bold))
@@ -464,8 +521,6 @@ struct PrayerStepFlowView: View {
         .buttonStyle(.plain)
         .padding(.top, 12)
         .accessibilityIdentifier("centralActionButton")
-        #if os(macOS)
-        .keyboardShortcut(.space, modifiers: [])
         #endif
       }
     }
@@ -476,6 +531,13 @@ struct PrayerStepFlowView: View {
     // column's own x-origin — under the sidebar, clipped mid-word (measured: column 472pt at
     // x=148, content drawn 148pt to the left of where it belonged).
     .environment(\.layoutDirection, isRightToLeft ? .rightToLeft : .leftToRight)
+    .background { PrayerReadingAnchor(position: readingPosition, step: currentIndex).allowsHitTesting(false) }
+  }
+
+  private var transliterationActionLabel: String {
+    usesAlternateText
+      ? String(localized: "prayerFlow.originalText", defaultValue: "Show Original Text")
+      : String(localized: "prayerFlow.transliteration", defaultValue: "Show Transliteration")
   }
 
   /// Prayer bodies use `**bold**` for the traditional versicle/response typographic distinction

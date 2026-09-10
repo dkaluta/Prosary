@@ -31,6 +31,9 @@ public partial class DevotionCardModel : ObservableObject
     public bool CanHaveReminders => !Id.StartsWith("basic:", StringComparison.Ordinal);
 
     [ObservableProperty]
+    private bool _canDeleteSavedPrayer;
+
+    [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(DisplaySubtitle))]
     private string _subtitle = string.Empty;
 
@@ -57,8 +60,14 @@ public partial class DevotionCardModel : ObservableObject
 /// </summary>
 public partial class HomeViewModel : ObservableObject
 {
+    public WindowNavigation Navigation { get; set; } = WindowNavigation.Detached;
+
     private readonly IPresetStore _presets;
     private readonly LiturgicalCalendarService _calendar;
+    private readonly PrayerRemovalService? _removal;
+
+    public Func<PrayerRemovalPlan, Task<bool>>? ConfirmDelete { get; set; }
+    public Func<string, Task>? ShowRemovalError { get; set; }
 
     private Prayer? _defaultRosary;
     private Prayer? _defaultJesusPrayer;
@@ -129,7 +138,6 @@ public partial class HomeViewModel : ObservableObject
 
     partial void OnSelectedTodayDateChanged(DateTimeOffset? value)
     {
-        ShowsFullCitations = false;
         RefreshToday();
     }
 
@@ -159,15 +167,12 @@ public partial class HomeViewModel : ObservableObject
         ? Loc.Tr("home_today_torah_festival", "Festival Torah reading", TodayLanguage)
         : Loc.Tr("home_today_torah_portion", "Weekly Torah portion", TodayLanguage);
     public string TorahPortionTitle => TodayTorahPortion?.LocalizedTitle(TodayLanguage) ?? "";
-    public string TorahPortionReadings => TodayTorahPortion?.LocalizedReadings(TodayLanguage) ?? "";
+    public string TorahPortionReadings => TodayTorahPortion is { } portion
+        ? string.Join(Environment.NewLine, (portion.Readings ?? []).Select(r => r.LocalizedFull(TodayLanguage)))
+        : "";
 
     public string TodayLanguage => UiLanguageCatalog.Current;
     public bool TodayIsRightToLeft => UiLanguageCatalog.IsRightToLeft(TodayLanguage);
-
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(ReadingsText))]
-    [NotifyPropertyChangedFor(nameof(CitationButtonText))]
-    private bool _showsFullCitations;
 
     public bool ShowsTodaySection => true;
 
@@ -198,21 +203,14 @@ public partial class HomeViewModel : ObservableObject
 
     public string TodayReadingsTitle => Loc.Tr("HomeTodayReadings/Text", "Today’s readings", TodayLanguage);
 
-    public string ReadingsText => ShowsFullCitations
-        ? string.Join(Environment.NewLine, TodayReadings.Select(r => r.LocalizedFull(TodayLanguage)))
-        : string.Join(", ", TodayReadings.Select(r => r.LocalizedShort(TodayLanguage)));
+    public string ReadingsText => string.Join(Environment.NewLine,
+        TodayReadings.Select(r => r.LocalizedFull(TodayLanguage)));
 
-    public string CitationButtonText => ShowsFullCitations
-        ? Loc.Tr("home_today_compact_citations", "Show shorthand", TodayLanguage)
-        : Loc.Tr("home_today_full_citations", "View full citations", TodayLanguage);
-
-    [RelayCommand]
-    private void ToggleCitations() => ShowsFullCitations = !ShowsFullCitations;
-
-    public HomeViewModel(IPresetStore presets, LiturgicalCalendarService calendar)
+    public HomeViewModel(IPresetStore presets, LiturgicalCalendarService calendar, PrayerRemovalService? removal = null)
     {
         _presets = presets;
         _calendar = calendar;
+        _removal = removal;
         RefreshToday();
 
         _allCards.Add(
@@ -222,6 +220,22 @@ public partial class HomeViewModel : ObservableObject
                 Command = OpenRosaryCommand, HasSavedPresets = true,
             });
 
+        RefreshCustomCards();
+
+        _allCards.Add(new DevotionCardModel
+        {
+            Id = "jesusPrayer", Title = PrayerKind.JesusPrayer.DisplayName(), IconGlyph = "\uEB52", // HeartFill
+            Command = OpenJesusPrayerCommand,
+        });
+    }
+
+    private void RefreshCustomCards()
+    {
+        _allCards.RemoveAll(card => card.Id.StartsWith("custom.", StringComparison.Ordinal));
+        _customCardsByBundleId.Clear();
+        _defaultCustomDevotions.Clear();
+        var insertionIndex = _allCards.FindIndex(card => card.Id == "jesusPrayer");
+        if (insertionIndex < 0) insertionIndex = _allCards.Count;
         foreach (var bundleId in PrayerPackStore.CustomDevotionIds())
         {
             var info = PrayerPackStore.Info(bundleId);
@@ -239,14 +253,8 @@ public partial class HomeViewModel : ObservableObject
                 Command = new RelayCommand(() => OpenCustomDevotion(bundleId)),
             };
             _customCardsByBundleId[bundleId] = card;
-            _allCards.Add(card);
+            _allCards.Insert(insertionIndex++, card);
         }
-
-        _allCards.Add(new DevotionCardModel
-        {
-            Id = "jesusPrayer", Title = PrayerKind.JesusPrayer.DisplayName(), IconGlyph = "\uEB52", // HeartFill
-            Command = OpenJesusPrayerCommand,
-        });
     }
 
     /// <summary>The devotion id a card pins under — "custom.trisagion" orders, "trisagion"
@@ -286,7 +294,7 @@ public partial class HomeViewModel : ObservableObject
                 Title = name.Title,
                 InterfaceSubtitle = name.InterfaceSubtitle,
                 IconGlyph = "\uE8F1",
-                Command = new RelayCommand(() => Router.Navigate<BasicPrayerFlowPage>(prayer.Id)),
+                Command = new RelayCommand(() => Navigation.Navigate<BasicPrayerFlowPage>(prayer.Id)),
             });
         }
 
@@ -322,6 +330,26 @@ public partial class HomeViewModel : ObservableObject
         }
         else FavoriteDevotions.Toggle(DevotionIdOf(card), ImpliedPinnedIds());
         RebuildPinnedCards();
+    }
+
+    [RelayCommand]
+    private async Task DeleteSavedPrayerAsync(DevotionCardModel card)
+    {
+        if (_removal is null || !card.CanDeleteSavedPrayer || SavedPrayerForCard(card) is not { } prayer) return;
+        string? message = null;
+        try
+        {
+            var plan = await _removal.PlanAsync(prayer.Id);
+            if (plan is null || ConfirmDelete is null || !await ConfirmDelete(plan)) return;
+            await _removal.DeleteAsync(prayer.Id);
+        }
+        catch (Exception error)
+        {
+            message = PrayerRemovalService.ErrorMessage(error);
+        }
+        try { await LoadAsync(); }
+        catch (Exception error) { message ??= PrayerRemovalService.ErrorMessage(error); }
+        if (message is not null && ShowRemovalError is not null) await ShowRemovalError(message);
     }
 
     /// <summary>Re-sorts <see cref="DevotionCards"/> by the persisted per-user order
@@ -414,6 +442,7 @@ public partial class HomeViewModel : ObservableObject
     public async Task LoadAsync()
     {
         RefreshToday();
+        RefreshCustomCards();
         var todayGroup = _calendar.GetMysteryGroupForToday();
         var all = await _presets.GetAllAsync();
 
@@ -435,6 +464,7 @@ public partial class HomeViewModel : ObservableObject
         Card("rosary").Subtitle = string.Join(" • ", rosaryParts);
 
         Card("jesusPrayer").AccentColor = PrayerKind.JesusPrayer.AccentColor();
+        Card("jesusPrayer").CanDeleteSavedPrayer = _defaultJesusPrayer is not null;
         Card("jesusPrayer").Subtitle = _defaultJesusPrayer is { } jp
             ? $"{HebrewDisplayText.WithoutMarks(jp.Name)} • {jp.JesusPrayer.TargetDisplayName}"
             : Loc.Tr("home_click_to_set_up", "Click to set up");
@@ -444,6 +474,7 @@ public partial class HomeViewModel : ObservableObject
             var match = all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId && p.IsDefault)
                 ?? all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId);
             _defaultCustomDevotions[bundleId] = match;
+            _customCardsByBundleId[bundleId].CanDeleteSavedPrayer = match is not null;
             ApplyName(_customCardsByBundleId[bundleId], PrayerCardName.ForBundle(bundleId, match?.LanguageCode));
             _customCardsByBundleId[bundleId].Subtitle = MultiDayStatus.Subtitle(bundleId)
                 ?? (match is { } favorite ? HebrewDisplayText.WithoutMarks(favorite.Name) : null)
@@ -453,7 +484,7 @@ public partial class HomeViewModel : ObservableObject
         RebuildPinnedCards();
     }
 
-    private void RefreshToday()
+    public void RefreshToday()
     {
         var today = SelectedDate;
         TodayFeast = AppSettings.ShowTodayFeast ? TodayInfoStore.Feast(today) : null;
@@ -474,7 +505,7 @@ public partial class HomeViewModel : ObservableObject
     private void OpenCustomDevotion(string bundleId)
     {
         var prayer = _defaultCustomDevotions.GetValueOrDefault(bundleId);
-        Router.Navigate<CustomDevotionFlowPage>(new CustomDevotionFlowParams(prayer?.Id, bundleId));
+        Navigation.Navigate<CustomDevotionFlowPage>(new CustomDevotionFlowParams(prayer?.Id, bundleId));
     }
 
     [RelayCommand]
@@ -482,7 +513,7 @@ public partial class HomeViewModel : ObservableObject
     {
         // The Rosary card opens its presets: one card on Pray, however many saved Rosaries
         // behind it, with the default the first thing that screen offers.
-        Router.Navigate<RosaryPresetPickerPage>();
+        Navigation.Navigate<RosaryPresetPickerPage>();
     }
 
     /// <summary>A card's "Reminders…" — the saved configuration behind the card is what they
@@ -490,47 +521,49 @@ public partial class HomeViewModel : ObservableObject
     [RelayCommand]
     private void OpenReminders(DevotionCardModel card)
     {
-        var prayer = DevotionIdOf(card) switch
+        var prayer = SavedPrayerForCard(card);
+
+        if (prayer is not null)
+        {
+            Navigation.Navigate<RemindersOnlyEditorPage>(prayer.Id);
+        }
+    }
+
+    private Prayer? SavedPrayerForCard(DevotionCardModel card) => DevotionIdOf(card) switch
         {
             "rosary" => _defaultRosary,
             "jesusPrayer" => _defaultJesusPrayer,
             var bundleId => _defaultCustomDevotions.GetValueOrDefault(bundleId),
         };
 
-        if (prayer is not null)
-        {
-            Router.Navigate<RemindersOnlyEditorPage>(prayer.Id);
-        }
-    }
-
     /// <summary>"Pray any Rosary" — the ad-hoc session the Mac's + menu opens first.</summary>
     [RelayCommand]
-    private void PrayAnyRosary() => Router.Navigate<RosaryPresetPickerPage>();
+    private void PrayAnyRosary() => Navigation.Navigate<RosaryPresetPickerPage>();
 
     [RelayCommand]
     private void AddRosaryPreset() =>
-        Router.Navigate<FavoriteEditorPage>(new FavoriteEditorParams(null, PrayerKind.Rosary));
+        Navigation.Navigate<FavoriteEditorPage>(new FavoriteEditorParams(null, PrayerKind.Rosary));
 
     [RelayCommand]
     private void AddJesusPrayerPreset() =>
-        Router.Navigate<FavoriteEditorPage>(new FavoriteEditorParams(null, PrayerKind.JesusPrayer));
+        Navigation.Navigate<FavoriteEditorPage>(new FavoriteEditorParams(null, PrayerKind.JesusPrayer));
 
     [RelayCommand]
     private void OpenJesusPrayer()
     {
         if (_defaultJesusPrayer is { } prayer)
         {
-            Router.Navigate<JesusPrayerFlowPage>(new JesusPrayerFlowParams(prayer.Id, null));
+            Navigation.Navigate<JesusPrayerFlowPage>(new JesusPrayerFlowParams(prayer.Id, null));
         }
         else
         {
-            Router.Navigate<JesusPrayerSetupPage>();
+            Navigation.Navigate<JesusPrayerSetupPage>();
         }
     }
 
     [RelayCommand]
-    private void OpenSettings() => Router.Navigate<SettingsPage>();
+    private void OpenSettings() => Navigation.Navigate<SettingsPage>();
 
     [RelayCommand]
-    private void OpenAbout() => Router.Navigate<AboutPage>();
+    private void OpenAbout() => Navigation.Navigate<AboutPage>();
 }

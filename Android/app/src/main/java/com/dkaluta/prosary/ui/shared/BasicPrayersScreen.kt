@@ -24,6 +24,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -59,14 +60,14 @@ import androidx.compose.runtime.CompositionLocalProvider
 fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
     val chosenLanguage = AppSettings.basicPrayersLanguageCode
     val language = LanguageCatalog.resolve(chosenLanguage)
-    var languageMenuExpanded by remember { mutableStateOf(false) }
+    var languageMenuExpanded by rememberSaveable { mutableStateOf(false) }
     val context = LocalContext.current
     val interfaceLanguage = com.dkaluta.prosary.content.today.TodayTranslationLanguage.resolve(context.resources.configuration.locales[0].toLanguageTag())
     // The order lives in BasicPrayersOrder, not in view state; the generation bump just makes
     // this composition re-derive after the editor saves (the HomeOrder pattern, Erez
     // 2026-08-08).
     var orderGeneration by remember { mutableIntStateOf(0) }
-    var showsOrderEditor by remember { mutableStateOf(false) }
+    var showsOrderEditor by rememberSaveable { mutableStateOf(false) }
     val ordered = remember(orderGeneration) {
         BasicPrayersOrder.apply(context, BasicPrayerCatalog.all)
     }
@@ -158,9 +159,12 @@ fun BasicPrayerFlowScreen(prayerId: String, onNavigateUp: () -> Unit) {
     val prayer = BasicPrayerCatalog.prayer(prayerId) ?: run { onNavigateUp(); return }
     val chosenLanguage = AppSettings.basicPrayersLanguageCode
     val language = LanguageCatalog.resolve(chosenLanguage)
-    var languageMenuExpanded by remember { mutableStateOf(false) }
+    var languageMenuExpanded by rememberSaveable { mutableStateOf(false) }
     val step = remember(prayerId, language.code, AppSettings.useJaffaHailMaryWording) {
-        BasicPrayerCatalog.step(prayer, language.code)
+        BasicPrayerCatalog.step(prayer, language.code).copy(
+            // Recreating a one-step reader must not look like advancing to a new prayer.
+            id = "basic:$prayerId:${language.code}:${AppSettings.useJaffaHailMaryWording}",
+        )
     }
     PrayerStepFlowScreen(
         title = step.title,

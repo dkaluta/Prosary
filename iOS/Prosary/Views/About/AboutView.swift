@@ -9,11 +9,33 @@
 //
 
 import SwiftUI
+#if os(macOS)
+import AppKit
+#endif
 
 struct AboutView: View {
   var body: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: 24) {
+        #if os(macOS)
+        VStack(spacing: 8) {
+          Image(nsImage: NSApplication.shared.applicationIconImage)
+            .resizable()
+            .frame(width: 72, height: 72)
+            .accessibilityHidden(true)
+          Text("about.title")
+            .font(.title.bold())
+          let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
+          let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? ""
+          Text(String(localized: "about.version", defaultValue: "Version \(version) (\(build))"))
+            .foregroundStyle(.secondary)
+          Text("about.tagline")
+            .font(.callout)
+            .foregroundStyle(.secondary)
+        }
+        .multilineTextAlignment(.center)
+        .frame(maxWidth: .infinity)
+        #else
         VStack(alignment: .leading, spacing: 4) {
           Text("about.title")
             .font(.largeTitle.bold())
@@ -21,6 +43,7 @@ struct AboutView: View {
           Text("about.tagline")
             .foregroundStyle(.secondary)
         }
+        #endif
 
         section(String(localized: "about.section.typefaces", defaultValue: "Typefaces")) {
           Text("about.typefaces.frankRuhlLibre")
@@ -92,6 +115,21 @@ struct AboutView: View {
             defaultValue: "Christ Pantocrator: encaustic icon (6th century), Saint Catherine\u{2019}s Monastery, Mount Sinai \u{2014} the oldest surviving icon of Christ Pantocrator, honoring the prayer\u{2019}s Eastern tradition; public domain."))
         }
 
+        #if os(macOS)
+        section(String(localized: "macLibrary.gallery", defaultValue: "Prayer Gallery")) {
+          Text(String(localized: "about.galleryImages.rights",
+            defaultValue: "Public-domain and CC0 artwork. Select a title to view its source."))
+            .font(.footnote).foregroundStyle(.secondary)
+          ForEach(MacPrayerGalleryCredits.entries) { credit in
+            VStack(alignment: .leading, spacing: 3) {
+              Link(destination: credit.source) { Text(verbatim: credit.title) }
+              Text(verbatim: credit.collection)
+                .font(.footnote).foregroundStyle(.secondary)
+            }
+          }
+        }
+        #endif
+
         section(String(localized: "about.section.prayerTexts", defaultValue: "Prayer Texts")) {
           Text("about.prayerTexts")
             .font(.footnote)
@@ -146,19 +184,23 @@ struct AboutView: View {
           Text(String(localized: "about.hebrewReadingBookSources",
                       defaultValue: "Hebrew Bible book labels: Evangelizo HE, the St James Vicariate, and Mechon Mamre (mechon-mamre.org)."))
             .font(.footnote).foregroundStyle(.secondary)
-          Link("Mechon Mamre", destination: URL(string: "https://www.mechon-mamre.org/i/t/tmp3.htm")!)
+          Link(destination: URL(string: "https://www.mechon-mamre.org/i/t/tmp3.htm")!) { Text(verbatim: "Mechon Mamre") }
           Link("about.popeNetworkLink", destination: URL(string: "https://www.popesprayer.va/pray/")!)
           Text(String(localized: "about.torahData",
                       defaultValue: "Torah reading schedules: Hebcal.com, CC BY 4.0. Names and citations adapted; no Scripture text is included."))
             .font(.footnote).foregroundStyle(.secondary)
-          Link("Hebcal.com", destination: URL(string: "https://www.hebcal.com")!)
-          Link("CC BY 4.0", destination: URL(string: "https://creativecommons.org/licenses/by/4.0/")!)
+          Link(destination: URL(string: "https://www.hebcal.com")!) { Text(verbatim: "Hebcal.com") }
+          Link(destination: URL(string: "https://creativecommons.org/licenses/by/4.0/")!) { Text(verbatim: "CC BY 4.0") }
         }
       }
       .padding(24)
       .frame(maxWidth: 560, alignment: .leading)
       .frame(maxWidth: .infinity)
     }
+    #if os(macOS)
+    .textSelection(.enabled)
+    .frame(width: 520, height: 640)
+    #endif
     .navigationTitle("about.navigationTitle")
   }
 

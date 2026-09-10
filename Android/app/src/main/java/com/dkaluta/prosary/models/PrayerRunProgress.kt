@@ -47,22 +47,23 @@ object PrayerRunSignatures {
         options.includeFatimaPrayer.flag,
         options.eternalRestForDeceased.stableValue,
         options.marianAntiphon.stableValue,
-        options.includeClosingIntentions.flag,
+        options.effectiveClosingIntentions.flag,
         options.includeStMichaelPrayer.flag,
         options.includeFinalSignOfCross.flag,
         options.aramaicSignOfCrossForm,
         options.presenterMode.flag,
         options.mysteryImageStyle.stableValue,
-    ).joinToString("|") + closingIntentionsSuffix(options)
+    ).joinToString("|") + closingIntentionsSuffix(options) + openingFatimaSuffix(options)
 
     private fun closingIntentionsSuffix(options: RosaryOptions): String {
-        val effective = listOf(options.effectiveClosingPopeIntention,
-            options.effectiveClosingBishopIntention, options.effectiveClosingDepartedIntention)
         // New intention introductions shift existing closing sequences. No-closing runs keep
         // their identity; enabled or changed closing runs must not resume at an old index.
-        return if (effective.none { it } && !options.includeClosingIntentions) ""
-        else "|closing-v2:" + effective.joinToString(",") { it.flag }
+        return if (options.effectiveClosingIntentions) "|closing-v2:1,1,1" else ""
     }
+
+    private fun openingFatimaSuffix(options: RosaryOptions): String =
+        // The opening Fatima Prayer now follows Glory Be. Reject indices from the old order.
+        if (options.includeOpeningPrayers && options.includeOpeningFatimaPrayer) "|opening-fatima-v2" else ""
 
     fun custom(
         devotionId: String,
@@ -70,10 +71,18 @@ object PrayerRunSignatures {
         dayIndex: Int,
         options: Map<String, String>,
     ): String {
-        val optionText = options.toSortedMap().entries.joinToString("|") { (key, value) ->
+        val normalized = RosaryOptions.normalizedCustomOptions(devotionId, options)
+        val optionText = normalized.toSortedMap().entries.joinToString("|") { (key, value) ->
             "$key=$value"
         }
-        return "custom|$devotionId|${effectiveVariantId.orEmpty()}|$dayIndex|$optionText"
+        val closingSuffix = if (devotionId == "rosary" && normalized["closingIntentions"] == "true") {
+            "|closing-v2:1,1,1"
+        } else ""
+        val openingSuffix = if (devotionId == "rosary" &&
+            (normalized["openingPrayers"]?.toBooleanStrictOrNull() ?: true) &&
+            normalized["openingFatimaPrayer"] == "true"
+        ) "|opening-fatima-v2" else ""
+        return "custom|$devotionId|${effectiveVariantId.orEmpty()}|$dayIndex|$optionText$closingSuffix$openingSuffix"
     }
 
     fun jesus(target: JesusPrayerTarget): String = when (target) {

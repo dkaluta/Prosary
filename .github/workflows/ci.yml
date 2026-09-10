@@ -29,8 +29,17 @@ jobs:
         run: uv run --script Shared/tools/reflow-prayers.py --check
       - name: Portable packs stay canonical without duplicate native artwork
         run: uv run --script Shared/tools/test-asset-deduplication.py
+      - name: Offline readings preserve sources, verse mappings and native copies
+        run: |
+          uv run --script Shared/tools/test-reading-versification.py
+          uv run --script Shared/tools/test-reading-appointment-reviews.py
+          uv run --script Shared/tools/test-delitzsch-numbering.py
+          uv run --script Shared/tools/test-delitzsch-source.py
+          uv run --script Shared/tools/test-reading-texts.py
       - name: Erez's Aramaic converter and generated packs stay in step
         run: uv run --script Shared/tools/test-import-scripture.py
+      - name: Old Jesuit Arabic Scripture keeps its reviewed source and native copies
+        run: uv run --script Shared/tools/test-import-arabic-scripture.py
       - name: Hebrew-script Aramaic keeps contextual final letters
         run: uv run --script Shared/tools/audit-aramaic-finals.py
       - name: Sourced languages and intentions retain their provenance

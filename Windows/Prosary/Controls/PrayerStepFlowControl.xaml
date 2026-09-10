@@ -36,7 +36,7 @@
             <TextBlock FontFamily="{x:Bind ViewModel.ProgressFontFamily, Mode=OneWay}" Text="{x:Bind ViewModel.ProgressText, Mode=OneWay}" HorizontalAlignment="Center" Style="{StaticResource MutedCaptionTextStyle}" />
         </StackPanel>
 
-        <ScrollViewer Grid.Row="2" Padding="20"
+        <ScrollViewer x:Name="Reader" Grid.Row="2" Padding="20"
                       FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
             <StackPanel Spacing="16" MaxWidth="640" HorizontalAlignment="Center">
                 <Border Height="240" MaxWidth="240" CornerRadius="16" HorizontalAlignment="Center">
@@ -51,7 +51,7 @@
                     <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Center" />
                 </StackPanel>
 
-                <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
+                <TextBlock x:Name="PrayerBody" controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
                            FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
                            FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
                            TextWrapping="Wrap" TextAlignment="Center" IsTextSelectionEnabled="True" />

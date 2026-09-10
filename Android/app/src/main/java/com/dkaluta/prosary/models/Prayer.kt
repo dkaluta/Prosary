@@ -1,6 +1,7 @@
 package com.dkaluta.prosary.models
 
 import android.content.Context
+import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import java.util.UUID
 
 /** A saved, user-configurable prayer session. [kind] selects the Rosary, the Jesus Prayer, or
@@ -44,7 +45,12 @@ data class Prayer(
 ) {
     val isNotDefault: Boolean get() = !isDefault
     val resolvedLanguageCode: String get() = LanguageCatalog.resolve(languageCode).code
-    val languageNativeName: String get() = LanguageCatalog.pickerLanguageName(resolvedLanguageCode)
+    /** Playback can fall back within a custom bundle without rewriting the saved choice. */
+    val effectiveLanguageCode: String get() = customDevotionId
+        ?.takeIf { kind == PrayerKind.Custom }
+        ?.let { PrayerPackStore.effectiveLanguage(it, languageCode) }
+        ?: resolvedLanguageCode
+    val languageNativeName: String get() = LanguageCatalog.pickerLanguageName(effectiveLanguageCode)
 
     /** Display string for list rows — shows "Default (Latina)" for the sentinel, plain name otherwise. */
     fun languageDisplayName(context: Context): String =

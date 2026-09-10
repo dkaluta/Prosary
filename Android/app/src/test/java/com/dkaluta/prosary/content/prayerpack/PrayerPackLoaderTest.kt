@@ -182,6 +182,58 @@ class PrayerPackLoaderTest {
         assertArrayEquals(originalBytes, restoredRequest.read())
     }
 
+    @Test
+    fun failedDownloadDeletionKeepsItsRegistrationForAnHonestRetry() {
+        val directory = java.nio.file.Files.createTempDirectory("prosary-removal-failure").toFile()
+        PrayerPackStore.installedPacksDirectory = directory
+        val id = "removalFailureTest"
+        val out = ByteArrayOutputStream()
+        java.util.zip.ZipOutputStream(out).use { zip ->
+            val entries = mapOf(
+                "manifest.json" to """{"schemaVersion":1,"id":"$id","kind":"$id","displayName":"Removal Test","languages":["en"],"hasCatalog":false,"images":[]}""",
+                "content/en.json" to """{"prayers":{"example":"Example"},"mysteries":{}}""",
+                "devotion.json" to """{"type":"steps","steps":[{"title":"Example","bodyKey":"example"}]}""",
+            )
+            for ((name, text) in entries) {
+                zip.putNextEntry(java.util.zip.ZipEntry(name))
+                zip.write(text.toByteArray())
+                zip.closeEntry()
+            }
+        }
+        PrayerPackStore.installPack(out.toByteArray())
+        val target = File(directory, "$id.prosaryprayer")
+        try {
+            assertTrue(target.delete())
+            assertTrue(target.mkdir())
+            File(target, "keeps-directory-nonempty").writeText("blocked")
+            val failure = runCatching { PrayerPackStore.removeInstalledPack(id) }.exceptionOrNull()
+            assertTrue("a failed file deletion must be visible", failure is java.io.IOException)
+            assertTrue(id in PrayerPackStore.installedBundleIds())
+            assertNotNull(PrayerPackStore.info(id))
+            assertNotNull(PrayerPackStore.definition(id))
+
+            assertTrue(target.deleteRecursively())
+            PrayerPackStore.removeInstalledPack(id)
+            assertFalse(id in PrayerPackStore.installedBundleIds())
+            assertNull(PrayerPackStore.info(id))
+        } finally {
+            target.deleteRecursively()
+            PrayerPackStore.removeInstalledPack(id)
+            directory.deleteRecursively()
+        }
+    }
+
+    @Test
+    fun builtInDownloadsCannotBeUnregisteredByRemoval() {
+        for (id in listOf("rosary", "angelus", "trisagion")) {
+            assertTrue(PrayerPackStore.isBuiltInBundle(id))
+            val before = PrayerPackStore.info(id)
+            PrayerPackStore.removeInstalledPack(id)
+            assertEquals(before, PrayerPackStore.info(id))
+            assertNotNull(PrayerPackStore.definition(id))
+        }
+    }
+
     /** A sequential ZipInputStream has to process the corrupt first member before it can reach
      * metadata or a later image. Installed packs use the central-directory reader instead, so
      * neither operation touches that member; requesting the corrupt member itself still fails

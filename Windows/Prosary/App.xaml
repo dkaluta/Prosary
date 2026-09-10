@@ -19,6 +19,16 @@
                 <ResourceDictionary Source="ms-appx:///Microsoft.UI.Xaml/DensityStyles/Compact.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
+            <!-- Keep WinUI's Fluent menu template, focus visuals, and contrast themes.
+                 The native template does not consume MenuBar.Padding, so use an outer
+                 inset and a minimum height that still grows with the menu content. -->
+            <Style x:Key="DesktopMenuBarStyle" TargetType="controls:MenuBar"
+                   BasedOn="{StaticResource DefaultMenuBarStyle}">
+                <Setter Property="Background" Value="{ThemeResource MenuBarBackground}" />
+                <Setter Property="MinHeight" Value="32" />
+                <Setter Property="Margin" Value="8,0,8,4" />
+            </Style>
+
             <!-- Brand colors — ported from iOS's Assets.xcassets / Android's ui/theme/Color.kt,
                  including their light/dark variants: BrandHeadline in particular is a dark maroon
                  that reads fine on a light background but is nearly illegible against a dark one,

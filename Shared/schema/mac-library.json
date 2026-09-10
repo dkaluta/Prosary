@@ -1,0 +1,167 @@
+{
+  "$comment": "Mac-only library organization, saved-copy behavior, and window identity. This is a platform-specific contract; it does not extend the cross-platform Prayer shape or require matching phone/Windows workflows.",
+  "platform": "macOS",
+  "sources": [
+    "iOS/Prosary/Support/MacPrayerLibraryModel.swift",
+    "iOS/Prosary/Support/PrayerWindowRequest.swift",
+    "iOS/Prosary/Support/MacPrayerWindowGeometry.swift",
+    "iOS/Prosary/Support/MacPrayerPlaybackSettings.swift",
+    "iOS/Prosary/Support/MacPrayerPresentation.swift",
+    "iOS/Prosary/Views/Home/MacPrayerLibraryView.swift",
+    "iOS/Prosary/Views/Home/MacPrayerGalleryView.swift",
+    "iOS/Prosary/Views/Home/MacPrayerGalleryCollection.swift",
+    "iOS/Prosary/Views/Shared/MacLibrarySceneView.swift",
+    "iOS/Prosary/Views/Shared/MacPrayerWindowView.swift",
+    "iOS/Prosary/Views/Shared/MacPrayerPresenterView.swift",
+    "iOS/Prosary/ProsaryApp.swift"
+  ],
+  "savedCopies": {
+    "recordType": "Prayer",
+    "schema": "domain-model.json#types/Prayer",
+    "storage": "The existing PresetStore and SwiftData PresetEntry, retaining their existing sync behavior. No new Prayer columns.",
+    "templateIdentity": "devotion:<devotionID> (a bundle ID, rosary, or jesusPrayer from the directory)",
+    "savedIdentity": "Prayer.id.uuidString",
+    "materialization": "A devotion explicitly added from the Gallery appears as a library template until a saved configuration exists. Downloads and imports enter the Gallery without adding library membership. Browsing and Add to Library do not save a Prayer. First Open or Prayer Settings creates the named Prayer, or reuses a matching record found during the save check. The template's tag assignments move to the saved UUID.",
+    "duplication": {
+      "id": "New UUID",
+      "name": "Localized macLibrary.copyName with the source name; append a numeric suffix beginning at 2 until unused.",
+      "configuration": "Copy the kind, language, Rosary or Jesus Prayer settings, customDevotionId, variantId, and customOptions.",
+      "isDefault": false,
+      "dayIndex": null,
+      "reminders": "Copy definitions with new reminder UUIDs and isEnabled=false.",
+      "tags": "Copy assignments to the new saved UUID.",
+      "playback": "Copy the effective auto-advance pace, including an inherited app default, to the new UUID.",
+      "presentation": "Copy Presenter Mode and its text size to the new UUID.",
+      "progress": "No bookmark or run progress is copied; the new UUID starts an independent prayer."
+    }
+  },
+  "libraryMembership": {
+    "key": "macLibraryDevotions",
+    "storage": "Local UserDefaults string array; device-local and separate from preset/iCloud synchronization.",
+    "type": "string[]",
+    "default": [],
+    "identity": "DevotionDirectory IDs, including rosary and jesusPrayer.",
+    "gallery": "Every currently available DevotionDirectory entry remains a Gallery candidate. Bundled files remain installed but do not automatically populate a fresh Library.",
+    "visibleItems": "Every saved Prayer configuration, plus templates for explicitly added devotion IDs without a matching saved configuration. Installed pack IDs alone do not imply membership. Saved configurations remain visible even if their source pack is temporarily absent.",
+    "adding": "Add to Library accepts one or multiple Gallery items, validates them against the current Gallery, and inserts only missing devotion IDs in one UserDefaults write and one visible model update/change notification. Repeating a batch is a no-op. Existing saved copies and templates remain intact, and no cloud presets or prayer windows are created. File imports and repository downloads enter discovery only; successful Mac file imports show the Gallery.",
+    "removal": "Remove from Library removes an unmaterialized template and its tag assignments. Delete Saved Prayer deletes only the selected persisted UUID and its reminders, preserving siblings. Successful deletion of the final copy clears template membership and assignments so no ghost template replaces it. Built-in packs stay in Gallery. Removing an installed template or the final saved reference also removes the device download; failures are reported and failed preset deletion leaves the pack intact.",
+    "unusedDownloads": "Gallery and Settings expose Remove Download only when no saved Prayer refers to the installed pack. The removal service checks references again when committing. Bulk removal skips all downloads in use."
+  },
+  "gallerySelection": {
+    "control": "MacPrayerGalleryCollection wraps a native NSCollectionView with Finder-style multiple selection, Command-click, Shift extension, selection rectangles and keyboard navigation.",
+    "binding": "Set<String> of MacPrayerLibraryItem.id values; independent of local membership and saved Prayer records.",
+    "filtering": "Search and category changes intersect selected IDs with the visible Gallery item IDs. Hidden or stale IDs never take part in an action.",
+    "primaryAction": "If any selected visible item is absent from the Library, Add to Library adds only those missing IDs. If all are included, Show in Library selects the first selected item in visible Gallery order. An empty selection disables the action.",
+    "activation": "Return applies the primary action to the current selection in visible catalogue order. Double-click applies it only to the clicked item. Neither action opens a prayer window.",
+    "caption": "A single selection shows its title; multiple selection uses localized macLibrary.gallerySelectionCount with the selected count.",
+    "downloadRemoval": "Available only for one selected downloaded item and still gated by the saved-copy reference check. No batch deletion is introduced.",
+    "accessibility": "Tile IDs remain macGallery.item.<devotionID>. Single-item primary action IDs remain macGallery.add.<devotionID> and macGallery.show.<devotionID>; multi-selection uses macGallery.addSelection or macGallery.showSelection."
+  },
+  "deviceDownloads": {
+    "key": "removedDownloadedPrayerIDs",
+    "type": "string[]",
+    "storage": "Local UserDefaults; excluded from iCloud synchronization.",
+    "description": "Locally excluded custom pack IDs are skipped during pack discovery and iCloud placeholder downloading. Removing a cloud-backed pack evicts its local copy without deleting the cloud source; ordinary local packs and scoped audio caches are deleted. Explicit successful reimport clears the exclusion. Built-in packs cannot be removed."
+  },
+  "galleryArtwork": {
+    "purpose": "Dedicated Gallery covers only. These images do not replace prayer-step artwork or change prayer text, settings, ordering, or playback.",
+    "canonicalSource": "Shared/Images/gallery_<devotionID>.jpg; provenance and rights remain in Shared/Images/CREDITS.markdown.",
+    "proportions": "Preserve the sourced JPEG's aspect ratio. Gallery covers are separate from the existing square prayer-step crops.",
+    "packaging": "Each cover key is declared in its owning Shared/content/<packID>/manifest.json images array and packed as images/<imageKey>.jpg using make-prosaryprayer.sh. Generated archives in Shared/dist are copied byte-for-byte to all three native ports; no loose native artwork copy is added.",
+    "covers": {
+      "angelus": { "imageKey": "gallery_angelus", "packID": "angelus" },
+      "divineMercyChaplet": { "imageKey": "gallery_divineMercyChaplet", "packID": "divineMercyChaplet" },
+      "franciscanCrown": { "imageKey": "gallery_franciscanCrown", "packID": "franciscanCrown" },
+      "litanyOfLoreto": { "imageKey": "gallery_litanyOfLoreto", "packID": "litanyOfLoreto" },
+      "sevenSorrows": { "imageKey": "gallery_sevenSorrows", "packID": "sevenSorrows" },
+      "stationsOfTheCross": { "imageKey": "gallery_stationsOfTheCross", "packID": "stationsOfTheCross" },
+      "rosary": { "imageKey": "gallery_rosary", "packID": "rosary" },
+      "oAntiphons": { "imageKey": "gallery_oAntiphons", "packID": "oAntiphons" },
+      "trisagion": { "imageKey": "gallery_trisagion", "packID": "trisagion" },
+      "viaLucis": { "imageKey": "gallery_viaLucis", "packID": "viaLucis" },
+      "jesusPrayer": { "imageKey": "gallery_jesusPrayer", "packID": "trisagion" }
+    },
+    "counterException": "The counter-based Jesus Prayer has no content bundle; its Gallery cover is hosted in the built-in trisagion pack."
+  },
+  "tagState": {
+    "sourceType": "MacLibraryTagStore.State",
+    "storage": "JSON-encoded Data in local UserDefaults",
+    "key": "macLibraryTags",
+    "sync": "Device-local; excluded from preset/iCloud synchronization and source packs.",
+    "fields": {
+      "version": {
+        "type": "integer",
+        "value": 2
+      },
+      "tags": {
+        "type": "Tag[]",
+        "description": "Ordered named records. Seed the seven localized color names once for a new store; their stable IDs remain red, orange, yellow, green, blue, purple and gray. An empty persisted array means all tags were deleted and must not recreate defaults."
+      },
+      "assignments": {
+        "type": "map<string, string[]>",
+        "default": {},
+        "description": "Map a saved prayer UUID string or devotion:<devotionID> template identity to sorted tag IDs. An item can have several tags. Remove the map entry when its tag set is empty. Ignore unknown tag IDs on read."
+      }
+    },
+    "Tag": {
+      "id": "Stable string: original color ID for the seven migrated/default tags, UUID string for newly created tags.",
+      "name": "Nonempty user-visible name, independent of color. New or renamed names trim whitespace/newlines and normalize Unicode canonical composition.",
+      "colorID": "Optional red | orange | yellow | green | blue | purple | gray; absent means no color and a neutral display. Unknown requested colors normalize to no color."
+    },
+    "identityRule": "Name and color may change independently without changing the ID, filters or assignments. Create reuses a case-insensitive matching name without changing its existing spelling or color. Rename to another tag's case-insensitive name fails rather than merging assignments; empty names fail.",
+    "typedNames": "Replacing an item's tags resolves existing names case-insensitively, preferring all of the item's already-assigned matching IDs before the first matching global tag. It creates unknown names with fresh UUIDs and no color, ignores blank tokens, deduplicates resulting IDs, and saves new records and the complete replacement assignment together. Empty input clears only the item's membership; shared tag records remain.",
+    "deletion": "Deleting any tag, including a default color tag, removes its record and every item assignment. Other tags and prayer configurations remain unchanged.",
+    "migration": "Legacy JSON with names and assignments but no version/tags migrates once to version 2. Preserve every old color ID, display-name override and assignment; original colors initialize colorID. Even legacy duplicate names retain their distinct IDs when unrelated tokens are edited. Newly assigned ambiguous names pick the first matching tag in stored order; suggestion toggles operate by stable ID.",
+    "example": {
+      "version": 2,
+      "tags": [
+        { "id": "blue", "name": "Evening", "colorID": "purple" },
+        { "id": "C051B2BC-BEDE-41CF-8277-F6070BF650FD", "name": "At Home" }
+      ],
+      "assignments": {
+        "devotion:angelus": ["blue"],
+        "D96C4A10-E785-4E9B-825B-E61B4206E8E6": ["C051B2BC-BEDE-41CF-8277-F6070BF650FD", "blue"]
+      }
+    }
+  },
+  "presentationState": {
+    "macPrayerPlaybackSettings": {
+      "storage": "JSON-encoded Data in local UserDefaults; excluded from preset sync",
+      "type": "map<Prayer UUID string, nonnegative integer>",
+      "unit": "Auto-advance seconds; zero means off",
+      "default": "Use autoAdvanceSeconds until first prayer-window opening, which saves the effective value for that copy.",
+      "description": "Changes affect this saved copy's pace. Duplicate copies the source's effective value. Progress is stored separately."
+    },
+    "macPrayerPresentation": {
+      "storage": "JSON-encoded Data in local UserDefaults; excluded from preset sync",
+      "type": "map<Prayer UUID string, MacPrayerPresentation>",
+      "fields": {
+        "isPresenting": { "type": "boolean", "default": false },
+        "textSize": { "type": "number", "unit": "points", "default": 44, "minimum": 24, "maximum": 96, "nonfiniteFallback": 44 }
+      },
+      "description": "Remember the universal reading presentation and actual text size per saved copy. Duplicate copies both fields. Full-screen state belongs to the native window, not this preference. This is independent of RosaryConfig.presenterMode repetition grouping."
+    },
+    "macLibraryDisplayStyle": {
+      "storage": "Local UserDefaults string",
+      "allowed": ["icons", "list"],
+      "default": "icons",
+      "description": "Remember the preferred library representation. Search text, sidebar filter, and selection are transient view state."
+    }
+  },
+  "windows": {
+    "libraryScene": { "id": "main", "kind": "Window", "behavior": "Show Library activates the one library window." },
+    "prayerScene": { "id": "prayer", "kind": "WindowGroup", "valueType": "PrayerWindowRequest" },
+    "requestFields": {
+      "id": { "type": "uuid", "description": "Ordinary saved-copy Open uses the Prayer UUID, activating its existing window. Ordinary basicPrayer Open uses a deterministic version-8 UUID from the first 16 SHA-256 bytes of com.dkaluta.prosary.basicPrayer.<catalogID>, with UUID version/variant bits applied; repeated clicks or Return reuse that prayer's window. Basic Prayers activation calls the window opener directly, never through a synthetic navigation binding. Non-saved routes and explicitly distinct runtime session requests receive fresh UUIDs. Existing encoded UUID requests remain decodable; the interface uses ordinary Open to activate each prayer window." },
+      "route": { "type": "AppRoute", "description": "Normally prayer(id) for a named saved copy; content-only and older restored routes remain supported." }
+    },
+    "progressNamespace": "PrayerWindowRequest.id.uuidString",
+    "geometry": {
+      "storage": "Native NSWindow frame autosave; AppKit owns the serialized frame format.",
+      "identity": "Saved Prayer UUID, otherwise the playable recent-route identity or request UUID.",
+      "autosaveName": "Prosary.Prayer.<base64 UTF-8 identity>.slot.<positive ordinal>",
+      "allocation": "Claim the first unused positive slot for each live window; release it on close. Ordinary close/reopen reuses the first frame, while simultaneous siblings retain separate frames.",
+      "displayChanges": "Recover the frame only when its title bar is unreachable on all visible screens. Do not overwrite the saved normal frame while full screen."
+    }
+  }
+}

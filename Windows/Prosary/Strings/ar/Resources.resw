@@ -86,9 +86,9 @@
   <data name="settings_installed_devotions" xml:space="preserve"><value>الصلوات المثبّتة: {0}</value></data>
   <data name="settings_clear_audio_cache" xml:space="preserve"><value>امسح ذاكرة الصوت المؤقتة</value></data>
   <data name="settings_clear_audio_cache_size" xml:space="preserve"><value>امسح ذاكرة الصوت المؤقتة ({0})</value></data>
-  <data name="settings_remove_all_title" xml:space="preserve"><value>هل تريد إزالة كل الصلوات المُنزّلة؟</value></data>
-  <data name="settings_remove_all_message" xml:space="preserve"><value>يمكن تنزيل صلوات المستودع مجددًا، لكن الملفات المستوردة يدويًا لا يمكن استعادتها منه.</value></data>
-  <data name="settings_remove_all_confirm" xml:space="preserve"><value>إزالة الكل</value></data>
+  <data name="settings_remove_all_title" xml:space="preserve"><value>إزالة التنزيلات غير المستخدمة؟</value></data>
+  <data name="settings_remove_all_message" xml:space="preserve"><value>ستُزال الصلوات المنزّلة التي ليس لها نسخ محفوظة. ستبقى الصلوات المحفوظة والصلوات المضمّنة.</value></data>
+  <data name="settings_remove_all_confirm" xml:space="preserve"><value>إزالة غير المستخدمة</value></data>
   <data name="settings_app_language_system" xml:space="preserve"><value>إعداد النظام الافتراضي</value></data>
   <data name="NavPray.Content" xml:space="preserve"><value>صلّ</value></data>
   <data name="NavBrowse.Content" xml:space="preserve"><value>تصفّح</value></data>
@@ -105,8 +105,8 @@
   <data name="SetAutoAdvanceCombo.Header" xml:space="preserve"><value>الانتقال التلقائي</value></data>
   <data name="SetResetHomeOrder.Content" xml:space="preserve"><value>أعد ضبط ترتيب الصفحة الرئيسية</value></data>
   <data name="SetDownloadsHeader.Text" xml:space="preserve"><value>التنزيلات</value></data>
-  <data name="SetRemoveAll.Content" xml:space="preserve"><value>أزل كل الصلوات المُنزّلة…</value></data>
-  <data name="SetDownloadsFooter.Text" xml:space="preserve"><value>لا تُحذف الصلوات المضمّنة أبدًا. إزالة صلاة مُنزّلة تزيلها أيضًا من المفضلة.</value></data>
+  <data name="SetRemoveAll.Content" xml:space="preserve"><value>إزالة التنزيلات غير المستخدمة…</value></data>
+  <data name="SetDownloadsFooter.Text" xml:space="preserve"><value>يمكن هنا إزالة التنزيلات التي ليس لها نسخ محفوظة فقط. يؤدي حذف آخر نسخة محفوظة إلى إزالة تنزيلها أيضًا. تبقى الصلوات المضمّنة.</value></data>
   <data name="SetLinksHeader.Text" xml:space="preserve"><value>الروابط</value></data>
   <data name="SetRepoLink.Content" xml:space="preserve"><value>مستودع المجتمع</value></data>
   <data name="SetComposeLink.Content" xml:space="preserve"><value>أنشئ صلاة تعبّدية</value></data>
@@ -168,7 +168,7 @@
   <data name="EdApostlesCreed.Text" xml:space="preserve"><value>قانون إيمان الرسل</value></data>
   <data name="EdOpeningPrayers.Text" xml:space="preserve"><value>أبانا وثلاثة سلامات مريمية في البداية</value></data>
   <data name="EdFatima.Text" xml:space="preserve"><value>صلاة فاطمة بعد كل بيت</value></data>
-  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>صلاة فاطمة بعد السلامات المريمية الافتتاحية</value></data>
+  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>صلاة فاطمة بعد صلاة «المجد للآب» الافتتاحية</value></data>
   <data name="EdDisplayHeader.Text" xml:space="preserve"><value>العرض</value></data>
   <data name="EdMysteryArtwork.Header" xml:space="preserve"><value>صور الأسرار</value></data>
   <data name="EdPresenterMode.Text" xml:space="preserve"><value>وضع قائد الصلاة</value></data>
@@ -208,7 +208,7 @@
   <data name="AbtJpHeader.Text" xml:space="preserve"><value>صورة صلاة يسوع</value></data>
   <data name="AbtJpBody.Text" xml:space="preserve"><value>المسيح ضابط الكل: أيقونة مرسومة بالشمع (القرن السادس)، دير القديسة كاترينا، جبل سيناء — أقدم أيقونة باقية للمسيح ضابط الكل، تكريمًا للتقليد الشرقي للصلاة؛ ملكية عامة.</value></data>
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>مصادر الكتاب المقدس</value></data>
-  <data name="AbtScriptureBody.Text" xml:space="preserve"><value>تستخدم الاقتباسات الكتابية ترجمة دواي–ريمس (الإنجليزية)، والفولغاتا الكليمنتية (اللاتينية)، وترجمة فرانتس دليتش للعهد الجديد بالعبرية (من kirjasilta.net/ha-berit)، مع نصوص العهد القديم العبرية وفق النص الماسوري، والكتاب المقدس اليسوعي بالعربية (Dar el-Machreq)، والترجمة السينودسية الروسية (1876)، وAng Dating Biblia (التاغالوغ، 1905).</value></data>
+  <data name="AbtScriptureBody.Text" xml:space="preserve"><value>تستخدم الاقتباسات الكتابية ترجمة دواي–ريمس (الإنجليزية)، والفولغاتا الكليمنتية (اللاتينية)، وترجمة فرانتس دليتش للعهد الجديد بالعبرية (من kirjasilta.net/ha-berit; delitz.fr/12, 1901)، مع نصوص العهد القديم العبرية وفق النص الماسوري، والترجمة اليسوعية القديمة للكتاب المقدس (1897)، والترجمة السينودسية الروسية (1876)، وAng Dating Biblia (التاغالوغ، 1905).</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>بيانات التقويم</value></data>
   <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>بيانات التقويم والقراءات: التقويم الروماني العام من مشروع LitCal‏ (litcal.johnromanodorazio.com)؛ تقويم 1962 وكتاب قراءاته من Missale Meum‏ (missalemeum.com)؛ التقويم السرياني الكاثوليكي، والعناوين العبرية الموثقة للتقويم الروماني العام، ومراجع القراءات الرومانية والسريانية، بإذن من Evangelizo.org — إنجيل اليوم، © Evangelizo.org؛ التقويم الأوكراني الكاثوليكي وقراءاته بحسب الفصح اليولياني من الكنيسة الأوكرانية الكاثوليكية ولجنتها الطقسية البطريركية (ugcc.ua)؛ قراءات الفصح الغريغوري من Royal Doors‏ (royaldoors.net). أسماء أسفار الكتاب المقدس بالعبرية: Evangelizo HE ونيابة القديس يعقوب (catholic.co.il). أسماء إضافية للأعياد والقديسين بالعبرية: نيابة القديس يعقوب، والمركز المسيحي للإعلام (cmc-terrasanta.org)، وأخبار الفاتيكان (vaticannews.va).</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>السرّ السابق</value></data>
@@ -322,27 +322,27 @@
   <data name="SetAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>إشارة الصليب بالآرامية</value></data>
   <data name="EdAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>إشارة الصليب بالآرامية</value></data>
   <data name="EdRiteCombo.Header" xml:space="preserve"><value>تقليد الصلاة</value></data>
-  <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>صلّ أي وردية</value></data>
-  <data name="HomeAddRosary.Content" xml:space="preserve"><value>أضف وردية</value></data>
-  <data name="HomeAddJesusPrayer.Content" xml:space="preserve"><value>أضف صلاة يسوع</value></data>
+  <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>صلّ أي وردية…</value></data>
+  <data name="HomeAddRosary.Content" xml:space="preserve"><value>أضف وردية…</value></data>
+  <data name="HomeAddJesusPrayer.Content" xml:space="preserve"><value>أضف صلاة يسوع…</value></data>
   <data name="HomeAddToPrayHeader.Text" xml:space="preserve"><value>أضف إلى «صلّ»</value></data>
-  <data name="HomeSavedPresets.Text" xml:space="preserve"><value>الإعدادات المحفوظة…</value></data>
+  <data name="HomeSavedPresets.Text" xml:space="preserve"><value>الإعدادات المحفوظة</value></data>
   <data name="HomeEditOrderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>عدّل الترتيب…</value></data>
   <data name="HomeReminders.Text" xml:space="preserve"><value>التذكيرات…</value></data>
-  <data name="PresetEdit.Text" xml:space="preserve"><value>تعديل</value></data>
+  <data name="PresetEdit.Text" xml:space="preserve"><value>تعديل…</value></data>
   <data name="PresetReminders.Text" xml:space="preserve"><value>التذكيرات…</value></data>
   <data name="PresetSetDefault.Text" xml:space="preserve"><value>اجعلها الافتراضية</value></data>
   <data name="PresetDelete.Text" xml:space="preserve"><value>حذف</value></data>
   <data name="SetImportBundle.Content" xml:space="preserve"><value>استورد حزمة صلاة…</value></data>
   <data name="SetExportBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>صدّر للتعديل</value></data>
-  <data name="SetRemoveBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>إزالة</value></data>
+  <data name="SetRemoveBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>إزالة التنزيل…</value></data>
   <data name="PickerEternalRest.Header" xml:space="preserve"><value>من أجل المؤمنين الراقدين</value></data>
   <data name="PickerAntiphon.Header" xml:space="preserve"><value>الأنتيفونة المريمية</value></data>
   <data name="PickerMysteryArtwork.Header" xml:space="preserve"><value>صور الأسرار</value></data>
   <data name="PickerApostlesCreed.Text" xml:space="preserve"><value>قانون إيمان الرسل</value></data>
   <data name="PickerOpeningPrayers.Text" xml:space="preserve"><value>أبانا وثلاثة سلامات مريمية في البداية</value></data>
   <data name="PickerFatima.Text" xml:space="preserve"><value>صلاة فاطمة بعد كل بيت</value></data>
-  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>صلاة فاطمة بعد السلامات المريمية الافتتاحية</value></data>
+  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>صلاة فاطمة بعد صلاة «المجد للآب» الافتتاحية</value></data>
   <data name="PickerPresenterMode.Text" xml:space="preserve"><value>وضع قائد الصلاة</value></data>
   <data name="PickerClosingIntentions.Text" xml:space="preserve"><value>النيات الختامية</value></data>
   <data name="PickerStMichael.Text" xml:space="preserve"><value>صلاة القديس ميخائيل</value></data>
@@ -442,9 +442,88 @@
   <data name="HomeNextDay.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>اليوم التالي</value></data>
   <data name="home_today_choose_date" xml:space="preserve"><value>اختر تاريخًا: {0}</value></data>
   <data name="AbtHebrewBookIndex.Text" xml:space="preserve"><value>أسماء إضافية لأسفار الكتاب المقدس بالعبرية: فهرس الكتاب المقدس العبري لدى معهد ممرا. أسماء فقط، دون نصوص الكتاب المقدس.</value></data>
-  <data name="SetJaffaWording.Header" xml:space="preserve"><value>صيغة يافا</value></data>
+  <data name="SetJaffaWording.Header" xml:space="preserve"><value>صيغة بديلة لصلاة السلام عليك يا مريم</value></data>
   <data name="SetJaffaWordingFooter.Text" xml:space="preserve"><value>استخدم בְּרוּכַת הַחֶסֶד بدلاً من מְלֵאַת הַחֶסֶד في صلوات النيابة.</value></data>
   <data name="AbtUkrainianPrayerSources.Text" xml:space="preserve"><value>الصلوات بالأوكرانية: الكنيسة الكاثوليكية الرومانية في أوكرانيا، كتاب الصلاة Щоденно з Богом. تُستخدم مع ذكر المصدر وفق سياسة الناشر لإعادة الاستخدام. الكتاب المقدس: ترجمة كوليش ونيتشوي-ليفيتسكي وبوليوي (1905)، ملك عام؛ eBible.org ukr1871. حُفظ الإملاء التاريخي للنص الكتابي.</value></data>
   <data name="AbtUkrainianPrayerbookLink.Content" xml:space="preserve"><value>كتاب الصلاة بالأوكرانية</value></data>
   <data name="AbtUkrainianScriptureLink.Content" xml:space="preserve"><value>الكتاب المقدس بالأوكرانية (1905)</value></data>
+  <!-- Window and menu commands -->
+  <data name="CommandsOpenInNewWindow" xml:space="preserve"><value>فتح في نافذة جديدة</value></data>
+  <data name="CommandsNavigation" xml:space="preserve"><value>انتقال</value></data>
+  <data name="CommandsBack" xml:space="preserve"><value>رجوع</value></data>
+  <data name="CommandsHelp" xml:space="preserve"><value>مساعدة Prosary</value></data>
+  <data name="CommandsNewWindow" xml:space="preserve"><value>نافذة جديدة</value></data>
+  <data name="FavoriteEditorSaveFailed" xml:space="preserve"><value>تعذّر حفظ المفضلة</value></data>
+  <data name="flow_show_original_text" xml:space="preserve"><value>إظهار النص الأصلي</value></data>
+  <data name="RosaryAnyRosaryAction" xml:space="preserve"><value>صلّ أي وردية…</value></data>
+  <data name="RosarySaveAsPresetAction" xml:space="preserve"><value>احفظ كإعداد…</value></data>
+  <data name="FavoriteEditorReminderTime" xml:space="preserve"><value>وقت التذكير</value></data>
+  <data name="FavoriteEditorRemoveReminder" xml:space="preserve"><value>إزالة التذكير</value></data>
+  <data name="AboutVersion" xml:space="preserve"><value>الإصدار {0} ({1})</value></data>
+  <data name="CommandsRecentlyPrayed" xml:space="preserve"><value>صلوات أُدّيت مؤخرًا</value></data>
+  <data name="HomeDeleteSavedPrayer.Text" xml:space="preserve"><value>حذف الصلاة المحفوظة…</value></data>
+  <data name="prayerRemoval_deleteTitle" xml:space="preserve"><value>حذف الصلاة المحفوظة؟</value></data>
+  <data name="prayerRemoval_deleteMessage" xml:space="preserve"><value>سيتم حذف الصلاة المحفوظة وتذكيراتها. ستبقى النسخ المحفوظة الأخرى والصلوات المضمّنة متاحة.</value></data>
+  <data name="prayerRemoval_deleteDownloadedMessage" xml:space="preserve"><value>هذه آخر نسخة محفوظة. سيؤدي حذفها أيضًا إلى إزالة حزمة الصلاة المنزّلة من هذا الجهاز وإلغاء تذكيراتها.</value></data>
+  <data name="prayerRemoval_deleteConfirm" xml:space="preserve"><value>حذف</value></data>
+  <data name="prayerRemoval_removeDownloadTitle" xml:space="preserve"><value>إزالة التنزيل؟</value></data>
+  <data name="prayerRemoval_removeDownloadMessage" xml:space="preserve"><value>ستُزال الصلاة المنزّلة من هذا الجهاز. يمكنك استيرادها أو تنزيلها مجددًا.</value></data>
+  <data name="prayerRemoval_removeConfirm" xml:space="preserve"><value>إزالة</value></data>
+  <data name="prayerRemoval_failedTitle" xml:space="preserve"><value>تعذّرت إزالة الصلاة</value></data>
+  <data name="prayerRemoval_failedMessage" xml:space="preserve"><value>تعذّرت إزالة بعض العناصر. يُرجى المحاولة مجددًا.</value></data>
+  <data name="prayerRemoval_deleteFailed" xml:space="preserve"><value>تعذّر حذف الصلاة. يُرجى المحاولة مجددًا.</value></data>
+  <data name="prayerRemoval_cleanupFailed" xml:space="preserve"><value>حُذفت الصلاة، لكن تعذّرت إزالة تنزيلها. حاول مجددًا في التنزيلات.</value></data>
+  <data name="prayerRemoval_remindersFailed" xml:space="preserve"><value>حُذفت الصلاة، لكن تعذّر إلغاء تذكيراتها.</value></data>
+  <data name="prayerRemoval_downloadInUse" xml:space="preserve"><value>احذف النسخ المحفوظة من هذه الصلاة قبل إزالة تنزيلها.</value></data>
+  <data name="prayerRemoval_prayerRemoved" xml:space="preserve"><value>تم حذف هذه الصلاة المحفوظة.</value></data>
+
+  <!-- Native desktop library and prayer windows -->
+  <data name="desktop_library" xml:space="preserve"><value>المكتبة</value></data>
+  <data name="desktop_today" xml:space="preserve"><value>اليوم</value></data>
+  <data name="desktop_gallery" xml:space="preserve"><value>المعرض</value></data>
+  <data name="desktop_community" xml:space="preserve"><value>المجتمع</value></data>
+  <data name="desktop_menu_file" xml:space="preserve"><value>ملف</value></data>
+  <data name="desktop_menu_view" xml:space="preserve"><value>عرض</value></data>
+  <data name="desktop_menu_prayer" xml:space="preserve"><value>صلاة</value></data>
+  <data name="desktop_menu_help" xml:space="preserve"><value>مساعدة</value></data>
+  <data name="desktop_show_library" xml:space="preserve"><value>عرض المكتبة</value></data>
+  <data name="desktop_close_window" xml:space="preserve"><value>إغلاق النافذة</value></data>
+  <data name="desktop_import" xml:space="preserve"><value>استيراد حزم الصلوات…</value></data>
+  <data name="desktop_full_screen" xml:space="preserve"><value>ملء الشاشة</value></data>
+  <data name="desktop_prayer_settings" xml:space="preserve"><value>إعدادات الصلاة…</value></data>
+  <data name="desktop_previous_step" xml:space="preserve"><value>الخطوة السابقة</value></data>
+  <data name="desktop_next_step" xml:space="preserve"><value>الخطوة التالية</value></data>
+  <data name="desktop_saved_prayer_missing" xml:space="preserve"><value>لم تعد هذه الصلاة المحفوظة متاحة.</value></data>
+  <data name="desktop_import_failed" xml:space="preserve"><value>تعذّر استيراد حزمة الصلاة</value></data>
+  <data name="desktop_open" xml:space="preserve"><value>فتح</value></data>
+  <data name="desktop_duplicate" xml:space="preserve"><value>إنشاء نسخة</value></data>
+  <data name="desktop_delete" xml:space="preserve"><value>حذف الصلاة المحفوظة…</value></data>
+  <data name="desktop_rename" xml:space="preserve"><value>إعادة تسمية…</value></data>
+  <data name="desktop_search_library" xml:space="preserve"><value>البحث في الصلوات</value></data>
+  <data name="desktop_library_empty" xml:space="preserve"><value>مكتبة صلواتك</value></data>
+  <data name="desktop_library_empty_detail" xml:space="preserve"><value>أضف صلاة من المعرض أو استورد حزمة صلوات للبدء.</value></data>
+  <data name="desktop_no_matches" xml:space="preserve"><value>لا توجد صلوات مطابقة</value></data>
+  <data name="desktop_no_matches_detail" xml:space="preserve"><value>جرّب بحثًا آخر.</value></data>
+  <data name="desktop_add_to_library" xml:space="preserve"><value>إضافة إلى المكتبة</value></data>
+  <data name="desktop_added" xml:space="preserve"><value>تمت الإضافة إلى المكتبة</value></data>
+  <data name="desktop_library_load_failed" xml:space="preserve"><value>تعذّر تحميل المكتبة</value></data>
+  <data name="desktop_library_save_failed" xml:space="preserve"><value>تعذّر حفظ الصلاة</value></data>
+  <data name="desktop_copy_name" xml:space="preserve"><value>نسخة من {0}</value></data>
+  <data name="desktop_rename_title" xml:space="preserve"><value>إعادة تسمية الصلاة</value></data>
+  <data name="desktop_gallery_detail" xml:space="preserve"><value>اختر صلاة لإضافة نسخة محفوظة إلى مكتبتك.</value></data>
+  <data name="desktop_search_gallery" xml:space="preserve"><value>البحث في المعرض</value></data>
+  <data name="desktop_list_view" xml:space="preserve"><value>عرض القائمة</value></data>
+  <data name="desktop_grid_view" xml:space="preserve"><value>عرض الشبكة</value></data>
+  <data name="desktop_name" xml:space="preserve"><value>الاسم</value></data>
+  <data name="search_category" xml:space="preserve"><value>الفئة</value></data>
+  <data name="search_all_categories" xml:space="preserve"><value>جميع الفئات</value></data>
+  <data name="search_no_matches" xml:space="preserve"><value>لا توجد صلوات تطابق هذا البحث وهذه الفئة.</value></data>
+  <data name="readings_bible_passage" xml:space="preserve"><value>مقطع من الكتاب المقدس</value></data>
+  <data name="readings_edition" xml:space="preserve"><value>طبعة الكتاب المقدس</value></data>
+  <data name="readings_edition_automatic" xml:space="preserve"><value>اتّباع لغة الواجهة</value></data>
+  <data name="readings_edition_unavailable" xml:space="preserve"><value>لا تتوفر طبعة بهذه اللغة.</value></data>
+  <data name="readings_text_unavailable" xml:space="preserve"><value>هذا المقطع غير متوفر في طبعة الكتاب المقدس المحددة.</value></data>
+  <data name="readings_text_notice" xml:space="preserve"><value>نص الكتاب المقدس للمقطع المشار إليه. قد تختلف الصياغة عن قراءة القداس.</value></data>
+  <data name="readings_whole_verses_notice" xml:space="preserve"><value>تُعرض الآيات كاملةً عندما تشير القراءة إلى جزء من آية فقط.</value></data>
+  <data name="readings_source" xml:space="preserve"><value>المصدر والطبعة</value></data>
 </root>

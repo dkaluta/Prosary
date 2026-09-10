@@ -157,7 +157,7 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock x:Uid="PickerOpeningFatima" Grid.Column="0" Text="Fatima Prayer after the opening Hail Marys" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                <TextBlock x:Uid="PickerOpeningFatima" Grid.Column="0" Text="Fatima Prayer after the opening Glory Be" VerticalAlignment="Center" TextWrapping="Wrap" />
                                 <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeOpeningFatimaPrayer, Mode=TwoWay}" />
                             </Grid>
                             <Grid>
@@ -181,24 +181,8 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock x:Uid="EdClosingPopeIntention" Grid.Column="0" Text="Closing prayers for the Pope" VerticalAlignment="Center" TextWrapping="Wrap" />
-                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeClosingPopeIntention, Mode=TwoWay}" />
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock x:Uid="EdClosingBishopIntention" Grid.Column="0" Text="Closing prayers for the bishop" VerticalAlignment="Center" TextWrapping="Wrap" />
-                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeClosingBishopIntention, Mode=TwoWay}" />
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock x:Uid="EdClosingDepartedIntention" Grid.Column="0" Text="Closing prayers for the faithful departed" VerticalAlignment="Center" TextWrapping="Wrap" />
-                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeClosingDepartedIntention, Mode=TwoWay}" />
+                                <TextBlock x:Uid="PickerClosingIntentions" Grid.Column="0" Text="Closing Intentions" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeClosingIntentions, Mode=TwoWay}" />
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>

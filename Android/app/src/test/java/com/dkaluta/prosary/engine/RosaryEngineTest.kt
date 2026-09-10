@@ -184,25 +184,50 @@ class RosaryEngineTest {
     }
 
     @Test
-    fun openingFatimaPrayerFollowsTheFaithHopeAndCharityPrayers() {
+    fun openingFatimaPrayerFollowsTheOpeningGloryBe() {
         val steps = engine().buildSteps(
-            prayer(includeOpeningFatima = true, language = "en"),
+            prayer(includeOpeningFatima = true, includeFatima = false, language = "en"),
         )
         val firstMystery = steps.indexOfFirst { it.decadeIndex != null }
 
-        assertTrue(firstMystery > 1)
-        assertEquals("Fatima Prayer", steps[firstMystery - 2].title)
-        assertEquals("Glory Be", steps[firstMystery - 1].title)
-        assertEquals(null, steps[firstMystery - 2].decadeIndex)
-        assertEquals(6, steps.count { it.title == "Fatima Prayer" })
+        assertTrue(firstMystery >= 3)
+        assertEquals("Hail Mary (3 of 3)", steps[firstMystery - 3].title)
+        assertEquals("Glory Be", steps[firstMystery - 2].title)
+        assertEquals("Fatima Prayer", steps[firstMystery - 1].title)
+        assertEquals(null, steps[firstMystery - 1].decadeIndex)
+        assertTrue(steps[firstMystery].isScripture)
+        assertEquals(0, steps[firstMystery].decadeIndex)
+        assertEquals(1, steps.count { it.title == "Fatima Prayer" })
     }
 
     @Test
-    fun openingFatimaPrayerRequiresTheOpeningPrayers() {
-        val steps = engine().buildSteps(
-            prayer(includeOpening = false, includeOpeningFatima = true, language = "en"),
-        )
-        assertEquals(5, steps.count { it.title == "Fatima Prayer" })
+    fun openingFatimaRequiresOpeningPrayersAndIsIndependentOfTheDecadeOption() {
+        for (includeOpening in listOf(false, true)) {
+            for (includeOpeningFatima in listOf(false, true)) {
+                for (includeFatima in listOf(false, true)) {
+                    val configuration = "opening=$includeOpening, openingFatima=$includeOpeningFatima, decadeFatima=$includeFatima"
+                    val steps = engine().buildSteps(
+                        prayer(
+                            includeOpening = includeOpening,
+                            includeOpeningFatima = includeOpeningFatima,
+                            includeFatima = includeFatima,
+                            language = "en",
+                        ),
+                    )
+                    val fatimaSteps = steps.filter { it.title == "Fatima Prayer" }
+                    assertEquals(
+                        configuration,
+                        if (includeOpening && includeOpeningFatima) 1 else 0,
+                        fatimaSteps.count { it.decadeIndex == null },
+                    )
+                    assertEquals(
+                        configuration,
+                        if (includeFatima) (0 until 5).toList() else emptyList<Int>(),
+                        fatimaSteps.mapNotNull { it.decadeIndex },
+                    )
+                }
+            }
+        }
     }
 
     @Test
@@ -330,19 +355,39 @@ class RosaryEngineTest {
     }
 
     @Test
-    fun closingIntentionGroupsCanBeEnabledSeparatelyAndOverrideLegacyChoice() {
-        val baseline = prayer(closingIntentions = false)
-        val count = engine().buildSteps(baseline).size
-        for ((options, added) in listOf(
-            baseline.rosary.copy(includeClosingPopeIntention = true) to 4,
-            baseline.rosary.copy(includeClosingBishopIntention = true) to 4,
-            baseline.rosary.copy(includeClosingDepartedIntention = true) to 5,
-            baseline.rosary.copy(includeClosingIntentions = true, includeClosingBishopIntention = false) to 9,
+    fun oldPartialClosingSelectionsNowPrayTheCompleteGroup() {
+        val baseline = prayer(closingIntentions = false, language = "la")
+        val without = engine().buildSteps(baseline).map { it.title to it.body }
+        val complete = engine().buildSteps(baseline.copy(
+            rosary = baseline.rosary.withClosingIntentions(true),
+        )).map { it.title to it.body }
+        assertEquals(without.size + 13, complete.size)
+        for (options in listOf(
+            baseline.rosary.copy(includeClosingPopeIntention = true),
+            baseline.rosary.copy(includeClosingBishopIntention = true),
+            baseline.rosary.copy(includeClosingDepartedIntention = true),
+            baseline.rosary.copy(includeClosingIntentions = true, includeClosingBishopIntention = false),
         )) {
-            assertEquals(count + added, engine().buildSteps(baseline.copy(rosary = options)).size)
+            assertEquals(complete, engine().buildSteps(baseline.copy(rosary = options)).map { it.title to it.body })
+            val values = engine().rosaryOptionValues(options)
+            for (key in listOf("closingIntentions", "closingPopeIntention", "closingBishopIntention", "closingDepartedIntention")) {
+                assertEquals(key, "true", values[key])
+            }
+            assertEquals(without, engine().buildSteps(baseline.copy(
+                rosary = options.withClosingIntentions(false),
+            )).map { it.title to it.body })
         }
-        val popeOnly = engine().buildSteps(baseline.copy(rosary = baseline.rosary.copy(includeClosingPopeIntention = true)))
-        assertFalse(popeOnly.any { it.body.contains("Requiescant in pace") })
+        val allDisabled = baseline.rosary.copy(
+            includeClosingIntentions = true,
+            includeClosingPopeIntention = false,
+            includeClosingBishopIntention = false,
+            includeClosingDepartedIntention = false,
+        )
+        assertEquals(without, engine().buildSteps(baseline.copy(rosary = allDisabled)).map { it.title to it.body })
+        val disabledValues = engine().rosaryOptionValues(allDisabled)
+        for (key in listOf("closingIntentions", "closingPopeIntention", "closingBishopIntention", "closingDepartedIntention")) {
+            assertEquals(key, "false", disabledValues[key])
+        }
     }
 
     // MARK: - Mystery artwork

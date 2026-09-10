@@ -2,21 +2,21 @@ package com.dkaluta.prosary.ui.jesusprayer
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.filled.StarBorder
+import androidx.compose.material.icons.filled.PushPin
+import androidx.compose.material.icons.outlined.PushPin
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.dkaluta.prosary.ui.shared.JesusPrayerSession
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.lifecycle.viewModelScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.dkaluta.prosary.R
@@ -27,8 +27,8 @@ import com.dkaluta.prosary.models.JesusPrayerTarget
 import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
+import com.dkaluta.prosary.models.FavoriteDevotions
 import com.dkaluta.prosary.models.PrayerRunKeys
-import com.dkaluta.prosary.models.PrayerRunProgress
 import com.dkaluta.prosary.models.PrayerRunProgressStore
 import com.dkaluta.prosary.models.PrayerRunSignatures
 import com.dkaluta.prosary.models.RosaryStep
@@ -62,7 +62,6 @@ fun JesusPrayerFlowScreen(
     onFinish: () -> Unit,
 ) {
     val services = LocalAppServices.current
-    val scope = rememberCoroutineScope()
     val context = LocalContext.current
     val effectiveTarget = prayer?.jesusPrayer?.target ?: target
     val runKey = remember(prayer?.id, effectiveTarget) {
@@ -72,17 +71,21 @@ fun JesusPrayerFlowScreen(
         PrayerRunSignatures.jesus(effectiveTarget)
     }
 
-    var progress by remember { mutableStateOf(JesusPrayerProgress(target = effectiveTarget)) }
-    var isRightToLeft by remember { mutableStateOf(false) }
-    var seasonColor by remember { mutableStateOf(Color.Transparent) }
-    var languageCode by remember { mutableStateOf<String?>(null) }
-    var hasLoaded by remember { mutableStateOf(false) }
-    var matchingFavoriteId by remember { mutableStateOf<String?>(null) }
-    var chosenLanguage by remember { mutableStateOf(prayer?.languageCode ?: LanguageCatalog.defaultSentinel) }
-    var pendingResume by remember(prayer?.id, effectiveTarget) { mutableStateOf<PrayerRunProgress?>(null) }
-    var runReady by remember(prayer?.id, effectiveTarget) { mutableStateOf(false) }
+    val session = viewModel(key = runKey) { JesusPrayerSession(prayer, effectiveTarget) }
+    val scope = session.viewModelScope
+    var progress by session.progress
+    var isRightToLeft by session.isRightToLeft
+    var seasonColor by session.seasonColor
+    var languageCode by session.languageCode
+    var hasLoaded by session.hasLoaded
+    var matchingFavoriteId by session.matchingFavoriteId
+    var isPinned by session.isPinned
+    var chosenLanguage by session.chosenLanguage
+    var pendingResume by session.pendingResume
+    var runReady by session.runReady
 
     LaunchedEffect(prayer, effectiveTarget, runKey) {
+        if (hasLoaded) return@LaunchedEffect
         val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
         val defaultJP = all.firstOrNull { it.kind == PrayerKind.JesusPrayer && it.isDefault }
             ?: all.firstOrNull { it.kind == PrayerKind.JesusPrayer }
@@ -112,6 +115,7 @@ fun JesusPrayerFlowScreen(
         matchingFavoriteId = all.firstOrNull {
             it.kind == PrayerKind.JesusPrayer && it.resolvedLanguageCode == resolved && it.jesusPrayer.target == effectiveTarget
         }?.id
+        isPinned = FavoriteDevotions.contains(context, "jesusPrayer", impliedDevotionPins(all))
     }
 
     LaunchedEffect(runReady, progress.currentIndex, chosenLanguage, runKey, configurationSignature) {
@@ -131,6 +135,7 @@ fun JesusPrayerFlowScreen(
 
     val currentStep = if (hasLoaded) {
         RosaryStep(
+            id = runKey,
             title = stringResource(R.string.kind_jesus_prayer),
             body = PrayerPackStore.resolveBodyText("rosary", languageCode, "oratioIesu"),
             transliteratedBody = PrayerPackStore.transliteration("rosary", languageCode, "oratioIesu"),
@@ -172,6 +177,7 @@ fun JesusPrayerFlowScreen(
     }
 
     fun finish() {
+        runReady = false
         PrayerRunProgressStore.clear(context, runKey)
         onFinish()
     }
@@ -183,6 +189,7 @@ fun JesusPrayerFlowScreen(
         centralActionLabel = stringResource(R.string.common_pray),
         step = currentStep,
         currentIndex = progress.currentIndex,
+        sessionPaused = !runReady,
         totalSteps = progress.targetCount,
         seasonColor = seasonColor,
         isRightToLeft = isRightToLeft,
@@ -196,12 +203,19 @@ fun JesusPrayerFlowScreen(
         topBarActions = {
             IconButton(onClick = {
                 scope.launch {
-                    matchingFavoriteId = toggleJesusPrayerFavorite(context, services, matchingFavoriteId, languageCode, effectiveTarget)
+                    val all = services.presetStore.all()
+                    val implied = impliedDevotionPins(all)
+                    val wasPinned = FavoriteDevotions.contains(context, "jesusPrayer", implied)
+                    if (!wasPinned && matchingFavoriteId == null) {
+                        matchingFavoriteId = createJesusPrayerFavorite(context, services, languageCode, effectiveTarget)
+                    }
+                    FavoriteDevotions.toggle(context, "jesusPrayer", implied)
+                    isPinned = !wasPinned
                 }
             }) {
                 Icon(
-                    if (matchingFavoriteId != null) Icons.Filled.Star else Icons.Filled.StarBorder,
-                    contentDescription = if (matchingFavoriteId != null) stringResource(R.string.favorites_remove_from_favorites) else stringResource(R.string.favorites_add_to_favorites),
+                    if (isPinned) Icons.Filled.PushPin else Icons.Outlined.PushPin,
+                    contentDescription = if (isPinned) stringResource(R.string.home_remove_from_pray) else stringResource(R.string.home_add_to_pray),
                 )
             }
             // The footer button never turns into "Finish" for an unbounded session (see
@@ -213,18 +227,20 @@ fun JesusPrayerFlowScreen(
     )
 }
 
-private suspend fun toggleJesusPrayerFavorite(
+private fun impliedDevotionPins(prayers: List<Prayer>): List<String> = prayers.mapNotNull {
+    when (it.kind) {
+        PrayerKind.Rosary -> "rosary"
+        PrayerKind.JesusPrayer -> "jesusPrayer"
+        PrayerKind.Custom -> it.customDevotionId
+    }
+}
+
+private suspend fun createJesusPrayerFavorite(
     context: android.content.Context,
     services: AppServices,
-    currentFavoriteId: String?,
     languageCode: String?,
     target: JesusPrayerTarget,
 ): String? {
-    if (currentFavoriteId != null) {
-        services.presetStore.get(currentFavoriteId)?.let { services.presetStore.delete(it) }
-        return null
-    }
-
     val resolved = languageCode ?: LanguageCatalog.defaultCode
     val langName = LanguageCatalog.pickerLanguageName(resolved)
     val targetLabel = when (target) {

@@ -1,0 +1,254 @@
+#if os(macOS)
+import AppKit
+import Combine
+import SwiftUI
+
+/// A reference desk inside the Mac library. Browsing dates never changes a prayer session.
+struct MacTodayView: View {
+  @Environment(\.scenePhase) private var scenePhase
+  @Environment(\.openWindow) private var openWindow
+  @AppStorage(TodayInfoStore.calendarDefaultsKey) private var feastCalendarId = ""
+  @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var easternPaschaStyle = "julian"
+  @AppStorage("showTodayFeast") private var showsFeast = true
+  @AppStorage("showTodayIntention") private var showsIntention = true
+  @AppStorage("showTodayTorahPortion") private var showsTorah = false
+
+  @State private var dateSelection = MacTodayDateSelection()
+  @State private var showsDatePicker = false
+  @State private var showsOptions = false
+  @State private var feast: FeastDay?
+  @State private var intention: PopeIntention?
+  @State private var dayInfo: LiturgicalDayInfo?
+  @State private var readings: [ReadingCitation] = []
+  @State private var torah: TorahPortion?
+
+  private var language: String { UILanguage.current }
+  private var selectedDate: Date { dateSelection.localDate() }
+  private var isToday: Bool { dateSelection.isToday() }
+  private var selectedCalendarName: String {
+    TodayInfoStore.calendars.first { $0.id == TodayInfoStore.selectedCalendarId }?.displayName ?? ""
+  }
+  private var readingsTitle: String {
+    isToday ? label("home.today.readings", "Today’s readings")
+      : label("home.today.selectedReadings", "Readings")
+  }
+  private var dateLabel: String {
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: language)
+    formatter.calendar = Calendar(identifier: .gregorian)
+    formatter.setLocalizedDateFormatFromTemplate("yMMMMdEEEE")
+    return formatter.string(from: selectedDate)
+  }
+
+  var body: some View {
+    VStack(spacing: 0) {
+      dateNavigation
+      Divider()
+      ScrollView {
+        VStack(alignment: .leading, spacing: 24) {
+          if let dayInfo {
+            Text(HebrewDisplayText.unpointed(dayInfo.localized(language)))
+              .font(.subheadline).foregroundStyle(.secondary)
+              .accessibilityIdentifier("macToday.dayHeading")
+          }
+          if let feast {
+            VStack(alignment: .leading, spacing: 6) {
+              Text(feast.localizedTitle(language))
+                .font(.title2.weight(["Solemnity", "1st Class", "Great Feast"].contains(feast.rank) ? .bold : .semibold))
+                .accessibilityAddTraits(.isHeader)
+              Text(feast.localizedRank(language)).foregroundStyle(.secondary)
+            }
+            .accessibilityIdentifier("macToday.feast")
+          }
+          if let intention {
+            VStack(alignment: .leading, spacing: 8) {
+              Text(String(format: label("home.today.popesIntention", "The Pope’s intention: %@"),
+                          locale: Locale(identifier: language), intention.localizedTitle(language)))
+                .font(.headline).accessibilityAddTraits(.isHeader)
+              Text(intention.localizedText(language)).lineSpacing(3)
+            }
+            .accessibilityIdentifier("macToday.intention")
+          }
+          if !readings.isEmpty || torah != nil { ReadingEditionPicker() }
+          if !readings.isEmpty { readingsSection }
+          if let torah { torahSection(torah) }
+          Button(label("about.section.calendar", "Calendar Data")) {
+            openWindow(id: "about")
+          }
+          .buttonStyle(.link)
+          .accessibilityIdentifier("macToday.calendarData")
+        }
+        .textSelection(.enabled)
+        .frame(maxWidth: 720, alignment: .leading)
+        .frame(maxWidth: .infinity, alignment: .center)
+        .padding(24)
+      }
+      .accessibilityIdentifier("macToday.content")
+    }
+    .environment(\.layoutDirection, UILanguage.isRightToLeft(language) ? .rightToLeft : .leftToRight)
+    .environment(\.locale, Locale(identifier: language == "tl" ? "fil" : language))
+    .accessibilityIdentifier("macToday")
+    .onAppear { refreshCurrentDay() }
+    .onChange(of: dateSelection.day) { _, _ in load() }
+    .onChange(of: feastCalendarId) { _, _ in load() }
+    .onChange(of: easternPaschaStyle) { _, _ in load() }
+    .onChange(of: showsFeast) { _, _ in load() }
+    .onChange(of: showsIntention) { _, _ in load() }
+    .onChange(of: showsTorah) { _, _ in load() }
+    .onChange(of: scenePhase) { _, phase in if phase == .active { refreshCurrentDay() } }
+    .onReceive(NotificationCenter.default.publisher(for: .NSCalendarDayChanged)) { _ in refreshCurrentDay() }
+    .onReceive(NotificationCenter.default.publisher(for: .NSSystemTimeZoneDidChange)) { _ in refreshCurrentDay() }
+    .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in refreshCurrentDay() }
+    .onReceive(NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)
+      .receive(on: RunLoop.main)) { _ in load() }
+  }
+
+  private var dateNavigation: some View {
+    HStack(spacing: 10) {
+      Button { dateSelection.move(by: -1) } label: {
+        Label(label("home.today.previousDay", "Previous Day"), systemImage: "chevron.backward")
+      }
+      .labelStyle(.iconOnly)
+      .disabled(!dateSelection.canMoveBackward)
+      .help(label("home.today.previousDay", "Previous Day"))
+      .accessibilityIdentifier("macToday.previousDay")
+      Button { showsDatePicker = true } label: {
+        VStack(spacing: 3) {
+          Text(dateLabel).fontWeight(.semibold)
+          Text(selectedCalendarName).font(.caption).foregroundStyle(.secondary)
+        }
+        .frame(maxWidth: .infinity)
+        .multilineTextAlignment(.center)
+      }
+      .buttonStyle(.plain)
+      .help(label("home.today.chooseDate", "Choose a date"))
+      .accessibilityHint(label("home.today.chooseDate", "Choose a date"))
+      .accessibilityIdentifier("macToday.chooseDate")
+      .popover(isPresented: $showsDatePicker) { datePopover }
+      Button { dateSelection.move(by: 1) } label: {
+        Label(label("home.today.nextDay", "Next Day"), systemImage: "chevron.forward")
+      }
+      .labelStyle(.iconOnly)
+      .disabled(!dateSelection.canMoveForward)
+      .help(label("home.today.nextDay", "Next Day"))
+      .accessibilityIdentifier("macToday.nextDay")
+      Button(label("home.today.today", "Today")) { chooseDate(Date()) }
+        .disabled(isToday)
+        .accessibilityIdentifier("macToday.reset")
+      Button { showsOptions = true } label: {
+        Label(label("settings.title", "Settings"), systemImage: "slider.horizontal.3")
+      }
+      .labelStyle(.iconOnly)
+      .help(label("settings.todayHeader", "Today"))
+      .accessibilityIdentifier("macToday.options")
+      .popover(isPresented: $showsOptions) { optionsPopover }
+    }
+    .controlSize(.regular)
+    .padding(16)
+    .accessibilityElement(children: .contain)
+    .accessibilityIdentifier("macToday.dateNavigation")
+  }
+
+  private var datePopover: some View {
+    VStack(alignment: .leading, spacing: 12) {
+      DatePicker(label("home.today.chooseDate", "Choose a date"),
+                 selection: Binding(get: { selectedDate }, set: chooseDate),
+                 in: MacTodayDateSelection.pickerRange(), displayedComponents: .date)
+        .datePickerStyle(.graphical)
+        .labelsHidden()
+        .environment(\.calendar, Calendar(identifier: .gregorian))
+        .accessibilityIdentifier("macToday.datePicker")
+      HStack {
+        Button(label("home.today.today", "Today")) { chooseDate(Date()) }
+          .disabled(isToday)
+        Spacer()
+        Button(label("common.done", "Done")) { showsDatePicker = false }
+          .keyboardShortcut(.defaultAction)
+      }
+    }
+    .padding(16)
+    .frame(width: 320)
+  }
+
+  private var optionsPopover: some View {
+    MacPrayerEditorForm {
+      Section {
+        Picker(label("settings.feastCalendar", "Liturgical calendar"),
+               selection: Binding(get: { TodayInfoStore.selectedCalendarId }, set: { feastCalendarId = $0 })) {
+          ForEach(TodayInfoStore.calendars) { calendar in
+            Text(calendar.displayName).tag(calendar.id)
+          }
+        }
+        .accessibilityIdentifier("macToday.calendarPicker")
+        if TodayInfoStore.selectedCalendarId == "ugcc" {
+          Picker(label("settings.easternPaschaStyle", "Byzantine Easter date"),
+                 selection: Binding(get: { TodayInfoStore.selectedPaschaStyle }, set: { easternPaschaStyle = $0 })) {
+            Text(label("settings.easternPaschaStyle.julian", "Julian Easter")).tag("julian")
+            Text(label("settings.easternPaschaStyle.gregorian", "Gregorian Easter")).tag("gregorian")
+          }
+          .accessibilityIdentifier("macToday.paschaPicker")
+        }
+      }
+      Section {
+        Toggle(label("settings.showTodayFeast", "Show the day's feast"), isOn: $showsFeast)
+          .accessibilityIdentifier("macToday.showFeast")
+        Toggle(label("settings.showTodayIntention", "Show the Pope's intention"), isOn: $showsIntention)
+          .accessibilityIdentifier("macToday.showIntention")
+        Toggle(label("settings.showTodayTorahPortion", "Show the weekly Torah portion"), isOn: $showsTorah)
+          .accessibilityIdentifier("macToday.showTorah")
+        if showsTorah {
+          Text(label("settings.torahPortionFooter", "The upcoming Sabbath’s Torah reading, following the Eretz Israel schedule."))
+            .font(.caption).foregroundStyle(.secondary)
+        }
+      }
+    }
+    .frame(width: 400, height: 340)
+  }
+
+  private var readingsSection: some View {
+    VStack(alignment: .leading, spacing: 8) {
+      Text(readingsTitle).font(.headline).accessibilityAddTraits(.isHeader)
+      ForEach(Array(readings.enumerated()), id: \.offset) { _, reading in
+        ScripturePassageView(reading: reading, interfaceLanguage: language)
+      }
+    }
+    .accessibilityIdentifier("macToday.readings")
+  }
+
+  private func torahSection(_ portion: TorahPortion) -> some View {
+    VStack(alignment: .leading, spacing: 8) {
+      Text(portion.isHoliday ? label("home.today.festivalTorahReading", "Festival Torah reading")
+        : label("home.today.torahPortion", "Weekly Torah portion"))
+        .font(.headline).accessibilityAddTraits(.isHeader)
+      Text(portion.localizedTitle(language))
+      ForEach(Array(portion.readings.enumerated()), id: \.offset) { _, reading in
+        ScripturePassageView(reading: reading, isTorah: true, interfaceLanguage: language)
+      }
+    }
+    .accessibilityIdentifier("macToday.torah")
+  }
+
+  private func chooseDate(_ date: Date) {
+    dateSelection.select(date)
+    showsDatePicker = false
+  }
+
+  private func refreshCurrentDay() {
+    dateSelection.refresh()
+    load()
+  }
+
+  private func load() {
+    // Disabled rows do not load. The selected calendar supplies its own feast and readings.
+    feast = showsFeast ? TodayInfoStore.feast(on: selectedDate) : nil
+    intention = showsIntention ? TodayInfoStore.intention(for: selectedDate) : nil
+    dayInfo = TodayInfoStore.displayDayInfo(on: selectedDate)
+    readings = TodayInfoStore.readings(on: selectedDate)
+    torah = showsTorah ? TodayInfoStore.torahPortion(on: selectedDate) : nil
+  }
+
+  private func label(_ key: String, _ fallback: String) -> String {
+    UILanguage.text(key, language: language, fallback: fallback)
+  }
+}
+#endif

@@ -68,6 +68,27 @@ public class BasicPrayerCatalogTests : IClassFixture<PrayerPackLoaderFixture>
     {
     }
 
+    [Theory]
+    [InlineData("salveRegina", PrayerKey.SalveReginaTitle, PrayerKey.SalveRegina)]
+    [InlineData("almaRedemptorisMater", PrayerKey.AlmaRedemptorisMaterTitle, PrayerKey.AlmaRedemptorisMater)]
+    [InlineData("aveReginaCaelorum", PrayerKey.AveReginaCaelorumTitle, PrayerKey.AveReginaCaelorum)]
+    [InlineData("reginaCaeli", PrayerKey.ReginaCaeliTitle, PrayerKey.ReginaCaeli)]
+    public void MarianAntiphonsRemainDistinctStandalonePrayersInEveryLanguage(string id, string titleKey, string bodyKey)
+    {
+        var prayer = Assert.Single(BasicPrayerCatalog.All.Where(prayer => prayer.Id == id));
+        Assert.Equal($"basic:{id}", prayer.HomeCardId);
+        foreach (var language in new[] { "la", "en", "he", "he-x-gamliel", "arc", "ar", "el", "es", "ru", "tl", "fr", "it", "uk" })
+        {
+            var step = BasicPrayerCatalog.Step(prayer, language);
+            Assert.Equal(PrayerTranslations.GetDisplay(language, titleKey), step.Title);
+            // Exact equality excludes the versicle/response/collect added by the Rosary flow.
+            Assert.Equal(PrayerTranslations.Get(language, bodyKey), step.Body);
+            Assert.False(string.IsNullOrWhiteSpace(step.Body));
+            Assert.Equal("madonna_and_child", step.ImageOverrideKey);
+            Assert.Equal(PrayerPackStore.Transliteration("rosary", language, prayer.BodyKey), step.TransliteratedBody);
+        }
+    }
+
     [Fact]
     public void BasicPrayerNamesKeepEverySelectedLanguageWithOptionalInterfaceSubtitles()
     {

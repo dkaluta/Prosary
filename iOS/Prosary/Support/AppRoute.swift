@@ -5,7 +5,7 @@
 
 import Foundation
 
-enum AppRoute: Hashable {
+enum AppRoute: Hashable, Codable {
   /// Launch any saved favorite by ID — ContentView dispatches to the right flow based on kind.
   case prayer(id: Prayer.ID)
   case about

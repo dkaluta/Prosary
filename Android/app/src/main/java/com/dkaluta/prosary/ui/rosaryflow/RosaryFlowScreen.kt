@@ -14,12 +14,12 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.dkaluta.prosary.ui.shared.RosaryPrayerSession
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.lifecycle.viewModelScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
@@ -27,7 +27,6 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import com.dkaluta.prosary.ui.shared.InterfaceNavigation
 import com.dkaluta.prosary.ui.shared.PrayerNavigation
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.dkaluta.prosary.R
@@ -35,10 +34,8 @@ import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerRunKeys
-import com.dkaluta.prosary.models.PrayerRunProgress
 import com.dkaluta.prosary.models.PrayerRunProgressStore
 import com.dkaluta.prosary.models.PrayerRunSignatures
-import com.dkaluta.prosary.models.RosaryStep
 import com.dkaluta.prosary.services.LocalAppServices
 import com.dkaluta.prosary.ui.shared.PrayerLanguagePicker
 import com.dkaluta.prosary.ui.shared.PrayerStepFlowScreen
@@ -52,21 +49,23 @@ import kotlinx.coroutines.launch
 fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit, onOpenDevotion: (String, String?, String?) -> Unit) {
     val services = LocalAppServices.current
     val context = LocalContext.current
-    val scope = rememberCoroutineScope()
     val runKey = remember(prayer.id) { PrayerRunKeys.rosary(prayer.id) }
     val configurationSignature = PrayerRunSignatures.rosary(prayer.rosary)
 
-    var steps by remember(prayer.id) { mutableStateOf<List<RosaryStep>>(emptyList()) }
-    var currentIndex by remember(prayer.id) { mutableIntStateOf(0) }
-    var seasonColor by remember(prayer.id) { mutableStateOf(Color.Transparent) }
-    var chosenLanguage by remember(prayer.id) { mutableStateOf(prayer.languageCode) }
-    var languageCode by remember(prayer.id) { mutableStateOf(prayer.resolvedLanguageCode) }
-    var languageMenuExpanded by remember(prayer.id) { mutableStateOf(false) }
-    var pendingResume by remember(prayer.id) { mutableStateOf<PrayerRunProgress?>(null) }
-    var runReady by remember(prayer.id) { mutableStateOf(false) }
-    var showsLitanyOffer by remember(prayer.id) { mutableStateOf(false) }
+    val session = viewModel(key = runKey) { RosaryPrayerSession(prayer) }
+    val scope = session.viewModelScope
+    var steps by session.steps
+    var currentIndex by session.currentIndex
+    var seasonColor by session.seasonColor
+    var chosenLanguage by session.chosenLanguage
+    var languageCode by session.languageCode
+    var languageMenuExpanded by session.languageMenuExpanded
+    var pendingResume by session.pendingResume
+    var runReady by session.runReady
+    var showsLitanyOffer by session.showsLitanyOffer
 
     LaunchedEffect(prayer.id, configurationSignature) {
+        if (session.loadedSignature == configurationSignature) return@LaunchedEffect
         val saved = PrayerRunProgressStore.progress(context, runKey)
         val candidateLanguage = saved?.languageCode ?: prayer.languageCode
         val candidateSteps = services.engine.buildSteps(prayer.copy(languageCode = candidateLanguage))
@@ -95,13 +94,17 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit, onOpenDevotion: (String
             PrayerRunProgressStore.clear(context, runKey)
         }
         runReady = pendingResume == null
+        session.loadedSignature = configurationSignature
+        session.appliedJaffaWording = AppSettings.useJaffaHailMaryWording
     }
 
     LaunchedEffect(AppSettings.useJaffaHailMaryWording) {
+        if (session.appliedJaffaWording == AppSettings.useJaffaHailMaryWording) return@LaunchedEffect
         if (steps.isNotEmpty()) {
             val position = currentIndex
             steps = services.engine.buildSteps(prayer.copy(languageCode = chosenLanguage))
             currentIndex = position.coerceIn(0, (steps.size - 1).coerceAtLeast(0))
+            session.appliedJaffaWording = AppSettings.useJaffaHailMaryWording
         }
     }
 
@@ -192,6 +195,7 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit, onOpenDevotion: (String
         title = stringResource(R.string.rosary_praying),
         step = currentStep,
         currentIndex = currentIndex,
+        sessionPaused = !runReady || showsLitanyOffer,
         totalSteps = steps.size,
         seasonColor = seasonColor,
         isRightToLeft = isRightToLeft,
@@ -202,6 +206,7 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit, onOpenDevotion: (String
             if (steps.isEmpty() || currentIndex == steps.size - 1) finish() else currentIndex++
         },
         onNavigateUp = ::leave,
+        wideAccessoryWidth = beadWideWidth(beadLayout),
         accessory = { isWide, hasRoomForSingleMinorColumn ->
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 BeadProgressView(
@@ -252,7 +257,7 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit, onOpenDevotion: (String
                     // devotion; an ad-hoc Prayer simply has no matching row and is left alone.
                     scope.launch {
                         services.presetStore.get(prayer.id)?.let { saved ->
-                            services.presetStore.save(saved.copy(languageCode = raw))
+                            services.presetStore.updateIfPresent(saved.copy(languageCode = raw))
                         }
                     }
                 },

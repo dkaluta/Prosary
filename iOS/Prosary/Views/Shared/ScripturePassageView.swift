@@ -1,0 +1,135 @@
+import SwiftUI
+
+struct ReadingEditionPicker: View {
+  @AppStorage(ReadingEditionSelection.defaultsKey) private var preference = ""
+  @State private var editions: [ReadingTextEdition] = []
+  @State private var hasLoadedEditions = false
+
+  var body: some View {
+    VStack(alignment: .leading, spacing: 6) {
+      Picker(String(localized: "readings.edition", defaultValue: "Bible edition"), selection: $preference) {
+        Text(String(localized: "readings.followInterface", defaultValue: "Follow Interface Language")).tag("")
+        ForEach(editions, id: \.id) { edition in
+          Text(edition.name).tag(edition.id)
+        }
+        if !preference.isEmpty, !editions.contains(where: { $0.id == preference }) {
+          Text(String(localized: "readings.unavailableEdition", defaultValue: "Unavailable edition")).tag(preference)
+        }
+      }
+      .pickerStyle(.menu)
+      .accessibilityIdentifier("readings.editionPicker")
+      if let selected = ReadingEditionSelection.selected(preference, interfaceLanguage: UILanguage.current, editions: editions) {
+        Text(selected.name).font(.caption).foregroundStyle(.secondary)
+      } else if hasLoadedEditions && preference.isEmpty {
+        Text(String(localized: "readings.noEdition", defaultValue: "No Bible edition is available for this language."))
+          .font(.caption).foregroundStyle(.secondary)
+      }
+      Text(String(localized: "readings.bibleNote", defaultValue: "Bible passages; wording may differ from the liturgical reading."))
+        .font(.caption).foregroundStyle(.secondary)
+    }
+    .task {
+      editions = await ReadingTextStore.shared.editions()
+      hasLoadedEditions = true
+    }
+  }
+}
+
+/// The citation always remains visible. Only an opened disclosure loads the optional
+/// Bible text, and changing editions never substitutes an available language silently.
+struct ScripturePassageView: View {
+  let reading: ReadingCitation
+  var isTorah = false
+  var interfaceLanguage: String = UILanguage.current
+  @AppStorage(ReadingEditionSelection.defaultsKey) private var preference = ""
+  @State private var expanded = false
+
+  var body: some View {
+    DisclosureGroup(isExpanded: $expanded) {
+      if expanded {
+        ScripturePassageBody(
+          citation: reading.full, isTorah: isTorah,
+          preference: preference, interfaceLanguage: interfaceLanguage)
+          .padding(.top, 8)
+      }
+    } label: {
+      Text(reading.localizedFull(interfaceLanguage))
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+    .accessibilityIdentifier("readings.passage.\(isTorah ? "torah" : "daily").\(reading.full)")
+    .onChange(of: reading.full) { _, _ in expanded = false }
+  }
+}
+
+private struct ScripturePassageBody: View {
+  let citation: String
+  let isTorah: Bool
+  let preference: String
+  let interfaceLanguage: String
+  @State private var passage: ReadingTextPassage?
+  @State private var loading = true
+  @ObservedObject private var typography = PrayerTypographyMonitor.shared
+
+  private var requestID: String { "\(isTorah)|\(citation)|\(preference)|\(interfaceLanguage)" }
+
+  var body: some View {
+    VStack(alignment: .leading, spacing: 12) {
+      Text(String(localized: "readings.biblePassage", defaultValue: "Bible passage"))
+        .font(.subheadline.weight(.semibold)).accessibilityAddTraits(.isHeader)
+      if loading {
+        ProgressView().accessibilityLabel(String(localized: "readings.loading", defaultValue: "Loading passage"))
+      } else if let passage {
+        if passage.includesWholeVerses {
+          Text(String(localized: "readings.wholeVersesNotice", defaultValue: "Full verses are shown where the reading cites only part of a verse."))
+            .font(.callout).foregroundStyle(.secondary)
+            .accessibilityIdentifier("readings.wholeVersesNotice")
+        }
+        VStack(alignment: .leading, spacing: 12) {
+          ForEach(Array(passage.verses.enumerated()), id: \.offset) { _, verse in
+            HStack(alignment: .firstTextBaseline, spacing: 8) {
+              Text(verbatim: "\(verse.chapter):\(verse.verse)")
+                .font(.caption).monospacedDigit().foregroundStyle(.secondary)
+                .fixedSize()
+              Text(verse.text)
+                .font(PrayerTypography.font(languageCode: passage.edition.languageCode, isScripture: true,
+                                           text: verse.text, typefaces: typography.typefaces))
+                .lineSpacing(5)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+          }
+        }
+        .environment(\.layoutDirection, UILanguage.isRightToLeft(passage.edition.languageCode) ? .rightToLeft : .leftToRight)
+        .textSelection(.enabled)
+        .accessibilityIdentifier("readings.verses")
+
+        VStack(alignment: .leading, spacing: 5) {
+          Text(passage.edition.name).fontWeight(.medium)
+          Text(passage.edition.attribution)
+          if let source = passage.edition.sourceLink {
+            Link(String(localized: "readings.source", defaultValue: "Text source"), destination: source)
+          }
+        }
+        .font(.caption).foregroundStyle(.secondary)
+        .textSelection(.enabled)
+        .accessibilityIdentifier("readings.source")
+      } else {
+        Text(String(localized: "readings.unavailable", defaultValue: "Bible text is unavailable for this passage in the selected edition."))
+          .foregroundStyle(.secondary)
+          .accessibilityIdentifier("readings.unavailable")
+      }
+    }
+    .frame(maxWidth: .infinity, alignment: .leading)
+    .task(id: requestID) {
+      passage = nil
+      loading = true
+      let editions = await ReadingTextStore.shared.editions()
+      let selected = ReadingEditionSelection.selected(preference, interfaceLanguage: interfaceLanguage, editions: editions)
+      let result: ReadingTextPassage?
+      if let selected {
+        result = await ReadingTextStore.shared.passage(citation: citation, isTorah: isTorah, editionID: selected.id)
+      } else { result = nil }
+      guard !Task.isCancelled else { return }
+      passage = result
+      loading = false
+    }
+  }
+}

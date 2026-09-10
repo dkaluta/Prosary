@@ -888,6 +888,8 @@ object PrayerPackStore {
     /** Bundle ids the user has imported (subset of [customDevotionIds]), in load order. */
     fun installedBundleIds(): List<String> = installedIdsList.toList()
 
+    fun isBuiltInBundle(id: String): Boolean = id in packNames
+
     /** Carries a string resource so the UI can show the failure in the app language; the
      * English [message] stays for logs. */
     class InstallException(
@@ -1033,7 +1035,14 @@ object PrayerPackStore {
      * text overrides stay in memory until the next launch; no remaining devotion references
      * them, while image winners immediately fall back to the prior source. */
     fun removeInstalledPack(id: String) {
-        if (id !in installedIdsList) return
+        if (id !in installedIdsList || isBuiltInBundle(id)) return
+        val directory = installedPacksDirectory ?: throw java.io.IOException("Download directory is unavailable")
+        val target = installedPackTarget(directory, id) ?: throw java.io.IOException("Invalid download path")
+        // Do not unregister a still-present file: otherwise a failed delete appears successful
+        // until the next launch silently restores the download.
+        synchronized(imageSourceLock) {
+            if (target.exists() && !target.delete()) throw java.io.IOException("Could not remove downloaded prayer")
+        }
         installedIdsList.remove(id)
         orderedCustomIds.remove(id)
         definitionByBundle.remove(id)
@@ -1058,7 +1067,6 @@ object PrayerPackStore {
             // Deletion shares the source lock with request descriptor acquisition. A request
             // that won the race owns an open descriptor to the old inode; a later one observes
             // the unregistered source and cannot reopen a replacement at the same pathname.
-            installedPacksDirectory?.let { dir -> installedPackTarget(dir, id)?.delete() }
         }
     }
 

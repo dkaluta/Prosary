@@ -90,6 +90,7 @@ import com.dkaluta.prosary.services.LocalAppServices
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.icons.filled.Info
@@ -101,6 +102,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import com.dkaluta.prosary.ui.shared.PrayerCard
+import com.dkaluta.prosary.ui.shared.PrayerRemovalDialog
+import com.dkaluta.prosary.ui.shared.PrayerRemovalRequest
 import com.dkaluta.prosary.ui.shared.colorForHex
 import com.dkaluta.prosary.ui.shared.iconForSystemName
 import com.dkaluta.prosary.ui.theme.extraColors
@@ -136,6 +139,7 @@ fun HomeScreen(
     onOpenCustomDevotion: (String) -> Unit,
     onOpenBasicPrayers: () -> Unit,
     onOpenBasicPrayer: (String) -> Unit,
+    todayWidgetRequest: Long = 0,
 ) {
     val services = LocalAppServices.current
     val isDarkTheme = isSystemInDarkTheme()
@@ -150,6 +154,17 @@ fun HomeScreen(
     // must stay that date even after the device changes time zone.
     val lookupDate = TodayDateSelection.lookupDate(selectedDate)
     var showsDatePicker by remember { mutableStateOf(false) }
+    val gridState = rememberLazyGridState()
+    var handledTodayWidgetRequest by rememberSaveable { mutableStateOf(0L) }
+    LaunchedEffect(todayWidgetRequest) {
+        if (todayWidgetRequest != 0L && todayWidgetRequest != handledTodayWidgetRequest) {
+            handledTodayWidgetRequest = todayWidgetRequest
+            selectedEpochDay = null
+            currentDate = LocalDate.now()
+            showsDatePicker = false
+            gridState.scrollToItem(0)
+        }
+    }
     LaunchedEffect(Unit) {
         while (true) {
             currentDate = LocalDate.now()
@@ -186,6 +201,8 @@ fun HomeScreen(
     var todayMysteryGroup by remember { mutableStateOf<MysteryGroup?>(null) }
     var defaultRosary by remember { mutableStateOf<Prayer?>(null) }
     var defaultJesusPrayer by remember { mutableStateOf<Prayer?>(null) }
+    var savedPrayers by remember { mutableStateOf<List<Prayer>>(emptyList()) }
+    var removalRequest by remember { mutableStateOf<PrayerRemovalRequest?>(null) }
     // One entry per discovered generic devotion (bundle id -> its favorite, if any).
     var defaultCustomDevotions by remember { mutableStateOf<Map<String, Prayer>>(emptyMap()) }
 
@@ -208,6 +225,7 @@ fun HomeScreen(
     LaunchedEffect(refreshGeneration) {
         todayMysteryGroup = services.calendar.mysteryGroupToday()
         val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
+        savedPrayers = all
         defaultRosary = all.firstOrNull { it.kind == PrayerKind.Rosary && it.isDefault }
             ?: all.firstOrNull { it.kind == PrayerKind.Rosary }
         defaultJesusPrayer = all.firstOrNull { it.kind == PrayerKind.JesusPrayer && it.isDefault }
@@ -449,6 +467,7 @@ fun HomeScreen(
         },
     ) { paddingValues ->
         LazyVerticalGrid(
+            state = gridState,
             columns = GridCells.Adaptive(minSize = 300.dp),
             contentPadding = PaddingValues(20.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -634,6 +653,19 @@ fun HomeScreen(
                                 pinGeneration++
                             },
                         )
+                        if (card.basicPrayerId == null && card.devotionId != "rosary") {
+                            val copies = savedPrayers.filter {
+                                if (card.devotionId == "jesusPrayer") it.kind == PrayerKind.JesusPrayer
+                                else it.kind == PrayerKind.Custom && it.customDevotionId == card.devotionId
+                            }
+                            for (copy in copies) {
+                                DropdownMenuItem(
+                                    text = { Text(if (copies.size == 1) stringResource(R.string.prayer_delete_action)
+                                        else stringResource(R.string.favorites_delete_desc, copy.name), color = MaterialTheme.colorScheme.error) },
+                                    onClick = { cardMenu = false; removalRequest = PrayerRemovalRequest.Saved(copy) },
+                                )
+                            }
+                        }
                     }
                 }
             }
@@ -659,5 +691,8 @@ fun HomeScreen(
                 }
             }
         }
+    }
+    removalRequest?.let { request ->
+        PrayerRemovalDialog(request, onDismiss = { removalRequest = null }, onRemoved = { refreshGeneration++; pinGeneration++ })
     }
 }

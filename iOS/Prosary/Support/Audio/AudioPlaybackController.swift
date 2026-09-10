@@ -54,7 +54,7 @@ final class AudioPlaybackController: NSObject, AVAudioPlayerDelegate {
   // MARK: Loading
 
   /// Extracts and opens the track; leaves the player paused at 0. Any previous track stops.
-  func load(bundleId: String, track: DevotionAudioTrack) {
+  func load(bundleId: String, track: DevotionAudioTrack, positionNamespace: String? = nil) {
     stop()
     guard let url = Self.extractedFileURL(bundleId: bundleId, track: track),
           let opened = Self.openPlayer(for: url) else { return }
@@ -66,14 +66,20 @@ final class AudioPlaybackController: NSObject, AVAudioPlayerDelegate {
     currentTime = 0
     self.track = track
 
-    // Resume where the last session left off (positions persist per track id).
-    positionKey = "audioPosition.\(bundleId).\(track.id)"
+    // Saved Mac copies have independent positions; nil preserves the mobile per-track key.
+    positionKey = Self.positionKey(bundleId: bundleId, trackID: track.id, namespace: positionNamespace)
     let saved = UserDefaults.standard.double(forKey: positionKey!)
     didRestorePosition = Self.shouldRestore(position: saved, duration: duration)
     if didRestorePosition {
       opened.currentTime = saved
       currentTime = opened.currentTime
     }
+  }
+
+  static func positionKey(bundleId: String, trackID: String, namespace: String? = nil) -> String {
+    let trackKey = "audioPosition.\(bundleId).\(trackID)"
+    guard let namespace else { return trackKey }
+    return "\(trackKey).copy.\(Data(namespace.utf8).base64EncodedString())"
   }
 
   /// Persists the position (or clears it near the edges, so finished/abandoned-at-start

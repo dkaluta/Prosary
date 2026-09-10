@@ -3,8 +3,8 @@
 //  Prosary
 //
 //  One flat catalog of every launchable devotion — the Rosary, each loaded bundle, the Jesus
-//  Prayer — with title/icon/accent/tags and the AppRoute that starts it. The Categories and
-//  Search tabs both build from this so nothing devotion-specific is hardcoded in either.
+//  Prayer — with title/icon/accent/tags and the AppRoute that starts it. Search uses the same
+//  metadata for both text queries and category browsing; no devotion-specific UI is required.
 //
 
 import SwiftUI

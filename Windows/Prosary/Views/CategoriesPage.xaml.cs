@@ -1,3 +1,4 @@
+using Prosary.Navigation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
@@ -13,6 +14,7 @@ public sealed partial class CategoriesPage : Page
     public CategoriesPage()
     {
         ViewModel = App.Services.GetRequiredService<CategoriesViewModel>();
+        ViewModel.Navigation = Router.For(this);
         InitializeComponent();
     }
 

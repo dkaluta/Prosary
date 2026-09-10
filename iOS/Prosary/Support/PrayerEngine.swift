@@ -90,7 +90,7 @@ struct PrayerEngine {
       "fatimaPrayer": rosary.includeFatimaPrayer ? "true" : "false",
       "eternalRest": rosary.eternalRestForDeceased.rawValue,
       "antiphon": rosary.marianAntiphon.rawValue,
-      "closingIntentions": rosary.includeClosingIntentions ? "true" : "false",
+      "closingIntentions": rosary.effectiveClosingIntentions ? "true" : "false",
       "closingPopeIntention": rosary.effectiveClosingPopeIntention ? "true" : "false",
       "closingBishopIntention": rosary.effectiveClosingBishopIntention ? "true" : "false",
       "closingDepartedIntention": rosary.effectiveClosingDepartedIntention ? "true" : "false",
@@ -191,9 +191,12 @@ struct PrayerEngine {
     // Effective option values: the bundle's declared defaults overlaid with the favorite's
     // stored choices. Overrides for keys the bundle no longer declares are ignored, so a stale
     // favorite can't gate on options that stopped existing.
+    let normalizedOverrides = RosaryOptions.normalizedCustomOptions(optionOverrides, bundleId: bundleId)
     var optionValues: [String: String] = [:]
     for option in PrayerPackStore.options(for: bundleId) {
-      optionValues[option.key] = optionOverrides[option.key] ?? option.defaultValue
+      let key = bundleId == "rosary" && RosaryOptions.legacyClosingOptionKeys.contains(option.key)
+        ? "closingIntentions" : option.key
+      optionValues[option.key] = normalizedOverrides[key] ?? option.defaultValue
     }
     // Calendar facts an entry may gate on beside the user's own choices — the Alleluia that
     // leaves the invitatory during Lent is the first of them. Seeded after the declared

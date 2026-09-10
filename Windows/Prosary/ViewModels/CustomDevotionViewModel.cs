@@ -26,6 +26,8 @@ namespace Prosary.ViewModels;
 /// </summary>
 public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlowViewModel, IAudioAwareStepFlowViewModel
 {
+    public WindowNavigation Navigation { get; set; } = WindowNavigation.Detached;
+
     private readonly IPresetStore _presets;
     private readonly PrayerEngine _engine;
     private readonly LiturgicalCalendarService _calendar;
@@ -49,6 +51,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     private IReadOnlyDictionary<string, string> _customOptions = new Dictionary<string, string>();
     private PrayerRunState? _pendingContinuation;
     private string _runKey = string.Empty;
+    private string ProgressDevotionID => DesktopPrayerIdentity.DevotionID(_bundleId, MatchingFavoriteId ?? Navigation.SessionID);
     private string _runSignature = string.Empty;
 
     /// <summary>The favorite's raw language choice: an explicit code, or the sentinel ("follow
@@ -152,10 +155,14 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
 
     public IReadOnlyList<BeadInfo> BottomBeadsColumn2 => BottomBeads.Skip((BottomBeads.Count + 1) / 2).ToList();
 
-    /// <summary>Id of the saved favorite for this bundle matching the current language, if any —
-    /// drives the star toggle. Null means "not favorited yet".</summary>
+    /// <summary>The saved copy that owns this session, or null for an unsaved prayer.</summary>
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(CanAddToLibrary))]
+    [NotifyCanExecuteChangedFor(nameof(AddToLibraryCommand))]
     private Guid? _matchingFavoriteId;
+
+    public bool CanAddToLibrary => MatchingFavoriteId is null;
+    public string AddToLibraryText => Loc.Tr("desktop_add_to_library", "Add to Library");
 
     // --- Audio playback (the transport bar above the footer; hidden when the session's
     // --- devotion+language(+variant) has no narrated recording). ---
@@ -207,11 +214,6 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     public string NextButtonText => IsLastStep ? Loc.Tr("common_finish", "Finish") : Loc.Tr("common_next", "Next");
 
     public bool HasSubtitle => !string.IsNullOrEmpty(Subtitle);
-
-    /// <summary>Whether this devotion is on Pray. The star pins; the Prayer alongside it only
-    /// carries the language/variant/day, so unpinning leaves those settings intact.</summary>
-    [ObservableProperty]
-    private bool _isPinned;
 
     /// <summary>Set when a day was missed: the day that should have happened, and the one today
     /// calls for. The page shows the three-way choice while this is non-null.</summary>
@@ -284,7 +286,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     {
         if (MatchingFavoriteId is { } id && await _presets.GetAsync(id) is { } favorite)
         {
-            await _presets.SaveAsync(favorite with { DayIndex = dayIndex });
+            await _presets.UpdateIfPresentAsync(favorite with { DayIndex = dayIndex });
         }
     }
 
@@ -327,7 +329,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
 
         if (MatchingFavoriteId is { } id && await _presets.GetAsync(id) is { } favorite)
         {
-            await _presets.SaveAsync(favorite with { LanguageCode = raw });
+            await _presets.UpdateIfPresentAsync(favorite with { LanguageCode = raw });
         }
     }
 
@@ -401,7 +403,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
 
         if (MatchingFavoriteId is { } id && await _presets.GetAsync(id) is { } favorite)
         {
-            await _presets.SaveAsync(favorite with { VariantId = _variantId });
+            await _presets.UpdateIfPresentAsync(favorite with { VariantId = _variantId });
         }
     }
 
@@ -438,12 +440,16 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             var favorite = prayerId is { } requestedId
                 ? all.FirstOrDefault(p => p.Id == requestedId && p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId)
                 : null;
-            favorite ??= all.FirstOrDefault(p => p.Kind == PrayerKind.Custom && p.CustomDevotionId == bundleId);
+            if (prayerId is not null && favorite is null)
+            {
+                Body = Loc.Tr("desktop_saved_prayer_missing", "This saved prayer is no longer available.");
+                return;
+            }
             // A Rosary continuation is its own session; never replace a saved Litany's choices.
-            if (initialLanguageCode is not null || initialVariantId is not null) favorite = null;
+            if (prayerId is null && (initialLanguageCode is not null || initialVariantId is not null)) favorite = null;
             MatchingFavoriteId = favorite?.Id;
             _variantId = bundleId == "litanyOfLoreto"
-                ? initialVariantId == "afterRosary" ? "afterRosary" : "standard"
+                ? (initialVariantId ?? favorite?.VariantId) == "afterRosary" ? "afterRosary" : "standard"
                 : initialVariantId ?? favorite?.VariantId;
             _customOptions = favorite?.CustomOptions is { } options
                 ? new Dictionary<string, string>(options)
@@ -463,13 +469,12 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             // The favorite carries the language to pray in (sentinel = the app default).
             _chosenLanguage = initialLanguageCode ?? favorite?.LanguageCode ?? LanguageCatalog.DefaultSentinel;
             CurrentDayIndex = favorite?.DayIndex ?? 0;
-            IsPinned = FavoriteDevotions.Contains(bundleId, ImpliedPinnedIds(all));
 
             // A series decides its own day: today's if it is unprayed, the same day again if it
             // was already prayed today, and a choice when one was missed.
             if (Days.Count > 1 && (definition?.DayProgression ?? "series") == "series")
             {
-                var run = MultiDayRuns.Run(bundleId);
+                var run = MultiDayRuns.Run(ProgressDevotionID);
                 switch (run?.GetResumption(Days.Count) ?? new MultiDayRun.Resumption.Start())
                 {
                     case MultiDayRun.Resumption.Start _:
@@ -564,7 +569,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
 
     private void UpdateRunIdentity()
     {
-        _runKey = PrayerRunKeys.Custom(_bundleId, _variantId, CurrentDayIndex);
+        _runKey = PrayerRunKeys.Custom(ProgressDevotionID, _variantId, CurrentDayIndex);
         _runSignature = PrayerRunSignatures.Custom(
             _bundleId,
             ResolvedVariantId(_languageCode),
@@ -721,14 +726,14 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
                 // the run decide what comes next — praying twice today must not skip tomorrow's.
                 if ((PrayerPackStore.Definition(_bundleId)?.DayProgression ?? "series") == "series")
                 {
-                    MultiDayRuns.RecordPrayed(_bundleId, CurrentDayIndex);
+                    MultiDayRuns.RecordPrayed(ProgressDevotionID, CurrentDayIndex);
                     // The remaining days keep their prompts; the finished ones lose theirs.
-                    _reminders.RefreshSeries(_bundleId);
+                    _reminders.RefreshSeries(_bundleId, ProgressDevotionID);
 
                     // The last day earns the bundle's parting suggestion — but only when it
                     // names a devotion this device has, so a hand-written series can point at
                     // its author's other work without leaving a dead end elsewhere.
-                    if (MultiDayRuns.Run(_bundleId)?.IsComplete(Days.Count) == true &&
+                    if (MultiDayRuns.Run(ProgressDevotionID)?.IsComplete(Days.Count) == true &&
                         MultiDayStatus.SuggestedNext(_bundleId) is { } suggestion)
                     {
                         _ = PersistDayIndexAsync(Math.Min(CurrentDayIndex + 1, Days.Count - 1));
@@ -744,7 +749,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             }
 
             StopAudio();
-            Router.GoBack();
+            Navigation.GoBack();
             return;
         }
 
@@ -915,37 +920,41 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         return $"{whole / 60}:{whole % 60:D2}";
     }
 
-    /// <summary>A devotion counts as pinned by default when it already has a saved configuration
-    /// — the same fallback the Pray page uses, so the star agrees with what that page shows.</summary>
-    private static List<string> ImpliedPinnedIds(IEnumerable<Prayer> all) =>
-        all.Select(prayer => prayer.Kind switch
-        {
-            PrayerKind.Rosary => "rosary",
-            PrayerKind.JesusPrayer => "jesusPrayer",
-            _ => prayer.CustomDevotionId,
-        }).OfType<string>().ToList();
-
-    [RelayCommand]
-    private async Task ToggleFavoriteAsync()
+    /// <summary>Save the current choices as a new library copy without changing siblings.</summary>
+    [RelayCommand(CanExecute = nameof(CanAddToLibrary))]
+    private async Task AddToLibraryAsync()
     {
-        // Pinning is what puts a devotion on Pray; unpinning keeps the Prayer, which holds the
-        // language, variant and day for next time.
-        var implied = ImpliedPinnedIds(await _presets.GetAllAsync());
-        FavoriteDevotions.Toggle(_bundleId, implied);
-        IsPinned = FavoriteDevotions.Contains(_bundleId, implied);
-
-        if (IsPinned && MatchingFavoriteId is null)
+        if (MatchingFavoriteId is not null) return;
+        var all = await _presets.GetAllAsync();
         {
             var newFavorite = new Prayer
             {
-                Name = DevotionTitle,
+                Name = DesktopPrayerLibrary.UniqueName(DevotionTitle, all.Select(prayer => prayer.Name)),
                 Kind = PrayerKind.Custom,
-                IsDefault = true,
-                LanguageCode = LanguageCatalog.DefaultSentinel,
+                IsDefault = !all.Any(prayer => DesktopPrayerLibrary.DevotionId(prayer) == _bundleId),
+                LanguageCode = _chosenLanguage,
                 CustomDevotionId = _bundleId,
+                VariantId = _variantId,
+                DayIndex = CurrentDayIndex,
+                CustomOptions = new Dictionary<string, string>(_customOptions),
             };
+            var previousRunKey = _runKey;
+            var previousDevotionID = ProgressDevotionID;
+            var sourceSessionID = Navigation.SessionID;
+            var owner = Navigation.OwnerWindow;
             await _presets.SaveAsync(newFavorite);
             MatchingFavoriteId = newFavorite.Id;
+            UpdateRunIdentity();
+            SaveProgress();
+            if (previousRunKey != _runKey) _runStore.Remove(previousRunKey);
+            DesktopWindowManager.AdoptSavedPrayer(owner, newFavorite.Id);
+            // The native session namespace guarantees this cannot adopt a sibling's run.
+            if (sourceSessionID is not null && Days.Count > 1)
+            {
+                MultiDayRuns.Move(previousDevotionID, ProgressDevotionID);
+                _reminders.RefreshSeries(_bundleId, previousDevotionID);
+                _reminders.RefreshSeries(_bundleId, ProgressDevotionID);
+            }
         }
     }
 
@@ -978,27 +987,26 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         ShowsCompletionSuggestion = false;
         if (_suggestedNextId is { } next)
         {
-            Router.GoBack();
-            Router.Navigate<Views.CustomDevotionFlowPage>(new CustomDevotionFlowParams(null, next));
+            Navigation.Replace<Views.CustomDevotionFlowPage>(new CustomDevotionFlowParams(null, next));
             return;
         }
 
-        Router.GoBack();
+        Navigation.GoBack();
     }
 
     [RelayCommand]
     private void DismissCompletionSuggestion()
     {
         ShowsCompletionSuggestion = false;
-        Router.GoBack();
+        Navigation.GoBack();
     }
 
     [RelayCommand]
     private async Task StartRunOverAsync()
     {
         ShowsMissedDayChoice = false;
-        MultiDayRuns.StartFresh(_bundleId);
-        _reminders.RefreshSeries(_bundleId);
+        MultiDayRuns.StartFresh(ProgressDevotionID);
+        _reminders.RefreshSeries(_bundleId, ProgressDevotionID);
         await SelectDayAsync(0);
     }
 }

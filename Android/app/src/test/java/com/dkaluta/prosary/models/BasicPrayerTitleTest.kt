@@ -55,4 +55,24 @@ class BasicPrayerTitleTest {
             AppSettings.setBasicPrayersLanguageCode(savedBasic)
         }
     }
+
+    @Test fun allFourMarianAntiphonsOpenAsTheirOwnSourcedBasicPrayer() {
+        val ids = listOf("salveRegina", "almaRedemptorisMater", "aveReginaCaelorum", "reginaCaeli")
+        assertEquals(BasicPrayerCatalog.all.size, BasicPrayerCatalog.all.map { it.id }.distinct().size)
+        for (id in ids) {
+            val prayer = requireNotNull(BasicPrayerCatalog.prayer(id))
+            assertEquals("rosary", prayer.bundleId)
+            assertEquals("${id}Title", prayer.titleKey)
+            assertEquals(id, prayer.bodyKey)
+            assertEquals("madonna_and_child", prayer.imageKey)
+            for (language in LanguageCatalog.all.map { it.code }) {
+                val step = BasicPrayerCatalog.step(prayer, language)
+                assertTrue("$id, $language body", step.body.isNotBlank())
+                assertNotEquals(prayer.bodyKey, step.body)
+                assertNotEquals(prayer.titleKey, step.title)
+                assertEquals(PrayerPackStore.resolveBodyText("rosary", language, id), step.body)
+                assertEquals(PrayerPackStore.transliteration("rosary", language, id), step.transliteratedBody)
+            }
+        }
+    }
 }

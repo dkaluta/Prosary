@@ -623,10 +623,20 @@ def localize_reading_names(days: dict[str, dict], books: dict[str, dict]) -> set
     return missing
 
 
+def citation_dataset_paths() -> list[Path]:
+    """Only registry-appointed tables: readings-* also includes the Bible corpus."""
+    registry = json.loads((DATA / "calendars.json").read_text(encoding="utf-8"))
+    names = set()
+    for calendar in registry["calendars"]:
+        names.add(calendar["readingsFile"])
+        names.update(variant["readingsFile"] for variant in calendar.get("paschaVariants", {}).values())
+    return [DATA / f"{name}.json" for name in sorted(names)]
+
+
 def localize_existing_datasets() -> None:
     books = json.loads(HEBREW_BOOKS_FILE.read_text(encoding="utf-8"))["books"]
     localized_books = json.loads(LOCALIZED_BOOKS_FILE.read_text(encoding="utf-8"))["books"]
-    for path in sorted(DATA.glob("readings-*.json")):
+    for path in citation_dataset_paths():
         name = path.stem.removeprefix("readings-")
         payload = json.loads(path.read_text(encoding="utf-8"))
         payload["days"] = normalized_existing_days(path)
@@ -655,7 +665,7 @@ def localize_existing_datasets() -> None:
 
 
 def sync_datasets() -> None:
-    outputs = sorted(DATA.glob("readings-*.json"))
+    outputs = citation_dataset_paths()
     for target in TARGETS:
         target.mkdir(parents=True, exist_ok=True)
         for source in outputs:

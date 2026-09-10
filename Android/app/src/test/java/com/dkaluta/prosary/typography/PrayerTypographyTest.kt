@@ -75,8 +75,8 @@ class PrayerTypographyTest {
     @Test fun renderedBodiesAndAcclamationsUseActualText() {
         val source = File("src/main/java/com/dkaluta/prosary/ui/shared/PrayerStepFlowScreen.kt").readText()
         assertTrue(source.contains("PrayerTypography.styleForText(acclamation, isScripture = false)"))
-        assertTrue(source.contains("PrayerTypography.styleForText(step.body, isScripture = step.isScripture)"))
-        assertTrue(source.contains("text = if (showsTransliteration) step.transliteratedBody!! else step.body"))
+        assertTrue(source.contains("val visibleBody = if (showsTransliteration) step.transliteratedBody ?: step.body else step.body"))
+        assertTrue(source.contains("PrayerTypography.styleForText(visibleBody, isScripture = step.isScripture)"))
     }
 
     @Test fun navigationMirrorsTheInterfaceOnceAndPreservesCommandMeanings() {

@@ -24,6 +24,7 @@ public static class AppSettings
     private const string KeyShowTodayIntention = "showTodayIntention";
     private const string KeyShowTodayTorahPortion = "showTodayTorahPortion";
     private const string KeyShowPrayerNameInPrayerLanguage = "showPrayerNameInPrayerLanguage";
+    private const string KeyReadingsEdition = "readingsEditionId";
     private const string KeyTodayLanguage = "todayLanguageCode";
     private const string KeySyriacTypeface = "syriacTypeface";
     private const string KeyAramaicDefaultScript = "aramaicDefaultScript";
@@ -47,6 +48,7 @@ public static class AppSettings
     private static bool? _showTodayTorahPortion;
     private static bool? _showPrayerNameInPrayerLanguage;
     private static string? _todayLanguageCode;
+    private static string? _readingsEditionId;
     private static string? _syriacTypeface;
     private static string? _aramaicDefaultScript;
     private static string? _hebrewPrayerTypeface;
@@ -360,6 +362,19 @@ public static class AppSettings
     {
         _todayLanguageCode = code;
         WriteLocalSetting(KeyTodayLanguage, code);
+    }
+
+    /// <summary>Empty follows the interface's Bible edition; absent text never selects another language.</summary>
+    public static string ReadingsEditionId => _readingsEditionId ??=
+        ReadLocalSetting(KeyReadingsEdition) as string ?? string.Empty;
+    public static event Action? ReadingsEditionChanged;
+
+    public static void SetReadingsEditionId(string id)
+    {
+        if (ReadingsEditionId == id) return;
+        _readingsEditionId = id;
+        WriteLocalSetting(KeyReadingsEdition, id);
+        ReadingsEditionChanged?.Invoke();
     }
 
     /// <summary>Seconds between automatic step advances in the prayer flows; 0 = off.</summary>

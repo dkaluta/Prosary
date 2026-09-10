@@ -20,8 +20,9 @@ import androidx.compose.material3.TimePicker
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -62,19 +63,23 @@ fun RemindersSection(
 
                     val customReminders = reminders.filter { r -> !(presetHours.contains(r.hour) && r.minute == 0) }
                     for (reminder in customReminders) {
-                        ReminderRow(
-                            reminder = reminder,
-                            onTimeChange = { hour, minute -> onRemindersChange(reminders.withUpdatedReminder(reminder.id, hour, minute)) },
-                            onDelete = { onRemindersChange(reminders.withoutReminder(reminder.id)) },
-                        )
+                        key(reminder.id) {
+                            ReminderRow(
+                                reminder = reminder,
+                                onTimeChange = { hour, minute -> onRemindersChange(reminders.withUpdatedReminder(reminder.id, hour, minute)) },
+                                onDelete = { onRemindersChange(reminders.withoutReminder(reminder.id)) },
+                            )
+                        }
                     }
                 } else {
                     for (reminder in reminders) {
-                        ReminderRow(
-                            reminder = reminder,
-                            onTimeChange = { hour, minute -> onRemindersChange(reminders.withUpdatedReminder(reminder.id, hour, minute)) },
-                            onDelete = { onRemindersChange(reminders.withoutReminder(reminder.id)) },
-                        )
+                        key(reminder.id) {
+                            ReminderRow(
+                                reminder = reminder,
+                                onTimeChange = { hour, minute -> onRemindersChange(reminders.withUpdatedReminder(reminder.id, hour, minute)) },
+                                onDelete = { onRemindersChange(reminders.withoutReminder(reminder.id)) },
+                            )
+                        }
                     }
                 }
 
@@ -131,7 +136,7 @@ private fun PresetTimeToggleRow(hour: Int, label: String, reminders: List<Prayer
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun ReminderRow(reminder: PrayerReminder, onTimeChange: (Int, Int) -> Unit, onDelete: () -> Unit) {
-    var showPicker by remember { mutableStateOf(false) }
+    var showPicker by rememberSaveable(reminder.id) { mutableStateOf(false) }
 
     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
         TextButton(onClick = { showPicker = true }, modifier = Modifier.weight(1f)) {

@@ -21,7 +21,7 @@ struct PrayerLanguagePicker: View {
     }
     .accessibilityIdentifier("prayerLanguagePicker")
     if LanguageCatalog.pickerLanguageCode(code) == "he" {
-      Picker(String(localized: "prayerLanguage.tradition", defaultValue: "Prayer tradition"), selection: $code) {
+      Picker(String(localized: "prayerLanguage.tradition", defaultValue: "Prayer Tradition"), selection: $code) {
         Text(LanguageCatalog.traditionName("he")).tag("he")
         Text(LanguageCatalog.traditionName("he-x-gamliel")).tag("he-x-gamliel")
       }
@@ -40,14 +40,14 @@ struct PrayerLanguageMenuContent: View {
   var body: some View {
     let _ = prayerLanguage.code
     option(code: LanguageCatalog.defaultSentinel,
-           name: String(localized: "prayerFlow.language.appDefault", defaultValue: "App setting"))
+           name: String(localized: "prayerFlow.language.appDefault", defaultValue: "App Setting"))
     Divider()
     ForEach(options) { language in
       option(code: language.code, name: language.nativeName)
     }
     if LanguageCatalog.pickerLanguageCode(LanguageCatalog.resolve(code).code) == "he" {
       Divider()
-      Menu(String(localized: "prayerLanguage.tradition", defaultValue: "Prayer tradition")) {
+      Menu(String(localized: "prayerLanguage.tradition", defaultValue: "Prayer Tradition")) {
         ForEach(["he", "he-x-gamliel"], id: \.self) { tradition in
           Button { onSelect(tradition) } label: {
             if LanguageCatalog.resolve(code).code == tradition {

@@ -24,6 +24,21 @@
     <string name="tab_pray">"Молитва"</string>
     <string name="tab_browse">"Огляд"</string>
     <string name="tab_categories">"Категорії"</string>
+    <string name="tab_readings">Читання</string>
+    <string name="search_all_categories">Усі категорії</string>
+    <string name="readings_empty">Для цієї дати у вибраному календарі немає доступних читань.</string>
+    <string name="readings_type_reading">Читання</string>
+    <string name="readings_type_psalm">Псалом</string>
+    <string name="readings_type_gospel">Євангеліє</string>
+    <string name="readings_edition">Видання Біблії</string>
+    <string name="readings_follow_interface">Мова застосунку</string>
+    <string name="readings_bible_passage">Біблійний уривок</string>
+    <string name="readings_show_text">Читати уривок</string>
+    <string name="readings_hide_text">Приховати уривок</string>
+    <string name="readings_unavailable">Цей уривок недоступний у вибраному виданні Біблії.</string>
+    <string name="readings_whole_verses_notice">Якщо читання містить лише частину вірша, вірш показано повністю.</string>
+    <string name="readings_source">Джерело</string>
+    <string name="readings_choose_edition">Вибрати видання</string>
     <string name="tab_search">"Пошук"</string>
 
     <!-- Home -->
@@ -51,9 +66,9 @@
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">"Мова молитви за замовчуванням"</string>
-    <string name="settings_jaffa_wording">"Формулювання громади Яффи"</string>
+    <string name="settings_jaffa_wording">"Альтернативний текст «Радуйся, Маріє»"</string>
     <string name="settings_jaffa_wording_hint">"Використовувати בְּרוּכַת הַחֶסֶד замість מְלֵאַת הַחֶסֶד у молитвах Вікаріату."</string>
-    <string name="settings_language_fallback_order">"Порядок резервних мов…"</string>
+    <string name="settings_language_fallback_order">"Порядок резервних мов…"…</string>
     <string name="settings_language_fallback_order_title">"Порядок резервних мов"</string>
     <string name="settings_language_fallback_order_footer">"Якщо тексту немає вибраною мовою, Prosary перевіряє інші мови в цьому порядку. Спільні тексти івритом, зокрема молитви з каталогу, займають вищу з двох позицій івриту."</string>
     <string name="settings_praying">"Молитва"</string>
@@ -73,15 +88,15 @@
     <string name="settings_installed_devotions">"Установлені молитовні практики: %1$d"</string>
     <string name="settings_clear_audio_cache">"Очистити кеш аудіо"</string>
     <string name="settings_clear_audio_cache_size">"Очистити кеш аудіо (%1$s)"</string>
-    <string name="settings_remove_all">"Видалити всі завантажені молитви…"</string>
-    <string name="settings_downloads_footer">"Вбудовані молитви не видаляються. Видалення завантаженої молитви також вилучає її з обраного."</string>
+    <string name="settings_remove_all">"Видалити невикористовувані завантаження…"</string>
+    <string name="settings_downloads_footer">"Вбудовані молитви й завантаження зі збереженими копіями залишаються. Видалення невикористовуваного завантаження також очищає його аудіокеш."</string>
     <string name="settings_links">"Посилання"</string>
     <string name="settings_repository_site">"Каталог спільноти"</string>
     <string name="settings_compose_site">"Створити молитву"</string>
     <string name="settings_privacy_policy">"Політика конфіденційності"</string>
-    <string name="settings_remove_all_title">"Видалити всі завантажені молитви?"</string>
-    <string name="settings_remove_all_message">"Молитви з каталогу можна завантажити знову; вручну імпортовані файли — ні."</string>
-    <string name="settings_remove_all_confirm">"Видалити все"</string>
+    <string name="settings_remove_all_title">"Видалити невикористовувані завантаження?"</string>
+    <string name="settings_remove_all_message">"Видалити завантажені молитви без збережених копій? Збережені молитви та їхні завантаження залишаться."</string>
+    <string name="settings_remove_all_confirm">"Видалити"</string>
 
     <!-- Prayer kinds (models/PrayerKind.kt) -->
     <string name="kind_rosary">"Розарій"</string>
@@ -146,7 +161,7 @@
     <string name="ro_opening_section">"Початкові молитви та молитви десятків"</string>
     <string name="ro_apostles_creed">"Апостольський символ віри"</string>
     <string name="ro_opening_prayers">"Початкові «Отче наш» і три «Радуйся, Маріє»"</string>
-    <string name="ro_opening_fatima">"Фатімська молитва після трьох початкових «Радуйся, Маріє»"</string>
+    <string name="ro_opening_fatima">"Фатімська молитва після початкової молитви «Слава Отцю»"</string>
     <string name="ro_fatima">"Фатімська молитва після кожного десятка"</string>
     <string name="ro_faithful_departed">"За померлих вірних"</string>
     <string name="ro_display_section">"Відображення"</string>
@@ -161,20 +176,20 @@
 
     <!-- Favorites -->
     <string name="favorites_title">"Обране"</string>
-    <string name="favorites_add_kind">"Додати %1$s"</string>
+    <string name="favorites_add_kind">"Додати %1$s…"</string>
     <string name="favorites_more_devotions">"Інші молитви"</string>
     <string name="favorites_repository_badge">"Репозиторій"</string>
     <string name="favorites_import">"Імпортувати молитовний пакунок…"</string>
     <string name="favorites_get_community">"Отримати молитовні практики спільноти…"</string>
     <string name="favorites_import_error_title">"Не вдалося імпортувати молитву"</string>
     <string name="favorites_set_default">"Зробити стандартним"</string>
-    <string name="favorites_edit_desc">"Змінити %1$s"</string>
+    <string name="favorites_edit_desc">"Змінити %1$s…"</string>
     <string name="favorites_delete_desc">"Видалити %1$s"</string>
     <string name="favorites_add_favorite_desc">"Додати %1$s до обраного"</string>
     <string name="favorites_remove_favorite_desc">"Вилучити %1$s з обраного"</string>
     <string name="favorites_add_to_favorites">"Додати до обраного"</string>
     <string name="favorites_remove_from_favorites">"Вилучити з обраного"</string>
-    <string name="favorites_reminders_desc">"Змінити нагадування для %1$s"</string>
+    <string name="favorites_reminders_desc">"Змінити нагадування для %1$s…"</string>
     <string name="favorites_export_desc">"Експортувати %1$s для редагування"</string>
     <string name="favorites_remove_imported_desc">"Видалити імпортовану молитовну практику %1$s"</string>
 
@@ -327,7 +342,7 @@
     <string name="about_jesus_prayer_illustration">"Ілюстрація Ісусової молитви"</string>
     <string name="about_jesus_pantocrator">"Христос Пантократор: енкаустична ікона (VI століття), монастир святої Катерини, гора Синай — найдавніша збережена ікона Христа Пантократора, що вшановує східну традицію молитви; суспільне надбання."</string>
     <string name="about_scripture_sources">"Джерела Святого Письма"</string>
-    <string name="about_scripture_text">"Цитати зі Святого Письма взято з Біблії Дуе—Реймса (англійська), Климентинської Вульгати (латина), перекладу Нового Завіту івритом Франца Деліча (джерело: kirjasilta.net/ha-berit), а старозавітні уривки івритом відповідають масоретському тексту. Також використано єзуїтську арабську Біблію (Dar el-Machreq), російський Синодальний переклад (1876) та Ang Dating Biblia (тагалог, 1905)."</string>
+    <string name="about_scripture_text">"Цитати зі Святого Письма взято з Біблії Дуе—Реймса (англійська), Климентинської Вульгати (латина), перекладу Нового Завіту івритом Франца Деліча (джерело: kirjasilta.net/ha-berit; delitz.fr/12, 1901), а старозавітні уривки івритом відповідають масоретському тексту. Також використано старий арабський єзуїтський переклад Біблії (1897), російський Синодальний переклад (1876) та Ang Dating Biblia (тагалог, 1905)."</string>
     <string name="about_calendar_data">"Дані календарів"</string>
     <string name="about_calendar_data_body">"Дані календарів і читань: Загальний римський календар — LitCal (litcal.johnromanodorazio.com); календар і лекціонарій 1962 року — Missale Meum (missalemeum.com). Сирійський католицький і маронітський календарі, римські назви івритом із джерел, а також римські, сирійські й маронітські біблійні посилання: Evangelizo.org — Daily Gospel, © Evangelizo.org. Візантійські нерухомі свята подано за новим календарем; читання з юліанською Пасхою відповідають офіційному календарю Української Греко-Католицької Церкви (ugcc.ua), а варіант із григоріанською Пасхою — Royal Doors (royaldoors.net). Назви біблійних книг івритом: Evangelizo HE, Вікаріат святого Якова (catholic.co.il) і Mechon Mamre (mechon-mamre.org). Додаткові назви свят та імена святих івритом: Вікаріат святого Якова, Christian Media Center (cmc-terrasanta.org) і Vatican News (vaticannews.va)."</string>
     <string name="multi_day_reminder_body">"На вас чекає день %1$d із %2$d."</string>
@@ -356,10 +371,10 @@
     <string name="home_today_readings">"Сьогоднішні читання"</string>
     <string name="home_today_full_citations">"Показати повні посилання"</string>
     <string name="home_today_compact_citations">"Показати скорочені посилання"</string>
-    <string name="home_pray_any_rosary">"Молитися будь-який Розарій"</string>
-    <string name="home_add_rosary">"Додати Розарій"</string>
-    <string name="home_add_jesus_prayer">"Додати Ісусову молитву"</string>
-    <string name="favorites_edit">"Змінити"</string>
+    <string name="home_pray_any_rosary">"Молитися будь-який Розарій"…</string>
+    <string name="home_add_rosary">"Додати Розарій"…</string>
+    <string name="home_add_jesus_prayer">"Додати Ісусову молитву…"</string>
+    <string name="favorites_edit">"Змінити…"</string>
     <string name="favorites_reminders">"Нагадування…"</string>
     <string name="favorites_delete">"Видалити"</string>
     <string name="favorites_export">"Експортувати для редагування"</string>
@@ -440,4 +455,46 @@
     <string name="about_ukrainian_sources">"Молитви українською: Римсько-Католицька Церква в Україні, молитовник «Щоденно з Богом». Використано із зазначенням джерела відповідно до правил повторного використання видавця. Святе Письмо: Біблія Куліша, Нечуя-Левицького та Пулюя (1905), суспільне надбання; eBible.org ukr1871. Історичний правопис біблійного тексту збережено."</string>
     <string name="about_ukrainian_prayerbook_link">"Український молитовник"</string>
     <string name="about_ukrainian_bible_link">"Українська Біблія (1905)"</string>
+    <!-- Window and menu commands -->
+    <string name="commands_open_in_new_window">Відкрити в новому вікні</string>
+    <string name="commands_navigation">Перехід</string>
+    <string name="commands_back">Назад</string>
+    <string name="commands_help">Довідка Prosary</string>
+    <string name="commands_new_window">Нове вікно</string>
+    <string name="favorite_editor_save_failed">Не вдалося зберегти обране</string>
+    <string name="flow_show_original_text">Показати оригінальний текст</string>
+    <string name="home_pray_any_rosary_action">Молитися будь-який Розарій…</string>
+    <string name="rosary_save_as_preset_action">Зберегти налаштування…</string>
+    <string name="reminder_time">Час нагадування</string>
+    <string name="reminders_remove">Видалити нагадування</string>
+    <string name="about_version">Версія %1$s (%2$s)</string>
+    <string name="commands_recently_prayed">Нещодавні молитви</string>
+    <string name="prayer_delete_action">"Видалити збережену молитву…"</string>
+    <string name="prayer_delete_title">"Видалити збережену молитву?"</string>
+    <string name="prayer_delete_message">"Видалити «%1$s» та її нагадування? Інші збережені молитви залишаться."</string>
+    <string name="prayer_delete_download_message">"Видалити «%1$s» та її нагадування? Це остання збережена копія, тому завантажену молитву також буде видалено з цього пристрою."</string>
+    <string name="download_remove_action">"Видалити завантаження…"</string>
+    <string name="download_remove_title">"Видалити завантаження?"</string>
+    <string name="download_remove_message">"Видалити «%1$s» із цього пристрою? Її можна імпортувати або завантажити знову."</string>
+    <string name="download_in_use">"Видаліть збережені копії цієї молитви, перш ніж видаляти її завантаження."</string>
+    <string name="prayer_removal_error_title">"Не вдалося видалити молитву"</string>
+    <string name="prayer_removal_error">"Не вдалося видалити цю молитву. Спробуйте ще раз."</string>
+    <string name="prayer_removal_partial">"Збережену молитву видалено, але не вдалося повністю видалити її нагадування або завантаження."</string>
+    <string name="download_removal_partial">"Завантаження видалено, але деякі аудіофайли в кеші видалити не вдалося."</string>
+
+    <!-- Home-screen widgets -->
+    <string name="widget_today_name">Сьогодні</string>
+    <string name="widget_today_description">Свято й читання дня та швидкий перехід до Розарію. Збільште віджет, щоб побачити більше.</string>
+    <string name="widget_today_preview">Молитва Церкви сьогодні</string>
+    <string name="widget_saved_name">Збережена молитва</string>
+    <string name="widget_saved_description">Виберіть збережену молитву й поверніться до незавершеної молитви.</string>
+    <string name="widget_pray_rosary">Молитися Розарієм сьогодні</string>
+    <string name="widget_choose_prayer">Вибрати молитву</string>
+    <string name="widget_saved_missing">Виберіть збережену молитву для цього віджета.</string>
+    <string name="widget_saved_empty">Збережіть молитву в Prosary, а потім додайте цей віджет.</string>
+    <string name="widget_load_failed">Не вдалося завантажити молитви. Спробуйте ще раз.</string>
+    <string name="widget_ready">Можна починати молитву</string>
+    <string name="widget_pray">Молитися</string>
+    <string name="widget_progress">Крок %1$d із %2$d</string>
+    <string name="widget_progress_unbounded">Крок %1$d</string>
 </resources>

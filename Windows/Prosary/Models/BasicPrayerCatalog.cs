@@ -5,7 +5,7 @@ namespace Prosary.Models;
 /// <summary>
 /// The handful of prayers worth praying on their own, outside any devotion — tester-requested
 /// (Erez, 2026-08-07): the Sign of the Cross, the Our Father, the Hail Mary, the Glory Be, and
-/// the Trisagion's Holy God. Nothing here carries text: each entry names the same keys the
+/// the Trisagion's Holy God, and the four Marian antiphons. Nothing here carries text: each entry names the same keys the
 /// devotions already resolve, so a basic prayer reads in the prayer language with every chain
 /// the flows use — rites included. Mirrors iOS's BasicPrayerCatalog.swift.
 /// </summary>
@@ -31,6 +31,11 @@ public static class BasicPrayerCatalog
         // Nicene — exactly as their Rosary prays it (Erez, 2026-08-08).
         new("creed", "rosary", "symbolumApostolorumTitle", "symbolumApostolorum", "crucifix"),
         new("holyGod", "trisagion", "trisagionAcclamationTitle", "trisagionAcclamation", "jesus_portrait"),
+        // Standalone antiphon text, without the Rosary's appended versicle and collect.
+        new("salveRegina", "rosary", "salveReginaTitle", "salveRegina", "madonna_and_child"),
+        new("almaRedemptorisMater", "rosary", "almaRedemptorisMaterTitle", "almaRedemptorisMater", "madonna_and_child"),
+        new("aveReginaCaelorum", "rosary", "aveReginaCaelorumTitle", "aveReginaCaelorum", "madonna_and_child"),
+        new("reginaCaeli", "rosary", "reginaCaeliTitle", "reginaCaeli", "madonna_and_child"),
     ];
 
     public static BasicPrayer? Prayer(string id) => All.FirstOrDefault(p => p.Id == id);

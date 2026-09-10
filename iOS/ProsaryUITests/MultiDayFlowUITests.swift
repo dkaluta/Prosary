@@ -21,9 +21,13 @@ final class MultiDayFlowUITests: XCTestCase {
   }
 
   private func openOAntiphons(_ app: XCUIApplication) {
-    app.tabBars.buttons["Categories"].tap()
-    // Listed under both "advent" and "meditative", so the query has to take the first.
-    let row = app.buttons["category.oAntiphons"].firstMatch
+    app.tabBars.buttons["Search"].tap()
+    let searchField = app.searchFields.firstMatch
+    XCTAssertTrue(searchField.waitForExistence(timeout: 5))
+    searchField.tap()
+    searchField.typeText("O Antiphons")
+    // The unfiltered local list includes this devotion without a saved copy.
+    let row = app.buttons["search.local.oAntiphons"].firstMatch
     XCTAssertTrue(row.waitForExistence(timeout: 10))
     row.tap()
   }
@@ -52,7 +56,7 @@ final class MultiDayFlowUITests: XCTestCase {
     XCTAssertEqual(nextButton.label, "Finish")
     nextButton.tap()
 
-    XCTAssertTrue(app.buttons["category.oAntiphons"].firstMatch.waitForExistence(timeout: 5))
+    XCTAssertTrue(app.buttons["search.local.oAntiphons"].firstMatch.waitForExistence(timeout: 5))
   }
 
   @MainActor

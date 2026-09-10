@@ -6,8 +6,8 @@
     <string name="common_cancel">Cancel</string>
     <string name="common_save">Save</string>
     <string name="common_done">Done</string>
-    <string name="common_move_up">Move up</string>
-    <string name="common_move_down">Move down</string>
+    <string name="common_move_up">Move Up</string>
+    <string name="common_move_down">Move Down</string>
     <string name="common_reset">Reset</string>
     <string name="common_ok">OK</string>
     <string name="common_retry">Retry</string>
@@ -24,6 +24,21 @@
     <string name="tab_pray">Pray</string>
     <string name="tab_browse">Browse</string>
     <string name="tab_categories">Categories</string>
+    <string name="tab_readings">Readings</string>
+    <string name="search_all_categories">All Categories</string>
+    <string name="readings_empty">No readings are available for this date in the selected calendar.</string>
+    <string name="readings_type_reading">Reading</string>
+    <string name="readings_type_psalm">Psalm</string>
+    <string name="readings_type_gospel">Gospel</string>
+    <string name="readings_edition">Bible edition</string>
+    <string name="readings_follow_interface">Follow app language</string>
+    <string name="readings_bible_passage">Bible passage</string>
+    <string name="readings_show_text">Read passage</string>
+    <string name="readings_hide_text">Hide passage</string>
+    <string name="readings_unavailable">This passage is not available in the selected Bible edition.</string>
+    <string name="readings_whole_verses_notice">Full verses are shown where the reading cites only part of a verse.</string>
+    <string name="readings_source">Source</string>
+    <string name="readings_choose_edition">Choose an edition</string>
     <string name="tab_search">Search</string>
 
     <!-- Home -->
@@ -36,33 +51,33 @@
     <string name="home_edit_order">Edit order…</string>
     <string name="home_remove_from_pray">Remove from Pray</string>
     <string name="home_add_to_pray">Add to Pray</string>
-    <string name="home_saved_presets">Saved presets…</string>
+    <string name="home_saved_presets">Saved Presets</string>
     <string name="home_add_devotion">Add a devotion</string>
     <string name="multi_day_day_of">Day %1$d of %2$d</string>
     <string name="multi_day_complete">Complete</string>
     <string name="multi_day_starts_today">Starts today</string>
     <string name="multi_day_starts_on">Starts %1$s</string>
     <string name="multi_day_missed_title">You missed a day</string>
-    <string name="multi_day_pray_missed">Pray day %1$d</string>
-    <string name="multi_day_pray_today">Continue with day %1$d</string>
-    <string name="multi_day_start_over">Start over</string>
+    <string name="multi_day_pray_missed">Pray Day %1$d</string>
+    <string name="multi_day_pray_today">Continue with Day %1$d</string>
+    <string name="multi_day_start_over">Start Over</string>
     <string name="home_order_title">Home order</string>
     <string name="home_order_reorder">Reorder %1$s</string>
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">Default Prayer Language</string>
-    <string name="settings_jaffa_wording">"Jaffa wording"</string>
+    <string name="settings_jaffa_wording">"Alternative Hail Mary wording"</string>
     <string name="settings_jaffa_wording_hint">"Use בְּרוּכַת הַחֶסֶד instead of מְלֵאַת הַחֶסֶד in Vicariate prayers."</string>
-    <string name="settings_language_fallback_order">Language fallback order…</string>
-    <string name="settings_language_fallback_order_title">Language fallback order</string>
+    <string name="settings_language_fallback_order">Language Fallback Order…</string>
+    <string name="settings_language_fallback_order_title">Language Fallback Order</string>
     <string name="settings_language_fallback_order_footer">When text is missing, Prosary follows this order after the chosen language. Shared Hebrew, including repository prayers, uses the higher of the two Hebrew positions.</string>
     <string name="settings_praying">Praying</string>
     <string name="prayer_order_title">Prayer order</string>
     <string name="basic_prayers_title">Basic Prayers</string>
     <string name="settings_haptics_on_advance">Vibrate on step change</string>
-    <string name="settings_auto_advance">Auto-advance</string>
+    <string name="settings_auto_advance">Auto-Advance</string>
     <string name="auto_advance_off">Off</string>
-    <string name="auto_advance_every">Every %1$d seconds</string>
+    <string name="auto_advance_every">Every %1$d Seconds</string>
     <string name="settings_reset_home_order">Reset Home Order</string>
     <string name="settings_today_header">Today</string>
     <string name="settings_show_today_feast">Show the day\'s feast</string>
@@ -73,15 +88,15 @@
     <string name="settings_installed_devotions">Installed devotions: %1$d</string>
     <string name="settings_clear_audio_cache">Clear Audio Cache</string>
     <string name="settings_clear_audio_cache_size">Clear Audio Cache (%1$s)</string>
-    <string name="settings_remove_all">Remove All Downloaded Devotions…</string>
-    <string name="settings_downloads_footer">Built-in devotions are never removed. Removing a downloaded devotion also removes its favorite.</string>
+    <string name="settings_remove_all">"Remove Unused Downloads…"</string>
+    <string name="settings_downloads_footer">"Built-in prayers and downloads with saved copies are kept. Removing an unused download also clears its cached audio."</string>
     <string name="settings_links">Links</string>
-    <string name="settings_repository_site">Community repository</string>
-    <string name="settings_compose_site">Compose a devotion</string>
-    <string name="settings_privacy_policy">Privacy policy</string>
-    <string name="settings_remove_all_title">Remove all downloaded devotions?</string>
-    <string name="settings_remove_all_message">Devotions from the repository can be downloaded again; hand-imported files cannot.</string>
-    <string name="settings_remove_all_confirm">Remove All</string>
+    <string name="settings_repository_site">Community Repository</string>
+    <string name="settings_compose_site">Compose a Devotion</string>
+    <string name="settings_privacy_policy">Privacy Policy</string>
+    <string name="settings_remove_all_title">"Remove Unused Downloads?"</string>
+    <string name="settings_remove_all_message">"Remove downloaded prayers that have no saved copies? Saved prayers and their downloads are kept."</string>
+    <string name="settings_remove_all_confirm">"Remove"</string>
 
     <!-- Prayer kinds (models/PrayerKind.kt) -->
     <string name="kind_rosary">Rosary</string>
@@ -119,8 +134,8 @@
     <string name="antiphon_sub_tuum">Sub Tuum Praesidium</string>
 
     <!-- Mystery artwork styles -->
-    <string name="image_style_classic">Classical paintings</string>
-    <string name="image_style_eastern">Eastern icons</string>
+    <string name="image_style_classic">Classical Paintings</string>
+    <string name="image_style_eastern">Eastern Icons</string>
 
     <!-- Language display -->
     <string name="language_default_parenthesized">Default (%1$s)</string>
@@ -131,7 +146,7 @@
     <string name="rosary_manage">Manage</string>
     <string name="rosary_default_preset">Default Preset</string>
     <string name="rosary_custom">Custom</string>
-    <string name="rosary_pray_any">Pray any Rosary</string>
+    <string name="rosary_pray_any">Pray Any Rosary</string>
     <string name="rosary_options">Rosary Options</string>
     <string name="rosary_save_as_preset">Save as Preset</string>
     <string name="rosary_presets">Presets</string>
@@ -146,7 +161,7 @@
     <string name="ro_opening_section">Opening &amp; Decade Prayers</string>
     <string name="ro_apostles_creed">Apostles\' Creed</string>
     <string name="ro_opening_prayers">Opening Our Father &amp; 3 Hail Marys</string>
-    <string name="ro_opening_fatima">Fatima Prayer after the 3 opening Hail Marys</string>
+    <string name="ro_opening_fatima">Fatima Prayer after the opening Glory Be</string>
     <string name="ro_fatima">Fatima Prayer after each decade</string>
     <string name="ro_faithful_departed">For the faithful departed</string>
     <string name="ro_display_section">Display</string>
@@ -161,20 +176,20 @@
 
     <!-- Favorites -->
     <string name="favorites_title">Favorites</string>
-    <string name="favorites_add_kind">Add %1$s</string>
+    <string name="favorites_add_kind">Add %1$s…</string>
     <string name="favorites_more_devotions">More Devotions</string>
     <string name="favorites_repository_badge">Repository</string>
     <string name="favorites_import">Import Devotion Bundle…</string>
     <string name="favorites_get_community">Get Community Devotions…</string>
     <string name="favorites_import_error_title">Could Not Import Devotion</string>
     <string name="favorites_set_default">Set Default</string>
-    <string name="favorites_edit_desc">Edit %1$s</string>
+    <string name="favorites_edit_desc">Edit %1$s…</string>
     <string name="favorites_delete_desc">Delete %1$s</string>
     <string name="favorites_add_favorite_desc">Add %1$s to Favorites</string>
     <string name="favorites_remove_favorite_desc">Remove %1$s from Favorites</string>
     <string name="favorites_add_to_favorites">Add to Favorites</string>
     <string name="favorites_remove_from_favorites">Remove from Favorites</string>
-    <string name="favorites_reminders_desc">Edit %1$s reminders</string>
+    <string name="favorites_reminders_desc">Edit %1$s Reminders…</string>
     <string name="favorites_export_desc">Export %1$s for editing</string>
     <string name="favorites_remove_imported_desc">Remove imported devotion %1$s</string>
 
@@ -208,9 +223,9 @@
     <!-- Prayer step flow -->
     <string name="flow_back">Back</string>
     <string name="flow_step_of">%1$d of %2$d</string>
-    <string name="flow_show_transliteration">Show transliteration</string>
-    <string name="flow_prayer_language">Prayer language</string>
-    <string name="flow_app_setting">App setting</string>
+    <string name="flow_show_transliteration">Show Transliteration</string>
+    <string name="flow_prayer_language">Prayer Language</string>
+    <string name="flow_app_setting">App Setting</string>
     <string name="flow_day">Day</string>
     <string name="flow_choose_form">Choose form</string>
     <string name="flow_resume_title">Continue this prayer?</string>
@@ -218,12 +233,12 @@
     <string name="flow_resume_unbounded_message">You stopped at repetition %1$d.</string>
     <string name="flow_continue">Continue</string>
     <string name="flow_restart">Restart</string>
-    <string name="flow_previous_mystery">Previous mystery</string>
-    <string name="flow_next_mystery">Next mystery</string>
+    <string name="flow_previous_mystery">Previous Mystery</string>
+    <string name="flow_next_mystery">Next Mystery</string>
 
     <!-- Audio playback -->
-    <string name="audio_previous_chapter">Previous chapter</string>
-    <string name="audio_next_chapter">Next chapter</string>
+    <string name="audio_previous_chapter">Previous Chapter</string>
+    <string name="audio_next_chapter">Next Chapter</string>
     <string name="audio_play">Play</string>
     <string name="audio_pause">Pause</string>
 
@@ -327,13 +342,13 @@
     <string name="about_jesus_prayer_illustration">Jesus Prayer Illustration</string>
     <string name="about_jesus_pantocrator">Christ Pantocrator: encaustic icon (6th century), Saint Catherine’s Monastery, Mount Sinai — the oldest surviving icon of Christ Pantocrator, honoring the prayer’s Eastern tradition; public domain.</string>
     <string name="about_scripture_sources">Scripture Sources</string>
-    <string name="about_scripture_text">Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch\'s Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) with Hebrew Old Testament passages following the Masoretic text, the Jesuit Arabic Bible (Dar el-Machreq), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905).</string>
+    <string name="about_scripture_text">Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch\'s Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit; delitz.fr/12, 1901) with Hebrew Old Testament passages following the Masoretic text, the Old Jesuit Arabic Bible (1897), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905).</string>
     <string name="about_calendar_data">Calendar Data</string>
     <string name="about_calendar_data_body">Calendar and readings data: the General Roman Calendar via LitCal (litcal.johnromanodorazio.com); the 1962 calendar and lectionary via Missale Meum (missalemeum.com). Syriac Catholic and Maronite calendars, sourced Hebrew Roman titles and Roman/Syriac/Maronite citations: Evangelizo.org — Daily Gospel, © Evangelizo.org. Byzantine fixed feasts use the new calendar; Julian Easter readings follow the official Ukrainian Greek Catholic Church calendar (ugcc.ua), while the Gregorian Easter option follows Royal Doors (royaldoors.net). Hebrew Bible book names: Evangelizo HE, the St James Vicariate (catholic.co.il) and Mechon Mamre (mechon-mamre.org). Additional Hebrew feast and saint names: the St James Vicariate, Christian Media Center (cmc-terrasanta.org) and Vatican News (vaticannews.va).</string>
     <string name="multi_day_reminder_body">Day %1$d of %2$d awaits.</string>
     <string name="multi_day_completed_title">That completes it. Pray %1$s next?</string>
     <string name="multi_day_pray_next">Pray %1$s</string>
-    <string name="multi_day_not_now">Not now</string>
+    <string name="multi_day_not_now">Not Now</string>
     <string name="settings_rite">Rite</string>
     <string name="settings_aramaic_sign_of_cross">Aramaic Sign of the Cross</string>
     <string name="settings_aramaic_sign_of_cross_form_a">Form A</string>
@@ -346,7 +361,7 @@
     <string name="settings_typeface_western_aramaic">Western Aramaic</string>
     <string name="settings_typeface_eastern_aramaic">Eastern Aramaic</string>
     <string name="settings_typeface_david_libre">David Libre</string>
-    <string name="settings_typeface_sans_serif">"System sans serif"</string>
+    <string name="settings_typeface_sans_serif">"System Sans Serif"</string>
     <string name="settings_typeface_stam_ashkenaz">Stam Ashkenaz</string>
     <string name="settings_typeface_stam_sefarad">Stam Sefarad</string>
     <string name="settings_typeface_rashi">Rashi</string>
@@ -354,12 +369,12 @@
     <string name="home_today_language">Today language</string>
     <string name="home_today_app_language">App language</string>
     <string name="home_today_readings">Today’s readings</string>
-    <string name="home_today_full_citations">View full citations</string>
-    <string name="home_today_compact_citations">Show shorthand</string>
-    <string name="home_pray_any_rosary">Pray any Rosary</string>
-    <string name="home_add_rosary">Add Rosary</string>
-    <string name="home_add_jesus_prayer">Add Jesus Prayer</string>
-    <string name="favorites_edit">Edit</string>
+    <string name="home_today_full_citations">View Full Citations</string>
+    <string name="home_today_compact_citations">Show Shorthand</string>
+    <string name="home_pray_any_rosary">Pray Any Rosary…</string>
+    <string name="home_add_rosary">Add Rosary…</string>
+    <string name="home_add_jesus_prayer">Add Jesus Prayer…</string>
+    <string name="favorites_edit">Edit…</string>
     <string name="favorites_reminders">Reminders…</string>
     <string name="favorites_delete">Delete</string>
     <string name="favorites_export">Export for editing</string>
@@ -405,10 +420,10 @@
     <string name="settings_typeface_frank_ruhl_libre">"Frank Ruhl Libre"</string>
     <string name="settings_latin_prayer_typeface">"Latin-script prayers"</string>
     <string name="settings_cyrillic_prayer_typeface">"Cyrillic prayers"</string>
-    <string name="settings_typeface_serif">"System serif"</string>
+    <string name="settings_typeface_serif">"System Serif"</string>
     <string name="settings_typeface_roboto">Roboto</string>
     <string name="settings_typeface_roboto_noto">Roboto / Noto</string>
-    <string name="prayer_tradition">"Prayer tradition"</string>
+    <string name="prayer_tradition">"Prayer Tradition"</string>
     <string name="prayer_tradition_vicariate">"Saint James Vicariate"</string>
     <string name="prayer_tradition_mission">"Mission of St. Gamaliel"</string>
     <string name="basic_prayers_pin">"Pin to Pray"</string>
@@ -420,8 +435,8 @@
     <string name="rosary_litany_offer">"Continue with the Litany of the Blessed Virgin Mary?"</string>
     <string name="about_litany_source">"The Litany of Loreto uses published Catholic prayer texts. The Hebrew wording is Erez’s contribution through the Mission of St. Gamaliel. The Greek and Tagalog standalone closing prayers are Prosary translations of the Latin original; they are not published liturgical translations."</string>
     <string name="settings_aramaic_default_script">"Default Aramaic script"</string>
-    <string name="settings_script_hebrew">"Hebrew script"</string>
-    <string name="settings_script_syriac">"Syriac script"</string>
+    <string name="settings_script_hebrew">"Hebrew Script"</string>
+    <string name="settings_script_syriac">"Syriac Script"</string>
     <string name="home_today_choose_date">Choose date</string>
     <string name="home_today_yesterday">Yesterday</string>
     <string name="home_today_reset">Today</string>
@@ -440,4 +455,46 @@
     <string name="about_ukrainian_sources">"Ukrainian prayers: Roman Catholic Church in Ukraine, Щоденно з Богом prayerbook. Used with attribution under the publisher’s reuse policy. Scripture: Kulish, Nechui-Levytsky and Puluj Bible (1905), public domain; eBible.org ukr1871. Historical Scripture spelling is retained."</string>
     <string name="about_ukrainian_prayerbook_link">"Ukrainian prayerbook"</string>
     <string name="about_ukrainian_bible_link">"Ukrainian Bible (1905)"</string>
+    <!-- Window and menu commands -->
+    <string name="commands_open_in_new_window">Open in New Window</string>
+    <string name="commands_navigation">Go</string>
+    <string name="commands_back">Back</string>
+    <string name="commands_help">Prosary Help</string>
+    <string name="commands_new_window">New Window</string>
+    <string name="favorite_editor_save_failed">Could Not Save Favorite</string>
+    <string name="flow_show_original_text">Show Original Text</string>
+    <string name="home_pray_any_rosary_action">Pray Any Rosary…</string>
+    <string name="rosary_save_as_preset_action">Save as Preset…</string>
+    <string name="reminder_time">Reminder Time</string>
+    <string name="reminders_remove">Remove Reminder</string>
+    <string name="about_version">Version %1$s (%2$s)</string>
+    <string name="commands_recently_prayed">Recently Prayed</string>
+    <string name="prayer_delete_action">"Delete Saved Prayer…"</string>
+    <string name="prayer_delete_title">"Delete Saved Prayer?"</string>
+    <string name="prayer_delete_message">"Delete “%1$s” and its reminders? Other saved prayers are kept."</string>
+    <string name="prayer_delete_download_message">"Delete “%1$s” and its reminders? This is the last saved copy, so its downloaded prayer will also be removed from this device."</string>
+    <string name="download_remove_action">"Remove Download…"</string>
+    <string name="download_remove_title">"Remove Download?"</string>
+    <string name="download_remove_message">"Remove “%1$s” from this device? You can import or download it again."</string>
+    <string name="download_in_use">"Delete this prayer’s saved copies before removing its download."</string>
+    <string name="prayer_removal_error_title">"Could Not Remove Prayer"</string>
+    <string name="prayer_removal_error">"Could not remove this prayer. Please try again."</string>
+    <string name="prayer_removal_partial">"The saved prayer was deleted, but its reminders or download could not be fully removed."</string>
+    <string name="download_removal_partial">"The download was removed, but some cached audio could not be deleted."</string>
+
+    <!-- Home-screen widgets -->
+    <string name="widget_today_name">Today</string>
+    <string name="widget_today_description">Today’s feast, readings, and a shortcut to the Rosary. Enlarge to see more.</string>
+    <string name="widget_today_preview">The Church’s prayer today</string>
+    <string name="widget_saved_name">Saved Prayer</string>
+    <string name="widget_saved_description">Choose a saved prayer and return to your unfinished prayer.</string>
+    <string name="widget_pray_rosary">Pray today’s Rosary</string>
+    <string name="widget_choose_prayer">Choose a prayer</string>
+    <string name="widget_saved_missing">Choose a saved prayer for this widget.</string>
+    <string name="widget_saved_empty">Save a prayer in Prosary, then add this widget.</string>
+    <string name="widget_load_failed">Unable to load prayers. Please try again.</string>
+    <string name="widget_ready">Ready to pray</string>
+    <string name="widget_pray">Pray</string>
+    <string name="widget_progress">Step %1$d of %2$d</string>
+    <string name="widget_progress_unbounded">Step %1$d</string>
 </resources>

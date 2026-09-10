@@ -118,7 +118,7 @@ final class RosaryEngineTests: XCTestCase {
     XCTAssertEqual(without, with - 5)
   }
 
-  func testOptionalFatimaPrayerFollowsTheThreeOpeningHailMarys() {
+  func testOptionalFatimaPrayerFollowsTheOpeningGloryBe() {
     let engine = makeEngine()
     var p = prayer(includeOpeningFatima: true)
     p.languageCode = "en"
@@ -126,10 +126,32 @@ final class RosaryEngineTests: XCTestCase {
     guard let charity = steps.firstIndex(where: { $0.imageOverrideKey == "virtue_charity" }) else {
       return XCTFail("missing opening charity Hail Mary")
     }
-    XCTAssertEqual(steps[charity + 1].title, "Fatima Prayer")
-    XCTAssertEqual(steps[charity + 2].title, "Glory Be")
+    XCTAssertEqual(steps[charity + 1].title, "Glory Be")
+    XCTAssertEqual(steps[charity + 2].title, "Fatima Prayer")
+    XCTAssertNotNil(steps[charity + 3].mystery)
     XCTAssertEqual(steps.filter { $0.title == "Fatima Prayer" }.count, 6)
     XCTAssertEqual(steps.count, 80)
+  }
+
+  func testOpeningAndDecadeFatimaOptionsRemainIndependentInBothPresentationModes() {
+    for presenter in [false, true] {
+      for opening in [false, true] {
+        for openingFatima in [false, true] {
+          for decadeFatima in [false, true] {
+            let p = prayer(includeOpening: opening, includeOpeningFatima: openingFatima,
+                           includeFatima: decadeFatima, presenterMode: presenter, language: "en")
+            let steps = makeEngine().buildSteps(for: p)
+            XCTAssertEqual(steps.filter { $0.title == "Fatima Prayer" }.count,
+                           (opening && openingFatima ? 1 : 0) + (decadeFatima ? 5 : 0))
+            if let charity = steps.firstIndex(where: { $0.imageOverrideKey == "virtue_charity" }) {
+              XCTAssertEqual(steps[charity + 1].title, "Glory Be")
+              if openingFatima { XCTAssertEqual(steps[charity + 2].title, "Fatima Prayer") }
+              else { XCTAssertNotNil(steps[charity + 2].mystery) }
+            } else { XCTAssertFalse(opening) }
+          }
+        }
+      }
+    }
   }
 
   @MainActor
@@ -279,21 +301,47 @@ final class RosaryEngineTests: XCTestCase {
     XCTAssertFalse(gamliel.contains { HebrewDisplayText.unpointed($0.body).contains("הפטריארך") })
   }
 
-  func testClosingIntentionGroupsCanBeEnabledIndependently() {
+  func testPreviouslySeparateClosingIntentionsRestoreTheWholeGroup() {
     let engine = makeEngine()
     var p = prayer()
     let baseline = engine.buildSteps(for: p).count
     p.rosary.includeClosingPopeIntention = true
-    XCTAssertEqual(engine.buildSteps(for: p).count, baseline + 4)
+    XCTAssertEqual(engine.buildSteps(for: p).count, baseline + 13)
     p.rosary.includeClosingPopeIntention = false
     p.rosary.includeClosingBishopIntention = true
-    XCTAssertEqual(engine.buildSteps(for: p).count, baseline + 4)
+    XCTAssertEqual(engine.buildSteps(for: p).count, baseline + 13)
     p.rosary.includeClosingBishopIntention = false
     p.rosary.includeClosingDepartedIntention = true
-    XCTAssertEqual(engine.buildSteps(for: p).count, baseline + 5)
+    XCTAssertEqual(engine.buildSteps(for: p).count, baseline + 13)
+    p.rosary.effectiveClosingIntentions = false
+    XCTAssertEqual(engine.buildSteps(for: p).count, baseline)
+    XCTAssertNil(p.rosary.includeClosingPopeIntention)
+    XCTAssertNil(p.rosary.includeClosingBishopIntention)
+    XCTAssertNil(p.rosary.includeClosingDepartedIntention)
+    p.rosary.effectiveClosingIntentions = true
+    XCTAssertEqual(engine.buildSteps(for: p).count, baseline + 13)
   }
 
   // MARK: - Mystery artwork
+
+  func testGenericRosaryMigratesSavedClosingOptionsAndCanSwitchThemOff() {
+    let engine = makeEngine()
+    var p = Prayer(kind: .custom, languageCode: "en", customDevotionId: "rosary")
+    let baseline = engine.buildSteps(for: p).count
+    for key in RosaryOptions.legacyClosingOptionKeys {
+      p.customOptions = [key: "true"]
+      XCTAssertEqual(engine.buildSteps(for: p).count, baseline + 13)
+      p.customOptions = RosaryOptions.normalizedCustomOptions(p.customOptions, bundleId: "rosary")
+      p.customOptions["closingIntentions"] = "false"
+      XCTAssertEqual(engine.buildSteps(for: p).count, baseline)
+      XCTAssertTrue(RosaryOptions.legacyClosingOptionKeys.allSatisfy { p.customOptions[$0] == nil })
+    }
+    let old = ["closingIntentions": "true", "closingPopeIntention": "false",
+               "closingBishopIntention": "false", "closingDepartedIntention": "false"]
+    p.customOptions = old
+    XCTAssertEqual(engine.buildSteps(for: p).count, baseline)
+    XCTAssertEqual(RosaryOptions.normalizedCustomOptions(old, bundleId: "anotherRosary"), old)
+  }
 
   func testEasternImageStyleSwapsOnlyMysteryImagery() {
     let engine = makeEngine()

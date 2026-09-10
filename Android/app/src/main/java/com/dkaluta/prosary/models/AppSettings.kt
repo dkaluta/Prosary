@@ -30,6 +30,7 @@ object AppSettings {
     private const val KEY_PRAYER_NAME_LANGUAGE = "showPrayerNameInPrayerLanguage"
     private const val KEY_EASTERN_PASCHA_STYLE = "easternPaschaStyle"
     private const val KEY_TODAY_LANGUAGE = "todayLanguageCode"
+    private const val KEY_READINGS_EDITION = "readingsEditionId"
     private const val KEY_SYRIAC_TYPEFACE = "syriacTypeface"
     private const val KEY_ARAMAIC_DEFAULT_SCRIPT = "aramaicDefaultScript"
     private const val KEY_HEBREW_PRAYER_TYPEFACE = "hebrewPrayerTypeface"
@@ -59,6 +60,14 @@ object AppSettings {
     /** Legacy override retained for storage compatibility; Today now ignores it. */
     private var todayLanguageState by mutableStateOf("")
     val todayLanguageCode: String get() = todayLanguageState
+
+    private var readingsEditionState by mutableStateOf("")
+    var readingsEditionId: String
+        get() = readingsEditionState
+        set(value) {
+            readingsEditionState = value
+            prefs?.edit()?.putString(KEY_READINGS_EDITION, value)?.apply()
+        }
 
     const val ARAMAIC_SIGN_OF_CROSS_FORM_A = "formA"
     const val ARAMAIC_SIGN_OF_CROSS_FORM_B = "formB"
@@ -185,6 +194,7 @@ object AppSettings {
         showPrayerNameInPrayerLanguage = resolved.getBoolean(KEY_PRAYER_NAME_LANGUAGE, false)
         easternPaschaStyle = resolved.getString(KEY_EASTERN_PASCHA_STYLE, "julian") ?: "julian"
         todayLanguageState = resolved.getString(KEY_TODAY_LANGUAGE, "").orEmpty()
+        readingsEditionState = resolved.getString(KEY_READINGS_EDITION, "").orEmpty()
         syriacTypefaceState = resolved.getString(KEY_SYRIAC_TYPEFACE, TYPEFACE_DEFAULT) ?: TYPEFACE_DEFAULT
         aramaicDefaultScriptState = if (resolved.getString(KEY_ARAMAIC_DEFAULT_SCRIPT, "Hebr") == "Syrc") "Syrc" else "Hebr"
         hebrewPrayerTypefaceState = resolved.getString(KEY_HEBREW_PRAYER_TYPEFACE, TYPEFACE_DEFAULT) ?: TYPEFACE_DEFAULT
@@ -201,6 +211,7 @@ object AppSettings {
         favoriteBasicPrayersFirst = resolved.getBoolean(KEY_FAVORITE_BASIC_PRAYERS_FIRST, false)
         languageFallbackOrder = resolved.getString(KEY_LANGUAGE_FALLBACK_ORDER, "")
             .orEmpty().split('\n').filter { it.isNotEmpty() }
+        com.dkaluta.prosary.widgets.WidgetUpdates.observe(context)
     }
 
     fun setDefaultLanguageCode(code: String) {

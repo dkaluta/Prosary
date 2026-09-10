@@ -36,7 +36,7 @@ public sealed partial class PrayerCard : UserControl
     }
 
     public static readonly DependencyProperty AccentColorProperty = DependencyProperty.Register(
-        nameof(AccentColor), typeof(Color), typeof(PrayerCard), new PropertyMetadata(Colors.Gray));
+        nameof(AccentColor), typeof(Color), typeof(PrayerCard), new PropertyMetadata(Microsoft.UI.Colors.Gray));
 
     public Color AccentColor
     {

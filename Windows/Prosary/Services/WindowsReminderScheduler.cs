@@ -65,6 +65,8 @@ public sealed class WindowsReminderScheduler : IReminderScheduler
     {
         foreach (var prayer in prayers)
         {
+            if (prayer.Kind == PrayerKind.Custom && prayer.CustomDevotionId is { } bundleId)
+                RefreshSeries(bundleId, DesktopPrayerIdentity.DevotionID(bundleId, prayer.Id));
             if (prayer.Reminders.Any(r => r.IsEnabled))
             {
                 Schedule(prayer);
@@ -77,10 +79,12 @@ public sealed class WindowsReminderScheduler : IReminderScheduler
     /// would keep nagging after the last day. Rewritten from scratch on every call, so recording
     /// a day, starting over, or finishing the run all leave exactly the right ones scheduled.
     /// Mirrors iOS's RefreshSeries.</summary>
-    public void RefreshSeries(string devotionId)
+    public void RefreshSeries(string devotionId) => RefreshSeries(devotionId, devotionId);
+
+    public void RefreshSeries(string devotionId, string runId)
     {
         var notifier = ToastNotificationManager.CreateToastNotifier();
-        var group = SeriesGroup(devotionId);
+        var group = SeriesGroup(runId);
 
         var stale = notifier.GetScheduledToastNotifications().Where(n => n.Group == group).ToList();
         foreach (var scheduled in stale)
@@ -95,7 +99,7 @@ public sealed class WindowsReminderScheduler : IReminderScheduler
             return;
         }
 
-        if (MultiDayRuns.Run(devotionId) is not { } run || run.IsComplete(days.Count))
+        if (MultiDayRuns.Run(runId) is not { } run || run.IsComplete(days.Count))
         {
             return;
         }
@@ -155,7 +159,10 @@ public sealed class WindowsReminderScheduler : IReminderScheduler
         return (18, 0);
     }
 
-    private static string SeriesGroup(string devotionId) => $"series-{devotionId}";
+    private static string SeriesGroup(string devotionId) => devotionId.StartsWith("desktop:", StringComparison.Ordinal)
+        ? "series" + Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(
+            System.Text.Encoding.UTF8.GetBytes(devotionId)))[..10]
+        : $"series-{devotionId}";
 
     private static IEnumerable<DateTimeOffset> NextOccurrences(int hour, int minute, int days)
     {

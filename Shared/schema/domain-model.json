@@ -1,6 +1,14 @@
 {
   "$comment": "Canonical shape of Prosary's domain model, independent of any one platform's language. Field names here are the camelCase form; each platform's own idiom (Swift camelCase, Kotlin camelCase, C# PascalCase) maps 1:1. See ../ARCHITECTURE.markdown for the prose version and per-file source locations. Keep this file in sync whenever a field is added, removed, renamed, or its default changes on any platform — see README.markdown in this directory.",
   "types": {
+    "SavedPrayerEntity": {
+      "platforms": ["iOS", "macOS"],
+      "description": "Apple App Intents entity for OpenPrayerIntent. Suggested entities include every saved prayer kind, sorted by display name; identifier resolution reads the current authoritative preset store. This is a reference to an existing saved copy, not a new persisted Prayer shape.",
+      "fields": {
+        "id": { "type": "uuid", "description": "The exact saved Prayer.ID. Renaming preserves this identity; deleting the saved row makes the shortcut unavailable." },
+        "name": { "type": "string", "description": "The saved Prayer's current name, used by Shortcuts and Siri for display." }
+      }
+    },
     "PrayerPackContent": {
       "description": "One content/<language>.json file inside a prayer pack. Unmarked Hebrew content is generic, including repository packs. Per-key provenance separates shared Hebrew from tradition-specific wording without changing saved prayer language codes.",
       "fields": {
@@ -33,7 +41,7 @@
         "languageCode": {
           "type": "string",
           "default": "",
-          "description": "Prayer-language identifier or the empty sentinel meaning follow defaultLanguageCode. Public pickers show one Hebrew language (עברית) and a separate Vicariate/Mission prayer tradition. Storage preserves the exact sourced content codes he / he-x-gamliel, including existing presets and bookmarks; no text-code migration is needed."
+          "description": "Prayer-language identifier or the empty sentinel meaning follow defaultLanguageCode. Public pickers show one Hebrew language (עברית) and a separate Vicariate/Mission prayer tradition. Storage preserves the exact sourced content codes he / he-x-gamliel, including existing presets and bookmarks; no text-code migration is needed. Saved-prayer list labels show the effective session language: custom prayers use the engine's bundle-aware language fallback. The Mac library shows only the native language name; other saved-prayer lists retain the localized Default (...) wrapper for the sentinel. Settings still distinguish the inherited choice. effectiveLanguageCode is derived at display time, never persisted or substituted for this preference."
         },
         "rosary": {
           "type": "RosaryOptions",
@@ -116,7 +124,7 @@
         "includeOpeningFatimaPrayer": {
           "type": "boolean",
           "default": false,
-          "description": "When the opening prayers are enabled, recite the Fatima Prayer once after the three Hail Marys for faith, hope, and charity and before the opening Glory Be. Independent of includeFatimaPrayer, which controls the prayer after each decade."
+          "description": "When the opening prayers are enabled, recite the Fatima Prayer once after the opening Glory Be, which follows the three Hail Marys for faith, hope, and charity. Independent of includeFatimaPrayer, which controls the prayer after each decade."
         },
         "includeFatimaPrayer": {
           "type": "boolean",
@@ -134,23 +142,25 @@
         "includeClosingIntentions": {
           "type": "boolean",
           "default": false,
-          "description": "Legacy all-intentions setting retained for saved configurations. Each nullable closing override resolves as override ?? includeClosingIntentions. The editor exposes the three individual choices, never this compatibility field.",
-          "deprecated": true
+          "description": "One closing-intentions choice for the Pope, bishop, and faithful departed. Effective value is OR of the three legacy nullable overrides after each resolves as override ?? includeClosingIntentions. Editing writes this Boolean and clears all three overrides. All 13 closing steps follow the effective choice, mapped to bundle option closingIntentions; older packs' per-group option keys receive the same value."
         },
         "includeClosingPopeIntention": {
           "type": "boolean?",
           "default": null,
-          "description": "Independent closing prayers for the Pope and the needs of the Church and nation; effective value is this override ?? includeClosingIntentions. Gates bundle option closingPopeIntention. The intention text occupies its own introduction step, followed by Our Father, Hail Mary, Glory Be (4 steps). Never repeat the intention as a prayer subtitle. Persist nullable raw Booleans, including in SwiftData."
+          "description": "Compatibility field retained as a raw nullable Boolean for saved data. Contributes to the combined closing-intentions choice; no independent editor control. The Pope's intention remains its own introduction step followed by Our Father, Hail Mary, Glory Be (4 steps), without repeated intention subtitles.",
+          "deprecated": true
         },
         "includeClosingBishopIntention": {
           "type": "boolean?",
           "default": null,
-          "description": "Independent closing prayers for the local ordinary and his intentions; effective value is this override ?? includeClosingIntentions. Gates bundle option closingBishopIntention. The intention text occupies its own introduction step, followed by Our Father, Hail Mary, Glory Be (4 steps). Never repeat the intention as a prayer subtitle. Persist nullable raw Booleans, including in SwiftData."
+          "description": "Compatibility field retained as a raw nullable Boolean for saved data. Contributes to the combined closing-intentions choice; no independent editor control. The local ordinary's intention remains its own introduction step followed by Our Father, Hail Mary, Glory Be (4 steps), without repeated intention subtitles.",
+          "deprecated": true
         },
         "includeClosingDepartedIntention": {
           "type": "boolean?",
           "default": null,
-          "description": "Independent closing prayers for the faithful departed; effective value is this override ?? includeClosingIntentions. Gates bundle option closingDepartedIntention. The intention text occupies its own introduction step, followed by Our Father, Hail Mary, Glory Be, and the May they rest in peace versicle/response (5 steps). Never repeat the intention as a prayer subtitle. Persist nullable raw Booleans, including in SwiftData."
+          "description": "Compatibility field retained as a raw nullable Boolean for saved data. Contributes to the combined closing-intentions choice; no independent editor control. The departed intention remains its own introduction step followed by Our Father, Hail Mary, Glory Be and the rest-in-peace versicle/response (5 steps), without repeated intention subtitles.",
+          "deprecated": true
         },
         "includeStMichaelPrayer": {
           "type": "boolean",
@@ -307,11 +317,11 @@
       "fields": {
         "runKey": {
           "type": "string",
-          "description": "Storage-map key identifying the saved preset or ad-hoc devotion/variant/day/target so unrelated prayer forms never share a position."
+          "description": "Storage-map key identifying the saved preset or ad-hoc devotion/variant/day/target so unrelated prayer forms never share a position. Mac prefixes this with window:<scene-restored identity>: to keep simultaneous windows independent. Windows saved generic devotions use desktop:<Prayer UUID>:<bundle ID> as their devotion component; their series runs use the same scoped component. Unsaved Windows custom/Jesus sessions use a window-local UUID, adopting the saved UUID on save. Phone and detached legacy callers retain their existing prayer-only keys."
         },
         "configurationSignature": {
           "type": "string",
-          "description": "Stable signature of the sequence-producing options. Mismatch discards the checkpoint. Rosary retains its legacy signature fields and appends |closing-v2:<pope>,<bishop>,<departed>, using comma-separated 1/0 effective flags, when any closing group is enabled or any effective flag differs from includeClosingIntentions. This invalidates positions shifted by the new introduction steps while preserving ordinary all-disabled bookmarks."
+          "description": "Stable signature of sequence-producing options. Mismatch discards the checkpoint. Rosary uses the effective combined choice in its closing-intentions field and appends |closing-v2:1,1,1 when enabled, preserving whole-group bookmarks and invalidating former partial groups. It then appends |opening-fatima-v2 only when both opening prayers and their Fatima Prayer are enabled, invalidating bookmarks affected by moving Fatima after the opening Glory Be."
         },
         "stepIndex": {
           "type": "int",
@@ -524,7 +534,7 @@
         },
         "days": {
           "type": "object[]?",
-          "description": "days type only: [{name, nameByLanguage?, period?, steps: [Entry]}] — one entry per day, with optional shared opening/closing prayed every day. A series' progress lives in a MultiDayRun keyed by devotion id (start date + which days were prayed), not on the favorite; Prayer.dayIndex still holds the day a favorite opens on."
+          "description": "days type only: [{name, nameByLanguage?, period?, steps: [Entry]}] — one entry per day, with optional shared opening/closing prayed every day. A series' progress lives in a MultiDayRun (start date + which days were prayed), separate from Prayer.dayIndex. Phones and detached legacy callers key it by devotion id; desktop saved copies scope it by saved identity, including Windows desktop:<Prayer UUID>:<bundle ID>. Unsaved Windows native sessions use their own UUID. Prayer.dayIndex still holds the day a favorite opens on."
         },
         "steps": {
           "type": "CustomDevotionStep[]?",
@@ -744,6 +754,11 @@
           "deprecated": true,
           "description": "Legacy override ignored. Today always uses the interface language and has no language selector."
         },
+        "readingsEditionId": {
+          "type": "string",
+          "default": "",
+          "description": "Bible edition selected in phone Readings and desktop Today. Empty follows the interface language by matching an edition in readings-editions.json, normalizing iw/he and fil/tl aliases and regional subtags. A nonempty value selects that exact metadata ID. An unavailable language or removed explicit edition stays unavailable; never substitute English or another edition. This preference is independent of prayer language, feastCalendarId and easternPaschaStyle, and never changes appointed citations. Metadata loads separately from the optional passage corpus."
+        },
         "aramaicDefaultScript": {
           "type": "string",
           "default": "Hebr",
@@ -834,6 +849,10 @@
     "$ref": "LanguageCatalog stores la (default), en, ar, he, he-x-gamliel, arc, el, es, ru, uk, tl, fr, it. Ordinary public choices show one Hebrew (עברית) with a separate Saint James Vicariate (stored he) / Mission of St. Gamaliel (he-x-gamliel) tradition. The fallback editor exposes both Hebrew traditions independently, preserving interleaving such as Mission, Aramaic, Vicariate. Generic shared/repository Hebrew uses the higher Hebrew slot, immediately after that tradition; internal content-only he-x-vicariate distinguishes marked Vicariate text and is never persisted or selectable. Aramaic is labeled ܐܪܡܐܝܬ / ארמית. ar/he/he-x-gamliel/arc are RTL. Other variants retain base fallback. New languages are inserted before a previously terminal Latin fallback."
   },
   "persistence": {
+    "removal": "Unpinning never deletes a saved Prayer. Delete Saved Prayer persists deletion before cancelling its reminders, preserves sibling copies, and removes an installed custom download only after a fresh reference check finds no remaining saved copies. Built-in packs remain available. Downloads permits unused-only removal; cleanup failures surface without pretending the saved copy survived. Stale editors and autosave updates cannot recreate deleted records.",
+    "starterSeeding": "Phone and Windows starter presets are seeded once at initial store creation, never when an existing store is empty after deletion. Apple records hasInitializedPrayerPresets in local UserDefaults; Android seeds only in Room onCreate; Windows seeds only when creating the PresetEntry table. Mac starts empty.",
+    "appleDeviceDownloads": "removedDownloadedPrayerIDs is a device-local UserDefaults string array shared by the Apple pack loader. Local pack eviction/removal adds an ID; explicit reimport clears it. Excluded iCloud placeholders are not automatically downloaded. This preference and Mac membership do not delete the cloud pack source or alter saved-preset synchronization.",
+    "macLibrary": "Mac named prayer copies reuse Prayer and the existing preset store. Mac-only color tags, first-use materialization/duplication rules, and prayer-window identity/geometry are documented separately in mac-library.json; they add no shared Prayer fields.",
     "perDevotionDefaultScoping": "save()/delete() clear or promote isDefault scoped to (Prayer.kind, Prayer.customDevotionId), never across devotions — two generic devotions must not steal each other's default slot. Legacy rows with retired per-devotion kinds resolve through the same identity (iOS PresetEntry.resolvedKind / Android PresetEntity.resolvedKind / Windows's SQL migration). See ARCHITECTURE.markdown#persistence."
   }
 }

@@ -20,6 +20,9 @@ struct CustomDevotionFlowView: View {
 
   @Environment(\.appServices) private var services
   @Environment(\.dismiss) private var dismiss
+  @Environment(\.windowNavigation) private var windowNavigation
+  @Environment(\.finishPrayerSession) private var finishPrayerSession
+  @Environment(\.prayerWindowTitle) private var prayerWindowTitle
   @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
 
   @State private var steps: [RosaryStep] = []
@@ -38,6 +41,8 @@ struct CustomDevotionFlowView: View {
   /// of the continuation signature so an edited preset never resumes into its old step map.
   @State private var customOptions: [String: String] = [:]
   @State private var audio = AudioPlaybackController()
+  @State private var suspendedAudioTime: Double?
+  @State private var suspendedAudioWasPlaying = false
   /// Multi-day devotions: the day this session prays (0-based; sourced from the favorite).
   @State private var dayIndex = 0
   /// Set when a day was missed: the day that should have happened and the one today calls for.
@@ -48,9 +53,11 @@ struct CustomDevotionFlowView: View {
   @State private var completionSuggestion: (id: String, name: String)?
   @State private var pendingContinuation: PrayerRunProgress?
   @State private var hasLoaded = false
+  @State private var sessionLoader = PrayerSessionLoader()
   @State private var didFinish = false
 
-  private let progressStore = PrayerRunProgressStore()
+  @Environment(\.prayerProgressNamespace) private var progressNamespace
+  private var progressStore: PrayerRunProgressStore { PrayerRunProgressStore(namespace: progressNamespace) }
 
   private var currentStep: RosaryStep? {
     steps.indices.contains(currentIndex) ? steps[currentIndex] : nil
@@ -78,13 +85,14 @@ struct CustomDevotionFlowView: View {
 
   private func beadColumnAreaWidth(hasRoomForSingleMinorColumn: Bool) -> CGFloat {
     let majorColumns = CGFloat(max(beadLayout.groupColumns.count, 1)) * 34 + 40
-    guard beadLayout.showBottomBeads else { return majorColumns }
+    // Keep the column budget stable while the minor beads appear and disappear between steps.
+    guard steps.contains(where: { $0.hailMaryIndexInDecade != nil }) else { return majorColumns }
     return majorColumns + (hasRoomForSingleMinorColumn ? 44 : 74)
   }
 
   var body: some View {
     PrayerStepFlowView(
-      navigationTitle: displayName,
+      navigationTitle: prayerWindowTitle ?? displayName,
       step: currentStep,
       currentIndex: currentIndex,
       totalSteps: steps.count,
@@ -98,9 +106,10 @@ struct CustomDevotionFlowView: View {
         AnyView(
           BeadProgressView(layout: beadLayout, isWide: isWide,
                            hasRoomForSingleMinorColumn: hasRoomForSingleMinorColumn)
-            .frame(width: beadColumnAreaWidth(hasRoomForSingleMinorColumn: hasRoomForSingleMinorColumn))
+            .frame(width: isWide ? beadColumnAreaWidth(hasRoomForSingleMinorColumn: hasRoomForSingleMinorColumn) : nil)
         )
       } : nil,
+      accessoryWidth: showsBeadTrack ? { beadColumnAreaWidth(hasRoomForSingleMinorColumn: $0) } : nil,
       audioBar: audio.isLoaded ? AnyView(
         AudioPlaybackBar(controller: audio, seasonColor: seasonColor,
                          chapterTitles: resolvedChapterTitles)
@@ -123,6 +132,10 @@ struct CustomDevotionFlowView: View {
     }
     .onDisappear {
       if hasLoaded, pendingContinuation == nil, !didFinish { persistProgress() }
+      if audio.isLoaded {
+        suspendedAudioTime = audio.currentTime
+        suspendedAudioWasPlaying = audio.isPlaying
+      }
       audio.stop()
     }
     .onChange(of: prayerLanguage.usesJaffaHailMaryWording) { _, _ in
@@ -142,13 +155,13 @@ struct CustomDevotionFlowView: View {
       if let suggestion = completionSuggestion {
         Button(String(localized: "multiDay.prayNext", defaultValue: "Pray \(suggestion.name)")) {
           completionSuggestion = nil
-          NavigationCoordinator.shared.pendingRoute = .custom(devotionId: suggestion.id)
-          dismiss()
+          finishSession()
+          windowNavigation?.openRoute(.custom(devotionId: suggestion.id))
         }
       }
-      Button(String(localized: "multiDay.notNow", defaultValue: "Not now"), role: .cancel) {
+      Button(String(localized: "multiDay.notNow", defaultValue: "Not Now"), role: .cancel) {
         completionSuggestion = nil
-        dismiss()
+        finishSession()
       }
     }
     .confirmationDialog(
@@ -159,17 +172,17 @@ struct CustomDevotionFlowView: View {
       titleVisibility: .visible
     ) {
       if let choice = missedDayChoice {
-        Button(String(localized: "multiDay.prayMissed", defaultValue: "Pray day \(choice.missed + 1)")) {
+        Button(String(localized: "multiDay.prayMissed", defaultValue: "Pray Day \(choice.missed + 1)")) {
           switchDay(to: choice.missed)
           missedDayChoice = nil
         }
-        Button(String(localized: "multiDay.prayToday", defaultValue: "Continue with day \(choice.next + 1)")) {
+        Button(String(localized: "multiDay.prayToday", defaultValue: "Continue with Day \(choice.next + 1)")) {
           switchDay(to: choice.next)
           missedDayChoice = nil
         }
-        Button(String(localized: "multiDay.startOver", defaultValue: "Start over"), role: .destructive) {
-          MultiDayRuns.startFresh(devotionId)
-          ReminderScheduler.refreshSeries(devotionId: devotionId)
+        Button(String(localized: "multiDay.startOver", defaultValue: "Start Over"), role: .destructive) {
+          MultiDayRuns.startFresh(seriesRunID)
+          refreshSeriesReminders()
           switchDay(to: 0)
           missedDayChoice = nil
         }
@@ -185,6 +198,7 @@ struct CustomDevotionFlowView: View {
       Button(String(localized: "prayerFlow.continue", defaultValue: "Continue")) {
         resume(progress)
       }
+      .keyboardShortcut(.defaultAction)
       Button(String(localized: "prayerFlow.restart", defaultValue: "Restart"), role: .destructive) {
         restart()
       }
@@ -192,7 +206,7 @@ struct CustomDevotionFlowView: View {
       Text(String(localized: "prayerFlow.continue.message",
                   defaultValue: "You have an unfinished prayer. Continue where you left off or begin again?"))
     }
-    .task { await load() }
+    .task { await sessionLoader.perform { await load() } }
   }
 
   @ViewBuilder
@@ -207,9 +221,12 @@ struct CustomDevotionFlowView: View {
         PrayerLanguageMenuContent(code: chosenLanguage,
                                  options: LanguageCatalog.availableOptions(for: languages)) { switchLanguage(to: $0) }
       } label: {
-        Image(systemName: "globe")
+        Label(String(localized: "prayerFlow.language", defaultValue: "Prayer Language"), systemImage: "globe")
       }
-      .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer language"))
+      #if !os(macOS)
+      .labelStyle(.iconOnly)
+      #endif
+      .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer Language"))
       .accessibilityIdentifier("languageMenu")
     }
     // Day picker — multi-day ("days"-type) devotions only: jump to any day; finishing a
@@ -230,8 +247,11 @@ struct CustomDevotionFlowView: View {
           }
         }
       } label: {
-        Image(systemName: "calendar")
+        Label(String(localized: "prayerFlow.day", defaultValue: "Day"), systemImage: "calendar")
       }
+      #if !os(macOS)
+      .labelStyle(.iconOnly)
+      #endif
       .accessibilityLabel(String(localized: "prayerFlow.day", defaultValue: "Day"))
       .accessibilityIdentifier("dayMenu")
     }
@@ -258,26 +278,47 @@ struct CustomDevotionFlowView: View {
           }
         }
       } label: {
-        Image(systemName: "text.book.closed")
+        Label(String(localized: "macLibrary.form", defaultValue: "Form"), systemImage: "text.book.closed")
       }
+      #if !os(macOS)
+      .labelStyle(.iconOnly)
+      #endif
+      .help(String(localized: "macLibrary.form", defaultValue: "Form"))
       .accessibilityIdentifier("variantMenu")
     }
+    #if !os(macOS)
     Button { toggleFavorite() } label: {
-      Image(systemName: isPinned ? "star.fill" : "star")
+      Label(isPinned ? "prayerFlow.removeFromFavorites" : "prayerFlow.addToFavorites",
+            systemImage: isPinned ? "star.fill" : "star")
     }
+    .labelStyle(.iconOnly)
     .accessibilityLabel(isPinned ? "prayerFlow.removeFromFavorites" : "prayerFlow.addToFavorites")
     .accessibilityIdentifier("pinDevotionButton")
+    #endif
   }
 
   private func load() async {
-    displayName = PrayerPackStore.info(for: devotionId)?.localizedDisplayName ?? devotionId
-
+    if hasLoaded {
+      // An ordinary reappearance resumes this live session without rereading its bookmark
+      // or replacing its selected language, variant, step, or recording position.
+      if !didFinish, let time = suspendedAudioTime, !audio.isLoaded {
+        let index = currentIndex
+        pickAudioTrack(allowStoredPosition: pendingContinuation == nil)
+        currentIndex = index
+        audio.seek(to: time)
+        if suspendedAudioWasPlaying { audio.playPause() }
+        suspendedAudioTime = nil
+      }
+      return
+    }
     let all = (try? await services.presetStore.all()) ?? []
+    let impliedPins = await impliedPinnedIds()
+    displayName = PrayerPackStore.info(for: devotionId)?.localizedDisplayName ?? devotionId
     let favorite = prayer ?? all.first { $0.kind == .custom && $0.customDevotionId == devotionId }
     matchingFavoriteId = initialLanguageCode == nil && initialVariantId == nil ? favorite?.id : nil
-    isPinned = FavoriteDevotions.contains(devotionId, defaultingTo: await impliedPinnedIds())
+    isPinned = FavoriteDevotions.contains(devotionId, defaultingTo: impliedPins)
     chosenLanguage = initialLanguageCode ?? favorite?.languageCode ?? LanguageCatalog.defaultSentinel
-    customOptions = favorite?.customOptions ?? [:]
+    customOptions = RosaryOptions.normalizedCustomOptions(favorite?.customOptions ?? [:], bundleId: devotionId)
     languageCode = PrayerPackStore.effectiveLanguage(for: devotionId, chosen: chosenLanguage)
 
     variantId = CustomDevotionLaunch.variantId(
@@ -289,7 +330,7 @@ struct CustomDevotionFlowView: View {
     if let definition = PrayerPackStore.definition(for: devotionId),
        let days = definition.days, days.count > 1,
        (definition.dayProgression ?? .series) == .series {
-      let run = MultiDayRuns.run(for: devotionId)
+      let run = MultiDayRuns.run(for: seriesRunID)
       switch run?.resumption(dayCount: days.count) ?? .start {
       case .start:
         dayIndex = 0
@@ -312,7 +353,12 @@ struct CustomDevotionFlowView: View {
     currentIndex = 0
     seasonColor = services.calendar.seasonColorToday()
 
-    if let progress = progressStore.progress(for: runKey) {
+    var continuation = progressStore.progress(for: runKey)
+    #if os(macOS)
+    continuation = PrayerCopyProgressIdentity.continuation(
+      continuation, savedLanguageCode: prayer == nil ? nil : chosenLanguage)
+    #endif
+    if let progress = continuation {
       let savedSteps = builtSteps(languageChoice: progress.languageCode)
       if (initialLanguageCode == nil || progress.languageCode == chosenLanguage), progress.canResume(
         stepCount: savedSteps.count,
@@ -349,7 +395,7 @@ struct CustomDevotionFlowView: View {
     }
     if let match {
       if audio.track?.id != match.id || !audio.isLoaded {
-        audio.load(bundleId: devotionId, track: match)
+        audio.load(bundleId: devotionId, track: match, positionNamespace: audioPositionNamespace)
         if audio.didRestorePosition && allowStoredPosition {
           // Resumed mid-recording: pull the page to the restored chapter instead of
           // yanking the recording back to the step-0 chapter.
@@ -428,7 +474,7 @@ struct CustomDevotionFlowView: View {
     Task {
       if var favorite = try? await services.presetStore.get(id: id) {
         favorite.languageCode = raw
-        try? await services.presetStore.save(favorite)
+        _ = try? await services.presetStore.updateIfPresent(favorite)
       }
     }
   }
@@ -447,7 +493,7 @@ struct CustomDevotionFlowView: View {
     Task {
       if var favorite = try? await services.presetStore.get(id: id) {
         favorite.variantId = variantId
-        try? await services.presetStore.save(favorite)
+        _ = try? await services.presetStore.updateIfPresent(favorite)
       }
     }
   }
@@ -504,7 +550,7 @@ struct CustomDevotionFlowView: View {
     Task {
       if var favorite = try? await services.presetStore.get(id: id) {
         favorite.dayIndex = value
-        try? await services.presetStore.save(favorite)
+        _ = try? await services.presetStore.updateIfPresent(favorite)
       }
     }
   }
@@ -520,14 +566,14 @@ struct CustomDevotionFlowView: View {
         if (definition.dayProgression ?? .series) == .series {
           // A series advances by calendar day, so record *which* day was prayed and let the
           // run decide what comes next — praying twice today must not skip tomorrow's day.
-          MultiDayRuns.recordPrayed(devotionId: devotionId, day: dayIndex)
+          MultiDayRuns.recordPrayed(devotionId: seriesRunID, day: dayIndex)
           // The remaining days keep their prompts; the finished ones lose theirs.
-          ReminderScheduler.refreshSeries(devotionId: devotionId)
+          refreshSeriesReminders()
 
           // The last day earns the bundle's parting suggestion — but only when it names a
           // devotion this device has, so a hand-written series can point at its author's other
           // work without leaving a dead end on everyone else's phone.
-          if MultiDayRuns.run(for: devotionId)?.isComplete(dayCount: days.count) == true,
+          if MultiDayRuns.run(for: seriesRunID)?.isComplete(dayCount: days.count) == true,
              let suggestion = MultiDayStatus.suggestedNext(after: devotionId) {
             persistDayIndex(min(dayIndex + 1, days.count - 1))
             completionSuggestion = suggestion
@@ -536,7 +582,7 @@ struct CustomDevotionFlowView: View {
         }
         persistDayIndex(min(dayIndex + 1, days.count - 1))
       }
-      dismiss()
+      finishSession()
       return
     }
     currentIndex += 1
@@ -552,7 +598,36 @@ struct CustomDevotionFlowView: View {
   }
 
   private var runKey: String {
-    PrayerRunKey.custom(devotionId, variantId: variantId, dayIndex: dayIndex)
+    PrayerRunKey.custom(seriesRunID, variantId: variantId, dayIndex: dayIndex)
+  }
+
+  private var seriesRunID: String {
+    #if os(macOS)
+    PrayerCopyProgressIdentity.devotionID(devotionId, prayerID: prayer?.id)
+    #else
+    devotionId
+    #endif
+  }
+
+  private var audioPositionNamespace: String? {
+    #if os(macOS)
+    prayer?.id.uuidString
+    #else
+    nil
+    #endif
+  }
+
+  private func refreshSeriesReminders() {
+    #if os(macOS)
+    ReminderScheduler.refreshSeries(devotionId: devotionId, runID: seriesRunID, prayer: prayer)
+    #else
+    ReminderScheduler.refreshSeries(devotionId: devotionId)
+    #endif
+  }
+
+  private func finishSession() {
+    if let finishPrayerSession { finishPrayerSession() }
+    else { dismiss() }
   }
 
   private var effectiveVariantId: String? {

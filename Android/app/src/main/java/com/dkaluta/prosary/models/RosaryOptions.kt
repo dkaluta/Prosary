@@ -15,8 +15,8 @@ data class RosaryOptions(
     var includeApostlesCreed: Boolean = true,
     /** The opening Our Father + 3 Hail Marys (for faith, hope, and charity) + Glory Be. */
     var includeOpeningPrayers: Boolean = true,
-    /** An optional Fatima Prayer immediately after those three opening Hail Marys, before their
-     * Glory Be and distinct from the usual Fatima Prayer after each mystery. */
+    /** An optional Fatima Prayer after the opening Glory Be, following the three opening Hail
+     * Marys for faith, hope, and charity. Independent of the Fatima Prayer after each decade. */
     var includeOpeningFatimaPrayer: Boolean = false,
     /** The Fatima Prayer ("O my Jesus...") recited after the Glory Be of each decade. */
     var includeFatimaPrayer: Boolean = true,
@@ -25,7 +25,8 @@ data class RosaryOptions(
     /** Three closing intentions (for the Pope, the local bishop, and the faithful departed),
      * each an Our Father + Hail Mary + Glory Be, closed by the "Requiescant in pace" versicle. */
     var includeClosingIntentions: Boolean = false,
-    /** Null preserves the historical all-intentions choice in saved prayers. */
+    /** Retained for saved prayers from the separate-controls version; null inherits the legacy
+     * all-intentions choice, and any enabled group now enables the complete closing sequence. */
     var includeClosingPopeIntention: Boolean? = null,
     var includeClosingBishopIntention: Boolean? = null,
     var includeClosingDepartedIntention: Boolean? = null,
@@ -40,9 +41,42 @@ data class RosaryOptions(
     /** Which artwork set illustrates the mysteries during a session — see [MysteryImageStyle]. */
     var mysteryImageStyle: MysteryImageStyle = MysteryImageStyle.Classic,
 ) {
-    val effectiveClosingPopeIntention: Boolean get() = includeClosingPopeIntention ?: includeClosingIntentions
-    val effectiveClosingBishopIntention: Boolean get() = includeClosingBishopIntention ?: includeClosingIntentions
-    val effectiveClosingDepartedIntention: Boolean get() = includeClosingDepartedIntention ?: includeClosingIntentions
+    companion object {
+        val legacyClosingIntentionKeys: Set<String> = setOf(
+            "closingPopeIntention", "closingBishopIntention", "closingDepartedIntention",
+        )
+
+        /** Generic saved Rosaries used string options for the temporary separate controls.
+         * Resolve them before obsolete keys are filtered, then remove them so an explicit
+         * combined choice in the editor can turn the complete group off. Other packs retain
+         * their own option names and semantics. */
+        fun normalizedCustomOptions(bundleId: String, options: Map<String, String>): Map<String, String> {
+            if (bundleId != "rosary" || legacyClosingIntentionKeys.none { it in options }) return options
+            val combined = options["closingIntentions"]?.toBooleanStrictOrNull() ?: false
+            val enabled = legacyClosingIntentionKeys.any { key ->
+                options[key]?.toBooleanStrictOrNull() ?: combined
+            }
+            return (options - legacyClosingIntentionKeys) + ("closingIntentions" to enabled.toString())
+        }
+    }
+
+    val effectiveClosingIntentions: Boolean
+        get() = (includeClosingPopeIntention ?: includeClosingIntentions) ||
+            (includeClosingBishopIntention ?: includeClosingIntentions) ||
+            (includeClosingDepartedIntention ?: includeClosingIntentions)
+
+    /** Compatibility aliases for older callers and bundle options; the sequence is one group. */
+    val effectiveClosingPopeIntention: Boolean get() = effectiveClosingIntentions
+    val effectiveClosingBishopIntention: Boolean get() = effectiveClosingIntentions
+    val effectiveClosingDepartedIntention: Boolean get() = effectiveClosingIntentions
+
+    /** An explicit combined choice replaces older overrides, including when switching off. */
+    fun withClosingIntentions(enabled: Boolean): RosaryOptions = copy(
+        includeClosingIntentions = enabled,
+        includeClosingPopeIntention = null,
+        includeClosingBishopIntention = null,
+        includeClosingDepartedIntention = null,
+    )
 
     fun mysterySelectionSummary(context: Context): String = when (mysterySelectionMode) {
         MysterySelectionMode.Specific ->

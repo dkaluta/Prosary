@@ -9,16 +9,26 @@ import Foundation
 struct SwiftDataPresetStore: PresetStore {
   private let context: ModelContext
 
-  init(context: ModelContext) {
+  init(context: ModelContext, defaults: UserDefaults = .standard) {
     self.context = context
-    seedIfEmpty()
+    // Mac users choose their starting prayers from the gallery. Existing saved rows
+    // remain intact; only a new, empty store skips the phone's starter preset.
+    #if !os(macOS)
+    initializeStarterPrayerIfNeeded(defaults: defaults)
+    #endif
   }
 
-  private func seedIfEmpty() {
-    guard let count = try? context.fetchCount(FetchDescriptor<PresetEntry>()),
-          count == 0 else { return }
-    context.insert(PresetEntry(prayer: Self.seedPrayer))
-    try? context.save()
+  func initializeStarterPrayerIfNeeded(defaults: UserDefaults) {
+    let key = "hasInitializedPrayerPresets"
+    guard !defaults.bool(forKey: key),
+          let count = try? context.fetchCount(FetchDescriptor<PresetEntry>()) else { return }
+    if count == 0 {
+      context.insert(PresetEntry(prayer: Self.seedPrayer))
+      do { try context.save() }
+      catch { context.rollback(); return }
+    }
+    // An intentionally empty library must stay empty on subsequent launches.
+    defaults.set(true, forKey: key)
   }
 
   private static var seedPrayer: Prayer {
@@ -78,7 +88,29 @@ struct SwiftDataPresetStore: PresetStore {
     } else {
       context.insert(PresetEntry(prayer: prayer))
     }
-    try context.save()
+    do { try context.save() }
+    catch { context.rollback(); throw error }
+    NotificationCenter.default.post(name: .prayerLibraryDidChange, object: nil)
+  }
+
+  @discardableResult
+  func updateIfPresent(_ prayer: Prayer) async throws -> Bool {
+    // This method never suspends between lookup and save, and has no insert path.
+    let all = try context.fetch(FetchDescriptor<PresetEntry>())
+    guard let existing = all.first(where: { $0.id == prayer.id }) else { return false }
+    if prayer.isDefault {
+      for entry in all {
+        let resolved = entry.resolvedKind
+        if resolved.kind == prayer.kind && resolved.customDevotionId == prayer.customDevotionId {
+          entry.isDefault = false
+        }
+      }
+    }
+    existing.update(from: prayer)
+    do { try context.save() }
+    catch { context.rollback(); throw error }
+    NotificationCenter.default.post(name: .prayerLibraryDidChange, object: nil)
+    return true
   }
 
   func delete(_ prayer: Prayer) async throws {
@@ -92,6 +124,8 @@ struct SwiftDataPresetStore: PresetStore {
         $0.id != prayer.id && $0.resolvedKind == identity
       }?.isDefault = true
     }
-    try context.save()
+    do { try context.save() }
+    catch { context.rollback(); throw error }
+    NotificationCenter.default.post(name: .prayerLibraryDidChange, object: nil)
   }
 }

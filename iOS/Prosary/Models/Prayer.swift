@@ -52,12 +52,25 @@ struct Prayer: Identifiable, Hashable, Codable {
 
   var isNotDefault: Bool { !isDefault }
   var resolvedLanguageCode: String { LanguageCatalog.resolve(languageCode).code }
-  var languageNativeName: String { LanguageCatalog.resolve(languageCode).nativeName }
+  /// The session language can differ from the preference when a downloaded prayer only
+  /// contains other languages. Resolve exactly as the engine does, without changing storage.
+  var effectiveLanguageCode: String {
+    if kind == .custom, let bundleID = customDevotionId {
+      return PrayerPackStore.effectiveLanguage(for: bundleID, chosen: languageCode)
+    }
+    return resolvedLanguageCode
+  }
+  var languageNativeName: String {
+    let effective = effectiveLanguageCode
+    return LanguageCatalog.all.first(where: { $0.code == effective })?.nativeName
+      ?? LanguageCatalog.contentLanguageName(effective)
+  }
 
-  /// Display string for list rows — shows "Default (Latina)" for sentinel, plain name otherwise.
+  /// List rows name the language the prayer opens in. The sentinel still follows the app
+  /// setting; for a Hebrew-only pack, a Latin default therefore displays "Default (עברית)".
   var languageDisplayName: String {
     languageCode == LanguageCatalog.defaultSentinel
-      ? String(localized: "prayer.language.default", defaultValue: "Default (\(LanguageCatalog.resolve(languageCode).nativeName))")
-      : LanguageCatalog.resolve(languageCode).nativeName
+      ? String(localized: "prayer.language.default", defaultValue: "Default (\(languageNativeName))")
+      : languageNativeName
   }
 }

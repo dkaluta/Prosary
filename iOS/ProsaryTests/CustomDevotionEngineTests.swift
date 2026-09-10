@@ -120,6 +120,28 @@ final class CustomDevotionEngineTests: XCTestCase {
                    "ܫܽܘܒܚܳܐ ܠܰܐܒܳܐ ✠ ܘܠܰܒܪܳܐ ܘܰܠܪܽܘܚܳܐ ܩܰܕܝܫܳܐ\nܡܶܢ ܥܳܠܰܡ ܘܰܥܕܰܡܳܐ ܠܥܳܠܰܡ ܥܳܠܡܺܝܢ. ܐܰܡܺܝܢ.")
   }
 
+  func testMarianAntiphonsAreDistinctStandalonePrayersInEveryPrayerLanguage() throws {
+    let ids = ["salveRegina", "almaRedemptorisMater", "aveReginaCaelorum", "reginaCaeli"]
+    for id in ids {
+      let prayer = try XCTUnwrap(BasicPrayerCatalog.prayer(id: id))
+      for language in LanguageCatalog.all {
+        let step = BasicPrayerCatalog.step(for: prayer, languageCode: language.code)
+        XCTAssertFalse(step.body.isEmpty, "\(id), \(language.code)")
+        XCTAssertNotEqual(step.body, id)
+        XCTAssertNotEqual(step.title, "\(id)Title")
+        XCTAssertEqual(step.body, PrayerPackStore.resolveBodyText(
+          bundleId: "rosary", languageCode: language.code, key: id))
+        XCTAssertEqual(step.transliteratedBody, PrayerPackStore.transliteration(
+          bundleId: "rosary", languageCode: language.code, key: id))
+        XCTAssertEqual(step.imageOverrideKey, "madonna_and_child")
+      }
+    }
+    let titles = try ids.map { id in
+      BasicPrayerCatalog.step(for: try XCTUnwrap(BasicPrayerCatalog.prayer(id: id)), languageCode: "en").title
+    }
+    XCTAssertEqual(Set(titles).count, 4)
+  }
+
   /// The basic-prayers list resolves through the same chains the flows use, so it follows the
   /// prayer language rites included — the whole point of surfacing it: in Erez's rite the Holy
   /// God is קדישת over his own acclamation, and the Hail Mary reads his community's text.
@@ -131,7 +153,8 @@ final class CustomDevotionEngineTests: XCTestCase {
     }
 
     XCTAssertEqual(BasicPrayerCatalog.all.map(\.id),
-                   ["signOfCross", "ourFather", "hailMary", "gloryBe", "creed", "holyGod"])
+                   ["signOfCross", "ourFather", "hailMary", "gloryBe", "creed", "holyGod",
+                    "salveRegina", "almaRedemptorisMater", "aveReginaCaelorum", "reginaCaeli"])
 
     UserDefaults.standard.set("en", forKey: "defaultLanguageCode")
     let selected = BasicPrayerCatalog.step(

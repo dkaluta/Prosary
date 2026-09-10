@@ -48,17 +48,18 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   / all 20 / a single mystery), `specificMysteryGroup`, `specificMysteryOrder` (1-based, used only
   for the single-mystery mode), `presenterMode` (collapses each decade's Hail Marys + Glory Be
   onto one combined step — see "Engines" below), toggles for the Apostles' Creed, opening Our
-  Father + 3 Hail Marys, an optional Fatima Prayer immediately after those three opening Hail
-  Marys, the Fatima Prayer after each decade, eternal-rest placement, the closing Marian antiphon,
-  three independent closing intentions (right after the antiphon — for the Pope, the local
+  Father + 3 Hail Marys + Glory Be, an optional Fatima Prayer immediately after that opening
+  Glory Be, the Fatima Prayer after each decade, eternal-rest placement, the closing Marian antiphon,
+  one combined closing-intentions choice (right after the antiphon — for the Pope, the local
   ordinary, and the faithful departed). Each intention opens on its own step, followed by Our
   Father/Hail Mary/Glory Be; the departed group ends with the rest-in-peace versicle/response.
   The groups contain 4/4/5 steps and never repeat the intention as a subtitle. Nullable raw
   Boolean fields `includeClosingPopeIntention`, `includeClosingBishopIntention`, and
-  `includeClosingDepartedIntention` resolve as `override ?? includeClosingIntentions`, preserving
-  old saved configurations. Engines map these to bundle options `closingPopeIntention`,
-  `closingBishopIntention`, and `closingDepartedIntention`; the legacy all-intentions field has
-  no editor control. Other options include the St. Michael prayer and the final Sign of
+  `includeClosingDepartedIntention` remain for saved-data compatibility. The effective combined
+  value is OR of each `override ?? includeClosingIntentions`: an old partial selection enables
+  the whole group. Editing writes `includeClosingIntentions` and clears all three overrides.
+  Engines map the combined value to bundle option `closingIntentions` and all three old group
+  keys for compatibility with older packs. Other options include the St. Michael prayer and the final Sign of
   the Cross, `aramaicSignOfCrossForm` (`formA` / `formB`), and `mysteryImageStyle` (classic paintings
   vs. the `eastern_*` icon set; the engine
   stamps `RosaryStep.imageVariantKey` on every Mystery-carrying step so display resolution —
@@ -170,7 +171,7 @@ Word/Son substitution. If the app default is Aramaic, the app-wide `aramaicSignO
 setting is the single authority and the saved per-Rosary value is deliberately ignored.
 
 - **Rosary** — the richest: opening (Sign of the Cross, optional Creed, optional opening Our
-  Father/3 Hail Marys for Faith/Hope/Charity, then an independently optional Fatima Prayer), one loop per decade across every resolved
+  Father/3 Hail Marys for Faith/Hope/Charity/Glory Be, then an independently optional Fatima Prayer), one loop per decade across every resolved
   `MysteryGroup` (mystery announcement → Our Father → 10 Hail Marys → Glory Be → optional Fatima
   Prayer → optional per-decade eternal rest), closing (Marian antiphon → optional closing intentions: three intercessions each unfolding
   into Our Father/Hail Mary/Glory Be and closed by "May they rest in peace" → optional St.
@@ -250,19 +251,181 @@ Back/Next bead controls; the unavailable direction is disabled at the first/last
 
 ## Navigation shell
 
-The apps are tabbed (2026-08): **Pray** (the former Home — Rosary card, devotion cards, Jesus
-Prayer, "Today"), **Browse** (the prayers.prosary.app catalog), **Categories** (devotions
-grouped by manifest `tags`, via a shared per-platform `DevotionDirectory` so nothing
-devotion-specific is hardcoded), and **Search** (local + community in one query). Bottom tab
-bar on phones, sidebar on desktop: iOS/macOS via `sidebarAdaptable` where available (targets
-are iOS 17/macOS 14, so older OSes keep the classic tab control), Android switches
-NavigationBar → NavigationRail at 840 dp, Windows wraps the root frame in a NavigationView
-whose section switches reset the back stack. Programmatic pushes are single-top on every port:
+The phone/tablet apps use four sections: **Pray** (the former Home — Rosary card, devotion
+cards, Jesus Prayer, "Today"), **Browse** (the prayers.prosary.app catalog), **Readings**
+(date-based appointed citations and expandable Bible passages), and **Search** (local +
+community with category browsing). Readings replaces the former Categories tab. Search
+derives category choices from the local and community manifests' `tags`, including arbitrary
+downloaded tags, with All Categories and Other for untagged prayers. A selected category and
+the text query both constrain local and community results; an empty query browses the selected
+category. Local discovery continues to work offline. Bottom tab
+bar on phones, sidebar or rail on larger devices: iOS uses `sidebarAdaptable` where
+available (older iOS keeps the classic tab control). Android switches
+NavigationBar → NavigationRail at 840 dp. Programmatic pushes are single-top on every port:
 a rapid repeated click/tap of the same destination must not add an invisible duplicate that
-requires an extra Back press. Pray/Categories/Search re-derive their devotion
+requires an extra Back press. Pray/Search re-derive their devotion
 lists on every appearance, so a bundle installed from Browse/Search/import (or removed in
 Settings) shows up
 everywhere without a relaunch — the bug that motivated the restructure.
+
+Readings has a date picker above complete citations, with previous/next day and Today actions.
+It shares the existing calendar, Pascha and optional Torah settings with Today, while its
+browsed date remains independent of prayer sessions and widget activation. Missing dates show
+an explicit empty state. Each appointment can expand to the selected Bible edition's text;
+the edition picker and passage loading follow the offline reading-text contract below.
+
+Resizing keeps the active destination and its live state. Android uses one `AppNavHost` at a
+stable composition location while its bottom bar/rail changes. Navigation-entry ViewModels own
+live Rosary, generic-devotion and Jesus Prayer sessions and unsaved editor drafts; a replacement
+Activity reattaches to that entry instead of loading a new run. A genuine exit and reopening still
+uses the existing Continue/Restart bookmark policy. Audio belongs to the prayer entry, survives
+configuration recreation, pauses on normal backgrounding, and releases when the entry is removed.
+Do not bypass Activity recreation in the manifest to mask missing state restoration.
+
+### Native Windows experience
+
+Windows has a Library, Today, Gallery, Basic Prayers, Search and Community sidebar, with Settings
+and About in its footer. Saved prayers remain in the existing SQLite store. Gallery Add
+creates a saved copy; Library offers search, list/grid selection, Open, Prayer Settings,
+Duplicate, Rename and confirmed deletion. Ordinary Open activates the exact saved UUID's
+separate prayer window. Each frame has its own `WindowNavigation`; finishing or closing a
+prayer leaves the library and sibling sessions intact. Saved custom series and bookmarks
+use `desktop:<Prayer UUID>:<bundle ID>` so copies stay independent.
+
+Each native window contains a WinUI MenuBar for File, View, Prayer and Help. Commands and
+keyboard shortcuts retain that window as owner; page CommandBars expose frequent actions.
+Today has its own date picker above complete reading citations with no shorthand toggle,
+an edition picker, and separate expansions for daily and Torah Bible passages. Search is
+also available from View → Search (Ctrl+F), which activates the library and focuses its query.
+See [the Windows experience](WINDOWS-EXPERIENCE.markdown) and
+[schema/windows-library.json](schema/windows-library.json) for behavior and verification.
+
+### Native Mac experience
+
+The Mac has a dedicated library and separate prayer windows, rather than the four-section
+phone shell. A fresh Library is empty until the user adds a Gallery prayer;
+existing saved configurations remain visible. Downloads and imports enter the Gallery without
+adding library membership or creating saved configurations. `MacPrayerLibraryModel`
+keeps bundled candidates in `galleryItems` while `items` contains chosen templates and saved
+copies. The Gallery uses selectable artwork/symbol previews, search and authored category
+filters. Built-in Gallery covers use the dedicated `gallery_<devotionID>` image keys from
+`Shared/Images/`, declared in each devotion's manifest and packaged with the existing artwork.
+They retain the sourced image proportions rather than becoming square prayer-step crops.
+The counter-based Jesus Prayer has no own pack, so `gallery_jesusPrayer` is hosted in the
+`trisagion` pack. The full cover-to-pack mapping is in `schema/mac-library.json`; image provenance
+and rights remain in `Shared/Images/CREDITS.markdown`. These covers affect Gallery previews only:
+prayer-step artwork and text remain unchanged. Regenerated packs are copied byte-for-byte into
+all three native ports, without adding loose native image resources.
+`MacPrayerGalleryCollection` uses a native `NSCollectionView` for Finder-style multiple selection,
+including Command-click, Shift extension, selection rectangles and keyboard navigation. The
+SwiftUI gallery retains its fixed header, native scrolling collection and bottom action row.
+Selection uses stable item IDs and drops hidden IDs when search or category filters change.
+The bottom-trailing Add to Library action adds only missing members of the selection in one
+local membership write and one model update/notification; an unchanged batch does nothing.
+When every selected prayer is included, Show in Library selects the first in visible gallery
+order. Return acts on the selection, while double-click acts only on the clicked prayer.
+Download removal remains a single-item action. A localized caption reports multiple selection.
+Merely browsing, selecting or adding Gallery entries does not create presets or open prayer
+windows. The first Open or Prayer Settings action materializes a
+template through the existing preset store and gives it a stable UUID. Its name, language,
+Rosary/Jesus Prayer settings or generic form/options, and reminders then belong to that copy.
+Prayer Settings edits the copy without altering its source pack. Icon/list views, text search,
+and named-tag filters organize the library; Today, the Gallery and the community catalog remain
+accessible from the sidebar.
+
+Saved-prayer language labels on every port use the effective session language. A downloaded
+prayer that only contains Hebrew displays Hebrew even when its stored preference follows a
+Latin app default. `Prayer.effectiveLanguageCode` reuses the engine's bundle-aware fallback;
+`resolvedLanguageCode` still represents the requested/app-default choice. The Mac library shows
+only the native language name; other saved-prayer lists retain the localized Default (...) wrapper
+for the sentinel. Settings continue to distinguish inherited preferences, and labels never rewrite
+saved choices. The Mac library refreshes labels when the default language or fallback ordering changes.
+
+Duplicate retains the source configuration and named tags, chooses an unused localized copy
+name, and assigns a new UUID. It clears the default designation and multi-day progress; copied
+reminder definitions get fresh IDs and start disabled. The copy has independent bookmarks.
+Ordinary Open activates an existing window for that saved copy. Restored distinct session
+requests retain their separate `PrayerWindowRequest` identities and bookmark namespaces.
+Basic Prayers uses a direct activation callback from the library, with a stable namespaced
+window UUID per basic prayer. A click, Return, or repeated ordinary opening targets one window.
+Navigation-stack contexts retain a real path.
+Prayer windows contain the selected prayer, not the library sidebar. Native frame autosave
+belongs to the stable copy identity, with numbered slots for simultaneous windows; display
+changes recover a window whose title bar can no longer be reached.
+
+File offers Show Library (Command-N) and Import (Command-O). Prayer
+commands expose Duplicate (Command-D) and Prayer Settings (Command-I). Standard Edit, View,
+Window, Settings and Help commands remain available. Focused scene actions target only the
+current window. Closing the last window keeps the menu bar available; closing a window never
+quits another minimized session.
+The Dock menu and File → Recently Prayed retain up to eight playable routes locally, refresh
+their titles and remove unavailable entries. Selecting a recent prayer opens that prayer.
+
+Mac Settings uses four native panes: Prayer Language, Praying, Typography, and Downloads.
+Today is a separate Library sidebar reference view, with its own date navigator, full reading
+and Torah citations, expandable Bible passages, an edition picker, and options popover for
+calendar/Pascha and row visibility; it is not a Settings
+pane. Date browsing leaves prayer sessions unchanged, and the shared Today data/language
+contract continues to apply. Editors put Cancel/Escape and Save/Return in bottom-trailing
+footers; informational errors use OK. Library icon/list views support selection and Return.
+Prayer text can be selected and copied.
+English menu/action labels use title case; commands requiring more input carry ellipses.
+See [the Mac experience review](MAC-EXPERIENCE.markdown) for conventions, sources and verification.
+
+Library and prayer toolbars have stable SwiftUI identities `Prosary.Library.Toolbar` and
+`Prosary.Prayer.Toolbar`, with stable per-action item IDs. `MacToolbarCustomization` enables
+AppKit's customization palette and configuration autosave without replacing SwiftUI's toolbar
+delegate or resetting a user's display mode. View → Toolbar Appearance offers Icon and Text,
+Icon Only, and Text Only; Customize Toolbar exposes the native palette. People can rearrange
+or hide actions, and add the Library's optional Today/Gallery shortcuts. Those choices survive
+window recreation. Menu and keyboard routes remain available when toolbar actions are hidden;
+toolbar commands target the current window and disable while its editor sheet is attached.
+
+Mac-only library organization is stored as version 2 JSON Data under the local UserDefaults
+key `macLibraryTags`: `tags` holds stable IDs, independent names and optional `colorID` values;
+`assignments` maps item identities to arrays of tag IDs. The seven initial tags retain IDs
+`red`, `orange`, `yellow`, `green`, `blue`, `purple`, and `gray`; new named tags receive UUIDs.
+Names can be changed independently of color, including no color. Creating or typing an existing
+name reuses it case-insensitively; renaming to another tag's name fails without merging their
+assignments. Typed names replace one item's tag set in one saved state; deleting a tag removes
+all of its assignments. If migrated tags share a name, token edits retain that item's currently
+assigned matching IDs; a newly typed name without an assigned match resolves in stored order.
+Legacy `names`/`assignments` migrate with all IDs and display names
+preserved, and deleted defaults never reappear. Saved items use their prayer UUID string;
+templates use `devotion:<devotionID>`. First-use materialization moves template assignments to
+the saved UUID, and duplication copies them to the new UUID. These tags do not change bundle
+categories or introduce fields into `Prayer`, and do not join the preset store's iCloud sync.
+The local `macLibraryDevotions` string array records explicit Gallery additions. A fresh
+Library is empty when there are no saved prayers or chosen templates; bundled devotions
+remain available in the Gallery. Adding Gallery selections persists only local membership until
+first Open or Prayer Settings materializes it. Existing saved prayers always remain visible,
+even when a source pack is absent. Importing only makes a prayer available in the Gallery.
+Removing a chosen template or deleting the last saved copy clears membership so an unwanted
+template cannot reappear. Deleting a saved copy cancels its reminders; removing the last copy
+of a downloaded prayer also removes its device-local pack. Built-in sources stay in the Gallery.
+The exact local shape is documented in
+[`schema/mac-library.json`](schema/mac-library.json).
+
+Local Mac playback preferences use `macPrayerPlaybackSettings`, JSON Data mapping saved Prayer
+UUID strings to nonnegative auto-advance seconds (zero means off). An unset copy uses the app's
+`autoAdvanceSeconds` default; its first prayer-window opening saves that effective pace. Later
+changes are per copy, and Duplicate copies the source's effective pace. `macPrayerPresentation`
+similarly maps stable copy UUIDs to `{isPresenting, textSize}`: Presenter Mode defaults off and
+text defaults to 44 points, constrained to 24–96. Duplicate copies these preferences too. Neither
+local map extends `Prayer` or joins preset sync; progress and geometry remain separate.
+
+### Apple saved-prayer shortcuts
+
+`OpenPrayerIntent` is an App Intent exposed by `ProsaryShortcuts` alongside Pray the Rosary
+and Today's Mysteries. Its `SavedPrayerEntity` carries the exact saved `Prayer.ID` UUID and
+current display name. `SavedPrayerEntityQuery` reads the authoritative preset store and
+offers every saved prayer kind, including generic bundles, in name order. Performing the
+intent opens the app, resolves that UUID again, and sends `.prayer(id:)` through
+`NavigationCoordinator`. The normal route uses the saved settings and existing continuation
+choice; the shortcut does not create a copy or silently restart a run. A deleted selection
+raises `SavedPrayerUnavailableError` with a localized instruction to choose another prayer,
+instead of opening another saved copy or its default. On Mac, the normal saved UUID route
+retains the established prayer-window identity.
 
 ## Prayer flow chrome
 
@@ -277,9 +440,30 @@ of the prayer body: in Hebrew/Arabic UI, Next is on the left and Back on the rig
 section-jump icons. Actions remain semantically previous/next. Apple retains native glass where
 supported, with its existing older-system and visionOS styling.
 
+The wide prayer layout budgets for artwork, the session's bead columns, spacing and a readable
+text column before switching from the narrow layout. Reading position survives column changes;
+Android keeps one keyed paragraph list in a retained navigation-entry state holder. Its countdown
+also retains its deadline across Activity replacement, while manual navigation, interval changes,
+audio playback and session prompts reset or suspend it as appropriate. Editor draft retention is
+for the current entry and does not turn Cancel into Save.
+
+See `FOLDABLE-READINESS.markdown` for fold/resize validation and the Xcode 27.1 Duo follow-up.
+
+On Mac, every flow can switch to `MacPrayerPresenterView` through the focused View menu or the
+prayer toolbar. It renders the same current step and selected original/transliterated body,
+including source-script direction and the selected prayer/Scripture typefaces. Text is explicitly
+sized, wraps at its selected size, and scrolls with continuation cues instead of shrinking long
+prayers to fit. Native controls provide Back, Next/counter action, Finish, text size, mode exit,
+and full screen. Left/Right navigate steps according to interface direction; Return invokes the
+primary action, Escape exits presentation, and Page Up/Page Down and Space retain reading-scroll
+behavior. Keyboard handling yields to sheets and editable/selected text. The existing Rosary
+`presenterMode` content option is labelled Combine Repeated Prayers on Mac: it still controls
+decade grouping independently of this universal visual mode.
+
 - **Auto-advance** (all flows) — hands-free praying, from tester feedback: Off / every 3 / 5 /
-  10 / 15 seconds, one app-wide setting (`autoAdvanceSeconds` in UserDefaults / SharedPreferences /
-  LocalSettings — the `defaultLanguageCode` convention). The countdown restarts on every step
+  10 / 15 seconds, one app-wide default (`autoAdvanceSeconds` in UserDefaults / SharedPreferences /
+  LocalSettings — the `defaultLanguageCode` convention). Named Mac copies remember their own
+  pace as described above; other ports retain the app-wide setting. The countdown restarts on every step
   change, so a manual Back/Next resets it, and it never fires on a flow's last step —
   auto-"Finish" would dismiss the session mid-prayer. The Jesus Prayer's bounded sessions stop
   on their last repetition the same way (Windows `IPrayerStepFlowViewModel.IsLastStep`); an
@@ -308,10 +492,25 @@ bookmarks are resumable only on that same local date, while generic devotions an
 remain resumable until completion or an explicit restart. Invalid/out-of-range bookmarks and
 bookmarks for a changed configuration are discarded. Advancing, going back, jumping mysteries,
 or changing language updates the bookmark; Finish clears it. Rosary signatures retain their
-legacy fields and append `|closing-v2:1,0,1` (Pope/bishop/departed, comma-separated effective
-Boolean flags) when any closing group is enabled or any effective flag differs from the legacy
-all-intentions value. This rejects positions shifted by the new intention introductions while
-keeping ordinary all-disabled run signatures unchanged.
+legacy fields with the effective combined closing choice and append `|closing-v2:1,1,1` when
+enabled. Whole-group bookmarks remain valid; former partial-group bookmarks reset because
+their sequences now include all three intentions. When opening prayers and opening Fatima are
+both enabled, append `|opening-fatima-v2` afterward: moving Fatima after Glory Be invalidates
+old positions in that sequence. Other opening configurations keep their existing signatures.
+
+Generic saved Rosaries (`kind == custom`, `customDevotionId == rosary`) normalize the former
+three closing option keys before engine filtering, editing, and bookmark construction. The
+normalizer removes those keys and writes the effective combined `closingIntentions` value;
+older installed Rosary option lists also collapse to one editor toggle. The engine still
+provides combined values to their old per-group conditions. Custom Rosary signatures append
+the same closing and opening version markers when enabled; other bundle IDs are untouched.
+
+Mac bookmarks additionally prefix the run key with a scene-restored window identity. Opening
+the same prayer in another window therefore cannot overwrite its sibling's position, and a
+restored window finds its own checkpoint. Other platforms retain their existing run keys.
+The shared prayer-only checkpoint remains the latest saved continuation for a newly opened
+window or an upgrade from the earlier app. A window claims it once, then uses its independent
+checkpoint. Clearing an older window does not erase a newer shared continuation.
 
 At Rosary completion, **Pray the Litany** and **Finish** are explicit alternatives. Choosing the
 Litany opens the generic `litanyOfLoreto` flow with the resolved Rosary prayer language and
@@ -340,6 +539,12 @@ Windows: `Persistence/IPresetStore.cs` + `SqlitePresetStore.cs`) with the same c
   other's default, and never a global one.
 - `delete(prayer)` / `DeleteAsync(prayer)` — if the deleted favorite was default and others of the
   same (kind, customDevotionId) remain, one is promoted to default.
+- Existing-record autosaves use conditional updates, never insert-or-update. Apple and Android
+  expose `updateIfPresent`; SwiftData checks and updates without suspension, and Room uses an
+  update-only transaction. Windows uses the corresponding existing-row update path. If a copy
+  was deleted, stale flow callbacks and Make Default actions cannot recreate it or change a
+  surviving copy's default status;
+  settings editors report that deletion instead of claiming a successful save.
 
 iOS saved configurations sync through SwiftData + CloudKit (`ModelConfiguration(cloudKitDatabase:
 .automatic)` against `iCloud.com.dkaluta.prosary`, falling back to a local-only store when
@@ -350,6 +555,35 @@ launch): the `aps-environment` push entitlement (+ its `com.apple.developer.` ma
 push), and the CloudKit schema deployed to the **Production** environment in the CloudKit
 Console before a TestFlight/App Store build ships (debug builds auto-create it in Development
 only — this last step is a console action, not code).
+
+On Mac, `MacPrayerStoreLocation.prepare()` chooses
+`Application Support/com.dkaluta.prosary/PrayerLibrary/Prosary.store` inside the current
+process's application-support location. Both CloudKit and local-only configurations use that
+explicit URL. A signed sandboxed app and an unsigned development app resolve separate roots;
+the bootstrap never reaches into another container to combine them. It does not keep using the
+shared, implicit `Application Support/default.store` filename.
+
+When the named store is absent, the bootstrap recognizes a legacy store through read-only Core
+Data model metadata identifying exactly `PresetEntry`, SQLite integrity, and the preset table
+and identity columns. Core Data's store-copy API snapshots the database with its WAL and support
+files into a temporary sibling directory. The copy is validated before a single directory rename
+adopts it; the original is retained for recovery. A valid named store takes precedence. Foreign,
+damaged, orphaned, or partially copied stores are errors, not permission to reset data or start
+an empty replacement. A metadata record naming `PresetEntry` without its `ZPRESETENTRY` table
+is explicitly rejected. If bootstrap or container initialization fails, `PrayerStoreStartupGuard`
+replaces library/prayer content with a failure view. Its in-memory container hosts that view only;
+`UnavailablePresetStore` throws from every read and write operation. Reopening retries startup.
+Recent-prayer lookup failures preserve history; only a successful lookup showing a missing copy
+prunes it.
+
+Apple test isolation is chosen before `AppServices` and cloud preferences initialize.
+`ProsaryRuntimeEnvironment` recognizes explicit test flags, the XCTest host environment, and
+the scheme's test-mode flag. Hosted tests use an in-memory container with CloudKit disabled and
+a disposable defaults suite. `CloudSyncedList` routes every test read/write/reset to that local
+suite without acquiring the ubiquitous key-value store. The legacy `-resetStore` flag now selects
+isolation; it cannot delete the person's presets or cloud preferences. Tests of on-disk stores
+must explicitly create disposable temporary directories and must not depend on the user's Mac
+application-support directory.
 
 The per-devotion (not global) default/delete scoping is the one behavioral detail worth calling
 out explicitly: it's easy to accidentally implement an unscoped version if a platform's store
@@ -365,15 +599,22 @@ per platform as described under `PrayerKind` above (iOS: `PresetEntry.resolvedKi
 The former Favorites screen is gone. **Pray is a pinned list of devotions**, one row per devotion,
 not a flat list of every saved `Prayer`. Pinning (`FavoriteDevotions`) and ordering (`HomeOrder`)
 are persisted separately from `PresetStore`, so removing a devotion from Pray never deletes its
-saved configuration; Categories and Search remain the discovery surfaces, and the Pray toolbar's
+saved configuration; Search and its category filters remain the discovery surface, and the Pray toolbar's
 add menu can restore an unpinned devotion. A devotion with an existing saved row is implied-pinned
 on first migration so the navigation change does not hide anyone's prayers.
 
-Individual **Basic Prayers** can also be pinned. The historical `favoriteBasicPrayerIds` storage
+The **Basic Prayers** directory contains Sign of the Cross, Our Father, Hail Mary, Glory Be,
+the Creed, Holy God, and the four Marian antiphons: Salve Regina, Alma Redemptoris Mater,
+Ave Regina Caelorum, and Regina Caeli. Each antiphon is its own single-step prayer, using the
+existing sourced Rosary title/body and reading aids, without adding versicles or collects.
+The Mac Library sidebar and Go menu expose this directory; activating a prayer opens its own
+window, including the usual Presenter Mode.
+
+On iOS and Android, individual **Basic Prayers** can also be pinned. Windows retains the historical preferences but opens Basic Prayers from the Library sidebar without pin controls. The historical `favoriteBasicPrayerIds` storage
 key now means pins, retaining existing selections; each joins `HomeOrder` as `basic:<prayerId>`
 and opens the corresponding single-prayer flow directly in `basicPrayersLanguageCode`. The fixed
 Basic Prayers directory row remains below the cards. Pin changes refresh the Home list immediately,
-including an already-open Mac window. `BasicPrayersOrder` remains the list's drag order; the old
+in every visible Home view. `BasicPrayersOrder` remains the list's drag order; the old
 `favoriteBasicPrayersFirst` preference is ignored and its Settings toggle removed.
 The directory and single-prayer flow both offer “Pin to Pray” / “Remove from Pray”, with native
 pin icons. Removing a pin keeps the prayer available in the directory.
@@ -391,6 +632,30 @@ and schema-driven options later persist onto the same row. Its compact editor (i
 `RemindersOnlyEditorPage`) exposes bundle `options.json` choices plus reminders. Traditional
 times come from `reminderPresetHours`/`reminderPresetFooter` (the Angelus's 6am/noon/6pm bells),
 and notification text comes from `reminderBody`, never a hardcoded per-kind table.
+
+### Removing prayers and downloads
+
+Unpinning remains separate from deleting a saved prayer. Home context menus and preset
+management expose **Delete Saved Prayer** on iOS, Android, and Windows. The Mac Library exposes
+**Delete Prayer** for saved copies and **Remove from Library** for chosen templates, including
+context menus and Command-Delete without intercepting text-field editing. Confirmations name
+the target and explain reminders and final-copy download cleanup.
+
+Deletion first commits to the preset store, then cancels that copy's reminders and checks all
+remaining pack references. Only the last saved reference to a user-installed pack triggers
+device removal; sibling copies and built-in sources remain available. If persistence fails,
+no reminders or files are removed. If download cleanup fails afterward, the saved deletion
+remains committed and an explicit error directs the user to retry in Downloads. Deleted-copy
+windows close, and stale editors cannot recreate deleted records. Starter presets are seeded
+only on initial setup, so deleting the last prayer stays empty after relaunch.
+
+Unused downloads can be removed individually from Downloads/discovery (including the Mac
+Gallery). **Remove Download** refuses removal while any saved copy references the pack;
+**Remove Unused Downloads** applies the same check to each candidate. Pack deletion errors
+must leave registration intact for retry. Audio caches are scoped to the removed pack.
+Apple's iCloud Drive packs use local eviction, not deletion of the cloud source; a local
+`removedDownloadedPrayerIDs` exclusion prevents automatic redownload on launch, and an explicit
+reimport clears it. That exclusion does not sync. Saved presets retain their existing sync policy.
 
 ## Reminders
 
@@ -449,11 +714,13 @@ its current enabled ones), `removeAll(prayer)`, `rescheduleAll(prayers)` (called
   the 14 Stations (Gebhard Fugel's 1921 Bad Saulgau
   Kreuzweg cycle), the 7 Sorrows (per-scene old masters), the Franciscan Crown's Adoration of the
   Magi (Murillo), the Divine Mercy image (Kazimirowski, 1934) — all public-domain classical art,
-  every file an exact 1:1 square — plus ~10 override illustrations used by steps not tied to a
+  those prayer illustrations cropped to exact 1:1 squares — plus ~10 override illustrations used by steps not tied to a
   specific mystery (`crucifix`, `our_father`, `glory_be`, `jesus_portrait`, `eternal_rest`,
   `madonna_and_child`, `st_michael`, `virtue_faith`/`virtue_hope`/`virtue_charity`,
   `christ_pantocrator` — the Sinai icon, the Jesus Prayer's Eastern face) and
-  `cross_placeholder` (a simple generated placeholder, not classical art). `Images/CREDITS.markdown`
+  `cross_placeholder` (a simple generated placeholder, not classical art). The 11 dedicated
+  `gallery_*` covers retain the sourced image proportions; they do not replace or recrop the
+  existing square prayer-step artwork. `Images/CREDITS.markdown`
   records artwork/museum/Commons-file/license per file; each platform's About screen carries the
   user-facing attributions. Prayer artwork ships *inside* the portable bundles and is resolved
   from the pack store's merged image index even when the screen is not itself bundle-driven (the
@@ -590,7 +857,7 @@ Compose retains title/body provenance independently when importing, saving a pro
 repacking it, even though the generated prayer keys change. It emits the same per-key metadata
 so editing a sourced Vicariate prayer cannot silently turn it into generic repository Hebrew.
 
-The app-wide `useJaffaHailMaryWording` Boolean (default `false`) offers the Jaffa congregation's
+The app-wide `useJaffaHailMaryWording` Boolean (default `false`), displayed as “Alternative Hail Mary wording”, offers
 **בְּרוּכַת הַחֶסֶד** in place of **מְלֵאַת הַחֶסֶד**. Its in-app Settings toggle is always
 available beside prayer-language preferences, including when another language is selected
 and Vicariate may be reached through fallback. Apply the exact substitution only after the
@@ -709,7 +976,7 @@ of its own — its entire step sequence and per-step text are data-driven from i
   component (dotted repository ids remain valid); optional `builtinKind` ("rosary") marks a
   bundle whose devotion.json backs a dedicated `PrayerKind` rather than a generic `.custom`
   devotion — its definition loads, but the bundle stays out of `customDevotionIds()` so
-  Pray/Categories/Search don't list it twice; `accentColorHex` + optional
+  Pray/Search don't list it twice; `accentColorHex` + optional
   `accentColorDarkHex` (light/dark pair), `iconSystemName` (an SF Symbol name; mapped to the
   nearest Material icon on Android and Segoe Fluent Icons glyph on Windows via a small fixed
   per-platform table), `displayNameByLanguage` (preserves e.g. the Hebrew devotion names — resolved
@@ -721,8 +988,8 @@ of its own — its entire step sequence and per-step text are data-driven from i
   `reminderBody` (per-language notification body), optional `reminderPresetHours` +
   `reminderPresetFooter` (the Angelus's traditional bell times), and optional **`tags`**
   (lowercase category labels, e.g. "marian" — Compose writes them, the repository uses them
-  as submission defaults, every loader exposes them, Categories groups by them, and Search
-  matches them).
+  as submission defaults, every loader exposes them, and Search uses them for category
+  browsing and query matching).
 - **`options.json`** (optional bundle file): user-configurable settings, declared separately
   from the structure the same way catalog.json is —
   `{"options": [{key, kind: "toggle" | "choice", name, nameByLanguage?, default,
@@ -755,6 +1022,11 @@ of its own — its entire step sequence and per-step text are data-driven from i
   calls for and the day that was missed stay separate answers. Opening the devotion resumes,
   offers the three-way choice (the missed day / today's day / start over), or reports the run
   complete; praying twice in one day shows that same day again rather than eating tomorrow's.
+  Desktop saved copies scope this run to the saved UUID; Windows uses
+  `desktop:<Prayer UUID>:<bundle ID>` for both the series and its bookmark component. Copy
+  deletion clears only that scope, and reminder refresh reads that copy's run. Phones and
+  detached legacy callers retain their existing devotion-wide run keys. Unsaved Windows
+  native sessions use a window-local UUID and move their own run when saved into the library.
   A series may also declare `suggestedStart` ("MM-DD"), `suggestedReminderTime` ("HH:mm") and
   `suggestedNext` (another devotion's id, silently skipped when that bundle is not installed) —
   all advisory, which is what lets a pinned novena announce itself before its first day.
@@ -887,8 +1159,12 @@ of its own — its entire step sequence and per-step text are data-driven from i
   narrated by macOS TTS in Latin/English with measured chapter boundaries — strictly test
   material, never shippable content.
 - **User-installed bundles**: anyone can author a `.prosaryprayer` and import it through Browse
-  on Apple platforms, through Settings on Android/Windows, or through Apple File menu commands
-  where available. `installPack` validates the file
+  on iPhone/iPad, the Mac library, Settings on Android/Windows, or Apple File menu commands
+  where available. Apple declares the exported `app.prosary.prayer` type (a ZIP-conforming
+  `.prosaryprayer` file) with a Viewer document handler. Finder/Files opening and Mac file drops
+  use the same bounded, security-scoped importer. Mac entry points add the pack to the Gallery
+  without launching a prayer or creating a saved copy; phone file opening opens the devotion. Ordinary ZIP
+  files remain a picker fallback, not an OS file association. `installPack` validates the file
   (readable zip; parseable manifest + devotion.json; content for every declared language; not a
   `builtinKind` pack; no id collision with anything loaded), copies it into a per-platform
   installed-packs directory (iOS Application Support/PrayerPacks — re-pointed at the iCloud
@@ -902,11 +1178,13 @@ of its own — its entire step sequence and per-step text are data-driven from i
   and it can never collide with compose-authored ids (whose shape forbids dots). The directory is
   rescanned (sorted by filename) after the built-ins on every launch, so installs persist;
   id collisions are skipped so shipped devotions always win. Imported devotions appear in
-  Categories and Search immediately and can be pinned to Pray like built-ins. Android and Windows
+  the Mac and Windows galleries immediately; on phones they appear in Search and its categories
+  and can be pinned to Pray like built-ins. Android and Windows
   Settings can export an installed pack for editing and remove individual packs; all platforms
-  can clear installed downloads, while Apple also imports through Browse/File. The loader's
-  removal unregisters the bundle plus its archive/image sources immediately, but does not delete
-  a persisted `Prayer` row for it; globally merged shared text overrides retain their existing
+  can remove unused installed downloads, while Apple also imports through its library/Browse/File surfaces.
+  User-facing removal passes through the saved-reference guard described above. After successful
+  filesystem removal, the loader unregisters the bundle and its archive/image sources;
+  globally merged shared text overrides retain their existing
   process-lifetime semantics. Every platform also ships a **repository browser** (iOS
   `RepositoryBrowserView`, Android `RepositoryBrowserScreen`, Windows `RepositoryBrowserPage` —
   each with a platform `RepositoryClient`): it fetches prayers.prosary.app's versioned
@@ -993,7 +1271,7 @@ of its own — its entire step sequence and per-step text are data-driven from i
 - **Discovery**: `customDevotionIds()` returns every loaded bundle id that has a
   `devotion.json`, **in pack-load order** — the base directory order. `DevotionDirectory` presents
   the Rosary first, then those bundles (title/accent/icon/tags from each manifest), then the Jesus
-  Prayer. Categories and Search use the whole directory; Pray filters it through the user's pins
+  Prayer. Search and its category filters use the whole directory; Pray filters it through the user's pins
   and applies `HomeOrder`. Nothing in view code hardcodes a bundle devotion's name.
 - **Flow UI**: one shared flow surface per platform (iOS `CustomDevotionFlowView`, Android
   `CustomDevotionFlowScreen`, Windows `CustomDevotionFlowPage`) renders every generic devotion,
@@ -1003,6 +1281,18 @@ of its own — its entire step sequence and per-step text are data-driven from i
   devotion.json invariants above exist.
 
 ## Offline "Today" data (`Shared/data/`)
+
+Native Today and Saved Prayer widgets on iOS, Android, and Mac reuse these offline tables
+and existing prayer continuation rules. The Apple extension reads a small App Group snapshot
+for settings and saved-prayer summaries; Android reads its existing local stores. Widget taps
+open the current local day or the normal saved-prayer flow. See [WIDGETS.markdown](WIDGETS.markdown)
+and [schema/widgets.json](schema/widgets.json) for configuration, refresh, signing, and testing.
+
+The portable [Expo Today handoff](expo-today/README.markdown) exposes the same data and
+display rules in TypeScript, with optional React Native components for Erez. Its offline
+copies and interface labels are generated by `expo-today/scripts/sync-data.mjs`; refresh
+canonical data first, then run its `check:sync` verification. No native port reads this
+package at runtime.
 
 Dev-time-generated datasets back the Pray tab's "Today" section (per-platform physical
 copies, same convention as the bundles; per-platform `TodayInfoStore` providers):
@@ -1094,7 +1384,9 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
   uses that language when available, with the original source text as fallback. Calendar
   dates, rank identities and appointed readings never change with the language selection.
   The readings row shows compact citations (for example `Gen. 1; Ps. 23; Jn. 3`); a button expands
-  the same entries to their complete chapter-and-verse citations. A missing reading file/date hides
+  the same entries to their complete chapter-and-verse citations on phones. Desktop Today on Mac
+  and Windows always shows complete citations, including the optional Torah row, without a
+  shorthand toggle. A missing reading file/date hides
   the row: it must never borrow another rite's readings. Each optional Today
   row still has its own Settings switch (2026-08, Erez's request:
   `showTodayFeast` / `showTodayIntention`, both on by default) — either, both, or neither
@@ -1121,8 +1413,9 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
   official publications are recorded in the source snapshot. Missing languages use English,
   and months outside the table hide the row.
 - **Reading tables, selected through `readingsFile`** — each date contains ordered citation
-  objects (`type`, `short`, `full`, and optional `shortByLanguage`/`fullByLanguage`). Only
-  citations ship; Scripture text does not. `readings-roman.json` is the Novus Ordo table from
+  objects (`type`, `short`, `full`, and optional `shortByLanguage`/`fullByLanguage`). These tables
+  contain appointments only; optional Bible text lives in the separate reading-text dataset
+  described below. `readings-roman.json` is the Novus Ordo table from
   Evangelizo HE and is shared by `lpj` and `roman`; its Hebrew full book names are relayed in
   the per-language maps. Hebrew short epistle names are deterministic compact forms of those
   sourced titles (`הראשונה אל הקורינתים`, `השנייה של כיפא`, `אל הרומים`): the
@@ -1149,9 +1442,48 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
   dates, chapters, verses, and reading order. `--localize-only --sync` refreshes those localized
   maps offline without fetching or substituting another rite's readings.
 
-A date/month outside the relevant dataset returns nothing and its row simply hides. Regenerate
+A date/month outside the relevant dataset returns nothing: optional Today rows hide, while the
+dedicated Readings screen explains that no readings are available for the selected date. Regenerate
 the multi-year feast tables roughly yearly; refresh the rolling Evangelizo-backed data more often.
 See [calendar research and coverage](calendar-research.markdown) for source rules and limits.
+
+### Offline Bible passages
+
+Phone Readings and Mac/Windows Today retain the calendar's complete localized citation above
+each optional text expansion. They label the result as a Bible passage, identify its edition,
+and show that edition's attribution and source link. An edition's wording is not represented
+as the exact local Mass lectionary. Scripture text remains selectable, numbered by chapter
+and verse, and rendered with the existing Scripture typography. Hebrew marks are retained;
+Arabic and Hebrew passages use their own RTL layout independently of the surrounding UI.
+Hebrew Bible text is vocalized in both testaments: Masoretic Tanakh plus the complete
+Delitzsch 12th edition (1901). Source vowels and cantillation are preserved; only vowel
+points on the four letters of יהוה are removed. Delitzsch's source chapter files, reviewed
+numbering differences and print-verified transcription corrections are pinned at build time.
+
+`readings-editions.json` is the small metadata companion: `schemaVersion: 1` and `editions`
+with stable `id`, `languageCode`, `name`, `attribution` and `sourceURL` fields. The picker reads
+this file without loading the verse corpus. `readings-texts.json` loads only when a passage
+is expanded. The shared generator pre-resolves appointments under `daily|<raw citation>` or
+`torah|<raw citation>`, then edition ID, to ordered `{chapter, verse, text}` rows. Native code
+uses the original `ReadingCitation.full`, never its translated display value, and never
+parses references or guesses verse-number conversions at runtime. The files are copied into
+each native app's data resources, following the existing physical-copy rule.
+
+Partial-verse appointments keep their exact citation/key and use complete enclosing Bible
+verses. The optional `wholeVersePassages` array lists the affected keys so every native reader
+shows the localized full-verse notice; absent metadata means no expansion notice. Adjacent
+disjoint cuts of one verse appear only once. A bounded source review can also establish the
+whole-verse envelope where an edition divides the text differently. Malformed appointments,
+unreviewed numbering differences and unavailable source text remain unavailable.
+
+The shared `readingsEditionId` preference is a string, empty by default. Empty chooses a
+metadata edition matching the interface language, normalizing regional subtags and `iw`/`he`
+and `fil`/`tl`; an explicit choice resolves only that exact ID. An unavailable language,
+removed edition, missing appointment or invalid/empty verse list stays unavailable, with
+the original citation visible. No other edition, language or calendar is silently substituted.
+The preference does not change prayer language or appointed readings. Edition IDs come from
+the metadata, not a hardcoded client list. Source coverage and reviewed mappings are recorded
+in [DAILY-READINGS.markdown](DAILY-READINGS.markdown) and the generator's source manifest.
 
 Prayer cards and lists use interface-language titles by default. The shared
 `showPrayerNameInPrayerLanguage` preference (default false) makes the actual prayer-language
@@ -1205,9 +1537,15 @@ known `PrayerKey` alone does not establish a translation, and text presence is n
 certification. `test-localized-content.py` prevents newly completed flows from regressing to
 another language.
 
-The legacy Arabic Scripture credit identifies Dar el-Machreq. The earlier blanket claim that
-all editions are public domain was removed: no such status is established here for the modern
-Arabic revision. This pass preserves existing Arabic passages rather than changing editions.
+Arabic Scripture uses the public-domain old Jesuit translation, transcribed and independently
+checked against its 1897 Beirut printing. `content/arabic-jesuit-1897.json` records the 220
+reviewed verses and their printed source pages; `tools/import-arabic-scripture.py` replaces
+68 canonical Scripture fields and generates all three native Rosary fallback tables.
+Fixed prayers and authored meditations keep their own sources. Offline readings accept only
+complete reviewed passage units from this partial corpus. See
+`content/ARABIC-SCRIPTURE-SOURCES.markdown` for provenance, transcription conventions,
+edition boundaries, and regeneration. Dar el-Machreq remains credited separately for book-name
+metadata; it is no longer the source credited for the Arabic Scripture passages.
 
 Ukrainian overlays use the RKC Ukraine *Щоденно з Богом* prayerbook with its required link
 attribution, and all 63 Scripture passages use the public-domain Kulish / Nechui-Levytsky /

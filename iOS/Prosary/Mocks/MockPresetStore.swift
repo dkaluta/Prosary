@@ -44,6 +44,20 @@ final class MockPresetStore: PresetStore {
     }
   }
 
+  @discardableResult
+  func updateIfPresent(_ prayer: Prayer) async throws -> Bool {
+    guard let index = favorites.firstIndex(where: { $0.id == prayer.id }) else { return false }
+    if prayer.isDefault {
+      for other in favorites.indices
+      where favorites[other].kind == prayer.kind
+        && favorites[other].customDevotionId == prayer.customDevotionId {
+        favorites[other].isDefault = false
+      }
+    }
+    favorites[index] = prayer
+    return true
+  }
+
   func delete(_ prayer: Prayer) async throws {
     let kindBefore = prayer.kind
     let devotionBefore = prayer.customDevotionId

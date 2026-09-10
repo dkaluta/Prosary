@@ -1,3 +1,4 @@
+using Prosary.Navigation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -14,7 +15,10 @@ public sealed partial class RosaryPresetPickerPage : Page
     public RosaryPresetPickerPage()
     {
         ViewModel = App.Services.GetRequiredService<RosaryPresetPickerViewModel>();
+        ViewModel.Navigation = Router.For(this);
         InitializeComponent();
+        ViewModel.ConfirmDelete = plan => PrayerRemovalDialogs.ConfirmDeleteAsync(XamlRoot, plan);
+        ViewModel.ShowRemovalError = message => PrayerRemovalDialogs.ShowErrorAsync(XamlRoot, message);
     }
 
     protected override async void OnNavigatedTo(NavigationEventArgs e)

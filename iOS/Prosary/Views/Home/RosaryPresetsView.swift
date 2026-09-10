@@ -15,6 +15,7 @@ struct RosaryPresetsView: View {
   @Environment(\.appServices) private var services
 
   @State private var presets: [Prayer] = []
+  @State private var deletingPrayer: Prayer?
   @State private var showsQuickSetup = false
   // Preset management lives here now that the separate Favorites screen is gone.
   @State private var editorPreset: Prayer?
@@ -40,7 +41,7 @@ struct RosaryPresetsView: View {
             Image(systemName: "sparkles")
               .foregroundStyle(Color.brandPrimary)
             VStack(alignment: .leading, spacing: 2) {
-              Text("rosaryPicker.anyRosary")
+              Text("rosaryPicker.anyRosaryAction")
                 .font(.headline)
               Text("rosaryPicker.anyRosaryDetail")
                 .font(.subheadline)
@@ -71,11 +72,6 @@ struct RosaryPresetsView: View {
     #if os(iOS)
     .navigationBarTitleDisplayMode(.inline)
     #endif
-    .toolbar {
-      ToolbarItem(placement: .primaryAction) {
-        EmptyView()
-      }
-    }
     .sheet(item: $editorPreset) { preset in
       NavigationStack { FavoriteEditorView(prayer: preset, isNew: isNew) }
         .onDisappear { Task { await reload() } }
@@ -96,6 +92,10 @@ struct RosaryPresetsView: View {
       }
     }
     .task { await reload() }
+    .modifier(PrayerRemovalDialogs(prayer: $deletingPrayer, onDeleted: { await reload() }))
+    .onReceive(NotificationCenter.default.publisher(for: .prayerLibraryDidChange)) { _ in
+      Task { await reload() }
+    }
   }
 
   @ViewBuilder
@@ -126,8 +126,8 @@ struct RosaryPresetsView: View {
           }
         }
         Divider()
-        Button(role: .destructive) { delete(preset) } label: {
-          Label("favorites.delete", systemImage: "trash")
+        Button(role: .destructive) { deletingPrayer = preset } label: {
+          Label(String(localized: "removal.deleteAction", defaultValue: "Delete Saved Prayer…"), systemImage: "trash")
         }
       }
       .padding(.horizontal, 16)
@@ -178,18 +178,11 @@ struct RosaryPresetsView: View {
     var updated = preset
     updated.isDefault = true
     Task {
-      try? await services.presetStore.save(updated)
+      _ = try? await services.presetStore.updateIfPresent(updated)
       await reload()
     }
   }
 
-  private func delete(_ preset: Prayer) {
-    ReminderScheduler.removeAll(for: preset)
-    Task {
-      try? await services.presetStore.delete(preset)
-      await reload()
-    }
-  }
 
   private func reload() async {
     presets = ((try? await services.presetStore.all()) ?? [])

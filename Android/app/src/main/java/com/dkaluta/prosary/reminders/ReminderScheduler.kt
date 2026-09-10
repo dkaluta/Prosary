@@ -10,6 +10,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.core.content.ContextCompat
+import androidx.core.app.NotificationManagerCompat
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.MultiDayRun
@@ -65,6 +66,22 @@ object ReminderScheduler {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         for (reminder in prayer.reminders) {
             alarmManager.cancel(pendingIntentFor(context, prayer, reminder.id))
+        }
+    }
+
+    /** Final removal also dismisses an already-delivered reminder for this saved copy. */
+    fun removeAll(context: Context, prayer: Prayer) {
+        cancelAll(context, prayer)
+        NotificationManagerCompat.from(context).cancel(prayer.id.hashCode())
+    }
+
+    /** The caller retains the old day count before unregistering a removed download. */
+    fun removeSeries(context: Context, devotionId: String, dayCount: Int) {
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val notifications = NotificationManagerCompat.from(context)
+        for (day in 0 until dayCount) {
+            alarmManager.cancel(seriesPendingIntent(context, devotionId, day, dayCount))
+            notifications.cancel("series:$devotionId:$day".hashCode())
         }
     }
 

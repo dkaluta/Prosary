@@ -88,7 +88,7 @@ public sealed class PrayerEngine
         ["fatimaPrayer"] = rosary.IncludeFatimaPrayer ? "true" : "false",
         ["eternalRest"] = CamelCase(rosary.EternalRestForDeceased.ToString()),
         ["antiphon"] = CamelCase(rosary.MarianAntiphon.ToString()),
-        ["closingIntentions"] = rosary.IncludeClosingIntentions ? "true" : "false",
+        ["closingIntentions"] = rosary.EffectiveClosingIntentions ? "true" : "false",
         ["closingPopeIntention"] = rosary.EffectiveClosingPopeIntention ? "true" : "false",
         ["closingBishopIntention"] = rosary.EffectiveClosingBishopIntention ? "true" : "false",
         ["closingDepartedIntention"] = rosary.EffectiveClosingDepartedIntention ? "true" : "false",
@@ -217,10 +217,16 @@ public sealed class PrayerEngine
         // Effective option values: the bundle's declared defaults overlaid with the favorite's
         // stored choices. Overrides for keys the bundle no longer declares are ignored, so a
         // stale favorite can't gate on options that stopped existing.
+        var normalizedOverrides = RosaryCustomOptions.Normalize(bundleId, optionOverrides);
         var optionValues = new Dictionary<string, string>();
         foreach (var option in PrayerPackStore.Options(bundleId))
         {
-            optionValues[option.Key] = optionOverrides?.GetValueOrDefault(option.Key) ?? option.DefaultValue;
+            // Older installed Rosary packs still gate each closing group separately. Feed all
+            // their declared aliases from the same combined choice, including explicit off.
+            var overrideKey = bundleId == "rosary" && RosaryCustomOptions.LegacyClosingKeys.Contains(option.Key)
+                ? "closingIntentions"
+                : option.Key;
+            optionValues[option.Key] = normalizedOverrides.GetValueOrDefault(overrideKey) ?? option.DefaultValue;
         }
 
         // Calendar facts an entry may gate on beside the user's own choices — the Alleluia that

@@ -12,7 +12,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Language
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.GridView
+import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -35,8 +35,13 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navOptions
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.produceState
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import com.dkaluta.prosary.R
-import com.dkaluta.prosary.ui.categories.CategoriesScreen
+import com.dkaluta.prosary.ui.readings.ReadingsScreen
 import com.dkaluta.prosary.ui.search.SearchScreen
 import com.dkaluta.prosary.ui.shared.BasicPrayerFlowScreen
 import com.dkaluta.prosary.ui.shared.BasicPrayersScreen
@@ -56,6 +61,13 @@ import com.dkaluta.prosary.ui.settings.SettingsScreen
 import com.dkaluta.prosary.ui.shared.CustomDevotionFlowScreen
 import com.dkaluta.prosary.ui.shared.PrayerDispatchScreen
 import com.dkaluta.prosary.models.Prayer
+import com.dkaluta.prosary.models.MysterySelectionMode
+import com.dkaluta.prosary.services.LocalAppServices
+import com.dkaluta.prosary.widgets.WidgetDestination
+import com.dkaluta.prosary.widgets.WidgetLaunchRequest
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /** Carries the picker's ad-hoc, unsaved Rosary across one navigation hop — Compose routes are
  * strings, so a whole Prayer can't ride the route (see Routes.RosaryQuickPray). */
@@ -66,7 +78,7 @@ private object AdHocRosaryHolder {
 private object Routes {
     const val Home = "home"
     const val Browse = "browse"
-    const val Categories = "categories"
+    const val Readings = "readings"
     const val Search = "search"
     const val RepositoryBrowser = "favorites/repository"
     // `kind` seeds a brand-new favorite's type when prayerId is absent (Android has no
@@ -81,6 +93,7 @@ private object Routes {
     // routes are strings (same reasoning as FavoriteEditor's kind param above).
     const val RosaryPicker = "rosary/picker"
     const val RosaryQuickPray = "rosary/quickPray"
+    const val WidgetRosary = "widgets/rosary"
     const val JesusPrayerSetup = "jesusPrayer/setup"
     const val JesusPrayerFlow = "jesusPrayer/{target}"
     // Launches a generic (bundle-driven) devotion with no existing favorite — devotionId is the
@@ -123,7 +136,7 @@ internal fun NavHostController.navigateSingleTop(route: String) {
     navigate(route, singleTopNavOptions())
 }
 
-/** The app's tab shell: Pray (Home), Browse (prayers.prosary.app), Categories, Search —
+/** The app's tab shell: Pray (Home), Browse (prayers.prosary.app), Readings, Search —
  * bottom NavigationBar on phones, NavigationRail on wide layouts ("bottom on phone, side on
  * computer"). The phone bar shows only on the four top-level tab destinations; inner screens
  * (flows, editors) keep the full height so a prayer owns the screen and a stray tap can't
@@ -131,12 +144,37 @@ internal fun NavHostController.navigateSingleTop(route: String) {
  * sidebar, like the iPad/Mac sidebar and the Windows pane. Mirrors iOS's ContentView
  * TabView. */
 @Composable
-fun ProsaryApp() {
+fun ProsaryApp(widgetLaunchRequest: WidgetLaunchRequest? = null, onWidgetLaunchConsumed: () -> Unit = {}) {
     val navController = rememberNavController()
+    val services = LocalAppServices.current
+    var todayWidgetRequest by rememberSaveable { mutableLongStateOf(0L) }
+    LaunchedEffect(widgetLaunchRequest) {
+        val request = widgetLaunchRequest ?: return@LaunchedEffect
+        // The adaptive shell subcomposes its NavHost. On a cold start the outer effect can
+        // run first, so wait for the graph's first entry before applying the widget route.
+        navController.currentBackStackEntryFlow.first()
+        val route = when (val destination = request.destination) {
+            WidgetDestination.Today -> {
+                todayWidgetRequest = request.sequence
+                Routes.Home
+            }
+            WidgetDestination.Rosary -> Routes.WidgetRosary
+            is WidgetDestination.SavedPrayer -> if (services.presetStore.get(destination.id) != null) {
+                Routes.prayer(destination.id)
+            } else Routes.Home
+        }
+        withContext(Dispatchers.Main.immediate) {
+            navController.navigate(route) {
+                popUpTo(Routes.Home)
+                launchSingleTop = true
+            }
+            onWidgetLaunchConsumed()
+        }
+    }
     val tabs = listOf(
         TabSpec(Routes.Home, R.string.tab_pray, Icons.Filled.Home),
         TabSpec(Routes.Browse, R.string.tab_browse, Icons.Filled.Language),
-        TabSpec(Routes.Categories, R.string.tab_categories, Icons.Filled.GridView),
+        TabSpec(Routes.Readings, R.string.tab_readings, Icons.AutoMirrored.Filled.MenuBook),
         TabSpec(Routes.Search, R.string.tab_search, Icons.Filled.Search),
     )
     val backStackEntry by navController.currentBackStackEntryAsState()
@@ -151,56 +189,68 @@ fun ProsaryApp() {
         }
     }
 
-    BoxWithConstraints {
-        if (maxWidth >= 840.dp) {
-            Row(Modifier.fillMaxSize()) {
-                // Unlike the phone bar below, the rail never leaves — on inner screens no
-                // tab is current, so no item highlights.
-                NavigationRail {
-                    for (tab in tabs) {
-                        NavigationRailItem(
-                            selected = currentRoute == tab.route,
-                            onClick = { selectTab(tab.route) },
-                            icon = { Icon(tab.icon, contentDescription = null) },
-                            label = { Text(stringResource(tab.labelRes)) },
-                        )
-                    }
+    AdaptiveNavigationShell(
+        showsTabs = showsTabs,
+        rail = {
+            NavigationRail {
+                for (tab in tabs) {
+                    NavigationRailItem(
+                        selected = currentRoute == tab.route,
+                        onClick = { selectTab(tab.route) },
+                        icon = { Icon(tab.icon, contentDescription = null) },
+                        label = { Text(stringResource(tab.labelRes)) },
+                    )
                 }
-                AppNavHost(navController, Modifier.weight(1f))
             }
-        } else {
-            Scaffold(
-                // Every destination carries its own Scaffold/TopAppBar and applies the system
-                // insets itself — if the shell consumes them too, status- and nav-bar padding
-                // lands twice and the whole app looks "framed by bars". The shell's padding
-                // should only ever be the tab bar's own height (the NavigationBar composable
-                // handles its own bottom inset internally).
-                contentWindowInsets = WindowInsets(0, 0, 0, 0),
-                bottomBar = {
-                    if (showsTabs) {
-                        NavigationBar {
-                            for (tab in tabs) {
-                                NavigationBarItem(
-                                    selected = currentRoute == tab.route,
-                                    onClick = { selectTab(tab.route) },
-                                    icon = { Icon(tab.icon, contentDescription = null) },
-                                    label = { Text(stringResource(tab.labelRes)) },
-                                )
-                            }
-                        }
-                    }
-                },
-            ) { paddingValues ->
-                AppNavHost(
-                    navController,
-                    Modifier
-                        .padding(paddingValues)
+        },
+        bottomBar = {
+            NavigationBar {
+                for (tab in tabs) {
+                    NavigationBarItem(
+                        selected = currentRoute == tab.route,
+                        onClick = { selectTab(tab.route) },
+                        icon = { Icon(tab.icon, contentDescription = null) },
+                        label = { Text(stringResource(tab.labelRes)) },
+                    )
+                }
+            }
+        },
+    ) { modifier -> AppNavHost(navController, modifier, todayWidgetRequest) }
+}
+
+/** The navigation host has one composition identity at every width. Only the surrounding
+ * navigation changes, so folding cannot dispose the destination, its dialogs, or its effects. */
+@Composable
+internal fun AdaptiveNavigationShell(
+    showsTabs: Boolean,
+    rail: @Composable () -> Unit,
+    bottomBar: @Composable () -> Unit,
+    modifier: Modifier = Modifier,
+    content: @Composable (Modifier) -> Unit,
+) {
+    BoxWithConstraints(modifier) {
+        val wide = maxWidth >= 840.dp
+        Scaffold(
+            // Every destination carries its own Scaffold/TopAppBar and applies the system
+            // insets itself — if the shell consumes them too, status- and nav-bar padding
+            // lands twice and the whole app looks "framed by bars". The shell's padding
+            // should only ever be the tab bar's own height (the NavigationBar composable
+            // handles its own bottom inset internally).
+            contentWindowInsets = WindowInsets(0, 0, 0, 0),
+            bottomBar = {
+                if (!wide && showsTabs) bottomBar()
+            },
+        ) { paddingValues ->
+            Row(Modifier.fillMaxSize().padding(paddingValues)) {
+                if (wide) rail()
+                content(
+                    Modifier.weight(1f)
                         // The tab bar already spans the gesture-nav inset, so tab screens'
                         // own Scaffolds must not pad for it again — that painted a dead band
                         // between the scrolling content and the bar. Flow destinations hide
                         // the bar and keep the inset for their own footers.
                         .then(
-                            if (showsTabs) {
+                            if (!wide && showsTabs) {
                                 Modifier.consumeWindowInsets(WindowInsets.navigationBars)
                             } else {
                                 Modifier
@@ -221,19 +271,20 @@ private fun NavHostController.launch(target: LaunchTarget) {
 }
 
 @Composable
-private fun AppNavHost(navController: NavHostController, modifier: Modifier = Modifier) {
+private fun AppNavHost(navController: NavHostController, modifier: Modifier = Modifier, todayWidgetRequest: Long = 0) {
     NavHost(navController = navController, startDestination = Routes.Home, modifier = modifier) {
         composable(Routes.Browse) {
             com.dkaluta.prosary.ui.favorites.RepositoryBrowserScreen(onBack = {}, showsBackButton = false)
         }
-        composable(Routes.Categories) {
-            CategoriesScreen(onLaunch = { target -> navController.launch(target) })
+        composable(Routes.Readings) {
+            ReadingsScreen(onOpenSettings = { navController.navigateSingleTop(Routes.Settings) })
         }
         composable(Routes.Search) {
             SearchScreen(onLaunch = { target -> navController.launch(target) })
         }
         composable(Routes.Home) {
             HomeScreen(
+                todayWidgetRequest = todayWidgetRequest,
                 onOpenPrayer = { id -> navController.navigateSingleTop(Routes.prayer(id)) },
                 onOpenRosaryPicker = { navController.navigateSingleTop(Routes.RosaryPicker) },
                 onAddPreset = { kind -> navController.navigateSingleTop(Routes.favoriteEditor(null, kind)) },
@@ -293,6 +344,22 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
                 onEditReminders = { id -> navController.navigateSingleTop(Routes.remindersOnlyEditor(id)) },
                 onBack = { navController.popBackStack() },
             )
+        }
+
+        composable(Routes.WidgetRosary) {
+            val services = LocalAppServices.current
+            val prayer by produceState<Prayer?>(initialValue = null) {
+                val saved = services.presetStore.defaultPreset(PrayerKind.Rosary) ?: Prayer(kind = PrayerKind.Rosary)
+                value = saved.copy(id = "widget-todays-rosary",
+                    rosary = saved.rosary.copy(mysterySelectionMode = MysterySelectionMode.TodaysMysteries))
+            }
+            prayer?.let { resolved ->
+                RosaryFlowScreen(prayer = resolved, onBack = { navController.popBackStack() },
+                    onOpenDevotion = { id, variant, language ->
+                        navController.popBackStack()
+                        navController.navigateSingleTop(Routes.custom(id, variant, language))
+                    })
+            }
         }
 
         composable(Routes.RosaryQuickPray) {

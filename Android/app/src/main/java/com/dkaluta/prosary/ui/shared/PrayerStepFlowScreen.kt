@@ -1,10 +1,14 @@
 package com.dkaluta.prosary.ui.shared
 
 import android.app.Activity
+import android.os.SystemClock
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.LruCache
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,18 +18,17 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
@@ -62,6 +65,7 @@ import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -69,13 +73,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.unit.Constraints
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.foundation.text.selection.SelectionContainer
+import androidx.compose.foundation.text.selection.DisableSelection
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
@@ -128,7 +142,20 @@ fun PrayerStepFlowScreen(
     /** True while that recording is actually playing: the timer auto-advance stands down, since
      * the audio's chapters are driving the steps and two advance drivers would fight. */
     audioIsPlaying: Boolean = false,
+    sessionPaused: Boolean = false,
+    wideAccessoryWidth: Dp = 0.dp,
 ) {
+    val chrome: PrayerFlowChromeState = viewModel()
+    val lifecycleOwner = LocalLifecycleOwner.current
+    val activity = LocalActivity.current
+    DisposableEffect(chrome, lifecycleOwner) {
+        onDispose { chrome.captureReadingAnchor() }
+    }
+    LaunchedEffect(chrome, lifecycleOwner) {
+        snapshotFlow { chrome.reading.isScrollInProgress }.collect { scrolling ->
+            if (scrolling) chrome.releaseReadingAnchor()
+        }
+    }
     // Matches the pre-load "no step yet" instant to "last step" so the footer doesn't flash a
     // "Next" label a moment before content briefly reads "Finish" (imperceptible in practice,
     // since loading is a near-instant in-memory lookup).
@@ -137,7 +164,7 @@ fun PrayerStepFlowScreen(
     // Seconds between automatic advances (hands-free praying); 0 = off. One app-wide setting
     // shared by every flow, so a choice made in the Rosary carries into the Stations.
     var autoAdvanceSeconds by remember { mutableIntStateOf(AppSettings.autoAdvanceSeconds) }
-    var autoAdvanceMenuExpanded by remember { mutableStateOf(false) }
+    var autoAdvanceMenuExpanded by rememberSaveable { mutableStateOf(false) }
     // A reading-aid choice belongs to this prayer run. Keep it through step changes and layout
     // recompositions, but discard it when this flow leaves composition.
     var showsTransliteration by rememberSaveable { mutableStateOf(false) }
@@ -159,6 +186,15 @@ fun PrayerStepFlowScreen(
         else showsTransliteration = !showsTransliteration
     }
 
+    // The identity is retained with the reader. A real step starts at its heading; folding
+    // or recreating the Activity on that same step keeps the current paragraph and offset.
+    LaunchedEffect(step?.id, currentIndex) {
+        step?.let {
+            val identity = if (centralActionLabel != null) it.id else "${it.id}:$currentIndex"
+            chrome.showReading(identity)
+        }
+    }
+
     // A gentle tap when the step changes — tester-requested (Erez), off by default, app-wide
     // like autoAdvanceSeconds. Keyed to the step change rather than the button, so Back and a
     // timer advance feel the same as Next. The initial composition is skipped: opening a flow
@@ -176,10 +212,25 @@ fun PrayerStepFlowScreen(
     // Back/Next resets the countdown, and turning the setting off cancels it. Never fires on
     // the last step: auto-"Finish" would dismiss the whole flow mid-prayer. Suspended outright
     // while a recording plays (audioIsPlaying is a key, so pausing re-arms it).
-    LaunchedEffect(autoAdvanceSeconds, currentIndex, step != null, audioIsPlaying) {
-        if (autoAdvanceSeconds > 0 && step != null && !isLastStep && !audioIsPlaying) {
-            delay(autoAdvanceSeconds * 1000L)
-            onNext()
+    LaunchedEffect(lifecycleOwner, autoAdvanceSeconds, currentIndex, step != null, audioIsPlaying, sessionPaused) {
+        if (autoAdvanceSeconds <= 0 || step == null || isLastStep || audioIsPlaying || sessionPaused) {
+            chrome.cancelCountdown()
+            return@LaunchedEffect
+        }
+        lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            try {
+                val identity = "$currentIndex:$autoAdvanceSeconds"
+                delay(chrome.remainingDelay(identity, autoAdvanceSeconds * 1000L, SystemClock.elapsedRealtime()))
+                chrome.cancelCountdown()
+                onNext()
+            } finally {
+                // Folding replaces the Activity briefly; an ordinary background/lock instead
+                // pauses prayer and starts a fresh interval when the person returns.
+                if (activity?.isChangingConfigurations != true &&
+                    !lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
+                    chrome.cancelCountdown()
+                }
+            }
         }
     }
 
@@ -296,31 +347,27 @@ fun PrayerStepFlowScreen(
                     BoxWithConstraints(modifier = Modifier.weight(1f).fillMaxWidth()) {
                         // Regular/wide window (tablet, a wide split, landscape) gets the taller
                         // three-column layout; a narrow portrait phone keeps the single scrolling column.
-                        val isWide = maxWidth >= 840.dp || (maxHeight < 480.dp && maxWidth >= 640.dp)
-                        if (isWide) {
-                            WideContent(
-                                step = step,
-                                languageCode = languageCode,
-                                isRightToLeft = isRightToLeft,
-                                availableHeight = maxHeight,
-                                accessory = accessory,
-                                showsTransliteration = usesAlternateText,
-                                onToggleTransliteration = toggleTransliteration,
-                                centralActionLabel = centralActionLabel,
-                                onCentralAction = onNext,
-                            )
-                        } else {
-                            NarrowContent(
-                                step = step,
-                                languageCode = languageCode,
-                                isRightToLeft = isRightToLeft,
-                                accessory = accessory,
-                                showsTransliteration = usesAlternateText,
-                                onToggleTransliteration = toggleTransliteration,
-                                centralActionLabel = centralActionLabel,
-                                onCentralAction = onNext,
-                            )
-                        }
+                        val compact = maxHeight < 480.dp
+                        val imageWidth = if (compact) 190.dp else 320.dp
+                        val gap = if (compact) 16.dp else 24.dp
+                        val horizontalPadding = if (compact) 28.dp else 68.dp
+                        val minimumWidth = imageWidth + wideAccessoryWidth + 280.dp + horizontalPadding +
+                            gap * (if (wideAccessoryWidth > 0.dp) 2 else 1)
+                        val isWide = maxWidth >= maxOf(if (compact) 640.dp else 840.dp, minimumWidth)
+                        AdaptivePrayerContent(
+                            step = step,
+                            languageCode = languageCode,
+                            isRightToLeft = isRightToLeft,
+                            isWide = isWide,
+                            wideAccessoryWidth = wideAccessoryWidth,
+                            availableHeight = maxHeight,
+                            chrome = chrome,
+                            accessory = accessory,
+                            showsTransliteration = usesAlternateText,
+                            onToggleTransliteration = toggleTransliteration,
+                            centralActionLabel = centralActionLabel,
+                            onCentralAction = onNext,
+                        )
                     }
                 } else {
                     Box(modifier = Modifier.weight(1f).fillMaxWidth(), contentAlignment = Alignment.Center) {
@@ -392,106 +439,168 @@ private fun ProgressHeader(step: RosaryStep?, currentIndex: Int, totalSteps: Int
                         PrayerTypography.styleForText(it, isScripture = false).fontFamily
                     }),
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.testTag("prayerProgress"),
                 )
             }
             else -> Text(
                 "${currentIndex + 1}",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.testTag("prayerProgress"),
             )
         }
     }
 }
 
 @Composable
-private fun NarrowContent(
+private fun AdaptivePrayerContent(
     step: RosaryStep,
     languageCode: String?,
     isRightToLeft: Boolean,
+    isWide: Boolean,
+    availableHeight: Dp,
+    wideAccessoryWidth: Dp,
+    chrome: PrayerFlowChromeState,
     accessory: @Composable (isWide: Boolean, hasRoomForSingleMinorColumn: Boolean) -> Unit,
     showsTransliteration: Boolean,
     onToggleTransliteration: () -> Unit,
     centralActionLabel: String? = null,
     onCentralAction: (() -> Unit)? = null,
 ) {
-    Column(modifier = Modifier.fillMaxSize()) {
-        // The extra top padding + full-width modifier live here (applied to whatever the
-        // accessory renders) rather than on each call site, so a devotion with no accessory at
-        // all (Angelus, Jesus Prayer) doesn't need to think about this either — an empty
-        // composable inside just takes no space.
-        Box(modifier = Modifier.padding(top = 8.dp).fillMaxWidth(), contentAlignment = Alignment.TopCenter) {
-            accessory(false, true)
-        }
+    val readingState = chrome.reading
+    val compact = availableHeight < 480.dp
+    val imageSide = if (compact) 190.dp else 320.dp
+    val visibleBody = if (showsTransliteration) step.transliteratedBody ?: step.body else step.body
+    val paragraphs = remember(visibleBody) { prayerParagraphs(visibleBody.parseBoldMarkdown()) }
+    val bodyStyle = PrayerTypography.styleForText(visibleBody, isScripture = step.isScripture)
 
-        CompositionLocalProvider(LocalLayoutDirection provides if (isRightToLeft) LayoutDirection.Rtl else LayoutDirection.Ltr) {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-                modifier = Modifier
-                    .fillMaxSize()
-                    .verticalScroll(rememberScrollState())
-                    .padding(16.dp),
-            ) {
-                MysteryImage(
-                    imageKey = step.imageKey,
-                    modifier = Modifier
-                        .fillMaxWidth(0.75f)
-                        .aspectRatio(1f)
-                        .align(Alignment.CenterHorizontally)
-                        .clip(RoundedCornerShape(16.dp)),
-                )
-                TextBlock(
-                    step = step, languageCode = languageCode,
-                    showsTransliteration = showsTransliteration,
-                    onToggleTransliteration = onToggleTransliteration,
-                    centralActionLabel = centralActionLabel, onCentralAction = onCentralAction,
-                )
+    // The reading child and its keyed items never move to a different composition branch.
+    // Only measurement changes when the window crosses the breakpoint, so LazyListState keeps
+    // the same paragraph and its offset rather than a raw pixel position in a different column.
+    Layout(
+        modifier = Modifier.fillMaxSize().testTag(if (isWide) "prayerWideLayout" else "prayerNarrowLayout"),
+        content = {
+            Box {
+                if (isWide) {
+                    MysteryImage(step.imageKey, Modifier.fillMaxSize().clip(RoundedCornerShape(16.dp)))
+                }
+            }
+            Box(contentAlignment = Alignment.TopCenter, modifier = Modifier.testTag("prayerAccessory")) {
+                accessory(isWide, availableHeight >= 300.dp)
+            }
+            CompositionLocalProvider(LocalLayoutDirection provides if (isRightToLeft) LayoutDirection.Rtl else LayoutDirection.Ltr) {
+                SelectionContainer {
+                    LazyColumn(
+                        state = readingState,
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        contentPadding = PaddingValues(16.dp),
+                        modifier = Modifier.fillMaxSize().testTag("prayerBody")
+                            .onSizeChanged { chrome.restoreReadingAnchor() }
+                            .pointerInput(chrome) {
+                                awaitEachGesture {
+                                    awaitFirstDown(requireUnconsumed = false)
+                                    chrome.releaseReadingAnchor()
+                                }
+                            },
+                    ) {
+                        item(key = "artwork") {
+                            // Retain this item even in the wide layout so every later item keeps
+                            // its identity. Only the decorative image changes its presentation.
+                            if (!isWide) {
+                                MysteryImage(
+                                    step.imageKey,
+                                    Modifier.fillMaxWidth(0.75f).aspectRatio(1f)
+                                        .clip(RoundedCornerShape(16.dp)),
+                                )
+                                Spacer(Modifier.height(16.dp))
+                            }
+                        }
+                        item(key = "heading") {
+                            PrayerTextHeader(
+                                step, languageCode, visibleBody, showsTransliteration,
+                                onToggleTransliteration,
+                            )
+                            Spacer(Modifier.height(8.dp))
+                        }
+                        itemsIndexed(paragraphs, key = { index, _ -> "paragraph:$index" }) { index, paragraph ->
+                            Text(
+                                paragraph,
+                                style = bodyStyle,
+                                modifier = Modifier.fillMaxWidth().testTag("prayerParagraph:$index"),
+                            )
+                        }
+                        item(key = "counter") {
+                            if (centralActionLabel != null && onCentralAction != null) {
+                                DisableSelection {
+                                    Button(
+                                        onClick = onCentralAction,
+                                        shape = CircleShape,
+                                        modifier = Modifier.padding(top = 12.dp).size(104.dp),
+                                    ) {
+                                        Text(
+                                            centralActionLabel,
+                                            style = MaterialTheme.typography.titleMedium,
+                                            fontWeight = FontWeight.Bold,
+                                            textAlign = TextAlign.Center,
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+    ) { measurables, constraints ->
+        val width = constraints.maxWidth
+        val height = constraints.maxHeight
+        if (isWide) {
+            val start = (if (compact) 16.dp else 40.dp).roundToPx()
+            val end = (if (compact) 12.dp else 28.dp).roundToPx()
+            val top = (if (compact) 8.dp else 16.dp).roundToPx()
+            val gap = (if (compact) 16.dp else 24.dp).roundToPx()
+            val contentHeight = (height - top).coerceAtLeast(0)
+            val side = imageSide.roundToPx().coerceAtMost(contentHeight)
+            val artwork = measurables[0].measure(Constraints.fixed(side, side))
+            val beads = measurables[1].measure(Constraints(
+                maxWidth = wideAccessoryWidth.roundToPx().coerceAtLeast(0), maxHeight = contentHeight,
+            ))
+            val textStart = start + side + gap + if (beads.width > 0) beads.width + gap else 0
+            val reading = measurables[2].measure(Constraints.fixed(
+                (width - textStart - end).coerceAtLeast(0), contentHeight,
+            ))
+            layout(width, height) {
+                artwork.placeRelative(start, top + (contentHeight - artwork.height) / 2)
+                beads.placeRelative(start + side + gap, top + (contentHeight - beads.height) / 2)
+                reading.placeRelative(textStart, top)
+            }
+        } else {
+            val artwork = measurables[0].measure(Constraints.fixed(0, 0))
+            val beads = measurables[1].measure(Constraints(maxWidth = width, maxHeight = height))
+            val top = if (beads.height > 0) 8.dp.roundToPx() else 0
+            val readingTop = (top + beads.height).coerceAtMost(height)
+            val reading = measurables[2].measure(Constraints.fixed(width, height - readingTop))
+            layout(width, height) {
+                artwork.placeRelative(0, 0)
+                beads.placeRelative((width - beads.width) / 2, top)
+                reading.placeRelative(0, readingTop)
             }
         }
     }
 }
 
-@Composable
-private fun WideContent(
-    step: RosaryStep,
-    languageCode: String?,
-    isRightToLeft: Boolean,
-    availableHeight: Dp,
-    accessory: @Composable (isWide: Boolean, hasRoomForSingleMinorColumn: Boolean) -> Unit,
-    showsTransliteration: Boolean,
-    onToggleTransliteration: () -> Unit,
-    centralActionLabel: String? = null,
-    onCentralAction: (() -> Unit)? = null,
-) {
-    val isCompactHeight = availableHeight < 480.dp
-    val imageSide = if (isCompactHeight) 190.dp else 320.dp
-    val hasRoomForSingleMinorColumn = availableHeight >= 300.dp
-
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(if (isCompactHeight) 16.dp else 24.dp),
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(start = if (isCompactHeight) 16.dp else 40.dp, end = if (isCompactHeight) 12.dp else 28.dp)
-            .padding(top = if (isCompactHeight) 8.dp else 16.dp),
-    ) {
-        MysteryImage(
-            imageKey = step.imageKey,
-            modifier = Modifier.size(imageSide).clip(RoundedCornerShape(16.dp)),
-        )
-
-        accessory(true, hasRoomForSingleMinorColumn)
-
-        CompositionLocalProvider(LocalLayoutDirection provides if (isRightToLeft) LayoutDirection.Rtl else LayoutDirection.Ltr) {
-            Column(modifier = Modifier.weight(1f).widthIn(min = 280.dp).fillMaxHeight().verticalScroll(rememberScrollState())) {
-                TextBlock(
-                    step = step, languageCode = languageCode, modifier = Modifier.padding(16.dp),
-                    showsTransliteration = showsTransliteration,
-                    onToggleTransliteration = onToggleTransliteration,
-                    centralActionLabel = centralActionLabel, onCentralAction = onCentralAction,
-                )
-            }
-        }
+/** Split only at blank lines, after parsing bold spans. Keeping separators and annotated
+ * subsequences preserves every character and emphasis run, including spans across paragraphs. */
+internal fun prayerParagraphs(body: AnnotatedString): List<AnnotatedString> {
+    val result = mutableListOf<AnnotatedString>()
+    var start = 0
+    Regex("\\r?\\n[ \\t]*\\r?\\n(?:[ \\t]*\\r?\\n)*").findAll(body.text).forEach { separator ->
+        val end = separator.range.last + 1
+        result += body.subSequence(start, end)
+        start = end
     }
+    if (start < body.length || result.isEmpty()) result += body.subSequence(start, body.length)
+    return result
 }
 
 internal const val PRAYER_IMAGE_MAX_DIMENSION = 2_048
@@ -583,92 +692,53 @@ internal fun MysteryImage(imageKey: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun TextBlock(
+private fun PrayerTextHeader(
     step: RosaryStep,
     languageCode: String?,
-    modifier: Modifier = Modifier,
+    visibleBody: String,
     showsTransliteration: Boolean,
     onToggleTransliteration: () -> Unit,
-    centralActionLabel: String? = null,
-    onCentralAction: (() -> Unit)? = null,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth(),
     ) {
-        step.subtitle?.let { subtitle ->
+        DisableSelection {
+            step.subtitle?.let { subtitle ->
+                Text(
+                    HebrewDisplayText.unpoint(subtitle),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    textAlign = TextAlign.Center,
+                )
+            }
             Text(
-                HebrewDisplayText.unpoint(subtitle),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                PrayerTranslations.flowTitle(step.title, languageCode,
+                    PrayerTypography.scriptOf(visibleBody) == PrayerTypography.Script.Syriac),
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.SemiBold,
+                color = MaterialTheme.extraColors.headline,
                 textAlign = TextAlign.Center,
             )
         }
-
-        Text(
-            PrayerTranslations.flowTitle(step.title, languageCode,
-                PrayerTypography.scriptOf(if (showsTransliteration) step.transliteratedBody ?: step.body else step.body) == PrayerTypography.Script.Syriac),
-            style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.SemiBold,
-            color = MaterialTheme.extraColors.headline,
-            textAlign = TextAlign.Center,
-        )
-
         step.acclamation?.let { acclamation ->
-            // The versicle/response is a prayer, not part of the reading — it keeps the
-            // regular prayer typeface even when the body below is scripture.
             Text(
                 acclamation.parseBoldMarkdown(),
                 style = PrayerTypography.styleForText(acclamation, isScripture = false),
             )
         }
-
         if (step.transliteratedBody != null) {
-            // The v0.7 reading aid: swap the body for its transliteration. Sticky across
-            // steps — someone praying along in an unfamiliar script wants it on all session.
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
-                IconButton(onClick = onToggleTransliteration) {
-                    Icon(
-                        Icons.Filled.Translate,
-                        contentDescription = stringResource(R.string.flow_show_transliteration),
-                        tint = if (showsTransliteration) MaterialTheme.colorScheme.primary else LocalContentColor.current,
-                    )
+            DisableSelection {
+                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+                    IconButton(onClick = onToggleTransliteration) {
+                        Icon(
+                            Icons.Filled.Translate,
+                            contentDescription = stringResource(R.string.flow_show_transliteration),
+                            tint = if (showsTransliteration) MaterialTheme.colorScheme.primary else LocalContentColor.current,
+                        )
+                    }
                 }
-            }
-            // A transliteration is in a different script from its language's own, so the face
-            // has to follow the text rather than the language — otherwise Syriac letters are
-            // drawn with a Hebrew face that has no glyphs for them, and the toggle shows tofu.
-            SelectionContainer {
-                Text(
-                    (if (showsTransliteration) step.transliteratedBody!! else step.body).parseBoldMarkdown(),
-                    style = PrayerTypography.styleForText(
-                        text = if (showsTransliteration) step.transliteratedBody!! else step.body,
-                        isScripture = step.isScripture,
-                    ),
-                )
-            }
-        } else {
-            SelectionContainer {
-                Text(
-                    step.body.parseBoldMarkdown(),
-                    style = PrayerTypography.styleForText(step.body, isScripture = step.isScripture),
-                )
-            }
-        }
-
-        if (centralActionLabel != null && onCentralAction != null) {
-            Button(
-                onClick = onCentralAction,
-                shape = CircleShape,
-                modifier = Modifier.padding(top = 12.dp).size(104.dp),
-            ) {
-                Text(
-                    centralActionLabel,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center,
-                )
             }
         }
     }

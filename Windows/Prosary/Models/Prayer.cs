@@ -50,13 +50,17 @@ public sealed record Prayer
     public bool IsNotDefault => !IsDefault;
     public string DisplayName => HebrewDisplayText.WithoutMarks(Name);
     public string ResolvedLanguageCode => LanguageCatalog.Resolve(LanguageCode).Code;
-    public string LanguageNativeName => LanguageCatalog.Resolve(LanguageCode).NativeName;
+    /// <summary>Bundle playback fallback, without changing the saved preference or its default sentinel.</summary>
+    public string EffectiveLanguageCode => Kind == PrayerKind.Custom && CustomDevotionId is { } bundleId
+        ? PrayerPackStore.EffectiveLanguage(bundleId, LanguageCode)
+        : ResolvedLanguageCode;
+    public string LanguageNativeName => LanguageCatalog.ContentLanguageName(LanguageCatalog.PickerLanguageCode(EffectiveLanguageCode));
 
     /// <summary>Display string for list rows — shows "Default (Latina)" for the sentinel, plain
     /// name otherwise.</summary>
     public string LanguageDisplayName => LanguageCode == LanguageCatalog.DefaultSentinel
-        ? string.Format(Loc.Tr("language_default_parenthesized", "Default ({0})"), LanguageCatalog.Resolve(LanguageCode).NativeName)
-        : LanguageCatalog.Resolve(LanguageCode).NativeName;
+        ? string.Format(Loc.Tr("language_default_parenthesized", "Default ({0})"), LanguageNativeName)
+        : LanguageNativeName;
 
     /// <summary>Second line shown on a Rosary preset card.</summary>
     public string FavoriteSubtitle => HebrewDisplayText.WithoutMarks(Kind switch
