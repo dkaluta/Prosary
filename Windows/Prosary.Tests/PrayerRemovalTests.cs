@@ -181,7 +181,9 @@ public class PrayerRemovalTests : IClassFixture<PrayerPackLoaderFixture>
             ? new Prayer { Kind = PrayerKind.JesusPrayer, Name = "Saved Jesus Prayer" }
             : Download("angelus");
         var harness = new Harness(prayer);
-        var home = new HomeViewModel(harness.Store, new LiturgicalCalendarService(), harness.Service);
+        // Series state belongs to package-local storage; deletion tests use their own state.
+        var home = new HomeViewModel(harness.Store, new LiturgicalCalendarService(), harness.Service,
+            seriesSubtitle: _ => null);
         PrayerRemovalPlan? confirmed = null;
         home.ConfirmDelete = plan => { confirmed = plan; return Task.FromResult(true); };
         await home.LoadAsync();

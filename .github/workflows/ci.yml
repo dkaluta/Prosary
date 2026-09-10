@@ -180,9 +180,3 @@ jobs:
           dotnet test Windows/Prosary.Tests/Prosary.Tests.csproj -c Debug -p:Platform=x64
           -p:WindowsAppSdkDeploymentManagerInitialize=false
           -p:WindowsAppSdkBootstrapInitialize=false
-      - name: Show XAML compiler diagnostics after a failure
-        if: failure()
-        shell: pwsh
-        run: |
-          Get-ChildItem Windows/Prosary/obj -Filter output.json -Recurse -ErrorAction SilentlyContinue |
-            ForEach-Object { Get-Content $_.FullName }

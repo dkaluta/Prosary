@@ -75,6 +75,14 @@ public class TodayNavigationTests
             Assert.Equal(TodayInfoStore.Intention(vm.SelectedDate), vm.MonthIntention);
             Assert.Equal(TodayInfoStore.Readings(vm.SelectedDate), vm.TodayReadings);
             Assert.Equal(TodayInfoStore.WeeklyTorahPortion(vm.SelectedDate), vm.TodayTorahPortion);
+            vm.YesterdayCommand.Execute(null);
+            Assert.Equal(new DateOnly(2026, 12, 31), vm.SelectedDate);
+            Assert.Equal(string.Join(Environment.NewLine,
+                vm.TodayReadings.Select(reading => reading.LocalizedFull(vm.TodayLanguage))), vm.ReadingsText);
+
+            // Reading citations cover a rolling horizon, shorter than the feast calendar.
+            // Check the full citation display on a date present in the shipped readings.
+            vm.SelectedTodayDate = new DateTimeOffset(2026, 9, 10, 0, 0, 0, TimeSpan.FromHours(14));
             Assert.NotEmpty(vm.TodayReadings);
             Assert.Equal(string.Join(Environment.NewLine,
                 vm.TodayReadings.Select(reading => reading.LocalizedFull(vm.TodayLanguage))), vm.ReadingsText);
@@ -84,10 +92,6 @@ public class TodayNavigationTests
             Assert.Equal(string.Join(Environment.NewLine,
                 vm.TodayTorahPortion.Readings!.Select(reading => reading.LocalizedFull(vm.TodayLanguage))),
                 vm.TorahPortionReadings);
-            vm.YesterdayCommand.Execute(null);
-            Assert.Equal(new DateOnly(2026, 12, 31), vm.SelectedDate);
-            Assert.Equal(string.Join(Environment.NewLine,
-                vm.TodayReadings.Select(reading => reading.LocalizedFull(vm.TodayLanguage))), vm.ReadingsText);
             vm.SelectTodayCommand.Execute(null);
             Assert.True(vm.IsSelectedDateToday);
             vm.SelectedTodayDate = vm.MinimumTodayDate;

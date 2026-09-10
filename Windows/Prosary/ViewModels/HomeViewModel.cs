@@ -65,6 +65,7 @@ public partial class HomeViewModel : ObservableObject
     private readonly IPresetStore _presets;
     private readonly LiturgicalCalendarService _calendar;
     private readonly PrayerRemovalService? _removal;
+    private readonly Func<string, string?> _seriesSubtitle;
 
     public Func<PrayerRemovalPlan, Task<bool>>? ConfirmDelete { get; set; }
     public Func<string, Task>? ShowRemovalError { get; set; }
@@ -206,11 +207,13 @@ public partial class HomeViewModel : ObservableObject
     public string ReadingsText => string.Join(Environment.NewLine,
         TodayReadings.Select(r => r.LocalizedFull(TodayLanguage)));
 
-    public HomeViewModel(IPresetStore presets, LiturgicalCalendarService calendar, PrayerRemovalService? removal = null)
+    public HomeViewModel(IPresetStore presets, LiturgicalCalendarService calendar,
+        PrayerRemovalService? removal = null, Func<string, string?>? seriesSubtitle = null)
     {
         _presets = presets;
         _calendar = calendar;
         _removal = removal;
+        _seriesSubtitle = seriesSubtitle ?? (id => MultiDayStatus.Subtitle(id));
         RefreshToday();
 
         _allCards.Add(
@@ -476,7 +479,7 @@ public partial class HomeViewModel : ObservableObject
             _defaultCustomDevotions[bundleId] = match;
             _customCardsByBundleId[bundleId].CanDeleteSavedPrayer = match is not null;
             ApplyName(_customCardsByBundleId[bundleId], PrayerCardName.ForBundle(bundleId, match?.LanguageCode));
-            _customCardsByBundleId[bundleId].Subtitle = MultiDayStatus.Subtitle(bundleId)
+            _customCardsByBundleId[bundleId].Subtitle = _seriesSubtitle(bundleId)
                 ?? (match is { } favorite ? HebrewDisplayText.WithoutMarks(favorite.Name) : null)
                 ?? Loc.Tr("home_click_to_pray", "Click to pray");
         }

@@ -448,8 +448,9 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             // A Rosary continuation is its own session; never replace a saved Litany's choices.
             if (prayerId is null && (initialLanguageCode is not null || initialVariantId is not null)) favorite = null;
             MatchingFavoriteId = favorite?.Id;
+            // The Litany's ending follows this entry, never an older saved closing form.
             _variantId = bundleId == "litanyOfLoreto"
-                ? (initialVariantId ?? favorite?.VariantId) == "afterRosary" ? "afterRosary" : "standard"
+                ? initialVariantId == "afterRosary" ? "afterRosary" : "standard"
                 : initialVariantId ?? favorite?.VariantId;
             _customOptions = favorite?.CustomOptions is { } options
                 ? new Dictionary<string, string>(options)
