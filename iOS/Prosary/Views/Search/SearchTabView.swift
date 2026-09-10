@@ -23,10 +23,31 @@ struct SearchTabView: View {
   @State private var busyBundleIds: Set<String> = []
   @State private var installError: String?
   @State private var packGeneration = 0
+  @State private var selectedListing: String?
+  @State private var selectedCategory: String?
+  @State private var removingDownload: String?
+  @State private var unusedDownloads: Set<String> = []
+  @Environment(\.appServices) private var services
+
+  private var categories: [String] {
+    _ = packGeneration
+    return PrayerSearchCategory.available(in: DevotionDirectory.all().map(\.tags) + repoBundles.map(\.tags))
+      .sorted { UILanguage.tag($0).localizedStandardCompare(UILanguage.tag($1)) == .orderedAscending }
+  }
+
+  private var desktopSelection: Binding<String?>? {
+    #if os(macOS)
+    $selectedListing
+    #else
+    nil
+    #endif
+  }
 
   private var localMatches: [DevotionListing] {
     _ = packGeneration
-    let listings = DevotionDirectory.all()
+    let listings = DevotionDirectory.all().filter {
+      PrayerSearchCategory.matches($0.tags, selected: selectedCategory)
+    }
     guard !query.isEmpty else { return listings }
     return listings.filter {
       $0.title.localizedCaseInsensitiveContains(query)
@@ -40,6 +61,7 @@ struct SearchTabView: View {
     let installed = Set(PrayerPackStore.customDevotionIds())
     return repoBundles.filter { bundle in
       guard !installed.contains(bundle.id) else { return false }
+      guard PrayerSearchCategory.matches(bundle.tags, selected: selectedCategory) else { return false }
       guard !query.isEmpty else { return true }
       return "\(bundle.name) \(bundle.author) \(bundle.description) \(bundle.tags.joined(separator: " ")) \(bundle.tags.map { UILanguage.tag($0) }.joined(separator: " "))"
         .localizedCaseInsensitiveContains(query)
@@ -49,10 +71,24 @@ struct SearchTabView: View {
   var body: some View {
     let _ = prayerLanguage.code  // dependency registration — see the property's comment
     let _ = showsPrayerNameInPrayerLanguage
-    List {
+    List(selection: desktopSelection) {
+      Section(String(localized: "categories.title", defaultValue: "Categories")) {
+        ScrollView(.horizontal) {
+          HStack(spacing: 8) {
+            categoryButton(nil, title: String(localized: "search.allCategories", defaultValue: "All"))
+            ForEach(categories, id: \.self) { category in
+              categoryButton(category, title: UILanguage.tag(category))
+            }
+          }
+          .padding(.vertical, 4)
+        }
+        .scrollIndicators(.hidden)
+        .accessibilityIdentifier("search.categories")
+      }
       Section(String(localized: "search.onDevice", defaultValue: "On This Device")) {
         ForEach(localMatches) { listing in
           Button {
+            selectedListing = listing.id
             path.push(listing.route)
           } label: {
             Label {
@@ -69,13 +105,22 @@ struct SearchTabView: View {
               Image(systemName: listing.systemImage).foregroundStyle(listing.accentColor)
               }
             }
-            // Match Categories: the entire visible List row is clickable on Mac, rather
-            // than only the icon-and-title's intrinsic pill-sized bounds.
+            // The entire visible List row remains a native activation target.
             .frame(maxWidth: .infinity, alignment: .leading)
             .contentShape(Rectangle())
           }
           .buttonStyle(.plain)
+          .tag(listing.id)
           .accessibilityIdentifier("search.local.\(listing.id)")
+          .contextMenu {
+            if PrayerPackStore.installedBundleIds().contains(listing.id) {
+              Button(role: .destructive) { removingDownload = listing.id } label: {
+                Label(String(localized: "removal.removeDownloadAction", defaultValue: "Remove Download…"), systemImage: "trash")
+              }
+              .disabled(!unusedDownloads.contains(listing.id))
+              .help(String(localized: "removal.downloadInUse", defaultValue: "Delete all saved copies of this prayer before removing its download."))
+            }
+          }
         }
         if localMatches.isEmpty {
           Text(String(localized: "search.noLocalMatches", defaultValue: "Nothing on this device matches."))
@@ -111,7 +156,21 @@ struct SearchTabView: View {
     }
     .navigationTitle(String(localized: "search.title", defaultValue: "Search"))
     .searchable(text: $query, prompt: String(localized: "search.prompt", defaultValue: "Devotions, categories, authors"))
+    .modifier(PrayerDownloadRemovalDialogs(bundleID: $removingDownload, onRemoved: { await refreshDownloads() }))
+    .task { await refreshDownloads() }
     .onAppear { packGeneration += 1 }
+    .onChange(of: categories) { _, available in
+      if let selectedCategory, !available.contains(selectedCategory) { self.selectedCategory = nil }
+    }
+    .onReceive(NotificationCenter.default.publisher(for: .prayerLibraryDidChange)) { _ in
+      packGeneration += 1
+      Task { await refreshDownloads() }
+    }
+    .macListActivation {
+      guard let listing = localMatches.first(where: { $0.id == selectedListing }) else { return false }
+      path.push(listing.route)
+      return true
+    }
     .task {
       repoBundles = (try? await RepositoryClient.fetchCatalog()) ?? []
     }
@@ -119,10 +178,34 @@ struct SearchTabView: View {
       String(localized: "repository.installFailed", defaultValue: "Could Not Install Devotion"),
       isPresented: .init(get: { installError != nil }, set: { if !$0 { installError = nil } })
     ) {
-      Button("favoriteEditor.cancel", role: .cancel) {}
+      Button(String(localized: "common.ok", defaultValue: "OK"), role: .cancel) {}
+        .keyboardShortcut(.defaultAction)
     } message: {
       Text(installError ?? "")
     }
+  }
+
+  private func categoryButton(_ category: String?, title: String) -> some View {
+    Button {
+      selectedCategory = category
+      selectedListing = nil
+    } label: {
+      HStack(spacing: 4) {
+        if selectedCategory == category { Image(systemName: "checkmark") }
+        Text(title)
+      }
+    }
+    .buttonStyle(.bordered)
+    .buttonBorderShape(.capsule)
+    .tint(selectedCategory == category ? .accentColor : .secondary)
+    .accessibilityLabel(title)
+    .accessibilityAddTraits(selectedCategory == category ? .isSelected : [])
+    .accessibilityIdentifier("search.category.\(category ?? "all")")
+  }
+
+  private func refreshDownloads() async {
+    unusedDownloads = Set((try? await PrayerRemovalService(store: services.presetStore).unusedDownloadIDs()) ?? [])
+    packGeneration += 1
   }
 
   private func install(_ bundle: RepositoryBundle) {

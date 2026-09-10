@@ -32,44 +32,26 @@
                           FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate x:DataType="vm:BasicPrayerRow">
-                        <Grid ColumnSpacing="8">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0" Background="Transparent" BorderThickness="0" HorizontalAlignment="Stretch"
-                                    HorizontalContentAlignment="Left" Padding="8,10"
-                                    Command="{Binding ElementName=Root, Path=ViewModel.OpenCommand}"
-                                    CommandParameter="{Binding}"
-                                    AutomationProperties.AutomationId="{x:Bind Id}">
-                                <StackPanel Orientation="Horizontal" Spacing="12">
-                                    <Border Width="44" Height="44" CornerRadius="8">
-                                        <Image Stretch="UniformToFill" AutomationProperties.AccessibilityView="Raw">
-                                            <Image.Source><BitmapImage UriSource="{x:Bind ImageFile}" /></Image.Source>
-                                        </Image>
-                                    </Border>
-                                    <StackPanel VerticalAlignment="Center" Spacing="2">
-                                        <TextBlock Text="{x:Bind Title}" FontSize="15" TextWrapping="Wrap"
-                                                   FlowDirection="{x:Bind IsTitleRightToLeft, Converter={StaticResource BoolToFlowDirection}}" />
-                                        <TextBlock Text="{x:Bind InterfaceSubtitle}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap"
-                                                   FlowDirection="{x:Bind IsInterfaceSubtitleRightToLeft, Converter={StaticResource BoolToFlowDirection}}"
-                                                   Visibility="{x:Bind HasInterfaceSubtitle, Converter={StaticResource BoolToVisibility}}" />
-                                    </StackPanel>
+                        <Button Background="Transparent" BorderThickness="0" HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Left" Padding="8,10"
+                                Command="{Binding ElementName=Root, Path=ViewModel.OpenCommand}"
+                                CommandParameter="{Binding}"
+                                AutomationProperties.AutomationId="{x:Bind Id}">
+                            <StackPanel Orientation="Horizontal" Spacing="12">
+                                <Border Width="44" Height="44" CornerRadius="8">
+                                    <Image Stretch="UniformToFill" AutomationProperties.AccessibilityView="Raw">
+                                        <Image.Source><BitmapImage UriSource="{x:Bind ImageFile}" /></Image.Source>
+                                    </Image>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center" Spacing="2">
+                                    <TextBlock Text="{x:Bind Title}" FontSize="15" TextWrapping="Wrap"
+                                               FlowDirection="{x:Bind IsTitleRightToLeft, Converter={StaticResource BoolToFlowDirection}}" />
+                                    <TextBlock Text="{x:Bind InterfaceSubtitle}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap"
+                                               FlowDirection="{x:Bind IsInterfaceSubtitleRightToLeft, Converter={StaticResource BoolToFlowDirection}}"
+                                               Visibility="{x:Bind HasInterfaceSubtitle, Converter={StaticResource BoolToVisibility}}" />
                                 </StackPanel>
-                            </Button>
-                            <Button Grid.Column="1" MinWidth="44" MinHeight="44"
-                                    Background="Transparent" BorderThickness="0"
-                                    AutomationProperties.Name="{x:Bind PinActionLabel}"
-                                    AutomationProperties.AutomationId="{x:Bind PinAutomationId}"
-                                    ToolTipService.ToolTip="{x:Bind PinActionLabel}"
-                                    Command="{Binding ElementName=Root, Path=ViewModel.TogglePinCommand}"
-                                    CommandParameter="{Binding}">
-                                <StackPanel Orientation="Horizontal" Spacing="8">
-                                    <FontIcon Glyph="{x:Bind PinGlyph}" AutomationProperties.AccessibilityView="Raw" />
-                                    <TextBlock Text="{x:Bind PinActionLabel}" VerticalAlignment="Center" />
-                                </StackPanel>
-                            </Button>
-                        </Grid>
+                            </StackPanel>
+                        </Button>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

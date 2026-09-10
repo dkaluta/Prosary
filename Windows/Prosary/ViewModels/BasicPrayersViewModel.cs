@@ -24,6 +24,8 @@ public sealed record BasicPrayerRow(string Id, string Title, string ImageFile, b
 /// iOS's BasicPrayersView / Android's BasicPrayersScreen.</summary>
 public partial class BasicPrayersViewModel : ObservableObject
 {
+    public WindowNavigation Navigation { get; set; } = WindowNavigation.Detached;
+
     [ObservableProperty]
     private IReadOnlyList<BasicPrayerRow> _rows = [];
 
@@ -71,7 +73,7 @@ public partial class BasicPrayersViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void Open(BasicPrayerRow row) => Router.Navigate<Views.BasicPrayerFlowPage>(row.Id);
+    private void Open(BasicPrayerRow row) => Navigation.Navigate<Views.BasicPrayerFlowPage>(row.Id);
 
     [RelayCommand]
     private void TogglePin(BasicPrayerRow row)
@@ -89,6 +91,8 @@ public partial class BasicPrayersViewModel : ObservableObject
 /// "Finish" as its only footer action.</summary>
 public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowViewModel
 {
+    public WindowNavigation Navigation { get; set; } = WindowNavigation.Detached;
+
     private string? _prayerId;
 
     [ObservableProperty]
@@ -151,7 +155,7 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
 
     public double? Progress => 1.0;
 
-    public Color SeasonColor => Colors.Transparent;
+    public Color SeasonColor => Microsoft.UI.Colors.Transparent;
 
     public bool CanGoBack => false;
 
@@ -202,7 +206,7 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     }
 
     [RelayCommand]
-    private void Next() => Router.GoBack();
+    private void Next() => Navigation.GoBack();
 
     [RelayCommand]
     private void Back()

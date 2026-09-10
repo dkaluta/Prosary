@@ -42,11 +42,10 @@ struct JesusPrayerSetupView: View {
     }
   }
 
-  // No persistence here (the whole app has none yet — see PresetStore's in-memory-only
-  // implementation), so this always starts back at the same default rather than remembering
-  // the last session's choice.
+  // This quick setup starts a temporary session; saved configurations live in favorites.
   @State private var selection: SetupOption = .thirtyThree
   @State private var customCountText = ""
+  @FocusState private var isCustomCountFocused: Bool
 
   private var customCount: Int? {
     guard let value = Int(customCountText), value > 0 else { return nil }
@@ -104,37 +103,80 @@ struct JesusPrayerSetupView: View {
   }
 
   var body: some View {
-    Form {
-      Section("jesusPrayerSetup.howManyTimes") {
-        VStack(spacing: 8) {
-          targetRow(SetupOption.countRow)
-          targetRow(SetupOption.openRow)
-        }
-        .accessibilityElement(children: .contain)
-        .accessibilityLabel(Text("jesusPrayerSetup.target"))
-        .listRowInsets(EdgeInsets(top: 10, leading: 12, bottom: 10, trailing: 12))
-
-        if selection == .custom {
-          TextField("jesusPrayerSetup.numberOfRepetitions", text: $customCountText)
-            #if os(iOS)
-            .keyboardType(.numberPad)
-            #endif
-        }
-      }
+    setupLayout
+    #if os(macOS)
+    .frame(maxWidth: 640)
+    .frame(maxWidth: .infinity)
+    .onChange(of: selection) { _, newSelection in
+      isCustomCountFocused = newSelection == .custom
     }
-    .formStyle(.grouped)
+    #endif
     .navigationTitle("jesusPrayerFlow.title")
     #if os(iOS)
     .navigationBarTitleDisplayMode(.inline)
     #endif
     .toolbar {
+      #if os(macOS)
+      ToolbarItem(placement: .primaryAction) {
+        Button("jesusPrayerSetup.begin") { begin() }
+          .keyboardShortcut(.defaultAction)
+          .disabled(!canBegin)
+          .accessibilityIdentifier("jesusPrayerBeginButton")
+      }
+      #else
       ToolbarItem(placement: .confirmationAction) {
-        Button("jesusPrayerSetup.begin") {
-          path.push(AppRoute.jesusPrayer(target: resolvedTarget))
-        }
+        Button("jesusPrayerSetup.begin") { begin() }
         .disabled(!canBegin)
       }
+      #endif
     }
+  }
+
+  @ViewBuilder private var setupLayout: some View {
+    #if os(macOS)
+    MacPrayerEditorForm { setupSections }
+    #else
+    Form { setupSections }.formStyle(.grouped)
+    #endif
+  }
+
+  @ViewBuilder private var setupSections: some View {
+    Section("jesusPrayerSetup.howManyTimes") {
+      #if os(macOS)
+      Picker("jesusPrayerSetup.target", selection: $selection) {
+        ForEach(SetupOption.allCases) { option in
+          Text(option.displayName).tag(option)
+        }
+      }
+      .pickerStyle(.radioGroup)
+      .accessibilityIdentifier("jesusPrayerTargetPicker")
+      #else
+      VStack(spacing: 8) {
+        targetRow(SetupOption.countRow)
+        targetRow(SetupOption.openRow)
+      }
+      .accessibilityElement(children: .contain)
+      .accessibilityLabel(Text("jesusPrayerSetup.target"))
+      .listRowInsets(EdgeInsets(top: 10, leading: 12, bottom: 10, trailing: 12))
+      #endif
+
+      if selection == .custom {
+        TextField("jesusPrayerSetup.numberOfRepetitions", text: $customCountText)
+          .accessibilityIdentifier("jesusPrayerCustomCount")
+          #if os(macOS)
+          .focused($isCustomCountFocused)
+          .onSubmit { begin() }
+          #endif
+          #if os(iOS)
+          .keyboardType(.numberPad)
+          #endif
+      }
+    }
+  }
+
+  private func begin() {
+    guard canBegin else { return }
+    path.push(AppRoute.jesusPrayer(target: resolvedTarget))
   }
 }
 

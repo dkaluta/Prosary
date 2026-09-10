@@ -16,7 +16,7 @@ namespace Prosary.Converters;
 public sealed class ColorToBrushConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)
-        => new SolidColorBrush(value is Color color ? color : Colors.Transparent);
+        => new SolidColorBrush(value is Color color ? color : Microsoft.UI.Colors.Transparent);
 
     public object ConvertBack(object value, Type targetType, object parameter, string language)
         => throw new NotSupportedException();

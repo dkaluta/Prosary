@@ -9,10 +9,11 @@ import com.dkaluta.prosary.presets.PresetStore
 
 /** A [PresetStore] backed by Room — the production implementation, replacing the in-memory-only
  * [com.dkaluta.prosary.presets.MockPresetStore]. Mirrors iOS's `SwiftDataPresetStore`: seeds
- * exactly one favorite (Classic Rosary) the first time the table is empty; `save`/`delete` only
+ * exactly one favorite (Classic Rosary) on database creation; `save`/`delete` only
  * ever touch the default flag of favorites of the **same kind**. */
-class RoomPresetStore(private val dao: PresetDao) : PresetStore {
+class RoomPresetStore(private val dao: PresetDao, private val onChanged: () -> Unit = {}) : PresetStore {
 
+    /** Only called after Room's onCreate callback, never when reopening an existing database. */
     suspend fun seedIfEmpty() {
         if (dao.count() == 0) {
             dao.upsert(PresetEntity.from(seedPrayer))
@@ -41,17 +42,16 @@ class RoomPresetStore(private val dao: PresetDao) : PresetStore {
             }
         }
         dao.upsert(PresetEntity.from(prayer))
+        onChanged()
     }
 
     override suspend fun delete(prayer: Prayer) {
-        val entity = dao.getById(prayer.id) ?: return
-        val wasDefault = entity.isDefault
-        val identity = entity.resolvedKind
-        dao.delete(entity)
-        if (wasDefault) {
-            val next = dao.getAll().firstOrNull { it.resolvedKind == identity }
-            if (next != null) dao.upsert(next.copy(isDefault = true))
-        }
+        dao.deleteAndPromote(prayer.id)
+        onChanged()
+    }
+
+    override suspend fun updateIfPresent(prayer: Prayer): Boolean = (dao.update(PresetEntity.from(prayer)) > 0).also {
+        if (it) onChanged()
     }
 
     companion object {

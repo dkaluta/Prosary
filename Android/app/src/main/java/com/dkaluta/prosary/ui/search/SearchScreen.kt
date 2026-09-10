@@ -5,6 +5,8 @@ import com.dkaluta.prosary.ui.shared.CategoryLabels
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,6 +18,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -24,6 +27,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -31,12 +35,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.testTag
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.content.repository.RepositoryBundle
@@ -49,33 +58,42 @@ import kotlinx.coroutines.launch
 /** One search across everything prayable: devotions on this device (opened in place) and the
  * prayers.prosary.app catalog (installed in place). The repository half loads once and
  * degrades silently offline, leaving local search fully working. Mirrors iOS's SearchTabView. */
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun SearchScreen(onLaunch: (LaunchTarget) -> Unit) {
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
-    var query by remember { mutableStateOf("") }
+    var query by rememberSaveable { mutableStateOf("") }
+    var selectedCategory by rememberSaveable { mutableStateOf<String?>(null) }
     var repoBundles by remember { mutableStateOf<List<RepositoryBundle>>(emptyList()) }
     var busyIds by remember { mutableStateOf(setOf<String>()) }
     var generation by remember { mutableIntStateOf(0) }
+    val lifecycleOwner = LocalLifecycleOwner.current
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME) generation++
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+    }
 
     LaunchedEffect(Unit) {
         repoBundles = runCatching { RepositoryClient.fetchCatalog() }.getOrDefault(emptyList())
     }
 
     @Suppress("UNUSED_EXPRESSION") generation
-    val localMatches = DevotionDirectory.all(context).filter { listing ->
-        query.isBlank() || listing.title.contains(query, ignoreCase = true) ||
-            listing.interfaceTitle?.contains(query, ignoreCase = true) == true ||
-            listing.tags.any { it.contains(query, ignoreCase = true) || CategoryLabels.label(it, context).contains(query, ignoreCase = true) }
+    val localListings = DevotionDirectory.all(context)
+    val categories = SearchFilter.categories(localListings.map { it.tags } + repoBundles.map { it.tags })
+        .sortedBy { CategoryLabels.label(it, context) }
+    val categoryLabel: (String) -> String = { CategoryLabels.label(it, context) }
+    val localMatches = localListings.filter { listing ->
+        SearchFilter.matches(query, selectedCategory, listing.tags,
+            listOfNotNull(listing.title, listing.interfaceTitle), categoryLabel)
     }
     val installed = PrayerPackStore.customDevotionIds().toSet()
     val communityMatches = repoBundles.filter { bundle ->
-        bundle.id !in installed && (
-            query.isBlank() ||
-                "${bundle.name} ${bundle.author} ${bundle.description} ${bundle.tags.joinToString(" ")} ${bundle.tags.joinToString(" ") { CategoryLabels.label(it, context) }}"
-                    .contains(query, ignoreCase = true)
-            )
+        bundle.id !in installed && SearchFilter.matches(query, selectedCategory, bundle.tags,
+            listOf(bundle.name, bundle.author, bundle.description), categoryLabel)
     }
 
     // Tints the pinned bar once content scrolls beneath it — without this the bar is
@@ -96,8 +114,31 @@ fun SearchScreen(onLaunch: (LaunchTarget) -> Unit) {
                     onValueChange = { query = it },
                     label = { Text(stringResource(R.string.search_hint)) },
                     singleLine = true,
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().testTag("searchQuery"),
                 )
+            }
+            item(key = "categories") {
+                Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    Text(stringResource(R.string.tab_categories), style = MaterialTheme.typography.titleSmall)
+                    FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        FilterChip(
+                            selected = selectedCategory == null,
+                            onClick = { selectedCategory = null },
+                            label = { Text(stringResource(R.string.search_all_categories)) },
+                            modifier = Modifier.testTag("searchCategoryAll"),
+                        )
+                        // Keep a removed category visible until cleared, rather than silently
+                        // broadening a filter when its last local prayer is uninstalled.
+                        for (tag in (categories + listOfNotNull(selectedCategory)).distinct()) {
+                            FilterChip(
+                                selected = selectedCategory == tag,
+                                onClick = { selectedCategory = if (selectedCategory == tag) null else tag },
+                                label = { Text(categoryLabel(tag)) },
+                                modifier = Modifier.testTag("searchCategory.$tag"),
+                            )
+                        }
+                    }
+                }
             }
             item(key = "localHeader") {
                 Text(stringResource(R.string.search_on_device), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)

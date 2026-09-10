@@ -17,8 +17,11 @@ namespace Prosary.ViewModels;
 /// </summary>
 public partial class RemindersOnlyEditorViewModel : ObservableObject
 {
+    public WindowNavigation Navigation { get; set; } = WindowNavigation.Detached;
+
     private readonly IPresetStore _presets;
     private readonly IReminderScheduler _scheduler;
+    public Func<string, Task>? ShowSaveError { get; set; }
 
     private Prayer? _originalPrayer;
 
@@ -45,7 +48,7 @@ public partial class RemindersOnlyEditorViewModel : ObservableObject
         {
             // The favorite was deleted out from under this screen (e.g. from another window) —
             // nothing to edit, so just back out rather than showing a blank editor.
-            Router.GoBack();
+            Navigation.GoBack();
             return;
         }
 
@@ -61,12 +64,13 @@ public partial class RemindersOnlyEditorViewModel : ObservableObject
         OptionRows.Clear();
         if (prayer.CustomDevotionId is { } devotionId)
         {
-            foreach (var option in PrayerPackStore.Options(devotionId))
+            var customOptions = RosaryCustomOptions.Normalize(devotionId, prayer.CustomOptions);
+            foreach (var option in RosaryCustomOptions.EditorOptions(devotionId, PrayerPackStore.Options(devotionId)))
             {
                 // Rows read through to the option's declared default so they show the effective
                 // value even before the user has ever touched them; Save stores explicit
                 // overrides for every row.
-                var value = prayer.CustomOptions.GetValueOrDefault(option.Key) ?? option.DefaultValue;
+                var value = customOptions.GetValueOrDefault(option.Key) ?? option.DefaultValue;
                 OptionRows.Add(new DevotionOptionRowViewModel(option, value));
             }
         }
@@ -85,7 +89,7 @@ public partial class RemindersOnlyEditorViewModel : ObservableObject
             return;
         }
 
-        var customOptions = new Dictionary<string, string>(original.CustomOptions);
+        var customOptions = RosaryCustomOptions.Normalize(original.CustomDevotionId, original.CustomOptions);
         foreach (var row in OptionRows)
         {
             customOptions[row.Key] = row.Value;
@@ -96,7 +100,12 @@ public partial class RemindersOnlyEditorViewModel : ObservableObject
             Reminders = [.. RemindersEditor.Reminders],
             CustomOptions = customOptions,
         };
-        await _presets.SaveAsync(toSave);
+        if (!await _presets.UpdateIfPresentAsync(toSave))
+        {
+            if (ShowSaveError is { } showError)
+                await showError(Loc.Tr("prayerRemoval_prayerRemoved", "This saved prayer has been deleted."));
+            return;
+        }
 
         // Cancel the original's reminders (by their old ids) before scheduling the new set —
         // Schedule() only knows how to (re)build toasts for reminder ids present in toSave, so a
@@ -104,11 +113,11 @@ public partial class RemindersOnlyEditorViewModel : ObservableObject
         _scheduler.RemoveAll(original);
         _scheduler.Schedule(toSave);
 
-        Router.GoBack();
+        Navigation.GoBack();
     }
 
     [RelayCommand]
-    private void Cancel() => Router.GoBack();
+    private void Cancel() => Navigation.GoBack();
 }
 
 /// <summary>One schema-driven row of the editor's Options section — a ToggleSwitch (toggle

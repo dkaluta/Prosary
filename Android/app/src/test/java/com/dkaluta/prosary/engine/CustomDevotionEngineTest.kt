@@ -11,6 +11,7 @@ import com.dkaluta.prosary.models.MysteryGroup
 import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
+import com.dkaluta.prosary.models.RosaryOptions
 import com.dkaluta.prosary.models.RosaryStep
 import com.dkaluta.prosary.typography.HebrewDisplayText
 import java.io.File
@@ -90,6 +91,66 @@ class CustomDevotionEngineTest {
             customDevotionId = bundleId, variantId = variantId, customOptions = customOptions,
         ),
     )
+
+    @Test
+    fun savedCustomRosaryClosingOptionsMigrateBeforeObsoleteKeysAreFiltered() {
+        val without = steps("rosary", language = "la").map { it.title to it.body }
+        val complete = steps("rosary", language = "la", customOptions = mapOf("closingIntentions" to "true"))
+            .map { it.title to it.body }
+        assertEquals(without.size + 13, complete.size)
+        for (key in RosaryOptions.legacyClosingIntentionKeys) {
+            val legacy = mapOf(key to "true")
+            assertEquals(complete, steps("rosary", language = "la", customOptions = legacy).map { it.title to it.body })
+            val editorOptions = RosaryOptions.normalizedCustomOptions("rosary", legacy)
+            assertEquals(mapOf("closingIntentions" to "true"), editorOptions)
+            val savedOff = editorOptions + ("closingIntentions" to "false")
+            assertEquals(without, steps("rosary", language = "la", customOptions = savedOff).map { it.title to it.body })
+        }
+        val explicitOff = RosaryOptions.legacyClosingIntentionKeys.associateWith { "false" } +
+            ("closingIntentions" to "true")
+        assertEquals(without, steps("rosary", language = "la", customOptions = explicitOff).map { it.title to it.body })
+    }
+
+    @Test
+    fun olderInstalledRosaryPackReadsCombinedAliasesWithoutChangingForeignPacks() {
+        fun fixture(id: String): ByteArray {
+            val output = java.io.ByteArrayOutputStream()
+            val optionKeys = RosaryOptions.legacyClosingIntentionKeys.toList()
+            java.util.zip.ZipOutputStream(output).use { zip ->
+                fun add(name: String, text: String) {
+                    zip.putNextEntry(java.util.zip.ZipEntry(name))
+                    zip.write(text.toByteArray())
+                    zip.closeEntry()
+                }
+                add("manifest.json", """{"schemaVersion":1,"id":"$id","kind":"custom","displayName":"Compatibility fixture","languages":["en"],"hasCatalog":false}""")
+                add("options.json", """{"options":[${optionKeys.joinToString(",") { key ->
+                    """{"key":"$key","kind":"toggle","name":"Fixture","default":false}"""
+                }}]}""")
+                add("devotion.json", """{"type":"steps","steps":[${optionKeys.joinToString(",") { key ->
+                    """{"title":"Fixture","bodyKey":"$key","if":"$key"}"""
+                }}]}""")
+                add("content/en.json", """{"prayers":{${optionKeys.joinToString(",") { key ->
+                    """"$key":"$key marker""""
+                }}}}""")
+            }
+            return output.toByteArray()
+        }
+
+        try {
+            PrayerPackStore.resetForTesting()
+            val fixtures = mapOf("rosary" to fixture("rosary"), "angelus" to fixture("foreignRosary"))
+            PrayerPackStore.initialize { fixtures[it]?.inputStream() }
+            val partial = mapOf("closingPopeIntention" to "true")
+            assertEquals(3, steps("rosary", customOptions = partial).size)
+            assertEquals(3, steps("rosary", customOptions = mapOf("closingIntentions" to "true")).size)
+            assertTrue(steps("rosary", customOptions = mapOf("closingIntentions" to "false")).isEmpty())
+            assertEquals(1, steps("foreignRosary", customOptions = partial).size)
+            assertTrue(steps("foreignRosary", customOptions = mapOf("closingIntentions" to "true")).isEmpty())
+        } finally {
+            PrayerPackStore.resetForTesting()
+            loadPacks()
+        }
+    }
 
     // MARK: Trisagion (flat)
 

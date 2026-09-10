@@ -86,9 +86,9 @@
   <data name="settings_installed_devotions" xml:space="preserve"><value>מסלולי תפילה מותקנים: {0}</value></data>
   <data name="settings_clear_audio_cache" xml:space="preserve"><value>ניקוי מטמון השמע</value></data>
   <data name="settings_clear_audio_cache_size" xml:space="preserve"><value>ניקוי מטמון השמע ({0})</value></data>
-  <data name="settings_remove_all_title" xml:space="preserve"><value>להסיר את כל המסלולים שהורדו?</value></data>
-  <data name="settings_remove_all_message" xml:space="preserve"><value>מסלולים מהמאגר אפשר להוריד שוב; קבצים שיובאו ידנית — לא.</value></data>
-  <data name="settings_remove_all_confirm" xml:space="preserve"><value>הסר הכול</value></data>
+  <data name="settings_remove_all_title" xml:space="preserve"><value>להסיר הורדות שאינן בשימוש?</value></data>
+  <data name="settings_remove_all_message" xml:space="preserve"><value>תפילות שהורדו ואין להן עותקים שמורים יוסרו. תפילות שמורות ותפילות מובנות יישמרו.</value></data>
+  <data name="settings_remove_all_confirm" xml:space="preserve"><value>הסרת הורדות שאינן בשימוש</value></data>
   <data name="settings_app_language_system" xml:space="preserve"><value>ברירת המחדל של המערכת</value></data>
   <data name="NavPray.Content" xml:space="preserve"><value>תפילה</value></data>
   <data name="NavBrowse.Content" xml:space="preserve"><value>עיון</value></data>
@@ -105,8 +105,8 @@
   <data name="SetAutoAdvanceCombo.Header" xml:space="preserve"><value>מעבר אוטומטי</value></data>
   <data name="SetResetHomeOrder.Content" xml:space="preserve"><value>איפוס סדר מסך הבית</value></data>
   <data name="SetDownloadsHeader.Text" xml:space="preserve"><value>הורדות</value></data>
-  <data name="SetRemoveAll.Content" xml:space="preserve"><value>הסרת כל המסלולים שהורדו…</value></data>
-  <data name="SetDownloadsFooter.Text" xml:space="preserve"><value>מסלולים מובנים לעולם אינם מוסרים. הסרת מסלול שהורד מסירה גם את המועדף שלו.</value></data>
+  <data name="SetRemoveAll.Content" xml:space="preserve"><value>הסרת הורדות שאינן בשימוש…</value></data>
+  <data name="SetDownloadsFooter.Text" xml:space="preserve"><value>כאן אפשר להסיר רק הורדות ללא עותקים שמורים. מחיקת העותק השמור האחרון מסירה גם את ההורדה שלו. תפילות מובנות נשמרות.</value></data>
   <data name="SetLinksHeader.Text" xml:space="preserve"><value>קישורים</value></data>
   <data name="SetRepoLink.Content" xml:space="preserve"><value>מאגר הקהילה</value></data>
   <data name="SetComposeLink.Content" xml:space="preserve"><value>יצירת מסלול תפילה</value></data>
@@ -168,7 +168,7 @@
   <data name="EdApostlesCreed.Text" xml:space="preserve"><value>אני מאמין</value></data>
   <data name="EdOpeningPrayers.Text" xml:space="preserve"><value>“אבינו שבשמים” ו־3 “שמחי מרים” בפתיחה</value></data>
   <data name="EdFatima.Text" xml:space="preserve"><value>“הו ישוע שלי” בסוף כל רז</value></data>
-  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>תפילת פאטימה אחרי שלוש ברכות מרים הפותחות</value></data>
+  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>תפילת פאטימה אחרי תפילת “כבוד לאב” הפותחת</value></data>
   <data name="EdDisplayHeader.Text" xml:space="preserve"><value>תצוגה</value></data>
   <data name="EdMysteryArtwork.Header" xml:space="preserve"><value>איורי הרזים</value></data>
   <data name="EdPresenterMode.Text" xml:space="preserve"><value>מצב מנחה</value></data>
@@ -208,7 +208,7 @@
   <data name="AbtJpHeader.Text" xml:space="preserve"><value>איור תפילת ישוע</value></data>
   <data name="AbtJpBody.Text" xml:space="preserve"><value>המשיח כל־יכול: איקונת אנקאוסטיקה (המאה ה־6), מנזר הק׳ קתרינה, הר סיני — איקונת “המשיח הכל־יכול” העתיקה ביותר ששרדה, לכבוד מסורתה המזרחית של התפילה; רשות הציבור.</value></data>
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>מקורות כתבי הקודש</value></data>
-  <data name="AbtScriptureBody.Text" xml:space="preserve"><value>ציטוטי המקרא לקוחים מביבליית דואיי־רימס (אנגלית), הוולגאטה הקלמנטית (לטינית), תרגום דליטש לברית החדשה (מתוך kirjasilta.net/ha-berit) עם קטעי התנ״ך על פי נוסח המסורה, תרגום הישועים לביבליה לערבית (Dar el-Machreq), הביבליה הסינודלית ברוסית (1876) ו־Ang Dating Biblia (טאגאלוג, 1905).</value></data>
+  <data name="AbtScriptureBody.Text" xml:space="preserve"><value>ציטוטי המקרא לקוחים מביבליית דואיי־רימס (אנגלית), הוולגאטה הקלמנטית (לטינית), תרגום דליטש לברית החדשה (מתוך kirjasilta.net/ha-berit; delitz.fr/12, 1901) עם קטעי התנ״ך על פי נוסח המסורה, תרגום הישועים הישן לביבליה לערבית (1897), הביבליה הסינודלית ברוסית (1876) ו־Ang Dating Biblia (טאגאלוג, 1905).</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>נתוני לוחות</value></data>
   <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>נתוני לוחות ומקראות: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 ומקראותיו מ־Missale Meum‏ (missalemeum.com); הלוח הסורי־קתולי, שמות עבריים ללוח הרומי הכללי ומראי המקום הרומיים והסוריים באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; הלוח האוקראיני־קתולי ומקראותיו עם פסחא יוליאני: הכנסייה האוקראינית־קתולית והוועדה הליטורגית הפטריארכלית שלה (ugcc.ua); מקראות הפסחא הגרגוריאני: Royal Doors‏ (royaldoors.net). שמות ספרי המקרא בעברית: Evangelizo HE ונציגות יעקב הצדיק (catholic.co.il). שמות נוספים של חגים וקדושים בעברית: נציגות יעקב הצדיק, המרכז הנוצרי לתקשורת (cmc-terrasanta.org) וחדשות הוותיקן (vaticannews.va).</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>הרז הקודם</value></data>
@@ -322,27 +322,27 @@
   <data name="SetAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>נוסח אות הצלב בארמית</value></data>
   <data name="EdAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>נוסח אות הצלב בארמית</value></data>
   <data name="EdRiteCombo.Header" xml:space="preserve"><value>נוסח התפילה</value></data>
-  <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>התפלל מחרוזת כלשהי</value></data>
-  <data name="HomeAddRosary.Content" xml:space="preserve"><value>הוסף מחרוזת</value></data>
-  <data name="HomeAddJesusPrayer.Content" xml:space="preserve"><value>הוסף את תפילת ישוע</value></data>
+  <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>התפלל מחרוזת כלשהי…</value></data>
+  <data name="HomeAddRosary.Content" xml:space="preserve"><value>הוסף מחרוזת…</value></data>
+  <data name="HomeAddJesusPrayer.Content" xml:space="preserve"><value>הוסף את תפילת ישוע…</value></data>
   <data name="HomeAddToPrayHeader.Text" xml:space="preserve"><value>הוסף ל״תפילה״</value></data>
-  <data name="HomeSavedPresets.Text" xml:space="preserve"><value>מסלולים שמורים…</value></data>
+  <data name="HomeSavedPresets.Text" xml:space="preserve"><value>מסלולים שמורים</value></data>
   <data name="HomeEditOrderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>ערוך סדר…</value></data>
   <data name="HomeReminders.Text" xml:space="preserve"><value>תזכורות…</value></data>
-  <data name="PresetEdit.Text" xml:space="preserve"><value>ערוך</value></data>
+  <data name="PresetEdit.Text" xml:space="preserve"><value>ערוך…</value></data>
   <data name="PresetReminders.Text" xml:space="preserve"><value>תזכורות…</value></data>
   <data name="PresetSetDefault.Text" xml:space="preserve"><value>קבע כברירת מחדל</value></data>
   <data name="PresetDelete.Text" xml:space="preserve"><value>מחק</value></data>
   <data name="SetImportBundle.Content" xml:space="preserve"><value>ייבא חבילת תפילה…</value></data>
   <data name="SetExportBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>ייצא לעריכה</value></data>
-  <data name="SetRemoveBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>הסר</value></data>
+  <data name="SetRemoveBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>הסרת הורדה…</value></data>
   <data name="PickerEternalRest.Header" xml:space="preserve"><value>למען הנפטרים</value></data>
   <data name="PickerAntiphon.Header" xml:space="preserve"><value>אנטיפון מריאני</value></data>
   <data name="PickerMysteryArtwork.Header" xml:space="preserve"><value>איורי הרזים</value></data>
   <data name="PickerApostlesCreed.Text" xml:space="preserve"><value>אני מאמין</value></data>
   <data name="PickerOpeningPrayers.Text" xml:space="preserve"><value>אבינו ושלוש פעמים שלום לך מרים בפתיחה</value></data>
   <data name="PickerFatima.Text" xml:space="preserve"><value>תפילת פאטימה אחרי כל עשור</value></data>
-  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>תפילת פאטימה אחרי שלוש ברכות מרים הפותחות</value></data>
+  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>תפילת פאטימה אחרי תפילת “כבוד לאב” הפותחת</value></data>
   <data name="PickerPresenterMode.Text" xml:space="preserve"><value>מצב מנחה</value></data>
   <data name="PickerClosingIntentions.Text" xml:space="preserve"><value>כוונות הסיום</value></data>
   <data name="PickerStMichael.Text" xml:space="preserve"><value>תפילת המלאך מיכאל</value></data>
@@ -440,9 +440,88 @@
   <data name="HomeNextDay.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>היום הבא</value></data>
   <data name="home_today_choose_date" xml:space="preserve"><value>בחירת תאריך: {0}</value></data>
   <data name="AbtHebrewBookIndex.Text" xml:space="preserve"><value>שמות נוספים של ספרי המקרא בעברית: מפתח התנ״ך של מכון ממרא. שמות בלבד, ללא טקסט מקראי.</value></data>
-  <data name="SetJaffaWording.Header" xml:space="preserve"><value>נוסח יפו</value></data>
+  <data name="SetJaffaWording.Header" xml:space="preserve"><value>נוסח חלופי ל“שמחי מרים”</value></data>
   <data name="SetJaffaWordingFooter.Text" xml:space="preserve"><value>שימוש בביטוי בְּרוּכַת הַחֶסֶד במקום מְלֵאַת הַחֶסֶד בתפילות בנוסח הנציגות.</value></data>
   <data name="AbtUkrainianPrayerSources.Text" xml:space="preserve"><value>תפילות באוקראינית: הכנסייה הקתולית הרומית באוקראינה, סידור התפילות Щоденно з Богом. השימוש נעשה עם ציון המקור בהתאם למדיניות השימוש החוזר של המוציא לאור. כתבי הקודש: תרגום קוליש, נצ׳וי־לויצקי ופוליוי (1905), נחלת הכלל; eBible.org ukr1871. הכתיב ההיסטורי של כתבי הקודש נשמר.</value></data>
   <data name="AbtUkrainianPrayerbookLink.Content" xml:space="preserve"><value>סידור תפילות באוקראינית</value></data>
   <data name="AbtUkrainianScriptureLink.Content" xml:space="preserve"><value>כתבי הקודש באוקראינית (1905)</value></data>
+  <!-- Window and menu commands -->
+  <data name="CommandsOpenInNewWindow" xml:space="preserve"><value>פתח בחלון חדש</value></data>
+  <data name="CommandsNavigation" xml:space="preserve"><value>עבור אל</value></data>
+  <data name="CommandsBack" xml:space="preserve"><value>חזור</value></data>
+  <data name="CommandsHelp" xml:space="preserve"><value>עזרה של Prosary</value></data>
+  <data name="CommandsNewWindow" xml:space="preserve"><value>חלון חדש</value></data>
+  <data name="FavoriteEditorSaveFailed" xml:space="preserve"><value>לא ניתן לשמור במועדפים</value></data>
+  <data name="flow_show_original_text" xml:space="preserve"><value>הצג את הטקסט המקורי</value></data>
+  <data name="RosaryAnyRosaryAction" xml:space="preserve"><value>תפילת מחרוזת חופשית…</value></data>
+  <data name="RosarySaveAsPresetAction" xml:space="preserve"><value>שמירה כתבנית…</value></data>
+  <data name="FavoriteEditorReminderTime" xml:space="preserve"><value>שעת התזכורת</value></data>
+  <data name="FavoriteEditorRemoveReminder" xml:space="preserve"><value>הסר תזכורת</value></data>
+  <data name="AboutVersion" xml:space="preserve"><value>גרסה {0} ({1})</value></data>
+  <data name="CommandsRecentlyPrayed" xml:space="preserve"><value>תפילות אחרונות</value></data>
+  <data name="HomeDeleteSavedPrayer.Text" xml:space="preserve"><value>מחיקת תפילה שמורה…</value></data>
+  <data name="prayerRemoval_deleteTitle" xml:space="preserve"><value>למחוק את התפילה השמורה?</value></data>
+  <data name="prayerRemoval_deleteMessage" xml:space="preserve"><value>התפילה השמורה והתזכורות שלה יימחקו. עותקים שמורים אחרים ותפילות מובנות יישארו זמינים.</value></data>
+  <data name="prayerRemoval_deleteDownloadedMessage" xml:space="preserve"><value>זהו העותק השמור האחרון. מחיקתו תסיר גם את חבילת התפילה שהורדה מהמכשיר הזה ותבטל את התזכורות שלה.</value></data>
+  <data name="prayerRemoval_deleteConfirm" xml:space="preserve"><value>מחיקה</value></data>
+  <data name="prayerRemoval_removeDownloadTitle" xml:space="preserve"><value>להסיר את ההורדה?</value></data>
+  <data name="prayerRemoval_removeDownloadMessage" xml:space="preserve"><value>התפילה שהורדה תוסר מהמכשיר הזה. אפשר לייבא או להוריד אותה שוב.</value></data>
+  <data name="prayerRemoval_removeConfirm" xml:space="preserve"><value>הסרה</value></data>
+  <data name="prayerRemoval_failedTitle" xml:space="preserve"><value>לא ניתן להסיר את התפילה</value></data>
+  <data name="prayerRemoval_failedMessage" xml:space="preserve"><value>לא ניתן להסיר חלק מהפריטים. נא לנסות שוב.</value></data>
+  <data name="prayerRemoval_deleteFailed" xml:space="preserve"><value>לא ניתן למחוק את התפילה. נא לנסות שוב.</value></data>
+  <data name="prayerRemoval_cleanupFailed" xml:space="preserve"><value>התפילה נמחקה, אך לא ניתן להסיר את ההורדה שלה. נא לנסות שוב בהורדות.</value></data>
+  <data name="prayerRemoval_remindersFailed" xml:space="preserve"><value>התפילה נמחקה, אך לא ניתן לבטל את התזכורות שלה.</value></data>
+  <data name="prayerRemoval_downloadInUse" xml:space="preserve"><value>יש למחוק את העותקים השמורים של התפילה לפני הסרת ההורדה שלה.</value></data>
+  <data name="prayerRemoval_prayerRemoved" xml:space="preserve"><value>התפילה השמורה הזאת נמחקה.</value></data>
+
+  <!-- Native desktop library and prayer windows -->
+  <data name="desktop_library" xml:space="preserve"><value>ספרייה</value></data>
+  <data name="desktop_today" xml:space="preserve"><value>היום</value></data>
+  <data name="desktop_gallery" xml:space="preserve"><value>גלריה</value></data>
+  <data name="desktop_community" xml:space="preserve"><value>קהילה</value></data>
+  <data name="desktop_menu_file" xml:space="preserve"><value>קובץ</value></data>
+  <data name="desktop_menu_view" xml:space="preserve"><value>תצוגה</value></data>
+  <data name="desktop_menu_prayer" xml:space="preserve"><value>תפילה</value></data>
+  <data name="desktop_menu_help" xml:space="preserve"><value>עזרה</value></data>
+  <data name="desktop_show_library" xml:space="preserve"><value>הצגת הספרייה</value></data>
+  <data name="desktop_close_window" xml:space="preserve"><value>סגירת החלון</value></data>
+  <data name="desktop_import" xml:space="preserve"><value>ייבוא חבילות תפילה…</value></data>
+  <data name="desktop_full_screen" xml:space="preserve"><value>מסך מלא</value></data>
+  <data name="desktop_prayer_settings" xml:space="preserve"><value>הגדרות תפילה…</value></data>
+  <data name="desktop_previous_step" xml:space="preserve"><value>השלב הקודם</value></data>
+  <data name="desktop_next_step" xml:space="preserve"><value>השלב הבא</value></data>
+  <data name="desktop_saved_prayer_missing" xml:space="preserve"><value>התפילה השמורה הזו אינה זמינה עוד.</value></data>
+  <data name="desktop_import_failed" xml:space="preserve"><value>לא ניתן לייבא את חבילת התפילה</value></data>
+  <data name="desktop_open" xml:space="preserve"><value>פתיחה</value></data>
+  <data name="desktop_duplicate" xml:space="preserve"><value>שכפול</value></data>
+  <data name="desktop_delete" xml:space="preserve"><value>מחיקת תפילה שמורה…</value></data>
+  <data name="desktop_rename" xml:space="preserve"><value>שינוי שם…</value></data>
+  <data name="desktop_search_library" xml:space="preserve"><value>חיפוש תפילות</value></data>
+  <data name="desktop_library_empty" xml:space="preserve"><value>ספריית התפילות שלכם</value></data>
+  <data name="desktop_library_empty_detail" xml:space="preserve"><value>הוסיפו תפילה מהגלריה או ייבאו חבילת תפילה כדי להתחיל.</value></data>
+  <data name="desktop_no_matches" xml:space="preserve"><value>לא נמצאו תפילות תואמות</value></data>
+  <data name="desktop_no_matches_detail" xml:space="preserve"><value>נסו חיפוש אחר.</value></data>
+  <data name="desktop_add_to_library" xml:space="preserve"><value>הוספה לספרייה</value></data>
+  <data name="desktop_added" xml:space="preserve"><value>נוסף לספרייה</value></data>
+  <data name="desktop_library_load_failed" xml:space="preserve"><value>לא ניתן לטעון את הספרייה</value></data>
+  <data name="desktop_library_save_failed" xml:space="preserve"><value>לא ניתן לשמור את התפילה</value></data>
+  <data name="desktop_copy_name" xml:space="preserve"><value>עותק של {0}</value></data>
+  <data name="desktop_rename_title" xml:space="preserve"><value>שינוי שם התפילה</value></data>
+  <data name="desktop_gallery_detail" xml:space="preserve"><value>בחרו תפילה כדי להוסיף עותק שמור לספרייה.</value></data>
+  <data name="desktop_search_gallery" xml:space="preserve"><value>חיפוש בגלריה</value></data>
+  <data name="desktop_list_view" xml:space="preserve"><value>תצוגת רשימה</value></data>
+  <data name="desktop_grid_view" xml:space="preserve"><value>תצוגת רשת</value></data>
+  <data name="desktop_name" xml:space="preserve"><value>שם</value></data>
+  <data name="search_category" xml:space="preserve"><value>קטגוריה</value></data>
+  <data name="search_all_categories" xml:space="preserve"><value>כל הקטגוריות</value></data>
+  <data name="search_no_matches" xml:space="preserve"><value>אין תפילות התואמות לחיפוש ולקטגוריה האלה.</value></data>
+  <data name="readings_bible_passage" xml:space="preserve"><value>קטע מכתבי הקודש</value></data>
+  <data name="readings_edition" xml:space="preserve"><value>מהדורת כתבי הקודש</value></data>
+  <data name="readings_edition_automatic" xml:space="preserve"><value>לפי שפת הממשק</value></data>
+  <data name="readings_edition_unavailable" xml:space="preserve"><value>אין מהדורה זמינה בשפה זו.</value></data>
+  <data name="readings_text_unavailable" xml:space="preserve"><value>קטע זה אינו זמין במהדורת כתבי הקודש שנבחרה.</value></data>
+  <data name="readings_text_notice" xml:space="preserve"><value>טקסט מכתבי הקודש לפי מראה המקום. הנוסח עשוי להיות שונה מן הקריאה במיסה.</value></data>
+  <data name="readings_whole_verses_notice" xml:space="preserve"><value>כאשר הקריאה מציינת רק חלק מפסוק, מוצגים הפסוקים במלואם.</value></data>
+  <data name="readings_source" xml:space="preserve"><value>מקור ומהדורה</value></data>
 </root>

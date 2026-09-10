@@ -26,9 +26,10 @@ final class AppShellUITests: XCTestCase {
 
     XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10), "Pray lists the seeded favorite")
 
-    // Categories groups every devotion by tag — the discovery surface Pray no longer duplicates.
-    app.tabBars.buttons["Categories"].tap()
-    XCTAssertTrue(app.navigationBars["Categories"].waitForExistence(timeout: 5))
+    // Full reading citations have their own tab; category browsing remains in Search.
+    app.tabBars.buttons["Readings"].tap()
+    XCTAssertTrue(app.navigationBars["Readings"].waitForExistence(timeout: 5))
+    XCTAssertTrue(app.buttons["readings.chooseDate"].exists)
 
     app.tabBars.buttons["Search"].tap()
     XCTAssertTrue(app.navigationBars["Search"].waitForExistence(timeout: 5))
@@ -49,7 +50,7 @@ final class AppShellUITests: XCTestCase {
                            "-showPrayerNameInPrayerLanguage", "NO"]
     app.launch()
     XCTAssertTrue(app.tabBars.buttons["Молитва"].waitForExistence(timeout: 10))
-    XCTAssertTrue(app.tabBars.buttons["Категорії"].exists)
+    XCTAssertTrue(app.tabBars.buttons["Читання"].exists)
     XCTAssertTrue(app.tabBars.buttons["Пошук"].exists)
     XCTAssertEqual(app.buttons["todayYesterdayButton"].label, "Попередній день")
     XCTAssertEqual(app.buttons["todayTomorrowButton"].label, "Наступний день")
@@ -59,7 +60,7 @@ final class AppShellUITests: XCTestCase {
     add(home)
     app.buttons["settingsButton"].tap()
     XCTAssertTrue(app.navigationBars["Налаштування"].waitForExistence(timeout: 5))
-    XCTAssertTrue(app.switches["useJaffaHailMaryWording"].label.contains("Формулювання громади Яффи"))
+    XCTAssertTrue(app.switches["useJaffaHailMaryWording"].label.contains("Альтернативний текст «Радуйся, Маріє»"))
     let settings = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
     settings.name = "ukrainian-settings"
     settings.lifetime = .keepAlways

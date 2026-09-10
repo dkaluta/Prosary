@@ -14,16 +14,23 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <TextBlock x:Uid="SearchTitle" Grid.Row="0" Text="Search" Style="{StaticResource SubHeadlineTextStyle}" />
-        <TextBox x:Uid="SearchBox" Grid.Row="1" PlaceholderText="Devotions, categories, authors"
+        <TextBox x:Name="QueryBox" x:Uid="SearchBox" Grid.Row="1" PlaceholderText="Devotions, categories, authors"
                  Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-        <ScrollViewer Grid.Row="2">
+        <StackPanel Grid.Row="2" Spacing="12">
+            <ComboBox Header="{x:Bind ViewModel.CategoryLabel}" HorizontalAlignment="Stretch"
+                      ItemsSource="{x:Bind ViewModel.Categories, Mode=OneWay}" DisplayMemberPath="Label"
+                      SelectedItem="{x:Bind ViewModel.SelectedCategory, Mode=TwoWay}"
+                      AutomationProperties.AutomationId="searchCategory" />
+        </StackPanel>
+        <ScrollViewer Grid.Row="3">
             <StackPanel Spacing="8" MaxWidth="640" HorizontalAlignment="Stretch">
-                <TextBlock x:Uid="SearchOnDevice" Text="On this device" Foreground="{StaticResource BrandPrimaryBrush}" FontWeight="SemiBold" />
+                <TextBlock Visibility="{x:Bind ViewModel.HasLocalMatches, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" x:Uid="SearchOnDevice" Text="On this device" Foreground="{StaticResource BrandPrimaryBrush}" FontWeight="SemiBold" />
                 <ItemsControl ItemsSource="{x:Bind ViewModel.LocalMatches, Mode=OneWay}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate x:DataType="svc:DevotionListing">
@@ -71,6 +78,10 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
+                <ProgressRing IsActive="{x:Bind ViewModel.IsLoadingCatalog, Mode=OneWay}" Width="24" Height="24"
+                              Visibility="{x:Bind ViewModel.IsLoadingCatalog, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                <TextBlock Text="{x:Bind ViewModel.NoMatchesText}" TextWrapping="Wrap"
+                           Visibility="{x:Bind ViewModel.HasNoMatches, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                 <TextBlock Text="{x:Bind ViewModel.InstallError, Mode=OneWay}" TextWrapping="Wrap"
                            Foreground="{ThemeResource SystemFillColorCriticalBrush}"
                            Visibility="{x:Bind ViewModel.InstallError, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />

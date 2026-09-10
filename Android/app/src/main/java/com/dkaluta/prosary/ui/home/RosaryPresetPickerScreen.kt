@@ -43,6 +43,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import com.dkaluta.prosary.ui.shared.PrayerRemovalDialog
+import com.dkaluta.prosary.ui.shared.PrayerRemovalRequest
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
@@ -79,6 +81,7 @@ fun RosaryPresetPickerScreen(
     var showingOptionsEditor by remember { mutableStateOf(false) }
     var showingSaveDialog by remember { mutableStateOf(false) }
     var presetName by remember { mutableStateOf("") }
+    var removalRequest by remember { mutableStateOf<PrayerRemovalRequest?>(null) }
 
     suspend fun reload() {
         presets = services.presetStore.all().filter { it.kind == PrayerKind.Rosary }
@@ -140,7 +143,7 @@ fun RosaryPresetPickerScreen(
                     prominent = true,
                     onEdit = { onEditPreset(preset.id) },
                     onReminders = { onEditReminders(preset.id) },
-                    onDelete = { scope.launch { services.presetStore.delete(preset); reload() } },
+                    onDelete = { removalRequest = PrayerRemovalRequest.Saved(preset) },
                 ) { onPrayPreset(preset.id) }
             }
 
@@ -199,13 +202,16 @@ fun RosaryPresetPickerScreen(
                                 reload()
                             }
                         },
-                        onDelete = { scope.launch { services.presetStore.delete(preset); reload() } },
+                        onDelete = { removalRequest = PrayerRemovalRequest.Saved(preset) },
                     ) { onPrayPreset(preset.id) }
                 }
             }
         }
     }
 
+    removalRequest?.let { request ->
+        PrayerRemovalDialog(request, onDismiss = { removalRequest = null }, onRemoved = { scope.launch { reload() } })
+    }
     if (showingSaveDialog) {
         AlertDialog(
             onDismissRequest = { showingSaveDialog = false },
@@ -283,7 +289,7 @@ private fun PresetCard(
             }
             onDelete?.let {
                 DropdownMenuItem(
-                    text = { Text(stringResource(R.string.favorites_delete)) },
+                    text = { Text(stringResource(R.string.prayer_delete_action)) },
                     onClick = { menu = false; it() },
                 )
             }

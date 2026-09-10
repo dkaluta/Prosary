@@ -75,22 +75,30 @@ struct RepositoryBrowserView: View {
       .toolbar {
         if presentedAsSheet {
           ToolbarItem(placement: .cancellationAction) {
-            Button(String(localized: "favoriteEditor.done", defaultValue: "Done")) { dismiss() }
+            Button { dismiss() } label: {
+              Label(String(localized: "favoriteEditor.done", defaultValue: "Done"), systemImage: "checkmark")
+            }
+            #if !os(macOS)
+            .labelStyle(.titleOnly)
+            #endif
           }
         }
         // Importing a hand-made bundle belongs with the catalogue, not with saved sessions —
         // it moved here when the Pray tab became the favorites list.
         ToolbarItem(placement: .primaryAction) {
           Button { showsImporter = true } label: {
-            Image(systemName: "square.and.arrow.down")
+            Label("favorites.importBundle", systemImage: "square.and.arrow.down")
           }
+          #if !os(macOS)
+          .labelStyle(.iconOnly)
+          #endif
           .accessibilityLabel(Text("favorites.importBundle"))
           .accessibilityIdentifier("importBundleButton")
         }
       }
       .fileImporter(
         isPresented: $showsImporter,
-        allowedContentTypes: [UTType(filenameExtension: "prosaryprayer") ?? .zip, .zip]
+        allowedContentTypes: [.prosaryPrayer, .zip]
       ) { result in
         guard case .success(let url) = result else { return }
         do {
@@ -104,7 +112,8 @@ struct RepositoryBrowserView: View {
         String(localized: "repository.installFailed", defaultValue: "Could Not Install Devotion"),
         isPresented: .init(get: { installError != nil }, set: { if !$0 { installError = nil } })
       ) {
-        Button("favoriteEditor.cancel", role: .cancel) {}
+        Button("common.ok") {}
+          .keyboardShortcut(.defaultAction)
       } message: {
         Text(installError ?? "")
       }

@@ -21,6 +21,8 @@ struct JesusPrayerFlowView: View {
   var target: JesusPrayerTarget = .count(33)
 
   @Environment(\.appServices) private var services
+  @Environment(\.finishPrayerSession) private var finishPrayerSession
+  @Environment(\.prayerWindowTitle) private var prayerWindowTitle
 
   @State private var progress: JesusPrayerProgress
   @State private var isRightToLeft = false
@@ -28,11 +30,14 @@ struct JesusPrayerFlowView: View {
   @State private var languageCode: String?
   @State private var chosenLanguage = LanguageCatalog.defaultSentinel
   @State private var hasLoaded = false
+  @State private var sessionLoader = PrayerSessionLoader()
   @State private var matchingFavoriteId: Prayer.ID? = nil
+  @State private var deletingPrayer: Prayer?
   @State private var pendingContinuation: PrayerRunProgress?
   @State private var didFinish = false
 
-  private let progressStore = PrayerRunProgressStore()
+  @Environment(\.prayerProgressNamespace) private var progressNamespace
+  private var progressStore: PrayerRunProgressStore { PrayerRunProgressStore(namespace: progressNamespace) }
 
   private var effectiveTarget: JesusPrayerTarget {
     prayer?.jesusPrayer.target ?? target
@@ -56,7 +61,7 @@ struct JesusPrayerFlowView: View {
 
   var body: some View {
     PrayerStepFlowView(
-      navigationTitle: String(localized: "jesusPrayerFlow.title", defaultValue: "The Jesus Prayer"),
+      navigationTitle: prayerWindowTitle ?? String(localized: "jesusPrayerFlow.title", defaultValue: "The Jesus Prayer"),
       step: currentStep,
       currentIndex: progress.currentIndex,
       totalSteps: progress.targetCount,
@@ -79,6 +84,7 @@ struct JesusPrayerFlowView: View {
       Button(String(localized: "prayerFlow.continue", defaultValue: "Continue")) {
         resume(saved)
       }
+      .keyboardShortcut(.defaultAction)
       Button(String(localized: "prayerFlow.restart", defaultValue: "Restart"), role: .destructive) {
         restart()
       }
@@ -86,7 +92,8 @@ struct JesusPrayerFlowView: View {
       Text(String(localized: "prayerFlow.continue.message",
                   defaultValue: "You have an unfinished prayer. Continue where you left off or begin again?"))
     }
-    .task { await load() }
+    .task { await sessionLoader.perform { await load() } }
+    .modifier(PrayerRemovalDialogs(prayer: $deletingPrayer, onDeleted: { await checkIfFavorited() }))
     .onDisappear {
       guard hasLoaded, pendingContinuation == nil, !didFinish else { return }
       persistProgress()
@@ -96,15 +103,25 @@ struct JesusPrayerFlowView: View {
   @ViewBuilder
   private var flowActions: some View {
     if case .unbounded = effectiveTarget {
-      Button("prayerFlow.finish") { finish() }
+      Button { finish() } label: {
+        Label("prayerFlow.finish", systemImage: "checkmark")
+      }
+      #if !os(macOS)
+      .labelStyle(.titleOnly)
+      #endif
     }
+    #if !os(macOS)
     Button { toggleFavorite() } label: {
-      Image(systemName: matchingFavoriteId != nil ? "star.fill" : "star")
+      Label(matchingFavoriteId != nil ? "prayerFlow.removeFromFavorites" : "prayerFlow.addToFavorites",
+            systemImage: matchingFavoriteId != nil ? "star.fill" : "star")
     }
+    .labelStyle(.iconOnly)
     .accessibilityLabel(matchingFavoriteId != nil ? "prayerFlow.removeFromFavorites" : "prayerFlow.addToFavorites")
+    #endif
   }
 
   private func load() async {
+    guard !hasLoaded else { return }
     let configuredLanguage: String
     if let prayer {
       configuredLanguage = prayer.languageCode
@@ -121,10 +138,15 @@ struct JesusPrayerFlowView: View {
 
     isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
     seasonColor = services.calendar.seasonColorToday()
-    hasLoaded = true
+    #if !os(macOS)
     await checkIfFavorited()
+    #endif
 
-    if let saved = progressStore.progress(for: runKey),
+    var continuation = progressStore.progress(for: runKey)
+    #if os(macOS)
+    continuation = PrayerCopyProgressIdentity.continuation(continuation, savedLanguageCode: prayer?.languageCode)
+    #endif
+    if let saved = continuation,
        saved.canResume(
         stepCount: progress.targetCount ?? Int.max,
         expectedConfigurationSignature: PrayerRunSignature.jesus(effectiveTarget)) {
@@ -135,6 +157,7 @@ struct JesusPrayerFlowView: View {
     } else {
       progressStore.clear(runKey: runKey)
     }
+    hasLoaded = true
   }
 
   private func checkIfFavorited() async {
@@ -151,9 +174,10 @@ struct JesusPrayerFlowView: View {
     Task {
       if let id = matchingFavoriteId {
         if let existing = try? await services.presetStore.get(id: id) {
-          try? await services.presetStore.delete(existing)
+          deletingPrayer = existing
+        } else {
+          matchingFavoriteId = nil
         }
-        matchingFavoriteId = nil
       } else {
         let resolved = languageCode ?? LanguageCatalog.defaultCode
         let langName = LanguageCatalog.all.first { $0.code == resolved }?.nativeName ?? resolved
@@ -222,7 +246,8 @@ struct JesusPrayerFlowView: View {
   }
 
   private func returnHome() {
-    path.removeLast(path.count)
+    if let finishPrayerSession { finishPrayerSession() }
+    else { path.removeLast(path.count) }
   }
 }
 

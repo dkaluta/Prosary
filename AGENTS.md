@@ -28,6 +28,11 @@ Cross-platform settings share key names verbatim (`defaultLanguageCode`,
 `autoAdvanceSeconds`, `feastCalendarId`, `showTodayFeast`, `showTodayIntention`, …); keep
 new ones identical on all three platforms.
 
+**Mac exception:** the Mac app may have a deliberately different feature set and workflow.
+Prioritize a coherent Mac product over completeness with the phone apps. Keep shared prayer
+content, localization and data contracts correct, but do not add a phone feature or mirror its
+UI on Mac solely for parity. This exception does not relax iOS/Android/Windows parity.
+
 ## Git & releases
 
 - Work on feature branches (`feature/<kebab-name>`); `main` is the release baseline and
@@ -96,6 +101,12 @@ new ones identical on all three platforms.
   quotation marks stay quotation marks.
 
 ## Platform conventions
+
+- Mac is a native desktop experience, not a phone layout in a window. Follow the full Mac HIG
+  and `Shared/MAC-EXPERIENCE.markdown`, including menu capitalization/ellipses, keyboard access,
+  selection, standard window/menu behavior and native dialog roles/order. Use AppKit where
+  SwiftUI cannot provide the expected Mac behavior. Keep window navigation/progress independent
+  while sharing the library, and never replace an editor's parent stack under an open sheet.
 
 - Windows ViewModels strictly use CommunityToolkit.Mvvm (`[ObservableProperty]` /
   `[RelayCommand]`) — no hand-rolled `INotifyPropertyChanged` or `ICommand`.

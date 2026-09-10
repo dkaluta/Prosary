@@ -25,5 +25,5 @@ public sealed partial class RepositoryBrowserPage : Page
         await ViewModel.LoadAsync();
     }
 
-    private void OnNavigateUp(object sender, RoutedEventArgs e) => Router.GoBack();
+    private void OnNavigateUp(object sender, RoutedEventArgs e) => Router.For(this).GoBack();
 }

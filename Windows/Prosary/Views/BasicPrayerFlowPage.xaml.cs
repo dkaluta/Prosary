@@ -18,6 +18,7 @@ public sealed partial class BasicPrayerFlowPage : Page
     public BasicPrayerFlowPage()
     {
         ViewModel = App.Services.GetRequiredService<BasicPrayerViewModel>();
+        ViewModel.Navigation = Router.For(this);
         InitializeComponent();
         var languageLabel = Loc.Tr("EdLanguageHeader/Text", "Prayer language");
         AutomationProperties.SetName(LanguageMenuButton, languageLabel);
@@ -43,5 +44,5 @@ public sealed partial class BasicPrayerFlowPage : Page
             return Task.CompletedTask;
         });
 
-    private void OnNavigateUp(object sender, RoutedEventArgs e) => Router.GoBack();
+    private void OnNavigateUp(object sender, RoutedEventArgs e) => Router.For(this).GoBack();
 }

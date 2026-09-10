@@ -22,39 +22,52 @@ import Foundation
 
 @MainActor
 final class PrayerLanguageMonitor: ObservableObject {
-  static let shared = PrayerLanguageMonitor()
+  static let shared = PrayerLanguageMonitor(defaults: .standard,
+    resolveCode: { LanguageCatalog.resolve(nil).code },
+    resolveFallbackOrder: { LanguageCatalog.fallbackOrder })
 
   /// The resolved default prayer-language code ("he-x-gamliel", "la", …). Reading this in a
   /// view's body is what registers the dependency — see the header for why nothing less works.
   @Published private(set) var code: String
   @Published private(set) var showsPrayerNameInPrayerLanguage: Bool
   @Published private(set) var usesJaffaHailMaryWording: Bool
+  /// Effective labels can change when fallback priority changes, even if the chosen language
+  /// does not. Preserve the order rather than treating it as an unordered set of languages.
+  @Published private(set) var fallbackOrder: [String]
 
   private struct NameSettings: Equatable {
     let code: String
     let showsPrayerName: Bool
     let usesJaffaWording: Bool
-    init() {
-      code = LanguageCatalog.resolve(nil).code
-      showsPrayerName = UserDefaults.standard.bool(forKey: PrayerNamePresentation.defaultsKey)
-      usesJaffaWording = JaffaHailMaryWording.isEnabled
-    }
+    let fallbackOrder: [String]
   }
 
   private var cancellable: AnyCancellable?
 
-  private init() {
-    code = LanguageCatalog.resolve(nil).code
-    showsPrayerNameInPrayerLanguage = UserDefaults.standard.bool(forKey: PrayerNamePresentation.defaultsKey)
-    usesJaffaHailMaryWording = JaffaHailMaryWording.isEnabled
-    cancellable = NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)
+  /// Tests supply a disposable preference suite and resolvers without changing the singleton
+  /// or the person's actual language/fallback settings.
+  init(defaults: UserDefaults, notificationCenter: NotificationCenter = .default,
+       resolveCode: @escaping () -> String, resolveFallbackOrder: @escaping () -> [String]) {
+    let readSettings = {
+      NameSettings(code: resolveCode(),
+        showsPrayerName: defaults.bool(forKey: PrayerNamePresentation.defaultsKey),
+        usesJaffaWording: defaults.bool(forKey: JaffaHailMaryWording.defaultsKey),
+        fallbackOrder: resolveFallbackOrder())
+    }
+    let initial = readSettings()
+    code = initial.code
+    showsPrayerNameInPrayerLanguage = initial.showsPrayerName
+    usesJaffaHailMaryWording = initial.usesJaffaWording
+    fallbackOrder = initial.fallbackOrder
+    cancellable = notificationCenter.publisher(for: UserDefaults.didChangeNotification)
       .receive(on: RunLoop.main)
-      .map { _ in NameSettings() }
+      .map { _ in readSettings() }
       .removeDuplicates()
       .sink { [weak self] resolved in
         self?.code = resolved.code
         self?.showsPrayerNameInPrayerLanguage = resolved.showsPrayerName
         self?.usesJaffaHailMaryWording = resolved.usesJaffaWording
+        self?.fallbackOrder = resolved.fallbackOrder
       }
   }
 }

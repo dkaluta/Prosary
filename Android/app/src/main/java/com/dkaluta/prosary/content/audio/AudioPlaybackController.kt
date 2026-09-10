@@ -14,6 +14,7 @@ import com.dkaluta.prosary.content.prayerpack.DevotionAudioTrack
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
 
 /**
  * Plays one bundle audio track (see Shared/ARCHITECTURE.markdown "Audio"): extracts the Ogg Opus
@@ -141,11 +142,7 @@ class AudioPlaybackController {
     fun playPause() {
         val player = player ?: return
         if (player.isPlaying) {
-            player.pause()
-            isPlaying = false
-            // No seek can be pending while playing normally, so this read-back is safe.
-            currentTime = player.currentPosition / 1000.0
-            savePosition()
+            pause()
         } else {
             // Finished-and-restarted: tapping play at the end starts over instead of nothing.
             // Through seek() so the published time updates optimistically — a read-back here
@@ -154,6 +151,16 @@ class AudioPlaybackController {
             player.start()
             isPlaying = true
         }
+    }
+
+    /** Leaving the foreground pauses this run without discarding its loaded track. */
+    fun pause() {
+        val player = player ?: return
+        if (!player.isPlaying) return
+        player.pause()
+        isPlaying = false
+        currentTime = player.currentPosition / 1000.0
+        savePosition()
     }
 
     fun seek(seconds: Double) {
@@ -212,6 +219,15 @@ class AudioPlaybackController {
     }
 
     companion object {
+        /** Remove only one uninstalled bundle's extracted audio, retaining other downloads.
+         * The path check also prevents a malformed id from escaping the audio cache. */
+        fun removeCachedAudio(cacheDir: File, bundleId: String) {
+            val root = File(cacheDir, "PrayerAudio").canonicalFile
+            val directory = File(root, bundleId).canonicalFile
+            if (directory.parentFile != root || directory == root) throw IOException("Invalid audio cache path")
+            if (directory.exists() && !directory.deleteRecursively()) throw IOException("Could not remove downloaded audio")
+        }
+
         /** Pure chapter math, shared with tests: the chapter a time falls in (with a hair of
          * tolerance so landing exactly on a boundary via seekToChapter counts as inside it). */
         fun chapterIndexFor(chapters: List<DevotionAudioTrack.Chapter>, time: Double): Int? {

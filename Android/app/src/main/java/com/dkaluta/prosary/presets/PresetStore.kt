@@ -21,6 +21,9 @@ interface PresetStore {
      * cleared — each kind keeps its own independent default. */
     suspend fun save(prayer: Prayer)
 
+    /** Writes an existing session's changes without recreating a concurrently deleted row. */
+    suspend fun updateIfPresent(prayer: Prayer): Boolean
+
     /** Deletes a favorite. If it was the default and other favorites of the same kind remain,
      * the next one is promoted to default. */
     suspend fun delete(prayer: Prayer)

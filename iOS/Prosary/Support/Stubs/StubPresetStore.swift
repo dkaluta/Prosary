@@ -21,5 +21,7 @@ struct StubPresetStore: PresetStore {
   func defaultPreset(kind: PrayerKind) async throws -> Prayer? { try await inner.defaultPreset(kind: kind) }
   func get(id: Prayer.ID) async throws -> Prayer? { try await inner.get(id: id) }
   func save(_ prayer: Prayer) async throws { try await inner.save(prayer) }
+  @discardableResult
+  func updateIfPresent(_ prayer: Prayer) async throws -> Bool { try await inner.updateIfPresent(prayer) }
   func delete(_ prayer: Prayer) async throws { try await inner.delete(prayer) }
 }

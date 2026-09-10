@@ -21,14 +21,19 @@ namespace Prosary.ViewModels;
 /// <see cref="Finish"/> and <see cref="Back"/> are deliberately distinct: this page sits two
 /// levels deep in the nav stack when reached fresh (Home → Setup → Flow), so a plain back-arrow
 /// pop correctly returns to Setup, but finishing a session should return all the way to Home —
-/// <see cref="Finish"/> uses <see cref="Router.PopToRoot"/>. When launched from a saved favorite
+/// <see cref="Finish"/> uses <see cref="Navigation.PopToRoot"/>. When launched from a saved favorite
 /// instead (one nav level), both land in the same place.
 /// </summary>
 public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowViewModel
 {
+    public WindowNavigation Navigation { get; set; } = WindowNavigation.Detached;
+
     private readonly IPresetStore _presets;
     private readonly LiturgicalCalendarService _calendar;
     private readonly IPrayerRunStore _runStore;
+    private readonly PrayerRemovalService? _removal;
+    public Func<PrayerRemovalPlan, Task<bool>>? ConfirmDelete { get; set; }
+    public Func<string, Task>? ShowRemovalError { get; set; }
 
     private JesusPrayerTarget _effectiveTarget = new JesusPrayerTarget.Count(33);
     private string? _languageCode;
@@ -108,17 +113,22 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     public bool IsLastStep => RepetitionState.IsLastRep;
 
     public bool IsFavorited => MatchingFavoriteId is not null;
+    public string FavoriteActionLabel => IsFavorited
+        ? Loc.Tr("HomeDeleteSavedPrayer/Text", "Delete Saved Prayer…")
+        : Loc.Tr("desktop_add_to_library", "Add to Library");
 
     public bool HasSavedContinuation => _pendingContinuation is not null;
 
     public JesusPrayerViewModel(
         IPresetStore presets,
         LiturgicalCalendarService calendar,
-        IPrayerRunStore runStore)
+        IPrayerRunStore runStore,
+        PrayerRemovalService? removal = null)
     {
         _presets = presets;
         _calendar = calendar;
         _runStore = runStore;
+        _removal = removal;
     }
 
     public async Task LoadAsync(Guid? prayerId, JesusPrayerTarget? target)
@@ -128,6 +138,11 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
             _pendingContinuation = null;
             OnPropertyChanged(nameof(HasSavedContinuation));
             var prayer = prayerId is { } id ? await _presets.GetAsync(id) : null;
+            if (prayerId is not null && (prayer is null || prayer.Kind != PrayerKind.JesusPrayer))
+            {
+                Body = Loc.Tr("desktop_saved_prayer_missing", "This saved prayer is no longer available.");
+                return;
+            }
             _effectiveTarget = prayer?.JesusPrayer.Target ?? target ?? new JesusPrayerTarget.Count(33);
             IsUnbounded = _effectiveTarget is JesusPrayerTarget.Unbounded;
 
@@ -139,12 +154,9 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
             _hasLoaded = true;
             RepetitionState = new JesusPrayerProgress(_effectiveTarget);
             _runSignature = PrayerRunSignatures.JesusPrayer(_effectiveTarget);
-            _runKey = PrayerRunKeys.Jesus(prayer?.Id, _effectiveTarget);
+            _runKey = PrayerRunKeys.Jesus(prayer?.Id ?? Navigation.SessionID, _effectiveTarget);
 
-            var all = await _presets.GetAllAsync();
-            var resolved = _languageCode ?? LanguageCatalog.DefaultCode;
-            MatchingFavoriteId = all.FirstOrDefault(p =>
-                p.Kind == PrayerKind.JesusPrayer && p.ResolvedLanguageCode == resolved && p.JesusPrayer.Target == _effectiveTarget)?.Id;
+            MatchingFavoriteId = prayer?.Id;
 
             var saved = _runStore.Get(_runKey);
             var positionCount = RepetitionState.TargetCount ?? int.MaxValue;
@@ -185,7 +197,11 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
         RenderCurrentStep();
     }
 
-    partial void OnMatchingFavoriteIdChanged(Guid? value) => OnPropertyChanged(nameof(IsFavorited));
+    partial void OnMatchingFavoriteIdChanged(Guid? value)
+    {
+        OnPropertyChanged(nameof(IsFavorited));
+        OnPropertyChanged(nameof(FavoriteActionLabel));
+    }
 
     public void RefreshTypography() => RenderCurrentStep();
     public void RefreshPrayerWording() => RenderCurrentStep();
@@ -249,7 +265,7 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
         if (RepetitionState.IsLastRep)
         {
             ClearProgress();
-            Router.PopToRoot();
+            Navigation.PopToRoot();
             return;
         }
 
@@ -268,7 +284,7 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     private void Finish()
     {
         ClearProgress();
-        Router.PopToRoot();
+        Navigation.PopToRoot();
     }
 
     private void SaveProgress()
@@ -297,13 +313,19 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     {
         if (MatchingFavoriteId is { } id)
         {
-            var existing = await _presets.GetAsync(id);
-            if (existing is not null)
+            if (_removal is null) return;
+            try
             {
-                await _presets.DeleteAsync(existing);
+                var plan = await _removal.PlanAsync(id);
+                if (plan is null || ConfirmDelete is null || !await ConfirmDelete(plan)) return;
+                await _removal.DeleteAsync(id);
+                ForgetDeletedFavorite();
             }
-
-            MatchingFavoriteId = null;
+            catch (Exception error)
+            {
+                if (error is PrayerRemovalException { PrayerWasDeleted: true }) ForgetDeletedFavorite();
+                if (ShowRemovalError is not null) await ShowRemovalError(PrayerRemovalService.ErrorMessage(error));
+            }
             return;
         }
 
@@ -326,7 +348,21 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
             LanguageCode = resolved,
             JesusPrayer = new JesusPrayerOptions { Target = _effectiveTarget },
         };
+        var owner = Navigation.OwnerWindow;
         await _presets.SaveAsync(newFavorite);
+        var previousRunKey = _runKey;
         MatchingFavoriteId = newFavorite.Id;
+        _runKey = PrayerRunKeys.Jesus(newFavorite.Id, _effectiveTarget);
+        SaveProgress();
+        if (previousRunKey != _runKey) _runStore.Remove(previousRunKey);
+        DesktopWindowManager.AdoptSavedPrayer(owner, newFavorite.Id);
+    }
+
+    private void ForgetDeletedFavorite()
+    {
+        MatchingFavoriteId = null;
+        _runKey = PrayerRunKeys.Jesus(Navigation.SessionID, _effectiveTarget);
+        _pendingContinuation = null;
+        OnPropertyChanged(nameof(HasSavedContinuation));
     }
 }

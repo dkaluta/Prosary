@@ -53,8 +53,8 @@ android {
         applicationId = "com.dkaluta.prosary"
         minSdk = 24
         targetSdk = 36
-        versionCode = 38
-        versionName = "0.11.3"
+        versionCode = 39
+        versionName = "0.12.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -110,6 +110,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.material)
     implementation(libs.androidx.room.runtime)

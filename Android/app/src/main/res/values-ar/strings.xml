@@ -24,6 +24,21 @@
     <string name="tab_pray">"صلّ"</string>
     <string name="tab_browse">"تصفّح"</string>
     <string name="tab_categories">"الفئات"</string>
+    <string name="tab_readings">القراءات</string>
+    <string name="search_all_categories">كل الفئات</string>
+    <string name="readings_empty">لا تتوفر قراءات لهذا التاريخ في التقويم المحدد.</string>
+    <string name="readings_type_reading">قراءة</string>
+    <string name="readings_type_psalm">مزمور</string>
+    <string name="readings_type_gospel">الإنجيل</string>
+    <string name="readings_edition">طبعة الكتاب المقدس</string>
+    <string name="readings_follow_interface">اتّباع لغة التطبيق</string>
+    <string name="readings_bible_passage">نص من الكتاب المقدس</string>
+    <string name="readings_show_text">قراءة النص</string>
+    <string name="readings_hide_text">إخفاء النص</string>
+    <string name="readings_unavailable">هذا النص غير متوفر في طبعة الكتاب المقدس المحددة.</string>
+    <string name="readings_whole_verses_notice">تُعرض الآيات كاملةً عندما تشير القراءة إلى جزء من آية فقط.</string>
+    <string name="readings_source">المصدر</string>
+    <string name="readings_choose_edition">اختيار طبعة</string>
     <string name="tab_search">"بحث"</string>
 
     <!-- Home -->
@@ -51,9 +66,9 @@
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">"لغة الصلاة الافتراضية"</string>
-    <string name="settings_jaffa_wording">"صيغة يافا"</string>
+    <string name="settings_jaffa_wording">"صيغة بديلة لصلاة السلام عليك يا مريم"</string>
     <string name="settings_jaffa_wording_hint">"استخدم בְּרוּכַת הַחֶסֶד بدلاً من מְלֵאַת הַחֶסֶד في صلوات النيابة."</string>
-    <string name="settings_language_fallback_order">"ترتيب اللغات البديلة…"</string>
+    <string name="settings_language_fallback_order">"ترتيب اللغات البديلة…"…</string>
     <string name="settings_language_fallback_order_title">"ترتيب اللغات البديلة"</string>
     <string name="settings_language_fallback_order_footer">عند غياب النص باللغة المختارة، يتبع Prosary هذا الترتيب. تستخدم النصوص العبرية المشتركة بين التقليدين، بما فيها صلوات المستودع، الموضع الأعلى بين الموضعين العبريين.</string>
     <string name="settings_praying">"الصلاة"</string>
@@ -73,15 +88,15 @@
     <string name="settings_installed_devotions">"الصلوات المثبّتة: %1$d"</string>
     <string name="settings_clear_audio_cache">"امسح ذاكرة الصوت المؤقتة"</string>
     <string name="settings_clear_audio_cache_size">"امسح ذاكرة الصوت المؤقتة (%1$s)"</string>
-    <string name="settings_remove_all">"أزل كل الصلوات المُنزّلة…"</string>
-    <string name="settings_downloads_footer">"لا تُحذف الصلوات المضمّنة أبدًا. إزالة صلاة مُنزّلة تزيلها أيضًا من المفضلة."</string>
+    <string name="settings_remove_all">"إزالة التنزيلات غير المستخدمة…"</string>
+    <string name="settings_downloads_footer">"ستبقى الصلوات المضمّنة والتنزيلات ذات النسخ المحفوظة. تؤدي إزالة تنزيل غير مستخدم أيضًا إلى مسح ملفاته الصوتية المخزّنة مؤقتًا."</string>
     <string name="settings_links">"الروابط"</string>
     <string name="settings_repository_site">"مستودع المجتمع"</string>
     <string name="settings_compose_site">"أنشئ صلاة تعبّدية"</string>
     <string name="settings_privacy_policy">"سياسة الخصوصية"</string>
-    <string name="settings_remove_all_title">"هل تريد إزالة كل الصلوات المُنزّلة؟"</string>
-    <string name="settings_remove_all_message">"يمكن تنزيل صلوات المستودع مجددًا، لكن الملفات المستوردة يدويًا لا يمكن استعادتها منه."</string>
-    <string name="settings_remove_all_confirm">"إزالة الكل"</string>
+    <string name="settings_remove_all_title">"هل تريد إزالة التنزيلات غير المستخدمة؟"</string>
+    <string name="settings_remove_all_message">"هل تريد إزالة الصلوات المُنزّلة التي لا توجد لها نسخ محفوظة؟ ستبقى الصلوات المحفوظة وتنزيلاتها."</string>
+    <string name="settings_remove_all_confirm">"إزالة"</string>
 
     <!-- Prayer kinds (models/PrayerKind.kt) -->
     <string name="kind_rosary">"الوردية"</string>
@@ -146,7 +161,7 @@
     <string name="ro_opening_section">"صلوات الافتتاح والأبيات"</string>
     <string name="ro_apostles_creed">"قانون إيمان الرسل"</string>
     <string name="ro_opening_prayers">"أبانا وثلاثة سلامات مريمية في البداية"</string>
-    <string name="ro_opening_fatima">"صلاة فاطمة بعد السلامات المريمية الثلاثة في البداية"</string>
+    <string name="ro_opening_fatima">"صلاة فاطمة بعد صلاة «المجد للآب» الافتتاحية"</string>
     <string name="ro_fatima">"صلاة فاطمة بعد كل بيت"</string>
     <string name="ro_faithful_departed">"من أجل المؤمنين الراقدين"</string>
     <string name="ro_display_section">"العرض"</string>
@@ -161,20 +176,20 @@
 
     <!-- Favorites -->
     <string name="favorites_title">"المفضلة"</string>
-    <string name="favorites_add_kind">"أضف %1$s"</string>
+    <string name="favorites_add_kind">"أضف %1$s…"</string>
     <string name="favorites_more_devotions">"المزيد من الصلوات"</string>
     <string name="favorites_repository_badge">"المستودع"</string>
     <string name="favorites_import">"استورد حزمة صلاة…"</string>
     <string name="favorites_get_community">"احصل على صلوات المجتمع…"</string>
     <string name="favorites_import_error_title">"تعذّر استيراد الصلاة"</string>
     <string name="favorites_set_default">"اجعلها الافتراضية"</string>
-    <string name="favorites_edit_desc">"عدّل %1$s"</string>
+    <string name="favorites_edit_desc">"عدّل %1$s…"</string>
     <string name="favorites_delete_desc">"احذف %1$s"</string>
     <string name="favorites_add_favorite_desc">"أضف %1$s إلى المفضلة"</string>
     <string name="favorites_remove_favorite_desc">"أزل %1$s من المفضلة"</string>
     <string name="favorites_add_to_favorites">"أضف إلى المفضلة"</string>
     <string name="favorites_remove_from_favorites">"أزل من المفضلة"</string>
-    <string name="favorites_reminders_desc">"عدّل تذكيرات %1$s"</string>
+    <string name="favorites_reminders_desc">"عدّل تذكيرات %1$s…"</string>
     <string name="favorites_export_desc">"صدّر %1$s للتعديل"</string>
     <string name="favorites_remove_imported_desc">"أزل الصلاة المستوردة %1$s"</string>
 
@@ -327,7 +342,7 @@
     <string name="about_jesus_prayer_illustration">"صورة صلاة يسوع"</string>
     <string name="about_jesus_pantocrator">"المسيح ضابط الكل: أيقونة مرسومة بالشمع (القرن السادس)، دير القديسة كاترينا، جبل سيناء — أقدم أيقونة باقية للمسيح ضابط الكل، تكريمًا للتقليد الشرقي للصلاة؛ ملكية عامة."</string>
     <string name="about_scripture_sources">"مصادر الكتاب المقدس"</string>
-    <string name="about_scripture_text">"تستخدم الاقتباسات الكتابية ترجمة دواي–ريمس (الإنجليزية)، والفولغاتا الكليمنتية (اللاتينية)، وترجمة فرانتس دليتش للعهد الجديد بالعبرية (من kirjasilta.net/ha-berit)، مع نصوص العهد القديم العبرية وفق النص الماسوري، والكتاب المقدس اليسوعي بالعربية (دار المشرق)، والترجمة السينودسية الروسية (1876)، وAng Dating Biblia (التاغالوغ، 1905)."</string>
+    <string name="about_scripture_text">"تستخدم الاقتباسات الكتابية ترجمة دواي–ريمس (الإنجليزية)، والفولغاتا الكليمنتية (اللاتينية)، وترجمة فرانتس دليتش للعهد الجديد بالعبرية (من kirjasilta.net/ha-berit; delitz.fr/12, 1901)، مع نصوص العهد القديم العبرية وفق النص الماسوري، والترجمة اليسوعية القديمة للكتاب المقدس (1897)، والترجمة السينودسية الروسية (1876)، وAng Dating Biblia (التاغالوغ، 1905)."</string>
     <string name="about_calendar_data">"بيانات التقويم"</string>
     <string name="about_calendar_data_body">بيانات التقويم والقراءات: التقويم الروماني العام من LitCal (litcal.johnromanodorazio.com)؛ وتقويم وقراءات 1962 من Missale Meum (missalemeum.com). التقويمان السرياني الكاثوليكي والماروني، والعناوين العبرية الرومانية الموثقة، ومراجع القراءات الرومانية والسريانية والمارونية: بإذن Evangelizo.org — Daily Gospel، © Evangelizo.org. الأعياد البيزنطية الثابتة حسب التقويم الجديد؛ قراءات الفصح اليولياني من التقويم الرسمي للكنيسة الأوكرانية للروم الكاثوليك (ugcc.ua)، وخيار الفصح الغريغوري من Royal Doors (royaldoors.net). أسماء أسفار الكتاب المقدس بالعبرية: Evangelizo HE، نيابة القديس يعقوب (catholic.co.il)، ومعهد ممرا (mechon-mamre.org). أسماء عبرية إضافية للأعياد والقديسين: نيابة القديس يعقوب، المركز المسيحي للإعلام (cmc-terrasanta.org)، وأخبار الفاتيكان (vaticannews.va).</string>
     <string name="multi_day_reminder_body">"اليوم %1$d من %2$d بانتظارك."</string>
@@ -356,10 +371,10 @@
     <string name="home_today_readings">"قراءات اليوم"</string>
     <string name="home_today_full_citations">"أظهر المراجع الكاملة"</string>
     <string name="home_today_compact_citations">"أظهر الاختصارات"</string>
-    <string name="home_pray_any_rosary">"صلّ أي وردية"</string>
-    <string name="home_add_rosary">"أضف وردية"</string>
-    <string name="home_add_jesus_prayer">"أضف صلاة يسوع"</string>
-    <string name="favorites_edit">"تعديل"</string>
+    <string name="home_pray_any_rosary">"صلّ أي وردية"…</string>
+    <string name="home_add_rosary">"أضف وردية"…</string>
+    <string name="home_add_jesus_prayer">"أضف صلاة يسوع…"</string>
+    <string name="favorites_edit">"تعديل…"</string>
     <string name="favorites_reminders">"التذكيرات…"</string>
     <string name="favorites_delete">"حذف"</string>
     <string name="favorites_export">"صدّر للتعديل"</string>
@@ -440,4 +455,46 @@
     <string name="about_ukrainian_sources">"الصلوات بالأوكرانية: الكنيسة الكاثوليكية الرومانية في أوكرانيا، كتاب الصلاة Щоденно з Богом. تُستخدم مع ذكر المصدر وفق سياسة الناشر لإعادة الاستخدام. الكتاب المقدس: ترجمة كوليش ونيتشوي-ليفيتسكي وبوليوي (1905)، ملك عام؛ eBible.org ukr1871. حُفظ الإملاء التاريخي للنص الكتابي."</string>
     <string name="about_ukrainian_prayerbook_link">"كتاب الصلاة بالأوكرانية"</string>
     <string name="about_ukrainian_bible_link">"الكتاب المقدس بالأوكرانية (1905)"</string>
+    <!-- Window and menu commands -->
+    <string name="commands_open_in_new_window">فتح في نافذة جديدة</string>
+    <string name="commands_navigation">انتقال</string>
+    <string name="commands_back">رجوع</string>
+    <string name="commands_help">مساعدة Prosary</string>
+    <string name="commands_new_window">نافذة جديدة</string>
+    <string name="favorite_editor_save_failed">تعذّر حفظ المفضلة</string>
+    <string name="flow_show_original_text">إظهار النص الأصلي</string>
+    <string name="home_pray_any_rosary_action">صلّ أي وردية…</string>
+    <string name="rosary_save_as_preset_action">احفظ كإعداد…</string>
+    <string name="reminder_time">وقت التذكير</string>
+    <string name="reminders_remove">إزالة التذكير</string>
+    <string name="about_version">الإصدار %1$s (%2$s)</string>
+    <string name="commands_recently_prayed">صلوات أُدّيت مؤخرًا</string>
+    <string name="prayer_delete_action">"حذف الصلاة المحفوظة…"</string>
+    <string name="prayer_delete_title">"هل تريد حذف الصلاة المحفوظة؟"</string>
+    <string name="prayer_delete_message">"هل تريد حذف «%1$s» وتذكيراتها؟ ستبقى الصلوات المحفوظة الأخرى."</string>
+    <string name="prayer_delete_download_message">"هل تريد حذف «%1$s» وتذكيراتها؟ هذه آخر نسخة محفوظة، لذا ستُزال صلاتها المُنزّلة أيضًا من هذا الجهاز."</string>
+    <string name="download_remove_action">"إزالة التنزيل…"</string>
+    <string name="download_remove_title">"هل تريد إزالة التنزيل؟"</string>
+    <string name="download_remove_message">"هل تريد إزالة «%1$s» من هذا الجهاز؟ يمكنك استيرادها أو تنزيلها مجددًا."</string>
+    <string name="download_in_use">"احذف النسخ المحفوظة من هذه الصلاة قبل إزالة تنزيلها."</string>
+    <string name="prayer_removal_error_title">"تعذّرت إزالة الصلاة"</string>
+    <string name="prayer_removal_error">"تعذّرت إزالة هذه الصلاة. يُرجى المحاولة مجددًا."</string>
+    <string name="prayer_removal_partial">"حُذفت الصلاة المحفوظة، لكن تعذّرت إزالة تذكيراتها أو تنزيلها بالكامل."</string>
+    <string name="download_removal_partial">"أُزيل التنزيل، لكن تعذّر حذف بعض الملفات الصوتية المخزّنة مؤقتًا."</string>
+
+    <!-- Home-screen widgets -->
+    <string name="widget_today_name">اليوم</string>
+    <string name="widget_today_description">عيد اليوم وقراءاته واختصار للمسبحة. كبّر الأداة لعرض المزيد.</string>
+    <string name="widget_today_preview">صلاة الكنيسة اليوم</string>
+    <string name="widget_saved_name">صلاة محفوظة</string>
+    <string name="widget_saved_description">اختر صلاة محفوظة وعد إلى صلاتك غير المكتملة.</string>
+    <string name="widget_pray_rosary">صلِّ مسبحة اليوم</string>
+    <string name="widget_choose_prayer">اختر صلاة</string>
+    <string name="widget_saved_missing">اختر صلاة محفوظة لهذه الأداة.</string>
+    <string name="widget_saved_empty">احفظ صلاة في Prosary، ثم أضف هذه الأداة.</string>
+    <string name="widget_load_failed">تعذّر تحميل الصلوات. حاول مجددًا.</string>
+    <string name="widget_ready">جاهز للصلاة</string>
+    <string name="widget_pray">صلِّ</string>
+    <string name="widget_progress">الخطوة %1$d من %2$d</string>
+    <string name="widget_progress_unbounded">الخطوة %1$d</string>
 </resources>

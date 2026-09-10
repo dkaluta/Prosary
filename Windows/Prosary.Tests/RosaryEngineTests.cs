@@ -397,14 +397,14 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
 
     [Theory]
     [InlineData(false, false, false, 0)]
-    [InlineData(true, false, false, 4)]
-    [InlineData(false, true, false, 4)]
-    [InlineData(false, false, true, 5)]
-    [InlineData(true, true, false, 8)]
-    [InlineData(true, false, true, 9)]
-    [InlineData(false, true, true, 9)]
+    [InlineData(true, false, false, 13)]
+    [InlineData(false, true, false, 13)]
+    [InlineData(false, false, true, 13)]
+    [InlineData(true, true, false, 13)]
+    [InlineData(true, false, true, 13)]
+    [InlineData(false, true, true, 13)]
     [InlineData(true, true, true, 13)]
-    public void ClosingGroupsHaveIndependentIntroductionsAndPrayers(bool pope, bool bishop, bool departed, int added)
+    public void AnyFormerClosingChoiceEnablesTheWholeGroup(bool pope, bool bishop, bool departed, int added)
     {
         var baseline = new RosaryOptions { MysterySelectionMode = MysterySelectionMode.Specific };
         var original = _engine.BuildSteps(SpecificRosary(baseline));
@@ -415,9 +415,10 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
             IncludeClosingDepartedIntention = departed,
         }));
         Assert.Equal(original.Count + added, changed.Count);
-        Assert.Equal(pope ? 1 : 0, changed.Count(step => step.Title == "Closing prayers for the Pope"));
-        Assert.Equal(bishop ? 1 : 0, changed.Count(step => step.Title == "Closing prayers for the bishop"));
-        Assert.Equal(departed ? 1 : 0, changed.Count(step => step.Title == "Closing prayers for the faithful departed"));
+        var expectedGroups = added > 0 ? 1 : 0;
+        Assert.Equal(expectedGroups, changed.Count(step => step.Title == "Closing prayers for the Pope"));
+        Assert.Equal(expectedGroups, changed.Count(step => step.Title == "Closing prayers for the bishop"));
+        Assert.Equal(expectedGroups, changed.Count(step => step.Title == "Closing prayers for the faithful departed"));
     }
 
     [Fact]
@@ -542,7 +543,7 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Fact]
-    public void BuildSteps_OpeningFatimaPrayer_FollowsTheThreeOpeningHailMarys()
+    public void BuildSteps_OpeningFatimaPrayer_FollowsTheOpeningGloryBe()
     {
         var steps = _engine.BuildSteps(SpecificRosary(new RosaryOptions
         {
@@ -554,10 +555,54 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
         })).ToList();
 
         var fatimaIndex = steps.FindIndex(step => step.Title == "Fatima Prayer");
-        Assert.True(fatimaIndex > 0);
-        Assert.Equal("Hail Mary (3 of 3)", steps[fatimaIndex - 1].Title);
-        Assert.Equal("Glory Be", steps[fatimaIndex + 1].Title);
+        Assert.True(fatimaIndex >= 2);
+        Assert.Equal("Hail Mary (3 of 3)", steps[fatimaIndex - 2].Title);
+        Assert.Equal("Glory Be", steps[fatimaIndex - 1].Title);
+        Assert.Equal(steps.FindIndex(step => step.DecadeIndex == 0), fatimaIndex + 1);
+        Assert.True(steps[fatimaIndex + 1].IsScripture);
         Assert.Single(steps.Where(step => step.Title == "Fatima Prayer"));
+    }
+
+    [Theory]
+    [InlineData(false, false, false)]
+    [InlineData(false, false, true)]
+    [InlineData(false, true, false)]
+    [InlineData(false, true, true)]
+    [InlineData(true, false, false)]
+    [InlineData(true, false, true)]
+    [InlineData(true, true, false)]
+    [InlineData(true, true, true)]
+    public void BuildSteps_OpeningAndPerDecadeFatimaOptionsRemainIndependent(
+        bool includeOpeningPrayers, bool includeOpeningFatima, bool includePerDecadeFatima)
+    {
+        var steps = _engine.BuildSteps(SpecificRosary(new RosaryOptions
+        {
+            MysterySelectionMode = MysterySelectionMode.Specific,
+            SpecificMysteryGroup = MysteryGroup.Joyful,
+            IncludeOpeningPrayers = includeOpeningPrayers,
+            IncludeOpeningFatimaPrayer = includeOpeningFatima,
+            IncludeFatimaPrayer = includePerDecadeFatima,
+        })).ToList();
+
+        var firstMysteryIndex = steps.FindIndex(step => step.DecadeIndex == 0);
+        Assert.True(firstMysteryIndex >= 0);
+        var opening = steps.Take(firstMysteryIndex).ToList();
+        var expectedOpeningFatima = includeOpeningPrayers && includeOpeningFatima ? 1 : 0;
+        Assert.Equal(expectedOpeningFatima, opening.Count(step => step.Title == "Fatima Prayer"));
+        Assert.Equal(includeOpeningPrayers ? 1 : 0, opening.Count(step => step.Title == "Glory Be"));
+        Assert.Equal(includeOpeningPrayers ? 3 : 0,
+            opening.Count(step => step.ImageOverrideKey?.StartsWith("virtue_") == true));
+        if (includeOpeningPrayers)
+        {
+            Assert.Equal(expectedOpeningFatima == 1 ? "Fatima Prayer" : "Glory Be", opening[^1].Title);
+            if (expectedOpeningFatima == 1) Assert.Equal("Glory Be", opening[^2].Title);
+        }
+
+        var perDecadeFatima = steps.Where(step => step.Title == "Fatima Prayer" && step.DecadeIndex.HasValue)
+            .Select(step => step.DecadeIndex!.Value);
+        Assert.Equal(includePerDecadeFatima ? new[] { 0, 1, 2, 3, 4 } : Array.Empty<int>(), perDecadeFatima);
+        Assert.Equal(expectedOpeningFatima + (includePerDecadeFatima ? 5 : 0),
+            steps.Count(step => step.Title == "Fatima Prayer"));
     }
 
     [Fact]

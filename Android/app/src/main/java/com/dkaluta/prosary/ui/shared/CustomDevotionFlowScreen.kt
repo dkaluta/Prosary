@@ -1,6 +1,13 @@
 package com.dkaluta.prosary.ui.shared
 
 import androidx.activity.compose.BackHandler
+import androidx.activity.compose.LocalActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.ui.unit.dp
+import com.dkaluta.prosary.ui.rosaryflow.beadWideWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Check
@@ -19,19 +26,15 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.lifecycle.viewModelScope
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import com.dkaluta.prosary.R
-import com.dkaluta.prosary.content.audio.AudioPlaybackController
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.FavoriteDevotions
 import com.dkaluta.prosary.models.CustomDevotionLanguageSwitch
@@ -45,10 +48,8 @@ import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.models.PrayerRunKeys
-import com.dkaluta.prosary.models.PrayerRunProgress
 import com.dkaluta.prosary.models.PrayerRunProgressStore
 import com.dkaluta.prosary.models.PrayerRunSignatures
-import com.dkaluta.prosary.models.RosaryStep
 import com.dkaluta.prosary.services.AppServices
 import com.dkaluta.prosary.services.LocalAppServices
 import com.dkaluta.prosary.ui.rosaryflow.BeadLayout
@@ -82,54 +83,59 @@ fun CustomDevotionFlowScreen(
     onOpenDevotion: ((String) -> Unit)? = null,
 ) {
     val services = LocalAppServices.current
-    val scope = rememberCoroutineScope()
 
-    var steps by remember { mutableStateOf<List<RosaryStep>>(emptyList()) }
-    var currentIndex by remember { mutableIntStateOf(0) }
-    var isRightToLeft by remember { mutableStateOf(false) }
-    var seasonColor by remember { mutableStateOf(Color.Transparent) }
-    var languageCode by remember { mutableStateOf<String?>(null) }
-    var matchingFavoriteId by remember { mutableStateOf(prayer?.id) }
-    var displayName by remember { mutableStateOf(devotionId) }
-    val variantFollowsEntry = DevotionEntryContext.locksVariant(devotionId)
-    var variantId by remember { mutableStateOf(DevotionEntryContext.initialVariant(devotionId, initialVariantId, prayer?.variantId)) }
-    var variantMenuExpanded by remember { mutableStateOf(false) }
-    /** The favorite's raw language choice: an explicit code, or the sentinel ("follow the
-     * app-level default setting"). [languageCode] is always the resolved code. */
-    var chosenLanguage by remember { mutableStateOf(initialLanguageCode ?: prayer?.languageCode ?: LanguageCatalog.defaultSentinel) }
-    /** The favorite's bundle option overrides. Keep them in the session model so both the
-     * generated flow and its continuation signature follow the configuration being prayed. */
-    var customOptions by remember(prayer?.id, devotionId) {
-        mutableStateOf(prayer?.customOptions.orEmpty())
+    val session = viewModel(key = "custom:$devotionId:${prayer?.id.orEmpty()}") {
+        CustomDevotionPrayerSession(devotionId, prayer, initialVariantId, initialLanguageCode)
     }
-    var languageMenuExpanded by remember { mutableStateOf(false) }
-    /** Multi-day devotions: the day this session prays (0-based; sourced from the favorite). */
-    var dayIndex by remember { mutableIntStateOf(prayer?.dayIndex ?: 0) }
-    var dayMenuExpanded by remember { mutableStateOf(false) }
-    /** Set when a day was missed: the day that should have happened and the one today calls for. */
-    var missedDayChoice by remember { mutableStateOf<Pair<Int, Int>?>(null) }
-    var isPinned by remember { mutableStateOf(false) }
-    /** Set when the last day of a series is finished and the bundle's suggestedNext resolves to
-     * something this device actually has. */
-    var completionSuggestion by remember { mutableStateOf<Pair<String, String>?>(null) }
-    var pendingResume by remember(prayer?.id, devotionId) { mutableStateOf<PrayerRunProgress?>(null) }
-    var checkedRunKey by remember(prayer?.id, devotionId) { mutableStateOf<String?>(null) }
-    var runReady by remember(prayer?.id, devotionId) { mutableStateOf(false) }
-    var resetAudioOnNextRebuild by remember(prayer?.id, devotionId) { mutableStateOf(false) }
+    val scope = session.viewModelScope
+    val variantFollowsEntry = DevotionEntryContext.locksVariant(devotionId)
+    var steps by session.steps
+    var currentIndex by session.currentIndex
+    var isRightToLeft by session.isRightToLeft
+    var seasonColor by session.seasonColor
+    var languageCode by session.languageCode
+    var matchingFavoriteId by session.matchingFavoriteId
+    var displayName by session.displayName
+    var variantId by session.variantId
+    var variantMenuExpanded by session.variantMenuExpanded
+    var chosenLanguage by session.chosenLanguage
+    var customOptions by session.customOptions
+    var languageMenuExpanded by session.languageMenuExpanded
+    var dayIndex by session.dayIndex
+    var dayMenuExpanded by session.dayMenuExpanded
+    var missedDayChoice by session.missedDayChoice
+    var isPinned by session.isPinned
+    var completionSuggestion by session.completionSuggestion
+    var pendingResume by session.pendingResume
+    var checkedRunKey by session.checkedRunKey
+    var runReady by session.runReady
+    var resetAudioOnNextRebuild by session.resetAudioOnNextRebuild
 
     fun persistDayIndex(value: Int) {
         matchingFavoriteId?.let { id ->
             scope.launch {
                 services.presetStore.get(id)?.let { favorite ->
-                    services.presetStore.save(favorite.copy(dayIndex = value))
+                    services.presetStore.updateIfPresent(favorite.copy(dayIndex = value))
                 }
             }
         }
     }
 
     val context = LocalContext.current
-    val audio = remember { AudioPlaybackController() }
-    DisposableEffect(Unit) { onDispose { audio.stop() } }
+    val audio = session.audio
+    val activity = LocalActivity.current
+    val lifecycleOwner = LocalLifecycleOwner.current
+    DisposableEffect(lifecycleOwner, activity, audio) {
+        val observer = LifecycleEventObserver { _, event ->
+            // A fold replaces the Activity while keeping the same prayer entry. Backgrounding
+            // or leaving that entry pauses narration; recreation leaves the player running.
+            if (event == Lifecycle.Event.ON_STOP && activity?.isChangingConfigurations != true) {
+                audio.pause()
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+    }
 
     /** After a manual Back/Next (or a fresh load), bring the recording to the chapter that
      * narrates the step at [index] — when one does; steps between chapter hints leave the
@@ -174,44 +180,48 @@ fun CustomDevotionFlowScreen(
     }
 
     LaunchedEffect(prayer, devotionId, variantId, dayIndex) {
+        if (session.loadedSelection == (variantId to dayIndex)) return@LaunchedEffect
         displayName = PrayerPackStore.info(devotionId)?.localizedDisplayName ?: devotionId
-
-        // The favorite (when one exists) carries the language and variant to pray in, so it
-        // loads before the first build rather than after it.
-        if (matchingFavoriteId == null && prayer == null && initialVariantId == null && initialLanguageCode == null) {
-            val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
-            val favorite = all.firstOrNull { it.kind == PrayerKind.Custom && it.customDevotionId == devotionId }
-            matchingFavoriteId = favorite?.id
-            if (favorite != null) {
-                chosenLanguage = favorite.languageCode
-                customOptions = favorite.customOptions
-                if (!variantFollowsEntry && variantId == null && favorite.variantId != null) {
-                    variantId = favorite.variantId
-                }
-                dayIndex = favorite.dayIndex ?: 0
-            }
-        }
-        isPinned = FavoriteDevotions.contains(context, devotionId, impliedPinnedIds(services))
-
-        // A series decides its own day: today's if it is unprayed, the same day again if it was
-        // already prayed today, and a choice when one was missed.
         val definition = PrayerPackStore.definition(devotionId)
-        val days = definition?.days.orEmpty()
-        if (days.size > 1 && (definition?.dayProgression ?: "series") == "series") {
-            val run = MultiDayRuns.run(context, devotionId)
-            when (val resumption = run?.resumption(days.size) ?: MultiDayRun.Resumption.Start) {
-                is MultiDayRun.Resumption.Start -> dayIndex = 0
-                is MultiDayRun.Resumption.Resume -> dayIndex = resumption.day
-                is MultiDayRun.Resumption.Choose -> {
-                    dayIndex = resumption.missed
-                    missedDayChoice = resumption.missed to resumption.next
+
+        if (!session.entryLoaded) {
+            // The favorite (when one exists) carries the language and variant to pray in, so it
+            // loads before the first build rather than after it.
+            if (matchingFavoriteId == null && prayer == null && initialVariantId == null && initialLanguageCode == null) {
+                val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
+                val favorite = all.firstOrNull { it.kind == PrayerKind.Custom && it.customDevotionId == devotionId }
+                matchingFavoriteId = favorite?.id
+                if (favorite != null) {
+                    chosenLanguage = favorite.languageCode
+                    customOptions = favorite.customOptions
+                    if (!variantFollowsEntry && variantId == null && favorite.variantId != null) {
+                        variantId = favorite.variantId
+                    }
+                    dayIndex = favorite.dayIndex ?: 0
                 }
-                is MultiDayRun.Resumption.Complete -> dayIndex = days.size - 1
             }
-            // Praying twice in one day re-prays that day rather than eating tomorrow's.
-            if (run != null && run.hasPrayedToday()) {
-                run.prayedDays.lastOrNull()?.let { dayIndex = it }
+            isPinned = FavoriteDevotions.contains(context, devotionId, impliedPinnedIds(services))
+
+            // A series decides its own day: today's if it is unprayed, the same day again if it was
+            // already prayed today, and a choice when one was missed.
+            val days = definition?.days.orEmpty()
+            if (days.size > 1 && (definition?.dayProgression ?: "series") == "series") {
+                val run = MultiDayRuns.run(context, devotionId)
+                when (val resumption = run?.resumption(days.size) ?: MultiDayRun.Resumption.Start) {
+                    is MultiDayRun.Resumption.Start -> dayIndex = 0
+                    is MultiDayRun.Resumption.Resume -> dayIndex = resumption.day
+                    is MultiDayRun.Resumption.Choose -> {
+                        dayIndex = resumption.missed
+                        missedDayChoice = resumption.missed to resumption.next
+                    }
+                    is MultiDayRun.Resumption.Complete -> dayIndex = days.size - 1
+                }
+                // Praying twice in one day re-prays that day rather than eating tomorrow's.
+                if (run != null && run.hasPrayedToday()) {
+                    run.prayedDays.lastOrNull()?.let { dayIndex = it }
+                }
             }
+            session.entryLoaded = true
         }
 
         val candidateRunKey = PrayerRunKeys.custom(devotionId, variantId, dayIndex)
@@ -276,9 +286,12 @@ fun CustomDevotionFlowScreen(
         )
         resetAudioOnNextRebuild = false
         if (pendingResume != null) currentIndex = 0
+        session.loadedSelection = variantId to dayIndex
+        session.appliedJaffaWording = AppSettings.useJaffaHailMaryWording
     }
 
     LaunchedEffect(AppSettings.useJaffaHailMaryWording) {
+        if (session.appliedJaffaWording == AppSettings.useJaffaHailMaryWording) return@LaunchedEffect
         if (steps.isNotEmpty()) {
             val position = currentIndex
             steps = services.engine.buildSteps(Prayer(
@@ -287,6 +300,7 @@ fun CustomDevotionFlowScreen(
                 dayIndex = dayIndex, customOptions = customOptions,
             ))
             currentIndex = position.coerceIn(0, (steps.size - 1).coerceAtLeast(0))
+            session.appliedJaffaWording = AppSettings.useJaffaHailMaryWording
         }
     }
 
@@ -350,7 +364,11 @@ fun CustomDevotionFlowScreen(
     // The recording's chapters drive the text while it plays: entering a chapter that carries
     // a stepIndex hint turns the page. Hints are advisory (the built sequence is option- and
     // calendar-dependent), so out-of-range ones are ignored rather than trusted.
-    LaunchedEffect(audio.currentChapterIndex) {
+    LaunchedEffect(audio.track?.id, audio.currentChapterIndex) {
+        val chapterIdentity = audio.track?.id to audio.currentChapterIndex
+        if (session.observedAudioChapter == chapterIdentity) return@LaunchedEffect
+        session.observedAudioChapter = chapterIdentity
+        if (!runReady || pendingResume != null) return@LaunchedEffect
         val chapterIndex = audio.currentChapterIndex ?: return@LaunchedEffect
         val hint = audio.track?.chapters?.getOrNull(chapterIndex)?.stepIndex ?: return@LaunchedEffect
         if (hint in steps.indices && currentIndex != hint) currentIndex = hint
@@ -455,6 +473,7 @@ fun CustomDevotionFlowScreen(
         title = displayName,
         step = currentStep,
         currentIndex = currentIndex,
+        sessionPaused = !runReady || missedDayChoice != null || completionSuggestion != null,
         totalSteps = steps.size,
         seasonColor = seasonColor,
         isRightToLeft = isRightToLeft,
@@ -468,6 +487,8 @@ fun CustomDevotionFlowScreen(
         },
         onNext = {
             if (steps.isEmpty() || currentIndex == steps.size - 1) {
+                runReady = false
+                audio.pause()
                 PrayerRunProgressStore.clear(context, currentRunKey)
                 // Finishing a multi-day session advances the favorite to the next day (staying
                 // on the last once complete) — tomorrow opens where the novena left off.
@@ -518,6 +539,7 @@ fun CustomDevotionFlowScreen(
             null
         },
         audioIsPlaying = audio.isPlaying,
+        wideAccessoryWidth = if (showsBeadTrack) beadWideWidth(beadLayout) else 0.dp,
         accessory = if (showsBeadTrack) {
             { isWide, hasRoomForSingleMinorColumn ->
                 BeadProgressView(layout = beadLayout, isWide = isWide, hasRoomForSingleMinorColumn = hasRoomForSingleMinorColumn)
@@ -569,7 +591,7 @@ fun CustomDevotionFlowScreen(
                     matchingFavoriteId?.let { id ->
                         scope.launch {
                             services.presetStore.get(id)?.let { favorite ->
-                                services.presetStore.save(favorite.copy(languageCode = raw))
+                                services.presetStore.updateIfPresent(favorite.copy(languageCode = raw))
                             }
                         }
                     }
@@ -647,7 +669,7 @@ fun CustomDevotionFlowScreen(
                                     matchingFavoriteId?.let { id ->
                                         scope.launch {
                                             services.presetStore.get(id)?.let { favorite ->
-                                                services.presetStore.save(favorite.copy(variantId = newVariantId))
+                                                services.presetStore.updateIfPresent(favorite.copy(variantId = newVariantId))
                                             }
                                         }
                                     }

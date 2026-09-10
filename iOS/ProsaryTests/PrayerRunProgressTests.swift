@@ -47,6 +47,61 @@ final class PrayerRunProgressTests: XCTestCase {
     XCTAssertNil(store.progress(for: "rosary:two"))
   }
 
+  func testWindowsKeepSeparateBookmarksForTheSamePrayer() {
+    let first = PrayerRunProgressStore(defaults: defaults, namespace: "first")
+    let second = PrayerRunProgressStore(defaults: defaults, namespace: "second")
+    first.save(runKey: "rosary:one", stepIndex: 17, languageCode: "en")
+    second.save(runKey: "rosary:one", stepIndex: 3, languageCode: "he")
+    XCTAssertEqual(first.progress(for: "rosary:one")?.stepIndex, 17)
+    XCTAssertEqual(second.progress(for: "rosary:one")?.stepIndex, 3)
+    XCTAssertEqual(store.progress(for: "rosary:one")?.stepIndex, 3)
+    first.clear(runKey: "rosary:one")
+    XCTAssertEqual(second.progress(for: "rosary:one")?.stepIndex, 3)
+    let restored = PrayerRunProgressStore(defaults: defaults, namespace: "second")
+    XCTAssertEqual(restored.progress(for: "rosary:one")?.languageCode, "he")
+  }
+
+  func testMacWindowClaimsLegacyUnscopedBookmarkOnlyOnce() {
+    store.save(runKey: "rosary:legacy", stepIndex: 21, languageCode: "arc")
+    let window = PrayerRunProgressStore(defaults: defaults, namespace: "upgraded")
+    XCTAssertEqual(window.progress(for: "rosary:legacy")?.stepIndex, 21)
+    XCTAssertEqual(window.progress(for: "rosary:legacy")?.languageCode, "arc")
+
+    store.save(runKey: "rosary:legacy", stepIndex: 35, languageCode: "en")
+    let restored = PrayerRunProgressStore(defaults: defaults, namespace: "upgraded")
+    XCTAssertEqual(restored.progress(for: "rosary:legacy")?.stepIndex, 21)
+    XCTAssertEqual(store.progress(for: "rosary:legacy")?.stepIndex, 35)
+  }
+
+  func testNewWindowResumesLatestSessionAndThenKeepsItsOwnPlace() {
+    let original = PrayerRunProgressStore(defaults: defaults, namespace: "closed")
+    original.save(runKey: "jesus:33", stepIndex: 8, languageCode: "he")
+    let reopened = PrayerRunProgressStore(defaults: defaults, namespace: "new")
+    XCTAssertEqual(reopened.progress(for: "jesus:33")?.stepIndex, 8)
+
+    reopened.save(runKey: "jesus:33", stepIndex: 12, languageCode: "en")
+    XCTAssertEqual(original.progress(for: "jesus:33")?.stepIndex, 8)
+    let newest = PrayerRunProgressStore(defaults: defaults, namespace: "newest")
+    XCTAssertEqual(newest.progress(for: "jesus:33")?.stepIndex, 12)
+    XCTAssertEqual(newest.progress(for: "jesus:33")?.languageCode, "en")
+  }
+
+  func testFinishingAStaleWindowPreservesNewerSiblingContinuation() {
+    let older = PrayerRunProgressStore(defaults: defaults, namespace: "older")
+    let newer = PrayerRunProgressStore(defaults: defaults, namespace: "newer")
+    older.save(runKey: "custom:angelus::0", stepIndex: 2, languageCode: "en")
+    newer.save(runKey: "custom:angelus::0", stepIndex: 5, languageCode: "he")
+    older.clear(runKey: "custom:angelus::0")
+    XCTAssertEqual(store.progress(for: "custom:angelus::0")?.stepIndex, 5)
+    XCTAssertEqual(newer.progress(for: "custom:angelus::0")?.stepIndex, 5)
+
+    newer.clear(runKey: "custom:angelus::0")
+    XCTAssertNil(store.progress(for: "custom:angelus::0"))
+    XCTAssertNil(newer.progress(for: "custom:angelus::0"))
+    let fresh = PrayerRunProgressStore(defaults: defaults, namespace: "fresh")
+    XCTAssertNil(fresh.progress(for: "custom:angelus::0"))
+  }
+
   func testStepZeroAndExplicitClearRemoveContinuation() {
     store.save(runKey: "custom:angelus::0", stepIndex: 4, languageCode: "en")
     store.save(runKey: "custom:angelus::0", stepIndex: 0, languageCode: "en")

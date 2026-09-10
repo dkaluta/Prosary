@@ -86,9 +86,9 @@
   <data name="settings_installed_devotions" xml:space="preserve"><value>Mga naka-install na debosyon: {0}</value></data>
   <data name="settings_clear_audio_cache" xml:space="preserve"><value>Burahin ang Cache ng Audio</value></data>
   <data name="settings_clear_audio_cache_size" xml:space="preserve"><value>Burahin ang Cache ng Audio ({0})</value></data>
-  <data name="settings_remove_all_title" xml:space="preserve"><value>Alisin ang lahat ng na-download na debosyon?</value></data>
-  <data name="settings_remove_all_message" xml:space="preserve"><value>Maaaring i-download muli ang mga debosyon mula sa imbakan; hindi ang mga file na mano-manong in-import.</value></data>
-  <data name="settings_remove_all_confirm" xml:space="preserve"><value>Alisin Lahat</value></data>
+  <data name="settings_remove_all_title" xml:space="preserve"><value>Alisin ang mga Hindi Ginagamit na Download?</value></data>
+  <data name="settings_remove_all_message" xml:space="preserve"><value>Aalisin nito ang mga na-download na panalanging walang naka-save na kopya. Mananatili ang mga naka-save na panalangin at mga panalanging kasama sa app.</value></data>
+  <data name="settings_remove_all_confirm" xml:space="preserve"><value>Alisin ang Hindi Ginagamit</value></data>
   <data name="settings_app_language_system" xml:space="preserve"><value>Paunang pinili ng sistema</value></data>
   <data name="NavPray.Content" xml:space="preserve"><value>Magdasal</value></data>
   <data name="NavBrowse.Content" xml:space="preserve"><value>Tumingin</value></data>
@@ -105,8 +105,8 @@
   <data name="SetAutoAdvanceCombo.Header" xml:space="preserve"><value>Awtomatikong paglipat</value></data>
   <data name="SetResetHomeOrder.Content" xml:space="preserve"><value>I-reset ang Pagkakasunod-sunod sa Home</value></data>
   <data name="SetDownloadsHeader.Text" xml:space="preserve"><value>Mga Na-download</value></data>
-  <data name="SetRemoveAll.Content" xml:space="preserve"><value>Alisin ang Lahat ng Na-download na Debosyon…</value></data>
-  <data name="SetDownloadsFooter.Text" xml:space="preserve"><value>Hindi inaalis ang mga kasamang debosyon. Kapag inalis ang na-download na debosyon, aalisin din ang paborito nito.</value></data>
+  <data name="SetRemoveAll.Content" xml:space="preserve"><value>Alisin ang mga Hindi Ginagamit na Download…</value></data>
+  <data name="SetDownloadsFooter.Text" xml:space="preserve"><value>Mga download na walang naka-save na kopya lamang ang maaaring alisin dito. Kapag binura ang huling naka-save na kopya, aalisin din ang download nito. Mananatili ang mga panalanging kasama sa app.</value></data>
   <data name="SetLinksHeader.Text" xml:space="preserve"><value>Mga Link</value></data>
   <data name="SetRepoLink.Content" xml:space="preserve"><value>Imbakan ng komunidad</value></data>
   <data name="SetComposeLink.Content" xml:space="preserve"><value>Bumuo ng debosyon</value></data>
@@ -168,7 +168,7 @@
   <data name="EdApostlesCreed.Text" xml:space="preserve"><value>Sumasampalataya ng mga Apostol</value></data>
   <data name="EdOpeningPrayers.Text" xml:space="preserve"><value>Pambungad na Ama Namin at 3 Aba Ginoong Maria</value></data>
   <data name="EdFatima.Text" xml:space="preserve"><value>Panalangin ng Fatima pagkatapos ng bawat dekada</value></data>
-  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>Panalangin ng Fatima pagkatapos ng mga pambungad na Aba Ginoong Maria</value></data>
+  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>Panalangin ng Fatima pagkatapos ng pambungad na Luwalhati sa Ama</value></data>
   <data name="EdDisplayHeader.Text" xml:space="preserve"><value>PAGPAPAKITA</value></data>
   <data name="EdMysteryArtwork.Header" xml:space="preserve"><value>Mga larawan ng misteryo</value></data>
   <data name="EdPresenterMode.Text" xml:space="preserve"><value>Paraan ng Pangunguna</value></data>
@@ -208,7 +208,7 @@
   <data name="AbtJpHeader.Text" xml:space="preserve"><value>Larawan ng Panalangin kay Hesus</value></data>
   <data name="AbtJpBody.Text" xml:space="preserve"><value>Kristong Pantokrator: ikono na ipininta sa mainit na pagkit (ika-6 na siglo), Monasteryo ni Santa Catalina, Bundok Sinai — ang pinakamatandang nabubuhay na ikono ni Kristong Pantokrator, bilang paggalang sa tradisyong Silanganin ng panalangin; pampublikong dominyo.</value></data>
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>Mga Sanggunian ng Banal na Kasulatan</value></data>
-  <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Ang mga sipi ng Banal na Kasulatan ay mula sa Bibliyang Douay-Rheims (Ingles), Clementine Vulgate (Latin), salin ni Franz Delitzsch ng Bagong Tipan sa Hebreo (mula sa kirjasilta.net/ha-berit) at mga talata sa Lumang Tipan sa Hebreo na sumusunod sa tekstong Masoretiko, Bibliyang Arabe ng mga Heswita (Dar el-Machreq), Bibliyang Sinodal sa Ruso (1876), at Ang Dating Biblia (Tagalog, 1905).</value></data>
+  <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Ang mga sipi ng Banal na Kasulatan ay mula sa Bibliyang Douay-Rheims (Ingles), Clementine Vulgate (Latin), salin ni Franz Delitzsch ng Bagong Tipan sa Hebreo (mula sa kirjasilta.net/ha-berit; delitz.fr/12, 1901) at mga talata sa Lumang Tipan sa Hebreo na sumusunod sa tekstong Masoretiko, lumang Bibliyang Arabe ng mga Heswita (1897), Bibliyang Sinodal sa Ruso (1876), at Ang Dating Biblia (Tagalog, 1905).</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>Datos ng Kalendaryo</value></data>
   <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Datos ng kalendaryo at mga pagbasa: ang Pangkalahatang Kalendaryong Romano mula sa proyektong LitCal (litcal.johnromanodorazio.com); ang kalendaryo at leksiyonaryo ng 1962 mula sa Missale Meum (missalemeum.com); ang kalendaryong Katolikong Siriako, mga pamagat sa Hebreo ng Pangkalahatang Kalendaryong Romano, at mga sanggunian ng leksiyonaryong Romano/Siriako sa kagandahang-loob ng Evangelizo.org — Daily Gospel, © Evangelizo.org; ang kalendaryo at mga pagbasa ng Simbahang Katolikong Griyego ng Ukraine na may Paskong Julian ay mula sa Simbahan at sa Komisyong Liturhiko ng Patriyarka (ugcc.ua); ang mga pagbasa na may Paskong Gregorian ay mula sa Royal Doors (royaldoors.net). Mga pangalan ng aklat ng Bibliya sa Hebreo: Evangelizo HE at ang Bikaryato ni Santiago (catholic.co.il). Karagdagang pangalan ng mga kapistahan at santo sa Hebreo: ang Bikaryato ni Santiago, Christian Media Center (cmc-terrasanta.org), at Vatican News (vaticannews.va).</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Nakaraang misteryo</value></data>
@@ -322,27 +322,27 @@
   <data name="SetAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>Tanda ng Krus sa Aramaiko</value></data>
   <data name="EdAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>Tanda ng Krus sa Aramaiko</value></data>
   <data name="EdRiteCombo.Header" xml:space="preserve"><value>Tradisyon ng panalangin</value></data>
-  <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>Magdasal ng anumang Rosaryo</value></data>
-  <data name="HomeAddRosary.Content" xml:space="preserve"><value>Magdagdag ng Rosaryo</value></data>
-  <data name="HomeAddJesusPrayer.Content" xml:space="preserve"><value>Idagdag ang Panalangin kay Hesus</value></data>
+  <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>Magdasal ng anumang Rosaryo…</value></data>
+  <data name="HomeAddRosary.Content" xml:space="preserve"><value>Magdagdag ng Rosaryo…</value></data>
+  <data name="HomeAddJesusPrayer.Content" xml:space="preserve"><value>Idagdag ang Panalangin kay Hesus…</value></data>
   <data name="HomeAddToPrayHeader.Text" xml:space="preserve"><value>Idagdag sa Magdasal</value></data>
-  <data name="HomeSavedPresets.Text" xml:space="preserve"><value>Mga naka-save na ayos…</value></data>
+  <data name="HomeSavedPresets.Text" xml:space="preserve"><value>Mga naka-save na ayos</value></data>
   <data name="HomeEditOrderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>I-edit ang pagkakasunod-sunod…</value></data>
   <data name="HomeReminders.Text" xml:space="preserve"><value>Mga Paalala…</value></data>
-  <data name="PresetEdit.Text" xml:space="preserve"><value>I-edit</value></data>
+  <data name="PresetEdit.Text" xml:space="preserve"><value>I-edit…</value></data>
   <data name="PresetReminders.Text" xml:space="preserve"><value>Mga Paalala…</value></data>
   <data name="PresetSetDefault.Text" xml:space="preserve"><value>Itakdang paunang pinili</value></data>
   <data name="PresetDelete.Text" xml:space="preserve"><value>Burahin</value></data>
   <data name="SetImportBundle.Content" xml:space="preserve"><value>Mag-import ng Pakete ng Debosyon…</value></data>
   <data name="SetExportBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>I-export para i-edit</value></data>
-  <data name="SetRemoveBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Alisin</value></data>
+  <data name="SetRemoveBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Alisin ang Download…</value></data>
   <data name="PickerEternalRest.Header" xml:space="preserve"><value>Para sa mga yumaong sumasampalataya</value></data>
   <data name="PickerAntiphon.Header" xml:space="preserve"><value>Antipona kay Maria</value></data>
   <data name="PickerMysteryArtwork.Header" xml:space="preserve"><value>Mga larawan ng misteryo</value></data>
   <data name="PickerApostlesCreed.Text" xml:space="preserve"><value>Sumasampalataya ng mga Apostol</value></data>
   <data name="PickerOpeningPrayers.Text" xml:space="preserve"><value>Pambungad na Ama Namin at 3 Aba Ginoong Maria</value></data>
   <data name="PickerFatima.Text" xml:space="preserve"><value>Panalangin ng Fatima pagkatapos ng bawat dekada</value></data>
-  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>Panalangin ng Fatima pagkatapos ng mga pambungad na Aba Ginoong Maria</value></data>
+  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>Panalangin ng Fatima pagkatapos ng pambungad na Luwalhati sa Ama</value></data>
   <data name="PickerPresenterMode.Text" xml:space="preserve"><value>Paraan ng pangunguna</value></data>
   <data name="PickerClosingIntentions.Text" xml:space="preserve"><value>Mga Pangwakas na Intensiyon</value></data>
   <data name="PickerStMichael.Text" xml:space="preserve"><value>Panalangin kay San Miguel</value></data>
@@ -442,9 +442,88 @@
   <data name="HomeNextDay.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Susunod na araw</value></data>
   <data name="home_today_choose_date" xml:space="preserve"><value>Pumili ng petsa: {0}</value></data>
   <data name="AbtHebrewBookIndex.Text" xml:space="preserve"><value>Karagdagang pangalan ng mga aklat ng Bibliya sa Hebreo: talaan ng Bibliyang Hebreo ng Mechon Mamre. Mga pangalan lamang; walang teksto ng Kasulatan.</value></data>
-  <data name="SetJaffaWording.Header" xml:space="preserve"><value>Bersiyon ng Jaffa</value></data>
+  <data name="SetJaffaWording.Header" xml:space="preserve"><value>Alternatibong teksto ng Aba Ginoong Maria</value></data>
   <data name="SetJaffaWordingFooter.Text" xml:space="preserve"><value>Gamitin ang בְּרוּכַת הַחֶסֶד sa halip na מְלֵאַת הַחֶסֶד sa mga panalangin ng Bikaryato.</value></data>
   <data name="AbtUkrainianPrayerSources.Text" xml:space="preserve"><value>Mga panalangin sa Ukrainian: Simbahang Romano Katoliko sa Ukraine, aklat-dasalan na Щоденно з Богом. Ginagamit nang may pagkilala sa pinagmulan ayon sa patakaran ng tagapaglathala sa muling paggamit. Kasulatan: Bibliya nina Kulish, Nechui-Levytsky at Puluj (1905), pampublikong dominyo; eBible.org ukr1871. Pinanatili ang makasaysayang baybay ng Kasulatan.</value></data>
   <data name="AbtUkrainianPrayerbookLink.Content" xml:space="preserve"><value>Aklat-dasalan sa Ukrainian</value></data>
   <data name="AbtUkrainianScriptureLink.Content" xml:space="preserve"><value>Bibliya sa Ukrainian (1905)</value></data>
+  <!-- Window and menu commands -->
+  <data name="CommandsOpenInNewWindow" xml:space="preserve"><value>Buksan sa Bagong Window</value></data>
+  <data name="CommandsNavigation" xml:space="preserve"><value>Pumunta</value></data>
+  <data name="CommandsBack" xml:space="preserve"><value>Bumalik</value></data>
+  <data name="CommandsHelp" xml:space="preserve"><value>Tulong sa Prosary</value></data>
+  <data name="CommandsNewWindow" xml:space="preserve"><value>Bagong Window</value></data>
+  <data name="FavoriteEditorSaveFailed" xml:space="preserve"><value>Hindi Mai-save ang Paborito</value></data>
+  <data name="flow_show_original_text" xml:space="preserve"><value>Ipakita ang Orihinal na Teksto</value></data>
+  <data name="RosaryAnyRosaryAction" xml:space="preserve"><value>Magdasal ng anumang Rosaryo…</value></data>
+  <data name="RosarySaveAsPresetAction" xml:space="preserve"><value>I-save ang Ayos…</value></data>
+  <data name="FavoriteEditorReminderTime" xml:space="preserve"><value>Oras ng Paalala</value></data>
+  <data name="FavoriteEditorRemoveReminder" xml:space="preserve"><value>Alisin ang Paalala</value></data>
+  <data name="AboutVersion" xml:space="preserve"><value>Bersyon {0} ({1})</value></data>
+  <data name="CommandsRecentlyPrayed" xml:space="preserve"><value>Mga Huling Dinasal</value></data>
+  <data name="HomeDeleteSavedPrayer.Text" xml:space="preserve"><value>Burahin ang Naka-save na Panalangin…</value></data>
+  <data name="prayerRemoval_deleteTitle" xml:space="preserve"><value>Burahin ang Naka-save na Panalangin?</value></data>
+  <data name="prayerRemoval_deleteMessage" xml:space="preserve"><value>Buburahin nito ang naka-save na panalangin at mga paalala nito. Mananatiling magagamit ang iba pang naka-save na kopya at mga panalanging kasama sa app.</value></data>
+  <data name="prayerRemoval_deleteDownloadedMessage" xml:space="preserve"><value>Ito ang huling naka-save na kopya. Kapag binura ito, aalisin din ang na-download na pakete ng panalangin sa device na ito at kakanselahin ang mga paalala nito.</value></data>
+  <data name="prayerRemoval_deleteConfirm" xml:space="preserve"><value>Burahin</value></data>
+  <data name="prayerRemoval_removeDownloadTitle" xml:space="preserve"><value>Alisin ang Download?</value></data>
+  <data name="prayerRemoval_removeDownloadMessage" xml:space="preserve"><value>Aalisin nito ang na-download na panalangin sa device na ito. Maaari mo itong i-import o i-download muli.</value></data>
+  <data name="prayerRemoval_removeConfirm" xml:space="preserve"><value>Alisin</value></data>
+  <data name="prayerRemoval_failedTitle" xml:space="preserve"><value>Hindi Maalis ang Panalangin</value></data>
+  <data name="prayerRemoval_failedMessage" xml:space="preserve"><value>Hindi maalis ang ilang item. Pakisubukang muli.</value></data>
+  <data name="prayerRemoval_deleteFailed" xml:space="preserve"><value>Hindi mabura ang panalangin. Pakisubukang muli.</value></data>
+  <data name="prayerRemoval_cleanupFailed" xml:space="preserve"><value>Nabura ang panalangin, ngunit hindi maalis ang download nito. Subukang muli sa Mga Download.</value></data>
+  <data name="prayerRemoval_remindersFailed" xml:space="preserve"><value>Nabura ang panalangin, ngunit hindi makansela ang mga paalala nito.</value></data>
+  <data name="prayerRemoval_downloadInUse" xml:space="preserve"><value>Burahin ang mga naka-save na kopya ng panalanging ito bago alisin ang download nito.</value></data>
+  <data name="prayerRemoval_prayerRemoved" xml:space="preserve"><value>Nabura na ang naka-save na panalanging ito.</value></data>
+
+  <!-- Native desktop library and prayer windows -->
+  <data name="desktop_library" xml:space="preserve"><value>Library</value></data>
+  <data name="desktop_today" xml:space="preserve"><value>Ngayon</value></data>
+  <data name="desktop_gallery" xml:space="preserve"><value>Galeriya</value></data>
+  <data name="desktop_community" xml:space="preserve"><value>Komunidad</value></data>
+  <data name="desktop_menu_file" xml:space="preserve"><value>File</value></data>
+  <data name="desktop_menu_view" xml:space="preserve"><value>Tingnan</value></data>
+  <data name="desktop_menu_prayer" xml:space="preserve"><value>Panalangin</value></data>
+  <data name="desktop_menu_help" xml:space="preserve"><value>Tulong</value></data>
+  <data name="desktop_show_library" xml:space="preserve"><value>Ipakita ang Library</value></data>
+  <data name="desktop_close_window" xml:space="preserve"><value>Isara ang Window</value></data>
+  <data name="desktop_import" xml:space="preserve"><value>Mag-import ng mga Pakete ng Panalangin…</value></data>
+  <data name="desktop_full_screen" xml:space="preserve"><value>Buong Screen</value></data>
+  <data name="desktop_prayer_settings" xml:space="preserve"><value>Mga Setting ng Panalangin…</value></data>
+  <data name="desktop_previous_step" xml:space="preserve"><value>Nakaraang Hakbang</value></data>
+  <data name="desktop_next_step" xml:space="preserve"><value>Susunod na Hakbang</value></data>
+  <data name="desktop_saved_prayer_missing" xml:space="preserve"><value>Hindi na available ang naka-save na panalanging ito.</value></data>
+  <data name="desktop_import_failed" xml:space="preserve"><value>Hindi Ma-import ang Pakete ng Panalangin</value></data>
+  <data name="desktop_open" xml:space="preserve"><value>Buksan</value></data>
+  <data name="desktop_duplicate" xml:space="preserve"><value>Gumawa ng Kopya</value></data>
+  <data name="desktop_delete" xml:space="preserve"><value>Burahin ang Naka-save na Panalangin…</value></data>
+  <data name="desktop_rename" xml:space="preserve"><value>Palitan ang Pangalan…</value></data>
+  <data name="desktop_search_library" xml:space="preserve"><value>Maghanap ng mga Panalangin</value></data>
+  <data name="desktop_library_empty" xml:space="preserve"><value>Ang Iyong Library ng mga Panalangin</value></data>
+  <data name="desktop_library_empty_detail" xml:space="preserve"><value>Magdagdag ng panalangin mula sa galeriya o mag-import ng pakete ng panalangin upang magsimula.</value></data>
+  <data name="desktop_no_matches" xml:space="preserve"><value>Walang Tugmang Panalangin</value></data>
+  <data name="desktop_no_matches_detail" xml:space="preserve"><value>Subukan ang ibang paghahanap.</value></data>
+  <data name="desktop_add_to_library" xml:space="preserve"><value>Idagdag sa Library</value></data>
+  <data name="desktop_added" xml:space="preserve"><value>Naidagdag sa Library</value></data>
+  <data name="desktop_library_load_failed" xml:space="preserve"><value>Hindi Ma-load ang Library</value></data>
+  <data name="desktop_library_save_failed" xml:space="preserve"><value>Hindi Ma-save ang Panalangin</value></data>
+  <data name="desktop_copy_name" xml:space="preserve"><value>Kopya ng {0}</value></data>
+  <data name="desktop_rename_title" xml:space="preserve"><value>Palitan ang Pangalan ng Panalangin</value></data>
+  <data name="desktop_gallery_detail" xml:space="preserve"><value>Pumili ng panalangin upang magdagdag ng naka-save na kopya sa iyong library.</value></data>
+  <data name="desktop_search_gallery" xml:space="preserve"><value>Maghanap sa Galeriya</value></data>
+  <data name="desktop_list_view" xml:space="preserve"><value>Tingnan bilang Listahan</value></data>
+  <data name="desktop_grid_view" xml:space="preserve"><value>Tingnan bilang Grid</value></data>
+  <data name="desktop_name" xml:space="preserve"><value>Pangalan</value></data>
+  <data name="search_category" xml:space="preserve"><value>Kategorya</value></data>
+  <data name="search_all_categories" xml:space="preserve"><value>Lahat ng Kategorya</value></data>
+  <data name="search_no_matches" xml:space="preserve"><value>Walang panalanging tumutugma sa paghahanap at kategoryang ito.</value></data>
+  <data name="readings_bible_passage" xml:space="preserve"><value>Sipi sa Bibliya</value></data>
+  <data name="readings_edition" xml:space="preserve"><value>Edisyon ng Bibliya</value></data>
+  <data name="readings_edition_automatic" xml:space="preserve"><value>Sundin ang Wika ng Interface</value></data>
+  <data name="readings_edition_unavailable" xml:space="preserve"><value>Walang magagamit na edisyon sa wikang ito.</value></data>
+  <data name="readings_text_unavailable" xml:space="preserve"><value>Hindi makukuha ang siping ito sa napiling edisyon ng Bibliya.</value></data>
+  <data name="readings_text_notice" xml:space="preserve"><value>Teksto ng Bibliya para sa tinukoy na sipi. Maaaring iba ang mga salita sa pagbasa sa Misa.</value></data>
+  <data name="readings_whole_verses_notice" xml:space="preserve"><value>Buong talata ang ipinapakita kapag bahagi lamang ng talata ang tinutukoy sa pagbasa.</value></data>
+  <data name="readings_source" xml:space="preserve"><value>Pinagmulan at Edisyon</value></data>
 </root>

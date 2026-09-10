@@ -4,17 +4,22 @@ Machine-readable, non-prose description of Prosary's app structure — a compani
 [`../ARCHITECTURE.markdown`](../ARCHITECTURE.markdown), which covers the same ground in prose. Where
 `ARCHITECTURE.markdown` explains *why*, these files pin down the exact *shape*: type/field names,
 defaults, enum cases, screen parameters, and content keys, cross-referenced against all three
-platforms (iOS is canonical; Android and Windows are ports verified against it).
+platforms for shared features. Mac-specific records and workflows are explicitly marked and
+documented separately; they do not require a matching phone or Windows interface.
 
 | File | Covers |
 |---|---|
 | `domain-model.json` | `Prayer` and every type it's built from — `PrayerKind`, `RosaryOptions`, `MysterySelectionMode`, `MysteryGroup`, `EternalRestPlacement`, `MarianAntiphonOption`, `JesusPrayerOptions`/`Target`/`Progress`, `PrayerRunProgress`, `PrayerReminder`, `LanguageOption`, field-wise `MysteryTextOverride`, `RosaryStep`, `CustomDevotionStep`, `DevotionHour`/`DevotionProper` — field names, types, defaults. |
+| `mac-library.json` | Mac-only named-copy materialization/duplication rules, local color-tag names and assignments, prayer-window identity, and native geometry persistence. Saved copies reuse `Prayer`; tags do not add shared model fields. |
+| `windows-library.json` | Windows library, gallery, Today, in-window menus, saved-copy identity and independent prayer-window routing. Uses the shared `Prayer` model. |
 | `content-keys.json` | The full `PrayerKey` catalog — every stable, language-independent identifier for a fixed prayer text, translated into the shipped prayer languages. |
 | `mysteries.json` | The 20 Rosary mysteries (group/order/imageKey) plus the fixed override-image keys used by steps not tied to a specific mystery. |
 | `stations.json` | The 14 Stations of the Cross (order/imageKey/title) and image-sourcing/language-coverage status. |
 | `seven-sorrows.json` | The 7 Sorrows of Mary (order/imageKey/title/isScripture), the 7-per-decade override, and image-sourcing/language-coverage status. |
 | `today-data.json` | The calendar registry plus per-calendar feast and lectionary-citation shapes, localization maps, source boundaries, and no-cross-rite-fallback rule. |
-| `screens.json` | Every screen/page, its parameters, and how navigation reaches it on each platform — including the one deliberate structural divergence (Windows skips iOS/Android's generic id-based prayer-dispatch indirection). |
+| `reading-texts.json` | Offline Bible edition metadata and pre-resolved daily/Torah verse arrays, shared by every native reader. Exact licensed lectionary text is separate. |
+| `widgets.json` | Today and Saved Prayer widgets on iOS, Android, and Mac; settings, snapshot boundaries, progress validity, configuration, and destination links. |
+| `screens.json` | Every screen/page, its parameters, and how navigation reaches it on each platform, including the dedicated Mac and Windows library/prayer windows. |
 
 ## Why this exists alongside prose docs
 

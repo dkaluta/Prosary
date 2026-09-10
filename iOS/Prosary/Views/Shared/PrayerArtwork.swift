@@ -71,7 +71,13 @@ enum PrayerArtwork {
 }
 
 struct PrayerArtworkView: View {
+  enum Placeholder: Equatable {
+    case prayerArtwork
+    case neutral
+  }
+
   let imageKey: String
+  var placeholder: Placeholder = .prayerArtwork
 
   @State private var loaded: DecodedPrayerArtwork?
   @State private var loadedCacheKey: String?
@@ -86,9 +92,12 @@ struct PrayerArtworkView: View {
       if let artwork {
         Image(decorative: artwork.image, scale: 1)
           .resizable()
-      } else {
+      } else if placeholder == .prayerArtwork {
         Image(decorative: PrayerArtwork.fallbackAssetName)
           .resizable()
+      } else {
+        // Gallery covers must not briefly show another prayer's illustration while decoding.
+        Rectangle().fill(Color.secondary.opacity(0.08))
       }
     }
     .task(id: cacheKey) {

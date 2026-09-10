@@ -1,3 +1,4 @@
+using Prosary.Navigation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -16,7 +17,9 @@ public sealed partial class RemindersOnlyEditorPage : Page
     public RemindersOnlyEditorPage()
     {
         ViewModel = App.Services.GetRequiredService<RemindersOnlyEditorViewModel>();
+        ViewModel.Navigation = Router.For(this);
         InitializeComponent();
+        ViewModel.ShowSaveError = message => PrayerRemovalDialogs.ShowSaveErrorAsync(XamlRoot, message);
     }
 
     protected override async void OnNavigatedTo(NavigationEventArgs e)

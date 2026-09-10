@@ -147,7 +147,7 @@
 
                 <StackPanel Spacing="8">
                     <TextBlock x:Uid="AbtScriptureHeader" Text="Scripture Sources" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
-                    <TextBlock x:Uid="AbtScriptureBody" Text="Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) with Hebrew Old Testament passages following the Masoretic text, the Jesuit Arabic Bible (Dar el-Machreq), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905)."
+                    <TextBlock x:Uid="AbtScriptureBody" Text="Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) with Hebrew Old Testament passages following the Masoretic text, the Old Jesuit Arabic Bible (1897), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905)."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
                     <TextBlock x:Uid="AbtAdditionalSources" Text="French Scripture: Crampon (1923), public domain. Italian Scripture: Antonio Martini; structured data © Giovanni Novelli, CC BY 4.0 (parolaviva.art). French and Italian prayers: Vatican Compendium. Pope’s intentions: Pope’s Worldwide Prayer Network (2026–2027); Hebrew and Ukrainian translations by Prosary."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />

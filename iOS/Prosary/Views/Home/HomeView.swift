@@ -11,6 +11,9 @@
 
 import SwiftUI
 import Combine
+#if os(macOS)
+import AppKit
+#endif
 
 struct HomeView: View {
   /// Names here follow the default prayer language; the monitor is the one mechanism
@@ -24,6 +27,7 @@ struct HomeView: View {
   @Environment(\.scenePhase) private var scenePhase
 
   @State private var prayers: [Prayer] = []
+  @State private var deletingPrayer: Prayer?
   @State private var todayMysteryGroup: MysteryGroup? = nil
   @State private var todayFeast: FeastDay? = nil
   @State private var monthIntention: PopeIntention? = nil
@@ -79,6 +83,7 @@ struct HomeView: View {
   @State private var showsSettings = false
   /// Bumped whenever the saved order changes so the list re-derives.
   @State private var orderGeneration = 0
+  @State private var selectedHomeRow: String?
 
   private var jesusPrayerAccent: Color { .adaptive(light: "#8B1A1A", dark: "#C62828") }
 
@@ -100,7 +105,7 @@ struct HomeView: View {
         title: name.title, translatedTitle: name.translation,
         systemImage: "text.book.closed", iconGlyph: nil, accent: .brandPrimary,
         subtitle: String(localized: "basicPrayers.title", defaultValue: "Basic Prayers"), presetsRoute: nil,
-        prayAction: { path.push(.basicPrayer(id: prayer.id)) }))
+        route: .basicPrayer(id: prayer.id)))
     }
     return HomeOrder.apply(rows) { $0.id }
   }
@@ -127,7 +132,7 @@ struct HomeView: View {
         // The whole row leads to the presets screen, so no separate disclosure button: the
         // card's own chevron says it goes somewhere.
         subtitle: rosarySubtitle, presetsRoute: nil,
-        prayAction: { path.push(AppRoute.rosaryPresets) }),
+        route: .rosaryPresets),
     ]
     for bundleId in PrayerPackStore.customDevotionIds() {
       guard let info = PrayerPackStore.info(for: bundleId) else { continue }
@@ -148,13 +153,15 @@ struct HomeView: View {
           ?? savedPreset(forBundle: bundleId)?.languageDisplayName
           ?? String(localized: "home.customCard.tapToPray", defaultValue: "Tap to pray"),
         presetsRoute: nil,
-        prayAction: { prayCustom(bundleId) }))
+        route: savedPreset(forBundle: bundleId).map { .prayer(id: $0.id) }
+          ?? .custom(devotionId: bundleId)))
     }
     rows.append(DevotionRow(
       id: "jesusPrayer", title: jesusPrayerName.title, translatedTitle: jesusPrayerName.translation,
       systemImage: PrayerKind.jesusPrayer.systemImage, iconGlyph: nil,
       accent: jesusPrayerAccent, subtitle: jesusPrayerSubtitle,
-      presetsRoute: nil, prayAction: { prayJesusPrayer() }))
+      presetsRoute: nil,
+      route: defaultJesusPrayer.map { .prayer(id: $0.id) } ?? .jesusPrayerSetup))
     return rows
   }
 
@@ -209,7 +216,11 @@ struct HomeView: View {
 
   var body: some View {
     let _ = prayerLanguage.code  // dependency registration — see the property's comment
-    ScrollView {
+    Group {
+      #if os(macOS)
+      macPrayerList
+      #else
+      ScrollView {
       VStack(spacing: 16) {
         todayDateNavigation
         todaySection
@@ -233,7 +244,7 @@ struct HomeView: View {
                 // the common case stays a single tap.
                 onDisclosure: row.presetsRoute.map { route in { path.push(route) } }
               ) {
-                row.prayAction()
+                path.push(row.route)
               }
               .accessibilityIdentifier("\(row.id)Card")
               .contextMenu { rowMenu(for: row) }
@@ -246,6 +257,8 @@ struct HomeView: View {
       .padding(20)
       .frame(maxWidth: 1000)
       .frame(maxWidth: .infinity)
+      }
+      #endif
     }
     .navigationTitle(String(localized: "tabs.pray", defaultValue: "Pray"))
     .toolbar { toolbarContent }
@@ -289,7 +302,11 @@ struct HomeView: View {
     }
     #endif
     .task { await load() }
+    .modifier(PrayerRemovalDialogs(prayer: $deletingPrayer, onDeleted: { await load() }))
     .onAppear { Task { await load() } }
+    .onReceive(NotificationCenter.default.publisher(for: .prayerLibraryDidChange)) { _ in
+      Task { await load() }
+    }
     .onChange(of: selectedDate) { _, _ in showsFullCitations = false; loadToday() }
     .onChange(of: feastCalendarId) { _, _ in showsFullCitations = false; loadToday() }
     .onChange(of: easternPaschaStyle) { _, _ in showsFullCitations = false; loadToday() }
@@ -314,6 +331,77 @@ struct HomeView: View {
 
   // MARK: - Pieces
 
+  #if os(macOS)
+  private var macPrayerList: some View {
+    List(selection: $selectedHomeRow) {
+      Section {
+        VStack(spacing: 16) {
+          todayDateNavigation
+          todaySection
+        }
+        .padding(.vertical, 12)
+        .frame(maxWidth: .infinity)
+      }
+
+      if pinnedDevotions.isEmpty {
+        emptyState
+      } else {
+        ForEach(pinnedDevotions) { row in
+          Button {
+            selectedHomeRow = row.id
+            path.push(row.route)
+          } label: {
+            HStack(spacing: 12) {
+              if let glyph = row.iconGlyph {
+                Text(glyph).frame(width: 28)
+              } else {
+                Image(systemName: row.systemImage).frame(width: 28)
+              }
+              VStack(alignment: .leading, spacing: 3) {
+                Text(HebrewDisplayText.unpointed(row.title)).font(.headline)
+                if let translation = row.translatedTitle {
+                  Text(HebrewDisplayText.unpointed(translation))
+                    .font(.subheadline).foregroundStyle(.secondary)
+                }
+                if !row.subtitle.isEmpty {
+                  Text(HebrewDisplayText.unpointed(row.subtitle))
+                    .font(.subheadline).foregroundStyle(.secondary)
+                }
+              }
+              Spacer()
+              Image(systemName: "chevron.forward").foregroundStyle(.tertiary)
+            }
+            .padding(.vertical, 6)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .contentShape(Rectangle())
+          }
+          .buttonStyle(.plain)
+          .tag(row.id)
+          .accessibilityIdentifier("\(row.id)Card")
+          .contextMenu { rowMenu(for: row) }
+        }
+        .onMove { from, to in
+          var ids = pinnedDevotions.map(\.id)
+          ids.move(fromOffsets: from, toOffset: to)
+          HomeOrder.save(ids)
+          orderGeneration += 1
+        }
+      }
+      basicPrayersSection.tag("basicPrayers")
+    }
+    .listStyle(.inset)
+    .macListActivation {
+      if selectedHomeRow == "basicPrayers" {
+        path.push(.basicPrayers)
+        return true
+      }
+      guard let row = pinnedDevotions.first(where: { $0.id == selectedHomeRow }) else { return false }
+      path.push(row.route)
+      return true
+    }
+  }
+  #endif
+
   private var todayDateBinding: Binding<Date> {
     Binding(get: { selectedDate }, set: { date in
       selectedDate = Calendar(identifier: .gregorian).startOfDay(for: date)
@@ -337,7 +425,8 @@ struct HomeView: View {
       } label: {
         Image(systemName: "chevron.backward")
       }
-      .accessibilityLabel(String(localized: "home.today.previousDay", defaultValue: "Previous day"))
+      .accessibilityLabel(String(localized: "home.today.previousDay", defaultValue: "Previous Day"))
+      .help(String(localized: "home.today.previousDay", defaultValue: "Previous Day"))
       .accessibilityIdentifier("todayYesterdayButton")
       Button {
         showsTodayDatePicker = true
@@ -347,6 +436,7 @@ struct HomeView: View {
           .frame(maxWidth: .infinity)
       }
       .accessibilityHint(String(localized: "home.today.chooseDate", defaultValue: "Choose a date"))
+      .help(String(localized: "home.today.chooseDate", defaultValue: "Choose a date"))
       .accessibilityIdentifier("todayDateButton")
       .popover(isPresented: $showsTodayDatePicker, attachmentAnchor: .rect(.bounds), arrowEdge: .top) {
         todayDatePopover
@@ -359,11 +449,16 @@ struct HomeView: View {
       } label: {
         Image(systemName: "chevron.forward")
       }
-      .accessibilityLabel(String(localized: "home.today.nextDay", defaultValue: "Next day"))
+      .accessibilityLabel(String(localized: "home.today.nextDay", defaultValue: "Next Day"))
+      .help(String(localized: "home.today.nextDay", defaultValue: "Next Day"))
       .accessibilityIdentifier("todayTomorrowButton")
     }
     .prosarySecondaryButtonStyle()
+    #if os(macOS)
+    .controlSize(.regular)
+    #else
     .controlSize(.large)
+    #endif
     .frame(maxWidth: 480)
     .accessibilityElement(children: .contain)
     .accessibilityIdentifier("todayDateNavigation")
@@ -521,6 +616,9 @@ struct HomeView: View {
       .background(.quaternary.opacity(0.5), in: RoundedRectangle(cornerRadius: 14))
       .accessibilityElement(children: .contain)
       .accessibilityIdentifier("todaySection")
+      #if os(macOS)
+      .textSelection(.enabled)
+      #endif
     }
   }
 
@@ -561,6 +659,9 @@ struct HomeView: View {
       Button { remindersPrayer = prayer } label: {
         Label(String(localized: "favorites.reminders", defaultValue: "Reminders…"), systemImage: "bell")
       }
+      Button(role: .destructive) { deletingPrayer = prayer } label: {
+        Label(String(localized: "removal.deleteAction", defaultValue: "Delete Saved Prayer…"), systemImage: "trash")
+      }
     }
     Button {
       HomeOrder.moveToTop(row.id, allIdsInDisplayOrder: pinnedDevotions.map(\.id))
@@ -599,15 +700,15 @@ struct HomeView: View {
         Button {
           showsQuickSetup = true
         } label: {
-          Label("rosaryPicker.anyRosary", systemImage: "sparkles")
+          Label("rosaryPicker.anyRosaryAction", systemImage: "sparkles")
         }
         Divider()
         Button { addNew(kind: .rosary) } label: {
-          Label(String(localized: "favorites.addKind", defaultValue: "Add \(PrayerKind.rosary.displayName)"),
+          Label(String(localized: "favorites.addKind", defaultValue: "Add \(PrayerKind.rosary.displayName)…"),
                 systemImage: "circle.hexagongrid")
         }
         Button { addNew(kind: .jesusPrayer) } label: {
-          Label(String(localized: "favorites.addJesusPrayer", defaultValue: "Add Jesus Prayer"),
+          Label(String(localized: "favorites.addJesusPrayer", defaultValue: "Add Jesus Prayer…"),
                 systemImage: "heart")
         }
 
@@ -631,7 +732,8 @@ struct HomeView: View {
       } label: {
         Image(systemName: "plus")
       }
-      .accessibilityLabel(String(localized: "home.addFavorite", defaultValue: "Add a prayer"))
+      .accessibilityLabel(String(localized: "home.addFavorite", defaultValue: "Add a Prayer"))
+      .help(String(localized: "home.addFavorite", defaultValue: "Add a Prayer"))
       .accessibilityIdentifier("addFavoriteButton")
     }
     if !pinnedDevotions.isEmpty {
@@ -640,6 +742,7 @@ struct HomeView: View {
           Image(systemName: "arrow.up.arrow.down")
         }
         .accessibilityLabel(String(localized: "home.editOrder", defaultValue: "Edit Order…"))
+        .help(String(localized: "home.editOrder", defaultValue: "Edit Order…"))
         .accessibilityIdentifier("editOrderButton")
       }
     }
@@ -682,22 +785,6 @@ struct HomeView: View {
       ? TodayInfoStore.torahPortion(on: selectedDate) : nil
   }
 
-  private func prayJesusPrayer() {
-    if let preset = defaultJesusPrayer {
-      path.push(AppRoute.prayer(id: preset.id))
-    } else {
-      path.push(AppRoute.jesusPrayerSetup)
-    }
-  }
-
-  private func prayCustom(_ bundleId: String) {
-    if let preset = savedPreset(forBundle: bundleId) {
-      path.push(AppRoute.prayer(id: preset.id))
-    } else {
-      path.push(AppRoute.custom(devotionId: bundleId))
-    }
-  }
-
   private func addNew(kind: PrayerKind) {
     isNew = true
     editorPrayer = Prayer(name: kind.defaultName, kind: kind, isDefault: !prayers.contains { $0.kind == kind })
@@ -707,18 +794,11 @@ struct HomeView: View {
     var updated = prayer
     updated.isDefault = true
     Task {
-      try? await services.presetStore.save(updated)
+      _ = try? await services.presetStore.updateIfPresent(updated)
       await load()
     }
   }
 
-  private func delete(_ prayer: Prayer) {
-    ReminderScheduler.removeAll(for: prayer)
-    Task {
-      try? await services.presetStore.delete(prayer)
-      await load()
-    }
-  }
 }
 
 /// The approved reorder pattern (not jiggle): a plain List in permanent edit mode — drag
@@ -732,44 +812,75 @@ private struct HomeOrderEditor: View {
 
   var body: some View {
     NavigationStack {
-      List {
-        ForEach(ids, id: \.self) { id in
-          Text(HebrewDisplayText.unpointed(names[id] ?? id))
-        }
-        .onMove { from, to in
-          ids.move(fromOffsets: from, toOffset: to)
-          HomeOrder.save(ids)
-          onChange()
-        }
-      }
-      #if os(iOS)
-      .environment(\.editMode, .constant(.active)) // drag handles; macOS Lists drag natively
-      #endif
-      #if os(macOS)
-      .frame(minWidth: 340, minHeight: 420)
-      #endif
+      orderContent
       .navigationTitle(String(localized: "home.editOrder.title", defaultValue: "Home Order"))
       #if os(iOS)
       .navigationBarTitleDisplayMode(.inline)
       #endif
+      #if !os(macOS)
       .toolbar {
         ToolbarItem(placement: .cancellationAction) {
           Button(String(localized: "home.editOrder.reset", defaultValue: "Reset")) {
-            HomeOrder.reset()
-            ids = rows.map(\.id)
-            onChange()
-            dismiss()
+            reset()
           }
         }
         ToolbarItem(placement: .confirmationAction) {
           Button(String(localized: "favoriteEditor.done", defaultValue: "Done")) { dismiss() }
         }
       }
+      #endif
       .onAppear {
         ids = rows.map(\.id)
         names = Dictionary(uniqueKeysWithValues: rows.map { ($0.id, $0.title) })
       }
     }
+  }
+
+  @ViewBuilder private var orderContent: some View {
+    #if os(macOS)
+    let screenSize = (NSApp.keyWindow?.screen ?? NSScreen.main)?.visibleFrame.size ?? CGSize(width: 1024, height: 768)
+    VStack(spacing: 0) {
+      orderList.clipped()
+      Divider()
+      HStack {
+        Button(String(localized: "home.editOrder.reset", defaultValue: "Reset")) { reset() }
+        Spacer()
+        Button(String(localized: "favoriteEditor.done", defaultValue: "Done")) { dismiss() }
+          .keyboardShortcut(.defaultAction)
+      }
+      .padding()
+      .background(Color(nsColor: .windowBackgroundColor))
+      .fixedSize(horizontal: false, vertical: true)
+    }
+    .frame(width: min(420, max(320, screenSize.width - 80)),
+           height: min(480, max(280, screenSize.height - 140)))
+    .onExitCommand { dismiss() }
+    #else
+    orderList
+      #if os(iOS)
+      .environment(\.editMode, .constant(.active))
+      #endif
+    #endif
+  }
+
+  private var orderList: some View {
+    List {
+      ForEach(ids, id: \.self) { id in
+        Text(HebrewDisplayText.unpointed(names[id] ?? id))
+      }
+      .onMove { from, to in
+        ids.move(fromOffsets: from, toOffset: to)
+        HomeOrder.save(ids)
+        onChange()
+      }
+    }
+  }
+
+  private func reset() {
+    HomeOrder.reset()
+    ids = rows.map(\.id)
+    onChange()
+    dismiss()
   }
 }
 
@@ -784,7 +895,7 @@ private struct DevotionRow: Identifiable {
   let accent: Color
   let subtitle: String
   let presetsRoute: AppRoute?
-  let prayAction: () -> Void
+  let route: AppRoute
 }
 
 #Preview {

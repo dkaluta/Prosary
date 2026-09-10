@@ -29,6 +29,21 @@
     <string name="tab_pray">תפילה</string>
     <string name="tab_browse">עיון</string>
     <string name="tab_categories">קטגוריות</string>
+    <string name="tab_readings">מקראות</string>
+    <string name="search_all_categories">כל הקטגוריות</string>
+    <string name="readings_empty">אין מקראות זמינים לתאריך זה בלוח הנבחר.</string>
+    <string name="readings_type_reading">קריאה</string>
+    <string name="readings_type_psalm">מזמור</string>
+    <string name="readings_type_gospel">בשורה</string>
+    <string name="readings_edition">מהדורת כתבי הקודש</string>
+    <string name="readings_follow_interface">לפי שפת היישום</string>
+    <string name="readings_bible_passage">קטע מכתבי הקודש</string>
+    <string name="readings_show_text">קריאת הקטע</string>
+    <string name="readings_hide_text">הסתרת הקטע</string>
+    <string name="readings_unavailable">קטע זה אינו זמין במהדורת כתבי הקודש שנבחרה.</string>
+    <string name="readings_whole_verses_notice">כאשר הקריאה מציינת רק חלק מפסוק, מוצגים הפסוקים במלואם.</string>
+    <string name="readings_source">מקור</string>
+    <string name="readings_choose_edition">בחירת מהדורה</string>
     <string name="tab_search">חיפוש</string>
 
     <!-- Home -->
@@ -41,7 +56,7 @@
     <string name="home_edit_order">ערוך סדר…</string>
     <string name="home_remove_from_pray">הסר מ״תפילה״</string>
     <string name="home_add_to_pray">הוסף ל״תפילה״</string>
-    <string name="home_saved_presets">מסלולים שמורים…</string>
+    <string name="home_saved_presets">מסלולים שמורים</string>
     <string name="home_add_devotion">הוסף תפילה</string>
     <string name="multi_day_day_of">יום %1$d מתוך %2$d</string>
     <string name="multi_day_complete">הושלמה</string>
@@ -56,7 +71,7 @@
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">שפת תפילה כברירת מחדל</string>
-    <string name="settings_jaffa_wording">"נוסח יפו"</string>
+    <string name="settings_jaffa_wording">"נוסח חלופי ל“שמחי מרים”"</string>
     <string name="settings_jaffa_wording_hint">"בתפילות הנציגות, החליפו את מְלֵאַת הַחֶסֶד ב־בְּרוּכַת הַחֶסֶד."</string>
     <string name="settings_language_fallback_order">סדר עדיפות לשפות…</string>
     <string name="settings_language_fallback_order_title">סדר עדיפות לשפות</string>
@@ -78,15 +93,15 @@
     <string name="settings_installed_devotions">מסלולי תפילה מותקנים: %1$d</string>
     <string name="settings_clear_audio_cache">ניקוי מטמון השמע</string>
     <string name="settings_clear_audio_cache_size">ניקוי מטמון השמע (%1$s)</string>
-    <string name="settings_remove_all">הסרת כל המסלולים שהורדו…</string>
-    <string name="settings_downloads_footer">מסלולים מובנים לעולם אינם מוסרים. הסרת מסלול שהורד מסירה גם את המועדף שלו.</string>
+    <string name="settings_remove_all">"הסרת הורדות שאינן בשימוש…"</string>
+    <string name="settings_downloads_footer">"תפילות מובנות והורדות עם עותקים שמורים יישארו. הסרת הורדה שאינה בשימוש מנקה גם את קובצי השמע שלה מהמטמון."</string>
     <string name="settings_links">קישורים</string>
     <string name="settings_repository_site">מאגר הקהילה</string>
     <string name="settings_compose_site">יצירת מסלול תפילה</string>
     <string name="settings_privacy_policy">מדיניות פרטיות</string>
-    <string name="settings_remove_all_title">להסיר את כל המסלולים שהורדו?</string>
-    <string name="settings_remove_all_message">מסלולים מהמאגר אפשר להוריד שוב; קבצים שיובאו ידנית — לא.</string>
-    <string name="settings_remove_all_confirm">הסר הכול</string>
+    <string name="settings_remove_all_title">"להסיר הורדות שאינן בשימוש?"</string>
+    <string name="settings_remove_all_message">"להסיר תפילות שהורדו ואין להן עותקים שמורים? תפילות שמורות וההורדות שלהן יישארו."</string>
+    <string name="settings_remove_all_confirm">"הסרה"</string>
 
     <!-- Prayer kinds -->
     <string name="kind_rosary">מחרוזת</string>
@@ -151,7 +166,7 @@
     <string name="ro_opening_section">תפילות הפתיחה והרזים</string>
     <string name="ro_apostles_creed">אני מאמין</string>
     <string name="ro_opening_prayers">“אבינו שבשמים” ו־3 “שמחי מרים” בפתיחה</string>
-    <string name="ro_opening_fatima">“הו ישוע שלי” אחרי 3 “שמחי מרים” בפתיחה</string>
+    <string name="ro_opening_fatima">תפילת פאטימה אחרי תפילת “כבוד לאב” הפותחת</string>
     <string name="ro_fatima">“הו ישוע שלי” בסוף כל רז</string>
     <string name="ro_faithful_departed">למען הנפטרים</string>
     <string name="ro_display_section">תצוגה</string>
@@ -166,20 +181,20 @@
 
     <!-- Favorites -->
     <string name="favorites_title">מועדפים</string>
-    <string name="favorites_add_kind">הוסף %1$s</string>
+    <string name="favorites_add_kind">הוסף %1$s…</string>
     <string name="favorites_more_devotions">מסלולי תפילה נוספים</string>
     <string name="favorites_repository_badge">מהמאגר</string>
     <string name="favorites_import">ייבוא חבילת תפילה…</string>
     <string name="favorites_get_community">מסלולים מהקהילה…</string>
     <string name="favorites_import_error_title">לא ניתן לייבא את המסלול</string>
     <string name="favorites_set_default">הגדר כברירת מחדל</string>
-    <string name="favorites_edit_desc">ערוך את %1$s</string>
+    <string name="favorites_edit_desc">ערוך את %1$s…</string>
     <string name="favorites_delete_desc">הסר את %1$s</string>
     <string name="favorites_add_favorite_desc">הוסף את %1$s למועדפים</string>
     <string name="favorites_remove_favorite_desc">הסר את %1$s מהמועדפים</string>
     <string name="favorites_add_to_favorites">הוסף למועדפים</string>
     <string name="favorites_remove_from_favorites">הסר מהמועדפים</string>
-    <string name="favorites_reminders_desc">ערוך את התזכורות של %1$s</string>
+    <string name="favorites_reminders_desc">ערוך את התזכורות של %1$s…</string>
     <string name="favorites_export_desc">ייצא את %1$s לעריכה</string>
     <string name="favorites_remove_imported_desc">הסר את המסלול המיובא %1$s</string>
 
@@ -332,7 +347,7 @@
     <string name="about_jesus_prayer_illustration">איור תפילת ישוע</string>
     <string name="about_jesus_pantocrator">המשיח כל־יכול: איקונה (המאה ה־6), מנזר הק׳ קתרינה, הר סיני — איקונת “המשיח הכל־יכול” העתיקה ביותר ששרדה, לכבוד מסורתה המזרחית של התפילה; רשות הציבור.</string>
     <string name="about_scripture_sources">מקורות כתבי הקודש</string>
-    <string name="about_scripture_text">ציטוטי המקרא לקוחים מביבליית דואיי־רימס (אנגלית), הוולגאטה הקלמנטית (לטינית), תרגום דליטש לברית החדשה (מתוך kirjasilta.net/ha-berit) עם קטעי התנ״ך על פי נוסח המסורה, תרגום הישועים לביבליה לערבית (דאר אל־משרק), הביבליה הסינודלית ברוסית (1876) ו־Ang Dating Biblia (טאגאלוג, 1905).</string>
+    <string name="about_scripture_text">ציטוטי המקרא לקוחים מביבליית דואיי־רימס (אנגלית), הוולגאטה הקלמנטית (לטינית), תרגום דליטש לברית החדשה (מתוך kirjasilta.net/ha-berit; delitz.fr/12, 1901) עם קטעי התנ״ך על פי נוסח המסורה, תרגום הישועים הישן לביבליה לערבית (1897), הביבליה הסינודלית ברוסית (1876) ו־Ang Dating Biblia (טאגאלוג, 1905).</string>
     <string name="about_calendar_data">נתוני לוחות</string>
     <string name="about_calendar_data_body">נתוני לוחות ומקראות: הלוח הרומי הכללי באמצעות LitCal (litcal.johnromanodorazio.com); לוח 1962 ומקראותיו באמצעות Missale Meum (missalemeum.com). הלוחות הסורי־קתולי והמארוני, שמות עבריים ממקור מוסמך בלוח הרומי ומראי המקום הרומיים, הסוריים והמארוניים: באדיבות Evangelizo.org — Daily Gospel, © Evangelizo.org. המועדים הביזנטיים הקבועים לפי הלוח החדש; המקראות עם פסחא יוליאנית לפי הלוח הרשמי של הכנסייה היוונית־קתולית האוקראינית (ugcc.ua), והאפשרות של פסחא גרגוריאנית לפי Royal Doors (royaldoors.net). שמות ספרי המקרא בעברית: Evangelizo HE, נציגות יעקב הצדיק (catholic.co.il) ומכון ממרא (mechon-mamre.org). שמות עבריים נוספים לחגים ולקדושים: נציגות יעקב הצדיק, המרכז הנוצרי לתקשורת (cmc-terrasanta.org) וחדשות הוותיקן (vaticannews.va).</string>
     <string name="multi_day_reminder_body">יום %1$d מתוך %2$d ממתין.</string>
@@ -361,10 +376,10 @@
     <string name="home_today_readings">המקרא היומי</string>
     <string name="home_today_full_citations">הצג מראי מקום מלאים</string>
     <string name="home_today_compact_citations">הצג קיצור</string>
-    <string name="home_pray_any_rosary">התפלל מחרוזת כלשהי</string>
-    <string name="home_add_rosary">הוסף מחרוזת</string>
-    <string name="home_add_jesus_prayer">הוסף את תפילת ישוע</string>
-    <string name="favorites_edit">ערוך</string>
+    <string name="home_pray_any_rosary">התפלל מחרוזת כלשהי…</string>
+    <string name="home_add_rosary">הוסף מחרוזת…</string>
+    <string name="home_add_jesus_prayer">הוסף את תפילת ישוע…</string>
+    <string name="favorites_edit">ערוך…</string>
     <string name="favorites_reminders">תזכורות…</string>
     <string name="favorites_delete">מחק</string>
     <string name="favorites_export">ייצא לעריכה</string>
@@ -443,4 +458,46 @@
     <string name="about_ukrainian_sources">"תפילות באוקראינית: הכנסייה הקתולית הרומית באוקראינה, סידור התפילות Щоденно з Богом. השימוש נעשה עם ציון המקור בהתאם למדיניות השימוש החוזר של המוציא לאור. כתבי הקודש: תרגום קוליש, נצ׳וי־לויצקי ופוליוי (1905), נחלת הכלל; eBible.org ukr1871. הכתיב ההיסטורי של כתבי הקודש נשמר."</string>
     <string name="about_ukrainian_prayerbook_link">"סידור תפילות באוקראינית"</string>
     <string name="about_ukrainian_bible_link">"כתבי הקודש באוקראינית (1905)"</string>
+    <!-- Window and menu commands -->
+    <string name="commands_open_in_new_window">פתח בחלון חדש</string>
+    <string name="commands_navigation">עבור אל</string>
+    <string name="commands_back">חזור</string>
+    <string name="commands_help">עזרה של Prosary</string>
+    <string name="commands_new_window">חלון חדש</string>
+    <string name="favorite_editor_save_failed">לא ניתן לשמור במועדפים</string>
+    <string name="flow_show_original_text">הצג את הטקסט המקורי</string>
+    <string name="home_pray_any_rosary_action">תפילת מחרוזת חופשית…</string>
+    <string name="rosary_save_as_preset_action">שמירה כתבנית…</string>
+    <string name="reminder_time">שעת התזכורת</string>
+    <string name="reminders_remove">הסר תזכורת</string>
+    <string name="about_version">גרסה %1$s (%2$s)</string>
+    <string name="commands_recently_prayed">תפילות אחרונות</string>
+    <string name="prayer_delete_action">"מחיקת תפילה שמורה…"</string>
+    <string name="prayer_delete_title">"למחוק תפילה שמורה?"</string>
+    <string name="prayer_delete_message">"למחוק את “%1$s” ואת התזכורות שלה? תפילות שמורות אחרות יישארו."</string>
+    <string name="prayer_delete_download_message">"למחוק את “%1$s” ואת התזכורות שלה? זהו העותק השמור האחרון, ולכן גם התפילה שהורדה תוסר ממכשיר זה."</string>
+    <string name="download_remove_action">"הסרת הורדה…"</string>
+    <string name="download_remove_title">"להסיר את ההורדה?"</string>
+    <string name="download_remove_message">"להסיר את “%1$s” ממכשיר זה? אפשר לייבא או להוריד אותה שוב."</string>
+    <string name="download_in_use">"יש למחוק את העותקים השמורים של תפילה זו לפני הסרת ההורדה שלה."</string>
+    <string name="prayer_removal_error_title">"לא ניתן להסיר את התפילה"</string>
+    <string name="prayer_removal_error">"לא ניתן להסיר תפילה זו. נסו שוב."</string>
+    <string name="prayer_removal_partial">"התפילה השמורה נמחקה, אך לא ניתן היה להסיר במלואן את התזכורות או את ההורדה שלה."</string>
+    <string name="download_removal_partial">"ההורדה הוסרה, אך לא ניתן היה למחוק חלק מקובצי השמע שבמטמון."</string>
+
+    <!-- Home-screen widgets -->
+    <string name="widget_today_name">היום</string>
+    <string name="widget_today_description">החג, הקריאות וקיצור דרך לתפילת המחרוזת. הגדילו כדי לראות עוד.</string>
+    <string name="widget_today_preview">תפילת הכנסייה היום</string>
+    <string name="widget_saved_name">תפילה שמורה</string>
+    <string name="widget_saved_description">בחרו תפילה שמורה וחזרו לתפילה שטרם הושלמה.</string>
+    <string name="widget_pray_rosary">התפללו את המחרוזת של היום</string>
+    <string name="widget_choose_prayer">בחירת תפילה</string>
+    <string name="widget_saved_missing">בחרו תפילה שמורה עבור הווידג׳ט הזה.</string>
+    <string name="widget_saved_empty">שמרו תפילה ב־Prosary ואז הוסיפו את הווידג׳ט.</string>
+    <string name="widget_load_failed">לא ניתן לטעון את התפילות. נסו שוב.</string>
+    <string name="widget_ready">מוכנים לתפילה</string>
+    <string name="widget_pray">התפללו</string>
+    <string name="widget_progress">שלב %1$d מתוך %2$d</string>
+    <string name="widget_progress_unbounded">שלב %1$d</string>
 </resources>

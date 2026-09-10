@@ -22,7 +22,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -55,11 +55,9 @@ private enum class SetupOption(val fixedCount: Int?) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun JesusPrayerSetupScreen(onBack: () -> Unit, onBegin: (JesusPrayerTarget) -> Unit) {
-    // No persistence here (the whole app has none yet — see MockPresetStore's in-memory-only
-    // implementation), so this always starts back at the same default rather than remembering
-    // the last session's choice.
-    var selection by remember { mutableStateOf(SetupOption.ThirtyThree) }
-    var customCountText by remember { mutableStateOf("") }
+    // Keep this setup's choices through folding/rotation without changing the next new session.
+    var selection by rememberSaveable { mutableStateOf(SetupOption.ThirtyThree) }
+    var customCountText by rememberSaveable { mutableStateOf("") }
 
     val customCount = customCountText.toIntOrNull()?.takeIf { it > 0 }
     val canBegin = selection != SetupOption.Custom || customCount != null

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "corrections": [
+    {
+      "sourceId": "delitzsch-1901-MRK-14",
+      "sourceSHA256": "7a6ad6ce21fe7c8a8cff3ca0dc6bf67c4dab2cad653fe8f7877b5cec9062dce5",
+      "verse": 72,
+      "before": "וַיֵּבְְֲ׃",
+      "after": "וַיֵּבְךְּ׃",
+      "evidence": {
+        "url": "https://archive.org/download/hebrewnewtestam00deli/hebrewnewtestam00deli.pdf",
+        "sha256": "f36bfc3e6144fa71a56cc4e73e2fa5f98abc870209a26a99127f89874b7af8f7",
+        "pdfPage": 102,
+        "printedPage": 94,
+        "note": "The 1901 twelfth edition, Mark 14:72, final line visibly prints וַיָּשֶׂם עַל־לִבּוֹ וַיֵּבְךְּ׃. The final kaf carries dagesh and sheva. This corrects only the malformed final word in the pinned digital transcription; the downloaded source remains unchanged. PDF page numbers are one-based."
+      }
+    },
+    {
+      "sourceId": "delitzsch-1901-1CO-8",
+      "sourceSHA256": "1e8d0d5b4d6a9fcf822762856fc94e7b4c9028ad5c6d857e7943c24a5a0149c8",
+      "verse": 4,
+      "before": "הָאֱֱלִילִים",
+      "after": "הָאֱלִילִים",
+      "evidence": {
+        "url": "https://archive.org/download/hebrewnewtestam00deli/hebrewnewtestam00deli.pdf",
+        "sha256": "f36bfc3e6144fa71a56cc4e73e2fa5f98abc870209a26a99127f89874b7af8f7",
+        "pdfPage": 322,
+        "printedPage": 314,
+        "note": "The 1901 twelfth edition, 1 Corinthians 8:4, visibly prints הָאֱלִילִים with one hataf-segol on alef. This removes only the duplicated hataf-segol in the pinned digital transcription; the downloaded source remains unchanged. PDF page numbers are one-based."
+      }
+    }
+  ]
+}

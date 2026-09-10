@@ -24,7 +24,19 @@ protocol PresetStore {
   /// flag cleared — each kind keeps its own independent default.
   func save(_ prayer: Prayer) async throws
 
+  /// Updates a saved favorite only while its id still exists. Existing-window autosaves
+  /// and editors use this instead of upsert so a deleted copy cannot be recreated.
+  @discardableResult
+  func updateIfPresent(_ prayer: Prayer) async throws -> Bool
+
   /// Deletes a favorite. If it was the default and other favorites of the same kind
   /// remain, the next one is promoted to default.
   func delete(_ prayer: Prayer) async throws
+}
+
+extension PresetStore {
+  /// A store without conditional-update support must decline the write. A get/save
+  /// fallback could suspend between its check and insert a row deleted in the meantime.
+  @discardableResult
+  func updateIfPresent(_ prayer: Prayer) async throws -> Bool { false }
 }

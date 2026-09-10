@@ -3,6 +3,8 @@ package com.dkaluta.prosary.services
 import android.content.Context
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.dkaluta.prosary.calendar.LiturgicalCalendarProviding
 import com.dkaluta.prosary.calendar.MockLiturgicalCalendar
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
@@ -14,6 +16,7 @@ import com.dkaluta.prosary.persistence.RoomPresetStore
 import com.dkaluta.prosary.presets.MockPresetStore
 import com.dkaluta.prosary.presets.PresetStore
 import java.io.IOException
+import java.util.concurrent.atomic.AtomicBoolean
 import kotlinx.coroutines.runBlocking
 
 /** The backend, as the UI sees it — provided once at the app root and read via
@@ -55,11 +58,22 @@ data class AppServices(
         /** Seeds before publishing the graph, so the first Pray frame never races an empty
          * preset store against the initial insert. */
         private fun build(context: Context): AppServices {
+            val created = AtomicBoolean(false)
             val db = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "prosary.db")
                 .addMigrations(*ALL_MIGRATIONS)
+                .addCallback(object : RoomDatabase.Callback() {
+                    override fun onCreate(db: SupportSQLiteDatabase) {
+                        created.set(true)
+                    }
+                })
                 .build()
-            val presetStore = RoomPresetStore(db.presetDao())
-            runBlocking { presetStore.seedIfEmpty() }
+            val presetStore = RoomPresetStore(db.presetDao()) {
+                com.dkaluta.prosary.widgets.WidgetUpdates.request(context)
+            }
+            // Opening triggers onCreate only for a new database. A deliberately emptied
+            // library stays empty across restarts, including after an app upgrade.
+            db.openHelper.writableDatabase
+            if (created.get()) runBlocking { presetStore.seedIfEmpty() }
             PrayerPackStore.installedPacksDirectory = java.io.File(context.filesDir, "prayerpacks")
             PrayerPackStore.initialize(context.assets)
             TodayInfoStore.initialize { name ->

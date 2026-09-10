@@ -27,4 +27,7 @@ public interface IReminderScheduler
     /// <summary>Rewrites the per-day prompts of a multi-day series in progress: one for each day
     /// it still owes, on that day's own date, and none at all once the run is complete.</summary>
     void RefreshSeries(string devotionId);
+
+    /// <summary>Content is shared, while the saved desktop copy owns its series dates.</summary>
+    void RefreshSeries(string devotionId, string runId) => RefreshSeries(devotionId);
 }

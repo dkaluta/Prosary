@@ -76,9 +76,10 @@ struct ReminderScheduler {
   /// per day prompting you to continue" — rather than a daily repeat that would keep nagging
   /// after the last day. Rewritten from scratch on every call, so recording a day, starting
   /// over, or finishing the run all leave exactly the right ones pending.
-  static func refreshSeries(devotionId: String) {
+  static func refreshSeries(devotionId: String, runID: String? = nil, prayer: Prayer? = nil) {
     let center = UNUserNotificationCenter.current()
-    let prefix = seriesPrefix(devotionId)
+    let progressID = runID ?? devotionId
+    let prefix = seriesPrefix(progressID)
 
     center.getPendingNotificationRequests { existing in
       let stale = existing.filter { $0.identifier.hasPrefix(prefix) }.map(\.identifier)
@@ -89,11 +90,11 @@ struct ReminderScheduler {
       guard let definition = PrayerPackStore.definition(for: devotionId),
             let days = definition.days, days.count > 1,
             (definition.dayProgression ?? .series) == .series,
-            let run = MultiDayRuns.run(for: devotionId),
+            let run = MultiDayRuns.run(for: progressID),
             !run.isComplete(dayCount: days.count) else { return }
 
       let time = reminderTime(definition.suggestedReminderTime)
-      let name = PrayerPackStore.info(for: devotionId)?.localizedDisplayName ?? devotionId
+      let name = prayer?.name ?? PrayerPackStore.info(for: devotionId)?.localizedDisplayName ?? devotionId
       let pending = Self.pendingSeriesDays(run: run, dayCount: days.count, time: time)
       guard !pending.isEmpty, await requestPermission() else { return }
 
@@ -104,7 +105,7 @@ struct ReminderScheduler {
           localized: "multiDay.reminderBody",
           defaultValue: "Day \(day + 1) of \(days.count) awaits.")
         content.sound = .default
-        content.userInfo = ["devotionId": devotionId, "dayIndex": day]
+        content.userInfo = seriesUserInfo(devotionId: devotionId, dayIndex: day, prayerID: prayer?.id)
 
         let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
         let request = UNNotificationRequest(
@@ -116,13 +117,20 @@ struct ReminderScheduler {
     }
   }
 
-  static func removeSeries(devotionId: String) {
+  static func removeSeries(devotionId: String, runID: String? = nil) {
     let center = UNUserNotificationCenter.current()
-    let prefix = seriesPrefix(devotionId)
+    let prefix = seriesPrefix(runID ?? devotionId)
     center.getPendingNotificationRequests { existing in
       let ids = existing.filter { $0.identifier.hasPrefix(prefix) }.map(\.identifier)
       center.removePendingNotificationRequests(withIdentifiers: ids)
     }
+  }
+
+  /// Keep the real bundle id for content while routing a named Mac copy to its own settings.
+  static func seriesUserInfo(devotionId: String, dayIndex: Int, prayerID: UUID? = nil) -> [String: Any] {
+    var result: [String: Any] = ["devotionId": devotionId, "dayIndex": dayIndex]
+    if let prayerID { result["prayerId"] = prayerID.uuidString }
+    return result
   }
 
   /// Which days still deserve a notification and when: each unprayed day on the calendar date

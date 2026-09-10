@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Text.Json;
+using Prosary.Models;
 using Windows.Storage;
 
 namespace Prosary.Persistence;
@@ -31,6 +32,7 @@ public interface IPrayerRunStore
     PrayerRunState? Get(string key);
     void Save(string key, PrayerRunState state);
     void Remove(string key);
+    void RemovePrefix(string prefix) { }
 }
 
 /// <summary>Stores all prayer checkpoints as one small JSON value in LocalSettings. The
@@ -69,6 +71,14 @@ public sealed class LocalPrayerRunStore : IPrayerRunStore
         {
             WriteAll(runs);
         }
+    }
+
+    public void RemovePrefix(string prefix)
+    {
+        var runs = ReadAll();
+        var keys = runs.Keys.Where(key => key.StartsWith(prefix, StringComparison.Ordinal)).ToArray();
+        foreach (var key in keys) runs.Remove(key);
+        if (keys.Length > 0) WriteAll(runs);
     }
 
     private Dictionary<string, PrayerRunState> ReadAll()
@@ -141,17 +151,19 @@ public static class PrayerRunSignatures
             Flag(options.IncludeFatimaPrayer),
             ((int)options.EternalRestForDeceased).ToString(),
             ((int)options.MarianAntiphon).ToString(),
-            Flag(options.IncludeClosingIntentions),
+            Flag(options.EffectiveClosingIntentions),
             Flag(options.IncludeStMichaelPrayer),
             Flag(options.IncludeFinalSignOfCross),
             options.AramaicSignOfCrossForm,
             Flag(options.PresenterMode),
             ((int)options.MysteryImageStyle).ToString(),
         });
-        var choices = new[] { options.EffectiveClosingPopeIntention, options.EffectiveClosingBishopIntention, options.EffectiveClosingDepartedIntention };
-        return choices.Any(value => value || value != options.IncludeClosingIntentions)
-            ? original + "|closing-v2:" + string.Join(",", choices.Select(Flag))
+        var signature = options.EffectiveClosingIntentions
+            ? original + "|closing-v2:1,1,1"
             : original;
+        return options.IncludeOpeningPrayers && options.IncludeOpeningFatimaPrayer
+            ? signature + "|opening-fatima-v2"
+            : signature;
     }
 
     public static string Custom(
@@ -160,10 +172,18 @@ public static class PrayerRunSignatures
         int dayIndex,
         IReadOnlyDictionary<string, string>? options = null)
     {
-        var optionText = options is null
-            ? string.Empty
-            : string.Join("|", options.OrderBy(pair => pair.Key).Select(pair => $"{pair.Key}={pair.Value}"));
-        return $"custom|{bundleId}|{effectiveVariantId ?? string.Empty}|{dayIndex}|{optionText}";
+        var normalizedOptions = RosaryCustomOptions.Normalize(bundleId, options);
+        var optionText = string.Join("|", normalizedOptions.OrderBy(pair => pair.Key)
+            .Select(pair => $"{pair.Key}={pair.Value}"));
+        var signature = $"custom|{bundleId}|{effectiveVariantId ?? string.Empty}|{dayIndex}|{optionText}";
+        if (bundleId != "rosary") return signature;
+
+        if (RosaryCustomOptions.Boolean(normalizedOptions, "closingIntentions", false))
+            signature += "|closing-v2:1,1,1";
+        if (RosaryCustomOptions.Boolean(normalizedOptions, "openingPrayers", true)
+            && RosaryCustomOptions.Boolean(normalizedOptions, "openingFatimaPrayer", false))
+            signature += "|opening-fatima-v2";
+        return signature;
     }
 
     public static string JesusPrayer(Models.JesusPrayerTarget target) => target switch

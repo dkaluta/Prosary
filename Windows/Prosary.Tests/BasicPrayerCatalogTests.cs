@@ -68,6 +68,42 @@ public class BasicPrayerCatalogTests : IClassFixture<PrayerPackLoaderFixture>
     {
     }
 
+    [Theory]
+    [InlineData("salveRegina")]
+    [InlineData("almaRedemptorisMater")]
+    [InlineData("aveReginaCaelorum")]
+    [InlineData("reginaCaeli")]
+    public void MarianAntiphonsRemainDistinctStandalonePrayersInEveryLanguage(string id)
+    {
+        var prayer = Assert.Single(BasicPrayerCatalog.All.Where(prayer => prayer.Id == id));
+        Assert.Equal($"basic:{id}", prayer.HomeCardId);
+        Assert.Equal("rosary", prayer.BundleId);
+        Assert.Equal($"{id}Title", prayer.TitleKey);
+        Assert.Equal(id, prayer.BodyKey);
+        foreach (var language in new[] { "la", "en", "he", "he-x-gamliel", "arc", "ar", "el", "es", "ru", "tl", "fr", "it", "uk" })
+        {
+            var step = BasicPrayerCatalog.Step(prayer, language);
+            // Bundle-local translations take precedence over the older shared dictionaries.
+            Assert.Equal(PrayerPackStore.ResolveDisplayText("rosary", language, $"{id}Title"), step.Title);
+            // Exact equality excludes the versicle/response/collect added by the Rosary flow.
+            Assert.Equal(PrayerPackStore.ResolveBodyText("rosary", language, id), step.Body);
+            Assert.False(string.IsNullOrWhiteSpace(step.Body));
+            Assert.Equal("madonna_and_child", step.ImageOverrideKey);
+            Assert.Equal(PrayerPackStore.Transliteration("rosary", language, prayer.BodyKey), step.TransliteratedBody);
+        }
+    }
+
+    [Theory]
+    [InlineData("en", "Regina Caeli")]
+    [InlineData("fr", "Reine du ciel")]
+    [InlineData("it", "Regina dei cieli")]
+    [InlineData("uk", "Царице Неба")]
+    public void ReginaCaeliUsesItsSourcedTitleInTheSelectedLanguage(string language, string title)
+    {
+        var prayer = Assert.Single(BasicPrayerCatalog.All, prayer => prayer.Id == "reginaCaeli");
+        Assert.Equal(title, BasicPrayerCatalog.Step(prayer, language).Title);
+    }
+
     [Fact]
     public void BasicPrayerNamesKeepEverySelectedLanguageWithOptionalInterfaceSubtitles()
     {

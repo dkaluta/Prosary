@@ -77,6 +77,45 @@ class PrayerRunProgressTest {
     }
 
     @Test
+    fun reorderedOpeningFatimaInvalidatesOnlyRunsThatIncludeIt() {
+        val options = RosaryOptions(includeOpeningFatimaPrayer = true, includeClosingIntentions = true)
+        val current = PrayerRunSignatures.rosary(options)
+        assertTrue(current.endsWith("|closing-v2:1,1,1|opening-fatima-v2"))
+        val previous = current.removeSuffix("|opening-fatima-v2")
+        val run = PrayerRunProgress(6, "en", today.toString(), previous)
+        assertFalse(run.canResume(100, today, expectedConfigurationSignature = current))
+        assertTrue(run.copy(configurationSignature = current).canResume(100, today, expectedConfigurationSignature = current))
+        assertFalse(PrayerRunSignatures.rosary(options.copy(includeOpeningPrayers = false)).contains("opening-fatima-v2"))
+        assertFalse(PrayerRunSignatures.rosary(options.copy(includeOpeningFatimaPrayer = false)).contains("opening-fatima-v2"))
+    }
+
+    @Test
+    fun customRosarySignaturesNormalizeLegacyGroupsAndRejectChangedSequences() {
+        fun signature(options: Map<String, String>, devotionId: String = "rosary") =
+            PrayerRunSignatures.custom(devotionId, null, 0, options)
+
+        assertEquals("custom|rosary||0|", signature(emptyMap()))
+        val current = signature(mapOf("closingIntentions" to "true", "openingFatimaPrayer" to "true"))
+        assertEquals(
+            "custom|rosary||0|closingIntentions=true|openingFatimaPrayer=true|closing-v2:1,1,1|opening-fatima-v2",
+            current,
+        )
+        assertEquals(current, signature(mapOf("closingPopeIntention" to "true", "openingFatimaPrayer" to "true")))
+        val previous = "custom|rosary||0|closingIntentions=true|openingFatimaPrayer=true"
+        assertFalse(PrayerRunProgress(8, "en", today.toString(), previous)
+            .canResume(100, today, expectedConfigurationSignature = current))
+        val allOff = RosaryOptions.legacyClosingIntentionKeys.associateWith { "false" } +
+            ("closingIntentions" to "true")
+        assertEquals(signature(mapOf("closingIntentions" to "false")), signature(allOff))
+        assertFalse(signature(mapOf("openingPrayers" to "false", "openingFatimaPrayer" to "true"))
+            .contains("opening-fatima-v2"))
+        assertEquals(
+            "custom|foreignRosary||0|closingPopeIntention=true|openingFatimaPrayer=true",
+            signature(mapOf("closingPopeIntention" to "true", "openingFatimaPrayer" to "true"), "foreignRosary"),
+        )
+    }
+
+    @Test
     fun runKeysSeparateRosariesCustomFormsAndJesusTargets() {
         assertEquals("rosary:preset-id", PrayerRunKeys.rosary("preset-id"))
         assertEquals(

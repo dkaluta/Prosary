@@ -9,8 +9,8 @@ namespace Prosary.Persistence;
 /// <c>PresetRepository</c>, corrected to real per-kind semantics: irosary's default-clear/
 /// promote logic was unscoped across every row (it predates Angelus/Jesus Prayer, when "every
 /// row" and "every Rosary row" were the same thing). Seeds one default Rosary favorite
-/// ("Classic Rosary") if the table is empty, matching both irosary's own seed and iOS's
-/// <c>SwiftDataPresetStore.seedPrayer</c>.
+/// ("Classic Rosary") when the table is first created. An existing empty library stays empty
+/// after the user deletes the final saved prayer.
 /// </summary>
 public sealed class SqlitePresetStore : IPresetStore
 {
@@ -49,6 +49,8 @@ public sealed class SqlitePresetStore : IPresetStore
 
     private async Task InitializeAsync()
     {
+        var isNewStore = await _connection.ExecuteScalarAsync<int>(
+            "SELECT count(*) FROM sqlite_master WHERE type = 'table' AND name = 'PresetEntry'") == 0;
         await AddMissingNotNullColumnsAsync();
         await _connection.CreateTableAsync<PresetEntry>();
 
@@ -67,7 +69,7 @@ public sealed class SqlitePresetStore : IPresetStore
             await _connection.ExecuteAsync("PRAGMA user_version = 1");
         }
 
-        if (await _connection.Table<PresetEntry>().CountAsync() == 0)
+        if (isNewStore && await _connection.Table<PresetEntry>().CountAsync() == 0)
         {
             await _connection.InsertAsync(new PresetEntry { Name = Localization.Loc.Tr("preset_classic_rosary", "Classic Rosary"), IsDefault = true, Kind = PrayerKind.Rosary });
         }
@@ -123,33 +125,57 @@ public sealed class SqlitePresetStore : IPresetStore
     public async Task SaveAsync(Prayer prayer)
     {
         await _initialization;
+        await _connection.RunInTransactionAsync(connection =>
+        {
+            ClearOtherDefaults(connection, prayer);
+            connection.InsertOrReplace(PresetEntry.FromPrayer(prayer));
+        });
+    }
 
+    public async Task<bool> UpdateIfPresentAsync(Prayer prayer)
+    {
+        await _initialization;
+        var updated = false;
+        await _connection.RunInTransactionAsync(connection =>
+        {
+            // Check inside the transaction before demoting any sibling. A stale Make Default
+            // action must neither recreate its target nor remove the surviving default.
+            if (connection.Find<PresetEntry>(prayer.Id) is null) return;
+            ClearOtherDefaults(connection, prayer);
+            updated = connection.Update(PresetEntry.FromPrayer(prayer)) > 0;
+        });
+        return updated;
+    }
+
+    private static void ClearOtherDefaults(SQLiteConnection connection, Prayer prayer)
+    {
         if (prayer.IsDefault)
         {
-            // "One default per kind" is scoped per devotion: (Kind, CustomDevotionId) — two
-            // different generic devotions must not steal each other's default slot.
-            await _connection.ExecuteAsync(
+            // The default slot belongs to one devotion, not every row of the Custom kind.
+            connection.Execute(
                 "UPDATE PresetEntry SET IsDefault = 0 WHERE Kind = ? AND IFNULL(CustomDevotionId, '') = IFNULL(?, '') AND Id <> ?",
                 (int)prayer.Kind, prayer.CustomDevotionId, prayer.Id);
         }
-
-        await _connection.InsertOrReplaceAsync(PresetEntry.FromPrayer(prayer));
     }
 
     public async Task DeleteAsync(Prayer prayer)
     {
         await _initialization;
-        await _connection.DeleteAsync<PresetEntry>(prayer.Id);
-
-        var remaining = (await _connection.Table<PresetEntry>().Where(r => r.Kind == prayer.Kind).ToListAsync())
-            .Where(r => (r.CustomDevotionId ?? string.Empty) == (prayer.CustomDevotionId ?? string.Empty))
-            .ToList();
-        if (remaining.Count > 0 && !remaining.Any(r => r.IsDefault))
+        await _connection.RunInTransactionAsync(connection =>
         {
-            var newDefault = remaining[0];
-            newDefault.IsDefault = true;
-            await _connection.UpdateAsync(newDefault);
-        }
+            var current = connection.Find<PresetEntry>(prayer.Id);
+            if (current is null) return;
+            connection.Delete<PresetEntry>(current.Id);
+            var remaining = connection.Table<PresetEntry>().Where(r => r.Kind == current.Kind).ToList()
+                .Where(r => (r.CustomDevotionId ?? string.Empty) == (current.CustomDevotionId ?? string.Empty))
+                .ToList();
+            if (remaining.Count > 0 && !remaining.Any(r => r.IsDefault))
+            {
+                var newDefault = remaining[0];
+                newDefault.IsDefault = true;
+                connection.Update(newDefault);
+            }
+        });
     }
     /// <summary>Closes the underlying connection — needed by tests that delete their temp
     /// database file afterwards (Windows can't delete a file that is still open).</summary>

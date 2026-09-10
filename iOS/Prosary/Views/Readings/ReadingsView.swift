@@ -1,0 +1,173 @@
+#if !os(macOS)
+import SwiftUI
+
+/// Browsing civil dates leaves prayer mysteries and continuation unchanged.
+struct ReadingsView: View {
+  @Environment(\.scenePhase) private var scenePhase
+  @AppStorage(TodayInfoStore.calendarDefaultsKey) private var calendarID = ""
+  @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var paschaStyle = "julian"
+  @AppStorage("showTodayFeast") private var showsFeast = true
+  @AppStorage("showTodayTorahPortion") private var showsTorah = false
+  @State private var dateSelection = MacTodayDateSelection()
+  @State private var showsDatePicker = false
+  @State private var showsOptions = false
+  @State private var readings: [ReadingCitation] = []
+  @State private var feast: FeastDay?
+  @State private var torah: TorahPortion?
+
+  private var language: String { UILanguage.current }
+  private var selectedDate: Date { dateSelection.localDate() }
+  private var calendarName: String {
+    TodayInfoStore.calendars.first { $0.id == TodayInfoStore.selectedCalendarId }?.displayName ?? ""
+  }
+  private var dateLabel: String {
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: language == "tl" ? "fil" : language)
+    formatter.calendar = Calendar(identifier: .gregorian)
+    formatter.setLocalizedDateFormatFromTemplate("yMMMd")
+    return formatter.string(from: selectedDate)
+  }
+
+  var body: some View {
+    VStack(spacing: 0) {
+      dateNavigation
+      Divider()
+      ScrollView {
+        VStack(alignment: .leading, spacing: 24) {
+          if let feast {
+            Text(feast.localizedTitle(language))
+              .font(.title3.weight(.semibold)).accessibilityAddTraits(.isHeader)
+          }
+          ReadingEditionPicker()
+          VStack(alignment: .leading, spacing: 14) {
+            Text(String(localized: "home.today.selectedReadings", defaultValue: "Readings"))
+              .font(.headline).accessibilityAddTraits(.isHeader)
+            if readings.isEmpty {
+              Text(String(localized: "readings.noReadings", defaultValue: "No readings are available for this date in the selected calendar."))
+                .foregroundStyle(.secondary)
+                .accessibilityIdentifier("readings.empty")
+            }
+            ForEach(Array(readings.enumerated()), id: \.offset) { _, reading in
+              ScripturePassageView(reading: reading, interfaceLanguage: language)
+            }
+          }
+          if let torah {
+            VStack(alignment: .leading, spacing: 14) {
+              Text(torah.isHoliday
+                   ? String(localized: "home.today.festivalTorahReading", defaultValue: "Festival Torah reading")
+                   : String(localized: "home.today.torahPortion", defaultValue: "Weekly Torah portion"))
+                .font(.headline).accessibilityAddTraits(.isHeader)
+              Text(torah.localizedTitle(language))
+              ForEach(Array(torah.readings.enumerated()), id: \.offset) { _, reading in
+                ScripturePassageView(reading: reading, isTorah: true, interfaceLanguage: language)
+              }
+            }
+            .accessibilityIdentifier("readings.torah")
+          }
+        }
+        .frame(maxWidth: 720, alignment: .leading)
+        .frame(maxWidth: .infinity)
+        .padding(20)
+      }
+    }
+    .navigationTitle(String(localized: "tabs.readings", defaultValue: "Readings"))
+    .toolbar {
+      ToolbarItem(placement: .topBarTrailing) {
+        Button { showsOptions = true } label: {
+          Label(String(localized: "settings.title", defaultValue: "Settings"), systemImage: "slider.horizontal.3")
+        }
+        .accessibilityIdentifier("readings.options")
+      }
+    }
+    .sheet(isPresented: $showsOptions) { options }
+    .environment(\.layoutDirection, UILanguage.isRightToLeft(language) ? .rightToLeft : .leftToRight)
+    .environment(\.locale, Locale(identifier: language == "tl" ? "fil" : language))
+    .accessibilityIdentifier("readings.screen")
+    .onAppear { refresh() }
+    .onChange(of: dateSelection.day) { _, _ in load() }
+    .onChange(of: calendarID) { _, _ in load() }
+    .onChange(of: paschaStyle) { _, _ in load() }
+    .onChange(of: showsFeast) { _, _ in load() }
+    .onChange(of: showsTorah) { _, _ in load() }
+    .onChange(of: scenePhase) { _, phase in if phase == .active { refresh() } }
+    .onReceive(NotificationCenter.default.publisher(for: .NSCalendarDayChanged)) { _ in refresh() }
+    .onReceive(NotificationCenter.default.publisher(for: .NSSystemTimeZoneDidChange)) { _ in refresh() }
+  }
+
+  private var dateNavigation: some View {
+    HStack(spacing: 12) {
+      Button { dateSelection.move(by: -1) } label: {
+        Label(String(localized: "home.today.previousDay", defaultValue: "Previous Day"), systemImage: "chevron.backward")
+      }
+      .labelStyle(.iconOnly).disabled(!dateSelection.canMoveBackward)
+      .accessibilityIdentifier("readings.previousDay")
+      Button { showsDatePicker = true } label: {
+        VStack(spacing: 3) {
+          Text(dateLabel).font(.subheadline.weight(.semibold))
+          Text(calendarName).font(.caption).foregroundStyle(.secondary)
+        }
+        .frame(maxWidth: .infinity)
+      }
+      .accessibilityHint(String(localized: "home.today.chooseDate", defaultValue: "Choose a date"))
+      .accessibilityIdentifier("readings.chooseDate")
+      .popover(isPresented: $showsDatePicker) { datePopover }
+      Button { dateSelection.move(by: 1) } label: {
+        Label(String(localized: "home.today.nextDay", defaultValue: "Next Day"), systemImage: "chevron.forward")
+      }
+      .labelStyle(.iconOnly).disabled(!dateSelection.canMoveForward)
+      .accessibilityIdentifier("readings.nextDay")
+    }
+    .buttonStyle(.bordered).controlSize(.large).padding(16)
+  }
+
+  private var datePopover: some View {
+    VStack(spacing: 12) {
+      DatePicker(String(localized: "home.today.chooseDate", defaultValue: "Choose a date"),
+                 selection: Binding(get: { selectedDate }, set: chooseDate),
+                 in: MacTodayDateSelection.pickerRange(), displayedComponents: .date)
+        .datePickerStyle(.graphical).labelsHidden()
+        .environment(\.calendar, Calendar(identifier: .gregorian))
+      Button(String(localized: "home.today.today", defaultValue: "Today")) { chooseDate(Date()) }
+        .disabled(dateSelection.isToday())
+        .accessibilityIdentifier("readings.reset")
+    }
+    .padding(16).frame(width: 320)
+    .presentationCompactAdaptation(.popover)
+  }
+
+  private var options: some View {
+    NavigationStack {
+      Form {
+        Picker(String(localized: "settings.feastCalendar", defaultValue: "Liturgical calendar"),
+               selection: Binding(get: { TodayInfoStore.selectedCalendarId }, set: { calendarID = $0 })) {
+          ForEach(TodayInfoStore.calendars) { calendar in Text(calendar.displayName).tag(calendar.id) }
+        }
+        if TodayInfoStore.selectedCalendarId == "ugcc" {
+          Picker(String(localized: "settings.easternPaschaStyle", defaultValue: "Byzantine Easter date"), selection: $paschaStyle) {
+            Text(String(localized: "settings.easternPaschaStyle.julian", defaultValue: "Julian Easter")).tag("julian")
+            Text(String(localized: "settings.easternPaschaStyle.gregorian", defaultValue: "Gregorian Easter")).tag("gregorian")
+          }
+        }
+        Toggle(String(localized: "settings.showTodayTorahPortion", defaultValue: "Show the weekly Torah portion"), isOn: $showsTorah)
+      }
+      .navigationTitle(String(localized: "tabs.readings", defaultValue: "Readings"))
+      .toolbar {
+        ToolbarItem(placement: .confirmationAction) {
+          Button(String(localized: "common.done", defaultValue: "Done")) { showsOptions = false }
+        }
+      }
+    }
+  }
+
+  private func chooseDate(_ date: Date) {
+    dateSelection.select(date)
+    showsDatePicker = false
+  }
+  private func refresh() { dateSelection.refresh(); load() }
+  private func load() {
+    feast = showsFeast ? TodayInfoStore.feast(on: selectedDate) : nil
+    readings = TodayInfoStore.readings(on: selectedDate)
+    torah = showsTorah ? TodayInfoStore.torahPortion(on: selectedDate) : nil
+  }
+}
+#endif

@@ -285,7 +285,8 @@ public static class PrayerPackStore
     /// locations are removed immediately so they never retain a dead pack source.</summary>
     public static void RemoveInstalledPack(string id)
     {
-        if (!IsValidBundleId(id) || !InstalledIds.Contains(id)) return;
+        if (!IsValidBundleId(id) || IsBuiltInBundle(id) || !InstalledIds.Contains(id)) return;
+        if (InstalledPacksDirectory is null) throw new IOException("The installed prayer folder is unavailable.");
         if (InstalledPacksDirectory is { } directory)
         {
             var path = Path.Combine(directory, $"{id}.prosaryprayer");
@@ -310,6 +311,8 @@ public static class PrayerPackStore
             ExtractedImageUris.Remove(imageKey);
         }
     }
+
+    public static bool IsBuiltInBundle(string id) => PackNames.Contains(id);
 
     /// <summary>The options a bundle's <c>options.json</c> declares, in authored order (the
     /// editor's display order). Empty for bundles without one.</summary>

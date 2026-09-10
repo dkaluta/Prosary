@@ -23,8 +23,8 @@ struct RosaryOptions: Hashable, Codable {
   /// The opening Our Father + 3 Hail Marys (for faith, hope, and charity) + Glory Be.
   var includeOpeningPrayers: Bool = true
 
-  /// An optional Fatima Prayer immediately after the three virtue Hail Marys (before the
-  /// opening Glory Be), independent of the usual after-each-decade Fatima Prayer setting.
+  /// An optional Fatima Prayer after the opening Glory Be, independent of the usual
+  /// after-each-decade Fatima Prayer setting.
   var includeOpeningFatimaPrayer: Bool = false
 
   /// The Fatima Prayer ("O my Jesus...") recited after the Glory Be of each decade.
@@ -39,14 +39,46 @@ struct RosaryOptions: Hashable, Codable {
   /// intentions, and for the holy souls in purgatory — each unfolding into an Our Father,
   /// Hail Mary, and Glory Be. From the Mission of St. Gamaliel's prayer book.
   var includeClosingIntentions: Bool = false
-  // Nil preserves the former all-or-none choice on existing saved configurations.
+  // Retained for configurations saved while the three intentions had separate controls.
   var includeClosingPopeIntention: Bool? = nil
   var includeClosingBishopIntention: Bool? = nil
   var includeClosingDepartedIntention: Bool? = nil
 
-  var effectiveClosingPopeIntention: Bool { includeClosingPopeIntention ?? includeClosingIntentions }
-  var effectiveClosingBishopIntention: Bool { includeClosingBishopIntention ?? includeClosingIntentions }
-  var effectiveClosingDepartedIntention: Bool { includeClosingDepartedIntention ?? includeClosingIntentions }
+  var effectiveClosingIntentions: Bool {
+    get {
+      (includeClosingPopeIntention ?? includeClosingIntentions)
+        || (includeClosingBishopIntention ?? includeClosingIntentions)
+        || (includeClosingDepartedIntention ?? includeClosingIntentions)
+    }
+    set {
+      includeClosingIntentions = newValue
+      includeClosingPopeIntention = nil
+      includeClosingBishopIntention = nil
+      includeClosingDepartedIntention = nil
+    }
+  }
+
+  // Older packs can still reference the group keys; every group now follows one setting.
+  var effectiveClosingPopeIntention: Bool { effectiveClosingIntentions }
+  var effectiveClosingBishopIntention: Bool { effectiveClosingIntentions }
+  var effectiveClosingDepartedIntention: Bool { effectiveClosingIntentions }
+
+  static let legacyClosingOptionKeys = ["closingPopeIntention", "closingBishopIntention", "closingDepartedIntention"]
+
+  /// Generic saved Rosaries can carry the former bundle option keys instead of this model.
+  static func normalizedCustomOptions(_ options: [String: String], bundleId: String) -> [String: String] {
+    guard bundleId == "rosary", legacyClosingOptionKeys.contains(where: { options[$0] != nil }) else {
+      return options
+    }
+    var result = options
+    let baseline = options["closingIntentions"] == "true"
+    let enabled = legacyClosingOptionKeys.contains { key in
+      options[key].flatMap(Bool.init) ?? baseline
+    }
+    for key in legacyClosingOptionKeys { result.removeValue(forKey: key) }
+    result["closingIntentions"] = enabled ? "true" : "false"
+    return result
+  }
 
   var includeStMichaelPrayer: Bool = false
 

@@ -1,7 +1,7 @@
 # Image credits
 
 All artwork in this directory is served to every platform through `.prosaryprayer` content
-bundles (see `../ARCHITECTURE.markdown`). Every file is a square (1:1) crop, centered on Christ where
+bundles (see `../ARCHITECTURE.markdown`). Prayer-step illustrations are square (1:1) crops, centered on Christ where
 he is present, otherwise on the scene's subject, prepared from the sources below. Crops and
 brightness-normalization are the only modifications.
 
@@ -122,3 +122,31 @@ Sinai** — the oldest surviving icon of Christ Pantocrator, chosen for the Jesu
 Eastern (hesychast) tradition. Public domain (PD-Art; the icon is ancient and the photograph a
 faithful reproduction). Source file: Wikimedia Commons,
 `File:Spas_vsederzhitel_sinay.jpg`, face-centered square crop.
+
+## Prayer Gallery covers (`gallery_*`)
+
+A complete, separately curated set of eleven gallery covers, acquired 2026-09-08. These images
+retain their source proportions; they are not square-cropped or recolored. Wikimedia and museum
+image services provide display-sized JPEGs, and the Mac UI adds shadows at rendering time.
+Prayer-step illustrations retain their existing files and credits above. Exact download URLs,
+rights, image treatment and SHA-256 hashes are recorded in [GALLERY-SOURCES.json](GALLERY-SOURCES.json).
+The artwork and source links are also available under Prayer Gallery in the Mac About window.
+
+| Gallery file | Artwork and artist | Collection / source | Rights |
+|---|---|---|---|
+| gallery_angelus | Jean-François Millet, *L’Angélus* (1857–1859) | [Musée d’Orsay, RF 1877](https://commons.wikimedia.org/wiki/File:Jean-Fran%C3%A7ois_Millet_Angelus.jpg) | Public domain |
+| gallery_divineMercyChaplet | Rembrandt van Rijn, *The Return of the Prodigal Son* (c. 1668) | [State Hermitage Museum, 742](https://commons.wikimedia.org/wiki/File:Rembrandt_Harmensz._van_Rijn_-_The_Return_of_the_Prodigal_Son.jpg) | Public domain |
+| gallery_franciscanCrown | Agnolo Gaddi, *The Coronation of the Virgin with Six Angels* (c. 1390) | [Samuel H. Kress Collection, 1939.1.203; Courtesy National Gallery of Art, Washington](https://www.nga.gov/artworks/344-coronation-virgin-six-angels) | CC0 |
+| gallery_jesusPrayer | El Greco, *Christ Blessing (The Saviour of the World)* (c. 1600) | [Scottish National Gallery](https://commons.wikimedia.org/wiki/File:El_Greco_021.jpg) | Public domain |
+| gallery_litanyOfLoreto | Raphael, *Madonna of Loreto* (c. 1509–1510) | [Musée Condé, PE 40; Google Art Project](https://commons.wikimedia.org/wiki/File:Rapha%C3%ABl_-_La_Madone_de_Lorette_-_Google_Art_Project.jpg) | Public domain |
+| gallery_oAntiphons | Circle of Geertgen tot Sint Jans, *The Tree of Jesse* (c. 1500) | [Rijksmuseum, SK-A-3901](https://commons.wikimedia.org/wiki/File:De_boom_van_Jesse,_SK-A-3901.jpg) | CC0 |
+| gallery_rosary | Bartolomé Esteban Murillo, *Virgin and Child with a Rosary* (c. 1650–1655) | [Museo del Prado, P000975](https://commons.wikimedia.org/wiki/File:Virgen_del_Rosario_(Murillo).jpg) | Public domain |
+| gallery_sevenSorrows | Anonymous Spanish Colonial artist, *The Virgin of Sorrows* (18th century) | [The Metropolitan Museum of Art, 2007.49.347; Bequest of William S. Lieberman, 2005](https://www.metmuseum.org/art/collection/search/232209) | Public domain |
+| gallery_stationsOfTheCross | El Greco, *Christ Carrying the Cross* (c. 1577–1587) | [The Metropolitan Museum of Art, 1975.1.145](https://commons.wikimedia.org/wiki/File:Christ_Carrying_the_Cross_MET_DP347226.jpg) | CC0 |
+| gallery_trisagion | Andrei Rublev, *Trinity* (early 15th century) | [Historical Tretyakov Gallery reproduction](https://commons.wikimedia.org/wiki/File:Rublev_Troitsa.jpg) | Public domain |
+| gallery_viaLucis | Matthias Grünewald, *Resurrection (Isenheim Altarpiece)* (1512–1516) | [Musée Unterlinden; photograph by Gleb Simonov](https://commons.wikimedia.org/wiki/File:Matthias_Gr%C3%BCnewald_-_Resurrection.jpg) | Public domain |
+
+The Mercy cover represents forgiveness through Rembrandt’s *Return of the Prodigal Son*;
+it is not an alternative historical attribution for the Kazimirowski image used during that
+prayer. The O Antiphons cover refers to *O Radix Jesse*. Jesus Prayer’s cover is carried in the
+Trisagion pack because its counter flow has no separate bundle.

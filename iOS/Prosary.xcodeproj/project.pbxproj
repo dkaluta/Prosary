@@ -6,6 +6,26 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0D9F2B41D12134FEBDF62F11 /* readings-roman.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A26A3EA20BE1F9EA6986D5B /* readings-roman.json */; };
+		0F83C5D3DA05BFA9BD5F4DAE /* feasts-roman.json in Resources */ = {isa = PBXBuildFile; fileRef = 703B3F30BAACD00344C4B23F /* feasts-roman.json */; };
+		1B6E792DD7FB5834E0CCD7A5 /* calendars.json in Resources */ = {isa = PBXBuildFile; fileRef = 010D0751222A00A5F9964C0B /* calendars.json */; };
+		384ED49A559E77469EE415F7 /* readings-syriac.json in Resources */ = {isa = PBXBuildFile; fileRef = 6115905798FCA9DA26F28FA9 /* readings-syriac.json */; };
+		49CD674931433123AEF019A8 /* readings-ugcc.json in Resources */ = {isa = PBXBuildFile; fileRef = 3ED9C73B237A9642895F3223 /* readings-ugcc.json */; };
+		4CAFFCFC45573107FBA56B55 /* torah-portions.json in Resources */ = {isa = PBXBuildFile; fileRef = 6B0E6E44EEA3B5B72384F549 /* torah-portions.json */; };
+		4F69FCC4ACBE069C01089930 /* feasts-ugcc.json in Resources */ = {isa = PBXBuildFile; fileRef = FDED50D2F65CC4A8D7DF38DC /* feasts-ugcc.json */; };
+		68C3CB170811BA296FAC4B8B /* readings-ugcc-gregorian.json in Resources */ = {isa = PBXBuildFile; fileRef = 57238898AFEDF96645B293A0 /* readings-ugcc-gregorian.json */; };
+		6C57F46DD704D7ED616B710F /* readings-maronite.json in Resources */ = {isa = PBXBuildFile; fileRef = 07B8812704BD8D0AED34D361 /* readings-maronite.json */; };
+		8191C30876328335AAEE852C /* feasts-ugcc-gregorian.json in Resources */ = {isa = PBXBuildFile; fileRef = A4CE14F5775500D8819CCD18 /* feasts-ugcc-gregorian.json */; };
+		8E4E4C4BBE97594480B4697D /* ProsaryWidgetsExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1179FF2AAA317E52E8C7E63C /* ProsaryWidgetsExtension.appex */; platformFilters = (ios, macos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B854FA81D7FB0D666E9F9104 /* feasts-roman1962.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F29ADE8AFE167D41DB86D2A /* feasts-roman1962.json */; };
+		BEEB4DCBCB6FB1683766B369 /* feasts-maronite.json in Resources */ = {isa = PBXBuildFile; fileRef = E7F3A680873715A9BF0D90BE /* feasts-maronite.json */; };
+		C7B2510D2C805044BB812392 /* feasts-syriac.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CDC06524E0D28D29DB058A /* feasts-syriac.json */; };
+		D1D655459478334F627E3ABC /* pope-intentions.json in Resources */ = {isa = PBXBuildFile; fileRef = 6207A1E32F2B7A7D6B5957EC /* pope-intentions.json */; };
+		DA041069F64953BC89271955 /* feasts.json in Resources */ = {isa = PBXBuildFile; fileRef = DAE6F03F3B39EE05B5555186 /* feasts.json */; };
+		F62CDF673A13FCC45C247BBE /* readings-roman1962.json in Resources */ = {isa = PBXBuildFile; fileRef = B97FDE0AF1569A4B1F794ECE /* readings-roman1962.json */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		4285F7EC300F4F6C0000CE89 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -21,12 +41,50 @@
 			remoteGlobalIDString = 4285F7DB300F4F6B0000CE89;
 			remoteInfo = Prosary;
 		};
+		D12CD01C8DB5BAC27693071B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4285F7D4300F4F6B0000CE89 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15CC1AFCC82A00E77009FC5A;
+			remoteInfo = ProsaryWidgetsExtension;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3FA57CB443428F9223609013 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8E4E4C4BBE97594480B4697D /* ProsaryWidgetsExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		00CDC06524E0D28D29DB058A /* feasts-syriac.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "feasts-syriac.json"; sourceTree = "<group>"; };
+		010D0751222A00A5F9964C0B /* calendars.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = calendars.json; sourceTree = "<group>"; };
+		07B8812704BD8D0AED34D361 /* readings-maronite.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "readings-maronite.json"; sourceTree = "<group>"; };
+		0A26A3EA20BE1F9EA6986D5B /* readings-roman.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "readings-roman.json"; sourceTree = "<group>"; };
+		1179FF2AAA317E52E8C7E63C /* ProsaryWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ProsaryWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		3ED9C73B237A9642895F3223 /* readings-ugcc.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "readings-ugcc.json"; sourceTree = "<group>"; };
 		4285F7DC300F4F6B0000CE89 /* Prosary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prosary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4285F7EB300F4F6C0000CE89 /* ProsaryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProsaryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4285F7F5300F4F6C0000CE89 /* ProsaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProsaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F29ADE8AFE167D41DB86D2A /* feasts-roman1962.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "feasts-roman1962.json"; sourceTree = "<group>"; };
+		57238898AFEDF96645B293A0 /* readings-ugcc-gregorian.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "readings-ugcc-gregorian.json"; sourceTree = "<group>"; };
+		6115905798FCA9DA26F28FA9 /* readings-syriac.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "readings-syriac.json"; sourceTree = "<group>"; };
+		6207A1E32F2B7A7D6B5957EC /* pope-intentions.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "pope-intentions.json"; sourceTree = "<group>"; };
+		6B0E6E44EEA3B5B72384F549 /* torah-portions.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "torah-portions.json"; sourceTree = "<group>"; };
+		703B3F30BAACD00344C4B23F /* feasts-roman.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "feasts-roman.json"; sourceTree = "<group>"; };
+		A4CE14F5775500D8819CCD18 /* feasts-ugcc-gregorian.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "feasts-ugcc-gregorian.json"; sourceTree = "<group>"; };
+		B97FDE0AF1569A4B1F794ECE /* readings-roman1962.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "readings-roman1962.json"; sourceTree = "<group>"; };
+		DAE6F03F3B39EE05B5555186 /* feasts.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = feasts.json; sourceTree = "<group>"; };
+		E7F3A680873715A9BF0D90BE /* feasts-maronite.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "feasts-maronite.json"; sourceTree = "<group>"; };
+		FDED50D2F65CC4A8D7DF38DC /* feasts-ugcc.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "feasts-ugcc.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -43,6 +101,16 @@
 		4285F7F8300F4F6C0000CE89 /* ProsaryUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = ProsaryUITests;
+			sourceTree = "<group>";
+		};
+		5595CD66025E50F84BD9D0F4 /* WidgetShared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WidgetShared;
+			sourceTree = "<group>";
+		};
+		8574742FB58742E87C0910E3 /* ProsaryWidgets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ProsaryWidgets;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -69,6 +137,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		76E1109C10A7C8C6C09B9650 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -79,6 +154,10 @@
 				4285F7EE300F4F6C0000CE89 /* ProsaryTests */,
 				4285F7F8300F4F6C0000CE89 /* ProsaryUITests */,
 				4285F7DD300F4F6B0000CE89 /* Products */,
+				5595CD66025E50F84BD9D0F4 /* WidgetShared */,
+				8574742FB58742E87C0910E3 /* ProsaryWidgets */,
+				7F88E5815E62A0752C24D4CD /* Frameworks */,
+				F5AA3CB58CE28616AEEE6811 /* Widget Today Data */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,13 +167,74 @@
 				4285F7DC300F4F6B0000CE89 /* Prosary.app */,
 				4285F7EB300F4F6C0000CE89 /* ProsaryTests.xctest */,
 				4285F7F5300F4F6C0000CE89 /* ProsaryUITests.xctest */,
+				1179FF2AAA317E52E8C7E63C /* ProsaryWidgetsExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		7F88E5815E62A0752C24D4CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CB454E9644A2DA74A595B7F3 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CB454E9644A2DA74A595B7F3 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		F5AA3CB58CE28616AEEE6811 /* Widget Today Data */ = {
+			isa = PBXGroup;
+			children = (
+				010D0751222A00A5F9964C0B /* calendars.json */,
+				E7F3A680873715A9BF0D90BE /* feasts-maronite.json */,
+				703B3F30BAACD00344C4B23F /* feasts-roman.json */,
+				4F29ADE8AFE167D41DB86D2A /* feasts-roman1962.json */,
+				00CDC06524E0D28D29DB058A /* feasts-syriac.json */,
+				A4CE14F5775500D8819CCD18 /* feasts-ugcc-gregorian.json */,
+				FDED50D2F65CC4A8D7DF38DC /* feasts-ugcc.json */,
+				DAE6F03F3B39EE05B5555186 /* feasts.json */,
+				6207A1E32F2B7A7D6B5957EC /* pope-intentions.json */,
+				07B8812704BD8D0AED34D361 /* readings-maronite.json */,
+				0A26A3EA20BE1F9EA6986D5B /* readings-roman.json */,
+				B97FDE0AF1569A4B1F794ECE /* readings-roman1962.json */,
+				6115905798FCA9DA26F28FA9 /* readings-syriac.json */,
+				57238898AFEDF96645B293A0 /* readings-ugcc-gregorian.json */,
+				3ED9C73B237A9642895F3223 /* readings-ugcc.json */,
+				6B0E6E44EEA3B5B72384F549 /* torah-portions.json */,
+			);
+			name = "Widget Today Data";
+			path = Prosary/Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		15CC1AFCC82A00E77009FC5A /* ProsaryWidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E84C6A5064E820C191520986 /* Build configuration list for PBXNativeTarget "ProsaryWidgetsExtension" */;
+			buildPhases = (
+				D2D73337DA26D4D6FF8E77B6 /* Sources */,
+				76E1109C10A7C8C6C09B9650 /* Frameworks */,
+				1E5A5E9F2A9CECAB90BEF514 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				5595CD66025E50F84BD9D0F4 /* WidgetShared */,
+				8574742FB58742E87C0910E3 /* ProsaryWidgets */,
+			);
+			name = ProsaryWidgetsExtension;
+			productName = ProsaryWidgetsExtension;
+			productReference = 1179FF2AAA317E52E8C7E63C /* ProsaryWidgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		4285F7DB300F4F6B0000CE89 /* Prosary */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4285F7FF300F4F6C0000CE89 /* Build configuration list for PBXNativeTarget "Prosary" */;
@@ -102,17 +242,18 @@
 				4285F7D8300F4F6B0000CE89 /* Sources */,
 				4285F7D9300F4F6B0000CE89 /* Frameworks */,
 				4285F7DA300F4F6B0000CE89 /* Resources */,
+				3FA57CB443428F9223609013 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F462C927B4D6F5213C6FE2CA /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				4285F7DE300F4F6B0000CE89 /* Prosary */,
+				5595CD66025E50F84BD9D0F4 /* WidgetShared */,
 			);
 			name = Prosary;
-			packageProductDependencies = (
-			);
 			productName = Prosary;
 			productReference = 4285F7DC300F4F6B0000CE89 /* Prosary.app */;
 			productType = "com.apple.product-type.application";
@@ -134,8 +275,6 @@
 				4285F7EE300F4F6C0000CE89 /* ProsaryTests */,
 			);
 			name = ProsaryTests;
-			packageProductDependencies = (
-			);
 			productName = ProsaryTests;
 			productReference = 4285F7EB300F4F6C0000CE89 /* ProsaryTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -157,8 +296,6 @@
 				4285F7F8300F4F6C0000CE89 /* ProsaryUITests */,
 			);
 			name = ProsaryUITests;
-			packageProductDependencies = (
-			);
 			productName = ProsaryUITests;
 			productReference = 4285F7F5300F4F6C0000CE89 /* ProsaryUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -173,6 +310,9 @@
 				LastSwiftUpdateCheck = 2660;
 				LastUpgradeCheck = 2660;
 				TargetAttributes = {
+					15CC1AFCC82A00E77009FC5A = {
+						CreatedOnToolsVersion = 26.6;
+					};
 					4285F7DB300F4F6B0000CE89 = {
 						CreatedOnToolsVersion = 26.6;
 					};
@@ -210,11 +350,35 @@
 				4285F7DB300F4F6B0000CE89 /* Prosary */,
 				4285F7EA300F4F6C0000CE89 /* ProsaryTests */,
 				4285F7F4300F4F6C0000CE89 /* ProsaryUITests */,
+				15CC1AFCC82A00E77009FC5A /* ProsaryWidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1E5A5E9F2A9CECAB90BEF514 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B6E792DD7FB5834E0CCD7A5 /* calendars.json in Resources */,
+				BEEB4DCBCB6FB1683766B369 /* feasts-maronite.json in Resources */,
+				0F83C5D3DA05BFA9BD5F4DAE /* feasts-roman.json in Resources */,
+				B854FA81D7FB0D666E9F9104 /* feasts-roman1962.json in Resources */,
+				C7B2510D2C805044BB812392 /* feasts-syriac.json in Resources */,
+				8191C30876328335AAEE852C /* feasts-ugcc-gregorian.json in Resources */,
+				4F69FCC4ACBE069C01089930 /* feasts-ugcc.json in Resources */,
+				DA041069F64953BC89271955 /* feasts.json in Resources */,
+				D1D655459478334F627E3ABC /* pope-intentions.json in Resources */,
+				6C57F46DD704D7ED616B710F /* readings-maronite.json in Resources */,
+				0D9F2B41D12134FEBDF62F11 /* readings-roman.json in Resources */,
+				F62CDF673A13FCC45C247BBE /* readings-roman1962.json in Resources */,
+				384ED49A559E77469EE415F7 /* readings-syriac.json in Resources */,
+				68C3CB170811BA296FAC4B8B /* readings-ugcc-gregorian.json in Resources */,
+				49CD674931433123AEF019A8 /* readings-ugcc.json in Resources */,
+				4CAFFCFC45573107FBA56B55 /* torah-portions.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4285F7DA300F4F6B0000CE89 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -260,6 +424,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D2D73337DA26D4D6FF8E77B6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -272,6 +443,16 @@
 			isa = PBXTargetDependency;
 			target = 4285F7DB300F4F6B0000CE89 /* Prosary */;
 			targetProxy = 4285F7F6300F4F6C0000CE89 /* PBXContainerItemProxy */;
+		};
+		F462C927B4D6F5213C6FE2CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ProsaryWidgetsExtension;
+			platformFilters = (
+				ios,
+				macos,
+			);
+			target = 15CC1AFCC82A00E77009FC5A /* ProsaryWidgetsExtension */;
+			targetProxy = D12CD01C8DB5BAC27693071B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -400,7 +581,7 @@
 				CODE_SIGN_ENTITLEMENTS = Prosary/Prosary.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1103;
+				CURRENT_PROJECT_VERSION = 1200;
 				DEVELOPMENT_TEAM = 3W55472NF6;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -408,6 +589,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Prosary-Info.plist";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -427,7 +609,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.11.3;
+				MARKETING_VERSION = 0.12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dkaluta.prosary;
 				PRODUCT_NAME = Prosary;
 				REGISTER_APP_GROUPS = YES;
@@ -452,7 +634,7 @@
 				CODE_SIGN_ENTITLEMENTS = Prosary/Prosary.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1103;
+				CURRENT_PROJECT_VERSION = 1200;
 				DEVELOPMENT_TEAM = 3W55472NF6;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -460,6 +642,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Prosary-Info.plist";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -479,7 +662,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.11.3;
+				MARKETING_VERSION = 0.12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dkaluta.prosary;
 				PRODUCT_NAME = Prosary;
 				REGISTER_APP_GROUPS = YES;
@@ -598,6 +781,88 @@
 			};
 			name = Release;
 		};
+		585EC83EE9F0B807CAC79510 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = ProsaryWidgets/ProsaryWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1200;
+				DEVELOPMENT_TEAM = 3W55472NF6;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ProsaryWidgets-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Prosary;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.12.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dkaluta.prosary.widgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ADD32E2FE52D787F0F5628A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = ProsaryWidgets/ProsaryWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1200;
+				DEVELOPMENT_TEAM = 3W55472NF6;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ProsaryWidgets-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Prosary;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.12.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dkaluta.prosary.widgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -633,6 +898,15 @@
 			buildConfigurations = (
 				4285F806300F4F6C0000CE89 /* Debug */,
 				4285F807300F4F6C0000CE89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E84C6A5064E820C191520986 /* Build configuration list for PBXNativeTarget "ProsaryWidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADD32E2FE52D787F0F5628A5 /* Release */,
+				585EC83EE9F0B807CAC79510 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

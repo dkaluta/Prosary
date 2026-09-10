@@ -1,0 +1,87 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Open a prayer in ${applicationName}" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "افتح صلاة في ${applicationName}"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open a prayer in ${applicationName}"
+          }
+        },
+        "fil" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magbukas ng panalangin sa ${applicationName}"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvre une prière dans ${applicationName}"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "פתח תפילה ב־${applicationName}"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri una preghiera in ${applicationName}"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открой молитву в ${applicationName}"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відкрий молитву в ${applicationName}"
+          }
+        }
+      }
+    },
+    "Pray the Rosary in ${applicationName}" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "Pray the Rosary in ${applicationName}",
+              "Start my Rosary in ${applicationName}"
+            ]
+          }
+        }
+      }
+    },
+    "What are today's mysteries in ${applicationName}" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "What are today's mysteries in ${applicationName}",
+              "Today's mysteries in ${applicationName}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

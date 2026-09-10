@@ -73,4 +73,17 @@ public static class FavoriteDevotions
         {
         }
     }
+
+    /// <summary>Forget an unavailable download without materializing or changing implied
+    /// pins. Ordinary unpinning continues to use Toggle and never deletes a saved prayer.</summary>
+    public static void RemoveStoredPin(string devotionId)
+    {
+        if (Stored() is not { } stored || !stored.Contains(devotionId)) return;
+        try
+        {
+            ApplicationData.Current.LocalSettings.Values[Key] =
+                string.Join('\n', stored.Where(id => id != devotionId));
+        }
+        catch { }
+    }
 }

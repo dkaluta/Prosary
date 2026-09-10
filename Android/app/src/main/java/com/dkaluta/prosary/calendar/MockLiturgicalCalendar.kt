@@ -18,7 +18,7 @@ import java.util.TimeZone
 class MockLiturgicalCalendar : LiturgicalCalendarProviding {
 
     override fun mysteryGroup(date: Date): MysteryGroup {
-        val cal = utcCalendar(date)
+        val cal = localCalendar(date)
         return when (cal.get(Calendar.DAY_OF_WEEK)) {
             Calendar.MONDAY, Calendar.SATURDAY -> MysteryGroup.Joyful
             Calendar.TUESDAY, Calendar.FRIDAY -> MysteryGroup.Sorrowful
@@ -30,20 +30,20 @@ class MockLiturgicalCalendar : LiturgicalCalendarProviding {
     }
 
     /** The Marian antiphon traditionally used during the current liturgical season. */
-    override fun seasonalMarianAntiphon(date: Date): MarianAntiphonOption = when (season(utcCalendar(date))) {
+    override fun seasonalMarianAntiphon(date: Date): MarianAntiphonOption = when (season(localCalendar(date))) {
         LiturgicalSeason.Advent, LiturgicalSeason.Christmas -> MarianAntiphonOption.AlmaRedemptorisMater
         LiturgicalSeason.Lent -> MarianAntiphonOption.AveReginaCaelorum
         LiturgicalSeason.EasterSeason -> MarianAntiphonOption.ReginaCaeli
         LiturgicalSeason.Other -> MarianAntiphonOption.SalveRegina
     }
 
-    override fun isEasterSeason(date: Date): Boolean = season(utcCalendar(date)) == LiturgicalSeason.EasterSeason
+    override fun isEasterSeason(date: Date): Boolean = season(localCalendar(date)) == LiturgicalSeason.EasterSeason
 
-    override fun isLent(date: Date): Boolean = season(utcCalendar(date)) == LiturgicalSeason.Lent
+    override fun isLent(date: Date): Boolean = season(localCalendar(date)) == LiturgicalSeason.Lent
 
     /** The traditional liturgical color for the day, for use as an accent/banner color. */
     override fun seasonColor(date: Date): Color {
-        val cal = utcCalendar(date)
+        val cal = localCalendar(date)
         val easter = computeEasterSunday(cal.get(Calendar.YEAR))
         val pentecost = addDays(easter, 49)
         if (isSameDay(cal, pentecost)) return Color(0xFFB22222) // Pentecost: red
@@ -68,7 +68,8 @@ class MockLiturgicalCalendar : LiturgicalCalendarProviding {
     internal fun season(dateCal: Calendar): LiturgicalSeason {
         val date = startOfDay(dateCal)
         val year = date.get(Calendar.YEAR)
-        val easter = computeEasterSunday(year)
+        val zone = date.timeZone
+        val easter = computeEasterSunday(year, zone)
         val ashWednesday = addDays(easter, -46)
 
         if (!date.before(ashWednesday) && date.before(easter)) {
@@ -80,21 +81,21 @@ class MockLiturgicalCalendar : LiturgicalCalendarProviding {
             return LiturgicalSeason.EasterSeason
         }
 
-        val adventStart = firstSundayOnOrAfter(dateFrom(year, 11, 27))
-        val christmas = dateFrom(year, 12, 25)
+        val adventStart = firstSundayOnOrAfter(dateFrom(year, 11, 27, zone))
+        val christmas = dateFrom(year, 12, 25, zone)
         if (!date.before(adventStart) && date.before(christmas)) {
             return LiturgicalSeason.Advent
         }
 
         // Christmas season runs from Dec 25 through the Baptism of the Lord (approximated as the
         // first Sunday on/after Jan 7), spanning new year's day.
-        val nextEpiphanySunday = firstSundayOnOrAfter(dateFrom(year + 1, 1, 7))
+        val nextEpiphanySunday = firstSundayOnOrAfter(dateFrom(year + 1, 1, 7, zone))
         if (!date.before(christmas) && date.before(nextEpiphanySunday)) {
             return LiturgicalSeason.Christmas
         }
 
-        val previousChristmas = dateFrom(year - 1, 12, 25)
-        val thisEpiphanySunday = firstSundayOnOrAfter(dateFrom(year, 1, 7))
+        val previousChristmas = dateFrom(year - 1, 12, 25, zone)
+        val thisEpiphanySunday = firstSundayOnOrAfter(dateFrom(year, 1, 7, zone))
         if (date.before(christmas) && date.before(thisEpiphanySunday) && !date.before(previousChristmas)) {
             return LiturgicalSeason.Christmas
         }
@@ -103,8 +104,8 @@ class MockLiturgicalCalendar : LiturgicalCalendarProviding {
     }
 
     companion object {
-        private fun utcCalendar(date: Date): Calendar =
-            Calendar.getInstance(TimeZone.getTimeZone("UTC")).apply { time = date }
+        private fun localCalendar(date: Date): Calendar =
+            Calendar.getInstance().apply { time = date }
 
         private fun startOfDay(cal: Calendar): Calendar {
             val copy = cal.clone() as Calendar
@@ -115,8 +116,8 @@ class MockLiturgicalCalendar : LiturgicalCalendarProviding {
             return copy
         }
 
-        private fun dateFrom(year: Int, month: Int, day: Int): Calendar {
-            val cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+        private fun dateFrom(year: Int, month: Int, day: Int, zone: TimeZone = TimeZone.getDefault()): Calendar {
+            val cal = Calendar.getInstance(zone)
             cal.clear()
             cal.set(year, month - 1, day, 0, 0, 0)
             return cal
@@ -139,7 +140,7 @@ class MockLiturgicalCalendar : LiturgicalCalendarProviding {
 
         /** Anonymous Gregorian algorithm (Meeus/Jones/Butcher). Internal (not private) visibility
          * for unit tests in the same module. */
-        internal fun computeEasterSunday(year: Int): Calendar {
+        internal fun computeEasterSunday(year: Int, zone: TimeZone = TimeZone.getDefault()): Calendar {
             val a = year % 19
             val b = year / 100
             val c = year % 100
@@ -154,7 +155,7 @@ class MockLiturgicalCalendar : LiturgicalCalendarProviding {
             val m = (a + 11 * h + 22 * l) / 451
             val month = (h + l - 7 * m + 114) / 31
             val day = (h + l - 7 * m + 114) % 31 + 1
-            return dateFrom(year, month, day)
+            return dateFrom(year, month, day, zone)
         }
     }
 }

@@ -1,3 +1,4 @@
+using Prosary.Navigation;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -13,6 +14,8 @@ public sealed record CategorySection(string Title, IReadOnlyList<DevotionListing
 /// Mirrors iOS's CategoriesView.</summary>
 public partial class CategoriesViewModel : ObservableObject
 {
+    public WindowNavigation Navigation { get; set; } = WindowNavigation.Detached;
+
     [ObservableProperty]
     private ObservableCollection<CategorySection> _sections = [];
 
@@ -36,5 +39,5 @@ public partial class CategoriesViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void Open(DevotionListing listing) => listing.Launch();
+    private void Open(DevotionListing listing) => listing.Launch(Navigation);
 }

@@ -9,8 +9,8 @@
 //  the flows use — rites included. In the Mission of St. Gamaliel's rite the list itself shows
 //  his headings (קדישת over his own acclamation), with no per-rite code anywhere below.
 //
-//  Titles resolve through the rosary bundle (which carries the four classic title keys in all
-//  six languages) and the Holy God through the trisagion bundle — the acclamation deliberately
+//  Titles resolve through the rosary bundle, including the four Marian antiphons, and the
+//  Holy God through the trisagion bundle — the acclamation deliberately
 //  stays bundle-local rather than becoming a PrayerKey, because promotion would demand
 //  hardcoded tables for a text the bundle already ships everywhere.
 //
@@ -49,6 +49,14 @@ enum BasicPrayerCatalog {
     BasicPrayer(id: "holyGod", bundleId: "trisagion",
                 titleKey: "trisagionAcclamationTitle", bodyKey: "trisagionAcclamation",
                 imageKey: "jesus_portrait"),
+    BasicPrayer(id: "salveRegina", bundleId: "rosary",
+                titleKey: "salveReginaTitle", bodyKey: "salveRegina", imageKey: "madonna_and_child"),
+    BasicPrayer(id: "almaRedemptorisMater", bundleId: "rosary",
+                titleKey: "almaRedemptorisMaterTitle", bodyKey: "almaRedemptorisMater", imageKey: "madonna_and_child"),
+    BasicPrayer(id: "aveReginaCaelorum", bundleId: "rosary",
+                titleKey: "aveReginaCaelorumTitle", bodyKey: "aveReginaCaelorum", imageKey: "madonna_and_child"),
+    BasicPrayer(id: "reginaCaeli", bundleId: "rosary",
+                titleKey: "reginaCaeliTitle", bodyKey: "reginaCaeli", imageKey: "madonna_and_child"),
   ]
 
   static func prayer(id: String) -> BasicPrayer? {

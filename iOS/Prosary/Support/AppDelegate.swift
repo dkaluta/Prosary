@@ -1,55 +1,47 @@
-//
-//  AppDelegate.swift
-//  Prosary
-//
-//  Without this, closing the last window on Mac leaves the app running with nothing but a menu
-//  bar — the standard AppKit default for document-style apps. Prosary isn't document-based, so
-//  it should just quit like a typical single-window utility app.
-//
-//  applicationShouldTerminateAfterLastWindowClosed alone isn't reliable for SwiftUI-managed
-//  WindowGroup/Window scenes (AppKit's "last window" bookkeeping doesn't always fire for them),
-//  so this also watches window-close notifications directly and terminates once none remain.
-//
-
 #if os(macOS)
 import AppKit
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
-  func applicationDidFinishLaunching(_ notification: Foundation.Notification) {
-    // The Format menu: SwiftUI's empty .textFormatting replacement empties it but leaves the
-    // menu in the bar, and AppKit re-adds its contents whenever a text view gains focus — so
-    // prune the menu itself, again on every activation/key-window change (the moments AppKit
-    // rebuilds it). Matched by both UI localizations' titles.
-    DispatchQueue.main.async { Self.removeFormatMenu() }
-    for name in [NSApplication.didBecomeActiveNotification, NSWindow.didBecomeKeyNotification] {
-      NotificationCenter.default.addObserver(forName: name, object: nil, queue: .main) { _ in
-        DispatchQueue.main.async { Self.removeFormatMenu() }
-      }
-    }
+  private var dockRecentIDs: [String] = []
 
-    NotificationCenter.default.addObserver(
-      forName: NSWindow.willCloseNotification, object: nil, queue: .main
-    ) { _ in
-      // The closing window hasn't been removed from NSApp.windows yet at the moment this
-      // notification fires, so defer the check to the next run-loop turn.
-      DispatchQueue.main.async {
-        let hasVisibleWindow = NSApp.windows.contains { $0.isVisible && !$0.isMiniaturized }
-        if !hasVisibleWindow {
-          NSApp.terminate(nil)
-        }
+  func applicationDockMenu(_ sender: NSApplication) -> NSMenu? {
+    guard AppServices.persistenceError == nil else { return nil }
+    let entries = RecentPrayers.shared.entries
+    Task { await RecentPrayers.shared.refresh() }
+    guard !entries.isEmpty else { return nil }
+
+    let menu = NSMenu()
+    menu.autoenablesItems = false
+    let heading = NSMenuItem(
+      title: String(localized: "commands.recentlyPrayed", defaultValue: "Recently Prayed"),
+      action: nil, keyEquivalent: "")
+    heading.isEnabled = false
+    menu.addItem(heading)
+    dockRecentIDs = entries.map(\.id)
+    for (index, entry) in entries.enumerated() {
+      let item = NSMenuItem(title: entry.title, action: #selector(openRecentPrayer(_:)), keyEquivalent: "")
+      item.target = self
+      item.tag = index
+      menu.addItem(item)
+    }
+    return menu
+  }
+
+  @objc private func openRecentPrayer(_ item: NSMenuItem) {
+    guard AppServices.persistenceError == nil else { return }
+    guard dockRecentIDs.indices.contains(item.tag) else { return }
+    let id = dockRecentIDs[item.tag]
+    Task {
+      if let route = await RecentPrayers.shared.routeForOpening(id: id) {
+        MacPrayerWindowActions.open(route)
       }
     }
   }
 
+  // Closing a prayer window must leave other windows (including minimized ones) alive.
+  // Keeping the app running leaves File → New Window available after the last close.
   func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
-    true
-  }
-
-  private static func removeFormatMenu() {
-    let titles: Set<String> = ["Format", "עיצוב"]
-    NSApp.mainMenu?.items
-      .filter { titles.contains($0.title) }
-      .forEach { NSApp.mainMenu?.removeItem($0) }
+    false
   }
 }
 #endif

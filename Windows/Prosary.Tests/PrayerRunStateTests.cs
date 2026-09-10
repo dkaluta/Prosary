@@ -9,8 +9,32 @@ namespace Prosary.Tests;
 
 public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
 {
+    [Theory]
+    [InlineData(false, null, null, null, false)]
+    [InlineData(true, null, null, null, true)]
+    [InlineData(false, true, null, null, true)]
+    [InlineData(false, null, true, null, true)]
+    [InlineData(false, null, null, true, true)]
+    [InlineData(true, false, false, null, true)]
+    [InlineData(true, false, false, false, false)]
+    [InlineData(false, false, false, false, false)]
+    public void FormerClosingOverridesResolveToOneCombinedChoice(bool legacy, bool? pope, bool? bishop, bool? departed, bool expected)
+    {
+        var options = new RosaryOptions
+        {
+            IncludeClosingIntentions = legacy,
+            IncludeClosingPopeIntention = pope,
+            IncludeClosingBishopIntention = bishop,
+            IncludeClosingDepartedIntention = departed,
+        };
+        Assert.Equal(expected, options.EffectiveClosingIntentions);
+        Assert.Equal(expected, options.EffectiveClosingPopeIntention);
+        Assert.Equal(expected, options.EffectiveClosingBishopIntention);
+        Assert.Equal(expected, options.EffectiveClosingDepartedIntention);
+    }
+
     [Fact]
-    public void ClosingIntentionIdentityTracksEffectiveChoicesAndKeepsLegacyMeaning()
+    public void ClosingIntentionIdentityTracksTheCombinedEffectiveChoice()
     {
         var legacy = new RosaryOptions { IncludeClosingIntentions = true };
         Assert.Equal(PrayerRunSignatures.Rosary(legacy), PrayerRunSignatures.Rosary(legacy with
@@ -19,11 +43,36 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
             IncludeClosingBishopIntention = true,
             IncludeClosingDepartedIntention = true,
         }));
-        Assert.NotEqual(PrayerRunSignatures.Rosary(legacy), PrayerRunSignatures.Rosary(legacy with { IncludeClosingPopeIntention = false }));
-        Assert.NotEqual(PrayerRunSignatures.Rosary(legacy), PrayerRunSignatures.Rosary(legacy with { IncludeClosingBishopIntention = false }));
-        Assert.NotEqual(PrayerRunSignatures.Rosary(legacy), PrayerRunSignatures.Rosary(legacy with { IncludeClosingDepartedIntention = false }));
-        Assert.EndsWith("|closing-v2:1,0,1", PrayerRunSignatures.Rosary(legacy with { IncludeClosingBishopIntention = false }));
+        Assert.Equal(PrayerRunSignatures.Rosary(legacy), PrayerRunSignatures.Rosary(legacy with { IncludeClosingPopeIntention = false }));
+        Assert.Equal(PrayerRunSignatures.Rosary(legacy), PrayerRunSignatures.Rosary(legacy with { IncludeClosingBishopIntention = false }));
+        Assert.Equal(PrayerRunSignatures.Rosary(legacy), PrayerRunSignatures.Rosary(legacy with { IncludeClosingDepartedIntention = false }));
+        Assert.Equal(PrayerRunSignatures.Rosary(legacy), PrayerRunSignatures.Rosary(new RosaryOptions { IncludeClosingBishopIntention = true }));
+        Assert.Equal(PrayerRunSignatures.Rosary(new RosaryOptions()), PrayerRunSignatures.Rosary(legacy with
+        {
+            IncludeClosingPopeIntention = false,
+            IncludeClosingBishopIntention = false,
+            IncludeClosingDepartedIntention = false,
+        }));
+        Assert.EndsWith("|closing-v2:1,1,1", PrayerRunSignatures.Rosary(legacy));
         Assert.DoesNotContain("closing-v2", PrayerRunSignatures.Rosary(new RosaryOptions()));
+    }
+
+    [Theory]
+    [InlineData(false, false)]
+    [InlineData(false, true)]
+    [InlineData(true, false)]
+    [InlineData(true, true)]
+    public void ReorderedOpeningFatimaInvalidatesOnlySessionsThatIncludeIt(bool opening, bool fatima)
+    {
+        var options = new RosaryOptions
+        {
+            IncludeOpeningPrayers = opening,
+            IncludeOpeningFatimaPrayer = fatima,
+            IncludeClosingIntentions = true,
+        };
+        var signature = PrayerRunSignatures.Rosary(options);
+        Assert.Equal(opening && fatima, signature.Contains("|opening-fatima-v2"));
+        Assert.EndsWith(opening && fatima ? "|closing-v2:1,1,1|opening-fatima-v2" : "|closing-v2:1,1,1", signature);
     }
 
     [Fact]
@@ -278,6 +327,41 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.NotEqual(included, omitted);
     }
 
+    [Theory]
+    [InlineData("closingPopeIntention", false)]
+    [InlineData("closingBishopIntention", false)]
+    [InlineData("closingDepartedIntention", false)]
+    [InlineData("closingBishopIntention", true)]
+    public async Task CustomRosaryEditorLoadsFormerSelectionAndCanSaveTheWholeGroupOff(string formerKey, bool enabled)
+    {
+        var original = new Prayer
+        {
+            Kind = PrayerKind.Custom, CustomDevotionId = "rosary", LanguageCode = "en",
+            CustomOptions = new Dictionary<string, string> { [formerKey] = "true", ["unrelated"] = "keep" },
+        };
+        var presets = new MemoryPresetStore(original);
+        var editor = new RemindersOnlyEditorViewModel(presets, new SilentReminders());
+        await editor.LoadAsync(original.Id);
+        var combined = Assert.Single(editor.OptionRows.Where(row => row.Key == "closingIntentions"));
+        Assert.True(combined.IsOn);
+        Assert.DoesNotContain(editor.OptionRows, row => RosaryCustomOptions.LegacyClosingKeys.Contains(row.Key));
+        combined.IsOn = enabled;
+        await editor.SaveCommand.ExecuteAsync(null);
+
+        var saved = Assert.IsType<Prayer>(await presets.GetAsync(original.Id));
+        Assert.Equal(enabled ? "true" : "false", saved.CustomOptions["closingIntentions"]);
+        Assert.Equal("keep", saved.CustomOptions["unrelated"]);
+        Assert.All(RosaryCustomOptions.LegacyClosingKeys, key => Assert.False(saved.CustomOptions.ContainsKey(key)));
+        Assert.Equal("true", original.CustomOptions[formerKey]);
+        Assert.False(original.CustomOptions.ContainsKey("closingIntentions"));
+
+        var engine = new PrayerEngine(new LiturgicalCalendarService());
+        Assert.Equal(engine.BuildSteps(original).Count - (enabled ? 0 : 13), engine.BuildSteps(saved).Count);
+        var reopened = new RemindersOnlyEditorViewModel(presets, new SilentReminders());
+        await reopened.LoadAsync(saved.Id);
+        Assert.Equal(enabled, reopened.OptionRows.Single(row => row.Key == "closingIntentions").IsOn);
+    }
+
     [Fact]
     public void CustomSignatureIncludesTheEffectiveLanguageSelectedForm()
     {
@@ -422,6 +506,14 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
         {
             _prayers.RemoveAll(existing => existing.Id == prayer.Id);
             return Task.CompletedTask;
+        }
+
+        public Task<bool> UpdateIfPresentAsync(Prayer prayer)
+        {
+            var index = _prayers.FindIndex(existing => existing.Id == prayer.Id);
+            if (index < 0) return Task.FromResult(false);
+            _prayers[index] = prayer;
+            return Task.FromResult(true);
         }
     }
 

@@ -116,10 +116,10 @@ class PrayerEngine(
         "fatimaPrayer" to rosary.includeFatimaPrayer.toString(),
         "eternalRest" to rosary.eternalRestForDeceased.name.replaceFirstChar { it.lowercaseChar() },
         "antiphon" to rosary.marianAntiphon.name.replaceFirstChar { it.lowercaseChar() },
-        "closingPopeIntention" to rosary.effectiveClosingPopeIntention.toString(),
-        "closingBishopIntention" to rosary.effectiveClosingBishopIntention.toString(),
-        "closingDepartedIntention" to rosary.effectiveClosingDepartedIntention.toString(),
-        "closingIntentions" to rosary.includeClosingIntentions.toString(),
+        "closingPopeIntention" to rosary.effectiveClosingIntentions.toString(),
+        "closingBishopIntention" to rosary.effectiveClosingIntentions.toString(),
+        "closingDepartedIntention" to rosary.effectiveClosingIntentions.toString(),
+        "closingIntentions" to rosary.effectiveClosingIntentions.toString(),
         "stMichael" to rosary.includeStMichaelPrayer.toString(),
         "finalSignOfCross" to rosary.includeFinalSignOfCross.toString(),
         "imageStyle" to rosary.mysteryImageStyle.name.replaceFirstChar { it.lowercaseChar() },
@@ -232,11 +232,18 @@ class PrayerEngine(
         // own (the Mission's rite opens the Trisagion Syriac), else the first.
         @Suppress("NAME_SHADOWING")
         val variantId = definition.effectiveVariantId(variantId, languageCode)
+        val normalizedOverrides = if (rosaryOptions == null) {
+            RosaryOptions.normalizedCustomOptions(bundleId, optionOverrides)
+        } else optionOverrides
         // Effective option values: the bundle's declared defaults overlaid with the favorite's
         // stored choices. Overrides for keys the bundle no longer declares are ignored, so a
         // stale favorite can't gate on options that stopped existing.
         val optionValues = PrayerPackStore.options(bundleId).associate { option ->
-            option.key to (optionOverrides[option.key] ?: option.defaultValue)
+            val override = if (bundleId == "rosary" && option.key in RosaryOptions.legacyClosingIntentionKeys) {
+                // An older installed Rosary pack can still declare the separate keys.
+                (normalizedOverrides["closingIntentions"]?.toBooleanStrictOrNull() ?: false).toString()
+            } else normalizedOverrides[option.key]
+            option.key to (override ?: option.defaultValue)
         } + mapOf(
             // Calendar facts an entry may gate on beside the user's own choices — the Alleluia
             // that leaves the invitatory during Lent is the first of them. Added after the

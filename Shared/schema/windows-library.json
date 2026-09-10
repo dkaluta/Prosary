@@ -1,0 +1,59 @@
+{
+  "$comment": "Windows desktop workflow and ownership contract; see ../WINDOWS-EXPERIENCE.markdown. Uses the existing shared Prayer shape and SQLite database.",
+  "platform": "windows",
+  "root": "windowsLibrary",
+  "sections": ["library", "today", "gallery", "basic", "search", "community", "settings", "about"],
+  "search": {
+    "placement": "Dedicated Library sidebar destination; View > Search or Ctrl+F activates the library and focuses its query field.",
+    "categories": "Union of manifest tags in local and available community catalogs, plus All Categories and Other for untagged prayers. Arbitrary tags remain discoverable; localized captions do not replace stable tag identity.",
+    "filter": "Selected category AND text query apply to both local and community results. A blank query browses the category. Installed community entries are excluded from the download results.",
+    "navigation": "Local results launch through the owning WindowNavigation into independent prayer windows. Installing a community pack refreshes discovery and Gallery without creating a saved library copy.",
+    "offline": "Local category browsing and search remain available if the remote catalog cannot load."
+  },
+  "library": {
+    "contents": "Saved Prayer records, with searchable list/grid views and selection-targeted commands.",
+    "open": "Ordinary Open, Enter or double-click activates the exact saved UUID's prayer window.",
+    "add": "Gallery Add creates a fresh saved Prayer with a unique display name; the first saved copy of a devotion is its default.",
+    "duplicate": "New UUID and unique name, independent progress, copied options, new disabled reminder IDs, isDefault false.",
+    "rename": "Preserves UUID and uses an update-only write.",
+    "delete": "Existing removal confirmation/service, sibling preservation and final-download cleanup; closes the deleted UUID's prayer window.",
+    "notifications": "Publish shared library changes only after a successful write; stale update-only writes do not recreate deleted records."
+  },
+  "windows": {
+    "library": "One retained MainWindow, recreated by Show Library after closure.",
+    "savedPrayer": "saved:<Prayer UUID>, reuses the existing native PrayerWindow.",
+    "basicPrayer": "basic:<stable prayer ID>, reuses the existing native PrayerWindow.",
+    "unsavedPrayer": "session:<new UUID>, independently launched session.",
+    "navigation": "Each Frame has its own WindowNavigation and owning Window in Router's weak registry.",
+    "close": "Root prayer Back/Finish closes only that window; library and sibling windows remain. Closing a prayer releases audio and auto-advance.",
+    "asyncOwnership": "Dialogs, pickers and continuations retain the initiating window and stop UI work after it closes.",
+    "customProgress": "Saved generic series and bookmarks use desktop:<Prayer UUID>:<bundle ID>; unsaved native sessions substitute their window-local UUID. Detached legacy callers retain bundle identity.",
+    "saveSession": "Adopts the new saved UUID without re-navigation; current checkpoint and series state move from that isolated session, and title/settings/deletion target the saved copy.",
+    "legacyProgress": "Existing bundle-wide custom bookmarks/series remain stored but are not assigned to saved copies. Existing options/language/dayIndex remain; Rosary and Jesus saved UUID checkpoints retain their keys.",
+    "missingUUID": "Never substitute a saved sibling or default."
+  },
+  "menus": {
+    "placement": "Native WinUI MenuBar inside each window, with CommandBars for frequent page actions.",
+    "file": ["importPrayerPacks", "closeWindow"],
+    "view": ["showLibrary", "today", "gallery", "basicPrayers", "search", "community", "fullScreen"],
+    "prayer": ["previousStep", "nextStep", "prayerSettings"],
+    "help": ["settings", "about"],
+    "shortcuts": {"importPrayerPacks":"Ctrl+O", "closeWindow":"Ctrl+W", "showLibrary":"Ctrl+L", "search":"Ctrl+F", "fullScreen":"F11", "previousStep":"Ctrl+Left", "nextStep":"Ctrl+Right", "rename":"F2", "delete":"Delete", "open":"Enter"},
+    "availability": "Prayer actions resolve their own frame and current flow state.",
+    "redundantWindowAction": false
+  },
+  "today": {
+    "placement": "Dedicated Library destination with the date picker above the content.",
+    "citations": "Full localized book/chapter/verse citations, with no shorthand toggle.",
+    "settings": ["feastCalendarId", "easternPaschaStyle", "showTodayFeast", "showTodayIntention", "showTodayTorahPortion", "readingsEditionId"],
+    "clock": "Advance at local midnight when following today; retain a deliberately browsed date.",
+    "fullScriptureText": {
+      "presentation": "Each full daily/Torah citation expands independently to selectable numbered Bible verses, with edition name, attribution and source link. Edition text is identified as a Bible passage and may differ from local Mass wording.",
+      "loading": "The small readings-editions.json manifest populates the picker; readings-texts.json loads only on passage expansion.",
+      "lookup": "Exact daily|<raw ReadingCitation.Full> or torah|<raw ReadingCitation.Full> plus edition ID. No runtime reference parser or inferred versification.",
+      "selection": "readingsEditionId empty matches the interface language with iw/he and fil/tl normalization. Explicit choices use only that metadata ID. No matching edition, missing appointment, or invalid verse rows show unavailable without changing the citation or falling back to another edition.",
+      "state": "Changing date, language or edition refreshes the appropriate rows. Typeface changes refresh displayed Scripture without replacing source text; Arabic/Hebrew passages use RTL."
+    }
+  },
+  "sources": ["MainWindow.xaml.cs", "PrayerWindow.xaml.cs", "Navigation/Router.cs", "Services/DesktopWindowManager.cs", "Services/DesktopWindowChrome.cs", "Services/DesktopPrayerIdentity.cs", "Models/DesktopPrayerLibrary.cs", "Persistence/DesktopPresetStore.cs", "ViewModels/DesktopLibraryViewModel.cs", "Views/DesktopLibraryPage.xaml", "Views/DesktopGalleryPage.xaml", "Views/DesktopTodayPage.xaml", "Views/SearchPage.xaml", "ViewModels/SearchViewModel.cs", "Services/SearchCategoryFilter.cs", "ViewModels/DesktopReadingsViewModel.cs", "Services/ReadingsTextStore.cs"]
+}

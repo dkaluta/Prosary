@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Prosary.Views.DesktopLibraryPage"
+    x:Name="Root"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:models="using:Prosary.Models">
+    <Page.Resources>
+        <DataTemplate x:Key="PrayerListTemplate" x:DataType="models:DesktopPrayerItem">
+            <Grid Padding="8" ColumnSpacing="14" Background="Transparent"
+                  ContextRequested="OnItemContextRequested" DoubleTapped="OnItemDoubleTapped">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="64" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                <Border CornerRadius="8" Width="64" Height="64" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
+                    <Image Source="{x:Bind ImageUri}" Stretch="UniformToFill" ImageFailed="OnArtworkFailed"
+                           AutomationProperties.AccessibilityView="Raw" />
+                </Border>
+                <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+                    <TextBlock Text="{x:Bind Title}" FontWeight="SemiBold" TextWrapping="Wrap" MaxLines="2"
+                               TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind Title}" />
+                    <TextBlock Text="{x:Bind Subtitle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                               TextWrapping="Wrap" MaxLines="2" TextTrimming="CharacterEllipsis" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="PrayerGridTemplate" x:DataType="models:DesktopPrayerItem">
+            <Grid Width="204" Padding="8" RowSpacing="10" Background="Transparent"
+                  ContextRequested="OnItemContextRequested" DoubleTapped="OnItemDoubleTapped">
+                <Grid.RowDefinitions><RowDefinition Height="136" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                <Border CornerRadius="8" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
+                    <Image Source="{x:Bind ImageUri}" Stretch="UniformToFill" ImageFailed="OnArtworkFailed"
+                           AutomationProperties.AccessibilityView="Raw" />
+                </Border>
+                <StackPanel Grid.Row="1" Spacing="4">
+                    <TextBlock Text="{x:Bind Title}" FontWeight="SemiBold" TextWrapping="Wrap" MaxLines="2"
+                               TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind Title}" />
+                    <TextBlock Text="{x:Bind Subtitle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                               FontSize="12" TextWrapping="Wrap" MaxLines="2" TextTrimming="CharacterEllipsis" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <Style x:Key="LibraryListItemStyle" TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+    </Page.Resources>
+    <Grid Padding="20,16" RowSpacing="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" /><RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" /><RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="{x:Bind ViewModel.LibraryTitle}" Style="{ThemeResource TitleTextBlockStyle}"
+                   AutomationProperties.HeadingLevel="Level1" />
+        <CommandBar Grid.Row="1" DefaultLabelPosition="Right" HorizontalAlignment="Stretch">
+            <AppBarButton x:Name="OpenButton" Label="{x:Bind ViewModel.OpenLabel}" Icon="OpenFile"
+                          Command="{x:Bind ViewModel.OpenCommand}" CommandParameter="{x:Bind ViewModel.SelectedItem, Mode=OneWay}" />
+            <AppBarButton x:Name="SettingsButton" Label="{x:Bind ViewModel.SettingsLabel}" Icon="Setting"
+                          Command="{x:Bind ViewModel.EditCommand}" CommandParameter="{x:Bind ViewModel.SelectedItem, Mode=OneWay}" />
+            <AppBarButton x:Name="GalleryButton" Label="{x:Bind ViewModel.GalleryTitle}" Icon="Add" Click="OnShowGallery" />
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="DuplicateButton" Label="{x:Bind ViewModel.DuplicateLabel}" Icon="Copy"
+                              Command="{x:Bind ViewModel.DuplicateCommand}" CommandParameter="{x:Bind ViewModel.SelectedItem, Mode=OneWay}" />
+                <AppBarButton x:Name="RenameButton" Label="{x:Bind ViewModel.RenameLabel}" Icon="Rename" Click="OnRename" />
+                <AppBarButton x:Name="DeleteButton" Label="{x:Bind ViewModel.DeleteLabel}" Icon="Delete"
+                              Command="{x:Bind ViewModel.DeleteCommand}" CommandParameter="{x:Bind ViewModel.SelectedItem, Mode=OneWay}" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+        <Grid Grid.Row="2" ColumnSpacing="12">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+            <TextBox x:Name="SearchBox" PlaceholderText="{x:Bind ViewModel.SearchLibraryLabel}"
+                     AutomationProperties.Name="{x:Bind ViewModel.SearchLibraryLabel}"
+                     Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4">
+                <ToggleButton x:Name="ListModeButton" IsChecked="True" Click="OnListMode">
+                    <FontIcon Glyph="&#xE8FD;" />
+                </ToggleButton>
+                <ToggleButton x:Name="GridModeButton" Click="OnGridMode">
+                    <FontIcon Glyph="&#xE80A;" />
+                </ToggleButton>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="3">
+            <ListView x:Name="PrayerList" ItemsSource="{x:Bind ViewModel.Items}" SelectionMode="Single"
+                      SelectedItem="{x:Bind ViewModel.SelectedItem, Mode=TwoWay}" IsItemClickEnabled="False"
+                      ItemTemplate="{StaticResource PrayerListTemplate}" ItemContainerStyle="{StaticResource LibraryListItemStyle}"
+                      AutomationProperties.Name="{x:Bind ViewModel.LibraryTitle}" KeyDown="OnItemsKeyDown" ContextRequested="OnCollectionContextRequested" />
+            <GridView x:Name="PrayerGrid" ItemsSource="{x:Bind ViewModel.Items}" SelectionMode="Single" Visibility="Collapsed"
+                      SelectedItem="{x:Bind ViewModel.SelectedItem, Mode=TwoWay}" IsItemClickEnabled="False"
+                      ItemTemplate="{StaticResource PrayerGridTemplate}"
+                      AutomationProperties.Name="{x:Bind ViewModel.LibraryTitle}" KeyDown="OnItemsKeyDown" ContextRequested="OnCollectionContextRequested" />
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="460" Spacing="12"
+                        Visibility="{x:Bind ViewModel.IsEmpty, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                <TextBlock Text="{x:Bind ViewModel.EmptyTitle}" Style="{ThemeResource SubtitleTextBlockStyle}" TextAlignment="Center" TextWrapping="Wrap" />
+                <TextBlock Text="{x:Bind ViewModel.EmptyDetail}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextAlignment="Center" TextWrapping="Wrap" />
+                <Button Content="{x:Bind ViewModel.GalleryTitle}" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Center" Click="OnShowGallery" />
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8"
+                        Visibility="{x:Bind ViewModel.HasNoMatches, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                <TextBlock Text="{x:Bind ViewModel.NoMatchesTitle}" Style="{ThemeResource SubtitleTextBlockStyle}" TextWrapping="Wrap" />
+                <TextBlock Text="{x:Bind ViewModel.NoMatchesDetail}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+            </StackPanel>
+            <ProgressBar IsIndeterminate="True" VerticalAlignment="Top"
+                         Visibility="{x:Bind ViewModel.IsBusy, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+        </Grid>
+    </Grid>
+</Page>

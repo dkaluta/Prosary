@@ -3,7 +3,7 @@
 //  ProsaryUITests
 //
 //  The Pray tab lists saved sessions, so a devotion nobody has starred is reached through
-//  Categories — which is the point of the merge. A devotion with no favorite prays in the
+//  Search. A devotion with no favorite prays in the
 //  app's default language, which is Latin — and since
 //  0.7.2 the step headings are translated too, so this walks the Angelus by its Latin headings
 //  ("Angelus Domini", not "The Annunciation"). Asserting English is what made these tests fail
@@ -11,6 +11,9 @@
 //
 
 import XCTest
+#if os(iOS)
+import UIKit
+#endif
 
 final class AngelusFlowUITests: XCTestCase {
   override func setUpWithError() throws {
@@ -23,11 +26,15 @@ final class AngelusFlowUITests: XCTestCase {
     continueAfterFailure = false
   }
 
-  /// Categories is where every devotion lives, starred or not.
+  /// Search includes every local devotion, starred or not.
   private func openAngelus(_ app: XCUIApplication) {
-    app.tabBars.buttons["Categories"].tap()
-    // A devotion listed under two tags appears twice, so the query has to take the first.
-    let row = app.buttons["category.angelus"].firstMatch
+    app.tabBars.buttons["Search"].tap()
+    let searchField = app.searchFields.firstMatch
+    XCTAssertTrue(searchField.waitForExistence(timeout: 5))
+    searchField.tap()
+    searchField.typeText("Angelus")
+    // The unfiltered local list includes this devotion without a saved copy.
+    let row = app.buttons["search.local.angelus"].firstMatch
     XCTAssertTrue(row.waitForExistence(timeout: 10))
     row.tap()
   }
@@ -57,7 +64,7 @@ final class AngelusFlowUITests: XCTestCase {
     nextButton.tap()
 
     // Finishing returns to the list it was started from.
-    XCTAssertTrue(app.buttons["category.angelus"].firstMatch.waitForExistence(timeout: 5))
+    XCTAssertTrue(app.buttons["search.local.angelus"].firstMatch.waitForExistence(timeout: 5))
   }
 
   @MainActor
@@ -87,4 +94,29 @@ final class AngelusFlowUITests: XCTestCase {
     openAngelus(app)
     XCTAssertTrue(app.staticTexts["The Annunciation"].waitForExistence(timeout: 5))
   }
+
+  #if os(iOS)
+  @MainActor
+  func testActivePrayerKeepsItsStepAndReachableControlsThroughRotation() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-defaultLanguageCode", "en"]
+    app.launch()
+    openAngelus(app)
+    let progress = app.staticTexts["prayerProgressText"]
+    XCTAssertTrue(progress.waitForExistence(timeout: 5))
+    let next = app.buttons["prayerFlowNextButton"]
+    next.tap()
+    let currentProgress = progress.label
+
+    for orientation in [UIDeviceOrientation.landscapeLeft, .landscapeRight, .portrait] {
+      XCUIDevice.shared.orientation = orientation
+      XCTAssertTrue(next.waitForExistence(timeout: 5))
+      XCTAssertEqual(progress.label, currentProgress)
+      XCTAssertTrue(next.isHittable)
+      XCTAssertTrue(app.buttons["prayerFlowBackButton"].isHittable)
+      XCTAssertTrue(app.buttons["autoAdvanceMenu"].isHittable)
+      XCTAssertFalse(app.alerts.firstMatch.exists, "A layout change must not reopen the continuation prompt")
+    }
+  }
+  #endif
 }

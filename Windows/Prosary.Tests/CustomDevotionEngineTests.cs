@@ -30,6 +30,51 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
             bundleId, languageCode, isEasterSeason, seasonalAntiphon, variantId, customOptions,
             rosaryOptions: null, todaysGroup: MysteryGroup.Joyful, dayIndex: 0, isLent: isLent);
 
+    [Theory]
+    [InlineData(false, false, false)]
+    [InlineData(true, false, false)]
+    [InlineData(false, true, false)]
+    [InlineData(false, false, true)]
+    [InlineData(true, true, false)]
+    [InlineData(true, false, true)]
+    [InlineData(false, true, true)]
+    [InlineData(true, true, true)]
+    public void CustomRosarySavedGroupOptionsPrayTheWholeClosingGroup(bool pope, bool bishop, bool departed)
+    {
+        var without = BuildSteps("rosary", "en");
+        var options = new Dictionary<string, string>
+        {
+            ["closingPopeIntention"] = pope ? "true" : "false",
+            ["closingBishopIntention"] = bishop ? "true" : "false",
+            ["closingDepartedIntention"] = departed ? "true" : "false",
+        };
+        var steps = BuildSteps("rosary", "en", customOptions: options);
+        var enabled = pope || bishop || departed;
+
+        Assert.Equal(without.Count + (enabled ? 13 : 0), steps.Count);
+        foreach (var key in new[] { "closingPopeIntentionTitle", "closingBishopIntentionTitle", "closingDepartedIntentionTitle" })
+        {
+            var title = PrayerPackStore.ResolveBodyText("rosary", "en", key);
+            Assert.Equal(enabled ? 1 : 0, steps.Count(step => step.Title == title));
+        }
+        Assert.False(options.ContainsKey("closingIntentions"));
+    }
+
+    [Fact]
+    public void CustomRosaryOpeningFatimaStillFollowsGloryBeWhenDecadeFatimaIsOff()
+    {
+        var steps = BuildSteps("rosary", "en", customOptions: new Dictionary<string, string>
+        {
+            ["openingFatimaPrayer"] = "true", ["fatimaPrayer"] = "false",
+        }).ToList();
+        var fatima = Assert.Single(steps.Where(step => step.Title == "Fatima Prayer"));
+        var index = steps.IndexOf(fatima);
+        Assert.True(index > 0);
+        Assert.Equal("Glory Be", steps[index - 1].Title);
+        Assert.Equal(0, steps[index + 1].DecadeIndex);
+        Assert.True(steps[index + 1].IsScripture);
+    }
+
     // A repeated step's counter is part of the heading: praying in Hebrew, the Divine Mercy
     // decade reads "(1 מתוך 10)" rather than splicing an English word into right-to-left text.
     // The decade ordinal is part of that heading too: "1st Sorrow" in English, "מכאוב 1" in

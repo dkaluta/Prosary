@@ -54,6 +54,13 @@ import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.ui.home.OrderEditor
 import com.dkaluta.prosary.ui.presets.OptionPickerField
 import com.dkaluta.prosary.ui.shared.installErrorMessage
+import com.dkaluta.prosary.ui.shared.PrayerRemovalDialog
+import com.dkaluta.prosary.ui.shared.PrayerRemovalRequest
+import com.dkaluta.prosary.ui.shared.prayerRemovalService
+import com.dkaluta.prosary.services.LocalAppServices
+import com.dkaluta.prosary.models.PrayerKind
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
 import java.io.File
 
 /** App-wide preferences (v0.7: populated beyond the single language picker — auto-advance,
@@ -64,6 +71,8 @@ import java.io.File
 @Composable
 fun SettingsScreen(onBack: () -> Unit) {
     val context = LocalContext.current
+    val services = LocalAppServices.current
+    val scope = rememberCoroutineScope()
     val uriHandler = LocalUriHandler.current
 
     var defaultLanguageCode by remember { mutableStateOf(AppSettings.defaultLanguageCode) }
@@ -85,6 +94,8 @@ fun SettingsScreen(onBack: () -> Unit) {
     var installedGeneration by remember { mutableIntStateOf(0) }
     val installedBundleIds = remember(installedGeneration) { PrayerPackStore.installedBundleIds() }
     var importError by remember { mutableStateOf<String?>(null) }
+    var removalRequest by remember { mutableStateOf<PrayerRemovalRequest?>(null) }
+    var removingDownloads by remember { mutableStateOf(false) }
 
     var exportBundleId by remember { mutableStateOf<String?>(null) }
     val exportLauncher = rememberLauncherForActivityResult(
@@ -474,13 +485,11 @@ fun SettingsScreen(onBack: () -> Unit) {
                         )
                     }
                     IconButton(onClick = {
-                        PrayerPackStore.removeInstalledPack(bundleId)
-                        installedGeneration++
-                        installedCount = PrayerPackStore.installedBundleIds().size
+                        removalRequest = PrayerRemovalRequest.Download(bundleId)
                     }) {
                         Icon(
                             Icons.Filled.Delete,
-                            contentDescription = stringResource(R.string.favorites_remove_installed),
+                            contentDescription = stringResource(R.string.download_remove_action),
                         )
                     }
                 }
@@ -513,7 +522,7 @@ fun SettingsScreen(onBack: () -> Unit) {
 
             OutlinedButton(
                 onClick = { confirmsRemoveAll = true },
-                enabled = installedCount > 0,
+                enabled = installedCount > 0 && !removingDownloads,
                 colors = androidx.compose.material3.ButtonDefaults.outlinedButtonColors(
                     contentColor = MaterialTheme.colorScheme.error,
                 ),
@@ -548,9 +557,19 @@ fun SettingsScreen(onBack: () -> Unit) {
             confirmButton = {
                 TextButton(
                     onClick = {
-                        SettingsMaintenance.removeAllInstalledPacks()
-                        installedCount = PrayerPackStore.installedBundleIds().size
                         confirmsRemoveAll = false
+                        removingDownloads = true
+                        scope.launch {
+                            runCatching {
+                                val used = services.presetStore.all().filter { it.kind == PrayerKind.Custom }.mapNotNull { it.customDevotionId }.toSet()
+                                val removal = prayerRemovalService(context, services)
+                                for (id in PrayerPackStore.installedBundleIds().filterNot { it in used }) removal.removeDownload(id)
+                            }.onFailure { importError = context.getString(R.string.prayer_removal_error) }
+                            installedGeneration++
+                            installedCount = PrayerPackStore.installedBundleIds().size
+                            audioCacheBytes = SettingsMaintenance.audioCacheSize(context)
+                            removingDownloads = false
+                        }
                     },
                 ) { Text(stringResource(R.string.settings_remove_all_confirm), color = MaterialTheme.colorScheme.error) }
             },
@@ -558,6 +577,13 @@ fun SettingsScreen(onBack: () -> Unit) {
                 TextButton(onClick = { confirmsRemoveAll = false }) { Text(stringResource(R.string.common_cancel)) }
             },
         )
+    }
+    removalRequest?.let { request ->
+        PrayerRemovalDialog(request, onDismiss = { removalRequest = null }, onRemoved = {
+            installedGeneration++
+            installedCount = PrayerPackStore.installedBundleIds().size
+            audioCacheBytes = SettingsMaintenance.audioCacheSize(context)
+        })
     }
 
     if (showsLanguageFallbackOrder) {
@@ -596,12 +622,6 @@ private fun SectionHeader(title: String) {
 
 /** The downloads-management actions Settings exposes (v0.7) — mirrors iOS's SettingsMaintenance. */
 object SettingsMaintenance {
-    fun removeAllInstalledPacks() {
-        for (bundleId in PrayerPackStore.installedBundleIds()) {
-            PrayerPackStore.removeInstalledPack(bundleId)
-        }
-    }
-
     private fun audioCacheRoot(context: Context) = File(context.cacheDir, "PrayerAudio")
 
     fun audioCacheSize(context: Context): Long {

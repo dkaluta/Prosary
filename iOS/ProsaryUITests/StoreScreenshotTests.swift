@@ -47,13 +47,17 @@ final class StoreScreenshotTests: XCTestCase {
     app.navigationBars.buttons.element(boundBy: 0).tap() // back to the presets
     app.navigationBars.buttons.element(boundBy: 0).tap() // back to Pray
 
-    // 3 — Stations of the Cross flow, opened from Categories (it has no saved session).
-    app.tabBars.buttons["Categories"].tap()
+    // 3 — Stations of the Cross flow, opened from Search (it has no saved session).
+    app.tabBars.buttons["Search"].tap()
+    let searchField = app.searchFields.firstMatch
+    XCTAssertTrue(searchField.waitForExistence(timeout: 5))
+    searchField.tap()
+    searchField.typeText("Stations")
     // A List keeps only visible rows in the accessibility tree, and the Stations sit below the
-    // fold under their tag, so scroll until the row is actually reachable — existing is not
+    // fold in the local list, so scroll until the row is actually reachable — existing is not
     // enough, since a row half-under the tab bar swallows the tap (which is how adding a
     // devotion above it broke this).
-    let stations = app.buttons["category.stationsOfTheCross"].firstMatch
+    let stations = app.buttons["search.local.stationsOfTheCross"].firstMatch
     for _ in 0..<8 where !stations.isHittable {
       app.swipeUp(velocity: .slow)
     }
@@ -75,9 +79,9 @@ final class StoreScreenshotTests: XCTestCase {
     _ = app.staticTexts["Kyrie"].waitForExistence(timeout: 15)
     snap("04-browse")
 
-    // 5 — Categories.
-    app.tabBars.buttons["Categories"].tap()
-    sleep(1)
-    snap("05-categories")
+    // 5 — Readings.
+    app.tabBars.buttons["Readings"].tap()
+    XCTAssertTrue(app.buttons["readings.chooseDate"].waitForExistence(timeout: 5))
+    snap("05-readings")
   }
 }

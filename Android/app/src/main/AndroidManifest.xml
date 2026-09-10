@@ -28,6 +28,37 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".widgets.SavedPrayerWidgetConfigurationActivity"
+            android:exported="true"
+            android:label="@string/widget_choose_prayer">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".widgets.TodayWidgetProvider" android:exported="false"
+            android:label="@string/widget_today_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/today_widget_info" />
+        </receiver>
+
+        <receiver android:name=".widgets.SavedPrayerWidgetProvider" android:exported="false"
+            android:label="@string/widget_saved_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/saved_prayer_widget_info" />
+        </receiver>
+
         <receiver
             android:name=".reminders.ReminderBroadcastReceiver"
             android:exported="false" />

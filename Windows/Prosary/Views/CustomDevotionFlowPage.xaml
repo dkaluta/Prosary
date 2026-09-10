@@ -93,13 +93,12 @@
                     <MenuFlyout x:Name="AutoAdvanceFlyout" />
                 </Button.Flyout>
             </Button>
-            <Button Grid.Column="6" Command="{x:Bind ViewModel.ToggleFavoriteCommand, Mode=OneWay}" Background="Transparent" Padding="8">
-                <Grid>
-                    <FontIcon Glyph="&#xE735;" Foreground="{StaticResource BrandPrimaryBrush}"
-                              Visibility="{x:Bind ViewModel.IsPinned, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                    <FontIcon Glyph="&#xE734;"
-                              Visibility="{x:Bind ViewModel.IsPinned, Mode=OneWay, Converter={StaticResource InverseBoolToVisibility}}" />
-                </Grid>
+            <Button Grid.Column="6" Command="{x:Bind ViewModel.AddToLibraryCommand, Mode=OneWay}"
+                    Visibility="{x:Bind ViewModel.CanAddToLibrary, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                    AutomationProperties.Name="{x:Bind ViewModel.AddToLibraryText}"
+                    ToolTipService.ToolTip="{x:Bind ViewModel.AddToLibraryText}"
+                    Background="Transparent" Padding="8">
+                <FontIcon Glyph="&#xE710;" />
             </Button>
         </Grid>
 
@@ -142,140 +141,142 @@
             </InfoBar>
         </StackPanel>
 
-        <Grid x:Name="NarrowLayout" Grid.Row="3" RowSpacing="16">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid x:Name="FlowContent" Grid.Row="3" SizeChanged="FlowContent_SizeChanged">
+            <Grid x:Name="NarrowLayout" RowSpacing="16">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="0" Spacing="6"
-                        Visibility="{x:Bind ViewModel.ShowsBeadTrack, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                <ItemsControl ItemsSource="{x:Bind ViewModel.TopBeadRows, Mode=OneWay}" ItemsPanel="{StaticResource VerticalBeadPanelTemplate}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <ItemsControl ItemsSource="{Binding}" ItemTemplate="{StaticResource BeadTemplate}"
-                                          ItemsPanel="{StaticResource HorizontalBeadPanelTemplate}" />
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-                <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeads, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
-                              ItemsPanel="{StaticResource HorizontalBeadPanelTemplate}"
-                              Visibility="{x:Bind ViewModel.ShowBottomBeads, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-            </StackPanel>
-
-            <ScrollViewer Grid.Row="1" FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
-                <StackPanel Spacing="16">
-                    <Border Height="260" MaxWidth="260" CornerRadius="16" HorizontalAlignment="Center">
-                        <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill"
-                               AutomationProperties.AccessibilityView="Raw" />
-                    </Border>
-
-                    <StackPanel Spacing="2">
-                        <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
-                                   Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                                   Style="{StaticResource MutedSubtitleTextStyle}" />
-                        <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
-                    </StackPanel>
-
-                    <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Acclamation, Mode=OneWay}"
-                               Visibility="{x:Bind ViewModel.HasAcclamation, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-           FontFamily="{x:Bind ViewModel.AcclamationFontFamily, Mode=OneWay}"
-                               FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
-                               TextWrapping="Wrap" Margin="0,0,0,12" />
-                    <!-- v0.7 reading aid: swap the body for its transliteration. -->
-                    <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"
-                            Visibility="{x:Bind ViewModel.HasTransliteration, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                            Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
-                            x:Uid="FlowTransliterationButton" ToolTipService.ToolTip="Show transliteration">
-                        <FontIcon Glyph="&#xE8C1;" FontSize="14" />
-                    </Button>
-                    <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
-                               FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
-                               FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
-                               TextWrapping="Wrap" TextAlignment="Center" IsTextSelectionEnabled="True" />
-                </StackPanel>
-            </ScrollViewer>
-        </Grid>
-
-        <Grid x:Name="WideLayout" Grid.Row="3" ColumnSpacing="24" Visibility="Collapsed" SizeChanged="WideLayout_SizeChanged">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" MinWidth="300" />
-            </Grid.ColumnDefinitions>
-
-            <Border Grid.Column="0" Width="320" Height="320" CornerRadius="16" VerticalAlignment="Center">
-                <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill"
-                       AutomationProperties.AccessibilityView="Raw" />
-            </Border>
-
-            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6"
-                        VerticalAlignment="Center" HorizontalAlignment="Center"
-                        Visibility="{x:Bind ViewModel.ShowsBeadTrack, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                <StackPanel Orientation="Vertical" Spacing="6" HorizontalAlignment="Center">
-                    <ContentControl Content="{x:Bind ViewModel.OpeningCross, Mode=OneWay}" ContentTemplate="{StaticResource BeadTemplate}"
-                                     Visibility="{x:Bind ViewModel.OpeningCross, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
-
-                    <ItemsControl ItemsSource="{x:Bind ViewModel.GroupColumns, Mode=OneWay}" ItemsPanel="{StaticResource HorizontalBeadPanelTemplate}">
+                <StackPanel Grid.Row="0" Spacing="6"
+                            Visibility="{x:Bind ViewModel.ShowsBeadTrack, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                    <ItemsControl ItemsSource="{x:Bind ViewModel.TopBeadRows, Mode=OneWay}" ItemsPanel="{StaticResource VerticalBeadPanelTemplate}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <ItemsControl ItemsSource="{Binding Beads}" ItemTemplate="{StaticResource BeadTemplate}"
-                                              ItemsPanel="{StaticResource VerticalBeadPanelTemplate}" />
+                                <ItemsControl ItemsSource="{Binding}" ItemTemplate="{StaticResource BeadTemplate}"
+                                              ItemsPanel="{StaticResource HorizontalBeadPanelTemplate}" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-
-                    <ContentControl Content="{x:Bind ViewModel.AntiphonBead, Mode=OneWay}" ContentTemplate="{StaticResource BeadTemplate}"
-                                     Visibility="{x:Bind ViewModel.AntiphonBead, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
-                    <ContentControl Content="{x:Bind ViewModel.ClosingCross, Mode=OneWay}" ContentTemplate="{StaticResource BeadTemplate}"
-                                     Visibility="{x:Bind ViewModel.ClosingCross, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center"
-                            Visibility="{x:Bind ViewModel.ShowBottomBeads, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                    <Rectangle Width="1" Fill="{ThemeResource TextFillColorSecondaryBrush}" Margin="4,0" VerticalAlignment="Stretch" />
-
                     <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeads, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
-                                  ItemsPanel="{StaticResource VerticalBeadPanelTemplate}"
-                                  Visibility="{x:Bind ViewModel.HasRoomForSingleMinorColumn, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                                  ItemsPanel="{StaticResource HorizontalBeadPanelTemplate}"
+                                  Visibility="{x:Bind ViewModel.ShowBottomBeads, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Spacing="6"
-                                Visibility="{x:Bind ViewModel.HasRoomForSingleMinorColumn, Mode=OneWay, Converter={StaticResource InverseBoolToVisibility}}">
-                        <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeadsColumn1, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
-                                      ItemsPanel="{StaticResource VerticalBeadPanelTemplate}" />
-                        <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeadsColumn2, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
-                                      ItemsPanel="{StaticResource VerticalBeadPanelTemplate}" />
+                <ScrollViewer x:Name="NarrowReader" Grid.Row="1" FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
+                    <StackPanel Spacing="16">
+                        <Border Height="260" MaxWidth="260" CornerRadius="16" HorizontalAlignment="Center">
+                            <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill"
+                                   AutomationProperties.AccessibilityView="Raw" />
+                        </Border>
+
+                        <StackPanel Spacing="2">
+                            <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
+                                       Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                       Style="{StaticResource MutedSubtitleTextStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
+                        </StackPanel>
+
+                        <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Acclamation, Mode=OneWay}"
+                                   Visibility="{x:Bind ViewModel.HasAcclamation, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+               FontFamily="{x:Bind ViewModel.AcclamationFontFamily, Mode=OneWay}"
+                                   FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
+                                   TextWrapping="Wrap" Margin="0,0,0,12" />
+                        <!-- v0.7 reading aid: swap the body for its transliteration. -->
+                        <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"
+                                Visibility="{x:Bind ViewModel.HasTransliteration, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
+                                x:Uid="FlowTransliterationButton" ToolTipService.ToolTip="Show transliteration">
+                            <FontIcon Glyph="&#xE8C1;" FontSize="14" />
+                        </Button>
+                        <TextBlock x:Name="NarrowBody" controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
+                                   FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
+                                   FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
+                                   TextWrapping="Wrap" TextAlignment="Center" IsTextSelectionEnabled="True" />
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+
+            <Grid x:Name="WideLayout" ColumnSpacing="24" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" MinWidth="300" />
+                </Grid.ColumnDefinitions>
+
+                <Border x:Name="WideArtwork" Grid.Column="0" Width="320" Height="320" CornerRadius="16" VerticalAlignment="Center">
+                    <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill"
+                           AutomationProperties.AccessibilityView="Raw" />
+                </Border>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6"
+                            VerticalAlignment="Center" HorizontalAlignment="Center"
+                            Visibility="{x:Bind ViewModel.ShowsBeadTrack, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                    <StackPanel Orientation="Vertical" Spacing="6" HorizontalAlignment="Center">
+                        <ContentControl Content="{x:Bind ViewModel.OpeningCross, Mode=OneWay}" ContentTemplate="{StaticResource BeadTemplate}"
+                                         Visibility="{x:Bind ViewModel.OpeningCross, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
+
+                        <ItemsControl ItemsSource="{x:Bind ViewModel.GroupColumns, Mode=OneWay}" ItemsPanel="{StaticResource HorizontalBeadPanelTemplate}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding Beads}" ItemTemplate="{StaticResource BeadTemplate}"
+                                                  ItemsPanel="{StaticResource VerticalBeadPanelTemplate}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <ContentControl Content="{x:Bind ViewModel.AntiphonBead, Mode=OneWay}" ContentTemplate="{StaticResource BeadTemplate}"
+                                         Visibility="{x:Bind ViewModel.AntiphonBead, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
+                        <ContentControl Content="{x:Bind ViewModel.ClosingCross, Mode=OneWay}" ContentTemplate="{StaticResource BeadTemplate}"
+                                         Visibility="{x:Bind ViewModel.ClosingCross, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center"
+                                Visibility="{x:Bind ViewModel.ShowBottomBeads, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                        <Rectangle Width="1" Fill="{ThemeResource TextFillColorSecondaryBrush}" Margin="4,0" VerticalAlignment="Stretch" />
+
+                        <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeads, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
+                                      ItemsPanel="{StaticResource VerticalBeadPanelTemplate}"
+                                      Visibility="{x:Bind ViewModel.HasRoomForSingleMinorColumn, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+
+                        <StackPanel Orientation="Horizontal" Spacing="6"
+                                    Visibility="{x:Bind ViewModel.HasRoomForSingleMinorColumn, Mode=OneWay, Converter={StaticResource InverseBoolToVisibility}}">
+                            <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeadsColumn1, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
+                                          ItemsPanel="{StaticResource VerticalBeadPanelTemplate}" />
+                            <ItemsControl ItemsSource="{x:Bind ViewModel.BottomBeadsColumn2, Mode=OneWay}" ItemTemplate="{StaticResource BeadTemplate}"
+                                          ItemsPanel="{StaticResource VerticalBeadPanelTemplate}" />
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
-            </StackPanel>
 
-            <ScrollViewer Grid.Column="2" FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
-                <StackPanel Spacing="16" VerticalAlignment="Center">
-                    <StackPanel Spacing="2">
-                        <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
-                                   Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                                   Style="{StaticResource MutedSubtitleTextStyle}" />
-                        <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
+                <ScrollViewer x:Name="WideReader" Grid.Column="2" FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
+                    <StackPanel Spacing="16" VerticalAlignment="Center">
+                        <StackPanel Spacing="2">
+                            <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
+                                       Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                       Style="{StaticResource MutedSubtitleTextStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
+                        </StackPanel>
+
+                        <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Acclamation, Mode=OneWay}"
+                                   Visibility="{x:Bind ViewModel.HasAcclamation, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+               FontFamily="{x:Bind ViewModel.AcclamationFontFamily, Mode=OneWay}"
+                                   FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
+                                   TextWrapping="Wrap" Margin="0,0,0,12" />
+                        <!-- v0.7 reading aid: swap the body for its transliteration. -->
+                        <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"
+                                Visibility="{x:Bind ViewModel.HasTransliteration, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
+                                x:Uid="FlowTransliterationButton" ToolTipService.ToolTip="Show transliteration">
+                            <FontIcon Glyph="&#xE8C1;" FontSize="14" />
+                        </Button>
+                        <TextBlock x:Name="WideBody" controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
+                                   FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
+                                   FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
+                                   TextWrapping="Wrap" TextAlignment="Center" IsTextSelectionEnabled="True" />
                     </StackPanel>
-
-                    <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Acclamation, Mode=OneWay}"
-                               Visibility="{x:Bind ViewModel.HasAcclamation, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-           FontFamily="{x:Bind ViewModel.AcclamationFontFamily, Mode=OneWay}"
-                               FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
-                               TextWrapping="Wrap" Margin="0,0,0,12" />
-                    <!-- v0.7 reading aid: swap the body for its transliteration. -->
-                    <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"
-                            Visibility="{x:Bind ViewModel.HasTransliteration, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                            Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
-                            x:Uid="FlowTransliterationButton" ToolTipService.ToolTip="Show transliteration">
-                        <FontIcon Glyph="&#xE8C1;" FontSize="14" />
-                    </Button>
-                    <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
-                               FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
-                               FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
-                               TextWrapping="Wrap" TextAlignment="Center" IsTextSelectionEnabled="True" />
-                </StackPanel>
-            </ScrollViewer>
+                </ScrollViewer>
+            </Grid>
         </Grid>
 
         <!-- The audio transport strip — shown only when the session's devotion+language(+variant)

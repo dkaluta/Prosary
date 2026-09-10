@@ -1,0 +1,159 @@
+using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
+using Prosary.Localization;
+using Prosary.Models;
+using Prosary.Services;
+
+namespace Prosary.ViewModels;
+
+public sealed record ReadingEditionChoice(string Id, string Label);
+
+/// <summary>Each full citation keeps an independent, lazy Bible-text expansion.</summary>
+public partial class ReadingPassageViewModel : ObservableObject
+{
+    private readonly ReadingsTextStore _store;
+    private readonly ScriptureEdition? _edition;
+    private readonly string _scope;
+    private readonly string _rawCitation;
+    private bool _didLoad;
+    public string ContextKey { get; }
+    public string ConfigurationKey { get; }
+    public string Citation { get; }
+    public string PassageLabel => Loc.Tr("readings_bible_passage", "Bible Passage");
+    public string EditionName => _edition?.Name ?? Loc.Tr("readings_edition_unavailable", "No edition is available for this language.");
+    public string UnavailableText => Loc.Tr("readings_text_unavailable", "This passage is not available in the selected Bible edition.");
+    public string TextNotice => Loc.Tr("readings_text_notice", "Bible text for the cited passage. The wording may differ from the Mass reading.");
+    public string WholeVersesNotice => Loc.Tr("readings_whole_verses_notice", "Full verses are shown where the reading cites only part of a verse.");
+    public string SourceLabel => Loc.Tr("readings_source", "Source and Edition");
+    public string Attribution => _edition?.Attribution ?? "";
+    public Uri? SourceUri => _edition?.SourceUri;
+    public bool HasSource => SourceUri is not null;
+    public bool IsRightToLeft => _edition is not null
+        && ReadingsTextStore.NormalizeLanguage(_edition.LanguageCode) is "he" or "ar";
+    public string BodyFontFamily => PrayerTypography.ResolveBodyFontFamily(_edition?.LanguageCode, isScripture: true);
+    public double BodyFontSize => PrayerTypography.ResolveBodyFontSize(_edition?.LanguageCode, isScripture: true);
+
+    [ObservableProperty]
+    private bool _isExpanded;
+
+    [ObservableProperty]
+    private string _passageText = "";
+
+    [ObservableProperty]
+    private bool _includesWholeVerses;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsUnavailable))]
+    private bool _hasPassage;
+    public bool IsUnavailable => !HasPassage;
+
+    public ReadingPassageViewModel(ReadingsTextStore store, ScriptureEdition? edition, string scope,
+        ReadingCitation citation, string interfaceLanguage, string contextKey, string configurationKey)
+    {
+        _store = store;
+        _edition = edition;
+        _scope = scope;
+        _rawCitation = citation.Full;
+        Citation = citation.LocalizedFull(interfaceLanguage);
+        ContextKey = contextKey;
+        ConfigurationKey = configurationKey;
+    }
+
+    partial void OnIsExpandedChanged(bool value)
+    {
+        if (!value || _didLoad) return;
+        _didLoad = true;
+        var passage = _edition is null ? null : _store.LoadPassage(_scope, _rawCitation, _edition.Id);
+        var verses = passage?.Verses ?? [];
+        PassageText = string.Join(Environment.NewLine + Environment.NewLine,
+            verses.Select(verse => $"{verse.Chapter}:{verse.Verse}  {verse.Text}"));
+        HasPassage = verses.Count > 0;
+        IncludesWholeVerses = passage?.IncludesWholeVerses ?? false;
+    }
+
+    public void RefreshTypography()
+    {
+        OnPropertyChanged(nameof(BodyFontFamily));
+        OnPropertyChanged(nameof(BodyFontSize));
+    }
+}
+
+public partial class DesktopReadingsViewModel : ObservableObject
+{
+    private readonly ReadingsTextStore _store;
+    private HomeViewModel? _today;
+    private bool _synchronizing;
+    public string EditionLabel => Loc.Tr("readings_edition", "Bible Edition");
+    public ObservableCollection<ReadingEditionChoice> Editions { get; }
+
+    [ObservableProperty]
+    private ReadingEditionChoice? _selectedEdition;
+
+    [ObservableProperty]
+    private ObservableCollection<ReadingPassageViewModel> _daily = [];
+
+    [ObservableProperty]
+    private ObservableCollection<ReadingPassageViewModel> _torah = [];
+
+    public DesktopReadingsViewModel(ReadingsTextStore? store = null)
+    {
+        _store = store ?? ReadingsTextStore.Default;
+        Editions = new ObservableCollection<ReadingEditionChoice>(
+            new[] { new ReadingEditionChoice("", Loc.Tr("readings_edition_automatic", "Follow Interface Language")) }
+                .Concat(_store.Editions.Select(edition => new ReadingEditionChoice(edition.Id, edition.Name))));
+        SynchronizeEdition();
+    }
+
+    partial void OnSelectedEditionChanged(ReadingEditionChoice? value)
+    {
+        if (_synchronizing || value is null) return;
+        AppSettings.SetReadingsEditionId(value.Id);
+        if (_today is not null) Refresh(_today);
+    }
+
+    private void SynchronizeEdition()
+    {
+        _synchronizing = true;
+        try
+        {
+            var id = AppSettings.ReadingsEditionId;
+            var choice = Editions.FirstOrDefault(edition => edition.Id == id);
+            if (choice is null)
+            {
+                choice = new ReadingEditionChoice(id, Loc.Tr("readings_edition_unavailable", "No edition is available for this language."));
+                Editions.Add(choice);
+            }
+            SelectedEdition = choice;
+        }
+        finally { _synchronizing = false; }
+    }
+
+    public void Refresh(HomeViewModel today)
+    {
+        _today = today;
+        SynchronizeEdition();
+        var edition = _store.ResolveEdition(AppSettings.ReadingsEditionId, today.TodayLanguage);
+        Daily = Rows(Daily, today.TodayReadings, "daily", today, edition);
+        Torah = Rows(Torah, today.TodayTorahPortion?.Readings ?? [], "torah", today, edition);
+    }
+
+    private ObservableCollection<ReadingPassageViewModel> Rows(ObservableCollection<ReadingPassageViewModel> previous,
+        IReadOnlyList<ReadingCitation> citations, string scope, HomeViewModel today, ScriptureEdition? edition)
+    {
+        var rows = citations.Select((citation, index) =>
+        {
+            var contextKey = $"{today.SelectedDate:yyyy-MM-dd}|{scope}|{index}|{citation.Full}|{today.TodayLanguage}";
+            var configurationKey = $"{contextKey}|{AppSettings.ReadingsEditionId}|{edition?.Id}";
+            var old = previous.FirstOrDefault(row => row.ContextKey == contextKey);
+            if (old?.ConfigurationKey == configurationKey) return old;
+            return new ReadingPassageViewModel(_store, edition, scope, citation, today.TodayLanguage, contextKey, configurationKey)
+            { IsExpanded = old?.IsExpanded ?? false };
+        }).ToList();
+        return previous.SequenceEqual(rows) ? previous : new ObservableCollection<ReadingPassageViewModel>(rows);
+    }
+
+    public void RefreshTypography()
+    {
+        foreach (var row in Daily.Concat(Torah)) row.RefreshTypography();
+    }
+}

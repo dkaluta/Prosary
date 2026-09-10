@@ -1,3 +1,4 @@
+using Prosary.Navigation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -16,7 +17,10 @@ public sealed partial class SettingsPage : Page
     public SettingsPage()
     {
         ViewModel = App.Services.GetRequiredService<SettingsViewModel>();
+        ViewModel.Navigation = Router.For(this);
         InitializeComponent();
+        ViewModel.ConfirmRemoveDownload = row => PrayerRemovalDialogs.ConfirmDownloadAsync(XamlRoot, row.Title);
+        ViewModel.ShowRemovalError = message => PrayerRemovalDialogs.ShowErrorAsync(XamlRoot, message);
 
         // Dialogs need a XamlRoot, so the ViewModel delegates the remove-all confirmation here.
         ViewModel.ConfirmRemoveAll = async () =>
@@ -24,9 +28,9 @@ public sealed partial class SettingsPage : Page
             var dialog = new ContentDialog
             {
                 XamlRoot = XamlRoot,
-                Title = Loc.Tr("settings_remove_all_title", "Remove all downloaded devotions?"),
-                Content = Loc.Tr("settings_remove_all_message", "Devotions from the repository can be downloaded again; hand-imported files cannot."),
-                PrimaryButtonText = Loc.Tr("settings_remove_all_confirm", "Remove All"),
+                Title = Loc.Tr("settings_remove_all_title", "Remove Unused Downloads?"),
+                Content = Loc.Tr("settings_remove_all_message", "This removes downloaded prayers that have no saved copies. Saved prayers and built-in prayers are kept."),
+                PrimaryButtonText = Loc.Tr("settings_remove_all_confirm", "Remove Unused"),
                 CloseButtonText = Loc.Tr("common_cancel", "Cancel"),
                 DefaultButton = ContentDialogButton.Close,
             };
@@ -90,7 +94,7 @@ public sealed partial class SettingsPage : Page
     {
         var picker = new Windows.Storage.Pickers.FileOpenPicker();
         WinRT.Interop.InitializeWithWindow.Initialize(
-            picker, WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow));
+            picker, WinRT.Interop.WindowNative.GetWindowHandle(Router.WindowFor(this)));
         picker.FileTypeFilter.Add(".prosaryprayer");
         if (await picker.PickSingleFileAsync() is not { } file)
         {
@@ -136,7 +140,7 @@ public sealed partial class SettingsPage : Page
         picker.FileTypeChoices.Add(
             Loc.Tr("favorites_bundle_file_type", "Prosary devotion bundle"), [".prosaryprayer"]);
         WinRT.Interop.InitializeWithWindow.Initialize(
-            picker, WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow));
+            picker, WinRT.Interop.WindowNative.GetWindowHandle(Router.WindowFor(this)));
 
         if (await picker.PickSaveFileAsync() is { } destination)
         {

@@ -29,9 +29,13 @@ final class PinDevotionUITests: XCTestCase {
     XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10))
     XCTAssertFalse(app.buttons["angelusCard"].exists)
 
-    // A devotion under two tags appears twice in Categories, hence firstMatch.
-    app.tabBars.buttons["Categories"].tap()
-    let row = app.buttons["category.angelus"].firstMatch
+    // Search retains category browsing and access to every local devotion.
+    app.tabBars.buttons["Search"].tap()
+    let searchField = app.searchFields.firstMatch
+    XCTAssertTrue(searchField.waitForExistence(timeout: 5))
+    searchField.tap()
+    searchField.typeText("Angelus")
+    let row = app.buttons["search.local.angelus"].firstMatch
     XCTAssertTrue(row.waitForExistence(timeout: 10))
     row.tap()
 

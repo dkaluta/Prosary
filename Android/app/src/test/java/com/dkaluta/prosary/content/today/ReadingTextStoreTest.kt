@@ -1,0 +1,160 @@
+package com.dkaluta.prosary.content.today
+
+import java.io.File
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
+import org.junit.Test
+
+class ReadingTextStoreTest {
+    private val editions = listOf(
+        ReadingEdition("existing-he", "he", "Hebrew edition", "Credit", "https://example.org/he"),
+        ReadingEdition("existing-tl", "tl", "Filipino edition", "Credit", "https://example.org/tl"),
+    )
+
+    @Test fun automaticEditionRequiresTheInterfaceLanguageAndHonorsAliases() {
+        assertEquals("existing-he", ReadingTextStore.effectiveEditionId("", "iw-IL", editions))
+        assertEquals("existing-tl", ReadingTextStore.effectiveEditionId("", "fil-PH", editions))
+        assertNull(ReadingTextStore.effectiveEditionId("", "ar", editions))
+        assertNull(ReadingTextStore.effectiveEditionId("removed-edition", "he", editions))
+        assertEquals("existing-tl", ReadingTextStore.effectiveEditionId("existing-tl", "he", editions))
+    }
+
+    @Test fun metadataDoesNotLoadTextAndLookupUsesRawCitationPlusNamespace() {
+        val opened = mutableListOf<String>()
+        val store = ReadingTextStore { name ->
+            opened += name
+            when (name) {
+                "readings-editions" -> """{"schemaVersion":1,"editions":[{"id":"edition","languageCode":"en","name":"Edition","attribution":"Credit","sourceURL":"https://example.org"}]}"""
+                "readings-texts" -> """{"schemaVersion":1,"passages":{"daily|John 3:16–17":{"edition":[{"chapter":3,"verse":16,"text":"First fixture"},{"chapter":3,"verse":17,"text":"Second fixture"}]},"torah|John 3:16–17":{"edition":[{"chapter":3,"verse":16,"text":"Companion fixture"}]}}}"""
+                else -> error("Unexpected dataset")
+            }.byteInputStream()
+        }
+        assertEquals(1, store.editions.size)
+        assertEquals(listOf("readings-editions"), opened)
+        val citation = ReadingCitation("gospel", "Jn. 3", "John 3:16–17", fullByLanguage = mapOf("he" to "Localized caption"))
+        assertEquals(listOf(16, 17), store.passage(citation, "edition")?.verses?.map { it.verse })
+        assertFalse(requireNotNull(store.passage(citation, "edition")).includesWholeVerses)
+        assertEquals("Companion fixture", store.passage(citation, "edition", isTorah = true)?.verses?.single()?.text)
+        assertNull(store.passage(citation.copy(full = "John 3:16-17"), "edition"))
+        assertNull(store.passage(citation, "another-edition"))
+        assertEquals(listOf("readings-editions", "readings-texts"), opened)
+    }
+
+    @Test fun wholeVerseNoticeUsesExactCitationAndNamespaceWithoutMakingMissingEditionsAvailable() {
+        val citation = ReadingCitation("reading", "1 Cor. 8", "1 Corinthians 8:1b–7; 8:11–13",
+            fullByLanguage = mapOf("he" to "Localized caption"))
+        val store = ReadingTextStore {
+            """{"schemaVersion":1,"wholeVersePassages":["daily|${citation.full}"],"passages":{"daily|${citation.full}":{"edition":[{"chapter":8,"verse":1,"text":"Whole first verse"}]},"torah|${citation.full}":{"edition":[{"chapter":8,"verse":1,"text":"Companion fixture"}]}}}""".byteInputStream()
+        }
+        assertTrue(requireNotNull(store.passage(citation, "edition")).includesWholeVerses)
+        assertEquals("Whole first verse", store.passage(citation, "edition")?.verses?.single()?.text)
+        assertFalse(requireNotNull(store.passage(citation, "edition", isTorah = true)).includesWholeVerses)
+        assertNull(store.passage(citation, "missing-edition"))
+        assertNull(store.passage(citation.copy(full = "Localized caption"), "edition"))
+    }
+
+    @Test fun missingCorruptAndUnsupportedAssetsRemainUnavailable() {
+        val citation = ReadingCitation("reading", "Gen. 1", "Genesis 1:1")
+        for (contents in listOf(null, "not json", """{"schemaVersion":2,"editions":[],"passages":{}}""")) {
+            val store = ReadingTextStore { contents?.byteInputStream() }
+            assertEquals(emptyList<ReadingEdition>(), store.editions)
+            assertNull(store.passage(citation, "edition"))
+        }
+    }
+
+    @Test fun bundledCatalogPreservesAllLanguagesAndTheSevenFullBibleEditions() {
+        val store = bundledStore()
+        assertEquals(listOf("ar", "en", "fr", "he", "it", "ru", "tl", "uk"),
+            store.editions.map { it.languageCode }.sorted())
+        val citation = ReadingCitation("gospel", "Lk", "Luke 6:27–38")
+        for (edition in store.editions) {
+            assertTrue(edition.attribution.isNotBlank())
+            assertTrue(edition.sourceURL.startsWith("https://"))
+            // Arabic currently contains only the passages reviewed against the old print.
+            if (edition.languageCode == "ar") continue
+            val passage = requireNotNull(store.passage(citation, edition.id))
+            assertFalse(passage.includesWholeVerses)
+            val verses = passage.verses
+            assertEquals((27..38).toList(), verses.map { it.verse })
+            assertTrue(verses.all { it.chapter == 6 && it.text.isNotBlank() })
+        }
+    }
+
+    @Test fun bundledSeptemberTenthPartialReadingsExposeCompleteVersesWithTheNotice() {
+        val store = bundledStore()
+        val editionId = requireNotNull(ReadingTextStore.effectiveEditionId("", "en", store.editions))
+        val firstReading = ReadingCitation("reading", "1 Cor. 8", "1 Corinthians 8:1b–7; 8:11–13")
+        val reading = requireNotNull(store.passage(firstReading, editionId))
+        assertTrue(reading.includesWholeVerses)
+        assertEquals((1..7).toList() + (11..13).toList(), reading.verses.map { it.verse })
+        assertTrue(reading.verses.all { it.chapter == 8 && it.text.isNotBlank() })
+
+        val psalmCitation = ReadingCitation("psalm", "Ps. 139", "Psalm 139:1–3; 139:13–14ab; 139:23–24")
+        val psalm = requireNotNull(store.passage(psalmCitation, editionId))
+        assertTrue(psalm.includesWholeVerses)
+        // The Douay-Rheims edition retains Vulgate numbering, including its split at 138:4.
+        assertEquals(listOf(1, 2, 3, 4, 13, 14, 23, 24), psalm.verses.map { it.verse })
+        assertTrue(psalm.verses.all { it.chapter == 138 && it.text.isNotBlank() })
+    }
+
+    @Test fun bundledOldJesuitArabicOpensReviewedPassagesWithoutBorrowingMissingText() {
+        val store = bundledStore()
+        val editionId = requireNotNull(ReadingTextStore.effectiveEditionId("", "ar-LB", store.editions))
+        assertEquals("jesuit-arabic-1897", editionId)
+        val edition = store.editions.single { it.id == editionId }
+        assertTrue(edition.name.contains("1897"))
+        assertTrue(edition.attribution.isNotBlank())
+        assertTrue(edition.sourceURL.startsWith("https://"))
+
+        val citation = ReadingCitation("gospel", "Lk", "Luke 1:26–38")
+        val verses = requireNotNull(store.passage(citation, editionId)).verses
+        assertEquals((26..38).toList(), verses.map { it.verse })
+        assertTrue(verses.all { it.chapter == 1 })
+        assertEquals("فقالت مريم هاءنذا أمة الرب فليكن لي بحسب قولك. وانصرف الملاك من عندها.", verses.last().text)
+        assertTrue(TodayTranslationLanguage.isRightToLeft(edition.languageCode))
+
+        assertNull(store.passage(citation.copy(full = "Luke 6:27–38"), editionId))
+        assertNull(store.passage(citation.copy(full = "Genesis 47:28–50:26"), editionId, isTorah = true))
+    }
+
+    @Test fun bundledHebrewNewTestamentKeepsSourceVowelsAndTheUnpointedDivineName() {
+        val store = bundledStore()
+        val editionId = requireNotNull(ReadingTextStore.effectiveEditionId("", "iw-IL", store.editions))
+        assertEquals("masoretic-delitzsch", editionId)
+        val edition = store.editions.single { it.id == editionId }
+        assertFalse(edition.attribution.contains("ללא ניקוד"))
+        assertTrue(edition.attribution.contains("1901"))
+        assertTrue(edition.attribution.contains("delitz.fr"))
+        assertEquals("https://delitz.fr/12/", edition.sourceURL)
+        assertTrue(TodayTranslationLanguage.isRightToLeft(edition.languageCode))
+
+        for (citation in listOf("Luke 6:27–38", "1 Corinthians 8:1b–7; 8:11–13")) {
+            val verses = requireNotNull(store.passage(ReadingCitation("reading", "Reading", citation), editionId)).verses
+            assertTrue("Every Hebrew NT verse keeps the source's vocalization: $citation",
+                verses.all { verse -> verse.text.any { it in '\u05B0'..'\u05BC' || it == '\u05C7' } })
+        }
+
+        val annunciation = requireNotNull(store.passage(
+            ReadingCitation("gospel", "Lk", "Luke 1:26–38"), editionId)).verses
+        val marks = "[\\u0591-\\u05BD\\u05BF\\u05C1\\u05C2\\u05C4\\u05C5\\u05C7]*"
+        val names = Regex("י${marks}ה${marks}ו${marks}ה${marks}")
+            .findAll(annunciation.joinToString(" ") { it.text }).map { it.value }.toList()
+        assertTrue("The tested NT passage contains the Divine Name", names.isNotEmpty())
+        assertTrue("Only the Name's vowel points are removed; accents remain permitted",
+            names.all { name -> name.none { it in '\u05B0'..'\u05BC' || it == '\u05C7' } })
+    }
+
+    @Test fun bundledHebrewTorahKeepsCantillationIncludingOnTheDivineName() {
+        val store = bundledStore()
+        val citation = ReadingCitation("reading", "Dt", "Deuteronomy 11:26–16:17")
+        val verses = requireNotNull(store.passage(citation, "masoretic-delitzsch", isTorah = true)).verses
+        val verse = verses.single { it.chapter == 11 && it.verse == 27 }
+        assertEquals("אֶֽת־הַבְּרָכָ֑ה אֲשֶׁ֣ר תִּשְׁמְע֗וּ אֶל־מִצְוֹת֙ יהו֣ה אֱלֹֽהֵיכֶ֔ם אֲשֶׁ֧ר אָנֹכִ֛י מְצַוֶּ֥ה אֶתְכֶ֖ם הַיֹּֽום׃", verse.text)
+    }
+
+    private fun bundledStore() = ReadingTextStore { name ->
+        File("src/main/assets/data/$name.json").takeIf { it.exists() }?.inputStream()
+    }
+}

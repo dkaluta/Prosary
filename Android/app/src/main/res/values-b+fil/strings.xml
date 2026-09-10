@@ -24,6 +24,21 @@
     <string name="tab_pray">"Magdasal"</string>
     <string name="tab_browse">"Tumingin"</string>
     <string name="tab_categories">"Mga Kategorya"</string>
+    <string name="tab_readings">Mga Pagbasa</string>
+    <string name="search_all_categories">Lahat ng Kategorya</string>
+    <string name="readings_empty">Walang mga pagbasa para sa petsang ito sa napiling kalendaryo.</string>
+    <string name="readings_type_reading">Pagbasa</string>
+    <string name="readings_type_psalm">Salmo</string>
+    <string name="readings_type_gospel">Ebanghelyo</string>
+    <string name="readings_edition">Edisyon ng Bibliya</string>
+    <string name="readings_follow_interface">Sundin ang wika ng app</string>
+    <string name="readings_bible_passage">Sipi mula sa Bibliya</string>
+    <string name="readings_show_text">Basahin ang sipi</string>
+    <string name="readings_hide_text">Itago ang sipi</string>
+    <string name="readings_unavailable">Hindi makukuha ang siping ito sa napiling edisyon ng Bibliya.</string>
+    <string name="readings_whole_verses_notice">Buong talata ang ipinapakita kapag bahagi lamang ng talata ang tinutukoy sa pagbasa.</string>
+    <string name="readings_source">Pinagmulan</string>
+    <string name="readings_choose_edition">Pumili ng edisyon</string>
     <string name="tab_search">"Maghanap"</string>
 
     <!-- Home -->
@@ -51,9 +66,9 @@
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">"Paunang Piniling Wika ng Panalangin"</string>
-    <string name="settings_jaffa_wording">"Bersiyon ng Jaffa"</string>
+    <string name="settings_jaffa_wording">"Alternatibong teksto ng Aba Ginoong Maria"</string>
     <string name="settings_jaffa_wording_hint">"Gamitin ang בְּרוּכַת הַחֶסֶד sa halip na מְלֵאַת הַחֶסֶד sa mga panalangin ng Bikaryato."</string>
-    <string name="settings_language_fallback_order">"Pagkakasunod-sunod ng pamalit na wika…"</string>
+    <string name="settings_language_fallback_order">"Pagkakasunod-sunod ng pamalit na wika…"…</string>
     <string name="settings_language_fallback_order_title">"Pagkakasunod-sunod ng pamalit na wika"</string>
     <string name="settings_language_fallback_order_footer">Kapag wala ang teksto sa piniling wika, sinusunod ng Prosary ang ayos na ito. Ang tekstong Hebreo na pareho sa dalawang tradisyon, kasama ang mga panalangin mula sa repositoryo, ay gumagamit ng mas mataas sa dalawang puwesto ng Hebreo.</string>
     <string name="settings_praying">"Pagdarasal"</string>
@@ -73,15 +88,15 @@
     <string name="settings_installed_devotions">"Mga naka-install na debosyon: %1$d"</string>
     <string name="settings_clear_audio_cache">"Burahin ang Cache ng Audio"</string>
     <string name="settings_clear_audio_cache_size">"Burahin ang Cache ng Audio (%1$s)"</string>
-    <string name="settings_remove_all">"Alisin ang Lahat ng Na-download na Debosyon…"</string>
-    <string name="settings_downloads_footer">"Hindi inaalis ang mga kasamang debosyon. Kapag inalis ang na-download na debosyon, aalisin din ang paborito nito."</string>
+    <string name="settings_remove_all">"Alisin ang mga Hindi Ginagamit na Download…"</string>
+    <string name="settings_downloads_footer">"Mananatili ang mga kasamang panalangin at mga download na may naka-save na kopya. Kapag inalis ang hindi ginagamit na download, aalisin din ang naka-cache na audio nito."</string>
     <string name="settings_links">"Mga Link"</string>
     <string name="settings_repository_site">"Imbakan ng komunidad"</string>
     <string name="settings_compose_site">"Bumuo ng debosyon"</string>
     <string name="settings_privacy_policy">"Patakaran sa privacy"</string>
-    <string name="settings_remove_all_title">"Alisin ang lahat ng na-download na debosyon?"</string>
-    <string name="settings_remove_all_message">"Maaaring i-download muli ang mga debosyon mula sa imbakan; hindi ang mga file na mano-manong in-import."</string>
-    <string name="settings_remove_all_confirm">"Alisin Lahat"</string>
+    <string name="settings_remove_all_title">"Alisin ang mga hindi ginagamit na download?"</string>
+    <string name="settings_remove_all_message">"Alisin ang mga na-download na panalanging walang naka-save na kopya? Mananatili ang mga naka-save na panalangin at ang mga download nito."</string>
+    <string name="settings_remove_all_confirm">"Alisin"</string>
 
     <!-- Prayer kinds (models/PrayerKind.kt) -->
     <string name="kind_rosary">"Rosaryo"</string>
@@ -146,7 +161,7 @@
     <string name="ro_opening_section">"Mga Pambungad na Panalangin at Panalangin ng Dekada"</string>
     <string name="ro_apostles_creed">"Sumasampalataya ng mga Apostol"</string>
     <string name="ro_opening_prayers">"Pambungad na Ama Namin at 3 Aba Ginoong Maria"</string>
-    <string name="ro_opening_fatima">"Panalangin ng Fatima pagkatapos ng 3 pambungad na Aba Ginoong Maria"</string>
+    <string name="ro_opening_fatima">"Panalangin ng Fatima pagkatapos ng pambungad na Luwalhati sa Ama"</string>
     <string name="ro_fatima">"Panalangin ng Fatima pagkatapos ng bawat dekada"</string>
     <string name="ro_faithful_departed">"Para sa mga yumaong sumasampalataya"</string>
     <string name="ro_display_section">"Pagpapakita"</string>
@@ -161,20 +176,20 @@
 
     <!-- Favorites -->
     <string name="favorites_title">"Mga Paborito"</string>
-    <string name="favorites_add_kind">"Idagdag ang %1$s"</string>
+    <string name="favorites_add_kind">"Idagdag ang %1$s…"</string>
     <string name="favorites_more_devotions">"Iba Pang Debosyon"</string>
     <string name="favorites_repository_badge">"Imbakan"</string>
     <string name="favorites_import">"Mag-import ng Pakete ng Debosyon…"</string>
     <string name="favorites_get_community">"Kumuha ng mga Debosyon ng Komunidad…"</string>
     <string name="favorites_import_error_title">"Hindi Ma-import ang Debosyon"</string>
     <string name="favorites_set_default">"Itakdang Paunang Pinili"</string>
-    <string name="favorites_edit_desc">"I-edit ang %1$s"</string>
+    <string name="favorites_edit_desc">"I-edit ang %1$s…"</string>
     <string name="favorites_delete_desc">"Burahin ang %1$s"</string>
     <string name="favorites_add_favorite_desc">"Idagdag ang %1$s sa Mga Paborito"</string>
     <string name="favorites_remove_favorite_desc">"Alisin ang %1$s sa Mga Paborito"</string>
     <string name="favorites_add_to_favorites">"Idagdag sa Mga Paborito"</string>
     <string name="favorites_remove_from_favorites">"Alisin sa Mga Paborito"</string>
-    <string name="favorites_reminders_desc">"I-edit ang mga paalala ng %1$s"</string>
+    <string name="favorites_reminders_desc">"I-edit ang mga paalala ng %1$s…"</string>
     <string name="favorites_export_desc">"I-export ang %1$s para i-edit"</string>
     <string name="favorites_remove_imported_desc">"Alisin ang in-import na debosyong %1$s"</string>
 
@@ -327,7 +342,7 @@
     <string name="about_jesus_prayer_illustration">"Larawan ng Panalangin kay Hesus"</string>
     <string name="about_jesus_pantocrator">"Kristong Pantokrator: ikono na ipininta sa mainit na pagkit (ika-6 na siglo), Monasteryo ni Santa Catalina, Bundok Sinai — ang pinakamatandang nabubuhay na ikono ni Kristong Pantokrator, bilang paggalang sa tradisyong Silanganin ng panalangin; pampublikong dominyo."</string>
     <string name="about_scripture_sources">"Mga Sanggunian ng Banal na Kasulatan"</string>
-    <string name="about_scripture_text">"Ang mga sipi ng Banal na Kasulatan ay mula sa Bibliyang Douay-Rheims (Ingles), Clementine Vulgate (Latin), salin ni Franz Delitzsch ng Bagong Tipan sa Hebreo (mula sa kirjasilta.net/ha-berit) at mga talata sa Lumang Tipan sa Hebreo na sumusunod sa tekstong Masoretiko, Bibliyang Arabe ng mga Heswita (Dar el-Machreq), Bibliyang Sinodal sa Ruso (1876), at Ang Dating Biblia (Tagalog, 1905)."</string>
+    <string name="about_scripture_text">"Ang mga sipi ng Banal na Kasulatan ay mula sa Bibliyang Douay-Rheims (Ingles), Clementine Vulgate (Latin), salin ni Franz Delitzsch ng Bagong Tipan sa Hebreo (mula sa kirjasilta.net/ha-berit; delitz.fr/12, 1901) at mga talata sa Lumang Tipan sa Hebreo na sumusunod sa tekstong Masoretiko, lumang Bibliyang Arabe ng mga Heswita (1897), Bibliyang Sinodal sa Ruso (1876), at Ang Dating Biblia (Tagalog, 1905)."</string>
     <string name="about_calendar_data">"Datos ng Kalendaryo"</string>
     <string name="about_calendar_data_body">Datos ng mga kalendaryo at pagbasa: Pangkalahatang Kalendaryong Romano mula sa LitCal (litcal.johnromanodorazio.com); kalendaryo at leksiyonaryo ng 1962 mula sa Missale Meum (missalemeum.com). Mga kalendaryong Katolikong Siryano at Maronita, mga pangalang Hebreo sa kalendaryong Romano, at mga sanggunian ng pagbasa sa mga ritung ito: Evangelizo.org — Daily Gospel, © Evangelizo.org. Ang mga takdang kapistahang Bisantino ay ayon sa bagong kalendaryo; ang mga pagbasa para sa Paskuwang Juliano ay mula sa opisyal na kalendaryo ng Simbahang Griyego Katolikong Ukranyano (ugcc.ua), at ang opsiyong Gregoriano ay mula sa Royal Doors (royaldoors.net). Mga pangalang Hebreo ng mga aklat sa Bibliya: Evangelizo HE, Bikaryato ni Santiago (catholic.co.il), at Mechon Mamre (mechon-mamre.org). Iba pang pangalang Hebreo ng mga kapistahan at santo: Bikaryato ni Santiago, Christian Media Center (cmc-terrasanta.org), at Vatican News (vaticannews.va).</string>
     <string name="multi_day_reminder_body">"Naghihintay ang araw %1$d sa %2$d."</string>
@@ -356,10 +371,10 @@
     <string name="home_today_readings">"Mga pagbasa ngayon"</string>
     <string name="home_today_full_citations">"Tingnan ang buong mga sanggunian"</string>
     <string name="home_today_compact_citations">"Ipakita ang pinaikling sanggunian"</string>
-    <string name="home_pray_any_rosary">"Magdasal ng anumang Rosaryo"</string>
-    <string name="home_add_rosary">"Magdagdag ng Rosaryo"</string>
-    <string name="home_add_jesus_prayer">"Idagdag ang Panalangin kay Hesus"</string>
-    <string name="favorites_edit">"I-edit"</string>
+    <string name="home_pray_any_rosary">"Magdasal ng anumang Rosaryo"…</string>
+    <string name="home_add_rosary">"Magdagdag ng Rosaryo"…</string>
+    <string name="home_add_jesus_prayer">"Idagdag ang Panalangin kay Hesus…"</string>
+    <string name="favorites_edit">"I-edit…"</string>
     <string name="favorites_reminders">"Mga Paalala…"</string>
     <string name="favorites_delete">"Burahin"</string>
     <string name="favorites_export">"I-export para i-edit"</string>
@@ -440,4 +455,46 @@
     <string name="about_ukrainian_sources">"Mga panalangin sa Ukrainian: Simbahang Romano Katoliko sa Ukraine, aklat-dasalan na Щоденно з Богом. Ginagamit nang may pagkilala sa pinagmulan ayon sa patakaran ng tagapaglathala sa muling paggamit. Kasulatan: Bibliya nina Kulish, Nechui-Levytsky at Puluj (1905), pampublikong dominyo; eBible.org ukr1871. Pinanatili ang makasaysayang baybay ng Kasulatan."</string>
     <string name="about_ukrainian_prayerbook_link">"Aklat-dasalan sa Ukrainian"</string>
     <string name="about_ukrainian_bible_link">"Bibliya sa Ukrainian (1905)"</string>
+    <!-- Window and menu commands -->
+    <string name="commands_open_in_new_window">Buksan sa Bagong Window</string>
+    <string name="commands_navigation">Pumunta</string>
+    <string name="commands_back">Bumalik</string>
+    <string name="commands_help">Tulong sa Prosary</string>
+    <string name="commands_new_window">Bagong Window</string>
+    <string name="favorite_editor_save_failed">Hindi Mai-save ang Paborito</string>
+    <string name="flow_show_original_text">Ipakita ang Orihinal na Teksto</string>
+    <string name="home_pray_any_rosary_action">Magdasal ng anumang Rosaryo…</string>
+    <string name="rosary_save_as_preset_action">I-save ang Ayos…</string>
+    <string name="reminder_time">Oras ng Paalala</string>
+    <string name="reminders_remove">Alisin ang Paalala</string>
+    <string name="about_version">Bersyon %1$s (%2$s)</string>
+    <string name="commands_recently_prayed">Mga Huling Dinasal</string>
+    <string name="prayer_delete_action">"Burahin ang Naka-save na Panalangin…"</string>
+    <string name="prayer_delete_title">"Burahin ang naka-save na panalangin?"</string>
+    <string name="prayer_delete_message">"Burahin ang “%1$s” at ang mga paalala nito? Mananatili ang ibang naka-save na panalangin."</string>
+    <string name="prayer_delete_download_message">"Burahin ang “%1$s” at ang mga paalala nito? Ito ang huling naka-save na kopya, kaya aalisin din sa device na ito ang na-download na panalangin."</string>
+    <string name="download_remove_action">"Alisin ang Download…"</string>
+    <string name="download_remove_title">"Alisin ang download?"</string>
+    <string name="download_remove_message">"Alisin ang “%1$s” sa device na ito? Maaari mo itong i-import o i-download muli."</string>
+    <string name="download_in_use">"Burahin muna ang mga naka-save na kopya ng panalanging ito bago alisin ang download nito."</string>
+    <string name="prayer_removal_error_title">"Hindi Maalis ang Panalangin"</string>
+    <string name="prayer_removal_error">"Hindi maalis ang panalanging ito. Pakisubukang muli."</string>
+    <string name="prayer_removal_partial">"Nabura ang naka-save na panalangin, ngunit hindi ganap na naalis ang mga paalala o download nito."</string>
+    <string name="download_removal_partial">"Naalis ang download, ngunit hindi nabura ang ilang naka-cache na audio."</string>
+
+    <!-- Home-screen widgets -->
+    <string name="widget_today_name">Ngayon</string>
+    <string name="widget_today_description">Kapistahan at mga pagbasa ngayon, at shortcut sa Rosaryo. Palakihin upang makakita ng higit pa.</string>
+    <string name="widget_today_preview">Panalangin ng Simbahan ngayon</string>
+    <string name="widget_saved_name">Naka-save na Panalangin</string>
+    <string name="widget_saved_description">Pumili ng naka-save na panalangin at balikan ang hindi pa tapos na pagdarasal.</string>
+    <string name="widget_pray_rosary">Dasalin ang Rosaryo ngayon</string>
+    <string name="widget_choose_prayer">Pumili ng panalangin</string>
+    <string name="widget_saved_missing">Pumili ng naka-save na panalangin para sa widget na ito.</string>
+    <string name="widget_saved_empty">Mag-save ng panalangin sa Prosary, saka idagdag ang widget na ito.</string>
+    <string name="widget_load_failed">Hindi ma-load ang mga panalangin. Subukang muli.</string>
+    <string name="widget_ready">Handa nang magdasal</string>
+    <string name="widget_pray">Magdasal</string>
+    <string name="widget_progress">Hakbang %1$d sa %2$d</string>
+    <string name="widget_progress_unbounded">Hakbang %1$d</string>
 </resources>

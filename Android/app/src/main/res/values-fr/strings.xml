@@ -24,6 +24,21 @@
     <string name="tab_pray">"Prier"</string>
     <string name="tab_browse">"Parcourir"</string>
     <string name="tab_categories">"Catégories"</string>
+    <string name="tab_readings">Lectures</string>
+    <string name="search_all_categories">Toutes les catégories</string>
+    <string name="readings_empty">Aucune lecture disponible à cette date dans le calendrier choisi.</string>
+    <string name="readings_type_reading">Lecture</string>
+    <string name="readings_type_psalm">Psaume</string>
+    <string name="readings_type_gospel">Évangile</string>
+    <string name="readings_edition">Édition de la Bible</string>
+    <string name="readings_follow_interface">Suivre la langue de l’application</string>
+    <string name="readings_bible_passage">Passage biblique</string>
+    <string name="readings_show_text">Lire le passage</string>
+    <string name="readings_hide_text">Masquer le passage</string>
+    <string name="readings_unavailable">Ce passage n’est pas disponible dans l’édition de la Bible choisie.</string>
+    <string name="readings_whole_verses_notice">Les versets sont affichés en entier lorsque la lecture n’en cite qu’une partie.</string>
+    <string name="readings_source">Source</string>
+    <string name="readings_choose_edition">Choisir une édition</string>
     <string name="tab_search">"Rechercher"</string>
 
     <!-- Home -->
@@ -51,9 +66,9 @@
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">"Langue de prière par défaut"</string>
-    <string name="settings_jaffa_wording">"Formulation de Jaffa"</string>
+    <string name="settings_jaffa_wording">"Autre formulation du Je vous salue, Marie"</string>
     <string name="settings_jaffa_wording_hint">"Utiliser בְּרוּכַת הַחֶסֶד à la place de מְלֵאַת הַחֶסֶד dans les prières du Vicariat."</string>
-    <string name="settings_language_fallback_order">"Ordre des langues de remplacement…"</string>
+    <string name="settings_language_fallback_order">"Ordre des langues de remplacement…"…</string>
     <string name="settings_language_fallback_order_title">"Ordre des langues de remplacement"</string>
     <string name="settings_language_fallback_order_footer">Si le texte manque dans la langue choisie, Prosary suit cet ordre. Les textes hébreux communs aux deux traditions, y compris les prières du dépôt, utilisent la plus haute des deux positions de l’hébreu.</string>
     <string name="settings_praying">"Prière"</string>
@@ -73,15 +88,15 @@
     <string name="settings_installed_devotions">"Dévotions installées : %1$d"</string>
     <string name="settings_clear_audio_cache">"Vider le cache audio"</string>
     <string name="settings_clear_audio_cache_size">"Vider le cache audio (%1$s)"</string>
-    <string name="settings_remove_all">"Supprimer toutes les dévotions téléchargées…"</string>
-    <string name="settings_downloads_footer">"Les dévotions intégrées ne sont jamais supprimées. Supprimer une dévotion téléchargée supprime aussi son favori."</string>
+    <string name="settings_remove_all">"Supprimer les téléchargements inutilisés…"</string>
+    <string name="settings_downloads_footer">"Les prières intégrées et les téléchargements avec des copies enregistrées sont conservés. Supprimer un téléchargement inutilisé efface également ses fichiers audio en cache."</string>
     <string name="settings_links">"Liens"</string>
     <string name="settings_repository_site">"Répertoire communautaire"</string>
     <string name="settings_compose_site">"Composer une dévotion"</string>
     <string name="settings_privacy_policy">"Politique de confidentialité"</string>
-    <string name="settings_remove_all_title">"Supprimer toutes les dévotions téléchargées ?"</string>
-    <string name="settings_remove_all_message">"Les dévotions du répertoire peuvent être téléchargées à nouveau ; les fichiers importés manuellement ne le peuvent pas."</string>
-    <string name="settings_remove_all_confirm">"Tout supprimer"</string>
+    <string name="settings_remove_all_title">"Supprimer les téléchargements inutilisés ?"</string>
+    <string name="settings_remove_all_message">"Supprimer les prières téléchargées sans copie enregistrée ? Les prières enregistrées et leurs téléchargements seront conservés."</string>
+    <string name="settings_remove_all_confirm">"Supprimer"</string>
 
     <!-- Prayer kinds (models/PrayerKind.kt) -->
     <string name="kind_rosary">"Rosaire"</string>
@@ -146,7 +161,7 @@
     <string name="ro_opening_section">"Prières initiales et des dizaines"</string>
     <string name="ro_apostles_creed">"Symbole des Apôtres"</string>
     <string name="ro_opening_prayers">"Notre Père initial et 3 Je vous salue Marie"</string>
-    <string name="ro_opening_fatima">"Prière de Fatima après les 3 Je vous salue Marie initiaux"</string>
+    <string name="ro_opening_fatima">"Prière de Fatima après le Gloire au Père initial"</string>
     <string name="ro_fatima">"Prière de Fatima après chaque dizaine"</string>
     <string name="ro_faithful_departed">"Pour les fidèles défunts"</string>
     <string name="ro_display_section">"Affichage"</string>
@@ -161,20 +176,20 @@
 
     <!-- Favorites -->
     <string name="favorites_title">"Favoris"</string>
-    <string name="favorites_add_kind">"Ajouter %1$s"</string>
+    <string name="favorites_add_kind">"Ajouter %1$s…"</string>
     <string name="favorites_more_devotions">"Autres dévotions"</string>
     <string name="favorites_repository_badge">"Répertoire"</string>
     <string name="favorites_import">"Importer un recueil de dévotion…"</string>
     <string name="favorites_get_community">"Obtenir des dévotions communautaires…"</string>
     <string name="favorites_import_error_title">"Impossible d’importer la dévotion"</string>
     <string name="favorites_set_default">"Définir par défaut"</string>
-    <string name="favorites_edit_desc">"Modifier %1$s"</string>
+    <string name="favorites_edit_desc">"Modifier %1$s…"</string>
     <string name="favorites_delete_desc">"Supprimer %1$s"</string>
     <string name="favorites_add_favorite_desc">"Ajouter %1$s aux favoris"</string>
     <string name="favorites_remove_favorite_desc">"Retirer %1$s des favoris"</string>
     <string name="favorites_add_to_favorites">"Ajouter aux favoris"</string>
     <string name="favorites_remove_from_favorites">"Retirer des favoris"</string>
-    <string name="favorites_reminders_desc">"Modifier les rappels de %1$s"</string>
+    <string name="favorites_reminders_desc">"Modifier les rappels de %1$s…"</string>
     <string name="favorites_export_desc">"Exporter %1$s pour modification"</string>
     <string name="favorites_remove_imported_desc">"Supprimer la dévotion importée %1$s"</string>
 
@@ -327,7 +342,7 @@
     <string name="about_jesus_prayer_illustration">"Illustration de la prière de Jésus"</string>
     <string name="about_jesus_pantocrator">"Christ Pantocrator : icône à l’encaustique (VIe siècle), monastère Sainte-Catherine, mont Sinaï — la plus ancienne icône conservée du Christ Pantocrator, en hommage à la tradition orientale de cette prière ; domaine public."</string>
     <string name="about_scripture_sources">"Sources bibliques"</string>
-    <string name="about_scripture_text">"Les citations bibliques proviennent de la Bible Douay-Rheims (anglais), de la Vulgate clémentine (latin), de la traduction hébraïque du Nouveau Testament de Franz Delitzsch (kirjasilta.net/ha-berit), les passages hébreux de l’Ancien Testament suivant le texte massorétique, de la Bible arabe des jésuites (Dar el-Machreq), de la Bible synodale russe (1876) et d’Ang Dating Biblia (tagalog, 1905)."</string>
+    <string name="about_scripture_text">"Les citations bibliques proviennent de la Bible Douay-Rheims (anglais), de la Vulgate clémentine (latin), de la traduction hébraïque du Nouveau Testament de Franz Delitzsch (kirjasilta.net/ha-berit; delitz.fr/12, 1901), les passages hébreux de l’Ancien Testament suivant le texte massorétique, de l’ancienne Bible arabe des jésuites (1897), de la Bible synodale russe (1876) et d’Ang Dating Biblia (tagalog, 1905)."</string>
     <string name="about_calendar_data">"Données du calendrier"</string>
     <string name="about_calendar_data_body">Calendriers et lectures : calendrier romain général fourni par LitCal (litcal.johnromanodorazio.com) ; calendrier et lectionnaire de 1962 par Missale Meum (missalemeum.com). Calendriers syriaque catholique et maronite, titres hébreux romains documentés et références des lectures romaines, syriaques et maronites : Evangelizo.org — Daily Gospel, © Evangelizo.org. Les fêtes byzantines fixes suivent le nouveau calendrier ; les lectures avec Pâques juliennes suivent le calendrier officiel de l’Église gréco-catholique ukrainienne (ugcc.ua), et l’option des Pâques grégoriennes suit Royal Doors (royaldoors.net). Noms hébreux des livres bibliques : Evangelizo HE, Vicariat Saint-Jacques (catholic.co.il) et Mechon Mamre (mechon-mamre.org). Autres noms hébreux des fêtes et des saints : Vicariat Saint-Jacques, Christian Media Center (cmc-terrasanta.org) et Vatican News (vaticannews.va).</string>
     <string name="multi_day_reminder_body">"Le jour %1$d sur %2$d vous attend."</string>
@@ -356,10 +371,10 @@
     <string name="home_today_readings">"Lectures du jour"</string>
     <string name="home_today_full_citations">"Afficher les références complètes"</string>
     <string name="home_today_compact_citations">"Afficher les références abrégées"</string>
-    <string name="home_pray_any_rosary">"Prier un rosaire au choix"</string>
-    <string name="home_add_rosary">"Ajouter un rosaire"</string>
-    <string name="home_add_jesus_prayer">"Ajouter la prière de Jésus"</string>
-    <string name="favorites_edit">"Modifier"</string>
+    <string name="home_pray_any_rosary">"Prier un rosaire au choix"…</string>
+    <string name="home_add_rosary">"Ajouter un rosaire"…</string>
+    <string name="home_add_jesus_prayer">"Ajouter la prière de Jésus…"</string>
+    <string name="favorites_edit">"Modifier…"</string>
     <string name="favorites_reminders">"Rappels…"</string>
     <string name="favorites_delete">"Supprimer"</string>
     <string name="favorites_export">"Exporter pour modification"</string>
@@ -440,4 +455,46 @@
     <string name="about_ukrainian_sources">"Prières en ukrainien : Église catholique romaine en Ukraine, livre de prières Щоденно з Богом. Utilisation avec attribution conformément à la politique de réutilisation de l’éditeur. Écriture : Bible de Kulish, Nechui-Levytsky et Puluj (1905), domaine public ; eBible.org ukr1871. L’orthographe historique du texte biblique est conservée."</string>
     <string name="about_ukrainian_prayerbook_link">"Livre de prières en ukrainien"</string>
     <string name="about_ukrainian_bible_link">"Bible en ukrainien (1905)"</string>
+    <!-- Window and menu commands -->
+    <string name="commands_open_in_new_window">Ouvrir dans une nouvelle fenêtre</string>
+    <string name="commands_navigation">Aller</string>
+    <string name="commands_back">Retour</string>
+    <string name="commands_help">Aide Prosary</string>
+    <string name="commands_new_window">Nouvelle fenêtre</string>
+    <string name="favorite_editor_save_failed">Impossible d’enregistrer le favori</string>
+    <string name="flow_show_original_text">Afficher le texte original</string>
+    <string name="home_pray_any_rosary_action">Prier un rosaire au choix…</string>
+    <string name="rosary_save_as_preset_action">Enregistrer la configuration…</string>
+    <string name="reminder_time">Heure du rappel</string>
+    <string name="reminders_remove">Supprimer le rappel</string>
+    <string name="about_version">Version %1$s (%2$s)</string>
+    <string name="commands_recently_prayed">Prières récentes</string>
+    <string name="prayer_delete_action">"Supprimer la prière enregistrée…"</string>
+    <string name="prayer_delete_title">"Supprimer la prière enregistrée ?"</string>
+    <string name="prayer_delete_message">"Supprimer « %1$s » et ses rappels ? Les autres prières enregistrées seront conservées."</string>
+    <string name="prayer_delete_download_message">"Supprimer « %1$s » et ses rappels ? Il s’agit de la dernière copie enregistrée ; la prière téléchargée sera donc également supprimée de cet appareil."</string>
+    <string name="download_remove_action">"Supprimer le téléchargement…"</string>
+    <string name="download_remove_title">"Supprimer le téléchargement ?"</string>
+    <string name="download_remove_message">"Supprimer « %1$s » de cet appareil ? Vous pourrez l’importer ou la télécharger à nouveau."</string>
+    <string name="download_in_use">"Supprimez les copies enregistrées de cette prière avant de supprimer son téléchargement."</string>
+    <string name="prayer_removal_error_title">"Impossible de supprimer la prière"</string>
+    <string name="prayer_removal_error">"Impossible de supprimer cette prière. Veuillez réessayer."</string>
+    <string name="prayer_removal_partial">"La prière enregistrée a été supprimée, mais ses rappels ou son téléchargement n’ont pas pu être entièrement supprimés."</string>
+    <string name="download_removal_partial">"Le téléchargement a été supprimé, mais certains fichiers audio en cache n’ont pas pu être supprimés."</string>
+
+    <!-- Home-screen widgets -->
+    <string name="widget_today_name">Aujourd’hui</string>
+    <string name="widget_today_description">La fête et les lectures du jour, avec un accès au rosaire. Agrandissez pour en voir plus.</string>
+    <string name="widget_today_preview">La prière de l’Église aujourd’hui</string>
+    <string name="widget_saved_name">Prière enregistrée</string>
+    <string name="widget_saved_description">Choisissez une prière enregistrée et reprenez votre prière inachevée.</string>
+    <string name="widget_pray_rosary">Prier le rosaire du jour</string>
+    <string name="widget_choose_prayer">Choisir une prière</string>
+    <string name="widget_saved_missing">Choisissez une prière enregistrée pour ce widget.</string>
+    <string name="widget_saved_empty">Enregistrez une prière dans Prosary, puis ajoutez ce widget.</string>
+    <string name="widget_load_failed">Impossible de charger les prières. Réessayez.</string>
+    <string name="widget_ready">Prêt à prier</string>
+    <string name="widget_pray">Prier</string>
+    <string name="widget_progress">Étape %1$d sur %2$d</string>
+    <string name="widget_progress_unbounded">Étape %1$d</string>
 </resources>

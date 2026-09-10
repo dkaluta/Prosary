@@ -20,7 +20,7 @@ public partial class App : Application
     /// this rather than a Frame/Shell-provided mechanism, since plain WinUI3 has none built in.</summary>
     public static IServiceProvider Services { get; private set; } = null!;
 
-    public static Window MainWindow { get; private set; } = null!;
+    public static Window MainWindow { get; internal set; } = null!;
 
     public App()
     {
@@ -43,8 +43,7 @@ public partial class App : Application
         // no-longer-listed id resolves to the calendars.json registry's default in the store.
         TodayInfoStore.SelectedCalendarId = AppSettings.FeastCalendarId;
 
-        MainWindow = new MainWindow();
-        MainWindow.Activate();
+        DesktopWindowManager.ShowLibrary();
 
         // Top up the reminder rolling window on every launch — the Windows equivalent of
         // Android's boot-time reschedule, since scheduled toasts (unlike AlarmManager alarms)
@@ -59,11 +58,14 @@ public partial class App : Application
 
         services.AddSingleton<LiturgicalCalendarService>();
         services.AddSingleton<PrayerEngine>();
-        services.AddSingleton<IPresetStore, SqlitePresetStore>();
+        services.AddSingleton<SqlitePresetStore>();
+        services.AddSingleton<IPresetStore, DesktopPresetStore>();
         services.AddSingleton<IReminderScheduler, WindowsReminderScheduler>();
         services.AddSingleton<IPrayerRunStore, LocalPrayerRunStore>();
+        services.AddSingleton<PrayerRemovalService>();
 
         services.AddTransient<HomeViewModel>();
+        services.AddTransient<DesktopLibraryViewModel>();
         services.AddTransient<RepositoryBrowserViewModel>();
         services.AddTransient<CategoriesViewModel>();
         services.AddTransient<SearchViewModel>();

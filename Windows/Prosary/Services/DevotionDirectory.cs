@@ -28,18 +28,18 @@ public sealed record DevotionListing(
     string InterfaceSubtitle = "")
 {
     public bool HasInterfaceSubtitle => !string.IsNullOrWhiteSpace(InterfaceSubtitle);
-    public void Launch()
+    public void Launch(WindowNavigation navigation)
     {
         switch (Target)
         {
             case LaunchTargetKind.Rosary:
-                Router.Navigate<RosaryPresetPickerPage>();
+                navigation.Navigate<RosaryPresetPickerPage>();
                 break;
             case LaunchTargetKind.Custom:
-                Router.Navigate<CustomDevotionFlowPage>(new CustomDevotionFlowParams(null, BundleId!));
+                navigation.Navigate<CustomDevotionFlowPage>(new CustomDevotionFlowParams(null, BundleId!));
                 break;
             case LaunchTargetKind.JesusPrayer:
-                Router.Navigate<JesusPrayerSetupPage>();
+                navigation.Navigate<JesusPrayerSetupPage>();
                 break;
         }
     }

@@ -11,6 +11,8 @@ struct RosaryFlowView: View {
 
   @Environment(\.appServices) private var services
   @Environment(\.dismiss) private var dismiss
+  @Environment(\.finishPrayerSession) private var finishPrayerSession
+  @Environment(\.prayerWindowTitle) private var prayerWindowTitle
   @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
 
   @State private var steps: [RosaryStep] = []
@@ -20,10 +22,12 @@ struct RosaryFlowView: View {
   @State private var sessionPrayer: Prayer
   @State private var pendingContinuation: PrayerRunProgress?
   @State private var hasLoaded = false
+  @State private var sessionLoader = PrayerSessionLoader()
   @State private var didFinish = false
   @State private var showsLitanyOffer = false
 
-  private let progressStore = PrayerRunProgressStore()
+  @Environment(\.prayerProgressNamespace) private var progressNamespace
+  private var progressStore: PrayerRunProgressStore { PrayerRunProgressStore(namespace: progressNamespace) }
 
   init(prayer: Prayer, onPrayLitany: ((String) -> Void)? = nil) {
     self.prayer = prayer
@@ -50,13 +54,15 @@ struct RosaryFlowView: View {
 
   private func beadColumnAreaWidth(hasRoomForSingleMinorColumn: Bool) -> CGFloat {
     let majorColumns = CGFloat(max(beadLayout.groupColumns.count, 1)) * 34 + 40
-    guard beadLayout.showBottomBeads else { return majorColumns }
+    // Reserve the session's minor track even on announcement steps, so advancing doesn't
+    // change columns when a window is close to the wide-layout threshold.
+    guard steps.contains(where: { $0.hailMaryIndexInDecade != nil }) else { return majorColumns }
     return majorColumns + (hasRoomForSingleMinorColumn ? 44 : 74)
   }
 
   var body: some View {
     PrayerStepFlowView(
-      navigationTitle: String(localized: "rosaryFlow.navigationTitle", defaultValue: "Praying the Rosary"),
+      navigationTitle: prayerWindowTitle ?? String(localized: "rosaryFlow.navigationTitle", defaultValue: "Praying the Rosary"),
       step: currentStep,
       currentIndex: currentIndex,
       totalSteps: steps.count,
@@ -70,20 +76,23 @@ struct RosaryFlowView: View {
         AnyView(
           BeadProgressView(layout: beadLayout, isWide: isWide,
                            hasRoomForSingleMinorColumn: hasRoomForSingleMinorColumn)
-            .frame(width: beadColumnAreaWidth(hasRoomForSingleMinorColumn: hasRoomForSingleMinorColumn))
+            .frame(width: isWide ? beadColumnAreaWidth(hasRoomForSingleMinorColumn: hasRoomForSingleMinorColumn) : nil)
         )
       },
+      accessoryWidth: { beadColumnAreaWidth(hasRoomForSingleMinorColumn: $0) },
       flowActions: AnyView(flowActions)
     )
     .alert(String(localized: "rosaryFlow.litanyPrompt", defaultValue: "Continue with the Litany of the Blessed Virgin Mary?"), isPresented: $showsLitanyOffer) {
       Button(String(localized: "rosaryFlow.prayLitany", defaultValue: "Pray the Litany")) {
         complete()
+        finishPrayerSession?()
         onPrayLitany?(sessionPrayer.resolvedLanguageCode)
       }
       .accessibilityIdentifier("prayLitanyButton")
+      .keyboardShortcut(.defaultAction)
       Button(String(localized: "prayerFlow.finish", defaultValue: "Finish"), role: .cancel) {
         complete()
-        dismiss()
+        finishSession()
       }
     }
     .alert(
@@ -96,6 +105,7 @@ struct RosaryFlowView: View {
       Button(String(localized: "prayerFlow.continue", defaultValue: "Continue")) {
         resume(progress)
       }
+      .keyboardShortcut(.defaultAction)
       Button(String(localized: "prayerFlow.restart", defaultValue: "Restart"), role: .destructive) {
         restart()
       }
@@ -103,7 +113,7 @@ struct RosaryFlowView: View {
       Text(String(localized: "prayerFlow.continue.message",
                   defaultValue: "You have an unfinished prayer. Continue where you left off or begin again?"))
     }
-    .task { await load() }
+    .task { await sessionLoader.perform { await load() } }
     .onChange(of: prayerLanguage.usesJaffaHailMaryWording) { _, _ in
       guard hasLoaded, !didFinish else { return }
       steps = services.engine.buildSteps(for: sessionPrayer)
@@ -118,19 +128,35 @@ struct RosaryFlowView: View {
   @ViewBuilder
   private var flowActions: some View {
     Button { jump(to: previousMysteryIndex) } label: {
-      Image(systemName: "backward.end.fill")
-        .flipsForRightToLeftLayoutDirection(true)
+      Label {
+        Text(String(localized: "rosaryFlow.previousMystery", defaultValue: "Previous Mystery"))
+      } icon: {
+        Image(systemName: "backward.end.fill")
+          .flipsForRightToLeftLayoutDirection(true)
+      }
     }
+    #if !os(macOS)
+    .labelStyle(.iconOnly)
+    #endif
     .disabled(previousMysteryIndex == nil)
-    .accessibilityLabel(String(localized: "rosaryFlow.previousMystery", defaultValue: "Previous mystery"))
+    .accessibilityLabel(String(localized: "rosaryFlow.previousMystery", defaultValue: "Previous Mystery"))
+    .help(String(localized: "rosaryFlow.previousMystery", defaultValue: "Previous Mystery"))
     .accessibilityIdentifier("previousMysteryButton")
 
     Button { jump(to: nextMysteryIndex) } label: {
-      Image(systemName: "forward.end.fill")
-        .flipsForRightToLeftLayoutDirection(true)
+      Label {
+        Text(String(localized: "rosaryFlow.nextMystery", defaultValue: "Next Mystery"))
+      } icon: {
+        Image(systemName: "forward.end.fill")
+          .flipsForRightToLeftLayoutDirection(true)
+      }
     }
+    #if !os(macOS)
+    .labelStyle(.iconOnly)
+    #endif
     .disabled(nextMysteryIndex == nil)
-    .accessibilityLabel(String(localized: "rosaryFlow.nextMystery", defaultValue: "Next mystery"))
+    .accessibilityLabel(String(localized: "rosaryFlow.nextMystery", defaultValue: "Next Mystery"))
+    .help(String(localized: "rosaryFlow.nextMystery", defaultValue: "Next Mystery"))
     .accessibilityIdentifier("nextMysteryButton")
 
     if let languages = PrayerPackStore.info(for: "rosary")?.languages,
@@ -139,14 +165,19 @@ struct RosaryFlowView: View {
         PrayerLanguageMenuContent(code: sessionPrayer.languageCode,
                                  options: LanguageCatalog.availableOptions(for: languages)) { switchLanguage(to: $0) }
       } label: {
-        Image(systemName: "globe")
+        Label(String(localized: "prayerFlow.language", defaultValue: "Prayer Language"), systemImage: "globe")
       }
-      .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer language"))
+      #if !os(macOS)
+      .labelStyle(.iconOnly)
+      #endif
+      .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer Language"))
+      .help(String(localized: "prayerFlow.language", defaultValue: "Prayer Language"))
       .accessibilityIdentifier("languageMenu")
     }
   }
 
   private func load() async {
+    guard !hasLoaded else { return }
     sessionPrayer = prayer
     isRightToLeft = LanguageCatalog.resolve(sessionPrayer.languageCode).isRightToLeft
     steps = services.engine.buildSteps(for: sessionPrayer)
@@ -155,7 +186,11 @@ struct RosaryFlowView: View {
     hasLoaded = true
 
     let runKey = PrayerRunKey.rosary(prayer)
-    if let progress = progressStore.progress(for: runKey),
+    var continuation = progressStore.progress(for: runKey)
+    #if os(macOS)
+    continuation = PrayerCopyProgressIdentity.continuation(continuation, savedLanguageCode: prayer.languageCode)
+    #endif
+    if let progress = continuation,
        progress.canResume(
         stepCount: steps.count,
         sameLocalDayOnly: true,
@@ -175,7 +210,7 @@ struct RosaryFlowView: View {
         showsLitanyOffer = true
       } else {
         complete()
-        dismiss()
+        finishSession()
       }
       return
     }
@@ -192,6 +227,11 @@ struct RosaryFlowView: View {
   private func complete() {
     didFinish = true
     progressStore.clear(runKey: PrayerRunKey.rosary(prayer))
+  }
+
+  private func finishSession() {
+    if let finishPrayerSession { finishPrayerSession() }
+    else { dismiss() }
   }
 
   private func jump(to index: Int?) {
@@ -213,7 +253,7 @@ struct RosaryFlowView: View {
     Task {
       guard var favorite = try? await services.presetStore.get(id: prayer.id) else { return }
       favorite.languageCode = raw
-      try? await services.presetStore.save(favorite)
+      _ = try? await services.presetStore.updateIfPresent(favorite)
     }
   }
 

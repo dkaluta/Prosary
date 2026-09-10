@@ -21,6 +21,8 @@ namespace Prosary.ViewModels;
 /// </summary>
 public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewModel
 {
+    public WindowNavigation Navigation { get; set; } = WindowNavigation.Detached;
+
     private readonly IPresetStore _presets;
     private readonly PrayerEngine _engine;
     private readonly IPrayerRunStore _runStore;
@@ -138,8 +140,8 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     private bool _showBottomBeads;
 
     /// <summary>Whether the wide layout's minor-bead track has enough vertical room for a single
-    /// 10-tall column — set by the page from its own measured height (see
-    /// <c>RosaryPrayerPage.xaml.cs</c>'s <c>WideMinorColumnHeightThreshold</c>), matching iOS's
+    /// 10-tall column — resolved by <see cref="PrayerFlowLayout"/> from the measured content-row
+    /// height, matching iOS's
     /// <c>GeometryReader</c>-measured <c>hasRoomForSingleMinorColumn</c>. Ignored in the narrow
     /// layout, which always uses a single row regardless of height.</summary>
     [ObservableProperty]
@@ -192,7 +194,7 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     {
         ResetContinuationState();
         var prayer = prayerId is { } id ? await _presets.GetAsync(id) : null;
-        prayer ??= await _presets.GetDefaultAsync(PrayerKind.Rosary);
+        if (prayerId is null) prayer = await _presets.GetDefaultAsync(PrayerKind.Rosary);
         if (prayer is null)
         {
             Header = Loc.Tr("rosary_no_favorites_header", "No Rosary favorites yet");
@@ -307,7 +309,7 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         SaveProgress();
         if (_isSavedPrayer)
         {
-            await _presets.SaveAsync(changed);
+            await _presets.UpdateIfPresentAsync(changed);
         }
     }
 
@@ -404,8 +406,8 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
             ClearProgress();
             var prayLitany = PrayerPackStore.Definition("litanyOfLoreto") is not null
                 && OfferLitany is not null && await OfferLitany();
-            Router.GoBack();
-            if (prayLitany) Router.Navigate<Views.CustomDevotionFlowPage>(LitanyContinuation(_languageCode));
+            if (prayLitany) Navigation.Replace<Views.CustomDevotionFlowPage>(LitanyContinuation(_languageCode));
+            else Navigation.GoBack();
             return;
         }
 

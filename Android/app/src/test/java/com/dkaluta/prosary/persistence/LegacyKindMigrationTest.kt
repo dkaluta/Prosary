@@ -20,7 +20,7 @@ class LegacyKindMigrationTest {
         )
 
     @Test
-    fun closingIntentionColumnsPreserveNullInheritanceAndExplicitOptOut() {
+    fun closingIntentionColumnsPreserveRawSelectionsWhilePlaybackUsesOneGroup() {
         val old = legacyEntity("Rosary").copy(includeClosingIntentions = true).toPrayer().rosary
         assertEquals(null, old.includeClosingPopeIntention)
         assertEquals(true, old.effectiveClosingPopeIntention)
@@ -32,9 +32,13 @@ class LegacyKindMigrationTest {
             includeClosingBishopIntention = true,
             includeClosingDepartedIntention = false,
         ).toPrayer().rosary
-        assertEquals(false, split.effectiveClosingPopeIntention)
+        assertEquals(false, split.includeClosingPopeIntention)
+        assertEquals(true, split.includeClosingBishopIntention)
+        assertEquals(false, split.includeClosingDepartedIntention)
+        assertEquals(true, split.effectiveClosingPopeIntention)
         assertEquals(true, split.effectiveClosingBishopIntention)
-        assertEquals(false, split.effectiveClosingDepartedIntention)
+        assertEquals(true, split.effectiveClosingDepartedIntention)
+        assertEquals(false, split.withClosingIntentions(false).effectiveClosingIntentions)
     }
 
     @Test

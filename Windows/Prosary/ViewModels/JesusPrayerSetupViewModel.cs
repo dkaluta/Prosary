@@ -24,6 +24,8 @@ public enum JesusPrayerSetupOption
 /// already uses an explicit view-state shape rather than SwiftUI's native <c>@State</c>.</summary>
 public partial class JesusPrayerSetupViewModel : ObservableObject
 {
+    public WindowNavigation Navigation { get; set; } = WindowNavigation.Detached;
+
     [ObservableProperty]
     private JesusPrayerSetupOption _selection = JesusPrayerSetupOption.ThirtyThree;
 
@@ -64,8 +66,8 @@ public partial class JesusPrayerSetupViewModel : ObservableObject
     }
 
     [RelayCommand(CanExecute = nameof(CanBegin))]
-    private void Begin() => Router.Navigate<JesusPrayerFlowPage>(new JesusPrayerFlowParams(PrayerId: null, Target: ResolvedTarget));
+    private void Begin() => Navigation.Navigate<JesusPrayerFlowPage>(new JesusPrayerFlowParams(PrayerId: null, Target: ResolvedTarget));
 
     [RelayCommand]
-    private void Back() => Router.GoBack();
+    private void Back() => Navigation.GoBack();
 }

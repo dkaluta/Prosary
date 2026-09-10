@@ -51,6 +51,10 @@ struct RemindersSection: View {
         Text("favoriteEditor.remindersFooter")
       }
     }
+    #if os(macOS)
+    .toggleStyle(.checkbox)
+    .controlSize(.regular)
+    #endif
   }
 
   /// "6:00 AM" / "12:00 PM"-style label for a preset hour, in the user's locale.
@@ -91,16 +95,34 @@ struct RemindersSection: View {
   @ViewBuilder
   private func reminderRow(for reminderId: UUID) -> some View {
     HStack {
-      DatePicker("", selection: dateBinding(for: reminderId), displayedComponents: .hourAndMinute)
+      DatePicker("favoriteEditor.reminderTime", selection: dateBinding(for: reminderId), displayedComponents: .hourAndMinute)
+        #if os(macOS)
+        .datePickerStyle(.stepperField)
+        .fixedSize()
+        #else
         .labelsHidden()
+        #endif
+        .accessibilityIdentifier("reminderTime.\(reminderId)")
       Spacer()
       Button(role: .destructive) {
         reminders.removeAll { $0.id == reminderId }
       } label: {
+        #if os(macOS)
+        Label("favoriteEditor.removeReminder", systemImage: "minus")
+          .labelStyle(.iconOnly)
+        #else
         Image(systemName: "minus.circle.fill")
           .foregroundStyle(.red)
+        #endif
       }
+      .accessibilityLabel(Text("favoriteEditor.removeReminder"))
+      .accessibilityIdentifier("removeReminder.\(reminderId)")
+      #if os(macOS)
+      .help(Text("favoriteEditor.removeReminder"))
+      .buttonStyle(.bordered)
+      #else
       .buttonStyle(.borderless)
+      #endif
     }
   }
 

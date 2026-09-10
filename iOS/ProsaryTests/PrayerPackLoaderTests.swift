@@ -13,6 +13,67 @@ import XCTest
 
 @MainActor
 final class PrayerPackLoaderTests: XCTestCase {
+  func testSavedPrayerLabelsUseTheAvailableLanguageWithoutChangingThePreference() async throws {
+    let defaults = UserDefaults.standard
+    let originalArguments = defaults.volatileDomain(forName: UserDefaults.argumentDomain)
+    defaults.setVolatileDomain(originalArguments.merging([
+      "defaultLanguageCode": "la", LanguageCatalog.fallbackOrderKey: ["he", "en", "la"]
+    ]) { _, replacement in replacement }, forName: UserDefaults.argumentDomain)
+    defer { defaults.setVolatileDomain(originalArguments, forName: UserDefaults.argumentDomain) }
+    let originalDirectory = PrayerPackStore.installedPacksDirectory
+    let directory = FileManager.default.temporaryDirectory.appendingPathComponent("language-label-\(UUID())")
+    PrayerPackStore.installedPacksDirectory = directory
+    defer {
+      PrayerPackStore.installedPacksDirectory = originalDirectory
+      try? FileManager.default.removeItem(at: directory)
+    }
+    let id = "repo.language-label.\(UUID().uuidString)"
+    let manifest = """
+      {"schemaVersion":1,"id":"\(id)","kind":"\(id)","displayName":"Language label fixture",
+       "languages":["he"],"hasCatalog":false,"images":[]}
+      """
+    try PrayerPackStore.installPack(from: Self.storedZip([
+      ("manifest.json", Data(manifest.utf8)),
+      ("content/he.json", Data(#"{"prayers":{"languageLabelFixture":"Hebrew-only fixture body"},"mysteries":{}}"#.utf8)),
+      ("devotion.json", Data(#"{"type":"steps","steps":[{"title":"Fixture","bodyKey":"languageLabelFixture"}]}"#.utf8)),
+    ]))
+    defer { PrayerPackStore.removeInstalledPack(id: id) }
+
+    for choice in ["", "la", "en", "he"] {
+      let prayer = Prayer(name: "Language label fixture", kind: .custom,
+        languageCode: choice, customDevotionId: id)
+      let encoded = try JSONEncoder().encode(prayer)
+      XCTAssertEqual(prayer.resolvedLanguageCode, choice.isEmpty ? "la" : choice)
+      XCTAssertEqual(prayer.effectiveLanguageCode, "he")
+      XCTAssertEqual(prayer.languageNativeName, "עברית")
+      XCTAssertEqual(prayer.languageDisplayName, choice.isEmpty
+        ? String(localized: "prayer.language.default", defaultValue: "Default (\("עברית"))") : "עברית")
+      XCTAssertEqual(PrayerEngine(calendar: StubLiturgicalCalendar()).buildSteps(for: prayer).first?.body,
+        "Hebrew-only fixture body")
+      XCTAssertEqual(try JSONDecoder().decode(Prayer.self, from: encoded), prayer,
+        "Resolving labels must preserve the saved configuration")
+      #if os(macOS)
+      let suite = "LanguageLabelLibrary.\(UUID())"
+      let libraryDefaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+      defer { libraryDefaults.removePersistentDomain(forName: suite) }
+      let store = MockPresetStore(configs: [prayer])
+      let library = MacPrayerLibraryModel(store: store, defaults: libraryDefaults, installedDevotionIDs: { [id] })
+      await library.reload()
+      XCTAssertEqual(library.items.first?.subtitle, "עברית")
+      XCTAssertEqual(library.items.first?.prayer?.languageCode, choice)
+      #endif
+    }
+  }
+
+  func testLanguageLabelsKeepExplicitBuiltInChoicesAndMissingPacksReadable() {
+    for kind in [PrayerKind.rosary, .jesusPrayer, .custom] {
+      let prayer = Prayer(kind: kind, languageCode: "fr", customDevotionId: "missing-language-label-fixture")
+      XCTAssertEqual(prayer.resolvedLanguageCode, "fr")
+      XCTAssertEqual(prayer.effectiveLanguageCode, "fr")
+      XCTAssertEqual(prayer.languageDisplayName, "Français")
+    }
+  }
+
   func testJaffaWordingUsesWinningTraditionAndDropsOnlyAnAlteredTextsReadingAid() throws {
     let defaults = UserDefaults.standard
     let savedOption = defaults.object(forKey: JaffaHailMaryWording.defaultsKey)
@@ -556,6 +617,102 @@ final class PrayerPackLoaderTests: XCTestCase {
       try PrayerPackStore.installPack(from: makeExamplePack(id: "../\(escapedName)")))
     XCTAssertFalse(FileManager.default.fileExists(
       atPath: root.appendingPathComponent("\(escapedName).prosaryprayer").path))
+  }
+
+  func testDeviceRemovalDeletesLocalPackAndExplicitReimportClearsExclusion() throws {
+    _ = PrayerPackStore.customDevotionIds()
+    let savedDirectory = PrayerPackStore.installedPacksDirectory
+    let savedDefaults = PrayerPackStore.downloadRemovalDefaults
+    let suite = "PackRemovalTests.\(UUID())"
+    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    let directory = FileManager.default.temporaryDirectory.appendingPathComponent(suite, isDirectory: true)
+    PrayerPackStore.installedPacksDirectory = directory
+    PrayerPackStore.downloadRemovalDefaults = defaults
+    let id = "removal-\(UUID().uuidString.lowercased())"
+    defer {
+      PrayerPackStore.removeInstalledPack(id: id)
+      PrayerPackStore.installedPacksDirectory = savedDirectory
+      PrayerPackStore.downloadRemovalDefaults = savedDefaults
+      defaults.removePersistentDomain(forName: suite)
+      try? FileManager.default.removeItem(at: directory)
+    }
+    let data = makeExamplePack(id: id)
+    try PrayerPackStore.installPack(from: data)
+    let file = try XCTUnwrap(PrayerPackStore.installedPackURL(for: id))
+    try PrayerPackStore.removeInstalledPackFromDevice(id: id)
+    XCTAssertFalse(FileManager.default.fileExists(atPath: file.path))
+    XCTAssertFalse(PrayerPackStore.installedBundleIds().contains(id))
+    XCTAssertNil(PrayerPackStore.definition(for: id))
+    XCTAssertEqual(defaults.stringArray(forKey: PrayerPackStore.removedDownloadsKey), [id])
+    try PrayerPackStore.removeInstalledPackFromDevice(id: "rosary")
+    XCTAssertNotNil(PrayerPackStore.definition(for: "rosary"))
+    try PrayerPackStore.installPack(from: data)
+    XCTAssertTrue(PrayerPackStore.installedBundleIds().contains(id))
+    XCTAssertEqual(defaults.stringArray(forKey: PrayerPackStore.removedDownloadsKey), [])
+  }
+
+  func testInstalledScanRejectsRenamedPackThatWouldBypassLocalExclusion() throws {
+    try withIsolatedInstalledPackScan { directory, defaults in
+      let id = "excluded-\(UUID().uuidString.lowercased())"
+      let renamedID = "renamed-\(UUID().uuidString.lowercased())"
+      let allowedID = "allowed-\(UUID().uuidString.lowercased())"
+      defaults.set([id], forKey: PrayerPackStore.removedDownloadsKey)
+      let excludedPack = makeExamplePack(id: id)
+      try excludedPack.write(to: directory.appendingPathComponent("\(id).prosaryprayer"))
+      try excludedPack.write(to: directory.appendingPathComponent("\(renamedID).prosaryprayer"))
+      try makeExamplePack(id: allowedID).write(to: directory.appendingPathComponent("\(allowedID).prosaryprayer"))
+      defer { PrayerPackStore.removeInstalledPack(id: allowedID) }
+
+      PrayerPackStore.scanInstalledPacksForTesting()
+
+      XCTAssertNil(PrayerPackStore.definition(for: id))
+      XCTAssertNil(PrayerPackStore.info(for: id))
+      XCTAssertFalse(PrayerPackStore.installedBundleIds().contains(id))
+      XCTAssertFalse(PrayerPackStore.installedBundleIds().contains(renamedID))
+      XCTAssertEqual(defaults.stringArray(forKey: PrayerPackStore.removedDownloadsKey), [id])
+      // A correctly named neighbor still loads through the same launch scan.
+      XCTAssertTrue(PrayerPackStore.installedBundleIds().contains(allowedID))
+      XCTAssertEqual(PrayerPackStore.info(for: allowedID)?.displayName, "Example Devotion")
+    }
+  }
+
+  func testInstalledScanRejectsRenamedBuiltinIDBeforeChangingShippedContent() throws {
+    try withIsolatedInstalledPackScan { directory, _ in
+      let originalName = try XCTUnwrap(PrayerPackStore.info(for: "rosary")).displayName
+      let originalOptions = PrayerPackStore.options(for: "rosary").map(\.key)
+      let originalBody = PrayerPackStore.resolveBodyText(bundleId: "rosary", languageCode: "en", key: "exampleBody")
+      let installedBefore = PrayerPackStore.installedBundleIds()
+      let renamedID = "renamed-rosary-\(UUID().uuidString.lowercased())"
+      try makeExamplePack(id: "rosary").write(to: directory.appendingPathComponent("\(renamedID).prosaryprayer"))
+
+      PrayerPackStore.scanInstalledPacksForTesting()
+
+      XCTAssertEqual(PrayerPackStore.info(for: "rosary")?.displayName, originalName)
+      XCTAssertEqual(PrayerPackStore.options(for: "rosary").map(\.key), originalOptions)
+      XCTAssertEqual(PrayerPackStore.resolveBodyText(bundleId: "rosary", languageCode: "en", key: "exampleBody"), originalBody)
+      XCTAssertEqual(PrayerPackStore.installedBundleIds(), installedBefore)
+      XCTAssertNil(PrayerPackStore.installedPackURL(for: "rosary"))
+      XCTAssertNotNil(PrayerPackStore.definition(for: "rosary"))
+    }
+  }
+
+  private func withIsolatedInstalledPackScan(_ operation: (URL, UserDefaults) throws -> Void) throws {
+    _ = PrayerPackStore.customDevotionIds()
+    let savedDirectory = PrayerPackStore.installedPacksDirectory
+    let savedDefaults = PrayerPackStore.downloadRemovalDefaults
+    let suite = "PackScanTests.\(UUID())"
+    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    let directory = FileManager.default.temporaryDirectory.appendingPathComponent(suite, isDirectory: true)
+    try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+    PrayerPackStore.installedPacksDirectory = directory
+    PrayerPackStore.downloadRemovalDefaults = defaults
+    defer {
+      PrayerPackStore.installedPacksDirectory = savedDirectory
+      PrayerPackStore.downloadRemovalDefaults = savedDefaults
+      defaults.removePersistentDomain(forName: suite)
+      try? FileManager.default.removeItem(at: directory)
+    }
+    try operation(directory, defaults)
   }
 
   /// A days-type (multi-day) bundle decodes, installs, and prays its first day — the

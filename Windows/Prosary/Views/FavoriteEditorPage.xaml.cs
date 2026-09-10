@@ -16,7 +16,9 @@ public sealed partial class FavoriteEditorPage : Page
     public FavoriteEditorPage()
     {
         ViewModel = App.Services.GetRequiredService<FavoriteEditorViewModel>();
+        ViewModel.Navigation = Router.For(this);
         InitializeComponent();
+        ViewModel.ShowSaveError = message => PrayerRemovalDialogs.ShowSaveErrorAsync(XamlRoot, message);
     }
 
     protected override async void OnNavigatedTo(NavigationEventArgs e)

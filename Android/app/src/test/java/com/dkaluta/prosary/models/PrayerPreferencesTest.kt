@@ -1,6 +1,7 @@
 package com.dkaluta.prosary.models
 
 import androidx.compose.runtime.derivedStateOf
+import com.dkaluta.prosary.ui.shared.CustomDevotionPrayerSession
 import java.io.File
 import org.junit.Assert.*
 import org.junit.Test
@@ -66,8 +67,14 @@ class PrayerPreferencesTest {
         val flow = File("src/main/java/com/dkaluta/prosary/ui/rosaryflow/RosaryFlowScreen.kt").readText()
         assertTrue(flow.contains("onOpenDevotion(\"litanyOfLoreto\", \"afterRosary\", languageCode)"))
         val destination = File("src/main/java/com/dkaluta/prosary/ui/shared/CustomDevotionFlowScreen.kt").readText()
-        assertTrue(destination.contains("DevotionEntryContext.initialVariant(devotionId, initialVariantId, prayer?.variantId)"))
-        assertTrue(destination.contains("initialLanguageCode ?: prayer?.languageCode"))
+        val favorite = Prayer(kind = PrayerKind.Custom, customDevotionId = "litanyOfLoreto",
+            variantId = "standard", languageCode = "en")
+        val handoff = CustomDevotionPrayerSession("litanyOfLoreto", favorite, "afterRosary", "he")
+        assertEquals("afterRosary", handoff.variantId.value)
+        assertEquals("he", handoff.chosenLanguage.value)
+        val ordinary = CustomDevotionPrayerSession("litanyOfLoreto", favorite, null, null)
+        assertEquals("standard", ordinary.variantId.value)
+        assertEquals("en", ordinary.chosenLanguage.value)
         assertTrue(destination.contains("initialVariantId == null && initialLanguageCode == null"))
         assertTrue(destination.contains("initialLanguageCode == null || it.languageCode == configuredLanguage"))
     }
@@ -82,15 +89,40 @@ class PrayerPreferencesTest {
         assertTrue(flow.contains("if (!variantFollowsEntry && variantId == null"))
     }
 
-    @Test fun closingOverridesPreserveLegacyDefaultsAndSavedRunIdentity() {
+    @Test fun closingOverridesResolveToOneGroupAndShareItsSavedRunIdentity() {
         val legacy = RosaryOptions(includeClosingIntentions = true)
         assertTrue(legacy.effectiveClosingPopeIntention)
         assertTrue(legacy.effectiveClosingBishopIntention)
         assertTrue(legacy.effectiveClosingDepartedIntention)
         assertEquals(PrayerRunSignatures.rosary(legacy), PrayerRunSignatures.rosary(legacy.copy(
             includeClosingPopeIntention = true, includeClosingBishopIntention = true, includeClosingDepartedIntention = true)))
-        assertNotEquals(PrayerRunSignatures.rosary(legacy), PrayerRunSignatures.rosary(legacy.copy(includeClosingBishopIntention = false)))
-        assertFalse(RosaryOptions().effectiveClosingPopeIntention)
+        for (partial in listOf(
+            legacy.copy(includeClosingBishopIntention = false),
+            RosaryOptions(includeClosingPopeIntention = true),
+            RosaryOptions(includeClosingBishopIntention = true),
+            RosaryOptions(includeClosingDepartedIntention = true),
+        )) {
+            assertTrue(partial.effectiveClosingIntentions)
+            assertTrue(partial.effectiveClosingPopeIntention)
+            assertTrue(partial.effectiveClosingBishopIntention)
+            assertTrue(partial.effectiveClosingDepartedIntention)
+            assertEquals(PrayerRunSignatures.rosary(legacy), PrayerRunSignatures.rosary(partial))
+            val disabled = partial.withClosingIntentions(false)
+            assertFalse(disabled.includeClosingIntentions)
+            assertFalse(disabled.effectiveClosingIntentions)
+            assertNull(disabled.includeClosingPopeIntention)
+            assertNull(disabled.includeClosingBishopIntention)
+            assertNull(disabled.includeClosingDepartedIntention)
+            assertEquals(PrayerRunSignatures.rosary(RosaryOptions()), PrayerRunSignatures.rosary(disabled))
+        }
+        val allDisabled = legacy.copy(
+            includeClosingPopeIntention = false,
+            includeClosingBishopIntention = false,
+            includeClosingDepartedIntention = false,
+        )
+        assertFalse(allDisabled.effectiveClosingIntentions)
+        assertEquals(PrayerRunSignatures.rosary(RosaryOptions()), PrayerRunSignatures.rosary(allDisabled))
+        assertFalse(RosaryOptions().effectiveClosingIntentions)
         val persistence = File("src/main/java/com/dkaluta/prosary/persistence/PresetEntity.kt").readText()
         val migration = File("src/main/java/com/dkaluta/prosary/persistence/AppDatabase.kt").readText()
         for (name in listOf("Pope", "Bishop", "Departed")) {
@@ -98,5 +130,19 @@ class PrayerPreferencesTest {
             assertTrue(persistence.contains("includeClosing${name}Intention = prayer.rosary.includeClosing${name}Intention"))
             assertTrue(migration.contains("ADD COLUMN includeClosing${name}Intention INTEGER DEFAULT NULL"))
         }
+    }
+
+    @Test fun genericRosaryOptionNormalizationPreservesOtherSettingsAndNullableInheritance() {
+        val values = mapOf("antiphon" to "reginaCaeli", "openingFatimaPrayer" to "true")
+        assertEquals(values, RosaryOptions.normalizedCustomOptions("rosary", values))
+        val legacy = values + mapOf("closingIntentions" to "true", "closingPopeIntention" to "false")
+        assertEquals(values + ("closingIntentions" to "true"), RosaryOptions.normalizedCustomOptions("rosary", legacy))
+        assertEquals(legacy, RosaryOptions.normalizedCustomOptions("foreignRosary", legacy))
+        assertEquals(
+            values + ("closingIntentions" to "false"),
+            RosaryOptions.normalizedCustomOptions("rosary", values + mapOf("closingPopeIntention" to "invalid")),
+        )
+        val disabled = RosaryOptions.normalizedCustomOptions("rosary", legacy) + ("closingIntentions" to "false")
+        assertEquals(disabled, RosaryOptions.normalizedCustomOptions("rosary", disabled))
     }
 }

@@ -24,13 +24,30 @@ struct BasicPrayersView: View {
   @AppStorage(BasicPrayerCatalog.languageDefaultsKey) private var chosenLanguage = LanguageCatalog.defaultSentinel
   private var showsPrayerNameInPrayerLanguage: Bool { prayerLanguage.showsPrayerNameInPrayerLanguage }
 
-  /// Kept explicit rather than relying on NavigationLink's internal write: two Mac clicks can
-  /// arrive before this source row disappears, and every other app route is single-top.
-  @Binding var path: [AppRoute]
+  /// Opening is an action, not a write to a synthetic navigation path. The Mac library
+  /// opens a window directly; navigation stacks supply their real path through this adapter.
+  private let onOpenPrayer: (String) -> Void
+
+  init(onOpenPrayer: @escaping (String) -> Void) {
+    self.onOpenPrayer = onOpenPrayer
+  }
+
+  init(path: Binding<[AppRoute]>) {
+    self.init { id in path.wrappedValue.push(.basicPrayer(id: id)) }
+  }
 
   /// Bumped after a move so the list re-derives from the saved order — the order lives in
   /// BasicPrayersOrder, not in view state, so the flows and every future surface agree on it.
   @State private var orderGeneration = 0
+  @State private var selectedPrayer: String?
+
+  private var desktopSelection: Binding<String?>? {
+    #if os(macOS)
+    $selectedPrayer
+    #else
+    nil
+    #endif
+  }
 
   var body: some View {
     let _ = prayerLanguage.code  // dependency registration — see the property's comment
@@ -38,15 +55,18 @@ struct BasicPrayersView: View {
     let _ = CloudPreferencesGeneration.shared.value
     let language = LanguageCatalog.resolve(chosenLanguage)
     let ordered = BasicPrayersOrder.apply(BasicPrayerCatalog.all)
-    List {
+    List(selection: desktopSelection) {
       ForEach(ordered) { prayer in
+        #if !os(macOS)
         let isPinned = BasicPrayerFavorites.contains(prayer.id)
         let pinAction = isPinned
           ? String(localized: "basicPrayers.unpin", defaultValue: "Remove from Pray")
           : String(localized: "basicPrayers.pin", defaultValue: "Pin to Pray")
+        #endif
         HStack(spacing: 8) {
           Button {
-            path.push(.basicPrayer(id: prayer.id))
+            selectedPrayer = prayer.id
+            onOpenPrayer(prayer.id)
           } label: {
             BasicPrayerRow(prayer: prayer, language: language,
                            showPrayerLanguage: showsPrayerNameInPrayerLanguage)
@@ -55,6 +75,7 @@ struct BasicPrayersView: View {
           }
           .buttonStyle(.plain)
           .accessibilityIdentifier("basicPrayer-\(prayer.id)")
+          #if !os(macOS)
           Button {
             BasicPrayerFavorites.toggle(prayer.id)
             orderGeneration += 1
@@ -68,7 +89,9 @@ struct BasicPrayersView: View {
           .accessibilityLabel(pinAction)
           .help(pinAction)
           .accessibilityIdentifier("basicPrayerPin-\(prayer.id)")
+          #endif
         }
+        .tag(prayer.id)
       }
       // Reorderable per Erez (2026-08-08): drag on macOS, Edit mode on iOS. The same
       // HomeOrder idea — persisted ids, catalog order for the rest.
@@ -80,6 +103,11 @@ struct BasicPrayersView: View {
       }
     }
     .navigationTitle(String(localized: "basicPrayers.title", defaultValue: "Basic Prayers"))
+    .macListActivation {
+      guard let id = selectedPrayer, BasicPrayerCatalog.prayer(id: id) != nil else { return false }
+      onOpenPrayer(id)
+      return true
+    }
     .toolbar {
       BasicPrayersLanguageMenu(chosenLanguage: $chosenLanguage)
       #if os(iOS)
@@ -128,6 +156,7 @@ struct BasicPrayerFlowView: View {
 
   @Environment(\.appServices) private var services
   @Environment(\.dismiss) private var dismiss
+  @Environment(\.finishPrayerSession) private var finishPrayerSession
 
   /// A basic prayer is a reference page, not a session — it re-derives live. See
   /// PrayerLanguageMonitor for why nothing simpler works.
@@ -152,7 +181,7 @@ struct BasicPrayerFlowView: View {
       languageCode: language.code,
       canGoBack: false,
       onBack: {},
-      onNext: { dismiss() },
+      onNext: { if let finishPrayerSession { finishPrayerSession() } else { dismiss() } },
       flowActions: AnyView(BasicPrayersLanguageMenu(chosenLanguage: $chosenLanguage)))
     .onAppear {
       seasonColor = services.calendar.seasonColorToday()
@@ -167,9 +196,13 @@ private struct BasicPrayersLanguageMenu: View {
     Menu {
       PrayerLanguageMenuContent(code: chosenLanguage, identifierPrefix: "basicPrayerLanguage") { chosenLanguage = $0 }
     } label: {
-      Image(systemName: "globe")
+      Label(String(localized: "prayerFlow.language", defaultValue: "Prayer Language"), systemImage: "globe")
     }
-    .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer language"))
+    #if !os(macOS)
+    .labelStyle(.iconOnly)
+    #endif
+    .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer Language"))
+    .help(String(localized: "prayerFlow.language", defaultValue: "Prayer Language"))
     .accessibilityIdentifier("languageMenu")
   }
 

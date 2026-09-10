@@ -11,6 +11,89 @@ public class HebrewFallbackTests : IClassFixture<PrayerPackLoaderFixture>
 {
     public HebrewFallbackTests(PrayerPackLoaderFixture _) { }
 
+    [Theory]
+    [InlineData("")]
+    [InlineData("fr")]
+    public void SavedLanguageLabelFollowsHebrewOnlyPlaybackWithoutRewritingRequestedChoice(string raw)
+    {
+        var previousDefault = AppSettings.DefaultLanguageCode;
+        try
+        {
+            AppSettings.SetDefaultLanguageCode("la");
+            using var fixture = new ImportedPack(new Dictionary<string, object>
+            {
+                ["he"] = new { prayers = new { genericBody = "Hebrew-only fixture" } },
+            });
+            fixture.SetOrder("he", "he-x-gamliel");
+            var prayer = new Prayer { Kind = PrayerKind.Custom, CustomDevotionId = fixture.Id, LanguageCode = raw };
+            Assert.Equal(raw.Length == 0 ? "la" : "fr", prayer.ResolvedLanguageCode);
+            Assert.Equal("he", prayer.EffectiveLanguageCode);
+            Assert.Equal("עברית", prayer.LanguageNativeName);
+            Assert.Contains("עברית", prayer.LanguageDisplayName);
+            Assert.DoesNotContain("Latina", prayer.LanguageDisplayName);
+            var engine = new Prosary.Services.PrayerEngine(new Prosary.Services.LiturgicalCalendarService());
+            Assert.Equal("Hebrew-only fixture", Assert.Single(engine.BuildSteps(prayer)).Body);
+            Assert.Equal(raw, prayer.LanguageCode);
+        }
+        finally { AppSettings.SetDefaultLanguageCode(previousDefault); }
+    }
+
+    [Fact]
+    public void SavedLanguageLabelReevaluatesTheCurrentBundleFallbackOrder()
+    {
+        var previousDefault = AppSettings.DefaultLanguageCode;
+        try
+        {
+            AppSettings.SetDefaultLanguageCode("la");
+            using var fixture = new ImportedPack(new Dictionary<string, object>
+            {
+                ["he"] = new { prayers = new { genericBody = "Hebrew fixture" } },
+                ["fr"] = new { prayers = new { genericBody = "French fixture" } },
+            });
+            var prayer = new Prayer { Kind = PrayerKind.Custom, CustomDevotionId = fixture.Id };
+            fixture.SetOrder("fr", "he", "he-x-gamliel");
+            Assert.Equal("fr", prayer.EffectiveLanguageCode);
+            Assert.Equal("Français", prayer.LanguageNativeName);
+            fixture.SetOrder("he", "fr", "he-x-gamliel");
+            Assert.Equal("he", prayer.EffectiveLanguageCode);
+            Assert.Equal("עברית", prayer.LanguageNativeName);
+            Assert.Equal(LanguageCatalog.DefaultSentinel, prayer.LanguageCode);
+        }
+        finally { AppSettings.SetDefaultLanguageCode(previousDefault); }
+    }
+
+    [Fact]
+    public void UnknownDeclaredBundleLanguageIsNotMislabeledAsLatin()
+    {
+        using var fixture = new ImportedPack(new Dictionary<string, object>
+        {
+            ["zz"] = new { prayers = new { genericBody = "Unknown-language fixture" } },
+        });
+        var prayer = new Prayer { Kind = PrayerKind.Custom, CustomDevotionId = fixture.Id, LanguageCode = "en" };
+        Assert.Equal("en", prayer.ResolvedLanguageCode);
+        Assert.Equal("zz", prayer.EffectiveLanguageCode);
+        Assert.Equal("zz", prayer.LanguageNativeName);
+        Assert.Equal("zz", prayer.LanguageDisplayName);
+    }
+
+    [Fact]
+    public void OrdinaryPrayerKindsAndMissingCustomIdsKeepRequestedResolution()
+    {
+        var previousDefault = AppSettings.DefaultLanguageCode;
+        try
+        {
+            AppSettings.SetDefaultLanguageCode("uk");
+            foreach (var kind in Enum.GetValues<PrayerKind>())
+            {
+                var prayer = new Prayer { Kind = kind };
+                Assert.Equal("uk", prayer.ResolvedLanguageCode);
+                Assert.Equal("uk", prayer.EffectiveLanguageCode);
+                Assert.Equal("Українська", prayer.LanguageNativeName);
+            }
+        }
+        finally { AppSettings.SetDefaultLanguageCode(previousDefault); }
+    }
+
     [Fact]
     public void JaffaWordingChangesOnlyResolvedVicariateTextAndRestoresTheOriginal()
     {

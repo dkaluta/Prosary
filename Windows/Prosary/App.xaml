@@ -35,6 +35,16 @@
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
 
+            <!-- Keep WinUI's Fluent menu template, focus visuals, and contrast themes.
+                 The native template does not consume MenuBar.Padding, so use an outer
+                 inset and a minimum height that still grows with the menu content. -->
+            <Style x:Key="DesktopMenuBarStyle" TargetType="controls:MenuBar"
+                   BasedOn="{StaticResource DefaultMenuBarStyle}">
+                <Setter Property="Background" Value="{ThemeResource MenuBarBackground}" />
+                <Setter Property="MinHeight" Value="32" />
+                <Setter Property="Margin" Value="8,0,8,4" />
+            </Style>
+
             <SolidColorBrush x:Key="BrandPrimaryBrush" Color="{ThemeResource BrandPrimaryColor}" />
             <!-- Translucent brand wash for chip/tag backgrounds whose text is BrandPrimaryBrush —
                  a solid brand background with white text is unreadable in dark mode, where

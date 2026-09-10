@@ -7,9 +7,34 @@
 //
 
 import XCTest
+import SwiftData
 @testable import Prosary
 
 final class PresetStoreTests: XCTestCase {
+
+  @MainActor
+  func testFreshPersistentStoreRespectsPlatformStartingLibrary() async throws {
+    let defaultsName = "ProsaryTests.FreshPresetStore.\(UUID().uuidString)"
+    let defaults = try XCTUnwrap(UserDefaults(suiteName: defaultsName))
+    defer { defaults.removePersistentDomain(forName: defaultsName) }
+    let container = try ModelContainer(for: PresetEntry.self,
+      configurations: ModelConfiguration(isStoredInMemoryOnly: true, cloudKitDatabase: .none))
+    let context = ModelContext(container)
+    let store = SwiftDataPresetStore(context: context, defaults: defaults)
+    let startingPrayers = try await store.all()
+    #if os(macOS)
+    XCTAssertTrue(startingPrayers.isEmpty, "Mac starts with an empty library and offers prayers in the gallery")
+    #else
+    XCTAssertEqual(startingPrayers.count, 1)
+    XCTAssertEqual(startingPrayers.first?.kind, .rosary)
+    #endif
+
+    let saved = Prayer(name: "Evening Prayer", kind: .rosary)
+    try await store.save(saved)
+    let reopened = SwiftDataPresetStore(context: context, defaults: defaults)
+    let existing = try await reopened.get(id: saved.id)
+    XCTAssertEqual(existing?.name, saved.name, "Reopening must retain an existing user's prayers")
+  }
 
   // MARK: - Helpers
 
@@ -44,7 +69,7 @@ final class PresetStoreTests: XCTestCase {
 
   // MARK: - all()
 
-  func testPresetEntryKeepsIndependentClosingIntentionsAndLegacyDefaults() {
+  func testPresetEntryKeepsLegacyClosingFieldsAndRestoresCombinedChoice() {
     var prayer = Prayer(rosary: RosaryOptions(includeClosingIntentions: true))
     let oldRow = PresetEntry(prayer: prayer)
     XCTAssertNil(oldRow.toPrayer().rosary.includeClosingPopeIntention)
@@ -54,10 +79,16 @@ final class PresetStoreTests: XCTestCase {
     prayer.rosary.includeClosingDepartedIntention = false
     oldRow.update(from: prayer)
     let saved = oldRow.toPrayer().rosary
-    XCTAssertFalse(saved.effectiveClosingPopeIntention)
+    XCTAssertTrue(saved.effectiveClosingPopeIntention)
     XCTAssertTrue(saved.effectiveClosingBishopIntention)
-    XCTAssertFalse(saved.effectiveClosingDepartedIntention)
+    XCTAssertTrue(saved.effectiveClosingDepartedIntention)
+    XCTAssertEqual(saved.includeClosingPopeIntention, false)
+    XCTAssertEqual(saved.includeClosingDepartedIntention, false)
     XCTAssertEqual(PresetEntry(prayer: prayer).toPrayer().rosary, saved)
+    prayer.rosary.effectiveClosingIntentions = false
+    oldRow.update(from: prayer)
+    XCTAssertFalse(oldRow.toPrayer().rosary.effectiveClosingIntentions)
+    XCTAssertNil(oldRow.toPrayer().rosary.includeClosingBishopIntention)
   }
 
   func testAllReturnsSortedByName() async throws {

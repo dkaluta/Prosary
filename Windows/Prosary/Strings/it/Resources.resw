@@ -86,9 +86,9 @@
   <data name="settings_installed_devotions" xml:space="preserve"><value>Devozioni installate: {0}</value></data>
   <data name="settings_clear_audio_cache" xml:space="preserve"><value>Svuota la cache audio</value></data>
   <data name="settings_clear_audio_cache_size" xml:space="preserve"><value>Svuota la cache audio ({0})</value></data>
-  <data name="settings_remove_all_title" xml:space="preserve"><value>Rimuovere tutte le devozioni scaricate?</value></data>
-  <data name="settings_remove_all_message" xml:space="preserve"><value>Le devozioni della raccolta possono essere scaricate di nuovo; i file importati manualmente no.</value></data>
-  <data name="settings_remove_all_confirm" xml:space="preserve"><value>Rimuovi tutto</value></data>
+  <data name="settings_remove_all_title" xml:space="preserve"><value>Rimuovere i download inutilizzati?</value></data>
+  <data name="settings_remove_all_message" xml:space="preserve"><value>Verranno rimosse le preghiere scaricate senza copie salvate. Le preghiere salvate e integrate verranno conservate.</value></data>
+  <data name="settings_remove_all_confirm" xml:space="preserve"><value>Rimuovi inutilizzati</value></data>
   <data name="settings_app_language_system" xml:space="preserve"><value>Predefinita di sistema</value></data>
   <data name="NavPray.Content" xml:space="preserve"><value>Prega</value></data>
   <data name="NavBrowse.Content" xml:space="preserve"><value>Esplora</value></data>
@@ -105,8 +105,8 @@
   <data name="SetAutoAdvanceCombo.Header" xml:space="preserve"><value>Avanzamento automatico</value></data>
   <data name="SetResetHomeOrder.Content" xml:space="preserve"><value>Reimposta l’ordine iniziale</value></data>
   <data name="SetDownloadsHeader.Text" xml:space="preserve"><value>Download</value></data>
-  <data name="SetRemoveAll.Content" xml:space="preserve"><value>Rimuovi tutte le devozioni scaricate…</value></data>
-  <data name="SetDownloadsFooter.Text" xml:space="preserve"><value>Le devozioni integrate non vengono mai rimosse. Rimuovendo una devozione scaricata si elimina anche il relativo preferito.</value></data>
+  <data name="SetRemoveAll.Content" xml:space="preserve"><value>Rimuovi i download inutilizzati…</value></data>
+  <data name="SetDownloadsFooter.Text" xml:space="preserve"><value>Qui puoi rimuovere solo i download senza copie salvate. Eliminare l’ultima copia salvata rimuove anche il suo download. Le preghiere integrate vengono conservate.</value></data>
   <data name="SetLinksHeader.Text" xml:space="preserve"><value>Collegamenti</value></data>
   <data name="SetRepoLink.Content" xml:space="preserve"><value>Raccolta della comunità</value></data>
   <data name="SetComposeLink.Content" xml:space="preserve"><value>Componi una devozione</value></data>
@@ -168,7 +168,7 @@
   <data name="EdApostlesCreed.Text" xml:space="preserve"><value>Simbolo degli Apostoli</value></data>
   <data name="EdOpeningPrayers.Text" xml:space="preserve"><value>Padre nostro iniziale e 3 Ave Maria</value></data>
   <data name="EdFatima.Text" xml:space="preserve"><value>Preghiera di Fatima dopo ogni decina</value></data>
-  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>Preghiera di Fatima dopo le Ave Maria iniziali</value></data>
+  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>Preghiera di Fatima dopo il Gloria al Padre iniziale</value></data>
   <data name="EdDisplayHeader.Text" xml:space="preserve"><value>Visualizzazione</value></data>
   <data name="EdMysteryArtwork.Header" xml:space="preserve"><value>Immagini dei misteri</value></data>
   <data name="EdPresenterMode.Text" xml:space="preserve"><value>Modalità guida</value></data>
@@ -208,7 +208,7 @@
   <data name="AbtJpHeader.Text" xml:space="preserve"><value>Illustrazione della preghiera di Gesù</value></data>
   <data name="AbtJpBody.Text" xml:space="preserve"><value>Cristo Pantocratore: icona a encausto (VI secolo), monastero di Santa Caterina, monte Sinai — la più antica icona superstite del Cristo Pantocratore, in omaggio alla tradizione orientale della preghiera; pubblico dominio.</value></data>
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>Fonti bibliche</value></data>
-  <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Le citazioni bibliche provengono dalla Bibbia Douay-Rheims (inglese), dalla Vulgata Clementina (latino), dalla traduzione ebraica del Nuovo Testamento di Franz Delitzsch (kirjasilta.net/ha-berit), con i brani ebraici dell’Antico Testamento tratti dal testo masoretico, dalla Bibbia araba dei gesuiti (Dar el-Machreq), dalla Bibbia sinodale russa (1876) e da Ang Dating Biblia (tagalog, 1905).</value></data>
+  <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Le citazioni bibliche provengono dalla Bibbia Douay-Rheims (inglese), dalla Vulgata Clementina (latino), dalla traduzione ebraica del Nuovo Testamento di Franz Delitzsch (kirjasilta.net/ha-berit; delitz.fr/12, 1901), con i brani ebraici dell’Antico Testamento tratti dal testo masoretico, dall’antica Bibbia araba dei gesuiti (1897), dalla Bibbia sinodale russa (1876) e da Ang Dating Biblia (tagalog, 1905).</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>Dati del calendario</value></data>
   <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Dati del calendario e delle letture: Calendario romano generale tramite il progetto LitCal (litcal.johnromanodorazio.com); calendario e lezionario del 1962 tramite Missale Meum (missalemeum.com); calendario cattolico siriaco, titoli ebraici documentati del Calendario romano generale e riferimenti dei lezionari romano e siriaco per gentile concessione di Evangelizo.org — Vangelo del Giorno, © Evangelizo.org; calendario e letture greco-cattolici ucraini con Pasqua giuliana forniti dalla Chiesa greco-cattolica ucraina e dalla sua Commissione liturgica patriarcale (ugcc.ua); letture con Pasqua gregoriana fornite da Royal Doors (royaldoors.net). Nomi ebraici dei libri biblici: Evangelizo HE e Vicariato di San Giacomo (catholic.co.il). Altri nomi ebraici di feste e santi: Vicariato di San Giacomo, Christian Media Center (cmc-terrasanta.org) e Vatican News (vaticannews.va).</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Mistero precedente</value></data>
@@ -322,27 +322,27 @@
   <data name="SetAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>Segno della croce in aramaico</value></data>
   <data name="EdAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>Segno della croce in aramaico</value></data>
   <data name="EdRiteCombo.Header" xml:space="preserve"><value>Tradizione di preghiera</value></data>
-  <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>Prega un Rosario a scelta</value></data>
-  <data name="HomeAddRosary.Content" xml:space="preserve"><value>Aggiungi un Rosario</value></data>
-  <data name="HomeAddJesusPrayer.Content" xml:space="preserve"><value>Aggiungi la preghiera di Gesù</value></data>
+  <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>Prega un Rosario a scelta…</value></data>
+  <data name="HomeAddRosary.Content" xml:space="preserve"><value>Aggiungi un Rosario…</value></data>
+  <data name="HomeAddJesusPrayer.Content" xml:space="preserve"><value>Aggiungi la preghiera di Gesù…</value></data>
   <data name="HomeAddToPrayHeader.Text" xml:space="preserve"><value>Aggiungi a Prega</value></data>
-  <data name="HomeSavedPresets.Text" xml:space="preserve"><value>Configurazioni salvate…</value></data>
+  <data name="HomeSavedPresets.Text" xml:space="preserve"><value>Configurazioni salvate</value></data>
   <data name="HomeEditOrderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Modifica ordine…</value></data>
   <data name="HomeReminders.Text" xml:space="preserve"><value>Promemoria…</value></data>
-  <data name="PresetEdit.Text" xml:space="preserve"><value>Modifica</value></data>
+  <data name="PresetEdit.Text" xml:space="preserve"><value>Modifica…</value></data>
   <data name="PresetReminders.Text" xml:space="preserve"><value>Promemoria…</value></data>
   <data name="PresetSetDefault.Text" xml:space="preserve"><value>Imposta come predefinita</value></data>
   <data name="PresetDelete.Text" xml:space="preserve"><value>Elimina</value></data>
   <data name="SetImportBundle.Content" xml:space="preserve"><value>Importa un pacchetto di devozione…</value></data>
   <data name="SetExportBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Esporta per modificare</value></data>
-  <data name="SetRemoveBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Rimuovi</value></data>
+  <data name="SetRemoveBundle.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Rimuovi il download…</value></data>
   <data name="PickerEternalRest.Header" xml:space="preserve"><value>Per i fedeli defunti</value></data>
   <data name="PickerAntiphon.Header" xml:space="preserve"><value>Antifona mariana</value></data>
   <data name="PickerMysteryArtwork.Header" xml:space="preserve"><value>Immagini dei misteri</value></data>
   <data name="PickerApostlesCreed.Text" xml:space="preserve"><value>Simbolo degli Apostoli</value></data>
   <data name="PickerOpeningPrayers.Text" xml:space="preserve"><value>Padre nostro iniziale e 3 Ave Maria</value></data>
   <data name="PickerFatima.Text" xml:space="preserve"><value>Preghiera di Fatima dopo ogni decina</value></data>
-  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>Preghiera di Fatima dopo le Ave Maria iniziali</value></data>
+  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>Preghiera di Fatima dopo il Gloria al Padre iniziale</value></data>
   <data name="PickerPresenterMode.Text" xml:space="preserve"><value>Modalità guida</value></data>
   <data name="PickerClosingIntentions.Text" xml:space="preserve"><value>Intenzioni finali</value></data>
   <data name="PickerStMichael.Text" xml:space="preserve"><value>Preghiera a san Michele</value></data>
@@ -442,9 +442,88 @@
   <data name="HomeNextDay.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Giorno successivo</value></data>
   <data name="home_today_choose_date" xml:space="preserve"><value>Scegli una data: {0}</value></data>
   <data name="AbtHebrewBookIndex.Text" xml:space="preserve"><value>Altri nomi ebraici dei libri biblici: indice della Bibbia ebraica di Mechon Mamre. Solo nomi, senza testo biblico.</value></data>
-  <data name="SetJaffaWording.Header" xml:space="preserve"><value>Formula di Giaffa</value></data>
+  <data name="SetJaffaWording.Header" xml:space="preserve"><value>Formula alternativa dell’Ave Maria</value></data>
   <data name="SetJaffaWordingFooter.Text" xml:space="preserve"><value>Usa בְּרוּכַת הַחֶסֶד al posto di מְלֵאַת הַחֶסֶד nelle preghiere del vicariato.</value></data>
   <data name="AbtUkrainianPrayerSources.Text" xml:space="preserve"><value>Preghiere in ucraino: Chiesa cattolica romana in Ucraina, libro di preghiere Щоденно з Богом. Utilizzate con attribuzione secondo la politica di riutilizzo dell’editore. Sacra Scrittura: Bibbia di Kulish, Nechui-Levytsky e Puluj (1905), pubblico dominio; eBible.org ukr1871. L’ortografia storica del testo biblico è conservata.</value></data>
   <data name="AbtUkrainianPrayerbookLink.Content" xml:space="preserve"><value>Libro di preghiere in ucraino</value></data>
   <data name="AbtUkrainianScriptureLink.Content" xml:space="preserve"><value>Bibbia in ucraino (1905)</value></data>
+  <!-- Window and menu commands -->
+  <data name="CommandsOpenInNewWindow" xml:space="preserve"><value>Apri in una nuova finestra</value></data>
+  <data name="CommandsNavigation" xml:space="preserve"><value>Vai</value></data>
+  <data name="CommandsBack" xml:space="preserve"><value>Indietro</value></data>
+  <data name="CommandsHelp" xml:space="preserve"><value>Aiuto Prosary</value></data>
+  <data name="CommandsNewWindow" xml:space="preserve"><value>Nuova finestra</value></data>
+  <data name="FavoriteEditorSaveFailed" xml:space="preserve"><value>Impossibile salvare il preferito</value></data>
+  <data name="flow_show_original_text" xml:space="preserve"><value>Mostra il testo originale</value></data>
+  <data name="RosaryAnyRosaryAction" xml:space="preserve"><value>Prega un Rosario a scelta…</value></data>
+  <data name="RosarySaveAsPresetAction" xml:space="preserve"><value>Salva configurazione…</value></data>
+  <data name="FavoriteEditorReminderTime" xml:space="preserve"><value>Ora del promemoria</value></data>
+  <data name="FavoriteEditorRemoveReminder" xml:space="preserve"><value>Rimuovi promemoria</value></data>
+  <data name="AboutVersion" xml:space="preserve"><value>Versione {0} ({1})</value></data>
+  <data name="CommandsRecentlyPrayed" xml:space="preserve"><value>Preghiere recenti</value></data>
+  <data name="HomeDeleteSavedPrayer.Text" xml:space="preserve"><value>Elimina la preghiera salvata…</value></data>
+  <data name="prayerRemoval_deleteTitle" xml:space="preserve"><value>Eliminare la preghiera salvata?</value></data>
+  <data name="prayerRemoval_deleteMessage" xml:space="preserve"><value>La preghiera salvata e i suoi promemoria verranno eliminati. Le altre copie salvate e le preghiere integrate resteranno disponibili.</value></data>
+  <data name="prayerRemoval_deleteDownloadedMessage" xml:space="preserve"><value>Questa è l’ultima copia salvata. Eliminandola verrà rimosso da questo dispositivo anche il pacchetto di preghiera scaricato e verranno annullati i suoi promemoria.</value></data>
+  <data name="prayerRemoval_deleteConfirm" xml:space="preserve"><value>Elimina</value></data>
+  <data name="prayerRemoval_removeDownloadTitle" xml:space="preserve"><value>Rimuovere il download?</value></data>
+  <data name="prayerRemoval_removeDownloadMessage" xml:space="preserve"><value>La preghiera scaricata verrà rimossa da questo dispositivo. Potrai importarla o scaricarla di nuovo.</value></data>
+  <data name="prayerRemoval_removeConfirm" xml:space="preserve"><value>Rimuovi</value></data>
+  <data name="prayerRemoval_failedTitle" xml:space="preserve"><value>Impossibile rimuovere la preghiera</value></data>
+  <data name="prayerRemoval_failedMessage" xml:space="preserve"><value>Non è stato possibile rimuovere alcuni elementi. Riprova.</value></data>
+  <data name="prayerRemoval_deleteFailed" xml:space="preserve"><value>Non è stato possibile eliminare la preghiera. Riprova.</value></data>
+  <data name="prayerRemoval_cleanupFailed" xml:space="preserve"><value>La preghiera è stata eliminata, ma non è stato possibile rimuovere il download. Riprova in Download.</value></data>
+  <data name="prayerRemoval_remindersFailed" xml:space="preserve"><value>La preghiera è stata eliminata, ma non è stato possibile annullare i suoi promemoria.</value></data>
+  <data name="prayerRemoval_downloadInUse" xml:space="preserve"><value>Elimina le copie salvate di questa preghiera prima di rimuovere il suo download.</value></data>
+  <data name="prayerRemoval_prayerRemoved" xml:space="preserve"><value>Questa preghiera salvata è stata eliminata.</value></data>
+
+  <!-- Native desktop library and prayer windows -->
+  <data name="desktop_library" xml:space="preserve"><value>Libreria</value></data>
+  <data name="desktop_today" xml:space="preserve"><value>Oggi</value></data>
+  <data name="desktop_gallery" xml:space="preserve"><value>Galleria</value></data>
+  <data name="desktop_community" xml:space="preserve"><value>Comunità</value></data>
+  <data name="desktop_menu_file" xml:space="preserve"><value>File</value></data>
+  <data name="desktop_menu_view" xml:space="preserve"><value>Visualizza</value></data>
+  <data name="desktop_menu_prayer" xml:space="preserve"><value>Preghiera</value></data>
+  <data name="desktop_menu_help" xml:space="preserve"><value>Aiuto</value></data>
+  <data name="desktop_show_library" xml:space="preserve"><value>Mostra libreria</value></data>
+  <data name="desktop_close_window" xml:space="preserve"><value>Chiudi finestra</value></data>
+  <data name="desktop_import" xml:space="preserve"><value>Importa raccolte di preghiere…</value></data>
+  <data name="desktop_full_screen" xml:space="preserve"><value>Schermo intero</value></data>
+  <data name="desktop_prayer_settings" xml:space="preserve"><value>Impostazioni della preghiera…</value></data>
+  <data name="desktop_previous_step" xml:space="preserve"><value>Passo precedente</value></data>
+  <data name="desktop_next_step" xml:space="preserve"><value>Passo successivo</value></data>
+  <data name="desktop_saved_prayer_missing" xml:space="preserve"><value>Questa preghiera salvata non è più disponibile.</value></data>
+  <data name="desktop_import_failed" xml:space="preserve"><value>Impossibile importare la raccolta di preghiere</value></data>
+  <data name="desktop_open" xml:space="preserve"><value>Apri</value></data>
+  <data name="desktop_duplicate" xml:space="preserve"><value>Duplica</value></data>
+  <data name="desktop_delete" xml:space="preserve"><value>Elimina preghiera salvata…</value></data>
+  <data name="desktop_rename" xml:space="preserve"><value>Rinomina…</value></data>
+  <data name="desktop_search_library" xml:space="preserve"><value>Cerca preghiere</value></data>
+  <data name="desktop_library_empty" xml:space="preserve"><value>La tua libreria di preghiere</value></data>
+  <data name="desktop_library_empty_detail" xml:space="preserve"><value>Aggiungi una preghiera dalla galleria o importa una raccolta di preghiere per iniziare.</value></data>
+  <data name="desktop_no_matches" xml:space="preserve"><value>Nessuna preghiera corrispondente</value></data>
+  <data name="desktop_no_matches_detail" xml:space="preserve"><value>Prova un’altra ricerca.</value></data>
+  <data name="desktop_add_to_library" xml:space="preserve"><value>Aggiungi alla libreria</value></data>
+  <data name="desktop_added" xml:space="preserve"><value>Aggiunto alla libreria</value></data>
+  <data name="desktop_library_load_failed" xml:space="preserve"><value>Impossibile caricare la libreria</value></data>
+  <data name="desktop_library_save_failed" xml:space="preserve"><value>Impossibile salvare la preghiera</value></data>
+  <data name="desktop_copy_name" xml:space="preserve"><value>Copia di {0}</value></data>
+  <data name="desktop_rename_title" xml:space="preserve"><value>Rinomina preghiera</value></data>
+  <data name="desktop_gallery_detail" xml:space="preserve"><value>Scegli una preghiera per aggiungere una copia salvata alla tua libreria.</value></data>
+  <data name="desktop_search_gallery" xml:space="preserve"><value>Cerca nella galleria</value></data>
+  <data name="desktop_list_view" xml:space="preserve"><value>Vista elenco</value></data>
+  <data name="desktop_grid_view" xml:space="preserve"><value>Vista griglia</value></data>
+  <data name="desktop_name" xml:space="preserve"><value>Nome</value></data>
+  <data name="search_category" xml:space="preserve"><value>Categoria</value></data>
+  <data name="search_all_categories" xml:space="preserve"><value>Tutte le categorie</value></data>
+  <data name="search_no_matches" xml:space="preserve"><value>Nessuna preghiera corrisponde a questa ricerca e categoria.</value></data>
+  <data name="readings_bible_passage" xml:space="preserve"><value>Passo biblico</value></data>
+  <data name="readings_edition" xml:space="preserve"><value>Edizione della Bibbia</value></data>
+  <data name="readings_edition_automatic" xml:space="preserve"><value>Segui la lingua dell’interfaccia</value></data>
+  <data name="readings_edition_unavailable" xml:space="preserve"><value>Non è disponibile un’edizione in questa lingua.</value></data>
+  <data name="readings_text_unavailable" xml:space="preserve"><value>Questo passo non è disponibile nell’edizione della Bibbia selezionata.</value></data>
+  <data name="readings_text_notice" xml:space="preserve"><value>Testo biblico del passo citato. La formulazione può differire dalla lettura della Messa.</value></data>
+  <data name="readings_whole_verses_notice" xml:space="preserve"><value>I versetti sono mostrati per intero quando la lettura ne cita solo una parte.</value></data>
+  <data name="readings_source" xml:space="preserve"><value>Fonte ed edizione</value></data>
 </root>

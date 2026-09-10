@@ -48,7 +48,7 @@
                           DisplayMemberPath="Label"
                           SelectedItem="{x:Bind ViewModel.SelectedAramaicSignOfCross, Mode=TwoWay}" />
 
-                <ToggleSwitch x:Uid="SetJaffaWording" Header="Jaffa wording"
+                <ToggleSwitch x:Uid="SetJaffaWording" Header="Alternative Hail Mary wording"
                               IsOn="{x:Bind ViewModel.UseJaffaHailMaryWording, Mode=TwoWay}"
                               AutomationProperties.AutomationId="useJaffaHailMaryWording" />
                 <TextBlock x:Uid="SetJaffaWordingFooter"
@@ -161,7 +161,7 @@
                                     <FontIcon Glyph="&#xEDE1;" FontSize="14" />
                                 </Button>
                                 <Button Grid.Column="2" x:Uid="SetRemoveBundle" Background="Transparent" Padding="8"
-                                        ToolTipService.ToolTip="Remove"
+                                        ToolTipService.ToolTip="Remove Download…"
                                         Command="{Binding ElementName=Root, Path=ViewModel.RemoveInstalledCommand}"
                                         CommandParameter="{Binding}">
                                     <FontIcon Glyph="&#xE74D;" FontSize="14" />
@@ -174,11 +174,11 @@
                 <Button Content="{x:Bind ViewModel.AudioCacheLabel, Mode=OneWay}" HorizontalAlignment="Stretch"
                         Command="{x:Bind ViewModel.ClearAudioCacheCommand}" />
 
-                <Button x:Uid="SetRemoveAll" Content="Remove All Downloaded Devotions…" HorizontalAlignment="Stretch"
+                <Button x:Uid="SetRemoveAll" Content="Remove Unused Downloads…" HorizontalAlignment="Stretch"
                         Foreground="{ThemeResource SystemFillColorCriticalBrush}"
                         Command="{x:Bind ViewModel.RequestRemoveAllDownloadsCommand}" />
 
-                <TextBlock x:Uid="SetDownloadsFooter" Text="Built-in devotions are never removed. Removing a downloaded devotion also removes its favorite."
+                <TextBlock x:Uid="SetDownloadsFooter" Text="Only downloads without saved copies can be removed here. Deleting the last saved copy also removes its download. Built-in prayers are kept."
                            TextWrapping="Wrap" Style="{StaticResource CaptionTextBlockStyle}"
                            Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
 

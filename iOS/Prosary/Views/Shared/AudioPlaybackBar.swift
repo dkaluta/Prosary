@@ -33,7 +33,7 @@ struct AudioPlaybackBar: View {
       .foregroundStyle(.secondary)
       .disabled(chapterCount < 2)
       .accessibilityLabel(String(localized: "prayerFlow.audio.previousChapter",
-                                 defaultValue: "Previous chapter"))
+                                 defaultValue: "Previous Chapter"))
 
       Button { controller.playPause() } label: {
         Image(systemName: controller.isPlaying ? "pause.circle.fill" : "play.circle.fill")
@@ -53,7 +53,7 @@ struct AudioPlaybackBar: View {
       .foregroundStyle(.secondary)
       .disabled(chapterCount < 2)
       .accessibilityLabel(String(localized: "prayerFlow.audio.nextChapter",
-                                 defaultValue: "Next chapter"))
+                                 defaultValue: "Next Chapter"))
 
       VStack(alignment: .leading, spacing: 0) {
         if let index = controller.currentChapterIndex, chapterTitles.indices.contains(index) {
