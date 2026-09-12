@@ -316,6 +316,24 @@ The counter-based Jesus Prayer has no own pack, so `gallery_jesusPrayer` is host
 and rights remain in `Shared/Images/CREDITS.markdown`. These covers affect Gallery previews only:
 prayer-step artwork and text remain unchanged. Regenerated packs are copied byte-for-byte into
 all three native ports, without adding loose native image resources.
+On Mac, a single Gallery item's Image menu offers Choose Image…, Search Online…, Use Default
+Image and Image Source. A chosen local file or Wikimedia Commons result overrides only that
+devotion's Gallery presentation on this Mac. Dropping one image file onto a Gallery tile
+replaces that tile's cover without changing the selection or library membership; blank space,
+multiple files and non-image files are not image-drop targets. A native accent outline marks
+the target while dragging. Compose's cover field also accepts an image drop, including onto
+an existing preview. Local artwork lives in
+`Application Support/Prosary/GalleryImages/<SHA256 devotion ID>/`: a separate
+`<UUIDv7>.jpg` contains the normalized SDR sRGB image, and `record.json` selects that file
+and retains its source title, author, license and source/license URLs. A replacement writes
+the new image before atomically replacing the record, then removes the previous image;
+Image Source keeps the credit accessible. Earlier embedded-image records migrate when read.
+Search result selection becomes an override only after Use Image. Removing an override reveals
+the authored `manifest.galleryImageKey`, then the existing curated/step-artwork fallback.
+These local choices neither rewrite nor export a pack and do not change another saved copy's
+prayer content. Portable defaults are authored separately in Compose, which preserves the
+uploaded image's proportions and stores it inside the pack. Android and Windows preserve that
+manifest metadata without gaining this Mac-local image menu or online search.
 `MacPrayerGalleryCollection` uses a native `NSCollectionView` for Finder-style multiple selection,
 including Command-click, Shift extension, selection rectangles and keyboard navigation. The
 SwiftUI gallery retains its fixed header, native scrolling collection and bottom action row.
@@ -381,17 +399,22 @@ or hide actions, and add the Library's optional Today/Gallery shortcuts. Those c
 window recreation. Menu and keyboard routes remain available when toolbar actions are hidden;
 toolbar commands target the current window and disable while its editor sheet is attached.
 
-Mac-only library organization is stored as version 2 JSON Data under the local UserDefaults
+Mac-only library organization is stored as version 3 JSON Data under the local UserDefaults
 key `macLibraryTags`: `tags` holds stable IDs, independent names and optional `colorID` values;
-`assignments` maps item identities to arrays of tag IDs. The seven initial tags retain IDs
-`red`, `orange`, `yellow`, `green`, `blue`, `purple`, and `gray`; new named tags receive UUIDs.
+`assignments` maps item identities to arrays of tag IDs. New libraries have no tags; named tags
+receive UUIDs. Both library context menus use the same AppKit tag row, with clear, every stored
+tag in saved order and an integrated Tags… action. Tags sharing a color remain separate by ID;
+uncolored tags also appear. Controls wrap after eight targets and retain arrow-key access.
+Opening a menu or toggling an existing tag never creates tags; Tags… creates new names.
 Names can be changed independently of color, including no color. Creating or typing an existing
 name reuses it case-insensitively; renaming to another tag's name fails without merging their
 assignments. Typed names replace one item's tag set in one saved state; deleting a tag removes
 all of its assignments. If migrated tags share a name, token edits retain that item's currently
 assigned matching IDs; a newly typed name without an assigned match resolves in stored order.
-Legacy `names`/`assignments` migrate with all IDs and display names
-preserved, and deleted defaults never reappear. Saved items use their prayer UUID string;
+Version-2 migration removes only unassigned original color IDs whose name and color are still
+untouched defaults, recognizing the original localized names. All assigned, renamed, recolored
+and user-created records remain. Legacy `names`/`assignments` retain every named or assigned
+color, and removed defaults never reappear. Saved items use their prayer UUID string;
 templates use `devotion:<devotionID>`. First-use materialization moves template assignments to
 the saved UUID, and duplication copies them to the new UUID. These tags do not change bundle
 categories or introduce fields into `Prayer`, and do not join the preset store's iCloud sync.
@@ -990,6 +1013,28 @@ of its own — its entire step sequence and per-step text are data-driven from i
   (lowercase category labels, e.g. "marian" — Compose writes them, the repository uses them
   as submission defaults, every loader exposes them, and Search uses them for category
   browsing and query matching).
+- Optional **`manifest.galleryImageKey`** supplies authored Gallery artwork. When present it
+  must be a nonempty string matching `[A-Za-z0-9][A-Za-z0-9._-]*`, appear in `manifest.images`,
+  and have an `images/<key>.jpg` payload in the same archive. Null, paths, undeclared keys and
+  missing payloads are invalid. A Gallery image may be unused by prayer steps, and its aspect
+  ratio is unrestricted. Compose preserves it through editing, autosave and export. All three
+  native loaders expose `CustomDevotionInfo.galleryImageKey` (PascalCase on Windows); Apple
+  resolves it through `PrayerPackStore.galleryImageResource(for:)` within the owning pack,
+  retaining the resource's revisioned cache key so another pack cannot replace its artwork by
+  reusing the image name. Omission preserves existing Gallery fallbacks. This metadata does not
+  change prayer-step images or add a local cover-image editor on phones or Windows.
+- **Image filenames and color in newly authored packs:** Compose writes the Gallery default as
+  `images/default.jpg` with `galleryImageKey: "default"`. Additional uploaded artwork uses
+  `images/<UUIDv7>.jpg`; the UUID's version and variant bits follow the version-7 format.
+  Unchanged artwork keeps its UUID across saves and exports; replacing or normalizing its
+  bytes assigns a fresh UUID so copied packs cannot override each other's step artwork.
+  Image references and `manifest.images` use those filenames' stems. Existing named shared
+  artwork keys remain stable. New imported images and new exports are rendered into ordinary
+  SDR sRGB before JPEG encoding, with their output color profile preserved; wide-gamut or HDR
+  input must not remain an HDR/gain-map or non-sRGB output merely because the file is JPEG.
+  These are authoring conventions for new image output, not additional rejection rules for
+  previously valid packs. Existing archives and legacy image filenames remain supported;
+  no bulk conversion or renaming of shipped artwork is implied.
 - **`options.json`** (optional bundle file): user-configurable settings, declared separately
   from the structure the same way catalog.json is —
   `{"options": [{key, kind: "toggle" | "choice", name, nameByLanguage?, default,
@@ -1450,7 +1495,11 @@ See [calendar research and coverage](calendar-research.markdown) for source rule
 ### Offline Bible passages
 
 Phone Readings and Mac/Windows Today retain the calendar's complete localized citation above
-each optional text expansion. They label the result as a Bible passage, identify its edition,
+each collapsible Bible passage. Daily and enabled Torah passages open expanded when entering
+the view or changing the date or calendar. Individual collapses remain in place during ordinary
+refreshes and edition changes. The date controls use native glass on supported Apple systems,
+translucent Material surfaces on Android, and Acrylic on Windows, with platform fallbacks.
+They label the result as a Bible passage, identify its edition,
 and show that edition's attribution and source link. An edition's wording is not represented
 as the exact local Mass lectionary. Scripture text remains selectable, numbered by chapter
 and verse, and rendered with the existing Scripture typography. Hebrew marks are retained;
@@ -1468,6 +1517,15 @@ is expanded. The shared generator pre-resolves appointments under `daily|<raw ci
 uses the original `ReadingCitation.full`, never its translated display value, and never
 parses references or guesses verse-number conversions at runtime. The files are copied into
 each native app's data resources, following the existing physical-copy rule.
+
+For appointments with an explicitly reviewed source numbering, the shared edition mapper
+uses STEP Standard as a reference hub for all eight pinned Bible editions. Each edition has
+its own reviewed rules, numeric inventory and completeness exclusions. The standalone mapper
+reads no Scripture wording; the passage builder verifies the imported text's digest before
+using its references. Psalm headings and split/merged verse boundaries remain whole units,
+and the sparse Arabic edition retains only its existing 64 reviewed units. Numeric mapping
+metadata lives under `Shared/tools/versification/editions`; it is not bundled into native apps.
+See `Shared/DAILY-READINGS.markdown` for source reviews, limitations and regeneration order.
 
 Partial-verse appointments keep their exact citation/key and use complete enclosing Bible
 verses. The optional `wholeVersePassages` array lists the affected keys so every native reader

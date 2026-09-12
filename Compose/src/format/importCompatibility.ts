@@ -58,7 +58,7 @@ function optionalStrings(value: ObjectValue, keys: string[], label: string): voi
 export function validateManifestImport(value: unknown, knownLanguages: readonly string[]): string[] {
   const manifest = importObject(value, "manifest");
   importFields(manifest, ["schemaVersion", "id", "kind", "displayName", "displayNameByLanguage", "languages",
-    "hasCatalog", "images", "mainPrayerKeysOmitted", "accentColorHex", "accentColorDarkHex", "iconSystemName", "iconGlyph", "tags"], "manifest");
+    "hasCatalog", "images", "galleryImageKey", "mainPrayerKeysOmitted", "accentColorHex", "accentColorDarkHex", "iconSystemName", "iconGlyph", "tags"], "manifest");
   optionalStrings(manifest, ["id", "kind", "displayName", "accentColorHex", "accentColorDarkHex", "iconSystemName", "iconGlyph"], "manifest text");
   if (manifest.schemaVersion !== undefined && manifest.schemaVersion !== 1) unsupportedImport("a newer manifest version");
   if (manifest.hasCatalog !== undefined && manifest.hasCatalog !== false) unsupportedImport("a mystery catalog");
@@ -68,6 +68,13 @@ export function validateManifestImport(value: unknown, knownLanguages: readonly 
   for (const language of languages) if (!knownLanguages.includes(language)) unsupportedImport(`an unsupported language (“${language}”)`);
   if (manifest.displayNameByLanguage !== undefined) importStringMap(manifest.displayNameByLanguage, "translated names", languages);
   for (const key of ["tags", "images", "mainPrayerKeysOmitted"]) if (key in manifest) importStrings(manifest[key], key);
+  if ("galleryImageKey" in manifest) {
+    const key = importString(manifest.galleryImageKey, "Gallery cover reference");
+    if (!/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(key) ||
+      !Array.isArray(manifest.images) || !manifest.images.includes(key)) {
+      throw new Error("The bundle's Gallery cover must reference one of its declared images. Nothing has been imported.");
+    }
+  }
   return languages;
 }
 

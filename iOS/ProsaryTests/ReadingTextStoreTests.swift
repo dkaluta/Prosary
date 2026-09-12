@@ -55,6 +55,42 @@ final class ReadingTextStoreTests: XCTestCase {
     XCTAssertEqual(gospel?.verses.count, 12)
   }
 
+  func testBundledSeptember13ReadingsUseTheSelectedEditionsNumbering() async throws {
+    let store = ReadingTextStore()
+    let cases: [(String, [String])] = [
+      ("Sirach 27:30; 28:1–7", ["27:33"] + (1...9).map { "28:\($0)" }),
+      ("Psalm 103:1–2; 103:3–4; 103:9–10; 103:11–12", [1, 2, 3, 4, 9, 10, 11, 12].map { "102:\($0)" }),
+      ("Romans 14:7–9", (7...9).map { "14:\($0)" }),
+      ("Matthew 18:21–35", (21...35).map { "18:\($0)" })
+    ]
+    for (citation, expected) in cases {
+      let result = await store.passage(citation: citation, isTorah: false, editionID: "douay-rheims-1899")
+      let passage = try XCTUnwrap(result, citation)
+      XCTAssertEqual(passage.verses.map { "\($0.chapter):\($0.verse)" }, expected, citation)
+      XCTAssertTrue(passage.verses.allSatisfy { !$0.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty })
+    }
+    let psalmEditions = ["douay-rheims-1899": 102, "synodal-1876": 102,
+                        "masoretic-delitzsch": 103, "ang-dating-biblia-1905": 103,
+                        "crampon-1923": 103, "kulish-1905": 103]
+    for (editionID, chapter) in psalmEditions {
+      let result = await store.passage(citation: cases[1].0, isTorah: false, editionID: editionID)
+      let psalm = try XCTUnwrap(result, editionID)
+      XCTAssertEqual(psalm.verses.map(\.verse), [1, 2, 3, 4, 9, 10, 11, 12], editionID)
+      XCTAssertTrue(psalm.verses.allSatisfy { $0.chapter == chapter }, editionID)
+      XCTAssertTrue(psalm.includesWholeVerses, editionID)
+    }
+    for editionID in ["martini", "jesuit-arabic-1897"] {
+      let result = await store.passage(citation: cases[1].0, isTorah: false, editionID: editionID)
+      XCTAssertNil(result, editionID)
+    }
+    let frenchResult = await store.passage(citation: cases[0].0, isTorah: false, editionID: "crampon-1923")
+    let french = try XCTUnwrap(frenchResult)
+    XCTAssertEqual(french.verses.map { "\($0.chapter):\($0.verse)" }, ["27:30"] + (1...7).map { "28:\($0)" })
+    XCTAssertTrue(french.verses.allSatisfy { !$0.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty })
+    let unavailable = await store.passage(citation: cases[0].0, isTorah: false, editionID: "masoretic-delitzsch")
+    XCTAssertNil(unavailable)
+  }
+
   func testMalformedVersionAndEmptyVersesAreUnavailable() {
     for (version, verses) in [(2, [ReadingTextVerse(chapter: 1, verse: 1, text: "Fixture")]),
                               (1, []), (1, [ReadingTextVerse(chapter: 0, verse: 1, text: "Fixture")]),

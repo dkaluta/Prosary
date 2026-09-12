@@ -1,0 +1,346 @@
+{
+  "schemaVersion": 1,
+  "inventorySHA256": "586e4bf9f9014919295443637e0f60b07e8fcf4a33e737e1664cd97f7ea15d33",
+  "reviewFiles": {
+    "reading-text-sources.json": "fc99b6aef8a6ed5f3610a2ea857537dff020520426bc10b31b5fbb6a76e89b3c",
+    "build-reading-texts.py": "70e921afa6a692de0c159ef4236b8d00db4e7a9c4b66969a126037a183187495",
+    "build-edition-mappings.py": "33b8a92f24f93960b5d22e630beb343365baebd12218bb78b4d488e2ca3d17c1",
+    "reading_edition_mapping.py": "ac31799ca1a8af65a2c4e1e033820a6f7959f01d736fca96bec982dc7ba765a6",
+    "reading_edition_reviews_hebrew.py": "c8d81d955a294f32edabb3581afd40f399b2d8adb8cc3f06455f8645f504dd15",
+    "reading_edition_reviews_western.py": "b671508721328f7ac7028c1b0e6dca42581d4a207815468f0d2cba8a4aa4ef00",
+    "reading_edition_reviews_arabic.py": "ff5874bfc9ea12a0fb2a050dfab559cc1028410f86a749f8eda4051c92d64205",
+    "reading_step_mapping.py": "dbdfc8e59e690965377d18a8fef9f241c9267029b5dbedbfa625f7957b8921ea",
+    "reading_psalm_mapping.py": "3617151e54f6162fda0f25842cf780cc269949416a90b83427f1a5c780f096cb",
+    "reading_boundary_groups.py": "19da3727c7972b54e660c32b5004e2e7d112518982f859e079ad2456de3edecb",
+    "reading_versification.py": "dea66630406d10d9e459db03ec028eb4bd0ce3fa8c5b57020657a813b5d18912",
+    "delitzsch_numbering.py": "2244865ef00b45ee3432e10f50a6a76a8adb23ac62da19230242fc99c354a020",
+    "versification/sources.json": "fc296fff18608a595dad7d5cf4b6f22c03f75f75c2d23bfe21cd66532a30f2c9",
+    "versification/step/sources.json": "e9f127861bd9c48120f1acebbbbf6aac1b13308ca376952541368a47bb23f36f",
+    "versification/step/rules.json": "b7c3d0d5c3ae7a40d1598c3410a1cc868d7d6295d7a57b98a474c15b943800fc",
+    "versification/org.vrs.txt": "1caee506dc4cc2947e45861c7d2ba5b5eeca9063ee263a37f2ca08f240e457ca",
+    "versification/eng.vrs.txt": "003981c7f43c69b73b60d40a3f35f72e7ee017a686a6fb206f19a1b721157541",
+    "versification/vul.vrs.txt": "f3312f4f0ffcbf48a43a20f88212a64b070b100b2764d912481c5e481a015c51",
+    "versification/rso.vrs.txt": "36dd088244fc5b41fa8f3d0dcce58412e3b944c9bdc8bbce818abdfb03df3072"
+  },
+  "coverage": {
+    "douay-rheims-1899": {
+      "books": 73,
+      "chapters": 1334,
+      "labels": 35811,
+      "mapped": 35811,
+      "policy": "whole-verses",
+      "blockedChapters": []
+    },
+    "masoretic-delitzsch": {
+      "books": 66,
+      "chapters": 1189,
+      "labels": 31174,
+      "mapped": 31174,
+      "policy": "whole-verses",
+      "blockedChapters": []
+    },
+    "synodal-1876": {
+      "books": 66,
+      "chapters": 1189,
+      "labels": 31169,
+      "mapped": 31164,
+      "policy": "whole-verses",
+      "blockedChapters": []
+    },
+    "ang-dating-biblia-1905": {
+      "books": 66,
+      "chapters": 1189,
+      "labels": 31102,
+      "mapped": 31102,
+      "policy": "whole-verses",
+      "blockedChapters": []
+    },
+    "crampon-1923": {
+      "books": 73,
+      "chapters": 1334,
+      "labels": 35610,
+      "mapped": 33869,
+      "policy": "whole-verses",
+      "blockedChapters": [
+        [
+          "1CH",
+          11
+        ],
+        [
+          "1CH",
+          12
+        ],
+        [
+          "1CO",
+          16
+        ],
+        [
+          "3JN",
+          1
+        ],
+        [
+          "ACT",
+          10
+        ],
+        [
+          "ACT",
+          14
+        ],
+        [
+          "ACT",
+          19
+        ],
+        [
+          "DAN",
+          14
+        ],
+        [
+          "DEU",
+          5
+        ],
+        [
+          "ECC",
+          7
+        ],
+        [
+          "HEB",
+          13
+        ],
+        [
+          "ISA",
+          8
+        ],
+        [
+          "ISA",
+          9
+        ],
+        [
+          "ISA",
+          38
+        ],
+        [
+          "JDG",
+          21
+        ],
+        [
+          "JDT",
+          1
+        ],
+        [
+          "JDT",
+          2
+        ],
+        [
+          "JDT",
+          7
+        ],
+        [
+          "JDT",
+          8
+        ],
+        [
+          "JDT",
+          10
+        ],
+        [
+          "JDT",
+          11
+        ],
+        [
+          "JDT",
+          14
+        ],
+        [
+          "JHN",
+          11
+        ],
+        [
+          "JOB",
+          25
+        ],
+        [
+          "JOB",
+          27
+        ],
+        [
+          "JOS",
+          21
+        ],
+        [
+          "MAT",
+          17
+        ],
+        [
+          "MRK",
+          4
+        ],
+        [
+          "MRK",
+          9
+        ],
+        [
+          "NUM",
+          26
+        ],
+        [
+          "PSA",
+          50
+        ],
+        [
+          "PSA",
+          101
+        ],
+        [
+          "SIR",
+          3
+        ],
+        [
+          "SIR",
+          5
+        ],
+        [
+          "SIR",
+          10
+        ],
+        [
+          "SIR",
+          11
+        ],
+        [
+          "SIR",
+          13
+        ],
+        [
+          "SIR",
+          16
+        ],
+        [
+          "SIR",
+          17
+        ],
+        [
+          "SIR",
+          18
+        ],
+        [
+          "SIR",
+          19
+        ],
+        [
+          "SIR",
+          20
+        ],
+        [
+          "SIR",
+          22
+        ],
+        [
+          "SIR",
+          23
+        ],
+        [
+          "SIR",
+          24
+        ],
+        [
+          "SIR",
+          25
+        ],
+        [
+          "SIR",
+          26
+        ],
+        [
+          "SIR",
+          32
+        ],
+        [
+          "SIR",
+          33
+        ],
+        [
+          "SIR",
+          34
+        ],
+        [
+          "SIR",
+          36
+        ],
+        [
+          "SIR",
+          41
+        ],
+        [
+          "SIR",
+          43
+        ],
+        [
+          "SIR",
+          48
+        ],
+        [
+          "SNG",
+          4
+        ],
+        [
+          "TOB",
+          10
+        ],
+        [
+          "WIS",
+          9
+        ],
+        [
+          "ZEC",
+          4
+        ]
+      ]
+    },
+    "martini": {
+      "books": 32,
+      "chapters": 447,
+      "labels": 13785,
+      "mapped": 13708,
+      "policy": "whole-verses",
+      "blockedChapters": [
+        [
+          "1PE",
+          5
+        ],
+        [
+          "1TH",
+          4
+        ],
+        [
+          "JHN",
+          11
+        ]
+      ]
+    },
+    "kulish-1905": {
+      "books": 66,
+      "chapters": 1189,
+      "labels": 31082,
+      "mapped": 31046,
+      "policy": "whole-verses",
+      "blockedChapters": [
+        [
+          "LEV",
+          21
+        ],
+        [
+          "PSA",
+          148
+        ]
+      ]
+    },
+    "jesuit-arabic-1897": {
+      "books": 7,
+      "chapters": 24,
+      "labels": 220,
+      "mapped": 220,
+      "policy": "reviewed-units",
+      "blockedChapters": []
+    }
+  }
+}

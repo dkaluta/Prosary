@@ -233,8 +233,7 @@ public static class PrayerPackStore
             var entries = ValidateArchive(probe);
             var manifestEntry = entries.GetValueOrDefault("manifest.json")
                 ?? throw new InstallException(Loc.Tr("import_unreadable", "This file is not a readable .prosaryprayer bundle."));
-            manifest = Deserialize<PackManifest>(manifestEntry)
-                ?? throw new InstallException(Loc.Tr("import_unreadable", "This file is not a readable .prosaryprayer bundle."));
+            manifest = ParseManifest(manifestEntry, entries);
             if (!IsValidBundleId(manifest.Id))
             {
                 throw new InstallException(Loc.Tr("import_unreadable", "This file is not a readable .prosaryprayer bundle."));
@@ -579,8 +578,7 @@ public static class PrayerPackStore
         var entries = ValidateArchive(archive);
 
         if (!entries.TryGetValue("manifest.json", out var manifestEntry)) return null;
-        var manifest = Deserialize<PackManifest>(manifestEntry)
-            ?? throw new InvalidDataException("manifest.json did not deserialize");
+        var manifest = ParseManifest(manifestEntry, entries);
         if (!IsValidBundleId(manifest.Id))
         {
             throw new InvalidDataException("manifest.json contains an invalid bundle id");
@@ -597,7 +595,8 @@ public static class PrayerPackStore
             manifest.ReminderBody ?? new Dictionary<string, string>(),
             manifest.ReminderPresetHours,
             manifest.ReminderPresetFooter ?? new Dictionary<string, string>(),
-            manifest.Tags ?? []);
+            manifest.Tags ?? [],
+            manifest.GalleryImageKey);
 
         // Declared languages are what the bundle *offers*; any other content/<code>.json it
         // carries is an overlay resolved key by key — how a community variant ("he-x-gamliel")
@@ -975,6 +974,26 @@ public static class PrayerPackStore
         return data;
     }
 
+    private static PackManifest ParseManifest(ZipArchiveEntry entry,
+        IReadOnlyDictionary<string, ZipArchiveEntry> entries)
+    {
+        var bytes = ReadAllBytes(entry, MaxControlEntryBytes);
+        var manifest = JsonSerializer.Deserialize<PackManifest>(bytes, JsonOptions)
+            ?? throw new InvalidDataException("manifest.json did not deserialize");
+        using var document = JsonDocument.Parse(bytes);
+        if (document.RootElement.EnumerateObject().Any(property =>
+            string.Equals(property.Name, "galleryImageKey", StringComparison.OrdinalIgnoreCase)))
+        {
+            if (manifest.GalleryImageKey is not { } key
+                || !IsValidBundleId(key) || manifest.Images?.Contains(key) != true
+                || !entries.ContainsKey($"images/{key}.jpg"))
+            {
+                throw new InvalidDataException("Gallery artwork must name a declared image in this pack");
+            }
+        }
+        return manifest;
+    }
+
     private static T? Deserialize<T>(ZipArchiveEntry entry) =>
         JsonSerializer.Deserialize<T>(ReadAllBytes(entry, MaxControlEntryBytes), JsonOptions);
 
@@ -1182,7 +1201,9 @@ public static class PrayerPackStore
         Dictionary<string, string>? ReminderBody = null,
         List<int>? ReminderPresetHours = null,
         Dictionary<string, string>? ReminderPresetFooter = null,
-        List<string>? Tags = null);
+        List<string>? Tags = null,
+        List<string>? Images = null,
+        string? GalleryImageKey = null);
 
     private sealed record PackEntryLocation(string BundleId, string EntryName, long Revision = 0);
 
@@ -1539,7 +1560,9 @@ public sealed record CustomDevotionInfo(
     IReadOnlyDictionary<string, string> ReminderPresetFooter,
     // Lowercase category labels from the manifest ("marian", "passion") — what the
     // Categories page groups by.
-    IReadOnlyList<string> Tags)
+    IReadOnlyList<string> Tags,
+    // Optional authored Gallery artwork, belonging to this pack.
+    string? GalleryImageKey = null)
 {
     private static string UiLanguage => UiLanguageCatalog.Current;
 

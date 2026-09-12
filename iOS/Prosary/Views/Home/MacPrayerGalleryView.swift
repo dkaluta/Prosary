@@ -1,5 +1,6 @@
 #if os(macOS)
 import SwiftUI
+import UniformTypeIdentifiers
 
 /// Derive every action from the visible catalogue order, never the Set's iteration order.
 struct MacPrayerGallerySelection {
@@ -28,6 +29,11 @@ struct MacPrayerGalleryView: View {
   @State private var query = ""
   @State private var category = ""
   @State private var selectedIDs: Set<String> = []
+  @State private var imageStore = MacPrayerGalleryImageStore.shared
+  @State private var onlineImageItem: MacPrayerLibraryItem?
+  @State private var imageError: String?
+  @State private var isChangingImage = false
+  @State private var imageTask: Task<Void, Never>?
 
   private var categoriesByDevotion: [String: [String]] {
     Dictionary(uniqueKeysWithValues: DevotionDirectory.all().map { ($0.id, $0.tags) })
@@ -87,7 +93,11 @@ struct MacPrayerGalleryView: View {
         MacPrayerGalleryCollection(items: matches, selection: $selectedIDs,
           downloadedDevotionIDs: downloadedDevotionIDs,
           canRemoveDownload: canRemoveDownload, onRemoveDownload: onRemoveDownload,
-          onActivate: activate)
+          onActivate: activate, onImageAction: performImageAction,
+          hasCustomImage: { imageStore.record(for: $0.devotionID) != nil },
+          hasImageSource: { imageSource(for: $0) != nil }, artworkRevision: imageStore.revision,
+          onDropImage: importImage)
+          .disabled(isChangingImage)
           .overlay {
             if matches.isEmpty { ContentUnavailableView.search(text: query) }
           }
@@ -96,6 +106,19 @@ struct MacPrayerGalleryView: View {
 
         Divider()
         HStack(spacing: 16) {
+          if let selectedItem = selection.singleItem {
+            Menu(String(localized: "galleryImage.image", defaultValue: "Image")) {
+              ForEach(MacPrayerGalleryImageAction.allCases, id: \.rawValue) { action in
+                Button(action.title) { performImageAction(action, selectedItem) }
+                  .disabled((action == .restoreDefault && imageStore.record(for: selectedItem.devotionID) == nil)
+                    || (action == .viewSource && imageSource(for: selectedItem) == nil))
+              }
+            }
+            .fixedSize()
+            .disabled(isChangingImage)
+            .accessibilityIdentifier("macGallery.imageMenu")
+          }
+          if isChangingImage { ProgressView().controlSize(.small) }
           if let selectedItem = selection.singleItem, downloadedDevotionIDs.contains(selectedItem.devotionID) {
             Button(String(localized: "macLibrary.removeDownload", defaultValue: "Remove Download…"), role: .destructive) {
               onRemoveDownload(selectedItem)
@@ -131,6 +154,14 @@ struct MacPrayerGalleryView: View {
     .searchable(text: $query, placement: .toolbar,
       prompt: String(localized: "macLibrary.search", defaultValue: "Search Prayers"))
     .onChange(of: matches.map(\.id)) { _, _ in selectedIDs = selection.retainedIDs }
+    .sheet(item: $onlineImageItem) { item in
+      MacPrayerGalleryImageSearchView(item: item, store: imageStore)
+    }
+    .alert(String(localized: "galleryImage.couldNotChange", defaultValue: "Couldn’t Change Image"),
+      isPresented: Binding(get: { imageError != nil }, set: { if !$0 { imageError = nil } })) {
+        Button(String(localized: "common.ok", defaultValue: "OK"), role: .cancel) { imageError = nil }
+      } message: { Text(imageError ?? "") }
+    .onDisappear { imageTask?.cancel() }
     .accessibilityElement(children: .contain)
     .accessibilityIdentifier("macPrayerGallery")
   }
@@ -154,6 +185,54 @@ struct MacPrayerGalleryView: View {
       includedDevotionIDs: includedDevotionIDs)
     if !action.additions.isEmpty { onAdd(action.additions) }
     else if let target = action.showTarget { onShowLibrary(target) }
+  }
+
+  private func imageSource(for item: MacPrayerLibraryItem) -> URL? {
+    if let record = imageStore.record(for: item.devotionID) { return record.attribution?.sourceURL }
+    // An imported author's default does not inherit the credit for a built-in cover.
+    guard PrayerPackStore.galleryImageResource(for: item.devotionID) == nil else { return nil }
+    return MacPrayerGalleryCredits.entries.first { $0.id == item.devotionID }?.source
+  }
+
+  private func performImageAction(_ action: MacPrayerGalleryImageAction, _ item: MacPrayerLibraryItem) {
+    guard !isChangingImage else { return }
+    switch action {
+    case .chooseFile: chooseImage(for: item)
+    case .searchOnline: onlineImageItem = item
+    case .restoreDefault:
+      do { try imageStore.remove(for: item.devotionID) }
+      catch { imageError = error.localizedDescription }
+    case .viewSource:
+      if let source = imageSource(for: item) { NSWorkspace.shared.open(source) }
+    }
+  }
+
+  private func chooseImage(for item: MacPrayerLibraryItem) {
+    let panel = NSOpenPanel()
+    panel.title = String(localized: "galleryImage.choose", defaultValue: "Choose Image…")
+    panel.prompt = String(localized: "galleryImage.useImage", defaultValue: "Use Image")
+    panel.allowedContentTypes = [.jpeg, .png, .heic, .heif, .tiff, .gif, .bmp, .webP]
+    panel.allowsMultipleSelection = false
+    panel.canChooseDirectories = false
+    isChangingImage = true
+    let completion: (NSApplication.ModalResponse) -> Void = { response in
+      guard response == .OK, let url = panel.url else { isChangingImage = false; return }
+      isChangingImage = false
+      importImage(url, item)
+    }
+    if let window = NSApp.keyWindow { panel.beginSheetModal(for: window, completionHandler: completion) }
+    else { panel.begin(completionHandler: completion) }
+  }
+
+  private func importImage(_ url: URL, _ item: MacPrayerLibraryItem) {
+    guard !isChangingImage else { return }
+    isChangingImage = true
+    imageTask = Task { @MainActor in
+      defer { isChangingImage = false }
+      do { try await imageStore.importImage(from: url, for: item.devotionID) }
+      catch is CancellationError { }
+      catch { imageError = error.localizedDescription }
+    }
   }
 }
 #endif

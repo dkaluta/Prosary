@@ -65,6 +65,19 @@
   },
   "galleryArtwork": {
     "purpose": "Dedicated Gallery covers only. These images do not replace prayer-step artwork or change prayer text, settings, ordering, or playback.",
+    "resolutionOrder": ["Mac-local image override", "manifest.galleryImageKey in the owning pack", "curated Gallery cover", "existing devotion artwork", "symbol fallback"],
+    "authoredDefault": "Optional portable manifest.galleryImageKey follows the PrayerPackGalleryImage contract in domain-model.json. New Compose exports use images/default.jpg and galleryImageKey=default; additional uploaded images use UUIDv7.jpg names and SDR sRGB encoding. Named shared artwork and legacy packs keep their compatible keys. Apple resolves the default within the owning pack; another pack's identical default key cannot replace it. Compose preserves cover proportions and includes cover-only images.",
+    "localOverride": {
+      "platforms": ["macOS"],
+      "sourceType": "MacPrayerGalleryImageStore",
+      "storage": "Local Application Support/Prosary/GalleryImages/<SHA256 devotion ID>/, separate from installed prayer packs. A UUIDv7.jpg contains the SDR sRGB image. An atomic record.json selects the image and holds its attribution; a replacement commits the new file before the record, then removes the previous image. Earlier embedded-image records migrate when read.",
+      "scope": "Devotion ID on this Mac; never written to or exported with the source pack, and not a change to any saved prayer configuration.",
+      "actions": ["Choose Image…", "Search Online…", "Use Default Image", "Image Source"],
+      "drop": "One image file dropped onto a Gallery tile replaces that devotion's local cover. Native drop highlighting marks the target; selection and library membership stay unchanged. Blank space, multiple files and non-image files do not accept image drops.",
+      "search": "Explicit Wikimedia Commons search; selecting a result is a preview until Use Image is confirmed. Retain title, author, license, sourceURL and licenseURL when provided.",
+      "restore": "Removing the local override reveals the authored pack default and existing fallback chain.",
+      "parity": "Android and Windows preserve portable authored defaults as metadata; this local image menu and online search are Mac-specific."
+    },
     "canonicalSource": "Shared/Images/gallery_<devotionID>.jpg; provenance and rights remain in Shared/Images/CREDITS.markdown.",
     "proportions": "Preserve the sourced JPEG's aspect ratio. Gallery covers are separate from the existing square prayer-step crops.",
     "packaging": "Each cover key is declared in its owning Shared/content/<packID>/manifest.json images array and packed as images/<imageKey>.jpg using make-prosaryprayer.sh. Generated archives in Shared/dist are copied byte-for-byte to all three native ports; no loose native artwork copy is added.",
@@ -91,11 +104,11 @@
     "fields": {
       "version": {
         "type": "integer",
-        "value": 2
+        "value": 3
       },
       "tags": {
         "type": "Tag[]",
-        "description": "Ordered named records. Seed the seven localized color names once for a new store; their stable IDs remain red, orange, yellow, green, blue, purple and gray. An empty persisted array means all tags were deleted and must not recreate defaults."
+        "description": "Ordered named records. A new store starts empty and never seeds default tags. Previously assigned or customized color IDs may remain after migration; newly created tags have UUIDs. An empty persisted array remains empty."
       },
       "assignments": {
         "type": "map<string, string[]>",
@@ -104,16 +117,17 @@
       }
     },
     "Tag": {
-      "id": "Stable string: original color ID for the seven migrated/default tags, UUID string for newly created tags.",
+      "id": "Stable string: original color ID for retained migrated tags, UUID string for newly created tags. Context-menu controls address this identity, never the color or displayed name.",
       "name": "Nonempty user-visible name, independent of color. New or renamed names trim whitespace/newlines and normalize Unicode canonical composition.",
       "colorID": "Optional red | orange | yellow | green | blue | purple | gray; absent means no color and a neutral display. Unknown requested colors normalize to no color."
     },
     "identityRule": "Name and color may change independently without changing the ID, filters or assignments. Create reuses a case-insensitive matching name without changing its existing spelling or color. Rename to another tag's case-insensitive name fails rather than merging assignments; empty names fail.",
     "typedNames": "Replacing an item's tags resolves existing names case-insensitively, preferring all of the item's already-assigned matching IDs before the first matching global tag. It creates unknown names with fresh UUIDs and no color, ignores blank tokens, deduplicates resulting IDs, and saves new records and the complete replacement assignment together. Empty input clears only the item's membership; shared tag records remain.",
-    "deletion": "Deleting any tag, including a default color tag, removes its record and every item assignment. Other tags and prayer configurations remain unchanged.",
-    "migration": "Legacy JSON with names and assignments but no version/tags migrates once to version 2. Preserve every old color ID, display-name override and assignment; original colors initialize colorID. Even legacy duplicate names retain their distinct IDs when unrelated tokens are edited. Newly assigned ambiguous names pick the first matching tag in stored order; suggestion toggles operate by stable ID.",
+    "deletion": "Deleting a tag removes its record and every item assignment. The context-menu clear control removes only the selected prayer's assignments. Other tags and prayer configurations remain unchanged.",
+    "palette": "Both library representations use the same native Finder-style NSMenuItem view: clear plus every stored tag in saved order, selected rings, Add/Remove hover captions naming each tag, and integrated Tags… with a tag symbol. Tags sharing a color or name keep separate controls by ID; uncolored tags use an outlined dot distinct from the clear slash. Controls wrap after eight targets, with Tags… below the final row and arrow-key access across rows. Empty stores show only disabled Clear and Tags…. Opening the menu or toggling assignments never creates tags; new names are created through Tags….",
+    "migration": "Version 2 migrates once to version 3, removing only unassigned original color IDs whose colorID and localized original name remain untouched. Assigned, renamed, recolored and UUID-tag records retain their identities. Legacy JSON with names and assignments preserves each explicitly named or assigned color; unused unnamed colors are not seeded. Even legacy duplicate names retain their distinct IDs when unrelated tokens are edited. Newly assigned ambiguous names pick the first matching tag in stored order; suggestion toggles operate by stable ID.",
     "example": {
-      "version": 2,
+      "version": 3,
       "tags": [
         { "id": "blue", "name": "Evening", "colorID": "purple" },
         { "id": "C051B2BC-BEDE-41CF-8277-F6070BF650FD", "name": "At Home" }

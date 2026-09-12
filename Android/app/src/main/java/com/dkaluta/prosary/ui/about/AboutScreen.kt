@@ -250,6 +250,11 @@ fun AboutScreen(onBack: () -> Unit) {
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
+                Text(stringResource(R.string.about_verse_mapping_sources), style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant)
+                TextButton(onClick = { uriHandler.openUri("https://github.com/STEPBible/STEPBible-Data/tree/master/Versification") }) {
+                    Text("STEPBible.org — TVTMS")
+                }
                 Text(stringResource(R.string.about_torah_data), style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant)
                 TextButton(onClick = { uriHandler.openUri("https://www.hebcal.com") }) { Text("Hebcal.com") }

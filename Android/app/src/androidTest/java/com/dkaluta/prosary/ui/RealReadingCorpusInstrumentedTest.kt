@@ -14,11 +14,9 @@ import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performScrollToNode
 import androidx.test.platform.app.InstrumentationRegistry
-import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.today.ReadingCitation
 import com.dkaluta.prosary.content.today.ReadingTextStore
 import com.dkaluta.prosary.content.today.TodayInfoStore
@@ -85,11 +83,11 @@ class RealReadingCorpusInstrumentedTest {
                 MaterialTheme {
                     if (showsReadingsScreen.value) ReadingsScreen(onOpenSettings = {})
                     else Column(Modifier.verticalScroll(rememberScrollState())) {
-                        ReadingCard(torah, "en", hebrew, hebrew.id, store, true)
+                        ReadingCard(torah, "en", hebrew, hebrew.id, store, true,
+                            expanded = true, onToggleExpanded = {})
                     }
                 }
             }
-            compose.onNodeWithText(context.getString(R.string.readings_show_text)).performClick()
             compose.waitUntil(15_000) {
                 compose.onAllNodes(hasText(verses.first().text, substring = true)).fetchSemanticsNodes().isNotEmpty()
             }
@@ -113,9 +111,9 @@ class RealReadingCorpusInstrumentedTest {
                 ?: currentReadings.firstOrNull { store.passage(it, english.id) != null }
             if (screenshotReading != null) {
                 val englishVerse = store.passage(screenshotReading, english.id)!!.verses.first().text
-                compose.onNodeWithTag("readingsList").performScrollToNode(hasTestTag("readingExpand.daily.${screenshotReading.full}"))
-                compose.onNodeWithTag("readingExpand.daily.${screenshotReading.full}").performClick()
                 compose.waitUntil(15_000) {
+                    // Earlier cards can grow while their default-open passages load.
+                    compose.onNodeWithTag("readingsList").performScrollToNode(hasTestTag("readingExpand.daily.${screenshotReading.full}"))
                     compose.onAllNodes(hasText(englishVerse, substring = true)).fetchSemanticsNodes().isNotEmpty()
                 }
                 compose.onNodeWithText(englishVerse, substring = true).performScrollTo().assertExists()

@@ -1,6 +1,25 @@
 {
   "$comment": "Canonical shape of Prosary's domain model, independent of any one platform's language. Field names here are the camelCase form; each platform's own idiom (Swift camelCase, Kotlin camelCase, C# PascalCase) maps 1:1. See ../ARCHITECTURE.markdown for the prose version and per-file source locations. Keep this file in sync whenever a field is added, removed, renamed, or its default changes on any platform — see README.markdown in this directory.",
   "types": {
+    "PrayerPackGalleryImage": {
+      "description": "Portable authored Gallery artwork in manifest.json. All three native loaders preserve the metadata; this does not introduce a Gallery image editor on phones or Windows.",
+      "newExportConvention": {
+        "defaultImage": "images/default.jpg",
+        "galleryImageKey": "default",
+        "additionalUploadedImage": "images/<UUIDv7>.jpg",
+        "uuidPattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+        "color": "Newly imported and exported image output is SDR sRGB JPEG with sRGB profile information, without HDR/gain-map output. Rendering to SDR sRGB precedes encoding.",
+        "compatibility": "Existing named shared image keys and previously valid archive filenames remain supported. This naming convention does not impose a new native rejection rule on legacy packs or require rewriting shipped assets."
+      },
+      "fields": {
+        "galleryImageKey": {
+          "type": "string?",
+          "default": "omitted",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+          "description": "Optional field; when present it must be a nonempty string (not null), name a key in manifest.images, and have an images/<key>.jpg payload in the same archive. The image need not appear in any prayer step, and its aspect ratio is unrestricted. Missing field preserves existing Gallery fallback artwork. CustomDevotionInfo exposes this field; Apple resolves the image within its owning pack to avoid collisions with another pack's image key."
+        }
+      }
+    },
     "SavedPrayerEntity": {
       "platforms": ["iOS", "macOS"],
       "description": "Apple App Intents entity for OpenPrayerIntent. Suggested entities include every saved prayer kind, sorted by display name; identifier resolution reads the current authoritative preset store. This is a reference to an existing saved copy, not a new persisted Prayer shape.",

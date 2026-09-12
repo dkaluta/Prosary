@@ -571,8 +571,20 @@ def main() -> int:
     languages = manifest.get("languages", [])
     devotion_path = src / "devotion.json"
 
+    # Authored Gallery artwork may be the only use of a declared image.
+    images = manifest.get("images", [])
+    if not isinstance(images, list) or any(not isinstance(key, str) for key in images):
+        err("manifest.images: must be an array of image keys")
+        images = []
+    if "galleryImageKey" in manifest:
+        key = manifest["galleryImageKey"]
+        if not isinstance(key, str) or BUNDLE_ID_PATTERN.fullmatch(key) is None:
+            err("manifest.galleryImageKey: must match [A-Za-z0-9][A-Za-z0-9._-]*")
+        elif key not in images:
+            err("manifest.galleryImageKey: must reference a declared manifest.images key")
+
     # Manifest images must exist regardless of devotion.json.
-    for key in manifest.get("images", []):
+    for key in images:
         if not (shared_images / f"{key}.jpg").exists():
             err(f"manifest.images: {key} has no Shared/Images/{key}.jpg")
 

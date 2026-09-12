@@ -78,12 +78,25 @@ struct PrayerArtworkView: View {
 
   let imageKey: String
   var placeholder: Placeholder = .prayerArtwork
+  private var suppliedResource: PrayerPackImageResource?
+
+  init(imageKey: String, placeholder: Placeholder = .prayerArtwork) {
+    self.imageKey = imageKey
+    self.placeholder = placeholder
+  }
+
+  /// A cover belongs to its declaring pack, even when another pack uses the same image key.
+  init(resource: PrayerPackImageResource, placeholder: Placeholder = .neutral) {
+    imageKey = ""
+    suppliedResource = resource
+    self.placeholder = placeholder
+  }
 
   @State private var loaded: DecodedPrayerArtwork?
   @State private var loadedCacheKey: String?
 
   var body: some View {
-    let resource = PrayerPackStore.imageResource(for: imageKey)
+    let resource = suppliedResource ?? PrayerPackStore.imageResource(for: imageKey)
     let cacheKey = resource?.cacheKey
     let current = loadedCacheKey == cacheKey ? loaded : nil
     let artwork = current ?? cacheKey.flatMap(PrayerArtwork.cached(cacheKey:))

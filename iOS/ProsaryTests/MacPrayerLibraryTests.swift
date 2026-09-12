@@ -7,7 +7,7 @@ import SwiftUI
 final class MacPrayerLibraryTests: XCTestCase {
   func testBrowsingDoesNotCreatePresetsAndOpeningTwiceKeepsOneIdentity() async throws {
     let suite = "MacPrayerLibraryTests.\(UUID())"
-    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    let defaults = try tagFixtureDefaults(suite: suite)
     defer { defaults.removePersistentDomain(forName: suite) }
     let store = MockPresetStore(configs: [])
     let model = MacPrayerLibraryModel(store: store, defaults: defaults, installedDevotionIDs: { [] })
@@ -30,7 +30,7 @@ final class MacPrayerLibraryTests: XCTestCase {
 
   func testDuplicatePreservesSettingsAndTagsWithFreshIdentityAndProgress() async throws {
     let suite = "MacPrayerLibraryTests.\(UUID())"
-    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    let defaults = try tagFixtureDefaults(suite: suite)
     defer { defaults.removePersistentDomain(forName: suite) }
     let original = Prayer(name: "Evening", kind: .custom, isDefault: true,
       languageCode: "he", customDevotionId: "angelus", variantId: "alternate",
@@ -62,7 +62,7 @@ final class MacPrayerLibraryTests: XCTestCase {
 
   func testTagsCanBeRenamedAndPersistAcrossIndependentWindows() throws {
     let suite = "MacPrayerLibraryTests.\(UUID())"
-    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    let defaults = try tagFixtureDefaults(suite: suite)
     defer { defaults.removePersistentDomain(forName: suite) }
     let first = MacLibraryTagStore(defaults: defaults)
     let second = MacLibraryTagStore(defaults: defaults)
@@ -81,7 +81,7 @@ final class MacPrayerLibraryTests: XCTestCase {
 
   func testTemplateTagsMergeWhenASavedCopyArrivesFromAnotherDevice() async throws {
     let suite = "MacPrayerLibraryTests.\(UUID())"
-    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    let defaults = try tagFixtureDefaults(suite: suite)
     defer { defaults.removePersistentDomain(forName: suite) }
     let store = MockPresetStore(configs: [])
     let model = MacPrayerLibraryModel(store: store, defaults: defaults, installedDevotionIDs: { [] })
@@ -102,7 +102,7 @@ final class MacPrayerLibraryTests: XCTestCase {
 
   func testLegacyColorTagsMigrateWithEveryIdentityNameAndAssignmentIntact() throws {
     let suite = "MacPrayerLibraryTests.\(UUID())"
-    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    let defaults = try tagFixtureDefaults(suite: suite)
     defer { defaults.removePersistentDomain(forName: suite) }
     let colorIDs = MacPrayerTag.colors.map(\.0)
     let legacy: [String: Any] = [
@@ -120,7 +120,7 @@ final class MacPrayerLibraryTests: XCTestCase {
     XCTAssertEqual(store.tagIDs(for: "copy-a"), Set(colorIDs))
     XCTAssertEqual(store.tagIDs(for: "devotion:angelus"), ["red", "blue"])
     let migrated = try XCTUnwrap(JSONSerialization.jsonObject(with: try XCTUnwrap(defaults.data(forKey: MacLibraryTagStore.defaultsKey))) as? [String: Any])
-    XCTAssertEqual(migrated["version"] as? Int, 2)
+    XCTAssertEqual(migrated["version"] as? Int, 3)
     XCTAssertNil(migrated["names"])
     let reopened = MacLibraryTagStore(defaults: defaults)
     XCTAssertEqual(reopened.tags.map(\.id), colorIDs)
@@ -129,7 +129,7 @@ final class MacPrayerLibraryTests: XCTestCase {
 
   func testNamedTagsReuseCaseInsensitiveNamesAndColorsRemainIndependent() throws {
     let suite = "MacPrayerLibraryTests.\(UUID())"
-    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    let defaults = try tagFixtureDefaults(suite: suite)
     defer { defaults.removePersistentDomain(forName: suite) }
     let store = MacLibraryTagStore(defaults: defaults)
     let first = try XCTUnwrap(store.create(named: "  At Home\n", colorID: "blue"))
@@ -159,7 +159,7 @@ final class MacPrayerLibraryTests: XCTestCase {
 
   func testEditingOtherTokensPreservesAssignedLegacyDuplicateNameIdentities() throws {
     let suite = "MacPrayerLibraryTests.\(UUID())"
-    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    let defaults = try tagFixtureDefaults(suite: suite)
     defer { defaults.removePersistentDomain(forName: suite) }
     let legacy: [String: Any] = [
       "names": ["red": "Morning", "green": "Morning"],
@@ -185,7 +185,7 @@ final class MacPrayerLibraryTests: XCTestCase {
 
   func testRenameCollisionsFailWithoutMergingAssignmentsOrChangingColor() throws {
     let suite = "MacPrayerLibraryTests.\(UUID())"
-    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    let defaults = try tagFixtureDefaults(suite: suite)
     defer { defaults.removePersistentDomain(forName: suite) }
     let model = MacPrayerLibraryModel(store: MockPresetStore(configs: []), defaults: defaults, installedDevotionIDs: { [] })
     let first = try XCTUnwrap(model.createTag(named: "Morning", colorID: "red"))
@@ -206,7 +206,7 @@ final class MacPrayerLibraryTests: XCTestCase {
 
   func testTypedTagNamesReplaceMembershipTogetherWithoutDeletingSharedTags() throws {
     let suite = "MacPrayerLibraryTests.\(UUID())"
-    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    let defaults = try tagFixtureDefaults(suite: suite)
     defer { defaults.removePersistentDomain(forName: suite) }
     let store = MacLibraryTagStore(defaults: defaults)
     let existing = try XCTUnwrap(store.create(named: "Morning", colorID: "orange"))
@@ -229,7 +229,7 @@ final class MacPrayerLibraryTests: XCTestCase {
 
   func testDeletingTagsRemovesAllAssignmentsAndNeverRecreatesDeletedDefaults() throws {
     let suite = "MacPrayerLibraryTests.\(UUID())"
-    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    let defaults = try tagFixtureDefaults(suite: suite)
     defer { defaults.removePersistentDomain(forName: suite) }
     let store = MacLibraryTagStore(defaults: defaults)
     let custom = try XCTUnwrap(store.create(named: "Morning", colorID: nil))
@@ -252,7 +252,7 @@ final class MacPrayerLibraryTests: XCTestCase {
 
   func testGalleryMembershipPersistsWithoutCreatingPresetsAndSavedPrayersStayVisible() async throws {
     let suite = "MacPrayerLibraryTests.\(UUID())"
-    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    let defaults = try tagFixtureDefaults(suite: suite)
     defer { defaults.removePersistentDomain(forName: suite) }
     let store = MockPresetStore(configs: [])
     let model = MacPrayerLibraryModel(store: store, defaults: defaults, installedDevotionIDs: { [] })
@@ -282,7 +282,7 @@ final class MacPrayerLibraryTests: XCTestCase {
 
   func testInstalledPacksBeginInGalleryWithoutLibraryMembership() async throws {
     let suite = "MacPrayerLibraryTests.\(UUID())"
-    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    let defaults = try tagFixtureDefaults(suite: suite)
     defer { defaults.removePersistentDomain(forName: suite) }
     let store = MockPresetStore(configs: [])
     // Inject only pack-source discovery, avoiding changes to the user's installed files.
@@ -298,7 +298,7 @@ final class MacPrayerLibraryTests: XCTestCase {
 
   func testBatchGalleryAdditionKeepsExistingCopiesAndAddsOnlyMissingMembership() async throws {
     let suite = "MacPrayerLibraryTests.\(UUID())"
-    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    let defaults = try tagFixtureDefaults(suite: suite)
     defer { defaults.removePersistentDomain(forName: suite) }
     let saved = Prayer(name: "My Rosary", kind: .rosary)
     let store = MockPresetStore(configs: [saved])
@@ -331,7 +331,7 @@ final class MacPrayerLibraryTests: XCTestCase {
 
   func testBatchGalleryAdditionIgnoresUnavailableIDsAndKeepsAnEmptyPresetStore() async throws {
     let suite = "MacPrayerLibraryTests.\(UUID())"
-    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    let defaults = try tagFixtureDefaults(suite: suite)
     defer { defaults.removePersistentDomain(forName: suite) }
     let store = MockPresetStore(configs: [])
     let model = MacPrayerLibraryModel(store: store, defaults: defaults, installedDevotionIDs: { [] })
@@ -370,6 +370,17 @@ final class MacPrayerLibraryTests: XCTestCase {
     XCTAssertTrue(empty.items.isEmpty)
     XCTAssertTrue(empty.additions.isEmpty)
     XCTAssertNil(empty.showTarget)
+  }
+
+  /// These existing-state tests explicitly provide named tags; the app no longer seeds them.
+  private func tagFixtureDefaults(suite: String) throws -> UserDefaults {
+    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    let tags = MacPrayerTag.colors.map { id, _, title in
+      ["id": id, "name": title, "colorID": id]
+    }
+    let value: [String: Any] = ["version": 3, "tags": tags, "assignments": [:] as [String: [String]]]
+    defaults.set(try JSONSerialization.data(withJSONObject: value), forKey: MacLibraryTagStore.defaultsKey)
+    return defaults
   }
 
   private func selectionItem(_ devotionID: String) -> MacPrayerLibraryItem {

@@ -35,6 +35,47 @@ public class BundledReadingsTests
     }
 
     [Fact]
+    public void SeptemberThirteenthReadingsUseTheSelectedEditionsNumbering()
+    {
+        var cases = new (string Citation, IEnumerable<string> Expected)[]
+        {
+            ("Sirach 27:30; 28:1–7", new[] { "27:33" }.Concat(Enumerable.Range(1, 9).Select(v => $"28:{v}"))),
+            ("Psalm 103:1–2; 103:3–4; 103:9–10; 103:11–12", new[] { 1, 2, 3, 4, 9, 10, 11, 12 }.Select(v => $"102:{v}")),
+            ("Romans 14:7–9", Enumerable.Range(7, 3).Select(v => $"14:{v}")),
+            ("Matthew 18:21–35", Enumerable.Range(21, 15).Select(v => $"18:{v}"))
+        };
+        foreach (var (citation, expected) in cases)
+        {
+            var passage = Store.LoadPassage("daily", citation, "douay-rheims-1899");
+            Assert.NotNull(passage);
+            Assert.Equal(expected, passage.Verses.Select(v => $"{v.Chapter}:{v.Verse}"));
+            Assert.All(passage.Verses, verse => Assert.False(string.IsNullOrWhiteSpace(verse.Text)));
+        }
+        var psalmEditions = new Dictionary<string, int>
+        {
+            ["douay-rheims-1899"] = 102, ["synodal-1876"] = 102,
+            ["masoretic-delitzsch"] = 103, ["ang-dating-biblia-1905"] = 103,
+            ["crampon-1923"] = 103, ["kulish-1905"] = 103
+        };
+        foreach (var (editionId, chapter) in psalmEditions)
+        {
+            var psalm = Store.LoadPassage("daily", cases[1].Citation, editionId);
+            Assert.NotNull(psalm);
+            Assert.Equal(new[] { 1, 2, 3, 4, 9, 10, 11, 12 }, psalm.Verses.Select(v => v.Verse));
+            Assert.All(psalm.Verses, verse => Assert.Equal(chapter, verse.Chapter));
+            Assert.True(psalm.IncludesWholeVerses);
+        }
+        foreach (var editionId in new[] { "martini", "jesuit-arabic-1897" })
+            Assert.Null(Store.LoadPassage("daily", cases[1].Citation, editionId));
+        var french = Store.LoadPassage("daily", cases[0].Citation, "crampon-1923");
+        Assert.NotNull(french);
+        Assert.Equal(new[] { "27:30" }.Concat(Enumerable.Range(1, 7).Select(v => $"28:{v}")),
+            french.Verses.Select(v => $"{v.Chapter}:{v.Verse}"));
+        Assert.All(french.Verses, verse => Assert.False(string.IsNullOrWhiteSpace(verse.Text)));
+        Assert.Null(Store.LoadPassage("daily", cases[0].Citation, "masoretic-delitzsch"));
+    }
+
+    [Fact]
     public void BundledCatalogHasEightEditionsAndPreservesTheSevenFullBibleEditions()
     {
         Assert.Equal(8, Store.Editions.Count);
@@ -140,9 +181,10 @@ public class BundledReadingsTests
     }
 
     [Fact]
-    public void SelectingAnotherDateReplacesExpandedRowsAndMissingDateClearsThem()
+    public void PassagesExpandOnEntryAndContextChangesWhileRefreshKeepsUserCollapses()
     {
         var previousEdition = AppSettings.ReadingsEditionId;
+        var previousCalendar = TodayInfoStore.SelectedCalendarId;
         try
         {
             AppSettings.SetReadingsEditionId("douay-rheims-1899");
@@ -150,29 +192,64 @@ public class BundledReadingsTests
             var reader = new DesktopReadingsViewModel(Store);
             today.SelectedTodayDate = new DateTimeOffset(2026, 9, 10, 0, 0, 0, TimeSpan.Zero);
             today.TodayReadings = [new ReadingCitation("gospel", "Lk", "Luke 6:27–38")];
-            reader.Refresh(today);
+            today.TodayTorahPortion = new TorahPortion("2026-09-12", "Vayechi", null, false,
+                [new ReadingCitation("torah", "Gn", "Genesis 47:28–50:26")], null);
+            reader.Open(today);
             var first = Assert.Single(reader.Daily);
-            first.IsExpanded = true;
+            Assert.True(first.IsExpanded);
             Assert.True(first.HasPassage);
+            var torah = Assert.Single(reader.Torah);
+            Assert.True(torah.IsExpanded);
+            first.IsExpanded = false;
+            torah.IsExpanded = false;
 
             // Even if two appointed dates happen to repeat a citation, each day
             // has its own expansion state. An unrelated timer refresh retains it.
             reader.Refresh(today);
             Assert.Same(first, Assert.Single(reader.Daily));
+            Assert.False(first.IsExpanded);
+            Assert.Same(torah, Assert.Single(reader.Torah));
+            Assert.False(torah.IsExpanded);
+
+            AppSettings.SetReadingsEditionId("masoretic-delitzsch");
+            reader.Refresh(today);
+            Assert.False(Assert.Single(reader.Daily).IsExpanded);
+            Assert.False(Assert.Single(reader.Torah).IsExpanded);
+            reader.Open(today);
+            Assert.True(Assert.Single(reader.Daily).IsExpanded);
+            Assert.True(Assert.Single(reader.Torah).IsExpanded);
+
             today.SelectedTodayDate = today.SelectedTodayDate!.Value.AddDays(1);
             today.TodayReadings = [new ReadingCitation("gospel", "Lk", "Luke 6:27–38")];
+            today.TodayTorahPortion = new TorahPortion("2026-09-12", "Vayechi", null, false,
+                [new ReadingCitation("torah", "Gn", "Genesis 47:28–50:26")], null);
             reader.Refresh(today);
             var second = Assert.Single(reader.Daily);
             Assert.NotSame(first, second);
-            Assert.False(second.IsExpanded);
-            Assert.Empty(second.PassageText);
+            Assert.True(second.IsExpanded);
+            Assert.True(second.HasPassage);
+            var secondTorah = Assert.Single(reader.Torah);
+            Assert.True(secondTorah.IsExpanded);
+            second.IsExpanded = false;
+            secondTorah.IsExpanded = false;
+
+            // A calendar change opens the new appointments even when their
+            // citations happen to match those in the previous calendar.
+            TodayInfoStore.SelectedCalendarId = TodayInfoStore.ResolvedCalendarId == "roman" ? "roman1962" : "roman";
+            reader.Refresh(today);
+            Assert.True(Assert.Single(reader.Daily).IsExpanded);
+            Assert.True(Assert.Single(reader.Torah).IsExpanded);
 
             today.SelectedTodayDate = today.MaximumTodayDate;
             reader.Refresh(today);
             Assert.Empty(reader.Daily);
             Assert.Empty(reader.Torah);
         }
-        finally { AppSettings.SetReadingsEditionId(previousEdition); }
+        finally
+        {
+            AppSettings.SetReadingsEditionId(previousEdition);
+            TodayInfoStore.SelectedCalendarId = previousCalendar;
+        }
     }
 
     private sealed class EmptyPresetStore : IPresetStore

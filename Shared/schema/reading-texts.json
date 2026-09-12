@@ -13,7 +13,7 @@
       "items": {"$ref": "#/$defs/edition"}
     },
     "wholeVersePassages": {
-      "description": "Exact passage keys whose partial-verse appointments are shown using their enclosing whole verses. Missing means empty. Clients retain the original citation and show a localized full-verse notice for these keys. Only keys present in passages are listed.",
+      "description": "Exact passage keys whose partial-verse appointments or reviewed numbering correspondences require enclosing whole verses. Missing means empty. Clients retain the original citation and show a localized full-verse notice for these keys. If any edition requires a wider whole-verse envelope, the key is listed for all editions. Only keys present in passages are listed.",
       "type": "array",
       "uniqueItems": true,
       "items": {"type": "string", "pattern": "^(daily|torah)\\|.+$"}

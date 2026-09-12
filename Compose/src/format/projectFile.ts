@@ -27,9 +27,15 @@ export function serializeProject(project: Project): string {
     ...normalized,
     images: normalized.images.map((image) => ({
       uid: image.uid,
+      fileId: image.fileId,
       label: image.label,
       jpeg: toBase64(image.jpeg),
     })),
+    galleryImage: normalized.galleryImage ? {
+      uid: normalized.galleryImage.uid,
+      label: normalized.galleryImage.label,
+      jpeg: toBase64(normalized.galleryImage.jpeg),
+    } : undefined,
     audio: normalized.audio.map((track) => ({ ...track, bytes: toBase64(track.bytes) })),
   });
 }
@@ -46,9 +52,15 @@ export function deserializeProject(json: string): Project {
     // Explicit fields discard the old derived `dataUrl` copy written by early versions.
     images: (rest.images ?? []).map((image: EditorImage & { jpeg: string }) => ({
       uid: image.uid,
+      fileId: image.fileId,
       label: image.label,
       jpeg: fromBase64(image.jpeg),
     })),
+    galleryImage: rest.galleryImage ? {
+      uid: rest.galleryImage.uid,
+      label: rest.galleryImage.label,
+      jpeg: fromBase64(rest.galleryImage.jpeg),
+    } : undefined,
     audio: (rest.audio ?? []).map((track: EditorAudioTrack & { bytes: string }) => ({
       ...track,
       bytes: fromBase64(track.bytes),

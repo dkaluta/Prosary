@@ -328,6 +328,7 @@ struct MacPrayerLibraryView: View {
                           onDuplicate: duplicate, onEdit: edit,
                           onRemove: { requestRemoval($0) },
                           onTag: { tag, item, enabled in model.setTag(tag, on: item, enabled: enabled) },
+                          onClearTags: { model.setTags(named: [], on: $0) },
                           onEditTags: { tagEditorTarget = $0 },
                           onImport: { showsImporter = true })
         .accessibilityIdentifier("macLibrary.iconView")
@@ -335,6 +336,8 @@ struct MacPrayerLibraryView: View {
   }
 
   private var libraryTable: some View {
+    // Keep native row order identical to the context adapter's items. Any future
+    // sorting must supply the same sorted array to both the table and its menu.
     Table(filteredItems, selection: $selectedID) {
       TableColumn(label("macLibrary.name", "Name")) { item in
         Label {
@@ -359,12 +362,13 @@ struct MacPrayerLibraryView: View {
       }
       .width(min: 60, ideal: 100, max: 150)
     }
-    .contextMenu(forSelectionType: String.self) { ids in
-      if let item = filteredItems.first(where: { ids.contains($0.id) }) { itemMenu(item) }
-      else { Button(label("macLibrary.import", "Import Prayer Packs…")) { showsImporter = true } }
+    .contextMenu(forSelectionType: String.self) { _ in
+      EmptyView()
     } primaryAction: { ids in
       if let item = filteredItems.first(where: { ids.contains($0.id) }) { open(item) }
     }
+    .background(MacPrayerTableMenu(items: filteredItems, selectedID: selectedID,
+      makeMenu: itemMenu, onImport: { showsImporter = true }))
     .onKeyPress(.return) {
       guard let selectedItem else { return .ignored }
       open(selectedItem)
@@ -444,33 +448,13 @@ struct MacPrayerLibraryView: View {
     .defaultCustomization(.hidden)
   }
 
-  @ViewBuilder
-  private func itemMenu(_ item: MacPrayerLibraryItem) -> some View {
-    Button(label("macLibrary.open", "Open")) { open(item) }.disabled(isBusy)
-    Divider()
-    Button(label("macLibrary.duplicate", "Duplicate")) { duplicate(item) }.disabled(isBusy)
-    Button(label("macLibrary.prayerSettings", "Prayer Settings…")) { edit(item) }.disabled(isBusy)
-    ControlGroup {
-      MacPrayerTagSwatches(tags: model.tags, selectedIDs: item.tagIDs) { tag in
-        model.setTag(tag, on: item, enabled: !item.tagIDs.contains(tag.id))
-      }
-    }
-    Button(label("macLibrary.editTags", "Tags…")) { tagEditorTarget = item }
-    Menu(label("macLibrary.tags", "Tags")) {
-      ForEach(model.tags) { tag in
-        Toggle(isOn: Binding(get: { item.tagIDs.contains(tag.id) },
-          set: { model.setTag(tag, on: item, enabled: $0) })) {
-          Label {
-            Text(tag.title)
-          } icon: {
-            Image(systemName: tag.colorID == nil ? "circle" : "circle.fill").foregroundStyle(tag.color)
-          }
-        }
-      }
-    }
-    Divider()
-    Button(removalMenuTitle(for: item), role: .destructive) { requestRemoval(item) }
-      .disabled(isBusy)
+  private func itemMenu(_ item: MacPrayerLibraryItem) -> NSMenu {
+    MacPrayerLibraryMenu.make(item: item, tags: model.tags, isBusy: isBusy,
+      onOpen: { open(item) }, onDuplicate: { duplicate(item) }, onEdit: { edit(item) },
+      onRemove: { requestRemoval(item) },
+      onTag: { model.setTag($0, on: item, enabled: $1) },
+      onClearTags: { model.setTags(named: [], on: item) },
+      onEditTags: { tagEditorTarget = item })
   }
 
   private func consumeWidgetDestination() {
@@ -597,7 +581,7 @@ struct MacPrayerLibraryView: View {
 
 /// AppKit supplies native selection, arrow-key navigation, scrolling and accessibility for the
 /// icon view. Context targeting stays separate from selection, including in inactive windows.
-private struct MacPrayerCollection: NSViewRepresentable {
+struct MacPrayerCollection: NSViewRepresentable {
   let items: [MacPrayerLibraryItem]
   let tags: [MacPrayerTag]
   @Binding var selectedID: String?
@@ -607,56 +591,18 @@ private struct MacPrayerCollection: NSViewRepresentable {
   let onEdit: (MacPrayerLibraryItem) -> Void
   let onRemove: (MacPrayerLibraryItem) -> Void
   let onTag: (MacPrayerTag, MacPrayerLibraryItem, Bool) -> Void
+  let onClearTags: (MacPrayerLibraryItem) -> Void
   let onEditTags: (MacPrayerLibraryItem) -> Void
   let onImport: () -> Void
 
   func makeCoordinator() -> Coordinator { Coordinator(self) }
 
   func makeNSView(context: Context) -> NSScrollView {
-    let scroll = PrayerLibraryScrollView()
-    scroll.hasVerticalScroller = true
-    scroll.autohidesScrollers = true
-    scroll.drawsBackground = false
-    let collection = PrayerCollectionView()
-    collection.backgroundColors = [.textBackgroundColor]
-    collection.isSelectable = true
-    collection.allowsMultipleSelection = false
-    collection.allowsEmptySelection = true
-    collection.dataSource = context.coordinator
-    collection.delegate = context.coordinator
-    collection.libraryDelegate = context.coordinator
-    let layout = NSCollectionViewFlowLayout()
-    layout.itemSize = NSSize(width: 220, height: 150)
-    layout.minimumInteritemSpacing = 12
-    layout.minimumLineSpacing = 12
-    layout.sectionInset = NSEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-    collection.collectionViewLayout = layout
-    collection.register(PrayerCollectionItem.self, forItemWithIdentifier: PrayerCollectionItem.identifier)
-    collection.autoresizingMask = [.width]
-    scroll.documentView = collection
-    context.coordinator.collection = collection
-    return scroll
+    context.coordinator.makeScrollView()
   }
 
   func updateNSView(_ scroll: NSScrollView, context: Context) {
-    let coordinator = context.coordinator
-    coordinator.parent = self
-    guard let collection = coordinator.collection else { return }
-    let signature = items.map { "\($0.id)|\($0.title)|\($0.subtitle)|\($0.tagIDs.sorted().joined(separator: ","))" }
-      + tags.map { "\($0.id)|\($0.title)|\($0.colorID ?? "none")" }
-    coordinator.updating = true
-    if signature != coordinator.signature {
-      coordinator.signature = signature
-      collection.reloadData()
-    }
-    let paths: Set<IndexPath> = items.firstIndex(where: { $0.id == selectedID })
-      .map { [IndexPath(item: $0, section: 0)] } ?? []
-    if collection.selectionIndexPaths != paths {
-      collection.selectionIndexPaths = paths
-      if !paths.isEmpty { collection.scrollToItems(at: paths, scrollPosition: .nearestVerticalEdge) }
-    }
-    coordinator.updating = false
-    collection.refreshAppearance()
+    context.coordinator.update(self)
   }
 
   final class Coordinator: NSObject, NSCollectionViewDataSource, NSCollectionViewDelegate, NSMenuDelegate {
@@ -667,6 +613,52 @@ private struct MacPrayerCollection: NSViewRepresentable {
     var contextPath: IndexPath?
 
     init(_ parent: MacPrayerCollection) { self.parent = parent }
+
+    func makeScrollView() -> NSScrollView {
+      let scroll = PrayerLibraryScrollView()
+      scroll.hasVerticalScroller = true
+      scroll.autohidesScrollers = true
+      scroll.drawsBackground = false
+      let collection = PrayerCollectionView()
+      collection.backgroundColors = [.textBackgroundColor]
+      collection.isSelectable = true
+      collection.allowsMultipleSelection = false
+      collection.allowsEmptySelection = true
+      collection.dataSource = self
+      collection.delegate = self
+      collection.libraryDelegate = self
+      let layout = NSCollectionViewFlowLayout()
+      layout.itemSize = NSSize(width: 220, height: 150)
+      layout.minimumInteritemSpacing = 12
+      layout.minimumLineSpacing = 12
+      layout.sectionInset = NSEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+      collection.collectionViewLayout = layout
+      collection.register(PrayerCollectionItem.self, forItemWithIdentifier: PrayerCollectionItem.identifier)
+      collection.autoresizingMask = [.width]
+      scroll.documentView = collection
+      self.collection = collection
+      return scroll
+    }
+
+    func update(_ parent: MacPrayerCollection) {
+      self.parent = parent
+      guard let collection else { return }
+      let signature = parent.items.map { "\($0.id)|\($0.title)|\($0.subtitle)|\($0.tagIDs.sorted().joined(separator: ","))" }
+        + parent.tags.map { "\($0.id)|\($0.title)|\($0.colorID ?? "none")" }
+      updating = true
+      if signature != self.signature {
+        self.signature = signature
+        collection.reloadData()
+      }
+      let paths: Set<IndexPath> = parent.items.firstIndex(where: { $0.id == parent.selectedID })
+        .map { [IndexPath(item: $0, section: 0)] } ?? []
+      if collection.selectionIndexPaths != paths {
+        collection.selectionIndexPaths = paths
+        if !paths.isEmpty { collection.scrollToItems(at: paths, scrollPosition: .nearestVerticalEdge) }
+      }
+      updating = false
+      collection.refreshAppearance()
+    }
 
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
       parent.items.count
@@ -708,61 +700,34 @@ private struct MacPrayerCollection: NSViewRepresentable {
     }
 
     func menu(at path: IndexPath?) -> NSMenu {
-      let menu = NSMenu()
-      menu.autoenablesItems = false
-      menu.delegate = self
       contextPath = path
       collection?.refreshAppearance()
       guard let path, parent.items.indices.contains(path.item) else {
-        add(String(localized: "macLibrary.import", defaultValue: "Import Prayer Packs…"), to: menu, action: parent.onImport)
+        let menu = NSMenu()
+        menu.autoenablesItems = false
+        menu.delegate = self
+        MacPrayerLibraryMenu.add(String(localized: "macLibrary.import", defaultValue: "Import Prayer Packs…"),
+          to: menu, enabled: !parent.isBusy, action: parent.onImport)
         return menu
       }
       let item = parent.items[path.item]
-      add(String(localized: "macLibrary.open", defaultValue: "Open"), to: menu) { [weak self] in self?.parent.onOpen(item) }
-      menu.addItem(.separator())
-      add(String(localized: "macLibrary.duplicate", defaultValue: "Duplicate"), to: menu) { [weak self] in self?.parent.onDuplicate(item) }
-      add(String(localized: "macLibrary.prayerSettings", defaultValue: "Prayer Settings…"), to: menu) { [weak self] in self?.parent.onEdit(item) }
-      menu.addItem(.separator())
-      let tagItem = NSMenuItem()
-      tagItem.view = MacPrayerTagMenuRow(tags: parent.tags, selectedIDs: item.tagIDs) { [weak self] tag in
-        guard let self, !self.parent.isBusy else { return }
-        self.parent.onTag(tag, item, !item.tagIDs.contains(tag.id))
-      }
-      menu.addItem(tagItem)
-      add(String(localized: "macLibrary.editTags", defaultValue: "Tags…"), to: menu) { [weak self] in
-        self?.parent.onEditTags(item)
-      }
-      menu.addItem(.separator())
-      add(item.prayer == nil
-        ? String(localized: "macLibrary.removeFromLibrary", defaultValue: "Remove from Library…")
-        : String(localized: "macLibrary.deletePrayer", defaultValue: "Delete Prayer…"), to: menu) { [weak self] in
-        self?.parent.onRemove(item)
-      }
+      let menu = MacPrayerLibraryMenu.make(item: item, tags: parent.tags, isBusy: parent.isBusy,
+        onOpen: { [weak self] in self?.parent.onOpen(item) },
+        onDuplicate: { [weak self] in self?.parent.onDuplicate(item) },
+        onEdit: { [weak self] in self?.parent.onEdit(item) },
+        onRemove: { [weak self] in self?.parent.onRemove(item) },
+        onTag: { [weak self] tag, enabled in self?.parent.onTag(tag, item, enabled) },
+        onClearTags: { [weak self] in self?.parent.onClearTags(item) },
+        onEditTags: { [weak self] in self?.parent.onEditTags(item) })
+      menu.delegate = self
       return menu
     }
-
-    @discardableResult
-    private func add(_ title: String, to menu: NSMenu, action: @escaping () -> Void) -> NSMenuItem {
-      let item = NSMenuItem(title: title, action: #selector(invoke(_:)), keyEquivalent: "")
-      item.target = self
-      item.representedObject = MenuAction(action)
-      item.isEnabled = !parent.isBusy
-      menu.addItem(item)
-      return item
-    }
-
-    @objc private func invoke(_ sender: NSMenuItem) { (sender.representedObject as? MenuAction)?.perform() }
 
     func menuDidClose(_ menu: NSMenu) {
       contextPath = nil
       collection?.refreshAppearance()
     }
   }
-}
-
-private final class MenuAction: NSObject {
-  let perform: () -> Void
-  init(_ perform: @escaping () -> Void) { self.perform = perform }
 }
 
 private final class PrayerLibraryScrollView: NSScrollView {
@@ -775,11 +740,15 @@ private final class PrayerLibraryScrollView: NSScrollView {
   }
 }
 
-private final class PrayerCollectionView: NSCollectionView {
+final class PrayerCollectionView: NSCollectionView {
   weak var libraryDelegate: MacPrayerCollection.Coordinator?
   private var windowObservers: [NSObjectProtocol] = []
 
   override func mouseDown(with event: NSEvent) {
+    if event.modifierFlags.contains(.control) {
+      rightMouseDown(with: event)
+      return
+    }
     super.mouseDown(with: event)
     if event.clickCount == 2 {
       libraryDelegate?.open(at: indexPathForItem(at: convert(event.locationInWindow, from: nil)))
@@ -787,9 +756,13 @@ private final class PrayerCollectionView: NSCollectionView {
   }
 
   override func rightMouseDown(with event: NSEvent) {
-    let path = indexPathForItem(at: convert(event.locationInWindow, from: nil))
-    guard let menu = libraryDelegate?.menu(at: path) else { return }
+    guard let menu = menu(for: event) else { return }
     NSMenu.popUpContextMenu(menu, with: event, for: self)
+  }
+
+  override func menu(for event: NSEvent) -> NSMenu? {
+    let path = indexPathForItem(at: convert(event.locationInWindow, from: nil))
+    return libraryDelegate?.menu(at: path)
   }
 
   override func keyDown(with event: NSEvent) {
@@ -893,6 +866,15 @@ private final class PrayerCollectionTile: NSView {
   var accentColor: NSColor = .controlAccentColor
   var onOpen: (() -> Void)?
   var onShowMenu: (() -> Bool)?
+
+  // Titles and symbols are presentation, not independent text controls. Keep the tile in
+  // AppKit's hit-test chain, then let the collection handle selection and context targeting.
+  override func hitTest(_ point: NSPoint) -> NSView? {
+    super.hitTest(point) == nil ? nil : self
+  }
+
+  override func mouseDown(with event: NSEvent) { collection?.mouseDown(with: event) }
+  override func rightMouseDown(with event: NSEvent) { collection?.rightMouseDown(with: event) }
 
   private var emphasized: Bool {
     guard let collection, let window, window.isKeyWindow else { return false }

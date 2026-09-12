@@ -127,6 +127,7 @@ final class MacPrayerRemovalTests: XCTestCase {
 
     init(prayers: [Prayer] = [], downloaded: Bool = false) {
       defaults = UserDefaults(suiteName: suite)!
+      MacLibraryTagStore(defaults: defaults).create(named: "For Testing", colorID: "red")
       let store = MockPresetStore(configs: prayers)
       let packs = PackState(downloaded: downloaded)
       self.store = store

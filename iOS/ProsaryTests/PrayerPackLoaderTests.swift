@@ -556,6 +556,64 @@ final class PrayerPackLoaderTests: XCTestCase {
 
   /// Builds a minimal, valid .prosaryprayer in memory (stored zip, no compression) — the same
   /// shape a third-party author would produce.
+  private func makeGalleryPack(id: String, galleryValue: Any? = nil, payload: Data? = Data([1])) throws -> Data {
+    var manifest: [String: Any] = ["id": id, "displayName": "Gallery Fixture",
+      "languages": ["en"], "hasCatalog": false, "images": ["gallery_fixture"]]
+    if let galleryValue { manifest["galleryImageKey"] = galleryValue }
+    var entries = [
+      ("manifest.json", try JSONSerialization.data(withJSONObject: manifest)),
+      ("content/en.json", Data(#"{"prayers":{"galleryFixture":"Fixture"},"mysteries":{}}"#.utf8)),
+      ("devotion.json", Data(#"{"type":"steps","steps":[{"title":"Fixture","bodyKey":"galleryFixture"}]}"#.utf8)),
+    ]
+    if let payload { entries.append(("images/gallery_fixture.jpg", payload)) }
+    return Self.storedZip(entries)
+  }
+
+  func testAuthoredGalleryImageIsOptionalAndScopedToItsPack() throws {
+    let originalDirectory = PrayerPackStore.installedPacksDirectory
+    let directory = FileManager.default.temporaryDirectory.appendingPathComponent("gallery-\(UUID())")
+    PrayerPackStore.installedPacksDirectory = directory
+    let first = "gallery-\(UUID())", second = "gallery-\(UUID())", legacy = "gallery-\(UUID())"
+    defer {
+      for id in [first, second, legacy] { PrayerPackStore.removeInstalledPack(id: id) }
+      PrayerPackStore.installedPacksDirectory = originalDirectory
+      try? FileManager.default.removeItem(at: directory)
+    }
+    try PrayerPackStore.installPack(from: makeGalleryPack(id: first, galleryValue: "gallery_fixture", payload: Data([1])))
+    try PrayerPackStore.installPack(from: makeGalleryPack(id: second, galleryValue: "gallery_fixture", payload: Data([2])))
+    try PrayerPackStore.installPack(from: makeGalleryPack(id: legacy))
+    XCTAssertEqual(PrayerPackStore.info(for: first)?.galleryImageKey, "gallery_fixture")
+    let firstResource = try XCTUnwrap(PrayerPackStore.galleryImageResource(for: first))
+    let secondResource = try XCTUnwrap(PrayerPackStore.galleryImageResource(for: second))
+    XCTAssertEqual(try firstResource.contents(), Data([1]))
+    XCTAssertEqual(try secondResource.contents(), Data([2]))
+    XCTAssertNotEqual(firstResource.cacheKey, secondResource.cacheKey)
+    XCTAssertNil(PrayerPackStore.info(for: legacy)?.galleryImageKey)
+    XCTAssertNil(PrayerPackStore.galleryImageResource(for: legacy))
+    PrayerPackStore.removeInstalledPack(id: first)
+    XCTAssertNil(PrayerPackStore.galleryImageResource(for: first))
+    XCTAssertEqual(try PrayerPackStore.galleryImageResource(for: second)?.contents(), Data([2]))
+  }
+
+  func testGalleryImageRejectsInvalidUndeclaredAndMissingPayloads() throws {
+    let originalDirectory = PrayerPackStore.installedPacksDirectory
+    let directory = FileManager.default.temporaryDirectory.appendingPathComponent("gallery-invalid-\(UUID())")
+    PrayerPackStore.installedPacksDirectory = directory
+    defer {
+      PrayerPackStore.installedPacksDirectory = originalDirectory
+      try? FileManager.default.removeItem(at: directory)
+    }
+    for value: Any in [NSNull(), 12, "", " gallery_fixture", "../gallery_fixture", "https://example.test/image", "undeclared"] {
+      let id = "gallery-invalid-\(UUID())"
+      XCTAssertThrowsError(try PrayerPackStore.installPack(from: makeGalleryPack(id: id, galleryValue: value)))
+      XCTAssertNil(PrayerPackStore.info(for: id))
+    }
+    let missing = "gallery-missing-\(UUID())"
+    XCTAssertThrowsError(try PrayerPackStore.installPack(from: makeGalleryPack(id: missing,
+      galleryValue: "gallery_fixture", payload: nil)))
+    XCTAssertFalse(FileManager.default.fileExists(atPath: directory.appendingPathComponent("\(missing).prosaryprayer").path))
+  }
+
   private func makeExamplePack(id: String) -> Data {
     let manifest = """
       {"schemaVersion": 1, "id": "\(id)", "kind": "\(id)", "displayName": "Example Devotion",

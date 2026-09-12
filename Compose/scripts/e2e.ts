@@ -31,6 +31,9 @@ import { SUPPORTED_LANGUAGES } from "../../Repository/lib/languages";
 import { validateAndRestamp } from "../../Repository/lib/bundles";
 import { hasNewDeployment, saveBeforeReload } from "../src/storage/deployment";
 import { testImportCompatibility } from "./importCompatibilityTests";
+import { testGalleryCovers } from "./galleryCoverTests";
+import { tagConvertedSrgbJpeg } from "../src/format/jpegColor";
+import { UUID7_PATTERN } from "../src/format/imageIdentity";
 
 function assert(condition: boolean, message: string): void {
   if (!condition) {
@@ -45,6 +48,7 @@ function fail(message: string, ...detail: unknown[]): never {
 }
 
 await testImportCompatibility();
+await testGalleryCovers();
 
 // An older open editor must offer the new publishing rules without losing an unsaved draft.
 {
@@ -626,7 +630,8 @@ console.log(
   const image = (uid: string, byte: number) => ({
     uid,
     label: `${uid}.jpg`,
-    jpeg: new Uint8Array([byte]),
+    jpeg: tagConvertedSrgbJpeg(new Uint8Array(readFileSync("../Shared/Images/crucifix.jpg"))),
+    fixtureByte: byte,
   });
   const step = (uid: string, imageUid: string): EditorStep => ({
     uid,
@@ -677,9 +682,9 @@ console.log(
   const packedImages = buildBundleFiles(pruned).filter((file) => file.name.startsWith("images/"));
   assert(packedImages.length === 1, "only the active shape's artwork is packed");
   assert(
-    packedImages[0].name === "images/retainedShapes_art_01.jpg" &&
-      packedImages[0].data[0] === 3,
-    "active artwork numbering ignores retained inactive-shape images",
+    packedImages[0].name === `images/${pruned.images.find((image) => image.uid === "day-image")?.fileId}.jpg` &&
+      UUID7_PATTERN.test(packedImages[0].name.slice(7, -4)),
+    "active artwork uses its stable UUIDv7 filename regardless of inactive shapes",
   );
 
   const blank = newProject();

@@ -1,6 +1,7 @@
 package com.dkaluta.prosary.ui
 
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -26,9 +27,11 @@ class ReadingTextInstrumentedTest {
             """{"schemaVersion":1,"passages":{"daily|Genesis 1:1":{"fixture-he":[{"chapter":1,"verse":1,"text":"$markedText"}]}}}""".byteInputStream()
         }
         val edition = ReadingEdition("fixture-he", "he", "Fixture edition", "Fixture source credit", "https://example.org")
+        val expanded = mutableStateOf(false)
         compose.setContent {
             MaterialTheme {
-                ReadingCard(ReadingCitation("reading", "Gen. 1", "Genesis 1:1"), "en", edition, edition.id, store, false)
+                ReadingCard(ReadingCitation("reading", "Gen. 1", "Genesis 1:1"), "en", edition, edition.id, store, false,
+                    expanded = expanded.value, onToggleExpanded = { expanded.value = !expanded.value })
             }
         }
         compose.runOnIdle { assertEquals("Collapsed cards must not load the corpus", 0, opened) }
@@ -47,8 +50,12 @@ class ReadingTextInstrumentedTest {
             """{"schemaVersion":1,"wholeVersePassages":["daily|${citation.full}"],"passages":{"daily|${citation.full}":{"fixture-en":[{"chapter":8,"verse":1,"text":"The complete source verse"}]}}}""".byteInputStream()
         }
         val edition = ReadingEdition("fixture-en", "en", "Fixture edition", "Fixture source credit", "https://example.org")
+        val expanded = mutableStateOf(false)
         compose.setContent {
-            MaterialTheme { ReadingCard(citation, "en", edition, edition.id, store, false) }
+            MaterialTheme {
+                ReadingCard(citation, "en", edition, edition.id, store, false,
+                    expanded = expanded.value, onToggleExpanded = { expanded.value = !expanded.value })
+            }
         }
         val notice = compose.activity.getString(R.string.readings_whole_verses_notice)
         compose.onNodeWithText(notice).assertDoesNotExist()
@@ -70,9 +77,9 @@ class ReadingTextInstrumentedTest {
         val firstVerse = requireNotNull(store.passage(citation, edition.id)).verses.first().text
         assertTrue("The real Hebrew Gospel is vocalized", firstVerse.any { it in '\u05B0'..'\u05BC' })
         compose.setContent {
-            MaterialTheme { ReadingCard(citation, "en", edition, edition.id, store, false) }
+            MaterialTheme { ReadingCard(citation, "en", edition, edition.id, store, false,
+                expanded = true, onToggleExpanded = {}) }
         }
-        compose.onNodeWithText(compose.activity.getString(R.string.readings_show_text)).performClick()
         compose.waitUntil(5_000) {
             compose.onAllNodes(androidx.compose.ui.test.hasText(firstVerse, substring = true)).fetchSemanticsNodes().isNotEmpty()
         }

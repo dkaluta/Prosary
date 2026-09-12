@@ -137,17 +137,23 @@ public partial class DesktopReadingsViewModel : ObservableObject
         Torah = Rows(Torah, today.TodayTorahPortion?.Readings ?? [], "torah", today, edition);
     }
 
+    public void Open(HomeViewModel today)
+    {
+        Refresh(today);
+        foreach (var row in Daily.Concat(Torah)) row.IsExpanded = true;
+    }
+
     private ObservableCollection<ReadingPassageViewModel> Rows(ObservableCollection<ReadingPassageViewModel> previous,
         IReadOnlyList<ReadingCitation> citations, string scope, HomeViewModel today, ScriptureEdition? edition)
     {
         var rows = citations.Select((citation, index) =>
         {
-            var contextKey = $"{today.SelectedDate:yyyy-MM-dd}|{scope}|{index}|{citation.Full}|{today.TodayLanguage}";
+            var contextKey = $"{today.SelectedDate:yyyy-MM-dd}|{TodayInfoStore.ResolvedCalendarId}|{AppSettings.EasternPaschaStyle}|{scope}|{index}|{citation.Full}|{today.TodayLanguage}";
             var configurationKey = $"{contextKey}|{AppSettings.ReadingsEditionId}|{edition?.Id}";
             var old = previous.FirstOrDefault(row => row.ContextKey == contextKey);
             if (old?.ConfigurationKey == configurationKey) return old;
             return new ReadingPassageViewModel(_store, edition, scope, citation, today.TodayLanguage, contextKey, configurationKey)
-            { IsExpanded = old?.IsExpanded ?? false };
+            { IsExpanded = old?.IsExpanded ?? true };
         }).ToList();
         return previous.SequenceEqual(rows) ? previous : new ObservableCollection<ReadingPassageViewModel>(rows);
     }

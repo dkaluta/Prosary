@@ -6,8 +6,15 @@ that lets a non-technical author build and share a `.prosaryprayer` devotion bun
 
 **Everything runs in the browser.** There is no backend: validation is a client-side port of
 `../Shared/tools/validate-devotion.py`, bundles are packed/unpacked with a dependency-free zip
-module (`src/format/zip.ts`, the counterpart of iOS's `MinimalZipReader`), artwork is
+module (`src/format/zip.ts`, the counterpart of iOS's `MinimalZipReader`), step artwork is
 square-cropped with the browser's native image decoder and canvas, and autosaves use IndexedDB.
+The optional Gallery cover in Basics accepts an image chosen from a file picker or dropped
+onto the cover area, including an existing cover. It keeps the full image and its proportions, resized to a
+maximum edge of 2048 pixels. It travels in project files and prayer packs as a declared JPEG
+referenced by `manifest.galleryImageKey`, even when no prayer step uses that artwork.
+New packs name that cover `default.jpg` and give additional uploaded artwork stable UUIDv7
+filenames. All new uploads and exports use SDR sRGB JPEGs with an embedded ICC profile;
+see [Portable artwork](IMAGE-COLOR.markdown) for normalization, compatibility and profile licensing.
 Metadata and binary uploads live in separate records, so typing never re-encodes or duplicates
 large media as base64; old localStorage autosaves migrate automatically after the first successful
 native save. Portable "Save project" files (`.prosarycompose`, JSON) still carry their media so
@@ -27,7 +34,7 @@ Image and audio previews use short-lived object URLs that are revoked as screens
 Bundle imports reject unsafe paths, duplicate entries, unsupported/encrypted or Zip64 archives,
 oversized indexes and payloads, inconsistent local/central headers, overlapping ranges, invalid
 data descriptors, decompression-size mismatches, and CRC failures before content enters editor
-state. Files not referenced by the devotion are not retained.
+state. Files not referenced by the devotion or its Gallery cover are not retained.
 
 Compressed bundle imports use the browser's native `DecompressionStream` support (Safari 16.4+,
 Chrome 103+, and Firefox 113+). Older browsers receive a clear compatibility message instead of

@@ -6,7 +6,7 @@ import { deserializeProject, serializeProject } from "./format/projectFile";
 import type { WizardScreen } from "./format/validate";
 import { validateProject } from "./format/validate";
 import { BasicsScreen } from "./ui/BasicsScreen";
-import { PORTABLE_FILE_MIME, download, pickFile, readFileBytes } from "./ui/media";
+import { PORTABLE_FILE_MIME, download, pickFile, prepareProjectArtwork, readFileBytes } from "./ui/media";
 import { clearAutosave, saveAutosave } from "./storage/autosave";
 import { saveBeforeReload } from "./storage/deployment";
 import { useDeploymentUpdate } from "./ui/useDeploymentUpdate";
@@ -30,12 +30,13 @@ const SCREENS: { id: WizardScreen; label: string; summary: string }[] = [
 
 interface Props {
   initialProject?: Project;
+  initialArtworkError?: string;
 }
 
-export function App({ initialProject }: Props) {
-  const [project, setProjectState] = useState<Project>(() => initialProject ?? newProject());
+export function App({ initialProject, initialArtworkError }: Props) {
+  const [project, setProjectState] = useState<Project>(() => pruneUnusedImages(initialProject ?? newProject()));
   const [screen, setScreen] = useState<WizardScreen>("basics");
-  const [openError, setOpenError] = useState<string | null>(null);
+  const [openError, setOpenError] = useState<string | null>(initialArtworkError ?? null);
   const [autosaveError, setAutosaveError] = useState(false);
   const [fileAction, setFileAction] = useState<"idle" | "opening" | "saving" | "updating">("idle");
   const updateAvailable = useDeploymentUpdate();
@@ -81,9 +82,9 @@ export function App({ initialProject }: Props) {
           const bytes = await readFileBytes(file);
           if (bytes[0] === 0x50 && bytes[1] === 0x4b) {
             const { openBundle } = await import("./format/unpack");
-            setProject(await openBundle(bytes));
+            setProject(await prepareProjectArtwork(await openBundle(bytes)));
           } else {
-            setProject(deserializeProject(new TextDecoder().decode(bytes)));
+            setProject(await prepareProjectArtwork(deserializeProject(new TextDecoder().decode(bytes))));
           }
           setScreen("basics");
         } catch (error) {

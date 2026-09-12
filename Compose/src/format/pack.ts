@@ -7,17 +7,17 @@ import { COMMON_PRAYERS, PLACEHOLDER_IMAGE_KEY, commonPrayer } from "./catalog";
 import type { EditorStep, Project } from "./project";
 import { projectSteps, slugify } from "./project";
 import { buildZip, type ZipFile } from "./zip";
+import { UUID7_PATTERN } from "./imageIdentity";
+import { isSdrSrgbJpeg } from "./jpegColor";
 
 /** Bundle-local content key base for the i-th step ("step03"). */
 function stepKeyBase(index: number): string {
   return `step${String(index + 1).padStart(2, "0")}`;
 }
 
-/** The zip-shipped key for the i-th uploaded image, namespaced by bundle id so a user upload
- * can never collide with (and override) a shared-pool key like "our_father". */
+/** Uploaded step artwork has a persisted UUIDv7 key; shared illustrations retain their keys. */
 function imageKey(project: Project, uid: string): string | undefined {
-  const index = project.images.findIndex((image) => image.uid === uid);
-  return index < 0 ? undefined : `${project.id}_art_${String(index + 1).padStart(2, "0")}`;
+  return project.images.find((image) => image.uid === uid)?.fileId;
 }
 
 /** The imageKey a step's devotion.json entry carries. */
@@ -90,10 +90,17 @@ export function buildBundleFiles(project: Project): ZipFile[] {
     ),
   );
   const activeImages = project.images.filter((image) => activeImageUids.has(image.uid));
+  if ([...activeImages, ...(project.galleryImage ? [project.galleryImage] : [])].some((image) => !isSdrSrgbJpeg(image.jpeg))) {
+    throw new Error("Prepare the artwork in Compose before exporting: new images must be standard-color JPEGs.");
+  }
   const imageKeysByUid = new Map(
     activeImages.map(
-      (image, index) =>
-        [image.uid, `${project.id}_art_${String(index + 1).padStart(2, "0")}`] as const,
+      (image) => {
+        if (!image.fileId || !UUID7_PATTERN.test(image.fileId)) {
+          throw new Error("This artwork has no portable image identity. Save and reopen the project before exporting.");
+        }
+        return [image.uid, image.fileId] as const;
+      },
     ),
   );
   const usedMainKeys = COMMON_PRAYERS.filter(
@@ -107,6 +114,15 @@ export function buildBundleFiles(project: Project): ZipFile[] {
       seenImageKeys.add(key);
       usedImageKeys.push(key);
     }
+  }
+  const galleryImage = project.galleryImage;
+  // The default cover is pack-scoped. Steps must use UUID keys even when their
+  // bytes match the cover, because native step artwork also has a shared pool.
+  const galleryImageKey = galleryImage ? "default" : undefined;
+  if (galleryImageKey && !seenImageKeys.has(galleryImageKey)) {
+    usedImageKeys.push(galleryImageKey);
+    seenImageKeys.add(galleryImageKey);
+    files.push({ name: `images/${galleryImageKey}.jpg`, data: galleryImage!.jpeg });
   }
 
   const nameByLanguage = Object.fromEntries(
@@ -122,6 +138,7 @@ export function buildBundleFiles(project: Project): ZipFile[] {
       languages: project.languages,
       hasCatalog: false,
       images: usedImageKeys,
+      ...(galleryImageKey ? { galleryImageKey } : {}),
       ...(usedMainKeys.length > 0 ? { mainPrayerKeysOmitted: usedMainKeys } : {}),
       ...(project.tags.length > 0 ? { tags: project.tags } : {}),
       ...(Object.keys(nameByLanguage).length > 0 ? { displayNameByLanguage: nameByLanguage } : {}),

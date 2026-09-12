@@ -53,6 +53,8 @@ private struct PackManifest: Decodable {
   let reminderPresetHours: [Int]?
   let reminderPresetFooter: [String: String]?
   let tags: [String]?
+  let images: [String]?
+  let galleryImageKey: String?
 }
 
 private struct PackContent: Decodable {
@@ -482,6 +484,8 @@ struct CustomDevotionInfo {
   /// Lowercase category labels from the manifest ("marian", "passion") — what the Categories
   /// tab groups by.
   let tags: [String]
+  /// Optional authored Gallery artwork, scoped to this pack rather than shared image keys.
+  let galleryImageKey: String?
 
   /// The interface name by default; the explicit bilingual-name preference uses the exact
   /// prayer variant, then its base language. Prayer body headings remain in the prayed language.
@@ -696,6 +700,16 @@ enum PrayerPackStore {
     imageReadCount += 1
   }
 
+  /// Authored Gallery artwork belongs to its own pack even when another pack reuses its key.
+  static func galleryImageResource(for devotionID: String) -> PrayerPackImageResource? {
+    ensureLoaded()
+    guard let key = infoByBundle[devotionID]?.galleryImageKey,
+          let source = imageSourcesByKey[key]?.last(where: { $0.bundleId == devotionID }),
+          let archive = archiveByBundle[devotionID] else { return nil }
+    return PrayerPackImageResource(
+      cacheKey: source.cacheKey, archive: archive, entryName: source.entryName)
+  }
+
   static var imageReadCountForTesting: Int {
     imageReadCount
   }
@@ -860,7 +874,7 @@ enum PrayerPackStore {
       throw InstallError.unreadable
     }
     guard let manifestData = try? controlData("manifest.json", in: zip),
-          let manifest = try? decoder.decode(PackManifest.self, from: manifestData) else {
+          let manifest = try? parseManifest(manifestData, in: zip) else {
       throw InstallError.unreadable
     }
     guard isValidBundleId(manifest.id) else { throw InstallError.unreadable }
@@ -1121,7 +1135,7 @@ enum PrayerPackStore {
     try validateControlPlane(in: zip)
 
     let decoder = JSONDecoder()
-    let manifest = try decoder.decode(PackManifest.self, from: controlData("manifest.json", in: zip))
+    let manifest = try parseManifest(controlData("manifest.json", in: zip), in: zip)
     guard isValidBundleId(manifest.id) else { throw InstallError.unreadable }
     // Exclusions, collision checks and removal paths all use this installed filename. Reject
     // renamed/conflict copies before they can register a different id or overwrite a built-in.
@@ -1138,7 +1152,8 @@ enum PrayerPackStore {
       reminderBody: manifest.reminderBody ?? [:],
       reminderPresetHours: manifest.reminderPresetHours,
       reminderPresetFooter: manifest.reminderPresetFooter ?? [:],
-      tags: manifest.tags ?? [])
+      tags: manifest.tags ?? [],
+      galleryImageKey: manifest.galleryImageKey)
 
     // Declared languages are what the bundle *offers*; any other content/<code>.json it carries
     // is an overlay resolved key by key — how a community variant ("he-x-gamliel") ships its
@@ -1215,6 +1230,19 @@ enum PrayerPackStore {
     return id.utf8.allSatisfy {
       isASCIIAlphanumeric($0) || $0 == 0x2E || $0 == 0x5F || $0 == 0x2D
     }
+  }
+
+  private static func parseManifest(_ data: Data, in zip: MinimalZipReader) throws -> PackManifest {
+    let manifest = try JSONDecoder().decode(PackManifest.self, from: data)
+    let object = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+    if object?["galleryImageKey"] != nil {
+      guard let key = object?["galleryImageKey"] as? String,
+            isValidBundleId(key), manifest.images?.contains(key) == true,
+            zip.fileNames().contains("images/\(key).jpg") else {
+        throw InstallError.unreadable
+      }
+    }
+    return manifest
   }
 
   private static func isASCIIAlphanumeric(_ byte: UInt8) -> Bool {

@@ -4,7 +4,8 @@ Prosary now has a Readings tab on iPhone, iPad and Android. It replaces the Cate
 button; Search retains category browsing and combines the selected category with the text
 query across local and community devotions. Mac and Windows show the reader in Today.
 The date picker sits above the readings. Desktop references are always written out in full.
-Expanding a reference loads selectable, numbered Bible text with the chosen edition and
+Readings open expanded when entering the reader and when its date or calendar changes.
+Each available passage shows selectable, numbered Bible text with the chosen edition and
 source credit. The optional weekly Torah portion uses the same reader.
 
 This first corpus reuses Bible translations represented in Prosary's prayer packs. Arabic
@@ -58,6 +59,10 @@ The app's first-party [LICENSE](../LICENSE) does not replace third-party rights.
 credits are shown in the reader; the canonical source manifest carries source and license
 URLs. SIL versification data retains its [MIT license](tools/versification/LICENSE) and
 [pinned provenance](tools/versification/sources.json).
+The [STEP reference-only adaptation](tools/versification/step/README.markdown) credits STEP
+Bible / Tyndale House Cambridge and retains its CC BY 4.0 source, license and checksums.
+All three About screens carry that credit. The NABRE import retains only published book,
+chapter and verse labels plus provenance; NABRE wording is neither stored nor shipped.
 
 ## Citation resolution and current limits
 
@@ -86,7 +91,7 @@ therefore stays unavailable even when some requested verse numbers exist. This b
 policy does not relax whole-chapter checks for the other editions and never fills missing
 Arabic verses from another translation or unreviewed OCR.
 
-The helper [reading_versification.py](tools/reading_versification.py) resolves supported
+The existing helper [reading_versification.py](tools/reading_versification.py) resolves supported
 one-to-one references through the pinned SIL Original, English, Vulgate and Russian Orthodox
 tables. It rejects ambiguous mapping endpoints. Torah references use Hebcal's Hebrew numbering.
 New Testament appointments exclusive to the 1962 calendar use Vulgate numbering. The other
@@ -100,15 +105,63 @@ Douay–Rheims Psalm 138:1–4, 13–14, 23–24: its verse 4 contains the end o
 Hebrew-numbered verse 3, so a simple chapter-number conversion would lose text. The other
 five reviewed editions retain their own numbering and seven complete source verses.
 The review does not establish general numbering rules for other Psalm appointments.
-Many Psalms and other numbering differences remain unavailable until their mappings are reviewed. Verse labels
-in the rendered text follow the selected Bible edition.
+
+The reusable [NABRE mapper](tools/reading_nabre_mapping.py) adds a separate path for
+appointments whose **source numbering has been established**. Its input inventory must
+cover all 73 books, including the lettered Esther additions and numbered Psalm titles.
+It converts published source markers into the STEP Standard correspondence graph, preserving
+split/merged units, order changes and documented variable clause boundaries. Ambiguous
+relationships and predicates lacking evidence remain unavailable. The complete snapshot also
+pins 61 numeric word counts for STEP's comparative-length predicates; all 35,519 published
+labels have a supported whole-verse correspondence. The [metadata documentation](tools/versification/nabre/README.markdown)
+records the numeric provenance, exceptional boundary reviews, and reproducible browser extraction.
+The target mapper returns complete source verses and flags any larger verse envelope.
+It never transfers the NABRE words or infers text from a verse count.
+
+[reading-source-numbering-reviews.json](tools/reading-source-numbering-reviews.json) records
+exact citation/calendar reviews with original publication references and source hashes.
+Unlike the older edition-boundary review, it supplies no hand-written target verse list:
+the general mapper performs the conversion. Every calendar sharing a raw citation key must
+be covered by the review. A Roman review cannot reinterpret a Syriac or Byzantine occurrence
+of that same key. In particular, Evangelizo's Hebrew publication or an English display label
+does not establish NABRE numbering for the entire dataset.
+
+The September 13, 2026 original Evangelizo HE references were checked against the same-date
+USCCB appointment. The resulting bounded reviews resolve Sirach 27:30; 28:1–7 to the pinned
+Douay–Rheims 27:33; 28:1–9, and the specified Psalm 103 ranges to Douay–Rheims Psalm 102.
+The existing September 10 Psalm 139 edition-boundary review retains precedence unchanged.
+Other appointments continue using the existing agreement policy until their source numbering
+is established; a complete Bible mapping inventory does not itself prove a calendar's convention.
+
+The [edition mapper](tools/reading_edition_mapping.py) now supplies independently reviewed
+profiles for all eight bundled editions, using the same STEP Standard hub. Its
+[numeric inventories](tools/versification/editions/README.markdown) contain source pins,
+chapter/verse identifiers, measured word counts and hashes, with no Scripture wording.
+The reusable mapper opens only this metadata; the passage builder separately verifies the
+actual imported corpus against its digest before selecting any existing source rows.
+Profiles account for Psalm headings, moved verses, split/merged endings, Delitzsch's own
+numbering and local exceptions where word-count comparisons across languages select the
+wrong rule. Generic SIL maxima remain completeness guards unless a chapter has an explicit
+review. Arabic retains its 64 indivisible reviewed units rather than using chapter predicates
+on sparse data. One verified converter is cached per assembled edition during generation.
+
+The September 13 Sirach reading is now also available in Crampon at 27:30; 28:1–7. The day's
+Psalm carries the existing whole-verse notice because some editions retain a heading joined
+to verse 1. Other previously emitted verse rows are unchanged by this extension. Additional
+verse envelopes use that same notice; missing books, omitted titles and unreviewed mappings
+remain unavailable. Rendered verse labels continue to follow the selected edition.
 
 Source checks found material limitations:
 
 - The cached Crampon transcription has 124 empty entries across 58 chapters, including merged
   or shifted boundaries before the empty entry. The entire affected chapter is withheld;
   rejecting only the last empty verse would still display incorrect preceding text.
-- Parola Viva's 1 Peter 5 currently contains only verses 11–14. The complete chapter is withheld.
+- Parola Viva's 1 Peter 5 contains only verses 11–14; John 11 and 1 Thessalonians 4 omit
+  their final sentences. The edition mapper withholds all three chapters. Its pinned source
+  includes the Pentateuch and New Testament only.
+- Kulish's Leviticus 21 and Psalm 148 omit material at the end. Those chapters are withheld
+  by the edition mapper. Synodal's five supplementary Joshua/Proverbs verses have no ordinary
+  Standard counterpart and are not relabeled as another verse.
 - Some existing Syriac citations contain impossible or mixed-book references, such as
   `Galatians 6:21–31` and `Mark 14:32–42; 26:47–56`. They are not repaired by guessing.
 - A Bible's inclusion of a book does not itself establish a valid mapping for its additions
@@ -137,7 +190,9 @@ from `Shared/data/` into each native app's data directory:
 - `readings-texts.json`: the same metadata and `passages["daily|<full>"][editionID]` or
   `passages["torah|<full>"][editionID]`, each an ordered list of `{chapter, verse, text}`.
   Its optional `wholeVersePassages` array contains exact passage keys needing the localized
-  full-verse notice. Missing metadata means an empty array; the original citation is never
+  full-verse notice, including wider envelopes from reviewed numbering correspondences.
+  If any edition needs the notice, its raw key is listed for all editions. Missing metadata
+  means an empty array; the original citation is never
   changed to a normalized lookup key. Every platform exposes the flag on the loaded passage.
 
 The shared setting is `readingsEditionId`. Empty follows the interface language, normalizing
@@ -156,6 +211,18 @@ uv run --script Shared/tools/build-reading-texts.py --check --sync
 uv run --script Shared/tools/test-reading-texts.py
 uv run --script Shared/tools/test-reading-versification.py
 uv run --script Shared/tools/test-reading-appointment-reviews.py
+uv run --script Shared/tools/test-reading-source-numbering.py
+uv run --script Shared/tools/test-reading-nabre-mapping.py
+uv run --script Shared/tools/test-reading-step-mapping.py
+uv run --script Shared/tools/test-reading-psalm-mapping.py
+uv run --script Shared/tools/test-reading-standard-bridge.py
+uv run --script Shared/tools/build-edition-mappings.py --check
+uv run --script Shared/tools/test-reading-edition-mapping.py
+uv run --script Shared/tools/test-reading-edition-reviews-hebrew.py
+uv run --script Shared/tools/test-reading-edition-reviews-western.py
+uv run --script Shared/tools/test-reading-edition-reviews-arabic.py
+uv run --script Shared/tools/test-nabre-versification.py
+uv run --script Shared/tools/test-nabre-versification-fetch.py
 uv run --script Shared/tools/test-delitzsch-source.py
 uv run --script Shared/tools/test-delitzsch-numbering.py
 ```
@@ -169,6 +236,17 @@ After refreshing feast/reading or Torah appointment tables, rerun the passage bu
 its coverage checks so newly added dates receive available text from the pinned editions.
 The citation localizer selects tables from the calendar registry, so its `readings-*` naming
 does not accidentally treat edition metadata or Bible text as a calendar dataset.
+
+Reference inventories are regenerated separately from Scripture. Use
+`fetch-nabre-versification.py` for the official NABRE chapter markers and
+`fetch-step-mapping.py --check` to verify the pinned STEP rule extraction. The passage build
+fails if the NABRE inventory is incomplete; it cannot publish an unfinished scrape as a
+complete numbering source. Adding an appointment review requires evidence for the exact
+source citation and every affected calendar context, without copying lectionary wording.
+Run `build-edition-mappings.py` before rebuilding passages whenever a pinned edition source,
+importer or reviewed mapping changes. Its `--check` mode reconstructs the numeric inventory
+from existing checked source caches and verifies deterministic output. Mapping metadata stays
+in the shared tools directory; only pre-resolved passages are copied to native applications.
 
 ## Release validation on September 10
 

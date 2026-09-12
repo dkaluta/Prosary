@@ -41,7 +41,7 @@ struct ScripturePassageView: View {
   var isTorah = false
   var interfaceLanguage: String = UILanguage.current
   @AppStorage(ReadingEditionSelection.defaultsKey) private var preference = ""
-  @State private var expanded = false
+  @State private var expanded = true
 
   var body: some View {
     DisclosureGroup(isExpanded: $expanded) {
@@ -56,7 +56,8 @@ struct ScripturePassageView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
     .accessibilityIdentifier("readings.passage.\(isTorah ? "torah" : "daily").\(reading.full)")
-    .onChange(of: reading.full) { _, _ in expanded = false }
+    .onAppear { expanded = true }
+    .onChange(of: reading.full) { _, _ in expanded = true }
   }
 }
 

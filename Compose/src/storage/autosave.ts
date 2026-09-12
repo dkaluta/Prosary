@@ -16,8 +16,9 @@ const CURRENT_PROJECT_KEY = "current";
 
 type ImageMetadata = Omit<EditorImage, "jpeg">;
 type AudioMetadata = Omit<EditorAudioTrack, "bytes">;
-type ProjectMetadata = Omit<Project, "images" | "audio"> & {
+type ProjectMetadata = Omit<Project, "images" | "galleryImage" | "audio"> & {
   images: ImageMetadata[];
+  galleryImage?: ImageMetadata;
   audio: AudioMetadata[];
 };
 
@@ -32,6 +33,7 @@ export interface AutosaveParts {
 }
 
 const imageAssetKey = (uid: string) => `image:${uid}`;
+const galleryAssetKey = (uid: string) => `gallery:${uid}`;
 const audioAssetKey = (uid: string) => `audio:${uid}`;
 
 /** Split frequently-changing editor metadata from immutable binary uploads. IndexedDB can then
@@ -39,6 +41,8 @@ const audioAssetKey = (uid: string) => `audio:${uid}`;
 export function splitAutosaveProject(project: Project): AutosaveParts {
   const normalized = pruneUnusedImages(project);
   const assets = new Map<string, Uint8Array>();
+  const galleryImage = normalized.galleryImage;
+  if (galleryImage) assets.set(galleryAssetKey(galleryImage.uid), galleryImage.jpeg);
   return {
     record: {
       prosaryComposeAutosave: 1,
@@ -48,6 +52,7 @@ export function splitAutosaveProject(project: Project): AutosaveParts {
           assets.set(imageAssetKey(metadata.uid), jpeg);
           return metadata;
         }),
+        galleryImage: galleryImage ? { uid: galleryImage.uid, label: galleryImage.label } : undefined,
         audio: normalized.audio.map(({ bytes, ...metadata }) => {
           assets.set(audioAssetKey(metadata.uid), bytes);
           return metadata;
@@ -79,6 +84,10 @@ export function joinAutosaveProject(
       ...image,
       jpeg: requiredAsset(imageAssetKey(image.uid)),
     })),
+    galleryImage: raw.galleryImage ? {
+      ...raw.galleryImage,
+      jpeg: requiredAsset(galleryAssetKey(raw.galleryImage.uid)),
+    } : undefined,
     audio: (raw.audio ?? []).map((track) => ({
       ...track,
       bytes: requiredAsset(audioAssetKey(track.uid)),

@@ -9,6 +9,7 @@ import { LANGUAGES, PLACEHOLDER_IMAGE_KEY, commonPrayer } from "./catalog";
 import type { EditorStep, EditorVariant, PerLanguage, Project } from "./project";
 import { newProject, newUid, pruneUnusedImages } from "./project";
 import { ZIP_LIMITS, ZipReader } from "./zip";
+import { newImageFileId, UUID7_PATTERN } from "./imageIdentity";
 import {
   importFields, importObject, importString, importStringMap, unsupportedImport,
   validateDevotionImport, validateManifestImport,
@@ -44,6 +45,7 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
     iconGlyph?: string;
     builtinKind?: string;
     tags?: string[];
+    galleryImageKey?: string;
   };
   const languages = validateManifestImport(manifest, LANGUAGES.map((language) => language.code));
   for (const name of zip.names()) {
@@ -97,6 +99,10 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
   const referencedImageKeys = new Set(
     rawSteps.flatMap((step) => (typeof step.imageKey === "string" ? [step.imageKey] : [])),
   );
+  const galleryImageKey = manifest.galleryImageKey;
+  if (galleryImageKey && !zip.has(`images/${galleryImageKey}.jpg`)) {
+    throw new Error("The bundle's Gallery cover image is missing. Nothing has been imported.");
+  }
 
   const project = newProject();
   project.id = manifest.id ?? "";
@@ -173,14 +179,23 @@ export async function openBundle(bytes: Uint8Array): Promise<Project> {
     // Native readers also accept PNG artwork. The editor writes JPEG only, so never turn
     // a referenced non-JPEG upload into an apparently missing shared-pool image.
     const stem = name.slice("images/".length).replace(/\.[^.]+$/, "");
-    if (referencedImageKeys.has(stem) && !name.endsWith(".jpg")) unsupportedImport("uploaded artwork in a format other than JPEG");
+    if ((referencedImageKeys.has(stem) || stem === galleryImageKey) && !name.endsWith(".jpg")) unsupportedImport("uploaded artwork in a format other than JPEG");
     if (!name.endsWith(".jpg")) continue;
     const key = name.slice("images/".length, -".jpg".length);
-    if (!referencedImageKeys.has(key)) continue;
+    if (!referencedImageKeys.has(key) && key !== galleryImageKey) continue;
     const jpeg = await zip.contents(name, ZIP_LIMITS.imageBytes);
+    if (key === galleryImageKey && jpeg.length === 0) {
+      throw new Error("The bundle's Gallery cover image is empty. Nothing has been imported.");
+    }
     const uid = newUid();
-    imageUidByKey.set(key, uid);
-    project.images.push({ uid, label: key, jpeg });
+    const portableIdentity = UUID7_PATTERN.test(key);
+    const label = key === galleryImageKey ? "Gallery cover" : portableIdentity ? `Image ${project.images.length + 1}` : key;
+    const image = { uid, fileId: portableIdentity ? key : newImageFileId(), label, jpeg };
+    if (key === galleryImageKey) project.galleryImage = image;
+    if (referencedImageKeys.has(key)) {
+      imageUidByKey.set(key, uid);
+      project.images.push(image);
+    }
   }
 
   // A days project reads back day by day; the content keys were numbered across the whole

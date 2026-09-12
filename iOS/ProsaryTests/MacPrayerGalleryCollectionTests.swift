@@ -159,6 +159,60 @@ final class MacPrayerGalleryCollectionTests: XCTestCase {
     XCTAssertEqual(harness.state.activations.count, 2)
   }
 
+  func testImageMenuTargetsClickedPrayerAndRejectsAnItemRemovedBeforeTrackingEnds() async throws {
+    let harness = Harness(count: 4, width: 980, height: 340, selectedIndexes: [0, 1])
+    defer { harness.close() }
+    let clicked = harness.state.items[2]
+    let menu = try XCTUnwrap(harness.coordinator.menu(for: clicked.id))
+    let choose = try XCTUnwrap(menu.items.first { $0.tag == MacPrayerGalleryImageAction.chooseFile.rawValue })
+    XCTAssertTrue(choose.isEnabled, "Built-in Gallery prayers must offer image customization")
+    XCTAssertFalse(try XCTUnwrap(menu.items.first { $0.tag == MacPrayerGalleryImageAction.restoreDefault.rawValue }).isEnabled)
+    XCTAssertTrue(NSApp.sendAction(try XCTUnwrap(choose.action), to: choose.target, from: choose))
+    await nextMainQueueTurn()
+    XCTAssertEqual(harness.state.imageActions, ["0:\(clicked.id)"])
+    XCTAssertEqual(harness.state.selection, ["item-0", "item-1"])
+    XCTAssertTrue(harness.state.activations.isEmpty, "An image action must not add or open a prayer")
+
+    XCTAssertTrue(NSApp.sendAction(try XCTUnwrap(choose.action), to: choose.target, from: choose))
+    harness.state.items.removeAll { $0.id == clicked.id }
+    harness.update()
+    await nextMainQueueTurn()
+    XCTAssertEqual(harness.state.imageActions.count, 1, "A queued image action must revalidate the current Gallery")
+  }
+
+  func testImageDropUsesTheTileUnderThePointerWithoutChangingSelection() throws {
+    let harness = Harness(count: 4, width: 980, height: 340, selectedIndexes: [0, 1])
+    defer { harness.close() }
+    let pasteboard = NSPasteboard(name: .init("Prosary-Gallery-Drop-\(UUID())"))
+    defer { pasteboard.releaseGlobally() }
+    let directory = FileManager.default.temporaryDirectory.appendingPathComponent("Prosary-Gallery-Drop-\(UUID())")
+    try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+    defer { try? FileManager.default.removeItem(at: directory) }
+    let file = directory.appendingPathComponent("portrait.jpg")
+    let other = directory.appendingPathComponent("other.png")
+    let pack = directory.appendingPathComponent("prayer.prosaryprayer")
+    for url in [file, other, pack] { try Data([1]).write(to: url) }
+    let target = try harness.frame(at: 2)
+    let point = NSPoint(x: target.midX, y: target.midY)
+    pasteboard.writeObjects([file as NSURL])
+    XCTAssertTrue(harness.coordinator.acceptImageDrop(pasteboard: pasteboard, at: point))
+    XCTAssertEqual(harness.state.droppedImages, ["portrait.jpg:item-2"])
+    XCTAssertEqual(harness.state.selection, ["item-0", "item-1"])
+    XCTAssertTrue(harness.state.activations.isEmpty)
+    XCTAssertFalse(harness.coordinator.acceptImageDrop(pasteboard: pasteboard, at: NSPoint(x: 1, y: 1)))
+
+    for files in [[file, other], [pack]] {
+      pasteboard.clearContents()
+      pasteboard.writeObjects(files.map { $0 as NSURL })
+      XCTAssertFalse(harness.coordinator.acceptImageDrop(pasteboard: pasteboard, at: point))
+    }
+    XCTAssertEqual(harness.state.droppedImages.count, 1)
+    pasteboard.clearContents()
+    pasteboard.writeObjects([file as NSURL])
+    harness.coordinator.isActive = false
+    XCTAssertFalse(harness.coordinator.acceptImageDrop(pasteboard: pasteboard, at: point))
+  }
+
   private func nextMainQueueTurn() async {
     await withCheckedContinuation { continuation in
       DispatchQueue.main.async { continuation.resume() }
@@ -169,6 +223,8 @@ final class MacPrayerGalleryCollectionTests: XCTestCase {
     var items: [MacPrayerLibraryItem]
     var selection: Set<String>
     var activations: [[String]] = []
+    var imageActions: [String] = []
+    var droppedImages: [String] = []
 
     init(count: Int, selectedIndexes: Set<Int>) {
       items = (0..<count).map { index in
@@ -213,7 +269,9 @@ final class MacPrayerGalleryCollectionTests: XCTestCase {
         selection: Binding(get: { state.selection }, set: { state.selection = $0 }),
         downloadedDevotionIDs: [], canRemoveDownload: { _ in false },
         onRemoveDownload: { _ in XCTFail("Selection must never remove a download") },
-        onActivate: { state.activations.append($0.map(\.id)) })
+        onActivate: { state.activations.append($0.map(\.id)) },
+        onImageAction: { state.imageActions.append("\($0.rawValue):\($1.id)") },
+        onDropImage: { state.droppedImages.append("\($0.lastPathComponent):\($1.id)") })
     }
 
     func update() {

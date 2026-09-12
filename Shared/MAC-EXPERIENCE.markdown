@@ -58,16 +58,22 @@ presence on a phone is not, by itself, a reason to include it on Mac.
   A failed saved-copy deletion keeps the pack and reminders. A subsequent cleanup failure
   reports the partial result and can be retried in Downloads. Deleted prayer windows close,
   and stale editors cannot recreate a deleted saved copy.
-- **Tags:** names and colors are independent. The seven initial tags retain the familiar red,
-  orange, yellow, green, blue, purple and gray identities, and additional names receive stable
-  UUIDs. A tag can use any palette color or no color. Tags… opens an AppKit token field with
+- **Tags:** a new library starts without tags. Names and colors are independent, and new names
+  receive stable UUIDs. A tag can use any palette color or no color. Tags… opens an AppKit token field with
   existing-name completion and selectable suggestions; commit a token to apply it, and Return
-  finishes entry. Quick color swatches toggle assignments from the prayer's context menu.
+  finishes entry. Icon and list context menus share one native Finder-style row: clear and the
+  actual stored tags in saved order, selected rings, Add/Remove hover captions naming each tag,
+  and Tags… with its tag symbol beneath. Tags with the same color remain separate controls;
+  uncolored tags use an outlined dot distinct from the clear control's slash. Controls wrap after
+  eight targets, with the editor beneath the final row and arrow-key access across rows.
+  Opening the menu and toggling a tag never create tags. Tags… creates new names.
+  Clear removes the prayer's assignments while retaining its named tags.
   Typed names reuse existing tags case-insensitively and replace that prayer's complete tag set
   together. Sidebar tag commands rename, recolor or delete the tag. Empty names and rename
   collisions fail without merging unrelated assignments. Deleting a tag removes its assignments,
   never its prayers; changing a name or color preserves the current filter and identity.
-  Old seven-color names and assignments migrate intact, and deleted defaults do not reappear.
+  Migration removes only untouched, unassigned automatically seeded colors. Assigned, renamed,
+  recolored and explicitly named tags keep their identities, and removed defaults never reappear.
   When old tags share a name, editing another token keeps the original assigned identities;
   suggestion checkboxes address the individual tags rather than merging by displayed name.
   Tag organization belongs to this Mac; shared prayer configurations retain their existing sync
@@ -102,7 +108,9 @@ presence on a phone is not, by itself, a reason to include it on Mac.
   and Import add packs to the Gallery; they do not launch prayer windows or create saved copies.
 - **Selection:** icon and list views preserve system selection, inactive-window appearance and
   context targets. Return or a double-click opens the selected prayer. A secondary click targets
-  that prayer for Open, Duplicate, Prayer Settings and tags.
+  that prayer for Open, Duplicate, Prayer Settings and tags. In icon view, titles, language labels,
+  symbols and tile padding share the same target; labels do not intercept secondary clicks.
+  Control-click opens the same menu without replacing the current selection.
 - **Prayer controls:** size layouts from the actual window width. Use native Mac push buttons,
   tooltips for icon actions, selectable/copyable prayer text, and Return for the primary
   prayer action. Preserve ordinary Space scrolling. Menus and progress never operate on a sibling.
@@ -125,7 +133,10 @@ presence on a phone is not, by itself, a reason to include it on Mac.
   popover and Today action browse a civil day without changing any prayer session. The selected
   calendar supplies its own feast and ordered reading citations, and the selected month supplies
   the Pope's intention. Readings and the optional Eretz Israel Torah portion show full book names
-  and verse references directly, without shorthand or an expansion toggle. The Today options
+  and verse references directly, without a shorthand toggle. Their Bible passages start expanded
+  when opening Today or changing the date/calendar, and can be collapsed independently. Ordinary
+  refreshes and edition changes preserve those collapses. Date controls use native Liquid Glass
+  where supported, with standard bordered controls on older systems. The Today options
   popover owns its calendar, Byzantine Pascha choice and row toggles;
   Julian/Gregorian Pascha switches both Byzantine datasets. Missing data hides only that row.
   Interface language controls the complete view, including Hebrew/Arabic RTL; prayer-language
@@ -234,6 +245,28 @@ The updated UI tests are authored but have not been executed. Live presenter and
 also remain unverified: Mac automation was blocked
 by an operating-system authentication prompt, and the user asked to continue without that
 interactive check. Automated tests and build results do not replace it.
+
+On 2026-09-12, Mac UI tests on macOS 26.6.2 verified repeated secondary clicks on icon titles,
+Control-click, and correct context targets for unselected and filtered table rows. Both library
+representations showed the native tag palette, started without default tags, opened Tags…
+without creating a tag, and added/cleared color assignments while retaining the named tag.
+The named-tag flow also passed: duplicate a prayer, create a typed tag, apply a color, filter,
+rename and recolor through the sidebar, then delete that tag while preserving the prayer and
+its independent tag. Rename uses the native sheet with Cancel before Rename.
+Native tests cover the tag migration, name/color collisions, disabled controls, item hit targets,
+and keyboard-selection menu routing. The table intercepts contextual events only when the native
+hit target belongs to that table; sidebar and toolbar menus keep their own event handling.
+Finder's current tag palette and token editor were inspected read-only as the reference.
+
+The saved-tag revision passes the named-tag edit flow and the empty/create/clear/reassign
+flow in both icon and list views. Each stored tag has its own control, including uncolored
+tags and multiple tags sharing a color; 25-tag layout and keyboard traversal have native unit
+coverage. A startup check also found that the list menu originally required an ordinary
+selection before its first right-click. The adapter now installs its window-scoped event
+monitor before the native table exists and resolves that table on the first contextual
+gesture. Native regressions cover delayed creation, replacement, window scope and teardown.
+The rebuilt app was also launched normally and its first right-click opened the menu before
+any prayer selection, confirming the startup fix outside the test library.
 
 ## References
 

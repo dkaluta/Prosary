@@ -1,9 +1,11 @@
-import type { Dispatch, SetStateAction } from "react";
+import { useEffect, useRef, useState, type Dispatch, type SetStateAction } from "react";
 import { AUTHORING_LANGUAGES, ICONS, LANGUAGES, isRtl } from "../format/catalog";
 import type { LanguageCode } from "../format/catalog";
 import { newUid } from "../format/project";
 import type { Project } from "../format/project";
 import { slugify } from "../format/project";
+import { galleryImageFile, imageToGalleryJpeg } from "./media";
+import { useObjectUrl } from "./useObjectUrl";
 
 interface Props {
   project: Project;
@@ -12,6 +14,34 @@ interface Props {
 
 export function BasicsScreen({ project, setProject }: Props) {
   const update = (patch: Partial<Project>) => setProject((p) => ({ ...p, ...patch }));
+  const [coverBusy, setCoverBusy] = useState(false);
+  const [coverError, setCoverError] = useState<string | null>(null);
+  const [coverDragActive, setCoverDragActive] = useState(false);
+  const coverDragDepth = useRef(0);
+  const coverRequest = useRef(0);
+  const coverInput = useRef<HTMLInputElement>(null);
+  const coverURL = useObjectUrl(project.galleryImage?.jpeg ?? null, "image/jpeg");
+  useEffect(() => () => { coverRequest.current += 1; }, []);
+  const chooseCover = async (files: readonly File[]) => {
+    const request = ++coverRequest.current;
+    setCoverError(null);
+    setCoverBusy(true);
+    try {
+      const file = galleryImageFile(files);
+      const jpeg = await imageToGalleryJpeg(file);
+      if (coverRequest.current === request) {
+        setProject((current) => ({ ...current, galleryImage: {
+          uid: current.galleryImage?.uid ?? newUid(), label: file.name, jpeg,
+        } }));
+      }
+    } catch (error) {
+      if (coverRequest.current === request) {
+        setCoverError(error instanceof Error ? error.message : "Could not prepare that image.");
+      }
+    } finally {
+      if (coverRequest.current === request) setCoverBusy(false);
+    }
+  };
 
   const toggleLanguage = (code: LanguageCode) =>
     setProject((p) => ({
@@ -101,6 +131,62 @@ export function BasicsScreen({ project, setProject }: Props) {
               })}
           </fieldset>
         )}
+      </div>
+
+      <div className="card">
+        <fieldset className={`gallery-cover-dropzone${coverDragActive ? " is-dragging" : ""}`}
+          aria-describedby="gallery-cover-help gallery-cover-drop-help"
+          onDragEnter={(event) => {
+            if (!Array.from(event.dataTransfer.types).includes("Files")) return;
+            event.preventDefault();
+            event.stopPropagation();
+            coverDragDepth.current += 1;
+            setCoverDragActive(true);
+          }}
+          onDragOver={(event) => {
+            if (!Array.from(event.dataTransfer.types).includes("Files")) return;
+            event.preventDefault();
+            event.stopPropagation();
+            event.dataTransfer.dropEffect = "copy";
+          }}
+          onDragLeave={(event) => {
+            event.preventDefault();
+            coverDragDepth.current = Math.max(0, coverDragDepth.current - 1);
+            if (coverDragDepth.current === 0) setCoverDragActive(false);
+          }}
+          onDrop={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            coverDragDepth.current = 0;
+            setCoverDragActive(false);
+            void chooseCover(Array.from(event.dataTransfer.files));
+          }}>
+          <legend>Gallery cover <span className="hint">— optional</span></legend>
+          <p className="help" id="gallery-cover-help">
+            Choose the image people see when browsing your devotion in the Gallery.
+            The whole image is kept in your prayer pack.
+          </p>
+          <p className="hint" id="gallery-cover-drop-help">Drag an image here to add or replace the cover.</p>
+          {coverURL && <img className="gallery-cover-preview" src={coverURL} alt="Gallery cover preview" />}
+          {project.galleryImage && <p className="hint">{project.galleryImage.label}</p>}
+          <input ref={coverInput} type="file" accept="image/*" hidden aria-label="Gallery cover file"
+            onChange={(event) => {
+              const file = event.currentTarget.files?.[0];
+              event.currentTarget.value = "";
+              if (file) void chooseCover([file]);
+            }} />
+          <div className="row">
+            <button type="button" className="subtle tight" disabled={coverBusy} onClick={() => coverInput.current?.click()}>
+              {project.galleryImage ? "Replace cover…" : "Choose cover…"}
+            </button>
+            {project.galleryImage && <button type="button" className="subtle tight danger-action"
+              disabled={coverBusy} onClick={() => { update({ galleryImage: undefined }); setCoverError(null); }}>
+              Remove cover
+            </button>}
+            {coverBusy && <span className="hint" role="status">Preparing cover…</span>}
+          </div>
+          {coverError && <p className="issue callout" role="alert">{coverError}</p>}
+        </fieldset>
       </div>
 
       <div className="card">
