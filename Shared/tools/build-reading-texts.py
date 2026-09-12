@@ -63,6 +63,45 @@ class Unavailable(ValueError):
     """An appointment cannot safely be resolved from the selected source."""
 
 
+class ResolvedPassage(list):
+    """Native verse rows plus a build-time-only whole-verse envelope marker."""
+
+    def __init__(self, verses, *, includes_whole_verses: bool = False):
+        super().__init__(verses)
+        self.includes_whole_verses = includes_whole_verses
+
+
+class PinnedCorpus(dict):
+    """An assembled hash-checked edition with its actual numbered inventory.
+
+    Edition rules use each reviewed source structure, which can differ from a
+    generic tradition's chapter maxima. Retain the imported inventory before
+    passage selection, so missing/empty rows cannot pass as a numbering change.
+    """
+
+    def __init__(self, chapters: dict, source_pins: dict[str, str]):
+        super().__init__(chapters)
+        self.source_pins = dict(source_pins)
+        self.verse_inventory = {key: frozenset(values) for key, values in chapters.items()}
+        self._step_mapper = None
+
+    def chapter_matches(self, book: str, chapter: int) -> bool:
+        values = self.get((book, chapter), {})
+        expected = self.verse_inventory.get((book, chapter))
+        return bool(expected) and set(values) == expected and all(
+            type(verse) is int and verse > 0 and isinstance(value, str) and value.strip()
+            for verse, value in values.items())
+
+    def dra_mapper(self):
+        from reading_psalm_mapping import DRA_PSALM_SOURCE_OVERLAPS
+        from reading_step_mapping import StepMapper
+        if self.source_pins != {"engDRA": "96282bfa7c89a74680cea66fe873aafa5e7cd446407f0ff2531a723e19eee2c2"}:
+            raise ValueError("DRA reference mapping requires its reviewed, unmixed source pin")
+        if self._step_mapper is None:
+            self._step_mapper = StepMapper(self, "douay-rheims-1899", overrides=DRA_PSALM_SOURCE_OVERLAPS)
+        return self._step_mapper
+
+
 class ReviewedCorpus(dict):
     """Sparse, page-verified text whose reviewed passage boundaries are indivisible.
 
@@ -87,6 +126,19 @@ class ReviewedCorpus(dict):
                 if references[position:position + len(unit)] == unit:
                     reachable.add(position + len(unit))
         return bool(references) and len(references) in reachable
+
+
+def edition_mapper(edition_id: str, corpus: dict):
+    """Validate each assembled source once before using its numeric crosswalk."""
+    from reading_edition_mapping import mapper
+    if not isinstance(corpus, (PinnedCorpus, ReviewedCorpus)) or not hasattr(corpus, "source_pins"):
+        raise ValueError("Edition reference mapping requires a hash-checked source assembly")
+    cached = getattr(corpus, "_edition_mapper", None)
+    if cached is None or cached.edition_id != edition_id:
+        cached = mapper(edition_id)
+        cached.validate_source(corpus, corpus.source_pins)
+        corpus._edition_mapper = cached
+    return cached
 
 
 def preserve_divine_name_accents(text: str) -> str:
@@ -276,10 +328,40 @@ def appointments() -> dict[str, set[str]]:
     return result
 
 
-def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> list[dict]:
+def resolve_nabre_references(book: str, spans: list[tuple], edition: dict,
+                             corpus: dict) -> tuple[list[tuple], bool]:
+    """Resolve an explicitly reviewed NABRE appointment into existing source rows."""
+    from reading_nabre_mapping import mapper as nabre_mapper
+    from reading_step_mapping import Unavailable as MappingUnavailable
+    converter = nabre_mapper()  # Requires the complete, reference-only source inventory.
+    try:
+        source_refs = [reference for span in spans for reference in converter.inventory.span(book, *span)]
+        standard, whole = converter.to_standard(source_refs)
+        references, target_whole = edition_mapper(edition["id"], corpus).from_standard(standard)
+        whole |= target_whole
+    except MappingUnavailable as error:
+        raise Unavailable(str(error)) from error
+    except ValueError as error:
+        # Invalid individual source spans are unavailable; an absent/incomplete
+        # inventory fails above at construction and must stop regeneration.
+        if isinstance(error, Unavailable):
+            raise
+        from nabre_versification import InvalidInventory
+        if not isinstance(error, InvalidInventory):
+            raise
+        raise Unavailable(str(error)) from error
+    references = list(dict.fromkeys(tuple(reference) for reference in references))
+    if (not references or any(ref[0] != book or type(ref[1]) is not int or type(ref[2]) is not int
+                              or ref[1] < 1 or ref[2] < 1 for ref in references)):
+        raise Unavailable("target edition cannot represent this source book or verse label")
+    return references, whole
+
+
+def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> ResolvedPassage:
     # The helper is intentionally build-time only; native apps never parse citations.
     from reading_versification import map_reference, chapter_verse_count, chapter_matches
     from reading_appointment_reviews import reviewed_appointment, reviewed_references
+    from reading_source_numbering_reviews import reviewed_numbering
     scope, citation = key.split("|", 1)
     book, spans = parse_citation(citation, expand_subverses=True)
     if scope == "torah":
@@ -295,6 +377,8 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> list[d
     target_system = edition["ntSystem"] if book in NT else edition["otSystem"]
     canonical_target_system = "eng" if target_system == "delitzsch-1901" else target_system
     candidates = []
+    whole = includes_whole_verses(citation)
+    uses_step_inventory = False
     review = reviewed_appointment(key, contexts)
     if review is not None:
         references = reviewed_references(review, edition["id"])
@@ -304,6 +388,13 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> list[d
             raise ValueError("Reviewed appointment changes its Bible book")
         candidates.append(references)
         source_systems = []
+        whole |= review["includesWholeVerses"]
+    elif reviewed_numbering(key, contexts) is not None:
+        references, mapped_whole = resolve_nabre_references(book, spans, edition, corpus)
+        candidates.append(references)
+        source_systems = []
+        whole |= mapped_whole
+        uses_step_inventory = True
     for source_system in source_systems:
         references = []
         for sc, sv, ec, ev in spans:
@@ -323,12 +414,19 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> list[d
         candidates.append(references)
     if any(candidate != candidates[0] for candidate in candidates[1:]):
         raise Unavailable("ambiguous appointment numbering")
-    if target_system == "delitzsch-1901":
+    if target_system == "delitzsch-1901" and not uses_step_inventory:
         from delitzsch_numbering import source_references
         try:
             candidates = [source_references(candidates[0])]
         except ValueError as error:
             raise Unavailable(str(error)) from error
+    if isinstance(corpus, PinnedCorpus):
+        # Source completeness is independent of a calendar's numbering. Keep
+        # both the edition's reviewed exclusions and the legacy inventory guard;
+        # new local correspondences do not certify an unreviewed appointment.
+        excluded = edition_mapper(edition["id"], corpus).excluded_chapters
+        if any(reference[:2] in excluded for reference in candidates[0]):
+            raise Unavailable("source chapter excluded by its edition review")
     if isinstance(corpus, ReviewedCorpus):
         if edition.get("coveragePolicy") != "reviewed-units" or corpus.edition_id != edition["id"]:
             raise ValueError("Reviewed Scripture corpus requires its matching edition and boundary policy")
@@ -346,7 +444,10 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> list[d
             if verse not in values or not values[verse].strip():
                 raise Unavailable("reviewed source verse unavailable")
         else:
-            if target_system == "delitzsch-1901":
+            if uses_step_inventory:
+                complete = (edition_mapper(edition["id"], corpus).chapter_available(mapped_book, chapter)
+                            and corpus.chapter_matches(mapped_book, chapter))
+            elif target_system == "delitzsch-1901":
                 from delitzsch_numbering import chapter_matches as source_chapter_matches
                 complete = source_chapter_matches(mapped_book, chapter, values)
             else:
@@ -362,12 +463,14 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> list[d
         result.append({"chapter": chapter, "verse": verse, "text": text})
     if not result:
         raise Unavailable("empty passage")
-    return result
+    return ResolvedPassage(result, includes_whole_verses=whole)
 
 
-def build(fetch: bool = False) -> dict[str, bytes]:
+def load_pinned_corpora(fetch: bool = False) -> tuple[dict, dict]:
+    """Assemble the exact checked sources for both text and reference metadata."""
     lock = json.loads(LOCK.read_text())
     sources = lock["sources"]
+    pins_by_source = {source["id"]: source["sha256"] for source in sources}
     if fetch:
         with ThreadPoolExecutor(max_workers=4) as pool:
             list(pool.map(lambda source: source_bytes(source, True), sources))
@@ -383,6 +486,7 @@ def build(fetch: bool = False) -> dict[str, bytes]:
             corpus = raw_corpora[edition["sources"][0]["id"]]
             if not isinstance(corpus, ReviewedCorpus) or corpus.edition_id != edition["id"]:
                 raise ValueError("Reviewed source does not match the selected edition")
+            corpus.source_pins = {reference["id"]: pins_by_source[reference["id"]] for reference in edition["sources"]}
             corpora[edition["id"]] = corpus
             continue
         for reference in edition["sources"]:
@@ -395,7 +499,13 @@ def build(fetch: bool = False) -> dict[str, bytes]:
                     if chapter in corpus:
                         raise ValueError(f"Duplicate source chapter in {edition['id']}: {chapter}")
                     corpus[chapter] = verses
-        corpora[edition["id"]] = corpus
+        source_pins = {reference["id"]: pins_by_source[reference["id"]] for reference in edition["sources"]}
+        corpora[edition["id"]] = PinnedCorpus(corpus, source_pins)
+    return lock, corpora
+
+
+def build(fetch: bool = False) -> dict[str, bytes]:
+    lock, corpora = load_pinned_corpora(fetch)
     editions = [{key: edition[key] for key in ("id", "languageCode", "name", "attribution", "sourceURL")} for edition in lock["editions"]]
     passages = {}
     failures = defaultdict(Counter)
@@ -411,9 +521,11 @@ def build(fetch: bool = False) -> dict[str, bytes]:
                 missing[key][edition["id"]] = str(error)
         if by_edition:
             passages[key] = by_edition
-    from reading_appointment_reviews import reviewed_appointment
-    whole_verse_passages = [key for key in passages if includes_whole_verses(key.split("|", 1)[1])
-                           or (reviewed_appointment(key, keys[key]) or {}).get("includesWholeVerses", False)]
+    # The schema's key-level notice is deliberately conservative: if any selected
+    # edition needs a larger source-verse envelope, every edition for the same raw
+    # appointment key retains the full-verse notice.
+    whole_verse_passages = [key for key, values in passages.items()
+                           if any(value.includes_whole_verses for value in values.values())]
     payload = {"schemaVersion": 1, "editions": editions, "passages": passages,
                "wholeVersePassages": whole_verse_passages}
     report = {"schemaVersion": 1, "uniqueAppointments": len(keys), "passagesWithAnyEdition": len(passages),

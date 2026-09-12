@@ -572,6 +572,29 @@ button.subtle {
   border: var(--prosary-border-width) solid var(--border);
 }
 
+.gallery-cover-preview {
+  display: block;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  max-height: 280px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-block: 12px;
+}
+
+.gallery-cover-dropzone {
+  border: 2px dashed transparent;
+  border-radius: 12px;
+  padding: 8px;
+  margin: -10px;
+}
+
+.gallery-cover-dropzone.is-dragging {
+  border-color: currentColor;
+  background: color-mix(in srgb, currentColor 8%, transparent);
+}
+
 .art-thumb-loading {
   display: inline-block;
   background: var(--panel-soft);

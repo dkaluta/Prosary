@@ -1,5 +1,6 @@
 package com.dkaluta.prosary.ui.readings
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
@@ -25,6 +27,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -107,6 +110,11 @@ fun ReadingsScreen(onOpenSettings: () -> Unit) {
         .coerceIn(TodayDateSelection.earliest, TodayDateSelection.latest)
     val lookupDate = TodayDateSelection.lookupDate(selectedDate, currentZone)
     val calendarId = TodayInfoStore.selectedCalendarId
+    // A new tab visit or date starts open. Keep collapse choices outside the lazy cards
+    // so scrolling, edition changes and same-date foreground refreshes preserve them.
+    var collapsedReadings by remember(selectedDate, calendarId, AppSettings.easternPaschaStyle) {
+        mutableStateOf(emptySet<String>())
+    }
     val readings = remember(lookupDate, calendarId, AppSettings.easternPaschaStyle, generation) {
         TodayInfoStore.readings(lookupDate)
     }
@@ -168,17 +176,26 @@ fun ReadingsScreen(onOpenSettings: () -> Unit) {
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 item(key = "date") {
-                    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                        IconButton(onClick = { selectedEpochDay = selectedDate.minusDays(1).toEpochDay() },
-                            enabled = selectedDate > TodayDateSelection.earliest, modifier = Modifier.testTag("readingsPrevious")) {
-                            Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, stringResource(R.string.home_today_yesterday))
-                        }
-                        TextButton(onClick = { showsDatePicker = true }, modifier = Modifier.weight(1f).testTag("readingsChooseDate")) {
-                            Text(dateLabel, textAlign = TextAlign.Center)
-                        }
-                        IconButton(onClick = { selectedEpochDay = selectedDate.plusDays(1).toEpochDay() },
-                            enabled = selectedDate < TodayDateSelection.latest, modifier = Modifier.testTag("readingsNext")) {
-                            Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, stringResource(R.string.home_today_tomorrow))
+                    Surface(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(28.dp),
+                        color = MaterialTheme.colorScheme.surfaceContainer.copy(alpha = 0.82f),
+                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.45f)),
+                        tonalElevation = 3.dp,
+                        shadowElevation = 2.dp,
+                    ) {
+                        Row(Modifier.fillMaxWidth().padding(4.dp), verticalAlignment = Alignment.CenterVertically) {
+                            IconButton(onClick = { selectedEpochDay = selectedDate.minusDays(1).toEpochDay() },
+                                enabled = selectedDate > TodayDateSelection.earliest, modifier = Modifier.testTag("readingsPrevious")) {
+                                Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, stringResource(R.string.home_today_yesterday))
+                            }
+                            TextButton(onClick = { showsDatePicker = true }, modifier = Modifier.weight(1f).testTag("readingsChooseDate")) {
+                                Text(dateLabel, textAlign = TextAlign.Center)
+                            }
+                            IconButton(onClick = { selectedEpochDay = selectedDate.plusDays(1).toEpochDay() },
+                                enabled = selectedDate < TodayDateSelection.latest, modifier = Modifier.testTag("readingsNext")) {
+                                Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, stringResource(R.string.home_today_tomorrow))
+                            }
                         }
                     }
                 }
@@ -209,8 +226,14 @@ fun ReadingsScreen(onOpenSettings: () -> Unit) {
                         modifier = Modifier.testTag("readingsEmpty"))
                 }
                 for ((index, citation) in readings.withIndex()) {
+                    val passageKey = "daily.$index.${citation.full}"
                     item(key = "daily.$selectedDate.$calendarId.$index.${citation.full}") {
-                        ReadingCard(citation, language, edition, editionId, store, false)
+                        ReadingCard(citation, language, edition, editionId, store, false,
+                            expanded = passageKey !in collapsedReadings,
+                            onToggleExpanded = {
+                                collapsedReadings = if (passageKey in collapsedReadings) collapsedReadings - passageKey
+                                    else collapsedReadings + passageKey
+                            })
                     }
                 }
                 if (torah != null) {
@@ -220,8 +243,14 @@ fun ReadingsScreen(onOpenSettings: () -> Unit) {
                         Text(torah.localizedTitle(language), style = MaterialTheme.typography.titleMedium)
                     }
                     for ((index, citation) in torah.readings.withIndex()) {
+                        val passageKey = "torah.$index.${citation.full}"
                         item(key = "torah.$selectedDate.$index.${citation.full}") {
-                            ReadingCard(citation, language, edition, editionId, store, true)
+                            ReadingCard(citation, language, edition, editionId, store, true,
+                                expanded = passageKey !in collapsedReadings,
+                                onToggleExpanded = {
+                                    collapsedReadings = if (passageKey in collapsedReadings) collapsedReadings - passageKey
+                                        else collapsedReadings + passageKey
+                                })
                         }
                     }
                 }
@@ -232,8 +261,8 @@ fun ReadingsScreen(onOpenSettings: () -> Unit) {
 
 @Composable
 internal fun ReadingCard(citation: ReadingCitation, language: String, edition: ReadingEdition?,
-    editionId: String?, store: ReadingTextStore, isTorah: Boolean) {
-    var expanded by rememberSaveable(citation.full, editionId, isTorah) { mutableStateOf(false) }
+    editionId: String?, store: ReadingTextStore, isTorah: Boolean, expanded: Boolean,
+    onToggleExpanded: () -> Unit) {
     val uriHandler = LocalUriHandler.current
     Card(Modifier.fillMaxWidth()) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -243,7 +272,7 @@ internal fun ReadingCard(citation: ReadingCitation, language: String, edition: R
                 else -> R.string.readings_type_reading
             }), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
             SelectionContainer { Text(citation.localizedFull(language), style = MaterialTheme.typography.titleMedium) }
-            TextButton(onClick = { expanded = !expanded },
+            TextButton(onClick = onToggleExpanded,
                 modifier = Modifier.testTag("readingExpand.${if (isTorah) "torah" else "daily"}.${citation.full}")) {
                 Text(stringResource(if (expanded) R.string.readings_hide_text else R.string.readings_show_text))
             }

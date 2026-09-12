@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "appointments": {
+    "daily|Sirach 27:30; 28:1–7": {
+      "contexts": ["roman"],
+      "sourceSystem": "nabre",
+      "reviewedOn": "2026-09-12",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-13",
+        "appointmentSHA256": "28b520c3403760e5c4e4397588714c8aeb3abf19ac3755354ddc71df2f4fb910",
+        "readingCode": "Si 27,30-30#Si 28,1-7",
+        "corroboratingURL": "https://bible.usccb.org/bible/readings/091326.cfm",
+        "corroboratingSHA256": "9cb914ce4cca6d8d5a286ef661a2d8fd30bd1628d39d40689e48dbcccff710e1",
+        "corroboratingReference": "Sirach 27:30—28:7",
+        "scope": "The original Evangelizo HE reference and the same-date USCCB appointment identify the same ordered NABRE reference envelope. Sirach 27 ends at verse 30 in the independently scraped NABRE inventory. This review applies only to this exact citation in the Roman calendar; it does not declare a numbering system for other Evangelizo readings. Only references and source hashes are retained."
+      }
+    },
+    "daily|Psalm 103:1–2; 103:3–4; 103:9–10; 103:11–12": {
+      "contexts": ["roman"],
+      "sourceSystem": "nabre",
+      "reviewedOn": "2026-09-12",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-13",
+        "appointmentSHA256": "28b520c3403760e5c4e4397588714c8aeb3abf19ac3755354ddc71df2f4fb910",
+        "readingCode": "Ps 103,1-2#Ps 103,3-4#Ps 103,9-10#Ps 103,11-12",
+        "corroboratingURL": "https://bible.usccb.org/bible/readings/091326.cfm",
+        "corroboratingSHA256": "9cb914ce4cca6d8d5a286ef661a2d8fd30bd1628d39d40689e48dbcccff710e1",
+        "corroboratingReference": "Psalm 103:1-2, 3-4, 9-10, 11-12",
+        "scope": "The original Evangelizo HE reference and the same-date USCCB appointment identify the same Psalm and ordered verse ranges. NABRE's published Psalms introduction explicitly identifies its verse numbering as Hebrew numbering. This review applies only to this exact citation in the Roman calendar, including repeated occurrences; it does not infer a convention from the interface language. Only references and source hashes are retained."
+      }
+    }
+  }
+}

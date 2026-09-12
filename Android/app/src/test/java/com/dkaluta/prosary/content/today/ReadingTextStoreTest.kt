@@ -99,6 +99,41 @@ class ReadingTextStoreTest {
         assertTrue(psalm.verses.all { it.chapter == 138 && it.text.isNotBlank() })
     }
 
+    @Test fun bundledSeptemberThirteenthReadingsUseTheSelectedEditionsNumbering() {
+        val store = bundledStore()
+        val cases = listOf(
+            "Sirach 27:30; 28:1–7" to (listOf("27:33") + (1..9).map { "28:$it" }),
+            "Psalm 103:1–2; 103:3–4; 103:9–10; 103:11–12" to listOf(1, 2, 3, 4, 9, 10, 11, 12).map { "102:$it" },
+            "Romans 14:7–9" to (7..9).map { "14:$it" },
+            "Matthew 18:21–35" to (21..35).map { "18:$it" },
+        )
+        for ((reference, expected) in cases) {
+            val citation = ReadingCitation("reading", "Reading", reference)
+            val passage = requireNotNull(store.passage(citation, "douay-rheims-1899")) { reference }
+            assertEquals(reference, expected, passage.verses.map { "${it.chapter}:${it.verse}" })
+            assertTrue(passage.verses.all { it.text.isNotBlank() })
+        }
+        val psalmCitation = ReadingCitation("psalm", "Psalm", cases[1].first)
+        val psalmEditions = mapOf(
+            "douay-rheims-1899" to 102, "synodal-1876" to 102,
+            "masoretic-delitzsch" to 103, "ang-dating-biblia-1905" to 103,
+            "crampon-1923" to 103, "kulish-1905" to 103,
+        )
+        for ((editionId, chapter) in psalmEditions) {
+            val psalm = requireNotNull(store.passage(psalmCitation, editionId)) { editionId }
+            assertEquals(editionId, listOf(1, 2, 3, 4, 9, 10, 11, 12), psalm.verses.map { it.verse })
+            assertTrue(editionId, psalm.verses.all { it.chapter == chapter })
+            assertTrue(editionId, psalm.includesWholeVerses)
+        }
+        for (editionId in listOf("martini", "jesuit-arabic-1897")) {
+            assertNull(editionId, store.passage(psalmCitation, editionId))
+        }
+        val french = requireNotNull(store.passage(ReadingCitation("reading", "Sirach", cases[0].first), "crampon-1923"))
+        assertEquals(listOf("27:30") + (1..7).map { "28:$it" }, french.verses.map { "${it.chapter}:${it.verse}" })
+        assertTrue(french.verses.all { it.text.isNotBlank() })
+        assertNull(store.passage(ReadingCitation("reading", "Sirach", cases[0].first), "masoretic-delitzsch"))
+    }
+
     @Test fun bundledOldJesuitArabicOpensReviewedPassagesWithoutBorrowingMissingText() {
         val store = bundledStore()
         val editionId = requireNotNull(ReadingTextStore.effectiveEditionId("", "ar-LB", store.editions))

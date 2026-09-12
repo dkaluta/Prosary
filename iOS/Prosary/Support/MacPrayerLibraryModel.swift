@@ -84,11 +84,7 @@ struct MacLibraryTagStore {
     var tags: [StoredTag]
     var assignments: [String: [String]] = [:]
 
-    static func initial(names: [String: String] = [:], assignments: [String: [String]] = [:]) -> State {
-      State(version: 2, tags: MacPrayerTag.colors.map { id, _, fallback in
-        StoredTag(id: id, name: names[id] ?? fallback, colorID: id)
-      }, assignments: assignments)
-    }
+    static var empty: State { State(version: 3, tags: []) }
   }
 
   private struct LegacyState: Decodable {
@@ -100,19 +96,46 @@ struct MacLibraryTagStore {
 
   private var state: State {
     guard let data = defaults.data(forKey: Self.defaultsKey) else {
-      let value = State.initial()
+      let value = State.empty
       save(value)
       return value
     }
-    if let value = try? JSONDecoder().decode(State.self, from: data), value.version == 2 {
-      return value
+    if let value = try? JSONDecoder().decode(State.self, from: data) {
+      if value.version == 3 { return value }
+      if value.version == 2 {
+        let used = Set(value.assignments.values.flatMap { $0 })
+        let retained = value.tags.filter { tag in
+          used.contains(tag.id) || !Self.isUntouchedSeed(tag)
+        }
+        let migrated = State(version: 3, tags: retained, assignments: value.assignments)
+        save(migrated)
+        return migrated
+      }
     }
     if let legacy = try? JSONDecoder().decode(LegacyState.self, from: data) {
-      let value = State.initial(names: legacy.names, assignments: legacy.assignments)
+      let used = Set(legacy.assignments.values.flatMap { $0 })
+      let tags = MacPrayerTag.colors.compactMap { id, _, fallback -> StoredTag? in
+        guard used.contains(id) || legacy.names[id] != nil else { return nil }
+        return StoredTag(id: id, name: legacy.names[id] ?? fallback, colorID: id)
+      }
+      let value = State(version: 3, tags: tags, assignments: legacy.assignments)
       save(value)
       return value
     }
-    return State.initial()
+    return State.empty
+  }
+
+  private static func isUntouchedSeed(_ tag: StoredTag) -> Bool {
+    guard tag.colorID == tag.id,
+          let fallback = MacPrayerTag.colors.first(where: { $0.0 == tag.id })?.2 else { return false }
+    // A seed keeps its original localized name even after the app's language changes.
+    let key = "macLibrary.tag.\(tag.id)"
+    let names = Bundle.main.localizations.compactMap { language -> String? in
+      guard let path = Bundle.main.path(forResource: language, ofType: "lproj"),
+            let bundle = Bundle(path: path) else { return nil }
+      return bundle.localizedString(forKey: key, value: fallback, table: nil)
+    }
+    return ([fallback] + names).contains(tag.name)
   }
 
   var tags: [MacPrayerTag] { state.tags.map(\.tag) }

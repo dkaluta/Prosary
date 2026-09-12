@@ -84,7 +84,7 @@ class ReadingMemoryInstrumentedTest {
     private fun openLuke(citation: ReadingCitation, firstText: String) {
         val buttonTag = "readingExpand.daily.${citation.full}"
         compose.onNodeWithTag("readingsList").performScrollToNode(hasTestTag(buttonTag))
-        // A lazy-list item restores its expansion when returning to its date.
+        // Readings start expanded; retain the diagnostic's ability to open a collapsed card.
         if (compose.onAllNodes(hasTestTag(buttonTag) and hasText(compose.activity.getString(R.string.readings_show_text)))
                 .fetchSemanticsNodes().isNotEmpty()) {
             compose.onNodeWithTag(buttonTag).performClick()

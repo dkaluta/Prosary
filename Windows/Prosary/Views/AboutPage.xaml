@@ -183,6 +183,9 @@
 
                 <StackPanel Spacing="8">
                     <TextBlock x:Uid="AbtCalendarDataHeader" Text="Calendar Data" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                    <TextBlock x:Uid="AbtVerseMappingSources" Text="Verse numbering: STEP Bible / Tyndale House Cambridge, TVTMS (CC BY 4.0). Adapted reference metadata only."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                    <HyperlinkButton Content="STEPBible.org — TVTMS" NavigateUri="https://github.com/STEPBible/STEPBible-Data/tree/master/Versification" />
                     <TextBlock x:Uid="AbtTorahData" Text="Weekly Torah portions and festival readings for Eretz Israel: Hebcal.com (CC BY 4.0), with adapted names and citations."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
                     <HyperlinkButton Content="Hebcal.com" NavigateUri="https://www.hebcal.com" />

@@ -19,7 +19,15 @@ enum MacPrayerGalleryArtwork {
     "viaLucis": "gallery_viaLucis",
   ]
 
+  static func resource(for devotionID: String) -> PrayerPackImageResource? {
+    PrayerPackStore.galleryImageResource(for: devotionID)
+      ?? imageKey(for: devotionID).flatMap { PrayerPackStore.imageResource(for: $0) }
+  }
+
   static func imageKey(for devotionID: String) -> String? {
+    if PrayerPackStore.galleryImageResource(for: devotionID) != nil {
+      return PrayerPackStore.info(for: devotionID)?.galleryImageKey
+    }
     if let curated = curatedImageKeys[devotionID], PrayerPackStore.imageResource(for: curated) != nil {
       return curated
     }

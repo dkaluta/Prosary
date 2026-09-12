@@ -186,6 +186,10 @@ struct AboutView: View {
             .font(.footnote).foregroundStyle(.secondary)
           Link(destination: URL(string: "https://www.mechon-mamre.org/i/t/tmp3.htm")!) { Text(verbatim: "Mechon Mamre") }
           Link("about.popeNetworkLink", destination: URL(string: "https://www.popesprayer.va/pray/")!)
+          Text(String(localized: "about.verseMappingSources",
+                      defaultValue: "Verse numbering: STEP Bible / Tyndale House Cambridge, TVTMS (CC BY 4.0). Adapted reference metadata only."))
+            .font(.footnote).foregroundStyle(.secondary)
+          Link(destination: URL(string: "https://github.com/STEPBible/STEPBible-Data/tree/master/Versification")!) { Text(verbatim: "STEPBible.org — TVTMS") }
           Text(String(localized: "about.torahData",
                       defaultValue: "Torah reading schedules: Hebcal.com, CC BY 4.0. Names and citations adapted; no Scripture text is included."))
             .font(.footnote).foregroundStyle(.secondary)

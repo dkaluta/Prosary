@@ -17,6 +17,7 @@ struct ReadingsView: View {
 
   private var language: String { UILanguage.current }
   private var selectedDate: Date { dateSelection.localDate() }
+  private var passageContext: String { "\(dateSelection.day)|\(calendarID)|\(paschaStyle)" }
   private var calendarName: String {
     TodayInfoStore.calendars.first { $0.id == TodayInfoStore.selectedCalendarId }?.displayName ?? ""
   }
@@ -49,6 +50,7 @@ struct ReadingsView: View {
             }
             ForEach(Array(readings.enumerated()), id: \.offset) { _, reading in
               ScripturePassageView(reading: reading, interfaceLanguage: language)
+                .id(passageContext)
             }
           }
           if let torah {
@@ -60,6 +62,7 @@ struct ReadingsView: View {
               Text(torah.localizedTitle(language))
               ForEach(Array(torah.readings.enumerated()), id: \.offset) { _, reading in
                 ScripturePassageView(reading: reading, isTorah: true, interfaceLanguage: language)
+                  .id(passageContext)
               }
             }
             .accessibilityIdentifier("readings.torah")
@@ -117,7 +120,7 @@ struct ReadingsView: View {
       .labelStyle(.iconOnly).disabled(!dateSelection.canMoveForward)
       .accessibilityIdentifier("readings.nextDay")
     }
-    .buttonStyle(.bordered).controlSize(.large).padding(16)
+    .prosarySecondaryButtonStyle().controlSize(.large).padding(16)
   }
 
   private var datePopover: some View {
@@ -127,11 +130,14 @@ struct ReadingsView: View {
                  in: MacTodayDateSelection.pickerRange(), displayedComponents: .date)
         .datePickerStyle(.graphical).labelsHidden()
         .environment(\.calendar, Calendar(identifier: .gregorian))
+        .accessibilityIdentifier("readings.datePicker")
       Button(String(localized: "home.today.today", defaultValue: "Today")) { chooseDate(Date()) }
         .disabled(dateSelection.isToday())
         .accessibilityIdentifier("readings.reset")
+        .prosarySecondaryButtonStyle()
     }
     .padding(16).frame(width: 320)
+    .presentationBackground(.regularMaterial)
     .presentationCompactAdaptation(.popover)
   }
 

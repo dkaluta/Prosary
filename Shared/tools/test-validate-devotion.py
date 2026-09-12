@@ -115,6 +115,25 @@ def main() -> int:
         "manifest.id",
     )
 
+    for value in (None, 12, "", " gallery", "../gallery", "https://example.test/cover"):
+        check_manifest_rejects("invalid Gallery image key", lambda manifest, value=value:
+            manifest.update(galleryImageKey=value), "manifest.galleryImageKey")
+    check_manifest_rejects("undeclared Gallery image", lambda manifest:
+        manifest.update(images=[], galleryImageKey="christ_pantocrator"), "declared manifest.images")
+    check_manifest_rejects("missing Gallery image payload", lambda manifest:
+        manifest.update(images=["missing_gallery_fixture"], galleryImageKey="missing_gallery_fixture"),
+        "has no Shared/Images/")
+    with tempfile.TemporaryDirectory() as tmp:
+        work = Path(tmp) / "bundle"
+        shutil.copytree(FIXTURE, work)
+        path = work / "manifest.json"
+        manifest = json.loads(path.read_text())
+        assert "jesus_portrait" not in (work / "devotion.json").read_text()
+        manifest["images"] = [*manifest.get("images", []), "jesus_portrait"]
+        manifest["galleryImageKey"] = "jesus_portrait"
+        path.write_text(json.dumps(manifest))
+        check_valid(work, "Gallery artwork may be declared without a step reference")
+
     # --- A slot must be able to produce a step -------------------------------------------------
     check_rejects(
         "a slot nothing fills",

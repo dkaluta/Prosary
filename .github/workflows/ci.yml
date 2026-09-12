@@ -33,6 +33,17 @@ jobs:
         run: |
           uv run --script Shared/tools/test-reading-versification.py
           uv run --script Shared/tools/test-reading-appointment-reviews.py
+          uv run --script Shared/tools/test-reading-source-numbering.py
+          uv run --script Shared/tools/test-reading-step-mapping.py
+          uv run --script Shared/tools/test-reading-nabre-mapping.py
+          uv run --script Shared/tools/test-reading-psalm-mapping.py
+          uv run --script Shared/tools/test-reading-standard-bridge.py
+          uv run --script Shared/tools/test-nabre-versification.py
+          uv run --script Shared/tools/test-nabre-versification-fetch.py
+          uv run --script Shared/tools/test-reading-edition-mapping.py
+          uv run --script Shared/tools/test-reading-edition-reviews-hebrew.py
+          uv run --script Shared/tools/test-reading-edition-reviews-western.py
+          uv run --script Shared/tools/test-reading-edition-reviews-arabic.py
           uv run --script Shared/tools/test-delitzsch-numbering.py
           uv run --script Shared/tools/test-delitzsch-source.py
           uv run --script Shared/tools/test-reading-texts.py

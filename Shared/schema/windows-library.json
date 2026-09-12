@@ -43,16 +43,16 @@
     "redundantWindowAction": false
   },
   "today": {
-    "placement": "Dedicated Library destination with the date picker above the content.",
+    "placement": "Dedicated Library destination with native Acrylic date controls and calendar flyout above the content.",
     "citations": "Full localized book/chapter/verse citations, with no shorthand toggle.",
     "settings": ["feastCalendarId", "easternPaschaStyle", "showTodayFeast", "showTodayIntention", "showTodayTorahPortion", "readingsEditionId"],
     "clock": "Advance at local midnight when following today; retain a deliberately browsed date.",
     "fullScriptureText": {
-      "presentation": "Each full daily/Torah citation expands independently to selectable numbered Bible verses, with edition name, attribution and source link. Edition text is identified as a Bible passage and may differ from local Mass wording.",
+      "presentation": "Daily and enabled Torah passages start expanded on entry and date/calendar changes. They remain independently collapsible, showing selectable numbered Bible verses with edition name, attribution and source link. Edition text is identified as a Bible passage and may differ from local Mass wording.",
       "loading": "The small readings-editions.json manifest populates the picker; readings-texts.json loads only on passage expansion.",
       "lookup": "Exact daily|<raw ReadingCitation.Full> or torah|<raw ReadingCitation.Full> plus edition ID. No runtime reference parser or inferred versification.",
       "selection": "readingsEditionId empty matches the interface language with iw/he and fil/tl normalization. Explicit choices use only that metadata ID. No matching edition, missing appointment, or invalid verse rows show unavailable without changing the citation or falling back to another edition.",
-      "state": "Changing date, language or edition refreshes the appropriate rows. Typeface changes refresh displayed Scripture without replacing source text; Arabic/Hebrew passages use RTL."
+      "state": "Changing date, calendar/Pascha setting, language or edition refreshes the appropriate rows. Ordinary refreshes and edition changes preserve individual collapses; reopening the view expands all passages. Typeface changes refresh displayed Scripture without replacing source text; Arabic/Hebrew passages use RTL."
     }
   },
   "sources": ["MainWindow.xaml.cs", "PrayerWindow.xaml.cs", "Navigation/Router.cs", "Services/DesktopWindowManager.cs", "Services/DesktopWindowChrome.cs", "Services/DesktopPrayerIdentity.cs", "Models/DesktopPrayerLibrary.cs", "Persistence/DesktopPresetStore.cs", "ViewModels/DesktopLibraryViewModel.cs", "Views/DesktopLibraryPage.xaml", "Views/DesktopGalleryPage.xaml", "Views/DesktopTodayPage.xaml", "Views/SearchPage.xaml", "ViewModels/SearchViewModel.cs", "Services/SearchCategoryFilter.cs", "ViewModels/DesktopReadingsViewModel.cs", "Services/ReadingsTextStore.cs"]

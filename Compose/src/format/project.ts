@@ -4,6 +4,7 @@
 // keep the native bytes in IndexedDB so ordinary typing never re-encodes large media.
 
 import type { CommonPrayerKey, LanguageCode } from "./catalog";
+import { newImageFileId, UUID7_PATTERN } from "./imageIdentity";
 
 export type PerLanguage = Partial<Record<LanguageCode, string>>;
 
@@ -35,9 +36,11 @@ export interface EditorStep {
   repeat?: number;
 }
 
-/** An uploaded illustration, already center-cropped square and re-encoded as JPEG. */
+/** Uploaded JPEG artwork. Step uploads are square; Gallery covers retain their proportions. */
 export interface EditorImage {
   uid: string;
+  /** Stable UUIDv7 filename for uploaded step artwork; older projects migrate on open. */
+  fileId?: string;
   label: string;
   jpeg: Uint8Array;
 }
@@ -115,6 +118,8 @@ export interface Project {
   suggestedReminderTime?: string;
   suggestedNext?: string;
   images: EditorImage[];
+  /** Optional portable Gallery cover, independent of the prayer steps and their artwork. */
+  galleryImage?: EditorImage;
   audio: EditorAudioTrack[];
 }
 
@@ -160,7 +165,7 @@ function retainedProjectSteps(project: Project): EditorStep[] {
 }
 
 /** Attach a converted upload and its step reference as one state transition. Replacing existing
- * art keeps its uid, so IndexedDB updates one binary record rather than briefly duplicating it. */
+ * art keeps its editor uid. Changed pixels/bytes receive a new globally safe pack filename. */
 export function attachUploadedArtwork(
   project: Project,
   stepUid: string,
@@ -184,9 +189,13 @@ export function attachUploadedArtwork(
     days: project.days.map((day) => ({ ...day, steps: replaceIn(day.steps) })),
     images: existingImage
       ? project.images.map((image) =>
-          image.uid === imageUid ? { ...image, label, jpeg } : image,
+          image.uid === imageUid ? {
+            ...image, label, jpeg,
+            fileId: image.jpeg === jpeg || image.jpeg.length === jpeg.length && image.jpeg.every((byte, index) => byte === jpeg[index])
+              ? image.fileId : newImageFileId(),
+          } : image,
         )
-      : [...project.images, { uid: imageUid, label, jpeg }],
+      : [...project.images, { uid: imageUid, fileId: newImageFileId(), label, jpeg }],
   };
 }
 
@@ -215,8 +224,15 @@ export function pruneUnusedImages(project: Project): Project {
   for (const step of retainedProjectSteps(project)) {
     if (step.image?.kind === "upload") referenced.add(step.image.uid);
   }
-  const images = project.images.filter((image) => referenced.has(image.uid));
-  return images.length === project.images.length ? project : { ...project, images };
+  const seen = new Set<string>();
+  const images = project.images.filter((image) => referenced.has(image.uid)).map((image) => {
+    const fileId = image.fileId && UUID7_PATTERN.test(image.fileId) && !seen.has(image.fileId)
+      ? image.fileId : newImageFileId();
+    seen.add(fileId);
+    return image.fileId === fileId ? image : { ...image, fileId };
+  });
+  return images.length === project.images.length && images.every((image, i) => image === project.images[i])
+    ? project : { ...project, images };
 }
 
 /** "My Little Devotion" -> "myLittleDevotion" — bundle ids are camelCase like the built-ins'. */

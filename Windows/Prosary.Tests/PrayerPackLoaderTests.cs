@@ -403,6 +403,77 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
         return buffer.ToArray();
     }
 
+    private static byte[] MakeGalleryPack(string id, string? galleryJson = null, bool includePayload = true)
+    {
+        using var buffer = new MemoryStream();
+        using (var zip = new System.IO.Compression.ZipArchive(buffer,
+            System.IO.Compression.ZipArchiveMode.Create, leaveOpen: true))
+        {
+            void Put(string name, string value)
+            {
+                using var writer = new StreamWriter(zip.CreateEntry(name).Open());
+                writer.Write(value);
+            }
+            var gallery = galleryJson is null ? "" : $",\"galleryImageKey\":{galleryJson}";
+            Put("manifest.json", $$"""{"id":"{{id}}","displayName":"Gallery Fixture","languages":["en"],"hasCatalog":false,"images":["gallery_fixture"]{{gallery}}}""");
+            Put("content/en.json", """{"prayers":{"galleryFixture":"Fixture"},"mysteries":{}}""");
+            Put("devotion.json", """{"type":"steps","steps":[{"title":"Fixture","bodyKey":"galleryFixture"}]}""");
+            if (includePayload) Put("images/gallery_fixture.jpg", "fixture image bytes");
+        }
+        return buffer.ToArray();
+    }
+
+    [Fact]
+    public void AuthoredGalleryImageMetadataIsOptionalAndMayBeUnusedBySteps()
+    {
+        var originalDirectory = PrayerPackStore.InstalledPacksDirectory;
+        var directory = Path.Combine(Path.GetTempPath(), $"prosary_gallery_{Guid.NewGuid():N}");
+        PrayerPackStore.InstalledPacksDirectory = directory;
+        var cover = $"gallery-{Guid.NewGuid():N}";
+        var legacy = $"gallery-{Guid.NewGuid():N}";
+        try
+        {
+            PrayerPackStore.InstallPack(MakeGalleryPack(cover, "\"gallery_fixture\""));
+            PrayerPackStore.InstallPack(MakeGalleryPack(legacy));
+            Assert.Equal("gallery_fixture", PrayerPackStore.Info(cover)?.GalleryImageKey);
+            Assert.Null(PrayerPackStore.Info(legacy)?.GalleryImageKey);
+        }
+        finally
+        {
+            PrayerPackStore.RemoveInstalledPack(cover);
+            PrayerPackStore.RemoveInstalledPack(legacy);
+            PrayerPackStore.InstalledPacksDirectory = originalDirectory;
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
+    public void GalleryImageRejectsInvalidUndeclaredAndMissingPayloads()
+    {
+        var originalDirectory = PrayerPackStore.InstalledPacksDirectory;
+        var directory = Path.Combine(Path.GetTempPath(), $"prosary_gallery_invalid_{Guid.NewGuid():N}");
+        PrayerPackStore.InstalledPacksDirectory = directory;
+        try
+        {
+            foreach (var value in new[] { "null", "12", "\"\"", "\" gallery_fixture\"", "\"../gallery_fixture\"",
+                         "\"https://example.test/image\"", "\"undeclared\"" })
+            {
+                var id = $"gallery-invalid-{Guid.NewGuid():N}";
+                Assert.Throws<PrayerPackStore.InstallException>(() => PrayerPackStore.InstallPack(MakeGalleryPack(id, value)));
+                Assert.Null(PrayerPackStore.Info(id));
+            }
+            var missing = $"gallery-missing-{Guid.NewGuid():N}";
+            Assert.Throws<PrayerPackStore.InstallException>(() =>
+                PrayerPackStore.InstallPack(MakeGalleryPack(missing, "\"gallery_fixture\"", includePayload: false)));
+            Assert.False(File.Exists(Path.Combine(directory, $"{missing}.prosaryprayer")));
+        }
+        finally
+        {
+            PrayerPackStore.InstalledPacksDirectory = originalDirectory;
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
     private static byte[] MakeImageOverridePack(
         string id,
         string imageKey,

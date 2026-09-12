@@ -360,6 +360,66 @@ class PrayerPackLoaderTest {
 
     /** Builds a minimal, valid .prosaryprayer in memory — the same shape a third-party author
      * would produce. */
+    private fun makeGalleryPack(id: String, galleryJson: String? = null, includePayload: Boolean = true): ByteArray {
+        val output = ByteArrayOutputStream()
+        java.util.zip.ZipOutputStream(output).use { zip ->
+            fun put(name: String, value: String) {
+                zip.putNextEntry(java.util.zip.ZipEntry(name))
+                zip.write(value.toByteArray())
+                zip.closeEntry()
+            }
+            val gallery = galleryJson?.let { ",\"galleryImageKey\":$it" }.orEmpty()
+            put("manifest.json", """{"id":"$id","displayName":"Gallery Fixture","languages":["en"],"hasCatalog":false,"images":["gallery_fixture"]$gallery}""")
+            put("content/en.json", """{"prayers":{"galleryFixture":"Fixture"},"mysteries":{}}""")
+            put("devotion.json", """{"type":"steps","steps":[{"title":"Fixture","bodyKey":"galleryFixture"}]}""")
+            if (includePayload) put("images/gallery_fixture.jpg", "fixture image bytes")
+        }
+        return output.toByteArray()
+    }
+
+    @Test
+    fun authoredGalleryImageMetadataIsOptionalAndMayBeUnusedBySteps() {
+        val originalDirectory = PrayerPackStore.installedPacksDirectory
+        val directory = java.nio.file.Files.createTempDirectory("prosary-gallery-").toFile()
+        PrayerPackStore.installedPacksDirectory = directory
+        val cover = "gallery-${java.util.UUID.randomUUID()}"
+        val legacy = "gallery-${java.util.UUID.randomUUID()}"
+        try {
+            PrayerPackStore.installPack(makeGalleryPack(cover, "\"gallery_fixture\""))
+            PrayerPackStore.installPack(makeGalleryPack(legacy))
+            assertEquals("gallery_fixture", PrayerPackStore.info(cover)?.galleryImageKey)
+            assertNull(PrayerPackStore.info(legacy)?.galleryImageKey)
+        } finally {
+            listOf(cover, legacy).forEach(PrayerPackStore::removeInstalledPack)
+            PrayerPackStore.installedPacksDirectory = originalDirectory
+            directory.deleteRecursively()
+        }
+    }
+
+    @Test
+    fun galleryImageRejectsInvalidUndeclaredAndMissingPayloads() {
+        val originalDirectory = PrayerPackStore.installedPacksDirectory
+        val directory = java.nio.file.Files.createTempDirectory("prosary-gallery-invalid-").toFile()
+        PrayerPackStore.installedPacksDirectory = directory
+        try {
+            for (value in listOf("null", "12", "\"\"", "\" gallery_fixture\"", "\"../gallery_fixture\"",
+                "\"https://example.test/image\"", "\"undeclared\"")) {
+                val id = "gallery-invalid-${java.util.UUID.randomUUID()}"
+                assertTrue(runCatching { PrayerPackStore.installPack(makeGalleryPack(id, value)) }
+                    .exceptionOrNull() is PrayerPackStore.InstallException)
+                assertNull(PrayerPackStore.info(id))
+            }
+            val id = "gallery-missing-${java.util.UUID.randomUUID()}"
+            assertTrue(runCatching {
+                PrayerPackStore.installPack(makeGalleryPack(id, "\"gallery_fixture\"", includePayload = false))
+            }.exceptionOrNull() is PrayerPackStore.InstallException)
+            assertFalse(File(directory, "$id.prosaryprayer").exists())
+        } finally {
+            PrayerPackStore.installedPacksDirectory = originalDirectory
+            directory.deleteRecursively()
+        }
+    }
+
     private fun makeExamplePack(id: String): ByteArray {
         val out = java.io.ByteArrayOutputStream()
         java.util.zip.ZipOutputStream(out).use { zip ->

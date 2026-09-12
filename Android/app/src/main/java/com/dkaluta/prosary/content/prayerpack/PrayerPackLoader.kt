@@ -19,6 +19,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.jsonObject
 
 @Serializable
 private data class PackManifest(
@@ -41,6 +42,8 @@ private data class PackManifest(
     val reminderPresetHours: List<Int>? = null,
     val reminderPresetFooter: Map<String, String>? = null,
     val tags: List<String>? = null,
+    val images: List<String>? = null,
+    val galleryImageKey: String? = null,
 )
 
 @Serializable
@@ -460,6 +463,8 @@ data class CustomDevotionInfo(
     /** Lowercase category labels from the manifest ("marian", "passion") — what the
      * Categories tab groups by. */
     val tags: List<String> = emptyList(),
+    /** Optional authored Gallery artwork, belonging to this pack. */
+    val galleryImageKey: String? = null,
 ) {
     /** Interface metadata follows the interface language. Prayer-language card names are an
      * explicit display preference; they must not leak into Settings, reminders, or editors. */
@@ -923,9 +928,10 @@ object PrayerPackStore {
         try {
             staged.outputStream().use { it.write(bytes) }
             val stagedSource = IndexedPackSource(SeekableZipArchive.fromFile(staged))
-            val entries = stagedSource.readControlPlane().entries
+            val archive = stagedSource.readControlPlane()
+            val entries = archive.entries
             val manifest = runCatching {
-                json.decodeFromString<PackManifest>(String(entries["manifest.json"]!!, Charsets.UTF_8))
+                parseManifest(entries["manifest.json"]!!, archive.images)
             }.getOrNull()
                 ?: throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
             val hasDevotion = runCatching {
@@ -1070,13 +1076,27 @@ object PrayerPackStore {
         }
     }
 
+    /** Validate authored Gallery metadata without eagerly decoding its image. */
+    private fun parseManifest(bytes: ByteArray, images: Map<String, String>): PackManifest {
+        val text = bytes.toString(Charsets.UTF_8)
+        val manifest = json.decodeFromString<PackManifest>(text)
+        json.parseToJsonElement(text).jsonObject["galleryImageKey"]?.let { value ->
+            require(value is JsonPrimitive && value.isString && validBundleId.matches(value.content)
+                && manifest.images?.contains(value.content) == true
+                && images[value.content] == "images/${value.content}.jpg") {
+                "Gallery artwork must name a declared image in this pack"
+            }
+        }
+        return manifest
+    }
+
     /** Returns the loaded bundle plus its stable indexed source (null for a ZIP with no
      * manifest) so callers can atomically register image/audio lookups. */
     private fun load(source: PackSource, expectedId: String? = null): LoadedPack? {
         val archive = source.readControlPlane()
         val entries = archive.entries
         val manifestBytes = entries["manifest.json"] ?: return null
-        val manifest = json.decodeFromString<PackManifest>(String(manifestBytes, Charsets.UTF_8))
+        val manifest = parseManifest(manifestBytes, archive.images)
         if (!validBundleId.matches(manifest.id)) return null
         if (expectedId != null && manifest.id != expectedId) return null
 
@@ -1092,6 +1112,7 @@ object PrayerPackStore {
             reminderPresetHours = manifest.reminderPresetHours,
             reminderPresetFooter = manifest.reminderPresetFooter ?: emptyMap(),
             tags = manifest.tags ?: emptyList(),
+            galleryImageKey = manifest.galleryImageKey,
         )
 
         // Declared languages are what the bundle *offers*; any other content/<code>.json it

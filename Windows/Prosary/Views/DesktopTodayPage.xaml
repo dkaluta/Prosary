@@ -97,21 +97,22 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Button x:Uid="HomePreviousDay" Grid.Column="0" Width="44" Height="44" Background="Transparent"
+                <Button x:Uid="HomePreviousDay" Grid.Column="0" Width="44" Height="44" Style="{StaticResource TodayDateButtonStyle}"
                         Command="{x:Bind ViewModel.YesterdayCommand}" AutomationProperties.AutomationId="todayYesterday">
                     <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
                 </Button>
                 <Button Grid.Column="1" Content="{x:Bind ViewModel.SelectedDateText, Mode=OneWay}"
-                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="Transparent"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Style="{StaticResource TodayDateButtonStyle}"
                         AutomationProperties.AutomationId="todayDatePicker"
                         AutomationProperties.Name="{x:Bind ViewModel.SelectedDateAccessibilityLabel, Mode=OneWay}">
                     <Button.Flyout>
-                        <Flyout x:Name="TodayDateFlyout" Opened="OnTodayDateFlyoutOpened">
+                        <Flyout x:Name="TodayDateFlyout" Opened="OnTodayDateFlyoutOpened"
+                                FlyoutPresenterStyle="{StaticResource TodayDateFlyoutPresenterStyle}">
                             <StackPanel Spacing="8"
                                         FlowDirection="{x:Bind ViewModel.TodayIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
                                 <Button x:Uid="HomeResetToday" Content="Today" HorizontalAlignment="Stretch"
                                         Click="OnSelectToday" AutomationProperties.AutomationId="todayReset" />
-                                <CalendarView x:Name="TodayCalendar" SelectionMode="Single" CalendarIdentifier="GregorianCalendar"
+                                <CalendarView x:Name="TodayCalendar" SelectionMode="Single" CalendarIdentifier="GregorianCalendar" Background="Transparent"
                                               MinDate="{x:Bind ViewModel.MinimumTodayDate}" MaxDate="{x:Bind ViewModel.MaximumTodayDate}"
                                               SelectedDatesChanged="OnTodayCalendarDateChanged"
                                               AutomationProperties.AutomationId="todayCalendar" />
@@ -119,7 +120,7 @@
                         </Flyout>
                     </Button.Flyout>
                 </Button>
-                <Button x:Uid="HomeNextDay" Grid.Column="2" Width="44" Height="44" Background="Transparent"
+                <Button x:Uid="HomeNextDay" Grid.Column="2" Width="44" Height="44" Style="{StaticResource TodayDateButtonStyle}"
                         Command="{x:Bind ViewModel.TomorrowCommand}" AutomationProperties.AutomationId="todayTomorrow">
                     <FontIcon Glyph="&#xE72A;" MirroredWhenRightToLeft="True" />
                 </Button>

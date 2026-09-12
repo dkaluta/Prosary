@@ -1,6 +1,7 @@
 #if os(macOS)
 import AppKit
 import SwiftUI
+import UniformTypeIdentifiers
 
 /// The collection owns selection gestures and keyboard navigation; SwiftUI owns the gallery
 /// filters and batch action. Artwork hosts are presentation-only so they cannot steal events.
@@ -11,6 +12,11 @@ struct MacPrayerGalleryCollection: NSViewRepresentable {
   let canRemoveDownload: (MacPrayerLibraryItem) -> Bool
   let onRemoveDownload: (MacPrayerLibraryItem) -> Void
   let onActivate: ([MacPrayerLibraryItem]) -> Void
+  var onImageAction: (MacPrayerGalleryImageAction, MacPrayerLibraryItem) -> Void = { _, _ in }
+  var hasCustomImage: (MacPrayerLibraryItem) -> Bool = { _ in false }
+  var hasImageSource: (MacPrayerLibraryItem) -> Bool = { _ in false }
+  var artworkRevision: Int = 0
+  var onDropImage: (URL, MacPrayerLibraryItem) -> Void = { _, _ in }
   @Environment(\.layoutDirection) private var layoutDirection
   @Environment(\.isEnabled) private var isEnabled
 
@@ -39,6 +45,14 @@ struct MacPrayerGalleryCollection: NSViewRepresentable {
     items.enumerated().compactMap { paths.contains(IndexPath(item: $0.offset, section: 0)) ? $0.element : nil }
   }
 
+  static func imageFile(from pasteboard: NSPasteboard) -> URL? {
+    guard let files = pasteboard.readObjects(forClasses: [NSURL.self], options: [.urlReadingFileURLsOnly: true]) as? [URL],
+          files.count == 1, let file = files.first,
+          let type = UTType(filenameExtension: file.pathExtension),
+          [.jpeg, .png, .heic, .heif, .tiff, .gif, .bmp, .webP].contains(where: { type.conforms(to: $0) }) else { return nil }
+    return file
+  }
+
   final class Coordinator: NSObject, NSCollectionViewDataSource, NSCollectionViewDelegate {
     var parent: MacPrayerGalleryCollection
     weak var collection: GalleryCollectionView?
@@ -59,6 +73,7 @@ struct MacPrayerGalleryCollection: NSViewRepresentable {
       collection.isSelectable = true
       collection.allowsMultipleSelection = true
       collection.allowsEmptySelection = true
+      collection.registerForDraggedTypes([.fileURL])
       collection.dataSource = self
       collection.delegate = self
       collection.galleryDelegate = self
@@ -156,6 +171,33 @@ struct MacPrayerGalleryCollection: NSViewRepresentable {
       publishSelection()
     }
 
+    func collectionView(_ collectionView: NSCollectionView, validateDrop draggingInfo: NSDraggingInfo,
+                        proposedIndexPath proposedDropIndexPath: AutoreleasingUnsafeMutablePointer<NSIndexPath>,
+                        dropOperation proposedDropOperation: UnsafeMutablePointer<NSCollectionView.DropOperation>) -> NSDragOperation {
+      let point = collectionView.convert(draggingInfo.draggingLocation, from: nil)
+      guard isActive, parent.isEnabled, draggingInfo.draggingSourceOperationMask.contains(.copy),
+            MacPrayerGalleryCollection.imageFile(from: draggingInfo.draggingPasteboard) != nil,
+            let path = collectionView.indexPathForItem(at: point), parent.items.indices.contains(path.item) else { return [] }
+      proposedDropIndexPath.pointee = path as NSIndexPath
+      proposedDropOperation.pointee = .on
+      return .copy
+    }
+
+    func collectionView(_ collectionView: NSCollectionView, acceptDrop draggingInfo: NSDraggingInfo,
+                        indexPath: IndexPath, dropOperation: NSCollectionView.DropOperation) -> Bool {
+      guard dropOperation == .on, draggingInfo.draggingSourceOperationMask.contains(.copy) else { return false }
+      return acceptImageDrop(pasteboard: draggingInfo.draggingPasteboard,
+        at: collectionView.convert(draggingInfo.draggingLocation, from: nil))
+    }
+
+    func acceptImageDrop(pasteboard: NSPasteboard, at point: NSPoint) -> Bool {
+      guard isActive, parent.isEnabled,
+            let url = MacPrayerGalleryCollection.imageFile(from: pasteboard),
+            let id = itemID(at: point), let item = parent.items.first(where: { $0.id == id }) else { return false }
+      parent.onDropImage(url, item)
+      return true
+    }
+
     private func publishSelection() {
       guard !updating, isActive, let collection else { return }
       let ids = Set(MacPrayerGalleryCollection.selectedItems(in: parent.items, at: collection.selectionIndexPaths).map(\.id))
@@ -188,10 +230,21 @@ struct MacPrayerGalleryCollection: NSViewRepresentable {
     }
 
     func menu(for itemID: String) -> NSMenu? {
-      guard let item = parent.items.first(where: { $0.id == itemID }),
-            parent.downloadedDevotionIDs.contains(item.devotionID) else { return nil }
+      guard let item = parent.items.first(where: { $0.id == itemID }) else { return nil }
       let menu = NSMenu()
       menu.autoenablesItems = false
+      for action in MacPrayerGalleryImageAction.allCases {
+        let command = NSMenuItem(title: action.title, action: #selector(imageAction(_:)), keyEquivalent: "")
+        command.target = self
+        command.representedObject = item.id
+        command.tag = action.rawValue
+        command.isEnabled = parent.isEnabled
+          && (action != .restoreDefault || parent.hasCustomImage(item))
+          && (action != .viewSource || parent.hasImageSource(item))
+        menu.addItem(command)
+      }
+      guard parent.downloadedDevotionIDs.contains(item.devotionID) else { return menu }
+      menu.addItem(.separator())
       let remove = NSMenuItem(title: String(localized: "macLibrary.removeDownload", defaultValue: "Remove Download…"),
                               action: #selector(removeDownload(_:)), keyEquivalent: "")
       remove.target = self
@@ -202,6 +255,18 @@ struct MacPrayerGalleryCollection: NSViewRepresentable {
       }
       menu.addItem(remove)
       return menu
+    }
+
+    @objc private func imageAction(_ sender: NSMenuItem) {
+      guard sender.isEnabled, let id = sender.representedObject as? String,
+            let action = MacPrayerGalleryImageAction(rawValue: sender.tag) else { return }
+      DispatchQueue.main.async { [weak self] in
+        guard let self, self.isActive, self.parent.isEnabled,
+              let item = self.parent.items.first(where: { $0.id == id }),
+              action != .restoreDefault || self.parent.hasCustomImage(item),
+              action != .viewSource || self.parent.hasImageSource(item) else { return }
+        self.parent.onImageAction(action, item)
+      }
     }
 
     @objc private func removeDownload(_ sender: NSMenuItem) {
@@ -237,6 +302,10 @@ final class GalleryCollectionView: NSCollectionView {
 
   override func mouseDown(with event: NSEvent) {
     guard interactionEnabled else { return }
+    if event.modifierFlags.contains(.control) {
+      rightMouseDown(with: event)
+      return
+    }
     let clickedID = galleryDelegate?.itemID(at: convert(event.locationInWindow, from: nil))
     // Native tracking supplies Command/Shift/range/marquee/blank-area behavior.
     super.mouseDown(with: event)
@@ -298,6 +367,7 @@ private final class GalleryCollectionItem: NSCollectionViewItem {
 
   override func loadView() { view = tile }
   override var isSelected: Bool { didSet { refreshAppearance() } }
+  override var highlightState: NSCollectionViewItem.HighlightState { didSet { refreshAppearance() } }
 
   func configure(_ item: MacPrayerLibraryItem, collection: NSCollectionView?) {
     _ = view
@@ -309,12 +379,14 @@ private final class GalleryCollectionItem: NSCollectionViewItem {
 
   func refreshAppearance() {
     tile.selected = isSelected
+    tile.dropTarget = highlightState == .asDropTarget
     tile.updateAppearance()
   }
 }
 
 private struct GalleryCover: View {
-  let imageKey: String?
+  let resource: PrayerPackImageResource?
+  let customImage: NSImage?
   let cacheKey: String?
   let glyph: String?
   let symbol: String
@@ -322,14 +394,17 @@ private struct GalleryCover: View {
   @Environment(\.colorScheme) private var colorScheme
 
   func hasSameArtwork(as other: Self) -> Bool {
-    imageKey == other.imageKey && cacheKey == other.cacheKey && glyph == other.glyph
+    cacheKey == other.cacheKey && glyph == other.glyph
       && symbol == other.symbol && tint == other.tint
   }
 
   var body: some View {
     Group {
-      if let imageKey {
-        PrayerArtworkView(imageKey: imageKey, placeholder: .neutral)
+      if customImage != nil || resource != nil {
+        Group {
+          if let customImage { Image(nsImage: customImage).resizable() }
+          else if let resource { PrayerArtworkView(resource: resource, placeholder: .neutral) }
+        }
           .scaledToFit()
           .clipShape(RoundedRectangle(cornerRadius: 3, style: .continuous))
           .shadow(color: .black.opacity(colorScheme == .dark ? 0.30 : 0.16), radius: 9, x: 0, y: 5)
@@ -353,6 +428,7 @@ private final class GalleryTileView: NSView {
   private var cover: GalleryCover?
   weak var collection: NSCollectionView?
   var selected = false
+  var dropTarget = false
   var onSelect: (() -> Void)?
   var onShowMenu: (() -> Bool)?
 
@@ -393,9 +469,11 @@ private final class GalleryTileView: NSView {
       needsLayout = true
     }
     title.baseWritingDirection = userInterfaceLayoutDirection == .rightToLeft ? .rightToLeft : .leftToRight
-    let imageKey = MacPrayerGalleryArtwork.imageKey(for: item.devotionID)
-    let next = GalleryCover(imageKey: imageKey,
-      cacheKey: imageKey.flatMap { PrayerPackStore.imageResource(for: $0)?.cacheKey },
+    let store = MacPrayerGalleryImageStore.shared
+    let customImage = store.image(for: item.devotionID)
+    let resource = customImage == nil ? MacPrayerGalleryArtwork.resource(for: item.devotionID) : nil
+    let next = GalleryCover(resource: resource, customImage: customImage,
+      cacheKey: customImage != nil ? "local:\(item.devotionID):\(store.revision)" : resource?.cacheKey,
       glyph: item.iconGlyph, symbol: item.systemImage, tint: item.color)
     if cover?.hasSameArtwork(as: next) != true {
       cover = next
@@ -434,15 +512,23 @@ private final class GalleryTileView: NSView {
 
   override func draw(_ dirtyRect: NSRect) {
     super.draw(dirtyRect)
-    guard selected else { return }
+    guard selected || dropTarget else { return }
     let pictureWidth = max(1, min(230, bounds.width))
     let pictureBacking = NSRect(x: (bounds.width - pictureWidth) / 2 + 3, y: 3,
                                width: max(1, pictureWidth - 6), height: 150)
-    let contrast = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
-    NSColor.labelColor.withAlphaComponent(contrast ? 0.16 : 0.07).setFill()
-    NSBezierPath(roundedRect: pictureBacking, xRadius: 7, yRadius: 7).fill()
-    (emphasized ? NSColor.selectedContentBackgroundColor : .unemphasizedSelectedContentBackgroundColor).setFill()
-    NSBezierPath(roundedRect: title.frame.insetBy(dx: -4, dy: -2), xRadius: 4, yRadius: 4).fill()
+    if selected {
+      let contrast = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
+      NSColor.labelColor.withAlphaComponent(contrast ? 0.16 : 0.07).setFill()
+      NSBezierPath(roundedRect: pictureBacking, xRadius: 7, yRadius: 7).fill()
+      (emphasized ? NSColor.selectedContentBackgroundColor : .unemphasizedSelectedContentBackgroundColor).setFill()
+      NSBezierPath(roundedRect: title.frame.insetBy(dx: -4, dy: -2), xRadius: 4, yRadius: 4).fill()
+    }
+    if dropTarget {
+      NSColor.controlAccentColor.setStroke()
+      let border = NSBezierPath(roundedRect: pictureBacking.insetBy(dx: 1.5, dy: 1.5), xRadius: 7, yRadius: 7)
+      border.lineWidth = 3
+      border.stroke()
+    }
   }
 
   override func accessibilityPerformPress() -> Bool {

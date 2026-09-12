@@ -24,6 +24,7 @@ struct MacTodayView: View {
 
   private var language: String { UILanguage.current }
   private var selectedDate: Date { dateSelection.localDate() }
+  private var passageContext: String { "\(dateSelection.day)|\(feastCalendarId)|\(easternPaschaStyle)" }
   private var isToday: Bool { dateSelection.isToday() }
   private var selectedCalendarName: String {
     TodayInfoStore.calendars.first { $0.id == TodayInfoStore.selectedCalendarId }?.displayName ?? ""
@@ -120,7 +121,7 @@ struct MacTodayView: View {
         .frame(maxWidth: .infinity)
         .multilineTextAlignment(.center)
       }
-      .buttonStyle(.plain)
+      .prosarySecondaryButtonStyle()
       .help(label("home.today.chooseDate", "Choose a date"))
       .accessibilityHint(label("home.today.chooseDate", "Choose a date"))
       .accessibilityIdentifier("macToday.chooseDate")
@@ -143,6 +144,7 @@ struct MacTodayView: View {
       .accessibilityIdentifier("macToday.options")
       .popover(isPresented: $showsOptions) { optionsPopover }
     }
+    .prosarySecondaryButtonStyle()
     .controlSize(.regular)
     .padding(16)
     .accessibilityElement(children: .contain)
@@ -210,6 +212,7 @@ struct MacTodayView: View {
       Text(readingsTitle).font(.headline).accessibilityAddTraits(.isHeader)
       ForEach(Array(readings.enumerated()), id: \.offset) { _, reading in
         ScripturePassageView(reading: reading, interfaceLanguage: language)
+          .id(passageContext)
       }
     }
     .accessibilityIdentifier("macToday.readings")
@@ -223,6 +226,7 @@ struct MacTodayView: View {
       Text(portion.localizedTitle(language))
       ForEach(Array(portion.readings.enumerated()), id: \.offset) { _, reading in
         ScripturePassageView(reading: reading, isTorah: true, interfaceLanguage: language)
+          .id(passageContext)
       }
     }
     .accessibilityIdentifier("macToday.torah")

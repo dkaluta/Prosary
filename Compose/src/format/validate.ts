@@ -6,6 +6,8 @@
 import { LANGUAGES, RESERVED_IDS, commonPrayer } from "./catalog";
 import { projectSteps } from "./project";
 import type { Project } from "./project";
+import { ZIP_LIMITS } from "./zip";
+import { isSdrSrgbJpeg } from "./jpegColor";
 
 export type WizardScreen = "basics" | "steps" | "audio" | "review";
 
@@ -51,6 +53,11 @@ export function validateProject(project: Project): Issue[] {
     basics(`“${project.id}” is already used by a devotion built into the app — pick another identifier.`);
   }
   if (project.languages.length === 0) basics("Choose at least one language.");
+  if (project.galleryImage && (!(project.galleryImage.jpeg instanceof Uint8Array) ||
+    !project.galleryImage.jpeg.length || project.galleryImage.jpeg.length > ZIP_LIMITS.imageBytes ||
+    !isSdrSrgbJpeg(project.galleryImage.jpeg))) {
+    basics("The Gallery cover could not be read. Choose another image or remove it.");
+  }
   for (const [field, value] of [
     ["light", project.accentColorHex],
     ["dark", project.accentColorDarkHex],
@@ -169,6 +176,9 @@ export function validateProject(project: Project): Issue[] {
     const image = step.image;
     if (image?.kind === "upload" && !project.images.some((img) => img.uid === image.uid)) {
       steps(`${where}: its artwork was removed — pick another image.`);
+    }
+    if (image?.kind === "upload" && project.images.some((img) => img.uid === image.uid && !isSdrSrgbJpeg(img.jpeg))) {
+      steps(`${where}: replace its artwork before exporting the prayer pack.`);
     }
   });
 

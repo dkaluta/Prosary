@@ -45,7 +45,7 @@ public sealed partial class DesktopTodayPage : Page
         AppSettings.TypographyChanged += OnReadingTypographyChanged;
         SynchronizeOptions();
         RefreshForClock();
-        Readings.Refresh(ViewModel);
+        Readings.Open(ViewModel);
         _dateTimer.Start();
     }
 
