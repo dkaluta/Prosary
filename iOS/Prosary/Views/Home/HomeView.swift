@@ -479,6 +479,12 @@ struct HomeView: View {
         .environment(\.calendar, Calendar(identifier: .gregorian))
         .accessibilityIdentifier("todayDatePicker")
     }
+    // SDK 27 resets control size at presentation boundaries.
+    #if os(macOS)
+    .controlSize(.regular)
+    #else
+    .controlSize(.large)
+    #endif
     .padding(12)
     .frame(width: 320)
   }

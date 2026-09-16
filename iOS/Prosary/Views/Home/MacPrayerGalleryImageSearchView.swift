@@ -83,7 +83,7 @@ struct MacPrayerGalleryImageSearchView: View {
           Link(String(localized: "galleryImage.source", defaultValue: "Image Source"), destination: result.sourceURL)
           if let url = result.licenseURL, !result.license.isEmpty { Link(result.license, destination: url) }
         } else {
-          Text("Wikimedia Commons").foregroundStyle(.secondary)
+          Text(verbatim: "Wikimedia Commons").foregroundStyle(.secondary)
         }
         Spacer()
       }

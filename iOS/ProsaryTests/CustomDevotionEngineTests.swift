@@ -29,8 +29,8 @@ private struct FixedLiturgicalCalendar: LiturgicalCalendarProviding {
 final class CustomDevotionEngineTests: XCTestCase {
   private func steps(_ bundleId: String, language: String = "en", variantId: String? = nil,
                      customOptions: [String: String] = [:],
-                     calendar: FixedLiturgicalCalendar = FixedLiturgicalCalendar()) -> [RosaryStep] {
-    PrayerEngine(calendar: calendar).buildSteps(
+                     calendar: FixedLiturgicalCalendar? = nil) -> [RosaryStep] {
+    PrayerEngine(calendar: calendar ?? FixedLiturgicalCalendar()).buildSteps(
       for: Prayer(kind: .custom, languageCode: language, customDevotionId: bundleId,
                   variantId: variantId, customOptions: customOptions))
   }

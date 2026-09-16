@@ -22,6 +22,7 @@ final class AppShellUITests: XCTestCase {
   @MainActor
   func testEveryTabOpensItsScreen() throws {
     let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)"]
     app.launch()
 
     XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10), "Pray lists the seeded favorite")
@@ -29,7 +30,7 @@ final class AppShellUITests: XCTestCase {
     // Full reading citations have their own tab; category browsing remains in Search.
     app.tabBars.buttons["Readings"].tap()
     XCTAssertTrue(app.navigationBars["Readings"].waitForExistence(timeout: 5))
-    XCTAssertTrue(app.buttons["readings.chooseDate"].exists)
+    XCTAssertTrue(app.buttons["readings.chooseDate"].waitForExistence(timeout: 5), app.debugDescription)
 
     app.tabBars.buttons["Search"].tap()
     XCTAssertTrue(app.navigationBars["Search"].waitForExistence(timeout: 5))

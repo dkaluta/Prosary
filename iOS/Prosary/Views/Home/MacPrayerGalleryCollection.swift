@@ -344,7 +344,7 @@ final class GalleryCollectionView: NSCollectionView {
     guard let window else { return }
     for name in [NSWindow.didBecomeKeyNotification, NSWindow.didResignKeyNotification] {
       windowObservers.append(NotificationCenter.default.addObserver(forName: name, object: window, queue: .main) { [weak self] _ in
-        Task { @MainActor in self?.refreshSelectionAppearance() }
+        Task { @MainActor [weak self] in self?.refreshSelectionAppearance() }
       })
     }
   }

@@ -55,11 +55,11 @@ final class RecentPrayers {
   private let prayerLookup: (Prayer.ID) async throws -> Prayer?
   private(set) var entries: [RecentPrayer] = []
 
-  init(defaults: UserDefaults = ProsaryRuntimeEnvironment.defaults,
+  init(defaults: UserDefaults? = nil,
        prayerLookup: @escaping (Prayer.ID) async throws -> Prayer? = {
          try await AppServices.shared.presetStore.get(id: $0)
        }) {
-    store = RecentPrayerStore(defaults: defaults)
+    store = RecentPrayerStore(defaults: defaults ?? ProsaryRuntimeEnvironment.defaults)
     self.prayerLookup = prayerLookup
     entries = store.entries
   }

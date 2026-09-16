@@ -85,6 +85,7 @@ struct ReadingsView: View {
     .sheet(isPresented: $showsOptions) { options }
     .environment(\.layoutDirection, UILanguage.isRightToLeft(language) ? .rightToLeft : .leftToRight)
     .environment(\.locale, Locale(identifier: language == "tl" ? "fil" : language))
+    .accessibilityElement(children: .contain)
     .accessibilityIdentifier("readings.screen")
     .onAppear { refresh() }
     .onChange(of: dateSelection.day) { _, _ in load() }
@@ -136,6 +137,8 @@ struct ReadingsView: View {
         .accessibilityIdentifier("readings.reset")
         .prosarySecondaryButtonStyle()
     }
+    // SDK 27 resets control size at presentation boundaries.
+    .controlSize(.large)
     .padding(16).frame(width: 320)
     .presentationBackground(.regularMaterial)
     .presentationCompactAdaptation(.popover)

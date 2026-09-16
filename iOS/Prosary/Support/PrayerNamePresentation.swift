@@ -23,8 +23,9 @@ struct PrayerNamePresentation: Equatable {
   /// adds an interface-language subtitle; it must not replace that prayer's own heading.
   @MainActor
   static func basicPrayer(_ prayer: BasicPrayer, languageCode: String,
-                          interfaceLanguage: String = UILanguage.current,
+                          interfaceLanguage: String? = nil,
                           showPrayerLanguage: Bool) -> Self {
+    let interfaceLanguage = interfaceLanguage ?? UILanguage.current
     let interfaceTitle = HebrewDisplayText.unpointed(PrayerPackStore.resolveBodyText(
       bundleId: prayer.bundleId, languageCode: interfaceLanguage, key: prayer.titleKey))
     let prayerTitle = HebrewDisplayText.unpointed(PrayerPackStore.resolveBodyText(

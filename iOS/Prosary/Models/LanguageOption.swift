@@ -98,7 +98,7 @@ enum LanguageCatalog {
 
   /// Picker choices for a bundle's declared languages; a Hebrew overlay also offers Hebrew.
   static func availableOptions(for declaredCodes: [String]) -> [LanguageOption] {
-    let available = Set(declaredCodes.map(pickerLanguageCode))
+    let available = Set(declaredCodes.map { pickerLanguageCode($0) })
     return languages.filter { available.contains($0.code) }
   }
 
@@ -126,7 +126,7 @@ enum LanguageCatalog {
   }
 
   static func contentLanguageNames(_ codes: [String]) -> [String] {
-    codes.map(contentLanguageName).unique()
+    codes.map { contentLanguageName($0) }.unique()
   }
 
   static var fallbackOrder: [String] {

@@ -792,7 +792,7 @@ final class PrayerCollectionView: NSCollectionView {
     guard let window else { return }
     for name in [NSWindow.didBecomeKeyNotification, NSWindow.didResignKeyNotification] {
       windowObservers.append(NotificationCenter.default.addObserver(forName: name, object: window, queue: .main) { [weak self] _ in
-        Task { @MainActor in self?.refreshAppearance() }
+        Task { @MainActor [weak self] in self?.refreshAppearance() }
       })
     }
   }

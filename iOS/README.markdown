@@ -14,13 +14,31 @@ The apps are in closed testing — see [prosary.app](https://prosary.app) to joi
 
 ## Requirements
 
-- Xcode 26+
+- Xcode 27 or later, with the 27 SDKs for the destinations being built
 - iOS 17 / macOS 14 / visionOS 1 minimum deployment target
 
 ## Building
 
 Open `Prosary.xcodeproj` and run the `Prosary` scheme on an iOS Simulator, "My Mac", or Vision Pro
 destination.
+
+The app, widgets, and tests use `SDKROOT = auto`, so the selected Xcode supplies the SDK.
+Installing System 27 alone does not change the build SDK. For command-line builds, select
+Xcode 27 or later in **Xcode → Settings → Locations → Command Line Tools**, or set
+`DEVELOPER_DIR` to that installation's `Contents/Developer` directory. Run `xcodebuild -version`
+and `xcodebuild -showsdks` to confirm Xcode 27 and the required 27 SDKs before building.
+The `.xcode-version` file declares the toolchain version for tools that support it; it does
+not switch Xcode itself.
+
+Apple CI runs in Xcode Cloud. Set the workflow's Xcode version to Xcode 27 or later in
+App Store Connect as well; the repository's `.xcode-version` does not configure that workflow.
+Building against the 27 SDKs keeps the existing minimum OS versions listed above. Guard any
+newer API calls with availability checks when they exceed those minimums.
+
+The shared `Prosary` scheme runs each test target serially, including when tests are launched
+through Xcode's MCP tools. Keep this setting: the suites share prayer-pack and settings state.
+The unit-test target uses the app's `MainActor` default isolation, and in-memory SwiftData
+test containers must explicitly disable CloudKit.
 
 The Mac target keeps its macOS 14 deployment floor and explicitly declines UI compatibility mode.
 Build it with Xcode 27 to review the exact macOS 27 appearance; SwiftUI's standard window, sidebar,

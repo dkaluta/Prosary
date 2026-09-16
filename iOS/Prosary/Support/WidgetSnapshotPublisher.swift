@@ -95,7 +95,11 @@ enum WidgetPrayerProjection {
       var day = prayer.dayIndex ?? 0
       if let days = definition.days, days.count > 1, (definition.dayProgression ?? .series) == .series {
         row.progressExpiresAtMidnight = true
-        let run = (seriesRun ?? MultiDayRuns.run)(seriesID)
+        let run = if let seriesRun {
+          seriesRun(seriesID)
+        } else {
+          MultiDayRuns.run(for: seriesID)
+        }
         switch run?.resumption(dayCount: days.count, on: now) ?? .start {
         case .start: day = 0
         case .resume(let next): day = next
