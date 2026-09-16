@@ -3,10 +3,13 @@ package com.dkaluta.prosary.ui.home
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -478,21 +481,22 @@ fun HomeScreen(
                 .testTag("prayCards"),
         ) {
             item(key = "todayNavigation", span = { GridItemSpan(maxLineSpan) }) {
-                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), verticalAlignment = Alignment.CenterVertically) {
                     IconButton(
                         onClick = { selectedEpochDay = selectedDate.minusDays(1).toEpochDay() },
                         enabled = selectedDate > TodayDateSelection.earliest,
-                        modifier = Modifier.testTag("todayYesterday"),
+                        modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight().testTag("todayYesterday"),
                     ) {
                         Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = stringResource(R.string.home_today_yesterday))
                     }
-                    TextButton(onClick = { showsDatePicker = true }, modifier = Modifier.weight(1f).testTag("todayChooseDate")) {
+                    TextButton(onClick = { showsDatePicker = true },
+                        modifier = Modifier.weight(1f).heightIn(min = 48.dp).fillMaxHeight().testTag("todayChooseDate")) {
                         Text(dateLabel, textAlign = TextAlign.Center)
                     }
                     IconButton(
                         onClick = { selectedEpochDay = selectedDate.plusDays(1).toEpochDay() },
                         enabled = selectedDate < TodayDateSelection.latest,
-                        modifier = Modifier.testTag("todayTomorrow"),
+                        modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight().testTag("todayTomorrow"),
                     ) {
                         Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = stringResource(R.string.home_today_tomorrow))
                     }

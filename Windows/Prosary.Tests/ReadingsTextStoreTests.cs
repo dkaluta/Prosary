@@ -63,6 +63,43 @@ public class ReadingsTextStoreTests
     }
 
     [Fact]
+    public void AvailableEditionsRequireACompletePassageInTheExactScope()
+    {
+        var store = new ReadingsTextStore(() => Fixture);
+        Assert.Equal(["fixture-en"], store.AvailableEditions("daily", "John 3:16").Select(edition => edition.Id));
+        Assert.Empty(store.AvailableEditions("torah", "John 3:16"));
+        Assert.Empty(store.AvailableEditions("daily", "John 3:16 "));
+        Assert.Empty(store.AvailableEditions("daily", "Damaged"));
+        var incompletePair = new ReadingsTextStore(() => PairedFixture.Replace("\"transliteratedText\":\"ܐܒܓ\"", "\"transliteratedText\":\"\""));
+        Assert.Empty(incompletePair.AvailableEditions("daily", "Fixture 1:1"));
+    }
+
+    [Fact]
+    public void UnavailableReaderOffersAvailableEditionsWithoutChangingThePreferenceUntilChosen()
+    {
+        var previous = AppSettings.ReadingsEditionId;
+        try
+        {
+            AppSettings.SetReadingsEditionId("fixture-he");
+            var store = new ReadingsTextStore(() => Fixture);
+            var row = new ReadingPassageViewModel(store, store.ResolveEdition("fixture-he", "en"), "daily",
+                new ReadingCitation("gospel", "Jn 3:16", "John 3:16"), "en", "context", "configuration");
+            Assert.Empty(row.AvailableEditions);
+            row.IsExpanded = true;
+            Assert.True(row.IsUnavailable);
+            Assert.True(row.HasAvailableEditions);
+            Assert.Equal("fixture-he", AppSettings.ReadingsEditionId);
+            var choice = Assert.Single(row.AvailableEditions);
+            Assert.Equal("English fixture", choice.Label);
+            row.SelectedAvailableEdition = new ReadingEditionChoice("fixture-tl", "Not available");
+            Assert.Equal("fixture-he", AppSettings.ReadingsEditionId);
+            row.SelectedAvailableEdition = choice;
+            Assert.Equal("fixture-en", AppSettings.ReadingsEditionId);
+        }
+        finally { AppSettings.SetReadingsEditionId(previous); }
+    }
+
+    [Fact]
     public void WholeVerseMetadataIsOptionalAndMatchesTheOriginalScopedCitation()
     {
         var legacy = new ReadingsTextStore(() => Fixture);

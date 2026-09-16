@@ -4,9 +4,11 @@
 # ///
 """Appointment-scope, mapper-integration and pinned-source regression tests."""
 from copy import deepcopy
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
+import re
 import tempfile
 import unittest
 from types import SimpleNamespace
@@ -33,6 +35,78 @@ PSALM = "daily|Psalm 103:1–2; 103:3–4; 103:9–10; 103:11–12"
 
 
 class SourceNumberingReviewTests(unittest.TestCase):
+    def test_every_bundled_psalm_has_an_exact_roman_numbering_review(self):
+        keys = {key: contexts for key, contexts in builder.appointments().items()
+                if key.startswith('daily|Psalm ')}
+        self.assertEqual(len(keys), 103)
+        for key, contexts in keys.items():
+            with self.subTest(key=key):
+                self.assertEqual(contexts, {'roman'})
+                review = reviewed_numbering(key, contexts)
+                self.assertIsNotNone(review)
+                self.assertIsNone(reviewed_numbering(key, {'roman', 'syriac'}))
+                code = review['evidence']['readingCode']
+                self.assertTrue(all(part.startswith('Ps ') for part in code.split('#')))
+                source_citation = 'Psalm ' + '; '.join(
+                    re.sub(r'^(\d+),', r'\1:', part.removeprefix('Ps ')) for part in code.split('#'))
+                self.assertEqual(builder.parse_citation(source_citation, expand_subverses=True),
+                                 builder.parse_citation(key.split('|', 1)[1], expand_subverses=True))
+
+    def test_hebrew_psalm_review_cannot_change_another_book(self):
+        data = json.loads((TOOLS / 'reading-source-numbering-reviews.json').read_text())
+        data['appointments'][SIRACH]['sourceSystem'] = 'hebrew-psalms'
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'reviews.json'
+            path.write_text(json.dumps(data))
+            with self.assertRaisesRegex(ValueError, 'cannot cover another book'):
+                load_reviews(path)
+
+    def test_shipped_psalms_are_available_in_every_complete_psalm_edition(self):
+        data = json.loads((builder.DATA / 'readings-texts.json').read_text())
+        expected = {'douay-rheims-1899', 'masoretic-delitzsch', 'synodal-1876',
+                    'ang-dating-biblia-1905', 'crampon-1923', 'kulish-1905'}
+        for key in builder.appointments():
+            if not key.startswith('daily|Psalm '):
+                continue
+            with self.subTest(key=key):
+                self.assertEqual(set(data['passages'][key]), expected)
+                for verses in data['passages'][key].values():
+                    self.assertTrue(verses)
+                    self.assertTrue(all(row['text'].strip() for row in verses))
+        key = 'daily|Psalm 33:2–3; 33:4–5; 33:12; 33:22'
+        self.assertEqual([(row['chapter'], row['verse'])
+                          for row in data['passages'][key]['douay-rheims-1899']],
+                         [(32, verse) for verse in (2, 3, 4, 5, 12, 22)])
+
+    def test_cached_hebrew_psalm_publications_match_reviewed_source_markers(self):
+        reviews = [row for row in load_reviews().values() if row['sourceSystem'] == 'hebrew-psalms']
+        source = next(row for row in json.loads(builder.LOCK.read_text())['sources'] if row['id'] == 'hbo')
+        cache = builder.CACHE / 'psalm-appointments-2026'
+        files = {row['evidence']['appointmentURL'].rsplit('/', 1)[-1]: row for row in reviews}
+        if not (builder.CACHE / source['cache']).exists() or any(
+                not (cache / f'{date}-HE.json').exists() for date in files):
+            self.skipTest('Pinned HE Psalm publication or Masoretic source caches are absent; offline scope and corpus tests remain mandatory')
+        corpus = builder.load_source(source)
+        normalize = lambda text: ''.join(char for char in text if '\u05d0' <= char <= '\u05ea')
+        checked = 0
+        for date, review in files.items():
+            evidence = review['evidence']
+            raw = (cache / f'{date}-HE.json').read_bytes()
+            self.assertEqual(hashlib.sha256(raw).hexdigest(), evidence['appointmentSHA256'])
+            self.assertEqual(evidence['corroboratingSHA256'], source['sha256'])
+            psalm = next(row for row in json.loads(raw)['data']['readings']
+                         if row.get('reading_code') == evidence['readingCode'])
+            for marker in re.finditer(r'\[\[Ps (\d+),(\d+)[^\]]*\]\](.*?)(?=\[\[|$)', psalm['text'], re.S):
+                chapter, verse = int(marker[1]), int(marker[2])
+                excerpt = normalize(marker[3])
+                original = normalize(corpus[('PSA', chapter)][verse])
+                self.assertTrue(excerpt)
+                if (chapter, verse) == (117, 1):
+                    original = original.replace('האמים', 'האמות')  # Documented source spelling, never reader text.
+                self.assertIn(excerpt, original, (date, chapter, verse))
+                checked += 1
+        self.assertGreater(checked, 600)
+
     def test_review_requires_exact_key_and_every_calendar_context(self):
         for key in (SIRACH, PSALM):
             self.assertEqual(reviewed_numbering(key, {"roman"})["sourceSystem"], "nabre")

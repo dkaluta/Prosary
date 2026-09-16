@@ -64,6 +64,29 @@ class ReadingTextStoreTest {
         }
     }
 
+    @Test fun availableEditionsRequireACompletePassageInTheExactScope() {
+        val store = ReadingTextStore { name ->
+            when (name) {
+                "readings-editions" -> """{"schemaVersion":1,"editions":[
+                    {"id":"missing","languageCode":"en","name":"Missing","attribution":"Credit","sourceURL":"https://example.org"},
+                    {"id":"complete","languageCode":"en","name":"Complete","attribution":"Credit","sourceURL":"https://example.org"},
+                    {"id":"damaged","languageCode":"en","name":"Damaged","attribution":"Credit","sourceURL":"https://example.org"},
+                    {"id":"empty","languageCode":"en","name":"Empty","attribution":"Credit","sourceURL":"https://example.org"},
+                    {"id":"paired","languageCode":"arc","name":"Paired","attribution":"Credit","sourceURL":"https://example.org","textScript":"Hebr","transliteratedTextScript":"Syrc"}]}"""
+                else -> """{"schemaVersion":1,"passages":{"daily|Fixture 1:1":{
+                    "complete":[{"chapter":1,"verse":1,"text":"Complete text"}],
+                    "damaged":[{"chapter":1,"verse":1,"text":" "}], "empty":[],
+                    "paired":[{"chapter":1,"verse":1,"text":"בדיקה"}],
+                    "unlisted":[{"chapter":1,"verse":1,"text":"Unknown edition"}]}}}"""
+            }.byteInputStream()
+        }
+        val citation = ReadingCitation("reading", "Fixture", "Fixture 1:1")
+        assertEquals(listOf("complete"), store.availableEditions(citation).map { it.id })
+        assertTrue(store.availableEditions(citation, isTorah = true).isEmpty())
+        assertTrue(store.availableEditions(citation.copy(full = "Fixture 1:1 ")).isEmpty())
+        assertNull(store.passage(citation, "missing"))
+    }
+
     @Test fun pairedAramaicEditionSelectsAuthoredScriptsAndRejectsIncompletePairs() {
         fun store(alternate: String?) = ReadingTextStore { name ->
             when (name) {
@@ -167,6 +190,17 @@ class ReadingTextStoreTest {
         assertEquals(listOf("27:30") + (1..7).map { "28:$it" }, french.verses.map { "${it.chapter}:${it.verse}" })
         assertTrue(french.verses.all { it.text.isNotBlank() })
         assertNull(store.passage(ReadingCitation("reading", "Sirach", cases[0].first), "masoretic-delitzsch"))
+    }
+
+    @Test fun bundledSeptemberSixteenthPsalmOpensWithTheSelectedEditionsNumbering() {
+        val store = bundledStore()
+        val citation = ReadingCitation("psalm", "Ps. 33", "Psalm 33:2–3; 33:4–5; 33:12; 33:22")
+        val passage = requireNotNull(store.passage(citation, "douay-rheims-1899"))
+        assertEquals(listOf(2, 3, 4, 5, 12, 22), passage.verses.map { it.verse })
+        assertTrue(passage.verses.all { it.chapter == 32 && it.text.isNotBlank() })
+        assertEquals(listOf("ang-dating-biblia-1905", "crampon-1923", "douay-rheims-1899",
+            "kulish-1905", "masoretic-delitzsch", "synodal-1876"),
+            store.availableEditions(citation).map { it.id }.sorted())
     }
 
     @Test fun bundledOldJesuitArabicOpensReviewedPassagesWithoutBorrowingMissingText() {

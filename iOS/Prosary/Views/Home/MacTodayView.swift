@@ -132,6 +132,7 @@ struct MacTodayView: View {
       Spacer(minLength: 0)
       Button { dateSelection.move(by: -1) } label: {
         Label(label("home.today.previousDay", "Previous Day"), systemImage: "chevron.backward")
+          .prosaryDateControlLabel()
       }
       .labelStyle(.iconOnly)
       .disabled(!dateSelection.canMoveBackward)
@@ -142,6 +143,7 @@ struct MacTodayView: View {
           .fontWeight(.semibold)
           .multilineTextAlignment(.center)
           .fixedSize(horizontal: false, vertical: true)
+          .prosaryDateControlLabel()
       }
       .help(label("home.today.chooseDate", "Choose a date"))
       .accessibilityHint(label("home.today.chooseDate", "Choose a date"))
@@ -149,17 +151,21 @@ struct MacTodayView: View {
       .popover(isPresented: $showsDatePicker) { datePopover }
       Button { dateSelection.move(by: 1) } label: {
         Label(label("home.today.nextDay", "Next Day"), systemImage: "chevron.forward")
+          .prosaryDateControlLabel()
       }
       .labelStyle(.iconOnly)
       .disabled(!dateSelection.canMoveForward)
       .help(label("home.today.nextDay", "Next Day"))
       .accessibilityIdentifier("macToday.nextDay")
       Spacer(minLength: 0)
-      Button(label("home.today.today", "Today")) { chooseDate(Date()) }
+      Button { chooseDate(Date()) } label: {
+        Text(label("home.today.today", "Today")).prosaryDateControlLabel()
+      }
         .disabled(isToday)
         .accessibilityIdentifier("macToday.reset")
       Button { showsOptions = true } label: {
         Label(label("settings.title", "Settings"), systemImage: "slider.horizontal.3")
+          .prosaryDateControlLabel()
       }
       .labelStyle(.iconOnly)
       .help(label("settings.todayHeader", "Today"))
@@ -168,28 +174,17 @@ struct MacTodayView: View {
     }
     .prosaryNavigationButtonStyle()
     .controlSize(.regular)
+    .fixedSize(horizontal: false, vertical: true)
   }
 
   private var datePopover: some View {
-    VStack(alignment: .leading, spacing: 12) {
-      DatePicker(label("home.today.chooseDate", "Choose a date"),
-                 selection: Binding(get: { selectedDate }, set: chooseDate),
-                 in: MacTodayDateSelection.pickerRange(), displayedComponents: .date)
-        .datePickerStyle(.graphical)
-        .labelsHidden()
-        .environment(\.calendar, Calendar(identifier: .gregorian))
-        .accessibilityIdentifier("macToday.datePicker")
-      HStack {
-        Button(label("home.today.today", "Today")) { chooseDate(Date()) }
-          .disabled(isToday)
-        Spacer()
-        Button(label("common.done", "Done")) { showsDatePicker = false }
-          .keyboardShortcut(.defaultAction)
-      }
+    ReadingDatePickerPopover(selection: Binding(get: { selectedDate }, set: chooseDate),
+                             range: MacTodayDateSelection.pickerRange(),
+                             pickerIdentifier: "macToday.datePicker",
+                             todayIdentifier: "macToday.dateReset",
+                             doneIdentifier: "macToday.dateDone") {
+      showsDatePicker = false
     }
-    .buttonStyle(.bordered)
-    .padding(16)
-    .frame(width: 320)
   }
 
   private var optionsPopover: some View {

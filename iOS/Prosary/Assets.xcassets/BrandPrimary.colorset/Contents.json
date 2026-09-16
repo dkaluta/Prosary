@@ -5,12 +5,24 @@
         "color-space": "srgb",
         "components": {
           "alpha": "1.000",
+          "blue": "0xB5",
+          "green": "0xA8",
+          "red": "0xD8"
+        }
+      },
+      "idiom": "universal"
+    },
+    {
+      "color": {
+        "color-space": "srgb",
+        "components": {
+          "alpha": "1.000",
           "blue": "0x3D",
           "green": "0x1F",
           "red": "0x7A"
         }
       },
-      "idiom": "universal"
+      "idiom": "iphone"
     },
     {
       "appearances": [
@@ -28,9 +40,27 @@
           "red": "0xD8"
         }
       },
-      "idiom": "universal"
+      "idiom": "iphone"
     },
     {
+      "color": {
+        "color-space": "srgb",
+        "components": {
+          "alpha": "1.000",
+          "blue": "0x3D",
+          "green": "0x1F",
+          "red": "0x7A"
+        }
+      },
+      "idiom": "ipad"
+    },
+    {
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "dark"
+        }
+      ],
       "color": {
         "color-space": "srgb",
         "components": {
@@ -40,7 +70,37 @@
           "red": "0xD8"
         }
       },
-      "idiom": "vision"
+      "idiom": "ipad"
+    },
+    {
+      "color": {
+        "color-space": "srgb",
+        "components": {
+          "alpha": "1.000",
+          "blue": "0x3D",
+          "green": "0x1F",
+          "red": "0x7A"
+        }
+      },
+      "idiom": "mac"
+    },
+    {
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "dark"
+        }
+      ],
+      "color": {
+        "color-space": "srgb",
+        "components": {
+          "alpha": "1.000",
+          "blue": "0xB5",
+          "green": "0xA8",
+          "red": "0xD8"
+        }
+      },
+      "idiom": "mac"
     }
   ],
   "info": {

@@ -27,6 +27,7 @@ public partial class ReadingPassageViewModel : ObservableObject
     public string TextNotice => Loc.Tr("readings_text_notice", "Bible text for the cited passage. The wording may differ from the Mass reading.");
     public string WholeVersesNotice => Loc.Tr("readings_whole_verses_notice", "Full verses are shown where the reading cites only part of a verse.");
     public string SourceLabel => Loc.Tr("readings_source", "Source and Edition");
+    public string EditionLabel => Loc.Tr("readings_edition", "Bible Edition");
     public string Attribution => _edition?.Attribution ?? "";
     public Uri? SourceUri => _edition?.SourceUri;
     public bool HasSource => SourceUri is not null;
@@ -64,6 +65,14 @@ public partial class ReadingPassageViewModel : ObservableObject
     private bool _hasPassage;
     public bool IsUnavailable => !HasPassage;
 
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HasAvailableEditions))]
+    private IReadOnlyList<ReadingEditionChoice> _availableEditions = [];
+    public bool HasAvailableEditions => AvailableEditions.Count > 0;
+
+    [ObservableProperty]
+    private ReadingEditionChoice? _selectedAvailableEdition;
+
     public ReadingPassageViewModel(ReadingsTextStore store, ScriptureEdition? edition, string scope,
         ReadingCitation citation, string interfaceLanguage, string contextKey, string configurationKey)
     {
@@ -83,12 +92,20 @@ public partial class ReadingPassageViewModel : ObservableObject
         var passage = _edition is null ? null : _store.LoadPassage(_scope, _rawCitation, _edition.Id);
         _verses = passage?.Verses ?? [];
         HasPassage = _verses.Count > 0;
+        AvailableEditions = HasPassage ? [] : _store.AvailableEditions(_scope, _rawCitation)
+            .Select(edition => new ReadingEditionChoice(edition.Id, edition.Name)).ToList();
         HasScriptToggle = HasPassage && _edition?.HasAramaicScripts == true;
         IncludesWholeVerses = passage?.IncludesWholeVerses ?? false;
         RefreshDisplayedText();
     }
 
     partial void OnScriptOverrideChanged(string? value) => RefreshDisplayedText();
+
+    partial void OnSelectedAvailableEditionChanged(ReadingEditionChoice? value)
+    {
+        if (value is not null && AvailableEditions.Any(edition => edition.Id == value.Id))
+            AppSettings.SetReadingsEditionId(value.Id);
+    }
 
     [RelayCommand]
     private void ToggleScript()

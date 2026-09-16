@@ -60,6 +60,9 @@ public sealed class ReadingsTextStore
 
     public IReadOnlyList<ScriptureEdition> Editions => _editions.Value;
 
+    public IReadOnlyList<ScriptureEdition> AvailableEditions(string scope, string rawCitation) =>
+        Editions.Where(edition => LoadPassage(scope, rawCitation, edition.Id) is not null).ToList();
+
     public ScriptureEdition? ResolveEdition(string? selectedId, string interfaceLanguage) =>
         !string.IsNullOrEmpty(selectedId)
             ? Editions.FirstOrDefault(edition => edition.Id == selectedId)

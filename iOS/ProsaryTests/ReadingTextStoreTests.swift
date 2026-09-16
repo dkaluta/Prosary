@@ -50,6 +50,18 @@ final class ReadingTextStoreTests: XCTestCase {
     XCTAssertNotNil(data.passage(citation: "Genesis 1:1", isTorah: true, editionID: "hebrew"))
   }
 
+  func testAvailableEditionsOnlyOffersCompleteTextInTheRequestedContext() {
+    let verse = ReadingTextVerse(chapter: 1, verse: 1, text: "Synthetic fixture text")
+    let data = ReadingTextDataset(schemaVersion: 1, editions: [english, hebrew],
+      passages: ["daily|Psalm 1:1": ["english": [verse], "hebrew": []],
+                 "torah|Psalm 1:1": ["hebrew": [verse]]])
+    XCTAssertEqual(data.availableEditions(citation: "Psalm 1:1", isTorah: false), [english])
+    XCTAssertEqual(data.availableEditions(citation: "Psalm 1:1", isTorah: true), [hebrew])
+    XCTAssertTrue(data.availableEditions(citation: "Psalm 2:1", isTorah: false).isEmpty)
+    XCTAssertNil(data.passage(citation: "Psalm 1:1", isTorah: false, editionID: "hebrew"),
+                 "Offering another edition must never silently substitute it")
+  }
+
   func testWholeVerseMetadataDecodesAndKeepsOriginalCitationAndContext() throws {
     let payload = #"{"schemaVersion":1,"editions":[{"id":"fixture","languageCode":"en","name":"Fixture","attribution":"Fixture","sourceURL":"https://example.com"}],"passages":{"daily|John 3:16a":{"fixture":[{"chapter":3,"verse":16,"text":"Whole fixture verse"}]},"torah|John 3:16a":{"fixture":[{"chapter":3,"verse":16,"text":"Context fixture"}]}},"wholeVersePassages":["daily|John 3:16a"]}"#
     let data = try JSONDecoder().decode(ReadingTextDataset.self, from: Data(payload.utf8))
@@ -75,6 +87,15 @@ final class ReadingTextStoreTests: XCTestCase {
     let gospel = await store.passage(citation: "Luke 6:27–38", isTorah: false, editionID: "douay-rheims-1899")
     XCTAssertEqual(gospel?.includesWholeVerses, false)
     XCTAssertEqual(gospel?.verses.count, 12)
+  }
+
+  func testBundledSeptember16PsalmUsesDouayRheimsNumbers() async throws {
+    let result = await ReadingTextStore().passage(citation: "Psalm 33:2–3; 33:4–5; 33:12; 33:22",
+                                                 isTorah: false, editionID: "douay-rheims-1899")
+    let passage = try XCTUnwrap(result)
+    XCTAssertEqual(passage.verses.map(\.verse), [2, 3, 4, 5, 12, 22])
+    XCTAssertTrue(passage.verses.allSatisfy { $0.chapter == 32 })
+    XCTAssertTrue(passage.verses.first?.text.contains("harp") == true)
   }
 
   func testBundledSeptember13ReadingsUseTheSelectedEditionsNumbering() async throws {

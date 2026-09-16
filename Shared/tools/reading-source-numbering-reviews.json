@@ -2,7 +2,9 @@
   "schemaVersion": 1,
   "appointments": {
     "daily|Sirach 27:30; 28:1–7": {
-      "contexts": ["roman"],
+      "contexts": [
+        "roman"
+      ],
       "sourceSystem": "nabre",
       "reviewedOn": "2026-09-12",
       "evidence": {
@@ -16,7 +18,9 @@
       }
     },
     "daily|Psalm 103:1–2; 103:3–4; 103:9–10; 103:11–12": {
-      "contexts": ["roman"],
+      "contexts": [
+        "roman"
+      ],
       "sourceSystem": "nabre",
       "reviewedOn": "2026-09-12",
       "evidence": {
@@ -27,6 +31,1638 @@
         "corroboratingSHA256": "9cb914ce4cca6d8d5a286ef661a2d8fd30bd1628d39d40689e48dbcccff710e1",
         "corroboratingReference": "Psalm 103:1-2, 3-4, 9-10, 11-12",
         "scope": "The original Evangelizo HE reference and the same-date USCCB appointment identify the same Psalm and ordered verse ranges. NABRE's published Psalms introduction explicitly identifies its verse numbering as Hebrew numbering. This review applies only to this exact citation in the Roman calendar, including repeated occurrences; it does not infer a convention from the interface language. Only references and source hashes are retained."
+      }
+    },
+    "daily|Psalm 69:5; 69:8–10; 69:14": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-07-31",
+        "appointmentSHA256": "f10d993d5c35daaf986b13cf8d2766cb7ccdb31c34b00eea614507359cbefcf4",
+        "readingCode": "Ps 69,5-5#Ps 69,8-10#Ps 69,14-14",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 69:5; 69:8–10; 69:14",
+        "scope": "Exact Roman appointment only. The original HE publication has 5 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 5 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 69:15–16; 69:30–31; 69:33–34": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-01",
+        "appointmentSHA256": "d6be05be9ed7e9f9dbc76126f93df9ce312fec6b55d242ed43937986fa20018e",
+        "readingCode": "Ps 69,15-16#Ps 69,30-31#Ps 69,33-34",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 69:15–16; 69:30–31; 69:33–34",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 145:8–9; 145:15–16; 145:17–18": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-02",
+        "appointmentSHA256": "421524734042cb9b346578c9fd63b1b69100c0f436a9f00b38da575762410842",
+        "readingCode": "Ps 145,8-9#Ps 145,15-16#Ps 145,17-18",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 145:8–9; 145:15–16; 145:17–18",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 119:29–29; 119:43–43; 119:79–79; 119:80–80; 119:95–95; 119:102–102": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-03",
+        "appointmentSHA256": "19de2b854b181f7cb75fb87a9fa7f56500e415fb6c32aa8796995ea494bb7f09",
+        "readingCode": "Ps 119,29-29#Ps 119,43-43#Ps 119,79-79#Ps 119,80-80#Ps 119,95-95#Ps 119,102-102",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 119:29–29; 119:43–43; 119:79–79; 119:80–80; 119:95–95; 119:102–102",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 102:16–18; 102:19–21; 102:29–29; 102:22–23": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-04",
+        "appointmentSHA256": "2608f6087eab191e7fdfd64b7098d867422515c5e61fbf2b59e03d64b7cb4f44",
+        "readingCode": "Ps 102,16-18#Ps 102,19-21#Ps 102,29-29#Ps 102,22-23",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 102:16–18; 102:19–21; 102:29–29; 102:22–23",
+        "scope": "Exact Roman appointment only. The original HE publication has 9 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 9 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 97:1–2; 97:5–6; 97:9–9": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-06",
+        "appointmentSHA256": "b4da455feaba39d33d1222b5076e037889e3f0fcd46c643106b98a86dc38c8c9",
+        "readingCode": "Ps 97,1-2#Ps 97,5-6#Ps 97,9-9",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 97:1–2; 97:5–6; 97:9–9",
+        "scope": "Exact Roman appointment only. The original HE publication has 5 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 5 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 9:8–9; 9:10–11; 9:12–13": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-08",
+        "appointmentSHA256": "4ca8317c62b6ed73e99ad1dc46c2c2c803254c63b1c175b3798669daa9a71390",
+        "readingCode": "Ps 9,8-9#Ps 9,10-11#Ps 9,12-13",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 9:8–9; 9:10–11; 9:12–13",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 85:9ab–10; 85:11–12; 85:13–14": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-09",
+        "appointmentSHA256": "0d0e0a78709312c43c793f1a768e46d63a300b2601e8f87bbd0dba932c60d356",
+        "readingCode": "Ps 85,9ab-10#Ps 85,11-12#Ps 85,13-14",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 85:9ab–10; 85:11–12; 85:13–14",
+        "scope": "Exact Roman appointment only. The original HE publication has 7 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 7 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 112:1–2; 112:5–6; 112:7–8; 112:9–9": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-10",
+        "appointmentSHA256": "bfb051630479617844a9eb9852c7b9864e106903d0ea64966ed2187c423e371d",
+        "readingCode": "Ps 112,1-2#Ps 112,5-6#Ps 112,7-8#Ps 112,9-9",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 112:1–2; 112:5–6; 112:7–8; 112:9–9",
+        "scope": "Exact Roman appointment only. The original HE publication has 7 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 7 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 119:14–14; 119:24–24; 119:72–72; 119:103–103; 119:111–111; 119:131–131": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-11",
+        "appointmentSHA256": "94ff813e4dcbdb80b4d09cef0bcd99f1d161befab58a467ee9e3474cfd39fba3",
+        "readingCode": "Ps 119,14-14#Ps 119,24-24#Ps 119,72-72#Ps 119,103-103#Ps 119,111-111#Ps 119,131-131",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 119:14–14; 119:24–24; 119:72–72; 119:103–103; 119:111–111; 119:131–131",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 113:1–2; 113:3–4; 113:5–6": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-12",
+        "appointmentSHA256": "cdbbd2c71c812aec4a291d1e4e1b8fb742357b8ff6315885fd10f1d34534c7f3",
+        "readingCode": "Ps 113,1-2#Ps 113,3-4#Ps 113,5-6",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 113:1–2; 113:3–4; 113:5–6",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 78:56–57; 78:58–59; 78:61–62": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-13",
+        "appointmentSHA256": "81a83c5ccd9b0e49598fd0c0d4eee2c8c453219286e71106e8d1f06b09880d57",
+        "readingCode": "Ps 78,56-57#Ps 78,58-59#Ps 78,61-62",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 78:56–57; 78:58–59; 78:61–62",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 45:10bc–10bc; 45:11–11; 45:12ab–12ab; 45:16–16": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-15",
+        "appointmentSHA256": "ebfb21704b55b5530d8a56f56fdeabf35c2614fe9d88b8bc3fa8a4e2c3db9162",
+        "readingCode": "Ps 45,10bc-10bc#Ps 45,11-11#Ps 45,12ab-12ab#Ps 45,16-16",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 45:10bc–10bc; 45:11–11; 45:12ab–12ab; 45:16–16",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 67:2–3; 67:5–5; 67:6–6; 67:8–8": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-16",
+        "appointmentSHA256": "233fa3a55183f46f02932e1a61bb97783c6a03886d51fc94c7d5972812690ed9",
+        "readingCode": "Ps 67,2-3#Ps 67,5-5#Ps 67,6-6#Ps 67,8-8",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 67:2–3; 67:5–5; 67:6–6; 67:8–8",
+        "scope": "Exact Roman appointment only. The original HE publication has 5 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 5 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 23:1–3a; 23:3b–4; 23:5–5; 23:6–6": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-19",
+        "appointmentSHA256": "83d4ddd7b4ffce6ef9e46407b733d246886656fd8ac9791c20454fc4bdd85d0b",
+        "readingCode": "Ps 23,1-3a#Ps 23,3b-4#Ps 23,5-5#Ps 23,6-6",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 23:1–3a; 23:3b–4; 23:5–5; 23:6–6",
+        "scope": "Exact Roman appointment only. The original HE publication has 7 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 7 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 51:12–13; 51:14–15; 51:18–19": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-20",
+        "appointmentSHA256": "13679e9cea9916c8fb4f547208df64f81fdd41757b5b52750974bbff9b715fdb",
+        "readingCode": "Ps 51,12-13#Ps 51,14-15#Ps 51,18-19",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 51:12–13; 51:14–15; 51:18–19",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 107:2–3; 107:4–5; 107:6–7; 107:8–9": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-21",
+        "appointmentSHA256": "105c62f881dfd8be224ab1561617ca511598c7a9cefbda053353474f63e581d7",
+        "readingCode": "Ps 107,2-3#Ps 107,4-5#Ps 107,6-7#Ps 107,8-9",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 107:2–3; 107:4–5; 107:6–7; 107:8–9",
+        "scope": "Exact Roman appointment only. The original HE publication has 8 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 8 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 138:1–2a; 138:2bc–3; 138:6–6; 138:8bc–8bc": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-23",
+        "appointmentSHA256": "107dbe3477c2169d3d5bee4457d76fbae3f1bd3da4582240349204cbb3151e7b",
+        "readingCode": "Ps 138,1-2a#Ps 138,2bc-3#Ps 138,6-6#Ps 138,8bc-8bc",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 138:1–2a; 138:2bc–3; 138:6–6; 138:8bc–8bc",
+        "scope": "Exact Roman appointment only. The original HE publication has 8 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 8 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 145:10–11; 145:12–13ab; 145:17–18": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-24",
+        "appointmentSHA256": "feb8474332ae14d2b48d1bc4e308550a98822448d088dbd333fd717e4af39595",
+        "readingCode": "Ps 145,10-11#Ps 145,12-13ab#Ps 145,17-18",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 145:10–11; 145:12–13ab; 145:17–18",
+        "scope": "Exact Roman appointment only. The original HE publication has 7 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 7 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 96:10–10; 96:11–12a; 96:12b–13": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-25",
+        "appointmentSHA256": "dbb2fe8f47d3690bb5070b832012a46e1fb986144a9e7430ea6a46664dc53eba",
+        "readingCode": "Ps 96,10-10#Ps 96,11-12a#Ps 96,12b-13",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 96:10–10; 96:11–12a; 96:12b–13",
+        "scope": "Exact Roman appointment only. The original HE publication has 5 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 5 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 128:1–2; 128:4–5": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-26",
+        "appointmentSHA256": "87c100bd13cc6b1a04a5580b2a8871686cfaaf7f85d8ec0fa2edb6f48ddbeeba",
+        "readingCode": "Ps 128,1-2#Ps 128,4-5",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 128:1–2; 128:4–5",
+        "scope": "Exact Roman appointment only. The original HE publication has 4 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 4 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 145:2–3; 145:4–5; 145:6–7": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-27",
+        "appointmentSHA256": "018e2957d0cf9299d87bc2c8e729b61cdb27acf34255360882cc8c9e4b8ae27c",
+        "readingCode": "Ps 145,2-3#Ps 145,4-5#Ps 145,6-7",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 145:2–3; 145:4–5; 145:6–7",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 33:1–2; 33:4–5; 33:10ab–10ab; 33:11–11": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-28",
+        "appointmentSHA256": "c789986e24bb631113f3f05f28dde09edc54be7529e450351f54ec105eaa318f",
+        "readingCode": "Ps 33,1-2#Ps 33,4-5#Ps 33,10ab-10ab#Ps 33,11-11",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 33:1–2; 33:4–5; 33:10ab–10ab; 33:11–11",
+        "scope": "Exact Roman appointment only. The original HE publication has 7 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 7 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 71:1–2; 71:3–4a; 71:5–6ab; 71:15ab–15ab; 71:17–17": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-29",
+        "appointmentSHA256": "1988925db2022bc504f0dd98559b597996c76568fbdd9a6054c8a08f6b18e154",
+        "readingCode": "Ps 71,1-2#Ps 71,3-4a#Ps 71,5-6ab#Ps 71,15ab-15ab#Ps 71,17-17",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 71:1–2; 71:3–4a; 71:5–6ab; 71:15ab–15ab; 71:17–17",
+        "scope": "Exact Roman appointment only. The original HE publication has 10 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 10 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 63:2–2; 63:3–4; 63:5–6; 63:8–9": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-30",
+        "appointmentSHA256": "2ac176cf8befe8a71a438c13373e874343c6267563bae729b2f202ad45416c92",
+        "readingCode": "Ps 63,2-2#Ps 63,3-4#Ps 63,5-6#Ps 63,8-9",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 63:2–2; 63:3–4; 63:5–6; 63:8–9",
+        "scope": "Exact Roman appointment only. The original HE publication has 7 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 7 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 119:97–97; 119:98–98; 119:99–99; 119:100–100; 119:101–101; 119:102–102": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-08-31",
+        "appointmentSHA256": "a3a038a338965a6677f33dcf3816a21dc76e5833fc5c4b035696d4a83000d384",
+        "readingCode": "Ps 119,97-97#Ps 119,98-98#Ps 119,99-99#Ps 119,100-100#Ps 119,101-101#Ps 119,102-102",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 119:97–97; 119:98–98; 119:99–99; 119:100–100; 119:101–101; 119:102–102",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 145:8–9; 145:10–11; 145:12–13ab; 145:13cd–14": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-01",
+        "appointmentSHA256": "4f059bd45cb60dfea5f6abbcfb0c707bb8c3d567234eec20bcd76d0c35db6ad9",
+        "readingCode": "Ps 145,8-9#Ps 145,10-11#Ps 145,12-13ab#Ps 145,13cd-14",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 145:8–9; 145:10–11; 145:12–13ab; 145:13cd–14",
+        "scope": "Exact Roman appointment only. The original HE publication has 10 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 10 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 33:12–13; 33:14–15; 33:20–21": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-02",
+        "appointmentSHA256": "9ae7a04a952c99de72abc773fc1aaa4cd13ece33a32b6c10cfaefe5858839071",
+        "readingCode": "Ps 33,12-13#Ps 33,14-15#Ps 33,20-21",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 33:12–13; 33:14–15; 33:20–21",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 24:1–2; 24:3–4ab; 24:5–6": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-03",
+        "appointmentSHA256": "4441cb113398663e7f74a0c61065d2d830d32f57098ac05f2e79d61e5a01881d",
+        "readingCode": "Ps 24,1-2#Ps 24,3-4ab#Ps 24,5-6",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 24:1–2; 24:3–4ab; 24:5–6",
+        "scope": "Exact Roman appointment only. The original HE publication has 7 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 5 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 2 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 37:3–4; 37:5–6; 37:27–28; 37:39–40": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-04",
+        "appointmentSHA256": "25015bd61382519c6530203ddab6b4f7f8b92ef73fcb2e727db0f6843b76980e",
+        "readingCode": "Ps 37,3-4#Ps 37,5-6#Ps 37,27-28#Ps 37,39-40",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 37:3–4; 37:5–6; 37:27–28; 37:39–40",
+        "scope": "Exact Roman appointment only. The original HE publication has 8 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 8 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 145:17–18; 145:19–20; 145:21": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-05",
+        "appointmentSHA256": "f073260b757a11f316f8607f996d1a688d1d5c05d231250005c17f169333eac7",
+        "readingCode": "Ps 145,17-18#Ps 145,19-20#Ps 145,21-21",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 145:17–18; 145:19–20; 145:21",
+        "scope": "Exact Roman appointment only. The original HE publication has 5 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 5 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 95:1–2; 95:6–7; 95:8–9": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-06",
+        "appointmentSHA256": "2540a31496e69d278dce085c33ac9774800b7681e742a3b5cde7efe59aa55e6e",
+        "readingCode": "Ps 95,1-2#Ps 95,6-7#Ps 95,8-9",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 95:1–2; 95:6–7; 95:8–9",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 5:5–6; 5:7; 5:12": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-07",
+        "appointmentSHA256": "adbfe46b778e926a1cd3ebfd5b83f4c1103da8c991e35123bc9eb08c3882982c",
+        "readingCode": "Ps 5,5-6#Ps 5,7-7#Ps 5,12-12",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 5:5–6; 5:7; 5:12",
+        "scope": "Exact Roman appointment only. The original HE publication has 4 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 4 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 13:6ab–6ab; 13:6cd–6cd": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-08",
+        "appointmentSHA256": "3aa72390c24669382c824988d17df32ab3567807b1018b8272d8667bc7e0872f",
+        "readingCode": "Ps 13,6ab-6ab#Ps 13,6cd-6cd",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 13:6ab–6ab; 13:6cd–6cd",
+        "scope": "Exact Roman appointment only. The original HE publication has 4 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 4 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 45:11–12; 45:14–15; 45:16–17": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-09",
+        "appointmentSHA256": "1cd6593043ac0c21ada9c99b19b4b0d3a184bb55941188443af9d1217fa1a1c1",
+        "readingCode": "Ps 45,11-12#Ps 45,14-15#Ps 45,16-17",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 45:11–12; 45:14–15; 45:16–17",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 139:1–3; 139:13–14ab; 139:23–24": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-10",
+        "appointmentSHA256": "470f5c4566e506d2ac9a77e28effcddd8a9f3f7313fc264322c009fb36ba5877",
+        "readingCode": "Ps 139,1-3#Ps 139,13-14ab#Ps 139,23-24",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 139:1–3; 139:13–14ab; 139:23–24",
+        "scope": "Exact Roman appointment only. The original HE publication has 8 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 8 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 84:3; 84:4; 84:5–6; 84:12": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-11",
+        "appointmentSHA256": "3cd248d79a685ac48cc8a919f198f2ceab507314d393322ceb3fb1d4d01539e3",
+        "readingCode": "Ps 84,3-3#Ps 84,4-4#Ps 84,5-6#Ps 84,12-12",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 84:3; 84:4; 84:5–6; 84:12",
+        "scope": "Exact Roman appointment only. The original HE publication has 5 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 5 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 116:12–13; 116:17–18": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-12",
+        "appointmentSHA256": "3280390136d481c3bf50e450fbe3b16db53e7e44c59543b5dd085df5be5f50a9",
+        "readingCode": "Ps 116,12-13#Ps 116,17-18",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 116:12–13; 116:17–18",
+        "scope": "Exact Roman appointment only. The original HE publication has 4 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 4 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 78:1–2; 78:34–35; 78:36–37; 78:38": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-14",
+        "appointmentSHA256": "667b50b930a6b3a7b4e5e688b79966e93e6e84b4f2f77323b52fbb0d3e40f544",
+        "readingCode": "Ps 78,1-2#Ps 78,34-35#Ps 78,36-37#Ps 78,38-38",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 78:1–2; 78:34–35; 78:36–37; 78:38",
+        "scope": "Exact Roman appointment only. The original HE publication has 7 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 7 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 31:2–3a; 31:3bc–4; 31:5–6; 31:15–16; 31:20": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-15",
+        "appointmentSHA256": "4b82db931513519b3f868d86f22476df0bb8eed82a63b8bc8ba6cda2f446b528",
+        "readingCode": "Ps 31,2-3a#Ps 31,3bc-4#Ps 31,5-6#Ps 31,15-16#Ps 31,20-20",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 31:2–3a; 31:3bc–4; 31:5–6; 31:15–16; 31:20",
+        "scope": "Exact Roman appointment only. The original HE publication has 10 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 10 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 33:2–3; 33:4–5; 33:12; 33:22": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-16",
+        "appointmentSHA256": "77e707b9861793389acbca50ab9a6542265636fcc745031fb5a977fd8dd1e56d",
+        "readingCode": "Ps 33,2-3#Ps 33,4-5#Ps 33,12-12#Ps 33,22-22",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 33:2–3; 33:4–5; 33:12; 33:22",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 118:1–2; 118:16ab–17; 118:28": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-17",
+        "appointmentSHA256": "8409eed654226150c5287633963f0db754f9e5d320cc94affe7e268c20fad27b",
+        "readingCode": "Ps 118,1-2#Ps 118,16ab-17#Ps 118,28-28",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 118:1–2; 118:16ab–17; 118:28",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 17:1; 17:6–7; 17:8b–8b; 17:15": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-18",
+        "appointmentSHA256": "d1f8e65c94ecca5b408c555eab4234609815bb3af8f0354c1f082f68b99df710",
+        "readingCode": "Ps 17,1-1#Ps 17,6-7#Ps 17,8b-8b#Ps 17,15-15",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 17:1; 17:6–7; 17:8b–8b; 17:15",
+        "scope": "Exact Roman appointment only. The original HE publication has 5 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 5 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 56:10; 56:11–12; 56:13–14": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-19",
+        "appointmentSHA256": "7f59347eebbfac360b789a0aea83500ba03f5054bdb4da126dda8379be7ae867",
+        "readingCode": "Ps 56,10-10#Ps 56,11-12#Ps 56,13-14",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 56:10; 56:11–12; 56:13–14",
+        "scope": "Exact Roman appointment only. The original HE publication has 5 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 5 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 145:2–3; 145:8–9; 145:17–18": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-20",
+        "appointmentSHA256": "f3318b861a55991c0a4b33648a508d53e4a47967da09ec9df1ede70b56397c66",
+        "readingCode": "Ps 145,2-3#Ps 145,8-9#Ps 145,17-18",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 145:2–3; 145:8–9; 145:17–18",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 19:2–3; 19:4–5": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-21",
+        "appointmentSHA256": "7e3ae80d838515d43993d648b48fc682e15f6d1f699093ce29b663b9135f1c23",
+        "readingCode": "Ps 19,2-3#Ps 19,4-5",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 19:2–3; 19:4–5",
+        "scope": "Exact Roman appointment only. The original HE publication has 4 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 4 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 119:1; 119:27; 119:30; 119:34; 119:35; 119:44": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-22",
+        "appointmentSHA256": "6ac042a90dae85773b81d6776bd800dd6d530e7e1bc47f3d87a2662817f920f2",
+        "readingCode": "Ps 119,1-1#Ps 119,27-27#Ps 119,30-30#Ps 119,34-34#Ps 119,35-35#Ps 119,44-44",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 119:1; 119:27; 119:30; 119:34; 119:35; 119:44",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 119:29; 119:72; 119:89; 119:101; 119:104; 119:163": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-23",
+        "appointmentSHA256": "3b819156d290d52ed48da0e3841a22d406088f44ddeee700c978106fe6f262f0",
+        "readingCode": "Ps 119,29-29#Ps 119,72-72#Ps 119,89-89#Ps 119,101-101#Ps 119,104-104#Ps 119,163-163",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 119:29; 119:72; 119:89; 119:101; 119:104; 119:163",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 90:3–4; 90:5–6; 90:12–13; 90:14; 90:17": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-24",
+        "appointmentSHA256": "5191dddf8fb9e3f155cf501a80c7ca71f2d61f5c1e74984528a429fe57b4032f",
+        "readingCode": "Ps 90,3-4#Ps 90,5-6#Ps 90,12-13#Ps 90,14-14#Ps 90,17-17",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 90:3–4; 90:5–6; 90:12–13; 90:14; 90:17",
+        "scope": "Exact Roman appointment only. The original HE publication has 8 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 8 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 144:1a–1a; 144:2abc–2abc; 144:3–4": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-25",
+        "appointmentSHA256": "4a721c4d3d74bae0a1b93f1825864f5962ac467072e0718b486a48014bf8dda9",
+        "readingCode": "Ps 144,1a-1a#Ps 144,2abc-2abc#Ps 144,3-4",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 144:1a–1a; 144:2abc–2abc; 144:3–4",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 25:4bc–5; 25:6–7; 25:8–9": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-27",
+        "appointmentSHA256": "ce7852aab7b70ff7b07725b75dc23d515d6da46036705430bdd073b0eb6a79c9",
+        "readingCode": "Ps 25,4bc-5#Ps 25,6-7#Ps 25,8-9",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 25:4bc–5; 25:6–7; 25:8–9",
+        "scope": "Exact Roman appointment only. The original HE publication has 7 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 7 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 17:1; 17:2–3; 17:6–7": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-28",
+        "appointmentSHA256": "7ef247fa1897bd7934ebbaf03b0942c6ebd8e1e9c891a1920f23114c83b083cd",
+        "readingCode": "Ps 17,1-1#Ps 17,2-3#Ps 17,6-7",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 17:1; 17:2–3; 17:6–7",
+        "scope": "Exact Roman appointment only. The original HE publication has 5 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 5 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 138:1–2a; 138:2bc–3; 138:4–5": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-29",
+        "appointmentSHA256": "2ee38c7f986ad388f0dddf37e03103e85c36f1192914f732398efc98d77d6017",
+        "readingCode": "Ps 138,1-2a#Ps 138,2bc-3#Ps 138,4-5",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 138:1–2a; 138:2bc–3; 138:4–5",
+        "scope": "Exact Roman appointment only. The original HE publication has 7 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 7 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 88:10bc–11; 88:12–13; 88:14–15": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-09-30",
+        "appointmentSHA256": "fb67ef54bbf31f653d62226afccc1817f0855d39f76e455f4aa7ddff99120743",
+        "readingCode": "Ps 88,10bc-11#Ps 88,12-13#Ps 88,14-15",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 88:10bc–11; 88:12–13; 88:14–15",
+        "scope": "Exact Roman appointment only. The original HE publication has 7 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 7 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 27:7–8a; 27:8b–9abc; 27:13–14": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-01",
+        "appointmentSHA256": "b990fad5c55c7540d8b4da699bc28fe479d1bbefe0a7c3a817770a3367272d52",
+        "readingCode": "Ps 27,7-8a#Ps 27,8b-9abc#Ps 27,13-14",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 27:7–8a; 27:8b–9abc; 27:13–14",
+        "scope": "Exact Roman appointment only. The original HE publication has 8 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 8 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 91:1–2; 91:3–4; 91:5–6; 91:10–11": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-02",
+        "appointmentSHA256": "001778920d7f136f8a8a712c3ffc30048db89f4c05ed3f3193d37b45bc620a47",
+        "readingCode": "Ps 91,1-2#Ps 91,3-4#Ps 91,5-6#Ps 91,10-11",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 91:1–2; 91:3–4; 91:5–6; 91:10–11",
+        "scope": "Exact Roman appointment only. The original HE publication has 8 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 8 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 119:66–66; 119:71–71; 119:75–75; 119:91–91; 119:125–125; 119:130–130": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-03",
+        "appointmentSHA256": "038aac91a7a348aa3abdfb9759db8edd1803e4627c1c4093dec8e1d9393b95b9",
+        "readingCode": "Ps 119,66-66#Ps 119,71-71#Ps 119,75-75#Ps 119,91-91#Ps 119,125-125#Ps 119,130-130",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 119:66–66; 119:71–71; 119:75–75; 119:91–91; 119:125–125; 119:130–130",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 80:9–9; 80:12–12; 80:13–14; 80:15–16; 80:19–20": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-04",
+        "appointmentSHA256": "8fec6bd8d282acf61e57e1b8665347f23c746702063260186bc2ea8bbdb5b435",
+        "readingCode": "Ps 80,9-9#Ps 80,12-12#Ps 80,13-14#Ps 80,15-16#Ps 80,19-20",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 80:9–9; 80:12–12; 80:13–14; 80:15–16; 80:19–20",
+        "scope": "Exact Roman appointment only. The original HE publication has 8 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 8 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 111:1–2; 111:7–8; 111:9–9; 111:10c–10c": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-05",
+        "appointmentSHA256": "26e00b95ea4a0c88d92be3fba98f54ec4366c54f5d599b306e6f6a55cfb88586",
+        "readingCode": "Ps 111,1-2#Ps 111,7-8#Ps 111,9-9#Ps 111,10c-10c",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 111:1–2; 111:7–8; 111:9–9; 111:10c–10c",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 139:1–3; 139:13–14ab; 139:14c–15": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-06",
+        "appointmentSHA256": "e953c1bae28d3d9842a6f289342c2c4ab66afb7c6886b1cdd190b7bb5e144016",
+        "readingCode": "Ps 139,1-3#Ps 139,13-14ab#Ps 139,14c-15",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 139:1–3; 139:13–14ab; 139:14c–15",
+        "scope": "Exact Roman appointment only. The original HE publication has 8 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 8 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 117:1–1; 117:2–2": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-07",
+        "appointmentSHA256": "2972ea0250c47525edab34c0ad8c71bb71e2063062cd0c51b44ee07e89b9efab",
+        "readingCode": "Ps 117,1-1#Ps 117,2-2",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 117:1–1; 117:2–2",
+        "scope": "Exact Roman appointment only. The original HE publication has 2 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 1 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition. Psalm 117:1 has the HE spelling האמות where the pinned Masoretic source has האמים; the surrounding verse and its reference agree. This spelling is not transferred to the reader."
+      }
+    },
+    "daily|Psalm 111:1–2; 111:3–4; 111:5–6": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-09",
+        "appointmentSHA256": "3d6089c394b5566e5f89a5c7e93a7176db2dc5a34c09daa861a582db1f543e2e",
+        "readingCode": "Ps 111,1-2#Ps 111,3-4#Ps 111,5-6",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 111:1–2; 111:3–4; 111:5–6",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 105:2–3; 105:4–5; 105:6–7": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-10",
+        "appointmentSHA256": "417286536fd01b01802987461fb614dea0be2249271c333f4c58824a3d67b6cc",
+        "readingCode": "Ps 105,2-3#Ps 105,4-5#Ps 105,6-7",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 105:2–3; 105:4–5; 105:6–7",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 113:1–2; 113:3–4; 113:5a–5a; 113:6–7": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-12",
+        "appointmentSHA256": "a5cbf5c56d4f757374c998831b89d075fc3f297120242c504f30ed73cf1a29d1",
+        "readingCode": "Ps 113,1-2#Ps 113,3-4#Ps 113,5a-5a#Ps 113,6-7",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 113:1–2; 113:3–4; 113:5a–5a; 113:6–7",
+        "scope": "Exact Roman appointment only. The original HE publication has 7 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 7 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 119:41–41; 119:43–43; 119:44–44; 119:45–45; 119:47–47; 119:48–48": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-13",
+        "appointmentSHA256": "39f61680d31bd748685969b33479d8612a12eeee5ac3ab6e0ac0ec6f8cfe8b7c",
+        "readingCode": "Ps 119,41-41#Ps 119,43-43#Ps 119,44-44#Ps 119,45-45#Ps 119,47-47#Ps 119,48-48",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 119:41–41; 119:43–43; 119:44–44; 119:45–45; 119:47–47; 119:48–48",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 1:1–2; 1:3–3; 1:4–4; 1:6–6": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-14",
+        "appointmentSHA256": "eac3eed89c0be30df5a70e4badd8a3104ebb251a0882aa5bc63a024a92d3bda7",
+        "readingCode": "Ps 1,1-2#Ps 1,3-3#Ps 1,4-4#Ps 1,6-6",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 1:1–2; 1:3–3; 1:4–4; 1:6–6",
+        "scope": "Exact Roman appointment only. The original HE publication has 5 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 5 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 98:1–1; 98:2–3ab; 98:3cd–4; 98:5–6": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-15",
+        "appointmentSHA256": "b63c051c54a62a0580397ae227c16f833322be74112dc66e57a43a805d9f16cd",
+        "readingCode": "Ps 98,1-1#Ps 98,2-3ab#Ps 98,3cd-4#Ps 98,5-6",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 98:1–1; 98:2–3ab; 98:3cd–4; 98:5–6",
+        "scope": "Exact Roman appointment only. The original HE publication has 9 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 9 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 33:1–2; 33:4–5; 33:12–13": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-16",
+        "appointmentSHA256": "be984b03c29127360b9ea332d20bc161230e1fd808ae775671a1e5400cc0e7e8",
+        "readingCode": "Ps 33,1-2#Ps 33,4-5#Ps 33,12-13",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 33:1–2; 33:4–5; 33:12–13",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 8:2–3a; 8:4–5; 8:6–7": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-17",
+        "appointmentSHA256": "57e93bb53c6eaa4f90a970fba21ca73bc157e00c59f18e3d1f81acd20ef09b38",
+        "readingCode": "Ps 8,2-3a#Ps 8,4-5#Ps 8,6-7",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 8:2–3a; 8:4–5; 8:6–7",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 96:1–1; 96:3–3; 96:4–5; 96:7–8; 96:9–10a; 96:10c–10c": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-18",
+        "appointmentSHA256": "b6fe11d16cf4236637ac2c361237ac12ef3b201b61db6870fc47c6cfd002800a",
+        "readingCode": "Ps 96,1-1#Ps 96,3-3#Ps 96,4-5#Ps 96,7-8#Ps 96,9-10a#Ps 96,10c-10c",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 96:1–1; 96:3–3; 96:4–5; 96:7–8; 96:9–10a; 96:10c–10c",
+        "scope": "Exact Roman appointment only. The original HE publication has 9 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 9 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 100:2–2; 100:3–3; 100:4–4; 100:5–5": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-19",
+        "appointmentSHA256": "cc974091a6b364cfd9d6615173fd6fb4d712f2f79a6beacca2c27036472e42a2",
+        "readingCode": "Ps 100,2-2#Ps 100,3-3#Ps 100,4-4#Ps 100,5-5",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 100:2–2; 100:3–3; 100:4–4; 100:5–5",
+        "scope": "Exact Roman appointment only. The original HE publication has 4 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 4 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 33:1–2; 33:4–5; 33:11–12; 33:18–19": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-22",
+        "appointmentSHA256": "7a48f65cccd63978b0dba85c4e7288fcce2d3edba3ae49fd49933f698af4f00d",
+        "readingCode": "Ps 33,1-2#Ps 33,4-5#Ps 33,11-12#Ps 33,18-19",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 33:1–2; 33:4–5; 33:11–12; 33:18–19",
+        "scope": "Exact Roman appointment only. The original HE publication has 8 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 8 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 122:1–2; 122:3–4a; 122:4b–5": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-24",
+        "appointmentSHA256": "9bfde025ecd28cc2c77afd48a8a5f6969ab4d473a0e54e5aa24b3f4549de3c35",
+        "readingCode": "Ps 122,1-2#Ps 122,3-4a#Ps 122,4b-5",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 122:1–2; 122:3–4a; 122:4b–5",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 18:2–3a; 18:3bc–4; 18:47–47; 18:51a–51b": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-25",
+        "appointmentSHA256": "b8792415f9f706af0376faf3596b996e1a6e9327eec06e89b9b1dbb5576ae354",
+        "readingCode": "Ps 18,2-3a#Ps 18,3bc-4#Ps 18,47-47#Ps 18,51a-51b",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 18:2–3a; 18:3bc–4; 18:47–47; 18:51a–51b",
+        "scope": "Exact Roman appointment only. The original HE publication has 8 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 8 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 128:1–2; 128:3–3; 128:4–5": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-27",
+        "appointmentSHA256": "92af98f3b78c41fbd12695d96228376dd9b98de6fd779115e4a58451196c6be1",
+        "readingCode": "Ps 128,1-2#Ps 128,3-3#Ps 128,4-5",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 128:1–2; 128:3–3; 128:4–5",
+        "scope": "Exact Roman appointment only. The original HE publication has 5 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 5 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 144:1; 144:2; 144:9–10": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-29",
+        "appointmentSHA256": "21581406f64d9cbe353394226107e695ce9bcc9da6165a8ff5665cddd3b31194",
+        "readingCode": "Ps 144,1-1#Ps 144,2-2#Ps 144,9-10",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 144:1; 144:2; 144:9–10",
+        "scope": "Exact Roman appointment only. The original HE publication has 4 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 4 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 42:2; 42:3; 42:5bcd–5bcd": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-31",
+        "appointmentSHA256": "cd52406855180d46fc3e734e116f1c785c6cd7fcffcffa71a0209525a0953937",
+        "readingCode": "Ps 42,2-2#Ps 42,3-3#Ps 42,5bcd-5bcd",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 42:2; 42:3; 42:5bcd–5bcd",
+        "scope": "Exact Roman appointment only. The original HE publication has 5 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 5 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 27:1–1; 27:4–4; 27:7–7; 27:8–8; 27:9–9; 27:13–14": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-02",
+        "appointmentSHA256": "88d076a44f9acb24f93239956b97d424e188655d4a10505faa0b09e24f6d3e77",
+        "readingCode": "Ps 27,1-1#Ps 27,4-4#Ps 27,7-7#Ps 27,8-8#Ps 27,9-9#Ps 27,13-14",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 27:1–1; 27:4–4; 27:7–7; 27:8–8; 27:9–9; 27:13–14",
+        "scope": "Exact Roman appointment only. The original HE publication has 7 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 7 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 22:26b–27; 22:28–30a; 22:31–32": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-03",
+        "appointmentSHA256": "d13cd08103dbf4a64ce531792be4dc02bbb4909fc9a235e5949115e9e9527482",
+        "readingCode": "Ps 22,26b-27#Ps 22,28-30a#Ps 22,31-32",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 22:26b–27; 22:28–30a; 22:31–32",
+        "scope": "Exact Roman appointment only. The original HE publication has 7 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 7 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 27:1–1; 27:4–4; 27:13–14": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-04",
+        "appointmentSHA256": "66c485b1068c15d9e6245aa24018da0d46c6688f3e234e76bdbbd96e8b0ebfbb",
+        "readingCode": "Ps 27,1-1#Ps 27,4-4#Ps 27,13-14",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 27:1–1; 27:4–4; 27:13–14",
+        "scope": "Exact Roman appointment only. The original HE publication has 4 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 4 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 112:1–2; 112:5–6; 112:8a–8a; 112:9–9": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-07",
+        "appointmentSHA256": "e38e19308ca957a76c8878a2dcb98ba59a2213e16bfcd2b9d6b345639e9bd46c",
+        "readingCode": "Ps 112,1-2#Ps 112,5-6#Ps 112,8a-8a#Ps 112,9-9",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 112:1–2; 112:5–6; 112:8a–8a; 112:9–9",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 63:2–2; 63:3–4; 63:5–6; 63:7–8": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-08",
+        "appointmentSHA256": "e76eb17f1474ea40918c27e8f0b8d86ee100555bb7166a5542905c105afd6bdd",
+        "readingCode": "Ps 63,2-2#Ps 63,3-4#Ps 63,5-6#Ps 63,7-8",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 63:2–2; 63:3–4; 63:5–6; 63:7–8",
+        "scope": "Exact Roman appointment only. The original HE publication has 7 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 7 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 46:2–3; 46:5–6; 46:8–9": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-09",
+        "appointmentSHA256": "86287494f3a66ed66a45b9fa3782da542fb8a8d22fc3b9ce326373784ebf9936",
+        "readingCode": "Ps 46,2-3#Ps 46,5-6#Ps 46,8-9",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 46:2–3; 46:5–6; 46:8–9",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 37:3–4; 37:18–18; 37:23–23; 37:27–27; 37:29–29": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-10",
+        "appointmentSHA256": "f2361cbbf2fe369b1e8af81732049dd0c3bee490d8d6304047c95c33b012aeb6",
+        "readingCode": "Ps 37,3-4#Ps 37,18-18#Ps 37,23-23#Ps 37,27-27#Ps 37,29-29",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 37:3–4; 37:18–18; 37:23–23; 37:27–27; 37:29–29",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 146:7–10": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-12",
+        "appointmentSHA256": "88f0ab209b1667b0f1ab78b734e43435b287dd3f14ed551f5231a0ca4611416e",
+        "readingCode": "Ps 146,7-10",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 146:7–10",
+        "scope": "Exact Roman appointment only. The original HE publication has 4 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 4 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 119:1–1; 119:2–2; 119:10–10; 119:11–11; 119:17–17; 119:18–18": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-13",
+        "appointmentSHA256": "ff9090bb6b9194b6acaa7cbb248ab1879739d1bd2cbf42752fb72b880bbeb932",
+        "readingCode": "Ps 119,1-1#Ps 119,2-2#Ps 119,10-10#Ps 119,11-11#Ps 119,17-17#Ps 119,18-18",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 119:1–1; 119:2–2; 119:10–10; 119:11–11; 119:17–17; 119:18–18",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 112:1–2; 112:3–4; 112:5–6": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-14",
+        "appointmentSHA256": "3a0783ff484cce330dd3ad1fd1b926134310fe08551322c3fff8930d62fce35a",
+        "readingCode": "Ps 112,1-2#Ps 112,3-4#Ps 112,5-6",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 112:1–2; 112:3–4; 112:5–6",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 1:1–2; 1:3; 1:4; 1:6": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-16",
+        "appointmentSHA256": "f1dc38c4c14e46abd9503f406cf4cc45b6d7f6ca874989057dc613baa40cc587",
+        "readingCode": "Ps 1,1-2#Ps 1,3-3#Ps 1,4-4#Ps 1,6-6",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 1:1–2; 1:3; 1:4; 1:6",
+        "scope": "Exact Roman appointment only. The original HE publication has 5 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 5 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 15:1–5": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-17",
+        "appointmentSHA256": "79899dfabd5265e35fbcea5a6419f4d5c28a2b61afcd7e47fba3f8156c022730",
+        "readingCode": "Ps 15,1-5",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 15:1–5",
+        "scope": "Exact Roman appointment only. The original HE publication has 5 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 5 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 150:1–2; 150:3–4; 150:5–6": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-18",
+        "appointmentSHA256": "b9ee68b0666528a818ba6367677e195108867c494ff4b7787e4c8fd190f3c5d3",
+        "readingCode": "Ps 150,1-2#Ps 150,3-4#Ps 150,5-6",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 150:1–2; 150:3–4; 150:5–6",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 149:1–2; 149:3–4; 149:5–6a; 149:9b–9b": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-19",
+        "appointmentSHA256": "b0440f8c5bd8f9e2347b08fe084ed7f5029bdcbaa1274a34d9d52b83a9e66e22",
+        "readingCode": "Ps 149,1-2#Ps 149,3-4#Ps 149,5-6a#Ps 149,9b-9b",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 149:1–2; 149:3–4; 149:5–6a; 149:9b–9b",
+        "scope": "Exact Roman appointment only. The original HE publication has 7 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 7 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 144:1–1; 144:2–2; 144:9–10": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-21",
+        "appointmentSHA256": "3e0ef475e6e09604849c29121edd7af9d98df060c1544250d32f6b8b29764700",
+        "readingCode": "Ps 144,1-1#Ps 144,2-2#Ps 144,9-10",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 144:1–1; 144:2–2; 144:9–10",
+        "scope": "Exact Roman appointment only. The original HE publication has 4 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 4 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 23:1–2a; 23:2b–3; 23:5–5; 23:6–6": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-22",
+        "appointmentSHA256": "403ca7c507f7770dfed1a2521ff2cab597009ea4e28a37162c1c1f5496cb6d1a",
+        "readingCode": "Ps 23,1-2a#Ps 23,2b-3#Ps 23,5-5#Ps 23,6-6",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 23:1–2a; 23:2b–3; 23:5–5; 23:6–6",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 96:10–10; 96:11–12; 96:13–13": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-24",
+        "appointmentSHA256": "8d8f655ba6215377fda7b1c24ab318d43e2045186947ca8ed59553ce78b7a2b5",
+        "readingCode": "Ps 96,10-10#Ps 96,11-12#Ps 96,13-13",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 96:10–10; 96:11–12; 96:13–13",
+        "scope": "Exact Roman appointment only. The original HE publication has 4 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 4 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 98:1–1; 98:2–3ab; 98:7–8; 98:9–9": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-25",
+        "appointmentSHA256": "2fcc4432ee3d6c349831cd88e921518e45c6b522c059935a28d9e96911c19be7",
+        "readingCode": "Ps 98,1-1#Ps 98,2-3ab#Ps 98,7-8#Ps 98,9-9",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 98:1–1; 98:2–3ab; 98:7–8; 98:9–9",
+        "scope": "Exact Roman appointment only. The original HE publication has 7 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 7 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 100:2; 100:3; 100:4; 100:5": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-26",
+        "appointmentSHA256": "618e3c170fe78c6bd986db1af565885bdc4f205447f7782c50c8d02d6e2f1631",
+        "readingCode": "Ps 100,2-2#Ps 100,3-3#Ps 100,4-4#Ps 100,5-5",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 100:2; 100:3; 100:4; 100:5",
+        "scope": "Exact Roman appointment only. The original HE publication has 4 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 4 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 84:3–3; 84:4–4; 84:5–6a; 84:8a–8a": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-27",
+        "appointmentSHA256": "3a47d18c6b3188ae8a80d8df4a6ba80fb100b124230e7143d4fd295d60267617",
+        "readingCode": "Ps 84,3-3#Ps 84,4-4#Ps 84,5-6a#Ps 84,8a-8a",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 84:3–3; 84:4–4; 84:5–6a; 84:8a–8a",
+        "scope": "Exact Roman appointment only. The original HE publication has 5 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 5 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 95:1–2; 95:3–5; 95:6–7": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-28",
+        "appointmentSHA256": "3aba6aaf17fba5f729268baab5685053c215b3337d87ad04e2a7dc16fe494f0d",
+        "readingCode": "Ps 95,1-2#Ps 95,3-5#Ps 95,6-7",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 95:1–2; 95:3–5; 95:6–7",
+        "scope": "Exact Roman appointment only. The original HE publication has 7 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 7 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 80:2ac–2ac; 80:3b–3b; 80:15–16; 80:18–19": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-11-29",
+        "appointmentSHA256": "400dab07566fd5b7cd6e41c6439cf09bfbf09312107b219ad8a1ebece588368a",
+        "readingCode": "Ps 80,2ac-2ac#Ps 80,3b-3b#Ps 80,15-16#Ps 80,18-19",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 80:2ac–2ac; 80:3b–3b; 80:15–16; 80:18–19",
+        "scope": "Exact Roman appointment only. The original HE publication has 7 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 7 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 72:2–2; 72:7–8; 72:12–13; 72:17–17": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-12-01",
+        "appointmentSHA256": "0e7b13338ee1e17a0bbf61cfd57fbd5baca1584880fc44bee57b2fec12b12f2e",
+        "readingCode": "Ps 72,2-2#Ps 72,7-8#Ps 72,12-13#Ps 72,17-17",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 72:2–2; 72:7–8; 72:12–13; 72:17–17",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 118:1–1; 118:8–9; 118:19–21; 118:25–27a": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-12-03",
+        "appointmentSHA256": "018fef344d61df0d240eb5786217e5aee170c26b37b4734d13a1689dbcc92712",
+        "readingCode": "Ps 118,1-1#Ps 118,8-9#Ps 118,19-21#Ps 118,25-27a",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 118:1–1; 118:8–9; 118:19–21; 118:25–27a",
+        "scope": "Exact Roman appointment only. The original HE publication has 9 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 9 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
+      }
+    },
+    "daily|Psalm 147:1–2; 147:3–4; 147:5–6": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "hebrew-psalms",
+      "reviewedOn": "2026-09-16",
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-12-05",
+        "appointmentSHA256": "0b0d7f8c3d5f182c8b5fffd0fc200326f0c487776ae7e0a1179e666823023850",
+        "readingCode": "Ps 147,1-2#Ps 147,3-4#Ps 147,5-6",
+        "corroboratingURL": "https://ebible.org/Scriptures/hbo_vpl.zip",
+        "corroboratingSHA256": "2cea0bd9a61b446e704e61c49dac9cbf4747fa52a9ccd682c4f40d9889503aa8",
+        "corroboratingReference": "Psalm 147:1–2; 147:3–4; 147:5–6",
+        "scope": "Exact Roman appointment only. The original HE publication has 6 embedded Psalm chapter/verse markers; their ordered whole-verse envelope equals this citation. 6 excerpts match the pinned Masoretic source at those same labels after removing vocalization, accents, punctuation and spaces; 0 are nonempty substrings of the corresponding whole verse. This verifies Hebrew Psalm numbering directly, without assuming NABRE local boundaries or assigning a convention to other calendars. The corroborating checksum covers hbo_vpl.txt inside the pinned eBible archive. Only references and source hashes are retained; reader wording still comes solely from its selected pinned edition."
       }
     }
   }

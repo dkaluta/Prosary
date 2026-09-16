@@ -35,8 +35,8 @@ from reading_versification import Reference, Versification
 
 
 @lru_cache(maxsize=1)
-def _psalm_correspondence() -> tuple[dict[Reference, frozenset[Reference]],
-                                  dict[Reference, frozenset[Reference]]]:
+def _hebrew_psalm_correspondence() -> tuple[dict[Reference, frozenset[Reference]],
+                                         dict[Reference, frozenset[Reference]]]:
     """Retain complete title/verse relations instead of requiring single edges."""
     converter = Versification()  # Verifies every pinned table and license hash.
     english = converter.tables["eng"]
@@ -56,6 +56,13 @@ def _psalm_correspondence() -> tuple[dict[Reference, frozenset[Reference]],
     for target, originals in to_original.items():
         for original in originals:
             from_original[original].add(target)
+    return ({key: frozenset(value) for key, value in from_original.items()}, to_original)
+
+
+@lru_cache(maxsize=1)
+def _psalm_correspondence() -> tuple[dict[Reference, frozenset[Reference]],
+                                   dict[Reference, frozenset[Reference]]]:
+    from_original = {key: set(value) for key, value in _hebrew_psalm_correspondence()[0].items()}
     # The USCCB text ends Psalm 2 at 11; that unit covers Standard 11-12.
     from_original[("PSA", 2, 11)] = {("PSA", 2, 11), ("PSA", 2, 12)}
     from_original.pop(("PSA", 2, 12))
@@ -83,10 +90,24 @@ def nabre_psalm_to_standard(references: Iterable[Reference]) -> tuple[list[Refer
     must check actual source availability after conversion. A source reference
     outside the NABRE Psalm inventory is an error, never an identity guess.
     """
+    return _map_psalm_references(references, *_psalm_correspondence(), "NABRE")
+
+
+def hebrew_psalm_to_standard(references: Iterable[Reference]) -> tuple[list[Reference], bool]:
+    """Resolve verified Hebrew-numbered Psalms, without NABRE's local boundaries.
+
+    Only explicitly reviewed appointments may use this source-numbering path.
+    Numbered standalone titles retain their complete correspondence. Titles
+    joined to a body verse follow SIL's body-verse relation; the chosen edition
+    supplies its own existing full verse, including its title when present.
+    """
+    return _map_psalm_references(references, *_hebrew_psalm_correspondence(), "Hebrew")
+
+
+def _map_psalm_references(references, forward, reverse, source_label):
     requested = list(references)
     if not requested:
         raise ValueError("An empty Psalm appointment has no correspondence")
-    forward, reverse = _psalm_correspondence()
     selected = set(requested)
     mapped: list[Reference] = []
     seen: set[Reference] = set()
@@ -94,7 +115,7 @@ def nabre_psalm_to_standard(references: Iterable[Reference]) -> tuple[list[Refer
         if (not isinstance(ref, tuple) or len(ref) != 3 or ref[0] != "PSA"
                 or type(ref[1]) is not int or type(ref[2]) is not int
                 or ref[1] < 1 or ref[2] < 1 or ref not in forward):
-            raise ValueError(f"Invalid NABRE Psalm reference: {ref!r}")
+            raise ValueError(f"Invalid {source_label} Psalm reference: {ref!r}")
         for target in sorted(forward[ref]):
             if target not in seen:
                 mapped.append(target)

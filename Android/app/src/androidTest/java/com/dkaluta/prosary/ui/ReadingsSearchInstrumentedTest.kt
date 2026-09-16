@@ -16,6 +16,8 @@ import com.dkaluta.prosary.R
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 
@@ -26,11 +28,13 @@ class ReadingsSearchInstrumentedTest {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("todayChooseDate")).fetchSemanticsNodes().isNotEmpty() }
+            assertDateControlHeights("todayYesterday", "todayChooseDate", "todayTomorrow")
             compose.onNodeWithText(context.getString(R.string.tab_readings)).performClick()
             compose.onNodeWithTag("readingsPrevious").performClick()
             val date = LocalDate.now().minusDays(1).format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)
                 .withLocale(context.resources.configuration.locales[0]))
             compose.onNodeWithTag("readingsChooseDate").assertTextContains(date)
+            assertDateControlHeights("readingsPrevious", "readingsChooseDate", "readingsNext")
             compose.onNodeWithText(context.getString(R.string.tab_search)).performClick()
             compose.onNodeWithTag("searchCategory.eastern").performScrollTo().performClick().assertIsSelected()
             compose.onNodeWithTag("searchQuery").performTextInput("___No matching prayer___")
@@ -49,6 +53,16 @@ class ReadingsSearchInstrumentedTest {
             // Browsing the independent Readings reference leaves Pray's Today untouched.
             compose.onNodeWithText(context.getString(R.string.tab_pray)).performClick()
             compose.onNodeWithTag("todayChooseDate").assertTextContains(today)
+        }
+    }
+
+    private fun assertDateControlHeights(previous: String, date: String, next: String) {
+        val density = InstrumentationRegistry.getInstrumentation().targetContext.resources.displayMetrics.density
+        val dateHeight = compose.onNodeWithTag(date).fetchSemanticsNode().boundsInRoot.height
+        for (tag in listOf(previous, date, next)) {
+            val height = compose.onNodeWithTag(tag).fetchSemanticsNode().boundsInRoot.height
+            assertEquals("$tag must match the date button height", dateHeight, height, 1f)
+            assertTrue("$tag must retain a 48dp touch target", height >= 48f * density - 1f)
         }
     }
 }

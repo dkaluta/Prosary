@@ -361,6 +361,32 @@ def resolve_nabre_references(book: str, spans: list[tuple], edition: dict,
     return references, whole
 
 
+def resolve_hebrew_psalm_references(book: str, spans: list[tuple], edition: dict,
+                                    corpus: dict) -> tuple[list[tuple], bool]:
+    """Use source-verified Hebrew verse numbers and the existing edition crosswalk."""
+    from reading_versification import chapter_verse_count
+    from reading_psalm_mapping import hebrew_psalm_to_standard
+    from reading_step_mapping import Unavailable as MappingUnavailable
+    if book != "PSA":
+        raise ValueError("A Hebrew Psalm review cannot reinterpret another book")
+    source_refs = []
+    for sc, sv, ec, ev in spans:
+        for chapter in range(sc, ec + 1):
+            count = chapter_verse_count(book, chapter, "org")
+            start, end = (sv if chapter == sc else 1), (ev if chapter == ec else count)
+            if not count or not 1 <= start <= end <= count:
+                raise Unavailable("appointment outside reviewed Hebrew Psalm chapter")
+            source_refs.extend((book, chapter, verse) for verse in range(start, end + 1))
+    try:
+        standard, whole = hebrew_psalm_to_standard(source_refs)
+        references, target_whole = edition_mapper(edition["id"], corpus).from_standard(standard)
+    except MappingUnavailable as error:
+        raise Unavailable(str(error)) from error
+    if not references or any(ref[0] != book or ref[1] < 1 or ref[2] < 1 for ref in references):
+        raise Unavailable("target edition cannot represent this Psalm verse label")
+    return list(dict.fromkeys(tuple(ref) for ref in references)), whole or target_whole
+
+
 def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> ResolvedPassage:
     # The helper is intentionally build-time only; native apps never parse citations.
     from reading_versification import map_reference, chapter_verse_count, chapter_matches
@@ -393,8 +419,10 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> Resolv
         candidates.append(references)
         source_systems = []
         whole |= review["includesWholeVerses"]
-    elif reviewed_numbering(key, contexts) is not None:
-        references, mapped_whole = resolve_nabre_references(book, spans, edition, corpus)
+    elif (numbering_review := reviewed_numbering(key, contexts)) is not None:
+        resolver = (resolve_hebrew_psalm_references if numbering_review["sourceSystem"] == "hebrew-psalms"
+                    else resolve_nabre_references)
+        references, mapped_whole = resolver(book, spans, edition, corpus)
         candidates.append(references)
         source_systems = []
         whole |= mapped_whole

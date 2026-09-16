@@ -57,6 +57,9 @@ class ReadingTextStore(private val openData: (String) -> InputStream?) {
 
     val editions: List<ReadingEdition> get() = metadata?.editions.orEmpty()
 
+    fun availableEditions(citation: ReadingCitation, isTorah: Boolean = false): List<ReadingEdition> =
+        editions.filter { passage(citation, it.id, isTorah) != null }
+
     fun passage(citation: ReadingCitation, editionId: String, isTorah: Boolean = false): ReadingPassage? {
         val file = data ?: return null
         val key = "${if (isTorah) "torah" else "daily"}|${citation.full}"

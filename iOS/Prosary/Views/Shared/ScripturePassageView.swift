@@ -56,7 +56,7 @@ struct ScripturePassageView: View {
       if expanded {
         ScripturePassageBody(
           citation: reading.full, isTorah: isTorah,
-          preference: preference, interfaceLanguage: interfaceLanguage, script: script)
+          preference: $preference, interfaceLanguage: interfaceLanguage, script: script)
           .padding(.top, 8)
       }
     } label: {
@@ -74,10 +74,11 @@ struct ScripturePassageView: View {
 private struct ScripturePassageBody: View {
   let citation: String
   let isTorah: Bool
-  let preference: String
+  @Binding var preference: String
   let interfaceLanguage: String
   @Binding var script: String
   @State private var passage: ReadingTextPassage?
+  @State private var availableEditions: [ReadingTextEdition] = []
   @State private var loading = true
   @ObservedObject private var typography = PrayerTypographyMonitor.shared
 
@@ -136,11 +137,23 @@ private struct ScripturePassageBody: View {
         Text(String(localized: "readings.unavailable", defaultValue: "Bible text is unavailable for this passage in the selected edition.", bundle: UILanguage.bundle, locale: UILanguage.locale))
           .foregroundStyle(.secondary)
           .accessibilityIdentifier("readings.unavailable")
+        if !availableEditions.isEmpty {
+          Menu {
+            ForEach(availableEditions, id: \.id) { edition in
+              Button(edition.name) { preference = edition.id }
+            }
+          } label: {
+            Label(String(localized: "readings.edition", defaultValue: "Bible edition", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "book")
+          }
+          .buttonStyle(.bordered)
+          .accessibilityIdentifier("readings.availableEditions.\(citation)")
+        }
       }
     }
     .frame(maxWidth: .infinity, alignment: .leading)
     .task(id: requestID) {
       passage = nil
+      availableEditions = []
       loading = true
       let editions = await ReadingTextStore.shared.editions()
       let selected = ReadingEditionSelection.selected(preference, interfaceLanguage: interfaceLanguage, editions: editions)
@@ -148,8 +161,11 @@ private struct ScripturePassageBody: View {
       if let selected {
         result = await ReadingTextStore.shared.passage(citation: citation, isTorah: isTorah, editionID: selected.id)
       } else { result = nil }
+      let alternatives = result == nil
+        ? await ReadingTextStore.shared.availableEditions(citation: citation, isTorah: isTorah) : []
       guard !Task.isCancelled else { return }
       passage = result
+      availableEditions = alternatives
       loading = false
     }
   }

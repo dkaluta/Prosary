@@ -13,7 +13,7 @@ final class AppShellUITests: XCTestCase {
     // The simulator remembers its orientation between runs, and landscape shortens every
     // list — rows fall below the fold and queries that assume a visible row fail for reasons
     // that have nothing to do with the app. Start upright, always.
-    #if !os(macOS)
+    #if os(iOS)
     XCUIDevice.shared.orientation = .portrait
     #endif
     continueAfterFailure = false
@@ -152,6 +152,68 @@ final class AppShellUITests: XCTestCase {
       }
     }
   }
+
+  #if !os(macOS)
+  @MainActor
+  func testDateChoosersKeepCalendarAndControlsWithinBounds() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en"]
+    app.launch()
+    let rows = [("todayYesterdayButton", "todayDateButton", "todayTomorrowButton", "todayDatePicker", "todayDateDoneButton"),
+                ("readings.previousDay", "readings.chooseDate", "readings.nextDay", "readings.datePicker", "readings.dateDone")]
+    for (index, row) in rows.enumerated() {
+      if index == 1 {
+        let readingsTab = app.buttons["Readings"].firstMatch
+        if readingsTab.exists {
+          readingsTab.tap()
+        } else {
+          // Wide iPad windows expose the adaptive tab sidebar as list cells.
+          app.cells["Readings"].firstMatch.tap()
+        }
+      }
+      let previous = app.buttons[row.0]
+      let date = app.buttons[row.1]
+      let next = app.buttons[row.2]
+      XCTAssertTrue(date.waitForExistence(timeout: 10))
+      XCTAssertEqual(previous.frame.height, date.frame.height, accuracy: 1, "Previous and date buttons have equal visible height")
+      XCTAssertEqual(next.frame.height, date.frame.height, accuracy: 1, "Next and date buttons have equal visible height")
+      #if os(visionOS)
+      XCTAssertGreaterThanOrEqual(date.frame.height, 60, "Spatial date controls retain native gaze targets")
+      XCTAssertGreaterThanOrEqual(previous.frame.width, 60)
+      XCTAssertGreaterThanOrEqual(next.frame.width, 60)
+      #else
+      XCTAssertGreaterThanOrEqual(date.frame.height, 44, "Date controls retain native touch targets")
+      XCTAssertGreaterThanOrEqual(previous.frame.width, 44)
+      XCTAssertGreaterThanOrEqual(next.frame.width, 44)
+      #endif
+      let originalDate = date.label
+      date.tap()
+      let picker = app.datePickers[row.3]
+      XCTAssertTrue(picker.waitForExistence(timeout: 5))
+      let popover = app.descendants(matching: .any)[row.3 + ".popover"].firstMatch
+      XCTAssertTrue(popover.exists)
+      let calendar = picker.collectionViews.firstMatch
+      XCTAssertTrue(calendar.waitForExistence(timeout: 5))
+      XCTAssertGreaterThanOrEqual(calendar.frame.minX, popover.frame.minX - 1)
+      XCTAssertLessThanOrEqual(calendar.frame.maxX, popover.frame.maxX + 1, "All seven calendar columns fit in the popover")
+      let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+      screenshot.name = row.3 + "-full-calendar"
+      screenshot.lifetime = .keepAlways
+      add(screenshot)
+      app.buttons[row.4].tap()
+      XCTAssertFalse(picker.exists)
+      XCTAssertEqual(date.label, originalDate, "Done dismisses without changing the selected date")
+    }
+  }
+  #endif
+
+  #if os(iOS)
+  @MainActor
+  func testDateChoosersKeepCalendarAndControlsWithinBoundsInLandscape() throws {
+    XCUIDevice.shared.orientation = .landscapeLeft
+    try testDateChoosersKeepCalendarAndControlsWithinBounds()
+  }
+  #endif
 
   @MainActor
   func testTodayDateNavigationAndNativePicker() throws {

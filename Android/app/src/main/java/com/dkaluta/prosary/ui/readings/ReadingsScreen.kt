@@ -4,10 +4,14 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -37,6 +41,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
@@ -186,16 +191,19 @@ fun ReadingsScreen(onOpenSettings: () -> Unit) {
                         tonalElevation = 3.dp,
                         shadowElevation = 2.dp,
                     ) {
-                        Row(Modifier.fillMaxWidth().padding(4.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Row(Modifier.fillMaxWidth().padding(4.dp).height(IntrinsicSize.Min), verticalAlignment = Alignment.CenterVertically) {
                             IconButton(onClick = { selectedEpochDay = selectedDate.minusDays(1).toEpochDay() },
-                                enabled = selectedDate > TodayDateSelection.earliest, modifier = Modifier.testTag("readingsPrevious")) {
+                                enabled = selectedDate > TodayDateSelection.earliest,
+                                modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight().testTag("readingsPrevious")) {
                                 Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, stringResource(R.string.home_today_yesterday))
                             }
-                            TextButton(onClick = { showsDatePicker = true }, modifier = Modifier.weight(1f).testTag("readingsChooseDate")) {
+                            TextButton(onClick = { showsDatePicker = true },
+                                modifier = Modifier.weight(1f).heightIn(min = 48.dp).fillMaxHeight().testTag("readingsChooseDate")) {
                                 Text(dateLabel, textAlign = TextAlign.Center)
                             }
                             IconButton(onClick = { selectedEpochDay = selectedDate.plusDays(1).toEpochDay() },
-                                enabled = selectedDate < TodayDateSelection.latest, modifier = Modifier.testTag("readingsNext")) {
+                                enabled = selectedDate < TodayDateSelection.latest,
+                                modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight().testTag("readingsNext")) {
                                 Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, stringResource(R.string.home_today_tomorrow))
                             }
                         }
@@ -261,6 +269,12 @@ fun ReadingsScreen(onOpenSettings: () -> Unit) {
     }
 }
 
+private data class ReadingCardText(
+    val isLoaded: Boolean = false,
+    val passage: ReadingPassage? = null,
+    val availableEditions: List<ReadingEdition> = emptyList(),
+)
+
 @Composable
 internal fun ReadingCard(citation: ReadingCitation, language: String, edition: ReadingEdition?,
     editionId: String?, store: ReadingTextStore, isTorah: Boolean, expanded: Boolean,
@@ -268,6 +282,7 @@ internal fun ReadingCard(citation: ReadingCitation, language: String, edition: R
     val uriHandler = LocalUriHandler.current
     // A local reading aid survives collapse/lazy recycling; the setting applies until a choice.
     var scriptOverride by rememberSaveable(citation.full, editionId, isTorah) { mutableStateOf<String?>(null) }
+    var showsAvailableEditions by remember(citation.full, editionId, isTorah) { mutableStateOf(false) }
     val readingScript = scriptOverride ?: AppSettings.aramaicDefaultScript
     Card(Modifier.fillMaxWidth()) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -284,18 +299,39 @@ internal fun ReadingCard(citation: ReadingCitation, language: String, edition: R
             if (expanded) {
                 // Only expansion loads the passage corpus, off the main thread. The edition
                 // picker reads a small metadata companion. No localized string is a key.
-                val result by produceState<Pair<Boolean, ReadingPassage?>>(false to null,
-                    store, citation.full, edition, editionId, isTorah) {
-                    value = true to withContext(Dispatchers.IO) {
-                        if (edition == null || editionId == null) null else store.passage(citation, editionId, isTorah)
+                // Give each edition its own state immediately, so a previous edition's
+                // text is never displayed under the new edition's name or source credit.
+                val result by key(store, citation.full, editionId, isTorah) {
+                    produceState(ReadingCardText()) {
+                        value = withContext(Dispatchers.IO) {
+                            val passage = if (edition == null || editionId == null) null else store.passage(citation, editionId, isTorah)
+                            ReadingCardText(true, passage,
+                                if (passage == null) store.availableEditions(citation, isTorah) else emptyList())
+                        }
                     }
                 }
-                val passage = result.second
+                val passage = result.passage
                 Text(stringResource(R.string.readings_bible_passage), style = MaterialTheme.typography.labelLarge)
-                if (!result.first) {
+                if (!result.isLoaded) {
                     CircularProgressIndicator()
                 } else if (passage == null) {
                     Text(stringResource(R.string.readings_unavailable), color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    if (result.availableEditions.isNotEmpty()) {
+                        Box {
+                            TextButton(onClick = { showsAvailableEditions = true },
+                                modifier = Modifier.testTag("readingAvailableEditions.${if (isTorah) "torah" else "daily"}.${citation.full}")) {
+                                Text(stringResource(R.string.readings_edition))
+                            }
+                            DropdownMenu(expanded = showsAvailableEditions, onDismissRequest = { showsAvailableEditions = false }) {
+                                for (available in result.availableEditions) {
+                                    DropdownMenuItem(text = { Text(available.name) }, onClick = {
+                                        AppSettings.readingsEditionId = available.id
+                                        showsAvailableEditions = false
+                                    })
+                                }
+                            }
+                        }
+                    }
                 } else {
                     if (edition?.hasAramaicScripts == true) {
                         val usesSyriac = readingScript == "Syrc"

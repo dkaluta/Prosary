@@ -1545,6 +1545,12 @@ using its references. Psalm headings and split/merged verse boundaries remain wh
 and the sparse Arabic edition retains only its existing 64 reviewed units. Numeric mapping
 metadata lives under `Shared/tools/versification/editions`; it is not bundled into native apps.
 See `Shared/DAILY-READINGS.markdown` for source reviews, limitations and regeneration order.
+All 103 currently bundled Psalm citations have exact Roman source-numbering reviews. Their
+Evangelizo HE verse markers were checked against the pinned Masoretic source; Hebrew Psalm
+relations remain separate from NABRE's local verse boundaries. The six editions with complete
+reviewed Psalm imports provide every appointment, while Martini, Arabic and Peshitta retain
+their documented source limits. This does not assign a numbering system to another calendar
+or to future citations lacking their own review.
 
 Partial-verse appointments keep their exact citation/key and use complete enclosing Bible
 verses. The optional `wholeVersePassages` array lists the affected keys so every native reader
@@ -1558,6 +1564,9 @@ metadata edition matching the interface language, normalizing regional subtags a
 and `fil`/`tl`; an explicit choice resolves only that exact ID. An unavailable language,
 removed edition, missing appointment or invalid/empty verse list stays unavailable, with
 the original citation visible. No other edition, language or calendar is silently substituted.
+An unavailable passage offers a Bible-edition menu containing only editions with complete
+text for that passage. Selecting one explicitly updates `readingsEditionId`, and the reader
+shows the chosen edition's normal attribution and source link.
 The preference does not change prayer language or appointed readings. Edition IDs come from
 the metadata, not a hardcoded client list. Source coverage and reviewed mappings are recorded
 in [DAILY-READINGS.markdown](DAILY-READINGS.markdown) and the generator's source manifest.

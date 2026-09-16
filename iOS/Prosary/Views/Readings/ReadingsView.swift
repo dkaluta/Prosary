@@ -111,6 +111,7 @@ struct ReadingsView: View {
     HStack(spacing: 12) {
       Button { dateSelection.move(by: -1) } label: {
         Label(String(localized: "home.today.previousDay", defaultValue: "Previous Day", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "chevron.backward")
+          .prosaryDateControlLabel()
       }
       .labelStyle(.iconOnly).disabled(!dateSelection.canMoveBackward)
       .accessibilityIdentifier("readings.previousDay")
@@ -119,36 +120,35 @@ struct ReadingsView: View {
           .font(.subheadline.weight(.semibold))
           .multilineTextAlignment(.center)
           .fixedSize(horizontal: false, vertical: true)
+          .prosaryDateControlLabel()
       }
       .accessibilityHint(String(localized: "home.today.chooseDate", defaultValue: "Choose a date", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("readings.chooseDate")
       .popover(isPresented: $showsDatePicker) { datePopover }
       Button { dateSelection.move(by: 1) } label: {
         Label(String(localized: "home.today.nextDay", defaultValue: "Next Day", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "chevron.forward")
+          .prosaryDateControlLabel()
       }
       .labelStyle(.iconOnly).disabled(!dateSelection.canMoveForward)
       .accessibilityIdentifier("readings.nextDay")
     }
-    .prosaryNavigationButtonStyle().controlSize(.large)
+    .prosaryNavigationButtonStyle()
+    #if os(visionOS)
+    .controlSize(.extraLarge)
+    #else
+    .controlSize(.large)
+    #endif
+    .fixedSize(horizontal: false, vertical: true)
   }
 
   private var datePopover: some View {
-    VStack(spacing: 12) {
-      DatePicker(String(localized: "home.today.chooseDate", defaultValue: "Choose a date", bundle: UILanguage.bundle, locale: UILanguage.locale),
-                 selection: Binding(get: { selectedDate }, set: chooseDate),
-                 in: MacTodayDateSelection.pickerRange(), displayedComponents: .date)
-        .datePickerStyle(.graphical).labelsHidden()
-        .environment(\.calendar, Calendar(identifier: .gregorian))
-        .accessibilityIdentifier("readings.datePicker")
-      Button(String(localized: "home.today.today", defaultValue: "Today", bundle: UILanguage.bundle, locale: UILanguage.locale)) { chooseDate(Date()) }
-        .disabled(dateSelection.isToday())
-        .accessibilityIdentifier("readings.reset")
-        .buttonStyle(.bordered)
+    ReadingDatePickerPopover(selection: Binding(get: { selectedDate }, set: chooseDate),
+                             range: MacTodayDateSelection.pickerRange(),
+                             pickerIdentifier: "readings.datePicker",
+                             todayIdentifier: "readings.reset",
+                             doneIdentifier: "readings.dateDone") {
+      showsDatePicker = false
     }
-    // SDK 27 resets control size at presentation boundaries.
-    .controlSize(.large)
-    .buttonStyle(.bordered)
-    .padding(16).frame(width: 320)
     .presentationCompactAdaptation(.popover)
   }
 

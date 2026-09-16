@@ -20,6 +20,47 @@ import org.junit.Test
 class ReadingTextInstrumentedTest {
     @get:Rule val compose = createAndroidComposeRule<AdaptiveLayoutTestActivity>()
 
+    @Test fun unavailablePassageOffersOnlyAvailableEditionsAndChangesEditionAfterExplicitChoice() {
+        val previousEdition = AppSettings.readingsEditionId
+        val store = ReadingTextStore { name ->
+            when (name) {
+                "readings-editions" -> """{"schemaVersion":1,"editions":[
+                    {"id":"missing","languageCode":"en","name":"Missing edition","attribution":"Missing credit","sourceURL":"https://example.org/missing"},
+                    {"id":"available","languageCode":"he","name":"Available edition","attribution":"Available credit","sourceURL":"https://example.org/available"},
+                    {"id":"damaged","languageCode":"en","name":"Damaged edition","attribution":"Damaged credit","sourceURL":"https://example.org/damaged"}]}"""
+                else -> """{"schemaVersion":1,"passages":{"daily|Fixture 1:1":{
+                    "available":[{"chapter":1,"verse":1,"text":"סִימָן לבדיקה"}],
+                    "damaged":[{"chapter":1,"verse":1,"text":" "}]}}}"""
+            }.byteInputStream()
+        }
+        try {
+            AppSettings.readingsEditionId = "missing"
+            compose.setContent {
+                MaterialTheme {
+                    val edition = store.editions.firstOrNull { it.id == AppSettings.readingsEditionId }
+                    ReadingCard(ReadingCitation("reading", "Fixture", "Fixture 1:1"), "en", edition,
+                        edition?.id, store, false, expanded = true, onToggleExpanded = {})
+                }
+            }
+            compose.waitUntil(5_000) {
+                compose.onAllNodes(androidx.compose.ui.test.hasTestTag("readingAvailableEditions.daily.Fixture 1:1"))
+                    .fetchSemanticsNodes().isNotEmpty()
+            }
+            compose.runOnIdle { assertEquals("missing", AppSettings.readingsEditionId) }
+            compose.onNodeWithText("סִימָן לבדיקה", substring = true).assertDoesNotExist()
+            compose.onNodeWithTag("readingAvailableEditions.daily.Fixture 1:1").performClick()
+            compose.onNodeWithText("Damaged edition").assertDoesNotExist()
+            compose.onNodeWithText("Available edition").performClick()
+            compose.waitUntil(5_000) {
+                compose.onAllNodes(androidx.compose.ui.test.hasText("סִימָן לבדיקה", substring = true))
+                    .fetchSemanticsNodes().isNotEmpty()
+            }
+            compose.onNodeWithText("Available credit").assertExists()
+            compose.onNodeWithTag("readingAvailableEditions.daily.Fixture 1:1").assertDoesNotExist()
+            compose.runOnIdle { assertEquals("available", AppSettings.readingsEditionId) }
+        } finally { AppSettings.readingsEditionId = previousEdition }
+    }
+
     @Test fun aramaicDefaultAndLocalToggleChangeTheRenderedVersesAndSurviveCollapse() {
         val previousScript = AppSettings.aramaicDefaultScript
         val store = ReadingTextStore { name ->

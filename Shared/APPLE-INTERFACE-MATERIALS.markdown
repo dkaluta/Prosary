@@ -31,6 +31,10 @@ controls rather than treating every button or translucent background as Liquid G
   iPhone repetition button uses a semantic contrasting label in both appearances.
 - iPhone transport, disclosure and script controls need at least 44-point interaction areas.
   Keep Mac controls compact and preserve their native keyboard behavior.
+- Date navigation gives previous, date and next labels the same available height before the
+  native button style is applied. The shared calendar popover includes Today and Done. Size
+  its graphical calendar for the platform rather than trusting the UIKit wrapper's reported
+  ideal width; the iPad uses the same native calendar as iPhone.
 
 ## visionOS
 
@@ -48,6 +52,8 @@ controls rather than treating every button or translucent background as Liquid G
   includes at least 60 points; keep hover shapes aligned with the actionable surface.
 - Scripture retains its actual-script font and direction. Do not use color alone for state;
   category filters include a checkmark and selected accessibility traits.
+- Give the graphical date picker 500 points plus its popover padding so all seven columns and
+  both month controls remain visible. The phone-sized 320-point popover clips spatial controls.
 
 ## Sources and verification
 
@@ -59,6 +65,9 @@ Reviewed against Apple's [Liquid Glass overview](https://developer.apple.com/doc
 
 The 2026-09-16 pass checks iPhone navigation/date controls and Hebrew/Arabic prayer layouts in
 Simulator, and Mac Today scrolling, Gallery, the native date popover, and prayer controls in an
-isolated live app. Simulator/build checks do not establish physical-device, headset gaze,
+isolated live app. The final date-picker checks cover both Pray and Readings on iPad in portrait
+and landscape and in the visionOS simulator, including equal button heights, minimum target
+dimensions, all seven calendar columns, and dismissal without changing the selected date.
+Simulator/build checks do not establish physical-device, headset gaze,
 VoiceOver, or minimum-OS coverage. Recheck dark appearance, increased text sizes, Reduce
 Transparency, and Increase Contrast on target devices before claiming that coverage.

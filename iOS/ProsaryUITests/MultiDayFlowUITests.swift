@@ -14,7 +14,7 @@ final class MultiDayFlowUITests: XCTestCase {
     // The simulator remembers its orientation between runs, and landscape shortens every
     // list — rows fall below the fold and queries that assume a visible row fail for reasons
     // that have nothing to do with the app. Start upright, always.
-    #if !os(macOS)
+    #if os(iOS)
     XCUIDevice.shared.orientation = .portrait
     #endif
     continueAfterFailure = false

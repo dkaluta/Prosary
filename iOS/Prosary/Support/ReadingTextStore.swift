@@ -76,6 +76,10 @@ nonisolated struct ReadingTextDataset: Decodable, Sendable {
   let passages: [String: [String: [ReadingTextVerse]]]
   var wholeVersePassages: [String]? = nil
 
+  func availableEditions(citation: String, isTorah: Bool) -> [ReadingTextEdition] {
+    editions.filter { passage(citation: citation, isTorah: isTorah, editionID: $0.id) != nil }
+  }
+
   func passage(citation: String, isTorah: Bool, editionID: String) -> ReadingTextPassage? {
     guard schemaVersion == 1,
           let edition = editions.first(where: { $0.id == editionID }),
@@ -106,13 +110,22 @@ actor ReadingTextStore {
   }
 
   func passage(citation: String, isTorah: Bool, editionID: String) -> ReadingTextPassage? {
+    loadPassages()
+    return dataset?.passage(citation: citation, isTorah: isTorah, editionID: editionID)
+  }
+
+  func availableEditions(citation: String, isTorah: Bool) -> [ReadingTextEdition] {
+    loadPassages()
+    return dataset?.availableEditions(citation: citation, isTorah: isTorah) ?? []
+  }
+
+  private func loadPassages() {
     if !hasLoaded {
       hasLoaded = true
       if let resourceURL, let data = try? Data(contentsOf: resourceURL) {
         dataset = try? JSONDecoder().decode(ReadingTextDataset.self, from: data)
       }
     }
-    return dataset?.passage(citation: citation, isTorah: isTorah, editionID: editionID)
   }
 
   func editions() -> [ReadingTextEdition] {

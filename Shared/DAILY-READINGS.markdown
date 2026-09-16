@@ -7,6 +7,9 @@ The date picker sits above the readings. Desktop references are always written o
 Readings open expanded when entering the reader and when its date or calendar changes.
 Each available passage shows selectable, numbered Bible text with the chosen edition and
 source credit. The optional weekly Torah portion uses the same reader.
+When a passage is unavailable in the selected edition, its Bible-edition menu lists editions
+with complete text for that passage. Choosing one explicitly updates `readingsEditionId`;
+there is no automatic language or edition substitution, and the chosen source credit remains visible.
 
 This first corpus reuses Bible translations represented in Prosary's prayer packs. Arabic
 uses the old Jesuit translation, replacing the previously unverified Dar el-Machreq excerpts.
@@ -134,8 +137,29 @@ The existing September 10 Psalm 139 edition-boundary review retains precedence u
 Other appointments continue using the existing agreement policy until their source numbering
 is established; a complete Bible mapping inventory does not itself prove a calendar's convention.
 
+The September 16 Psalm review establishes **all 103 distinct currently bundled Psalm appointments**,
+each confined to its exact Roman citation. Their original Evangelizo HE publications contain
+642 embedded chapter/verse markers. Comparing those excerpts to the pinned eBible Masoretic
+source at the same labels gives 639 exact consonantal matches, two nonempty partial-verse
+substrings, and one documented spelling variant in Psalm 117:1. The manifest retains source
+URLs, payload checksums and reference evidence; it imports none of Evangelizo's wording.
+These reviews use `hebrew-psalms`, separately from NABRE's local boundaries in Psalms 2, 66,
+72, 109 and 146. The pinned SIL Hebrew-to-Standard relations feed the existing per-edition
+mapper, including numbered titles, merged verses and the selected edition's chapter numbers.
+Titles joined to a body verse remain in that edition's existing full verse when present.
+The previous September 10 and 13 reviews retain their precedence.
+
+All 103 appointments are available in Douay–Rheims, Masoretic Hebrew, Synodal, Ang Dating Biblia,
+Crampon and Kulish. The remaining three editions have source limits rather than a numbering
+fallback: approved Arabic and Peshitta imports contain no Psalms, and the current Martini
+import omits them. Parola Viva publishes Martini Psalms, but its chapter payloads use internal
+splits/merges that require a separate source-boundary review: Psalm 50:1–2 splits traditional
+verse 3, and Psalm 3:6 crosses traditional verses 7–8. Even matching chapter totals do not
+prove identical boundaries. Those texts are not relabeled by a guessed offset or substituted
+from another edition; the reader offers an explicit available-edition choice.
+
 The [edition mapper](tools/reading_edition_mapping.py) now supplies independently reviewed
-profiles for all eight bundled editions, using the same STEP Standard hub. Its
+profiles for all nine bundled editions, using the same STEP Standard hub. Its
 [numeric inventories](tools/versification/editions/README.markdown) contain source pins,
 chapter/verse identifiers, measured word counts and hashes, with no Scripture wording.
 The reusable mapper opens only this metadata; the passage builder separately verifies the
@@ -174,8 +198,9 @@ not a claim of liturgical approval or an editorial proof of every source transcr
 
 The September 10 partial-verse update resolves 2,192 of 2,390 distinct references in at least
 one edition, including 49 references newly available with full-verse notices.
-Per-edition daily/Torah counts after the vocalized Hebrew update are: Douay–Rheims 2,104/63; Hebrew 2,121/71; Synodal 2,117/68;
-Ang Dating Biblia 2,115/70; Crampon 2,063/69; Martini 1,863/58; Ukrainian 2,090/49.
+After the September 16 Psalm review, 2,291 of 2,390 references have text in at least one edition.
+Current per-edition daily/Torah counts are: Douay–Rheims 2,203/63; Hebrew 2,219/71; Synodal 2,215/68;
+Ang Dating Biblia 2,213/70; Crampon 2,162/69; Martini 1,863/58; Ukrainian 2,188/49.
 The old Arabic Jesuit addition contains 220 transcribed verses in 64 reviewed passage units.
 Its exact-unit policy supplies **9 distinct daily citations and no Torah passages** in the
 current appointment tables. Other Arabic citations explicitly remain unavailable. Adding
@@ -184,7 +209,7 @@ The Peshitta addition supplies 1,770 daily citations and no Torah passages. Its 
 inventory contains 7,912 verse labels from 27 NT books and exactly nine previously approved
 Isaiah verses. Luke 10/11, Philippians 1, 3 John and Revelation 12/13 remain unavailable
 for the structural/boundary reasons in [the source review](content/PESHITTA-SOURCES.markdown).
-The full-text JSON is about 45.3 MB before app-package compression; edition metadata is about 3.1 KB.
+The full-text JSON is about 45.9 MB before app-package compression; edition metadata is about 3.1 KB.
 
 ## Data and native contract
 
