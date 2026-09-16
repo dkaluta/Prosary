@@ -57,8 +57,13 @@ public partial class SettingsViewModel : ObservableObject
     partial void OnUseJaffaHailMaryWordingChanged(bool value) => AppSettings.SetUseJaffaHailMaryWording(value);
 
     public SettingsViewModel(PrayerRemovalService? removal = null)
+        : this(AudioCacheSize(), removal) { }
+
+    // Language-selection tests run without package identity or a native audio-cache folder.
+    internal SettingsViewModel(long initialAudioCacheBytes, PrayerRemovalService? removal = null)
     {
         _removal = removal;
+        _audioCacheBytes = initialAudioCacheBytes;
         SelectedLanguage = LanguageOptions.FirstOrDefault(option =>
             option.Code == LanguageCatalog.PickerLanguageCode(AppSettings.PrayerLanguageCode))
             ?? LanguageOptions[0];
@@ -315,7 +320,7 @@ public partial class SettingsViewModel : ObservableObject
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(AudioCacheLabel))]
     [NotifyCanExecuteChangedFor(nameof(ClearAudioCacheCommand))]
-    private long _audioCacheBytes = AudioCacheSize();
+    private long _audioCacheBytes;
 
     public string AudioCacheLabel => AudioCacheBytes > 0
         ? string.Format(Loc.Tr("settings_clear_audio_cache_size", "Clear Audio Cache ({0})"), FormatBytes(AudioCacheBytes))

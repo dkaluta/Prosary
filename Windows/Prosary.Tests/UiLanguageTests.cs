@@ -26,7 +26,7 @@ public class UiLanguageTests
     [Fact]
     public void AppLanguagePickerHasEveryInterfaceLanguageAndNoPrayerOnlyLanguages()
     {
-        var options = new SettingsViewModel().AppLanguageOptions;
+        var options = new SettingsViewModel(initialAudioCacheBytes: 0).AppLanguageOptions;
         Assert.Equal(new[] { "", "ar", "en", "fr", "he", "it", "ru", "tl", "uk" },
             options.Select(option => option.Tag).Order());
         Assert.Equal("System Default", options[0].Label);
@@ -101,7 +101,7 @@ public class UiLanguageTests
         {
             UiLanguageCatalog.UseLanguageForCurrentSession("en");
             AppSettings.SetDefaultLanguageCode("arc");
-            var settings = new SettingsViewModel();
+            var settings = new SettingsViewModel(initialAudioCacheBytes: 0);
             Assert.Equal("arc", settings.SelectedLanguage.Code);
             Assert.True(settings.ShowsAramaicSignOfCrossPicker);
             Assert.Contains(settings.LanguageOptions, option => option.Code == "la");
