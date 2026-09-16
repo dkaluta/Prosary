@@ -23,6 +23,13 @@ nonisolated struct ReadingTextVerse: Decodable, Equatable, Sendable {
   let chapter: Int
   let verse: Int
   let text: String
+  var transliteratedText: String? = nil
+
+  func displayedText(script: String, edition: ReadingTextEdition) -> String {
+    if edition.supportsAramaicScriptChoice, script == edition.transliteratedTextScript,
+       let transliteratedText { return transliteratedText }
+    return text
+  }
 }
 
 nonisolated struct ReadingTextEdition: Decodable, Equatable, Sendable {
@@ -31,6 +38,12 @@ nonisolated struct ReadingTextEdition: Decodable, Equatable, Sendable {
   let name: String
   let attribution: String
   let sourceURL: String
+  var textScript: String? = nil
+  var transliteratedTextScript: String? = nil
+
+  var supportsAramaicScriptChoice: Bool {
+    languageCode == "arc" && textScript == "Hebr" && transliteratedTextScript == "Syrc"
+  }
 
   var sourceLink: URL? {
     guard let url = URL(string: sourceURL), url.scheme?.lowercased() == "https", url.host != nil else { return nil }
@@ -42,6 +55,12 @@ nonisolated struct ReadingTextPassage: Equatable, Sendable {
   let edition: ReadingTextEdition
   let verses: [ReadingTextVerse]
   var includesWholeVerses = false
+}
+
+nonisolated enum ReadingTextScript {
+  static func resolved(override: String?, defaultScript: String) -> String {
+    (override ?? defaultScript) == "Syrc" ? "Syrc" : "Hebr"
+  }
 }
 
 nonisolated struct ReadingEditionManifest: Decodable, Sendable {
@@ -62,7 +81,10 @@ nonisolated struct ReadingTextDataset: Decodable, Sendable {
           let edition = editions.first(where: { $0.id == editionID }),
           let verses = passages["\(isTorah ? "torah" : "daily")|\(citation)"]?[editionID],
           !verses.isEmpty,
-          verses.allSatisfy({ $0.chapter > 0 && $0.verse > 0 && !$0.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty })
+          verses.allSatisfy({ $0.chapter > 0 && $0.verse > 0 && !$0.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }),
+          !edition.supportsAramaicScriptChoice || verses.allSatisfy({
+            !($0.transliteratedText ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+          })
     else { return nil }
     return ReadingTextPassage(edition: edition, verses: verses,
       includesWholeVerses: wholeVersePassages?.contains("\(isTorah ? "torah" : "daily")|\(citation)") == true)

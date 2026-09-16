@@ -159,14 +159,34 @@ struct RepositoryBrowserView: View {
     Button {
       selectedTag = tag
     } label: {
-      Text(label)
+      HStack(spacing: 6) {
+        Image(systemName: "checkmark")
+          .fontWeight(.semibold)
+          .opacity(selectedTag == tag ? 1 : 0)
+          .accessibilityHidden(true)
+        Text(label)
+      }
         .font(.subheadline)
+        #if !os(visionOS)
         .padding(.horizontal, 12)
         .padding(.vertical, 5)
         .background(Capsule().fill(selectedTag == tag ? Color.brandPrimary : Color.secondary.opacity(0.15)))
         .foregroundStyle(selectedTag == tag ? Color(uiColorInverse: ()) : .primary)
+        #endif
+        #if os(iOS)
+        .frame(minHeight: 44)
+        #endif
+        .contentShape(Rectangle())
+        .prosarySpatialTarget()
     }
+    #if os(visionOS)
+    .buttonStyle(.bordered)
+    .buttonBorderShape(.capsule)
+    .tint(selectedTag == tag ? .accentColor : .secondary)
+    #else
     .buttonStyle(.plain)
+    #endif
+    .accessibilityAddTraits(selectedTag == tag ? .isSelected : [])
   }
 
   @ViewBuilder

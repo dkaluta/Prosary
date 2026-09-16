@@ -7,6 +7,28 @@ final class ReadingTextStoreTests: XCTestCase {
   private let hebrew = ReadingTextEdition(id: "hebrew", languageCode: "he", name: "Hebrew fixture",
     attribution: "Synthetic test data", sourceURL: "https://example.com/hebrew")
 
+  func testPairedScriptPassageRetainsBothTextsAndFollowsDefaultUntilOverridden() throws {
+    let payload = #"{"schemaVersion":1,"editions":[{"id":"paired","languageCode":"arc","name":"Paired fixture","attribution":"Synthetic fixture","sourceURL":"https://example.com","textScript":"Hebr","transliteratedTextScript":"Syrc"}],"passages":{"daily|Fixture 1:1":{"paired":[{"chapter":1,"verse":1,"text":"Hebrew-script fixture","transliteratedText":"Syriac-script fixture"}]}}}"#
+    let data = try JSONDecoder().decode(ReadingTextDataset.self, from: Data(payload.utf8))
+    let passage = try XCTUnwrap(data.passage(citation: "Fixture 1:1", isTorah: false, editionID: "paired"))
+    XCTAssertTrue(passage.edition.supportsAramaicScriptChoice)
+    let verse = try XCTUnwrap(passage.verses.first)
+    for (override, defaultScript, expected) in [(nil, "Hebr", "Hebrew-script fixture"),
+                                                (nil, "Syrc", "Syriac-script fixture"),
+                                                ("Hebr", "Syrc", "Hebrew-script fixture"),
+                                                ("Syrc", "Hebr", "Syriac-script fixture"),
+                                                (nil, "invalid", "Hebrew-script fixture")] as [(String?, String, String)] {
+      let script = ReadingTextScript.resolved(override: override, defaultScript: defaultScript)
+      XCTAssertEqual(verse.displayedText(script: script, edition: passage.edition), expected)
+    }
+    for incomplete in [payload.replacingOccurrences(of: #","transliteratedText":"Syriac-script fixture""#, with: ""),
+                       payload.replacingOccurrences(of: "Syriac-script fixture", with: "  ")] {
+      let invalid = try JSONDecoder().decode(ReadingTextDataset.self, from: Data(incomplete.utf8))
+      XCTAssertNil(invalid.passage(citation: "Fixture 1:1", isTorah: false, editionID: "paired"),
+                   "A paired edition must never mix a missing script with another script")
+    }
+  }
+
   func testSelectionOnlyUsesMatchingInterfaceLanguageOrExplicitEdition() {
     let editions = [english, hebrew]
     XCTAssertEqual(ReadingEditionSelection.selected("", interfaceLanguage: "iw-IL", editions: editions), hebrew)
@@ -124,10 +146,10 @@ final class ReadingTextStoreTests: XCTestCase {
     XCTAssertNotNil(Bundle.main.url(forResource: "readings-texts", withExtension: "json"))
     let store = ReadingTextStore()
     let editions = await store.editions()
-    XCTAssertEqual(editions.map(\.languageCode).sorted(), ["ar", "en", "fr", "he", "it", "ru", "tl", "uk"])
+    XCTAssertEqual(editions.map(\.languageCode).sorted(), ["ar", "arc", "en", "fr", "he", "it", "ru", "tl", "uk"])
     // The reviewed Arabic source is a limited corpus; keep complete Luke 6
     // coverage assertions for each of the seven full Bible editions.
-    for edition in editions where edition.languageCode != "ar" {
+    for edition in editions where !["ar", "arc"].contains(edition.languageCode) {
       let daily = await store.passage(citation: "Luke 6:27–38", isTorah: false, editionID: edition.id)
       XCTAssertEqual(daily?.verses.count, 12, edition.id)
       XCTAssertEqual(daily?.verses.first?.verse, 27, edition.id)
@@ -143,6 +165,25 @@ final class ReadingTextStoreTests: XCTestCase {
       verse.text.unicodeScalars.contains { (0x0591...0x05AF).contains($0.value) }
     }, "The native reader must retain the source cantillation")
     XCTAssertNotNil(torah.edition.sourceLink)
+  }
+
+  func testBundledPeshittaKeepsSourceSyriacAndHebrewProjectionTogether() async throws {
+    let store = ReadingTextStore()
+    let editions = await store.editions()
+    let edition = try XCTUnwrap(editions.first { $0.id == "peshitta-1905" })
+    XCTAssertTrue(edition.supportsAramaicScriptChoice)
+    let result = await store.passage(citation: "Luke 1:26–38", isTorah: false, editionID: edition.id)
+    let passage = try XCTUnwrap(result)
+    XCTAssertEqual(passage.verses.map(\.verse), Array(26...38))
+    for verse in passage.verses {
+      XCTAssertEqual(PrayerTypography.script(of: verse.text), .hebrew)
+      let syriac = try XCTUnwrap(verse.transliteratedText)
+      XCTAssertEqual(PrayerTypography.script(of: syriac), .syriac)
+      XCTAssertEqual(verse.displayedText(script: "Syrc", edition: edition), syriac)
+      XCTAssertEqual(verse.displayedText(script: "Hebr", edition: edition), verse.text)
+    }
+    let unavailable = await store.passage(citation: "Genesis 47:28–50:26", isTorah: true, editionID: edition.id)
+    XCTAssertNil(unavailable, "Unreviewed Old Testament source text is never substituted")
   }
 
   func testBundledOldJesuitArabicOpensReviewedPassagesWithoutBorrowingMissingText() async throws {

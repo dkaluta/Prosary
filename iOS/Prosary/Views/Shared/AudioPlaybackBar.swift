@@ -28,19 +28,44 @@ struct AudioPlaybackBar: View {
     HStack(spacing: 10) {
       Button { controller.previousChapter() } label: {
         Image(systemName: "backward.end.fill")
+          #if os(iOS)
+          .frame(minWidth: 44, minHeight: 44)
+          .contentShape(Rectangle())
+          #endif
+          .prosarySpatialTarget()
       }
+      #if os(visionOS)
+      .buttonStyle(.bordered)
+      .buttonBorderShape(.circle)
+      #else
       .buttonStyle(.plain)
+      #endif
       .foregroundStyle(.secondary)
       .disabled(chapterCount < 2)
       .accessibilityLabel(String(localized: "prayerFlow.audio.previousChapter",
                                  defaultValue: "Previous Chapter", bundle: UILanguage.bundle, locale: UILanguage.locale))
 
       Button { controller.playPause() } label: {
+        #if os(visionOS)
+        Image(systemName: controller.isPlaying ? "pause.fill" : "play.fill")
+          .font(.title2)
+          .prosarySpatialTarget()
+        #else
         Image(systemName: controller.isPlaying ? "pause.circle.fill" : "play.circle.fill")
           .font(.system(size: 34))
-          .foregroundStyle(seasonColor)
+          .foregroundStyle(Color.accentColor)
+          #if os(iOS)
+          .frame(minWidth: 44, minHeight: 44)
+          .contentShape(Rectangle())
+          #endif
+        #endif
       }
+      #if os(visionOS)
+      .buttonStyle(.bordered)
+      .buttonBorderShape(.circle)
+      #else
       .buttonStyle(.plain)
+      #endif
       .accessibilityLabel(controller.isPlaying
                           ? String(localized: "prayerFlow.audio.pause", defaultValue: "Pause", bundle: UILanguage.bundle, locale: UILanguage.locale)
                           : String(localized: "prayerFlow.audio.play", defaultValue: "Play", bundle: UILanguage.bundle, locale: UILanguage.locale))
@@ -48,8 +73,18 @@ struct AudioPlaybackBar: View {
 
       Button { controller.nextChapter() } label: {
         Image(systemName: "forward.end.fill")
+          #if os(iOS)
+          .frame(minWidth: 44, minHeight: 44)
+          .contentShape(Rectangle())
+          #endif
+          .prosarySpatialTarget()
       }
+      #if os(visionOS)
+      .buttonStyle(.bordered)
+      .buttonBorderShape(.circle)
+      #else
       .buttonStyle(.plain)
+      #endif
       .foregroundStyle(.secondary)
       .disabled(chapterCount < 2)
       .accessibilityLabel(String(localized: "prayerFlow.audio.nextChapter",
@@ -75,7 +110,11 @@ struct AudioPlaybackBar: View {
             }
           )
           .tint(seasonColor)
+          #if os(visionOS)
+          .controlSize(.regular)
+          #else
           .controlSize(.mini)
+          #endif
           .accessibilityLabel(String(localized: "prayerFlow.audio.position",
                                      defaultValue: "Playback position", bundle: UILanguage.bundle, locale: UILanguage.locale))
 
@@ -87,7 +126,11 @@ struct AudioPlaybackBar: View {
     }
     .padding(.vertical, 6)
     .padding(.horizontal, 12)
+    #if os(visionOS)
+    .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
+    #else
     .background(.quaternary.opacity(0.5), in: RoundedRectangle(cornerRadius: 12))
+    #endif
   }
 
   private static func timestamp(_ seconds: Double) -> String {

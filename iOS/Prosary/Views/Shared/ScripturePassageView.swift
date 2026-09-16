@@ -42,13 +42,21 @@ struct ScripturePassageView: View {
   var interfaceLanguage: String = UILanguage.current
   @AppStorage(ReadingEditionSelection.defaultsKey) private var preference = ""
   @State private var expanded = true
+  @AppStorage(PrayerTranslations.aramaicDefaultScriptKey) private var defaultAramaicScript = "Hebr"
+  // Keep the passage's choice when its disclosure closes, without rewriting the app default.
+  @State private var scriptOverride: String?
+
+  private var script: Binding<String> {
+    Binding(get: { ReadingTextScript.resolved(override: scriptOverride, defaultScript: defaultAramaicScript) },
+            set: { scriptOverride = $0 })
+  }
 
   var body: some View {
     DisclosureGroup(isExpanded: $expanded) {
       if expanded {
         ScripturePassageBody(
           citation: reading.full, isTorah: isTorah,
-          preference: preference, interfaceLanguage: interfaceLanguage)
+          preference: preference, interfaceLanguage: interfaceLanguage, script: script)
           .padding(.top, 8)
       }
     } label: {
@@ -57,7 +65,9 @@ struct ScripturePassageView: View {
     }
     .accessibilityIdentifier("readings.passage.\(isTorah ? "torah" : "daily").\(reading.full)")
     .onAppear { expanded = true }
-    .onChange(of: reading.full) { _, _ in expanded = true }
+    .onChange(of: reading.full) { _, _ in expanded = true; scriptOverride = nil }
+    .onChange(of: isTorah) { _, _ in scriptOverride = nil }
+    .onChange(of: preference) { _, _ in scriptOverride = nil }
   }
 }
 
@@ -66,6 +76,7 @@ private struct ScripturePassageBody: View {
   let isTorah: Bool
   let preference: String
   let interfaceLanguage: String
+  @Binding var script: String
   @State private var passage: ReadingTextPassage?
   @State private var loading = true
   @ObservedObject private var typography = PrayerTypographyMonitor.shared
@@ -79,6 +90,14 @@ private struct ScripturePassageBody: View {
       if loading {
         ProgressView().accessibilityLabel(String(localized: "readings.loading", defaultValue: "Loading passage", bundle: UILanguage.bundle, locale: UILanguage.locale))
       } else if let passage {
+        if passage.edition.supportsAramaicScriptChoice {
+          Picker(String(localized: "readings.script", defaultValue: "Aramaic Script", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $script) {
+            Text(String(localized: "settings.script.hebrew", defaultValue: "Hebrew Script", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("Hebr")
+            Text(String(localized: "settings.script.syriac", defaultValue: "Syriac Script", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("Syrc")
+          }
+          .pickerStyle(.segmented)
+          .accessibilityIdentifier("readings.scriptPicker")
+        }
         if passage.includesWholeVerses {
           Text(String(localized: "readings.wholeVersesNotice", defaultValue: "Full verses are shown where the reading cites only part of a verse.", bundle: UILanguage.bundle, locale: UILanguage.locale))
             .font(.callout).foregroundStyle(.secondary)
@@ -86,19 +105,20 @@ private struct ScripturePassageBody: View {
         }
         VStack(alignment: .leading, spacing: 12) {
           ForEach(Array(passage.verses.enumerated()), id: \.offset) { _, verse in
+            let text = verse.displayedText(script: script, edition: passage.edition)
             HStack(alignment: .firstTextBaseline, spacing: 8) {
               Text(verbatim: "\(verse.chapter):\(verse.verse)")
                 .font(.caption).monospacedDigit().foregroundStyle(.secondary)
                 .fixedSize()
-              Text(verse.text)
+              Text(text)
                 .font(PrayerTypography.font(languageCode: passage.edition.languageCode, isScripture: true,
-                                           text: verse.text, typefaces: typography.typefaces))
+                                           text: text, typefaces: typography.typefaces))
                 .lineSpacing(5)
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
           }
         }
-        .environment(\.layoutDirection, UILanguage.isRightToLeft(passage.edition.languageCode) ? .rightToLeft : .leftToRight)
+        .environment(\.layoutDirection, passage.edition.languageCode == "arc" || UILanguage.isRightToLeft(passage.edition.languageCode) ? .rightToLeft : .leftToRight)
         .textSelection(.enabled)
         .accessibilityIdentifier("readings.verses")
 

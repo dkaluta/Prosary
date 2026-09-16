@@ -42,8 +42,11 @@
         "languageCode": {"type": "string", "minLength": 2},
         "name": {"type": "string", "minLength": 1},
         "attribution": {"type": "string", "minLength": 1},
-        "sourceURL": {"type": "string", "format": "uri", "pattern": "^https://"}
-      }
+        "sourceURL": {"type": "string", "format": "uri", "pattern": "^https://"},
+        "textScript": {"type": "string", "enum": ["Hebr", "Syrc"], "description": "Script of each verse's primary text; paired editions declare both script fields."},
+        "transliteratedTextScript": {"type": "string", "enum": ["Hebr", "Syrc"], "description": "Script of each verse's paired transliteratedText. For Peshitta this is the unchanged Syriac source, matching the existing Aramaic prayer contract."}
+      },
+      "dependentRequired": {"textScript": ["transliteratedTextScript"], "transliteratedTextScript": ["textScript"]}
     },
     "verse": {
       "type": "object",
@@ -52,7 +55,8 @@
       "properties": {
         "chapter": {"type": "integer", "minimum": 1},
         "verse": {"type": "integer", "minimum": 1},
-        "text": {"type": "string", "minLength": 1}
+        "text": {"type": "string", "minLength": 1},
+        "transliteratedText": {"type": "string", "minLength": 1, "description": "Paired script of the same complete verse, never another translation. Required in every verse of an edition declaring paired scripts; readers reject an incomplete pair."}
       }
     }
   }

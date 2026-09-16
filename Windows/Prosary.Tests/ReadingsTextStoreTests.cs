@@ -1,4 +1,5 @@
 using Prosary.Services;
+using Prosary.Models;
 using Prosary.ViewModels;
 using Xunit;
 
@@ -6,6 +7,11 @@ namespace Prosary.Tests;
 
 public class ReadingsTextStoreTests
 {
+    private const string PairedFixture = """
+        {"schemaVersion":1,"editions":[{"id":"peshitta-1905","languageCode":"arc","name":"Fixture Peshitta",
+        "attribution":"Fixture credit","sourceURL":"https://example.test","textScript":"Hebr","transliteratedTextScript":"Syrc"}],
+        "passages":{"daily|Fixture 1:1":{"peshitta-1905":[{"chapter":1,"verse":1,"text":"בדיקה","transliteratedText":"ܐܒܓ"}]}}}
+        """;
     private const string Fixture = """
         {"schemaVersion":1,"editions":[
           {"id":"fixture-en","languageCode":"en","name":"English fixture","attribution":"Fixture credit","sourceURL":"https://example.test/en"},
@@ -137,6 +143,51 @@ public class ReadingsTextStoreTests
         Assert.True(row.IsRightToLeft);
         Assert.True(row.HasPassage);
         Assert.Contains(authored, row.PassageText);
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData(" ")]
+    public void PairedScriptPassageRejectsMissingOrEmptyAlternateInsteadOfMixingScripts(string? alternate)
+    {
+        var replacement = alternate is null ? "\"unused\":true" : $"\"transliteratedText\":\"{alternate}\"";
+        var store = new ReadingsTextStore(() => PairedFixture.Replace("\"transliteratedText\":\"ܐܒܓ\"", replacement));
+        Assert.True(store.Editions.Single().HasAramaicScripts);
+        Assert.Null(store.LoadPassage("daily", "Fixture 1:1", "peshitta-1905"));
+    }
+
+    [Fact]
+    public void AramaicReaderFollowsDefaultUntilLocalToggleAndRendersTheSelectedScript()
+    {
+        var previous = AppSettings.AramaicDefaultScript;
+        try
+        {
+            AppSettings.SetAramaicDefaultScript("Syrc");
+            var store = new ReadingsTextStore(() => PairedFixture);
+            var edition = store.ResolveEdition("peshitta-1905", "en");
+            var row = new ReadingPassageViewModel(store, edition, "daily",
+                new ReadingCitation("reading", "Fixture", "Fixture 1:1"), "en", "context", "configuration") { IsExpanded = true };
+            Assert.True(row.HasScriptToggle);
+            Assert.Contains("ܐܒܓ", row.PassageText);
+            Assert.DoesNotContain("בדיקה", row.PassageText);
+            Assert.True(row.IsRightToLeft);
+            Assert.Equal(PrayerTypography.ResolveBodyFontFamily("arc", true, PrayerTypography.Script.Syriac), row.BodyFontFamily);
+
+            AppSettings.SetAramaicDefaultScript("Hebr");
+            row.RefreshTypography();
+            Assert.Contains("בדיקה", row.PassageText);
+            Assert.Equal(PrayerTypography.ResolveBodyFontFamily("arc", true, PrayerTypography.Script.Hebrew), row.BodyFontFamily);
+            row.ToggleScriptCommand.Execute(null);
+            Assert.Equal("Syrc", row.ScriptOverride);
+            Assert.Equal("Hebr", AppSettings.AramaicDefaultScript);
+            row.IsExpanded = false;
+            row.RefreshTypography();
+            row.IsExpanded = true;
+            Assert.Contains("ܐܒܓ", row.PassageText);
+            Assert.True(row.IsRightToLeft);
+        }
+        finally { AppSettings.SetAramaicDefaultScript(previous); }
     }
 
 }

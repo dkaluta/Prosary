@@ -4,11 +4,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.today.ReadingCitation
 import com.dkaluta.prosary.content.today.ReadingEdition
 import com.dkaluta.prosary.content.today.ReadingTextStore
+import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.ui.readings.ReadingCard
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -18,13 +20,55 @@ import org.junit.Test
 class ReadingTextInstrumentedTest {
     @get:Rule val compose = createAndroidComposeRule<AdaptiveLayoutTestActivity>()
 
+    @Test fun aramaicDefaultAndLocalToggleChangeTheRenderedVersesAndSurviveCollapse() {
+        val previousScript = AppSettings.aramaicDefaultScript
+        val store = ReadingTextStore { name ->
+            when (name) {
+                "readings-editions" -> """{"schemaVersion":1,"editions":[{"id":"paired","languageCode":"arc","name":"Fixture Peshitta","attribution":"Fixture credit","sourceURL":"https://example.org","textScript":"Hebr","transliteratedTextScript":"Syrc"}]}"""
+                else -> """{"schemaVersion":1,"passages":{"daily|Fixture 1:1":{"paired":[{"chapter":1,"verse":1,"text":"בדיקה","transliteratedText":"ܐܒܓ"}]},"daily|Fixture 1:2":{"paired":[{"chapter":1,"verse":2,"text":"בדיקה","transliteratedText":"ܐܒܓ"}]}}}"""
+            }.byteInputStream()
+        }
+        val edition = store.editions.single()
+        val expanded = mutableStateOf(true)
+        val citation = mutableStateOf(ReadingCitation("reading", "Fixture", "Fixture 1:1"))
+        fun waitFor(text: String) {
+            compose.waitUntil(5_000) {
+                compose.onAllNodes(androidx.compose.ui.test.hasText(text, substring = true)).fetchSemanticsNodes().isNotEmpty()
+            }
+        }
+        try {
+            AppSettings.setAramaicDefaultScript("Syrc")
+            compose.setContent {
+                MaterialTheme {
+                    ReadingCard(citation.value, "en", edition, edition.id, store, false,
+                        expanded = expanded.value, onToggleExpanded = { expanded.value = !expanded.value })
+                }
+            }
+            waitFor("ܐܒܓ")
+            compose.runOnIdle { AppSettings.setAramaicDefaultScript("Hebr") }
+            waitFor("בדיקה")
+            compose.runOnIdle { AppSettings.setAramaicDefaultScript("Syrc") }
+            waitFor("ܐܒܓ")
+            compose.onNodeWithTag("readingScript.daily.Fixture 1:1").performClick()
+            waitFor("בדיקה")
+            compose.onNodeWithText("ܐܒܓ", substring = true).assertDoesNotExist()
+            compose.runOnIdle { assertEquals("Syrc", AppSettings.aramaicDefaultScript) }
+            compose.onNodeWithText(compose.activity.getString(R.string.readings_hide_text)).performClick()
+            compose.onNodeWithText(compose.activity.getString(R.string.readings_show_text)).performClick()
+            waitFor("בדיקה")
+            compose.runOnIdle { citation.value = citation.value.copy(full = "Fixture 1:2") }
+            waitFor("ܐܒܓ")
+        } finally { AppSettings.setAramaicDefaultScript(previousScript) }
+    }
+
     @Test fun expansionLoadsExactPassageAndPreservesHebrewMarksAndCredit() {
         val markedText = "סִימָן֑ לבדיקה"
         var opened = 0
         val store = ReadingTextStore { name ->
-            assertEquals("readings-texts", name)
-            opened++
-            """{"schemaVersion":1,"passages":{"daily|Genesis 1:1":{"fixture-he":[{"chapter":1,"verse":1,"text":"$markedText"}]}}}""".byteInputStream()
+            if (name == "readings-texts") {
+                opened++
+                """{"schemaVersion":1,"passages":{"daily|Genesis 1:1":{"fixture-he":[{"chapter":1,"verse":1,"text":"$markedText"}]}}}""".byteInputStream()
+            } else """{"schemaVersion":1,"editions":[]}""".byteInputStream()
         }
         val edition = ReadingEdition("fixture-he", "he", "Fixture edition", "Fixture source credit", "https://example.org")
         val expanded = mutableStateOf(false)

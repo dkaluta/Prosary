@@ -1,14 +1,18 @@
 {
   "schemaVersion": 1,
-  "inventorySHA256": "586e4bf9f9014919295443637e0f60b07e8fcf4a33e737e1664cd97f7ea15d33",
+  "inventorySHA256": "e30ac2e3f1cf3375597f9ed9627480b2cc06c23382a1ace6a33314ce28897fd2",
   "reviewFiles": {
-    "reading-text-sources.json": "fc99b6aef8a6ed5f3610a2ea857537dff020520426bc10b31b5fbb6a76e89b3c",
-    "build-reading-texts.py": "70e921afa6a692de0c159ef4236b8d00db4e7a9c4b66969a126037a183187495",
-    "build-edition-mappings.py": "33b8a92f24f93960b5d22e630beb343365baebd12218bb78b4d488e2ca3d17c1",
-    "reading_edition_mapping.py": "ac31799ca1a8af65a2c4e1e033820a6f7959f01d736fca96bec982dc7ba765a6",
+    "reading-text-sources.json": "e8b401fdb2be81599d509a17d12c4874fe5abfd5e0223857e90dc31a0a76f078",
+    "build-reading-texts.py": "f0d8ab2ba82f2ba74f6ea980760b9133ad716a4471fb855da3717b28c385d983",
+    "build-edition-mappings.py": "00bf9ce05d2fc2df810b12c4912d25e94a541ed5c80440e2aadfd38ee53a9f06",
+    "reading_edition_mapping.py": "781f29b6a4cddeb05a687d7e07daf5884cdd4758b8960836ff854c8af0093584",
     "reading_edition_reviews_hebrew.py": "c8d81d955a294f32edabb3581afd40f399b2d8adb8cc3f06455f8645f504dd15",
     "reading_edition_reviews_western.py": "b671508721328f7ac7028c1b0e6dca42581d4a207815468f0d2cba8a4aa4ef00",
     "reading_edition_reviews_arabic.py": "ff5874bfc9ea12a0fb2a050dfab559cc1028410f86a749f8eda4051c92d64205",
+    "reading_edition_reviews_peshitta.py": "b15560736efcc20fec8e632d698ebf5b29020b7119ab54e175dfaf54d82f8685",
+    "peshitta_reading_source.py": "29c01299ea298d729664e2f072c6015e32b27341f734e14c3c521eddcd718268",
+    "import-scripture.py": "f33002879c82f003f86548fa58b2ccb41c9f770e5dbed10b5dc097ceb82174b8",
+    "aramaic_script_converter.py": "5f769f43cbcb5f06d3a4c85a7c57bb256a9995a19c9cb1f62465c3901082ba4d",
     "reading_step_mapping.py": "dbdfc8e59e690965377d18a8fef9f241c9267029b5dbedbfa625f7957b8921ea",
     "reading_psalm_mapping.py": "3617151e54f6162fda0f25842cf780cc269949416a90b83427f1a5c780f096cb",
     "reading_boundary_groups.py": "19da3727c7972b54e660c32b5004e2e7d112518982f859e079ad2456de3edecb",
@@ -341,6 +345,39 @@
       "mapped": 220,
       "policy": "reviewed-units",
       "blockedChapters": []
+    },
+    "peshitta-1905": {
+      "books": 28,
+      "chapters": 264,
+      "labels": 7912,
+      "mapped": 7791,
+      "policy": "whole-verses",
+      "blockedChapters": [
+        [
+          "3JN",
+          1
+        ],
+        [
+          "LUK",
+          10
+        ],
+        [
+          "LUK",
+          11
+        ],
+        [
+          "PHP",
+          1
+        ],
+        [
+          "REV",
+          12
+        ],
+        [
+          "REV",
+          13
+        ]
+      ]
     }
   }
 }

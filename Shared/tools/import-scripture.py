@@ -127,7 +127,15 @@ LANGUAGES = {
         # The bundle ships Hebrew letters, per the catalogue's promise that "arc" is Aramaic in
         # Hebrew script; the Syriac original goes to transliterations.
         "file_names": {"Matthew": "100", "Mark": "119", "Luke": "120", "John": "121",
-                       "Acts": "122", "Revelation": "145"},
+                       "Acts": "122", "Romans": "123", "1 Corinthians": "124",
+                       "2 Corinthians": "126", "Galatians": "127", "Ephesians": "128",
+                       "Philippians": "129", "Colossians": "130", "1 Thessalonians": "131",
+                       "2 Thessalonians": "132", "1 Timothy": "133", "2 Timothy": "134",
+                       "Titus": "135", "Philemon": "136", "Hebrews": "137", "James": "138",
+                       "1 Peter": "139", "2 Peter": "140", "1 John": "141", "2 John": "142",
+                       "3 John": "143", "Jude": "144", "Revelation": "145"},
+        # The pinned 2 Corinthians TEI lives at 126.xml but identifies its record as 125.
+        "source_ids": {"2 Corinthians": "125"},
         "primary_script": "hebrew",
         "second_script": "syriac",
         "books": {"Matthew": ("ܡܬܝ", "מתי"), "Mark": ("ܡܪܩܘܣ", "מרקוס"),
@@ -558,7 +566,9 @@ def parse_pointed_peshitta(markup: str, book: str, chapters: set[int] | None = N
     root = ET.fromstring(markup)
     ns = {"t": "http://www.tei-c.org/ns/1.0"}
     source_id = root.find("t:teiHeader/t:fileDesc/t:publicationStmt/t:idno[@type='URI']", ns)
-    expected_id = "https://syriaccorpus.org/" + LANGUAGES["arc"]["file_names"][book]
+    source_number = LANGUAGES["arc"].get("source_ids", {}).get(
+        book, LANGUAGES["arc"]["file_names"][book])
+    expected_id = "https://syriaccorpus.org/" + source_number
     if source_id is None or (source_id.text or "").strip() != expected_id:
         raise ValueError(f"Peshitta source is not {book}")
     table = {}

@@ -173,6 +173,7 @@ public static class AppSettings
     {
         _aramaicDefaultScript = value == "Syrc" ? "Syrc" : "Hebr";
         WriteLocalSetting(KeyAramaicDefaultScript, _aramaicDefaultScript);
+        TypographyChanged?.Invoke();
     }
 
     public static string SyriacTypeface => _syriacTypeface ??=

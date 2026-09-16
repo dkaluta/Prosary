@@ -272,6 +272,10 @@ def load_source(source: dict) -> dict[tuple[str, int], dict[int, str]]:
             raise ValueError("Invalid Delitzsch source chapter")
         for verse, text in apply_reviewed_corrections(source, parse_chapter(raw)).items():
             add(source["book"], source["chapter"], verse, text)
+    elif source["format"] in {"peshitta-tei", "peshitta-isaiah"}:
+        from peshitta_reading_source import load_verses
+        for (chapter, verse), text in load_verses(source, raw).items():
+            add(source["book"], chapter, verse, text)
     elif source["format"] == "reviewed-verses":
         data = json.loads(raw)
         if data["edition"]["id"] != source["editionId"]:
@@ -444,7 +448,11 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> Resolv
             if verse not in values or not values[verse].strip():
                 raise Unavailable("reviewed source verse unavailable")
         else:
-            if uses_step_inventory:
+            if edition["id"] == "peshitta-1905" and mapped_book == "ISA":
+                from reading_edition_reviews_peshitta import REVIEWED_ISAIAH
+                complete = (isinstance(corpus, PinnedCorpus) and corpus.chapter_matches(mapped_book, chapter)
+                            and (chapter, verse) in REVIEWED_ISAIAH)
+            elif uses_step_inventory:
                 complete = (edition_mapper(edition["id"], corpus).chapter_available(mapped_book, chapter)
                             and corpus.chapter_matches(mapped_book, chapter))
             elif target_system == "delitzsch-1901":
@@ -460,7 +468,14 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> Resolv
         text = values[verse]
         if edition["languageCode"] == "he":
             text = preserve_divine_name_accents(text)
-        result.append({"chapter": chapter, "verse": verse, "text": text})
+        row = {"chapter": chapter, "verse": verse, "text": text}
+        if edition.get("textScript") or edition.get("transliteratedTextScript"):
+            if (edition["id"] != "peshitta-1905" or edition.get("textScript") != "Hebr"
+                    or edition.get("transliteratedTextScript") != "Syrc"):
+                raise ValueError("Paired Bible scripts require their reviewed source projection")
+            from peshitta_reading_source import paired_text
+            row["text"], row["transliteratedText"] = paired_text(text)
+        result.append(row)
     if not result:
         raise Unavailable("empty passage")
     return ResolvedPassage(result, includes_whole_verses=whole)
@@ -506,7 +521,9 @@ def load_pinned_corpora(fetch: bool = False) -> tuple[dict, dict]:
 
 def build(fetch: bool = False) -> dict[str, bytes]:
     lock, corpora = load_pinned_corpora(fetch)
-    editions = [{key: edition[key] for key in ("id", "languageCode", "name", "attribution", "sourceURL")} for edition in lock["editions"]]
+    metadata_keys = ("id", "languageCode", "name", "attribution", "sourceURL",
+                     "textScript", "transliteratedTextScript")
+    editions = [{key: edition[key] for key in metadata_keys if key in edition} for edition in lock["editions"]]
     passages = {}
     failures = defaultdict(Counter)
     missing = defaultdict(dict)

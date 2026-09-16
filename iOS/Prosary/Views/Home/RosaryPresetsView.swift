@@ -53,9 +53,11 @@ struct RosaryPresetsView: View {
           }
           .padding(14)
           .frame(maxWidth: .infinity, alignment: .leading)
+          .prosarySpatialTarget(alignment: .leading)
           .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
         }
         .buttonStyle(.plain)
+        .prosarySpatialHoverEffect(in: RoundedRectangle(cornerRadius: 14))
         .padding(.horizontal, 16)
         .accessibilityIdentifier("prayAnyRosary")
 
@@ -161,8 +163,9 @@ struct RosaryPresetsView: View {
         } label: {
           Text("favorites.pray")
             .frame(maxWidth: .infinity)
+            .prosarySpatialTarget()
         }
-        .prosaryProminentButtonStyle()
+        .buttonStyle(.borderedProminent)
         .tint(Color.brandPrimary)
         .padding(.top, 2)
         .accessibilityLabel(String(localized: "favorites.prayPrayer", defaultValue: "Pray \(preset.name)", bundle: UILanguage.bundle, locale: UILanguage.locale))

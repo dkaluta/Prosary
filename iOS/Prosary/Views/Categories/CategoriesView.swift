@@ -78,8 +78,10 @@ struct CategoriesView: View {
               // semantic row the target while retaining single-top programmatic navigation.
               .frame(maxWidth: .infinity, alignment: .leading)
               .contentShape(Rectangle())
+              .prosarySpatialTarget(alignment: .leading)
             }
             .buttonStyle(.plain)
+            .prosarySpatialHoverEffect(in: RoundedRectangle(cornerRadius: 12))
             .tag("\(section.tag)|\(listing.id)")
             .accessibilityIdentifier("category.\(listing.id)")
             .contextMenu {

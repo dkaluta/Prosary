@@ -32,6 +32,7 @@ of Scripture. The generated corpus is separate from existing `.prosaryprayer` pa
 | Italian | Antonio Martini, 1769–1781 | [Parola Viva](https://parolaviva.art/opendata): public-domain Bible text; structured data by Giovanni Novelli under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). This source import covers the Pentateuch and New Testament, not its copyrighted meditations. |
 | Ukrainian | Kulish, Nechui-Levytsky and Puluj, 1905 | [eBible `ukr1871`](https://ebible.org/ukr1871/copyright.htm), public-domain text. Uses the same pinned VPL payload as the existing Scripture importer. |
 | Arabic | Old Jesuit translation, Beirut printing, 1897 | [Reviewed canonical transcription](content/arabic-jesuit-1897.json) relayed from the [historical scan](https://archive.org/details/AlKitabAlMoqadas). Only visually checked passages are included, with their printed verse boundaries and PDF page evidence. This is a limited public-domain selection, not a complete Arabic Bible or the modern Dar el-Machreq revision. |
+| Aramaic (selectable) | Peshitta, BFBS 1905 New Testament; nine approved supplied Isaiah verses | [Source review](content/PESHITTA-SOURCES.markdown). Pointed Digital Syriac Corpus NT, CC BY 4.0, paired with Erez's established Hebrew-script projection. Supplied Isaiah edition/rights remain unresolved and are credited separately; no other OT is imported. |
 
 The Hebrew reader uses **vocalized Scripture in both testaments**. The New Testament now
 comes from the complete Delitzsch 1901 transcription at delitz.fr, replacing the previous
@@ -179,7 +180,11 @@ The old Arabic Jesuit addition contains 220 transcribed verses in 64 reviewed pa
 Its exact-unit policy supplies **9 distinct daily citations and no Torah passages** in the
 current appointment tables. Other Arabic citations explicitly remain unavailable. Adding
 more requires further source transcription and boundary review, not a wider runtime fallback.
-The full-text JSON is about 36.8 MB before app-package compression; edition metadata is about 2.5 KB.
+The Peshitta addition supplies 1,770 daily citations and no Torah passages. Its pinned source
+inventory contains 7,912 verse labels from 27 NT books and exactly nine previously approved
+Isaiah verses. Luke 10/11, Philippians 1, 3 John and Revelation 12/13 remain unavailable
+for the structural/boundary reasons in [the source review](content/PESHITTA-SOURCES.markdown).
+The full-text JSON is about 45.3 MB before app-package compression; edition metadata is about 3.1 KB.
 
 ## Data and native contract
 
@@ -195,6 +200,14 @@ from `Shared/data/` into each native app's data directory:
   means an empty array; the original citation is never
   changed to a normalized lookup key. Every platform exposes the flag on the loaded passage.
 
+Paired-script editions additionally declare `textScript` and `transliteratedTextScript`;
+every verse then requires nonempty `transliteratedText`. Peshitta uses primary Hebrew-square
+`Hebr` and alternate source Syriac `Syrc`, matching the existing Aramaic prayer contract.
+An incomplete pair makes the entire passage unavailable. Native readers initialize from
+`aramaicDefaultScript` and offer the same Hebrew/Syriac choice, rendering the selected
+verse field with its actual script, typeface and RTL direction. They never convert Scripture
+or substitute the other field when the selected script is missing.
+
 The shared setting is `readingsEditionId`. Empty follows the interface language, normalizing
 `iw` to `he` and `fil` to `tl`. An explicit unknown/removed edition or an interface language
 with no edition resolves to unavailable. No automatic edition/language fallback occurs.
@@ -209,6 +222,7 @@ Regeneration and verification:
 uv run --script Shared/tools/build-reading-texts.py --fetch --sync
 uv run --script Shared/tools/build-reading-texts.py --check --sync
 uv run --script Shared/tools/test-reading-texts.py
+uv run --script Shared/tools/test-peshitta-readings.py
 uv run --script Shared/tools/test-reading-versification.py
 uv run --script Shared/tools/test-reading-appointment-reviews.py
 uv run --script Shared/tools/test-reading-source-numbering.py

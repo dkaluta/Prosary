@@ -51,6 +51,8 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
@@ -264,6 +266,9 @@ internal fun ReadingCard(citation: ReadingCitation, language: String, edition: R
     editionId: String?, store: ReadingTextStore, isTorah: Boolean, expanded: Boolean,
     onToggleExpanded: () -> Unit) {
     val uriHandler = LocalUriHandler.current
+    // A local reading aid survives collapse/lazy recycling; the setting applies until a choice.
+    var scriptOverride by rememberSaveable(citation.full, editionId, isTorah) { mutableStateOf<String?>(null) }
+    val readingScript = scriptOverride ?: AppSettings.aramaicDefaultScript
     Card(Modifier.fillMaxWidth()) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Text(stringResource(when (citation.type) {
@@ -292,18 +297,29 @@ internal fun ReadingCard(citation: ReadingCitation, language: String, edition: R
                 } else if (passage == null) {
                     Text(stringResource(R.string.readings_unavailable), color = MaterialTheme.colorScheme.onSurfaceVariant)
                 } else {
+                    if (edition?.hasAramaicScripts == true) {
+                        val usesSyriac = readingScript == "Syrc"
+                        val currentScript = stringResource(if (usesSyriac) R.string.settings_script_syriac else R.string.settings_script_hebrew)
+                        TextButton(onClick = { scriptOverride = if (usesSyriac) "Hebr" else "Syrc" },
+                            modifier = Modifier.testTag("readingScript.${if (isTorah) "torah" else "daily"}.${citation.full}")
+                                .semantics { stateDescription = currentScript }) {
+                            Text(stringResource(if (usesSyriac) R.string.settings_script_hebrew else R.string.settings_script_syriac))
+                        }
+                    }
                     if (passage.includesWholeVerses) {
                         Text(stringResource(R.string.readings_whole_verses_notice),
                             style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
-                    val textLanguage = edition?.languageCode.orEmpty()
+                    val bodyScript = PrayerTypography.scriptOf(passage.verses.first().displayedText(edition, readingScript))
                     CompositionLocalProvider(LocalLayoutDirection provides
-                        if (TodayTranslationLanguage.isRightToLeft(textLanguage)) LayoutDirection.Rtl else LayoutDirection.Ltr) {
+                        if (bodyScript in listOf(PrayerTypography.Script.Hebrew, PrayerTypography.Script.Arabic,
+                                PrayerTypography.Script.Syriac)) LayoutDirection.Rtl else LayoutDirection.Ltr) {
                         SelectionContainer {
                             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                                 for (verse in passage.verses) {
-                                    Text("\u2066${verse.chapter}:${verse.verse}\u2069  ${verse.text}",
-                                        style = PrayerTypography.styleForText(verse.text, isScripture = true),
+                                    val visibleText = verse.displayedText(edition, readingScript)
+                                    Text("\u2066${verse.chapter}:${verse.verse}\u2069  $visibleText",
+                                        style = PrayerTypography.styleForText(visibleText, isScripture = true),
                                         modifier = Modifier.fillMaxWidth())
                                 }
                             }

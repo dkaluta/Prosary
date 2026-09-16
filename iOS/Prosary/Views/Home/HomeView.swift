@@ -434,6 +434,7 @@ struct HomeView: View {
         Text(selectedDateLabel)
           .font(.subheadline.weight(.semibold))
           .frame(maxWidth: .infinity)
+          .prosarySpatialTarget()
       }
       .accessibilityHint(String(localized: "home.today.chooseDate", defaultValue: "Choose a date", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .help(String(localized: "home.today.chooseDate", defaultValue: "Choose a date", bundle: UILanguage.bundle, locale: UILanguage.locale))
@@ -453,7 +454,8 @@ struct HomeView: View {
       .help(String(localized: "home.today.nextDay", defaultValue: "Next Day", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("todayTomorrowButton")
     }
-    .prosarySecondaryButtonStyle()
+    // This date row scrolls with Today content; it is not a floating navigation bar.
+    .buttonStyle(.bordered)
     #if os(macOS)
     .controlSize(.regular)
     #else
@@ -469,7 +471,7 @@ struct HomeView: View {
       Button(String(localized: "home.today.today", defaultValue: "Today", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
         todayDateBinding.wrappedValue = Date()
       }
-      .prosarySecondaryButtonStyle()
+      .buttonStyle(.bordered)
       .disabled(Calendar(identifier: .gregorian).isDateInToday(selectedDate))
       .accessibilityIdentifier("todayResetButton")
       DatePicker(String(localized: "home.today.chooseDate", defaultValue: "Choose a date", bundle: UILanguage.bundle, locale: UILanguage.locale),
@@ -506,9 +508,11 @@ struct HomeView: View {
       }
       .padding(.vertical, 12)
       .padding(.horizontal, 16)
+      .prosarySpatialTarget(alignment: .leading)
       .background(.quaternary.opacity(0.4), in: RoundedRectangle(cornerRadius: 12))
     }
     .buttonStyle(.plain)
+    .prosarySpatialHoverEffect(in: RoundedRectangle(cornerRadius: 12))
     .accessibilityIdentifier("basicPrayersRow")
   }
 

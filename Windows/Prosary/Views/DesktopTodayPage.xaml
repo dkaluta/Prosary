@@ -14,11 +14,15 @@
                 <StackPanel Spacing="12">
                     <TextBlock Text="{x:Bind PassageLabel}" FontWeight="SemiBold" />
                     <TextBlock Text="{x:Bind EditionName}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+                    <Button Content="{x:Bind ScriptToggleLabel, Mode=OneWay}" Command="{x:Bind ToggleScriptCommand}"
+                            AutomationProperties.ItemStatus="{x:Bind CurrentScriptLabel, Mode=OneWay}"
+                            AutomationProperties.AutomationId="readingScript"
+                            Visibility="{x:Bind HasScriptToggle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                     <TextBlock Text="{x:Bind WholeVersesNotice}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}"
                                Visibility="{x:Bind IncludesWholeVerses, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                     <TextBlock Text="{x:Bind PassageText, Mode=OneWay}" IsTextSelectionEnabled="True" TextWrapping="Wrap"
                                FontFamily="{x:Bind BodyFontFamily, Mode=OneWay}" FontSize="{x:Bind BodyFontSize, Mode=OneWay}"
-                               FlowDirection="{x:Bind IsRightToLeft, Converter={StaticResource BoolToFlowDirection}}"
+                               FlowDirection="{x:Bind IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}"
                                Visibility="{x:Bind HasPassage, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                     <TextBlock Text="{x:Bind UnavailableText}" TextWrapping="Wrap"
                                Visibility="{x:Bind IsUnavailable, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />

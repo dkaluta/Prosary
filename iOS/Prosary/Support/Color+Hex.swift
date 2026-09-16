@@ -20,9 +20,11 @@ extension Color {
     self.init(red: r, green: g, blue: b)
   }
 
-  /// Returns a `Color` that resolves to different hex values in light vs. dark mode.
+  /// Custom content colors follow appearance; visionOS uses the iPhone dark palette on glass.
   static func adaptive(light: String, dark: String) -> Color {
-    #if canImport(UIKit)
+    #if os(visionOS)
+    Color(hex: dark)
+    #elseif canImport(UIKit)
     Color(uiColor: UIColor(dynamicProvider: { trait in
       trait.userInterfaceStyle == .dark
         ? UIColor(Color(hex: dark))

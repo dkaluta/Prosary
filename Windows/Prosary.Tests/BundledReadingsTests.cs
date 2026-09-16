@@ -76,22 +76,41 @@ public class BundledReadingsTests
     }
 
     [Fact]
-    public void BundledCatalogHasEightEditionsAndPreservesTheSevenFullBibleEditions()
+    public void BundledCatalogHasNineEditionsAndPreservesTheSevenFullBibleEditions()
     {
-        Assert.Equal(8, Store.Editions.Count);
-        Assert.Equal(new[] { "ar", "en", "fr", "he", "it", "ru", "tl", "uk" },
+        Assert.Equal(9, Store.Editions.Count);
+        Assert.Equal(new[] { "ar", "arc", "en", "fr", "he", "it", "ru", "tl", "uk" },
             Store.Editions.Select(edition => edition.LanguageCode).Order());
         foreach (var edition in Store.Editions)
         {
             Assert.NotNull(edition.SourceUri);
             Assert.False(string.IsNullOrWhiteSpace(edition.Attribution));
             // Arabic currently contains only the passages reviewed against the old print.
-            if (edition.LanguageCode == "ar") continue;
+            if (edition.LanguageCode is "ar" or "arc") continue;
             var passage = Store.Passage("daily", "Luke 6:27–38", edition.Id);
             Assert.Equal(Enumerable.Range(27, 12), passage.Select(verse => verse.Verse));
             Assert.All(passage, verse => Assert.Equal(6, verse.Chapter));
             Assert.All(passage, verse => Assert.False(string.IsNullOrWhiteSpace(verse.Text)));
         }
+    }
+
+    [Fact]
+    public void BundledPeshittaCarriesBothScriptsForTheSameOrderedVerses()
+    {
+        var edition = Store.ResolveEdition("peshitta-1905", "en");
+        Assert.NotNull(edition);
+        Assert.True(edition.HasAramaicScripts);
+        Assert.Equal("arc", edition.LanguageCode);
+        var passage = Store.LoadPassage("daily", "Luke 6:27–38", edition.Id);
+        Assert.NotNull(passage);
+        Assert.Equal(Enumerable.Range(27, 12), passage.Verses.Select(verse => verse.Verse));
+        Assert.All(passage.Verses, verse =>
+        {
+            Assert.Equal(6, verse.Chapter);
+            Assert.Equal(PrayerTypography.Script.Hebrew, PrayerTypography.ScriptOf(verse.DisplayedText(edition, "Hebr")));
+            Assert.Equal(PrayerTypography.Script.Syriac, PrayerTypography.ScriptOf(verse.DisplayedText(edition, "Syrc")));
+            Assert.Equal(verse.TransliteratedText, verse.DisplayedText(edition, "Syrc"));
+        });
     }
 
     [Fact]

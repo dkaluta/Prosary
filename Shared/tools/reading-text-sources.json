@@ -7400,6 +7400,316 @@
       "sha256": "6256da3d261d72ab0bc1481d82d61420247af2898b3850f6227a4bcdcbbf6d19",
       "license": "Public-domain Delitzsch 12th edition, 1901; transcription at delitz.fr",
       "rightsURL": "https://delitz.fr/12/"
+    },
+    {
+      "id": "peshitta-1905-mat",
+      "cache": "arc-corpus-833adc1-100.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/100.xml",
+      "format": "peshitta-tei",
+      "book": "MAT",
+      "bookName": "Matthew",
+      "sha256": "1233556a4bc22bf03185dbf6d1b1f44327498729a9a99da3cb638d17f75cc0db",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-mrk",
+      "cache": "arc-corpus-833adc1-119.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/119.xml",
+      "format": "peshitta-tei",
+      "book": "MRK",
+      "bookName": "Mark",
+      "sha256": "55a2320f0eccf31571cf07f34bcb684ef012b785239258047b65d37108d1a86b",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-luk",
+      "cache": "arc-corpus-833adc1-120.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/120.xml",
+      "format": "peshitta-tei",
+      "book": "LUK",
+      "bookName": "Luke",
+      "sha256": "1ad850fc12c6ac6b8b82c998c59095bb26798774297059ad0454ecfe916d62d1",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/",
+      "excludedChapters": {
+        "11": "Peshitta returned duplicate verse Luke (11, 42)"
+      }
+    },
+    {
+      "id": "peshitta-1905-jhn",
+      "cache": "arc-corpus-833adc1-121.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/121.xml",
+      "format": "peshitta-tei",
+      "book": "JHN",
+      "bookName": "John",
+      "sha256": "ce63ffa8da5ddf083056cce28046079eb6a0738445dcd255acc5de6eb1dd0454",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-act",
+      "cache": "arc-corpus-833adc1-122.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/122.xml",
+      "format": "peshitta-tei",
+      "book": "ACT",
+      "bookName": "Acts",
+      "sha256": "e1fb5de5668c4b5cc8027958dcab742d681e99715df6e447a86ec245df66e000",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-rom",
+      "cache": "arc-corpus-833adc1-123.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/123.xml",
+      "format": "peshitta-tei",
+      "book": "ROM",
+      "bookName": "Romans",
+      "sha256": "996ca9e1e7834ba69105ac4d438d167bb8b9b8b258425a5550f8e580b729ffbe",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-1co",
+      "cache": "arc-corpus-833adc1-124.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/124.xml",
+      "format": "peshitta-tei",
+      "book": "1CO",
+      "bookName": "1 Corinthians",
+      "sha256": "7a57b13932e986e5a14647f4b9d3604d9af582947ef6935b9b5bd8430361de78",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-2co",
+      "cache": "arc-corpus-833adc1-126.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/126.xml",
+      "format": "peshitta-tei",
+      "book": "2CO",
+      "bookName": "2 Corinthians",
+      "sha256": "e8973c0b8046a17529e32215551d2d306f30ff1ef2be12466e732260f4babc37",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-gal",
+      "cache": "arc-corpus-833adc1-127.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/127.xml",
+      "format": "peshitta-tei",
+      "book": "GAL",
+      "bookName": "Galatians",
+      "sha256": "e9a2dfeb7d4d233339c27aaf7f5c3696411467fd87acf137a69a71d4e1e2adf0",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-eph",
+      "cache": "arc-corpus-833adc1-128.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/128.xml",
+      "format": "peshitta-tei",
+      "book": "EPH",
+      "bookName": "Ephesians",
+      "sha256": "b35f634b98b2c4e82b90787517ffa2a8d1c8a3309ea731e72b0f86b23ed82181",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-php",
+      "cache": "arc-corpus-833adc1-129.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/129.xml",
+      "format": "peshitta-tei",
+      "book": "PHP",
+      "bookName": "Philippians",
+      "sha256": "50a00df7b43e04677b07a52f0b8bd9ea2f2d932adbe3185d540e0fb0f516c4dc",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-col",
+      "cache": "arc-corpus-833adc1-130.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/130.xml",
+      "format": "peshitta-tei",
+      "book": "COL",
+      "bookName": "Colossians",
+      "sha256": "812569148ca53d0df958185052be38ac5f9d18fda45cb4d1f3306417a0839451",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-1th",
+      "cache": "arc-corpus-833adc1-131.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/131.xml",
+      "format": "peshitta-tei",
+      "book": "1TH",
+      "bookName": "1 Thessalonians",
+      "sha256": "b318eee1f335761624a18b66d4e90329247accf0afca93b3ae7f005434326051",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-2th",
+      "cache": "arc-corpus-833adc1-132.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/132.xml",
+      "format": "peshitta-tei",
+      "book": "2TH",
+      "bookName": "2 Thessalonians",
+      "sha256": "266249b3fc214fb44715a73897d30f68030561ac399bb35c55e84bbb9a6b0160",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-1ti",
+      "cache": "arc-corpus-833adc1-133.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/133.xml",
+      "format": "peshitta-tei",
+      "book": "1TI",
+      "bookName": "1 Timothy",
+      "sha256": "9da57586c828cf7139fe79d1814716894ce58558ac7d396477cac327d05b1cb1",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-2ti",
+      "cache": "arc-corpus-833adc1-134.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/134.xml",
+      "format": "peshitta-tei",
+      "book": "2TI",
+      "bookName": "2 Timothy",
+      "sha256": "a2eee9f32250f18ef847714fcf674c879fed6c0d1d77e984bde3f91b274d9361",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-tit",
+      "cache": "arc-corpus-833adc1-135.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/135.xml",
+      "format": "peshitta-tei",
+      "book": "TIT",
+      "bookName": "Titus",
+      "sha256": "9990bb2d1b674f0c6d5ba0d03440dd67b142d6f71124b7062d71d1239c569abc",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-phm",
+      "cache": "arc-corpus-833adc1-136.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/136.xml",
+      "format": "peshitta-tei",
+      "book": "PHM",
+      "bookName": "Philemon",
+      "sha256": "8e6f47a61f7e7d6911ff3b580a1dcc9c03f3f9c402757585246e1cdac96d7bda",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-heb",
+      "cache": "arc-corpus-833adc1-137.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/137.xml",
+      "format": "peshitta-tei",
+      "book": "HEB",
+      "bookName": "Hebrews",
+      "sha256": "daadc16494b2f7c21d78962c92964272db1751478dbbc9592631347e70708c3a",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-jas",
+      "cache": "arc-corpus-833adc1-138.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/138.xml",
+      "format": "peshitta-tei",
+      "book": "JAS",
+      "bookName": "James",
+      "sha256": "279c6e153ad0bd960b18e61b378ef295e4e592b52ba142b1200223dd4c65d322",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-1pe",
+      "cache": "arc-corpus-833adc1-139.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/139.xml",
+      "format": "peshitta-tei",
+      "book": "1PE",
+      "bookName": "1 Peter",
+      "sha256": "1519695e729192741a38eff9cd07b4888de7a700b0327fa3309f102a61271930",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-2pe",
+      "cache": "arc-corpus-833adc1-140.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/140.xml",
+      "format": "peshitta-tei",
+      "book": "2PE",
+      "bookName": "2 Peter",
+      "sha256": "989874e0e67601ab36a9013120e3eb7f483fc37f273ddfdbd0c70db42c569847",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-1jn",
+      "cache": "arc-corpus-833adc1-141.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/141.xml",
+      "format": "peshitta-tei",
+      "book": "1JN",
+      "bookName": "1 John",
+      "sha256": "de3ea1579fa75398c4cf3a1520a89e5c788f4719a865ea443a6dc503b8c68228",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-2jn",
+      "cache": "arc-corpus-833adc1-142.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/142.xml",
+      "format": "peshitta-tei",
+      "book": "2JN",
+      "bookName": "2 John",
+      "sha256": "052feecfb76460d4e301c70b4a3a14510cd41b57e768d7e3249c93f16f9e1ad7",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-3jn",
+      "cache": "arc-corpus-833adc1-143.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/143.xml",
+      "format": "peshitta-tei",
+      "book": "3JN",
+      "bookName": "3 John",
+      "sha256": "dc8a80ff3c8d900ceb3a17f43d24889fcf506d65e4d96642a7a343f05e0396ad",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-jud",
+      "cache": "arc-corpus-833adc1-144.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/144.xml",
+      "format": "peshitta-tei",
+      "book": "JUD",
+      "bookName": "Jude",
+      "sha256": "eaaa989aebde04ed17ae9a545118a9b4b0384508234c4b9a80f1cd43274ab1d0",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-1905-rev",
+      "cache": "arc-corpus-833adc1-145.xml",
+      "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/145.xml",
+      "format": "peshitta-tei",
+      "book": "REV",
+      "bookName": "Revelation",
+      "sha256": "3f253a09cf77ef1c0f0160e21167e1279a675bb54eb3725289dea8aa4649f7d1",
+      "license": "Public domain BFBS 1905 Syriac text; Digital Syriac Corpus electronic edition CC BY 4.0, James E. Walters; Syriac transcription George A. Kiraz",
+      "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "peshitta-supplied-isaiah-nine",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-isaiah",
+      "book": "ISA",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "Edition and redistribution terms unresolved; limited to the nine previously user-approved Isaiah verses. BFBS 1905 and CC BY 4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt"
     }
   ],
   "editions": [
@@ -9892,6 +10202,103 @@
       "sources": [
         {
           "id": "old-jesuit-arabic-1897"
+        }
+      ]
+    },
+    {
+      "id": "peshitta-1905",
+      "languageCode": "arc",
+      "name": "Peshitta — ܦܫܝܛܬܐ / פשיטתא",
+      "attribution": "New Testament: BFBS 1905, G. H. Gwilliam, J. Pinkerton and John Gwynn; Digital Syriac Corpus, Syriac transcription George A. Kiraz, TEI edition James E. Walters, CC BY 4.0. Hebrew-script projection: Erez’s supplied converter. Old Testament: only nine previously approved Isaiah verses from the supplied Internet Archive XML; edition and rights unresolved. Other OT readings and unreviewed source boundaries are unavailable.",
+      "sourceURL": "https://syriaccorpus.org/100",
+      "textScript": "Hebr",
+      "transliteratedTextScript": "Syrc",
+      "otSystem": "eng",
+      "ntSystem": "eng",
+      "sources": [
+        {
+          "id": "peshitta-1905-mat"
+        },
+        {
+          "id": "peshitta-1905-mrk"
+        },
+        {
+          "id": "peshitta-1905-luk"
+        },
+        {
+          "id": "peshitta-1905-jhn"
+        },
+        {
+          "id": "peshitta-1905-act"
+        },
+        {
+          "id": "peshitta-1905-rom"
+        },
+        {
+          "id": "peshitta-1905-1co"
+        },
+        {
+          "id": "peshitta-1905-2co"
+        },
+        {
+          "id": "peshitta-1905-gal"
+        },
+        {
+          "id": "peshitta-1905-eph"
+        },
+        {
+          "id": "peshitta-1905-php"
+        },
+        {
+          "id": "peshitta-1905-col"
+        },
+        {
+          "id": "peshitta-1905-1th"
+        },
+        {
+          "id": "peshitta-1905-2th"
+        },
+        {
+          "id": "peshitta-1905-1ti"
+        },
+        {
+          "id": "peshitta-1905-2ti"
+        },
+        {
+          "id": "peshitta-1905-tit"
+        },
+        {
+          "id": "peshitta-1905-phm"
+        },
+        {
+          "id": "peshitta-1905-heb"
+        },
+        {
+          "id": "peshitta-1905-jas"
+        },
+        {
+          "id": "peshitta-1905-1pe"
+        },
+        {
+          "id": "peshitta-1905-2pe"
+        },
+        {
+          "id": "peshitta-1905-1jn"
+        },
+        {
+          "id": "peshitta-1905-2jn"
+        },
+        {
+          "id": "peshitta-1905-3jn"
+        },
+        {
+          "id": "peshitta-1905-jud"
+        },
+        {
+          "id": "peshitta-1905-rev"
+        },
+        {
+          "id": "peshitta-supplied-isaiah-nine"
         }
       ]
     }

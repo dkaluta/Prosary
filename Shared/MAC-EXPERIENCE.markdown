@@ -102,6 +102,13 @@ presence on a phone is not, by itself, a reason to include it on Mac.
   display mode. Reopening or redrawing a window must
   preserve those choices. Keep menu and keyboard routes available when a toolbar item is hidden,
   and do not replace SwiftUI's toolbar delegate or draw a separate imitation toolbar.
+- **Materials:** let native sidebars, toolbars, menus and popovers provide their system
+  appearance. Reserve explicit Liquid Glass for the small, persistent controls that navigate
+  dates or prayer steps. Keep library artwork, prayer text, Scripture, calendar metadata and
+  other reference content on standard surfaces; do not turn them into glass cards. Inline
+  content actions use ordinary native buttons. Standard material remains appropriate for a
+  transient progress overlay and is distinct from Liquid Glass. Avoid adding a second glass
+  background around controls that already supply one.
 - **Files:** register `.prosaryprayer` as an owned, ZIP-conforming document type with Viewer role.
   Finder/Files opening, file drops and Import share bundle validation and security-scoped reading.
   Never claim ordinary ZIP archives as Prosary documents. On Mac, Finder opening, library drops
@@ -135,8 +142,10 @@ presence on a phone is not, by itself, a reason to include it on Mac.
   the Pope's intention. Readings and the optional Eretz Israel Torah portion show full book names
   and verse references directly, without a shorthand toggle. Their Bible passages start expanded
   when opening Today or changing the date/calendar, and can be collapsed independently. Ordinary
-  refreshes and edition changes preserve those collapses. Date controls use native Liquid Glass
-  where supported, with standard bordered controls on older systems. The Today options
+  refreshes and edition changes preserve those collapses. Compact date controls use native
+  Liquid Glass where supported, with standard bordered controls on older systems. The selected
+  calendar is plain metadata below those controls, and readings use an opaque text background.
+  The date bar uses the system scroll-edge treatment as content passes underneath. The Today options
   popover owns its calendar, Byzantine Pascha choice and row toggles;
   Julian/Gregorian Pascha switches both Byzantine datasets. Missing data hides only that row.
   Interface language controls the complete view, including Hebrew/Arabic RTL; prayer-language
@@ -275,6 +284,7 @@ any prayer selection, confirming the startup fix outside the test library.
 - [Apple: Menus](https://developer.apple.com/design/human-interface-guidelines/menus)
 - [Apple: Context menus](https://developer.apple.com/design/human-interface-guidelines/context-menus)
 - [Apple: Buttons](https://developer.apple.com/design/human-interface-guidelines/buttons)
+- [Apple: Materials](https://developer.apple.com/design/human-interface-guidelines/materials)
 - [Apple: Alerts](https://developer.apple.com/design/human-interface-guidelines/alerts)
 - [Apple: Sheets](https://developer.apple.com/design/human-interface-guidelines/sheets)
 - [Apple: Settings](https://developer.apple.com/design/human-interface-guidelines/settings)

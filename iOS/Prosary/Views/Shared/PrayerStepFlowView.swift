@@ -166,10 +166,6 @@ struct PrayerStepFlowView: View {
 
   private var regularContent: some View {
     VStack(spacing: 0) {
-      if showsCompactHeader {
-        compactHeader
-      }
-
       Rectangle()
         .fill(seasonColor)
         .frame(height: 6)
@@ -202,36 +198,35 @@ struct PrayerStepFlowView: View {
           .padding(.horizontal)
           .padding(.bottom, 6)
       }
-
-      // A counter flow's only action is its central button: a lone Back beside it competes with
-      // the thing the screen exists for, and "undo one repetition" isn't worth a permanent
-      // control (the navigation bar still leaves the session). Dropping the whole footer also
-      // gives the prayer text back the space.
+    }
+    .prosaryNavigationBar(edge: .top) {
+      if showsCompactHeader { compactHeader }
+    }
+    .prosaryNavigationBar(edge: .bottom) {
+      // Counter flows advance through their central action and need no duplicate footer.
       if centralActionLabel == nil {
-        Divider()
+        ProsaryGlassControlGroup {
+          HStack {
+            Button("prayerFlow.back") { onBack() }
+              .disabled(!canGoBack)
+              .prosaryNavigationButtonStyle()
+              // Distinguishes step-to-step Back from the system navigation-bar Back.
+              .accessibilityIdentifier("prayerFlowBackButton")
 
-        HStack {
-          Button("prayerFlow.back") { onBack() }
-            .disabled(!canGoBack)
-            .prosarySecondaryButtonStyle()
-            // Distinguishes this step-to-step Back button from the system navigation-bar
-            // back button, which also reads as plain "Back" whenever the previous screen
-            // (e.g. Home) has no navigationTitle of its own to show instead.
-            .accessibilityIdentifier("prayerFlowBackButton")
+            Spacer()
 
-          Spacer()
-
-          Button(isLastStep ? "prayerFlow.finish" : "prayerFlow.next") { onNext() }
-            .prosaryProminentButtonStyle()
-            .tint(seasonColor)
-            .disabled(step == nil)
-            .accessibilityIdentifier("prayerFlowNextButton")
-            #if os(macOS)
-            .keyboardShortcut(.defaultAction)
-            #endif
+            Button(isLastStep ? "prayerFlow.finish" : "prayerFlow.next") { onNext() }
+              .prosaryProminentNavigationButtonStyle()
+              .tint(Color.accentColor)
+              .disabled(step == nil)
+              .accessibilityIdentifier("prayerFlowNextButton")
+              #if os(macOS)
+              .keyboardShortcut(.defaultAction)
+              #endif
+          }
+          .controlSize(footerControlSize)
+          .padding(isCompactHeight ? 8 : 16)
         }
-        .controlSize(footerControlSize)
-        .padding(isCompactHeight ? 8 : 16)
       }
     }
   }
@@ -284,9 +279,11 @@ struct PrayerStepFlowView: View {
     // Back/Next resets the countdown, and turning the setting off cancels it. Never fires on
     // the last step: auto-"Finish" would dismiss the whole flow mid-prayer. Suspended outright
     // while a recording plays (audioIsPlaying is part of the id, so pausing re-arms it).
+    #if !os(visionOS)
     .sensoryFeedback(.impact(weight: .light), trigger: currentIndex) { _, _ in
       hapticsOnAdvance && step != nil
     }
+    #endif
     .task(id: "\(autoAdvanceSeconds)-\(currentIndex)-\(step != nil)-\(audioIsPlaying)-\(windowIsModal)") {
       guard autoAdvanceSeconds > 0, step != nil, !isLastStep, !audioIsPlaying, !windowIsModal else { return }
       try? await Task.sleep(for: .seconds(autoAdvanceSeconds))
@@ -321,17 +318,19 @@ struct PrayerStepFlowView: View {
   }
 
   private var compactActions: some View {
-    HStack(spacing: 12) {
-      flowActions
-      autoAdvanceMenu
+    ProsaryGlassControlGroup {
+      HStack(spacing: 12) {
+        flowActions
+        autoAdvanceMenu
+      }
+      .prosaryNavigationButtonStyle()
+      #if !os(macOS)
+      .labelStyle(.iconOnly)
+      #endif
+      .controlSize(.large)
+      .frame(minHeight: 44)
+      .padding(.horizontal)
     }
-    .prosarySecondaryButtonStyle()
-    #if !os(macOS)
-    .labelStyle(.iconOnly)
-    #endif
-    .controlSize(.large)
-    .frame(minHeight: 44)
-    .padding(.horizontal)
   }
 
   private var autoAdvanceMenu: some View {
@@ -495,8 +494,18 @@ struct PrayerStepFlowView: View {
             toggleTransliteration()
           } label: {
             Image(systemName: usesAlternateText ? "character.book.closed.fill" : "character.book.closed")
+              .prosarySpatialTarget()
+              #if os(iOS)
+              .frame(minWidth: 44, minHeight: 44)
+              .contentShape(Rectangle())
+              #endif
           }
+          #if os(visionOS)
+          .buttonStyle(.bordered)
+          .buttonBorderShape(.circle)
+          #else
           .buttonStyle(.borderless)
+          #endif
           .accessibilityLabel(transliterationActionLabel)
           .help(transliterationActionLabel)
           .accessibilityIdentifier("transliterationToggle")
@@ -522,19 +531,26 @@ struct PrayerStepFlowView: View {
       if let centralActionLabel {
         #if os(macOS)
         Button(centralActionLabel, action: onNext)
-          .prosaryProminentButtonStyle()
-          .tint(seasonColor)
+          .buttonStyle(.borderedProminent)
+          .tint(Color.accentColor)
           .controlSize(.large)
           .keyboardShortcut(.defaultAction)
+          .padding(.top, 12)
+          .accessibilityIdentifier("centralActionButton")
+        #elseif os(visionOS)
+        Button(centralActionLabel, action: onNext)
+          .buttonStyle(.borderedProminent)
+          .tint(Color.accentColor)
+          .controlSize(.extraLarge)
           .padding(.top, 12)
           .accessibilityIdentifier("centralActionButton")
         #else
         Button(action: onNext) {
           Text(centralActionLabel)
             .font(.title3.weight(.bold))
-            .foregroundStyle(.white)
+            .foregroundStyle(Color(uiColor: .systemBackground))
             .frame(width: 104, height: 104)
-            .background(Circle().fill(seasonColor))
+            .background(Circle().fill(Color.accentColor))
         }
         .buttonStyle(.plain)
         .padding(.top, 12)

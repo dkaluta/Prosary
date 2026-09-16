@@ -47,6 +47,7 @@ jobs:
           uv run --script Shared/tools/test-delitzsch-numbering.py
           uv run --script Shared/tools/test-delitzsch-source.py
           uv run --script Shared/tools/test-reading-texts.py
+          uv run --script Shared/tools/test-peshitta-readings.py
       - name: Erez's Aramaic converter and generated packs stay in step
         run: uv run --script Shared/tools/test-import-scripture.py
       - name: Old Jesuit Arabic Scripture keeps its reviewed source and native copies
