@@ -683,6 +683,6 @@ final class AppShellUITests: XCTestCase {
     XCTAssertTrue(app.descendants(matching: .any)["languageFallbackOrderList"].firstMatch.exists)
     XCTAssertTrue(app.staticTexts["languageFallbackOrder.en"].exists)
     XCTAssertTrue(app.buttons["languageFallbackOrderResetButton"].exists)
-    app.buttons["Done"].tap()
+    app.navigationBars["Language Fallback Order"].buttons["Done"].tap()
   }
 }
