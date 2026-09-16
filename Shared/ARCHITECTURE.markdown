@@ -91,10 +91,12 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   their base language without pretending to be complete.
   Apple's system Settings page uses `Settings.bundle` only for a note directing people to
   Prosary's in-app Settings for prayer language, calendars and appearance. It has no custom
-  preference controls; Apple manages the system permissions and interface-language controls.
-  The note is localized in all eight interface languages. Removing the old duplicate language
-  picker does not migrate or reset `defaultLanguageCode`; the app reads the same saved value
-  and registers its own Latin fallback. The bundled settings test checks the translated note.
+  preference controls; Apple manages the system permissions and system app-language preference.
+  Prosary's App Language picker can override that preference in the app. The note is localized
+  in all eight interface languages. Global Prayer Language retains `defaultLanguageCode` and
+  all saved choices, including Aramaic and Latin. An unset global preference now follows App
+  Language; Latin remains the terminal content fallback. The bundled settings test checks the
+  translated note.
 
 
 > **Running the Apple test suites:** pass `-parallel-testing-enabled NO`. Both targets share
@@ -165,10 +167,11 @@ behind the rosary bundle's `decades.source: "mysteryGroups"`: mystery-group reso
 real `Mystery` values on steps, and presenter mode's combined step. `RosaryOptions` remains the
 persisted shape and the bespoke editor keeps writing it — the engine maps it onto the bundle's
 options.json values (`rosaryOptionValues`). For the Aramaic Sign of the Cross, an explicitly
-Aramaic Rosary has a per-favorite `formA` / `formB` choice only while the app default is another
-language. Both sourced forms say "and the Son"; they are distinct Syriac recensions, not a
-Word/Son substitution. If the app default is Aramaic, the app-wide `aramaicSignOfCrossForm`
-setting is the single authority and the saved per-Rosary value is deliberately ignored.
+Aramaic Rosary has a per-favorite `formA` / `formB` choice while global Prayer Language is
+another language. Both sourced forms say "and the Son"; they are distinct Syriac recensions,
+not a Word/Son substitution. When global Prayer Language is Aramaic, the app-wide
+`aramaicSignOfCrossForm` setting takes precedence as before. App Language independently
+selects one of the eight translated interfaces and never changes that sourced prayer choice.
 
 - **Rosary** — the richest: opening (Sign of the Cross, optional Creed, optional opening Our
   Father/3 Hail Marys for Faith/Hope/Charity/Glory Be, then an independently optional Fatima Prayer), one loop per decade across every resolved
@@ -379,7 +382,7 @@ quits another minimized session.
 The Dock menu and File → Recently Prayed retain up to eight playable routes locally, refresh
 their titles and remove unavailable entries. Selecting a recent prayer opens that prayer.
 
-Mac Settings uses four native panes: Prayer Language, Praying, Typography, and Downloads.
+Mac Settings uses four native panes: Language, Praying, Typography, and Downloads.
 Today is a separate Library sidebar reference view, with its own date navigator, full reading
 and Torah citations, expandable Bible passages, an edition picker, and options popover for
 calendar/Pascha and row visibility; it is not a Settings
@@ -485,7 +488,7 @@ decade grouping independently of this universal visual mode.
 
 - **Auto-advance** (all flows) — hands-free praying, from tester feedback: Off / every 3 / 5 /
   10 / 15 seconds, one app-wide default (`autoAdvanceSeconds` in UserDefaults / SharedPreferences /
-  LocalSettings — the `defaultLanguageCode` convention). Named Mac copies remember their own
+  LocalSettings — the shared preference-key convention). Named Mac copies remember their own
   pace as described above; other ports retain the app-wide setting. The countdown restarts on every step
   change, so a manual Back/Next resets it, and it never fires on a flow's last step —
   auto-"Finish" would dismiss the session mid-prayer. The Jesus Prayer's bounded sessions stop
@@ -1349,7 +1352,7 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
   basename (`file`), reading-table basename (`readingsFile`), and the Settings picker label
   (`name`/`nameByLanguage`, resolved by UI language);
   its `default` names the calendar used when the app-wide `feastCalendarId` setting (stored
-  beside `defaultLanguageCode` on every platform) is unset or unknown. Shipped calendars:
+  with the other app settings on every platform) is unset or unknown. Shipped calendars:
   - `lpj` — **`feasts.json`**: the General Roman Calendar (litcal API) overlaid with the Latin
     Patriarchate of Jerusalem's documented propers (Our Lady, Queen of Palestine and of the
     Holy Land — Oct 25, patronal solemnity; the Dedication of the Basilica of the Holy
@@ -1554,8 +1557,26 @@ selected language, and ordinary descriptions/progress remain visible.
 
 All three interfaces support English, Hebrew, Arabic, Russian, Filipino/Tagalog, French,
 Italian and Ukrainian. Native locale identifiers may use `fil` while shared content retains `tl`. The
-interface language follows each platform's app-language mechanism, and Today follows it; prayer
-language preferences remain independent. Resource catalogs include accessibility labels, notifications,
+App Language (`interfaceLanguageCode`, empty for System Default) selects the interface and its
+direction, Today, and the Bible reader's automatic edition. Its Hebrew label is **שפת היישומון**.
+The separate Prayer Language setting (**שפת התפילה**, `defaultLanguageCode`) offers every
+supported prayer language, including Aramaic, Latin, and Hebrew traditions. It defaults to
+following App Language when empty, while preserving every existing stored global choice.
+A prayer's empty `languageCode` inherits that effective global Prayer Language; an explicit
+prayer language overrides it. Existing prayer-language choices, Hebrew traditions, and Bible
+edition IDs remain unchanged. The prayer fallback order still handles missing sourced
+translations and ends in Latin; Bible editions never silently fall back to another language.
+Apple updates existing scenes without replacing their identity; Android uses native app locales
+and activity recreation; Windows applies the interface choice at the next launch with a restart
+notice so existing windows keep one consistent language. Global Prayer Language remains an
+independent content preference.
+When an inherited language changes during a prayer, Apple and Android refresh compatible
+content while preserving the current step or repetition count. If the new language requires a
+different devotion form, the active session keeps its actual language and form; its language
+menu, audio and continuation bookmark remain consistent. Resuming that unfinished prayer
+keeps its form, while a fresh run follows the new default. An explicit language selection
+retains the devotion's normal form-switch behavior.
+Resource catalogs include accessibility labels, notifications,
 error states, settings, search categories and About credits in all eight languages.
 
 French Scripture passages use Augustin Crampon (1923), public domain, from

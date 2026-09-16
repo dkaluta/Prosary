@@ -146,7 +146,7 @@ struct MacPrayerTableMenu: NSViewRepresentable {
       guard let table else { return }
       let row = contextRow ?? self.row(for: nil, in: table)
       guard parent.items.indices.contains(row) else {
-        MacPrayerLibraryMenu.add(String(localized: "macLibrary.import", defaultValue: "Import Prayer Packs…"),
+        MacPrayerLibraryMenu.add(String(localized: "macLibrary.import", defaultValue: "Import Prayer Packs…", bundle: UILanguage.bundle, locale: UILanguage.locale),
           to: menu, enabled: true, action: parent.onImport)
         return
       }

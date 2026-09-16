@@ -44,7 +44,7 @@
     "showTodayIntention": { "default": true },
     "showTodayTorahPortion": { "default": false },
     "language": {
-      "source": "Current interface language",
+      "source": "Effective App Language selected through interfaceLanguageCode or the system preference",
       "independentOf": ["defaultLanguageCode", "Prayer.languageCode"],
       "legacyTodayLanguageCode": "Ignored, matching current Today behavior.",
       "supportedCodes": ["en", "he", "ar", "ru", "tl", "fr", "it", "uk"],

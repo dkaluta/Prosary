@@ -846,11 +846,11 @@ enum PrayerPackStore {
     var errorDescription: String? {
       switch self {
       case .unreadable:
-        return String(localized: "packInstall.error.unreadable", defaultValue: "This file is not a readable .prosaryprayer bundle.")
+        return String(localized: "packInstall.error.unreadable", defaultValue: "This file is not a readable .prosaryprayer bundle.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
       case .notADevotion:
-        return String(localized: "packInstall.error.notADevotion", defaultValue: "This bundle does not contain a devotion.")
+        return String(localized: "packInstall.error.notADevotion", defaultValue: "This bundle does not contain a devotion.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
       case .duplicateId(let id):
-        return String(localized: "packInstall.error.duplicate", defaultValue: "A devotion named \"\(id)\" is already installed.")
+        return String(localized: "packInstall.error.duplicate", defaultValue: "A devotion named \"\(id)\" is already installed.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
       }
     }
   }

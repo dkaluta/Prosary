@@ -21,7 +21,7 @@ struct PrayerLanguagePicker: View {
     }
     .accessibilityIdentifier("prayerLanguagePicker")
     if LanguageCatalog.pickerLanguageCode(code) == "he" {
-      Picker(String(localized: "prayerLanguage.tradition", defaultValue: "Prayer Tradition"), selection: $code) {
+      Picker(String(localized: "prayerLanguage.tradition", defaultValue: "Prayer Tradition", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $code) {
         Text(LanguageCatalog.traditionName("he")).tag("he")
         Text(LanguageCatalog.traditionName("he-x-gamliel")).tag("he-x-gamliel")
       }
@@ -33,24 +33,29 @@ struct PrayerLanguagePicker: View {
 struct PrayerLanguageMenuContent: View {
   @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
   let code: String
+  var resolvedCode: String? = nil
   var options = LanguageCatalog.languages
   var identifierPrefix = "prayerLanguage"
   let onSelect: (String) -> Void
 
   var body: some View {
     let _ = prayerLanguage.code
+    let effectiveCode = resolvedCode ?? LanguageCatalog.resolve(code).code
+    let inheritedName = LanguageCatalog.resolve(effectiveCode).nativeName
     option(code: LanguageCatalog.defaultSentinel,
-           name: String(localized: "prayerFlow.language.appDefault", defaultValue: "App Setting"))
+           name: code.isEmpty && resolvedCode != nil
+             ? String(localized: "prayer.language.default", defaultValue: "Default (\(inheritedName))", bundle: UILanguage.bundle, locale: UILanguage.locale)
+             : String(localized: "prayerFlow.language.appDefault", defaultValue: "App Setting", bundle: UILanguage.bundle, locale: UILanguage.locale))
     Divider()
     ForEach(options) { language in
       option(code: language.code, name: language.nativeName)
     }
-    if LanguageCatalog.pickerLanguageCode(LanguageCatalog.resolve(code).code) == "he" {
+    if LanguageCatalog.pickerLanguageCode(effectiveCode) == "he" {
       Divider()
-      Menu(String(localized: "prayerLanguage.tradition", defaultValue: "Prayer Tradition")) {
+      Menu(String(localized: "prayerLanguage.tradition", defaultValue: "Prayer Tradition", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
         ForEach(["he", "he-x-gamliel"], id: \.self) { tradition in
           Button { onSelect(tradition) } label: {
-            if LanguageCatalog.resolve(code).code == tradition {
+            if effectiveCode == tradition {
               Label(LanguageCatalog.traditionName(tradition), systemImage: "checkmark")
             } else {
               Text(LanguageCatalog.traditionName(tradition))

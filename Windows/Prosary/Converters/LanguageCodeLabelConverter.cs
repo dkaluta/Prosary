@@ -4,7 +4,7 @@ using Prosary.Models;
 namespace Prosary.Converters;
 
 /// <summary>Display label for a favorite's raw <c>LanguageCode</c> string in
-/// <c>FavoriteEditorPage</c>'s language ComboBox — shows "Default — {app default name}" for
+/// <c>FavoriteEditorPage</c>'s language ComboBox — shows "Default ({global prayer language})" for
 /// <see cref="LanguageCatalog.DefaultSentinel"/>, the resolved native name otherwise, matching
 /// Android's <c>FavoriteEditorScreen.kt</c> language OptionPickerField.</summary>
 public sealed class LanguageCodeLabelConverter : IValueConverter

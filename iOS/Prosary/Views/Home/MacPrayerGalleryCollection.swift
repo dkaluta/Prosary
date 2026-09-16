@@ -18,6 +18,7 @@ struct MacPrayerGalleryCollection: NSViewRepresentable {
   var artworkRevision: Int = 0
   var onDropImage: (URL, MacPrayerLibraryItem) -> Void = { _, _ in }
   @Environment(\.layoutDirection) private var layoutDirection
+  @Environment(\.locale) private var locale
   @Environment(\.isEnabled) private var isEnabled
 
   func makeCoordinator() -> Coordinator { Coordinator(self) }
@@ -81,7 +82,7 @@ struct MacPrayerGalleryCollection: NSViewRepresentable {
       collection.register(GalleryCollectionItem.self, forItemWithIdentifier: GalleryCollectionItem.identifier)
       collection.autoresizingMask = [.width]
       collection.setAccessibilityIdentifier("macGallery.collection")
-      collection.setAccessibilityLabel(String(localized: "macLibrary.gallery", defaultValue: "Prayer Gallery"))
+      collection.setAccessibilityLabel(String(localized: "macLibrary.gallery", defaultValue: "Prayer Gallery", bundle: UILanguage.bundle, locale: UILanguage.locale))
       scroll.documentView = collection
       self.collection = collection
       return scroll
@@ -106,6 +107,7 @@ struct MacPrayerGalleryCollection: NSViewRepresentable {
     func update(_ parent: MacPrayerGalleryCollection, scroll: NSScrollView) {
       self.parent = parent
       guard let collection else { return }
+      collection.setAccessibilityLabel(String(localized: "macLibrary.gallery", defaultValue: "Prayer Gallery", bundle: UILanguage.bundle, locale: parent.locale))
       collection.interactionEnabled = parent.isEnabled
       let direction: NSUserInterfaceLayoutDirection = parent.layoutDirection == .rightToLeft ? .rightToLeft : .leftToRight
       if collection.userInterfaceLayoutDirection != direction {
@@ -245,13 +247,13 @@ struct MacPrayerGalleryCollection: NSViewRepresentable {
       }
       guard parent.downloadedDevotionIDs.contains(item.devotionID) else { return menu }
       menu.addItem(.separator())
-      let remove = NSMenuItem(title: String(localized: "macLibrary.removeDownload", defaultValue: "Remove Download…"),
+      let remove = NSMenuItem(title: String(localized: "macLibrary.removeDownload", defaultValue: "Remove Download…", bundle: UILanguage.bundle, locale: UILanguage.locale),
                               action: #selector(removeDownload(_:)), keyEquivalent: "")
       remove.target = self
       remove.representedObject = item.id
       remove.isEnabled = parent.isEnabled && parent.canRemoveDownload(item)
       if !remove.isEnabled {
-        remove.toolTip = String(localized: "removal.downloadInUse", defaultValue: "Delete all saved copies of this prayer before removing its download.")
+        remove.toolTip = String(localized: "removal.downloadInUse", defaultValue: "Delete all saved copies of this prayer before removing its download.", bundle: UILanguage.bundle, locale: UILanguage.locale)
       }
       menu.addItem(remove)
       return menu

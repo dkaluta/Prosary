@@ -16,13 +16,13 @@ enum MacPrayerStoreLocation {
     var errorDescription: String? {
       switch self {
       case .unrecognizedStore:
-        String(localized: "macStore.unrecognized", defaultValue: "The saved prayer library could not be identified. Its files have been kept unchanged.")
+        String(localized: "macStore.unrecognized", defaultValue: "The saved prayer library could not be identified. Its files have been kept unchanged.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
       case .unreadableStore:
-        String(localized: "macStore.unreadable", defaultValue: "The saved prayer library could not be opened. Its files have been kept unchanged.")
+        String(localized: "macStore.unreadable", defaultValue: "The saved prayer library could not be opened. Its files have been kept unchanged.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
       case .migrationFailed:
-        String(localized: "macStore.migrationFailed", defaultValue: "The saved prayer library could not be moved to its new location. Its original files have been kept unchanged.")
+        String(localized: "macStore.migrationFailed", defaultValue: "The saved prayer library could not be moved to its new location. Its original files have been kept unchanged.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
       case .incompleteMigration:
-        String(localized: "macStore.incompleteMigration", defaultValue: "A previous library migration did not finish. Its files have been kept unchanged.")
+        String(localized: "macStore.incompleteMigration", defaultValue: "A previous library migration did not finish. Its files have been kept unchanged.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
       }
     }
   }

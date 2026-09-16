@@ -16,7 +16,7 @@ public class HebrewFallbackTests : IClassFixture<PrayerPackLoaderFixture>
     [InlineData("fr")]
     public void SavedLanguageLabelFollowsHebrewOnlyPlaybackWithoutRewritingRequestedChoice(string raw)
     {
-        var previousDefault = AppSettings.DefaultLanguageCode;
+        var previousDefault = AppSettings.PrayerLanguageCode;
         try
         {
             AppSettings.SetDefaultLanguageCode("la");
@@ -41,7 +41,7 @@ public class HebrewFallbackTests : IClassFixture<PrayerPackLoaderFixture>
     [Fact]
     public void SavedLanguageLabelReevaluatesTheCurrentBundleFallbackOrder()
     {
-        var previousDefault = AppSettings.DefaultLanguageCode;
+        var previousDefault = AppSettings.PrayerLanguageCode;
         try
         {
             AppSettings.SetDefaultLanguageCode("la");
@@ -79,7 +79,7 @@ public class HebrewFallbackTests : IClassFixture<PrayerPackLoaderFixture>
     [Fact]
     public void OrdinaryPrayerKindsAndMissingCustomIdsKeepRequestedResolution()
     {
-        var previousDefault = AppSettings.DefaultLanguageCode;
+        var previousDefault = AppSettings.PrayerLanguageCode;
         try
         {
             AppSettings.SetDefaultLanguageCode("uk");

@@ -19,6 +19,9 @@ public sealed partial class SettingsPage : Page
         ViewModel = App.Services.GetRequiredService<SettingsViewModel>();
         ViewModel.Navigation = Router.For(this);
         InitializeComponent();
+        Language = UiLanguageCatalog.ResourceTag(UiLanguageCatalog.Current);
+        FlowDirection = UiLanguageCatalog.IsRightToLeft(UiLanguageCatalog.Current)
+            ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
         ViewModel.ConfirmRemoveDownload = row => PrayerRemovalDialogs.ConfirmDownloadAsync(XamlRoot, row.Title);
         ViewModel.ShowRemovalError = message => PrayerRemovalDialogs.ShowErrorAsync(XamlRoot, message);
 

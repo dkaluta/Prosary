@@ -60,7 +60,7 @@
         "languageCode": {
           "type": "string",
           "default": "",
-          "description": "Prayer-language identifier or the empty sentinel meaning follow defaultLanguageCode. Public pickers show one Hebrew language (עברית) and a separate Vicariate/Mission prayer tradition. Storage preserves the exact sourced content codes he / he-x-gamliel, including existing presets and bookmarks; no text-code migration is needed. Saved-prayer list labels show the effective session language: custom prayers use the engine's bundle-aware language fallback. The Mac library shows only the native language name; other saved-prayer lists retain the localized Default (...) wrapper for the sentinel. Settings still distinguish the inherited choice. effectiveLanguageCode is derived at display time, never persisted or substituted for this preference."
+          "description": "Prayer-language identifier or the empty sentinel meaning follow the global Prayer Language, which itself follows App Language when unset. Public pickers show one Hebrew language (עברית) and a separate Vicariate/Mission prayer tradition. Storage preserves explicit sourced content codes he / he-x-gamliel, including existing presets and bookmarks; no text-code migration is needed. Saved-prayer list labels show the effective session language: custom prayers use the engine's bundle-aware language fallback. The Mac library shows only the native language name; other saved-prayer lists retain the localized Default (...) wrapper for the sentinel. effectiveLanguageCode is derived at display time, never persisted or substituted for this preference."
         },
         "rosary": {
           "type": "RosaryOptions",
@@ -129,7 +129,7 @@
             "formA",
             "formB"
           ],
-          "description": "Per-Rosary choice used only when this Rosary explicitly prays in Aramaic while the app default language is not Aramaic. When the app default is Aramaic, the app-wide aramaicSignOfCrossForm setting takes precedence and this saved value is ignored."
+          "description": "Per-Rosary choice used when this Rosary explicitly prays in Aramaic while the global Prayer Language is another language. When global Prayer Language is Aramaic, the app-wide aramaicSignOfCrossForm setting takes precedence. App Language controls the interface independently and never selects an Aramaic prayer form."
         },
         "includeApostlesCreed": {
           "type": "boolean",
@@ -737,17 +737,23 @@
       }
     },
     "AppSettings": {
-      "description": "Relevant shared preference keys, stored verbatim in UserDefaults, Android prosary_settings SharedPreferences, and Windows LocalSettings. Interface language follows native platform settings; prayer language is independent.",
+      "description": "Relevant shared preference keys, stored verbatim in UserDefaults, Android prosary_settings SharedPreferences, and Windows LocalSettings. App Language selects the interface and automatic Bible edition. Global Prayer Language follows it by default, or overrides it with any supported prayer language. Explicit per-prayer languages and Bible edition IDs remain independent.",
       "fields": {
+        "interfaceLanguageCode": {
+          "type": "string",
+          "default": "",
+          "values": ["", "en", "he", "ar", "ru", "tl", "fr", "it", "uk"],
+          "description": "App Language (Hebrew: שפת היישומון). Empty follows the system app-language preference; explicit values select one of the eight translated interfaces. Normalize iw to he and fil to tl in shared preferences, using the platform resource alias where necessary. Hebrew and Arabic set interface RTL. This language also supplies the Bible reader's automatic edition and the global Prayer Language when defaultLanguageCode is empty. Existing global and per-prayer language choices, Hebrew traditions, fallback order and Bible edition IDs are preserved. Windows applies the interface choice at the next launch with a localized restart notice."
+        },
         "defaultLanguageCode": {
           "type": "string",
-          "default": "la",
-          "description": "Exact default prayer text code; Hebrew language and prayer-tradition controls jointly select he or he-x-gamliel."
+          "default": "",
+          "description": "Global Prayer Language (Hebrew: שפת התפילה). Empty follows the effective App Language. A nonempty value selects any supported prayer language, including Latin, Aramaic and exact Hebrew traditions he / he-x-gamliel, without changing the interface or Bible reader. Preserve existing stored values. Per-prayer empty language selections inherit this effective global preference; explicit per-prayer choices remain unchanged. Latin remains the terminal content fallback."
         },
         "basicPrayersLanguageCode": {
           "type": "string",
           "default": "",
-          "description": "Basic list, basic-prayer flow and Home pins share this selection; empty follows defaultLanguageCode."
+          "description": "Basic list, basic-prayer flow and Home pins share this selection; empty follows the effective global Prayer Language."
         },
         "favoriteBasicPrayerIds": {
           "type": "string[]",

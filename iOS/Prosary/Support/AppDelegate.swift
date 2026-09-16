@@ -13,7 +13,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let menu = NSMenu()
     menu.autoenablesItems = false
     let heading = NSMenuItem(
-      title: String(localized: "commands.recentlyPrayed", defaultValue: "Recently Prayed"),
+      title: String(localized: "commands.recentlyPrayed", defaultValue: "Recently Prayed", bundle: UILanguage.bundle, locale: UILanguage.locale),
       action: nil, keyEquivalent: "")
     heading.isEnabled = false
     menu.addItem(heading)

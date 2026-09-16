@@ -127,7 +127,7 @@ struct RosaryPresetsView: View {
         }
         Divider()
         Button(role: .destructive) { deletingPrayer = preset } label: {
-          Label(String(localized: "removal.deleteAction", defaultValue: "Delete Saved Prayer…"), systemImage: "trash")
+          Label(String(localized: "removal.deleteAction", defaultValue: "Delete Saved Prayer…", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "trash")
         }
       }
       .padding(.horizontal, 16)
@@ -165,7 +165,7 @@ struct RosaryPresetsView: View {
         .prosaryProminentButtonStyle()
         .tint(Color.brandPrimary)
         .padding(.top, 2)
-        .accessibilityLabel(String(localized: "favorites.prayPrayer", defaultValue: "Pray \(preset.name)"))
+        .accessibilityLabel(String(localized: "favorites.prayPrayer", defaultValue: "Pray \(preset.name)", bundle: UILanguage.bundle, locale: UILanguage.locale))
         .accessibilityIdentifier(preset.isDefault ? "prayDefaultPreset" : "prayPreset")
       }
       .padding(14)

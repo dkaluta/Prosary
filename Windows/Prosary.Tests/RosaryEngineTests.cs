@@ -150,7 +150,7 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
     [Fact]
     public void AramaicSignOfCrossUsesPerRosaryFormUntilAramaicBecomesTheAppDefault()
     {
-        var savedDefault = AppSettings.DefaultLanguageCode;
+        var savedDefault = AppSettings.PrayerLanguageCode;
         var savedForm = AppSettings.AramaicSignOfCrossForm;
         try
         {

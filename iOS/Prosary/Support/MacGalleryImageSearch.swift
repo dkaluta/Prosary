@@ -25,8 +25,8 @@ nonisolated struct MacGalleryImageSearch: Sendable {
     case searchFailed, downloadFailed
     var errorDescription: String? {
       switch self {
-      case .searchFailed: String(localized: "macGallery.image.searchFailed", defaultValue: "Image search could not be completed. Try again.")
-      case .downloadFailed: String(localized: "macGallery.image.downloadFailed", defaultValue: "This image could not be downloaded. Try another image.")
+      case .searchFailed: String(localized: "macGallery.image.searchFailed", defaultValue: "Image search could not be completed. Try again.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
+      case .downloadFailed: String(localized: "macGallery.image.downloadFailed", defaultValue: "This image could not be downloaded. Try another image.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
       }
     }
   }

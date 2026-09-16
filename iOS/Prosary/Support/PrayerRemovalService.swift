@@ -10,11 +10,11 @@ struct PrayerRemovalService {
     var errorDescription: String? {
       switch self {
       case .downloadInUse:
-        String(localized: "removal.downloadInUse", defaultValue: "Delete all saved copies of this prayer before removing its download.")
+        String(localized: "removal.downloadInUse", defaultValue: "Delete all saved copies of this prayer before removing its download.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
       case .cleanupFailed:
-        String(localized: "removal.cleanupFailed", defaultValue: "The saved prayer was deleted, but its download could not be removed. Try again in Downloads.")
+        String(localized: "removal.cleanupFailed", defaultValue: "The saved prayer was deleted, but its download could not be removed. Try again in Downloads.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
       case .prayerRemoved:
-        String(localized: "removal.prayerRemoved", defaultValue: "This saved prayer has been deleted.")
+        String(localized: "removal.prayerRemoved", defaultValue: "This saved prayer has been deleted.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
       }
     }
   }

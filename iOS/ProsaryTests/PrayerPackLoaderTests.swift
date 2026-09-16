@@ -15,6 +15,9 @@ import XCTest
 final class PrayerPackLoaderTests: XCTestCase {
   func testSavedPrayerLabelsUseTheAvailableLanguageWithoutChangingThePreference() async throws {
     let defaults = UserDefaults.standard
+    let originalInterface = InterfaceLanguageStore.shared.selection
+    InterfaceLanguageStore.shared.selection = "en"
+    defer { InterfaceLanguageStore.shared.selection = originalInterface }
     let originalArguments = defaults.volatileDomain(forName: UserDefaults.argumentDomain)
     defaults.setVolatileDomain(originalArguments.merging([
       "defaultLanguageCode": "la", LanguageCatalog.fallbackOrderKey: ["he", "en", "la"]
@@ -1072,18 +1075,23 @@ final class PrayerPackLoaderTests: XCTestCase {
   /// as the default prayer language, the Trisagion card reads קדישת; plain Hebrew reads
   /// טריסאגיון; a language the manifest does not name falls back to the UI-language behavior.
   func testDisplayNameFollowsThePrayerLanguage() {
-    let saved = UserDefaults.standard.string(forKey: "defaultLanguageCode")
+    let saved = InterfaceLanguageStore.shared.selection
+    let savedDefault = UserDefaults.standard.object(forKey: "defaultLanguageCode")
     let savedPreference = UserDefaults.standard.object(forKey: PrayerNamePresentation.defaultsKey)
     UserDefaults.standard.set(true, forKey: PrayerNamePresentation.defaultsKey)
     defer {
       if let savedPreference { UserDefaults.standard.set(savedPreference, forKey: PrayerNamePresentation.defaultsKey) }
       else { UserDefaults.standard.removeObject(forKey: PrayerNamePresentation.defaultsKey) }
-      if let saved { UserDefaults.standard.set(saved, forKey: "defaultLanguageCode") }
+      InterfaceLanguageStore.shared.selection = saved
+      if let savedDefault { UserDefaults.standard.set(savedDefault, forKey: "defaultLanguageCode") }
       else { UserDefaults.standard.removeObject(forKey: "defaultLanguageCode") }
     }
 
+    InterfaceLanguageStore.shared.selection = "en"
     UserDefaults.standard.set("he-x-gamliel", forKey: "defaultLanguageCode")
     XCTAssertEqual(PrayerPackStore.info(for: "trisagion")?.localizedDisplayName, "קדישת")
+    XCTAssertEqual(PrayerPackStore.info(for: "trisagion")?.namePresentation(prayerCode: "he-x-gamliel").title,
+                   "קדישת")
 
     UserDefaults.standard.set("he", forKey: "defaultLanguageCode")
     XCTAssertEqual(PrayerPackStore.info(for: "trisagion")?.localizedDisplayName, "טריסאגיון")
@@ -1095,6 +1103,7 @@ final class PrayerPackLoaderTests: XCTestCase {
 
     // Latin names nothing in the manifest, so the UI language decides as before.
     UserDefaults.standard.set("la", forKey: "defaultLanguageCode")
+    XCTAssertEqual(PrayerPackStore.info(for: "trisagion")?.namePresentation(prayerCode: "la").title, "Trisagion")
     XCTAssertEqual(PrayerPackStore.info(for: "trisagion")?.localizedDisplayName, "Trisagion")
   }
 

@@ -70,7 +70,7 @@ struct Prayer: Identifiable, Hashable, Codable {
   /// setting; for a Hebrew-only pack, a Latin default therefore displays "Default (עברית)".
   var languageDisplayName: String {
     languageCode == LanguageCatalog.defaultSentinel
-      ? String(localized: "prayer.language.default", defaultValue: "Default (\(languageNativeName))")
+      ? String(localized: "prayer.language.default", defaultValue: "Default (\(languageNativeName))", bundle: UILanguage.bundle, locale: UILanguage.locale)
       : languageNativeName
   }
 }

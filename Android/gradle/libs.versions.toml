@@ -2,6 +2,7 @@
 agp = "9.3.1"
 kotlin = "2.2.10"
 coreKtx = "1.16.0"
+appcompat = "1.7.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.7.0"
@@ -16,6 +17,7 @@ ksp = "2.3.2"
 kotlinxSerializationJson = "1.11.0"
 
 [libraries]
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }

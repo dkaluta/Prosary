@@ -58,6 +58,6 @@ struct OpenPrayerIntent: AppIntent {
 
 struct SavedPrayerUnavailableError: LocalizedError {
   var errorDescription: String? {
-    String(localized: "appIntents.openPrayer.unavailable", defaultValue: "This saved prayer is no longer available. Choose another prayer in the shortcut.")
+    String(localized: "appIntents.openPrayer.unavailable", defaultValue: "This saved prayer is no longer available. Choose another prayer in the shortcut.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
   }
 }

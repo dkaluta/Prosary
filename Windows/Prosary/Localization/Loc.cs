@@ -10,29 +10,9 @@ namespace Prosary.Localization;
 /// </summary>
 public static class Loc
 {
-    private static ResourceLoader? _loader;
-    private static bool _unavailable;
     private static ResourceManager? _manager;
 
-    public static string Tr(string key, string fallback)
-    {
-        if (_unavailable)
-        {
-            return fallback;
-        }
-
-        try
-        {
-            _loader ??= new ResourceLoader();
-            var value = _loader.GetString(key);
-            return string.IsNullOrEmpty(value) ? fallback : value;
-        }
-        catch
-        {
-            _unavailable = true;
-            return fallback;
-        }
-    }
+    public static string Tr(string key, string fallback) => Tr(key, fallback, UiLanguageCatalog.Current);
 
     /// <summary>Look up a caption in an explicit language without changing the app locale.</summary>
     public static string Tr(string key, string fallback, string language)

@@ -39,8 +39,8 @@ struct MacPrayerPresenterView: View {
 
   private var nextLabel: String {
     primaryActionLabel ?? (isLastStep
-      ? String(localized: "prayerFlow.finish", defaultValue: "Finish")
-      : String(localized: "prayerFlow.next", defaultValue: "Next"))
+      ? String(localized: "prayerFlow.finish", defaultValue: "Finish", bundle: UILanguage.bundle, locale: UILanguage.locale)
+      : String(localized: "prayerFlow.next", defaultValue: "Next", bundle: UILanguage.bundle, locale: UILanguage.locale))
   }
 
   var body: some View {
@@ -90,7 +90,7 @@ struct MacPrayerPresenterView: View {
   private var presenterHeader: some View {
     HStack(spacing: 12) {
       VStack(alignment: .leading, spacing: 3) {
-        Text(String(localized: "presenter.mode", defaultValue: "Presenter Mode"))
+        Text(String(localized: "presenter.mode", defaultValue: "Presenter Mode", bundle: UILanguage.bundle, locale: UILanguage.locale))
           .font(.caption.weight(.semibold))
           .foregroundStyle(contrast == .increased ? Color.primary : Color.secondary)
         Text(HebrewDisplayText.unpointed(title))
@@ -104,23 +104,23 @@ struct MacPrayerPresenterView: View {
           Image(systemName: "textformat.size.smaller")
         }
         .disabled(Double(pointSize) <= Self.textSizeRange.lowerBound || hasAttachedSheet)
-        .help(String(localized: "presenter.smallerText", defaultValue: "Smaller Text"))
-        .accessibilityLabel(String(localized: "presenter.smallerText", defaultValue: "Smaller Text"))
+        .help(String(localized: "presenter.smallerText", defaultValue: "Smaller Text", bundle: UILanguage.bundle, locale: UILanguage.locale))
+        .accessibilityLabel(String(localized: "presenter.smallerText", defaultValue: "Smaller Text", bundle: UILanguage.bundle, locale: UILanguage.locale))
         .accessibilityIdentifier("presenterSmallerTextButton")
 
         Text(Int(pointSize), format: .number)
           .monospacedDigit()
           .frame(minWidth: 25)
-          .accessibilityLabel(String(localized: "presenter.textSize", defaultValue: "Text Size"))
-          .accessibilityValue(String(localized: "presenter.textSizeValue", defaultValue: "\(Int(pointSize)) points"))
+          .accessibilityLabel(String(localized: "presenter.textSize", defaultValue: "Text Size", bundle: UILanguage.bundle, locale: UILanguage.locale))
+          .accessibilityValue(String(localized: "presenter.textSizeValue", defaultValue: "\(Int(pointSize)) points", bundle: UILanguage.bundle, locale: UILanguage.locale))
           .accessibilityIdentifier("presenterTextSize")
 
         Button { textSize = min(Self.textSizeRange.upperBound, Double(pointSize) + 4) } label: {
           Image(systemName: "textformat.size.larger")
         }
         .disabled(Double(pointSize) >= Self.textSizeRange.upperBound || hasAttachedSheet)
-        .help(String(localized: "presenter.largerText", defaultValue: "Larger Text"))
-        .accessibilityLabel(String(localized: "presenter.largerText", defaultValue: "Larger Text"))
+        .help(String(localized: "presenter.largerText", defaultValue: "Larger Text", bundle: UILanguage.bundle, locale: UILanguage.locale))
+        .accessibilityLabel(String(localized: "presenter.largerText", defaultValue: "Larger Text", bundle: UILanguage.bundle, locale: UILanguage.locale))
         .accessibilityIdentifier("presenterLargerTextButton")
       }
       .controlSize(.regular)
@@ -138,8 +138,8 @@ struct MacPrayerPresenterView: View {
       }
       .keyboardShortcut(.cancelAction)
       .disabled(hasAttachedSheet)
-      .help(String(localized: "presenter.exit", defaultValue: "Exit Presenter Mode"))
-      .accessibilityLabel(String(localized: "presenter.exit", defaultValue: "Exit Presenter Mode"))
+      .help(String(localized: "presenter.exit", defaultValue: "Exit Presenter Mode", bundle: UILanguage.bundle, locale: UILanguage.locale))
+      .accessibilityLabel(String(localized: "presenter.exit", defaultValue: "Exit Presenter Mode", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("presenterExitButton")
     }
     .padding(.horizontal, 20)
@@ -148,8 +148,8 @@ struct MacPrayerPresenterView: View {
 
   private var fullScreenLabel: String {
     scrollMetrics.isFullScreen
-      ? String(localized: "presenter.exitFullScreen", defaultValue: "Exit Full Screen")
-      : String(localized: "presenter.enterFullScreen", defaultValue: "Enter Full Screen")
+      ? String(localized: "presenter.exitFullScreen", defaultValue: "Exit Full Screen", bundle: UILanguage.bundle, locale: UILanguage.locale)
+      : String(localized: "presenter.enterFullScreen", defaultValue: "Enter Full Screen", bundle: UILanguage.bundle, locale: UILanguage.locale)
   }
 
   @ViewBuilder private var readingContent: some View {
@@ -182,7 +182,7 @@ struct MacPrayerPresenterView: View {
     } else {
       ProgressView()
         .controlSize(.large)
-        .accessibilityLabel(String(localized: "presenter.loading", defaultValue: "Loading Prayer"))
+        .accessibilityLabel(String(localized: "presenter.loading", defaultValue: "Loading Prayer", bundle: UILanguage.bundle, locale: UILanguage.locale))
     }
   }
 
@@ -202,39 +202,39 @@ struct MacPrayerPresenterView: View {
   private var continuationStatus: some View {
     HStack {
       if scrollMetrics.moreAbove {
-        Label(String(localized: "presenter.moreAbove", defaultValue: "More Above"), systemImage: "arrow.up")
+        Label(String(localized: "presenter.moreAbove", defaultValue: "More Above", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "arrow.up")
       }
       Spacer()
       if scrollMetrics.moreBelow {
-        Label(String(localized: "presenter.moreBelow", defaultValue: "More Below"), systemImage: "arrow.down")
+        Label(String(localized: "presenter.moreBelow", defaultValue: "More Below", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "arrow.down")
       }
     }
     .font(.caption.weight(.medium))
     .foregroundStyle(contrast == .increased ? Color.primary : Color.secondary)
     .frame(height: 22)
     .padding(.horizontal, 24)
-    .help(String(localized: "presenter.scrollHelp", defaultValue: "Scroll or use Page Up and Page Down to read the whole prayer."))
+    .help(String(localized: "presenter.scrollHelp", defaultValue: "Scroll or use Page Up and Page Down to read the whole prayer.", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .accessibilityIdentifier("presenterContinuationStatus")
   }
 
   private var presenterFooter: some View {
     HStack(spacing: 16) {
       Button { perform(onBack) } label: {
-        Label(String(localized: "prayerFlow.back", defaultValue: "Back"), systemImage: "chevron.backward")
+        Label(String(localized: "prayerFlow.back", defaultValue: "Back", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "chevron.backward")
       }
       .disabled(!canGoBack || step == nil || hasAttachedSheet)
       .help(interfaceDirection == .rightToLeft
-        ? String(localized: "presenter.backHelpRTL", defaultValue: "Previous Step (Right Arrow)")
-        : String(localized: "presenter.backHelp", defaultValue: "Previous Step (Left Arrow)"))
+        ? String(localized: "presenter.backHelpRTL", defaultValue: "Previous Step (Right Arrow)", bundle: UILanguage.bundle, locale: UILanguage.locale)
+        : String(localized: "presenter.backHelp", defaultValue: "Previous Step (Left Arrow)", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("presenterBackButton")
 
       Spacer(minLength: 8)
       if let totalSteps, totalSteps > 0 {
-        Text(String(localized: "prayerFlow.progressCount", defaultValue: "\(currentIndex + 1) of \(totalSteps)"))
+        Text(String(localized: "prayerFlow.progressCount", defaultValue: "\(currentIndex + 1) of \(totalSteps)", bundle: UILanguage.bundle, locale: UILanguage.locale))
           .monospacedDigit()
           .accessibilityIdentifier("presenterProgressText")
       } else if step != nil {
-        Text(String(localized: "presenter.step", defaultValue: "Step \(currentIndex + 1)"))
+        Text(String(localized: "presenter.step", defaultValue: "Step \(currentIndex + 1)", bundle: UILanguage.bundle, locale: UILanguage.locale))
           .monospacedDigit()
           .accessibilityIdentifier("presenterProgressText")
       }
@@ -246,10 +246,10 @@ struct MacPrayerPresenterView: View {
       .keyboardShortcut(.defaultAction)
       .disabled(step == nil || hasAttachedSheet)
       .help(isLastStep
-        ? String(localized: "presenter.finishHelp", defaultValue: "Finish Prayer (Return)")
+        ? String(localized: "presenter.finishHelp", defaultValue: "Finish Prayer (Return)", bundle: UILanguage.bundle, locale: UILanguage.locale)
         : interfaceDirection == .rightToLeft
-          ? String(localized: "presenter.nextHelpRTL", defaultValue: "Next Step (Left Arrow or Return)")
-          : String(localized: "presenter.nextHelp", defaultValue: "Next Step (Right Arrow or Return)"))
+          ? String(localized: "presenter.nextHelpRTL", defaultValue: "Next Step (Left Arrow or Return)", bundle: UILanguage.bundle, locale: UILanguage.locale)
+          : String(localized: "presenter.nextHelp", defaultValue: "Next Step (Right Arrow or Return)", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("presenterNextButton")
     }
     .controlSize(.large)

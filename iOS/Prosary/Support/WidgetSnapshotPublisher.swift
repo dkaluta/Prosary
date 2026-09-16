@@ -15,7 +15,7 @@ final class WidgetSnapshotPublisher {
     guard !ProsaryRuntimeEnvironment.isTesting, subscriptions.isEmpty else { return }
     for name in [UserDefaults.didChangeNotification, .prayerLibraryDidChange,
                  .NSCalendarDayChanged, .NSSystemTimeZoneDidChange,
-                 NSLocale.currentLocaleDidChangeNotification] {
+                 NSLocale.currentLocaleDidChangeNotification, .interfaceLanguageDidChange] {
       NotificationCenter.default.publisher(for: name)
         .receive(on: RunLoop.main)
         .sink { [weak self] _ in

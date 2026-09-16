@@ -5,10 +5,10 @@ enum AppSection: String, CaseIterable, Hashable {
 
   var title: String {
     switch self {
-    case .pray: String(localized: "tabs.pray", defaultValue: "Pray")
-    case .browse: String(localized: "tabs.browse", defaultValue: "Browse")
-    case .readings: String(localized: "tabs.readings", defaultValue: "Readings")
-    case .search: String(localized: "tabs.search", defaultValue: "Search")
+    case .pray: String(localized: "tabs.pray", defaultValue: "Pray", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .browse: String(localized: "tabs.browse", defaultValue: "Browse", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .readings: String(localized: "tabs.readings", defaultValue: "Readings", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .search: String(localized: "tabs.search", defaultValue: "Search", bundle: UILanguage.bundle, locale: UILanguage.locale)
     }
   }
 
@@ -112,8 +112,12 @@ enum PrayerCopyProgressIdentity {
 
   /// The saved copy's settings are authoritative after an editor save. The old sequence
   /// signature remains intact so a language-owned variant still invalidates its bookmark.
-  static func continuation(_ progress: PrayerRunProgress?, savedLanguageCode: String?) -> PrayerRunProgress? {
+  static func continuation(_ progress: PrayerRunProgress?, savedLanguageCode: String?,
+                           preservesInheritedSession: Bool = false) -> PrayerRunProgress? {
     guard let progress, let savedLanguageCode else { return progress }
+    // A generic devotion may freeze its inherited language to avoid replacing its active
+    // form. Continue that unfinished session; Restart re-resolves the inherited preference.
+    if preservesInheritedSession, savedLanguageCode.isEmpty { return progress }
     return PrayerRunProgress(
       configurationSignature: progress.configurationSignature,
       stepIndex: progress.stepIndex,

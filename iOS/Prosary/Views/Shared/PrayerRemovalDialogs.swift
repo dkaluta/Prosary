@@ -9,7 +9,7 @@ struct PrayerRemovalDialogs: ViewModifier {
 
   func body(content: Content) -> some View {
     content
-      .alert(String(localized: "removal.deleteTitle", defaultValue: "Delete Saved Prayer?"),
+      .alert(String(localized: "removal.deleteTitle", defaultValue: "Delete Saved Prayer?", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isPresented: Binding(get: { prayer != nil }, set: { if !$0 { prayer = nil } }),
              presenting: prayer) { selected in
         Button("favorites.delete", role: .destructive) {
@@ -22,9 +22,9 @@ struct PrayerRemovalDialogs: ViewModifier {
         Button("favoriteEditor.cancel", role: .cancel) { prayer = nil }
       } message: { selected in
         Text(selected.name + "\n\n" + String(localized: "removal.deleteDetail",
-          defaultValue: "This deletes this saved copy and its reminders. If it is the last copy of a downloaded prayer, its download is also removed from this device."))
+          defaultValue: "This deletes this saved copy and its reminders. If it is the last copy of a downloaded prayer, its download is also removed from this device.", bundle: UILanguage.bundle, locale: UILanguage.locale))
       }
-      .alert(String(localized: "removal.failedTitle", defaultValue: "Could Not Remove Prayer"),
+      .alert(String(localized: "removal.failedTitle", defaultValue: "Could Not Remove Prayer", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isPresented: Binding(get: { failure != nil }, set: { if !$0 { failure = nil } })) {
         Button("common.ok") { failure = nil }
       } message: { Text(failure ?? "") }
@@ -39,10 +39,10 @@ struct PrayerDownloadRemovalDialogs: ViewModifier {
 
   func body(content: Content) -> some View {
     content
-      .alert(String(localized: "removal.removeDownloadTitle", defaultValue: "Remove Download?"),
+      .alert(String(localized: "removal.removeDownloadTitle", defaultValue: "Remove Download?", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isPresented: Binding(get: { bundleID != nil }, set: { if !$0 { bundleID = nil } }),
              presenting: bundleID) { selected in
-        Button(String(localized: "removal.remove", defaultValue: "Remove"), role: .destructive) {
+        Button(String(localized: "removal.remove", defaultValue: "Remove", bundle: UILanguage.bundle, locale: UILanguage.locale), role: .destructive) {
           Task {
             do { try await PrayerRemovalService(store: services.presetStore).removeDownload(bundleID: selected) }
             catch { failure = error.localizedDescription }
@@ -53,9 +53,9 @@ struct PrayerDownloadRemovalDialogs: ViewModifier {
       } message: { selected in
         Text((PrayerPackStore.info(for: selected)?.localizedDisplayName ?? selected) + "\n\n" +
           String(localized: "removal.removeDownloadDetail",
-                 defaultValue: "This removes the downloaded prayer from this device. You can import or download it again."))
+                 defaultValue: "This removes the downloaded prayer from this device. You can import or download it again.", bundle: UILanguage.bundle, locale: UILanguage.locale))
       }
-      .alert(String(localized: "removal.failedTitle", defaultValue: "Could Not Remove Prayer"),
+      .alert(String(localized: "removal.failedTitle", defaultValue: "Could Not Remove Prayer", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isPresented: Binding(get: { failure != nil }, set: { if !$0 { failure = nil } })) {
         Button("common.ok") { failure = nil }
       } message: { Text(failure ?? "") }

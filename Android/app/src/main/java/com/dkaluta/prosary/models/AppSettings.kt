@@ -7,9 +7,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 
 /**
- * App-wide preferences that aren't tied to any single [Prayer] — the default prayer language
- * (resolved whenever a Prayer's own languageCode is [LanguageCatalog.defaultSentinel]) and the
- * prayer flows' auto-advance interval.
+ * App-wide preferences that aren't tied to any single [Prayer]: interface language, default
+ * prayer language (which can follow the interface), and the prayer flows' auto-advance interval.
  *
  * [LanguageCatalog.resolve] is called from many non-Composable sites (engines, stores) that have
  * no [Context] of their own, so this keeps values initialized from SharedPreferences at app
@@ -42,8 +41,16 @@ object AppSettings {
     private const val KEY_LANGUAGE_FALLBACK_ORDER = "languageFallbackOrder"
     private const val KEY_JAFFA_HAIL_MARY_WORDING = "useJaffaHailMaryWording"
 
-    private var defaultLanguageState by mutableStateOf(LanguageCatalog.defaultCode)
+    private var interfaceLanguageState by mutableStateOf("")
+    val interfaceLanguageCode: String get() = interfaceLanguageState
+    private var effectiveInterfaceLanguageState by mutableStateOf(InterfaceLanguage.effective(listOf(java.util.Locale.getDefault().toLanguageTag())))
+    val effectiveInterfaceLanguageCode: String get() = interfaceLanguageState.ifEmpty { effectiveInterfaceLanguageState }
+    private var defaultLanguageState by mutableStateOf("")
+    /** Empty follows App Language; existing explicit global prayer choices remain untouched. */
     val defaultLanguageCode: String get() = defaultLanguageState
+    val effectivePrayerLanguageCode: String get() = defaultLanguageState
+        .takeIf { selected -> LanguageCatalog.all.any { it.code == selected } }
+        ?: effectiveInterfaceLanguageCode
 
     private var basicPrayersLanguageState by mutableStateOf(LanguageCatalog.defaultSentinel)
     val basicPrayersLanguageCode: String get() = basicPrayersLanguageState
@@ -175,8 +182,14 @@ object AppSettings {
     fun init(context: Context) {
         val resolved = context.applicationContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         prefs = resolved
-        defaultLanguageState = resolved.getString(KEY_DEFAULT_LANGUAGE, LanguageCatalog.defaultCode)
-            ?: LanguageCatalog.defaultCode
+        defaultLanguageState = resolved.getString(KEY_DEFAULT_LANGUAGE, "").orEmpty()
+        val selected = if (android.os.Build.VERSION.SDK_INT >= 33) {
+            context.getSystemService(android.app.LocaleManager::class.java).applicationLocales[0]?.toLanguageTag().orEmpty()
+        } else resolved.getString(InterfaceLanguage.preferenceKey, "").orEmpty()
+        interfaceLanguageState = InterfaceLanguage.normalized(selected)
+        updateEffectiveInterfaceLanguage((0 until context.resources.configuration.locales.size()).map {
+            context.resources.configuration.locales[it].toLanguageTag()
+        })
         basicPrayersLanguageState = resolved.getString(KEY_BASIC_PRAYERS_LANGUAGE, LanguageCatalog.defaultSentinel)
             ?: LanguageCatalog.defaultSentinel
         jaffaHailMaryWordingState = resolved.getBoolean(KEY_JAFFA_HAIL_MARY_WORDING, false)
@@ -214,10 +227,22 @@ object AppSettings {
         com.dkaluta.prosary.widgets.WidgetUpdates.observe(context)
     }
 
+    fun setInterfaceLanguageCode(code: String) {
+        val selection = InterfaceLanguage.normalized(code)
+        interfaceLanguageState = selection
+        if (prefs?.getString(InterfaceLanguage.preferenceKey, null) != selection) {
+            prefs?.edit()?.putString(InterfaceLanguage.preferenceKey, selection)?.apply()
+        }
+    }
+
     fun setDefaultLanguageCode(code: String) {
         val selection = if (code == LanguageCatalog.hebrewVicariateContentCode) "he" else code
         defaultLanguageState = selection
         prefs?.edit()?.putString(KEY_DEFAULT_LANGUAGE, selection)?.apply()
+    }
+
+    fun updateEffectiveInterfaceLanguage(preferred: List<String>) {
+        effectiveInterfaceLanguageState = InterfaceLanguage.effective(preferred)
     }
 
     fun setBasicPrayersLanguageCode(code: String) {

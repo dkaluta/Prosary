@@ -3,12 +3,146 @@ using System.Xml.Linq;
 using Prosary.Localization;
 using Prosary.Models;
 using Prosary.Services;
+using Prosary.ViewModels;
 using Xunit;
 
 namespace Prosary.Tests;
 
 public class UiLanguageTests
 {
+    [Theory]
+    [InlineData("", "de-DE,uk-UA,en-US", "uk")]
+    [InlineData("", "de-DE,ja-JP", "en")]
+    [InlineData("ar", "en-US", "ar")]
+    [InlineData("fil-PH", "he-IL", "tl")]
+    [InlineData("iw-IL", "en-US", "he")]
+    [InlineData("la", "fr-CA,en-US", "fr")]
+    public void AppLanguageResolvesAnExplicitSupportedChoiceOrTheWindowsPreferenceList(
+        string preference, string windowsLanguages, string expected)
+    {
+        Assert.Equal(expected, UiLanguageCatalog.Resolve(preference, windowsLanguages.Split(',')));
+    }
+
+    [Fact]
+    public void AppLanguagePickerHasEveryInterfaceLanguageAndNoPrayerOnlyLanguages()
+    {
+        var options = new SettingsViewModel().AppLanguageOptions;
+        Assert.Equal(new[] { "", "ar", "en", "fr", "he", "it", "ru", "tl", "uk" },
+            options.Select(option => option.Tag).Order());
+        Assert.Equal("System Default", options[0].Label);
+    }
+
+    [Fact]
+    public void SavedAppLanguageWaitsForRelaunchAndKeepsExplicitPrayerAndBibleChoices()
+    {
+        var previousPreference = AppSettings.InterfaceLanguageCode;
+        var previousCurrent = UiLanguageCatalog.Current;
+        var previousPrayer = AppSettings.PrayerLanguageCode;
+        var previousEdition = AppSettings.ReadingsEditionId;
+        var previousBasic = AppSettings.BasicPrayersLanguageCode;
+        try
+        {
+            UiLanguageCatalog.UseLanguageForCurrentSession("en");
+            AppSettings.SetDefaultLanguageCode("");
+            AppSettings.SetReadingsEditionId("explicit-edition");
+            AppSettings.SetBasicPrayersLanguageCode("arc");
+            var savedPrayer = new Prayer { LanguageCode = "he-x-gamliel" };
+            var inheritedPrayer = new Prayer { LanguageCode = "" };
+            AppSettings.SetInterfaceLanguageCode("fil-PH");
+            Assert.Equal("tl", AppSettings.InterfaceLanguageCode);
+            Assert.Equal("en", AppSettings.DefaultLanguageCode);
+            Assert.Equal("en", inheritedPrayer.ResolvedLanguageCode);
+
+            // The next launch activates the saved choice for both interface and inheritance.
+            UiLanguageCatalog.UseLanguageForCurrentSession(
+                UiLanguageCatalog.Resolve(AppSettings.InterfaceLanguageCode, ["en-US"]));
+            Assert.Equal("tl", UiLanguageCatalog.Current);
+            Assert.Equal("tl", AppSettings.DefaultLanguageCode);
+            Assert.Equal("tl", inheritedPrayer.ResolvedLanguageCode);
+            Assert.Equal("", inheritedPrayer.LanguageCode);
+            Assert.Equal("he-x-gamliel", savedPrayer.LanguageCode);
+            Assert.Equal("he-x-gamliel", savedPrayer.ResolvedLanguageCode);
+            Assert.Equal("arc", AppSettings.BasicPrayersLanguageCode);
+            Assert.Equal("explicit-edition", AppSettings.ReadingsEditionId);
+
+            AppSettings.SetDefaultLanguageCode("arc");
+            AppSettings.SetInterfaceLanguageCode("he");
+            UiLanguageCatalog.UseLanguageForCurrentSession("he");
+            Assert.Equal("he", UiLanguageCatalog.Current);
+            Assert.Equal("arc", AppSettings.DefaultLanguageCode);
+            Assert.Equal("arc", inheritedPrayer.ResolvedLanguageCode);
+            Assert.Equal("he-x-gamliel", savedPrayer.ResolvedLanguageCode);
+            Assert.Equal("explicit-edition", AppSettings.ReadingsEditionId);
+
+            AppSettings.SetDefaultLanguageCode("");
+            AppSettings.SetInterfaceLanguageCode("");
+            UiLanguageCatalog.UseLanguageForCurrentSession(
+                UiLanguageCatalog.Resolve(AppSettings.InterfaceLanguageCode, ["de-DE", "ar-SA"]));
+            Assert.Equal("", AppSettings.InterfaceLanguageCode);
+            Assert.Equal("ar", AppSettings.DefaultLanguageCode);
+            Assert.True(UiLanguageCatalog.IsRightToLeft(UiLanguageCatalog.Current));
+        }
+        finally
+        {
+            AppSettings.SetInterfaceLanguageCode(previousPreference);
+            UiLanguageCatalog.UseLanguageForCurrentSession(previousCurrent);
+            AppSettings.SetDefaultLanguageCode(previousPrayer);
+            AppSettings.SetReadingsEditionId(previousEdition);
+            AppSettings.SetBasicPrayersLanguageCode(previousBasic);
+        }
+    }
+
+    [Fact]
+    public void GlobalPrayerPickerSupportsAramaicAndCanReturnToFollowingTheApp()
+    {
+        var previousCurrent = UiLanguageCatalog.Current;
+        var previousPrayer = AppSettings.PrayerLanguageCode;
+        try
+        {
+            UiLanguageCatalog.UseLanguageForCurrentSession("en");
+            AppSettings.SetDefaultLanguageCode("arc");
+            var settings = new SettingsViewModel();
+            Assert.Equal("arc", settings.SelectedLanguage.Code);
+            Assert.True(settings.ShowsAramaicSignOfCrossPicker);
+            Assert.Contains(settings.LanguageOptions, option => option.Code == "la");
+            Assert.Equal("App Language (English)", settings.LanguageOptions[0].NativeName);
+
+            UiLanguageCatalog.UseLanguageForCurrentSession("he");
+            Assert.Equal("arc", AppSettings.DefaultLanguageCode);
+            settings.SelectedLanguage = settings.LanguageOptions.Single(option => option.Code == "he");
+            Assert.True(settings.ShowsRitePicker);
+            settings.SelectedRite = settings.RiteOptions.Single(option => option.Code == "he-x-gamliel");
+            Assert.Equal("he-x-gamliel", AppSettings.DefaultLanguageCode);
+
+            settings.SelectedLanguage = settings.LanguageOptions[0];
+            Assert.Equal("", AppSettings.PrayerLanguageCode);
+            Assert.Equal("he", AppSettings.DefaultLanguageCode);
+            Assert.False(settings.ShowsRitePicker);
+            Assert.False(settings.ShowsAramaicSignOfCrossPicker);
+            UiLanguageCatalog.UseLanguageForCurrentSession("uk");
+            Assert.Equal("uk", AppSettings.DefaultLanguageCode);
+        }
+        finally
+        {
+            UiLanguageCatalog.UseLanguageForCurrentSession(previousCurrent);
+            AppSettings.SetDefaultLanguageCode(previousPrayer);
+        }
+    }
+
+    [Fact]
+    public void AppLanguageLabelAndSharedDefaultExplanationShipInEveryInterface()
+    {
+        foreach (var language in UiLanguageCatalog.All)
+        {
+            var resources = Resources(UiLanguageCatalog.ResourceTag(language.Code));
+            Assert.False(string.IsNullOrWhiteSpace(resources["SetAppLanguageUsage.Text"]));
+            Assert.False(string.IsNullOrWhiteSpace(resources["SetAppLanguageFooter.Text"]));
+            Assert.Equal(resources["SetAppLanguageCombo.Header"] + " ({0})",
+                resources["language_app_parenthesized"]);
+        }
+        Assert.Equal("שפת היישומון", Resources("he")["SetAppLanguageCombo.Header"]);
+    }
+
     [Fact]
     public void HebrewHasOneLanguageChoiceAndPreservesASeparateTradition()
     {
@@ -72,7 +206,7 @@ public class UiLanguageTests
     [Fact]
     public void TodayFollowsTheInterfaceAndIgnoresTheRetiredOverride()
     {
-        var previousPrayerLanguage = AppSettings.DefaultLanguageCode;
+        var previousPrayerLanguage = AppSettings.PrayerLanguageCode;
         var previousTodayLanguage = AppSettings.TodayLanguageCode;
         try
         {

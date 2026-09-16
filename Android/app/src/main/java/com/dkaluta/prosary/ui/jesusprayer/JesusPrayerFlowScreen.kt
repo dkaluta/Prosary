@@ -118,6 +118,18 @@ fun JesusPrayerFlowScreen(
         isPinned = FavoriteDevotions.contains(context, "jesusPrayer", impliedDevotionPins(all))
     }
 
+    val resolvedLanguage = LanguageCatalog.resolve(chosenLanguage).code
+    LaunchedEffect(hasLoaded, resolvedLanguage) {
+        if (!hasLoaded || languageCode == resolvedLanguage) return@LaunchedEffect
+        languageCode = resolvedLanguage
+        isRightToLeft = LanguageCatalog.resolve(resolvedLanguage).isRightToLeft
+        val all = runCatching { services.presetStore.all() }.getOrDefault(emptyList())
+        matchingFavoriteId = all.firstOrNull {
+            it.kind == PrayerKind.JesusPrayer && it.resolvedLanguageCode == resolvedLanguage &&
+                it.jesusPrayer.target == effectiveTarget
+        }?.id
+    }
+
     LaunchedEffect(runReady, progress.currentIndex, chosenLanguage, runKey, configurationSignature) {
         if (!runReady) return@LaunchedEffect
         if (progress.currentIndex > 0) {

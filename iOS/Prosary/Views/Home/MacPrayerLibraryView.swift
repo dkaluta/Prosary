@@ -253,7 +253,7 @@ struct MacPrayerLibraryView: View {
 
   var body: some View {
     libraryPresentation
-    .task(id: "\(prayerLanguage.code)|\(prayerLanguage.showsPrayerNameInPrayerLanguage)|\(prayerLanguage.fallbackOrder.joined(separator: ","))") {
+    .task(id: "\(UILanguage.current)|\(prayerLanguage.code)|\(prayerLanguage.showsPrayerNameInPrayerLanguage)|\(prayerLanguage.fallbackOrder.joined(separator: ","))") {
       await model.reload()
     }
     .onReceive(NotificationCenter.default.publisher(for: .prayerLibraryDidChange)) { _ in
@@ -575,7 +575,7 @@ struct MacPrayerLibraryView: View {
   }
 
   private func label(_ key: StaticString, _ fallback: String) -> String {
-    String(localized: key, defaultValue: String.LocalizationValue(stringLiteral: fallback))
+    String(localized: key, defaultValue: String.LocalizationValue(stringLiteral: fallback), bundle: UILanguage.bundle, locale: UILanguage.locale)
   }
 }
 
@@ -706,7 +706,7 @@ struct MacPrayerCollection: NSViewRepresentable {
         let menu = NSMenu()
         menu.autoenablesItems = false
         menu.delegate = self
-        MacPrayerLibraryMenu.add(String(localized: "macLibrary.import", defaultValue: "Import Prayer Packs…"),
+        MacPrayerLibraryMenu.add(String(localized: "macLibrary.import", defaultValue: "Import Prayer Packs…", bundle: UILanguage.bundle, locale: UILanguage.locale),
           to: menu, enabled: !parent.isBusy, action: parent.onImport)
         return menu
       }

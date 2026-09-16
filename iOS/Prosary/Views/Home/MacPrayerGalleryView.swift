@@ -69,12 +69,12 @@ struct MacPrayerGalleryView: View {
     GeometryReader { geometry in
       VStack(spacing: 0) {
         VStack(alignment: .leading, spacing: 14) {
-          Text(String(localized: "macLibrary.galleryDetail", defaultValue: "Choose the prayers you want in your library. Each one remembers its own settings."))
+          Text(String(localized: "macLibrary.galleryDetail", defaultValue: "Choose the prayers you want in your library. Each one remembers its own settings.", bundle: UILanguage.bundle, locale: UILanguage.locale))
             .foregroundStyle(.secondary)
             .fixedSize(horizontal: false, vertical: true)
           if categories.count > 1 {
-            Picker(String(localized: "categories.title", defaultValue: "Categories"), selection: $category) {
-              Text(String(localized: "repository.allTags", defaultValue: "All")).tag("")
+            Picker(String(localized: "categories.title", defaultValue: "Categories", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $category) {
+              Text(String(localized: "repository.allTags", defaultValue: "All", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("")
               ForEach(categories, id: \.id) { category in
                 Text(category.title).tag(category.id)
               }
@@ -107,7 +107,7 @@ struct MacPrayerGalleryView: View {
         Divider()
         HStack(spacing: 16) {
           if let selectedItem = selection.singleItem {
-            Menu(String(localized: "galleryImage.image", defaultValue: "Image")) {
+            Menu(String(localized: "galleryImage.image", defaultValue: "Image", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
               ForEach(MacPrayerGalleryImageAction.allCases, id: \.rawValue) { action in
                 Button(action.title) { performImageAction(action, selectedItem) }
                   .disabled((action == .restoreDefault && imageStore.record(for: selectedItem.devotionID) == nil)
@@ -120,11 +120,11 @@ struct MacPrayerGalleryView: View {
           }
           if isChangingImage { ProgressView().controlSize(.small) }
           if let selectedItem = selection.singleItem, downloadedDevotionIDs.contains(selectedItem.devotionID) {
-            Button(String(localized: "macLibrary.removeDownload", defaultValue: "Remove Download…"), role: .destructive) {
+            Button(String(localized: "macLibrary.removeDownload", defaultValue: "Remove Download…", bundle: UILanguage.bundle, locale: UILanguage.locale), role: .destructive) {
               onRemoveDownload(selectedItem)
             }
             .disabled(!canRemoveDownload(selectedItem))
-            .help(canRemoveDownload(selectedItem) ? "" : String(localized: "removal.downloadInUse", defaultValue: "Delete all saved copies of this prayer before removing its download."))
+            .help(canRemoveDownload(selectedItem) ? "" : String(localized: "removal.downloadInUse", defaultValue: "Delete all saved copies of this prayer before removing its download.", bundle: UILanguage.bundle, locale: UILanguage.locale))
             .accessibilityIdentifier("macGallery.removeDownload.\(selectedItem.devotionID)")
           }
           Text(selectionCaption)
@@ -134,8 +134,8 @@ struct MacPrayerGalleryView: View {
           Spacer(minLength: 12)
           Button { activate(selection.items) } label: {
             Text(selection.showTarget != nil
-              ? String(localized: "macLibrary.showInLibrary", defaultValue: "Show in Library")
-              : String(localized: "macLibrary.addToLibrary", defaultValue: "Add to Library"))
+              ? String(localized: "macLibrary.showInLibrary", defaultValue: "Show in Library", bundle: UILanguage.bundle, locale: UILanguage.locale)
+              : String(localized: "macLibrary.addToLibrary", defaultValue: "Add to Library", bundle: UILanguage.bundle, locale: UILanguage.locale))
               .frame(minWidth: 116)
           }
           .keyboardShortcut(.defaultAction)
@@ -152,14 +152,14 @@ struct MacPrayerGalleryView: View {
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .background(Color(nsColor: .textBackgroundColor))
     .searchable(text: $query, placement: .toolbar,
-      prompt: String(localized: "macLibrary.search", defaultValue: "Search Prayers"))
+      prompt: String(localized: "macLibrary.search", defaultValue: "Search Prayers", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .onChange(of: matches.map(\.id)) { _, _ in selectedIDs = selection.retainedIDs }
     .sheet(item: $onlineImageItem) { item in
       MacPrayerGalleryImageSearchView(item: item, store: imageStore)
     }
-    .alert(String(localized: "galleryImage.couldNotChange", defaultValue: "Couldn’t Change Image"),
+    .alert(String(localized: "galleryImage.couldNotChange", defaultValue: "Couldn’t Change Image", bundle: UILanguage.bundle, locale: UILanguage.locale),
       isPresented: Binding(get: { imageError != nil }, set: { if !$0 { imageError = nil } })) {
-        Button(String(localized: "common.ok", defaultValue: "OK"), role: .cancel) { imageError = nil }
+        Button(String(localized: "common.ok", defaultValue: "OK", bundle: UILanguage.bundle, locale: UILanguage.locale), role: .cancel) { imageError = nil }
       } message: { Text(imageError ?? "") }
     .onDisappear { imageTask?.cancel() }
     .accessibilityElement(children: .contain)
@@ -169,7 +169,7 @@ struct MacPrayerGalleryView: View {
   private var selectionCaption: String {
     if let selectedItem = selection.singleItem { return selectedItem.title }
     guard !selection.items.isEmpty else { return "" }
-    return String(format: String(localized: "macLibrary.gallerySelectionCount", defaultValue: "%lld Selected"),
+    return String(format: String(localized: "macLibrary.gallerySelectionCount", defaultValue: "%lld Selected", bundle: UILanguage.bundle, locale: UILanguage.locale),
       Int64(selection.items.count))
   }
 
@@ -209,8 +209,8 @@ struct MacPrayerGalleryView: View {
 
   private func chooseImage(for item: MacPrayerLibraryItem) {
     let panel = NSOpenPanel()
-    panel.title = String(localized: "galleryImage.choose", defaultValue: "Choose Image…")
-    panel.prompt = String(localized: "galleryImage.useImage", defaultValue: "Use Image")
+    panel.title = String(localized: "galleryImage.choose", defaultValue: "Choose Image…", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    panel.prompt = String(localized: "galleryImage.useImage", defaultValue: "Use Image", bundle: UILanguage.bundle, locale: UILanguage.locale)
     panel.allowedContentTypes = [.jpeg, .png, .heic, .heif, .tiff, .gif, .bmp, .webP]
     panel.allowsMultipleSelection = false
     panel.canChooseDirectories = false

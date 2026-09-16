@@ -146,9 +146,11 @@ final class CustomDevotionEngineTests: XCTestCase {
   /// prayer language rites included — the whole point of surfacing it: in Erez's rite the Holy
   /// God is קדישת over his own acclamation, and the Hail Mary reads his community's text.
   func testBasicPrayerCatalogResolvesInThePrayerLanguage() {
-    let saved = UserDefaults.standard.string(forKey: "defaultLanguageCode")
+    let saved = InterfaceLanguageStore.shared.selection
+    let savedDefault = UserDefaults.standard.object(forKey: "defaultLanguageCode")
     defer {
-      if let saved { UserDefaults.standard.set(saved, forKey: "defaultLanguageCode") }
+      InterfaceLanguageStore.shared.selection = saved
+      if let savedDefault { UserDefaults.standard.set(savedDefault, forKey: "defaultLanguageCode") }
       else { UserDefaults.standard.removeObject(forKey: "defaultLanguageCode") }
     }
 
@@ -156,11 +158,13 @@ final class CustomDevotionEngineTests: XCTestCase {
                    ["signOfCross", "ourFather", "hailMary", "gloryBe", "creed", "holyGod",
                     "salveRegina", "almaRedemptorisMater", "aveReginaCaelorum", "reginaCaeli"])
 
+    InterfaceLanguageStore.shared.selection = "en"
     UserDefaults.standard.set("en", forKey: "defaultLanguageCode")
     let selected = BasicPrayerCatalog.step(
       for: BasicPrayerCatalog.prayer(id: "ourFather")!, languageCode: "arc")
     XCTAssertEqual(selected.title, "צלותא מרניתא")
     XCTAssertNotNil(selected.transliteratedBody)
+    XCTAssertEqual(InterfaceLanguageStore.shared.selection, "en")
     XCTAssertEqual(UserDefaults.standard.string(forKey: "defaultLanguageCode"), "en")
     XCTAssertEqual(BasicPrayerCatalog.step(
       for: BasicPrayerCatalog.prayer(id: "holyGod")!, languageCode: "").title, "Holy God")
@@ -382,16 +386,22 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertEqual(steps[0].imageKey, "madonna_and_child")
   }
 
-  func testAngelusSentinelFollowsTheAppDefaultLanguage() {
-    let key = "defaultLanguageCode"
-    let original = UserDefaults.standard.object(forKey: key)
+  func testAngelusSentinelFollowsInterfaceLanguageUntilPrayerLanguageIsOverridden() {
+    let original = InterfaceLanguageStore.shared.selection
+    let originalDefault = UserDefaults.standard.object(forKey: "defaultLanguageCode")
     defer {
-      if let original { UserDefaults.standard.set(original, forKey: key) }
-      else { UserDefaults.standard.removeObject(forKey: key) }
+      InterfaceLanguageStore.shared.selection = original
+      if let originalDefault { UserDefaults.standard.set(originalDefault, forKey: "defaultLanguageCode") }
+      else { UserDefaults.standard.removeObject(forKey: "defaultLanguageCode") }
     }
-    UserDefaults.standard.set("en", forKey: key)
-    let steps = steps("angelus", language: LanguageCatalog.defaultSentinel)
-    XCTAssertTrue(steps[0].body.contains("The Angel of the Lord declared unto Mary"))
+    UserDefaults.standard.set("", forKey: "defaultLanguageCode")
+    InterfaceLanguageStore.shared.selection = "en"
+    let inherited = steps("angelus", language: LanguageCatalog.defaultSentinel)
+    XCTAssertTrue(inherited[0].body.contains("The Angel of the Lord declared unto Mary"))
+    UserDefaults.standard.set("en", forKey: "defaultLanguageCode")
+    InterfaceLanguageStore.shared.selection = "he"
+    XCTAssertEqual(steps("angelus", language: LanguageCatalog.defaultSentinel)[0].body, inherited[0].body)
+    XCTAssertEqual(UILanguage.current, "he")
   }
 
   // MARK: - Stations of the Cross (flat, translated titles)

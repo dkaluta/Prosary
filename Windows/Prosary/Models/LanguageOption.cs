@@ -9,7 +9,7 @@ namespace Prosary.Models;
 /// right-to-left.</param>
 public sealed record LanguageOption(string Code, string NativeName, bool IsRightToLeft);
 
-/// <summary>Languages available for prayer text. Latin is the default — it's the neutral fallback
+/// <summary>Languages available for prayer text. Latin is the final content fallback — the neutral language
 /// every lookup falls back to if a translation is missing in the chosen language.</summary>
 public static class LanguageCatalog
 {
@@ -25,7 +25,7 @@ public static class LanguageCatalog
     /// <summary>Internal content bucket only; stored Vicariate selections remain "he".</summary>
     public const string VicariateContentCode = "he-x-vicariate";
 
-    /// <summary>Sentinel stored in a favorite's LanguageCode meaning "follow the app-level default
+    /// <summary>Sentinel stored in a favorite's LanguageCode meaning "follow the global prayer language
     /// setting" (see <see cref="AppSettings.DefaultLanguageCode"/>).</summary>
     public const string DefaultSentinel = "";
 

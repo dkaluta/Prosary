@@ -69,13 +69,16 @@ final class HebrewLanguageSelectionTests: XCTestCase {
     }
   }
 
-  func testSelectedMissionCodeReachesItsRealPrayerTextAndAppDefault() {
+  func testSelectedMissionCodeReachesItsRealPrayerTextIndependentlyOfInterfaceLanguage() {
     withOrder([mission, "arc", "he"]) {
+      let original = InterfaceLanguageStore.shared.selection
       let originalDefault = UserDefaults.standard.object(forKey: "defaultLanguageCode")
       defer {
+        InterfaceLanguageStore.shared.selection = original
         if let originalDefault { UserDefaults.standard.set(originalDefault, forKey: "defaultLanguageCode") }
         else { UserDefaults.standard.removeObject(forKey: "defaultLanguageCode") }
       }
+      InterfaceLanguageStore.shared.selection = "en"
       guard let prayer = BasicPrayerCatalog.prayer(id: "ourFather"),
             let expected = PrayerTranslations.hebrewGamaliel[.paterNoster] else {
         return XCTFail("The sourced Mission Our Father must exist")
@@ -86,8 +89,15 @@ final class HebrewLanguageSelectionTests: XCTestCase {
       XCTAssertEqual(step.title, "תפילת האדון")
       XCTAssertNotEqual(step.body, BasicPrayerCatalog.step(for: prayer, languageCode: "he").body)
       UserDefaults.standard.set(selected, forKey: "defaultLanguageCode")
+      InterfaceLanguageStore.shared.selection = "he"
+      XCTAssertEqual(BasicPrayerCatalog.step(for: prayer, languageCode: selected).body, expected)
       XCTAssertEqual(BasicPrayerCatalog.step(for: prayer, languageCode: "").body, expected)
       XCTAssertEqual(LanguageCatalog.resolve("").code, mission)
+      XCTAssertEqual(UILanguage.current, "he")
+      UserDefaults.standard.set("", forKey: "defaultLanguageCode")
+      XCTAssertEqual(BasicPrayerCatalog.step(for: prayer, languageCode: "").body,
+                     BasicPrayerCatalog.step(for: prayer, languageCode: "he").body)
+      XCTAssertEqual(LanguageCatalog.resolve("").code, "he")
     }
   }
 }

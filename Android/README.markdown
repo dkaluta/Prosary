@@ -4,8 +4,11 @@ A Jetpack Compose companion for praying the Rosary, the Angelus, the Stations of
 the chaplets, novenas, the Jesus Prayer, and every other devotion the `.prosaryprayer` bundle
 format describes — the Android port in the Prosary monorepo (see the
 [repository README](../README.markdown)), kept at feature parity with the iOS app it mirrors.
-Latin is the default prayer language, with English, Arabic, Hebrew (in the communities' own
-rites), Russian, Tagalog, Spanish, Greek, and Classical Syriac as alternatives. Each bundle lists
+App Language in Settings follows the system by default or selects English, Hebrew, Arabic, Russian, Tagalog,
+French, Italian, or Ukrainian. Latin, Spanish, Greek, and Classical Syriac remain available in
+prayer language pickers, alongside the supported interface languages and Hebrew traditions.
+Prayer Language sets the default for prayers, following App Language when unset. Existing global
+prayer-language choices and individual prayer overrides are preserved. Each bundle lists
 the subset it actually supplies; most built-ins currently cover Latin, English, Arabic, Hebrew,
 Russian, and Tagalog.
 

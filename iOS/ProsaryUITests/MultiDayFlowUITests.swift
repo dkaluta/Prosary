@@ -21,24 +21,33 @@ final class MultiDayFlowUITests: XCTestCase {
   }
 
   private func openOAntiphons(_ app: XCUIApplication) {
-    app.tabBars.buttons["Search"].tap()
-    let searchField = app.searchFields.firstMatch
-    XCTAssertTrue(searchField.waitForExistence(timeout: 5))
-    searchField.tap()
-    searchField.typeText("O Antiphons")
-    // The unfiltered local list includes this devotion without a saved copy.
+    let searchTab = app.tabBars.buttons["Search"]
+    XCTAssertTrue(searchTab.waitForExistence(timeout: 10))
+    searchTab.tap()
+    XCTAssertTrue(app.buttons["search.category.all"].waitForExistence(timeout: 5))
+    // Browse by identity: a Latin prayer title does not match the English search phrase.
     let row = app.buttons["search.local.oAntiphons"].firstMatch
-    XCTAssertTrue(row.waitForExistence(timeout: 10))
+    for _ in 0..<8 {
+      if row.exists && row.isHittable { break }
+      app.swipeUp()
+    }
+    XCTAssertTrue(row.waitForExistence(timeout: 5) && row.isHittable, app.debugDescription)
     row.tap()
   }
 
-  /// A devotion with no favorite prays in the app's default language, which is Latin — the
-  /// antiphon's title is translated, the day's own label is its Latin incipit either way.
+  private func launchLatinPrayer() -> XCUIApplication {
+    let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)",
+                           "-interfaceLanguageCode", "en", "-defaultLanguageCode", "la",
+                           "-autoAdvanceSeconds", "0"]
+    app.launch()
+    return app
+  }
+
+  /// This fixture explicitly chooses Latin prayer text with English interface controls.
   @MainActor
   func testADayIsItsOwnSequenceOfFiveSteps() throws {
-    let app = XCUIApplication()
-    app.launchArguments = ["-resetStore"]
-    app.launch()
+    let app = launchLatinPrayer()
 
     openOAntiphons(app)
 
@@ -61,9 +70,7 @@ final class MultiDayFlowUITests: XCTestCase {
 
   @MainActor
   func testTheDayMenuMovesBetweenDays() throws {
-    let app = XCUIApplication()
-    app.launchArguments = ["-resetStore"]
-    app.launch()
+    let app = launchLatinPrayer()
 
     openOAntiphons(app)
     XCTAssertTrue(app.staticTexts["Lectio"].waitForExistence(timeout: 5))

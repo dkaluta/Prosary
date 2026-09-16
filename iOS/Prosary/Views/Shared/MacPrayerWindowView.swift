@@ -29,7 +29,7 @@ struct MacPrayerWindowView: View {
         if loading { ProgressView() }
         else if let error {
           ContentUnavailableView {
-            Label(String(localized: "macLibrary.prayerUnavailable", defaultValue: "Prayer Unavailable"), systemImage: "exclamationmark.triangle")
+            Label(String(localized: "macLibrary.prayerUnavailable", defaultValue: "Prayer Unavailable", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "exclamationmark.triangle")
           } description: { Text(error) }
         } else {
           prayerContent
@@ -41,22 +41,22 @@ struct MacPrayerWindowView: View {
           Button {
             Task { await editPrayer() }
           } label: {
-            Label(String(localized: "macLibrary.prayerSettings", defaultValue: "Prayer Settings…"), systemImage: "slider.horizontal.3")
+            Label(String(localized: "macLibrary.prayerSettings", defaultValue: "Prayer Settings…", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "slider.horizontal.3")
           }
           .disabled(prayer == nil || presentation.isPresenting || isModal)
-          .help(String(localized: "macLibrary.prayerSettings", defaultValue: "Prayer Settings…"))
+          .help(String(localized: "macLibrary.prayerSettings", defaultValue: "Prayer Settings…", bundle: UILanguage.bundle, locale: UILanguage.locale))
           .accessibilityIdentifier("prayerWindowSettingsButton")
         }
         ToolbarItem(id: "prayer.presenter") {
           Button(action: presentationActions.toggle) {
             Label(presentation.isPresenting
-              ? String(localized: "presenter.exit", defaultValue: "Exit Presenter Mode")
-              : String(localized: "presenter.enter", defaultValue: "Enter Presenter Mode"), systemImage: "play.rectangle.on.rectangle")
+              ? String(localized: "presenter.exit", defaultValue: "Exit Presenter Mode", bundle: UILanguage.bundle, locale: UILanguage.locale)
+              : String(localized: "presenter.enter", defaultValue: "Enter Presenter Mode", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "play.rectangle.on.rectangle")
           }
           .disabled(loading || isModal || error != nil)
           .help(presentation.isPresenting
-            ? String(localized: "presenter.exit", defaultValue: "Exit Presenter Mode")
-            : String(localized: "presenter.enter", defaultValue: "Enter Presenter Mode"))
+            ? String(localized: "presenter.exit", defaultValue: "Exit Presenter Mode", bundle: UILanguage.bundle, locale: UILanguage.locale)
+            : String(localized: "presenter.enter", defaultValue: "Enter Presenter Mode", bundle: UILanguage.bundle, locale: UILanguage.locale))
           .accessibilityIdentifier("presenterModeButton")
         }
       }
@@ -82,7 +82,7 @@ struct MacPrayerWindowView: View {
     configuredWindow.sheet(item: $editorPrayer, onDismiss: { Task { await reloadAfterEditing() } }) { prayer in
       editorContent(for: prayer)
     }
-    .alert(String(localized: "macLibrary.failed", defaultValue: "Could Not Complete Action"), isPresented: .init(
+    .alert(String(localized: "macLibrary.failed", defaultValue: "Could Not Complete Action", bundle: UILanguage.bundle, locale: UILanguage.locale), isPresented: .init(
       get: { actionError != nil }, set: { if !$0 { actionError = nil } })) {
       Button("common.ok") {
         actionError = nil
@@ -238,7 +238,7 @@ struct MacPrayerWindowView: View {
         NotificationCenter.default.post(name: .macShowCommunity, object: nil)
       },
       removeSelection: { Task { await requestRemoval() } },
-      removeSelectionTitle: String(localized: "macLibrary.deletePrayer", defaultValue: "Delete Prayer…"))
+      removeSelectionTitle: String(localized: "macLibrary.deletePrayer", defaultValue: "Delete Prayer…", bundle: UILanguage.bundle, locale: UILanguage.locale))
   }
 
   private var autoAdvanceBinding: Binding<Int> {
@@ -312,7 +312,7 @@ struct MacPrayerWindowView: View {
         actionError = error.localizedDescription
         if removedDuringAction {
           prayer = nil
-          self.error = String(localized: "macLibrary.prayerRemoved", defaultValue: "This prayer has been removed from your library.")
+          self.error = String(localized: "macLibrary.prayerRemoved", defaultValue: "This prayer has been removed from your library.", bundle: UILanguage.bundle, locale: UILanguage.locale)
         }
       }
     }
@@ -321,7 +321,7 @@ struct MacPrayerWindowView: View {
   private func closeRemovedPrayer() {
     editorPrayer = nil
     removalRequest = nil
-    error = String(localized: "macLibrary.prayerRemoved", defaultValue: "This prayer has been removed from your library.")
+    error = String(localized: "macLibrary.prayerRemoved", defaultValue: "This prayer has been removed from your library.", bundle: UILanguage.bundle, locale: UILanguage.locale)
     prayer = nil
     // Allow an attached editor to dismiss before closing its parent window.
     Task { @MainActor in await Task.yield(); finish() }
@@ -359,6 +359,9 @@ struct MacSceneBridge: ViewModifier {
         await RecentPrayers.shared.refresh()
       }
       .onReceive(NotificationCenter.default.publisher(for: .prayerLibraryDidChange)) { _ in
+        Task<Void, Never> { await RecentPrayers.shared.refresh() }
+      }
+      .onReceive(NotificationCenter.default.publisher(for: .interfaceLanguageDidChange)) { _ in
         Task<Void, Never> { await RecentPrayers.shared.refresh() }
       }
   }

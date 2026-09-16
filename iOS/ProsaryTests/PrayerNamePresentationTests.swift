@@ -66,18 +66,34 @@ final class PrayerNamePresentationTests: XCTestCase {
     }
   }
 
-  func testBasicPrayerNamesFollowDefaultChangesAndPreserveAnExplicitOverride() throws {
-    let saved = UserDefaults.standard.object(forKey: "defaultLanguageCode")
+  func testBasicPrayerNamesFollowInterfaceChangesAndPreserveAnExplicitOverride() throws {
+    let saved = InterfaceLanguageStore.shared.selection
+    let savedDefault = UserDefaults.standard.object(forKey: "defaultLanguageCode")
     defer {
-      if let saved { UserDefaults.standard.set(saved, forKey: "defaultLanguageCode") }
+      InterfaceLanguageStore.shared.selection = saved
+      if let savedDefault { UserDefaults.standard.set(savedDefault, forKey: "defaultLanguageCode") }
       else { UserDefaults.standard.removeObject(forKey: "defaultLanguageCode") }
     }
+    UserDefaults.standard.set("", forKey: "defaultLanguageCode")
     let prayer = try XCTUnwrap(BasicPrayerCatalog.prayer(id: "ourFather"))
-    for (language, title) in [("he-x-gamliel", "תפילת האדון"), ("arc", "צלותא מרניתא")] {
-      UserDefaults.standard.set(language, forKey: "defaultLanguageCode")
+    for (language, title) in [("he", "אבינו שבשמים"), ("fr", "Notre Père")] {
+      InterfaceLanguageStore.shared.selection = language
       let following = PrayerNamePresentation.basicPrayer(prayer, languageCode: "",
         interfaceLanguage: "he", showPrayerLanguage: false)
       XCTAssertEqual(following.title, title)
+      XCTAssertEqual(PrayerNamePresentation.basicPrayer(prayer, languageCode: "en",
+        interfaceLanguage: "he", showPrayerLanguage: false).title, "Our Father")
+      XCTAssertEqual(PrayerNamePresentation.basicPrayer(prayer, languageCode: "he-x-gamliel",
+        interfaceLanguage: "he", showPrayerLanguage: false).title, "תפילת האדון")
+      XCTAssertEqual(PrayerNamePresentation.basicPrayer(prayer, languageCode: "arc",
+        interfaceLanguage: "he", showPrayerLanguage: false).title, "צלותא מרניתא")
+      XCTAssertEqual(LanguageCatalog.resolve("").code, language)
+    }
+    for (language, title) in [("he-x-gamliel", "תפילת האדון"), ("arc", "צלותא מרניתא")] {
+      UserDefaults.standard.set(language, forKey: "defaultLanguageCode")
+      XCTAssertEqual(UILanguage.current, "fr", "The prayer override does not change the interface")
+      XCTAssertEqual(PrayerNamePresentation.basicPrayer(prayer, languageCode: "",
+        interfaceLanguage: "he", showPrayerLanguage: false).title, title)
       XCTAssertEqual(PrayerNamePresentation.basicPrayer(prayer, languageCode: "en",
         interfaceLanguage: "he", showPrayerLanguage: false).title, "Our Father")
       XCTAssertEqual(LanguageCatalog.resolve("").code, language)

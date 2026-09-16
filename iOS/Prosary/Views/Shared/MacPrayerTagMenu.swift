@@ -12,7 +12,7 @@ final class MacPrayerTagMenuRow: NSView {
   private let onClear: () -> Void
   private let onEdit: () -> Void
   private let caption = NSTextField(labelWithString: "")
-  private let edit = NSButton(title: String(localized: "macLibrary.editTags", defaultValue: "Tags…"), target: nil, action: nil)
+  private let edit = NSButton(title: String(localized: "macLibrary.editTags", defaultValue: "Tags…", bundle: UILanguage.bundle, locale: UILanguage.locale), target: nil, action: nil)
   private let tagIcon = NSImageView()
   private var buttons: [MacPrayerTagMenuButton] = []
   private var keyboardIndex: Int?
@@ -30,11 +30,11 @@ final class MacPrayerTagMenuRow: NSView {
     super.init(frame: NSRect(x: 0, y: 0, width: 248, height: footerY + 25))
     autoresizingMask = [.width]
     setAccessibilityRole(.group)
-    setAccessibilityLabel(String(localized: "macLibrary.tags", defaultValue: "Tags"))
+    setAccessibilityLabel(String(localized: "macLibrary.tags", defaultValue: "Tags", bundle: UILanguage.bundle, locale: UILanguage.locale))
     let clear = MacPrayerTagMenuButton(tag: nil, selected: false)
     clear.isEnabled = isEnabled && !selectedIDs.isEmpty
     clear.onHover = { [weak self] hovered in
-      self?.showCaption(hovered ? String(localized: "macLibrary.removeAllTags", defaultValue: "Remove All Tags") : nil)
+      self?.showCaption(hovered ? String(localized: "macLibrary.removeAllTags", defaultValue: "Remove All Tags", bundle: UILanguage.bundle, locale: UILanguage.locale) : nil)
     }
     clear.onPress = { [weak self] in self?.finish { $0.onClear() } }
     buttons.append(clear)
@@ -84,8 +84,8 @@ final class MacPrayerTagMenuRow: NSView {
 
   private static func caption(for tag: MacPrayerTag, selected: Bool) -> String {
     String(format: selected
-      ? String(localized: "macLibrary.removeTagLabel", defaultValue: "Remove “%@”")
-      : String(localized: "macLibrary.addTagLabel", defaultValue: "Add “%@”"), tag.title)
+      ? String(localized: "macLibrary.removeTagLabel", defaultValue: "Remove “%@”", bundle: UILanguage.bundle, locale: UILanguage.locale)
+      : String(localized: "macLibrary.addTagLabel", defaultValue: "Add “%@”", bundle: UILanguage.bundle, locale: UILanguage.locale), tag.title)
   }
 
   private func showCaption(_ title: String?) {
@@ -135,7 +135,7 @@ final class MacPrayerTagMenuRow: NSView {
     keyboardIndex = index
     for (offset, button) in buttons.enumerated() { button.keyboardHighlighted = offset == index }
     showCaption(index == 0
-      ? String(localized: "macLibrary.removeAllTags", defaultValue: "Remove All Tags")
+      ? String(localized: "macLibrary.removeAllTags", defaultValue: "Remove All Tags", bundle: UILanguage.bundle, locale: UILanguage.locale)
       : Self.caption(for: choices[index - 1], selected: selectedIDs.contains(choices[index - 1].id)))
   }
 }
@@ -164,9 +164,9 @@ private final class MacPrayerTagMenuButton: NSButton {
     setAccessibilityRole(.radioButton)
     let label = tag.map { tag in
       String(format: selected
-        ? String(localized: "macLibrary.removeTagLabel", defaultValue: "Remove “%@”")
-        : String(localized: "macLibrary.addTagLabel", defaultValue: "Add “%@”"), tag.title)
-    } ?? String(localized: "macLibrary.removeAllTags", defaultValue: "Remove All Tags")
+        ? String(localized: "macLibrary.removeTagLabel", defaultValue: "Remove “%@”", bundle: UILanguage.bundle, locale: UILanguage.locale)
+        : String(localized: "macLibrary.addTagLabel", defaultValue: "Add “%@”", bundle: UILanguage.bundle, locale: UILanguage.locale), tag.title)
+    } ?? String(localized: "macLibrary.removeAllTags", defaultValue: "Remove All Tags", bundle: UILanguage.bundle, locale: UILanguage.locale)
     setAccessibilityLabel(label)
     toolTip = label
   }
@@ -233,10 +233,10 @@ enum MacPrayerLibraryMenu {
                    onClearTags: @escaping () -> Void, onEditTags: @escaping () -> Void) -> NSMenu {
     let menu = NSMenu()
     menu.autoenablesItems = false
-    add(String(localized: "macLibrary.open", defaultValue: "Open"), to: menu, enabled: !isBusy, action: onOpen)
+    add(String(localized: "macLibrary.open", defaultValue: "Open", bundle: UILanguage.bundle, locale: UILanguage.locale), to: menu, enabled: !isBusy, action: onOpen)
     menu.addItem(.separator())
-    add(String(localized: "macLibrary.duplicate", defaultValue: "Duplicate"), to: menu, enabled: !isBusy, action: onDuplicate)
-    add(String(localized: "macLibrary.prayerSettings", defaultValue: "Prayer Settings…"), to: menu, enabled: !isBusy, action: onEdit)
+    add(String(localized: "macLibrary.duplicate", defaultValue: "Duplicate", bundle: UILanguage.bundle, locale: UILanguage.locale), to: menu, enabled: !isBusy, action: onDuplicate)
+    add(String(localized: "macLibrary.prayerSettings", defaultValue: "Prayer Settings…", bundle: UILanguage.bundle, locale: UILanguage.locale), to: menu, enabled: !isBusy, action: onEdit)
     menu.addItem(.separator())
     let tagItem = NSMenuItem()
     tagItem.view = MacPrayerTagMenuRow(tags: tags, selectedIDs: item.tagIDs, isEnabled: !isBusy,
@@ -244,8 +244,8 @@ enum MacPrayerLibraryMenu {
     menu.addItem(tagItem)
     menu.addItem(.separator())
     add(item.prayer == nil
-      ? String(localized: "macLibrary.removeFromLibrary", defaultValue: "Remove from Library…")
-      : String(localized: "macLibrary.deletePrayer", defaultValue: "Delete Prayer…"),
+      ? String(localized: "macLibrary.removeFromLibrary", defaultValue: "Remove from Library…", bundle: UILanguage.bundle, locale: UILanguage.locale)
+      : String(localized: "macLibrary.deletePrayer", defaultValue: "Delete Prayer…", bundle: UILanguage.bundle, locale: UILanguage.locale),
       to: menu, enabled: !isBusy, action: onRemove)
     return menu
   }

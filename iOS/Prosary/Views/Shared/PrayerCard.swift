@@ -74,7 +74,7 @@ struct PrayerCard: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(.borderless)
-            .accessibilityLabel(String(localized: "home.savedPresets", defaultValue: "Saved Presets"))
+            .accessibilityLabel(String(localized: "home.savedPresets", defaultValue: "Saved Presets", bundle: UILanguage.bundle, locale: UILanguage.locale))
           } else {
             Image(systemName: "chevron.forward")
               .font(.subheadline)

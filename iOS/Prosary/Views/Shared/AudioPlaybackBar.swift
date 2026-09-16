@@ -33,7 +33,7 @@ struct AudioPlaybackBar: View {
       .foregroundStyle(.secondary)
       .disabled(chapterCount < 2)
       .accessibilityLabel(String(localized: "prayerFlow.audio.previousChapter",
-                                 defaultValue: "Previous Chapter"))
+                                 defaultValue: "Previous Chapter", bundle: UILanguage.bundle, locale: UILanguage.locale))
 
       Button { controller.playPause() } label: {
         Image(systemName: controller.isPlaying ? "pause.circle.fill" : "play.circle.fill")
@@ -42,8 +42,8 @@ struct AudioPlaybackBar: View {
       }
       .buttonStyle(.plain)
       .accessibilityLabel(controller.isPlaying
-                          ? String(localized: "prayerFlow.audio.pause", defaultValue: "Pause")
-                          : String(localized: "prayerFlow.audio.play", defaultValue: "Play"))
+                          ? String(localized: "prayerFlow.audio.pause", defaultValue: "Pause", bundle: UILanguage.bundle, locale: UILanguage.locale)
+                          : String(localized: "prayerFlow.audio.play", defaultValue: "Play", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("audioPlayPauseButton")
 
       Button { controller.nextChapter() } label: {
@@ -53,7 +53,7 @@ struct AudioPlaybackBar: View {
       .foregroundStyle(.secondary)
       .disabled(chapterCount < 2)
       .accessibilityLabel(String(localized: "prayerFlow.audio.nextChapter",
-                                 defaultValue: "Next Chapter"))
+                                 defaultValue: "Next Chapter", bundle: UILanguage.bundle, locale: UILanguage.locale))
 
       VStack(alignment: .leading, spacing: 0) {
         if let index = controller.currentChapterIndex, chapterTitles.indices.contains(index) {
@@ -77,7 +77,7 @@ struct AudioPlaybackBar: View {
           .tint(seasonColor)
           .controlSize(.mini)
           .accessibilityLabel(String(localized: "prayerFlow.audio.position",
-                                     defaultValue: "Playback position"))
+                                     defaultValue: "Playback position", bundle: UILanguage.bundle, locale: UILanguage.locale))
 
           Text("\(Self.timestamp(controller.currentTime))/\(Self.timestamp(controller.duration))")
             .font(.caption2.monospacedDigit())

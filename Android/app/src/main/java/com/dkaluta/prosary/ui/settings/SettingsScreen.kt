@@ -51,6 +51,8 @@ import com.dkaluta.prosary.content.today.TodayInfoStore
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.HomeOrder
 import com.dkaluta.prosary.models.LanguageCatalog
+import com.dkaluta.prosary.models.InterfaceLanguage
+import com.dkaluta.prosary.InterfaceLanguageController
 import com.dkaluta.prosary.ui.home.OrderEditor
 import com.dkaluta.prosary.ui.presets.OptionPickerField
 import com.dkaluta.prosary.ui.shared.installErrorMessage
@@ -74,9 +76,9 @@ fun SettingsScreen(onBack: () -> Unit) {
     val services = LocalAppServices.current
     val scope = rememberCoroutineScope()
     val uriHandler = LocalUriHandler.current
-
     var defaultLanguageCode by remember { mutableStateOf(AppSettings.defaultLanguageCode) }
     var aramaicSignOfCrossForm by remember { mutableStateOf(AppSettings.aramaicSignOfCrossForm) }
+
     var autoAdvanceSeconds by remember { mutableIntStateOf(AppSettings.autoAdvanceSeconds) }
     var hapticsOnAdvance by remember { mutableStateOf(AppSettings.hapticsOnAdvance) }
     val typographyConfiguration = LocalConfiguration.current
@@ -161,13 +163,23 @@ fun SettingsScreen(onBack: () -> Unit) {
                 .padding(16.dp),
         ) {
             OptionPickerField(
-                label = stringResource(R.string.settings_default_prayer_language),
-                options = LanguageCatalog.publicOptions,
-                selected = LanguageCatalog.publicOptions.firstOrNull { it.code == LanguageCatalog.pickerLanguageCode(defaultLanguageCode) }
-                    ?: LanguageCatalog.resolve(defaultLanguageCode),
-                optionLabel = { LanguageCatalog.pickerLanguageName(it.code) },
+                label = stringResource(R.string.settings_app_language),
+                options = listOf("") + InterfaceLanguage.codes,
+                selected = AppSettings.interfaceLanguageCode,
+                optionLabel = { if (it.isEmpty()) context.getString(R.string.settings_language_system_default) else InterfaceLanguage.nativeName(it) },
+                onSelect = InterfaceLanguageController::select,
+                modifier = Modifier.testTag("interfaceLanguagePicker"),
+            )
+            Text(stringResource(R.string.settings_app_language_hint),
+                style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+
+            OptionPickerField(
+                label = stringResource(R.string.settings_prayer_language),
+                options = listOf("") + LanguageCatalog.publicOptions.map { it.code },
+                selected = LanguageCatalog.pickerLanguageCode(defaultLanguageCode),
+                optionLabel = { if (it.isEmpty()) context.getString(R.string.settings_follow_app_language, InterfaceLanguage.nativeName(AppSettings.effectiveInterfaceLanguageCode)) else LanguageCatalog.pickerLanguageName(it) },
                 onSelect = {
-                    defaultLanguageCode = LanguageCatalog.selectingLanguage(it.code, defaultLanguageCode)
+                    defaultLanguageCode = LanguageCatalog.selectingLanguage(it, defaultLanguageCode)
                     AppSettings.setDefaultLanguageCode(defaultLanguageCode)
                 },
             )

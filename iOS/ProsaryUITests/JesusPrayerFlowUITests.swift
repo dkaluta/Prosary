@@ -2,11 +2,11 @@
 //  JesusPrayerFlowUITests.swift
 //  ProsaryUITests
 //
-//  These tests use -resetStore so the SwiftData store starts clean (no Jesus Prayer default),
-//  ensuring tapping the home card always goes to JesusPrayerSetupView instead of jumping
-//  straight to a flow. The target chooser is two rows of plain buttons (counts on top, the
+//  These tests use an isolated store with no Jesus Prayer default, so the local Search item
+//  opens JesusPrayerSetupView instead of jumping straight to a saved flow. The target chooser
+//  is two rows of plain buttons (counts on top, the
 //  open-ended choices below) rather than one five-segment picker, so the segments are ordinary
-//  buttons carrying the `.isSelected` trait on both iOS and macOS. The counter flow advances
+//  buttons carrying the `.isSelected` trait on iOS. The counter flow advances
 //  through its central "Pray" button — it passes a centralActionLabel, so PrayerStepFlowView
 //  renders that instead of a footer Next — and since 0.7.3 no footer at all, so there is no
 //  step-back control here either.
@@ -27,20 +27,26 @@ final class JesusPrayerFlowUITests: XCTestCase {
 
   /// The Jesus Prayer has no saved session on a clean store, so Search is its way in.
   private func openJesusPrayer(_ app: XCUIApplication) {
-    app.tabBars.buttons["Search"].tap()
-    let searchField = app.searchFields.firstMatch
-    XCTAssertTrue(searchField.waitForExistence(timeout: 5))
-    searchField.tap()
-    searchField.typeText("Jesus Prayer")
-    // The unfiltered local list includes this devotion without a saved copy.
+    let searchTab = app.tabBars.buttons["Search"]
+    XCTAssertTrue(searchTab.waitForExistence(timeout: 10))
+    searchTab.tap()
+    XCTAssertTrue(app.buttons["search.category.all"].waitForExistence(timeout: 5))
+    // Local browsing is available without activating the system's searchable field. The
+    // prayer's title may be in another language, so locate its stable discovery identifier.
     let row = app.buttons["search.local.jesusPrayer"].firstMatch
-    XCTAssertTrue(row.waitForExistence(timeout: 10))
+    for _ in 0..<8 {
+      if row.exists && row.isHittable { break }
+      app.swipeUp()
+    }
+    XCTAssertTrue(row.waitForExistence(timeout: 5) && row.isHittable, app.debugDescription)
     row.tap()
   }
 
   private func launchClean() -> XCUIApplication {
     let app = XCUIApplication()
-    app.launchArguments = ["-resetStore"]
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)",
+                           "-interfaceLanguageCode", "en", "-defaultLanguageCode", "en",
+                           "-autoAdvanceSeconds", "0"]
     app.launch()
     return app
   }
@@ -125,8 +131,10 @@ final class JesusPrayerFlowUITests: XCTestCase {
 
     XCTAssertFalse(app.buttons["Begin"].isEnabled)
 
-    app.textFields["Number of repetitions"].tap()
-    app.textFields["Number of repetitions"].typeText("12")
+    let customCount = app.textFields["jesusPrayerCustomCount"]
+    XCTAssertTrue(customCount.waitForExistence(timeout: 5))
+    customCount.tap()
+    customCount.typeText("12")
 
     XCTAssertTrue(app.buttons["Begin"].isEnabled)
     app.buttons["Begin"].tap()

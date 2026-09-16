@@ -23,6 +23,7 @@ struct JesusPrayerFlowView: View {
   @Environment(\.appServices) private var services
   @Environment(\.finishPrayerSession) private var finishPrayerSession
   @Environment(\.prayerWindowTitle) private var prayerWindowTitle
+  @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
 
   @State private var progress: JesusPrayerProgress
   @State private var isRightToLeft = false
@@ -61,7 +62,7 @@ struct JesusPrayerFlowView: View {
 
   var body: some View {
     PrayerStepFlowView(
-      navigationTitle: prayerWindowTitle ?? String(localized: "jesusPrayerFlow.title", defaultValue: "The Jesus Prayer"),
+      navigationTitle: prayerWindowTitle ?? String(localized: "jesusPrayerFlow.title", defaultValue: "The Jesus Prayer", bundle: UILanguage.bundle, locale: UILanguage.locale),
       step: currentStep,
       currentIndex: progress.currentIndex,
       totalSteps: progress.targetCount,
@@ -71,28 +72,34 @@ struct JesusPrayerFlowView: View {
       canGoBack: progress.canGoBack,
       onBack: back,
       onNext: next,
-      centralActionLabel: String(localized: "jesusPrayerFlow.pray", defaultValue: "Pray"),
+      centralActionLabel: String(localized: "jesusPrayerFlow.pray", defaultValue: "Pray", bundle: UILanguage.bundle, locale: UILanguage.locale),
       flowActions: AnyView(flowActions)
     )
     .alert(
-      String(localized: "prayerFlow.continue.title", defaultValue: "Continue this prayer?"),
+      String(localized: "prayerFlow.continue.title", defaultValue: "Continue this prayer?", bundle: UILanguage.bundle, locale: UILanguage.locale),
       isPresented: .init(
         get: { pendingContinuation != nil },
         set: { if !$0 { pendingContinuation = nil } }),
       presenting: pendingContinuation
     ) { saved in
-      Button(String(localized: "prayerFlow.continue", defaultValue: "Continue")) {
+      Button(String(localized: "prayerFlow.continue", defaultValue: "Continue", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
         resume(saved)
       }
       .keyboardShortcut(.defaultAction)
-      Button(String(localized: "prayerFlow.restart", defaultValue: "Restart"), role: .destructive) {
+      Button(String(localized: "prayerFlow.restart", defaultValue: "Restart", bundle: UILanguage.bundle, locale: UILanguage.locale), role: .destructive) {
         restart()
       }
     } message: { _ in
       Text(String(localized: "prayerFlow.continue.message",
-                  defaultValue: "You have an unfinished prayer. Continue where you left off or begin again?"))
+                  defaultValue: "You have an unfinished prayer. Continue where you left off or begin again?", bundle: UILanguage.bundle, locale: UILanguage.locale))
     }
     .task { await sessionLoader.perform { await load() } }
+    .onChange(of: prayerLanguage.code) { _, _ in
+      guard hasLoaded, !didFinish, chosenLanguage.isEmpty else { return }
+      let language = LanguageCatalog.resolve(chosenLanguage)
+      languageCode = language.code
+      isRightToLeft = language.isRightToLeft
+    }
     .modifier(PrayerRemovalDialogs(prayer: $deletingPrayer, onDeleted: { await checkIfFavorited() }))
     .onDisappear {
       guard hasLoaded, pendingContinuation == nil, !didFinish else { return }
@@ -184,12 +191,12 @@ struct JesusPrayerFlowView: View {
         let targetLabel: String
         switch effectiveTarget {
         case .count(let n): targetLabel = "× \(n)"
-        case .unbounded:    targetLabel = String(localized: "jesusPrayerOptions.unbounded", defaultValue: "Unbounded")
+        case .unbounded:    targetLabel = String(localized: "jesusPrayerOptions.unbounded", defaultValue: "Unbounded", bundle: UILanguage.bundle, locale: UILanguage.locale)
         }
         let all = (try? await services.presetStore.all()) ?? []
         let isFirst = !all.contains { $0.kind == .jesusPrayer }
         let newFavorite = Prayer(
-          name: String(localized: "jesusPrayer.favoriteName", defaultValue: "Jesus Prayer \(targetLabel) (\(langName))"),
+          name: String(localized: "jesusPrayer.favoriteName", defaultValue: "Jesus Prayer \(targetLabel) (\(langName))", bundle: UILanguage.bundle, locale: UILanguage.locale),
           kind: .jesusPrayer,
           isDefault: isFirst,
           languageCode: resolved,

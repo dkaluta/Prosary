@@ -89,7 +89,7 @@ struct RosaryOptionsSections: View {
           }
         }
         #if os(macOS)
-        Toggle(String(localized: "presenter.combineRepetitions", defaultValue: "Combine Repeated Prayers"), isOn: $rosary.presenterMode)
+        Toggle(String(localized: "presenter.combineRepetitions", defaultValue: "Combine Repeated Prayers", bundle: UILanguage.bundle, locale: UILanguage.locale), isOn: $rosary.presenterMode)
         #else
         Toggle("favoriteEditor.presenterMode", isOn: $rosary.presenterMode)
         #endif

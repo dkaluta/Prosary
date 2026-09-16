@@ -205,18 +205,22 @@ final class RosaryEngineTests: XCTestCase {
     XCTAssertEqual(without, with - 1)
   }
 
-  func testAramaicSignOfCrossUsesPerRosaryFormUntilAramaicBecomesTheAppDefault() {
+  func testAramaicSignOfCrossUsesPerRosaryFormUntilAramaicBecomesThePrayerDefault() {
     let defaults = UserDefaults.standard
+    let savedInterface = InterfaceLanguageStore.shared.selection
     let savedDefault = defaults.string(forKey: "defaultLanguageCode")
     let savedForm = defaults.string(forKey: AramaicSignOfCrossForm.defaultsKey)
     defer {
+      InterfaceLanguageStore.shared.selection = savedInterface
       if let savedDefault { defaults.set(savedDefault, forKey: "defaultLanguageCode") }
       else { defaults.removeObject(forKey: "defaultLanguageCode") }
       if let savedForm { defaults.set(savedForm, forKey: AramaicSignOfCrossForm.defaultsKey) }
       else { defaults.removeObject(forKey: AramaicSignOfCrossForm.defaultsKey) }
     }
 
+    InterfaceLanguageStore.shared.selection = "en"
     defaults.set("en", forKey: "defaultLanguageCode")
+    XCTAssertFalse(AramaicSignOfCrossForm.isSystemWideActive)
     defaults.set(AramaicSignOfCrossForm.formB, forKey: AramaicSignOfCrossForm.defaultsKey)
 
     let formA = makeEngine().buildSteps(for: prayer(
@@ -235,10 +239,14 @@ final class RosaryEngineTests: XCTestCase {
                    "ܒܫܶܡ ܐܰܒܳܐ ✠ ܘܒܰܪܳܐ ܘܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ، ܚܰܕ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܐܰܡܺܝܢ.")
 
     defaults.set("arc", forKey: "defaultLanguageCode")
+    XCTAssertTrue(AramaicSignOfCrossForm.isSystemWideActive)
+    XCTAssertEqual(UILanguage.current, "en", "The prayer default must not change the interface")
     let systemWide = makeEngine().buildSteps(for: prayer(
       language: "arc", aramaicSignOfCrossForm: AramaicSignOfCrossForm.formA))
     XCTAssertEqual(systemWide.first?.body, formB.first?.body,
-                   "the app-wide form wins once Aramaic is the default")
+                   "the app-wide form wins once Aramaic is the prayer default")
+    XCTAssertEqual(systemWide.first?.transliteratedBody, formB.first?.transliteratedBody)
+    XCTAssertEqual(systemWide.last?.body, formB.last?.body)
   }
 
   func testStMichaelPrayerAddsOneStep() {

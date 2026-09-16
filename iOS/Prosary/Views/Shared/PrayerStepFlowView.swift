@@ -322,23 +322,23 @@ struct PrayerStepFlowView: View {
 
   private var autoAdvanceMenu: some View {
     Menu {
-      Picker(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance"),
+      Picker(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance", bundle: UILanguage.bundle, locale: UILanguage.locale),
              selection: autoAdvanceBinding) {
-        Text(String(localized: "prayerFlow.autoAdvance.off", defaultValue: "Off")).tag(0)
+        Text(String(localized: "prayerFlow.autoAdvance.off", defaultValue: "Off", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(0)
         ForEach(Self.autoAdvanceChoices, id: \.self) { seconds in
           Text(String(localized: "prayerFlow.autoAdvance.everySeconds",
-                      defaultValue: "Every \(seconds) Seconds")).tag(seconds)
+                      defaultValue: "Every \(seconds) Seconds", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(seconds)
         }
       }
     } label: {
-      Label(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance"),
+      Label(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance", bundle: UILanguage.bundle, locale: UILanguage.locale),
             systemImage: autoAdvanceSeconds > 0 ? "timer.circle.fill" : "timer")
     }
     #if !os(macOS)
     .labelStyle(.iconOnly)
     #endif
-    .accessibilityLabel(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance"))
-    .help(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance"))
+    .accessibilityLabel(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance", bundle: UILanguage.bundle, locale: UILanguage.locale))
+    .help(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .accessibilityIdentifier("autoAdvanceMenu")
   }
 
@@ -351,14 +351,14 @@ struct PrayerStepFlowView: View {
         ProgressView(value: Double(currentIndex + 1) / Double(totalSteps))
         let aramaic = PrayerTranslations.aramaicProgress(currentIndex + 1, total: totalSteps,
           languageCode: languageCode, sourceScript: usesSyriacScript)
-        Text(aramaic ?? String(localized: "prayerFlow.progressCount", defaultValue: "\(currentIndex + 1) of \(totalSteps)"))
+        Text(aramaic ?? String(localized: "prayerFlow.progressCount", defaultValue: "\(currentIndex + 1) of \(totalSteps)", bundle: UILanguage.bundle, locale: UILanguage.locale))
           .accessibilityIdentifier("prayerProgressText")
           .font(aramaic.map { PrayerTypography.font(languageCode: languageCode, isScripture: false,
               text: $0, typefaces: typefaces, pointSize: 13) } ?? .caption)
           .foregroundStyle(.secondary)
       }
     } else {
-      Text(String(localized: "prayerFlow.progressCountUnbounded", defaultValue: "\(currentIndex + 1)"))
+      Text(String(localized: "prayerFlow.progressCountUnbounded", defaultValue: "\(currentIndex + 1)", bundle: UILanguage.bundle, locale: UILanguage.locale))
         .font(.caption)
         .foregroundStyle(.secondary)
     }
@@ -536,8 +536,8 @@ struct PrayerStepFlowView: View {
 
   private var transliterationActionLabel: String {
     usesAlternateText
-      ? String(localized: "prayerFlow.originalText", defaultValue: "Show Original Text")
-      : String(localized: "prayerFlow.transliteration", defaultValue: "Show Transliteration")
+      ? String(localized: "prayerFlow.originalText", defaultValue: "Show Original Text", bundle: UILanguage.bundle, locale: UILanguage.locale)
+      : String(localized: "prayerFlow.transliteration", defaultValue: "Show Transliteration", bundle: UILanguage.bundle, locale: UILanguage.locale)
   }
 
   /// Prayer bodies use `**bold**` for the traditional versicle/response typographic distinction

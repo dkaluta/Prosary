@@ -44,7 +44,7 @@ fun PrayerLanguagePicker(
         val choices = listOf(
             LanguageChoice(
                 code = LanguageCatalog.defaultSentinel,
-                label = stringResource(R.string.flow_app_setting),
+                label = stringResource(R.string.language_default_parenthesized, LanguageCatalog.resolve("").nativeName),
             ),
         ) + options.map {
             LanguageChoice(code = it.code, label = LanguageCatalog.pickerLanguageName(it.code))
