@@ -100,7 +100,7 @@ private struct ScripturePassageBody: View {
           .accessibilityIdentifier("readings.scriptPicker")
         }
         if passage.includesWholeVerses {
-          Text(String(localized: "readings.wholeVersesNotice", defaultValue: "Full verses are shown where the reading cites only part of a verse.", bundle: UILanguage.bundle, locale: UILanguage.locale))
+          Text(String(localized: "readings.wholeVersesNotice", defaultValue: "Full verses are shown and may extend beyond the reading’s cited limits.", bundle: UILanguage.bundle, locale: UILanguage.locale))
             .font(.callout).foregroundStyle(.secondary)
             .accessibilityIdentifier("readings.wholeVersesNotice")
         }

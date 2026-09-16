@@ -41,6 +41,7 @@ jobs:
           uv run --script Shared/tools/test-nabre-versification.py
           uv run --script Shared/tools/test-nabre-versification-fetch.py
           uv run --script Shared/tools/test-reading-edition-mapping.py
+          uv run --script Shared/tools/audit-reading-mappings.py
           uv run --script Shared/tools/test-reading-edition-reviews-hebrew.py
           uv run --script Shared/tools/test-reading-edition-reviews-western.py
           uv run --script Shared/tools/test-reading-edition-reviews-arabic.py

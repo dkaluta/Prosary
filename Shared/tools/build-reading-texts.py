@@ -390,8 +390,8 @@ def resolve_hebrew_psalm_references(book: str, spans: list[tuple], edition: dict
 def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> ResolvedPassage:
     # The helper is intentionally build-time only; native apps never parse citations.
     from reading_versification import map_reference, chapter_verse_count, chapter_matches
-    from reading_appointment_reviews import reviewed_appointment, reviewed_references
-    from reading_source_numbering_reviews import reviewed_numbering
+    from reading_appointment_reviews import has_appointment_review, reviewed_appointment, reviewed_references
+    from reading_source_numbering_reviews import has_numbering_review, reviewed_numbering
     scope, citation = key.split("|", 1)
     book, spans = parse_citation(citation, expand_subverses=True)
     if scope == "torah":
@@ -410,6 +410,10 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> Resolv
     whole = includes_whole_verses(citation)
     uses_step_inventory = False
     review = reviewed_appointment(key, contexts)
+    numbering_review = reviewed_numbering(key, contexts)
+    if ((has_appointment_review(key) and review is None)
+            or (has_numbering_review(key) and numbering_review is None)):
+        raise Unavailable("calendar context outside reviewed appointment boundaries")
     if review is not None:
         references = reviewed_references(review, edition["id"])
         if not references:
@@ -419,7 +423,10 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> Resolv
         candidates.append(references)
         source_systems = []
         whole |= review["includesWholeVerses"]
-    elif (numbering_review := reviewed_numbering(key, contexts)) is not None:
+        # These are already the pinned edition's labels, including its reviewed
+        # chapter inventory. Do not convert Delitzsch labels a second time.
+        uses_step_inventory = True
+    elif numbering_review is not None:
         resolver = (resolve_hebrew_psalm_references if numbering_review["sourceSystem"] == "hebrew-psalms"
                     else resolve_nabre_references)
         references, mapped_whole = resolver(book, spans, edition, corpus)

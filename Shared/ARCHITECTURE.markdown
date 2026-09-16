@@ -1551,6 +1551,16 @@ relations remain separate from NABRE's local verse boundaries. The six editions 
 reviewed Psalm imports provide every appointment, while Martini, Arabic and Peshitta retain
 their documented source limits. This does not assign a numbering system to another calendar
 or to future citations lacking their own review.
+Exact edition-boundary reviews also cover the two appointed 2 Corinthians 13 endings,
+the Mark 3 house-arrival and Luke 7 disciple-summons clauses, and verified liturgical cuts
+within complete verses. Shared citations use a disclosed envelope covering every reviewed
+calendar endpoint. `sourceSystem: reviewed` represents an exact target envelope without
+assigning a generic numbering tradition. Known reviewed keys with unreviewed calendar
+contexts fail before legacy mapping. Their target
+labels are already the selected edition's labels; they use its reviewed inventory and
+must not pass through a second English-to-Delitzsch conversion. The dated
+[mapping audit](reports/readings-mapping-verification.markdown) records source fidelity,
+numeric verification, limits and reproducible commands.
 
 Partial-verse appointments keep their exact citation/key and use complete enclosing Bible
 verses. The optional `wholeVersePassages` array lists the affected keys so every native reader

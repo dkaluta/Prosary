@@ -158,6 +158,35 @@ verse 3, and Psalm 3:6 crosses traditional verses 7–8. Even matching chapter t
 prove identical boundaries. Those texts are not relabeled by a guessed offset or substituted
 from another edition; the reader offers an explicit available-edition choice.
 
+The complete mapping audit also identified two exact 2 Corinthians appointments whose
+closing verse uses the 13-verse chapter ending: UGCC and Gregorian UGCC `13:3–13`, and
+Maronite `13:5–13`. The original calendars, Byzantine lection 197 published by the Greek
+Catholic Eparchy of Mukachevo, and the original Evangelizo MAE verse markers establish the
+final Trinitarian blessing. Pinned STEP rows 27448–27451 map that closing unit to Standard
+verse 14. Bounded edition reviews therefore retain the blessing at verse 13 in six editions
+and at verse 14 in Ang Dating Biblia and Peshitta. They also restore the complete passages
+in Crampon and Kulish. Exact target labels are validated against their reviewed inventories
+and are never converted a second time as if they were English reference labels.
+
+The June 28, 2026 Missale Meum Latin and English Epistle confirms that the 1962 appointment
+`1 Peter 3:8–15` ends within verse 15 after sanctifying Christ in the heart. Its existing
+full Bible verses 8–15 remain unchanged, with the full-verse notice now shown. Verse 16 is
+not appended merely because a conservative alignment graph groups the neighboring verses.
+The remaining flagged endpoints were checked against their original calendar publications.
+Three Mark 3 appointments now retain the house-arrival clause in the selected edition's
+complete verses, and the Syriac-calendar Luke 7:11–18 includes full verse 19 to preserve
+John's summons of two disciples. Shared Mark keys use a reviewed envelope covering both
+verified calendar cuts, with a notice. Acts 3, Ephesians 5 and Mark 16 retain their verse
+sequences with notices for the verified partial boundaries. Ephesians 1, John 7 and
+Revelation 12 retain their existing selections. The [13-key boundary review](reports/readings-boundary-review-2026-09-16.markdown)
+records each disposition and its primary-source checksums; none of those flags is unresolved.
+
+Exact per-edition envelopes may declare `sourceSystem: reviewed` without assigning a generic
+tradition to their calendar. All reviews retain their citation/calendar/source-pin scope.
+If a known reviewed citation acquires an unreviewed calendar context, generation refuses it
+before any generic fallback. See the dated [mapping verification](reports/readings-mapping-verification.markdown)
+and reusable source and numerical audits.
+
 The [edition mapper](tools/reading_edition_mapping.py) now supplies independently reviewed
 profiles for all nine bundled editions, using the same STEP Standard hub. Its
 [numeric inventories](tools/versification/editions/README.markdown) contain source pins,
@@ -200,7 +229,7 @@ The September 10 partial-verse update resolves 2,192 of 2,390 distinct reference
 one edition, including 49 references newly available with full-verse notices.
 After the September 16 Psalm review, 2,291 of 2,390 references have text in at least one edition.
 Current per-edition daily/Torah counts are: Douay–Rheims 2,203/63; Hebrew 2,219/71; Synodal 2,215/68;
-Ang Dating Biblia 2,213/70; Crampon 2,162/69; Martini 1,863/58; Ukrainian 2,188/49.
+Ang Dating Biblia 2,213/70; Crampon 2,164/69; Martini 1,863/58; Ukrainian 2,190/49.
 The old Arabic Jesuit addition contains 220 transcribed verses in 64 reviewed passage units.
 Its exact-unit policy supplies **9 distinct daily citations and no Torah passages** in the
 current appointment tables. Other Arabic citations explicitly remain unavailable. Adding

@@ -60,5 +60,10 @@ def reviewed_numbering(key: str, contexts: set[str]) -> dict | None:
     return review
 
 
+def has_numbering_review(key: str) -> bool:
+    """A scoped source convention cannot become a generic citation on scope loss."""
+    return key in _reviews()
+
+
 if __name__ == "__main__":
     print(f"Verified {len(load_reviews())} exact source-numbering reviews; no Scripture text.")

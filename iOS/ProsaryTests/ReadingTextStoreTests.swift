@@ -98,6 +98,39 @@ final class ReadingTextStoreTests: XCTestCase {
     XCTAssertTrue(passage.verses.first?.text.contains("harp") == true)
   }
 
+  func testBundledCorinthiansKeepsTheClosingBlessingAcrossNumberingSystems() async throws {
+    let store = ReadingTextStore()
+    for start in [3, 5] {
+      let citation = "2 Corinthians 13:\(start)–13"
+      for (edition, end) in [("douay-rheims-1899", 13), ("ang-dating-biblia-1905", 14)] {
+        let result = await store.passage(citation: citation, isTorah: false, editionID: edition)
+        let passage = try XCTUnwrap(result, "\(citation) / \(edition)")
+        XCTAssertTrue(passage.verses.allSatisfy { $0.chapter == 13 })
+        XCTAssertEqual(passage.verses.map(\.verse), Array(start...end),
+                       "The final blessing must remain present in each edition's numbering")
+        let blessing = edition == "douay-rheims-1899" ? "Holy Ghost" : "Espiritu Santo"
+        XCTAssertTrue(passage.verses.last?.text.contains(blessing) == true)
+      }
+    }
+  }
+
+  func testBundledLiturgicalCutsKeepTheWholeAppointedBoundary() async throws {
+    let store = ReadingTextStore()
+    let cases: [(String, String, Int, ClosedRange<Int>)] = [
+      ("Mark 3:20–30", "ang-dating-biblia-1905", 3, 19...30),
+      ("Mark 3:20–30", "peshitta-1905", 3, 19...30),
+      ("Luke 7:11–18", "douay-rheims-1899", 7, 11...19)
+    ]
+    for (citation, edition, chapter, verses) in cases {
+      let result = await store.passage(citation: citation, isTorah: false, editionID: edition)
+      let passage = try XCTUnwrap(result, "\(citation) / \(edition)")
+      XCTAssertTrue(passage.verses.allSatisfy { $0.chapter == chapter })
+      XCTAssertEqual(passage.verses.map(\.verse), Array(verses))
+      XCTAssertTrue(passage.includesWholeVerses,
+                    "The reader must disclose the complete verse containing the appointed clause")
+    }
+  }
+
   func testBundledSeptember13ReadingsUseTheSelectedEditionsNumbering() async throws {
     let store = ReadingTextStore()
     let cases: [(String, [String])] = [

@@ -25,7 +25,7 @@ public partial class ReadingPassageViewModel : ObservableObject
     public string EditionName => _edition?.Name ?? Loc.Tr("readings_edition_unavailable", "No edition is available for this language.");
     public string UnavailableText => Loc.Tr("readings_text_unavailable", "This passage is not available in the selected Bible edition.");
     public string TextNotice => Loc.Tr("readings_text_notice", "Bible text for the cited passage. The wording may differ from the Mass reading.");
-    public string WholeVersesNotice => Loc.Tr("readings_whole_verses_notice", "Full verses are shown where the reading cites only part of a verse.");
+    public string WholeVersesNotice => Loc.Tr("readings_whole_verses_notice", "Full verses are shown and may extend beyond the reading’s cited limits.");
     public string SourceLabel => Loc.Tr("readings_source", "Source and Edition");
     public string EditionLabel => Loc.Tr("readings_edition", "Bible Edition");
     public string Attribution => _edition?.Attribution ?? "";

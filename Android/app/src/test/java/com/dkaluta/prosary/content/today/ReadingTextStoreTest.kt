@@ -203,6 +203,36 @@ class ReadingTextStoreTest {
             store.availableEditions(citation).map { it.id }.sorted())
     }
 
+    @Test fun bundledCorinthiansAppointmentsKeepTheClosingBlessingAcrossEditionNumbering() {
+        val store = bundledStore()
+        for (start in listOf(3, 5)) {
+            val citation = ReadingCitation("reading", "2 Cor. 13", "2 Corinthians 13:$start–13")
+            val tagalog = requireNotNull(store.passage(citation, "ang-dating-biblia-1905"))
+            assertEquals((start..14).toList(), tagalog.verses.map { it.verse })
+            assertTrue(tagalog.verses.all { it.chapter == 13 && it.text.isNotBlank() })
+            assertTrue(tagalog.verses.last().text.contains("Espiritu Santo"))
+            val douay = requireNotNull(store.passage(citation, "douay-rheims-1899"))
+            assertEquals((start..13).toList(), douay.verses.map { it.verse })
+            assertTrue(douay.verses.all { it.chapter == 13 && it.text.isNotBlank() })
+            assertTrue(douay.verses.last().text.contains("Holy Ghost"))
+        }
+    }
+
+    @Test fun bundledBoundaryAppointmentsRetainLeadingAndTrailingClausesWithWholeVerseNotice() {
+        val store = bundledStore()
+        val cases = listOf(
+            Triple("Mark 3:20–30", "ang-dating-biblia-1905", 3 to (19..30)),
+            Triple("Mark 3:20–30", "peshitta-1905", 3 to (19..30)),
+            Triple("Luke 7:11–18", "douay-rheims-1899", 7 to (11..19)),
+        )
+        for ((reference, editionId, expected) in cases) {
+            val passage = requireNotNull(store.passage(ReadingCitation("gospel", "Gospel", reference), editionId))
+            assertTrue(reference, passage.includesWholeVerses)
+            assertEquals(reference, expected.second.toList(), passage.verses.map { it.verse })
+            assertTrue(passage.verses.all { it.chapter == expected.first && it.text.isNotBlank() })
+        }
+    }
+
     @Test fun bundledOldJesuitArabicOpensReviewedPassagesWithoutBorrowingMissingText() {
         val store = bundledStore()
         val editionId = requireNotNull(ReadingTextStore.effectiveEditionId("", "ar-LB", store.editions))

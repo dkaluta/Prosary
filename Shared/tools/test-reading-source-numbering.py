@@ -35,6 +35,21 @@ PSALM = "daily|Psalm 103:1–2; 103:3–4; 103:9–10; 103:11–12"
 
 
 class SourceNumberingReviewTests(unittest.TestCase):
+    def test_known_reviews_cannot_fall_back_when_calendar_context_changes(self):
+        edition = {'id': 'douay-rheims-1899', 'ntSystem': 'vul', 'otSystem': 'vul'}
+        cases = (
+            ('daily|2 Corinthians 13:3–13', {'ugcc', 'syriac'}),
+            ('daily|Mark 3:20–30', {'roman'}),
+            ('daily|Mark 3:13–19', {'ugcc', 'ugcc-gregorian', 'syriac', 'maronite'}),
+            (PSALM, {'roman', 'syriac'}),
+            (SIRACH, {'maronite'}),
+        )
+        with patch('reading_versification.map_reference', side_effect=AssertionError('No legacy fallback')):
+            for key, contexts in cases:
+                with self.subTest(key=key, contexts=contexts):
+                    with self.assertRaisesRegex(builder.Unavailable, 'calendar context outside reviewed'):
+                        builder.resolve(key, contexts, edition, {})
+
     def test_every_bundled_psalm_has_an_exact_roman_numbering_review(self):
         keys = {key: contexts for key, contexts in builder.appointments().items()
                 if key.startswith('daily|Psalm ')}
@@ -77,6 +92,41 @@ class SourceNumberingReviewTests(unittest.TestCase):
         self.assertEqual([(row['chapter'], row['verse'])
                           for row in data['passages'][key]['douay-rheims-1899']],
                          [(32, verse) for verse in (2, 3, 4, 5, 12, 22)])
+
+    def test_shipped_nt_boundary_reviews_keep_the_closing_unit_and_notice(self):
+        data = json.loads((builder.DATA / 'readings-texts.json').read_text())
+        for start in (3, 5):
+            key = f'daily|2 Corinthians 13:{start}–13'
+            for edition, rows in data['passages'][key].items():
+                last = 14 if edition in {'ang-dating-biblia-1905', 'peshitta-1905'} else 13
+                self.assertEqual([(row['chapter'], row['verse']) for row in rows],
+                                 [(13, verse) for verse in range(start, last + 1)])
+            self.assertIn('Espiritu Santo', data['passages'][key]['ang-dating-biblia-1905'][-1]['text'])
+            self.assertIn('Holy Ghost', data['passages'][key]['douay-rheims-1899'][-1]['text'])
+            self.assertNotIn(key, data['wholeVersePassages'])
+        key = 'daily|1 Peter 3:8–15'
+        self.assertIn(key, data['wholeVersePassages'])
+        for rows in data['passages'][key].values():
+            self.assertEqual([(row['chapter'], row['verse']) for row in rows],
+                             [(3, verse) for verse in range(8, 16)])
+
+    def test_shipped_gospels_include_source_clauses_across_verse_boundaries(self):
+        data = json.loads((builder.DATA / 'readings-texts.json').read_text())
+        key = 'daily|Mark 3:20–30'
+        self.assertIn(key, data['wholeVersePassages'])
+        for edition, rows in data['passages'][key].items():
+            first = 19 if edition in {'ang-dating-biblia-1905', 'peshitta-1905'} else 20
+            self.assertEqual([row['verse'] for row in rows], list(range(first, 31)))
+        self.assertIn('bahay', data['passages'][key]['ang-dating-biblia-1905'][0]['text'])
+        self.assertIn('ܠܒ݂ܰܝܬ݁ܳܐ', data['passages'][key]['peshitta-1905'][0]['transliteratedText'])
+        key = 'daily|Luke 7:11–18'
+        self.assertIn(key, data['wholeVersePassages'])
+        for rows in data['passages'][key].values():
+            self.assertEqual([row['verse'] for row in rows], list(range(11, 20)))
+        self.assertIn('two of his disciples', data['passages'][key]['douay-rheims-1899'][-1]['text'])
+        for key in ('daily|Ephesians 5:3–13', 'daily|Mark 16:1–7',
+                    'daily|Acts 3:13–15; 3:17–19'):
+            self.assertIn(key, data['wholeVersePassages'])
 
     def test_cached_hebrew_psalm_publications_match_reviewed_source_markers(self):
         reviews = [row for row in load_reviews().values() if row['sourceSystem'] == 'hebrew-psalms']
@@ -218,6 +268,15 @@ class SourceNumberingIntegrationTests(unittest.TestCase):
         self.assertEqual([(row["chapter"], row["verse"]) for row in result],
                          [(138, verse) for verse in (1, 2, 3, 4, 13, 14, 23, 24)])
         self.assertTrue(result.includes_whole_verses)
+
+    def test_exact_nt_review_uses_target_labels_without_second_delitzsch_conversion(self):
+        key = 'daily|2 Corinthians 13:3–13'
+        edition = next(row for row in self.lock['editions'] if row['id'] == 'masoretic-delitzsch')
+        corpus = self.corpora[edition['id']]
+        with patch('delitzsch_numbering.source_references', side_effect=AssertionError('Already target labels')):
+            rows = builder.resolve(key, {'ugcc', 'ugcc-gregorian'}, edition, corpus)
+        self.assertEqual([row['verse'] for row in rows], list(range(3, 14)))
+        self.assertIn('רוּחַ הַקֹּדֶשׁ', rows[-1]['text'])
 
     def test_legacy_appointment_path_retains_independent_source_exclusions(self):
         corpus = self.corpus()

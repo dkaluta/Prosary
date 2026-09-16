@@ -92,6 +92,46 @@ public class BundledReadingsTests
             Store.AvailableEditions("daily", citation).Select(edition => edition.Id).Order());
     }
 
+    [Theory]
+    [InlineData(3)]
+    [InlineData(5)]
+    public void CorinthiansAppointmentsKeepTheClosingBlessingAcrossEditionNumbering(int start)
+    {
+        var citation = $"2 Corinthians 13:{start}–13";
+        var tagalog = Store.LoadPassage("daily", citation, "ang-dating-biblia-1905");
+        Assert.NotNull(tagalog);
+        Assert.Equal(Enumerable.Range(start, 15 - start), tagalog.Verses.Select(verse => verse.Verse));
+        Assert.All(tagalog.Verses, verse =>
+        {
+            Assert.Equal(13, verse.Chapter);
+            Assert.False(string.IsNullOrWhiteSpace(verse.Text));
+        });
+        Assert.Contains("Espiritu Santo", tagalog.Verses.Last().Text);
+        var douay = Store.LoadPassage("daily", citation, "douay-rheims-1899");
+        Assert.NotNull(douay);
+        Assert.Equal(Enumerable.Range(start, 14 - start), douay.Verses.Select(verse => verse.Verse));
+        Assert.All(douay.Verses, verse => Assert.Equal(13, verse.Chapter));
+        Assert.Contains("Holy Ghost", douay.Verses.Last().Text);
+    }
+
+    [Theory]
+    [InlineData("Mark 3:20–30", "ang-dating-biblia-1905", 3, 19, 30)]
+    [InlineData("Mark 3:20–30", "peshitta-1905", 3, 19, 30)]
+    [InlineData("Luke 7:11–18", "douay-rheims-1899", 7, 11, 19)]
+    public void BoundaryAppointmentsRetainLeadingAndTrailingClausesWithWholeVerseNotice(
+        string citation, string editionId, int chapter, int first, int last)
+    {
+        var passage = Store.LoadPassage("daily", citation, editionId);
+        Assert.NotNull(passage);
+        Assert.True(passage.IncludesWholeVerses);
+        Assert.Equal(Enumerable.Range(first, last - first + 1), passage.Verses.Select(verse => verse.Verse));
+        Assert.All(passage.Verses, verse =>
+        {
+            Assert.Equal(chapter, verse.Chapter);
+            Assert.False(string.IsNullOrWhiteSpace(verse.Text));
+        });
+    }
+
     [Fact]
     public void BundledCatalogHasNineEditionsAndPreservesTheSevenFullBibleEditions()
     {
