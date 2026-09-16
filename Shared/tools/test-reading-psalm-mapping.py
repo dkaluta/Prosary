@@ -13,7 +13,7 @@ import zipfile
 
 from reading_psalm_mapping import (
     DRA_PSALM_SOURCE_OVERLAPS, dra_psalm_standard_overrides,
-    nabre_psalm_to_standard,
+    hebrew_psalm_to_standard, nabre_psalm_to_standard,
 )
 from reading_versification import Versification
 
@@ -22,6 +22,35 @@ DRA_CACHE = TOOLS / '.scripture-cache' / 'daily-readings' / 'engDRA_vpl.zip'
 
 
 class PsalmMappingTests(unittest.TestCase):
+    def test_verified_hebrew_numbering_does_not_inherit_nabre_local_boundaries(self):
+        self.assertEqual(hebrew_psalm_to_standard([('PSA', 2, 12)]), ([('PSA', 2, 12)], False))
+        for chapter in (66, 72, 109):
+            self.assertEqual(hebrew_psalm_to_standard([('PSA', chapter, 1)]),
+                             ([('PSA', chapter, 1)], False))
+            self.assertEqual(hebrew_psalm_to_standard([('PSA', chapter, 2)]),
+                             ([('PSA', chapter, 2)], False))
+        self.assertEqual(hebrew_psalm_to_standard([('PSA', 146, 2)]),
+                         ([('PSA', 146, 2)], False))
+
+    def test_hebrew_numbered_titles_and_merged_verse_still_map_completely(self):
+        self.assertEqual(hebrew_psalm_to_standard([('PSA', 3, 1)]), ([('PSA', 3, 0)], False))
+        self.assertEqual(hebrew_psalm_to_standard([('PSA', 51, 1)]), ([('PSA', 51, 0)], True))
+        self.assertEqual(hebrew_psalm_to_standard([('PSA', 51, 1), ('PSA', 51, 2)]),
+                         ([('PSA', 51, 0)], False))
+        self.assertEqual(hebrew_psalm_to_standard([('PSA', 13, 6)]),
+                         ([('PSA', 13, 5), ('PSA', 13, 6)], False))
+
+    def test_every_hebrew_psalm_verse_has_a_complete_standard_correspondence(self):
+        converter = Versification()
+        for (book, chapter), maximum in converter.tables['org'].maxima.items():
+            if book != 'PSA':
+                continue
+            targets, wider = hebrew_psalm_to_standard([(book, chapter, verse)
+                                                       for verse in range(1, maximum + 1)])
+            self.assertFalse(wider, chapter)
+            self.assertEqual([verse for _, _, verse in targets if verse > 0],
+                             list(range(1, converter.tables['eng'].maxima[(book, chapter)] + 1)))
+
     def test_every_nabre_psalm_verse_has_a_standard_correspondence(self):
         converter = Versification()
         psalms = {chapter: maximum for (book, chapter), maximum

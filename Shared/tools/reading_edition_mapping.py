@@ -22,12 +22,15 @@ TOOLS = Path(__file__).resolve().parent
 DIRECTORY = TOOLS / "versification/editions"
 INVENTORIES = DIRECTORY / "inventories.json"
 EDITION_IDS = frozenset({"douay-rheims-1899", "masoretic-delitzsch", "synodal-1876",
-    "ang-dating-biblia-1905", "crampon-1923", "martini", "kulish-1905", "jesuit-arabic-1897"})
+    "ang-dating-biblia-1905", "crampon-1923", "martini", "kulish-1905", "jesuit-arabic-1897",
+    "peshitta-1905"})
 METHOD = "pinned-imported-verse-word-counts-v1"
 REVIEW_FILES = (
     "reading-text-sources.json", "build-reading-texts.py", "build-edition-mappings.py",
     "reading_edition_mapping.py", "reading_edition_reviews_hebrew.py",
     "reading_edition_reviews_western.py", "reading_edition_reviews_arabic.py",
+    "reading_edition_reviews_peshitta.py", "peshitta_reading_source.py",
+    "import-scripture.py", "aramaic_script_converter.py",
     "reading_step_mapping.py", "reading_psalm_mapping.py", "reading_boundary_groups.py",
     "reading_versification.py", "delitzsch_numbering.py", "versification/sources.json",
     "versification/step/sources.json", "versification/step/rules.json",
@@ -62,7 +65,8 @@ def profile_for(edition_id: str) -> dict:
     from reading_edition_reviews_hebrew import PROFILES as hebrew
     from reading_edition_reviews_western import PROFILES as western
     from reading_edition_reviews_arabic import PROFILES as arabic
-    profiles = hebrew | western | arabic
+    from reading_edition_reviews_peshitta import PROFILES as peshitta
+    profiles = hebrew | western | arabic | peshitta
     if edition_id not in profiles:
         raise ValueError("Bible edition has no reviewed reference profile")
     return profiles[edition_id]
@@ -137,7 +141,12 @@ def excluded_chapters(edition_id: str, corpus: dict, systems: dict, profile: dic
     nt = set("MAT MRK LUK JHN ACT ROM 1CO 2CO GAL EPH PHP COL 1TH 2TH 1TI 2TI TIT PHM HEB JAS 1PE 2PE 1JN 2JN 3JN JUD REV".split())
     excluded = set(profile.get("blocked_chapters", ()))
     exceptions = set(profile.get("reviewed_inventory_exceptions", ()))
+    sparse = profile.get("reviewed_sparse_chapters", {})
     for (book, chapter), values in corpus.items():
+        if (book, chapter) in sparse:
+            if set(values) != sparse[book, chapter] or any(not value for value in values.values()):
+                raise ValueError("Sparse chapter differs from its reviewed verse inventory")
+            continue
         if (not values or any(not value for value in values.values())
                 or set(values) != set(range(1, max(values) + 1))):
             excluded.add((book, chapter))

@@ -272,6 +272,10 @@ def load_source(source: dict) -> dict[tuple[str, int], dict[int, str]]:
             raise ValueError("Invalid Delitzsch source chapter")
         for verse, text in apply_reviewed_corrections(source, parse_chapter(raw)).items():
             add(source["book"], source["chapter"], verse, text)
+    elif source["format"] in {"peshitta-tei", "peshitta-isaiah"}:
+        from peshitta_reading_source import load_verses
+        for (chapter, verse), text in load_verses(source, raw).items():
+            add(source["book"], chapter, verse, text)
     elif source["format"] == "reviewed-verses":
         data = json.loads(raw)
         if data["edition"]["id"] != source["editionId"]:
@@ -357,11 +361,37 @@ def resolve_nabre_references(book: str, spans: list[tuple], edition: dict,
     return references, whole
 
 
+def resolve_hebrew_psalm_references(book: str, spans: list[tuple], edition: dict,
+                                    corpus: dict) -> tuple[list[tuple], bool]:
+    """Use source-verified Hebrew verse numbers and the existing edition crosswalk."""
+    from reading_versification import chapter_verse_count
+    from reading_psalm_mapping import hebrew_psalm_to_standard
+    from reading_step_mapping import Unavailable as MappingUnavailable
+    if book != "PSA":
+        raise ValueError("A Hebrew Psalm review cannot reinterpret another book")
+    source_refs = []
+    for sc, sv, ec, ev in spans:
+        for chapter in range(sc, ec + 1):
+            count = chapter_verse_count(book, chapter, "org")
+            start, end = (sv if chapter == sc else 1), (ev if chapter == ec else count)
+            if not count or not 1 <= start <= end <= count:
+                raise Unavailable("appointment outside reviewed Hebrew Psalm chapter")
+            source_refs.extend((book, chapter, verse) for verse in range(start, end + 1))
+    try:
+        standard, whole = hebrew_psalm_to_standard(source_refs)
+        references, target_whole = edition_mapper(edition["id"], corpus).from_standard(standard)
+    except MappingUnavailable as error:
+        raise Unavailable(str(error)) from error
+    if not references or any(ref[0] != book or ref[1] < 1 or ref[2] < 1 for ref in references):
+        raise Unavailable("target edition cannot represent this Psalm verse label")
+    return list(dict.fromkeys(tuple(ref) for ref in references)), whole or target_whole
+
+
 def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> ResolvedPassage:
     # The helper is intentionally build-time only; native apps never parse citations.
     from reading_versification import map_reference, chapter_verse_count, chapter_matches
-    from reading_appointment_reviews import reviewed_appointment, reviewed_references
-    from reading_source_numbering_reviews import reviewed_numbering
+    from reading_appointment_reviews import has_appointment_review, reviewed_appointment, reviewed_references
+    from reading_source_numbering_reviews import has_numbering_review, reviewed_numbering
     scope, citation = key.split("|", 1)
     book, spans = parse_citation(citation, expand_subverses=True)
     if scope == "torah":
@@ -380,6 +410,10 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> Resolv
     whole = includes_whole_verses(citation)
     uses_step_inventory = False
     review = reviewed_appointment(key, contexts)
+    numbering_review = reviewed_numbering(key, contexts)
+    if ((has_appointment_review(key) and review is None)
+            or (has_numbering_review(key) and numbering_review is None)):
+        raise Unavailable("calendar context outside reviewed appointment boundaries")
     if review is not None:
         references = reviewed_references(review, edition["id"])
         if not references:
@@ -389,8 +423,13 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> Resolv
         candidates.append(references)
         source_systems = []
         whole |= review["includesWholeVerses"]
-    elif reviewed_numbering(key, contexts) is not None:
-        references, mapped_whole = resolve_nabre_references(book, spans, edition, corpus)
+        # These are already the pinned edition's labels, including its reviewed
+        # chapter inventory. Do not convert Delitzsch labels a second time.
+        uses_step_inventory = True
+    elif numbering_review is not None:
+        resolver = (resolve_hebrew_psalm_references if numbering_review["sourceSystem"] == "hebrew-psalms"
+                    else resolve_nabre_references)
+        references, mapped_whole = resolver(book, spans, edition, corpus)
         candidates.append(references)
         source_systems = []
         whole |= mapped_whole
@@ -444,7 +483,11 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> Resolv
             if verse not in values or not values[verse].strip():
                 raise Unavailable("reviewed source verse unavailable")
         else:
-            if uses_step_inventory:
+            if edition["id"] == "peshitta-1905" and mapped_book == "ISA":
+                from reading_edition_reviews_peshitta import REVIEWED_ISAIAH
+                complete = (isinstance(corpus, PinnedCorpus) and corpus.chapter_matches(mapped_book, chapter)
+                            and (chapter, verse) in REVIEWED_ISAIAH)
+            elif uses_step_inventory:
                 complete = (edition_mapper(edition["id"], corpus).chapter_available(mapped_book, chapter)
                             and corpus.chapter_matches(mapped_book, chapter))
             elif target_system == "delitzsch-1901":
@@ -460,7 +503,14 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> Resolv
         text = values[verse]
         if edition["languageCode"] == "he":
             text = preserve_divine_name_accents(text)
-        result.append({"chapter": chapter, "verse": verse, "text": text})
+        row = {"chapter": chapter, "verse": verse, "text": text}
+        if edition.get("textScript") or edition.get("transliteratedTextScript"):
+            if (edition["id"] != "peshitta-1905" or edition.get("textScript") != "Hebr"
+                    or edition.get("transliteratedTextScript") != "Syrc"):
+                raise ValueError("Paired Bible scripts require their reviewed source projection")
+            from peshitta_reading_source import paired_text
+            row["text"], row["transliteratedText"] = paired_text(text)
+        result.append(row)
     if not result:
         raise Unavailable("empty passage")
     return ResolvedPassage(result, includes_whole_verses=whole)
@@ -506,7 +556,9 @@ def load_pinned_corpora(fetch: bool = False) -> tuple[dict, dict]:
 
 def build(fetch: bool = False) -> dict[str, bytes]:
     lock, corpora = load_pinned_corpora(fetch)
-    editions = [{key: edition[key] for key in ("id", "languageCode", "name", "attribution", "sourceURL")} for edition in lock["editions"]]
+    metadata_keys = ("id", "languageCode", "name", "attribution", "sourceURL",
+                     "textScript", "transliteratedTextScript")
+    editions = [{key: edition[key] for key in metadata_keys if key in edition} for edition in lock["editions"]]
     passages = {}
     failures = defaultdict(Counter)
     missing = defaultdict(dict)

@@ -72,8 +72,10 @@ struct BasicPrayersView: View {
                            showPrayerLanguage: showsPrayerNameInPrayerLanguage)
               .frame(maxWidth: .infinity, alignment: .leading)
               .contentShape(Rectangle())
+              .prosarySpatialTarget(alignment: .leading)
           }
           .buttonStyle(.plain)
+          .prosarySpatialHoverEffect(in: RoundedRectangle(cornerRadius: 12))
           .accessibilityIdentifier("basicPrayer-\(prayer.id)")
           #if !os(macOS)
           Button {
@@ -84,8 +86,14 @@ struct BasicPrayersView: View {
               .foregroundStyle(isPinned ? Color.accentColor : .secondary)
               .frame(minWidth: 44, minHeight: 44)
               .contentShape(Rectangle())
+              .prosarySpatialTarget()
           }
+          #if os(visionOS)
+          .buttonStyle(.bordered)
+          .buttonBorderShape(.circle)
+          #else
           .buttonStyle(.plain)
+          #endif
           .accessibilityLabel(pinAction)
           .help(pinAction)
           .accessibilityIdentifier("basicPrayerPin-\(prayer.id)")

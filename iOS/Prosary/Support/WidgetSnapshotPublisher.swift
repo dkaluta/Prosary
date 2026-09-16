@@ -12,6 +12,7 @@ final class WidgetSnapshotPublisher {
   private var pending: Task<Void, Never>?
 
   func start() {
+    guard #available(visionOS 26.0, *) else { return }
     guard !ProsaryRuntimeEnvironment.isTesting, subscriptions.isEmpty else { return }
     for name in [UserDefaults.didChangeNotification, .prayerLibraryDidChange,
                  .NSCalendarDayChanged, .NSSystemTimeZoneDidChange,
@@ -36,6 +37,7 @@ final class WidgetSnapshotPublisher {
   }
 
   func refresh() async {
+    guard #available(visionOS 26.0, *) else { return }
     guard !ProsaryRuntimeEnvironment.isTesting else { return }
     // A transient store error must not replace a usable widget with an empty library.
     guard let prayers = try? await AppServices.shared.presetStore.all(), !Task.isCancelled else { return }

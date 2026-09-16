@@ -2,13 +2,20 @@ using System.Text.Json;
 
 namespace Prosary.Services;
 
-public sealed record ScriptureEdition(string Id, string LanguageCode, string Name, string Attribution, string SourceURL)
+public sealed record ScriptureEdition(string Id, string LanguageCode, string Name, string Attribution, string SourceURL,
+    string? TextScript = null, string? TransliteratedTextScript = null)
 {
+    public bool HasAramaicScripts => LanguageCode == "arc" && TextScript == "Hebr" && TransliteratedTextScript == "Syrc";
     public Uri? SourceUri => Uri.TryCreate(SourceURL, UriKind.Absolute, out var uri)
         && (uri.Scheme == Uri.UriSchemeHttps || uri.Scheme == Uri.UriSchemeHttp) ? uri : null;
 }
 
-public sealed record ScriptureVerse(int Chapter, int Verse, string Text);
+public sealed record ScriptureVerse(int Chapter, int Verse, string Text, string? TransliteratedText = null)
+{
+    public string DisplayedText(ScriptureEdition? edition, string script) =>
+        edition?.HasAramaicScripts == true && script == edition.TransliteratedTextScript
+            ? TransliteratedText ?? "" : Text;
+}
 public sealed record ScripturePassage(IReadOnlyList<ScriptureVerse> Verses, bool IncludesWholeVerses = false);
 
 /// <summary>Reads pre-resolved, credited passages. Runtime code never guesses Bible references.</summary>
@@ -53,6 +60,9 @@ public sealed class ReadingsTextStore
 
     public IReadOnlyList<ScriptureEdition> Editions => _editions.Value;
 
+    public IReadOnlyList<ScriptureEdition> AvailableEditions(string scope, string rawCitation) =>
+        Editions.Where(edition => LoadPassage(scope, rawCitation, edition.Id) is not null).ToList();
+
     public ScriptureEdition? ResolveEdition(string? selectedId, string interfaceLanguage) =>
         !string.IsNullOrEmpty(selectedId)
             ? Editions.FirstOrDefault(edition => edition.Id == selectedId)
@@ -68,7 +78,9 @@ public sealed class ReadingsTextStore
             || versions is null || !versions.TryGetValue(editionId, out var verses) || verses is null || verses.Count == 0)
             return null;
         // A damaged row must not display a silently shortened or partially missing passage.
-        return verses.All(verse => verse is not null && verse.Chapter > 0 && verse.Verse > 0 && !string.IsNullOrWhiteSpace(verse.Text))
+        var requiresBothScripts = Editions.First(edition => edition.Id == editionId).HasAramaicScripts;
+        return verses.All(verse => verse is not null && verse.Chapter > 0 && verse.Verse > 0 && !string.IsNullOrWhiteSpace(verse.Text)
+            && (!requiresBothScripts || !string.IsNullOrWhiteSpace(verse.TransliteratedText)))
             ? new ScripturePassage(verses, _corpus.Value.WholeVersePassages?.Contains($"{scope}|{rawCitation}") == true)
             : null;
     }

@@ -424,6 +424,7 @@ struct HomeView: View {
         todayDateBinding.wrappedValue = TodayInfoStore.dateByMoving(-1, from: selectedDate)
       } label: {
         Image(systemName: "chevron.backward")
+          .prosaryDateControlLabel()
       }
       .accessibilityLabel(String(localized: "home.today.previousDay", defaultValue: "Previous Day", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .help(String(localized: "home.today.previousDay", defaultValue: "Previous Day", bundle: UILanguage.bundle, locale: UILanguage.locale))
@@ -434,6 +435,7 @@ struct HomeView: View {
         Text(selectedDateLabel)
           .font(.subheadline.weight(.semibold))
           .frame(maxWidth: .infinity)
+          .prosaryDateControlLabel()
       }
       .accessibilityHint(String(localized: "home.today.chooseDate", defaultValue: "Choose a date", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .help(String(localized: "home.today.chooseDate", defaultValue: "Choose a date", bundle: UILanguage.bundle, locale: UILanguage.locale))
@@ -448,45 +450,34 @@ struct HomeView: View {
         todayDateBinding.wrappedValue = TodayInfoStore.dateByMoving(1, from: selectedDate)
       } label: {
         Image(systemName: "chevron.forward")
+          .prosaryDateControlLabel()
       }
       .accessibilityLabel(String(localized: "home.today.nextDay", defaultValue: "Next Day", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .help(String(localized: "home.today.nextDay", defaultValue: "Next Day", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("todayTomorrowButton")
     }
-    .prosarySecondaryButtonStyle()
-    #if os(macOS)
+    // This date row scrolls with Today content; it is not a floating navigation bar.
+    .buttonStyle(.bordered)
+    #if os(visionOS)
+    .controlSize(.extraLarge)
+    #elseif os(macOS)
     .controlSize(.regular)
     #else
     .controlSize(.large)
     #endif
     .frame(maxWidth: 480)
+    .fixedSize(horizontal: false, vertical: true)
     .accessibilityElement(children: .contain)
     .accessibilityIdentifier("todayDateNavigation")
   }
 
   private var todayDatePopover: some View {
-    VStack(alignment: .leading, spacing: 8) {
-      Button(String(localized: "home.today.today", defaultValue: "Today", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
-        todayDateBinding.wrappedValue = Date()
-      }
-      .prosarySecondaryButtonStyle()
-      .disabled(Calendar(identifier: .gregorian).isDateInToday(selectedDate))
-      .accessibilityIdentifier("todayResetButton")
-      DatePicker(String(localized: "home.today.chooseDate", defaultValue: "Choose a date", bundle: UILanguage.bundle, locale: UILanguage.locale),
-                 selection: todayDateBinding, displayedComponents: .date)
-        .datePickerStyle(.graphical)
-        .labelsHidden()
-        .environment(\.calendar, Calendar(identifier: .gregorian))
-        .accessibilityIdentifier("todayDatePicker")
+    ReadingDatePickerPopover(selection: todayDateBinding,
+                             pickerIdentifier: "todayDatePicker",
+                             todayIdentifier: "todayResetButton",
+                             doneIdentifier: "todayDateDoneButton") {
+      showsTodayDatePicker = false
     }
-    // SDK 27 resets control size at presentation boundaries.
-    #if os(macOS)
-    .controlSize(.regular)
-    #else
-    .controlSize(.large)
-    #endif
-    .padding(12)
-    .frame(width: 320)
   }
 
   /// The basic prayers on their own (Erez, 2026-08-07) — a fixed quiet row below the cards, not
@@ -506,9 +497,11 @@ struct HomeView: View {
       }
       .padding(.vertical, 12)
       .padding(.horizontal, 16)
+      .prosarySpatialTarget(alignment: .leading)
       .background(.quaternary.opacity(0.4), in: RoundedRectangle(cornerRadius: 12))
     }
     .buttonStyle(.plain)
+    .prosarySpatialHoverEffect(in: RoundedRectangle(cornerRadius: 12))
     .accessibilityIdentifier("basicPrayersRow")
   }
 

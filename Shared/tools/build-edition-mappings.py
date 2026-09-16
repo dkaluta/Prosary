@@ -77,7 +77,7 @@ def main() -> None:
         DIRECTORY.mkdir(parents=True, exist_ok=True)
         for name, contents in outputs.items():
             (DIRECTORY / name).write_bytes(contents)
-    print("Verified" if args.check else "Built", "numeric reference metadata for all eight bundled editions.")
+    print("Verified" if args.check else "Built", f"numeric reference metadata for all {len(EDITION_IDS)} bundled editions.")
 
 
 if __name__ == "__main__":

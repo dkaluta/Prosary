@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Prosary.Localization;
 using Prosary.Models;
 using Prosary.Services;
@@ -16,6 +17,7 @@ public partial class ReadingPassageViewModel : ObservableObject
     private readonly string _scope;
     private readonly string _rawCitation;
     private bool _didLoad;
+    private IReadOnlyList<ScriptureVerse> _verses = [];
     public string ContextKey { get; }
     public string ConfigurationKey { get; }
     public string Citation { get; }
@@ -23,20 +25,36 @@ public partial class ReadingPassageViewModel : ObservableObject
     public string EditionName => _edition?.Name ?? Loc.Tr("readings_edition_unavailable", "No edition is available for this language.");
     public string UnavailableText => Loc.Tr("readings_text_unavailable", "This passage is not available in the selected Bible edition.");
     public string TextNotice => Loc.Tr("readings_text_notice", "Bible text for the cited passage. The wording may differ from the Mass reading.");
-    public string WholeVersesNotice => Loc.Tr("readings_whole_verses_notice", "Full verses are shown where the reading cites only part of a verse.");
+    public string WholeVersesNotice => Loc.Tr("readings_whole_verses_notice", "Full verses are shown and may extend beyond the reading’s cited limits.");
     public string SourceLabel => Loc.Tr("readings_source", "Source and Edition");
+    public string EditionLabel => Loc.Tr("readings_edition", "Bible Edition");
     public string Attribution => _edition?.Attribution ?? "";
     public Uri? SourceUri => _edition?.SourceUri;
     public bool HasSource => SourceUri is not null;
-    public bool IsRightToLeft => _edition is not null
-        && ReadingsTextStore.NormalizeLanguage(_edition.LanguageCode) is "he" or "ar";
-    public string BodyFontFamily => PrayerTypography.ResolveBodyFontFamily(_edition?.LanguageCode, isScripture: true);
-    public double BodyFontSize => PrayerTypography.ResolveBodyFontSize(_edition?.LanguageCode, isScripture: true);
+    public bool IsRightToLeft => PrayerTypography.IsRightToLeft(PrayerTypography.ScriptOf(PassageText));
+    public string BodyFontFamily => PrayerTypography.ResolveBodyFontFamily(_edition?.LanguageCode,
+        isScripture: true, PrayerTypography.ScriptOf(PassageText));
+    public double BodyFontSize => PrayerTypography.ResolveBodyFontSize(_edition?.LanguageCode,
+        isScripture: true, PrayerTypography.ScriptOf(PassageText));
+    public string EffectiveScript => ScriptOverride ?? AppSettings.AramaicDefaultScript;
+    public string CurrentScriptLabel => EffectiveScript == "Syrc"
+        ? Loc.Tr("settings_script_syriac", "Syriac Script") : Loc.Tr("settings_script_hebrew", "Hebrew Script");
+    public string ScriptToggleLabel => EffectiveScript == "Syrc"
+        ? Loc.Tr("settings_script_hebrew", "Hebrew Script") : Loc.Tr("settings_script_syriac", "Syriac Script");
+
+    [ObservableProperty]
+    private string? _scriptOverride;
+
+    [ObservableProperty]
+    private bool _hasScriptToggle;
 
     [ObservableProperty]
     private bool _isExpanded;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(BodyFontFamily))]
+    [NotifyPropertyChangedFor(nameof(BodyFontSize))]
+    [NotifyPropertyChangedFor(nameof(IsRightToLeft))]
     private string _passageText = "";
 
     [ObservableProperty]
@@ -46,6 +64,14 @@ public partial class ReadingPassageViewModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(IsUnavailable))]
     private bool _hasPassage;
     public bool IsUnavailable => !HasPassage;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HasAvailableEditions))]
+    private IReadOnlyList<ReadingEditionChoice> _availableEditions = [];
+    public bool HasAvailableEditions => AvailableEditions.Count > 0;
+
+    [ObservableProperty]
+    private ReadingEditionChoice? _selectedAvailableEdition;
 
     public ReadingPassageViewModel(ReadingsTextStore store, ScriptureEdition? edition, string scope,
         ReadingCitation citation, string interfaceLanguage, string contextKey, string configurationKey)
@@ -64,15 +90,42 @@ public partial class ReadingPassageViewModel : ObservableObject
         if (!value || _didLoad) return;
         _didLoad = true;
         var passage = _edition is null ? null : _store.LoadPassage(_scope, _rawCitation, _edition.Id);
-        var verses = passage?.Verses ?? [];
-        PassageText = string.Join(Environment.NewLine + Environment.NewLine,
-            verses.Select(verse => $"{verse.Chapter}:{verse.Verse}  {verse.Text}"));
-        HasPassage = verses.Count > 0;
+        _verses = passage?.Verses ?? [];
+        HasPassage = _verses.Count > 0;
+        AvailableEditions = HasPassage ? [] : _store.AvailableEditions(_scope, _rawCitation)
+            .Select(edition => new ReadingEditionChoice(edition.Id, edition.Name)).ToList();
+        HasScriptToggle = HasPassage && _edition?.HasAramaicScripts == true;
         IncludesWholeVerses = passage?.IncludesWholeVerses ?? false;
+        RefreshDisplayedText();
+    }
+
+    partial void OnScriptOverrideChanged(string? value) => RefreshDisplayedText();
+
+    partial void OnSelectedAvailableEditionChanged(ReadingEditionChoice? value)
+    {
+        if (value is not null && AvailableEditions.Any(edition => edition.Id == value.Id))
+            AppSettings.SetReadingsEditionId(value.Id);
+    }
+
+    [RelayCommand]
+    private void ToggleScript()
+    {
+        if (HasScriptToggle) ScriptOverride = EffectiveScript == "Syrc" ? "Hebr" : "Syrc";
+    }
+
+    private void RefreshDisplayedText()
+    {
+        PassageText = string.Join(Environment.NewLine + Environment.NewLine,
+            _verses.Select(verse => $"\u2066{verse.Chapter}:{verse.Verse}\u2069  {verse.DisplayedText(_edition, EffectiveScript)}"));
+        OnPropertyChanged(nameof(EffectiveScript));
+        OnPropertyChanged(nameof(CurrentScriptLabel));
+        OnPropertyChanged(nameof(ScriptToggleLabel));
     }
 
     public void RefreshTypography()
     {
+        // Follow changes to the app's script default until this passage gets a local override.
+        RefreshDisplayedText();
         OnPropertyChanged(nameof(BodyFontFamily));
         OnPropertyChanged(nameof(BodyFontSize));
     }

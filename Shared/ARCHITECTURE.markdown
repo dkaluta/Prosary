@@ -469,6 +469,8 @@ Their ordering and previous/next section arrows follow the **interface** directi
 of the prayer body: in Hebrew/Arabic UI, Next is on the left and Back on the right, with matching
 section-jump icons. Actions remain semantically previous/next. Apple retains native glass where
 supported, with its existing older-system and visionOS styling.
+See [Apple interface materials](APPLE-INTERFACE-MATERIALS.markdown) for the control/content
+boundary and native iPhone, Mac and visionOS presentation rules.
 
 The wide prayer layout budgets for artwork, the session's bead columns, spacing and a readable
 text column before switching from the narrow layout. Reading position survives column changes;
@@ -1515,6 +1517,10 @@ Hebrew Bible text is vocalized in both testaments: Masoretic Tanakh plus the com
 Delitzsch 12th edition (1901). Source vowels and cantillation are preserved; only vowel
 points on the four letters of יהוה are removed. Delitzsch's source chapter files, reviewed
 numbering differences and print-verified transcription corrections are pinned at build time.
+The selectable Peshitta edition (`peshitta-1905`, `arc`) pairs source Syriac with the existing
+Hebrew-square projection. It covers the pinned BFBS 1905 NT and only the nine previously
+approved supplied Isaiah verses; malformed/unreviewed chapters and other OT remain unavailable.
+The credit distinguishes the NT's CC BY 4.0 edition from Isaiah's unresolved source rights.
 
 `readings-editions.json` is the small metadata companion: `schemaVersion: 1` and `editions`
 with stable `id`, `languageCode`, `name`, `attribution` and `sourceURL` fields. The picker reads
@@ -1524,15 +1530,37 @@ is expanded. The shared generator pre-resolves appointments under `daily|<raw ci
 uses the original `ReadingCitation.full`, never its translated display value, and never
 parses references or guesses verse-number conversions at runtime. The files are copied into
 each native app's data resources, following the existing physical-copy rule.
+Paired editions declare optional `textScript` and `transliteratedTextScript` together, and
+every verse adds nonempty `transliteratedText`. Peshitta retains the established Aramaic
+convention: `text` is `Hebr`, `transliteratedText` is the untouched `Syrc` original. Native
+readers initialize from `aramaicDefaultScript` and switch all verse text, typography and RTL
+direction together. An incomplete pair makes the complete passage unavailable; no runtime
+conversion or script fallback is permitted.
 
 For appointments with an explicitly reviewed source numbering, the shared edition mapper
-uses STEP Standard as a reference hub for all eight pinned Bible editions. Each edition has
+uses STEP Standard as a reference hub for all nine pinned Bible editions. Each edition has
 its own reviewed rules, numeric inventory and completeness exclusions. The standalone mapper
 reads no Scripture wording; the passage builder verifies the imported text's digest before
 using its references. Psalm headings and split/merged verse boundaries remain whole units,
 and the sparse Arabic edition retains only its existing 64 reviewed units. Numeric mapping
 metadata lives under `Shared/tools/versification/editions`; it is not bundled into native apps.
 See `Shared/DAILY-READINGS.markdown` for source reviews, limitations and regeneration order.
+All 103 currently bundled Psalm citations have exact Roman source-numbering reviews. Their
+Evangelizo HE verse markers were checked against the pinned Masoretic source; Hebrew Psalm
+relations remain separate from NABRE's local verse boundaries. The six editions with complete
+reviewed Psalm imports provide every appointment, while Martini, Arabic and Peshitta retain
+their documented source limits. This does not assign a numbering system to another calendar
+or to future citations lacking their own review.
+Exact edition-boundary reviews also cover the two appointed 2 Corinthians 13 endings,
+the Mark 3 house-arrival and Luke 7 disciple-summons clauses, and verified liturgical cuts
+within complete verses. Shared citations use a disclosed envelope covering every reviewed
+calendar endpoint. `sourceSystem: reviewed` represents an exact target envelope without
+assigning a generic numbering tradition. Known reviewed keys with unreviewed calendar
+contexts fail before legacy mapping. Their target
+labels are already the selected edition's labels; they use its reviewed inventory and
+must not pass through a second English-to-Delitzsch conversion. The dated
+[mapping audit](reports/readings-mapping-verification.markdown) records source fidelity,
+numeric verification, limits and reproducible commands.
 
 Partial-verse appointments keep their exact citation/key and use complete enclosing Bible
 verses. The optional `wholeVersePassages` array lists the affected keys so every native reader
@@ -1546,6 +1574,9 @@ metadata edition matching the interface language, normalizing regional subtags a
 and `fil`/`tl`; an explicit choice resolves only that exact ID. An unavailable language,
 removed edition, missing appointment or invalid/empty verse list stays unavailable, with
 the original citation visible. No other edition, language or calendar is silently substituted.
+An unavailable passage offers a Bible-edition menu containing only editions with complete
+text for that passage. Selecting one explicitly updates `readingsEditionId`, and the reader
+shows the chosen edition's normal attribution and source link.
 The preference does not change prayer language or appointed readings. Edition IDs come from
 the metadata, not a hardcoded client list. Source coverage and reviewed mappings are recorded
 in [DAILY-READINGS.markdown](DAILY-READINGS.markdown) and the generator's source manifest.

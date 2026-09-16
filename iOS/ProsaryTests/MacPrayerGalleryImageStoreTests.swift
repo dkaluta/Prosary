@@ -33,7 +33,8 @@ final class MacPrayerGalleryImageStoreTests: XCTestCase {
     let files = try FileManager.default.contentsOfDirectory(at: fixture.directory, includingPropertiesForKeys: nil)
     XCTAssertEqual(files.count, 1, "Each prayer has its own image directory")
     let image = try XCTUnwrap(reopened.imageURL(for: "angelus"))
-    XCTAssertEqual(image.deletingLastPathComponent(), files.first)
+    XCTAssertEqual(image.deletingLastPathComponent().resolvingSymlinksInPath(),
+                   files.first?.resolvingSymlinksInPath())
     XCTAssertNotNil(image.lastPathComponent.range(of: "^[0-9a-f-]{14}7[0-9a-f-]{21}\\.jpg$", options: .regularExpression))
     XCTAssertLessThan(try Data(contentsOf: image).count, MacPrayerGalleryImageStore.maximumJPEGBytes)
     let manifest = try Data(contentsOf: image.deletingLastPathComponent().appendingPathComponent("record.json"))
@@ -50,7 +51,10 @@ final class MacPrayerGalleryImageStoreTests: XCTestCase {
     try await fixture.store.setImage(data: original, for: "../a/path/../../rosary")
     let files = try FileManager.default.contentsOfDirectory(at: fixture.directory, includingPropertiesForKeys: nil)
     XCTAssertEqual(files.count, 2)
-    XCTAssertTrue(files.allSatisfy { $0.deletingLastPathComponent() == fixture.directory && $0.lastPathComponent.count == 64 })
+    XCTAssertTrue(files.allSatisfy {
+      $0.deletingLastPathComponent().resolvingSymlinksInPath() == fixture.directory.resolvingSymlinksInPath()
+        && $0.lastPathComponent.count == 64
+    })
     try fixture.store.remove(for: "angelus")
     XCTAssertFalse(fixture.store.hasOverride(for: "angelus"))
     XCTAssertTrue(fixture.store.hasOverride(for: "../a/path/../../rosary"))
@@ -160,7 +164,9 @@ final class MacPrayerGalleryImageStoreTests: XCTestCase {
   }
 
   @MainActor private final class Fixture {
-    let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
+    // Foundation may enumerate /var through its /private/var alias on different test hosts.
+    let root = FileManager.default.temporaryDirectory.resolvingSymlinksInPath()
+      .appendingPathComponent(UUID().uuidString, isDirectory: true)
     let directory: URL
     let store: MacPrayerGalleryImageStore
     init() {

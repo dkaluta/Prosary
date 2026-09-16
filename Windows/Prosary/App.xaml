@@ -52,6 +52,7 @@
                 <Setter Property="Background" Value="{ThemeResource AcrylicInAppFillColorDefaultBrush}" />
                 <Setter Property="CornerRadius" Value="22" />
                 <Setter Property="MinHeight" Value="44" />
+                <Setter Property="VerticalAlignment" Value="Stretch" />
             </Style>
             <Style x:Key="TodayDateFlyoutPresenterStyle" TargetType="FlyoutPresenter"
                    BasedOn="{StaticResource DefaultFlyoutPresenterStyle}">

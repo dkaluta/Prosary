@@ -14,14 +14,23 @@
                 <StackPanel Spacing="12">
                     <TextBlock Text="{x:Bind PassageLabel}" FontWeight="SemiBold" />
                     <TextBlock Text="{x:Bind EditionName}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+                    <Button Content="{x:Bind ScriptToggleLabel, Mode=OneWay}" Command="{x:Bind ToggleScriptCommand}"
+                            AutomationProperties.ItemStatus="{x:Bind CurrentScriptLabel, Mode=OneWay}"
+                            AutomationProperties.AutomationId="readingScript"
+                            Visibility="{x:Bind HasScriptToggle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                     <TextBlock Text="{x:Bind WholeVersesNotice}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}"
                                Visibility="{x:Bind IncludesWholeVerses, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                     <TextBlock Text="{x:Bind PassageText, Mode=OneWay}" IsTextSelectionEnabled="True" TextWrapping="Wrap"
                                FontFamily="{x:Bind BodyFontFamily, Mode=OneWay}" FontSize="{x:Bind BodyFontSize, Mode=OneWay}"
-                               FlowDirection="{x:Bind IsRightToLeft, Converter={StaticResource BoolToFlowDirection}}"
+                               FlowDirection="{x:Bind IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}"
                                Visibility="{x:Bind HasPassage, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                     <TextBlock Text="{x:Bind UnavailableText}" TextWrapping="Wrap"
                                Visibility="{x:Bind IsUnavailable, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                    <ComboBox Header="{x:Bind EditionLabel}" HorizontalAlignment="Stretch"
+                              ItemsSource="{x:Bind AvailableEditions, Mode=OneWay}" DisplayMemberPath="Label"
+                              SelectedItem="{x:Bind SelectedAvailableEdition, Mode=TwoWay}"
+                              AutomationProperties.AutomationId="readingAvailableEditions"
+                              Visibility="{x:Bind HasAvailableEditions, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                     <TextBlock Text="{x:Bind TextNotice}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
                     <TextBlock Text="{x:Bind Attribution}" IsTextSelectionEnabled="True" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
                     <HyperlinkButton Content="{x:Bind SourceLabel}" NavigateUri="{x:Bind SourceUri}" Padding="0"
@@ -97,7 +106,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Button x:Uid="HomePreviousDay" Grid.Column="0" Width="44" Height="44" Style="{StaticResource TodayDateButtonStyle}"
+                <Button x:Uid="HomePreviousDay" Grid.Column="0" Width="44" Style="{StaticResource TodayDateButtonStyle}"
                         Command="{x:Bind ViewModel.YesterdayCommand}" AutomationProperties.AutomationId="todayYesterday">
                     <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
                 </Button>
@@ -120,7 +129,7 @@
                         </Flyout>
                     </Button.Flyout>
                 </Button>
-                <Button x:Uid="HomeNextDay" Grid.Column="2" Width="44" Height="44" Style="{StaticResource TodayDateButtonStyle}"
+                <Button x:Uid="HomeNextDay" Grid.Column="2" Width="44" Style="{StaticResource TodayDateButtonStyle}"
                         Command="{x:Bind ViewModel.TomorrowCommand}" AutomationProperties.AutomationId="todayTomorrow">
                     <FontIcon Glyph="&#xE72A;" MirroredWhenRightToLeft="True" />
                 </Button>

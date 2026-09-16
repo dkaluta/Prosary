@@ -22,9 +22,11 @@ def load_reviews(path: Path = PATH) -> dict:
         raise ValueError("Invalid source-numbering appointments")
     for key, review in data["appointments"].items():
         if (not key.startswith("daily|") or set(review) != {"contexts", "sourceSystem", "reviewedOn", "evidence"}
-                or review["sourceSystem"] != "nabre"
+                or review["sourceSystem"] not in {"nabre", "hebrew-psalms"}
                 or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", review["reviewedOn"])):
             raise ValueError("Invalid source-numbering review scope")
+        if review["sourceSystem"] == "hebrew-psalms" and not key.startswith("daily|Psalm "):
+            raise ValueError("Hebrew Psalm numbering review cannot cover another book")
         contexts = review["contexts"]
         if (not isinstance(contexts, list) or not contexts or len(contexts) != len(set(contexts))
                 or not set(contexts) <= CALENDARS - {"torah"}):
@@ -56,6 +58,11 @@ def reviewed_numbering(key: str, contexts: set[str]) -> dict | None:
     if review is None or not contexts or not contexts <= set(review["contexts"]):
         return None
     return review
+
+
+def has_numbering_review(key: str) -> bool:
+    """A scoped source convention cannot become a generic citation on scope loss."""
+    return key in _reviews()
 
 
 if __name__ == "__main__":

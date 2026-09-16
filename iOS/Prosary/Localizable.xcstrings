@@ -24461,6 +24461,58 @@
         }
       }
     },
+    "readings.script" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الكتابة الآرامية"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aramaic Script"
+          }
+        },
+        "fil" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sulat Aramaiko"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Écriture araméenne"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "כתב ארמי"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scrittura aramaica"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арамейское письмо"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арамейське письмо"
+          }
+        }
+      }
+    },
     "readings.source" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -24520,49 +24572,49 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "تُعرض الآيات كاملةً عندما تشير القراءة إلى جزء من آية فقط."
+            "value" : "تُعرض الآيات كاملةً، وقد تتجاوز حدود المقطع المحدد للقراءة."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Full verses are shown where the reading cites only part of a verse."
+            "value" : "Full verses are shown and may extend beyond the reading’s cited limits."
           }
         },
         "fil" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buong talata ang ipinapakita kapag bahagi lamang ng talata ang tinutukoy sa pagbasa."
+            "value" : "Ipinapakita ang mga talata nang buo at maaaring lumampas sa saklaw na tinukoy para sa pagbasa."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Les versets sont affichés en entier lorsque la lecture n’en cite qu’une partie."
+            "value" : "Les versets sont affichés en entier et peuvent dépasser les limites du passage cité pour la lecture."
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "כאשר הקריאה מציינת רק חלק מפסוק, מוצגים הפסוקים במלואם."
+            "value" : "הפסוקים מוצגים במלואם ועשויים לכלול טקסט מעבר לטווח המצוין בקריאה."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "I versetti sono mostrati per intero quando la lettura ne cita solo una parte."
+            "value" : "I versetti sono mostrati per intero e possono estendersi oltre i limiti del brano indicato per la lettura."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Если чтение содержит только часть стиха, стих показан целиком."
+            "value" : "Стихи показаны целиком и могут выходить за границы указанного отрывка чтения."
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Якщо читання містить лише частину вірша, вірш показано повністю."
+            "value" : "Вірші показано повністю, і вони можуть виходити за межі зазначеного уривка читання."
           }
         }
       }

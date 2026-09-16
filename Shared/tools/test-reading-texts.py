@@ -185,7 +185,7 @@ class ShippedCorpusTests(unittest.TestCase):
     def test_metadata_is_identical_and_editions_are_existing_choices(self):
         self.assertEqual(self.payload["editions"], self.metadata["editions"])
         self.assertEqual({edition["languageCode"] for edition in self.metadata["editions"]},
-                         {"en", "he", "ar", "ru", "tl", "fr", "it", "uk"})
+                         {"en", "he", "ar", "ru", "tl", "fr", "it", "uk", "arc"})
 
     def test_hebrew_metadata_identifies_the_vocalized_1901_edition(self):
         edition = next(edition for edition in self.metadata["editions"] if edition["id"] == "masoretic-delitzsch")

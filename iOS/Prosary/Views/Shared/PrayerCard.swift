@@ -71,7 +71,11 @@ struct PrayerCard: View {
                 .font(.title3)
                 .foregroundStyle(accentColor)
                 .padding(.leading, 8)
+                #if os(iOS)
+                .frame(minWidth: 44, minHeight: 44)
+                #endif
                 .contentShape(Rectangle())
+                .prosarySpatialTarget()
             }
             .buttonStyle(.borderless)
             .accessibilityLabel(String(localized: "home.savedPresets", defaultValue: "Saved Presets", bundle: UILanguage.bundle, locale: UILanguage.locale))
@@ -86,7 +90,9 @@ struct PrayerCard: View {
       }
       .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
       .clipShape(RoundedRectangle(cornerRadius: 14))
+      .prosarySpatialTarget(alignment: .leading)
     }
     .buttonStyle(.plain)
+    .prosarySpatialHoverEffect(in: RoundedRectangle(cornerRadius: 14))
   }
 }

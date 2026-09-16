@@ -81,7 +81,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Button x:Uid="HomePreviousDay" Grid.Column="0" Width="44" Height="44" Style="{StaticResource TodayDateButtonStyle}"
+                <Button x:Uid="HomePreviousDay" Grid.Column="0" Width="44" Style="{StaticResource TodayDateButtonStyle}"
                         Command="{x:Bind ViewModel.YesterdayCommand}" AutomationProperties.AutomationId="todayYesterday">
                     <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
                 </Button>
@@ -103,7 +103,7 @@
                         </Flyout>
                     </Button.Flyout>
                 </Button>
-                <Button x:Uid="HomeNextDay" Grid.Column="2" Width="44" Height="44" Style="{StaticResource TodayDateButtonStyle}"
+                <Button x:Uid="HomeNextDay" Grid.Column="2" Width="44" Style="{StaticResource TodayDateButtonStyle}"
                         Command="{x:Bind ViewModel.TomorrowCommand}" AutomationProperties.AutomationId="todayTomorrow">
                     <FontIcon Glyph="&#xE72A;" MirroredWhenRightToLeft="True" />
                 </Button>

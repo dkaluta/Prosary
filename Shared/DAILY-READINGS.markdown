@@ -7,6 +7,9 @@ The date picker sits above the readings. Desktop references are always written o
 Readings open expanded when entering the reader and when its date or calendar changes.
 Each available passage shows selectable, numbered Bible text with the chosen edition and
 source credit. The optional weekly Torah portion uses the same reader.
+When a passage is unavailable in the selected edition, its Bible-edition menu lists editions
+with complete text for that passage. Choosing one explicitly updates `readingsEditionId`;
+there is no automatic language or edition substitution, and the chosen source credit remains visible.
 
 This first corpus reuses Bible translations represented in Prosary's prayer packs. Arabic
 uses the old Jesuit translation, replacing the previously unverified Dar el-Machreq excerpts.
@@ -32,6 +35,7 @@ of Scripture. The generated corpus is separate from existing `.prosaryprayer` pa
 | Italian | Antonio Martini, 1769–1781 | [Parola Viva](https://parolaviva.art/opendata): public-domain Bible text; structured data by Giovanni Novelli under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). This source import covers the Pentateuch and New Testament, not its copyrighted meditations. |
 | Ukrainian | Kulish, Nechui-Levytsky and Puluj, 1905 | [eBible `ukr1871`](https://ebible.org/ukr1871/copyright.htm), public-domain text. Uses the same pinned VPL payload as the existing Scripture importer. |
 | Arabic | Old Jesuit translation, Beirut printing, 1897 | [Reviewed canonical transcription](content/arabic-jesuit-1897.json) relayed from the [historical scan](https://archive.org/details/AlKitabAlMoqadas). Only visually checked passages are included, with their printed verse boundaries and PDF page evidence. This is a limited public-domain selection, not a complete Arabic Bible or the modern Dar el-Machreq revision. |
+| Aramaic (selectable) | Peshitta, BFBS 1905 New Testament; nine approved supplied Isaiah verses | [Source review](content/PESHITTA-SOURCES.markdown). Pointed Digital Syriac Corpus NT, CC BY 4.0, paired with Erez's established Hebrew-script projection. Supplied Isaiah edition/rights remain unresolved and are credited separately; no other OT is imported. |
 
 The Hebrew reader uses **vocalized Scripture in both testaments**. The New Testament now
 comes from the complete Delitzsch 1901 transcription at delitz.fr, replacing the previous
@@ -133,8 +137,58 @@ The existing September 10 Psalm 139 edition-boundary review retains precedence u
 Other appointments continue using the existing agreement policy until their source numbering
 is established; a complete Bible mapping inventory does not itself prove a calendar's convention.
 
+The September 16 Psalm review establishes **all 103 distinct currently bundled Psalm appointments**,
+each confined to its exact Roman citation. Their original Evangelizo HE publications contain
+642 embedded chapter/verse markers. Comparing those excerpts to the pinned eBible Masoretic
+source at the same labels gives 639 exact consonantal matches, two nonempty partial-verse
+substrings, and one documented spelling variant in Psalm 117:1. The manifest retains source
+URLs, payload checksums and reference evidence; it imports none of Evangelizo's wording.
+These reviews use `hebrew-psalms`, separately from NABRE's local boundaries in Psalms 2, 66,
+72, 109 and 146. The pinned SIL Hebrew-to-Standard relations feed the existing per-edition
+mapper, including numbered titles, merged verses and the selected edition's chapter numbers.
+Titles joined to a body verse remain in that edition's existing full verse when present.
+The previous September 10 and 13 reviews retain their precedence.
+
+All 103 appointments are available in Douay–Rheims, Masoretic Hebrew, Synodal, Ang Dating Biblia,
+Crampon and Kulish. The remaining three editions have source limits rather than a numbering
+fallback: approved Arabic and Peshitta imports contain no Psalms, and the current Martini
+import omits them. Parola Viva publishes Martini Psalms, but its chapter payloads use internal
+splits/merges that require a separate source-boundary review: Psalm 50:1–2 splits traditional
+verse 3, and Psalm 3:6 crosses traditional verses 7–8. Even matching chapter totals do not
+prove identical boundaries. Those texts are not relabeled by a guessed offset or substituted
+from another edition; the reader offers an explicit available-edition choice.
+
+The complete mapping audit also identified two exact 2 Corinthians appointments whose
+closing verse uses the 13-verse chapter ending: UGCC and Gregorian UGCC `13:3–13`, and
+Maronite `13:5–13`. The original calendars, Byzantine lection 197 published by the Greek
+Catholic Eparchy of Mukachevo, and the original Evangelizo MAE verse markers establish the
+final Trinitarian blessing. Pinned STEP rows 27448–27451 map that closing unit to Standard
+verse 14. Bounded edition reviews therefore retain the blessing at verse 13 in six editions
+and at verse 14 in Ang Dating Biblia and Peshitta. They also restore the complete passages
+in Crampon and Kulish. Exact target labels are validated against their reviewed inventories
+and are never converted a second time as if they were English reference labels.
+
+The June 28, 2026 Missale Meum Latin and English Epistle confirms that the 1962 appointment
+`1 Peter 3:8–15` ends within verse 15 after sanctifying Christ in the heart. Its existing
+full Bible verses 8–15 remain unchanged, with the full-verse notice now shown. Verse 16 is
+not appended merely because a conservative alignment graph groups the neighboring verses.
+The remaining flagged endpoints were checked against their original calendar publications.
+Three Mark 3 appointments now retain the house-arrival clause in the selected edition's
+complete verses, and the Syriac-calendar Luke 7:11–18 includes full verse 19 to preserve
+John's summons of two disciples. Shared Mark keys use a reviewed envelope covering both
+verified calendar cuts, with a notice. Acts 3, Ephesians 5 and Mark 16 retain their verse
+sequences with notices for the verified partial boundaries. Ephesians 1, John 7 and
+Revelation 12 retain their existing selections. The [13-key boundary review](reports/readings-boundary-review-2026-09-16.markdown)
+records each disposition and its primary-source checksums; none of those flags is unresolved.
+
+Exact per-edition envelopes may declare `sourceSystem: reviewed` without assigning a generic
+tradition to their calendar. All reviews retain their citation/calendar/source-pin scope.
+If a known reviewed citation acquires an unreviewed calendar context, generation refuses it
+before any generic fallback. See the dated [mapping verification](reports/readings-mapping-verification.markdown)
+and reusable source and numerical audits.
+
 The [edition mapper](tools/reading_edition_mapping.py) now supplies independently reviewed
-profiles for all eight bundled editions, using the same STEP Standard hub. Its
+profiles for all nine bundled editions, using the same STEP Standard hub. Its
 [numeric inventories](tools/versification/editions/README.markdown) contain source pins,
 chapter/verse identifiers, measured word counts and hashes, with no Scripture wording.
 The reusable mapper opens only this metadata; the passage builder separately verifies the
@@ -173,13 +227,18 @@ not a claim of liturgical approval or an editorial proof of every source transcr
 
 The September 10 partial-verse update resolves 2,192 of 2,390 distinct references in at least
 one edition, including 49 references newly available with full-verse notices.
-Per-edition daily/Torah counts after the vocalized Hebrew update are: Douay–Rheims 2,104/63; Hebrew 2,121/71; Synodal 2,117/68;
-Ang Dating Biblia 2,115/70; Crampon 2,063/69; Martini 1,863/58; Ukrainian 2,090/49.
+After the September 16 Psalm review, 2,291 of 2,390 references have text in at least one edition.
+Current per-edition daily/Torah counts are: Douay–Rheims 2,203/63; Hebrew 2,219/71; Synodal 2,215/68;
+Ang Dating Biblia 2,213/70; Crampon 2,164/69; Martini 1,863/58; Ukrainian 2,190/49.
 The old Arabic Jesuit addition contains 220 transcribed verses in 64 reviewed passage units.
 Its exact-unit policy supplies **9 distinct daily citations and no Torah passages** in the
 current appointment tables. Other Arabic citations explicitly remain unavailable. Adding
 more requires further source transcription and boundary review, not a wider runtime fallback.
-The full-text JSON is about 36.8 MB before app-package compression; edition metadata is about 2.5 KB.
+The Peshitta addition supplies 1,770 daily citations and no Torah passages. Its pinned source
+inventory contains 7,912 verse labels from 27 NT books and exactly nine previously approved
+Isaiah verses. Luke 10/11, Philippians 1, 3 John and Revelation 12/13 remain unavailable
+for the structural/boundary reasons in [the source review](content/PESHITTA-SOURCES.markdown).
+The full-text JSON is about 45.9 MB before app-package compression; edition metadata is about 3.1 KB.
 
 ## Data and native contract
 
@@ -195,6 +254,14 @@ from `Shared/data/` into each native app's data directory:
   means an empty array; the original citation is never
   changed to a normalized lookup key. Every platform exposes the flag on the loaded passage.
 
+Paired-script editions additionally declare `textScript` and `transliteratedTextScript`;
+every verse then requires nonempty `transliteratedText`. Peshitta uses primary Hebrew-square
+`Hebr` and alternate source Syriac `Syrc`, matching the existing Aramaic prayer contract.
+An incomplete pair makes the entire passage unavailable. Native readers initialize from
+`aramaicDefaultScript` and offer the same Hebrew/Syriac choice, rendering the selected
+verse field with its actual script, typeface and RTL direction. They never convert Scripture
+or substitute the other field when the selected script is missing.
+
 The shared setting is `readingsEditionId`. Empty follows the interface language, normalizing
 `iw` to `he` and `fil` to `tl`. An explicit unknown/removed edition or an interface language
 with no edition resolves to unavailable. No automatic edition/language fallback occurs.
@@ -209,6 +276,7 @@ Regeneration and verification:
 uv run --script Shared/tools/build-reading-texts.py --fetch --sync
 uv run --script Shared/tools/build-reading-texts.py --check --sync
 uv run --script Shared/tools/test-reading-texts.py
+uv run --script Shared/tools/test-peshitta-readings.py
 uv run --script Shared/tools/test-reading-versification.py
 uv run --script Shared/tools/test-reading-appointment-reviews.py
 uv run --script Shared/tools/test-reading-source-numbering.py

@@ -37,7 +37,7 @@ def load_reviews(path: Path = REVIEWS, source_lock_path: Path = SOURCE_LOCK) -> 
         references = review.get("editionReferences", {})
         if (not key.startswith(("daily|", "torah|")) or not contexts
                 or len(contexts) != len(set(contexts)) or not set(contexts) <= CALENDARS
-                or review.get("sourceSystem") not in SYSTEMS
+                or review.get("sourceSystem") not in {*SYSTEMS, "reviewed"}
                 or type(review.get("includesWholeVerses")) is not bool
                 or not ids or len(ids) != len(set(ids)) or not set(ids) <= editions.keys()
                 or set(references) != set(ids) or not pins):
@@ -74,6 +74,11 @@ def reviewed_appointment(key: str, contexts: set[str]) -> dict | None:
     if review is None or not contexts or not contexts <= set(review["contexts"]):
         return None
     return review
+
+
+def has_appointment_review(key: str) -> bool:
+    """Known boundaries must not fall back when a new calendar adds the citation."""
+    return key in _reviews()
 
 
 def reviewed_references(review: dict | None, edition_id: str) -> list[tuple[str, int, int]] | None:

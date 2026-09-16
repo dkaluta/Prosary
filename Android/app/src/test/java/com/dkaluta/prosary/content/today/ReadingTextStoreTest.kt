@@ -64,16 +64,61 @@ class ReadingTextStoreTest {
         }
     }
 
+    @Test fun availableEditionsRequireACompletePassageInTheExactScope() {
+        val store = ReadingTextStore { name ->
+            when (name) {
+                "readings-editions" -> """{"schemaVersion":1,"editions":[
+                    {"id":"missing","languageCode":"en","name":"Missing","attribution":"Credit","sourceURL":"https://example.org"},
+                    {"id":"complete","languageCode":"en","name":"Complete","attribution":"Credit","sourceURL":"https://example.org"},
+                    {"id":"damaged","languageCode":"en","name":"Damaged","attribution":"Credit","sourceURL":"https://example.org"},
+                    {"id":"empty","languageCode":"en","name":"Empty","attribution":"Credit","sourceURL":"https://example.org"},
+                    {"id":"paired","languageCode":"arc","name":"Paired","attribution":"Credit","sourceURL":"https://example.org","textScript":"Hebr","transliteratedTextScript":"Syrc"}]}"""
+                else -> """{"schemaVersion":1,"passages":{"daily|Fixture 1:1":{
+                    "complete":[{"chapter":1,"verse":1,"text":"Complete text"}],
+                    "damaged":[{"chapter":1,"verse":1,"text":" "}], "empty":[],
+                    "paired":[{"chapter":1,"verse":1,"text":"בדיקה"}],
+                    "unlisted":[{"chapter":1,"verse":1,"text":"Unknown edition"}]}}}"""
+            }.byteInputStream()
+        }
+        val citation = ReadingCitation("reading", "Fixture", "Fixture 1:1")
+        assertEquals(listOf("complete"), store.availableEditions(citation).map { it.id })
+        assertTrue(store.availableEditions(citation, isTorah = true).isEmpty())
+        assertTrue(store.availableEditions(citation.copy(full = "Fixture 1:1 ")).isEmpty())
+        assertNull(store.passage(citation, "missing"))
+    }
+
+    @Test fun pairedAramaicEditionSelectsAuthoredScriptsAndRejectsIncompletePairs() {
+        fun store(alternate: String?) = ReadingTextStore { name ->
+            when (name) {
+                "readings-editions" -> """{"schemaVersion":1,"editions":[{"id":"peshitta-1905","languageCode":"arc","name":"Fixture Peshitta","attribution":"Fixture credit","sourceURL":"https://example.org","textScript":"Hebr","transliteratedTextScript":"Syrc"}]}"""
+                else -> """{"schemaVersion":1,"passages":{"daily|Fixture 1:1":{"peshitta-1905":[{"chapter":1,"verse":1,"text":"בדיקה"${alternate?.let { ",\"transliteratedText\":\"$it\"" }.orEmpty()}}]}}}"""
+            }.byteInputStream()
+        }
+        val store = store("ܐܒܓ")
+        val edition = store.editions.single()
+        assertTrue(edition.hasAramaicScripts)
+        assertEquals("peshitta-1905", ReadingTextStore.effectiveEditionId(edition.id, "en", store.editions))
+        val citation = ReadingCitation("reading", "Fixture", "Fixture 1:1")
+        val verse = requireNotNull(store.passage(citation, edition.id)).verses.single()
+        assertEquals("בדיקה", verse.displayedText(edition, "Hebr"))
+        assertEquals("ܐܒܓ", verse.displayedText(edition, "Syrc"))
+        assertEquals("בדיקה", verse.text)
+        for (alternate in listOf(null, "", " ")) {
+            assertNull(store(alternate).passage(citation, edition.id))
+        }
+        assertFalse(editions.first().hasAramaicScripts)
+    }
+
     @Test fun bundledCatalogPreservesAllLanguagesAndTheSevenFullBibleEditions() {
         val store = bundledStore()
-        assertEquals(listOf("ar", "en", "fr", "he", "it", "ru", "tl", "uk"),
+        assertEquals(listOf("ar", "arc", "en", "fr", "he", "it", "ru", "tl", "uk"),
             store.editions.map { it.languageCode }.sorted())
         val citation = ReadingCitation("gospel", "Lk", "Luke 6:27–38")
         for (edition in store.editions) {
             assertTrue(edition.attribution.isNotBlank())
             assertTrue(edition.sourceURL.startsWith("https://"))
             // Arabic currently contains only the passages reviewed against the old print.
-            if (edition.languageCode == "ar") continue
+            if (edition.languageCode in listOf("ar", "arc")) continue
             val passage = requireNotNull(store.passage(citation, edition.id))
             assertFalse(passage.includesWholeVerses)
             val verses = passage.verses
@@ -97,6 +142,19 @@ class ReadingTextStoreTest {
         // The Douay-Rheims edition retains Vulgate numbering, including its split at 138:4.
         assertEquals(listOf(1, 2, 3, 4, 13, 14, 23, 24), psalm.verses.map { it.verse })
         assertTrue(psalm.verses.all { it.chapter == 138 && it.text.isNotBlank() })
+    }
+
+    @Test fun bundledPeshittaCarriesBothScriptsForTheSameOrderedVerses() {
+        val store = bundledStore()
+        val edition = store.editions.single { it.id == "peshitta-1905" }
+        assertEquals("arc", edition.languageCode)
+        assertTrue(edition.hasAramaicScripts)
+        val passage = requireNotNull(store.passage(ReadingCitation("gospel", "Lk", "Luke 6:27–38"), edition.id))
+        assertEquals((27..38).toList(), passage.verses.map { it.verse })
+        assertTrue(passage.verses.all { it.chapter == 6 })
+        assertTrue(passage.verses.all { verse -> verse.displayedText(edition, "Hebr").any { it in '\u05D0'..'\u05EA' } })
+        assertTrue(passage.verses.all { verse -> verse.displayedText(edition, "Syrc").any { it in '\u0710'..'\u072F' } })
+        assertTrue(passage.verses.all { verse -> verse.displayedText(edition, "Syrc") == verse.transliteratedText })
     }
 
     @Test fun bundledSeptemberThirteenthReadingsUseTheSelectedEditionsNumbering() {
@@ -132,6 +190,47 @@ class ReadingTextStoreTest {
         assertEquals(listOf("27:30") + (1..7).map { "28:$it" }, french.verses.map { "${it.chapter}:${it.verse}" })
         assertTrue(french.verses.all { it.text.isNotBlank() })
         assertNull(store.passage(ReadingCitation("reading", "Sirach", cases[0].first), "masoretic-delitzsch"))
+    }
+
+    @Test fun bundledSeptemberSixteenthPsalmOpensWithTheSelectedEditionsNumbering() {
+        val store = bundledStore()
+        val citation = ReadingCitation("psalm", "Ps. 33", "Psalm 33:2–3; 33:4–5; 33:12; 33:22")
+        val passage = requireNotNull(store.passage(citation, "douay-rheims-1899"))
+        assertEquals(listOf(2, 3, 4, 5, 12, 22), passage.verses.map { it.verse })
+        assertTrue(passage.verses.all { it.chapter == 32 && it.text.isNotBlank() })
+        assertEquals(listOf("ang-dating-biblia-1905", "crampon-1923", "douay-rheims-1899",
+            "kulish-1905", "masoretic-delitzsch", "synodal-1876"),
+            store.availableEditions(citation).map { it.id }.sorted())
+    }
+
+    @Test fun bundledCorinthiansAppointmentsKeepTheClosingBlessingAcrossEditionNumbering() {
+        val store = bundledStore()
+        for (start in listOf(3, 5)) {
+            val citation = ReadingCitation("reading", "2 Cor. 13", "2 Corinthians 13:$start–13")
+            val tagalog = requireNotNull(store.passage(citation, "ang-dating-biblia-1905"))
+            assertEquals((start..14).toList(), tagalog.verses.map { it.verse })
+            assertTrue(tagalog.verses.all { it.chapter == 13 && it.text.isNotBlank() })
+            assertTrue(tagalog.verses.last().text.contains("Espiritu Santo"))
+            val douay = requireNotNull(store.passage(citation, "douay-rheims-1899"))
+            assertEquals((start..13).toList(), douay.verses.map { it.verse })
+            assertTrue(douay.verses.all { it.chapter == 13 && it.text.isNotBlank() })
+            assertTrue(douay.verses.last().text.contains("Holy Ghost"))
+        }
+    }
+
+    @Test fun bundledBoundaryAppointmentsRetainLeadingAndTrailingClausesWithWholeVerseNotice() {
+        val store = bundledStore()
+        val cases = listOf(
+            Triple("Mark 3:20–30", "ang-dating-biblia-1905", 3 to (19..30)),
+            Triple("Mark 3:20–30", "peshitta-1905", 3 to (19..30)),
+            Triple("Luke 7:11–18", "douay-rheims-1899", 7 to (11..19)),
+        )
+        for ((reference, editionId, expected) in cases) {
+            val passage = requireNotNull(store.passage(ReadingCitation("gospel", "Gospel", reference), editionId))
+            assertTrue(reference, passage.includesWholeVerses)
+            assertEquals(reference, expected.second.toList(), passage.verses.map { it.verse })
+            assertTrue(passage.verses.all { it.chapter == expected.first && it.text.isNotBlank() })
+        }
     }
 
     @Test fun bundledOldJesuitArabicOpensReviewedPassagesWithoutBorrowingMissingText() {

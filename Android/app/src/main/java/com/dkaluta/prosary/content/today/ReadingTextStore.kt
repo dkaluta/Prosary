@@ -14,10 +14,20 @@ data class ReadingEdition(
     val name: String,
     val attribution: String,
     val sourceURL: String,
-)
+    val textScript: String? = null,
+    val transliteratedTextScript: String? = null,
+) {
+    val hasAramaicScripts: Boolean get() = languageCode == "arc"
+        && textScript == "Hebr" && transliteratedTextScript == "Syrc"
+}
 
 @Serializable
-data class ReadingVerse(val chapter: Int, val verse: Int, val text: String)
+data class ReadingVerse(val chapter: Int, val verse: Int, val text: String,
+    val transliteratedText: String? = null) {
+    fun displayedText(edition: ReadingEdition?, script: String): String =
+        if (edition?.hasAramaicScripts == true && script == edition.transliteratedTextScript)
+            transliteratedText.orEmpty() else text
+}
 
 data class ReadingPassage(val verses: List<ReadingVerse>, val includesWholeVerses: Boolean = false)
 
@@ -47,12 +57,18 @@ class ReadingTextStore(private val openData: (String) -> InputStream?) {
 
     val editions: List<ReadingEdition> get() = metadata?.editions.orEmpty()
 
+    fun availableEditions(citation: ReadingCitation, isTorah: Boolean = false): List<ReadingEdition> =
+        editions.filter { passage(citation, it.id, isTorah) != null }
+
     fun passage(citation: ReadingCitation, editionId: String, isTorah: Boolean = false): ReadingPassage? {
         val file = data ?: return null
         val key = "${if (isTorah) "torah" else "daily"}|${citation.full}"
         val verses = file.passages[key]?.get(editionId)
             ?.takeIf { verses -> verses.isNotEmpty() && verses.all { it.chapter > 0 && it.verse > 0 && it.text.isNotBlank() } }
             ?: return null
+        // A paired edition must be complete in both scripts: never mix a fallback into a verse.
+        if (editions.firstOrNull { it.id == editionId }?.hasAramaicScripts == true
+            && verses.any { it.transliteratedText.isNullOrBlank() }) return null
         return ReadingPassage(verses, includesWholeVerses = key in file.wholeVersePassages)
     }
 

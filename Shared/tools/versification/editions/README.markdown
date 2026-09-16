@@ -1,6 +1,6 @@
 # Pinned edition reference inventories
 
-`inventories.json` records the exact numbered inventories imported by Prosary's eight
+`inventories.json` records the exact numbered inventories imported by Prosary's nine
 existing Bible editions. It contains book/chapter/verse identifiers, word counts and SHA-256
 digests only. No Bible wording is copied into this directory. Arabic additionally records
 the numeric source/Standard ranges of its existing reviewed units and their page evidence.
@@ -20,6 +20,7 @@ checks the actual assembled text digest before selecting existing source rows.
 | Martini | 32 | 447 | 13,785 | 13,708 |
 | Kulish | 66 | 1,189 | 31,082 | 31,046 |
 | Old Jesuit Arabic | 7 | 24 sparse | 220 | 220 within 64 reviewed units |
+| Peshitta | 28 | 264 (including five sparse Isaiah chapters) | 7,912 | 7,791 |
 
 These counts describe the existing pinned imports, not a claim that every printed edition
 or every daily appointment is fully available. Whole source verses can overlap more than one
@@ -28,7 +29,8 @@ Arabic requires exact ordered concatenations of reviewed units and refuses parti
 
 The reviewed profiles are [Hebrew, Tagalog and Ukrainian](../../reading_edition_reviews_hebrew.py),
 [Russian, French and Italian](../../reading_edition_reviews_western.py), and
-[Arabic](../../reading_edition_reviews_arabic.py). The DRA profile retains its earlier
+[Arabic](../../reading_edition_reviews_arabic.py), and
+[Peshitta](../../reading_edition_reviews_peshitta.py). The DRA profile retains its earlier
 [STEP](../step/README.markdown) and [Psalm](../../reading_psalm_mapping.py) boundary reviews.
 They use the existing sources in [reading-text-sources.json](../../reading-text-sources.json).
 Source numbering is edition-specific: matching chapter lengths or word counts across
@@ -40,6 +42,10 @@ predicates depend on those chapters. Martini excludes incomplete John 11, 1 Thes
 and 1 Peter 5. Kulish excludes incomplete Leviticus 21 and Psalm 148. Synodal's five additional
 Joshua/Proverbs labels have no ordinary Standard counterpart. Missing books and omitted
 Psalm superscriptions are never supplied from another edition.
+Peshitta excludes Luke 10/11, Philippians 1, 3 John and Revelation 12/13 pending their
+source/boundary reviews; only its exact nine already approved Isaiah verses bypass ordinary
+complete-chapter validation, with their full sparse inventory checked against the profile.
+No other Old Testament source is exposed. See the [Peshitta source review](../../../content/PESHITTA-SOURCES.markdown).
 
 From the repository root:
 

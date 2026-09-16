@@ -20,6 +20,41 @@ Prosary extracts only numbered verses from the requested chapters and normalizes
 
 The small Luke 1:26–28 regression fixture retains the source's attribution and license header. The importer rejects missing vowel signs, wrong book identities, duplicate verse numbers in a requested chapter, and unhandled editorial notes. The pinned source has duplicate verse numbering in Luke 11, which is not used by these devotions; attempting to import that chapter fails explicitly.
 
+## Selectable reading edition
+
+The Readings/Today Bible picker also offers `peshitta-1905` (`arc`). The reader's
+[source lock](../tools/reading-text-sources.json) pins the bytes of all 27 New Testament
+books at the same corpus revision. Its additional records are Romans (123), 1 Corinthians
+(124), 2 Corinthians (file 126; source URI 125), Galatians (127), Ephesians (128),
+Philippians (129), Colossians (130), 1/2 Thessalonians (131/132), 1/2 Timothy (133/134),
+Titus (135), Philemon (136), Hebrews (137), James (138), 1/2 Peter (139/140),
+1/2/3 John (141/142/143), and Jude (144). Each TEI header identifies the BFBS 1905
+edition and the same Digital Syriac Corpus CC BY 4.0 terms and contributor credits.
+
+`peshitta_reading_source.py` reuses the existing importer and Erez's supplied converter.
+Per verse, `text` is the Hebrew-script projection and `transliteratedText` is the unchanged
+pointed Syriac source. The metadata explicitly declares `textScript: "Hebr"` and
+`transliteratedTextScript: "Syrc"`; this follows the prayer-pack Aramaic convention even
+though the field called transliteration contains the source script. The reader starts with
+the existing `aramaicDefaultScript` preference and can switch both verse text and typeface.
+It never synthesizes a missing script at runtime or shows a mixture of scripts when a pair
+is incomplete. The script change is neither a translation nor a change of Bible edition.
+
+The numeric mapping profile is scoped to these source hashes. Luke 11 is omitted because
+the XML repeats verse 42; Luke 10's 41-verse inventory is incomplete for the selected
+numbering. Revelation 12/13 remains unavailable pending review of its 17/18-verse boundary.
+Philippians 1 and 3 John also remain unavailable pending independent review of their
+exceptional local boundaries. No duplicate number is silently overwritten, no missing verse
+is inserted, and no source verse is renumbered to make a chapter appear complete.
+
+Only the nine Isaiah verses described below enter the reader. This does not broaden their
+approval to the complete supplied Old Testament, and the reader credit explicitly retains
+their unresolved edition and rights status separately from the New Testament attribution.
+Appointments still need a valid, unambiguous numbering correspondence and every requested
+source verse; no partial passage is displayed. With the present appointments, this provides
+1,770 distinct daily passages and no Torah passages. The
+[coverage report](../reports/readings-text-coverage.json) records every unavailable passage.
+
 ## Old Testament
 
 The seven Isaiah passages use nine pointed verses from the [user-supplied Internet Archive XML](https://archive.org/details/peshitta-complete-bible-otnt). On 2026-09-07 the user reported that Erez appeared to approve these verses and requested their integration. This reports the user's review context; it does not identify or independently verify the underlying edition or its redistribution terms, which remain unresolved. The BFBS 1905 attribution and CC BY 4.0 license of the separate New Testament edition above do **not** apply to this Isaiah source.

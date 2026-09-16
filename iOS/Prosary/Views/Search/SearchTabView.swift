@@ -108,8 +108,10 @@ struct SearchTabView: View {
             // The entire visible List row remains a native activation target.
             .frame(maxWidth: .infinity, alignment: .leading)
             .contentShape(Rectangle())
+            .prosarySpatialTarget(alignment: .leading)
           }
           .buttonStyle(.plain)
+          .prosarySpatialHoverEffect(in: RoundedRectangle(cornerRadius: 12))
           .tag(listing.id)
           .accessibilityIdentifier("search.local.\(listing.id)")
           .contextMenu {
@@ -194,6 +196,7 @@ struct SearchTabView: View {
         if selectedCategory == category { Image(systemName: "checkmark") }
         Text(title)
       }
+      .prosarySpatialTarget()
     }
     .buttonStyle(.bordered)
     .buttonBorderShape(.capsule)

@@ -42,50 +42,11 @@ struct MacTodayView: View {
   }
 
   var body: some View {
-    VStack(spacing: 0) {
-      dateNavigation
-      Divider()
-      ScrollView {
-        VStack(alignment: .leading, spacing: 24) {
-          if let dayInfo {
-            Text(HebrewDisplayText.unpointed(dayInfo.localized(language)))
-              .font(.subheadline).foregroundStyle(.secondary)
-              .accessibilityIdentifier("macToday.dayHeading")
-          }
-          if let feast {
-            VStack(alignment: .leading, spacing: 6) {
-              Text(feast.localizedTitle(language))
-                .font(.title2.weight(["Solemnity", "1st Class", "Great Feast"].contains(feast.rank) ? .bold : .semibold))
-                .accessibilityAddTraits(.isHeader)
-              Text(feast.localizedRank(language)).foregroundStyle(.secondary)
-            }
-            .accessibilityIdentifier("macToday.feast")
-          }
-          if let intention {
-            VStack(alignment: .leading, spacing: 8) {
-              Text(String(format: label("home.today.popesIntention", "The Pope’s intention: %@"),
-                          locale: Locale(identifier: language), intention.localizedTitle(language)))
-                .font(.headline).accessibilityAddTraits(.isHeader)
-              Text(intention.localizedText(language)).lineSpacing(3)
-            }
-            .accessibilityIdentifier("macToday.intention")
-          }
-          if !readings.isEmpty || torah != nil { ReadingEditionPicker() }
-          if !readings.isEmpty { readingsSection }
-          if let torah { torahSection(torah) }
-          Button(label("about.section.calendar", "Calendar Data")) {
-            openWindow(id: "about")
-          }
-          .buttonStyle(.link)
-          .accessibilityIdentifier("macToday.calendarData")
-        }
-        .textSelection(.enabled)
-        .frame(maxWidth: 720, alignment: .leading)
-        .frame(maxWidth: .infinity, alignment: .center)
-        .padding(24)
-      }
-      .accessibilityIdentifier("macToday.content")
-    }
+    readingContent
+    // Keep the reading surface opaque while the system manages the navigation's scroll edge.
+    .background(Color(nsColor: .textBackgroundColor))
+    .accessibilityIdentifier("macToday.content")
+    .prosaryNavigationBar(edge: .top) { dateNavigation }
     .environment(\.layoutDirection, UILanguage.isRightToLeft(language) ? .rightToLeft : .leftToRight)
     .environment(\.locale, Locale(identifier: language == "tl" ? "fil" : language))
     .accessibilityIdentifier("macToday")
@@ -104,72 +65,126 @@ struct MacTodayView: View {
       .receive(on: RunLoop.main)) { _ in load() }
   }
 
+  private var readingContent: some View {
+    ScrollView {
+      VStack(alignment: .leading, spacing: 24) {
+        if let dayInfo {
+          Text(HebrewDisplayText.unpointed(dayInfo.localized(language)))
+            .font(.subheadline).foregroundStyle(.secondary)
+            .accessibilityIdentifier("macToday.dayHeading")
+        }
+        if let feast {
+          VStack(alignment: .leading, spacing: 6) {
+            Text(feast.localizedTitle(language))
+              .font(.title2.weight(["Solemnity", "1st Class", "Great Feast"].contains(feast.rank) ? .bold : .semibold))
+              .accessibilityAddTraits(.isHeader)
+            Text(feast.localizedRank(language)).foregroundStyle(.secondary)
+          }
+          .accessibilityIdentifier("macToday.feast")
+        }
+        if let intention {
+          VStack(alignment: .leading, spacing: 8) {
+            Text(String(format: label("home.today.popesIntention", "The Pope’s intention: %@"),
+                        locale: Locale(identifier: language), intention.localizedTitle(language)))
+              .font(.headline).accessibilityAddTraits(.isHeader)
+            Text(intention.localizedText(language)).lineSpacing(3)
+          }
+          .accessibilityIdentifier("macToday.intention")
+        }
+        if !readings.isEmpty || torah != nil { ReadingEditionPicker() }
+        if !readings.isEmpty { readingsSection }
+        if let torah { torahSection(torah) }
+        Button(label("about.section.calendar", "Calendar Data")) {
+          openWindow(id: "about")
+        }
+        .buttonStyle(.link)
+        .accessibilityIdentifier("macToday.calendarData")
+      }
+      .textSelection(.enabled)
+      .frame(maxWidth: 720, alignment: .leading)
+      .frame(maxWidth: .infinity, alignment: .center)
+      .padding(24)
+    }
+  }
+
   private var dateNavigation: some View {
-    HStack(spacing: 10) {
+    VStack(spacing: 8) {
+      dateControls
+      Text(selectedCalendarName)
+        .font(.caption)
+        .foregroundStyle(.secondary)
+        .multilineTextAlignment(.center)
+        .textSelection(.enabled)
+    }
+    .padding(16)
+    .accessibilityElement(children: .contain)
+    .accessibilityIdentifier("macToday.dateNavigation")
+  }
+
+  private var dateControls: some View {
+    ProsaryGlassControlGroup(spacing: 12) {
+      dateControlRow
+    }
+  }
+
+  private var dateControlRow: some View {
+    HStack(spacing: 12) {
+      Spacer(minLength: 0)
       Button { dateSelection.move(by: -1) } label: {
         Label(label("home.today.previousDay", "Previous Day"), systemImage: "chevron.backward")
+          .prosaryDateControlLabel()
       }
       .labelStyle(.iconOnly)
       .disabled(!dateSelection.canMoveBackward)
       .help(label("home.today.previousDay", "Previous Day"))
       .accessibilityIdentifier("macToday.previousDay")
       Button { showsDatePicker = true } label: {
-        VStack(spacing: 3) {
-          Text(dateLabel).fontWeight(.semibold)
-          Text(selectedCalendarName).font(.caption).foregroundStyle(.secondary)
-        }
-        .frame(maxWidth: .infinity)
-        .multilineTextAlignment(.center)
+        Text(dateLabel)
+          .fontWeight(.semibold)
+          .multilineTextAlignment(.center)
+          .fixedSize(horizontal: false, vertical: true)
+          .prosaryDateControlLabel()
       }
-      .prosarySecondaryButtonStyle()
       .help(label("home.today.chooseDate", "Choose a date"))
       .accessibilityHint(label("home.today.chooseDate", "Choose a date"))
       .accessibilityIdentifier("macToday.chooseDate")
       .popover(isPresented: $showsDatePicker) { datePopover }
       Button { dateSelection.move(by: 1) } label: {
         Label(label("home.today.nextDay", "Next Day"), systemImage: "chevron.forward")
+          .prosaryDateControlLabel()
       }
       .labelStyle(.iconOnly)
       .disabled(!dateSelection.canMoveForward)
       .help(label("home.today.nextDay", "Next Day"))
       .accessibilityIdentifier("macToday.nextDay")
-      Button(label("home.today.today", "Today")) { chooseDate(Date()) }
+      Spacer(minLength: 0)
+      Button { chooseDate(Date()) } label: {
+        Text(label("home.today.today", "Today")).prosaryDateControlLabel()
+      }
         .disabled(isToday)
         .accessibilityIdentifier("macToday.reset")
       Button { showsOptions = true } label: {
         Label(label("settings.title", "Settings"), systemImage: "slider.horizontal.3")
+          .prosaryDateControlLabel()
       }
       .labelStyle(.iconOnly)
       .help(label("settings.todayHeader", "Today"))
       .accessibilityIdentifier("macToday.options")
       .popover(isPresented: $showsOptions) { optionsPopover }
     }
-    .prosarySecondaryButtonStyle()
+    .prosaryNavigationButtonStyle()
     .controlSize(.regular)
-    .padding(16)
-    .accessibilityElement(children: .contain)
-    .accessibilityIdentifier("macToday.dateNavigation")
+    .fixedSize(horizontal: false, vertical: true)
   }
 
   private var datePopover: some View {
-    VStack(alignment: .leading, spacing: 12) {
-      DatePicker(label("home.today.chooseDate", "Choose a date"),
-                 selection: Binding(get: { selectedDate }, set: chooseDate),
-                 in: MacTodayDateSelection.pickerRange(), displayedComponents: .date)
-        .datePickerStyle(.graphical)
-        .labelsHidden()
-        .environment(\.calendar, Calendar(identifier: .gregorian))
-        .accessibilityIdentifier("macToday.datePicker")
-      HStack {
-        Button(label("home.today.today", "Today")) { chooseDate(Date()) }
-          .disabled(isToday)
-        Spacer()
-        Button(label("common.done", "Done")) { showsDatePicker = false }
-          .keyboardShortcut(.defaultAction)
-      }
+    ReadingDatePickerPopover(selection: Binding(get: { selectedDate }, set: chooseDate),
+                             range: MacTodayDateSelection.pickerRange(),
+                             pickerIdentifier: "macToday.datePicker",
+                             todayIdentifier: "macToday.dateReset",
+                             doneIdentifier: "macToday.dateDone") {
+      showsDatePicker = false
     }
-    .padding(16)
-    .frame(width: 320)
   }
 
   private var optionsPopover: some View {
