@@ -412,7 +412,7 @@ final class AppShellUITests: XCTestCase {
   @MainActor
   func testAramaicDefaultScriptAndSessionTogglePersistAcrossSteps() throws {
     let app = XCUIApplication()
-    app.launchArguments = ["-resetStore", "-AppleLanguages", "(en)", "-defaultLanguageCode", "arc",
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "", "-defaultLanguageCode", "arc",
                            "-autoAdvanceSeconds", "0"]
     func openScriptSetting() -> XCUIElement {
       XCTAssertTrue(app.buttons["settingsButton"].waitForExistence(timeout: 10))
@@ -441,7 +441,6 @@ final class AppShellUITests: XCTestCase {
 
       // The picker writes the real preference. No script launch argument can mask a
       // persistence failure.
-      app.launchArguments.removeAll { $0 == "-resetStore" }
       app.launch()
       XCTAssertEqual(openScriptSetting().staticTexts.firstMatch.label, label)
       app.buttons["Done"].tap()
