@@ -19,10 +19,10 @@ enum MysteryGroup: String, Codable, CaseIterable, Identifiable {
   /// content layer (e.g. in preset summaries before the real backend is wired up).
   var displayName: String {
     switch self {
-    case .joyful:    return String(localized: "mysteryGroup.joyful", defaultValue: "Joyful")
-    case .sorrowful: return String(localized: "mysteryGroup.sorrowful", defaultValue: "Sorrowful")
-    case .glorious:  return String(localized: "mysteryGroup.glorious", defaultValue: "Glorious")
-    case .luminous:  return String(localized: "mysteryGroup.luminous", defaultValue: "Luminous")
+    case .joyful:    return String(localized: "mysteryGroup.joyful", defaultValue: "Joyful", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .sorrowful: return String(localized: "mysteryGroup.sorrowful", defaultValue: "Sorrowful", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .glorious:  return String(localized: "mysteryGroup.glorious", defaultValue: "Glorious", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .luminous:  return String(localized: "mysteryGroup.luminous", defaultValue: "Luminous", bundle: UILanguage.bundle, locale: UILanguage.locale)
     }
   }
 

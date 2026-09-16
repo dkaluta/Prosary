@@ -144,6 +144,9 @@ fun PrayerStepFlowScreen(
     audioIsPlaying: Boolean = false,
     sessionPaused: Boolean = false,
     wideAccessoryWidth: Dp = 0.dp,
+    prayerBundleId: String = "rosary",
+    /** Basic-prayer navigation titles name the sourced prayer; user/devotion names do not. */
+    titleFollowsPrayerScript: Boolean = false,
 ) {
     val chrome: PrayerFlowChromeState = viewModel()
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -181,6 +184,10 @@ fun PrayerStepFlowScreen(
         PrayerTranslations.initialTransliteration(languageCode, step.body, step.transliteratedBody,
             aramaicSessionScript!!) ?: showsTransliteration
     } else showsTransliteration
+    val visibleBody = step?.let { if (usesAlternateText) it.transliteratedBody ?: it.body else it.body }.orEmpty()
+    val visibleFlowTitle = if (titleFollowsPrayerScript) PrayerTranslations.flowTitle(title, languageCode,
+        PrayerTypography.scriptOf(visibleBody) == PrayerTypography.Script.Syriac, prayerBundleId)
+        else HebrewDisplayText.unpoint(title)
     val toggleTransliteration = {
         if (aramaicSessionScript != null) aramaicSessionScript = if (aramaicSessionScript == "Syrc") "Hebr" else "Syrc"
         else showsTransliteration = !showsTransliteration
@@ -310,8 +317,8 @@ fun PrayerStepFlowScreen(
                                     contentDescription = stringResource(R.string.common_back))
                             }
                             Text(
-                                HebrewDisplayText.unpoint(title),
-                                style = MaterialTheme.typography.titleLarge,
+                                visibleFlowTitle,
+                                style = PrayerTypography.headingStyleForText(visibleFlowTitle, MaterialTheme.typography.titleLarge),
                                 modifier = Modifier.weight(1f).padding(vertical = 12.dp)
                                     .padding(end = 16.dp).testTag("prayerFlowTitle"),
                             )
@@ -325,7 +332,9 @@ fun PrayerStepFlowScreen(
                     }
                 } else {
                     TopAppBar(
-                        title = { Text(HebrewDisplayText.unpoint(title)) },
+                        title = { Text(visibleFlowTitle,
+                            style = PrayerTypography.headingStyleForText(visibleFlowTitle, MaterialTheme.typography.titleLarge),
+                            modifier = Modifier.testTag("prayerFlowTitle")) },
                         navigationIcon = {
                             IconButton(onClick = onNavigateUp) {
                                 Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.common_back))
@@ -357,6 +366,7 @@ fun PrayerStepFlowScreen(
                         AdaptivePrayerContent(
                             step = step,
                             languageCode = languageCode,
+                            prayerBundleId = prayerBundleId,
                             isRightToLeft = isRightToLeft,
                             isWide = isWide,
                             wideAccessoryWidth = wideAccessoryWidth,
@@ -456,6 +466,7 @@ private fun ProgressHeader(step: RosaryStep?, currentIndex: Int, totalSteps: Int
 private fun AdaptivePrayerContent(
     step: RosaryStep,
     languageCode: String?,
+    prayerBundleId: String,
     isRightToLeft: Boolean,
     isWide: Boolean,
     availableHeight: Dp,
@@ -518,7 +529,7 @@ private fun AdaptivePrayerContent(
                         item(key = "heading") {
                             PrayerTextHeader(
                                 step, languageCode, visibleBody, showsTransliteration,
-                                onToggleTransliteration,
+                                onToggleTransliteration, prayerBundleId,
                             )
                             Spacer(Modifier.height(8.dp))
                         }
@@ -698,7 +709,10 @@ private fun PrayerTextHeader(
     visibleBody: String,
     showsTransliteration: Boolean,
     onToggleTransliteration: () -> Unit,
+    prayerBundleId: String,
 ) {
+    val visibleTitle = PrayerTranslations.flowTitle(step.title, languageCode,
+        PrayerTypography.scriptOf(visibleBody) == PrayerTypography.Script.Syriac, prayerBundleId)
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -714,12 +728,12 @@ private fun PrayerTextHeader(
                 )
             }
             Text(
-                PrayerTranslations.flowTitle(step.title, languageCode,
-                    PrayerTypography.scriptOf(visibleBody) == PrayerTypography.Script.Syriac),
-                style = MaterialTheme.typography.titleLarge,
+                visibleTitle,
+                style = PrayerTypography.headingStyleForText(visibleTitle, MaterialTheme.typography.titleLarge),
                 fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.extraColors.headline,
                 textAlign = TextAlign.Center,
+                modifier = Modifier.testTag("prayerStepTitle"),
             )
         }
         step.acclamation?.let { acclamation ->

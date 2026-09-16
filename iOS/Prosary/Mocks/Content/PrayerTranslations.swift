@@ -33,14 +33,34 @@ enum PrayerTranslations {
   }
 
   @MainActor
-  static func flowTitle(_ title: String, languageCode: String?, sourceScript: Bool) -> String {
+  static func flowTitle(_ title: String, languageCode: String?, sourceScript: Bool,
+                        bundleId: String = "rosary") -> String {
     let title = HebrewDisplayText.unpointed(title)
-    guard sourceScript, LanguageCatalog.fallbackChain(for: languageCode).first == "arc",
-          let connector = PrayerPackStore.transliteration(bundleId: "rosary", languageCode: "arc", key: PrayerKey.repetitionCounterConnector.rawValue)
-    else { return title }
-    let original = HebrewDisplayText.unpointed(get(languageCode: "arc", key: .repetitionCounterConnector))
-    let pattern = #"(\(\d+) "# + NSRegularExpression.escapedPattern(for: original) + #" (\d+\))$"#
-    return title.replacingOccurrences(of: pattern, with: "$1 \(connector) $2", options: .regularExpression)
+    guard LanguageCatalog.fallbackChain(for: languageCode).first == "arc" else { return title }
+    let hebrewConnector = HebrewDisplayText.unpointed(get(languageCode: "arc", key: .repetitionCounterConnector))
+    let syriacConnector = PrayerPackStore.transliteration(
+      bundleId: "rosary", languageCode: "arc", key: PrayerKey.repetitionCounterConnector.rawValue)
+    let connectors = [hebrewConnector, syriacConnector].compactMap { $0 }
+    let pattern = #" \(\d+ (?:"# + connectors.map { NSRegularExpression.escapedPattern(for: $0) }.joined(separator: "|") + #") \d+\)$"#
+    let suffixRange = title.range(of: pattern, options: .regularExpression)
+    let heading = suffixRange.map { String(title[..<$0.lowerBound]) } ?? title
+    var suffix = suffixRange.map { String(title[$0]) } ?? ""
+    let desired: PrayerTypography.Script = sourceScript ? .syriac : .hebrew
+    var displayed = heading
+    for pair in PrayerPackStore.aramaicHeadingPairs(bundleId: bundleId) {
+      let original = HebrewDisplayText.unpointed(pair.original)
+      let alternate = HebrewDisplayText.unpointed(pair.alternate)
+      guard heading == original || heading == alternate else { continue }
+      if PrayerTypography.script(of: original) == desired { displayed = original }
+      else if PrayerTypography.script(of: alternate) == desired { displayed = alternate }
+      break
+    }
+    if let desiredConnector = sourceScript ? syriacConnector : hebrewConnector {
+      for connector in connectors {
+        suffix = suffix.replacingOccurrences(of: " \(connector) ", with: " \(desiredConnector) ")
+      }
+    }
+    return displayed + suffix
   }
 
   @MainActor

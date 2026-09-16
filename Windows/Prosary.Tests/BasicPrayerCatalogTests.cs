@@ -137,7 +137,7 @@ public class BasicPrayerCatalogTests : IClassFixture<PrayerPackLoaderFixture>
     [Fact]
     public void BasicPrayerListFollowsDefaultLanguageChangesWhileKeepingAnExplicitOverride()
     {
-        var previousDefault = AppSettings.DefaultLanguageCode;
+        var previousDefault = AppSettings.PrayerLanguageCode;
         var previousBasic = AppSettings.BasicPrayersLanguageCode;
         var previousNames = AppSettings.ShowPrayerNameInPrayerLanguage;
         try
@@ -169,7 +169,7 @@ public class BasicPrayerCatalogTests : IClassFixture<PrayerPackLoaderFixture>
     [Fact]
     public void ExplicitLanguageOverridesDefaultAndSentinelKeepsFollowingIt()
     {
-        var previousDefault = AppSettings.DefaultLanguageCode;
+        var previousDefault = AppSettings.PrayerLanguageCode;
         try
         {
             var prayer = BasicPrayerCatalog.Prayer("ourFather")!;

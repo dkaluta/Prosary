@@ -18,8 +18,8 @@ enum MysteryImageStyle: String, Codable, CaseIterable, Identifiable {
 
   var displayName: String {
     switch self {
-    case .classic: return String(localized: "mysteryImageStyle.classic", defaultValue: "Classical Paintings")
-    case .eastern: return String(localized: "mysteryImageStyle.eastern", defaultValue: "Eastern Icons")
+    case .classic: return String(localized: "mysteryImageStyle.classic", defaultValue: "Classical Paintings", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .eastern: return String(localized: "mysteryImageStyle.eastern", defaultValue: "Eastern Icons", bundle: UILanguage.bundle, locale: UILanguage.locale)
     }
   }
 }

@@ -62,7 +62,7 @@ struct RosaryFlowView: View {
 
   var body: some View {
     PrayerStepFlowView(
-      navigationTitle: prayerWindowTitle ?? String(localized: "rosaryFlow.navigationTitle", defaultValue: "Praying the Rosary"),
+      navigationTitle: prayerWindowTitle ?? String(localized: "rosaryFlow.navigationTitle", defaultValue: "Praying the Rosary", bundle: UILanguage.bundle, locale: UILanguage.locale),
       step: currentStep,
       currentIndex: currentIndex,
       totalSteps: steps.count,
@@ -82,38 +82,44 @@ struct RosaryFlowView: View {
       accessoryWidth: { beadColumnAreaWidth(hasRoomForSingleMinorColumn: $0) },
       flowActions: AnyView(flowActions)
     )
-    .alert(String(localized: "rosaryFlow.litanyPrompt", defaultValue: "Continue with the Litany of the Blessed Virgin Mary?"), isPresented: $showsLitanyOffer) {
-      Button(String(localized: "rosaryFlow.prayLitany", defaultValue: "Pray the Litany")) {
+    .alert(String(localized: "rosaryFlow.litanyPrompt", defaultValue: "Continue with the Litany of the Blessed Virgin Mary?", bundle: UILanguage.bundle, locale: UILanguage.locale), isPresented: $showsLitanyOffer) {
+      Button(String(localized: "rosaryFlow.prayLitany", defaultValue: "Pray the Litany", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
         complete()
         finishPrayerSession?()
         onPrayLitany?(sessionPrayer.resolvedLanguageCode)
       }
       .accessibilityIdentifier("prayLitanyButton")
       .keyboardShortcut(.defaultAction)
-      Button(String(localized: "prayerFlow.finish", defaultValue: "Finish"), role: .cancel) {
+      Button(String(localized: "prayerFlow.finish", defaultValue: "Finish", bundle: UILanguage.bundle, locale: UILanguage.locale), role: .cancel) {
         complete()
         finishSession()
       }
     }
     .alert(
-      String(localized: "prayerFlow.continue.title", defaultValue: "Continue this prayer?"),
+      String(localized: "prayerFlow.continue.title", defaultValue: "Continue this prayer?", bundle: UILanguage.bundle, locale: UILanguage.locale),
       isPresented: .init(
         get: { pendingContinuation != nil },
         set: { if !$0 { pendingContinuation = nil } }),
       presenting: pendingContinuation
     ) { progress in
-      Button(String(localized: "prayerFlow.continue", defaultValue: "Continue")) {
+      Button(String(localized: "prayerFlow.continue", defaultValue: "Continue", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
         resume(progress)
       }
       .keyboardShortcut(.defaultAction)
-      Button(String(localized: "prayerFlow.restart", defaultValue: "Restart"), role: .destructive) {
+      Button(String(localized: "prayerFlow.restart", defaultValue: "Restart", bundle: UILanguage.bundle, locale: UILanguage.locale), role: .destructive) {
         restart()
       }
     } message: { _ in
       Text(String(localized: "prayerFlow.continue.message",
-                  defaultValue: "You have an unfinished prayer. Continue where you left off or begin again?"))
+                  defaultValue: "You have an unfinished prayer. Continue where you left off or begin again?", bundle: UILanguage.bundle, locale: UILanguage.locale))
     }
     .task { await sessionLoader.perform { await load() } }
+    .onChange(of: prayerLanguage.code) { _, _ in
+      guard hasLoaded, !didFinish, sessionPrayer.languageCode.isEmpty else { return }
+      isRightToLeft = LanguageCatalog.resolve(sessionPrayer.languageCode).isRightToLeft
+      steps = services.engine.buildSteps(for: sessionPrayer)
+      currentIndex = min(currentIndex, max(steps.count - 1, 0))
+    }
     .onChange(of: prayerLanguage.usesJaffaHailMaryWording) { _, _ in
       guard hasLoaded, !didFinish else { return }
       steps = services.engine.buildSteps(for: sessionPrayer)
@@ -129,7 +135,7 @@ struct RosaryFlowView: View {
   private var flowActions: some View {
     Button { jump(to: previousMysteryIndex) } label: {
       Label {
-        Text(String(localized: "rosaryFlow.previousMystery", defaultValue: "Previous Mystery"))
+        Text(String(localized: "rosaryFlow.previousMystery", defaultValue: "Previous Mystery", bundle: UILanguage.bundle, locale: UILanguage.locale))
       } icon: {
         Image(systemName: "backward.end.fill")
           .flipsForRightToLeftLayoutDirection(true)
@@ -139,13 +145,13 @@ struct RosaryFlowView: View {
     .labelStyle(.iconOnly)
     #endif
     .disabled(previousMysteryIndex == nil)
-    .accessibilityLabel(String(localized: "rosaryFlow.previousMystery", defaultValue: "Previous Mystery"))
-    .help(String(localized: "rosaryFlow.previousMystery", defaultValue: "Previous Mystery"))
+    .accessibilityLabel(String(localized: "rosaryFlow.previousMystery", defaultValue: "Previous Mystery", bundle: UILanguage.bundle, locale: UILanguage.locale))
+    .help(String(localized: "rosaryFlow.previousMystery", defaultValue: "Previous Mystery", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .accessibilityIdentifier("previousMysteryButton")
 
     Button { jump(to: nextMysteryIndex) } label: {
       Label {
-        Text(String(localized: "rosaryFlow.nextMystery", defaultValue: "Next Mystery"))
+        Text(String(localized: "rosaryFlow.nextMystery", defaultValue: "Next Mystery", bundle: UILanguage.bundle, locale: UILanguage.locale))
       } icon: {
         Image(systemName: "forward.end.fill")
           .flipsForRightToLeftLayoutDirection(true)
@@ -155,8 +161,8 @@ struct RosaryFlowView: View {
     .labelStyle(.iconOnly)
     #endif
     .disabled(nextMysteryIndex == nil)
-    .accessibilityLabel(String(localized: "rosaryFlow.nextMystery", defaultValue: "Next Mystery"))
-    .help(String(localized: "rosaryFlow.nextMystery", defaultValue: "Next Mystery"))
+    .accessibilityLabel(String(localized: "rosaryFlow.nextMystery", defaultValue: "Next Mystery", bundle: UILanguage.bundle, locale: UILanguage.locale))
+    .help(String(localized: "rosaryFlow.nextMystery", defaultValue: "Next Mystery", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .accessibilityIdentifier("nextMysteryButton")
 
     if let languages = PrayerPackStore.info(for: "rosary")?.languages,
@@ -165,13 +171,13 @@ struct RosaryFlowView: View {
         PrayerLanguageMenuContent(code: sessionPrayer.languageCode,
                                  options: LanguageCatalog.availableOptions(for: languages)) { switchLanguage(to: $0) }
       } label: {
-        Label(String(localized: "prayerFlow.language", defaultValue: "Prayer Language"), systemImage: "globe")
+        Label(String(localized: "prayerFlow.language", defaultValue: "Prayer Language", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "globe")
       }
       #if !os(macOS)
       .labelStyle(.iconOnly)
       #endif
-      .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer Language"))
-      .help(String(localized: "prayerFlow.language", defaultValue: "Prayer Language"))
+      .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer Language", bundle: UILanguage.bundle, locale: UILanguage.locale))
+      .help(String(localized: "prayerFlow.language", defaultValue: "Prayer Language", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("languageMenu")
     }
   }

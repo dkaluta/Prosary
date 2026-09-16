@@ -66,10 +66,10 @@ struct ContentView: View {
       }
       #endif
       .alert(
-        String(localized: "favorites.importFailed", defaultValue: "Could Not Import Devotion"),
+        String(localized: "favorites.importFailed", defaultValue: "Could Not Import Devotion", bundle: UILanguage.bundle, locale: UILanguage.locale),
         isPresented: .init(get: { importError != nil }, set: { if !$0 { importError = nil } })
       ) {
-        Button(String(localized: "common.ok", defaultValue: "OK")) {}
+        Button(String(localized: "common.ok", defaultValue: "OK", bundle: UILanguage.bundle, locale: UILanguage.locale)) {}
           .keyboardShortcut(.defaultAction)
       } message: {
         Text(importError ?? "")

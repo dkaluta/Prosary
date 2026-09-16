@@ -104,7 +104,7 @@ struct HomeView: View {
         id: BasicPrayerFavorites.homeRowID(prayer.id),
         title: name.title, translatedTitle: name.translation,
         systemImage: "text.book.closed", iconGlyph: nil, accent: .brandPrimary,
-        subtitle: String(localized: "basicPrayers.title", defaultValue: "Basic Prayers"), presetsRoute: nil,
+        subtitle: String(localized: "basicPrayers.title", defaultValue: "Basic Prayers", bundle: UILanguage.bundle, locale: UILanguage.locale), presetsRoute: nil,
         route: .basicPrayer(id: prayer.id)))
     }
     return HomeOrder.apply(rows) { $0.id }
@@ -151,7 +151,7 @@ struct HomeView: View {
         // pinned novena is worth pinning before its first day.
         subtitle: MultiDayStatus.subtitle(for: bundleId)
           ?? savedPreset(forBundle: bundleId)?.languageDisplayName
-          ?? String(localized: "home.customCard.tapToPray", defaultValue: "Tap to pray"),
+          ?? String(localized: "home.customCard.tapToPray", defaultValue: "Tap to pray", bundle: UILanguage.bundle, locale: UILanguage.locale),
         presetsRoute: nil,
         route: savedPreset(forBundle: bundleId).map { .prayer(id: $0.id) }
           ?? .custom(devotionId: bundleId)))
@@ -198,7 +198,7 @@ struct HomeView: View {
   private var rosarySubtitle: String {
     var parts: [String] = []
     if let group = todayMysteryGroup {
-      parts.append(String(localized: "home.rosaryCard.today", defaultValue: "Today: \(group.displayName)"))
+      parts.append(String(localized: "home.rosaryCard.today", defaultValue: "Today: \(group.displayName)", bundle: UILanguage.bundle, locale: UILanguage.locale))
     }
     if let preset = defaultRosary { parts.append(preset.name) }
     return parts.joined(separator: " • ")
@@ -206,7 +206,7 @@ struct HomeView: View {
 
   private var jesusPrayerSubtitle: String {
     guard let fav = defaultJesusPrayer else {
-      return String(localized: "home.jesusPrayerCard.tapToSetUp", defaultValue: "Tap to set up")
+      return String(localized: "home.jesusPrayerCard.tapToSetUp", defaultValue: "Tap to set up", bundle: UILanguage.bundle, locale: UILanguage.locale)
     }
     return "\(fav.name) • \(fav.jesusPrayer.targetDisplayName)"
   }
@@ -260,7 +260,7 @@ struct HomeView: View {
       }
       #endif
     }
-    .navigationTitle(String(localized: "tabs.pray", defaultValue: "Pray"))
+    .navigationTitle(String(localized: "tabs.pray", defaultValue: "Pray", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .toolbar { toolbarContent }
     .sheet(item: $editorPrayer) { prayer in
       NavigationStack { FavoriteEditorView(prayer: prayer, isNew: isNew) }
@@ -288,11 +288,11 @@ struct HomeView: View {
     .sheet(isPresented: $showsSettings) {
       NavigationStack {
         SettingsView()
-          .navigationTitle(String(localized: "settings.title", defaultValue: "Settings"))
+          .navigationTitle(String(localized: "settings.title", defaultValue: "Settings", bundle: UILanguage.bundle, locale: UILanguage.locale))
           .navigationBarTitleDisplayMode(.inline)
           .toolbar {
             ToolbarItem(placement: .confirmationAction) {
-              Button(String(localized: "favoriteEditor.done", defaultValue: "Done")) { showsSettings = false }
+              Button(String(localized: "favoriteEditor.done", defaultValue: "Done", bundle: UILanguage.bundle, locale: UILanguage.locale)) { showsSettings = false }
             }
           }
       }
@@ -425,8 +425,8 @@ struct HomeView: View {
       } label: {
         Image(systemName: "chevron.backward")
       }
-      .accessibilityLabel(String(localized: "home.today.previousDay", defaultValue: "Previous Day"))
-      .help(String(localized: "home.today.previousDay", defaultValue: "Previous Day"))
+      .accessibilityLabel(String(localized: "home.today.previousDay", defaultValue: "Previous Day", bundle: UILanguage.bundle, locale: UILanguage.locale))
+      .help(String(localized: "home.today.previousDay", defaultValue: "Previous Day", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("todayYesterdayButton")
       Button {
         showsTodayDatePicker = true
@@ -435,8 +435,8 @@ struct HomeView: View {
           .font(.subheadline.weight(.semibold))
           .frame(maxWidth: .infinity)
       }
-      .accessibilityHint(String(localized: "home.today.chooseDate", defaultValue: "Choose a date"))
-      .help(String(localized: "home.today.chooseDate", defaultValue: "Choose a date"))
+      .accessibilityHint(String(localized: "home.today.chooseDate", defaultValue: "Choose a date", bundle: UILanguage.bundle, locale: UILanguage.locale))
+      .help(String(localized: "home.today.chooseDate", defaultValue: "Choose a date", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("todayDateButton")
       .popover(isPresented: $showsTodayDatePicker, attachmentAnchor: .rect(.bounds), arrowEdge: .top) {
         todayDatePopover
@@ -449,8 +449,8 @@ struct HomeView: View {
       } label: {
         Image(systemName: "chevron.forward")
       }
-      .accessibilityLabel(String(localized: "home.today.nextDay", defaultValue: "Next Day"))
-      .help(String(localized: "home.today.nextDay", defaultValue: "Next Day"))
+      .accessibilityLabel(String(localized: "home.today.nextDay", defaultValue: "Next Day", bundle: UILanguage.bundle, locale: UILanguage.locale))
+      .help(String(localized: "home.today.nextDay", defaultValue: "Next Day", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("todayTomorrowButton")
     }
     .prosarySecondaryButtonStyle()
@@ -466,19 +466,25 @@ struct HomeView: View {
 
   private var todayDatePopover: some View {
     VStack(alignment: .leading, spacing: 8) {
-      Button(String(localized: "home.today.today", defaultValue: "Today")) {
+      Button(String(localized: "home.today.today", defaultValue: "Today", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
         todayDateBinding.wrappedValue = Date()
       }
       .prosarySecondaryButtonStyle()
       .disabled(Calendar(identifier: .gregorian).isDateInToday(selectedDate))
       .accessibilityIdentifier("todayResetButton")
-      DatePicker(String(localized: "home.today.chooseDate", defaultValue: "Choose a date"),
+      DatePicker(String(localized: "home.today.chooseDate", defaultValue: "Choose a date", bundle: UILanguage.bundle, locale: UILanguage.locale),
                  selection: todayDateBinding, displayedComponents: .date)
         .datePickerStyle(.graphical)
         .labelsHidden()
         .environment(\.calendar, Calendar(identifier: .gregorian))
         .accessibilityIdentifier("todayDatePicker")
     }
+    // SDK 27 resets control size at presentation boundaries.
+    #if os(macOS)
+    .controlSize(.regular)
+    #else
+    .controlSize(.large)
+    #endif
     .padding(12)
     .frame(width: 320)
   }
@@ -492,7 +498,7 @@ struct HomeView: View {
     } label: {
       HStack {
         Image(systemName: "text.book.closed")
-        Text(String(localized: "basicPrayers.title", defaultValue: "Basic Prayers"))
+        Text(String(localized: "basicPrayers.title", defaultValue: "Basic Prayers", bundle: UILanguage.bundle, locale: UILanguage.locale))
         Spacer()
         Image(systemName: "chevron.forward")
           .font(.footnote.weight(.semibold))
@@ -596,8 +602,8 @@ struct HomeView: View {
             Image(systemName: "book").foregroundStyle(Color.brandPrimary)
             VStack(alignment: .leading, spacing: 3) {
               Text(portion.isHoliday
-                ? String(localized: "home.today.festivalTorahReading", defaultValue: "Festival Torah reading")
-                : String(localized: "home.today.torahPortion", defaultValue: "Weekly Torah portion"))
+                ? String(localized: "home.today.festivalTorahReading", defaultValue: "Festival Torah reading", bundle: UILanguage.bundle, locale: UILanguage.locale)
+                : String(localized: "home.today.torahPortion", defaultValue: "Weekly Torah portion", bundle: UILanguage.bundle, locale: UILanguage.locale))
                 .font(.subheadline.weight(.semibold))
               Text(portion.localizedTitle(todayLanguageCode))
                 .font(.subheadline)
@@ -629,11 +635,11 @@ struct HomeView: View {
       Image(systemName: "star")
         .font(.largeTitle)
         .foregroundStyle(.secondary)
-      Text(String(localized: "home.empty.title", defaultValue: "No saved prayers yet"))
+      Text(String(localized: "home.empty.title", defaultValue: "No saved prayers yet", bundle: UILanguage.bundle, locale: UILanguage.locale))
         .font(.headline)
       Text(String(
         localized: "home.empty.detail",
-        defaultValue: "Find a devotion in Categories or Search and pin it here."))
+        defaultValue: "Find a devotion in Categories or Search and pin it here.", bundle: UILanguage.bundle, locale: UILanguage.locale))
         .font(.subheadline)
         .foregroundStyle(.secondary)
         .multilineTextAlignment(.center)
@@ -657,22 +663,22 @@ struct HomeView: View {
   private func rowMenu(for row: DevotionRow) -> some View {
     if let prayer = savedPrayer(for: row) {
       Button { remindersPrayer = prayer } label: {
-        Label(String(localized: "favorites.reminders", defaultValue: "Reminders…"), systemImage: "bell")
+        Label(String(localized: "favorites.reminders", defaultValue: "Reminders…", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "bell")
       }
       Button(role: .destructive) { deletingPrayer = prayer } label: {
-        Label(String(localized: "removal.deleteAction", defaultValue: "Delete Saved Prayer…"), systemImage: "trash")
+        Label(String(localized: "removal.deleteAction", defaultValue: "Delete Saved Prayer…", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "trash")
       }
     }
     Button {
       HomeOrder.moveToTop(row.id, allIdsInDisplayOrder: pinnedDevotions.map(\.id))
       orderGeneration += 1
     } label: {
-      Label(String(localized: "home.moveToTop", defaultValue: "Move to Top"), systemImage: "arrow.up.to.line")
+      Label(String(localized: "home.moveToTop", defaultValue: "Move to Top", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "arrow.up.to.line")
     }
     Button {
       showsOrderEditor = true
     } label: {
-      Label(String(localized: "home.editOrder", defaultValue: "Edit Order…"), systemImage: "arrow.up.arrow.down")
+      Label(String(localized: "home.editOrder", defaultValue: "Edit Order…", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "arrow.up.arrow.down")
     }
     Divider()
     // Unpinning is not deletion: the presets underneath stay exactly where they are, which is
@@ -686,9 +692,9 @@ struct HomeView: View {
       orderGeneration += 1
     } label: {
       if BasicPrayerFavorites.prayerID(homeRowID: row.id) != nil {
-        Label(String(localized: "basicPrayers.unpin", defaultValue: "Remove from Pray"), systemImage: "pin.slash")
+        Label(String(localized: "basicPrayers.unpin", defaultValue: "Remove from Pray", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "pin.slash")
       } else {
-        Label(String(localized: "home.unpin", defaultValue: "Remove from Pray"), systemImage: "star.slash")
+        Label(String(localized: "home.unpin", defaultValue: "Remove from Pray", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "star.slash")
       }
     }
   }
@@ -704,11 +710,11 @@ struct HomeView: View {
         }
         Divider()
         Button { addNew(kind: .rosary) } label: {
-          Label(String(localized: "favorites.addKind", defaultValue: "Add \(PrayerKind.rosary.displayName)…"),
+          Label(String(localized: "favorites.addKind", defaultValue: "Add \(PrayerKind.rosary.displayName)…", bundle: UILanguage.bundle, locale: UILanguage.locale),
                 systemImage: "circle.hexagongrid")
         }
         Button { addNew(kind: .jesusPrayer) } label: {
-          Label(String(localized: "favorites.addJesusPrayer", defaultValue: "Add Jesus Prayer…"),
+          Label(String(localized: "favorites.addJesusPrayer", defaultValue: "Add Jesus Prayer…", bundle: UILanguage.bundle, locale: UILanguage.locale),
                 systemImage: "heart")
         }
 
@@ -718,7 +724,7 @@ struct HomeView: View {
           !FavoriteDevotions.contains(row.id, defaultingTo: impliedPinnedIds)
         }
         if !unpinned.isEmpty {
-          Section(String(localized: "home.addToPray", defaultValue: "Add to Pray")) {
+          Section(String(localized: "home.addToPray", defaultValue: "Add to Pray", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
             ForEach(unpinned) { row in
               Button {
                 FavoriteDevotions.pin(row.id, defaultingTo: impliedPinnedIds)
@@ -732,8 +738,8 @@ struct HomeView: View {
       } label: {
         Image(systemName: "plus")
       }
-      .accessibilityLabel(String(localized: "home.addFavorite", defaultValue: "Add a Prayer"))
-      .help(String(localized: "home.addFavorite", defaultValue: "Add a Prayer"))
+      .accessibilityLabel(String(localized: "home.addFavorite", defaultValue: "Add a Prayer", bundle: UILanguage.bundle, locale: UILanguage.locale))
+      .help(String(localized: "home.addFavorite", defaultValue: "Add a Prayer", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("addFavoriteButton")
     }
     if !pinnedDevotions.isEmpty {
@@ -741,8 +747,8 @@ struct HomeView: View {
         Button { showsOrderEditor = true } label: {
           Image(systemName: "arrow.up.arrow.down")
         }
-        .accessibilityLabel(String(localized: "home.editOrder", defaultValue: "Edit Order…"))
-        .help(String(localized: "home.editOrder", defaultValue: "Edit Order…"))
+        .accessibilityLabel(String(localized: "home.editOrder", defaultValue: "Edit Order…", bundle: UILanguage.bundle, locale: UILanguage.locale))
+        .help(String(localized: "home.editOrder", defaultValue: "Edit Order…", bundle: UILanguage.bundle, locale: UILanguage.locale))
         .accessibilityIdentifier("editOrderButton")
       }
     }
@@ -751,7 +757,7 @@ struct HomeView: View {
       Button { showsSettings = true } label: {
         Image(systemName: "gearshape")
       }
-      .accessibilityLabel(String(localized: "settings.title", defaultValue: "Settings"))
+      .accessibilityLabel(String(localized: "settings.title", defaultValue: "Settings", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("settingsButton")
     }
     ToolbarItem(placement: .primaryAction) {
@@ -813,19 +819,19 @@ private struct HomeOrderEditor: View {
   var body: some View {
     NavigationStack {
       orderContent
-      .navigationTitle(String(localized: "home.editOrder.title", defaultValue: "Home Order"))
+      .navigationTitle(String(localized: "home.editOrder.title", defaultValue: "Home Order", bundle: UILanguage.bundle, locale: UILanguage.locale))
       #if os(iOS)
       .navigationBarTitleDisplayMode(.inline)
       #endif
       #if !os(macOS)
       .toolbar {
         ToolbarItem(placement: .cancellationAction) {
-          Button(String(localized: "home.editOrder.reset", defaultValue: "Reset")) {
+          Button(String(localized: "home.editOrder.reset", defaultValue: "Reset", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
             reset()
           }
         }
         ToolbarItem(placement: .confirmationAction) {
-          Button(String(localized: "favoriteEditor.done", defaultValue: "Done")) { dismiss() }
+          Button(String(localized: "favoriteEditor.done", defaultValue: "Done", bundle: UILanguage.bundle, locale: UILanguage.locale)) { dismiss() }
         }
       }
       #endif
@@ -843,9 +849,9 @@ private struct HomeOrderEditor: View {
       orderList.clipped()
       Divider()
       HStack {
-        Button(String(localized: "home.editOrder.reset", defaultValue: "Reset")) { reset() }
+        Button(String(localized: "home.editOrder.reset", defaultValue: "Reset", bundle: UILanguage.bundle, locale: UILanguage.locale)) { reset() }
         Spacer()
-        Button(String(localized: "favoriteEditor.done", defaultValue: "Done")) { dismiss() }
+        Button(String(localized: "favoriteEditor.done", defaultValue: "Done", bundle: UILanguage.bundle, locale: UILanguage.locale)) { dismiss() }
           .keyboardShortcut(.defaultAction)
       }
       .padding()

@@ -24,11 +24,11 @@ struct JesusPrayerSetupView: View {
 
     var displayName: String {
       switch self {
-      case .thirtyThree: return String(localized: "jesusPrayerTarget.33", defaultValue: "33")
-      case .sixtySix: return String(localized: "jesusPrayerTarget.66", defaultValue: "66")
-      case .ninetyNine: return String(localized: "jesusPrayerTarget.99", defaultValue: "99")
-      case .custom: return String(localized: "jesusPrayerSetup.custom", defaultValue: "Custom")
-      case .unbounded: return String(localized: "jesusPrayerOptions.unbounded", defaultValue: "Unbounded")
+      case .thirtyThree: return String(localized: "jesusPrayerTarget.33", defaultValue: "33", bundle: UILanguage.bundle, locale: UILanguage.locale)
+      case .sixtySix: return String(localized: "jesusPrayerTarget.66", defaultValue: "66", bundle: UILanguage.bundle, locale: UILanguage.locale)
+      case .ninetyNine: return String(localized: "jesusPrayerTarget.99", defaultValue: "99", bundle: UILanguage.bundle, locale: UILanguage.locale)
+      case .custom: return String(localized: "jesusPrayerSetup.custom", defaultValue: "Custom", bundle: UILanguage.bundle, locale: UILanguage.locale)
+      case .unbounded: return String(localized: "jesusPrayerOptions.unbounded", defaultValue: "Unbounded", bundle: UILanguage.bundle, locale: UILanguage.locale)
       }
     }
 

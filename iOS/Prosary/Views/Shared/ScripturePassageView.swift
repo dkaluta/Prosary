@@ -7,13 +7,13 @@ struct ReadingEditionPicker: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 6) {
-      Picker(String(localized: "readings.edition", defaultValue: "Bible edition"), selection: $preference) {
-        Text(String(localized: "readings.followInterface", defaultValue: "Follow Interface Language")).tag("")
+      Picker(String(localized: "readings.edition", defaultValue: "Bible edition", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $preference) {
+        Text(String(localized: "readings.followInterface", defaultValue: "Follow Interface Language", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("")
         ForEach(editions, id: \.id) { edition in
           Text(edition.name).tag(edition.id)
         }
         if !preference.isEmpty, !editions.contains(where: { $0.id == preference }) {
-          Text(String(localized: "readings.unavailableEdition", defaultValue: "Unavailable edition")).tag(preference)
+          Text(String(localized: "readings.unavailableEdition", defaultValue: "Unavailable edition", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(preference)
         }
       }
       .pickerStyle(.menu)
@@ -21,10 +21,10 @@ struct ReadingEditionPicker: View {
       if let selected = ReadingEditionSelection.selected(preference, interfaceLanguage: UILanguage.current, editions: editions) {
         Text(selected.name).font(.caption).foregroundStyle(.secondary)
       } else if hasLoadedEditions && preference.isEmpty {
-        Text(String(localized: "readings.noEdition", defaultValue: "No Bible edition is available for this language."))
+        Text(String(localized: "readings.noEdition", defaultValue: "No Bible edition is available for this language.", bundle: UILanguage.bundle, locale: UILanguage.locale))
           .font(.caption).foregroundStyle(.secondary)
       }
-      Text(String(localized: "readings.bibleNote", defaultValue: "Bible passages; wording may differ from the liturgical reading."))
+      Text(String(localized: "readings.bibleNote", defaultValue: "Bible passages; wording may differ from the liturgical reading.", bundle: UILanguage.bundle, locale: UILanguage.locale))
         .font(.caption).foregroundStyle(.secondary)
     }
     .task {
@@ -74,13 +74,13 @@ private struct ScripturePassageBody: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 12) {
-      Text(String(localized: "readings.biblePassage", defaultValue: "Bible passage"))
+      Text(String(localized: "readings.biblePassage", defaultValue: "Bible passage", bundle: UILanguage.bundle, locale: UILanguage.locale))
         .font(.subheadline.weight(.semibold)).accessibilityAddTraits(.isHeader)
       if loading {
-        ProgressView().accessibilityLabel(String(localized: "readings.loading", defaultValue: "Loading passage"))
+        ProgressView().accessibilityLabel(String(localized: "readings.loading", defaultValue: "Loading passage", bundle: UILanguage.bundle, locale: UILanguage.locale))
       } else if let passage {
         if passage.includesWholeVerses {
-          Text(String(localized: "readings.wholeVersesNotice", defaultValue: "Full verses are shown where the reading cites only part of a verse."))
+          Text(String(localized: "readings.wholeVersesNotice", defaultValue: "Full verses are shown where the reading cites only part of a verse.", bundle: UILanguage.bundle, locale: UILanguage.locale))
             .font(.callout).foregroundStyle(.secondary)
             .accessibilityIdentifier("readings.wholeVersesNotice")
         }
@@ -106,14 +106,14 @@ private struct ScripturePassageBody: View {
           Text(passage.edition.name).fontWeight(.medium)
           Text(passage.edition.attribution)
           if let source = passage.edition.sourceLink {
-            Link(String(localized: "readings.source", defaultValue: "Text source"), destination: source)
+            Link(String(localized: "readings.source", defaultValue: "Text source", bundle: UILanguage.bundle, locale: UILanguage.locale), destination: source)
           }
         }
         .font(.caption).foregroundStyle(.secondary)
         .textSelection(.enabled)
         .accessibilityIdentifier("readings.source")
       } else {
-        Text(String(localized: "readings.unavailable", defaultValue: "Bible text is unavailable for this passage in the selected edition."))
+        Text(String(localized: "readings.unavailable", defaultValue: "Bible text is unavailable for this passage in the selected edition.", bundle: UILanguage.bundle, locale: UILanguage.locale))
           .foregroundStyle(.secondary)
           .accessibilityIdentifier("readings.unavailable")
       }

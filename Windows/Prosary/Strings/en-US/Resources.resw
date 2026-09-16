@@ -89,7 +89,7 @@
   <data name="settings_remove_all_title" xml:space="preserve"><value>Remove Unused Downloads?</value></data>
   <data name="settings_remove_all_message" xml:space="preserve"><value>This removes downloaded prayers that have no saved copies. Saved prayers and built-in prayers are kept.</value></data>
   <data name="settings_remove_all_confirm" xml:space="preserve"><value>Remove Unused</value></data>
-  <data name="settings_app_language_system" xml:space="preserve"><value>System default</value></data>
+  <data name="settings_app_language_system" xml:space="preserve"><value>System Default</value></data>
   <data name="NavPray.Content" xml:space="preserve"><value>Pray</value></data>
   <data name="NavBrowse.Content" xml:space="preserve"><value>Browse</value></data>
   <data name="NavCategories.Content" xml:space="preserve"><value>Categories</value></data>
@@ -100,7 +100,7 @@
   <data name="HomeMoveToTop.Text" xml:space="preserve"><value>Move to top</value></data>
   <data name="HomeEditOrder.Text" xml:space="preserve"><value>Edit order…</value></data>
   <data name="SetTitle.Text" xml:space="preserve"><value>Settings</value></data>
-  <data name="SetLanguageCombo.Header" xml:space="preserve"><value>Default Prayer Language</value></data>
+  <data name="SetLanguageCombo.Header" xml:space="preserve"><value>Prayer Language</value></data>
   <data name="SetPrayingHeader.Text" xml:space="preserve"><value>Praying</value></data>
   <data name="SetAutoAdvanceCombo.Header" xml:space="preserve"><value>Auto-Advance</value></data>
   <data name="SetResetHomeOrder.Content" xml:space="preserve"><value>Reset Home Order</value></data>
@@ -111,8 +111,9 @@
   <data name="SetRepoLink.Content" xml:space="preserve"><value>Community Repository</value></data>
   <data name="SetComposeLink.Content" xml:space="preserve"><value>Compose a Devotion</value></data>
   <data name="SetPrivacyLink.Content" xml:space="preserve"><value>Privacy Policy</value></data>
-  <data name="SetAppLanguageCombo.Header" xml:space="preserve"><value>App language</value></data>
-  <data name="SetAppLanguageFooter.Text" xml:space="preserve"><value>Takes effect after the app restarts.</value></data>
+  <data name="SetAppLanguageCombo.Header" xml:space="preserve"><value>App Language</value></data>
+  <data name="SetAppLanguageFooter.Text" xml:space="preserve"><value>Restart Prosary to apply the new app language.</value></data>
+  <data name="SetAppLanguageUsage.Text" xml:space="preserve"><value>Used for the interface and automatic Bible edition. Prayers follow it unless a prayer language is selected.</value></data>
   <data name="SetTodayHeader.Text" xml:space="preserve"><value>Today</value></data>
   <data name="SetShowTodayFeast.Header" xml:space="preserve"><value>Show the day's feast</value></data>
   <data name="SetShowTodayIntention.Header" xml:space="preserve"><value>Show the Pope's intention</value></data>
@@ -527,4 +528,5 @@
   <data name="readings_text_notice" xml:space="preserve"><value>Bible text for the cited passage. The wording may differ from the Mass reading.</value></data>
   <data name="readings_whole_verses_notice" xml:space="preserve"><value>Full verses are shown where the reading cites only part of a verse.</value></data>
   <data name="readings_source" xml:space="preserve"><value>Source and Edition</value></data>
+  <data name="language_app_parenthesized" xml:space="preserve"><value>App Language ({0})</value></data>
 </root>

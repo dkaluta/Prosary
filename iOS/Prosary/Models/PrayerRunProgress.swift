@@ -250,6 +250,15 @@ enum RosaryMysteryNavigation {
 /// form for a language; carrying a numeric position into that other sequence would open an
 /// unrelated prayer.
 enum CustomDevotionLanguageSwitch {
+  /// A default changing in another window cannot replace the live session's form.
+  static func canRefreshInheritedLanguage(
+    chosenLanguageCode: String,
+    previousEffectiveVariantId: String?,
+    nextEffectiveVariantId: String?
+  ) -> Bool {
+    chosenLanguageCode.isEmpty && previousEffectiveVariantId == nextEffectiveVariantId
+  }
+
   static func indexAfterSwitch(
     currentIndex: Int,
     previousEffectiveVariantId: String?,

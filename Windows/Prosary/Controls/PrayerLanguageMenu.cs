@@ -11,7 +11,9 @@ public static class PrayerLanguageMenu
         string current, Func<string, Task> select)
     {
         menu.Items.Clear();
-        var choices = new[] { new LanguageOption("", Loc.Tr("flow_app_setting", "App setting"), false) }
+        var choices = new[] { new LanguageOption("", string.Format(
+            Loc.Tr("language_default_parenthesized", "Default ({0})"),
+            LanguageCatalog.Resolve("").NativeName), false) }
             .Concat(languages);
         foreach (var language in choices)
         {

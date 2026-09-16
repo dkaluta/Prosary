@@ -18,7 +18,7 @@ public sealed record Prayer
     public bool IsDefault { get; init; } = false;
 
     /// <summary>Prayer language for this configuration. <see cref="LanguageCatalog.DefaultSentinel"/>
-    /// means follow the app-level default language setting.</summary>
+    /// means follow the effective global prayer language.</summary>
     public string LanguageCode { get; init; } = LanguageCatalog.DefaultSentinel;
 
     // Kind-specific options — populate the relevant record when creating a Prayer.
@@ -56,8 +56,8 @@ public sealed record Prayer
         : ResolvedLanguageCode;
     public string LanguageNativeName => LanguageCatalog.ContentLanguageName(LanguageCatalog.PickerLanguageCode(EffectiveLanguageCode));
 
-    /// <summary>Display string for list rows — shows "Default (Latina)" for the sentinel, plain
-    /// name otherwise.</summary>
+    /// <summary>The inherited setting displays its effective playback language, including
+    /// a bundle's content fallback.</summary>
     public string LanguageDisplayName => LanguageCode == LanguageCatalog.DefaultSentinel
         ? string.Format(Loc.Tr("language_default_parenthesized", "Default ({0})"), LanguageNativeName)
         : LanguageNativeName;

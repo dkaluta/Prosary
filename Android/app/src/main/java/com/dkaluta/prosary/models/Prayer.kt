@@ -16,7 +16,7 @@ data class Prayer(
     var isDefault: Boolean = false,
 
     /** Prayer language for this configuration. [LanguageCatalog.defaultSentinel] means follow the
-     * app-level default language setting. */
+     * global prayer language (which can itself follow the app language). */
     var languageCode: String = LanguageCatalog.defaultSentinel,
 
     // Kind-specific options — populate the relevant class when creating a Prayer.
@@ -52,7 +52,7 @@ data class Prayer(
         ?: resolvedLanguageCode
     val languageNativeName: String get() = LanguageCatalog.pickerLanguageName(effectiveLanguageCode)
 
-    /** Display string for list rows — shows "Default (Latina)" for the sentinel, plain name otherwise. */
+    /** Display string for list rows — shows "Default (English)" for the sentinel, plain name otherwise. */
     fun languageDisplayName(context: Context): String =
         if (languageCode == LanguageCatalog.defaultSentinel) {
             context.getString(

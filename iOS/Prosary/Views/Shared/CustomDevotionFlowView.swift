@@ -32,17 +32,22 @@ struct CustomDevotionFlowView: View {
   @State private var languageCode: String?
   @State private var matchingFavoriteId: Prayer.ID? = nil
   @State private var isPinned = false
-  @State private var displayName: String = ""
+  private var displayName: String { PrayerPackStore.info(for: devotionId)?.localizedDisplayName ?? devotionId }
   @State private var variantId: String? = nil
   /// The favorite's raw language choice: an explicit code, or the sentinel ("follow the
   /// app-level default setting"). `languageCode` above is always the resolved code.
   @State private var chosenLanguage: String = LanguageCatalog.defaultSentinel
+  @State private var initialLanguageChoice: String = LanguageCatalog.defaultSentinel
+  /// A frozen form keeps its actual language in the unfinished-run bookmark, while the
+  /// favorite and picker retain the inherited choice. Starting fresh clears this snapshot.
+  @State private var frozenLanguageCode: String?
   /// The favorite's bundle-specific choices. These affect the generated sequence and are part
   /// of the continuation signature so an edited preset never resumes into its old step map.
   @State private var customOptions: [String: String] = [:]
   @State private var audio = AudioPlaybackController()
   @State private var suspendedAudioTime: Double?
   @State private var suspendedAudioWasPlaying = false
+  @State private var automaticLanguageChapter: (trackID: String?, index: Int?)?
   /// Multi-day devotions: the day this session prays (0-based; sourced from the favorite).
   @State private var dayIndex = 0
   /// Set when a day was missed: the day that should have happened and the one today calls for.
@@ -115,12 +120,19 @@ struct CustomDevotionFlowView: View {
                          chapterTitles: resolvedChapterTitles)
       ) : nil,
       audioIsPlaying: audio.isPlaying,
-      flowActions: AnyView(flowActions)
+      flowActions: AnyView(flowActions), contentBundleID: devotionId
     )
     // The recording's chapters drive the text while it plays: entering a chapter that carries
     // a stepIndex hint turns the page. Hints are advisory (the built sequence is option- and
     // calendar-dependent), so out-of-range ones are ignored rather than trusted.
     .onChange(of: audio.currentChapterIndex) { _, chapterIndex in
+      // Loading a translated recording publishes a chapter change before playback starts.
+      // It must not replace the prayer position kept by an automatic language refresh.
+      if let automaticLanguageChapter {
+        self.automaticLanguageChapter = nil
+        if automaticLanguageChapter.trackID == audio.track?.id,
+           automaticLanguageChapter.index == chapterIndex { return }
+      }
       // The chapters are re-read (not trusted from the event) and bounds-checked: a language
       // switch can swap the track between the change being observed and delivered.
       guard let chapterIndex, let chapters = audio.track?.chapters,
@@ -143,9 +155,10 @@ struct CustomDevotionFlowView: View {
       steps = builtSteps()
       currentIndex = min(currentIndex, max(steps.count - 1, 0))
     }
+    .onChange(of: prayerLanguage.code) { _, _ in refreshInheritedLanguage() }
     .confirmationDialog(
       completionSuggestion.map {
-        String(localized: "multiDay.completedTitle", defaultValue: "That completes it. Pray \($0.name) next?")
+        String(localized: "multiDay.completedTitle", defaultValue: "That completes it. Pray \($0.name) next?", bundle: UILanguage.bundle, locale: UILanguage.locale)
       } ?? "",
       isPresented: .init(
         get: { completionSuggestion != nil },
@@ -153,34 +166,34 @@ struct CustomDevotionFlowView: View {
       titleVisibility: .visible
     ) {
       if let suggestion = completionSuggestion {
-        Button(String(localized: "multiDay.prayNext", defaultValue: "Pray \(suggestion.name)")) {
+        Button(String(localized: "multiDay.prayNext", defaultValue: "Pray \(suggestion.name)", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
           completionSuggestion = nil
           finishSession()
           windowNavigation?.openRoute(.custom(devotionId: suggestion.id))
         }
       }
-      Button(String(localized: "multiDay.notNow", defaultValue: "Not Now"), role: .cancel) {
+      Button(String(localized: "multiDay.notNow", defaultValue: "Not Now", bundle: UILanguage.bundle, locale: UILanguage.locale), role: .cancel) {
         completionSuggestion = nil
         finishSession()
       }
     }
     .confirmationDialog(
-      String(localized: "multiDay.missedTitle", defaultValue: "You missed a day"),
+      String(localized: "multiDay.missedTitle", defaultValue: "You missed a day", bundle: UILanguage.bundle, locale: UILanguage.locale),
       isPresented: .init(
         get: { pendingContinuation == nil && missedDayChoice != nil },
         set: { if !$0, pendingContinuation == nil { missedDayChoice = nil } }),
       titleVisibility: .visible
     ) {
       if let choice = missedDayChoice {
-        Button(String(localized: "multiDay.prayMissed", defaultValue: "Pray Day \(choice.missed + 1)")) {
+        Button(String(localized: "multiDay.prayMissed", defaultValue: "Pray Day \(choice.missed + 1)", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
           switchDay(to: choice.missed)
           missedDayChoice = nil
         }
-        Button(String(localized: "multiDay.prayToday", defaultValue: "Continue with Day \(choice.next + 1)")) {
+        Button(String(localized: "multiDay.prayToday", defaultValue: "Continue with Day \(choice.next + 1)", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
           switchDay(to: choice.next)
           missedDayChoice = nil
         }
-        Button(String(localized: "multiDay.startOver", defaultValue: "Start Over"), role: .destructive) {
+        Button(String(localized: "multiDay.startOver", defaultValue: "Start Over", bundle: UILanguage.bundle, locale: UILanguage.locale), role: .destructive) {
           MultiDayRuns.startFresh(seriesRunID)
           refreshSeriesReminders()
           switchDay(to: 0)
@@ -189,22 +202,22 @@ struct CustomDevotionFlowView: View {
       }
     }
     .alert(
-      String(localized: "prayerFlow.continue.title", defaultValue: "Continue this prayer?"),
+      String(localized: "prayerFlow.continue.title", defaultValue: "Continue this prayer?", bundle: UILanguage.bundle, locale: UILanguage.locale),
       isPresented: .init(
         get: { pendingContinuation != nil },
         set: { if !$0 { pendingContinuation = nil } }),
       presenting: pendingContinuation
     ) { progress in
-      Button(String(localized: "prayerFlow.continue", defaultValue: "Continue")) {
+      Button(String(localized: "prayerFlow.continue", defaultValue: "Continue", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
         resume(progress)
       }
       .keyboardShortcut(.defaultAction)
-      Button(String(localized: "prayerFlow.restart", defaultValue: "Restart"), role: .destructive) {
+      Button(String(localized: "prayerFlow.restart", defaultValue: "Restart", bundle: UILanguage.bundle, locale: UILanguage.locale), role: .destructive) {
         restart()
       }
     } message: { _ in
       Text(String(localized: "prayerFlow.continue.message",
-                  defaultValue: "You have an unfinished prayer. Continue where you left off or begin again?"))
+                  defaultValue: "You have an unfinished prayer. Continue where you left off or begin again?", bundle: UILanguage.bundle, locale: UILanguage.locale))
     }
     .task { await sessionLoader.perform { await load() } }
   }
@@ -218,15 +231,15 @@ struct CustomDevotionFlowView: View {
     if let languages = PrayerPackStore.info(for: devotionId)?.languages,
        languages.count > 1 || languages.contains("he") {
       Menu {
-        PrayerLanguageMenuContent(code: chosenLanguage,
+        PrayerLanguageMenuContent(code: chosenLanguage, resolvedCode: languageCode,
                                  options: LanguageCatalog.availableOptions(for: languages)) { switchLanguage(to: $0) }
       } label: {
-        Label(String(localized: "prayerFlow.language", defaultValue: "Prayer Language"), systemImage: "globe")
+        Label(String(localized: "prayerFlow.language", defaultValue: "Prayer Language", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "globe")
       }
       #if !os(macOS)
       .labelStyle(.iconOnly)
       #endif
-      .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer Language"))
+      .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer Language", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("languageMenu")
     }
     // Day picker — multi-day ("days"-type) devotions only: jump to any day; finishing a
@@ -247,12 +260,12 @@ struct CustomDevotionFlowView: View {
           }
         }
       } label: {
-        Label(String(localized: "prayerFlow.day", defaultValue: "Day"), systemImage: "calendar")
+        Label(String(localized: "prayerFlow.day", defaultValue: "Day", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "calendar")
       }
       #if !os(macOS)
       .labelStyle(.iconOnly)
       #endif
-      .accessibilityLabel(String(localized: "prayerFlow.day", defaultValue: "Day"))
+      .accessibilityLabel(String(localized: "prayerFlow.day", defaultValue: "Day", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("dayMenu")
     }
     // Variant switcher — only for bundles declaring alternate step-sets (e.g. the Stations'
@@ -278,12 +291,12 @@ struct CustomDevotionFlowView: View {
           }
         }
       } label: {
-        Label(String(localized: "macLibrary.form", defaultValue: "Form"), systemImage: "text.book.closed")
+        Label(String(localized: "macLibrary.form", defaultValue: "Form", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "text.book.closed")
       }
       #if !os(macOS)
       .labelStyle(.iconOnly)
       #endif
-      .help(String(localized: "macLibrary.form", defaultValue: "Form"))
+      .help(String(localized: "macLibrary.form", defaultValue: "Form", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("variantMenu")
     }
     #if !os(macOS)
@@ -313,11 +326,11 @@ struct CustomDevotionFlowView: View {
     }
     let all = (try? await services.presetStore.all()) ?? []
     let impliedPins = await impliedPinnedIds()
-    displayName = PrayerPackStore.info(for: devotionId)?.localizedDisplayName ?? devotionId
     let favorite = prayer ?? all.first { $0.kind == .custom && $0.customDevotionId == devotionId }
     matchingFavoriteId = initialLanguageCode == nil && initialVariantId == nil ? favorite?.id : nil
     isPinned = FavoriteDevotions.contains(devotionId, defaultingTo: impliedPins)
     chosenLanguage = initialLanguageCode ?? favorite?.languageCode ?? LanguageCatalog.defaultSentinel
+    initialLanguageChoice = chosenLanguage
     customOptions = RosaryOptions.normalizedCustomOptions(favorite?.customOptions ?? [:], bundleId: devotionId)
     languageCode = PrayerPackStore.effectiveLanguage(for: devotionId, chosen: chosenLanguage)
 
@@ -356,7 +369,8 @@ struct CustomDevotionFlowView: View {
     var continuation = progressStore.progress(for: runKey)
     #if os(macOS)
     continuation = PrayerCopyProgressIdentity.continuation(
-      continuation, savedLanguageCode: prayer == nil ? nil : chosenLanguage)
+      continuation, savedLanguageCode: prayer == nil ? nil : chosenLanguage,
+      preservesInheritedSession: true)
     #endif
     if let progress = continuation {
       let savedSteps = builtSteps(languageChoice: progress.languageCode)
@@ -364,9 +378,7 @@ struct CustomDevotionFlowView: View {
         stepCount: savedSteps.count,
         expectedConfigurationSignature: configurationSignature(forLanguageChoice: progress.languageCode)
       ) {
-        chosenLanguage = progress.languageCode
-        languageCode = PrayerPackStore.effectiveLanguage(for: devotionId, chosen: progress.languageCode)
-        isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
+        applyContinuationLanguage(progress.languageCode)
         steps = savedSteps
         pendingContinuation = progress
         pickAudioTrack(allowStoredPosition: false)
@@ -440,15 +452,48 @@ struct CustomDevotionFlowView: View {
   }
 
   private func builtSteps(languageChoice: String? = nil) -> [RosaryStep] {
+    // The effective language belongs to this live run. An inherited change may refresh it
+    // only within the same form; saved choices retain their raw sentinel either way.
     services.engine.buildSteps(for: Prayer(
-      kind: .custom, languageCode: languageChoice ?? chosenLanguage,
+      kind: .custom, languageCode: languageChoice ?? languageCode ?? chosenLanguage,
       customDevotionId: devotionId, variantId: variantId, dayIndex: dayIndex,
       customOptions: customOptions))
+  }
+
+  private func refreshInheritedLanguage() {
+    guard hasLoaded, !didFinish, chosenLanguage.isEmpty else { return }
+    let nextLanguage = PrayerPackStore.effectiveLanguage(for: devotionId, chosen: chosenLanguage)
+    guard nextLanguage != languageCode else {
+      if frozenLanguageCode != nil {
+        frozenLanguageCode = nil
+        if pendingContinuation == nil { persistProgress() }
+      }
+      return
+    }
+    let nextVariant = PrayerPackStore.definition(for: devotionId)?
+      .effectiveVariantId(variantId, languageCode: nextLanguage)
+    guard CustomDevotionLanguageSwitch.canRefreshInheritedLanguage(
+      chosenLanguageCode: chosenLanguage, previousEffectiveVariantId: effectiveVariantId,
+      nextEffectiveVariantId: nextVariant) else {
+      frozenLanguageCode = languageCode
+      if pendingContinuation == nil { persistProgress() }
+      return
+    }
+    frozenLanguageCode = nil
+    languageCode = nextLanguage
+    isRightToLeft = LanguageCatalog.resolve(nextLanguage).isRightToLeft
+    steps = builtSteps()
+    currentIndex = min(currentIndex, max(steps.count - 1, 0))
+    pickAudioTrack(allowStoredPosition: false)
+    automaticLanguageChapter = (audio.track?.id, audio.currentChapterIndex)
+    if pendingContinuation == nil { persistProgress() }
   }
 
   /// Rebuilds the session in the chosen language. The current position is retained when the
   /// devotion keeps the same effective form; a language-owned form starts at its first step.
   private func switchLanguage(to raw: String) {
+    automaticLanguageChapter = nil
+    frozenLanguageCode = nil
     let previousRunKey = runKey
     let previousEffectiveVariantId = effectiveVariantId
     chosenLanguage = raw
@@ -636,7 +681,8 @@ struct CustomDevotionFlowView: View {
   }
 
   private var configurationSignature: String {
-    configurationSignature(forLanguageChoice: chosenLanguage)
+    PrayerRunSignature.custom(devotionId, effectiveVariantId: effectiveVariantId,
+                              dayIndex: dayIndex, options: customOptions)
   }
 
   private func configurationSignature(forLanguageChoice raw: String) -> String {
@@ -650,11 +696,21 @@ struct CustomDevotionFlowView: View {
       options: customOptions)
   }
 
+  private func applyContinuationLanguage(_ storedLanguage: String) {
+    if initialLanguageChoice.isEmpty, !storedLanguage.isEmpty {
+      chosenLanguage = initialLanguageChoice
+      frozenLanguageCode = storedLanguage
+    } else {
+      chosenLanguage = storedLanguage
+      frozenLanguageCode = nil
+    }
+    languageCode = PrayerPackStore.effectiveLanguage(for: devotionId, chosen: storedLanguage)
+    isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
+  }
+
   private func resume(_ progress: PrayerRunProgress) {
     pendingContinuation = nil
-    chosenLanguage = progress.languageCode
-    languageCode = PrayerPackStore.effectiveLanguage(for: devotionId, chosen: progress.languageCode)
-    isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
+    applyContinuationLanguage(progress.languageCode)
     steps = builtSteps()
     pickAudioTrack()
     currentIndex = min(progress.stepIndex, max(steps.count - 1, 0))
@@ -664,8 +720,14 @@ struct CustomDevotionFlowView: View {
 
   private func restart() {
     pendingContinuation = nil
+    frozenLanguageCode = nil
+    chosenLanguage = initialLanguageChoice
+    languageCode = PrayerPackStore.effectiveLanguage(for: devotionId, chosen: chosenLanguage)
+    isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
+    steps = builtSteps()
     currentIndex = 0
-    audio.seek(to: 0)
+    pickAudioTrack(allowStoredPosition: false)
+    automaticLanguageChapter = (audio.track?.id, audio.currentChapterIndex)
     progressStore.clear(runKey: runKey)
   }
 
@@ -673,7 +735,7 @@ struct CustomDevotionFlowView: View {
     progressStore.save(
       runKey: runKey,
       stepIndex: currentIndex,
-      languageCode: chosenLanguage,
+      languageCode: frozenLanguageCode ?? chosenLanguage,
       configurationSignature: configurationSignature)
   }
 }

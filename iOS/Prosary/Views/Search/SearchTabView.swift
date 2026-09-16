@@ -72,10 +72,10 @@ struct SearchTabView: View {
     let _ = prayerLanguage.code  // dependency registration — see the property's comment
     let _ = showsPrayerNameInPrayerLanguage
     List(selection: desktopSelection) {
-      Section(String(localized: "categories.title", defaultValue: "Categories")) {
+      Section(String(localized: "categories.title", defaultValue: "Categories", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
         ScrollView(.horizontal) {
           HStack(spacing: 8) {
-            categoryButton(nil, title: String(localized: "search.allCategories", defaultValue: "All"))
+            categoryButton(nil, title: String(localized: "search.allCategories", defaultValue: "All", bundle: UILanguage.bundle, locale: UILanguage.locale))
             ForEach(categories, id: \.self) { category in
               categoryButton(category, title: UILanguage.tag(category))
             }
@@ -85,7 +85,7 @@ struct SearchTabView: View {
         .scrollIndicators(.hidden)
         .accessibilityIdentifier("search.categories")
       }
-      Section(String(localized: "search.onDevice", defaultValue: "On This Device")) {
+      Section(String(localized: "search.onDevice", defaultValue: "On This Device", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
         ForEach(localMatches) { listing in
           Button {
             selectedListing = listing.id
@@ -115,21 +115,21 @@ struct SearchTabView: View {
           .contextMenu {
             if PrayerPackStore.installedBundleIds().contains(listing.id) {
               Button(role: .destructive) { removingDownload = listing.id } label: {
-                Label(String(localized: "removal.removeDownloadAction", defaultValue: "Remove Download…"), systemImage: "trash")
+                Label(String(localized: "removal.removeDownloadAction", defaultValue: "Remove Download…", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "trash")
               }
               .disabled(!unusedDownloads.contains(listing.id))
-              .help(String(localized: "removal.downloadInUse", defaultValue: "Delete all saved copies of this prayer before removing its download."))
+              .help(String(localized: "removal.downloadInUse", defaultValue: "Delete all saved copies of this prayer before removing its download.", bundle: UILanguage.bundle, locale: UILanguage.locale))
             }
           }
         }
         if localMatches.isEmpty {
-          Text(String(localized: "search.noLocalMatches", defaultValue: "Nothing on this device matches."))
+          Text(String(localized: "search.noLocalMatches", defaultValue: "Nothing on this device matches.", bundle: UILanguage.bundle, locale: UILanguage.locale))
             .foregroundStyle(.secondary)
         }
       }
 
       if !communityMatches.isEmpty {
-        Section(String(localized: "search.community", defaultValue: "From the Community")) {
+        Section(String(localized: "search.community", defaultValue: "From the Community", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
           ForEach(communityMatches) { bundle in
             HStack {
               VStack(alignment: .leading, spacing: 2) {
@@ -143,7 +143,7 @@ struct SearchTabView: View {
               if busyBundleIds.contains(bundle.id) {
                 ProgressView()
               } else {
-                Button(String(localized: "repository.install", defaultValue: "Install")) {
+                Button(String(localized: "repository.install", defaultValue: "Install", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
                   install(bundle)
                 }
                 .buttonStyle(.borderedProminent)
@@ -154,8 +154,8 @@ struct SearchTabView: View {
         }
       }
     }
-    .navigationTitle(String(localized: "search.title", defaultValue: "Search"))
-    .searchable(text: $query, prompt: String(localized: "search.prompt", defaultValue: "Devotions, categories, authors"))
+    .navigationTitle(String(localized: "search.title", defaultValue: "Search", bundle: UILanguage.bundle, locale: UILanguage.locale))
+    .searchable(text: $query, prompt: String(localized: "search.prompt", defaultValue: "Devotions, categories, authors", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .modifier(PrayerDownloadRemovalDialogs(bundleID: $removingDownload, onRemoved: { await refreshDownloads() }))
     .task { await refreshDownloads() }
     .onAppear { packGeneration += 1 }
@@ -175,10 +175,10 @@ struct SearchTabView: View {
       repoBundles = (try? await RepositoryClient.fetchCatalog()) ?? []
     }
     .alert(
-      String(localized: "repository.installFailed", defaultValue: "Could Not Install Devotion"),
+      String(localized: "repository.installFailed", defaultValue: "Could Not Install Devotion", bundle: UILanguage.bundle, locale: UILanguage.locale),
       isPresented: .init(get: { installError != nil }, set: { if !$0 { installError = nil } })
     ) {
-      Button(String(localized: "common.ok", defaultValue: "OK"), role: .cancel) {}
+      Button(String(localized: "common.ok", defaultValue: "OK", bundle: UILanguage.bundle, locale: UILanguage.locale), role: .cancel) {}
         .keyboardShortcut(.defaultAction)
     } message: {
       Text(installError ?? "")

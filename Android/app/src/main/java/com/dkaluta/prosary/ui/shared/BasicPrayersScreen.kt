@@ -168,6 +168,8 @@ fun BasicPrayerFlowScreen(prayerId: String, onNavigateUp: () -> Unit) {
     }
     PrayerStepFlowScreen(
         title = step.title,
+        prayerBundleId = prayer.bundleId,
+        titleFollowsPrayerScript = true,
         step = step,
         currentIndex = 0,
         totalSteps = 1,

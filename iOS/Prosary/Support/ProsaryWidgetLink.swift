@@ -26,7 +26,7 @@ enum ProsaryWidgetLink: Equatable {
 
   /// Starting today's Rosary uses the person's preferred options without editing that copy.
   static func rosaryPrayer(from saved: Prayer?) -> Prayer {
-    var prayer = saved ?? Prayer(name: String(localized: "prayerKind.rosary", defaultValue: "Rosary"))
+    var prayer = saved ?? Prayer(name: String(localized: "prayerKind.rosary", defaultValue: "Rosary", bundle: UILanguage.bundle, locale: UILanguage.locale))
     prayer.id = UUID()
     prayer.kind = .rosary
     prayer.isDefault = false

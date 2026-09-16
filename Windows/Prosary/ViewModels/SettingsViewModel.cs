@@ -41,12 +41,15 @@ public partial class SettingsViewModel : ObservableObject
     public Func<InstalledDevotionRow, Task<bool>>? ConfirmRemoveDownload { get; set; }
     public Func<string, Task>? ShowRemovalError { get; set; }
 
-    [ObservableProperty]
-    private LanguageOption _selectedLanguage = LanguageCatalog.PickerOptions.FirstOrDefault(
-        l => l.Code == LanguageCatalog.PickerLanguageCode(AppSettings.DefaultLanguageCode))
-        ?? LanguageCatalog.Resolve(AppSettings.DefaultLanguageCode);
+    private static LanguageOption FollowingAppLanguage => new("", string.Format(
+        Loc.Tr("language_app_parenthesized", "App Language ({0})"),
+        UiLanguageCatalog.All.First(language => language.Code == UiLanguageCatalog.Current).NativeName), false);
 
-    public IReadOnlyList<LanguageOption> LanguageOptions => LanguageCatalog.PickerOptions;
+    public IReadOnlyList<LanguageOption> LanguageOptions { get; } =
+        new[] { FollowingAppLanguage }.Concat(LanguageCatalog.PickerOptions).ToArray();
+
+    [ObservableProperty]
+    private LanguageOption _selectedLanguage = null!;
 
     [ObservableProperty]
     private bool _useJaffaHailMaryWording = AppSettings.UseJaffaHailMaryWording;
@@ -54,8 +57,16 @@ public partial class SettingsViewModel : ObservableObject
     partial void OnUseJaffaHailMaryWordingChanged(bool value) => AppSettings.SetUseJaffaHailMaryWording(value);
 
     public SettingsViewModel(PrayerRemovalService? removal = null)
+        : this(AudioCacheSize(), removal) { }
+
+    // Language-selection tests run without package identity or a native audio-cache folder.
+    internal SettingsViewModel(long initialAudioCacheBytes, PrayerRemovalService? removal = null)
     {
         _removal = removal;
+        _audioCacheBytes = initialAudioCacheBytes;
+        SelectedLanguage = LanguageOptions.FirstOrDefault(option =>
+            option.Code == LanguageCatalog.PickerLanguageCode(AppSettings.PrayerLanguageCode))
+            ?? LanguageOptions[0];
         RefreshRites();
         SelectedEasternPascha = CurrentEasternPascha;
     }
@@ -69,17 +80,12 @@ public partial class SettingsViewModel : ObservableObject
 
     partial void OnSelectedLanguageChanged(LanguageOption value)
     {
-        AppSettings.SetDefaultLanguageCode(LanguageCatalog.SelectingLanguage(value.Code, AppSettings.DefaultLanguageCode));
+        AppSettings.SetDefaultLanguageCode(LanguageCatalog.SelectingLanguage(value.Code, AppSettings.PrayerLanguageCode));
         RefreshRites();
         OnPropertyChanged(nameof(ShowsAramaicSignOfCrossPicker));
-        // The installed rows' titles were snapshotted at load; the names follow the prayer
-        // language, so a language change on this very page must re-derive them (2026-08-08).
         RefreshInstalledDevotions();
     }
 
-    /// <summary>The rites of the chosen language — empty (and hidden) when there is only one way
-    /// to pray it. A rite that lacks a prayer reads it in the language's own wording, so this is
-    /// a preference, never a restriction.</summary>
     [ObservableProperty]
     private IReadOnlyList<LanguageOption> _riteOptions = [];
 
@@ -90,29 +96,24 @@ public partial class SettingsViewModel : ObservableObject
 
     partial void OnSelectedRiteChanged(LanguageOption? value)
     {
-        if (value is not null)
+        if (value is not null && ShowsRitePicker)
         {
             AppSettings.SetDefaultLanguageCode(value.Code);
-            // The installed rows' titles follow the prayer language — re-derive on this page.
             RefreshInstalledDevotions();
         }
     }
 
     private static readonly IReadOnlyList<AramaicSignOfCrossOption> AllAramaicSignOfCrossOptions =
     [
-        new(AppSettings.AramaicSignOfCrossFormA,
-            Loc.Tr("settings_aramaic_sign_of_cross_form_a", "Form A")),
-        new(AppSettings.AramaicSignOfCrossFormB,
-            Loc.Tr("settings_aramaic_sign_of_cross_form_b", "Form B")),
+        new(AppSettings.AramaicSignOfCrossFormA, Loc.Tr("settings_aramaic_sign_of_cross_form_a", "Form A")),
+        new(AppSettings.AramaicSignOfCrossFormB, Loc.Tr("settings_aramaic_sign_of_cross_form_b", "Form B")),
     ];
 
-    public IReadOnlyList<AramaicSignOfCrossOption> AramaicSignOfCrossOptions =>
-        AllAramaicSignOfCrossOptions;
+    public IReadOnlyList<AramaicSignOfCrossOption> AramaicSignOfCrossOptions => AllAramaicSignOfCrossOptions;
 
     [ObservableProperty]
     private AramaicSignOfCrossOption _selectedAramaicSignOfCross =
-        AllAramaicSignOfCrossOptions.FirstOrDefault(
-            option => option.Value == AppSettings.AramaicSignOfCrossForm)
+        AllAramaicSignOfCrossOptions.FirstOrDefault(option => option.Value == AppSettings.AramaicSignOfCrossForm)
         ?? AllAramaicSignOfCrossOptions[0];
 
     partial void OnSelectedAramaicSignOfCrossChanged(AramaicSignOfCrossOption value) =>
@@ -223,50 +224,21 @@ public partial class SettingsViewModel : ObservableObject
 
     public IReadOnlyList<AutoAdvanceOption> AutoAdvanceOptions => AllAutoAdvanceOptions;
 
-    // The app's UI language (v0.7, Gamaliel item 3 — Hebrew UI). Windows resolves resources from
-    // the user's Windows language list; this override lets someone keep Windows in English but
-    // pray-app in Hebrew (or vice versa). Applies fully after a relaunch — the footer says so.
+    // Existing windows keep their locale until relaunch, including their inherited prayer
+    // language. The saved selection and restart notice stay visible in Settings meanwhile.
     private static readonly IReadOnlyList<AppLanguageOption> AllAppLanguages =
-    [
-        new(string.Empty, Loc.Tr("settings_app_language_system", "System default")),
-        new("en-US", "English"),
-        new("he", "עברית"),
-        new("ar", "العربية"),
-        new("ru", "Русский"),
-        new("fil", "Tagalog"),
-        new("fr", "Français"),
-        new("it", "Italiano"),
-    ];
+        new[] { new AppLanguageOption(string.Empty, Loc.Tr("settings_app_language_system", "System Default")) }
+        .Concat(UiLanguageCatalog.All.Select(language => new AppLanguageOption(language.Code, language.NativeName)))
+        .ToArray();
 
     public IReadOnlyList<AppLanguageOption> AppLanguageOptions => AllAppLanguages;
 
     [ObservableProperty]
     private AppLanguageOption _selectedAppLanguage =
-        AllAppLanguages.FirstOrDefault(o => o.Tag == CurrentLanguageOverride()) ?? AllAppLanguages[0];
+        AllAppLanguages.FirstOrDefault(o => o.Tag == AppSettings.InterfaceLanguageCode) ?? AllAppLanguages[0];
 
     partial void OnSelectedAppLanguageChanged(AppLanguageOption value)
-    {
-        try
-        {
-            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = value.Tag;
-        }
-        catch
-        {
-            // Unpackaged (unit-test) context — nothing to persist to.
-        }
-    }
-
-    private static string CurrentLanguageOverride()
-    {
-        try
-        {
-            return Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride;
-        }
-        catch
-        {
-            return string.Empty;
-        }
-    }
+        => AppSettings.SetInterfaceLanguageCode(value.Tag);
 
     // The Home "Today" section (Erez's requests): which of its rows show at all, and which
     // calendar's feasts and readings the section follows. The choices come from the bundled
@@ -348,7 +320,7 @@ public partial class SettingsViewModel : ObservableObject
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(AudioCacheLabel))]
     [NotifyCanExecuteChangedFor(nameof(ClearAudioCacheCommand))]
-    private long _audioCacheBytes = AudioCacheSize();
+    private long _audioCacheBytes;
 
     public string AudioCacheLabel => AudioCacheBytes > 0
         ? string.Format(Loc.Tr("settings_clear_audio_cache_size", "Clear Audio Cache ({0})"), FormatBytes(AudioCacheBytes))

@@ -112,9 +112,10 @@ object WidgetUpdates {
         val savedIds = ids(context, SavedPrayerWidgetProvider::class.java)
         scheduleMidnight(context, todayIds.isNotEmpty() || savedIds.isNotEmpty())
         if (todayIds.isEmpty() && savedIds.isEmpty()) return@withLock
-        AppSettings.init(context)
-        val language = TodayTranslationLanguage.resolve(context.resources.configuration.locales[0].toLanguageTag())
-        val localized = TodayTranslationLanguage.localizedContext(context, language)
+        val appContext = com.dkaluta.prosary.InterfaceLanguageController.localizedContext(context)
+        AppSettings.init(appContext)
+        val language = TodayTranslationLanguage.resolve(appContext.resources.configuration.locales[0].toLanguageTag())
+        val localized = TodayTranslationLanguage.localizedContext(appContext, language)
         TodayInfoStore.initialize { name -> runCatching { context.assets.open("data/$name.json") }.getOrNull() }
         val today = LocalDate.now()
         val content = TodayWidgetContent.load(today, language)

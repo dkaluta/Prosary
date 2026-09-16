@@ -100,19 +100,19 @@ struct RosaryOptions: Hashable, Codable {
   var mysterySelectionSummary: String {
     switch mysterySelectionMode {
     case .specific:
-      return String(localized: "rosaryOptions.summary.always", defaultValue: "Always \(specificMysteryGroup.displayName)")
+      return String(localized: "rosaryOptions.summary.always", defaultValue: "Always \(specificMysteryGroup.displayName)", bundle: UILanguage.bundle, locale: UILanguage.locale)
     case .singleMystery:
       let chosen = MysteryCatalog.forGroup(specificMysteryGroup).first { $0.order == specificMysteryOrder }
       let title = chosen.map { HebrewDisplayText.unpointed(MysteryTranslations.get(
         languageCode: UILanguage.current,
         imageKey: $0.imageKey).title) } ?? specificMysteryGroup.displayName
-      return String(localized: "rosaryOptions.summary.singleMystery", defaultValue: "Only \(title)")
+      return String(localized: "rosaryOptions.summary.singleMystery", defaultValue: "Only \(title)", bundle: UILanguage.bundle, locale: UILanguage.locale)
     case .fifteenMystery:
-      return String(localized: "rosaryOptions.summary.fifteenMystery", defaultValue: "The 15 Mysteries")
+      return String(localized: "rosaryOptions.summary.fifteenMystery", defaultValue: "The 15 Mysteries", bundle: UILanguage.bundle, locale: UILanguage.locale)
     case .twentyMystery:
-      return String(localized: "rosaryOptions.summary.twentyMystery", defaultValue: "The 20 Mysteries")
+      return String(localized: "rosaryOptions.summary.twentyMystery", defaultValue: "The 20 Mysteries", bundle: UILanguage.bundle, locale: UILanguage.locale)
     case .todaysMysteries:
-      return String(localized: "mysterySelectionMode.todaysMysteries", defaultValue: "Today's Mysteries")
+      return String(localized: "mysterySelectionMode.todaysMysteries", defaultValue: "Today's Mysteries", bundle: UILanguage.bundle, locale: UILanguage.locale)
     }
   }
 }

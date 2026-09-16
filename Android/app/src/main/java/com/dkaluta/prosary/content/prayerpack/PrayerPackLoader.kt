@@ -814,6 +814,21 @@ object PrayerPackStore {
     fun resolveBodyText(bundleId: String, languageCode: String?, key: String): String =
         resolvePrayerContent(bundleId, languageCode, key)?.text ?: key
 
+    /** Exact sourced heading pairs, with bundle-local wording ahead of shared Rosary titles.
+     * An unpaired local heading must not acquire an alternate from a different wording. */
+    fun titleScriptPairs(bundleId: String, languageCode: String): List<Pair<String, String>> {
+        val local = rawContentByBundle[bundleId]?.get(languageCode).orEmpty()
+        // A bundle can name its titleKey freely. Prefer conventional title keys, then match
+        // other local entries only by their exact sourced text; do not scan unrelated packs.
+        val keys = (local.keys + sharedPrayerTitleKeys)
+            .sortedWith(compareByDescending<String> { it.endsWith("Title") }.thenBy { it })
+        return keys.mapNotNull { key ->
+            val content = localPrayerContent(bundleId, languageCode, key)
+                ?: if (key in sharedPrayerTitleKeys) localPrayerContent("rosary", languageCode, key) else null
+            content?.readingAid?.let { content.text to it }
+        }
+    }
+
     /** Production entry point. `noCompress` makes each built-in pack an uncompressed Android
      * asset, so `openFd` exposes its bounded region inside the installed APK and the central
      * directory can be indexed without copying or inflating the outer asset. */

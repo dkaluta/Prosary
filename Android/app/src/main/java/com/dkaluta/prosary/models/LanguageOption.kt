@@ -10,7 +10,7 @@ data class LanguageOption(
     val isRightToLeft: Boolean,
 )
 
-/** Languages available for prayer text. Latin is the default — it's the neutral fallback every
+/** Languages available for prayer text. Latin is the neutral content fallback every
  * lookup falls back to if a translation is missing in the chosen language. */
 object LanguageCatalog {
     /** Base spelling for interface metadata and typography; prayer traditions have their
@@ -27,7 +27,7 @@ object LanguageCatalog {
      * fed it straight into a manifest's displayNameByLanguage / nameByLanguage / reminderBody
      * missed the "he" keys and quietly fell back to English for exactly the audience those keys
      * were written for. Normalized here once; the other two legacy codes come along for free. */
-    fun uiLanguageCode(raw: String = java.util.Locale.getDefault().language): String {
+    fun uiLanguageCode(raw: String = AppSettings.effectiveInterfaceLanguageCode): String {
         val normalized = raw.replace('_', '-').lowercase(java.util.Locale.ROOT)
         val base = normalized.substringBefore('-')
         val canonicalBase = when (base) {
@@ -40,7 +40,7 @@ object LanguageCatalog {
         return canonicalBase + normalized.removePrefix(base)
     }
 
-    /** Sentinel stored in a favorite's `languageCode` meaning "follow the app-level default setting". */
+    /** Sentinel stored in a favorite's `languageCode` meaning "follow the global prayer language". */
     const val defaultSentinel = ""
 
     val all: List<LanguageOption> = listOf(
@@ -124,7 +124,7 @@ object LanguageCatalog {
                 baseLanguage(normalized)?.takeIf { it !in this }?.let(::add)
             }
         }
-        append(requested?.takeIf { it.isNotEmpty() } ?: AppSettings.defaultLanguageCode)
+        append(requested?.takeIf { it.isNotEmpty() } ?: AppSettings.effectivePrayerLanguageCode)
         fallbackOrder.forEach(::append)
         append(defaultCode)
     }
@@ -163,7 +163,7 @@ object LanguageCatalog {
 
     fun resolve(code: String?): LanguageOption {
         if (code == null || code == defaultSentinel) {
-            return option(uiLanguageCode(AppSettings.defaultLanguageCode))
+            return option(uiLanguageCode(AppSettings.effectivePrayerLanguageCode))
         }
         return option(uiLanguageCode(code))
     }

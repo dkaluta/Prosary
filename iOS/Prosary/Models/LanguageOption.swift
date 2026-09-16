@@ -20,7 +20,7 @@ enum AramaicSignOfCrossForm {
   /// The app-wide form governs Aramaic only while Aramaic is itself the app default. An
   /// explicitly-Aramaic Rosary under another default uses its own saved form instead.
   static var isSystemWideActive: Bool {
-    let code = UserDefaults.standard.string(forKey: "defaultLanguageCode") ?? LanguageCatalog.defaultCode
+    let code = LanguageCatalog.inheritedCode
     return (LanguageCatalog.baseLanguage(of: code) ?? code) == "arc"
   }
 }
@@ -37,9 +37,10 @@ struct LanguageOption: Identifiable, Hashable, Codable {
   var id: String { code }
 }
 
-/// Languages available for prayer text. Latin is the default — it's the neutral fallback every
-/// lookup falls back to if a translation is missing in the chosen language.
+/// Languages available for prayer text. An optional prayer-language override takes precedence
+/// over App Language; Latin remains the final fallback when the requested text is unavailable.
 enum LanguageCatalog {
+  static let defaultsKey = "defaultLanguageCode"
   static let fallbackOrderKey = "languageFallbackOrder"
   /// Content-only bucket; stored preferences still use `he` for the Vicariate tradition.
   static let vicariateContentCode = "he-x-vicariate"
@@ -53,6 +54,14 @@ enum LanguageCatalog {
   static let defaultCode = "la"
   /// Sentinel stored in a preset's `languageCode` meaning "follow the app-level default setting".
   static let defaultSentinel = ""
+
+  /// Keep existing prayer choices, including languages and traditions unavailable for the UI.
+  /// New installations follow App Language until a prayer-language override is selected.
+  static var inheritedCode: String {
+    let stored = UserDefaults.standard.string(forKey: defaultsKey) ?? ""
+    let normalized = stored == "iw" ? "he" : stored == "fil" ? "tl" : stored
+    return all.contains(where: { $0.code == normalized }) ? normalized : UILanguage.current
+  }
 
   static let all: [LanguageOption] = [
     LanguageOption(code: "la", nativeName: "Latina", isRightToLeft: false),
@@ -92,13 +101,13 @@ enum LanguageCatalog {
 
   static func traditionName(_ raw: String) -> String {
     raw == "he-x-gamliel"
-      ? String(localized: "prayerLanguage.tradition.mission", defaultValue: "Mission of St. Gamaliel")
-      : String(localized: "prayerLanguage.tradition.vicariate", defaultValue: "Saint James Vicariate")
+      ? String(localized: "prayerLanguage.tradition.mission", defaultValue: "Mission of St. Gamaliel", bundle: UILanguage.bundle, locale: UILanguage.locale)
+      : String(localized: "prayerLanguage.tradition.vicariate", defaultValue: "Saint James Vicariate", bundle: UILanguage.bundle, locale: UILanguage.locale)
   }
 
   /// Picker choices for a bundle's declared languages; a Hebrew overlay also offers Hebrew.
   static func availableOptions(for declaredCodes: [String]) -> [LanguageOption] {
-    let available = Set(declaredCodes.map(pickerLanguageCode))
+    let available = Set(declaredCodes.map { pickerLanguageCode($0) })
     return languages.filter { available.contains($0.code) }
   }
 
@@ -126,7 +135,7 @@ enum LanguageCatalog {
   }
 
   static func contentLanguageNames(_ codes: [String]) -> [String] {
-    codes.map(contentLanguageName).unique()
+    codes.map { contentLanguageName($0) }.unique()
   }
 
   static var fallbackOrder: [String] {
@@ -165,8 +174,7 @@ enum LanguageCatalog {
       }
     }
     let effectiveRequested = requested.flatMap { $0.isEmpty ? nil : $0 }
-      ?? UserDefaults.standard.string(forKey: "defaultLanguageCode")
-      ?? defaultCode
+      ?? inheritedCode
     append(effectiveRequested)
     fallbackOrder.forEach { append($0) }
     append(defaultCode)
@@ -222,8 +230,7 @@ enum LanguageCatalog {
 
   static func resolve(_ code: String?) -> LanguageOption {
     if code == nil || code == defaultSentinel {
-      let stored = UserDefaults.standard.string(forKey: "defaultLanguageCode") ?? defaultCode
-      return option(for: stored)
+      return option(for: inheritedCode)
     }
     return option(for: code)
   }

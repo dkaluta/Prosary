@@ -59,7 +59,9 @@ final class PrayerLanguageMonitor: ObservableObject {
     showsPrayerNameInPrayerLanguage = initial.showsPrayerName
     usesJaffaHailMaryWording = initial.usesJaffaWording
     fallbackOrder = initial.fallbackOrder
-    cancellable = notificationCenter.publisher(for: UserDefaults.didChangeNotification)
+    cancellable = Publishers.Merge(
+      notificationCenter.publisher(for: UserDefaults.didChangeNotification),
+      notificationCenter.publisher(for: .interfaceLanguageDidChange))
       .receive(on: RunLoop.main)
       .map { _ in readSettings() }
       .removeDuplicates()

@@ -43,9 +43,9 @@ final class MacPrayerGalleryImageStore {
 
     var errorDescription: String? {
       switch self {
-      case .invalidImage: String(localized: "macGallery.image.invalid", defaultValue: "Choose a supported image file.")
-      case .imageTooLarge: String(localized: "macGallery.image.tooLarge", defaultValue: "This image is too large. Choose a smaller image.")
-      case .invalidID: String(localized: "macGallery.image.unavailable", defaultValue: "This prayer’s image could not be changed.")
+      case .invalidImage: String(localized: "macGallery.image.invalid", defaultValue: "Choose a supported image file.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
+      case .imageTooLarge: String(localized: "macGallery.image.tooLarge", defaultValue: "This image is too large. Choose a smaller image.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
+      case .invalidID: String(localized: "macGallery.image.unavailable", defaultValue: "This prayer’s image could not be changed.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
       }
     }
   }

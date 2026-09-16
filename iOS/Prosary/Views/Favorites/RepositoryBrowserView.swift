@@ -55,12 +55,12 @@ struct RepositoryBrowserView: View {
         } else if let loadError {
           ContentUnavailableView {
             Label(
-              String(localized: "repository.unavailable", defaultValue: "Repository Unavailable"),
+              String(localized: "repository.unavailable", defaultValue: "Repository Unavailable", bundle: UILanguage.bundle, locale: UILanguage.locale),
               systemImage: "wifi.slash")
           } description: {
             Text(loadError)
           } actions: {
-            Button(String(localized: "repository.retry", defaultValue: "Try Again")) {
+            Button(String(localized: "repository.retry", defaultValue: "Try Again", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
               Task { await load() }
             }
           }
@@ -68,7 +68,7 @@ struct RepositoryBrowserView: View {
           list
         }
       }
-      .navigationTitle(String(localized: "repository.title", defaultValue: "Community Devotions"))
+      .navigationTitle(String(localized: "repository.title", defaultValue: "Community Devotions", bundle: UILanguage.bundle, locale: UILanguage.locale))
       #if os(iOS)
       .navigationBarTitleDisplayMode(.inline)
       #endif
@@ -76,7 +76,7 @@ struct RepositoryBrowserView: View {
         if presentedAsSheet {
           ToolbarItem(placement: .cancellationAction) {
             Button { dismiss() } label: {
-              Label(String(localized: "favoriteEditor.done", defaultValue: "Done"), systemImage: "checkmark")
+              Label(String(localized: "favoriteEditor.done", defaultValue: "Done", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "checkmark")
             }
             #if !os(macOS)
             .labelStyle(.titleOnly)
@@ -109,7 +109,7 @@ struct RepositoryBrowserView: View {
         }
       }
       .alert(
-        String(localized: "repository.installFailed", defaultValue: "Could Not Install Devotion"),
+        String(localized: "repository.installFailed", defaultValue: "Could Not Install Devotion", bundle: UILanguage.bundle, locale: UILanguage.locale),
         isPresented: .init(get: { installError != nil }, set: { if !$0 { installError = nil } })
       ) {
         Button("common.ok") {}
@@ -132,7 +132,7 @@ struct RepositoryBrowserView: View {
       if allTags.count > 1 {
         ScrollView(.horizontal, showsIndicators: false) {
           HStack(spacing: 8) {
-            tagChip(nil, label: String(localized: "repository.allTags", defaultValue: "All"))
+            tagChip(nil, label: String(localized: "repository.allTags", defaultValue: "All", bundle: UILanguage.bundle, locale: UILanguage.locale))
             ForEach(allTags, id: \.self) { tag in
               tagChip(tag, label: UILanguage.tag(tag))
             }
@@ -146,7 +146,7 @@ struct RepositoryBrowserView: View {
       }
 
       if filteredBundles.isEmpty {
-        Text(String(localized: "repository.noMatches", defaultValue: "No devotions match."))
+        Text(String(localized: "repository.noMatches", defaultValue: "No devotions match.", bundle: UILanguage.bundle, locale: UILanguage.locale))
           .foregroundStyle(.secondary)
       }
     }
@@ -192,20 +192,20 @@ struct RepositoryBrowserView: View {
           ProgressView()
         } else if RepositoryInstallStamps.hasUpdate(bundle: bundle, isInstalled: isInstalled) {
           // The author republished since this was installed: same pipeline, replace in place.
-          Button(String(localized: "repository.update", defaultValue: "Update")) {
+          Button(String(localized: "repository.update", defaultValue: "Update", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
             install(bundle, replacingExisting: true)
           }
           .buttonStyle(.borderedProminent)
           .tint(.brandPrimary)
         } else if isInstalled {
-          Label(String(localized: "repository.installed", defaultValue: "Installed"), systemImage: "checkmark")
+          Label(String(localized: "repository.installed", defaultValue: "Installed", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "checkmark")
             .font(.subheadline)
             .foregroundStyle(.secondary)
             .labelStyle(.titleAndIcon)
         } else if busyBundleIds.contains(bundle.id) {
           ProgressView()
         } else {
-          Button(String(localized: "repository.install", defaultValue: "Install")) {
+          Button(String(localized: "repository.install", defaultValue: "Install", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
             install(bundle)
           }
           .buttonStyle(.borderedProminent)

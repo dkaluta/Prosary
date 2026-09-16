@@ -2,7 +2,7 @@ package com.dkaluta.prosary
 
 import android.os.Bundle
 import android.content.Intent
-import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Box
@@ -29,7 +29,7 @@ import com.dkaluta.prosary.widgets.WidgetDestination
 import com.dkaluta.prosary.widgets.WidgetLaunchRequest
 import com.dkaluta.prosary.widgets.WidgetUpdates
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     private var widgetLaunchRequest by mutableStateOf<WidgetLaunchRequest?>(null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +37,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         AppSettings.init(this)
+        InterfaceLanguageController.synchronize(this)
         readWidgetIntent(intent)
         WidgetUpdates.refresh(this)
         ReminderScheduler.createNotificationChannel(this)

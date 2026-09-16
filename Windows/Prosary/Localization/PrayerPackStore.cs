@@ -441,6 +441,26 @@ public static class PrayerPackStore
     public static string? Transliteration(string bundleId, string? languageCode, string key) =>
         ResolvePrayerContent(bundleId, languageCode, key)?.ReadingAid;
 
+    /// <summary>Only author-supplied Aramaic heading pairs, with the active bundle taking
+    /// precedence over shared Rosary titles. No language fallback supplies either half.</summary>
+    internal static IEnumerable<(string Text, string ReadingAid)> AramaicTitlePairs(string bundleId)
+    {
+        var local = RawContentByBundle.GetValueOrDefault(bundleId)?.GetValueOrDefault("arc");
+        var keys = (local?.Keys.AsEnumerable() ?? Enumerable.Empty<string>())
+            .Concat(SharedPrayerTitleKeys).Distinct(StringComparer.Ordinal)
+            .OrderByDescending(key => key.EndsWith("Title", StringComparison.Ordinal))
+            .ThenBy(key => key, StringComparer.Ordinal);
+        foreach (var key in keys)
+        {
+            // An authored local heading without an alternate must not borrow Rosary's aid.
+            var source = local?.ContainsKey(key) == true ? bundleId : "rosary";
+            var text = RawContentByBundle.GetValueOrDefault(source)?.GetValueOrDefault("arc")?.GetValueOrDefault(key);
+            var alternate = TransliterationsByBundle.GetValueOrDefault(source)?.GetValueOrDefault("arc")?.GetValueOrDefault(key);
+            if (!string.IsNullOrEmpty(text) && !string.IsNullOrEmpty(alternate))
+                yield return (text, alternate);
+        }
+    }
+
     public static string ResolveBodyText(string bundleId, string? languageCode, string key) =>
         ResolvePrayerContent(bundleId, languageCode, key)?.Text ?? key;
 

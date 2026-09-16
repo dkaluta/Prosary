@@ -257,6 +257,124 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
         }
     }
 
+    [Theory]
+    [InlineData("ourFather", "rosary", "paterNosterTitle", "Hebr")]
+    [InlineData("ourFather", "rosary", "paterNosterTitle", "Syrc")]
+    [InlineData("holyGod", "trisagion", "trisagionAcclamationTitle", "Hebr")]
+    [InlineData("holyGod", "trisagion", "trisagionAcclamationTitle", "Syrc")]
+    public void BasicPrayerHeadingFollowsTheVisibleBodyAtLaunchAndAfterScriptToggles(
+        string prayerId, string bundleId, string titleKey, string initialScript)
+    {
+        var previousLanguage = AppSettings.BasicPrayersLanguageCode;
+        var previousScript = AppSettings.AramaicDefaultScript;
+        var previousTypeface = AppSettings.SyriacTypeface;
+        try
+        {
+            AppSettings.SetBasicPrayersLanguageCode("arc");
+            AppSettings.SetAramaicDefaultScript(initialScript);
+            AppSettings.SetSyriacTypeface(AppSettings.TypefaceWestern);
+            var viewModel = new BasicPrayerViewModel();
+            viewModel.Load(prayerId);
+            var initialBody = viewModel.Body;
+            var initialHeader = viewModel.Header;
+            void AssertHeading(string script)
+            {
+                var syriac = script == "Syrc";
+                Assert.Equal(syriac ? PrayerTypography.Script.Syriac : PrayerTypography.Script.Hebrew,
+                    PrayerTypography.ScriptOf(viewModel.Body));
+                Assert.Equal(syriac ? PrayerPackStore.Transliteration(bundleId, "arc", titleKey)
+                    : PrayerPackStore.ResolveDisplayText(bundleId, "arc", titleKey), viewModel.Header);
+                Assert.Equal(PrayerTypography.ScriptOf(viewModel.Body), PrayerTypography.ScriptOf(viewModel.Header));
+                if (syriac) Assert.Contains("Syriac Western", viewModel.HeaderFontFamily);
+                else Assert.Equal(PrayerTypography.NativeUiFontFamily, viewModel.HeaderFontFamily);
+                Assert.Equal(1.0, viewModel.Progress);
+            }
+            AssertHeading(initialScript);
+            viewModel.ToggleTransliterationCommand.Execute(null);
+            AssertHeading(initialScript == "Syrc" ? "Hebr" : "Syrc");
+            viewModel.ToggleTransliterationCommand.Execute(null);
+            AssertHeading(initialScript);
+            Assert.Equal(initialBody, viewModel.Body);
+            Assert.Equal(initialHeader, viewModel.Header);
+
+            viewModel.SelectLanguage("en");
+            Assert.Equal(PrayerTypography.NativeUiFontFamily, viewModel.HeaderFontFamily);
+            Assert.Equal(PrayerPackStore.ResolveDisplayText(bundleId, "en", titleKey), viewModel.Header);
+        }
+        finally
+        {
+            AppSettings.SetBasicPrayersLanguageCode(previousLanguage);
+            AppSettings.SetAramaicDefaultScript(previousScript);
+            AppSettings.SetSyriacTypeface(previousTypeface);
+        }
+    }
+
+    [Theory]
+    [InlineData("Hebr")]
+    [InlineData("Syrc")]
+    public async Task RosaryAndTrisagionHeadingsToggleInPlaceWithTheirPrayerBody(string initialScript)
+    {
+        var previousScript = AppSettings.AramaicDefaultScript;
+        try
+        {
+            AppSettings.SetAramaicDefaultScript(initialScript);
+            var calendar = new LiturgicalCalendarService();
+            var prayer = new Prayer { LanguageCode = "arc" };
+            var presets = new MemoryPresetStore(prayer);
+            var runs = new LocalPrayerRunStore(() => null, _ => { });
+            var rosary = new RosaryViewModel(presets, new PrayerEngine(calendar), calendar, runs);
+            var custom = new CustomDevotionViewModel(presets, new PrayerEngine(calendar), calendar, new SilentReminders(), runs);
+            await rosary.LoadAsync(prayer.Id);
+            await custom.LoadAsync(null, "trisagion", "arc", "syriac");
+            foreach (var (flow, toggle, bundleId, key) in new[]
+            {
+                ((IPrayerStepFlowViewModel)rosary, rosary.ToggleTransliterationCommand, "rosary", "signumCrucisTitle"),
+                ((IPrayerStepFlowViewModel)custom, custom.ToggleTransliterationCommand, "trisagion", "trisagionAcclamationTitle"),
+            })
+            {
+                var position = flow.Progress;
+                var initialBody = flow.Body;
+                var initialHeader = flow.Header;
+                Assert.Equal(PrayerTypography.ScriptOf(flow.Body), PrayerTypography.ScriptOf(flow.Header));
+                toggle.Execute(null);
+                Assert.Equal(PrayerTypography.ScriptOf(flow.Body), PrayerTypography.ScriptOf(flow.Header));
+                Assert.Equal(initialScript == "Hebr" ? PrayerPackStore.Transliteration(bundleId, "arc", key)
+                    : PrayerPackStore.ResolveDisplayText(bundleId, "arc", key), flow.Header);
+                Assert.Equal(position, flow.Progress);
+                toggle.Execute(null);
+                Assert.Equal(initialBody, flow.Body);
+                Assert.Equal(initialHeader, flow.Header);
+                Assert.Equal(position, flow.Progress);
+            }
+        }
+        finally { AppSettings.SetAramaicDefaultScript(previousScript); }
+    }
+
+    [Fact]
+    public void APrayerWithoutAnAlternateKeepsItsActualScriptDespiteASyriacPreference()
+    {
+        var previousLanguage = AppSettings.BasicPrayersLanguageCode;
+        var previousScript = AppSettings.AramaicDefaultScript;
+        try
+        {
+            AppSettings.SetBasicPrayersLanguageCode("arc");
+            AppSettings.SetAramaicDefaultScript("Syrc");
+            var step = BasicPrayerCatalog.Step(BasicPrayerCatalog.Prayer("salveRegina")!, "arc");
+            Assert.Null(step.TransliteratedBody);
+            var viewModel = new BasicPrayerViewModel();
+            viewModel.Load("salveRegina");
+            Assert.Equal(step.Body, viewModel.Body);
+            Assert.Equal(step.Title, viewModel.Header);
+            Assert.Equal(PrayerTypography.NativeUiFontFamily, viewModel.HeaderFontFamily);
+            Assert.Equal(PrayerTranslations.AramaicProgress(1, 1, "arc", false), viewModel.ProgressText);
+        }
+        finally
+        {
+            AppSettings.SetBasicPrayersLanguageCode(previousLanguage);
+            AppSettings.SetAramaicDefaultScript(previousScript);
+        }
+    }
+
     [Fact]
     public void ResumeRequiresAnUnfinishedMatchingPosition()
     {

@@ -27,7 +27,7 @@ struct AboutView: View {
             .font(.title.bold())
           let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
           let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? ""
-          Text(String(localized: "about.version", defaultValue: "Version \(version) (\(build))"))
+          Text(String(localized: "about.version", defaultValue: "Version \(version) (\(build))", bundle: UILanguage.bundle, locale: UILanguage.locale))
             .foregroundStyle(.secondary)
           Text("about.tagline")
             .font(.callout)
@@ -45,7 +45,7 @@ struct AboutView: View {
         }
         #endif
 
-        section(String(localized: "about.section.typefaces", defaultValue: "Typefaces")) {
+        section(String(localized: "about.section.typefaces", defaultValue: "Typefaces", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
           Text("about.typefaces.frankRuhlLibre")
           Text("about.typefaces.shofar")
           Text("about.typefaces.amiri")
@@ -60,7 +60,7 @@ struct AboutView: View {
             .padding(.top, 4)
         }
 
-        section(String(localized: "about.section.mysteries", defaultValue: "Mystery Illustrations")) {
+        section(String(localized: "about.section.mysteries", defaultValue: "Mystery Illustrations", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
           Text("about.mysteryImages.intro")
             .font(.footnote)
             .foregroundStyle(.secondary)
@@ -69,56 +69,56 @@ struct AboutView: View {
           }
           Text(String(
             localized: "about.mysteryImages.easternIcons",
-            defaultValue: "The collection of illustrations of the Mysteries in the Eastern style is used with approval from the Mission of St. Gamaliel for Hebrew Catholics in the Aramaic (Syriac) Catholic Church."))
+            defaultValue: "The collection of illustrations of the Mysteries in the Eastern style is used with approval from the Mission of St. Gamaliel for Hebrew Catholics in the Aramaic (Syriac) Catholic Church.", bundle: UILanguage.bundle, locale: UILanguage.locale))
             .padding(.top, 4)
         }
 
-        section(String(localized: "about.section.other", defaultValue: "Other Images")) {
+        section(String(localized: "about.section.other", defaultValue: "Other Images", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
           ForEach(otherImageAttributions, id: \.self) { key in
             Text(LocalizedStringKey(key))
           }
         }
 
-        section(String(localized: "about.section.stations", defaultValue: "Stations of the Cross Illustrations")) {
+        section(String(localized: "about.section.stations", defaultValue: "Stations of the Cross Illustrations", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
           Text(String(
             localized: "about.stationImages.fugelCycle",
-            defaultValue: "All 14 stations: Gebhard Fugel (1863\u{2013}1939), Kreuzweg (1921), St. Antonius, Bad Saulgau \u{2014} public domain; photographs by Andreas Praefcke, released into the public domain."))
+            defaultValue: "All 14 stations: Gebhard Fugel (1863\u{2013}1939), Kreuzweg (1921), St. Antonius, Bad Saulgau \u{2014} public domain; photographs by Andreas Praefcke, released into the public domain.", bundle: UILanguage.bundle, locale: UILanguage.locale))
           Text(String(
             localized: "about.stationImages.scripturalScenes",
-            defaultValue: "The scriptural (St. John Paul II) form adds: The Kiss of Judas \u{2014} Giotto (Scrovegni Chapel, c. 1305); Christ before the High Priest \u{2014} Gerrit van Honthorst (c. 1617), National Gallery, London; The Denial of St Peter \u{2014} Rembrandt (1660), Rijksmuseum; Le Coup de Lance \u{2014} Peter Paul Rubens (1620), Royal Museum of Fine Arts Antwerp \u{2014} all public domain. Its other scenes reuse illustrations listed elsewhere on this page."))
+            defaultValue: "The scriptural (St. John Paul II) form adds: The Kiss of Judas \u{2014} Giotto (Scrovegni Chapel, c. 1305); Christ before the High Priest \u{2014} Gerrit van Honthorst (c. 1617), National Gallery, London; The Denial of St Peter \u{2014} Rembrandt (1660), Rijksmuseum; Le Coup de Lance \u{2014} Peter Paul Rubens (1620), Royal Museum of Fine Arts Antwerp \u{2014} all public domain. Its other scenes reuse illustrations listed elsewhere on this page.", bundle: UILanguage.bundle, locale: UILanguage.locale))
           Text(String(
             localized: "about.viaLucisImages.scenes",
-            defaultValue: "The Via Lucis scenes: The Disciples at the Tomb \u{2014} Eug\u{00E8}ne Burnand (1898), Mus\u{00E9}e d'Orsay; Noli me tangere \u{2014} Fra Angelico (San Marco, c. 1440); The Road to Emmaus, the appearances to the apostles, at Lake Tiberias, and in Galilee \u{2014} Duccio di Buoninsegna (Maest\u{00E0}, 1308\u{2013}1311), Siena; Supper at Emmaus (1601) and The Incredulity of Saint Thomas (1601\u{2013}1602) \u{2014} Caravaggio; Christ's Charge to Peter \u{2014} Raphael (c. 1515), Royal Collection; The Virgin in Prayer \u{2014} Sassoferrato (1640\u{2013}1650), National Gallery, London \u{2014} all public domain. Its other scenes reuse the Rosary's glorious-mystery illustrations."))
+            defaultValue: "The Via Lucis scenes: The Disciples at the Tomb \u{2014} Eug\u{00E8}ne Burnand (1898), Mus\u{00E9}e d'Orsay; Noli me tangere \u{2014} Fra Angelico (San Marco, c. 1440); The Road to Emmaus, the appearances to the apostles, at Lake Tiberias, and in Galilee \u{2014} Duccio di Buoninsegna (Maest\u{00E0}, 1308\u{2013}1311), Siena; Supper at Emmaus (1601) and The Incredulity of Saint Thomas (1601\u{2013}1602) \u{2014} Caravaggio; Christ's Charge to Peter \u{2014} Raphael (c. 1515), Royal Collection; The Virgin in Prayer \u{2014} Sassoferrato (1640\u{2013}1650), National Gallery, London \u{2014} all public domain. Its other scenes reuse the Rosary's glorious-mystery illustrations.", bundle: UILanguage.bundle, locale: UILanguage.locale))
         }
 
-        section(String(localized: "about.section.crown", defaultValue: "Franciscan Crown Illustration")) {
+        section(String(localized: "about.section.crown", defaultValue: "Franciscan Crown Illustration", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
           Text(String(
             localized: "about.franciscanCrownImage.magiMurillo",
-            defaultValue: "The Adoration of the Magi: Bartolom\u{00E9} Esteban Murillo (c. 1655\u{2013}60), Toledo Museum of Art \u{2014} public domain. The other six Joys reuse the Rosary mystery illustrations above."))
+            defaultValue: "The Adoration of the Magi: Bartolom\u{00E9} Esteban Murillo (c. 1655\u{2013}60), Toledo Museum of Art \u{2014} public domain. The other six Joys reuse the Rosary mystery illustrations above.", bundle: UILanguage.bundle, locale: UILanguage.locale))
         }
 
-        section(String(localized: "about.section.sorrows", defaultValue: "Seven Sorrows Illustrations")) {
+        section(String(localized: "about.section.sorrows", defaultValue: "Seven Sorrows Illustrations", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
           ForEach(sevenSorrowsAttributions, id: \.self) { key in
             Text(LocalizedStringKey(key))
           }
         }
 
-        section(String(localized: "about.section.divineMercy", defaultValue: "Divine Mercy Illustration")) {
+        section(String(localized: "about.section.divineMercy", defaultValue: "Divine Mercy Illustration", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
           Text(String(
             localized: "about.divineMercyImage.kazimirowski",
-            defaultValue: "Eugeniusz Kazimirowski, Divine Mercy (\u{201C}Jezu, ufam Tobie\u{201D}, 1934), Divine Mercy Sanctuary, Vilnius \u{2014} the original image painted under St. Faustina\u{2019}s direction; public domain."))
+            defaultValue: "Eugeniusz Kazimirowski, Divine Mercy (\u{201C}Jezu, ufam Tobie\u{201D}, 1934), Divine Mercy Sanctuary, Vilnius \u{2014} the original image painted under St. Faustina\u{2019}s direction; public domain.", bundle: UILanguage.bundle, locale: UILanguage.locale))
         }
 
-        section(String(localized: "about.section.jesusPrayer", defaultValue: "Jesus Prayer Illustration")) {
+        section(String(localized: "about.section.jesusPrayer", defaultValue: "Jesus Prayer Illustration", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
           Text(String(
             localized: "about.jesusPrayerImage.pantocrator",
-            defaultValue: "Christ Pantocrator: encaustic icon (6th century), Saint Catherine\u{2019}s Monastery, Mount Sinai \u{2014} the oldest surviving icon of Christ Pantocrator, honoring the prayer\u{2019}s Eastern tradition; public domain."))
+            defaultValue: "Christ Pantocrator: encaustic icon (6th century), Saint Catherine\u{2019}s Monastery, Mount Sinai \u{2014} the oldest surviving icon of Christ Pantocrator, honoring the prayer\u{2019}s Eastern tradition; public domain.", bundle: UILanguage.bundle, locale: UILanguage.locale))
         }
 
         #if os(macOS)
-        section(String(localized: "macLibrary.gallery", defaultValue: "Prayer Gallery")) {
+        section(String(localized: "macLibrary.gallery", defaultValue: "Prayer Gallery", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
           Text(String(localized: "about.galleryImages.rights",
-            defaultValue: "Public-domain and CC0 artwork. Select a title to view its source."))
+            defaultValue: "Public-domain and CC0 artwork. Select a title to view its source.", bundle: UILanguage.bundle, locale: UILanguage.locale))
             .font(.footnote).foregroundStyle(.secondary)
           ForEach(MacPrayerGalleryCredits.entries) { credit in
             VStack(alignment: .leading, spacing: 3) {
@@ -130,7 +130,7 @@ struct AboutView: View {
         }
         #endif
 
-        section(String(localized: "about.section.prayerTexts", defaultValue: "Prayer Texts")) {
+        section(String(localized: "about.section.prayerTexts", defaultValue: "Prayer Texts", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
           Text("about.prayerTexts")
             .font(.footnote)
             .foregroundStyle(.secondary)
@@ -140,9 +140,9 @@ struct AboutView: View {
           Text("about.ukrainianPrayerSources")
             .font(.footnote)
             .foregroundStyle(.secondary)
-          Link(String(localized: "about.ukrainianPrayerbookLink", defaultValue: "Ukrainian prayerbook"),
+          Link(String(localized: "about.ukrainianPrayerbookLink", defaultValue: "Ukrainian prayerbook", bundle: UILanguage.bundle, locale: UILanguage.locale),
                destination: URL(string: "https://rkc.org.ua/duhovnist/molytovnyk/")!)
-          Link(String(localized: "about.ukrainianScriptureLink", defaultValue: "Ukrainian Bible (1905)"),
+          Link(String(localized: "about.ukrainianScriptureLink", defaultValue: "Ukrainian Bible (1905)", bundle: UILanguage.bundle, locale: UILanguage.locale),
                destination: URL(string: "https://ebible.org/find/details.php?id=ukr1871")!)
           Text("about.divineMercyPrayerSources")
             .font(.footnote)
@@ -155,7 +155,7 @@ struct AboutView: View {
             .foregroundStyle(.secondary)
         }
 
-        section(String(localized: "about.section.scripture", defaultValue: "Scripture Sources")) {
+        section(String(localized: "about.section.scripture", defaultValue: "Scripture Sources", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
           Text("about.scriptureSources")
             .font(.footnote)
             .foregroundStyle(.secondary)
@@ -174,7 +174,7 @@ struct AboutView: View {
           Link("about.parolaVivaLink", destination: URL(string: "https://parolaviva.art/opendata")!)
         }
 
-        section(String(localized: "about.section.calendar", defaultValue: "Calendar Data")) {
+        section(String(localized: "about.section.calendar", defaultValue: "Calendar Data", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
           Text("about.calendarData")
             .font(.footnote)
             .foregroundStyle(.secondary)
@@ -182,16 +182,16 @@ struct AboutView: View {
             .font(.footnote)
             .foregroundStyle(.secondary)
           Text(String(localized: "about.hebrewReadingBookSources",
-                      defaultValue: "Hebrew Bible book labels: Evangelizo HE, the St James Vicariate, and Mechon Mamre (mechon-mamre.org)."))
+                      defaultValue: "Hebrew Bible book labels: Evangelizo HE, the St James Vicariate, and Mechon Mamre (mechon-mamre.org).", bundle: UILanguage.bundle, locale: UILanguage.locale))
             .font(.footnote).foregroundStyle(.secondary)
           Link(destination: URL(string: "https://www.mechon-mamre.org/i/t/tmp3.htm")!) { Text(verbatim: "Mechon Mamre") }
           Link("about.popeNetworkLink", destination: URL(string: "https://www.popesprayer.va/pray/")!)
           Text(String(localized: "about.verseMappingSources",
-                      defaultValue: "Verse numbering: STEP Bible / Tyndale House Cambridge, TVTMS (CC BY 4.0). Adapted reference metadata only."))
+                      defaultValue: "Verse numbering: STEP Bible / Tyndale House Cambridge, TVTMS (CC BY 4.0). Adapted reference metadata only.", bundle: UILanguage.bundle, locale: UILanguage.locale))
             .font(.footnote).foregroundStyle(.secondary)
           Link(destination: URL(string: "https://github.com/STEPBible/STEPBible-Data/tree/master/Versification")!) { Text(verbatim: "STEPBible.org — TVTMS") }
           Text(String(localized: "about.torahData",
-                      defaultValue: "Torah reading schedules: Hebcal.com, CC BY 4.0. Names and citations adapted; no Scripture text is included."))
+                      defaultValue: "Torah reading schedules: Hebcal.com, CC BY 4.0. Names and citations adapted; no Scripture text is included.", bundle: UILanguage.bundle, locale: UILanguage.locale))
             .font(.footnote).foregroundStyle(.secondary)
           Link(destination: URL(string: "https://www.hebcal.com")!) { Text(verbatim: "Hebcal.com") }
           Link(destination: URL(string: "https://creativecommons.org/licenses/by/4.0/")!) { Text(verbatim: "CC BY 4.0") }

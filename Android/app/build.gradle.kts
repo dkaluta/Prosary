@@ -43,6 +43,8 @@ val keystoreProperties = Properties().apply {
 
 android {
     namespace = "com.dkaluta.prosary"
+    // All eight languages must be available immediately when the in-app language changes.
+    bundle { language { enableSplit = false } }
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -53,8 +55,8 @@ android {
         applicationId = "com.dkaluta.prosary"
         minSdk = 24
         targetSdk = 36
-        versionCode = 40
-        versionName = "0.13.0"
+        versionCode = 41
+        versionName = "0.13.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -100,6 +102,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.appcompat)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)

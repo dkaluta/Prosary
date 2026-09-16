@@ -17,9 +17,9 @@ enum EternalRestPlacement: String, Codable, CaseIterable, Identifiable {
 
   var displayName: String {
     switch self {
-    case .none:           return String(localized: "eternalRest.none", defaultValue: "Don't Include")
-    case .afterEachDecade: return String(localized: "eternalRest.afterEachDecade", defaultValue: "After Each Decade")
-    case .atEndOnly:      return String(localized: "eternalRest.atEndOnly", defaultValue: "Once, Near the End")
+    case .none:           return String(localized: "eternalRest.none", defaultValue: "Don't Include", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .afterEachDecade: return String(localized: "eternalRest.afterEachDecade", defaultValue: "After Each Decade", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .atEndOnly:      return String(localized: "eternalRest.atEndOnly", defaultValue: "Once, Near the End", bundle: UILanguage.bundle, locale: UILanguage.locale)
     }
   }
 }

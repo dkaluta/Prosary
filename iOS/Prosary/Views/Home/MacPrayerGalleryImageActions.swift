@@ -6,10 +6,10 @@ enum MacPrayerGalleryImageAction: Int, CaseIterable {
 
   var title: String {
     switch self {
-    case .chooseFile: String(localized: "galleryImage.choose", defaultValue: "Choose Image…")
-    case .searchOnline: String(localized: "galleryImage.searchOnline", defaultValue: "Search Online…")
-    case .restoreDefault: String(localized: "galleryImage.restoreDefault", defaultValue: "Use Default Image")
-    case .viewSource: String(localized: "galleryImage.source", defaultValue: "Image Source")
+    case .chooseFile: String(localized: "galleryImage.choose", defaultValue: "Choose Image…", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .searchOnline: String(localized: "galleryImage.searchOnline", defaultValue: "Search Online…", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .restoreDefault: String(localized: "galleryImage.restoreDefault", defaultValue: "Use Default Image", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .viewSource: String(localized: "galleryImage.source", defaultValue: "Image Source", bundle: UILanguage.bundle, locale: UILanguage.locale)
     }
   }
 }

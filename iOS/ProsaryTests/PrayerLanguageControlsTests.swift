@@ -3,6 +3,88 @@ import XCTest
 
 @MainActor
 final class PrayerLanguageControlsTests: XCTestCase {
+  func testInheritedPrayerLanguageTracksEveryInterfaceLocaleWithoutAValidPrayerOverride() {
+    let originalInterface = InterfaceLanguageStore.shared.selection
+    let defaults = UserDefaults.standard
+    let originalDefault = defaults.object(forKey: "defaultLanguageCode")
+    defer {
+      InterfaceLanguageStore.shared.selection = originalInterface
+      if let originalDefault { defaults.set(originalDefault, forKey: "defaultLanguageCode") }
+      else { defaults.removeObject(forKey: "defaultLanguageCode") }
+    }
+    let inherited = Prayer(languageCode: "")
+    let prayerDefaults: [String?] = [nil, "", "unknown"]
+    for prayerDefault in prayerDefaults {
+      if let prayerDefault { defaults.set(prayerDefault, forKey: "defaultLanguageCode") }
+      else { defaults.removeObject(forKey: "defaultLanguageCode") }
+      for language in ["en", "he", "ar", "ru", "tl", "fr", "it", "uk"] {
+        InterfaceLanguageStore.shared.selection = language
+        XCTAssertEqual(LanguageCatalog.resolve(nil).code, language)
+        XCTAssertEqual(LanguageCatalog.resolve("").code, language)
+        XCTAssertEqual(LanguageCatalog.fallbackChain(for: nil).first, language)
+        XCTAssertEqual(LanguageCatalog.fallbackChain(for: "").first, language)
+        XCTAssertEqual(inherited.resolvedLanguageCode, language)
+        XCTAssertEqual(inherited.languageCode, "", "Following the interface must not rewrite a saved choice")
+        XCTAssertFalse(AramaicSignOfCrossForm.isSystemWideActive)
+      }
+    }
+    defaults.set("", forKey: "defaultLanguageCode")
+    InterfaceLanguageStore.shared.selection = ""
+    XCTAssertEqual(LanguageCatalog.resolve(nil).code, UILanguage.current)
+    XCTAssertEqual(LanguageCatalog.fallbackChain(for: "").first, UILanguage.current)
+  }
+
+  func testGlobalPrayerOverrideSurvivesInterfaceChangesIncludingPrayerOnlyLanguages() {
+    let originalInterface = InterfaceLanguageStore.shared.selection
+    let defaults = UserDefaults.standard
+    let originalDefault = defaults.object(forKey: "defaultLanguageCode")
+    defer {
+      InterfaceLanguageStore.shared.selection = originalInterface
+      if let originalDefault { defaults.set(originalDefault, forKey: "defaultLanguageCode") }
+      else { defaults.removeObject(forKey: "defaultLanguageCode") }
+    }
+    for language in LanguageCatalog.all.map(\.code) {
+      defaults.set(language, forKey: "defaultLanguageCode")
+      for interface in ["en", "he", "uk"] {
+        InterfaceLanguageStore.shared.selection = interface
+        XCTAssertEqual(UILanguage.current, interface)
+        XCTAssertEqual(LanguageCatalog.resolve(nil).code, language)
+        XCTAssertEqual(LanguageCatalog.resolve("").code, language)
+        XCTAssertEqual(LanguageCatalog.fallbackChain(for: nil).first, language)
+        XCTAssertEqual(LanguageCatalog.fallbackChain(for: "").first, language)
+        XCTAssertEqual(Prayer(languageCode: "").resolvedLanguageCode, language)
+        XCTAssertEqual(defaults.string(forKey: "defaultLanguageCode"), language)
+        XCTAssertEqual(AramaicSignOfCrossForm.isSystemWideActive, language == "arc")
+      }
+    }
+  }
+
+  func testExplicitSavedPrayerLanguagesAndEditionsSurviveBothLanguageSettings() throws {
+    let originalInterface = InterfaceLanguageStore.shared.selection
+    let defaults = UserDefaults.standard
+    let originalDefault = defaults.object(forKey: "defaultLanguageCode")
+    defer {
+      InterfaceLanguageStore.shared.selection = originalInterface
+      if let originalDefault { defaults.set(originalDefault, forKey: "defaultLanguageCode") }
+      else { defaults.removeObject(forKey: "defaultLanguageCode") }
+    }
+    for language in ["la", "arc", "he-x-gamliel", "he", "en"] {
+      let prayer = Prayer(languageCode: language)
+      let saved = try JSONEncoder().encode(prayer)
+      for prayerDefault in ["", "arc", "la", "he-x-gamliel"] {
+        defaults.set(prayerDefault, forKey: "defaultLanguageCode")
+        for interface in ["en", "he", "uk"] {
+          InterfaceLanguageStore.shared.selection = interface
+          let restored = try JSONDecoder().decode(Prayer.self, from: saved)
+          XCTAssertEqual(restored, prayer)
+          XCTAssertEqual(restored.languageCode, language)
+          XCTAssertEqual(restored.resolvedLanguageCode, language)
+          XCTAssertEqual(LanguageCatalog.fallbackChain(for: language).first, language)
+        }
+      }
+    }
+  }
+
   func testHebrewLanguageAndTraditionKeepTheStoredTextCode() {
     XCTAssertEqual(LanguageCatalog.pickerLanguageCode("he-x-gamliel"), "he")
     XCTAssertEqual(LanguageCatalog.selectingLanguage("he", current: "he-x-gamliel"), "he-x-gamliel")

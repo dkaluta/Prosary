@@ -100,7 +100,7 @@
   <data name="HomeMoveToTop.Text" xml:space="preserve"><value>Placer en tête</value></data>
   <data name="HomeEditOrder.Text" xml:space="preserve"><value>Modifier l’ordre…</value></data>
   <data name="SetTitle.Text" xml:space="preserve"><value>Réglages</value></data>
-  <data name="SetLanguageCombo.Header" xml:space="preserve"><value>Langue de prière par défaut</value></data>
+  <data name="SetLanguageCombo.Header" xml:space="preserve"><value>Langue de prière</value></data>
   <data name="SetPrayingHeader.Text" xml:space="preserve"><value>Prière</value></data>
   <data name="SetAutoAdvanceCombo.Header" xml:space="preserve"><value>Avance automatique</value></data>
   <data name="SetResetHomeOrder.Content" xml:space="preserve"><value>Réinitialiser l’ordre de l’accueil</value></data>
@@ -112,7 +112,8 @@
   <data name="SetComposeLink.Content" xml:space="preserve"><value>Composer une dévotion</value></data>
   <data name="SetPrivacyLink.Content" xml:space="preserve"><value>Politique de confidentialité</value></data>
   <data name="SetAppLanguageCombo.Header" xml:space="preserve"><value>Langue de l’app</value></data>
-  <data name="SetAppLanguageFooter.Text" xml:space="preserve"><value>Prend effet au redémarrage de l’app.</value></data>
+  <data name="SetAppLanguageFooter.Text" xml:space="preserve"><value>Redémarrez Prosary pour appliquer la nouvelle langue de l’app.</value></data>
+  <data name="SetAppLanguageUsage.Text" xml:space="preserve"><value>Utilisée pour l’interface et l’édition automatique de la Bible. Les prières utilisent cette langue sauf si une langue de prière est sélectionnée.</value></data>
   <data name="SetTodayHeader.Text" xml:space="preserve"><value>Aujourd’hui</value></data>
   <data name="SetShowTodayFeast.Header" xml:space="preserve"><value>Afficher la fête du jour</value></data>
   <data name="SetShowTodayIntention.Header" xml:space="preserve"><value>Afficher l’intention du pape</value></data>
@@ -527,4 +528,5 @@
   <data name="readings_text_notice" xml:space="preserve"><value>Texte biblique du passage cité. La formulation peut différer de la lecture de la messe.</value></data>
   <data name="readings_whole_verses_notice" xml:space="preserve"><value>Les versets sont affichés en entier lorsque la lecture n’en cite qu’une partie.</value></data>
   <data name="readings_source" xml:space="preserve"><value>Source et édition</value></data>
+  <data name="language_app_parenthesized" xml:space="preserve"><value>Langue de l’app ({0})</value></data>
 </root>

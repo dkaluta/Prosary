@@ -208,6 +208,56 @@ final class PrayerRunProgressTests: XCTestCase {
       nextStepCount: 4), 0)
   }
 
+  func testDefaultLanguageChangeOnlyRefreshesInheritedSessionsInTheSameForm() throws {
+    let definition = try XCTUnwrap(PrayerPackStore.definition(for: "trisagion"))
+    let englishForm = definition.effectiveVariantId(nil, languageCode: "en")
+    let hebrewForm = definition.effectiveVariantId(nil, languageCode: "he")
+    let aramaicForm = definition.effectiveVariantId(nil, languageCode: "arc")
+    XCTAssertEqual(definition.resolvedSteps(variantId: englishForm).steps.count, 6)
+    XCTAssertEqual(definition.resolvedSteps(variantId: aramaicForm).steps.count, 4)
+    XCTAssertTrue(CustomDevotionLanguageSwitch.canRefreshInheritedLanguage(
+      chosenLanguageCode: "", previousEffectiveVariantId: englishForm, nextEffectiveVariantId: hebrewForm))
+    XCTAssertTrue(CustomDevotionLanguageSwitch.canRefreshInheritedLanguage(
+      chosenLanguageCode: "", previousEffectiveVariantId: nil, nextEffectiveVariantId: nil))
+    XCTAssertFalse(CustomDevotionLanguageSwitch.canRefreshInheritedLanguage(
+      chosenLanguageCode: "", previousEffectiveVariantId: englishForm, nextEffectiveVariantId: aramaicForm))
+    XCTAssertFalse(CustomDevotionLanguageSwitch.canRefreshInheritedLanguage(
+      chosenLanguageCode: "arc", previousEffectiveVariantId: englishForm, nextEffectiveVariantId: hebrewForm))
+  }
+
+  func testFrozenInheritedBookmarkResumesItsFormWhileFreshPrayerUsesNewDefault() throws {
+    let preferences = UserDefaults.standard
+    let original = preferences.object(forKey: LanguageCatalog.defaultsKey)
+    defer {
+      if let original { preferences.set(original, forKey: LanguageCatalog.defaultsKey) }
+      else { preferences.removeObject(forKey: LanguageCatalog.defaultsKey) }
+    }
+    let prayer = Prayer(kind: .custom, languageCode: "", customDevotionId: "trisagion")
+    let definition = try XCTUnwrap(PrayerPackStore.definition(for: "trisagion"))
+    let engine = PrayerEngine(calendar: MockLiturgicalCalendar())
+    preferences.set("arc", forKey: LanguageCatalog.defaultsKey)
+    let sessionLanguage = PrayerPackStore.effectiveLanguage(for: "trisagion", chosen: prayer.languageCode)
+    let sessionForm = definition.effectiveVariantId(nil, languageCode: sessionLanguage)
+    let signature = PrayerRunSignature.custom("trisagion", effectiveVariantId: sessionForm, dayIndex: 0, options: [:])
+    let runKey = PrayerRunKey.custom("trisagion", variantId: nil, dayIndex: 0)
+    store.save(runKey: runKey, stepIndex: 2, languageCode: sessionLanguage, configurationSignature: signature)
+
+    preferences.set("en", forKey: LanguageCatalog.defaultsKey)
+    let bookmark = try XCTUnwrap(PrayerCopyProgressIdentity.continuation(
+      store.progress(for: runKey), savedLanguageCode: prayer.languageCode, preservesInheritedSession: true))
+    var continuedPrayer = prayer
+    continuedPrayer.languageCode = bookmark.languageCode
+    let continuedSteps = engine.buildSteps(for: continuedPrayer)
+    XCTAssertEqual(bookmark.languageCode, "arc")
+    XCTAssertEqual(continuedSteps.count, 4)
+    XCTAssertTrue(bookmark.canResume(stepCount: continuedSteps.count, expectedConfigurationSignature: signature))
+    XCTAssertEqual(bookmark.stepIndex, 2)
+
+    XCTAssertEqual(prayer.languageCode, "", "The unfinished session never changes the saved preference")
+    XCTAssertEqual(PrayerPackStore.effectiveLanguage(for: "trisagion", chosen: prayer.languageCode), "en")
+    XCTAssertEqual(engine.buildSteps(for: prayer).count, 6, "Restart builds the newly inherited form")
+  }
+
   func testMysteryNavigationTargetsAnnouncementsWithoutChangingStepSequence() {
     let firstMystery = Mystery(group: .joyful, order: 1, imageKey: "first")
     let secondMystery = Mystery(group: .joyful, order: 2, imageKey: "second")

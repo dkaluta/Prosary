@@ -100,7 +100,7 @@
   <data name="HomeMoveToTop.Text" xml:space="preserve"><value>העבר לראש</value></data>
   <data name="HomeEditOrder.Text" xml:space="preserve"><value>ערוך סדר…</value></data>
   <data name="SetTitle.Text" xml:space="preserve"><value>הגדרות</value></data>
-  <data name="SetLanguageCombo.Header" xml:space="preserve"><value>שפת תפילה כברירת מחדל</value></data>
+  <data name="SetLanguageCombo.Header" xml:space="preserve"><value>שפת התפילה</value></data>
   <data name="SetPrayingHeader.Text" xml:space="preserve"><value>בתפילה</value></data>
   <data name="SetAutoAdvanceCombo.Header" xml:space="preserve"><value>מעבר אוטומטי</value></data>
   <data name="SetResetHomeOrder.Content" xml:space="preserve"><value>איפוס סדר מסך הבית</value></data>
@@ -111,8 +111,9 @@
   <data name="SetRepoLink.Content" xml:space="preserve"><value>מאגר הקהילה</value></data>
   <data name="SetComposeLink.Content" xml:space="preserve"><value>יצירת מסלול תפילה</value></data>
   <data name="SetPrivacyLink.Content" xml:space="preserve"><value>מדיניות פרטיות</value></data>
-  <data name="SetAppLanguageCombo.Header" xml:space="preserve"><value>שפת האפליקציה</value></data>
-  <data name="SetAppLanguageFooter.Text" xml:space="preserve"><value>ייכנס לתוקף לאחר הפעלה מחדש של האפליקציה.</value></data>
+  <data name="SetAppLanguageCombo.Header" xml:space="preserve"><value>שפת היישומון</value></data>
+  <data name="SetAppLanguageFooter.Text" xml:space="preserve"><value>יש להפעיל מחדש את Prosary כדי להחיל את שפת היישומון החדשה.</value></data>
+  <data name="SetAppLanguageUsage.Text" xml:space="preserve"><value>משמשת לממשק ולמהדורת המקרא האוטומטית. התפילות משתמשות בה אלא אם נבחרה שפת תפילה.</value></data>
   <data name="SetTodayHeader.Text" xml:space="preserve"><value>היום</value></data>
   <data name="SetShowTodayFeast.Header" xml:space="preserve"><value>הצגת חג היום</value></data>
   <data name="SetShowTodayIntention.Header" xml:space="preserve"><value>הצגת כוונת האפיפיור</value></data>
@@ -525,4 +526,5 @@
   <data name="readings_text_notice" xml:space="preserve"><value>טקסט מכתבי הקודש לפי מראה המקום. הנוסח עשוי להיות שונה מן הקריאה במיסה.</value></data>
   <data name="readings_whole_verses_notice" xml:space="preserve"><value>כאשר הקריאה מציינת רק חלק מפסוק, מוצגים הפסוקים במלואם.</value></data>
   <data name="readings_source" xml:space="preserve"><value>מקור ומהדורה</value></data>
+  <data name="language_app_parenthesized" xml:space="preserve"><value>שפת היישומון ({0})</value></data>
 </root>

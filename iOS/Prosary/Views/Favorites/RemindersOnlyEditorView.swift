@@ -39,7 +39,7 @@ struct RemindersOnlyEditorView: View {
   var body: some View {
     editorLayout
     #if os(macOS)
-    .navigationTitle(String(localized: "macLibrary.settingsTitle", defaultValue: "Prayer Settings"))
+    .navigationTitle(String(localized: "macLibrary.settingsTitle", defaultValue: "Prayer Settings", bundle: UILanguage.bundle, locale: UILanguage.locale))
     #else
     .navigationTitle(info?.localizedDisplayName ?? prayer.kind.displayName)
     #endif
@@ -58,7 +58,7 @@ struct RemindersOnlyEditorView: View {
     #endif
     .interactiveDismissDisabled(isSaving)
     .alert(
-      String(localized: "favoriteEditor.saveFailed", defaultValue: "Could Not Save Favorite"),
+      String(localized: "favoriteEditor.saveFailed", defaultValue: "Could Not Save Favorite", bundle: UILanguage.bundle, locale: UILanguage.locale),
       isPresented: .init(get: { saveError != nil }, set: { if !$0 { saveError = nil } })
     ) {
       Button("common.ok") { saveError = nil }
@@ -92,17 +92,17 @@ struct RemindersOnlyEditorView: View {
     Section {
       TextField("favoriteEditor.name", text: $prayer.name)
       PrayerLanguagePicker(
-        label: String(localized: "favoriteEditor.language", defaultValue: "Language"),
+        label: String(localized: "favoriteEditor.language", defaultValue: "Language", bundle: UILanguage.bundle, locale: UILanguage.locale),
         code: $prayer.languageCode,
-        defaultLabel: String(localized: "macLibrary.default", defaultValue: "Default"))
+        defaultLabel: String(localized: "macLibrary.default", defaultValue: "Default", bundle: UILanguage.bundle, locale: UILanguage.locale))
       if let id = prayer.customDevotionId,
          CustomDevotionLaunch.allowsVariantChoice(id),
          let definition = PrayerPackStore.definition(for: id),
          let variants = definition.variants, variants.count > 1 {
-        Picker(String(localized: "macLibrary.form", defaultValue: "Form"), selection: Binding<String>(
+        Picker(String(localized: "macLibrary.form", defaultValue: "Form", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: Binding<String>(
           get: { prayer.variantId ?? "" },
           set: { prayer.variantId = $0.isEmpty ? nil : $0 })) {
-          Text(String(localized: "macLibrary.default", defaultValue: "Default")).tag("")
+          Text(String(localized: "macLibrary.default", defaultValue: "Default", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("")
           ForEach(variants, id: \.id) { variant in Text(variant.localizedName).tag(variant.id) }
         }
       }

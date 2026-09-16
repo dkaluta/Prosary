@@ -60,8 +60,8 @@ struct BasicPrayersView: View {
         #if !os(macOS)
         let isPinned = BasicPrayerFavorites.contains(prayer.id)
         let pinAction = isPinned
-          ? String(localized: "basicPrayers.unpin", defaultValue: "Remove from Pray")
-          : String(localized: "basicPrayers.pin", defaultValue: "Pin to Pray")
+          ? String(localized: "basicPrayers.unpin", defaultValue: "Remove from Pray", bundle: UILanguage.bundle, locale: UILanguage.locale)
+          : String(localized: "basicPrayers.pin", defaultValue: "Pin to Pray", bundle: UILanguage.bundle, locale: UILanguage.locale)
         #endif
         HStack(spacing: 8) {
           Button {
@@ -102,7 +102,7 @@ struct BasicPrayersView: View {
         orderGeneration += 1
       }
     }
-    .navigationTitle(String(localized: "basicPrayers.title", defaultValue: "Basic Prayers"))
+    .navigationTitle(String(localized: "basicPrayers.title", defaultValue: "Basic Prayers", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .macListActivation {
       guard let id = selectedPrayer, BasicPrayerCatalog.prayer(id: id) != nil else { return false }
       onOpenPrayer(id)
@@ -182,7 +182,9 @@ struct BasicPrayerFlowView: View {
       canGoBack: false,
       onBack: {},
       onNext: { if let finishPrayerSession { finishPrayerSession() } else { dismiss() } },
-      flowActions: AnyView(BasicPrayersLanguageMenu(chosenLanguage: $chosenLanguage)))
+      flowActions: AnyView(BasicPrayersLanguageMenu(chosenLanguage: $chosenLanguage)),
+      contentBundleID: BasicPrayerCatalog.prayer(id: prayerId)?.bundleId ?? "rosary",
+      navigationTitleIsPrayerHeading: true)
     .onAppear {
       seasonColor = services.calendar.seasonColorToday()
     }
@@ -196,13 +198,13 @@ private struct BasicPrayersLanguageMenu: View {
     Menu {
       PrayerLanguageMenuContent(code: chosenLanguage, identifierPrefix: "basicPrayerLanguage") { chosenLanguage = $0 }
     } label: {
-      Label(String(localized: "prayerFlow.language", defaultValue: "Prayer Language"), systemImage: "globe")
+      Label(String(localized: "prayerFlow.language", defaultValue: "Prayer Language", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "globe")
     }
     #if !os(macOS)
     .labelStyle(.iconOnly)
     #endif
-    .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer Language"))
-    .help(String(localized: "prayerFlow.language", defaultValue: "Prayer Language"))
+    .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer Language", bundle: UILanguage.bundle, locale: UILanguage.locale))
+    .help(String(localized: "prayerFlow.language", defaultValue: "Prayer Language", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .accessibilityIdentifier("languageMenu")
   }
 

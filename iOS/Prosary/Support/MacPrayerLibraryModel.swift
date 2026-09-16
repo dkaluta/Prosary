@@ -21,29 +21,29 @@ struct MacPrayerRemovalRequest: Identifiable {
 
   var title: String {
     let format = downloadOnly
-      ? String(localized: "macLibrary.removeDownloadTitle", defaultValue: "Remove Download for ‘%@’?")
+      ? String(localized: "macLibrary.removeDownloadTitle", defaultValue: "Remove Download for ‘%@’?", bundle: UILanguage.bundle, locale: UILanguage.locale)
       : item.prayer != nil
-        ? String(localized: "macLibrary.deletePrayerTitle", defaultValue: "Delete ‘%@’?")
-        : String(localized: "macLibrary.removeFromLibraryTitle", defaultValue: "Remove ‘%@’ from Library?")
+        ? String(localized: "macLibrary.deletePrayerTitle", defaultValue: "Delete ‘%@’?", bundle: UILanguage.bundle, locale: UILanguage.locale)
+        : String(localized: "macLibrary.removeFromLibraryTitle", defaultValue: "Remove ‘%@’ from Library?", bundle: UILanguage.bundle, locale: UILanguage.locale)
     return String(format: format, item.title)
   }
 
   var message: String {
     if downloadOnly || (item.prayer == nil && removesDownload) {
-      return String(localized: "macLibrary.removeDownloadDetail", defaultValue: "This removes the downloaded prayer from this device. You can import or download it again.")
+      return String(localized: "macLibrary.removeDownloadDetail", defaultValue: "This removes the downloaded prayer from this device. You can import or download it again.", bundle: UILanguage.bundle, locale: UILanguage.locale)
     }
     if item.prayer != nil {
       return removesDownload
-        ? String(localized: "macLibrary.deleteLastPrayerDetail", defaultValue: "This deletes this saved copy, its reminders, and the downloaded prayer from this device.")
-        : String(localized: "macLibrary.deletePrayerDetail", defaultValue: "This deletes this saved copy and its reminders.")
+        ? String(localized: "macLibrary.deleteLastPrayerDetail", defaultValue: "This deletes this saved copy, its reminders, and the downloaded prayer from this device.", bundle: UILanguage.bundle, locale: UILanguage.locale)
+        : String(localized: "macLibrary.deletePrayerDetail", defaultValue: "This deletes this saved copy and its reminders.", bundle: UILanguage.bundle, locale: UILanguage.locale)
     }
-    return String(localized: "macLibrary.removeFromLibraryDetail", defaultValue: "You can add this prayer again from the gallery.")
+    return String(localized: "macLibrary.removeFromLibraryDetail", defaultValue: "You can add this prayer again from the gallery.", bundle: UILanguage.bundle, locale: UILanguage.locale)
   }
 
   var actionTitle: String {
     item.prayer != nil && !downloadOnly
-      ? String(localized: "macLibrary.delete", defaultValue: "Delete")
-      : String(localized: "macLibrary.remove", defaultValue: "Remove")
+      ? String(localized: "macLibrary.delete", defaultValue: "Delete", bundle: UILanguage.bundle, locale: UILanguage.locale)
+      : String(localized: "macLibrary.remove", defaultValue: "Remove", bundle: UILanguage.bundle, locale: UILanguage.locale)
   }
 }
 
@@ -54,15 +54,15 @@ struct MacPrayerTag: Identifiable {
 
   var color: Color { Self.colors.first { $0.0 == colorID }?.1 ?? .secondary }
 
-  static let colors: [(String, Color, String)] = [
-    ("red", .red, String(localized: "macLibrary.tag.red", defaultValue: "Red")),
-    ("orange", .orange, String(localized: "macLibrary.tag.orange", defaultValue: "Orange")),
-    ("yellow", .yellow, String(localized: "macLibrary.tag.yellow", defaultValue: "Yellow")),
-    ("green", .green, String(localized: "macLibrary.tag.green", defaultValue: "Green")),
-    ("blue", .blue, String(localized: "macLibrary.tag.blue", defaultValue: "Blue")),
-    ("purple", .purple, String(localized: "macLibrary.tag.purple", defaultValue: "Purple")),
-    ("gray", .gray, String(localized: "macLibrary.tag.gray", defaultValue: "Gray"))
-  ]
+  static var colors: [(String, Color, String)] { [
+    ("red", .red, String(localized: "macLibrary.tag.red", defaultValue: "Red", bundle: UILanguage.bundle, locale: UILanguage.locale)),
+    ("orange", .orange, String(localized: "macLibrary.tag.orange", defaultValue: "Orange", bundle: UILanguage.bundle, locale: UILanguage.locale)),
+    ("yellow", .yellow, String(localized: "macLibrary.tag.yellow", defaultValue: "Yellow", bundle: UILanguage.bundle, locale: UILanguage.locale)),
+    ("green", .green, String(localized: "macLibrary.tag.green", defaultValue: "Green", bundle: UILanguage.bundle, locale: UILanguage.locale)),
+    ("blue", .blue, String(localized: "macLibrary.tag.blue", defaultValue: "Blue", bundle: UILanguage.bundle, locale: UILanguage.locale)),
+    ("purple", .purple, String(localized: "macLibrary.tag.purple", defaultValue: "Purple", bundle: UILanguage.bundle, locale: UILanguage.locale)),
+    ("gray", .gray, String(localized: "macLibrary.tag.gray", defaultValue: "Gray", bundle: UILanguage.bundle, locale: UILanguage.locale))
+  ] }
 }
 
 /// Library organization belongs to this Mac. Prayer configuration continues to use the
@@ -492,7 +492,7 @@ final class MacPrayerLibraryModel {
     copy.id = UUID()
     copy.isDefault = false
     copy.dayIndex = nil
-    let base = String(format: String(localized: "macLibrary.copyName", defaultValue: "%@ Copy"), original.name)
+    let base = String(format: String(localized: "macLibrary.copyName", defaultValue: "%@ Copy", bundle: UILanguage.bundle, locale: UILanguage.locale), original.name)
     var name = base
     var suffix = 2
     while existingNames.contains(name) { name = "\(base) \(suffix)"; suffix += 1 }
@@ -529,7 +529,7 @@ final class MacPrayerLibraryModel {
   @discardableResult
   func createTag(named name: String, colorID: String?) -> MacPrayerTag? {
     guard let tag = tagStore.create(named: name, colorID: colorID) else {
-      error = String(localized: "macLibrary.tagNameRequired", defaultValue: "Enter a name for the tag.")
+      error = String(localized: "macLibrary.tagNameRequired", defaultValue: "Enter a name for the tag.", bundle: UILanguage.bundle, locale: UILanguage.locale)
       return nil
     }
     refreshTags()
@@ -540,8 +540,8 @@ final class MacPrayerLibraryModel {
   func renameTag(_ tag: MacPrayerTag, to name: String) -> Bool {
     guard tagStore.rename(tag.id, to: name) else {
       error = name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-        ? String(localized: "macLibrary.tagNameRequired", defaultValue: "Enter a name for the tag.")
-        : String(localized: "macLibrary.tagNameExists", defaultValue: "A tag with that name already exists.")
+        ? String(localized: "macLibrary.tagNameRequired", defaultValue: "Enter a name for the tag.", bundle: UILanguage.bundle, locale: UILanguage.locale)
+        : String(localized: "macLibrary.tagNameExists", defaultValue: "A tag with that name already exists.", bundle: UILanguage.bundle, locale: UILanguage.locale)
       return false
     }
     refreshTags()

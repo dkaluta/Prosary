@@ -24,8 +24,8 @@ enum MarianAntiphonOption: String, Codable, CaseIterable, Identifiable {
 
   func displayName(languageCode: String) -> String {
     let name = switch self {
-    case .none:                 String(localized: "marianAntiphon.none", defaultValue: "None")
-    case .seasonal:             String(localized: "marianAntiphon.seasonal", defaultValue: "Automatic (Seasonal)")
+    case .none:                 String(localized: "marianAntiphon.none", defaultValue: "None", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .seasonal:             String(localized: "marianAntiphon.seasonal", defaultValue: "Automatic (Seasonal)", bundle: UILanguage.bundle, locale: UILanguage.locale)
     case .salveRegina:          PrayerTranslations.get(languageCode: languageCode, key: .salveReginaTitle)
     case .almaRedemptorisMater: PrayerTranslations.get(languageCode: languageCode, key: .almaRedemptorisMaterTitle)
     case .aveReginaCaelorum:    PrayerTranslations.get(languageCode: languageCode, key: .aveReginaCaelorumTitle)

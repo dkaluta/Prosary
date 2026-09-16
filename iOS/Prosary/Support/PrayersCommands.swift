@@ -22,19 +22,19 @@ struct PrayersCommands: Commands {
       Button("about.navigationTitle") { openWindow(id: "about") }
     }
     CommandGroup(replacing: .help) {
-      Link(String(localized: "commands.help", defaultValue: "Prosary Help"),
+      Link(String(localized: "commands.help", defaultValue: "Prosary Help", bundle: UILanguage.bundle, locale: UILanguage.locale),
            destination: URL(string: "https://prosary.app/")!)
     }
     #endif
 
     CommandGroup(replacing: .newItem) {
       #if os(macOS)
-      Button(String(localized: "commands.newWindow", defaultValue: "New Window")) {
+      Button(String(localized: "commands.newWindow", defaultValue: "New Window", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
         openWindow(id: "main")
       }
       .keyboardShortcut("n", modifiers: .command)
 
-      Menu(String(localized: "commands.recentlyPrayed", defaultValue: "Recently Prayed")) {
+      Menu(String(localized: "commands.recentlyPrayed", defaultValue: "Recently Prayed", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
         ForEach(RecentPrayers.shared.entries) { prayer in
           Button(prayer.title) {
             Task {
@@ -69,8 +69,8 @@ struct PrayersCommands: Commands {
     }
 
     #if os(macOS)
-    CommandMenu(String(localized: "commands.navigation", defaultValue: "Go")) {
-      Button(String(localized: "commands.back", defaultValue: "Back")) { navigation?.goBack() }
+    CommandMenu(String(localized: "commands.navigation", defaultValue: "Go", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
+      Button(String(localized: "commands.back", defaultValue: "Back", bundle: UILanguage.bundle, locale: UILanguage.locale)) { navigation?.goBack() }
         .keyboardShortcut("[", modifiers: .command)
         .disabled(navigation?.canGoBack != true)
       Divider()
@@ -84,7 +84,7 @@ struct PrayersCommands: Commands {
 
     CommandMenu("commands.menuTitle") {
       Group {
-      Button(String(localized: "basicPrayers.title", defaultValue: "Basic Prayers")) {
+      Button(String(localized: "basicPrayers.title", defaultValue: "Basic Prayers", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
         navigation?.openRoute(.basicPrayers)
       }
       RosarySubmenu(prayers: presetsState.prayers, openRoute: launch)
@@ -145,7 +145,7 @@ private struct CustomDevotionSubmenu: View {
           Button(prayer.isDefault ? "\(prayer.name) ★" : prayer.name) { openRoute(.prayer(id: prayer.id)) }
         }
         Divider()
-        Button(String(localized: "commands.customNew", defaultValue: "New Session")) {
+        Button(String(localized: "commands.customNew", defaultValue: "New Session", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
           openRoute(.custom(devotionId: bundleId))
         }
       }

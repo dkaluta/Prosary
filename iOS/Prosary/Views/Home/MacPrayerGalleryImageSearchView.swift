@@ -31,16 +31,16 @@ struct MacPrayerGalleryImageSearchView: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 16) {
       VStack(alignment: .leading, spacing: 4) {
-        Text(String(localized: "galleryImage.searchTitle", defaultValue: "Find a Gallery Image"))
+        Text(String(localized: "galleryImage.searchTitle", defaultValue: "Find a Gallery Image", bundle: UILanguage.bundle, locale: UILanguage.locale))
           .font(.headline)
         Text(item.title).foregroundStyle(.secondary)
       }
       HStack {
-        TextField(String(localized: "galleryImage.searchPrompt", defaultValue: "Search Wikimedia Commons"), text: $query)
+        TextField(String(localized: "galleryImage.searchPrompt", defaultValue: "Search Wikimedia Commons", bundle: UILanguage.bundle, locale: UILanguage.locale), text: $query)
           .textFieldStyle(.roundedBorder)
           .onSubmit(submitSearch)
           .accessibilityIdentifier("macGallery.imageSearch.query")
-        Button(String(localized: "search.title", defaultValue: "Search"), action: submitSearch)
+        Button(String(localized: "search.title", defaultValue: "Search", bundle: UILanguage.bundle, locale: UILanguage.locale), action: submitSearch)
           .disabled(query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || isSaving)
           .accessibilityIdentifier("macGallery.imageSearch.search")
       }
@@ -65,25 +65,25 @@ struct MacPrayerGalleryImageSearchView: View {
         .disabled(isSaving)
         .accessibilityIdentifier("macGallery.imageSearch.results")
         if isSearching {
-          ProgressView(String(localized: "galleryImage.searching", defaultValue: "Searching…"))
+          ProgressView(String(localized: "galleryImage.searching", defaultValue: "Searching…", bundle: UILanguage.bundle, locale: UILanguage.locale))
             .padding(24).background(.regularMaterial, in: RoundedRectangle(cornerRadius: 10))
         } else if results.isEmpty {
           ContentUnavailableView(
             failure == nil
-              ? String(localized: "galleryImage.noResults", defaultValue: "No Images Found")
-              : String(localized: "galleryImage.searchUnavailable", defaultValue: "Search Unavailable"),
+              ? String(localized: "galleryImage.noResults", defaultValue: "No Images Found", bundle: UILanguage.bundle, locale: UILanguage.locale)
+              : String(localized: "galleryImage.searchUnavailable", defaultValue: "Search Unavailable", bundle: UILanguage.bundle, locale: UILanguage.locale),
             systemImage: "photo.on.rectangle.angled",
-            description: Text(failure ?? String(localized: "galleryImage.trySearch", defaultValue: "Try another name or a description of the image.")))
+            description: Text(failure ?? String(localized: "galleryImage.trySearch", defaultValue: "Try another name or a description of the image.", bundle: UILanguage.bundle, locale: UILanguage.locale)))
         }
       }
       .frame(maxWidth: .infinity, maxHeight: .infinity)
 
       HStack {
         if let result = selectedResult {
-          Link(String(localized: "galleryImage.source", defaultValue: "Image Source"), destination: result.sourceURL)
+          Link(String(localized: "galleryImage.source", defaultValue: "Image Source", bundle: UILanguage.bundle, locale: UILanguage.locale), destination: result.sourceURL)
           if let url = result.licenseURL, !result.license.isEmpty { Link(result.license, destination: url) }
         } else {
-          Text("Wikimedia Commons").foregroundStyle(.secondary)
+          Text(verbatim: "Wikimedia Commons").foregroundStyle(.secondary)
         }
         Spacer()
       }
@@ -96,13 +96,13 @@ struct MacPrayerGalleryImageSearchView: View {
       HStack {
         if isSaving { ProgressView().controlSize(.small) }
         Spacer()
-        Button(String(localized: "favoriteEditor.cancel", defaultValue: "Cancel")) {
+        Button(String(localized: "favoriteEditor.cancel", defaultValue: "Cancel", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
           saveTask?.cancel()
           dismiss()
         }
         .keyboardShortcut(.cancelAction)
         .accessibilityIdentifier("macGallery.imageSearch.cancel")
-        Button(String(localized: "galleryImage.useImage", defaultValue: "Use Image"), action: saveImage)
+        Button(String(localized: "galleryImage.useImage", defaultValue: "Use Image", bundle: UILanguage.bundle, locale: UILanguage.locale), action: saveImage)
           .keyboardShortcut(.defaultAction)
           .disabled(selectedResult == nil || isSearching || isSaving)
           .accessibilityIdentifier("macGallery.imageSearch.use")

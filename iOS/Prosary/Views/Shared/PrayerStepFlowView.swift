@@ -50,6 +50,10 @@ struct PrayerStepFlowView: View {
   /// Session-specific controls share the title's adaptive placement with auto-advance.
   /// Compact iOS windows place them below the navigation title; wider windows use the toolbar.
   var flowActions: AnyView? = nil
+  var contentBundleID: String = "rosary"
+  /// Basic-prayer navigation repeats its sourced heading. Devotion and user window titles
+  /// stay independent of the prayer's writing system.
+  var navigationTitleIsPrayerHeading = false
 
   @Environment(\.horizontalSizeClass) private var horizontalSizeClass
   @Environment(\.verticalSizeClass) private var verticalSizeClass
@@ -101,9 +105,15 @@ struct PrayerStepFlowView: View {
   }
 
   private var usesSyriacScript: Bool {
-    if let script = aramaicSessionScript { return script == "Syrc" }
     guard let step else { return false }
-    return PrayerTypography.script(of: showsTransliteration ? step.transliteratedBody ?? step.body : step.body) == .syriac
+    return PrayerTypography.script(of: usesAlternateText ? step.transliteratedBody ?? step.body : step.body) == .syriac
+  }
+
+  private var displayedNavigationTitle: String {
+    navigationTitleIsPrayerHeading
+      ? PrayerTranslations.flowTitle(navigationTitle, languageCode: languageCode,
+          sourceScript: usesSyriacScript, bundleId: contentBundleID)
+      : HebrewDisplayText.unpointed(navigationTitle)
   }
 
   private func toggleTransliteration() {
@@ -230,16 +240,17 @@ struct PrayerStepFlowView: View {
     Group {
       #if os(macOS)
       if let presentation, presentation.isPresenting {
-        MacPrayerPresenterView(step: presenterStep, title: navigationTitle, currentIndex: currentIndex,
+        MacPrayerPresenterView(step: presenterStep, title: displayedNavigationTitle, currentIndex: currentIndex,
           totalSteps: totalSteps, languageCode: languageCode, canGoBack: canGoBack,
           textSize: presentation.textSize, onBack: onBack, onNext: onNext, onExit: presentation.exit,
-          primaryActionLabel: isLastStep ? nil : centralActionLabel)
+          primaryActionLabel: isLastStep ? nil : centralActionLabel, contentBundleID: contentBundleID,
+          titleIsPrayerHeading: navigationTitleIsPrayerHeading)
       } else { regularContent }
       #else
       regularContent
       #endif
     }
-    .navigationTitle(showsCompactHeader ? "" : HebrewDisplayText.unpointed(navigationTitle))
+    .navigationTitle(showsCompactHeader ? "" : displayedNavigationTitle)
     .onAppear { applyDefaultScript() }
     .onChange(of: languageCode) { _, _ in applyDefaultScript() }
     .onChange(of: step == nil) { _, _ in applyDefaultScript() }
@@ -250,8 +261,11 @@ struct PrayerStepFlowView: View {
       if !isPresenting {
       if showsCompactHeader {
         ToolbarItem(placement: .principal) {
-          Text(HebrewDisplayText.unpointed(navigationTitle))
-            .font(.headline)
+          Text(displayedNavigationTitle)
+            .font(navigationTitleIsPrayerHeading
+              ? PrayerTypography.aramaicHeadingFont(text: displayedNavigationTitle,
+                  languageCode: languageCode, typefaces: typefaces, pointSize: 17) ?? .headline
+              : .headline)
             .multilineTextAlignment(.center)
             .lineLimit(2)
             .fixedSize(horizontal: false, vertical: true)
@@ -322,23 +336,23 @@ struct PrayerStepFlowView: View {
 
   private var autoAdvanceMenu: some View {
     Menu {
-      Picker(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance"),
+      Picker(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance", bundle: UILanguage.bundle, locale: UILanguage.locale),
              selection: autoAdvanceBinding) {
-        Text(String(localized: "prayerFlow.autoAdvance.off", defaultValue: "Off")).tag(0)
+        Text(String(localized: "prayerFlow.autoAdvance.off", defaultValue: "Off", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(0)
         ForEach(Self.autoAdvanceChoices, id: \.self) { seconds in
           Text(String(localized: "prayerFlow.autoAdvance.everySeconds",
-                      defaultValue: "Every \(seconds) Seconds")).tag(seconds)
+                      defaultValue: "Every \(seconds) Seconds", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(seconds)
         }
       }
     } label: {
-      Label(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance"),
+      Label(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance", bundle: UILanguage.bundle, locale: UILanguage.locale),
             systemImage: autoAdvanceSeconds > 0 ? "timer.circle.fill" : "timer")
     }
     #if !os(macOS)
     .labelStyle(.iconOnly)
     #endif
-    .accessibilityLabel(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance"))
-    .help(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance"))
+    .accessibilityLabel(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance", bundle: UILanguage.bundle, locale: UILanguage.locale))
+    .help(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .accessibilityIdentifier("autoAdvanceMenu")
   }
 
@@ -351,14 +365,14 @@ struct PrayerStepFlowView: View {
         ProgressView(value: Double(currentIndex + 1) / Double(totalSteps))
         let aramaic = PrayerTranslations.aramaicProgress(currentIndex + 1, total: totalSteps,
           languageCode: languageCode, sourceScript: usesSyriacScript)
-        Text(aramaic ?? String(localized: "prayerFlow.progressCount", defaultValue: "\(currentIndex + 1) of \(totalSteps)"))
+        Text(aramaic ?? String(localized: "prayerFlow.progressCount", defaultValue: "\(currentIndex + 1) of \(totalSteps)", bundle: UILanguage.bundle, locale: UILanguage.locale))
           .accessibilityIdentifier("prayerProgressText")
           .font(aramaic.map { PrayerTypography.font(languageCode: languageCode, isScripture: false,
               text: $0, typefaces: typefaces, pointSize: 13) } ?? .caption)
           .foregroundStyle(.secondary)
       }
     } else {
-      Text(String(localized: "prayerFlow.progressCountUnbounded", defaultValue: "\(currentIndex + 1)"))
+      Text(String(localized: "prayerFlow.progressCountUnbounded", defaultValue: "\(currentIndex + 1)", bundle: UILanguage.bundle, locale: UILanguage.locale))
         .font(.caption)
         .foregroundStyle(.secondary)
     }
@@ -454,10 +468,14 @@ struct PrayerStepFlowView: View {
           .multilineTextAlignment(.center)
       }
 
-      Text(PrayerTranslations.flowTitle(step.title, languageCode: languageCode, sourceScript: usesSyriacScript))
-        .font(.title2.weight(.semibold))
+      let heading = PrayerTranslations.flowTitle(step.title, languageCode: languageCode,
+        sourceScript: usesSyriacScript, bundleId: contentBundleID)
+      Text(heading)
+        .font(PrayerTypography.aramaicHeadingFont(text: heading, languageCode: languageCode,
+                typefaces: typefaces, pointSize: 22) ?? .title2.weight(.semibold))
         .foregroundStyle(Color.brandHeadline)
         .multilineTextAlignment(.center)
+        .accessibilityIdentifier("prayerStepTitle")
 
       if let acclamation = step.acclamation {
         // The versicle/response is a prayer, not part of the reading — it keeps the regular
@@ -536,8 +554,8 @@ struct PrayerStepFlowView: View {
 
   private var transliterationActionLabel: String {
     usesAlternateText
-      ? String(localized: "prayerFlow.originalText", defaultValue: "Show Original Text")
-      : String(localized: "prayerFlow.transliteration", defaultValue: "Show Transliteration")
+      ? String(localized: "prayerFlow.originalText", defaultValue: "Show Original Text", bundle: UILanguage.bundle, locale: UILanguage.locale)
+      : String(localized: "prayerFlow.transliteration", defaultValue: "Show Transliteration", bundle: UILanguage.bundle, locale: UILanguage.locale)
   }
 
   /// Prayer bodies use `**bold**` for the traditional versicle/response typographic distinction

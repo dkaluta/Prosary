@@ -19,20 +19,20 @@ enum MultiDayStatus {
 
     if let run = MultiDayRuns.run(for: devotionId) {
       if run.isComplete(dayCount: days.count) {
-        return String(localized: "multiDay.complete", defaultValue: "Complete")
+        return String(localized: "multiDay.complete", defaultValue: "Complete", bundle: UILanguage.bundle, locale: UILanguage.locale)
       }
       let day = (run.nextUnprayedDay(dayCount: days.count) ?? 0) + 1
-      return String(localized: "multiDay.dayOf", defaultValue: "Day \(day) of \(days.count)")
+      return String(localized: "multiDay.dayOf", defaultValue: "Day \(day) of \(days.count)", bundle: UILanguage.bundle, locale: UILanguage.locale)
     }
 
     guard let start = startDate(definition.suggestedStart, on: date) else { return nil }
     let calendar = Calendar.current
     if calendar.isDate(start, inSameDayAs: date) {
-      return String(localized: "multiDay.startsToday", defaultValue: "Starts today")
+      return String(localized: "multiDay.startsToday", defaultValue: "Starts today", bundle: UILanguage.bundle, locale: UILanguage.locale)
     }
     return String(
       localized: "multiDay.startsOn",
-      defaultValue: "Starts \(start.formatted(.dateTime.day().month(.wide)))")
+      defaultValue: "Starts \(start.formatted(.dateTime.day().month(.wide).locale(UILanguage.locale)))", bundle: UILanguage.bundle, locale: UILanguage.locale)
   }
 
   /// The next occurrence of an annual "MM-DD" — this year's if it is still ahead, otherwise

@@ -79,7 +79,7 @@ public class HebrewLanguageSelectionTests : IClassFixture<PrayerPackLoaderFixtur
     [Fact]
     public void SelectedMissionCodeReachesItsRealPrayerTextAndAppDefault() => WithOrder([Mission, "arc", "he"], () =>
     {
-        var previousDefault = AppSettings.DefaultLanguageCode;
+        var previousDefault = AppSettings.PrayerLanguageCode;
         try
         {
             var prayer = BasicPrayerCatalog.Prayer("ourFather")!;

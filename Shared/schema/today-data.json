@@ -156,7 +156,7 @@
     }
   },
   "languagePreference": {
-    "source": "native interface language",
+    "source": "effective App Language from interfaceLanguageCode or the system preference",
     "values": [
       "en",
       "he",
@@ -167,7 +167,7 @@
       "it",
       "uk"
     ],
-    "description": "Today always follows the app/interface language, independently of defaultLanguageCode. There is no Today language picker. Previously persisted todayLanguageCode is ignored. iw and fil normalize to he and tl; Arabic and Hebrew apply RTL to the complete Today stack, including expanded citations."
+    "description": "Today follows App Language, independently of global and per-prayer language choices. There is no separate Today language picker. Previously persisted todayLanguageCode is ignored. iw and fil normalize to he and tl; Arabic and Hebrew apply RTL to the complete Today stack, including expanded citations."
   },
   "intentionDataset": {
     "file": "pope-intentions.json",

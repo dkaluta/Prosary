@@ -14,7 +14,7 @@ struct JesusPrayerOptions: Hashable, Codable {
   var targetDisplayName: String {
     switch target {
     case .count(let n): return "\(n)×"
-    case .unbounded:    return String(localized: "jesusPrayerOptions.unbounded", defaultValue: "Unbounded")
+    case .unbounded:    return String(localized: "jesusPrayerOptions.unbounded", defaultValue: "Unbounded", bundle: UILanguage.bundle, locale: UILanguage.locale)
     }
   }
 }

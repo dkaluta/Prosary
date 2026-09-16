@@ -100,7 +100,7 @@
   <data name="HomeMoveToTop.Text" xml:space="preserve"><value>Перемістити на початок</value></data>
   <data name="HomeEditOrder.Text" xml:space="preserve"><value>Змінити порядок…</value></data>
   <data name="SetTitle.Text" xml:space="preserve"><value>Налаштування</value></data>
-  <data name="SetLanguageCombo.Header" xml:space="preserve"><value>Мова молитви за замовчуванням</value></data>
+  <data name="SetLanguageCombo.Header" xml:space="preserve"><value>Мова молитви</value></data>
   <data name="SetPrayingHeader.Text" xml:space="preserve"><value>Молитва</value></data>
   <data name="SetAutoAdvanceCombo.Header" xml:space="preserve"><value>Автоматичний перехід</value></data>
   <data name="SetResetHomeOrder.Content" xml:space="preserve"><value>Скинути порядок головного екрана</value></data>
@@ -112,7 +112,8 @@
   <data name="SetComposeLink.Content" xml:space="preserve"><value>Створити молитву</value></data>
   <data name="SetPrivacyLink.Content" xml:space="preserve"><value>Політика конфіденційності</value></data>
   <data name="SetAppLanguageCombo.Header" xml:space="preserve"><value>Мова застосунку</value></data>
-  <data name="SetAppLanguageFooter.Text" xml:space="preserve"><value>Застосується після перезапуску програми.</value></data>
+  <data name="SetAppLanguageFooter.Text" xml:space="preserve"><value>Перезапустіть Prosary, щоб застосувати нову мову застосунку.</value></data>
+  <data name="SetAppLanguageUsage.Text" xml:space="preserve"><value>Використовується для інтерфейсу й автоматичного вибору видання Біблії. Молитви використовують цю мову, якщо не вибрано мову молитви.</value></data>
   <data name="SetTodayHeader.Text" xml:space="preserve"><value>Сьогодні</value></data>
   <data name="SetShowTodayFeast.Header" xml:space="preserve"><value>Показувати свято дня</value></data>
   <data name="SetShowTodayIntention.Header" xml:space="preserve"><value>Показувати намірення Папи</value></data>
@@ -526,4 +527,5 @@
   <data name="readings_text_notice" xml:space="preserve"><value>Біблійний текст указаного уривка. Формулювання може відрізнятися від читання на Месі.</value></data>
   <data name="readings_whole_verses_notice" xml:space="preserve"><value>Якщо читання містить лише частину вірша, вірш показано повністю.</value></data>
   <data name="readings_source" xml:space="preserve"><value>Джерело та видання</value></data>
+  <data name="language_app_parenthesized" xml:space="preserve"><value>Мова застосунку ({0})</value></data>
 </root>

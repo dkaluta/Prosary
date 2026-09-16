@@ -23,7 +23,7 @@ struct PrayerReminder: Hashable, Codable, Identifiable {
     guard let date = Calendar.current.date(from: comps) else {
       return String(format: "%02d:%02d", hour, minute)
     }
-    return date.formatted(date: .omitted, time: .shortened)
+    return date.formatted(.dateTime.hour().minute().locale(UILanguage.locale))
   }
 
   /// A `Date` whose time component matches this reminder, for use with `DatePicker`.

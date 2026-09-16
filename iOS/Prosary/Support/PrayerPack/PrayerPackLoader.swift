@@ -846,11 +846,11 @@ enum PrayerPackStore {
     var errorDescription: String? {
       switch self {
       case .unreadable:
-        return String(localized: "packInstall.error.unreadable", defaultValue: "This file is not a readable .prosaryprayer bundle.")
+        return String(localized: "packInstall.error.unreadable", defaultValue: "This file is not a readable .prosaryprayer bundle.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
       case .notADevotion:
-        return String(localized: "packInstall.error.notADevotion", defaultValue: "This bundle does not contain a devotion.")
+        return String(localized: "packInstall.error.notADevotion", defaultValue: "This bundle does not contain a devotion.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
       case .duplicateId(let id):
-        return String(localized: "packInstall.error.duplicate", defaultValue: "A devotion named \"\(id)\" is already installed.")
+        return String(localized: "packInstall.error.duplicate", defaultValue: "A devotion named \"\(id)\" is already installed.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
       }
     }
   }
@@ -1007,6 +1007,26 @@ enum PrayerPackStore {
 
   static func resolveSharedPrayer(languageCode: String?, key: PrayerKey) -> String? {
     resolvedText(bundleId: nil, languageCode: languageCode, key: key.rawValue)?.text
+  }
+
+  /// Exact authored heading/reading-aid pairs. A local heading without an alternate remains
+  /// local; never attach another pack's Syriac to an independently supplied Hebrew title.
+  static func aramaicHeadingPairs(bundleId: String) -> [(original: String, alternate: String)] {
+    ensureLoaded()
+    let localKeys = Set((rawContentByBundle[bundleId]?["arc"] ?? [:]).keys)
+    // Imported titleKey names are author-defined. Exact whole-heading matching also permits
+    // those paired keys; conventional heading keys win if the same wording appears twice.
+    let keys = localKeys.union(sharedPrayerTitleKeys).sorted {
+      if $0.hasSuffix("Title") != $1.hasSuffix("Title") { return $0.hasSuffix("Title") }
+      return $0 < $1
+    }
+    return keys.compactMap { key in
+      let pair = localText(bundleId: bundleId, contentCode: "arc", key: key)
+        ?? (sharedPrayerTitleKeys.contains(key) ? localText(bundleId: "rosary", contentCode: "arc", key: key) : nil)
+      guard let pair, let alternate = pair.transliteration,
+            !pair.text.isEmpty, !alternate.isEmpty else { return nil }
+      return (pair.text, alternate)
+    }
   }
 
   #if DEBUG

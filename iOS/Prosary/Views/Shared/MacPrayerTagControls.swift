@@ -28,7 +28,7 @@ struct MacPrayerTagEditor: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 12) {
-      Text(String(localized: "macLibrary.tags", defaultValue: "Tags"))
+      Text(String(localized: "macLibrary.tags", defaultValue: "Tags", bundle: UILanguage.bundle, locale: UILanguage.locale))
         .font(.headline)
       MacPrayerTagTokenField(
         names: $names,
@@ -75,6 +75,7 @@ struct MacPrayerTagEditor: View {
 }
 
 struct MacPrayerTagTokenField: NSViewRepresentable {
+  @Environment(\.locale) private var locale
   @Binding var names: [String]
   let suggestions: [String]
   let onChange: ([String]) -> Void
@@ -89,8 +90,8 @@ struct MacPrayerTagTokenField: NSViewRepresentable {
     field.tokenizingCharacterSet = CharacterSet(charactersIn: ",\n\r")
     field.completionDelay = 0.15
     field.font = .systemFont(ofSize: NSFont.systemFontSize)
-    field.placeholderString = String(localized: "macLibrary.tagName", defaultValue: "Tag Name")
-    field.setAccessibilityLabel(String(localized: "macLibrary.tags", defaultValue: "Tags"))
+    field.placeholderString = String(localized: "macLibrary.tagName", defaultValue: "Tag Name", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    field.setAccessibilityLabel(String(localized: "macLibrary.tags", defaultValue: "Tags", bundle: UILanguage.bundle, locale: UILanguage.locale))
     field.identifier = .init("macLibrary.tagEditor.tokens")
     field.objectValue = names.map { TagToken($0) }
     field.target = context.coordinator
@@ -103,6 +104,8 @@ struct MacPrayerTagTokenField: NSViewRepresentable {
 
   func updateNSView(_ field: FocusedTagTokenField, context: Context) {
     context.coordinator.parent = self
+    field.placeholderString = String(localized: "macLibrary.tagName", defaultValue: "Tag Name", bundle: UILanguage.bundle, locale: locale)
+    field.setAccessibilityLabel(String(localized: "macLibrary.tags", defaultValue: "Tags", bundle: UILanguage.bundle, locale: locale))
     // Do not rewrite the field editor during typing/completion. Only a genuine external
     // assignment change (such as a suggestion toggle) replaces the token array.
     if context.coordinator.publishedNames != names {

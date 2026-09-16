@@ -5,7 +5,7 @@ import android.content.ContextWrapper
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -22,29 +22,37 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.dkaluta.prosary.calendar.MockLiturgicalCalendar
+import com.dkaluta.prosary.InterfaceLanguageController
 import com.dkaluta.prosary.content.audio.AudioPlaybackController
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.engine.PrayerEngine
 import com.dkaluta.prosary.models.AppSettings
+import com.dkaluta.prosary.models.BasicPrayerCatalog
 import com.dkaluta.prosary.models.JesusPrayerOptions
 import com.dkaluta.prosary.models.JesusPrayerTarget
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.models.PrayerRunKeys
+import com.dkaluta.prosary.models.PrayerRunProgress
+import com.dkaluta.prosary.models.PrayerRunProgressStore
 import com.dkaluta.prosary.presets.MockPresetStore
 import com.dkaluta.prosary.services.AppServices
 import com.dkaluta.prosary.services.LocalAppServices
 import com.dkaluta.prosary.ui.jesusprayer.JesusPrayerFlowScreen
 import com.dkaluta.prosary.ui.rosaryflow.RosaryFlowScreen
 import com.dkaluta.prosary.ui.shared.CustomDevotionFlowScreen
+import com.dkaluta.prosary.ui.shared.BasicPrayerFlowScreen
+import com.dkaluta.prosary.ui.shared.PrayerStepFlowScreen
+import androidx.compose.ui.graphics.Color
 import com.dkaluta.prosary.ui.shared.CustomDevotionPrayerSession
 import com.dkaluta.prosary.ui.shared.PrayerFlowChromeState
 import com.dkaluta.prosary.ui.shared.RosaryPrayerSession
+import com.dkaluta.prosary.ui.shared.JesusPrayerSession
 import com.dkaluta.prosary.ui.theme.ProsaryTheme
 import java.io.File
 
 /** Debug-only recreation harness. It never opens Room or the user's preference/pack folders. */
-class PrayerSessionTestActivity : ComponentActivity() {
+class PrayerSessionTestActivity : AppCompatActivity() {
     companion object {
         private var creationSerial = 0
     }
@@ -73,7 +81,11 @@ class PrayerSessionTestActivity : ComponentActivity() {
             override fun getCacheDir(): File = File(super.getCacheDir(), "prayer-session-test/$runId").also { it.mkdirs() }
         }
         AppSettings.init(testContext)
+        InterfaceLanguageController.synchronize(testContext)
         if (savedInstanceState == null) {
+            intent.getStringExtra("globalPrayerLanguage")?.let { AppSettings.setDefaultLanguageCode(it) }
+            intent.getStringExtra("aramaicScript")?.let { AppSettings.setAramaicDefaultScript(it) }
+            if (mode == "basic") AppSettings.setBasicPrayersLanguageCode(intent.getStringExtra("prayerLanguage") ?: "en")
             PrayerPackStore.resetForTesting()
             PrayerPackStore.installedPacksDirectory = File(testContext.filesDir, "prayerpacks")
             PrayerPackStore.initialize(assets)
@@ -85,6 +97,7 @@ class PrayerSessionTestActivity : ComponentActivity() {
             "audio" -> "kyrieaudiodemo"
             "days" -> "oAntiphons"
             "variant" -> "stationsOfTheCross"
+            "trisagion" -> "trisagion"
             else -> "angelus"
         }
         prayer = Prayer(
@@ -95,7 +108,7 @@ class PrayerSessionTestActivity : ComponentActivity() {
                 "jesus" -> PrayerKind.JesusPrayer
                 else -> PrayerKind.Custom
             },
-            languageCode = "en",
+            languageCode = intent.getStringExtra("prayerLanguage") ?: "en",
             customDevotionId = devotionId,
             jesusPrayer = JesusPrayerOptions(target = JesusPrayerTarget.Count(33)),
         )
@@ -115,6 +128,15 @@ class PrayerSessionTestActivity : ComponentActivity() {
                         }
                         composable("session") {
                             when (mode) {
+                                "basic" -> BasicPrayerFlowScreen(intent.getStringExtra("basicPrayerId") ?: "ourFather") { navigation.popBackStack() }
+                                "scriptFallback" -> {
+                                    val basic = requireNotNull(BasicPrayerCatalog.prayer("ourFather"))
+                                    val step = BasicPrayerCatalog.step(basic, "arc").copy(transliteratedBody = null)
+                                    PrayerStepFlowScreen(title = step.title, titleFollowsPrayerScript = true,
+                                        step = step, currentIndex = 0, totalSteps = 1, seasonColor = Color.Transparent,
+                                        isRightToLeft = true, languageCode = "arc", canGoBack = false, onBack = {},
+                                        onNext = { navigation.popBackStack() }, onNavigateUp = { navigation.popBackStack() })
+                                }
                                 "rosary" -> RosaryFlowScreen(prayer, { navigation.popBackStack() }, { _, _, _ -> navigation.popBackStack() })
                                 "jesus" -> JesusPrayerFlowScreen(prayer = prayer,
                                     onNavigateUp = { navigation.popBackStack() }, onFinish = { navigation.popBackStack() })
@@ -140,6 +162,37 @@ class PrayerSessionTestActivity : ComponentActivity() {
 
     fun rosaryIndexForTest(): State<Int> = ViewModelProvider(navigation.getBackStackEntry("session"))
         .get(PrayerRunKeys.rosary(prayer.id), RosaryPrayerSession::class.java).currentIndex
+
+    data class SessionSnapshot(
+        val identity: Int,
+        val index: Int,
+        val language: String?,
+        val chosenLanguage: String,
+        val ready: Boolean,
+        val frozenLanguage: String? = null,
+    )
+
+    fun sessionForTest(): SessionSnapshot {
+        val provider = ViewModelProvider(navigation.getBackStackEntry("session"))
+        return when (prayer.kind) {
+            PrayerKind.Rosary -> provider.get(PrayerRunKeys.rosary(prayer.id), RosaryPrayerSession::class.java).let {
+                SessionSnapshot(System.identityHashCode(it), it.currentIndex.intValue, it.languageCode.value,
+                    it.chosenLanguage.value, it.runReady.value)
+            }
+            PrayerKind.JesusPrayer -> provider.get(PrayerRunKeys.jesus(prayer.id, prayer.jesusPrayer.target), JesusPrayerSession::class.java).let {
+                SessionSnapshot(System.identityHashCode(it), it.progress.value.currentIndex, it.languageCode.value,
+                    it.chosenLanguage.value, it.runReady.value)
+            }
+            else -> provider.get("custom:$devotionId:${prayer.id}", CustomDevotionPrayerSession::class.java).let {
+                SessionSnapshot(System.identityHashCode(it), it.currentIndex.intValue, it.languageCode.value,
+                    it.chosenLanguage.value, it.runReady.value, it.frozenLanguageCode.value)
+            }
+        }
+    }
+
+    fun customBookmarkForTest(): PrayerRunProgress? = PrayerRunProgressStore.progress(
+        testContext, PrayerRunKeys.custom(devotionId, null, 0),
+    )
 
     fun readingMetricsForTest(): String {
         val chrome = ViewModelProvider(navigation.getBackStackEntry("session")).get(PrayerFlowChromeState::class.java)

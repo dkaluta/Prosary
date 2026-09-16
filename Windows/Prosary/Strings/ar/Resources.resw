@@ -100,7 +100,7 @@
   <data name="HomeMoveToTop.Text" xml:space="preserve"><value>انقل إلى الأعلى</value></data>
   <data name="HomeEditOrder.Text" xml:space="preserve"><value>عدّل الترتيب…</value></data>
   <data name="SetTitle.Text" xml:space="preserve"><value>الإعدادات</value></data>
-  <data name="SetLanguageCombo.Header" xml:space="preserve"><value>لغة الصلاة الافتراضية</value></data>
+  <data name="SetLanguageCombo.Header" xml:space="preserve"><value>لغة الصلاة</value></data>
   <data name="SetPrayingHeader.Text" xml:space="preserve"><value>الصلاة</value></data>
   <data name="SetAutoAdvanceCombo.Header" xml:space="preserve"><value>الانتقال التلقائي</value></data>
   <data name="SetResetHomeOrder.Content" xml:space="preserve"><value>أعد ضبط ترتيب الصفحة الرئيسية</value></data>
@@ -112,7 +112,8 @@
   <data name="SetComposeLink.Content" xml:space="preserve"><value>أنشئ صلاة تعبّدية</value></data>
   <data name="SetPrivacyLink.Content" xml:space="preserve"><value>سياسة الخصوصية</value></data>
   <data name="SetAppLanguageCombo.Header" xml:space="preserve"><value>لغة التطبيق</value></data>
-  <data name="SetAppLanguageFooter.Text" xml:space="preserve"><value>يسري بعد إعادة تشغيل التطبيق.</value></data>
+  <data name="SetAppLanguageFooter.Text" xml:space="preserve"><value>أعد تشغيل Prosary لتطبيق لغة التطبيق الجديدة.</value></data>
+  <data name="SetAppLanguageUsage.Text" xml:space="preserve"><value>تُستخدم للواجهة ولنسخة الكتاب المقدس التلقائية. تتبعها الصلوات ما لم تُحدَّد لغة للصلاة.</value></data>
   <data name="SetTodayHeader.Text" xml:space="preserve"><value>اليوم</value></data>
   <data name="SetShowTodayFeast.Header" xml:space="preserve"><value>أظهر عيد اليوم</value></data>
   <data name="SetShowTodayIntention.Header" xml:space="preserve"><value>أظهر نية البابا</value></data>
@@ -527,4 +528,5 @@
   <data name="readings_text_notice" xml:space="preserve"><value>نص الكتاب المقدس للمقطع المشار إليه. قد تختلف الصياغة عن قراءة القداس.</value></data>
   <data name="readings_whole_verses_notice" xml:space="preserve"><value>تُعرض الآيات كاملةً عندما تشير القراءة إلى جزء من آية فقط.</value></data>
   <data name="readings_source" xml:space="preserve"><value>المصدر والطبعة</value></data>
+  <data name="language_app_parenthesized" xml:space="preserve"><value>لغة التطبيق ({0})</value></data>
 </root>

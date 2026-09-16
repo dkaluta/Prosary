@@ -25,12 +25,35 @@ object PrayerTranslations {
         return "$index ${connector ?: get("arc", PrayerKey.RepetitionCounterConnector)} $total"
     }
 
-    fun flowTitle(title: String, languageCode: String?, sourceScript: Boolean): String {
+    fun flowTitle(title: String, languageCode: String?, sourceScript: Boolean, bundleId: String = "rosary"): String {
         val unpointed = HebrewDisplayText.unpoint(title)
-        if (!sourceScript || LanguageCatalog.fallbackChain(languageCode).firstOrNull() != "arc") return unpointed
-        val connector = PrayerPackStore.transliteration("rosary", "arc", "repetitionCounterConnector") ?: return unpointed
-        val original = HebrewDisplayText.unpoint(get("arc", PrayerKey.RepetitionCounterConnector))
-        return Regex("""(\(\d+) ${Regex.escape(original)} (\d+\))$""").replace(unpointed, "\$1 $connector \$2")
+        if (LanguageCatalog.fallbackChain(languageCode).firstOrNull() != "arc") return unpointed
+        val hebrewConnector = HebrewDisplayText.unpoint(get("arc", PrayerKey.RepetitionCounterConnector))
+        val syriacConnector = PrayerPackStore.transliteration("rosary", "arc", "repetitionCounterConnector")
+        val connectors = listOfNotNull(hebrewConnector, syriacConnector).joinToString("|", transform = Regex::escape)
+        val suffix = Regex("""( \(\d+ (?:$connectors) \d+\))$""")
+            .find(unpointed)?.value.orEmpty()
+        val base = unpointed.removeSuffix(suffix)
+        val connector = if (sourceScript) syriacConnector ?: hebrewConnector else hebrewConnector
+        val adjustedSuffix = suffix.replace(hebrewConnector, connector).let {
+            if (syriacConnector == null) it else it.replace(syriacConnector, connector)
+        }
+        // These are paired, sourced headings in the active bundle and shared Rosary. Never derive
+        // a title from the body or transliterate an unknown/fallback heading ourselves.
+        for ((primary, alternate) in PrayerPackStore.titleScriptPairs(bundleId, "arc")) {
+            val primaryScript = PrayerTypography.scriptOf(primary)
+            val alternateScript = PrayerTypography.scriptOf(alternate)
+            val pair = when {
+                primaryScript == PrayerTypography.Script.Hebrew && alternateScript == PrayerTypography.Script.Syriac -> primary to alternate
+                primaryScript == PrayerTypography.Script.Syriac && alternateScript == PrayerTypography.Script.Hebrew -> alternate to primary
+                else -> continue
+            }
+            val hebrew = HebrewDisplayText.unpoint(pair.first)
+            val syriac = pair.second
+            if (base != hebrew && base != syriac) continue
+            return (if (sourceScript) syriac else hebrew) + adjustedSuffix
+        }
+        return base + adjustedSuffix
     }
 
     fun get(languageCode: String?, key: PrayerKey): String {

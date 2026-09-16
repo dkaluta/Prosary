@@ -46,7 +46,10 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     [ObservableProperty]
     private JesusPrayerProgress _repetitionState = new(new JesusPrayerTarget.Count(33));
 
+    public string HeaderFontFamily => PrayerTypography.ResolveHeadingFontFamily(Header);
+
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HeaderFontFamily))]
     private string _header = Loc.Tr("kind_jesus_prayer", "Jesus Prayer");
 
     [ObservableProperty]
@@ -203,7 +206,11 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
         OnPropertyChanged(nameof(FavoriteActionLabel));
     }
 
-    public void RefreshTypography() => RenderCurrentStep();
+    public void RefreshTypography()
+    {
+        RenderCurrentStep();
+        OnPropertyChanged(nameof(HeaderFontFamily));
+    }
     public void RefreshPrayerWording() => RenderCurrentStep();
 
     private void RenderCurrentStep()

@@ -53,18 +53,18 @@ enum PrayerKind: String, CaseIterable, Codable, Hashable {
 
   private var interfaceDisplayName: String {
     switch self {
-    case .rosary:      return String(localized: "prayerKind.rosary", defaultValue: "Rosary")
-    case .jesusPrayer: return String(localized: "prayerKind.jesusPrayer", defaultValue: "Jesus Prayer")
-    case .custom:      return String(localized: "prayerKind.custom", defaultValue: "Devotion")
+    case .rosary:      return String(localized: "prayerKind.rosary", defaultValue: "Rosary", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .jesusPrayer: return String(localized: "prayerKind.jesusPrayer", defaultValue: "Jesus Prayer", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .custom:      return String(localized: "prayerKind.custom", defaultValue: "Devotion", bundle: UILanguage.bundle, locale: UILanguage.locale)
     }
   }
 
   /// Default name suggested when the user creates a new favorite of this kind.
   var defaultName: String {
     switch self {
-    case .rosary:      return String(localized: "prayerKind.defaultName.rosary", defaultValue: "My Rosary")
-    case .jesusPrayer: return String(localized: "prayerKind.jesusPrayer", defaultValue: "Jesus Prayer")
-    case .custom:      return String(localized: "prayerKind.custom", defaultValue: "Devotion")
+    case .rosary:      return String(localized: "prayerKind.defaultName.rosary", defaultValue: "My Rosary", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .jesusPrayer: return String(localized: "prayerKind.jesusPrayer", defaultValue: "Jesus Prayer", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .custom:      return String(localized: "prayerKind.custom", defaultValue: "Devotion", bundle: UILanguage.bundle, locale: UILanguage.locale)
     }
   }
 

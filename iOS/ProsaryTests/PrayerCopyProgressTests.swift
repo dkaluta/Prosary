@@ -66,6 +66,10 @@ final class PrayerCopyProgressTests: XCTestCase {
     XCTAssertTrue(updated.canResume(stepCount: 10, expectedConfigurationSignature: "original-form"))
     XCTAssertFalse(updated.canResume(stepCount: 10, expectedConfigurationSignature: "different-form"))
     XCTAssertEqual(PrayerCopyProgressIdentity.continuation(bookmark, savedLanguageCode: nil), bookmark)
+    XCTAssertEqual(PrayerCopyProgressIdentity.continuation(bookmark, savedLanguageCode: "",
+                     preservesInheritedSession: true), bookmark)
+    XCTAssertEqual(PrayerCopyProgressIdentity.continuation(bookmark, savedLanguageCode: "he",
+                     preservesInheritedSession: true), updated)
     XCTAssertNil(PrayerCopyProgressIdentity.continuation(nil, savedLanguageCode: "he"))
   }
 }

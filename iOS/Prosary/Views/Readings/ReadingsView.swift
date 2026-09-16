@@ -41,10 +41,10 @@ struct ReadingsView: View {
           }
           ReadingEditionPicker()
           VStack(alignment: .leading, spacing: 14) {
-            Text(String(localized: "home.today.selectedReadings", defaultValue: "Readings"))
+            Text(String(localized: "home.today.selectedReadings", defaultValue: "Readings", bundle: UILanguage.bundle, locale: UILanguage.locale))
               .font(.headline).accessibilityAddTraits(.isHeader)
             if readings.isEmpty {
-              Text(String(localized: "readings.noReadings", defaultValue: "No readings are available for this date in the selected calendar."))
+              Text(String(localized: "readings.noReadings", defaultValue: "No readings are available for this date in the selected calendar.", bundle: UILanguage.bundle, locale: UILanguage.locale))
                 .foregroundStyle(.secondary)
                 .accessibilityIdentifier("readings.empty")
             }
@@ -56,8 +56,8 @@ struct ReadingsView: View {
           if let torah {
             VStack(alignment: .leading, spacing: 14) {
               Text(torah.isHoliday
-                   ? String(localized: "home.today.festivalTorahReading", defaultValue: "Festival Torah reading")
-                   : String(localized: "home.today.torahPortion", defaultValue: "Weekly Torah portion"))
+                   ? String(localized: "home.today.festivalTorahReading", defaultValue: "Festival Torah reading", bundle: UILanguage.bundle, locale: UILanguage.locale)
+                   : String(localized: "home.today.torahPortion", defaultValue: "Weekly Torah portion", bundle: UILanguage.bundle, locale: UILanguage.locale))
                 .font(.headline).accessibilityAddTraits(.isHeader)
               Text(torah.localizedTitle(language))
               ForEach(Array(torah.readings.enumerated()), id: \.offset) { _, reading in
@@ -73,11 +73,11 @@ struct ReadingsView: View {
         .padding(20)
       }
     }
-    .navigationTitle(String(localized: "tabs.readings", defaultValue: "Readings"))
+    .navigationTitle(String(localized: "tabs.readings", defaultValue: "Readings", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .toolbar {
       ToolbarItem(placement: .topBarTrailing) {
         Button { showsOptions = true } label: {
-          Label(String(localized: "settings.title", defaultValue: "Settings"), systemImage: "slider.horizontal.3")
+          Label(String(localized: "settings.title", defaultValue: "Settings", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "slider.horizontal.3")
         }
         .accessibilityIdentifier("readings.options")
       }
@@ -85,6 +85,7 @@ struct ReadingsView: View {
     .sheet(isPresented: $showsOptions) { options }
     .environment(\.layoutDirection, UILanguage.isRightToLeft(language) ? .rightToLeft : .leftToRight)
     .environment(\.locale, Locale(identifier: language == "tl" ? "fil" : language))
+    .accessibilityElement(children: .contain)
     .accessibilityIdentifier("readings.screen")
     .onAppear { refresh() }
     .onChange(of: dateSelection.day) { _, _ in load() }
@@ -100,7 +101,7 @@ struct ReadingsView: View {
   private var dateNavigation: some View {
     HStack(spacing: 12) {
       Button { dateSelection.move(by: -1) } label: {
-        Label(String(localized: "home.today.previousDay", defaultValue: "Previous Day"), systemImage: "chevron.backward")
+        Label(String(localized: "home.today.previousDay", defaultValue: "Previous Day", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "chevron.backward")
       }
       .labelStyle(.iconOnly).disabled(!dateSelection.canMoveBackward)
       .accessibilityIdentifier("readings.previousDay")
@@ -111,11 +112,11 @@ struct ReadingsView: View {
         }
         .frame(maxWidth: .infinity)
       }
-      .accessibilityHint(String(localized: "home.today.chooseDate", defaultValue: "Choose a date"))
+      .accessibilityHint(String(localized: "home.today.chooseDate", defaultValue: "Choose a date", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("readings.chooseDate")
       .popover(isPresented: $showsDatePicker) { datePopover }
       Button { dateSelection.move(by: 1) } label: {
-        Label(String(localized: "home.today.nextDay", defaultValue: "Next Day"), systemImage: "chevron.forward")
+        Label(String(localized: "home.today.nextDay", defaultValue: "Next Day", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "chevron.forward")
       }
       .labelStyle(.iconOnly).disabled(!dateSelection.canMoveForward)
       .accessibilityIdentifier("readings.nextDay")
@@ -125,17 +126,19 @@ struct ReadingsView: View {
 
   private var datePopover: some View {
     VStack(spacing: 12) {
-      DatePicker(String(localized: "home.today.chooseDate", defaultValue: "Choose a date"),
+      DatePicker(String(localized: "home.today.chooseDate", defaultValue: "Choose a date", bundle: UILanguage.bundle, locale: UILanguage.locale),
                  selection: Binding(get: { selectedDate }, set: chooseDate),
                  in: MacTodayDateSelection.pickerRange(), displayedComponents: .date)
         .datePickerStyle(.graphical).labelsHidden()
         .environment(\.calendar, Calendar(identifier: .gregorian))
         .accessibilityIdentifier("readings.datePicker")
-      Button(String(localized: "home.today.today", defaultValue: "Today")) { chooseDate(Date()) }
+      Button(String(localized: "home.today.today", defaultValue: "Today", bundle: UILanguage.bundle, locale: UILanguage.locale)) { chooseDate(Date()) }
         .disabled(dateSelection.isToday())
         .accessibilityIdentifier("readings.reset")
         .prosarySecondaryButtonStyle()
     }
+    // SDK 27 resets control size at presentation boundaries.
+    .controlSize(.large)
     .padding(16).frame(width: 320)
     .presentationBackground(.regularMaterial)
     .presentationCompactAdaptation(.popover)
@@ -144,22 +147,22 @@ struct ReadingsView: View {
   private var options: some View {
     NavigationStack {
       Form {
-        Picker(String(localized: "settings.feastCalendar", defaultValue: "Liturgical calendar"),
+        Picker(String(localized: "settings.feastCalendar", defaultValue: "Liturgical calendar", bundle: UILanguage.bundle, locale: UILanguage.locale),
                selection: Binding(get: { TodayInfoStore.selectedCalendarId }, set: { calendarID = $0 })) {
           ForEach(TodayInfoStore.calendars) { calendar in Text(calendar.displayName).tag(calendar.id) }
         }
         if TodayInfoStore.selectedCalendarId == "ugcc" {
-          Picker(String(localized: "settings.easternPaschaStyle", defaultValue: "Byzantine Easter date"), selection: $paschaStyle) {
-            Text(String(localized: "settings.easternPaschaStyle.julian", defaultValue: "Julian Easter")).tag("julian")
-            Text(String(localized: "settings.easternPaschaStyle.gregorian", defaultValue: "Gregorian Easter")).tag("gregorian")
+          Picker(String(localized: "settings.easternPaschaStyle", defaultValue: "Byzantine Easter date", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $paschaStyle) {
+            Text(String(localized: "settings.easternPaschaStyle.julian", defaultValue: "Julian Easter", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("julian")
+            Text(String(localized: "settings.easternPaschaStyle.gregorian", defaultValue: "Gregorian Easter", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("gregorian")
           }
         }
-        Toggle(String(localized: "settings.showTodayTorahPortion", defaultValue: "Show the weekly Torah portion"), isOn: $showsTorah)
+        Toggle(String(localized: "settings.showTodayTorahPortion", defaultValue: "Show the weekly Torah portion", bundle: UILanguage.bundle, locale: UILanguage.locale), isOn: $showsTorah)
       }
-      .navigationTitle(String(localized: "tabs.readings", defaultValue: "Readings"))
+      .navigationTitle(String(localized: "tabs.readings", defaultValue: "Readings", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .toolbar {
         ToolbarItem(placement: .confirmationAction) {
-          Button(String(localized: "common.done", defaultValue: "Done")) { showsOptions = false }
+          Button(String(localized: "common.done", defaultValue: "Done", bundle: UILanguage.bundle, locale: UILanguage.locale)) { showsOptions = false }
         }
       }
     }

@@ -20,12 +20,13 @@ struct FavoriteEditorView: View {
 
   @Environment(\.appServices) private var services
   @Environment(\.dismiss) private var dismiss
-  @AppStorage("defaultLanguageCode") private var appDefaultCode = LanguageCatalog.defaultCode
+  @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
+  private var appDefaultCode: String { prayerLanguage.code }
 
   var body: some View {
     editorLayout
     #if os(macOS)
-    .navigationTitle(String(localized: "macLibrary.settingsTitle", defaultValue: "Prayer Settings"))
+    .navigationTitle(String(localized: "macLibrary.settingsTitle", defaultValue: "Prayer Settings", bundle: UILanguage.bundle, locale: UILanguage.locale))
     #else
     .navigationTitle(isNew ? "favoriteEditor.newFavoriteTitle" : "favoriteEditor.editFavoriteTitle")
     #endif
@@ -44,7 +45,7 @@ struct FavoriteEditorView: View {
     #endif
     .interactiveDismissDisabled(isSaving)
     .alert(
-      String(localized: "favoriteEditor.saveFailed", defaultValue: "Could Not Save Favorite"),
+      String(localized: "favoriteEditor.saveFailed", defaultValue: "Could Not Save Favorite", bundle: UILanguage.bundle, locale: UILanguage.locale),
       isPresented: .init(get: { saveError != nil }, set: { if !$0 { saveError = nil } })
     ) {
       Button("common.ok") { saveError = nil }
@@ -78,16 +79,16 @@ struct FavoriteEditorView: View {
     Section {
       TextField("favoriteEditor.name", text: $prayer.name, prompt: Text("favoriteEditor.namePlaceholder"))
       #if !os(macOS)
-      Toggle(String(localized: "favoriteEditor.setAsDefault", defaultValue: "Set as default for \(prayer.kind.displayName)"), isOn: $prayer.isDefault)
+      Toggle(String(localized: "favoriteEditor.setAsDefault", defaultValue: "Set as default for \(prayer.kind.displayName)", bundle: UILanguage.bundle, locale: UILanguage.locale), isOn: $prayer.isDefault)
       #endif
     }
 
     Section {
       let defaultName = LanguageCatalog.resolve(LanguageCatalog.pickerLanguageCode(appDefaultCode)).nativeName
       PrayerLanguagePicker(
-        label: String(localized: "favoriteEditor.language", defaultValue: "Language"),
+        label: String(localized: "favoriteEditor.language", defaultValue: "Language", bundle: UILanguage.bundle, locale: UILanguage.locale),
         code: $prayer.languageCode,
-        defaultLabel: String(localized: "favoriteEditor.defaultLanguageOption", defaultValue: "Default — \(defaultName)"))
+        defaultLabel: String(localized: "favoriteEditor.defaultLanguageOption", defaultValue: "Default — \(defaultName)", bundle: UILanguage.bundle, locale: UILanguage.locale))
 
       let prayerBase = prayer.languageCode == LanguageCatalog.defaultSentinel
         ? prayer.languageCode
@@ -95,12 +96,12 @@ struct FavoriteEditorView: View {
       let defaultBase = LanguageCatalog.baseLanguage(of: appDefaultCode) ?? appDefaultCode
       if prayer.kind == .rosary && prayerBase == "arc" && defaultBase != "arc" {
         Picker(String(localized: "settings.aramaicSignOfCross",
-                      defaultValue: "Aramaic Sign of the Cross"),
+                      defaultValue: "Aramaic Sign of the Cross", bundle: UILanguage.bundle, locale: UILanguage.locale),
                selection: $prayer.rosary.aramaicSignOfCrossForm) {
           Text(String(localized: "settings.aramaicSignOfCross.formA",
-                      defaultValue: "Form A")).tag(AramaicSignOfCrossForm.formA)
+                      defaultValue: "Form A", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(AramaicSignOfCrossForm.formA)
           Text(String(localized: "settings.aramaicSignOfCross.formB",
-                      defaultValue: "Form B")).tag(AramaicSignOfCrossForm.formB)
+                      defaultValue: "Form B", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(AramaicSignOfCrossForm.formB)
         }
       }
     } header: {

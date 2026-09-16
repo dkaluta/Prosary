@@ -67,6 +67,13 @@ object PrayerTypography {
     fun styleForText(text: String, isScripture: Boolean): TextStyle =
         style(languageCode = null, isScripture = isScripture, script = scriptOf(text))
 
+    /** Keep native heading sizing while giving Syriac letters the selected covering face. */
+    fun headingStyleForText(text: String, base: TextStyle): TextStyle =
+        if (scriptOf(text) == Script.Syriac) base.copy(
+            fontFamily = styleForText(text, isScripture = false).fontFamily,
+            platformStyle = PlatformTextStyle(includeFontPadding = true),
+        ) else base
+
     /** [script] overrides what the language would imply — pass it for a transliteration. */
     // Variants key on their base script: "he-x-gamliel" typesets exactly like "he".
     fun style(languageCode: String?, isScripture: Boolean, script: Script? = null): TextStyle =

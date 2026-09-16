@@ -15,6 +15,9 @@ import XCTest
 final class PrayerPackLoaderTests: XCTestCase {
   func testSavedPrayerLabelsUseTheAvailableLanguageWithoutChangingThePreference() async throws {
     let defaults = UserDefaults.standard
+    let originalInterface = InterfaceLanguageStore.shared.selection
+    InterfaceLanguageStore.shared.selection = "en"
+    defer { InterfaceLanguageStore.shared.selection = originalInterface }
     let originalArguments = defaults.volatileDomain(forName: UserDefaults.argumentDomain)
     defaults.setVolatileDomain(originalArguments.merging([
       "defaultLanguageCode": "la", LanguageCatalog.fallbackOrderKey: ["he", "en", "la"]
@@ -297,6 +300,80 @@ final class PrayerPackLoaderTests: XCTestCase {
       "the Aramaic Glory Be now keeps the same two complete sense-lines in both devotions")
     XCTAssertNil(PrayerPackStore.transliteration(
       bundleId: "oAntiphons", languageCode: "en", key: "gloriaPatri"))
+  }
+
+  func testAramaicHeadingsUseTheActiveBundlesSourcedPairs() {
+    for (key, hebrewTitle, syriacTitle) in [
+      ("trisagionAcclamationTitle", "קדישת אלהא", "ܩܰܕ݁ܝܫܰܬ݂ ܐܰܠܳܗܳܐ"),
+      ("trisagionKyrieTitle", "קוריאליסון", "ܩܘܪܝܐܠܝܣܘܢ"),
+    ] {
+      let authored = PrayerPackStore.resolveBodyText(bundleId: "trisagion", languageCode: "arc", key: key)
+      XCTAssertEqual(HebrewDisplayText.unpointed(authored), hebrewTitle)
+      for input in [authored, hebrewTitle, syriacTitle] {
+        XCTAssertEqual(PrayerTranslations.flowTitle(input, languageCode: "arc", sourceScript: true,
+          bundleId: "trisagion"), syriacTitle)
+        XCTAssertEqual(PrayerTranslations.flowTitle(input, languageCode: "arc", sourceScript: false,
+          bundleId: "trisagion"), hebrewTitle)
+      }
+      XCTAssertEqual(PrayerTranslations.flowTitle(authored, languageCode: "arc", sourceScript: true), hebrewTitle,
+        "An unrelated bundle must not supply this bundle-local heading")
+    }
+    XCTAssertEqual(PrayerTranslations.flowTitle("שובחא לאבא", languageCode: "arc", sourceScript: true,
+      bundleId: "oAntiphons"), "ܫܽܘܒܚܳܐ ܠܰܐܒܳܐ", "Bundles can still use a shared Rosary heading")
+  }
+
+  func testImportedAramaicHeadingKeysKeepTheirOwnScriptPairsAndUnpairedOverrides() throws {
+    // Reuse supplied liturgical text, reversing the primary/alternate script order to prove
+    // imported packs are not required to put Hebrew first or to name a title key *Title.
+    let hebrewTitle = PrayerPackStore.resolveBodyText(bundleId: "trisagion", languageCode: "arc",
+      key: "trisagionAcclamationTitle")
+    let syriacTitle = try XCTUnwrap(PrayerPackStore.transliteration(bundleId: "trisagion", languageCode: "arc",
+      key: "trisagionAcclamationTitle"))
+    let hebrewBody = PrayerPackStore.resolveBodyText(bundleId: "trisagion", languageCode: "arc",
+      key: "trisagionAcclamation")
+    let syriacBody = try XCTUnwrap(PrayerPackStore.transliteration(bundleId: "trisagion", languageCode: "arc",
+      key: "trisagionAcclamation"))
+    let unpairedTitle = PrayerPackStore.resolveBodyText(bundleId: "rosary", languageCode: "arc", key: "signumCrucisTitle")
+    let savedDirectory = PrayerPackStore.installedPacksDirectory
+    let directory = FileManager.default.temporaryDirectory.appendingPathComponent("aramaic-headings-\(UUID())", isDirectory: true)
+    defer {
+      PrayerPackStore.installedPacksDirectory = savedDirectory
+      try? FileManager.default.removeItem(at: directory)
+    }
+    try PrayerPackStore.preservingSharedTextForTesting {
+      PrayerPackStore.installedPacksDirectory = directory
+      let id = "repo.aramaic-headings.\(UUID().uuidString)"
+      let manifest: [String: Any] = ["schemaVersion": 1, "id": id, "kind": id,
+        "displayName": "Aramaic heading fixture", "languages": ["arc"], "hasCatalog": false, "images": []]
+      let content: [String: Any] = [
+        "prayers": ["customIncipit": syriacTitle, "customBody": syriacBody, "signumCrucisTitle": unpairedTitle],
+        "transliterations": ["customIncipit": hebrewTitle, "customBody": hebrewBody], "mysteries": [:],
+      ]
+      try PrayerPackStore.installPack(from: Self.storedZip([
+        ("manifest.json", try JSONSerialization.data(withJSONObject: manifest)),
+        ("content/arc.json", try JSONSerialization.data(withJSONObject: content)),
+        ("devotion.json", Data(#"{"type":"steps","steps":[{"titleKey":"customIncipit","bodyKey":"customBody"},{"titleKey":"signumCrucisTitle","bodyKey":"customBody"}]}"#.utf8)),
+      ]))
+      defer { PrayerPackStore.removeInstalledPack(id: id) }
+      let pairs = PrayerPackStore.aramaicHeadingPairs(bundleId: id)
+      XCTAssertTrue(pairs.contains { $0.original == syriacTitle && $0.alternate == hebrewTitle })
+      XCTAssertFalse(pairs.contains { $0.original == unpairedTitle || $0.alternate == unpairedTitle },
+        "A local title without an alternate must not borrow the shared title's alternate")
+      let steps = PrayerEngine(calendar: StubLiturgicalCalendar()).buildSteps(for:
+        Prayer(kind: .custom, languageCode: "arc", customDevotionId: id))
+      XCTAssertEqual(steps.count, 2)
+      let pairedStep = try XCTUnwrap(steps.first)
+      XCTAssertEqual(pairedStep.title, syriacTitle)
+      XCTAssertEqual(PrayerTranslations.flowTitle(pairedStep.title, languageCode: "arc", sourceScript: false,
+        bundleId: id), HebrewDisplayText.unpointed(hebrewTitle))
+      XCTAssertEqual(PrayerTranslations.flowTitle(hebrewTitle, languageCode: "arc", sourceScript: true,
+        bundleId: id), syriacTitle)
+      let unpairedStep = try XCTUnwrap(steps.last)
+      XCTAssertEqual(PrayerTranslations.flowTitle(unpairedStep.title, languageCode: "arc", sourceScript: true,
+        bundleId: id), unpairedTitle)
+      XCTAssertEqual(PrayerTranslations.flowTitle("צלותא מרניתא", languageCode: "arc", sourceScript: true,
+        bundleId: id), "ܨܠܽܘܬܳܐ ܡܳܪܳܢܳܝܬܳܐ", "Absent local keys may still use shared sourced headings")
+    }
   }
 
   func testBundledPacksExist() {
@@ -1072,18 +1149,23 @@ final class PrayerPackLoaderTests: XCTestCase {
   /// as the default prayer language, the Trisagion card reads קדישת; plain Hebrew reads
   /// טריסאגיון; a language the manifest does not name falls back to the UI-language behavior.
   func testDisplayNameFollowsThePrayerLanguage() {
-    let saved = UserDefaults.standard.string(forKey: "defaultLanguageCode")
+    let saved = InterfaceLanguageStore.shared.selection
+    let savedDefault = UserDefaults.standard.object(forKey: "defaultLanguageCode")
     let savedPreference = UserDefaults.standard.object(forKey: PrayerNamePresentation.defaultsKey)
     UserDefaults.standard.set(true, forKey: PrayerNamePresentation.defaultsKey)
     defer {
       if let savedPreference { UserDefaults.standard.set(savedPreference, forKey: PrayerNamePresentation.defaultsKey) }
       else { UserDefaults.standard.removeObject(forKey: PrayerNamePresentation.defaultsKey) }
-      if let saved { UserDefaults.standard.set(saved, forKey: "defaultLanguageCode") }
+      InterfaceLanguageStore.shared.selection = saved
+      if let savedDefault { UserDefaults.standard.set(savedDefault, forKey: "defaultLanguageCode") }
       else { UserDefaults.standard.removeObject(forKey: "defaultLanguageCode") }
     }
 
+    InterfaceLanguageStore.shared.selection = "en"
     UserDefaults.standard.set("he-x-gamliel", forKey: "defaultLanguageCode")
     XCTAssertEqual(PrayerPackStore.info(for: "trisagion")?.localizedDisplayName, "קדישת")
+    XCTAssertEqual(PrayerPackStore.info(for: "trisagion")?.namePresentation(prayerCode: "he-x-gamliel").title,
+                   "קדישת")
 
     UserDefaults.standard.set("he", forKey: "defaultLanguageCode")
     XCTAssertEqual(PrayerPackStore.info(for: "trisagion")?.localizedDisplayName, "טריסאגיון")
@@ -1095,6 +1177,7 @@ final class PrayerPackLoaderTests: XCTestCase {
 
     // Latin names nothing in the manifest, so the UI language decides as before.
     UserDefaults.standard.set("la", forKey: "defaultLanguageCode")
+    XCTAssertEqual(PrayerPackStore.info(for: "trisagion")?.namePresentation(prayerCode: "la").title, "Trisagion")
     XCTAssertEqual(PrayerPackStore.info(for: "trisagion")?.localizedDisplayName, "Trisagion")
   }
 

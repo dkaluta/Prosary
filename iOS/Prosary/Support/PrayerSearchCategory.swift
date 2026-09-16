@@ -11,7 +11,7 @@ enum PrayerSearchCategory {
   }
 
   static func available(in groups: [[String]]) -> [String] {
-    Array(Set(groups.flatMap(tags))).sorted()
+    Array(Set(groups.flatMap { tags($0) })).sorted()
   }
 
   static func matches(_ values: [String], selected: String?) -> Bool {

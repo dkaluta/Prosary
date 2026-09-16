@@ -28,14 +28,21 @@
 
         <ScrollViewer Grid.Row="1">
             <StackPanel Padding="24" Spacing="16" MaxWidth="560" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <ComboBox x:Uid="SetLanguageCombo" Header="Default Prayer Language" HorizontalAlignment="Stretch"
+                <ComboBox x:Uid="SetAppLanguageCombo" Header="App Language" HorizontalAlignment="Stretch"
+                          ItemsSource="{x:Bind ViewModel.AppLanguageOptions}" DisplayMemberPath="Label"
+                          SelectedItem="{x:Bind ViewModel.SelectedAppLanguage, Mode=TwoWay}"
+                          AutomationProperties.AutomationId="interfaceLanguageCode" />
+                <TextBlock x:Uid="SetAppLanguageUsage"
+                           Text="Used for the interface and automatic Bible edition. Prayers follow it unless a prayer language is selected."
+                           TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+                <TextBlock x:Uid="SetAppLanguageFooter" Text="Restart Prosary to apply the new app language."
+                           TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+
+                <ComboBox x:Uid="SetLanguageCombo" Header="Prayer Language" HorizontalAlignment="Stretch"
                           ItemsSource="{x:Bind ViewModel.LanguageOptions}" DisplayMemberPath="NativeName"
-                          SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}" />
+                          SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}"
+                          AutomationProperties.AutomationId="defaultLanguageCode" />
 
-                <Button x:Uid="SetLanguageFallbackOrder" Content="Language fallback order…"
-                        HorizontalAlignment="Stretch" Click="OnEditLanguageFallbackOrder" />
-
-                <!-- Whose use of that language — shown only where there is more than one. -->
                 <ComboBox x:Uid="SetRiteCombo" Header="Prayer tradition" HorizontalAlignment="Stretch"
                           Visibility="{x:Bind ViewModel.ShowsRitePicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                           ItemsSource="{x:Bind ViewModel.RiteOptions, Mode=OneWay}" DisplayMemberPath="NativeName"
@@ -44,9 +51,11 @@
                 <ComboBox x:Uid="SetAramaicSignOfCrossCombo" Header="Aramaic Sign of the Cross"
                           HorizontalAlignment="Stretch"
                           Visibility="{x:Bind ViewModel.ShowsAramaicSignOfCrossPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                          ItemsSource="{x:Bind ViewModel.AramaicSignOfCrossOptions}"
-                          DisplayMemberPath="Label"
+                          ItemsSource="{x:Bind ViewModel.AramaicSignOfCrossOptions}" DisplayMemberPath="Label"
                           SelectedItem="{x:Bind ViewModel.SelectedAramaicSignOfCross, Mode=TwoWay}" />
+
+                <Button x:Uid="SetLanguageFallbackOrder" Content="Language fallback order…"
+                        HorizontalAlignment="Stretch" Click="OnEditLanguageFallbackOrder" />
 
                 <ToggleSwitch x:Uid="SetJaffaWording" Header="Alternative Hail Mary wording"
                               IsOn="{x:Bind ViewModel.UseJaffaHailMaryWording, Mode=TwoWay}"
@@ -54,13 +63,6 @@
                 <TextBlock x:Uid="SetJaffaWordingFooter"
                            Text="Use בְּרוּכַת הַחֶסֶד instead of מְלֵאַת הַחֶסֶד in Vicariate prayers."
                            TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
-
-                <ComboBox x:Uid="SetAppLanguageCombo" Header="App language" HorizontalAlignment="Stretch"
-                          ItemsSource="{x:Bind ViewModel.AppLanguageOptions}" DisplayMemberPath="Label"
-                          SelectedItem="{x:Bind ViewModel.SelectedAppLanguage, Mode=TwoWay}" />
-                <TextBlock x:Uid="SetAppLanguageFooter" Text="Takes effect after the app restarts."
-                           Style="{StaticResource CaptionTextBlockStyle}"
-                           Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
 
                 <TextBlock x:Uid="SetPrayingHeader" Text="Praying" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
 

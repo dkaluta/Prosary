@@ -95,7 +95,10 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
 
     private string? _prayerId;
 
+    public string HeaderFontFamily => PrayerTypography.ResolveHeadingFontFamily(Header);
+
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HeaderFontFamily))]
     private string _header = string.Empty;
 
     [ObservableProperty]
@@ -171,7 +174,11 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
         RenderPrayer();
     }
 
-    public void RefreshTypography() => RenderPrayer();
+    public void RefreshTypography()
+    {
+        RenderPrayer();
+        OnPropertyChanged(nameof(HeaderFontFamily));
+    }
     public void RefreshPrayerWording() => RenderPrayer();
 
     private void RenderPrayer()
@@ -190,9 +197,8 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
         Body = ShowsTransliteration && step.TransliteratedBody is { } transliterated
             ? transliterated
             : step.Body;
-        var usesSyriacScript = _aramaicSessionScript is not null ? _aramaicSessionScript == "Syrc"
-            : PrayerTypography.ScriptOf(Body) == PrayerTypography.Script.Syriac;
-        Header = PrayerTranslations.FlowTitle(step.Title, language.Code, usesSyriacScript);
+        var usesSyriacScript = PrayerTypography.ScriptOf(Body) == PrayerTypography.Script.Syriac;
+        Header = PrayerTranslations.FlowTitle(step.Title, language.Code, usesSyriacScript, prayer.BundleId);
         MysteryImageFile = BasicPrayersViewModel.ImageFile(prayer.ImageKey);
         var aramaicProgress = PrayerTranslations.AramaicProgress(1, 1, language.Code, usesSyriacScript);
         ProgressText = aramaicProgress ?? string.Format(Loc.Tr("flow_step_of", "{0} of {1}"), 1, 1);

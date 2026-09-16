@@ -103,7 +103,7 @@ struct ReminderScheduler {
         content.title = name
         content.body = String(
           localized: "multiDay.reminderBody",
-          defaultValue: "Day \(day + 1) of \(days.count) awaits.")
+          defaultValue: "Day \(day + 1) of \(days.count) awaits.", bundle: UILanguage.bundle, locale: UILanguage.locale)
         content.sound = .default
         content.userInfo = seriesUserInfo(devotionId: devotionId, dayIndex: day, prayerID: prayer?.id)
 
@@ -173,14 +173,14 @@ struct ReminderScheduler {
 
   private static func notificationBody(for prayer: Prayer) -> String {
     switch prayer.kind {
-    case .rosary:      return String(localized: "reminder.rosary", defaultValue: "Time to pray the Rosary.")
-    case .jesusPrayer: return String(localized: "reminder.jesusPrayer", defaultValue: "Time for the Jesus Prayer.")
+    case .rosary:      return String(localized: "reminder.rosary", defaultValue: "Time to pray the Rosary.", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .jesusPrayer: return String(localized: "reminder.jesusPrayer", defaultValue: "Time for the Jesus Prayer.", bundle: UILanguage.bundle, locale: UILanguage.locale)
     case .custom:
       // Each bundle devotion ships its own notification body in its manifest (e.g. the
       // Angelus's "The Angelus bell is ringing.").
       guard let devotionId = prayer.customDevotionId,
             let body = PrayerPackStore.info(for: devotionId)?.localizedReminderBody else {
-        return String(localized: "reminder.generic", defaultValue: "Time to pray.")
+        return String(localized: "reminder.generic", defaultValue: "Time to pray.", bundle: UILanguage.bundle, locale: UILanguage.locale)
       }
       return body
     }

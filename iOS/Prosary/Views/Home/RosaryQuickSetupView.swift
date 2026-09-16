@@ -51,14 +51,14 @@ struct RosaryQuickSetupView: View {
       .interactiveDismissDisabled(isSaving)
       .alert("rosaryPicker.saveAsPreset", isPresented: $showsSaveNamePrompt) {
         TextField(
-          String(localized: "rosaryPicker.presetNamePlaceholder", defaultValue: "Preset name"),
+          String(localized: "rosaryPicker.presetNamePlaceholder", defaultValue: "Preset name", bundle: UILanguage.bundle, locale: UILanguage.locale),
           text: $presetName)
         Button("favoriteEditor.save") { save() }
           .keyboardShortcut(.defaultAction)
         Button("favoriteEditor.cancel", role: .cancel) {}
       }
       .alert(
-        String(localized: "favoriteEditor.saveFailed", defaultValue: "Could Not Save Favorite"),
+        String(localized: "favoriteEditor.saveFailed", defaultValue: "Could Not Save Favorite", bundle: UILanguage.bundle, locale: UILanguage.locale),
         isPresented: .init(get: { saveError != nil }, set: { if !$0 { saveError = nil } })
       ) {
         Button("common.ok") { saveError = nil }

@@ -1,9 +1,104 @@
 import Foundation
+import Observation
 import XCTest
 @testable import Prosary
 
 @MainActor
 final class UILanguageTests: XCTestCase {
+  func testAppLanguageStartsWithSystemAndLeavesPrayerOverrideIntact() throws {
+    let suite = "UILanguageTests.\(UUID().uuidString)"
+    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    defer { defaults.removePersistentDomain(forName: suite) }
+    defaults.set("arc", forKey: LanguageCatalog.defaultsKey)
+    let store = InterfaceLanguageStore(defaults: defaults, notificationCenter: NotificationCenter(),
+                                       systemLanguage: { "fr_CA" })
+
+    XCTAssertEqual(store.selection, "")
+    XCTAssertEqual(store.code, "fr")
+    store.selection = "he"
+    XCTAssertEqual(store.code, "he")
+    XCTAssertEqual(defaults.string(forKey: LanguageCatalog.defaultsKey), "arc")
+    store.selection = ""
+    XCTAssertEqual(store.code, "fr")
+    XCTAssertEqual(defaults.string(forKey: UILanguage.defaultsKey), "")
+  }
+
+  func testAppLanguageSelectionsPersistAndNormalizeSupportedAliases() throws {
+    let suite = "UILanguageTests.\(UUID().uuidString)"
+    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    defer { defaults.removePersistentDomain(forName: suite) }
+    let center = NotificationCenter()
+    let store = InterfaceLanguageStore(defaults: defaults, notificationCenter: center, systemLanguage: { "en" })
+
+    for language in UILanguage.all.map(\.code) {
+      store.selection = language
+      XCTAssertEqual(store.code, language)
+      XCTAssertEqual(defaults.string(forKey: UILanguage.defaultsKey), language)
+      let reopened = InterfaceLanguageStore(defaults: defaults, notificationCenter: center, systemLanguage: { "en" })
+      XCTAssertEqual(reopened.selection, language)
+      XCTAssertEqual(reopened.code, language)
+    }
+    for (alias, expected) in ["fil-PH": "tl", "iw-IL": "he", "uk_UA": "uk"] {
+      store.selection = alias
+      XCTAssertEqual(store.selection, expected)
+      XCTAssertEqual(store.code, expected)
+    }
+    // Prayer-only choices belong in the separate prayer preference.
+    store.selection = "arc"
+    XCTAssertEqual(store.selection, "")
+    XCTAssertEqual(store.code, "en")
+  }
+
+  func testAppLanguageRefreshTracksSystemOnlyWhileFollowingSystem() throws {
+    let suite = "UILanguageTests.\(UUID().uuidString)"
+    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    defer { defaults.removePersistentDomain(forName: suite) }
+    var systemLanguage = "fr"
+    let store = InterfaceLanguageStore(defaults: defaults, notificationCenter: NotificationCenter(),
+                                       systemLanguage: { systemLanguage })
+    systemLanguage = "iw-IL"
+    store.refresh()
+    XCTAssertEqual(store.code, "he")
+    store.selection = "it"
+    systemLanguage = "ar"
+    store.refresh()
+    XCTAssertEqual(store.code, "it")
+    defaults.set("fil-PH", forKey: UILanguage.defaultsKey)
+    store.refresh()
+    XCTAssertEqual(store.code, "tl")
+    defaults.removeObject(forKey: UILanguage.defaultsKey)
+    store.refresh()
+    XCTAssertEqual(store.code, "ar")
+  }
+
+  func testAppLanguageInvalidatesObservedContentWithoutReplacingStore() throws {
+    let suite = "UILanguageTests.\(UUID().uuidString)"
+    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    defer { defaults.removePersistentDomain(forName: suite) }
+    let store = InterfaceLanguageStore(defaults: defaults, notificationCenter: NotificationCenter(),
+                                       systemLanguage: { "en" })
+    let changed = expectation(description: "An existing view's language dependency changes")
+    withObservationTracking {
+      XCTAssertEqual(store.code, "en")
+    } onChange: {
+      changed.fulfill()
+    }
+    store.selection = "he"
+    wait(for: [changed], timeout: 1)
+    XCTAssertEqual(store.code, "he")
+    XCTAssertTrue(UILanguage.isRightToLeft(store.code))
+  }
+
+  func testNativeStringLocalizationUsesSelectedBundleForEveryAppLanguage() {
+    for language in UILanguage.all.map(\.code) {
+      let title = String(localized: "settings.interfaceLanguage", defaultValue: "App Language",
+                         bundle: UILanguage.resourceBundle(for: language),
+                         locale: Locale(identifier: UILanguage.resourceLanguage(language)))
+      XCTAssertEqual(title, UILanguage.text("settings.interfaceLanguage", language: language, fallback: "missing"))
+      if language != "en" { XCTAssertNotEqual(title, "App Language", language) }
+    }
+  }
+
   func testSystemSettingsDirectsToTheAppInEveryInterfaceLanguage() throws {
     let settingsURL = try XCTUnwrap(Bundle.main.url(forResource: "Settings", withExtension: "bundle"))
     let data = try Data(contentsOf: settingsURL.appendingPathComponent("Root.plist"))

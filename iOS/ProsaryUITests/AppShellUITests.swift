@@ -22,6 +22,7 @@ final class AppShellUITests: XCTestCase {
   @MainActor
   func testEveryTabOpensItsScreen() throws {
     let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", ""]
     app.launch()
 
     XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10), "Pray lists the seeded favorite")
@@ -29,7 +30,7 @@ final class AppShellUITests: XCTestCase {
     // Full reading citations have their own tab; category browsing remains in Search.
     app.tabBars.buttons["Readings"].tap()
     XCTAssertTrue(app.navigationBars["Readings"].waitForExistence(timeout: 5))
-    XCTAssertTrue(app.buttons["readings.chooseDate"].exists)
+    XCTAssertTrue(app.buttons["readings.chooseDate"].waitForExistence(timeout: 5), app.debugDescription)
 
     app.tabBars.buttons["Search"].tap()
     XCTAssertTrue(app.navigationBars["Search"].waitForExistence(timeout: 5))
@@ -45,7 +46,7 @@ final class AppShellUITests: XCTestCase {
   @MainActor
   func testUkrainianInterfaceLocalizesNavigationTodayAndSettings() throws {
     let app = XCUIApplication()
-    app.launchArguments = ["-AppleLanguages", "(uk)", "-AppleLocale", "uk_UA",
+    app.launchArguments = ["-AppleLanguages", "(uk)", "-interfaceLanguageCode", "", "-AppleLocale", "uk_UA",
                            "-defaultLanguageCode", "uk", "-basicPrayersLanguageCode", "",
                            "-showPrayerNameInPrayerLanguage", "NO"]
     app.launch()
@@ -219,7 +220,7 @@ final class AppShellUITests: XCTestCase {
   func testRTLPrayerControlsAndTodayFollowInterfaceLanguage() throws {
     for (language, heading) in [("he", "המקרא היומי"), ("ar", "قراءات اليوم")] {
       let app = XCUIApplication()
-      app.launchArguments = ["-resetStore", "-AppleLanguages", "(\(language))",
+      app.launchArguments = ["-resetStore", "-AppleLanguages", "(\(language))", "-interfaceLanguageCode", "",
                              "-defaultLanguageCode", "en", "-todayLanguageCode", "it",
                              "-autoAdvanceSeconds", "0"]
       app.launch()
@@ -254,12 +255,15 @@ final class AppShellUITests: XCTestCase {
       XCTAssertEqual(body.label, firstBody)
 
       nextSection.tap()
+      XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+        predicate: NSPredicate(format: "label != %@", firstBody), object: body)], timeout: 5), .completed)
       let firstMystery = body.label
-      XCTAssertNotEqual(firstMystery, firstBody)
       nextSection.tap()
-      XCTAssertNotEqual(body.label, firstMystery)
+      XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+        predicate: NSPredicate(format: "label != %@", firstMystery), object: body)], timeout: 5), .completed)
       previousSection.tap()
-      XCTAssertEqual(body.label, firstMystery)
+      XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+        predicate: NSPredicate(format: "label == %@", firstMystery), object: body)], timeout: 5), .completed)
       app.terminate()
     }
   }
@@ -330,7 +334,7 @@ final class AppShellUITests: XCTestCase {
     app.buttons["basicPrayerLanguage-he"].tap()
     app.buttons["languageMenu"].tap()
     app.buttons["prayerTraditionMenu"].tap()
-    app.buttons["prayerTradition-he-x-gamliel"].tap()
+    app.buttons["Mission of St. Gamaliel"].tap()
     XCTAssertTrue(app.buttons["basicPrayer-holyGod"].label.contains("קדישת"))
     let pin = app.buttons["basicPrayerPin-holyGod"]
     if pin.label == "Remove from Pray" { pin.tap() }
@@ -378,7 +382,8 @@ final class AppShellUITests: XCTestCase {
   @MainActor
   func testBasicPrayerLanguagePickerUpdatesFlowAndList() throws {
     let app = XCUIApplication()
-    app.launchArguments = ["-resetStore", "-AppleLanguages", "(en)", "-defaultLanguageCode", "en"]
+    app.launchArguments = ["-resetStore", "-AppleLanguages", "(en)", "-defaultLanguageCode", "en",
+                           "-aramaicDefaultScript", "Hebr"]
     app.launch()
     let basic = app.buttons["basicPrayersRow"]
     XCTAssertTrue(basic.waitForExistence(timeout: 10))
@@ -391,7 +396,16 @@ final class AppShellUITests: XCTestCase {
     XCTAssertTrue(ourFather.label.contains("צלותא מרניתא"))
     ourFather.tap()
     XCTAssertTrue(app.buttons["transliterationToggle"].waitForExistence(timeout: 5))
+    XCTAssertTrue(app.staticTexts["prayerStepTitle"].label.contains("צלותא"))
     app.buttons["transliterationToggle"].tap()
+    for identifier in ["prayerStepTitle", "prayerFlowTitle"] {
+      let heading = app.staticTexts[identifier]
+      let syriacHeading = NSPredicate { _, _ in
+        heading.label.unicodeScalars.contains { (0x0700...0x074F).contains($0.value) }
+      }
+      XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: syriacHeading, object: nil)],
+                                  timeout: 5), .completed)
+    }
     let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
     attachment.name = "basic-prayer-aramaic-script-toggle"
     attachment.lifetime = .keepAlways
@@ -408,7 +422,7 @@ final class AppShellUITests: XCTestCase {
   @MainActor
   func testAramaicDefaultScriptAndSessionTogglePersistAcrossSteps() throws {
     let app = XCUIApplication()
-    app.launchArguments = ["-resetStore", "-AppleLanguages", "(en)", "-defaultLanguageCode", "arc",
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "", "-defaultLanguageCode", "arc",
                            "-autoAdvanceSeconds", "0"]
     func openScriptSetting() -> XCUIElement {
       XCTAssertTrue(app.buttons["settingsButton"].waitForExistence(timeout: 10))
@@ -421,10 +435,11 @@ final class AppShellUITests: XCTestCase {
         .press(forDuration: 0.1, thenDragTo:
           app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.08)))
       let picker = app.buttons["aramaicDefaultScriptPicker"]
+      for _ in 0..<8 where !picker.isHittable { app.swipeUp() }
       XCTAssertTrue(picker.isHittable)
       return picker
     }
-    for (script, label) in [("Syrc", "Syriac script"), ("Hebr", "Hebrew script")] {
+    for (script, label) in [("Syrc", "Syriac Script"), ("Hebr", "Hebrew Script")] {
       app.launch()
       let picker = openScriptSetting()
       picker.staticTexts.firstMatch.tap()
@@ -436,7 +451,6 @@ final class AppShellUITests: XCTestCase {
 
       // The picker writes the real preference. No script launch argument can mask a
       // persistence failure.
-      app.launchArguments.removeAll { $0 == "-resetStore" }
       app.launch()
       XCTAssertEqual(openScriptSetting().staticTexts.firstMatch.label, label)
       app.buttons["Done"].tap()
@@ -449,7 +463,10 @@ final class AppShellUITests: XCTestCase {
       XCTAssertTrue(body.waitForExistence(timeout: 10))
       func expectScript(_ syriac: Bool) {
         let predicate = NSPredicate { _, _ in
-          body.label.unicodeScalars.contains { (0x0700...0x074F).contains($0.value) } == syriac
+          let heading = app.staticTexts["prayerStepTitle"]
+          return body.label.unicodeScalars.contains { (0x0700...0x074F).contains($0.value) } == syriac
+            && heading.exists
+            && heading.label.unicodeScalars.contains { (0x0700...0x074F).contains($0.value) } == syriac
         }
         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: predicate, object: nil)], timeout: 5), .completed)
         XCTAssertTrue(app.staticTexts["prayerProgressText"].label.contains(syriac ? "ܡܶܢ" : "מֶן"))
@@ -569,24 +586,92 @@ final class AppShellUITests: XCTestCase {
   }
   #endif
 
+  #if os(iOS)
+  @MainActor
+  func testAppLanguageUpdatesInterfaceAndInheritedPrayersWhileKeepingExplicitChoices() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)",
+                           "-defaultLanguageCode", ""]
+    app.launch()
+
+    func chooseAppLanguage(_ name: String) {
+      let picker = app.buttons["appLanguagePicker"]
+      XCTAssertTrue(picker.waitForExistence(timeout: 5))
+      picker.tap()
+      let option = app.buttons[name]
+      XCTAssertTrue(option.waitForExistence(timeout: 5))
+      option.tap()
+    }
+
+    XCTAssertTrue(app.buttons["settingsButton"].waitForExistence(timeout: 10))
+    app.buttons["settingsButton"].tap()
+    chooseAppLanguage("עברית")
+    XCTAssertTrue(app.navigationBars["הגדרות"].waitForExistence(timeout: 5),
+                  "The open settings sheet updates without being replaced")
+    XCTAssertTrue(app.staticTexts["שפת היישומון"].exists)
+    app.buttons["סיום"].tap()
+    let rtlNavigation = NSPredicate { _, _ in
+      app.buttons["todayTomorrowButton"].frame.midX < app.buttons["todayYesterdayButton"].frame.midX
+    }
+    XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: rtlNavigation, object: nil)],
+                                timeout: 5), .completed)
+
+    let basic = app.buttons["basicPrayersRow"]
+    for _ in 0..<4 where !basic.isHittable { app.swipeUp() }
+    basic.tap()
+    app.buttons["languageMenu"].tap()
+    app.buttons["basicPrayerLanguage-default"].tap()
+    let ourFather = app.buttons["basicPrayer-ourFather"]
+    XCTAssertTrue(ourFather.waitForExistence(timeout: 5))
+    XCTAssertTrue(ourFather.label.contains("אבינו"),
+                  "An inherited prayer follows the newly chosen app language")
+    app.buttons["languageMenu"].tap()
+    app.buttons["basicPrayerLanguage-en"].tap()
+    XCTAssertTrue(ourFather.label.contains("Our Father"))
+    app.navigationBars.buttons.element(boundBy: 0).tap()
+
+    app.buttons["settingsButton"].tap()
+    chooseAppLanguage("Français")
+    XCTAssertTrue(app.navigationBars["Réglages"].waitForExistence(timeout: 5))
+    app.buttons["Terminé"].tap()
+    for _ in 0..<4 where !basic.isHittable { app.swipeUp() }
+    basic.tap()
+    XCTAssertTrue(ourFather.waitForExistence(timeout: 5))
+    XCTAssertTrue(ourFather.label.contains("Our Father"),
+                  "An explicit prayer language survives an interface change")
+    app.buttons["languageMenu"].tap()
+    app.buttons["basicPrayerLanguage-default"].tap()
+    XCTAssertTrue(ourFather.label.contains("Notre Père"))
+    app.navigationBars.buttons.element(boundBy: 0).tap()
+    app.buttons["settingsButton"].tap()
+    chooseAppLanguage("English")
+    app.buttons["Done"].tap()
+  }
+  #endif
+
   @MainActor
   func testSettingsOpensFromHomeAndOffersItsSections() throws {
     let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", ""]
     app.launch()
 
     XCTAssertTrue(app.buttons["settingsButton"].waitForExistence(timeout: 10))
     app.buttons["settingsButton"].tap()
 
     XCTAssertTrue(app.navigationBars["Settings"].waitForExistence(timeout: 5))
+    let removeDownloads = app.buttons["Remove Unused Downloads…"]
+    for _ in 0..<8 where !removeDownloads.isHittable { app.swipeUp() }
     XCTAssertTrue(app.staticTexts["Downloads"].exists, "Downloads section should be present")
-    XCTAssertTrue(app.buttons["Remove All Downloaded Devotions…"].exists)
+    XCTAssertTrue(removeDownloads.exists)
   }
 
   @MainActor
   func testHomeOrderEditorOpensFromTheToolbar() throws {
     let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)"]
     app.launch()
 
+    XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10))
     XCTAssertTrue(app.buttons["editOrderButton"].waitForExistence(timeout: 10))
     app.buttons["editOrderButton"].tap()
 
@@ -598,6 +683,7 @@ final class AppShellUITests: XCTestCase {
   @MainActor
   func testLanguageFallbackOrderUsesTheReorderEditor() throws {
     let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)"]
     app.launch()
 
     XCTAssertTrue(app.buttons["settingsButton"].waitForExistence(timeout: 10))
@@ -605,9 +691,10 @@ final class AppShellUITests: XCTestCase {
     XCTAssertTrue(app.buttons["languageFallbackOrderButton"].waitForExistence(timeout: 5))
     app.buttons["languageFallbackOrderButton"].tap()
 
-    XCTAssertTrue(app.navigationBars["Language fallback order"].waitForExistence(timeout: 5))
-    XCTAssertTrue(app.otherElements["languageFallbackOrderList"].exists
-      || app.tables["languageFallbackOrderList"].exists)
-    app.buttons["Done"].tap()
+    XCTAssertTrue(app.navigationBars["Language Fallback Order"].waitForExistence(timeout: 5))
+    XCTAssertTrue(app.descendants(matching: .any)["languageFallbackOrderList"].firstMatch.exists)
+    XCTAssertTrue(app.staticTexts["languageFallbackOrder.en"].exists)
+    XCTAssertTrue(app.buttons["languageFallbackOrderResetButton"].exists)
+    app.navigationBars["Language Fallback Order"].buttons["Done"].tap()
   }
 }

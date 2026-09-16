@@ -4,10 +4,8 @@
 //
 //  The Pray tab lists saved sessions, so a devotion nobody has starred is reached through
 //  Search. A devotion with no favorite prays in the
-//  app's default language, which is Latin — and since
-//  0.7.2 the step headings are translated too, so this walks the Angelus by its Latin headings
-//  ("Angelus Domini", not "The Annunciation"). Asserting English is what made these tests fail
-//  once the headings stopped being hardcoded literals.
+//  selected prayer language. The Latin fixtures explicitly select Latin; the English fixture
+//  verifies that the step headings follow the prayer language independently of the interface.
 //
 
 import XCTest
@@ -29,19 +27,18 @@ final class AngelusFlowUITests: XCTestCase {
   /// Search includes every local devotion, starred or not.
   private func openAngelus(_ app: XCUIApplication) {
     app.tabBars.buttons["Search"].tap()
-    let searchField = app.searchFields.firstMatch
-    XCTAssertTrue(searchField.waitForExistence(timeout: 5))
-    searchField.tap()
-    searchField.typeText("Angelus")
-    // The unfiltered local list includes this devotion without a saved copy.
+    // Open the identified local row regardless of the native search-field placement.
     let row = app.buttons["search.local.angelus"].firstMatch
+    for _ in 0..<8 where !row.isHittable { app.swipeUp() }
     XCTAssertTrue(row.waitForExistence(timeout: 10))
+    XCTAssertTrue(row.isHittable)
     row.tap()
   }
 
   @MainActor
   func testAngelusFlowFromHomeToFinish() throws {
     let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "", "-defaultLanguageCode", "la"]
     app.launch()
 
     openAngelus(app)
@@ -70,6 +67,7 @@ final class AngelusFlowUITests: XCTestCase {
   @MainActor
   func testAngelusBackButtonReturnsToPreviousStep() throws {
     let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "", "-defaultLanguageCode", "la"]
     app.launch()
 
     openAngelus(app)
@@ -88,7 +86,7 @@ final class AngelusFlowUITests: XCTestCase {
   @MainActor
   func testHeadingsFollowThePrayerLanguage() throws {
     let app = XCUIApplication()
-    app.launchArguments = ["-defaultLanguageCode", "en"]
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "", "-defaultLanguageCode", "en"]
     app.launch()
 
     openAngelus(app)
@@ -99,7 +97,7 @@ final class AngelusFlowUITests: XCTestCase {
   @MainActor
   func testActivePrayerKeepsItsStepAndReachableControlsThroughRotation() throws {
     let app = XCUIApplication()
-    app.launchArguments = ["-useInMemoryStore", "-defaultLanguageCode", "en"]
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "", "-defaultLanguageCode", "en"]
     app.launch()
     openAngelus(app)
     let progress = app.staticTexts["prayerProgressText"]

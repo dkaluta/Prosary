@@ -69,6 +69,9 @@ internal class CustomDevotionPrayerSession(
     val checkedRunKey = mutableStateOf<String?>(null)
     val runReady = mutableStateOf(false)
     val resetAudioOnNextRebuild = mutableStateOf(false)
+    // A changed inherited language must not replace a language-owned form mid-prayer.
+    // Keep its actual language until this entry closes or the user explicitly switches.
+    val frozenLanguageCode = mutableStateOf<String?>(null)
 
     var entryLoaded = false
     var loadedSelection: Pair<String?, Int>? = null

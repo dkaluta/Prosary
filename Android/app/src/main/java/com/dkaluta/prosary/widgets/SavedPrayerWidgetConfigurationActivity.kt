@@ -4,7 +4,7 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.clickable
@@ -40,7 +40,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /** Launcher-owned selection, also offered by the launcher's Edit widget action. */
-class SavedPrayerWidgetConfigurationActivity : ComponentActivity() {
+class SavedPrayerWidgetConfigurationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setResult(RESULT_CANCELED)
@@ -51,6 +51,7 @@ class SavedPrayerWidgetConfigurationActivity : ComponentActivity() {
             return
         }
         AppSettings.init(this)
+        com.dkaluta.prosary.InterfaceLanguageController.synchronize(this)
         enableEdgeToEdge()
         setContent {
             var prayers by remember { mutableStateOf<List<Prayer>?>(null) }

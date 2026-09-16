@@ -30,11 +30,11 @@ enum MysterySelectionMode: String, Codable, CaseIterable, Identifiable {
 
   var displayName: String {
     switch self {
-    case .todaysMysteries: return String(localized: "mysterySelectionMode.todaysMysteries", defaultValue: "Today's Mysteries")
-    case .specific:        return String(localized: "mysterySelectionMode.specific", defaultValue: "Always a Specific Set")
-    case .fifteenMystery:  return String(localized: "mysterySelectionMode.fifteenMystery", defaultValue: "The 15 Mysteries (Joyful, Sorrowful, Glorious)")
-    case .twentyMystery:   return String(localized: "mysterySelectionMode.twentyMystery", defaultValue: "The 20 Mysteries (All Four Sets)")
-    case .singleMystery:   return String(localized: "mysterySelectionMode.singleMystery", defaultValue: "One Mystery Only")
+    case .todaysMysteries: return String(localized: "mysterySelectionMode.todaysMysteries", defaultValue: "Today's Mysteries", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .specific:        return String(localized: "mysterySelectionMode.specific", defaultValue: "Always a Specific Set", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .fifteenMystery:  return String(localized: "mysterySelectionMode.fifteenMystery", defaultValue: "The 15 Mysteries (Joyful, Sorrowful, Glorious)", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .twentyMystery:   return String(localized: "mysterySelectionMode.twentyMystery", defaultValue: "The 20 Mysteries (All Four Sets)", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .singleMystery:   return String(localized: "mysterySelectionMode.singleMystery", defaultValue: "One Mystery Only", bundle: UILanguage.bundle, locale: UILanguage.locale)
     }
   }
 }

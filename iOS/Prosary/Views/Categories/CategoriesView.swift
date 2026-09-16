@@ -85,17 +85,17 @@ struct CategoriesView: View {
             .contextMenu {
               if PrayerPackStore.installedBundleIds().contains(listing.id) {
                 Button(role: .destructive) { removingDownload = listing.id } label: {
-                  Label(String(localized: "removal.removeDownloadAction", defaultValue: "Remove Download…"), systemImage: "trash")
+                  Label(String(localized: "removal.removeDownloadAction", defaultValue: "Remove Download…", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "trash")
                 }
                 .disabled(!unusedDownloads.contains(listing.id))
-                .help(String(localized: "removal.downloadInUse", defaultValue: "Delete all saved copies of this prayer before removing its download."))
+                .help(String(localized: "removal.downloadInUse", defaultValue: "Delete all saved copies of this prayer before removing its download.", bundle: UILanguage.bundle, locale: UILanguage.locale))
               }
             }
           }
         }
       }
     }
-    .navigationTitle(String(localized: "categories.title", defaultValue: "Categories"))
+    .navigationTitle(String(localized: "categories.title", defaultValue: "Categories", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .modifier(PrayerDownloadRemovalDialogs(bundleID: $removingDownload, onRemoved: { await refreshDownloads() }))
     .task { await refreshDownloads() }
     .onAppear { packGeneration += 1 }

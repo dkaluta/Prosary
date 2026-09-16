@@ -21229,6 +21229,7 @@
       }
     },
     "prayer.language.default" : {
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -27804,49 +27805,49 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "اللغة الافتراضية"
+            "value" : "لغة الصلاة"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Default Language"
+            "value" : "Prayer Language"
           }
         },
         "fil" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Paunang Piniling Wika"
+            "value" : "Wika ng Panalangin"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Langue par défaut"
+            "value" : "Langue de prière"
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "שפת ברירת מחדל"
+            "value" : "שפת התפילה"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lingua predefinita"
+            "value" : "Lingua di preghiera"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Язык по умолчанию"
+            "value" : "Язык молитв"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Стандартна мова"
+            "value" : "Мова молитов"
           }
         }
       }
@@ -28487,6 +28488,218 @@
         }
       }
     },
+    "settings.interfaceLanguage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لغة التطبيق"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Language"
+          }
+        },
+        "fil" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wika ng App"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langue de l’app"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שפת היישומון"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lingua dell’app"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Язык приложения"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мова застосунку"
+          }
+        }
+      }
+    },
+    "settings.interfaceLanguage.system" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الإعداد الافتراضي للنظام"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System Default"
+          }
+        },
+        "fil" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Default ng System"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langue du système"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ברירת המחדל של המערכת"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lingua di sistema"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Как в системе"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Як у системі"
+          }
+        }
+      }
+    },
+    "settings.interfaceLanguage.footer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تُستخدم للواجهة وللاختيار التلقائي لطبعة الكتاب المقدس. وتتبعها الصلوات ما لم تُحدَّد لغة للصلاة."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Used for the interface and automatic Bible edition. Prayers follow it unless a prayer language is selected."
+          }
+        },
+        "fil" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ginagamit sa interface at awtomatikong pagpili ng edisyon ng Bibliya. Sinusunod ito ng mga panalangin maliban kung may piniling wika ng panalangin."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utilisée pour l’interface et le choix automatique de l’édition biblique. Les prières la suivent sauf si une langue de prière est sélectionnée."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "משמשת לממשק ולבחירה האוטומטית של מהדורת המקרא. התפילות משתמשות בה אלא אם נבחרה שפת תפילה אחרת."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usata per l’interfaccia e la scelta automatica dell’edizione biblica. Le preghiere la seguono salvo quando viene selezionata una lingua di preghiera."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Используется для интерфейса и автоматического выбора издания Библии. Молитвы следуют ей, если не выбран отдельный язык молитв."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Використовується для інтерфейсу й автоматичного вибору видання Біблії. Молитви використовують її, якщо не вибрано окрему мову молитов."
+          }
+        }
+      }
+    },
+    "settings.prayerLanguage.appLanguage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لغة التطبيق (%@)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Language (%@)"
+          }
+        },
+        "fil" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wika ng App (%@)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langue de l’app (%@)"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שפת היישומון (%@)"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lingua dell’app (%@)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Язык приложения (%@)"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мова застосунку (%@)"
+          }
+        }
+      }
+    },
     "settings.jaffaWording" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -28864,49 +29077,49 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "لغة الصلاة"
+            "value" : "اللغة"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prayer Language"
+            "value" : "Language"
           }
         },
         "fil" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wika ng Panalangin"
+            "value" : "Wika"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Langue de prière"
+            "value" : "Langue"
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "שפת תפילה"
+            "value" : "שפה"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lingua della preghiera"
+            "value" : "Lingua"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Язык молитвы"
+            "value" : "Язык"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Мова молитви"
+            "value" : "Мова"
           }
         }
       }

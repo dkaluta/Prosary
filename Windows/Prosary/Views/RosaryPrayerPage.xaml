@@ -126,7 +126,7 @@
                             <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
                                        Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                                        Style="{StaticResource MutedSubtitleTextStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" FontFamily="{x:Bind ViewModel.HeaderFontFamily, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
                         </StackPanel>
 
                         <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"
@@ -213,7 +213,7 @@
                             <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
                                        Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                                        Style="{StaticResource MutedSubtitleTextStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" FontFamily="{x:Bind ViewModel.HeaderFontFamily, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
                         </StackPanel>
 
                         <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"

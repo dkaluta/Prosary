@@ -25,6 +25,7 @@ internal static class DesktopWindowChrome
     public static void Configure(Window window, FrameworkElement root, UIElement titleBar,
         ColumnDefinition leftInset, ColumnDefinition rightInset, int minimumWidth)
     {
+        root.Language = UiLanguageCatalog.ResourceTag(UiLanguageCatalog.Current);
         root.FlowDirection = UiLanguageCatalog.IsRightToLeft(UiLanguageCatalog.Current)
             ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
         var hwnd = WindowNative.GetWindowHandle(window);

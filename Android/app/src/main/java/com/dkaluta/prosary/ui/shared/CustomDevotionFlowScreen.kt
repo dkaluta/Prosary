@@ -110,6 +110,7 @@ fun CustomDevotionFlowScreen(
     var checkedRunKey by session.checkedRunKey
     var runReady by session.runReady
     var resetAudioOnNextRebuild by session.resetAudioOnNextRebuild
+    var frozenLanguageCode by session.frozenLanguageCode
 
     fun persistDayIndex(value: Int) {
         matchingFavoriteId?.let { id ->
@@ -230,7 +231,7 @@ fun CustomDevotionFlowScreen(
         } else {
             null
         }
-        val configuredLanguage = chosenLanguage
+        val configuredLanguage = frozenLanguageCode ?: chosenLanguage
         val candidateLanguage = savedRun?.languageCode ?: configuredLanguage
         val candidateResolvedLanguage = PrayerPackStore.effectiveLanguage(devotionId, candidateLanguage)
         val candidateEffectiveVariantId = definition?.effectiveVariantId(
@@ -264,7 +265,7 @@ fun CustomDevotionFlowScreen(
         // Only a valid bookmark may supply the session language. A stale one (for example,
         // after editing a favorite's options) falls back to the favorite's current language.
         val sessionLanguage = validRun?.languageCode ?: configuredLanguage
-        chosenLanguage = sessionLanguage
+        if (frozenLanguageCode == null) chosenLanguage = sessionLanguage
         languageCode = PrayerPackStore.effectiveLanguage(devotionId, sessionLanguage)
         displayName = PrayerPackStore.info(devotionId)?.displayNameIn(languageCode ?: sessionLanguage) ?: devotionId
         isRightToLeft = LanguageCatalog.resolve(languageCode ?: LanguageCatalog.defaultCode).isRightToLeft
@@ -290,20 +291,36 @@ fun CustomDevotionFlowScreen(
         session.appliedJaffaWording = AppSettings.useJaffaHailMaryWording
     }
 
-    LaunchedEffect(AppSettings.useJaffaHailMaryWording) {
-        if (session.appliedJaffaWording == AppSettings.useJaffaHailMaryWording) return@LaunchedEffect
+    val resolvedLanguage = PrayerPackStore.effectiveLanguage(devotionId, frozenLanguageCode ?: chosenLanguage)
+    LaunchedEffect(resolvedLanguage, AppSettings.useJaffaHailMaryWording) {
+        if (languageCode == resolvedLanguage &&
+            session.appliedJaffaWording == AppSettings.useJaffaHailMaryWording) return@LaunchedEffect
         if (steps.isNotEmpty()) {
+            val definition = PrayerPackStore.definition(devotionId)
+            if (definition?.effectiveVariantId(variantId, languageCode) !=
+                definition?.effectiveVariantId(variantId, resolvedLanguage)) {
+                // Automatic locale changes cannot restart a different recension. Preserve
+                // this entry's text, audio and bookmark form until an explicit choice.
+                frozenLanguageCode = languageCode
+                return@LaunchedEffect
+            }
             val position = currentIndex
+            val languageChanged = languageCode != resolvedLanguage
+            languageCode = resolvedLanguage
+            displayName = PrayerPackStore.info(devotionId)?.displayNameIn(resolvedLanguage) ?: devotionId
+            isRightToLeft = LanguageCatalog.resolve(resolvedLanguage).isRightToLeft
             steps = services.engine.buildSteps(Prayer(
-                kind = PrayerKind.Custom, languageCode = chosenLanguage,
+                kind = PrayerKind.Custom, languageCode = resolvedLanguage,
                 customDevotionId = devotionId, variantId = variantId,
                 dayIndex = dayIndex, customOptions = customOptions,
             ))
             currentIndex = position.coerceIn(0, (steps.size - 1).coerceAtLeast(0))
+            if (languageChanged) pickAudioTrack(currentIndex, allowStoredPosition = false)
             session.appliedJaffaWording = AppSettings.useJaffaHailMaryWording
         }
     }
 
+    val continuationLanguage = frozenLanguageCode ?: chosenLanguage
     val currentRunKey = PrayerRunKeys.custom(devotionId, variantId, dayIndex)
     val currentEffectiveVariantId = PrayerPackStore.definition(devotionId)
         ?.effectiveVariantId(variantId, languageCode)
@@ -333,7 +350,7 @@ fun CustomDevotionFlowScreen(
     LaunchedEffect(
         runReady,
         currentIndex,
-        chosenLanguage,
+        continuationLanguage,
         steps.size,
         currentRunKey,
         configurationSignature,
@@ -344,7 +361,7 @@ fun CustomDevotionFlowScreen(
                 context,
                 currentRunKey,
                 currentIndex,
-                chosenLanguage,
+                continuationLanguage,
                 configurationSignature,
             )
         } else if (currentIndex == 0) {
@@ -460,7 +477,7 @@ fun CustomDevotionFlowScreen(
                 context,
                 currentRunKey,
                 currentIndex,
-                chosenLanguage,
+                continuationLanguage,
                 configurationSignature,
             )
         }
@@ -471,6 +488,7 @@ fun CustomDevotionFlowScreen(
 
     PrayerStepFlowScreen(
         title = displayName,
+        prayerBundleId = devotionId,
         step = currentStep,
         currentIndex = currentIndex,
         sessionPaused = !runReady || missedDayChoice != null || completionSuggestion != null,
@@ -553,7 +571,7 @@ fun CustomDevotionFlowScreen(
             // position when the form is unchanged; a language-owned form starts at step zero.
             PrayerLanguagePicker(
                 devotionId = devotionId,
-                chosenLanguage = chosenLanguage,
+                chosenLanguage = frozenLanguageCode ?: chosenLanguage,
                 expanded = languageMenuExpanded,
                 onExpandedChange = { languageMenuExpanded = it },
                 onSelect = { raw ->
@@ -563,6 +581,7 @@ fun CustomDevotionFlowScreen(
                     val nextLanguageCode = PrayerPackStore.effectiveLanguage(devotionId, raw)
                     val nextEffectiveVariantId = definition
                         ?.effectiveVariantId(variantId, nextLanguageCode)
+                    frozenLanguageCode = null
                     chosenLanguage = raw
                     languageCode = nextLanguageCode
                     displayName = PrayerPackStore.info(devotionId)?.displayNameIn(nextLanguageCode) ?: devotionId

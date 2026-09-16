@@ -14,9 +14,10 @@ import AppKit
 
 struct SettingsView: View {
   @Environment(\.appServices) private var services
-  @AppStorage("defaultLanguageCode") private var languageCode = LanguageCatalog.defaultCode
-  @AppStorage(JaffaHailMaryWording.defaultsKey) private var usesJaffaHailMaryWording = false
+  @Bindable private var interfaceLanguage = InterfaceLanguageStore.shared
+  @AppStorage(LanguageCatalog.defaultsKey) private var languageCode = LanguageCatalog.defaultSentinel
   @AppStorage(AramaicSignOfCrossForm.defaultsKey) private var aramaicSignOfCrossForm = AramaicSignOfCrossForm.formA
+  @AppStorage(JaffaHailMaryWording.defaultsKey) private var usesJaffaHailMaryWording = false
   @AppStorage("autoAdvanceSeconds") private var autoAdvanceSeconds = 0
   @AppStorage("hapticsOnAdvance") private var hapticsOnAdvance = false
   @AppStorage(PrayerTypography.syriacTypefaceKey) private var syriacTypeface = PrayerTypography.TypefaceValue.default
@@ -57,7 +58,7 @@ struct SettingsView: View {
     settingsContent
     .confirmationDialog(
       String(localized: "settings.removeAllDownloads.title",
-             defaultValue: "Remove Unused Downloads?"),
+             defaultValue: "Remove Unused Downloads?", bundle: UILanguage.bundle, locale: UILanguage.locale),
       isPresented: $confirmsRemoveAll, titleVisibility: .visible
     ) {
       Button(role: .destructive) {
@@ -69,14 +70,14 @@ struct SettingsView: View {
           await refreshDownloads()
         }
       } label: {
-        Text(String(localized: "settings.removeAllDownloads.confirm", defaultValue: "Remove Unused"))
+        Text(String(localized: "settings.removeAllDownloads.confirm", defaultValue: "Remove Unused", bundle: UILanguage.bundle, locale: UILanguage.locale))
       }
     } message: {
       Text(String(localized: "settings.removeAllDownloads.message",
-                  defaultValue: "Only downloads with no saved copies will be removed from this device. Keep your original files to import them again."))
+                  defaultValue: "Only downloads with no saved copies will be removed from this device. Keep your original files to import them again.", bundle: UILanguage.bundle, locale: UILanguage.locale))
     }
     .modifier(PrayerDownloadRemovalDialogs(bundleID: $removingDownload, onRemoved: { await refreshDownloads() }))
-    .alert(String(localized: "removal.failedTitle", defaultValue: "Could Not Remove Prayer"),
+    .alert(String(localized: "removal.failedTitle", defaultValue: "Could Not Remove Prayer", bundle: UILanguage.bundle, locale: UILanguage.locale),
            isPresented: Binding(get: { removalError != nil }, set: { if !$0 { removalError = nil } })) {
       Button("common.ok") { removalError = nil }
     } message: { Text(removalError ?? "") }
@@ -102,19 +103,19 @@ struct SettingsView: View {
     let screenSize = (NSApp.keyWindow?.screen ?? NSScreen.main)?.visibleFrame.size ?? CGSize(width: 1024, height: 768)
     TabView(selection: $selectedPane) {
       MacPrayerEditorForm { languageSettings }
-        .tabItem { Label(String(localized: "settings.prayerLanguageHeader", defaultValue: "Prayer Language"), systemImage: "character.bubble") }
+        .tabItem { Label(String(localized: "settings.prayerLanguageHeader", defaultValue: "Language", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "character.bubble") }
         .tag(SettingsPane.language)
       MacPrayerEditorForm { prayingSettings }
-        .tabItem { Label(String(localized: "settings.prayingHeader", defaultValue: "Praying"), systemImage: "hands.and.sparkles") }
+        .tabItem { Label(String(localized: "settings.prayingHeader", defaultValue: "Praying", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "hands.and.sparkles") }
         .tag(SettingsPane.praying)
       MacPrayerEditorForm { typographySettings }
-        .tabItem { Label(String(localized: "settings.typographyHeader", defaultValue: "Typography"), systemImage: "textformat") }
+        .tabItem { Label(String(localized: "settings.typographyHeader", defaultValue: "Typography", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "textformat") }
         .tag(SettingsPane.typography)
       MacPrayerEditorForm {
         downloadsSettings
         linksSettings
       }
-      .tabItem { Label(String(localized: "settings.downloadsHeader", defaultValue: "Downloads"), systemImage: "arrow.down.circle") }
+      .tabItem { Label(String(localized: "settings.downloadsHeader", defaultValue: "Downloads", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "arrow.down.circle") }
       .tag(SettingsPane.downloads)
     }
     .accessibilityIdentifier("macSettingsPanes")
@@ -142,75 +143,93 @@ struct SettingsView: View {
 
     var title: String {
       switch self {
-      case .language: String(localized: "settings.prayerLanguageHeader", defaultValue: "Prayer Language")
-      case .praying: String(localized: "settings.prayingHeader", defaultValue: "Praying")
-      case .typography: String(localized: "settings.typographyHeader", defaultValue: "Typography")
-      case .downloads: String(localized: "settings.downloadsHeader", defaultValue: "Downloads")
+      case .language: String(localized: "settings.prayerLanguageHeader", defaultValue: "Language", bundle: UILanguage.bundle, locale: UILanguage.locale)
+      case .praying: String(localized: "settings.prayingHeader", defaultValue: "Praying", bundle: UILanguage.bundle, locale: UILanguage.locale)
+      case .typography: String(localized: "settings.typographyHeader", defaultValue: "Typography", bundle: UILanguage.bundle, locale: UILanguage.locale)
+      case .downloads: String(localized: "settings.downloadsHeader", defaultValue: "Downloads", bundle: UILanguage.bundle, locale: UILanguage.locale)
       }
     }
   }
   #endif
 
   private var languageSettings: some View {
-    Section(String(localized: "settings.prayerLanguageHeader", defaultValue: "Prayer Language")) {
-      PrayerLanguagePicker(label: String(localized: "settings.defaultLanguage", defaultValue: "Default language"), code: $languageCode)
-      Toggle(String(localized: "settings.jaffaWording", defaultValue: "Alternative Hail Mary wording"),
+    Section(String(localized: "settings.prayerLanguageHeader", defaultValue: "Language", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
+      Picker(String(localized: "settings.interfaceLanguage", defaultValue: "App Language", bundle: UILanguage.bundle, locale: UILanguage.locale),
+             selection: $interfaceLanguage.selection) {
+        Text(String(localized: "settings.interfaceLanguage.system", defaultValue: "System Default", bundle: UILanguage.bundle, locale: UILanguage.locale))
+          .tag("")
+          .accessibilityIdentifier("appLanguageOption-system")
+        ForEach(UILanguage.all) { language in
+          Text(verbatim: language.nativeName).tag(language.code)
+            .accessibilityIdentifier("appLanguageOption-\(language.code)")
+        }
+      }
+      .accessibilityIdentifier("appLanguagePicker")
+      Text(String(localized: "settings.interfaceLanguage.footer",
+                  defaultValue: "Used for the interface and automatic Bible edition. Prayers follow it unless a prayer language is selected.", bundle: UILanguage.bundle, locale: UILanguage.locale))
+        .font(.caption).foregroundStyle(.secondary)
+      PrayerLanguagePicker(
+        label: String(localized: "settings.defaultLanguage", defaultValue: "Prayer Language", bundle: UILanguage.bundle, locale: UILanguage.locale),
+        code: $languageCode,
+        defaultLabel: String(localized: "settings.prayerLanguage.appLanguage",
+                             defaultValue: "App Language (\(LanguageCatalog.resolve(UILanguage.current).nativeName))", bundle: UILanguage.bundle, locale: UILanguage.locale))
+      Toggle(String(localized: "settings.jaffaWording", defaultValue: "Alternative Hail Mary wording", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isOn: $usesJaffaHailMaryWording)
         .accessibilityIdentifier("useJaffaHailMaryWording")
       Text(String(localized: "settings.jaffaWording.footer",
-                  defaultValue: "Use בְּרוּכַת הַחֶסֶד instead of מְלֵאַת הַחֶסֶד in Vicariate prayers."))
+                  defaultValue: "Use בְּרוּכַת הַחֶסֶד instead of מְלֵאַת הַחֶסֶד in Vicariate prayers.", bundle: UILanguage.bundle, locale: UILanguage.locale))
         .font(.caption).foregroundStyle(.secondary)
       Toggle(String(localized: "settings.showPrayerNameInPrayerLanguage",
-                    defaultValue: "Show prayer names in the prayer language"),
+                    defaultValue: "Show prayer names in the prayer language", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isOn: $showsPrayerNameInPrayerLanguage)
         .accessibilityIdentifier("showPrayerNameInPrayerLanguageToggle")
       Text(String(localized: "settings.prayerNameLanguageFooter",
-                  defaultValue: "Show the interface-language name underneath when it differs."))
+                  defaultValue: "Show the interface-language name underneath when it differs.", bundle: UILanguage.bundle, locale: UILanguage.locale))
         .font(.caption).foregroundStyle(.secondary)
 
-      Button(String(localized: "settings.languageFallbackOrder", defaultValue: "Language Fallback Order…")) {
+      Button(String(localized: "settings.languageFallbackOrder", defaultValue: "Language Fallback Order…", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
         showsLanguageFallbackOrder = true
       }
       .accessibilityIdentifier("languageFallbackOrderButton")
 
       if (LanguageCatalog.baseLanguage(of: languageCode) ?? languageCode) == "arc" {
         Picker(String(localized: "settings.aramaicSignOfCross",
-                      defaultValue: "Aramaic Sign of the Cross"),
+                      defaultValue: "Aramaic Sign of the Cross", bundle: UILanguage.bundle, locale: UILanguage.locale),
                selection: $aramaicSignOfCrossForm) {
           Text(String(localized: "settings.aramaicSignOfCross.formA",
-                      defaultValue: "Form A")).tag(AramaicSignOfCrossForm.formA)
+                      defaultValue: "Form A", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(AramaicSignOfCrossForm.formA)
           Text(String(localized: "settings.aramaicSignOfCross.formB",
-                      defaultValue: "Form B")).tag(AramaicSignOfCrossForm.formB)
+                      defaultValue: "Form B", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(AramaicSignOfCrossForm.formB)
         }
       }
     }
   }
 
   private var prayingSettings: some View {
-    Section(String(localized: "settings.prayingHeader", defaultValue: "Praying")) {
+    Section(String(localized: "settings.prayingHeader", defaultValue: "Praying", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
       // Mac copies freeze this default when first opened; mobile retains one shared pace.
       Picker(autoAdvanceSettingsTitle,
              selection: $autoAdvanceSeconds) {
-        Text(String(localized: "prayerFlow.autoAdvance.off", defaultValue: "Off")).tag(0)
+        Text(String(localized: "prayerFlow.autoAdvance.off", defaultValue: "Off", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(0)
         ForEach([3, 5, 10, 15], id: \.self) { seconds in
           Text(String(localized: "prayerFlow.autoAdvance.everySeconds",
-                      defaultValue: "Every \(seconds) Seconds")).tag(seconds)
+                      defaultValue: "Every \(seconds) Seconds", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(seconds)
         }
       }
       #if os(macOS)
       Text(String(localized: "macLibrary.defaultAutoAdvanceHelp",
-                  defaultValue: "New prayer copies start at this pace. Each prayer remembers changes made in its window."))
+                  defaultValue: "New prayer copies start at this pace. Each prayer remembers changes made in its window.", bundle: UILanguage.bundle, locale: UILanguage.locale))
         .font(.caption).foregroundStyle(.secondary)
       #endif
       #if os(iOS)
       // Erez's ask: a felt confirmation that the step turned. iOS-only — a Mac has nothing
       // useful to buzz, so the row would be a lie there.
       Toggle(String(localized: "settings.hapticsOnAdvance",
-                    defaultValue: "Vibrate on step change"), isOn: $hapticsOnAdvance)
+                    defaultValue: "Vibrate on step change", bundle: UILanguage.bundle, locale: UILanguage.locale), isOn: $hapticsOnAdvance)
       #endif
 
       #if !os(macOS)
-      Button(String(localized: "settings.resetHomeOrder", defaultValue: "Reset Home Order")) {
+      Button(String(localized: "settings.resetHomeOrder", defaultValue: "Reset Home Order", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
         HomeOrder.reset()
         homeOrderIsCustom = false
       }
@@ -222,51 +241,51 @@ struct SettingsView: View {
 
   private var autoAdvanceSettingsTitle: String {
     #if os(macOS)
-    String(localized: "macLibrary.defaultAutoAdvance", defaultValue: "Default Auto-Advance")
+    String(localized: "macLibrary.defaultAutoAdvance", defaultValue: "Default Auto-Advance", bundle: UILanguage.bundle, locale: UILanguage.locale)
     #else
-    String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance")
+    String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance", bundle: UILanguage.bundle, locale: UILanguage.locale)
     #endif
   }
 
   private var typographySettings: some View {
-    Section(String(localized: "settings.typographyHeader", defaultValue: "Typography")) {
-      Picker(String(localized: "settings.aramaicDefaultScript", defaultValue: "Default Aramaic script"),
+    Section(String(localized: "settings.typographyHeader", defaultValue: "Typography", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
+      Picker(String(localized: "settings.aramaicDefaultScript", defaultValue: "Default Aramaic script", bundle: UILanguage.bundle, locale: UILanguage.locale),
              selection: $aramaicDefaultScript) {
-        Text(String(localized: "settings.script.hebrew", defaultValue: "Hebrew Script")).tag("Hebr")
-        Text(String(localized: "settings.script.syriac", defaultValue: "Syriac Script")).tag("Syrc")
+        Text(String(localized: "settings.script.hebrew", defaultValue: "Hebrew Script", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("Hebr")
+        Text(String(localized: "settings.script.syriac", defaultValue: "Syriac Script", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("Syrc")
       }
       .accessibilityIdentifier("aramaicDefaultScriptPicker")
-      Picker(String(localized: "settings.syriacTypeface", defaultValue: "Aramaic font"),
+      Picker(String(localized: "settings.syriacTypeface", defaultValue: "Aramaic font", bundle: UILanguage.bundle, locale: UILanguage.locale),
              selection: $syriacTypeface) {
-        Text(String(localized: "settings.typeface.default", defaultValue: "Default")).tag(PrayerTypography.TypefaceValue.default)
-        Text(String(localized: "settings.typeface.westernAramaic", defaultValue: "Western Aramaic")).tag(PrayerTypography.TypefaceValue.western)
-        Text(String(localized: "settings.typeface.easternAramaic", defaultValue: "Eastern Aramaic")).tag(PrayerTypography.TypefaceValue.eastern)
+        Text(String(localized: "settings.typeface.default", defaultValue: "Default", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(PrayerTypography.TypefaceValue.default)
+        Text(String(localized: "settings.typeface.westernAramaic", defaultValue: "Western Aramaic", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(PrayerTypography.TypefaceValue.western)
+        Text(String(localized: "settings.typeface.easternAramaic", defaultValue: "Eastern Aramaic", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(PrayerTypography.TypefaceValue.eastern)
       }
 
-      Picker(String(localized: "settings.hebrewPrayerTypeface", defaultValue: "Hebrew font"),
+      Picker(String(localized: "settings.hebrewPrayerTypeface", defaultValue: "Hebrew font", bundle: UILanguage.bundle, locale: UILanguage.locale),
              selection: $hebrewPrayerTypeface) {
-        Text(String(localized: "settings.typeface.frankRuhlLibre", defaultValue: "Frank Ruhl Libre")).tag(PrayerTypography.TypefaceValue.default)
-        Text(String(localized: "settings.typeface.davidLibre", defaultValue: "David Libre")).tag(PrayerTypography.TypefaceValue.davidLibre)
-        Text(String(localized: "settings.typeface.sansSerif", defaultValue: "System Sans Serif")).tag(PrayerTypography.TypefaceValue.sansSerif)
+        Text(String(localized: "settings.typeface.frankRuhlLibre", defaultValue: "Frank Ruhl Libre", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(PrayerTypography.TypefaceValue.default)
+        Text(String(localized: "settings.typeface.davidLibre", defaultValue: "David Libre", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(PrayerTypography.TypefaceValue.davidLibre)
+        Text(String(localized: "settings.typeface.sansSerif", defaultValue: "System Sans Serif", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(PrayerTypography.TypefaceValue.sansSerif)
       }
 
-      Picker(String(localized: "settings.hebrewScriptureTypeface", defaultValue: "Hebrew Scripture font"),
+      Picker(String(localized: "settings.hebrewScriptureTypeface", defaultValue: "Hebrew Scripture font", bundle: UILanguage.bundle, locale: UILanguage.locale),
              selection: $hebrewScriptureTypeface) {
-        Text(String(localized: "settings.typeface.default", defaultValue: "Default")).tag(PrayerTypography.TypefaceValue.default)
-        Text(String(localized: "settings.typeface.stamAshkenaz", defaultValue: "Stam Ashkenaz")).tag(PrayerTypography.TypefaceValue.stamAshkenaz)
-        Text(String(localized: "settings.typeface.stamSefarad", defaultValue: "Stam Sefarad")).tag(PrayerTypography.TypefaceValue.stamSefarad)
-        Text(String(localized: "settings.typeface.rashi", defaultValue: "Rashi")).tag(PrayerTypography.TypefaceValue.rashi)
+        Text(String(localized: "settings.typeface.default", defaultValue: "Default", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(PrayerTypography.TypefaceValue.default)
+        Text(String(localized: "settings.typeface.stamAshkenaz", defaultValue: "Stam Ashkenaz", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(PrayerTypography.TypefaceValue.stamAshkenaz)
+        Text(String(localized: "settings.typeface.stamSefarad", defaultValue: "Stam Sefarad", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(PrayerTypography.TypefaceValue.stamSefarad)
+        Text(String(localized: "settings.typeface.rashi", defaultValue: "Rashi", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(PrayerTypography.TypefaceValue.rashi)
       }
 
-      Picker(String(localized: "settings.latinPrayerTypeface", defaultValue: "Latin-script prayers"), selection: $latinPrayerTypeface) {
-        Text(String(localized: "settings.typeface.systemSerif", defaultValue: "System Serif")).tag(PrayerTypography.TypefaceValue.default)
-        Text(String(localized: "settings.typeface.sansSerif", defaultValue: "System Sans Serif")).tag(PrayerTypography.TypefaceValue.sansSerif)
+      Picker(String(localized: "settings.latinPrayerTypeface", defaultValue: "Latin-script prayers", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $latinPrayerTypeface) {
+        Text(String(localized: "settings.typeface.systemSerif", defaultValue: "System Serif", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(PrayerTypography.TypefaceValue.default)
+        Text(String(localized: "settings.typeface.sansSerif", defaultValue: "System Sans Serif", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(PrayerTypography.TypefaceValue.sansSerif)
       }
       .accessibilityIdentifier("latinPrayerTypefacePicker")
 
-      Picker(String(localized: "settings.cyrillicPrayerTypeface", defaultValue: "Cyrillic prayers"), selection: $cyrillicPrayerTypeface) {
-        Text(String(localized: "settings.typeface.systemSerif", defaultValue: "System Serif")).tag(PrayerTypography.TypefaceValue.default)
-        Text(String(localized: "settings.typeface.sansSerif", defaultValue: "System Sans Serif")).tag(PrayerTypography.TypefaceValue.sansSerif)
+      Picker(String(localized: "settings.cyrillicPrayerTypeface", defaultValue: "Cyrillic prayers", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $cyrillicPrayerTypeface) {
+        Text(String(localized: "settings.typeface.systemSerif", defaultValue: "System Serif", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(PrayerTypography.TypefaceValue.default)
+        Text(String(localized: "settings.typeface.sansSerif", defaultValue: "System Sans Serif", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(PrayerTypography.TypefaceValue.sansSerif)
       }
       .accessibilityIdentifier("cyrillicPrayerTypefacePicker")
     }
@@ -278,22 +297,22 @@ struct SettingsView: View {
     // calendars.json registry, so adding a calendar is a data drop, never a new case here;
     // the picker hides entirely if the registry ever ships a single calendar.
     Section {
-      Toggle(String(localized: "settings.showTodayFeast", defaultValue: "Show the day's feast"),
+      Toggle(String(localized: "settings.showTodayFeast", defaultValue: "Show the day's feast", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isOn: $showsTodayFeast)
       Toggle(String(localized: "settings.showTodayIntention",
-                    defaultValue: "Show the Pope's intention"),
+                    defaultValue: "Show the Pope's intention", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isOn: $showsTodayIntention)
-      Toggle(String(localized: "settings.showTodayTorahPortion", defaultValue: "Show the weekly Torah portion"),
+      Toggle(String(localized: "settings.showTodayTorahPortion", defaultValue: "Show the weekly Torah portion", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isOn: $showsTodayTorahPortion)
         .accessibilityIdentifier("showTodayTorahPortionToggle")
       if showsTodayTorahPortion {
         Text(String(localized: "settings.torahPortionFooter",
-                    defaultValue: "The upcoming Sabbath’s Torah reading, following the Eretz Israel schedule."))
+                    defaultValue: "The upcoming Sabbath’s Torah reading, following the Eretz Israel schedule.", bundle: UILanguage.bundle, locale: UILanguage.locale))
           .font(.caption).foregroundStyle(.secondary)
       }
       let calendars = TodayInfoStore.calendars
       if calendars.count > 1 {
-        Picker(String(localized: "settings.feastCalendar", defaultValue: "Liturgical calendar"),
+        Picker(String(localized: "settings.feastCalendar", defaultValue: "Liturgical calendar", bundle: UILanguage.bundle, locale: UILanguage.locale),
                selection: feastCalendarBinding) {
           ForEach(calendars) { calendar in
             Text(calendar.displayName).tag(calendar.id)
@@ -302,44 +321,44 @@ struct SettingsView: View {
         .accessibilityIdentifier("feastCalendarPicker")
       }
       if TodayInfoStore.selectedCalendarId == "ugcc" {
-        Picker(String(localized: "settings.easternPaschaStyle", defaultValue: "Byzantine Easter date"),
+        Picker(String(localized: "settings.easternPaschaStyle", defaultValue: "Byzantine Easter date", bundle: UILanguage.bundle, locale: UILanguage.locale),
                selection: Binding(get: { TodayInfoStore.selectedPaschaStyle }, set: { easternPaschaStyle = $0 })) {
-          Text(String(localized: "settings.easternPaschaStyle.julian", defaultValue: "Julian Easter")).tag("julian")
-          Text(String(localized: "settings.easternPaschaStyle.gregorian", defaultValue: "Gregorian Easter")).tag("gregorian")
+          Text(String(localized: "settings.easternPaschaStyle.julian", defaultValue: "Julian Easter", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("julian")
+          Text(String(localized: "settings.easternPaschaStyle.gregorian", defaultValue: "Gregorian Easter", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("gregorian")
         }
         .accessibilityIdentifier("easternPaschaStylePicker")
         Text(String(localized: "settings.easternPaschaStyleFooter",
-                    defaultValue: "Changes the Byzantine movable feasts and their appointed readings together. Fixed feasts keep their Gregorian dates."))
+                    defaultValue: "Changes the Byzantine movable feasts and their appointed readings together. Fixed feasts keep their Gregorian dates.", bundle: UILanguage.bundle, locale: UILanguage.locale))
           .font(.caption).foregroundStyle(.secondary)
       }
     } header: {
-      Text(String(localized: "settings.todayHeader", defaultValue: "Today"))
+      Text(String(localized: "settings.todayHeader", defaultValue: "Today", bundle: UILanguage.bundle, locale: UILanguage.locale))
     } footer: {
       Text(String(localized: "settings.feastCalendarFooter",
-                  defaultValue: "Which calendar’s feasts and readings the Today section shows."))
+                  defaultValue: "Which calendar’s feasts and readings the Today section shows.", bundle: UILanguage.bundle, locale: UILanguage.locale))
     }
   }
 
   private var downloadsSettings: some View {
     Section {
       LabeledContent(
-        String(localized: "settings.installedDevotions", defaultValue: "Installed devotions"),
+        String(localized: "settings.installedDevotions", defaultValue: "Installed devotions", bundle: UILanguage.bundle, locale: UILanguage.locale),
         value: "\(installedCount)")
 
       ForEach(downloadedIDs, id: \.self) { id in
         LabeledContent(PrayerPackStore.info(for: id)?.localizedDisplayName ?? id) {
-          Button(String(localized: "removal.removeDownloadAction", defaultValue: "Remove Download…"), role: .destructive) {
+          Button(String(localized: "removal.removeDownloadAction", defaultValue: "Remove Download…", bundle: UILanguage.bundle, locale: UILanguage.locale), role: .destructive) {
             removingDownload = id
           }
           .disabled(isRemovingDownloads || !unusedDownloads.contains(id))
         }
         if !unusedDownloads.contains(id) {
-          Text(String(localized: "removal.downloadInUse", defaultValue: "Delete all saved copies of this prayer before removing its download."))
+          Text(String(localized: "removal.downloadInUse", defaultValue: "Delete all saved copies of this prayer before removing its download.", bundle: UILanguage.bundle, locale: UILanguage.locale))
             .font(.caption).foregroundStyle(.secondary)
         }
       }
 
-      Button(String(localized: "settings.clearAudioCache", defaultValue: "Clear Audio Cache")) {
+      Button(String(localized: "settings.clearAudioCache", defaultValue: "Clear Audio Cache", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
         SettingsMaintenance.clearAudioCache()
         audioCacheBytes = SettingsMaintenance.audioCacheSize()
       }
@@ -354,14 +373,14 @@ struct SettingsView: View {
         confirmsRemoveAll = true
       } label: {
         Text(String(localized: "settings.removeAllDownloads",
-                    defaultValue: "Remove Unused Downloads…"))
+                    defaultValue: "Remove Unused Downloads…", bundle: UILanguage.bundle, locale: UILanguage.locale))
       }
       .disabled(unusedDownloads.isEmpty || isRemovingDownloads)
     } header: {
-      Text(String(localized: "settings.downloadsHeader", defaultValue: "Downloads"))
+      Text(String(localized: "settings.downloadsHeader", defaultValue: "Downloads", bundle: UILanguage.bundle, locale: UILanguage.locale))
     } footer: {
       Text(String(localized: "settings.downloadsFooter",
-                  defaultValue: "Built-in prayers remain available. Downloads used by saved prayers are kept until their last saved copy is deleted."))
+                  defaultValue: "Built-in prayers remain available. Downloads used by saved prayers are kept until their last saved copy is deleted.", bundle: UILanguage.bundle, locale: UILanguage.locale))
     }
   }
 
@@ -372,12 +391,12 @@ struct SettingsView: View {
   }
 
   private var linksSettings: some View {
-    Section(String(localized: "settings.aboutHeader", defaultValue: "Links")) {
-      Link(String(localized: "settings.repositorySite", defaultValue: "Community Repository"),
+    Section(String(localized: "settings.aboutHeader", defaultValue: "Links", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
+      Link(String(localized: "settings.repositorySite", defaultValue: "Community Repository", bundle: UILanguage.bundle, locale: UILanguage.locale),
            destination: URL(string: "https://prayers.prosary.app")!)
-      Link(String(localized: "settings.composeSite", defaultValue: "Compose a Devotion"),
+      Link(String(localized: "settings.composeSite", defaultValue: "Compose a Devotion", bundle: UILanguage.bundle, locale: UILanguage.locale),
            destination: URL(string: "https://compose.prosary.app")!)
-      Link(String(localized: "settings.privacyPolicy", defaultValue: "Privacy Policy"),
+      Link(String(localized: "settings.privacyPolicy", defaultValue: "Privacy Policy", bundle: UILanguage.bundle, locale: UILanguage.locale),
            destination: URL(string: "https://prosary.app/privacy")!)
     }
   }
@@ -398,7 +417,7 @@ private struct LanguageFallbackOrderView: View {
         .clipped()
       Divider()
       HStack {
-        Button(String(localized: "settings.languageFallbackOrder.reset", defaultValue: "Reset")) {
+        Button(String(localized: "settings.languageFallbackOrder.reset", defaultValue: "Reset", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
           LanguageCatalog.resetFallbackOrder()
           order = LanguageCatalog.fallbackLanguageOrder
         }
@@ -426,7 +445,7 @@ private struct LanguageFallbackOrderView: View {
     .frame(width: min(520, max(320, screenSize.width - 80)),
            height: min(500, max(280, screenSize.height - 140)))
     .onExitCommand { dismiss() }
-    .navigationTitle(String(localized: "settings.languageFallbackOrder.title", defaultValue: "Language Fallback Order"))
+    .navigationTitle(String(localized: "settings.languageFallbackOrder.title", defaultValue: "Language Fallback Order", bundle: UILanguage.bundle, locale: UILanguage.locale))
     #else
     List { rows }
       .accessibilityIdentifier("languageFallbackOrderList")
@@ -434,10 +453,10 @@ private struct LanguageFallbackOrderView: View {
       .environment(\.editMode, .constant(.active))
       .navigationBarTitleDisplayMode(.inline)
       #endif
-      .navigationTitle(String(localized: "settings.languageFallbackOrder.title", defaultValue: "Language Fallback Order"))
+      .navigationTitle(String(localized: "settings.languageFallbackOrder.title", defaultValue: "Language Fallback Order", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .toolbar {
         ToolbarItem(placement: .cancellationAction) {
-          Button(String(localized: "settings.languageFallbackOrder.reset", defaultValue: "Reset")) {
+          Button(String(localized: "settings.languageFallbackOrder.reset", defaultValue: "Reset", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
             LanguageCatalog.resetFallbackOrder()
             order = LanguageCatalog.fallbackLanguageOrder
             dismiss()
@@ -464,7 +483,7 @@ private struct LanguageFallbackOrderView: View {
       }
     } footer: {
       Text(String(localized: "settings.languageFallbackOrder.footer",
-                  defaultValue: "When text is missing, Prosary follows this order after the chosen language. Shared Hebrew, including repository prayers, uses the higher of the two Hebrew positions."))
+                  defaultValue: "When text is missing, Prosary follows this order after the chosen language. Shared Hebrew, including repository prayers, uses the higher of the two Hebrew positions.", bundle: UILanguage.bundle, locale: UILanguage.locale))
     }
   }
 

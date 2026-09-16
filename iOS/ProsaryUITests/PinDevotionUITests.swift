@@ -22,7 +22,9 @@ final class PinDevotionUITests: XCTestCase {
   @MainActor
   func testStarringADevotionPinsItToPray() throws {
     let app = XCUIApplication()
-    app.launchArguments = ["-resetStore"]
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)",
+                           "-interfaceLanguageCode", "en", "-defaultLanguageCode", "en",
+                           "-autoAdvanceSeconds", "0"]
     app.launch()
 
     // Not pinned to begin with: a clean store seeds only the Rosary.
@@ -30,13 +32,16 @@ final class PinDevotionUITests: XCTestCase {
     XCTAssertFalse(app.buttons["angelusCard"].exists)
 
     // Search retains category browsing and access to every local devotion.
-    app.tabBars.buttons["Search"].tap()
-    let searchField = app.searchFields.firstMatch
-    XCTAssertTrue(searchField.waitForExistence(timeout: 5))
-    searchField.tap()
-    searchField.typeText("Angelus")
+    let searchTab = app.tabBars.buttons["Search"]
+    XCTAssertTrue(searchTab.waitForExistence(timeout: 5))
+    searchTab.tap()
+    XCTAssertTrue(app.buttons["search.category.all"].waitForExistence(timeout: 5))
     let row = app.buttons["search.local.angelus"].firstMatch
-    XCTAssertTrue(row.waitForExistence(timeout: 10))
+    for _ in 0..<8 {
+      if row.exists && row.isHittable { break }
+      app.swipeUp()
+    }
+    XCTAssertTrue(row.waitForExistence(timeout: 5) && row.isHittable, app.debugDescription)
     row.tap()
 
     let star = app.buttons["pinDevotionButton"]
@@ -44,7 +49,9 @@ final class PinDevotionUITests: XCTestCase {
     star.tap()
 
     app.navigationBars.buttons.element(boundBy: 0).tap()
-    app.tabBars.buttons["Pray"].tap()
+    let prayTab = app.tabBars.buttons["Pray"]
+    XCTAssertTrue(prayTab.waitForExistence(timeout: 5))
+    prayTab.tap()
     XCTAssertTrue(app.buttons["angelusCard"].waitForExistence(timeout: 10),
                   "Starring a devotion should pin it to Pray")
   }

@@ -36,15 +36,15 @@ enum RepositoryClientError: LocalizedError {
     case .unsupportedCatalog:
       return String(
         localized: "repository.error.unsupportedCatalog",
-        defaultValue: "The repository uses a newer catalog format — update Prosary to browse it.")
+        defaultValue: "The repository uses a newer catalog format — update Prosary to browse it.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
     case .badResponse:
       return String(
         localized: "repository.error.badResponse",
-        defaultValue: "The repository could not be reached.")
+        defaultValue: "The repository could not be reached.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
     case .invalidBundle:
       return String(
         localized: "packInstall.error.unreadable",
-        defaultValue: "This file is not a readable .prosaryprayer bundle.")
+        defaultValue: "This file is not a readable .prosaryprayer bundle.", bundle: UILanguage.persistedBundle, locale: UILanguage.persistedLocale)
     }
   }
 }

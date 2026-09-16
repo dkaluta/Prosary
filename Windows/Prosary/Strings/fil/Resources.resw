@@ -100,7 +100,7 @@
   <data name="HomeMoveToTop.Text" xml:space="preserve"><value>Ilipat sa itaas</value></data>
   <data name="HomeEditOrder.Text" xml:space="preserve"><value>I-edit ang pagkakasunod-sunod…</value></data>
   <data name="SetTitle.Text" xml:space="preserve"><value>Mga Setting</value></data>
-  <data name="SetLanguageCombo.Header" xml:space="preserve"><value>Paunang Piniling Wika ng Panalangin</value></data>
+  <data name="SetLanguageCombo.Header" xml:space="preserve"><value>Wika ng Panalangin</value></data>
   <data name="SetPrayingHeader.Text" xml:space="preserve"><value>Pagdarasal</value></data>
   <data name="SetAutoAdvanceCombo.Header" xml:space="preserve"><value>Awtomatikong paglipat</value></data>
   <data name="SetResetHomeOrder.Content" xml:space="preserve"><value>I-reset ang Pagkakasunod-sunod sa Home</value></data>
@@ -111,8 +111,9 @@
   <data name="SetRepoLink.Content" xml:space="preserve"><value>Imbakan ng komunidad</value></data>
   <data name="SetComposeLink.Content" xml:space="preserve"><value>Bumuo ng debosyon</value></data>
   <data name="SetPrivacyLink.Content" xml:space="preserve"><value>Patakaran sa privacy</value></data>
-  <data name="SetAppLanguageCombo.Header" xml:space="preserve"><value>Wika ng app</value></data>
-  <data name="SetAppLanguageFooter.Text" xml:space="preserve"><value>Magkakabisa kapag muling binuksan ang app.</value></data>
+  <data name="SetAppLanguageCombo.Header" xml:space="preserve"><value>Wika ng App</value></data>
+  <data name="SetAppLanguageFooter.Text" xml:space="preserve"><value>Muling buksan ang Prosary upang gamitin ang bagong wika ng app.</value></data>
+  <data name="SetAppLanguageUsage.Text" xml:space="preserve"><value>Ginagamit para sa interface at awtomatikong edisyon ng Bibliya. Ito rin ang wika ng mga panalangin maliban kung may piniling wika ng panalangin.</value></data>
   <data name="SetTodayHeader.Text" xml:space="preserve"><value>Ngayon</value></data>
   <data name="SetShowTodayFeast.Header" xml:space="preserve"><value>Ipakita ang kapistahan ngayon</value></data>
   <data name="SetShowTodayIntention.Header" xml:space="preserve"><value>Ipakita ang intensiyon ng Papa</value></data>
@@ -527,4 +528,5 @@
   <data name="readings_text_notice" xml:space="preserve"><value>Teksto ng Bibliya para sa tinukoy na sipi. Maaaring iba ang mga salita sa pagbasa sa Misa.</value></data>
   <data name="readings_whole_verses_notice" xml:space="preserve"><value>Buong talata ang ipinapakita kapag bahagi lamang ng talata ang tinutukoy sa pagbasa.</value></data>
   <data name="readings_source" xml:space="preserve"><value>Pinagmulan at Edisyon</value></data>
+  <data name="language_app_parenthesized" xml:space="preserve"><value>Wika ng App ({0})</value></data>
 </root>

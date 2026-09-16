@@ -89,7 +89,7 @@ final class PrayerRemovalServiceTests: XCTestCase {
     let suite = "PrayerRemoval.Seed.\(UUID())"
     let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
     defer { defaults.removePersistentDomain(forName: suite) }
-    let container = try ModelContainer(for: PresetEntry.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+    let container = try ModelContainer(for: PresetEntry.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true, cloudKitDatabase: .none))
     let store = SwiftDataPresetStore(context: container.mainContext, defaults: defaults)
     store.initializeStarterPrayerIfNeeded(defaults: defaults)
     let seeded = try await store.all()

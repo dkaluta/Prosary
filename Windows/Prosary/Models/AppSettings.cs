@@ -1,4 +1,5 @@
 using Windows.Storage;
+using Prosary.Localization;
 
 namespace Prosary.Models;
 
@@ -7,12 +8,12 @@ namespace Prosary.Models;
 /// <see cref="LanguageCatalog.DefaultSentinel"/>) and the prayer flows' auto-advance interval.
 ///
 /// <see cref="LanguageCatalog.Resolve"/> is called from many non-UI sites (engines, the preset
-/// store) that have no natural access to app storage, so this holds the resolved value in a
-/// static property initialized once at app start from <see cref="ApplicationData.LocalSettings"/>
-/// (Windows' equivalent of Android's SharedPreferences / iOS's UserDefaults) rather than requiring
-/// every call site to thread storage access through.</summary>
+/// store) that have no natural access to app storage. The default comes from the active
+/// interface locale, while the next launch's language choice and the other preferences live
+/// in <see cref="ApplicationData.LocalSettings"/>.</summary>
 public static class AppSettings
 {
+    private const string KeyInterfaceLanguage = "interfaceLanguageCode";
     private const string KeyDefaultLanguage = "defaultLanguageCode";
     private const string KeyBasicPrayersLanguage = "basicPrayersLanguageCode";
     private const string KeyAramaicSignOfCrossForm = "aramaicSignOfCrossForm";
@@ -36,7 +37,8 @@ public static class AppSettings
     private const string KeyFavoriteBasicPrayersFirst = "favoriteBasicPrayersFirst";
     private const string KeyLanguageFallbackOrder = "languageFallbackOrder";
 
-    private static string? _defaultLanguageCode;
+    private static string? _interfaceLanguageCode;
+    private static string? _prayerLanguageCode;
     private static string? _basicPrayersLanguageCode;
     private static string? _aramaicSignOfCrossForm;
     private static bool? _useJaffaHailMaryWording;
@@ -59,24 +61,42 @@ public static class AppSettings
     private static bool? _favoriteBasicPrayersFirst;
     private static IReadOnlyList<string>? _languageFallbackOrder;
 
-    public static string DefaultLanguageCode
+    /// <summary>The saved interface choice; empty follows Windows. Applied together with
+    /// XAML resources on the next launch so existing prayer windows retain a coherent locale.</summary>
+    public static string InterfaceLanguageCode => _interfaceLanguageCode ??= ReadInterfaceLanguageCode();
+
+    private static string ReadInterfaceLanguageCode()
     {
-        get
-        {
-            if (_defaultLanguageCode is null)
-            {
-                _defaultLanguageCode = ReadLocalSetting(KeyDefaultLanguage) as string
-                    ?? LanguageCatalog.DefaultCode;
-            }
-            return _defaultLanguageCode;
-        }
-        private set => _defaultLanguageCode = value;
+        if (ReadLocalSetting(KeyInterfaceLanguage) is string stored)
+            return UiLanguageCatalog.NormalizePreference(stored);
+        // Windows already offered an independent interface override. Preserve that choice
+        // once, including an empty System Default, before startup sets the effective locale.
+        string previous;
+        try { previous = Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride; }
+        catch { previous = string.Empty; }
+        var preference = UiLanguageCatalog.NormalizePreference(previous);
+        WriteLocalSetting(KeyInterfaceLanguage, preference);
+        return preference;
     }
+
+    public static void SetInterfaceLanguageCode(string code)
+    {
+        _interfaceLanguageCode = UiLanguageCatalog.NormalizePreference(code);
+        WriteLocalSetting(KeyInterfaceLanguage, _interfaceLanguageCode);
+    }
+
+    /// <summary>The independent prayer-language preference. Empty follows the active interface;
+    /// existing prayer-only languages and Hebrew traditions remain exactly as saved.</summary>
+    public static string PrayerLanguageCode => _prayerLanguageCode ??=
+        ReadLocalSetting(KeyDefaultLanguage) as string ?? LanguageCatalog.DefaultSentinel;
+
+    public static string DefaultLanguageCode => string.IsNullOrEmpty(PrayerLanguageCode)
+        ? UiLanguageCatalog.Current : PrayerLanguageCode;
 
     public static void SetDefaultLanguageCode(string code)
     {
-        DefaultLanguageCode = code;
-        WriteLocalSetting(KeyDefaultLanguage, code);
+        _prayerLanguageCode = code == LanguageCatalog.VicariateContentCode ? "he" : code;
+        WriteLocalSetting(KeyDefaultLanguage, _prayerLanguageCode);
     }
 
     /// <summary>The basic-prayers list and flow share their own language selection. Empty
