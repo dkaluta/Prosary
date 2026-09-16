@@ -174,7 +174,7 @@
                             <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
                                        Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                                        Style="{StaticResource MutedSubtitleTextStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" FontFamily="{x:Bind ViewModel.HeaderFontFamily, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
                         </StackPanel>
 
                         <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Acclamation, Mode=OneWay}"
@@ -255,7 +255,7 @@
                             <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
                                        Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                                        Style="{StaticResource MutedSubtitleTextStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" FontFamily="{x:Bind ViewModel.HeaderFontFamily, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
                         </StackPanel>
 
                         <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Acclamation, Mode=OneWay}"

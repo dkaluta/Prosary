@@ -27,6 +27,7 @@ import com.dkaluta.prosary.content.audio.AudioPlaybackController
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.engine.PrayerEngine
 import com.dkaluta.prosary.models.AppSettings
+import com.dkaluta.prosary.models.BasicPrayerCatalog
 import com.dkaluta.prosary.models.JesusPrayerOptions
 import com.dkaluta.prosary.models.JesusPrayerTarget
 import com.dkaluta.prosary.models.Prayer
@@ -40,6 +41,9 @@ import com.dkaluta.prosary.services.LocalAppServices
 import com.dkaluta.prosary.ui.jesusprayer.JesusPrayerFlowScreen
 import com.dkaluta.prosary.ui.rosaryflow.RosaryFlowScreen
 import com.dkaluta.prosary.ui.shared.CustomDevotionFlowScreen
+import com.dkaluta.prosary.ui.shared.BasicPrayerFlowScreen
+import com.dkaluta.prosary.ui.shared.PrayerStepFlowScreen
+import androidx.compose.ui.graphics.Color
 import com.dkaluta.prosary.ui.shared.CustomDevotionPrayerSession
 import com.dkaluta.prosary.ui.shared.PrayerFlowChromeState
 import com.dkaluta.prosary.ui.shared.RosaryPrayerSession
@@ -80,6 +84,8 @@ class PrayerSessionTestActivity : AppCompatActivity() {
         InterfaceLanguageController.synchronize(testContext)
         if (savedInstanceState == null) {
             intent.getStringExtra("globalPrayerLanguage")?.let { AppSettings.setDefaultLanguageCode(it) }
+            intent.getStringExtra("aramaicScript")?.let { AppSettings.setAramaicDefaultScript(it) }
+            if (mode == "basic") AppSettings.setBasicPrayersLanguageCode(intent.getStringExtra("prayerLanguage") ?: "en")
             PrayerPackStore.resetForTesting()
             PrayerPackStore.installedPacksDirectory = File(testContext.filesDir, "prayerpacks")
             PrayerPackStore.initialize(assets)
@@ -122,6 +128,15 @@ class PrayerSessionTestActivity : AppCompatActivity() {
                         }
                         composable("session") {
                             when (mode) {
+                                "basic" -> BasicPrayerFlowScreen(intent.getStringExtra("basicPrayerId") ?: "ourFather") { navigation.popBackStack() }
+                                "scriptFallback" -> {
+                                    val basic = requireNotNull(BasicPrayerCatalog.prayer("ourFather"))
+                                    val step = BasicPrayerCatalog.step(basic, "arc").copy(transliteratedBody = null)
+                                    PrayerStepFlowScreen(title = step.title, titleFollowsPrayerScript = true,
+                                        step = step, currentIndex = 0, totalSteps = 1, seasonColor = Color.Transparent,
+                                        isRightToLeft = true, languageCode = "arc", canGoBack = false, onBack = {},
+                                        onNext = { navigation.popBackStack() }, onNavigateUp = { navigation.popBackStack() })
+                                }
                                 "rosary" -> RosaryFlowScreen(prayer, { navigation.popBackStack() }, { _, _, _ -> navigation.popBackStack() })
                                 "jesus" -> JesusPrayerFlowScreen(prayer = prayer,
                                     onNavigateUp = { navigation.popBackStack() }, onFinish = { navigation.popBackStack() })

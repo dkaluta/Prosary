@@ -46,7 +46,10 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     private int _antiphonStepIndex = -1;
     private bool _hasClosingCross;
 
+    public string HeaderFontFamily => PrayerTypography.ResolveHeadingFontFamily(Header);
+
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HeaderFontFamily))]
     private string _header = string.Empty;
 
     [ObservableProperty]
@@ -325,7 +328,11 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         OnPropertyChanged(nameof(BottomBeadsColumn2));
     }
 
-    public void RefreshTypography() => RenderCurrentStep();
+    public void RefreshTypography()
+    {
+        RenderCurrentStep();
+        OnPropertyChanged(nameof(HeaderFontFamily));
+    }
 
     public void RefreshPrayerWording()
     {
@@ -355,8 +362,7 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         Body = ShowsTransliteration && step.TransliteratedBody is { } transliterated
             ? transliterated
             : step.Body;
-        var usesSyriacScript = _aramaicSessionScript is not null ? _aramaicSessionScript == "Syrc"
-            : PrayerTypography.ScriptOf(Body) == PrayerTypography.Script.Syriac;
+        var usesSyriacScript = PrayerTypography.ScriptOf(Body) == PrayerTypography.Script.Syriac;
         Header = PrayerTranslations.FlowTitle(step.Title, _languageCode, usesSyriacScript);
         MysteryImageKey = step.ImageVariantKey ?? step.Mystery?.ImageKey ?? step.ImageOverrideKey ?? "cross_placeholder";
         var aramaicProgress = PrayerTranslations.AramaicProgress(_index + 1, _steps.Count, _languageCode, usesSyriacScript);

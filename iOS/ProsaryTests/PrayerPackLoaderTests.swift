@@ -302,6 +302,80 @@ final class PrayerPackLoaderTests: XCTestCase {
       bundleId: "oAntiphons", languageCode: "en", key: "gloriaPatri"))
   }
 
+  func testAramaicHeadingsUseTheActiveBundlesSourcedPairs() {
+    for (key, hebrewTitle, syriacTitle) in [
+      ("trisagionAcclamationTitle", "קדישת אלהא", "ܩܰܕ݁ܝܫܰܬ݂ ܐܰܠܳܗܳܐ"),
+      ("trisagionKyrieTitle", "קוריאליסון", "ܩܘܪܝܐܠܝܣܘܢ"),
+    ] {
+      let authored = PrayerPackStore.resolveBodyText(bundleId: "trisagion", languageCode: "arc", key: key)
+      XCTAssertEqual(HebrewDisplayText.unpointed(authored), hebrewTitle)
+      for input in [authored, hebrewTitle, syriacTitle] {
+        XCTAssertEqual(PrayerTranslations.flowTitle(input, languageCode: "arc", sourceScript: true,
+          bundleId: "trisagion"), syriacTitle)
+        XCTAssertEqual(PrayerTranslations.flowTitle(input, languageCode: "arc", sourceScript: false,
+          bundleId: "trisagion"), hebrewTitle)
+      }
+      XCTAssertEqual(PrayerTranslations.flowTitle(authored, languageCode: "arc", sourceScript: true), hebrewTitle,
+        "An unrelated bundle must not supply this bundle-local heading")
+    }
+    XCTAssertEqual(PrayerTranslations.flowTitle("שובחא לאבא", languageCode: "arc", sourceScript: true,
+      bundleId: "oAntiphons"), "ܫܽܘܒܚܳܐ ܠܰܐܒܳܐ", "Bundles can still use a shared Rosary heading")
+  }
+
+  func testImportedAramaicHeadingKeysKeepTheirOwnScriptPairsAndUnpairedOverrides() throws {
+    // Reuse supplied liturgical text, reversing the primary/alternate script order to prove
+    // imported packs are not required to put Hebrew first or to name a title key *Title.
+    let hebrewTitle = PrayerPackStore.resolveBodyText(bundleId: "trisagion", languageCode: "arc",
+      key: "trisagionAcclamationTitle")
+    let syriacTitle = try XCTUnwrap(PrayerPackStore.transliteration(bundleId: "trisagion", languageCode: "arc",
+      key: "trisagionAcclamationTitle"))
+    let hebrewBody = PrayerPackStore.resolveBodyText(bundleId: "trisagion", languageCode: "arc",
+      key: "trisagionAcclamation")
+    let syriacBody = try XCTUnwrap(PrayerPackStore.transliteration(bundleId: "trisagion", languageCode: "arc",
+      key: "trisagionAcclamation"))
+    let unpairedTitle = PrayerPackStore.resolveBodyText(bundleId: "rosary", languageCode: "arc", key: "signumCrucisTitle")
+    let savedDirectory = PrayerPackStore.installedPacksDirectory
+    let directory = FileManager.default.temporaryDirectory.appendingPathComponent("aramaic-headings-\(UUID())", isDirectory: true)
+    defer {
+      PrayerPackStore.installedPacksDirectory = savedDirectory
+      try? FileManager.default.removeItem(at: directory)
+    }
+    try PrayerPackStore.preservingSharedTextForTesting {
+      PrayerPackStore.installedPacksDirectory = directory
+      let id = "repo.aramaic-headings.\(UUID().uuidString)"
+      let manifest: [String: Any] = ["schemaVersion": 1, "id": id, "kind": id,
+        "displayName": "Aramaic heading fixture", "languages": ["arc"], "hasCatalog": false, "images": []]
+      let content: [String: Any] = [
+        "prayers": ["customIncipit": syriacTitle, "customBody": syriacBody, "signumCrucisTitle": unpairedTitle],
+        "transliterations": ["customIncipit": hebrewTitle, "customBody": hebrewBody], "mysteries": [:],
+      ]
+      try PrayerPackStore.installPack(from: Self.storedZip([
+        ("manifest.json", try JSONSerialization.data(withJSONObject: manifest)),
+        ("content/arc.json", try JSONSerialization.data(withJSONObject: content)),
+        ("devotion.json", Data(#"{"type":"steps","steps":[{"titleKey":"customIncipit","bodyKey":"customBody"},{"titleKey":"signumCrucisTitle","bodyKey":"customBody"}]}"#.utf8)),
+      ]))
+      defer { PrayerPackStore.removeInstalledPack(id: id) }
+      let pairs = PrayerPackStore.aramaicHeadingPairs(bundleId: id)
+      XCTAssertTrue(pairs.contains { $0.original == syriacTitle && $0.alternate == hebrewTitle })
+      XCTAssertFalse(pairs.contains { $0.original == unpairedTitle || $0.alternate == unpairedTitle },
+        "A local title without an alternate must not borrow the shared title's alternate")
+      let steps = PrayerEngine(calendar: StubLiturgicalCalendar()).buildSteps(for:
+        Prayer(kind: .custom, languageCode: "arc", customDevotionId: id))
+      XCTAssertEqual(steps.count, 2)
+      let pairedStep = try XCTUnwrap(steps.first)
+      XCTAssertEqual(pairedStep.title, syriacTitle)
+      XCTAssertEqual(PrayerTranslations.flowTitle(pairedStep.title, languageCode: "arc", sourceScript: false,
+        bundleId: id), HebrewDisplayText.unpointed(hebrewTitle))
+      XCTAssertEqual(PrayerTranslations.flowTitle(hebrewTitle, languageCode: "arc", sourceScript: true,
+        bundleId: id), syriacTitle)
+      let unpairedStep = try XCTUnwrap(steps.last)
+      XCTAssertEqual(PrayerTranslations.flowTitle(unpairedStep.title, languageCode: "arc", sourceScript: true,
+        bundleId: id), unpairedTitle)
+      XCTAssertEqual(PrayerTranslations.flowTitle("צלותא מרניתא", languageCode: "arc", sourceScript: true,
+        bundleId: id), "ܨܠܽܘܬܳܐ ܡܳܪܳܢܳܝܬܳܐ", "Absent local keys may still use shared sourced headings")
+    }
+  }
+
   func testBundledPacksExist() {
     for pack in ["rosary", "angelus", "stationsOfTheCross", "franciscanCrown", "sevenSorrows",
                  "divineMercyChaplet", "trisagion", "oAntiphons"] {

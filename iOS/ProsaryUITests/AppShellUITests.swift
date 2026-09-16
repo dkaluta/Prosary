@@ -382,7 +382,8 @@ final class AppShellUITests: XCTestCase {
   @MainActor
   func testBasicPrayerLanguagePickerUpdatesFlowAndList() throws {
     let app = XCUIApplication()
-    app.launchArguments = ["-resetStore", "-AppleLanguages", "(en)", "-defaultLanguageCode", "en"]
+    app.launchArguments = ["-resetStore", "-AppleLanguages", "(en)", "-defaultLanguageCode", "en",
+                           "-aramaicDefaultScript", "Hebr"]
     app.launch()
     let basic = app.buttons["basicPrayersRow"]
     XCTAssertTrue(basic.waitForExistence(timeout: 10))
@@ -395,7 +396,16 @@ final class AppShellUITests: XCTestCase {
     XCTAssertTrue(ourFather.label.contains("צלותא מרניתא"))
     ourFather.tap()
     XCTAssertTrue(app.buttons["transliterationToggle"].waitForExistence(timeout: 5))
+    XCTAssertTrue(app.staticTexts["prayerStepTitle"].label.contains("צלותא"))
     app.buttons["transliterationToggle"].tap()
+    for identifier in ["prayerStepTitle", "prayerFlowTitle"] {
+      let heading = app.staticTexts[identifier]
+      let syriacHeading = NSPredicate { _, _ in
+        heading.label.unicodeScalars.contains { (0x0700...0x074F).contains($0.value) }
+      }
+      XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: syriacHeading, object: nil)],
+                                  timeout: 5), .completed)
+    }
     let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
     attachment.name = "basic-prayer-aramaic-script-toggle"
     attachment.lifetime = .keepAlways
@@ -453,7 +463,10 @@ final class AppShellUITests: XCTestCase {
       XCTAssertTrue(body.waitForExistence(timeout: 10))
       func expectScript(_ syriac: Bool) {
         let predicate = NSPredicate { _, _ in
-          body.label.unicodeScalars.contains { (0x0700...0x074F).contains($0.value) } == syriac
+          let heading = app.staticTexts["prayerStepTitle"]
+          return body.label.unicodeScalars.contains { (0x0700...0x074F).contains($0.value) } == syriac
+            && heading.exists
+            && heading.label.unicodeScalars.contains { (0x0700...0x074F).contains($0.value) } == syriac
         }
         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: predicate, object: nil)], timeout: 5), .completed)
         XCTAssertTrue(app.staticTexts["prayerProgressText"].label.contains(syriac ? "ܡܶܢ" : "מֶן"))

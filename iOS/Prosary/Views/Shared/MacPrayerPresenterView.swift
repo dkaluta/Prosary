@@ -19,6 +19,8 @@ struct MacPrayerPresenterView: View {
   let onNext: () -> Void
   let onExit: () -> Void
   var primaryActionLabel: String? = nil
+  var contentBundleID: String = "rosary"
+  var titleIsPrayerHeading = false
 
   @Environment(\.layoutDirection) private var interfaceDirection
   @Environment(\.colorSchemeContrast) private var contrast
@@ -94,7 +96,10 @@ struct MacPrayerPresenterView: View {
           .font(.caption.weight(.semibold))
           .foregroundStyle(contrast == .increased ? Color.primary : Color.secondary)
         Text(HebrewDisplayText.unpointed(title))
-          .font(.headline)
+          .font(titleIsPrayerHeading
+            ? PrayerTypography.aramaicHeadingFont(text: title, languageCode: languageCode,
+                typefaces: typography.typefaces, pointSize: 17) ?? .headline
+            : .headline)
           .lineLimit(1)
           .help(HebrewDisplayText.unpointed(title))
       }
@@ -164,9 +169,13 @@ struct MacPrayerPresenterView: View {
             .accessibilityIdentifier("presenterSubtitle")
         }
         if !step.title.isEmpty {
-          Text(PrayerTranslations.flowTitle(step.title, languageCode: languageCode,
-            sourceScript: PrayerTypography.resolvedScript(text: step.body, languageCode: languageCode) == .syriac))
-            .font(.system(size: max(23, pointSize * 0.65), weight: .semibold))
+          let heading = PrayerTranslations.flowTitle(step.title, languageCode: languageCode,
+            sourceScript: PrayerTypography.resolvedScript(text: step.body, languageCode: languageCode) == .syriac,
+            bundleId: contentBundleID)
+          Text(heading)
+            .font(PrayerTypography.aramaicHeadingFont(text: heading, languageCode: languageCode,
+                    typefaces: typography.typefaces, pointSize: max(23, pointSize * 0.65))
+                  ?? .system(size: max(23, pointSize * 0.65), weight: .semibold))
             .multilineTextAlignment(.center)
             .fixedSize(horizontal: false, vertical: true)
             .accessibilityAddTraits(.isHeader)

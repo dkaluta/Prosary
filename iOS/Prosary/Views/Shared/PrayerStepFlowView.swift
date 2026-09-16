@@ -50,6 +50,10 @@ struct PrayerStepFlowView: View {
   /// Session-specific controls share the title's adaptive placement with auto-advance.
   /// Compact iOS windows place them below the navigation title; wider windows use the toolbar.
   var flowActions: AnyView? = nil
+  var contentBundleID: String = "rosary"
+  /// Basic-prayer navigation repeats its sourced heading. Devotion and user window titles
+  /// stay independent of the prayer's writing system.
+  var navigationTitleIsPrayerHeading = false
 
   @Environment(\.horizontalSizeClass) private var horizontalSizeClass
   @Environment(\.verticalSizeClass) private var verticalSizeClass
@@ -101,9 +105,15 @@ struct PrayerStepFlowView: View {
   }
 
   private var usesSyriacScript: Bool {
-    if let script = aramaicSessionScript { return script == "Syrc" }
     guard let step else { return false }
-    return PrayerTypography.script(of: showsTransliteration ? step.transliteratedBody ?? step.body : step.body) == .syriac
+    return PrayerTypography.script(of: usesAlternateText ? step.transliteratedBody ?? step.body : step.body) == .syriac
+  }
+
+  private var displayedNavigationTitle: String {
+    navigationTitleIsPrayerHeading
+      ? PrayerTranslations.flowTitle(navigationTitle, languageCode: languageCode,
+          sourceScript: usesSyriacScript, bundleId: contentBundleID)
+      : HebrewDisplayText.unpointed(navigationTitle)
   }
 
   private func toggleTransliteration() {
@@ -230,16 +240,17 @@ struct PrayerStepFlowView: View {
     Group {
       #if os(macOS)
       if let presentation, presentation.isPresenting {
-        MacPrayerPresenterView(step: presenterStep, title: navigationTitle, currentIndex: currentIndex,
+        MacPrayerPresenterView(step: presenterStep, title: displayedNavigationTitle, currentIndex: currentIndex,
           totalSteps: totalSteps, languageCode: languageCode, canGoBack: canGoBack,
           textSize: presentation.textSize, onBack: onBack, onNext: onNext, onExit: presentation.exit,
-          primaryActionLabel: isLastStep ? nil : centralActionLabel)
+          primaryActionLabel: isLastStep ? nil : centralActionLabel, contentBundleID: contentBundleID,
+          titleIsPrayerHeading: navigationTitleIsPrayerHeading)
       } else { regularContent }
       #else
       regularContent
       #endif
     }
-    .navigationTitle(showsCompactHeader ? "" : HebrewDisplayText.unpointed(navigationTitle))
+    .navigationTitle(showsCompactHeader ? "" : displayedNavigationTitle)
     .onAppear { applyDefaultScript() }
     .onChange(of: languageCode) { _, _ in applyDefaultScript() }
     .onChange(of: step == nil) { _, _ in applyDefaultScript() }
@@ -250,8 +261,11 @@ struct PrayerStepFlowView: View {
       if !isPresenting {
       if showsCompactHeader {
         ToolbarItem(placement: .principal) {
-          Text(HebrewDisplayText.unpointed(navigationTitle))
-            .font(.headline)
+          Text(displayedNavigationTitle)
+            .font(navigationTitleIsPrayerHeading
+              ? PrayerTypography.aramaicHeadingFont(text: displayedNavigationTitle,
+                  languageCode: languageCode, typefaces: typefaces, pointSize: 17) ?? .headline
+              : .headline)
             .multilineTextAlignment(.center)
             .lineLimit(2)
             .fixedSize(horizontal: false, vertical: true)
@@ -454,10 +468,14 @@ struct PrayerStepFlowView: View {
           .multilineTextAlignment(.center)
       }
 
-      Text(PrayerTranslations.flowTitle(step.title, languageCode: languageCode, sourceScript: usesSyriacScript))
-        .font(.title2.weight(.semibold))
+      let heading = PrayerTranslations.flowTitle(step.title, languageCode: languageCode,
+        sourceScript: usesSyriacScript, bundleId: contentBundleID)
+      Text(heading)
+        .font(PrayerTypography.aramaicHeadingFont(text: heading, languageCode: languageCode,
+                typefaces: typefaces, pointSize: 22) ?? .title2.weight(.semibold))
         .foregroundStyle(Color.brandHeadline)
         .multilineTextAlignment(.center)
+        .accessibilityIdentifier("prayerStepTitle")
 
       if let acclamation = step.acclamation {
         // The versicle/response is a prayer, not part of the reading — it keeps the regular

@@ -176,6 +176,16 @@ enum PrayerTypography {
         : .system(.body, design: choice == TypefaceValue.sansSerif ? .default : .serif)
     }
   }
+
+  /// Aramaic headings use the face for their visible writing system. An unavailable heading
+  /// remains in its sourced fallback language and keeps the ordinary interface heading font.
+  static func aramaicHeadingFont(text: String, languageCode: String?, typefaces: Typefaces,
+                                 pointSize: CGFloat) -> Font? {
+    guard LanguageCatalog.fallbackChain(for: languageCode).first == "arc",
+          let script = detectedScript(of: text), script == .hebrew || script == .syriac else { return nil }
+    return font(languageCode: languageCode, isScripture: false, text: text,
+                script: script, typefaces: typefaces, pointSize: pointSize).weight(.semibold)
+  }
 }
 
 /// Deliver settings changes after native picker menus close, as PrayerLanguageMonitor does.

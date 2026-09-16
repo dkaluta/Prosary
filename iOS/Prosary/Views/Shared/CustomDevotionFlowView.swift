@@ -120,7 +120,7 @@ struct CustomDevotionFlowView: View {
                          chapterTitles: resolvedChapterTitles)
       ) : nil,
       audioIsPlaying: audio.isPlaying,
-      flowActions: AnyView(flowActions)
+      flowActions: AnyView(flowActions), contentBundleID: devotionId
     )
     // The recording's chapters drive the text while it plays: entering a chapter that carries
     // a stepIndex hint turns the page. Hints are advisory (the built sequence is option- and

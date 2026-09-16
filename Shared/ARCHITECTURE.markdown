@@ -72,7 +72,7 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   is a deliberate, known divergence, not a bug.
 - **`PrayerReminder`** — `id`, `hour`, `minute`, `isEnabled`. One-off local reminder times, not a
   recurrence rule — see "Reminders" below for why each platform schedules these differently.
-- **`LanguageOption`/`LanguageCatalog`** — thirteen stored prayer-text codes: `la` (default), `en`,
+- **`LanguageOption`/`LanguageCatalog`** — thirteen stored prayer-text codes: `la` (terminal fallback), `en`,
   `ar`, `he` (Vicariate), `he-x-gamliel` (Mission), `arc`, `el`, `es`, `ru`, `uk`, `tl`, `fr`, and `it`.
   Public pickers show twelve languages: Hebrew appears once as `עברית`, with a separate
   **Prayer tradition** control for Saint James Vicariate / Mission of St. Gamaliel. These controls
@@ -84,8 +84,12 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   Aramaic's native label is `ܐܪܡܐܝܬ / ארמית`.
   `aramaicDefaultScript` chooses Hebrew letters (`Hebr`, the initial default) or Syriac
   letters (`Syrc`) when entering an Aramaic prayer. The in-prayer script switch can override
-  that choice for the session. Aramaic progress counters and the fruit-of-the-mystery label
-  use the selected script.
+  that choice for the session. Aramaic prayer headings use the sourced heading pair from the
+  active bundle or shared Rosary prayers, matching the script of the body actually displayed.
+  The initial script setting and the session toggle update headings together with the body,
+  including sourced basic-prayer navigation headings and repeated-prayer counters. Unknown
+  headings and fallback-language titles remain as supplied; no liturgical text is synthesized.
+  Aramaic progress counters and the fruit-of-the-mystery label also use the selected script.
   `ar`/`he`/`he-x-gamliel`/`arc` are right-to-left, independently of the device's UI language.
   A bundle advertises only the subset it fully supplies; exact community codes can overlay
   their base language without pretending to be complete.

@@ -48,7 +48,7 @@
                     <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
                                Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                                Style="{StaticResource MutedSubtitleTextStyle}" HorizontalAlignment="Center" />
-                    <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Center" />
+                    <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" FontFamily="{x:Bind ViewModel.HeaderFontFamily, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Center" />
                 </StackPanel>
 
                 <TextBlock x:Name="PrayerBody" controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"

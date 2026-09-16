@@ -174,11 +174,56 @@ final class RosaryEngineTests: XCTestCase {
     let aramaic = makeEngine().buildSteps(for: prayer(language: "arc"))
       .filter { $0.imageOverrideKey?.hasPrefix("virtue_") == true }
     XCTAssertEqual(aramaic.count, 3)
-    XCTAssertTrue(aramaic[0].title.hasSuffix("(1 מן 3)"))
-    XCTAssertTrue(PrayerTranslations.flowTitle(aramaic[0].title, languageCode: "arc", sourceScript: true).hasSuffix("(1 ܡܶܢ 3)"))
+    for (index, step) in aramaic.enumerated() {
+      let hebrewTitle = "שלם לך מרים (\(index + 1) מן 3)"
+      let syriacTitle = "ܫܠܳܡ ܠܶܟ ܡܰܪܝܰܡ (\(index + 1) ܡܶܢ 3)"
+      XCTAssertEqual(step.title, hebrewTitle)
+      XCTAssertEqual(PrayerTranslations.flowTitle(step.title, languageCode: "arc", sourceScript: false), hebrewTitle)
+      XCTAssertEqual(PrayerTranslations.flowTitle(step.title, languageCode: "arc", sourceScript: true), syriacTitle)
+      XCTAssertEqual(PrayerTranslations.flowTitle(syriacTitle, languageCode: "arc", sourceScript: true), syriacTitle)
+      XCTAssertEqual(PrayerTranslations.flowTitle(syriacTitle, languageCode: "arc", sourceScript: false), hebrewTitle)
+    }
     XCTAssertEqual(PrayerTranslations.aramaicProgress(1, total: 75, languageCode: "arc", sourceScript: false), "1 מֶן 75")
     XCTAssertEqual(PrayerTranslations.aramaicProgress(1, total: 75, languageCode: "arc", sourceScript: true), "1 ܡܶܢ 75")
     XCTAssertNil(PrayerTranslations.aramaicProgress(1, total: 75, languageCode: "en", sourceScript: true))
+  }
+
+  @MainActor
+  func testAramaicPrayerHeadingsSwitchBetweenTheirSixSourcedScriptPairs() throws {
+    let titles = [
+      ("signumCrucisTitle", "רושמא דצליבא", "ܪܘܫܡܐ ܕܨܠܝܒܐ"),
+      ("symbolumApostolorumTitle", "מהימנינן", "ܡܗܰܝܡܢܺܝܢܰܢ"),
+      ("paterNosterTitle", "צלותא מרניתא", "ܨܠܽܘܬܳܐ ܡܳܪܳܢܳܝܬܳܐ"),
+      ("aveMariaTitle", "שלם לך מרים", "ܫܠܳܡ ܠܶܟ ܡܰܪܝܰܡ"),
+      ("gloriaPatriTitle", "שובחא לאבא", "ܫܽܘܒܚܳܐ ܠܰܐܒܳܐ"),
+      ("subTuumPraesidiumTitle", "תחת כנפא דמרחמנותכי", "ܬܚܬ ܟܢܦܐ ܕܡܪܚܡܢܘܬܟܝ"),
+    ]
+    for (key, hebrewTitle, syriacTitle) in titles {
+      let authored = PrayerPackStore.resolveBodyText(bundleId: "rosary", languageCode: "arc", key: key)
+      XCTAssertEqual(HebrewDisplayText.unpointed(authored), hebrewTitle, key)
+      XCTAssertEqual(try XCTUnwrap(PrayerPackStore.transliteration(
+        bundleId: "rosary", languageCode: "arc", key: key)), syriacTitle, key)
+      for input in [authored, hebrewTitle, syriacTitle] {
+        XCTAssertEqual(PrayerTranslations.flowTitle(input, languageCode: "arc", sourceScript: true), syriacTitle, key)
+        XCTAssertEqual(PrayerTranslations.flowTitle(input, languageCode: "arc", sourceScript: false), hebrewTitle, key)
+      }
+    }
+  }
+
+  @MainActor
+  func testAramaicHeadingConversionLeavesUnknownAndFallbackTitlesAsSupplied() {
+    for sourceScript in [false, true] {
+      for title in ["Sign of the Cross", "Unknown heading", "רושמא דצליבא — Example", "Fixture (1 of 3)"] {
+        XCTAssertEqual(PrayerTranslations.flowTitle(title, languageCode: "arc", sourceScript: sourceScript), title)
+      }
+      for language in ["en", "he", "la"] {
+        for title in ["רושמא דצליבא", "ܪܘܫܡܐ ܕܨܠܝܒܐ", "שלם לך מרים (1 מן 3)"] {
+          XCTAssertEqual(PrayerTranslations.flowTitle(title, languageCode: language, sourceScript: sourceScript), title)
+        }
+      }
+    }
+    XCTAssertEqual(PrayerTranslations.flowTitle("Unknown heading (1 מן 3)", languageCode: "arc", sourceScript: true),
+      "Unknown heading (1 ܡܶܢ 3)", "Only the sourced counter changes when the heading has no supplied pair")
   }
 
   @MainActor

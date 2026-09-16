@@ -24,7 +24,7 @@
             <Button Grid.Column="0" Click="OnNavigateUp" Background="Transparent" Padding="8">
                 <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
             </Button>
-            <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.Header, Mode=OneWay}" VerticalAlignment="Center"
+            <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.Header, Mode=OneWay}" FontFamily="{x:Bind ViewModel.HeaderFontFamily, Mode=OneWay}" VerticalAlignment="Center"
                        HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}"
                        FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}" />
             <Button Grid.Column="2" Background="Transparent" Padding="8"

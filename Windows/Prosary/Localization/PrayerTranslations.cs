@@ -22,15 +22,49 @@ public static partial class PrayerTranslations
         return $"{index} {connector ?? Get("arc", PrayerKey.RepetitionCounterConnector)} {total}";
     }
 
-    public static string FlowTitle(string title, string? languageCode, bool sourceScript)
+    public static string FlowTitle(string title, string? languageCode, bool sourceScript, string bundleId = "rosary")
     {
         var unpointed = HebrewDisplayText.WithoutMarks(title);
-        if (!sourceScript || Models.LanguageCatalog.FallbackChain(languageCode).FirstOrDefault() != "arc") return unpointed;
-        var connector = PrayerPackStore.Transliteration("rosary", "arc", "repetitionCounterConnector");
-        if (connector is null) return unpointed;
-        var original = HebrewDisplayText.WithoutMarks(Get("arc", PrayerKey.RepetitionCounterConnector));
+        if (Models.LanguageCatalog.FallbackChain(languageCode).FirstOrDefault() != "arc") return unpointed;
+        var desiredScript = sourceScript ? Services.PrayerTypography.Script.Syriac : Services.PrayerTypography.Script.Hebrew;
+        foreach (var (text, readingAid) in PrayerPackStore.AramaicTitlePairs(bundleId))
+        {
+            var primary = HebrewDisplayText.WithoutMarks(text);
+            var alternate = HebrewDisplayText.WithoutMarks(readingAid);
+            var primaryScript = Services.PrayerTypography.ScriptOf(primary);
+            var alternateScript = Services.PrayerTypography.ScriptOf(alternate);
+            if (!((primaryScript == Services.PrayerTypography.Script.Hebrew && alternateScript == Services.PrayerTypography.Script.Syriac)
+                || (primaryScript == Services.PrayerTypography.Script.Syriac && alternateScript == Services.PrayerTypography.Script.Hebrew))) continue;
+            foreach (var candidate in new[] { primary, alternate })
+            {
+                if (!unpointed.StartsWith(candidate, StringComparison.Ordinal)) continue;
+                var suffix = unpointed[candidate.Length..];
+                if (suffix.Length != 0 && !IsAramaicTitleCounter(suffix)) continue;
+                var heading = primaryScript == desiredScript ? primary : alternate;
+                return heading + AramaicTitleSuffix(suffix, sourceScript);
+            }
+        }
+        return AramaicTitleSuffix(unpointed, sourceScript);
+    }
+
+    private static bool IsAramaicTitleCounter(string suffix)
+    {
+        var hebrew = HebrewDisplayText.WithoutMarks(Get("arc", PrayerKey.RepetitionCounterConnector));
+        var syriac = PrayerPackStore.Transliteration("rosary", "arc", "repetitionCounterConnector");
+        var connectors = System.Text.RegularExpressions.Regex.Escape(hebrew)
+            + (syriac is null ? "" : "|" + System.Text.RegularExpressions.Regex.Escape(syriac));
+        return System.Text.RegularExpressions.Regex.IsMatch(suffix, @"^ \(\d+ (?:" + connectors + @") \d+\)$");
+    }
+
+    private static string AramaicTitleSuffix(string suffix, bool sourceScript)
+    {
+        var hebrew = HebrewDisplayText.WithoutMarks(Get("arc", PrayerKey.RepetitionCounterConnector));
+        var syriac = PrayerPackStore.Transliteration("rosary", "arc", "repetitionCounterConnector");
+        if (syriac is null) return suffix;
+        var original = sourceScript ? hebrew : syriac;
+        var replacement = sourceScript ? syriac : hebrew;
         var pattern = @"(\(\d+) " + System.Text.RegularExpressions.Regex.Escape(original) + @" (\d+\))$";
-        return System.Text.RegularExpressions.Regex.Replace(unpointed, pattern, "$1 " + connector + " $2");
+        return System.Text.RegularExpressions.Regex.Replace(suffix, pattern, "$1 " + replacement + " $2");
     }
 
     // internal (not private) so Prosary.Tests can verify per-language completeness directly —

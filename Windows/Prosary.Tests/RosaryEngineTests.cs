@@ -631,6 +631,47 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Null(PrayerTranslations.AramaicProgress(1, 75, "en", true));
     }
 
+    [Theory]
+    [InlineData("rosary", "signumCrucisTitle")]
+    [InlineData("rosary", "symbolumApostolorumTitle")]
+    [InlineData("rosary", "paterNosterTitle")]
+    [InlineData("rosary", "aveMariaTitle")]
+    [InlineData("rosary", "gloriaPatriTitle")]
+    [InlineData("rosary", "subTuumPraesidiumTitle")]
+    [InlineData("trisagion", "trisagionAcclamationTitle")]
+    [InlineData("trisagion", "trisagionKyrieTitle")]
+    [InlineData("trisagion", "gloriaPatriTitle")]
+    [InlineData("trisagion", "signumCrucisTitle")]
+    public void AramaicHeadingsUseOnlyTheSourcedPairForEachWritingSystem(string bundleId, string key)
+    {
+        var pointed = PrayerPackStore.ResolveBodyText(bundleId, "arc", key);
+        var hebrew = HebrewDisplayText.WithoutMarks(pointed);
+        var syriac = PrayerPackStore.Transliteration(bundleId, "arc", key);
+        Assert.NotNull(syriac);
+        Assert.Equal(PrayerTypography.Script.Hebrew, PrayerTypography.ScriptOf(hebrew));
+        Assert.Equal(PrayerTypography.Script.Syriac, PrayerTypography.ScriptOf(syriac));
+        Assert.Equal(syriac, PrayerTranslations.FlowTitle(pointed, "arc", true, bundleId));
+        Assert.Equal(syriac, PrayerTranslations.FlowTitle(hebrew, "arc", true, bundleId));
+        Assert.Equal(hebrew, PrayerTranslations.FlowTitle(syriac, "arc", false, bundleId));
+        Assert.Equal(hebrew, PrayerTranslations.FlowTitle(hebrew, "arc", false, bundleId));
+    }
+
+    [Fact]
+    public void AramaicHeadingCountersKeepTheirPositionAndUnknownTitlesStayUnchanged()
+    {
+        var hebrew = PrayerPackStore.ResolveDisplayText("rosary", "arc", "aveMariaTitle");
+        var syriac = PrayerPackStore.Transliteration("rosary", "arc", "aveMariaTitle");
+        var hebrewCounter = hebrew + " (2 מן 10)";
+        var syriacCounter = syriac + " (2 ܡܶܢ 10)";
+        Assert.Equal(syriacCounter, PrayerTranslations.FlowTitle(hebrewCounter, "arc", true));
+        Assert.Equal(hebrewCounter, PrayerTranslations.FlowTitle(syriacCounter, "arc", false));
+        foreach (var unknown in new[] { "My prayer", "Our Father", hebrew + " — my saved copy", "prefix " + hebrew,
+            hebrew + " (2 custom 10)", hebrew + " (2 of 10)" })
+            Assert.Equal(unknown, PrayerTranslations.FlowTitle(unknown, "arc", true));
+        Assert.Equal("My prayer (2 ܡܶܢ 10)", PrayerTranslations.FlowTitle("My prayer (2 מן 10)", "arc", true));
+        Assert.Equal(hebrew, PrayerTranslations.FlowTitle(hebrew, "he", true));
+    }
+
     [Fact]
     public void AramaicScriptPreferenceFindsTheRequestedWritingSystem()
     {

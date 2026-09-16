@@ -11,6 +11,38 @@ public class HebrewFallbackTests : IClassFixture<PrayerPackLoaderFixture>
 {
     public HebrewFallbackTests(PrayerPackLoaderFixture _) { }
 
+    [Fact]
+    public void ImportedAramaicHeadingsKeepLocalPairsAndSupportReverseScriptOrder()
+    {
+        var pointed = PrayerPackStore.ResolveBodyText("trisagion", "arc", "trisagionAcclamationTitle");
+        var hebrew = HebrewDisplayText.WithoutMarks(pointed);
+        var syriac = PrayerPackStore.Transliteration("trisagion", "arc", "trisagionAcclamationTitle")!;
+        using var fixture = new ImportedPack(new Dictionary<string, object>
+        {
+            ["arc"] = new
+            {
+                prayers = new { genericBody = "Fixture", customHeading = syriac },
+                transliterations = new { customHeading = pointed },
+            },
+        });
+        Assert.Equal(hebrew, PrayerTranslations.FlowTitle(syriac, "arc", false, fixture.Id));
+        Assert.Equal(syriac, PrayerTranslations.FlowTitle(hebrew, "arc", true, fixture.Id));
+    }
+
+    [Fact]
+    public void ALocalAramaicHeadingWithoutAnAlternateNeverBorrowsTheSharedReadingAid()
+    {
+        var heading = PrayerPackStore.ResolveDisplayText("rosary", "arc", "paterNosterTitle");
+        using var fixture = new ImportedPack(new Dictionary<string, object>
+        {
+            ["arc"] = new { prayers = new { genericBody = "Fixture", paterNosterTitle = heading } },
+        });
+        Assert.Equal(heading, PrayerTranslations.FlowTitle(heading, "arc", true, fixture.Id));
+        var shared = PrayerPackStore.ResolveDisplayText("rosary", "arc", "signumCrucisTitle");
+        Assert.Equal(PrayerPackStore.Transliteration("rosary", "arc", "signumCrucisTitle"),
+            PrayerTranslations.FlowTitle(shared, "arc", true, fixture.Id));
+    }
+
     [Theory]
     [InlineData("")]
     [InlineData("fr")]

@@ -22,6 +22,10 @@ public static class PrayerTypography
     /// token on its own UI thread, retaining the platform's native font selection.</summary>
     public const string NativeUiFontFamily = "XamlAutoFontFamily";
 
+    public static string ResolveHeadingFontFamily(string title) => ScriptOf(title) == Script.Syriac
+        ? ResolveBodyFontFamily("arc", isScripture: false, Script.Syriac)
+        : NativeUiFontFamily;
+
     // Scripture quotations (the mystery-announcement step) get a dedicated typeface distinct
     // from ordinary prayer text, uniformly across platforms — Cardo (Latin) and Scheherazade New
     // (Arabic) were both designed for classical/Biblical typesetting, the same reasoning behind

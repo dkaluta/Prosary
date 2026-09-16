@@ -488,6 +488,7 @@ fun CustomDevotionFlowScreen(
 
     PrayerStepFlowScreen(
         title = displayName,
+        prayerBundleId = devotionId,
         step = currentStep,
         currentIndex = currentIndex,
         sessionPaused = !runReady || missedDayChoice != null || completionSuggestion != null,

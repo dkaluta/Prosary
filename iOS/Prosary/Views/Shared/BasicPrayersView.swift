@@ -182,7 +182,9 @@ struct BasicPrayerFlowView: View {
       canGoBack: false,
       onBack: {},
       onNext: { if let finishPrayerSession { finishPrayerSession() } else { dismiss() } },
-      flowActions: AnyView(BasicPrayersLanguageMenu(chosenLanguage: $chosenLanguage)))
+      flowActions: AnyView(BasicPrayersLanguageMenu(chosenLanguage: $chosenLanguage)),
+      contentBundleID: BasicPrayerCatalog.prayer(id: prayerId)?.bundleId ?? "rosary",
+      navigationTitleIsPrayerHeading: true)
     .onAppear {
       seasonColor = services.calendar.seasonColorToday()
     }

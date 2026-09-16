@@ -61,7 +61,10 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     [ObservableProperty]
     private string _devotionTitle = string.Empty;
 
+    public string HeaderFontFamily => PrayerTypography.ResolveHeadingFontFamily(Header);
+
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HeaderFontFamily))]
     private string _header = string.Empty;
 
     [ObservableProperty]
@@ -631,7 +634,11 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         OnPropertyChanged(nameof(BottomBeadsColumn2));
     }
 
-    public void RefreshTypography() => RenderCurrentStep();
+    public void RefreshTypography()
+    {
+        RenderCurrentStep();
+        OnPropertyChanged(nameof(HeaderFontFamily));
+    }
 
     public void RefreshPrayerWording()
     {
@@ -669,9 +676,8 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         Body = ShowsTransliteration && step.TransliteratedBody is { } transliterated
             ? transliterated
             : step.Body;
-        var usesSyriacScript = _aramaicSessionScript is not null ? _aramaicSessionScript == "Syrc"
-            : PrayerTypography.ScriptOf(Body) == PrayerTypography.Script.Syriac;
-        Header = PrayerTranslations.FlowTitle(step.Title, _languageCode, usesSyriacScript);
+        var usesSyriacScript = PrayerTypography.ScriptOf(Body) == PrayerTypography.Script.Syriac;
+        Header = PrayerTranslations.FlowTitle(step.Title, _languageCode, usesSyriacScript, _bundleId);
         Acclamation = step.Acclamation ?? string.Empty;
         HasAcclamation = step.Acclamation is not null;
         MysteryImageKey = step.ImageVariantKey ?? step.Mystery?.ImageKey ?? step.ImageOverrideKey ?? "cross_placeholder";

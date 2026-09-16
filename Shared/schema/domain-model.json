@@ -422,7 +422,8 @@
       "description": "One prayer \"bead\" in a fully built session for any devotion — the output of PrayerEngine.buildSteps(for:). See ARCHITECTURE.markdown#engines.",
       "fields": {
         "title": {
-          "type": "string"
+          "type": "string",
+          "description": "Resolved sourced heading. Aramaic presentation selects its supplied Hebrew/Syriac heading pair to match the script of the displayed body, using the active bundle and shared Rosary heading fallback. Preserve generated repetition suffixes and unknown or fallback-language titles; never synthesize a missing script counterpart."
         },
         "subtitle": {
           "type": "string?",

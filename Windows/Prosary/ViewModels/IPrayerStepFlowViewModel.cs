@@ -15,6 +15,7 @@ namespace Prosary.ViewModels;
 public interface IPrayerStepFlowViewModel : System.ComponentModel.INotifyPropertyChanged
 {
     string Header { get; }
+    string HeaderFontFamily { get; }
     string? Subtitle { get; }
     bool HasSubtitle { get; }
     string Body { get; }
