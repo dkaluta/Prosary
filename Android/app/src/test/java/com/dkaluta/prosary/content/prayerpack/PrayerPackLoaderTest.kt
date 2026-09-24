@@ -27,6 +27,29 @@ import org.junit.Test
  * PrayerPackLoaderTests.swift. Plain JVM test, no Android Context/AssetManager needed:
  * [PrayerPackStore.initialize] takes a generic byte-source function, fed here from a plain File. */
 class PrayerPackLoaderTest {
+    @Test
+    fun dayPickerLocalizesPeriodAndKeepsOlderBundlesReadable() {
+        val originalInterface = AppSettings.interfaceLanguageCode
+        try {
+            val day = kotlinx.serialization.json.Json.decodeFromString<CustomDevotionDefinition.Day>(
+                """{"name":"O Wisdom","nameByLanguage":{"tl":"O Karunungan"},
+                    "period":"17 December","periodByLanguage":{"tl":"17 Disyembre"},"steps":[]}""",
+            )
+            AppSettings.setInterfaceLanguageCode("fil-PH")
+            assertEquals("O Karunungan", day.localizedName)
+            assertEquals("17 Disyembre", day.localizedPeriod)
+            AppSettings.setInterfaceLanguageCode("en")
+            assertEquals("17 December", day.localizedPeriod)
+            val legacy = kotlinx.serialization.json.Json.decodeFromString<CustomDevotionDefinition.Day>(
+                """{"name":"Day 1","period":"First week","steps":[]}""",
+            )
+            assertEquals("First week", legacy.localizedPeriod)
+            assertNull(CustomDevotionDefinition.Day(name = "Day 1", steps = emptyList()).localizedPeriod)
+        } finally {
+            AppSettings.setInterfaceLanguageCode(originalInterface)
+        }
+    }
+
     companion object {
         @BeforeClass
         @JvmStatic

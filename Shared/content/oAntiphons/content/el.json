@@ -7,7 +7,17 @@
     "oClavisDavidLectio": "Καὶ δώσω τὴν δόξαν Δαυεὶδ αὐτῷ, καὶ ἄρξει, καὶ οὐκ ἔσται ὁ ἀντιλέγων· καὶ δώσω αὐψῷ τὴν κλεῖδα οἴκου Δαυὶδ ἐπὶ τῷ ὢμῳ αὐτοῦ· καὶ ἀνοίξει, καὶ οὐκ ἔσται ὁ ἀποκλείων· καὶ κλείσει, καὶ οὐκ ἔσται ὁ ἀνοίγων.\n\n— Ἠσαΐας 22:22 (Ἑβδομήκοντα)",
     "oOriensLectio": "Ὁ λαὸς ὁ πορευόμενος ἐν σκότει, ἴδετε φῶς μέγα· οἱ κατοικοῦντες ἐν χώρᾳ σκιᾷ θανάτου, φῶς λάμψει ἐφʼ ὑμᾶς.\n\n— Ἠσαΐας 9:1 (Ἑβδομήκοντα)",
     "oRexGentiumLectio": "Διατοῦτο οὕτω λέγει κύριος Κύριος, Ἰδοὺ ἐγὼ ἐμβάλλω εἰς τὰ θεμέλια Σιὼν λίθον πολυτελῆ, ἐκλεκτὸν, ἀκρογωνιαῖον, ἔντιμον, εἰς τὰ θεμέλια αὐτῆς, καὶ ὁ πιστεύων οὐ μὴ καταισχυνθῇ.\n\n— Ἠσαΐας 28:16 (Ἑβδομήκοντα)",
-    "oEmmanuelLectio": "Διατοῦτο δώσει Κύριος αὐτὸς ὑμῖν σημεῖον· ἰδοὺ ἡ παρθένος ἐν γαστρὶ λήψεται, καὶ τέξεται υἱὸν, καὶ καλέσεις τὸ ὄνομα αὐτοῦ Ἐμμανουήλ.\n\n— Ἠσαΐας 7:14 (Ἑβδομήκοντα)"
+    "oEmmanuelLectio": "Διατοῦτο δώσει Κύριος αὐτὸς ὑμῖν σημεῖον· ἰδοὺ ἡ παρθένος ἐν γαστρὶ λήψεται, καὶ τέξεται υἱὸν, καὶ καλέσεις τὸ ὄνομα αὐτοῦ Ἐμμανουήλ.\n\n— Ἠσαΐας 7:14 (Ἑβδομήκοντα)",
+    "oSapientiaTitle": "Ω Σοφία",
+    "oAdonaiTitle": "Ω Αδωνάι",
+    "oRadixIesseTitle": "Ω Ρίζα του Ιεσσαί",
+    "oClavisDavidTitle": "Ω Κλείδα του Δαβίδ",
+    "oOriensTitle": "Ω Ανατολή",
+    "oRexGentiumTitle": "Ω Βασιλέα των εθνών",
+    "oEmmanuelTitle": "Ω Εμμανουήλ",
+    "oAntiphonLectioTitle": "Ανάγνωσμα",
+    "magnificatTitle": "Μεγαλύνει η ψυχή μου τον Κύριο",
+    "gloriaPatriTitle": "Δόξα Πατρί"
   },
   "mysteries": {},
   "$scriptureImport": {
@@ -23,5 +33,9 @@
     ],
     "mysteryKeys": []
   },
-  "$scriptureSource": "Scripture imported from the Byzantine Majority Text (Robinson-Pierpont, public domain) and Brenton's Septuagint (eBible.org grcbrent, public domain) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Polytonic, as the sources have it; each citation names its own edition."
+  "$scriptureSource": "Scripture imported from the Byzantine Majority Text (Robinson-Pierpont, public domain) and Brenton's Septuagint (eBible.org grcbrent, public domain) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Polytonic, as the sources have it; each citation names its own edition.",
+  "$sources": {
+    "editorialHeadings": "Prosary translations of canonical display labels; these are not liturgical prayer translations."
+  },
+  "$comment": "Headings are Prosary editorial display translations. Only independently sourced prayer or Scripture bodies are present; headings do not establish a complete prayer translation."
 }

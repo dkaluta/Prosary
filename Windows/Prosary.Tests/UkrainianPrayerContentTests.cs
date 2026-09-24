@@ -49,16 +49,36 @@ public class UkrainianPrayerContentTests : IClassFixture<PrayerPackLoaderFixture
     }
 
     [Fact]
-    public void ScripturalStationsUseUkrainianAndMissingMeditationsFollowTheSelectedFallback()
+    public void StationsUseUkrainianScriptureAndEditorialNarratives()
     {
         var scriptural = Steps("stationsOfTheCross", "scriptural");
         Assert.Equal("Ісус у Гетсиманському саду", scriptural[2].Title);
         Assert.StartsWith("І приходять на врочище Гетсиман", scriptural[2].Body);
         Assert.Contains("Марко 14:32–36", scriptural[2].Body);
         Assert.True(scriptural[2].IsScripture);
-        var english = PrayerPackStore.ResolveBodyText("stationsOfTheCross", "en", "station01Body");
-        Assert.NotEqual("station01Body", english);
-        Assert.Equal(english, PrayerPackStore.ResolveBodyText("stationsOfTheCross", "uk", "station01Body"));
-        Assert.Contains(english, Steps("stationsOfTheCross", "traditional")[2].Body);
+        var traditional = Steps("stationsOfTheCross", "traditional");
+        Assert.StartsWith("Пилат не знаходить провини в Ісусі", traditional[2].Body);
+        for (var number = 1; number <= 14; number++)
+        {
+            var key = $"station{number:D2}Body";
+            var ukrainian = PrayerPackStore.ResolveBodyText("stationsOfTheCross", "uk", key);
+            Assert.Equal(PrayerTypography.Script.Cyrillic, PrayerTypography.ScriptOf(ukrainian));
+            Assert.NotEqual(PrayerPackStore.ResolveBodyText("stationsOfTheCross", "en", key), ukrainian);
+            Assert.Contains(ukrainian, traditional[number + 1].Body);
+            Assert.False(traditional[number + 1].IsScripture);
+        }
+    }
+
+    [Fact]
+    public void MissingStationsOpeningAndClosingFollowTheSelectedFallback()
+    {
+        var traditional = Steps("stationsOfTheCross", "traditional");
+        foreach (var key in new[] { "stationsOpeningPrayer", "stationsClosingPrayer" })
+        {
+            var english = PrayerPackStore.ResolveBodyText("stationsOfTheCross", "en", key);
+            Assert.NotEqual(key, english);
+            Assert.Equal(english, PrayerPackStore.ResolveBodyText("stationsOfTheCross", "uk", key));
+            Assert.Contains(traditional, step => step.Body == english);
+        }
     }
 }

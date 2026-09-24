@@ -109,6 +109,16 @@ def main() -> int:
         if (source / "manifest.json").exists():
             check_valid(source, f"shipped: {source.name}")
 
+    # A translated grouping/date label is optional for older bundles, but authored values
+    # must be usable strings rather than crashing native map decoders or rendering blanks.
+    for invalid in ("17 décembre", {"fr": " "}, {"fr": 17}):
+        check_rejects(
+            "invalid day period localization",
+            lambda devotion, invalid=invalid: devotion["days"][0].update(periodByLanguage=invalid),
+            "periodByLanguage must map language codes to non-empty text",
+            fixture=SHARED_CONTENT / "oAntiphons",
+        )
+
     check_manifest_rejects(
         "a path-traversing bundle id",
         lambda manifest: manifest.update({"id": "../outside"}),
@@ -279,6 +289,15 @@ def main() -> int:
         lambda c: c["mysteries"].update({"joyful_01_annunciation": {}}),
         "must override title, fruit, or description",
     )
+    for primary in ("title", "fruit"):
+        alternate = "transliterated" + primary.title()
+        check_content_rejects(
+            f"a mystery {alternate} without its primary field",
+            lambda c, alternate=alternate: c["mysteries"].update({
+                "joyful_01_annunciation": {"description": "Scripture", alternate: "alternate"}
+            }),
+            f"{alternate} requires {primary}",
+        )
     check_content_rejects(
         "a mystery transliteration without its source description",
         lambda c: c["mysteries"].update({

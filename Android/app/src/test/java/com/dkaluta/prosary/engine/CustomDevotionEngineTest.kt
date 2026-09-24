@@ -2,6 +2,8 @@ package com.dkaluta.prosary.engine
 
 import androidx.compose.ui.graphics.Color
 import com.dkaluta.prosary.calendar.LiturgicalCalendarProviding
+import com.dkaluta.prosary.content.MysteryTranslations
+import com.dkaluta.prosary.content.PrayerTranslations
 import com.dkaluta.prosary.content.prayerpack.CustomDevotionDefinition
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.MarianAntiphonOption
@@ -485,6 +487,24 @@ class CustomDevotionEngineTest {
     }
 
     // MARK: Seven Sorrows (rosary type, 7×7)
+
+    @Test
+    fun aramaicCustomMysteriesCarryTheirMatchingScriptAndNarrativeKind() {
+        for ((bundle, key, noun) in listOf(
+            Triple("franciscanCrown", "franciscan_04_adoration_of_the_magi", "ܚܕܘܬܐ"),
+            Triple("sevenSorrows", "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross", "ܚܫܐ"),
+        )) {
+            val mystery = MysteryTranslations.get("arc", key)
+            assertNotEquals("arc", PrayerPackStore.effectiveLanguage(bundle, "arc"))
+            val flow = PrayerEngine(FixedLiturgicalCalendar()).buildCustomDevotionSteps(bundle, "arc")
+            val announcement = flow.first { it.title == mystery.title }
+            assertEquals(bundle == "franciscanCrown", announcement.isScripture)
+            assertTrue(requireNotNull(announcement.transliteratedBody).startsWith(requireNotNull(mystery.transliteratedDescription)))
+            assertTrue(requireNotNull(announcement.transliteratedBody).endsWith(requireNotNull(mystery.transliteratedFruit)))
+            val caption = requireNotNull(flow.first { it.subtitle?.endsWith(" — ${mystery.title}") == true }.subtitle)
+            assertEquals("$noun 4 — ${mystery.transliteratedTitle}", PrayerTranslations.flowTitle(caption, "arc", true, bundle))
+        }
+    }
 
     @Test
     fun sevenSorrowsSixtyNineStepSequence() {

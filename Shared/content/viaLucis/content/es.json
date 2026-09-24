@@ -27,7 +27,25 @@
     "stationOrdinal13": "13ª estación",
     "stationOrdinal14": "14ª estación",
     "viaLucis09Body": "Despues de esto Jesus se apareció otra vez á los discípulos á la orilla del mar de Tiberiádes; y fue de esta manera: hallábanse juntos Simon Pedro, y Thomás, llamado Dídymo, y Nathanael, el cual era de Caná de Galilea, y los hijos de Zebedeo, y otros dos de sus discípulos. Díceles Simon Pedro: Voy á pescar. Respóndenle ellos: Vamos tambien nosotros contigo. Fueron pues, y entraron en la barca, y aquella noche no cogieron nada. Venida la mañana, se apareció Jesus en la ribera; pero los discípulos no conocieron que fuese él. Y Jesus les dijo: Muchachos, ¿teneis algo qué comer? Respondiéronle: No. Díceles él: Echad la red a la derecha del barco, y encontraréis. Echáronla pues; y ya no podian sacarla por la multitud de peces que habia. Entonces el discípulo aquel que Jesus amaba, dijo á Pedro: Es el Señor. Simon Pedro apenas oyó, Es el Señor; vistióse la túnica (pues estaba desnudo ó en paños menores) y se echó al mar.\n\n— San Juan 21:1–7 (Torres Amat)",
-    "viaLucis10Body": "Acabada la comida, dice Jesus á Simon Pedro: Simon, hijo de Juan, ¿me amas tú mas que estos? Dícele: Si, Señor, tú sabes que te amo. Dícele: Apacienta mis corderos. Segunda vez le dice: Simon, hijo de Juan, ¿me amas? ¿Respóndele: Si, Señor, tú sabes que te amo. Dícele: Apacienta mis corderos. Dícele tercera vez: Simon, hijo de Juan, ¿me amas? Pedro se contristó de que por tercera vez le preguntase si le amaba; y así respondió: Señor, tú lo sabes todo: tú conoces bien que yo te amo. Díjole Jesus: Apacienta mis ovejas.\n\n— San Juan 21:15–17 (Torres Amat)"
+    "viaLucis10Body": "Acabada la comida, dice Jesus á Simon Pedro: Simon, hijo de Juan, ¿me amas tú mas que estos? Dícele: Si, Señor, tú sabes que te amo. Dícele: Apacienta mis corderos. Segunda vez le dice: Simon, hijo de Juan, ¿me amas? ¿Respóndele: Si, Señor, tú sabes que te amo. Dícele: Apacienta mis corderos. Dícele tercera vez: Simon, hijo de Juan, ¿me amas? Pedro se contristó de que por tercera vez le preguntase si le amaba; y así respondió: Señor, tú lo sabes todo: tú conoces bien que yo te amo. Díjole Jesus: Apacienta mis ovejas.\n\n— San Juan 21:15–17 (Torres Amat)",
+    "viaLucis01Title": "Jesús resucita de entre los muertos",
+    "viaLucis02Title": "Los discípulos encuentran el sepulcro vacío",
+    "viaLucis03Title": "El Señor resucitado se aparece a María Magdalena",
+    "viaLucis04Title": "Jesús se aparece en el camino de Emaús",
+    "viaLucis05Title": "Jesús es reconocido al partir el pan",
+    "viaLucis06Title": "Jesús se aparece a los discípulos en Jerusalén",
+    "viaLucis07Title": "Jesús da el poder de perdonar los pecados",
+    "viaLucis08Title": "Jesús fortalece la fe de Tomás",
+    "viaLucis09Title": "Jesús se aparece junto al mar de Tiberíades",
+    "viaLucis10Title": "Jesús encomienda a Pedro que apaciente sus ovejas",
+    "viaLucis11Title": "Jesús envía a los discípulos al mundo entero",
+    "viaLucis12Title": "Jesús asciende al cielo",
+    "viaLucis13Title": "María y los discípulos esperan al Espíritu Santo",
+    "viaLucis14Title": "El Espíritu Santo desciende en Pentecostés",
+    "signumCrucisTitle": "Señal de la cruz",
+    "viaLucisClosingTitle": "Reina del cielo",
+    "viaLucisClosingBody": "Reina del cielo alégrate; aleluya.\nPorque el Señor a quien has merecido llevar; aleluya.\nHa resucitado según su palabra; aleluya.\nRuega al Señor por nosotros; aleluya.\n\nGózate y alégrate, Virgen María; aleluya.\n**Porque verdaderamente ha resucitado el Señor; aleluya.**\n\nOremos. Oh Dios, que por la resurrección de tu Hijo, nuestro Señor Jesucristo, has llenado el mundo de alegría, concédenos, por intercesión de su Madre, la Virgen María, llegar a alcanzar los gozos eternos. Por nuestro Señor Jesucristo. Amén.",
+    "viaLucisAcclamation": "Te adoramos, oh Cristo resucitado, y te bendecimos.\n**Porque con tu Pascua has dado la vida al mundo.**"
   },
   "mysteries": {},
   "$scriptureImport": {
@@ -49,5 +67,11 @@
     ],
     "mysteryKeys": []
   },
-  "$scriptureSource": "Scripture imported from Félix Torres Amat's Spanish Bible (1836) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Torres Amat translated the Vulgate, so its chapter-and-verse is the same one these devotions cite and no versification map is needed. Spelling and accentuation are the 1836 printing's own. Old Testament readings are absent: only the New Testament volumes of it have been transcribed from the scans."
+  "$scriptureSource": "Scripture imported from Félix Torres Amat's Spanish Bible (1836) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Torres Amat translated the Vulgate, so its chapter-and-verse is the same one these devotions cite and no versification map is needed. Spelling and accentuation are the 1836 printing's own. The New Testament follows Wikisource's transcription. Nine Isaiah verses are independently transcribed and visually checked against volume IX (https://archive.org/details/lasagradabiblian10torr); exact pages and source checksum are recorded in Shared/content/spanish-torres-amat-1836-isaiah.json.",
+  "$metadataSource": "Prosary editorial translations of the existing English station headings and short narrative summaries. These summaries describe the traditional scenes; they are not Scripture quotations or translations of St Alphonsus meditations. Published prayer wording and Scripture are credited separately.",
+  "$sources": {
+    "viaLucisClosingBody": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_sp.html",
+    "viaLucisAcclamation": "https://www.vialucis.org/index.php/en/risurrezione-12"
+  },
+  "$closingPrayerProvenance": "The full Regina Caeli reuses the same prayer, versicle, response and Paschal collect already present in Prosary’s sourced Spanish native base table (Vatican Compendium appendix)."
 }

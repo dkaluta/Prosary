@@ -21,6 +21,8 @@ object AppSettings {
     private const val KEY_BASIC_PRAYERS_LANGUAGE = "basicPrayersLanguageCode"
     private const val KEY_ARAMAIC_SIGN_OF_CROSS_FORM = "aramaicSignOfCrossForm"
     private const val KEY_AUTO_ADVANCE = "autoAdvanceSeconds"
+    private const val KEY_KEYBOARD_ARROWS = "keyboardArrowNavigationEnabled"
+    private const val KEY_KEYBOARD_SPACE = "keyboardSpaceAdvanceEnabled"
     private const val KEY_HAPTICS = "hapticsOnAdvance"
     private const val KEY_FEAST_CALENDAR = "feastCalendarId"
     private const val KEY_SHOW_TODAY_FEAST = "showTodayFeast"
@@ -173,6 +175,22 @@ object AppSettings {
     var autoAdvanceSeconds: Int = 0
         private set
 
+    private var keyboardArrowNavigationState by mutableStateOf(true)
+    var keyboardArrowNavigationEnabled: Boolean
+        get() = keyboardArrowNavigationState
+        set(value) {
+            keyboardArrowNavigationState = value
+            prefs?.edit()?.putBoolean(KEY_KEYBOARD_ARROWS, value)?.apply()
+        }
+
+    private var keyboardSpaceAdvanceState by mutableStateOf(true)
+    var keyboardSpaceAdvanceEnabled: Boolean
+        get() = keyboardSpaceAdvanceState
+        set(value) {
+            keyboardSpaceAdvanceState = value
+            prefs?.edit()?.putBoolean(KEY_KEYBOARD_SPACE, value)?.apply()
+        }
+
     /** A gentle tap when a flow's step changes — tester-requested (Erez), off by default. */
     var hapticsOnAdvance: Boolean = false
         private set
@@ -198,6 +216,8 @@ object AppSettings {
             .takeIf { it == ARAMAIC_SIGN_OF_CROSS_FORM_B }
             ?: ARAMAIC_SIGN_OF_CROSS_FORM_A
         autoAdvanceSeconds = resolved.getInt(KEY_AUTO_ADVANCE, 0)
+        keyboardArrowNavigationState = resolved.getBoolean(KEY_KEYBOARD_ARROWS, true)
+        keyboardSpaceAdvanceState = resolved.getBoolean(KEY_KEYBOARD_SPACE, true)
         hapticsOnAdvance = resolved.getBoolean(KEY_HAPTICS, false)
         val storedFeastCalendar = resolved.getString(KEY_FEAST_CALENDAR, "") ?: ""
         feastCalendarId = if (storedFeastCalendar == "roman-he") "roman" else storedFeastCalendar

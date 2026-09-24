@@ -175,6 +175,10 @@ final class AppShellUITests: XCTestCase {
       let date = app.buttons[row.1]
       let next = app.buttons[row.2]
       XCTAssertTrue(date.waitForExistence(timeout: 10))
+      let controls = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+      controls.name = row.1 + "-unobscured-controls"
+      controls.lifetime = .keepAlways
+      add(controls)
       XCTAssertEqual(previous.frame.height, date.frame.height, accuracy: 1, "Previous and date buttons have equal visible height")
       XCTAssertEqual(next.frame.height, date.frame.height, accuracy: 1, "Next and date buttons have equal visible height")
       #if os(visionOS)
@@ -182,9 +186,18 @@ final class AppShellUITests: XCTestCase {
       XCTAssertGreaterThanOrEqual(previous.frame.width, 60)
       XCTAssertGreaterThanOrEqual(next.frame.width, 60)
       #else
-      XCTAssertGreaterThanOrEqual(date.frame.height, 44, "Date controls retain native touch targets")
-      XCTAssertGreaterThanOrEqual(previous.frame.width, 44)
-      XCTAssertGreaterThanOrEqual(next.frame.width, 44)
+      if index == 0 {
+        XCTAssertGreaterThanOrEqual(date.frame.height, 44, "Detached date controls retain touch targets")
+        XCTAssertGreaterThanOrEqual(previous.frame.width, 44)
+        XCTAssertGreaterThanOrEqual(next.frame.width, 44)
+      }
+      // Native toolbar accessibility frames describe the system's visible platter, which
+      // can be smaller than its touch target. Check reachability and bounds below instead.
+      #endif
+      #if os(iOS)
+      if index == 1 {
+        checkReadingsToolbar(in: app, rightToLeft: false, screenshotName: "readings-toolbar-en")
+      }
       #endif
       let originalDate = date.label
       date.tap()
@@ -201,7 +214,7 @@ final class AppShellUITests: XCTestCase {
       screenshot.lifetime = .keepAlways
       add(screenshot)
       app.buttons[row.4].tap()
-      XCTAssertFalse(picker.exists)
+      XCTAssertTrue(picker.waitForNonExistence(timeout: 5))
       XCTAssertEqual(date.label, originalDate, "Done dismisses without changing the selected date")
     }
   }
@@ -212,6 +225,140 @@ final class AppShellUITests: XCTestCase {
   func testDateChoosersKeepCalendarAndControlsWithinBoundsInLandscape() throws {
     XCUIDevice.shared.orientation = .landscapeLeft
     try testDateChoosersKeepCalendarAndControlsWithinBounds()
+  }
+
+  @MainActor
+  func testReadingsToolbarKeepsDateNavigationAndSettingsReachable() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en"]
+    app.launch()
+    XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10))
+    openReadingsTab(in: app, title: "Readings")
+    checkReadingsToolbar(in: app, rightToLeft: false, screenshotName: "readings-toolbar-en")
+    checkReadingsDatePopover(in: app, screenshotName: "readings-calendar-en")
+    app.terminate()
+  }
+
+  @MainActor
+  func testReadingsToolbarKeepsDateNavigationAndSettingsReachableInLandscape() throws {
+    XCUIDevice.shared.orientation = .landscapeLeft
+    try testReadingsToolbarKeepsDateNavigationAndSettingsReachable()
+  }
+
+  @MainActor
+  func testRTLReadingsToolbarKeepsDateNavigationAndSettingsReachable() throws {
+    for (language, title) in [("he", "מקראות"), ("ar", "القراءات")] {
+      let app = XCUIApplication()
+      app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(\(language))",
+                             "-interfaceLanguageCode", language]
+      app.launch()
+      XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10))
+      openReadingsTab(in: app, title: title)
+      checkReadingsToolbar(in: app, rightToLeft: true, screenshotName: "readings-toolbar-\(language)")
+      checkReadingsDatePopover(in: app, screenshotName: "readings-calendar-\(language)")
+      app.terminate()
+    }
+  }
+
+  @MainActor
+  private func openReadingsTab(in app: XCUIApplication, title: String) {
+    let tab = app.buttons[title].firstMatch
+    if tab.exists {
+      tab.tap()
+    } else {
+      app.cells[title].firstMatch.tap()
+    }
+    XCTAssertTrue(app.buttons["readings.chooseDate"].waitForExistence(timeout: 10))
+  }
+
+  @MainActor
+  private func checkReadingsToolbar(in app: XCUIApplication, rightToLeft: Bool, screenshotName: String) {
+    let identifiers = ["readings.previousDay", "readings.chooseDate", "readings.nextDay", "readings.options"]
+    let previous = app.buttons[identifiers[0]]
+    let date = app.buttons[identifiers[1]]
+    let next = app.buttons[identifiers[2]]
+
+    func checkLayout() {
+      let bounds = app.frame
+      let controls = identifiers.map { app.buttons[$0] }
+      for (identifier, control) in zip(identifiers, controls) {
+        XCTAssertEqual(app.buttons.matching(identifier: identifier).count, 1, "A toolbar action appears only once")
+        XCTAssertTrue(control.isHittable, "\(identifier) stays reachable in the native toolbar")
+        XCTAssertGreaterThanOrEqual(control.frame.minX, bounds.minX - 1)
+        XCTAssertLessThanOrEqual(control.frame.maxX, bounds.maxX + 1)
+        XCTAssertGreaterThanOrEqual(control.frame.minY, bounds.minY - 1)
+        XCTAssertLessThanOrEqual(control.frame.maxY, bounds.maxY + 1)
+      }
+      for first in controls.indices {
+        for second in controls.indices where second > first {
+          let overlap = controls[first].frame.intersection(controls[second].frame)
+          XCTAssertFalse(overlap.width > 1 && overlap.height > 1, "Native toolbar controls do not overlap")
+        }
+      }
+      if rightToLeft {
+        XCTAssertGreaterThan(previous.frame.midX, date.frame.midX)
+        XCTAssertLessThan(next.frame.midX, date.frame.midX)
+      } else {
+        XCTAssertLessThan(previous.frame.midX, date.frame.midX)
+        XCTAssertGreaterThan(next.frame.midX, date.frame.midX)
+      }
+    }
+
+    func capture(_ suffix: String) {
+      let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+      attachment.name = screenshotName + suffix
+      attachment.lifetime = .keepAlways
+      add(attachment)
+    }
+
+    capture("-before-scrolling")
+    checkLayout()
+    let originalDate = date.label
+    func waitForDate(matchesOriginal: Bool, message: String) {
+      let predicate = NSPredicate(format: matchesOriginal ? "label == %@" : "label != %@", originalDate)
+      let expectation = XCTNSPredicateExpectation(predicate: predicate, object: date)
+      XCTAssertEqual(XCTWaiter.wait(for: [expectation], timeout: 5), .completed, message)
+    }
+    previous.tap()
+    waitForDate(matchesOriginal: false, message: "Previous changes the selected reading date")
+    next.tap()
+    waitForDate(matchesOriginal: true, message: "Next returns to the original reading date")
+    next.tap()
+    waitForDate(matchesOriginal: false, message: "Next changes the selected reading date")
+    previous.tap()
+    waitForDate(matchesOriginal: true, message: "Previous returns to the original reading date")
+
+    let readings = app.scrollViews.firstMatch
+    XCTAssertTrue(readings.exists)
+    readings.swipeUp()
+    capture("-after-scrolling")
+    checkLayout()
+  }
+
+  @MainActor
+  private func checkReadingsDatePopover(in app: XCUIApplication, screenshotName: String) {
+    let date = app.buttons["readings.chooseDate"]
+    let originalDate = date.label
+    date.tap()
+    let picker = app.datePickers["readings.datePicker"]
+    XCTAssertTrue(picker.waitForExistence(timeout: 5))
+    let popover = app.descendants(matching: .any)["readings.datePicker.popover"].firstMatch
+    XCTAssertTrue(popover.exists)
+    let calendar = picker.collectionViews.firstMatch
+    XCTAssertTrue(calendar.waitForExistence(timeout: 5))
+    XCTAssertGreaterThanOrEqual(calendar.frame.minX, popover.frame.minX - 1)
+    XCTAssertLessThanOrEqual(calendar.frame.maxX, popover.frame.maxX + 1, "All seven calendar columns fit in the popover")
+    let done = app.buttons["readings.dateDone"]
+    XCTAssertTrue(done.isHittable, "Done stays reachable in portrait and landscape")
+    XCTAssertGreaterThanOrEqual(done.frame.minY, app.frame.minY - 1)
+    XCTAssertLessThanOrEqual(done.frame.maxY, app.frame.maxY + 1)
+    let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    attachment.name = screenshotName
+    attachment.lifetime = .keepAlways
+    add(attachment)
+    done.tap()
+    XCTAssertTrue(picker.waitForNonExistence(timeout: 5))
+    XCTAssertEqual(date.label, originalDate, "Done dismisses without changing the selected date")
   }
   #endif
 

@@ -1,0 +1,29 @@
+{
+  "reviewed": "2026-09-19",
+  "psalm": {
+    "edition": "Brian Walton, Biblia sacra polyglotta (London: Thomas Roycroft, 1657)",
+    "source": "https://archive.org/download/WaltPoly1PrologVariantReadings/WaltPoly6_Psalms-Jeremiah%29_text.pdf#page=9",
+    "printedPage": 194,
+    "pdfPage": 9,
+    "sourceReference": "Psalm 70:2 (superscription numbered 70:1)",
+    "liturgicalReference": "Psalm 69:2 (Vulgate) / 70:1 (without numbered superscription)",
+    "pdfSha256": "f54132b1d7e5fd6340f8bba5a8bad9f1205ad71ab9d8e8ade63b87fd2b50a0f9",
+    "rights": "1657 source text public domain; Internet Archive scan item marked CC0 1.0 Universal.",
+    "transcription": "ܐܰܠܳܗܳܐ ܦܰܨܳܢܝ ܡܳܪܝܳܐ ܠܥܽܘܕܪܳܢܝ ܟܰܬܰܪ",
+    "displayedOpening": "ܐܰܠܳܗܳܐ ܦܰܨܳܢܝ.\n**ܡܳܪܝܳܐ ܠܥܽܘܕܪܳܢܝ ܟܰܬܰܪ.**",
+    "hebrewOpening": "אַלָהָא פַצָני.\n**מָריָא לעוּדרָני כַתַר.**",
+    "review": "Manually transcribed from the printed Syriac column, lower left, line 3; letters and vowels independently checked against an enlarged render. The printed terminal colon is replaced by full stops, and a response line break and bold markup are added for presentation. No letters or vowel signs changed."
+  },
+  "alleluia": {
+    "source": "https://github.com/srophe/syriac-corpus/blob/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/145.xml",
+    "sourceSha256": "3f253a09cf77ef1c0f0160e21167e1279a675bb54eb3725289dea8aa4649f7d1",
+    "reference": "Revelation 19:1",
+    "edition": "The New Testament in Syriac, BFBS 1905; Digital Syriac Corpus",
+    "credit": "Syriac transcription by George A. Kiraz; TEI XML edition © James E. Walters, CC BY 4.0. The Syriac base text is public domain.",
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "sourceVerse": "ܘܡܶܢ ܒ݁ܳܬ݂ܰܪ ܗܳܠܶܝܢ ܆ ܫܶܡܥܶܬ݂ ܩܳܠܳܐ ܪܰܒ݁ܳܐ ܕ݁ܟ݂ܶܢܫܶܐ̈ ܣܰܓ݁ܺܝܶܐܐ̈ ܒ݁ܰܫܡܰܝܳܐ ܕ݁ܳܐܡܪܺܝܢ ܆ ܗܰܠܶܠܽܘܝܰܐ . ܦ݁ܽܘܪܩܳܢܳܐ ܘܬ݂ܶܫܒ݁ܽܘܚܬ݁ܳܐ ܘܚܰܝܠܳܐ ܠܰܐܠܳܗܰܢ .",
+    "excerpt": "ܗܰܠܶܠܽܘܝܰܐ",
+    "hebrew": "הַלֶלוּיַא"
+  },
+  "assembly": "Prosary joins the separately sourced Psalm opening and Alleluia to the unchanged supplied gloriaPatri in each script. This is not a claim that Walton prints a Syriac Rosary formulary. Lent omits only Alleluia. The existing Erez-supplied basic prayers are not retranslated or replaced."
+}

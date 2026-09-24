@@ -1,0 +1,38 @@
+name: Terminal
+
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "Terminal/**"
+      - "Shared/content/**"
+      - "Shared/tools/audit-prayer-coverage.py"
+      - "iOS/Prosary/Mocks/Content/PrayerKey.swift"
+      - "iOS/Prosary/Mocks/Content/PrayerTranslations+*.swift"
+      - ".github/workflows/terminal.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  musl:
+    name: musl / GCC and TinyCC
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v6
+      - name: Check sourced text snapshot
+        run: uv run --script Terminal/tools/sync-content.py --check
+      - name: Compile and test with musl, including optional RTL support
+        run: PROSARY_TEST_FRIBIDI=1 sh Terminal/tests/portability.sh
+  macos:
+    name: macOS / system curses
+    runs-on: macos-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - name: Compile and test C99
+        working-directory: Terminal
+        run: make test CFLAGS='-O2 -Wall -Wextra -Werror -pedantic'

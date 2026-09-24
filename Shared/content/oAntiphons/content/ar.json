@@ -1,0 +1,44 @@
+{
+  "prayers": {
+    "oSapientiaTitle": "يا حكمة",
+    "oAdonaiTitle": "يا أدوناي",
+    "oRadixIesseTitle": "يا أصل يسى",
+    "oClavisDavidTitle": "يا مفتاح داود",
+    "oOriensTitle": "يا مشرق",
+    "oRexGentiumTitle": "يا ملك الأمم",
+    "oEmmanuelTitle": "يا عمانوئيل",
+    "oAntiphonLectioTitle": "قراءة",
+    "magnificatTitle": "تعظم نفسي الرب",
+    "gloriaPatriTitle": "المجد للآب",
+    "magnificatBody": "وقالت مريم تعظم نفسي الرب. وتبتهج روحي بالله مخلصي. لأنه نظر إلى تواضع أمته. فها منذ الآن تطوبني جميع الأجيال. لأن القدير صنع بي عظائم واسمه قدوس. ورحمته إلى أجيال وأجيال للذين يتقونه. صنع عزا بساعده وشتت المتكبرين بفكر قلوبهم. حط المقتدرين عن الكراسي ورفع المتواضعين. أشبع الجياع خيرا والأغنياء أرسلهم فارغين. عضد إسرائيل فتاه ذاكرا رحمته. كما كلم آباءنا لإبراهيم ونسله إلى الأبد.\n\n— لوقا 1:46–55 (اليسوعية القديمة، 1897)",
+    "oSapientiaLectio": "ويستقر عليه روح الرب روح الحكمة والفهم روح المشورة والقوة روح العلم وتقوى الرب. ويتنعم بمخافة الرب ولا يقضي بحسب رؤية عينيه ولا يحكم بحسب سماع أذنيه.\n\n— أشعيا 11:2–3 (اليسوعية القديمة، 1897)",
+    "oAdonaiLectio": "بل يقضي للمساكين بعدل ويحكم لبائسي الأرض بإنصاف ويضرب الأرض بقضيب فيه وبنفخة شفتيه يميت المنافق. ويكون العدل منطقة متنيه والحق حزام كشحه.\n\n— أشعيا 11:4–5 (اليسوعية القديمة، 1897)",
+    "oRadixIesseLectio": "وفي ذلك اليوم أصل يسى القائم راية للشعوب إياه تترجى الأمم ويكون مثواه مجدا.\n\n— أشعيا 11:10 (اليسوعية القديمة، 1897)",
+    "oClavisDavidLectio": "وأجعل مفتاح بيت داود على منكبه فيفتح وليس من يغلق ويغلق وليس من يفتح.\n\n— أشعيا 22:22 (اليسوعية القديمة، 1897)",
+    "oOriensLectio": "الشعب السالك في الظلمة أبصر نورا ساطعا الجالسون في بقعة الموت وظلاله أشرق عليهم نور.\n\n— أشعيا 9:2 (اليسوعية القديمة، 1897)",
+    "oRexGentiumLectio": "فلذلك قال السيد الرب ها إني واضع حجرا في صهيون حجرا مختبرا رأس زاوية كريما أساسا موثقا فمن آمن لن يتزعزع.\n\n— أشعيا 28:16 (اليسوعية القديمة، 1897)",
+    "oEmmanuelLectio": "فلذلك يعطيكم السيد نفسه آية ها إن العذراء تحبل وتلد ابنا وتدعو اسمه عمانوئيل.\n\n— أشعيا 7:14 (اليسوعية القديمة، 1897)"
+  },
+  "mysteries": {},
+  "$sources": {
+    "editorialHeadings": "Prosary translations of canonical display labels; these are not liturgical prayer translations."
+  },
+  "$comment": "Headings are Prosary editorial display translations. Only independently sourced prayer or Scripture bodies are present; headings do not establish a complete prayer translation.",
+  "$scriptureSource": "الترجمة اليسوعية القديمة (1897). Old Jesuit Arabic Bible, Jesuit Press, Beirut, 1897. Public-domain biblical text independently transcribed from the printed edition; unpointed text. Source: https://archive.org/details/AlKitabAlMoqadas. Imported by Shared/tools/import-arabic-scripture.py; published wording is retained, with complete cited verses.",
+  "$scriptureImport": {
+    "editionId": "jesuit-arabic-1897",
+    "sourceURL": "https://archive.org/details/AlKitabAlMoqadas",
+    "sourceSHA256": "9495719b3f1573e7a446dc22dbeb3014e913d69b5bfff71239dd9602c0efeda8",
+    "prayerKeys": [
+      "magnificatBody",
+      "oAdonaiLectio",
+      "oClavisDavidLectio",
+      "oEmmanuelLectio",
+      "oOriensLectio",
+      "oRadixIesseLectio",
+      "oRexGentiumLectio",
+      "oSapientiaLectio"
+    ],
+    "mysteryKeys": []
+  }
+}

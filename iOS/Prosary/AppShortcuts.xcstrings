@@ -55,8 +55,17 @@
       }
     },
     "Pray the Rosary in ${applicationName}" : {
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "صلِّ المسبحة في ${applicationName}",
+              "ابدأ مسبحتي في ${applicationName}"
+            ]
+          }
+        },
         "en" : {
           "stringSet" : {
             "state" : "new",
@@ -65,18 +74,135 @@
               "Start my Rosary in ${applicationName}"
             ]
           }
+        },
+        "fil" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Dasalin ang Rosaryo sa ${applicationName}",
+              "Simulan ang aking Rosaryo sa ${applicationName}"
+            ]
+          }
+        },
+        "fr" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Prie le chapelet dans ${applicationName}",
+              "Commence mon chapelet dans ${applicationName}"
+            ]
+          }
+        },
+        "he" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "התפלל את תפילת המחרוזת ב־${applicationName}",
+              "התחל את תפילת המחרוזת שלי ב־${applicationName}"
+            ]
+          }
+        },
+        "it" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Recita il Rosario in ${applicationName}",
+              "Inizia il mio Rosario in ${applicationName}"
+            ]
+          }
+        },
+        "ru" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Помолись Розарием в ${applicationName}",
+              "Начни мой Розарий в ${applicationName}"
+            ]
+          }
+        },
+        "uk" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Помолися Розарій у ${applicationName}",
+              "Почни мій Розарій у ${applicationName}"
+            ]
+          }
         }
       }
     },
     "What are today's mysteries in ${applicationName}" : {
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "ما أسرار اليوم في ${applicationName}",
+              "أسرار اليوم في ${applicationName}"
+            ]
+          }
+        },
         "en" : {
           "stringSet" : {
             "state" : "new",
             "values" : [
               "What are today's mysteries in ${applicationName}",
               "Today's mysteries in ${applicationName}"
+            ]
+          }
+        },
+        "fil" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Ano ang mga misteryo ngayon sa ${applicationName}",
+              "Mga misteryo ngayon sa ${applicationName}"
+            ]
+          }
+        },
+        "fr" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Quels sont les mystères du jour dans ${applicationName}",
+              "Les mystères du jour dans ${applicationName}"
+            ]
+          }
+        },
+        "he" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "מהם רזי היום ב־${applicationName}",
+              "רזי היום ב־${applicationName}"
+            ]
+          }
+        },
+        "it" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Quali sono i misteri di oggi in ${applicationName}",
+              "I misteri di oggi in ${applicationName}"
+            ]
+          }
+        },
+        "ru" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Какие сегодня тайны в ${applicationName}",
+              "Сегодняшние тайны в ${applicationName}"
+            ]
+          }
+        },
+        "uk" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Які сьогодні таємниці у ${applicationName}",
+              "Сьогоднішні таємниці у ${applicationName}"
             ]
           }
         }

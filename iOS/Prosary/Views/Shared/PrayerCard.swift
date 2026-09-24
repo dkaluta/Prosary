@@ -88,7 +88,7 @@ struct PrayerCard: View {
         .padding(.horizontal, 16)
         .padding(.vertical, 14)
       }
-      .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
+      .prosaryContentCardBackground()
       .clipShape(RoundedRectangle(cornerRadius: 14))
       .prosarySpatialTarget(alignment: .leading)
     }

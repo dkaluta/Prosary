@@ -443,7 +443,7 @@ struct HomeView: View {
       .popover(isPresented: $showsTodayDatePicker, attachmentAnchor: .rect(.bounds), arrowEdge: .top) {
         todayDatePopover
           #if os(iOS)
-          .presentationCompactAdaptation(.popover)
+          .presentationCompactAdaptation(horizontal: .popover, vertical: .sheet)
           #endif
       }
       Button {

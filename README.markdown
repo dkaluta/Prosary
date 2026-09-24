@@ -19,6 +19,7 @@ Three native apps, one format, one repo:
 | [`iOS/`](iOS/) | SwiftUI — iPhone, Mac, iPad, Vision Pro. See its [README](iOS/README.markdown). |
 | [`Android/`](Android/) | Jetpack Compose port, feature parity with iOS. |
 | [`Windows/`](Windows/) | WinUI 3 port, feature parity with iOS. |
+| [`Terminal/`](Terminal/README.markdown) | Experimental C99 / ncurses prayer reader, built with a plain Makefile; supports TinyCC and musl. |
 | [`Shared/`](Shared/) | The canonical cross-platform ground: the `.prosaryprayer` bundle format and its content ([`ARCHITECTURE.markdown`](Shared/ARCHITECTURE.markdown)), schema docs, tools, and the [prosary.app](https://prosary.app) website. |
 | [`Compose/`](Compose/) | [compose.prosary.app](https://compose.prosary.app) — a fully client-side wizard for authoring `.prosaryprayer` bundles, no technical knowledge needed. |
 | [`Repository/`](Repository/) | [prayers.prosary.app](https://prayers.prosary.app) — the community bundle repository the apps' Browse tab reads. |

@@ -14,6 +14,9 @@ struct MysteryText: Hashable, Decodable {
   /// Optional reading aid for the Scripture description, supplied by the same source override
   /// as `description` (for example, the Peshitta in Syriac alongside Hebrew-script Aramaic).
   var transliteratedDescription: String? = nil
+  /// Alternate-script metadata stays paired with its independently resolved field.
+  var transliteratedTitle: String? = nil
+  var transliteratedFruit: String? = nil
 }
 
 /// A bundle may contribute only the source-specific fields it owns. Keeping these optional is
@@ -24,9 +27,11 @@ struct MysteryTextOverride: Hashable, Decodable {
   var fruit: String?
   var description: String?
   var transliteratedDescription: String?
+  var transliteratedTitle: String? = nil
+  var transliteratedFruit: String? = nil
 
-  /// Packs load in a stable order. Description and transliteration are one provenance pair:
-  /// replacing the description also replaces (or removes) its reading aid.
+  /// Packs load in a stable order. Each field and alternate form are one provenance pair:
+  /// replacing a field also replaces (or removes) its reading aid.
   func merging(_ newer: MysteryTextOverride) -> MysteryTextOverride {
     MysteryTextOverride(
       title: newer.title ?? title,
@@ -34,6 +39,8 @@ struct MysteryTextOverride: Hashable, Decodable {
       description: newer.description ?? description,
       transliteratedDescription: newer.description != nil
         ? newer.transliteratedDescription
-        : transliteratedDescription)
+        : transliteratedDescription,
+      transliteratedTitle: newer.title != nil ? newer.transliteratedTitle : transliteratedTitle,
+      transliteratedFruit: newer.fruit != nil ? newer.transliteratedFruit : transliteratedFruit)
   }
 }

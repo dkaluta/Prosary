@@ -35,11 +35,11 @@
   <data name="eternal_rest_at_end" xml:space="preserve"><value>Minsan, Malapit sa Katapusan</value></data>
   <data name="antiphon_none" xml:space="preserve"><value>Wala</value></data>
   <data name="antiphon_seasonal" xml:space="preserve"><value>Awtomatiko (Ayon sa Panahon)</value></data>
-  <data name="antiphon_salve_regina" xml:space="preserve"><value>Salve Regina</value></data>
-  <data name="antiphon_alma_redemptoris" xml:space="preserve"><value>Alma Redemptoris Mater</value></data>
-  <data name="antiphon_ave_regina" xml:space="preserve"><value>Ave Regina Caelorum</value></data>
-  <data name="antiphon_regina_caeli" xml:space="preserve"><value>Regina Caeli</value></data>
-  <data name="antiphon_sub_tuum" xml:space="preserve"><value>Sub Tuum Praesidium</value></data>
+  <data name="antiphon_salve_regina" xml:space="preserve"><value>Aba, Reyna</value></data>
+  <data name="antiphon_alma_redemptoris" xml:space="preserve"><value>Mapagmahal na Ina ng Manunubos</value></data>
+  <data name="antiphon_ave_regina" xml:space="preserve"><value>Aba, Reyna ng Langit</value></data>
+  <data name="antiphon_regina_caeli" xml:space="preserve"><value>Reyna ng Langit</value></data>
+  <data name="antiphon_sub_tuum" xml:space="preserve"><value>Sa Iyong Kalinga</value></data>
   <data name="imageStyle_classic" xml:space="preserve"><value>Mga klasikong pinta</value></data>
   <data name="imageStyle_eastern" xml:space="preserve"><value>Mga ikonong Silanganin</value></data>
   <data name="language_default_parenthesized" xml:space="preserve"><value>Paunang pinili ({0})</value></data>
@@ -406,10 +406,10 @@
   <data name="category_short" xml:space="preserve"><value>Maiikli</value></data>
   <data name="category_easter" xml:space="preserve"><value>Pasko ng Pagkabuhay</value></data>
   <data name="category_other" xml:space="preserve"><value>Iba pa</value></data>
-  <data name="AbtPrayerSources.Text" xml:space="preserve"><value>Iba pang pinagmulan ng mga panalangin: Vatican News, Dambana ng Fatima, Notre-Dame de Paris, AELF at Kapulungan ng mga Obispong Italyano (CEI). Gayundin: Basilika ng Guadalupe; GOARCH Digital Chant Stand; IVE Greece (salin sa Griyego ng Anima Christi ni Padre F. Bravo IVE); Parokyang Katoliko ni San Nicolas sa Tinos; Lalawigang Iberiko ng mga Carmelite; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), para sa sinaunang tekstong Siryako ng Sa Ilalim ng Iyong Pagtangkilik. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888).</value></data>
-  <data name="AbtDivineMercySources.Text" xml:space="preserve"><value>Koronilya ng Banal na Awa: Kongregasyon ng mga Madre ng Mahal na Birhen ng Awa.</value></data>
+  <data name="AbtPrayerSources.Text" xml:space="preserve"><value>Iba pang pinagmulan ng mga panalangin: Vatican News, Dambana ng Fatima, Notre-Dame de Paris, AELF at Kapulungan ng mga Obispong Italyano (CEI). Gayundin: Basilika ng Guadalupe; GOARCH Digital Chant Stand; IVE Greece (salin sa Griyego ng Anima Christi ni Padre F. Bravo IVE); Parokyang Katoliko ni San Nicolas sa Tinos; Lalawigang Iberiko ng mga Carmelite; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), para sa sinaunang tekstong Siryako ng Sa Ilalim ng Iyong Pagtangkilik. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 7, 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888). Angelus sa Griyego: IVE Greece. Mga Antiponang O: Bikaryato ni Santiago (Hebreo) at RusCatholic (Ruso). Pambungad na talata ng Rosaryo sa Siryako: Awit 70:2, Polyglot ni Walton (1657), p. 194. Tugon sa Daan ng Krus sa Griyego: Kapulungan ng mga Obispong Katoliko ng Gresya (cen.gr).</value></data>
+  <data name="AbtDivineMercySources.Text" xml:space="preserve"><value>Koronilya ng Banal na Awa: Kongregasyon ng mga Madre ng Mahal na Birhen ng Awa. Tekstong Griyego: iPray.</value></data>
   <data name="AppDescription" xml:space="preserve"><value>Kasama sa pagdarasal ng Rosaryo, Angelus, at Panalangin kay Hesus.</value></data>
-  <data name="AbtSevenSorrowsSources.Text" xml:space="preserve"><value>Mga panalangin ng Pitong Hapis: Notre Dame de Chrétienté at Confraternite.net.</value></data>
+  <data name="AbtSevenSorrowsSources.Text" xml:space="preserve"><value>Mga panalangin ng Pitong Hapis: Notre Dame de Chrétienté at Confraternite.net. Pangwakas na panalangin sa Espanyol: José Pulido y Espinosa, Misal Romano (Madrid: Imprenta a cargo de Zacarías Soler, 1851), p. 333. Bersikulo at tugon: Apostolado Sacerdotal / Pierina Devoções.</value></data>
   <data name="settings_typeface_frank_ruhl_libre" xml:space="preserve"><value>Frank Ruhl Libre</value></data>
   <data name="SetLatinPrayerTypeface.Header" xml:space="preserve"><value>Mga panalangin sa sulat Latin</value></data>
   <data name="SetCyrillicPrayerTypeface.Header" xml:space="preserve"><value>Mga panalangin sa sulat Cyrillic</value></data>
@@ -446,8 +446,9 @@
   <data name="AbtHebrewBookIndex.Text" xml:space="preserve"><value>Karagdagang pangalan ng mga aklat ng Bibliya sa Hebreo: talaan ng Bibliyang Hebreo ng Mechon Mamre. Mga pangalan lamang; walang teksto ng Kasulatan.</value></data>
   <data name="SetJaffaWording.Header" xml:space="preserve"><value>Alternatibong teksto ng Aba Ginoong Maria</value></data>
   <data name="SetJaffaWordingFooter.Text" xml:space="preserve"><value>Gamitin ang בְּרוּכַת הַחֶסֶד sa halip na מְלֵאַת הַחֶסֶד sa mga panalangin ng Bikaryato.</value></data>
-  <data name="AbtUkrainianPrayerSources.Text" xml:space="preserve"><value>Mga panalangin sa Ukrainian: Simbahang Romano Katoliko sa Ukraine, aklat-dasalan na Щоденно з Богом. Ginagamit nang may pagkilala sa pinagmulan ayon sa patakaran ng tagapaglathala sa muling paggamit. Kasulatan: Bibliya nina Kulish, Nechui-Levytsky at Puluj (1905), pampublikong dominyo; eBible.org ukr1871. Pinanatili ang makasaysayang baybay ng Kasulatan.</value></data>
+  <data name="AbtUkrainianPrayerSources.Text" xml:space="preserve"><value>Mga panalangin sa Ukrainian: Simbahang Romano Katoliko sa Ukraine, aklat-dasalan na Щоденно з Богом. Ginagamit nang may pagkilala sa pinagmulan ayon sa patakaran ng tagapaglathala sa muling paggamit. Kasulatan: Bibliya nina Kulish, Nechui-Levytsky at Puluj (1905), pampublikong dominyo; eBible.org ukr1871. Pinanatili ang makasaysayang baybay ng Kasulatan. Pangwakas na panalangin ng Rosaryo sa Ukrainian: Ukrainian Information Center MIR Medjugorje (medjugorje.com.ua), inilathala nang may pagkilala sa pinagmulan alinsunod sa pahintulot ng website.</value></data>
   <data name="AbtUkrainianPrayerbookLink.Content" xml:space="preserve"><value>Aklat-dasalan sa Ukrainian</value></data>
+  <data name="AbtUkrainianRosarySourceLink.Content" xml:space="preserve"><value>MIR Medjugorje — Panalangin ng Rosaryo sa Ukrainian</value></data>
   <data name="AbtUkrainianScriptureLink.Content" xml:space="preserve"><value>Bibliya sa Ukrainian (1905)</value></data>
   <!-- Window and menu commands -->
   <data name="CommandsOpenInNewWindow" xml:space="preserve"><value>Buksan sa Bagong Window</value></data>
@@ -480,7 +481,7 @@
   <data name="prayerRemoval_prayerRemoved" xml:space="preserve"><value>Nabura na ang naka-save na panalanging ito.</value></data>
 
   <!-- Native desktop library and prayer windows -->
-  <data name="desktop_library" xml:space="preserve"><value>Library</value></data>
+  <data name="desktop_library" xml:space="preserve"><value>Aklatan</value></data>
   <data name="desktop_today" xml:space="preserve"><value>Ngayon</value></data>
   <data name="desktop_gallery" xml:space="preserve"><value>Galeriya</value></data>
   <data name="desktop_community" xml:space="preserve"><value>Komunidad</value></data>
@@ -529,4 +530,8 @@
   <data name="readings_whole_verses_notice" xml:space="preserve"><value>Ipinapakita ang mga talata nang buo at maaaring lumampas sa saklaw na tinukoy para sa pagbasa.</value></data>
   <data name="readings_source" xml:space="preserve"><value>Pinagmulan at Edisyon</value></data>
   <data name="language_app_parenthesized" xml:space="preserve"><value>Wika ng App ({0})</value></data>
+  <data name="SetKeyboardHeader.Text" xml:space="preserve"><value>Keyboard</value></data>
+  <data name="SetKeyboardArrows.Header" xml:space="preserve"><value>Mag-navigate sa mga panalangin gamit ang mga arrow key</value></data>
+  <data name="SetKeyboardSpace.Header" xml:space="preserve"><value>Sumulong sa panalangin gamit ang space bar</value></data>
+  <data name="SetKeyboardHint.Text" xml:space="preserve"><value>Lumilipat ng hakbang ang Kaliwa at Kanan. Isinusulong ng Space ang panalangin sa aktibong window.</value></data>
 </root>

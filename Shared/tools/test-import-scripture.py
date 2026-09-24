@@ -261,7 +261,7 @@ def test_committed_peshitta() -> None:
                 failures.append(
                     f"{arc_path.parent.parent.name}:{key}: Hebrew mystery citation uses a hyphen")
 
-    expect("committed Peshitta passage count", passage_count, 56)
+    expect("committed Peshitta passage count", passage_count, 63)
 
 
 def test_pointed_peshitta() -> None:
@@ -301,7 +301,7 @@ def test_pointed_peshitta() -> None:
                 failures.append(f"{path}: New Testament Hebrew projection lost its vowels")
             if not re.search(r"[\u0730-\u073f]", scripture_body(syriac)):
                 failures.append(f"{path}: New Testament Syriac source lost its vowels")
-    expect("vocalized New Testament passage count", pointed_count, 49)
+    expect("vocalized New Testament passage count", pointed_count, 56)
 
 
 def test_supplied_pointed_isaiah() -> None:
@@ -363,6 +363,41 @@ def test_supplied_pointed_isaiah() -> None:
                + IMPORTER.citation_line("arc", "Isaiah", "ot", reference, second=False))
         if not re.search(r"[\u05b0-\u05bb]", scripture_body(content["prayers"][key])):
             failures.append(f"{key}: Isaiah Hebrew projection is not vocalized")
+
+
+def test_reviewed_spanish_isaiah() -> None:
+    table = IMPORTER.verses("es", "ot", "Isaiah")
+    expect("Torres Amat reviewed selection", set(table), IMPORTER.REVIEWED_ISAIAH_VERSES)
+    source = json.loads(IMPORTER.TORRES_AMAT_ISAIAH_PATH.read_text())
+    expect("Torres Amat original PDF checksum", source["provenance"]["pdfSHA256"],
+           "4285934bd1a62b47affad8eb52ee1acf1628e674f205d38c8ed0151f22663471")
+    expect("Torres Amat title page", source["provenance"]["titlePage"], 7)
+    expect("Torres Amat Wisdom page", source["pages"]["Isaiah"]["11"]["2"], 68)
+    content = json.loads((CONTENT / "oAntiphons/content/es.json").read_text())
+    appointed = {
+        "oSapientiaLectio": (11, 2, 3), "oAdonaiLectio": (11, 4, 5),
+        "oRadixIesseLectio": (11, 10, 10), "oClavisDavidLectio": (22, 22, 22),
+        "oOriensLectio": (9, 2, 2), "oRexGentiumLectio": (28, 16, 16),
+        "oEmmanuelLectio": (7, 14, 14),
+    }
+    for key, (chapter, first, last) in appointed.items():
+        reference = f"{chapter}:{first}" + (f"–{last}" if last != first else "")
+        expected = " ".join(table[chapter, verse] for verse in range(first, last + 1))
+        expected += IMPORTER.citation_line("es", "Isaiah", "ot", reference, second=True)
+        expect(f"Torres Amat {key} complete verses and citation", content["prayers"][key], expected)
+    expect("Torres Amat content source pin", content["$scriptureImport"]["isaiahSourceSHA256"],
+           IMPORTER.TORRES_AMAT_ISAIAH_SHA256)
+    original_hash = IMPORTER.TORRES_AMAT_ISAIAH_SHA256
+    try:
+        IMPORTER.TORRES_AMAT_ISAIAH_SHA256 = "0" * 64
+        try:
+            IMPORTER.verses("es", "ot", "Isaiah")
+        except ValueError:
+            pass
+        else:
+            failures.append("Changed Torres Amat source was accepted without review")
+    finally:
+        IMPORTER.TORRES_AMAT_ISAIAH_SHA256 = original_hash
 
 
 def all_strings(value):
@@ -478,6 +513,7 @@ def main() -> int:
     test_committed_peshitta()
     test_pointed_peshitta()
     test_supplied_pointed_isaiah()
+    test_reviewed_spanish_isaiah()
     test_aramaic_prayer_finals()
     test_aramaic_holy_god_gestures()
     test_all_citation_style()

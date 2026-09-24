@@ -24,7 +24,7 @@ listing's date was not used to identify the source.
 
 ## Transcription and coverage
 
-`arabic-jesuit-1897.json` contains 220 distinct verses, each with its one-based PDF
+`arabic-jesuit-1897.json` contains 239 distinct verses, each with its one-based PDF
 page number or page numbers. Each passage was visually transcribed and then read
 against the scan independently. OCR served only to locate pages. Wording and
 printed verse boundaries are retained; vowel marks, shadda, typographic ornaments,
@@ -32,8 +32,8 @@ and footnote markers are omitted. Whitespace and punctuation are normalized;
 hamza typography uses ordinary Unicode letters. Historical words and spellings
 such as `خطية`, `مومن`, and `نيقودمس` remain.
 
-These verses replace 68 Scripture fields across Rosary, Seven Sorrows, Franciscan
-Crown, Via Lucis, and Stations of the Cross. The three native Rosary fallback
+These verses supply 76 Scripture fields across Rosary, Seven Sorrows, Franciscan
+Crown, Via Lucis, Stations of the Cross, and O Antiphons. The three native Rosary fallback
 tables are generated from the same canonical descriptions. The fourth Seven
 Sorrows meditation is authored prose and is not replaced; an absent traditional
 Stations body is not invented. Complete cited verses replace formerly truncated
@@ -44,6 +44,13 @@ readings builder uses only entire reviewed passage units whose verses are all
 available. It cannot slice unreviewed subsets, fill gaps from another translation,
 or treat old verse numbers as proof of modern verse boundaries. For example,
 Luke 1:32–33 and 22:43–44 divide their text differently in this printing.
+
+The O Antiphon additions were independently checked against PDF pages 293
+(Isaiah 7:14), 294 (9:2), 295 (11:2–5,10), 297 (22:22), 299 (28:16), and 432
+(Luke 1:46–55). The second reading caught and corrected `بفكر قلوبهم` in Luke
+1:51 and `لن يتزعزع` in Isaiah 28:16. All eight complete passage units are
+recorded in the source. The antiphon prayer bodies retain separate provenance
+and are not created from these readings.
 
 ## Updating the content
 

@@ -49,7 +49,12 @@
     "collectaPaschale": "Молімося: Боже, Ти звеселив світ воскресінням Твого Сина, Господа нашого Ісуса Христа, дай, просимо Тебе, щоб через Богородицю, Діву Марію, ми осягли радість вічного життя. Через того ж Христа, Господа нашого. Амінь.",
     "invitatoryBodyLent": "Боже, прийди мені на допомогу!\n**Господи, поспіши мені на порятунок!**\n\nСлава Отцю, і Сину, і Святому Духу.\nЯк було на початку, і нині, і повсякчас, і на віки вічні. Амінь.",
     "invitatoryBody": "Боже, прийди мені на допомогу!\n**Господи, поспіши мені на порятунок!**\n\nСлава Отцю, і Сину, і Святому Духу.\nЯк було на початку, і нині, і повсякчас, і на віки вічні. Амінь. Алілуя.",
-    "animaChristiTitle": "Душе Христова"
+    "animaChristiTitle": "Душе Христова",
+    "mysteryGroupJoyfulTitle": "Радісні",
+    "mysteryGroupSorrowfulTitle": "Скорботні",
+    "mysteryGroupGloriousTitle": "Славні",
+    "mysteryGroupLuminousTitle": "Світлі",
+    "collectaStandard": "Господи, Боже Всемогутній, заради Твого Єдинородного Сина, який своїм життям, смертю і воскресінням викупив нас для вічного спасіння, благаємо Тебе: уділи нам благодаті, щоб ми, роздумуючи над таємницями Розарію Пресвятої Діви Марії, знали, як гідно наслідувати те, про що вони говорять, і отримали те, що вони обіцяють. Через Христа, Господа нашого. Амінь."
   },
   "mysteries": {
     "joyful_01_annunciation": {
@@ -153,7 +158,7 @@
       "description": "Як же вони їли, взявши Ісус хлїб і поблагословивши, ламав, і давав ученикам, і рече: Прийміть, їжте: се єсть тїло моє. І, взявши чашу, й оддавши хвалу, подав їм, глаголючи: Пийте з неї всї; се бо єсть кров моя нового завіту, що за многих проливаєть ся на оставленнє гріхів.\n\n— Матей 26:26–28 (Куліш, Нечуй-Левицький, Пулюй, 1905)"
     }
   },
-  "$comment": "Prayer bodies are relayed from the official Roman Catholic Church in Ukraine prayerbook, Щоденно з Богом. Reuse is permitted with a link to https://rkc.org.ua/. Paragraph breaks, response emphasis and Prosary gesture cues are presentation changes; source wording is retained. Titles, intentions, fruits and non-Scripture narrative summaries are Prosary translations of canonical editorial metadata. Scripture is separately imported and credited.",
+  "$comment": "Except for the separately credited Rosary collect, prayer bodies are relayed from the official Roman Catholic Church in Ukraine prayerbook, Щоденно з Богом. Reuse is permitted with a link to https://rkc.org.ua/. Paragraph breaks, response emphasis and Prosary gesture cues are presentation changes; source wording is retained. Titles, intentions, fruits and non-Scripture narrative summaries are Prosary translations of canonical editorial metadata. Scripture is separately imported and credited.",
   "$sources": {
     "signumCrucis": "https://rkc.org.ua/duhovnist/molytovnyk/osnovni-molytvy/",
     "paterNoster": "https://rkc.org.ua/duhovnist/molytovnyk/osnovni-molytvy/",
@@ -175,7 +180,8 @@
     "responsiumPaschale": "https://rkc.org.ua/duhovnist/molytovnyk/shhodenni-molytvy/",
     "collectaPaschale": "https://rkc.org.ua/duhovnist/molytovnyk/shhodenni-molytvy/",
     "invitatoryBodyLent": "https://rkc.org.ua/duhovnist/molytovnyk/shhodenni-molytvy/; https://rkc.org.ua/duhovnist/molytovnyk/osnovni-molytvy/",
-    "invitatoryBody": "https://rkc.org.ua/duhovnist/molytovnyk/shhodenni-molytvy/; https://rkc.org.ua/duhovnist/molytovnyk/osnovni-molytvy/"
+    "invitatoryBody": "https://rkc.org.ua/duhovnist/molytovnyk/shhodenni-molytvy/; https://rkc.org.ua/duhovnist/molytovnyk/osnovni-molytvy/",
+    "collectaStandard": "https://medjugorje.com.ua/media/video/molytvy/6220-6-den-novenna-do-bozhoyi-matery-fatymskoyi17-bereznya-25-bereznya-2022.html"
   },
   "$scriptureSource": "Scripture: Bible of Panteleimon Kulish, Ivan Nechui-Levytsky and Ivan Puluj (1905), eBible.org ukr1871 (https://ebible.org/find/details.php?id=ukr1871), public domain. Imported by Shared/tools/import-scripture.py; the published historical Ukrainian spelling and verse numbering are retained. This is distinct from the modern Ukrainian Catholic prayer texts, separately credited to the Roman Catholic Church in Ukraine prayerbook (https://rkc.org.ua/duhovnist/molytovnyk/).",
   "$scriptureImport": {
@@ -207,9 +213,14 @@
     "status": "partial",
     "fallbackPrayerKeys": [
       "almaRedemptorisMater",
-      "aveReginaCaelorum",
-      "collectaStandard"
+      "aveReginaCaelorum"
     ],
     "sourceReview": "Shared/content/UKRAINIAN-SOURCES.markdown"
+  },
+  "$collectSource": {
+    "credit": "Ukrainian Information Center MIR Medjugorje (https://medjugorje.com.ua/), published Rosary collect in 6 ДЕНЬ. НОВЕННА ДО БОЖОЇ МАТЕРІ ФАТІМСЬКОЇ. Accessed 2026-09-19. The source page explicitly permits republication with a link to the site; no public-domain or Creative Commons status is claimed. Published wording retained without adding a translated introduction.",
+    "permissionText": "Публікація матеріалів дозволена тільки з посиланням на сайт.",
+    "source": "https://medjugorje.com.ua/media/video/molytvy/6220-6-den-novenna-do-bozhoyi-matery-fatymskoyi17-bereznya-25-bereznya-2022.html",
+    "pageSha256": "34281e5260818a0515a14140d5f3c63ac482d1f5eae45a41afc726b8c7f8ba9c"
   }
 }

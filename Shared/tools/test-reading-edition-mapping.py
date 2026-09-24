@@ -240,7 +240,7 @@ class BundledEditionMappingTests(unittest.TestCase):
 
     def test_arabic_units_never_certify_complete_chapters_or_partial_passages(self):
         mapper = registry.mapper("jesuit-arabic-1897")
-        self.assertEqual(mapper.coverage()["labels"], 220)
+        self.assertEqual(mapper.coverage()["labels"], 239)
         self.assertEqual(mapper.coverage()["policy"], "reviewed-units")
         self.assertFalse(mapper.chapter_available("LUK", 1))
         full = references("LUK", 1, 26, 38)

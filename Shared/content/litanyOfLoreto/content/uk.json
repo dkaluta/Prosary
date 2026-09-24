@@ -31,19 +31,25 @@
     "step14Title": "Агнче Божий, що береш гріхи світу, Господи, прости нас",
     "step15Body": "Молись за нас, Пресвята Богородице Діво.\nЩоб ми удостоїлись обітниць Христових.",
     "step15Title": "Молись за нас, Пресвята Богородице Діво",
-    "collectStandard": "Молімося: Просимо Тебе, Боже: дозволь нам, Твоїм слугам, радіти тривалим здоров’ям душі й тіла, і за славним заступництвом Пресвятої завжди Діви Марії звільни нас від земних скорбот і обдаруй вічною радістю. Через Христа, Господа нашого. Амінь."
+    "collectStandard": "Молімося: Просимо Тебе, Боже: дозволь нам, Твоїм слугам, радіти тривалим здоров’ям душі й тіла, і за славним заступництвом Пресвятої завжди Діви Марії звільни нас від земних скорбот і обдаруй вічною радістю. Через Христа, Господа нашого. Амінь.",
+    "collectAfterRosary": "Господи, Боже Всемогутній, заради Твого Єдинородного Сина, який своїм життям, смертю і воскресінням викупив нас для вічного спасіння, благаємо Тебе: уділи нам благодаті, щоб ми, роздумуючи над таємницями Розарію Пресвятої Діви Марії, знали, як гідно наслідувати те, про що вони говорять, і отримали те, що вони обіцяють. Через Христа, Господа нашого. Амінь."
   },
   "mysteries": {},
-  "$comment": "Prayer bodies are relayed from the official Roman Catholic Church in Ukraine prayerbook, Щоденно з Богом. Reuse is permitted with a link to https://rkc.org.ua/. Paragraph breaks, response emphasis and Prosary gesture cues are presentation changes; source wording is retained. Titles, intentions, fruits and non-Scripture narrative summaries are Prosary translations of canonical editorial metadata. Scripture is separately imported and credited.",
+  "$comment": "Except for the separately credited Rosary collect, prayer bodies are relayed from the official Roman Catholic Church in Ukraine prayerbook, Щоденно з Богом. Reuse is permitted with a link to https://rkc.org.ua/. Paragraph breaks, response emphasis and Prosary gesture cues are presentation changes; source wording is retained. Titles, intentions, fruits and non-Scripture narrative summaries are Prosary translations of canonical editorial metadata. Scripture is separately imported and credited.",
   "$sources": {
     "litany": "https://rkc.org.ua/duhovnist/molytovnyk/na-chest-bogorodyczi/",
-    "collectStandard": "https://rkc.org.ua/duhovnist/molytovnyk/na-chest-bogorodyczi/"
+    "collectStandard": "https://rkc.org.ua/duhovnist/molytovnyk/na-chest-bogorodyczi/",
+    "collectAfterRosary": "https://medjugorje.com.ua/media/video/molytvy/6220-6-den-novenna-do-bozhoyi-matery-fatymskoyi17-bereznya-25-bereznya-2022.html"
   },
   "$coverage": {
-    "status": "partial",
-    "fallbackPrayerKeys": [
-      "collectAfterRosary"
-    ],
+    "status": "complete",
+    "fallbackPrayerKeys": [],
     "sourceReview": "Shared/content/UKRAINIAN-SOURCES.markdown"
+  },
+  "$collectSource": {
+    "credit": "Ukrainian Information Center MIR Medjugorje (https://medjugorje.com.ua/), published Rosary collect in 6 ДЕНЬ. НОВЕННА ДО БОЖОЇ МАТЕРІ ФАТІМСЬКОЇ. Accessed 2026-09-19. The source page explicitly permits republication with a link to the site; no public-domain or Creative Commons status is claimed. Published wording retained without adding a translated introduction.",
+    "permissionText": "Публікація матеріалів дозволена тільки з посиланням на сайт.",
+    "source": "https://medjugorje.com.ua/media/video/molytvy/6220-6-den-novenna-do-bozhoyi-matery-fatymskoyi17-bereznya-25-bereznya-2022.html",
+    "pageSha256": "34281e5260818a0515a14140d5f3c63ac482d1f5eae45a41afc726b8c7f8ba9c"
   }
 }

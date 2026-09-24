@@ -21,6 +21,8 @@ public static class AppSettings
     private const string KeyFeastCalendar = "feastCalendarId";
     private const string KeyEasternPaschaStyle = "easternPaschaStyle";
     private const string KeyAutoAdvance = "autoAdvanceSeconds";
+    private const string KeyKeyboardArrowNavigationEnabled = "keyboardArrowNavigationEnabled";
+    private const string KeyKeyboardSpaceAdvanceEnabled = "keyboardSpaceAdvanceEnabled";
     private const string KeyShowTodayFeast = "showTodayFeast";
     private const string KeyShowTodayIntention = "showTodayIntention";
     private const string KeyShowTodayTorahPortion = "showTodayTorahPortion";
@@ -45,6 +47,8 @@ public static class AppSettings
     private static string? _feastCalendarId;
     private static string? _easternPaschaStyle;
     private static int? _autoAdvanceSeconds;
+    private static bool? _keyboardArrowNavigationEnabled;
+    private static bool? _keyboardSpaceAdvanceEnabled;
     private static bool? _showTodayFeast;
     private static bool? _showTodayIntention;
     private static bool? _showTodayTorahPortion;
@@ -396,6 +400,24 @@ public static class AppSettings
         _readingsEditionId = id;
         WriteLocalSetting(KeyReadingsEdition, id);
         ReadingsEditionChanged?.Invoke();
+    }
+
+    public static bool KeyboardArrowNavigationEnabled => _keyboardArrowNavigationEnabled ??=
+        ReadLocalSetting(KeyKeyboardArrowNavigationEnabled) as bool? ?? true;
+
+    public static void SetKeyboardArrowNavigationEnabled(bool value)
+    {
+        _keyboardArrowNavigationEnabled = value;
+        WriteLocalSetting(KeyKeyboardArrowNavigationEnabled, value);
+    }
+
+    public static bool KeyboardSpaceAdvanceEnabled => _keyboardSpaceAdvanceEnabled ??=
+        ReadLocalSetting(KeyKeyboardSpaceAdvanceEnabled) as bool? ?? true;
+
+    public static void SetKeyboardSpaceAdvanceEnabled(bool value)
+    {
+        _keyboardSpaceAdvanceEnabled = value;
+        WriteLocalSetting(KeyKeyboardSpaceAdvanceEnabled, value);
     }
 
     /// <summary>Seconds between automatic step advances in the prayer flows; 0 = off.</summary>

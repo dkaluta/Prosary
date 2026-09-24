@@ -54,7 +54,7 @@ struct RosaryPresetsView: View {
           .padding(14)
           .frame(maxWidth: .infinity, alignment: .leading)
           .prosarySpatialTarget(alignment: .leading)
-          .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
+          .prosaryContentCardBackground()
         }
         .buttonStyle(.plain)
         .prosarySpatialHoverEffect(in: RoundedRectangle(cornerRadius: 14))
@@ -113,7 +113,7 @@ struct RosaryPresetsView: View {
     presetCardBody(preset, prominent: prominent)
       // Keep the lifted context-menu preview clipped to the actual card. The horizontal page
       // gutter belongs outside that preview; when it was part of the preview bounds, iPhone
-      // made the material card itself disappear into a wide transparent cutout while pressed.
+      // made the card itself disappear into a wide transparent cutout while pressed.
       .rosaryPresetContextMenuShape()
       .contextMenu {
         Button { isNew = false; editorPreset = preset } label: {
@@ -173,7 +173,7 @@ struct RosaryPresetsView: View {
       }
       .padding(14)
     }
-    .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
+    .prosaryContentCardBackground()
     .clipShape(RoundedRectangle(cornerRadius: 14))
   }
 

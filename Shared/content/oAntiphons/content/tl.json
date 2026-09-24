@@ -1,0 +1,49 @@
+{
+  "prayers": {
+    "magnificatBody": "At sinabi ni Maria, Dinadakila ng aking kaluluwa ang Panginoon, At nagalak ang aking espiritu sa Dios na aking Tagapagligtas. Sapagka't nilingap niya ang kababaan ng kaniyang alipin. Sapagka't, narito, mula ngayon ay tatawagin akong mapalad ng lahat ng maghahalihaliling lahi. Sapagka't ginawan ako ng Makapangyarihan ng mga dakilang bagay; At banal ang kaniyang pangalan. At ang kaniyang awa ay sa mga lahi't lahi. Sa nangatatakot sa kaniya. Siya'y nagpakita ng lakas ng kaniyang bisig; Isinambulat niya ang mga palalo sa paggunamgunam ng kanilang puso. Ibinaba niya ang mga prinsipe sa mga luklukan nila, At itinaas ang mga may mababang kalagayan. Binusog niya ang nangagugutom ng mabubuting bagay; At pinaalis niya ang mayayaman, na walang anoman. Tumulong siya sa Israel na kaniyang alipin, Upang maalaala niya ang awa (Gaya ng sinabi niya sa ating mga magulang) Kay Abraham at sa kaniyang binhi magpakailan man.\n\n— Lucas 1:46–55 (Ang Dating Biblia, 1905)",
+    "oSapientiaLectio": "At ang Espiritu ng Panginoon ay sasa kaniya, ang diwa ng karunungan at ng kaunawaan, ang diwa ng payo at ng katibayan, ang diwa ng kaalaman at ng takot sa Panginoon; At ang kaniyang kaluguran ay magiging sa pagkatakot sa Panginoon: at hindi siya hahatol ng ayon sa paningin ng kaniyang mga mata, ni sasaway man ng ayon sa pakinig ng kaniyang mga tainga:\n\n— Isaias 11:2–3 (Ang Dating Biblia, 1905)",
+    "oAdonaiLectio": "Kundi hahatol siya ng katuwiran sa dukha, at sasaway na may karampatan dahil sa mga maamo sa lupa: at sasaktan niya ang lupa ng pamalo ng kaniyang bibig, at ng hinga ng kaniyang mga labi ay kaniyang papatayin ang masama. At katuwiran ang magiging bigkis ng kaniyang baywang, at pagtatapat ang pamigkis ng kaniyang mga balakang.\n\n— Isaias 11:4–5 (Ang Dating Biblia, 1905)",
+    "oRadixIesseLectio": "At mangyayari, sa araw na yaon na ang angkan ni Isai, na tumatayong pinakawatawat ng mga bayan, hahanapin ng mga bansa; at ang kaniyang pahingahang dako ay magiging maluwalhati.\n\n— Isaias 11:10 (Ang Dating Biblia, 1905)",
+    "oClavisDavidLectio": "At ang katungkulan sa sangbahayan ni David ay iaatang ko sa kaniyang balikat; at siya'y magbubukas, at walang magsasara; at siya'y magsasara, at walang magbubukas.\n\n— Isaias 22:22 (Ang Dating Biblia, 1905)",
+    "oOriensLectio": "Ang bayan na lumalakad sa kadiliman ay nakakita ng dakilang liwanag: silang nagsisitahan sa lupain ng lilim ng kamatayan, sa kanila sumilang ang liwanag.\n\n— Isaias 9:2 (Ang Dating Biblia, 1905)",
+    "oRexGentiumLectio": "Kaya't ganito ang sabi ng Panginoong Dios, Narito, aking inilalagay sa Sion na pinakapatibayan ang isang bato, isang batong subok, isang mahalagang batong panulok na may matibay na patibayan: ang naniniwala ay hindi magmamadali.\n\n— Isaias 28:16 (Ang Dating Biblia, 1905)",
+    "oEmmanuelLectio": "Kaya't ang Panginoon nga ay magbibigay sa inyo ng tanda; narito, isang dalaga ay maglilihi, at manganganak ng isang lalake, at tatawagin ang kaniyang pangalan na Emmanuel.\n\n— Isaias 7:14 (Ang Dating Biblia, 1905)",
+    "oSapientiaTitle": "O Karunungan",
+    "oAdonaiTitle": "O Panginoon",
+    "oRadixIesseTitle": "O Ugat ni Jesse",
+    "oClavisDavidTitle": "O Susi ni David",
+    "oOriensTitle": "O Bukang-liwayway",
+    "oRexGentiumTitle": "O Hari ng mga Bansa",
+    "oEmmanuelTitle": "O Emmanuel",
+    "oAntiphonLectioTitle": "Pagbasa",
+    "magnificatTitle": "Ang Magnificat",
+    "gloriaPatriTitle": "Luwalhati sa Ama"
+  },
+  "$scriptureSource": "Imported by Shared/tools/import-o-antiphon-scripture.py from the app's existing hash-pinned public-domain editions in reading-text-sources.json. Source wording and numbering are retained; Hebrew Isaiah 9:1 corresponds to Vulgate 9:2. Hebrew Divine Name marks are removed in accordance with the app's typography rule. Antiphon prayer texts have separate provenance.",
+  "$scriptureImport": {
+    "prayerKeys": [
+      "magnificatBody",
+      "oAdonaiLectio",
+      "oClavisDavidLectio",
+      "oEmmanuelLectio",
+      "oOriensLectio",
+      "oRadixIesseLectio",
+      "oRexGentiumLectio",
+      "oSapientiaLectio"
+    ],
+    "mysteryKeys": [],
+    "sources": [
+      {
+        "id": "TagAngBiblia",
+        "url": "https://raw.githubusercontent.com/scrollmapper/bible_databases/master/formats/json/TagAngBiblia.json",
+        "sha256": "d171f5d70731e21343d005af77596a1f876cfa39d2ce7517224c0d005e7f69d4",
+        "license": "Public domain Bible text; scrollmapper transcription"
+      }
+    ]
+  },
+  "mysteries": {},
+  "$sources": {
+    "editorialHeadings": "Prosary translations of canonical display labels; these are not liturgical prayer translations."
+  },
+  "$comment": "Headings are Prosary editorial display translations. Only independently sourced prayer or Scripture bodies are present; headings do not establish a complete prayer translation."
+}

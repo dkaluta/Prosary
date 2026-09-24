@@ -1,27 +1,52 @@
 {
-  "$comment": "Partial Scripture overlay only: six Seven Sorrows passages follow the credited published Bible edition. The fourth sorrow is a non-Scripture meditation and is intentionally not invented here. Titles, spiritual fruits, and devotion-specific prayers still require their own translations; this overlay does not advertise a complete language.",
-  "prayers": {},
+  "$comment": "Six Scripture passages follow the separately credited published Bible edition. Mystery names, spiritual fruits, navigation headings and the explicitly non-Scripture fourth Sorrow narrative are Prosary editorial translations of the canonical English metadata. The closing collect is the published historical Spanish translation in José Pulido y Espinosa’s Misal Romano (Madrid: Zacarías Soler, 1851), p. 333, preceded by a separately credited short published versicle and response. Its historical vocabulary and spelling are retained without editorial translation.",
+  "prayers": {
+    "aveMariaTitle": "Ave María",
+    "paterNosterTitle": "Padre nuestro",
+    "sevenSorrowsClosingTitle": "Nuestra Señora de los Dolores",
+    "signumCrucisTitle": "Señal de la cruz",
+    "decadeOrdinalNoun": "Dolor",
+    "sevenSorrowsTearsSubtitle": "Por las lágrimas de Nuestra Señora",
+    "sevenSorrowsClosingBody": "Rogad por nosotros, Virgen dolorosísima.\n**Para que seamos dignos de las promesas de Jesucristo.**\n\nOremos. Oh Dios! en cuya Pasion segun la profecia de Simeon, traspasó la espada del dolor, la dulcisima alma de la gloriosa Virgen Maria Madre nuestra, concédenos propicio á los que venerando su transfixion y padecimientos, consigamos por la muerte, gloriosos méritos é intercesion de todos los santos que están acompañandoos fielmente al pié de la cruz, el feliz efecto de vuestra Pasion. Tú, Señor, que vives y reinas por todos los siglos. Amen."
+  },
   "mysteries": {
     "seven_sorrows_01_prophecy_of_simeon": {
-      "description": "Simeon bendijo á entrambos, y dijo á María su madre: Mira, este niño que ves, está destinado para ruina, y para resurreccion de muchos en Israél; y para ser el blanco de la contradiccion de los hombres: lo que será para tí misma una espada que traspasará tu alma, á fin de que sean descubiertos los pensamientos ocultos en los corazones de muchos.\n\n— San Lucas 2:34–35 (Torres Amat)"
+      "description": "Simeon bendijo á entrambos, y dijo á María su madre: Mira, este niño que ves, está destinado para ruina, y para resurreccion de muchos en Israél; y para ser el blanco de la contradiccion de los hombres: lo que será para tí misma una espada que traspasará tu alma, á fin de que sean descubiertos los pensamientos ocultos en los corazones de muchos.\n\n— San Lucas 2:34–35 (Torres Amat)",
+      "title": "La profecía de Simeón",
+      "fruit": "Confianza en la voluntad de Dios"
     },
     "seven_sorrows_02_flight_into_egypt": {
-      "description": "Despues que ellos partieron, un ángel del Señor apareció en sueños á Joseph diciéndole: Levántate, toma al niño y á su madre, y huye á Egypto, y estáte allí hasta que yo te avise. Porque Heródes ha de buscar al niño para matarle. Levantándose Joseph tomó al niño y á su madre de noche; y se retiró á Egypto,\n\n— San Mateo 2:13–14 (Torres Amat)"
+      "description": "Despues que ellos partieron, un ángel del Señor apareció en sueños á Joseph diciéndole: Levántate, toma al niño y á su madre, y huye á Egypto, y estáte allí hasta que yo te avise. Porque Heródes ha de buscar al niño para matarle. Levantándose Joseph tomó al niño y á su madre de noche; y se retiró á Egypto,\n\n— San Mateo 2:13–14 (Torres Amat)",
+      "title": "La huida a Egipto",
+      "fruit": "Fortaleza en el exilio"
     },
     "seven_sorrows_03_loss_of_jesus_in_the_temple": {
-      "description": "acabados aquellos dias, cuando ya se volvian, se quedó el niño Jesus en Jerusalem, sin que sus padres lo advirtiesen. Antes bien persuadidos de que venia con alguno de los de su comitiva, anduvieron la jornada entera buscándole entre los parientes y conocidos. Mas como no le hallasen, retornaron á Jerusalem, en busca suya.\n\n— San Lucas 2:43–45 (Torres Amat)"
+      "description": "acabados aquellos dias, cuando ya se volvian, se quedó el niño Jesus en Jerusalem, sin que sus padres lo advirtiesen. Antes bien persuadidos de que venia con alguno de los de su comitiva, anduvieron la jornada entera buscándole entre los parientes y conocidos. Mas como no le hallasen, retornaron á Jerusalem, en busca suya.\n\n— San Lucas 2:43–45 (Torres Amat)",
+      "title": "La pérdida del Niño Jesús en el Templo",
+      "fruit": "Perseverancia en la búsqueda de Cristo"
     },
     "seven_sorrows_05_crucifixion": {
-      "description": "Estaban al mismo tiempo junto á la cruz de Jesus su madre, y la hermana ó parienta de su madre, María muger de Cleophás, y Maria Magdalena. Habiendo mirado pues Jesus á su madre, y al discípulo que él amaba, el cual estaba alli, dice á su madre: Muger, ahí tienes á tu hijo. Despues dice al discípulo: Ahí tienes a tu madre. Y desde aquel punto encargóse de ella el discípulo, y la tuvo consigo en su casa.\n\n— San Juan 19:25–27 (Torres Amat)"
+      "description": "Estaban al mismo tiempo junto á la cruz de Jesus su madre, y la hermana ó parienta de su madre, María muger de Cleophás, y Maria Magdalena. Habiendo mirado pues Jesus á su madre, y al discípulo que él amaba, el cual estaba alli, dice á su madre: Muger, ahí tienes á tu hijo. Despues dice al discípulo: Ahí tienes a tu madre. Y desde aquel punto encargóse de ella el discípulo, y la tuvo consigo en su casa.\n\n— San Juan 19:25–27 (Torres Amat)",
+      "title": "María al pie de la cruz",
+      "fruit": "Valor en el sufrimiento"
     },
     "seven_sorrows_06_descent_from_the_cross": {
-      "description": "Despues de esto Joseph natural de Arimathea, (que era discípulo de Jesus, bien que oculto por miedo de los judíos) pidió licencia á Pilato para recoger el cuerpo de Jesus; y Pilato se lo permitió. Con eso vino, y se llevó el cuerpo de Jesus. Vino tambien Nicodemo, aquel mismo que en otra ocasion habia ido de noche á encontrar á Jesus, trayendo consigo una confeccion de myrrha, y de aloe, cosa de cien libras. Tomaron pues el cuerpo de Jesus, y bañado en las especies aromáticas, le amortajaron con lienzos, segun la costumbre de sepultar de los judíos.\n\n— San Juan 19:38–40 (Torres Amat)"
+      "description": "Despues de esto Joseph natural de Arimathea, (que era discípulo de Jesus, bien que oculto por miedo de los judíos) pidió licencia á Pilato para recoger el cuerpo de Jesus; y Pilato se lo permitió. Con eso vino, y se llevó el cuerpo de Jesus. Vino tambien Nicodemo, aquel mismo que en otra ocasion habia ido de noche á encontrar á Jesus, trayendo consigo una confeccion de myrrha, y de aloe, cosa de cien libras. Tomaron pues el cuerpo de Jesus, y bañado en las especies aromáticas, le amortajaron con lienzos, segun la costumbre de sepultar de los judíos.\n\n— San Juan 19:38–40 (Torres Amat)",
+      "title": "María recibe el cuerpo de Jesús",
+      "fruit": "Aceptación de la voluntad de Dios"
     },
     "seven_sorrows_07_burial_of_jesus": {
-      "description": "Habia en el lugar, donde fue crucificado, un huerto, y en el huerto un sepulcro nuevo, donde hasta entónces ninguno habia sido sepultado. Como era la víspera del sábado de los judíos, y este sepulcro estaba cerca, pusieron allí á Jesus.\n\n— San Juan 19:41–42 (Torres Amat)"
+      "description": "Habia en el lugar, donde fue crucificado, un huerto, y en el huerto un sepulcro nuevo, donde hasta entónces ninguno habia sido sepultado. Como era la víspera del sábado de los judíos, y este sepulcro estaba cerca, pusieron allí á Jesus.\n\n— San Juan 19:41–42 (Torres Amat)",
+      "title": "La sepultura de Jesús",
+      "fruit": "Esperanza en la resurrección"
+    },
+    "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross": {
+      "title": "María encuentra a Jesús camino del Calvario",
+      "fruit": "Compasión",
+      "description": "En el camino del Calvario, María se encuentra entre la multitud y cruza su mirada con la de su Hijo bajo el peso de la cruz: la espada que Simeón había anunciado atraviesa ahora su corazón al contemplar su sufrimiento."
     }
   },
-  "$scriptureSource": "Scripture imported from Félix Torres Amat's Spanish Bible (1836) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Torres Amat translated the Vulgate, so its chapter-and-verse is the same one these devotions cite and no versification map is needed. Spelling and accentuation are the 1836 printing's own. Old Testament readings are absent: only the New Testament volumes of it have been transcribed from the scans.",
+  "$scriptureSource": "Scripture imported from Félix Torres Amat's Spanish Bible (1836) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Torres Amat translated the Vulgate, so its chapter-and-verse is the same one these devotions cite and no versification map is needed. Spelling and accentuation are the 1836 printing's own. The New Testament follows Wikisource's transcription. Nine Isaiah verses are independently transcribed and visually checked against volume IX (https://archive.org/details/lasagradabiblian10torr); exact pages and source checksum are recorded in Shared/content/spanish-torres-amat-1836-isaiah.json.",
   "$scriptureImport": {
     "prayerKeys": [],
     "mysteryKeys": [
@@ -32,5 +57,10 @@
       "seven_sorrows_06_descent_from_the_cross",
       "seven_sorrows_07_burial_of_jesus"
     ]
-  }
+  },
+  "$metadataSource": "Prosary editorial translations of Shared/content/sevenSorrows/content/en.json. These display labels and the fourth Sorrow meditation are not presented as a published prayer translation or Scripture.",
+  "$sources": {
+    "sevenSorrowsClosingBody": "https://books.google.com/books?id=mE9Xg0g9l3kC&pg=PA333 ; versicle and response: https://pierinashop.com/wp-content/uploads/2024/04/corona-dolorosa.pdf#page=4"
+  },
+  "$prayerSource": "Closing collect: José Pulido y Espinosa, Misal Romano (Madrid: Imprenta a cargo de Zacarías Soler, 1851), p. 333, public-domain print; title page and prayer scan visually verified. Spacing and line-end hyphenation normalized; printed vocabulary, historical spelling, punctuation and translation variants preserved, including Madre nuestra and por la muerte. The 14-word versicle and response are transcribed from Corona de los Dolores de María Santísima, Apostolado Sacerdotal / Pierina Devoções, PDF p. 4 (https://pierinashop.com/wp-content/uploads/2024/04/corona-dolorosa.pdf); no other modern leaflet text copied. Oremos is the conventional Spanish prayer invitation already used in this app. See Shared/content/SOURCED-PRAYER-ADDITIONS.markdown and Shared/tools/fixtures/sourced-prayer-additions.json."
 }

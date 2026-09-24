@@ -49,14 +49,7 @@ class PrayerTranslationsCompletenessTest {
     /** Known per-bundle translation gaps: bundleId -> language -> keys awaiting a verified
      * translation. The self-guard test below fails once a listed key gains its translation, so
      * this map can never go silently stale. */
-    private val bundleKeysMissingLanguages: Map<String, Map<String, Set<String>>> = mapOf(
-        // Veronica's station quotes Judith, and the Arabic/Tagalog scripture sources carry no
-        // deuterocanon — those two fall back to the bundle's Latin text.
-        "stationsOfTheCross" to mapOf(
-            "ar" to setOf("station06Body"),
-            "tl" to setOf("station06Body"),
-        ),
-    )
+    private val bundleKeysMissingLanguages: Map<String, Map<String, Set<String>>> = emptyMap()
 
     private val allMysteryImageKeys: Set<String> =
         MysteryGroup.entries.flatMap { MysteryCatalog.forGroup(it) }.map { it.imageKey }.toSet()

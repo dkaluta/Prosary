@@ -68,7 +68,9 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
             Title: "Earlier title",
             Fruit: "Earlier fruit",
             Description: "Earlier description",
-            TransliteratedDescription: "Earlier transliteration");
+            TransliteratedDescription: "Earlier transliteration",
+            TransliteratedTitle: "Title aid",
+            TransliteratedFruit: "Fruit aid");
 
         var titleOnly = PrayerPackStore.MergeMysteryOverrides(
             complete,
@@ -77,6 +79,13 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Equal("Earlier fruit", titleOnly.Fruit);
         Assert.Equal("Earlier description", titleOnly.Description);
         Assert.Equal("Earlier transliteration", titleOnly.TransliteratedDescription);
+        Assert.Null(titleOnly.TransliteratedTitle);
+        Assert.Equal("Fruit aid", titleOnly.TransliteratedFruit);
+
+        var fruitOnly = PrayerPackStore.MergeMysteryOverrides(complete,
+            new MysteryTextOverride(Fruit: "Replacement fruit"));
+        Assert.Null(fruitOnly.TransliteratedFruit);
+        Assert.Equal("Title aid", fruitOnly.TransliteratedTitle);
 
         var newDescription = PrayerPackStore.MergeMysteryOverrides(
             titleOnly,

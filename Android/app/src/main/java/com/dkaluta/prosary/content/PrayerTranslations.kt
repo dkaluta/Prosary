@@ -28,19 +28,46 @@ object PrayerTranslations {
     fun flowTitle(title: String, languageCode: String?, sourceScript: Boolean, bundleId: String = "rosary"): String {
         val unpointed = HebrewDisplayText.unpoint(title)
         if (LanguageCatalog.fallbackChain(languageCode).firstOrNull() != "arc") return unpointed
+        val pairs = PrayerPackStore.titleScriptPairs(bundleId, "arc")
+        val definition = PrayerPackStore.definition(bundleId)
+        val ordinalKeys = listOfNotNull(definition?.decades?.ordinalNounKey) +
+            definition?.variants.orEmpty().mapNotNull { it.decades?.ordinalNounKey }
+        val ordinalNouns = ordinalKeys.flatMap { key ->
+            listOfNotNull(PrayerPackStore.resolveBodyText(bundleId, "arc", key),
+                PrayerPackStore.transliteration(bundleId, "arc", key)).map(HebrewDisplayText::unpoint)
+        }.toSet()
+        if (" — " in unpointed) {
+            val parts = unpointed.split(" — ")
+            fun isPaired(value: String) = pairs.any {
+                HebrewDisplayText.unpoint(it.first) == value || HebrewDisplayText.unpoint(it.second) == value
+            }
+            // Recognize the authored ordinal/mystery caption, preserving personal dash titles.
+            if (parts.size !in 2..3) return unpointed
+            fun isOrdinal(value: String): Boolean {
+                val suffix = Regex(""" \d+$""").find(value)?.value ?: return false
+                return value.removeSuffix(suffix) in ordinalNouns
+            }
+            val ordinalIndex = if (isOrdinal(parts.last())) parts.lastIndex else parts.size - 2
+            if (!isOrdinal(parts[ordinalIndex]) || (ordinalIndex != parts.lastIndex && !isPaired(parts.last()))) return unpointed
+            return parts.map { part ->
+                flowTitle(part, languageCode, sourceScript, bundleId)
+            }.joinToString(" — ")
+        }
         val hebrewConnector = HebrewDisplayText.unpoint(get("arc", PrayerKey.RepetitionCounterConnector))
         val syriacConnector = PrayerPackStore.transliteration("rosary", "arc", "repetitionCounterConnector")
         val connectors = listOfNotNull(hebrewConnector, syriacConnector).joinToString("|", transform = Regex::escape)
-        val suffix = Regex("""( \(\d+ (?:$connectors) \d+\))$""")
-            .find(unpointed)?.value.orEmpty()
+        val ordinalSuffix = Regex(""" \d+$""").find(unpointed)
+            ?.takeIf { unpointed.removeSuffix(it.value) in ordinalNouns }
+        val suffix = (Regex("""( \(\d+ (?:$connectors) \d+\))$""")
+            .find(unpointed) ?: ordinalSuffix)?.value.orEmpty()
         val base = unpointed.removeSuffix(suffix)
         val connector = if (sourceScript) syriacConnector ?: hebrewConnector else hebrewConnector
         val adjustedSuffix = suffix.replace(hebrewConnector, connector).let {
             if (syriacConnector == null) it else it.replace(syriacConnector, connector)
         }
-        // These are paired, sourced headings in the active bundle and shared Rosary. Never derive
+        // These are paired, authored headings in the active bundle and shared Rosary. Never derive
         // a title from the body or transliterate an unknown/fallback heading ourselves.
-        for ((primary, alternate) in PrayerPackStore.titleScriptPairs(bundleId, "arc")) {
+        for ((primary, alternate) in pairs) {
             val primaryScript = PrayerTypography.scriptOf(primary)
             val alternateScript = PrayerTypography.scriptOf(alternate)
             val pair = when {

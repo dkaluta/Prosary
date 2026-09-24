@@ -142,6 +142,8 @@ struct AboutView: View {
             .foregroundStyle(.secondary)
           Link(String(localized: "about.ukrainianPrayerbookLink", defaultValue: "Ukrainian prayerbook", bundle: UILanguage.bundle, locale: UILanguage.locale),
                destination: URL(string: "https://rkc.org.ua/duhovnist/molytovnyk/")!)
+          Link(String(localized: "about.ukrainianRosarySourceLink", defaultValue: "MIR Medjugorje — Ukrainian Rosary prayer", bundle: UILanguage.bundle, locale: UILanguage.locale),
+               destination: URL(string: "https://medjugorje.com.ua/media/video/molytvy/6220-6-den-novenna-do-bozhoyi-matery-fatymskoyi17-bereznya-25-bereznya-2022.html")!)
           Link(String(localized: "about.ukrainianScriptureLink", defaultValue: "Ukrainian Bible (1905)", bundle: UILanguage.bundle, locale: UILanguage.locale),
                destination: URL(string: "https://ebible.org/find/details.php?id=ukr1871")!)
           Text("about.divineMercyPrayerSources")

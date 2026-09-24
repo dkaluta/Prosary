@@ -307,6 +307,16 @@ public partial class SettingsViewModel : ObservableObject
     partial void OnSelectedAutoAdvanceChanged(AutoAdvanceOption value) => AppSettings.SetAutoAdvanceSeconds(value.Seconds);
 
     [ObservableProperty]
+    private bool _keyboardArrowNavigationEnabled = AppSettings.KeyboardArrowNavigationEnabled;
+
+    partial void OnKeyboardArrowNavigationEnabledChanged(bool value) => AppSettings.SetKeyboardArrowNavigationEnabled(value);
+
+    [ObservableProperty]
+    private bool _keyboardSpaceAdvanceEnabled = AppSettings.KeyboardSpaceAdvanceEnabled;
+
+    partial void OnKeyboardSpaceAdvanceEnabledChanged(bool value) => AppSettings.SetKeyboardSpaceAdvanceEnabled(value);
+
+    [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(ResetHomeOrderCommand))]
     private bool _homeOrderIsCustom = HomeOrder.Saved().Count > 0;
 

@@ -35,11 +35,11 @@
   <data name="eternal_rest_at_end" xml:space="preserve"><value>Один раз перед завершением</value></data>
   <data name="antiphon_none" xml:space="preserve"><value>Нет</value></data>
   <data name="antiphon_seasonal" xml:space="preserve"><value>Автоматически (по литургическому времени)</value></data>
-  <data name="antiphon_salve_regina" xml:space="preserve"><value>Salve Regina</value></data>
-  <data name="antiphon_alma_redemptoris" xml:space="preserve"><value>Alma Redemptoris Mater</value></data>
-  <data name="antiphon_ave_regina" xml:space="preserve"><value>Ave Regina Caelorum</value></data>
-  <data name="antiphon_regina_caeli" xml:space="preserve"><value>Regina Caeli</value></data>
-  <data name="antiphon_sub_tuum" xml:space="preserve"><value>Sub Tuum Praesidium</value></data>
+  <data name="antiphon_salve_regina" xml:space="preserve"><value>Славься, Царица</value></data>
+  <data name="antiphon_alma_redemptoris" xml:space="preserve"><value>Матерь Искупителя</value></data>
+  <data name="antiphon_ave_regina" xml:space="preserve"><value>Радуйся, Царица Небесная</value></data>
+  <data name="antiphon_regina_caeli" xml:space="preserve"><value>Царица Небесная</value></data>
+  <data name="antiphon_sub_tuum" xml:space="preserve"><value>Под Твою защиту</value></data>
   <data name="imageStyle_classic" xml:space="preserve"><value>Классическая живопись</value></data>
   <data name="imageStyle_eastern" xml:space="preserve"><value>Восточные иконы</value></data>
   <data name="language_default_parenthesized" xml:space="preserve"><value>По умолчанию ({0})</value></data>
@@ -406,10 +406,10 @@
   <data name="category_short" xml:space="preserve"><value>Краткие</value></data>
   <data name="category_easter" xml:space="preserve"><value>Пасха</value></data>
   <data name="category_other" xml:space="preserve"><value>Другие</value></data>
-  <data name="AbtPrayerSources.Text" xml:space="preserve"><value>Дополнительные источники молитв: Vatican News, святилище Фатимы, собор Парижской Богоматери, AELF и Итальянская епископская конференция (CEI). Также: базилика Гваделупской Богоматери; GOARCH Digital Chant Stand; IVE в Греции (греческий перевод Anima Christi — о. F. Bravo IVE); католический приход св. Николая на Тиносе; Иберийская провинция кармелитов; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), для средневекового сирийского текста «Под Твою защиту». Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888).</value></data>
-  <data name="AbtDivineMercySources.Text" xml:space="preserve"><value>Венчик Божьему Милосердию: Конгрегация сестёр Матери Божьего Милосердия.</value></data>
+  <data name="AbtPrayerSources.Text" xml:space="preserve"><value>Дополнительные источники молитв: Vatican News, святилище Фатимы, собор Парижской Богоматери, AELF и Итальянская епископская конференция (CEI). Также: базилика Гваделупской Богоматери; GOARCH Digital Chant Stand; IVE в Греции (греческий перевод Anima Christi — о. F. Bravo IVE); католический приход св. Николая на Тиносе; Иберийская провинция кармелитов; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), для средневекового сирийского текста «Под Твою защиту». Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 7, 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888). «Ангел Господень» на греческом: IVE в Греции. Великие антифоны «О»: викариат святого Иакова (иврит) и «Рускатолик» (русский). Начальный стих Розария на сирийском: Псалом 70:2, Полиглотта Уолтона (1657), с. 194. Ответ в Крестном пути на греческом: Конференция католических епископов Греции (cen.gr).</value></data>
+  <data name="AbtDivineMercySources.Text" xml:space="preserve"><value>Венчик Божьему Милосердию: Конгрегация сестёр Матери Божьего Милосердия. Греческий текст: iPray.</value></data>
   <data name="AppDescription" xml:space="preserve"><value>Помощник для молитвы Розария, «Ангел Господень» и Иисусовой молитвы.</value></data>
-  <data name="AbtSevenSorrowsSources.Text" xml:space="preserve"><value>Молитвы Семи скорбей: Notre Dame de Chrétienté и Confraternite.net.</value></data>
+  <data name="AbtSevenSorrowsSources.Text" xml:space="preserve"><value>Молитвы Семи скорбей: Notre Dame de Chrétienté и Confraternite.net. Заключительная молитва на испанском: José Pulido y Espinosa, Misal Romano (Madrid: Imprenta a cargo de Zacarías Soler, 1851), с. 333. Стих и ответ: Apostolado Sacerdotal / Pierina Devoções.</value></data>
   <data name="settings_typeface_frank_ruhl_libre" xml:space="preserve"><value>Frank Ruhl Libre</value></data>
   <data name="SetLatinPrayerTypeface.Header" xml:space="preserve"><value>Молитвы латиницей</value></data>
   <data name="SetCyrillicPrayerTypeface.Header" xml:space="preserve"><value>Молитвы кириллицей</value></data>
@@ -446,8 +446,9 @@
   <data name="AbtHebrewBookIndex.Text" xml:space="preserve"><value>Дополнительные названия книг Библии на иврите: указатель еврейской Библии Mechon Mamre. Только названия, без библейского текста.</value></data>
   <data name="SetJaffaWording.Header" xml:space="preserve"><value>Альтернативный текст «Радуйся, Мария»</value></data>
   <data name="SetJaffaWordingFooter.Text" xml:space="preserve"><value>Использовать בְּרוּכַת הַחֶסֶד вместо מְלֵאַת הַחֶסֶד в молитвах викариата.</value></data>
-  <data name="AbtUkrainianPrayerSources.Text" xml:space="preserve"><value>Молитвы на украинском: Римско-католическая церковь в Украине, молитвенник «Щоденно з Богом». Используются с указанием источника согласно правилам повторного использования издателя. Священное Писание: перевод Кулиша, Нечуя-Левицкого и Пулюя (1905), общественное достояние; eBible.org ukr1871. Историческое написание библейского текста сохранено.</value></data>
+  <data name="AbtUkrainianPrayerSources.Text" xml:space="preserve"><value>Молитвы на украинском: Римско-католическая церковь в Украине, молитвенник «Щоденно з Богом». Используются с указанием источника согласно правилам повторного использования издателя. Священное Писание: перевод Кулиша, Нечуя-Левицкого и Пулюя (1905), общественное достояние; eBible.org ukr1871. Историческое написание библейского текста сохранено. Заключительная молитва Розария на украинском: Украинский информационный центр MIR Меджугорье (medjugorje.com.ua); воспроизведена с указанием источника согласно разрешению сайта на публикацию.</value></data>
   <data name="AbtUkrainianPrayerbookLink.Content" xml:space="preserve"><value>Молитвенник на украинском</value></data>
+  <data name="AbtUkrainianRosarySourceLink.Content" xml:space="preserve"><value>MIR Меджугорье — молитва Розария на украинском</value></data>
   <data name="AbtUkrainianScriptureLink.Content" xml:space="preserve"><value>Библия на украинском (1905)</value></data>
   <!-- Window and menu commands -->
   <data name="CommandsOpenInNewWindow" xml:space="preserve"><value>Открыть в новом окне</value></data>
@@ -529,4 +530,8 @@
   <data name="readings_whole_verses_notice" xml:space="preserve"><value>Стихи показаны целиком и могут выходить за границы указанного отрывка чтения.</value></data>
   <data name="readings_source" xml:space="preserve"><value>Источник и издание</value></data>
   <data name="language_app_parenthesized" xml:space="preserve"><value>Язык приложения ({0})</value></data>
+  <data name="SetKeyboardHeader.Text" xml:space="preserve"><value>Клавиатура</value></data>
+  <data name="SetKeyboardArrows.Header" xml:space="preserve"><value>Навигация по молитве клавишами со стрелками</value></data>
+  <data name="SetKeyboardSpace.Header" xml:space="preserve"><value>Переход дальше клавишей пробела</value></data>
+  <data name="SetKeyboardHint.Text" xml:space="preserve"><value>Стрелки влево и вправо переключают шаги. Пробел продвигает молитву в активном окне.</value></data>
 </root>

@@ -35,11 +35,11 @@
   <data name="eternal_rest_at_end" xml:space="preserve"><value>Une fois, vers la fin</value></data>
   <data name="antiphon_none" xml:space="preserve"><value>Aucun</value></data>
   <data name="antiphon_seasonal" xml:space="preserve"><value>Automatique (selon le temps liturgique)</value></data>
-  <data name="antiphon_salve_regina" xml:space="preserve"><value>Salve Regina</value></data>
-  <data name="antiphon_alma_redemptoris" xml:space="preserve"><value>Alma Redemptoris Mater</value></data>
-  <data name="antiphon_ave_regina" xml:space="preserve"><value>Ave Regina Caelorum</value></data>
-  <data name="antiphon_regina_caeli" xml:space="preserve"><value>Regina Caeli</value></data>
-  <data name="antiphon_sub_tuum" xml:space="preserve"><value>Sub Tuum Praesidium</value></data>
+  <data name="antiphon_salve_regina" xml:space="preserve"><value>Salut, ô Reine</value></data>
+  <data name="antiphon_alma_redemptoris" xml:space="preserve"><value>Sainte Mère du Rédempteur</value></data>
+  <data name="antiphon_ave_regina" xml:space="preserve"><value>Salut, Reine des cieux</value></data>
+  <data name="antiphon_regina_caeli" xml:space="preserve"><value>Reine du ciel</value></data>
+  <data name="antiphon_sub_tuum" xml:space="preserve"><value>Sous l’abri de ta miséricorde</value></data>
   <data name="imageStyle_classic" xml:space="preserve"><value>Peintures classiques</value></data>
   <data name="imageStyle_eastern" xml:space="preserve"><value>Icônes orientales</value></data>
   <data name="language_default_parenthesized" xml:space="preserve"><value>Par défaut ({0})</value></data>
@@ -406,10 +406,10 @@
   <data name="category_short" xml:space="preserve"><value>Courtes</value></data>
   <data name="category_easter" xml:space="preserve"><value>Pâques</value></data>
   <data name="category_other" xml:space="preserve"><value>Autres</value></data>
-  <data name="AbtPrayerSources.Text" xml:space="preserve"><value>Autres sources des prières : Vatican News, sanctuaire de Fatima, Notre-Dame de Paris, AELF et Conférence épiscopale italienne (CEI). Également : basilique de Guadalupe ; GOARCH Digital Chant Stand ; IVE en Grèce (traduction grecque de l’Anima Christi par le P. F. Bravo IVE) ; paroisse catholique Saint-Nicolas de Tinos ; province ibérique des Carmes ; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), pour le texte syriaque médiéval du Sous votre protection. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888).</value></data>
-  <data name="AbtDivineMercySources.Text" xml:space="preserve"><value>Chapelet à la Miséricorde Divine : Congrégation des Sœurs de Notre-Dame de la Miséricorde.</value></data>
+  <data name="AbtPrayerSources.Text" xml:space="preserve"><value>Autres sources des prières : Vatican News, sanctuaire de Fatima, Notre-Dame de Paris, AELF et Conférence épiscopale italienne (CEI). Également : basilique de Guadalupe ; GOARCH Digital Chant Stand ; IVE en Grèce (traduction grecque de l’Anima Christi par le P. F. Bravo IVE) ; paroisse catholique Saint-Nicolas de Tinos ; province ibérique des Carmes ; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), pour le texte syriaque médiéval du Sous votre protection. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 7, 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888). Angélus en grec : IVE en Grèce. Grandes antiennes Ô : vicariat Saint-Jacques (hébreu) et RusCatholic (russe). Verset d’ouverture du Rosaire en syriaque : Psaume 70,2, Polyglotte de Walton (1657), p. 194. Répons du Chemin de croix en grec : Conférence des évêques catholiques de Grèce (cen.gr).</value></data>
+  <data name="AbtDivineMercySources.Text" xml:space="preserve"><value>Chapelet à la Miséricorde Divine : Congrégation des Sœurs de Notre-Dame de la Miséricorde. Texte grec : iPray.</value></data>
   <data name="AppDescription" xml:space="preserve"><value>Un compagnon pour prier le Rosaire, l’Angélus et la prière de Jésus.</value></data>
-  <data name="AbtSevenSorrowsSources.Text" xml:space="preserve"><value>Prières des sept douleurs : Notre Dame de Chrétienté et Confraternite.net.</value></data>
+  <data name="AbtSevenSorrowsSources.Text" xml:space="preserve"><value>Prières des sept douleurs : Notre Dame de Chrétienté et Confraternite.net. Prière finale en espagnol : José Pulido y Espinosa, Misal Romano (Madrid: Imprenta a cargo de Zacarías Soler, 1851), p. 333. Verset et répons : Apostolado Sacerdotal / Pierina Devoções.</value></data>
   <data name="settings_typeface_frank_ruhl_libre" xml:space="preserve"><value>Frank Ruhl Libre</value></data>
   <data name="SetLatinPrayerTypeface.Header" xml:space="preserve"><value>Prières en alphabet latin</value></data>
   <data name="SetCyrillicPrayerTypeface.Header" xml:space="preserve"><value>Prières en alphabet cyrillique</value></data>
@@ -446,8 +446,9 @@
   <data name="AbtHebrewBookIndex.Text" xml:space="preserve"><value>Autres noms hébreux des livres bibliques : index de la Bible hébraïque de Mechon Mamre. Noms uniquement, sans texte biblique.</value></data>
   <data name="SetJaffaWording.Header" xml:space="preserve"><value>Autre formulation du Je vous salue, Marie</value></data>
   <data name="SetJaffaWordingFooter.Text" xml:space="preserve"><value>Utiliser בְּרוּכַת הַחֶסֶד au lieu de מְלֵאַת הַחֶסֶד dans les prières du vicariat.</value></data>
-  <data name="AbtUkrainianPrayerSources.Text" xml:space="preserve"><value>Prières en ukrainien : Église catholique romaine en Ukraine, livre de prières Щоденно з Богом. Utilisation avec attribution conformément à la politique de réutilisation de l’éditeur. Écriture : Bible de Kulish, Nechui-Levytsky et Puluj (1905), domaine public ; eBible.org ukr1871. L’orthographe historique du texte biblique est conservée.</value></data>
+  <data name="AbtUkrainianPrayerSources.Text" xml:space="preserve"><value>Prières en ukrainien : Église catholique romaine en Ukraine, livre de prières Щоденно з Богом. Utilisation avec attribution conformément à la politique de réutilisation de l’éditeur. Écriture : Bible de Kulish, Nechui-Levytsky et Puluj (1905), domaine public ; eBible.org ukr1871. L’orthographe historique du texte biblique est conservée. Prière finale du Rosaire en ukrainien : Centre d’information ukrainien MIR Medjugorje (medjugorje.com.ua), reproduite avec mention de la source conformément à l’autorisation de publication du site.</value></data>
   <data name="AbtUkrainianPrayerbookLink.Content" xml:space="preserve"><value>Livre de prières en ukrainien</value></data>
+  <data name="AbtUkrainianRosarySourceLink.Content" xml:space="preserve"><value>MIR Medjugorje — Prière du Rosaire en ukrainien</value></data>
   <data name="AbtUkrainianScriptureLink.Content" xml:space="preserve"><value>Bible en ukrainien (1905)</value></data>
   <!-- Window and menu commands -->
   <data name="CommandsOpenInNewWindow" xml:space="preserve"><value>Ouvrir dans une nouvelle fenêtre</value></data>
@@ -529,4 +530,8 @@
   <data name="readings_whole_verses_notice" xml:space="preserve"><value>Les versets sont affichés en entier et peuvent dépasser les limites du passage cité pour la lecture.</value></data>
   <data name="readings_source" xml:space="preserve"><value>Source et édition</value></data>
   <data name="language_app_parenthesized" xml:space="preserve"><value>Langue de l’app ({0})</value></data>
+  <data name="SetKeyboardHeader.Text" xml:space="preserve"><value>Clavier</value></data>
+  <data name="SetKeyboardArrows.Header" xml:space="preserve"><value>Parcourir les prières avec les touches fléchées</value></data>
+  <data name="SetKeyboardSpace.Header" xml:space="preserve"><value>Avancer dans la prière avec la barre d’espace</value></data>
+  <data name="SetKeyboardHint.Text" xml:space="preserve"><value>Les flèches gauche et droite changent d’étape. La barre d’espace fait avancer la prière dans la fenêtre active.</value></data>
 </root>

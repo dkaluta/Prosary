@@ -379,13 +379,38 @@ struct MacPrayerLibraryView: View {
 
   @ToolbarContentBuilder
   private var libraryToolbar: some CustomizableToolbarContent {
+    // These actions belong to the saved-prayer collection, not Today or the browsers.
+    // Hide the native items themselves so no empty toolbar capsules remain, while
+    // keeping their identities and the person's customization on supported systems.
+    if #available(macOS 15.0, *) {
+      prayerLibraryToolbar.hidden(!isLibrarySection)
+    } else if isLibrarySection {
+      prayerLibraryToolbar
+    }
+    ToolbarItem(id: "today", placement: .primaryAction) {
+      Button { sidebar = .today } label: {
+        Label(label("home.today.today", "Today"), systemImage: "calendar")
+      }
+      .help(label("home.today.today", "Today"))
+    }
+    .defaultCustomization(.hidden)
+    ToolbarItem(id: "gallery", placement: .primaryAction) {
+      Button { sidebar = .gallery } label: {
+        Label(label("macLibrary.gallery", "Prayer Gallery"), systemImage: "square.grid.2x2")
+      }
+      .help(label("macLibrary.gallery", "Prayer Gallery"))
+    }
+    .defaultCustomization(.hidden)
+  }
+
+  @ToolbarContentBuilder
+  private var prayerLibraryToolbar: some CustomizableToolbarContent {
     ToolbarItem(id: "view", placement: .primaryAction) {
       Picker(label("macLibrary.viewStyle", "Library View"), selection: $displayStyle) {
         Label(label("macLibrary.gridView", "Icon View"), systemImage: "square.grid.2x2").tag(DisplayStyle.icons.rawValue)
         Label(label("macLibrary.listView", "List View"), systemImage: "list.bullet").tag(DisplayStyle.list.rawValue)
       }
       .pickerStyle(.segmented)
-      .disabled(!isLibrarySection)
       .help(label("macLibrary.viewStyle", "Library View"))
       .accessibilityIdentifier("macLibrary.viewStyle")
     }
@@ -432,20 +457,6 @@ struct MacPrayerLibraryView: View {
       .help(label("macLibrary.add", "Add Prayer"))
       .accessibilityIdentifier("macLibrary.add")
     }
-    ToolbarItem(id: "today", placement: .primaryAction) {
-      Button { sidebar = .today } label: {
-        Label(label("home.today.today", "Today"), systemImage: "calendar")
-      }
-      .help(label("home.today.today", "Today"))
-    }
-    .defaultCustomization(.hidden)
-    ToolbarItem(id: "gallery", placement: .primaryAction) {
-      Button { sidebar = .gallery } label: {
-        Label(label("macLibrary.gallery", "Prayer Gallery"), systemImage: "square.grid.2x2")
-      }
-      .help(label("macLibrary.gallery", "Prayer Gallery"))
-    }
-    .defaultCustomization(.hidden)
   }
 
   private func itemMenu(_ item: MacPrayerLibraryItem) -> NSMenu {

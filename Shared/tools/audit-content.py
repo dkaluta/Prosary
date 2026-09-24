@@ -43,6 +43,14 @@ UNPUNCTUATED_CHANTS.add(("rosary", "fr", "salveRegina"))
 UNPUNCTUATED_CHANTS.update(
     ("litanyOfLoreto", "he", f"step{number:02}Body") for number in range(1, 15)
 )
+# The Vicariate's seven complete O Antiphons end with the unpunctuated refrain
+# “בֹּא אֲדוֹנֵנוּ בֹא”; retain the published text rather than adding punctuation.
+UNPUNCTUATED_CHANTS.update(
+    ("oAntiphons", "he", key) for key in (
+        "oSapientiaBody", "oAdonaiBody", "oRadixIesseBody", "oClavisDavidBody",
+        "oOriensBody", "oRexGentiumBody", "oEmmanuelBody",
+    )
+)
 
 
 def website_contaminants(data):
@@ -99,7 +107,8 @@ def main():
                 continue
             if (key.endswith(("Title", "Label", "Subtitle"))
                     or re.fullmatch(r"stationOrdinal\d+", key)
-                    or key in ("decadeOrdinalNoun", "decadeOrdinalFormat", "repetitionCounterConnector")):
+                    or key in ("decadeOrdinalNoun", "decadeOrdinalFormat", "repetitionCounterConnector",
+                               "aveMariaProFide", "aveMariaProSpe", "aveMariaProCaritate")):
                 if text != text.strip():
                     problems.append((bundle, lang, key, "whitespace-padded title"))
                 continue

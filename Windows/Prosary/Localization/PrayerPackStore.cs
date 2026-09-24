@@ -51,6 +51,7 @@ public static class PrayerPackStore
     private static readonly HashSet<string> SharedPrayerTitleKeys = new(StringComparer.Ordinal)
     {
         "signumCrucisTitle", "symbolumApostolorumTitle", "paterNosterTitle", "aveMariaTitle", "gloriaPatriTitle",
+        "mysteryGroupJoyfulTitle", "mysteryGroupSorrowfulTitle", "mysteryGroupGloriousTitle", "mysteryGroupLuminousTitle",
     };
     /// <summary>The fixed prayer keys that may participate in the process-wide override layer.
     /// Deriving this once from the native translation catalog keeps the check AOT-safe and in
@@ -459,6 +460,10 @@ public static class PrayerPackStore
             if (!string.IsNullOrEmpty(text) && !string.IsNullOrEmpty(alternate))
                 yield return (text, alternate);
         }
+        foreach (var pair in (MysteryOverrides.GetValueOrDefault("arc") ?? new())
+            .OrderBy(entry => entry.Key, StringComparer.Ordinal))
+            if (pair.Value.Title is { } title && pair.Value.TransliteratedTitle is { } alternate)
+                yield return (title, alternate);
     }
 
     public static string ResolveBodyText(string bundleId, string? languageCode, string key) =>
@@ -762,7 +767,9 @@ public static class PrayerPackStore
             later.Description ?? earlier.Description,
             later.Description is not null
                 ? later.TransliteratedDescription
-                : earlier.TransliteratedDescription);
+                : earlier.TransliteratedDescription,
+            later.Title is not null ? later.TransliteratedTitle : earlier.TransliteratedTitle,
+            later.Fruit is not null ? later.TransliteratedFruit : earlier.TransliteratedFruit);
 
     /// <summary>Bundle content JSON keys are the camelCase form used across every platform's
     /// schema (e.g. "oratioFatimae"); <see cref="PrayerKey"/>'s constants are the same names
@@ -1277,7 +1284,7 @@ public sealed record DevotionAudioTrack(
         int? StepIndex = null);
 
     public string? LocalizedName => HebrewDisplayText.WithoutMarksOrNull(
-        NameByLanguage?.GetValueOrDefault(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
+        UiLanguageCatalog.Localized(NameByLanguage, UiLanguageCatalog.Current)
         ?? Name);
 }
 
@@ -1355,7 +1362,7 @@ public sealed record CustomDevotionOption(
         Dictionary<string, string>? NameByLanguage = null)
     {
         public string LocalizedName => HebrewDisplayText.WithoutMarks(
-            NameByLanguage?.GetValueOrDefault(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
+            UiLanguageCatalog.Localized(NameByLanguage, UiLanguageCatalog.Current)
             ?? Name);
     }
 
@@ -1371,7 +1378,7 @@ public sealed record CustomDevotionOption(
     };
 
     public string LocalizedName => HebrewDisplayText.WithoutMarks(
-        NameByLanguage?.GetValueOrDefault(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
+        UiLanguageCatalog.Localized(NameByLanguage, UiLanguageCatalog.Current)
         ?? Name);
 }
 
@@ -1430,7 +1437,7 @@ public sealed record CustomDevotionDefinition(
         bool? HasClosingCross = null)
     {
         public string LocalizedName => HebrewDisplayText.WithoutMarks(
-            NameByLanguage?.GetValueOrDefault(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
+            UiLanguageCatalog.Localized(NameByLanguage, UiLanguageCatalog.Current)
             ?? Name);
     }
 
@@ -1501,11 +1508,15 @@ public sealed record CustomDevotionDefinition(
         // Optional grouping label for the Montfort-style structure ("First Week: Knowledge of
         // Self"), shown as period context by the day picker.
         string? Period = null,
-        List<CustomDevotionStep>? Steps = null)
+        List<CustomDevotionStep>? Steps = null,
+        Dictionary<string, string>? PeriodByLanguage = null)
     {
         public string LocalizedName => HebrewDisplayText.WithoutMarks(
-            NameByLanguage?.GetValueOrDefault(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
+            UiLanguageCatalog.Localized(NameByLanguage, UiLanguageCatalog.Current)
             ?? Name);
+
+        public string? LocalizedPeriod => HebrewDisplayText.WithoutMarksOrNull(
+            UiLanguageCatalog.Localized(PeriodByLanguage, UiLanguageCatalog.Current) ?? Period);
     }
 
     public sealed record DecadesDefinition(

@@ -51,15 +51,31 @@ class UkrainianPrayerContentTest {
         }
     }
 
-    @Test fun scripturalStationsUseUkrainianAndMissingMeditationsFollowTheSelectedFallback() {
+    @Test fun stationsUseUkrainianScriptureAndEditorialNarratives() {
         val scriptural = steps("stationsOfTheCross", "scriptural")
         assertEquals("Ісус у Гетсиманському саду", scriptural[2].title)
         assertTrue(scriptural[2].body.startsWith("І приходять на врочище Гетсиман"))
         assertTrue(scriptural[2].body.contains("Марко 14:32–36"))
         assertTrue(scriptural[2].isScripture)
-        val english = PrayerPackStore.resolveBodyText("stationsOfTheCross", "en", "station01Body")
-        assertNotEquals("station01Body", english)
-        assertEquals(english, PrayerPackStore.resolveBodyText("stationsOfTheCross", "uk", "station01Body"))
-        assertTrue(steps("stationsOfTheCross", "traditional")[2].body.contains(english))
+        val traditional = steps("stationsOfTheCross", "traditional")
+        assertTrue(traditional[2].body.startsWith("Пилат не знаходить провини в Ісусі"))
+        for (number in 1..14) {
+            val key = "station${number.toString().padStart(2, '0')}Body"
+            val ukrainian = PrayerPackStore.resolveBodyText("stationsOfTheCross", "uk", key)
+            assertEquals(key, PrayerTypography.Script.Cyrillic, PrayerTypography.scriptOf(ukrainian))
+            assertNotEquals(PrayerPackStore.resolveBodyText("stationsOfTheCross", "en", key), ukrainian)
+            assertTrue(key, traditional[number + 1].body.contains(ukrainian))
+            assertFalse(key, traditional[number + 1].isScripture)
+        }
+    }
+
+    @Test fun missingStationsOpeningAndClosingFollowTheSelectedFallback() {
+        val traditional = steps("stationsOfTheCross", "traditional")
+        for (key in listOf("stationsOpeningPrayer", "stationsClosingPrayer")) {
+            val english = PrayerPackStore.resolveBodyText("stationsOfTheCross", "en", key)
+            assertNotEquals(key, english)
+            assertEquals(english, PrayerPackStore.resolveBodyText("stationsOfTheCross", "uk", key))
+            assertTrue(key, traditional.any { it.body == english })
+        }
     }
 }

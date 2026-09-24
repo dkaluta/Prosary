@@ -15,8 +15,7 @@ enum MysteryGroup: String, Codable, CaseIterable, Identifiable {
 
   var id: String { rawValue }
 
-  /// Display name in English, used as a fallback when no localized name is supplied by the
-  /// content layer (e.g. in preset summaries before the real backend is wired up).
+  /// Interface-language label for pickers, preset summaries and Shortcuts responses.
   var displayName: String {
     switch self {
     case .joyful:    return String(localized: "mysteryGroup.joyful", defaultValue: "Joyful", bundle: UILanguage.bundle, locale: UILanguage.locale)

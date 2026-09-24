@@ -66,9 +66,11 @@ data class MysteryTextOverride(
     val fruit: String? = null,
     val description: String? = null,
     val transliteratedDescription: String? = null,
+    val transliteratedTitle: String? = null,
+    val transliteratedFruit: String? = null,
 ) {
-    /** Packs load in precedence order. Description and transliteration are one provenance pair:
-     * replacing the description also replaces (or removes) its reading aid. */
+    /** Packs load in precedence order. Each field and alternate form are one provenance pair:
+     * replacing a field also replaces (or removes) its reading aid. */
     fun mergedWith(later: MysteryTextOverride): MysteryTextOverride = MysteryTextOverride(
         title = later.title ?: title,
         fruit = later.fruit ?: fruit,
@@ -78,6 +80,8 @@ data class MysteryTextOverride(
         } else {
             transliteratedDescription
         },
+        transliteratedTitle = if (later.title != null) later.transliteratedTitle else transliteratedTitle,
+        transliteratedFruit = if (later.fruit != null) later.transliteratedFruit else transliteratedFruit,
     )
 }
 
@@ -278,11 +282,16 @@ data class CustomDevotionDefinition(
          * of Self"), shown as period context by the day picker. */
         val period: String? = null,
         val steps: List<CustomDevotionStep>,
+        val periodByLanguage: Map<String, String>? = null,
     ) {
         val localizedName: String
             get() = HebrewDisplayText.unpoint(
                 nameByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: name,
             )
+
+        val localizedPeriod: String?
+            get() = (periodByLanguage?.get(LanguageCatalog.uiLanguageCode()) ?: period)
+                ?.let(HebrewDisplayText::unpoint)
     }
 
     /** One named alternate form of a devotion — the Stations' traditional vs. scriptural sets,
@@ -606,6 +615,7 @@ object PrayerPackStore {
     private val prayerTransliterations = mutableMapOf<String, MutableMap<PrayerKey, String>>()
     private val sharedPrayerTitleKeys = setOf(
         "signumCrucisTitle", "symbolumApostolorumTitle", "paterNosterTitle", "aveMariaTitle", "gloriaPatriTitle",
+        "mysteryGroupJoyfulTitle", "mysteryGroupSorrowfulTitle", "mysteryGroupGloriousTitle", "mysteryGroupLuminousTitle",
     )
     private val mysteryOverrides = mutableMapOf<String, MutableMap<String, MysteryTextOverride>>()
     /** Image payloads are the overwhelming majority of every pack. Keep only their zip-entry
@@ -814,19 +824,25 @@ object PrayerPackStore {
     fun resolveBodyText(bundleId: String, languageCode: String?, key: String): String =
         resolvePrayerContent(bundleId, languageCode, key)?.text ?: key
 
-    /** Exact sourced heading pairs, with bundle-local wording ahead of shared Rosary titles.
+    /** Exact authored heading pairs, with bundle-local wording ahead of shared Rosary titles.
      * An unpaired local heading must not acquire an alternate from a different wording. */
     fun titleScriptPairs(bundleId: String, languageCode: String): List<Pair<String, String>> {
         val local = rawContentByBundle[bundleId]?.get(languageCode).orEmpty()
         // A bundle can name its titleKey freely. Prefer conventional title keys, then match
-        // other local entries only by their exact sourced text; do not scan unrelated packs.
+        // other local entries only by their exact authored text; do not scan unrelated packs.
         val keys = (local.keys + sharedPrayerTitleKeys)
             .sortedWith(compareByDescending<String> { it.endsWith("Title") }.thenBy { it })
-        return keys.mapNotNull { key ->
+        val prayerPairs = keys.mapNotNull { key ->
             val content = localPrayerContent(bundleId, languageCode, key)
                 ?: if (key in sharedPrayerTitleKeys) localPrayerContent("rosary", languageCode, key) else null
             content?.readingAid?.let { content.text to it }
         }
+        val mysteryPairs = mysteryOverrides[languageCode].orEmpty().toSortedMap().values.mapNotNull {
+            val title = it.title
+            val alternate = it.transliteratedTitle
+            if (title != null && alternate != null) title to alternate else null
+        }
+        return prayerPairs + mysteryPairs
     }
 
     /** Production entry point. `noCompress` makes each built-in pack an uncompressed Android

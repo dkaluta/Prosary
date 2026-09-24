@@ -1,0 +1,24 @@
+{
+  "prayers": {
+    "angelusAnnunciationTitle": "Ο Ευαγγελισμός",
+    "angelusFiatTitle": "Η συγκατάθεση της Μαρίας",
+    "angelusIncarnationTitle": "Η Ενσάρκωση",
+    "angelusCollectTitle": "Ας προσευχηθούμε",
+    "aveMariaTitle": "Χαίρε Μαρία",
+    "reginaCaeliTitle": "Ἄνασσα τῶν οὐρανῶν",
+    "angelusAnnunciationBody": "Άγγελος του Κυρίου ευαγγελίστηκε τη Μαρία,\n**και εκείνη συνέλαβε από το Πνεύμα το Άγιο.**",
+    "angelusFiatBody": "Είμαι η δούλη του Κυρίου,\n**ας γίνει σ’ εμένα, σύμφωνα με τον λόγο σου.**",
+    "angelusIncarnationBody": "Και ο Λόγος έγινε σάρκα,\n**και κατοίκησε ανάμεσά μας.**",
+    "angelusCollectBody": "Πρέσβευε για μας, υπεραγία Θεοτόκε,\n**για ν΄ αξιωθούμε ν΄ απολαύσουμε τις υποσχέσεις του Ιησού Χριστού.**\n\nΑς προσευχηθούμε:\nΔώρισε, Κύριε, στο πνεύμα μας άφθονη τη χάρη Σου, εσύ ο οποίος μας αποκάλυψες με τον ευαγγελισμό του αγγέλου την ενσάρκωση του Χριστού του Υιού Σου, και χάρη στη μεσιτεία της αειπαρθένου Μαρίας, οδήγησέ μας, μέσω των αγίων Παθών και του Σταυρού, στη δόξα της Αναστάσεως.\n\nΔια του Κυρίου μας Ιησού Χριστού, του Υιού σου, ο οποίος ζει και βασιλεύει στους αιώνες των αιώνων. Αμήν.",
+    "reginaCaeliBody": "Ἄνασσα τῶν οὐρανῶν εὐφραίνου, ἀλληλούϊα,\nὍτι, ὃν ἠξίωσας βαστάζειν, ἀλληλούϊα,\nἘξανέστη, ὡς εἶπεν, ἀλληλούϊα·\nΕὔχου ὑπὲρ ἡμῶν τῷ Θεῷ, ἀλληλούϊα.\n\nΧαῖρε καὶ ἀγάλλου, Παρθένε Μαρία, ἀλληλούϊα.\n**Ὅτι ὄντως ἀνέστη ὁ Κύριος, ἀλληλούϊα.**\n\nΕὐχώμεθα.\nὉ Θεὸς, ὃς δι’ ἀναστάσεως τοῦ Υἱοῦ σου Κυρίου ἡμῶν Ἰησοῦ Χριστοῦ τὴν πανοικίαν σου εὐφραίνειν ἠξίωσας, διάνυσον, δεόμεθα, ἵνα διὰ τῆς αὐτοῦ Μητρὸς Παρθένου Μαρίας ἀϊδίου ληψώμεθα χάρματα ζωῆς. Διὰ τοῦ αὐτοῦ Χριστοῦ Κυρίου ἡμῶν.\n℟. Ἀμήν."
+  },
+  "mysteries": {},
+  "$sources": {
+    "angelusAnnunciationBody": "https://www.ivegreece.gr/2016/03/i-prosefchi-angelos-tou-kyriou/",
+    "angelusFiatBody": "https://www.ivegreece.gr/2016/03/i-prosefchi-angelos-tou-kyriou/",
+    "angelusIncarnationBody": "https://www.ivegreece.gr/2016/03/i-prosefchi-angelos-tou-kyriou/",
+    "angelusCollectBody": "https://www.ivegreece.gr/2016/03/i-prosefchi-angelos-tou-kyriou/",
+    "reginaCaeliBody": "Shared/content/rosary/content/el.json: sourced Regina Caeli and collect (Officium Parvum, Avignon, 1823, pp. 119–121) with existing native Greek paschal versicle and response."
+  },
+  "$comment": "Angelus wording relays the Institute of the Incarnate Word in Greece. Repeated Hail Mary prayers are performed by the engine. Greek Regina Caeli combines the existing sourced antiphon, existing versicle/response and its own paschal collect. Headings are Prosary editorial metadata."
+}

@@ -414,9 +414,17 @@
         "transliteratedDescription": {
           "type": "string?",
           "description": "The same description in a second script. Valid only beside description in the same override, so text and transliteration retain one provenance; used for the untouched Syriac Peshitta beside its Hebrew-square projection."
+        },
+        "transliteratedTitle": {
+          "type": "string?",
+          "description": "Alternate-script title, paired with title in this same override. Replacing title without this field clears the earlier title aid."
+        },
+        "transliteratedFruit": {
+          "type": "string?",
+          "description": "Alternate-script spiritual fruit, paired with fruit in this same override. Replacing fruit without this field clears the earlier fruit aid."
         }
       },
-      "constraints": "At least one of title, fruit, or description is present. transliteratedDescription requires description in the same object. Later bundle contributions merge only their present fields."
+      "constraints": "At least one of title, fruit, or description is present. Every transliterated field requires its corresponding primary field in the same object. Later bundle contributions merge only their present fields and retain each primary/alternate pair together."
     },
     "RosaryStep": {
       "description": "One prayer \"bead\" in a fully built session for any devotion — the output of PrayerEngine.buildSteps(for:). See ARCHITECTURE.markdown#engines.",
@@ -554,7 +562,7 @@
         },
         "days": {
           "type": "object[]?",
-          "description": "days type only: [{name, nameByLanguage?, period?, steps: [Entry]}] — one entry per day, with optional shared opening/closing prayed every day. A series' progress lives in a MultiDayRun (start date + which days were prayed), separate from Prayer.dayIndex. Phones and detached legacy callers key it by devotion id; desktop saved copies scope it by saved identity, including Windows desktop:<Prayer UUID>:<bundle ID>. Unsaved Windows native sessions use their own UUID. Prayer.dayIndex still holds the day a favorite opens on."
+          "description": "days type only: [{name, nameByLanguage?, period?, periodByLanguage?, steps: [Entry]}] — one entry per day, with optional shared opening/closing prayed every day. A series' progress lives in a MultiDayRun (start date + which days were prayed), separate from Prayer.dayIndex. Phones and detached legacy callers key it by devotion id; desktop saved copies scope it by saved identity, including Windows desktop:<Prayer UUID>:<bundle ID>. Unsaved Windows native sessions use their own UUID. Prayer.dayIndex still holds the day a favorite opens on."
         },
         "steps": {
           "type": "CustomDevotionStep[]?",
@@ -740,6 +748,16 @@
     "AppSettings": {
       "description": "Relevant shared preference keys, stored verbatim in UserDefaults, Android prosary_settings SharedPreferences, and Windows LocalSettings. App Language selects the interface and automatic Bible edition. Global Prayer Language follows it by default, or overrides it with any supported prayer language. Explicit per-prayer languages and Bible edition IDs remain independent.",
       "fields": {
+        "keyboardArrowNavigationEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Left/Right previous/next prayer navigation in the active window's reader, following interface direction. Independent of keyboardSpaceAdvanceEnabled. Always shown in desktop Settings; shown on mobile and visionOS while a hardware keyboard is connected. Preserve focused controls, text editing/selection, sheets/dialogs, modified keys and key repeats; Up/Down retain scrolling."
+        },
+        "keyboardSpaceAdvanceEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Space to invoke the reader's primary advance/count/Finish action in the active window. Independent of keyboardArrowNavigationEnabled, with the same keyboard-availability and focus guards. When off, Space keeps native control/scroll behavior. Changing the preference does not restart the prayer."
+        },
         "interfaceLanguageCode": {
           "type": "string",
           "default": "",

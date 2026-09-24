@@ -179,7 +179,9 @@ struct PrayerEngine {
   /// flat "steps" type covers Angelus/Stations/Trisagion-shaped devotions (including the
   /// Angelus's Eastertide whole-sequence swap); the decade/bead-structured "rosary" type covers
   /// Franciscan Crown/Seven Sorrows/Divine Mercy-shaped ones.
-  private func buildCustomDevotionSteps(
+  // Internal so content-contract tests can exercise a sparse language overlay directly;
+  // ordinary sessions still select an advertised language before invoking this builder.
+  func buildCustomDevotionSteps(
     bundleId: String, languageCode: String?, variantId: String? = nil,
     optionOverrides: [String: String] = [:], rosaryOptions: RosaryOptions? = nil,
     dayIndex: Int = 0
@@ -377,7 +379,7 @@ struct PrayerEngine {
           if !mysteryText.fruit.isEmpty {
             body += "\n\n\(fruitLabel): \(mysteryText.fruit)"
             transliteratedBody = transliteratedBody.map {
-              "\($0)\n\n\(alternateFruitLabel): \(mysteryText.fruit)"
+              "\($0)\n\n\(alternateFruitLabel): \(mysteryText.transliteratedFruit ?? mysteryText.fruit)"
             }
           }
           steps.append(RosaryStep(
@@ -452,6 +454,8 @@ struct PrayerEngine {
     var steps: [RosaryStep] = []
     var decadeIndex = 0
     for group in groups {
+      let groupKey = "mysteryGroup\(group.rawValue.capitalized)Title"
+      let groupTitle = resolve(groupKey)
       let mysteries = MysteryCatalog.forGroup(group)
       let indices = rosary.mysterySelectionMode == .singleMystery
         ? [rosary.specificMysteryOrder - 1]
@@ -461,8 +465,7 @@ struct PrayerEngine {
         let mystery = mysteries[d]
         let mysteryText = MysteryTranslations.get(languageCode: languageCode, imageKey: mystery.imageKey)
         let ordinal = decadeOrdinal(d, decades: decades, bundleId: bundleId, languageCode: languageCode)
-        // The group prefix is still English — MysteryGroup has no per-prayer-language name yet.
-        let ordinalLabel = showGroupName ? "\(group.displayName) — \(ordinal)" : ordinal
+        let ordinalLabel = showGroupName ? "\(groupTitle) — \(ordinal)" : ordinal
         let decadeSubtitle = "\(ordinalLabel) — \(mysteryText.title)"
 
         var body = mysteryText.description
@@ -470,7 +473,7 @@ struct PrayerEngine {
         if !mysteryText.fruit.isEmpty {
           body += "\n\n\(fruitLabel): \(mysteryText.fruit)"
           transliteratedBody = transliteratedBody.map {
-            "\($0)\n\n\(alternateFruitLabel): \(mysteryText.fruit)"
+            "\($0)\n\n\(alternateFruitLabel): \(mysteryText.transliteratedFruit ?? mysteryText.fruit)"
           }
         }
 

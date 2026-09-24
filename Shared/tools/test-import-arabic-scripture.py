@@ -59,11 +59,11 @@ class ArabicImportTests(unittest.TestCase):
             json.dumps(self.source, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     def test_inventory_covers_existing_passages_without_inventing_missing_bodies(self):
-        self.assertEqual(len(self.rows), 68)
+        self.assertEqual(len(self.rows), 76)
         self.assertEqual(len({(row["book"], row["chapter"], v)
-                              for row in self.rows for v in row["verses"]}), 220)
+                              for row in self.rows for v in row["verses"]}), 239)
         self.assertEqual({row["bundle"] for row in self.rows},
-                         {"rosary", "sevenSorrows", "franciscanCrown", "viaLucis", "stationsOfTheCross"})
+                         {"rosary", "sevenSorrows", "franciscanCrown", "viaLucis", "stationsOfTheCross", "oAntiphons"})
         targets = {(row["bundle"], tuple(row["keys"])) for row in self.rows}
         self.assertNotIn(("stationsOfTheCross", ("prayers", "station06Body")), targets)
         self.assertNotIn(("sevenSorrows", ("mysteries", "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross", "description")), targets)
@@ -82,7 +82,7 @@ class ArabicImportTests(unittest.TestCase):
     def test_check_reports_stale_files_and_writes_nothing(self):
         before = snapshot(self.root)
         changed = IMPORTER.apply_plan(IMPORTER.build_plan(self.root), check=True)
-        self.assertEqual(len(changed), 8)
+        self.assertEqual(len(changed), 9)
         self.assertEqual(snapshot(self.root), before)
 
     def test_complete_cited_verses_and_discontinuous_ranges(self):
@@ -168,7 +168,7 @@ class ArabicImportTests(unittest.TestCase):
 class CommittedArabicCorpusTests(unittest.TestCase):
     def test_source_is_complete_and_generated_outputs_are_current(self):
         plan = IMPORTER.build_plan()
-        self.assertEqual(len(plan), 8)
+        self.assertEqual(len(plan), 9)
         self.assertEqual(IMPORTER.apply_plan(plan, check=True), [])
 
     def test_every_transcribed_verse_has_printed_page_evidence(self):

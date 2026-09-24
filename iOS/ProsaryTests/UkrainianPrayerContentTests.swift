@@ -52,15 +52,31 @@ final class UkrainianPrayerContentTests: XCTestCase {
     }
   }
 
-  func testScripturalStationsUseUkrainianScriptureAndMissingMeditationsFollowTheSelectedFallback() {
+  func testStationsUseUkrainianScriptureAndEditorialNarratives() {
     let scriptural = steps("stationsOfTheCross", variant: "scriptural")
     XCTAssertEqual(scriptural[2].title, "Ісус у Гетсиманському саду")
     XCTAssertTrue(scriptural[2].body.hasPrefix("І приходять на врочище Гетсиман"))
     XCTAssertTrue(scriptural[2].body.contains("Марко 14:32–36"))
     XCTAssertTrue(scriptural[2].isScripture)
-    let english = PrayerPackStore.resolveBodyText(bundleId: "stationsOfTheCross", languageCode: "en", key: "station01Body")
-    XCTAssertNotEqual(english, "station01Body")
-    XCTAssertEqual(PrayerPackStore.resolveBodyText(bundleId: "stationsOfTheCross", languageCode: "uk", key: "station01Body"), english)
-    XCTAssertTrue(steps("stationsOfTheCross", variant: "traditional")[2].body.contains(english))
+    let traditional = steps("stationsOfTheCross", variant: "traditional")
+    XCTAssertTrue(traditional[2].body.hasPrefix("Пилат не знаходить провини в Ісусі"))
+    for number in 1...14 {
+      let key = String(format: "station%02dBody", number)
+      let ukrainian = PrayerPackStore.resolveBodyText(bundleId: "stationsOfTheCross", languageCode: "uk", key: key)
+      XCTAssertEqual(PrayerTypography.script(of: ukrainian), .cyrillic, key)
+      XCTAssertNotEqual(ukrainian, PrayerPackStore.resolveBodyText(bundleId: "stationsOfTheCross", languageCode: "en", key: key))
+      XCTAssertTrue(traditional[number + 1].body.contains(ukrainian), key)
+      XCTAssertFalse(traditional[number + 1].isScripture, key)
+    }
+  }
+
+  func testMissingStationsOpeningAndClosingFollowTheSelectedFallback() {
+    let traditional = steps("stationsOfTheCross", variant: "traditional")
+    for key in ["stationsOpeningPrayer", "stationsClosingPrayer"] {
+      let english = PrayerPackStore.resolveBodyText(bundleId: "stationsOfTheCross", languageCode: "en", key: key)
+      XCTAssertNotEqual(english, key)
+      XCTAssertEqual(PrayerPackStore.resolveBodyText(bundleId: "stationsOfTheCross", languageCode: "uk", key: key), english)
+      XCTAssertTrue(traditional.contains { $0.body == english }, key)
+    }
   }
 }
